@@ -122,14 +122,12 @@ describe('Admin D2 bounded and truthful loader contract', () => {
     expect(html).not.toMatch(/(reactions|poll_votes)[\s\S]{0,180}catch\(\(\) => \(\{ docs: \[\] \}\)\)/);
   });
 
-  test('user economy child journals are bounded and partial evidence never becomes a numeric balance', () => {
-    const visible = block('async function fillVisibleShardBalances', 'async function loadShardsRealBalance');
-    const detail = block('async function loadShardsRealBalance', 'function shardsSection');
-    for (const source of [visible, detail]) {
-      expect(source).toContain('limit(SHARD_BALANCE_EVENT_PAGE + 1)');
-      expect(source).toContain('truncated');
-      expect(source).toContain('—');
-    }
+  // зачем: D70/D84 — жемчуг удалён; баланс жемчуга по external_economy_events и журнал shard_log
+  // больше не читаются ни в списке пользователей, ни в карточке (раньше до 1001 чтения на строку).
+  test('retired pearl balances are not read in the users list or the user card', () => {
+    expect(html).not.toContain('fillVisibleShardBalances');
+    expect(html).not.toContain('loadShardsRealBalance');
+    expect(html).not.toContain("collection(db, 'users', uid, 'shard_log')");
     expect(html).not.toContain("getDocs(collection(db, 'users', uid, 'external_economy_events'))");
   });
 

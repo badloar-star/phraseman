@@ -6,7 +6,8 @@ const liveAdmin = fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'),
 const functionsIndex = fs.readFileSync(path.join(root, 'functions', 'src', 'index.ts'), 'utf8');
 const surveyServer = fs.readFileSync(path.join(root, 'functions', 'src', 'shard_survey.ts'), 'utf8');
 const surveyClient = fs.readFileSync(path.join(root, 'app', 'survey_client.ts'), 'utf8');
-const surveySectionStart = liveAdmin.indexOf('// Опросы за осколки (shard-survey)');
+// зачем: D70 — жемчуг за ответ снят, раздел переименован в «Опросы»; якорь следует за заголовком.
+const surveySectionStart = liveAdmin.indexOf('// Опросы (shard-survey');
 const surveySectionEnd = liveAdmin.indexOf('const REWARD_TYPES', surveySectionStart);
 const surveySection = liveAdmin.slice(surveySectionStart, surveySectionEnd);
 const executableSurveySection = surveySection.replace(/^\s*\/\/.*$/gm, '');

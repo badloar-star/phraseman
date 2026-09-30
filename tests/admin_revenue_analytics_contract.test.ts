@@ -342,12 +342,13 @@ describe('admin revenue analytics contract', () => {
 
   it('keeps the user stats strip neutral and text-first', () => {
     expect(adminHtml).toContain('<div class="label" data-i18n-es="Total">Total</div>');
-    expect(adminHtml).toContain('<div class="label" data-i18n-es="XP medio">Avg XP</div>');
+    // зачем: D02/D70 — XP и жемчуг удалены в 2.0, их средних в полосе статистики нет.
+    expect(adminHtml).not.toContain('>Avg XP</div>');
     expect(adminHtml).toContain('<div class="label" data-i18n-es="Racha media">Avg streak</div>');
     expect(adminHtml).toContain('<div class="label" data-i18n-es="Tema">Theme</div>');
     expect(adminHtml).toContain('<div class="label">Language</div>');
     expect(adminHtml).toContain('<div class="label">Платформа</div>');
-    expect(adminHtml).toContain('<div class="label" data-i18n-es="Fragmentos medios">Avg shards</div>');
+    expect(adminHtml).not.toContain('>Avg shards</div>');
     expect(adminHtml).not.toContain('<div class="label" data-i18n-es="Tema: oscuro">');
     expect(adminHtml).not.toContain('<div class="label">🇷🇺 / 🇺🇦</div>');
     expect(adminHtml).not.toContain('<div class="label">📱 iOS / 🤖 Android</div>');

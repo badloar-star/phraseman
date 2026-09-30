@@ -42,7 +42,73 @@
       ]
     },
     {
+      "name": "adminArenaContentStatus",
+      "sourceSurface": "admin/v2/legacy.html",
+      "functionSourceMatch": true,
+      "mutationCandidate": true,
+      "actorRole": "BLOCKED — prove actor/role enforcement",
+      "inputValidation": "BLOCKED — link schema and rejection tests",
+      "idempotency": "BLOCKED — link operation/idempotency contract",
+      "previewConfirm": "BLOCKED — prove preview/confirm or document why not applicable",
+      "auditEvent": "BLOCKED — link immutable audit evidence",
+      "rollback": "BLOCKED — link rollback/runbook or explicit non-reversibility decision",
+      "tests": "BLOCKED — link focused callable/UI contract tests",
+      "blockers": [
+        "human owner and role evidence not linked",
+        "input schema/validation evidence not linked",
+        "idempotency contract not linked",
+        "preview/confirm semantics not linked",
+        "audit event evidence not linked",
+        "rollback/runbook evidence not linked",
+        "focused test evidence not linked"
+      ]
+    },
+    {
+      "name": "adminArenaContentValidate",
+      "sourceSurface": "admin/v2/legacy.html",
+      "functionSourceMatch": true,
+      "mutationCandidate": true,
+      "actorRole": "BLOCKED — prove actor/role enforcement",
+      "inputValidation": "BLOCKED — link schema and rejection tests",
+      "idempotency": "BLOCKED — link operation/idempotency contract",
+      "previewConfirm": "BLOCKED — prove preview/confirm or document why not applicable",
+      "auditEvent": "BLOCKED — link immutable audit evidence",
+      "rollback": "BLOCKED — link rollback/runbook or explicit non-reversibility decision",
+      "tests": "BLOCKED — link focused callable/UI contract tests",
+      "blockers": [
+        "human owner and role evidence not linked",
+        "input schema/validation evidence not linked",
+        "idempotency contract not linked",
+        "preview/confirm semantics not linked",
+        "audit event evidence not linked",
+        "rollback/runbook evidence not linked",
+        "focused test evidence not linked"
+      ]
+    },
+    {
       "name": "adminAuditAccountDeleteCoverage",
+      "sourceSurface": "admin/v2/legacy.html",
+      "functionSourceMatch": true,
+      "mutationCandidate": true,
+      "actorRole": "BLOCKED — prove actor/role enforcement",
+      "inputValidation": "BLOCKED — link schema and rejection tests",
+      "idempotency": "BLOCKED — link operation/idempotency contract",
+      "previewConfirm": "BLOCKED — prove preview/confirm or document why not applicable",
+      "auditEvent": "BLOCKED — link immutable audit evidence",
+      "rollback": "BLOCKED — link rollback/runbook or explicit non-reversibility decision",
+      "tests": "BLOCKED — link focused callable/UI contract tests",
+      "blockers": [
+        "human owner and role evidence not linked",
+        "input schema/validation evidence not linked",
+        "idempotency contract not linked",
+        "preview/confirm semantics not linked",
+        "audit event evidence not linked",
+        "rollback/runbook evidence not linked",
+        "focused test evidence not linked"
+      ]
+    },
+    {
+      "name": "adminCommunityPackTranslateLocales",
       "sourceSurface": "admin/v2/legacy.html",
       "functionSourceMatch": true,
       "mutationCandidate": true,
@@ -284,6 +350,28 @@
       ]
     },
     {
+      "name": "adminGetAlertDiagnostics",
+      "sourceSurface": "admin/v2/legacy.html",
+      "functionSourceMatch": true,
+      "mutationCandidate": true,
+      "actorRole": "BLOCKED — prove actor/role enforcement",
+      "inputValidation": "BLOCKED — link schema and rejection tests",
+      "idempotency": "BLOCKED — link operation/idempotency contract",
+      "previewConfirm": "BLOCKED — prove preview/confirm or document why not applicable",
+      "auditEvent": "BLOCKED — link immutable audit evidence",
+      "rollback": "BLOCKED — link rollback/runbook or explicit non-reversibility decision",
+      "tests": "BLOCKED — link focused callable/UI contract tests",
+      "blockers": [
+        "human owner and role evidence not linked",
+        "input schema/validation evidence not linked",
+        "idempotency contract not linked",
+        "preview/confirm semantics not linked",
+        "audit event evidence not linked",
+        "rollback/runbook evidence not linked",
+        "focused test evidence not linked"
+      ]
+    },
+    {
       "name": "adminGetAnalyticsSnapshot",
       "sourceSurface": "admin/v2/legacy.html",
       "functionSourceMatch": true,
@@ -329,28 +417,6 @@
     },
     {
       "name": "adminGetComplianceOverview",
-      "sourceSurface": "admin/v2/legacy.html",
-      "functionSourceMatch": true,
-      "mutationCandidate": true,
-      "actorRole": "BLOCKED — prove actor/role enforcement",
-      "inputValidation": "BLOCKED — link schema and rejection tests",
-      "idempotency": "BLOCKED — link operation/idempotency contract",
-      "previewConfirm": "BLOCKED — prove preview/confirm or document why not applicable",
-      "auditEvent": "BLOCKED — link immutable audit evidence",
-      "rollback": "BLOCKED — link rollback/runbook or explicit non-reversibility decision",
-      "tests": "BLOCKED — link focused callable/UI contract tests",
-      "blockers": [
-        "human owner and role evidence not linked",
-        "input schema/validation evidence not linked",
-        "idempotency contract not linked",
-        "preview/confirm semantics not linked",
-        "audit event evidence not linked",
-        "rollback/runbook evidence not linked",
-        "focused test evidence not linked"
-      ]
-    },
-    {
-      "name": "adminGetCosmeticAssetArchive",
       "sourceSurface": "admin/v2/legacy.html",
       "functionSourceMatch": true,
       "mutationCandidate": true,
@@ -769,6 +835,28 @@
     },
     {
       "name": "adminListMaxVoiceFeedback",
+      "sourceSurface": "admin/v2/legacy.html",
+      "functionSourceMatch": true,
+      "mutationCandidate": true,
+      "actorRole": "BLOCKED — prove actor/role enforcement",
+      "inputValidation": "BLOCKED — link schema and rejection tests",
+      "idempotency": "BLOCKED — link operation/idempotency contract",
+      "previewConfirm": "BLOCKED — prove preview/confirm or document why not applicable",
+      "auditEvent": "BLOCKED — link immutable audit evidence",
+      "rollback": "BLOCKED — link rollback/runbook or explicit non-reversibility decision",
+      "tests": "BLOCKED — link focused callable/UI contract tests",
+      "blockers": [
+        "human owner and role evidence not linked",
+        "input schema/validation evidence not linked",
+        "idempotency contract not linked",
+        "preview/confirm semantics not linked",
+        "audit event evidence not linked",
+        "rollback/runbook evidence not linked",
+        "focused test evidence not linked"
+      ]
+    },
+    {
+      "name": "adminListMistakeExplanationCache",
       "sourceSurface": "admin/v2/legacy.html",
       "functionSourceMatch": true,
       "mutationCandidate": true,
@@ -1274,51 +1362,7 @@
       ]
     },
     {
-      "name": "adminSetCosmeticAssetSaleStatus",
-      "sourceSurface": "admin/v2/legacy.html",
-      "functionSourceMatch": true,
-      "mutationCandidate": true,
-      "actorRole": "BLOCKED — prove actor/role enforcement",
-      "inputValidation": "BLOCKED — link schema and rejection tests",
-      "idempotency": "BLOCKED — link operation/idempotency contract",
-      "previewConfirm": "BLOCKED — prove preview/confirm or document why not applicable",
-      "auditEvent": "BLOCKED — link immutable audit evidence",
-      "rollback": "BLOCKED — link rollback/runbook or explicit non-reversibility decision",
-      "tests": "BLOCKED — link focused callable/UI contract tests",
-      "blockers": [
-        "human owner and role evidence not linked",
-        "input schema/validation evidence not linked",
-        "idempotency contract not linked",
-        "preview/confirm semantics not linked",
-        "audit event evidence not linked",
-        "rollback/runbook evidence not linked",
-        "focused test evidence not linked"
-      ]
-    },
-    {
       "name": "adminSetIdeaSubmissionRestriction",
-      "sourceSurface": "admin/v2/legacy.html",
-      "functionSourceMatch": true,
-      "mutationCandidate": true,
-      "actorRole": "BLOCKED — prove actor/role enforcement",
-      "inputValidation": "BLOCKED — link schema and rejection tests",
-      "idempotency": "BLOCKED — link operation/idempotency contract",
-      "previewConfirm": "BLOCKED — prove preview/confirm or document why not applicable",
-      "auditEvent": "BLOCKED — link immutable audit evidence",
-      "rollback": "BLOCKED — link rollback/runbook or explicit non-reversibility decision",
-      "tests": "BLOCKED — link focused callable/UI contract tests",
-      "blockers": [
-        "human owner and role evidence not linked",
-        "input schema/validation evidence not linked",
-        "idempotency contract not linked",
-        "preview/confirm semantics not linked",
-        "audit event evidence not linked",
-        "rollback/runbook evidence not linked",
-        "focused test evidence not linked"
-      ]
-    },
-    {
-      "name": "adminSetShardBalance",
       "sourceSurface": "admin/v2/legacy.html",
       "functionSourceMatch": true,
       "mutationCandidate": true,
@@ -1363,6 +1407,160 @@
     },
     {
       "name": "adminSetUserIdeaStatus",
+      "sourceSurface": "admin/v2/legacy.html",
+      "functionSourceMatch": true,
+      "mutationCandidate": true,
+      "actorRole": "BLOCKED — prove actor/role enforcement",
+      "inputValidation": "BLOCKED — link schema and rejection tests",
+      "idempotency": "BLOCKED — link operation/idempotency contract",
+      "previewConfirm": "BLOCKED — prove preview/confirm or document why not applicable",
+      "auditEvent": "BLOCKED — link immutable audit evidence",
+      "rollback": "BLOCKED — link rollback/runbook or explicit non-reversibility decision",
+      "tests": "BLOCKED — link focused callable/UI contract tests",
+      "blockers": [
+        "human owner and role evidence not linked",
+        "input schema/validation evidence not linked",
+        "idempotency contract not linked",
+        "preview/confirm semantics not linked",
+        "audit event evidence not linked",
+        "rollback/runbook evidence not linked",
+        "focused test evidence not linked"
+      ]
+    },
+    {
+      "name": "adminSpirePackBuild",
+      "sourceSurface": "admin/v2/legacy.html",
+      "functionSourceMatch": true,
+      "mutationCandidate": true,
+      "actorRole": "BLOCKED — prove actor/role enforcement",
+      "inputValidation": "BLOCKED — link schema and rejection tests",
+      "idempotency": "BLOCKED — link operation/idempotency contract",
+      "previewConfirm": "BLOCKED — prove preview/confirm or document why not applicable",
+      "auditEvent": "BLOCKED — link immutable audit evidence",
+      "rollback": "BLOCKED — link rollback/runbook or explicit non-reversibility decision",
+      "tests": "BLOCKED — link focused callable/UI contract tests",
+      "blockers": [
+        "human owner and role evidence not linked",
+        "input schema/validation evidence not linked",
+        "idempotency contract not linked",
+        "preview/confirm semantics not linked",
+        "audit event evidence not linked",
+        "rollback/runbook evidence not linked",
+        "focused test evidence not linked"
+      ]
+    },
+    {
+      "name": "adminSpireTaskFlagAdd",
+      "sourceSurface": "admin/v2/legacy.html",
+      "functionSourceMatch": true,
+      "mutationCandidate": true,
+      "actorRole": "BLOCKED — prove actor/role enforcement",
+      "inputValidation": "BLOCKED — link schema and rejection tests",
+      "idempotency": "BLOCKED — link operation/idempotency contract",
+      "previewConfirm": "BLOCKED — prove preview/confirm or document why not applicable",
+      "auditEvent": "BLOCKED — link immutable audit evidence",
+      "rollback": "BLOCKED — link rollback/runbook or explicit non-reversibility decision",
+      "tests": "BLOCKED — link focused callable/UI contract tests",
+      "blockers": [
+        "human owner and role evidence not linked",
+        "input schema/validation evidence not linked",
+        "idempotency contract not linked",
+        "preview/confirm semantics not linked",
+        "audit event evidence not linked",
+        "rollback/runbook evidence not linked",
+        "focused test evidence not linked"
+      ]
+    },
+    {
+      "name": "adminSpireTaskFlagList",
+      "sourceSurface": "admin/v2/legacy.html",
+      "functionSourceMatch": true,
+      "mutationCandidate": true,
+      "actorRole": "BLOCKED — prove actor/role enforcement",
+      "inputValidation": "BLOCKED — link schema and rejection tests",
+      "idempotency": "BLOCKED — link operation/idempotency contract",
+      "previewConfirm": "BLOCKED — prove preview/confirm or document why not applicable",
+      "auditEvent": "BLOCKED — link immutable audit evidence",
+      "rollback": "BLOCKED — link rollback/runbook or explicit non-reversibility decision",
+      "tests": "BLOCKED — link focused callable/UI contract tests",
+      "blockers": [
+        "human owner and role evidence not linked",
+        "input schema/validation evidence not linked",
+        "idempotency contract not linked",
+        "preview/confirm semantics not linked",
+        "audit event evidence not linked",
+        "rollback/runbook evidence not linked",
+        "focused test evidence not linked"
+      ]
+    },
+    {
+      "name": "adminSpireTaskFlagRemove",
+      "sourceSurface": "admin/v2/legacy.html",
+      "functionSourceMatch": true,
+      "mutationCandidate": true,
+      "actorRole": "BLOCKED — prove actor/role enforcement",
+      "inputValidation": "BLOCKED — link schema and rejection tests",
+      "idempotency": "BLOCKED — link operation/idempotency contract",
+      "previewConfirm": "BLOCKED — prove preview/confirm or document why not applicable",
+      "auditEvent": "BLOCKED — link immutable audit evidence",
+      "rollback": "BLOCKED — link rollback/runbook or explicit non-reversibility decision",
+      "tests": "BLOCKED — link focused callable/UI contract tests",
+      "blockers": [
+        "human owner and role evidence not linked",
+        "input schema/validation evidence not linked",
+        "idempotency contract not linked",
+        "preview/confirm semantics not linked",
+        "audit event evidence not linked",
+        "rollback/runbook evidence not linked",
+        "focused test evidence not linked"
+      ]
+    },
+    {
+      "name": "adminSpireTaskIncidentSetState",
+      "sourceSurface": "admin/v2/legacy.html",
+      "functionSourceMatch": true,
+      "mutationCandidate": true,
+      "actorRole": "BLOCKED — prove actor/role enforcement",
+      "inputValidation": "BLOCKED — link schema and rejection tests",
+      "idempotency": "BLOCKED — link operation/idempotency contract",
+      "previewConfirm": "BLOCKED — prove preview/confirm or document why not applicable",
+      "auditEvent": "BLOCKED — link immutable audit evidence",
+      "rollback": "BLOCKED — link rollback/runbook or explicit non-reversibility decision",
+      "tests": "BLOCKED — link focused callable/UI contract tests",
+      "blockers": [
+        "human owner and role evidence not linked",
+        "input schema/validation evidence not linked",
+        "idempotency contract not linked",
+        "preview/confirm semantics not linked",
+        "audit event evidence not linked",
+        "rollback/runbook evidence not linked",
+        "focused test evidence not linked"
+      ]
+    },
+    {
+      "name": "adminSpireTaskIncidentStates",
+      "sourceSurface": "admin/v2/legacy.html",
+      "functionSourceMatch": true,
+      "mutationCandidate": true,
+      "actorRole": "BLOCKED — prove actor/role enforcement",
+      "inputValidation": "BLOCKED — link schema and rejection tests",
+      "idempotency": "BLOCKED — link operation/idempotency contract",
+      "previewConfirm": "BLOCKED — prove preview/confirm or document why not applicable",
+      "auditEvent": "BLOCKED — link immutable audit evidence",
+      "rollback": "BLOCKED — link rollback/runbook or explicit non-reversibility decision",
+      "tests": "BLOCKED — link focused callable/UI contract tests",
+      "blockers": [
+        "human owner and role evidence not linked",
+        "input schema/validation evidence not linked",
+        "idempotency contract not linked",
+        "preview/confirm semantics not linked",
+        "audit event evidence not linked",
+        "rollback/runbook evidence not linked",
+        "focused test evidence not linked"
+      ]
+    },
+    {
+      "name": "adminSpireTaskReportList",
       "sourceSurface": "admin/v2/legacy.html",
       "functionSourceMatch": true,
       "mutationCandidate": true,

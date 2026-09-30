@@ -927,15 +927,6 @@
     .pill-blue { background: #1a3a5c; color: #60a5fa; }
     .pill-purple { background: #2d1a5c; color: #a78bfa; }
 
-    /* Multiplier tags */
-    .mult-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
-    .mult-tag { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 6px; font-size: 11px; font-weight: 700; border: 1px solid; }
-    .mult-tag-gold { background: #2a1f00; color: #fbbf24; border-color: #422006; }
-    .mult-tag-purple { background: #1e1040; color: #a78bfa; border-color: #3a2a7a; }
-    .mult-tag-green { background: #0f2a1a; color: #4ade80; border-color: #14532d; }
-    .mult-tag-blue { background: #0f1f3a; color: #60a5fa; border-color: #1a3a5c; }
-    .mult-tag-orange { background: #2a1200; color: #fb923c; border-color: #7c2d12; }
-
     /* Knowledge level badge */
     .klvl { display: inline-flex; align-items: center; padding: 2px 9px; border-radius: 5px; font-size: 12px; font-weight: 800; letter-spacing: 0.5px; }
     .klvl-a1 { background: #1f3a1f; color: #4ade80; }
@@ -11602,7 +11593,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         <div class="h-btn"><div class="h-btn-name">Duplicates</div><div class="h-btn-desc">Показывает людей с одинаковыми именами, но разными ID — помогает найти двойников одного человека.</div></div>
         <div class="h-btn"><div class="h-btn-name">Email list</div><div class="h-btn-desc">Копирует или скачивает список email-адресов всех пользователей (для рассылок).</div></div>
         <div class="h-btn"><div class="h-btn-name">CSV</div><div class="h-btn-desc">Скачивает всю таблицу пользователей файлом Excel/CSV.</div></div>
-        <div class="h-btn"><div class="h-btn-name">Grant shards (появляется при выборе)</div><div class="h-btn-desc">Выдаёт осколки (внутриигровая валюта) сразу нескольким выбранным пользователям. Сначала отметь нужных людей галочками в таблице.</div></div>
+        <div class="h-btn"><div class="h-btn-name">Grant coins (появляется при выборе)</div><div class="h-btn-desc">Начисляет монеты сразу нескольким выбранным пользователям. Сначала отметь нужных людей галочками в таблице.</div></div>
         <div class="h-btn"><div class="h-btn-name">Grant Plus (появляется при выборе)</div><div class="h-btn-desc">Выдаёт Plus-статус нескольким выбранным пользователям сразу.</div></div>
         <div class="h-btn"><div class="h-btn-name">Ban users (появляется при выборе)</div><div class="h-btn-desc">Банит нескольких выбранных пользователей сразу.</div></div>
         <div class="h-btn"><div class="h-btn-name">Clear selection</div><div class="h-btn-desc">Снимает все галочки.</div></div>
@@ -11858,7 +11849,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   <div class="tab" onclick="switchTab('promo-codes')">Промокоды</div>
   <div id="admin-nav-gift-certificates" class="tab" role="button" tabindex="0" onclick="switchTab('gift-certificates')" onkeydown="if (event.currentTarget.closest('.tabs')?.dataset.navEdit !== 'true' &amp;&amp; (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); switchTab('gift-certificates'); }" title="Создать, скачать и отправить реальные подарочные сертификаты">Подарочные сертификаты</div>
   <div class="tab" onclick="switchTab('cancel-surveys')">Cancel surveys</div>
-  <div class="tab" onclick="switchTab('surveys')" title="Опросы за осколки: сводка ответов, лента, редактор, CSV" style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.4);color:#6ee7b7;font-weight:700">📊 Опросы</div>
+  <div class="tab" onclick="switchTab('surveys')" title="Опросы: сводка ответов, лента, редактор, CSV" style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.4);color:#6ee7b7;font-weight:700">📊 Опросы</div>
   <div class="tab" onclick="switchTab('home-hints')" title="Выбрать короткие подсказки для главной, посмотреть превью и опубликовать одобренные варианты" style="background:rgba(96,165,250,0.12);border:1px solid rgba(96,165,250,0.35);color:#93c5fd;font-weight:700">💬 Подсказки главной</div>
   <div class="tab" onclick="switchTab('app-messages')" data-i18n-es="Placas y mensajes">Плашки и сообщения</div>
   <div class="tab" onclick="switchTab('daily-polls')" title="Опрос дня на вкладке «Друзья»: вопросы по датам, архив, результаты">📊 Опрос дня</div>
@@ -12735,7 +12726,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     <span style="font-size:13px;color:#888" data-i18n-es="Seleccionados:">Selected:</span>
     <span id="bulk-count" style="font-size:14px;font-weight:800;color:#a78bfa">0</span>
     <div style="width:1px;height:20px;background:rgba(255,255,255,0.1)"></div>
-    <button type="button" onclick="bulkGrantShards()" style="border-radius:7px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer" data-i18n-es="Fragmentos">Grant coins</button>
+    <button type="button" onclick="bulkGrantShards()" style="border-radius:7px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer" data-i18n-es="Monedas">Grant coins</button>
     <button type="button" onclick="bulkGrantPremium()" style="border-radius:7px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer" data-i18n-es="Plus">Grant Plus</button>
     <button type="button" onclick="bulkBanUsers()" style="border-radius:7px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer" data-i18n-es="Banear">Ban users</button>
     <button type="button" onclick="clearBulkSelection()" style="margin-left:auto;background:transparent;border:1px solid rgba(255,255,255,0.1);color:#666;border-radius:7px;padding:7px 12px;font-size:12px;cursor:pointer" data-i18n-es="Quitar selección">Clear selection</button>
@@ -12748,16 +12739,14 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         <tr>
           <th style="width:36px"><input type="checkbox" id="bulk-select-all" onchange="toggleSelectAll(this.checked)" style="accent-color:#7c5cfc;cursor:pointer;width:15px;height:15px" title="Select all" data-i18n-es-title="Seleccionar todos" /></th>
           <th onclick="setSort('name')" data-i18n-es="Usuario">User</th>
-          <!-- зачем (аудит 2026-09-21): «Уроки» и «Осколки» помечены как сортировка
-               в пределах страницы. Уроки лежат в Firestore JSON-СТРОКОЙ (unlocked_lessons) —
-               сервер не может их сортировать по количеству; users.shards — старая витрина,
-               которую сервер больше не ведёт (настоящий баланс считается по
-               external_economy_events уже в браузере). Молча сортировать по ним «как по
-               базе» значило бы врать, поэтому подписано прямо на кнопке. -->
+          <!-- зачем (аудит 2026-09-21): «Уроки» помечены как сортировка в пределах
+               страницы. Уроки лежат в Firestore JSON-СТРОКОЙ (unlocked_lessons) — сервер
+               не может их сортировать по количеству, поэтому подписано прямо на кнопке.
+               Колонка и сортировка «Осколки» сняты вместе с жемчугом (D70). -->
           <th data-i18n-es="Progreso">Progress <button type="button" class="users-head-sort" onclick="event.stopPropagation();setSort('streak')">Streak</button><button type="button" class="users-head-sort" onclick="event.stopPropagation();setSort('lessons')" title="Уроки лежат JSON-строкой — сортировка только в пределах загруженной страницы">Lessons ·стр.</button></th>
           <th onclick="setSort('version')" title="Sort by semantic app version" data-i18n-es="App" data-i18n-es-title="Ordenar por número de versión de la app (comparación semántica)">App</th>
           <th data-i18n-es="Plus">Plus</th>
-          <th onclick="setSort('updated')" data-i18n-es="Cuenta">Account <button type="button" class="users-head-sort" onclick="event.stopPropagation();setSort('shards')" title="users.shards — устаревшая витрина; настоящий баланс считается по событиям кошелька. Сортировка только в пределах страницы">Shards ·стр.</button></th>
+          <th onclick="setSort('updated')" data-i18n-es="Cuenta">Account</th>
         </tr>
       </thead>
       <tbody id="tbody"></tbody>
@@ -13001,7 +12990,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   </div>
 </div>
 
-<!-- ══ Опросы за осколки (shard-survey) ══ -->
+<!-- ══ Опросы (shard-survey; награда жемчугом снята — D70) ══ -->
 <div id="tab-video-phrases" class="reports-tab pm-v4-page" data-admin-category="content" data-pm-v4-section="video-phrases">
   <div class="pm-v4-section-header" data-pm-v4-header="video-phrases"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Видео</h2><div class="pm-v4-section-sub">Ежедневный каталог роликов и рабочее место для фраз, привязанных к конкретному видео.</div></div></div>
   <style>
@@ -16542,7 +16531,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       <div class="stat-card"><div class="label" data-i18n-es="Tarjetas medias">Сред. карточек</div><div class="value" id="a-fc">—</div><div class="sub" data-i18n-es="guardadas">сохранено</div></div>
       <div class="stat-card"><div class="label" data-i18n-es="Conocen nivel">Знают уровень</div><div class="value" id="a-tested">—</div><div class="sub" data-i18n-es="hicieron test">прошли тест</div></div>
       <div class="stat-card"><div class="label" data-i18n-es="Con Plus">С Plus</div><div class="value" id="a-prem-pct">—</div><div class="sub" data-i18n-es="porcentaje">процент</div></div>
-      <div class="stat-card" style="border-color:#1a3a2a"><div class="label" data-i18n-es="💎 Fragmentos totales">💎 Всего осколков</div><div class="value" id="a-shards-total" style="color:#34d399">—</div><div class="sub" id="a-shards-avg" data-i18n-es="media por usuario">ср. на польз.</div></div>
     </div>
   </div>
   <!-- Subscriptions & modeled revenue -->
@@ -19863,8 +19851,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   }
 
 
-  function streakMult(s) { return s>=30?1.8:s>=14?1.6:s>=7?1.4:s>=3?1.2:1; }
-  function lessonDiffMult(lessonNum) { if(!lessonNum||lessonNum<1) return 1; return 1+(lessonNum-1)*0.05; }
 
   function klvlBadge(level) {
     if(!level) return '<span class="klvl klvl-none">—</span>';
@@ -20198,7 +20184,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     // как строку ('1.6.9' > '1.6.17'), а локальный компаратор семантически
     // (1.6.17 > 1.6.9), и порядок «прыгал» бы после каждой перерисовки.
     // Локальная сортировка остаётся для полного списка и для полей, которых на
-    // сервере нет (lessons, shards).
+    // сервере нет (lessons).
     const serverOrdered = window._usersServerPaging
       && PM_P1_USERS_SORT_FIELDS_VIEW.has(sb);
     if (serverOrdered) { /* порядок уже верный — пришёл из запроса */ }
@@ -20227,7 +20213,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         }
         return d * diff;
       }
-      if(sb==='shards') return d*(b.shards-a.shards);
       return 0;
     });
     document.getElementById('loading').style.display='none';
@@ -20312,60 +20297,12 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         <td>${premiumCellHtml(u)}</td>
         <td><div class="users-compact-cell">
           <div class="users-compact-email">${authCellHtml(u)}</div>
-          <div class="users-compact-line"><span style="font-size:13px;letter-spacing:2px">${settingsBits.join('')||'—'}</span><span data-shard-balance-uid="${u.uid}" title="Точный баланс: сумма подтверждённых событий кошелька" style="color:#34d399;font-weight:700;background:#0f2a1a;padding:2px 8px;border-radius:6px;font-size:13px">💎 <span style="opacity:.55">…</span></span></div>
+          <div class="users-compact-line"><span style="font-size:13px;letter-spacing:2px">${settingsBits.join('')||'—'}</span></div>
           <div class="users-compact-muted">${fdateAny(u.updatedAt)}</div>
         </div></td>
       </tr>`;
     }).join('');
-    fillVisibleShardBalances(pageUsers);
   };
-
-  // зачем (инцидент 2026-08-16): в списке светилось поле users.shards — старая
-  // витрина, которую сервер больше не ведёт. У покупателя с оплаченными
-  // жемчужинами стоял 0, и владелец не мог понять, дошли деньги или нет.
-  // Считаем настоящий баланс по external_economy_events — той же коллекции,
-  // по которой его считает приложение.
-  //
-  // Firebase-экономия: читаем ТОЛЬКО видимую страницу (25–50 строк, не весь
-  // список в 10k), результат кэшируем на сессию, параллелим пачками по 8 —
-  // иначе открытие вкладки превратилось бы в тысячи чтений.
-  window._shardBalanceCache = window._shardBalanceCache || {};
-  const SHARD_BALANCE_EVENT_PAGE = 1000;
-  async function fillVisibleShardBalances(pageUsers) {
-    const paint = (uid, value, hint) => {
-      document.querySelectorAll(`[data-shard-balance-uid="${CSS.escape(uid)}"]`).forEach((el) => {
-        el.innerHTML = `💎 ${escapeHtml(String(value))}`;
-        if (hint) el.title = hint;
-      });
-    };
-    const pending = [];
-    for (const u of pageUsers || []) {
-      const cached = window._shardBalanceCache[u.uid];
-      if (cached !== undefined) { paint(u.uid, cached.value, cached.hint); continue; }
-      pending.push(u.uid);
-    }
-    for (let i = 0; i < pending.length; i += 8) {
-      await Promise.all(pending.slice(i, i + 8).map(async (uid) => {
-        try {
-          const snap = await getDocs(query(collection(db, 'users', uid, 'external_economy_events'), orderBy(documentId(), 'asc'), limit(SHARD_BALANCE_EVENT_PAGE + 1)));
-          const truncated = snap.docs.length > SHARD_BALANCE_EVENT_PAGE;
-          if (truncated) {
-            paint(uid, '—', 'Событий больше лимита выборки; числовой баланс не вычисляется по неполным данным');
-            return;
-          }
-          let total = 0;
-          snap.docs.forEach((d) => { total += toSafeNumber((d.data() || {}).delta, 0); });
-          // Долг после рефанда не показываем минусом — как и кошелёк в приложении.
-          const value = Math.max(0, total);
-          const hint = `Сумма подтверждённых внешних событий (${snap.size}); клиентские операции смотрите в Едином профиле`;
-          window._shardBalanceCache[uid] = { value, hint };
-          paint(uid, value, hint);
-        } catch {
-          paint(uid, '—', 'Не удалось прочитать события кошелька');
-        }
-      }));
-    }
-  }
 
   window.changePage = function(delta) {
     window._currentPage = (window._currentPage || 0) + delta;
@@ -20627,7 +20564,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       { header: 'Trial', get: u => premiumInfo(u).isTrial ? '1' : '0' },
       { header: 'From', get: u => { const p = premiumInfo(u); return p.issuedAt ? new Date(p.issuedAt).toISOString() : ''; } },
       { header: 'To', get: u => { const p = premiumInfo(u); return p.endsAt ? new Date(p.endsAt).toISOString() : ''; } },
-      { header: 'XP', get: u => u.xp },
     ], 'premium');
   };
   window.exportVipCSV = function() {
@@ -20639,7 +20575,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       { header: 'Legacy', get: u => vipInfo(u).legacy ? '1' : '0' },
       { header: 'From', get: u => { const v = vipInfo(u); return v.from ? new Date(v.from).toISOString() : ''; } },
       { header: 'Until', get: u => { const v = vipInfo(u); return v.until ? new Date(v.until).toISOString() : ''; } },
-      { header: 'XP', get: u => u.xp },
     ], 'vip');
   };
   window.exportPlusRadarCSV = function() {
@@ -20724,7 +20659,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     const esc = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
     // «Тема» убрана: app_theme не синхронизируется в облако (cloud_sync.ts:572),
     // в выгрузке стоял бы дефолт вместо настоящей темы пользователя.
-    const headers = ['UID','Имя','Email','Provider','Streak','Уроков','Язык','Платформа','Версия','Plus','Plus source','Plus from','Plus to','Осколки','Забанен','Обновлён'];
+    const headers = ['UID','Имя','Email','Provider','Streak','Уроков','Язык','Платформа','Версия','Plus','Plus source','Plus from','Plus to','Забанен','Обновлён'];
     const rows = users.map(u => [
       u.uid, u.name,
       u.linkedAuth?.email || '',
@@ -20735,7 +20670,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       (() => premiumInfo(u).source)(),
       (() => { const p = premiumInfo(u); return p.issuedAt ? new Date(p.issuedAt).toISOString() : ''; })(),
       (() => { const p = premiumInfo(u); return p.endsAt ? new Date(p.endsAt).toISOString() : ''; })(),
-      toSafeNumber(u.shards, 0), u.banned?'1':'0',
+      u.banned?'1':'0',
       // зачем (аудит 2026-09-21): updatedAt приходит и числом, и Firestore
       // Timestamp (сервер пишет serverTimestamp()). new Date(Timestamp) даёт
       // Invalid Date, а .toISOString() на нём БРОСАЕТ исключение и роняет весь
@@ -21319,172 +21254,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     }
   };
 
-  function calcMultipliers(u) {
-    const mults = [];
-    const sm = streakMult(u.streak);
-    const pct = m => `+${Math.round((m-1)*100)}%`;
-    if(sm > 1) mults.push({ label: `🔥 Streak ${pct(sm)}`, cls: 'mult-tag-orange', val: sm });
-    const lastLesson = u.lessons.length > 0 ? Math.max(...u.lessons)+1 : 0;
-    const dm = lessonDiffMult(lastLesson);
-    if(dm > 1) mults.push({ label: `📚 Урок ${pct(dm)}`, cls: 'mult-tag-blue', val: dm });
-    const isPrem = u.premium && u.premium !== 'null';
-    if(isPrem) mults.push({ label: '⭐ Plus +100%', cls: 'mult-tag-gold', val: 2 });
-    const total = 1 + mults.reduce((acc, m) => acc + (m.val - 1), 0);
-    return { mults, total };
-  }
-
-  // зачем (инцидент 2026-08-16): в карточке светилось поле users.shards —
-  // устаревшая витрина, которую сервер больше не ведёт (см. функцию
-  // shards_apply_delta.ts: «сервер не читает и не пишет users.shards»).
-  // У покупателя с оплаченными 92 жемчужинами карточка показывала 0, и по ней
-  // нельзя было понять, дошли деньги или нет. Настоящий баланс = сумма
-  // подтверждённых фактов в external_economy_events, ровно её и считает
-  // приложение. Читаем ту же коллекцию, чтобы админка не врала.
-  async function loadShardsRealBalance(uid) {
-    const box = document.getElementById('shards-real-balance');
-    if (!box) return;
-    try {
-      const snap = await getDocs(query(collection(db, 'users', uid, 'external_economy_events'), orderBy(documentId(), 'asc'), limit(SHARD_BALANCE_EVENT_PAGE + 1)));
-      const truncated = snap.docs.length > SHARD_BALANCE_EVENT_PAGE;
-      if (truncated) {
-        box.textContent = '— 💎';
-        box.title = 'Событий больше лимита выборки; откройте «Единый профиль» для серверной проекции';
-        return;
-      }
-      let total = 0;
-      snap.docs.forEach((d) => { total += toSafeNumber((d.data() || {}).delta, 0); });
-      // Баланс не уходит в минус: рефанд может создать долг, UI держим на нуле —
-      // тот же принцип, что в кошельке приложения.
-      box.textContent = `${Math.max(0, total)} 💎`;
-      box.title = `Сумма подтверждённых внешних событий (${snap.size}); клиентские операции — в «Едином профиле»`;
-    } catch {
-      box.textContent = '— 💎';
-      box.title = 'Не удалось прочитать события кошелька';
-    }
-  }
-
-  function shardsSection(u) {
-    // Render placeholder; real data loaded async via loadShardLog()
-    setTimeout(() => loadShardLog(u.uid), 0);
-    setTimeout(() => loadShardsRealBalance(u.uid), 0);
-    return `<div class="dsec" id="shards-log-section">
-      <h3>💎 Осколки знаний</h3>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-        <span id="shards-real-balance" style="font-size:24px;font-weight:800;color:#34d399">⏳</span>
-        <span style="font-size:11px;color:#555">Изменить: кнопка ниже в разделе управления</span>
-      </div>
-      <div id="shards-log-content"><div style="color:#555;font-size:12px">⏳ Загрузка истории...</div></div>
-    </div>`;
-  }
-
-  const SPEND_REASON_RU = {
-    buy_energy: '⚡ Покупка энергии',
-    streak_freeze: '🛡 Заморозка стрика',
-    wager_bet: '🎲 Ставка в турнире',
-  };
-  const EARN_REASON_RU = {
-    lesson_first: '📖 Первое прохождение урока',
-    lesson_perfect: '✨ Идеальный урок',
-    lesson_quiz_passed: '🎓 Зачёт в уроке',
-    lesson_completed: '✅ Урок завершён',
-    streak_7: '🔥 7 дней стрика',
-    streak_30: '🔥 30 дней стрика',
-    topic_completed: '📚 Тема завершена',
-    league_1st: '🥇 1-е место в лиге',
-    league_2nd: '🥈 2-е место в лиге',
-    league_3rd: '🥉 3-е место в лиге',
-    exam_excellent: '🎯 Экзамен 90%+',
-    diagnostic_test: '🔬 Диагностический тест',
-    lessons_5_perfect: '💯 5 уроков без ошибок',
-    level_gift: '🎁 Подарок за уровень',
-    bug_report: '🐛 Репорт об ошибке',
-    shards_store_purchase: '🛒 Покупка в магазине осколков',
-    remote_shard_reward: '☁️ Награда из облака',
-    streak_wager_win: '🎲 Выигрыш в пари на стрик',
-    club_boost_refund: '↩️ Возврат осколков (буст лиги)',
-    raw: '💎 Начисление вручную',
-  };
-
-  const SHARD_LOG_PAGE = 100;
-  async function loadShardLog(uid) {
-    const el = document.getElementById('shards-log-content');
-    if (!el) return;
-    try {
-      const snap = await getDocs(query(
-        collection(db, 'users', uid, 'shard_log'),
-        orderBy('ts', 'desc'),
-        limit(SHARD_LOG_PAGE + 1),
-      ));
-      if (snap.empty) {
-        el.innerHTML = '<div style="color:#555;font-size:12px">История транзакций пока пуста.<br><span style="font-size:11px;color:#444">Данные начнут накапливаться после обновления приложения.</span></div>';
-        return;
-      }
-      const truncated = snap.docs.length > SHARD_LOG_PAGE;
-      const logs = snap.docs.slice(0, SHARD_LOG_PAGE).map(d => {
-        const raw = d.data() || {};
-        return {
-          ...raw,
-          amount: toSafeNumber(raw.amount, 0),
-        };
-      });
-      const earned = logs.filter(l => l.type === 'earn');
-      const spent  = logs.filter(l => l.type === 'spend');
-      const totalEarned = earned.reduce((s,l) => s + toSafeNumber(l.amount, 0), 0);
-      const totalSpent  = spent.reduce((s,l)  => s + toSafeNumber(l.amount, 0), 0);
-      const earnedDisplay = truncated ? '—' : `+${totalEarned}`;
-      const spentDisplay = truncated ? '—' : `-${totalSpent}`;
-
-      // Group by reason
-      const earnByReason = {};
-      earned.forEach(l => { earnByReason[l.reason] = toSafeNumber(earnByReason[l.reason], 0) + toSafeNumber(l.amount, 0); });
-      const spendByReason = {};
-      spent.forEach(l => { spendByReason[l.reason] = toSafeNumber(spendByReason[l.reason], 0) + toSafeNumber(l.amount, 0); });
-
-      const earnRows = Object.entries(earnByReason).sort((a,b)=>b[1]-a[1]).map(([r,total]) =>
-        `<div class="drow"><span class="k">${EARN_REASON_RU[r]||r}</span><span class="v" style="color:#34d399">+${total} 💎</span></div>`
-      ).join('');
-      const spendRows = Object.entries(spendByReason).sort((a,b)=>b[1]-a[1]).map(([r,total]) =>
-        `<div class="drow"><span class="k">${SPEND_REASON_RU[r]||r}</span><span class="v" style="color:#f87171">-${total} 💎</span></div>`
-      ).join('');
-
-      // Last 10 transactions
-      const recentRows = logs.slice(0,10).map(l => {
-        const isEarn = l.type === 'earn';
-        const label = isEarn ? (EARN_REASON_RU[l.reason]||l.reason) : (SPEND_REASON_RU[l.reason]||l.reason);
-        const color = isEarn ? '#34d399' : '#f87171';
-        const sign  = isEarn ? '+' : '-';
-        const date  = (l.ts||'').replace('T',' ').slice(0,16);
-        return `<div class="drow"><span class="k" style="font-size:11px">${label} <span style="color:#444">${date}</span></span><span class="v" style="color:${color}">${sign}${l.amount} 💎</span></div>`;
-      }).join('');
-
-      el.innerHTML = `
-        <div style="display:flex;gap:16px;margin-bottom:12px">
-          <div style="flex:1;background:#0f2a1a;border-radius:8px;padding:10px;text-align:center">
-            <div style="font-size:10px;color:#555;text-transform:uppercase;letter-spacing:0.5px">Заработано</div>
-            <div style="font-size:20px;font-weight:800;color:#34d399">${earnedDisplay} 💎</div>
-          </div>
-          <div style="flex:1;background:#2a0f0f;border-radius:8px;padding:10px;text-align:center">
-            <div style="font-size:10px;color:#555;text-transform:uppercase;letter-spacing:0.5px">Потрачено</div>
-            <div style="font-size:20px;font-weight:800;color:#f87171">${spentDisplay} 💎</div>
-          </div>
-        </div>
-        ${earnRows ? `<div style="font-size:10px;color:#555;text-transform:uppercase;letter-spacing:0.4px;margin:8px 0 6px">Источники получения</div>${earnRows}` : ''}
-        ${spendRows ? `<div style="font-size:10px;color:#555;text-transform:uppercase;letter-spacing:0.4px;margin:12px 0 6px">На что потрачено</div>${spendRows}` : ''}
-        <div style="font-size:10px;color:#555;text-transform:uppercase;letter-spacing:0.4px;margin:12px 0 6px">Последние 10 транзакций</div>
-        ${recentRows}
-        <div style="font-size:10px;color:#444;margin-top:8px">${truncated ? `Показаны последние ${logs.length}; старые транзакции здесь не показаны, итоги скрыты` : `${logs.length} записей всего`}</div>
-      `;
-    } catch(e) {
-      if (el) el.innerHTML = `<div style="color:#555;font-size:12px">❌ ${escapeHtml(e.message)}</div>`;
-    }
-  }
-
-  window.editShards = async function(uid) {
-    // зачем: D70 — жемчуг удалён, серверная корректировка баланса (adminSetShardBalance) снята.
-    void uid;
-    showToast('Жемчуг удалён (D70): корректировка баланса недоступна', 'warn');
-  };
-
   window.editUserField = async function(uid, field, label, currentVal) {
     const val = await showInputModal({ title: `Изменить: ${label}`, defaultVal: String(currentVal||'') });
     if(val === null) return;
@@ -21904,12 +21673,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       });
     }
 
-    // Multipliers
-    const { mults, total } = calcMultipliers(u);
-    const multsHtml = mults.length > 0
-      ? `<div class="mult-tags">${mults.map(m=>`<span class="mult-tag ${m.cls}">${m.label}</span>`).join('')}</div><div style="margin-top:8px;font-size:12px;color:#a78bfa;font-weight:700">Итоговый: ×${total.toFixed(2)}</div>`
-      : '<span style="color:#555;font-size:12px">нет активных</span>';
-
     // ── Accordion helper: each section collapses; closed by default ──────────
     const acc = (key, head, bodyHtml, opts = {}) => {
       const open = opts.open ? ' open' : '';
@@ -21925,7 +21688,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     // ── Summary header (always visible) ──────────────────────────────────────
     const summaryChips = [
       `<span class="u360-chip">🔥 ${u.streak}</span>`,
-      `<span class="u360-chip">💎 ${toSafeNumber(u.shards, 0)}</span>`,
       premInfo.hasPlan ? `<span class="u360-chip c-prem">⭐ ${escapeHtml(String(premInfo.plan || 'plus'))}</span>` : '',
       vip.active ? `<span class="u360-chip c-vip">💚 Plus</span>` : '',
       u.banned ? `<span class="u360-chip c-ban">🚫 Забанен</span>` : `<span class="u360-chip c-ok">✅ Активен</span>`,
@@ -21967,15 +21729,13 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       ${acc('progress', '📈 Прогресс', `
         <div class="drow"><span class="k">Streak</span><span class="v">🔥 ${u.streak} дней</span></div>
         <div class="drow"><span class="k">Последний streak</span><span class="v">${u.streakLastDate||'—'}</span></div>
-        <div class="drow"><span class="k">💎 Осколки знаний</span><span class="v" style="color:#34d399;font-weight:700;font-size:16px">${toSafeNumber(u.shards, 0)}</span></div>
-        ${shardsSection(u)}`)}
+        `)}
       ${acc('learning', '📚 Обучение', `
         <div class="drow"><span class="k">Уроков пройдено</span><span class="v">${u.lessons.length} / ${LESSON_NAMES.length}</span></div>
         <div class="drow"><span class="k">Карточек сохранено</span><span class="v">${u.flashcards}</span></div>
         <div class="drow"><span class="k">Достижений выполнено</span><span class="v">${achDone}${achTotal?' / '+achTotal:''}</span></div>
         ${u.lessons.length?`<div class="drow"><span class="k">Последний урок</span><span class="v">${(()=>{const id=Math.max(...u.lessons);const lessonName=LESSON_NAMES[id];return lessonName||'#'+id;})()} </span></div>`:''}`)}
       ${acc('gameplay', '⚡ Геймплей и настройки', `
-        <div style="margin-bottom:8px">${multsHtml}</div>
         <div class="drow"><span class="k">Hard Mode</span><span class="v">${u.settings.hardMode?'<span class="pill pill-red">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
         <div class="drow"><span class="k">Auto Check</span><span class="v">${u.settings.autoCheck?'<span class="pill pill-green">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
         <div class="drow"><span class="k">Voice Out</span><span class="v">${u.settings.voiceOut!==false?'<span class="pill pill-green">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
@@ -21995,7 +21755,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
           <button data-action="edit-name" data-uid="${u.uid}">✏️ Имя</button>
           <button data-action="edit-streak" data-uid="${u.uid}" style="background:#2a1500">✏️ Streak</button>
           <button data-action="edit-premium" data-uid="${u.uid}" style="background:#2a1f00">✏️ Plus RC/debug</button>
-          <button data-action="edit-shards"  data-uid="${u.uid}" style="background:#0f2a1a;border:1px solid #14532d;color:#4ade80">✏️ Осколки</button>
           <button data-action="premium-grant" data-uid="${u.uid}" style="background:#062a18;border:1px solid #166534;color:#4ade80">💚 Выдать Plus</button>
           <button data-action="vip-revoke" data-uid="${u.uid}" style="background:#2a1111;border:1px solid #7f1d1d;color:#fca5a5">💚 Снять Plus</button>
           <button data-action="grant-reward" data-uid="${u.uid}" style="background:#1a2a3a;border:1px solid #14305c;color:#60a5fa">🎁 Выдать награду</button>
@@ -22045,7 +21804,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         if (a === 'premium-grant') openPremiumGrantModal(uid);
         if (a === 'vip-revoke')    revokeAdminVip(uid);
         if (a === 'edit-premium') editUserField(uid, 'premium_plan',  'Plus RC/debug: monthly / annual / yearly / null. Admin grant = Plus-кнопка.', u2.premium||'');
-        if (a === 'edit-shards')  editShards(uid);
         if (a === 'grant-reward') grantReward(uid, u2.name);
         if (a === 'grant-voice-minutes') grantVoiceMinutes(uid, u2.name, btn);
         if (a === 'merge')        mergeUserPrompt(uid, u2.name);
@@ -29175,54 +28933,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       return;
     }
     const usersWithStats = users.filter(u => u.userStats);
-    function mergeUserStatRecords(userList, field) {
-      const o = {};
-      userList.forEach(u => {
-        const r = u.userStats[field];
-        if (!r || typeof r !== 'object') return;
-        Object.entries(r).forEach(([k, v]) => {
-          o[k] = (o[k] || 0) + (Number(v) || 0);
-        });
-      });
-      return o;
-    }
-    const SHARD_IAP_LABELS = { starter: '30 💎', popular: '80 💎 (хит)', value: '180 💎 (выгодно)', pro: '420 💎' };
-    function labelShardIap(k) { return SHARD_IAP_LABELS[k] || k; }
-    function sortRecByVal(rec) {
-      return Object.fromEntries(Object.entries(rec).sort((a, b) => b[1] - a[1]));
-    }
-    function relabelShardRec(rec) {
-      const s = sortRecByVal(rec);
-      const o = {};
-      Object.entries(s).forEach(([k, v]) => { o[labelShardIap(k)] = v; });
-      return o;
-    }
-    function relabelIds(rec) {
-      return sortRecByVal(rec);
-    }
-    function commerceBars(data, color) {
-      const entries = Object.entries(data);
-      if (!entries.length) {
-        return '<div style="color:#555;font-size:12px">Нет данных (ещё не было событий или старая версия клиента)</div>';
-      }
-      const maxVal = Math.max(...entries.map(([, v]) => v), 1);
-      const sum = entries.reduce((a, [, v]) => a + v, 0) || 1;
-      return entries.map(([label, val]) => `
-        <div class="bar-row">
-          <div class="bar-label" style="font-size:11px;word-break:break-word">${label}</div>
-          <div class="bar-track"><div class="bar-fill" style="width:${Math.round(val / maxVal * 100)}%;background:${color || '#34d399'}">${val > 0 ? val : ''}</div></div>
-          <div class="bar-count">${Math.round(val / sum * 100)}%</div>
-        </div>`).join('');
-    }
-    let sumShopOpens = 0;
-    usersWithStats.forEach(u => { sumShopOpens += u.userStats.shardsShopOpens || 0; });
-    const aggShardClicks = relabelShardRec(mergeUserStatRecords(usersWithStats, 'shardPackClicks'));
-    const aggShardPurch = relabelShardRec(mergeUserStatRecords(usersWithStats, 'shardPackPurchases'));
-    const aggCardClicks = relabelIds(mergeUserStatRecords(usersWithStats, 'cardPackClicks'));
-    const aggCardPurch = relabelIds(mergeUserStatRecords(usersWithStats, 'cardPackPurchases'));
-    const commerceNote = usersWithStats.length
-      ? `<div style="font-size:10px;color:#555;margin-top:8px">Профилей с <span style="color:#94a3b8">user_stats_v1</span>: ${usersWithStats.length} · счётчики с клиента (после обновления с трекингом)</div>`
-      : '<div style="font-size:11px;color:#64748b">Нет <span style="color:#94a3b8">user_stats_v1</span> в выборке — обновите приложение и зайдите в магазин.</div>';
     const analyticsMode = window._analyticsMode || 'core';
 
     // ── Сводные карточки аналитики ──────────────────────────────────────────
@@ -29245,10 +28955,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     const premN2 = users.filter(u => u.premium && u.premium !== 'null').length;
     const premPct = Math.round(premN2/n*100);
 
-    // Shards totals — declared early to avoid TDZ when used below
-    const totalShards = users.reduce((s,u)=>s + toSafeNumber(u.shards, 0), 0);
-    const avgShardsAnalytics = n ? (totalShards/n).toFixed(1) : 0;
-
     // Platform counts
     const iosTotal = users.filter(u=>u.platform==='ios').length;
     const andTotal = users.filter(u=>u.platform==='android').length;
@@ -29266,8 +28972,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     document.getElementById('a-fc').textContent = avgFc;
     document.getElementById('a-tested').textContent = testedN + ' / ' + n;
     document.getElementById('a-prem-pct').textContent = premPct + '%';
-    document.getElementById('a-shards-total').textContent = totalShards.toLocaleString();
-    document.getElementById('a-shards-avg').textContent = 'ср. ' + avgShardsAnalytics + ' 💎';
     document.getElementById('analytics-stats').style.display = 'block';
 
     // Fast path: in core mode skip heavy secondary analytics to keep UI responsive.
@@ -29301,27 +29005,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         <div class="chart-card">
           <h3>📦 Версии приложения</h3>
           ${coreBarChart(versions,Math.max(...Object.values(versions),1),'#34d399')}
-        </div>
-        <div class="chart-card">
-          <h3>🛍️ Магазин осколков <span style="font-size:10px;color:#555">(визиты экрана)</span></h3>
-          <div style="font-size:28px;font-weight:800;color:#a78bfa;margin:8px 0">${sumShopOpens.toLocaleString()}</div>
-          ${commerceNote}
-        </div>
-        <div class="chart-card">
-          <h3>💳 Пакеты осколков (IAP) <span style="font-size:10px;color:#555">нажатия «Купить»</span></h3>
-          ${commerceBars(aggShardClicks, '#60a5fa')}
-        </div>
-        <div class="chart-card">
-          <h3>✅ Пакеты осколков (IAP) <span style="font-size:10px;color:#555">успешные покупки</span></h3>
-          ${commerceBars(aggShardPurch, '#4ade80')}
-        </div>
-        <div class="chart-card">
-          <h3>🃏 Наборы за осколки <span style="font-size:10px;color:#555">нажатия CTA</span></h3>
-          ${commerceBars(aggCardClicks, '#a78bfa')}
-        </div>
-        <div class="chart-card">
-          <h3>🃏 Наборы за осколки <span style="font-size:10px;color:#555">покупки</span></h3>
-          ${commerceBars(aggCardPurch, '#fbbf24')}
         </div>
       `;
       applyAnalyticsMode();
@@ -29521,13 +29204,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       else achBuckets['21+']++;
     });
 
-    // League distribution
-    const leagues = {};
-    users.forEach(u => {
-      const ln = u.leagueState?.currentLeague || u.leagueState?.leagueName || '—';
-      leagues[ln] = (leagues[ln]||0)+1;
-    });
-
     // App version distribution
     const versions = {};
     users.forEach(u => { const v = u.appVersion||'—'; versions[v]=(versions[v]||0)+1; });
@@ -29543,17 +29219,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       else fcBuckets['50+']++;
     });
 
-    // Shards distribution
-    const shardsBuckets = {'0':0,'1-5':0,'6-15':0,'16-30':0,'31-50':0,'50+':0};
-    users.forEach(u => {
-      const s = toSafeNumber(u.shards, 0);
-      if(s===0) shardsBuckets['0']++;
-      else if(s<=5) shardsBuckets['1-5']++;
-      else if(s<=15) shardsBuckets['6-15']++;
-      else if(s<=30) shardsBuckets['16-30']++;
-      else if(s<=50) shardsBuckets['31-50']++;
-      else shardsBuckets['50+']++;
-    });
     // Onboarding
     const onboarding ={'✅ Завершён': users.filter(u=>u.onboarding).length, '❌ Не завершён': users.filter(u=>!u.onboarding).length};
 
@@ -29682,14 +29347,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         ${barChart(versions,Math.max(...Object.values(versions)),'#34d399')}
       </div>
       <div class="chart-card">
-        <h3>🏆 Распределение по лигам</h3>
-        ${Object.keys(leagues).length ? barChart(leagues, Math.max(...Object.values(leagues)), '#fbbf24') : '<div style="color:#555;font-size:12px">Нет данных</div>'}
-      </div>
-      <div class="chart-card">
-        <h3>💎 Осколки знаний — распределение <span style="font-size:10px;color:#555">суммарно ${totalShards.toLocaleString()}, ср. ${avgShardsAnalytics}</span></h3>
-        ${barChart(shardsBuckets, Math.max(...Object.values(shardsBuckets)), '#34d399')}
-      </div>
-      <div class="chart-card">
         <h3>🎓 Онбординг</h3>
         ${barChart(onboarding, Math.max(...Object.values(onboarding)), '#34d399')}
       </div>
@@ -29721,27 +29378,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       <div class="chart-card">
         <h3>🔭 Популярные фичи из главного экрана</h3>
         ${Object.keys(topFeatures).length ? barChart(topFeatures, Math.max(...Object.values(topFeatures),1), '#34d399') : '<div style="color:#555;font-size:12px">Нет данных</div>'}
-      </div>
-      <div class="chart-card">
-        <h3>🛍️ Магазин осколков <span style="font-size:10px;color:#555">(визиты экрана)</span></h3>
-        <div style="font-size:28px;font-weight:800;color:#a78bfa;margin:8px 0">${sumShopOpens.toLocaleString()}</div>
-        ${commerceNote}
-      </div>
-      <div class="chart-card">
-        <h3>💳 Пакеты осколков (IAP) <span style="font-size:10px;color:#555">нажатия «Купить»</span></h3>
-        ${commerceBars(aggShardClicks, '#60a5fa')}
-      </div>
-      <div class="chart-card">
-        <h3>✅ Пакеты осколков (IAP) <span style="font-size:10px;color:#555">успешные покупки</span></h3>
-        ${commerceBars(aggShardPurch, '#4ade80')}
-      </div>
-      <div class="chart-card">
-        <h3>🃏 Наборы за осколки <span style="font-size:10px;color:#555">нажатия CTA</span></h3>
-        ${commerceBars(aggCardClicks, '#a78bfa')}
-      </div>
-      <div class="chart-card">
-        <h3>🃏 Наборы за осколки <span style="font-size:10px;color:#555">покупки</span></h3>
-        ${commerceBars(aggCardPurch, '#fbbf24')}
       </div>
       ` : `
       <div class="chart-card" style="grid-column:span 3">
@@ -29788,10 +29424,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       '📱 Платформа',
       '🎓 Онбординг',
       '📦 Версии приложения',
-      '🛍️ Магазин осколков',
-      '💳 Пакеты осколков (IAP)',
-      '✅ Пакеты осколков (IAP)',
-      '🃏 Наборы за осколки',
     ];
     cards.forEach(card => {
       const h3 = card.querySelector('h3');
@@ -33620,7 +33252,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     { key: 'energy_recovery_interval_ms', label: 'Интервал +1 энергии (мс, PM-083: ровно 10 мин)', def: 600000, min: 600000, max: 600000 },
     { key: 'paywall_v2_pct', label: 'АРХИВ: paywall_v2_pct (не управляет новым пейволом)', def: 100, min: 0, max: 100 },
     { key: 'avatar_dna_rollout_pct', label: 'Студия персонажа: доля пользователей, %', def: 0, min: 0, max: 100 },
-    { key: 'streak_freeze_cost_shards', label: 'Серия: цена заморозки (осколки)', def: 10, min: 0, max: 9999 },
+    // зачем: D101/D70 — платная заморозка серии за жемчуг удалена, её цена больше не настраивается.
     { key: 'referral_reward_days', label: 'Рефералы: дней Plus за друга (другу и пригласившему)', def: 7, min: 0, max: 3650 },
     { key: 'referral_max_claims_month', label: 'Рефералы: кап наград/месяц (антифрод)', def: 30, min: 0, max: 100000 },
     { key: 'referral_max_claims_day', label: 'Рефералы: кап наград/день (анти-фарм)', def: 3, min: 0, max: 100000 },
@@ -35804,8 +35436,9 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   const CP_PREMIUM_FEATURES = [
     ['gate_speaking_premium','Устно'], ['gate_ai_dialog_premium','ИИ-диалоги'], ['gate_extra_languages_premium','Дополнительные языки'],
     ['gate_stats_premium','Статистика'], ['gate_flashcards_premium','Карточки'], ['gate_themes_premium','Темы'],
-    ['gate_avatar_auras_premium','Ауры'], ['gate_mastery_premium','Мастерство'], ['gate_energy_premium','Энергия'],
-    ['gate_arena_premium','Арена'], ['gate_mistake_practice_premium','Работа над ошибками'],
+    // зачем: D108 (ауры) и D83 (Арена) — выключатели удалённых фич сняты.
+    ['gate_mastery_premium','Мастерство'], ['gate_energy_premium','Энергия'],
+    ['gate_mistake_practice_premium','Работа над ошибками'],
   ];
   const CP_PREMIUM_LIMITS = [
     ['max_energy','Лимит энергии (PM-081: ровно 5)',5,5,5],
@@ -41783,13 +41416,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       document.body.appendChild(el);
     }
 
-    const lvl = xp => {
-      const tiers = [0,300,700,1200,2000,3000,4500,6500,9000,12000,16000,21000,27000,34000,42000,51000,61000,72000,84000,97000];
-      let l = 1;
-      for (let i=0;i<tiers.length;i++) if(xp>=tiers[i]) l=i+1;
-      return l;
-    };
-
     const rows = groups.map(grp => {
       grp.sort((a,b) => Number(b.updatedAtMs || 0) - Number(a.updatedAtMs || 0)); // freshest profile first = keep
       const keep = grp[0];
@@ -41824,11 +41450,9 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   window.deleteDupe = async function(uid) {
     const u = window._users.find(x => x.uid === uid);
     const name = u?.name || '?';
-    const xp = u?.xp ?? 0;
-    const shards = u?.shards ?? 0;
     const ok = await showConfirmModal({
       title: '⚠️ Поставить дубль в очередь очистки?',
-      desc: `Скрытый alias users/${escapeHtml(uid)} ("${escapeHtml(name)}", XP=${xp}, 💎=${shards}) будет заблокирован и помечен tombstone. Физическая очистка users, leaderboard и subcollections останется отдельной офлайн-задачей; Firebase Auth не удаляется.`,
+      desc: `Скрытый alias users/${escapeHtml(uid)} ("${escapeHtml(name)}") будет заблокирован и помечен tombstone. Физическая очистка users, leaderboard и subcollections останется отдельной офлайн-задачей; Firebase Auth не удаляется.`,
       confirmLabel: 'Поставить в очередь',
       danger: true,
     });
@@ -41877,7 +41501,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     return _fnAdminVoiceMinutes;
   }
 
-  // Опросы за осколки (shard-survey): сводка, лента, редактор, CSV.
+  // Опросы (shard-survey; жемчуг за ответ снят — D70): сводка, лента, редактор, CSV.
   // Читает shard_surveys / shard_survey_stats / shard_survey_responses.
   // зачем: раньше звало несуществующие adminPreviewVoiceResearchMutation/
   // adminApplyVoiceResearchMutation (сервер их никогда не экспортировал —
@@ -48727,15 +48351,10 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       const progress = (userSnap.exists() ? userSnap.data()?.progress : null) || {};
       const lb = lbSnap.exists() ? lbSnap.data() : {};
 
-      // daily_stats: { "YYYY-MM-DD": number | { points, streak } }
-      let dailyStats = {};
-      try { dailyStats = JSON.parse(progress.daily_stats || '{}'); } catch {}
-
       // foreground daily ms: { "YYYY-MM-DD": number }
       let fgDaily = {};
       try { fgDaily = JSON.parse(progress.phraseman_foreground_daily_ms_v1 || '{}'); } catch {}
 
-      const daily7xp = typeof lb.daily7xp === 'number' ? lb.daily7xp : null;
       const daily7ms = typeof lb.daily7time_ms === 'number' ? lb.daily7time_ms : null;
       const updatedAt = lb.dailyAnalyticsUpdatedAt ? fdate(lb.dailyAnalyticsUpdatedAt) : '—';
 
@@ -48744,25 +48363,11 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       for (let i = 29; i >= 0; i--) {
         const d = new Date(); d.setDate(d.getDate() - i);
         const k = d.toISOString().split('T')[0];
-        const val = dailyStats[k];
-        const xp = (val === null || val === undefined) ? 0 : (typeof val === 'number' ? val : (typeof val?.points === 'number' ? val.points : 0));
         const ms = fgDaily[k] || 0;
-        days30.push({ k, xp, ms });
+        days30.push({ k, ms });
       }
 
-      const maxXp = Math.max(1, ...days30.map(d => d.xp));
       const maxMs = Math.max(1, ...days30.map(d => d.ms));
-
-      const barXp = days30.map(d => {
-        const h = d.xp > 0 ? Math.max(4, Math.round((d.xp / maxXp) * 80)) : 2;
-        const color = d.xp > 0 ? '#a78bfa' : '#2a2a3a';
-        const label = d.k.slice(5);
-        return `<div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1;min-width:0" title="${d.k}: ${d.xp} XP">
-          <div style="font-size:9px;color:#666;writing-mode:initial">${d.xp > 0 ? d.xp : ''}</div>
-          <div style="height:${h}px;width:10px;background:${color};border-radius:2px;margin-top:auto"></div>
-          <div style="font-size:8px;color:#555;transform:rotate(-45deg);transform-origin:top center;white-space:nowrap;margin-top:4px">${label}</div>
-        </div>`;
-      }).join('');
 
       const barMs = days30.map(d => {
         const h = d.ms > 0 ? Math.max(4, Math.round((d.ms / maxMs) * 80)) : 2;
@@ -48776,7 +48381,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         </div>`;
       }).join('');
 
-      const fmt7 = (v) => v !== null ? String(v) : '—';
       const fmtMs = (ms) => {
         if (ms === null) return '—';
         const m = Math.floor(ms / 60000);
@@ -48801,14 +48405,9 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       }
 
       const lbDoc = lbSnap.exists() ? lbSnap.data() : {};
-      const userXp = typeof lbDoc.points === 'number' ? lbDoc.points : null;
       const userStreak = typeof lbDoc.streak === 'number' ? lbDoc.streak : null;
-      const userWeekXp = typeof lbDoc.weekPoints === 'number' ? lbDoc.weekPoints : null;
 
-      const pctXp       = lbStats ? lookupPct(lbStats.xpThresholds, userXp) : null;
       const pctStreak   = lbStats ? lookupPct(lbStats.streakThresholds, userStreak) : null;
-      const pctWeekXp   = lbStats ? lookupPct(lbStats.weekXpThresholds, userWeekXp) : null;
-      const pctD7xp     = lbStats ? lookupPct(lbStats.daily7xpThresholds, daily7xp) : null;
       const pctD7time   = lbStats ? lookupPct(lbStats.daily7timeMsThresholds, daily7ms) : null;
       const totalUsers  = lbStats ? lbStats.totalUsers : 0;
 
@@ -50257,7 +49856,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'explain-cache':'Кэш объяснений','compass':'Компас','ban-list':'Бан-лист',
     'premium':'Реальный Plus','vip':'Admin Plus','plus-radar':'Диагностика Plus',
     'promo-codes':'Промокоды','gift-certificates':'Подарочные сертификаты',
-    'cancel-surveys':'Причины отмены','surveys':'Опросы за осколки','review-promo':'Опрос Plus',
+    'cancel-surveys':'Причины отмены','surveys':'Опросы','review-promo':'Опрос Plus',
     'referrals':'Рефералы','app-messages':'Сообщения пользователям',
     'ugc-purchases':'Покупки наборов','refunds':'Центр возвратов','community-packs':'Наборы сообщества',
     'daily-phrases':'Фразы дня','daily-polls':'Опрос дня','arena-content':'Контент Spire','push-notify':'Push-уведомления',
@@ -52048,7 +51647,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   if (window.__pmAllSectionsV4Ready) return;
   window.__pmAllSectionsV4Ready = true;
 
-  const SECTION_META = {"control-panel":{"title":"Пульт управления","description":"Живые настройки приложения без релиза."},"jarvis":{"title":"Око Саурона","description":"Автопроверка качества, денег, контента и инфраструктуры."},"jarvis-plans":{"title":"Планы Ока Саурона","description":"Все находки и планы Ока Саурона в одном журнале."},"overview":{"title":"Обзор","description":"Ключевые показатели и быстрые переходы к проблемным зонам."},"mod-queue":{"title":"Очередь модерации","description":"Единая очередь открытых обращений и приоритетов."},"users":{"title":"Пользователи","description":"Профили, прогресс, доступы и действия с аккаунтами."},"testers":{"title":"Телеграм-оплаты","description":"Заказы, коды активации и ручная выдача доступа."},"beta-testers":{"title":"Бета-тестеры","description":"Участники тестирования, ауры, Plus и энергия — внутри единой админки."},"site-admin":{"title":"Сайт и веб-оплаты","description":"Заказы Stripe/PayPal, цены и веб-воронка — внутри единой админки."},"reports":{"title":"Ошибки контента","description":"Репорты, фильтры, статусы и массовые действия."},"remote-config":{"title":"Remote Config","description":"Лимиты, экономика и конфигурация без релиза."},"youtube-catalog":{"title":"YouTube-каталог","description":"Каналы, плейлисты и настройки премьер."},"surveys":{"title":"Опросы за осколки","description":"Опросы, ответы и управление публикацией."},"paywall-ab":{"title":"A/B paywall","description":"Варианты экрана оплаты, аудитория и результаты."},"v2-generator":{"title":"Генератор Learning V2","description":"Генерация, проверка и публикация уроков."},"alerts":{"title":"Telegram-алерты","description":"Правила и маршрутизация уведомлений."},"app-messages":{"title":"Сообщения пользователям","description":"Inbox-сообщения, опросы, статистика и история."},"website-inbox":{"title":"Сайт: обращения","description":"Сообщения с сайта Knowly и статусы обработки."},"emails":{"title":"Имейлы","description":"Единый список адресов и массовые рассылки."},"user-reports":{"title":"Жалобы на пользователей","description":"Очередь жалоб и решения модерации."},"safety-flags":{"title":"Сигналы безопасности","description":"Риски, категории и обработка сигналов."},"product-charter":{"title":"Продуктовая хартия","description":"Правила продукта, ревью и история изменений."},"age-consent":{"title":"Возраст и согласие","description":"Возрастные требования и согласия пользователей."},"compliance-radar":{"title":"Комплаенс","description":"Проверки соответствия и открытые риски."},"daily-digest":{"title":"Дайджест владельца","description":"Изменения, сравнения и продуктовые выводы."},"gmail-support":{"title":"Gmail-поддержка","description":"Письма, черновики и автоматические ответы."},"ideas":{"title":"Идеи пользователей","description":"Идеи, решения и приоритеты."},"explain-reports":{"title":"Жалобы на объяснения","description":"Проблемные объяснения и статус разбора."},"explain-cache":{"title":"Кэш объяснений","description":"Сгенерированные объяснения и очистка кэша."},"compass":{"title":"Компас","description":"Операционные переключатели и статус направлений."},"ban-list":{"title":"Бан-лист","description":"Блокировки, причины, поиск и восстановление доступа."},"premium":{"title":"Реальный Plus","description":"Подписки RevenueCat и фильтры доступа."},"vip":{"title":"Admin Plus","description":"Ручные доступы и сроки действия."},"plus-radar":{"title":"Диагностика Plus","description":"Конфликты, дубли и устаревшие флаги."},"promo-codes":{"title":"Промокоды","description":"Создание, выдача и история промокодов."},"gift-certificates":{"title":"Подарочные сертификаты","description":"Одноразовые сертификаты, отправка и активации."},"cancel-surveys":{"title":"Причины отмены","description":"Причины отмены подписки и комментарии."},"review-promo":{"title":"Опрос Plus","description":"Управление опросом и результатами."},"ugc-purchases":{"title":"Покупки наборов","description":"Покупатели, продавцы, осколки и возвраты."},"refunds":{"title":"Центр возвратов","description":"Возвраты UGC и RevenueCat в одном журнале."},"archive":{"title":"Архив","description":"Закрытые жалобы и обращения."},"audit":{"title":"Журнал аудита","description":"Кто, когда и какое действие выполнил."},"app-health":{"title":"Состояние приложения","description":"Ошибки, предупреждения и состояние функций."},"ops-log":{"title":"Журнал операций","description":"Операционные события и технические результаты."},"community-packs":{"title":"Наборы сообщества","description":"Заявки, опубликованные наборы и жалобы."},"daily-phrases":{"title":"Фразы дня","description":"Очередь, редактор и публикация."},"referrals":{"title":"Рефералы","description":"Приглашения, покупки, награды и аналитика."},"push-notify":{"title":"Push-уведомления","description":"Точечные, сегментные и запланированные отправки."},"onboarding-screens":{"title":"Онбординг","description":"Экраны, поведение и прохождение новых пользователей."},"onboarding-sources":{"title":"Источники онбординга","description":"Откуда пользователи узнали о приложении."},"analytics":{"title":"Доход и аналитика","description":"Подписки, магазин, paywall и продуктовые события."},"openai-budget":{"title":"Бюджет OpenAI","description":"Расходы по моделям, функциям и периодам."},"access-management":{"title":"Управление доступом","description":"Администраторы, роли, права по разделам и настройки анимаций."}};
+  const SECTION_META = {"control-panel":{"title":"Пульт управления","description":"Живые настройки приложения без релиза."},"jarvis":{"title":"Око Саурона","description":"Автопроверка качества, денег, контента и инфраструктуры."},"jarvis-plans":{"title":"Планы Ока Саурона","description":"Все находки и планы Ока Саурона в одном журнале."},"overview":{"title":"Обзор","description":"Ключевые показатели и быстрые переходы к проблемным зонам."},"mod-queue":{"title":"Очередь модерации","description":"Единая очередь открытых обращений и приоритетов."},"users":{"title":"Пользователи","description":"Профили, прогресс, доступы и действия с аккаунтами."},"testers":{"title":"Телеграм-оплаты","description":"Заказы, коды активации и ручная выдача доступа."},"beta-testers":{"title":"Бета-тестеры","description":"Участники тестирования, ауры, Plus и энергия — внутри единой админки."},"site-admin":{"title":"Сайт и веб-оплаты","description":"Заказы Stripe/PayPal, цены и веб-воронка — внутри единой админки."},"reports":{"title":"Ошибки контента","description":"Репорты, фильтры, статусы и массовые действия."},"remote-config":{"title":"Remote Config","description":"Лимиты, экономика и конфигурация без релиза."},"youtube-catalog":{"title":"YouTube-каталог","description":"Каналы, плейлисты и настройки премьер."},"surveys":{"title":"Опросы","description":"Опросы, ответы и управление публикацией."},"paywall-ab":{"title":"A/B paywall","description":"Варианты экрана оплаты, аудитория и результаты."},"v2-generator":{"title":"Генератор Learning V2","description":"Генерация, проверка и публикация уроков."},"alerts":{"title":"Telegram-алерты","description":"Правила и маршрутизация уведомлений."},"app-messages":{"title":"Сообщения пользователям","description":"Inbox-сообщения, опросы, статистика и история."},"website-inbox":{"title":"Сайт: обращения","description":"Сообщения с сайта Knowly и статусы обработки."},"emails":{"title":"Имейлы","description":"Единый список адресов и массовые рассылки."},"user-reports":{"title":"Жалобы на пользователей","description":"Очередь жалоб и решения модерации."},"safety-flags":{"title":"Сигналы безопасности","description":"Риски, категории и обработка сигналов."},"product-charter":{"title":"Продуктовая хартия","description":"Правила продукта, ревью и история изменений."},"age-consent":{"title":"Возраст и согласие","description":"Возрастные требования и согласия пользователей."},"compliance-radar":{"title":"Комплаенс","description":"Проверки соответствия и открытые риски."},"daily-digest":{"title":"Дайджест владельца","description":"Изменения, сравнения и продуктовые выводы."},"gmail-support":{"title":"Gmail-поддержка","description":"Письма, черновики и автоматические ответы."},"ideas":{"title":"Идеи пользователей","description":"Идеи, решения и приоритеты."},"explain-reports":{"title":"Жалобы на объяснения","description":"Проблемные объяснения и статус разбора."},"explain-cache":{"title":"Кэш объяснений","description":"Сгенерированные объяснения и очистка кэша."},"compass":{"title":"Компас","description":"Операционные переключатели и статус направлений."},"ban-list":{"title":"Бан-лист","description":"Блокировки, причины, поиск и восстановление доступа."},"premium":{"title":"Реальный Plus","description":"Подписки RevenueCat и фильтры доступа."},"vip":{"title":"Admin Plus","description":"Ручные доступы и сроки действия."},"plus-radar":{"title":"Диагностика Plus","description":"Конфликты, дубли и устаревшие флаги."},"promo-codes":{"title":"Промокоды","description":"Создание, выдача и история промокодов."},"gift-certificates":{"title":"Подарочные сертификаты","description":"Одноразовые сертификаты, отправка и активации."},"cancel-surveys":{"title":"Причины отмены","description":"Причины отмены подписки и комментарии."},"review-promo":{"title":"Опрос Plus","description":"Управление опросом и результатами."},"ugc-purchases":{"title":"Покупки наборов","description":"Покупатели, продавцы, осколки и возвраты."},"refunds":{"title":"Центр возвратов","description":"Возвраты UGC и RevenueCat в одном журнале."},"archive":{"title":"Архив","description":"Закрытые жалобы и обращения."},"audit":{"title":"Журнал аудита","description":"Кто, когда и какое действие выполнил."},"app-health":{"title":"Состояние приложения","description":"Ошибки, предупреждения и состояние функций."},"ops-log":{"title":"Журнал операций","description":"Операционные события и технические результаты."},"community-packs":{"title":"Наборы сообщества","description":"Заявки, опубликованные наборы и жалобы."},"daily-phrases":{"title":"Фразы дня","description":"Очередь, редактор и публикация."},"referrals":{"title":"Рефералы","description":"Приглашения, покупки, награды и аналитика."},"push-notify":{"title":"Push-уведомления","description":"Точечные, сегментные и запланированные отправки."},"onboarding-screens":{"title":"Онбординг","description":"Экраны, поведение и прохождение новых пользователей."},"onboarding-sources":{"title":"Источники онбординга","description":"Откуда пользователи узнали о приложении."},"analytics":{"title":"Доход и аналитика","description":"Подписки, магазин, paywall и продуктовые события."},"openai-budget":{"title":"Бюджет OpenAI","description":"Расходы по моделям, функциям и периодам."},"access-management":{"title":"Управление доступом","description":"Администраторы, роли, права по разделам и настройки анимаций."}};
   const UI_TRANSLATIONS = {"Overview":"Обзор","Analytics":"Аналитика","Reports":"Ошибки контента","Support (site)":"Сайт: обращения","User reports":"Жалобы на пользователей","Explain reports":"Жалобы на объяснения","Explain cache":"Кэш объяснений","Ban list":"Бан-лист","Plus Radar":"Диагностика Plus","Cancel surveys":"Причины отмены","UGC purchases":"Покупки UGC","Refunds":"Возвраты","Archive":"Архив","Audit log":"Журнал аудита","Ops log":"Журнал операций","Community":"Сообщество","Card packs":"Наборы карточек","Clubs":"Лиги","Referrals":"Рефералы","App Health":"Состояние приложения","Push notifications":"Push-уведомления","Push":"Push","OpenAI budget":"Бюджет OpenAI","Refresh":"Обновить","Loading...":"Загрузка…","Loading…":"Загрузка…","Waiting for Firestore data...":"Ожидание данных Firestore…","Waiting for Cloud Function data...":"Ожидание серверных данных…","All platforms":"Все платформы","All languages":"Все языки","All plans":"Все тарифы","All themes":"Все темы","All accounts":"Все аккаунты","All versions":"Все версии","All cases":"Все случаи","Critical only":"Только критические","All reasons":"Все причины","All severity":"Все уровни","All statuses":"Все статусы","All features":"Все функции","All users":"Все пользователи","All":"Все","Any":"Любой","Users":"Пользователи","User":"Пользователь","Title":"Заголовок","Text":"Текст","Language":"Язык","Platform":"Платформа","Theme":"Тема","Total":"Всего","Period":"Период","From":"С","To":"По","Previous":"Назад","Next":"Далее","Save":"Сохранить","Send":"Отправить","Schedule":"Расписание","Selected":"Выбрано","Sort by XP":"Сортировать по XP","Sort by name":"Сортировать по имени","Sort by streak":"Сортировать по серии","Sort by lessons":"Сортировать по урокам","Sort by version":"Сортировать по версии","Sort by date":"Сортировать по дате","Russian":"Русский","Ukrainian":"Украинский","Free":"Бесплатные","Registered":"Зарегистрированные","Anonymous":"Анонимные","Hide duplicates":"Скрыть дубли","Duplicates":"Дубли","Email list":"Список email","Grant shards":"Выдать осколки","Grant Plus":"Выдать Plus","Ban users":"Заблокировать","Clear selection":"Снять выделение","Progress Streak Lessons":"Прогресс · серия · уроки","Streak":"Серия","Lessons":"Уроки","Account Shards":"Аккаунт · осколки","Shards":"Осколки","Download CSV":"Скачать CSV","CSV":"CSV","Real Plus + admin Plus":"Real Plus + Admin Plus","Same identity or email":"Совпадает профиль или email","Same name with access":"Совпадает имя и доступ","Stale premium flag":"Устаревший premium-флаг","Manual store fields":"Ручные поля магазина","Inactive admin Plus fields":"Неактивные поля Admin Plus","Too expensive":"Слишком дорого","Not enough content":"Мало контента","Technical issues":"Технические проблемы","Found better app":"Нашёл лучшее приложение","Rarely using":"Редко использует","Other":"Другое","Open tab or press Refresh.":"Откройте раздел или нажмите «Обновить».","Last 1h":"1 час","Last 6h":"6 часов","Last 24h":"24 часа","Last 7d":"7 дней","Open":"Открыто","Reviewed":"Проверено","Fixed":"Исправлено","Known issue":"Известная проблема","Copy AI report":"Копировать отчёт ИИ","Copy raw JSON":"Копировать JSON","Load activity":"Загрузить активность","Activity is lazy-loaded to save Firestore reads.":"Активность загружается только по запросу.","Open App Health to load diagnostics.":"Откройте раздел для загрузки диагностики.","⬇ Load more (older)":"⬇ Загрузить ещё","Published":"Опубликован","Unpublished":"Снят с публикации","Draft":"Черновик","Preview French rows":"Предпросмотр французских строк","Create French draft":"Создать французский черновик","Check French approval":"Проверить французское утверждение","Rollback French draft":"Откатить французский черновик","By UID":"По пользователю","Segment":"Сегмент","Reactivation":"Реактивация","User UID":"Пользователь","Click action (optional)":"Действие по нажатию","Send segment":"Отправить сегменту","Inactive >= days":"Неактивен минимум, дней","Inactive <= days ago":"Неактивен не более, дней","Send reactivation":"Отправить реактивацию","Date and time":"Дата и время","Audience":"Аудитория","Inactive 7+ days":"Неактивные 7+ дней","Статистика загрузится автоматически при открытии раздела.":"Статистика загрузится при открытии раздела.","Source answers":"Ответы об источнике","Unique users":"Уникальные пользователи","Top source":"Главный источник","Sources":"Источники","Paywall analytics":"Аналитика paywall","Custom":"Свой период","Bar width":"Ширина столбцов","Compact":"Компактно","Normal":"Обычно","Wide":"Широко","Analytics opens with a safe dashboard shell first. Live data loads when this tab opens.":"Данные загружаются после открытия раздела.","Paywall views":"Показы paywall","Paywall purchases":"Покупки из paywall","Plus events":"События Plus","Shards purchases":"Покупки осколков","Settings paywall":"Paywall в настройках","Automatic paywall":"Автоматический paywall","Onboarding paywall":"Paywall онбординга","1 day":"1 день","7 days":"7 дней","28 days":"28 дней","30 days":"30 дней","90 days":"90 дней","180 days":"180 дней","Daily":"По дням","Weekly":"По неделям","Reset zoom":"Сбросить масштаб","Save model":"Сохранить модель","Theo model config is loading...":"Настройки модели Theo загружаются…","Free tier replies/day":"Ответов Free в день","Plus tier replies/day":"Ответов Plus в день","Save quota":"Сохранить лимиты","Reload quota":"Перечитать лимиты","Theo quota config is loading...":"Лимиты Theo загружаются…","OpenAI estimated month loads when this tab is active.":"Расчёт загружается при открытии раздела.","OpenAI estimated month":"Оценка OpenAI за месяц","Selected period":"Выбранный период","Paid calls":"Платные вызовы","Tokens":"Токены","Feature costs":"Расходы по функциям","Model costs":"Расходы по моделям","Avg XP":"Средний XP","AVG XP":"Средний XP","Average XP":"Средний XP","Avg streak":"Средняя серия","AVG STREAK":"Средняя серия","Average streak":"Средняя серия","Avg shards":"Средние осколки","AVG SHARDS":"Средние осколки","Average shards":"Средние осколки","days":"дн.","Days":"Дни","Search name or UID":"Поиск по нику или #nameIndex","Search by name or UID":"Поиск по нику или #nameIndex","Search name, email or UID":"Поиск по нику, email или #nameIndex","Search":"Поиск","Status":"Статус","Actions":"Действия","Date":"Дата","Name":"Имя","Email":"Email","Version":"Версия","Country":"Страна","Source":"Источник","Created":"Создано","Updated":"Обновлено","Active":"Активен","Inactive":"Неактивен","Enabled":"Включено","Disabled":"Выключено","Completed":"Завершено","Pending":"Ожидает","Failed":"Ошибка","Success":"Успешно","Error":"Ошибка","Copy":"Копировать","Close":"Закрыть","Cancel":"Отмена","Delete":"Удалить","Edit":"Изменить","Create":"Создать","Publish":"Опубликовать","Unpublish":"Снять с публикации","Details":"Подробнее","More":"Ещё","Settings":"Настройки","Management":"Управление","No data":"Нет данных","No results":"Ничего не найдено","Unknown":"Неизвестно","Никнейм или UID":"Никнейм или #nameIndex","UID или никнейм":"#nameIndex или никнейм","Selected:":"Выбрано:","Progress":"Прогресс","App":"Приложение","Account":"Аккаунт","Find user":"Найти пользователя","Revenue":"Доход","Push composer":"Push-редактор","Loaded user records in this admin session.":"Профили, загруженные в текущей сессии.","Limited":"Ограничено","Paywall and RevenueCat data status.":"Статус paywall и данных RevenueCat.","Moderation":"Модерация","Queues":"Очереди","Reports, user reports, and ban list.":"Ошибки контента, жалобы и блокировки.","Delivery":"Доставка","Ready":"Готово","Push jobs, app messages, and daily content.":"Push-задачи, сообщения и ежедневный контент.","Visits today":"Посещения сегодня","Unique sessions on knowlyapps.com today (UTC).":"Уникальные сессии knowlyapps.com сегодня (UTC).","Total visits":"Посещения за всё время","All-time unique sessions since tracking started.":"Уникальные сессии с начала отслеживания.","iOS store clicks today":"Переходы в App Store сегодня","App Store badge clicks today — clicks, not installs.":"Нажатия на App Store сегодня, не установки.","iOS store clicks total":"Переходы в App Store всего","All-time App Store badge clicks — clicks, not installs.":"Все нажатия на App Store, не установки.","Android store clicks today":"Переходы в Google Play сегодня","Google Play badge clicks today — clicks, not installs.":"Нажатия на Google Play сегодня, не установки.","Android store clicks total":"Переходы в Google Play всего","All-time Google Play badge clicks — clicks, not installs.":"Все нажатия на Google Play, не установки.","Daily trend":"Динамика по дням","Hover a point for the exact day. Scroll to zoom, drag to pan.":"Наведите для точного значения. Колесо — масштаб, перетаскивание — обзор.","Visits":"Посещения","Purchases":"Покупки","Check app health first":"Сначала проверьте состояние приложения","Recent activity, health events, archive, audit, and ops diagnostics.":"Активность, ошибки, архив, аудит и журнал операций.","Review incoming reports":"Разберите новые жалобы","Content reports and user reports are the highest-risk human queue.":"Ошибки контента и жалобы пользователей требуют ручной проверки.","Inspect revenue funnel":"Проверьте воронку дохода","Paywall views, purchases, RevenueCat events, and shards purchases.":"Показы paywall, покупки, RevenueCat и покупки осколков.","Quick admin actions":"Быстрые действия администратора","Admin status summary":"Сводка состояния админки","Site traffic":"Трафик сайта","Granularity":"Детализация","Admin worklist":"Рабочая очередь администратора","Show duplicate names with different UIDs":"Показать одинаковые ники у разных аккаунтов","Copy or download the email list":"Копировать или скачать список email","Select all":"Выбрать всё","Sort by semantic app version":"Сортировать по версии приложения","Source:":"Источник:","Search uid, name, text...":"Поиск по нику, #nameIndex или тексту…","Server-side estimate from billing logs. Cache hits are not billed, so they do not appear here.":"Серверная оценка по журналу биллинга. Попадания в кэш не тарифицируются и не отображаются.","Revenue, conversion, and shard-purchase signals from consented product events and server-owned RevenueCat records.":"Доход, конверсия и покупки осколков по разрешённым продуктовым событиям и серверным данным RevenueCat.","Choose the onboarding source date window":"Выбрать период источников онбординга","Filter onboarding source events by platform":"Фильтровать источники по платформе","Reload onboarding source statistics":"Обновить статистику источников","Reload revenue analytics":"Обновить аналитику дохода","Revenue analytics filters":"Фильтры аналитики дохода","Revenue date window":"Период аналитики дохода","First UTC day":"Первый день UTC","Last UTC day":"Последний день UTC","Revenue platform":"Платформа дохода","App message delivery surface":"Место показа сообщения","Settings message slot":"Позиция сообщения в настройках","Settings message control percent":"Доля показа сообщения","App message format":"Формат сообщения","App message status":"Статус сообщения","App message audience":"Аудитория сообщения","App message priority":"Приоритет сообщения","App message retention days":"Срок хранения сообщения","App message title":"Заголовок сообщения","App message body":"Текст сообщения","App message poll question":"Вопрос опроса","App message poll option count":"Количество вариантов ответа","App health period":"Период состояния приложения","App health severity filter":"Фильтр важности","App health status filter":"Фильтр статуса","App health feature filter":"Фильтр функции","Search app health events":"Поиск событий состояния приложения","Search audit log by UID, email, or details":"Поиск в аудите по #nameIndex, email или деталям","Copy for Claude":"Копировать для Claude","Job history":"История заданий","Enter UID...":"Введите никнейм или #nameIndex…","Push target user UID":"Получатель push","Notification title...":"Заголовок уведомления…","Notification text...":"Текст уведомления…","Push title for UID mode":"Заголовок точечного push","Push message text for UID mode":"Текст точечного push","Push click action for UID mode":"Действие точечного push","Push segment language":"Язык сегмента push","Push segment premium status":"Статус Plus сегмента","Push segment minimum streak":"Минимальная серия сегмента","Push title for segment mode":"Заголовок push для сегмента","Push message text for segment mode":"Текст push для сегмента","Push click action for segment mode":"Действие push для сегмента","Push reactivation minimum inactive days":"Минимум дней неактивности","Push reactivation maximum inactive days":"Максимум дней неактивности","We miss you":"Мы скучаем","Come back and continue your streak.":"Возвращайтесь и продолжайте свою серию.","Push title for reactivation mode":"Заголовок push для реактивации","Push message text for reactivation mode":"Текст push для реактивации","Push click action for reactivation mode":"Действие push для реактивации","Scheduled push date and time":"Дата и время запланированного push","Scheduled push audience":"Аудитория запланированного push","Scheduled push title":"Заголовок запланированного push","Scheduled push message text":"Текст запланированного push","Scheduled push click action":"Действие запланированного push","Theo model":"Модель Theo"};
   SECTION_META['max-ops'] = { title:'Здоровье MAX', description:'Надёжность звонка, разбора и памяти по приватным серверным агрегатам.' };
   SECTION_META['max-feedback'] = { title:'Оценки', description:'Точные оценки, распределение звёзд и комментарии со всех экранов завершения.' };
@@ -53526,12 +53125,12 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'app_message.cleanup': {label:'Очистка истёкших сообщений',section:'app-messages',permission:'edit',reason:true,idempotency:true,revision:false,reversible:false,kind:'destructive'},
     'access.upsert': {label:'Изменение доступа',section:'access-management',permission:'administrator',reason:true,idempotency:true,revision:true,reversible:false,kind:'access'},
     'access.delete': {label:'Удаление доступа',section:'access-management',permission:'administrator',reason:true,idempotency:true,revision:true,reversible:false,kind:'access'},
-    'users.bulk_shards': {label:'Массовая выдача осколков',section:'users',permission:'edit',reason:true,idempotency:true,revision:false,reversible:false,kind:'economy'},
+    'users.bulk_shards': {label:'Массовая выдача монет',section:'users',permission:'edit',reason:true,idempotency:true,revision:false,reversible:false,kind:'economy'},
     'users.bulk_plus': {label:'Массовая выдача Plus',section:'users',permission:'edit',reason:true,idempotency:true,revision:false,reversible:false,kind:'access'},
     'users.bulk_ban': {label:'Массовая блокировка',section:'users',permission:'edit',reason:true,idempotency:true,revision:false,reversible:false,kind:'destructive'},
     'reports.bulk_status': {label:'Массовый статус жалоб',section:'user-reports',permission:'edit',reason:true,idempotency:true,revision:true,reversible:false,kind:'moderation'},
     'reports.bulk_reply': {label:'Массовые ответы',section:'reports',permission:'edit',reason:true,idempotency:true,revision:true,reversible:false,kind:'moderation'},
-    'user.grant_shards': {label:'Выдача осколков',section:'users',permission:'edit',reason:true,idempotency:true,revision:false,reversible:false,kind:'economy'},
+    'user.grant_shards': {label:'Выдача монет',section:'users',permission:'edit',reason:true,idempotency:true,revision:false,reversible:false,kind:'economy'},
     'user.grant_plus': {label:'Выдача Plus',section:'users',permission:'edit',reason:true,idempotency:true,revision:false,reversible:false,kind:'access'},
     'user.ban': {label:'Блокировка пользователя',section:'users',permission:'edit',reason:true,idempotency:true,revision:false,reversible:false,kind:'destructive'},
     'user.delete': {label:'Удаление аккаунта',section:'users',permission:'administrator',reason:true,idempotency:true,revision:false,reversible:false,kind:'destructive'},

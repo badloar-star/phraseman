@@ -208,7 +208,8 @@ function lightBase(v: LiquidGlassVivid, level: LiquidGlassColorLevel): LiquidGla
     lightTint: alpha(text, 0.92),
     // зачем: нейтральная кнопка в светлом — «чернильный» тон темы с белым текстом (контраст ≥ 4.5).
     cta: oklchToHex(0.24, c * 0.28 + 0.009, h), ctaInk: '#FFFFFF',
-    text, secondary: oklchToHex(0.47, tn * 1.6, h), mutedText: oklchToHex(0.57, tn * 1.4, h),
+    // зачем (PM-033, аудит контраста 01.10): при L .57 приглушённый текст на карточке давал 4.32–4.48 < 4.5 во всех светлых темах.
+    text, secondary: oklchToHex(0.47, tn * 1.6, h), mutedText: oklchToHex(0.55, tn * 1.4, h),
     line: max ? oklchA(0.45, c * 0.6, h, 0.14) : oklchA(0.35, tn * 2, h, 0.09),
     selected: oklchA(0.30, c * 0.35 + 0.01, h, 0.08),
   });
@@ -244,6 +245,9 @@ function lightRoles(v: LiquidGlassVivid, t: LiquidGlassBaseTokens, level: Liquid
   const a = oklchToHex(0.52, cc, h);
   const aHi = oklchToHex(0.58, cc, h);
   const aLo = oklchToHex(0.45, cc, h);
+  // зачем (PM-033): текст цветом темы на светлом фоне — на ступень темнее кнопки; у зелёно-бирюзовых
+  // тонов (Шалфей/Эвкалипт/Марина) цвет кнопки L .52 давал тексту 4.06–4.34 < 4.5. Кнопка не меняется.
+  const aText = oklchToHex(0.47, cc, h);
   const a2 = oklchToHex(0.52, cc, h2);
   const byFam = {
     gem: { g: [aHi, a, aLo], deg: 172, p: [aLo, aHi] },
@@ -258,13 +262,13 @@ function lightRoles(v: LiquidGlassVivid, t: LiquidGlassBaseTokens, level: Liquid
   const dir = direction(byFam.deg);
   return Object.freeze({
     level, appearance: 'light', isLight: true,
-    accent: a, accentInk: '#FFFFFF', accentText: a, accentBright: a,
+    accent: a, accentInk: '#FFFFFF', accentText: aText, accentBright: a,
     accentSoft: oklchA(0.94, c * 0.40 + 0.006, h, 0.97), accentBorder: a,
     accentCap: oklchA(0.55, c, h, 0.16),
     accentTile: max ? oklchA(0.90, c * 0.55, h, 0.97) : oklchA(0.94, c * 0.30 + 0.005, h, 0.97),
     accentGlow: oklchA(0.45, c, h, 0.40),
     accentGradient: Object.freeze(byFam.g), accentGradientStart: dir.start, accentGradientEnd: dir.end,
-    progressGradient: Object.freeze(byFam.p), overline: a,
+    progressGradient: Object.freeze(byFam.p), overline: aText,
     bgGlow: Object.freeze(max
       ? [oklchA(0.86, c * 0.8, h, 0.70), oklchA(0.88, c * 0.7, h2, 0.60), oklchA(0.92, c * 0.45, h, 0.50)]
       : [CLEAR, CLEAR, CLEAR]) as readonly [string, string, string],

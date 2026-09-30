@@ -56,3 +56,108 @@ test('app mapping only tints neutral roles and preserves success, error and rewa
     assert.equal(theme.textPrimary, liquidGlassTokens(id).text);
   }
 });
+
+// ─── Темы 2.0: уровни цвета и светлое оформление (владелец 2026-09-30) ───────────
+const {
+  LIQUID_GLASS_COLOR_LEVELS,
+  LIQUID_GLASS_APPEARANCES,
+  getActiveLiquidGlassVariant,
+  setActiveLiquidGlassVariant,
+  resolveLiquidGlassAppearance,
+  resolveLiquidGlassColorLevel,
+} = require('../constants/liquidGlassThemePalette.ts');
+
+const BASE_KEYS = ['bg', 'bgTop', 'bgBottom', 'opaqueCard', 'opaqueSheet', 'opaqueControl', 'card', 'sheet',
+  'glassEdge', 'lightTint', 'cta', 'ctaInk', 'text', 'secondary', 'mutedText', 'line', 'selected'];
+const ALL_VARIANTS = LIQUID_GLASS_APPEARANCES.flatMap(appearance => LIQUID_GLASS_COLOR_LEVELS.map(level => ({ level, appearance })));
+const contrast = (a, b) => {
+  const [hi, lo] = [luminance(a.slice(0, 7)), luminance(b.slice(0, 7))].sort((x, y) => y - x);
+  return (hi + .05) / (lo + .05);
+};
+const opacity = (hex) => hex.length === 9 ? parseInt(hex.slice(7), 16) / 255 : 1;
+const isClear = (hex) => hex.length === 9 && hex.endsWith('00');
+
+test('levels: calm + dark is the default and equals the approved thin theme', () => {
+  assert.deepEqual(LIQUID_GLASS_COLOR_LEVELS, ['calm', 'accent', 'max']);
+  assert.deepEqual(LIQUID_GLASS_APPEARANCES, ['dark', 'light']);
+  assert.deepEqual(getActiveLiquidGlassVariant(), { level: 'calm', appearance: 'dark' });
+  assert.equal(resolveLiquidGlassColorLevel('bogus'), 'calm');
+  assert.equal(resolveLiquidGlassColorLevel('max'), 'max');
+  assert.equal(resolveLiquidGlassAppearance(null), 'dark');
+  assert.equal(resolveLiquidGlassAppearance('light'), 'light');
+  for (const id of LIQUID_GLASS_THEME_IDS) {
+    const calm = liquidGlassTokens(id, { level: 'calm', appearance: 'dark' });
+    assert.equal(calm, liquidGlassTokens(id));
+    // «Спокойно» — роли цвета повторяют нейтральные токены: ничего не перекрашивается.
+    assert.equal(calm.accent, calm.cta);
+    assert.equal(calm.accentInk, calm.ctaInk);
+    assert.equal(calm.accentSoft, calm.selected);
+    assert.equal(calm.accentCap, calm.cta);
+    assert.ok(calm.bgGlow.every(isClear) && calm.cardSmoke.every(isClear), `${id}: calm has no glow/smoke`);
+  }
+});
+
+test('accent: background and cards stay the calm ones, elements get a distinct theme colour', () => {
+  const accents = new Set();
+  for (const id of LIQUID_GLASS_THEME_IDS) {
+    const calm = liquidGlassTokens(id, { level: 'calm', appearance: 'dark' });
+    const acc = liquidGlassTokens(id, { level: 'accent', appearance: 'dark' });
+    for (const key of BASE_KEYS) assert.equal(acc[key], calm[key], `${id}: accent keeps ${key}`);
+    assert.notEqual(acc.accent, calm.cta, `${id}: accent must colour the CTA`);
+    assert.ok(contrast(acc.accent, acc.accentInk) >= 4.5, `${id}: accent CTA contrast`);
+    assert.ok(acc.accentGradient.length >= 2 && acc.progressGradient.length >= 2);
+    assert.ok(acc.bgGlow.every(isClear) && acc.cardSmoke.every(isClear), `${id}: accent has no glow/smoke`);
+    accents.add(acc.accent);
+  }
+  assert.equal(accents.size, 13, 'every theme has its own accent');
+});
+
+test('max: glow and smoke appear, glass stays opaque (≥ 0.9) and dark', () => {
+  for (const id of LIQUID_GLASS_THEME_IDS) {
+    const max = liquidGlassTokens(id, { level: 'max', appearance: 'dark' });
+    assert.ok(max.bgGlow.some(c => !isClear(c)), `${id}: max background glow`);
+    assert.ok(max.cardSmoke.some(c => !isClear(c)), `${id}: max card smoke`);
+    assert.ok(opacity(max.card) >= .9 && opacity(max.sheet) >= .9, `${id}: opaque glass`);
+    assert.ok(luminance(max.bg) < .035, `${id}: max background stays dark`);
+    assert.ok(contrast(max.text, max.opaqueCard) >= 7, `${id}: max text contrast`);
+  }
+});
+
+test('light: tinted light background, white cards, dark text, readable buttons for every level', () => {
+  for (const id of LIQUID_GLASS_THEME_IDS) {
+    for (const level of LIQUID_GLASS_COLOR_LEVELS) {
+      const t = liquidGlassTokens(id, { level, appearance: 'light' });
+      assert.equal(t.isLight, true);
+      assert.ok(luminance(t.bg) > .75, `${id}/${level}: light background`);
+      assert.ok(luminance(t.opaqueCard) > .9, `${id}/${level}: white cards`);
+      assert.ok(opacity(t.card) >= .9, `${id}/${level}: opaque card`);
+      assert.ok(contrast(t.text, t.opaqueCard) >= 7, `${id}/${level}: text contrast`);
+      assert.ok(contrast(t.secondary, t.opaqueCard) >= 4.5, `${id}/${level}: secondary contrast`);
+      assert.ok(contrast(t.cta, t.ctaInk) >= 4.5, `${id}/${level}: neutral CTA contrast`);
+      assert.ok(contrast(t.accent, t.accentInk) >= 4.5, `${id}/${level}: accent CTA contrast`);
+      assert.equal(t.bgGlow.some(c => !isClear(c)), level === 'max', `${id}/${level}: glow only in max`);
+    }
+  }
+});
+
+test('every variant keeps success, error and rewards untouched and never mutates the calm cache', () => {
+  for (const variant of ALL_VARIANTS) {
+    for (const id of LIQUID_GLASS_THEME_IDS) {
+      const theme = makeLiquidGlassTheme(id, base, variant);
+      for (const key of Object.keys(base)) assert.equal(theme[key], base[key], `${id}/${variant.level}/${variant.appearance}: ${key}`);
+      assert.equal(theme.accent, liquidGlassTokens(id, variant).accent);
+    }
+  }
+  assert.equal(liquidGlassTokens('graphite').bg, '#0C0D10');
+});
+
+test('the active variant drives argument-less lookups (ThemeProvider registers it)', () => {
+  try {
+    setActiveLiquidGlassVariant({ level: 'accent', appearance: 'light' });
+    assert.equal(liquidGlassTokens('marine'), liquidGlassTokens('marine', { level: 'accent', appearance: 'light' }));
+    assert.equal(makeLiquidGlassTheme('marine', base).bgPrimary, liquidGlassTokens('marine', { level: 'accent', appearance: 'light' }).bg);
+  } finally {
+    setActiveLiquidGlassVariant({ level: 'calm', appearance: 'dark' });
+  }
+  assert.equal(liquidGlassTokens('graphite').bg, '#0C0D10');
+});

@@ -6,12 +6,15 @@
  * `DeckPickerSheet` остался в репозитории, но его больше никто не открывал:
  * мультивыбор наборов был недостижим из UI. Эти тесты держат сборку списка.
  */
+// Каталог сообщества пишет [PACKS-FIRSTFRAME] под __DEV__ — в среде теста глобала нет (как в auth_provider_behavior).
+(globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__ = false;
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { saveFlashcards, type Flashcard } from '../hooks/use-flashcards';
 import { __resetCustomCardsStoreForTests, upsertCustomCard } from '../app/flashcards/custom_cards_store';
 import { addCommunityOwnedPackId } from '../app/community_packs/communityOwnedStorage';
 import { saveBuiltMarketplaceCardsCache } from '../app/flashcards/marketplace';
 import {
+  __resetDeckOptionsWarmCacheForTests,
   countAvailableFcCards,
   loadAllFcDeckRefs,
   loadFcDeckOptions,
@@ -58,6 +61,8 @@ const customCard = (id: string): CardItem => ({
 
 describe('loadFcDeckOptions', () => {
   beforeEach(async () => {
+    // Тёплый снимок колод живёт 3 с в памяти модуля — между тестами сбрасываем.
+    __resetDeckOptionsWarmCacheForTests();
     __resetCustomCardsStoreForTests();
     await saveFlashcards([savedCard('s1'), savedCard('s2'), savedCard('s3')]);
     await upsertCustomCard(customCard('c1'));
@@ -188,6 +193,8 @@ describe('sameDeckOptions', () => {
  */
 describe('loadAllFcDeckRefs / countAvailableFcCards', () => {
   beforeEach(async () => {
+    // Тёплый снимок колод живёт 3 с в памяти модуля — между тестами сбрасываем.
+    __resetDeckOptionsWarmCacheForTests();
     __resetCustomCardsStoreForTests();
     await saveFlashcards([savedCard('s1'), savedCard('s2'), savedCard('s3')]);
     await upsertCustomCard(customCard('c1'));

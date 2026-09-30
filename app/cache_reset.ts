@@ -84,8 +84,12 @@ const SCOPED_CACHE_PREFIXES = [
   ...APP_MESSAGES_CACHE_PREFIXES,
 ] as const;
 
-export async function clearAppCaches(): Promise<{ removedKeys: number }> {
+// зачем: PM-199-A2 — раньше при сбое хранилища функция всё равно возвращала успех,
+// и настройки показывали «Готово», хотя кеш не стёрт. Теперь `ok:false` говорит
+// правду; картинки чистим в любом случае (это заявленное поведение кнопки).
+export async function clearAppCaches(): Promise<{ removedKeys: number; ok: boolean }> {
   let removedKeys = 0;
+  let ok = true;
   try {
     const keys = await AsyncStorage.getAllKeys();
     const doomed = keys.filter(
@@ -98,14 +102,23 @@ export async function clearAppCaches(): Promise<{ removedKeys: number }> {
       removedKeys = doomed.length;
     }
   } catch (e) {
-      // хранилище недоступно — просто чистим картинки
-      DebugLogger.error('cache_reset:doomed', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
+    // хранилище недоступно — картинки всё равно чистим, но честно сообщаем о сбое
+    ok = false;
+    console.warn('[CACHE-RESET] storage failed', JSON.stringify({ reason: e instanceof Error ? e.message : String(e), removedKeys }));
+    DebugLogger.error('cache_reset:doomed', e instanceof Error ? e : new Error(String(e)), 'warning');
+  }
   await Promise.all([
-    Image.clearMemoryCache().catch(() => false),
-    Image.clearDiskCache().catch(() => false),
+    Image.clearMemoryCache().catch((e) => {
+      console.warn('[CACHE-RESET] image memory cache failed', JSON.stringify({ reason: e instanceof Error ? e.message : String(e) }));
+      return false;
+    }),
+    Image.clearDiskCache().catch((e) => {
+      console.warn('[CACHE-RESET] image disk cache failed', JSON.stringify({ reason: e instanceof Error ? e.message : String(e) }));
+      return false;
+    }),
   ]);
-  return { removedKeys };
+  console.log('[CACHE-RESET] done', JSON.stringify({ ok, removedKeys }));
+  return { removedKeys, ok };
 }
 
 /* expo-router route shim: utility module under app/ */

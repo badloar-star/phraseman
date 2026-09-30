@@ -139,3 +139,65 @@ describe('cache_reset: устойчивость', () => {
     expect(result.removedKeys).toBe(removed.length);
   });
 });
+
+// зачем: PM-199-A2 — сбой хранилища не должен ни ронять очистку, ни выдаваться
+// за успех; сеть очистка кеша не трогает вообще.
+describe('cache_reset: сбой хранилища (PM-199-A2)', () => {
+  const loadBroken = () => {
+    const clearMemoryCache = jest.fn(async () => true);
+    const clearDiskCache = jest.fn(async () => true);
+    const fetchSpy = jest.fn();
+    const netInfoFetch = jest.fn();
+    (global as unknown as { fetch: unknown }).fetch = fetchSpy;
+    jest.resetModules();
+    jest.doMock('@react-native-async-storage/async-storage', () => ({
+      __esModule: true,
+      default: {
+        getAllKeys: jest.fn(async () => { throw new Error('storage_down'); }),
+        multiRemove: jest.fn(),
+        // DebugLogger → app_health читает/пишет хранилище; при «упавшем» getAllKeys они живы.
+        getItem: jest.fn(async () => null),
+        setItem: jest.fn(async () => undefined),
+      },
+    }));
+    jest.doMock('@react-native-community/netinfo', () => ({
+      __esModule: true,
+      default: { fetch: netInfoFetch, addEventListener: netInfoFetch },
+      fetch: netInfoFetch,
+    }), { virtual: true });
+    jest.doMock('expo-image', () => ({ __esModule: true, Image: { clearMemoryCache, clearDiskCache } }));
+    jest.doMock('../app/referrals_cache', () => ({ __esModule: true, REFERRAL_STATE_STORAGE_KEY: 'referrals_state_cache_v3' }));
+    jest.doMock('../app/friends_tab_swr_warm', () => ({
+      __esModule: true,
+      FRIENDS_TAB_SWR_CACHE_KEY: 'friends_tab_swr_v1',
+      FRIEND_PROFILES_CACHE_KEY: 'friend_profiles_cache_v1',
+    }));
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const mod = require('../app/cache_reset') as typeof import('../app/cache_reset');
+    return { mod, clearMemoryCache, clearDiskCache, fetchSpy, netInfoFetch };
+  };
+
+  it('getAllKeys бросает: промис резолвится, картинки чищены, ok=false', async () => {
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const { mod, clearMemoryCache, clearDiskCache } = loadBroken();
+    const result = await mod.clearAppCaches();
+    expect(result).toEqual({ removedKeys: 0, ok: false });
+    expect(clearMemoryCache).toHaveBeenCalledTimes(1);
+    expect(clearDiskCache).toHaveBeenCalledTimes(1);
+    expect(warn.mock.calls.some((c) => String(c[0]).includes('[CACHE-RESET]'))).toBe(true);
+    warn.mockRestore();
+  });
+
+  it('очистка кеша не ходит в сеть (fetch / NetInfo)', async () => {
+    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const { mod, fetchSpy, netInfoFetch } = loadBroken();
+    await mod.clearAppCaches();
+    expect(fetchSpy).not.toHaveBeenCalled();
+    expect(netInfoFetch).not.toHaveBeenCalled();
+  });
+
+  it('настройки показывают «failed» при ok=false, а не «Готово»', () => {
+    const settings = fs.readFileSync(path.join(__dirname, '..', 'app', '(tabs)', 'settings.tsx'), 'utf8');
+    expect(settings).toMatch(/clearAppCaches\(\)\s*\.then\(\(result\) => \{ setClearCacheState\(result\.ok \? 'done' : 'failed'\)/);
+  });
+});

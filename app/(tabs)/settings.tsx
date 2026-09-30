@@ -912,7 +912,7 @@ export default function SettingsMain() {
             // живёт прямо в ряду (без спиннера на весь экран) и врать не может.
             setClearCacheState('running');
             void clearAppCaches()
-              .then(() => { setClearCacheState('done'); })
+              .then((result) => { setClearCacheState(result.ok ? 'done' : 'failed'); }) // зачем: PM-199-A2 — сбой хранилища не выдаём за «Готово»
               .catch(() => { setClearCacheState('failed'); });
           },
         },

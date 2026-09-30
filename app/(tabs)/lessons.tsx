@@ -4767,11 +4767,17 @@ export default function LessonsTab({
         // зачем: пилюля `.pill.s` макета (30 dp) — область нажатия добираем до 44 hitSlop'ом.
         hitSlop={{ top: 7, bottom: 7, left: 4, right: 4 }}
         style={{
+          // зачем: PressableHybrid по умолчанию alignSelf stretch — в строке высотой 44 (энергия)
+          // пилюля липла к верху и стояла на 8 dp выше энергии.
+          alignSelf: "center",
           height: 30,
           borderRadius: 15,
           overflow: "hidden",
         }}
         contentStyle={{
+          // зачем (эмулятор 30.09): PressableHybrid даёт содержимому width 100% — в строке без
+          // ширины пилюля монет растягивалась до 201 dp и выталкивала HUD под заголовок.
+          width: "auto",
           height: 30,
           paddingHorizontal: 12,
           flexDirection: "row",
@@ -4812,6 +4818,7 @@ export default function LessonsTab({
           maxWidth={88}
           ownerActive={lessonsRuntimeActive && page === "lessons"}
           compact
+          glass
         />
       ) : (
         <View

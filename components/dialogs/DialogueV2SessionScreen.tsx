@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
-import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, BackHandler, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { PressableScale } from '../feedback/PressableScale';
@@ -24,12 +24,16 @@ import {
   dialogueGlassRoundButtonStyle,
 } from './glass/DialogueGlassChat';
 import { DialogueGlassMenuSheet } from './glass/DialogueGlassMenuSheet';
+import DialogGoalsSheet from './DialogGoalsSheet';
+import ThemedConfirmModal from '../ThemedConfirmModal';
 
 // зачем (владелец 2026-09-30): сессия V2 «1 в 1» по макету dialogs.html C1–C18 (Liquid Glass):
 // шапка `.dh` (круглая «‹», название сцены + «Диалог», квадратная «⋯» со шторкой «Завершить»),
 // реплики с мини-аватаром и подписью, светлый пузырь «Вы», живые точки «печатает», системная
 // плашка ошибки с «Повторить» прямо в ленте и строка ввода «микрофон · поле · ↑» с подсказкой
-// состояния голоса. Цели, настроения, квоты и энергии в данных V2 нет — их не рисуем.
+// состояния голоса. Плюс (C6, C23): шторка «Задания» (список из брифинга, БЕЗ статусов — сервер
+// V2 не сообщает, что закрыто) и подтверждение выхода. Настроения, «Цель N из 5», квоты и
+// энергии в ответах V2 нет — их не рисуем (см. чек-лист dialogs.html).
 
 type DialogueV2SessionMessageBase = Readonly<{
   id: string;
@@ -73,6 +77,12 @@ export type DialogueV2SessionLabels = Readonly<{
   discardVoice: string;
   turnError: string;
   retry: string;
+  /** Пункт меню и заголовок шторки со списком заданий сцены. */
+  tasks: string;
+  exitTitle: string;
+  exitMessage: string;
+  exitStay: string;
+  exitLeave: string;
 }>;
 
 export type DialogueV2SessionScreenProps = Readonly<{
@@ -86,6 +96,8 @@ export type DialogueV2SessionScreenProps = Readonly<{
   playingPreparedBotVoiceMessageId: string | null;
   interfaceLang: Lang;
   labels: DialogueV2SessionLabels;
+  /** Задания сцены из брифинга (только подписи; статусов выполнения в V2 нет). */
+  objectives: readonly Readonly<{ id: string; label: string }>[];
   /** Последний ход не дошёл: плашка «Повторить» в ленте (C18), разговор остаётся на экране. */
   turnError: boolean;
   retryDisabled: boolean;
@@ -113,6 +125,7 @@ export function DialogueV2SessionScreen({
   playingPreparedBotVoiceMessageId,
   interfaceLang,
   labels,
+  objectives,
   turnError,
   retryDisabled,
   onRetry,
@@ -128,6 +141,8 @@ export function DialogueV2SessionScreen({
 }: DialogueV2SessionScreenProps) {
   const glass = useDialogueGlass();
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [goalsOpen, setGoalsOpen] = React.useState(false);
+  const [exitOpen, setExitOpen] = React.useState(false);
   const voiceBusy = voiceStatus !== 'idle';
   // зачем: пока висит плашка ошибки, путь один — «Повторить» (раньше экран целиком
   // заменялся плашкой, и новое сообщение отправить было нельзя; поведение то же).
@@ -137,6 +152,26 @@ export function DialogueV2SessionScreen({
     ? labels.voiceRecording
     : voiceStatus === 'starting' ? labels.voiceStarting : labels.voiceIdle;
   const voiceCopy = describeDialogueVoiceMessage(interfaceLang);
+  const goalRows = React.useMemo(
+    () => objectives.map((objective) => ({ id: objective.id, labelRu: objective.label })),
+    [objectives],
+  );
+  const noGoalsMet = React.useMemo(() => new Set<string>(), []);
+  // зачем (C23): пока переписка не началась, терять нечего — назад сразу; после первой реплики
+  // выход идёт через подтверждение, чтобы случайный тап/жест не стирал разговор.
+  const hasConversation = messages.length > 0;
+  const requestBack = React.useCallback(() => {
+    if (hasConversation) setExitOpen(true);
+    else onBack();
+  }, [hasConversation, onBack]);
+  React.useEffect(() => {
+    if (!hasConversation) return undefined;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      setExitOpen(true);
+      return true;
+    });
+    return () => sub.remove();
+  }, [hasConversation]);
 
   return (
     <KeyboardAvoidingView
@@ -150,7 +185,7 @@ export function DialogueV2SessionScreen({
           testID="dialogue-v2-session-header"
           style={{ paddingHorizontal: 14, paddingTop: 2, paddingBottom: 12, flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: glass.bg }}
         >
-          <DialogueGlassBackButton glass={glass} onPress={onBack} accessibilityLabel={labels.back} />
+          <DialogueGlassBackButton glass={glass} onPress={requestBack} accessibilityLabel={labels.back} />
           <View style={{ flex: 1, minWidth: 0, marginLeft: 4 }}>
             <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: glass.text, fontSize: 20, lineHeight: 24, fontWeight: '700', letterSpacing: -0.2 }}>
               {title}
@@ -305,6 +340,28 @@ export function DialogueV2SessionScreen({
         completeLabel={labels.complete}
         completeDisabled={completeDisabled}
         onComplete={onComplete}
+        tasksLabel={goalRows.length > 0 ? labels.tasks : undefined}
+        onOpenTasks={goalRows.length > 0 ? () => setGoalsOpen(true) : undefined}
+      />
+      <DialogGoalsSheet
+        visible={goalsOpen}
+        onClose={() => setGoalsOpen(false)}
+        lang={interfaceLang}
+        objectives={goalRows}
+        objectivesMet={noGoalsMet}
+        showStatus={false}
+        testID="dialogue-v2-session-goals"
+      />
+      <ThemedConfirmModal
+        visible={exitOpen}
+        title={labels.exitTitle}
+        message={labels.exitMessage}
+        cancelLabel={labels.exitStay}
+        confirmLabel={labels.exitLeave}
+        onCancel={() => setExitOpen(false)}
+        onConfirm={() => { setExitOpen(false); onBack(); }}
+        confirmVariant="accent"
+        testIDPrefix="dialogue-v2-session-exit"
       />
     </KeyboardAvoidingView>
   );

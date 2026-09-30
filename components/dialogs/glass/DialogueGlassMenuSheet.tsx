@@ -20,22 +20,27 @@ export interface DialogueGlassMenuSheetProps {
   completeLabel: string;
   completeDisabled: boolean;
   onComplete: () => void;
+  /** Пункт «Задания» (шторка со списком заданий сцены); без обоих пропсов не рисуется. */
+  tasksLabel?: string;
+  onOpenTasks?: () => void;
 }
 
 export function DialogueGlassMenuSheet({
   glass, visible, onClose, title, closeLabel, completeLabel, completeDisabled, onComplete,
+  tasksLabel, onOpenTasks,
 }: DialogueGlassMenuSheetProps) {
-  // зачем: переход к итогу — только когда нативная шторка реально закрылась (onDismissed),
-  // иначе модалка может остаться висеть поверх нового экрана.
-  const completeRequestedRef = React.useRef(false);
+  // зачем: переход к итогу / открытие «Заданий» — только когда нативная шторка реально
+  // закрылась (onDismissed), иначе две модалки наложатся друг на друга.
+  const pendingRef = React.useRef<'complete' | 'tasks' | null>(null);
   return (
     <HybridSheetShell
       visible={visible}
       onClose={onClose}
       onDismissed={() => {
-        if (!completeRequestedRef.current) return;
-        completeRequestedRef.current = false;
-        onComplete();
+        const pending = pendingRef.current;
+        pendingRef.current = null;
+        if (pending === 'complete') onComplete();
+        else if (pending === 'tasks') onOpenTasks?.();
       }}
       closeLabel={closeLabel}
       testID="dialogue-v2-session-menu"
@@ -57,6 +62,26 @@ export function DialogueGlassMenuSheet({
               <Ionicons name="close" size={18} color={glass.secondary} />
             </PressableHybrid>
           </View>
+          {tasksLabel && onOpenTasks ? (
+            <PressableHybrid
+              testID="dialogue-v2-session-menu-tasks"
+              variant="secondary"
+              withSound={false}
+              accessibilityRole="button"
+              accessibilityLabel={tasksLabel}
+              onPress={() => {
+                pendingRef.current = 'tasks';
+                requestDismiss();
+              }}
+              contentStyle={styles.item}
+            >
+              <View style={[styles.tile, { backgroundColor: glass.opaqueControl }]}>
+                <Ionicons name="list-outline" size={20} color={glass.text} />
+              </View>
+              <Text maxFontSizeMultiplier={1.3} style={[styles.itemText, { color: glass.text }]}>{tasksLabel}</Text>
+              <Ionicons name="chevron-forward" size={20} color={glass.secondary} />
+            </PressableHybrid>
+          ) : null}
           <PressableHybrid
             testID="dialogue-v2-session-menu-complete"
             variant="secondary"
@@ -66,7 +91,7 @@ export function DialogueGlassMenuSheet({
             accessibilityLabel={completeLabel}
             accessibilityState={{ disabled: completeDisabled }}
             onPress={() => {
-              completeRequestedRef.current = true;
+              pendingRef.current = 'complete';
               requestDismiss();
             }}
             contentStyle={[styles.item, { opacity: completeDisabled ? 0.55 : 1 }]}

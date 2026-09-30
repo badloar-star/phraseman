@@ -33,6 +33,12 @@ interface DialogGoalsSheetProps {
   objectives: readonly DialogObjective[];
   /** id уже закрытых заданий. */
   objectivesMet: ReadonlySet<string>;
+  /**
+   * зачем (владелец 2026-09-30, V2-сессия): в V2 сервер не сообщает, какие задания закрыты,
+   * поэтому там список показывается БЕЗ статусов и счётчика (`false`) — «не выдумывать данные».
+   * Старая сессия ничего не передаёт, поведение прежнее.
+   */
+  showStatus?: boolean;
   testID?: string;
 }
 
@@ -42,6 +48,7 @@ export default function DialogGoalsSheet({
   lang,
   objectives,
   objectivesMet,
+  showStatus = true,
   testID,
 }: DialogGoalsSheetProps) {
   const { f, liquidGlassThemeId } = useTheme();
@@ -95,12 +102,14 @@ export default function DialogGoalsSheet({
           </View>
 
           {/* Счётчик: сколько закрыто из скольких. */}
-          <Text
-            style={{ color: glass.secondary, fontSize: f.body, fontWeight: '700', marginBottom: 8 }}
-            maxFontSizeMultiplier={1.2}
-          >
-            {`${doneCount} / ${objectives.length}`}
-          </Text>
+          {showStatus ? (
+            <Text
+              style={{ color: glass.secondary, fontSize: f.body, fontWeight: '700', marginBottom: 8 }}
+              maxFontSizeMultiplier={1.2}
+            >
+              {`${doneCount} / ${objectives.length}`}
+            </Text>
+          ) : null}
 
           <ScrollView
             style={styles.scroll}
@@ -110,7 +119,7 @@ export default function DialogGoalsSheet({
             {/* guard-ok: заданий 4–7 по контракту (ai_dialog_objectives_contract),
                 FlatList на семи строках дороже, чем сам список. */}
             {objectives.map((objective, index) => {
-              const done = objectivesMet.has(objective.id);
+              const done = showStatus && objectivesMet.has(objective.id);
               const status = done ? doneLabel : notDoneLabel;
               return (
                 <View
@@ -118,7 +127,7 @@ export default function DialogGoalsSheet({
                   style={[styles.row, index > 0 ? { borderTopWidth: 1, borderTopColor: glass.line } : null]}
                   accessible
                   accessibilityRole="text"
-                  accessibilityLabel={`${objective.labelRu}. ${status}`}
+                  accessibilityLabel={showStatus ? `${objective.labelRu}. ${status}` : objective.labelRu}
                 >
                   <View style={[styles.badge, { backgroundColor: done ? glass.cta : glass.opaqueControl }]}>
                     {done ? (
@@ -141,9 +150,11 @@ export default function DialogGoalsSheet({
                     >
                       {objective.labelRu}
                     </Text>
-                    <Text style={{ color: glass.mutedText, fontSize: f.sub, marginTop: 2 }} maxFontSizeMultiplier={1.2}>
-                      {status}
-                    </Text>
+                    {showStatus ? (
+                      <Text style={{ color: glass.mutedText, fontSize: f.sub, marginTop: 2 }} maxFontSizeMultiplier={1.2}>
+                        {status}
+                      </Text>
+                    ) : null}
                   </View>
                 </View>
               );

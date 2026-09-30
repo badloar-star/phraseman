@@ -136,7 +136,8 @@ export default function DialogueV2VisualFixtureRoute() {
               playingVoiceUri={null}
               playingPreparedBotVoiceMessageId={null}
               interfaceLang={interfaceLang}
-              labels={{ back: 'Назад', placeholder: 'Напиши или зажми микрофон', send: 'Отправить', complete: 'Завершить диалог', subtitle: 'Диалог', more: 'Диалог', close: 'Закрыть', you: 'Вы', voiceIdle: 'Или зажми и говори', voiceStarting: 'Готовлю микрофон…', voiceRecording: 'Говори…', discardVoice: 'Удалить запись', turnError: 'Не удалось связаться с сервером.', retry: 'Повторить' }}
+              labels={{ back: 'Назад', placeholder: 'Напиши или зажми микрофон', send: 'Отправить', complete: 'Завершить диалог', subtitle: 'Диалог', more: 'Диалог', close: 'Закрыть', you: 'Вы', voiceIdle: 'Или зажми и говори', voiceStarting: 'Готовлю микрофон…', voiceRecording: 'Говори…', discardVoice: 'Удалить запись', turnError: 'Не удалось связаться с сервером.', retry: 'Повторить', tasks: 'Задания', exitTitle: 'Выйти из диалога?', exitMessage: 'Переписка не сохранится: в следующий раз диалог начнётся заново.', exitStay: 'Остаться', exitLeave: 'Выйти' }}
+              objectives={fixtureObjectives}
               turnError={false}
               retryDisabled
               onRetry={noop}

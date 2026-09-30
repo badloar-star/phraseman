@@ -55,8 +55,28 @@ test('session C*: header .dh with «⋯» menu, no divider line, bubbles/typing/
   // Пузырь «Вы» — светлый нейтральный (lightTint), чужой — стекло с 1px кромкой.
   assert.match(chat, /glass\.lightTint/);
   assert.match(chat, /borderWidth: 1, \/\/ guard-ok/);
-  // Настроения, целей, квоты в данных V2 нет — не рисуем.
-  assert.doesNotMatch(session, /mood|quota|energy|objective/i);
+  // Настроения, квоты, энергии в ответах V2 нет — не рисуем (чек-лист dialogs.html, класс «в»).
+  assert.doesNotMatch(session, /mood|quota|energy/i);
+});
+
+test('session C6/C23: «Задания» sheet lists briefing goals without statuses; exit asks for confirmation', () => {
+  // C6: пункт «Задания» в шторке «⋯» открывает DialogGoalsSheet; статусов «выполнено» сервер V2 не даёт.
+  assert.match(menu, /testID="dialogue-v2-session-menu-tasks"/);
+  assert.match(menu, /pendingRef\.current = 'tasks'/);
+  assert.match(session, /<DialogGoalsSheet/);
+  assert.match(session, /showStatus=\{false\}/);
+  assert.match(sessionRoute, /objectives=\{model\.objectives\}/);
+  assert.doesNotMatch(session, /objectivesMet=\{new Set|done.*objective/i);
+  // C23: выход из начатого разговора — ThemedConfirmModal (как в app/exam.tsx), кнопка и аппаратный «назад».
+  assert.match(session, /<ThemedConfirmModal/);
+  assert.match(session, /onPress=\{requestBack\}/);
+  assert.match(session, /hardwareBackPress/);
+  assert.match(session, /if \(hasConversation\) setExitOpen\(true\);\s*else onBack\(\);/);
+  for (const key of ['tasks', 'exitTitle', 'exitMessage', 'exitStay', 'exitLeave']) {
+    assert.ok(sessionRoute.includes(`${key}: triLang(lang, { ru:`), key);
+  }
+  // Честный текст: переписка в V2 не сохраняется — обещания «сохранится» из макета не даём.
+  assert.doesNotMatch(sessionRoute, /Разговор сохранится/);
 });
 
 test('session route: network error is an inline system plate with retry, unavailable is a gate', () => {

@@ -36,7 +36,8 @@ describe('mistakes hub snapshot', () => {
     expect(snapshot.insights.frequentSources).toEqual([
       { source: 'lessons', count: 2 }, { source: 'cards', count: 1 }, { source: 'exams', count: 1 },
     ]);
-    expect(mistakeSourceGroupFor('arena_translate')).toBe('arena');
+    // зачем: PM-192-A2 — Арена удалена (D83); старые arena_* записи уходят в «другое».
+    expect(mistakeSourceGroupFor('arena_translate')).toBe('other');
     expect(mistakeSourceGroupFor(undefined)).toBe('other');
   });
 

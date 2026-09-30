@@ -99,13 +99,13 @@ export interface MistakePracticeInsights {
   readonly uniqueMistakes30d: number;
   readonly uniqueMistakes7d: number;
   readonly frequentFacets: readonly Readonly<{ facet: MistakeFacet; count: number }>[];
-  /** Откуда приходят ошибки за 30 дней: уроки, арена, карточки, экзамены… */
+  /** Откуда приходят ошибки за 30 дней: уроки, карточки, экзамены… */
   readonly frequentSources: readonly Readonly<{ source: MistakeSourceGroup; count: number }>[];
   readonly topMistakes: readonly MistakePracticeInsightItem[];
 }
 
 /** Группы источников для карты слабых мест (sourceKind → понятная группа). */
-export type MistakeSourceGroup = 'lessons' | 'arena' | 'cards' | 'exams' | 'other';
+export type MistakeSourceGroup = 'lessons' | 'cards' | 'exams' | 'other';
 
 export function mistakeSourceGroupFor(sourceKind: string | null | undefined): MistakeSourceGroup {
   switch (sourceKind) {
@@ -124,9 +124,9 @@ export function mistakeSourceGroupFor(sourceKind: string | null | undefined): Mi
     case 'diagnosis_coach':
       return 'other';
     default:
-      // Арена пишет sourceKind вида `arena_*` через свой адаптер; всё
-      // незнакомое честно падает в «другое», а не в уроки.
-      return typeof sourceKind === 'string' && sourceKind.startsWith('arena') ? 'arena' : 'other';
+      // зачем: PM-192-A2 — Арена удалена (D83), группы 'arena' больше нет;
+      // всё незнакомое (в т.ч. старые arena_* записи) честно падает в «другое».
+      return 'other';
   }
 }
 

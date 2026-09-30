@@ -62,7 +62,7 @@ describe('lessonMistakeFacet', () => {
     expect(lessonMistakeFacet({
       expectedPhrase: 'I had time yesterday',
       answeredPhrase: '',
-    })).toBe('meaning');
+    })).toBe('missing_token'); // PM-192-A2: пустой ответ больше не «значение»
   });
 
   it('знаки препинания и регистр не меняют вывод', () => {
@@ -77,5 +77,13 @@ describe('lessonMistakeFacet', () => {
       expectedPhrase: 'I had time yesterday',
       answeredPhrase: 'I had the time yesterday',
     })).toBe('word_order');
+  });
+});
+
+// зачем: PM-192-A2 — пустой ответ не должен получать диагноз «значение».
+describe('lessonMistakeFacet — пустой ответ', () => {
+  it('пустой ответ = пропущено слово, а не значение', () => {
+    expect(lessonMistakeFacet({ expectedPhrase: 'She loves music', answeredPhrase: '' })).toBe('missing_token');
+    expect(lessonMistakeFacet({ expectedPhrase: 'She loves music', answeredPhrase: '  ., ' })).toBe('missing_token');
   });
 });

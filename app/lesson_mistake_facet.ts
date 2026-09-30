@@ -68,8 +68,12 @@ export function lessonMistakeFacet(input: {
   const expected = splitTokens(input.expectedPhrase);
   const answered = splitTokens(input.answeredPhrase);
 
-  // Ничего не собрано — учить нечему, кроме самой фразы.
-  if (expected.length === 0 || answered.length === 0) return 'meaning';
+  // зачем: PM-192-A2 — пустой ответ НЕ «значение»: человек не подставил чужое
+  // слово, он не дал ответа вовсе. Честный тип — «пропущено слово»; иначе
+  // раздел «Мои ошибки» учил бы смыслу там, где смысл не перепутан.
+  if (answered.length === 0 && expected.length > 0) return 'missing_token';
+  // Эталона нет (битые данные) — учить нечему, кроме самой фразы.
+  if (expected.length === 0) return 'meaning';
 
   // Те же слова, другой порядок — единственный честный «порядок слов».
   if (sameWordBag(expected, answered)) return 'word_order';

@@ -9,13 +9,12 @@ test('remaining contextual explanations preserve the existing controls', () => {
   assert.ok(friends.includes('Зов доступен только друзьям'));
   assert.ok(friends.includes('Друг уже получил максимум зовов на сегодня'));
   assert.ok(read('app/settings_notifications.tsx').includes('Проверь разрешение в настройках телефона'));
-  assert.ok(read('app/personal_plan.tsx').includes('Дополнительно выполнено:'));
-  const mistakes = read('components/mistake-practice/MistakePracticeSetupSheet.tsx');
-  assert.ok(mistakes.includes('mistakePracticeExplanation(lang)'));
+  // 30.09: «Личный план» снят целиком (970f8e7b8) — его объяснение больше некому сохранять.
+  assert.equal(fs.existsSync(path.join(__dirname, '..', 'app/personal_plan.tsx')), false);
+  // 30.09: шторка практики ошибок удалена вместе с мёртвым входом (ccfc43a1c) — объяснять больше негде.
+  assert.equal(fs.existsSync(path.join(__dirname, '..', 'components/mistake-practice/MistakePracticeSetupSheet.tsx')), false);
   assert.ok(read('app/mistake_practice_intro_copy.ts').includes('Это практика, а не пересдача'));
   assert.ok(read('app/feature_intro_copy.ts').includes("id: 'mistake_practice_help'"));
-  assert.ok(mistakes.includes('<FeatureIntroStage family="premiere"'));
-  assert.ok(mistakes.includes('onStart(selected)'));
   const mic = read('app/flashcards/SpeakHoldButton.tsx');
   assert.ok(!mic.includes('accessibilityLabel={`qa-${testID}`}'));
   assert.ok(mic.includes('accessibilityHint='));
@@ -68,14 +67,15 @@ test('the retired home cards cannot render or run their pulse; manual guide is t
   const home = read('app/(tabs)/home.tsx');
   assert.ok(home.includes('const shouldPulse = HOME_FEATURE_TIPS_ON_HOME &&'));
   assert.ok(home.includes('const homeFeatureTipCardVisible = HOME_FEATURE_TIPS_ON_HOME &&'));
-  assert.ok(home.includes('const showHomeFeatureTipCard = homeFeatureTipCardVisible'));
+  // 30.09: отдельное условие показа несёт флаг само (снимок 0217c4a21 его снимал — возвращено).
+  assert.ok(home.includes('const showHomeFeatureTipCard = HOME_FEATURE_TIPS_ON_HOME &&'));
 });
 test('approved recovery copy explains causes and a way back without promises of future content', () => {
   for (const [file, copy] of [
     ['app/flashcards_blitz_session.tsx', 'Для блица нужны хотя бы 4 карточки'],
     ['app/pack_opening.tsx', 'Не удалось открыть набор. Вернись назад'],
     ['app/flashcards/SessionResultScreen.tsx', 'Тренировка завершена'],
-    ['app/personal_plan_theory.tsx', 'Для этого дня нет отдельной теории'],
+    // 30.09: personal_plan_theory удалён вместе с «Личным планом» (970f8e7b8).
     ['app/survey_screen.tsx', 'Можно вернуться в приложение'],
     ['app/flashcards/FlashcardsTrainingModeSheet.tsx', 'Можно остановиться и попробовать ещё раз'],
   ]) assert.ok(read(file).includes(copy), file);

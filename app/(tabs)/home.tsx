@@ -49,6 +49,7 @@ import {
     clampHomeFeatureTipReplayCount,
     HOME_FEATURE_TIPS_DONE_KEY,
     HOME_FEATURE_TIPS_INDEX_KEY,
+    HOME_FEATURE_TIPS_ON_HOME,
     HOME_FEATURE_TIPS_REPLAY_COUNT_KEY,
     HOME_FEATURE_TIPS_RESET_EVENT,
 } from '../home_feature_tips';
@@ -2219,7 +2220,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         return () => sub.remove();
     }, []);
     useEffect(() => {
-        const shouldPulse = homeFeatureTipsHydrated && homeOnboardingDone && !homeFeatureTipsDone && homeFeatureTipIndex === 0;
+        // зачем (владелец 08.09, возвращено 30.09): флаг снят снимком 0217c4a21 — подсказки на Главной не анимируем и не рисуем.
+        const shouldPulse = HOME_FEATURE_TIPS_ON_HOME && homeFeatureTipsHydrated && homeOnboardingDone && !homeFeatureTipsDone && homeFeatureTipIndex === 0;
         if (!homeRuntimeActive || !shouldPulse) {
             homeFeatureTipHintPulse.stopAnimation();
             homeFeatureTipHintPulse.setValue(0);
@@ -2236,7 +2238,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     }, [homeFeatureTipHintPulse, homeFeatureTipIndex, homeFeatureTipsDone, homeFeatureTipsHydrated, homeOnboardingDone, homeRuntimeActive]);
     // Кросс-фейд содержимого при листании подсказок: контент плавно уходит и возвращается,
     // а не «прыгает». useNativeDriver — не грузит JS-поток (Performance Bible).
-    const homeFeatureTipCardVisible = homeFeatureTipsHydrated && homeOnboardingDone && !homeFeatureTipsDone && homeFeatureTips.length > 0;
+    const homeFeatureTipCardVisible = HOME_FEATURE_TIPS_ON_HOME && homeFeatureTipsHydrated && homeOnboardingDone && !homeFeatureTipsDone && homeFeatureTips.length > 0;
     useEffect(() => {
         if (!homeFeatureTipCardVisible) {
             homeFeatureTipContentKeyRef.current = homeFeatureTipContentKey;
@@ -3286,7 +3288,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 </View>
             </TouchableOpacity>
         );
-        const showHomeFeatureTipCard = homeFeatureTipsHydrated && homeOnboardingDone && !homeFeatureTipsDone && homeFeatureTips.length > 0;
+        const showHomeFeatureTipCard = HOME_FEATURE_TIPS_ON_HOME && homeFeatureTipsHydrated && homeOnboardingDone && !homeFeatureTipsDone && homeFeatureTips.length > 0;
         const currentHomeFeatureTip = homeFeatureTips[clampHomeFeatureTipIndex(homeFeatureTipIndex, homeFeatureTips.length)] ?? homeFeatureTips[0];
         const homeFeatureTipAccent = isGoldTheme ? GOLD_RICH.champagne : t.accent;
         const showHomeFeatureTipTapHint = homeFeatureTipIndex === 0;

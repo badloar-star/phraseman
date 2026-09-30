@@ -22,6 +22,9 @@ for (const file of [
   'components/PlayerProfileModal.tsx',
   'functions/src/public_profile_projection.ts',
 ]) {
+  // 30.09: файл, удалённый целиком (например, constants/avatar_auras.ts по D108), следов
+  // сезонного пропуска тоже не несёт — это не провал, а более полное удаление.
+  if (!fs.existsSync(path.join(root, file))) continue;
   const source = fs.readFileSync(path.join(root, file), 'utf8');
   assert.equal(/season.?pass|seasonProfileFrameId|SEASON_AVATAR_AURA_IDS|season_cosmetics|devSeasonProfileFrameEnabled/i.test(source), false, file);
 }

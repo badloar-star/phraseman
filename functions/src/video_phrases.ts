@@ -6,6 +6,7 @@ import { hasPermission, type AdminPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 import { assertJobEnabled, resolveJobConfig } from './openai_jobs_config';
 import { reserveContentFactoryBudget } from './content_factory/content_factory_budget';
+import { PAID_AI_FETCH_TIMEOUT_MS, paidAiFetchFailureReason } from './paid_ai_fetch_timeout';
 import { normalizeVideoPhraseList, type VideoPhrase } from '../../shared/video_phrases_contract';
 import {
   parseYoutubeCatalogManifest,
@@ -16,6 +17,9 @@ import {
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
+/** PM-231: потолок входа разбора документа (~15k токенов) и вывода модели. */
+export const VIDEO_PHRASES_MAX_INPUT_CHARS = 60_000;
+export const VIDEO_PHRASES_MAX_OUTPUT_TOKENS = 8_000;
 const ROOT = 'video_phrase_sets';
 
 function adminRole(token: Record<string, unknown>): AdminRole {
@@ -450,15 +454,31 @@ export const adminParseVideoPhraseDocument = onCall({ region: REGION, enforceApp
   const actor = requireAdmin(request, 'content.draft.write');
   const id = videoId(request.data?.videoId);
   const sourceText = String(request.data?.text ?? '').trim();
-  if (!sourceText || sourceText.length > 500_000) throw new HttpsError('invalid-argument', 'document_text_invalid');
+  if (!sourceText) throw new HttpsError('invalid-argument', 'document_text_invalid');
+  // зачем: PM-231 — вход до 500 000 знаков (~125k токенов) без max_tokens и тайм-аута
+  // давал один админ-вызов на доллары и висел до потолка функции. Потолок входа,
+  // вывода и времени — до OpenAI.
+  if (sourceText.length > VIDEO_PHRASES_MAX_INPUT_CHARS) {
+    console.warn('[AI-LIMIT] adminParseVideoPhraseDocument input too long', { chars: sourceText.length, max: VIDEO_PHRASES_MAX_INPUT_CHARS });
+    throw new HttpsError('invalid-argument', 'document_text_too_long', { maxChars: VIDEO_PHRASES_MAX_INPUT_CHARS, chars: sourceText.length });
+  }
   const db = admin.firestore();
   const config = await resolveJobConfig(db, 'video_phrases');
   assertJobEnabled(config, 'video_phrases');
   await reserveContentFactoryBudget(db, `video-phrases:${id}:${String(request.data?.operationId ?? actor.uid)}`, config.globalDailyCap);
   const apiKey = String(OPENAI_API_KEY.value() || '').trim();
   if (!apiKey) throw new HttpsError('failed-precondition', 'openai_key_missing');
-  const response = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', headers: { authorization: `Bearer ${apiKey}`, 'content-type': 'application/json' }, body: JSON.stringify({ model: config.model, temperature: 0, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: 'Извлеки из документа фразы для изучения языка. Верни JSON {"phrases":[{"phrase":"...","translation":"...","explanation":"..."}]}. Только phrase, translation, explanation. Не добавляй examples, grammar, exercises. Сохрани порядок. Не выдумывай отсутствующие значения.' }, { role: 'user', content: sourceText }] }) });
-  if (!response.ok) throw new HttpsError('unavailable', 'openai_request_failed');
+  let response: Response;
+  try {
+    response = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', headers: { authorization: `Bearer ${apiKey}`, 'content-type': 'application/json' }, body: JSON.stringify({ model: config.model, temperature: 0, max_tokens: VIDEO_PHRASES_MAX_OUTPUT_TOKENS, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: 'Извлеки из документа фразы для изучения языка. Верни JSON {"phrases":[{"phrase":"...","translation":"...","explanation":"..."}]}. Только phrase, translation, explanation. Не добавляй examples, grammar, exercises. Сохрани порядок. Не выдумывай отсутствующие значения.' }, { role: 'user', content: sourceText }] }), signal: AbortSignal.timeout(PAID_AI_FETCH_TIMEOUT_MS.adminVideoPhrases) });
+  } catch (error) {
+    console.error('[AI-LIMIT] adminParseVideoPhraseDocument provider fetch failed', { reason: paidAiFetchFailureReason(error), timeoutMs: PAID_AI_FETCH_TIMEOUT_MS.adminVideoPhrases });
+    throw new HttpsError('unavailable', 'openai_request_failed');
+  }
+  if (!response.ok) {
+    console.error('[AI-LIMIT] adminParseVideoPhraseDocument provider status', { status: response.status });
+    throw new HttpsError('unavailable', 'openai_request_failed');
+  }
   const payload = await response.json() as { choices?: { message?: { content?: string } }[] };
   let parsed: unknown;
   try { parsed = JSON.parse(String(payload.choices?.[0]?.message?.content ?? '')); }

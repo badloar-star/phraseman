@@ -5,6 +5,7 @@ import { ENFORCE_APP_CHECK } from './callable_options';
 import { hasPermission, type AdminPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 import { assertJobEnabled, resolveJobConfig } from './openai_jobs_config';
+import { PAID_AI_FETCH_TIMEOUT_MS, paidAiFetchFailureReason } from './paid_ai_fetch_timeout';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -111,7 +112,7 @@ export function canClaimAssetRun(raw: Row, nowMs: number): boolean {
 
 export function sanitizeProviderError(error: unknown): { publicMessage: string; diagnostic: string } {
   const raw = error instanceof Error ? error.message : String(error ?? 'unknown');
-  const code = raw.match(/image_api_\d{3}|image_api_no_b64|openai_image_generation_failed/)?.[0] || 'image_provider_error';
+  const code = raw.match(/image_api_\d{3}|image_api_no_b64|image_api_timeout|image_api_fetch_failed|openai_image_generation_failed/)?.[0] || 'image_provider_error';
   return {
     publicMessage: 'image_provider_failed',
     diagnostic: code,
@@ -162,12 +163,22 @@ async function withFreshPreviewUrls(job: Row): Promise<Row> {
   return { ...job, results };
 }
 
-async function generateImage(apiKey: string, job: ReturnType<typeof normalizeAssetJobInput>): Promise<Buffer> {
-  const response = await fetch('https://api.openai.com/v1/images/generations', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(buildOpenAiImageRequest(job)),
-  });
+async function generateImage(apiKey: string, job: ReturnType<typeof normalizeAssetJobInput>, timeoutMs: number): Promise<Buffer> {
+  let response: Response;
+  try {
+    response = await fetch('https://api.openai.com/v1/images/generations', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(buildOpenAiImageRequest(job)),
+      // зачем: PM-231 — без сигнала запрос висел до потолка функции (120с), рантайм
+      // убивал инстанс раньше, чем задание помечалось failed.
+      signal: AbortSignal.timeout(timeoutMs),
+    });
+  } catch (error) {
+    const reason = paidAiFetchFailureReason(error);
+    console.error('[AI-LIMIT] adminRunAssetJob image fetch failed', { reason, timeoutMs });
+    throw new Error(reason === 'timeout' ? 'image_api_timeout' : 'image_api_fetch_failed');
+  }
   if (!response.ok) {
     await response.text().catch(() => '');
     throw new Error(`image_api_${response.status}`);
@@ -279,8 +290,11 @@ export const adminRunAssetJob = onCall(
       await reserveImageBudget(db, slots.length, cfg.globalDailyCap, now);
       const bucket = admin.storage().bucket();
       const results = [...existingResults];
+      // PM-231: общий дедлайн на все слоты под потолок функции; готовые слоты уже
+      // сохранены, повторный запуск догенерирует только недостающие.
+      const deadlineAtMs = now + PAID_AI_FETCH_TIMEOUT_MS.adminAssetStudio;
       for (const slot of slots) {
-        const png = await generateImage(apiKey, job);
+        const png = await generateImage(apiKey, job, Math.max(1_000, deadlineAtMs - Date.now()));
         const objectPath = `admin-asset-studio/${jobId}/generated-${slot}.png`;
         const file = bucket.file(objectPath);
         await file.save(png, { resumable: false, contentType: 'image/png', metadata: { cacheControl: 'private, max-age=0' } });

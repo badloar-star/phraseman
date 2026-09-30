@@ -22,9 +22,10 @@ export const PAID_AI_FETCH_TIMEOUT_MS = Object.freeze({
   mistakeExplain: 35_000,
   /** mistakeHubAdvice: timeoutSeconds 30, одна попытка. */
   mistakeHubAdvice: 20_000,
-  /** Админские длинные генерации (video_phrases, asset studio) — под их 300–540с. */
-  adminVideoPhrases: 240_000,
-  adminAssetStudio: 150_000,
+  /** adminParseVideoPhraseDocument: timeoutSeconds 120, одна попытка. */
+  adminVideoPhrases: 100_000,
+  /** adminAssetStudio (images/generations): timeoutSeconds 120, одна попытка. */
+  adminAssetStudio: 100_000,
 });
 
 /** true, если fetch оборвал наш тайм-аут или явный abort (обрыв клиента). */

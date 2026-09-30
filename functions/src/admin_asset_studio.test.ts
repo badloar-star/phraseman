@@ -120,6 +120,8 @@ describe('admin asset studio contract', () => {
   });
 
   test('sanitizes provider errors before storage or browser return', () => {
+    // PM-231: тайм-аут fetch получает свой диагностический код, а не общий.
+    expect(sanitizeProviderError(new Error('image_api_timeout')).diagnostic).toBe('image_api_timeout');
     const sanitized = sanitizeProviderError(new Error('image_api_400: {"error":{"message":"secret provider body"}}'));
     expect(sanitized.publicMessage).toBe('image_provider_failed');
     expect(sanitized.diagnostic).toContain('image_api_400');

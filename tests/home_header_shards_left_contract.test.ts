@@ -21,7 +21,7 @@ describe('home header composition', () => {
 
     const headerStart = source.indexOf('{/* ХЕДЕР:');
     expect(headerStart).toBeGreaterThanOrEqual(0);
-    const headerEnd = source.indexOf('{bannersJSX}', headerStart);
+    const headerEnd = source.indexOf('{/* Домашние подсказки', headerStart);
     expect(headerEnd).toBeGreaterThan(headerStart);
     const header = source.slice(headerStart, headerEnd);
 

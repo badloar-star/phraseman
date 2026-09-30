@@ -69,7 +69,7 @@ describe('in-app support report contract', () => {
     const banner = read('components/ReportReplyHomeBanner.tsx');
     const lesson = home.indexOf('testID="home-continue-lesson"');
     const replyBanner = home.indexOf('<ReportReplyHomeBanner');
-    const followingQueue = home.indexOf('{bannersJSX}', replyBanner);
+    const followingQueue = home.indexOf('{/* Домашние подсказки', replyBanner);
     expect(lesson).toBeGreaterThanOrEqual(0);
     expect(replyBanner).toBeGreaterThan(lesson);
     expect(followingQueue).toBeGreaterThan(replyBanner);

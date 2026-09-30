@@ -73,7 +73,7 @@ test('ReportReplyHomeBanner uses the active neutral Liquid Glass material withou
   assert.doesNotMatch(source, /numberOfLines|ellipsizeMode/, 'reply label must wrap rather than truncate');
   const lesson = home.indexOf('testID="home-continue-lesson"');
   const banner = home.indexOf('<ReportReplyHomeBanner');
-  const followingQueue = home.indexOf('{bannersJSX}', banner);
+  const followingQueue = home.indexOf('{/* Домашние подсказки', banner);
   assert.ok(lesson >= 0 && banner > lesson && followingQueue > banner, 'banner remains directly after the last lesson before the following queue');
   assert.ok(home.includes('onOpen={handleReportReplyBannerOpen}'), 'home keeps the existing reply-open callback');
 });

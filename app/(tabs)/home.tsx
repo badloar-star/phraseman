@@ -27,7 +27,6 @@ import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { DebugLogger } from '../debug-logger';
 import { checkStreakLossPending } from '../hall_of_fame_utils';
 import { getLocalDayKey, getUtcDayKey, isSameLocalOrUtcDay } from '../local_date';
-import { isRepairEligible, getRepairProgress } from '../streak_repair';
 import { applyMonthlyPremiumFreezeAllowance } from '../premium_freeze_allowance';
 import { consumeCelebration, getPendingCelebrationMarker, getPendingCelebrationVariant, isCelebrationPending, type PremiumCelebrationVariant, } from '../premium_celebration_state';
 import { consumeVipCelebration, getPendingVipCelebrationMarker, isVipCelebrationPending } from '../vip_celebration_state';
@@ -57,9 +56,7 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { coinRankRowForDisplay, isValidCoinRank } from '../coin_rank_table_v1';
 import AvatarView from '../../components/AvatarView';
-import { isCustomAvatarValue } from '../../constants/custom_avatars';
 import { checkAchievements, loadAchievementStates } from '../achievements';
-import { USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
 import EnergyIcon from '../../components/EnergyIcon';
 import {
     createEnergyPopoverRequestGate,
@@ -1257,7 +1254,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         return () => { alive = false; };
     }, [focusTick, homeRuntimeActive]);
     const [userAvatar, setUserAvatar] = useState(() => initialVisuals.avatar);
-    const [userAvatarAura, setUserAvatarAura] = useState<string | null>(() => initialVisuals.aura);
     // зачем: владелец (2026-08-27) — новичок не догадывается, что аватарка
     // кликабельна. Пока он ни разу не открыл раздел внешнего вида, она раз в
     // 20 сек качает головой и носит точку «новое». Состояние локальное
@@ -1267,22 +1263,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // анимацию по требованию, не выжидая 20 секунд и не сбрасывая бюджет сессий.
     // Счётчик, а не boolean: каждое нажатие даёт новое значение, поэтому повтор
     // срабатывает подряд сколько угодно раз. В стор-сборку не попадает.
-    const effectiveUserAvatarAura = getEffectiveAvatarAuraId(
-      userAvatarAura,
-      isPremium,
-      isVip,
-      isPro,
-      captureAccountGeneration().stableId,
-    );
-    // зачем (PM-062/D61, владелец 2026-09-24): прогрев ауры убран вместе с
-    // показом ауры целиком — «ауры удаляем без замены», монета ранга и есть
-    // новый аватар. effectiveUserAvatarAura оставлен (используется ниже как
-    // auraId для AvatarView — параметр принимается, но больше не рисует
-    // ничего сверх нейтрального аватара).
+    // зачем (D108, владелец 2026-09-30): ауры и купленные аватары удалены —
+    // на Главной только монета-аватар ранга, состояния ауры больше нет.
     const [userFrame, setUserFrame] = useState(() => initialVisuals.frame);
-    // Баннер восстановления серии.
-    const [showRepairCard, setShowRepairCard] = useState(false);
-    const [repairProgress, setRepairProgress] = useState(0);
     const [freezeActive, setFreezeActive] = useState(() => hh?.freezeActive ?? false);
     // зачем (аудит 2026-08-26): у заморозки не было защиты от повторного тапа.
     // Списание идемпотентно по ключу дня, поэтому деньги не терялись, но второй
@@ -1536,7 +1519,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             const visuals = resolveHomeProfileVisuals({ snapshot: profile });
             setUserAvatar((current) => current === visuals.avatar ? current : visuals.avatar);
             setUserFrame((current) => current === visuals.frame ? current : visuals.frame);
-            setUserAvatarAura((current) => current === visuals.aura ? current : visuals.aura);
         }
         if (progress && (progress.source === 'live' || (streak === 0 && progress.streak > 0))) {
             setStreak(progress.streak);
@@ -2437,17 +2419,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 setDisplayStreak(currentStreakNum);
             }
             step('streak');
-            const [[, savedAvSnap], [, savedFrSnap], [, savedAuraSnap]] = await AsyncStorage.multiGet(['user_avatar', 'user_frame', USER_AVATAR_AURA_KEY]);
+            const [[, savedFrSnap]] = await AsyncStorage.multiGet(['user_frame']);
             const liveProfileVisuals = sharedSnapshotAtHydration.profile?.source === 'live'
                 ? resolveHomeProfileVisuals({ snapshot: sharedSnapshotAtHydration.profile })
                 : null;
-            const avatarSnap = liveProfileVisuals?.avatar
-                || (isCustomAvatarValue(savedAvSnap) ? savedAvSnap! : '1');
+            // зачем (D108): купленных аватаров больше нет — живой профиль или базовый '1'.
+            const avatarSnap = liveProfileVisuals?.avatar || '1';
             const frameSnap = liveProfileVisuals?.frame || savedFrSnap || '';
-            const auraSnap = liveProfileVisuals?.aura ?? normalizeAvatarAuraId(savedAuraSnap) ?? null;
             if (mountedRef.current) {
                 setUserAvatar(avatarSnap);
-                setUserAvatarAura(auraSnap);
                 setUserFrame(frameSnap);
             }
             let weekParsedForSnap: boolean[] = new Array(7).fill(false);
@@ -2600,7 +2580,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 freezeActive: freezeIsActive,
                 premiumFreezeUsed: freeFreezeRaw === 'true',
                 userAvatar: avatarSnap,
-                userAvatarAura: auraSnap,
                 userFrame: frameSnap,
                 lastLessonId: snapLastLessonId,
                 lastLessonProgress: snapLastLessonProgress,
@@ -2616,7 +2595,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     name: hydratedName,
                     avatar: avatarSnap,
                     frame: frameSnap,
-                    aura: auraSnap ?? undefined,
                     level: 1,
                     premiumActive: premiumSignals.get('premium_active') === 'true',
                     vipActive: isVip,
@@ -2637,17 +2615,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             }));
             if (mountedRef.current)
                 markHomeStatsReady();
-            const [allMedals, repairEligible] = await Promise.all([
-                loadAllMedals(studyTarget),
-                isRepairEligible(),
-            ]);
+            const allMedals = await loadAllMedals(studyTarget);
             setMedalCounts(countMedals(allMedals));
-            // [BANNERS] Только восстановление серии; устаревшие награды удалены.
-            if (repairEligible) {
-                setShowRepairCard(true);
-                const progress = await getRepairProgress();
-                setRepairProgress(progress.lessons);
-            }
+            // зачем (D107): карточка «Почини цепочку» удалена — серию спасает только заморозка Plus.
             // Месячный Plus-лимит заморозок остаётся без старого bootstrap бонусов.
             void applyMonthlyPremiumFreezeAllowance().catch(() => {});
             // [STREAK PAYWALL / FREEZE] Проверяем угрозу цепочке для всех пользователей.
@@ -2956,42 +2926,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     };
     if (!diagChecked)
         return <ScreenGradient><View /></ScreenGradient>;
-    // ── Общие баннеры (используются в обоих стилях) ──────────────────────────
-    const bannersJSX = (<>
-      {showRepairCard && (<View style={{ marginHorizontal: 16, marginBottom: 10, backgroundColor: glassFill(t.bgCard, 0.5), borderRadius: 16, padding: 14, borderWidth: 1, borderColor: '#FF9500' + '99' }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-            <Text style={{ fontSize: 26 }}>🛠️</Text>
-            <View style={{ flex: 1 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{triLang(lang, {
-                ru: 'Почини цепочку!',
-                uk: 'Полагодь стрік!',
-                en: 'Fix your streak!',
-                es: '¡Recupera tu racha!',
-                'pt-BR': "Recupere sua sequência!",
-                vi: "Khôi phục chuỗi của bạn!",
-                id: "Pulihkan rangkaianmu!",
-                tr: "Serini geri al!",
-                pl: "Odzyskaj swoją serię!",
-            })}</Text>
-              <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>{triLang(lang, {
-                ru: `Пройди 1 урок сегодня, чтобы сохранить цепочку · ${repairProgress}/1`,
-                uk: `Пройди 1 урок сьогодні, щоб зберегти стрік · ${repairProgress}/1`,
-                en: `Complete 1 lesson today to keep your streak · ${repairProgress}/1`,
-                es: `Hoy completa 1 lección para no romper tu racha · ${repairProgress}/1`,
-                'pt-BR': `Hoje complete 1 lição para não quebrar sua sequência · ${repairProgress}/1`,
-                vi: `Hôm nay hoàn thành 1 bài học để không đứt chuỗi · ${repairProgress}/1`,
-                id: `Hari ini selesaikan 1 pelajaran agar rangkaian tidak putus · ${repairProgress}/1`,
-                tr: `Bugün serini bozmamak için 1 ders tamamla · ${repairProgress}/1`,
-                pl: `Dziś ukończ 1 lekcję, żeby nie przerwać serii · ${repairProgress}/1`,
-            })}</Text>
-            </View>
-            <TapScale onPress={() => setShowRepairCard(false)} style={{ padding: 4 }}><Ionicons name="close" size={18} color={t.textMuted}/></TapScale>
-          </View>
-          <View style={{ height: 6, backgroundColor: t.bgSurface2, borderRadius: 3 }}>
-            <View style={{ height: 6, width: `${Math.min(1, repairProgress) * 100}%` as any, backgroundColor: '#FF9500', borderRadius: 3 }}/>
-          </View>
-        </View>)}
-    </>);
     // ── Новый стиль главного экрана ──────────────────────────────────────────
     const renderNewHome = () => {
         const menuImages = getHomeMenuImages(themeMode);
@@ -3271,7 +3205,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 isMe: true,
                 avatar: userAvatar,
                 frame: userFrame,
-                aura: userAvatarAura ?? undefined,
                 streak,
                 isPremium,
                 isVip,
@@ -3389,7 +3322,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   <AvatarView
                       avatar={userAvatar}
                       size={homeHeroAvatarSize}
-                      auraId={effectiveUserAvatarAura}
                       ownerActive={homeRuntimeActive}
                   />
                 </TouchableOpacity>
@@ -4193,11 +4125,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             onOpen={handleReportReplyBannerOpen}
           />
 
-          {/* Очередь баннеров (лимит 1) — ПОД карточкой последнего урока по правке
-              владельца (2026-08-23): бонус за вход не должен опережать «продолжить
-              урок», это следующий шаг сразу под ним. */}
-          {bannersJSX}
-
           {/* Домашние подсказки: конечная серия карточек вместо домашнего CTA плана. */}
           {showHomeFeatureTipCard && currentHomeFeatureTip ? (
             <View style={{ marginHorizontal: 8, marginBottom: 18 }}>
@@ -4517,7 +4444,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             name: userName || 'Phraseman',
             avatar: userAvatar,
             frame: userFrame,
-            aura: userAvatarAura ?? undefined,
             streak,
         }}
         onClose={() => setHomeProfilePlayer(null)}

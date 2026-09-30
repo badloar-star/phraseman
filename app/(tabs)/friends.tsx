@@ -35,7 +35,6 @@ import { FlowText } from '../../components/text-integrity';
 import UnifiedPlayerModal, { PlayerInfo } from '../../components/PlayerProfileModal';
 import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 import { softShadow } from '../../constants/androidGlow';
-import { USER_AVATAR_AURA_KEY, normalizeAvatarAuraId } from '../../constants/avatar_auras';
 import { V2 } from '../../constants/v2Style';
 import { triLang, type Lang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -275,7 +274,6 @@ function friendProfileFromLookup(uid: string, lp: LookupUserProfile | undefined)
   if (!lp) return null;
   const name = cleanFriendDisplayName(lp.name);
   const avatar = (lp.avatar ?? '').trim();
-  const aura = normalizeAvatarAuraId((lp.aura ?? '').trim());
   // Совсем пусто — профиля нет (не перекрываем возможный leaderboard-результат).
   if (!name && !avatar) return null;
   return normalizePublicFriendProfile({
@@ -287,7 +285,6 @@ function friendProfileFromLookup(uid: string, lp: LookupUserProfile | undefined)
     isLifetime: false,
     avatar: avatar || '1',
     frame: (lp.frame ?? '').trim(),
-    aura,
   });
 }
 
@@ -355,7 +352,8 @@ function normalizePublicFriendProfile(profile: FriendProfile): FriendProfile {
     name: profile.name.trim() || 'Игрок',
     avatar: profile.avatar.trim() || '1',
     frame: profile.frame.trim(),
-    aura: normalizeAvatarAuraId(profile.aura),
+    // зачем (D108, 2026-09-30): ауры удалены — у друга только монета-аватар.
+    aura: undefined,
     profileCardLevel: normalizeProfileCardLevel(profile.profileCardLevel),
     profileCardTheme: normalizeProfileCardTheme(profile.profileCardTheme),
     profileCardMotion: normalizeProfileCardMotion(profile.profileCardMotion),
@@ -394,10 +392,9 @@ function mergePublicFriendProfiles(
 function profileFromLeaderboardDoc(uid: string, data: Record<string, unknown>): FriendProfile | null {
   const avatar = readPublicString(data.avatar);
   const frame = readPublicString(data.frame);
-  const aura = normalizeAvatarAuraId(readPublicString(data.aura));
   const name = readPublicString(data.name) || readPublicString(data.displayName);
   const profileCardLevel = normalizeProfileCardLevel(data.profileCardLevel);
-  if (!name && !avatar && !frame && !aura && profileCardLevel <= 0) return null;
+  if (!name && !avatar && !frame && profileCardLevel <= 0) return null;
 
   return normalizePublicFriendProfile({
     uid,
@@ -408,7 +405,6 @@ function profileFromLeaderboardDoc(uid: string, data: Record<string, unknown>): 
     isLifetime: data.isLifetime === true,
     avatar,
     frame,
-    aura,
     profileCardLevel,
     profileCardTheme: normalizeProfileCardTheme(data.profileCardTheme),
     profileCardMotion: normalizeProfileCardMotion(data.profileCardMotion),
@@ -541,12 +537,10 @@ async function fetchMyProfile() {
     const frameRaw = typeof p.user_avatar_frame === 'string'
       ? p.user_avatar_frame.trim()
       : (typeof p.user_frame === 'string' ? p.user_frame.trim() : '');
-    const auraRaw = typeof p.user_avatar_aura === 'string' ? p.user_avatar_aura.trim() : '';
     return {
       name: (p.user_name as string) || (d.name as string) || '?',
       avatar: avatarRaw || '1',
       frame: frameRaw,
-      aura: normalizeAvatarAuraId(auraRaw),
       streak: streak ?? null,
       isPremium,
       isVip,

@@ -105,5 +105,6 @@ it('keeps delayed app snapshot hydration wired to home profile visuals', () => {
   expect(source).toContain('const visuals = resolveHomeProfileVisuals({ snapshot: profile });');
   expect(source).toContain('setUserAvatar((current) => current === visuals.avatar ? current : visuals.avatar);');
   expect(source).toContain('setUserFrame((current) => current === visuals.frame ? current : visuals.frame);');
-  expect(source).toContain('setUserAvatarAura((current) => current === visuals.aura ? current : visuals.aura);');
+  // D108 (2026-09-30): ауры удалены — Главная больше не держит состояние ауры.
+  expect(source).not.toContain('setUserAvatarAura');
 });

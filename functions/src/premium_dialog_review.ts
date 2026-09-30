@@ -809,7 +809,18 @@ export const premiumDialogReview = onCall({
     totalTokens: Number(usage.total_tokens ?? 0),
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
     createdAtMs: Date.now(),
-  }).catch(() => {});
+  }).catch((error: unknown) => {
+    // зачем (PM-231, правило «немой catch запрещён»): сбой записи расходов не должен
+    // ронять уже оплаченный разбор, но потеря строки биллинга обязана быть видна —
+    // иначе траты на OpenAI молча исчезают с панели бюджета.
+    console.warn('[DIALOG-REVIEW-BILLING] write_failed', JSON.stringify({
+      uid: stableUid,
+      reviewMode: mode,
+      model: dialogModel,
+      totalTokens: Number(usage.total_tokens ?? 0),
+      error: String((error as Error)?.message ?? error).slice(0, 300),
+    }));
+  });
 
   // Учитель: обновить память между уроками (домашка/тема — от клиента, из
   // инструментов учителя; факты/ошибки — из разбора). Ошибка записи — не

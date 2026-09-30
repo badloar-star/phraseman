@@ -3,7 +3,6 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   AccessibilityInfo,
-  ActivityIndicator,
   findNodeHandle,
   Pressable,
   ScrollView,
@@ -33,6 +32,7 @@ import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { PracticeBackButton, PracticeHeaderTitle, PracticeRoundIconButton } from '../components/practice/PracticeChrome';
+import { PracticeCta, PracticeProgressRow, PracticeStatePanel } from '../components/practice/PracticeStates';
 import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
@@ -164,7 +164,8 @@ export default function FlashcardsRecallSession() {
   const [hintVisible, setHintVisible] = useState(false);
   const [masteredCount, setMasteredCount] = useState(0);
   const [totalCards, setTotalCards] = useState(0);
-  const [remainingQueueCount, setRemainingQueueCount] = useState(0);
+  // зачем: остаток очереди больше не рисуется (строка прогресса макета — «выучено … всего»), сеттер оставлен для логики.
+  const [, setRemainingQueueCount] = useState(0);
   const [result, setResult] = useState<RecallResult | null>(null);
 
   const queueRef = useRef<DeckCard[]>([]);
@@ -722,9 +723,6 @@ export default function FlashcardsRecallSession() {
             onRetryGiftRecovery={attemptsReset.retryGiftRecovery}
             testID="fc-recall-session-attempts"
           />
-          <Text style={[styles.progressText, { color: t.textMuted, fontSize: f.caption }]} testID="fc-recall-progress">
-            {masteredCount}/{totalCards}
-          </Text>
           <PracticeRoundIconButton
             glass={recallGlass}
             color={recallGlass.secondary}
@@ -746,17 +744,15 @@ export default function FlashcardsRecallSession() {
           ) : null}
         </View>
       </View>
-      <View style={[styles.progressTrack, { backgroundColor: t.bgSurface }]}>
-        <View
-          style={[
-            styles.progressFill,
-            {
-              backgroundColor: t.accent,
-              transform: [{ scaleX: totalCards > 0 ? masteredCount / totalCards : 0 }],
-            },
-          ]}
-        />
-      </View>
+      {/* зачем (practice.html `.trk` + `.prog`): полоса и строка «выучено … всего» под ней —
+          только реальные числа сессии; пока карточек нет, строка пустая, а не «0/0». */}
+      <PracticeProgressRow
+        glass={recallGlass}
+        progress={totalCards > 0 ? masteredCount / totalCards : 0}
+        left={totalCards > 0 ? String(masteredCount) : ''}
+        right={totalCards > 0 ? String(totalCards) : ''}
+        testID="fc-recall-progress"
+      />
     </>
   );
 
@@ -781,10 +777,15 @@ export default function FlashcardsRecallSession() {
           <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
           <ContentWrap>
             {renderHeader(false)}
-            <View style={styles.loadingBody} accessibilityRole="progressbar">
-              <SkeletonBlock width="100%" height={220} borderRadius={24} />
-              <SkeletonBlock width="100%" height={92} borderRadius={18} />
-              <ActivityIndicator color={t.accent} />
+            {/* зачем (макет + Performance Bible): загрузка = та же геометрия, что у занятия —
+                карточка вопроса, поле ввода 56, кнопка «Проверить» 48; без спиннера. */}
+            <View style={styles.loadingBody} accessibilityRole="progressbar" testID="fc-recall-loading">
+              <SkeletonBlock width="100%" height={160} borderRadius={16} />
+              <SkeletonBlock width="100%" height={56} borderRadius={14} />
+              <SkeletonBlock width={132} height={44} borderRadius={22} />
+              <View style={styles.loadingCta}>
+                <SkeletonBlock width="100%" height={48} borderRadius={24} />
+              </View>
             </View>
           </ContentWrap>
         </SafeAreaView>
@@ -799,23 +800,20 @@ export default function FlashcardsRecallSession() {
           <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
           <ContentWrap>
             {renderHeader(true)}
-            <View style={styles.emptyBody}>
-              <Ionicons name={loadError ? 'cloud-offline-outline' : 'create-outline'} size={44} color={t.textGhost} />
-              <Text accessibilityLiveRegion="polite" style={[styles.emptyText, { color: loadError ? t.wrong : t.textMuted, fontSize: f.body }]}>
-                {loadError ? copy.loadError : copy.empty}
-              </Text>
-              <Pressable
-                testID="fc-recall-pick-decks-empty"
-                accessibilityRole="button"
-                onPress={loadError ? () => setLoadRevision((value) => value + 1) : openDeckSetup}
-                style={({ pressed }) => [styles.secondaryButton, { backgroundColor: t.bgSurface, opacity: pressed ? 0.78 : 1 }]}
-              >
-                <Ionicons name={loadError ? 'refresh-outline' : 'albums-outline'} size={18} color={t.accent} />
-                <Text style={[styles.secondaryButtonText, { color: t.textPrimary, fontSize: f.body }]}>
-                  {loadError ? copy.retry : copy.pickDecks}
-                </Text>
-              </Pressable>
-            </View>
+            {/* зачем (cards.html setupEmpty / setupError): плитка со значком, сообщение и одна
+                компактная кнопка; действие прежнее — повтор загрузки или выбор наборов. */}
+            <PracticeStatePanel
+              glass={recallGlass}
+              testID={loadError ? 'fc-recall-load-error' : 'fc-recall-empty'}
+              icon={loadError ? 'cloud-offline-outline' : 'layers-outline'}
+              message={loadError ? copy.loadError : copy.empty}
+              action={{
+                label: loadError ? copy.retry : copy.pickDecks,
+                icon: loadError ? 'refresh-outline' : 'albums-outline',
+                onPress: loadError ? () => setLoadRevision((value) => value + 1) : openDeckSetup,
+                testID: 'fc-recall-pick-decks-empty',
+              }}
+            />
           </ContentWrap>
           <NoEnergyModal visible={noEnergyOpen} onClose={leave} activity="flashcards" />
         </SafeAreaView>
@@ -844,9 +842,8 @@ export default function FlashcardsRecallSession() {
             automaticallyAdjustKeyboardInsets
             showsVerticalScrollIndicator={false}
           >
-            <Text style={[styles.instruction, { color: t.textMuted, fontSize: f.caption }]}>
-              {copy.prompt}
-            </Text>
+            {/* зачем (practice.html «Вспомни и напиши»): карточка `.qc` — подпись задания
+                внутри карточки 16 вторичным, фраза 28/34 жирным; радиус 16, кромка 1 px. */}
             <Reanimated.View
               key={activeCard.id}
               entering={reducedMotion ? undefined : FadeInUp.duration(240)}
@@ -854,7 +851,7 @@ export default function FlashcardsRecallSession() {
                 runeFlight.originRef.current = node as unknown as View;
               }}
               collapsable={false}
-              style={[styles.focusCard, styles.glassSurface, { backgroundColor: recallGlass.card }]}
+              style={[styles.focusCard, styles.glassSurface, { backgroundColor: recallGlass.card, borderColor: recallGlass.line }]}
             >
               <RecallGlassSurface chrome={recallGlass} />
               <View
@@ -864,50 +861,14 @@ export default function FlashcardsRecallSession() {
                 accessibilityLabel={`${copy.prompt}. ${activeCard.translation}`}
                 style={styles.focusPrompt}
               >
-                <Text style={[styles.translation, { color: t.textPrimary, fontSize: Math.max(f.h2, 25) }]}>
+                <Text style={[styles.instruction, { color: recallGlass.secondary }]}>
+                  {copy.prompt}
+                </Text>
+                <Text style={[styles.translation, { color: t.textPrimary, fontSize: Math.max(28, Math.round(f.h1 * 1.1)), lineHeight: Math.max(34, Math.round(f.h1 * 1.35)) }]}>
                   {activeCard.translation}
                 </Text>
               </View>
-              <View style={styles.focusFooter}>
-                <Text style={[styles.queueMeta, { color: t.textMuted, fontSize: f.caption }]}>
-                  {Math.max(1, remainingQueueCount)} / {totalCards}
-                </Text>
-                <Pressable
-                  testID="fc-recall-hint"
-                  accessibilityRole="button"
-                  accessibilityLabel={copy.hint}
-                  accessibilityState={{ disabled: !attemptsInteractive || hintVisible }}
-                  disabled={!attemptsInteractive || hintVisible}
-                  onPress={() => setHintVisible(true)}
-                  style={({ pressed }) => [
-                    styles.hintButton,
-                    {
-                      backgroundColor: t.bgSurface,
-                      opacity: !attemptsInteractive || hintVisible ? 0.5 : pressed ? 0.72 : 1,
-                    },
-                  ]}
-                >
-                  <Ionicons name="bulb-outline" size={17} color={t.accent} />
-                  <Text style={[styles.hintButtonText, { color: t.textSecond, fontSize: f.caption }]}>
-                    {copy.hint}
-                  </Text>
-                </Pressable>
-              </View>
             </Reanimated.View>
-
-            {hintVisible && !feedback && !answerRevealed ? (
-              <Reanimated.View
-                testID="fc-recall-guidance"
-                entering={reducedMotion ? undefined : FadeInDown.duration(180)}
-                accessibilityLiveRegion="polite"
-                style={[styles.guidance, { backgroundColor: `${t.accent}14` }]}
-              >
-                <Ionicons name="sparkles-outline" size={17} color={t.accent} />
-                <Text style={[styles.guidanceText, { color: t.textSecond, fontSize: f.sub }]}>
-                  {copy.hintPrefix}: <Text style={{ color: t.accent, fontWeight: '900' }}>{hintPrefix}</Text>
-                </Text>
-              </Reanimated.View>
-            ) : null}
 
             {answerRevealed && !feedback ? (
               <Reanimated.View
@@ -916,8 +877,8 @@ export default function FlashcardsRecallSession() {
                 accessibilityLiveRegion="polite"
               >
                 <RecallGlassSurface chrome={recallGlass} />
-                <Text style={[styles.eyebrow, { color: t.textMuted, fontSize: f.caption }]}>{copy.revealed}</Text>
-                <Text selectable style={[styles.answerText, { color: t.textPrimary, fontSize: f.h2 }]}>{activeCard.en}</Text>
+                <Text style={[styles.eyebrow, { color: recallGlass.secondary }]}>{copy.revealed}</Text>
+                <Text selectable style={[styles.answerText, { color: t.textPrimary }]}>{activeCard.en}</Text>
                 <View style={styles.selfGradeRow}>
                   <Pressable
                     testID="fc-recall-self-grade-wrong"
@@ -927,7 +888,7 @@ export default function FlashcardsRecallSession() {
                     onPress={() => recordVerdict(false, 'wrong')}
                     style={({ pressed }) => [styles.selfGradeButton, { backgroundColor: `${t.wrong}20`, opacity: pressed ? 0.75 : 1 }]}
                   >
-                    <Text style={[styles.selfGradeText, { color: t.wrong, fontSize: f.body }]}>{copy.didNotKnow}</Text>
+                    <Text style={[styles.selfGradeText, { color: t.wrong }]}>{copy.didNotKnow}</Text>
                   </Pressable>
                   <Pressable
                     testID="fc-recall-self-grade-correct"
@@ -937,16 +898,22 @@ export default function FlashcardsRecallSession() {
                     onPress={() => recordVerdict(true, 'correct')}
                     style={({ pressed }) => [styles.selfGradeButton, { backgroundColor: `${t.correct}20`, opacity: pressed ? 0.75 : 1 }]}
                   >
-                    <Text style={[styles.selfGradeText, { color: t.correct, fontSize: f.body }]}>{copy.knew}</Text>
+                    <Text style={[styles.selfGradeText, { color: t.correct }]}>{copy.knew}</Text>
                   </Pressable>
                 </View>
               </Reanimated.View>
             ) : (
               <View
+                testID="fc-recall-input-shell"
                 style={[
                   styles.compactInputShell,
                   {
                     backgroundColor: recallGlass.opaqueControl,
+                    // зачем (`.inp`): кромка 1 px полупрозрачная (guard-ok). Цветную кромку
+                    // вердикта из макета не переносим — запрет владельца на цветные обводки;
+                    // вердикт читается карточкой ответа ниже.
+                    borderWidth: 1,
+                    borderColor: recallGlass.glassEdge,
                   },
                 ]}
               >
@@ -965,14 +932,56 @@ export default function FlashcardsRecallSession() {
                   autoCorrect={false}
                   autoCapitalize="sentences"
                   keyboardAppearance={statusBarLight ? 'dark' : 'light'}
-                  style={[styles.input, { color: t.textPrimary, fontSize: f.bodyLg }]}
+                  style={[styles.input, { color: t.textPrimary, fontSize: Math.max(18, f.bodyLg), lineHeight: Math.max(24, Math.round(f.bodyLg * 1.35)) }]}
                   accessibilityLabel={copy.placeholder}
                 />
-                <Text style={[styles.characterCount, { color: t.textGhost, fontSize: f.caption }]}>
-                  {input.length}/{MAX_INPUT_LENGTH}
-                </Text>
+                {/* Счётчик символов макету не нужен — показываем только у самого предела. */}
+                {input.length >= MAX_INPUT_LENGTH - 20 ? (
+                  <Text style={[styles.characterCount, { color: recallGlass.secondary }]}>
+                    {input.length}/{MAX_INPUT_LENGTH}
+                  </Text>
+                ) : null}
               </View>
             )}
+
+            {/* зачем (`.hintb` макета): «Подсказка» — пилюля под полем, начало фразы справа от неё. */}
+            {!feedback && !answerRevealed ? (
+              <View style={styles.hintRow}>
+                <Pressable
+                  testID="fc-recall-hint"
+                  accessibilityRole="button"
+                  accessibilityLabel={copy.hint}
+                  accessibilityState={{ disabled: !attemptsInteractive || hintVisible }}
+                  disabled={!attemptsInteractive || hintVisible}
+                  onPress={() => setHintVisible(true)}
+                  hitSlop={{ top: 4, bottom: 4 }}
+                  style={({ pressed }) => [
+                    styles.hintButton,
+                    {
+                      backgroundColor: recallGlass.opaqueControl,
+                      opacity: !attemptsInteractive ? 0.5 : pressed ? 0.72 : 1,
+                    },
+                  ]}
+                >
+                  <Ionicons name="bulb-outline" size={18} color={recallGlass.text} />
+                  <Text style={[styles.hintButtonText, { color: recallGlass.text }]}>
+                    {copy.hint}
+                  </Text>
+                </Pressable>
+                {hintVisible ? (
+                  <Reanimated.View
+                    testID="fc-recall-guidance"
+                    entering={reducedMotion ? undefined : FadeInDown.duration(180)}
+                    accessibilityLiveRegion="polite"
+                    accessible
+                    accessibilityLabel={`${copy.hintPrefix}: ${hintPrefix}`}
+                    style={styles.guidance}
+                  >
+                    <Text style={[styles.guidanceText, { color: recallGlass.secondary }]}>{hintPrefix}</Text>
+                  </Reanimated.View>
+                ) : null}
+              </View>
+            ) : null}
 
             {feedback ? (
               <Reanimated.View
@@ -987,43 +996,37 @@ export default function FlashcardsRecallSession() {
                   color={FEEDBACK_TEXT}
                 />
                 <View style={styles.feedbackCopy}>
-                  <Text style={[styles.feedbackTitle, { color: FEEDBACK_TEXT, fontSize: f.bodyLg }]}>
+                  <Text style={[styles.feedbackTitle, { color: FEEDBACK_TEXT }]}>
                     {feedback.kind === 'correct' ? copy.correct : feedback.kind === 'typo' ? copy.typo : copy.wrong}
                   </Text>
                   {feedback.kind !== 'correct' ? (
-                    <Text selectable style={[styles.feedbackAnswer, { color: FEEDBACK_TEXT, fontSize: f.body }]}>{feedback.expected}</Text>
+                    <Text selectable style={[styles.feedbackAnswer, { color: FEEDBACK_TEXT }]}>{feedback.expected}</Text>
                   ) : null}
                 </View>
               </Reanimated.View>
             ) : null}
 
             <View style={styles.actions}>
+              {/* зачем (`.cta` / `.cta.dis` макета): «Проверить» — светлая кнопка 48, пока поле
+                  пустое — тёмная выключенная; после проверки «Продолжить» со стрелкой. */}
               {feedback ? (
-                <Pressable
+                <PracticeCta
+                  glass={recallGlass}
                   testID="fc-recall-continue"
-                  accessibilityRole="button"
-                  accessibilityState={{ disabled: !attemptsInteractive }}
+                  label={copy.continue}
+                  trailingArrow
                   disabled={!attemptsInteractive}
                   onPress={advance}
-                  style={({ pressed }) => [styles.primaryButton, { backgroundColor: t.accent, opacity: !attemptsInteractive ? 0.38 : pressed ? 0.84 : 1 }]}
-                >
-                  <Text style={[styles.primaryButtonText, { color: t.correctText, fontSize: f.bodyLg }]}>{copy.continue}</Text>
-                </Pressable>
+                />
               ) : !answerRevealed ? (
                 <>
-                  <Pressable
+                  <PracticeCta
+                    glass={recallGlass}
                     testID="fc-recall-check"
-                    accessibilityRole="button"
-                    accessibilityState={{ disabled: !canCheck }}
+                    label={copy.check}
                     disabled={!canCheck}
                     onPress={checkAnswer}
-                    style={({ pressed }) => [
-                      styles.primaryButton,
-                      { backgroundColor: t.accent, opacity: !canCheck ? 0.38 : pressed ? 0.84 : 1 },
-                    ]}
-                  >
-                    <Text style={[styles.primaryButtonText, { color: t.correctText, fontSize: f.bodyLg }]}>{copy.check}</Text>
-                  </Pressable>
+                  />
                   <Pressable
                     testID="fc-recall-reveal"
                     accessibilityRole="button"
@@ -1032,8 +1035,8 @@ export default function FlashcardsRecallSession() {
                     onPress={() => setAnswerRevealed(true)}
                     style={({ pressed }) => [styles.revealButton, { opacity: pressed ? 0.65 : 1 }]}
                   >
-                    <Ionicons name="eye-outline" size={18} color={t.textMuted} />
-                    <Text style={[styles.revealText, { color: t.textMuted, fontSize: f.body }]}>{copy.reveal}</Text>
+                    <Ionicons name="eye-outline" size={18} color={recallGlass.secondary} />
+                    <Text style={[styles.revealText, { color: recallGlass.secondary }]}>{copy.reveal}</Text>
                   </Pressable>
                 </>
               ) : null}
@@ -1060,43 +1063,40 @@ const styles = StyleSheet.create({
   runeRow: { minHeight: 42, paddingHorizontal: 16, alignItems: 'flex-end', justifyContent: 'center' },
   headerRow: { minHeight: 52, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center' },
   headerTools: { flexDirection: 'row', alignItems: 'center', gap: 4 },
-  progressText: { minWidth: 36, textAlign: 'right', fontWeight: '800', fontVariant: ['tabular-nums'] },
-  progressTrack: { height: 6, marginHorizontal: 16, borderRadius: 999, overflow: 'hidden' },
-  progressFill: { width: '100%', height: '100%', borderRadius: 999, transformOrigin: 'left' },
   scroll: { flex: 1, minHeight: 0 },
-  content: { flexGrow: 1, paddingHorizontal: 16, paddingTop: 14, paddingBottom: 28 },
-  loadingBody: { flex: 1, paddingHorizontal: 16, paddingTop: 18, gap: 14, alignItems: 'center' },
-  emptyBody: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 14, paddingHorizontal: 32 },
-  emptyText: { textAlign: 'center', lineHeight: 23 },
-  instruction: { marginBottom: 10, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.7 },
-  focusCard: { minHeight: 220, borderRadius: 24, paddingHorizontal: 20, paddingVertical: 18, justifyContent: 'space-between' },
+  content: { flexGrow: 1, paddingHorizontal: 16, paddingTop: 22, paddingBottom: 28 },
+  loadingBody: { flex: 1, paddingHorizontal: 16, paddingTop: 22, gap: 18, alignItems: 'flex-start' },
+  loadingCta: { width: '100%', marginTop: 'auto', paddingBottom: 28 },
+  // зачем (practice.html `.qc` «Вспомни»): радиус 16, минимум 140, кромка 1 px (guard-ok).
+  focusCard: {
+    minHeight: 140, borderRadius: 16, borderWidth: StyleSheet.hairlineWidth, // guard-ok
+    paddingHorizontal: 28, paddingVertical: 22, justifyContent: 'center',
+  },
   glassSurface: { overflow: 'hidden' },
-  focusPrompt: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  eyebrow: { fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.7 },
-  translation: { textAlign: 'center', textAlignVertical: 'center', fontWeight: '900', lineHeight: 34 },
-  focusFooter: { minHeight: 44, marginTop: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
-  queueMeta: { fontWeight: '800', fontVariant: ['tabular-nums'] },
-  hintButton: { minHeight: 44, borderRadius: 14, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7 },
-  hintButtonText: { fontWeight: '800' },
-  guidance: { minHeight: 44, marginTop: 10, borderRadius: 14, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 8 },
-  guidanceText: { flex: 1, fontWeight: '700' },
-  compactInputShell: { minHeight: 92, marginTop: 12, borderRadius: 18, paddingHorizontal: 16, paddingTop: 12, paddingBottom: 28 },
-  input: { minHeight: 52, padding: 0, textAlignVertical: 'top', fontWeight: '700', lineHeight: 26 },
-  characterCount: { position: 'absolute', right: 14, bottom: 10, fontVariant: ['tabular-nums'] },
-  answerCard: { marginTop: 14, borderRadius: 18, padding: 16 },
-  answerText: { marginTop: 9, fontWeight: '900', lineHeight: 30 },
+  focusPrompt: { alignItems: 'center', justifyContent: 'center' },
+  instruction: { fontSize: 16, lineHeight: 21, textAlign: 'center' },
+  translation: { marginTop: 18, fontSize: 28, lineHeight: 34, fontWeight: '700', textAlign: 'center', letterSpacing: -0.3 },
+  eyebrow: { fontSize: 15, lineHeight: 20, fontWeight: '600' },
+  hintRow: { minHeight: 44, marginTop: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
+  hintButton: { minHeight: 44, borderRadius: 22, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
+  hintButtonText: { fontSize: 15, lineHeight: 20, fontWeight: '600' },
+  guidance: { flexShrink: 1, minWidth: 0 },
+  guidanceText: { fontSize: 16, lineHeight: 21, fontWeight: '600', textAlign: 'right' },
+  // `.inp` макета: 56, радиус 14, 18/500. Кромка задаётся рядом с цветом темы.
+  compactInputShell: { minHeight: 56, marginTop: 22, borderRadius: 14, paddingHorizontal: 18, paddingVertical: 14, justifyContent: 'center' },
+  input: { minHeight: 26, padding: 0, textAlignVertical: 'center', fontSize: 18, fontWeight: '500', lineHeight: 24 },
+  characterCount: { alignSelf: 'flex-end', marginTop: 4, fontSize: 13, lineHeight: 17, fontVariant: ['tabular-nums'] },
+  answerCard: { marginTop: 18, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 16 },
+  answerText: { marginTop: 8, fontSize: 20, lineHeight: 26, fontWeight: '600' },
   selfGradeRow: { marginTop: 16, flexDirection: 'row', gap: 10 },
-  selfGradeButton: { flex: 1, minHeight: 48, borderRadius: 15, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 10 },
-  selfGradeText: { fontWeight: '900', textAlign: 'center' },
-  feedbackCard: { marginTop: 14, borderRadius: 18, padding: 16, flexDirection: 'row', alignItems: 'flex-start', gap: 12 },
+  selfGradeButton: { flex: 1, minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 10 },
+  selfGradeText: { fontSize: 16, lineHeight: 21, fontWeight: '700', textAlign: 'center' },
+  // `.ansr` макета: радиус 16, заголовок 15/600, правильный ответ 20/26.
+  feedbackCard: { marginTop: 18, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 16, flexDirection: 'row', alignItems: 'flex-start', gap: 12 },
   feedbackCopy: { flex: 1, minWidth: 0 },
-  feedbackTitle: { fontWeight: '900' },
-  feedbackAnswer: { marginTop: 5, fontWeight: '800', lineHeight: 22 },
+  feedbackTitle: { fontSize: 15, lineHeight: 20, fontWeight: '600' },
+  feedbackAnswer: { marginTop: 8, fontSize: 20, lineHeight: 26, fontWeight: '600' },
   actions: { marginTop: 'auto', paddingTop: 18, gap: 8 },
-  primaryButton: { minHeight: 54, borderRadius: 17, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 16 },
-  primaryButtonText: { fontWeight: '900', textAlign: 'center' },
-  revealButton: { minHeight: 48, flexDirection: 'row', gap: 8, alignItems: 'center', justifyContent: 'center' },
-  revealText: { fontWeight: '800' },
-  secondaryButton: { minHeight: 50, borderRadius: 16, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
-  secondaryButtonText: { fontWeight: '900' },
+  revealButton: { minHeight: 44, flexDirection: 'row', gap: 8, alignItems: 'center', justifyContent: 'center' },
+  revealText: { fontSize: 16, lineHeight: 21, fontWeight: '600' },
 });

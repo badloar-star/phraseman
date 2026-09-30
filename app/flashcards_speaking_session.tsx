@@ -52,6 +52,7 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { PracticeBackButton, PracticeHeaderTitle, PracticeRoundIconButton } from '../components/practice/PracticeChrome';
+import { PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useAudio } from '../hooks/use-audio';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { flashcardContentLang } from './spanish_content_gate';
@@ -1262,13 +1263,6 @@ export default function FlashcardsSpeakingSession() {
           locale={lang}
           testID="fc-speak-session-attempts"
         />
-        {interactive ? (
-          <Text style={{ color: t.textMuted, fontSize: f.caption, minWidth: 44, textAlign: 'right' }} testID="fc-speak-progress">
-            {progress.position} / {progress.total}
-          </Text>
-        ) : (
-          <SkeletonBlock width={44} height={f.caption} />
-        )}
         <PracticeRoundIconButton
           glass={speakingGlass}
           color={speakingGlass.secondary}
@@ -1307,7 +1301,11 @@ RU: ${card.translation}`}
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
             {header(false)}
-            <View style={[styles.progressTrack, { backgroundColor: t.bgSurface }]} />
+            <View style={[styles.progressTrack, { backgroundColor: speakingGlass.opaqueControl }]} />
+            <View style={styles.progressRow}>
+              <SkeletonBlock width={24} height={15} />
+              <SkeletonBlock width={24} height={15} />
+            </View>
             <View style={styles.cardArea}>
               <SkeletonBlock width="100%" height={CARD_MIN_H} borderRadius={24} />
             </View>
@@ -1331,10 +1329,12 @@ RU: ${card.translation}`}
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }} testID="fc-speak-quota-unavailable">
           <ContentWrap>
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 14, paddingHorizontal: 32 }}>
-              <Ionicons name="cloud-offline-outline" size={44} color={t.textGhost} />
-              <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
-                {triLang(lang, {
+            {/* зачем (cards.html setupError): данные тренировки не открылись — плитка, сообщение,
+                одна кнопка; повтор прежний (retryQuotaStart). */}
+            <PracticeStatePanel
+              glass={speakingGlass}
+              icon="cloud-offline-outline"
+              message={triLang(lang, {
                   ru: 'Не удалось открыть данные тренировок на этом устройстве. Попробуй снова или перезапусти приложение.',
                   uk: 'Не вдалося відкрити дані тренувань на цьому пристрої. Спробуй ще раз або перезапусти застосунок.',
                   en: 'We could not open your training data on this device. Try again or restart the app.',
@@ -1345,18 +1345,13 @@ RU: ${card.translation}`}
                   tr: 'Antrenman verilerin bu cihazda açılamadı. Tekrar dene ya da uygulamayı yeniden başlat.',
                   pl: 'Nie udało się otworzyć danych treningowych na tym urządzeniu. Spróbuj ponownie lub uruchom aplikację ponownie.',
                 })}
-              </Text>
-              <TouchableOpacity
-                testID="fc-speak-quota-retry"
-                accessibilityRole="button"
-                onPress={retryQuotaStart}
-                style={{ paddingHorizontal: 18, paddingVertical: 12, borderRadius: 16, backgroundColor: t.bgSurface }}
-              >
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                  {triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще раз', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
-                </Text>
-              </TouchableOpacity>
-            </View>
+              action={{
+                label: triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще раз', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' }),
+                icon: 'refresh-outline',
+                onPress: retryQuotaStart,
+                testID: 'fc-speak-quota-retry',
+              }}
+            />
           </ContentWrap>
         </SafeAreaView>
       </ScreenGradient>
@@ -1384,23 +1379,19 @@ RU: ${card.translation}`}
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
             {header(true)}
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 14, paddingHorizontal: 32 }}>
-              <Ionicons name="mic-outline" size={44} color={t.textGhost} />
-              <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>{labels.empty}</Text>
-              <TouchableOpacity
-                testID="fc-speak-pick-decks-empty"
-                accessibilityLabel={labels.pickDecks}
-                accessible
-                onPress={openDeckPicker}
-                style={{
-                  flexDirection: 'row', alignItems: 'center', gap: 8,
-                  paddingHorizontal: 18, paddingVertical: 12, borderRadius: 16, backgroundColor: t.bgSurface,
-                }}
-              >
-                <Ionicons name="albums-outline" size={18} color={ACCENT} />
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>{labels.pickDecks}</Text>
-              </TouchableOpacity>
-            </View>
+            {/* зачем (cards.html setupEmpty): пусто — плитка, сообщение и выбор наборов (openDeckPicker). */}
+            <PracticeStatePanel
+              glass={speakingGlass}
+              testID="fc-speak-empty"
+              icon="mic-outline"
+              message={labels.empty}
+              action={{
+                label: labels.pickDecks,
+                icon: 'albums-outline',
+                onPress: openDeckPicker,
+                testID: 'fc-speak-pick-decks-empty',
+              }}
+            />
           </ContentWrap>
         </SafeAreaView>
         {deckPickerSheet}
@@ -1443,13 +1434,18 @@ RU: ${card.translation}`}
         <ContentWrap>
           {header(true)}
 
-          <View style={[styles.progressTrack, { backgroundColor: t.bgSurface }]}>
+          <View style={[styles.progressTrack, { backgroundColor: speakingGlass.opaqueControl }]}>
             <View
               style={[
                 styles.progressFill,
                 { backgroundColor: ACCENT, width: `${(progress.position / progress.total) * 100}%` },
               ]}
             />
+          </View>
+          {/* зачем (practice.html `.prog`): под полосой «позиция … всего» 15/600 — реальные числа сессии. */}
+          <View style={styles.progressRow} testID="fc-speak-progress" accessible accessibilityLabel={`${progress.position} / ${progress.total}`}>
+            <Text style={[styles.progressLabel, { color: speakingGlass.secondary }]}>{progress.position}</Text>
+            <Text style={[styles.progressLabel, { color: speakingGlass.secondary }]}>{progress.total}</Text>
           </View>
 
           {/* Карточка: тап — подсмотреть/вернуть. Динамик — только в транспорте
@@ -1590,15 +1586,18 @@ RU: ${card.translation}`}
                   disabled={holdActive}
                   hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                   style={[
-                    styles.taskCircle,
-                    { backgroundColor: active ? ACCENT : t.bgSurface },
+                    styles.taskPill,
+                    { backgroundColor: active ? speakingGlass.selected : speakingGlass.opaqueControl },
                   ]}
                 >
                   <Ionicons
-                    name={option === 'recall' ? 'bulb-outline' : 'repeat-outline'}
-                    size={20}
-                    color={active ? t.correctText : t.textMuted}
+                    name={option === 'recall' ? 'mic-outline' : 'volume-high-outline'}
+                    size={18}
+                    color={active ? speakingGlass.text : speakingGlass.secondary}
                   />
+                  <Text style={[styles.taskPillText, { color: active ? speakingGlass.text : speakingGlass.secondary }]}>
+                    {optionLabel}
+                  </Text>
                 </TouchableOpacity>
               );
             })}
@@ -1619,9 +1618,9 @@ RU: ${card.translation}`}
               accessibilityRole="button"
               accessibilityState={{ disabled: holdActive && !stuck }}
               accessible
-              style={[styles.sideBtn, { backgroundColor: t.bgSurface, opacity: holdActive && !stuck ? 0.5 : 1 }]}
+              style={[styles.sideBtn, { backgroundColor: speakingGlass.opaqueControl, opacity: holdActive && !stuck ? 0.5 : 1 }]}
             >
-              <Ionicons name="play-skip-forward" size={22} color={t.textPrimary} />
+              <Ionicons name="arrow-forward" size={22} color={t.textPrimary} />
             </TouchableOpacity>
             <SpeakHoldButton
               accent={speakingGlass.cta}
@@ -1642,7 +1641,7 @@ RU: ${card.translation}`}
               accessibilityRole="button"
               accessibilityState={{ disabled: holdActive && !stuck }}
               accessible
-              style={[styles.sideBtn, { backgroundColor: t.bgSurface, opacity: holdActive ? 0.5 : 1 }]}
+              style={[styles.sideBtn, { backgroundColor: speakingGlass.opaqueControl, opacity: holdActive ? 0.5 : 1 }]}
             >
               <Ionicons name="volume-high" size={22} color={t.textPrimary} />
             </TouchableOpacity>
@@ -1674,6 +1673,8 @@ const styles = StyleSheet.create({
   },
   progressTrack: { height: 6, borderRadius: 4, marginTop: 22, marginHorizontal: 20, overflow: 'hidden' },
   progressFill: { height: 6, borderRadius: 4 },
+  progressRow: { minHeight: 22, marginTop: 12, marginHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  progressLabel: { fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] },
   // Отдельная верхняя строка рун уплотнила экран: опускаем карточку ниже,
   // чтобы её верх не заходил на progress bar.
   cardArea: { flexGrow: 1, justifyContent: 'center', paddingHorizontal: 20, paddingTop: 34 },
@@ -1711,14 +1712,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 8,
     gap: 14,
+    paddingHorizontal: 20,
   },
-  taskCircle: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
+  // `.speak-task` макета: пилюля ≥44 (область нажатия), значок + подпись 13/700; подпись
+  // переносится, а не режется, — смысл не теряется на узких экранах.
+  taskPill: {
+    flexShrink: 1,
+    minHeight: 44,
+    borderRadius: 22,
+    paddingHorizontal: 14,
+    paddingVertical: 6,
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 6,
   },
+  taskPillText: { flexShrink: 1, fontSize: 13, lineHeight: 17, fontWeight: '700', textAlign: 'center' },
   transportRow: {
     flexDirection: 'row',
     // зачем (владелец, 2026-08-17): центр «зажми-и-говори» — круг + подпись

@@ -58,6 +58,7 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { PracticeAnswerMark, PracticeBackButton, PracticeHeaderTitle, PracticeRoundIconButton, PracticeTimerPill } from '../components/practice/PracticeChrome';
+import { PracticeStatePanel } from '../components/practice/PracticeStates';
 import { flashcardContentLang } from './spanish_content_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { SessionResultScreen } from './flashcards/SessionResultScreen';
@@ -1094,10 +1095,12 @@ export default function FlashcardsBlitzSession() {
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }} testID="fc-blitz-quota-unavailable">
           <ContentWrap>
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 14, paddingHorizontal: 32 }}>
-              <Ionicons name="cloud-offline-outline" size={44} color={t.textGhost} />
-              <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
-                {triLang(lang, {
+            {/* зачем (cards.html setupError): данные тренировки не открылись — плитка, сообщение,
+                одна кнопка «Попробовать снова»; повтор тот же (retryQuotaStart). */}
+            <PracticeStatePanel
+              glass={blitzGlass}
+              icon="cloud-offline-outline"
+              message={triLang(lang, {
                   ru: 'Не удалось открыть данные тренировок на этом устройстве. Попробуй снова или перезапусти приложение.',
                   uk: 'Не вдалося відкрити дані тренувань на цьому пристрої. Спробуй ще раз або перезапусти застосунок.',
                   en: 'We could not open your training data on this device. Try again or restart the app.',
@@ -1108,18 +1111,13 @@ export default function FlashcardsBlitzSession() {
                   tr: 'Antrenman verilerin bu cihazda açılamadı. Tekrar dene ya da uygulamayı yeniden başlat.',
                   pl: 'Nie udało się otworzyć danych treningowych na tym urządzeniu. Spróbuj ponownie lub uruchom aplikację ponownie.',
                 })}
-              </Text>
-              <TouchableOpacity
-                testID="fc-blitz-quota-retry"
-                accessibilityRole="button"
-                onPress={retryQuotaStart}
-                style={{ paddingHorizontal: 18, paddingVertical: 12, borderRadius: 16, backgroundColor: t.bgSurface }}
-              >
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                  {triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще раз', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
-                </Text>
-              </TouchableOpacity>
-            </View>
+              action={{
+                label: triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще раз', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' }),
+                icon: 'refresh-outline',
+                onPress: retryQuotaStart,
+                testID: 'fc-blitz-quota-retry',
+              }}
+            />
           </ContentWrap>
         </SafeAreaView>
       </ScreenGradient>
@@ -1159,12 +1157,12 @@ export default function FlashcardsBlitzSession() {
             </View>
 
             <View style={{ flex: 1, paddingHorizontal: 16, gap: 14, justifyContent: 'center' }}>
-              <View style={[styles.questionBox, { backgroundColor: t.bgCard }]}>
+              <View style={[styles.questionBox, styles.glassSurface, { backgroundColor: blitzGlass.card }]}>
                 <SkeletonBlock width="70%" height={(f.h1 ?? 24) + 2} />
               </View>
               <View style={{ gap: 10 }}>
                 {Array.from({ length: 4 }, (_, i) => (
-                  <SkeletonBlock key={i} width="100%" height={50} borderRadius={14} />
+                  <SkeletonBlock key={i} width="100%" height={58} borderRadius={14} />
                 ))}
               </View>
             </View>
@@ -1260,10 +1258,13 @@ export default function FlashcardsBlitzSession() {
                 })}
               />
             </View>
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 14, paddingHorizontal: 32 }}>
-              <Ionicons name="flash-outline" size={44} color={t.textGhost} />
-              <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
-                {triLang(lang, {
+            {/* зачем (cards.html «Мало карточек для блица»): то же сообщение и кнопка выбора наборов
+                в виде служебного состояния макета; действие прежнее — openDeckPicker. */}
+            <PracticeStatePanel
+              glass={blitzGlass}
+              testID="fc-blitz-too-few"
+              icon="flash-outline"
+              message={triLang(lang, {
                   ru: 'Для блица нужны хотя бы 4 карточки. Выбери ещё наборы: из карточек собираются варианты ответа.',
                   uk: 'Для бліцу потрібні хоча б 4 картки. Вибери ще набори: з карток складаються варіанти відповіді.',
                   en: 'Blitz needs at least 4 cards. Add more packs: the cards provide the answer choices.',
@@ -1274,23 +1275,14 @@ export default function FlashcardsBlitzSession() {
                   tr: 'Blitz için en az 4 kart gerekir. Daha fazla paket seç: cevap seçenekleri kartlardan oluşturulur.',
                   pl: 'Blitz wymaga co najmniej 4 kart. Wybierz więcej zestawów: karty tworzą opcje odpowiedzi.',
                 })}
-              </Text>
-              <TouchableOpacity
-                testID="fc-blitz-pick-decks-empty"
-                accessibilityRole="button"
-                accessibilityLabel="qa-fc-blitz-pick-decks"
-                accessible
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                onPress={openDeckPicker}
-                style={{
-                  flexDirection: 'row', alignItems: 'center', gap: 8,
-                  paddingHorizontal: 18, paddingVertical: 12, borderRadius: 16, backgroundColor: t.bgSurface,
-                }}
-              >
-                <Ionicons name="albums-outline" size={18} color={ACCENT} />
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>{pickDecksLabel}</Text>
-              </TouchableOpacity>
-            </View>
+              action={{
+                label: pickDecksLabel,
+                icon: 'albums-outline',
+                onPress: openDeckPicker,
+                testID: 'fc-blitz-pick-decks-empty',
+                accessibilityLabel: 'qa-fc-blitz-pick-decks',
+              }}
+            />
           </ContentWrap>
         </SafeAreaView>
         {deckPickerSheet}

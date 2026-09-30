@@ -25,7 +25,8 @@ const PROTECTED_FILES = new Map([
 ]);
 const PROTECTED_RUNTIME = {
   count: 21,
-  hash: 'dc587094458d23efe6ad083f1d146211b4fc7f52559ae51f35ff2ddcaf28a1e3',
+  // зачем (30.09): D127 — «Устно» прячет наборы «без языка» (hideDecksWithoutVoice, 2acba6874); квота и старт не менялись.
+  hash: 'd6a5556ddee1a8817a824415d5a3e0f1596de27dcde35e043a8ad81c5cc661f1',
 };
 
 const parse = (path, source) => ts.createSourceFile(path, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
@@ -228,6 +229,8 @@ function createRouteHarness({
       loadFcDeckOptions: async () => { if (loadRejects) throw new Error('load failed'); return loadedDecks; },
       peekFcDeckOptions: () => warmDecks,
       sameDeckOptions: () => false,
+      // D127 (30.09): «Устно» прячет наборы «без языка» — в остальных режимах список как есть.
+      hideDecksWithoutVoice: decks => decks,
     },
     './flashcards/DeckPickerSheet': {},
     './flashcards/DeckSelectionTile': { __esModule: true, default: actualTileRenderer ?? 'DeckSelectionTile' },

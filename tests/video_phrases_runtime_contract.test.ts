@@ -36,7 +36,9 @@ describe('video phrases runtime contracts', () => {
     expect(card).toContain('belowPlayer?: React.ReactNode');
     expect(card).toContain('{belowPlayer}');
     expect(card).toContain('return <>{card}{belowPlayer}</>;');
-    expect(videos).toContain('belowPlayer={<YoutubeVideoPhrases');
+    // зачем (вкладка «Видео» по макету video.html, 8688eca0b): фразы под каждым полным
+    // роликом; в компактном плейлисте — только под открытым, чтобы список не разбухал.
+    expect(videos).toContain('belowPlayer={!compact || video.id === activeVideoId ? <YoutubeVideoPhrases');
     expect(videos).toContain('videoId={video.id}');
     expect(videos).toContain('expanded={expandedPhraseVideoId === video.id}');
     expect(videos).toContain('onToggle={() => setExpandedPhraseVideoId((current) => current === video.id ? null : video.id)}');

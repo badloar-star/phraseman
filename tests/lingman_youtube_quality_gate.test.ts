@@ -36,7 +36,10 @@ describe('lingman YouTube quality gate', () => {
 
     expect(source).toContain('ownerActive?: boolean');
     expect(source).toContain('if (!ownerActive || !enabled) return;');
-    expect(home).toContain('<LingmanVideosButton ownerActive={homeRuntimeActive} />');
+    // зачем (Главная 2.0, утверждена 30.09): вход в видео в хедере — своя кнопка
+    // «Видеоуроки» со счётчиком непросмотренных вместо LingmanVideosButton.
+    expect(home).toContain('testID="home-header-videos"');
+    expect(home).toContain('videoUnreadCount');
     expect(source).toContain('remote_config_changed');
   });
 

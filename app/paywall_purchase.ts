@@ -72,7 +72,7 @@ import {
   readRevenueCatCustomerInfoForGeneration,
   runRevenueCatOperationForGeneration,
 } from './revenuecat_account_identity';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, swallowError } from './debug-logger';
 
 export type PaywallPlan = 'monthly' | 'yearly' | 'lifetime';
 
@@ -592,7 +592,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   ): Promise<boolean> => {
     if (!isCurrent()) return false;
     invalidatePremiumCache();
-    await AsyncStorage.setItem('had_premium_ever', '1').catch(() => {});
+    await AsyncStorage.setItem('had_premium_ever', '1').catch(swallowError('paywall_purchase:had_premium_ever')); // зачем: PM-229-A1
     if (!isCurrent()) return false;
     emitAppEvent('premium_activated');
     if (!(await refillToMax(isCurrent))) return false;
@@ -621,7 +621,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       void trackEvent('afterwin_upsell_cta', { source: 'level_up', plan: selected, paywall: variant });
       void import('./firebase').then(({ logAfterWinUpsellCta }) =>
         logAfterWinUpsellCta('level_up', selected),
-      ).catch(() => {});
+      ).catch(swallowError('paywall_purchase:logAfterWinUpsellCta'));
     }
     logPaywallFunnel('cta_click', { variant, context, plan: selected });
     if (DEV_IAP_BYPASS) {
@@ -1028,7 +1028,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   const doClose = useCallback((reason: 'close' | 'continue_free') => {
     void trackEvent('paywall_close', { context, source, paywall: variant, reason, ...paywallImpressionParams(impression) });
     logPaywallFunnel('close', { variant, context, plan: selected });
-    if (!DEV_IAP_BYPASS) void schedulePaywallAbandonedNotification(lang).catch(() => {});
+    if (!DEV_IAP_BYPASS) void schedulePaywallAbandonedNotification(lang).catch(swallowError('paywall_purchase:schedulePaywallAbandoned'));
     // Онбординг: закрытие пейвола (без покупки) НЕ выкидывает на home, а возвращает
     // на следующий шаг онбординга — ввод имени. Раньше safeRouterBack уводил на home
     // (premium_modal — транзитный редирект, в стек не кладётся → fallback=home), и
@@ -1105,7 +1105,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           const seen = await AsyncStorage.getItem(EXIT_TRIAL_OFFER_SEEN_KEY);
           // В dev-форсе кулдаун-ключ игнорируем — пусть показывается каждый раз.
           if (seen === '1' && !devForceTrial) { doClose(reason); return; }
-          if (!devForceTrial) await AsyncStorage.setItem(EXIT_TRIAL_OFFER_SEEN_KEY, '1').catch(() => {});
+          if (!devForceTrial) await AsyncStorage.setItem(EXIT_TRIAL_OFFER_SEEN_KEY, '1').catch(swallowError('paywall_purchase:exit_trial_offer_seen'));
         } catch { /* при сбое чтения — просто закрываем без оффера */ doClose(reason); return; }
         void trackEvent('paywall_exit_offer_shown', { context, source, paywall: variant, ...paywallImpressionParams(impression) });
         const days = trialDays;

@@ -14,7 +14,7 @@ import { VIP_SURVEY_ID } from './vip_survey_content';
 import type { Lang } from '../constants/i18n';
 import { createDisposableAdoption } from './disposable_adoption';
 import { normalizeReportRewardBundle, type ReportRewardBundle } from './report_reward_bundle';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 
 export type AppMessageReaction = 'like' | 'dislike';
 export type AppMessageAudience = 'all' | 'free' | 'premium';
@@ -95,7 +95,7 @@ function appMessagesOwnerStorageKey(prefix: string, ownerUid: string): string {
 }
 
 async function getAppMessagesOwnerUid(): Promise<string | null> {
-  return String(await getCanonicalUserId().catch(() => '')).trim() || null;
+  return String(await getCanonicalUserId().catch((e: unknown) => { reportSwallowed('app_messages:getAppMessagesOwnerUid', e); return ''; })).trim() || null;
 }
 
 function cleanupUnownedAppMessageStorage(): void {
@@ -107,7 +107,7 @@ function cleanupUnownedAppMessageStorage(): void {
     LEGACY_ANIMATED_MESSAGE_IDS_KEY,
     LEGACY_LOCAL_APP_MESSAGES_KEY,
     LEGACY_LOCAL_APP_MESSAGE_STATES_KEY,
-  ]).catch(() => {});
+  ]).catch(swallowError('app_messages:cleanupUnownedStorage'));
 }
 
 export async function readPendingAppMessageVisibility(ownerUid: string | null): Promise<PendingAppMessageVisibility[]> {
@@ -160,7 +160,7 @@ async function recordPendingAppMessageVisibility(
 ): Promise<PendingAppMessageVisibility> {
   let recorded!: PendingAppMessageVisibility;
   const previous = visibilityMutationQueueByOwner.get(ownerUid) ?? Promise.resolve();
-  const current = previous.catch(() => {}).then(async () => {
+  const current = previous.catch(swallowError('app_messages:queue_previous')).then(async () => {
     const rows = await readPendingAppMessageVisibility(ownerUid);
     const maxStoredRevision = rows.reduce((max, row) => Math.max(max, row.revision), 0);
     const revision = Math.max(
@@ -275,7 +275,7 @@ async function writePendingPersonalModalAcknowledgements(
   const storageKey = appMessagesOwnerStorageKey(PERSONAL_MODAL_ACK_OUTBOX_KEY_PREFIX, ownerUid);
   const next = rows.slice(-PERSONAL_MODAL_ACK_OUTBOX_CAP);
   if (next.length === 0) {
-    await AsyncStorage.removeItem(storageKey).catch(() => {});
+    await AsyncStorage.removeItem(storageKey).catch(swallowError('app_messages:removeItem'));
     return;
   }
   await AsyncStorage.setItem(storageKey, JSON.stringify(next));
@@ -287,7 +287,7 @@ async function recordPendingPersonalModalAcknowledgement(
   acknowledgedAtMs: number,
 ): Promise<void> {
   const previous = personalModalAckMutationQueueByOwner.get(ownerUid) ?? Promise.resolve();
-  const current = previous.catch(() => {}).then(async () => {
+  const current = previous.catch(swallowError('app_messages:queue_previous')).then(async () => {
     const rows = await readPendingPersonalModalAcknowledgements(ownerUid);
     const next = [
       ...rows.filter((row) => row.messageId !== messageId),
@@ -429,7 +429,7 @@ async function writePendingAppMessageModalAcknowledgements(
   const storageKey = appMessagesOwnerStorageKey(APP_MESSAGE_MODAL_ACK_OUTBOX_KEY_PREFIX, ownerUid);
   const next = rows.slice(-APP_MESSAGE_MODAL_ACK_OUTBOX_CAP);
   if (next.length === 0) {
-    await AsyncStorage.removeItem(storageKey).catch(() => {});
+    await AsyncStorage.removeItem(storageKey).catch(swallowError('app_messages:removeItem'));
     return;
   }
   await AsyncStorage.setItem(storageKey, JSON.stringify(next));
@@ -441,7 +441,7 @@ async function recordPendingAppMessageModalAcknowledgement(
   acknowledgedAtMs: number,
 ): Promise<void> {
   const previous = appMessageModalAckMutationQueueByOwner.get(ownerUid) ?? Promise.resolve();
-  const current = previous.catch(() => {}).then(async () => {
+  const current = previous.catch(swallowError('app_messages:queue_previous')).then(async () => {
     const rows = await readPendingAppMessageModalAcknowledgements(ownerUid);
     const next = [
       ...rows.filter((row) => row.messageId !== messageId),
@@ -774,7 +774,7 @@ async function writePendingReportReplyShardClaims(
   });
   const next = [...byId.values()].slice(-REPORT_REPLY_PENDING_CLAIMS_CAP);
   if (next.length === 0) {
-    await AsyncStorage.removeItem(storageKey).catch(() => {});
+    await AsyncStorage.removeItem(storageKey).catch(swallowError('app_messages:removeItem'));
     return;
   }
   await AsyncStorage.setItem(storageKey, JSON.stringify(next));
@@ -1681,7 +1681,8 @@ export function subscribeUserAppMessages(
         if (disposed) return;
         pendingReportReplyClaims = nextPendingClaims;
         emit();
-      } catch {
+      } catch (userMessagesError) {
+        reportSwallowed('app_messages:refreshUserMessages', userMessagesError);
         // Персональная лента опциональна: ошибка не должна ронять остальные сообщения.
       }
     };
@@ -1744,11 +1745,11 @@ function enqueueAppMessageVisibilityMutation(
   const cleanMessageId = cleanPollOptionId(messageId, '');
   if (!cleanMessageId) return Promise.resolve();
   let operation: Promise<void> = Promise.resolve();
-  const scheduled = visibilitySchedulingQueue.catch(() => {}).then(async () => {
+  const scheduled = visibilitySchedulingQueue.catch(swallowError('app_messages:visibility_scheduling_queue')).then(async () => {
     const ownerUid = await capturedOwnerUid;
     if (!ownerUid) return;
     const previous = visibilityActionQueueByOwner.get(ownerUid) ?? Promise.resolve();
-    operation = previous.catch(() => {}).then(async () => {
+    operation = previous.catch(swallowError('app_messages:queue_previous')).then(async () => {
       const localHandled = await updateLocalPreviewState(cleanMessageId, {
         dismissedAtMs,
         updatedAtMs: requestedAtMs,
@@ -1761,7 +1762,7 @@ function enqueueAppMessageVisibilityMutation(
     visibilityActionQueueByOwner.set(ownerUid, operation);
     void operation.finally(() => {
       if (visibilityActionQueueByOwner.get(ownerUid) === operation) visibilityActionQueueByOwner.delete(ownerUid);
-    }).catch(() => {});
+    }).catch(swallowError('app_messages:visibility_queue_cleanup'));
   });
   visibilitySchedulingQueue = scheduled;
   return scheduled.then(() => operation);
@@ -1787,7 +1788,7 @@ export async function markAppMessageRead(messageId: string): Promise<void> {
   });
   if (localHandled) return;
   const firestoreFactory = await getFirestoreModule();
-  const uid = await getCanonicalUserId().catch(() => null);
+  const uid = await getCanonicalUserId().catch((e: unknown) => { reportSwallowed('app_messages:getCanonicalUserId', e); return null; });
   if (!firestoreFactory || !uid || !messageId) return;
   const db = firestoreFactory();
   await db.collection('users').doc(uid).collection(APP_MESSAGE_STATES_COLLECTION).doc(messageId).set(
@@ -1805,7 +1806,7 @@ export async function setAppMessageReaction(
   reaction: AppMessageReaction | null,
 ): Promise<void> {
   const firestoreFactory = await getFirestoreModule();
-  const uid = await getCanonicalUserId().catch(() => null);
+  const uid = await getCanonicalUserId().catch((e: unknown) => { reportSwallowed('app_messages:getCanonicalUserId', e); return null; });
   if (!firestoreFactory || !uid || !messageId) return;
   const nowMs = Date.now();
   const db = firestoreFactory();
@@ -1830,7 +1831,7 @@ export async function setAppMessagePollVote(messageId: string, optionId: string)
   const cleanOptionId = String(optionId || '').trim();
   if (!messageId || !/^[A-Za-z0-9_-]{1,40}$/.test(cleanOptionId)) return;
   const firestoreFactory = await getFirestoreModule();
-  const uid = await getCanonicalUserId().catch(() => null);
+  const uid = await getCanonicalUserId().catch((e: unknown) => { reportSwallowed('app_messages:getCanonicalUserId', e); return null; });
   if (!firestoreFactory || !uid) return;
   const nowMs = Date.now();
   const db = firestoreFactory();
@@ -1915,11 +1916,11 @@ async function claimReportReplyShardsForAccount(
   const { getApp } = require('@react-native-firebase/app');
   const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
   const { initFirebaseAppCheckIfAvailable } = require('./app_check_init');
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  await initFirebaseAppCheckIfAvailable().catch(swallowError('app_messages:appCheckInit'));
   if (!isCurrentAccountGeneration(accountToken, ownerUid)) {
     throw new Error('report_reply_claim_account_changed');
   }
-  const canonicalUid = await getCanonicalUserId().catch(() => null);
+  const canonicalUid = await getCanonicalUserId().catch((e: unknown) => { reportSwallowed('app_messages:getCanonicalUserId', e); return null; });
   if (
     canonicalUid !== ownerUid
     || !isCurrentAccountGeneration(accountToken, ownerUid)
@@ -2010,7 +2011,7 @@ export async function claimReportReplyShardsOptimistically(
   const accountToken = captureAccountGeneration();
   const ownerUid = accountToken.stableId;
   if (!ownerUid || !isCurrentAccountGeneration(accountToken, ownerUid)) return false;
-  const canonicalUid = await getCanonicalUserId().catch(() => null);
+  const canonicalUid = await getCanonicalUserId().catch((e: unknown) => { reportSwallowed('app_messages:getCanonicalUserId', e); return null; });
   if (
     canonicalUid !== ownerUid
     || !isCurrentAccountGeneration(accountToken, ownerUid)
@@ -2020,7 +2021,7 @@ export async function claimReportReplyShardsOptimistically(
     safeAmount,
     accountToken,
     ownerUid,
-  ).catch(() => false);
+  ).catch((e: unknown) => { reportSwallowed('app_messages:addPendingReportReplyShardClaim', e); return false; });
   if (!isCurrentAccountGeneration(accountToken, ownerUid)) return false;
   emitAppEvent('app_messages_local_changed');
   // зачем: D70/D104 — старая награда «1 жемчужина» за ответ на репорт больше не
@@ -2039,7 +2040,7 @@ export async function resumePendingReportReplyShardClaims(): Promise<{ resolved:
   if (!ownerUid || !isCurrentAccountGeneration(accountToken, ownerUid)) {
     return { resolved: 0, pending: 0 };
   }
-  const canonicalUid = await getCanonicalUserId().catch(() => null);
+  const canonicalUid = await getCanonicalUserId().catch((e: unknown) => { reportSwallowed('app_messages:getCanonicalUserId', e); return null; });
   if (
     canonicalUid !== ownerUid
     || !isCurrentAccountGeneration(accountToken, ownerUid)

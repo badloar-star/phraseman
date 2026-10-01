@@ -37,7 +37,7 @@ import {
   publishCoinRank,
   type CoinRankStateV1,
 } from './coin_rank_state_v1';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 import { prepareRuneSpend, publishRuneSpend } from './level_spin_star_grants';
 import { withStorageLock } from './storage_mutex';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
@@ -152,8 +152,10 @@ export async function upgradeCoinRank(
       // Публичная карточка — best effort после durable multiSet. Сеть или callable
       // не имеют права откатить уже состоявшееся локальное повышение и списание.
       try {
-        void syncPublicProfileSnapshot({ reason: 'display_change' }, token).catch(() => {});
-      } catch {
+        // зачем: PM-229-A1 — сбой публичной карточки больше не немой (повышение уже состоялось).
+        void syncPublicProfileSnapshot({ reason: 'display_change' }, token).catch(swallowError('coin_rank_upgrade:syncPublicProfileSnapshot'));
+      } catch (syncError) {
+        reportSwallowed('coin_rank_upgrade:syncPublicProfileSnapshot:sync', syncError);
         // Денежный результат остаётся успешным даже при синхронном сбое окружения.
       }
       trace('повышено', {

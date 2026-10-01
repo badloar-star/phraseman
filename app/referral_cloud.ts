@@ -1,6 +1,7 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { swallowError } from './debug-logger'; // зачем: PM-229-A1 — сбой init не немой
 
 export { isReferralCloudEnabled } from './referral_flags';
 
@@ -13,7 +14,7 @@ function callable<TReq, TRes>(name: string) {
 export type EnsureReferralCodeResult = { code: string };
 
 export async function callReferralEnsureMyCode(stableId: string): Promise<EnsureReferralCodeResult> {
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  await initFirebaseAppCheckIfAvailable().catch(swallowError('referral_cloud:callReferralEnsureMyCode:appCheckInit'));
   const fn = callable<{ stableId: string }, EnsureReferralCodeResult>('referralEnsureMyCode');
   const res = await fn({ stableId });
   return res.data;
@@ -32,7 +33,7 @@ export async function callReferralApply(params: {
   refCode: string;
   referralSource?: 'deeplink' | 'play_install' | 'manual_code' | 'clipboard';
 }): Promise<ApplyReferralResult> {
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  await initFirebaseAppCheckIfAvailable().catch(swallowError('referral_cloud:callReferralApply:appCheckInit'));
   const fn = callable<typeof params, ApplyReferralResult>('referralApply');
   const res = await fn(params);
   return res.data;
@@ -74,7 +75,7 @@ export async function callReferralListMyInvites(
   referrerStableId: string,
   options: { force?: boolean } = {},
 ): Promise<ListMyInvitesResult> {
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  await initFirebaseAppCheckIfAvailable().catch(swallowError('referral_cloud:callReferralListMyInvites:appCheckInit'));
   const fn = callable<{ referrerStableId: string; force?: boolean }, ListMyInvitesResult>('referralListMyInvites');
   const res = await fn({ referrerStableId, force: options.force === true });
   return res.data;
@@ -97,7 +98,7 @@ export type ClaimVipRewardResult = {
 
 /** Исторический callable получения накопленных дней доступа; новый UI использует прокруты рулетки. */
 export async function callReferralClaimVipReward(referrerStableId: string): Promise<ClaimVipRewardResult> {
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  await initFirebaseAppCheckIfAvailable().catch(swallowError('referral_cloud:callReferralClaimVipReward:appCheckInit'));
   const fn = callable<{ referrerStableId: string }, ClaimVipRewardResult>('referralClaimVipReward');
   const res = await fn({ referrerStableId });
   return res.data;

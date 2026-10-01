@@ -33,7 +33,7 @@ export function requireContentWriter(auth: { uid?: string; token?: Record<string
 
 /**
  * Подобрать время фраз по тексту транскрипции. Общая часть для ручной загрузки
- * файла и для «Взять из YouTube» (youtube_captions_oauth.ts) — чтобы логика была одна.
+ * файла и для «Взять расшифровку из YouTube» (админка качает VTT сама) — чтобы логика была одна.
  */
 export function alignVideoPhraseTranscript(input: Readonly<{ videoId: string; rawPhrases: unknown; transcript: string; uid: string; source: string }>) {
   const { videoId, uid } = input;

@@ -290,6 +290,9 @@ service cloud.firestore {
           // монет (levelSpinStarGrant). Пишет только сервер в транзакции
           // начисления; открой клиенту — и он обнулял бы суточный потолок.
           'coinWalletLimitsV1',
+          // зачем: Q-COIN (b) — итог разовой сверки монет (coinReconcileV1).
+          // Открой клиенту — он стёр бы метку и получил подъём повторно.
+          'coinReconcileV1',
         ]);
     }
 
@@ -332,6 +335,8 @@ service cloud.firestore {
           'videoWatchRuneCarryMsV1',
           // Q13: счётчики лимитов кошелька монет — только сервер.
           'coinWalletLimitsV1',
+          // Q-COIN (b): итог сверки монет — только сервер.
+          'coinReconcileV1',
         ]);
     }
 

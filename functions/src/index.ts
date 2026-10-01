@@ -1087,6 +1087,10 @@ export { practiceRuneGrant } from "./practice_rune_grant";
 // подарков. Белый список и лимиты — coin_wallet_policy.ts. Деплой — ПЕРВЫМ
 // после релиза (docs/phraseman-2.0/PROGRESS.md).
 export { levelSpinStarGrant } from "./level_spin_star_grant";
+// зачем: Q-COIN (b), координатор 01.10 — разовая серверная сверка монет по
+// серверным фактам до 2.0 (results спинов без расписки), только вверх, с потолком.
+// Деплой — вместе с levelSpinStarGrant в день релиза (DEPLOY_NOW.md).
+export { coinReconcileV1 } from "./coin_reconcile_v1";
 // зачем (D51/D53, Q12 2026-10-01): строка-итог миграции «Подарки → монеты»
 // для контроля в админке. Деплой — прицельно и только после релиза 2.0 (D91).
 export { giftsToCoinsMigrationReport } from "./gifts_to_coins_report";

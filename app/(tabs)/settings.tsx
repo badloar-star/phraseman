@@ -34,6 +34,8 @@ import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import DeleteAccountConfirmModal from '../../components/DeleteAccountConfirmModal';
 import { scheduleDailyReminder, cancelAllNotifications, loadNotificationSettings } from '../notifications';
 import { emitAppEvent } from '../events';
+import { requestOpenDevHub } from '../dev_hub_bus';
+import { ENABLE_DEV_TOOLS } from '../config';
 import { DebugLogger } from '../debug-logger';
 import { useLang } from '../../components/LangContext';
 import { usePremium } from '../../components/PremiumContext';
@@ -998,6 +1000,22 @@ export default function SettingsMain() {
         onScroll={handleSettingsScroll}
       >
 
+        {/* зачем (владелец 01.10): в дев-сборке вход в Dev Hub — в самом верху «Настроек». */}
+        {ENABLE_DEV_TOOLS ? (
+          <TouchableOpacity
+            testID="settings-dev-hub-button"
+            accessibilityRole="button"
+            accessibilityLabel="Открыть Dev Hub"
+            activeOpacity={0.8}
+            onPressIn={() => doHaptic()}
+            onPress={() => requestOpenDevHub('settings_top')}
+            style={{ marginTop: 12, minHeight: 48, borderRadius: 16, backgroundColor: glass.opaqueControl, flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 14 }}
+          >
+            <Ionicons name="flask-outline" size={20} color={glass.text} />
+            <Text style={{ color: glass.text, fontSize: 16, fontWeight: '700', flex: 1 }}>Dev Hub</Text>
+            <Ionicons name="chevron-forward" size={18} color={glass.mutedText} />
+          </TouchableOpacity>
+        ) : null}
         {/* Шапка PRF-01: «Настройки» 34/40 + «Профиль и приложение» 15/20 + монета ранга 48. */}
         <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12, marginTop: 12 }}>
           <View style={{ flex: 1, minWidth: 0 }}>

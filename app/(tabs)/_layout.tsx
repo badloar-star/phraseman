@@ -44,6 +44,7 @@ function HomeScreenHost({ onOpenDevHub }: { onOpenDevHub: () => void }) {
   return <HomeScreen onOpenDevHub={onOpenDevHub} />;
 }
 import DevHubSheetGate from '../../components/dev/DevHubSheetGate';
+import { subscribeOpenDevHub } from '../dev_hub_bus';
 import { ENABLE_DEV_TOOLS } from '../config';
 import {
   captureAccountGeneration,
@@ -754,6 +755,8 @@ function ReleasedTabLayout() {
   const [focusTick, setFocusTick] = useState(0);
   const [devHubVisible, setDevHubVisible] = useState(false);
   const openDevHub = useCallback(() => setDevHubVisible(true), []);
+  // зачем (владелец 01.10): вход в Dev Hub ещё и из «Настроек» (дев-сборка) — экран зовёт шину.
+  useEffect(() => (ENABLE_DEV_TOOLS ? subscribeOpenDevHub(openDevHub) : undefined), [openDevHub]);
   const closeDevHub = useCallback(() => setDevHubVisible(false), []);
   // Ліниве монтування: слот таба появляется сразу, а тяжелый экран монтируется в idle после первого кадра.
   // Начальный таб всегда в visited/mounted — чтобы первый рендер не был плейсхолдером.

@@ -23,7 +23,10 @@ describe("Firebase cost controls", () => {
 
   // Реферальная система (Фаза 2, односторонний VIP) — теперь штатная: контракт
   // защищает конвейер от случайного выпиливания при cleanup (как было с VIP-кнопкой).
-  it("keeps the referral callables wired into exports and the deploy whitelist", () => {
+  // зачем: поимённый whitelist деплоя убран снимком 2.0 (efe19ae9d) — functions
+  // деплоятся целиком (`firebase deploy --only functions`), поэтому «не выпилить
+  // при cleanup» значит «остаться в экспортах index.ts», которые и уезжают.
+  it("keeps the referral callables wired into the deployed functions exports", () => {
     const indexSource = read("functions/src/index.ts");
     const packageJson = read("functions/package.json");
 
@@ -34,8 +37,8 @@ describe("Firebase cost controls", () => {
       "referralListMyInvites",
     ]) {
       expect(indexSource).toContain(name);
-      expect(packageJson).toContain(`functions:${name}`);
     }
+    expect(packageJson).toMatch(/"deploy": "[^"]*firebase deploy --only functions"/);
   });
 
   it("keeps referral cost guardrails: no code generation on sign-in, lazy invite link on share, no referral reads in friends sync", () => {
@@ -105,7 +108,11 @@ describe("Firebase cost controls", () => {
     const adminPushSource = read("functions/src/admin_push_jobs.ts");
     const siteStatsSource = read("functions/src/site_stats.ts");
     const webStatsSource = read("knowly-www/assets/stats.js");
-    const startSource = read("knowly-www/assets/start.js");
+    // зачем: knowly-www/assets/start.js удалён с новой воронкой (1d70c8fc5,
+    // 2026-09-19). Общий кэш цен теперь греет главная и читает /gift/ — один
+    // запрос цен на визит вместо запроса на каждой странице.
+    const homeSource = read("knowly-www/assets/home.js");
+    const giftSource = read("knowly-www/gift/index.html");
     const thanksSource = read("knowly-www/start/thanks/index.html");
 
     expect(adminPushSource).toContain("schedule: 'every 6 hours'");
@@ -114,8 +121,9 @@ describe("Firebase cost controls", () => {
       "const rawEvents = Array.isArray(body.events)",
     );
     expect(webStatsSource).toContain("{ events: initialEvents }");
-    expect(startSource).toContain("PRICE_CACHE_KEY = 'pm_web_prices_cache_v1'");
-    expect(startSource).toContain("PRICE_CACHE_TTL_MS = 60 * 60 * 1000");
+    expect(homeSource).toContain("PRICE_CACHE_KEY = 'pm_web_prices_cache_v1'");
+    expect(giftSource).toContain("PRICE_CACHE_KEY = 'pm_web_prices_cache_v1'");
+    expect(giftSource).toContain("localStorage.setItem('pm_web_prices_cache_v1'");
     expect(thanksSource).toContain("var MAX_ATTEMPTS = 12");
     expect(thanksSource).toContain("function nextPollDelayMs()");
   });
@@ -167,9 +175,10 @@ describe("Firebase cost controls", () => {
     expect(publicProfileSource).toContain(
       "PUBLIC_PROFILE_SNAPSHOT_CACHE_KEY = 'public_profile_snapshot_v1'",
     );
-    expect(publicProfileSource).toContain(
-      "collection('public_profiles').doc(stableId).set",
-    );
+    // зачем: с a0b9b88fc (2026-08-15) профиль проецирует сервер
+    // (publicProfileProjectMine); клиент больше не пишет public_profiles сам.
+    expect(publicProfileSource).toContain("'publicProfileProjectMine'");
+    expect(publicProfileSource).not.toContain("collection('public_profiles').doc(stableId).set");
     expect(publicProfileSource).not.toContain("collection('arena_profiles')");
     expect(publicProfileSource).toContain("displayHash");
     expect(publicProfileSource).not.toContain("daily_xp");
@@ -181,8 +190,8 @@ describe("Firebase cost controls", () => {
     );
     expect(rulesSource).toContain("match /public_profiles/{userId}");
     expect(rulesSource).toContain("allow read: if request.auth != null;");
-    expect(rulesSource).toContain(
-      "allow create, update: if canonicalUserMatchesAuth(userId);",
+    expect(rulesSource).toMatch(
+      /match \/public_profiles\/\{userId\} \{[\s\S]*?allow update: if false;[\s\S]*?allow create, delete: if false;/,
     );
   });
 
@@ -191,13 +200,17 @@ describe("Firebase cost controls", () => {
   // app/avatar_select.tsx — экран удалён целиком, троттлинг для отменённого
   // экрана больше не существует и не нужен.
 
-  it("updates percentile stats daily and keeps full-scan premium cron cadence modest", () => {
+  // зачем: перцентильный крон лидерборда (полный скан users в 03:00) удалён
+  // вместе с лидербордом/XP в 2.0 (efe19ae9d); полный скан премиум-крона
+  // снижен до раза в сутки (аудит 2026-08-26). Оба — только дешевле.
+  it("keeps the retired percentile full-scan off and the premium full-scan daily at most", () => {
     const indexSource = read("functions/src/index.ts");
     const premiumExpirySource = read("functions/src/premium_expiry_cron.ts");
 
-    // Кавычки в index.ts менялись форматтером — проверяем расписание, а не стиль кавычек.
-    expect(indexSource).toMatch(/schedule: ["']0 3 \* \* \*["']/);
-    expect(premiumExpirySource).toContain("schedule: 'every 12 hours'");
+    expect(indexSource).not.toContain("computeLeaderboardStatsCron");
+    expect(indexSource).not.toMatch(/schedule: ["']0 3 \* \* \*["']/);
+    expect(premiumExpirySource).toContain("schedule: 'every 24 hours'");
+    expect(premiumExpirySource).not.toContain("schedule: 'every 12 hours'");
   });
 
   it("keeps the friends activity feed pipeline retired (no full-scan mirror cron, no fan-out)", () => {
@@ -284,9 +297,11 @@ describe("Firebase cost controls", () => {
     expect(revenueCatSource).toContain(
       "await qualifyReferralFromVerifiedPremiumOutcome(db, out)",
     );
-    expect(adminReferralsSource).toContain(
-      "await reconcilePendingReferralPurchases(db, nowMs)",
-    );
+    // зачем: автосверка отложенных покупок при открытии дашборда заменена явным
+    // ремонтом из админки (admin_referral_purchase_repair) — без записей на чтении.
+    expect(adminReferralsSource).not.toContain("reconcilePendingReferralPurchases(db, nowMs)");
+    expect(adminReferralsSource).toContain("listPendingReferralPurchaseRepairOperations");
+    expect(read("functions/src/index.ts")).toContain("adminRepairPendingReferralPurchase");
     expect(progressSource).not.toContain(
       "import { markRefereeQualified } from './referral'",
     );
@@ -318,7 +333,7 @@ describe("Firebase cost controls", () => {
     const accessSource = read("functions/src/admin_access_controls.ts");
 
     expect(adminSource).toContain("getAdminGrantAccessCallable");
-    expect(adminSource).toContain("uid, kind: 'vip', active: true");
+    expect(adminSource).toMatch(/uid,\s*kind:\s*'vip',\s*active:\s*true/);
     expect(adminSource).toMatch(/uid,\s*kind:\s*'vip',\s*active:\s*false/);
     expect(accessSource).toContain(
       "resolveCanonicalAdminAccessTarget(tx, db, input.uid)",

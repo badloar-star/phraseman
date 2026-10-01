@@ -12,7 +12,6 @@ export type DevToolAction =
   | 'open-shop'
   | 'open-paywall-plus'
   | 'preview-lesson-results'
-  | 'preview-daily-journey'
   | 'preview-session-attempt-gift'
   | 'grant-plus'
   | 'revoke-plus'
@@ -362,29 +361,6 @@ export const DEV_TOOL_SECTIONS = [
         action: 'open-shop',
         icon: 'cart-outline',
         testID: 'dev-open-shop',
-      },
-    ],
-  },
-  // зачем (владелец, 2026-08-30): 50-дневный модал ежедневных подарков
-  // сначала проходит визуальную и функциональную приёмку в DEV Hub. Здесь
-  // показывается настоящий нативный компонент, но выдача награды намеренно
-  // не подключена — кошелёк, энергия и серия пользователя не меняются.
-  {
-    id: 'daily-journey-preview',
-    order: 8,
-    title: 'Ежедневные подарки',
-    icon: 'gift-outline',
-    testID: 'dev-hub-section-daily-journey',
-    tools: [
-      {
-        id: 'daily-journey',
-        order: 10,
-        title: 'Путешествие · 50 дней',
-        detail: 'Полная анимация. Каждый запуск показывает следующий день; реальные награды не начисляются.',
-        actionLabel: 'Показать',
-        action: 'preview-daily-journey',
-        icon: 'gift-outline',
-        testID: 'dev-preview-daily-journey',
       },
     ],
   },

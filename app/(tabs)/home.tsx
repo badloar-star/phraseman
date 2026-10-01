@@ -15,7 +15,6 @@ import { useGuardedNav } from '../../hooks/use-guarded-nav';
 import { usePremium } from '../../components/PremiumContext';
 import { useTabNav } from '../TabContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Crypto from 'expo-crypto';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
@@ -136,17 +135,6 @@ import { logFeatureOpened } from '../firebase';
 import { trackFeatureOpened } from '../user_stats';
 import { perfMark, perfSteps, perfScreenMount, perfNavStart } from '../perf-monitor';
 import { emitAppEvent, onAppEvent } from '../events';
-import { registerDailyJourneyRevealTargetMeasurer } from '../../components/daily_journey/dailyJourneyRevealTargetBridge';
-import DailyJourneyRewardPreviewModal from '../../components/dev/DailyJourneyRewardPreviewModal';
-import { commitDailyJourneyGift, readDailyJourneyGiftProjection } from '../daily_journey_gift_inbox';
-import {
-  createDailyJourneyHomeDeliveryController,
-  createDailyJourneyHomeGrantController,
-      createDailyJourneyHomeProjectionController,
-      measureDailyJourneyHomeTarget,
-      type DailyJourneyHomePresentedDelivery,
-      type DailyJourneyHomeTargetRect,
-    } from '../daily_journey_home_orchestration';
 import { FOREGROUND_CLOUD_REFRESH_DELAY_MS, FOREGROUND_LIGHT_REFRESH_DELAY_MS, getForegroundRefreshKind } from '../app_resume_policy';
 import { getHomeMenuImages } from '../home_menu_icons';
 import { getHomeLastLessonImage } from '../home_last_lesson_assets';
@@ -1687,188 +1675,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         if (!hint) return;
         showHomeHint(resolveHomeHintText(hint, lang, hint.textRu));
     }, [lang, showHomeHint]);
-    // зачем (спека Daily Journey 2026-08-30, пп. 5.9 и 6): подтверждение
-    // доставки — один сдержанный пульс карточки «Статистика» (1→1.035→1) и
-    // вход «Подарок» в независимом правом слоте, пока есть непрочитанные.
-    const dailyJourneyPulseAnim = useRef(new Animated.Value(1)).current;
-    const dailyJourneyPulseAnimationRef = useRef<Animated.CompositeAnimation | null>(null);
-    const homeStatsCardRef = useRef<View | null>(null);
-    const homeGiftEntryTargetRef = useRef<View | null>(null);
-    const dailyJourneyReduceMotion = useReduceMotion();
-    const dailyJourneyReduceMotionRef = useRef(dailyJourneyReduceMotion);
-    dailyJourneyReduceMotionRef.current = dailyJourneyReduceMotion;
-    const dailyJourneyRuntimeRef = useRef({ active: false, epoch: 0 });
-    const [dailyJourneyUnreadCount, setDailyJourneyUnreadCount] = useState(0);
-    const [dailyJourneyDelivery, setDailyJourneyDelivery] = useState<DailyJourneyHomePresentedDelivery | null>(null);
-    const dailyJourneyDeliveryRef = useRef<DailyJourneyHomePresentedDelivery | null>(null);
-    dailyJourneyDeliveryRef.current = dailyJourneyDelivery;
-    const dailyJourneyDeferredPulseRef = useRef(false);
-    const dailyJourneyOverlayVisible = useOverlayVisible('dailyJourneyDev', dailyJourneyDelivery != null);
-
-    const reportDailyJourneyHomeError = useCallback((scope: string, error: unknown, showFeedback = false) => {
-        DebugLogger.error(`home:daily_journey:${scope}`, error instanceof Error ? error : new Error(String(error)), 'warning');
-        if (!showFeedback) return;
-        emitAppEvent('action_toast', {
-            type: 'error',
-            messageRu: 'Подарок не сохранён. Попробуй ещё раз.',
-            messageUk: 'Подарунок не збережено. Спробуй ще раз.',
-            messageEn: 'The gift was not saved. Try again.',
-            messageEs: 'No se guardó el regalo. Inténtalo de nuevo.',
-            messagePtBr: 'O presente não foi salvo. Tente novamente.',
-            messageVi: 'Chưa lưu được quà. Hãy thử lại.',
-            messageId: 'Hadiah belum tersimpan. Coba lagi.',
-            messageTr: 'Hediye kaydedilemedi. Tekrar dene.',
-            messagePl: 'Nie zapisano prezentu. Spróbuj ponownie.',
-        });
-    }, []);
-
-    const dailyJourneyProjectionController = useMemo(() => createDailyJourneyHomeProjectionController<AccountGenerationToken>({
-        captureToken: captureAccountGeneration,
-        isTokenCurrent: isCurrentAccountGeneration,
-        readProjection: (token) => readDailyJourneyGiftProjection(token),
-        displayUnreadCount: setDailyJourneyUnreadCount,
-        reportError: (scope, error) => reportDailyJourneyHomeError(scope, error),
-    }), [reportDailyJourneyHomeError]);
-
-    const stopDailyJourneyPulse = useCallback(() => {
-        dailyJourneyPulseAnimationRef.current?.stop();
-        dailyJourneyPulseAnimationRef.current = null;
-        dailyJourneyPulseAnim.stopAnimation();
-        dailyJourneyPulseAnim.setValue(1);
-    }, [dailyJourneyPulseAnim]);
-
-    const startDailyJourneyPulse = useCallback(() => {
-        stopDailyJourneyPulse();
-        const animation = Animated.sequence([
-            Animated.timing(dailyJourneyPulseAnim, { toValue: 1.035, duration: 180, easing: Easing.out(Easing.cubic), useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }), // guard-ok: native transform only
-            Animated.timing(dailyJourneyPulseAnim, { toValue: 1, duration: 240, easing: Easing.inOut(Easing.quad), useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }), // guard-ok: native transform only
-        ]);
-        dailyJourneyPulseAnimationRef.current = animation;
-        animation.start(() => {
-            if (dailyJourneyPulseAnimationRef.current === animation) dailyJourneyPulseAnimationRef.current = null;
-        });
-    }, [dailyJourneyPulseAnim, stopDailyJourneyPulse]);
-
-    const measureDailyJourneyGiftTarget = useCallback((runtimeEpoch = dailyJourneyRuntimeRef.current.epoch): Promise<DailyJourneyHomeTargetRect | null> => {
-        const node = homeGiftEntryTargetRef.current;
-        if (!node || typeof node.measureInWindow !== 'function') {
-            return Promise.resolve(null);
-        }
-        return measureDailyJourneyHomeTarget({
-            measure: (callback) => node.measureInWindow(callback),
-            isCurrent: () => dailyJourneyRuntimeRef.current.active
-                && dailyJourneyRuntimeRef.current.epoch === runtimeEpoch,
-            windowHeight: Dimensions.get('window').height,
-        });
-    }, []);
-    const measureDailyJourneyGiftTargetRef = useRef(measureDailyJourneyGiftTarget);
-    measureDailyJourneyGiftTargetRef.current = measureDailyJourneyGiftTarget;
-
-    const dailyJourneyDeliveryController = useMemo(() => createDailyJourneyHomeDeliveryController<AccountGenerationToken>({
-        isTokenCurrent: isCurrentAccountGeneration,
-        displayDelivery: setDailyJourneyDelivery,
-        startPulse: startDailyJourneyPulse,
-        stopPulse: stopDailyJourneyPulse,
-        shouldReduceMotion: () => dailyJourneyReduceMotionRef.current,
-    }), [startDailyJourneyPulse, stopDailyJourneyPulse]);
-
-    const completeDailyJourneyDelivery = useCallback(() => {
-        dailyJourneyDeliveryController.complete();
-    }, [dailyJourneyDeliveryController]);
-
-    const handleDailyJourneyLanded = useCallback((occurrenceId: string | null) => {
-        dailyJourneyDeliveryController.landed(occurrenceId);
-    }, [dailyJourneyDeliveryController]);
-
-    const dailyJourneyGrantController = useMemo(() => createDailyJourneyHomeGrantController<AccountGenerationToken>({
-        createOperationId: () => Crypto.randomUUID(),
-        captureToken: captureAccountGeneration,
-        isTokenCurrent: isCurrentAccountGeneration,
-        captureRuntimeEpoch: () => dailyJourneyRuntimeRef.current.epoch,
-        isRuntimeActive: (epoch) => dailyJourneyRuntimeRef.current.active
-            && dailyJourneyRuntimeRef.current.epoch === epoch,
-        commit: (input, token: AccountGenerationToken) => commitDailyJourneyGift(input, token),
-        measureTarget: (epoch) => measureDailyJourneyGiftTargetRef.current(epoch),
-        enqueueModal: (delivery, token) => { dailyJourneyDeliveryController.offer(delivery, token); },
-        deferModal: (delivery, token) => { dailyJourneyDeliveryController.offer(delivery, token); },
-        reportError: (scope, error) => reportDailyJourneyHomeError(scope, error, scope !== 'measure'),
-    }), [dailyJourneyDeliveryController, reportDailyJourneyHomeError]);
-
-    useEffect(() => {
-        const deliveredSub = onAppEvent('daily_journey_delivered', ({ occurrenceId }) => {
-            // Home's own dev delivery has an explicit onLanded callback below.
-            if (dailyJourneyDeliveryRef.current) return;
-            if (!dailyJourneyRuntimeRef.current.active) {
-                dailyJourneyDeferredPulseRef.current = occurrenceId !== null;
-                return;
-            }
-            if (occurrenceId !== null && !dailyJourneyReduceMotionRef.current) startDailyJourneyPulse();
-        });
-        return () => deliveredSub.remove();
-    }, [startDailyJourneyPulse]);
-
-    useEffect(() => {
-        dailyJourneyRuntimeRef.current = {
-            active: homeRuntimeActive,
-            epoch: dailyJourneyRuntimeRef.current.epoch + 1,
-        };
-        dailyJourneyDeliveryController.setActive(homeRuntimeActive);
-        if (homeRuntimeActive) {
-            void dailyJourneyProjectionController.activate().catch((error) => reportDailyJourneyHomeError('projection_activate', error));
-            if (dailyJourneyDeferredPulseRef.current) {
-                dailyJourneyDeferredPulseRef.current = false;
-                if (!dailyJourneyReduceMotionRef.current) startDailyJourneyPulse();
-            }
-        } else {
-            dailyJourneyProjectionController.deactivate();
-        }
-    }, [dailyJourneyDeliveryController, dailyJourneyProjectionController, focusTick, homeRuntimeActive, reportDailyJourneyHomeError, startDailyJourneyPulse]);
-
-    useEffect(() => {
-        if (!homeRuntimeActive) return undefined;
-        const changedSub = onAppEvent('daily_journey_gifts_changed', () => {
-            void dailyJourneyProjectionController.reload().catch((error) => reportDailyJourneyHomeError('projection_event', error));
-        });
-        return () => {
-            changedSub.remove();
-        };
-    }, [dailyJourneyProjectionController, homeRuntimeActive, reportDailyJourneyHomeError]);
-
-    useEffect(() => {
-        const accountSub = subscribeAccountGeneration((token) => {
-            dailyJourneyRuntimeRef.current = {
-                ...dailyJourneyRuntimeRef.current,
-                epoch: dailyJourneyRuntimeRef.current.epoch + 1,
-            };
-            dailyJourneyDeliveryController.resetForAccount();
-            dailyJourneyGrantController.resetForAccount();
-            void dailyJourneyProjectionController.resetForAccount().catch((error) => reportDailyJourneyHomeError('projection_account', error));
-        });
-        return () => accountSub.remove();
-    }, [dailyJourneyDeliveryController, dailyJourneyGrantController, dailyJourneyProjectionController, reportDailyJourneyHomeError]);
-
-    useEffect(() => {
-        // DevHub preview compatibility: it has no direct Home target prop, so
-        // this bridge returns the center of the stable Gift-button slot.
-        const unregister = registerDailyJourneyRevealTargetMeasurer(async () => {
-            const rect = await measureDailyJourneyGiftTargetRef.current();
-            return rect ? { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2 } : null;
-        });
-        return unregister;
-    }, []);
-
-    useEffect(() => {
-        if (dailyJourneyReduceMotion) stopDailyJourneyPulse();
-    }, [dailyJourneyReduceMotion, stopDailyJourneyPulse]);
-
-    useEffect(() => () => {
-        dailyJourneyRuntimeRef.current = {
-            active: false,
-            epoch: dailyJourneyRuntimeRef.current.epoch + 1,
-        };
-        dailyJourneyDeliveryController.dispose();
-        dailyJourneyProjectionController.dispose();
-    }, [dailyJourneyDeliveryController, dailyJourneyProjectionController]);
     const eliteStatusEntrance = useRef(new Animated.Value(1)).current;
     const eliteQuickTileEntrance = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
     const eliteActivityTileEntrance = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
@@ -3931,10 +3737,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               Компаса. Полная статистика — по тапу на статус-строку (/streak_stats). */}
           <Animated.View style={sectionStyle(1)}>
           {/* Герой: серия + неделя — тап открывает статистику */}
-          {/* зачем (спека Daily Journey, п. 5.9): обёртка несёт пульс доставки
-              (1→1.035→1); отдельный стабильный слот внутри карточки является
-              точной целью полёта награды. */}
-          <Animated.View ref={homeStatsCardRef as React.Ref<View>} collapsable={false} style={{ marginHorizontal: 8, marginBottom: 12, transform: [{ scale: dailyJourneyPulseAnim }] }}>
+          <Animated.View style={{ marginHorizontal: 8, marginBottom: 12 }}>
           <TouchableOpacity testID="home-stats-card" activeOpacity={0.88} onPress={() => { hapticTap(); nav.push('/streak_stats'); }} style={isGoldTheme ? goldShadow(3) : isOliveTheme ? oliveShadow(2) : null} accessibilityRole="button" accessibilityLabel={s.home.statsCardTitle} accessibilityHint={s.home.statsPulseHint}>
             <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 1, y: 1 }} end={{ x: 0, y: 0 }} style={{ borderRadius: isGoldTheme ? 18 : 24, borderWidth: 0, borderColor: 'transparent', padding: 18, minHeight: HOME_STATS_CARD_MIN_HEIGHT, overflow: 'hidden' }}>
               {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
@@ -4641,17 +4444,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           вместе с порогом открытия — хаб теперь открывается при любом числе
           ошибок. Оставлять её нельзя: она стала недостижимой, а мёртвый показ
           однажды всплыл бы не вовремя. Сам компонент в проекте сохранён. */}
-      {dailyJourneyDelivery ? (
-        <DailyJourneyRewardPreviewModal
-          visible={dailyJourneyOverlayVisible}
-          day={dailyJourneyDelivery.occurrence.day}
-          run={dailyJourneyDelivery.run}
-          occurrence={dailyJourneyDelivery.occurrence}
-          targetRect={dailyJourneyDelivery.targetRect}
-          onLanded={handleDailyJourneyLanded}
-          onDeliveryComplete={completeDailyJourneyDelivery}
-        />
-      ) : null}
       {/* Сохранённые карточки слетаются в плитку «Карточки». Оверлей поверх всего:
           места не занимает, поэтому первый кадр главной остаётся стабильным. */}
       <SavedCardsFlight

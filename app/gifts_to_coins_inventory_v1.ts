@@ -20,7 +20,7 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { DAILY_JOURNEY_GIFT_CLAIM_RECEIPT_PREFIX } from '../constants/daily_journey_gift_storage_keys';
+import { LEGACY_DAILY_PATH_GIFT_CLAIM_RECEIPT_PREFIX as DAILY_JOURNEY_GIFT_CLAIM_RECEIPT_PREFIX } from './gifts_to_coins_legacy_daily_path_v1';
 import {
   LEVEL_SPIN_GIFT_JOURNAL_KEY,
   UNCLAIMED_DUAL_GIFTS_KEY,

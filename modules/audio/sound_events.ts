@@ -164,7 +164,6 @@ export const SOUND_EVENTS = Object.freeze({
   // зачем (владелец, 2026-08-30): из пяти кандидатов ежедневного путешествия
   // выбран только ПЕРВЫЙ звук варианта «Игра» — intro. Пульсы, reveal, tap и
   // четыре остальных направления в приложение не подключать.
-  'pm.reward.daily_journey_intro': event(require('../../assets/audio/sfx/v1/reward/pm_reward_daily_journey_intro_v1.m4a'), 0.42, 68, 0, 2560, 'reward'),
 
   // зачем (PM-206-A2): убраны 14 осиротевших id без вызывающих — pm.reward.{achievement,level_up,
   // premium_finale,vip_open}, весь pm.spin.* (Level Spin), pm.social.{friend_request,quest_complete}.

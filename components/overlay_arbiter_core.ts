@@ -11,8 +11,6 @@ export type OverlayKey =
   | 'introFullAccess'
   | 'levelUp'
   | 'themedAlert'
-  | 'dailyJourney'
-  | 'dailyJourneyDev'
   | 'premiumCelebration'
   | 'vipCelebration'
   | 'streakRevive'
@@ -55,11 +53,6 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'introFullAccess',
   'levelUp',
   'themedAlert',
-  // Daily Journey is an automatic native reveal for an already committed gift.
-  // It may wait behind startup/auth/update surfaces, but must own the native
-  // modal slot before animation starts so present/dismiss handoffs stay serial.
-  'dailyJourney',
-  'dailyJourneyDev',
   'premiumCelebration',
   'vipCelebration',
   'streakRevive',
@@ -130,8 +123,6 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'notifNudge',
   'introFullAccess',
   'levelUp',
-  'dailyJourney',
-  'dailyJourneyDev',
   'premiumCelebration',
   'vipCelebration',
   'streakRevive',
@@ -183,8 +174,6 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   introFullAccess: false,
   levelUp: false,
   themedAlert: false,
-  dailyJourney: false,
-  dailyJourneyDev: false,
   premiumCelebration: false,
   vipCelebration: false,
   streakRevive: false,

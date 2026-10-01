@@ -34,7 +34,6 @@ import FirstPurchaseSealCelebration, {
   type FirstPurchaseKind,
 } from '../FirstPurchaseSealCelebration';
 import ResultsSequence from '../feedback/ResultsSequence';
-import DailyJourneyRewardPreviewModal from './DailyJourneyRewardPreviewModal';
 import { useOverlayVisible } from '../OverlayArbiter';
 import { usePremium } from '../PremiumContext';
 import { useTheme } from '../ThemeContext';
@@ -65,11 +64,6 @@ type PreviewState =
   | Readonly<{
       type: 'lesson-results';
       variant?: never;
-      run: number;
-    }>
-  | Readonly<{
-      type: 'daily-journey';
-      day: number;
       run: number;
     }>
   // зачем (владелец 2026-09-20): празднование Plus/Pro первой кнопкой хаба.
@@ -199,7 +193,6 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState('');
   const runRef = useRef(0);
-  const dailyJourneyDayRef = useRef(3);
   const headingRef = useRef<Text>(null);
   const headingFocusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const closingRef = useRef(false);
@@ -331,15 +324,6 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
     hapticTap();
     runRef.current += 1;
     setPreview({ type: 'lesson-results', run: runRef.current });
-    requestClose(true);
-  }, [requestClose]);
-
-  const openDailyJourneyPreview = useCallback(() => {
-    hapticTap();
-    runRef.current += 1;
-    const day = dailyJourneyDayRef.current;
-    dailyJourneyDayRef.current = day >= 50 ? 1 : day + 1;
-    setPreview({ type: 'daily-journey', day, run: runRef.current });
     requestClose(true);
   }, [requestClose]);
 
@@ -476,9 +460,6 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       case 'preview-lesson-results':
         openLessonResultsPreview();
         return;
-      case 'preview-daily-journey':
-        openDailyJourneyPreview();
-        return;
       case 'preview-session-attempt-gift':
         requestClose(false, () => emitAppEvent('session_attempt_gift_rescued'));
         return;
@@ -549,7 +530,7 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         } as never));
         return;
     }
-  }, [account, applyPlusOverride, busy, openCelebrationPreview, openDailyJourneyPreview, openFirstPurchasePreview, openLessonResultsPreview, openPaywallVariant, requestClose, router, runOnboardingPreview, selectedPaywallContext]);
+  }, [account, applyPlusOverride, busy, openCelebrationPreview, openFirstPurchasePreview, openLessonResultsPreview, openPaywallVariant, requestClose, router, runOnboardingPreview, selectedPaywallContext]);
 
   const accountReady = account.phase === 'active' && Boolean(account.stableId);
   const overrideLabel = plusOverride === 'granted'
@@ -785,21 +766,6 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
           onDone={() => {
             console.log(`[DEV-CELEBRATION] first_purchase_done kind=${preview.kind}`); // guard-ok: исход обязан логироваться и в релизе
             closePreview();
-            onOpen?.();
-          }}
-        />
-      ) : null}
-
-      {preview?.type === 'daily-journey' ? (
-        <DailyJourneyRewardPreviewModal
-          key={preview.run}
-          visible={!visible && preview?.type === 'daily-journey'}
-          day={preview.day}
-          run={preview.run}
-          onDelivered={() => {
-            // зачем: по спеке у сцены нет кнопок решения — модалка закрывается
-            // сама после полёта награды; в превью ничего не начисляется.
-            closePreview('DEV: доставка «Дара дня» проиграна. Награда не начислялась.');
             onOpen?.();
           }}
         />

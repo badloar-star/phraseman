@@ -96,8 +96,7 @@ import { LEVEL_UP_ACCOUNT_LOCAL_KEYS } from './level_up_storage_keys';
 import {
   CUSTOMIZATION_ACCOUNT_LOCAL_KEYS,
 } from '../constants/customization_storage_keys';
-import { DAILY_JOURNEY_GIFT_ACCOUNT_LOCAL_PREFIXES } from '../constants/daily_journey_gift_storage_keys';
-import { DAILY_JOURNEY_FREEZE_ACCOUNT_LOCAL_PREFIXES } from '../constants/daily_journey_freeze_storage_keys';
+import { LEGACY_DAILY_PATH_ACCOUNT_LOCAL_PREFIXES } from './gifts_to_coins_legacy_daily_path_v1';
 import {
   clearCustomizationAccountLocalState,
   customizationAccountLocalKeysFrom,
@@ -635,10 +634,10 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'customization_selection_head_v1:',
   'customization_selection_outbox_v1:',
   'customization_selection_quarantine_v1:',
-  // Daily Journey gift inbox WAL, immutable roots, projection and future claims.
-  ...DAILY_JOURNEY_GIFT_ACCOUNT_LOCAL_PREFIXES,
-  // Daily Journey client-authoritative freeze WAL, immutable roots and projection.
-  ...DAILY_JOURNEY_FREEZE_ACCOUNT_LOCAL_PREFIXES,
+  // зачем (D49): «Дневной путь» удалён, но сырой журнал его подарков и щитов
+  // читает миграция «Подарки → монеты» (Q12) — он по-прежнему путешествует и
+  // стирается вместе с аккаунтом, пока миграция не дойдёт до done.
+  ...LEGACY_DAILY_PATH_ACCOUNT_LOCAL_PREFIXES,
   'external_economy_result_v1:',
   'external_economy_event_applied_v1:',
   // зачем (PM-210, экономия чтений): курсор «до сюда события применены» — данные

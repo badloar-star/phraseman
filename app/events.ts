@@ -48,14 +48,6 @@ export type AppEventMap = {
   welcome_closed: undefined;
   /** Подарок лояльности (72ч для существующих free-юзеров) активирован/откатан — пересчитать доступ. */
   loyalty_gift_changed: undefined;
-  /** Immutable daily-journey gift inbox or its seen watermark changed. */
-  daily_journey_gifts_changed: undefined;
-  /**
-   * Сцена «Дар дня» долетела до цели (спека 2026-08-30, п. 5.8 — landing
-   * acknowledgement): главная пульсирует карточку «Статистика» и перечитывает
-   * inbox. occurrenceId = null в DEV-превью, где durable-запись не создаётся.
-   */
-  daily_journey_delivered: { day: number; occurrenceId: string | null };
   /** «Сокровищница»: инвентарь карточек изменился (дроп/restore). */
   collectibles_changed: undefined;
   gold_theme_unlocked: { source: string };

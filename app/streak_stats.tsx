@@ -1,7 +1,7 @@
 import FeatureIntroEntry from '../components/feature_intro/FeatureIntroEntry';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import Reanimated, { FadeInDown, FadeOut, useSharedValue, useAnimatedStyle, withTiming, withDelay, withRepeat, withSequence, cancelAnimation, Easing } from 'react-native-reanimated';
+import Reanimated, { FadeInDown, FadeOut, useSharedValue, useAnimatedStyle, withTiming, withDelay, cancelAnimation, Easing } from 'react-native-reanimated';
 import TapScale from '../components/TapScale';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { View, Text, ScrollView, Pressable, TouchableOpacity, Platform, Share, StyleSheet, } from 'react-native';
@@ -34,7 +34,7 @@ import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { commitPremiumFreeFreeze } from './economy/premium_free_freeze';
 import { DebugLogger } from './debug-logger';
 import { getStatsCache, hydrateStatsCacheFromStorage, refreshStatsCache, type StatsCachedDay, type StatsCachedTimeDay, type StatsPreloadData, } from './statsCache';
-import { emitAppEvent, onAppEvent } from './events';
+import { emitAppEvent } from './events';
 import { syncDailyAnalyticsIfNeeded, loadPercentileData } from './daily_analytics_sync';
 import { loadLifetimeProfileStats, type LifetimeProfileStats } from './lifetime_profile_stats';
 import { devRandomizeLifetimePathDailyMetrics, loadLifetimeTotalsChartDays, loadWeeklyLearnedCounts, type LifetimeTotalsChartKind, type LifetimeChartDay, type DevLifetimePathRandomSums, } from './stats_daily_breakdown';
@@ -58,15 +58,11 @@ import { DEFAULT_STATS_PRIMARY_METRIC, normalizeStatsPrimaryMetric, recentUnlock
 import { statsPrimaryMetricKey } from './target_storage_keys';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
 import { navigateAfterModalClose } from './safe_modal_navigation';
-import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration } from './account_generation';
-import { readDailyJourneyGiftProjection } from './daily_journey_gift_inbox';
-import { createDailyJourneyStatsUnreadController } from './daily_journey_stats_unread';
 import { shouldUsePracticeWarmup } from './streak_stats_practice_balance';
 import { safeRouterBack } from './navigation_back';
 import { visiblePercentile } from './stats_percentile_display';
 import { resolveTesterNoPremiumOverride } from './tester_premium_override';
 import { noAndroidOutline } from '../constants/androidGlow';
-import { useReduceMotion } from '../hooks/use_reduce_motion';
 const CHART_H = 110;
 const DAYS_SHOW = 14;
 // зачем (results.html «Серия и статистика»): акцент карточек — тон стекла активной темы (t.accent = токен cta),
@@ -105,21 +101,6 @@ function statsCardGradient(t: {
 function statsSurfaceRadius(themeMode: ThemeMode, fallback: number): number {
     return fallback;
 }
-/** зачем: форма единственного счётчика на кнопке подарков. Вынесена на модульный
-    уровень, чтобы объект не пересоздавался на каждом рендере шапки и чтобы обе
-    ветки бейджа (обычная и «есть непросмотренное») гарантированно совпадали
-    геометрией — иначе цифра прыгала бы при смене состояния. */
-const statsGiftBadgeShape = {
-    position: 'absolute',
-    top: 4,
-    right: 4,
-    minWidth: 16,
-    height: 16,
-    borderRadius: 8,
-    paddingHorizontal: 4,
-    alignItems: 'center',
-    justifyContent: 'center',
-} as const;
 function pluralRu(n: number, one: string, few: string, many: string): string {
     const mod10 = Math.abs(n) % 10;
     const mod100 = Math.abs(n) % 100;
@@ -128,12 +109,6 @@ function pluralRu(n: number, one: string, few: string, many: string): string {
     if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14))
         return few;
     return many;
-}
-function ruGiftPhrase(total: number): string {
-    return total > 0 ? `${total} ${pluralRu(total, 'подарок', 'подарка', 'подарков')}` : 'Подарки';
-}
-function ukGiftPhrase(total: number): string {
-    return total > 0 ? `${total} ${pluralRu(total, 'подарунок', 'подарунки', 'подарунків')}` : 'Подарунки';
 }
 /** Линейный график «Весь путь»: сетка; линия по сырым значениям; опционально вторая — сглаженная (rollingAvg3). */
 const LIFETIME_LINE_COL_W = 26;
@@ -1825,39 +1800,6 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     // экрана до ответа loadAchievementStates() (см. achievementCountPeek выше).
     const [achievementCount, setAchievementCount] = useState(() => achievementCountPeek ?? 0);
     const [recentAchievementIds, setRecentAchievementIds] = useState<string[]>(() => recentAchievementIdsPeek ?? []);
-    const [dailyJourneyUnreadCount, setDailyJourneyUnreadCount] = useState(0);
-    const [dailyJourneyPendingCount, setDailyJourneyPendingCount] = useState(0);
-    const combinedPendingGiftCount = dailyJourneyPendingCount;
-    const dailyJourneyUnreadHop = useSharedValue(0);
-    const dailyJourneyUnreadHopStyle = useAnimatedStyle(() => ({ transform: [{ translateY: dailyJourneyUnreadHop.value }] }));
-    const reduceMotion = useReduceMotion();
-    const stopDailyJourneyUnreadHop = useCallback(() => {
-        cancelAnimation(dailyJourneyUnreadHop);
-        dailyJourneyUnreadHop.value = 0;
-    }, [dailyJourneyUnreadHop]);
-    const startDailyJourneyUnreadHop = useCallback(() => {
-        cancelAnimation(dailyJourneyUnreadHop);
-        // Reanimated transform animations useNativeDriver: true by design; no layout property changes here.
-        dailyJourneyUnreadHop.value = withRepeat(withSequence(
-            withTiming(-4, { duration: 110, easing: Easing.bezier(0.22, 1, 0.36, 1) }),
-            withTiming(0, { duration: 160, easing: Easing.bezier(0.77, 0, 0.175, 1) }),
-            withDelay(6000, withTiming(0, { duration: 1 })),
-        // зачем (PM-032): три подпрыгивания и покой, а не вечный зов.
-        ), 3, false);
-    }, [dailyJourneyUnreadHop]);
-    const dailyJourneyUnreadController = useMemo(() => createDailyJourneyStatsUnreadController({
-        captureToken: captureAccountGeneration,
-        isTokenCurrent: (token) => isCurrentAccountGeneration(token, token.stableId),
-        readProjection: readDailyJourneyGiftProjection,
-        displayUnreadCount: setDailyJourneyUnreadCount,
-        displayPendingCount: setDailyJourneyPendingCount,
-        startHop: startDailyJourneyUnreadHop,
-        stopHop: stopDailyJourneyUnreadHop,
-        shouldReduceMotion: () => reduceMotion,
-        reportError: () => {
-            // Keep the last visible unread projection when local storage is temporarily unavailable.
-        },
-    }), [reduceMotion, startDailyJourneyUnreadHop, stopDailyJourneyUnreadHop]);
     // Свёрнут по умолчанию: таблица источников — справка, а не ежедневная ценность.
     const [bonusOpen, setBonusOpen] = useState(false);
     const [seriesOpen, setSeriesOpen] = useState(false);
@@ -1920,25 +1862,6 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             // The selection still works for this visit when persistence is unavailable.
         });
     }, [studyTarget]);
-    useFocusEffect(useCallback(() => {
-        if (!statsRuntimeActive) {
-            dailyJourneyUnreadController.deactivate();
-            return undefined;
-        }
-        void dailyJourneyUnreadController.activate().catch(() => {});
-        const giftsSubscription = onAppEvent('daily_journey_gifts_changed', () => {
-            void dailyJourneyUnreadController.reload().catch(() => {});
-        });
-        const accountSubscription = subscribeAccountGeneration(() => {
-            void dailyJourneyUnreadController.resetForAccount().catch(() => {});
-        });
-        return () => {
-            giftsSubscription.remove();
-            accountSubscription.remove();
-            dailyJourneyUnreadController.deactivate();
-        };
-    }, [dailyJourneyUnreadController, statsRuntimeActive]));
-    useEffect(() => () => dailyJourneyUnreadController.dispose(), [dailyJourneyUnreadController]);
     const scrollRef = useRef<any>(null);
     const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
     const bouncyStyle = useBouncyStyle(bouncyStretch);
@@ -2263,62 +2186,8 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                     pl: "Twoje wyniki",
                 })}
                 </FlowText>
-                <Reanimated.View style={dailyJourneyUnreadHopStyle}>
-                <TouchableOpacity
-                  testID="stats-header-gifts"
-                  hitSlop={8}
-                  accessibilityRole="button"
-                  accessibilityHint={triLang(lang, {
-                    ru: ruGiftPhrase(combinedPendingGiftCount),
-                    uk: ukGiftPhrase(combinedPendingGiftCount),
-                    en: combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} gift${combinedPendingGiftCount === 1 ? '' : 's'}` : 'Gifts',
-                    es: combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} regalo${combinedPendingGiftCount === 1 ? '' : 's'}` : 'Regalos',
-                    'pt-BR': combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} presente${combinedPendingGiftCount === 1 ? '' : 's'}` : 'Presentes',
-                    vi: combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} quà` : 'Quà',
-                    id: combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} hadiah` : 'Hadiah',
-                    tr: combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} hediye` : 'Hediyeler',
-                    pl: combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} ${combinedPendingGiftCount === 1 ? 'prezent' : 'prezentów'}` : 'Prezenty',
-                  })}
-                  accessibilityLabel={triLang(lang, {
-                    ru: combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Подарки: ${combinedPendingGiftCount}. Непросмотренные подарки Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Непросмотренные подарки Daily Journey: ${dailyJourneyUnreadCount}` : ruGiftPhrase(combinedPendingGiftCount),
-                    uk: combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Подарунки: ${combinedPendingGiftCount}. Непереглянуті подарунки Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Непереглянуті подарунки Daily Journey: ${dailyJourneyUnreadCount}` : ukGiftPhrase(combinedPendingGiftCount),
-                    en: combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Gifts: ${combinedPendingGiftCount}. Unseen Daily Journey gifts: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Unseen Daily Journey gifts: ${dailyJourneyUnreadCount}` : (combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} gift${combinedPendingGiftCount === 1 ? '' : 's'}` : 'Gifts'),
-                    es: combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Regalos: ${combinedPendingGiftCount}. Regalos sin ver de Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Regalos sin ver de Daily Journey: ${dailyJourneyUnreadCount}` : (combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} regalo${combinedPendingGiftCount === 1 ? '' : 's'}` : 'Regalos'),
-                    'pt-BR': combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Presentes: ${combinedPendingGiftCount}. Presentes não vistos do Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Presentes não vistos do Daily Journey: ${dailyJourneyUnreadCount}` : (combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} presente${combinedPendingGiftCount === 1 ? '' : 's'}` : 'Presentes'),
-                    vi: combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Quà: ${combinedPendingGiftCount}. Quà Daily Journey chưa xem: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Quà Daily Journey chưa xem: ${dailyJourneyUnreadCount}` : (combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} quà` : 'Quà'),
-                    id: combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Hadiah: ${combinedPendingGiftCount}. Hadiah Daily Journey belum dilihat: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Hadiah Daily Journey belum dilihat: ${dailyJourneyUnreadCount}` : (combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} hadiah` : 'Hadiah'),
-                    tr: combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Hediyeler: ${combinedPendingGiftCount}. Görülmemiş Daily Journey hediyeleri: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Görülmemiş Daily Journey hediyeleri: ${dailyJourneyUnreadCount}` : (combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} hediye` : 'Hediyeler'),
-                    pl: combinedPendingGiftCount > 0 && dailyJourneyUnreadCount > 0 ? `Prezenty: ${combinedPendingGiftCount}. Nieobejrzane prezenty Daily Journey: ${dailyJourneyUnreadCount}` : dailyJourneyUnreadCount > 0 ? `Nieobejrzane prezenty Daily Journey: ${dailyJourneyUnreadCount}` : (combinedPendingGiftCount > 0 ? `${combinedPendingGiftCount} ${combinedPendingGiftCount === 1 ? 'prezent' : 'prezentów'}` : 'Prezenty'),
-                  })}
-                  activeOpacity={0.82}
-                  onPress={() => {
-                    hapticTap();
-                    router.push('/' as any);
-                  }}
-                  style={[{ width: 48, height: 48, borderRadius: 15, alignItems: 'center', justifyContent: 'center', marginLeft: 10, overflow: 'hidden', borderWidth: 0 }, isGoldTheme ? goldShadow(2) : null]}
-                >
-                  <LinearGradient colors={statsCardGradient(t)} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill}/>
-                  <Ionicons name="gift-outline" size={20} color={combinedPendingGiftCount > 0 ? (isGoldTheme ? GOLD_RICH.champagne : t.accent) : t.textMuted}/>
-                  {/* зачем: владелец просил ОДИН индикатор на подарке. Раньше их было два —
-                      общий счёт сверху справа и отдельный счёт непросмотренных Daily Journey
-                      снизу слева. Второй почти всегда дублировал часть первого
-                      (combinedPendingGiftCount уже включает dailyJourneyPendingCount), поэтому
-                      на иконке светились две одинаковые цифры. Оставляем один бейдж с общим
-                      числом, а «есть непросмотренное» показываем ЦВЕТОМ этого же бейджа —
-                      сигнал сохранён, лишнего элемента нет. */}
-                  {combinedPendingGiftCount > 0 ? (
-                    dailyJourneyUnreadCount > 0 ? (
-                      <View testID="stats-header-daily-journey-unread" style={[statsGiftBadgeShape, { backgroundColor: t.correct }]}>
-                        <Text style={{ color: t.correctText, fontSize: 9, fontWeight: '900' }}>{combinedPendingGiftCount}</Text>
-                      </View>
-                    ) : (
-                      <View style={[statsGiftBadgeShape, { backgroundColor: isGoldTheme ? GOLD_RICH.champagne : t.accent }]}>
-                        <Text style={{ color: t.bgCard, fontSize: 9, fontWeight: '900' }}>{combinedPendingGiftCount}</Text>
-                      </View>
-                    )
-                  ) : null}
-                </TouchableOpacity>
-                </Reanimated.View>
+                {/* зачем (D49, владелец 2026-10-01): кнопка «Подарки» показывала только подарки
+                    «Дневного пути» — фича удалена целиком, кнопку убрали вместе с ней. */}
                 </View>
               </View>
 

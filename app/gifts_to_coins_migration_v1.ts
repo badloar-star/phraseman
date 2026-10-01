@@ -38,7 +38,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 import { InteractionManager } from 'react-native';
 
-import { DAILY_JOURNEY_GIFT_CLAIM_RECEIPT_PREFIX } from '../constants/daily_journey_gift_storage_keys';
+// зачем (D49, 2026-10-01): «Дневной путь» удалён целиком; ключи его журнала и
+// чтение незабранных подарков перенесены в модуль миграции — компенсация Q12 цела.
+import {
+  LEGACY_DAILY_PATH_GIFT_CLAIM_RECEIPT_PREFIX,
+  purgeRetiredDailyPathAccountKeys,
+  purgeRetiredDailyPathPresentationKeys,
+  readLegacyDailyPathPending,
+} from './gifts_to_coins_legacy_daily_path_v1';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -136,6 +143,11 @@ export type GiftsToCoinsDeps = Readonly<{
   enqueueCoins: (input: Readonly<{ token: AccountGenerationToken; requestId: string; giftId: string }>) => Promise<void>;
   syncCoins: (token: AccountGenerationToken) => Promise<void>;
   sendReport: (payload: GiftsToCoinsReportPayload) => Promise<void>;
+  /**
+   * Стереть сырой журнал удалённого «Дневного пути» владельца. Зовётся ТОЛЬКО
+   * после done: до этого журнал — источник компенсации. Необязателен (тесты).
+   */
+  purgeRetiredDailyPath?: (owner: string) => Promise<void>;
 }>;
 
 export type GiftsToCoinsOutcome =
@@ -394,7 +406,7 @@ async function retireItems(
     assertCurrent(token, wal.owner);
     const plan = await buildGiftsToCoinsRetireWrites(wal.owner, wal.items, {
       claimedAtMs: wal.plannedAtMs,
-      dailyJourneyReceiptPrefix: DAILY_JOURNEY_GIFT_CLAIM_RECEIPT_PREFIX,
+      dailyJourneyReceiptPrefix: LEGACY_DAILY_PATH_GIFT_CLAIM_RECEIPT_PREFIX,
     });
     assertCurrent(token, wal.owner);
     const next: GiftsToCoinsWal = Object.freeze({ ...wal, phase: 'retired', updatedAtMs: deps.now() });
@@ -410,7 +422,8 @@ async function retireItems(
   for (const requestId of retired.paidRequestIds) {
     log(`retire source=paid_spin req=${requestId.slice(0, 8)} receipt=closed envelope=kept_for_wallet`);
   }
-  for (const event of ['level_spin_balance_changed', 'daily_journey_gifts_changed'] as const) {
+  // Событие daily_journey_gifts_changed удалено вместе с «Дневным путём» (D49).
+  for (const event of ['level_spin_balance_changed'] as const) {
     try { emitAppEvent(event); } catch (error) { logCatch(`emit_${event}`, error); }
   }
   return retired.wal;
@@ -484,6 +497,18 @@ async function sendReportIfPending(
 
 let inFlight: Promise<GiftsToCoinsOutcome> | null = null;
 
+async function purgeDailyPathAfterDone(owner: string, deps: GiftsToCoinsDeps): Promise<void> {
+  if (!deps.purgeRetiredDailyPath) {
+    log('daily_path_purge skip reason=no_dep');
+    return;
+  }
+  try {
+    await deps.purgeRetiredDailyPath(owner);
+  } catch (error) {
+    logCatch('daily_path_purge', error);
+  }
+}
+
 /**
  * Один прогон миграции для ТЕКУЩЕГО аккаунта. Безопасно звать сколько угодно
  * раз: после `done` выходит одним чтением ключа.
@@ -520,6 +545,7 @@ async function runOnce(trigger: string, deps: GiftsToCoinsDeps): Promise<GiftsTo
     if (wal?.phase === 'done') {
       log(`skip reason=already_done total=${wal.totalCoins} report=${wal.report.status}`);
       await sendReportIfPending(wal, token, deps);
+      await purgeDailyPathAfterDone(owner, deps);
       return 'already_done';
     }
     if (wal?.phase === 'blocked' && deps.now() < (wal.blockedUntilMs ?? 0)) {
@@ -573,6 +599,7 @@ async function runOnce(trigger: string, deps: GiftsToCoinsDeps): Promise<GiftsTo
     log(`${wal.phase} total=${wal.totalCoins} items=${wal.items.length} run=${wal.run} `
       + `corrupt=${wal.corruptSources.join(',') || '-'} ms=${deps.now() - startedAt}`);
     await sendReportIfPending(wal, token, deps);
+    if (wal.phase === 'done') await purgeDailyPathAfterDone(owner, deps);
     return wal.phase === 'blocked' ? 'blocked' : 'done';
   } catch (error) {
     if (error instanceof AccountChangedError) {
@@ -600,6 +627,9 @@ export function startGiftsToCoinsMigrationScheduler(
     return () => {};
   }
   schedulerStarted = true;
+  // зачем (D49): разово стираем ключи ПОКАЗА окна «бонус дня» удалённого
+  // «Дневного пути» — ценности в них нет, журнал подарков не трогаем.
+  void purgeRetiredDailyPathPresentationKeys();
   let timer: ReturnType<typeof setTimeout> | null = null;
   let task: { cancel: () => void } | null = null;
   const clear = (): void => {
@@ -637,16 +667,14 @@ export function defaultGiftsToCoinsDeps(): GiftsToCoinsDeps {
     now: () => Date.now(),
     isEnabled: () => getRemoteBool('gifts_to_coins_enabled'),
     readDailyJourneyPending: async (token) => {
-      const { readDailyJourneyGiftProjection } = await import('./daily_journey_gift_inbox');
-      const projection = await readDailyJourneyGiftProjection(token);
-      return projection.pending.map((item) => Object.freeze({
-        operationId: item.operationId,
-        ownerStableId: item.ownerStableId,
-        payloadFingerprint: item.payloadFingerprint,
-        createdAtMs: item.createdAtMs,
-        reward: item.reward,
-      }));
+      const owner = token.stableId;
+      if (!owner || !isCurrentAccountGeneration(token, owner)) {
+        log(`daily_path_read abort reason=account_stale hasOwner=${!!owner}`);
+        throw new Error('daily_journey_account_stale');
+      }
+      return readLegacyDailyPathPending(owner);
     },
+    purgeRetiredDailyPath: (owner) => purgeRetiredDailyPathAccountKeys(owner),
     applyPlus: (giftId, occurrenceId, token) => applyGiftsToCoinsPlusDays(giftId, occurrenceId, token),
     enqueueCoins: async ({ token, requestId, giftId }) => {
       const { enqueueLevelSpinStarGrant } = await import('./level_spin_star_grants');

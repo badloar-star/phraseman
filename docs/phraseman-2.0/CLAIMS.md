@@ -103,3 +103,4 @@ PM-233 (E23 ledger покупок/прав; preflight+сухой прогон, �
 PM-233-FOLLOWUP (D136–D140: удалить денежные/наградные пути MAX, жемчуг, +10 ответов, подарочные наборы, квесты, коллекции; скрипт D137 без прода) — New session [29b65f] / Account V2 — взял 16:22
 PM-234 (правила оплаченной косметики/бустов — сводка решений D70…D140) — New session [29b65f] / Account V2 — взял 18:03 — готово 18:03 (evidence/PM-234_paid_cosmetics_boosts_rules.md)
 PM-235 (migration version/совместимость клиентов — evidence) — New session [29b65f] / Account V2 — взял 18:03 — частично 18:10: evidence готов, A1/A2 не закрыты — задачи T1–T8 координатору
+PM-235-T1..T6 (план force_update, client_too_old, два устройства, compatibility.ts, версия формы V2, откат 7B на эмуляторе) — New session [29b65f] / Account V2 — взял 18:13 (T6 — в E2E на эмуляторе сейчас)

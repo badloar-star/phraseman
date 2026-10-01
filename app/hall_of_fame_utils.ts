@@ -160,7 +160,14 @@ export function touchStreakForToday(reason: string): Promise<number> | null {
   if (streakTouchInFlight) return streakTouchInFlight;
   console.log(`[STREAK] touch reason=${reason} day=${day}`);
   streakTouchInFlight = updateStreakOnActivity()
-    .then((streak) => { streakTouchedDayKey = day; return streak; })
+    .then((streak) => {
+      streakTouchedDayKey = day;
+      // зачем (§59): раз в сутки отдать серию серверу, иначе облако отстаёт от телефона.
+      void import('./streak_server_sync')
+        .then(({ syncStreakToServerOncePerDay }) => syncStreakToServerOncePerDay(streak))
+        .catch((error: unknown) => console.warn('[STREAK-SYNC] lazy_import_failed', String(error)));
+      return streak;
+    })
     .catch((error: unknown) => {
       console.warn('[STREAK] touch:failed', error instanceof Error ? error.message : String(error));
       return 0;

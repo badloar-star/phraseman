@@ -21,6 +21,9 @@ export const PROGRESS_EVENT_TYPES = [
   'mistake_practice_answer',
   'diagnostic_test',
   'plan_task_complete',
+  // зачем (§59 координатора, баг серии 01.10): раз в сутки телефон присылает свою серию и
+  // список активных дней — сервер принимает только правдоподобное (applyClientStreakEvidence).
+  'streak_sync',
 ] as const;
 
 export type ProgressEventType = typeof PROGRESS_EVENT_TYPES[number];
@@ -47,6 +50,15 @@ export type ProgressEventResult = {
 
 type ApplyResult = Omit<ProgressEventResult, 'stableUid' | 'duplicate'> & {
   progressPatch: ProgressMap;
+  /** Решение по серии телефона — для лога причины отказа (накрутку видно в логах). */
+  streakEvidence?: StreakEvidenceDecision;
+};
+
+export type StreakEvidenceDecision = {
+  accepted: boolean;
+  reason: string;
+  claimed: number;
+  cap: number | null;
 };
 
 export type ProgressServerState = {
@@ -134,6 +146,70 @@ function dateKeyToUtcMs(value: string): number | null {
     return null;
   }
   return ms;
+}
+
+const STREAK_SYNC_MAX_ACTIVE_DAYS = 400;
+
+function shiftDateKey(key: string, deltaDays: number): string | null {
+  const ms = dateKeyToUtcMs(key);
+  return ms == null ? null : new Date(ms + deltaDays * DAY_MS).toISOString().slice(0, 10);
+}
+
+/** Сколько дней подряд из activeDays заканчиваются в endKey (включительно). */
+export function activeRunEndingAt(activeDays: ReadonlySet<string>, endKey: string): number {
+  let count = 0;
+  let cursor: string | null = endKey;
+  while (cursor && activeDays.has(cursor)) {
+    count += 1;
+    cursor = shiftDateKey(cursor, -1);
+  }
+  return count;
+}
+
+function parseActiveDays(raw: unknown): Set<string> | null {
+  if (!Array.isArray(raw)) return null;
+  const days = new Set<string>();
+  for (const item of raw.slice(0, STREAK_SYNC_MAX_ACTIVE_DAYS)) {
+    const key = cleanString(item, 10);
+    if (dateKeyToUtcMs(key) != null) days.add(key);
+  }
+  return days;
+}
+
+/**
+ * Правдоподобие серии телефона (§59): не больше дней подряд в присланном списке активных дней
+ * (журнал телефона в UTC, дата серии локальная — допускаем сдвиг на сутки) и не больше дней
+ * с создания аккаунта. Без списка (старые события) — только возраст аккаунта; у streak_sync
+ * список обязателен.
+ */
+export function streakEvidencePlausibility(input: {
+  claimed: number;
+  clientLast: string;
+  activeDays: ReadonlySet<string> | null;
+  requireActiveDays: boolean;
+  accountCreatedAtMs: number | null;
+}): StreakEvidenceDecision {
+  const { claimed, clientLast, activeDays, requireActiveDays, accountCreatedAtMs } = input;
+  let cap: number | null = null;
+  if (activeDays) {
+    const prev = shiftDateKey(clientLast, -1);
+    cap = Math.max(
+      activeRunEndingAt(activeDays, clientLast),
+      prev ? activeRunEndingAt(activeDays, prev) + 1 : 0,
+    );
+    if (claimed > cap) return { accepted: false, reason: 'exceeds_active_run', claimed, cap };
+  } else if (requireActiveDays) {
+    return { accepted: false, reason: 'active_days_missing', claimed, cap: null };
+  }
+  const lastMs = dateKeyToUtcMs(clientLast);
+  if (accountCreatedAtMs != null && accountCreatedAtMs > 0 && lastMs != null) {
+    const createdDayMs = dateKeyToUtcMs(new Date(accountCreatedAtMs).toISOString().slice(0, 10)) ?? lastMs;
+    // +1 сутки допуска на часовой пояс: локальная дата серии может опережать UTC.
+    const ageCap = Math.floor((lastMs - createdDayMs) / DAY_MS) + 2;
+    cap = cap == null ? ageCap : Math.min(cap, ageCap);
+    if (claimed > ageCap) return { accepted: false, reason: 'exceeds_account_age', claimed, cap };
+  }
+  return { accepted: true, reason: 'plausible', claimed, cap };
 }
 
 function dayDiff(a: string, b: string): number | null {
@@ -448,6 +524,8 @@ function setUnlocked(progress: ProgressMap, patch: ProgressMap, lessonId: number
 export type ProgressDailyContext = {
   /** Сколько попыток экзамена уже зачтено сегодня. */
   examAttemptsToday?: number;
+  /** users/{uid}.created_at в мс — потолок правдоподобной серии телефона (§59). */
+  accountCreatedAtMs?: number | null;
 };
 
 function applyDailyStreak(progress: ProgressMap, patch: ProgressMap, activeDate: string): number {
@@ -471,7 +549,14 @@ function applyDailyStreak(progress: ProgressMap, patch: ProgressMap, activeDate:
   return next;
 }
 
-function applyClientStreakEvidence(progress: ProgressMap, patch: ProgressMap, event: ProgressEventInput, activeDate: string): ProgressMap {
+function applyClientStreakEvidence(
+  progress: ProgressMap,
+  patch: ProgressMap,
+  event: ProgressEventInput,
+  activeDate: string,
+  accountCreatedAtMs: number | null,
+  decisionOut: { value?: StreakEvidenceDecision },
+): ProgressMap {
   const clientLast = cleanString(event.payload.clientLastActiveDate, 10);
   const clientStreak = clampInt(event.payload.clientStreakCount, 0, 100000);
   if (!clientLast || clientStreak <= 0) return progress;
@@ -480,6 +565,17 @@ function applyClientStreakEvidence(progress: ProgressMap, patch: ProgressMap, ev
   if (diffToEventDate == null || diffToEventDate < 0 || diffToEventDate > 1) {
     return progress;
   }
+
+  // зачем (§59): серию телефона нельзя накрутить — проверяем правдоподобие до сравнения.
+  const decision = streakEvidencePlausibility({
+    claimed: clientStreak,
+    clientLast,
+    activeDays: parseActiveDays(event.payload.activeDays),
+    requireActiveDays: event.type === 'streak_sync',
+    accountCreatedAtMs,
+  });
+  decisionOut.value = decision;
+  if (!decision.accepted) return progress;
 
   const serverLast = cleanString(progress.last_active_date ?? progress.streak_last_date, 10);
   const serverStreak = Math.max(0, readInt(progress.streak_count, 0));
@@ -582,10 +678,11 @@ export function applyProgressEvent(
   const serverDate = isoDateUtc(now);
   const patch: ProgressMap = {};
   // Persist only structural learning progress and the streak below.
-  void daily;
-
   // Streak is learning progress and remains synchronized for real activity.
-  const progressWithClientStreak = applyClientStreakEvidence(progress, patch, event, activeDate);
+  const streakDecision: { value?: StreakEvidenceDecision } = {};
+  const progressWithClientStreak = applyClientStreakEvidence(
+    progress, patch, event, activeDate, daily?.accountCreatedAtMs ?? null, streakDecision,
+  );
   const streakCount = applyDailyStreak(progressWithClientStreak, patch, activeDate);
 
   if (event.type === 'lesson_complete') {
@@ -601,6 +698,7 @@ export function applyProgressEvent(
     streakCount,
     activeDate,
     progressPatch: patch,
+    ...(streakDecision.value ? { streakEvidence: streakDecision.value } : {}),
   };
 }
 
@@ -652,6 +750,22 @@ export function buildMigrationProvenance(
 }
 
 const DAILY_EVENT_LIMIT = 500;
+
+/** users/{uid}.created_at: число мс, ISO-строка или Timestamp; иначе null (потолка нет). */
+export function parseAccountCreatedAtMs(raw: unknown): number | null {
+  if (typeof raw === 'number' && Number.isFinite(raw) && raw > 0) return raw;
+  if (typeof raw === 'string') {
+    const asNum = Number(raw);
+    if (Number.isFinite(asNum) && asNum > 0) return asNum;
+    const parsed = Date.parse(raw);
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+  if (raw && typeof raw === 'object' && typeof (raw as { toMillis?: unknown }).toMillis === 'function') {
+    const ms = (raw as { toMillis: () => number }).toMillis();
+    return Number.isFinite(ms) && ms > 0 ? ms : null;
+  }
+  return null;
+}
 
 export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   const authUid = request.auth?.uid;
@@ -755,7 +869,18 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
     const progress = buildProgressBaseline(rawProgress, userSnap.data()?.progressServerState, now);
     const applied = applyProgressEvent(progress, event, now, {
       examAttemptsToday,
+      accountCreatedAtMs: parseAccountCreatedAtMs(userSnap.data()?.created_at),
     });
+    if (applied.streakEvidence && !applied.streakEvidence.accepted) {
+      // зачем (§59): отказ в серии телефона — оставляем серверную и называем причину.
+      console.warn(JSON.stringify({
+        event: 'progress_streak_evidence_rejected',
+        stableUid,
+        eventType: event.type,
+        eventId: event.eventId,
+        ...applied.streakEvidence,
+      }));
+    }
     const learningMetrics = await prepareLearningCompletionMetrics({
       db,
       tx,

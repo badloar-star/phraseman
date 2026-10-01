@@ -28,6 +28,7 @@ export type ProgressEventType =
   | 'mistake_practice_answer'
   | 'diagnostic_test'
   | 'plan_task_complete'
+  | 'streak_sync'
   // зачем: порядок обязан совпадать с PROGRESS_EVENT_TYPES в functions/src/progress_events.ts —
   // tests/progress_event_type_contract сверяет списки как упорядоченные, чтобы новый тип события
   // нельзя было завести только на одной стороне.

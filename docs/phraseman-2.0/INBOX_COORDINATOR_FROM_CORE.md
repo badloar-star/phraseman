@@ -325,3 +325,8 @@ E24: docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md, E24_store_de
 - Q67 календарные сутки UTC. Q68 да — ядро записывает Q55 D-номером в 03_DECISIONS.md. Q69 да — скрипт бэкфилла expireAt после проверки TTL-политик (запуск на проде — через координатора).
 - Q70 (а) экран /runes_wallet остаётся как «Монеты», S01 исполнен. Q71 R064 привести к D38. Q72 allowlist + перенос событий в «Активность» (R200–R202). Q73 да «файл:ключ». Q74 да — пачка строк про удалённое передаётся «Дизайну».
 - §28 YouTube-расшифровка: AccountV2 попрошен закоммитить legacy.html/index.ts и сообщить ядру «файлы свободны». Выкладку сделает координатор после подключения; шаги Google Cloud Console передаю владельцу.
+
+## §AV2-2 — 2026-10-01: PM-233-FOLLOWUP (D136–D140) — для координатора
+- admin/v2/legacy.html + functions/src/index.ts закоммичены e342c2772 (ядро уведомлено «файлы свободны»).
+- **Функции к удалению при выкладке (15, НЕ удалял, не выкладывал):** adminGrantVoiceMinutes, aiDialogBuyExtraReplies, communityRedeemPackGiftVoucher, flashcardPackGiftRedeem, flashcardPackGiftSyncState, flashcardPackGiftGrantGlobalBroadcast, questGetActive, questReportProgress, questClaimReward, adminWriteQuest, adminActivateQuest, adminArchiveQuest, adminDeleteQuest, adminListQuests, collectiblesClaimDrop. Также убран параметр VOICE_MINUTE_SANDBOX_STABLE_UIDS и эти функции из deploy-профилей functions/package.json.
+- Остальной пакет (~95 файлов, удаление модулей/экранов) НЕ закоммичен: сторожа массового/широкого коммита требуют флагов, классификатор Claude их запретил — владельцу дана команда (список файлов: scratchpad commit_list.txt сессии Account V2). app/_layout.tsx и app/community_packs/functionsClient.ts — смешаны с сессией App Check, докоммит после неё.

@@ -243,12 +243,26 @@ function firebaseSafeName(event: string): string {
   return event.replace(/[^a-zA-Z0-9_]/g, '_').slice(0, 40);
 }
 
+/**
+ * зачем: Q66 (идея коммита 22372ce80 из codex/all-development-integration) — String.slice(0, 100)
+ * режет по UTF-16 и может разрезать эмодзи пополам, в Firebase уходил битый символ.
+ * Режем по СИМВОЛАМ (кодпоинтам), а одиночные суррогаты выбрасываем. В отличие от оригинала
+ * НЕ бросаем исключение: аналитика не должна терять всё событие из-за одного битого символа.
+ */
+export function truncateFirebaseString(value: string, maxCharacters = 100): string {
+  const whole = Array.from(value).filter((character) => {
+    const codePoint = character.codePointAt(0) ?? 0;
+    return codePoint < 0xD800 || codePoint > 0xDFFF;
+  });
+  return whole.slice(0, maxCharacters).join('');
+}
+
 /** В Firebase params значения должны быть string|number. Приводим безопасно. */
 function firebaseSafeParams(props: Record<string, unknown>): Record<string, string | number> {
   const out: Record<string, string | number> = {};
   for (const [k, v] of Object.entries(props)) {
     if (v == null) continue;
-    out[k.slice(0, 40)] = typeof v === 'number' ? v : String(v).slice(0, 100);
+    out[k.slice(0, 40)] = typeof v === 'number' ? v : truncateFirebaseString(String(v));
   }
   return out;
 }

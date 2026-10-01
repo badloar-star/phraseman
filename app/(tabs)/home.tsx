@@ -63,9 +63,7 @@ import {
   markHomeArrivalPlayed,
   readSavedCardsFirstRun,
 } from '../saved_cards_first_run';
-import { getShardsBalance, peekLastKnownShardsBalance, onStreakUpdated } from '../shards_system';
 import { getRunesBalance, peekRunes } from '../runes_system';
-import { coinIconForBalance } from '../coin_icons';
 import { buildLastLessonFromHydration, peekHomeScreenHydration, rememberHomeScreenHydration, resolveHomeProfileVisuals, shouldApplyHomeSnapshotToStats } from '../home_screen_hydration';
 import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration, type AccountGenerationToken } from '../account_generation';
 // зачем (PM-037, владелец 2026-09-24): плавающая кнопка спина на карточке
@@ -523,7 +521,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const homeRuntimeActiveRef = useRef(homeRuntimeActive);
     // Home may mount while another retained tab owns runtime work.
     const homeDataDirtyRef = useRef(true);
-    const shardsDirtyRef = useRef(false);
     const streakMarkersDirtyRef = useRef(false);
     useEffect(() => {
         homeRuntimeActiveRef.current = homeRuntimeActive;
@@ -554,7 +551,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const hh = homeStatsLoadedOnce ? peekHomeScreenHydration(studyTarget) : null;
     const snapshotName = appSnapshot.profile?.name ?? '';
     const snapshotStreak = appSnapshot.progress?.streak ?? 0;
-    const snapshotShards = appSnapshot.progress?.shards ?? 0;
     const initialVisuals = resolveHomeProfileVisuals({ hydration: hh, snapshot: appSnapshot.profile });
     const [userName, setUserName] = useState(() => hh?.userName ?? snapshotName);
     const [streak, setStreak] = useState(() => hh?.streak ?? snapshotStreak);
@@ -1030,7 +1026,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => { studyTargetRef.current = studyTarget; }, [studyTarget]);
     const langRef = useRef(lang);
     useEffect(() => { langRef.current = lang; }, [lang]);
-    const [shardsBalance, setShardsBalance] = useState(() => peekLastKnownShardsBalance() ?? hh?.shardsBalance ?? snapshotShards);
     const [runesBalance, setRunesBalance] = useState(() => peekRunes());
     // зачем (эмулятор 01.10, лог [HOME-COINS]): сплеш снимается по потолку 1 с, а снимок прогресса
     // может ещё читаться с диска — peekRunes() отдаёт 0, и Главная показывала «0 монет», потом
@@ -1099,7 +1094,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         homeRewardCollectReduceMotion,
         // Балансы — точка отсчёта для докрутки числа: к моменту волны они уже
         // новые, поэтому счётчик крутится от «минус прилетевшее» к текущему.
-        { runes: runesBalance, shards: shardsBalance },
+        { runes: runesBalance },
     );
     // Иконки валют объявлены на ВЕРХНЕМ уровне компонента, а не внутри
     // renderNewHome.
@@ -1108,7 +1103,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // рендерится в главном return — за пределами renderNewHome. Когда они жили
     // внутри той функции, экран падал «Property 'homeHeaderRuneIconSource'
     // doesn't exist» на первом же кадре.
-    const homeHeaderShardIconSource = coinIconForBalance(shardsBalance, themeMode);
     // Ассет руны для летящих частиц — ТОТ ЖЕ файл, что рисует HomeRuneBalance
     // в шапке. Одна валюта обязана выглядеть одинаково: частица другой
     // картинкой читалась бы как другая награда.
@@ -1133,8 +1127,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             setStreak(progress.streak);
             setDisplayStreak((current) => progress.source === 'live' ? progress.streak : current || progress.streak);
         }
-        if (progress && shardsBalance === 0 && progress.shards > 0) setShardsBalance(progress.shards);
-    }, [appSnapshot.profile, appSnapshot.progress, shardsBalance, streak]);
+    }, [appSnapshot.profile, appSnapshot.progress, streak]);
 
     const streakTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const eliteStatusEntrance = useRef(new Animated.Value(1)).current;
@@ -1222,30 +1215,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 resumeTask?.cancel?.();
             }
         });
-        // Точный локальный баланс уже зафиксирован клиентским журналом до события.
-        // Подарочные credit-операции могут не эмитить shards_earned, поэтому главная
-        // обновляет цифру напрямую и не ждёт ни AsyncStorage, ни фоновой записи сервера.
-        const shardsBalanceSub = onAppEvent('shards_balance_updated', (payload) => {
-            if (!homeRuntimeActiveRef.current) {
-                shardsDirtyRef.current = true;
-                return;
-            }
-            setShardsBalance(payload.balance);
-        });
-        // Слушаем начисление осколков: обновляем цифру баланса (всплывающий бонус «+N» удалён, Q92 01.10).
-        const shardsSub = DeviceEventEmitter.addListener('shards_earned', () => {
-            if (!homeRuntimeActiveRef.current) {
-                shardsDirtyRef.current = true;
-                return;
-            }
-            getShardsBalance().then(bal => {
-                if (!homeRuntimeActiveRef.current) {
-                    shardsDirtyRef.current = true;
-                    return;
-                }
-                setShardsBalance(bal);
-            });
-        });
         // зачем (D107, владелец 30.09): платное восстановление серии удалено целиком —
         // подписки streak_revive_offer/streak_revived и модалка оффера убраны.
         const refreshWeekMarkers = () => {
@@ -1295,8 +1264,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             if (resumeTimer)
                 clearTimeout(resumeTimer);
             resumeTask?.cancel?.();
-            shardsBalanceSub.remove();
-            shardsSub.remove();
             freezeUpdatedSub.remove();
             lastOpenedLessonSub.remove();
             onboardingCompletedSub.remove();
@@ -1524,7 +1491,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // устройстве. Осталась только дев-версия — в релизе она молчит.
         const step = perfSteps('home:loadData');
         try {
-            const [homeStoragePairs, currentWeekMarkers, weekPts, shardsBal, premiumSignalPairs, personalProgress] = await Promise.all([
+            const [homeStoragePairs, currentWeekMarkers, weekPts, premiumSignalPairs, personalProgress] = await Promise.all([
                 AsyncStorage.multiGet([
                     'user_name',
                     'week_days_done',
@@ -1534,7 +1501,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 ]),
                 readCurrentStreakWeekMarkers(),
                 Promise.resolve(0),
-                getShardsBalance(),
                 AsyncStorage.multiGet(['premium_active']),
                 hydratePersonalProgress().catch(() => getPersonalProgressSnapshot()),
             ]);
@@ -1549,15 +1515,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             const premiumSignals = new Map(premiumSignalPairs);
             homeSilentRetryRef.current = 0;
             setWeekMarkers(currentWeekMarkers);
-            // зачем (владелец, 2026-08-24: «счёт жемчужин на секунду показал неправду»):
-            // getShardsBalance() отдаёт 0 не только как настоящий ноль, но и как
-            // «не знаю» — когда генерация аккаунта устарела прямо во время чтения
-            // (её зовёт cloud_sync уже после первого кадра Главной). Раньше этот
-            // ноль писался безусловно и стирал правильную цифру до следующей сверки.
-            // Ноль принимаем только от аккаунта, который к концу чтения всё ещё свой.
-            const shardsReadIsTrustworthy = shardsBal > 0
-                || isCurrentAccountGeneration(homeHydrationAccount, homeHydrationAccount.stableId);
-            if (shardsReadIsTrustworthy) setShardsBalance(shardsBal);
             if (!selectedTitleHydratedRef.current) {
                 selectedTitleHydratedRef.current = true;
                 setSelectedTitleKey(storedTitleKey || null);
@@ -1592,13 +1549,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                             ]).start();
                         }
                     }, 800);
-                    onStreakUpdated(currentStreakNum).then((earned) => {
-                        const earnedAmount = typeof earned === 'number' ? earned : (earned?.amount ?? 0);
-                        const rk = typeof earned === 'object' && earned && 'reasonKey' in earned ? earned.reasonKey : undefined;
-                        if (earnedAmount > 0) {
-                            emitAppEvent('shards_earned', rk ? { amount: earnedAmount, reasonKey: rk } : { amount: earnedAmount });
-                        }
-                    }).catch(() => { });
+                    // зачем (PM-289, D70): начисление жемчуга за серию 7/30 удалено вместе с жемчугом.
                 }
                 else {
                     setDisplayStreak(currentStreakNum);
@@ -1755,7 +1706,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 weekDone: weekParsedForSnap,
                 weekMarkers: currentWeekMarkers,
                 weekPoints: weekPts,
-                shardsBalance: shardsBal,
                 lessonsCompleted: done,
                 userAvatar: avatarSnap,
                 userFrame: frameSnap,
@@ -1781,7 +1731,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     source: 'storage',
                     updatedAt: Date.now(),
                     streak: currentStreakNum,
-                    shards: shardsBal,
                     studyTarget: String(studyTarget ?? 'en'),
                     // зачем (владелец, 2026-08-24): «цифра рун постоянно прыгает».
                     // Гидратация Главной собирает progress ЗАНОВО и раньше роняла
@@ -1928,13 +1877,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => {
         if (!homeRuntimeActive) {
             return;
-        }
-        if (shardsDirtyRef.current) {
-            shardsDirtyRef.current = false;
-            void getShardsBalance().then((balance) => {
-                if (homeRuntimeActiveRef.current) setShardsBalance(balance);
-                else shardsDirtyRef.current = true;
-            });
         }
         if (streakMarkersDirtyRef.current) {
             streakMarkersDirtyRef.current = false;
@@ -2407,29 +2349,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           лишнего узла и ни одной живой анимации (Performance Bible). */}
       {rewardCollect.state.wave !== null && rewardCollect.state.target !== null ? (
         <HomeRewardCollectFlight
-          // key по волне — ОБЯЗАТЕЛЕН.
-          //
-          // зачем (владелец, 2026-09-01: «анимация полёта жемчугов то есть, то
-          // её нет»): вторая волна (жемчужины) идёт через 220мс после рун, и
-          // без key React переиспользует ТОТ ЖЕ смонтированный оверлей. Его
-          // useEffect'ы с полётом частиц уже отработали и заново не
-          // запускаются, а useMemo с траекториями возвращает прежний массив,
-          // когда число частиц совпало. Отсюда и «то есть, то нет»: волна
-          // играла только если сумма жемчужин давала ДРУГОЕ число частиц, чем
-          // руны. С key оверлей монтируется заново на каждую волну.
+          // key по волне — ОБЯЗАТЕЛЕН: без него повторная волна переиспользует
+          // смонтированный оверлей, чьи эффекты полёта уже отработали.
+          // зачем (PM-289, D70): волна жемчуга удалена — летят только монеты (руны).
           key={rewardCollect.state.waveId}
           amount={rewardCollect.state.amount}
           target={rewardCollect.state.target}
-          source={rewardCollect.state.wave === 'runes'
-            ? homeHeaderRuneIconSource
-            : homeHeaderShardIconSource}
-          // Звук отрыва даёт только первая волна: вторая (жемчужины) идёт через
-          // 220 мс, и второй вдох прозвучал бы как эхо, а не как новая награда.
-          playStartSound={rewardCollect.state.wave === 'runes'}
-          // Пульс той валюты, что летит: по нему бьёт каждая долетевшая частица.
-          impact={rewardCollect.state.wave === 'runes'
-            ? rewardCollect.runesImpact
-            : rewardCollect.shardsImpact}
+          source={homeHeaderRuneIconSource}
+          playStartSound
+          impact={rewardCollect.runesImpact}
           onDone={rewardCollect.onWaveDone}
         />
       ) : null}

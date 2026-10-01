@@ -9,29 +9,30 @@ import { DebugLogger } from './debug-logger';
  * всех сторон анимированно собираются и влетают в счётчик, со звуком полёта».
  *
  * Почему отдельный модуль, а не состояние Главной: начисление случается там,
- * где Главной нет в дереве (урок, спин, модалка приза). События
- * `runes_balance_updated` / `shards_earned` летят В ЭТОТ МОМЕНТ и к возврату
+ * где Главной нет в дереве (урок, спин, модалка приза). Событие
+ * `runes_balance_updated` летит В ЭТОТ МОМЕНТ и к возврату
  * домой давно потеряны. Очередь слушает их ВСЕГДА (подписка ставится один раз
  * на старте, из `app/_layout.tsx`) и копит дельты; Главная забирает накопленное
  * когда реально показана.
  *
- * Firestore/сеть не трогаются вообще: и то и другое событие уже эмитится
- * существующими кошельками, здесь только сумматор в памяти. Стоимости нет.
+ * Firestore/сеть не трогаются вообще: событие уже эмитится
+ * существующим кошельком, здесь только сумматор в памяти. Стоимости нет.
  *
  * ВАЖНО — очередь НЕ источник правды по балансу. Баланс живёт в снапшоте и
  * рисуется счётчиками сам; здесь лежит только «сколько прилетело с прошлого
  * показа», то есть материал для частиц. Потеря очереди (перезапуск приложения)
  * означает лишь пропущенную анимацию, а не потерянные руны.
+ *
+ * зачем (PM-289, D70/D78): канал жемчуга удалён вместе с валютой.
  */
 
-export type RewardFlightKind = 'runes' | 'shards';
+export type RewardFlightKind = 'runes';
 
 export interface RewardFlightPending {
   readonly runes: number;
-  readonly shards: number;
 }
 
-const EMPTY: RewardFlightPending = Object.freeze({ runes: 0, shards: 0 });
+const EMPTY: RewardFlightPending = Object.freeze({ runes: 0 });
 
 /**
  * Потолок накопления. Число частиц всё равно логарифмическое (см. оверлёт), но
@@ -68,10 +69,7 @@ function emit(): void {
 function add(kind: RewardFlightKind, amount: number): void {
   const delta = clamp(amount);
   if (delta <= 0) return;
-  pending = Object.freeze({
-    runes: kind === 'runes' ? clamp(pending.runes + delta) : pending.runes,
-    shards: kind === 'shards' ? clamp(pending.shards + delta) : pending.shards,
-  });
+  pending = Object.freeze({ runes: clamp(pending.runes + delta) });
   DebugLogger.info(
     'reward_flight:enqueued',
     JSON.stringify({ kind, delta, pending }),
@@ -98,7 +96,7 @@ export function peekPendingRewardFlight(): RewardFlightPending {
  */
 export function consumePendingRewardFlight(): RewardFlightPending {
   const taken = pending;
-  if (taken.runes === 0 && taken.shards === 0) return EMPTY;
+  if (taken.runes === 0) return EMPTY;
   pending = EMPTY;
   DebugLogger.info('reward_flight:consumed', JSON.stringify(taken));
   emit();
@@ -107,7 +105,7 @@ export function consumePendingRewardFlight(): RewardFlightPending {
 
 /** Сброс без проигрывания — смена аккаунта: чужие награды не летят новому. */
 export function resetRewardFlightQueue(): void {
-  if (pending.runes === 0 && pending.shards === 0) return;
+  if (pending.runes === 0) return;
   DebugLogger.info('reward_flight:reset', JSON.stringify(pending));
   pending = EMPTY;
   emit();
@@ -147,21 +145,8 @@ export function installRewardFlightQueue(): () => void {
     add('runes', delta);
   });
 
-  // Жемчужины: у них есть собственное событие начисления с суммой, поэтому
-  // считать дельту из баланса не нужно (и нельзя — `shards_balance_updated`
-  // летит и на тратах, и на замене баланса).
-  const shardsSub = onAppEvent('shards_earned', (payload) => {
-    const amount = Number(payload?.amount) || 0;
-    if (amount <= 0) {
-      DebugLogger.info('reward_flight:shards_skipped', JSON.stringify({ amount }));
-      return;
-    }
-    add('shards', amount);
-  });
-
   return () => {
     installed = false;
     runesSub.remove();
-    shardsSub.remove();
   };
 }

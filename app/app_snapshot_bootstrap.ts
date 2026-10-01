@@ -13,7 +13,6 @@ import type { SettingsBootReadScope } from '../lib/startup_settings_read_scope';
 import { buildCustomizationSnapshot } from './customization_snapshot';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { hydratePersonalProgress } from './personal_progress_store';
-import { primeShardsBalanceMemoryFromBoot } from './shards_system';
 import { primeEnergyPeekFromBoot } from './energy_peek_cache';
 import {
   migrateLegacyVipSnapshotOnce,
@@ -37,7 +36,6 @@ const BOOT_PROFILE_KEYS = [
 
 const BOOT_PROGRESS_KEYS = [
   'streak_count',
-  'shards_balance',
 ] as const;
 
 const BOOT_SETTINGS_KEYS = [
@@ -163,7 +161,6 @@ function buildProgressSnapshot(
     source: 'storage',
     updatedAt: now,
     streak: readInt(values.get('streak_count')),
-    shards: readInt(values.get('shards_balance')),
     studyTarget: storageStudyTarget(studyTarget),
     // зачем (эмулятор 01.10, лог [HOME-COINS]): неизвестные монеты — undefined, не 0; иначе Главная 22 с показывала «0».
     stars: bootRunes === null && current.progress?.stars === undefined
@@ -256,10 +253,6 @@ export async function primeAppSnapshotFromStorage(
   if (!isAccountCurrent()) return;
   const profile = buildProfileSnapshot(values, now, vipSnapshot);
   if (!isAccountCurrent()) return;
-  // зачем: отдать уже прочитанный баланс жемчужин в общий peek — экраны, которые
-  // читают его синхронно (Главная), рисуют настоящее число сразу, а не ноль до
-  // первого собственного похода на диск.
-  primeShardsBalanceMemoryFromBoot(readInt(values.get('shards_balance')), accountGeneration);
   // зачем: страховка. Обычно прогрев энергии уже отработал — он запускается сам
   // при импорте своего модуля (EnergyProvider монтируется выше AppContent, и
   // вызова отсюда не хватило бы к первому кадру). Повторный вызов дешёв: внутри

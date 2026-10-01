@@ -43,14 +43,13 @@ describe('home counters: real numbers on the first frame', () => {
     );
   });
 
-  it('hands the already-read shards balance to the shared peek cache', () => {
-    const shards = readProjectFile('app', 'shards_system.ts');
+  it('does not read the removed pearl balance on startup (PM-289, D70)', () => {
     const bootstrap = readProjectFile('app', 'app_snapshot_bootstrap.ts');
+    const home = readProjectFile('app', '(tabs)', 'home.tsx');
 
-    expect(shards).toContain('export const primeShardsBalanceMemoryFromBoot');
-    // Свежая запись этой сессии авторитетнее стартового снимка.
-    expect(shards).toContain('if (shardsBalanceMemory) return;');
-    expect(bootstrap).toContain("primeShardsBalanceMemoryFromBoot(readInt(values.get('shards_balance'))");
+    expect(bootstrap).not.toContain('primeShardsBalanceMemoryFromBoot');
+    expect(bootstrap).not.toContain("'shards_balance'");
+    expect(home).not.toContain('shards_system');
   });
 
   it('keeps the energy peek cache outside the React provider and warms it on import', () => {
@@ -113,7 +112,6 @@ describe('home counters: real numbers on the first frame', () => {
   it('initialises every Home counter from a synchronous source', () => {
     const home = readProjectFile('app', '(tabs)', 'home.tsx');
 
-    expect(home).toContain('useState(() => peekLastKnownShardsBalance() ?? hh?.shardsBalance ?? snapshotShards)');
     expect(home).toContain('useState(() => peekRunes())');
     // Снапшот догоняет первый кадр — без подписки правка загрузчика до экрана не дойдёт.
     expect(home).toContain('setRunesBalance(peekRunes());');

@@ -67,12 +67,11 @@ describe('Главная: области видимости renderNewHome', () =
   it('иконки валют для полёта частиц живут на верхнем уровне компонента', () => {
     const { body } = readRenderNewHomeBody(source);
 
-    // Именно эти две переменные читает оверлей HomeRewardCollectFlight,
-    // который рендерится вне renderNewHome. Их возврат внутрь функции —
-    // повторение инцидента 2026-09-01.
+    // Эту переменную читает оверлей HomeRewardCollectFlight, который
+    // рендерится вне renderNewHome. Её возврат внутрь функции — повторение
+    // инцидента 2026-09-01. Иконка жемчуга удалена вместе с валютой (PM-289, D70).
     expect(body).not.toMatch(/^ {8}const homeHeaderRuneIconSource/m);
-    expect(body).not.toMatch(/^ {8}const homeHeaderShardIconSource/m);
     expect(source).toMatch(/^ {4}const homeHeaderRuneIconSource/m);
-    expect(source).toMatch(/^ {4}const homeHeaderShardIconSource/m);
+    expect(source).not.toMatch(/homeHeaderShardIconSource/);
   });
 });

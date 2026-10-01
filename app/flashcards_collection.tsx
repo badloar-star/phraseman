@@ -1324,7 +1324,6 @@ export default function FlashcardsScreen() {
         <CardPackShardPaywallModal
           visible
           mode={runeBalance >= purchasePrice ? 'confirm' : 'insufficient'}
-          currency="runes"
           pack={purchasePack}
           balance={runeBalance}
           lang={lang}

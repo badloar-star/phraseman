@@ -46,7 +46,6 @@ import {
   ukKnowledgeShardsGenitiveAfterNumber,
 } from '../../constants/shard_plurals';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
-import { oskolokImageForPackShards } from '../oskolok';
 import {
   packCategoryIonIcon,
   packDescriptionForInterface,
@@ -73,19 +72,6 @@ type Props = {
   mode: CardPackPaywallMode;
   pack: FlashcardMarketPack;
   balance: number;
-  /**
-   * Валюта покупки. По умолчанию ЖЕМЧУГ — официальные наборы «Магазина
-   * осколков», ради которых шит и писался.
-   *
-   * зачем параметр (владелец, 2026-09-17, экран 8 макета docs/design/runes):
-   * наборы сообщества продаются за РУНЫ, и владелец прямо попросил ту же
-   * покупку «точно так же, с анимацией и т.д.». Второй почти такой же шит
-   * разошёлся бы с этим за месяц, поэтому валюта — параметр, а не копия.
-   *
-   * Меняется только валюта: вёрстка, движение и три режима (confirm /
-   * insufficient / voucher) остаются общими.
-   */
-  currency?: 'shards' | 'runes';
   lang: Lang;
   studyTarget?: RuntimeStudyTarget;
   purchasing: boolean;
@@ -381,7 +367,6 @@ export default function CardPackShardPaywallModal({
   mode,
   pack,
   balance,
-  currency = 'shards',
   lang,
   studyTarget,
   purchasing,
@@ -410,9 +395,10 @@ export default function CardPackShardPaywallModal({
    * ~30 strok kazhdaya, i vetka na valyutu razdula by fayl vdvoe radi chetyreh
    * fraz.
    */
+  // зачем (PM-289, D70/D78): жемчужная ветка шита удалена — наборы продаются
+  // только за монеты (руны), единственный вызов и так передавал currency="runes".
   const str = useMemo(() => {
     const base = paywallModalCopy(lang);
-    if (currency !== 'runes') return base;
     const runesWord = triRunesWord(lang);
     return {
       ...base,
@@ -421,7 +407,7 @@ export default function CardPackShardPaywallModal({
       insufficientTitle: triRunesShort(lang),
       forShards: (n: number) => triRunesBuyFor(lang, n),
     };
-  }, [lang, currency]);
+  }, [lang]);
   const title = packTitleForInterface(pack, lang);
   const desc = packDescriptionForInterface(pack, lang);
   const descLines = useMemo(() => splitDescriptionToLines(desc), [desc]);
@@ -439,37 +425,17 @@ export default function CardPackShardPaywallModal({
    * мест, где шит показывает число. Раньше каждое читало pack.priceShards
    * напрямую; с двумя валютами это гарантированно разошлось бы.
    */
-  const isRunes = currency === 'runes';
-  // зачем (PM-057, D28): жемчуг за деньги больше не продаётся — для жемчужной
-  // валюты модалка нехватки не зовёт в магазин и не обещает «пакеты ниже».
-  // Руны пополняются по-прежнему (свой кошелёк), им кнопка остаётся.
-  const canTopUpCurrency = isRunes;
-  const price = isRunes ? Math.max(0, Math.floor(Number(pack.priceRunes ?? 0))) : pack.priceShards;
-  // Картинка осколка — только у жемчуга: у рун свой знак ᚱ, он рисуется текстом.
-  const shardPriceImg = useMemo(
-    () => (isRunes ? null : oskolokImageForPackShards(price, themeMode)),
-    [isRunes, price, themeMode],
-  );
+  const price = Math.max(0, Math.floor(Number(pack.priceRunes ?? 0)));
 
-  /**
-   * Znak valyuty ryadom s cenoy.
-   *
-   * zachem odin komponent na sem' tochek: pri dvuh valyutah pravka kazhdoy iz
-   * semi razoshlas' by. U zhemchuga - kartinka oskolka, u run - znak ᚱ tekstom
-   * (svoego asseta u runy zdes' net, a znak chitaetsya na lyubom fone).
-   */
+  /** Знак валюты рядом с ценой: у монет (рун) свой знак ᚱ, рисуется текстом. */
   const CurrencyMark = useCallback(({ size }: { size: number }) => (
-    isRunes || !shardPriceImg
-      ? (
-        <Text
-          style={{ fontSize: Math.round(size * 0.82), fontWeight: '900', color: t.gold }}
-          maxFontSizeMultiplier={1.2}
-        >
-          ᚱ
-        </Text>
-      )
-      : <Image source={shardPriceImg} style={{ width: size, height: size }} contentFit="contain" />
-  ), [isRunes, shardPriceImg, t.gold]);
+    <Text
+      style={{ fontSize: Math.round(size * 0.82), fontWeight: '900', color: t.gold }}
+      maxFontSizeMultiplier={1.2}
+    >
+      ᚱ
+    </Text>
+  ), [t.gold]);
 
   const backdropO = useSharedValue(0);
   const sheetY = useSharedValue(80);
@@ -712,7 +678,6 @@ export default function CardPackShardPaywallModal({
                           >
                             {str.insufficientTitle}
                           </Animated.Text>
-                          {canTopUpCurrency ? (
                           <Animated.Text
                             entering={FadeInDown.delay(140).duration(420).easing(Easing.out(Easing.cubic))}
                             style={{
@@ -724,7 +689,6 @@ export default function CardPackShardPaywallModal({
                           >
                             {str.insufficientIntro}
                           </Animated.Text>
-                          ) : null}
 
                           <Animated.View
                             entering={FadeInDown.delay(200).duration(400)}
@@ -828,7 +792,6 @@ export default function CardPackShardPaywallModal({
                                 </View>
                               </View>
                             </LinearGradient>
-                            {canTopUpCurrency ? (
                             <Text
                               style={{
                                 color: subLabelColor,
@@ -840,7 +803,6 @@ export default function CardPackShardPaywallModal({
                             >
                               {str.shopCtaSub}
                             </Text>
-                            ) : null}
                           </Animated.View>
                         </>
                       ) : mode === 'voucher' ? (
@@ -1082,7 +1044,6 @@ export default function CardPackShardPaywallModal({
                     <View style={{ paddingHorizontal: 16, paddingTop: 4, paddingBottom: 6 }}>
                       {mode === 'insufficient' ? (
                         <>
-                          {canTopUpCurrency ? (
                           <View style={{ position: 'relative', marginBottom: 10 }}>
                             <AnimatedLinearGradient
                               colors={[paywallVisual.ctaGlowTop, 'rgba(0,0,0,0)']}
@@ -1112,7 +1073,6 @@ export default function CardPackShardPaywallModal({
                               </View>
                             </DuoPressable>
                           </View>
-                          ) : null}
                           <PressableHybrid
                             onPress={handleClose}
                             hitSlop={8}

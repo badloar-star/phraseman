@@ -163,14 +163,13 @@ describe('app snapshot store contract', () => {
         source: 'storage',
         updatedAt: 600,
         streak: 0,
-        shards: 882,
         studyTarget: 'en',
       },
     });
 
     expect(getAppSnapshot()).toMatchObject({
       profile: { source: 'storage', premiumActive: true },
-      progress: { source: 'live', streak: 93, shards: 882 },
+      progress: { source: 'live', streak: 93 },
     });
   });
 
@@ -264,7 +263,6 @@ describe('app snapshot store contract', () => {
         updatedAt: 100,
         activeAvatar: '18',
         level: 18,
-        shards: 77,
       },
     });
 

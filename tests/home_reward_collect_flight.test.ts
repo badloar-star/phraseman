@@ -21,7 +21,6 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 
 import {
-  HOME_REWARD_DEMO_MODES,
   REWARD_FLIGHT_COUNT_MS,
   REWARD_FLIGHT_HIT_AT,
   REWARD_FLIGHT_HIT_DOWN_MS,
@@ -51,41 +50,39 @@ describe('очередь наград для полёта', () => {
   it('копит награды из разных мест до момента показа Главной', () => {
     enqueueRewardFlight('runes', 12);
     enqueueRewardFlight('runes', 8);
-    enqueueRewardFlight('shards', 3);
 
-    expect(peekPendingRewardFlight()).toEqual({ runes: 20, shards: 3 });
+    expect(peekPendingRewardFlight()).toEqual({ runes: 20 });
   });
 
   it('забранная награда исчезает из очереди — приз не летит дважды', () => {
     enqueueRewardFlight('runes', 25);
 
-    expect(consumePendingRewardFlight()).toEqual({ runes: 25, shards: 0 });
+    expect(consumePendingRewardFlight()).toEqual({ runes: 25 });
     // Второй заход на Главную ничего не показывает: награда уже собрана.
-    expect(peekPendingRewardFlight()).toEqual({ runes: 0, shards: 0 });
-    expect(consumePendingRewardFlight()).toEqual({ runes: 0, shards: 0 });
+    expect(peekPendingRewardFlight()).toEqual({ runes: 0 });
+    expect(consumePendingRewardFlight()).toEqual({ runes: 0 });
   });
 
   it('трата и ноль в очередь не попадают — собирается только заработанное', () => {
     enqueueRewardFlight('runes', -50);
     enqueueRewardFlight('runes', 0);
-    enqueueRewardFlight('shards', Number.NaN);
+    enqueueRewardFlight('runes', Number.NaN);
 
-    expect(peekPendingRewardFlight()).toEqual({ runes: 0, shards: 0 });
+    expect(peekPendingRewardFlight()).toEqual({ runes: 0 });
   });
 
   it('смена аккаунта очищает очередь — чужая награда не летит новому', () => {
     enqueueRewardFlight('runes', 40);
-    enqueueRewardFlight('shards', 5);
 
     resetRewardFlightQueue();
 
-    expect(peekPendingRewardFlight()).toEqual({ runes: 0, shards: 0 });
+    expect(peekPendingRewardFlight()).toEqual({ runes: 0 });
   });
 
   it('будит подписчика на начисление и на очистку', () => {
-    const seen: Array<{ runes: number; shards: number }> = [];
+    const seen: Array<{ runes: number }> = [];
     const unsubscribe = subscribeRewardFlight((value) => {
-      seen.push({ runes: value.runes, shards: value.shards });
+      seen.push({ runes: value.runes });
     });
 
     enqueueRewardFlight('runes', 7);
@@ -94,8 +91,8 @@ describe('очередь наград для полёта', () => {
     enqueueRewardFlight('runes', 3); // после отписки не приходит
 
     expect(seen).toEqual([
-      { runes: 7, shards: 0 },
-      { runes: 0, shards: 0 },
+      { runes: 7 },
+      { runes: 0 },
     ]);
   });
 
@@ -211,40 +208,6 @@ describe('тайминг и геометрия волны', () => {
   });
 });
 
-describe('дев-кнопка: порядок режимов', () => {
-  it('показывает только действующие валютные волны без XP', () => {
-    const shape = HOME_REWARD_DEMO_MODES.map((mode) => ({
-      runes: mode.runes > 0,
-      shards: mode.shards > 0,
-    }));
-
-    expect(shape).toEqual([
-      { runes: true, shards: true },
-      { runes: true, shards: false },
-      { runes: false, shards: true },
-    ]);
-  });
-
-  it('каждый режим что-то показывает и подписан', () => {
-    for (const mode of HOME_REWARD_DEMO_MODES) {
-      expect(mode.runes > 0 || mode.shards > 0).toBe(true);
-      expect(mode).not.toHaveProperty('xp');
-      expect(mode).not.toHaveProperty('levelUps');
-      expect(mode.label.length).toBeGreaterThan(0);
-    }
-  });
-
-  it('демо-суммы дают видимый каскад, но не джекпот', () => {
-    for (const mode of HOME_REWARD_DEMO_MODES) {
-      if (mode.runes > 0) {
-        const count = rewardFlightParticleCount(mode.runes);
-        expect(count).toBeGreaterThanOrEqual(5);
-        expect(count).toBeLessThanOrEqual(14);
-      }
-    }
-  });
-});
-
 describe('пульсация счётчика — макет «Гибрид»', () => {
   const HIT_TOTAL_MS = REWARD_FLIGHT_HIT_UP_MS + REWARD_FLIGHT_HIT_DOWN_MS;
   const waveMs = (amount: number) => rewardFlightDurationMs(amount) - REWARD_FLIGHT_TAIL_MS;
@@ -284,26 +247,11 @@ describe('пульсация счётчика — макет «Гибрид»', 
   });
 });
 
-describe('две волны подряд: руны, затем жемчужины', () => {
-  /** Пауза между волнами (WAVE_GAP_MS в use_home_reward_collect). */
-  const WAVE_GAP_MS = 220;
-  /** Запас страховочного таймера поверх длительности волны. */
-  const TIMEOUT_PAD_MS = 400;
-
-  it('страховка первой волны накрывает старт второй — нужна сверка номера', () => {
-    // Класс бага (владелец 2026-09-01: «полёт жемчугов то есть, то нет»):
-    // жемчужины стартуют через WAVE_GAP после конца рун, а страховка рун
-    // падает через TIMEOUT_PAD после их конца. Если PAD > GAP — таймер первой
-    // волны срабатывает УЖЕ ВНУТРИ второй и закрывает её на взлёте.
-    //
-    // Тест фиксирует сам факт перекрытия: пока оно есть, сверка waveId в
-    // runWave обязательна и удалять её нельзя.
-    expect(TIMEOUT_PAD_MS).toBeGreaterThan(WAVE_GAP_MS);
-  });
-
+describe('волна монет: страховочный таймер сверяет номер волны', () => {
   it('сверка номера волны присутствует в коде', () => {
-    // Структурная проверка: логику двух волн в jest не поднять (хук тянет
+    // Структурная проверка: логику волны здесь не поднять (хук тянет
     // Reanimated и половину приложения), но исчезновение сверки поймать можно.
+    // зачем: страховочный таймер прошлой волны не должен закрыть новую на взлёте.
     const src = readFileSync(
       join(__dirname, '..', 'components', 'home', 'use_home_reward_collect.ts'),
       'utf8',
@@ -311,11 +259,13 @@ describe('две волны подряд: руны, затем жемчужин�
     expect(src).toContain('const myWaveId = waveIdRef.current;');
     expect(src).toMatch(/waveIdRef\.current === myWaveId/);
     // key оверлея по номеру волны — иначе React переиспользует смонтированный
-    // компонент и эффекты полёта второй волны не запускаются.
+    // компонент и эффекты полёта следующей волны не запускаются.
     const home = readFileSync(
       join(__dirname, '..', 'app', '(tabs)', 'home.tsx'),
       'utf8',
     );
     expect(home).toContain('key={rewardCollect.state.waveId}');
+    // PM-289 (D70): волны жемчуга больше нет.
+    expect(src).not.toMatch(/shardsImpact|measureShardsTarget/);
   });
 });

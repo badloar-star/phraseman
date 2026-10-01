@@ -49,8 +49,8 @@ describe('customization snapshot', () => {
       ['avatar_aura_owned_v1', JSON.stringify({ 'aura-aurora': true })],
       ['shards_balance', '44'],
     ]), 100, 18);
-    expect(Object.keys(snapshot).sort()).toEqual(['activeAvatar', 'level', 'shards', 'source', 'updatedAt']);
-    expect(snapshot).toMatchObject({ activeAvatar: '18', shards: 44 });
+    expect(Object.keys(snapshot).sort()).toEqual(['activeAvatar', 'level', 'source', 'updatedAt']);
+    expect(snapshot).toMatchObject({ activeAvatar: '18' });
   });
 
   it('publishes the first local snapshot without Avatar DNA even if old DNA data is on the device', async () => {
@@ -66,7 +66,8 @@ describe('customization snapshot', () => {
 
     expect(getAppSnapshot().profile).toMatchObject({ avatar: '18' });
     expect(getAppSnapshot().profile).not.toHaveProperty('avatarDNA');
-    expect(getAppSnapshot().customization).toMatchObject({ activeAvatar: '18', shards: 7 });
+    expect(getAppSnapshot().customization).toMatchObject({ activeAvatar: '18' });
+    expect(getAppSnapshot().customization).not.toHaveProperty('shards');
     expect(getAppSnapshot().customization).not.toHaveProperty('avatarDNA');
   });
 

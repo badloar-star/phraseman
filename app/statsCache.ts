@@ -8,7 +8,6 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { checkStreakLossPending } from './hall_of_fame_utils';
-import { getShardsBalance } from './shards_system';
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
 import { getMistakePracticeReadyCount } from './mistake_practice_insights';
 import { isStreakFreezeActiveToday, streakFreezeDateKey } from './streak_freeze';
@@ -32,7 +31,6 @@ export interface StatsPreloadData {
   activeDays: number;
   freezeActive: boolean;
   premiumFreezeUsed: boolean;
-  shardsBalance: number;
   hadPremiumEver: boolean;
   myName: string;
   streakAtRisk: boolean;
@@ -55,7 +53,6 @@ const DEFAULT_CACHE: StatsPreloadData = {
   activeDays: 0,
   freezeActive: false,
   premiumFreezeUsed: false,
-  shardsBalance: 0,
   hadPremiumEver: false,
   myName: '',
   streakAtRisk: false,
@@ -114,7 +111,6 @@ function normalizeStatsCache(value: Partial<StatsPreloadData> | null | undefined
     activeDays: Math.max(0, Math.floor(Number(value?.activeDays) || 0)),
     freezeActive: value?.freezeActive === true,
     premiumFreezeUsed: value?.premiumFreezeUsed === true,
-    shardsBalance: Math.max(0, Math.floor(Number(value?.shardsBalance) || 0)),
     hadPremiumEver: value?.hadPremiumEver === true,
     myName: String(value?.myName ?? ''),
     streakAtRisk: value?.streakAtRisk === true,
@@ -203,8 +199,8 @@ async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promis
   const freezeIsActive = isStreakFreezeActiveToday(freeze, todayStr);
 
   const target = storageStudyTarget(studyTarget);
-  const [shardsBalance, { willLose }, mistakePracticeDue] = await Promise.all([
-    getShardsBalance(),
+  // зачем (PM-289, D70): баланс жемчуга статистике больше не нужен — валюта удалена.
+  const [{ willLose }, mistakePracticeDue] = await Promise.all([
     checkStreakLossPending(),
     getMistakePracticeReadyCount(target).catch(() => 0),
   ]);
@@ -214,7 +210,6 @@ async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promis
     totalStreak: currentStreak,
     freezeActive: freezeIsActive,
     premiumFreezeUsed: freeUsedRaw === 'true',
-    shardsBalance,
     hadPremiumEver: hadPrem === '1',
     myName: name || '',
     streakAtRisk: willLose && !freezeIsActive,

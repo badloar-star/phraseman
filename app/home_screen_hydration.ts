@@ -22,7 +22,6 @@ export type HomeScreenHydration = {
   weekDone: boolean[];
   weekMarkers?: Array<StreakWeekDayMarkerKind | null>;
   weekPoints: number;
-  shardsBalance: number;
   lessonsCompleted: number;
   userAvatar: string;
   userAvatarAura?: string | null;

@@ -38,7 +38,6 @@ export interface AppSnapshotProfile extends AppSnapshotMeta {
 
 export interface AppSnapshotProgress extends AppSnapshotMeta {
   streak: number;
-  shards: number;
   studyTarget: string;
   /**
    * Единый баланс звёзд (владелец 2026-08-12, D-05/D-06). Приходит из того же
@@ -230,7 +229,6 @@ export function patchAppSnapshotFromPersonalProgress(progress: Readonly<{
         source: 'local' as const,
         updatedAt: now,
         streak: progress.streakCount,
-        shards: current.progress?.shards ?? 0,
         studyTarget: current.progress?.studyTarget ?? 'en',
         // зачем (владелец, 2026-08-24): «на главной цифра рун постоянно прыгает».
         // Этот патч собирает секцию progress ЗАНОВО, поэтому раньше он молча
@@ -293,7 +291,6 @@ export function patchAppSnapshotFromAuthoritativeCloudProgress(
     source: 'live',
     updatedAt: now,
     streak,
-    shards: currentProgress?.shards ?? 0,
     studyTarget: currentProgress?.studyTarget ?? 'en',
     // зачем (эмулятор 01.10, лог [HOME-COINS]): неизвестные монеты — undefined, не 0; иначе Главная 22 с показывала «0».
     stars: currentProgress?.stars,

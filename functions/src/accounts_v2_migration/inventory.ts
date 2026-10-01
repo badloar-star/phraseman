@@ -103,6 +103,10 @@ export const SAVED_CARD_FIELDS = Object.freeze([
   'note', 'sourceReferences', 'addedAt', 'literalRu', 'literalUk', 'literalEs', 'explanationRu',
   'explanationUk', 'explanationEs', 'exampleEn', 'exampleRu', 'exampleUk', 'exampleEs',
   'usageNoteRu', 'usageNoteUk', 'usageNoteEs', 'register', 'level', 'abbrevEn', 'expansionEn',
+  // зачем (Account V2, 7E ремонт №1): время правки своей карточки / освежения после «Вернуть»
+  // (клиент 7E). Без него перенос OD21 вставал бы в HOLD всего аккаунта (unknown_card_field).
+  // Битое значение не держит аккаунт: поле снимается с карточки (dry_run.ts, informational).
+  'updatedAt',
 ] as const);
 
 /**

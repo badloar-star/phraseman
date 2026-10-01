@@ -40,12 +40,14 @@ import { hasMeaningfulLocalAccountData } from '../app/local_account_data';
  */
 
 const T = 1_800_000_000_000;
+/** 7E: запас по часам — удаление побеждает правку, только если позже неё минимум на час. */
+const H = 3_600_000;
 const storageMock = AsyncStorage as unknown as { __reset: () => void };
 
 function serverCard(id: string, over: Partial<HydratedCard> = {}): HydratedCard {
   return Object.freeze({
     target: 'en', list: 'saved', id, deleted: false,
-    fields: { id, en: `phrase ${id}`, ru: 'р', uk: 'у', source: 'lesson', addedAt: T - 50_000 },
+    fields: { id, en: `phrase ${id}`, ru: 'р', uk: 'у', source: 'lesson', addedAt: T - 2 * H },
     srs: null, revision: 1, updatedAtMs: T + 10_000, ...over,
   }) as HydratedCard;
 }
@@ -147,7 +149,7 @@ describe('7D — правила решения (чистые)', () => {
     // перенос записал карточку один раз, её время раньше удаления → удаление свежее
     expect(journalBeatsServerCard(T, serverCard('a'))).toEqual({ remove: true, reason: 'server_written_once_before_deletion' });
     // сущность не менялась с момента до удаления
-    expect(journalBeatsServerCard(T, serverCard('a', { revision: 4, updatedAtMs: T - 1 })).remove).toBe(true);
+    expect(journalBeatsServerCard(T, serverCard('a', { revision: 4, updatedAtMs: T - H })).remove).toBe(true);
     // свайп на другом устройстве после удаления → сервер свежее
     expect(journalBeatsServerCard(T, serverCard('a', { revision: 2, srs: { updatedAtMs: T + 5 } })))
       .toEqual({ remove: false, reason: 'server_newer' });
@@ -156,13 +158,20 @@ describe('7D — правила решения (чистые)', () => {
       .toEqual({ remove: false, reason: 'server_newer' });
     // создана один раз, но ПОСЛЕ удаления (другое устройство) → сервер свежее
     expect(journalBeatsServerCard(T, serverCard('a', { fields: { addedAt: T + 1 } })).remove).toBe(false);
+    // 7E: запас по часам — перенос/правка меньше чем за час до удаления → сервер не проигрывает
+    expect(journalBeatsServerCard(T, serverCard('a', { fields: { addedAt: T - H + 1 } })).remove).toBe(false);
+    expect(journalBeatsServerCard(T, serverCard('a', { revision: 4, updatedAtMs: T - H + 1, fields: {} })).remove).toBe(false);
+    // 7E: updatedAt правки на другом устройстве после удаления → сервер свежее
+    expect(journalBeatsServerCard(T, serverCard('a', { fields: { addedAt: T - 2 * H, updatedAt: T + 1 } })).remove).toBe(false);
     // времён нет вовсе → неизвестно → оставить
     expect(journalBeatsServerCard(T, serverCard('a', { fields: {}, updatedAtMs: null })))
       .toEqual({ remove: false, reason: 'server_time_unknown' });
   });
 
   test('удаление против локальной правки: строго свежее, неизвестное — оставить', () => {
-    expect(deletionBeatsLocalCard(T, T - 1).remove).toBe(true);
+    expect(deletionBeatsLocalCard(T, T - H).remove).toBe(true);
+    // 7E: позже правки, но меньше чем на час (часы разных устройств) → оставить
+    expect(deletionBeatsLocalCard(T, T - H + 1)).toEqual({ remove: false, reason: 'local_edit_newer' });
     expect(deletionBeatsLocalCard(T, T)).toEqual({ remove: false, reason: 'local_edit_newer' });
     expect(deletionBeatsLocalCard(null, T - 1)).toEqual({ remove: false, reason: 'deletion_time_unknown' });
     expect(deletionBeatsLocalCard(T, null)).toEqual({ remove: false, reason: 'local_edit_time_unknown' });
@@ -214,7 +223,7 @@ describe('7D — применение в хранилища', () => {
   const forgetCardDeletionKeysReal = (require('../app/flashcards/card_deletion_journal') as typeof import('../app/flashcards/card_deletion_journal')).forgetCardDeletionKeys;
 
   test('(в) tombstone свежее локальной правки → убрана; свайп после удаления → оставлена; время неизвестно → оставлена', async () => {
-    await saveFlashcards([local('old', T - 100), local('swiped', T - 100), local('unknown', T - 100), local('keep', T - 100)], 'en');
+    await saveFlashcards([local('old', T - 2 * H), local('swiped', T - 2 * H), local('unknown', T - 2 * H), local('keep', T - 2 * H)], 'en');
     await AsyncStorage.setItem(flashcardsSwipeMemoryKey('en'), JSON.stringify({ 'saved:all:swiped': { correct: 1, lastSeenAt: T + 50 } }));
     const counts: Record<string, number> = {};
     await applyHydratedCardDeletions([tomb('old', T), tomb('swiped', T), tomb('unknown', null)], () => true, counts, ports() as never);
@@ -230,8 +239,8 @@ describe('7D — применение в хранилища', () => {
   });
 
   test('(б) restore вернул удалённую при V2: tombstone убирает; свои карточки тоже', async () => {
-    await saveFlashcards([local('restored', T - 100)], 'en');
-    await upsertCustomCard({ id: 'u1', en: 'mine', ru: 'm', uk: 'm', categoryId: 'custom', isSystem: false, addedAt: T - 100 } as CardItem, 'en');
+    await saveFlashcards([local('restored', T - 2 * H)], 'en');
+    await upsertCustomCard({ id: 'u1', en: 'mine', ru: 'm', uk: 'm', categoryId: 'custom', isSystem: false, addedAt: T - 2 * H } as CardItem, 'en');
     await upsertCustomCard({ id: 'u2', en: 'no time', ru: 'm', uk: 'm', categoryId: 'custom', isSystem: false } as CardItem, 'en');
     const counts: Record<string, number> = {};
     await applyHydratedCardDeletions([tomb('restored', T), tomb('u1', T, 'custom'), tomb('u2', T, 'custom')], () => true, counts, ports() as never);
@@ -242,7 +251,7 @@ describe('7D — применение в хранилища', () => {
 
   test('(б) без сервера: журнал + карточка вернулась старым restore → убрана; «Вернуть» (журнал снят) → оставлена', async () => {
     await recordCardDeletions('en', 'saved', ['back'], T);
-    await saveFlashcards([local('back', T - 100), local('undone', T - 100)], 'en');
+    await saveFlashcards([local('back', T - 2 * H), local('undone', T - 2 * H)], 'en');
     const counts: Record<string, number> = {};
     await applyHydratedCardDeletions([], () => true, counts, ports() as never);
     expect((await loadFlashcards('en')).map((card) => card.id)).toEqual(['undone']);
@@ -265,7 +274,7 @@ describe('7D — применение в хранилища', () => {
   });
 
   test('память свайпов нечитаема → ничего не убираем (правку не сравнить)', async () => {
-    await saveFlashcards([local('old', T - 100)], 'en');
+    await saveFlashcards([local('old', T - 2 * H)], 'en');
     await AsyncStorage.setItem(flashcardsSwipeMemoryKey('en'), '{broken');
     const counts: Record<string, number> = {};
     await applyHydratedCardDeletions([tomb('old', T)], () => true, counts, ports() as never);
@@ -274,15 +283,75 @@ describe('7D — применение в хранилища', () => {
   });
 
   test('смена аккаунта → обрыв без удалений', async () => {
-    await saveFlashcards([local('old', T - 100)], 'en');
+    await saveFlashcards([local('old', T - 2 * H)], 'en');
     await expect(applyHydratedCardDeletions([tomb('old', T)], () => false, {}, ports() as never)).rejects.toThrow('hydration_stale');
     expect((await loadFlashcards('en')).map((card) => card.id)).toEqual(['old']);
   });
 });
 
+describe('7E — время правки и «Вернуть»', () => {
+  test('правка своей карточки ставит updatedAt; tombstone старше правки её не убирает', async () => {
+    const now = jest.spyOn(Date, 'now').mockReturnValue(T + 5 * H);
+    try {
+      await upsertCustomCard({ id: 'u1', en: 'mine', ru: 'm', uk: 'm', categoryId: 'custom', isSystem: false, addedAt: T - 9 * H } as CardItem, 'en');
+      expect((await listCustomCards('en'))[0].updatedAt).toBeUndefined();
+      await upsertCustomCard({ id: 'u1', en: 'mine edited', ru: 'm', uk: 'm', categoryId: 'custom', isSystem: false, addedAt: T - 9 * H } as CardItem, 'en');
+      expect((await listCustomCards('en'))[0].updatedAt).toBe(T + 5 * H);
+    } finally { now.mockRestore(); }
+    await applyHydratedCardDeletions([tomb('u1', T, 'custom')], () => true, {}, undefined);
+    expect((await listCustomCards('en')).map((card) => card.id)).toEqual(['u1']);
+    expect(lines()).toContain('[ACCOUNT-V2] hydrate card_deletion decision=keep reason=local_edit_newer list=custom');
+  });
+
+  test('«Вернуть», когда карточка уже на месте: запись журнала всё равно снимается (сохранённые и свои)', async () => {
+    await saveFlashcards([local('c1', T - 2 * H)], 'en');
+    await recordCardDeletions('en', 'saved', ['c1'], T);
+    await restoreFlashcard(local('c1', T - 2 * H), 0, 'en');
+    await settle();
+    expect((await readCardDeletionJournal())!.has('en:saved:c1')).toBe(false);
+    const own = { id: 'u1', en: 'mine', ru: 'm', uk: 'm', categoryId: 'custom', isSystem: false, addedAt: T - 2 * H } as CardItem;
+    await upsertCustomCard(own, 'en');
+    await recordCardDeletions('en', 'custom', ['u1'], T);
+    await restoreCustomCard(own, 0, 'en');
+    await settle();
+    expect((await readCardDeletionJournal())!.size).toBe(0);
+  });
+
+  test('сбой снятия записи при «Вернуть» → время карточки освежается, гидрация её не убирает', async () => {
+    await saveFlashcards([local('c1', T - 9 * H)], 'en');
+    const own = { id: 'u1', en: 'mine', ru: 'm', uk: 'm', categoryId: 'custom', isSystem: false, addedAt: T - 9 * H } as CardItem;
+    await upsertCustomCard(own, 'en');
+    await recordCardDeletions('en', 'saved', ['c1'], T - 8 * H);
+    await recordCardDeletions('en', 'custom', ['u1'], T - 8 * H);
+    // мок хранилища — jest.fn: подменяем реализацию и потом возвращаем ту же (не mockRestore).
+    const setItem = AsyncStorage.setItem as unknown as jest.Mock;
+    const original = setItem.getMockImplementation()!;
+    setItem.mockImplementation(async (key: string, value: string) => {
+      if (key === CARD_DELETION_JOURNAL_KEY) throw new Error('disk full');
+      return original(key, value);
+    });
+    const now = jest.spyOn(Date, 'now').mockReturnValue(T);
+    try {
+      await restoreFlashcard(local('c1', T - 9 * H), 0, 'en');
+      await restoreCustomCard(own, 0, 'en');
+      for (let round = 0; round < 10; round += 1) await settle();
+    } finally { setItem.mockImplementation(original); now.mockRestore(); }
+    expect((await loadFlashcards('en'))[0].updatedAt).toBe(T);
+    expect((await listCustomCards('en'))[0].updatedAt).toBe(T);
+    expect(lines()).toEqual(expect.arrayContaining([
+      '[ACCOUNT-V2] journal restore_forget_failed -> touch list=saved',
+      '[ACCOUNT-V2] journal restore_forget_failed -> touch list=custom',
+    ]));
+    // запись осталась, но правка (updatedAt) свежее удаления → гидрация оставляет обе
+    await applyHydratedCardDeletions([], () => true, {}, undefined);
+    expect((await loadFlashcards('en')).map((card) => card.id)).toEqual(['c1']);
+    expect((await listCustomCards('en')).map((card) => card.id)).toEqual(['u1']);
+  });
+});
+
 describe('7D — полное применение (боевые порты)', () => {
   test('tombstone убирает воскресшую, журнал не даёт добавить; флаг V2 выкл → tombstone не ставится (лог)', async () => {
-    await saveFlashcards([local('restored', T - 100)], 'en');
+    await saveFlashcards([local('restored', T - 2 * H)], 'en');
     await recordCardDeletions('en', 'saved', ['migrated'], T);
     const result = await applyAccountsV2HydrationLocally({
       lessons: [], libraries: [], cards: [tomb('restored', T), serverCard('migrated'), serverCard('fresh', { fields: { id: 'fresh', en: 'phrase fresh', addedAt: T - 1 } })],

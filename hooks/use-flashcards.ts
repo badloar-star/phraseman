@@ -35,6 +35,8 @@ export interface Flashcard {
   sourceId?: string;
   sourceTitle?: string;
   addedAt: number;
+  /** Account V2, 7E — освежается «Вернуть», если запись журнала удалений не снялась. */
+  updatedAt?: number;
   // Rich detail fields — populated when saving from enriched sources (daily phrase, marketplace packs)
   literalRu?: string;
   literalUk?: string;
@@ -531,16 +533,49 @@ export const restoreFlashcard = async (
     const target = cacheTarget(studyTarget ?? card.studyTarget ?? card.packLanguage);
     const cards = await loadFlashcardsForAccount(target, accountToken);
     if (!isAccountOperationCurrent(accountToken)) return;
-    if (cards.some(c => c.id === card.id)) return;
+    if (cards.some(c => c.id === card.id)) {
+      // зачем (7E): карточка уже на месте (двойной тап «Вернуть», гонка с restore) —
+      // запись журнала всё равно снимаем, иначе гидрация убрала бы её как удалённую.
+      forgetRestoredSavedCardDeletion(card.id, target, accountToken);
+      return;
+    }
     const next = [...cards];
     const at = index == null ? next.length : Math.max(0, Math.min(index, next.length));
     next.splice(at, 0, card);
     if (!await persistFlashcards(next, target, accountToken)) throw new Error('Could not restore saved card');
     // зачем (Account V2, 7D): «Вернуть» отменяет удаление — запись журнала снимаем,
     // иначе гидрация убрала бы возвращённую карточку как удалённую.
-    void forgetCardDeletions(target, 'saved', [card.id]);
+    forgetRestoredSavedCardDeletion(card.id, target, accountToken);
   }, undefined);
 };
+
+/**
+ * 7E: снять запись журнала после «Вернуть»; не снялась — освежить время правки
+ * карточки (updatedAt), чтобы гидрация сочла её правку свежее удаления и не убрала.
+ * Фоном: «Вернуть» не ждёт хранилище журнала (мгновенный отклик экрана).
+ */
+function forgetRestoredSavedCardDeletion(id: string, target: StudyTarget, accountToken: AccountGenerationToken): void {
+  void forgetCardDeletions(target, 'saved', [id]).then((forgotten) => {
+    if (forgotten) return undefined;
+    if (!isAccountOperationCurrent(accountToken)) {
+      console.warn('[ACCOUNT-V2] journal restore_touch_skip reason=account_changed list=saved');
+      return undefined;
+    }
+    console.warn('[ACCOUNT-V2] journal restore_forget_failed -> touch list=saved');
+    return withWriteLock(accountToken, async () => {
+      const cards = await loadFlashcardsForAccount(target, accountToken);
+      if (!isAccountOperationCurrent(accountToken) || !cards.some(c => c.id === id)) {
+        console.warn('[ACCOUNT-V2] journal restore_touch_skip reason=card_absent_or_account_changed list=saved');
+        return;
+      }
+      const now = Date.now();
+      const touched = await persistFlashcards(cards.map(c => (c.id === id ? { ...c, updatedAt: now } : c)), target, accountToken);
+      if (!touched) console.warn('[ACCOUNT-V2] journal restore_touch_failed list=saved');
+    }, undefined);
+  }).catch((error: unknown) => {
+    console.warn(`[ACCOUNT-V2] journal restore_touch_failed kind=${error instanceof Error ? error.name : typeof error} list=saved`);
+  });
+}
 
 export const removeFlashcardByEnglish = async (
   en: string,

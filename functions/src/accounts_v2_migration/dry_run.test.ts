@@ -295,6 +295,30 @@ describe('accounts_v2_migration dry-run — битые значения и не�
     expect(JSON.stringify(result.report)).not.toContain(SENTINEL_TEXT);
   });
 
+  it('7E р1: updatedAt карточки переносится как поле; перенос ready (не HOLD)', () => {
+    const result = runMigrationDryRun(snapshot({ progress: { flashcards_v1: JSON.stringify([
+      card('u1', { updatedAt: 1_700_000_500_000 }),
+    ]) } }));
+    expect(result.report.status).toBe('ready');
+    expect(result.report.held).toEqual([]);
+    const fields = (result.operations.flashcard[0]?.payload as { fields: Record<string, Json> }).fields;
+    expect(fields.updatedAt).toBe(1_700_000_500_000);
+  });
+
+  it('7E р1: битый updatedAt снимается с карточки (informational), аккаунт не в HOLD, карточка переносится', () => {
+    const result = runMigrationDryRun(snapshot({ progress: { flashcards_v1: JSON.stringify([
+      card('b1', { updatedAt: 'x' }), card('b2', { updatedAt: -5 }), card('b3', { updatedAt: 1.5 }), card('b4', { updatedAt: null }),
+    ]) } }));
+    expect(result.report.status).toBe('ready');
+    expect(result.operations.flashcard.map((op) => op.entityId)).toEqual(['en:saved:b1', 'en:saved:b2', 'en:saved:b3', 'en:saved:b4']);
+    for (const op of result.operations.flashcard) {
+      expect(Object.keys((op.payload as { fields: Record<string, Json> }).fields)).not.toContain('updatedAt');
+    }
+    expect(result.report.informational).toEqual(expect.arrayContaining([
+      { reason: 'malformed_value', path: 'progress.flashcards_v1[*].updatedAt', count: 4 },
+    ]));
+  });
+
   it('два разных содержимых под одним id карточки — HOLD, одинаковые — одна операция', () => {
     const result = runMigrationDryRun(snapshot({ progress: { flashcards_v1: JSON.stringify([
       card('d1'), card('d1'), card('d2'), card('d2', { ru: 'другое' }),

@@ -224,5 +224,7 @@ describe('accounts_v2_migration inventory — перенос, Plus и неизв
     expect(SAVED_CARD_FIELDS).toContain('id');
     expect(SAVED_CARD_FIELDS).not.toContain('srs');
     expect(SAVED_CARD_FIELDS).not.toContain('srsPolicy');
+    // 7E р1: время правки карточки (клиент 7E) — иначе перенос вставал в HOLD всего аккаунта.
+    expect(SAVED_CARD_FIELDS).toContain('updatedAt');
   });
 });

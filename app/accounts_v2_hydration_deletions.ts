@@ -31,6 +31,14 @@ import { flashcardsSwipeMemoryKey } from './target_storage_keys';
  */
 
 const LOG = '[ACCOUNT-V2]';
+/**
+ * 7E: запас по часам. Удаление побеждает правку, только если оно позже неё не меньше
+ * чем на час. зачем: сравниваются часы РАЗНЫХ устройств (телефон, сервер, другое
+ * устройство); часы телефона, сбитые вперёд на минуты, иначе «удаляли» свежую правку.
+ * Цена: удаление, сделанное меньше чем через час после правки, карточку не убирает
+ * (карточка остаётся — это не потеря данных).
+ */
+export const ACCOUNTS_V2_DELETION_CLOCK_MARGIN_MS = 60 * 60 * 1000;
 const TRAINING_PREFIX: Readonly<Record<'saved' | 'custom', string>> = Object.freeze({ saved: 'saved:all:', custom: 'custom:all:' });
 
 type Counts = Record<string, number>;
@@ -49,9 +57,9 @@ export function cardEntityKey(target: string, list: List, id: string): string {
   return `${target}:${list}:${id}`;
 }
 
-/** Времена правки, известные серверу о живой карточке (addedAt поля, srs.updatedAtMs). */
+/** Времена правки, известные серверу о живой карточке (addedAt, 7E: updatedAt поля, srs.updatedAtMs). */
 export function serverCardContentTimeMs(card: HydratedCard): number | null {
-  return latest(time(card.fields.addedAt), time(card.srs?.updatedAtMs));
+  return latest(time(card.fields.addedAt), time(card.fields.updatedAt), time(card.srs?.updatedAtMs));
 }
 
 export type Verdict = Readonly<{ remove: boolean; reason: string }>;
@@ -59,25 +67,28 @@ export type Verdict = Readonly<{ remove: boolean; reason: string }>;
 /** Журнал (удалено здесь в deletedAtMs) против живой карточки сервера. */
 export function journalBeatsServerCard(deletedAtMs: number, card: HydratedCard): Verdict {
   const changed = time(card.updatedAtMs);
-  if (changed !== null && changed < deletedAtMs) return { remove: true, reason: 'server_changed_before_deletion' };
+  const edge = deletedAtMs - ACCOUNTS_V2_DELETION_CLOCK_MARGIN_MS;
+  if (changed !== null && changed <= edge) return { remove: true, reason: 'server_changed_before_deletion' };
   const content = serverCardContentTimeMs(card);
-  if (card.revision === 1 && content !== null && content < deletedAtMs) {
+  if (card.revision === 1 && content !== null && content <= edge) {
     return { remove: true, reason: 'server_written_once_before_deletion' };
   }
   return { remove: false, reason: changed === null && content === null ? 'server_time_unknown' : 'server_newer' };
 }
 
 /** Последняя известная правка локальной карточки; null — неизвестно. */
-export function localCardEditTimeMs(card: Readonly<{ addedAt?: unknown }>, memoryRow: unknown): number | null {
+export function localCardEditTimeMs(card: Readonly<{ addedAt?: unknown; updatedAt?: unknown }>, memoryRow: unknown): number | null {
   const seen = typeof memoryRow === 'object' && memoryRow !== null ? (memoryRow as { lastSeenAt?: unknown }).lastSeenAt : undefined;
-  return latest(time(card.addedAt), time(seen));
+  // зачем (7E): updatedAt — правка своей карточки / освежение после «Вернуть»; нет поля — как раньше.
+  return latest(time(card.addedAt), time(card.updatedAt), time(seen));
 }
 
 /** Удаление (tombstone и/или журнал) против локальной карточки. */
 export function deletionBeatsLocalCard(deletedAtMs: number | null, localEditMs: number | null): Verdict {
   if (deletedAtMs === null) return { remove: false, reason: 'deletion_time_unknown' };
   if (localEditMs === null) return { remove: false, reason: 'local_edit_time_unknown' };
-  return deletedAtMs > localEditMs
+  // зачем (7E): запас по часам — удаление должно быть позже правки минимум на час.
+  return deletedAtMs - localEditMs >= ACCOUNTS_V2_DELETION_CLOCK_MARGIN_MS
     ? { remove: true, reason: 'deletion_newer_than_local_edit' }
     : { remove: false, reason: 'local_edit_newer' };
 }
@@ -138,10 +149,10 @@ export function planCardDeletions(
 
 type Ports = Readonly<{
   readJournal: () => Promise<ReadonlyMap<string, number> | null>;
-  forgetJournal: (keys: readonly string[]) => Promise<void>;
+  forgetJournal: (keys: readonly string[]) => Promise<unknown>;
   readMemory: (key: string) => Promise<Readonly<Record<string, unknown>> | null>;
-  removeSaved: (target: StudyTarget, decide: (card: Readonly<{ id: string; addedAt?: unknown }>) => boolean) => Promise<number>;
-  removeCustom: (target: StudyTarget, decide: (card: Readonly<{ id: string; addedAt?: unknown }>) => boolean) => Promise<number>;
+  removeSaved: (target: StudyTarget, decide: (card: Readonly<{ id: string; addedAt?: unknown; updatedAt?: unknown }>) => boolean) => Promise<number>;
+  removeCustom: (target: StudyTarget, decide: (card: Readonly<{ id: string; addedAt?: unknown; updatedAt?: unknown }>) => boolean) => Promise<number>;
   produceTombstones: (target: StudyTarget, list: List, ids: readonly string[]) => boolean;
 }>;
 
@@ -209,7 +220,7 @@ async function removeLocally(
       continue;
     }
     for (const [list, ids] of lists) {
-      const decide = (card: Readonly<{ id: string; addedAt?: unknown }>): boolean => {
+      const decide = (card: Readonly<{ id: string; addedAt?: unknown; updatedAt?: unknown }>): boolean => {
         if (!isCurrent() || !ids.has(card.id)) return false;
         const verdict = deletionBeatsLocalCard(ids.get(card.id) ?? null, localCardEditTimeMs(card, memory[`${TRAINING_PREFIX[list]}${card.id}`]));
         console.log(`${LOG} hydrate card_deletion decision=${verdict.remove ? 'remove' : 'keep'} reason=${verdict.reason} list=${list}`);

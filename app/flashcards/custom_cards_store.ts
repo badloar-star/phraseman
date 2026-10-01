@@ -149,7 +149,9 @@ export function upsertCustomCard(card: CardItem, studyTarget?: RuntimeStudyTarge
     const idx = cards.findIndex((c) => c.id === card.id);
     if (idx >= 0) {
       const next = [...cards];
-      next[idx] = card;
+      // зачем (Account V2, 7E): время правки человеком — удаление с другого устройства
+      // уберёт карточку при гидрации, только если оно свежее этой правки.
+      next[idx] = { ...card, updatedAt: Date.now() };
       return next;
     }
     return [...cards, card];
@@ -198,8 +200,32 @@ export function restoreCustomCard(
     next.splice(at, 0, card);
     return next;
   }, studyTarget).then(() => {
-    // зачем (Account V2, 7D): «Вернуть» отменяет удаление — снимаем запись журнала.
-    void forgetCardDeletions(storageStudyTarget(studyTarget), 'custom', [card.id]);
+    // зачем (Account V2, 7D): «Вернуть» отменяет удаление — снимаем запись журнала
+    // (7E: и когда карточка уже была на месте — мутатор вернул тот же массив).
+    forgetRestoredCustomCardDeletion(card.id, studyTarget);
+  });
+}
+
+/**
+ * 7E: запись журнала не снялась (сбой хранилища) — освежаем время правки своей
+ * карточки (updatedAt), чтобы гидрация не убрала возвращённую карточку. Фоном:
+ * «Вернуть» не ждёт хранилище журнала.
+ */
+function forgetRestoredCustomCardDeletion(id: string, studyTarget?: RuntimeStudyTarget): void {
+  const target = storageStudyTarget(studyTarget);
+  void forgetCardDeletions(target, 'custom', [id]).then(async (forgotten) => {
+    if (forgotten) return;
+    console.warn('[ACCOUNT-V2] journal restore_forget_failed -> touch list=custom');
+    let touched = false;
+    await updateCustomCards((cards) => {
+      if (!cards.some((c) => c.id === id)) return cards;
+      touched = true;
+      const now = Date.now();
+      return cards.map((c) => (c.id === id ? { ...c, updatedAt: now } : c));
+    }, target);
+    if (!touched) console.warn('[ACCOUNT-V2] journal restore_touch_skip reason=card_absent list=custom');
+  }).catch((error: unknown) => {
+    console.warn(`[ACCOUNT-V2] journal restore_touch_failed kind=${error instanceof Error ? error.name : typeof error} list=custom`);
   });
 }
 

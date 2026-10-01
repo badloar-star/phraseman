@@ -71,11 +71,12 @@ async function rewrite(
   label: string,
   isCurrent: () => boolean,
   change: (entries: Entry[]) => Entry[] | null,
-): Promise<void> {
+): Promise<boolean> {
+  // зачем (7E): итог нужен «Вернуть» — не снялась запись → вызывающий освежает время карточки.
   try {
     if (!isCurrent()) {
       console.warn(`${LOG} journal ${label}_skip reason=account_changed`);
-      return;
+      return false;
     }
     let entries = parseEntries(await AsyncStorage.getItem(CARD_DELETION_JOURNAL_KEY));
     if (entries === null) {
@@ -84,14 +85,16 @@ async function rewrite(
       entries = [];
     }
     const next = change(entries);
-    if (next === null) return;
+    if (next === null) return true;
     if (!isCurrent()) {
       console.warn(`${LOG} journal ${label}_skip reason=account_changed_midway`);
-      return;
+      return false;
     }
     await AsyncStorage.setItem(CARD_DELETION_JOURNAL_KEY, JSON.stringify({ v: 1, e: next }));
+    return true;
   } catch (error) {
     console.warn(`${LOG} journal ${label}_failed kind=${kindOf(error)}`);
+    return false;
   }
 }
 
@@ -107,7 +110,7 @@ export function recordCardDeletions(
   const keys = [...new Set(ids.filter((id) => typeof id === 'string' && id.length > 0))].map((id) => cardDeletionKey(target, list, id));
   if (keys.length === 0 || !Number.isSafeInteger(nowMs) || nowMs <= 0) return Promise.resolve();
   const isCurrent = currentGuard();
-  return serial(() => rewrite('record', isCurrent, (entries) => {
+  return serial(async () => { await rewrite('record', isCurrent, (entries) => {
     const fresh = new Set(keys);
     const kept = entries.filter(([key]) => !fresh.has(key));
     const next = [...kept, ...keys.map((key): Entry => [key, nowMs])];
@@ -116,17 +119,20 @@ export function recordCardDeletions(
     if (dropped > 0) console.log(`${LOG} journal evicted count=${dropped}`);
     console.log(`${LOG} journal record list=${list} count=${keys.length} size=${next.length - dropped}`);
     return next.slice(dropped);
-  }));
+  }); });
 }
 
-/** Снять записи (undo «Вернуть» или гидрация решила, что сервер свежее). Никогда не бросает. */
-export function forgetCardDeletions(target: string, list: CardDeletionList, ids: readonly string[]): Promise<void> {
+/**
+ * Снять записи (undo «Вернуть» или гидрация решила, что сервер свежее). Никогда не бросает.
+ * true — записей больше нет (сняты или их не было); false — не снялись (сбой / сменился аккаунт).
+ */
+export function forgetCardDeletions(target: string, list: CardDeletionList, ids: readonly string[]): Promise<boolean> {
   return forgetCardDeletionKeys(ids.map((id) => cardDeletionKey(target, list, id)));
 }
 
-export function forgetCardDeletionKeys(keys: readonly string[]): Promise<void> {
+export function forgetCardDeletionKeys(keys: readonly string[]): Promise<boolean> {
   const gone = new Set(keys);
-  if (gone.size === 0) return Promise.resolve();
+  if (gone.size === 0) return Promise.resolve(true);
   const isCurrent = currentGuard();
   return serial(() => rewrite('forget', isCurrent, (entries) => {
     const next = entries.filter(([key]) => !gone.has(key));

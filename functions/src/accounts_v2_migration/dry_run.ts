@@ -279,6 +279,21 @@ function cardProblems(item: PlainObject, ctx: Context): Readonly<{ reason: strin
   return problems;
 }
 
+/**
+ * 7E ремонт №1: `updatedAt` карточки — время правки по часам телефона (safe integer > 0).
+ * зачем: битое значение клиент и так игнорирует (время неизвестно → карточку не убирают),
+ * поэтому HOLD всего аккаунта из-за него хуже потери поля: поле снимается с переносимой
+ * карточки, в отчёт — informational malformed_value (статус не держит, чистка путь не трогает).
+ */
+function withoutMalformedUpdatedAt(item: PlainObject, path: string, ctx: Context): PlainObject {
+  if (!Object.prototype.hasOwnProperty.call(item, 'updatedAt')) return item;
+  const value = item.updatedAt;
+  if (typeof value === 'number' && Number.isSafeInteger(value) && value > 0) return item;
+  ctx.ledger.add('informational', 'malformed_value', `${path}[*].updatedAt`);
+  const { updatedAt: _dropped, ...rest } = item;
+  return rest as PlainObject;
+}
+
 function collectCards(list: readonly unknown[], kind: 'saved' | 'custom', target: string, path: string, ctx: Context, out: Candidate[]): void {
   const accepted = new Map<string, Readonly<{ canonical: string; candidate: Candidate }>>();
   const conflicted = new Set<string>();
@@ -294,7 +309,8 @@ function collectCards(list: readonly unknown[], kind: 'saved' | 'custom', target
     }
     const id = item.id as string;
     if (conflicted.has(id)) continue;
-    const canonical = canonicalJson(item as unknown as JsonValue);
+    const card = withoutMalformedUpdatedAt(item, path, ctx);
+    const canonical = canonicalJson(card as unknown as JsonValue);
     const prior = accepted.get(id);
     if (prior !== undefined) {
       if (prior.canonical === canonical) continue;
@@ -305,7 +321,7 @@ function collectCards(list: readonly unknown[], kind: 'saved' | 'custom', target
     }
     accepted.set(id, { canonical, candidate: {
       entityType: 'flashcard', entityId: `${target}:${kind}:${id}`, chunk: 0,
-      payload: { op: 'upsert', fields: item as unknown as JsonValue }, sourcePath: `${path}[*]`,
+      payload: { op: 'upsert', fields: card as unknown as JsonValue }, sourcePath: `${path}[*]`,
     } });
   }
   for (const { candidate } of accepted.values()) out.push(candidate);

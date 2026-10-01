@@ -34,7 +34,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useMyCoinRank } from '../hooks/use_my_coin_rank';
-import { coinRankRowForDisplay } from '../app/coin_rank_table_v1';
+import { coinRankRowForDisplay, coinRankTitle } from '../app/coin_rank_table_v1';
 import { resolvePlayerProfileVisibleRank } from '../app/player_profile_v2_state';
 import { DebugLogger } from '../app/debug-logger';
 import { fetchPublicProfileCard, peekPublicProfileCard, type PublicProfileCard } from '../app/profile_card_public';
@@ -211,7 +211,7 @@ function PlayerProfileModalBody({
 
   const handleShare = useCallback(() => {
     hapticTap();
-    const title = rankRow ? `${rankRow.levelTitle} · ${t4(L, PC.rank)} ${rankRow.rank + 1}` : '';
+    const title = rankRow ? `${coinRankTitle(rankRow.rank, L)} · ${t4(L, PC.rank)} ${rankRow.rank + 1}` : '';
     const message = `${t4(L, PC.shareText)}: ${player.name}${title ? ` — ${title}` : ''}${bioText ? `\n«${bioText}»` : ''}`;
     DebugLogger.info(LOG, `поделиться: открываем системное окно ${JSON.stringify({ look, hasBio: !!bioText })}`);
     Share.share({ message }).catch((error: unknown) => {
@@ -295,7 +295,7 @@ function PlayerProfileModalBody({
               <View
                 testID="profile-card-coin"
                 accessible
-                accessibilityLabel={rankRow ? rankRow.levelTitle : t4(L, PC.rankUnknown)}
+                accessibilityLabel={rankRow ? coinRankTitle(rankRow.rank, L) : t4(L, PC.rankUnknown)}
                 style={{ position: 'absolute', left: cx - coinSize / 2, top: cy - coinSize / 2 }}
               >
                 <ProfileCardCoin look={look} rank={visibleRank} size={coinSize} animate={animate} />
@@ -333,7 +333,7 @@ function PlayerProfileModalBody({
                 <View style={styles.banner}>
                   <CoinImage rank={visibleCeremony.toRank} size={24} />
                   <Text style={styles.bannerText}>
-                    {`${t4(L, PC.newRank)}: ${coinRankRowForDisplay(visibleCeremony.toRank).levelTitle}`}
+                    {`${t4(L, PC.newRank)}: ${coinRankTitle(visibleCeremony.toRank, L)}`}
                   </Text>
                 </View>
               </ReanimatedView.View>

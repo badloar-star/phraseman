@@ -9,7 +9,8 @@ for (const source of [profile, snapshot, rank]) {
 for (const field of ['profileCardLevel', 'profileCardTheme', 'profileCardMotion', 'profileCardPublicFocus']) {
   if (!profile.includes(field)) throw new Error(`profile-card field missing: ${field}`);
 }
-if (!profile.includes('coinRankRowForDisplay') || !profile.includes('rankRow.levelTitle')) {
+// 01.10 (PM-128): звание по-прежнему из таблицы монет, но на языке интерфейса — coinRankTitle.
+if (!profile.includes('coinRankRowForDisplay') || !profile.includes('coinRankTitle(rankRow.rank')) {
   throw new Error('rank identity is not rendered from coin resolver');
 }
 

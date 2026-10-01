@@ -8,7 +8,7 @@ import React, { memo } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import ReanimatedView from 'react-native-reanimated';
 
-import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
+import { coinRankTitle } from '../../app/coin_rank_table_v1';
 import type { Lang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
 import type { CoinRankCeremony } from '../../hooks/use_coin_rank_upgrade';
@@ -34,7 +34,7 @@ type Props = Readonly<{
 }>;
 
 export function profileCardRankLabel(rank: number, lang: Lang): string {
-  return `${coinRankRowForDisplay(rank).levelTitle} · ${t4(lang, PC.rank)} ${rank + 1}`;
+  return `${coinRankTitle(rank, lang)} · ${t4(lang, PC.rank)} ${rank + 1}`;
 }
 
 function ProfileCardBodyBase({

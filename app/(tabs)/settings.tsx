@@ -29,7 +29,7 @@ import {
 } from '../../components/settings/SettingsGlassRows';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
-import { coinRankRowForDisplay, isValidCoinRank } from '../coin_rank_table_v1';
+import { coinRankRowForDisplay, coinRankTitle, isValidCoinRank } from '../coin_rank_table_v1';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import DeleteAccountConfirmModal from '../../components/DeleteAccountConfirmModal';
 import { scheduleDailyReminder, cancelAllNotifications, loadNotificationSettings } from '../notifications';
@@ -948,7 +948,8 @@ export default function SettingsMain() {
     : linkedAuth
       ? L('аккаунт привязан', 'акаунт прив’язано', 'account linked', 'cuenta vinculada', 'conta vinculada', 'đã liên kết tài khoản', 'akun tertaut', 'hesap bağlı', 'konto połączone')
       : L('аккаунт не привязан', 'акаунт не прив’язано', 'account not linked', 'cuenta sin vincular', 'conta não vinculada', 'chưa liên kết tài khoản', 'akun belum ditautkan', 'hesap bağlı değil', 'konto niepołączone');
-  const profileCardSub = [myCoinRankRow?.levelTitle, accountLinkedSub].filter(Boolean).join(' · ');
+  // зачем (PM-128): звание на языке интерфейса, а не всегда по-русски.
+  const profileCardSub = [myCoinRankRow ? coinRankTitle(myCoinRankRow.rank, lang) : undefined, accountLinkedSub].filter(Boolean).join(' · ');
   const profileCardName = userName.trim() || L('Профиль', 'Профіль', 'Profile', 'Perfil', 'Perfil', 'Hồ sơ', 'Profil', 'Profil', 'Profil');
   const studyTargetName = STUDY_TARGET_NATIVE_NAME[studyTarget] ?? studyTarget;
   const studyTargetFlag = STUDY_TARGET_FLAG[studyTarget];

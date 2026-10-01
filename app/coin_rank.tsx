@@ -10,7 +10,7 @@ import {
   isCurrentAccountGeneration,
   subscribeAccountGeneration,
 } from './account_generation';
-import { coinRankRowForDisplay } from './coin_rank_table_v1';
+import { coinRankMetal, coinRankRowForDisplay, coinRankTitle } from './coin_rank_table_v1';
 import { DebugLogger } from './debug-logger';
 import { actionToastTri, emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
@@ -348,10 +348,10 @@ export default function CoinRankScreen() {
           )}
           <Text style={[styles.overline, { color: p.textSecondary }]}>{copy.current.toUpperCase()}</Text>
           <Text testID="coin-rank-current-title" style={[styles.rankTitle, { color: p.text }]}>
-            {current?.levelTitle ?? '—'}
+            {current ? coinRankTitle(current.rank, lang) : '—'}
           </Text>
           <Text style={[styles.rankMeta, { color: p.textSecondary }]}>
-            {rank === null ? copy.loading : `${copy.level} ${rank} · ${current!.metalName}`}
+            {rank === null ? copy.loading : `${copy.level} ${rank} · ${coinRankMetal(current!.rank, lang)}`}
           </Text>
         </View>
 
@@ -371,8 +371,8 @@ export default function CoinRankScreen() {
               <View style={styles.nextHeader}>
                 <View style={styles.nextCopy}>
                   <Text style={[styles.cardLabel, { color: p.textSecondary }]}>{copy.next}</Text>
-                  <Text testID="coin-rank-next-title" style={[styles.nextTitle, { color: p.text }]}>{next.levelTitle}</Text>
-                  <Text style={[styles.nextMeta, { color: p.textSecondary }]}>{`${copy.level} ${next.rank} · ${next.metalName}`}</Text>
+                  <Text testID="coin-rank-next-title" style={[styles.nextTitle, { color: p.text }]}>{coinRankTitle(next.rank, lang)}</Text>
+                  <Text style={[styles.nextMeta, { color: p.textSecondary }]}>{`${copy.level} ${next.rank} · ${coinRankMetal(next.rank, lang)}`}</Text>
                 </View>
                 <Image source={next.source} contentFit="contain" style={styles.nextCoin} accessible={false} />
               </View>

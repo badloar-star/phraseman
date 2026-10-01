@@ -40,7 +40,8 @@ test('header, profile card and section titles follow the PRF-01 geometry', () =>
   assert.match(body, /testID="settings-profile-card"[\s\S]*?leading=\{renderRankCoin\('settings-profile-coin'\)\}/);
   assert.match(source, /const myCoinRank = useMyCoinRank\(\);/);
   assert.match(source, /coinRankRowForDisplay\(myCoinRank\)/);
-  assert.match(source, /\[myCoinRankRow\?\.levelTitle, accountLinkedSub\]\.filter\(Boolean\)\.join\(' · '\)/);
+  // 01.10 (PM-128): звание на языке интерфейса — на pt-BR раньше стояло «Агент».
+  assert.match(source, /\[myCoinRankRow \? coinRankTitle\(myCoinRankRow\.rank, lang\) : undefined, accountLinkedSub\]\.filter\(Boolean\)\.join\(' · '\)/);
   assert.match(rows, /fontSize:\s*11,\s*lineHeight:\s*14,\s*fontWeight:\s*'700',\s*letterSpacing:\s*1\.7,\s*marginTop:\s*24,\s*marginHorizontal:\s*4,\s*marginBottom:\s*10/);
   assert.match(rows, /gap:\s*10,\s*marginTop/);
 });

@@ -15,6 +15,7 @@
 // Названия сопоставлены по индексу 0..19, «Оракул» (индекс 20) НЕ используется — замену
 // не выдумываем, ждём решения владельца. Названия пока только русские (переводы — PM-245).
 import type { ImageSourcePropType } from 'react-native';
+import { triLang, type Lang } from '../constants/i18n';
 
 export type CoinMetalId = 'copper' | 'silver' | 'gold' | 'platinum';
 
@@ -57,6 +58,53 @@ const LEVEL_TITLES_RU: readonly string[] = [
   'Дипломат', 'Консул', 'Стратег', 'Магистр', 'Лидер',
   'Элита', 'Кумир', 'Икона', 'Легенда', 'Титан',
 ];
+
+// зачем (PM-128, эмулятор 01.10): на португальском интерфейсе «Настройки» показывали
+// «Агент · conta não vinculada» — звания и металлы жили только по-русски. Переводы — прямые
+// соответствия русских слов (не новые названия); русская таблица выше остаётся каноном.
+const LEVEL_TITLES = Object.freeze({
+  ru: LEVEL_TITLES_RU,
+  uk: ['Стажер', 'Кадет', 'Скаут', 'Агент', 'Спікер', 'Лектор', 'Експерт', 'Профі', 'Майстер', 'Ерудит',
+    'Дипломат', 'Консул', 'Стратег', 'Магістр', 'Лідер', 'Еліта', 'Кумир', 'Ікона', 'Легенда', 'Титан'],
+  en: ['Intern', 'Cadet', 'Scout', 'Agent', 'Speaker', 'Lecturer', 'Expert', 'Pro', 'Master', 'Scholar',
+    'Diplomat', 'Consul', 'Strategist', 'Magister', 'Leader', 'Elite', 'Idol', 'Icon', 'Legend', 'Titan'],
+  es: ['Becario', 'Cadete', 'Explorador', 'Agente', 'Orador', 'Conferenciante', 'Experto', 'Pro', 'Maestro', 'Erudito',
+    'Diplomático', 'Cónsul', 'Estratega', 'Magíster', 'Líder', 'Élite', 'Ídolo', 'Icono', 'Leyenda', 'Titán'],
+  'pt-BR': ['Estagiário', 'Cadete', 'Escoteiro', 'Agente', 'Orador', 'Palestrante', 'Especialista', 'Pro', 'Mestre', 'Erudito',
+    'Diplomata', 'Cônsul', 'Estrategista', 'Magíster', 'Líder', 'Elite', 'Ídolo', 'Ícone', 'Lenda', 'Titã'],
+  vi: ['Thực tập sinh', 'Học viên', 'Trinh sát', 'Đặc vụ', 'Diễn giả', 'Giảng viên', 'Chuyên gia', 'Cao thủ', 'Bậc thầy', 'Học giả',
+    'Nhà ngoại giao', 'Lãnh sự', 'Chiến lược gia', 'Thạc sĩ', 'Thủ lĩnh', 'Tinh hoa', 'Thần tượng', 'Biểu tượng', 'Huyền thoại', 'Titan'],
+  id: ['Magang', 'Kadet', 'Pramuka', 'Agen', 'Pembicara', 'Dosen', 'Ahli', 'Pro', 'Master', 'Cendekia',
+    'Diplomat', 'Konsul', 'Ahli strategi', 'Magister', 'Pemimpin', 'Elite', 'Idola', 'Ikon', 'Legenda', 'Titan'],
+  tr: ['Stajyer', 'Harbiyeli', 'İzci', 'Ajan', 'Konuşmacı', 'Öğretim görevlisi', 'Uzman', 'Profesyonel', 'Usta', 'Bilge',
+    'Diplomat', 'Konsolos', 'Stratejist', 'Magister', 'Lider', 'Elit', 'İdol', 'İkon', 'Efsane', 'Titan'],
+  pl: ['Stażysta', 'Kadet', 'Zwiadowca', 'Agent', 'Mówca', 'Wykładowca', 'Ekspert', 'Profesjonalista', 'Mistrz', 'Erudyta',
+    'Dyplomata', 'Konsul', 'Strateg', 'Magister', 'Lider', 'Elita', 'Idol', 'Ikona', 'Legenda', 'Tytan'],
+} as const);
+
+const METAL_NAMES = Object.freeze({
+  ru: ['Медь', 'Серебро', 'Золото', 'Платина'],
+  uk: ['Мідь', 'Срібло', 'Золото', 'Платина'],
+  en: ['Copper', 'Silver', 'Gold', 'Platinum'],
+  es: ['Cobre', 'Plata', 'Oro', 'Platino'],
+  'pt-BR': ['Cobre', 'Prata', 'Ouro', 'Platina'],
+  vi: ['Đồng', 'Bạc', 'Vàng', 'Bạch kim'],
+  id: ['Tembaga', 'Perak', 'Emas', 'Platinum'],
+  tr: ['Bakır', 'Gümüş', 'Altın', 'Platin'],
+  pl: ['Miedź', 'Srebro', 'Złoto', 'Platyna'],
+} as const);
+
+/** Звание ранга на языке интерфейса. Неизвестный ранг → '' (вызывающий показывает свой плейсхолдер). */
+export function coinRankTitle(rank: number, lang: Lang): string {
+  if (!isValidCoinRank(rank)) return '';
+  return (triLang(lang, LEVEL_TITLES) as readonly string[])[rank] ?? LEVEL_TITLES_RU[rank];
+}
+
+/** Металл ранга на языке интерфейса. */
+export function coinRankMetal(rank: number, lang: Lang): string {
+  if (!isValidCoinRank(rank)) return '';
+  return (triLang(lang, METAL_NAMES) as readonly string[])[Math.floor(rank / 5)] ?? METALS[Math.floor(rank / 5)][1];
+}
 
 // Metro тянет картинки только по статическим require — поэтому список, а не шаблон пути.
 const SOURCES: readonly ImageSourcePropType[] = [

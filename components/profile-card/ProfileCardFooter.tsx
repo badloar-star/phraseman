@@ -7,7 +7,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { coinRankRowForDisplay, COIN_RANK_MAX, type CoinRankRow } from '../../app/coin_rank_table_v1';
+import { coinRankTitle, COIN_RANK_MAX, type CoinRankRow } from '../../app/coin_rank_table_v1';
 import type { Lang } from '../../constants/i18n';
 import { buttonInk, ProfileCardButton, TwoLine } from './ProfileCardParts';
 import type { ProfileCardLookTokens } from './profile_card_looks';
@@ -48,7 +48,7 @@ function ProfileCardSelfFooterBase({
   const upTone = isMaxRank || !eligible ? 'off' : 'primary';
   const upInk = buttonInk(upTone, tokens.primary);
   const upSub = isMaxRank
-    ? coinRankRowForDisplay(COIN_RANK_MAX).levelTitle
+    ? coinRankTitle(COIN_RANK_MAX, lang)
     : busy
       ? '…'
       : missing !== null && missing > 0

@@ -7,6 +7,7 @@ import React, { memo, useMemo } from 'react';
 
 import LevelUpMintCeremony from './LevelUpMintCeremony';
 import { coinRankMintSide } from './coin_rank_mint_side';
+import { useLang } from '../LangContext';
 import type { CoinRankCeremony } from '../../hooks/use_coin_rank_upgrade';
 
 type Props = Readonly<{
@@ -15,10 +16,11 @@ type Props = Readonly<{
 }>;
 
 function CoinRankUpgradeCeremony({ ceremony, onDone }: Props) {
+  const { lang } = useLang();
   // Без повышения модалка просто невидима (visible=false); стороны-заглушки 0→1 не
   // показываются — нужны лишь чтобы дерево было одинаковым в обоих состояниях.
-  const from = useMemo(() => coinRankMintSide(ceremony?.fromRank ?? 0), [ceremony]);
-  const to = useMemo(() => coinRankMintSide(ceremony?.toRank ?? 1), [ceremony]);
+  const from = useMemo(() => coinRankMintSide(ceremony?.fromRank ?? 0, lang), [ceremony, lang]);
+  const to = useMemo(() => coinRankMintSide(ceremony?.toRank ?? 1, lang), [ceremony, lang]);
   return <LevelUpMintCeremony visible={ceremony !== null} from={from} to={to} onDone={onDone} />;
 }
 

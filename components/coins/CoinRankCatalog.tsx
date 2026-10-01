@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
 
-import { COIN_RANK_TABLE } from '../../app/coin_rank_table_v1';
+import { COIN_RANK_TABLE, coinRankTitle } from '../../app/coin_rank_table_v1';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 
@@ -45,7 +45,7 @@ function CoinRankCatalog({ glass, lang, currentRank }: Props) {
               key={row.rank}
               testID={`coin-rank-catalog-cell-${row.rank}`}
               accessible
-              accessibilityLabel={`${copy.rank} ${row.rank}, ${row.levelTitle}`}
+              accessibilityLabel={`${copy.rank} ${row.rank}, ${coinRankTitle(row.rank, lang)}`}
               accessibilityState={{ selected: on }}
               style={[
                 styles.cell,

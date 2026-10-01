@@ -147,11 +147,11 @@ describe('tryUnlockLevelExam', () => {
     expect(result).toBeNull();
   });
 
-  it('returns null if not all lessons have score >= 4.5', async () => {
+  it('returns null if not all lessons reach 2 stars (>= 3.0, D125)', async () => {
     mockGetItem.mockResolvedValueOnce(null); // alreadyKey
     mockMultiGet.mockResolvedValue([
       ['lesson1_best_score', '5.0'],
-      ['lesson2_best_score', '4.0'], // below threshold
+      ['lesson2_best_score', '2.9'], // ниже порога 2★ = 60% (D125; прежний порог 4.5 устарел)
       ['lesson3_best_score', '5.0'],
       ['lesson4_best_score', '5.0'],
       ['lesson5_best_score', '5.0'],

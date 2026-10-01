@@ -9,6 +9,7 @@ import type {
   SessionSource,
 } from "../modules/learning-v2/content/source/session_shard_from_source_v1";
 import { upgradeLesson1SessionDistractorsV2 } from "../modules/learning-v2/content/source/lesson1_distractor_catalog_v2";
+import { AUTHORED_EPISODE_01_SESSIONS } from "../modules/learning-v2/content/source/authored_sessions_v1";
 
 type LocaleCopy = Readonly<
   Record<"ru" | "uk" | "es" | "pt-BR" | "vi" | "id" | "tr" | "pl", string>
@@ -41,7 +42,17 @@ function localized(values: LocaleCopy): LocalizedSource {
   };
 }
 
-function denseLocalized(values: LocaleCopy): LocalizedSource {
+// зачем: с 2026-08-27 (Библия текстов, правило 2) тело интро — не длиннее
+// 320 знаков и не больше 4 предложений; прежний «плотный» образец из 6
+// предложений стал нарушением. Образец = первые 3 предложения + проверка
+// конструкции: одна мысль, укладывается в потолок во всех локалях.
+const firstSentences = (text: string, count: number): string =>
+  text.split(/(?<=[.!?])\s+/u).slice(0, count).join(" ");
+
+function denseLocalized(source: LocaleCopy): LocalizedSource {
+  const values = Object.fromEntries(
+    Object.entries(source).map(([locale, text]) => [locale, firstSentences(text, 2)]),
+  ) as unknown as LocaleCopy;
   return localized({
     ru: `${values.ru} Проверяйте всю конструкцию целиком: человек I, обязательная связка am, затем место или состояние.`,
     uk: `${values.uk} Перевіряйте всю конструкцію: людина I, обов’язкова зв’язка am, а потім місце або стан.`,
@@ -139,6 +150,9 @@ function candidate(): SessionSource {
       "speak about yourself with I am",
     ),
     introPages: [page("concept", 1), page("formula", 2), page("trap", 3)],
+    // зачем: гейт требует 1–5 новых слов на обычное занятие с полным word-first циклом;
+    // берём одно настоящее, уже прошедшее авторский конвейер слово занятия 1.
+    newVocabulary: AUTHORED_EPISODE_01_SESSIONS[0]!.newVocabulary!.slice(0, 1),
     phrases: words.map((word, index) => ({
       id: `quality-gate-${index + 1}`,
       english: `I am ${word}`,
@@ -234,10 +248,13 @@ function approvedReceipt(
 }
 
 describe("Learning V2 strict content quality gate", () => {
-  test("rejects thin template-like intro copy before review", () => {
+  // зачем: нижний порог длины интро снят решением владельца 2026-08-27
+  // (минимум заставлял «лить воду»); код intro_body_too_thin больше не
+  // выдаётся. Действующее правило — 2–4 законченных предложения.
+  test("rejects a one-sentence intro body that cannot carry a full thought", () => {
     const source = candidate();
     (source.introPages[0].body as { ru: string }).ru =
-      "I am here. Просто запомните эту формулу.";
+      "Просто запомните формулу I am here.";
     const report = evaluateLearningV2SessionContentQuality(
       source,
       approvedReceipt(source),
@@ -245,7 +262,7 @@ describe("Learning V2 strict content quality gate", () => {
     expect(report.ok).toBe(false);
     expect(
       report.issues.map((issue: { code: string }) => issue.code),
-    ).toContain("intro_body_too_thin");
+    ).toContain("intro_body_sentence_count_invalid");
   });
 
   test("rejects weak phrase selection and shallow distractors", () => {

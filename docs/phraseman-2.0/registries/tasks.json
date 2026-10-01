@@ -15377,12 +15377,14 @@
     "reviewer": null,
     "evidence": [
       "a850ef0f4 (этап 1, −1352 строки: external_shard_event_sync, дотягивание pending grants, повтор монет из облачного события), 57405c6de (сторож post_auth зелёный); typecheck 0",
-      "этап 2: ece811060 (Главная/шит набора/снимок старта/FlashcardsHubHeader), 5ec5859ae (начисления и траты), 88d3d85aa (shards_system 2530→~240 строк, cloud_sync, статистика), 3c1630800 (delta_queue, pending_grants, ledger) — ≈3700 строк; typecheck 0; d70/pm210/pm212 PASS"
+      "этап 2: ece811060 (Главная/шит набора/снимок старта/FlashcardsHubHeader), 5ec5859ae (начисления и траты), 88d3d85aa (shards_system 2530→~240 строк, cloud_sync, статистика), 3c1630800 (delta_queue, pending_grants, ledger) — ≈3700 строк; typecheck 0; d70/pm210/pm212 PASS",
+      "e7709a89a: удалён дев-экран flashcards_market_dev (рынок наборов за жемчуг) с маршрутом, ссылками в витрине/реестрах/text-integrity, ключ flashcards_market_dev_owned_v1 снят с синхронизации (оставлен в очистке при смене аккаунта); сторож mobile_admin_panel_retirement_contract 5/5 требует отсутствия экрана; typecheck 0"
     ],
     "notes": [
       "2026-10-01 заведена по §57 координатора. Уже сделано: шаги жемчуга сняты с холодного старта (3b4ba428c), из lesson1 и рефералки (199174517). Осталось: вход/восстановление (auth_provider, auth_clean_install_recovery_adoption), журнал и pending grants, pearl_retire_d70 (открывает журнал через loadShardsFromCloud), сторожа.",
       "2026-10-01 этап 1: A1/A2 NOT_MET — auth_provider правит другая сессия; жемчуг виден на Главной/в Магазине (Дизайн); pearl_retire_d70 и loadShardsFromCloud в восстановлении оставлены осознанно, иначе остаток не обнулится",
-      "2026-10-02 этап 2: A1/A2 NOT_MET — держит app/auth_provider.ts (правит Account V2): строки 116–124, 2812–2813, 2979–2980, 3003/3015, 3093–3132, 3158–3245, 3623–3625; затем удалить shards_system/delta_queue/pending_grants/client_shard_*/phone_state мост и из _layout pearl_retire_d70 + GlobalShardsEarnedHost (этап 3)"
+      "2026-10-02 этап 2: A1/A2 NOT_MET — держит app/auth_provider.ts (правит Account V2): строки 116–124, 2812–2813, 2979–2980, 3003/3015, 3093–3132, 3158–3245, 3623–3625; затем удалить shards_system/delta_queue/pending_grants/client_shard_*/phone_state мост и из _layout pearl_retire_d70 + GlobalShardsEarnedHost (этап 3)",
+      "2026-10-02: хелперы ключей старого владения наборами (target_storage_keys, consumeDevActivePack) оставлены — marketplace.ts ещё читает старое владение; чистка после миграции владения (этап 3)"
     ],
     "actual_cost": null,
     "kind": "code",

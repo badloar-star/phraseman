@@ -6,7 +6,7 @@
 Negative тесты: duplicate command, поздний ответ другого аккаунта, старый deeplink, старый notification, старый appearance ID, неизвестная locale, нет голоса TTS, failed purchase callback, очистка кеша офлайн, повтор миграции. Release graph не содержит retired scopes; deployed jobs сверены отдельно. Собственный набор и обучение не исчезают при очистке/выходе/апдейте.
 
 ## Судьи
-UX/редактор проверяет новый экран, краткость без потери смысла, отсутствие AI-канцелярита/фанфар и соответствие утверждённому дизайну. Технический reviewer проверяет корректность, shared dependencies, data rights, очередь, расходы и end-to-end diagnostics. Доказательство — screenshot/trace/test command/file:line, не «мне кажется нормально».
+UX/редактор проверяет новый экран, краткость без потери смысла, отсутствие AI-канцелярита/фанфар и соответствие утверждённому дизайну. Технический reviewer проверяет корректность, shared dependencies, data rights, очередь, расходы и end-to-end diagnostics. Доказательство — screenshot/trace/test command/file:line, не «мне кажется нормально». Запись о сдаче задачи — строго по шаблону `../PROGRESS_ENTRY_TEMPLATE.md` (Task ID, base/result SHA, changed files, tests, screenshots, risks, next action; PM-253).
 
 ## Paywall
 Сравнение только на сопоставимых exposure/cohorts: platform, locale, source, pricing, eligibility trial, даты, cohort maturity. Смотреть не только клики/trials, но и paid starts/restore/errors/refunds там, где данные доступны. Маленькая выборка — неопределённость, не «победитель». Упростить экран до ценности и существенных условий. Цена, период, переход trial к списанию, восстановление/управление и ссылки на terms/privacy не удаляются ради минимализма. Проверить текущие требования платформы [W8–W9].

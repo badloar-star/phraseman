@@ -16,10 +16,31 @@ function repository(input: Readonly<{
 }
 
 describe('Dialogue V2 completion production release source', () => {
-  test('returns null without an explicit active approved release pointer', async () => {
+  test('falls back to the embedded approved release only when the pointer is absent', async () => {
+    // зачем (01.10): выпуска в проде нет — источником служит встроенный выпуск.
+    const embedded = { manifest: { k: 1 }, packets: { k: 2 } } as never;
+    const loadEmbedded = jest.fn(() => embedded);
     const source = repository({});
 
-    await expect(loadDialogueV2CompletionReleaseCandidate(source)).resolves.toBeNull();
+    await expect(loadDialogueV2CompletionReleaseCandidate(source, loadEmbedded)).resolves.toBe(embedded);
+    expect(loadEmbedded).toHaveBeenCalledTimes(1);
+    expect(source.readCollection).not.toHaveBeenCalled();
+
+    await expect(loadDialogueV2CompletionReleaseCandidate(repository({}), () => null)).resolves.toBeNull();
+  });
+
+  test('an existing but inactive pointer is an operator kill switch: no embedded fallback', async () => {
+    const loadEmbedded = jest.fn(() => ({ manifest: {}, packets: {} }) as never);
+    const source = repository({
+      pointer: {
+        schemaVersion: 'dialogue-v2-release-pointer.v1',
+        status: 'disabled',
+        releaseId: 'release_2026_09_26',
+      },
+    });
+
+    await expect(loadDialogueV2CompletionReleaseCandidate(source, loadEmbedded)).resolves.toBeNull();
+    expect(loadEmbedded).not.toHaveBeenCalled();
     expect(source.readCollection).not.toHaveBeenCalled();
   });
 

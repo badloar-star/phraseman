@@ -79,12 +79,16 @@ export const dialogueV2Catalogue = onCall({
     const authorized = release
       ? authorizeDialogueV2ServerCatalogue(studyTarget, release)
       : null;
-    if (!authorized) throw new Error('release_unavailable');
+    if (!authorized) throw new Error(release ? 'release_not_authorized' : 'release_unavailable');
     return Object.freeze({
       ok: true as const,
       packets: authorized.packets,
     });
-  } catch {
+  } catch (error) {
+    // зачем (правило «сперва логи»): раньше отказ был немым — «Диалоги не загрузились» без следа в логах.
+    console.warn('[DIALOGUE-V2] catalogue:release_unavailable', JSON.stringify({
+      studyTarget, reason: error instanceof Error ? error.message : String(error),
+    }));
     throw new HttpsError(
       'failed-precondition',
       'dialogue_v2_catalogue_release_unavailable',

@@ -699,7 +699,12 @@ describe('Dialogue V2 completion callable boundary', () => {
     jest.clearAllMocks();
     const fetchMock = jest.fn();
     global.fetch = fetchMock as typeof fetch;
-    const pointerGet = jest.fn().mockResolvedValue({ exists: false, data: () => undefined });
+    // зачем (01.10): при ОТСУТСТВИИ указателя теперь работает встроенный выпуск, поэтому
+    // «выпуска нет» = указатель есть, но выключен оператором (рубильник).
+    const pointerGet = jest.fn().mockResolvedValue({
+      exists: true,
+      data: () => ({ schemaVersion: 'dialogue-v2-release-pointer.v1', status: 'disabled', releaseId: 'off' }),
+    });
     mockFirestore.mockReturnValue({
       doc: jest.fn(() => ({ get: pointerGet })),
       collection: jest.fn(),

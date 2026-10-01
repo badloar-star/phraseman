@@ -49,6 +49,9 @@ const RULES = [
   { n: /^cardTtsPackWorker$/u, d: 'ai/audio', c: 'Озвучка карточек OpenAI TTS при одобрении набора (D128)' },
   { n: /^dailyPollVote$/u, d: 'social/friends', c: 'Опрос дня на Главной (решение владельца 30.09)' },
   { n: /^(levelSpinStarGrant|giftsToCoinsMigrationReport)$/u, d: 'purchases/subscriptions', c: 'Кошелёк монет: начисление и отчёт миграции подарков в монеты (D03, Q12/Q13)' },
+  // зачем: E22 2026-10-01 — новые функции в коде обязаны иметь привязку, иначе проба PM-221 (храповик) падает.
+  { n: /^coinReconcileV1$/u, d: 'purchases/subscriptions', c: 'Разовая серверная сверка кошелька монет по level_spin_results (Q-COIN (b), решение координатора 01.10)' },
+  { n: /^(activationEmailRetryCron|resendKeyHealthCron)$/u, d: 'purchases/subscriptions', c: 'Сторож почты активации: повтор писем и проверка ключа Resend (код перенесён в email_delivery_watchdog.ts 01.10, инцидент 21.09)' },
   { n: /^profileCardBioSetMine$/u, d: 'social/friends', c: 'Визитка профиля: текст «о себе» (D73/D114)' },
   { n: /^(statsInsightsGenerate|weeklyReviewGenerate)$/u, d: 'ai/audio', c: 'ИИ-заметки к статистике и ИИ-разбор ошибок для Plus (OpenAI)', s: 'needs-owner-decision', why: 'экспорта нет, вызова из клиента нет, решения в 03_DECISIONS нет: удалить код или подключить в 2.0' },
   { n: /^(adminArenaConfig|adminArenaContent|adminArenaPublication)/u, d: 'spire/arena', c: 'Пул заданий Шпиля и его админ-публикация (CLAUDE.md: рабочая зависимость Шпиля, D74/D78)' },

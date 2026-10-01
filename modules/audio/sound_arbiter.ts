@@ -190,6 +190,13 @@ export class SoundArbiter {
     const definition = SOUND_EVENTS[eventId];
     this.expireActive(now);
 
+    // зачем (2026-10-01): удалённый из каталога звук (так было с «Дневным путём»,
+    // пока сцена ещё жила в старом бандле) ронял экран TypeError'ом. Отсутствие
+    // звука никогда не должно ломать экран — тихо выходим с логом.
+    if (!definition) {
+      console.warn(`[SOUND] unknown id ${String(eventId)} action=drop_missing`);
+      return { kind: 'drop', reason: 'missing' };
+    }
     if (!this.effectsEnabled) return { kind: 'drop', reason: 'disabled' };
     if (!definition.source) return { kind: 'drop', reason: 'missing' };
     if (this.recordingActive) return { kind: 'drop', reason: 'recording' };

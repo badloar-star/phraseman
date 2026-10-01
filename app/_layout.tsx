@@ -197,7 +197,6 @@ import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from 
 import { hasMeaningfulLocalAccountData } from './local_account_data';
 import { decideStartupCloudRecoveryPresentation } from './startup_cloud_recovery_presentation';
 import { OverlayArbiterProvider, useOverlayVisible } from '../components/OverlayArbiter';
-import DailyJourneyProductionModalHost from '../components/daily_journey/DailyJourneyProductionModalHost';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { trackActivity } from './app_activity';
 import { ProductAnalyticsRuntimeObserver } from './product_analytics_runtime_observer';
@@ -3229,7 +3228,9 @@ export default function RootLayout() {
             <EnergyProvider>
                 <OverlayArbiterProvider>
                     <AppContent fontsReady={fontsReady} />
-                    <DailyJourneyProductionModalHost />
+                    {/* зачем (D49, владелец 2026-10-01): хост «Дневного пути» удалён —
+                        он открывал окно «бонус дня» на старте каждый новый день
+                        (без флага). Замена — блок «Сегодня» на Главной, без окон. */}
                     {/* зачем (PM-049/050/051/052, D09/S51 владельца): бонус входа,
                         сундук недели, «день возвращения», «идеальная неделя» и
                         «бонус дня активирован» убраны — ничто декоративное не

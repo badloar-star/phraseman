@@ -1,6 +1,29 @@
 # Task packet: PhraseMan 2.0 — довести ретайр XP/лиг/Season/MAX и реестр до проверяемого состояния
 
 Governance-ID: TG-78D0099DF28B
+Governance-ID: TG-35DCB5A7E023
+Governance-ID: TG-DBF794B78E60
+Governance-ID: TG-1591F20AA0B1
+Governance-ID: TG-03F505DBA08F
+Governance-ID: TG-B94B41CBF99D
+Governance-ID: TG-A86F7EEFDB40
+Governance-ID: TG-65A498AFA040
+Governance-ID: TG-2F9A719C26E4
+Governance-ID: TG-A558AFCE4880
+Governance-ID: TG-CFA395A60EFF
+Governance-ID: TG-E585276EF7DC
+Governance-ID: TG-6D6A5780D41B
+Governance-ID: TG-70162A30A0EC
+Governance-ID: TG-1E234327A45C
+Governance-ID: TG-0175EE6DB825
+Governance-ID: TG-B0629574B3FA
+Governance-ID: TG-39ACDE54D5A9
+Governance-ID: TG-E54DBBB93DE4
+Governance-ID: TG-2FE7CC080771
+Governance-ID: TG-9F8B849D67FF
+Governance-ID: TG-2F7B442CF226
+Governance-ID: TG-1CEED1375019
+Governance-ID: TG-D0579B499ABE
 Governance-ID: TG-8B8E317922DF
 Governance-ID: TG-F0C5F8B49580
 Governance-ID: TG-6263961284B7

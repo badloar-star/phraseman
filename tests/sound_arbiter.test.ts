@@ -170,4 +170,14 @@ describe('SoundArbiter', () => {
         .toEqual({ kind: 'drop', reason: 'rate-limit' });
     });
   });
+
+  it('неизвестный (удалённый) id звука — тихий drop с логом, без исключения', () => {
+    const { arbiter } = setup();
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    const unknownId = 'pm.reward.daily_journey_intro' as unknown as Parameters<typeof arbiter.request>[0];
+    expect(() => arbiter.request(unknownId)).not.toThrow();
+    expect(arbiter.request(unknownId)).toEqual({ kind: 'drop', reason: 'missing' });
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining('[SOUND] unknown id pm.reward.daily_journey_intro'));
+    warn.mockRestore();
+  });
 });

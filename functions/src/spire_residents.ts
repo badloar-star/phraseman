@@ -28,23 +28,28 @@
 // же ходом, иначе клиент и итог недели разойдутся в ступенях ботов.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import { botCosmeticsForCorpus } from './bot_cosmetics';
-import {
-  LEAGUE_GROUP_SIZE,
-  RESIDENT_UID_PREFIX,
-  isResidentMember,
-  residentIndexForSlot,
-} from './league_residents';
-import { RESIDENT_SLOT_COUNT, residentProfileAt } from './synthetic_residents';
+import { RESIDENT_SLOT_COUNT, residentHash, residentProfileAt } from './synthetic_residents';
 
-/** T2/§4.5: комната Шпиля — 30 мест, как комната лиги. */
-export const SPIRE_ROOM_SIZE = LEAGUE_GROUP_SIZE;
+const LEAGACY_ROOM_SIZE = 30;
+const RESIDENT_UID_PREFIX = 'res_';
+function isResidentMember(uid: string, member?: Record<string, unknown>): boolean {
+  return uid.startsWith(RESIDENT_UID_PREFIX) || member?.isBot === true;
+}
+// зачем: ровно логика удалённого league_residents.residentIndexForSlot — непрерывный
+// блок от смещения комнаты. Хэш по номеру места давал совпадения (два одинаковых
+// жителя в одной комнате: тест roster — 27 уникальных из 29); блок от смещения
+// уникален внутри комнаты и разводит соседние комнаты (замеры 2026-08-04).
+function residentIndexForSlot(groupId: string, slot: number): number {
+  const offset = residentHash(`${groupId}:residents`) % RESIDENT_SLOT_COUNT;
+  return (offset + slot) % RESIDENT_SLOT_COUNT;
+}
+
+/** T2/§4.5: комната Шпиля — 30 мест. */
+export const SPIRE_ROOM_SIZE = LEAGACY_ROOM_SIZE;
 
 /**
- * Префикс uid бота — ТОТ ЖЕ, что у жителей лиги. зачем: клиент уже умеет
- * гасить заявки в друзья и профиль для `res_*` (app/synthetic_friend_requests.ts,
- * app/league_engine.ts) — бот Шпиля ведёт себя так же, ничего нового не
- * раскрывая (T26).
+ * Префикс uid бота совместим с уже существующим клиентским фильтром `res_*`:
+ * бот Шпиля не раскрывает новых полей профиля (T26).
  */
 export const SPIRE_RESIDENT_UID_PREFIX = RESIDENT_UID_PREFIX;
 
@@ -380,14 +385,15 @@ export function buildSpireRoster(groupId: string, weekStartMs: number): SpireRos
   for (let slot = 0; slot < slots; slot++) {
     const index = residentIndexForSlot(groupId, slot);
     const profile = residentProfileAt(index, weekStartMs);
-    const cosmetics = botCosmeticsForCorpus(index, RESIDENT_SLOT_COUNT);
+    // зачем: D108 — ауры и витринные аватары удалены: бот носит базовый аватар,
+    // без ауры и без Plus-метки (она нужна была только чтобы нарисовать Plus-ауру).
     roster.push({
       uid: spireResidentUid(slot),
       slot,
       name: profile.name,
-      avatar: cosmetics.avatar ?? profile.avatar,
-      aura: cosmetics.aura ?? null,
-      isPremium: cosmetics.isPremium === true,
+      avatar: profile.avatar,
+      aura: null,
+      isPremium: false,
       streak: profile.streak,
     });
   }

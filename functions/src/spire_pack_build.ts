@@ -24,7 +24,7 @@
 // вернул arena_publication_not_ready ИЛИ target_contour_not_published для
 // es/de/fr, сборщик читает content/arena-multilingual/generated/{lang}/
 // tasks.jsonl напрямую и конвертирует через spire_multilingual_pool.ts
-// (spireConvertMultilingualPool) — 0 обращений к Firestore/tournamentTasks
+// (spireReleaseMultilingualPool) — 0 обращений к Firestore/tournamentTasks
 // для этих языков, файл в бандле функций, не в Storage. Арену (её код
 // удаляет соседняя сессия) это не трогает вообще — только Шпиль читает
 // bundled JSONL для СВОЕГО пакета.
@@ -58,7 +58,10 @@ import {
   type SpireConfigStatus,
 } from './spire_config_contract';
 import { spireWeekId } from './spire_groups';
-import { spireConvertMultilingualPool, type SpireMultilingualLang } from './spire_multilingual_pool';
+import {
+  spireReleaseMultilingualPool,
+  type SpireMultilingualLang,
+} from './spire_multilingual_pool';
 import {
   SPIRE_PACK_MAX_TIER,
   SPIRE_PACK_SCHEMA,
@@ -69,7 +72,7 @@ import { SPIRE_LANGS, type SpireLang } from './spire_progress_contract';
 import {
   SPIRE_TASK_FLAGS_COLLECTION,
   isSpireFlaggableStudyTarget,
-  parseSpireTaskFlagsDoc,
+  parseSpireTaskFlagsDocStrict,
   spireFlaggedTaskIds,
   spireTaskFlagsDocId,
 } from './spire_task_flag_contract';
@@ -140,18 +143,34 @@ export function spirePublicationForLang(
  * en не флагуется (T41 только es/de/fr). Разбор документа — контракт PM-287,
  * не своя копия: форма флагов живёт в одном месте.
  */
-async function loadFlaggedTaskIds(db: admin.firestore.Firestore, lang: SpireLang): Promise<readonly string[]> {
-  if (!isSpireFlaggableStudyTarget(lang)) return [];
+type FlaggedTaskIdsLoad =
+  | Readonly<{ ok: true; ids: readonly string[] }>
+  | Readonly<{ ok: false; reason: 'spire_task_flags_read_failed' | 'spire_task_flags_invalid' }>;
+
+async function loadFlaggedTaskIds(db: admin.firestore.Firestore, lang: SpireLang): Promise<FlaggedTaskIdsLoad> {
+  if (!isSpireFlaggableStudyTarget(lang)) return { ok: true, ids: [] };
+  let snap: admin.firestore.DocumentSnapshot;
   try {
-    const snap = await db.collection(SPIRE_TASK_FLAGS_COLLECTION).doc(spireTaskFlagsDocId(lang)).get(); // guard-ok: один документ по id, раз в неделю на язык
-    const ids = spireFlaggedTaskIds(parseSpireTaskFlagsDoc(snap.exists ? snap.data() : null, lang));
-    log('flags_loaded', { lang, exists: snap.exists, flagged: ids.length });
-    return ids;
+    snap = await db.collection(SPIRE_TASK_FLAGS_COLLECTION).doc(spireTaskFlagsDocId(lang)).get(); // guard-ok: один документ по id, раз в неделю на язык
   } catch (error) {
-    // guard-ok: без списка флагов сборка всё равно идёт — но это видно в логе.
     warn('flags_read_failed', { lang, reason: errMessage(error) });
-    return [];
+    return { ok: false, reason: 'spire_task_flags_read_failed' };
   }
+  if (!snap.exists) {
+    log('flags_loaded', { lang, exists: false, flagged: 0 });
+    return { ok: true, ids: [] };
+  }
+  let ids: readonly string[];
+  try {
+    const raw = snap.data();
+    const parsed = parseSpireTaskFlagsDocStrict(raw, lang);
+    ids = spireFlaggedTaskIds(parsed);
+  } catch (error) {
+    warn('flags_invalid', { lang, reason: errMessage(error) });
+    return { ok: false, reason: 'spire_task_flags_invalid' };
+  }
+  log('flags_loaded', { lang, exists: true, flagged: ids.length });
+  return { ok: true, ids };
 }
 
 /* --------------------------- прямая публикация es/de/fr ------------------- */
@@ -163,25 +182,52 @@ const MULTILINGUAL_LANGS = new Set<string>(['es', 'de', 'fr']);
  * появляется только после copy_generated_assets.js (build-шаг), юнит-тесты
  * и холодный старт без этого языка его не парсят.
  */
-function loadMultilingualRows(lang: string): unknown[] {
+function loadMultilingualBundle(lang: string): { rows: unknown[]; manifest: unknown } {
   // guard-ok: require одного сгенерированного файла, не Firestore-запрос.
-  return require(`./generated/spire_multilingual_${lang}.json`) as unknown[];
+  const bundle = require(`./generated/spire_multilingual_${lang}.json`) as {
+    schemaVersion?: unknown;
+    rows?: unknown;
+    manifest?: unknown;
+  };
+  if (bundle?.schemaVersion !== 'spire-multilingual-bundle-v1' || !Array.isArray(bundle.rows)) {
+    throw new Error('multilingual_bundle_invalid');
+  }
+  return { rows: bundle.rows, manifest: bundle.manifest };
 }
 
 /** Пул для es/de/fr напрямую из bundled-контента — 0 чтений Firestore. См. шапку файла. */
-export function loadMultilingualPool(lang: SpireLang): { tasks: TournamentTask[]; reads: number; rejected: number } {
+export function loadMultilingualPool(lang: SpireLang): {
+  tasks: TournamentTask[];
+  reads: number;
+  rejected: number;
+  unavailableReason?: string;
+} {
   if (!MULTILINGUAL_LANGS.has(lang)) return { tasks: [], reads: 0, rejected: 0 };
   let rows: unknown[];
+  let manifest: unknown;
   try {
-    rows = loadMultilingualRows(lang);
+    ({ rows, manifest } = loadMultilingualBundle(lang));
   } catch (error) {
-    warn('multilingual_pool_missing', { lang, reason: errMessage(error) });
-    return { tasks: [], reads: 0, rejected: 0 };
+    const reason = errMessage(error);
+    warn('multilingual_pool_missing', { lang, reason });
+    return { tasks: [], reads: 0, rejected: 0, unavailableReason: reason };
   }
-  const { tasks, stats } = spireConvertMultilingualPool(lang as 'es' | 'de' | 'fr', rows);
-  log('multilingual_pool_loaded', { ...stats });
+  const released = spireReleaseMultilingualPool(lang as SpireMultilingualLang, rows, manifest);
+  if (!released.ok) {
+    warn('multilingual_pool_release_blocked', { lang, reason: released.reason, totalRows: rows.length });
+    return { tasks: [], reads: 0, rejected: rows.length, unavailableReason: released.reason };
+  }
+  const { tasks, stats } = released;
+  log('multilingual_pool_loaded', { ...stats, tasksSha256: released.tasksSha256 });
   const rejected = stats.totalRows - stats.converted;
   return { tasks, reads: 0, rejected };
+}
+
+/** Стабильная проекция причины прямого multilingual-пула в admin unavailableLangs. */
+export function multilingualPoolUnavailableReason(
+  pool: Readonly<{ unavailableReason?: string }>,
+): string {
+  return pool.unavailableReason ?? 'multilingual_pool_empty';
 }
 
 /* --------------------------------- пул ----------------------------------- */
@@ -347,20 +393,10 @@ export async function runSpirePackBuild(input: SpirePackRunInput): Promise<{
 
   for (const lang of input.langs) {
     const resolved = spirePublicationForLang(arenaConfig, lang);
-    // зачем (владелец 2026-09-24): es/de/fr не имеют пути через Арену (нет
-    // стейджинг-транспорта — см. шапку файла). Если Арена честно отвечает
-    // «не готово», а язык из MULTILINGUAL_LANGS — пробуем bundled-контент
-    // напрямую, ПРЕЖДЕ чем сдаться в unavailableLangs.
-    const multilingualPool = !resolved.ok && MULTILINGUAL_LANGS.has(lang) ? loadMultilingualPool(lang) : null;
-    if (!resolved.ok && !multilingualPool) {
+    if (!resolved.ok && !MULTILINGUAL_LANGS.has(lang)) {
       // §4.8: язык без готового пула — честное «скоро» на клиенте, пакета нет.
       unavailableLangs[lang] = resolved.reason;
       warn('lang_unavailable', { lang, reason: resolved.reason });
-      continue;
-    }
-    if (!resolved.ok && multilingualPool && multilingualPool.tasks.length === 0) {
-      unavailableLangs[lang] = 'multilingual_pool_empty';
-      warn('lang_unavailable', { lang, reason: 'multilingual_pool_empty' });
       continue;
     }
     // Сначала смотрим, что вообще нужно собрать — пул читаем только если есть работа.
@@ -380,8 +416,29 @@ export async function runSpirePackBuild(input: SpirePackRunInput): Promise<{
       log('lang_nothing_to_build', { lang });
       continue;
     }
+    // Флаги — обязательный admission gate: проверяем до чтения Arena-пула и
+    // до require bundled es/de/fr, иначе плохое снятое задание может вернуться.
+    const flags = await loadFlaggedTaskIds(db, lang);
+    if (!flags.ok) {
+      unavailableLangs[lang] = flags.reason;
+      warn('lang_unavailable', { lang, reason: flags.reason });
+      for (const job of todo) {
+        outcomes.push({ lang, tier: job.tier, weekId: job.weekId, status: 'failed', reason: flags.reason });
+      }
+      continue;
+    }
+    // зачем (владелец 2026-09-24): es/de/fr не имеют пути через Арену (нет
+    // стейджинг-транспорта — см. шапку файла). После flags-gate пробуем их
+    // bundled-контент напрямую, прежде чем сдаться в unavailableLangs.
+    const multilingualPool = !resolved.ok ? loadMultilingualPool(lang) : null;
+    if (!resolved.ok && multilingualPool!.tasks.length === 0) {
+      const reason = multilingualPoolUnavailableReason(multilingualPool!);
+      unavailableLangs[lang] = reason;
+      warn('lang_unavailable', { lang, reason });
+      continue;
+    }
     const pool = resolved.ok ? await loadPool(db, resolved.publication, lang) : multilingualPool!;
-    const excludedTaskIds = await loadFlaggedTaskIds(db, lang);
+    const excludedTaskIds = flags.ids;
     poolReads += pool.reads;
     log('pool_loaded', {
       lang, reads: pool.reads, accepted: pool.tasks.length, rejected: pool.rejected,

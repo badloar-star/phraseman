@@ -39,19 +39,18 @@
  *   - find_oddity → 'choice' (options[4]+oddityIndex, "найди ошибку") — 100%
  *   - translate_build → 'translate' (tokenBank+correctTokens+correctTokenCount,
  *     ровно 1 ловушка) — 100%
- *   - speed_match → 'match' — 0% СОВМЕСТИМО: контракт Арены требует ровно 6
- *     пар и максимум 3 слова на плитку (владелец, 2 авг.: «для пары максимум
- *     3 слова»); multilingual-контент генерировался с полными фразами (5+
- *     слов) до этого правила. Пропускается целиком — честно, не обрезаем
- *     текст руками.
+ *   - speed_match → 'match': генератор хранит hash-bound tileLeft/tileRight
+ *     из парного лексикона и точную ссылку на umbrella lexical fact/value;
+ *     в игровой payload идут только 6 коротких пар по контракту ≤3 слова.
  *
- * Итог: 3808 из 4000 заданий на язык (95%), 4 режима из 5.
+ * Итог после коротких evidence-bound плиток: 4000 из 4000, 5 режимов из 5.
  */
 
 import { createHash } from 'crypto';
-import type { TournamentTask } from './tournament_core';
+import { validateTournamentTaskForNewRoom, type TournamentTask } from './tournament_core';
 
 export type SpireMultilingualLang = 'es' | 'de' | 'fr';
+export const SPIRE_MULTILINGUAL_REQUIRED_TASKS = 4_000;
 
 type RawGrammarOption = Readonly<{ token?: string; grammatical?: boolean; reason?: string }>;
 type RawInverseProofOption = Readonly<{ factId?: string; grammatical?: boolean; reason?: string }>;
@@ -68,9 +67,19 @@ type RawChoicePayload = Readonly<{
 }>;
 type RawTranslatePayload = Readonly<{
   promptRu?: string;
+  correctAnswer?: string;
   correctTokens: readonly string[];
   tokenBank: readonly string[];
   correctTokenCount?: number;
+  samePosDecoy?: Readonly<{ token?: string }>;
+}>;
+type RawSpeedMatchPair = Readonly<{
+  tileLeft?: string;
+  tileRight?: string;
+}>;
+type RawSpeedMatchPayload = Readonly<{
+  promptRu?: string;
+  pairs?: readonly RawSpeedMatchPair[];
 }>;
 type RawMultilingualTask = Readonly<{
   schemaVersion: string;
@@ -156,7 +165,7 @@ function wrongOptionReasonsFor(
  * Возвращает null для несовместимых записей (например speed_match) —
  * вызывающий код считает пропуски и логирует их, не молчит.
  */
-export function spireTaskFromMultilingualRow(row: unknown): TournamentTask | null {
+function taskFromMultilingualRow(row: unknown, verified: boolean): TournamentTask | null {
   if (!isRecord(row)) return null;
   const raw = row as unknown as RawMultilingualTask;
   if (raw.schemaVersion !== 'arena-multilingual-task-v1') return null;
@@ -177,15 +186,18 @@ export function spireTaskFromMultilingualRow(row: unknown): TournamentTask | nul
     const ruleNote = raw.mode === 'find_oddity'
       ? 'Найди вариант с ошибкой согласования.'
       : 'Выбери форму, верно согласованную с подлежащим.';
+    const example = payload.stem
+      ? `${payload.stem.prefix}${payload.options[correctIndex]}${payload.stem.suffix}`
+      : payload.options[correctIndex];
     return {
       taskId: raw.taskId,
       mode: raw.mode,
       difficulty: raw.difficulty,
       isVoice: false,
       tags: [],
-      verified: true,
+      verified,
       payload: { phrase, options: [...payload.options], correctIndex },
-      explanation: { ruleNote, example: phrase, wrongOptionReasons },
+      explanation: { ruleNote, example, wrongOptionReasons },
     };
   }
 
@@ -196,6 +208,11 @@ export function spireTaskFromMultilingualRow(row: unknown): TournamentTask | nul
     if (!phrase) return null;
     const correctTokenCount = Number.isInteger(payload.correctTokenCount)
       ? Number(payload.correctTokenCount) : payload.correctTokens.length;
+    const correctAnswer = typeof payload.correctAnswer === 'string' && payload.correctAnswer.trim()
+      ? payload.correctAnswer
+      : payload.correctTokens[0] === "J'"
+        ? `${payload.correctTokens[0]}${payload.correctTokens.slice(1).join(' ')}`
+        : payload.correctTokens.join(' ');
     // зачем: Арена называет поле wordBank, multilingual-генератор — tokenBank; переименовываем на границе.
     return {
       taskId: raw.taskId,
@@ -203,7 +220,7 @@ export function spireTaskFromMultilingualRow(row: unknown): TournamentTask | nul
       difficulty: raw.difficulty,
       isVoice: false,
       tags: [],
-      verified: true,
+      verified,
       payload: {
         phrase,
         correctTokens: [...payload.correctTokens],
@@ -215,12 +232,72 @@ export function spireTaskFromMultilingualRow(row: unknown): TournamentTask | nul
       // translate directOptions=[] — значит нужен пустой wrongOptionReasons,
       // но explanation-объект обязателен, не опционален, как могло показаться
       // из TournamentTaskExplanation с optional-полями в типе).
-      explanation: { ruleNote: 'Собери фразу из плашек в верном порядке.', example: phrase, wrongOptionReasons: [] },
+      explanation: {
+        ruleNote: typeof payload.samePosDecoy?.token === 'string' && payload.samePosDecoy.token.trim()
+          ? `Собери фразу в верном порядке. Плашка «${payload.samePosDecoy.token}» лишняя: это форма другого лица.`
+          : 'Собери фразу из плашек в верном порядке. Одна плашка лишняя.',
+        example: correctAnswer,
+        wrongOptionReasons: [],
+      },
     };
   }
 
-  // speed_match и всё незнакомое — намеренно пропускаются, см. шапку файла.
+  if (raw.mode === 'speed_match') {
+    const payload = raw.payload as unknown as RawSpeedMatchPayload;
+    if (!Array.isArray(payload.pairs) || payload.pairs.length !== 6) return null;
+    const left = payload.pairs.map((pair) => pair.tileLeft);
+    const orderedRight = payload.pairs.map((pair) => pair.tileRight);
+    if (!left.every((value): value is string => typeof value === 'string' && value.trim().length > 0)
+      || !orderedRight.every((value): value is string => typeof value === 'string' && value.trim().length > 0)) {
+      return null;
+    }
+    const rotation = 1 + (Array.from(raw.taskId).reduce((sum, char) => sum + char.charCodeAt(0), 0)
+      % (orderedRight.length - 1));
+    const rightOptions = [...orderedRight.slice(rotation), ...orderedRight.slice(0, rotation)];
+    const items = left.map((prompt, pairIndex) => {
+      const correctIndex = rightOptions.indexOf(orderedRight[pairIndex]);
+      return {
+      prompt,
+      options: [...rightOptions],
+      correctIndex,
+      explanation: {
+        ruleNote: 'Соедини русское значение с соответствующим словом или коротким выражением.',
+        example: `${prompt} — ${rightOptions[correctIndex]}`,
+        wrongOptionReasons: rightOptions.map((_, optionIndex) => (
+          optionIndex === correctIndex ? '' : 'Это слово или выражение не соответствует русскому значению.'
+        )),
+      },
+      };
+    });
+    return {
+      taskId: raw.taskId,
+      mode: raw.mode,
+      difficulty: raw.difficulty,
+      isVoice: false,
+      tags: [],
+      verified,
+      payload: {
+        prompt: typeof payload.promptRu === 'string' && payload.promptRu.trim()
+          ? payload.promptRu
+          : 'Соедините русские значения со словами и короткими выражениями.',
+        items,
+        rightOptions,
+      },
+      explanation: {
+        ruleNote: 'Каждому русскому значению соответствует одно слово или короткое выражение.',
+        example: `${left[0]} — ${orderedRight[0]}`,
+        wrongOptionReasons: [],
+      },
+    };
+  }
+
+  // Всё незнакомое намеренно пропускается.
   return null;
+}
+
+/** Одиночная диагностическая конверсия; verified всегда false. */
+export function spireInspectMultilingualRow(row: unknown): TournamentTask | null {
+  return taskFromMultilingualRow(row, false);
 }
 
 export type SpireMultilingualConversionStats = Readonly<{
@@ -230,15 +307,134 @@ export type SpireMultilingualConversionStats = Readonly<{
   skippedByMode: Readonly<Record<string, number>>;
 }>;
 
-/** Конвертирует весь файл (уже распарсенный на строки JSON) в задания Шпиля + честную статистику пропусков. */
-export function spireConvertMultilingualPool(
+export type SpireMultilingualReleaseGate =
+  | Readonly<{ ok: true; tasksSha256: string }>
+  | Readonly<{ ok: false; reason: string }>;
+
+function canonical(value: unknown): string {
+  if (value === null || ['boolean', 'number', 'string'].includes(typeof value)) return JSON.stringify(value);
+  if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
+  if (!isRecord(value)) return JSON.stringify(null);
+  return `{${Object.entries(value)
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([key, item]) => `${JSON.stringify(key)}:${canonical(item)}`)
+    .join(',')}}`;
+}
+
+function canonicalSha256(value: unknown): string {
+  return createHash('sha256').update(canonical(value), 'utf8').digest('hex');
+}
+
+/**
+ * Fail-closed граница прямого пула Шпиля. Структурно корректный JSONL ещё не
+ * является публикацией: сборщик принимает его только вместе с PASS-манифестом,
+ * привязанным к тем же байтам задач и к тому же target language.
+ */
+export function spireMultilingualReleaseGate(
   lang: SpireMultilingualLang,
   rows: readonly unknown[],
+  manifest: unknown,
+): SpireMultilingualReleaseGate {
+  if (!isRecord(manifest) || manifest.schemaVersion !== 'arena-multilingual-pool-manifest-v1') {
+    return { ok: false, reason: 'manifest_invalid' };
+  }
+  if (manifest.studyTarget !== lang) return { ok: false, reason: 'manifest_target_mismatch' };
+  if (manifest.verdict !== 'PASS' || manifest.releaseEligible !== true) {
+    return { ok: false, reason: 'manifest_release_blocked' };
+  }
+  const coverage = manifest.coverage;
+  const reviewReceipt = manifest.linguisticReviewReceipt;
+  if (!isRecord(coverage)
+    || coverage.lexicalFactInventoryStatus !== 'approved'
+    || !isRecord(reviewReceipt)
+    || reviewReceipt.schemaVersion !== 'spire-multilingual-linguistic-review-v1'
+    || reviewReceipt.studyTarget !== lang
+    || reviewReceipt.verdict !== 'PASS'
+    || reviewReceipt.reviewerIndependence !== 'independent_read_only'
+    || reviewReceipt.reviewerQualification !== 'target_language_expert'
+    || reviewReceipt.linguisticEvidenceStatus !== 'approved'
+    || reviewReceipt.cefrEvidenceStatus !== 'not_claimed') {
+    return { ok: false, reason: 'manifest_linguistic_review_missing' };
+  }
+  if (rows.length !== SPIRE_MULTILINGUAL_REQUIRED_TASKS
+    || manifest.generatedTaskCount !== SPIRE_MULTILINGUAL_REQUIRED_TASKS
+    || manifest.requiredTaskCount !== SPIRE_MULTILINGUAL_REQUIRED_TASKS) {
+    return { ok: false, reason: 'manifest_task_count_mismatch' };
+  }
+  if (rows.some((row) => !isRecord(row) || row.studyTarget !== lang)) {
+    return { ok: false, reason: 'bundle_target_mismatch' };
+  }
+  const taskIds = rows.map((row) => isRecord(row) && typeof row.taskId === 'string' ? row.taskId : '');
+  if (taskIds.some((taskId) => taskId.length === 0)) {
+    return { ok: false, reason: 'bundle_task_id_invalid' };
+  }
+  if (new Set(taskIds).size !== taskIds.length) {
+    return { ok: false, reason: 'bundle_duplicate_task_id' };
+  }
+  if (rows.some((row) => isRecord(row) && (
+    'cefrBand' in row
+    || 'cefrProfile' in row
+    || (isRecord(row.payload) && 'cefrBand' in row.payload)
+  ))) {
+    return { ok: false, reason: 'bundle_unsupported_cefr_claim' };
+  }
+  const tasksSha256 = canonicalSha256(rows);
+  if (manifest.tasksSha256 !== tasksSha256) return { ok: false, reason: 'manifest_tasks_hash_mismatch' };
+  if (typeof manifest.evidencePackSha256 !== 'string'
+    || reviewReceipt.tasksSha256 !== tasksSha256
+    || reviewReceipt.evidencePackSha256 !== manifest.evidencePackSha256) {
+    return { ok: false, reason: 'manifest_linguistic_review_binding_mismatch' };
+  }
+  const reviewReceiptSha256 = typeof reviewReceipt.receiptSha256 === 'string' ? reviewReceipt.receiptSha256 : '';
+  const reviewReceiptBody = Object.fromEntries(Object.entries(reviewReceipt).filter(([key]) => key !== 'receiptSha256'));
+  if (reviewReceiptSha256 !== canonicalSha256(reviewReceiptBody)) {
+    return { ok: false, reason: 'manifest_linguistic_review_hash_mismatch' };
+  }
+  const adminPublicationReceipt = manifest.adminPublicationReceipt;
+  if (!isRecord(adminPublicationReceipt)
+    || adminPublicationReceipt.schemaVersion !== 'spire-multilingual-admin-publication-v1'
+    || adminPublicationReceipt.studyTarget !== lang
+    || adminPublicationReceipt.publicationStatus !== 'approved'
+    || adminPublicationReceipt.publisherRole !== 'content_admin'
+    || typeof adminPublicationReceipt.publicationId !== 'string'
+    || adminPublicationReceipt.publicationId.trim().length === 0) {
+    return { ok: false, reason: 'manifest_admin_publication_missing' };
+  }
+  if (adminPublicationReceipt.tasksSha256 !== tasksSha256
+    || adminPublicationReceipt.linguisticReviewReceiptSha256 !== reviewReceiptSha256) {
+    return { ok: false, reason: 'manifest_admin_publication_binding_mismatch' };
+  }
+  const adminReceiptSha256 = typeof adminPublicationReceipt.receiptSha256 === 'string'
+    ? adminPublicationReceipt.receiptSha256
+    : '';
+  const adminReceiptBody = Object.fromEntries(
+    Object.entries(adminPublicationReceipt).filter(([key]) => key !== 'receiptSha256'),
+  );
+  if (adminReceiptSha256 !== canonicalSha256(adminReceiptBody)) {
+    return { ok: false, reason: 'manifest_admin_publication_hash_mismatch' };
+  }
+  const manifestSha256 = typeof manifest.manifestSha256 === 'string' ? manifest.manifestSha256 : '';
+  const manifestBody = Object.fromEntries(Object.entries(manifest).filter(([key]) => key !== 'manifestSha256'));
+  if (manifestSha256 !== canonicalSha256(manifestBody)) {
+    return { ok: false, reason: 'manifest_self_hash_mismatch' };
+  }
+  return { ok: true, tasksSha256 };
+}
+
+/** Конвертирует весь файл (уже распарсенный на строки JSON) в задания Шпиля + честную статистику пропусков. */
+function convertMultilingualPool(
+  lang: SpireMultilingualLang,
+  rows: readonly unknown[],
+  verified: boolean,
 ): { tasks: TournamentTask[]; stats: SpireMultilingualConversionStats } {
   const tasks: TournamentTask[] = [];
   const skippedByMode: Record<string, number> = {};
   for (const row of rows) {
-    const task = spireTaskFromMultilingualRow(row);
+    if (!isRecord(row) || row.studyTarget !== lang) {
+      skippedByMode.target_mismatch = (skippedByMode.target_mismatch ?? 0) + 1;
+      continue;
+    }
+    const task = taskFromMultilingualRow(row, verified);
     if (task) {
       tasks.push(task);
     } else {
@@ -250,6 +446,45 @@ export function spireConvertMultilingualPool(
     tasks,
     stats: { lang, totalRows: rows.length, converted: tasks.length, skippedByMode },
   };
+}
+
+/**
+ * Диагностический конвертер для тестов качества и админских отчётов.
+ * Он намеренно никогда не выдаёт verified-задачи: такой результат нельзя
+ * незаметно подать в пользовательский пакет, минуя release-манифест.
+ */
+export function spireInspectMultilingualPool(
+  lang: SpireMultilingualLang,
+  rows: readonly unknown[],
+): { tasks: TournamentTask[]; stats: SpireMultilingualConversionStats } {
+  return convertMultilingualPool(lang, rows, false);
+}
+
+export type SpireReleasedMultilingualPool =
+  | Readonly<{
+    ok: true;
+    tasks: TournamentTask[];
+    stats: SpireMultilingualConversionStats;
+    tasksSha256: string;
+  }>
+  | Readonly<{ ok: false; reason: string }>;
+
+/** Единственный публичный путь, способный выдать verified=true для Шпиля. */
+export function spireReleaseMultilingualPool(
+  lang: SpireMultilingualLang,
+  rows: readonly unknown[],
+  manifest: unknown,
+): SpireReleasedMultilingualPool {
+  const gate = spireMultilingualReleaseGate(lang, rows, manifest);
+  if (!gate.ok) return gate;
+  const converted = convertMultilingualPool(lang, rows, true);
+  if (converted.tasks.length !== SPIRE_MULTILINGUAL_REQUIRED_TASKS) {
+    return { ok: false, reason: 'converted_task_count_mismatch' };
+  }
+  if (converted.tasks.some((task) => !validateTournamentTaskForNewRoom(task).ok)) {
+    return { ok: false, reason: 'converted_task_invalid' };
+  }
+  return { ok: true, ...converted, tasksSha256: gate.tasksSha256 };
 }
 
 /**

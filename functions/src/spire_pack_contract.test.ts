@@ -9,7 +9,22 @@ import {
   spirePackTotalSteps,
 } from './spire_pack_contract';
 import { SPIRE_CONFIG_DEFAULTS, SPIRE_STEP_TASK_COUNT, spireStepsForFloor } from './spire_config_contract';
-import { answerFingerprint, type TournamentTask } from './tournament_core';
+import {
+  answerFingerprint,
+  validateTournamentTask,
+  validateTournamentTaskForNewRoom,
+  type TournamentTask,
+} from './tournament_core';
+
+function explanationForOptions(options: readonly string[], correctIndex: number | null) {
+  return {
+    ruleNote: 'Полный разбор правила задания.',
+    example: 'Корректный пример применения правила.',
+    wrongOptionReasons: options.map((_, index) => index === correctIndex
+      ? ''
+      : 'Этот вариант не соответствует условию задания.'),
+  };
+}
 
 /** Минимальный валидный пул: выбор (3 режима) + сборка + пары по трём сложностям. */
 function makePool(perCell: number): TournamentTask[] {
@@ -19,13 +34,25 @@ function makePool(perCell: number): TournamentTask[] {
   for (let difficulty = 1; difficulty <= 3; difficulty += 1) {
     for (let i = 0; i < perCell; i += 1) {
       for (const mode of ['guess_phrase', 'fill_gap', 'find_oddity']) {
+        const options = ['a', 'b', 'c', 'd'];
+        const correctIndex = i % options.length;
         out.push({ ...base, taskId: `${mode}-${difficulty}-${i}`, mode, difficulty,
-          payload: { phrase: `p${i}`, options: ['a', 'b', 'c', 'd'], correctIndex: i % 4 } });
+          payload: { phrase: `p${i}`, options, correctIndex },
+          explanation: explanationForOptions(options, correctIndex) });
       }
       out.push({ ...base, taskId: `translate_build-${difficulty}-${i}`, mode: 'translate_build', difficulty,
-        payload: { phrase: `фраза ${i}`, wordBank: ['I', 'am', 'here', 'x'], correctTokens: ['I', 'am', 'here'], correctTokenCount: 3 } });
+        payload: { phrase: `фраза ${i}`, wordBank: ['I', 'am', 'here', 'x'], correctTokens: ['I', 'am', 'here'], correctTokenCount: 3 },
+        explanation: explanationForOptions([], null) });
+      const rightOptions = ['один', 'два', 'три', 'четыре', 'пять', 'шесть'];
+      const items = ['one', 'two', 'three', 'four', 'five', 'six'].map((prompt, correctIndex) => ({
+        prompt,
+        options: rightOptions,
+        correctIndex,
+        explanation: explanationForOptions(rightOptions, correctIndex),
+      }));
       out.push({ ...base, taskId: `speed_match-${difficulty}-${i}`, mode: 'speed_match', difficulty,
-        payload: { prompt: 'пары', items: [{ prompt: 'one', options: ['один', 'два'], correctIndex: 0 }] } });
+        payload: { prompt: 'пары', rightOptions, items },
+        explanation: explanationForOptions([], null) });
     }
   }
   return out;
@@ -78,10 +105,14 @@ describe('spire weekly pack (PM-272)', () => {
           for (const task of set.tasks) {
             expect(task.payload).not.toHaveProperty('correctIndex');
             expect(task.payload).not.toHaveProperty('correctTokens');
+            if (task.mode === 'speed_match') expect(task.payload.items).toHaveLength(6);
           }
         }
       }
     }
+    const modes = pack.floors.flatMap((floor) => floor.steps.flatMap((step) =>
+      step.sets.flatMap((set) => set.tasks.map((task) => task.mode))));
+    expect(modes).toContain('speed_match');
     const first = pack.floors[0].steps[0].sets[0];
     const idx = first.tasks.findIndex((t) => t.mode === 'guess_phrase');
     const n = Number(first.tasks[idx].taskId.split('-').pop());
@@ -107,6 +138,38 @@ describe('spire weekly pack (PM-272)', () => {
     const ids = built.pack.floors.flatMap((f) => f.steps.flatMap((s) => s.sets.flatMap((set) => set.tasks.map((t) => t.taskId))));
     for (const id of flagged) expect(ids).not.toContain(id);
     expect(built.pack.stats.excludedFlagged).toBe(2);
+  });
+
+  it('rejects legacy one-pair speed tasks before building a new Spire pack', () => {
+    const legacyPool = makePool(60).map((task): TournamentTask => task.mode !== 'speed_match'
+      ? task
+      : {
+        ...task,
+        payload: {
+          prompt: 'пары',
+          items: [{
+            prompt: 'one',
+            options: ['один', 'два'],
+            correctIndex: 0,
+            explanation: explanationForOptions(['один', 'два'], 0),
+          }],
+        },
+      });
+
+    const representative = legacyPool.find((task) => task.mode === 'speed_match');
+    if (!representative) throw new Error('legacy speed fixture missing');
+    expect(validateTournamentTask(representative).ok).toBe(true);
+    expect(validateTournamentTaskForNewRoom(representative)).toMatchObject({
+      ok: false,
+      reason: 'speed_match_field_contract_invalid',
+    });
+
+    const built = buildSpirePack({ ...INPUT, pool: legacyPool });
+    if (!built.ok) throw new Error(built.reason);
+    const modes = built.pack.floors.flatMap((floor) => floor.steps.flatMap((step) =>
+      step.sets.flatMap((set) => set.tasks.map((task) => task.mode))));
+    expect(modes).not.toContain('speed_match');
+    expect(built.pack.stats.fallbacks).toBeGreaterThan(0);
   });
 
   it('fails honestly on a pool too small for one step', () => {

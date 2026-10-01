@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { loadMultilingualPool } from './spire_pack_build';
+import { loadMultilingualPool, multilingualPoolUnavailableReason } from './spire_pack_build';
 import { buildSpirePack } from './spire_pack_contract';
 import { SPIRE_CONFIG_DEFAULTS } from './spire_config_contract';
 
@@ -13,6 +13,12 @@ import { SPIRE_CONFIG_DEFAULTS } from './spire_config_contract';
  */
 const LANGS = ['es', 'de', 'fr'] as const;
 
+test('projects the exact multilingual release block into unavailableLangs', () => {
+  expect(multilingualPoolUnavailableReason({ unavailableReason: 'manifest_release_blocked' }))
+    .toBe('manifest_release_blocked');
+  expect(multilingualPoolUnavailableReason({})).toBe('multilingual_pool_empty');
+});
+
 function generatedFileExists(lang: string): boolean {
   return fs.existsSync(path.join(__dirname, 'generated', `spire_multilingual_${lang}.json`));
 }
@@ -22,19 +28,20 @@ describe.each(LANGS)('loadMultilingualPool(%s) — сквозная провер
     expect(generatedFileExists(lang)).toBe(true);
   });
 
-  test('реально загружает и конвертирует пул через require, без сети', () => {
+  test('fail-closed не отдаёт задачи из release-blocked манифеста', () => {
     if (!generatedFileExists(lang)) {
       // зачем: не роняем сьют молча, если build-шаг не выполнен — явный skip с причиной.
       console.warn(`[skip] spire_multilingual_${lang}.json отсутствует — прогони npm run build в functions/`);
       return;
     }
     const pool = loadMultilingualPool(lang);
-    expect(pool.tasks.length).toBe(3808);
-    expect(pool.rejected).toBe(192);
+    expect(pool.tasks.length).toBe(0);
+    expect(pool.rejected).toBe(4000);
     expect(pool.reads).toBe(0);
+    expect(pool.unavailableReason).toBe('manifest_release_blocked');
   });
 
-  test('buildSpirePack собирает реальную ступень из этого пула (этаж 1, ступень 0)', () => {
+  test('BLOCK-пул не может собрать пользовательский пакет', () => {
     if (!generatedFileExists(lang)) return;
     const pool = loadMultilingualPool(lang);
     const built = buildSpirePack({
@@ -45,12 +52,6 @@ describe.each(LANGS)('loadMultilingualPool(%s) — сквозная провер
       timer: SPIRE_CONFIG_DEFAULTS.timer,
       source: { poolVersion: `spire-multilingual-direct-${lang}`, publicationFingerprint: 'spire-multilingual-direct', legacyPool: false },
     });
-    expect(built.ok).toBe(true);
-    if (built.ok) {
-      expect(built.pack.floors.length).toBeGreaterThan(0);
-      expect(built.pack.floors[0].steps.length).toBeGreaterThan(0);
-      expect(built.pack.floors[0].steps[0].sets.length).toBeGreaterThan(0);
-      expect(built.pack.floors[0].steps[0].sets[0].tasks.length).toBe(10);
-    }
+    expect(built.ok).toBe(false);
   });
 });

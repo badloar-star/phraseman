@@ -27,7 +27,11 @@ import {
   spireStepsForFloor,
   type SpireTimerConfig,
 } from './spire_config_contract';
-import { toPublicTournamentTask, type TournamentTask } from './tournament_core';
+import {
+  toPublicTournamentTask,
+  validateTournamentTaskForNewRoom,
+  type TournamentTask,
+} from './tournament_core';
 
 export const SPIRE_PACK_SCHEMA = 'spire-pack-v1' as const;
 export const SPIRE_PACK_STORAGE_PREFIX = 'spire_packs' as const;
@@ -221,6 +225,7 @@ type PlayableTask = Readonly<{ task: TournamentTask; mode: SpirePackMode; diffic
 function toPlayable(task: TournamentTask): PlayableTask | null {
   if (!arenaIsTaskMode(task.mode) || task.isVoice === true) return null;
   if (!Number.isInteger(task.difficulty) || task.difficulty < 1 || task.difficulty > 3) return null;
+  if (!validateTournamentTaskForNewRoom(task).ok) return null;
   // Проба с пустой солью: задание, которое toPublicTournamentTask не принимает, в пакет не идёт.
   if (!toPublicTournamentTask(task, 'probe')) return null;
   return { task, mode: task.mode as SpirePackMode, difficulty: task.difficulty };

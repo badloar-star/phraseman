@@ -29,7 +29,7 @@ const SPIRE_CONFIG_REFRESH_MS = 6 * 60 * 60 * 1000;
 type CachedSpireConfig = Readonly<{ fetchedAtMs: number; config: SpireConfigDoc }>;
 
 // Ленивый импорт держит Expo Go / выключенный облачный sync тихими —
-// тот же приём, что getFirestore() в app/firestore_leagues.ts.
+// Тот же приём, что в прежнем сетевом клиенте лиг.
 function getFirestore(): unknown | null {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   try {

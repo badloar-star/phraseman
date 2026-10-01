@@ -69,15 +69,21 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
+function hasExactKeys(value: Record<string, unknown>, expected: readonly string[]): boolean {
+  const actual = Object.keys(value);
+  return actual.length === expected.length && expected.every((key) => actual.includes(key));
+}
+
 function validTaskId(value: unknown): value is string {
   const s = String(value ?? '').trim();
   // формат сгенерированного пула: arena-{lang}-{mode}-{difficulty}-{index}
   return s.length > 0 && s.length <= 200 && /^[a-z0-9][a-z0-9_-]*$/i.test(s);
 }
 
-function parseFlagEntry(raw: unknown): SpireTaskFlagEntry | null {
+function parseFlagEntry(raw: unknown, studyTarget?: Exclude<ArenaStudyTarget, 'en'>): SpireTaskFlagEntry | null {
   if (!isRecord(raw)) return null;
   if (!validTaskId(raw.taskId)) return null;
+  if (studyTarget && !String(raw.taskId).startsWith(`arena-${studyTarget}-`)) return null;
   const flaggedAtMs = raw.flaggedAtMs;
   const flaggedByUid = String(raw.flaggedByUid ?? '').trim();
   if (typeof flaggedAtMs !== 'number' || !Number.isFinite(flaggedAtMs) || flaggedAtMs <= 0) return null;
@@ -90,6 +96,42 @@ function parseFlagEntry(raw: unknown): SpireTaskFlagEntry | null {
   };
 }
 
+/**
+ * Mutation/publication decoder. Existing malformed state must never be
+ * normalized while a write silently drops unknown or damaged entries.
+ * A genuinely missing document is the only input that means an empty list.
+ */
+export function parseSpireTaskFlagsDocStrict(
+  raw: unknown,
+  studyTarget: Exclude<ArenaStudyTarget, 'en'>,
+): SpireTaskFlagsDoc {
+  if (raw === null || raw === undefined) return parseSpireTaskFlagsDoc(null, studyTarget);
+  if (!isRecord(raw)
+    || !hasExactKeys(raw, ['schemaVersion', 'studyTarget', 'flagged'])
+    || raw.schemaVersion !== SPIRE_TASK_FLAGS_SCHEMA_VERSION
+    || raw.studyTarget !== studyTarget
+    || !isRecord(raw.flagged)) {
+    throw new Error('spire_task_flags_invalid');
+  }
+  const parsed = parseSpireTaskFlagsDoc(raw, studyTarget);
+  for (const [key, value] of Object.entries(raw.flagged)) {
+    const canonical = parsed.flagged[key];
+    if (!isRecord(value)
+      || !canonical
+      || !hasExactKeys(value, ['taskId', 'reason', 'flaggedAtMs', 'flaggedByUid'])
+      || value.taskId !== canonical.taskId
+      || value.reason !== canonical.reason
+      || value.flaggedAtMs !== canonical.flaggedAtMs
+      || value.flaggedByUid !== canonical.flaggedByUid) {
+      throw new Error('spire_task_flags_invalid');
+    }
+  }
+  if (Object.keys(parsed.flagged).length !== Object.keys(raw.flagged).length) {
+    throw new Error('spire_task_flags_invalid');
+  }
+  return parsed;
+}
+
 /** Документа нет / повреждён → честный пустой список, не падение (та же логика, что spireConfigStatus). */
 export function parseSpireTaskFlagsDoc(
   raw: unknown,
@@ -99,7 +141,7 @@ export function parseSpireTaskFlagsDoc(
   const rawFlagged = isRecord(doc.flagged) ? doc.flagged : {};
   const flagged: Record<string, SpireTaskFlagEntry> = {};
   for (const [key, value] of Object.entries(rawFlagged)) {
-    const entry = parseFlagEntry(value);
+    const entry = parseFlagEntry(value, studyTarget);
     if (entry && entry.taskId === key) flagged[key] = entry;
   }
   return {
@@ -122,7 +164,9 @@ export function spireTaskFlagAdd(
   doc: SpireTaskFlagsDoc,
   input: Readonly<{ taskId: string; reason: string; flaggedAtMs: number; flaggedByUid: string }>,
 ): SpireTaskFlagsDoc {
-  if (!validTaskId(input.taskId)) throw new Error('spire_task_flag_invalid_task_id');
+  if (!validTaskId(input.taskId) || !String(input.taskId).startsWith(`arena-${doc.studyTarget}-`)) {
+    throw new Error('spire_task_flag_invalid_task_id');
+  }
   const flaggedByUid = String(input.flaggedByUid ?? '').trim();
   if (!flaggedByUid) throw new Error('spire_task_flag_actor_required');
   const taskId = String(input.taskId).trim();

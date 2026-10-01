@@ -14,13 +14,13 @@
 //     итог недели считают формулой spire_residents.ts. Поэтому members = только
 //     живые, и вместимость считается по ним без фильтров.
 //
-// ПОЧЕМУ отдельная коллекция spire_groups, а не league_groups (как предлагал
+// ПОЧЕМУ отдельная коллекция spire_groups, а не legacy group records (как предлагал
 // черновик TOWER_CONTRACT.md §2.2): пока Лига жива, её кроны читают
-// league_groups по одному weekId — leagueResidentsTickCron дописал бы в комнату
-// Шпиля жителей с ОПЫТОМ, leagueFinalizeCron подвёл бы по ней итог лиги, а
-// findGroupWithSpace лиги (фильтр weekId+leagueId без языка) посадил бы
+// legacy group records по одному weekId — legacy resident cron дописал бы в комнату
+// Шпиля жителей со score; прежний конкурентный итог больше не используется, а
+// findGroupWithSpace legacy (фильтр weekId+leagueId без языка) посадил бы
 // игрока лиги в комнату Шпиля. Отдельная коллекция — ноль риска для Лиги
-// (правило задачи: Лигу не ломать). Форма документа совместима с league_groups,
+// (правило задачи: Лигу не ломать). Форма документа совместима с legacy group records,
 // слить коллекции можно при удалении Лиги.
 //
 // Firebase-экономия: вызов ОДИН раз в неделю на язык (при первом заходе в
@@ -41,8 +41,6 @@ import {
   spireCohortDay,
   spireWeekStartMs,
 } from './spire_residents';
-import { ensureSpireLeagueMigration } from './spire_league_migration';
-import { hasSpireMigrationMarker } from './spire_league_migration_contract';
 
 export const SPIRE_GROUPS_COLLECTION = 'spire_groups' as const;
 /** T16/T29: 12 шпилей-камней, 0 = Гранит … 11 = Алмаз. */
@@ -70,7 +68,7 @@ function sanitizeString(value: unknown, max: number): string {
   return String(value ?? '').replace(/\s+/g, ' ').trim().slice(0, max);
 }
 
-/** ISO-неделя — тот же формат, что у лиги (league_groups.ts getWeekId). */
+/** ISO-неделя — тот же формат, что у лиги (legacy group records.ts getWeekId). */
 export function spireWeekId(at: Date): string {
   const date = new Date(Date.UTC(at.getUTCFullYear(), at.getUTCMonth(), at.getUTCDate()));
   const day = date.getUTCDay() || 7;
@@ -227,30 +225,6 @@ export const spireJoinRoom = onCall(HOT_CALLABLE_OPTIONS, async (request): Promi
   }
   let lbData = lbSnap.data();
 
-  // PM-278: перенос места лиги — ДО подбора комнаты, иначе человек на неделю
-  // сядет в Гранит. Отметка уже стоит (все входы, кроме самого первого) —
-  // ноль лишних чтений: lbData уже прочитан выше.
-  // зачем currentStudyTarget отдельно от lang: место лиги уходит в шпиль
-  // языка, который человек учит СЕЙЧАС (§4.8), а первым он может открыть
-  // Шпиль другого языка. Язык хранится только на устройстве — шлёт клиент.
-  if (!hasSpireMigrationMarker(lbData)) {
-    const clientCurrent = resolveArenaStudyTarget(request.data?.currentStudyTarget);
-    const migration = await ensureSpireLeagueMigration(db, {
-      stableUid,
-      currentLang: clientCurrent ?? lang,
-      currentLangSource: clientCurrent ? 'client_current' : 'room_lang',
-      currentWeekId: weekId,
-      previousWeekId: spireWeekId(new Date(nowMs - 7 * 24 * 60 * 60 * 1000)),
-      nowMs,
-    });
-    if (migration.status === 'paused') {
-      // Пауза владельца: не сажаем в Гранит «без места» — честный отказ.
-      console.warn(LOG, JSON.stringify({ event: 'reject', reason: 'spire_migration_paused', lang }));
-      throw new HttpsError('failed-precondition', 'spire_migration_paused');
-    }
-    lbData = { ...(lbData ?? {}), spireTiers: migration.tiers };
-    console.log(LOG, JSON.stringify({ event: 'migration_applied', status: migration.status, tiers: migration.tiers }));
-  }
   const tier = resolveSpireTier(lbData, lang);
 
   // 1) Уже в комнате этой недели по этому языку — когорта закреплена первым

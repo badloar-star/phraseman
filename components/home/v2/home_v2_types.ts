@@ -20,7 +20,8 @@ export type TodayTask = Readonly<{
   route: string;
 }>;
 
-export type HomeFeatureTileKey = 'lessons' | 'dialogs' | 'cards';
+// зачем (D137): пустые места ряда занимают другие готовые разделы.
+export type HomeFeatureTileKey = 'lessons' | 'dialogs' | 'cards' | 'spire' | 'video_packs' | 'mistakes' | 'saved';
 
 export type HomeFeatureTile = Readonly<{
   key: HomeFeatureTileKey;

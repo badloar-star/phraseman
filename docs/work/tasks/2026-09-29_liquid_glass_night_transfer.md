@@ -309,3 +309,5 @@ Governance-ID: TG-0ED69863D146
 Governance-ID: TG-9BFD7BC6E94F
 Governance-ID: TG-9A6606B2FC56
 — 01.10 «Дизайн»: в дев-сборке кнопка «Дев-хаб» в самом верху «Настроек».
+Governance-ID: TG-BACDD96D70B6
+— 01.10 «Дизайн»: D137 — подстановка разделов в ряд плиток Главной.

@@ -3406,7 +3406,48 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             dialogs: homeDialoguesVisible,
             cards: homeFlashcardsVisible,
         };
-        const homeV2Tiles = homeV2AllTiles.filter((tile) => homeV2TileVisible[tile.key] === true);
+        const homeV2BaseTiles = homeV2AllTiles.filter((tile) => homeV2TileVisible[tile.key] === true);
+        // зачем (D137, владелец 01.10): ряд из трёх плиток утверждён и не меняется. Раздела у языка нет —
+        // его место занимает другой готовый раздел в той же плитке: нет Уроков → «Шпиль» (es/de/fr);
+        // итальянский → «Наборы из видео», «Мои ошибки», запасной «Сохранённые» (порядок приоритета).
+        // Картинки временные — владелец пришлёт свои (D138).
+        const homeV2FillerTiles: (HomeFeatureTile & { available: boolean })[] = [
+            {
+                key: 'spire',
+                available: isLearningSurfaceReady(studyTarget, 'spire'),
+                title: triLang(lang, { ru: 'Шпиль', uk: 'Шпиль', en: 'Spire', es: 'Aguja', 'pt-BR': 'Torre', vi: 'Ngọn tháp', id: 'Menara', tr: 'Kule', pl: 'Iglica' }),
+                subtitle: triLang(lang, { ru: 'Поднимайся выше всех', uk: 'Піднімайся вище за всіх', en: 'Climb above everyone', es: 'Sube más alto que nadie', 'pt-BR': 'Suba mais alto que todos', vi: 'Leo cao hơn mọi người', id: 'Naik lebih tinggi dari semua', tr: 'Herkesten yükseğe çık', pl: 'Wspinaj się najwyżej' }),
+                onPress: () => { nav.push('/(tabs)/community?section=spire' as never); },
+                art: require('../../assets/images/home_menu/home-forest-league.webp'),
+            },
+            {
+                key: 'video_packs',
+                available: isLearningSurfaceReady(studyTarget, 'videos') && homeFlashcardsVisible,
+                title: triLang(lang, { ru: 'Наборы из видео', uk: 'Набори з відео', en: 'Video packs', es: 'Packs de vídeos', 'pt-BR': 'Pacotes de vídeos', vi: 'Bộ từ video', id: 'Paket video', tr: 'Video paketleri', pl: 'Zestawy z filmów' }),
+                subtitle: triLang(lang, { ru: 'Фразы из роликов', uk: 'Фрази з роликів', en: 'Phrases from videos', es: 'Frases de vídeos', 'pt-BR': 'Frases dos vídeos', vi: 'Cụm từ từ video', id: 'Frasa dari video', tr: 'Videolardan ifadeler', pl: 'Zwroty z filmów' }),
+                onPress: () => { nav.push('/flashcards_video_packs' as never); },
+                art: require('../../assets/images/v2/spiral_notepad.png'),
+            },
+            {
+                key: 'mistakes',
+                available: homeMistakesButtonState(mistakeActiveCount) === 'ready',
+                title: triLang(lang, { ru: 'Мои ошибки', uk: 'Мої помилки', en: 'My mistakes', es: 'Mis errores', 'pt-BR': 'Meus erros', vi: 'Lỗi của tôi', id: 'Kesalahanku', tr: 'Hatalarım', pl: 'Moje błędy' }),
+                subtitle: triLang(lang, { ru: 'Разбор и повтор', uk: 'Розбір і повтор', en: 'Review and retry', es: 'Repasa y repite', 'pt-BR': 'Revise e repita', vi: 'Xem lại và làm lại', id: 'Tinjau dan ulangi', tr: 'Gözden geçir, tekrarla', pl: 'Przegląd i powtórka' }),
+                onPress: () => { nav.push('/mistakes_hub' as never); },
+                art: require('../../assets/images/home_mistakes/home-mistakes-dark.webp'),
+            },
+            {
+                key: 'saved',
+                available: homeFlashcardsVisible,
+                title: triLang(lang, { ru: 'Сохранённые', uk: 'Збережені', en: 'Saved', es: 'Guardados', 'pt-BR': 'Salvos', vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane' }),
+                subtitle: triLang(lang, { ru: 'Твои карточки', uk: 'Твої картки', en: 'Your cards', es: 'Tus tarjetas', 'pt-BR': 'Seus cartões', vi: 'Thẻ của bạn', id: 'Kartumu', tr: 'Kartların', pl: 'Twoje karty' }),
+                onPress: () => { nav.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'home' } } as never); },
+                art: require('../../assets/images/v2/cards_hub_saved.webp'),
+            },
+        ];
+        const homeV2Tiles: HomeFeatureTile[] = homeV2BaseTiles.length >= 3 || homeV2BaseTiles.length === 0
+            ? homeV2BaseTiles
+            : [...homeV2BaseTiles, ...homeV2FillerTiles.filter((tile) => tile.available).map(({ available: _available, ...tile }) => tile)].slice(0, 3);
         // зачем D129: задания только из разделов, видимых для языка обучения
         // (хук уже строит набор из доступных типов; фильтр — страховка при смене языка днём).
         // Подпись урока — название последнего урока, как было в заглушке.

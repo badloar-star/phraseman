@@ -702,7 +702,16 @@ function inferredServerBalanceFromRecoveryOperations(projection: LevelSpinStarPr
 
 function observeCurrentSnapshot(projection: LevelSpinStarProjection): LevelSpinStarProjection {
   const progress = getAppSnapshot().progress;
-  if (!progress) return projection;
+  // зачем (владелец 01.10, «сперва логи»): расхождение монет — на холодном старте
+  // progress.stars публиковался 0 при едином кошельке 9830. Подозрение: пересчёт
+  // шёл, пока снимок прогресса ещё не поднят, и без него проекция = 0.
+  if (!progress) {
+    DebugLogger.info('[COIN-DIVERGENCE] observe:no_progress_snapshot', JSON.stringify({
+      serverBalance: projection.serverBalance, serverSeq: projection.serverSeq,
+      operations: projection.operations.length, unacknowledged: unacknowledgedTotal(projection),
+    }));
+    return projection;
+  }
   const visibleBalance = Math.max(0, Math.trunc(progress.stars ?? 0));
   const visibleEarned = Math.max(0, Math.trunc(progress.starsEarnedTotal ?? 0));
   const inferredServerBalance = inferredServerBalanceFromRecoveryOperations(projection);
@@ -740,8 +749,29 @@ function observeCurrentSnapshot(projection: LevelSpinStarProjection): LevelSpinS
 }
 
 function publishProjection(token: AccountGenerationToken, projection: LevelSpinStarProjection): void {
-  if (!isCurrentAccountGeneration(token, projection.ownerStableId)) return;
+  if (!isCurrentAccountGeneration(token, projection.ownerStableId)) {
+    DebugLogger.info('[COIN-DIVERGENCE] publish:skip_stale_generation', JSON.stringify({ owner: projection.ownerStableId.slice(0, 8) }));
+    return;
+  }
   const visible = visibleProjection(projection);
+  const before = getAppSnapshot().progress;
+  // зачем (владелец 01.10, «сперва логи»): каждая публикация печатает, ЧТО было в
+  // снимке, ЧТО пришло из проекции и откуда (serverBalance/serverSeq/операции),
+  // и кто позвал — чтобы найти публикацию, которая затирает 9830 нулём.
+  if (!before || before.stars !== visible.balance) {
+    DebugLogger.info('[COIN-DIVERGENCE] publish', JSON.stringify({
+      owner: projection.ownerStableId.slice(0, 8),
+      snapshotStars: before ? before.stars ?? null : 'no_progress',
+      snapshotSource: before ? (before as { source?: unknown }).source ?? null : null,
+      nextStars: visible.balance,
+      serverBalance: projection.serverBalance,
+      serverSeq: projection.serverSeq,
+      operations: projection.operations.length,
+      unacknowledged: unacknowledgedTotal(projection),
+      dropToZero: Boolean(before && (before.stars ?? 0) > 0 && visible.balance === 0),
+      caller: (new Error().stack ?? '').split('\n').slice(2, 5).map((line) => line.trim()).join(' <- '),
+    }));
+  }
   patchAppSnapshot((current) => current.progress ? (
     // зачем (владелец, 2026-08-24, «цифра рун постоянно прыгает»): публикация
     // зовётся часто (recover, sync, каждое начисление) и раньше ВСЕГДА создавала

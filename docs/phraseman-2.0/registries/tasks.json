@@ -308,13 +308,19 @@
         "id": "PM-007-A1",
         "text": "Созданы два списка — объявленные в коде и живые в облаке",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "2026-10-01 код-сторона ГОТОВА: node scripts/pm007_code_vs_cloud_functions.mjs → docs/phraseman-2.0/evidence/PM-007_code_vs_cloud_functions.md: 436 функций в коде (default 425, content 9, english-test 2, max 0 — запломбирован), из них 21 крон, у каждой тип и file:line.",
+          "NOT_MET: список «живые в облаке» требует чтения прода — этой сессии запрещено. Владелец: firebase functions:list --project phraseman-ea0b3 --json > .tmp/pm007_cloud_functions.json && node scripts/pm007_code_vs_cloud_functions.mjs --cloud .tmp/pm007_cloud_functions.json — скрипт сам допишет список облака и оба расхождения (режим --cloud проверен на синтетическом файле)."
+        ]
       },
       {
         "id": "PM-007-A2",
         "text": "найденные расхождения не удалены автоматически",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "scripts/pm007_code_vs_cloud_functions.mjs только читает исходники и присланный владельцем JSON; в облако не ходит, ничего не удаляет и не деплоит — расхождения печатаются в разделе «Расхождения (НЕ удалены автоматически)».",
+          "git grep 'functions:delete|deploy.*--force' по scripts/, package.json, functions/package.json, .github — пусто: автоматического удаления функций в репозитории нет; деплой удалений только после релиза 2.0 (D91) по плану evidence/PM-222_cron_retirement_plan.md (ручное подтверждение списка, без --force)."
+        ]
       }
     ],
     "depends_on": [],

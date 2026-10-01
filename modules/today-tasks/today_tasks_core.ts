@@ -179,6 +179,39 @@ export function replaceUnavailableTodayTasks(
   return { state: Object.freeze({ ...state, tasks: Object.freeze(tasks) }), replaced };
 }
 
+/**
+ * Закрепить обязательные типы в текущем дне: если закреплённого нет — он вытесняет
+ * последнее нетронутое незакреплённое задание.
+ * зачем (D138, владелец 01.10): вход в «Мои ошибки» на Главной — только строкой
+ * в «Сегодня»; случайный выбор мог не дать её в день, и раздел становился недостижим.
+ * Начатые/выполненные задания не трогаем (как и в replaceUnavailableTodayTasks).
+ */
+export function ensurePinnedTodayTasks(
+  state: TodayTasksDayState,
+  pinnedKinds: readonly TodayTaskKindCore[],
+): Readonly<{ state: TodayTasksDayState; pinned: readonly { from: TodayTaskKindCore; to: TodayTaskKindCore }[] }> {
+  const missing = TODAY_TASK_POOL.filter((kind) => pinnedKinds.includes(kind)
+    && !state.tasks.some((task) => task.kind === kind));
+  if (missing.length === 0) return { state, pinned: [] };
+  const tasks = [...state.tasks];
+  const pinned: { from: TodayTaskKindCore; to: TodayTaskKindCore }[] = [];
+  for (const kind of missing) {
+    let slot = -1;
+    for (let i = tasks.length - 1; i >= 0; i -= 1) {
+      const task = tasks[i];
+      const untouched = !task.done && task.units === 0 && task.unitKeys.length === 0;
+      if (untouched && !pinnedKinds.includes(task.kind)) { slot = i; break; }
+    }
+    if (slot < 0) break;
+    pinned.push({ from: tasks[slot].kind, to: kind });
+    tasks[slot] = freshTask(kind);
+  }
+  if (pinned.length === 0) return { state, pinned };
+  // Порядок показа — порядок пула, как в selectTodayTaskKinds.
+  const ordered = [...tasks].sort((a, b) => TODAY_TASK_POOL.indexOf(a.kind) - TODAY_TASK_POOL.indexOf(b.kind));
+  return { state: Object.freeze({ ...state, tasks: Object.freeze(ordered) }), pinned };
+}
+
 /** Нужен ли новый день: другой владелец или наступила локальная полночь. */
 export function needsNewTodayTasksDay(state: TodayTasksDayState | null, ownerKey: string, dayKey: string): boolean {
   return !state || state.ownerKey !== ownerKey || state.dayKey !== dayKey;

@@ -22,6 +22,7 @@ import {
   TODAY_TASK_POOL,
   applyTodayTaskEvent,
   createTodayTasksDay,
+  ensurePinnedTodayTasks,
   markTodayTaskRewardGranted,
   needsNewTodayTasksDay,
   parseTodayTasksDayState,
@@ -274,7 +275,10 @@ export function recordTodayTaskActivity(event: TodayTaskEvent): Promise<void> {
  * включён), и просит актуальный день. Новый набор дня строится из этого списка.
  * Заодно доводит до кошелька выплаты, застрявшие в pending.
  */
-export function refreshTodayTasks(kinds: readonly TodayTaskKindCore[]): Promise<TodayTasksDayState | null> {
+export function refreshTodayTasks(
+  kinds: readonly TodayTaskKindCore[],
+  pinnedKinds: readonly TodayTaskKindCore[] = [],
+): Promise<TodayTasksDayState | null> {
   return serialized(async () => {
     try {
       const normalized = Object.freeze(TODAY_TASK_POOL.filter((kind) => kinds.includes(kind)));
@@ -292,6 +296,17 @@ export function refreshTodayTasks(kinds: readonly TodayTaskKindCore[]): Promise<
         log('day:replaced_unavailable', { replaced: swap.replaced, available: normalized });
         await persist(day);
         publish(day);
+      }
+      // D138: закреплённые типы (готовые «Мои ошибки») обязаны быть в дне.
+      const pinnedNow = pinnedKinds.filter((kind) => normalized.includes(kind));
+      const pin = ensurePinnedTodayTasks(day, pinnedNow);
+      if (pin.pinned.length > 0) {
+        day = pin.state;
+        log('day:pinned', { pinned: pin.pinned, pinnedKinds: pinnedNow });
+        await persist(day);
+        publish(day);
+      } else if (pinnedNow.length > 0) {
+        log('day:pin_kept', { pinnedKinds: pinnedNow, kinds: day.tasks.map((task) => task.kind) });
       }
       return await settlePendingRewards(day);
     } catch (error) {

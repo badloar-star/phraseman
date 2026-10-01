@@ -18,7 +18,8 @@ import type { LearningLanguageTarget } from '../app/learning_language_contour';
 import { isSpireTabEnabled, primeSpireTabFlag, useSpireTabEnabled } from '../app/spire_tab_flag';
 import { isTodayTaskKindAvailableForTarget } from '../app/today_task_surface_filter';
 import { loadSpireConfig } from '../app/spire_config_client';
-import { getMistakePracticeReadyCount } from '../app/mistake_practice_insights';
+import { getMistakePracticeHomeCounts } from '../app/mistake_practice_insights';
+import { homeMistakesButtonState } from '../app/home_mistakes_pulse_model';
 import { MISTAKE_STUDY_TARGETS, type MistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import {
   TODAY_TASK_POOL,
@@ -37,7 +38,7 @@ import { todayTasksToView } from '../modules/today-tasks/today_tasks_view';
  * config/spire_v1 («откроется чуть позже»), а «Ошибки 0/5» — при пустом журнале ошибок.
  * Оба — тупики: задание видно, а выполнить нельзя.
  */
-export type TodayTaskLiveness = Readonly<{ spireLive?: boolean; mistakesReady?: number }>;
+export type TodayTaskLiveness = Readonly<{ spireLive?: boolean; mistakesReady?: number; mistakesActive?: number }>;
 
 export function availableTodayTaskKinds(
   target: LearningLanguageTarget,
@@ -49,12 +50,24 @@ export function availableTodayTaskKinds(
     // Ошибок для повтора должно хватать на цель задания, иначе задание не выполнить.
     if (kind === 'mistakes' && typeof live.mistakesReady === 'number'
       && live.mistakesReady < TODAY_TASK_RULES.mistakes.target) return false;
+    // «Мои ошибки» открываются только с порога Главной (D: 10 активных) — иначе строка ведёт в закрытый раздел.
+    if (kind === 'mistakes' && typeof live.mistakesActive === 'number'
+      && homeMistakesButtonState(live.mistakesActive) !== 'ready') return false;
     return isTodayTaskKindAvailableForTarget(kind, target);
   });
 }
 
+/**
+ * Закреплённые типы дня.
+ * зачем (D138, владелец 01.10): вход в «Мои ошибки» на Главной — только строкой
+ * «Сегодня». Если раздел открыт и ошибок на задание хватает — строка есть всегда.
+ */
+export function pinnedTodayTaskKinds(available: readonly TodayTaskKindCore[]): TodayTaskKindCore[] {
+  return available.includes('mistakes') ? ['mistakes'] : [];
+}
+
 async function readTodayTaskLiveness(target: LearningLanguageTarget): Promise<TodayTaskLiveness> {
-  const [spireLive, mistakesReady] = await Promise.all([
+  const [spireLive, mistakeCounts] = await Promise.all([
     loadSpireConfig()
       .then((config) => config.enabled === true)
       .catch((error: unknown) => {
@@ -62,13 +75,13 @@ async function readTodayTaskLiveness(target: LearningLanguageTarget): Promise<To
         return false;
       }),
     (MISTAKE_STUDY_TARGETS as readonly string[]).includes(target)
-      ? getMistakePracticeReadyCount(target as MistakeStudyTarget).catch((error: unknown) => {
+      ? getMistakePracticeHomeCounts(target as MistakeStudyTarget).catch((error: unknown) => {
         console.warn(`[TODAY-TASKS] hook:mistakes_count_failed ${String(error)} → «Ошибки» не выдаём`);
-        return 0;
+        return { active: 0, ready: 0 };
       })
-      : Promise.resolve(0),
+      : Promise.resolve({ active: 0, ready: 0 }),
   ]);
-  return { spireLive, mistakesReady };
+  return { spireLive, mistakesReady: mistakeCounts.ready, mistakesActive: mistakeCounts.active };
 }
 
 function firstFrameState(target: LearningLanguageTarget): TodayTasksDayState {
@@ -105,8 +118,9 @@ export function useTodayTasks(lang: Lang, studyTarget: LearningLanguageTarget): 
         .then(() => readTodayTaskLiveness(studyTarget))
         .then((live) => {
           const kinds = availableTodayTaskKinds(studyTarget, isSpireTabEnabled(), live);
-          console.log(`[TODAY-TASKS] hook:refresh ${JSON.stringify({ reason, studyTarget, kinds, live })}`);
-          return refreshTodayTasks(kinds);
+          const pinned = pinnedTodayTaskKinds(kinds);
+          console.log(`[TODAY-TASKS] hook:refresh ${JSON.stringify({ reason, studyTarget, kinds, pinned, live })}`);
+          return refreshTodayTasks(kinds, pinned);
         })
         .then((next) => {
           if (alive && next) setState(next);

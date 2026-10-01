@@ -4,6 +4,7 @@
 import {
   TODAY_TASK_POOL,
   createTodayTasksDay,
+  ensurePinnedTodayTasks,
   replaceUnavailableTodayTasks,
   type TodayTaskKindCore,
 } from '../modules/today-tasks/today_tasks_core';
@@ -32,6 +33,31 @@ describe('today tasks liveness', () => {
     const { state, replaced } = replaceUnavailableTodayTasks(started, ['lesson', 'cards']);
     expect(replaced).toHaveLength(0);
     expect(state).toBe(started);
+  });
+
+  // D138: «Мои ошибки» на Главной — только строкой «Сегодня»; при готовых ошибках строка есть всегда.
+  it('закреплённый тип вытесняет последнее нетронутое задание и встаёт в порядок пула', () => {
+    const day = dayWith(['lesson', 'dialog', 'cards']);
+    const { state, pinned } = ensurePinnedTodayTasks(day, ['mistakes']);
+    expect(pinned).toEqual([{ from: 'cards', to: 'mistakes' }]);
+    expect(state.tasks.map((t) => t.kind)).toEqual(
+      TODAY_TASK_POOL.filter((k) => ['lesson', 'dialog', 'mistakes'].includes(k)),
+    );
+  });
+
+  it('закреплённый уже в дне — ничего не меняется', () => {
+    const day = dayWith(['lesson', 'mistakes', 'cards']);
+    const { state, pinned } = ensurePinnedTodayTasks(day, ['mistakes']);
+    expect(pinned).toHaveLength(0);
+    expect(state).toBe(day);
+  });
+
+  it('начатые задания закрепление не трогает', () => {
+    const day = dayWith(['lesson', 'dialog', 'cards']);
+    const touched = { ...day, tasks: Object.freeze(day.tasks.map((t) => ({ ...t, units: 1, unitKeys: ['x'] }))) };
+    const { state, pinned } = ensurePinnedTodayTasks(touched, ['mistakes']);
+    expect(pinned).toHaveLength(0);
+    expect(state).toBe(touched);
   });
 
   it('нет свободных доступных типов — задание остаётся как было', () => {

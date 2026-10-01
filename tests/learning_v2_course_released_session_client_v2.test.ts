@@ -23,6 +23,8 @@ jest.mock("@react-native-firebase/functions", () => ({
 }));
 jest.mock("../app/cloud_sync", () => ({
   ensureAnonUser: jest.fn(async () => "stable-1"),
+  // зачем: с 2026-08-27 клиенты Learning V2 сперва вызывают ensureStableAuthLink (решение владельца).
+  ensureStableAuthLink: jest.fn(async () => true),
 }));
 jest.mock("../app/stable_id", () => ({
   peekStableId: jest.fn(() => "stable-1"),

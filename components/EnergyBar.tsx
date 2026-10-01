@@ -89,7 +89,8 @@ function EnergyBar({ ownerActive = true, glass = false }: Props) {
       // зачем (темы 2.0): в «Акценте/Максимуме» молния в цвете темы; перезаряд (золото) и
       // низкий заряд (красный) — смысловые цвета, темой не красятся.
       : (lg.level === 'accent' || lg.level === 'max') ? lg.accentText : (glass ? lg.text : COLORS.normal);
-  const iconSize = 13;
+  // зачем (владелец 01.10: «иконка энергии чуть больше и без фона нигде»): только значок и число.
+  const iconSize = 17;
   // зачем (владелец 2026-09-30, learn.html C4 «−1 энергии при старте: 5 → 4»): в стеклянной
   // пилюле уменьшение энергии видно — цифра проваливается и пружинит обратно (650 мс), как
   // numdn в kit.css. Только glass и только при списании; на UI-треде, reduceMotion — без движения.
@@ -175,8 +176,6 @@ function EnergyBar({ ownerActive = true, glass = false }: Props) {
           style={styles.touchTarget}
           contentStyle={[
             styles.capsule,
-            glass ? { backgroundColor: lg.opaqueControl, borderRadius: ENERGY_PILL_HEIGHT / 2 } : null,
-            bonusEnergyCapacity > 0 ? styles.overchargeGlow : null,
           ]}
         >
           <EnergyIcon
@@ -230,9 +229,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 1,
-    borderRadius: 12,
-    backgroundColor: COLORS.background,
+    gap: 2,
   },
   valueCompact: { width: 36, height: 21, fontSize: 15, lineHeight: 19 },
   infinity: { width: 30, textAlign: 'center', color: COLORS.value, fontSize: 17, lineHeight: 20, fontWeight: '900' },

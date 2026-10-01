@@ -649,6 +649,19 @@ function publicLedgerError(error: DialogueV2SessionLedgerError): HttpsError {
   }
 }
 
+/** Причина отказа хода для лога: класс, код и сообщение (без текста пользователя). */
+function describeTurnFailure(error: unknown): Readonly<Record<string, unknown>> {
+  const value = error as { name?: unknown; code?: unknown; message?: unknown } | null;
+  return Object.freeze({
+    kind: error instanceof DialogueV2SessionLedgerError ? 'ledger'
+      : error instanceof DialogueV2TextTurnError ? 'core'
+        : error instanceof HttpsError ? 'https' : 'other',
+    name: typeof value?.name === 'string' ? value.name : null,
+    code: typeof value?.code === 'string' ? value.code : null,
+    message: typeof value?.message === 'string' ? value.message.slice(0, 200) : String(error).slice(0, 200),
+  });
+}
+
 /** Thin callable boundary; all request validation and authorization stay core-owned. */
 export function createDialogueV2TextTurnHandler(
   dependencies: DialogueV2TextTurnDependencies,
@@ -691,7 +704,10 @@ export function createDialogueV2SessionTextTurnHandler(
       if (typeof stableAccountId !== 'string' || stableAccountId.length < 1) {
         throw new Error('identity_invalid');
       }
-    } catch {
+    } catch (error) {
+      // зачем (баг 01.10, «Дизайн»: ход диалога «недоступен», в логах сервера пусто):
+      // каждая причина отказа обязана назвать себя.
+      console.warn('[DIALOGUE-V2-TURN] identity_failed', JSON.stringify(describeTurnFailure(error)));
       throw new HttpsError('unavailable', 'dialogue_v2_turn_unavailable');
     }
 
@@ -792,6 +808,14 @@ export function createDialogueV2SessionTextTurnHandler(
           capturedReservation.resetAtMs,
         ).catch(() => undefined);
       }
+      console.warn('[DIALOGUE-V2-TURN] failed', JSON.stringify({
+        scenarioId: input.scenarioId,
+        studyTarget: input.studyTarget,
+        coreSucceeded,
+        reservationConsumed: capturedReservation?.consumed ?? null,
+        error: describeTurnFailure(error),
+        coreFailure: coreFailure ? describeTurnFailure(coreFailure) : null,
+      }));
       if (coreFailure instanceof HttpsError) throw coreFailure;
       if (coreFailure instanceof DialogueV2TextTurnError) throw publicTurnError(coreFailure);
       if (error instanceof HttpsError) throw error;

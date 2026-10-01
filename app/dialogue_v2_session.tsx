@@ -1,5 +1,6 @@
 import { useEnergy } from '../components/EnergyContext';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { actionToastTri, emitAppEvent } from './events';
 import * as Crypto from 'expo-crypto';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Linking } from 'react-native';
@@ -102,7 +103,7 @@ function interfaceLangFor(lang: string): string {
 type TurnFailureView = Readonly<{ reason: DialogueV2TurnFailureReason }>;
 
 function SessionContent() {
-  const params = useLocalSearchParams<{ scenarioId?: string | string[] }>();
+  const params = useLocalSearchParams<{ scenarioId?: string | string[]; energyOp?: string | string[] }>();
   const router = useRouter();
   const { studyTarget } = useStudyTarget();
   const localCoinRank = useMyCoinRank();
@@ -130,6 +131,32 @@ function SessionContent() {
   const [serverSession, setServerSession] = useState<Readonly<{ sessionId: string; expiresAtMs: number }> | null>(null);
   const [serverSessionState, setServerSessionState] = useState<ServerSessionState>('idle');
   const pendingTurnRef = useRef<Readonly<{ turnId: string; userMessage: string; learnerId: string }> | null>(null);
+  // зачем (баг 01.10, D87): энергия за диалог закрепляется после первого ответа собеседника;
+  // отказ сервиса на первом ходе — энергия возвращается. Одно решение на сессию.
+  const energyOpRef = useRef<string | null>(typeof params.energyOp === 'string' ? params.energyOp : null);
+  const energyActionsRef = useRef<Readonly<{
+    acknowledge: (operationId: string) => Promise<boolean>;
+    refund: (operationId: string, reason: string) => Promise<void>;
+  }> | null>(null);
+  const settleEnergy = (outcome: 'acknowledge' | 'refund', reason: string) => {
+    const operationId = energyOpRef.current;
+    const actions = energyActionsRef.current;
+    if (!operationId || !actions) return;
+    energyOpRef.current = null;
+    console.log('[DIALOGUE-V2] energy:settle', { outcome, reason, operationId, scenarioId: params.scenarioId });
+    const work = outcome === 'acknowledge'
+      ? actions.acknowledge(operationId).then(() => undefined)
+      : actions.refund(operationId, reason).then(() => {
+        emitAppEvent('action_toast', actionToastTri('info', {
+          ru: 'Энергия возвращена', uk: 'Енергію повернено', en: 'Energy returned', es: 'Energía devuelta',
+          'pt-BR': 'Energia devolvida', vi: 'Đã hoàn lại năng lượng', id: 'Energi dikembalikan',
+          tr: 'Enerji iade edildi', pl: 'Energia zwrócona',
+        }));
+      });
+    work.catch((error: unknown) => {
+      console.warn('[DIALOGUE-V2] energy:settle failed', { outcome, reason, message: error instanceof Error ? error.message : String(error) });
+    });
+  };
   const turnStartingRef = useRef(false);
   // зачем: Free-лимиты включаются только когда доступ точно известен как Free — Plus не должен
   // увидеть стену или счётчик из-за медленной проверки подписки.
@@ -326,6 +353,7 @@ function SessionContent() {
         await appendReplies(result, pending, serverSession, studyTarget, scenarioId);
       }
       pendingTurnRef.current = null;
+      settleEnergy('acknowledge', 'first_turn_ok');
     } catch (error: unknown) {
       const reason: DialogueV2TurnFailureReason = error instanceof DialogueV2TurnFailureError ? error.reason : 'network';
       console.warn('[DIALOGUE-V2] turn:run → failed', { reason, scenarioId });
@@ -338,6 +366,8 @@ function SessionContent() {
         setPaused(true);
       } else {
         if (reason === 'rate_limited') setRateLimitCooling(true);
+        // Сервис не ответил ещё ни разу — диалог не состоялся, энергию возвращаем.
+        if (reason === 'service') settleEnergy('refund', 'dialogue_first_turn_service_failed');
         setTurnFailure(Object.freeze({ reason }));
       }
     } finally {
@@ -431,7 +461,8 @@ function SessionContent() {
   };
 
   // зачем (владелец 30.09, макет B6): энергия как в уроке — пилюля в шапке, у Plus её нет.
-  const { isUnlimited: energyUnlimited } = useEnergy();
+  const { isUnlimited: energyUnlimited, acknowledgeSessionStart, refundActivityStart } = useEnergy();
+  energyActionsRef.current = { acknowledge: acknowledgeSessionStart, refund: refundActivityStart };
   if (paused) {
     if (typeof __DEV__ !== 'undefined' && __DEV__) console.warn('[DIALOGUE-V2] session:render → paused gate', { scenarioId });
     return (

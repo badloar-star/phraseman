@@ -137,7 +137,7 @@ describe('Dialogue V2 briefing route', () => {
     expect(mockBack).not.toHaveBeenCalled();
     expect(mockPush).toHaveBeenCalledWith({
       pathname: '/dialogue_v2_session',
-      params: { scenarioId: 'work_01' },
+      params: { scenarioId: 'work_01', energyOp: 'op-1' },
     });
   });
 

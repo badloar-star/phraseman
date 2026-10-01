@@ -35,3 +35,21 @@ describe('старт диалога V2: номер операции энерги
     expect(catchBranch.slice(0, 400)).toMatch(/dialogueStartFailedToast\(\)/);
   });
 });
+
+// зачем (баг 01.10, «Дизайн»: ход упал на сервере, энергия списана; D87): старт подтверждается
+// после первого ответа собеседника, а отказ сервиса до него возвращает энергию.
+describe('диалог V2: энергия за несостоявшийся диалог возвращается', () => {
+  const session = fs.readFileSync(path.join(__dirname, '..', 'app/dialogue_v2_session.tsx'), 'utf8');
+
+  it('брифинг не подтверждает старт сам и передаёт номер операции в сессию', () => {
+    expect(briefing).not.toMatch(/acknowledgeSessionStart\(/);
+    expect(briefing).toMatch(/energyOp: energyIntent\.operationId/);
+  });
+
+  it('сессия: первый ответ — подтверждение, отказ сервиса — возврат с сообщением', () => {
+    expect(session).toMatch(/settleEnergy\('acknowledge', 'first_turn_ok'\)/);
+    expect(session).toMatch(/if \(reason === 'service'\) settleEnergy\('refund', 'dialogue_first_turn_service_failed'\)/);
+    expect(session).toMatch(/energyOpRef\.current = null;/);
+    expect(session).toMatch(/'Энергия возвращена'/);
+  });
+});

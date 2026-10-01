@@ -137,7 +137,7 @@ export default function DialogueV2BriefingRoute() {
   // зачем (владелец 30.09: «энергия как урок, 1 за диалог»; макет dialogs.html B5/B6):
   // «Начать» списывает 1 энергию до входа в сессию; нет энергии — окно «Нет энергии».
   // Plus не тратит (confirmSpendOne вернёт 'unlimited'). Латч — от двойного тапа.
-  const { confirmSpendOne, acknowledgeSessionStart } = useEnergy();
+  const { confirmSpendOne } = useEnergy();
   const [dialogueAttempt, setDialogueAttempt] = useState(0);
   // зачем (баг 01.10, «Дизайн»: «Начать диалог» — мёртвая кнопка, operation_id_conflict):
   // номер операции энергии = тип + попытка, БЕЗ сценария; попытка с 0 на каждом открытии
@@ -232,11 +232,15 @@ export default function DialogueV2BriefingRoute() {
               setNoEnergy(true);
               return;
             }
-            void acknowledgeSessionStart(energyIntent.operationId);
+            // зачем (баг 01.10, «Дизайн»: ход упал на сервере, а энергия списана; D87): старт
+            // подтверждает сессия после первого ответа собеседника, а при отказе сервиса на
+            // первом ходе возвращает энергию — сюда передаём номер операции (у Plus его нет).
             setDialogueAttempt((n) => n + 1);
             router.push({
               pathname: '/dialogue_v2_session',
-              params: { scenarioId },
+              params: result === 'spent'
+                ? { scenarioId, energyOp: energyIntent.operationId }
+                : { scenarioId },
             } as never);
           } catch (error: unknown) {
             console.warn('[DIALOGUE-V2] start energy failed', { scenarioId, message: error instanceof Error ? error.message : String(error) });

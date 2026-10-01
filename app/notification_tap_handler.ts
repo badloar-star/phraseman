@@ -30,7 +30,9 @@ export function serverPushTapRoute(data: Record<string, unknown>): ServerPushTap
         : { pathname: '/manage_subscription', params: { source: 'notification_premium_expiry' } };
     case 'spire_week_result':
     case 'spire_zone_warning':
-      return { pathname: '/(tabs)/community', params: { source: String(data.type) } };
+      // зачем (PM-200): пуш Шпиля открывает сразу раздел «Шпиль» — вкладка «Сообщество»
+      // понимает ?section=spire (сессия «Дизайн»); при замке сама вернётся к «Друзьям».
+      return { pathname: '/(tabs)/community', params: { section: 'spire', source: String(data.type) } };
     default:
       return null;
   }

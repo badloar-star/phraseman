@@ -14,6 +14,7 @@ describe('serverPushTapRoute (PM-200)', () => {
   it('пуши Шпиля -> вкладка «Сообщество»', () => {
     expect(serverPushTapRoute({ type: 'spire_week_result' })?.pathname).toBe('/(tabs)/community');
     expect(serverPushTapRoute({ type: 'spire_zone_warning' })?.pathname).toBe('/(tabs)/community');
+    expect(serverPushTapRoute({ type: 'spire_week_result' })?.params).toEqual(expect.objectContaining({ section: 'spire' }));
   });
   it('чужие типы не перехватывает', () => {
     expect(serverPushTapRoute({ type: 'friend_nudge' })).toBeNull();

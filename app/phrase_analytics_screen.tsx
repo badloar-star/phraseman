@@ -14,10 +14,10 @@ import { isLightThemeMode } from '../constants/theme';
 import TapScale from '../components/TapScale';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import BouncyScrollView from '../components/BouncyScrollView';
-import { LinearGradient } from '../components/SafeLinearGradient';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -55,15 +55,6 @@ import { DebugLogger } from './debug-logger';
 type IonName = ComponentProps<typeof Ionicons>['name'];
 
 // ── Дизайн-токены ─────────────────────────────────────────────────────────────
-
-const GATE_LUX = {
-  panelDark: '#12100e',
-  panelBorder: 'rgba(212, 175, 88, 0.28)',
-  gold: '#C9A227',
-  goldSoft: '#E8D5A3',
-  prose: '#c4b8a4',
-  iconRing: 'rgba(201, 162, 39, 0.12)',
-} as const;
 
 // Нейтральная палитра — никаких кислотных цветов
 const SIGNAL = {
@@ -320,8 +311,12 @@ function LessonRow({ stat, studyTarget }: { stat: LessonMistakeStat; studyTarget
  * данные первым кадром; без неё каждый заход начинался с ложного «Пока нет данных». */
 export default function PhraseAnalyticsScreen() {
   const router = useRouter();
-  const { theme: t, f, themeMode } = useTheme();
-  const isLightGate = false;
+  const { theme: t, f, themeMode, liquidGlassThemeId } = useTheme();
+  // зачем (стиль 2.0, «никакого жёлтого»): замок Premium красится токенами темы —
+  // акцент в «Акценте/Максимуме», нейтральный тон в «Спокойно»; золото GATE_LUX убрано.
+  const gate = liquidGlassTokens(liquidGlassThemeId);
+  const gateVivid = gate.level === 'accent' || gate.level === 'max';
+  const gateMark = gateVivid ? gate.accentBright : gate.text;
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const sourceLocale = isStudyTargetSourceUiLang(lang) ? lang : 'ru';
@@ -434,8 +429,7 @@ export default function PhraseAnalyticsScreen() {
                 style={[
                   styles.gateCard,
                   {
-                    backgroundColor: isLightGate ? t.bgCard : GATE_LUX.panelDark,
-                    borderColor: isLightGate ? t.border : GATE_LUX.panelBorder,
+                    backgroundColor: gate.opaqueCard,
                     borderRadius: 22,
                     overflow: 'hidden',
                   },
@@ -443,25 +437,20 @@ export default function PhraseAnalyticsScreen() {
               >
                 {/* Icon + title */}
                 <View style={styles.gateHeader}>
-                  <LinearGradient
-                    colors={['rgba(42,36,28,0.95)', 'rgba(18,16,14,0.98)']}
-                    style={[styles.gateIconBox, { borderColor: GATE_LUX.panelBorder }]}
-                  >
-                    <View style={[styles.gateIconInner, { borderColor: 'rgba(232,213,163,0.35)' }]}>
-                      <Ionicons name="diamond" size={24} color={GATE_LUX.goldSoft} />
-                    </View>
-                  </LinearGradient>
+                  <View style={[styles.gateIconBox, { backgroundColor: gate.opaqueControl }]}>
+                    <Ionicons name="diamond" size={24} color={gateMark} />
+                  </View>
                   <View style={{ flex: 1, marginLeft: 16 }}>
-                    <Text style={[styles.gateLabel, { color: isLightGate ? '#B8860B' : GATE_LUX.gold }]}>
+                    <Text style={[styles.gateLabel, { color: gate.secondary }]}>
                       PHRASEMAN
                     </Text>
-                    <Text style={[styles.gateTitle, { color: isLightGate ? t.textPrimary : '#f2efe8', fontSize: Math.max(18, f.h2 * 0.88) }]}>
+                    <Text style={[styles.gateTitle, { color: gate.text, fontSize: Math.max(18, f.h2 * 0.88) }]}>
                       {triLang(lang, { ru: 'Разбор твоих ошибок', uk: 'Розбір твоїх помилок', en: 'Breakdown of your mistakes', es: 'Análisis de tus errores', 'pt-BR': 'Análise dos seus erros', vi: 'Phân tích lỗi của bạn', id: 'Analisis kesalahanmu', tr: 'Hatalarının analizi', pl: 'Analiza twoich błędów' })}
                     </Text>
                   </View>
                 </View>
 
-                <Text style={[styles.gateProse, { color: isLightGate ? t.textSecond : GATE_LUX.prose, fontSize: f.body }]}>
+                <Text style={[styles.gateProse, { color: gate.secondary, fontSize: f.body }]}>
                   {triLang(lang, {
                     ru: 'Покажем слабые темы, уроки и фразы, которые лучше повторить сейчас.',
                     uk: 'Покажемо слабкі теми, уроки й фрази, які краще повторити зараз.',
@@ -475,17 +464,17 @@ export default function PhraseAnalyticsScreen() {
                   })}
                 </Text>
 
-                <Text style={[styles.gateSubLabel, { color: isLightGate ? t.textMuted : 'rgba(200,190,175,0.65)' }]}>
+                <Text style={[styles.gateSubLabel, { color: gate.mutedText }]}>
                   {triLang(lang, { ru: 'ЧТО ОТКРОЕТСЯ', uk: 'ЩО ВІДКРИЄТЬСЯ', en: 'WHAT UNLOCKS', es: 'QUÉ SE DESBLOQUEA', 'pt-BR': 'O QUE ABRE', vi: 'SẼ MỞ KHÓA', id: 'YANG TERBUKA', tr: 'NE AÇILIR', pl: 'CO SIĘ ODBLOKUJE' })}
                 </Text>
 
                 <View style={{ gap: 12 }}>
                   {GATE_BENEFITS.map((row, i) => (
                     <View key={i} style={styles.gateBenefit}>
-                      <View style={[styles.gateBenefitIcon, { backgroundColor: isLightGate ? GATE_LUX.iconRing : 'rgba(201,162,39,0.1)' }]}>
-                        <Ionicons name={row.icon} size={19} color={isLightGate ? '#B8860B' : GATE_LUX.gold} />
+                      <View style={[styles.gateBenefitIcon, { backgroundColor: gate.opaqueControl }]}>
+                        <Ionicons name={row.icon} size={19} color={gateMark} />
                       </View>
-                      <Text style={[styles.gateBenefitText, { color: isLightGate ? t.textPrimary : '#ebe6dc', fontSize: f.body }]}>
+                      <Text style={[styles.gateBenefitText, { color: gate.text, fontSize: f.body }]}>
                         {triLang(lang, { ru: row.ru, uk: row.uk, en: row.en, es: row.es, 'pt-BR': row.ptBR, vi: row.vi, id: row.id, tr: row.tr, pl: row.pl })}
                       </Text>
                     </View>
@@ -497,16 +486,11 @@ export default function PhraseAnalyticsScreen() {
                   activeOpacity={0.88}
                   style={styles.gateBtn}
                 >
-                  <LinearGradient
-                    colors={['#6b5420', '#9a7b32', '#c9a227', '#9a7b32', '#6b5420']}
-                    locations={[0, 0.25, 0.5, 0.75, 1]}
-                    start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }}
-                    style={styles.gateBtnInner}
-                  >
-                    <Text style={[styles.gateBtnText, { fontSize: f.body }]}>
+                  <View style={[styles.gateBtnInner, { backgroundColor: gateVivid ? gate.accent : gate.cta }]}>
+                    <Text style={[styles.gateBtnText, { color: gateVivid ? gate.accentInk : gate.ctaInk, fontSize: f.body }]}>
                       {triLang(lang, { ru: 'Открыть аналитику', uk: 'Відкрити аналітику', en: 'Open analytics', es: 'Abrir analítica', 'pt-BR': 'Abrir analítica', vi: 'Mở phân tích', id: 'Buka analitik', tr: 'Analizi aç', pl: 'Otwórz analitykę' })}
                     </Text>
-                  </LinearGradient>
+                  </View>
                 </TouchableOpacity>
               </View>
             </ContentWrap>
@@ -757,9 +741,9 @@ const styles = StyleSheet.create({
     flexShrink: 0,
   },
   gateBenefitText: { flex: 1, lineHeight: 22, fontWeight: '500' },
-  gateBtn: { borderRadius: 13, overflow: 'hidden', borderWidth: 0, borderColor: 'rgba(212,175,88,0.3)' },
+  gateBtn: { borderRadius: 13, overflow: 'hidden' },
   gateBtnInner: { paddingVertical: 15, paddingHorizontal: 20, alignItems: 'center' },
-  gateBtnText: { color: '#140f08', fontWeight: '800', letterSpacing: 0.3 },
+  gateBtnText: { fontWeight: '800', letterSpacing: 0.3 },
 
   // ── Content: боковые отступы здесь — ContentWrap задаёт только maxWidth по центру ──
   scrollContent: { paddingTop: 12, paddingBottom: 48, paddingHorizontal: 16 },

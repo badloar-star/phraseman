@@ -18,3 +18,8 @@ test('the breakdown screen keeps its own Premium gate with the phrase_analytics 
   assert.match(screen, /source: 'phrase_analytics'/);
   assert.match(screen, /!isPremium \?/);
 });
+
+test('the breakdown gate uses 2.0 theme tokens, no gold', () => {
+  assert.match(screen, /liquidGlassTokens(liquidGlassThemeId)/);
+  assert.doesNotMatch(screen, /GATE_LUXs*=|#C9A227|#B8860B|#9a7b32/);
+});

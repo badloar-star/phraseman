@@ -9,6 +9,9 @@ import {
   writeLearningV2FounderPassReceiptV1,
 } from "../app/learning_v2_release_intro_receipt_v1";
 
+// зачем (координатор §47, 2026-10-01): файл был сценарием из голых assert без единого
+// test() — jest помечал его «must contain at least one test» и НИ ОДНА проверка не
+// исполнялась. Тело обёрнуто в один test; вне jest (npx tsx) оно запускается напрямую.
 const memory = new Map<string, string>();
 const storage = {
   getItem: async (key: string) => memory.get(key) ?? null,
@@ -170,4 +173,11 @@ async function main(): Promise<void> {
   console.log("LEARNING V2 FOUNDER PASS CONTRACT: PASS");
 }
 
-void main();
+if (typeof test === "function") {
+  test("learning_v2_founder_pass_contract", main);
+} else {
+  main().catch((error: unknown) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

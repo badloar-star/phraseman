@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import { resolveLearningV2SessionRouteCoordinatesV1 } from "../app/learning_v2_session_route_coordinates_v1";
 
+// зачем (координатор §47, 2026-10-01): файл был сценарием из голых assert без единого
+// test() — jest помечал его «must contain at least one test» и НИ ОДНА проверка не
+// исполнялась. Тело обёрнуто в один test; вне jest (npx tsx) оно запускается напрямую.
+async function main(): Promise<void> {
 assert.deepEqual(resolveLearningV2SessionRouteCoordinatesV1({
   id: "lesson-03:session:05", lessonOrdinal: "", sessionOrdinal: "",
 }), { lessonOrdinal: 3, sessionOrdinal: 5 });
@@ -24,3 +28,13 @@ assert.equal(resolveLearningV2SessionRouteCoordinatesV1({
 }), null);
 
 console.log("Learning V2 route coordinates v1: PASS");
+}
+
+if (typeof test === "function") {
+  test("learning_v2_session_route_coordinates_v1", main);
+} else {
+  main().catch((error: unknown) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

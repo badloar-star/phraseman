@@ -6,6 +6,10 @@ import {
 } from "../app/learning_v2_rune_flight_measure_v1";
 import { projectLearningV2InteractionRuneAwardV1 } from "../modules/learning-v2/progress/interaction_rune_award_v1";
 
+// зачем (координатор §47, 2026-10-01): файл был сценарием из голых assert без единого
+// test() — jest помечал его «must contain at least one test» и НИ ОДНА проверка не
+// исполнялась. Тело обёрнуто в один test; вне jest (npx tsx) оно запускается напрямую.
+async function main(): Promise<void> {
 const node = (rect: readonly [number, number, number, number]): LearningV2RuneMeasureNodeV1 => ({
   measureInWindow: (callback) => callback(...rect),
 });
@@ -46,3 +50,13 @@ invalidRetries.shift()?.();
 assert.equal(invalidRetries.length, 0, "measurement retries must be bounded");
 
 console.log("LEARNING V2 RUNE FLIGHT MEASURE: PASS");
+}
+
+if (typeof test === "function") {
+  test("learning_v2_rune_flight_measure_v1", main);
+} else {
+  main().catch((error: unknown) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

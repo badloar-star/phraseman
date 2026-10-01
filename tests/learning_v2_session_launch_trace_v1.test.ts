@@ -6,6 +6,10 @@ import {
   startLearningV2SessionLaunchTraceV1,
 } from "../app/learning_v2_session_launch_trace_v1";
 
+// зачем (координатор §47, 2026-10-01): файл был сценарием из голых assert без единого
+// test() — jest помечал его «must contain at least one test» и НИ ОДНА проверка не
+// исполнялась. Тело обёрнуто в один test; вне jest (npx tsx) оно запускается напрямую.
+async function main(): Promise<void> {
 const traceId = startLearningV2SessionLaunchTraceV1({
   courseSessionId: "lesson-01:session:01",
   tapAtMs: 100,
@@ -39,3 +43,13 @@ assert.equal(
 );
 
 console.log("LEARNING V2 SESSION LAUNCH TRACE: PASS");
+}
+
+if (typeof test === "function") {
+  test("learning_v2_session_launch_trace_v1", main);
+} else {
+  main().catch((error: unknown) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

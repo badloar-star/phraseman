@@ -5,6 +5,10 @@ import {
   resolveLearningV2AuthoringPreviewSpeechTextV1,
 } from "../modules/learning-v2/preview/authoring_device_preview_v1";
 
+// зачем (координатор §47, 2026-10-01): файл был сценарием из голых assert без единого
+// test() — jest помечал его «must contain at least one test» и НИ ОДНА проверка не
+// исполнялась. Тело обёрнуто в один test; вне jest (npx tsx) оно запускается напрямую.
+async function main(): Promise<void> {
 const preview = buildLearningV2AuthoringDevicePreviewV1(1, "ru");
 const audioFamilies = new Set([
   "listen_choose",
@@ -31,3 +35,13 @@ assert.equal(
 );
 
 process.stdout.write("LEARNING V2 AUTHORING DEVICE PREVIEW AUDIO: PASS\n");
+}
+
+if (typeof test === "function") {
+  test("learning_v2_authoring_device_preview_audio_v1", main);
+} else {
+  main().catch((error: unknown) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

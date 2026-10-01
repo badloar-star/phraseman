@@ -3,25 +3,36 @@ import {
   buildLearningV2AuthoringDevicePreviewV1,
   learningV2AuthoringDevicePreviewRowsV1,
 } from "../modules/learning-v2/preview/authoring_device_preview_v1";
+import { LESSON1_AUTHORING_REGISTRY_V1 } from "../modules/learning-v2/content/source/lesson1_authoring_registry_v1";
 import {
   createLearningV2CourseSessionDeviceRunV1,
   getLearningV2CourseSessionDeviceRunSummaryV1,
 } from "../modules/learning-v2/runtime/course_session_device_run_v1";
 
+// зачем (координатор §47, 2026-10-01): файл был сценарием из голых assert без единого
+// test() — jest помечал его «must contain at least one test» и НИ ОДНА проверка не
+// исполнялась. Тело обёрнуто в один test; вне jest (npx tsx) оно запускается напрямую.
+async function main(): Promise<void> {
+// зачем (координатор §47, 2026-10-01): набор не исполнялся с рождения и зашил
+// состояние реестра «s1 LOCKED, s2 DRAFT». После переделки D149/D150 урок 1 снова
+// в черновике (s1 DRAFT). Инвариант прежний — видны закрытый префикс и ОДНО текущее
+// занятие, следующее за ним открыть нельзя, — но ожидания берём из реестра.
 const rows = learningV2AuthoringDevicePreviewRowsV1();
-
+const currentIndex = LESSON1_AUTHORING_REGISTRY_V1.findIndex((entry) => entry.status !== "LOCKED");
+const expectedRows = LESSON1_AUTHORING_REGISTRY_V1
+  .slice(0, (currentIndex === -1 ? LESSON1_AUTHORING_REGISTRY_V1.length - 1 : currentIndex) + 1)
+  .map((entry) => [entry.sessionOrdinal, entry.status, true]);
+assert.ok(expectedRows.length >= 1);
 assert.deepEqual(
   rows.map((row) => [row.sessionOrdinal, row.status, row.openable]),
-  [
-    [1, "LOCKED", true],
-    [2, "DRAFT", true],
-  ],
+  expectedRows,
   "the phone preview must expose only the locked prefix plus current session",
 );
 
+const firstForbidden = rows.length + 1;
 assert.throws(
-  () => buildLearningV2AuthoringDevicePreviewV1(3, "ru"),
-  /learning_v2_authoring_device_preview_forbidden:session=3/u,
+  () => buildLearningV2AuthoringDevicePreviewV1(firstForbidden, "ru"),
+  new RegExp(`learning_v2_authoring_device_preview_forbidden:session=${firstForbidden}`, "u"),
   "a forbidden future session must never be previewable",
 );
 
@@ -30,7 +41,7 @@ assert.equal(preview.schemaVersion, "learning-v2-authoring-device-preview.v1");
 assert.equal(preview.targetLanguage, "en");
 assert.equal(preview.lessonOrdinal, 1);
 assert.equal(preview.sessionOrdinal, 1);
-assert.equal(preview.status, "LOCKED");
+assert.equal(preview.status, rows[0]!.status);
 assert.equal(preview.introChild.pages.length, 3);
 assert.equal(preview.learnerChild.interactions.length, 17);
 assert.equal(
@@ -100,10 +111,21 @@ const summary = getLearningV2CourseSessionDeviceRunSummaryV1(run);
 assert.equal(summary.introInteractionCount, 3);
 assert.equal(summary.practiceInteractionCount, 17);
 
-const secondPreview = buildLearningV2AuthoringDevicePreviewV1(2, "ru");
-assert.equal(secondPreview.sessionOrdinal, 2);
-assert.equal(secondPreview.status, "DRAFT");
-assert.equal(secondPreview.introChild.pages.length, 3);
-assert.ok(secondPreview.learnerChild.interactions.length > 0);
+const lastRow = rows[rows.length - 1]!;
+const lastPreview = buildLearningV2AuthoringDevicePreviewV1(lastRow.sessionOrdinal, "ru");
+assert.equal(lastPreview.sessionOrdinal, lastRow.sessionOrdinal);
+assert.equal(lastPreview.status, lastRow.status);
+assert.equal(lastPreview.introChild.pages.length, 3);
+assert.ok(lastPreview.learnerChild.interactions.length > 0);
 
 process.stdout.write("LEARNING V2 AUTHORING DEVICE PREVIEW: PASS\n");
+}
+
+if (typeof test === "function") {
+  test("learning_v2_authoring_device_preview_v1", main);
+} else {
+  main().catch((error: unknown) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

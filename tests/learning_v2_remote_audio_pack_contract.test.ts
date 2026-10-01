@@ -4,6 +4,10 @@ import { join } from "node:path";
 
 import { LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1 } from "../app/learning_v2_factory_lesson_audio_index_v1.generated";
 
+// зачем (координатор §47, 2026-10-01): файл был сценарием из голых assert без единого
+// test() — jest помечал его «must contain at least one test» и НИ ОДНА проверка не
+// исполнялась. Тело обёрнуто в один test; вне jest (npx tsx) оно запускается напрямую.
+async function main(): Promise<void> {
 const root = process.cwd();
 const read = (path: string) => readFileSync(join(root, path), "utf8");
 const bootstrapModulePath = "app/learning_v2_bootstrap_audio_assets_v1.generated.ts";
@@ -209,3 +213,13 @@ for (const entry of exactBootstrapEntries) {
 assert.match(easIgnore, /^!assets\/audio\/learning-v2-bootstrap-v1\/$/mu);
 
 console.log("LEARNING V2 REMOTE AUDIO PACK CONTRACT: PASS");
+}
+
+if (typeof test === "function") {
+  test("learning_v2_remote_audio_pack_contract", main);
+} else {
+  main().catch((error: unknown) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
+// зачем (координатор §47, 2026-10-01): файл был сценарием из голых assert без единого
+// test() — jest помечал его «must contain at least one test» и НИ ОДНА проверка не
+// исполнялась. Тело обёрнуто в один test; вне jest (npx tsx) оно запускается напрямую.
+async function main(): Promise<void> {
 const lessons = readFileSync("app/(tabs)/lessons.tsx", "utf8");
 
 const sheetUsage =
@@ -36,7 +40,19 @@ assert.doesNotMatch(
   "completed-session audio preparation must not fan out without a bound",
 );
 assert.match(lessons, /onVisibleSessionsSettled/);
-assert.match(lessons, /repeats[\s\S]{0,160}slice\(0, 7\)/);
+// зачем (координатор §47, 2026-10-01): аудит 20.09 ужал прогрев повторов с 7 до 2
+// на остановку прокрутки (налог на скролл). Потолок сторожим строже: не больше 2.
+assert.match(lessons, /const repeats = available[\s\S]{0,160}\.slice\(0, 2\)/);
 assert.match(lessons, /learningV2PreparedLaunchesRef\.current\.size > 8/);
 
 console.log("LEARNING V2 SESSION MODAL ZERO LOADING FRAME CONTRACT: PASS");
+}
+
+if (typeof test === "function") {
+  test("learning_v2_session_modal_zero_loading_frame_contract", main);
+} else {
+  main().catch((error: unknown) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

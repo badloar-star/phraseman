@@ -25,6 +25,14 @@ jest.mock('react-native-reanimated', () => ({
 }));
 jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
 jest.mock('react-native-safe-area-context', () => ({ SafeAreaView: 'SafeAreaView' }));
+// зачем (координатор §47, 2026-10-01): квота тренировок переехала из
+// revenue_quota_access.consumeFlashcardTrainingQuota в monthly_training_sessions;
+// без этого мока экран звал настоящую квоту, и шпион не видел ни одного вызова.
+jest.mock('../app/monthly_training_sessions', () => ({
+  consumeMonthlyTrainingSession: (...args: unknown[]) => mockConsumeQuota(...args),
+}));
+// зачем: expo-linear-gradient — ESM; в node-конфиге jest без мока набор не загружался вовсе.
+jest.mock('expo-linear-gradient', () => ({ LinearGradient: 'LinearGradient' }));
 jest.mock('expo-router', () => ({ useLocalSearchParams: () => ({ deck: 'saved', size: '10' }), useRouter: () => mockRouter }));
 jest.mock('../components/PremiumContext', () => ({ usePremium: () => ({ accessResolved: true }) }));
 jest.mock('../components/EnergyContext', () => ({
@@ -92,7 +100,9 @@ jest.mock('../hooks/useSessionAttempts', () => ({ useSessionAttempts: () => ({
 }) }));
 jest.mock('../hooks/useSessionAttemptAutoReset', () => ({ useSessionAttemptAutoReset: () => ({ giftRescueSequence: 0, giftRecoveryError: false, retryGiftRecovery: jest.fn() }) }));
 jest.mock('../hooks/usePracticeRunes', () => ({ usePracticeRunes: () => ({ hydrating: false, runes: 0, settle: jest.fn(), forfeitPendingRunes: jest.fn(), onCorrectAnswer: jest.fn() }) }));
-jest.mock('../hooks/usePracticeRuneFlight', () => ({ usePracticeRuneFlight: () => ({ flight: null, counterRef: { current: null }, fly: jest.fn(), clearFlight: jest.fn() }) }));
+// зачем (координатор §47): экран вешает ref карточки на originRef — без него мок падал
+// TypeError внутри React и всплывал «немым» AggregateError (причина skip с 14.09).
+jest.mock('../hooks/usePracticeRuneFlight', () => ({ usePracticeRuneFlight: () => ({ flight: null, originRef: { current: null }, counterRef: { current: null }, bump: jest.fn(), fly: jest.fn(), clearFlight: jest.fn() }) }));
 jest.mock('../app/mistake_practice_capture', () => ({ captureCurrentAccountObjectiveAttempt: jest.fn() }));
 jest.mock('../app/navigation_back', () => ({ markNextNavigationAsReplace: jest.fn(), safeRouterBack: jest.fn() }));
 jest.mock('../app/flashcards/SoundService', () => ({ fcHaptic: jest.fn(), playSfx: jest.fn() }));
@@ -118,11 +128,11 @@ beforeEach(() => {
 });
 afterEach(async () => { await cleanup(); });
 
-// Residual: the full Recall playable tree currently throws an opaque React
-// AggregateError in this host renderer. The same durable race is executable in
-// the coordinator core, while `fc_recall_session_contract` keeps the route
-// ordering/wiring fail-closed until this RNTL harness can be repaired.
-test.skip('pending allowed Recall consume survives unmount and same-intent remount without a second quota count', async () => {
+// зачем (координатор §47, 2026-10-01): кейс был test.skip с 14.09 — «непрозрачный
+// AggregateError». Развёрнутая ошибка: мок usePracticeRuneFlight без originRef
+// (TypeError в ref карточки). Плюс квота переехала в monthly_training_sessions и
+// ESM expo-linear-gradient не грузился. Моки приведены — кейс снова исполняется.
+test('pending allowed Recall consume survives unmount and same-intent remount without a second quota count', async () => {
   let attemptOrdinal = 0;
   mockAttemptIdFactory = () => `attempt-${++attemptOrdinal}`;
   let resolvePending!: () => void;

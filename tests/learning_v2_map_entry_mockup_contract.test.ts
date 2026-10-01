@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
+// зачем (координатор §47, 2026-10-01): файл был сценарием из голых assert без единого
+// test() — jest помечал его «must contain at least one test» и НИ ОДНА проверка не
+// исполнялась. Тело обёрнуто в один test; вне jest (npx tsx) оно запускается напрямую.
+async function main(): Promise<void> {
 const mockup = readFileSync(
   "docs/v2/mockups/2026-09-19-learning-v2-map-entry/index.html",
   "utf8",
@@ -29,3 +33,13 @@ assert.match(mockup, /--modal-radius:\s*19px/);
 assert.match(mockup, /prefers-reduced-motion:\s*reduce/);
 
 console.log("LEARNING V2 MAP ENTRY MOCKUP CONTRACT: PASS");
+}
+
+if (typeof test === "function") {
+  test("learning_v2_map_entry_mockup_contract", main);
+} else {
+  main().catch((error: unknown) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

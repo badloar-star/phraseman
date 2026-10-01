@@ -7,6 +7,10 @@ import {
   isPulseLessonWorkInProgress,
 } from '../components/learning-v2/learningV2PulseGeometry';
 
+// зачем (координатор §47, 2026-10-01): файл был сценарием из голых assert без единого
+// test() — jest помечал его «must contain at least one test» и НИ ОДНА проверка не
+// исполнялась. Тело обёрнуто в один test; вне jest (npx tsx) оно запускается напрямую.
+async function main(): Promise<void> {
 const read = (file: string) => readFileSync(join(process.cwd(), file), 'utf8');
 
 assert.equal(isPulseLessonMapAvailable(1), true);
@@ -56,3 +60,13 @@ assert.match(
 );
 
 process.stdout.write('LEARNING V2 RELEASE ACCESS CONTRACT: PASS\n');
+}
+
+if (typeof test === "function") {
+  test("learning_v2_release_access_contract", main);
+} else {
+  main().catch((error: unknown) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

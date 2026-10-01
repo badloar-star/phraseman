@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
+// зачем (координатор §47, 2026-10-01): файл был сценарием из голых assert без единого
+// test() — jest помечал его «must contain at least one test» и НИ ОДНА проверка не
+// исполнялась. Тело обёрнуто в один test; вне jest (npx tsx) оно запускается напрямую.
+async function main(): Promise<void> {
 const client = readFileSync("app/feedback_client.ts", "utf8");
 const result = readFileSync(
   "components/learning-v2/horizons/HorizonSessionResult.tsx",
@@ -21,3 +25,13 @@ assert.match(admin, /data-feedback-kind="learning_v2"/);
 assert.match(admin, /learning_v2:\s*'[^']*Learning V2'/);
 
 console.log("LEARNING V2 FEEDBACK ADMIN CONTRACT: PASS");
+}
+
+if (typeof test === "function") {
+  test("learning_v2_feedback_admin_contract", main);
+} else {
+  main().catch((error: unknown) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

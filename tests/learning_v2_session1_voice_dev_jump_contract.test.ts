@@ -5,6 +5,10 @@ import {
   runLearningV2Session1VoiceDevJumpV1,
 } from "../app/learning_v2_session1_voice_dev_jump_v1";
 
+// зачем (координатор §47, 2026-10-01): файл был сценарием из голых assert без единого
+// test() — jest помечал его «must contain at least one test» и НИ ОДНА проверка не
+// исполнялась. Тело обёрнуто в один test; вне jest (npx tsx) оно запускается напрямую.
+async function main(): Promise<void> {
 const player = readFileSync(
   "app/learning_v2_direct_session_player_v1.tsx",
   "utf8",
@@ -97,3 +101,13 @@ assert.match(player, /accessibilityLabel="DEV: перейти к первому 
 assert.match(player, /accessibilityHint="Пропускает интро и предыдущие задания только в этой тестовой сессии"/);
 
 console.log("LEARNING V2 SESSION 1 VOICE DEV JUMP CONTRACT: PASS");
+}
+
+if (typeof test === "function") {
+  test("learning_v2_session1_voice_dev_jump_contract", main);
+} else {
+  main().catch((error: unknown) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

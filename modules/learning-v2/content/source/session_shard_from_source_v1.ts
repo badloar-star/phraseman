@@ -409,7 +409,8 @@ export interface SessionSource {
  * Инструкция к карточке зависит от механики, а не от фразы: собрать, услышать,
  * выбрать форму. Пишем по-человечески, без жаргона семей.
  */
-const FAMILY_INSTRUCTION: Readonly<Record<string, LocalizedSource>> =
+// Экспорт — для сторожа инвариантов (instruction берётся из таблицы копирайта).
+export const FAMILY_INSTRUCTION: Readonly<Record<string, LocalizedSource>> =
   Object.freeze({
     listen_choose: {
       ru: 'Послушайте и выберите то, что услышали.',
@@ -483,7 +484,7 @@ const FAMILY_INSTRUCTION: Readonly<Record<string, LocalizedSource>> =
     },
   });
 
-const VOCABULARY_STAGE_INSTRUCTION: Readonly<
+export const VOCABULARY_STAGE_INSTRUCTION: Readonly<
   Record<SessionVocabularyContactStageV1, LocalizedSource>
 > = Object.freeze({
   recognize: {

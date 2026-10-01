@@ -1895,7 +1895,13 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       const hydrate = cloudHydratePromise ?? bootCoordinator.run();
 
       void hydrate.then(async (bootRestoreOutcome) => {
-        await runContentDeliveryMigration().catch(() => {});
+        // зачем (баг серии 01.10: на холодном старте updateStreak НЕ вызвался): временная
+        // трассировка каждого шага пост-загрузки — какой шаг завис или упал до серии.
+        const bootT0 = Date.now();
+        const bootStep = (step: string) => console.log(`[STREAK] boot:step=${step} +${Date.now() - bootT0}ms`);
+        bootStep('hydrate_done');
+        await runContentDeliveryMigration().catch((error: unknown) => console.warn('[STREAK] boot:content_migration_failed', String(error)));
+        bootStep('content_migration');
         const onboardingDoneAfterHydrate = await AsyncStorage.getItem('onboarding_done').catch(() => null);
         if (onboardingDoneAfterHydrate === '1') {
           void resumePendingGeneratedNickname();
@@ -1905,7 +1911,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         // до 2.5 для уроков, которые в облаке уже значатся как открытые.
         // См. repairLessonUnlocksAfterRestore() и lesson_unlock_repair_v1 флаг.
         repairLessonUnlocksAfterRestore().catch(() => {});
-        await loadShardsFromCloud().catch(() => {});
+        bootStep('before_loadShardsFromCloud');
+        await loadShardsFromCloud().catch((error: unknown) => console.warn('[STREAK] boot:loadShardsFromCloud_failed', String(error)));
+        bootStep('after_loadShardsFromCloud');
         // Дотягиваем pending shard-grants после оплаты: вебхук RC мог задержаться
         // дольше окна waitForServerShardGrant в магазине. См. shards_pending_grants.ts.
         void (async () => {
@@ -1922,17 +1930,25 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         // .catch: единственный незащищённый await в цепочке — его сбой молча
         // обрывал весь остаток пост-загрузки (стрик, pending-события, syncToCloud).
         const freshShards = await AsyncStorage.getItem('shards_balance').catch(() => null);
+        bootStep(`shards_balance=${String(freshShards)}`);
         const parsedShards = Number(freshShards);
         if (Number.isFinite(parsedShards) && parsedShards >= 0) {
           const balance = Math.floor(parsedShards);
           emitAppEvent('shards_balance_updated', {
             balance,
-            eligibleAchievementBalance: await getShardAchievementEligibleBalance(balance),
+            eligibleAchievementBalance: await getShardAchievementEligibleBalance(balance).catch((error: unknown) => {
+              // зачем: этот await не был защищён — его сбой молча обрывал цепочку до серии.
+              console.warn('[STREAK] boot:eligible_balance_failed', String(error));
+              return balance;
+            }),
           });
         }
+        bootStep('before_updateStreak');
         // зачем: PM-210 — шаг миграции недельных очков лиги (пустая заглушка после
         // удаления лиг в 2.0) убран из пост-загрузочной цепочки: фоновой работы нет.
-        await updateStreakOnActivity().catch(() => {});
+        await updateStreakOnActivity()
+          .then((streak) => bootStep(`after_updateStreak streak=${streak}`))
+          .catch((error: unknown) => console.warn('[STREAK] boot:updateStreak_failed', String(error)));
         await runSessionChecks(studyTarget).catch(() => {});
         await flushPendingProgressEvents().catch(() => {});
         // Хвост C: не пушим в облако, если restore НЕ удался И локально нет осмысленного

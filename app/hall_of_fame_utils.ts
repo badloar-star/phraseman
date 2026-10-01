@@ -154,9 +154,13 @@ export const updateStreakOnActivity = async (
   accountToken?: AccountGenerationToken,
 ): Promise<number> => {
   try {
+    // зачем (баг 01.10): временная трассировка — вход и сырые значения до любых правок.
+    const [[, rawStreak], [, rawLast], [, rawStreakLast]] = await AsyncStorage.multiGet(['streak_count', 'last_active_date', 'streak_last_date']);
+    console.log(`[STREAK] update:called streak_count=${String(rawStreak)} last_active_date=${String(rawLast)} streak_last_date=${String(rawStreakLast)}`);
     // зачем: D107 — защита серии «Путешествием дня» и починка уроком удалены;
     // пропуск спасает только бесплатная заморозка Plus (streak_freeze ниже).
-    await repairDevSeededStreakInStorage();
+    const repaired = await repairDevSeededStreakInStorage();
+    if (repaired !== null) console.warn(`[STREAK] update:dev_seed_repair -> ${repaired}`);
 
     // Ключ дня — ЛОКАЛЬНАЯ дата устройства: пользователь, занимающийся каждый
     // календарный день у себя дома вечером в UTC+N или утром в UTC-N, не должен
@@ -249,7 +253,8 @@ export const updateStreakOnActivity = async (
 
     return streak;
   } catch (e) {
-    if (IS_DEV_RUNTIME) console.warn('[hall_of_fame_utils]', e);
+    // зачем: сбой обновления серии раньше был слышен только в dev — теперь всегда (catch не немой).
+    console.warn('[STREAK] update:failed', e instanceof Error ? e.message : String(e));
     return 0;
   }
 };

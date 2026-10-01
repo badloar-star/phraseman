@@ -1401,7 +1401,7 @@
     ],
     "basis": "OWNER",
     "stage": "B",
-    "status": "planned",
+    "status": "in_progress",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -1416,8 +1416,10 @@
       {
         "id": "PM-030-A2",
         "text": "смысловые стандартные иконки остаются",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "01.10: декоративные эмодзи убраны — тосты оплаты/серии, итог урока (медали, «закрыт», благодарность→иконка, подарок, эмодзи вопроса оценки), пак (подсказка, CTA), диагностика, жалоба на набор, сообщения «ИИ отдыхает» (279 строк); смысловые ⚡/★/✓ оставлены; сторож tests/decorative_emoji_retired_contract.test.mjs"
+        ]
       }
     ],
     "depends_on": [],
@@ -1426,10 +1428,14 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "01.10: декоративные эмодзи убраны — тосты оплаты/серии, итог урока (медали, «закрыт», благодарность→иконка, подарок, эмодзи вопроса оценки), пак (подсказка, CTA), диагностика, жалоба на набор, сообщения «ИИ отдыхает» (279 строк); смысловые ⚡/★/✓ оставлены; сторож tests/decorative_emoji_retired_contract.test.mjs"
+    ],
+    "notes": [
+      "Хвост A1: учебный контент (lesson_help_theory_data, idioms), пуш-тексты notifications.ts, тексты «поделиться» (уходят наружу), иконки достижений и ✨ подарков — нужен отдельный проход с решением координатора"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

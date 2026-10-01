@@ -15,6 +15,7 @@ const RETIRED = {
   'components/feedback/ResultsSequence.tsx': /🎁/u,
   'app/pack_opening.tsx': /💡|🎉/u,
   'app/diagnostic_test.tsx': /🧩/u,
+  'app/ai_kill_switch_copy.ts': /[🌀-🫿☀-➿]/u,
 };
 
 for (const [file, pattern] of Object.entries(RETIRED)) {

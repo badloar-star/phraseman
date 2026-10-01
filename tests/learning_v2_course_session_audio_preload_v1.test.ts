@@ -6,14 +6,8 @@ const account = Object.freeze({
   stableId: "stable-1",
   phase: "active",
 });
-const transport = Object.freeze({ transport: true });
 let accountCurrent = true;
 let accountListener: (() => void) | null = null;
-const createTransport = jest.fn(async () => transport);
-const downloadBytes = jest.fn(async (input: unknown) => {
-  const entry = (input as { entry: { byteSize: number } }).entry;
-  return new Uint8Array(entry.byteSize).fill(7);
-});
 
 jest.mock("expo-constants", () => ({
   __esModule: true,
@@ -45,11 +39,6 @@ jest.mock("../app/interactive_network_quiet", () => ({
         assertCurrent: () => undefined,
       }),
     ),
-}));
-jest.mock("../app/learning_v2_activity_audio_transport_v1", () => ({
-  createLearningV2ActivityAudioTransportV1: () => createTransport(),
-  downloadLearningV2ActivityAudioBytesV1: (input: unknown) =>
-    downloadBytes(input),
 }));
 jest.mock("../modules/learning-v2/progress/progress_account_scope", () => ({
   deriveLocalOfflineProgressAccountScopeHash: () => h("account-scope"),
@@ -148,8 +137,6 @@ describe("Learning V2 direct course-session audio preload", () => {
   beforeEach(() => {
     accountCurrent = true;
     accountListener?.();
-    createTransport.mockClear();
-    downloadBytes.mockClear();
   });
 
   test("prepares the selected phrase and word before start and keeps one voice", async () => {
@@ -159,8 +146,6 @@ describe("Learning V2 direct course-session audio preload", () => {
       sessionRunId: "run-neutral-1",
     });
     expect(isLearningV2CourseSessionAudioPreloadHandleV1(handle)).toBe(true);
-    expect(createTransport).not.toHaveBeenCalled();
-    expect(downloadBytes).not.toHaveBeenCalled();
     expect(
       getLearningV2CourseSessionAudioPreloadSummaryV1(handle),
     ).toMatchObject({
@@ -190,7 +175,6 @@ describe("Learning V2 direct course-session audio preload", () => {
       sessionRunId: "run-neutral-1",
     });
     expect(repeated).toBe(handle);
-    expect(downloadBytes).not.toHaveBeenCalled();
   });
 
   test("invalidates the opaque preload when the account changes", async () => {
@@ -207,3 +191,4 @@ describe("Learning V2 direct course-session audio preload", () => {
     ).toThrow("learning_v2_course_session_audio_preload_invalid");
   });
 });
+

@@ -87,8 +87,6 @@ import {
   useLearningV2ActivityAuxiliarySessionV1,
 } from "../../../app/use_learning_v2_activity_auxiliary_session_v1";
 import { useLearningV2ActivityActionSessionV1 } from "../../../app/use_learning_v2_activity_action_session_v1";
-import { useLearningV2ActivityAudioSessionV1 } from "../../../app/use_learning_v2_activity_audio_session_v1";
-import { useLearningV2ActivityLocalAudioPlaybackV1 } from "../../../app/use_learning_v2_activity_local_audio_playback_v1";
 import { useLearningV2ActivityReleasedSessionV1 } from "../../../app/use_learning_v2_activity_released_session_v1";
 import {
   hapticError,
@@ -405,24 +403,14 @@ function LearningV2LegacySessionScreen() {
       ? auxiliaryTask
       : null;
   const releasedEvaluatorTask = releasedPackageTask;
-  const activityAudioSession = useLearningV2ActivityAudioSessionV1({
-    locator: auxiliaryLocator,
-    active: runtimeActive && releasedAuxiliaryTask !== null,
-  });
-  const releasedFullPhraseAudio = releasedAuxiliaryTask
-    ? activityAudioSession.resolveFullPhrase(
-        releasedAuxiliaryTask.action.taskId,
-      )
-    : null;
-  const activityAudioPlayback = useLearningV2ActivityLocalAudioPlaybackV1({
-    active: runtimeActive && releasedAuxiliaryTask !== null,
-    taskId: releasedAuxiliaryTask?.action.taskId ?? null,
-  });
+  // зачем (D47/PM-205, владелец): скачивания озвучки V2 нет, поэтому у выпущенного
+  // задания нет своего файла звука — вместо мёртвой цепочки прогрева (ушла целиком)
+  // экран сразу показывает фразу текстом; звук даёт стартовый пакет и TTS телефона.
   const usesLocalAudio = releasedPackageTask
     ? releasedPackageTask.learner.audioTargetIds.length > 0
     : legacyUsesLocalAudio;
   const audioUnavailable = releasedPackageTask
-    ? releasedFullPhraseAudio === null
+    ? true
     : localAudioSource === null || audioPlaybackFailed;
   const auxiliaryActions = useLearningV2ActivityActionSessionV1({
     runtime: releasedAuxiliaryTask ? auxiliaryMount.runtime : null,
@@ -502,8 +490,7 @@ function LearningV2LegacySessionScreen() {
 
   const stopLocalAudioPlayback = useCallback(() => {
     stopAudioAttempt();
-    activityAudioPlayback.stop();
-  }, [activityAudioPlayback, stopAudioAttempt]);
+  }, [stopAudioAttempt]);
 
   const stopAttemptMediaBeforeRecovery = useCallback(() => {
     stopLocalAudioPlayback();
@@ -879,13 +866,10 @@ function LearningV2LegacySessionScreen() {
 
   const playLocalAudio = () => {
     void hapticTap();
-    if (releasedFullPhraseAudio !== null) {
-      if (
-        activityAudioPlayback.play(releasedFullPhraseAudio.fileUri) ===
-        "unavailable"
-      ) {
-        void hapticError();
-      }
+    if (releasedPackageTask) {
+      // зачем: у выпущенного задания своего файла звука нет (D47) — слышимой
+      // отдачи нет, подаём тот же сигнал ошибки, что был при отказе плеера.
+      void hapticError();
       return;
     }
     if (localAudioSource === null || audioPlaybackFailed) {
@@ -1076,13 +1060,6 @@ function LearningV2LegacySessionScreen() {
         ? value.filter((entry) => entry !== tile.key)
         : [...value, tile.key],
     );
-    if (!wasSelected && tile.responseId && releasedAuxiliaryTask) {
-      const audio = activityAudioSession.resolveSelectable(
-        releasedAuxiliaryTask.action.taskId,
-        tile.responseId,
-      );
-      if (audio) activityAudioPlayback.play(audio.fileUri);
-    }
     void hapticTap();
   };
   const checkBuilder = () => {

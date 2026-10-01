@@ -35,7 +35,9 @@ describe("Learning V2 auxiliary session runtime mount", () => {
     const releasedClient = source(
       "app/learning_v2_activity_released_session_client_v1.ts",
     );
-    expect(map).toContain("preloadCurrentLearningV2ActivityAudioSessionV1({");
+    // зачем (D47/PM-205): текст занятия прогревается, а ЗВУК — нет; скачивания озвучки V2 нет.
+    expect(map).toContain("preloadCurrentLearningV2ActivityReleasedSessionV1({");
+    expect(map).not.toContain("preloadCurrentLearningV2ActivityAudioSessionV1({");
     expect(map).toContain("...auxiliaryScope");
     expect(session).toContain("useLearningV2ActivityAuxiliarySessionV1({");
     expect(session).toContain("useLearningV2ActivityReleasedSessionV1({");

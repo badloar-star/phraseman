@@ -40,7 +40,6 @@ const spokenPlayers = [
   'hooks/phrase_audio_player.ts',
   'hooks/use-audio.ts',
   'hooks/use_managed_spoken_audio_player.ts',
-  'app/use_learning_v2_activity_local_audio_playback_v1.ts',
   'app/flashcards/SoundService.ts',
 ];
 for (const f of spokenPlayers) {

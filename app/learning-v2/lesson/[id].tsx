@@ -850,24 +850,10 @@ export default function LearningV2LessonMap() {
       learnerSourceLocale: lang,
       sessionOrdinal,
     }).catch(() => undefined);
-    // зачем УБРАНО (D47, владелец): preloadCurrentLearningV2ActivityAudioSessionV1
-    // скачивал mp3 этой сессии из Firebase Storage — это и есть способ
-    // СКАЧИВАНИЯ озвучки V2, который правило D47 требует убрать целиком. Текст
-    // занятия (строка выше) остаётся — он не про звук. useLearningV2ActivityAudioSessionV1
-    // (app/use_learning_v2_activity_audio_session_v1.ts) переживает отсутствие
-    // прогретого handle: без него отдаёт status:"unavailable", экран уже не
-    // падает на этом (resolveSelectable/resolveFullPhrase возвращают null).
-    // зачем ВРЕМЕННО откачено на одну сессию вперёд, а не весь урок (владелец,
-    // 2026-08-27, «stable identity unavailable» при запуске сессии на боевом
-    // устройстве): фоновая загрузка всего урока (все 56 по порядку) стала
-    // бить облачную функцию до 55 раз на каждый вход в карту — для сессий,
-    // которых ещё нет на сервере. Ошибки там глотаются молча, но нельзя
-    // честно исключить побочный эффект на серверную проверку личности без
-    // аудита серверного кода. Владелец попросил откатить именно фоновую
-    // загрузку, пока причина не прояснится — сам prefetchLearningV2Lesson-
-    // InBackgroundV1 (app/learning_v2_lesson_background_prefetch_v1.ts) не
-    // удалён, просто не вызывается здесь; вернуть одним включением обратно,
-    // когда подтвердится, что дело не в нём.
+    // зачем (D47/PM-205, владелец): скачивания озвучки V2 здесь нет — ни
+    // прогрева звука сессии, ни фоновой закачки целого урока (цепочка
+    // удалена целиком). Текст занятия (строка выше) — не про звук, остаётся.
+    // Звук даёт стартовый пакет в сборке + TTS телефона в плеере.
     void prepareCourseSession(sessionOrdinal).promise.catch(() => undefined);
   }, [auxiliaryScope, isMapFocused, lang, lessonOrdinal, model, prepareCourseSession, studyTarget]);
   useEffect(() => {

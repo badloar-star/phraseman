@@ -42,7 +42,6 @@ const ALLOW: Record<string, Allow> = {
   'modules/audio/voice_playback_policy.ts::subscribeSoundSettings': { count: 1, reason: 'локальный стор настроек звука' },
   // Сброс кэшей в памяти при смене аккаунта — шина поколений аккаунта живёт в памяти.
   'app/energy_peek_cache.ts::subscribeAccountGeneration': { count: 1, reason: 'сброс peek-кэша энергии при смене аккаунта (память)' },
-  'app/learning_v2_activity_audio_preload_v1.ts::subscribeAccountGeneration': { count: 1, reason: 'сброс кэша озвучки при смене аккаунта (память)' },
   'app/learning_v2_completion_callable_fetch.ts::subscribeAccountGeneration': { count: 1, reason: 'сброс кэша завершений при смене аккаунта (память)' },
   'app/learning_v2_course_session_audio_preload_v1.ts::subscribeAccountGeneration': { count: 1, reason: 'сброс кэша озвучки курса при смене аккаунта (память)' },
   'app/learning_v2_lesson_audio_pack_v1.ts::subscribeAccountGeneration': { count: 1, reason: 'сброс кэша пакета озвучки при смене аккаунта (память)' },

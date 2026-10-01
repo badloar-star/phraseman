@@ -8,7 +8,7 @@
 //
 // Почему REST, а не SDK Storage: модуля @react-native-firebase/storage в
 // приложении нет, а новый нативный модуль = новая сборка. Тот же приём, что у
-// озвучки Learning V2 (learning_v2_activity_audio_transport_v1.ts): GET
+// озвучки Learning V2 (его транспорт удалён в PM-205, приём тот же): GET
 // firebasestorage.googleapis.com/v0/b/{bucket}/o/{path}?alt=media с заголовком
 // «Authorization: Firebase <idToken>». App Check не используется (пломба владельца).
 //

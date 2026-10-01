@@ -162,7 +162,6 @@ const BASELINE: Record<string, number> = {
   'app/tester_premium_override.ts': 1,
   'app/theme_ownership_store.ts': 1,
   'app/use_learning_v2_activity_action_session_v1.ts': 4,
-  'app/use_learning_v2_activity_audio_session_v1.ts': 1,
   'app/use_mistake_explain.ts': 1,
   'app/user_stats.ts': 1,
   'app/user_warning_check.ts': 1,

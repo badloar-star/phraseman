@@ -276,3 +276,24 @@ done требует одновременно: все критерии приня
 | PM-168 | тон проверен | 10 из 51 опроса переписаны, сторож 53/53; таблица — в DESIGN_GATE_OWNER_REVIEW.md, «PM-168 — ревью тона»; подпись координатора ожидается | review |
 
 Побочно исправлено: tests/server_retired_scheduler_surface.probe.ts (LIVE_CALLABLES), admin/v2/legacy.html (10 текстов опросов). Не проверялось: выкладка функций/правил, устройство.
+
+## Пачка 7 (agent-reviewer, Sonnet 5.5, 01.10)
+
+Итог: в done 12 задач (PM-032, 036, 108, 109, 111, 112, 113, 210, 212, 223, 226, 227). Без остатка в review.
+
+| Задача | Вердикт | Основание | Статус |
+|---|---|---|---|
+| PM-036 | PASS | d83_arena_client_deleted.probe PASS; DESIGN — D74/D83 (D54 живёт в PROGRESS.md L47) | done (code, bfdc8e783) |
+| PM-108 | PASS | 7b64aa008 без UI; DESIGN N/A подтверждено ревьюером пакета | done (code) |
+| PM-109 | PASS | 84e03f439 только functions; DESIGN N/A | done (code) |
+| PM-111 | PASS | D146 + макет video-favorites-mockup.html (вариант A), UI cd8b8c059 | done (code, af528a897 + UI cd8b8c059) |
+| PM-112 | PASS | af528a897 без UI; видимое «N сохранили» покрыто D146 | done (code) |
+| PM-113 | PASS | DESIGN N/A; PROPOSED_SCOPE_APPROVED — Q88 ДА, INBOX §41 (подпись координатора по поручению владельца) | done (code) |
+| PM-032 | PASS | d923fb277/6e393a6a0: на Главной все циклы конечные (iterations 2–3, withRepeat 3–4); бесконечных нет; motion_allowlist_contract 2/2; решение владельца 01.10 №2 | done (design) |
+| PM-210 | PASS | pm210_background_jobs_registry.probe PASS (94 строки, 117 площадок, 70 файлов; в доке 118/72 — дрейф на 1) | done (audit) |
+| PM-212 | PASS | pm212_module_side_effects.probe PASS (2378 файлов, 22 вызова в allowlist) | done (code) |
+| PM-223 | PASS | PM-223_cost_before_after.md: R/W/D/IX/ST/EG/FN/AI, миграции отдельно, ноль не обещан; по коду, цифр биллинга нет | done (audit) |
+| PM-226 | PASS | reportDiagnosticError (code/screen/op/build/trace); diagnostic_mask 5/5 | done (code) |
+| PM-227 | PASS | pm227_app_health_transport_visible 2/2, app_health_throttle_cache 1/1, functions client_reports 26/26 | done (code) |
+
+Оговорки: actual_model «unknown, снимок нескольких сессий», actual_reasoning «unrecorded» (§34). Деплой функций/правил (PM-108/109/112/227) и цифры биллинга (PM-223) не проверялись — владельцу.

@@ -1613,7 +1613,7 @@
     ],
     "basis": "OWNER",
     "stage": "B",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -1643,25 +1643,28 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
-    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 7, 01.10)",
     "evidence": [
       "tests/motion_allowlist_contract.test.mjs: каждый вечный цикл в списке с причиной, список только сокращается; 8 декоративных циклов стали разовыми (lesson_complete, pack_opening, CollectionListView, lesson_intro_screens ×2, NewWordEncounterOverlay, CardPackShardPaywallModal, streak_stats, SaveToCardsButton)",
       "01.10 хвост: lesson/[id] ореол, CollectibleArtFrame x3, CollectiblesEmptyStateMotion x2, HoloFoilCard, LevelUpMintCeremony, PaywallMotion x3 — 2–4 повтора и покой; reduceMotion их гасит; сторож tests/motion_allowlist_contract.test.mjs 2/2",
-      "tests/motion_allowlist_contract.test.mjs 2/2 (прогон ревью; в рабочем дереве файл грязный от другой сессии: правка D140 убирает 3 удалённых компонента)"
+      "tests/motion_allowlist_contract.test.mjs 2/2 (прогон ревью; в рабочем дереве файл грязный от другой сессии: правка D140 убирает 3 удалённых компонента)",
+      "2026-10-01 ревью пачки 7: d923fb277 (ScreenGradient 6 циклов iterations:2, V2Backdrop withRepeat 4 = 2 вдоха, HomeSectionPulseButton 4 = 2 вдоха) и 6e393a6a0 (подсказки, энергия, огонь серии, колокол, значок сообщений, плашки задания и опроса — 3 повтора и покой); grep по home.tsx, components/home, ScreenGradient и перечисленным компонентам: бесконечных циклов (iterations -1 / withRepeat -1) нет; node --test tests/motion_allowlist_contract.test.mjs 2/2 PASS",
+      "Основание: решение владельца 01.10 №2 — анимации на Главной короткие"
     ],
     "notes": [
       "01.10: хвост — 10 файлов помечены «хвост PM-032» (коллекционные рамки, пейвол, карточка игрока, фон 2.0, ореолы); Главная и онбординг исключены по запрету владельца",
       "Вечными оставлены по правилам: загрузка, курсор, звук/печать, Главная и онбординг (запрет владельца), V2Backdrop (фон Главной). Шесть мёртвых компонентов не удалены: защита запретила удаление, ждёт владельца.",
-      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): FAIL по критерию A1 («нет бесконечной пульсации»). Сторож 2/2 зелёный, ранее перечисленные декоративные циклы действительно стали разовыми, но решение владельца 01.10 №2 (PROGRESS.md, «РЕШЕНИЯ ВЛАДЕЛЬЦА»: на Главной «кнопка раздела, фон» — сделать короткими) не исполнено: в allowlist остаются вечные циклы components/home/HomeSectionPulseButton.tsx (withRepeat), components/ScreenGradient.tsx (6 Animated.loop, фон Главной), components/ui/V2Backdrop.tsx; в allowlist стоит причина «вид Главной не трогаем», которую решение владельца отменяет. Нужно: короткие повторы 2–3 раза + покой у этих трёх (зона «Дизайн»), сжать allowlist."
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): FAIL по критерию A1 («нет бесконечной пульсации»). Сторож 2/2 зелёный, ранее перечисленные декоративные циклы действительно стали разовыми, но решение владельца 01.10 №2 (PROGRESS.md, «РЕШЕНИЯ ВЛАДЕЛЬЦА»: на Главной «кнопка раздела, фон» — сделать короткими) не исполнено: в allowlist остаются вечные циклы components/home/HomeSectionPulseButton.tsx (withRepeat), components/ScreenGradient.tsx (6 Animated.loop, фон Главной), components/ui/V2Backdrop.tsx; в allowlist стоит причина «вид Главной не трогаем», которую решение владельца отменяет. Нужно: короткие повторы 2–3 раза + покой у этих трёх (зона «Дизайн»), сжать allowlist.",
+      "2026-10-01 пачка 7: done. Остаточные бесконечные циклы вне Главной — под allowlist с причиной (сторож 2/2)."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": "CHANGES_REQUIRED",
+    "kind": "design",
+    "review_verdict": "PASS",
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
     },
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-033",
@@ -1841,7 +1844,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -1871,26 +1874,29 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "bfdc8e783",
     "owner": null,
-    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 7, 01.10)",
     "evidence": [
       "tests/d83_arena_client_deleted.probe.ts: D83 PASS (прогон ревью 2026-10-01)",
       "app/+native-intent.ts:45 /arena*, /arena_* -> Главная; app/(tabs)/arena.tsx — пустой якорь",
-      "commit bfdc8e783"
+      "commit bfdc8e783",
+      "2026-10-01 ревью пачки 7: npx tsx tests/d83_arena_client_deleted.probe.ts → D83 PASS"
     ],
     "notes": [
-      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): содержание PASS (A1/A2: проба зелёная, deeplink-и арены ведут на Главную, в modules/arena только 4 разрешённых файла). В done НЕ переведена: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES (новый таббар) — одобрение владельцем макета не записано."
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): содержание PASS (A1/A2: проба зелёная, deeplink-и арены ведут на Главную, в modules/arena только 4 разрешённых файла). В done НЕ переведена: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES (новый таббар) — одобрение владельцем макета не записано.",
+      "2026-10-01 пачка 7: done."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
+    "kind": "code",
     "review_verdict": "PASS",
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "D74 / D83 (03_DECISIONS.md) и D54 (PROGRESS.md L47; в 03_DECISIONS.md его нет) — Арена удалена целиком, нового вида нет; evidence/DESIGN_GATE_OWNER_REVIEW.md, «Покрыто решениями»/«N/A» (проверено независимым ревьюером пакета, PASS)"
     },
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
   "id": "PM-037",
@@ -5977,7 +5983,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -6019,12 +6025,13 @@
     "audit_sha": null,
     "result_sha": "7b64aa008",
     "owner": null,
-    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 7, 01.10)",
     "evidence": [
       "прогон ревью пачки 3 (01.10): functions client_reports, video_phrases, video_save_counts 43/43; community_pack_private_by_default PASS; коммит 7b64aa008"
     ],
     "notes": [
-      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути. functions: client_reports + video_phrases + video_save_counts, 3 набора, 43/43; клиент community_pack_private_by_default 3/3; коммит 7b64aa008 существует. Оговорка: functions/src/community_packs.ts грязный от другой сессии (удаление подарков). Остаётся review: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES не закрыт."
+      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути. functions: client_reports + video_phrases + video_save_counts, 3 набора, 43/43; клиент community_pack_private_by_default 3/3; коммит 7b64aa008 существует. Оговорка: functions/src/community_packs.ts грязный от другой сессии (удаление подарков). Остаётся review: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES не закрыт.",
+      "2026-10-01 пачка 7: done по DESIGN N/A. Выкладка функций и правил — владельцу."
     ],
     "actual_cost": null,
     "kind": "code",
@@ -6032,7 +6039,7 @@
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "НЕ закрыт: owner-gate, ждёт подтверждения владельца/«Дизайна»"
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "N/A: 7b64aa008 — .ts-логика и functions, ни .tsx/components/admin; evidence/DESIGN_GATE_OWNER_REVIEW.md, «Покрыто решениями»/«N/A» (проверено независимым ревьюером пакета, PASS)"
     },
     "actual_model": "unknown, снимок нескольких сессий",
     "actual_reasoning": "unrecorded"
@@ -6046,7 +6053,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -6080,12 +6087,13 @@
     "audit_sha": null,
     "result_sha": "84e03f439",
     "owner": null,
-    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 7, 01.10)",
     "evidence": [
       "прогон ревью пачки 3 (01.10): functions video_phrases PASS; коммит 84e03f439"
     ],
     "notes": [
-      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути. functions video_phrases.test PASS (в составе 43/43); коммит 84e03f439 существует. Остаётся review: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES не закрыт."
+      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути. functions video_phrases.test PASS (в составе 43/43); коммит 84e03f439 существует. Остаётся review: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES не закрыт.",
+      "2026-10-01 пачка 7: done по DESIGN N/A. Выкладка функций — владельцу."
     ],
     "actual_cost": null,
     "kind": "code",
@@ -6093,7 +6101,7 @@
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "НЕ закрыт: owner-gate, ждёт подтверждения владельца/«Дизайна»"
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "N/A: 84e03f439 — только functions/src/video_phrases.ts и тест; evidence/DESIGN_GATE_OWNER_REVIEW.md, «Покрыто решениями»/«N/A» (проверено независимым ревьюером пакета, PASS)"
     },
     "actual_model": "unknown, снимок нескольких сессий",
     "actual_reasoning": "unrecorded"
@@ -6158,7 +6166,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -6192,12 +6200,14 @@
     "audit_sha": null,
     "result_sha": "af528a897",
     "owner": null,
-    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 7, 01.10)",
     "evidence": [
-      "прогон ревью пачки 3 (01.10): video_favorites + video_favorites_rules_contract PASS; коммит af528a897"
+      "прогон ревью пачки 3 (01.10): video_favorites + video_favorites_rules_contract PASS; коммит af528a897",
+      "UI-коммит cd8b8c059 (закладка, «N сохранили», «Сохранённые видео», «Тренировать фразы ролика») — совпадает с вариантом A (ревью пакета DESIGN_GATE)"
     ],
     "notes": [
-      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути. video_favorites.test + video_favorites_rules_contract.test PASS; firestore.rules не менялись после evidence; коммит af528a897. UI-кнопка — зона «Дизайн», деплой правил — владелец. Остаётся review: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES не закрыт."
+      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути. video_favorites.test + video_favorites_rules_contract.test PASS; firestore.rules не менялись после evidence; коммит af528a897. UI-кнопка — зона «Дизайн», деплой правил — владелец. Остаётся review: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES не закрыт.",
+      "2026-10-01 пачка 7: done. result_sha=af528a897 — логика; UI — cd8b8c059."
     ],
     "actual_cost": null,
     "kind": "code",
@@ -6205,7 +6215,7 @@
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "НЕ закрыт: owner-gate, ждёт подтверждения владельца/«Дизайна»"
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "D146 (OWNER_FINAL 01.10) = вариант A макета docs/design/v2-app/video-favorites-mockup.html; UI-коммит cd8b8c059 (YoutubeVideoCard, lingman_videos) соответствует макету; evidence/DESIGN_GATE_OWNER_REVIEW.md, «Покрыто решениями»/«N/A» (проверено независимым ревьюером пакета, PASS)"
     },
     "actual_model": "unknown, снимок нескольких сессий",
     "actual_reasoning": "unrecorded"
@@ -6219,7 +6229,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -6264,12 +6274,13 @@
     "audit_sha": null,
     "result_sha": "af528a897",
     "owner": null,
-    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 7, 01.10)",
     "evidence": [
       "прогон ревью пачки 3 (01.10): functions video_save_counts PASS; video_favorites_rules_contract PASS; коммит af528a897"
     ],
     "notes": [
-      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути. functions video_save_counts.test PASS (в составе 43/43); правило video_save_counts: клиент только читает (video_favorites_rules_contract PASS); коммит af528a897. Остаётся review: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES не закрыт."
+      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути. functions video_save_counts.test PASS (в составе 43/43); правило video_save_counts: клиент только читает (video_favorites_rules_contract PASS); коммит af528a897. Остаётся review: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES не закрыт.",
+      "2026-10-01 пачка 7: done по DESIGN N/A. Выкладка функций/правил — владельцу."
     ],
     "actual_cost": null,
     "kind": "code",
@@ -6277,7 +6288,7 @@
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "НЕ закрыт: owner-gate, ждёт подтверждения владельца/«Дизайна»"
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "N/A: af528a897 — без UI-файлов; видимое «N сохранили» — UI cd8b8c059, покрыт D146; evidence/DESIGN_GATE_OWNER_REVIEW.md, «Покрыто решениями»/«N/A» (проверено независимым ревьюером пакета, PASS)"
     },
     "actual_model": "unknown, снимок нескольких сессий",
     "actual_reasoning": "unrecorded"
@@ -6291,7 +6302,7 @@
     ],
     "basis": "PROPOSAL",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -6335,21 +6346,22 @@
     "audit_sha": null,
     "result_sha": "af528a897",
     "owner": null,
-    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 7, 01.10)",
     "evidence": [
       "прогон ревью пачки 4 (01.10): клиентские video_save_counts_client + video_favorites + video_favorites_rules_contract PASS (6 сюит пачки 43/43), functions video_save_counts.test PASS; onSnapshot в app/video_*.ts нет; VIDEO.md «Факт реализации» (стоимость посчитана); коммиты af528a897, 790e24a99"
     ],
     "notes": [
-      "2026-10-01 независимое ревью пачки 4 (agent-reviewer, Q75/§32): PASS по сути. Остаётся review: gate PROPOSED_SCOPE_APPROVED (D19 покрывает фичу, не схему 6 ч) и DESIGN (на деле логика без UI)."
+      "2026-10-01 независимое ревью пачки 4 (agent-reviewer, Q75/§32): PASS по сути. Остаётся review: gate PROPOSED_SCOPE_APPROVED (D19 покрывает фичу, не схему 6 ч) и DESIGN (на деле логика без UI).",
+      "2026-10-01 пачка 7: done; Q88 решён координатором (INBOX §41)."
     ],
     "actual_cost": null,
     "kind": "code",
     "review_verdict": "PASS",
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "PROPOSED_SCOPE_APPROVED": "НЕ закрыт: D19 (OWNER_FINAL) утверждает избранное и счётчик, но схема «без realtime, пересчёт раз в 6 ч» — предложение; ждёт подтверждения",
+      "PROPOSED_SCOPE_APPROVED": "INBOX_COORDINATOR_FROM_CORE.md §41 «РЕШЕНО КООРДИНАТОРОМ (§40)»: «Q88 ДА — PM-113: принять D19 + схему обновления раз в 6 ч и при входе», подпись координатора по поручению владельца",
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "НЕ закрыт: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES, ждёт подтверждения (Q86); по сути логика без UI (показ числа на карточке — зона «Дизайн»)"
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "N/A: af528a897 + 790e24a99 (только VIDEO.md), UI нет; evidence/DESIGN_GATE_OWNER_REVIEW.md, «Покрыто решениями»/«N/A» (проверено независимым ревьюером пакета, PASS)"
     },
     "actual_model": "unknown, снимок нескольких сессий",
     "actual_reasoning": "unrecorded"
@@ -11476,7 +11488,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -11499,15 +11511,22 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 7, 01.10)",
+    "evidence": [
+      "2026-10-01 ревью пачки 7: npx tsx tests/pm210_background_jobs_registry.probe.ts → PASS (registeredRows=94, scannedSites=117, files=70, warnings=0)"
+    ],
+    "notes": [
+      "2026-10-01 пачка 7: done. Цифры в evidence PM-210_background_jobs.md (118/72) устарели на 1 площадку после чистки — проба зелёная."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "audit",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-211",
@@ -11564,7 +11583,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -11593,17 +11612,24 @@
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "efe19ae9d",
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 7, 01.10)",
+    "evidence": [
+      "2026-10-01 ревью пачки 7: npx tsx tests/pm212_module_side_effects.probe.ts → PASS (files=2378, allowedTopLevelCalls=22, allowEntries=21, allowedJson=7)"
+    ],
+    "notes": [
+      "2026-10-01 пачка 7: done. Долги в allowlist помечены ДОЛГ (сторож сужается)."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-213",
@@ -12099,7 +12125,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12138,15 +12164,22 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 7, 01.10)",
+    "evidence": [
+      "2026-10-01 ревью пачки 7: evidence/PM-223_cost_before_after.md (коммит 28fea5a26 существует): §1 R/W/D/IX/ST/EG/FN/AI, §2 миграции отдельно, ноль не обещан; оценка по коду, прод-цифр нет"
+    ],
+    "notes": [
+      "2026-10-01 пачка 7: done. Реальные цифры из биллинга — владельцу (§3 документа)."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "audit",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-224",
@@ -12267,7 +12300,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12296,17 +12329,24 @@
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "efe19ae9d",
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 7, 01.10)",
+    "evidence": [
+      "2026-10-01 ревью пачки 7: app/debug-logger.ts reportDiagnosticError (code, screen, operation, build, traceId, санитайз ctx); tests/diagnostic_mask.test.ts 5/5 PASS"
+    ],
+    "notes": [
+      "2026-10-01 пачка 7: done."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-227",
@@ -12317,7 +12357,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -12348,22 +12388,27 @@
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "7a9b4873f",
     "owner": "Claude Sonnet 5 (субагент) + Claude Opus 5.5",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 7, 01.10)",
     "evidence": [
       "docs/phraseman-2.0/evidence/PM-227_error_visibility_audit.md",
-      "functions/src/client_reports.test.ts 10/10 PASS, новый тест 'writes the app_errors document itself with the full field contract'"
+      "functions/src/client_reports.test.ts 10/10 PASS, новый тест 'writes the app_errors document itself with the full field contract'",
+      "2026-10-01 ревью пачки 7: client pm227_app_health_transport_visible 2/2, app_health_throttle_cache 1/1; functions client_reports.test 26/26 PASS"
     ],
     "notes": [
-      "A1 подтверждён: цепь ошибка→очередь→throttle→callable→Firestore app_errors→админка работает end-to-end, прослежена полностью по коду. A2 частично закрыт: добавлен сквозной тест, который инъецирует тестовую ошибку и проверяет реальный документ в app_errors (раньше все 3 существующих теста обрывались на границе мока/агрегата, не на самом документе) — 10/10 PASS. НЕ статус done: остаются 2 находки аудита, требующие решения владельца, не чинил сам — traceId из контракта BACKEND.md не реализован нигде в коде (заявлен, не сделан); errorName/buildNumber доезжают до Firestore, но не отображаются в карточке админки (admin/v2/legacy.html), администратор должен вручную идти в консоль Firestore за этими полями"
+      "A1 подтверждён: цепь ошибка→очередь→throttle→callable→Firestore app_errors→админка работает end-to-end, прослежена полностью по коду. A2 частично закрыт: добавлен сквозной тест, который инъецирует тестовую ошибку и проверяет реальный документ в app_errors (раньше все 3 существующих теста обрывались на границе мока/агрегата, не на самом документе) — 10/10 PASS. НЕ статус done: остаются 2 находки аудита, требующие решения владельца, не чинил сам — traceId из контракта BACKEND.md не реализован нигде в коде (заявлен, не сделан); errorName/buildNumber доезжают до Firestore, но не отображаются в карточке админки (admin/v2/legacy.html), администратор должен вручную идти в консоль Firestore за этими полями",
+      "2026-10-01 пачка 7: done. Выкладка функций — владельцу."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
     "actual_model": "sonnet-5",
-    "actual_reasoning": null
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-228",

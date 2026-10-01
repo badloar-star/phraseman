@@ -1951,11 +1951,34 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
             hasLinkedProvider: peekLinkedAuthFromCurrentUser() !== null,
             hasLocalAccountData: bootRestoreOutcome.hasLocalAccountData,
           });
+          if (__DEV__) {
+            console.warn('[STARTUP-RECOVERY] boot restore failed', {
+              failureReason: bootRestoreFailureReason,
+              presentation: recoveryPresentation,
+              hasLocalAccountData: bootRestoreOutcome.hasLocalAccountData,
+            });
+          }
           if (recoveryPresentation === 'provider_reauth_modal') {
             if (!startupAuthRecoveryOfferedRef.current) {
               startupAuthRecoveryOfferedRef.current = true;
               setStartupAuthRecoveryVisible(true);
             }
+          } else if (recoveryPresentation === 'cloud_unavailable_toast') {
+            // зачем: эту ветку случайно снёс коммит e140ed18b (архив турниров,
+            // 2026-08-23) — решение 'cloud_unavailable_toast' по-прежнему
+            // вычислялось, но человек после переустановки видел пустой прогресс
+            // без единого слова. Возвращаем исходный текст без обещания автоповтора.
+            emitAppEvent('action_toast', {
+              type: 'info',
+              messageRu: 'Облако сейчас недоступно. Откройте приложение позже, чтобы повторить восстановление.',
+              messageUk: 'Хмара зараз недоступна. Відкрийте застосунок пізніше, щоб повторити відновлення.',
+              messageEs: 'La nube no está disponible ahora. Abre la aplicación más tarde para volver a intentar la restauración.',
+              messagePtBr: 'A nuvem está indisponível no momento. Abra o aplicativo mais tarde para tentar restaurar novamente.',
+              messageVi: 'Đám mây hiện không khả dụng. Hãy mở lại ứng dụng sau để thử khôi phục lần nữa.',
+              messageId: 'Cloud sedang tidak tersedia. Buka aplikasi lagi nanti untuk mencoba pemulihan kembali.',
+              messageTr: 'Bulut şu anda kullanılamıyor. Geri yüklemeyi yeniden denemek için uygulamayı daha sonra açın.',
+              messagePl: 'Chmura jest teraz niedostępna. Otwórz aplikację później, aby ponowić przywracanie.',
+            });
           }
         }
         await ensureStableAuthLink().catch(() => false);

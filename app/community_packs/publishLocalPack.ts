@@ -22,6 +22,7 @@ import {
   type CommunityPackSubmissionPayload,
 } from './schema';
 import type { Lang } from '../../constants/i18n';
+import { isPublishDailyLimitError } from './publish_limit_copy';
 
 export type PublishLocalPackResult =
   /** Заявка ушла на публикацию. */
@@ -32,6 +33,8 @@ export type PublishLocalPackResult =
   | 'cloud_disabled'
   /** Набор не проходит правила каталога (мало карточек, нет описания и т.п.). */
   | 'invalid'
+  /** Сервер: исчерпан суточный лимит новых публикаций (3 в сутки на человека). */
+  | 'daily_limit'
   | 'error';
 
 /** Payload публикации из локальной копии набора. */
@@ -217,6 +220,16 @@ export async function publishLocalAuthorPack(
       return ok ?? 'error';
     }
   } catch (e) {
+    // зачем: Q55 — суточный лимит публикаций это не «нет связи», а отдельный исход:
+    // экрану нужно показать «не больше 3 в сутки, попробуй завтра».
+    if (isPublishDailyLimitError(e)) {
+      logPublish('submit:daily_limit', {
+        localId: local.id,
+        code: String((e as { code?: string } | null)?.code ?? ''),
+        message: String((e as { message?: string } | null)?.message ?? e),
+      });
+      return 'daily_limit';
+    }
     // зачем: немой catch уже стоил месяцев немых багов — причина отказа
     // публикации остаётся в логе НАВСЕГДА, а не только в дев-сборке.
     logPublish('submit:failed', {

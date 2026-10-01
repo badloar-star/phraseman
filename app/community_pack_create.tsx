@@ -42,6 +42,7 @@ import {
   type CommunityPackSubmissionPayload,
 } from './community_packs/schema';
 import { publishLocalAuthorPack, withdrawLocalAuthorPack } from './community_packs/publishLocalPack';
+import { PACK_PUBLISH_DAILY_LIMIT_COPY } from './community_packs/publish_limit_copy';
 import { fetchCommunityPackForAuthorEdit } from './community_packs/communityFirestore';
 import {
   clearCommunityPackCreateDraft,
@@ -866,7 +867,16 @@ export default function CommunityPackCreateScreen() {
         savedPackIdRef.current = savedId;
         if (!payload.publishToCommunity && cloudEdit && !previous) await withdrawLocalAuthorPack(savedId);
         if (!isEditMode) await clearCommunityPackCreateDraft(studyTarget, lang, packLanguage);
-        if (payload.publishToCommunity && await publishLocalAuthorPack(savedId, lang, studyTarget) !== 'submitted') {
+        const publishResult = payload.publishToCommunity
+          ? await publishLocalAuthorPack(savedId, lang, studyTarget)
+          : 'submitted';
+        if (publishResult === 'daily_limit') {
+          // зачем: Q55 — набор сохранён на устройстве, но сервер пускает не больше 3
+          // новых публикаций в сутки; говорим об этом прямо, а не «при подключении».
+          emitAppEvent('action_toast', actionToastTri('error', PACK_PUBLISH_DAILY_LIMIT_COPY));
+          return;
+        }
+        if (publishResult !== 'submitted') {
           emitAppEvent('action_toast', actionToastTri('error', {
             ru: 'Набор сохранён на устройстве. Публикация не завершена — нажмите «Сохранить» ещё раз при подключении.',
             uk: 'Набір збережено на пристрої. Для публікації натисніть «Зберегти» ще раз після підключення.',

@@ -74,6 +74,7 @@ import PackCommentsSheet from './community_packs/PackCommentsSheet';
 import ReportPackModal from '../components/ReportPackModal';
 import { packTitleForInterface } from './flashcards/marketplace';
 import { publishLocalAuthorPack } from './community_packs/publishLocalPack';
+import { PACK_PUBLISH_DAILY_LIMIT_COPY } from './community_packs/publish_limit_copy';
 import CollectionDeckView from './flashcards/CollectionDeckView';
 // E13: «сила слова» — точки из новой проекции ошибок (§2).
 import {
@@ -928,6 +929,11 @@ export default function FlashcardsScreen() {
           pl: 'Zestaw wysłany do publikacji.',
         }));
         void loadAll();
+        return;
+      }
+      if (res === 'daily_limit') {
+        // зачем: Q55 — отдельный текст про суточный лимит (3 набора), а не общее «не удалось».
+        emitAppEvent('action_toast', actionToastTri('error', PACK_PUBLISH_DAILY_LIMIT_COPY));
         return;
       }
       if (res === 'invalid') {

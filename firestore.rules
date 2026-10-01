@@ -1657,6 +1657,14 @@ service cloud.firestore {
         && request.resource.data.savedAtMs > 0;
     }
 
+    // Q55 / PM-018-A2: суточный счётчик публикаций наборов сообщества
+    // (functions/src/pack_publish_limit.ts). Пишет и читает только сервер
+    // (Admin SDK обходит правила); клиенту счётчик не нужен и подменять его нельзя.
+    // Удаление аккаунта сносит users/{uid} рекурсивно.
+    match /users/{userId}/pack_publish_limits/{limitId} {
+      allow read, write: if false;
+    }
+
     // PM-112-A3/PM-113: агрегат уникальных сохранений. Считает только сервер
     // (refreshVideoSaveCounts, count() по связям); клиент число не назначает.
     match /video_save_counts/{docId} {

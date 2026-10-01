@@ -193,7 +193,13 @@ function SpireTaskView(props: Props) {
       {phrase && task.kind !== 'match' && task.kind !== 'timeattack' ? (
         <View style={[s.question, { backgroundColor: p.cardRaised }]}>
           <View style={s.questionRow}>
-            <Text accessibilityRole="header" style={[s.phrase, s.phraseFlex, { color: p.text }]}>{phrase}</Text>
+            {/* зачем (Ядро 01.10): задание на слух — фраза до ответа скрыта (иначе это подсказка),
+                после ответа показывается в разборе. */}
+            {hasAudio && !props.feedback ? (
+              <Text style={[s.phrase, s.phraseFlex, { color: p.textSecondary }]}>{listenLabel}</Text>
+            ) : (
+              <Text accessibilityRole="header" style={[s.phrase, s.phraseFlex, { color: p.text }]}>{phrase}</Text>
+            )}
             {hasAudio ? (
               <V2Pressable onPress={listen} accessibilityRole="button" accessibilityLabel={listenLabel} style={[s.listen, { backgroundColor: p.card }]} testID="spire-task-listen">
                 <Ionicons name="volume-high" size={22} color={p.text} />

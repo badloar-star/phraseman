@@ -1,0 +1,216 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import type {
+  HydratedCard,
+  HydratedLesson,
+  HydratedLibrary,
+  HydrationApplyResult,
+  HydrationSnapshot,
+} from '../modules/account-session-v2/account_v2_hydration';
+import { isStudyTarget, type StudyTarget } from './study_target';
+import { flashcardsSwipeMemoryKey, lessonBestScoreKey } from './target_storage_keys';
+
+/*
+ * Account V2, Пакет 6G (TG-4CAC183BF512) — применение гидрации в СУЩЕСТВУЮЩИЕ
+ * локальные хранилища приложения (уроки, сохранённые и свои карточки, память
+ * свайпов, библиотека наборов).
+ *
+ * зачем: экраны 2.0 читают прежние хранилища; V2 пока только догоняет их.
+ * Правила слияния «не затирать более свежее локальное»:
+ *   урок      — «лучший из»: пишем, только если оценка сервера выше локальной;
+ *   карточка  — добавляем недостающие (по id и по фразе), существующие не трогаем;
+ *               удалённые на сервере (tombstone) не добавляем и локально не удаляем;
+ *   SRS       — по времени правки: сервер, только если его updatedAtMs новее lastSeenAt;
+ *   наборы    — объединение живых id без tombstone, локальные не удаляем.
+ * Модуль грузится лениво (require из accounts_v2_client_runtime) — только при
+ * включённом флаге и только когда гидрация дошла до применения. Перед каждым
+ * хранилищем — isCurrent(): смена аккаунта обрывает применение.
+ * Каждый пропуск — лог [ACCOUNT-V2] с кодом.
+ */
+
+const LOG = '[ACCOUNT-V2]';
+const TRAINING_PREFIX: Readonly<Record<'saved' | 'custom', string>> = Object.freeze({ saved: 'saved:all:', custom: 'custom:all:' });
+const MEMORY_FIELDS = ['correct', 'wrong', 'hints', 'seen', 'mastered', 'nextDueAt', 'ease'] as const;
+const MEMORY_DEFAULTS: Readonly<Record<string, number>> = Object.freeze({
+  correct: 0, wrong: 0, hints: 0, seen: 0, mastered: 0, lastSeenAt: 0, nextDueAt: 0, ease: 2.2,
+});
+
+type Counts = Record<string, number>;
+
+class StaleHydration extends Error {
+  constructor() {
+    super('hydration_stale');
+    this.name = 'StaleHydration';
+  }
+}
+
+function guard(isCurrent: () => boolean): void {
+  if (!isCurrent()) throw new StaleHydration();
+}
+
+function groupByTarget<T extends { target: string }>(items: readonly T[], counts: Counts, label: string): Map<StudyTarget, T[]> {
+  const out = new Map<StudyTarget, T[]>();
+  for (const item of items) {
+    if (!isStudyTarget(item.target)) {
+      // зачем: storageStudyTarget молча подменил бы чужой язык на язык по умолчанию — не пишем вовсе.
+      counts[`${label}_target_unsupported`] = (counts[`${label}_target_unsupported`] ?? 0) + 1;
+      continue;
+    }
+    out.set(item.target, [...(out.get(item.target) ?? []), item]);
+  }
+  return out;
+}
+
+/** Урок: «лучший из» — локальную оценку не понижаем. */
+export async function applyHydratedLessons(lessons: readonly HydratedLesson[], isCurrent: () => boolean, counts: Counts): Promise<void> {
+  let written = 0;
+  let keptLocal = 0;
+  for (const [target, items] of groupByTarget(lessons, counts, 'lessons')) {
+    guard(isCurrent);
+    const keys = items.map((lesson) => lessonBestScoreKey(lesson.lessonId, target));
+    const stored = await AsyncStorage.multiGet(keys);
+    const writes: [string, string][] = [];
+    items.forEach((lesson, index) => {
+      const local = parseFloat(String(stored[index]?.[1] ?? '0'));
+      if (Number.isFinite(local) && local >= lesson.score) { keptLocal += 1; return; }
+      writes.push([keys[index], String(lesson.score)]);
+    });
+    guard(isCurrent);
+    if (writes.length > 0) await AsyncStorage.multiSet(writes);
+    written += writes.length;
+  }
+  if (written > 0) {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    (require('./medal_utils') as typeof import('./medal_utils')).invalidateMedalsCache();
+  }
+  counts.lessons_written = written;
+  counts.lessons_kept_local = keptLocal;
+}
+
+function cardObject(card: HydratedCard): Record<string, unknown> | null {
+  const fields = { ...card.fields };
+  if (typeof fields.id !== 'string' || fields.id.length === 0) fields.id = card.id;
+  return fields.id === card.id ? fields : null;
+}
+
+/** Сохранённые и свои карточки: добавляем только недостающие живые. */
+export async function applyHydratedCards(cards: readonly HydratedCard[], isCurrent: () => boolean, counts: Counts): Promise<void> {
+  const live = cards.filter((card) => !card.deleted);
+  counts.cards_tombstoned_skipped = cards.length - live.length;
+  let added = 0;
+  let invalid = 0;
+  for (const [target, items] of groupByTarget(live, counts, 'cards')) {
+    const saved = items.filter((card) => card.list === 'saved').map(cardObject);
+    const custom = items.filter((card) => card.list === 'custom').map(cardObject);
+    const validSaved = saved.filter((card): card is Record<string, unknown> => card !== null && typeof card.en === 'string');
+    const validCustom = custom.filter((card): card is Record<string, unknown> => card !== null);
+    invalid += saved.length - validSaved.length + custom.length - validCustom.length;
+    if (validSaved.length > 0) {
+      guard(isCurrent);
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const store = require('../hooks/use-flashcards') as typeof import('../hooks/use-flashcards');
+      const result = await store.mergeSavedFlashcardsFromAccountsV2(target, validSaved as unknown as import('../hooks/use-flashcards').Flashcard[]);
+      if (result < 0) throw new StaleHydration();
+      added += result;
+    }
+    if (validCustom.length > 0) {
+      guard(isCurrent);
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const store = require('./flashcards/custom_cards_store') as typeof import('./flashcards/custom_cards_store');
+      let customAdded = 0;
+      await store.updateCustomCards((current) => {
+        if (!isCurrent()) return current;
+        const ids = new Set(current.map((item) => item.id));
+        const additions = validCustom.filter((card) => !ids.has(card.id as string));
+        customAdded = additions.length;
+        return additions.length === 0 ? current : [...current, ...(additions as unknown as typeof current)];
+      }, target);
+      added += customAdded;
+    }
+  }
+  counts.cards_added = added;
+  counts.cards_invalid = invalid;
+}
+
+/** SRS → память свайпов: сервер только если его время правки новее локального lastSeenAt. */
+export async function applyHydratedSrs(cards: readonly HydratedCard[], isCurrent: () => boolean, counts: Counts): Promise<void> {
+  let written = 0;
+  let keptLocal = 0;
+  const withSrs = cards.filter((card) => !card.deleted && card.srs !== null);
+  for (const [target, items] of groupByTarget(withSrs, counts, 'srs')) {
+    guard(isCurrent);
+    const key = flashcardsSwipeMemoryKey(target);
+    const raw = await AsyncStorage.getItem(key);
+    let memory: Record<string, Record<string, number>> = {};
+    try {
+      const parsed: unknown = raw === null ? {} : JSON.parse(raw);
+      if (typeof parsed === 'object' && parsed !== null && !Array.isArray(parsed)) memory = parsed as Record<string, Record<string, number>>;
+    } catch (error) {
+      // зачем: битую память не перезаписываем вслепую — пропуск языка с логом.
+      console.warn(`${LOG} hydrate srs memory_unreadable kind=${error instanceof Error ? error.name : typeof error}`);
+      counts.srs_memory_unreadable = (counts.srs_memory_unreadable ?? 0) + 1;
+      continue;
+    }
+    let changed = false;
+    const next: Record<string, Record<string, number>> = { ...memory };
+    for (const card of items) {
+      const srs = card.srs as Readonly<Record<string, unknown>>;
+      const time = srs.updatedAtMs;
+      if (typeof time !== 'number' || !Number.isSafeInteger(time) || time <= 0) continue;
+      const memoryKey = `${TRAINING_PREFIX[card.list]}${card.id}`;
+      const local = next[memoryKey];
+      const localTime = typeof local?.lastSeenAt === 'number' ? local.lastSeenAt : 0;
+      if (localTime >= time) { keptLocal += 1; continue; }
+      const row: Record<string, number> = { ...MEMORY_DEFAULTS, lastSeenAt: time };
+      for (const name of MEMORY_FIELDS) {
+        const value = srs[name];
+        if (typeof value === 'number' && Number.isFinite(value)) row[name] = value;
+      }
+      next[memoryKey] = row;
+      changed = true;
+      written += 1;
+    }
+    guard(isCurrent);
+    if (changed) await AsyncStorage.setItem(key, JSON.stringify(next));
+  }
+  counts.srs_written = written;
+  counts.srs_kept_local = keptLocal;
+}
+
+/** Библиотека наборов: объединение живых id сервера без tombstone. */
+export async function applyHydratedLibraries(libraries: readonly HydratedLibrary[], isCurrent: () => boolean, counts: Counts): Promise<void> {
+  let added = 0;
+  for (const [target, items] of groupByTarget(libraries, counts, 'library')) {
+    guard(isCurrent);
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const store = require('./community_packs/communityOwnedStorage') as typeof import('./community_packs/communityOwnedStorage');
+    for (const library of items) {
+      const result = await store.mergeCommunityOwnedPackIdsFromAccountsV2(library.items, library.removed, target);
+      if (result < 0) {
+        counts.library_skipped = (counts.library_skipped ?? 0) + 1;
+        continue;
+      }
+      added += result;
+    }
+  }
+  counts.library_added = added;
+}
+
+/**
+ * Применение снимка гидрации. Бросает только «сменился аккаунт» (вызывающий не
+ * ставит отметку и повторит при следующем старте); остальное — счётчики в итоге.
+ */
+export async function applyAccountsV2HydrationLocally(
+  snapshot: HydrationSnapshot,
+  isCurrent: () => boolean,
+): Promise<HydrationApplyResult> {
+  const counts: Counts = {};
+  await applyHydratedLessons(snapshot.lessons, isCurrent, counts);
+  await applyHydratedCards(snapshot.cards, isCurrent, counts);
+  await applyHydratedSrs(snapshot.cards, isCurrent, counts);
+  await applyHydratedLibraries(snapshot.libraries, isCurrent, counts);
+  console.log(`${LOG} hydrate applied ${Object.entries(counts).map(([key, value]) => `${key}=${value}`).join(' ')}`);
+  return Object.freeze(counts);
+}
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

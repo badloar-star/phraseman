@@ -14,6 +14,7 @@ import { createAccountDeletionDetacher, type AccountDeletionDetachResult } from 
 import type { AccountDetachLatch } from './account_detach_latch';
 import { createAccountsV2Producer } from './account_sync_producer';
 import type { AccountsV2Change } from './account_sync_producer_plan';
+import { hydrateAccountsV2Scope, type AccountsV2HydrationPorts } from './account_v2_hydration';
 
 /*
  * Account V2, Пакет 6B (TG-F76EA3701B55) — жизненный цикл клиента V2.
@@ -58,6 +59,15 @@ const TERMINAL_ERASE_RETRY_MS = 24 * 60 * 60 * 1000;
  * callable на каждое действие (лимит 20 вызовов/мин на uid, Firebase-экономия).
  */
 const PRODUCER_WAKE_MS = 3_000;
+/**
+ * Пакет 6G: пауза перед переносом/гидрацией после открытия области.
+ * зачем (Performance Bible): старт приложения и первый кадр не делят JS-поток
+ * с сетью и разбором сотен сущностей — гидрация идёт фоном, когда экран уже есть.
+ */
+const HYDRATION_DELAY_MS = 2_000;
+
+/** Пакет 6G: сеть и применение гидрации (боевые — в accounts_v2_client_runtime.ts). */
+export type AccountsV2HydrationClientPorts = Pick<AccountsV2HydrationPorts, 'callMigrate' | 'callPull' | 'applyLocal'>;
 
 type AccountScopeValue = Extract<AccountScope, { kind: 'account' }>;
 
@@ -77,6 +87,8 @@ export type AccountsV2ClientPorts = Readonly<{
   clearTimer: (handle: unknown) => void;
   nowMs?: () => number;
   random?: () => number;
+  /** Пакет 6G: перенос при первом входе + гидрация области; нет — шаг не выполняется. */
+  hydration?: AccountsV2HydrationClientPorts;
 }>;
 
 export type AccountsV2ClientStatus = Readonly<{
@@ -114,6 +126,7 @@ type Session = {
   sending: boolean;
   draining: boolean;
   timer: unknown;
+  hydrationTimer: unknown;
 };
 
 function kindOf(value: unknown): string {
@@ -191,6 +204,10 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
     if (target.timer !== null) {
       ports.clearTimer(target.timer);
       target.timer = null;
+    }
+    if (target.hydrationTimer !== null) {
+      ports.clearTimer(target.hydrationTimer);
+      target.hydrationTimer = null;
     }
     target.runner.invalidate();
     console.log(`${LOG} lifecycle halted reason=${reason} generation=${target.fence.generation}`);
@@ -411,6 +428,44 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
     return healthy;
   };
 
+  /**
+   * Пакет 6G (OD21): перенос при первом входе → pull → применение — один проход на
+   * открытие области, фоном (таймер), без блокировки UI. Отметка гидрации живёт в
+   * самой области: новая установка / новый аккаунт = пустая область = проход;
+   * повторный запуск — ноль сети. Смена аккаунта / выключение флага обрывает проход.
+   */
+  const scheduleHydration = (target: Session, handle: AccountsV2HydrationPorts['handle']): void => {
+    const hydration = ports.hydration;
+    if (hydration === undefined) {
+      console.log(`${LOG} hydrate skip reason=ports_missing`);
+      return;
+    }
+    target.hydrationTimer = ports.setTimer(() => {
+      target.hydrationTimer = null;
+      const isCurrent = (): boolean => target.alive && session === target && ports.isEnabled()
+        && !serverDisabled && ports.currentAuthUid() === target.uid;
+      if (!isCurrent()) {
+        console.log(`${LOG} hydrate skip reason=session_not_current`);
+        return;
+      }
+      void hydrateAccountsV2Scope({
+        handle,
+        callMigrate: hydration.callMigrate,
+        callPull: hydration.callPull,
+        applyLocal: hydration.applyLocal,
+        isCurrent,
+        nowMs,
+        sleep: (ms) => new Promise<void>((resolve) => { ports.setTimer(resolve, ms); }),
+      }).then((outcome) => {
+        console.log(`${LOG} hydrate outcome=${outcome} generation=${target.fence.generation}`);
+        // зачем: «сервер выключен» на переносе = выключен и для отправки — стоп до перезапуска.
+        if (outcome === 'server_disabled' && target.alive) onServerDisabled(target);
+      }, (error: unknown) => {
+        console.warn(`${LOG} hydrate threw code=${codeOf(error)}`);
+      });
+    }, HYDRATION_DELAY_MS);
+  };
+
   const openSession = async (uid: string, st: AccountScopeStore): Promise<void> => {
     generation += 1;
     const scope = accountScope(uid);
@@ -442,6 +497,7 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
     });
     const created: Session = {
       uid, scope, fence, runner, produce: producer.produce, alive: true, sending: true, draining: false, timer: null,
+      hydrationTimer: null,
     };
     holder.session = created;
     if (detachedInProcess.has(uid) || ports.currentAuthUid() !== uid) {
@@ -454,6 +510,7 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
     session = created;
     console.log(`${LOG} lifecycle started generation=${generation}`);
     void drain(created);
+    scheduleHydration(created, handle);
   };
 
   const start = async (uid: string): Promise<void> => {

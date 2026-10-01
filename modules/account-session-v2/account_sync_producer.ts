@@ -62,6 +62,14 @@ function indexKey(key: string): string {
   return `${PREFIX}list:${JSON.stringify(key)}`;
 }
 
+/**
+ * Пакет 6G: ключи зеркала производителя — для гидрации. зачем: после чтения своей
+ * учётки из V2 зеркало засевается состоянием сервера, иначе первый же снимок
+ * приложения отправил бы ВСЁ заново (лишние вызовы и записи Firestore).
+ */
+export const accountsV2ProducerEntityKey = entityKey;
+export const accountsV2ProducerListIndexKey = indexKey;
+
 function kindOf(error: unknown): string {
   return error instanceof Error ? error.name : typeof error;
 }

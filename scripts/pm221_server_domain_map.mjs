@@ -44,6 +44,8 @@ const RULES = [
   { n: /^myCron$/u, d: 'notifications', c: 'Пример обёртки withCronHeartbeat в doc-комментарии cron_heartbeat.ts — не функция', s: 'atlas-false-positive', why: 'ложное срабатывание атласа: строка в комментарии' },
   { n: /^accountsV2DeletionStatus$/u, d: 'account-delete', c: C_DEL },
   { n: /^accountsV2SyncApply$/u, d: 'sync/progress', c: 'Accounts V2: синхронизация прогресса устройства с аккаунтом (D66: сервер = синхронизация)' },
+  // зачем (Account V2, Пакет 6G, OD21): перенос при первом входе и гидрация новой установки.
+  { n: /^(accountsV2MigrateMine|accountsV2PullMine)$/u, d: 'sync/progress', c: 'Accounts V2: перенос старых данных при первом входе (OD21) и чтение своей учётки на новой установке' },
   { n: /^cardTtsPackWorker$/u, d: 'ai/audio', c: 'Озвучка карточек OpenAI TTS при одобрении набора (D128)' },
   { n: /^dailyPollVote$/u, d: 'social/friends', c: 'Опрос дня на Главной (решение владельца 30.09)' },
   { n: /^(levelSpinStarGrant|giftsToCoinsMigrationReport)$/u, d: 'purchases/subscriptions', c: 'Кошелёк монет: начисление и отчёт миграции подарков в монеты (D03, Q12/Q13)' },

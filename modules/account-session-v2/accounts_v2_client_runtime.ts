@@ -15,7 +15,9 @@ import { createAccountDetachLatch } from './account_detach_latch';
 import {
   createAccountsV2ClientController,
   type AccountsV2ClientController,
+  type AccountsV2HydrationClientPorts,
 } from './account_v2_client_session';
+import type { HydrationApplyResult, HydrationSnapshot } from './account_v2_hydration';
 
 /*
  * Account V2, Пакет 6B (TG-F76EA3701B55) — боевые порты клиента V2.
@@ -93,6 +95,35 @@ async function callSync(batch: AccountSyncWireBatch): Promise<unknown> {
   return call(batch);
 }
 
+/** Пакет 6G: перенос и гидрация — те же httpsCallable, свой таймаут (перенос до 10 транзакций). */
+const MIGRATE_CALLABLE_TIMEOUT_MS = 70_000;
+
+function callableOf(name: string, timeout: number): (data: unknown) => Promise<unknown> {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getApp } = require('@react-native-firebase/app');
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
+  return httpsCallable(getFunctions(getApp(), 'us-central1'), name, { timeout }) as (data: unknown) => Promise<unknown>;
+}
+
+/**
+ * Применение гидрации в хранилища приложения. зачем лениво: модуль тянет сторы
+ * уроков/карточек/наборов — грузим только когда гидрация реально дошла до применения.
+ */
+async function applyHydrationLocally(snapshot: HydrationSnapshot, isCurrent: () => boolean): Promise<HydrationApplyResult> {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { applyAccountsV2HydrationLocally } = require('../../app/accounts_v2_hydration_apply') as
+    typeof import('../../app/accounts_v2_hydration_apply');
+  return applyAccountsV2HydrationLocally(snapshot, isCurrent);
+}
+
+const HYDRATION_PORTS: AccountsV2HydrationClientPorts = Object.freeze({
+  callMigrate: () => callableOf('accountsV2MigrateMine', MIGRATE_CALLABLE_TIMEOUT_MS)({}),
+  callPull: (request: Readonly<{ cursor: string | null; limit: number }>) =>
+    callableOf('accountsV2PullMine', SYNC_CALLABLE_TIMEOUT_MS)({ cursor: request.cursor, limit: request.limit }),
+  applyLocal: applyHydrationLocally,
+});
+
 /** Настоящее хранилище области; null — платформа/окружение не готовы (лог внутри). */
 function createNativeStorageAdapter(): ScopeStorageAdapter | null {
   try {
@@ -126,6 +157,7 @@ function getController(isEnabled: () => boolean): AccountsV2ClientController {
     newNonce: () => crypto().randomUUID(),
     setTimer: (run, delayMs) => setTimeout(run, delayMs),
     clearTimer: (handle) => clearTimeout(handle as ReturnType<typeof setTimeout>),
+    hydration: HYDRATION_PORTS,
   });
   return controller;
 }

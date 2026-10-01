@@ -152,3 +152,32 @@ Dev-вход: `phraseman://dev-emulator-login?…` (маршрут `app/dev-emul
 Уборка 6F: эмуляторы и бандлер остановлены (деревья процессов сняты, порты свободны), `adb reverse tcp:8081` снят,
 данные app.phraseman восстановлены из снимка до прогона (108 954 624 байт, язык `ru`, тестовых областей нет),
 Android-эмулятор погашен (был выключен до прогона), очередь эмулятора и слоты отданы.
+
+
+---
+
+## Пакет 6G (TG-4CAC183BF512) — перенос при первом входе (OD21) + гидрация, 2026-10-01
+
+Firebase Emulator Suite заново (`firebase emulators:start --only auth,firestore,functions,storage,database --project phraseman-ea0b3`),
+functions собраны `npm --prefix functions run build` (экспорты `accountsV2MigrateMine`, `accountsV2PullMine` загружены эмулятором).
+Сидер 6D — 3 аккаунта, серверный флаг выкл; старые данные и проверки — `scripts/accounts-v2-6g-emulator-e2e.mjs`
+(настоящие callable с токенами Auth-эмулятора, REST только на loopback). uid-хэши: a=bc93c51f60, b=8a74aa1495.
+
+Старые данные: a — `users/stable-6g-e2e-a` (3 урока, 3 сохранённые карточки, память свайпов c1, 2 набора) с привязкой
+`auth_links/{uid a}.stable_id` (документ НЕ под uid — как у реальных людей со stable_id); b — `users/{uid b}` с `identityHidden`.
+
+| Шаг | Факт | Итог |
+|---|---|---|
+| Флаг выкл → перенос a | `failed-precondition accounts_v2_disabled`, `accounts_v2/{a}` пуст | PASS |
+| Без входа | `UNAUTHENTICATED` | PASS |
+| Первый вход a | `status=done ops=7 applied=7` за 113 мс; 7 сущностей (3 урока + 3 карточки + библиотека); отметка `accounts_v2_meta/migration.status=done` | PASS |
+| Повторный вход a | `already_done` за 22 мс, сущностей и квитанций столько же | PASS (после починки, см. ниже) |
+| «Новая установка» a: pull по 2 | 4 страницы, все 7 своих сущностей; SRS c1 c временем правки из старой записи; урок 2 `{passed:true, score:5}` | PASS |
+| Отметка потеряна → перенос заново | `applied=0 duplicate=7`, сущности без изменений | PASS |
+| b (скрытая личность) | `hold`, `identity_hidden`, в V2 ноль записей | PASS |
+| pull b | 0 сущностей (чужого a не видит) | PASS |
+
+**Найдено E2E и починено по логам (RED→GREEN):** первый прогон — повторный вход a сразу после переноса получил
+`resource-exhausted` вместо `already_done`: блок «попытка идёт» в памяти инстанса не снимался после успеха.
+Починка: блок снимается после done/hold (остаётся только для partial), тест «сразу после done на том же инстансе».
+Итоговый прогон: **12/12 PASS**.

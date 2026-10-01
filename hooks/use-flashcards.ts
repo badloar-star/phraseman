@@ -371,6 +371,40 @@ export const mergeSavedFlashcardRepairs = async (updates: Flashcard[], accountTo
   }, undefined);
 };
 
+/**
+ * Account V2, Пакет 6G — гидрация: сохранённые карточки из своей учётки V2.
+ * зачем: новая установка / новый телефон получает карточки, которых на телефоне
+ * нет. Правило «не затирать локальное»: существующую карточку (тот же id ИЛИ та
+ * же фраза в том же языке) НЕ трогаем — добавляем лишь недостающее. Лимит
+ * бесплатных карточек не режет восстановление (это уже сохранённые карточки
+ * человека). Возвращает число добавленных; -1 — аккаунт сменился / запись не прошла.
+ */
+export const mergeSavedFlashcardsFromAccountsV2 = async (
+  target: StudyTarget,
+  incoming: readonly Flashcard[],
+): Promise<number> => {
+  const accountToken = captureAccountGeneration();
+  if (!isAccountOperationCurrent(accountToken)) {
+    console.warn('[ACCOUNT-V2] hydrate saved_cards skip reason=account_not_current');
+    return -1;
+  }
+  return withWriteLock(accountToken, async () => {
+    const current = await loadFlashcardsForAccount(target, accountToken);
+    if (!isAccountOperationCurrent(accountToken)) return -1;
+    const ids = new Set(current.map((card) => card.id));
+    const additions: Flashcard[] = [];
+    for (const card of incoming) {
+      if (ids.has(card.id) || hasEnInCards(card.en, [...current, ...additions], target)) continue;
+      additions.push({ ...card, studyTarget: target, packLanguage: normalizePackLanguage(card.packLanguage ?? target) });
+      ids.add(card.id);
+    }
+    if (additions.length === 0) return 0;
+    const committed = await persistFlashcards([...current, ...additions], target, accountToken);
+    if (!committed) console.warn(`[ACCOUNT-V2] hydrate saved_cards persist_failed count=${additions.length}`);
+    return committed ? additions.length : -1;
+  }, -1);
+};
+
 export const FREE_FLASHCARD_LIMIT = FREE_CUSTOM_CARD_LIMIT;
 
 export type AddFlashcardResult = 'added' | 'duplicate' | 'limit_reached' | 'stale';

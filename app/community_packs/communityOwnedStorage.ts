@@ -135,5 +135,37 @@ export async function addCommunityOwnedPackId(
   }
 }
 
+/**
+ * Account V2, Пакет 6G — гидрация библиотеки наборов из своей учётки V2.
+ * зачем: новая установка получает наборы, добавленные на другом телефоне.
+ * Правило «объединение с tombstone»: добавляем живые id сервера, которых нет
+ * локально; id, удалённые на сервере (tombstone), НЕ добавляем; локальные id
+ * не удаляем никогда (удаление — только явное действие человека). Хранилище
+ * нечитаемо (stale) — не пишем вовсе, чтобы не затереть его частичным списком.
+ * Возвращает число добавленных; -1 — пропуск (лог).
+ */
+export async function mergeCommunityOwnedPackIdsFromAccountsV2(
+  serverIds: readonly string[],
+  removedIds: readonly string[],
+  studyTarget?: RuntimeStudyTarget,
+): Promise<number> {
+  const token = captureAccountGeneration();
+  const loaded = await loadCommunityOwnedPackIdsResult(studyTarget, token);
+  if (loaded.status !== 'ready' || !isCurrentAccountGeneration(token)) {
+    console.warn(`[ACCOUNT-V2] hydrate library skip reason=${loaded.status === 'ready' ? 'account_changed' : 'storage_stale'}`);
+    return -1;
+  }
+  const removed = new Set(removedIds);
+  const known = new Set(loaded.ids);
+  const additions = serverIds.filter((id) => typeof id === 'string' && id.length > 0 && !known.has(id) && !removed.has(id));
+  if (additions.length === 0) return 0;
+  const next = [...loaded.ids, ...new Set(additions)];
+  const key = flashcardsCommunityOwnedPacksKey(studyTarget);
+  await AsyncStorage.setItem(key, JSON.stringify(next));
+  const cacheKey = warmOwnedIdsKey(key, token);
+  if (cacheKey && isCurrentAccountGeneration(token)) warmOwnedIdsByKey.set(cacheKey, next);
+  return next.length - loaded.ids.length;
+}
+
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

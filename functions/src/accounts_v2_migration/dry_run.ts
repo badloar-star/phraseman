@@ -110,6 +110,12 @@ export type MigrationDryRunResult = Readonly<{
 export type MigrationDryRunOptions = Readonly<{
   /** Часы исполнителя: SRS-время дальше допуска ядра — HOLD (ядро окончательно отклонило бы карточку). */
   nowMs?: number;
+  /**
+   * Пакет 6G (OD21): id старого документа users/{…}, если он не равен uid
+   * (документ под stableId, найден сервером по auth_links). У такого документа
+   * canonicalStableId указывает на САМ документ. Пустой/непригодный — игнор.
+   */
+  legacyDocId?: string;
 }>;
 
 type PlainObject = Readonly<Record<string, unknown>>;
@@ -184,9 +190,11 @@ function readInput(snapshot: unknown): Input {
  * скрытого или ещё не слитого анонимного аккаунта нельзя приписать uid снимка
  * только потому, что их нашли рядом — сначала решает вход Account V2.
  */
-function accountHoldReason(user: PlainObject, uid: string): string | null {
+function accountHoldReason(user: PlainObject, uid: string, legacyDocId: string | null): string | null {
   const canonical = user.canonicalStableId;
-  if (canonical !== undefined && canonical !== null && canonical !== uid) return 'owner_mismatch';
+  // зачем (Пакет 6G): документ под stableId канонический сам для себя — сверяем с его id.
+  const owner = legacyDocId ?? uid;
+  if (canonical !== undefined && canonical !== null && canonical !== owner) return 'owner_mismatch';
   const duplicateOf = user.duplicateOfStableId;
   if (typeof duplicateOf === 'string' && duplicateOf.length > 0) return 'owner_mismatch';
   if (user.identityHidden === true) return 'identity_hidden';
@@ -691,7 +699,10 @@ export function runMigrationDryRun(snapshot: unknown, options: MigrationDryRunOp
   const input = readInput(snapshot);
   const uidHash = sha256Hex(`${OPERATION_NAMESPACE}:uid:${input.uid}`);
   const ctx: Context = { uid: input.uid, ledger: new Ledger(), nowMs: options.nowMs, runes: { total: 0 } };
-  const accountHold = input.user === null ? null : accountHoldReason(input.user, input.uid);
+  const legacyDocId = typeof options.legacyDocId === 'string' && identityString(options.legacyDocId)
+    && options.legacyDocId.length <= MAX_UID_LENGTH && !options.legacyDocId.includes('/') ? options.legacyDocId : null;
+  if (options.legacyDocId !== undefined && legacyDocId === null) console.warn(LOG, 'legacyDocId ignored: not an identity');
+  const accountHold = input.user === null ? null : accountHoldReason(input.user, input.uid, legacyDocId);
   if (accountHold !== null) {
     console.warn(LOG, 'account held entirely', accountHold, uidHash);
     ctx.ledger.add('held', accountHold, '$');

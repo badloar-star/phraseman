@@ -1,0 +1,65 @@
+# Task packet: Account V2 — Пакет 6G: чтение из V2 (гидрация) + перенос при первом входе (OD21)
+
+Governance-ID: TG-9CFD2EC7B637
+Status: In progress
+Owner: Claude session (Account V2, /loop)
+
+## Outcome
+
+1. **Перенос при первом входе (решение владельца OD21):** серверная функция `accountsV2MigrateMine` (onCall, за флагами config/accounts_v2, App Check выкл — пломба): для вызывающего uid читает его старые данные (users/{uid} + известные подколлекции, точечно, без выкачивания коллекций), строит операции ядром `functions/src/accounts_v2_migration/` (dry_run/inventory/report), проверяет `applyAllowed` (статус ready; hold → ничего не пишет, лог с кодами) и применяет через то же ядро applyBatch, что callable синхронизации. Идемпотентно (повторный вызов = duplicate), отметка `accounts_v2_meta/migration {status, version, atMs}`. Старые данные НЕ удаляются (OD20). Лимит частоты.
+2. **Клиент:** при первом старте сессии V2 для uid без отметки миграции — вызвать перенос (фон, без блокировки UI), затем гидрация.
+3. **Гидрация (новый телефон / новая установка):** чтение состояния своей учётки из V2 через серверную функцию `accountsV2PullMine` (постранично, курсор, только свой uid; Firestore-правила accounts_v2 закрыты для клиента — чтение только через функцию) → запись в локальную область SQLCipher (зеркало) → применение в существующие локальные хранилища уроков/карточек/наборов по правилам слияния (не затирать более свежие локальные правки: SRS — по updatedAtMs; урок — «лучший из»; библиотека — объединение с tombstone). Только при включённом флаге.
+4. Логи `[ACCOUNT-V2]` на каждом раннем выходе; Firebase-экономия: гидрация один раз на установку + при смене аккаунта, страницы по 200 сущностей, без опроса.
+5. E2E на Firebase Emulator: аккаунт со старыми данными (сид в эмуляторе) → первый вход → перенос → новая установка → данные на месте; повторный вход не дублирует.
+
+## Scope
+
+functions/src/accounts_v2_migration/*, новые functions/src/accounts_v2_adapter/{migrate_mine,pull_mine}.ts + экспорт в index.ts (за флагом), modules/account-session-v2/* (гидрация), минимальные точки применения в локальных хранилищах app/ (с `// зачем:`), тесты, E2E-квитанция. Out of scope: отключение старой синхронизации (Пакет 7), деплой, прод-данные.
+
+## Architecture
+
+Сервер — авторитетен для переноса (клиент только просит). Гидрация — клиент тянет своё через функцию, применяет локально через существующие сторы. Порядок: перенос → pull → применение.
+
+## Security and privacy
+
+Только свой uid; без App Check (пломба); правила accounts_v2 остаются закрытыми; новых данных не собираем (перенос существующих). Privacy policy — проверить формулировку о хранении (тот же объём данных).
+
+## Technical debt
+
+Accept temporarily: удаление поля карточки (TEMP 6F); iOS-хранилище (OD17 — отдельно).
+
+## Verification
+
+RED→GREEN, мутации (чужой uid, повтор без дублей, hold не пишет, гидрация не затирает свежее), functions + app тесты по одному, E2E на эмуляторе, независимое ревью.
+
+## Rollback
+
+Копия `.tmp_pkg6g_backup/`; флаги выкл.
+
+## Итог исполнителя (2026-10-01)
+
+- Сервер: `functions/src/accounts_v2_adapter/migrate_mine.ts` (`accountsV2MigrateMine`) и `pull_mine.ts`
+  (`accountsV2PullMine`), экспорт в `functions/src/index.ts`, оба за `config/accounts_v2.syncEnabled`
+  (выкл → `accounts_v2_disabled`, ноль чтений данных), App Check выкл (опции горячего callable; перенос — таймаут 60 с).
+  Перенос: отметка `accounts_v2_meta/migration` (done/hold/partial, версия), старый документ через
+  `auth_links/{uid}.stable_id` (как правило `authLinkMapsToUser`), иначе `users/{uid}`; страницы карточек ≤ 200;
+  журналы `personal_sync_segments` — проба limit 1 → HOLD по инвентарю Пакета 5; ядро dry-run + `applyBatchInFirestore`;
+  ≤ 10 пакетов за вызов (partial с курсором и sha плана); окно попыток 60 с в отметке (общее для инстансов) + блок в
+  памяти; hold пересматривается раз в сутки; маркер удаления → окончательный отказ. Dry-run получил опцию
+  `legacyDocId` (документ под stableId канонический сам для себя). Pull: курсор = id документа (sha256), ≤ 200,
+  счётчик частоты `accounts_v2_meta/pull_rate` (30/мин, 300/сут), каждая запись через `loadEntityRecord` (битая → skipped).
+- Клиент: `modules/account-session-v2/account_v2_hydration.ts` (перенос → pull → засев зеркала производителя только где
+  его нет → применение → отметка в области), запуск из контроллера через 2 с после открытия области (не в кадре старта),
+  обрыв при смене аккаунта/флаге/«сервер выключен»; боевые порты в `accounts_v2_client_runtime.ts`;
+  применение `app/accounts_v2_hydration_apply.ts` (урок — лучший из; карточки — недостающие по id и фразе; SRS — по
+  времени правки; наборы — объединение без tombstone; локальное не удаляется), новые точки
+  `mergeSavedFlashcardsFromAccountsV2` (hooks/use-flashcards.ts), `mergeCommunityOwnedPackIdsFromAccountsV2`
+  (communityOwnedStorage.ts); свои карточки — существующий `updateCustomCards`.
+- Тесты: functions migrate/pull 22 + dry-run legacyDoc 4; app `tests/account_v2_hydration_6g_v2.test.ts` 15.
+  Мутации: сервер 14/14, клиент 12/12 пойманы. Регрессия: functions `src/accounts_v2*` + `account_delete*` 861/862
+  (красный `account_delete_revenuecat_phase2` — до пакета), app account-v2/карточки/наборы 556/558 (красные
+  `community_pack_add_free` и `accounts_v2_storage_census` — до пакета, проверено на копии до правок).
+- E2E: серверный на Firebase Emulator 12/12 PASS (квитанция, раздел 6G); найден и починен блок после done.
+- TEMP: названия наборов при гидрации не восстанавливаются (только id — UI показывает код набора); открытый экран
+  свайпов может перезаписать слитую память своим снимком (сервер при этом хранит новее); hold из-за
+  `personal_sync_segments` может держать многих — решение владельца по журналам телефона (инвентарь Пакета 5).

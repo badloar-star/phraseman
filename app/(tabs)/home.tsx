@@ -117,7 +117,7 @@ import HomeV2ContinueCard from '../../components/home/v2/HomeV2ContinueCard';
 import HomeV2FeatureTiles from '../../components/home/v2/HomeV2FeatureTiles';
 import HomeV2VideoRail from '../../components/home/v2/HomeV2VideoRail';
 import HomeV2TodayCard from '../../components/home/v2/HomeV2TodayCard';
-import { buildTodayTasksPlaceholder } from '../../components/home/v2/today_tasks_placeholder';
+import { useTodayTasks } from '../../hooks/use_today_tasks';
 import type { HomeFeatureTile } from '../../components/home/v2/home_v2_types';
 import { getV2Palette, V2 } from '../../constants/v2Style';
 import { HOME_REWARD_DEMO_MODES } from '../reward_flight_particles';
@@ -607,6 +607,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const myCoinRank = useMyCoinRank();
     const { s, lang } = useLang();
     const { studyTarget } = useStudyTarget();
+    // зачем (D49, PM-259): живые задания дня вместо заглушки — прогресс, done и монеты
+    // считает modules/today-tasks; хук стоит до раннего return (правила хуков).
+    const todayTasks = useTodayTasks(lang, studyTarget);
     // зачем D129/D130: какие разделы видны для языка обучения — только из таблицы
     // готовности. studyTarget синхронный (peek), поэтому первый кадр уже финальный.
     const homeLearnVisible = isLearnTabVisibleForTarget(studyTarget);
@@ -3589,9 +3592,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             cards: homeFlashcardsVisible,
         };
         const homeV2Tiles = homeV2AllTiles.filter((tile) => homeV2TileVisible[tile.key] === true);
-        // TODO(PM-259): заменить заглушку на useTodayTasks() программы 2.0.
-        // зачем D129: задания только из разделов, видимых для языка обучения.
-        const homeV2Tasks = filterTodayTasksForTarget(buildTodayTasksPlaceholder(lang, lastLesson ? lastLessonName : null), studyTarget);
+        // зачем D129: задания только из разделов, видимых для языка обучения
+        // (хук уже строит набор из доступных типов; фильтр — страховка при смене языка днём).
+        // Подпись урока — название последнего урока, как было в заглушке.
+        const homeV2Tasks = filterTodayTasksForTarget(
+          todayTasks.tasks.map((task) => (task.kind === 'lesson' && lastLesson ? { ...task, subtitle: lastLessonName } : task)),
+          studyTarget,
+        );
         const homeV2CoinsLabel = triLang(lang, { ru: 'Монеты', uk: 'Монети', en: 'Coins', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Jeton', pl: 'Monety' });
         const homeV2Palette = getV2Palette(t, themeMode);
         const renderHomeV2 = () => (

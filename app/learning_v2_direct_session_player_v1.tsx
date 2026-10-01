@@ -193,6 +193,7 @@ import {
   type LearningV2UnlockedLessonWordV1,
 } from "./learning_v2_unlocked_lesson_words_v1";
 import { DebugLogger } from './debug-logger';
+import { recordTodayTaskActivity } from '../modules/today-tasks/today_tasks_store';
 import type { LearningV2FactoryNativeNewWordEncounterV1 } from "../modules/learning-v2/content/factory_native/factory_native_course_v1";
 import { factoryNativeLearningV2AvailabilityV1 } from "../modules/learning-v2/content/factory_native/factory_native_catalog_v1";
 import { sanitizeLearningV2LearnerPromptV1 } from "../modules/learning-v2/content/learner_prompt_hygiene_v1";
@@ -2045,6 +2046,13 @@ export default function LearningV2DirectSessionPlayerV1() {
       // This is only the background synchronization journal. It never owns
       // completion, navigation or rewards and therefore never blocks the user.
       if (passedSession) {
+        // зачем (D49, «Сегодня»): пройденная сессия Learning V2 = «Пройти урок».
+        // Тот же ключ на повтор финала не засчитывается дважды (store идемпотентен).
+        void recordTodayTaskActivity({
+          kind: "lesson",
+          unitKey: `v2:${runSummary?.targetLanguage ?? "unknown"}:${runSummary?.courseSessionId ?? "unknown"}`,
+          source: "learning_v2_direct_session",
+        });
         const appendCompletionForBackgroundSync = async () => {
           await createLearningV2CourseSessionCompletedSpoolV1(AsyncStorage).append(
             accountScopeHash,

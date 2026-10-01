@@ -2,6 +2,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { DebugLogger } from '../app/debug-logger';
+import { recordTodayTaskActivity } from '../modules/today-tasks/today_tasks_store';
+import { todayTaskKindForPracticeActivity } from '../modules/today-tasks/today_tasks_practice_map';
 import { getStableId } from '../app/stable_id';
 import {
   awardPracticeRune,
@@ -356,6 +358,18 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
       setBaseRunes((value) => value + awarded);
       return awarded;
     }
+    // зачем (D49, «Сегодня»): правильный ответ в тренировке карточек = слово
+    // повторено («Повторить карточки, не менее 10 слов»); в «Моих ошибках» —
+    // исправленная ошибка. Считаем ДО проверок оплаты рун: повторно пройденная
+    // карточка руну уже не даёт, но в задании дня считается (уникально за день).
+    const todayKind = enabled ? todayTaskKindForPracticeActivity(input.activity) : null;
+    if (todayKind) {
+      void recordTodayTaskActivity({
+        kind: todayKind,
+        unitKey: `${todayKind}:${itemId}`,
+        source: `practice_runes:${input.activity}`,
+      });
+    }
     const current = earningsRef.current;
     if (!current) return 0;
     const result = awardPracticeRune(current, itemId, correctStreak);
@@ -372,7 +386,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
       pendingRunes: result.earnings.pendingRunes,
     }));
     return displayedAward;
-  }, [devFakeStartRunes, input.activity, persist]);
+  }, [devFakeStartRunes, enabled, input.activity, persist]);
 
   const forfeitPendingRunes = useCallback(async (): Promise<void> => {
     if (devFakeStartRunes !== undefined) {

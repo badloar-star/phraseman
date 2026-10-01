@@ -4,11 +4,15 @@
  * зачем (владелец 2026-09-25): тап по фразе перематывает видео к моменту, где
  * она звучит, а текущая фраза подсвечивается. Плеер и список живут в разных
  * ветках дерева (карточка ролика, герой, Главная), поэтому общаются через этот
- * крошечный канал, привязанный к videoId. Никакой сети, никакого хранилища.
+ * крошечный канал, привязанный к videoId. Никакой сети; хранилище — только
+ * разовая отметка задания дня «Посмотреть видео» (D49) через today_tasks_store.
  *
  * Одновременно играет максимум один плеер (родители держат ровно один
  * activeVideoId), поэтому на videoId — один обработчик перемотки.
  */
+
+import { recordTodayTaskActivity } from '../modules/today-tasks/today_tasks_store';
+import { noteTodayVideoPlaybackTick } from '../modules/today-tasks/today_tasks_video_ticks';
 
 type SeekHandler = (seconds: number) => void;
 type PositionListener = (positionSec: number) => void;
@@ -60,6 +64,12 @@ export function takePendingYoutubeSeek(videoId: string): number | null {
 
 export function publishYoutubePosition(videoId: string, positionSec: number): void {
   positionListeners.get(videoId)?.forEach((listener) => listener(positionSec));
+  // зачем (D49, «Сегодня»): плеер шлёт позицию раз в секунду только во время
+  // воспроизведения — это и есть честная секунда просмотра для «Посмотреть видео».
+  // Счёт в памяти; store зовётся один раз в день, на 60-й секунде (Q9: без монет).
+  noteTodayVideoPlaybackTick(videoId, Date.now(), (watchedSec, id, dayKey) => {
+    void recordTodayTaskActivity({ kind: 'video', units: watchedSec, unitKey: `video:${dayKey}`, source: `youtube:${id}` });
+  });
 }
 
 export function subscribeYoutubePosition(videoId: string, listener: PositionListener): () => void {

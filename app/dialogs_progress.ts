@@ -13,6 +13,7 @@ import { emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { dialogueStateStorageKey } from './dialogue_language_registry';
+import { recordTodayTaskActivity } from '../modules/today-tasks/today_tasks_store';
 
 export const DIALOGS_COMPLETED_KEY = 'dialogs_completed_ids_v1';
 
@@ -51,7 +52,14 @@ export async function isDialogCompleted(studyTarget: unknown, scenarioId: string
  * список диалогов мгновенно перерисовал состояния.
  */
 export async function markDialogCompleted(studyTarget: unknown, scenarioId: string): Promise<void> {
-  if (!scenarioId) return;
+  if (!scenarioId) {
+    console.warn('[TODAY-TASKS] dialog:skip reason=empty_scenario_id source=markDialogCompleted');
+    return;
+  }
+  // зачем (D49, «Сегодня»): законченный диалог засчитывает «Потренировать диалог» —
+  // ДО ранних выходов ниже: повторно пройденный сценарий тоже тренировка.
+  // Повтор за день не платит второй раз (store: done один раз, ключ выплаты на день).
+  void recordTodayTaskActivity({ kind: 'dialog', unitKey: `legacy:${String(studyTarget)}:${scenarioId}`, source: 'markDialogCompleted' });
   const storageKey = dialogsCompletedStorageKey(studyTarget);
   if (!storageKey) return;
   // зачем: PM-213/PM-200 — отметка зовётся «в фоне» (void) после конца диалога.

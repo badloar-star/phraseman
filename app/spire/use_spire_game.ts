@@ -29,6 +29,7 @@ import { spireBuildRoomRows, spireMyPlace, type SpireRoomRow } from '../../modul
 import type { SpireFriendChip } from '../../components/spire/spire_room_types';
 import { spireCurrentWeekKey } from '../../components/spire/spire_tower_model';
 import { DebugLogger } from '../debug-logger';
+import { recordTodayTaskActivity } from '../../modules/today-tasks/today_tasks_store';
 import { spireFlushNow, spireRecordStepResult } from '../spire_report_client';
 import { getStableId } from '../stable_id';
 import { getCanonicalUserId } from '../user_id_policy';
@@ -241,6 +242,14 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
         return;
       }
       setWeek(res.local);
+      // зачем (D49 + PM-280-A2, «Сегодня»): пройденная НОВАЯ ступень, легшая на
+      // диск, засчитывает «Пройти N ступеней Шпиля». Провал и повтор того же отчёта
+      // не считаются; ключ — reportId (повтор записи не двигает счётчик дважды).
+      if (finish.report.outcome === 'passed' && res.effect !== 'duplicate_ignored') {
+        void recordTodayTaskActivity({ kind: 'spire_steps', unitKey: `spire:${finish.report.reportId}`, source: 'spire_step_passed' });
+      } else {
+        DebugLogger.info('[TODAY-TASKS]', `spire:skip outcome=${finish.report.outcome} effect=${res.effect} report=${finish.report.reportId}`);
+      }
     }).catch((error: unknown) => {
       DebugLogger.warn(LOG, `game: запись ступени упала (${String(error)}) — откат маркера`);
       if (lastReportRef.current !== finish.report.reportId) return;

@@ -86,6 +86,7 @@ import {
   lessonSessionKey,
 } from './target_storage_keys';
 import { DebugLogger } from './debug-logger';
+import { recordTodayTaskActivity } from '../modules/today-tasks/today_tasks_store';
 
 const MEDAL_IMAGES_COMPLETE: Record<string, any> = {
   bronze: require('../assets/images/levels/bronza.webp'),
@@ -786,6 +787,10 @@ export default function LessonComplete() {
 
   const grantBonus = useCallback(async () => {
       if (!isQualifyingLessonPass) return;
+      // зачем (D49, «Сегодня»): пройденный урок засчитывает задание дня. unitKey —
+      // урок+цель: повтор того же экрана итога не считается второй раз (store
+      // идемпотентен по дню), а done/монеты ставятся ровно один раз.
+      void recordTodayTaskActivity({ kind: 'lesson', unitKey: `legacy:${studyTarget}:${lessonId}`, source: 'lesson_complete' });
       const grantAccountToken = captureAccountGeneration();
       const capturedSoftUpsellIdentity: LessonSoftUpsellIdentity = {
         accountScope: studyTarget === 'es' ? '' : lessonSoftUpsellPersistenceScope(grantAccountToken),

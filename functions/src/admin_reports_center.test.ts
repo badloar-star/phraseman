@@ -188,6 +188,18 @@ describe('admin reports center contracts', () => {
     } });
   });
 
+  // зачем: Q4 (координатор 01.10) — новые ответы несут награду в монетах (v2).
+  test('projects a v2 coin reward bundle and rejects custom coin amounts', () => {
+    expect(projectReportRow('error_reports', 'archived-2', {
+      status: 'archived', replyTitle: 'Спасибо', replyBody: 'Исправили',
+      replyRewardBundle: { version: 2, severity: 'critical', coins: 1000 },
+    })).toMatchObject({ archive: { rewardBundle: { version: 2, severity: 'critical', coins: 1000 } } });
+    expect(projectReportRow('error_reports', 'archived-3', {
+      status: 'archived', replyTitle: 'Спасибо', replyBody: 'Исправили',
+      replyRewardBundle: { version: 2, severity: 'critical', coins: 5000 },
+    })).toMatchObject({ archive: { rewardBundle: { version: 1, severity: 'none' } } });
+  });
+
   test('accepts only an ordered bounded list of export references', () => {
     expect(parseReportExportRequest({ reports: [
       { source: 'error_reports', id: 'error-2' },

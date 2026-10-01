@@ -47,9 +47,14 @@ test('prepared replies expose resolution and reward metadata', () => {
   expect(adminHtml).toContain('resolutionLabels');
   expect(adminHtml).toContain('rewardGroup');
   expect(adminHtml).toContain('id="rr-severity"');
-  expect(adminHtml).toContain('Небольшая · 1 спин · 300 рун · 1 жемчужина');
-  expect(adminHtml).toContain('Серьёзная · 2 спина · 600 рун · 5 жемчужин');
-  expect(adminHtml).toContain('Критическая · 3 спина · 1000 рун · 10 жемчужин');
+  // зачем: Q4 (координатор 01.10) — награда за жалобу только в монетах (v2).
+  expect(adminHtml).toContain('Небольшая · 300 монет');
+  expect(adminHtml).toContain('Серьёзная · 600 монет');
+  expect(adminHtml).toContain('Критическая · 1000 монет');
+  expect(adminHtml).toContain("minor: Object.freeze({ version: 2, severity: 'minor', coins: 300 })");
+  expect(adminHtml).toContain("serious: Object.freeze({ version: 2, severity: 'serious', coins: 600 })");
+  expect(adminHtml).toContain("critical: Object.freeze({ version: 2, severity: 'critical', coins: 1000 })");
+  expect(adminHtml).not.toContain('1 спин · 300 рун');
   expect(adminHtml).toContain('rewardBundle,');
   expect(adminHtml).not.toContain('id="rr-shards"');
 });
@@ -146,9 +151,12 @@ test('copied report instructions enforce respectful support replies', () => {
   expect(instructions).toContain('ОБРАЩЕНИЕ: только на «вы»');
   expect(instructions).toContain('пиши как живой сотрудник поддержки');
   expect(instructions).toContain('не рассказывай пользователю о внутренних правилах');
-  expect(instructions).toContain('minor = 1 спин + 300 рун + 1 жемчужина');
-  expect(instructions).toContain('serious = 2 спина + 600 рун + 5 жемчужин');
-  expect(instructions).toContain('critical = 3 спина + 1000 рун + 10 жемчужин');
+  // зачем: Q4 (координатор 01.10) — ИИ предлагает уровень награды в монетах (v2).
+  expect(instructions).toContain('minor = 300 монет');
+  expect(instructions).toContain('serious = 600 монет');
+  expect(instructions).toContain('critical = 1000 монет');
+  expect(instructions).toContain('"version": 2, "severity": "none|minor|serious|critical", "coins": <0|300|600|1000>');
+  expect(instructions).not.toContain('спин');
   expect(instructions).toContain('ИИ только ПРЕДЛАГАЕТ уровень');
   expect(instructions).toContain('не перечисляй виды наград, количества');
   expect(instructions).toContain('подготовь отдельный ответ для каждого reportId');

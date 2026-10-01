@@ -32,11 +32,21 @@ describe('report replies in home notification center', () => {
     expect(model).toContain("| 'report_reply'");
     expect(model).toContain('export interface UserNotificationReportReply');
     expect(model).toContain('reportReply: normalizeUserNotificationReportReply(data.reportReply)');
-    expect(model).toContain('rewardBundle: Readonly<{');
+    // зачем: Q4 (координатор 01.10) — набор награды = v1 | v2 (монеты), общий тип.
+    expect(model).toContain('rewardBundle: ReportRewardBundle;');
     expect(model).toContain('export async function refreshUserNotificationsOnce');
     expect(model).toContain("LAST_REFRESH_KEY = 'user_notifications_last_refresh_ms_v1'");
 
-    expect(button).toContain("import { claimReportRewardBundle, resumePendingReportRewardBundleClaims } from '../app/report_reward_bundle'");
+    expect(button).toContain("from '../app/report_reward_bundle'");
+    expect(button).toContain('claimReportRewardBundle,');
+    expect(button).toContain('resumePendingReportRewardBundleClaims,');
+    // зачем: Q4 + Optimistic UI — «Получено» сразу, откат при ошибке.
+    expect(button).toContain('markReportReplyClaimedLocally(row.id, reward.messageId, true);');
+    expect(button).toContain('markReportReplyClaimedLocally(row.id, reward.messageId, false);');
+    expect(button.indexOf('markReportReplyClaimedLocally(row.id, reward.messageId, true);'))
+      .toBeLessThan(button.indexOf('await claimReportRewardBundle(reward.messageId, reward.rewardBundle)'));
+    expect(button).toContain("ru: 'монет'");
+    expect(button).not.toContain("ru: 'рун'");
     expect(button).toContain("import { AppState, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'");
     expect(button).toContain("import MotionModal from './MotionModal'");
     expect(button).toContain('<MotionModal');

@@ -5,7 +5,16 @@ const ROOT = path.resolve(__dirname, '..');
 const read = (relativePath: string) => fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
 
 describe('report reward bundle client contract', () => {
-  it('uses exact three-currency tiers and a durable resumable claim intent', () => {
+  // зачем: Q4 (координатор 01.10) — новые награды в монетах (v2), v1 читается для старых.
+  it('uses exact v2 coin tiers for new rewards', () => {
+    const source = read('app/report_reward_bundle.ts');
+    expect(source).toContain("minor: Object.freeze({ version: 2, severity: 'minor', coins: 300 })");
+    expect(source).toContain("serious: Object.freeze({ version: 2, severity: 'serious', coins: 600 })");
+    expect(source).toContain("critical: Object.freeze({ version: 2, severity: 'critical', coins: 1000 })");
+    expect(source).toContain('[REPORT-REWARD]');
+  });
+
+  it('keeps exact v1 three-currency tiers readable and a durable resumable claim intent', () => {
     const source = read('app/report_reward_bundle.ts');
     expect(source).toContain("minor: Object.freeze({ version: 1, severity: 'minor', spins: 1, runes: 300, pearls: 1 })");
     expect(source).toContain("serious: Object.freeze({ version: 1, severity: 'serious', spins: 2, runes: 600, pearls: 5 })");

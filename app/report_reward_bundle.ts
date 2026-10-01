@@ -12,21 +12,56 @@ import { getCanonicalUserId } from './user_id_policy';
 import { DebugLogger } from './debug-logger';
 
 export type ReportRewardSeverity = 'none' | 'minor' | 'serious' | 'critical' | 'legacy';
-export type ReportRewardBundle = Readonly<{
+export type ReportRewardTierSeverity = Exclude<ReportRewardSeverity, 'legacy'>;
+/** v1 (до 01.10): спины + руны + жемчуг. Только для старых неполученных наград. */
+export type ReportRewardBundleV1 = Readonly<{
   version: 1;
   severity: ReportRewardSeverity;
   spins: number;
   runes: number;
   pearls: number;
 }>;
+/** v2 (Q4, координатор 01.10): награда только в монетах. */
+export type ReportRewardBundleV2 = Readonly<{
+  version: 2;
+  severity: ReportRewardTierSeverity;
+  coins: number;
+}>;
+export type ReportRewardBundle = ReportRewardBundleV1 | ReportRewardBundleV2;
 
-export const REPORT_REWARD_TIERS: Readonly<Record<ReportRewardSeverity, ReportRewardBundle>> = Object.freeze({
+// зачем: Q4 (координатор 01.10) — награда за жалобу в монетах 300/600/1000;
+// зеркало functions/src/report_replies.ts REPORT_REWARD_TIERS.
+export const REPORT_REWARD_TIERS: Readonly<Record<ReportRewardTierSeverity, ReportRewardBundleV2>> = Object.freeze({
+  none: Object.freeze({ version: 2, severity: 'none', coins: 0 }),
+  minor: Object.freeze({ version: 2, severity: 'minor', coins: 300 }),
+  serious: Object.freeze({ version: 2, severity: 'serious', coins: 600 }),
+  critical: Object.freeze({ version: 2, severity: 'critical', coins: 1000 }),
+});
+
+// зачем: Q4 — точные v1-наборы читаются, чтобы старые неполученные награды
+// (и уже лежащие в очереди claim) не падали на report_reward_bundle_invalid.
+export const REPORT_REWARD_TIERS_V1: Readonly<Record<ReportRewardSeverity, ReportRewardBundleV1>> = Object.freeze({
   none: Object.freeze({ version: 1, severity: 'none', spins: 0, runes: 0, pearls: 0 }),
   minor: Object.freeze({ version: 1, severity: 'minor', spins: 1, runes: 300, pearls: 1 }),
   serious: Object.freeze({ version: 1, severity: 'serious', spins: 2, runes: 600, pearls: 5 }),
   critical: Object.freeze({ version: 1, severity: 'critical', spins: 3, runes: 1000, pearls: 10 }),
   legacy: Object.freeze({ version: 1, severity: 'legacy', spins: 0, runes: 0, pearls: 1 }),
 });
+
+/** Монеты набора: v2 — coins, v1 — руны (тот же кошелёк монет, PM-069). */
+export function reportRewardCoins(bundle: ReportRewardBundle): number {
+  return bundle.version === 2 ? bundle.coins : bundle.runes;
+}
+
+/** Жемчуг старого v1-набора (D70: не начисляется, только для показа истории). */
+export function reportRewardPearls(bundle: ReportRewardBundle): number {
+  return bundle.version === 1 ? bundle.pearls : 0;
+}
+
+/** Есть ли что показать/забрать в интерфейсе (спины не считаются, PM-047). */
+export function reportRewardHasVisibleReward(bundle: ReportRewardBundle): boolean {
+  return reportRewardCoins(bundle) > 0 || reportRewardPearls(bundle) > 0;
+}
 
 const PENDING_KEY_PREFIX = 'report_reward_bundle_claims_v1:';
 const PENDING_CAP = 100;
@@ -48,20 +83,30 @@ export type ReportRewardClaimResult = Readonly<{
 export function normalizeReportRewardBundle(value: unknown, legacyCoins: unknown = 0): ReportRewardBundle {
   if (value && typeof value === 'object' && !Array.isArray(value)) {
     const input = value as Record<string, unknown>;
-    const severity = String(input.severity ?? '').trim() as ReportRewardSeverity;
-    const tier = REPORT_REWARD_TIERS[severity];
-    if (tier
-      && Number(input.version) === 1
-      && Number(input.spins) === tier.spins
-      && Number(input.runes) === tier.runes
-      && Number(input.pearls) === tier.pearls) return tier;
+    const severity = String(input.severity ?? '').trim();
+    const version = Number(input.version);
+    if (version === 2 && Object.prototype.hasOwnProperty.call(REPORT_REWARD_TIERS, severity)) {
+      const tier = REPORT_REWARD_TIERS[severity as ReportRewardTierSeverity];
+      if (Number(input.coins) === tier.coins) return tier;
+    }
+    if (version === 1 && Object.prototype.hasOwnProperty.call(REPORT_REWARD_TIERS_V1, severity)) {
+      const tier = REPORT_REWARD_TIERS_V1[severity as ReportRewardSeverity];
+      if (Number(input.spins) === tier.spins
+        && Number(input.runes) === tier.runes
+        && Number(input.pearls) === tier.pearls) return tier;
+    }
     throw new Error('report_reward_bundle_invalid');
   }
-  return Number(legacyCoins) === 1 ? REPORT_REWARD_TIERS.legacy : REPORT_REWARD_TIERS.none;
+  return Number(legacyCoins) === 1 ? REPORT_REWARD_TIERS_V1.legacy : REPORT_REWARD_TIERS.none;
 }
 
 function hasReward(bundle: ReportRewardBundle): boolean {
+  if (bundle.version === 2) return bundle.coins > 0;
   return bundle.spins > 0 || bundle.runes > 0 || bundle.pearls > 0;
+}
+
+function bundleSpins(bundle: ReportRewardBundle): number {
+  return bundle.version === 1 ? bundle.spins : 0;
 }
 
 function safeMessageId(value: unknown): string {
@@ -86,7 +131,8 @@ function normalizePendingClaim(value: unknown): PendingClaim | null {
       spinsCredited: input.spinsCredited === true,
       updatedAtMs: Math.max(0, Math.trunc(Number(input.updatedAtMs) || 0)),
     };
-  } catch {
+  } catch (e) {
+    DebugLogger.warn('report_reward_bundle:pending_invalid', `[REPORT-REWARD] pending claim dropped: invalid bundle op=${messageId} error=${String(e)}`);
     return null;
   }
 }
@@ -102,7 +148,8 @@ async function readPending(owner: string): Promise<PendingClaim[]> {
       if (claim) byId.set(claim.messageId, claim);
     });
     return [...byId.values()].slice(-PENDING_CAP);
-  } catch {
+  } catch (e) {
+    DebugLogger.warn('report_reward_bundle:pending_read_failed', `[REPORT-REWARD] pending queue unreadable error=${String(e)}`);
     return [];
   }
 }
@@ -144,13 +191,17 @@ function assertCurrent(token: AccountGenerationToken, owner: string): void {
   if (!isCurrentAccountGeneration(token, owner)) throw new Error('report_reward_account_changed');
 }
 
+// зачем: Q4 — монеты (v2 coins и v1 runes — один и тот же кошелёк) идут по
+// существующему пути выдачи монет на телефон: level_spin_star_grants → stars_ledger.
 async function creditRunes(messageId: string, bundle: ReportRewardBundle, token: AccountGenerationToken): Promise<void> {
   const requestId = `report_reward_${safeMessageId(messageId)}`.slice(0, 80);
-  const gifts: ReadonlyArray<Readonly<{ lane: 'base' | 'premium'; giftId: string }>> = bundle.runes === 300
+  const coins = reportRewardCoins(bundle);
+  DebugLogger.info('report_reward_bundle:credit', `[REPORT-REWARD] op=${safeMessageId(messageId)} v=${bundle.version} severity=${bundle.severity} coins=${coins}`);
+  const gifts: ReadonlyArray<Readonly<{ lane: 'base' | 'premium'; giftId: string }>> = coins === 300
     ? [{ lane: 'base', giftId: 'stars_250' }, { lane: 'premium', giftId: 'stars_50' }]
-    : bundle.runes === 600
+    : coins === 600
       ? [{ lane: 'base', giftId: 'stars_500' }, { lane: 'premium', giftId: 'stars_100' }]
-      : bundle.runes === 1000
+      : coins === 1000
         ? [{ lane: 'base', giftId: 'stars_1000' }]
         : [];
   for (const gift of gifts) {
@@ -162,7 +213,7 @@ async function creditRunes(messageId: string, bundle: ReportRewardBundle, token:
       promotionEligibility: 'excluded_compensation',
     }, { syncNow: true });
   }
-  if (gifts.reduce((sum, gift) => sum + Number(gift.giftId.replace('stars_', '')), 0) !== bundle.runes) {
+  if (gifts.reduce((sum, gift) => sum + Number(gift.giftId.replace('stars_', '')), 0) !== coins) {
     throw new Error('report_reward_runes_invalid');
   }
 }
@@ -185,18 +236,18 @@ export async function applyConfirmedReportRewardBundleExtrasFromEvent(
     throw new Error('report_reward_account_changed');
   }
   assertCurrent(token, owner);
-  if (rewardBundle.runes > 0) await creditRunes(cleanMessageId, rewardBundle, token);
+  if (reportRewardCoins(rewardBundle) > 0) await creditRunes(cleanMessageId, rewardBundle, token);
   assertCurrent(token, owner);
   // зачем (PM-047, владелец): спин как механика убран — старая функция выдачи
   // локального спина за отчёт стала всегда-провальной, и эта ветка раньше
   // бросала ошибку на каждый ретрай синхронизатора внешних событий —
   // админ-награда со спином ретраилась бесконечно. Обещание спина отменено —
   // закрываем без начисления.
-  if (rewardBundle.spins > 0) {
+  if (bundleSpins(rewardBundle) > 0) {
     DebugLogger.info(
       'report_reward_bundle:spin_retired',
       `[SPIN-RETIRED] source=admin_report_reward op=${cleanMessageId}`
-      + ` amount=${rewardBundle.spins} promised=spins action=closed_no_credit`
+      + ` amount=${bundleSpins(rewardBundle)} promised=spins action=closed_no_credit`
       + ' reason=PM-047_spin_mechanic_retired',
     );
   }
@@ -221,25 +272,25 @@ async function processClaim(claim: PendingClaim, token: AccountGenerationToken, 
   // зачем: D70/D104 — жемчужная часть набора (pearls) больше не начисляется;
   // монетная часть набора — runes ниже (300/600/1000). Поле pearls остаётся в
   // схеме только ради точного сравнения с уже отправленными сообщениями.
-  if (current.rewardBundle.pearls > 0) {
+  if (reportRewardPearls(current.rewardBundle) > 0) {
     DebugLogger.info(
       'report_reward_bundle:pearls_retired',
-      `[REPORT-REWARD] op=${current.messageId} pearls=${current.rewardBundle.pearls} action=not_credited reason=D70_D104`,
+      `[REPORT-REWARD] op=${current.messageId} pearls=${reportRewardPearls(current.rewardBundle)} action=not_credited reason=D70_D104`,
     );
   }
-  if (!current.runesCredited && current.rewardBundle.runes > 0) {
+  if (!current.runesCredited && reportRewardCoins(current.rewardBundle) > 0) {
     await creditRunes(current.messageId, current.rewardBundle, token);
     current = { ...current, runesCredited: true, updatedAtMs: Date.now() };
     await upsertPending(owner, current);
   }
-  if (!current.spinsCredited && current.rewardBundle.spins > 0) {
+  if (!current.spinsCredited && bundleSpins(current.rewardBundle) > 0) {
     // зачем (PM-047): та же отмена обещания спина, что в
     // applyConfirmedReportRewardBundleExtrasFromEvent — иначе локальная
     // очередь claimReportRewardBundle ретраит вечно на первом же заходе.
     DebugLogger.info(
       'report_reward_bundle:spin_retired',
       `[SPIN-RETIRED] source=report_reward_claim op=${current.messageId}`
-      + ` amount=${current.rewardBundle.spins} promised=spins action=closed_no_credit`
+      + ` amount=${bundleSpins(current.rewardBundle)} promised=spins action=closed_no_credit`
       + ' reason=PM-047_spin_mechanic_retired',
     );
     current = { ...current, spinsCredited: true, updatedAtMs: Date.now() };
@@ -270,8 +321,8 @@ export async function claimReportRewardBundle(
     messageId: cleanMessageId,
     rewardBundle,
     serverConfirmed: false,
-    runesCredited: rewardBundle.runes === 0,
-    spinsCredited: rewardBundle.spins === 0,
+    runesCredited: reportRewardCoins(rewardBundle) === 0,
+    spinsCredited: bundleSpins(rewardBundle) === 0,
     updatedAtMs: Date.now(),
   };
   await upsertPending(owner, claim);

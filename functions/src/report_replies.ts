@@ -104,22 +104,42 @@ function readLeaderboardProjection(
 const REPORT_RESOLUTIONS = ['confirmed_fixed', 'duplicate', 'in_progress', 'rejected', 'unconfirmed'] as const;
 export type ReportResolution = typeof REPORT_RESOLUTIONS[number];
 export type ReportRewardSeverity = 'none' | 'minor' | 'serious' | 'critical' | 'legacy';
-export type ReportRewardBundle = Readonly<{
+type ReportRewardTierSeverity = Exclude<ReportRewardSeverity, 'legacy'>;
+/** v1 (до 01.10): спины + руны + жемчуг. Читается ТОЛЬКО ради старых неполученных наград. */
+export type ReportRewardBundleV1 = Readonly<{
   version: 1;
   severity: ReportRewardSeverity;
   spins: number;
   runes: number;
   pearls: number;
 }>;
+/** v2 (Q4, координатор 01.10): награда только в монетах. */
+export type ReportRewardBundleV2 = Readonly<{
+  version: 2;
+  severity: ReportRewardTierSeverity;
+  coins: number;
+}>;
+export type ReportRewardBundle = ReportRewardBundleV1 | ReportRewardBundleV2;
 
+// зачем: Q4 (координатор 01.10) — награда за жалобу теперь в монетах (300/600/1000),
+// спины и жемчуг убраны из механики (PM-047, D70/D104). Новые ответы пишутся v2.
 export const REPORT_REWARD_TIERS = Object.freeze({
+  none: Object.freeze({ version: 2, severity: 'none', coins: 0 }),
+  minor: Object.freeze({ version: 2, severity: 'minor', coins: 300 }),
+  serious: Object.freeze({ version: 2, severity: 'serious', coins: 600 }),
+  critical: Object.freeze({ version: 2, severity: 'critical', coins: 1000 }),
+} satisfies Record<ReportRewardTierSeverity, ReportRewardBundleV2>);
+
+// зачем: Q4 — точные v1-наборы остаются, чтобы старые неполученные награды
+// проходили claim без падения (клиент сверяет набор побайтно).
+export const REPORT_REWARD_TIERS_V1 = Object.freeze({
   none: Object.freeze({ version: 1, severity: 'none', spins: 0, runes: 0, pearls: 0 }),
   minor: Object.freeze({ version: 1, severity: 'minor', spins: 1, runes: 300, pearls: 1 }),
   serious: Object.freeze({ version: 1, severity: 'serious', spins: 2, runes: 600, pearls: 5 }),
   critical: Object.freeze({ version: 1, severity: 'critical', spins: 3, runes: 1000, pearls: 10 }),
-} satisfies Record<Exclude<ReportRewardSeverity, 'legacy'>, ReportRewardBundle>);
+} satisfies Record<ReportRewardTierSeverity, ReportRewardBundleV1>);
 
-const LEGACY_ONE_PEARL_BUNDLE: ReportRewardBundle = Object.freeze({
+const LEGACY_ONE_PEARL_BUNDLE: ReportRewardBundleV1 = Object.freeze({
   version: 1,
   severity: 'legacy',
   spins: 0,
@@ -152,19 +172,51 @@ function cleanString(value: unknown, maxLen: number): string {
 }
 
 function bundleHasReward(bundle: ReportRewardBundle): boolean {
+  if (bundle.version === 2) return bundle.coins > 0;
   return bundle.spins > 0 || bundle.runes > 0 || bundle.pearls > 0;
 }
 
-function isExactRewardBundle(value: unknown): value is ReportRewardBundle {
-  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+/** Монеты набора: v2 — coins, v1 — руны (это тот же кошелёк монет, PM-069). */
+export function reportRewardBundleCoins(bundle: ReportRewardBundle): number {
+  return bundle.version === 2 ? bundle.coins : bundle.runes;
+}
+
+/** Старое поле `coins` документа = число жемчужин legacy-набора; у v2 всегда 0. */
+function legacyPearlCoins(bundle: ReportRewardBundle): number {
+  return bundle.version === 1 && bundle.severity === 'legacy' ? bundle.pearls : 0;
+}
+
+/**
+ * Точный набор из таблиц: v2 (монеты) или v1 (старые неполученные награды).
+ * Возвращает канонический объект таблицы или null — произвольные суммы не проходят.
+ */
+function exactRewardBundle(value: unknown): ReportRewardBundle | null {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
   const input = value as Record<string, unknown>;
-  const severity = cleanString(input.severity, 16) as Exclude<ReportRewardSeverity, 'legacy'>;
-  const tier = REPORT_REWARD_TIERS[severity];
-  return !!tier
-    && Number(input.version) === tier.version
-    && Number(input.spins) === tier.spins
-    && Number(input.runes) === tier.runes
-    && Number(input.pearls) === tier.pearls;
+  const version = Number(input.version);
+  if (version === 1 && cleanString(input.severity, 16) === 'legacy') {
+    return Number(input.spins) === 0 && Number(input.runes) === 0 && Number(input.pearls) === 1
+      ? LEGACY_ONE_PEARL_BUNDLE
+      : null;
+  }
+  const severity = cleanString(input.severity, 16) as ReportRewardTierSeverity;
+  if (!Object.prototype.hasOwnProperty.call(REPORT_REWARD_TIERS, severity)) return null;
+  if (version === 2) {
+    const tier = REPORT_REWARD_TIERS[severity];
+    const keys = Object.keys(input).sort().join(',');
+    return keys === 'coins,severity,version' && Number(input.coins) === tier.coins ? tier : null;
+  }
+  if (version === 1) {
+    const tier = REPORT_REWARD_TIERS_V1[severity];
+    return Number(input.spins) === tier.spins
+      && Number(input.runes) === tier.runes
+      && Number(input.pearls) === tier.pearls ? tier : null;
+  }
+  return null;
+}
+
+export function isExactRewardBundle(value: unknown): value is ReportRewardBundle {
+  return exactRewardBundle(value) !== null;
 }
 
 export function normalizeReportReplyReward(data: unknown): {
@@ -181,11 +233,18 @@ export function normalizeReportReplyReward(data: unknown): {
 
   let rewardBundle: ReportRewardBundle;
   if (input.rewardBundle !== undefined) {
-    if (!isExactRewardBundle(input.rewardBundle)) {
+    const exact = exactRewardBundle(input.rewardBundle);
+    if (!exact) {
       throw new HttpsError('invalid-argument', 'rewardBundle must match an exact supported tier');
     }
-    const severity = cleanString((input.rewardBundle as Record<string, unknown>).severity, 16) as Exclude<ReportRewardSeverity, 'legacy'>;
-    rewardBundle = REPORT_REWARD_TIERS[severity];
+    // зачем: Q4 — новый ответ всегда пишется в монетах (v2); закешированная
+    // старая админка, приславшая точный v1-набор, получает тот же уровень в v2.
+    if (exact.version === 1) {
+      console.log(JSON.stringify({ event: '[REPORT-REWARD] admin_v1_bundle_upgraded', severity: exact.severity }));
+    }
+    rewardBundle = exact.severity === 'legacy'
+      ? LEGACY_ONE_PEARL_BUNDLE
+      : REPORT_REWARD_TIERS[exact.severity];
   } else {
     const coins = Number(input.coins ?? 0);
     if (!Number.isInteger(coins) || (coins !== 0 && coins !== 1)) {
@@ -214,8 +273,15 @@ export function normalizeStoredReportReplyRewardBundle(
   message: FirebaseFirestore.DocumentData,
 ): ReportRewardBundle {
   if (message.rewardBundle !== undefined) {
+    // зачем: Q4 — сохранённый набор отдаём КАК ЕСТЬ (v1 или v2): клиент сверяет
+    // его побайтно со своим, и апгрейд v1→v2 здесь уронил бы старые награды.
     const resolution = (cleanString(message.resolution, 40) || 'confirmed_fixed') as ReportResolution;
-    return normalizeReportReplyReward({ resolution, rewardBundle: message.rewardBundle }).rewardBundle;
+    const exact = exactRewardBundle(message.rewardBundle);
+    if (!exact) throw new HttpsError('invalid-argument', 'stored rewardBundle must match an exact supported tier');
+    if (bundleHasReward(exact) && resolution !== 'confirmed_fixed') {
+      throw new HttpsError('failed-precondition', 'a reward bundle requires confirmed_fixed');
+    }
+    return exact;
   }
   return normalizeStoredReportReplyClaimAmount(message) === 1
     ? LEGACY_ONE_PEARL_BUNDLE
@@ -367,7 +433,7 @@ export const adminReplyToReport = onCall(
         title,
         body,
         rewardBundle: reward.rewardBundle,
-        coins: reward.rewardBundle.severity === 'legacy' ? reward.rewardBundle.pearls : 0,
+        coins: legacyPearlCoins(reward.rewardBundle),
         resolution: reward.resolution,
         claimed: false,
         claimedAtMs: null,
@@ -391,7 +457,7 @@ export const adminReplyToReport = onCall(
           title,
           body,
           rewardBundle: reward.rewardBundle,
-          coins: reward.rewardBundle.severity === 'legacy' ? reward.rewardBundle.pearls : 0,
+          coins: legacyPearlCoins(reward.rewardBundle),
           resolution: reward.resolution,
           claimed: false,
           claimedAtMs: null,
@@ -423,7 +489,7 @@ export const adminReplyToReport = onCall(
         replyNotificationId: notificationRef.id,
         replyTitle: title,
         replyBody: body,
-        replyCoins: reward.rewardBundle.severity === 'legacy' ? reward.rewardBundle.pearls : 0,
+        replyCoins: legacyPearlCoins(reward.rewardBundle),
         replyRewardBundle: reward.rewardBundle,
         resolution: reward.resolution,
         repliedAt: nowIso,
@@ -494,15 +560,18 @@ export const claimReportReward = onCall(
         });
       }
       // зачем: D70/D104 — жемчужная часть набора (pearls) больше не начисляется:
-      // ни события внешней экономии, ни shard_log. Монеты набора (runes 300/600/1000)
-      // начисляет телефон по подтверждённому клейму (app/report_reward_bundle.ts).
+      // ни события внешней экономии, ни shard_log. Монеты набора (v2 coins или
+      // v1 runes 300/600/1000) начисляет телефон по подтверждённому клейму
+      // (app/report_reward_bundle.ts).
       console.log(JSON.stringify({
         event: 'report_reward_claimed',
+        tag: '[REPORT-REWARD]',
         stableUid,
         messageId,
+        bundleVersion: rewardBundle.version,
         severity: rewardBundle.severity,
-        runes: rewardBundle.runes,
-        pearlsRetired: rewardBundle.pearls,
+        coins: reportRewardBundleCoins(rewardBundle),
+        pearlsRetired: rewardBundle.version === 1 ? rewardBundle.pearls : 0,
         claimedAt: nowIso,
       }));
 

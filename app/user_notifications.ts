@@ -5,6 +5,7 @@ import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
 import { getCanonicalUserId } from './user_id_policy';
 import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 import { resolveArenaStudyTarget, type ArenaStudyTarget } from '../modules/arena/target_registry';
+import type { ReportRewardBundle } from './report_reward_bundle';
 
 /**
  * Клиентский слой единого центра событий (колокольчик на главной).
@@ -88,13 +89,8 @@ export interface UserNotificationReportReply {
   messageId: string;
   title: string;
   body: string;
-  rewardBundle: Readonly<{
-    version: 1;
-    severity: 'none' | 'minor' | 'serious' | 'critical' | 'legacy';
-    spins: number;
-    runes: number;
-    pearls: number;
-  }>;
+  /** v1 (спины/руны/жемчуг) у старых ответов, v2 (монеты) — с Q4 01.10. */
+  rewardBundle: ReportRewardBundle;
   /** Legacy alias retained while cached v1 notifications age out. */
   coins: number;
   claimed: boolean;
@@ -212,19 +208,25 @@ export function normalizeUserNotificationReportReply(value: unknown): UserNotifi
   const bundleRow = row.rewardBundle && typeof row.rewardBundle === 'object' && !Array.isArray(row.rewardBundle)
     ? row.rewardBundle as Record<string, unknown>
     : null;
-  const severity = cleanText(bundleRow?.severity, 16) as UserNotificationReportReply['rewardBundle']['severity'];
+  const severity = cleanText(bundleRow?.severity, 16);
   const tiers: Readonly<Record<string, readonly [number, number, number]>> = {
     none: [0, 0, 0], minor: [1, 300, 1], serious: [2, 600, 5], critical: [3, 1000, 10], legacy: [0, 0, 1],
   };
+  // зачем: Q4 (координатор 01.10) — новые ответы несут награду в монетах (v2).
+  const coinTiers: Readonly<Record<string, number>> = { none: 0, minor: 300, serious: 600, critical: 1000 };
   const tier = tiers[severity];
-  const rewardBundle = bundleRow && Number(bundleRow.version) === 1 && tier
+  const rewardBundle: ReportRewardBundle = bundleRow && Number(bundleRow.version) === 2
+    && Object.prototype.hasOwnProperty.call(coinTiers, severity)
+    && Number(bundleRow.coins) === coinTiers[severity]
+    ? { version: 2, severity: severity as 'none' | 'minor' | 'serious' | 'critical', coins: coinTiers[severity] }
+    : bundleRow && Number(bundleRow.version) === 1 && tier
     && Number(bundleRow.spins) === tier[0]
     && Number(bundleRow.runes) === tier[1]
     && Number(bundleRow.pearls) === tier[2]
-    ? { version: 1 as const, severity, spins: tier[0], runes: tier[1], pearls: tier[2] }
+    ? { version: 1, severity: severity as ReportRewardBundle['severity'], spins: tier[0], runes: tier[1], pearls: tier[2] }
     : coins === 1
-      ? { version: 1 as const, severity: 'legacy' as const, spins: 0, runes: 0, pearls: 1 }
-      : { version: 1 as const, severity: 'none' as const, spins: 0, runes: 0, pearls: 0 };
+      ? { version: 1, severity: 'legacy', spins: 0, runes: 0, pearls: 1 }
+      : { version: 1, severity: 'none', spins: 0, runes: 0, pearls: 0 };
   const claimedAtMsRaw = Math.floor(Number(row.claimedAtMs ?? 0) || 0);
   return {
     messageId,

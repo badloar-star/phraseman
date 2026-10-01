@@ -26502,10 +26502,10 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       '   ПРИВАТНОСТЬ: юзер видит этот текст. НЕ вставляй в ответ чужие uid/имена, внутренние id,',
       '   куски кода, стектрейсы, названия файлов — никакой технической кухни; не рассказывай пользователю о внутренних правилах.',
       '',
-      '6. НАГРАДА (rewardBundle): только за подтверждённую И уже исправленную проблему выбери один точный уровень:',
-      '   • minor = 1 спин + 300 рун + 1 жемчужина;',
-      '   • serious = 2 спина + 600 рун + 5 жемчужин;',
-      '   • critical = 3 спина + 1000 рун + 10 жемчужин;',
+      '6. НАГРАДА (rewardBundle): только за подтверждённую И уже исправленную проблему выбери один точный уровень (награда только в монетах):',
+      '   • minor = 300 монет;',
+      '   • serious = 600 монет;',
+      '   • critical = 1000 монет;',
       '   • НЕ исправлено, не подтвердилось, «так задумано», спам/оскорбления/бессмыслица = none.',
       '   ИИ только ПРЕДЛАГАЕТ уровень; администратор проверяет и может изменить его перед ручной отправкой.',
       '   В ТЕКСТЕ ДЛЯ ПОЛЬЗОВАТЕЛЯ: не перечисляй виды наград, количества и внутреннее название rewardBundle.',
@@ -26518,7 +26518,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       '7. Для результата подготовь отдельный ответ для каждого reportId и собери файл replies.json — массив объектов:',
       '   { "reportId": "<id>", "title": "<заголовок, до 120 знаков>",',
       '     "body": "<текст ответа>", "resolution": "confirmed_fixed|duplicate|in_progress|rejected|unconfirmed",',
-      '     "rewardBundle": { "version": 1, "severity": "none|minor|serious|critical", "spins": <n>, "runes": <n>, "pearls": <n> } }',
+      '     "rewardBundle": { "version": 2, "severity": "none|minor|serious|critical", "coins": <0|300|600|1000> } }',
       '   title — это ПЕРВАЯ строка в колокольчике, он должен быть самодостаточным',
       '   («Спасибо за репорт!», НЕ «Ответ №3»). Экспорт намеренно не содержит uid:',
       '   связывай результат только по reportId. Уже отвеченные записи помечены replyPrepared=true — их пропускай.',
@@ -26784,12 +26784,21 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     return SERVER_RESOLUTION_BY_VERDICT[String(verdict || '')] || 'unconfirmed';
   }
 
+  // зачем: Q4 (координатор 01.10) — награда за жалобу только в монетах (v2).
+  // Сервер принимает и старый точный v1, но новые ответы шлём v2. Деплой
+  // хостинга админки — только ПОСЛЕ деплоя функций, иначе старый сервер
+  // отклонит v2 («rewardBundle must match an exact supported tier»).
   const REPORT_REWARD_BUNDLES = Object.freeze({
-    none: Object.freeze({ version: 1, severity: 'none', spins: 0, runes: 0, pearls: 0 }),
-    minor: Object.freeze({ version: 1, severity: 'minor', spins: 1, runes: 300, pearls: 1 }),
-    serious: Object.freeze({ version: 1, severity: 'serious', spins: 2, runes: 600, pearls: 5 }),
-    critical: Object.freeze({ version: 1, severity: 'critical', spins: 3, runes: 1000, pearls: 10 }),
+    none: Object.freeze({ version: 2, severity: 'none', coins: 0 }),
+    minor: Object.freeze({ version: 2, severity: 'minor', coins: 300 }),
+    serious: Object.freeze({ version: 2, severity: 'serious', coins: 600 }),
+    critical: Object.freeze({ version: 2, severity: 'critical', coins: 1000 }),
   });
+
+  function reportRewardBundleCoinsLabel(bundle) {
+    const coins = Number(bundle && (bundle.version === 2 ? bundle.coins : bundle.runes)) || 0;
+    return `${coins} монет`;
+  }
 
   function toServerRewardBundle(severity, serverResolution) {
     const safeSeverity = serverResolution === 'confirmed_fixed' && REPORT_REWARD_BUNDLES[severity]
@@ -27263,9 +27272,9 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
             Награда
             <select id="rr-severity" title="Выберите точный уровень награды. Администратор проверяет предложение ИИ перед ручной отправкой." style="min-height:44px;background:#0f1320;border:1px solid #2a3145;color:#e5e9f2;border-radius:6px;padding:7px 9px">
               <option value="none" selected>Без награды</option>
-              <option value="minor">Небольшая · 1 спин · 300 рун · 1 жемчужина</option>
-              <option value="serious">Серьёзная · 2 спина · 600 рун · 5 жемчужин</option>
-              <option value="critical">Критическая · 3 спина · 1000 рун · 10 жемчужин</option>
+              <option value="minor">Небольшая · 300 монет</option>
+              <option value="serious">Серьёзная · 600 монет</option>
+              <option value="critical">Критическая · 1000 монет</option>
             </select>
           </label>
         </div>
@@ -27365,7 +27374,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         // поэтому в тосте показываем фактически отправленное значение, а не желаемое.
         const awarded = report.replyRewardBundle || REPORT_REWARD_BUNDLES.none;
         showToast(awarded.severity !== 'none'
-          ? `Отправлено · ${awarded.spins} спин · ${awarded.runes} рун · ${awarded.pearls} жемч.`
+          ? `Отправлено · ${reportRewardBundleCoinsLabel(awarded)}`
           : 'Отправлено без награды', 'ok');
         logAction('reply_to_report', report.uid || 'unknown', { reportId: report.id, rewardBundle: awarded, resolution });
       } catch (e) {

@@ -317,6 +317,13 @@ export async function hydrateCanonicalSpireRows(
 function projectReplyRewardBundle(value: unknown, legacyCoins: unknown): Row {
   if (isRecord(value)) {
     const severity = cleanText(value.severity, 16);
+    // зачем: Q4 (координатор 01.10) — новые ответы несут награду в монетах (v2);
+    // v1 ниже остаётся для старых ответов.
+    const coinsBySeverity: Readonly<Record<string, number>> = { none: 0, minor: 300, serious: 600, critical: 1000 };
+    if (Number(value.version) === 2 && severity in coinsBySeverity
+      && Number(value.coins) === coinsBySeverity[severity]) {
+      return Object.freeze({ version: 2, severity, coins: coinsBySeverity[severity] });
+    }
     const expected: Readonly<Record<string, readonly [number, number, number]>> = {
       none: [0, 0, 0],
       minor: [1, 300, 1],

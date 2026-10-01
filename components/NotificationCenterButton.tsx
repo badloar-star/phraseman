@@ -12,7 +12,13 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
 import AppMessagesInbox from './AppMessagesInbox';
-import { claimReportRewardBundle, resumePendingReportRewardBundleClaims } from '../app/report_reward_bundle';
+import {
+  claimReportRewardBundle,
+  reportRewardCoins,
+  reportRewardHasVisibleReward,
+  reportRewardPearls,
+  resumePendingReportRewardBundleClaims,
+} from '../app/report_reward_bundle';
 import {
   countUnreadNotifications,
   deleteUserNotification,
@@ -344,11 +350,11 @@ function NotificationCenterButton({
     setSelectedId(null);
   }, []);
 
-  const markReportReplyClaimedLocally = useCallback((notificationId: string, messageId: string) => {
+  const markReportReplyClaimedLocally = useCallback((notificationId: string, messageId: string, claimed = true) => {
     setItems((prev) => prev.map((row) => {
       if (row.id !== notificationId && row.reportReply?.messageId !== messageId) return row;
       if (!row.reportReply) return row;
-      return { ...row, reportReply: { ...row.reportReply, claimed: true } };
+      return { ...row, reportReply: { ...row.reportReply, claimed } };
     }));
   }, []);
 
@@ -359,15 +365,25 @@ function NotificationCenterButton({
     // report_reward_bundle.ts). hasReward больше не считает spins, чтобы
     // тир, где остались только спины, не показывал забираемую награду,
     // которая ничего не даст.
-    const hasReward = !!reward && (reward.rewardBundle.runes > 0 || reward.rewardBundle.pearls > 0);
-    if (!reward || !hasReward || reward.claimed || claimingMessageId === reward.messageId) return;
+    const hasReward = !!reward && reportRewardHasVisibleReward(reward.rewardBundle);
+    if (!reward || !hasReward || reward.claimed || claimingMessageId === reward.messageId) {
+      if (__DEV__) console.info('[REPORT-REWARD] claim tap ignored', { messageId: reward?.messageId, hasReward, claimed: reward?.claimed, busy: claimingMessageId });
+      return;
+    }
     hapticTap();
     setClaimErrorMessageId(null);
     setClaimingMessageId(reward.messageId);
+    // зачем: Q4 (координатор 01.10) + Optimistic UI — «Получено» показываем сразу,
+    // монеты догоняют через очередь выдачи; при ошибке откатываем и пишем причину.
+    // Двойной тап закрыт claimingMessageId; durable-очередь claim сама доберёт
+    // начисление при следующем открытии, если сеть отвалилась после подтверждения.
+    markReportReplyClaimedLocally(row.id, reward.messageId, true);
     try {
-      await claimReportRewardBundle(reward.messageId, reward.rewardBundle);
-      markReportReplyClaimedLocally(row.id, reward.messageId);
-    } catch {
+      const result = await claimReportRewardBundle(reward.messageId, reward.rewardBundle);
+      if (__DEV__) console.info('[REPORT-REWARD] claim ok', { messageId: reward.messageId, status: result.status, coins: reportRewardCoins(result.rewardBundle) });
+    } catch (e) {
+      if (__DEV__) console.warn('[REPORT-REWARD] claim failed, rollback', { messageId: reward.messageId, error: String(e) });
+      markReportReplyClaimedLocally(row.id, reward.messageId, false);
       setClaimErrorMessageId(reward.messageId);
     } finally {
       setClaimingMessageId(null);
@@ -432,7 +448,7 @@ function NotificationCenterButton({
         <Text style={[styles.detailMeta, { color: t.textGhost }]}>{timeLabel(row.createdAt)}</Text>
         <Text style={[styles.detailTitle, { color: t.textPrimary }]}>{title}</Text>
         {body ? <Text style={[styles.detailBody, { color: t.textMuted }]}>{body}</Text> : null}
-        {(reward.rewardBundle.runes > 0 || reward.rewardBundle.pearls > 0) ? (
+        {reportRewardHasVisibleReward(reward.rewardBundle) ? (
           <View style={[styles.rewardCard, { backgroundColor: t.bgSurface, borderColor: 'rgba(99,217,143,0.35)' }]}>
             <Reanimated.View entering={reduceMotion ? undefined : ZoomIn.duration(420).springify()} style={styles.rewardTop}>
               <View style={styles.rewardIcon}>
@@ -453,16 +469,18 @@ function NotificationCenterButton({
               {/* зачем (PM-047, владелец): строка "+N спин" убрана — спин
                   больше не начисляется (grantLocalReportRewardSpins no-op),
                   обещание в UI отменено вместе с механикой. */}
-              {reward.rewardBundle.runes > 0 ? (
+              {/* зачем: Q4 (координатор 01.10) — награда показывается в монетах
+                  (v2 coins; у старых v1 руны — тот же кошелёк монет). */}
+              {reportRewardCoins(reward.rewardBundle) > 0 ? (
                 <Reanimated.View entering={reduceMotion ? undefined : FadeInDown.delay(180).duration(260)} style={styles.rewardLine}>
                   <Ionicons name="star-outline" size={21} color="#F6C453" />
-                  <Text style={[styles.rewardLineText, { color: t.textPrimary }]}>{`+${reward.rewardBundle.runes} ${triLang(lang as Lang, { ru: 'рун', uk: 'рун', en: 'runes', es: 'runas', 'pt-BR': 'runas', vi: 'rune', id: 'rune', tr: 'rün', pl: 'run' })}`}</Text>
+                  <Text style={[styles.rewardLineText, { color: t.textPrimary }]}>{`+${reportRewardCoins(reward.rewardBundle)} ${triLang(lang as Lang, { ru: 'монет', uk: 'монет', en: 'coins', es: 'monedas', 'pt-BR': 'moedas', vi: 'xu', id: 'koin', tr: 'jeton', pl: 'monet' })}`}</Text>
                 </Reanimated.View>
               ) : null}
-              {reward.rewardBundle.pearls > 0 ? (
+              {reportRewardPearls(reward.rewardBundle) > 0 ? (
                 <Reanimated.View entering={reduceMotion ? undefined : FadeInDown.delay(270).duration(260)} style={styles.rewardLine}>
                   <Ionicons name="diamond-outline" size={21} color="#39B985" />
-                  <Text style={[styles.rewardLineText, { color: t.textPrimary }]}>{`+${reward.rewardBundle.pearls} ${triLang(lang as Lang, { ru: 'жемчугов', uk: 'перлин', en: 'pearls', es: 'perlas', 'pt-BR': 'pérolas', vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł' })}`}</Text>
+                  <Text style={[styles.rewardLineText, { color: t.textPrimary }]}>{`+${reportRewardPearls(reward.rewardBundle)} ${triLang(lang as Lang, { ru: 'жемчугов', uk: 'перлин', en: 'pearls', es: 'perlas', 'pt-BR': 'pérolas', vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł' })}`}</Text>
                 </Reanimated.View>
               ) : null}
             </View>
@@ -502,8 +520,7 @@ function NotificationCenterButton({
       && !!row.reportReply
       && !row.reportReply.claimed
       // зачем (PM-047): spins больше не считается наградой в UI (см. claimReportReward выше).
-      && (row.reportReply.rewardBundle.runes > 0
-        || row.reportReply.rewardBundle.pearls > 0);
+      && reportRewardHasVisibleReward(row.reportReply.rewardBundle);
     const hasAvatar = !!row.fromAvatar;
     return (
       <TouchableOpacity

@@ -7,7 +7,10 @@ import {
   reportDocumentAllowsCoin,
   reportRewardClaimReceipt,
   reportRecipientIdentityLookup,
+  reportRewardBundleCoins,
   requireReportReplyPermission,
+  isExactRewardBundle,
+  REPORT_REWARD_TIERS,
 } from './report_replies';
 
 describe('report reply reward bundle contract', () => {
@@ -38,8 +41,9 @@ describe('report reply reward bundle contract', () => {
     expect(normalizeStoredReportReplyRewardBundle({ coins: 1 })).toEqual({
       version: 1, severity: 'legacy', spins: 0, runes: 0, pearls: 1,
     });
+    // зачем: Q4 — «без награды» теперь пустой v2-набор (монет 0); забирать нечего.
     expect(normalizeStoredReportReplyRewardBundle({ coins: 0 })).toEqual({
-      version: 1, severity: 'none', spins: 0, runes: 0, pearls: 0,
+      version: 2, severity: 'none', coins: 0,
     });
     expect(() => normalizeStoredReportReplyRewardBundle({
       resolution: 'confirmed_fixed',
@@ -66,23 +70,75 @@ describe('report reply reward bundle contract', () => {
       })).toThrow(HttpsError);
       expect(normalizeReportReplyReward({ resolution, rewardBundle: { version: 1, severity: 'none', spins: 0, runes: 0, pearls: 0 } })).toEqual({
         resolution,
-        rewardBundle: { version: 1, severity: 'none', spins: 0, runes: 0, pearls: 0 },
+        rewardBundle: { version: 2, severity: 'none', coins: 0 },
       });
     },
   );
 
+  // зачем: Q4 (координатор 01.10) — новый ответ пишется в монетах (v2); точный
+  // v1-набор из закешированной админки апгрейдится до того же уровня в v2.
   test.each([
     ['minor', 1, 300, 1],
     ['serious', 2, 600, 5],
     ['critical', 3, 1000, 10],
-  ] as const)('accepts the exact %s tier', (severity, spins, runes, pearls) => {
+  ] as const)('accepts the exact v1 %s tier and writes it as v2 coins', (severity, spins, runes, pearls) => {
     expect(normalizeReportReplyReward({
       resolution: 'confirmed_fixed',
       rewardBundle: { version: 1, severity, spins, runes, pearls },
     })).toEqual({
       resolution: 'confirmed_fixed',
-      rewardBundle: { version: 1, severity, spins, runes, pearls },
+      rewardBundle: { version: 2, severity, coins: runes },
     });
+  });
+
+  test.each([
+    ['minor', 300],
+    ['serious', 600],
+    ['critical', 1000],
+  ] as const)('accepts the exact v2 %s tier in coins', (severity, coins) => {
+    expect(REPORT_REWARD_TIERS[severity]).toEqual({ version: 2, severity, coins });
+    expect(normalizeReportReplyReward({
+      resolution: 'confirmed_fixed',
+      rewardBundle: { version: 2, severity, coins },
+    })).toEqual({ resolution: 'confirmed_fixed', rewardBundle: { version: 2, severity, coins } });
+    expect(reportRewardBundleCoins({ version: 2, severity, coins })).toBe(coins);
+  });
+
+  test('rejects custom v2 coin amounts and extra v2 fields', () => {
+    for (const rewardBundle of [
+      { version: 2, severity: 'minor', coins: 301 },
+      { version: 2, severity: 'critical', coins: 5000 },
+      { version: 2, severity: 'minor', coins: 300, pearls: 1 },
+      { version: 3, severity: 'minor', coins: 300 },
+    ]) {
+      expect(isExactRewardBundle(rewardBundle)).toBe(false);
+      expect(() => normalizeReportReplyReward({ resolution: 'confirmed_fixed', rewardBundle })).toThrow(HttpsError);
+    }
+  });
+
+  test('claim path returns stored v1 bundles unchanged so old unclaimed rewards keep working', () => {
+    const stored = { version: 1, severity: 'serious', spins: 2, runes: 600, pearls: 5 } as const;
+    expect(normalizeStoredReportReplyRewardBundle({ resolution: 'confirmed_fixed', rewardBundle: stored })).toEqual(stored);
+    expect(reportRewardBundleCoins(stored)).toBe(600);
+    expect(normalizeStoredReportReplyRewardBundle({
+      resolution: 'confirmed_fixed',
+      rewardBundle: { version: 1, severity: 'legacy', spins: 0, runes: 0, pearls: 1 },
+    })).toEqual({ version: 1, severity: 'legacy', spins: 0, runes: 0, pearls: 1 });
+  });
+
+  test('claim path returns stored v2 coin bundles and rejects tampered ones', () => {
+    expect(normalizeStoredReportReplyRewardBundle({
+      resolution: 'confirmed_fixed',
+      rewardBundle: { version: 2, severity: 'minor', coins: 300 },
+    })).toEqual({ version: 2, severity: 'minor', coins: 300 });
+    expect(() => normalizeStoredReportReplyRewardBundle({
+      resolution: 'confirmed_fixed',
+      rewardBundle: { version: 2, severity: 'minor', coins: 3000 },
+    })).toThrow(HttpsError);
+    expect(() => normalizeStoredReportReplyRewardBundle({
+      resolution: 'duplicate',
+      rewardBundle: { version: 2, severity: 'minor', coins: 300 },
+    })).toThrow(HttpsError);
   });
 
   test('rejects custom or mixed tier quantities', () => {

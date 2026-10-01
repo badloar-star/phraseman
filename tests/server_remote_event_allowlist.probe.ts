@@ -14,8 +14,12 @@ const retiredExports = [
 for (const name of retiredExports) {
   assert.doesNotMatch(source, new RegExp(`export const ${name}\\b`, 'u'), `${name} remains exported`);
 }
+// зачем (01.10): giftsToCoinsMigrationReport — намеренный админ-отчёт миграции подарков в монеты
+// (Q12, только чтение), а не возврат удалённого события. Разрешён ровно этот экспорт.
+const ALLOWED_RETIRED_TOKEN_LINES = [/^export \{ giftsToCoinsMigrationReport \} from "\.\/gifts_to_coins_report";$/u];
+const scannedSource = source.split(/\r?\n/u).filter((line) => !ALLOWED_RETIRED_TOKEN_LINES.some((re) => re.test(line.trim()))).join('\n');
 for (const token of ['leagueFinalize', 'resetWeeklyXp', 'seasonPass', 'xp_boost', 'max_voice', 'pearls_to_coins', 'gifts_to_coins']) {
-  assert.doesNotMatch(source, new RegExp(token, 'iu'), `retired remote-event token remains: ${token}`);
+  assert.doesNotMatch(scannedSource, new RegExp(token, 'iu'), `retired remote-event token remains: ${token}`);
 }
 assert.match(source, /cleanupExpiredAppMessagesCron/u);
 assert.match(source, /reEngagePushCron/u);

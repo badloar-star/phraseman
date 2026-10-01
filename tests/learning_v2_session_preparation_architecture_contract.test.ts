@@ -8,7 +8,7 @@ async function main(): Promise<void> {
 const lessons = readFileSync("app/(tabs)/lessons.tsx", "utf8");
 const rootLayout = readFileSync("app/_layout.tsx", "utf8");
 const pulse = readFileSync(
-  "components/learning-v2/LearningV2PulseCourse.tsx",
+  "components/learning-v2/LearningV2ChaptersCourse.tsx",
   "utf8",
 );
 const sheet = readFileSync(
@@ -50,13 +50,16 @@ assert.match(
   /learningV2FounderPassVisible[\s\S]{0,1800}prewarmCurrentLearningV2SessionOnEntry/,
   "Founder Pass time must be used to prepare the current session",
 );
+// зачем (координатор §49, 2026-10-02): карта уроков с 30.09 — аккордеон глав
+// LearningV2ChaptersCourse (4fa4ab32b); прокручиваемая карта LearningV2PulseCourse
+// не рендерилась и удалена. Прогрев повторов теперь срабатывает при раскрытии
+// главы, а не после остановки прокрутки — сторожим это и отсутствие вечных анимаций.
 assert.match(
   pulse,
-  /onVisibleSessionsSettled/,
-  "the map must report visible sessions after scrolling settles",
+  /props\.onVisibleSessionsSettled\?\.\(selectedLessonOrdinal, visible\)/,
+  "the chapters map must report the sessions of an expanded chapter for prewarm",
 );
-assert.match(pulse, /onMomentumScrollEnd=/);
-assert.match(pulse, /onScrollEndDrag=/);
+assert.match(lessons, /onVisibleSessionsSettled=\{handleLearningV2VisibleSessionsSettled\}/);
 
 const pressHandler = lessons.slice(
   lessons.indexOf("const handleLearningV2SessionPress"),

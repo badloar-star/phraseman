@@ -905,3 +905,19 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 2. **Откат 7B (выключатель старой синхронизации) не дописывает карточки в старое облако** — снимок последней синхронизации уже содержит новое значение → после выключения облако считается актуальным. Пакет 8H после 8G. До его починки 7B включать нельзя (он и так за force_update).
 - 🟡 Логи диплинка `[V2-PAGE] deeplink:url_event/push` пишут ссылку целиком с параметрами (в тесте — пароль dev-входа) — кто владелец `app/_layout.tsx` deeplink-логов? Иначе возьму сам.
 - Эмулятор отдан «Дизайну»; мне ещё ~20 минут на D/E/H после него.
+
+#### §49 исполнено: мёртвая карта удалена, nickname оживлён (2026-10-02)
+
+**Удаление `LearningV2PulseCourse`** (проверено: 0 импортов в app/components, только 2 комментария в lessons.tsx). Удалены компонент, `learning_v2_owner_selection`, `learning_v2_owner_selected_motion_variant_contract` и `learning_v2_map_geometry_order_gate` (TDZ-сторож ровно этого файла). Но файл читали по пути ещё 11 сторожей — каждый разобран, чтобы удаление не уронило их ENOENT:
+- **перенесены на живую карту `LearningV2ChaptersCourse` и зелёные:** dictionary_visibility, remote_audio_pack; motion_performance и session_preparation — гарантия переписана: прогрев повторов теперь срабатывает при раскрытии главы (`toggleChapter → onVisibleSessionsSettled`), вечных анимаций нет; continuous_map_perf — 21 кейс про прокрутку/кружки/SVG-путь мёртвой карты снят, 12 кейсов про живую карту и общие модули оставлены (12/12 ✅);
+- **из списков файлов убрана запись:** liquid_glass_source_contract (27/27 ✅), owner_settings_import_gate (PASS), chapters_route_contract (PASS, он и проверял, что пульс-карта не рендерится);
+- записи удалённого набора убраны из jest.rntl.config и tests/jest.learning-v2-ui-regressions.cjs;
+- **были красными ещё ДО правки (на HEAD против пульс-карты), путь перенаправлен, остаются красными:** learning_v2_legacy_lessons_entry gate (ассет feature-intro), learning_v2_owner_final_ui_contract gate (styles.mapHeaderTitle), **learning_v2_minimum_star_unlock_gate — «completion synchronization must not publish a zero-star attempt as passed»: возможный реальный баг (попытка с 0 звёзд засчитывается как пройденная?) — разобрать отдельно с логом.**
+
+**nickname_edit_modal_availability ✅ 9/9** — немой AggregateError развёрнут трассой [NICK-AGG]: мок AccessibilityInfo без isReduceMotionEnabled, затем Keyboard без addListener. Переопределения переведены слоем поверх настоящих объектов. Теперь реально исполняются: дебаунс проверки ника, игнор устаревшего ответа, кэш, откат оптимистичного ника при «занято».
+
+**Итог rntl: 29 из 31** (§48: 28 из 32). Typecheck 0 ошибок после удаления.
+
+**Остаток (2 набора, живые экраны):**
+- learning_v2_new_word_encounter_overlay — после мока expo-speech набор грузится дальше и падает на `StyleSheet` из react-native = undefined при загрузке модуля (ReportErrorButton через FlashcardListItem); подозрение — автомок tests/__mocks__/react-native.js (roots включают tests, ручные моки node-модулей там применяются автоматически) — проверить следующим шагом;
+- learning_v2_horizons_native — 13 кейсов «Invalid attempt to destructure non-iterable instance» + динамический import в vm (energy_peek_cache) — разобрать с трассой.

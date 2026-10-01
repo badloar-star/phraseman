@@ -31,7 +31,6 @@ module.exports = {
     '<rootDir>/tests/irregular_verbs_attempts_integration.test.tsx',
     '<rootDir>/tests/learning_v2_horizons_native.test.tsx',
     '<rootDir>/tests/learning_v2_new_word_encounter_overlay.test.tsx',
-    '<rootDir>/tests/learning_v2_owner_selection.test.tsx',
     '<rootDir>/tests/learning_v2_practice_viewport.test.tsx',
     '<rootDir>/tests/learning_v2_rune_flight_lifecycle.test.tsx',
     '<rootDir>/tests/lesson_session_attempts_integration.test.tsx',
@@ -74,6 +73,7 @@ module.exports = {
     '^react-native-reanimated$': 'react-native-reanimated/mock',
     '^expo-router$': '<rootDir>/tests/__mocks__/expo-router.js',
     '^expo-audio$': '<rootDir>/tests/__mocks__/expo-audio.js',
+    '^expo-speech$': '<rootDir>/tests/__mocks__/expo-speech.js',
     // Отступы безопасной зоны без нативного провайдера (именованные экспорты).
     '^react-native-safe-area-context$': '<rootDir>/tests/__mocks__/react-native-safe-area-context.js',
   },

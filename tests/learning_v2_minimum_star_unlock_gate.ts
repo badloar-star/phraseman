@@ -30,7 +30,7 @@ assert.match(
 );
 
 const map = readFileSync(
-  resolve(process.cwd(), "components/learning-v2/LearningV2PulseCourse.tsx"),
+  resolve(process.cwd(), "components/learning-v2/LearningV2ChaptersCourse.tsx"),
   "utf8",
 );
 assert.match(

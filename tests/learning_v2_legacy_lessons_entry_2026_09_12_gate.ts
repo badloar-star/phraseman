@@ -10,7 +10,7 @@ const requestedIntro = readFileSync(
 );
 const featureAssets = readFileSync("app/feature_intro_assets.ts", "utf8");
 const pulseCourse = readFileSync(
-  "components/learning-v2/LearningV2PulseCourse.tsx",
+  "components/learning-v2/LearningV2ChaptersCourse.tsx",
   "utf8",
 );
 

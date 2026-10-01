@@ -7,7 +7,7 @@ import { readFileSync } from "node:fs";
 async function main(): Promise<void> {
 const lessons = readFileSync("app/(tabs)/lessons.tsx", "utf8");
 const course = readFileSync(
-  "components/learning-v2/LearningV2PulseCourse.tsx",
+  "components/learning-v2/LearningV2ChaptersCourse.tsx",
   "utf8",
 );
 const overlay = readFileSync(

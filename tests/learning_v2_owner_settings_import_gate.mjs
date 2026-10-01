@@ -30,7 +30,7 @@ for (const [page, scope] of Object.entries({ lessons: 'atlas/lessons/*', map: 'a
 }
 vm.runInNewContext(fs.readFileSync(dir + 'data.js', 'utf8'), sandbox);
 assert.deepEqual(Array.from(native.exports.LEARNING_V2_OWNER_EN_TITLES_RU), Array.from(sandbox.window.V2_DESIGN_DATA.lessons, lesson => lesson.title));
-for (const file of ['app/(tabs)/lessons.tsx', 'components/learning-v2/LearningV2PulseCourse.tsx', 'components/learning-v2/LearningV2NewWordEncounterOverlay.tsx', 'components/learning-v2/LearningV2WordPocketOverlayV1.tsx', 'components/LearningV2SessionOutcomeSheet.tsx', 'app/learning_v2_session_intro.tsx']) {
+for (const file of ['app/(tabs)/lessons.tsx', 'components/learning-v2/LearningV2NewWordEncounterOverlay.tsx', 'components/learning-v2/LearningV2WordPocketOverlayV1.tsx', 'components/LearningV2SessionOutcomeSheet.tsx', 'app/learning_v2_session_intro.tsx']) {
   const output = ts.transpileModule(fs.readFileSync(file, 'utf8'), { fileName: file, reportDiagnostics: true, compilerOptions: { jsx: ts.JsxEmit.React, target: ts.ScriptTarget.ES2022 } });
   assert.equal(output.diagnostics?.filter(item => item.category === ts.DiagnosticCategory.Error).length, 0, file);
 }

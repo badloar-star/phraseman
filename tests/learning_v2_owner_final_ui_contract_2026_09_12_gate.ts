@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 const lessons = readFileSync("app/(tabs)/lessons.tsx", "utf8");
-const pulse = readFileSync("components/learning-v2/LearningV2PulseCourse.tsx", "utf8");
+const pulse = readFileSync("components/learning-v2/LearningV2ChaptersCourse.tsx", "utf8");
 const modal = readFileSync("components/LearningV2SessionOutcomeSheet.tsx", "utf8");
 const energyBar = readFileSync("components/EnergyBar.tsx", "utf8");
 const pocket = readFileSync("components/learning-v2/LearningV2WordPocketOverlayV1.tsx", "utf8");

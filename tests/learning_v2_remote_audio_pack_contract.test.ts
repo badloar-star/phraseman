@@ -23,7 +23,7 @@ const legacyFallback = read("app/learning_v2_lesson1_audio_assets.ts");
 const esGenerator = read("scripts/generate_es_session01_production_audio.mjs");
 const pack = read("app/learning_v2_lesson_audio_pack_v1.ts");
 const lessonAudioIndex = read("app/learning_v2_factory_lesson_audio_index_v1.generated.ts");
-const pulseCourse = read("components/learning-v2/LearningV2PulseCourse.tsx");
+const pulseCourse = read("components/learning-v2/LearningV2ChaptersCourse.tsx");
 const modeCopy = read("modules/learning-v2/modes/mode_copy_v1.ts");
 
 assert.doesNotMatch(generated, /require\([^\n]+\.mp3["']\)/u);

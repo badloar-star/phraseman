@@ -10,12 +10,19 @@ const mockAnnounceForAccessibility = jest.fn();
 // исполнялся. Переопределения теперь — слой поверх настоящего модуля (прототип), всё
 // неперечисленное берётся из react-native, ленивые геттеры не трогаются.
 jest.mock('react-native', () => Object.setPrototypeOf({
-  AccessibilityInfo: { announceForAccessibility: (...args: unknown[]) => mockAnnounceForAccessibility(...args) },
+  // Шпион объявления поверх настоящего AccessibilityInfo: экран теперь спрашивает и
+  // isReduceMotionEnabled (hooks/use_reduce_motion) — голый объект ронял рендер
+  // «немым» AggregateError (развёрнуто трассой [NICK-AGG]).
+  AccessibilityInfo: Object.setPrototypeOf(
+    { announceForAccessibility: (...args: unknown[]) => mockAnnounceForAccessibility(...args) },
+    jest.requireActual('react-native').AccessibilityInfo,
+  ),
   ActivityIndicator: 'ActivityIndicator',
   Alert: { alert: jest.fn() },
-  Keyboard: { dismiss: jest.fn() },
+  // Клавиатура/платформа — тоже слоем: экран подписывается на Keyboard.addListener.
+  Keyboard: Object.setPrototypeOf({ dismiss: jest.fn() }, jest.requireActual('react-native').Keyboard),
   Modal: 'Modal',
-  Platform: { OS: 'ios' },
+  Platform: Object.setPrototypeOf({ OS: 'ios' }, jest.requireActual('react-native').Platform),
   Pressable: 'Pressable',
   Text: 'Text',
   TextInput: 'TextInput',

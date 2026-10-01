@@ -6,7 +6,7 @@ import { readFileSync } from "node:fs";
 // исполнялась. Тело обёрнуто в один test; вне jest (npx tsx) оно запускается напрямую.
 async function main(): Promise<void> {
 const course = readFileSync(
-  "components/learning-v2/LearningV2PulseCourse.tsx",
+  "components/learning-v2/LearningV2ChaptersCourse.tsx",
   "utf8",
 );
 const outcome = readFileSync(
@@ -14,19 +14,13 @@ const outcome = readFileSync(
   "utf8",
 );
 
-// Viewability may update a ref while scrolling, but repeat preparation must
-// wait until the list is fully settled. In particular, a drag-end callback
-// must be cancelled when native momentum begins.
-assert.match(course, /visibleSessionRowsRef = useRef/);
-assert.match(course, /onViewableItemsChangedRef = useRef/);
-assert.match(course, /scheduleVisibleSessionsSettledAfterDrag/);
-assert.match(course, /cancelVisibleSessionsSettledAfterDrag/);
-assert.match(course, /onMomentumScrollBegin=\{cancelVisibleSessionsSettledAfterDrag\}/);
-assert.match(course, /onMomentumScrollEnd=\{handleMomentumScrollEnd\}/);
-assert.match(course, /onScrollEndDrag=\{scheduleVisibleSessionsSettledAfterDrag\}/);
-assert.doesNotMatch(course, /withRepeat/);
-assert.match(course, /removeClippedSubviews/);
-assert.match(course, /getItemLayout=/);
+// зачем (координатор §49, 2026-10-02): карта уроков с 30.09 — аккордеон глав
+// LearningV2ChaptersCourse (4fa4ab32b); прокручиваемая карта LearningV2PulseCourse
+// не рендерилась и удалена. Прогрев повторов теперь срабатывает при раскрытии
+// главы, а не после остановки прокрутки — сторожим это и отсутствие вечных анимаций.
+const toggleChapter = course.slice(course.indexOf("const toggleChapter = useCallback"), course.indexOf("const openLesson = useCallback"));
+assert.match(toggleChapter, /if \(next !== null\) \{[\s\S]*props\.onVisibleSessionsSettled\?\.\(/);
+assert.doesNotMatch(course, /withRepeat|Animated\.loop/);
 
 assert.match(outcome, /const sceneProgress = useSharedValue\(0\)/);
 assert.match(outcome, /const leave = useCallback/);

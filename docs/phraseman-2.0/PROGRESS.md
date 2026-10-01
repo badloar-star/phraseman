@@ -1604,3 +1604,4 @@
   Q8 D18 main TTS path (open) — confirm «OpenAI clip of the card language, device voice only on exact match» (D128) as the single path.
   Q9 PM-080: approved list of coin sources (D104 reports/mailings/collection bonuses, D105 roulette, D109 reports, practiceRuneGrant) — confirm; server videoWatchRunesClaim export to remove after release.
   Q10 PM-200: practice reminders allowlist — which reminders stay.
+2026-10-01 — OWNER (direct, in this session): «Больше не останавливай работу, чтобы у меня что-либо спрашивать… сессия-координатор обязана принимать решения, все вопросы направляй ему». Q1–Q10 sent to the coordinator session («Сессии с таймером и автоматизацией»); answers will be recorded as «РЕШЕНО ЗА ВЛАДЕЛЬЦА (координатор)».

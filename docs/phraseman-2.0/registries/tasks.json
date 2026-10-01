@@ -18,7 +18,9 @@
         "id": "PM-001-A1",
         "text": "Сопоставлены локальный HEAD, удалённая ветка, app/build version и опубликованный релиз",
       "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (владелец/консоль стора): HEAD, origin, версия 1.6.24(130) сопоставлены (docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md), но какая сборка опубликована в сторах и её SHA из репозитория не определить"
+        ]
       },
       {
         "id": "PM-001-A2",
@@ -123,15 +125,15 @@
         "text": "Каждый новый найденный пункт имеет source locator, ID, статус и задачу",
         "accepted": false,
       "evidence": [
-        "Owner decision and product notes define coin rank, author title and paid profile card as separate concepts; runtime identity probe passes. Full purchase/visibility flow acceptance remains open."
-      ]
+          "NOT_MET: tools/pm003_source_reconcile.mjs — 258 требований, у всех есть задача, 216 locator-ов сверены 0 расхождений; но 32 из 68 пунктов расшифровки скриншотов (S01,S06,S08,... см. docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md) без привязки к требованию/задаче"
+        ]
       },
       {
         "id": "PM-003-A2",
         "text": "неподтверждённые обрезанные строки отмечены отдельно",
         "accepted": false,
         "evidence": [
-          "tests/pm019_identity_separation.probe.ts: PM-019 IDENTITY SEPARATION: PASS (public identity surfaces contain no XP and render coin-rank plus separate profile-card fields)"
+          "NOT_MET: обрезанные места отмечены только в тексте расшифровки (S12, S57); отдельного перечня со статусом «не подтверждено» в реестре нет (docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md)"
         ]
       }
     ],
@@ -202,7 +204,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "ready_audit",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -213,24 +215,24 @@
         "text": "Каждый first-party файл классифицирован",
       "accepted": true,
       "evidence": [
-        "2026-09-28 bounded runtime scan: no separate avatar-library token/module references in app, components, modules, hooks or functions/src"
-      ]
+          "docs/phraseman-2.0/tools/build_file_inventory.mjs: git ls-files 44534 файлов, классифицировано 44534, unclassified=0; registries/file_inventory.json (docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md)"
+        ]
       },
       {
         "id": "PM-005-A2",
         "text": "отдельно native/server/assets/tests/generated/vendor",
       "accepted": true,
       "evidence": [
-        "app messages visibility/background suites PASS 22/22",
-        "user notifications contract PASS 30/30",
-        "server remote-event and Firestore listener allowlists PASS"
-      ]
+          "file_inventory.json counts: native 35, server 1681, assets 5349, tests 4024, generated 2128, vendor 0 (node_modules не в git — исключение записано); категории отдельно"
+        ]
       },
       {
         "id": "PM-005-A3",
         "text": "нет заявления о 100% аудите без знаменателя и исключений",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "file_inventory.json: status CLASSIFIED_BY_PATH_NOT_CONTENT_AUDITED, denominator=44534, exclusions[] и not_done[] (граф зависимостей/release_reachable не построены) — заявления о 100% аудите нет"
+        ]
       }
     ],
     "depends_on": [],
@@ -363,7 +365,9 @@
         "id": "PM-008-A1",
         "text": "Есть экран, ключ локализации, скриншот/контекст, решение оставить/сократить/удалить и обязательность текста",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (владелец/дизайн + эмулятор): единой таблицы ключей нет, тексты в ~30 файлах *copy.ts и инлайн в 575 .tsx; решение оставить/сократить/удалить и скриншоты — вне агента; см. docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md"
+        ]
       }
     ],
     "depends_on": [],
@@ -451,13 +455,17 @@
         "id": "PM-010-A1",
         "text": "Release-сборка, устройство, ОС, сеть, cold/warm start, tap latency, память и повторный вход записаны",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (нужно устройство/release-сборка): методика с adb-замерами cold/warm start, tap latency, память, повторный вход в docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md"
+        ]
       },
       {
         "id": "PM-010-A2",
         "text": "dev bundling не смешан со стартом установленного приложения",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (нужно устройство/release-сборка): правило «бандлер выключен, release=true» записано в методике docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md, замеров нет"
+        ]
       }
     ],
     "depends_on": [],
@@ -536,14 +544,18 @@
       {
         "id": "PM-012-A1",
         "text": "Нужный набор находится без обхода наград/лиги/курса",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md: путь ролик→фразы→карточки→тренировка и «Из видео»→ролик по videoId по коду; нет руны/XP/лиги/наград (grep пусто); tests/video_phrase_set_packs.test.ts 4/4, tests/video_pack_phrase_moment.test.ts 10/10"
+        ]
       },
       {
         "id": "PM-012-A2",
         "text": "сценарий включён в критерии каждого крупного экрана",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (решение координатора): сценарий описан в docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md, но в чек-лист/критерии каждого крупного экрана не вписан — нужно решение, куда (FINAL_PHASE.md п.1 или критерии задач экранов)"
+        ]
       }
     ],
     "depends_on": [],
@@ -848,14 +860,18 @@
       {
         "id": "PM-018-A1",
         "text": "Удаление доступно бесплатно",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "app/flashcards/custom_cards_store.ts deleteCustomCard — без списаний, журнал удалений + undo; tests/fc_custom_cards_store.test.ts 11/11 (docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md)"
+        ]
       },
       {
         "id": "PM-018-A2",
         "text": "стоимость защищена лимитами создания/загрузки и объёма, а не удержанием пользовательских данных",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (владелец/координатор): D17 PROPOSED, gate PROPOSED_SCOPE_APPROVED не снят; есть FREE_CUSTOM_CARD_LIMIT=50 (Plus безлимит), серверных rate-limit на создание/публикацию наборов нет — числа лимита не выбраны (docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md)"
+        ]
       }
     ],
     "depends_on": [],
@@ -981,7 +997,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -990,14 +1006,18 @@
       {
         "id": "PM-021-A1",
         "text": "Ни один экран этого макета не считается утверждённым",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/sources/03_design_rejection.txt + R021 (отклонён дословно); PhraseMan_Home_Graphite.png в git нет, нигде не назначен утверждённым (docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md)"
+        ]
       },
       {
         "id": "PM-021-A2",
         "text": "реализация дизайна заблокирована до новой визуальной приёмки",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "gates.json DESIGN_APPROVED_FOR_VISIBLE_CHANGES стоит на 108 задачах registries/tasks.json; приёмка нового дизайна — по макетам docs/design/v2-app (D73/D115/D125/D131) (docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md)"
+        ]
       }
     ],
     "depends_on": [],

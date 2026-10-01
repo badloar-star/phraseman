@@ -1,6 +1,174 @@
 {
-  "status": "NOT_YET_AUDITED",
-  "purpose": "Форма для фактического аудита. Пустые entries не означают, что объектов нет. Не публиковать данные покупателей.",
+  "status": "CLASSIFIED_BY_PATH_NOT_CONTENT_AUDITED",
+  "purpose": "PM-005: каждому отслеживаемому git файлу присвоена ровно одна категория по пути. Это НЕ построчный аудит и НЕ реестр зависимостей.",
+  "generated_at_sha": "a15901ee47807bbdef9dde7d8c7ef63a80037474",
+  "denominator": {
+    "source": "git ls-files",
+    "tracked_files": 44534,
+    "classified": 44534,
+    "unclassified": 0
+  },
+  "exclusions": [
+    "Не отслеживаемые git файлы (node_modules, сборочные каталоги, .expo, локальные кэши) в знаменатель НЕ входят.",
+    "Чужие незакоммиченные правки других сессий в знаменатель не входят (берётся только git ls-files).",
+    "Категория определяется ТОЛЬКО по пути/расширению: файл в app/ считается client_code независимо от того, достижим ли он из релиза."
+  ],
+  "not_done": [
+    "Граф зависимостей (кто кого импортирует) и признак release_reachable — отдельный тяжёлый проход (светофор), здесь не сделан.",
+    "Решение оставить/удалить по каждому файлу — отдельные задачи удаления (E-эпики), здесь не принимается."
+  ],
+  "rules_order": [
+    "vendor",
+    "generated",
+    "tests",
+    "native",
+    "server",
+    "assets",
+    "client_code",
+    "content",
+    "admin_web",
+    "tooling_scripts",
+    "docs",
+    "agent_config_and_archive",
+    "root_config"
+  ],
+  "counts": {
+    "vendor": 0,
+    "generated": 2128,
+    "tests": 4024,
+    "native": 35,
+    "server": 1681,
+    "assets": 5349,
+    "client_code": 2590,
+    "content": 5107,
+    "admin_web": 321,
+    "tooling_scripts": 1572,
+    "docs": 21443,
+    "agent_config_and_archive": 230,
+    "root_config": 54,
+    "unclassified": 0
+  },
+  "top_dirs_by_category": {
+    "docs": {
+      ".agents": 47,
+      ".claude-flow": 1,
+      ".claude": 220,
+      ".planning": 33,
+      "(root)": 64,
+      "animation-plans": 7,
+      "docs": 21045,
+      "exports": 2,
+      "qa-artifacts": 1,
+      "specs": 21,
+      "ux-audit": 2
+    },
+    "agent_config_and_archive": {
+      ".agents": 27,
+      ".claude-flow": 10,
+      ".claude": 84,
+      ".codex": 5,
+      ".cursor": 5,
+      ".firebase": 1,
+      ".hive-mind": 1,
+      ".idea": 7,
+      ".obsidian": 7,
+      ".ruflo": 1,
+      ".ruvector": 1,
+      ".superpowers": 12,
+      ".swarm": 4,
+      ".vscode": 2,
+      "_archive": 24,
+      "_to_delete": 39
+    },
+    "root_config": {
+      "(root)": 54
+    },
+    "assets": {
+      "(root)": 28,
+      ".dev-screens": 56,
+      ".superpowers": 9,
+      "admin": 261,
+      "asset_sources": 158,
+      "assets": 3874,
+      "content": 49,
+      "docs": 501,
+      "knowly-www": 77,
+      "tools": 332,
+      "ux-audit": 4
+    },
+    "generated": {
+      ".eas-logs": 4,
+      "content": 7,
+      "functions-content": 501,
+      "functions": 1067,
+      "modules": 536,
+      "shared": 13
+    },
+    "tooling_scripts": {
+      ".github": 21,
+      "scripts": 1146,
+      "tools": 405
+    },
+    "tests": {
+      ".maestro": 1,
+      "_archive": 36,
+      "content": 21,
+      "docs": 4,
+      "functions-english-test": 20,
+      "functions": 1147,
+      "maestro": 2,
+      "mocks": 1,
+      "runtime-probes": 16,
+      "scripts": 20,
+      "subscription-recovery": 1,
+      "test-results": 1,
+      "tests": 2754
+    },
+    "admin_web": {
+      ".superpowers": 13,
+      ".well-known": 1,
+      "admin": 46,
+      "docs": 151,
+      "duel": 1,
+      "knowly-www": 97,
+      "legal": 5,
+      "(root)": 3,
+      "showcase": 1,
+      "store_release_stubs": 2,
+      "ux-audit": 1
+    },
+    "native": {
+      "(root)": 3,
+      "hardware": 11,
+      "patches": 9,
+      "plugins": 12
+    },
+    "client_code": {
+      "app": 1152,
+      "components": 517,
+      "config": 10,
+      "constants": 51,
+      "hooks": 63,
+      "lib": 4,
+      "modules": 768,
+      "shared": 24,
+      "web_shims": 1
+    },
+    "content": {
+      "content": 5085,
+      "lingman-montazher": 22
+    },
+    "server": {
+      "(root)": 4,
+      "functions-admin": 4,
+      "functions-content": 4,
+      "functions-english-test": 12,
+      "functions-max": 5,
+      "functions": 1622,
+      "subscription-recovery": 30
+    }
+  },
+  "unclassified_sample": [],
   "columns": [
     "path",
     "sha",

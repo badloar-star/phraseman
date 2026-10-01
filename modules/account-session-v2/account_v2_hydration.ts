@@ -5,6 +5,7 @@ import {
   ACCOUNT_SYNC_LIBRARY_TITLE_MAX_CHARS,
   canonicalJson,
   listIndexKey,
+  normalizeCardFieldsForSync,
   type EntityMirror,
 } from './account_sync_producer_plan';
 
@@ -366,11 +367,19 @@ export function parseHydration(entities: readonly PulledEntity[]): Parsed {
         revision: entity.revision,
         updatedAtMs: Number.isSafeInteger(entity.updatedAtMs) && (entity.updatedAtMs as number) > 0 ? entity.updatedAtMs as number : null,
       }));
+      // зачем (8B): зеркало засевается в той же нормализации, что сравнивает производитель
+      // (производные поля, которые приложение допишет при применении) — иначе первый снимок
+      // после гидрации слал бы карточки заново. tombstone не нормализуется (полей нет).
+      const synced = state.deleted ? values : { srs, srsPolicy: _policy, ...normalizeCardFieldsForSync(split.target, list, fields) };
       const mirrorFields: Record<string, string> = {};
-      for (const [name, value] of Object.entries(values)) mirrorFields[name] = canonicalJson(value);
+      for (const [name, value] of Object.entries(synced)) {
+        if (value !== undefined) mirrorFields[name] = canonicalJson(value);
+      }
       // зачем (7A, ремонт №2, P2a): поля сервера телефон ещё не видел — применение add-only
       // могло не дописать их в существующую локальную карточку; без этой пометки первый
       // снимок слал бы `unsetFields` и стирал чужую правку на сервере.
+      // 8B: «не виденные» — только поля, пришедшие с сервера; дописанные нормализацией производные
+      // поля телефон дописывает и сам (та же нормализация снимка), их снятие невозможно.
       const unseen = Object.keys(fields).filter((name) => name !== 'id').sort();
       mirrors.push({ entityType: 'flashcard', entityId: entity.entityId, record: mirrorRecord(
         { fields: mirrorFields, deleted: state.deleted, ...(unseen.length > 0 ? { unseen } : {}) }, entity.revision,

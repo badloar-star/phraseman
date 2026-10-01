@@ -159,7 +159,41 @@ function planLesson(
 
 type CardRow = Readonly<{ id: string; fields: Record<string, unknown> }>;
 
-function cardRows(cards: readonly unknown[], notes: string[]): readonly CardRow[] {
+/**
+ * Пакет 8B: языки наборов — ровно app/flashcards/pack_languages.ts → PACK_LANGUAGE_CHOICES
+ * (сверяет tests/account_v2_mirror_normalize_8b.test.ts). Модуль V2 не тянет код приложения.
+ */
+export const ACCOUNT_SYNC_PACK_LANGUAGES = Object.freeze(['en', 'fr', 'de', 'es', 'it', 'none'] as const);
+
+/**
+ * Пакет 8B: ЕДИНАЯ нормализация полей карточки — и для сравнения снимка с зеркалом
+ * (производитель), и для засева зеркала из сервера (гидрация).
+ * зачем: E2E 2026-10-01 — сразу после гидрации `card_snapshot planned=3`: приложение
+ * при записи/чтении сохранённой карточки само дописывает производные поля, которых
+ * на сервере нет. Без единого приведения каждая новая установка заново слала все
+ * карточки (лишние ревизии и записи Firestore). Приводим ровно как приложение:
+ *   studyTarget  = язык хранилища (mergeSavedFlashcardsFromAccountsV2 / addFlashcard);
+ *   packLanguage = packLanguage ?? язык хранилища, не из списка → 'en' (normalizePackLanguage);
+ *   uk           = пусто → ru (repairSavedFlashcardContent).
+ * Поля только ДОПИСЫВАЮТСЯ и с обеих сторон одинаково — поэтому их снятие
+ * (`unsetFields`, 7A) из-за нормализации не возникает. Свои карточки приложение не
+ * дополняет — без изменений. Значимое значение (packLanguage 'none' и т. п.) сохраняется.
+ */
+export function normalizeCardFieldsForSync(
+  target: string, list: 'saved' | 'custom', fields: Readonly<Record<string, unknown>>,
+): Record<string, unknown> {
+  if (list !== 'saved') return { ...fields };
+  const out: Record<string, unknown> = { ...fields, studyTarget: target };
+  const language = fields.packLanguage ?? target;
+  out.packLanguage = (ACCOUNT_SYNC_PACK_LANGUAGES as readonly unknown[]).includes(language) ? language : 'en';
+  if (!out.uk) {
+    if (out.ru === undefined) delete out.uk;
+    else out.uk = out.ru;
+  }
+  return out;
+}
+
+function cardRows(cards: readonly unknown[], notes: string[], target: string, list: 'saved' | 'custom'): readonly CardRow[] {
   const byId = new Map<string, CardRow>();
   let invalid = 0;
   for (const card of cards) {
@@ -169,7 +203,8 @@ function cardRows(cards: readonly unknown[], notes: string[]): readonly CardRow[
       continue;
     }
     const fields: Record<string, unknown> = {};
-    for (const [name, value] of Object.entries(clone)) {
+    // зачем (8B): та же нормализация, что при засеве зеркала гидрацией.
+    for (const [name, value] of Object.entries(normalizeCardFieldsForSync(target, list, clone))) {
       if (!SRS_FIELDS.has(name)) fields[name] = value;
     }
     byId.set(clone.id as string, Object.freeze({ id: clone.id as string, fields }));
@@ -243,7 +278,7 @@ async function planCards(
   readIndex: ListIndexReader,
   notes: string[],
 ): Promise<ProducerPlan> {
-  const rows = cardRows(change.cards, notes);
+  const rows = cardRows(change.cards, notes, change.target, change.list);
   const operations: PlannedOperation[] = [];
   const indexKey = listIndexKey(change.target, change.list);
   const previous = await readIndex(indexKey);

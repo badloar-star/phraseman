@@ -21,7 +21,30 @@ const alphaHex = (hex: string, opacity: number) => {
 };
 
 export function adaptV2PaletteToGlass(p: V2Palette, g: GlassTokens): V2Palette {
-  if (g.level === 'calm' && !g.isLight) return p;
+  // зачем (владелец 01.10: «при смене темы на Главной ничего не меняется — всё должно быть
+  // везде одинаково»): раньше «Спокойно» в тёмном отдавало базовую палитру Главной (почти
+  // чёрный с 1,5% цвета темы), а остальные экраны красились токенами темы. Теперь фон,
+  // карточки, стекло и текст Главной — те же токены выбранной темы, что и у всех экранов.
+  // Поверхности тёмного оформления из токенов темы («Спокойно» и «Акцент» делят один фон).
+  // Стекло непрозрачное (≥ 0.9): полупрозрачный g.card давал бы текст «насквозь».
+  const darkSurfaces = {
+    bg: g.bg,
+    bgTop: g.bgTop,
+    card: g.opaqueCard,
+    cardRaised: g.opaqueControl,
+    control: g.opaqueControl,
+    track: g.opaqueControl,
+    tabBar: g.opaqueSheet,
+    text: g.text,
+    textSecondary: g.secondary,
+    textMuted: g.mutedText,
+    glass: alphaHex(g.opaqueCard, 0.9),
+    glassRaised: alphaHex(g.opaqueControl, 0.92),
+    sheet: g.opaqueSheet,
+  };
+  if (g.level === 'calm' && !g.isLight) {
+    return Object.freeze({ ...p, ...darkSurfaces, cta: g.cta, ctaText: g.ctaInk });
+  }
   const accentRoles = {
     accent: g.accent,
     accentSoft: g.accentSoft,
@@ -70,7 +93,7 @@ export function adaptV2PaletteToGlass(p: V2Palette, g: GlassTokens): V2Palette {
       sheet: g.opaqueSheet,
     });
   }
-  if (g.level === 'accent') return Object.freeze({ ...p, ...accentRoles });
+  if (g.level === 'accent') return Object.freeze({ ...p, ...darkSurfaces, ...accentRoles });
   // «Максимум» (тёмное): фон, стекло и текст в тоне темы; стекло непрозрачное (≥ 0.92).
   return Object.freeze({
     ...p,

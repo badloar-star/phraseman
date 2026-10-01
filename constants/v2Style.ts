@@ -140,7 +140,8 @@ export function getV2Palette(theme: Theme, themeMode: ThemeMode): V2Palette {
   // зачем (темы 2.0): уровень цвета и светлое оформление. База строится от «Спокойного»
   // цвета темы (в «Акценте» фон и стекло прежние), поверх — роли темы и светлые токены.
   const source = liquidGlassSourceOfTheme(theme);
-  if (!source || (source.tokens.level === 'calm' && !source.tokens.isLight)) return buildBaseV2Palette(theme, themeMode);
+  // зачем (владелец 01.10): «Спокойно» тёмное тоже идёт через токены темы — иначе Главная не меняется при смене темы.
+  if (!source) return buildBaseV2Palette(theme, themeMode);
   const g = source.tokens;
   const key = `glass|${themeMode}|${source.calmCta}|${g.level}|${g.appearance}|${g.bg}|${g.accent}`;
   const cached = paletteCache.get(key);

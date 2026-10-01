@@ -1,5 +1,5 @@
 // зачем (владелец 2026-09-30, темы 2.0): Главная, Шпиль и фон экранов рисуются палитрой V2.
-// Сторожим: «Спокойно» тёмное — прежняя палитра; «Акцент» — фон и стекло прежние, цвет темы
+// Сторожим: «Спокойно» тёмное — токены темы; «Акцент» — фон и стекло прежние, цвет темы
 // у кнопки и прогресса; «Максимум» — фон в тоне темы и дымка; светлое — светлый фон и тёмный текст.
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -12,13 +12,20 @@ const base = { correct: '#47C870', wrong: '#F05454', gold: '#FFC800' };
 const v = (level, appearance = 'dark') => ({ level, appearance });
 const palette = (id, variant) => getV2Palette(makeLiquidGlassTheme(id, base, variant), 'dark');
 
-test('calm dark V2 palette is unchanged by the level machinery', () => {
+// зачем (владелец 01.10: «при смене темы на Главной ничего не меняется»): «Спокойно» тёмное
+// берёт фон, карточки и текст из токенов выбранной темы — как все остальные экраны.
+test('calm dark V2 palette follows the selected theme tokens', () => {
+  const seen = new Set();
   for (const id of ['graphite', 'marine', 'terracotta']) {
     const calm = palette(id, v('calm'));
-    const plain = getV2Palette({ ...makeLiquidGlassTheme(id, base, v('calm')) }, 'dark');
-    assert.deepEqual(calm, plain);
+    const g = liquidGlassTokens(id, v('calm'));
+    assert.equal(calm.bg, g.bg, id + ': bg');
+    assert.equal(calm.card, g.opaqueCard, id + ': card');
+    assert.equal(calm.text, g.text, id + ': text');
     assert.equal(calm.smokeBoost, 1);
+    seen.add(calm.bg);
   }
+  assert.equal(seen.size, 3, 'each theme has its own Home background');
 });
 
 test('accent keeps the calm background and glass, colours CTA and progress', () => {

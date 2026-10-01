@@ -1,15 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
-  APP_SNAPSHOT_RESOURCE_LIMITS,
-  limitArray,
   patchAppSnapshot,
   type AppSnapshot,
-  type AppSnapshotFriends,
   type AppSnapshotProfile,
   type AppSnapshotProgress,
   type AppSnapshotSettings,
 } from './app_snapshot_store';
-import { startFriendsTabSwrPrime, peekFriendsTabSwrWarm } from './friends_tab_swr_warm';
+import { startFriendsTabSwrPrime } from './friends_tab_swr_warm';
 import { lastOpenedLessonKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { getUserSettingsSnapshot, hydrateUserSettingsFromStorage } from './user_settings_store';
 import type { SettingsBootReadScope } from '../lib/startup_settings_read_scope';
@@ -189,20 +186,13 @@ function buildSettingsSnapshot(values: Map<string, string | null>, now: number):
   };
 }
 
-async function primeFriendsSnapshot(now: number): Promise<AppSnapshotFriends | null> {
-  await startFriendsTabSwrPrime().catch(() => {});
-  const warm = peekFriendsTabSwrWarm();
-  if (!warm) return null;
-  return {
-    source: 'storage',
-    updatedAt: now,
-    canonicalUid: warm.canonicalUid,
-    friends: limitArray(warm.friends, APP_SNAPSHOT_RESOURCE_LIMITS.friendProfileMaxEntries),
-    requests: limitArray(warm.requests, APP_SNAPSHOT_RESOURCE_LIMITS.recentItemsMax),
-    profiles: Object.fromEntries(
-      Object.entries(warm.profiles).slice(0, APP_SNAPSHOT_RESOURCE_LIMITS.friendProfileMaxEntries),
-    ),
-  };
+// зачем: PM-211 — прогрев списка друзей (два ключа диска + разбор до 240 профилей) раньше
+// входил в то, что ЖДЁТ первый кадр (бюджет 350 мс в _layout), хотя Главная друзей не
+// показывает. Теперь вызывается ПОСЛЕ публикации снапшота и не ожидается: сам прогрев
+// кладёт результат в общий снапшот (publishFriendsSnapshot), вкладка «Друзья» и Шпиль
+// ждут тот же once-промис. Промис прогрева не отклоняется (внутри catch с логом).
+async function primeFriendsSnapshot(): Promise<void> {
+  await startFriendsTabSwrPrime();
 }
 
 export async function primeAppSnapshotFromStorage(
@@ -233,12 +223,11 @@ export async function primeAppSnapshotFromStorage(
     BOOT_STUDY_TARGET_KEY,
     REFERRAL_STATE_STORAGE_KEY,
   ];
-  const [storageRead, friends, , bootRunes] = await Promise.all([
+  const [storageRead, , bootRunes] = await Promise.all([
     AsyncStorage.multiGet(keys).then(
       (pairs) => ({ ok: true as const, pairs }),
       () => ({ ok: false as const, pairs: [] as [string, string | null][] }),
     ),
-    primeFriendsSnapshot(now),
     hydrateUserSettingsFromStorage(settingsBootReadScope).catch(() => {}),
     // зачем: руны в общий multiGet не входят — их ключ зависит от владельца
     // (level_spin_star_projection_v1:<uid>). Читаем параллельно, чтобы старт не
@@ -288,9 +277,10 @@ export async function primeAppSnapshotFromStorage(
       lastOpenedLesson: values.get(lastOpenedKey) ?? null,
     },
     settings: buildSettingsSnapshot(values, now),
-    ...(friends ? { friends } : {}),
     primedAt: now,
   }));
+  // зачем: PM-211 — после публикации, не в критическом пути первого кадра (см. primeFriendsSnapshot).
+  void primeFriendsSnapshot();
 }
 
 export default function __RouteShim() { return null; }

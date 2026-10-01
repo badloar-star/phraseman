@@ -873,7 +873,7 @@ export default function CommunityPackCreateScreen() {
         if (publishResult === 'daily_limit') {
           // зачем: Q55 — набор сохранён на устройстве, но сервер пускает не больше 3
           // новых публикаций в сутки; говорим об этом прямо, а не «при подключении».
-          emitAppEvent('action_toast', actionToastTri('error', PACK_PUBLISH_DAILY_LIMIT_COPY));
+          emitAppEvent('action_toast', actionToastTri('info', PACK_PUBLISH_DAILY_LIMIT_COPY));
           return;
         }
         if (publishResult !== 'submitted') {

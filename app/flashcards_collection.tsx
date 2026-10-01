@@ -933,7 +933,7 @@ export default function FlashcardsScreen() {
       }
       if (res === 'daily_limit') {
         // зачем: Q55 — отдельный текст про суточный лимит (3 набора), а не общее «не удалось».
-        emitAppEvent('action_toast', actionToastTri('error', PACK_PUBLISH_DAILY_LIMIT_COPY));
+        emitAppEvent('action_toast', actionToastTri('info', PACK_PUBLISH_DAILY_LIMIT_COPY));
         return;
       }
       if (res === 'invalid') {

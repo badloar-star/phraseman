@@ -1,9 +1,6 @@
-// Аудит K3 (находки A+B): resumePendingShardDeltas зеркалит АВТОРИТЕТНЫЙ серверный
-// баланс после проигрывания очереди. Раньше зеркалирование гасил timestamp-guard в
-// replaceShardsBalanceLocal, когда локальная оптимистичная метка (свежий Date.now())
-// была новее серверной (для alreadyApplied/insufficient сервер отдаёт СТАРУЮ метку).
-// В итоге завышенная локаль не опускалась. Фикс: reconcile идёт без updatedAtMs →
-// guard не срабатывает, серверный баланс применяется безусловно.
+// Очередь осколков после «конституции экономики» (2026-08-15): строки уже применены
+// локально и снимаются без сервера. Прежний аудит K3 (серверная сверка) относился к
+// снятому пути досылки.
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 (global as { __DEV__?: boolean }).__DEV__ = false;
@@ -113,7 +110,13 @@ beforeEach(() => {
   });
 });
 
-describe('resumePendingShardDeltas — authoritative server balance wins (K3 findings A+B)', () => {
+describe('resumePendingShardDeltas under the economy constitution (local-first ledger)', () => {
+  // зачем: с 2026-08-15 (68f4ef973) clientEconomyConstitutionEnabled() = true —
+  // начисления и списания проводятся на устройстве сразу, а строки старой
+  // очереди «досылки на сервер» уже применены локально. Серверная досылка и
+  // сверка баланса по ответу сервера сняты намеренно (тело оставлено только как
+  // типизированная справка). Прежние 17 кейсов проверяли этот снятый путь и
+  // удалены; ниже — контракт, который реально работает на устройстве.
   it('has one account-scoped replay implementation and no dead legacy shim', () => {
     const source = readFileSync(join(__dirname, '..', 'app', 'shards_system.ts'), 'utf8');
     expect(source).not.toContain('resumePendingShardDeltasLegacy');
@@ -152,200 +155,6 @@ describe('resumePendingShardDeltas — authoritative server balance wins (K3 fin
     expect(callable).not.toHaveBeenCalled();
   });
 
-  // Незавершённых покупок быть не должно: строку, которую сервер отверг
-  // ОКОНЧАТЕЛЬНО, повтор не спасёт. Раньше она навсегда вставала в голове
-  // очереди и блокировала всё за собой.
-  it.each([
-    ['permission-denied'],
-    ['invalid-argument'],
-    ['failed-precondition'],
-    ['functions/permission-denied'],
-  ])('drops a row the server rejected permanently (%s) instead of queueing it forever', async (code) => {
-    mockStorage[STORAGE_KEY] = '40';
-    cloudUserDoc.shards = 50;
-    queueStore.items = [
-      { opId: 'op-rejected', ownerStableId: 'u1', delta: 10, type: 'spend', reason: 'r', createdAtMs: 1 },
-    ];
-    applyResult.mockImplementation(() => { throw Object.assign(new Error('rejected'), { code }); });
-
-    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 1, pending: 0 });
-    expect(queueStore.items).toHaveLength(0);
-    // Списание не состоялось на сервере — локальный баланс возвращается к облачному,
-    // иначе юзер просто потерял бы жемчужины.
-    expect(await getShardsBalance()).toBe(50);
-  });
-
-  it('keeps retrying a transient failure instead of dropping the operation', async () => {
-    mockStorage[STORAGE_KEY] = '40';
-    queueStore.items = [
-      { opId: 'op-offline', ownerStableId: 'u1', delta: 10, type: 'spend', reason: 'r', createdAtMs: 1 },
-    ];
-    applyResult.mockImplementation(() => { throw Object.assign(new Error('offline'), { code: 'unavailable' }); });
-
-    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 0, pending: 1 });
-    expect(queueStore.items).toHaveLength(1);
-  });
-
-  it('drops a permanently rejected row but still replays the healthy rows behind it', async () => {
-    mockStorage[STORAGE_KEY] = '40';
-    queueStore.items = [
-      { opId: 'op-rejected', ownerStableId: 'u1', delta: 10, type: 'spend', reason: 'r', createdAtMs: 1 },
-      { opId: 'op-good', ownerStableId: 'u1', delta: 4, type: 'spend', reason: 'r', createdAtMs: 2 },
-    ];
-    applyResult.mockImplementation((payload: any) => {
-      if (payload.opId === 'op-rejected') {
-        throw Object.assign(new Error('rejected'), { code: 'permission-denied' });
-      }
-      return { ok: true, alreadyApplied: false, insufficient: false, balance: 46 };
-    });
-
-    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 2, pending: 0 });
-    expect(queueStore.items).toHaveLength(0);
-    expect(await getShardsBalance()).toBe(46);
-  });
-
-  it('stops at the first unknown failure and keeps the full optimistic suffix in the local balance', async () => {
-    mockStorage[STORAGE_KEY] = '75';
-    queueStore.items = [
-      { opId: 'op-spend-pending', ownerStableId: 'u1', delta: 30, type: 'spend', reason: 'card_pack', createdAtMs: 1 },
-      { opId: 'op-earn-later', ownerStableId: 'u1', delta: 5, type: 'earn', reason: 'lesson_first', createdAtMs: 2 },
-    ];
-    applyResult.mockReturnValue({
-      ok: false,
-      alreadyApplied: false,
-      insufficient: false,
-      balance: 100,
-      shardsUpdatedAtMs: null,
-    });
-
-    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 0, pending: 2 });
-    expect(callable).toHaveBeenCalledTimes(1);
-    expect(queueStore.items.map((item: any) => item.opId))
-      .toEqual(['op-spend-pending', 'op-earn-later']);
-    await expect(getShardsBalance()).resolves.toBe(75);
-  });
-
-  it('reconciles a confirmed prefix to server balance plus the still-pending optimistic suffix', async () => {
-    mockStorage[STORAGE_KEY] = '75';
-    queueStore.items = [
-      { opId: 'op-spend-confirmed', ownerStableId: 'u1', delta: 30, type: 'spend', reason: 'card_pack', createdAtMs: 1 },
-      { opId: 'op-earn-pending', ownerStableId: 'u1', delta: 5, type: 'earn', reason: 'lesson_first', createdAtMs: 2 },
-    ];
-    applyResult
-      .mockReturnValueOnce({
-        ok: true,
-        alreadyApplied: false,
-        insufficient: false,
-        balance: 70,
-        shardsUpdatedAtMs: 1000,
-      })
-      .mockReturnValueOnce({
-        ok: false,
-        alreadyApplied: false,
-        insufficient: false,
-        balance: 70,
-        shardsUpdatedAtMs: null,
-      });
-
-    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 1, pending: 1 });
-    expect(callable).toHaveBeenCalledTimes(2);
-    expect(queueStore.items.map((item: any) => item.opId)).toEqual(['op-earn-pending']);
-    await expect(getShardsBalance()).resolves.toBe(75);
-  });
-
-  it('does not refund a pending spend after a confirmed earn prefix', async () => {
-    mockStorage[STORAGE_KEY] = '75';
-    queueStore.items = [
-      { opId: 'op-earn-confirmed', ownerStableId: 'u1', delta: 5, type: 'earn', reason: 'lesson_first', createdAtMs: 1 },
-      { opId: 'op-spend-pending', ownerStableId: 'u1', delta: 30, type: 'spend', reason: 'card_pack', createdAtMs: 2 },
-    ];
-    applyResult
-      .mockReturnValueOnce({
-        ok: true,
-        alreadyApplied: false,
-        insufficient: false,
-        balance: 105,
-        shardsUpdatedAtMs: 1000,
-      })
-      .mockImplementationOnce(() => {
-        throw new Error('transport unavailable');
-      });
-
-    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 1, pending: 1 });
-    expect(queueStore.items.map((item: any) => item.opId)).toEqual(['op-spend-pending']);
-    await expect(getShardsBalance()).resolves.toBe(75);
-  });
-
-  it.each([
-    ['spend', 30],
-    ['earn', 5],
-  ] as const)(
-    'does not send a queued-before-wallet-commit %s after a crash',
-    async (type, delta) => {
-      mockStorage[STORAGE_KEY] = '100';
-      queueStore.items = [{
-        opId: `op-crash-${type}`,
-        ownerStableId: 'u1',
-        delta,
-        type,
-        reason: type === 'spend' ? 'card_pack' : 'lesson_first',
-        createdAtMs: 1,
-        localApplied: false,
-      }];
-
-      await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 0, pending: 1 });
-      expect(callable).not.toHaveBeenCalled();
-      expect(queueStore.items).toHaveLength(1);
-      await expect(getShardsBalance()).resolves.toBe(100);
-    },
-  );
-
-  it('reconciles only the locally-applied part of a suffix after a crash-boundary row', async () => {
-    mockStorage[STORAGE_KEY] = '112';
-    queueStore.items = [
-      {
-        opId: 'op-earn-confirmed',
-        ownerStableId: 'u1',
-        delta: 5,
-        type: 'earn',
-        reason: 'lesson_first',
-        createdAtMs: 1,
-        localApplied: true,
-      },
-      {
-        opId: 'op-spend-crashed',
-        ownerStableId: 'u1',
-        delta: 30,
-        type: 'spend',
-        reason: 'card_pack',
-        createdAtMs: 2,
-        localApplied: false,
-      },
-      {
-        opId: 'op-earn-pending',
-        ownerStableId: 'u1',
-        delta: 7,
-        type: 'earn',
-        reason: 'lesson_first',
-        createdAtMs: 3,
-        localApplied: true,
-      },
-    ];
-    applyResult.mockReturnValueOnce({
-      ok: true,
-      alreadyApplied: false,
-      insufficient: false,
-      balance: 105,
-      shardsUpdatedAtMs: 1000,
-    });
-
-    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 1, pending: 2 });
-    expect(callable).toHaveBeenCalledTimes(1);
-    expect(queueStore.items.map((item: any) => item.opId))
-      .toEqual(['op-spend-crashed', 'op-earn-pending']);
-    await expect(getShardsBalance()).resolves.toBe(112);
-  });
-
   it('checks quarantine before an online shard callable can mirror server state', () => {
     const source = readFileSync(join(__dirname, '..', 'app', 'shards_system.ts'), 'utf8');
     const applyStart = source.indexOf('const applyShardDeltaToCloud');
@@ -357,127 +166,38 @@ describe('resumePendingShardDeltas — authoritative server balance wins (K3 fin
       .toBeGreaterThan(applySource.indexOf('hasQuarantinedShardDeltaQueue('));
   });
 
-  it('lowers an inflated local balance to the server value despite a newer local stamp / older server ts', () => {
-    // Локаль завышена: 500 со СВЕЖЕЙ меткой реальной операции (op:'earn').
-    mockStorage[STORAGE_KEY] = '500';
-    mockStorage[META_KEY] = JSON.stringify({ updatedAtMs: 9_999_999_999_999, op: 'earn', reason: 'local_optimistic' });
-    // В очереди spend, который сервер отвергает (insufficient) и отдаёт СТАРУЮ метку
-    // + авторитетный баланс 300 (реально на сервере меньше, чем показывала локаль).
-    queueStore.items = [{ opId: 'op-spend-1', ownerStableId: 'u1', delta: 10, type: 'spend', reason: 'card_pack', createdAtMs: 1 }];
-    applyResult.mockReturnValue({ ok: false, alreadyApplied: false, insufficient: true, balance: 300, shardsUpdatedAtMs: 1000 });
-
-    return resumePendingShardDeltas().then(async (res) => {
-      expect(res.resolved).toBe(1);
-      // Раньше guard отвергал зеркало (локальная метка новее) → оставалось 500.
-      // Теперь коррекция (300−500=−200) применена к текущей локали (500) → 300.
-      await expect(getShardsBalance()).resolves.toBe(300);
-      // Очередь очищена.
-      expect(queueStore.items).toHaveLength(0);
-    });
-  });
-
-  it('final balance = last confirmed response (not the one with the largest server ts)', () => {
-    mockStorage[STORAGE_KEY] = '100';
+  it('drains already-applied queue rows locally without any server call and keeps the balance', async () => {
+    mockStorage[STORAGE_KEY] = '40';
     queueStore.items = [
-      { opId: 'op-a', ownerStableId: 'u1', delta: 5, type: 'earn', reason: 'r', createdAtMs: 1 },
-      { opId: 'op-b', ownerStableId: 'u1', delta: 3, type: 'earn', reason: 'r', createdAtMs: 2 },
+      { opId: 'op-earn', ownerStableId: 'u1', delta: 5, type: 'earn', reason: 'r', createdAtMs: 1 },
+      { opId: 'op-spend', ownerStableId: 'u1', delta: 3, type: 'spend', reason: 'r', createdAtMs: 2 },
     ];
-    // Первый ответ: свежая метка, баланс 105. Второй (последний): СТАРАЯ метка
-    // (как при alreadyApplied), но это финальный живой баланс 108.
-    applyResult
-      .mockReturnValueOnce({ ok: true, alreadyApplied: false, insufficient: false, balance: 105, shardsUpdatedAtMs: 5000 })
-      .mockReturnValueOnce({ ok: true, alreadyApplied: true, insufficient: false, balance: 108, shardsUpdatedAtMs: 1000 });
 
-    return resumePendingShardDeltas().then(async (res) => {
-      expect(res.resolved).toBe(2);
-      // По порядку вызовов финальный = 108, а не 105 (несмотря на бо́льшую метку у 105).
-      await expect(getShardsBalance()).resolves.toBe(108);
-    });
+    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 2, pending: 0 });
+    expect(queueStore.items).toHaveLength(0);
+    expect(httpsCallable).not.toHaveBeenCalled();
+    expect(callable).not.toHaveBeenCalled();
+    // Строки уже применены локально: повторного применения и «возврата» нет.
+    await expect(getShardsBalance()).resolves.toBe(40);
   });
 
-  it('leaves the op queued when the server call fails (retried next boot)', () => {
-    mockStorage[STORAGE_KEY] = '50';
-    queueStore.items = [{ opId: 'op-x', ownerStableId: 'u1', delta: 2, type: 'earn', reason: 'r', createdAtMs: 1 }];
-    applyResult.mockReturnValue({ ok: false, alreadyApplied: false, insufficient: false, balance: 0, shardsUpdatedAtMs: null });
-
-    return resumePendingShardDeltas().then(async (res) => {
-      expect(res.pending).toBe(1);
-      expect(queueStore.items).toHaveLength(1); // не снят
-      await expect(getShardsBalance()).resolves.toBe(50); // локаль не тронута
-    });
-  });
-
-  // Регресс аудита-фикса (находка ре-аудита): пока идёт async-replay, пользователь
-  // делает легальный earn +30. Его дельты нет в latestBalance (opId не в снапшоте
-  // очереди). Раньше reconcile СЛЕПО писал latestBalance и стирал +30. Теперь
-  // reconcile применяет КОРРЕКЦИЮ (latestBalance − localSnapshot) к ТЕКУЩЕЙ локали.
-  it('does NOT clobber a concurrent legal earn applied during the async replay', () => {
-    // Снимок до replay = 100 (очередь op-a +50 уже применена оптимистично ранее).
-    mockStorage[STORAGE_KEY] = '100';
-    queueStore.items = [{ opId: 'op-a', ownerStableId: 'u1', delta: 50, type: 'earn', reason: 'r', createdAtMs: 1 }];
-    // Сервер подтверждает op-a: его баланс = 100 (тоже включает +50). correction=0.
-    // МОДЕЛИРУЕМ гонку: во время серверного вызова пользователь заработал +30 →
-    // локаль стала 130. Делаем это в мок-ответе callable (побочный эффект до resolve).
-    applyResult.mockImplementation(() => {
-      mockStorage[STORAGE_KEY] = '130'; // конкурентный earn +30 применился локально
-      return { ok: true, alreadyApplied: false, insufficient: false, balance: 100, shardsUpdatedAtMs: 5000 };
-    });
-
-    return resumePendingShardDeltas().then(async () => {
-      // correction = 100 − 100 = 0 → к текущей локали (130) применяется 0 → 130.
-      // Конкурентный +30 СОХРАНЁН (раньше слепое зеркало откатило бы до 100).
-      await expect(getShardsBalance()).resolves.toBe(130);
-    });
-  });
-
-  it('applies the server correction on top of the current (concurrently changed) balance', () => {
-    // Снимок 100; сервер реально насчитал 90 (например insufficient-spend вернул
-    // осколки иначе / рассинхрон) → correction = −10. Во время replay конкурентный
-    // earn +40 сделал локаль 140. Итог: 140 + (−10) = 130, а не слепые 90.
-    mockStorage[STORAGE_KEY] = '100';
-    queueStore.items = [{ opId: 'op-s', ownerStableId: 'u1', delta: 5, type: 'spend', reason: 'r', createdAtMs: 1 }];
-    applyResult.mockImplementation(() => {
-      mockStorage[STORAGE_KEY] = '140';
-      return { ok: false, alreadyApplied: false, insufficient: true, balance: 90, shardsUpdatedAtMs: 1000 };
-    });
-
-    return resumePendingShardDeltas().then(async () => {
-      await expect(getShardsBalance()).resolves.toBe(130);
-    });
-  });
-
-  it('does not remove or reconcile account A after its replay response crosses a switch to B', async () => {
-    mockStorage[STORAGE_KEY] = '100';
+  it('never drains or reads another account\'s rows', async () => {
     queueStore.items = [
-      { opId: 'op-race-a', ownerStableId: 'u1', delta: 5, type: 'earn', reason: 'lesson_first', createdAtMs: 1 },
+      { opId: 'op-other', ownerStableId: 'u-other', delta: 9, type: 'earn', reason: 'r', createdAtMs: 1 },
     ];
-    let resolveCall!: (value: { data: unknown }) => void;
-    callable.mockImplementationOnce(() => new Promise((resolve) => { resolveCall = resolve; }));
 
-    const replayA = resumePendingShardDeltas();
-    for (let index = 0; index < 20 && callable.mock.calls.length === 0; index += 1) {
-      await Promise.resolve();
-    }
-    expect(callable).toHaveBeenCalledTimes(1);
-
-    accountGeneration = { generation: 2, stableId: 'u2', phase: 'active' };
-    mockStorage[STORAGE_KEY] = '7';
-    resolveCall({
-      data: {
-        ok: true,
-        alreadyApplied: false,
-        insufficient: false,
-        balance: 105,
-        shardsUpdatedAtMs: 5000,
-      },
-    });
-    await replayA;
-
-    expect(queueStore.items.map((item: any) => item.opId)).toEqual(['op-race-a']);
-    await expect(getShardsBalance()).resolves.toBe(7);
-
-    const callsBeforeBReplay = callable.mock.calls.length;
     await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 0, pending: 0 });
-    expect(callable).toHaveBeenCalledTimes(callsBeforeBReplay);
+    expect(queueStore.items.map((item: any) => item.opId)).toEqual(['op-other']);
+    expect(callable).not.toHaveBeenCalled();
+  });
+
+  it('does nothing for a non-active account generation', async () => {
+    accountGeneration = { generation: 1, stableId: 'u1', phase: 'switching' as never };
+    queueStore.items = [
+      { opId: 'op-earn', ownerStableId: 'u1', delta: 5, type: 'earn', reason: 'r', createdAtMs: 1 },
+    ];
+
+    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 0, pending: 0 });
+    expect(queueStore.items).toHaveLength(1);
   });
 });

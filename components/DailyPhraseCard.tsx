@@ -433,6 +433,17 @@ function DailyPhraseCard({
     tr: 'Anlamı',
     pl: 'Znaczenie',
   });
+  const labelExample = triLang(lang, {
+    uk: 'Приклад',
+    ru: 'Пример',
+    en: 'Example',
+    es: 'Ejemplo',
+    'pt-BR': 'Exemplo',
+    vi: 'Ví dụ',
+    id: 'Contoh',
+    tr: 'Örnek',
+    pl: 'Przykład',
+  });
   const title = triLang(lang, {
     uk: 'Вислів дня',
     ru: 'Фраза дня',
@@ -999,7 +1010,8 @@ function DailyPhraseCard({
                       </Text>
                     </TonalSurface>
                   )}
-                  <TonalSurface radius={16} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.detailBlock, styles.literalBlock, { borderColor: t.border }]}>
+                  {/* зачем (владелец 01.10, скрин «Фраза дня»): три одинаковые карточки с подписью сверху, без цветной рамки и полоски. */}
+                  <TonalSurface radius={16} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.detailBlock, { borderColor: t.border }]}>
                     <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
                       {labelLiteral}
                     </Text>
@@ -1008,7 +1020,7 @@ function DailyPhraseCard({
                     </Text>
                   </TonalSurface>
 
-                  <TonalSurface radius={18} tone="raised" backgroundColor={t.bgSurface2} style={[styles.detailBlock, styles.meaningBlock, { borderColor: t.accent }]}>
+                  <TonalSurface radius={16} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.detailBlock, { borderColor: t.border }]}>
                     <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
                       {labelMeaning}
                     </Text>
@@ -1017,9 +1029,11 @@ function DailyPhraseCard({
                     </Text>
                   </TonalSurface>
 
-                  <TonalSurface radius={18} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.explanationBlock, { borderColor: t.border }]}>
-                    <View style={[styles.explanationRail, { backgroundColor: t.accent }]} />
-                    <Text style={[styles.storyText, { color: t.textSecond, fontSize: f.body }]}>
+                  <TonalSurface radius={16} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.detailBlock, { borderColor: t.border }]}>
+                    <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
+                      {labelExample}
+                    </Text>
+                    <Text style={[styles.storyText, { color: t.textPrimary, fontSize: f.body }]}>
                       {phraseCopy.text}
                     </Text>
                   </TonalSurface>
@@ -1311,19 +1325,12 @@ const styles = StyleSheet.create({
   },
   detailBlock: {
     borderRadius: 16,
-    borderWidth: 0,
-    padding: 13,
-  },
-  literalBlock: {
-    paddingVertical: 11,
-  },
-  meaningBlock: {
-    borderWidth: 1,
-    padding: 15,
+    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43 — тонкая рамка как на скрине владельца
+    padding: 14,
   },
   detailLabel: {
-    fontWeight: '900',
-    letterSpacing: 0.5,
+    fontWeight: '700',
+    letterSpacing: 1.6,
     marginBottom: 5,
     textTransform: 'uppercase',
   },
@@ -1335,17 +1342,6 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     lineHeight: 23,
     flex: 1,
-  },
-  explanationBlock: {
-    borderWidth: 1,
-    flexDirection: 'row',
-    gap: 12,
-    padding: 15,
-  },
-  explanationRail: {
-    alignSelf: 'stretch',
-    borderRadius: 2,
-    width: 4,
   },
   questBlock: {
     padding: 0,

@@ -646,12 +646,12 @@ export const sendStreakWarning = async (streak: number, lang: Lang = 'ru'): Prom
         `🔥 Seria ${streak} dni — zachowaj ją dziś`,
       ]),
     }));
-    const ruBody = ['Ещё есть время продолжить — один раунд, и день твой', 'Один раунд — и серия с тобой. Ты справишься!', 'Заходи на 5 минут — и серия живёт', '5 минут сегодня — и серия растёт дальше!'];
-    const ukBody = ['Ще є час продовжити — один раунд, і день твій', 'Один раунд — і серія з тобою. Ти впораєшся!', 'Зайди на 5 хвилин — і серія живе', '5 хвилин сьогодні — і серія росте далі!'];
+    const ruBody = ['Ещё есть время продолжить — один раунд, и день твой.', 'Один раунд — и серия с тобой. Ты справишься!', 'Заходи на 5 минут — и серия живёт.', '5 минут сегодня — и серия растёт дальше!'];
+    const ukBody = ['Ще є час продовжити — один раунд, і день твій.', 'Один раунд — і серія з тобою. Ти впораєшся!', 'Зайди на 5 хвилин — і серія живе.', '5 хвилин сьогодні — і серія росте далі!'];
     const esBody = [
       'En unas horas se cortará la racha; entra cuando puedas.',
-      'Con una sola lección la salvas. Vamos',
-      'No la dejes apagarse: una sesión marca la diferencia',
+      'Con una sola lección la salvas. Vamos.',
+      'No la dejes apagarse: una sesión marca la diferencia.',
       'Cinco minutos y la racha sigue intacta.',
     ];
     const _body = pickNotif(lang, notificationCopy({
@@ -661,31 +661,31 @@ export const sendStreakWarning = async (streak: number, lang: Lang = 'ru'): Prom
       'pt-BR': _p([
         'Faltam poucas horas para a sequência acabar. Entre agora!',
         'Uma lição e a sequência continua. Você consegue!',
-        'Não deixe a chama apagar! Uma lição resolve tudo',
+        'Não deixe a chama apagar! Uma lição resolve tudo.',
         'Cinco minutos e sua sequência segue viva.',
       ]),
       vi: _p([
         'Chỉ còn vài giờ nữa là chuỗi bị ngắt. Vào học ngay!',
         'Một bài học là giữ được chuỗi. Bạn làm được!',
-        'Đừng để ngọn lửa tắt! Một bài học là đủ',
+        'Đừng để ngọn lửa tắt! Một bài học là đủ.',
         'Năm phút thôi, chuỗi vẫn còn.',
       ]),
       id: _p([
         'Tinggal beberapa jam sebelum streak putus. Buka sekarang!',
         'Satu pelajaran dan streak aman. Kamu bisa!',
-        'Jangan biarkan semangat padam! Satu pelajaran cukup',
+        'Jangan biarkan semangat padam! Satu pelajaran cukup.',
         'Lima menit dan streak tetap hidup.',
       ]),
       tr: _p([
         'Serinin bitmesine birkaç saat kaldı. Şimdi gir!',
         'Bir dersle seri korunur. Yapabilirsin!',
-        'Ateşi söndürme! Bir ders her şeyi çözer',
+        'Ateşi söndürme! Bir ders her şeyi çözer.',
         'Beş dakika ve seri yaşamaya devam eder.',
       ]),
       pl: _p([
         'Zostało kilka godzin, zanim seria się przerwie. Wejdź teraz!',
         'Jedna lekcja i seria ocalona. Dasz radę!',
-        'Nie pozwól, żeby ogień zgasł! Jedna lekcja wystarczy',
+        'Nie pozwól, żeby ogień zgasł! Jedna lekcja wystarczy.',
         'Pięć minut i seria trwa dalej.',
       ]),
     }));
@@ -716,14 +716,14 @@ export const scheduleD1PersonalizedReminder = async (
     if (!(await isNotifMasterEnabled())) return;
 
     const title = pickNotif(lang, notificationCopy({
-      ru: `Вчера ты выучил ${phrasesLearned} фраз`,
-      uk: `Вчора ти вивчив ${phrasesLearned} фраз`,
-      es: `Ayer consolidaste ${phrasesLearned} frases nuevas`,
-      'pt-BR': `Ontem você aprendeu ${phrasesLearned} frases`,
-      vi: `Hôm qua bạn đã học ${phrasesLearned} cụm từ`,
-      id: `Kemarin kamu mempelajari ${phrasesLearned} frasa`,
-      tr: `Dün ${phrasesLearned} ifade öğrendin`,
-      pl: `Wczoraj poznano ${phrasesLearned} zwrotów`,
+      ru: `Вчера ты выучил ${phrasesLearned} фраз.`,
+      uk: `Вчора ти вивчив ${phrasesLearned} фраз.`,
+      es: `Ayer consolidaste ${phrasesLearned} frases nuevas.`,
+      'pt-BR': `Ontem você aprendeu ${phrasesLearned} frases.`,
+      vi: `Hôm qua bạn đã học ${phrasesLearned} cụm từ.`,
+      id: `Kemarin kamu mempelajari ${phrasesLearned} frasa.`,
+      tr: `Dün ${phrasesLearned} ifade öğrendin.`,
+      pl: `Wczoraj poznano ${phrasesLearned} zwrotów.`,
     }));
     const body =
       streak > 0
@@ -738,14 +738,14 @@ export const scheduleD1PersonalizedReminder = async (
             pl: `Seria ${streak} ${streak === 1 ? 'dnia' : 'dni'}. Dodaj dziś ${phrasesLearned} zwrotów i utrzymaj tempo!`,
           }))
         : pickNotif(lang, notificationCopy({
-            ru: `Ещё ${phrasesLearned} сегодня — и цепочка начнётся! Не останавливайся`,
-            uk: `Ще ${phrasesLearned} сьогодні — і стрік почнеться! Не зупиняйся`,
+            ru: `Ещё ${phrasesLearned} сегодня — и цепочка начнётся! Не останавливайся.`,
+            uk: `Ще ${phrasesLearned} сьогодні — і стрік почнеться! Не зупиняйся.`,
             es: `${phrasesLearned} frases más hoy y arrancas una racha nueva. ¡Sigue!`,
-            'pt-BR': `Mais ${phrasesLearned} hoje e a sequência começa. Continue`,
-            vi: `Thêm ${phrasesLearned} cụm từ hôm nay là bạn bắt đầu chuỗi mới. Tiếp tục nhé`,
-            id: `Tambah ${phrasesLearned} frasa hari ini dan streak baru dimulai. Lanjut`,
-            tr: `Bugün ${phrasesLearned} ifade daha, yeni seri başlasın. Devam`,
-            pl: `Jeszcze ${phrasesLearned} zwrotów dziś i seria rusza. Nie zatrzymuj się`,
+            'pt-BR': `Mais ${phrasesLearned} hoje e a sequência começa. Continue.`,
+            vi: `Thêm ${phrasesLearned} cụm từ hôm nay là bạn bắt đầu chuỗi mới. Tiếp tục nhé.`,
+            id: `Tambah ${phrasesLearned} frasa hari ini dan streak baru dimulai. Lanjut.`,
+            tr: `Bugün ${phrasesLearned} ifade daha, yeni seri başlasın. Devam.`,
+            pl: `Jeszcze ${phrasesLearned} zwrotów dziś i seria rusza. Nie zatrzymuj się.`,
           }));
 
     // Завтра в 20:20, чтобы не пересекаться с daily reminder и weekly recap
@@ -794,50 +794,50 @@ export const sendPremiumNotification = async (lang: Lang = 'ru'): Promise<void> 
     const _premBody = pickNotif(lang, notificationCopy({
       ru: _pp([
         'Plus активен: первые уроки A1, A2, B1 и B2 доступны сразу!',
-        'Продолжай курс по порядку без ограничений Free',
-        'Plus открыл продолжение курса, диалоги и расширенную практику',
+        'Продолжай курс по порядку без ограничений Free.',
+        'Plus открыл продолжение курса, диалоги и расширенную практику.',
         'Уроки A1, A2, B1 и B2 уже доступны — выбирай раздел!',
       ]),
       uk: _pp([
         'Plus активний: перші уроки A1, A2, B1 і B2 доступні одразу!',
-        'Продовжуй курс по черзі без обмежень Free',
-        'Plus відкрив продовження курсу, діалоги й розширену практику',
+        'Продовжуй курс по черзі без обмежень Free.',
+        'Plus відкрив продовження курсу, діалоги й розширену практику.',
         'Уроки A1, A2, B1 і B2 вже доступні — обирай розділ!',
       ]),
       es: _pp([
         'Plus está activo: la primera lección de A1, A2, B1 y B2 ya está disponible.',
-        'Continúa el curso en orden sin los límites de Free',
-        'Plus abre la continuación del curso, los diálogos y más práctica',
+        'Continúa el curso en orden sin los límites de Free.',
+        'Plus abre la continuación del curso, los diálogos y más práctica.',
         'A1, A2, B1 y B2 ya tienen su primera lección lista. ¡Elige un nivel!',
       ]),
       'pt-BR': _pp([
         'Plus ativo: a primeira lição de A1, A2, B1 e B2 já está disponível.',
-        'Continue o curso em ordem sem os limites do Free',
-        'O Plus abre a continuação do curso, os diálogos e mais prática',
+        'Continue o curso em ordem sem os limites do Free.',
+        'O Plus abre a continuação do curso, os diálogos e mais prática.',
         'A1, A2, B1 e B2 já têm a primeira lição pronta. Escolha um nível!',
       ]),
       vi: _pp([
         'Plus đã bật: bài đầu của A1, A2, B1 và B2 có sẵn ngay.',
-        'Tiếp tục khóa học theo thứ tự mà không bị giới hạn Free',
-        'Plus mở phần tiếp theo của khóa học, hội thoại và nhiều luyện tập hơn',
+        'Tiếp tục khóa học theo thứ tự mà không bị giới hạn Free.',
+        'Plus mở phần tiếp theo của khóa học, hội thoại và nhiều luyện tập hơn.',
         'Bài đầu của A1, A2, B1 và B2 đã sẵn sàng. Chọn một cấp độ nhé!',
       ]),
       id: _pp([
         'Plus aktif: pelajaran pertama A1, A2, B1, dan B2 langsung tersedia.',
-        'Lanjutkan kursus secara berurutan tanpa batasan Free',
-        'Plus membuka kelanjutan kursus, dialog, dan lebih banyak latihan',
+        'Lanjutkan kursus secara berurutan tanpa batasan Free.',
+        'Plus membuka kelanjutan kursus, dialog, dan lebih banyak latihan.',
         'Pelajaran pertama A1, A2, B1, dan B2 sudah siap. Pilih levelmu!',
       ]),
       tr: _pp([
         'Plus etkin: A1, A2, B1 ve B2’nin ilk dersleri hemen hazır.',
-        'Free sınırları olmadan kursa sırayla devam et',
-        'Plus kursun devamını, diyalogları ve daha fazla pratiği açar',
+        'Free sınırları olmadan kursa sırayla devam et.',
+        'Plus kursun devamını, diyalogları ve daha fazla pratiği açar.',
         'A1, A2, B1 ve B2’nin ilk dersleri hazır. Seviyeni seç!',
       ]),
       pl: _pp([
         'Plus jest aktywny: pierwsze lekcje A1, A2, B1 i B2 są dostępne od razu.',
-        'Kontynuuj kurs po kolei bez ograniczeń Free',
-        'Plus otwiera dalszy kurs, dialogi i więcej ćwiczeń',
+        'Kontynuuj kurs po kolei bez ograniczeń Free.',
+        'Plus otwiera dalszy kurs, dialogi i więcej ćwiczeń.',
         'Pierwsze lekcje A1, A2, B1 i B2 są gotowe. Wybierz poziom!',
       ]),
     }));
@@ -972,14 +972,14 @@ export const scheduleUpsellNotifications = async (
         delayDays: 4,
         type: 'upsell_d4',
         title: pickNotif(lang, notificationCopy({
-          ru: 'Твой путь продолжается',
-          uk: 'Твій шлях продовжується',
-          es: 'Tu progreso continúa',
-          'pt-BR': 'Seu progresso continua',
-          vi: 'Tiến trình của bạn tiếp tục',
-          id: 'Progresmu terus berlanjut',
-          tr: 'İlerlemeniz devam ediyor',
-          pl: 'Twój postęp trwa',
+          ru: 'Твой путь продолжается.',
+          uk: 'Твій шлях продовжується.',
+          es: 'Tu progreso continúa.',
+          'pt-BR': 'Seu progresso continua.',
+          vi: 'Tiến trình của bạn tiếp tục.',
+          id: 'Progresmu terus berlanjut.',
+          tr: 'İlerlemeniz devam ediyor.',
+          pl: 'Twój postęp trwa.',
         })),
         body: pickNotif(lang, notificationCopy({
           ru: 'С Плюс — энергия без лимита и все курсы открыты. Учись без остановок.',
@@ -1022,14 +1022,14 @@ export const scheduleUpsellNotifications = async (
         delayDays: 14,
         type: 'upsell_d14',
         title: pickNotif(lang, notificationCopy({
-          ru: '2 недели — и ты всё ещё здесь',
-          uk: '2 тижні — і ти все ще тут',
-          es: '2 semanas y sigues aquí',
-          'pt-BR': '2 semanas e você ainda está aqui',
-          vi: '2 tuần — và bạn vẫn còn đây',
-          id: '2 minggu — dan kamu masih di sini',
-          tr: '2 hafta — ve hâlâ buradasın',
-          pl: '2 tygodnie — i nadal tu jesteś',
+          ru: '2 недели — и ты всё ещё здесь.',
+          uk: '2 тижні — і ти все ще тут.',
+          es: '2 semanas y sigues aquí.',
+          'pt-BR': '2 semanas e você ainda está aqui.',
+          vi: '2 tuần — và bạn vẫn còn đây.',
+          id: '2 minggu — dan kamu masih di sini.',
+          tr: '2 hafta — ve hâlâ buradasın.',
+          pl: '2 tygodnie — i nadal tu jesteś.',
         })),
         body: pickNotif(lang, notificationCopy({
           ru: 'Это значит, что ты серьёзен. Разблокируй весь Phraseman — все уроки, бесконечная энергия, нет лимитов.',
@@ -1606,51 +1606,51 @@ export const scheduleStreakWarningIfNeeded = async (
       }));
       body = pickNotif(lang, notificationCopy({
         ru: _ps([
-          `Один раунд — и серия с тобой`,
-          `Столько усилий уже позади! Один раунд — и день твой`,
-          `${streak} дней труда — продолжи сегодня! Заходи`,
+          `Один раунд — и серия с тобой.`,
+          `Столько усилий уже позади! Один раунд — и день твой.`,
+          `${streak} дней труда — продолжи сегодня! Заходи.`,
           `Ты почти легенда. Один раунд — и серия жива! ⭐`,
         ]),
         uk: _ps([
-          `Один раунд — і серія з тобою`,
-          `Стільки зусиль уже позаду! Один раунд — і день твій`,
-          `${streak} днів праці — продовж сьогодні! Заходь`,
+          `Один раунд — і серія з тобою.`,
+          `Стільки зусиль уже позаду! Один раунд — і день твій.`,
+          `${streak} днів праці — продовж сьогодні! Заходь.`,
           `Ти майже легенда. Один раунд — і серія жива! ⭐`,
         ]),
         es: _ps([
-          `Estás al filo: con una lección la salvas`,
-          `Tanto esfuerzo merece continuar: decide con una sesión`,
-          `${streak} días de constancia no se tiran ahora`,
+          `Estás al filo: con una lección la salvas.`,
+          `Tanto esfuerzo merece continuar: decide con una sesión.`,
+          `${streak} días de constancia no se tiran ahora.`,
           `Casi eres leyenda del club: sigue sumando ⭐`,
         ]),
         'pt-BR': _ps([
-          `Seu progresso está no limite. Uma lição salva a sequência`,
-          `Tanto esforço merece continuar: uma sessão resolve`,
-          `${streak} dias de prática não podem desaparecer agora`,
+          `Seu progresso está no limite. Uma lição salva a sequência.`,
+          `Tanto esforço merece continuar: uma sessão resolve.`,
+          `${streak} dias de prática não podem desaparecer agora.`,
           `Você está quase no nível lenda. Uma lição mantém tudo vivo ⭐`,
         ]),
         vi: _ps([
-          `Thành quả của bạn đang sát vạch. Một bài học là cứu được chuỗi`,
-          `Bao nhiêu công sức rồi, đừng dừng lại: một bài là đủ`,
-          `${streak} ngày luyện tập không nên biến mất bây giờ`,
+          `Thành quả của bạn đang sát vạch. Một bài học là cứu được chuỗi.`,
+          `Bao nhiêu công sức rồi, đừng dừng lại: một bài là đủ.`,
+          `${streak} ngày luyện tập không nên biến mất bây giờ.`,
           `Bạn gần như là huyền thoại rồi. Một bài học giữ chuỗi sống ⭐`,
         ]),
         id: _ps([
-          `Progresmu di ujung tanduk. Satu pelajaran menyelamatkan streak`,
-          `Usaha sebesar ini layak lanjut: satu sesi cukup`,
-          `${streak} hari latihan jangan hilang sekarang`,
+          `Progresmu di ujung tanduk. Satu pelajaran menyelamatkan streak.`,
+          `Usaha sebesar ini layak lanjut: satu sesi cukup.`,
+          `${streak} hari latihan jangan hilang sekarang.`,
           `Kamu hampir jadi legenda. Satu pelajaran menjaga streak tetap hidup ⭐`,
         ]),
         tr: _ps([
-          `Emeğin sınırda. Bir ders seriyi kurtarır`,
-          `Bu kadar çaba devam etmeyi hak ediyor: bir oturum yeter`,
-          `${streak} günlük emek şimdi kaybolmasın`,
+          `Emeğin sınırda. Bir ders seriyi kurtarır.`,
+          `Bu kadar çaba devam etmeyi hak ediyor: bir oturum yeter.`,
+          `${streak} günlük emek şimdi kaybolmasın.`,
           `Neredeyse efsanesin. Bir ders seriyi canlı tutar ⭐`,
         ]),
         pl: _ps([
-          `Twój wynik jest na krawędzi. Jedna lekcja ratuje serię`,
-          `Tyle wysiłku warto ciągnąć dalej: jedna sesja wystarczy`,
-          `${streak} dni pracy nie powinno teraz zniknąć`,
+          `Twój wynik jest na krawędzi. Jedna lekcja ratuje serię.`,
+          `Tyle wysiłku warto ciągnąć dalej: jedna sesja wystarczy.`,
+          `${streak} dni pracy nie powinno teraz zniknąć.`,
           `Prawie jesteś legendą. Jedna lekcja utrzyma serię ⭐`,
         ]),
       }));
@@ -1707,52 +1707,52 @@ export const scheduleStreakWarningIfNeeded = async (
       }));
       body = pickNotif(lang, notificationCopy({
         ru: _ps([
-          `Сохрани накопленное! Один раунд — и всё с тобой`,
+          `Сохрани накопленное! Один раунд — и всё с тобой.`,
           `7+ дней усилий — продолжи сегодня!`,
           `Твоя серия заслуживает продолжения. Один раунд — и ты молодец! ⭐`,
           `Зайди на 5 минут — и серия жива!`,
         ]),
         uk: _ps([
-          `Збережи накопичене! Один раунд — і все з тобою`,
+          `Збережи накопичене! Один раунд — і все з тобою.`,
           `7+ днів зусиль — продовж сьогодні!`,
           `Твоя серія заслуговує продовження. Один раунд — і ти молодець! ⭐`,
           `Зайди на 5 хвилин — і серія жива!`,
         ]),
         es: _ps([
-          `No pierdas lo ganado: una lección lo fija`,
-          `Llevas más de una semana firme — no frenes ahora`,
+          `No pierdas lo ganado: una lección lo fija.`,
+          `Llevas más de una semana firme — no frenes ahora.`,
           `Tu constancia vale oro; un repaso rápido basta ⭐`,
-          `Cinco minutos y la racha sigue contigo`,
+          `Cinco minutos y la racha sigue contigo.`,
         ]),
         'pt-BR': _ps([
-          `Não perca o que já conquistou: uma lição mantém tudo`,
-          `Mais de uma semana de esforço — não pare agora`,
+          `Não perca o que já conquistou: uma lição mantém tudo.`,
+          `Mais de uma semana de esforço — não pare agora.`,
           `Sua constância vale ouro; uma revisão rápida basta ⭐`,
-          `Cinco minutos e a sequência continua com você`,
+          `Cinco minutos e a sequência continua com você.`,
         ]),
         vi: _ps([
-          `Đừng mất những gì đã tích lũy: một bài học giữ lại tất cả`,
-          `Hơn một tuần cố gắng rồi — đừng dừng bây giờ`,
+          `Đừng mất những gì đã tích lũy: một bài học giữ lại tất cả.`,
+          `Hơn một tuần cố gắng rồi — đừng dừng bây giờ.`,
           `Sự đều đặn của bạn rất đáng giá; ôn nhanh là đủ ⭐`,
-          `Năm phút thôi, chuỗi vẫn đi cùng bạn`,
+          `Năm phút thôi, chuỗi vẫn đi cùng bạn.`,
         ]),
         id: _ps([
-          `Jangan hilangkan yang sudah kamu kumpulkan: satu pelajaran cukup`,
-          `Lebih dari seminggu usaha — jangan berhenti sekarang`,
+          `Jangan hilangkan yang sudah kamu kumpulkan: satu pelajaran cukup.`,
+          `Lebih dari seminggu usaha — jangan berhenti sekarang.`,
           `Konsistensimu berharga; review singkat cukup ⭐`,
-          `Lima menit dan streak tetap bersamamu`,
+          `Lima menit dan streak tetap bersamamu.`,
         ]),
         tr: _ps([
-          `Kazandığını kaybetme: bir ders yeter`,
-          `Bir haftadan fazla emek verdin — şimdi durma`,
+          `Kazandığını kaybetme: bir ders yeter.`,
+          `Bir haftadan fazla emek verdin — şimdi durma.`,
           `İstikrarın değerli; kısa bir tekrar yeter ⭐`,
-          `Beş dakika ve seri seninle kalır`,
+          `Beş dakika ve seri seninle kalır.`,
         ]),
         pl: _ps([
-          `Nie trać tego, co już zbudowano: jedna lekcja wystarczy`,
-          `Ponad tydzień pracy — nie zatrzymuj się teraz`,
+          `Nie trać tego, co już zbudowano: jedna lekcja wystarczy.`,
+          `Ponad tydzień pracy — nie zatrzymuj się teraz.`,
           `Twoja regularność jest cenna; krótka powtórka wystarczy ⭐`,
-          `Pięć minut i seria zostaje z tobą`,
+          `Pięć minut i seria zostaje z tobą.`,
         ]),
       }));
     } else {
@@ -1810,50 +1810,50 @@ export const scheduleStreakWarningIfNeeded = async (
         ru: _ps([
           `Ещё есть время! Один раунд — и серия растёт.`,
           `Начни — и уже через 5 минут серия станет длиннее!`,
-          `Маленький шаг сегодня — большой результат завтра`,
+          `Маленький шаг сегодня — большой результат завтра.`,
           `Закрепи привычку — зайди и сделай короткий раунд!`,
         ]),
         uk: _ps([
           `Ще є час! Один раунд — і серія росте.`,
           `Почни — і вже за 5 хвилин серія стане довшою!`,
-          `Маленький крок сьогодні — великий результат завтра`,
+          `Маленький крок сьогодні — великий результат завтра.`,
           `Закріпи звичку — зайди і зроби короткий раунд!`,
         ]),
         es: _ps([
           `Aún queda margen; una clase la mantiene viva.`,
-          `Empieza y en cinco minutos habrás cerrado el día`,
-          `Pequeño esfuerzo hoy, gran fluidez mañana`,
-          `No rompas la costumbre: entra y entrena`,
+          `Empieza y en cinco minutos habrás cerrado el día.`,
+          `Pequeño esfuerzo hoy, gran fluidez mañana.`,
+          `No rompas la costumbre: entra y entrena.`,
         ]),
         'pt-BR': _ps([
           `Ainda dá tempo. Uma lição mantém a sequência.`,
-          `Comece agora e em cinco minutos o dia estará fechado`,
-          `Pequeno passo hoje, grande resultado amanhã`,
-          `Não deixe o hábito quebrar: entre e faça uma lição`,
+          `Comece agora e em cinco minutos o dia estará fechado.`,
+          `Pequeno passo hoje, grande resultado amanhã.`,
+          `Não deixe o hábito quebrar: entre e faça uma lição.`,
         ]),
         vi: _ps([
           `Vẫn còn thời gian. Một bài học giữ được chuỗi.`,
-          `Bắt đầu đi, năm phút nữa là bạn đã hoàn thành hôm nay`,
-          `Bước nhỏ hôm nay, kết quả lớn ngày mai`,
-          `Đừng để thói quen gãy: vào app và học một bài`,
+          `Bắt đầu đi, năm phút nữa là bạn đã hoàn thành hôm nay.`,
+          `Bước nhỏ hôm nay, kết quả lớn ngày mai.`,
+          `Đừng để thói quen gãy: vào app và học một bài.`,
         ]),
         id: _ps([
           `Masih ada waktu. Satu pelajaran menjaga streak.`,
-          `Mulai sekarang, lima menit lagi harimu selesai`,
-          `Langkah kecil hari ini, hasil besar besok`,
-          `Jangan biarkan kebiasaan putus: buka dan kerjakan satu pelajaran`,
+          `Mulai sekarang, lima menit lagi harimu selesai.`,
+          `Langkah kecil hari ini, hasil besar besok.`,
+          `Jangan biarkan kebiasaan putus: buka dan kerjakan satu pelajaran.`,
         ]),
         tr: _ps([
           `Hâlâ zaman var. Bir ders seriyi korur.`,
-          `Başla; beş dakika içinde günü tamamlamış olursun`,
-          `Bugün küçük adım, yarın büyük sonuç`,
-          `Alışkanlığın kırılmasına izin verme: gir ve bir ders yap`,
+          `Başla; beş dakika içinde günü tamamlamış olursun.`,
+          `Bugün küçük adım, yarın büyük sonuç.`,
+          `Alışkanlığın kırılmasına izin verme: gir ve bir ders yap.`,
         ]),
         pl: _ps([
           `Wciąż jest czas. Jedna lekcja utrzyma serię.`,
-          `Zacznij, a za pięć minut dzień będzie zamknięty`,
-          `Mały krok dziś, duży efekt jutro`,
-          `Nie pozwól przerwać nawyku: wejdź i zrób lekcję`,
+          `Zacznij, a za pięć minut dzień będzie zamknięty.`,
+          `Mały krok dziś, duży efekt jutro.`,
+          `Nie pozwól przerwać nawyku: wejdź i zrób lekcję.`,
         ]),
       }));
     }
@@ -1975,14 +1975,14 @@ export const scheduleEnergyFullNotification = async (
       pl: _pe(['⚡ Energia odnowiona!', '⚡ Pełne naładowanie!', '🔋 Energia znów pełna']),
     }));
     const body = pickNotif(lang, notificationCopy({
-      ru: _pe(['Заходи и продолжи — самое время для урока', 'Заряд полон. Один урок — и день засчитан', 'Энергия ждёт. Продолжим практику?']),
-      uk: _pe(['Заходь і продовжуй — саме час для уроку', 'Заряд повний. Один урок — і день зараховано', 'Енергія чекає. Продовжимо практику?']),
-      es: _pe(['Entra y continúa: es buen momento para una clase', 'Carga completa. Una clase y cierras el día', 'Tu energía espera. ¿Seguimos practicando?']),
-      'pt-BR': _pe(['Entre e continue: hora perfeita para uma lição', 'Carga cheia. Uma lição e o dia está fechado', 'Sua energia espera. Vamos praticar?']),
-      vi: _pe(['Vào học tiếp nào — thời điểm hoàn hảo cho một bài', 'Đầy năng lượng. Một bài là xong ngày hôm nay', 'Năng lượng đang chờ. Luyện tập tiếp chứ?']),
-      id: _pe(['Masuk dan lanjut — waktu pas untuk satu pelajaran', 'Energi penuh. Satu pelajaran, harimu beres', 'Energimu menunggu. Lanjut latihan?']),
-      tr: _pe(['Gir ve devam et — bir ders için tam zamanı', 'Şarj dolu. Bir ders ve gün tamam', 'Enerjin hazır. Pratiğe devam?']),
-      pl: _pe(['Wejdź i kontynuuj — idealny moment na lekcję', 'Pełna energia. Jedna lekcja i dzień zaliczony', 'Energia czeka. Ćwiczymy dalej?']),
+      ru: _pe(['Заходи и продолжи — самое время для урока.', 'Заряд полон. Один урок — и день засчитан.', 'Энергия ждёт. Продолжим практику?']),
+      uk: _pe(['Заходь і продовжуй — саме час для уроку.', 'Заряд повний. Один урок — і день зараховано.', 'Енергія чекає. Продовжимо практику?']),
+      es: _pe(['Entra y continúa: es buen momento para una clase.', 'Carga completa. Una clase y cierras el día.', 'Tu energía espera. ¿Seguimos practicando?']),
+      'pt-BR': _pe(['Entre e continue: hora perfeita para uma lição.', 'Carga cheia. Uma lição e o dia está fechado.', 'Sua energia espera. Vamos praticar?']),
+      vi: _pe(['Vào học tiếp nào — thời điểm hoàn hảo cho một bài.', 'Đầy năng lượng. Một bài là xong ngày hôm nay.', 'Năng lượng đang chờ. Luyện tập tiếp chứ?']),
+      id: _pe(['Masuk dan lanjut — waktu pas untuk satu pelajaran.', 'Energi penuh. Satu pelajaran, harimu beres.', 'Energimu menunggu. Lanjut latihan?']),
+      tr: _pe(['Gir ve devam et — bir ders için tam zamanı.', 'Şarj dolu. Bir ders ve gün tamam.', 'Enerjin hazır. Pratiğe devam?']),
+      pl: _pe(['Wejdź i kontynuuj — idealny moment na lekcję.', 'Pełna energia. Jedna lekcja i dzień zaliczony.', 'Energia czeka. Ćwiczymy dalej?']),
     }));
 
     await cancelScheduledNotificationsByType(N, ['energy_full']);
@@ -2218,59 +2218,59 @@ export const schedulePhraseOfDayNotification = async (
 
     const TEASERS_RU = [
       `"${phrase.english}" — знаешь что это значит?`,
-      `"${phrase.english}" — открой приложение, чтобы узнать смысл`,
+      `"${phrase.english}" — открой приложение, чтобы узнать смысл.`,
       `"${phrase.english}" — natives говорят так каждый день. А ты знаешь зачем?`,
-      `"${phrase.english}" — это не то, что ты думаешь`,
-      `"${phrase.english}" — одна фраза, которая изменит твой English`,
+      `"${phrase.english}" — это не то, что ты думаешь.`,
+      `"${phrase.english}" — одна фраза, которая изменит твой English.`,
     ];
     const TEASERS_UK = [
       `"${phrase.english}" — знаєш що це означає?`,
-      `"${phrase.english}" — відкрий додаток, щоб дізнатись зміст`,
+      `"${phrase.english}" — відкрий додаток, щоб дізнатись зміст.`,
       `"${phrase.english}" — natives кажуть так щодня. А ти знаєш навіщо?`,
-      `"${phrase.english}" — це не те, що ти думаєш`,
-      `"${phrase.english}" — одна фраза, що змінить твій English`,
+      `"${phrase.english}" — це не те, що ти думаєш.`,
+      `"${phrase.english}" — одна фраза, що змінить твій English.`,
     ];
     const TEASERS_ES = [
       `"${phrase.english}" — ¿sabes qué significa?`,
-      `"${phrase.english}" — abre la app y descubre el sentido`,
+      `"${phrase.english}" — abre la app y descubre el sentido.`,
       `"${phrase.english}" — los nativos lo dicen así a diario ¿tú ya sabes por qué?`,
-      `"${phrase.english}" — no es lo que imaginas`,
-      `"${phrase.english}" — una sola frase para subir de nivel en inglés`,
+      `"${phrase.english}" — no es lo que imaginas.`,
+      `"${phrase.english}" — una sola frase para subir de nivel en inglés.`,
     ];
     const TEASERS_PT_BR = [
       `"${phrase.english}" — você sabe o que significa?`,
-      `"${phrase.english}" — abra o app para descobrir o sentido`,
+      `"${phrase.english}" — abra o app para descobrir o sentido.`,
       `"${phrase.english}" — nativos usam isso todo dia. Você sabe por quê?`,
-      `"${phrase.english}" — não é bem o que parece`,
-      `"${phrase.english}" — uma frase para subir o nível do seu inglês`,
+      `"${phrase.english}" — não é bem o que parece.`,
+      `"${phrase.english}" — uma frase para subir o nível do seu inglês.`,
     ];
     const TEASERS_VI = [
       `"${phrase.english}" — bạn biết nghĩa là gì không?`,
-      `"${phrase.english}" — mở app để xem ý nghĩa`,
+      `"${phrase.english}" — mở app để xem ý nghĩa.`,
       `"${phrase.english}" — người bản xứ nói vậy hằng ngày. Bạn biết vì sao chưa?`,
-      `"${phrase.english}" — không hẳn như bạn nghĩ đâu`,
-      `"${phrase.english}" — một cụm từ giúp tiếng Anh của bạn lên cấp`,
+      `"${phrase.english}" — không hẳn như bạn nghĩ đâu.`,
+      `"${phrase.english}" — một cụm từ giúp tiếng Anh của bạn lên cấp.`,
     ];
     const TEASERS_ID = [
       `"${phrase.english}" — tahu artinya?`,
-      `"${phrase.english}" — buka aplikasi untuk melihat maknanya`,
+      `"${phrase.english}" — buka aplikasi untuk melihat maknanya.`,
       `"${phrase.english}" — native speaker memakainya setiap hari. Kamu tahu kenapa?`,
-      `"${phrase.english}" — bukan seperti yang kamu kira`,
-      `"${phrase.english}" — satu frasa untuk menaikkan level bahasa Inggrismu`,
+      `"${phrase.english}" — bukan seperti yang kamu kira.`,
+      `"${phrase.english}" — satu frasa untuk menaikkan level bahasa Inggrismu.`,
     ];
     const TEASERS_TR = [
       `"${phrase.english}" — ne anlama geldiğini biliyor musun?`,
-      `"${phrase.english}" — anlamını görmek için uygulamayı aç`,
+      `"${phrase.english}" — anlamını görmek için uygulamayı aç.`,
       `"${phrase.english}" — native speaker'lar bunu her gün söyler. Nedenini biliyor musun?`,
-      `"${phrase.english}" — düşündüğün şey olmayabilir`,
-      `"${phrase.english}" — İngilizceni bir seviye yükseltecek tek ifade`,
+      `"${phrase.english}" — düşündüğün şey olmayabilir.`,
+      `"${phrase.english}" — İngilizceni bir seviye yükseltecek tek ifade.`,
     ];
     const TEASERS_PL = [
       `"${phrase.english}" — wiesz, co to znaczy?`,
-      `"${phrase.english}" — otwórz aplikację i sprawdź sens`,
+      `"${phrase.english}" — otwórz aplikację i sprawdź sens.`,
       `"${phrase.english}" — native speakerzy mówią tak codziennie. Wiesz dlaczego?`,
-      `"${phrase.english}" — to nie całkiem to, co myślisz`,
-      `"${phrase.english}" — jeden zwrot, który podnosi poziom angielskiego`,
+      `"${phrase.english}" — to nie całkiem to, co myślisz.`,
+      `"${phrase.english}" — jeden zwrot, który podnosi poziom angielskiego.`,
     ];
     const teasers = pickNotif(lang, notificationCopy({
       ru: TEASERS_RU,

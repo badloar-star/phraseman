@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { addShardsLocalOnlyForPendingServerClaim, addShardsRaw, awardOneTime, commitConfirmedExternalShardEvent, commitShardCompositeOperation, commitShardCreditOperation, getShardAchievementEligibleBalance, getShardsBalance, keepShardsBalanceLocalAtLeast, peekLastKnownShardsBalance, replaceShardsBalanceForAccountGeneration, replaceShardsBalanceLocal, SHARD_REWARDS, spendShards } from '../app/shards_system';
+import { addShardsLocalOnlyForPendingServerClaim, addShardsRaw, awardOneTime, commitShardCompositeOperation, commitShardCreditOperation, getShardAchievementEligibleBalance, getShardsBalance, keepShardsBalanceLocalAtLeast, peekLastKnownShardsBalance, replaceShardsBalanceForAccountGeneration, replaceShardsBalanceLocal, SHARD_REWARDS, spendShards } from '../app/shards_system';
 import { __resetAccountGenerationForTests, beginAccountGeneration, captureAccountGeneration, invalidateAccountGeneration, withAccountTransitionLock } from '../app/account_generation';
 import { emitAppEvent } from '../app/events';
 import { bumpLifetimeShardsEarned, bumpLifetimeShardsSpent } from '../app/lifetime_profile_stats';
@@ -110,22 +110,6 @@ describe('shards_system guards and one-time awards', () => {
       grant: { kind: 'lesson_reward', subjectId: 'lesson-1' },
       localWrites: [['lesson_reward_marker', '1']],
       showEarnModal: true,
-    }));
-    expect(result).toEqual({ status: 'failed', reason: 'stale_account_generation' });
-    expect(peekLastKnownShardsBalance()).toBeNull();
-    expect(bumpLifetimeShardsEarned).not.toHaveBeenCalled();
-    expect(emitAppEvent).not.toHaveBeenCalled();
-  });
-
-  it('does not publish external-event post-commit effects into a switched account', async () => {
-    mockStorage.shards_balance = '20';
-    const result = await switchAccountAtOperationPublication(() => commitConfirmedExternalShardEvent({
-      expectedOwnerStableId: 'test-owner',
-      source: 'refund',
-      eventId: 'refund-wrapper-race-01',
-      delta: 4,
-      reason: 'refund',
-      grant: { kind: 'refund', subjectId: 'refund-wrapper-race-01' },
     }));
     expect(result).toEqual({ status: 'failed', reason: 'stale_account_generation' });
     expect(peekLastKnownShardsBalance()).toBeNull();

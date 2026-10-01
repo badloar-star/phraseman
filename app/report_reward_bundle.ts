@@ -220,42 +220,10 @@ async function creditRunes(messageId: string, bundle: ReportRewardBundle, token:
   }
 }
 
-/**
- * Replays the rune part of an immutable (historic) server reward event. The cloud
- * external-event synchronizer calls this before writing its applied marker, so
- * a crash or reinstall can retry the exact rune/spin grants without duplication.
- */
-export async function applyConfirmedReportRewardBundleExtrasFromEvent(
-  messageId: string,
-  rewardBundleInput: unknown,
-  expectedOwnerStableId: string,
-): Promise<void> {
-  const cleanMessageId = safeMessageId(messageId);
-  const rewardBundle = normalizeReportRewardBundle(rewardBundleInput);
-  const token = captureAccountGeneration();
-  const owner = token.stableId;
-  if (!cleanMessageId || !owner || owner !== expectedOwnerStableId) {
-    throw new Error('report_reward_account_changed');
-  }
-  assertCurrent(token, owner);
-  if (reportRewardCoins(rewardBundle) > 0) await creditRunes(cleanMessageId, rewardBundle, token);
-  assertCurrent(token, owner);
-  // зачем (PM-047, владелец): спин как механика убран — старая функция выдачи
-  // локального спина за отчёт стала всегда-провальной, и эта ветка раньше
-  // бросала ошибку на каждый ретрай синхронизатора внешних событий —
-  // админ-награда со спином ретраилась бесконечно. Обещание спина отменено —
-  // закрываем без начисления.
-  if (bundleSpins(rewardBundle) > 0) {
-    DebugLogger.info(
-      'report_reward_bundle:spin_retired',
-      `[SPIN-RETIRED] source=admin_report_reward op=${cleanMessageId}`
-      + ` amount=${bundleSpins(rewardBundle)} promised=spins action=closed_no_credit`
-      + ' reason=PM-047_spin_mechanic_retired',
-    );
-  }
-  assertCurrent(token, owner);
-  emitAppEvent('app_messages_local_changed');
-}
+// зачем (PM-289, D70/D109): повтор монетной части из облачного события
+// (applyConfirmedReportRewardBundleExtrasFromEvent) удалён вместе с синхронизатором
+// внешних событий жемчуга. Сервер такие события больше не пишет (report_replies.ts),
+// а монеты за репорт (300/600/1000) идут единственным путём — claimReportRewardBundle.
 
 async function processClaim(claim: PendingClaim, token: AccountGenerationToken, owner: string): Promise<ReportRewardClaimResult> {
   assertCurrent(token, owner);
@@ -286,8 +254,8 @@ async function processClaim(claim: PendingClaim, token: AccountGenerationToken, 
     await upsertPending(owner, current);
   }
   if (!current.spinsCredited && bundleSpins(current.rewardBundle) > 0) {
-    // зачем (PM-047): та же отмена обещания спина, что в
-    // applyConfirmedReportRewardBundleExtrasFromEvent — иначе локальная
+    // зачем (PM-047): обещание спина отменено (механика снята) —
+    // закрываем без начисления, иначе локальная
     // очередь claimReportRewardBundle ретраит вечно на первом же заходе.
     DebugLogger.info(
       'report_reward_bundle:spin_retired',

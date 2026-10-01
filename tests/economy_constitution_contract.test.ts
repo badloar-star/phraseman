@@ -120,13 +120,16 @@ describe('Economy Constitution — client authority is a permanent source contra
     expect(rules).toContain("request.resource.data == resource.data");
   });
 
-  test('external events are paginated, account-scoped, and refunds remain debt', () => {
-    const sync = read('app/economy/external_shard_event_sync.ts');
-    expect(sync).toContain(".orderBy('createdAtMs', 'asc')");
-    expect(sync).toContain('firestore.FieldPath.documentId()');
-    expect(sync).toContain('isCurrentAccountGeneration(accountToken, ownerStableId)');
-    expect(sync).toContain('expectedOwnerStableId: ownerStableId');
-    expect(sync).toContain('effectiveDelta: event.delta');
+  // PM-289 (D70/D78): синхронизатор внешних событий жемчуга удалён — жемчуг снят без
+  // компенсации, поэтому турнирные/покупочные события больше не тянутся на телефон
+  // и не стоят Firestore-чтений на каждом входе. Сторож держит удаление.
+  test('external pearl events are no longer pulled to the device; refunds remain debt', () => {
+    expect(fs.existsSync(path.join(__dirname, '../app/economy/external_shard_event_sync.ts'))).toBe(false);
+    const shards = read('app/shards_system.ts');
+    expect(shards).not.toContain('external_shard_event_sync');
+    expect(shards).not.toContain('refreshShardsBalanceFromCloudAuthoritative');
+    expect(shards).not.toContain('commitConfirmedExternalShardEvent');
+    expect(read('app/shards_pending_grants.ts')).not.toContain('external_shard_event_sync');
 
     const ledger = read('app/economy/client_shard_operation_ledger.ts');
     expect(ledger).toContain("(input.authority ?? 'client') === 'client'");

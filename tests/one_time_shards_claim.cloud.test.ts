@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
-import { awardOneTime, claimReferralSpinPearls, SHARD_REWARDS } from '../app/shards_system';
+import { awardOneTime, SHARD_REWARDS } from '../app/shards_system';
 import {
   __resetAccountGenerationForTests,
   beginAccountGeneration,
@@ -79,12 +79,4 @@ describe('client-authoritative one-time rewards', () => {
     expect((firestore as any).__testState.runTransactionCalls).toBe(0);
   });
 
-  it('applies a server-confirmed referral event idempotently without writing users.shards', async () => {
-    await expect(claimReferralSpinPearls('request-12345678', 2)).resolves.toBe(2);
-    await expect(claimReferralSpinPearls('request-12345678', 2)).resolves.toBe(0);
-
-    expect(mockStorage.shards_balance).toBe('2');
-    expect((firestore as any).__testState.runTransactionCalls).toBe(0);
-    expect((firestore as any).__testState.userShards).toBe(0);
-  });
 });

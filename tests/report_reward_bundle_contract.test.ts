@@ -49,16 +49,14 @@ describe('report reward bundle client contract', () => {
     expect(source).toContain('[SPIN-RETIRED]');
   });
 
-  it('replays rune and spin extras from the immutable cloud event before marking it applied', () => {
+  // PM-289 (D70/D109): синхронизатор внешних событий жемчуга удалён, сервер
+  // событий report_reply больше не пишет. Монеты за репорт идут ОДНИМ путём —
+  // claimReportRewardBundle → creditRunes (level_spin_star_grants).
+  it('credits report coins only through the claim path after the external event replay is removed', () => {
     const source = read('app/report_reward_bundle.ts');
-    const sync = read('app/economy/external_shard_event_sync.ts');
-    const replay = sync.indexOf('applyConfirmedReportRewardBundleExtrasFromEvent');
-    const marker = sync.indexOf('AsyncStorage.setItem(markerKey', replay);
-
-    expect(source).toContain('export async function applyConfirmedReportRewardBundleExtrasFromEvent');
-    expect(sync).toContain("event.source === 'report_reply'");
-    expect(sync).toContain("event.kind === 'confirmed_report_reward_bundle'");
-    expect(replay).toBeGreaterThanOrEqual(0);
-    expect(marker).toBeGreaterThan(replay);
+    expect(fs.existsSync(path.join(__dirname, '../app/economy/external_shard_event_sync.ts'))).toBe(false);
+    expect(source).not.toContain('export async function applyConfirmedReportRewardBundleExtrasFromEvent');
+    expect(source).toContain('export async function claimReportRewardBundle');
+    expect(source).toContain('await creditRunes(current.messageId, current.rewardBundle, token)');
   });
 });

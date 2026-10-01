@@ -35,7 +35,6 @@ import {
   hasClientShardLedgerState,
   initializeClientShardLedgerOpeningBalance,
   isTerminalPreparedRecoveryReason,
-  readStoredClientShardOperation,
   recoverPreparedClientShardOperation,
   type ClientShardGrant,
   type ClientShardLocalWrite,
@@ -357,21 +356,6 @@ export const getShardsBalance = async (): Promise<number> => {
   } catch {
     if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return 0;
     return peekLastKnownShardsBalance() ?? 0;
-  }
-};
-
-/** Compatibility entry point for competition screens. It imports immutable
- * external facts; it never reads or installs users.shards as a projection. */
-export const refreshShardsBalanceFromCloudAuthoritative = async (): Promise<number | null> => {
-  try {
-    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
-    const { syncConfirmedExternalShardEventsFromCloud } = await import(
-      './economy/external_shard_event_sync'
-    );
-    await syncConfirmedExternalShardEventsFromCloud();
-    return getShardsBalance();
-  } catch {
-    return null;
   }
 };
 
@@ -1420,98 +1404,6 @@ export async function commitShardCreditOperation(
   }, input.accountTransitionLockLease);
 }
 
-export type ConfirmedExternalShardEventInput = Readonly<{
-  expectedOwnerStableId?: string;
-  source: string;
-  eventId: string;
-  delta: number;
-  reason: string;
-  grant: ClientShardGrant;
-  localWrites?: readonly ClientShardLocalWrite[];
-}>;
-
-export async function confirmedExternalShardOperationId(source: string, eventId: string): Promise<string> {
-  const safeSource = source.replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 18) || 'external';
-  const eventHash = await Crypto.digestStringAsync(
-    Crypto.CryptoDigestAlgorithm.SHA256,
-    `${source}:${eventId}`,
-  );
-  return `external:${safeSource}:${eventHash.slice(0, 40)}`;
-}
-
-export async function wasConfirmedExternalShardEventApplied(
-  ownerStableId: string,
-  source: string,
-  eventId: string,
-): Promise<boolean> {
-  const operationId = await confirmedExternalShardOperationId(source, eventId);
-  return (await readStoredClientShardOperation(ownerStableId, operationId))?.authority === 'external';
-}
-
-/** Apply a payment/transfer/competition fact without making its server a balance authority. */
-export async function commitConfirmedExternalShardEvent(
-  input: ConfirmedExternalShardEventInput,
-): Promise<CommitClientShardOperationResult> {
-  if (!Number.isSafeInteger(input.delta) || input.delta === 0) {
-    return { status: 'failed', reason: 'invalid_external_delta' };
-  }
-  const operationToken = captureAccountGeneration();
-  const operationOwnerStableId = operationToken.stableId;
-  const isOperationCurrent = (): boolean => Boolean(
-    operationOwnerStableId
-    && isCurrentAccountGeneration(operationToken, operationOwnerStableId)
-  );
-  if (
-    !isOperationCurrent()
-    || (input.expectedOwnerStableId !== undefined && input.expectedOwnerStableId !== operationOwnerStableId)
-  ) return { status: 'failed', reason: 'stale_account_generation' };
-  const operationId = await confirmedExternalShardOperationId(input.source, input.eventId);
-  const source = input.source.replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 18) || 'external';
-  const eventHash = operationId.slice(operationId.lastIndexOf(':') + 1);
-  const result = await commitClientShardOperation({
-    expectedOwnerStableId: operationOwnerStableId!,
-    authority: 'external',
-    operationId,
-    direction: input.delta > 0 ? 'credit' : 'debit',
-    amount: Math.abs(input.delta),
-    reason: input.reason,
-    grant: input.grant,
-    localWrites: input.localWrites ?? (
-      input.delta < 0
-        ? [[`external_economy_result_v1:${source}:${eventHash.slice(0, 40)}`, JSON.stringify({
-            eventId: input.eventId,
-            grant: input.grant,
-          })]]
-        : []
-    ),
-  });
-  if (result.status !== 'applied' && result.status !== 'already-applied') return result;
-  return withAccountTransitionLock(async () => {
-    if (!isOperationCurrent() || result.operation.ownerStableId !== operationOwnerStableId) {
-      return { status: 'failed', reason: 'stale_account_generation' };
-    }
-    setShardsBalanceMemory(Math.max(0, result.balanceAfter), operationToken);
-    if (result.status === 'applied') {
-      if (input.delta > 0) void bumpLifetimeShardsEarned(input.delta, operationToken);
-      else void bumpLifetimeShardsSpent(Math.abs(input.delta), operationToken);
-      logShardTransaction(
-        input.delta > 0 ? 'earn' : 'spend',
-        Math.abs(input.delta),
-        input.reason,
-        result.balanceAfter,
-        result.balanceBefore,
-        operationToken,
-      );
-    }
-    await emitShardsBalanceUpdated(Math.max(0, result.balanceAfter), {
-      updatedAtMs: Date.now(),
-      op: input.delta > 0 ? 'earn' : 'spend',
-      reason: input.reason,
-    });
-    return result;
-  });
-}
-
 export type IdempotentShardSpendResult =
   | 'applied'
   | 'already-applied'
@@ -2070,47 +1962,6 @@ export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test')
   }
 };
 
-/**
- * зачем: владелец (2026-07-26) — Pro (lifetime) выигрывает в «Награде за друга»
- * жемчужины вместо дней Plus. Старые referral-roulette receipts читаются только
- * для совместимости; новые server-authoritative spins больше не выдаются,
- * prizeKind='pearls'), а начисление делает эта claim-транзакция: doc
- * reward_claims/referral_spin_{spinRequestId} делает повтор идемпотентным
- * (ретрай сети / двойной вызов не задвоят баланс). Паттерн — awardOneTime.
- */
-export const claimReferralSpinPearls = async (
-  spinRequestId: string,
-  amount: number,
-): Promise<number> => {
-  const accountToken = captureAccountGeneration();
-  const ownerStableId = accountToken.stableId ?? '';
-  const isCurrent = (): boolean => Boolean(
-    ownerStableId && isCurrentAccountGeneration(accountToken, ownerStableId),
-  );
-  const safeAmount = Math.max(0, Math.floor(Number(amount) || 0));
-  const requestId = String(spinRequestId ?? '').trim();
-  if (!isCurrent() || safeAmount <= 0 || requestId.length < 8 || requestId.length > 128) return 0;
-  try {
-    const result = await commitConfirmedExternalShardEvent({
-      expectedOwnerStableId: ownerStableId,
-      source: 'referral_spin',
-      eventId: requestId,
-      delta: safeAmount,
-      reason: 'referral_spin',
-      grant: {
-        kind: 'referral_spin_prize',
-        subjectId: requestId,
-        payload: { spinRequestId: requestId },
-      },
-    });
-    if (!isCurrent()) return 0;
-    return result.status === 'applied' ? safeAmount : 0;
-  } catch (e) {
-    if (__DEV__) console.warn('[shards_system] claimReferralSpinPearls', e);
-    return 0;
-  }
-};
-
 // ── Цепочка: кратность 7 / 30 (модалку шлёт home после этого) ───────────────
 export const onStreakUpdated = async (
   streak: number,
@@ -2483,10 +2334,9 @@ export const loadShardsFromCloud = async (isCallerCurrent: () => boolean = () =>
     if (await hasClientShardLedgerState(uid)) {
       // Once migrated, neither a cloud timestamp nor a server balance may
       // overwrite the client journal projection. Cloud is storage only.
-      await import('./economy/external_shard_event_sync')
-        .then(({ syncConfirmedExternalShardEventsFromCloud }) => syncConfirmedExternalShardEventsFromCloud())
-        .catch(() => {});
-      if (!isCurrent()) return;
+      // зачем (PM-289, D70): внешние события жемчуга (турниры, покупки) больше
+      // не подтягиваются — жемчуг удалён без компенсации, а чтение коллекции
+      // external_economy_events стоило Firestore-чтений на каждом входе.
       const local = await getShardsBalance();
       if (!isCurrent()) return;
       setShardsBalanceMemory(local, accountToken);
@@ -2519,9 +2369,6 @@ export const loadShardsFromCloud = async (isCallerCurrent: () => boolean = () =>
       }
       await initializeClientShardLedgerOpeningBalance(openingOverride, uid);
       if (!isCurrent()) return;
-      await import('./economy/external_shard_event_sync')
-        .then(({ syncConfirmedExternalShardEventsFromCloud }) => syncConfirmedExternalShardEventsFromCloud())
-        .catch(() => {});
       void import('./economy/client_shard_operation_sync')
         .then(({ syncClientShardOperationJournalToCloud }) => syncClientShardOperationJournalToCloud())
         .catch(() => {});
@@ -2666,12 +2513,6 @@ export const loadShardsFromCloud = async (isCallerCurrent: () => boolean = () =>
     void import('./economy/client_shard_operation_sync')
       .then(({ syncClientShardOperationJournalToCloud }) => syncClientShardOperationJournalToCloud())
       .catch(() => {});
-    await import('./economy/external_shard_event_sync')
-      .then(({ syncConfirmedExternalShardEventsFromCloud }) => syncConfirmedExternalShardEventsFromCloud())
-      .catch((error: unknown) => {
-        // Немой catch здесь однажды скрыл бы неприход подтверждённых начислений.
-        DebugLogger.warn('shards_system:externalEventSync', `sync failed: ${String(error)}`);
-      });
   } catch (e) {
     // зачем: загрузка баланса из облака. Молчащий отказ = человек видит старый
     // баланс и не понимает, куда делись начисленные жемчужины.

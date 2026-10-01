@@ -53,6 +53,11 @@ const DELETED_FILES = [
   // D70/D78 + PM-148: покупка урока за жемчуг удалена (ядро и флаг)
   'app/lessons_pearl_unlock.ts',
   'app/lessons_pearl_unlock_flag.ts',
+  // PM-289 этап 1: синхронизатор внешних событий жемчуга, дотягивание оплаченных
+  // пакетов (корреляция RevenueCat) и мёртвая заглушка магазина жемчуга
+  'app/economy/external_shard_event_sync.ts',
+  'app/revenuecat_pending_correlation.ts',
+  'app/pearl_store_retired.ts',
 ];
 for (const file of DELETED_FILES) {
   assert.equal(exists(file), false, `D70: удалённый модуль жемчуга вернулся: ${file}`);
@@ -114,7 +119,6 @@ const SPEND_OR_GRANT_CALL = new RegExp(
  */
 const ALLOWLIST: Readonly<Record<string, 'design-ui' | 'history' | 'pending'>> = {
   'app/shards_system.ts': 'history',
-  'app/economy/external_shard_event_sync.ts': 'history',
   'functions/src/external_economy_events.ts': 'history',
   // зона соревнований (турниры) — не трогаем в этом заходе
   'functions/src/tournament_weekly_payout.ts': 'pending',

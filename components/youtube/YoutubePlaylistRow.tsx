@@ -20,7 +20,7 @@ export default function YoutubePlaylistRow({ playlist, onPress }: { playlist: Yo
       <View style={styles.stack}>
         <View style={[styles.imageWrap, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}>
           {playlist.thumbnailUrl
-            ? <Image accessible={false} source={{ uri: playlist.thumbnailUrl }} style={styles.image} contentFit="cover" />
+            ? <Image accessible={false} source={{ uri: playlist.thumbnailUrl }} style={styles.image} contentFit="cover" cachePolicy="memory-disk" recyclingKey={playlist.id} />
             : <Ionicons name="albums-outline" size={24} color={g.secondary} />}
           <VideoPlayBadge small />
         </View>

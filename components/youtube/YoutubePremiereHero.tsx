@@ -141,7 +141,7 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
         activeOpacity={0.86}
         style={styles.thumbnail}
       >
-        <Image source={{ uri: video.thumbnailUrl }} style={styles.image} contentFit="cover" />
+        <Image source={{ uri: video.thumbnailUrl }} style={styles.image} contentFit="cover" cachePolicy="memory-disk" recyclingKey={video.id} />
         {playIntro && <Animated.View testID="youtube-premiere-intro" pointerEvents="none" style={[styles.sweep, ({ animationName: sweepKeyframes, animationDuration: `${PREMIERE_INTRO_DURATION_MS}ms`, animationPlayState: runtimeActive ? 'running' : 'paused' } as any)]} />}
         {/* зачем: `.hero .badge` макета — тёмная пилюля состояния на кадре, слева-сверху. */}
         <View testID="youtube-premiere-state" style={styles.state}>

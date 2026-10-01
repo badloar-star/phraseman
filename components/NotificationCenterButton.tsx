@@ -640,6 +640,11 @@ function NotificationCenterButton({
           </View>
           {selected ? renderReportReplyDetail(selected) : (
           <FlatList decelerationRate="fast"
+            // зачем (FINAL_PHASE п.4): «Показать ещё» растит список страницами — первый кадр
+            // рисует только видимое, дальнее не держим в памяти. Высоты строк разные, getItemLayout нет.
+            initialNumToRender={10}
+            maxToRenderPerBatch={8}
+            windowSize={7}
             data={teamDetailOpen ? [] : visibleItems}
             keyExtractor={(row) => row.id}
             renderItem={renderNotificationRow}

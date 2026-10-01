@@ -55,7 +55,7 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
         {/* зачем (координатор Q39): мягкое раскрытие ролика — см. components/video/videoMotion.ts. */}
         {inlinePlayer ? <Animated.View entering={VIDEO_PLAYER_REVEAL} style={styles.thumb}>{inlinePlayer}</Animated.View> : (
           <>
-            <Image source={{ uri: video.thumbnailUrl }} style={styles.thumb} contentFit="cover" transition={120} />
+            <Image source={{ uri: video.thumbnailUrl }} style={styles.thumb} contentFit="cover" transition={120} cachePolicy="memory-disk" recyclingKey={video.id} />
             <View style={styles.scrim} />
             {/* зачем: `.thumb .pl` макета — круглая «play» слева-снизу кадра; кадр целиком и есть кнопка «Смотреть». */}
             <VideoPlayBadge small={compactLayout} />

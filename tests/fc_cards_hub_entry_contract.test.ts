@@ -90,12 +90,20 @@ describe('approved Cards hub entry', () => {
     expect(hub).not.toContain('consumeFlashcardTrainingQuota');
     expect(hub).not.toContain('useFeatureAccess(');
     expect(hub).toContain('MonthlyTrainingSessionIndicator');
-    expect(hub).toContain('disabled={trainingLocked || !trainingEntryReady}');
-    expect(hub).not.toContain('openTrainingPaywall(');
+    // D152 (координатор 01.10, «ни одной неработающей кнопки»): при исчерпании кнопка
+    // НЕ гаснет — тап ведёт в покупку; замок показывает лимит; двойной тап защёлкнут.
+    expect(hub).toContain('disabled={!trainingLocked && !trainingEntryReady}');
+    expect(hub).not.toContain('disabled={trainingLocked || !trainingEntryReady}');
+    expect(hub).toContain("openTrainingPaywall('flashcard_training', 'flashcards_hub_train')");
+    expect(hub).toContain("pathname: '/premium_modal', params: { context, source }");
+    expect(hub).toContain("trainingLocked ? 'lock-closed' : 'arrow-forward'");
+    expect(hub).toContain('if (paywallOpeningRef.current)');
     expect(setup).toContain('loadFcDeckOptions');
     expect(setup).toContain('useFlashcardTrainingQuotaPreview()');
     expect(setup).toContain("quotaPreview.status !== 'exhausted'");
-    expect(setup).toContain("quotaPreview.status === 'allowed'");
+    // зачем (владелец 2026-09-13): квоту не прочитали (unavailable/stale) — не наказываем
+    // человека, старт держит только «исчерпано», а не строгое 'allowed'.
+    expect(setup).toContain("const quotaAllowsStart = quotaPreview.status !== 'exhausted';");
     expect(setup).not.toContain('consumeFlashcardTrainingQuota');
     expect(setup).not.toContain('useFeatureAccess(');
     expect(setup).not.toContain("context: 'flashcard_training'");

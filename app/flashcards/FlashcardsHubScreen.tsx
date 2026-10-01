@@ -559,7 +559,16 @@ export default function FlashcardsHubScreen() {
       ? `${copy.train}. ${copy.trainA11yLeft(trainingRemaining, quotaPreview.limit)}`
       : copy.train;
 
+  // зачем (D152, координатор 01.10): при исчерпанном лимите тап ведёт в покупку, а не гаснет;
+  // двойной тап не должен открыть окно дважды — защёлка снимается, когда хаб снова в фокусе.
+  const paywallOpeningRef = useRef(false);
+  useFocusEffect(useCallback(() => { paywallOpeningRef.current = false; }, []));
   const openTrainingPaywall = useCallback((context: 'flashcard_training', source: string) => {
+    if (paywallOpeningRef.current) {
+      console.log('[FC-TRAIN-ENTRY] paywall: повторный тап проглочен — окно уже открывается', JSON.stringify({ source }));
+      return;
+    }
+    paywallOpeningRef.current = true;
     markNextNavigationAsReplace();
     router.replace({ pathname: '/premium_modal', params: { context, source } } as never);
   }, [router]);
@@ -722,7 +731,8 @@ export default function FlashcardsHubScreen() {
             >
               <View style={styles.trainButtonContent}>
                 <Text style={[styles.trainText, { color: g.accentInk }]}>{copy.train}</Text>
-                <Ionicons name="arrow-forward" size={20} color={g.ctaInk} />
+                {/* зачем (D152): лимит исчерпан — видно по замку, но кнопка нажимается и ведёт в покупку. */}
+                <Ionicons name={trainingLocked ? 'lock-closed' : 'arrow-forward'} size={20} color={g.ctaInk} />
               </View>
             </Pressable>
             <MonthlyTrainingSessionIndicator

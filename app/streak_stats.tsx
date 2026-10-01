@@ -27,6 +27,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import StatsPremiumBlur from '../components/StatsPremiumBlur';
 import ActivityHeatmap365 from '../components/ActivityHeatmap365';
 import { StreakChainIcon } from '../components/StreakChainIcon';
+import { StreakFlameFill } from '../components/streak/StreakFlameFill';
 import StreakStagesModal from '../components/streak/StreakStagesModal';
 import { hapticTap } from '../hooks/use-haptics';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
@@ -1378,7 +1379,10 @@ function StreakHeroCard({
                       onPress={() => setStagesOpen(true)}
                       style={({ pressed }) => [{ width: 62, height: 62, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? GOLD_RICH.wash : accentTint(t.accent) }, pressed && { opacity: 0.85 }]}
                     >
-                        <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={totalStreak} size={46} inactive={!freezeActive && totalStreak <= 0} />
+                        {/* зачем (PM-044, координатор 01.10): перо → огонь, заполняемый до 10 дней; заморозка — свой значок. */}
+                        {freezeActive
+                          ? <StreakChainIcon themeMode={themeMode} frozen streakDays={totalStreak} size={46} />
+                          : <StreakFlameFill streakDays={totalStreak} size={46} inactive={totalStreak <= 0} />}
                     </Pressable>
                     <View style={{ flex: 1, minWidth: 0 }}>
                         <Text style={{ color: t.textPrimary, fontSize: f.numLg + 16, fontWeight: '900', lineHeight: (f.numLg + 16) * 1.05 }}>{totalStreak}</Text>

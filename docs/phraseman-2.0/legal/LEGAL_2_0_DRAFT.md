@@ -148,9 +148,9 @@ Store-декларации (PM-250): OpenAI уже указан как обра�
 (Сейчас в коде срока нет — формулировку не публиковать.)
 
 **Terms — переход старых прав (PM-249), одним абзацем в §8 «Virtual items»:**
-> EN: With version 2.0, the previous virtual balance (Shards, including any bought with real money) and the former Arena, tournament, gift and experience-point features end and are not compensated; official card sets that were unlocked with Shards are no longer offered. Plus subscriptions, lifetime Pro access and purchases of Community Packs you made are kept. Lifetime Pro owners receive Coins instead of Shards as referral prizes. Lessons that were free to you before the update stay free.
-> RU: С версией 2.0 прежний виртуальный баланс (жемчуг, включая купленный за реальные деньги), а также прежние Арена, турниры, подарки и очки опыта прекращаются без компенсации; официальные наборы карточек, открытые за жемчуг, больше не предлагаются. Подписки Plus, вечный Pro и ваши покупки наборов сообщества сохраняются. Владельцы вечного Pro получают монеты вместо жемчуга как призы реферальной рулетки. Уроки, которые были для вас бесплатными до обновления, остаются бесплатными.
-Основания в решениях: D68, D70, D103 (жемчуг за деньги сгорает), D100/D105, D122. Пункт «подписки Plus и вечный Pro сохраняются» подтвердить владельцу/юристу — в решениях прямо не записан (вопрос Q-Terms).
+> EN: With version 2.0, the previous virtual balance (Shards, including any bought with real money) and the former Arena, tournament, gift and experience-point features end and are not compensated; official card sets that were unlocked with Shards are no longer offered. Lifetime Pro owners receive Coins instead of Shards as referral prizes. Lessons that were free to you before the update stay free.
+> RU: С версией 2.0 прежний виртуальный баланс (жемчуг, включая купленный за реальные деньги), а также прежние Арена, турниры, подарки и очки опыта прекращаются без компенсации; официальные наборы карточек, открытые за жемчуг, больше не предлагаются. Владельцы вечного Pro получают монеты вместо жемчуга как призы реферальной рулетки. Уроки, которые были для вас бесплатными до обновления, остаются бесплатными.
+Основания в решениях: D68, D70, D103 (жемчуг за деньги сгорает), D100/D105, D122. Фраза «Plus, вечный Pro и купленные наборы сообщества сохраняются» УБРАНА по ответу владельца 01.10 («ничего из этого») — в условия её не писать.
 
 ### Что осталось не принятым
 - PM-248-A1/A2, PM-249-A1: нужна публикация (владелец) и юрист — NOT_MET.

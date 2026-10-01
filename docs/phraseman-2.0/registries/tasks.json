@@ -13474,7 +13474,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -13483,14 +13483,18 @@
       {
         "id": "PM-274-A1",
         "text": "1 ступень = 1 списание по id ступени; повтор mount/prefetch не списывает; сбой до первого задания не тратит",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "app/spire/use_spire_step_runner.ts:90-170 (useEnergySessionIntent('spire_step', ступень, runId) + chargeStartedRef; возврат только если первое задание не показано, D87); runId один раз на открытие (use_spire_game.ts:202); журнал PM-084 дедуплицирует operationId; tests/spire_energy_charge_contract.test.ts 7/7; коммит 63c7f95e7"
+        ]
       },
       {
         "id": "PM-274-A2",
         "text": "Возврата за провал нет; Plus без ожидания; единый контракт энергии 2.0",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "app/energy_contract.ts: spire_step = ENERGY_SESSION_COST (1) в едином каталоге цен 2.0, energyActivityForSessionKind('spire_step'); finish() без refundOne (возврата за провал нет); Plus/isUnlimited → 'unlimited' без списания (EnergyContext confirmActivityStart); tests/spire_energy_charge_contract.test.ts 7/7; коммит 63c7f95e7"
+        ]
       }
     ],
     "depends_on": [
@@ -13614,9 +13618,9 @@
       {
         "id": "PM-276-A1",
         "text": "league_finalize_cron и app/league_engine.ts изменены зеркально в одном коммите; сторожа лиг зелёные",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "docs/phraseman-2.0/evidence/PM-276_weekly_finalize.md"
+          "Формулировка устарела: лиги удалены (D74/D78/D83, app/league_engine.ts и league_finalize_cron.ts отсутствуют). Эквивалент зеркала сервер↔клиент для Шпиля: functions/src/spire_residents.ts ↔ modules/spire/residents.ts (общий spireLiveZoneSize, итог spire_finalize_core.ts), сторож tests/spire_residents_mirror_contract.test.ts 2/2 (починен от ссылки на удалённый league_residents.ts, коммит 9475593a4); functions spire_finalize_core+spire_residents+spire_coins 35/35; scripts/guard_league_demotion.mjs и guard_league_refresh_ttl.mjs exit 0"
         ]
       },
       {
@@ -14270,7 +14274,9 @@
         "id": "PM-286-A2",
         "text": "Звук: стартовый пакет V2 или голос телефона (D47); проверено на устройстве, что звучит",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (сессия «Дизайн» + сервер пакета + проверка на устройстве владельцем): источник звука решён D47 — голос телефона; резолвер modules/spire/listen_audio.ts + tests/spire_listen_audio.test.ts 4/4 (все 611 заданий черновика en разрешаются в device_tts), коммит 1fdc4b904. Не сделано: listen/dictate всё ещё pendingKinds в functions/src/spire_pack_contract.ts:388 (в пакет не попадают); кнопки «прослушать» с expo-speech в components/spire/SpireTaskView.tsx нет; на устройстве не проверено"
+        ]
       }
     ],
     "depends_on": [
@@ -14320,7 +14326,7 @@
         "text": "Пулы опубликованы через админку после PM-285; язык включается в Шпиле сам после публикации",
         "accepted": false,
         "evidence": [
-          "functions/src/arena_target_registry.ts + admin_arena_publication.ts (adminArenaPublicationActivate — механизм автовключения языка уже существует и общий с Арeной; документирован в task packet, docs/work/tasks/2026-09-24_pm287_spire_task_flag.md, раздел Architecture)"
+          "NOT_MET (владелец/прод: включить config/spire_v1 и собрать пакеты es/de/fr кнопкой spire-admin-build в admin/v2/legacy.html — adminSpirePackBuild): путь публикации есть по D64(1) — functions/src/spire_multilingual_pool.ts + spire_pack_build.ts, functions spire_multilingual_pool+spire_pack_build_multilingual 41/41, tests/spire_multilingual_admin_control.test.ts 11/11; язык включается сам: клиент app/spire/use_spire_game.ts:189-207 открывает ступень, как только есть пакет языка (иначе pack_missing). Публикация на проде не выполнялась. Пометки «бета» рядом с языком по D77 в коде Шпиля нет (grep beta/бета в components/spire, app/spire, modules/spire — пусто) — нужна сессия «Дизайн»"
         ]
       },
       {

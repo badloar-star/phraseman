@@ -642,6 +642,35 @@ describe('submitClientReport', () => {
     expect(report).not.toHaveProperty('commentText');
   });
 
+  // PM-108-A2: повторная жалоба того же человека на тот же набор/отклик —
+  // один документ, окно лимита не тратится; другой отклик — отдельная жалоба.
+  test('deduplicates repeated reports of the same pack or comment by the same reporter', async () => {
+    const packReport = {
+      kind: 'community_pack_report',
+      payload: { packId: 'pack-dup', packTitle: 'Dup', reason: 'spam', comment: 'first' },
+    };
+    const first = await callSubmitClientReport(packReport);
+    const second = await callSubmitClientReport({
+      ...packReport,
+      payload: { ...packReport.payload, reason: 'offensive', comment: 'second tap' },
+    });
+    expect(second).toMatchObject({ ok: true, id: first.id, duplicate: true });
+    expect(reportDocs('community_pack_reports')).toHaveLength(1);
+    expect(collectionDocs('client_report_rate_limits')[0]?.data).toMatchObject({ count: 1 });
+
+    const commentReport = await callSubmitClientReport({
+      kind: 'community_pack_report',
+      payload: { packId: 'pack-dup', commentId: 'c-1', reason: 'offensive' },
+    });
+    expect(commentReport.id).not.toBe(first.id);
+    const commentRetry = await callSubmitClientReport({
+      kind: 'community_pack_report',
+      payload: { packId: 'pack-dup', commentId: 'c-1', reason: 'spam' },
+    });
+    expect(commentRetry).toMatchObject({ id: commentReport.id, duplicate: true });
+    expect(reportDocs('community_pack_reports')).toHaveLength(2);
+  });
+
   test('records a report against a specific pack comment with its author and text', async () => {
     const result = await callSubmitClientReport({
       kind: 'community_pack_report',

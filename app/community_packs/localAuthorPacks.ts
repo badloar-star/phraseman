@@ -193,6 +193,14 @@ export async function saveLocalAuthorPack(
   if (!existing && opts?.isPremium !== true && accountPacks.length >= FREE_AUTHOR_PACK_LIMIT) {
     throw new Error('free_author_pack_limit_reached');
   }
+  // зачем (PM-108-A3): приватный по умолчанию. Раньше `publishToCommunity !== false`
+  // делал публичным любой набор, где флаг не передан (undefined). Публичность
+  // ставится ТОЛЬКО явным `true`; без флага сохраняем прежнее состояние набора.
+  const publishFlag = payload.publishToCommunity;
+  const isPublic = publishFlag === true || (publishFlag === undefined && existing?.isPublic === true);
+  const publicationState: LocalAuthorPack['publicationState'] = publishFlag === true
+    ? 'pending'
+    : publishFlag === false ? 'private' : (existing?.publicationState ?? 'private');
   const next: LocalAuthorPack = {
     ...existing,
     v: 1,
@@ -202,12 +210,12 @@ export async function saveLocalAuthorPack(
     cardThemeKey: payload.cardThemeKey ?? existing?.cardThemeKey ?? '',
     cards: payload.cards,
     packLanguage: normalizePackLanguage(payload.packLanguage ?? payload.studyTarget ?? existing?.packLanguage),
-    isPublic: payload.publishToCommunity !== false,
+    isPublic,
     priceRunes: Math.max(0, Math.floor(Number(payload.priceRunes ?? existing?.priceRunes ?? 0))) || 0,
     studyTarget: target,
     cloudPackId: opts?.cloudPackId ?? existing?.cloudPackId,
     publicationKey: existing?.publicationKey ?? `${id}_${now}`,
-    publicationState: payload.publishToCommunity === false ? 'private' : 'pending',
+    publicationState,
     authorStableId: opts?.authorStableId ?? existing?.authorStableId,
     createdAt: existing?.createdAt ?? now,
     updatedAt: now,

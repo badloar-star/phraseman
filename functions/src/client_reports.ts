@@ -210,6 +210,22 @@ function idempotentReportDocId(
     .digest('hex');
 }
 
+/**
+ * PM-108-A2: одна жалоба одного человека на один набор (или один отклик под
+ * ним) — один документ. Повторное нажатие «Пожаловаться» не плодит дубликаты
+ * в админке и не тратит окно лимита: id детерминирован от (кто, набор, отклик).
+ */
+export function communityPackReportDedupeDocId(
+  stableUid: string,
+  packId: string,
+  commentId: string,
+): string {
+  return `cpr_${createHash('sha256')
+    .update(`community_pack_report|${stableUid}|${packId}|${commentId}`)
+    .digest('hex')
+    .slice(0, 48)}`;
+}
+
 function baseDoc(payload: Record<string, unknown>, stableUid: string, authUid: string, now: number) {
   return {
     uid: stableUid,
@@ -693,14 +709,33 @@ export const submitClientReport = onCall({
   if (resolvedPayload === null) return { ok: true, id: 'accepted' };
   const doc = buildReportDoc(kind, resolvedPayload, stableUid, authUid, now);
   const rateRef = db.collection(RATE_COLLECTION).doc(rateDocId(kind, authUid, stableUid));
+  // зачем (PM-108-A2): жалобы на набор/отклик дедуплицируются по (кто, набор,
+  // отклик), а не только окном лимита 5/час — иначе один человек мог положить
+  // в админку пять одинаковых жалоб подряд.
+  const dedupeId = kind === 'community_pack_report'
+    ? communityPackReportDedupeDocId(
+      stableUid,
+      text((doc as Record<string, unknown>).packId, 180),
+      text((doc as Record<string, unknown>).commentId, 180),
+    )
+    : '';
   const reportRef = idempotencyKey
     ? db.collection(config.collection).doc(idempotentReportDocId(kind, stableUid, idempotencyKey))
-    : db.collection(config.collection).doc();
+    : dedupeId
+      ? db.collection(config.collection).doc(dedupeId)
+      : db.collection(config.collection).doc();
   return db.runTransaction(async (tx) => {
-    if (idempotencyKey) {
+    if (idempotencyKey || dedupeId) {
       const existingReport = await tx.get(reportRef);
       if (existingReport.exists) {
-        return { ok: true, id: reportRef.id, collection: config.collection };
+        console.log('[PM108-REPORT] duplicate report ignored', {
+          kind, reportId: reportRef.id, via: idempotencyKey ? 'idempotencyKey' : 'pack_dedupe',
+        });
+        // Повтор по idempotencyKey возвращает ровно прежний ответ (контракт ретрая);
+        // пометка duplicate — только для дедупликации жалоб на набор.
+        return idempotencyKey
+          ? { ok: true, id: reportRef.id, collection: config.collection }
+          : { ok: true, id: reportRef.id, collection: config.collection, duplicate: true };
       }
     }
     const rateSnap = await tx.get(rateRef);

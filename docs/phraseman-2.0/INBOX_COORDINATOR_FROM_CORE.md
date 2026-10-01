@@ -159,3 +159,10 @@ PM-108 → review (жалоба на один набор больше не ду�
 Вопросы:
 - Q48 Заблокированный, отправляя заявку, получает обычную ошибку (permission-denied из правил): (а) оставить, общий текст ошибки **рек.** / (б) показывать «отправлено» (маскирует и бан).
 - Q49 Кнопка «Заблокировать» заодно удаляет из друзей (deleteFriend)? **рек. да** — решает UI.
+
+## §19 — 2026-10-01: группа удаления аккаунта к выкладке
+
+Решения Q46 (формат оставить), Q48 (а), Q49 (да, вместе с удалением из друзей) — приняты.
+- Имена функций: accountDeleteMine, accountDeleteEnqueue, accountDeleteCredentialStatus, accountDeleteWorker, accountDeleteRetryCron (+ при желании accountDeleteStatusMine, accountDeleteRestoreMine, adminQueueAccountDeletion — тот же код).
+- Тесты src/account_delete*: 98/99. Красный account_delete_revenuecat_phase2 — устаревшая проверка текста после рефакторинга Account V2 (70cd4d516); запись запретов в транзакции сохранена. Обновить тест — Account V2 (Q47).
+- ⚠️ Выкладка собирается из рабочего дерева: у Account V2 незакоммичены accounts_v2_migration/{inventory,dry_run}.ts (+тесты) и account_delete.test.ts. Перед деплоем уточнить у неё или ждать её коммита.

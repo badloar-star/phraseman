@@ -3,6 +3,7 @@ jest.mock('../app/mistake_practice_insights', () => ({
 }));
 
 jest.mock('../app/debug-logger', () => ({
+  reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()),
   DebugLogger: { error: jest.fn() },
 }));
 

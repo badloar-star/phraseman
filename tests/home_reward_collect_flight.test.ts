@@ -35,6 +35,7 @@ import {
 } from '../app/reward_flight_particles';
 
 jest.mock('../app/debug-logger', () => ({
+  reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()),
   DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() },
 }));
 

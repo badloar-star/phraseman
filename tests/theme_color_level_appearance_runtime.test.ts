@@ -26,7 +26,7 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
 }));
 
 jest.mock('../app/oskolok', () => ({ setOskolokThemeMode: jest.fn() }));
-jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
+jest.mock('../app/debug-logger', () => ({ reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()), DebugLogger: { error: jest.fn() } }));
 
 const wrapper = ({ children }: { children: React.ReactNode }) => React.createElement(ThemeProvider, null, children);
 

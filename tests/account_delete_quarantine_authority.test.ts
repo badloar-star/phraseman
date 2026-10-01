@@ -6,6 +6,7 @@ jest.mock('@react-native-async-storage/async-storage');
 // алертов, из-за которого устройства становились непригодны 31.08-01.09.
 const mockDebugLoggerError = jest.fn();
 jest.mock('../app/debug-logger', () => ({
+  reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()),
   DebugLogger: {
     error: (...args: unknown[]) => mockDebugLoggerError(...args),
     log: jest.fn(),

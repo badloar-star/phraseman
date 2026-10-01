@@ -7,7 +7,7 @@ import { CLIENT_SHARD_OPERATION_PREFIX, clientShardPreparedStorageKey } from '..
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: true, CLOUD_SYNC_ENABLED: false }));
-jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
+jest.mock('../app/debug-logger', () => ({ reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()), DebugLogger: { error: jest.fn() } }));
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 jest.mock('../app/stable_id', () => ({
   getStableId: jest.fn(async () => 'test-owner'),

@@ -9,7 +9,7 @@ const storage = {
 };
 jest.mock('@react-native-async-storage/async-storage', () => storage);
 jest.mock('../app/app_snapshot_store', () => ({ patchAppSnapshot: () => {} }));
-jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: () => {} } }));
+jest.mock('../app/debug-logger', () => ({ reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()), DebugLogger: { error: () => {} } }));
 
 const rootSource = fs.readFileSync(path.resolve(__dirname, '../app/_layout.tsx'), 'utf8');
 const snapshotSource = ts.createSourceFile('bootstrap.ts', fs.readFileSync(path.resolve(__dirname, '../app/app_snapshot_bootstrap.ts'), 'utf8'), ts.ScriptTarget.Latest, true);

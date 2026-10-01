@@ -44,6 +44,7 @@ jest.mock('../app/config', () => ({
 
 const debugError = jest.fn();
 jest.mock('../app/debug-logger', () => ({
+  reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()),
   DebugLogger: { error: (...args: unknown[]) => debugError(...args) },
 }));
 

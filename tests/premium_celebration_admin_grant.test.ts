@@ -9,7 +9,7 @@ import {
 } from '../app/premium_celebration_state';
 
 jest.mock('@react-native-async-storage/async-storage');
-jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
+jest.mock('../app/debug-logger', () => ({ reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()), DebugLogger: { error: jest.fn() } }));
 
 const mockStorage: Record<string, string> = {};
 

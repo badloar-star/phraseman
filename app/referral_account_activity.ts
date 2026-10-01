@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { reportSwallowed } from './debug-logger'; // зачем: PM-229-A1 — немые catch пишут причину
 
 const LOCAL_REFERRAL_ACTIVITY_KEYS = [
   'streak_count',
@@ -61,7 +62,7 @@ export function referralLocalActivityFromMap(data: Record<string, string | null 
 export async function hasLocalReferralExistingAccountActivity(): Promise<boolean> {
   const pairs = await AsyncStorage
     .multiGet([...LOCAL_REFERRAL_ACTIVITY_KEYS])
-    .catch(() => [] as [string, string | null][]);
+    .catch((swallowedError: unknown) => { reportSwallowed('referral_account_activity:hasLocalReferralExistingAccountActivity', swallowedError); return [] as [string, string | null][]; });
   return referralLocalActivityFromMap(Object.fromEntries(pairs) as Record<string, string | null>);
 }
 

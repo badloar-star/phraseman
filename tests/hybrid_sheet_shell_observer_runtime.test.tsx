@@ -8,6 +8,7 @@ jest.unmock('react-native');
 // logger here would require device storage and unrelated app-health services.
 const mockLogError = jest.fn();
 jest.mock('../app/debug-logger', () => ({
+  reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()),
   DebugLogger: { error: (...args: unknown[]) => mockLogError(...args) },
 }));
 beforeEach(() => mockLogError.mockClear());

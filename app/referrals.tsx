@@ -70,7 +70,7 @@ import {
   beginReferralInvitesRequest, commitReferralState, hydrateReferralStateFromRaw,
   isReferralInvitesRequestCurrent, readReferralDrain, readReferralInvites,
 } from './referrals_cache';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 
 function makeL(lang: Lang) {
   return (
@@ -196,7 +196,7 @@ export default function ReferralsScreen() {
     let alive = true;
     void AsyncStorage.getItem('premium_plan')
       .then((plan) => { if (alive) setIsProLifetime(plan === 'lifetime'); })
-      .catch(() => {});
+      .catch(swallowError('referrals:ReferralsScreen'));
     return () => { alive = false; };
   }, [renderAccountScope]);
   const [win, setWin] = useState<RouletteWinData | null>(null);
@@ -325,9 +325,9 @@ export default function ReferralsScreen() {
       DebugLogger.error('referrals:currentDrain', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
       })
-      .catch(() => {});
+      .catch(swallowError('referrals:ReferralsScreen#2'));
     load()
-      .catch(() => {})
+      .catch(swallowError('referrals:ReferralsScreen#3'))
       .finally(() => {
         if (alive) setLoading(false);
       });
@@ -336,7 +336,7 @@ export default function ReferralsScreen() {
 
   const refresh = useCallback(async () => {
     setRefreshing(true);
-    await load({ force: true }).catch(() => {});
+    await load({ force: true }).catch(swallowError('referrals:ReferralsScreen#4'));
     setRefreshing(false);
   }, [load]);
 
@@ -350,13 +350,13 @@ export default function ReferralsScreen() {
     let alive = true;
     const requestToken = captureAccountGeneration();
     void (async () => {
-      const claim = await claimReferralSpins().catch(() => null);
+      const claim = await claimReferralSpins().catch((swallowedError: unknown) => { reportSwallowed('referrals:ReferralsScreen#5', swallowedError); return null; });
       if (!alive || !isCurrentAccountGeneration(requestToken)) return;
       if (claim && typeof claim.spinsTotal === 'number') {
         const cached = await readCachedSpinCredits();
         if (!alive || !isCurrentAccountGeneration(requestToken)) return;
         setSpinCredits(Math.max(claim.spinsTotal, cached, devGrantedCreditsFloorRef.current));
-        await load({ force: true }).catch(() => {});
+        await load({ force: true }).catch(swallowError('referrals:ReferralsScreen#6'));
       }
       else {
         const cached = await readCachedSpinCredits();
@@ -369,7 +369,7 @@ export default function ReferralsScreen() {
   }, [load, referralUiVisible]);
 
   useEffect(() => {
-    if (referralUiVisible) void preloadRoulettePrizeImages().catch(() => {});
+    if (referralUiVisible) void preloadRoulettePrizeImages().catch(swallowError('referrals:preloadRoulettePrizeImages'));
   }, [referralUiVisible]);
 
   useEffect(() => () => {
@@ -399,7 +399,7 @@ export default function ReferralsScreen() {
       // Карточки уже рендерятся через expo-image; preload — только прогрев.
       // Asset.loadAsync иногда не завершает Promise, поэтому ждать его перед
       // серверным spin нельзя: сервер сначала должен подтвердить и списать ключ.
-      void preloadRoulettePrizeImages().catch(() => {});
+      void preloadRoulettePrizeImages().catch(swallowError('referrals:preloadRoulettePrizeImages#2'));
       const outcome = await spinReferralRoulette();
       if (!isCurrentAccountGeneration(spinAccount)) {
         arcRef.current?.stopSpin();
@@ -497,7 +497,7 @@ export default function ReferralsScreen() {
     hapticTap();
     setInviteBusy(true);
     try {
-      const share = await buildCloudReferralInviteShare({ lang: lang as Lang, userName: 'User' }).catch(() => null);
+      const share = await buildCloudReferralInviteShare({ lang: lang as Lang, userName: 'User' }).catch((swallowedError: unknown) => { reportSwallowed('referrals:ReferralsScreen#9', swallowedError); return null; });
       if (
         accountScopeKey(requestToken) !== renderAccountScope
         || !isCurrentAccountGeneration(requestToken)

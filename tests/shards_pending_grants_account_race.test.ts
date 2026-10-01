@@ -29,7 +29,7 @@ jest.mock('../app/shards_system', () => ({
   getShardAchievementEligibleBalance: jest.fn(async (balance: number) => balance),
 }));
 jest.mock('../app/events', () => ({ emitAppEvent }));
-jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
+jest.mock('../app/debug-logger', () => ({ reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()), DebugLogger: { error: jest.fn() } }));
 jest.mock('react-native-purchases', () => ({ __esModule: true, default: { getAppUserID } }));
 jest.mock('../app/economy/external_shard_event_sync', () => ({
   listConfirmedRevenueCatPurchaseEventsFromCloud,

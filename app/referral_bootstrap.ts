@@ -9,7 +9,7 @@ import {
 } from './referral_cloud';
 import { loadShardsFromCloud } from './shards_system';
 import { getCanonicalUserId } from './user_id_policy';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, swallowError } from './debug-logger';
 
 const INVITE_HTTPS_BASE = 'https://knowlyapps.com/phraseman/invite';
 
@@ -65,7 +65,7 @@ export async function captureReferralCodeIfNew(
 /** Stores a code entered in Friends and kicks off best-effort apply without blocking the UI. */
 export async function captureReferralCodeFromManualInput(code: string): Promise<void> {
   await captureReferralCodeIfNew(code, 'manual_code');
-  void tryApplyPendingReferral().catch(() => {});
+  void tryApplyPendingReferral().catch(swallowError('referral_bootstrap:captureReferralCodeFromManualInput'));
 }
 
 function extractRefParam(url: string | null | undefined): string | null {
@@ -144,11 +144,11 @@ async function applyReferralCodeNow(
     if (!res?.ok) return 'error';
     await AsyncStorage.setItem(appliedStorageKey(stableId), code);
     logEvent('referral_applied', { already: res.already ? 1 : 0 });
-    await loadShardsFromCloud().catch(() => {});
+    await loadShardsFromCloud().catch(swallowError('referral_bootstrap:applyReferralCodeNow'));
     // Авто-дружба: отправляем запрос пригласившему, чтобы он сразу появился в друзьях.
     // Best-effort и только при первом apply (не already), чтобы не слать повторно.
     if (!res.already && res.referrerStableId) {
-      await sendAutoFriendRequestToReferrer(res.referrerStableId).catch(() => {});
+      await sendAutoFriendRequestToReferrer(res.referrerStableId).catch(swallowError('referral_bootstrap:applyReferralCodeNow#2'));
     }
     return res.already ? 'already' : 'applied';
   } catch (e: unknown) {

@@ -2,7 +2,7 @@
 // значит ни один клиент комнаты / пакета / итога недели не может быть вызван.
 let tabEnabled = false;
 jest.mock('../app/spire_tab_flag', () => ({ isSpireTabEnabled: () => tabEnabled }));
-jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() } }));
+jest.mock('../app/debug-logger', () => ({ reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()), DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() } }));
 
 import { SPIRE_CONFIG_DEFAULTS } from '../modules/spire/config_contract';
 import { spireGateStillOpen, spireOpenLiveGate } from '../app/spire/spire_live_gate';

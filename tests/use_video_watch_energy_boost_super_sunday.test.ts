@@ -74,6 +74,7 @@ jest.mock('../app/account_generation', () => ({
 }));
 
 jest.mock('../app/debug-logger', () => ({
+  reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()),
   DebugLogger: { error: jest.fn() },
 }));
 

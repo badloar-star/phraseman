@@ -45,6 +45,7 @@ jest.mock('../app/app_snapshot_store', () => ({
   getAppSnapshot: jest.fn(() => ({ progress: { stars: 12, starsEarnedTotal: 12 } })),
 }));
 jest.mock('../app/debug-logger', () => ({
+  reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()),
   DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() },
 }));
 jest.mock('@react-native-firebase/app', () => ({ getApp: jest.fn(() => ({})) }));

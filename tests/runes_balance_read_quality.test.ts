@@ -17,6 +17,7 @@ jest.mock('../app/app_snapshot_store', () => ({
   subscribeAppSnapshot: jest.fn(() => jest.fn()),
 }));
 jest.mock('../app/debug-logger', () => ({
+  reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()),
   DebugLogger: { info: jest.fn() },
 }));
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));

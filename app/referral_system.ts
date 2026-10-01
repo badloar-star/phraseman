@@ -10,7 +10,7 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, reportSwallowed } from './debug-logger';
 
 const LEGACY_REFERRAL_KEY = 'user_referral_code';
 const LEGACY_REFERRAL_OWNER_KEY = 'user_referral_code_owner_v1';
@@ -37,7 +37,7 @@ function referralCodeScopeIsCurrent(scope: ReferralCodeScope): boolean {
 }
 
 async function currentReferralCodeScope(): Promise<ReferralCodeScope | null> {
-  const stableId = String(await getStableId().catch(() => '')).trim();
+  const stableId = String(await getStableId().catch((swallowedError: unknown) => { reportSwallowed('referral_system:currentReferralCodeScope', swallowedError); return ''; })).trim();
   const token = captureAccountGeneration();
   const currentAccountKey = accountScopeKey(token);
   if (!stableId || !currentAccountKey || !isCurrentAccountGeneration(token, stableId)) return null;
@@ -56,7 +56,7 @@ function normalizeReferralCode(value: string | null | undefined): string | null 
 
 async function migrateLegacyReferralCode(scope: ReferralCodeScope): Promise<string | null> {
   const migrationKey = referralCodeLegacyMigrationKey(scope.stableId);
-  const alreadyChecked = await AsyncStorage.getItem(migrationKey).catch(() => null);
+  const alreadyChecked = await AsyncStorage.getItem(migrationKey).catch((swallowedError: unknown) => { reportSwallowed('referral_system:migrateLegacyReferralCode', swallowedError); return null; });
   if (!referralCodeScopeIsCurrent(scope) || alreadyChecked === '1') return null;
   const pairs = await AsyncStorage.multiGet([LEGACY_REFERRAL_KEY, LEGACY_REFERRAL_OWNER_KEY]);
   if (!referralCodeScopeIsCurrent(scope)) return null;
@@ -108,7 +108,7 @@ export async function generateReferralCode(name: string): Promise<string> {
         // с LINK_ACCOUNT_REQUIRED, код возвращается пустым и в /friends зияет дыра в тексте.
         // Все остальные серверные пути (друзья/лидерборд/подарки/пуши) линкуются ТАК ЖЕ перед
         // вызовом — referral был единственным, кто это пропускал.
-        await ensureStableAuthLinkForStableId(sid).catch(() => false);
+        await ensureStableAuthLinkForStableId(sid).catch((swallowedError: unknown) => { reportSwallowed('referral_system:generateReferralCode', swallowedError); return false; });
         if (!referralCodeScopeIsCurrent(scope)) return '';
         try {
           const { code } = await callReferralEnsureMyCode(sid);

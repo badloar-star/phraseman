@@ -26,6 +26,7 @@ import {
   serializeReferralState,
   storeReferralState,
 } from './referrals_cache';
+import { swallowError } from './debug-logger'; // зачем: PM-229-A1 — немые catch пишут причину
 
 export type { ReferralInvite } from './referral_cloud';
 
@@ -130,7 +131,7 @@ export async function getClaimableReferralState(options: { force?: boolean } = {
     };
     if (storeReferralState(accountToken, data.invites, data.drain, updatedAtMs)) {
       const persisted = serializeReferralState(accountToken, data.invites, data.drain, updatedAtMs);
-      if (persisted) void AsyncStorage.setItem(REFERRAL_STATE_STORAGE_KEY, persisted).catch(() => {});
+      if (persisted) void AsyncStorage.setItem(REFERRAL_STATE_STORAGE_KEY, persisted).catch(swallowError('referral_vip:getClaimableReferralState'));
     }
     return data;
   })().finally(() => {
@@ -180,7 +181,7 @@ export async function claimReferralVipDays(): Promise<ClaimReferralOutcome> {
   }
 
   // Маркер для анимации активации (тот же механизм, что admin-grant VIP).
-  await markVipCelebrationPending(`referral_${Date.now()}`).catch(() => {});
+  await markVipCelebrationPending(`referral_${Date.now()}`).catch(swallowError('referral_vip:claimReferralVipDays'));
   invalidatePremiumCache();
   logEvent('referral_claim_vip_success', { days: granted, friends });
 

@@ -18,7 +18,7 @@ const firestoreCollection = jest.fn(() => {
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
 jest.mock('../app/user_id_policy', () => ({ getCanonicalUserId: jest.fn(async () => 'wallet-owner') }));
-jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
+jest.mock('../app/debug-logger', () => ({ reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()), DebugLogger: { error: jest.fn() } }));
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 jest.mock('../app/economy/external_shard_event_sync', () => ({
   syncConfirmedExternalShardEventsFromCloud,

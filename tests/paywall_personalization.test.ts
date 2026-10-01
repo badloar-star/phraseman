@@ -10,7 +10,7 @@ import {
 } from '../app/paywall_personalization';
 
 jest.mock('@react-native-async-storage/async-storage');
-jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
+jest.mock('../app/debug-logger', () => ({ reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()), DebugLogger: { error: jest.fn() } }));
 jest.mock('../app/foreground_usage_ms', () => ({
   getForegroundUsageMs: jest.fn(async () => 18 * 3_600_000), // 18 часов
 }));

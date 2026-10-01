@@ -58,6 +58,7 @@ jest.mock('../app/app_snapshot_bootstrap', () => ({
 }));
 
 jest.mock('../app/debug-logger', () => ({
+  reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()),
   DebugLogger: { info: () => {}, warn: () => {}, error: () => {} },
 }));
 

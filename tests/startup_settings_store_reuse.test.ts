@@ -7,7 +7,7 @@ const storage = {
 const publish = jest.fn();
 jest.mock('@react-native-async-storage/async-storage', () => storage);
 jest.mock('../app/app_snapshot_store', () => ({ patchAppSnapshot: (...args: unknown[]) => publish(...args) }));
-jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
+jest.mock('../app/debug-logger', () => ({ reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()), DebugLogger: { error: jest.fn() } }));
 
 function deferred<T>() {
   let resolve!: (value: T) => void;

@@ -20,6 +20,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { isReferralCloudEnabled } from './referral_flags';
 import { getCanonicalUserId } from './user_id_policy';
 import { hasLocalReferralExistingAccountActivity } from './referral_account_activity';
+import { reportSwallowed, swallowError } from './debug-logger'; // зачем: PM-229-A1 — немые catch пишут причину
 
 const PENDING_REF_KEY = 'pending_referral_code';
 const PENDING_REF_SOURCE_KEY = 'pending_referral_source';
@@ -65,25 +66,25 @@ export async function decideReferralWelcome(): Promise<ReferralWelcomeDecision> 
 
   // Онбординг должен быть пройден — иначе модалка наложится на онбординг (та же
   // ошибка, что ловили с брифингом Компаса: оверлей главной поверх онбординга).
-  const onboardingDone = (await AsyncStorage.getItem(ONBOARDING_DONE_KEY).catch(() => null)) === '1';
+  const onboardingDone = (await AsyncStorage.getItem(ONBOARDING_DONE_KEY).catch((swallowedError: unknown) => { reportSwallowed('referral_welcome_state:decideReferralWelcome', swallowedError); return null; })) === '1';
   if (!onboardingDone) return NO;
 
   const stableId = await getCanonicalUserId();
   if (!stableId) return NO;
 
   // Уже показывали — больше не повторяем.
-  const seen = await AsyncStorage.getItem(welcomeSeenKey(stableId)).catch(() => null);
+  const seen = await AsyncStorage.getItem(welcomeSeenKey(stableId)).catch((swallowedError: unknown) => { reportSwallowed('referral_welcome_state:decideReferralWelcome#2', swallowedError); return null; });
   if (seen === '1') return NO;
 
   // Награда уже получена — мотивировать нечем.
-  const rewarded = await AsyncStorage.getItem(refereeRewardedKey(stableId)).catch(() => null);
+  const rewarded = await AsyncStorage.getItem(refereeRewardedKey(stableId)).catch((swallowedError: unknown) => { reportSwallowed('referral_welcome_state:decideReferralWelcome#3', swallowedError); return null; });
   if (rewarded === '1') return NO;
-  if (await hasLocalReferralExistingAccountActivity().catch(() => false)) return NO;
+  if (await hasLocalReferralExistingAccountActivity().catch((swallowedError: unknown) => { reportSwallowed('referral_welcome_state:decideReferralWelcome#4', swallowedError); return false; })) return NO;
 
   // «По приглашению» = есть pending-код ИЛИ уже привязанный applied-код.
-  const pending = (await AsyncStorage.getItem(PENDING_REF_KEY).catch(() => null) ?? '').trim().toUpperCase();
-  const pendingSource = (await AsyncStorage.getItem(PENDING_REF_SOURCE_KEY).catch(() => null) ?? '').trim();
-  const applied = (await AsyncStorage.getItem(appliedKey(stableId)).catch(() => null) ?? '').trim().toUpperCase();
+  const pending = (await AsyncStorage.getItem(PENDING_REF_KEY).catch((swallowedError: unknown) => { reportSwallowed('referral_welcome_state:decideReferralWelcome#5', swallowedError); return null; }) ?? '').trim().toUpperCase();
+  const pendingSource = (await AsyncStorage.getItem(PENDING_REF_SOURCE_KEY).catch((swallowedError: unknown) => { reportSwallowed('referral_welcome_state:decideReferralWelcome#6', swallowedError); return null; }) ?? '').trim();
+  const applied = (await AsyncStorage.getItem(appliedKey(stableId)).catch((swallowedError: unknown) => { reportSwallowed('referral_welcome_state:decideReferralWelcome#7', swallowedError); return null; }) ?? '').trim().toUpperCase();
   const code = applied || pending || null;
   if (!code) return NO;
 
@@ -94,7 +95,7 @@ export async function decideReferralWelcome(): Promise<ReferralWelcomeDecision> 
 export async function markReferralWelcomeSeen(): Promise<void> {
   const stableId = await getCanonicalUserId();
   if (!stableId) return;
-  await AsyncStorage.setItem(welcomeSeenKey(stableId), '1').catch(() => {});
+  await AsyncStorage.setItem(welcomeSeenKey(stableId), '1').catch(swallowError('referral_welcome_state:markReferralWelcomeSeen'));
 }
 
 /**
@@ -104,7 +105,7 @@ export async function markReferralWelcomeSeen(): Promise<void> {
 export async function markRefereeWelcomeRewarded(): Promise<void> {
   const stableId = await getCanonicalUserId();
   if (!stableId) return;
-  await AsyncStorage.setItem(refereeRewardedKey(stableId), '1').catch(() => {});
+  await AsyncStorage.setItem(refereeRewardedKey(stableId), '1').catch(swallowError('referral_welcome_state:markRefereeWelcomeRewarded'));
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

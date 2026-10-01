@@ -49,7 +49,7 @@ jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
 jest.mock('../constants/i18n', () => ({
   triLang: (_lang: string, values: Record<string, string>) => values.ru,
 }));
-jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
+jest.mock('../app/debug-logger', () => ({ reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()), DebugLogger: { error: jest.fn() } }));
 jest.mock('../app/firestore_leaderboard', () => ({
   checkNameAvailabilityDetailed: (...args: unknown[]) => mockCheckNameAvailabilityDetailed(...args),
   normalizeNameIndexKey: (name: string) => name.normalize('NFKC').replace(/\s+/g, ' ').trim().toLowerCase(),

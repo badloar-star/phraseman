@@ -40,6 +40,7 @@ jest.mock('../app/revenuecat_projection_sync', () => ({
 }));
 
 jest.mock('../app/debug-logger', () => ({
+  reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()),
   DebugLogger: { error: debugError },
 }));
 

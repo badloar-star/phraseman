@@ -88,8 +88,9 @@ describe('referral reward animation recovery', () => {
   });
 
   it('does not let image preloading block a server-issued reward', () => {
-    expect(REFERRALS).toContain('void preloadRoulettePrizeImages().catch(() => {});');
-    expect(REFERRALS).not.toContain('await preloadRoulettePrizeImages().catch(() => {});');
+    // зачем: PM-229-A1 — прогрев по-прежнему не блокирует награду, но сбой теперь пишет причину (swallowError), а не глотается.
+    expect(REFERRALS).toMatch(/void preloadRoulettePrizeImages\(\)\.catch\(swallowError\('/);
+    expect(REFERRALS).not.toMatch(/await preloadRoulettePrizeImages\(\)\.catch\(/);
   });
 
   // зачем: D78/D81 (владелец, 2026-09-30) — DEV-выдача ключа удалена навсегда и НЕ

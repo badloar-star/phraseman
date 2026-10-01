@@ -18,6 +18,7 @@ import {
   commitPhoneStateEconomyOperation,
   currentPhoneStateEconomyScope,
 } from '../phone_state_economy_bridge';
+import { reportSwallowed, swallowError } from '../debug-logger'; // зачем: PM-229-A1 — немые catch пишут причину
 
 const BALANCE_KEY = 'shards_balance';
 const BALANCE_META_KEY = 'shards_balance_meta_v1';
@@ -549,15 +550,15 @@ export async function commitClientShardOperation(
         // If root publication succeeded and only the compatibility projection
         // failed, a same-id retry is safe and heals it without a second debit.
         const state = parseState(
-          await AsyncStorage.getItem(clientShardLedgerStateStorageKey(ownerStableId)).catch(() => null),
+          await AsyncStorage.getItem(clientShardLedgerStateStorageKey(ownerStableId)).catch((swallowedError: unknown) => { reportSwallowed('client_shard_operation_ledger:commitClientShardOperation', swallowedError); return null; }),
           ownerStableId,
         );
         const operation = parseOperation(
-          await AsyncStorage.getItem(clientShardOperationStorageKey(ownerStableId, input.operationId)).catch(() => null),
+          await AsyncStorage.getItem(clientShardOperationStorageKey(ownerStableId, input.operationId)).catch((swallowedError: unknown) => { reportSwallowed('client_shard_operation_ledger:commitClientShardOperation#2', swallowedError); return null; }),
         );
         const retryFingerprint = input.mergeReplay
           ? String(input.mergeSourceFingerprint)
-          : await sha256(publicRequest(input)).catch(() => null);
+          : await sha256(publicRequest(input)).catch((swallowedError: unknown) => { reportSwallowed('client_shard_operation_ledger:commitClientShardOperation#3', swallowedError); return null; });
         if (operation && operation.requestFingerprint === retryFingerprint) {
           let healedState = state;
           if (state && state.revision === operation.revision - 1 && state.balance === operation.balanceBefore) {
@@ -571,14 +572,14 @@ export async function commitClientShardOperation(
             await AsyncStorage.setItem(
               clientShardLedgerStateStorageKey(ownerStableId),
               JSON.stringify(healedState),
-            ).catch(() => {});
+            ).catch(swallowError('client_shard_operation_ledger:commitClientShardOperation#4'));
           }
           if (!healedState || healedState.revision < operation.revision) {
             throw error;
           }
-          await publishProjection(healedState, operation).catch(() => {});
+          await publishProjection(healedState, operation).catch(swallowError('client_shard_operation_ledger:commitClientShardOperation#5'));
           if (operation.authority === 'client' && phoneStateLineage !== null) {
-            await enqueuePhoneStateMirror(ownerStableId, phoneStateLineage, operation.operationId).catch(() => {});
+            await enqueuePhoneStateMirror(ownerStableId, phoneStateLineage, operation.operationId).catch(swallowError('client_shard_operation_ledger:commitClientShardOperation#6'));
           }
           return {
             status: 'applied',
@@ -608,7 +609,7 @@ export async function commitClientShardOperation(
       // PhoneState is only a portable/background mirror: SQLite contention or
       // a stalled native transaction must never hold a purchased grant, the
       // caller, or the UI busy state hostage after debit + exact result commit.
-      void drainClientShardPhoneStateOutbox({ accountToken }).catch(() => {});
+      void drainClientShardPhoneStateOutbox({ accountToken }).catch(swallowError('client_shard_operation_ledger:commitClientShardOperation#7'));
     }
     return result;
   } catch (error) {
@@ -1153,7 +1154,7 @@ export async function recoverPreparedClientShardOperation(
       }
       await removePreparedGarbageIfCurrent(
         ownerStableId, preparedKey, accountToken, options.accountTransitionLockLease,
-      ).catch(() => false);
+      ).catch((swallowedError: unknown) => { reportSwallowed('client_shard_operation_ledger:recoverPreparedClientShardOperation', swallowedError); return false; });
       return { status: 'failed', reason: 'prepared_operation_corrupt' };
     }
     const fingerprint = prepared.input.mergeReplay
@@ -1186,7 +1187,7 @@ export async function recoverPreparedClientShardOperation(
       }
       await removePreparedGarbageIfCurrent(
         ownerStableId, preparedKey, accountToken, options.accountTransitionLockLease,
-      ).catch(() => false);
+      ).catch((swallowedError: unknown) => { reportSwallowed('client_shard_operation_ledger:recoverPreparedClientShardOperation#2', swallowedError); return false; });
       return { status: 'failed', reason: 'prepared_operation_fingerprint_mismatch' };
     }
     const immutableRootRaw = await AsyncStorage.getItem(
@@ -1235,19 +1236,19 @@ export async function recoverPreparedClientShardOperation(
     ) {
       await removePreparedGarbageIfCurrent(
         ownerStableId, preparedKey, accountToken, options.accountTransitionLockLease,
-      ).catch(() => false);
+      ).catch((swallowedError: unknown) => { reportSwallowed('client_shard_operation_ledger:recoverPreparedClientShardOperation#3', swallowedError); return false; });
     }
     return result;
   } catch (error) {
     const reason = error instanceof Error ? error.message : 'unknown';
     if (ownerStableId && PREPARED_RECOVERY_TERMINAL_REASONS.has(reason)) {
       const preparedKey = clientShardPreparedStorageKey(ownerStableId);
-      const raw = await AsyncStorage.getItem(preparedKey).catch(() => null);
+      const raw = await AsyncStorage.getItem(preparedKey).catch((swallowedError: unknown) => { reportSwallowed('client_shard_operation_ledger:recoverPreparedClientShardOperation#4', swallowedError); return null; });
       const operationId = preparedOperationIdFromRaw(raw);
       if (raw && operationId) {
         const [root, receipt] = await Promise.all([
-          AsyncStorage.getItem(clientShardOperationStorageKey(ownerStableId, operationId)).catch(() => null),
-          AsyncStorage.getItem(clientShardGrantReceiptStorageKey(ownerStableId, operationId)).catch(() => null),
+          AsyncStorage.getItem(clientShardOperationStorageKey(ownerStableId, operationId)).catch((swallowedError: unknown) => { reportSwallowed('client_shard_operation_ledger:recoverPreparedClientShardOperation#5', swallowedError); return null; }),
+          AsyncStorage.getItem(clientShardGrantReceiptStorageKey(ownerStableId, operationId)).catch((swallowedError: unknown) => { reportSwallowed('client_shard_operation_ledger:recoverPreparedClientShardOperation#6', swallowedError); return null; }),
         ]);
         if (root !== null || receipt !== null) {
           let quarantined = false;
@@ -1259,7 +1260,7 @@ export async function recoverPreparedClientShardOperation(
               operationId,
               recoveryAccountToken,
               options.accountTransitionLockLease,
-            ).catch(() => false);
+            ).catch((swallowedError: unknown) => { reportSwallowed('client_shard_operation_ledger:recoverPreparedClientShardOperation#7', swallowedError); return false; });
           }
           return {
             status: 'failed',
@@ -1275,7 +1276,7 @@ export async function recoverPreparedClientShardOperation(
           null,
           recoveryAccountToken,
           options.accountTransitionLockLease,
-        ).catch(() => false);
+        ).catch((swallowedError: unknown) => { reportSwallowed('client_shard_operation_ledger:recoverPreparedClientShardOperation#8', swallowedError); return false; });
         return {
           status: 'failed',
           reason: quarantined ? 'prepared_evidence_quarantined' : 'stale_account_generation',
@@ -1287,7 +1288,7 @@ export async function recoverPreparedClientShardOperation(
           preparedKey,
           recoveryAccountToken,
           options.accountTransitionLockLease,
-        ).catch(() => false);
+        ).catch((swallowedError: unknown) => { reportSwallowed('client_shard_operation_ledger:recoverPreparedClientShardOperation#9', swallowedError); return false; });
       }
     }
     return { status: 'failed', reason };

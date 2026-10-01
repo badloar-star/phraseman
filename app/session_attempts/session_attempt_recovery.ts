@@ -26,7 +26,7 @@ import {
   parseSessionAttemptRuneRecoveryExactResult,
   type SessionAttemptRuneRecoveryExactResultV1,
 } from '../../modules/phone-state/domains/economy';
-import { DebugLogger } from '../debug-logger';
+import { DebugLogger, swallowError } from '../debug-logger';
 
 export type SessionAttemptRecoverySource = 'runes' | 'gift';
 
@@ -536,10 +536,10 @@ export async function commitSessionAttemptRecovery(input: Readonly<{
   });
 
   if (input.source === 'runes') {
-    void recoverAndHydrateLevelSpinStarGrants(input.token, { syncNow: false }).catch(() => {});
-    void syncPendingSessionAttemptRecoveryOperations(input.token).catch(() => {});
+    void recoverAndHydrateLevelSpinStarGrants(input.token, { syncNow: false }).catch(swallowError('session_attempt_recovery:commitSessionAttemptRecovery'));
+    void syncPendingSessionAttemptRecoveryOperations(input.token).catch(swallowError('session_attempt_recovery:commitSessionAttemptRecovery#2'));
   } else {
-    void syncPendingAttemptRestoreGiftOperations(input.token).catch(() => {});
+    void syncPendingAttemptRestoreGiftOperations(input.token).catch(swallowError('session_attempt_recovery:commitSessionAttemptRecovery#3'));
   }
   return committed;
 }
@@ -604,7 +604,7 @@ export async function recoverPreparedSessionAttemptRecoveries(
       pending += 1;
     }
   }
-  void syncPendingSessionAttemptRecoveryOperations(token).catch(() => {});
+  void syncPendingSessionAttemptRecoveryOperations(token).catch(swallowError('session_attempt_recovery:recoverPreparedSessionAttemptRecoveries'));
   return Object.freeze({ recovered, pending });
 }
 

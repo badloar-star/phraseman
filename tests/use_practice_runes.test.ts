@@ -19,6 +19,7 @@ const settlement = {
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/stable_id', () => ({ getStableId: jest.fn().mockResolvedValue('account-a') }));
 jest.mock('../app/debug-logger', () => ({
+  reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()),
   DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() },
 }));
 jest.mock('../app/practice_rune_settlement', () => ({

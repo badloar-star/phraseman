@@ -42,6 +42,7 @@ jest.mock('../app/level_spin_star_grants', () => ({ enqueueLevelSpinStarGrant: j
 // больше не импортирует функцию выдачи локального спина, spins-награда
 // закрывается молча логом [SPIN-RETIRED] через DebugLogger.
 jest.mock('../app/debug-logger', () => ({
+  reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()),
   DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() },
 }));
 jest.mock('../app/energy_system', () => ({

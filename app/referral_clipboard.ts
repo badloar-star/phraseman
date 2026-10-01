@@ -18,7 +18,7 @@ import * as Clipboard from 'expo-clipboard';
 import { logEvent } from './firebase';
 import { captureReferralCodeIfNew, tryApplyPendingReferral } from './referral_bootstrap';
 import { isReferralCloudEnabled } from './referral_flags';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, swallowError } from './debug-logger';
 
 const CLIPBOARD_CHECKED_KEY = 'referral_clipboard_checked_v1';
 const CLIPBOARD_ATTEMPTS_KEY = 'referral_clipboard_attempts_v1';
@@ -87,7 +87,7 @@ export async function checkClipboardForReferralOnce(): Promise<void> {
       await AsyncStorage.setItem(CLIPBOARD_CHECKED_KEY, '1');
       logEvent('referral_clipboard_found', { ref_len: code.length, attempt: attempts });
       await captureReferralCodeIfNew(code, 'clipboard');
-      await tryApplyPendingReferral().catch(() => {});
+      await tryApplyPendingReferral().catch(swallowError('referral_clipboard:checkClipboardForReferralOnce'));
       return;
     }
 

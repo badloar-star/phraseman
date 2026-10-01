@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('expo-crypto', () => ({ randomUUID: jest.fn(() => 'uuid-fixed-1234') }));
-jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
+jest.mock('../app/debug-logger', () => ({ reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()), DebugLogger: { error: jest.fn() } }));
 jest.mock('../app/storage_mutex', () => ({
   withStorageLock: jest.fn(async (fn: () => Promise<unknown>) => fn()),
 }));

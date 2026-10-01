@@ -5,6 +5,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { commitConfirmedExternalShardEvent, wasConfirmedExternalShardEventApplied } from '../shards_system';
 import { getStableId } from '../stable_id';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
+import { reportSwallowed } from '../debug-logger'; // зачем: PM-229-A1 — немые catch пишут причину
 
 export const EXTERNAL_ECONOMY_EVENT_APPLIED_PREFIX = 'external_economy_event_applied_v1:';
 const MAX_EVENTS_PER_SYNC = 100;
@@ -67,9 +68,9 @@ export async function syncConfirmedExternalShardEventsFromCloud(): Promise<{
   if (!isCurrent()) return { applied: 0, skipped: 0, invalid: 0 };
 
   const cloudSync = await import('../cloud_sync');
-  const authStableId = await cloudSync.ensureAnonUser().catch(() => null);
+  const authStableId = await cloudSync.ensureAnonUser().catch((swallowedError: unknown) => { reportSwallowed('external_shard_event_sync:syncConfirmedExternalShardEventsFromCloud', swallowedError); return null; });
   if (authStableId !== ownerStableId) return { applied: 0, skipped: 0, invalid: 0 };
-  const linked = await cloudSync.ensureStableAuthLinkForStableId(ownerStableId).catch(() => false);
+  const linked = await cloudSync.ensureStableAuthLinkForStableId(ownerStableId).catch((swallowedError: unknown) => { reportSwallowed('external_shard_event_sync:syncConfirmedExternalShardEventsFromCloud#2', swallowedError); return false; });
   if (!linked) return { applied: 0, skipped: 0, invalid: 0 };
 
   let applied = 0;

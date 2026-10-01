@@ -126,7 +126,7 @@ jest.mock('../app/dev_practice_runes_seed', () => ({ readDevPracticeRunesFakeSta
 jest.mock('../app/feedback_attempt_identity', () => ({ makeFeedbackAttemptId: () => mockAttemptIdFactory() }));
 jest.mock('../app/analytics', () => ({ trackEvent: jest.fn() }));
 jest.mock('../app/mistake_practice_capture', () => ({ captureCurrentAccountObjectiveAttempt: jest.fn() }));
-jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
+jest.mock('../app/debug-logger', () => ({ reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()), DebugLogger: { error: jest.fn() } }));
 jest.mock('../app/flashcards/deck_options', () => ({ loadFcDeckOptions: jest.fn(async () => []) }));
 jest.mock('../app/flashcards/SoundService', () => ({ fcHaptic: jest.fn(), playSfx: jest.fn() }));
 jest.mock('../app/navigation_back', () => ({ markNextNavigationAsReplace: jest.fn(), safeRouterBack: jest.fn() }));

@@ -20,6 +20,7 @@ import {
   type AttemptRestoreGiftCreditV1,
   type AttemptRestoreGiftOperationV1,
 } from '../../modules/phone-state/domains/economy';
+import { swallowError } from '../debug-logger'; // зачем: PM-229-A1 — немые catch пишут причину
 
 const MAX_ATTEMPT_RESTORE_OPERATIONS = 4_096;
 const MAX_STORAGE_KEYS = 16_384;
@@ -388,7 +389,7 @@ export async function creditAttemptRestoreGiftFromSpin(
     await AsyncStorage.setItem(attemptRestoreGiftPreparedCreditKey(ownerStableId), '[]');
     return Object.freeze({ duplicate: false, count: nextReplay.count });
   }), input.accountTransitionLockLease);
-  void syncPendingAttemptRestoreGiftOperations(input.token).catch(() => {});
+  void syncPendingAttemptRestoreGiftOperations(input.token).catch(swallowError('session_attempt_restore_inventory:creditAttemptRestoreGiftFromSpin'));
   return result;
 }
 

@@ -28,7 +28,7 @@ jest.mock('@react-native-firebase/firestore', () => ({
   ),
 }));
 jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
-jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
+jest.mock('../app/debug-logger', () => ({ reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()), DebugLogger: { error: jest.fn() } }));
 jest.mock('../app/events', () => ({ emitAppEvent: (...args: unknown[]) => emitAppEvent(...args) }));
 jest.mock('../app/user_id_policy', () => ({ getCanonicalUserId: jest.fn(async () => 'stable-a') }));
 jest.mock('../app/stable_id', () => ({ getStableId: jest.fn(async () => 'stable-a') }));

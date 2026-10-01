@@ -248,6 +248,23 @@ export default function FlashcardsRecallSession() {
     setRemainingQueueCount(round.length);
   }, []);
 
+  // зачем (владелец 01.10): без кнопки «Повторить» — при ошибке загрузки молча перезапрашиваем
+  // карточки (до 5 раз по 20 с), пока на экране скелетон.
+  const silentRecallRetryRef = useRef(0);
+  useEffect(() => {
+    if (!loadError) return undefined;
+    if (silentRecallRetryRef.current >= 5) {
+      console.warn('[FC-RECALL] тихие повторы исчерпаны', { attempts: silentRecallRetryRef.current });
+      return undefined;
+    }
+    const timer = setTimeout(() => {
+      silentRecallRetryRef.current += 1;
+      console.warn('[FC-RECALL] тихий повтор загрузки карточек', { attempt: silentRecallRetryRef.current });
+      setLoadRevision((value) => value + 1);
+    }, 20_000);
+    return () => clearTimeout(timer);
+  }, [loadError]);
+
   useEffect(() => {
     if (!accessResolved) return undefined;
     let cancelled = false;
@@ -675,21 +692,6 @@ export default function FlashcardsRecallSession() {
       'pt-BR': 'Escolher pacotes', vi: 'Chọn bộ thẻ', id: 'Pilih paket',
       tr: 'Paket seç', pl: 'Wybierz zestawy',
     }),
-    loadError: triLang(lang, {
-      ru: 'Не удалось загрузить карточки. Проверь интернет и попробуй ещё раз.',
-      uk: 'Не вдалося завантажити картки. Перевір інтернет і спробуй ще раз.',
-      en: 'Could not load the cards. Check your connection and try again.',
-      es: 'No se pudieron cargar las tarjetas. Comprueba tu conexión e inténtalo de nuevo.',
-      'pt-BR': 'Não foi possível carregar os cartões. Verifique a conexão e tente novamente.',
-      vi: 'Không thể tải thẻ. Hãy kiểm tra kết nối và thử lại.',
-      id: 'Kartu tidak dapat dimuat. Periksa koneksi lalu coba lagi.',
-      tr: 'Kartlar yüklenemedi. Bağlantını kontrol edip tekrar dene.',
-      pl: 'Nie udało się wczytać kart. Sprawdź połączenie i spróbuj ponownie.',
-    }),
-    retry: triLang(lang, {
-      ru: 'Повторить', uk: 'Повторити', en: 'Try again', es: 'Reintentar',
-      'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
-    }),
   }), [lang]);
 
   const renderHeader = (interactive: boolean) => (
@@ -770,7 +772,9 @@ export default function FlashcardsRecallSession() {
     );
   }
 
-  if (loading) {
+  // зачем (владелец 01.10): при ошибке загрузки экрана «Не удалось загрузить» нет — тот же скелетон,
+  // а useEffect выше молча перезапрашивает карточки.
+  if (loading || (!activeCard && loadError)) {
     return (
       <ScreenGradient>
         <SafeAreaView style={styles.safe}>
@@ -804,13 +808,13 @@ export default function FlashcardsRecallSession() {
                 компактная кнопка; действие прежнее — повтор загрузки или выбор наборов. */}
             <PracticeStatePanel
               glass={recallGlass}
-              testID={loadError ? 'fc-recall-load-error' : 'fc-recall-empty'}
-              icon={loadError ? 'cloud-offline-outline' : 'layers-outline'}
-              message={loadError ? copy.loadError : copy.empty}
+              testID="fc-recall-empty"
+              icon="layers-outline"
+              message={copy.empty}
               action={{
-                label: loadError ? copy.retry : copy.pickDecks,
-                icon: loadError ? 'refresh-outline' : 'albums-outline',
-                onPress: loadError ? () => setLoadRevision((value) => value + 1) : openDeckSetup,
+                label: copy.pickDecks,
+                icon: 'albums-outline',
+                onPress: openDeckSetup,
                 testID: 'fc-recall-pick-decks-empty',
               }}
             />

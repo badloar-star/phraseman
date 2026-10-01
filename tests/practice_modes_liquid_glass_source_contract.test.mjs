@@ -51,7 +51,7 @@ assert.match(states, /borderRadius: 16, borderWidth: StyleSheet\.hairlineWidth/,
 // Пусто / мало карточек / ошибка загрузки / данные тренировки не открылись — единая панель.
 for (const [name, source, ids] of [
   ['blitz', modes.blitz, ['fc-blitz-quota-retry', 'fc-blitz-pick-decks-empty', 'fc-blitz-too-few']],
-  ['recall', modes.recall, ['fc-recall-pick-decks-empty', 'fc-recall-load-error', 'fc-recall-empty']],
+  ['recall', modes.recall, ['fc-recall-pick-decks-empty', 'fc-recall-empty']],
   ['speaking', modes.speaking, ['fc-speak-quota-retry', 'fc-speak-pick-decks-empty', 'fc-speak-empty']],
   ['swipe', modes.swipe, ['flashcards-swipe-no-cards', 'flashcards-swipe-reload']],
 ]) {
@@ -64,7 +64,8 @@ assert.match(modes.blitz, /onPress: retryQuotaStart,[\s\S]{0,80}testID: 'fc-blit
 assert.match(modes.blitz, /onPress: openDeckPicker,[\s\S]{0,80}testID: 'fc-blitz-pick-decks-empty'/);
 assert.match(modes.speaking, /onPress: retryQuotaStart,[\s\S]{0,80}testID: 'fc-speak-quota-retry'/);
 assert.match(modes.speaking, /onPress: openDeckPicker,[\s\S]{0,80}testID: 'fc-speak-pick-decks-empty'/);
-assert.match(modes.recall, /onPress: loadError \? \(\) => setLoadRevision\(\(value\) => value \+ 1\) : openDeckSetup/);
+assert.match(modes.recall, /onPress: openDeckSetup/);
+assert.doesNotMatch(modes.recall, /fc-recall-load-error/);
 assert.match(modes.swipe, /onPress: \(\) => void loadSources\(\)/);
 
 // Загрузка без спиннера — скелет той же геометрии.

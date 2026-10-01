@@ -124,6 +124,7 @@ function createRenderHarness(source, expose, { themeId = 'graphite' } = {}) {
     Fragment,
     useMemo: factory => factory(),
     useCallback: callback => callback,
+    useEffect: () => {},
     useRef: value => ({ current: value }),
     useState: initial => {
       const index = hookCursor;
@@ -282,7 +283,7 @@ test('community highlights use real cover tiles in horizontal rail and preserve 
   assert.match(source, /highlightRow: \{ width: 112 \}/, 'tile width matches the 112 dp mockup and leaves room for social indicators');
   assert.match(source, /rail: \{ flexDirection: 'row', gap: 10,/, 'rail uses the approved 10dp gap');
   assert.match(source, /sectionHeading: \{ minHeight: 44, marginTop: 20\.5, marginBottom: 2\.5,/, 'heading target compensates around the 21dp visual line');
-  assert.match(source, /emptyCover: \{ width: 112, height: 112,/, 'unavailable state keeps the same square footprint, not a wide rectangular card');
+  assert.doesNotMatch(source, /emptyCover|unavailableLabel|retryLabel/, 'зачем (владелец 01.10): пустая витрина = скелетон, без «недоступно» и «Повторить»');
   for (const token of ['styles.highlightBadge', 'styles.highlightTitle', 'styles.highlightAuthor', 'CommunityPackSocialBar', 'variant="tile"', 'styles.owned']) {
     assert.ok(source.includes(token), `restored popular indicator missing: ${token}`);
   }
@@ -619,13 +620,11 @@ test('actual heading, populated, loading and empty renders preserve adaptive geo
 
   const empty = harness.exports.default({ ...common, catalog: [], loading: false });
   assert.equal(visit(empty).some(node => node.type === 'LinearGradient'), false, 'empty cover does not add decorative gradients');
-  const emptyCover = byId(empty, 'saved-top-community-empty-cover');
-  assert.equal(flatStyle(emptyCover.props.style).width, 112);
-  assert.equal(flatStyle(emptyCover.props.style).height, 112);
-  const retryTarget = byId(empty, 'saved-top-community-retry');
-  assert.equal(retryTarget.props.accessibilityLabel, 'Повторить');
-  retryTarget.props.onPress();
-  assert.deepEqual(retry, ['retry']);
+  // зачем (владелец 01.10): пустой каталог = тот же скелетон (3 плитки 112), без «недоступно» и «Повторить».
+  const emptyTiles = visit(empty).filter(node => /^saved-top-pack-loading-\d$/.test(node.props?.testID ?? ''));
+  assert.equal(emptyTiles.length, 3);
+  assert.equal(visit(empty).some(node => node.props?.testID === 'saved-top-community-retry'), false);
+  assert.equal(visit(empty).some(node => node.props?.testID === 'saved-top-community-empty-cover'), false);
 });
 
 test('focused validators reject translucent rows, framed tiles, retired art and fixed heading geometry', () => {

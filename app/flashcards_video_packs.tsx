@@ -18,7 +18,7 @@
  *     витрины хаба.
  *
  * Firestore читается при холодном входе в этот раздел; затем отдельный снимок
- * живёт по TTL загрузчика. Явная кнопка «Повторить» обходит кэш ровно один раз.
+ * живёт по TTL загрузчика. Кнопки повтора нет: сеть обновляет данные молча.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { BlurView } from 'expo-blur';
@@ -238,22 +238,6 @@ export default function FlashcardsVideoPacksScreen() {
     showAll: triLang(lang, {
       ru: 'Показать все', uk: 'Показати всі', en: 'Show all', es: 'Mostrar todos',
       'pt-BR': 'Mostrar todos', vi: 'Hiện tất cả', id: 'Tampilkan semua', tr: 'Tümünü göster', pl: 'Pokaż wszystkie',
-    }),
-    errorTitle: triLang(lang, {
-      ru: 'Не удалось загрузить', uk: 'Не вдалося завантажити', en: 'Could not load',
-      es: 'No se pudo cargar', 'pt-BR': 'Não foi possível carregar', vi: 'Không tải được',
-      id: 'Gagal memuat', tr: 'Yüklenemedi', pl: 'Nie udało się wczytać',
-    }),
-    errorBody: triLang(lang, {
-      ru: 'Проверьте связь и попробуйте снова.', uk: 'Перевірте зв’язок і спробуйте ще раз.',
-      en: 'Check your connection and try again.', es: 'Comprueba la conexión e inténtalo de nuevo.',
-      'pt-BR': 'Verifique a conexão e tente de novo.', vi: 'Kiểm tra kết nối và thử lại.',
-      id: 'Periksa koneksi dan coba lagi.', tr: 'Bağlantını kontrol edip tekrar dene.',
-      pl: 'Sprawdź połączenie i spróbuj ponownie.',
-    }),
-    retry: triLang(lang, {
-      ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar novamente',
-      vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
     }),
     openFailed: {
       ru: 'Не удалось загрузить набор. Проверьте интернет и попробуйте ещё раз.',

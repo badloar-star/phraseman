@@ -64,7 +64,7 @@ test('My Packs treats degraded reads as stale, retains retry, and never publishe
   assert.match(screen, /setLoadStatus\('stale'\)/);
   assert.match(screen, /loadStatus !== 'ready'/);
   assert.doesNotMatch(screen, /clearMyPacksCount/);
-  assert.match(screen, /testID="fc-my-packs-retry"/);
+  assert.doesNotMatch(screen, /testID="fc-my-packs-retry"/);
 
   assert.match(communityFirestore, /export async function loadAuthorCommunityPacksPendingUpdateResult/);
   assert.match(communityFirestore, /readArrayWithStatus/);

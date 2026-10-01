@@ -1187,10 +1187,16 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     fingerprint: string;
   } | null>(null);
   const swipeMountedRef = useRef(true);
+  const sourcesRetryRef = useRef(0);
+  const sourcesRetryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const loadSourcesRef = useRef<((opts?: { quiet?: boolean }) => Promise<void>) | null>(null);
   const swipeExplicitlyAbandonedRef = useRef(false);
   useEffect(() => {
     swipeMountedRef.current = true;
-    return () => { swipeMountedRef.current = false; };
+    return () => {
+      swipeMountedRef.current = false;
+      if (sourcesRetryTimerRef.current) clearTimeout(sourcesRetryTimerRef.current);
+    };
   }, []);
   const refundActiveSwipeEnergy = useCallback(async (reason: string) => {
     if (activeSwipeRefundPromiseRef.current) {
@@ -1659,19 +1665,6 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         tr: "İfade",
         pl: "Zwrot",
       }),
-      // зачем: кнопка «Начать» гасла молча, пока грузились наборы или шёл запуск —
-      // репорт «Кнопка начать не сработала». Теперь подпись сама объясняет причину.
-      startLoading: triLang(lang, {
-        ru: 'Загружаем наборы…',
-        en: 'Loading packs…',
-        uk: 'Завантажуємо набори…',
-        es: 'Cargando packs…',
-        'pt-BR': 'Carregando pacotes…',
-        vi: 'Đang tải bộ thẻ…',
-        id: 'Memuat set…',
-        tr: 'Setler yükleniyor…',
-        pl: 'Ładujemy zestawy…',
-      }),
       startNoSelection: triLang(lang, {
         ru: 'Выберите набор ниже',
         en: 'Choose a pack below',
@@ -1694,19 +1687,9 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         tr: 'Antrenman hazırlanıyor…',
         pl: 'Przygotowujemy trening…',
       }),
-      // зачем: заглушка для карточки с пустым текстом — вместо пустого прямоугольника
-      // (репорты «Не видна карточка с вопросом»). Просим отметить через «Нашёл ошибку».
-      brokenCardPhrase: triLang(lang, {
-        ru: 'Текст карточки не загрузился',
-        en: 'Card text failed to load',
-        uk: 'Текст картки не завантажився',
-        es: 'No se cargó el texto de la tarjeta',
-        'pt-BR': 'O texto do cartão não carregou',
-        vi: 'Không tải được nội dung thẻ',
-        id: 'Teks kartu gagal dimuat',
-        tr: 'Kart metni yüklenemedi',
-        pl: 'Nie udało się wczytać tekstu fiszki',
-      }),
+      // зачем (владелец 01.10): вместо текста «Текст карточки не загрузился» — нейтральное многоточие;
+      // пустой прямоугольник нельзя (репорты «Не видна карточка»), а сообщений об ошибке быть не должно.
+      brokenCardPhrase: '…',
       correctTranslation: triLang(lang, {
         ru: 'Правильный перевод',
         en: 'Correct translation',
@@ -2054,6 +2037,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       && swipeAccessEpochRef.current === accessEpoch;
     if (!opts?.quiet) setLoadingSources(true);
     setLoadError('');
+    let keepSkeleton = false;
     try {
       const [savedRaw, customRaw, officialOwnedIds] = await Promise.all([
         loadSelectedSavedContour(studyTarget).catch(() => [] as Flashcard[]),
@@ -2123,6 +2107,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         next.push(...(await buildCommunitySources(lang, officialOwnedIds, studyTarget)));
       }
       if (!accessIsCurrent()) return;
+      sourcesRetryRef.current = 0;
       hasVisibleSourcesRef.current = next.length > 0;
       setSources(next);
       setSelectedIds((cur) => {
@@ -2134,26 +2119,33 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         const fromDecks = swipeSourceIdsForDeckIds(next, requestedDeckIds);
         return fromDecks.length > 0 ? new Set(fromDecks) : valid;
       });
-    } catch {
-      if (!accessIsCurrent()) return;
-      setLoadError(
-        triLang(lang, {
-          ru: 'Наборы не загрузились.',
-          en: 'Packs failed to load.',
-          uk: 'Не вдалося завантажити набори.',
-          es: 'No se pudieron cargar los packs.',
-          'pt-BR': "Não foi possível carregar os pacotes.",
-          vi: "Không thể tải các gói.",
-          id: "Paket tidak dapat dimuat.",
-          tr: "Paketler yüklenemedi.",
-          pl: "Nie udało się załadować pakietów.",
-        }),
-      );
+    } catch (error) {
+      // зачем (владелец 01.10): текста «Наборы не загрузились» больше нет. Кэш/уже показанные наборы остаются,
+      // а загрузка молча повторяется (до 5 раз по 20 с). Пока наборов нет совсем — держим скелетон.
+      console.warn('[FC-SWIPE] loadSources отклонён', { error: String(error), attempt: sourcesRetryRef.current, hasVisible: hasVisibleSourcesRef.current });
+      if (!accessIsCurrent()) {
+        console.warn('[FC-SWIPE] loadSources: доступ сменился, повтор не планируем');
+        return;
+      }
+      if (sourcesRetryRef.current < 5) {
+        sourcesRetryRef.current += 1;
+        keepSkeleton = !hasVisibleSourcesRef.current;
+        if (sourcesRetryTimerRef.current) clearTimeout(sourcesRetryTimerRef.current);
+        sourcesRetryTimerRef.current = setTimeout(() => {
+          sourcesRetryTimerRef.current = null;
+          if (!swipeMountedRef.current) { console.warn('[FC-SWIPE] тихий повтор отменён: экран закрыт'); return; }
+          console.warn('[FC-SWIPE] тихий повтор наборов', { attempt: sourcesRetryRef.current });
+          void loadSourcesRef.current?.({ quiet: true });
+        }, 20_000);
+      } else {
+        console.warn('[FC-SWIPE] тихие повторы наборов исчерпаны');
+      }
     } finally {
-      if (accessIsCurrent()) setLoadingSources(false);
+      if (accessIsCurrent() && !keepSkeleton) setLoadingSources(false);
     }
   }, [communityPacksEnabled, lang, officialPacksEnabled, requestedDeckIds, requestedFilter, requestedSourceId, studyTarget, swipeAccessGranted, text.custom, text.saved]);
 
+  loadSourcesRef.current = loadSources;
   useEffect(() => {
     if (!swipeAccessGranted) return;
     void loadSources({ quiet: hasVisibleSourcesRef.current });
@@ -3417,8 +3409,10 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
   // «кнопки нет». Теперь кнопка закреплена внизу и всегда под большим пальцем,
   // а список прокручивается под ней.
   const renderSelectStartButton = () => {
+    // зачем (владелец 01.10): подписи «Загружаем наборы…» нет — пока наборы грузятся, кнопка просто
+    // приглушена с обычной подписью «Начать».
     const startBlockReason = loadingSources
-      ? { label: text.startLoading, icon: 'albums-outline' as const }
+      ? { label: text.start, icon: 'play' as const }
       : starting
         ? { label: text.startStarting, icon: 'sparkles-outline' as const }
         : selectedSources.length === 0

@@ -24,7 +24,7 @@ test('My Packs uses exact live liquid tokens, glass materials and approved typog
 });
 
 test('My Packs has honest pending/error/search/true-empty states and image flags', () => {
-  for (const token of ["useState<'loading' | 'ready' | 'error'>", "loadStatus === 'loading'", "loadStatus === 'error'", 'fc-my-packs-retry', 'visiblePackCount === 0', 'packCount === 0', 'language_en.webp', 'language_fr_dev.webp', 'language_es_dev.webp']) {
+  for (const token of ["useState<'loading' | 'ready' | 'stale' | 'error'>", "loadStatus === 'loading'", "loadStatus !== 'ready'", 'visiblePackCount === 0', 'packCount === 0', 'language_en.webp', 'language_fr_dev.webp', 'language_es_dev.webp']) {
     assert.ok(source.includes(token), `missing live state or asset: ${token}`);
   }
   assert.ok(!source.includes('flagGlyph'), 'pack tiles use approved flag images, not emoji glyphs');

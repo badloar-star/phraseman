@@ -1,6 +1,6 @@
 /** Три лучшие реальные UGC-набора на хабе; каталог и доступ не меняются. */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { type ComponentProps, useMemo } from 'react';
+import React, { type ComponentProps, useEffect, useMemo, useRef } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { triLang, type Lang } from '../../constants/i18n';
 import { FlowText } from '../../components/text-integrity/FlowText';
@@ -128,6 +128,29 @@ function CommunityHighlightRow({ pack, lang, owned, opening, disabled, onOpen }:
   );
 }
 
+const SILENT_RETRY_MS = 20_000;
+const SILENT_RETRY_MAX = 5;
+
+/** зачем (владелец 01.10): пустой каталог не показывает ошибку и кнопку «Повторить» — докачиваем молча, до 5 раз по 20 с. */
+function useSilentCatalogRetry(empty: boolean, loading: boolean, onRetry?: () => void) {
+  const attempts = useRef(0);
+  useEffect(() => {
+    if (!empty) { attempts.current = 0; return undefined; }
+    if (!onRetry) { console.warn('[FC-DECKS] top community: тихий повтор пропущен — нет onRetry'); return undefined; }
+    if (loading) return undefined; // идёт обычная загрузка, не дублируем
+    if (attempts.current >= SILENT_RETRY_MAX) {
+      console.warn('[FC-DECKS] top community: лимит тихих повторов исчерпан', { attempts: attempts.current });
+      return undefined;
+    }
+    const timer = setTimeout(() => {
+      attempts.current += 1;
+      console.warn('[FC-DECKS] top community: тихий повтор каталога', { attempt: attempts.current });
+      onRetry();
+    }, SILENT_RETRY_MS);
+    return () => clearTimeout(timer);
+  }, [empty, loading, onRetry]);
+}
+
 export type SavedTopCommunityPacksProps = {
   /** Полный каталог экрана: сообщество отбирается внутри. */
   catalog: readonly FlashcardMarketPack[];
@@ -142,9 +165,9 @@ export type SavedTopCommunityPacksProps = {
   onSeeAll?: () => void;
   /** id набора, который сейчас открывается (крутилка на плитке). */
   openingPackId?: string | null;
-  /** Каталог ещё загружается; витрина резервирует место, чтобы экран не прыгал. */
+  /** Каталог ещё загружается; повторные попытки не стартуют, пока идёт загрузка. */
   loading?: boolean;
-  /** Повторить загрузку после пустого/недоступного ответа. */
+  /** Тихий повтор загрузки при пустом каталоге (без кнопок и текстов). */
   onRetry?: () => void;
 };
 
@@ -159,6 +182,7 @@ export default function SavedTopCommunityPacks({
   loading = false,
   onRetry,
 }: SavedTopCommunityPacksProps) {
+  useSilentCatalogRetry(catalog.length === 0, loading, onRetry);
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const top = useMemo(() => pickTopCommunityPacks(catalog, SHOWN), [catalog]);
@@ -179,24 +203,6 @@ export default function SavedTopCommunityPacks({
     ru: 'Все', uk: 'Усі', en: 'All', es: 'Todos',
     'pt-BR': 'Ver tudo', vi: 'Xem tất cả', id: 'Lihat semua', tr: 'Tümünü gör', pl: 'Zobacz wszystkie',
   });
-  const loadingLabel = triLang(lang, {
-    ru: 'Загружаем лучшие наборы', uk: 'Завантажуємо найкращі набори', en: 'Loading top packs',
-    es: 'Cargando los mejores packs', 'pt-BR': 'Carregando os melhores pacotes',
-    vi: 'Đang tải các bộ thẻ hay nhất', id: 'Memuat paket terbaik', tr: 'En iyi paketler yükleniyor',
-    pl: 'Ładowanie najlepszych zestawów',
-  });
-  const unavailableLabel = triLang(lang, {
-    ru: 'Наборы сообщества пока недоступны', uk: 'Набори спільноти поки недоступні',
-    en: 'Community packs are unavailable right now', es: 'Los packs de la comunidad no están disponibles ahora',
-    'pt-BR': 'Os pacotes da comunidade estão indisponíveis agora', vi: 'Các bộ thẻ cộng đồng hiện chưa khả dụng',
-    id: 'Paket komunitas sedang tidak tersedia', tr: 'Topluluk paketleri şu anda kullanılamıyor',
-    pl: 'Zestawy społeczności są teraz niedostępne',
-  });
-  const retryLabel = triLang(lang, {
-    ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar novamente',
-    vi: 'Thử lại', id: 'Coba lagi', tr: 'Yeniden dene', pl: 'Spróbuj ponownie',
-  });
-
   return (
     /* зачем: витрина не должна липнуть к полю поиска — воздух сверху обязателен. */
     <View testID="saved-top-community-section" style={{ width: contentWidth, alignSelf: 'center' }}>
@@ -223,13 +229,11 @@ export default function SavedTopCommunityPacks({
             />
           ))}
         </ScrollView>
-      ) : loading ? (
-        <View
-          accessible
-          accessibilityRole="progressbar"
-          accessibilityLabel={loadingLabel}
-          style={styles.rail}
-        >
+      ) : (
+        /* зачем (владелец 01.10): ни «Загружаем…», ни «Наборы сообщества недоступны», ни «Повторить» —
+           пока в каталоге пусто, секция показывает скелетон ТОЙ ЖЕ геометрии (без текста и крутилки),
+           а повторные попытки идут молча (см. useSilentCatalogRetry). */
+        <View style={styles.rail}>
           {Array.from({ length: COLS }, (_, index) => (
             <View
               key={`saved-top-pack-loading-${index}`}
@@ -239,35 +243,11 @@ export default function SavedTopCommunityPacks({
               <View
                 testID={`saved-top-pack-loading-cover-${index}`}
                 style={[styles.cover, { backgroundColor: g.opaqueCard, borderColor: g.glassEdge }]}
-              >
-                {index === 1 ? <ActivityIndicator color={g.secondary} /> : null}
-              </View>
+              />
               <View testID={`saved-top-pack-loading-title-${index}`} style={[styles.loadingTitle, { backgroundColor: g.opaqueControl }]} />
               <View testID={`saved-top-pack-loading-author-${index}`} style={[styles.loadingAuthor, { backgroundColor: g.opaqueControl }]} />
             </View>
           ))}
-        </View>
-      ) : (
-        <View style={styles.emptyState}>
-          <View testID="saved-top-community-empty-cover" style={[styles.emptyCover, { backgroundColor: g.opaqueCard, borderColor: g.glassEdge }]}>
-            <Ionicons name="people-outline" size={28} color={g.secondary} />
-          </View>
-          <View style={styles.emptyCopy}>
-            <Text style={{ color: g.text, fontSize: 14, lineHeight: 19, fontWeight: '600' }}>
-              {unavailableLabel}
-            </Text>
-            {onRetry ? (
-              <Pressable
-                testID="saved-top-community-retry"
-                accessibilityRole="button"
-                accessibilityLabel={retryLabel}
-                onPress={onRetry}
-                style={({ pressed }) => [styles.retry, { backgroundColor: g.opaqueControl }, pressed && styles.retryPressed]}
-              >
-                <Text style={{ color: g.text, fontSize: 13, fontWeight: '700' }}>{retryLabel}</Text>
-              </Pressable>
-            ) : null}
-          </View>
         </View>
       )}
     </View>
@@ -291,9 +271,4 @@ const styles = StyleSheet.create({
   highlightBadgeText: { fontSize: 10, fontWeight: '700' },
   loadingTitle: { width: '80%', height: 12, borderRadius: 6, marginTop: 5 },
   loadingAuthor: { width: '60%', height: 10, borderRadius: 5, marginTop: 1 },
-  emptyState: { minHeight: 112, flexDirection: 'row', alignItems: 'flex-start', gap: 12 },
-  emptyCover: { width: 112, height: 112, borderRadius: 12, overflow: 'hidden', borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
-  emptyCopy: { flex: 1, minWidth: 0, paddingTop: 9, gap: 8, alignItems: 'flex-start' },
-  retry: { minHeight: 44, borderRadius: 14, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' },
-  retryPressed: { opacity: 0.82 },
 });

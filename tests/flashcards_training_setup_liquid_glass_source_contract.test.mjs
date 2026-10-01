@@ -25,9 +25,10 @@ const PROTECTED_FILES = new Map([
   ['components/v2/V2Pressable.tsx', '109ed9abd8f4f9cad448dad5ea3cac1c0ea7f058f86d8e6dae571ba807a37a83'],
 ]);
 const PROTECTED_RUNTIME = {
-  count: 21,
+  count: 22,
+  // зачем (владелец 01.10): без экрана ошибки — loadDecks не стирает показанные наборы при сбое, плюс тихий повтор (+1 useEffect).
   // зачем (30.09): D127 — «Устно» прячет наборы «без языка» (hideDecksWithoutVoice, 2acba6874); квота и старт не менялись.
-  hash: 'd6a5556ddee1a8817a824415d5a3e0f1596de27dcde35e043a8ad81c5cc661f1',
+  hash: '2f3a31eff46b709952179cf34f96636dc9a5577326bece3f40f2e8e1689e6ca3',
 };
 
 const parse = (path, source) => ts.createSourceFile(path, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
@@ -388,11 +389,10 @@ test('actual route renders loading, empty, load-error, and invalid states on opa
   assert.equal(suggested.filter(node => node.props?.testID === 'fc-training-setup-empty-message').length, 0);
   assert.equal(suggested.filter(node => node.props?.testID === 'fc-training-setup-suggest-pack-1').length, 1);
   const failed = visit(await createRouteHarness({ warmDecks: null, loadRejects: true }).settle());
-  assert.ok(failed.some(node => node.props?.testID === 'fc-training-setup-error'));
-  const retry = failed.find(node => node.props?.testID === 'fc-training-setup-retry');
-  assert.equal(retry.type, 'V2Pressable');
-  assert.equal(flatStyle(retry.props.style).minHeight, 48);
-  assert.equal(retry.props.children.props.numberOfLines, undefined);
+  // зачем (владелец 01.10): сбой сети = скелетон и тихий повтор, без экрана ошибки и кнопки.
+  assert.ok(!failed.some(node => node.props?.testID === 'fc-training-setup-error'));
+  assert.ok(!failed.some(node => node.props?.testID === 'fc-training-setup-retry'));
+  assert.ok(failed.some(node => node.props?.testID === 'fc-training-setup-loading'));
 
   const invalid = visit(await createRouteHarness({ mode: 'bad', warmDecks: null }).settle());
   assert.ok(invalid.some(node => node.props?.testID === 'fc-training-setup-error'));

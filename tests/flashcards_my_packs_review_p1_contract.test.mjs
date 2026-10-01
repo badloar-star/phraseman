@@ -21,8 +21,9 @@ test('My presentation does not add another failure fallback and clears count on 
   assert.doesNotMatch(loadMine, /loadLocalAuthorPacks\(studyTarget\)\.catch\(\(\) => \[\]/);
   assert.doesNotMatch(loadMine, /loadCommunityOwnedPackIds\(studyTarget\)\.catch\(\(\) => \[\]/);
   assert.match(mine, /clearMyPacksCount\(studyTarget/);
-  assert.match(mine, /fc-my-packs-error/);
-  assert.match(mine, /fc-my-packs-retry/);
+  // зачем (владелец 01.10): экрана ошибки и кнопки повтора нет — тихие повторы.
+  assert.doesNotMatch(mine, /fc-my-packs-error|fc-my-packs-retry/);
+  assert.match(mine, /\[FC-DECKS\] my packs: тихий повтор/);
 });
 
 test.todo('shared storage loaders must expose read failure separately from real empty before offline can be classified');

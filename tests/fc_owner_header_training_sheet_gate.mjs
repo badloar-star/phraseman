@@ -41,7 +41,7 @@ assert.doesNotMatch(setup, /mode === 'listening'|Наборы для слуша�
 // зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой старта
 // убран вместе с EnergyCostBadge — расход энергии не менялся.
 assert.doesNotMatch(setup, /<EnergyCostBadge/);
-const setupStart = setup.slice(setup.indexOf('const startTraining'), setup.indexOf('const retryLabel'));
+const setupStart = setup.slice(setup.indexOf('const startTraining'), setup.indexOf('const emptyLabel'));
 assert.doesNotMatch(setupStart, /await setLastPreset/);
 assert.match(setupStart, /router\.push/);
 assert.match(setup, /const \{ theme: t, f, statusBarLight \} = useTheme\(\);/);

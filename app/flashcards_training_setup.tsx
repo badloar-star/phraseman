@@ -234,17 +234,6 @@ export default function FlashcardsTrainingSetupScreen() {
     };
   }, [lang, mode]);
 
-  const loadErrorLabel = triLang(lang, {
-    ru: 'Не удалось загрузить наборы. Проверьте интернет и попробуйте ещё раз.',
-    uk: 'Не вдалося завантажити набори. Перевірте інтернет і спробуйте ще раз.',
-    en: 'Could not load the packs. Check your connection and try again.',
-    es: 'No se pudieron cargar los packs. Comprueba tu conexión e inténtalo de nuevo.',
-    'pt-BR': 'Não foi possível carregar os pacotes. Verifique a conexão e tente novamente.',
-    vi: 'Không thể tải bộ thẻ. Hãy kiểm tra kết nối và thử lại.',
-    id: 'Paket tidak dapat dimuat. Periksa koneksi lalu coba lagi.',
-    tr: 'Paketler yüklenemedi. Bağlantını kontrol edip yeniden dene.',
-    pl: 'Nie udało się wczytać zestawów. Sprawdź połączenie i spróbuj ponownie.',
-  });
   const modeUnavailableLabel = triLang(lang, {
     ru: 'Этот режим сейчас недоступен. Вернитесь и выберите другой режим.',
     uk: 'Цей режим зараз недоступний. Поверніться та виберіть інший режим.',
@@ -295,12 +284,34 @@ export default function FlashcardsTrainingSetupScreen() {
     } catch (e) {
       // Немой catch запрещён: причина отказа обязана быть видна в логах.
       console.warn('[FC-TRAIN-SETUP] loadDecks failed', String((e as Error)?.message ?? e));
-      setDecks([]);
+      // зачем (владелец 01.10): уже показанный (тёплый) список не стираем из-за сбоя сети —
+      // остаёмся на нём, а при пустом списке показываем скелетон и молча повторяем (см. эффект ниже).
+      if (decksRef.current.length > 0) {
+        console.warn('[FC-TRAIN-SETUP] loadDecks: сбой, оставляем показанные наборы', { shown: decksRef.current.length });
+        setLoadState('ready');
+        return;
+      }
       setSelectedDeckIds([]);
       setLoadErrorKind('load');
       setLoadState('error');
     }
   }, [lang, mode, studyTarget]);
+
+  const silentRetryRef = useRef(0);
+  useEffect(() => {
+    if (loadState === 'ready') { silentRetryRef.current = 0; return undefined; }
+    if (loadState !== 'error' || loadErrorKind !== 'load') return undefined;
+    if (silentRetryRef.current >= 5) {
+      console.warn('[FC-TRAIN-SETUP] тихие повторы наборов исчерпаны');
+      return undefined;
+    }
+    const timer = setTimeout(() => {
+      silentRetryRef.current += 1;
+      console.warn('[FC-TRAIN-SETUP] тихий повтор наборов', { attempt: silentRetryRef.current });
+      setLoadRevision((value) => value + 1);
+    }, 20_000);
+    return () => clearTimeout(timer);
+  }, [loadErrorKind, loadRevision, loadState]);
 
   useEffect(() => {
     void loadDecks();
@@ -438,10 +449,6 @@ export default function FlashcardsTrainingSetupScreen() {
     }
   }, [canStart, mode, resetStartLock, router, selectedDeckIds]);
 
-  const retryLabel = triLang(lang, {
-    ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar novamente',
-    vi: 'Thử lại', id: 'Coba lagi', tr: 'Yeniden dene', pl: 'Spróbuj ponownie',
-  });
   const emptyLabel = triLang(lang, {
     ru: 'Пока нет карточек для тренировки. Сохрани карточки или добавь набор из сообщества.', uk: 'Поки немає карток для тренування. Збережи картки або додай набір зі спільноти.',
     en: 'No cards to practise yet. Save cards or add a community pack.', es: 'Aún no hay tarjetas para practicar. Guarda tarjetas o añade un pack de la comunidad.',
@@ -451,7 +458,8 @@ export default function FlashcardsTrainingSetupScreen() {
   });
   const selectionExplanation = trainingSetupExplanation(loadState, decks.length, deckSelectionLabel(lang, summary), {
     empty: emptyLabel,
-    loading: triLang(lang, { ru: 'Загружаем наборы…', uk: 'Завантажуємо набори…', en: 'Loading packs…', es: 'Cargando packs…', 'pt-BR': 'Carregando pacotes…', vi: 'Đang tải bộ thẻ…', id: 'Memuat paket…', tr: 'Paketler yükleniyor…', pl: 'Ładowanie zestawów…' }),
+    // зачем (владелец 01.10): без подписи о загрузке — пока грузится, подпись та же, что и в ошибке: «Выбор наборов».
+    loading: triLang(lang, { ru: 'Выбор наборов', uk: 'Вибір наборів', en: 'Choose packs', es: 'Elegir packs', 'pt-BR': 'Escolher pacotes', vi: 'Chọn bộ thẻ', id: 'Pilih paket', tr: 'Paket seç', pl: 'Wybór zestawów' }),
     error: triLang(lang, { ru: 'Выбор наборов', uk: 'Вибір наборів', en: 'Choose packs', es: 'Elegir packs', 'pt-BR': 'Escolher pacotes', vi: 'Chọn bộ thẻ', id: 'Pilih paket', tr: 'Paket seç', pl: 'Wybór zestawów' }),
     unselected: triLang(lang, { ru: 'Отметь один или несколько наборов для тренировки.', uk: 'Вибери один або кілька наборів для тренування.', en: 'Select one or more packs to practise.', es: 'Selecciona uno o más packs para practicar.', 'pt-BR': 'Selecione um ou mais pacotes para praticar.', vi: 'Chọn một hoặc nhiều bộ thẻ để luyện tập.', id: 'Pilih satu atau beberapa paket untuk latihan.', tr: 'Çalışmak için bir veya daha fazla paket seç.', pl: 'Zaznacz jeden lub kilka zestawów do ćwiczeń.' }),
   });
@@ -464,9 +472,7 @@ export default function FlashcardsTrainingSetupScreen() {
   });
   /** Язык названий наборов — тот же контентный набор, что и в списке наборов. */
   const contentLangForTitle = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
-  const loadErrorMessage = loadErrorKind === 'invalid' || loadErrorKind === 'unavailable'
-    ? modeUnavailableLabel
-    : loadErrorLabel;
+  const loadErrorMessage = modeUnavailableLabel;
   const blitzMinimumLabel = triLang(lang, {
     ru: 'Для блица нужно минимум 4 карточки.', uk: 'Для бліцу потрібно щонайменше 4 картки.',
     en: 'Blitz needs at least 4 cards.', es: 'Blitz necesita al menos 4 tarjetas.',
@@ -525,7 +531,7 @@ export default function FlashcardsTrainingSetupScreen() {
               </Text>
             </View>}
 
-            {loadState === 'loading' ? (
+            {loadState === 'loading' || (loadState === 'error' && loadErrorKind === 'load') ? (
               <SetupSurface
                 testID="fc-training-setup-loading"
                 glass={glass}
@@ -566,15 +572,6 @@ export default function FlashcardsTrainingSetupScreen() {
                   styles.message,
                   { color: t.textSecond, fontSize: 15 * textScale, lineHeight: 22 * textScale },
                 ]}>{loadErrorMessage}</Text>
-                {loadErrorKind === 'load' ? (
-                  <SetupAction
-                    testID="fc-training-setup-retry"
-                    label={retryLabel}
-                    onPress={() => setLoadRevision((value) => value + 1)}
-                    glass={glass}
-                    textScale={textScale}
-                  />
-                ) : null}
               </SetupSurface>
             ) : decks.length === 0 ? (
               <SetupSurface testID="fc-training-setup-empty" glass={glass} style={styles.emptyBox}>

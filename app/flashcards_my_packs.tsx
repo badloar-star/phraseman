@@ -426,7 +426,8 @@ export default function FlashcardsMyPacksScreen() {
             : next.groups,
         );
         setLoadStatus('ready');
-      }).catch(() => {
+      }).catch((error) => {
+        console.warn('[FC-DECKS] my packs: загрузка отклонена', { cancelled, error: String(error) });
         if (!cancelled) {
           setLoadStatus('error');
         }
@@ -438,6 +439,24 @@ export default function FlashcardsMyPacksScreen() {
       };
     }, [loadMine, reloadTick]),
   );
+
+  // зачем (владелец 01.10): экрана ошибки «Не удалось загрузить наборы» и кнопки «Повторить» больше нет.
+  // Пока кэш/снимок показывает наборы, а сеть не ответила — молча перезапрашиваем (до 5 раз по 20 с).
+  const silentRetryRef = useRef(0);
+  useEffect(() => {
+    if (loadStatus === 'ready') { silentRetryRef.current = 0; return undefined; }
+    if (loadStatus === 'loading') return undefined;
+    if (silentRetryRef.current >= 5) {
+      console.warn('[FC-DECKS] my packs: тихие повторы исчерпаны', { loadStatus });
+      return undefined;
+    }
+    const timer = setTimeout(() => {
+      silentRetryRef.current += 1;
+      console.warn('[FC-DECKS] my packs: тихий повтор', { attempt: silentRetryRef.current, loadStatus });
+      setReloadTick((value) => value + 1);
+    }, 20_000);
+    return () => clearTimeout(timer);
+  }, [loadStatus]);
 
   // `/flashcards` теперь единый хаб: из библиотеки возвращаемся в него, а уже
   // стрелка хаба выводит на главную.
@@ -598,24 +617,6 @@ export default function FlashcardsMyPacksScreen() {
         'pt-BR': 'Nada encontrado.', vi: 'Không tìm thấy gì.', id: 'Tidak ada yang ditemukan.',
         tr: 'Bir şey bulunamadı.', pl: 'Nic nie znaleziono.',
       }),
-      loadError: triLang(lang, {
-        ru: 'Не удалось загрузить наборы. Проверьте подключение и попробуйте ещё раз.',
-        uk: 'Не вдалося завантажити набори. Перевірте з’єднання та спробуйте ще раз.',
-        en: 'Could not load packs. Check your connection and try again.',
-        es: 'No se pudieron cargar los packs. Comprueba la conexión e inténtalo de nuevo.',
-      }),
-      staleData: triLang(lang, {
-        ru: 'Показаны последние сохранённые наборы. Обновить данные не удалось.',
-        uk: 'Показано останні збережені набори. Не вдалося оновити дані.',
-        en: 'Showing your last saved packs. The latest data could not be loaded.',
-        es: 'Se muestran tus últimos packs guardados. No se pudieron actualizar los datos.',
-        'pt-BR': 'Mostrando seus últimos pacotes salvos. Não foi possível atualizar os dados.',
-        vi: 'Đang hiển thị các bộ thẻ đã lưu gần nhất. Không thể cập nhật dữ liệu.',
-        id: 'Menampilkan paket terakhir yang tersimpan. Data terbaru tidak dapat dimuat.',
-        tr: 'Son kaydedilen paketlerin gösteriliyor. Güncel veriler yüklenemedi.',
-        pl: 'Wyświetlamy ostatnio zapisane zestawy. Nie udało się odświeżyć danych.',
-      }),
-      retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar' }),
     }),
     [lang],
   );
@@ -977,16 +978,6 @@ export default function FlashcardsMyPacksScreen() {
               </View>
             ) : null}
 
-            {(loadStatus === 'error' || loadStatus === 'stale') && packCount > 0 ? (
-              <View testID="fc-my-packs-error" style={{ marginTop: 14, padding: 14, borderRadius: 16, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.sheet, overflow: 'hidden' }}>
-                <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
-                <Text style={{ color: g.secondary, fontSize: 14, lineHeight: 20 }}>{loadStatus === 'stale' ? copy.staleData : copy.loadError}</Text>
-                <TouchableOpacity testID="fc-my-packs-retry" accessibilityRole="button" accessibilityLabel={copy.retry} onPress={() => setReloadTick((value) => value + 1)} style={{ alignSelf: 'flex-start', paddingVertical: 10, paddingHorizontal: 14, marginTop: 10, borderRadius: 12, backgroundColor: g.card }}>
-                  <Text style={{ color: g.text, fontWeight: '800' }}>{copy.retry}</Text>
-                </TouchableOpacity>
-              </View>
-            ) : null}
-
             {renderSection('added', copy.added, visibleGroups.added)}
             {renderSection('created', copy.created, visibleGroups.created)}
 
@@ -997,18 +988,15 @@ export default function FlashcardsMyPacksScreen() {
             ) : null}
 
             {packCount === 0 ? (
-              <View testID={loadStatus === 'error' || loadStatus === 'stale' ? 'fc-my-packs-error' : undefined} style={{ marginTop: 24, alignItems: 'center', gap: 14, padding: 20, borderRadius: 24, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }}>
+              <View style={{ marginTop: 24, alignItems: 'center', gap: 14, padding: 20, borderRadius: 24, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }}>
                 <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
-                {loadStatus === 'loading' ? (
+                {loadStatus !== 'ready' ? (
                   <View testID="fc-my-packs-loading" style={{ alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-between' }}>
                     {[0, 1, 2].map((index) => <View key={index} style={{ width: tileW * 0.78, height: tileW * 0.78, borderRadius: 18, backgroundColor: g.opaqueControl }} />)}
                   </View>
                 ) : <Text style={{ color: g.secondary, fontSize: 14, fontWeight: '600', textAlign: 'center' }}>
-                  {loadStatus === 'ready' ? copy.empty : copy.loadError}
+                  {copy.empty}
                 </Text>}
-                {loadStatus === 'error' || loadStatus === 'stale' ? <TouchableOpacity testID="fc-my-packs-retry" accessibilityRole="button" onPress={() => setReloadTick((value) => value + 1)} style={{ paddingVertical: 12, paddingHorizontal: 18, borderRadius: 14, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.sheet }}>
-                  <Text style={{ color: g.text, fontSize: 14, fontWeight: '800' }}>{copy.retry}</Text>
-                </TouchableOpacity> : null}
                 {loadStatus === 'ready' ? (
                 <TouchableOpacity
                   testID="fc-my-packs-browse-community"

@@ -14,6 +14,5 @@ module.exports = {
     '<rootDir>/tests/boon_activation_modal_contract.test.ts',
     '<rootDir>/tests/super_sunday_runes.test.ts',
     '<rootDir>/tests/super_sunday_rune_sources_contract.test.ts',
-    '<rootDir>/tests/use_video_watch_energy_boost_super_sunday.test.ts',
   ],
 };

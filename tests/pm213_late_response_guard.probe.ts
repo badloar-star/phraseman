@@ -25,7 +25,6 @@ const GUARDED: Record<string, string> = {
   'app/ai_dialog_extra_replies_client.ts': 'диалоги: доп. реплики (запись баланса/состояния)',
   'app/ai_dialog_hint_economy.ts': 'диалоги: экономика подсказок',
   'app/ai_dialog_ownership.ts': 'диалоги: владелец сессии',
-  'app/video_watch_runes_client.ts': 'видео: накопление/начисление рун за просмотр',
   'app/youtube_channel_preference.ts': 'видео: выбранный канал',
   'app/dialogs_progress.ts': 'диалоги: отметка «Пройдено» (markDialogCompleted, PM-200)',
 };
@@ -45,6 +44,13 @@ const read = (rel: string): string => {
   assert.ok(existsSync(full), `PM-213: файл из списка не найден: ${rel}`);
   return readFileSync(full, 'utf8');
 };
+
+// зачем: Q9 — видео не источник монет (список D104/D105/D109). Клиент
+// начисления рун за просмотр удалён; его возврат — регрессия, а не новая запись.
+assert.ok(
+  !existsSync(path.join(root, 'app/video_watch_runes_client.ts')),
+  'PM-213: app/video_watch_runes_client.ts вернулся — видео не источник монет (Q9)',
+);
 
 const missing: string[] = [];
 for (const [rel, what] of Object.entries(GUARDED)) {

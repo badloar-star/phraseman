@@ -69,7 +69,6 @@ describe('Super Sunday live earn source wiring', () => {
 
   it('doubles video wallet grants without turning video into league earnings', () => {
     const video = read('functions/src/video_watch_runes.ts');
-    const videoCounter = read('hooks/use_video_watch_energy_boost.ts');
     const ledger = read('functions/src/stars_ledger.ts');
 
     expect(video).toContain("from '../../modules/economy/super_sunday_runes'");
@@ -78,8 +77,6 @@ describe('Super Sunday live earn source wiring', () => {
     expect(video).toContain('ruleVersion: 4');
     expect(video).toContain('meta: { requestId, sessionId, observedMinutes: duration.completeMinutes');
     expect(video).toContain('granted: grantedToday + appliedBase');
-    expect(videoCounter).toContain("from '../modules/economy/super_sunday_runes'");
-    expect(videoCounter).toContain('const runesEarned = applySuperSundayRuneMultiplier(baseRunesEarned, Date.now())');
     expect(ledger).toContain("video_watch: 'grant'");
   });
 
@@ -98,19 +95,16 @@ describe('Super Sunday live earn source wiring', () => {
     expect(video.slice(replayBranch, premiumCheck)).toContain("throw new HttpsError('failed-precondition', 'op_conflict')");
   });
 
-  it('derives the whole optimistic pending video batch from the current multiplier', () => {
-    const videoCounter = read('hooks/use_video_watch_energy_boost.ts');
-
-    expect(videoCounter).toContain('const [baseUnclaimedMinutes, setBaseUnclaimedMinutes] = useState(0)');
-    expect(videoCounter).toContain(
-      'const baseRunesEarned = Math.min(\n'
-      + '    baseUnclaimedMinutes * VIDEO_WATCH_RUNES_PER_MINUTE,\n'
-      + '    Math.max(0, VIDEO_WATCH_RUNES_DAILY_CAP - grantedToday),\n'
-      + '  )',
-    );
-    expect(videoCounter).toContain(
-      'const runesEarned = applySuperSundayRuneMultiplier(baseRunesEarned, Date.now())',
-    );
-    expect(videoCounter).not.toContain('setRunesEarned(');
+  it('has no client video-watch rune source left (Q9)', () => {
+    // зачем: Q9 — видео не источник монет (список D104/D105/D109)
+    for (const removed of [
+      'hooks/use_video_watch_energy_boost.ts',
+      'app/video_watch_runes_client.ts',
+      'app/energy_video_watch_credit.ts',
+    ]) {
+      expect(fs.existsSync(path.resolve(__dirname, '..', removed))).toBe(false);
+    }
+    const player = read('components/youtube/YoutubeInlinePlayer.tsx');
+    expect(player).not.toMatch(/from ['"][^'"]*(use_video_watch_energy_boost|video_watch_runes_client|energy_video_watch_credit)['"]/);
   });
 });

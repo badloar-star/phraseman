@@ -9,36 +9,25 @@ for (const marker of ['getCurrentTime', 'positionMs: positionMs', 'sampledAtMs: 
   assert.ok(bridge.includes(marker), `video bridge marker missing: ${marker}`);
 }
 
-const videoCredit = read('app/energy_video_watch_credit.ts');
-assert.ok(videoCredit.includes('measureVerifiedPlaybackProgress'), 'verified playback tracker is missing');
-assert.ok(videoCredit.includes('highestCreditedPositionMs'), 'client replay high-watermark is missing');
-assert.ok(videoCredit.includes('withAccountTransitionLock'), 'video energy write is outside account lock');
-assert.ok(videoCredit.includes('ENERGY_PASSIVE_UNIT_MS'), 'video credit cannot preserve passive recovery');
-assert.ok(videoCredit.includes('extraEquivalentPassiveMs'), 'video credit stacks a full 10x over passive recovery');
-
-const videoHook = read('hooks/use_video_watch_energy_boost.ts');
-assert.ok(videoHook.includes('reportPlaybackSample'), 'player samples do not reach the energy hook');
-assert.ok(!videoHook.includes('watchedMs = Math.max(0, Date.now() - creditedAt)'), 'wall-clock playing still mints energy');
-assert.ok(videoHook.includes('reportVideoWatchRuneProgress'), 'verified samples do not reach Premium runes');
+// зачем: Q9 — видео не источник монет (список D104/D105/D109)
+for (const removed of [
+  'app/energy_video_watch_credit.ts',
+  'hooks/use_video_watch_energy_boost.ts',
+  'app/video_watch_runes_client.ts',
+]) {
+  assert.ok(!fs.existsSync(path.join(process.cwd(), removed)), `retired video reward source returned: ${removed}`);
+}
+const videoPlayer = read('components/youtube/YoutubeInlinePlayer.tsx');
+assert.ok(
+  !/from ['"][^'"]*(use_video_watch_energy_boost|video_watch_runes_client|energy_video_watch_credit)['"]/.test(videoPlayer),
+  'video player must not mint energy or runes for watching',
+);
 
 const serverRunes = read('functions/src/video_watch_runes.ts');
 for (const marker of ['action === \'progress\'', 'progressSeq', 'maxCreditedPositionMs', 'session.verifiedMs']) {
   assert.ok(serverRunes.includes(marker), `server verified-progress marker missing: ${marker}`);
 }
 assert.ok(!serverRunes.includes('observedVideoWatchDuration(session.startedAt, now'), 'claim still credits idle wall time');
-const runesClient = read('app/video_watch_runes_client.ts');
-const claimStart = runesClient.indexOf('export async function claimVideoWatchRuneSession');
-const claimBlock = runesClient.slice(claimStart);
-assert.ok(
-  claimBlock.indexOf('AsyncStorage.setItem(pendingClaimKey(stableId)')
-    < claimBlock.indexOf('flushPendingProgressUnlocked(token, stableId)'),
-  'claim intent is not durable before the final progress flush',
-);
-const startStart = runesClient.indexOf('export async function startVideoWatchRuneSession');
-const startEnd = runesClient.indexOf('export async function claimVideoWatchRuneSession', startStart);
-const startBlock = runesClient.slice(startStart, startEnd);
-assert.ok(startBlock.includes('recoverPendingVideoWatchRuneSessionUnlocked'), 'start does not recover progress then claim before replacement');
-assert.ok(!startBlock.includes('multiRemove([pendingProgressKey(stableId), progressCursorKey(stableId)]'), 'start discards durable verified progress');
 
 const refill = read('app/energy_shard_refill.ts');
 assert.ok(refill.includes('operationId?: string'), 'refill cannot receive a stable operation id');

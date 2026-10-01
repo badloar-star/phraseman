@@ -28,7 +28,6 @@ module.exports = {
     '<rootDir>/tests/friend_together_sheet.test.tsx',
     '<rootDir>/tests/avatar_view_v2_fallback.test.tsx',
     '<rootDir>/tests/home_rune_balance_render.test.tsx',
-    '<rootDir>/tests/use_video_watch_energy_boost_super_sunday.test.ts',
   ],
   setupFilesAfterEnv: ['<rootDir>/tests/setup_jest_write_guard.js'],
   transformIgnorePatterns: [

@@ -21,6 +21,14 @@
       }
     })();
   </script>
+  <script id="pm-admin-max-seal">
+    // зачем: Q2 (координатор 01.10) — раздел MAX законсервирован владельцем
+    // (MAX_SECTION_SEALED_BY_OWNER_2026_09_04 в app/max_voice_flags.ts, функции
+    // functions-max сняты с деплоя). В админке MAX-поверхности скрыты за этой
+    // пломбой; код НЕ удалён (D11). Снимать только по прямой команде владельца.
+    window.ADMIN_MAX_SEALED = true;
+    window.ADMIN_MAX_SEALED_NOTE = 'Раздел законсервирован (решение владельца 2026-09-04)';
+  </script>
   <script id="pm-v9-theme-bootstrap">
     (() => {
       try {
@@ -11856,7 +11864,8 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   <div class="tab" onclick="switchTab('community-packs')" data-i18n-es="Comunidad">Community</div>
   <div class="tab" onclick="switchTab('referrals')" data-i18n-es="Referidos">Referrals</div>
   <div class="tab" onclick="switchTab('app-health')" data-i18n-es="Salud de la app">App Health</div>
-  <div class="tab" onclick="switchTab('max-ops')" title="Сводная серверная диагностика звонков MAX без содержимого разговоров">Здоровье MAX</div>
+  <!-- зачем: Q2 (координатор 01.10) — вкладка «Здоровье MAX» скрыта за пломбой MAX_SECTION_SEALED_BY_OWNER_2026_09_04. -->
+  <div class="tab" aria-disabled="true" data-max-sealed="tab" title="Раздел законсервирован (решение владельца 2026-09-04)" style="opacity:.55;cursor:default">MAX: законсервирован</div>
   <div class="tab" onclick="switchTab('push-notify')" data-i18n-es="Push">Push</div>
   <!-- зачем: старая админка стала главной; уникальные разделы v2 (Офис агентов, Центр монет, Фабрика, Брифинг) остаются в один клик -->
   <!-- зачем: /index.html теперь редиректит на старую (закладки на index.html тоже должны открывать старую) — ссылка на новую ведёт на /v2.html -->
@@ -14536,8 +14545,10 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     <div class="feedback-control-row">
       <div class="feedback-control-title">Раздел</div>
       <div class="feedback-switch" role="group" aria-label="Раздел оценок">
-        <button class="feedback-chip" data-feedback-kind="max_call" aria-pressed="true" onclick="setFeedbackKind('max_call')">Звонок MAX</button>
-        <button class="feedback-chip" data-feedback-kind="lesson" aria-pressed="false" onclick="setFeedbackKind('lesson')">Уроки</button>
+        <!-- зачем: Q2 (координатор 01.10) — чип «Звонок MAX» скрыт за пломбой MAX_SECTION_SEALED_BY_OWNER_2026_09_04; по умолчанию открываются «Уроки». -->
+        <button class="feedback-chip" data-feedback-kind="max_call" aria-pressed="false" onclick="setFeedbackKind('max_call')" hidden>Звонок MAX</button>
+        <span class="feedback-chip" data-max-sealed="feedback-chip" aria-disabled="true" title="Раздел законсервирован (решение владельца 2026-09-04)" style="opacity:.55;cursor:default">MAX: законсервирован</span>
+        <button class="feedback-chip" data-feedback-kind="lesson" aria-pressed="true" onclick="setFeedbackKind('lesson')">Уроки</button>
         <button class="feedback-chip" data-feedback-kind="learning_v2" aria-pressed="false" onclick="setFeedbackKind('learning_v2')">Learning V2</button>
         <button class="feedback-chip" data-feedback-kind="vocab" aria-pressed="false" onclick="setFeedbackKind('vocab')">Словарь</button>
         <button class="feedback-chip" data-feedback-kind="dialogue" aria-pressed="false" onclick="setFeedbackKind('dialogue')">Диалоги</button>
@@ -15534,7 +15545,9 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
 <!-- MAX OPERATIONS: content-free daily server aggregates only -->
 <section id="tab-max-ops" class="reports-tab pm-v4-page" data-pm-v4-section="max-ops" aria-labelledby="max-ops-title">
   <div class="pm-v4-section-header" data-pm-v4-header="max-ops"><div class="pm-v4-section-heading"><h2 id="max-ops-title" class="pm-v4-section-title">Здоровье MAX</h2><div class="pm-v4-section-sub">Надёжность звонка, разбора и памяти без содержимого разговоров.</div></div></div>
-  <div class="max-ops-shell">
+  <!-- зачем: Q2 (координатор 01.10) — содержимое (включая пробник по тирам) скрыто за пломбой MAX_SECTION_SEALED_BY_OWNER_2026_09_04; код не удалён (D11). -->
+  <div class="max-ops-state" data-max-sealed="section" role="status" style="margin:0 24px 24px">Раздел законсервирован (решение владельца 2026-09-04)</div>
+  <div class="max-ops-shell" hidden>
     <!-- зачем 2026-08-24 (владелец): «чтобы не тратить деньги» — пробный звонок
          платный, и его надо уметь выключить отдельно каждому бесплатному тиру,
          не трогая релиз и не задевая месячный пакет MAX. -->
@@ -17753,6 +17766,8 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   }
 
   window.loadMaxTrialTiers = async function(force) {
+    // зачем: Q2 (координатор 01.10) — пломба MAX: пробник по тирам не читаем и не показываем.
+    if (window.ADMIN_MAX_SEALED) { console.info('[ADMIN-MAX-SEAL] loadMaxTrialTiers skipped: section sealed'); return; }
     if (window._maxTrialLoaded && !force) return;
     if (window._maxTrialLoading) return;
     window._maxTrialLoading = true;
@@ -17775,6 +17790,8 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   };
 
   window.saveMaxTrialTier = async function(key, checked) {
+    // зачем: Q2 (координатор 01.10) — пломба MAX: пробник не переключаем.
+    if (window.ADMIN_MAX_SEALED) { console.info('[ADMIN-MAX-SEAL] saveMaxTrialTier skipped: section sealed', { key }); return; }
     const meta = MAX_TRIAL_TIERS[key];
     if (!meta) return;
     const input = document.getElementById(meta.input);
@@ -18013,6 +18030,8 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   }
 
   window.maxOpsLoad = async function maxOpsLoad(force) {
+    // зачем: Q2 (координатор 01.10) — пломба MAX: агрегаты не читаем (лишние вызовы функций).
+    if (window.ADMIN_MAX_SEALED) { console.info('[ADMIN-MAX-SEAL] maxOpsLoad skipped: section sealed'); return { status:'cached', source:'max_voice_ops_daily', message:window.ADMIN_MAX_SEALED_NOTE }; }
     if (window._maxOpsLoaded && !force) return { status:'cached', source:'max_voice_ops_daily' };
     if (window._maxOpsLoading) return { status:'cached', source:'max_voice_ops_daily', message:'Загрузка уже выполняется' };
     window._maxOpsLoading = true;
@@ -21739,13 +21758,14 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
           <button data-action="premium-grant" data-uid="${u.uid}" style="background:#062a18;border:1px solid #166534;color:#4ade80">💚 Выдать Plus</button>
           <button data-action="vip-revoke" data-uid="${u.uid}" style="background:#2a1111;border:1px solid #7f1d1d;color:#fca5a5">💚 Снять Plus</button>
           <button data-action="grant-reward" data-uid="${u.uid}" style="background:#1a2a3a;border:1px solid #14305c;color:#60a5fa">🎁 Выдать награду</button>
-          <button type="button" class="voice-minute-admin-action" data-action="grant-voice-minutes" data-uid="${escapeHtml(u.uid)}" aria-label="Выдать голосовые минуты пользователю ${escapeHtml(u.name)}" data-tooltip="Начислит выбранному пользователю голосовые минуты через защищённое серверное событие. Минуты станут доступны сразу; результат можно проверить по audit ID и event ID. Автоматической отмены нет." title="Начислит выбранному пользователю голосовые минуты через защищённое серверное событие. Минуты станут доступны сразу; результат можно проверить по audit ID и event ID. Автоматической отмены нет."><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path><path d="M19 5v4h-4"></path></svg><span>Выдать минуты</span></button>
+          ${window.ADMIN_MAX_SEALED ? `<span data-max-sealed="voice-minutes" aria-disabled="true" style="align-self:center;font-size:12px;color:#94a3b8">Минуты MAX: ${escapeHtml(window.ADMIN_MAX_SEALED_NOTE)}</span>` : ''}
+          <button type="button" class="voice-minute-admin-action" data-action="grant-voice-minutes" ${window.ADMIN_MAX_SEALED ? 'hidden' : ''} data-uid="${escapeHtml(u.uid)}" aria-label="Выдать голосовые минуты пользователю ${escapeHtml(u.name)}" data-tooltip="Начислит выбранному пользователю голосовые минуты через защищённое серверное событие. Минуты станут доступны сразу; результат можно проверить по audit ID и event ID. Автоматической отмены нет." title="Начислит выбранному пользователю голосовые минуты через защищённое серверное событие. Минуты станут доступны сразу; результат можно проверить по audit ID и event ID. Автоматической отмены нет."><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path><path d="M19 5v4h-4"></path></svg><span>Выдать минуты</span></button>
           <button data-action="merge" data-uid="${u.uid}" style="background:#0e2a2e;border:1px solid #155e75;color:#22d3ee">🔗 Merge с другим UID</button>
           <button data-action="ach-view" data-uid="${u.uid}" style="background:#1a2a1a;border:1px solid #2a4a2a;color:#86efac">🏆 Ачивки</button>
           <button data-action="ach-reset" data-uid="${u.uid}" style="background:#3b1a1a;border:1px solid #7f1d1d;color:#fca5a5">↺ Сбросить ачивки</button>
           <button data-action="user-analytics" data-uid="${u.uid}" style="background:#0f1f2e;border:1px solid #1e4a6e;color:#38bdf8">📊 Аналитика дней</button>
         </div>
-        <div class="voice-minute-admin-status" data-voice-minute-grant-status="${escapeHtml(u.uid)}" data-state="ready" role="status" aria-live="polite">Минуты ещё не начислялись в этой панели. Выдача создаст отдельный audit receipt и не изменит Plus, подписку или жемчуг.</div>
+        <div class="voice-minute-admin-status" data-voice-minute-grant-status="${escapeHtml(u.uid)}" ${window.ADMIN_MAX_SEALED ? 'hidden' : ''} data-state="ready" role="status" aria-live="polite">Минуты ещё не начислялись в этой панели. Выдача создаст отдельный audit receipt и не изменит Plus, подписку или жемчуг.</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button data-action="warn" data-uid="${u.uid}" style="background:#2a1a00;color:#fbbf24;border:1px solid #7c3f00">⚠️ Предупреждение</button>
           ${u.banned
@@ -31631,7 +31651,8 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   let _feedbackItems = [];
   const FEEDBACK_PAGE = 30;
   const FEEDBACK_MAX_CALL_KIND = 'max_call';
-  const feedbackViewState = { kind:FEEDBACK_MAX_CALL_KIND, periodDays:7, commentMode:'all', rating:null, generation: 0, statsCache:new Map() };
+  // зачем: Q2 (координатор 01.10) — MAX законсервирован, раздел оценок по умолчанию «Уроки».
+  const feedbackViewState = { kind:(window.ADMIN_MAX_SEALED ? 'lesson' : FEEDBACK_MAX_CALL_KIND), periodDays:7, commentMode:'all', rating:null, generation: 0, statsCache:new Map() };
   window.feedbackViewState = feedbackViewState;
 
   function feedbackStatsCacheKey() {
@@ -31743,7 +31764,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   // Обратная совместимость: старое имя могло остаться в закладках/памяти.
   window.loadMaxVoiceFeedback = window.loadFeedbackFeed;
 
-  window.setFeedbackKind = function(kind) { if (kind === feedbackViewState.kind) return; feedbackViewState.kind = kind; feedbackViewState.rating = null; void window.refreshFeedbackDashboard(false); };
+  window.setFeedbackKind = function(kind) { if (kind === FEEDBACK_MAX_CALL_KIND && window.ADMIN_MAX_SEALED) { console.info('[ADMIN-MAX-SEAL] setFeedbackKind: max_call skipped, section sealed'); return; } if (kind === feedbackViewState.kind) return; feedbackViewState.kind = kind; feedbackViewState.rating = null; void window.refreshFeedbackDashboard(false); };
   window.setFeedbackCommentMode = function(mode) { if (mode === feedbackViewState.commentMode) return; feedbackViewState.commentMode = mode; feedbackViewState.rating = null; void window.refreshFeedbackDashboard(false); };
   window.setFeedbackPeriod = function(days) { if (Number(days) === feedbackViewState.periodDays) return; feedbackViewState.periodDays = Number(days); feedbackViewState.rating = null; void window.refreshFeedbackDashboard(false); };
   window.setFeedbackRating = function(rating) {
@@ -44227,6 +44248,8 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   }
 
   window.grantVoiceMinutes = async function grantVoiceMinutes(uid, name, triggerButton) {
+    // зачем: Q2 (координатор 01.10) — пломба MAX: выдача голосовых минут закрыта.
+    if (window.ADMIN_MAX_SEALED) { console.info('[ADMIN-MAX-SEAL] grantVoiceMinutes skipped: section sealed', { uid }); showToast(window.ADMIN_MAX_SEALED_NOTE, 'err'); return; }
     const u = (window._users || []).find(x => x.uid === uid);
     if (!u) { showToast('Пользователь не найден в загруженном списке', 'err'); return; }
     const fn = getAdminVoiceMinutesFn();

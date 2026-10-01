@@ -1,4 +1,5 @@
 import type { AccountSyncWireBatch } from './account_sync';
+import { withAccountsV2ClientVersion } from './account_v2_client_version';
 
 /*
  * Account V2, Пакет 6B (TG-F76EA3701B55) — настоящий транспорт синхронизации:
@@ -25,6 +26,13 @@ const FUNCTIONS_PREFIX = 'functions/';
 
 export const ACCOUNTS_V2_SYNC_CALLABLE = 'accountsV2SyncApply';
 export const ACCOUNTS_V2_DISABLED_CODE = 'accounts_v2_disabled';
+/**
+ * 8F (PM-235 T2): сервер отвечает `client_too_old`, если сборка ниже
+ * `config/accounts_v2.minClientVersion`. Для этой сборки V2 выключен — как
+ * `accounts_v2_disabled`: отправка останавливается до перезапуска (без повторов и без
+ * карантина), метка гидрации снимается (старая синхронизация продолжает работать).
+ */
+export const ACCOUNTS_V2_CLIENT_TOO_OLD_CODE = 'client_too_old';
 /** Пауза, которую раннер увидит вместо «сервер выключен» (если его не остановили). */
 export const ACCOUNTS_V2_DISABLED_PAUSE_MS = 60 * 60 * 1000;
 
@@ -57,20 +65,34 @@ function kindOf(value: unknown): string {
   return value instanceof Error ? value.name : typeof value;
 }
 
-/** true — отказ «сервер Account V2 выключен» (ворота config/accounts_v2 на сервере). */
-export function isAccountsV2DisabledError(error: unknown): boolean {
+/** Код ворот сервера V2 в ошибке: выключен / клиент слишком старый / не ворота. */
+export function accountsV2GateRejection(error: unknown): 'accounts_v2_disabled' | 'client_too_old' | null {
   try {
     const rawCode = ownData(error, 'code');
-    if (typeof rawCode !== 'string') return false;
+    if (typeof rawCode !== 'string') return null;
     const code = rawCode.startsWith(FUNCTIONS_PREFIX) ? rawCode.slice(FUNCTIONS_PREFIX.length) : rawCode;
-    if (code !== 'failed-precondition') return false;
-    if (ownData(ownData(error, 'details'), 'code') === ACCOUNTS_V2_DISABLED_CODE) return true;
+    if (code !== 'failed-precondition') return null;
+    const detail = ownData(ownData(error, 'details'), 'code');
     // зачем: у части SDK details теряются в пути — тогда различаем по тексту отказа.
-    return ownData(error, 'message') === ACCOUNTS_V2_DISABLED_CODE;
+    const reason = detail === ACCOUNTS_V2_DISABLED_CODE || detail === ACCOUNTS_V2_CLIENT_TOO_OLD_CODE ? detail : ownData(error, 'message');
+    if (reason === ACCOUNTS_V2_DISABLED_CODE) return ACCOUNTS_V2_DISABLED_CODE;
+    if (reason === ACCOUNTS_V2_CLIENT_TOO_OLD_CODE) {
+      console.warn(`${LOG} client_too_old -> v2_stopped_for_this_build`);
+      return ACCOUNTS_V2_CLIENT_TOO_OLD_CODE;
+    }
+    return null;
   } catch (trap) {
     console.warn(`${LOG} transport disabled_check_unreadable kind=${kindOf(trap)}`);
-    return false;
+    return null;
   }
+}
+
+/**
+ * true — отказ «сервер Account V2 выключен» (ворота config/accounts_v2 на сервере).
+ * 8F: `client_too_old` — тоже: для этой сборки V2 выключен (остановка до перезапуска).
+ */
+export function isAccountsV2DisabledError(error: unknown): boolean {
+  return accountsV2GateRejection(error) !== null;
 }
 
 /** Ответ callable → ответ порта раннера. Проверку самих квитанций делает раннер. */
@@ -99,7 +121,8 @@ export function createAccountSyncCallableSend(
     const ops = batch.operations.length;
     let response: unknown;
     try {
-      response = await ports.call(batch);
+      // зачем (8F): версия сборки едет в данных вызова — сервер сверяет с minClientVersion.
+      response = await ports.call(withAccountsV2ClientVersion(batch));
     } catch (error) {
       if (isAccountsV2DisabledError(error)) {
         console.warn(`${LOG} transport server_disabled ops=${ops} ms=${Date.now() - startedAt}`);

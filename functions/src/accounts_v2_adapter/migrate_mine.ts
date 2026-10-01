@@ -4,6 +4,7 @@ import type { Firestore } from 'firebase-admin/firestore';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { resolveCallerUid, type AccountsV2Receipt, type ValidatedBatch } from '../accounts_v2_apply_core';
 import { accountsV2FlagsReader, type AccountsV2FlagsReader } from '../accounts_v2_flags';
+import { ACCOUNTS_V2_CLIENT_TOO_OLD, accountsV2ClientTooOld, splitClientVersion } from '../accounts_v2_client_version';
 import { HOT_CALLABLE_OPTIONS } from '../callable_options';
 import {
   MIGRATION_EXPORT_FORMAT,
@@ -106,7 +107,8 @@ export type AccountsV2MigrateDeps = Readonly<{
 
 const DEFAULT_DEPS: AccountsV2MigrateDeps = Object.freeze({ nowMs: () => Date.now(), blockCache: new Map<string, number>() });
 
-export type AccountsV2MigrateRequest = Readonly<{ auth?: Readonly<{ uid?: string }> | null }>;
+/** 8F: `data` — только для версии клиента (перенос других полей не принимает и не читает). */
+export type AccountsV2MigrateRequest = Readonly<{ auth?: Readonly<{ uid?: string }> | null; data?: unknown }>;
 
 function uidTag(uid: string): string {
   return createHash('sha256').update(uid).digest('hex').slice(0, 12);
@@ -331,6 +333,12 @@ export async function handleAccountsV2MigrateMine(
     console.warn(`${LOG} migrate reject reason=accounts_v2_disabled auth=${request.auth ? 'present' : 'missing'} reads=0`);
     throw finalError('failed-precondition', 'accounts_v2_disabled');
   }
+  // зачем (8F, PM-235 T2): клиент ниже минимума — окончательный отказ, 0 чтений и записей.
+  const version = splitClientVersion(request.data);
+  if (accountsV2ClientTooOld(read.flags.minClientVersion, version.clientVersion)) {
+    console.warn(`${LOG} migrate reject reason=client_too_old client=${version.clientVersion} min=${read.flags.minClientVersion} reads=0`);
+    throw finalError('failed-precondition', ACCOUNTS_V2_CLIENT_TOO_OLD);
+  }
   const caller = resolveCallerUid(request.auth ?? null);
   if (!caller.ok) {
     console.warn(`${LOG} migrate reject reason=${caller.code}`);
@@ -426,5 +434,5 @@ export const ACCOUNTS_V2_MIGRATE_OPTIONS = Object.freeze({ ...HOT_CALLABLE_OPTIO
 /** Callable. Выключена флагом `config/accounts_v2.syncEnabled` (по умолчанию выкл). */
 export const accountsV2MigrateMine = onCall(ACCOUNTS_V2_MIGRATE_OPTIONS, (request) => {
   const db = admin.firestore();
-  return handleAccountsV2MigrateMine(createFirestoreMigratePort(db), { auth: request.auth ?? null }, accountsV2FlagsReader(db));
+  return handleAccountsV2MigrateMine(createFirestoreMigratePort(db), { auth: request.auth ?? null, data: request.data }, accountsV2FlagsReader(db));
 });

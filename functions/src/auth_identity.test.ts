@@ -793,6 +793,25 @@ describe('resolveStableUidForAuth', () => {
     },
   );
 
+  // 8F: причина отказа идёт в лог (класс и код ошибки, без uid и текста сообщения).
+  it('logs the cause class of identity_check_unavailable without uid or message', async () => {
+    const identityCase = hiddenResolutionCases[0];
+    const { db } = makeDbStub({
+      auth_links: identityCase.authLinks,
+      users: { [identityCase.hiddenStableId]: { identityHidden: true, canonicalStableId: identityCase.canonicalStableId } },
+    }, { readFaultAt: { [`account_deletion_tombstones/${identityCase.hiddenStableId}`]: 1 } });
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    try {
+      await captureOutcome(resolveStableUidForAuth(db as any, identityCase.authUid, identityCase.requestedStableId, { repairLinks: false }));
+      const lines = warn.mock.calls.map((args) => String(args[0])).filter((line) => line.includes('identity_check_unavailable'));
+      expect(lines).toEqual([JSON.stringify({ event: 'identity_check_unavailable', cause: 'name=Error code=none' })]);
+      expect(lines.join(' ')).not.toContain(identityCase.authUid);
+      expect(lines.join(' ')).not.toContain('injected_read_failure');
+    } finally {
+      warn.mockRestore();
+    }
+  });
+
   it.each(hiddenResolutionCases.flatMap((identityCase) => [
     [identityCase.label, 'hidden source H', identityCase, identityCase.hiddenStableId],
     [identityCase.label, 'effective canonical C', identityCase, identityCase.canonicalStableId],

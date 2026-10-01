@@ -17,6 +17,7 @@ import {
 } from './firestore_port';
 import { HOT_CALLABLE_OPTIONS } from '../callable_options';
 import { accountsV2FlagsReader, type AccountsV2FlagsReader } from '../accounts_v2_flags';
+import { ACCOUNTS_V2_CLIENT_TOO_OLD, accountsV2ClientTooOld, splitClientVersion } from '../accounts_v2_client_version';
 import {
   AccountsV2RateLimited,
   finalError,
@@ -460,7 +461,13 @@ export async function handleAccountsV2SyncGated(
     console.warn(`[ACCOUNTS-V2] reject reason=accounts_v2_disabled auth=${request.auth ? 'present' : 'missing'} reads=0`);
     throw finalError('failed-precondition', 'accounts_v2_disabled');
   }
-  return handleAccountsV2Sync(db, request, deps);
+  // зачем (8F, PM-235 T2): клиент ниже минимума — окончательный отказ до разбора пакета, 0 чтений.
+  const version = splitClientVersion(request.data);
+  if (accountsV2ClientTooOld(read.flags.minClientVersion, version.clientVersion)) {
+    console.warn(`[ACCOUNTS-V2] reject reason=client_too_old client=${version.clientVersion} min=${read.flags.minClientVersion} reads=0`);
+    throw finalError('failed-precondition', ACCOUNTS_V2_CLIENT_TOO_OLD);
+  }
+  return handleAccountsV2Sync(db, { ...request, data: version.data }, deps);
 }
 
 /**

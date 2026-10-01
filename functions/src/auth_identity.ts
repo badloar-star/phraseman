@@ -91,8 +91,20 @@ function throwIdentityRetired(subject: RetiredIdentitySubject): never {
   });
 }
 
+/**
+ * 8F: класс и код ошибки для логов — без сообщения (Firestore может вставить в него пути с uid).
+ * зачем: 8D — TypeError в эмуляторе (admin.firestore.FieldValue undefined) выглядел как
+ * «identity_check_unavailable» без единой строки причины (правило владельца «немой catch»).
+ */
+function identityErrorTag(error: unknown): string {
+  const name = error instanceof Error ? error.name : typeof error;
+  const code = typeof error === 'object' && error !== null && 'code' in error ? String((error as { code: unknown }).code) : 'none';
+  return `name=${name} code=${code}`;
+}
+
 function throwIdentityCheckUnavailable(error: unknown): never {
   if (error instanceof HttpsError) throw error;
+  console.warn(JSON.stringify({ event: 'identity_check_unavailable', cause: identityErrorTag(error) }));
   throw new HttpsError('unavailable', 'identity_check_unavailable');
 }
 
@@ -298,8 +310,10 @@ async function enrichMetadataFromAuth(
   let rec: admin.auth.UserRecord | null = null;
   try {
     rec = await admin.auth().getUser(authUid);
-  } catch {
-    return metadata; // auth недоступен — оставляем как есть (не рушим вход)
+  } catch (error) {
+    // auth недоступен — оставляем как есть (не рушим вход); 8F: причина в лог, без uid.
+    console.warn(JSON.stringify({ event: 'auth_metadata_enrich_unavailable', cause: identityErrorTag(error) }));
+    return metadata;
   }
   const authEmail = cleanNullableString(rec.email, 320)
     ?? cleanNullableString(rec.providerData.find((p) => p.email)?.email, 320);
@@ -1406,10 +1420,10 @@ async function findVerifiedAccountAliasSelection(
     indexSnap = await reads.getDocument(
       db.collection(ACCOUNT_ID_INDEX).doc(accountIdIndexDocId(authUid)),
     );
-  } catch {
+  } catch (error) {
     // The alias map is an optimization layer. Preserve the canonical resolver's
     // fail-open-to-the-established-ladder behavior when the index is unavailable.
-    console.warn(JSON.stringify({ event: 'account_id_lookup_unavailable' }));
+    console.warn(JSON.stringify({ event: 'account_id_lookup_unavailable', cause: identityErrorTag(error) }));
     return null;
   }
   if (!indexSnap.exists) return null;
@@ -1428,8 +1442,8 @@ async function findVerifiedAccountAliasSelection(
   let userSnap: admin.firestore.DocumentSnapshot;
   try {
     userSnap = await reads.getDocument(db.collection(USERS).doc(stableId));
-  } catch {
-    console.warn(JSON.stringify({ event: 'account_id_lookup_verify_failed' }));
+  } catch (error) {
+    console.warn(JSON.stringify({ event: 'account_id_lookup_verify_failed', cause: identityErrorTag(error) }));
     return null;
   }
   if (!userSnap.exists) return null;

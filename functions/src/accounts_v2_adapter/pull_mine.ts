@@ -10,6 +10,7 @@ import {
   type JsonValue,
 } from '../accounts_v2_apply_core';
 import { accountsV2FlagsReader, type AccountsV2FlagsReader } from '../accounts_v2_flags';
+import { ACCOUNTS_V2_CLIENT_TOO_OLD, accountsV2ClientTooOld, splitClientVersion } from '../accounts_v2_client_version';
 import { loadEntityRecord } from '../accounts_v2_store';
 import { HOT_CALLABLE_OPTIONS } from '../callable_options';
 import { decideAccountsV2Rate, type AccountsV2RateLimit } from './callable';
@@ -163,6 +164,12 @@ export async function handleAccountsV2PullMine(
     console.warn(`${LOG} pull reject reason=accounts_v2_disabled auth=${request.auth ? 'present' : 'missing'} reads=0`);
     throw finalError('failed-precondition', 'accounts_v2_disabled');
   }
+  // зачем (8F, PM-235 T2): клиент ниже минимума — окончательный отказ, 0 чтений данных.
+  const version = splitClientVersion(request.data);
+  if (accountsV2ClientTooOld(read.flags.minClientVersion, version.clientVersion)) {
+    console.warn(`${LOG} pull reject reason=client_too_old client=${version.clientVersion} min=${read.flags.minClientVersion} reads=0`);
+    throw finalError('failed-precondition', ACCOUNTS_V2_CLIENT_TOO_OLD);
+  }
   const caller = resolveCallerUid(request.auth ?? null);
   if (!caller.ok) {
     console.warn(`${LOG} pull reject reason=${caller.code}`);
@@ -174,7 +181,7 @@ export async function handleAccountsV2PullMine(
     console.warn(`${LOG} pull reject reason=uid_not_path_safe uid=${tag}`);
     throw finalError('failed-precondition', 'uid_not_path_safe');
   }
-  const parsed = parsePullRequest(request.data);
+  const parsed = parsePullRequest(version.data);
   if (!parsed.ok) {
     console.warn(`${LOG} pull reject reason=invalid_request code=${parsed.code} uid=${tag}`);
     throw finalError('invalid-argument', parsed.code);

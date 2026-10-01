@@ -20,11 +20,17 @@
  * Пишет документ ещё только админ (firestore.rules, match /config/accounts_v2).
  */
 
+import { parseMinClientVersion } from './accounts_v2_client_version';
+
 export const ACCOUNTS_V2_FLAGS_DOC = 'config/accounts_v2';
 export const ACCOUNTS_V2_FLAGS_CACHE_MS = 5 * 60_000;
 export const ACCOUNTS_V2_FLAGS_ERROR_CACHE_MS = 15_000;
 
-export type AccountsV2Flags = Readonly<{ syncEnabled: boolean; deletionPurgeEnabled: boolean; everEnabled: boolean }>;
+export type AccountsV2Flags = Readonly<{
+  syncEnabled: boolean; deletionPurgeEnabled: boolean; everEnabled: boolean;
+  /** 8F (PM-235 T2): минимальная версия клиента (номер сборки); нет / 0 — проверки нет. */
+  minClientVersion?: number;
+}>;
 export type AccountsV2FlagsRead = Readonly<{ ok: boolean; flags: AccountsV2Flags; lastGood?: AccountsV2Flags | null }>;
 
 export const ACCOUNTS_V2_FLAGS_OFF: AccountsV2Flags = Object.freeze({
@@ -36,10 +42,13 @@ const LOG = '[ACCOUNTS-V2-FLAGS]';
 export function parseAccountsV2Flags(data: unknown): AccountsV2Flags {
   if (typeof data !== 'object' || data === null) return ACCOUNTS_V2_FLAGS_OFF;
   const raw = data as Record<string, unknown>;
+  // зачем (8F): минимум версии клиента — только целое ≥ 1; иначе ключа нет (= проверки нет).
+  const minClientVersion = parseMinClientVersion(raw.minClientVersion);
   return Object.freeze({
     syncEnabled: raw.syncEnabled === true,
     deletionPurgeEnabled: raw.deletionPurgeEnabled === true,
     everEnabled: raw.everEnabled === true,
+    ...(minClientVersion > 0 ? { minClientVersion } : {}),
   });
 }
 
@@ -97,7 +106,7 @@ export function createAccountsV2FlagsReader(
     const value: AccountsV2FlagsRead = Object.freeze({ ok: true, flags });
     cached = { value, untilMs: nowMs() + ACCOUNTS_V2_FLAGS_CACHE_MS };
     console.log(`${LOG} loaded sync=${String(flags.syncEnabled)} deletionPurge=${String(flags.deletionPurgeEnabled)} `
-      + `ever=${String(flags.everEnabled)}`);
+      + `ever=${String(flags.everEnabled)} minClient=${flags.minClientVersion ?? 0}`);
     return value;
   };
   return {

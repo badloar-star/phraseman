@@ -198,7 +198,7 @@ export default function DialogueV2BriefingRoute() {
         void (async () => {
           try {
             const result = await confirmSpendOne(energyIntent);
-            console.log('[DIALOGUE-V2] start energy', { scenarioId, result }); // guard-ok: ранний выход старта логируется
+            console.log('[DIALOGUE-V2] start energy', { scenarioId, result, operationId: energyIntent.operationId, attempt: dialogueAttempt }); // guard-ok: ранний выход старта логируется
             if (result === 'cancelled') return;
             if (result === 'insufficient') {
               setNoEnergy(true);

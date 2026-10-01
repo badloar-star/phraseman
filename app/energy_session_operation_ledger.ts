@@ -185,6 +185,16 @@ export function createEnergySessionIntent(
   });
 }
 
+// зачем (баг 01.10, «Дизайн»: «Начать диалог» — мёртвая кнопка, operation_id_conflict):
+// временная трассировка — какой номер операции столкнулся и с чем (сценарий/попытка старая и новая).
+function logEnergyOperationConflict(site: string, incoming: unknown, existing: unknown): void {
+  const view = (value: unknown) => {
+    const op = value as { operationId?: unknown; grant?: unknown; createdAtMs?: unknown } | null;
+    return { operationId: op?.operationId, grant: op?.grant, createdAtMs: op?.createdAtMs };
+  };
+  console.warn('[ENERGY-CONFLICT]', JSON.stringify({ site, incoming: view(incoming), existing: view(existing) }));
+}
+
 export function createEnergySessionBootId(): string {
   return `boot:${safeToken(Crypto.randomUUID(), String(Date.now()))}`;
 }
@@ -639,7 +649,10 @@ async function finalizePrepared(
   const abort = parseAbort(abortRaw, owner, operation.operationId);
   if (abortRaw !== null && !abort) throw new Error('energy_session_abort_corrupt');
   if (abort) {
-    if (abort.requestFingerprint !== operation.requestFingerprint) throw new Error('operation_id_conflict');
+    if (abort.requestFingerprint !== operation.requestFingerprint) {
+      logEnergyOperationConflict('abort', operation, abort);
+      throw new Error('operation_id_conflict');
+    }
     await AsyncStorage.removeItem(preparedKey(owner, operation.operationId));
     await AsyncStorage.removeItem(operationStorageKey);
     await AsyncStorage.removeItem(grantKey(owner, operation.operationId));
@@ -649,7 +662,10 @@ async function finalizePrepared(
   const existingRaw = await AsyncStorage.getItem(operationStorageKey);
   const existing = parseOperation(existingRaw, owner);
   if (existingRaw !== null && !existing) throw new Error('energy_session_operation_corrupt');
-  if (existing && existing.requestFingerprint !== operation.requestFingerprint) throw new Error('operation_id_conflict');
+  if (existing && existing.requestFingerprint !== operation.requestFingerprint) {
+    logEnergyOperationConflict('existing_operation', operation, existing);
+    throw new Error('operation_id_conflict');
+  }
   const receiptRaw = await AsyncStorage.getItem(grantKey(owner, operation.operationId));
   const receipt = parseGrantReceipt(receiptRaw, owner, operation.operationId);
   if (receiptRaw !== null && !receipt) throw new Error('energy_session_grant_corrupt');
@@ -674,6 +690,7 @@ async function finalizePrepared(
   const durablePrepared = parsePrepared(durablePreparedRaw, owner);
   if (durablePreparedRaw !== null && !durablePrepared) throw new Error('energy_session_prepared_corrupt');
   if (durablePrepared && durablePrepared.operation.requestFingerprint !== operation.requestFingerprint) {
+    logEnergyOperationConflict('durable_prepared', operation, durablePrepared.operation);
     throw new Error('operation_id_conflict');
   }
   if (state && state.revision === operation.revision && state.headOperationId !== operation.operationId) {

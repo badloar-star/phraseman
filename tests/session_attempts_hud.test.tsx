@@ -4,17 +4,33 @@ import { render } from '@testing-library/react-native';
 
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 
-jest.mock('react-native', () => ({
+// зачем (координатор §48, 2026-10-01): самодельный мок react-native ломался при каждом
+// новом API компонента (Pressable, useWindowDimensions, StyleSheet.create) и набор не
+// исполнялся. Переопределения теперь — слой поверх настоящего модуля (прототип), всё
+// неперечисленное берётся из react-native, ленивые геттеры не трогаются.
+jest.mock('react-native', () => Object.setPrototypeOf({
   // зачем (координатор §48): HUD теперь читает app/config (ENABLE_DEV_TOOLS), а тот —
   // Platform.OS; без него набор падал на импорте и не исполнялся вовсе.
   Platform: { OS: 'ios', select: (values: Record<string, unknown>) => values.ios ?? values.default },
-  View: 'View',
+  // HUD меряет своё место на экране (measureInWindow) — у хост-элемента тест-рендерера
+  // такого метода нет; даём View ref с ним, как у настоящего View на устройстве.
+  View: (() => {
+    const ReactLocal = jest.requireActual('react');
+    return ReactLocal.forwardRef((props: Record<string, unknown>, ref: unknown) => {
+      ReactLocal.useImperativeHandle(ref, () => ({
+        measureInWindow: (callback: (x: number, y: number, w: number, h: number) => void) => callback(0, 0, 120, 32),
+      }));
+      return ReactLocal.createElement('View', props, props.children);
+    });
+  })(),
+  // HUD получил кнопку (Pressable) — без неё «Element type is invalid».
+  Pressable: 'Pressable',
   StyleSheet: {
     absoluteFillObject: { position: 'absolute', inset: 0 },
     create: (styles: unknown) => styles,
     flatten: (style: unknown) => Array.isArray(style) ? Object.assign({}, ...style.filter(Boolean)) : style,
   },
-}));
+}, jest.requireActual('react-native')));
 
 jest.mock('../components/ThemeContext', () => ({
   useTheme: () => ({
@@ -40,6 +56,8 @@ jest.mock('react-native-reanimated', () => {
     useSharedValue: (value: unknown) => ({ value }),
     withSequence: (...values: unknown[]) => values.at(-1),
     withTiming: (value: unknown) => value,
+    withDelay: (_delay: number, value: unknown) => value,
+    withSpring: (value: unknown) => value,
   };
 });
 

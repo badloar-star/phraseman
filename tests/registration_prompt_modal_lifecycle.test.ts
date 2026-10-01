@@ -330,163 +330,20 @@ test('slow state is announced after the threshold and close invalidates only mod
   announce.mockRestore();
 });
 
-test('clean-install recovery reaches provider proof, email, generic code and completion', async () => {
-  let state: any = { stage: 'idle' };
-  const flow = {
-    getState: jest.fn(() => ({ ...state })),
-    start: jest.fn(async (provider: 'google' | 'apple') => {
-      state = { stage: 'ready', provider };
-      return { ...state };
-    }),
-    requestCode: jest.fn(async (_email: string) => {
-      state = {
-        stage: 'code_sent', provider: 'google', expiresAt: Date.now() + 600_000, retryAfterSec: 0,
-      };
-      return { ...state };
-    }),
-    resendCode: jest.fn(async (_email: string) => ({ ...state, retryAfterSec: 0 })),
-    confirmCode: jest.fn(async (_code: string) => {
-      state = { stage: 'completed', provider: 'google' };
-      return { result: 'completed' as const };
-    }),
-    resumeConfirmed: jest.fn(),
-    dispose: jest.fn(async () => undefined),
-    cancel: jest.fn(async () => undefined),
-  };
-  mockCreateCleanInstallRecoveryFlow.mockReturnValue(flow);
-  const onClose = jest.fn();
-  const screen = await render(
-    React.createElement(RegistrationPromptModal, { visible: true, context: 'settings', onClose }),
-  );
-
-  await waitFor(() => expect(screen.getByTestId('auth-clean-recovery-entry')).toBeTruthy());
-  await fireEvent.press(screen.getByTestId('auth-clean-recovery-entry'));
-  await waitFor(() => expect(screen.getByLabelText('Продолжить через Google')).toBeTruthy());
-  await fireEvent.press(screen.getByLabelText('Продолжить через Google'));
-  await waitFor(() => expect(screen.getByTestId('auth-clean-recovery-email-input')).toBeTruthy());
-
-  await fireEvent.changeText(screen.getByTestId('auth-clean-recovery-email-input'), ' Owner@Example.COM ');
-  await waitFor(() => expect(screen.getByTestId('auth-clean-recovery-email-input').props.value).toBe(' Owner@Example.COM '));
-  await fireEvent.press(screen.getByLabelText('Отправить код'));
-  await waitFor(() => expect(screen.getByTestId('auth-clean-recovery-code-input')).toBeTruthy());
-  expect(flow.requestCode).toHaveBeenCalledWith('owner@example.com');
-  expect(screen.getByText('Если данные подходят, письмо с 6-значным кодом уже отправлено.')).toBeTruthy();
-
-  await fireEvent.press(screen.getByTestId('auth-clean-recovery-resend'));
-  await waitFor(() => expect(flow.resendCode).toHaveBeenCalledWith('owner@example.com'));
-  await fireEvent.changeText(screen.getByTestId('auth-clean-recovery-code-input'), '12a34-56');
-  await waitFor(() => expect(screen.getByTestId('auth-clean-recovery-code-input').props.value).toBe('123456'));
-  await fireEvent.press(screen.getByLabelText('Подтвердить и восстановить'));
-
-  await waitFor(() => expect(flow.confirmCode).toHaveBeenCalledWith('123456'));
-  expect(onClose).toHaveBeenCalledTimes(1);
-});
-
-test('resumed clean-install challenge recollects email before resend and can cancel to change it', async () => {
-  let state: any = { stage: 'idle' };
-  const cancellation = deferred<void>();
-  const cancellationSettled = deferred<void>();
-  const flow = {
-    getState: jest.fn(() => ({ ...state })),
-    start: jest.fn(async (provider: 'google' | 'apple') => {
-      state = {
-        stage: 'code_sent', provider, expiresAt: Date.now() + 600_000, retryAfterSec: 0,
-      };
-      return { ...state };
-    }),
-    requestCode: jest.fn(),
-    resendCode: jest.fn(async (_email: string) => ({ ...state, retryAfterSec: 0 })),
-    confirmCode: jest.fn(),
-    resumeConfirmed: jest.fn(),
-    dispose: jest.fn(async () => undefined),
-    cancel: jest.fn(async () => {
-      await cancellation.promise;
-      state = { stage: 'cancelled', provider: 'google' };
-      cancellationSettled.resolve();
-    }),
-  };
-  mockCreateCleanInstallRecoveryFlow.mockReturnValue(flow);
-  const onClose = jest.fn();
-  const screen = await render(
-    React.createElement(RegistrationPromptModal, { visible: true, context: 'settings', onClose }),
-  );
-
-  await waitFor(() => expect(screen.getByTestId('auth-clean-recovery-entry')).toBeTruthy());
-  await fireEvent.press(screen.getByTestId('auth-clean-recovery-entry'));
-  await waitFor(() => expect(screen.getByLabelText('Продолжить через Google')).toBeTruthy());
-  await fireEvent.press(screen.getByLabelText('Продолжить через Google'));
-  await waitFor(() => expect(screen.getByTestId('auth-clean-recovery-resend-email-input')).toBeTruthy());
-  expect(screen.getByTestId('auth-clean-recovery-resend').props.accessibilityState.disabled).toBe(true);
-  expect(flow.resendCode).not.toHaveBeenCalled();
-
-  await fireEvent.changeText(screen.getByTestId('auth-clean-recovery-resend-email-input'), 'corrected@example.com');
-  await waitFor(() => expect(screen.getByTestId('auth-clean-recovery-resend').props.accessibilityState.disabled).toBe(false));
-  await fireEvent.press(screen.getByTestId('auth-clean-recovery-resend'));
-  expect(flow.resendCode).toHaveBeenCalledWith('corrected@example.com');
-
-  await fireEvent.press(screen.getByLabelText('Изменить email'));
-  await waitFor(() => expect(flow.cancel).toHaveBeenCalledTimes(1));
-  await waitFor(() => expect(screen.getByTestId('auth-prompt-later').props.accessibilityState.disabled).toBe(true));
-  await fireEvent.press(screen.getByTestId('auth-prompt-later'));
-  expect(onClose).not.toHaveBeenCalled();
-  expect(flow.dispose).not.toHaveBeenCalled();
-
-  await act(async () => {
-    cancellation.resolve();
-    await cancellationSettled.promise;
-    await Promise.resolve();
-  });
-  expect(flow.cancel).toHaveBeenCalledTimes(1);
-  await waitFor(() => expect(screen.getByLabelText('Продолжить через Google')).toBeTruthy());
-  expect(screen.queryByTestId('auth-clean-recovery-code-input')).toBeNull();
-});
-
-test('confirmed and adopting clean-install recovery cannot expose or invoke change-email cancellation', async () => {
-  let state: any = { stage: 'idle' };
-  const adoption = deferred<{ result: 'completed' }>();
-  const adoptionSettled = deferred<void>();
-  const flow = {
-    getState: jest.fn(() => ({ ...state })),
-    start: jest.fn(async (provider: 'google' | 'apple') => {
-      state = { stage: 'confirmed', provider, expiresAt: Date.now() + 600_000 };
-      return { ...state };
-    }),
-    requestCode: jest.fn(),
-    resendCode: jest.fn(),
-    confirmCode: jest.fn(),
-    resumeConfirmed: jest.fn(async () => {
-      const result = await adoption.promise;
-      adoptionSettled.resolve();
-      return result;
-    }),
-    dispose: jest.fn(async () => undefined),
-    cancel: jest.fn(async () => undefined),
-  };
-  mockCreateCleanInstallRecoveryFlow.mockReturnValue(flow);
+// зачем (координатор §48, 2026-10-01): владелец 28.08 — «вход через провайдера —
+// единственный живой путь восстановления и создания»: существующий профиль
+// восстанавливается сам, удалённый создаёт пустой. Входы «восстановить» и
+// «восстановление после переустановки» в окне выключены жёстко
+// (showRecoveryEntry/showCleanRecoveryEntry = false). Три сценария шагов этого
+// потока (провайдер → почта → код → готово) исполнялись против скрытого UI и
+// сняты; сторожим, что входы не вернутся без решения владельца.
+test('provider sign-in is the only recovery path: recovery entries stay hidden', async () => {
   const screen = await render(
     React.createElement(RegistrationPromptModal, { visible: true, context: 'settings', onClose: jest.fn() }),
   );
-
-  await waitFor(() => expect(screen.getByTestId('auth-clean-recovery-entry')).toBeTruthy());
-  await fireEvent.press(screen.getByTestId('auth-clean-recovery-entry'));
-  await waitFor(() => expect(screen.getByLabelText('Продолжить через Google')).toBeTruthy());
-  await fireEvent.press(screen.getByLabelText('Продолжить через Google'));
-  await waitFor(() => expect(screen.getByLabelText('Продолжить')).toBeTruthy());
-  expect(screen.queryByLabelText('Изменить email')).toBeNull();
-  expect(flow.cancel).not.toHaveBeenCalled();
-
-  await fireEvent.press(screen.getByLabelText('Продолжить'));
-  await waitFor(() => expect(screen.getByTestId('auth-prompt-later').props.accessibilityState.disabled).toBe(true));
-  expect(screen.queryByLabelText('Изменить email')).toBeNull();
-  expect(flow.cancel).not.toHaveBeenCalled();
-
-  await act(async () => {
-    state = { stage: 'completed', provider: 'google' };
-    adoption.resolve({ result: 'completed' });
-    await adoptionSettled.promise;
-    await Promise.resolve();
-  });
-  expect(flow.cancel).not.toHaveBeenCalled();
+  expect(screen.queryByTestId('auth-recovery-entry')).toBeNull();
+  expect(screen.queryByTestId('auth-clean-recovery-entry')).toBeNull();
+  expect(mockCreateCleanInstallRecoveryFlow).not.toHaveBeenCalled();
 });
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports

@@ -74,6 +74,8 @@ module.exports = {
     '^react-native-reanimated$': 'react-native-reanimated/mock',
     '^expo-router$': '<rootDir>/tests/__mocks__/expo-router.js',
     '^expo-audio$': '<rootDir>/tests/__mocks__/expo-audio.js',
+    // Отступы безопасной зоны без нативного провайдера (именованные экспорты).
+    '^react-native-safe-area-context$': '<rootDir>/tests/__mocks__/react-native-safe-area-context.js',
   },
   forceExit: true,
   maxWorkers: 1,

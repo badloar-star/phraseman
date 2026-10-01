@@ -5,7 +5,11 @@ const mockCheckNameAvailabilityDetailed = jest.fn();
 const mockReserveNameDetailed = jest.fn();
 const mockAnnounceForAccessibility = jest.fn();
 
-jest.mock('react-native', () => ({
+// зачем (координатор §48, 2026-10-01): самодельный мок react-native ломался при каждом
+// новом API компонента (Pressable, useWindowDimensions, StyleSheet.create) и набор не
+// исполнялся. Переопределения теперь — слой поверх настоящего модуля (прототип), всё
+// неперечисленное берётся из react-native, ленивые геттеры не трогаются.
+jest.mock('react-native', () => Object.setPrototypeOf({
   AccessibilityInfo: { announceForAccessibility: (...args: unknown[]) => mockAnnounceForAccessibility(...args) },
   ActivityIndicator: 'ActivityIndicator',
   Alert: { alert: jest.fn() },
@@ -13,14 +17,11 @@ jest.mock('react-native', () => ({
   Modal: 'Modal',
   Platform: { OS: 'ios' },
   Pressable: 'Pressable',
-  StyleSheet: {
-    flatten: (style: unknown) => style ?? {},
-  },
   Text: 'Text',
   TextInput: 'TextInput',
   TouchableOpacity: 'TouchableOpacity',
   View: 'View',
-}));
+}, jest.requireActual('react-native')));
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
   setItem: jest.fn(async () => undefined),

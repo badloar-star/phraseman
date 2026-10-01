@@ -12805,7 +12805,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12835,27 +12835,32 @@
       "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE"
     ],
     "audit_sha": null,
-    "result_sha": "65F7E3017C407D59432334854A906C71A2A1B0D185D029730701E51EFBC1B883",
+    "result_sha": "6632921d2",
     "owner": "/root",
-    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 8, 01.10)",
+    "reviewer": "agent-reviewer (Sonnet), пачка 9Б",
     "evidence": [
       "docs/phraseman-2.0/evidence/PM-235_migration_compatibility.md",
-      "2026-10-01 ревью пачки 8: functions/ npx jest src/accounts_v2_migration --runInBand → 11 suites, 216/216 PASS; файлы compatibility.ts + compatibility.test.ts и evidence-документ в git status — «??» (не закоммичены, ведёт сессия Account V2)"
+      "2026-10-01 ревью пачки 8: functions/ npx jest src/accounts_v2_migration --runInBand → 11 suites, 216/216 PASS; файлы compatibility.ts + compatibility.test.ts и evidence-документ в git status — «??» (не закоммичены, ведёт сессия Account V2)",
+      "evidence/PM-235_migration_compatibility.md закоммичен (git log: 6632921d2); код functions/src/accounts_v2_migration/* в git (6632921d2)",
+      "2026-10-01 пачка 9Б: functions, прогон набора src/accounts_v2_migration --runInBand --watchman=false -> 11 suites, 216/216 PASS"
     ],
     "notes": [
       "Source gate only; device/runtime, backup/restore, Firestore cutover, production purge and release acceptance remain open.",
-      "2026-10-01 пачка 8: PASS по сути, остаётся review: (1) код и evidence не в коммите (result_sha — хеш, не git SHA; коммитит сессия Account V2); (2) gate MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE не покрыт подписанным пакетом (нужен M5: решение владельца, проверка, шаг отката до purge, судьба данных, прод только владелец); (3) эмулятор/устройство и реальный backup/restore не выполнялись — исполнитель сам оставил их открытыми."
+      "2026-10-01 пачка 8: PASS по сути, остаётся review: (1) код и evidence не в коммите (result_sha — хеш, не git SHA; коммитит сессия Account V2); (2) gate MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE не покрыт подписанным пакетом (нужен M5: решение владельца, проверка, шаг отката до purge, судьба данных, прод только владелец); (3) эмулятор/устройство и реальный backup/restore не выполнялись — исполнитель сам оставил их открытыми.",
+      "Условие координатора §57 (дословно): «модели PM-235/237 подключить к рантайму до включения 7B; включение/перенос на проде — владелец при релизе».",
+      "2026-10-01 пачка 9Б: закрыто по §57 (M5 подписан). Оговорка: тест no_network.test.ts имеет чужую незакоммиченную правку (+2 строки), на вердикт не влияет; эмулятор/реальный backup-restore не выполнялись."
     ],
     "actual_cost": null,
     "kind": "code",
-    "review_verdict": "PASS по сути",
+    "review_verdict": "PASS",
     "gate_evidence": {
       "migration_source_tests": "7 suites / 187 tests passed",
       "eslint": "PASS",
       "functions_tsc": "PASS",
       "no_network_import_closure": "PASS",
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE": "evidence/GATES_MIGRATION_M5_ACCOUNTS_V2_2026-10-01.md (пакет M5 ПОДПИСАН координатором, INBOX §57, c4f0fdb93)"
     },
     "actual_model": "gpt-5.6-terra",
     "actual_reasoning": "medium"
@@ -12869,7 +12874,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12891,27 +12896,32 @@
       "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE"
     ],
     "audit_sha": null,
-    "result_sha": "82FC302B56184F479575EBD8607532AE4082C6E7E9B667974531CFE550381953",
+    "result_sha": "6632921d2",
     "owner": "/root",
-    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 8, 01.10)",
+    "reviewer": "agent-reviewer (Sonnet), пачка 9Б",
     "evidence": [
       "docs/phraseman-2.0/evidence/PM-236_two_device_idempotency.md",
-      "2026-10-01 ревью пачки 8: functions/ npx jest src/accounts_v2_migration --runInBand → 11 suites, 216/216 PASS; файлы two_device_idempotency.test.ts и evidence-документ в git status — «??» (не закоммичены, ведёт сессия Account V2)"
+      "2026-10-01 ревью пачки 8: functions/ npx jest src/accounts_v2_migration --runInBand → 11 suites, 216/216 PASS; файлы two_device_idempotency.test.ts и evidence-документ в git status — «??» (не закоммичены, ведёт сессия Account V2)",
+      "evidence/PM-236_two_device_idempotency.md закоммичен (git log: 6632921d2); код functions/src/accounts_v2_migration/* в git (6632921d2)",
+      "2026-10-01 пачка 9Б: functions, прогон набора src/accounts_v2_migration --runInBand --watchman=false -> 11 suites, 216/216 PASS"
     ],
     "notes": [
       "Source/in-memory gate only; real Firebase Emulator/device two-device E2E, backup/restore and release acceptance remain open.",
-      "2026-10-01 пачка 8: PASS по сути, остаётся review: (1) код и evidence не в коммите (result_sha — хеш, не git SHA; коммитит сессия Account V2); (2) gate MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE не покрыт подписанным пакетом (нужен M5: решение владельца, проверка, шаг отката до purge, судьба данных, прод только владелец); (3) эмулятор/устройство и реальный backup/restore не выполнялись — исполнитель сам оставил их открытыми."
+      "2026-10-01 пачка 8: PASS по сути, остаётся review: (1) код и evidence не в коммите (result_sha — хеш, не git SHA; коммитит сессия Account V2); (2) gate MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE не покрыт подписанным пакетом (нужен M5: решение владельца, проверка, шаг отката до purge, судьба данных, прод только владелец); (3) эмулятор/устройство и реальный backup/restore не выполнялись — исполнитель сам оставил их открытыми.",
+      "Условие координатора §57 (дословно): «модели PM-235/237 подключить к рантайму до включения 7B; включение/перенос на проде — владелец при релизе».",
+      "2026-10-01 пачка 9Б: закрыто по §57 (M5 подписан). Оговорка: тест no_network.test.ts имеет чужую незакоммиченную правку (+2 строки), на вердикт не влияет; эмулятор/реальный backup-restore не выполнялись."
     ],
     "actual_cost": null,
     "kind": "code",
-    "review_verdict": "PASS по сути",
+    "review_verdict": "PASS",
     "gate_evidence": {
       "focused_two_device": "1 suite / 3 tests passed",
       "migration_source_tests": "8 suites / 190 tests passed",
       "eslint": "PASS",
       "functions_tsc": "PASS",
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE": "evidence/GATES_MIGRATION_M5_ACCOUNTS_V2_2026-10-01.md (пакет M5 ПОДПИСАН координатором, INBOX §57, c4f0fdb93)"
     },
     "actual_model": "gpt-5.6-terra",
     "actual_reasoning": "medium"
@@ -12925,7 +12935,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12955,20 +12965,24 @@
       "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE"
     ],
     "audit_sha": null,
-    "result_sha": "B528DCE09B24676D8DFFC4C37C26C07879F5598B59C60818C11E492F34036E6D",
+    "result_sha": "6632921d2",
     "owner": "/root",
-    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 8, 01.10)",
+    "reviewer": "agent-reviewer (Sonnet), пачка 9Б",
     "evidence": [
       "docs/phraseman-2.0/evidence/PM-237_backup_restore.md",
-      "2026-10-01 ревью пачки 8: functions/ npx jest src/accounts_v2_migration --runInBand → 11 suites, 216/216 PASS; файлы backup_manifest.ts + backup_manifest.test.ts и evidence-документ в git status — «??» (не закоммичены, ведёт сессия Account V2)"
+      "2026-10-01 ревью пачки 8: functions/ npx jest src/accounts_v2_migration --runInBand → 11 suites, 216/216 PASS; файлы backup_manifest.ts + backup_manifest.test.ts и evidence-документ в git status — «??» (не закоммичены, ведёт сессия Account V2)",
+      "evidence/PM-237_backup_restore.md закоммичен (git log: 6632921d2); код functions/src/accounts_v2_migration/* в git (6632921d2)",
+      "2026-10-01 пачка 9Б: functions, прогон набора src/accounts_v2_migration --runInBand --watchman=false -> 11 suites, 216/216 PASS"
     ],
     "notes": [
       "Source manifest round-trip only; real Firebase Emulator/device backup-restore and rollback acceptance remain open.",
-      "2026-10-01 пачка 8: PASS по сути, остаётся review: (1) код и evidence не в коммите (result_sha — хеш, не git SHA; коммитит сессия Account V2); (2) gate MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE не покрыт подписанным пакетом (нужен M5: решение владельца, проверка, шаг отката до purge, судьба данных, прод только владелец); (3) эмулятор/устройство и реальный backup/restore не выполнялись — исполнитель сам оставил их открытыми."
+      "2026-10-01 пачка 8: PASS по сути, остаётся review: (1) код и evidence не в коммите (result_sha — хеш, не git SHA; коммитит сессия Account V2); (2) gate MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE не покрыт подписанным пакетом (нужен M5: решение владельца, проверка, шаг отката до purge, судьба данных, прод только владелец); (3) эмулятор/устройство и реальный backup/restore не выполнялись — исполнитель сам оставил их открытыми.",
+      "Условие координатора §57 (дословно): «модели PM-235/237 подключить к рантайму до включения 7B; включение/перенос на проде — владелец при релизе».",
+      "2026-10-01 пачка 9Б: закрыто по §57 (M5 подписан). Оговорка: тест no_network.test.ts имеет чужую незакоммиченную правку (+2 строки), на вердикт не влияет; эмулятор/реальный backup-restore не выполнялись."
     ],
     "actual_cost": null,
     "kind": "code",
-    "review_verdict": "PASS по сути",
+    "review_verdict": "PASS",
     "gate_evidence": {
       "focused_backup_restore": "1 suite / 5 tests passed",
       "migration_source_tests": "9 suites / 197 tests passed",
@@ -12976,7 +12990,8 @@
       "functions_tsc": "PASS",
       "no_network_import_closure": "PASS",
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE": "evidence/GATES_MIGRATION_M5_ACCOUNTS_V2_2026-10-01.md (пакет M5 ПОДПИСАН координатором, INBOX §57, c4f0fdb93)"
     },
     "actual_model": "gpt-5.6-terra",
     "actual_reasoning": "medium"
@@ -13743,9 +13758,10 @@
       {
         "id": "PM-253-A1",
         "text": "Task ID, base/result SHA, changed files, tests, screenshots, risks и next action",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "2026-10-01 NOT_MET: журнал PROGRESS.md ведётся построчно с Task ID и коммитами, у критериев есть evidence, но по задачам нет полного набора «base/result SHA + changed files + tests + screenshots + risks + next action»: result_sha пуст у 12 из 13 задач партии review-batch4 (есть только у PM-086), скриншотов нет (эмулятор этой сессии запрещён). Закрыть: шаблон записи в PROGRESS + заполнение result_sha при переводе в done."
+          "2026-10-01 NOT_MET: журнал PROGRESS.md ведётся построчно с Task ID и коммитами, у критериев есть evidence, но по задачам нет полного набора «base/result SHA + changed files + tests + screenshots + risks + next action»: result_sha пуст у 12 из 13 задач партии review-batch4 (есть только у PM-086), скриншотов нет (эмулятор этой сессии запрещён). Закрыть: шаблон записи в PROGRESS + заполнение result_sha при переводе в done.",
+          "PROGRESS_ENTRY_TEMPLATE.md (03b927170): поля Task ID, Base/Result SHA, Changed files, Tests, Screenshots, Risks, Next action + Reviewer; ссылка из docs/QA_RELEASE.md; правило result_sha для code-задач: tools/validate.py:55 ('code done without result SHA')"
         ]
       },
       {
@@ -13766,13 +13782,15 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": "agent-reviewer (Sonnet), пачка 9",
+    "reviewer": "agent-reviewer (Sonnet), пачка 9Б",
     "evidence": [
-      "docs/phraseman-2.0/PROGRESS.md: PM-253 progress checkpoint"
+      "docs/phraseman-2.0/PROGRESS.md: PM-253 progress checkpoint",
+      "PROGRESS_ENTRY_TEMPLATE.md (03b927170): поля Task ID, Base/Result SHA, Changed files, Tests, Screenshots, Risks, Next action + Reviewer; ссылка из docs/QA_RELEASE.md; правило result_sha для code-задач: tools/validate.py:55 ('code done without result SHA')"
     ],
     "notes": [
       "A2 accepted from deterministic registry counts; A1 remains open because this working tree has no result commit SHA and no screenshot pack for every task.",
-      "2026-10-01 пачка 9: НЕ тот же случай, что PM-251. A1 действительно NOT_MET (шаблона записи «Task ID, base/result SHA, changed files, tests, screenshots, risks, next action» нет; result_sha пуст у большинства задач партии, снимков нет) — это содержание, а не формальность gate; Q97 покрывает только PM-251. Кроме того gate IMPLEMENTATION_AND_MIGRATION_READY ещё не покрыт ни Q97, ни пакетом. Нужно: шаблон записи в PROGRESS.md + заполнение result_sha при переводе в done, затем A1; N/A по аналогии с Q97 — только по отдельному решению координатора (вопрос Q100)."
+      "2026-10-01 пачка 9: НЕ тот же случай, что PM-251. A1 действительно NOT_MET (шаблона записи «Task ID, base/result SHA, changed files, tests, screenshots, risks, next action» нет; result_sha пуст у большинства задач партии, снимков нет) — это содержание, а не формальность gate; Q97 покрывает только PM-251. Кроме того gate IMPLEMENTATION_AND_MIGRATION_READY ещё не покрыт ни Q97, ни пакетом. Нужно: шаблон записи в PROGRESS.md + заполнение result_sha при переводе в done, затем A1; N/A по аналогии с Q97 — только по отдельному решению координатора (вопрос Q100).",
+      "2026-10-01 пачка 9Б: A1 ПРИНЯТ (шаблон покрывает все поля критерия). Статус остаётся review: gate IMPLEMENTATION_AND_MIGRATION_READY не покрыт; N/A по аналогии с Q97 только по решению координатора — вопрос Q100 в INBOX_COORDINATOR_FROM_CORE.md отсутствует и ответа нет. Ждёт Q100."
     ],
     "actual_cost": null,
     "kind": "audit",

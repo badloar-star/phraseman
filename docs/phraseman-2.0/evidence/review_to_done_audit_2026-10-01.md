@@ -347,3 +347,17 @@ PM-288: requirement_ids D131 → R259 (добавлен в requirements.json; PM
 
 Известные чужие падения (на вывод не повлияли): economy_constitution_contract, post_auth_generation_guard_contract, home_lesson_progress_single_pass; admin_legacy_survey_preview_contract (1/10, SURVEY_SHARD_AMOUNT).
 Оговорки: actual_model «unknown, снимок нескольких сессий», actual_reasoning «unrecorded» (§34). Прод/эмулятор/устройство не трогал.
+
+## Пачка 9Б (agent-reviewer, Sonnet, 01.10)
+
+Итог: в done 3 задачи (PM-235, PM-236, PM-237). PM-253 — A1 принят, статус остаётся review.
+
+| Задача | Вердикт | Основание | Статус |
+|---|---|---|---|
+| PM-235 | PASS | M5 подписан (INBOX §57, c4f0fdb93); evidence и код закоммичены (6632921d2); functions `src/accounts_v2_migration` --runInBand: 11 suites, 216/216 PASS | done (code, 6632921d2) |
+| PM-236 | PASS | то же; two_device_idempotency.test.ts в git (6632921d2) | done (code, 6632921d2) |
+| PM-237 | PASS | то же; backup_manifest.ts/.test.ts в git (6632921d2) | done (code, 6632921d2) |
+| PM-253 | A1 принят, статус review | PROGRESS_ENTRY_TEMPLATE.md (03b927170) содержит Task ID, Base/Result SHA, Changed files, Tests, Screenshots, Risks, Next action; правило result_sha для code-задач — tools/validate.py:55. Gate IMPLEMENTATION_AND_MIGRATION_READY: N/A по аналогии с Q97 только по решению координатора; вопроса Q100 в INBOX нет, ответа нет | review (ждёт Q100) |
+
+Условие координатора §57, дословно, записано в notes PM-235/236/237: «модели PM-235/237 подключить к рантайму до включения 7B; включение/перенос на проде — владелец при релизе».
+Оговорки: no_network.test.ts имеет чужую незакоммиченную правку (+2 строки) — в прогоне она участвовала, на вердикт не влияет; эмулятор и реальный backup/restore не выполнялись; actual_model «unknown», actual_reasoning «unrecorded» (§34). validate.py по PM-235/236/237/253 ошибок не даёт.

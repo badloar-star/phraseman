@@ -20,8 +20,20 @@ export interface AdminUserBrief {
   readonly uid: string;
   readonly name: string;
   readonly nameIndex: string;
-  readonly avatar: string;
+  /** Ранг монеты 0…19 из public_profiles.coinRank (Q5); null — нет/невалиден. */
+  readonly coinRank: number | null;
   readonly found: boolean;
+}
+
+// зачем: Q5 (координатор 01.10) — старые аватары и «Студия персонажа» удалены,
+// в админке вместо картинки инициалы, а ранг монеты показывается в карточке
+// пользователя. Ранг берём из того же public_profiles, что уже читается здесь,
+// — без лишнего чтения на строку.
+const COIN_RANK_MAX = 19;
+function coinRankOrNull(value: unknown): number | null {
+  return typeof value === 'number' && Number.isInteger(value) && value >= 0 && value <= COIN_RANK_MAX
+    ? value
+    : null;
 }
 
 function clean(value: unknown, max: number): string {
@@ -136,22 +148,11 @@ export function projectAdminUserBrief(uid: string, userData: Data, publicData: D
     profile.userIndex,
     profile.profileIndex,
   );
-  const avatar = first(
-    120,
-    progress.user_avatar,
-    progress.userAvatar,
-    progress.avatar,
-    user.user_avatar,
-    user.userAvatar,
-    user.avatar,
-    profile.avatar,
-    profile.avatarKey,
-  );
   return Object.freeze({
     uid: clean(uid, 128),
     name,
     nameIndex,
-    avatar,
+    coinRank: coinRankOrNull(profile.coinRank),
     found: Boolean(Object.keys(user).length || Object.keys(profile).length),
   });
 }

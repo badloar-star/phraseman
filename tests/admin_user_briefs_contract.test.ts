@@ -30,7 +30,9 @@ describe('live admin user briefs projection contract', () => {
     expect(projectionStart).toBeGreaterThan(0);
     expect(projection).toContain('uid');
     expect(projection).toContain('nameIndex');
-    expect(projection).toContain('avatar');
+    // зачем: Q5 (координатор 01.10) — картинка-аватар заменена рангом монеты.
+    expect(projection).toContain('coinRank');
+    expect(projection).not.toContain('progress.user_avatar');
     expect(projection).toContain('found');
     expect(projection).not.toContain('email:');
     expect(projection).not.toContain('raw:');

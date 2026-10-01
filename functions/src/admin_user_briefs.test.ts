@@ -74,18 +74,26 @@ describe('adminUserBriefs bounded projection', () => {
       name: 'Public fallback',
       avatarKey: 'fox',
       bio: 'private bio',
+      coinRank: 7,
     });
 
+    // зачем: Q5 (координатор 01.10) — аватар-картинки больше нет, вместо неё
+    // ранг монеты из public_profiles (тот же документ, без лишнего чтения).
     expect(projected).toEqual({
       uid: 'uid-a',
       name: 'Learner',
       nameIndex: '1042',
-      avatar: 'owl',
+      coinRank: 7,
       found: true,
     });
     expect(JSON.stringify(projected)).not.toContain('private@example.com');
     expect(JSON.stringify(projected)).not.toContain('shards');
-    expect(Object.keys(projected).sort()).toEqual(['avatar', 'found', 'name', 'nameIndex', 'uid']);
+    expect(JSON.stringify(projected)).not.toContain('owl');
+    expect(Object.keys(projected).sort()).toEqual(['coinRank', 'found', 'name', 'nameIndex', 'uid']);
+  });
+
+  it.each([-1, 20, 7.5, '7', null, undefined])('drops an invalid public coin rank: %s', (coinRank) => {
+    expect(projectAdminUserBrief('uid-b', { progress: { user_name: 'L' } }, { coinRank }).coinRank).toBeNull();
   });
 
   it('returns an explicit not-found brief without leaking source shapes', () => {
@@ -93,7 +101,7 @@ describe('adminUserBriefs bounded projection', () => {
       uid: 'missing',
       name: '',
       nameIndex: '',
-      avatar: '',
+      coinRank: null,
       found: false,
     });
   });

@@ -1,83 +1,46 @@
 import fs from 'fs';
 import path from 'path';
 
-const ROOT = path.resolve(__dirname, '..');
-const ADMIN_INDEX = path.join(ROOT, 'admin', 'v2', 'legacy.html');
-// Numeric level avatars are an older, unrelated mirror contract. Keep its
-// established source while this change moves only custom-gen artwork.
-const ADMIN_LEVEL_AVATARS = path.join(ROOT, 'admin', 'avatars');
-const ADMIN_CUSTOM_AVATARS = path.join(
-  ROOT,
-  'admin',
-  'v2',
-  'avatars',
-);
-const APP_LEVEL_AVATARS = path.join(ROOT, 'assets', 'images', 'levels', 'generated-v5-dalle');
+/**
+ * зачем: Q5 (координатор 01.10) — старые аватары-картинки и «Студия персонажа»
+ * удалены (D57/D61): аватар в 2.0 = монета ранга. В списках админки вместо
+ * картинки инициалы, ранг монеты показывается только в карточке пользователя и
+ * берётся из public_profiles, который adminUserBriefs уже читает (без +1 чтения
+ * на строку). Прежний контракт отрисовки avatarImg снят вместе с функцией.
+ */
+const html = fs.readFileSync(path.join(__dirname, '..', 'admin', 'v2', 'legacy.html'), 'utf8');
 
-function extractAvatarImgFunctionSource(): string {
-  const html = fs.readFileSync(ADMIN_INDEX, 'utf8');
-  const start = html.indexOf('function avatarImg(');
+function extractInitials(): (name: string) => string {
+  const start = html.indexOf('function adminUserInitials(');
   expect(start).toBeGreaterThanOrEqual(0);
-  const end = html.indexOf('\n  const ADMIN_DATE_LOCALE', start);
-  expect(end).toBeGreaterThan(start);
-  return html.slice(start, end);
+  const end = html.indexOf('\n  }\n', start) + 4;
+  return Function(`${html.slice(start, end)}\nreturn adminUserInitials;`)();
 }
 
-function renderAvatar(value: string, size = 32): string {
-  const source = `${extractAvatarImgFunctionSource()}\nreturn avatarImg(${JSON.stringify(value)}, ${size});`;
-  return Function(source)();
-}
-
-describe('admin avatar rendering contract', () => {
-  it('renders current custom-gen avatars from the server-hosted archive', () => {
-    const html = renderAvatar('custom:custom-gen-41:ruby:white');
-    const legacyBlackHtml = renderAvatar('custom:custom-gen-41:ruby:black');
-
-    expect(html).toContain('avatars/custom-idea-41-white.webp');
-    expect(html).not.toContain('avatars/1.webp');
-    expect(legacyBlackHtml).toContain('avatars/custom-idea-41-white.webp');
-    expect(legacyBlackHtml).not.toContain('custom-idea-41-black.webp');
+describe('admin user avatar surfaces (Q5)', () => {
+  it('no longer renders old avatar images anywhere in the live admin', () => {
+    expect(html).not.toContain('function avatarImg(');
+    expect(html).not.toContain('avatarImg(');
+    expect(html).not.toMatch(/src="avatars\//u);
   });
 
-  it.each(['94', '101', '102', '112'])(
-    'renders retained versioned custom-gen-%s values as white without fallback',
-    (id) => {
-      const html = renderAvatar(`custom:custom-gen-${id}:aurora:black:avatar100-v1`);
-      expect(html).toContain(`avatars/custom-idea-${id}-white.webp`);
-      expect(html).not.toContain(`custom-idea-${id}-black.webp`);
-      expect(html).not.toContain('avatars/1.webp');
-    },
-  );
-
-  it('keeps the legacy-showcase artVersion shape compatible for custom-gen values', () => {
-    const html = renderAvatar('custom:custom-gen-94:aurora:white:legacy-showcase-v1');
-    expect(html).toContain('avatars/custom-idea-94-white.webp');
-    expect(html).not.toContain('avatars/1.webp');
+  it('shows initials in the user list and drawer header', () => {
+    const initials = extractInitials();
+    expect(initials('Anna Maria Lee')).toBe('AM');
+    expect(initials('  ')).toBe('?');
+    expect(html).toContain('<div class="avatar" aria-hidden="true">${escapeHtml(adminUserInitials(u.name))}</div>');
+    expect(html).toContain('const avatar = escapeHtml(pmUserInitials(name));');
   });
 
-  it('keeps old custom avatar ids working', () => {
-    const html = renderAvatar('custom:custom-21:aurora:black');
-
-    expect(html).toContain('avatars/custom-21-logo.webp');
-    expect(html).not.toContain('avatars/1.webp');
-  });
-
-  it('renders and ships the same numeric level avatar assets as the app', () => {
-    expect(renderAvatar('60')).toContain('avatars/60.webp');
-
-    for (let i = 1; i <= 60; i += 1) {
-      const fileName = `${i}.webp`;
-      const adminBytes = fs.readFileSync(path.join(ADMIN_LEVEL_AVATARS, fileName));
-      const appBytes = fs.readFileSync(path.join(APP_LEVEL_AVATARS, fileName));
-      expect(adminBytes.equals(appBytes)).toBe(true);
-    }
-  });
-
-  it('ships the sole light variant for every current custom-gen avatar', () => {
-    for (let i = 1; i <= 62; i += 1) {
-      const id = String(i).padStart(2, '0');
-      expect(fs.existsSync(path.join(ADMIN_CUSTOM_AVATARS, `custom-idea-${id}-white.webp`))).toBe(true);
-      expect(fs.existsSync(path.join(ADMIN_CUSTOM_AVATARS, `custom-idea-${id}-black.webp`))).toBe(false);
-    }
+  it('shows the coin rank only in the user card, from the brief (public_profiles)', () => {
+    const drawerStart = html.indexOf('function pmPaintUserDrawerIdentity(');
+    const drawer = html.slice(drawerStart, html.indexOf('window.openDetail = function pmOpenDetail', drawerStart));
+    expect(drawer).toContain('pmCoinRankOrNull(brief?.coinRank)');
+    expect(drawer).toContain('Ранг монеты:');
+    const listStart = html.indexOf('function pmUserIdentityInner(');
+    const list = html.slice(listStart, html.indexOf('function pmUserIdentityHtml(', listStart));
+    expect(list).not.toContain('coinRank');
+    expect(html).toContain('coinRank: pmCoinRankOrNull(pub.coinRank)');
+    expect(html).toContain('coinRank: pmCoinRankOrNull(raw.coinRank)');
   });
 });

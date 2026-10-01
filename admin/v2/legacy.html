@@ -19206,44 +19206,12 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     if (l >= 5)  return 'Explorer';
     return 'Beginner';
   }
-  function avatarImg(avatarIndexOrName, size) {
-    const sz = size||32;
-    const raw = String(avatarIndexOrName || '');
-    const custom = raw.match(/^custom:((?:custom-\d{2})|(?:custom-gen-\d{2,3})):([a-z0-9_-]+)(?::(black|white)(?::(avatar100-v1|legacy-showcase-v1))?)?$/i);
-    if (custom) {
-      const gradients = {
-        aurora: ['#02E4C0', '#0EA5E9', '#7C3AED'],
-        ember: ['#FF4D3D', '#FF8A1F', '#FACC15'],
-        cosmic: ['#7C3AED', '#EC4899', '#F97316'],
-        forest: ['#14532D', '#22C55E', '#A3E635'],
-        lagoon: ['#06B6D4', '#2563EB', '#14B8A6'],
-        citrine: ['#FDE047', '#FB7185', '#F97316'],
-        royal: ['#312E81', '#7C3AED', '#F0ABFC'],
-        mintglass: ['#A7F3D0', '#38BDF8', '#6366F1'],
-        ruby: ['#FB7185', '#BE123C', '#581C87'],
-        magma: ['#111827', '#DC2626', '#F97316'],
-        volt: ['#D9F99D', '#22C55E', '#0EA5E9'],
-        noirgold: ['#111827', '#B45309', '#FDE68A'],
-        sakura: ['#F9A8D4', '#F472B6', '#FB7185'],
-      };
-      const colors = gradients[custom[2]] || gradients.aurora;
-      const avatarId = custom[1].toLowerCase();
-      const logoColor = 'white';
-      const pad = Math.max(2, Math.round(sz * 0.08));
-      const inner = Math.max(1, sz - pad * 2);
-      const customGen = avatarId.match(/^custom-gen-(\d{2,3})$/);
-      const src = customGen ? `avatars/custom-idea-${customGen[1]}-${logoColor}.webp` : `avatars/${avatarId}-logo.webp`;
-      const inkFilter = customGen ? '' : (logoColor === 'white' ? 'filter:brightness(0) invert(1);' : 'filter:brightness(0);');
-      const imgSize = customGen ? Math.round(sz * 1.1) : Math.round(inner * 0.9);
-      return `<span style="width:${sz}px;height:${sz}px;display:inline-flex;align-items:center;justify-content:center;clip-path:polygon(50% 3%,93% 26%,93% 74%,50% 97%,7% 74%,7% 26%);background:linear-gradient(135deg,${colors[0]},${colors[1]} 52%,${colors[2]});overflow:hidden;"><img src="${src}" width="${imgSize}" height="${imgSize}" style="object-fit:contain;${inkFilter}"></span>`;
-    }
-    // If it's a numeric string or number (1-60), use the same level avatar assets as the app.
-    const idx = parseInt(avatarIndexOrName, 10);
-    if (!isNaN(idx) && idx >= 1 && idx <= 60) {
-      return `<img src="avatars/${idx}.webp" width="${sz}" height="${sz}" style="border-radius:50%;object-fit:cover;background:#6c47ff33">`;
-    }
-    // Default: show level 1 avatar for unknown values
-    return `<img src="avatars/1.webp" width="${sz}" height="${sz}" style="border-radius:50%;object-fit:cover;background:#6c47ff33">`;
+  // зачем: Q5 (координатор 01.10) — старые аватары и «Студия персонажа» удалены
+  // (D61/D57): аватар в 2.0 = монета ранга. В списках админки вместо картинки
+  // инициалы (без загрузки 215 webp), ранг монеты — только в карточке пользователя.
+  function adminUserInitials(name) {
+    const parts = String(name || '').trim().split(/\s+/).filter(Boolean).slice(0, 2);
+    return (parts.map((part) => part[0]).join('') || '?').toUpperCase();
   }
   const ADMIN_DATE_LOCALE = 'ru-RU';
   // зачем (аудит 2026-09-21): раньше тут был голый new Date(ts) — и любая дата,
@@ -20286,7 +20254,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       const safeName = escapeHtml(u.name);
       return `<tr onclick="openDetail('${u.uid}')" data-bulk-uid="${u.uid}" ${u.banned?'style="opacity:0.5"':''}>
         <td onclick="event.stopPropagation()"><input type="checkbox" class="bulk-cb" data-uid="${u.uid}" onchange="onBulkCheck('${u.uid}',this.checked)" style="accent-color:#7c5cfc;cursor:pointer;width:15px;height:15px" /></td>
-        <td><div class="name-cell"><div class="avatar" style="overflow:hidden;padding:0">${avatarImg(u.avatar || 1,32)}</div><div><div class="name">${safeName}${u.banned?' <span class="pill pill-red" style="font-size:10px">🚫</span>':''}</div><div class="uid-small">${u.uid.substring(0,14)}…</div></div></div></td>
+        <td><div class="name-cell"><div class="avatar" aria-hidden="true">${escapeHtml(adminUserInitials(u.name))}</div><div><div class="name">${safeName}${u.banned?' <span class="pill pill-red" style="font-size:10px">🚫</span>':''}</div><div class="uid-small">${u.uid.substring(0,14)}…</div></div></div></td>
         <td><div class="users-compact-cell">
           <div class="users-compact-line"><span>🔥 ${u.streak}</span><span class="users-compact-muted">Lessons ${u.lessons.length}/${LESSON_NAMES.length}</span></div>
         </div></td>
@@ -21641,7 +21609,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   window.openDetail = function(uid) {
     const u = window._users.find(x=>x.uid===uid);
     if(!u) return;
-    document.getElementById('d-name').innerHTML = avatarImg(u.avatar || 1,28)+' '+escapeHtml(u.name);
+    document.getElementById('d-name').innerHTML = `<span class="pm-user-avatar" aria-hidden="true">${escapeHtml(adminUserInitials(u.name))}</span> ${escapeHtml(u.name)}`;
     document.getElementById('d-uid').textContent = u.uid;
     const premInfo = premiumInfo(u);
     const vip = vipInfo(u);
@@ -48667,6 +48635,12 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     );
   }
 
+  // зачем: Q5 — ранг монеты 0…19 из public_profiles.coinRank (тот же документ,
+  // что сервер adminUserBriefs уже читает); всё остальное = «нет ранга».
+  function pmCoinRankOrNull(value) {
+    return typeof value === 'number' && Number.isInteger(value) && value >= 0 && value <= 19 ? value : null;
+  }
+
   function pmBriefFromData(uid, data, publicProfile) {
     const d = data && typeof data === 'object' ? data : {};
     const p = d.progress && typeof d.progress === 'object' ? d.progress : {};
@@ -48680,7 +48654,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       uid: String(uid || ''),
       name: name || '',
       nameIndex: pmExtractNameIndex(d, p, pub),
-      avatar: pmFirstNonEmpty(p.user_avatar, d.avatar, pub.avatar),
+      coinRank: pmCoinRankOrNull(pub.coinRank),
       found: Boolean(name || Object.keys(d).length || Object.keys(pub).length),
     };
   }
@@ -48692,7 +48666,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       uid,
       name: String(user.name || ''),
       nameIndex: pmFirstNonEmpty(user.nameIndex, pmExtractNameIndex(user, user.raw || {}, null)),
-      avatar: user.avatar || '',
+      coinRank: null,
       found: true,
       resolved: false,
     };
@@ -48715,7 +48689,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         uid,
         name: pmFirstNonEmpty(raw.nickname, raw.name, raw.userName, raw.displayName),
         nameIndex: pmFirstNonEmpty(raw.nameIndex, raw.userIndex, raw.profileIndex),
-        avatar: pmFirstNonEmpty(raw.avatar, raw.avatarKey),
+        coinRank: pmCoinRankOrNull(raw.coinRank),
         found: raw.found !== false,
         resolved: true,
         source: 'adminUserBriefs',
@@ -48748,7 +48722,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
 
     const unresolved = chunk.filter((uid) => !result[uid] || (!result[uid].name && !result[uid].nameIndex));
     if (!compatFallbackAllowed || !unresolved.length || !pmCanFallbackToDirectUserReads()) {
-      unresolved.forEach((uid) => { if (!result[uid]) result[uid] = { uid, name:'', nameIndex:'', avatar:'', found:false, resolved:true, source:'brief-unavailable' }; });
+      unresolved.forEach((uid) => { if (!result[uid]) result[uid] = { uid, name:'', nameIndex:'', coinRank:null, found:false, resolved:true, source:'brief-unavailable' }; });
       return result;
     }
 
@@ -48823,7 +48797,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
             uid,
             name: fresh?.name || base?.name || '',
             nameIndex: fresh?.nameIndex || base?.nameIndex || '',
-            avatar: fresh?.avatar || base?.avatar || '',
+            coinRank: pmCoinRankOrNull(fresh?.coinRank ?? base?.coinRank),
             found: Boolean(fresh?.found || base?.found),
             resolved: true,
             source: fresh?.source || base?.source || 'cache',
@@ -48862,10 +48836,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     const idx = pmFirstNonEmpty(brief && brief.nameIndex);
     const idxClass = idx ? '' : ' is-missing';
     const idxTitle = idx ? `nameIndex: ${idx}` : 'nameIndex не найден в доступных полях профиля';
-    let avatar = escapeHtml(pmUserInitials(name));
-    if (brief?.avatar && typeof avatarImg === 'function') {
-      try { avatar = avatarImg(brief.avatar, 24); } catch (_) { /* initials remain */ }
-    }
+    const avatar = escapeHtml(pmUserInitials(name));
     return `<span class="pm-user-avatar" aria-hidden="true">${avatar}</span><span class="pm-user-name">${escapeHtml(name)}</span><span class="pm-user-index${idxClass}" title="${escapeHtml(idxTitle)}">#${escapeHtml(idx || '—')}</span>`;
   }
 
@@ -48978,12 +48949,10 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     if (!nameNode) return;
     const name = pmFirstNonEmpty(brief?.name, user?.name) || 'Профиль';
     const idx = pmFirstNonEmpty(brief?.nameIndex, user?.nameIndex, user && pmExtractNameIndex(user, user.raw || {}, null));
-    let avatar = escapeHtml(pmUserInitials(name));
-    const avatarValue = brief?.avatar || user?.avatar || '';
-    if (avatarValue && typeof avatarImg === 'function') {
-      try { avatar = avatarImg(avatarValue, 28); } catch (_) { /* initials remain */ }
-    }
-    nameNode.innerHTML = `<span class="pm-user-avatar" aria-hidden="true">${avatar}</span><span>${escapeHtml(name)}</span><span class="pm-drawer-name-index">#${escapeHtml(idx || '—')}</span>`;
+    const avatar = escapeHtml(pmUserInitials(name));
+    const coinRank = pmCoinRankOrNull(brief?.coinRank);
+    const coinRankHtml = `<span class="pm-drawer-name-index" data-coin-rank="${coinRank === null ? '' : coinRank}" title="Ранг монеты из публичного профиля">Ранг монеты: ${coinRank === null ? '—' : escapeHtml(String(coinRank))}</span>`;
+    nameNode.innerHTML = `<span class="pm-user-avatar" aria-hidden="true">${avatar}</span><span>${escapeHtml(name)}</span><span class="pm-drawer-name-index">#${escapeHtml(idx || '—')}</span>${coinRankHtml}`;
   }
   window.openDetail = function pmOpenDetail(uid) {
     _pmOriginalOpenDetail(uid);

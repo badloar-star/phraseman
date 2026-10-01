@@ -277,3 +277,39 @@ E24: docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md, E24_store_de
 - Q67 Окно лимита: календарные сутки UTC (сейчас) / скользящие 24 ч. **рек. UTC**
 - Q68 Записать Q55 (3 публикации в сутки, Free и Plus) в 03_DECISIONS.md как D-номер (D17 всё ещё PROPOSED). **рек. да** — это ваш файл.
 - Q69 Бэкфилл expireAt для старых журналов: писать скрипт после выкладки TTL. **рек.**
+
+## §28 — 2026-10-01: СРОЧНОЕ «Взять расшифровку из YouTube» + PM-003/PM-008
+
+### Расшифровка из YouTube (c5900fd1f)
+Сделано (сервер, без выкладки):
+- functions/src/youtube_captions_core.ts — чистое ядро: ссылка согласия (offline + consent, scope youtube.force-ssl), обмен code → refresh token, обновление access token, videos.list по API-ключу (чей ролик), captions.list, выбор дорожки (ручная на языке звука → любая ручная → asr на языке → любая asr; черновики и forced мимо), captions.download tfmt=vtt. Тесты 10/10.
+- functions/src/youtube_captions_oauth.ts — adminYoutubeOAuthStart (callable), youtubeOAuthCallback (https), adminYoutubeChannelsList (callable, без токенов), adminFetchVideoTranscript (callable). Подгонка времени — та же функция, что у загрузки файла (вынесена в video_phrase_timing.ts → alignVideoPhraseTranscript, без дубля). Логи [VIDEO-TRANSCRIPT] на каждом шаге: канал, дорожка, размер, коды; токенов и code в логах нет (сторож в тесте).
+- Хранение: admin_youtube_channels/{channelId} (refresh token, название, кто и когда подключил), одноразовые state в admin_youtube_oauth_states (10 мин, TTL по expireAt). Обе коллекции в firestore.rules закрыты И исключены из админского catch-all — браузерная админка токены не прочтёт. Бренд-аккаунты: каждый канал подключается отдельно (канал выбирается на экране Google).
+- Квота: 1 (videos.list) + 50 (captions.list) + 200 (download) = 251 ед. на ролик из 10 000/сутки.
+
+⚠️ Не подключено: admin/v2/legacy.html и functions/src/index.ts сейчас с чужими незакоммиченными правками (сессия, удаляющая «Задания»/коллекции по D140). Готовый скрипт подключения: scratchpad yt_transcript_wire.py (кнопка «⏱ Взять расшифровку из YouTube», статус «Беру расшифровку из YouTube…», «Подключить YouTube» при неподключённом канале, мелкая ссылка «или загрузить файл», возврат после согласия). Применю, как только та сессия закоммитит — **прошу её поторопить или сообщить мне, когда файлы свободны.**
+
+**К выкладке (после подключения):** functions: adminYoutubeOAuthStart, youtubeOAuthCallback, adminYoutubeChannelsList, adminFetchVideoTranscript, adminAlignVideoPhraseTranscript (рефакторинг, поведение то же); firestore:rules; firestore:indexes (TTL state); hosting (legacy.html).
+
+**Шаги владельца в Google Cloud Console (один раз, ~10 минут), простым языком:**
+1. Открыть console.cloud.google.com → вверху выбрать проект phraseman-ea0b3.
+2. «APIs & Services» → «Library» → найти «YouTube Data API v3» → убедиться, что включён (он уже нужен каталогу видео).
+3. «APIs & Services» → «OAuth consent screen»: тип «External»; название приложения — например «Phraseman Admin»; почта поддержки — badloar@gmail.com; в «Scopes» добавить `.../auth/youtube.force-ssl`; сохранить. Затем нажать **«Publish app» → «In production»** (в режиме Testing ключ живёт только 7 дней). Проверку Google проходить не обязательно: при входе будет предупреждение «Google не проверил это приложение» — нажать «Дополнительно» → «Перейти».
+4. «APIs & Services» → «Credentials» → «Create credentials» → «OAuth client ID» → тип «Web application». В «Authorized redirect URIs» вписать ровно: `https://us-central1-phraseman-ea0b3.cloudfunctions.net/youtubeOAuthCallback` → Create. Появятся Client ID и Client secret.
+5. В терминале проекта по очереди (каждая команда спросит значение — вставить и Enter):
+   `firebase functions:secrets:set YOUTUBE_OAUTH_CLIENT_ID`
+   `firebase functions:secrets:set YOUTUBE_OAUTH_CLIENT_SECRET`
+6. После выкладки: админка → «Видео» → выбрать ролик → «⏱ Взять расшифровку из YouTube» → если канал не подключён, нажать «Подключить YouTube», войти аккаунтом Google владельца, на экране выбора выбрать нужный канал (бренд-аккаунт), разрешить. Для второго канала — повторить с роликом этого канала.
+
+### PM-003 / PM-008 (8dbda7e2a, 6a37ebc28)
+- PM-003 → review: 68/68 пунктов скриншотов привязаны (37 через R, 31 через registries/screenshot_coverage.json), новый R258 «удалить отдельный раздел «Руны»; баланс остаётся» (привязан к PM-004). «Не подтверждено»: S12 (закрыто полем ввода), S57 (обрезано).
+- PM-008: автосбор строк (docs/phraseman-2.0/tools/pm008_copy_inventory.mjs) — 19 451 строка, 734 с признаками риска, 140 про удалённые разделы. Для владельца: evidence/PM-008_copy_owner_review.csv (удалённое сверху), сводка evidence/PM-008_copy_inventory_summary.md. A1 NOT_MET до решений.
+- Топ видимых строк про удалённое (зона «Дизайна»): app/level_gift_system.ts (подарки, 21), app/achievement_copy_ru_v2.ts + achievement_catalog_v2.ts (жемчуг, «Жемчужный хомяк»), app/shard_earn_ui.ts и CardPackShardPaywallModal.tsx («Пополнить жемчуг»), app/shop_catalog.ts, session_attempts_copy.ts, settings.tsx («Подарок за приглашения», жемчуг при смене аккаунта), feature_intro_registry.ts («Открыть Арену»), NotificationCenterButton.tsx. DoubleRewardSheet.tsx никто не импортирует.
+- Строка для PROGRESS.md (файл грязный от другой сессии): «2026-10-01 · PM-003 → review (68/68, R258, не подтверждено S12/S57); PM-008 автосбор строк готов, A1 ждёт решений владельца по PM-008_copy_owner_review.csv».
+
+Вопросы:
+- Q70 S01 «удалить раздел Руны» vs /runes_wallet (экран баланса монет): (а) оставить экран как «Монеты», S01 исполнен **рек.** / (б) удалить экран, баланс только в шапке.
+- Q71 S42 «убрать декоративные темы» vs D38/D119 (темы остаются, ассеты удаляются): привести R064 к D38 **рек.**
+- Q72 S39 «удалить раздел уведомлений» vs D92 (колокольчик остаётся): трактовать как allowlist + перенос событий в «Активность» (R200–R202) **рек.**
+- Q73 Ключ строки для PM-008 — «файл:ключ» / «файл:строка». Подходит? **рек. да**
+- Q74 Строки про удалённое (список выше) — передать «Дизайну» пачкой на вычистку? **рек. да**

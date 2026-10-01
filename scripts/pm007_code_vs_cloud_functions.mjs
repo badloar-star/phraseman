@@ -8,7 +8,7 @@
 //   node scripts/pm007_code_vs_cloud_functions.mjs                       — только код
 //   node scripts/pm007_code_vs_cloud_functions.mjs --cloud <list.json>   — код + облако
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 
 import { buildServerDecisionAtlas } from './server_decision_atlas/catalog.mjs';
@@ -158,6 +158,19 @@ async function main() {
   const cloud = cloudFile ? readCloudList(cloudFile) : null;
   const md = renderMarkdown(rows, cloud);
   const out = resolve(root, OUT);
+  // зачем (01.10, ревью): запуск без --cloud затирал evidence со списком облака (516 функций).
+  // По умолчанию — только проверка; запись — явным --write; без облака существующий список не трогаем.
+  if (!process.argv.includes('--write')) {
+    console.log(`[PM-007] dry-run code=${rows.length} cloud=${cloud ? cloud.size : 'NOT_RUN'} (без записи; --write чтобы обновить ${OUT})`);
+    return;
+  }
+  if (!cloud) {
+    const existing = await readFile(out, 'utf8').catch(() => '');
+    if (existing.includes('Всего в облаке:') && !process.argv.includes('--force')) {
+      console.error(`[PM-007] отказ: в ${OUT} уже есть список облака, а --cloud не передан — запись стёрла бы его (добавь --cloud <json> или --force)`);
+      process.exit(2);
+    }
+  }
   await mkdir(dirname(out), { recursive: true });
   await writeFile(out, md);
   console.log(`[PM-007] code=${rows.length} cloud=${cloud ? cloud.size : 'NOT_RUN'} → ${OUT}`);

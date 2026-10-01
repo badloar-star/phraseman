@@ -23,6 +23,11 @@ def main():
         lines += ['- '+g for g in t['gates']]
         lines += ['','Gates блокируют соответствующее изменение/выпуск, но не безопасный preflight. Не пытаться закрыть открытое решение без владельца.','', '## Источник и исходная формулировка']
         for rid in t['requirement_ids']:
+            # зачем (01.10): в requirement_ids иногда стоит номер решения (D131 у PM-288) — раньше
+            # KeyError ронял генератор на середине и оставлял полупереписанные карточки.
+            if rid not in reqs:
+                lines += [f"{rid} · решение владельца/координатора, см. [03_DECISIONS](../03_DECISIONS.md)",'']
+                continue
             r=reqs[rid];s=r['source'];loc=f"символы {s['start_char']}:{s['end_char']}" if 'start_char' in s else s.get('anchor','')
             lines += [f"{rid} · [{s['file']}](../{s['file']}) · {loc} · {'дословная выдержка' if s.get('verbatim') else 'нормализованная расшифровка скриншота'}",'', '> '+s['excerpt'].strip().replace('\n','\n> '),'']
             trace += [f"## {rid} → [{t['id']}](tasks/{t['id']}.md)",f"{t['title']} · {basis[t['basis']]}",f"Источник: `{s['file']}`, {loc}",'', '> '+s['excerpt'].strip().replace('\n','\n> '),'']
@@ -36,7 +41,7 @@ def main():
         write(f"epics/{e['id']}.md",'\n'.join(lines))
     data=[]
     for t in tasks:
-        x=dict(t);x['sources']=[reqs[r]['source'] for r in t['requirement_ids']];data.append(x)
+        x=dict(t);x['sources']=[reqs[r]['source'] for r in t['requirement_ids'] if r in reqs];data.append(x)
     payload=json.dumps({'tasks':data,'epics':epics,'basis':basis},ensure_ascii=False).replace('</','<\\/')
     template=(ROOT/'tools/board_template.html').read_text(encoding='utf-8')
     write('board.html',template.replace('__DATA_JSON__',payload))

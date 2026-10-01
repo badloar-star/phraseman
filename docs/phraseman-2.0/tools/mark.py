@@ -22,6 +22,26 @@ TASKS = ROOT / 'registries' / 'tasks.json'
 WORKLOG = ROOT / 'registries' / 'worklog.jsonl'
 
 
+def write_task_block(task: dict) -> None:
+    raw = TASKS.read_bytes().decode('utf-8')
+    eol = '\r\n' if '\r\n' in raw else '\n'
+    marker = f'"id": "{task["id"]}"'
+    pos = raw.find(marker)
+    if pos < 0:
+        raise SystemExit(f'mark.py: блок {task["id"]} не найден в tasks.json')
+    start = raw.rfind(eol + '  {', 0, pos)
+    end_close = raw.find(eol + '  }', pos)
+    if start < 0 or end_close < 0:
+        raise SystemExit(f'mark.py: границы блока {task["id"]} не найдены — правьте вручную')
+    start += len(eol)
+    end = end_close + len(eol) + len('  }')
+    block = json.dumps(task, ensure_ascii=False, indent=2)
+    block = eol.join('  ' + line for line in block.split('\n'))
+    updated = raw[:start] + block + raw[end:]
+    json.loads(updated)  # битый реестр не пишем
+    TASKS.write_bytes(updated.encode('utf-8'))
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('task_id')
@@ -69,7 +89,9 @@ def main():
         task['actual_reasoning'] = a.reasoning
     task['evidence'] = list(dict.fromkeys(task['evidence'] + a.evidence))
     task['notes'] = task['notes'] + a.note
-    TASKS.write_text(json.dumps(tasks, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    # зачем (01.10): полная перезапись json.dumps давала дифф ~600 КБ (весь реестр
+    # переформатировался и терял CRLF). Меняем только блок этой задачи, остальное — байт в байт.
+    write_task_block(task)
 
     entry = {
         'at': date.today().isoformat(), 'kind': 'TASK_PROGRESS', 'task_id': a.task_id,

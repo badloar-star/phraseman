@@ -47,10 +47,15 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { actionToastTri, emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
 import { DebugLogger } from './debug-logger';
+// зачем (владелец 01.10): «Из видео» берёт ГОТОВЫЕ наборы фраз роликов
+// (video_phrase_sets) — те же, что открываются по тапу на фразу под роликом.
 import {
-  loadVideoMarketPacks,
-  peekVideoMarketPacks,
-} from './community_packs/communityFirestore';
+  isVideoPhraseSetPackId,
+  loadVideoPhraseSetPacks,
+  peekVideoPhraseSetPacks,
+  videoChannelIdOf,
+  videoIdFromPackId,
+} from './video_phrase_set_packs';
 import { stageCommunityPackCardsForNavigation } from './community_packs/staging';
 import {
   applyCommunityPacksFilter,
@@ -168,7 +173,7 @@ export default function FlashcardsVideoPacksScreen() {
    * видит моргание. Кэш есть — решение известно сразу, ждать нечего.
    */
   const [catalogState, setCatalogState] = useState<VideoCatalogState>(() => {
-    const packs = filterVideoPacks(peekVideoMarketPacks(studyTarget) ?? []);
+    const packs = filterVideoPacks(peekVideoPhraseSetPacks() ?? []);
     return { targetKey, packs, loadState: packs.length > 0 ? 'ready' : 'loading' };
   });
   const activeCatalogState = transitionVideoCatalogState(catalogState, targetKey, 'target');
@@ -306,7 +311,7 @@ export default function FlashcardsVideoPacksScreen() {
       void (async () => {
         const startedAt = Date.now();
         try {
-          const catalog = await loadVideoMarketPacks(studyTarget, { forceRemote });
+          const catalog = await loadVideoPhraseSetPacks({ forceRemote });
           if (cancelled) return;
           const video = filterVideoPacks(catalog);
           DebugLogger.info(LOG, `каталог получен за ${Date.now() - startedAt} мс: документов ${catalog.length}, из видео ${video.length}`);
@@ -341,6 +346,18 @@ export default function FlashcardsVideoPacksScreen() {
     // подменял бы staging первого, и открылся бы ЧУЖОЙ набор.
     if (openingRef.current) {
       DebugLogger.warn(LOG, `тап проигнорирован: уже открывается "${openingRef.current}"`);
+      return;
+    }
+    // зачем: набор фраз ролика открывается так же, как по тапу на фразу —
+    // экраном ролика с его фразами (lingman_videos по videoId), без staging.
+    if (isVideoPhraseSetPackId(pack.id)) {
+      const videoId = videoIdFromPackId(pack.id);
+      const channelId = videoChannelIdOf(pack);
+      DebugLogger.info(LOG, `открываю ролик с фразами: videoId=${videoId} channelId=${channelId || '—'}`);
+      router.push({
+        pathname: '/lingman_videos',
+        params: channelId ? { videoId, channelId } : { videoId },
+      } as never);
       return;
     }
     openingRef.current = pack.id;

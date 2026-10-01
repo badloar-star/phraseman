@@ -5,6 +5,7 @@ import { ENFORCE_APP_CHECK } from './callable_options';
 import { hasPermission, type AdminPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 import { assertJobEnabled, resolveJobConfig } from './openai_jobs_config';
+import { recordAiOperationUsage } from './ai_operation_billing';
 import { reserveContentFactoryBudget } from './content_factory/content_factory_budget';
 import { PAID_AI_FETCH_TIMEOUT_MS, paidAiFetchFailureReason } from './paid_ai_fetch_timeout';
 import { normalizeVideoPhraseList, type VideoPhrase } from '../../shared/video_phrases_contract';
@@ -546,7 +547,9 @@ export const adminParseVideoPhraseDocument = onCall({ region: REGION, enforceApp
     console.error('[AI-LIMIT] adminParseVideoPhraseDocument provider status', { status: response.status });
     throw new HttpsError('unavailable', 'openai_request_failed');
   }
-  const payload = await response.json() as { choices?: { message?: { content?: string } }[] };
+  const payload = await response.json() as { choices?: { message?: { content?: string } }[]; usage?: { prompt_tokens?: number; completion_tokens?: number } };
+  // зачем: PM-231 A3 — расход разбора документа виден по operation (fire-and-forget, сбой пишется в лог).
+  void recordAiOperationUsage('admin_video_phrases_parse', { model: config.model, promptTokens: payload.usage?.prompt_tokens, completionTokens: payload.usage?.completion_tokens }, actor.uid);
   let parsed: unknown;
   try { parsed = JSON.parse(String(payload.choices?.[0]?.message?.content ?? '')); }
   catch { throw new HttpsError('data-loss', 'openai_json_invalid'); }

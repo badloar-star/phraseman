@@ -111,6 +111,24 @@ export function usageFromDoc(
     };
   }
 
+  if (collectionName === 'ai_operation_billing') {
+    // зачем: PM-231 A3 — админские ИИ-вызовы пишут одну общую коллекцию; operation попадает в подпись фичи.
+    const inputTokens = num(data.promptTokens);
+    const outputTokens = num(data.completionTokens);
+    return {
+      id: snap.id,
+      feature: 'Админ: ' + (text(data.operation, 64) || 'unknown'),
+      collection: collectionName,
+      model,
+      inputTokens,
+      outputTokens,
+      totalTokens: num(data.totalTokens) || inputTokens + outputTokens,
+      costUsd: costUsd(model, inputTokens, outputTokens),
+      uid: text(data.uid, 120),
+      createdAtMs: createdMs(data),
+    };
+  }
+
   if (collectionName === 'card_tts_billing') {
     // зачем: D128 — TTS считается по символам, а не по chat-токенам; пересчёт
     // общей формулой по цене gpt-4.1-nano занизил бы трату в десятки раз.
@@ -296,6 +314,8 @@ export const openAiBudgetDashboard = onCall({ region: REGION, enforceAppCheck: E
     { collection: 'voice_call_billing', feature: 'MAX voice' },
     // D128: озвучка карточек (OpenAI TTS). Цена — estCostUsd из строки (символы × ставка).
     { collection: 'card_tts_billing', feature: 'Озвучка карточек (TTS)' },
+    // PM-231 A3: админские ИИ-вызовы (перевод, дайджесты, ответы на репорты, идеи, фидбэк, разбор документа).
+    { collection: 'ai_operation_billing', feature: 'Админ: ИИ-операции' },
   ];
 
   const fetchedDocs = await Promise.all(

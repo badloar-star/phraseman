@@ -45,3 +45,13 @@
 - `48483c341` billing Dialogue V2 (`v2_freeform`/`v2_text`/`v2_complete`) через колбэк `onUsage`.
 - `d99195f71` video_phrases: вход ≤ 60 000 знаков, max_tokens 8000, тайм-аут 100 с; asset studio — общий дедлайн 100 с.
 Хвост: админка `admin/v2/legacy.html` (стр. ~58276/58288) всё ещё пускает документ до 500 000 знаков — поправить на 60 000, когда файл освободится; admin_director_digest_audio без кэша; usage в прочих админ-функциях. Деплой — после релиза (D91).
+
+## 2026-10-01 (сессия «Ядро», E22): расходы админских ИИ-функций видны по operation
+
+- Новый модуль `functions/src/ai_operation_billing.ts`: одна строка на вызов в коллекции `ai_operation_billing` ({operation, model, токены, uid, createdAtMs, expireAt = +90 дней}). Запись fire-and-forget, сбой пишется в лог `[PM-231-BILLING]` и не ломает ответ.
+- `openAiChat` (`explain/explain_provider.ts`) получил необязательный `onUsage`; подключено в `admin_translate`, `admin_daily_digest`, `admin_director_digest`, `feedback_summary`, `report_replies` (draft), `user_ideas` (draft); `adminParseVideoPhraseDocument` пишет usage из своего `fetch`.
+- `openAiBudgetDashboard` читает новую коллекцию, подпись фичи — «Админ: <operation>».
+- `firestore.rules`: `ai_operation_billing` — только сервер. `firestore.indexes.json`: TTL по `expireAt` (деплой индексов — владелец).
+- Тесты: `ai_operation_billing.test.ts` 5/5.
+- Админка `admin/v2/legacy.html` уже режет документ на пакеты и отказывает при > 60 000 знаков (строки ~54661–54679) — хвост «500 000» закрыт.
+- Остаток без usage: `admin_director_digest_audio` (TTS, без кэша), `admin_asset_studio` (картинки; считает суточный счётчик `admin_runtime_usage`), `tournament_audio` / `content_factory` TTS (офлайн-конвейер), community-pack admin QA/translate. Kill switch `ai_global_disable` всё ещё не покрывает `premiumDialogReview` и `dialogueV2Freeform*` (файлы заняты другой сессией — диалоги/память).

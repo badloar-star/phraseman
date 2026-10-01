@@ -34,6 +34,11 @@ export interface OpenAiChatParams {
   maxAttempts?: number;
   /** PM-231: per-attempt fetch timeout; default 30s. Callers under a shorter function timeout pass less. */
   timeoutMs?: number;
+  /**
+   * PM-231 (A3): колбэк usage для биллинга «по operation». Сбой колбэка не ломает ответ.
+   * зачем: этот файл остаётся без firebase-admin; запись делает вызывающий (ai_operation_billing).
+   */
+  onUsage?: (usage: { promptTokens: number; completionTokens: number }) => void;
 }
 
 export interface OpenAiChatResult {
@@ -131,9 +136,17 @@ export async function openAiChat(params: OpenAiChatParams): Promise<OpenAiChatRe
 
   const json = (await response.json()) as OpenAiRawResponse;
   const usage = json.usage ?? {};
-  return {
+  const result = {
     text: asText(json.choices?.[0]?.message?.content).trim(),
     promptTokens: Number(usage.prompt_tokens ?? 0),
     completionTokens: Number(usage.completion_tokens ?? 0),
   };
+  if (params.onUsage) {
+    try {
+      params.onUsage({ promptTokens: result.promptTokens, completionTokens: result.completionTokens });
+    } catch (error) {
+      console.error('[PM-231-BILLING] onUsage callback failed', String((error as Error)?.message ?? error).slice(0, 200));
+    }
+  }
+  return result;
 }

@@ -1231,6 +1231,12 @@
       "indexes": []
     },
     {
+      "collectionGroup": "ai_operation_billing",
+      "fieldPath": "expireAt",
+      "ttl": true,
+      "indexes": []
+    },
+    {
       "collectionGroup": "accounts_v2_ops",
       "fieldPath": "expireAt",
       "ttl": true,

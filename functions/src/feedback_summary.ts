@@ -24,6 +24,7 @@ import {
   type FeedbackKind,
 } from './feedback_entries';
 import { VOICE_FEEDBACK_COLLECTION } from './max_voice_feedback';
+import { aiOperationUsageSink } from './ai_operation_billing';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -281,6 +282,7 @@ export const adminSummarizeFeedback = onCall(
     const result = await openAiChat({
       apiKey,
       model: SUMMARY_MODEL,
+      onUsage: aiOperationUsageSink('feedback_summary', SUMMARY_MODEL), // зачем: PM-231 A3 — расход виден по operation
       messages: [
         { role: 'system', content: SUMMARY_SYSTEM_PROMPT },
         { role: 'user', content: buildSummaryPrompt(kind, periodDays, rows) },

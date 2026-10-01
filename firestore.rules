@@ -4024,6 +4024,10 @@ service cloud.firestore {
     match /card_tts_billing/{rowId} {
       allow read, write: if false;
     }
+    // PM-231 A3: usage админских ИИ-вызовов по operation — только сервер (Admin SDK).
+    match /ai_operation_billing/{rowId} {
+      allow read, write: if false;
+    }
 
     match /{document=**} {
       allow read, write: if false;

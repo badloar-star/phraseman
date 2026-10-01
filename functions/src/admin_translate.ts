@@ -14,6 +14,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
 import { openAiChat } from './explain/explain_provider';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
+import { aiOperationUsageSink } from './ai_operation_billing';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -118,6 +119,7 @@ export const adminTranslateMessage = onCall({
     gen = await openAiChat({
       apiKey,
       model: DEFAULT_MODEL,
+      onUsage: aiOperationUsageSink('admin_translate', DEFAULT_MODEL), // зачем: PM-231 A3 — расход виден по operation
       messages: [{ role: 'user', content: buildPrompt(fields, context) }],
       maxTokens: MAX_OUTPUT_TOKENS,
       temperature: 0.2,

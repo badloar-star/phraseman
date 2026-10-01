@@ -23,6 +23,7 @@ import { resolveIsLifetimePlan } from './premium_status';
 import { openAiChat } from './explain/explain_provider';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
 import { hasClaimedPermission, type AdminPermission } from './admin/permissions';
+import { aiOperationUsageSink } from './ai_operation_billing';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -631,6 +632,7 @@ export const adminDraftReportReply = onCall(
     const result = await openAiChat({
       apiKey,
       model: 'gpt-4o-mini',
+      onUsage: aiOperationUsageSink('report_replies_draft', 'gpt-4o-mini'), // зачем: PM-231 A3 — расход виден по operation
       messages: [
         { role: 'system', content: DRAFT_SYSTEM_PROMPT },
         { role: 'user', content: userPayload },

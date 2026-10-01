@@ -12,6 +12,7 @@ import {
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { openAiChat } from './explain/explain_provider';
 import { assertJobEnabled, resolveJobConfig } from './openai_jobs_config';
+import { aiOperationUsageSink } from './ai_operation_billing';
 
 const REGION = 'us-central1';
 const DAY_MS = 86_400_000;
@@ -198,6 +199,7 @@ const DEFAULT_DEPENDENCIES: DirectorDigestDependencies = Object.freeze({
     const result = await openAiChat({
       apiKey,
       model: config.model,
+      onUsage: aiOperationUsageSink('admin_director_digest', config.model), // зачем: PM-231 A3 — расход виден по operation
       messages: [
         { role: 'system', content: prompt.system },
         { role: 'user', content: prompt.user },

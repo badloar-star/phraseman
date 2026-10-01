@@ -30,6 +30,7 @@ import { ENFORCE_APP_CHECK } from './callable_options';
 import { openAiChat } from './explain/explain_provider';
 import { resolveJobConfig, assertJobEnabled } from './openai_jobs_config';
 import { hasClaimedPermission } from './admin/permissions';
+import { aiOperationUsageSink } from './ai_operation_billing';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -929,6 +930,7 @@ export async function runAdminDailyDigest(
     const result = await openAiChat({
       apiKey,
       model: cfg.model,
+      onUsage: aiOperationUsageSink('admin_daily_digest', cfg.model), // зачем: PM-231 A3 — расход виден по operation
       messages: [
         { role: 'system', content: DIGEST_SYSTEM_PROMPT },
         { role: 'user', content: buildDigestPrompt({ current: facts, previous: previousFacts, comparisons, windows, sourceCoverage }) },

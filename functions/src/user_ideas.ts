@@ -8,6 +8,7 @@ import { hasPermission } from './admin/permissions';
 import { hasAdminRole } from './admin/roles';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
 import { createHash } from 'node:crypto';
+import { aiOperationUsageSink } from './ai_operation_billing';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -838,6 +839,7 @@ export const adminDraftIdeaDecision = onCall(
     const result = await openAiChat({
       apiKey,
       model: 'gpt-4o-mini',
+      onUsage: aiOperationUsageSink('user_ideas_draft', 'gpt-4o-mini'), // зачем: PM-231 A3 — расход виден по operation
       messages,
       maxTokens: 400,
       // С тоном даём модели больше свободы отклониться от шаблона; без тона —

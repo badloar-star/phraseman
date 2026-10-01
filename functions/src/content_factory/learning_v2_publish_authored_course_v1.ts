@@ -42,6 +42,10 @@ import { buildSessionChildBodiesFromShard } from "../../../modules/learning-v2/c
 import { expandLocalized } from "../../../modules/learning-v2/content/source/session_shard_from_source_v1";
 import { buildLearningV2CourseTopologyV1 } from "../../../modules/learning-v2/content/course_topology_v1";
 import {
+  lesson1ReleaseParityMismatchesV1,
+  type Lesson1ReleaseParityMismatchV1,
+} from "../../../modules/learning-v2/content/lesson1_release_parity_v1";
+import {
   LEARNING_V2_COURSE_SESSION_CHILD_KINDS_V1,
   LEARNING_V2_COURSE_SESSION_CHILD_SCHEMAS_V1,
   learningV2CourseSessionChildObjectPathV1,
@@ -481,6 +485,50 @@ export async function publishAuthoredLearningV2Course(
   });
 }
 
+/**
+ * Сторож D150 (координатор, 2026-10-01): эталон урока 1 — встроенный релиз.
+ * Пока у авторского урока 1 набор новых слов ИЛИ профиль занятия отличаются от
+ * релиза, публикация авторского курса en запрещена: иначе людям подменили бы
+ * проверенный урок непроверенным. Эталон недоступен — тоже отказ (fail-closed).
+ * Причина всегда пишется в лог [PUBLISH-PARITY] и возвращается на экран.
+ */
+export function assertLesson1ReleaseParityForPublishV1(
+  targetLanguage: string,
+  authoredSessions: Parameters<typeof lesson1ReleaseParityMismatchesV1>[0],
+  computeMismatches: typeof lesson1ReleaseParityMismatchesV1 = lesson1ReleaseParityMismatchesV1,
+): void {
+  if (targetLanguage !== "en") {
+    console.info("[PUBLISH-PARITY] skip: not the English course", { targetLanguage });
+    return;
+  }
+  let mismatches: readonly Lesson1ReleaseParityMismatchV1[];
+  try {
+    mismatches = computeMismatches(authoredSessions);
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : String(error);
+    console.error("[PUBLISH-PARITY] refused: release reference unavailable", { reason });
+    throw new HttpsError(
+      "failed-precondition",
+      "publish_lesson1_release_reference_unavailable",
+      { reason },
+    );
+  }
+  if (mismatches.length > 0) {
+    console.warn("[PUBLISH-PARITY] refused: authored lesson 1 diverges from the bundled release", {
+      count: mismatches.length,
+      first: mismatches.slice(0, 5),
+    });
+    throw new HttpsError(
+      "failed-precondition",
+      "publish_lesson1_diverges_from_release",
+      { count: mismatches.length, first: mismatches.slice(0, 10) },
+    );
+  }
+  console.info("[PUBLISH-PARITY] ok: authored lesson 1 matches the bundled release", {
+    sessions: authoredSessions.length,
+  });
+}
+
 export const adminPublishAuthoredLearningV2Course = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
   async (request) => {
@@ -537,6 +585,7 @@ export const adminPublishAuthoredLearningV2Course = onCall(
     const first = AUTHORED_EPISODE_01_SESSIONS[0];
     if (!first)
       throw new HttpsError("failed-precondition", "publish_no_sessions_authored");
+    assertLesson1ReleaseParityForPublishV1(input.targetLanguage, AUTHORED_EPISODE_01_SESSIONS);
     // зачем: индекс урока требует все восемь локалей интерфейса, а автор пишет
     // три (ru, uk, es). Разворачиваем тем же способом, что и шард: недостающие
     // помечаются как непереведённые, а не подменяются русским молча. Без этого

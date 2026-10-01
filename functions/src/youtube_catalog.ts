@@ -432,7 +432,9 @@ export async function runYoutubeCatalogSync(input: { trigger: 'cron' | 'manual';
 // адаптивность nextYoutubeSyncIntervalMs (живой эфир хочет 60 с, скорый — 120 с):
 // 30-минутный крон отложил бы появление живого стрима в каталоге на полчаса.
 export const youtubeCatalogSyncCron = onSchedule({
-  schedule: 'every 5 minutes',
+  // зачем 2026-10-01 (Q104, экономия): 15 минут — ≈−4000 холостых запусков/мес; новые ролики
+  // и премьеры появляются с задержкой до 15 мин, отступ после сбоя тоже 15 мин.
+  schedule: 'every 15 minutes',
   timeZone: 'UTC',
   region: REGION,
   timeoutSeconds: 120,

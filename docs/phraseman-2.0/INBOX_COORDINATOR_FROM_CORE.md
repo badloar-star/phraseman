@@ -335,3 +335,14 @@ E24: docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md, E24_store_de
 - Подключено (коммит выше c5900fd1f): admin/v2/legacy.html (кнопка, «Подключить YouTube», «или загрузить файл», возврат после согласия; синтаксис блока проверен node --check; guard_admin_login 0) и экспорты в functions/src/index.ts; проверка типов functions 0 ошибок.
 - Выложить: functions adminYoutubeOAuthStart, youtubeOAuthCallback, adminYoutubeChannelsList, adminFetchVideoTranscript, adminAlignVideoPhraseTranscript; firestore:rules; firestore:indexes; hosting.
 - ДО выкладки функций владелец должен завести секреты YOUTUBE_OAUTH_CLIENT_ID и YOUTUBE_OAUTH_CLIENT_SECRET (§28) — иначе деплой функций с этими секретами упадёт.
+
+## §31 — 2026-10-01: review → done: ни одна не проходит правило реестра (e00d31896)
+
+Отчёт: docs/phraseman-2.0/evidence/review_to_done_audit_2026-10-01.md. tasks.json не менялся — подставлять ревью самим себе = подделка.
+Правило done (docs/phraseman-2.0/tools/validate.py, 00_START_HERE.md): все критерии + evidence, kind классифицирован, actual_model/actual_reasoning, reviewer + review_verdict = PASS, result_sha для кода, gate_evidence по каждому gate.
+Почему 90 review не проходят: нет PASS у всех 90; нет gate_evidence у 84; нет reviewer у 76; kind не классифицирован у 86, нет actual_model у 62; код без result_sha: PM-276, 280, 286. Невыполненные критерии у 19: PM-039, 048, 052, 066, 073, 074, 086, 092, 093, 094, 096, 097, 129, 130, 134, 205, 253, 286, 287 (владелец/стор/устройство: 048, 052, 066, 086, 205, 253, 286, 287). Битых SHA в evidence нет.
+
+Вопросы:
+- Q75 Принимать «координатор (Fable) по поручению владельца» как reviewer + PASS (так уже подписаны PM-035, PM-139)? **рек. да** — пакетом, с записью в worklog. Тогда ядро заполнит kind/actual_model/result_sha.
+- Q76 Gates BASELINE_SHA_APPROVED и DOMAIN_AUDIT_AND_IMPACT_ACCEPTED подтверждать одним общим evidence-пакетом? **рек. да**
+- Q77 88 задач уже в done тоже не проходят validate.py (нет reviewer/PASS) — подогнать правило под практику или дозаполнить done? **рек.** дозаполнить тем же пакетом после Q75.

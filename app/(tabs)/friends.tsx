@@ -2345,7 +2345,8 @@ export default function FriendsTabScreen() {
 
       <ThemedConfirmModal
         visible={blockTarget !== null}
-        title={L('Заблокировать?', 'Заблокувати?', 'Block?', '¿Bloquear?', 'Bloquear?', 'Chặn?', 'Blokir?', 'Engellensin mi?', 'Zablokować?')}
+        // зачем (D135, владелец 01.10): разблокировки нет — подтверждение честно говорит «навсегда».
+        title={L('Заблокировать навсегда?', 'Заблокувати назавжди?', 'Block permanently?', '¿Bloquear para siempre?', 'Bloquear para sempre?', 'Chặn vĩnh viễn?', 'Blokir selamanya?', 'Kalıcı olarak engellensin mi?', 'Zablokować na zawsze?')}
         message={blockTarget?.name ?? ''}
         cancelLabel={L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'İptal', 'Anuluj')}
         confirmLabel={L('Заблокировать', 'Заблокувати', 'Block', 'Bloquear', 'Bloquear', 'Chặn', 'Blokir', 'Engelle', 'Zablokuj')}

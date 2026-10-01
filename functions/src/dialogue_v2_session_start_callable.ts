@@ -19,6 +19,12 @@ import {
 } from './dialogue_v2_session_production_runtime';
 import type { DialogueV2SessionActor } from './dialogue_v2_session_ledger';
 import { enforceRateLimit } from './premium_dialog';
+import {
+  DIALOGUE_V2_WARM_RESPONSE,
+  isDialogueV2WarmRequest,
+  logDialogueV2Warm,
+  type DialogueV2WarmResponse,
+} from './dialogue_v2_warm';
 import { aiGloballyDisabled } from './remote_gates';
 
 const REGION = 'us-central1';
@@ -98,8 +104,14 @@ export function createDialogueV2SessionStartHandler(
   ok: true;
   sessionId: string;
   expiresAtMs: number;
-}>> {
+}> | DialogueV2WarmResponse> {
   return async (request) => {
+    // зачем (владелец 01.10): прогрев — мгновенный ответ до любых чтений и проверок;
+    // принимается только точная форма { warm: true }, ничего не создаёт.
+    if (isDialogueV2WarmRequest(request.data)) {
+      logDialogueV2Warm('sessionStart');
+      return DIALOGUE_V2_WARM_RESPONSE;
+    }
     const authUid = request.auth?.uid;
     if (typeof authUid !== 'string' || !AUTH_UID_RE.test(authUid)) {
       throw new HttpsError('unauthenticated', 'auth_required');

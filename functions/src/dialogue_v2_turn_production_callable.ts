@@ -65,6 +65,11 @@ import {
 } from './premium_dialog';
 import { resolvePremiumAccess } from './premium_status';
 import { aiGloballyDisabled } from './remote_gates';
+import {
+  DIALOGUE_V2_WARM_RESPONSE,
+  isDialogueV2WarmRequest,
+  logDialogueV2Warm,
+} from './dialogue_v2_warm';
 
 const REGION = 'us-central1';
 const PROVIDER_MAX_TOKENS = 500;
@@ -665,6 +670,12 @@ export function createDialogueV2SessionTextTurnHandler(
   execute: TurnExecutor = executeDialogueV2TextTurn,
 ): (request: CallableRequest) => Promise<Readonly<Record<string, unknown>>> {
   return async (request) => {
+    // зачем (владелец 01.10): прогрев — мгновенный ответ без ledger, квоты и OpenAI;
+    // только точная форма { warm: true }, всё остальное идёт в строгий разбор ниже.
+    if (isDialogueV2WarmRequest(request.data)) {
+      logDialogueV2Warm('textTurn');
+      return DIALOGUE_V2_WARM_RESPONSE;
+    }
     const authUid = request.auth?.uid;
     if (typeof authUid !== 'string') {
       throw new HttpsError('unauthenticated', 'auth_required');

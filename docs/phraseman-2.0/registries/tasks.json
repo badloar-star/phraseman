@@ -11407,7 +11407,7 @@
         "text": "Каждая function/trigger/cron привязана к сохраняемой возможности",
         "accepted": false,
         "evidence": [
-          "2026-09-30 map covers all 567 functions/triggers/crons with a domain and capability; 104 are needs-owner-decision (57 arena_*, 29 learning-v2 without live index export, tutorText*, referral roulette, dev grants, cosmeticAssetCatalogGet, myCron). Criterion stays false until those are decided."
+          "NOT_MET (владелец: 14 облачных функций без кода и решения + 2 в коде): 2026-10-01 карта по 03_DECISIONS (328c30cad, 304b23c9d) — код 503 точки: keep 415, dormant 28 (D96), retired 57, ложное 1, без решения 2 (statsInsightsGenerate, weeklyReviewGenerate); облако-без-кода 112 (PM-007): 96 retired по D02/D70/D74/D78/D81/D90/D102/D110/D124, 2 keep (activationEmailRetryCron/resendKeyHealthCron — перенести код), 14 без решения (season*, friend quest/chest/shield, communityPurchasePack, profileCardUpgrade, CourseUnlock×2, statsInsights/weeklyReview). Проба tests/pm221_server_domain_map.probe.ts PASS с храповиком allowlist."
         ]
       },
       {
@@ -11457,15 +11457,15 @@
         "text": "Сначала stop producers/drain, затем отключение consumers",
         "accepted": false,
         "evidence": [
-          "План: evidence/PM-222_cron_retirement_plan.md §2 — producers останавливает релиз 2.0, drain-окно, затем деплой удаления 7 кронов; исполнение после релиза (D91)"
+          "NOT_MET (владелец, после релиза 2.0 — D91): порядок producers→drain→consumers записан в evidence/PM-222_cron_retirement_plan.md §2, §6 (облачные кроны лиг/XP/Арены из PM-007). Код-сторона готова: tests/pm222_cron_dependency_plan.probe.ts PASS — 17 consumers удалённых фич не экспортируются (506ca53bc, 304b23c9d). Исполнение (drain-окно, выкладка) — владелец."
         ]
       },
       {
         "id": "PM-222-A2",
         "text": "восстановление покупок и удаление аккаунта продолжают работать",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "evidence/PM-222_cron_retirement_plan.md §3 — удаление аккаунта, RevenueCat-вебхук, restore, premiumExpiry остаются живыми экспортами; сверить при деплое"
+          "2026-10-01 tests/pm222_cron_dependency_plan.probe.ts PASS: 11 функций удаления аккаунта/покупок/Plus (accountDelete*×5, premiumExpiry×2, revenueCat×2, adminAlertOnRevenueCatReceipt, accountMergeOutboxRetryCron) экспортируются и в выкладку удаления не попадут (506ca53bc). Source-level; при выкладке сверить список удаляемых с §3. Отдельно 🔴 §6: сторож почты активации есть только в облаке — перенести до выкладки."
         ]
       }
     ],
@@ -11496,7 +11496,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -11505,20 +11505,26 @@
       {
         "id": "PM-223-A1",
         "text": "Считаются reads/writes/deletes/index entries/storage/egress/functions/AI",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-10-01 evidence/PM-223_cost_before_after.md §1 (28fea5a26): R/W/D/IX/ST/EG/FN/AI по 20 операциям до→после с источником в коде (40ad82f77, 36afe58d9, fb9d8d8e6, 6d5835ef8, D128, PM-231); где по коду нельзя — unknown. Только по коду (R8), прод-цифр нет."
+        ]
       },
       {
         "id": "PM-223-A2",
         "text": "стоимость миграции отдельно",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-10-01 evidence/PM-223_cost_before_after.md §2: миграции отдельно — Q12, D70/D84, D90 чистка, D128 массовая озвучка (≤$4.5/сутки потолком), выкладка PM-222, drain-окно."
+        ]
       },
       {
         "id": "PM-223-A3",
         "text": "ноль евро не обещан",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-10-01 evidence/PM-223_cost_before_after.md вступление и §1: ноль не обещан — ~20 живых кронов, adminAlertRecoveryCron ≈130 000 чтений/мес при нуле событий, хранение, TTS, Jarvis."
+        ]
       }
     ],
     "depends_on": [],
@@ -11557,14 +11563,18 @@
       {
         "id": "PM-224-A1",
         "text": "Alerts отличаются от spend caps",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-10-01 evidence/PM-224_budget_limits_failsafe.md §1 (2c24c96f7): по каждому механизму разделено алерт vs потолок (GCP budgets — алерт с задержкой; авто-отключение биллинга — потолок проекта, не рекомендовано; OpenAI — проверить; YouTube квота, maxInstances, кап-счётчики и рубильник в коде — потолки)."
+        ]
       },
       {
         "id": "PM-224-A2",
         "text": "проверена доступность caps по конкретному сервису, задержка enforcement и поведение при остановке",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (владелец: консоли Google Cloud Billing и OpenAI Limits): потолки в коде проверены тестами — рубильник ИИ добавлен в explainMistake и cardTtsPackWorker, card_tts_worker +2, mistake_explain +1, 43/43 PASS (2c24c96f7); задержка: сервер — следующий вызов, клиент — до 6 ч. Доступность/задержка потолков у GCP и OpenAI не проверены (шаги §4 evidence/PM-224)."
+        ]
       }
     ],
     "depends_on": [],
@@ -11654,7 +11664,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -11771,13 +11781,17 @@
         "id": "PM-228-A1",
         "text": "Лимиты размера/очереди/retry, дедуп и purge",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (координатор/владелец: срок хранения app_errors/app_activity + TTL-политика Firestore, деплой индексов): клиент сделан 2026-10-01 0d6609bd2 — журнал app/debug-logger.ts 160 записей, поля ≤200/1000/2000 знаков, TTL 7 дней, дедуп (теперь и до подгрузки), одна запись на диск за 5 с, без retry; app_health — троттлинг 10/30 мин, sampleRate; сервер app_errors ≤20/ч на человека. Тесты: pm228_debug_logger_bounded 4/4, debug_logger_storage_contract 3/3, app_health 2 файла — 10/10 PASS. Нет серверного purge: app_errors/app_activity растут без TTL."
+        ]
       },
       {
         "id": "PM-228-A2",
         "text": "нагрузка измерена, «совсем без нагрузки» не заявляется",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-10-01 замер tests/pm228_debug_logger_bounded.test.ts (node, не телефон): 5000 вызовов = 60.7 мс (12.1 мкс/вызов), 1 запись на диск, 160 записей, 376 КБ (без лимита полей было бы ~7 МБ). «Без нагрузки» не заявляется; объём серверных логов (Cloud Logging) не мерился."
+        ]
       }
     ],
     "depends_on": [],

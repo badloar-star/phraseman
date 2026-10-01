@@ -1,5 +1,5 @@
 import type { CloudRestoreResult } from './cloud_sync';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, reportSwallowed } from './debug-logger';
 
 export type BootCloudRestoreOutcome = {
   status: CloudRestoreResult;
@@ -26,7 +26,11 @@ export function createBootCloudRestoreCoordinator(deps: BootCloudRestoreDependen
       } catch {
         status = 'failed';
       }
-      const hasLocalAccountData = await deps.hasLocalAccountData().catch(() => false);
+      const hasLocalAccountData = await deps.hasLocalAccountData().catch((error: unknown) => {
+        // зачем: PM-229 — сбой чтения локальных данных = «данных нет», но причина должна быть видна.
+        reportSwallowed('cloud_restore_coordinator:has_local_account_data', error);
+        return false;
+      });
       if (status === 'restored' && !hydrationEmitted) {
         hydrationEmitted = true;
         try { deps.onHydrated(); } catch (e) {

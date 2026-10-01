@@ -20,7 +20,14 @@ import {
 import { readVipSnapshotForGeneration, writeVipSnapshotForAccount } from './premium_vip_storage';
 import { resolveTesterNoPremiumOverride } from './tester_premium_override';
 import { selectVoiceMinutePackages, type VoiceMinutePack } from '../modules/voice_minutes/catalog';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
+
+// зачем: PM-229 — на денежном пути (личность RevenueCat, CustomerInfo) сбой чтения раньше превращался
+// в «нет данных» без следа; теперь причина пишется, а возвращаемое значение прежнее.
+const rcFallback = <T>(tag: string, fallback: T) => (error: unknown): T => {
+  reportSwallowed(`revenuecat_init:${tag}`, error);
+  return fallback;
+};
 
 const RC_ACCOUNT_STORAGE_LOCK_TIMEOUT_MS = 1_500;
 
@@ -144,11 +151,11 @@ function configureRevenueCatLogging(): void {
   try {
     if (DEV_STORE_BILLING_OPTIONAL) {
       Purchases.setLogHandler(() => {});
-      void Purchases.setLogLevel(LOG_LEVEL.ERROR).catch(() => {});
+      void Purchases.setLogLevel(LOG_LEVEL.ERROR).catch(swallowError('revenuecat_init:setLogLevel_1'));
       return;
     }
 
-    void Purchases.setLogLevel(__DEV__ ? LOG_LEVEL.WARN : LOG_LEVEL.ERROR).catch(() => {});
+    void Purchases.setLogLevel(__DEV__ ? LOG_LEVEL.WARN : LOG_LEVEL.ERROR).catch(swallowError('revenuecat_init:setLogLevel_2'));
   } catch (e) {
       // RevenueCat native module can be absent in Expo Go; init already no-ops there.
       DebugLogger.error('revenuecat_init:configureRevenueCatLogging', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -181,14 +188,14 @@ export async function syncRevenueCatIdentity(callerIsCurrent?: () => boolean): P
     (callerIsCurrent?.() ?? true) && isCurrentAccountGeneration(syncAccount)
   );
   if (IS_EXPO_GO) return false;
-  if (!(await Purchases.isConfigured().catch(() => false))) return false;
+  if (!(await Purchases.isConfigured().catch(rcFallback('isConfigured_3', false)))) return false;
   if (!isCurrent()) return false;
 
-  const canonicalUserId = await getCanonicalUserId().catch(() => null);
+  const canonicalUserId = await getCanonicalUserId().catch(rcFallback('getCanonicalUserId_4', null));
   if (!isCurrent()) return false;
   if (!canonicalUserId) return false;
 
-  const currentAppUserId = await Purchases.getAppUserID().catch(() => '');
+  const currentAppUserId = await Purchases.getAppUserID().catch(rcFallback('getAppUserID_5', ''));
   if (!isCurrent()) return false;
   if (!currentAppUserId) return false;
   const now = Date.now();
@@ -208,14 +215,14 @@ export async function syncRevenueCatIdentity(callerIsCurrent?: () => boolean): P
   let loginCustomerInfo: CustomerInfo | null = null;
   if (currentAppUserId !== canonicalUserId) {
     if (!isCurrent()) return false;
-    const loginResult = await Purchases.logIn(canonicalUserId).catch(() => null);
+    const loginResult = await Purchases.logIn(canonicalUserId).catch(rcFallback('logIn_6', null));
     if (!isCurrent() || !loginResult) return false;
     loginCustomerInfo = loginResult.customerInfo ?? null;
   }
 
   // logIn resolving is not proof that the SDK actually moved from A to B.
   // Verify the SDK identity before attributes, CustomerInfo, or local persistence.
-  const verifiedAppUserId = await Purchases.getAppUserID().catch(() => '');
+  const verifiedAppUserId = await Purchases.getAppUserID().catch(rcFallback('getAppUserID_7', ''));
   if (!isCurrent() || verifiedAppUserId !== canonicalUserId) return false;
 
   const attributes: Record<string, string> = { phraseman_uid: canonicalUserId };
@@ -223,7 +230,7 @@ export async function syncRevenueCatIdentity(callerIsCurrent?: () => boolean): P
     attributes.phraseman_previous_rc_app_user_id = currentAppUserId;
   }
   if (!isCurrent()) return false;
-  await Purchases.setAttributes(attributes).catch(() => {});
+  await Purchases.setAttributes(attributes).catch(swallowError('revenuecat_init:setAttributes_8'));
   if (!isCurrent()) return false;
 
   if (revenueCatCustomerInfoHasPremiumAccess(loginCustomerInfo)) {
@@ -266,7 +273,7 @@ async function applyPushedCustomerInfo(
 ): Promise<void> {
   try {
     if (!isCurrent()) return;
-    const noPremium = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
+    const noPremium = await AsyncStorage.getItem('tester_no_premium').catch(rcFallback('getItem_9', null));
     if (!isCurrent() || resolveTesterNoPremiumOverride(noPremium)) return;
     const subs = info?.activeSubscriptions;
     if (revenueCatCustomerInfoHasPremiumAccess(info)) {
@@ -274,7 +281,7 @@ async function applyPushedCustomerInfo(
       // Не понижаем уже сохранённый lifetime до monthly при пуш-апдейте без productId:
       // lifetime (non-consumable) RC может прислать без productId в активных подписках,
       // а inferPremiumPlanFromProductId без сигнала вернёт дефолт 'monthly'.
-      const existingPlan = String(await AsyncStorage.getItem('premium_plan').catch(() => '') ?? '').trim().toLowerCase();
+      const existingPlan = String(await AsyncStorage.getItem('premium_plan').catch(rcFallback('getItem_10', '')) ?? '').trim().toLowerCase();
       if (!isCurrent()) return;
       const inferred = inferPremiumPlanFromProductId(metadata.productId ?? subs?.[0], 'monthly');
       const plan = existingPlan === 'lifetime' && inferred === 'monthly' ? 'lifetime' : inferred;
@@ -296,13 +303,13 @@ async function readCurrentRevenueCatCustomerInfo(
   isCurrent: () => boolean,
 ): Promise<CustomerInfo | null> {
   if (!isCurrent()) return null;
-  const canonicalUserId = await getCanonicalUserId().catch(() => null);
+  const canonicalUserId = await getCanonicalUserId().catch(rcFallback('getCanonicalUserId_11', null));
   if (!isCurrent() || !canonicalUserId) return null;
-  const appUserIdBefore = await Purchases.getAppUserID().catch(() => '');
+  const appUserIdBefore = await Purchases.getAppUserID().catch(rcFallback('getAppUserID_12', ''));
   if (!isCurrent() || appUserIdBefore !== canonicalUserId) return null;
-  const currentInfo = await Purchases.getCustomerInfo().catch(() => null);
+  const currentInfo = await Purchases.getCustomerInfo().catch(rcFallback('getCustomerInfo_13', null));
   if (!isCurrent() || !currentInfo) return null;
-  const appUserIdAfter = await Purchases.getAppUserID().catch(() => '');
+  const appUserIdAfter = await Purchases.getAppUserID().catch(rcFallback('getAppUserID_14', ''));
   if (!isCurrent() || appUserIdAfter !== canonicalUserId) return null;
   return currentInfo;
 }

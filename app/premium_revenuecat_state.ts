@@ -4,6 +4,7 @@ import { syncToCloud } from './cloud_sync';
 import { invalidatePremiumCache, markPremiumStoreSeenNow } from './premium_guard';
 import { withAccountTransitionLock } from './account_generation';
 import { activeRevenueCatPremiumEntitlement } from './revenuecat_premium_access';
+import { swallowError } from './debug-logger';
 
 export {
   customerInfoConfirmsProductAccess,
@@ -136,7 +137,7 @@ export async function persistStorePremiumLocally(
   if (!isCurrent()) return false;
   invalidatePremiumCache();
   if (!isCurrent()) return false;
-  if (syncCloud) await syncToCloud({ forceNow: true }).catch(() => {});
+  if (syncCloud) await syncToCloud({ forceNow: true }).catch(swallowError('premium_revenuecat_state:sync_to_cloud'));
   return isCurrent();
 }
 

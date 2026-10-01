@@ -1,5 +1,6 @@
 import type { AuthRecoveryFlowState } from '../app/auth_recovery_flow';
 import type { CleanInstallRecoveryFlowState } from '../app/auth_clean_install_recovery_flow';
+import { swallowError } from '../app/debug-logger';
 
 export type AuthRecoveryUiLocale = 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 export type AuthRecoveryEntryMode = 'google_instruction' | 'code_primary' | 'provider_choice';
@@ -405,7 +406,7 @@ export function createAuthRecoveryCompletion(deps: Readonly<{
     if (_result === 'completed') {
       deps.emit('auth_provider_linked');
       deps.close();
-      void deps.restore().catch(() => undefined);
+      void deps.restore().catch(swallowError('auth_recovery_modal_model:restore_after_link'));
     } else {
       deps.close();
     }

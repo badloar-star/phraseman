@@ -6,6 +6,7 @@ import {
   quiesceCloudSyncForAccountTransition,
 } from './cloud_sync';
 import { getStableId } from './stable_id';
+import { swallowError } from './debug-logger';
 
 export const AUTH_RECOVERY_PENDING_ACK_KEY = 'auth_recovery_pending_ack_v1';
 
@@ -218,7 +219,7 @@ async function adoptInternal(input: AuthRecoveryAdoptionInput): Promise<AuthReco
       throw codedError('auth_recovery_local_stable_mismatch');
     }
   } catch (error) {
-    if (rawJournal) await clearJournalIfExact(rawJournal).catch(() => {});
+    if (rawJournal) await clearJournalIfExact(rawJournal).catch(swallowError('auth_recovery_adoption:clear_journal_after_prepare_failure'));
     beginAccountGeneration(localStableId);
     throw error;
   }
@@ -232,7 +233,7 @@ async function adoptInternal(input: AuthRecoveryAdoptionInput): Promise<AuthReco
     );
   } catch (error) {
     if (currentUid(auth) === previousUid) {
-      await clearJournalIfExact(rawJournal).catch(() => {});
+      await clearJournalIfExact(rawJournal).catch(swallowError('auth_recovery_adoption:clear_journal_after_sign_in_failure'));
       beginAccountGeneration(localStableId);
       throw error;
     }

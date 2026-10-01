@@ -21,7 +21,7 @@ import * as Crypto from 'expo-crypto';
 import { Platform } from 'react-native';
 import { logEvent } from './firebase';
 import { ensureStableAuthLinkForStableIdDetailed, getCurrentUid } from './cloud_sync';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, swallowError } from './debug-logger';
 
 const PENDING_AUTH_LINK_KEY = 'pending_auth_link_v1';
 const PENDING_AUTH_LINK_TTL_MS = 24 * 60 * 60_000;
@@ -180,18 +180,18 @@ export async function readPendingAuthLink(): Promise<PendingAuthLink | null> {
     if (!raw) return null;
     const normalized = normalizePendingAuthLink(JSON.parse(raw), Date.now());
     if (!normalized) {
-      await AsyncStorage.removeItem(PENDING_AUTH_LINK_KEY).catch(() => {});
+      await AsyncStorage.removeItem(PENDING_AUTH_LINK_KEY).catch(swallowError('pending_auth_link:remove_1'));
       return null;
     }
     // Перезапись обязательна и для legacy v1: так email/displayName удаляются из
     // локального хранилища при первом чтении, а не только из in-memory объекта.
     if (raw !== JSON.stringify(normalized) && !await writePendingAuthLink(normalized)) {
-      await AsyncStorage.removeItem(PENDING_AUTH_LINK_KEY).catch(() => {});
+      await AsyncStorage.removeItem(PENDING_AUTH_LINK_KEY).catch(swallowError('pending_auth_link:remove_2'));
       return null;
     }
     return normalized;
   } catch {
-    await AsyncStorage.removeItem(PENDING_AUTH_LINK_KEY).catch(() => {});
+    await AsyncStorage.removeItem(PENDING_AUTH_LINK_KEY).catch(swallowError('pending_auth_link:remove_3'));
     return null;
   }
 }

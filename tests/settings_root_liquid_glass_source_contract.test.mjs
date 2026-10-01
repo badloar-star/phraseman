@@ -34,7 +34,7 @@ test('root settings use the Liquid Glass tokens and the approved scroll shell wi
 
 test('header, profile card and section titles follow the PRF-01 geometry', () => {
   assert.match(body, /fontSize:\s*34,\s*lineHeight:\s*40,\s*fontWeight:\s*'700',\s*letterSpacing:\s*-0\.5/);
-  assert.match(body, /fontSize:\s*15,\s*lineHeight:\s*20,\s*marginTop:\s*7/);
+  assert.match(body, /fontSize:\s*16,\s*lineHeight:\s*22,\s*marginTop:\s*7/); // D139: текст 16/13
   assert.match(source, /style=\{\{ width: 48, height: 48 \}\} contentFit="contain"/);
   assert.match(body, /settings-header-coin/);
   assert.match(body, /testID="settings-profile-card"[\s\S]*?leading=\{renderRankCoin\('settings-profile-coin'\)\}/);

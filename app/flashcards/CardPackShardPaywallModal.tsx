@@ -832,7 +832,7 @@ export default function CardPackShardPaywallModal({
                             <Text
                               style={{
                                 color: subLabelColor,
-                                fontSize: 11,
+                                fontSize: 13,
                                 marginTop: 8,
                                 textAlign: 'center',
                                 letterSpacing: 0.2,
@@ -1066,7 +1066,7 @@ export default function CardPackShardPaywallModal({
                             <Text
                               style={{
                                 color: subLabelColor,
-                                fontSize: 11,
+                                fontSize: 13,
                                 marginTop: 8,
                                 textAlign: 'center',
                                 letterSpacing: 0.2,
@@ -1162,7 +1162,7 @@ export default function CardPackShardPaywallModal({
                           <Text
                             style={{
                               color: subLabelColor,
-                              fontSize: 11,
+                              fontSize: 13,
                               marginTop: 8,
                               textAlign: 'center',
                               letterSpacing: 0.2,
@@ -1259,7 +1259,7 @@ export default function CardPackShardPaywallModal({
                             hitSlop={8}
                             style={{ marginTop: 2, paddingVertical: 6, alignItems: 'center' }}
                           >
-                            <Text style={{ color: t.textGhost, fontSize: 12, textDecorationLine: 'underline' }}>
+                            <Text style={{ color: t.textGhost, fontSize: 13, textDecorationLine: 'underline' }}>
                               {str.hidePack}
                             </Text>
                           </Pressable>

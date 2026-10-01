@@ -1022,7 +1022,7 @@ export default function SettingsMain() {
             <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5 }}>
               {L('Настройки', 'Налаштування', 'Settings', 'Ajustes', 'Configurações', 'Cài đặt', 'Pengaturan', 'Ayarlar', 'Ustawienia')}
             </Text>
-            <Text style={{ color: glass.mutedText, fontSize: 15, lineHeight: 20, marginTop: 7 }}>
+            <Text style={{ color: glass.mutedText, fontSize: 16, lineHeight: 22, marginTop: 7 }}>
               {L('Профиль и приложение', 'Профіль і застосунок', 'Profile and app', 'Perfil y aplicación', 'Perfil e aplicativo', 'Hồ sơ và ứng dụng', 'Profil dan aplikasi', 'Profil ve uygulama', 'Profil i aplikacja')}
             </Text>
           </View>
@@ -1388,7 +1388,7 @@ export default function SettingsMain() {
           <Text style={{ color: glass.mutedText, fontSize: 13, lineHeight: 18, marginTop: 4, textAlign: 'center' }}>
             by Knowly
           </Text>
-          <Text style={{ color: glass.mutedText, fontSize: 12, lineHeight: 16, marginTop: 6, textAlign: 'center' }}>
+          <Text style={{ color: glass.mutedText, fontSize: 13, lineHeight: 18, marginTop: 6, textAlign: 'center' }}>
             {`${Constants.expoConfig?.version ?? ''} (${getAppReleaseBuildId()})`}
           </Text>
         </View>

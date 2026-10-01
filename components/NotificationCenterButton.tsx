@@ -16,7 +16,6 @@ import {
   claimReportRewardBundle,
   reportRewardCoins,
   reportRewardHasVisibleReward,
-  reportRewardPearls,
   resumePendingReportRewardBundleClaims,
 } from '../app/report_reward_bundle';
 import {
@@ -105,16 +104,6 @@ function notificationLabel(type: UserNotificationType, lang: Lang): string {
       return triLang(lang, { ru: 'напомнил(а) о себе', uk: 'нагадав(ла) про себе', en: 'sent you a reminder', es: 'te envió un recordatorio', 'pt-BR': 'enviou um lembrete', vi: 'đã nhắc bạn', id: 'mengirimimu pengingat', tr: 'sana hatırlatma gönderdi', pl: 'przypomniał(a) o sobie' });
     case 'friend_nudge':
       return triLang(lang, { ru: 'зовёт позаниматься', uk: 'кличе позайматися', en: 'is inviting you to study', es: 'te invita a estudiar', 'pt-BR': 'chama você para estudar', vi: 'rủ bạn học', id: 'mengajakmu belajar', tr: 'seni çalışmaya çağırıyor', pl: 'zaprasza do nauki' });
-    case 'arena_friend_invite':
-      return 'бросает вызов';
-    case 'arena_friend_accepted':
-      return 'принимает вызов';
-    case 'arena_friend_declined':
-      return 'сегодня без драмы';
-    case 'arena_friend_cancelled':
-      return 'отменил(а) вызов';
-    case 'arena_friend_expired':
-      return 'вызов истёк';
     case 'report_reply':
       return reportReplyCopy(lang).reportReply;
     case 'pack_comment':
@@ -132,11 +121,6 @@ function notificationIcon(type: UserNotificationType): keyof typeof Ionicons.gly
     case 'arena_partner_invite': return 'people-circle-outline';
     case 'arena_partner_nudge': return 'flash-outline';
     case 'friend_nudge': return 'book-outline';
-    case 'arena_friend_invite': return 'flash-outline';
-    case 'arena_friend_accepted': return 'checkmark-circle-outline';
-    case 'arena_friend_declined': return 'hand-left-outline';
-    case 'arena_friend_cancelled': return 'close-circle-outline';
-    case 'arena_friend_expired': return 'time-outline';
     case 'report_reply': return 'chatbox-ellipses-outline';
     case 'pack_comment': return 'chatbubble-outline';
     default: return 'notifications-outline';
@@ -498,12 +482,7 @@ function NotificationCenterButton({
                   <Text style={[styles.rewardLineText, { color: t.textPrimary }]}>{`+${reportRewardCoins(reward.rewardBundle)} ${triLang(lang as Lang, { ru: 'монет', uk: 'монет', en: 'coins', es: 'monedas', 'pt-BR': 'moedas', vi: 'xu', id: 'koin', tr: 'jeton', pl: 'monet' })}`}</Text>
                 </Reanimated.View>
               ) : null}
-              {reportRewardPearls(reward.rewardBundle) > 0 ? (
-                <Reanimated.View entering={reduceMotion ? undefined : FadeInDown.delay(270).duration(260)} style={styles.rewardLine}>
-                  <Ionicons name="diamond-outline" size={21} color="#39B985" />
-                  <Text style={[styles.rewardLineText, { color: t.textPrimary }]}>{`+${reportRewardPearls(reward.rewardBundle)} ${triLang(lang as Lang, { ru: 'монет', uk: 'монет', en: 'coins', es: 'monedas', 'pt-BR': 'moedas', vi: 'xu', id: 'koin', tr: 'jeton', pl: 'monet' })}`}</Text>
-                </Reanimated.View>
-              ) : null}
+              {/* зачем (Ядро 01.10, D70/D104): жемчуг за жалобу не начисляется — строку «+N» убрали, награда только монетами. */}
             </View>
             {claimErrorMessageId === reward.messageId ? (
               <Text accessibilityRole="alert" style={[styles.rewardError, { color: t.wrong }]}>{copy.claimError}</Text>
@@ -707,7 +686,7 @@ function NotificationCenterButton({
 
 const styles = StyleSheet.create({
   loadOlder: { minHeight: 48, borderRadius: 14, alignItems: 'center', justifyContent: 'center', marginTop: 6 },
-  loadOlderText: { fontSize: 15, fontWeight: '700' },
+  loadOlderText: { fontSize: 16, fontWeight: '700' },
   headerPressable: {
     width: V2.iconButton,
     height: V2.iconButton,
@@ -737,8 +716,8 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     color: HOME_NOTIFICATION_BADGE_TEXT_COLOR,
-    fontSize: 10,
-    fontWeight: '900',
+    fontSize: 13,
+    fontWeight: '700',
   },
   header: {
     minHeight: 46,
@@ -752,9 +731,9 @@ const styles = StyleSheet.create({
   headerTitle: {
     flex: 1,
     minWidth: 0,
-    fontSize: 17,
-    lineHeight: 21,
-    fontWeight: '900',
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '700',
   },
   closeButton: {
     width: 42,
@@ -840,8 +819,8 @@ const styles = StyleSheet.create({
     paddingBottom: 28,
   },
   detailMeta: {
-    fontSize: 11,
-    fontWeight: '800',
+    fontSize: 13,
+    fontWeight: '700',
     marginBottom: 8,
   },
   detailTitle: {
@@ -851,9 +830,9 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   detailBody: {
-    fontSize: 15,
-    lineHeight: 23,
-    fontWeight: '600',
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '700',
   },
   rewardCard: {
     marginTop: 18,
@@ -887,13 +866,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(99,217,143,0.08)',
   },
   rewardLineText: {
-    fontSize: 14,
-    lineHeight: 19,
-    fontWeight: '900',
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '700',
   },
   rewardError: {
-    fontSize: 12,
-    lineHeight: 17,
+    fontSize: 13,
+    lineHeight: 18,
     fontWeight: '700',
   },
   rewardIcon: {

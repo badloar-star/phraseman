@@ -320,3 +320,6 @@ Governance-ID: TG-5DC7A5C48835
 Governance-ID: TG-621630387D77
 — 01.10 «Дизайн»: D139 шрифты, пачка 3 (оставшиеся файлы).
 Governance-ID: TG-2B6F9D2FC59C
+Governance-ID: TG-74D0E1474584
+— 01.10 «Дизайн»: D139 — оставшиеся 3 файла (Настройки, уведомления, окно покупки набора).
+Governance-ID: TG-3436B7A2D52D

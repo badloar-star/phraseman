@@ -112,7 +112,7 @@ import { runAuthRecoveryBootGate } from './auth_recovery_boot_gate';
 import { isExamBestPctColdRestoreTabSafe } from './exam_best_pct_overlay';
 import { repairLessonUnlocksAfterRestore } from './lesson_lock_system';
 import { PlayInstallReferrer } from 'react-native-play-install-referrer';
-import { updateStreakOnActivity } from './hall_of_fame_utils';
+import { touchStreakForToday } from './hall_of_fame_utils';
 import { preloadDeferredNonPrimaryImages, preloadPrimaryTabImages } from './image_preload';
 import { seedLearningV2BootstrapAudioCacheV1 } from './learning_v2_bootstrap_audio_seed_v1';
 import { setupNotificationTapHandler } from './notification_tap_handler';
@@ -1121,7 +1121,11 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   }, [accountGeneration.phase, accountGeneration.stableId, appIsActive, spireAuthenticatedUid]);
 
   useEffect(() => {
-    const subscription = AppState.addEventListener('change', (nextState) => setAppIsActive(nextState === 'active'));
+    const subscription = AppState.addEventListener('change', (nextState) => {
+      setAppIsActive(nextState === 'active');
+      // зачем (баг серии 01.10): возврат из фона тоже отмечает день серии (раз в день).
+      if (nextState === 'active') void touchStreakForToday('foreground');
+    });
     return () => subscription.remove();
   }, []);
 
@@ -1900,6 +1904,11 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         const bootT0 = Date.now();
         const bootStep = (step: string) => console.log(`[STREAK] boot:step=${step} +${Date.now() - bootT0}ms`);
         bootStep('hydrate_done');
+        // зачем (баг серии 01.10, §52 координатора): серия стартует СРАЗУ после гидрации и не
+        // ждёт шагов старой экономики (осколки ждали 6+ с, их сбой/зависание отрезал серию).
+        // Ждём её только перед отправкой в облако, чтобы туда ушло свежее значение.
+        const streakBoot = (touchStreakForToday('cold_start') ?? Promise.resolve(-1))
+          .then((streak) => bootStep(`after_updateStreak streak=${streak}`));
         await runContentDeliveryMigration().catch((error: unknown) => console.warn('[STREAK] boot:content_migration_failed', String(error)));
         bootStep('content_migration');
         const onboardingDoneAfterHydrate = await AsyncStorage.getItem('onboarding_done').catch(() => null);
@@ -1946,9 +1955,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         bootStep('before_updateStreak');
         // зачем: PM-210 — шаг миграции недельных очков лиги (пустая заглушка после
         // удаления лиг в 2.0) убран из пост-загрузочной цепочки: фоновой работы нет.
-        await updateStreakOnActivity()
-          .then((streak) => bootStep(`after_updateStreak streak=${streak}`))
-          .catch((error: unknown) => console.warn('[STREAK] boot:updateStreak_failed', String(error)));
+        await streakBoot.catch((error: unknown) => console.warn('[STREAK] boot:updateStreak_failed', String(error)));
         await runSessionChecks(studyTarget).catch(() => {});
         await flushPendingProgressEvents().catch(() => {});
         // Хвост C: не пушим в облако, если restore НЕ удался И локально нет осмысленного

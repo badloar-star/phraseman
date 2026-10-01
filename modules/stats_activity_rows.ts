@@ -1,4 +1,5 @@
-const MIN_ACTIVE_MS = 60_000;
+// Общий порог «день активен» для недели на «Твоих результатах» и для серии (streak_safety).
+export const MIN_ACTIVE_MS = 60_000;
 const DAY_MS = 86_400_000;
 const DATE_KEY = /^\d{4}-\d{2}-\d{2}$/;
 

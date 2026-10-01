@@ -6,7 +6,7 @@ import { checkAchievements } from './achievements';
 import { emitAppEvent } from './events';
 import { logStreakExtended, logStreakLost } from './firebase';
 import { incrementStreakLostCount } from './paywall_personalization';
-import { repairDevSeededStreakInStorage } from './streak_safety';
+import { foregroundActiveRunEndingAt, previousDateKey, repairDevSeededStreakInStorage } from './streak_safety';
 import { isStreakFreezeActiveToday } from './streak_freeze';
 import { STREAK_WEEK_MARKERS_KEY, addDaysToDateKey, recordStreakWeekMarker } from './streak_week_markers';
 import { markActiveDay } from './friends_together/together_days';
@@ -148,6 +148,27 @@ export const getMyWeekPoints = async (): Promise<number> => {
   return 0;
 };
 
+// ── Серия «раз в день» вне холодного старта ──────────────────────────────
+// зачем (баг 01.10): серия обновлялась только на холодном старте и после Шпиля, поэтому
+// день, прожитый из фона, её «сжигал». Возврат в приложение и любое завершённое занятие
+// теперь тоже отмечают день — не чаще одного раза за локальный день (память процесса).
+let streakTouchedDayKey: string | null = null;
+let streakTouchInFlight: Promise<number> | null = null;
+export function touchStreakForToday(reason: string): Promise<number> | null {
+  const day = getLocalDayKey();
+  if (streakTouchedDayKey === day) return null;
+  if (streakTouchInFlight) return streakTouchInFlight;
+  console.log(`[STREAK] touch reason=${reason} day=${day}`);
+  streakTouchInFlight = updateStreakOnActivity()
+    .then((streak) => { streakTouchedDayKey = day; return streak; })
+    .catch((error: unknown) => {
+      console.warn('[STREAK] touch:failed', error instanceof Error ? error.message : String(error));
+      return 0;
+    })
+    .finally(() => { streakTouchInFlight = null; });
+  return streakTouchInFlight;
+}
+
 // ── Обновить цепочку дней подряд при активности ───────────────────────────
 // Вызывать при ЛЮБОМ начислении опыта
 export const updateStreakOnActivity = async (
@@ -178,6 +199,25 @@ export const updateStreakOnActivity = async (
     const streakBefore = streak;
     console.log(`[STREAK] update:enter today=${today} lastActive=${String(lastActive)} streak=${streak} sameDay=${isSameLocalOrUtcDay(lastActive)} yesterday=${isYesterdayFlexible(lastActive)}`);
 
+    // зачем (баг 01.10, диагноз по [STREAK]): серия обновлялась только на холодном старте —
+    // день, прожитый без холодного старта (приложение из фона), не сдвигал last_active_date,
+    // и следующий старт «сжигал» серию, хотя журнал времени в приложении помнил каждый день.
+    // Сверяемся с тем же журналом и порогом, что неделя на «Твоих результатах».
+    let journalRunToYesterday = 0;
+    try {
+      const [{ getForegroundDailyMsMap }, { MIN_ACTIVE_MS }] = await Promise.all([
+        import('./foreground_usage_ms'),
+        import('../modules/stats_activity_rows'),
+      ]);
+      const msByDate = await getForegroundDailyMsMap();
+      // Ключи журнала — UTC-даты; «вчера» берём в той же шкале.
+      const utcToday = new Date().toISOString().split('T')[0]!;
+      journalRunToYesterday = foregroundActiveRunEndingAt(msByDate, previousDateKey(utcToday), MIN_ACTIVE_MS);
+    } catch (error) {
+      console.warn('[STREAK] update:journal_read_failed', error instanceof Error ? error.message : String(error));
+    }
+    console.log(`[STREAK] update:journal runToYesterday=${journalRunToYesterday}`);
+
     if (isSameLocalOrUtcDay(lastActive)) {
       // Уже активны сегодня — цепочку не меняем
       console.log(`[STREAK] update:branch=same_day keep=${streak}`);
@@ -194,7 +234,8 @@ export const updateStreakOnActivity = async (
       const freeze = freezeRaw ? JSON.parse(freezeRaw) : null;
 
       // 1. Заморозка активна и пропущен ровно 1 день
-      if (isStreakFreezeActiveToday(freeze, today) && lastActive && missedExactlyOneDay) {
+      // зачем: если журнал помнит вчерашний день, заморозку не тратим — цепочка не рвалась.
+      if (journalRunToYesterday < 1 && isStreakFreezeActiveToday(freeze, today) && lastActive && missedExactlyOneDay) {
         await AsyncStorage.setItem('streak_freeze', JSON.stringify({ ...freeze, active: false }));
         await recordStreakWeekMarker(addDaysToDateKey(lastActive, 1), 'freeze').catch(() => {});
         // streak не меняем — заморозка спасла. Расходник потрачен — юзер должен узнать
@@ -211,7 +252,15 @@ export const updateStreakOnActivity = async (
         console.log(`[STREAK] update:branch=first_launch ${streakBefore}->1`);
         streak = 1;
       }
-      // 3. Цепочка потеряна
+      // 3. Журнал показывает, что вчера человек был активен — цепочка не прерывалась,
+      //    просто вчерашний день прошёл без холодного старта.
+      else if (journalRunToYesterday >= 1) {
+        const healed = Math.max(streak + 1, journalRunToYesterday + 1);
+        console.log(`[STREAK] update:branch=journal_continuity lastActive=${String(lastActive)} ${streakBefore}->${healed}`);
+        streak = healed;
+        logStreakExtended(streak);
+      }
+      // 4. Цепочка потеряна
       else {
         const prevStreak = streak;
         console.warn(`[STREAK] update:branch=LOST lastActive=${String(lastActive)} today=${today} missedExactlyOneDay=${missedExactlyOneDay} freezeActive=${isStreakFreezeActiveToday(freeze, today)} ${prevStreak}->1`);
@@ -221,6 +270,13 @@ export const updateStreakOnActivity = async (
         incrementStreakLostCount();
         streak = 1;
       }
+    }
+
+    // зачем (баг 01.10): уже сожжённая серия восстанавливается по журналу — если журнал
+    // помнит больше дней подряд, чем счётчик, берём журнал (вчера + сегодня).
+    if (journalRunToYesterday >= 1 && journalRunToYesterday + 1 > streak) {
+      console.log(`[STREAK] update:heal_from_journal ${streak}->${journalRunToYesterday + 1}`);
+      streak = journalRunToYesterday + 1;
     }
 
     // Сохраняем цепочку

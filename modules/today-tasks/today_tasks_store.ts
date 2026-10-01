@@ -239,6 +239,11 @@ async function settlePendingRewards(state: TodayTasksDayState): Promise<TodayTas
  * активности и не имеет права ломать урок/диалог/карточки.
  */
 export function recordTodayTaskActivity(event: TodayTaskEvent): Promise<void> {
+  // зачем (баг серии 01.10): любое завершённое занятие отмечает день серии (раз в день),
+  // а не только холодный старт. Динамический импорт — без цикла зависимостей.
+  void import('../../app/hall_of_fame_utils')
+    .then((m) => m.touchStreakForToday(`activity:${event.kind}`))
+    .catch((error: unknown) => warn('streak_touch:import_failed', { error: errText(error) }));
   return serialized(async () => {
     try {
       const day = await loadDay();

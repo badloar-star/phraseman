@@ -120,6 +120,26 @@ function activeDatesFromStats(raw: unknown): string[] {
   }
 }
 
+/**
+ * Сколько дней подряд человек был активен, заканчивая днём endKey включительно,
+ * по журналу времени в приложении (тот же источник и порог, что неделя на «Твоих результатах»).
+ * зачем (баг 01.10: серия 1 при 6 отмеченных днях): серия обновлялась только на холодном
+ * старте, и день, прожитый без холодного старта, «сжигал» серию — а журнал его помнил.
+ */
+export function foregroundActiveRunEndingAt(msByDate: Record<string, number>, endKey: string, minActiveMs: number): number {
+  let count = 0;
+  let cursor = endKey;
+  while ((Number(msByDate[cursor]) || 0) >= minActiveMs) {
+    count += 1;
+    cursor = addDays(cursor, -1);
+  }
+  return count;
+}
+
+export function previousDateKey(dateKey: string): string {
+  return addDays(dateKey, -1);
+}
+
 function addDays(dateKey: string, delta: number): string {
   const d = new Date(`${dateKey}T00:00:00.000Z`);
   d.setUTCDate(d.getUTCDate() + delta);

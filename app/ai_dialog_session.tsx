@@ -3177,7 +3177,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                     accessibilityLabel={triLang(lang, {
                       ru: `Ещё ${DIALOG_EXTRA_REPLIES_COUNT} реплик за ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} монет`,
                       uk: `Ще ${DIALOG_EXTRA_REPLIES_COUNT} реплік за ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} монет`,
-                      en: `${DIALOG_EXTRA_REPLIES_COUNT} more lines for ${DIALOG_EXTRA_REPLIES_PRICE_COINS} coins`,
+                      en: `${DIALOG_EXTRA_REPLIES_COUNT} more lines for ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} coins`,
                       es: `${DIALOG_EXTRA_REPLIES_COUNT} frases más por ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} monedas`,
                       'pt-BR': `Mais ${DIALOG_EXTRA_REPLIES_COUNT} falas por ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} moedas`,
                       vi: `Thêm ${DIALOG_EXTRA_REPLIES_COUNT} lượt với ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} xu`,
@@ -3205,7 +3205,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                           {triLang(lang, {
                             ru: `Ещё ${DIALOG_EXTRA_REPLIES_COUNT} реплик · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
                             uk: `Ще ${DIALOG_EXTRA_REPLIES_COUNT} реплік · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
-                            en: `+${DIALOG_EXTRA_REPLIES_COUNT} lines · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_COINS}`,
+                            en: `+${DIALOG_EXTRA_REPLIES_COUNT} lines · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
                             es: `+${DIALOG_EXTRA_REPLIES_COUNT} frases · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
                             'pt-BR': `+${DIALOG_EXTRA_REPLIES_COUNT} falas · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
                             vi: `+${DIALOG_EXTRA_REPLIES_COUNT} lượt · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,

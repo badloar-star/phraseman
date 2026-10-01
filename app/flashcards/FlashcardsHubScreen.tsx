@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { BlurView } from 'expo-blur';
 import { Image } from 'expo-image';
 import {
@@ -51,6 +51,10 @@ import { hydrateFcDeckOptionsSnapshot, loadFcDeckOptions } from './deck_options'
 import { loadSelectedSavedContour, peekSelectedSavedContour } from './saved_language_contour';
 import { packTileArtRevision } from './packMarketplaceIcons';
 import { peekMyPacksCount } from './myPacksCountCache';
+import { loadVideoPhraseSetPacks, peekVideoPhraseSetPacks } from '../video_phrase_set_packs';
+import { applyCommunityPacksFilter, filterVideoPacks } from '../community_packs/communityCatalogFilter';
+import { peekStoredPackLanguage } from './pack_language_preferences';
+import { defaultPackLanguageForStudyTarget } from './pack_languages';
 import { buildFcCreateRoute } from './tabbar_state';
 
 type LibraryRowProps = {
@@ -200,7 +204,7 @@ function LibraryRow({ testID, icon, savedArt = false, title, subtitle, count, co
     <Pressable
       testID={testID}
       accessibilityRole="button"
-      accessibilityLabel={`${title}. ${subtitle}. ${count === null ? countPendingLabel : new Intl.NumberFormat(lang).format(count)}`}
+      accessibilityLabel={count === null ? `${title}. ${subtitle}` : `${title}. ${subtitle}. ${new Intl.NumberFormat(lang).format(count)}`}
       onPress={onPress}
       style={({ pressed }) => [styles.libraryRow, { backgroundColor: g.opaqueCard }, pressed && styles.pressed]}
     >
@@ -214,8 +218,10 @@ function LibraryRow({ testID, icon, savedArt = false, title, subtitle, count, co
         <Text style={[styles.libraryTitle, { color: g.text }]}>{title}</Text>
         <Text style={[styles.librarySubtitle, { color: g.secondary }]}>{subtitle}</Text>
       </View>
-      <Text accessibilityLabel={count === null ? countPendingLabel : new Intl.NumberFormat(lang).format(count)} style={[styles.libraryCount, { color: g.secondary }]}>
-        {count === null ? '—' : new Intl.NumberFormat(lang, { notation: 'compact', maximumFractionDigits: 1 }).format(count)}
+      {/* зачем (владелец 01.10: «никаких загружается/прочерков»): число неизвестно — пустое
+          зарезервированное место той же ширины, а не «—»; появится, как только станет известно. */}
+      <Text accessibilityElementsHidden={count === null} importantForAccessibility={count === null ? 'no-hide-descendants' : 'auto'} style={[styles.libraryCount, { color: g.secondary }]}>
+        {count === null ? '' : new Intl.NumberFormat(lang, { notation: 'compact', maximumFractionDigits: 1 }).format(count)}
       </Text>
       <Ionicons name="chevron-forward" size={20} color={g.secondary} />
     </Pressable>
@@ -242,6 +248,23 @@ export default function FlashcardsHubScreen() {
   // My Packs includes unpublished author packs that the Hub catalog does not know.
   // Only its settled account/target snapshot is a truthful count.
   const [myPackCount, setMyPackCount] = useState<number | null>(null);
+  // зачем (владелец 01.10): у «Из видео» всегда стоял прочерк. Считаем по сохранённому каталогу
+  // (тот же, что открывает раздел; кэш 6 ч — без лишних запросов) и тем же фильтром языка наборов.
+  const countVideoPacks = useCallback((packs: readonly FlashcardMarketPack[] | null): number | null => {
+    if (!packs) return null;
+    const packLanguage = peekStoredPackLanguage() ?? defaultPackLanguageForStudyTarget(studyTarget);
+    return applyCommunityPacksFilter(filterVideoPacks(packs), '', 'new', packLanguage).length;
+  }, [studyTarget]);
+  const [videoPackCount, setVideoPackCount] = useState<number | null>(() => countVideoPacks(peekVideoPhraseSetPacks()));
+  useEffect(() => {
+    let cancelled = false;
+    void loadVideoPhraseSetPacks().then((packs) => {
+      if (!cancelled) setVideoPackCount(countVideoPacks(packs));
+    }).catch((error: unknown) => {
+      console.warn('[FC-DECKS] hub:video count FAILED —', error instanceof Error ? error.message : String(error)); // guard-ok
+    });
+    return () => { cancelled = true; };
+  }, [countVideoPacks]);
   /**
    * зачем (владелец: «раздел открывается и происходит скачок, моргание»):
    * состояние стартовало в 'loading' ВСЕГДА, даже когда тёплый каталог уже лежал
@@ -648,7 +671,7 @@ export default function FlashcardsHubScreen() {
                 icon="play-circle-outline"
                 title={copy.video}
                 subtitle={copy.videoSub}
-                count={null}
+                count={videoPackCount}
                 countPendingLabel={copy.countUnavailable}
                 lang={lang}
                 onPress={() => router.push('/flashcards_video_packs' as never)}

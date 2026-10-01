@@ -10257,7 +10257,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10268,7 +10268,7 @@
         "text": "Для каждого типа назначение, trigger, opt-out, дедупликация и ссылка",
         "accepted": true,
         "evidence": [
-          "71a3cdf8c: evidence/PM-200_notification_allowlist.md — тип/триггер/opt-out/дедуп/deeplink для всех пушей и локальных"
+          "71a3cdf8c + 4ed9dc1b6: allowlist уведомлений; находки C1–C6 исправлены (3da889f35..7024103cd): opt-out, тихие часы, дедуп Шпиля, deeplink"
         ]
       },
       {

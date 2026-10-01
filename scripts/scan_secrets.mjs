@@ -140,9 +140,6 @@ const ALLOWLIST_FILES = new Set([
 // here) is still caught. This is deliberately narrow: line-content alone is NOT
 // enough to exempt, because any attacker-chosen line could include "apiKey".
 const FIREBASE_CLIENT_CONFIG_FILES = new Set([
-  // зачем: arena-config приехала с Mac с тем же публичным Firebase web-ключом,
-  // что и остальные админ-страницы ниже; сканер её просто ещё не знал.
-  'admin/arena-config.html',
   'admin/index.html',
   'admin/testers.html',
   'admin/beta_testers.html',

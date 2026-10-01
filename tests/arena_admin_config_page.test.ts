@@ -1,118 +1,46 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import {
-  ARENA_CONFIG_FLAGS,
-  arenaBuildConfigDoc,
-} from '../functions/src/arena_config_contract';
+import { arenaBuildConfigDoc } from '../functions/src/arena_config_contract';
 
 /**
- * Экран управления конфигом Арены в админке.
+ * Экран конфига Арены в админке.
  *
- * Владелец: «в админке нет ни одного экрана управления этим конфигом, а она
- * должна быть написана». Это корневая причина того, что Арена не работает:
- * бэкенд закрыт по умолчанию, и включить его было нечем.
- *
- * Страница статическая, отрендерить её здесь нечем, но самое дорогое в ней
- * проверяемо и без браузера: не разошлась ли она с серверным договором. Именно
- * такое расхождение и делает экран бесполезным — он покажет не те
- * переключатели или отправит не те имена.
+ * зачем: Q1 (координатор 01.10) — Арена удалена (D74/D78/D83), карточка
+ * «Арена» в Пульте и мёртвая admin/arena-config.html убраны. Сторож теперь
+ * охраняет ОТСУТСТВИЕ: карточка не должна вернуться «по привычке».
+ * Серверные adminArenaConfigGet/Set пока живы (их ведёт задача в
+ * docs/phraseman-2.0/PROGRESS.md) — но звать их из админки больше нечем.
  */
 
 const ROOT = path.resolve(__dirname, '..');
 const page = fs.readFileSync(path.join(ROOT, 'admin/v2/legacy.html'), 'utf8');
-const arenaMarkup = page.slice(
-  page.indexOf('<!-- Арена живёт только здесь:'),
-  page.indexOf('<!-- 🗓 НЕДЕЛЬНЫЕ БОНУСЫ'),
-);
-const arenaScript = page.slice(
-  page.indexOf('const ARENA_BASE_FLAGS = ['),
-  page.indexOf('window.loadControlPanel = async function()'),
-);
 
-describe('страница существует и зовёт правильные вызовы', () => {
-  it('читает и пишет конфиг через админские вызовы', () => {
-    expect(page).toContain("'adminArenaConfigGet'");
-    expect(page).toContain("'adminArenaConfigSet'");
+describe('карточка «Арена» убрана из Пульта (Q1)', () => {
+  it('нет разметки карточки и её кнопок', () => {
+    expect(page).not.toContain('id="cp-arena-card"');
+    expect(page).not.toContain('id="cp-arena-save"');
+    expect(page).not.toContain('id="cp-arena-reason"');
   });
 
-  /** Писать напрямую в Firestore из браузера нельзя: правила это запрещают,
-   *  и обходить их страницей значило бы обойти и журнал действий. */
-  it('не пишет в Firestore напрямую', () => {
-    expect(arenaScript).not.toContain('setDoc(');
-    expect(arenaScript).not.toContain("collection('arena_v2_config')");
+  it('нет JS карточки и вызовов конфига Арены', () => {
+    expect(page).not.toContain('const ARENA_BASE_FLAGS');
+    expect(page).not.toContain('window.loadControlPanelArena');
+    expect(page).not.toContain('window.saveControlPanelArena');
+    expect(page).not.toContain("'adminArenaConfigGet'");
+    expect(page).not.toContain("'adminArenaConfigSet'");
+  });
+
+  it('мёртвая admin/arena-config.html удалена', () => {
+    expect(fs.existsSync(path.join(ROOT, 'admin/arena-config.html'))).toBe(false);
   });
 });
 
-describe('страница не разошлась с договором', () => {
-  it('показывает КАЖДЫЙ переключатель, который проверяет бэкенд', () => {
-    for (const flag of ARENA_CONFIG_FLAGS) {
-      expect(page).toContain(`'${flag}'`);
-    }
-  });
-
-  it('не сбрасывает скрытые переключатели расширения при сохранении базы', () => {
-    expect(arenaScript).toContain('window._arenaConfigExpansionFlags');
-    expect(arenaScript).toContain('expansionFlags: { ...window._arenaConfigExpansionFlags }');
-  });
-
-  /**
-   * Каждая проблема из договора должна иметь человеческий текст. Код вроде
-   * `manifest_sha` на экране не говорит администратору ничего.
-   */
-  it('не вываливает внутренние коды проблем в рабочую форму', () => {
-    expect(arenaMarkup).not.toContain('schema_version');
-    expect(arenaMarkup).not.toContain('manifest_sha');
-    expect(arenaScript).toContain('Конфиг Арены несовместим с сервером');
-  });
-});
-
-describe('страница не даёт выстрелить в ногу', () => {
-  /** Версии и хеши — из сборки. Ровно на них конфиг и ломался. */
-  it('не даёт вводить версии схемы и хеши руками', () => {
-    expect(arenaMarkup).not.toContain('id="schemaVersion"');
-    expect(arenaMarkup).not.toContain('id="manifestSha256"');
-    expect(arenaMarkup).not.toContain('id="poolVersion"');
-  });
-
-  it('не просит администратора вводить версию приложения', () => {
-    expect(arenaMarkup).not.toContain('id="minClientVersion"');
-    expect(arenaScript).toContain("minClientVersion: '0.0.0'");
-  });
-
-  it('требует причину — она уходит в журнал админских действий', () => {
-    expect(arenaMarkup).toContain('id="cp-arena-reason"');
-    expect(arenaScript).toContain('Укажи причину изменения');
-  });
-
-  /** Иначе админ решит, что кнопка не сработала, и нажмёт ещё раз. */
-  it('предупреждает про задержку кеша', () => {
-    expect(arenaMarkup).toContain('15 секунд');
-    expect(arenaScript).toContain('15 секунд');
-  });
-
-  /**
-   * Три состояния различаются на экране: документа нет, документ не сходится,
-   * документ в порядке. Первое лечится кнопкой, второе — выкаткой функций, и
-   * путать их нельзя.
-   */
-  it('различает «нет документа», «не сходится» и «выключено»', () => {
-    expect(arenaScript).toContain('Арена не настроена');
-    expect(arenaScript).toContain('Конфиг Арены несовместим');
-    expect(arenaScript).toContain('Арена работает');
-    expect(arenaScript).toContain('Арена выключена');
-  });
-});
-
-// зачем: D78 — серверная Арена (arena_expansion.ts) удалена, серверных гейтов
-// расширения больше нет; сверка страницы с ними снята. Сборка конфига
-// (arena_config_contract) осталась — её ведёт админка пула Шпиля.
-describe('Arena config page build contract', () => {
-  test('версии магазина и соперничеств подставляет сборка, а не живая форма', () => {
-    // Опечатка в такой строке даёт отказ, неотличимый от «раздел выключен».
+// зачем: сборка конфига (arena_config_contract) осталась — её ведёт админка
+// пула Шпиля, версии подставляет сборка, а не форма.
+describe('Arena config build contract', () => {
+  test('версии магазина и соперничеств подставляет сборка', () => {
     const doc = arenaBuildConfigDoc({});
     expect(doc.arenaCosmeticCatalogVersion).toBe('arena-cosmetics.v1');
     expect(doc.arenaRivalRuntimeVersion).toBe('arena-rival.v1');
-    expect(arenaMarkup).not.toContain('arenaCosmeticCatalogVersion');
-    expect(arenaMarkup).not.toContain('arenaRivalRuntimeVersion');
   });
 });

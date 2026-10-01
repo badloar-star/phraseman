@@ -12062,59 +12062,9 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   </div>
   <!-- PHONE_STATE_ROLLOUT_END -->
 
-  <!-- Арена живёт только здесь: admin Hosting публикует admin/v2. Отдельная
-       admin/arena-config.html не является рабочей поверхностью. -->
-  <div class="cp-card" id="cp-arena-card">
-    <div class="cp-card-title" style="color:#fbbf24">Арена</div>
-    <div class="cp-card-sub">
-      Включает режимы Арены без релиза приложения. Изменение доезжает примерно
-      за 15 секунд. Если режим создаёт проблему, выключи его здесь же.
-    </div>
-    <div style="margin-top:8px"><span id="cp-arena-status" class="cp-status-chip">Загрузка…</span></div>
-
-    <div id="cp-arena-flags" style="margin-top:12px;display:flex;flex-direction:column;gap:2px">
-      <div class="cp-switch-row">
-        <div class="cp-switch-ico" aria-hidden="true">A</div>
-        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Арена включена</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Главный выключатель. При выключении режимы ниже не запускаются.</div></div>
-        <label title="Включает или выключает всю Арену для игроков. Изменение появится примерно через 15 секунд; отменить можно здесь же." style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-arena-enabled" class="cp-toggle" disabled/><span class="cp-bool-chip" data-arena-label="enabled">…</span></label>
-      </div>
-      <div class="cp-switch-row">
-        <div class="cp-switch-ico" aria-hidden="true">5</div>
-        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Быстрый матч</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Пять заданий, без рейтинговых очков.</div></div>
-        <label title="Разрешает быстрые матчи. Главный выключатель Арены тоже должен быть включён." style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-arena-quickEnabled" class="cp-toggle" disabled/><span class="cp-bool-chip" data-arena-label="quickEnabled">…</span></label>
-      </div>
-      <div class="cp-switch-row">
-        <div class="cp-switch-ico" aria-hidden="true">10</div>
-        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Рейтинговый матч</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Десять заданий, только живые соперники.</div></div>
-        <label title="Разрешает рейтинговые матчи. Главный выключатель Арены тоже должен быть включён." style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-arena-rankedEnabled" class="cp-toggle" disabled/><span class="cp-bool-chip" data-arena-label="rankedEnabled">…</span></label>
-      </div>
-      <div class="cp-switch-row">
-        <div class="cp-switch-ico" aria-hidden="true">2</div>
-        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Дуэль с другом</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Матч по приглашению, без рейтинга.</div></div>
-        <label title="Разрешает приглашения и дуэли с друзьями. Главный выключатель Арены тоже должен быть включён." style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-arena-friendEnabled" class="cp-toggle" disabled/><span class="cp-bool-chip" data-arena-label="friendEnabled">…</span></label>
-      </div>
-      <div class="cp-switch-row">
-        <div class="cp-switch-ico" aria-hidden="true">R</div>
-        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Награды сезона</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Разрешает получать уже заработанные уровни сезона.</div></div>
-        <label title="Разрешает выдачу сезонных наград. Выключение не отменяет уже выданные награды." style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-arena-rewardsEnabled" class="cp-toggle" disabled/><span class="cp-bool-chip" data-arena-label="rewardsEnabled">…</span></label>
-      </div>
-      <div class="cp-switch-row">
-        <div class="cp-switch-ico" aria-hidden="true">S</div>
-        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Редкие награды</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Разрешает получение и открытие редких наград.</div></div>
-        <label title="Разрешает редкие награды Арены. Выключение не удаляет уже полученный результат." style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-arena-spinEnabled" class="cp-toggle" disabled/><span class="cp-bool-chip" data-arena-label="spinEnabled">…</span></label>
-      </div>
-    </div>
-
-    <label for="cp-arena-reason" style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1;margin-top:12px">Причина изменения
-      <input type="text" id="cp-arena-reason" placeholder="Например: включаю быстрые матчи" maxlength="400" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px"/>
-      <span style="font-size:11px;color:#6b7280">Причина попадёт в журнал действий. Версию приложения и технические версии вводить не нужно.</span>
-    </label>
-    <div style="display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap">
-      <button type="button" id="cp-arena-save" class="cp-btn" onclick="saveControlPanelArena()" title="Сохранит режимы Арены для всех игроков. Изменение появится примерно через 15 секунд; отменить можно выключением нужного режима на этой же карточке." style="background:#2563eb;border:1px solid #3b82f6;color:#fff;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px" disabled>Сохранить режимы Арены</button>
-      <button type="button" id="cp-arena-reload" class="cp-btn" onclick="loadControlPanelArena()" title="Перечитает текущий конфиг Арены. Ничего не изменит у игроков." style="background:#1f2937;border:1px solid #374151;color:#bfdbfe;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">Перечитать</button>
-    </div>
-  </div>
-
+  <!-- зачем: Q1 (координатор 01.10) — карточка «Арена» убрана: Арена удалена (D74/D78/D83).
+       Серверные adminArenaConfigGet/Set пока живы: admin_arena_publication обновляет
+       arena_v2_config/current, а создаёт его только Set. Задача в PROGRESS.md. -->
   <div class="cp-group-label">🚦 Обновления и доступ</div>
 
   <!-- зачем (владелец 2026-09-02): карточка поднята первой в разделе и
@@ -34829,119 +34779,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     }
   }
 
-  // ── Арена: единственная живая поверхность конфига ──────────────────────
-  // Технические версии и версия приложения намеренно не показываются: их
-  // подставляет серверный договор. Оператор выбирает только режимы и причину.
-  const ARENA_BASE_FLAGS = [
-    'enabled', 'quickEnabled', 'rankedEnabled',
-    'friendEnabled', 'rewardsEnabled', 'spinEnabled',
-  ];
-  window._arenaConfigExpansionFlags = {};
-  let _fnAdminArenaConfigGet = null;
-  let _fnAdminArenaConfigSet = null;
-
-  function arenaConfigCallable(name) {
-    if (name === 'adminArenaConfigGet') {
-      return _fnAdminArenaConfigGet || (_fnAdminArenaConfigGet = httpsCallable(functionsUs, name));
-    }
-    return _fnAdminArenaConfigSet || (_fnAdminArenaConfigSet = httpsCallable(functionsUs, name));
-  }
-
-  function cpArenaStatus(message, color) {
-    window.__cpStatus(document.getElementById('cp-arena-status'), message, color);
-  }
-
-  function cpArenaBusy(busy) {
-    for (const key of ARENA_BASE_FLAGS) {
-      const input = document.getElementById('cp-arena-' + key);
-      if (input) input.disabled = Boolean(busy);
-    }
-    const save = document.getElementById('cp-arena-save');
-    const reload = document.getElementById('cp-arena-reload');
-    if (save) save.disabled = Boolean(busy);
-    if (reload) reload.disabled = Boolean(busy);
-  }
-
-  function cpArenaRenderFlag(key, enabled) {
-    const input = document.getElementById('cp-arena-' + key);
-    const label = document.querySelector('[data-arena-label="' + key + '"]');
-    if (input) {
-      input.checked = enabled === true;
-      input.onchange = function() {
-        cpArenaRenderFlag(key, input.checked === true);
-        cpArenaStatus('Есть несохранённые изменения.');
-      };
-    }
-    if (label) {
-      label.textContent = enabled === true ? 'Вкл' : 'Выкл';
-      label.setAttribute('data-on', enabled === true ? '1' : '0');
-    }
-  }
-
-  function cpArenaPaint(status) {
-    const current = status && typeof status === 'object' ? status : {};
-    const flags = current.flags && typeof current.flags === 'object' ? current.flags : {};
-    for (const key of ARENA_BASE_FLAGS) cpArenaRenderFlag(key, flags[key] === true);
-    window._arenaConfigExpansionFlags = current.expansionFlags && typeof current.expansionFlags === 'object'
-      ? { ...current.expansionFlags }
-      : {};
-    if (current.exists !== true) {
-      cpArenaStatus('Арена не настроена. Выбери режимы и сохрани.', '#f87171');
-    } else if (current.valid !== true) {
-      cpArenaStatus('Конфиг Арены несовместим с сервером. Сначала обнови функции.', '#f87171');
-    } else if (current.liveForPlayers === true) {
-      cpArenaStatus('Арена работает. Изменения доходят примерно за 15 секунд.', '#4ade80');
-    } else {
-      cpArenaStatus('Арена выключена. Конфиг исправен.');
-    }
-  }
-
-  window.loadControlPanelArena = async function() {
-    cpArenaBusy(true);
-    cpArenaStatus('Загрузка…');
-    try {
-      const response = await arenaConfigCallable('adminArenaConfigGet')({});
-      cpArenaPaint(response && response.data ? response.data.status : null);
-    } catch (error) {
-      cpArenaStatus('Не удалось прочитать конфиг Арены: ' + (error && error.message ? error.message : error), '#f87171');
-    } finally {
-      cpArenaBusy(false);
-    }
-  };
-
-  window.saveControlPanelArena = async function() {
-    const reasonInput = document.getElementById('cp-arena-reason');
-    const reason = String(reasonInput && reasonInput.value ? reasonInput.value : '').trim();
-    if (!reason) {
-      cpArenaStatus('Укажи причину изменения — она попадёт в журнал.', '#f87171');
-      if (reasonInput) reasonInput.focus();
-      return;
-    }
-    const flags = {};
-    for (const key of ARENA_BASE_FLAGS) {
-      const input = document.getElementById('cp-arena-' + key);
-      flags[key] = Boolean(input && input.checked);
-    }
-    cpArenaBusy(true);
-    cpArenaStatus('Сохранение…');
-    try {
-      const response = await arenaConfigCallable('adminArenaConfigSet')({
-        reason,
-        flags,
-        // Скрытые флаги расширения не сбрасываем при правке базовых режимов.
-        expansionFlags: { ...window._arenaConfigExpansionFlags },
-        // Поле требует схема, но оператор его не вводит и не видит.
-        minClientVersion: '0.0.0',
-      });
-      cpArenaPaint(response && response.data ? response.data.status : null);
-      if (reasonInput) reasonInput.value = '';
-    } catch (error) {
-      cpArenaStatus('Не удалось сохранить Арену: ' + (error && error.message ? error.message : error), '#f87171');
-    } finally {
-      cpArenaBusy(false);
-    }
-  };
-
+  // зачем: Q1 (координатор 01.10) — JS карточки «Арена» удалён вместе с карточкой.
   function renderPhoneStateRolloutToggle(id, enabled) {
     const input = document.getElementById(id);
     if (input) { input.checked = !!enabled; input.disabled = false; }
@@ -35064,7 +34902,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     if (typeof window.loadControlPanelMaintenance === 'function') void window.loadControlPanelMaintenance();
     if (typeof window.loadYoutubeChannel === 'function') void window.loadYoutubeChannel();
     if (typeof window.loadPromoCodes === 'function') void window.loadPromoCodes();
-    if (typeof window.loadControlPanelArena === 'function') void window.loadControlPanelArena();
     if (typeof window.loadControlPanelForceUpdate === 'function') void window.loadControlPanelForceUpdate();
     if (typeof window.loadControlPanelPromoBanner === 'function') void window.loadControlPanelPromoBanner();
     if (typeof window.loadControlPanelPremium === 'function') void window.loadControlPanelPremium();
@@ -51303,7 +51140,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   };
 
   const PM_V5_REFRESH_FUNCTIONS = new Set([
-    'loadControlPanelArena','loadPromoCodes','loadControlPanelAi','loadControlPanelAiJobs','loadBusinessTier',
+    'loadPromoCodes','loadControlPanelAi','loadControlPanelAiJobs','loadBusinessTier',
     'loadJarvisPlans','loadModQueue','loadTelegramPremiumOrders','loadReports','loadGlobalBroadcastStatus',
     'loadRemoteConfig','loadYoutubeChannel','refreshYoutubeCatalog','refreshVideoStudio','loadShardSurveys',
     'v2gPipelineRefresh','v2gRefresh','loadAlertsConfig','loadAppMessages','loadWebsiteInbox','loadAdminEmails',

@@ -22,9 +22,11 @@ describe("единственная разрешённая корневая ад�
     const liveHtml = read(LIVE_ADMIN);
     expect(liveHtml.length).toBeGreaterThan(500_000);
     expect(liveHtml).toContain("control-panel");
-    expect(liveHtml).toContain("adminArenaConfigGet");
-    expect(liveHtml).toContain("adminArenaConfigSet");
-    expect(liveHtml).toContain('id="cp-arena-card"');
+    // зачем: Q1 (координатор 01.10) — карточка «Арена» убрана из Пульта,
+    // админка больше не зовёт adminArenaConfigGet/Set.
+    expect(liveHtml).not.toContain("'adminArenaConfigGet'");
+    expect(liveHtml).not.toContain("'adminArenaConfigSet'");
+    expect(liveHtml).not.toContain('id="cp-arena-card"');
   });
 
   it("Hosting публикует canonical admin/v2 и перенаправляет старые входы", () => {

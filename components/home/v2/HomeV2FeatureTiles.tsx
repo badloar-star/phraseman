@@ -34,8 +34,11 @@ export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeat
             <Image source={tile.art} style={s.artImage} contentFit="contain" accessible={false} /* guard-ok: декоративный арт, подпись на V2Pressable */ />
           </View>
           <Text style={[s.title, { color: p.text }]}>{tile.title}</Text>
+          {/* зачем (владелец 01.10: «expressões» рвалось посреди слова при шрифте 1.3): подпись
+              делила строку со стрелкой и получала ~58 pt. Теперь подпись — на всю ширину плитки,
+              стрелка — отдельной строкой справа, прижата к низу. */}
+          <Text style={[s.subtitle, { color: p.textSecondary }]}>{tile.subtitle}</Text>
           <View style={s.footer}>
-            <Text style={[s.subtitle, { color: p.textSecondary }]}>{tile.subtitle}</Text>
             <View style={[s.arrow, { backgroundColor: p.glassRaised, borderColor: p.stroke }]}>
               <Ionicons name="chevron-forward" size={16} color={p.text} />
             </View>
@@ -61,7 +64,7 @@ const s = StyleSheet.create({
   art: { height: 92, marginHorizontal: -10, marginBottom: 6, paddingLeft: 10, alignItems: 'flex-start', justifyContent: 'center' },
   artImage: { width: 84, height: 84 },
   title: { ...V2_TYPE.headline },
-  footer: { flexDirection: 'row', alignItems: 'flex-end', gap: 4, marginTop: 4 },
-  subtitle: { ...V2_TYPE.caption, fontSize: 12, lineHeight: 16, flex: 1 },
+  footer: { flexDirection: 'row', justifyContent: 'flex-end', marginTop: 'auto', paddingTop: 6 },
+  subtitle: { ...V2_TYPE.caption, fontSize: 12, lineHeight: 16, marginTop: 4 },
   arrow: { width: 26, height: 26, borderRadius: 13, borderWidth: StyleSheet.hairlineWidth, alignItems: 'center', justifyContent: 'center', marginRight: -2 }, // guard-ok: D43
 });

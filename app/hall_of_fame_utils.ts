@@ -235,8 +235,18 @@ export const updateStreakOnActivity = async (
 
       // 1. Заморозка активна и пропущен ровно 1 день
       // зачем: если журнал помнит вчерашний день, заморозку не тратим — цепочка не рвалась.
-      if (journalRunToYesterday < 1 && isStreakFreezeActiveToday(freeze, today) && lastActive && missedExactlyOneDay) {
+      // Q94 (D107): у Plus заморозка применяется сама, без кнопки, в пределах месячного лимита.
+      const canFreeze = journalRunToYesterday < 1 && lastActive !== null && missedExactlyOneDay;
+      const manualFreeze = isStreakFreezeActiveToday(freeze, today);
+      const autoFreeze = canFreeze && !manualFreeze
+        ? (await (await import('./streak_auto_freeze')).tryAutoPremiumFreeze(today)).applied
+        : false;
+      if (canFreeze) console.log(`[STREAK] update:freeze_check manual=${manualFreeze} auto=${autoFreeze}`);
+      if (canFreeze && lastActive && (manualFreeze || autoFreeze)) {
         await AsyncStorage.setItem('streak_freeze', JSON.stringify({ ...freeze, active: false }));
+        import('../modules/audio/sound_director')
+          .then(({ soundDirector }) => { soundDirector.request('pm.streak.saved', { scope: 'streak' }); })
+          .catch((error: unknown) => console.warn('[STREAK] update:freeze_sound_failed', String(error)));
         await recordStreakWeekMarker(addDaysToDateKey(lastActive, 1), 'freeze').catch(() => {});
         // streak не меняем — заморозка спасла. Расходник потрачен — юзер должен узнать
         // (аудит «немых мест» 2026-06-11, находка №6).

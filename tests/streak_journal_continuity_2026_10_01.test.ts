@@ -44,7 +44,7 @@ describe('серия: проводка в коде', () => {
   const hall = read('app/hall_of_fame_utils.ts');
 
   it('журнал продолжает и лечит серию, заморозка не тратится при живом вчера', () => {
-    expect(hall).toMatch(/journalRunToYesterday < 1 && isStreakFreezeActiveToday/);
+    expect(hall).toMatch(/const canFreeze = journalRunToYesterday < 1 && lastActive !== null/);
     expect(hall).toMatch(/else if \(journalRunToYesterday >= 1\)/);
     expect(hall).toMatch(/journalRunToYesterday \+ 1 > streak/);
   });

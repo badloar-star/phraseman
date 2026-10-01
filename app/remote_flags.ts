@@ -111,6 +111,10 @@ export type RemoteBoolKey =
   // Включает только владелец (Firestore remote_config, «Пульт»), и только вместе
   // с серверным config/accounts_v2.syncEnabled.
   | 'accounts_v2_client_enabled'
+  // D51/D53, Q12 (2026-10-01): рубильник миграции «Подарки и спины → монеты».
+  // Дефолт TRUE = kill-switch: false в remote_config/app.bools останавливает
+  // НОВЫЕ прогоны; уже прошедшие не трогает, зачисленное не забирается.
+  | 'gifts_to_coins_enabled'
   // Приветственный подарок «3 дня полного доступа» для НОВЫХ юзеров (72ч intro).
   // Дефолт TRUE = kill-switch: новые получают подарок и приветственный модал как
   // сейчас. Админ ставит false в «Пульте» → НОВЫЕ юзеры больше не получают ни
@@ -235,6 +239,8 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   phone_state_emergency_stop: true,
   // Account V2 (Пакет 6B): выключено до явного решения владельца.
   accounts_v2_client_enabled: false,
+  // зачем (D51, Q12): миграция едет включённой, флаг — аварийный стоп без релиза.
+  gifts_to_coins_enabled: true,
   // Рулетка+рефералка: дефолт true (kill-switch). Ключ лежит в numbers
   // (boolean), подхват — спец-веткой в applyRemoteConfigSnapshot ниже.
   // Отдельный hard stop. Отсутствие ключа безопасно сохраняет рабочее состояние.
@@ -445,6 +451,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
     'force_update_enabled', 'manual_update_enabled', 'video_button_enabled', 'video_phrases_enabled',
     'promo_banner_enabled', 'promo_codes_enabled', 'discount_offer_banner_enabled',
     'lifetime_button_enabled', 'paywall_reviews_enabled', 'accounts_v2_client_enabled',
+    'gifts_to_coins_enabled',
     'gate_lessons_premium', 'gate_speaking_premium', 'gate_ai_dialog_premium', 'gate_stats_premium',
     'gate_flashcards_premium', 'gate_themes_premium', 'gate_avatar_auras_premium', 'gate_mastery_premium',
     'gate_energy_premium', 'gate_arena_premium', 'gate_mistake_practice_premium', 'gate_extra_languages_premium',

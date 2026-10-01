@@ -1034,7 +1034,20 @@ export async function recoverAndHydrateLevelSpinStarGrants(
 ): Promise<Readonly<{ balance: number; earnedTotal: number }>> {
   const projection = await recoverProjection(token);
   publishProjection(token, projection);
-  if (options.syncNow !== false) void syncPendingLevelSpinStarGrants(token).catch(() => {});
+  if (options.syncNow !== false) {
+    void syncPendingLevelSpinStarGrants(token).catch(() => {});
+    // зачем (D51/D53, Q12 2026-10-01): разовая молчаливая миграция «Подарки и
+    // спины → монеты» зачисляет в ЭТОТ кошелёк, поэтому стартует только после
+    // его восстановления на старте (единственный вызов с syncNow — корневой
+    // layout после первого кадра). _layout.tsx не трогаем: его ведёт сессия
+    // интерфейса. Модуль ленивый, сам ждёт ~15 с + runAfterInteractions и
+    // подписан на смену аккаунта; повторный старт — no-op.
+    void import('./gifts_to_coins_migration_v1')
+      .then(({ startGiftsToCoinsMigrationScheduler }) => { startGiftsToCoinsMigrationScheduler(); })
+      .catch((error: unknown) => {
+        console.warn(`[GIFTS-TO-COINS] catch step=scheduler_import error=${String(error)}`);
+      });
+  }
   return visibleProjection(projection);
 }
 

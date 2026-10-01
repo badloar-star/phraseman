@@ -336,55 +336,6 @@ export function PaywallSectionDivider({ label, chrome }: { label: string; chrome
   );
 }
 
-/**
- * Баннер «не удалось загрузить цены» с кнопкой ретрая. Показывается, когда
- * офферинги RevenueCat не загрузились — иначе кнопки (включая Phraseman Pro) молча
- * пропадают, и пользователь думает, что приложение сломано.
- */
-export function PaywallPriceRetry({ lang, chrome, onRetry }: {
-  lang: Lang;
-  chrome: PaywallChrome;
-  onRetry: () => void;
-}) {
-  return (
-    <View style={[S.priceRetryBox, { backgroundColor: chrome.cardBg, borderColor: chrome.cardBorder }]}>
-      <Ionicons name="cloud-offline-outline" size={20} color={chrome.textMuted} />
-      <Text style={[S.priceRetryText, { color: chrome.textMuted }]}>
-        {triLang(lang, {
-          ru: 'Не удалось загрузить цены из магазина. Проверь интернет и попробуй ещё раз.',
-          uk: 'Не вдалося завантажити ціни з магазину. Перевір інтернет і спробуй ще раз.',
-          en: 'Could not load prices from the store. Check your internet and try again.',
-          es: 'No se pudieron cargar los precios. Revisa tu conexión e inténtalo de nuevo.',
-          'pt-BR': 'Não foi possível carregar os preços da loja. Verifique sua internet e tente novamente.',
-          vi: 'Không tải được giá từ cửa hàng. Hãy kiểm tra internet rồi thử lại.',
-          id: 'Tidak bisa memuat harga dari toko. Periksa internet lalu coba lagi.',
-          tr: 'Mağaza fiyatları yüklenemedi. İnternetini kontrol edip tekrar dene.',
-          pl: 'Nie udało się załadować cen ze sklepu. Sprawdź internet i spróbuj ponownie.',
-        })}
-      </Text>
-      <TouchableOpacity
-        testID="data-paywall-price-retry"
-        onPress={onRetry}
-        style={[S.priceRetryBtn, { backgroundColor: chrome.tc.ctaBg }]}
-        activeOpacity={0.82}
-      >
-        <Text style={[S.priceRetryBtnText, { color: chrome.tc.ctaText }]}>
-          {triLang(lang, {
-            ru: 'Повторить',
-            uk: 'Повторити',
-            en: 'Retry',
-            es: 'Reintentar',
-            'pt-BR': 'Tentar de novo',
-            vi: 'Thử lại',
-            id: 'Coba lagi',
-            tr: 'Tekrar dene',
-            pl: 'Spróbuj ponownie',
-          })}
-        </Text>
-      </TouchableOpacity>
-    </View>
-  );
-}
 
 /** Кнопка закрытия пейвола — единый вид на A/B/C. */
 export function PaywallCloseButton({ onPress, chrome, style }: {

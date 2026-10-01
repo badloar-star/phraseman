@@ -230,28 +230,6 @@ export const PaywallPlusPlansSkeleton = memo(function PaywallPlusPlansSkeleton({
   );
 });
 
-// ── цены не загрузились ─────────────────────────────────────────────────────
-export const PaywallPlusPricesError = memo(function PaywallPlusPricesError({ lang, g, onRetry }: {
-  lang: Lang; g: GlassTokens; onRetry: () => void;
-}) {
-  const glass = useV2GlassStyle();
-  return (
-    <View testID="paywall-prices-error" style={[S.card, S.errorRow, glass]}>
-      <V2GlassSheen seed={0} />
-      <View style={[S.iconTile, { backgroundColor: g.opaqueControl }]}>
-        <Ionicons name="cloud-offline-outline" size={20} color={g.text} />
-      </View>
-      <View style={S.errorCopy}>
-        <Text style={[S.errorTitle, { color: g.text }]}>{pick(lang, COPY.pricesFailed)}</Text>
-        <Text style={[S.errorSub, { color: g.secondary }]}>{pick(lang, COPY.checkInternet)}</Text>
-      </View>
-      <V2Pressable testID="paywall-prices-retry" onPress={onRetry} scaleTo={0.94} style={[S.retry, { backgroundColor: g.accent }]}>
-        <Text style={[S.retryText, { color: g.accentInk }]}>{pick(lang, COPY.retry)}</Text>
-      </V2Pressable>
-    </View>
-  );
-});
-
 // ── тело: «Что входит», «Free и Plus», ссылки ──────────────────────────────
 export const PaywallPlusDetails = memo(function PaywallPlusDetails({ lang, g, restoring, restoreDisabled, onRestore }: {
   lang: Lang; g: GlassTokens; restoring: boolean; restoreDisabled: boolean; onRestore: () => void;

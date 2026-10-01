@@ -6,7 +6,7 @@
 // не менялась). Здесь: сборка блоков по макету paywall-v3, аналитика показа,
 // защита жестов на время оплаты и экран «Напомнить о конце пробного?» после покупки.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { BackHandler, Platform, StyleSheet, View } from 'react-native';
 import { Stack, useLocalSearchParams } from 'expo-router';
 
@@ -27,7 +27,7 @@ import { DebugLogger } from '../../app/debug-logger';
 import { usePaywallScreenStackOptions } from './paywallShared';
 import {
   PaywallPlusDetails, PaywallPlusDock, PaywallPlusHeader, PaywallPlusPlans, PaywallPlusPlansSkeleton,
-  PaywallPlusPricesError, PaywallPlusScroll, PaywallPlusTrialTimeline, paywallPlusCtaCopy,
+   PaywallPlusScroll, PaywallPlusTrialTimeline, paywallPlusCtaCopy,
   type PaywallPlusState,
 } from './PaywallPlus';
 import PaywallTrialReminderPrompt from './PaywallTrialReminderPrompt';
@@ -69,6 +69,22 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
 
   const state: PaywallPlusState = p.offeringsFailed ? 'error' : p.loading ? 'loading' : 'ready';
   const pricesReady = state === 'ready' && !!p.yearlyPrice;
+  const priceRetryRef = useRef(0);
+  const reloadOfferingsRef = useRef(p.reloadOfferings);
+  reloadOfferingsRef.current = p.reloadOfferings;
+  useEffect(() => {
+    if (state !== 'error') return undefined;
+    if (priceRetryRef.current >= 5) {
+      DebugLogger.warn('[PAYWALL-PLUS]', `цены не пришли, тихие повторы исчерпаны (${priceRetryRef.current})`);
+      return undefined;
+    }
+    const timer = setTimeout(() => {
+      priceRetryRef.current += 1;
+      DebugLogger.info('[PAYWALL-PLUS]', `тихий повтор цен #${priceRetryRef.current}`);
+      reloadOfferingsRef.current();
+    }, 20_000);
+    return () => clearTimeout(timer);
+  }, [state]);
   // Пробный — ТОЛЬКО из магазина и только когда цены реально пришли.
   const yearlyTrialDays = pricesReady ? p.yearlyTrialDays : null;
   const monthlyTrialDays = pricesReady && p.selected === 'monthly' ? p.trialDays : null;
@@ -130,8 +146,9 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
             {showTimeline && yearlyTrialDays
               ? <PaywallPlusTrialTimeline lang={lang} g={g} trialDays={yearlyTrialDays} yearlyPrice={yearlyPromo?.promoPriceString || p.yearlyPrice} />
               : null}
-            {state === 'loading' ? <PaywallPlusPlansSkeleton g={g} /> : null}
-            {state === 'error' ? <PaywallPlusPricesError lang={lang} g={g} onRetry={p.reloadOfferings} /> : null}
+            {/* зачем (владелец 01.10): цены не пришли — те же заготовки, что при загрузке, без текста об ошибке;
+                кнопка покупки неактивна (док), повтор — тихо в фоне. */}
+            {state === 'loading' || state === 'error' ? <PaywallPlusPlansSkeleton g={g} /> : null}
             {state === 'ready' ? (
               <PaywallPlusPlans lang={lang} g={g} selected={p.selected} onSelect={selectPlan} disabled={checkoutInFlight}
                 yearlyPrice={p.yearlyPrice} yearlyPerMonth={p.yearlyPerMonth} monthlyPrice={p.monthlyPrice}

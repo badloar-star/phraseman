@@ -270,14 +270,28 @@ test('dedicated RNTL config discovers TSX without replacing React Native', () =>
     roots?: string[];
     moduleNameMapper?: Record<string, string>;
   };
-  expect(config.testMatch).toEqual([
+  // зачем (координатор §48, 2026-10-01): точный список устарел задолго до 2.0, а
+  // настоящая болезнь была другой — 16 .test.tsx не стояли ни в одном testMatch и
+  // годами не исполнялись, а в списке висели удалённые файлы. Сторожим именно это:
+  // каждая запись существует, и каждый tests/*.test.tsx кем-то исполняется.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const fsNode = require('fs') as typeof import('fs');
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const pathNode = require('path') as typeof import('path');
+  const repoRoot = pathNode.resolve(__dirname, '..');
+  expect(config.testMatch).toEqual(expect.arrayContaining([
     '<rootDir>/tests/text_integrity_primitives.test.tsx',
-    '<rootDir>/tests/survey_offer_render.test.tsx',
     '<rootDir>/tests/survey_screen_submission_behavior.test.tsx',
-    '<rootDir>/tests/registration_prompt_modal_lifecycle.test.ts',
     '<rootDir>/tests/nickname_edit_modal_availability.test.tsx',
-    '<rootDir>/tests/level_exam_intro.test.tsx',
-  ]);
+  ]));
+  for (const entry of config.testMatch) {
+    expect(fsNode.existsSync(entry.replace('<rootDir>', repoRoot))).toBe(true);
+  }
+  const mainTestMatch = (JSON.parse(fsNode.readFileSync(pathNode.join(repoRoot, 'package.json'), 'utf8')).jest.testMatch as string[]).join('\n');
+  const unregistered = fsNode.readdirSync(pathNode.join(repoRoot, 'tests'))
+    .filter((name) => name.endsWith('.test.tsx'))
+    .filter((name) => !mainTestMatch.includes(name) && !config.testMatch.includes(`<rootDir>/tests/${name}`));
+  expect(unregistered).toEqual([]);
   expect(config.roots).toEqual(['<rootDir>/tests', '<rootDir>/components', '<rootDir>/app']);
   expect(config.moduleNameMapper).not.toHaveProperty('^react-native$');
 });

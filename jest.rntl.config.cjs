@@ -6,7 +6,6 @@ module.exports = {
   // зачем (координатор §47, 2026-10-01): наборы клиентского MAX сняты вместе с ним (D81);
   // два из них уже были удалены, но оставались в списке.
   testMatch: [
-    '<rootDir>/tests/energy_cost_badge_plus.test.tsx',
     '<rootDir>/tests/session_attempts_recovery_modal.test.tsx',
     '<rootDir>/tests/text_integrity_primitives.test.tsx',
     '<rootDir>/tests/survey_offer_render.test.tsx',
@@ -16,7 +15,6 @@ module.exports = {
     '<rootDir>/tests/hybrid_sheet_shell_observer_runtime.test.tsx',
     '<rootDir>/tests/registration_prompt_modal_lifecycle.test.ts',
     '<rootDir>/tests/nickname_edit_modal_availability.test.tsx',
-    '<rootDir>/tests/level_exam_intro.test.tsx',
     '<rootDir>/tests/friends_together_dev_bots_sheet.test.tsx',
     '<rootDir>/tests/learning_v2_intro_reader_a.test.tsx',
     '<rootDir>/tests/ai_dialog_energy_target_remount.test.tsx',

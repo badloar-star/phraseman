@@ -12,10 +12,11 @@ jest.mock('react-native', () => ({
   useWindowDimensions: () => ({ width: 390, height: 844, scale: 3, fontScale: 1 }),
 }));
 
+let mockMultiGet: (keys: string[]) => Promise<[string, string | null][]> = async (keys) => keys.map((key) => [key, null]);
 jest.mock('@react-native-async-storage/async-storage', () => ({
   __esModule: true,
   default: {
-    multiGet: jest.fn(async (keys: string[]) => keys.map((key) => [key, null])),
+    multiGet: jest.fn((keys: string[]) => mockMultiGet(keys)),
     setItem: jest.fn(async () => undefined),
   },
 }));
@@ -44,22 +45,27 @@ jest.mock('../app/oskolok', () => ({
 
 describe('runtime theme selection', () => {
   beforeEach(() => {
+    mockMultiGet = async (keys) => keys.map((key) => [key, null]);
     mockThemesFeatureAccess = true;
     mockGetVerifiedPremiumStatus.mockReset();
     mockGetVerifiedPremiumStatus.mockResolvedValue(false);
   });
 
-  it('applies a Plus theme when the live themes feature gate grants access', async () => {
+  // зачем (координатор §48, 2026-10-01): владелец 30.09 — «ТЕМЫ ВСЕ ФРИ». Гейт Plus и
+  // проверка премиума при старте сняты; выбор живёт в Liquid Glass (setLiquidGlassThemeId),
+  // старый setThemeMode — совместимый no-op на графите. Сторожим новую суть.
+  it('applies any Liquid Glass theme without Plus and without a premium check', async () => {
+    mockThemesFeatureAccess = false;
     const wrapper = ({ children }: { children: React.ReactNode }) => (
       <ThemeProvider>{children}</ThemeProvider>
     );
     const { result } = await renderHook(() => useTheme(), { wrapper });
+    await waitFor(() => expect(result.current.liquidGlassChoiceReady).toBe(true));
 
-    await waitFor(() => expect(mockGetVerifiedPremiumStatus).toHaveBeenCalled());
+    await act(async () => { result.current.setLiquidGlassThemeId('iris'); });
 
-    await act(() => result.current.setThemeMode('ember'));
-
-    expect(result.current.appliedThemeMode).toBe('ember');
+    expect(result.current.liquidGlassThemeId).toBe('iris');
+    expect(mockGetVerifiedPremiumStatus).not.toHaveBeenCalled();
   });
 
   it('mounts the premium access source above the theme provider', () => {
@@ -72,22 +78,25 @@ describe('runtime theme selection', () => {
   });
 
   it('does not let delayed startup hydration overwrite a newer theme choice', async () => {
-    let resolvePremium!: (value: boolean) => void;
-    mockThemesFeatureAccess = false;
-    mockGetVerifiedPremiumStatus.mockImplementationOnce(() => new Promise<boolean>((resolve) => {
-      resolvePremium = resolve;
-    }));
+    // Хранилище «отвечает» поздно и приносит старый выбор (marine).
+    let releaseStored!: () => void;
+    // Задерживаем только чтение выбора Liquid Glass; старые ключи (app_theme) — сразу.
+    mockMultiGet = (keys) => (keys.includes('liquid_glass_theme')
+      ? new Promise((resolve) => {
+        releaseStored = () => resolve(keys.map((key) => [key, key === 'liquid_glass_theme' ? 'marine' : null]));
+      })
+      : Promise.resolve(keys.map((key) => [key, null] as [string, string | null])));
     const wrapper = ({ children }: { children: React.ReactNode }) => (
       <ThemeProvider>{children}</ThemeProvider>
     );
     const { result } = await renderHook(() => useTheme(), { wrapper });
-    await waitFor(() => expect(mockGetVerifiedPremiumStatus).toHaveBeenCalled());
 
-    await act(() => result.current.setThemeMode('sagePorcelain'));
-    expect(result.current.appliedThemeMode).toBe('sagePorcelain');
+    // Человек успел выбрать тему раньше, чем прочиталось хранилище.
+    await act(async () => { result.current.setLiquidGlassThemeId('rose'); });
+    expect(result.current.liquidGlassThemeId).toBe('rose');
 
-    await act(async () => resolvePremium(false));
+    await act(async () => { releaseStored(); await Promise.resolve(); });
 
-    expect(result.current.appliedThemeMode).toBe('sagePorcelain');
+    expect(result.current.liquidGlassThemeId).toBe('rose');
   });
 });

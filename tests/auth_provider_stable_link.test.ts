@@ -366,7 +366,9 @@ describe('auth provider stable-id linking', () => {
     expect(ensureSource.indexOf('readStableAuthLinkCache(key)')).toBeLessThan(ensureSource.indexOf('const fn = callable<'));
     expect(ensureSource).toContain('hasFreshMetadata');
     expect(ensureSource).toContain('linkMetadata?: StableAuthLinkMetadata');
-    expect(ensureSource).toContain('writeStableAuthLinkCache(`${actualStableUid}:${actualAuthUid}`).catch(() => {})');
+    // зачем: PM-229 запретил немые catch — запись кэша обязана логировать сбой.
+    expect(ensureSource).toContain("writeStableAuthLinkCache(`${actualStableUid}:${actualAuthUid}`).catch(swallowError('cloud_sync:ensureStableAuthLinkForStableIdDetailed'))");
+    expect(ensureSource).not.toContain('writeStableAuthLinkCache(`${actualStableUid}:${actualAuthUid}`).catch(() => {})');
     expect(ensureSource).not.toContain('writeStableAuthLinkCache(key).catch(() => {})');
     expect(resetSource).toContain('AsyncStorage.removeItem(STABLE_AUTH_LINK_CACHE_KEY)');
   });

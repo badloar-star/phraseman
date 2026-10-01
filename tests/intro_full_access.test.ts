@@ -87,7 +87,7 @@ describe('intro full access gift', () => {
     expect(state.endsAt).toBe(1000 + 72 * 60 * 60 * 1000);
   });
 
-  it('never re-grants after expiry, including after a local admin reset', async () => {
+  it('never re-grants after expiry, even when onboarding completes again', async () => {
     const access = require('../app/intro_full_access');
     const firstStart = 1000;
     const firstEnd = firstStart + 72 * 60 * 60 * 1000;
@@ -105,8 +105,8 @@ describe('intro full access gift', () => {
       startedAt: firstStart,
     });
 
-    // Только админский сброс (для проверки в разработке) очищает отметку → подарок выдаётся заново.
-    await access.resetIntroFullAccessForAdmin();
+    // зачем: админские помощники сброса удалены из кода 2026-08-08 (e7eb7d316);
+    // повторный старт поверх серверного «уже выдан» тоже не продлевает подарок.
     const reStart = firstEnd + 20_000;
     mockClaimIntroFullAccessOnCloud.mockResolvedValue({
       grantedAtMs: firstStart,
@@ -141,31 +141,6 @@ describe('intro full access gift', () => {
     await access.markIntroFullAccessEndedSeen();
     await expect(access.getIntroFullAccessState(end + 1)).resolves.toMatchObject({
       active: false,
-      expiredUnseen: false,
-    });
-  });
-
-  it('supports admin activation, expiration, and reset helpers', async () => {
-    const access = require('../app/intro_full_access');
-    const now = Date.UTC(2026, 5, 6, 10, 0, 0);
-
-    await access.activateIntroFullAccessForAdmin(now);
-    await expect(access.getIntroFullAccessState(now)).resolves.toMatchObject({
-      active: true,
-      welcomeUnseen: true,
-    });
-
-    await access.expireIntroFullAccessForAdmin(now + 10_000);
-    await expect(access.getIntroFullAccessState(now + 10_000)).resolves.toMatchObject({
-      active: false,
-      expiredUnseen: true,
-      welcomeUnseen: false,
-    });
-
-    await access.resetIntroFullAccessForAdmin();
-    await expect(access.getIntroFullAccessState(now + 10_000)).resolves.toMatchObject({
-      active: false,
-      startedAt: null,
       expiredUnseen: false,
     });
   });

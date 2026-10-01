@@ -1642,7 +1642,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -1650,9 +1650,13 @@
     "acceptance": [
       {
         "id": "PM-035-A1",
-        "text": "Карточки и продолжение нужного набора первичны",
-        "accepted": false,
-        "evidence": []
+        "text": "Продолжить обучение + три плитки первичны (D42)",
+        "accepted": true,
+        "evidence": [
+          "a8abc1d85 (утверждённая владельцем Главная 2.0)",
+          "HOME_V2_LAYOUT / app/(tabs)/home.tsx renderHomeV2: HomeV2ContinueCard + HomeV2FeatureTiles",
+          "РЕШЕНО КООРДИНАТОРОМ (Fable), 01.10 — владелец поручил координатору принимать решения; docs/phraseman-2.0/PROGRESS.md"
+        ]
       },
       {
         "id": "PM-035-A2",
@@ -1669,10 +1673,16 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
+    "reviewer": "координатор (Fable) по поручению владельца 01.10",
+    "evidence": [
+      "a8abc1d85 (утверждённая владельцем Главная 2.0)",
+      "HOME_V2_LAYOUT / app/(tabs)/home.tsx renderHomeV2: HomeV2ContinueCard + HomeV2FeatureTiles",
+      "РЕШЕНО КООРДИНАТОРОМ (Fable), 01.10 — владелец поручил координатору принимать решения; docs/phraseman-2.0/PROGRESS.md"
+    ],
+    "notes": [
+      "Закрыто в объёме D42/D50 по решению координатора"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -2084,7 +2094,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -2093,14 +2103,21 @@
       {
         "id": "PM-044-A1",
         "text": "Контур заполняется до 10 дней и далее по согласованной шкале",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "components/streak/StreakFlameFill.tsx: контур огня заполняется по стадиям 0–10, после 10 — насыщение к 30 дням (токены темы, без новых ассетов); app/streak_stats.tsx",
+          "tests/streak_flame_fill_contract.test.mjs",
+          "эмулятор 01.10: 4 и 5 дней = 40%/50% заливки",
+          "РЕШЕНО КООРДИНАТОРОМ (Fable), 01.10 — владелец поручил координатору принимать решения; docs/phraseman-2.0/PROGRESS.md"
+        ]
       },
       {
         "id": "PM-044-A2",
         "text": "нет бесконечного мерцания и нового чтения сервера каждый кадр",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "StreakFlameFill статичен: нет withRepeat/Animated.loop, нет чтений сети (сторож A2)"
+        ]
       }
     ],
     "depends_on": [],
@@ -2111,10 +2128,18 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
+    "reviewer": "координатор (Fable) по поручению владельца 01.10",
+    "evidence": [
+      "components/streak/StreakFlameFill.tsx: контур огня заполняется по стадиям 0–10, после 10 — насыщение к 30 дням (токены темы, без новых ассетов); app/streak_stats.tsx",
+      "tests/streak_flame_fill_contract.test.mjs",
+      "эмулятор 01.10: 4 и 5 дней = 40%/50% заливки",
+      "РЕШЕНО КООРДИНАТОРОМ (Fable), 01.10 — владелец поручил координатору принимать решения; docs/phraseman-2.0/PROGRESS.md",
+      "StreakFlameFill статичен: нет withRepeat/Animated.loop, нет чтений сети (сторож A2)"
+    ],
+    "notes": [
+      "Дизайн 01.10: шкала из существующего векторного огня по решению координатора; заменим, если появится макет"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -7240,7 +7265,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -7249,14 +7274,22 @@
       {
         "id": "PM-139-A1",
         "text": "Согласован с новой дизайн-системой",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "app/(tabs)/home.tsx:3563 chat_bubbles.png в плитке «Диалоги» (HomeV2FeatureTiles)",
+          "онбординг без старого ассета",
+          "РЕШЕНО КООРДИНАТОРОМ (Fable), 01.10 — владелец поручил координатору принимать решения; docs/phraseman-2.0/PROGRESS.md"
+        ]
       },
       {
         "id": "PM-139-A2",
         "text": "старый не используется ни в главной, ни в onboarding",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "app/(tabs)/home.tsx:3563 chat_bubbles.png в плитке «Диалоги» (HomeV2FeatureTiles)",
+          "онбординг без старого ассета",
+          "РЕШЕНО КООРДИНАТОРОМ (Fable), 01.10 — владелец поручил координатору принимать решения; docs/phraseman-2.0/PROGRESS.md"
+        ]
       }
     ],
     "depends_on": [],
@@ -7267,10 +7300,16 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
+    "reviewer": "координатор (Fable) по поручению владельца 01.10",
+    "evidence": [
+      "app/(tabs)/home.tsx:3563 chat_bubbles.png в плитке «Диалоги» (HomeV2FeatureTiles)",
+      "онбординг без старого ассета",
+      "РЕШЕНО КООРДИНАТОРОМ (Fable), 01.10 — владелец поручил координатору принимать решения; docs/phraseman-2.0/PROGRESS.md"
+    ],
+    "notes": [
+      "Закрыто по решению координатора; хвост — вырезать home_menu/*.webp и старый мёртвый рендер Главной (D69/D78)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

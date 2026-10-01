@@ -42,7 +42,7 @@ describe('статистика обычного аккаунта — свобо�
 
   test('замок закрывает ВСЮ карточку аналитики, включая переключатель метрик', () => {
     const card = block(source, 'function WeekAnalyticsCard(', '\nfunction AllMetricsFoldCard(');
-    const blurOpen = card.indexOf('<StatsPremiumBlur isPremium={isPremium} context="stats" snapshotKey="learningCoach"');
+    const blurOpen = card.indexOf('<StatsPremiumBlur isPremium={isPremium} accessResolved={premiumAccessResolved} context="stats" snapshotKey="learningCoach"');
     const surfaceOpen = card.indexOf('<StatsCardArtSurface testID="stats-primary-analytics"');
     const selector = card.indexOf('testID="stats-primary-metric-selector"');
     expect(blurOpen).toBeGreaterThan(-1);
@@ -51,12 +51,12 @@ describe('статистика обычного аккаунта — свобо�
     expect(card.indexOf('</StatsCardArtSurface>')).toBeLessThan(card.indexOf('</StatsPremiumBlur>'));
     // Замок не рендерит детей — переключатель физически не интерактивен.
     expect(blur).toContain('if (isPremium || devUnlock) return <>{children}</>;');
-    expect(blur).toContain('<PremiumStatsPlaceholder snapshotKey={snapshotKey} />');
+    expect(blur).toContain('<PremiumStatsPlaceholder snapshotKey={snapshotKey} g={g} />');
   });
 
   test('«Все показатели» под тем же замком со своим заголовком', () => {
     const all = block(source, 'const allMetricsBlock = (', 'const percentilesBlock = (() => {');
-    expect(all).toContain('<StatsPremiumBlur isPremium={isPremium} context="stats" snapshotKey="lifetimeTotals" overrideTitle={allMetricsTitle}');
+    expect(all).toContain('<StatsPremiumBlur isPremium={isPremium} accessResolved={premiumAccessResolved} context="stats" snapshotKey="lifetimeTotals" overrideTitle={allMetricsTitle}');
     expect(all).toContain('<AllMetricsFoldCard');
   });
 

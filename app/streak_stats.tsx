@@ -1450,6 +1450,7 @@ function WeekAnalyticsCard({
     isGoldTheme,
     themeMode,
     isPremium,
+    premiumAccessResolved,
     statsDevUnlock,
     weekDeltaMinutes,
     metric,
@@ -1457,6 +1458,7 @@ function WeekAnalyticsCard({
 }: StatsSectionThemeProps & {
     metrics: LearningCoachMetrics;
     isPremium: boolean;
+    premiumAccessResolved: boolean;
     statsDevUnlock: boolean;
     weekDeltaMinutes: number | null;
     metric: StatsPrimaryMetric;
@@ -1533,7 +1535,7 @@ function WeekAnalyticsCard({
     // переключатель «Время / Опыт / Год» оставался живым — частичная блокировка.
     // Теперь замок закрывает всю карточку; дизайн замка (lock + gold CTA) прежний.
     return (
-      <StatsPremiumBlur isPremium={isPremium} context="stats" snapshotKey="learningCoach" devUnlock={statsDevUnlock}>
+      <StatsPremiumBlur isPremium={isPremium} accessResolved={premiumAccessResolved} context="stats" snapshotKey="learningCoach" devUnlock={statsDevUnlock}>
       <StatsCardArtSurface testID="stats-primary-analytics" name="practiceBalance" theme={t} themeMode={themeMode} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} gradientLocations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} radius={cardRadius} style={[{ borderRadius: cardRadius, padding: 16, borderWidth: 0, overflow: 'hidden' }, isGoldTheme ? goldShadow(2) : null]}>
         {isGoldTheme && <GoldBevel radius={16} intensity="normal"/>}
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
@@ -1787,7 +1789,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     const [bestStreak, setBestStreak] = useState(_sc.bestStreak);
     const [, setActiveDays] = useState(_sc.activeDays);
     const [, setMyName] = useState(_sc.myName);
-    const { hasPremiumAccess: isPremium, devLocalPlusOverride } = usePremium();
+    const { hasPremiumAccess: isPremium, devLocalPlusOverride, accessResolved: premiumAccessResolved } = usePremium();
     /** Тестер «Снять премиум»: иначе devUnlock ниже перекрывает блюр, хотя isPremium уже false. */
     const [testerStripsPremium, setTesterStripsPremium] = useState<boolean | null>(() => (ENABLE_DEV_TOOLS ? null : false));
     useFocusEffect(useCallback(() => {
@@ -2144,6 +2146,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             isGoldTheme={isGoldTheme}
             themeMode={themeMode}
             isPremium={isPremium}
+            premiumAccessResolved={premiumAccessResolved}
             statsDevUnlock={statsDevUnlock}
             weekDeltaMinutes={weekDeltaMinutes}
             metric={primaryMetric}
@@ -2154,7 +2157,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     const allMetricsTitle = triLang(lang, { ru: 'Все показатели', uk: 'Усі показники', en: 'All stats', es: 'Todos los datos', 'pt-BR': 'Todos os dados', vi: 'Tất cả chỉ số', id: 'Semua statistik', tr: 'Tüm istatistikler', pl: 'Wszystkie statystyki' });
     const allMetricsBlock = (
         <Reanimated.View key="all-metrics" entering={FadeInDown.duration(420).delay(280)}>
-          <StatsPremiumBlur isPremium={isPremium} context="stats" snapshotKey="lifetimeTotals" overrideTitle={allMetricsTitle} devUnlock={statsDevUnlock}>
+          <StatsPremiumBlur isPremium={isPremium} accessResolved={premiumAccessResolved} context="stats" snapshotKey="lifetimeTotals" overrideTitle={allMetricsTitle} devUnlock={statsDevUnlock}>
             <AllMetricsFoldCard
               t={t}
               f={f}
@@ -2186,7 +2189,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         if (pItems.length === 0) {
           return (
             <Reanimated.View key="percentiles-locked" entering={FadeInDown.duration(420).delay(420)}>
-              <StatsPremiumBlur isPremium={isPremium} context="percentiles" snapshotKey="percentiles" devUnlock={statsDevUnlock}>
+              <StatsPremiumBlur isPremium={isPremium} accessResolved={premiumAccessResolved} context="percentiles" snapshotKey="percentiles" devUnlock={statsDevUnlock}>
                 <View />
               </StatsPremiumBlur>
             </Reanimated.View>
@@ -2194,7 +2197,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         }
         return (
           <Reanimated.View key="percentiles" entering={FadeInDown.duration(420).delay(420)}>
-          <StatsPremiumBlur isPremium={isPremium} context="percentiles" snapshotKey="percentiles" devUnlock={statsDevUnlock}>
+          <StatsPremiumBlur isPremium={isPremium} accessResolved={premiumAccessResolved} context="percentiles" snapshotKey="percentiles" devUnlock={statsDevUnlock}>
             <StatsCardArtSurface testID="stats-comparison-content" name="percentiles" theme={t} themeMode={themeMode} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 16, borderWidth: 0, overflow: 'hidden' }, !isGoldTheme ? null : null]}>
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>
@@ -2432,7 +2435,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
 
                 {detailsOpen && (<View testID="stats-details-expanded" style={{ gap: 12 }}>
                 {/* График времени по дням — для !premium закрыт blur\'ом + lock CTA. */}
-                <StatsPremiumBlur isPremium={isPremium} context="stats" snapshotKey="pathChart" devUnlock={statsDevUnlock}>
+                <StatsPremiumBlur isPremium={isPremium} accessResolved={premiumAccessResolved} context="stats" snapshotKey="pathChart" devUnlock={statsDevUnlock}>
                 {(() => {
                         // У новичка график — простыня пустых столбиков; вместо неё честная заглушка.
                         if (allTimeDays.filter(d => d.ms > 0).length < 3) {
@@ -2541,7 +2544,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                     })()}
                 </StatsPremiumBlur>
 
-                {lifetimeStats != null && (<StatsPremiumBlur isPremium={isPremium} context="stats" snapshotKey="lifetimeTotals" devUnlock={statsDevUnlock}>
+                {lifetimeStats != null && (<StatsPremiumBlur isPremium={isPremium} accessResolved={premiumAccessResolved} context="stats" snapshotKey="lifetimeTotals" devUnlock={statsDevUnlock}>
                     <LifetimeTotalsBlock t={{
                             bgCard: t.bgCard,
                             bgSurface: t.bgSurface,

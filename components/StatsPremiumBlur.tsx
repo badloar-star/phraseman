@@ -6,7 +6,7 @@ import { useRouter } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
-import { isLightThemeMode } from '../constants/theme';
+import { liquidGlassTokens, type GlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
 
 export type StatsPremiumBlurContext = 'stats' | 'heatmap' | 'patterns' | 'percentiles';
@@ -26,6 +26,8 @@ export interface StatsPremiumBlurProps {
   overrideTitle?: string;
   /** Dev/QA: show content without the premium veil in dev builds only. */
   devUnlock?: boolean;
+  /** false — статус Plus ещё не определён: показываем нейтральную заглушку без замка и кнопки. */
+  accessResolved?: boolean;
 }
 
 const CONTEXT_TITLES: Record<StatsPremiumBlurContext, {
@@ -92,7 +94,7 @@ function PremiumSnapshotSheen() {
       />
       <LinearGradient
         pointerEvents="none"
-        colors={['rgba(255,215,0,0.00)', 'rgba(255,215,0,0.16)', 'rgba(255,255,255,0.00)']}
+        colors={['rgba(255,255,255,0.00)', 'rgba(255,255,255,0.12)', 'rgba(255,255,255,0.00)']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         style={[styles.veilBand, styles.veilBandMiddle]}
@@ -109,14 +111,21 @@ function PremiumSnapshotSheen() {
   );
 }
 
-function PremiumStatsPlaceholder({ snapshotKey }: { snapshotKey?: StatsPremiumSnapshotKey }) {
+// зачем (01.10, стиль 2.0 «никакого жёлтого»): заглушка красится токенами темы — акцент в
+// «Акценте/Максимуме», нейтральный тон в «Спокойно»; золото #FFD700 убрано.
+function markColor(g: GlassTokens): string {
+  return g.level === 'accent' || g.level === 'max' ? g.accentBright : g.secondary;
+}
+
+function PremiumStatsPlaceholder({ snapshotKey, g }: { snapshotKey?: StatsPremiumSnapshotKey; g: GlassTokens }) {
+  const mark = markColor(g);
   const isHeatmap = snapshotKey === 'heatmap';
   const isChart = snapshotKey === 'pathChart' || snapshotKey === 'lifetimeTotals';
   const rows = isHeatmap ? 7 : 5;
   const cols = isHeatmap ? 12 : 6;
 
   return (
-    <View pointerEvents="none" style={styles.placeholder}>
+    <View pointerEvents="none" style={[styles.placeholder, { backgroundColor: g.opaqueCard }]}>
       {isHeatmap ? (
         <View style={styles.heatmapGrid}>
           {Array.from({ length: rows * cols }).map((_, index) => (
@@ -124,7 +133,7 @@ function PremiumStatsPlaceholder({ snapshotKey }: { snapshotKey?: StatsPremiumSn
               key={index}
               style={[
                 styles.heatmapCell,
-                { opacity: 0.18 + ((index * 7) % 5) * 0.055 },
+                { backgroundColor: mark, opacity: 0.18 + ((index * 7) % 5) * 0.055 },
               ]}
             />
           ))}
@@ -132,14 +141,14 @@ function PremiumStatsPlaceholder({ snapshotKey }: { snapshotKey?: StatsPremiumSn
       ) : (
         <>
           <View style={styles.placeholderHeader}>
-            <View style={styles.placeholderTitle} />
-            <View style={styles.placeholderPill} />
+            <View style={[styles.placeholderTitle, { backgroundColor: g.line }]} />
+            <View style={[styles.placeholderPill, { backgroundColor: g.line }]} />
           </View>
           <View style={styles.placeholderBody}>
             {Array.from({ length: rows }).map((_, index) => (
               <View key={index} style={styles.placeholderRow}>
-                <View style={[styles.placeholderDot, { opacity: 0.24 + index * 0.04 }]} />
-                <View style={[styles.placeholderLine, { width: `${72 - index * 7}%` }]} />
+                <View style={[styles.placeholderDot, { backgroundColor: mark, opacity: 0.24 + index * 0.04 }]} />
+                <View style={[styles.placeholderLine, { backgroundColor: g.line, width: `${72 - index * 7}%` }]} />
               </View>
             ))}
           </View>
@@ -150,6 +159,7 @@ function PremiumStatsPlaceholder({ snapshotKey }: { snapshotKey?: StatsPremiumSn
                 style={[
                   styles.placeholderBar,
                   {
+                    backgroundColor: mark,
                     height: isChart ? 38 + ((index * 13) % 58) : 22 + ((index * 11) % 44),
                     opacity: 0.18 + ((index * 3) % 4) * 0.07,
                   },
@@ -170,15 +180,13 @@ function StatsPremiumBlur({
   snapshotKey,
   overrideTitle,
   devUnlock = false,
+  accessResolved = true,
 }: StatsPremiumBlurProps) {
   const router = useRouter();
-  const { theme: t, f, themeMode } = useTheme();
+  const { f, liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
 
-  // зачем: флаг был захардкожен false, и тернарники isLight ниже были мёртвым кодом —
-  // sagePorcelain получала тёмный вариант бейджа/заголовка. Включаем реальный признак
-  // единственной светлой темы через центральный классификатор.
-  const isLight = isLightThemeMode(themeMode);
   const titleCopy = CONTEXT_TITLES[context];
   const title = overrideTitle ?? triLang(lang, titleCopy);
   const ctaLabel = triLang(lang, {
@@ -193,11 +201,24 @@ function StatsPremiumBlur({
     pl: 'Otwórz z Plus',
   });
   if (isPremium || devUnlock) return <>{children}</>;
+  const vivid = g.level === 'accent' || g.level === 'max';
+  const ctaBg = vivid ? g.accent : g.cta;
+  const ctaInk = vivid ? g.accentInk : g.ctaInk;
+  // зачем (эмулятор 01.10): пока статус Plus не определён, подписчик видел на мгновение
+  // замок и «Открыть с Plus» (default-then-patch). Показываем только нейтральную заглушку
+  // той же высоты — без замка и кнопки; геометрия не прыгает.
+  if (!accessResolved) {
+    return (
+      <View style={[styles.root, context === 'heatmap' ? styles.heatmapRoot : styles.statsRoot]} collapsable={false}>
+        <PremiumStatsPlaceholder snapshotKey={snapshotKey} g={g} />
+      </View>
+    );
+  }
 
   return (
     <View style={[styles.root, context === 'heatmap' ? styles.heatmapRoot : styles.statsRoot]} collapsable={false}>
-      <PremiumStatsPlaceholder snapshotKey={snapshotKey} />
-      <View pointerEvents="none" style={styles.snapshotScrim} />
+      <PremiumStatsPlaceholder snapshotKey={snapshotKey} g={g} />
+      <View pointerEvents="none" style={[styles.snapshotScrim, { backgroundColor: g.isLight ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.26)' }]} />
       <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, styles.sheenLayer]}>
         <PremiumSnapshotSheen />
       </View>
@@ -212,30 +233,20 @@ function StatsPremiumBlur({
         accessibilityRole="button"
         accessibilityLabel={ctaLabel}
       >
-        <View style={[styles.lockBadge, { backgroundColor: isLight ? 'rgba(255,255,255,0.92)' : 'rgba(20,16,8,0.85)' }]}>
-          {/* зачем: на белом бейдже светлой темы яркое #FFD700 выцветает (~1.2:1);
-              t.gold sagePorcelain — тёмная бронза #8B6320 (~4.7:1), замок остаётся премиумным */}
-          <Ionicons name="lock-closed" size={28} color={isLight ? t.gold : '#FFD700'} />
+        <View style={[styles.lockBadge, { backgroundColor: g.opaqueControl }]}>
+          <Ionicons name="lock-closed" size={28} color={vivid ? g.accentBright : g.text} />
         </View>
         <View style={styles.titleCtaBlock}>
-          {/* зачем: подложка вуали форсированно тёмная (скримы плейсхолдера не зависят от темы),
-              тёмный t.textPrimary светлой темы на ней невидим (~1.4:1) — берём фарфоровый белый
-              в тон bgCard sagePorcelain (~11:1) вместо золота, кричащего на спокойной теме */}
-          <Text style={[styles.title, { color: isLight ? '#FCFDF9' : '#FFD700', fontSize: f.bodyLg }]}>
+          <Text style={[styles.title, { color: g.text, fontSize: f.bodyLg }]}>
             {title}
           </Text>
-          <View style={styles.ctaWrap}>
-            <LinearGradient
-              colors={['#B8860B', '#FFD700', '#B8860B']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.ctaGradient}
-            >
+          <View style={[styles.ctaWrap, { backgroundColor: ctaBg }]}>
+            <View style={styles.ctaGradient}>
               <View style={styles.ctaInner}>
-                <Ionicons name="diamond" size={18} color={'#1a1208'} />
-                <Text style={[styles.ctaText, { fontSize: f.body }]}>{ctaLabel}</Text>
+                <Ionicons name="diamond" size={18} color={ctaInk} />
+                <Text style={[styles.ctaText, { color: ctaInk, fontSize: f.body }]}>{ctaLabel}</Text>
               </View>
-            </LinearGradient>
+            </View>
           </View>
         </View>
       </Pressable>
@@ -298,7 +309,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     borderRadius: 16,
     borderWidth: 0,
-    borderColor: 'rgba(255,215,0,0.10)',
+    borderColor: 'transparent',
     backgroundColor: 'rgba(0,0,0,0.00)',
   },
   placeholderHeader: {
@@ -311,7 +322,7 @@ const styles = StyleSheet.create({
     height: 16,
     width: '48%',
     borderRadius: 999,
-    backgroundColor: 'rgba(255,215,0,0.20)',
+    backgroundColor: 'transparent',
   },
   placeholderPill: {
     height: 24,
@@ -319,7 +330,7 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     backgroundColor: 'rgba(255,255,255,0.10)',
     borderWidth: 0,
-    borderColor: 'rgba(255,215,0,0.16)',
+    borderColor: 'transparent',
   },
   placeholderBody: {
     gap: 10,
@@ -333,7 +344,7 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     borderRadius: 999,
-    backgroundColor: '#FFD700',
+    backgroundColor: 'transparent',
   },
   placeholderLine: {
     height: 10,
@@ -352,7 +363,7 @@ const styles = StyleSheet.create({
     minWidth: 12,
     borderTopLeftRadius: 9,
     borderTopRightRadius: 9,
-    backgroundColor: '#FFD700',
+    backgroundColor: 'transparent',
   },
   heatmapGrid: {
     flexDirection: 'row',
@@ -366,7 +377,7 @@ const styles = StyleSheet.create({
     width: 12,
     height: 12,
     borderRadius: 3,
-    backgroundColor: '#FFD700',
+    backgroundColor: 'transparent',
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
@@ -387,7 +398,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 0,
-    borderColor: '#FFD700',
+    borderColor: 'transparent',
   },
   title: {
     fontWeight: '900',
@@ -412,7 +423,6 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   ctaText: {
-    color: '#1a1208',
     fontWeight: '900',
     letterSpacing: 0.4,
   },

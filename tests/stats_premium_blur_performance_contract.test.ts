@@ -19,7 +19,7 @@ describe('stats premium lock veil performance contract', () => {
     expect(source).not.toContain('opacity: 0.16');
     expect(source).not.toContain("'rgba(0,0,0,0.86)'");
     expect(source).toContain('function PremiumStatsPlaceholder');
-    expect(source).toContain('<PremiumStatsPlaceholder snapshotKey={snapshotKey} />');
+    expect(source).toContain('<PremiumStatsPlaceholder snapshotKey={snapshotKey} g={g} />');
     expect(source).toContain('if (isPremium || devUnlock) return <>{children}</>;');
     expect(streakStats).toContain('snapshotKey="learningCoach"');
     // «Ритм недели» слит в «Твою неделю» (learningCoach) — отдельного weekRhythm-блюра больше нет.

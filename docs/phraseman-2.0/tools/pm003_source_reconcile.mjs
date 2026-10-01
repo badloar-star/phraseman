@@ -31,7 +31,19 @@ for (const r of reqs) {
 const transcript = fs.readFileSync(`${ROOT}/sources/02_screenshot_transcript.md`, 'utf8');
 const items = [...transcript.matchAll(/^(S\d{2})\./gm)].map((m) => m[1]);
 const anchored = new Set(reqs.filter((r) => r.source && r.source.anchor).map((r) => r.source.anchor));
-const unanchored = items.filter((id) => !anchored.has(id));
+// зачем: 32 пункта без собственного R привязаны через registries/screenshot_coverage.json (D и/или R);
+// пункт считается привязанным, если есть anchor у требования ИЛИ запись покрытия с реально существующими R.
+const coverage = JSON.parse(fs.readFileSync(`${ROOT}/registries/screenshot_coverage.json`, 'utf8'));
+const reqIds = new Set(reqs.map((r) => r.id));
+const badCoverage = [];
+for (const [sid, c] of Object.entries(coverage.coverage)) {
+  const okR = (c.requirements || []).length > 0 && c.requirements.every((id) => reqIds.has(id));
+  const okD = (c.decisions || []).length > 0;
+  if (!okR || !okD) badCoverage.push(sid);
+}
+const covered = new Set(Object.keys(coverage.coverage).filter((id) => !badCoverage.includes(id)));
+const unanchored = items.filter((id) => !anchored.has(id) && !covered.has(id));
+const unconfirmed = (coverage.unconfirmed || []).map((u) => u.id);
 
 const report = {
   requirements_total: reqs.length,
@@ -40,7 +52,11 @@ const report = {
   requirements_without_task: withoutTask,
   screenshot_items_total: items.length,
   screenshot_items_anchored: items.length - unanchored.length,
+  screenshot_items_anchored_by_requirement: items.filter((id) => anchored.has(id)).length,
+  screenshot_items_bound_by_coverage_file: items.filter((id) => !anchored.has(id) && covered.has(id)).length,
   screenshot_items_unanchored: unanchored,
+  screenshot_coverage_bad_entries: badCoverage,
+  screenshot_items_unconfirmed: unconfirmed,
 };
 console.log('[PM-003]', JSON.stringify(report, null, 2));
-process.exitCode = mismatches.length || withoutTask.length ? 1 : 0;
+process.exitCode = mismatches.length || withoutTask.length || unanchored.length || badCoverage.length ? 1 : 0;

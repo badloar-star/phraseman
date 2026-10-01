@@ -123,17 +123,17 @@
       {
         "id": "PM-003-A1",
         "text": "Каждый новый найденный пункт имеет source locator, ID, статус и задачу",
-        "accepted": false,
+        "accepted": true,
       "evidence": [
-          "NOT_MET: tools/pm003_source_reconcile.mjs — 258 требований, у всех есть задача, 216 locator-ов сверены 0 расхождений; но 32 из 68 пунктов расшифровки скриншотов (S01,S06,S08,... см. docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md) без привязки к требованию/задаче"
+          "tools/pm003_source_reconcile.mjs: 259 требований, у всех задача, 216 locator-ов 0 расхождений; расшифровка 68/68 привязана (37 через anchor R, 31 через registries/screenshot_coverage.json D+R); новый R258 (S01) -> PM-004"
         ]
       },
       {
         "id": "PM-003-A2",
         "text": "неподтверждённые обрезанные строки отмечены отдельно",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "NOT_MET: обрезанные места отмечены только в тексте расшифровки (S12, S57); отдельного перечня со статусом «не подтверждено» в реестре нет (docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md)"
+          "registries/screenshot_coverage.json -> unconfirmed: S12 (закрыто полем ввода), S57 (обрезано на скриншоте), статус NOT_CONFIRMED, скрипт выводит screenshot_items_unconfirmed"
         ]
       }
     ],
@@ -157,7 +157,8 @@
     "epic": "E01",
     "title": "Построить полный реестр экранов и маршрутов",
     "requirement_ids": [
-      "R004"
+      "R004",
+      "R258"
     ],
     "basis": "OWNER",
     "stage": "A",

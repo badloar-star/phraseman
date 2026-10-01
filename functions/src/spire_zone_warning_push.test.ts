@@ -157,3 +157,28 @@ describe('spireCurrentWeekIdForWarning', () => {
     expect(spireCurrentWeekIdForWarning(fakeWeekId, now)).toBe('week-2026-8');
   });
 });
+
+// ── PM-200 ────────────────────────────────────────────────────────────────────
+describe('PM-200: opt-out по pushPrefs.streak и метка недели', () => {
+  const PUSH_FIXTURE = 'ExponentPushToken' + '[a]';
+  it('pushPrefs.streak=false — не шлём; поля нет — шлём', () => {
+    expect(shouldSendSpireZoneWarningPush({ expoPushToken: PUSH_FIXTURE, pushPrefs: { streak: false } })).toBe(false);
+    expect(shouldSendSpireZoneWarningPush({ expoPushToken: PUSH_FIXTURE, pushPrefs: null })).toBe(true);
+  });
+  it('метка этой недели отсекает повтор; один пуш на человека', () => {
+    const users = new Map<string, SpireZoneWarningUser>([
+      ['u1', { expoPushToken: PUSH_FIXTURE, sentForWeekId: '2026-W40' }],
+      ['u2', { expoPushToken: PUSH_FIXTURE, sentForWeekId: '2026-W39' }],
+    ]);
+    const out = buildSpireZoneWarningCandidates(
+      [
+        { uid: 'u1', status: 'promotion_edge' },
+        { uid: 'u2', status: 'demotion_edge' },
+        { uid: 'u2', status: 'promotion_edge' },
+      ],
+      users,
+      '2026-W40',
+    );
+    expect(out).toEqual([expect.objectContaining({ uid: 'u2', status: 'demotion_edge' })]);
+  });
+});

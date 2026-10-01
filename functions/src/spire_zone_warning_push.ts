@@ -23,7 +23,9 @@
 // кандидатов, а не .get() на каждого. Никакого нового расписания раз в
 // N минут — крон раз в неделю, в воскресенье.
 //
-// Право уведомления и чистая логика — та же схема, что у spire_week_result_push.ts.
+// Право уведомления и чистая логика — та же схема, что у spire_week_result_push.ts
+// (PM-200: pushPrefs.streak/league через isSpirePushOptedOut; метка недели
+// spireZoneWarningPushWeekId в users/{uid} — повтор крона не дублирует пуш).
 // ═══════════════════════════════════════════════════════════════════════════
 import * as admin from 'firebase-admin';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
@@ -33,9 +35,15 @@ import { SPIRE_GROUPS_COLLECTION, spireWeekId } from './spire_groups';
 import { spireLiveZoneSize } from './spire_residents';
 import {
   chunkSpirePushMessages,
+  isSpirePushOptedOut,
   isValidSpireExpoPushToken,
+  readSpirePushMark,
+  readSpirePushPrefs,
   sendSpireExpoPushChunk,
+  stampSpirePushMarks,
+  SPIRE_ZONE_WARNING_PUSH_MARK_FIELD,
   type SpireExpoPushMessage,
+  type SpirePushPrefs,
 } from './spire_notifications';
 
 const LOG = '[SPIRE-ZONE-WARNING]';
@@ -89,7 +97,9 @@ export type SpireZoneWarningInput = Readonly<{
 export type SpireZoneWarningUser = Readonly<{
   expoPushToken?: string | null;
   pushTokenLang?: string | null;
-  pushPrefs?: { league?: boolean } | null;
+  pushPrefs?: SpirePushPrefs | null;
+  /** weekId, за который предупреждение уже отправлено (PM-200). */
+  sentForWeekId?: string | null;
 }>;
 
 export interface SpireZoneWarningCandidate {
@@ -99,20 +109,33 @@ export interface SpireZoneWarningCandidate {
   status: Exclude<SpireZoneEdgeStatus, null>;
 }
 
-export function shouldSendSpireZoneWarningPush(u: SpireZoneWarningUser): boolean {
-  if (!isValidSpireExpoPushToken(u.expoPushToken)) return false;
-  if (u.pushPrefs?.league === false) return false;
-  return true;
+/** Почему пуш не шлём (null = шлём). Чистая функция. */
+export function spireZoneWarningSkipReason(
+  u: SpireZoneWarningUser,
+  weekId?: string | null,
+): 'no_token' | 'opted_out' | 'already_sent' | null {
+  if (!isValidSpireExpoPushToken(u.expoPushToken)) return 'no_token';
+  if (isSpirePushOptedOut(u.pushPrefs)) return 'opted_out';
+  if (weekId && u.sentForWeekId === weekId) return 'already_sent';
+  return null;
 }
 
+export function shouldSendSpireZoneWarningPush(u: SpireZoneWarningUser, weekId?: string | null): boolean {
+  return spireZoneWarningSkipReason(u, weekId) === null;
+}
+
+/** Один пуш на человека за прогон (несколько комнат/языков — берём первый статус). */
 export function buildSpireZoneWarningCandidates(
   inputs: readonly SpireZoneWarningInput[],
   usersByUid: ReadonlyMap<string, SpireZoneWarningUser>,
+  weekId?: string | null,
 ): SpireZoneWarningCandidate[] {
   const out: SpireZoneWarningCandidate[] = [];
+  const seen = new Set<string>();
   for (const r of inputs) {
     const u = usersByUid.get(r.uid);
-    if (!u || !shouldSendSpireZoneWarningPush(u)) continue;
+    if (!u || seen.has(r.uid) || !shouldSendSpireZoneWarningPush(u, weekId)) continue;
+    seen.add(r.uid);
     out.push({ uid: r.uid, token: u.expoPushToken as string, uiLang: u.pushTokenLang || 'ru', status: r.status });
   }
   return out;
@@ -153,6 +176,8 @@ export interface SpireZoneWarningPushSummary {
   candidates: number;
   sent: number;
   failedChunks: number;
+  optedOut?: number;
+  alreadySent?: number;
 }
 
 /** Неделя, для которой ищем открытые комнаты в воскресенье (она же текущая — комнаты ещё играются). */
@@ -166,7 +191,7 @@ const GET_ALL_CHUNK = 300;
 /**
  * Главный прогон воскресного крона: открытые комнаты текущей недели →
  * статусы края по комнате (чистая функция выше) → докупка токенов →
- * отправка. Ничего не пишет в Firestore — только читает и шлёт.
+ * отправка. Пишет только метку недели spireZoneWarningPushWeekId тем, кому пуш ушёл (PM-200).
  */
 export async function runSpireZoneWarningPush(
   db: admin.firestore.Firestore,
@@ -217,21 +242,31 @@ export async function runSpireZoneWarningPush(
     const snaps = await db.getAll(...refs);
     snaps.forEach((snap, idx) => {
       const data = snap.data() as Record<string, unknown> | undefined;
-      const prefsRaw = data?.pushPrefs;
-      const leaguePref = prefsRaw && typeof prefsRaw === 'object'
-        ? (prefsRaw as Record<string, unknown>).league
-        : undefined;
       usersByUid.set(slice[idx].uid, {
         expoPushToken: typeof data?.expoPushToken === 'string' ? data.expoPushToken : null,
         pushTokenLang: typeof data?.pushTokenLang === 'string' ? data.pushTokenLang : null,
-        pushPrefs: typeof leaguePref === 'boolean' ? { league: leaguePref } : null,
+        pushPrefs: readSpirePushPrefs(data?.pushPrefs),
+        sentForWeekId: readSpirePushMark(data, SPIRE_ZONE_WARNING_PUSH_MARK_FIELD),
       });
     });
   }
 
-  const candidates = buildSpireZoneWarningCandidates(inputs, usersByUid);
+  let optedOut = 0;
+  let alreadySent = 0;
+  for (const u of usersByUid.values()) {
+    const reason = spireZoneWarningSkipReason(u, weekId);
+    if (reason === 'opted_out') optedOut++;
+    else if (reason === 'already_sent') alreadySent++;
+  }
+  if (optedOut > 0 || alreadySent > 0) {
+    // Только счётчики — без uid/токенов.
+    console.log('[PUSH-PREFS]', JSON.stringify({ event: 'spire_zone_warning_skip', weekId, optedOut, alreadySent }));
+  }
+
+  const candidates = buildSpireZoneWarningCandidates(inputs, usersByUid, weekId);
   if (candidates.length === 0) {
-    return { rooms, live, candidates: 0, sent: 0, failedChunks: 0 };
+    console.log(LOG, JSON.stringify({ event: 'skip', reason: 'no_candidates', weekId, rooms, optedOut, alreadySent }));
+    return { rooms, live, candidates: 0, sent: 0, failedChunks: 0, optedOut, alreadySent };
   }
 
   let sent = 0;
@@ -243,10 +278,20 @@ export async function runSpireZoneWarningPush(
     } catch (err) {
       failedChunks++;
       console.error(LOG, JSON.stringify({ event: 'chunk_failed', error: String((err as Error)?.message ?? err) }));
+      continue;
+    }
+    try {
+      await stampSpirePushMarks(db, chunk.map((c) => c.uid), SPIRE_ZONE_WARNING_PUSH_MARK_FIELD, weekId);
+    } catch (err) {
+      // Пуш уже ушёл; без метки повторный прогон может его продублировать — громко.
+      console.error('[PUSH-PREFS]', JSON.stringify({
+        event: 'spire_zone_warning_mark_failed', weekId, count: chunk.length,
+        error: String((err as Error)?.message ?? err),
+      }));
     }
   }
 
-  const summary = { rooms, live, candidates: candidates.length, sent, failedChunks };
+  const summary = { rooms, live, candidates: candidates.length, sent, failedChunks, optedOut, alreadySent };
   console.log(LOG, JSON.stringify({ event: 'done', weekId, ...summary }));
   return summary;
 }
@@ -278,6 +323,9 @@ export const spireZoneWarningCron = onSchedule(
     // зачем: withCronHeartbeat ждёт Record<string, string|number|boolean>, а
     // структурно совместимый интерфейс TypeScript в это не приводит сам —
     // явная распаковка полей (не { ...summary }: тот же класс несовместимости).
-    return { rooms: summary.rooms, live: summary.live, candidates: summary.candidates, sent: summary.sent, failedChunks: summary.failedChunks };
+    return {
+      rooms: summary.rooms, live: summary.live, candidates: summary.candidates, sent: summary.sent,
+      failedChunks: summary.failedChunks, optedOut: summary.optedOut ?? 0, alreadySent: summary.alreadySent ?? 0,
+    };
   }),
 );

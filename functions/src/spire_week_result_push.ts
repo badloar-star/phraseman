@@ -18,10 +18,10 @@
 // db.getAll(...) по всем собранным uid (а не .get() на каждого), чанками —
 // Firestore ограничивает getAll практическим пределом на вызов.
 //
-// Права уведомления: категория «Лига» (pushPrefs.league) — Шпиль заменяет
-// Лигу (память project_tower_replaces_league_2026-09-24), отдельного
-// тумблера в настройках для Шпиля нет, как и у турниров (см.
-// tournament_start_push.ts). Юзер, выключивший «Лигу», не получает пуш.
+// Права уведомления (PM-200): pushPrefs.streak (мастер && «Серия под угрозой»)
+// или устаревший pushPrefs.league === false — см. isSpirePushOptedOut в
+// spire_notifications.ts. Повтор прогона не дублирует пуш: метка недели
+// spireWeekResultPushWeekId в users/{uid}.
 //
 // Чистая логика (отбор кандидата, выбор текста, сборка сообщения) отдельно
 // от I/O — покрывается unit-тестами без сети и Firestore.
@@ -29,10 +29,16 @@
 import * as admin from 'firebase-admin';
 import {
   chunkSpirePushMessages,
+  isSpirePushOptedOut,
   isValidSpireExpoPushToken,
+  readSpirePushMark,
+  readSpirePushPrefs,
   sendSpireExpoPushChunk,
   spirePushTierName,
+  stampSpirePushMarks,
+  SPIRE_WEEK_RESULT_PUSH_MARK_FIELD,
   type SpireExpoPushMessage,
+  type SpirePushPrefs,
 } from './spire_notifications';
 
 const LOG = '[SPIRE-RESULT-PUSH]';
@@ -52,7 +58,9 @@ export type SpireWeekResultPushUser = Readonly<{
   expoPushToken?: string | null;
   /** Язык интерфейса (в отличие от studyLang выше) — текст пушей выбирается по нему. */
   pushTokenLang?: string | null;
-  pushPrefs?: { league?: boolean } | null;
+  pushPrefs?: SpirePushPrefs | null;
+  /** weekId, за который итог уже отправлен (метка идемпотентности, PM-200). */
+  sentForWeekId?: string | null;
 }>;
 
 export interface SpireWeekResultPushCandidate {
@@ -65,22 +73,37 @@ export interface SpireWeekResultPushCandidate {
   demoted: boolean;
 }
 
-/** Слать ли юзеру понедельничный пуш — только валидный токен и включённая категория «Лига». */
-export function shouldSendSpireWeekResultPush(u: SpireWeekResultPushUser): boolean {
-  if (!isValidSpireExpoPushToken(u.expoPushToken)) return false;
-  if (u.pushPrefs?.league === false) return false;
-  return true;
+/** Почему пуш не шлём (null = шлём). Чистая функция. */
+export function spireWeekResultSkipReason(
+  u: SpireWeekResultPushUser,
+  weekId?: string | null,
+): 'no_token' | 'opted_out' | 'already_sent' | null {
+  if (!isValidSpireExpoPushToken(u.expoPushToken)) return 'no_token';
+  if (isSpirePushOptedOut(u.pushPrefs)) return 'opted_out';
+  if (weekId && u.sentForWeekId === weekId) return 'already_sent';
+  return null;
 }
 
-/** Собирает кандидатов из результатов недели + докупленных документов users/ (чистая функция). */
+/** Слать ли юзеру понедельничный пуш — валидный токен и нет opt-out (PM-200). */
+export function shouldSendSpireWeekResultPush(u: SpireWeekResultPushUser, weekId?: string | null): boolean {
+  return spireWeekResultSkipReason(u, weekId) === null;
+}
+
+/**
+ * Собирает кандидатов из результатов недели + докупленных документов users/ (чистая функция).
+ * Один пуш на человека за прогон: при нескольких языках изучения берётся первый итог.
+ */
 export function buildSpireWeekResultCandidates(
   results: readonly SpireWeekResultPushInput[],
   usersByUid: ReadonlyMap<string, SpireWeekResultPushUser>,
+  weekId?: string | null,
 ): SpireWeekResultPushCandidate[] {
   const out: SpireWeekResultPushCandidate[] = [];
+  const seen = new Set<string>();
   for (const r of results) {
     const u = usersByUid.get(r.uid);
-    if (!u || !shouldSendSpireWeekResultPush(u)) continue;
+    if (!u || seen.has(r.uid) || !shouldSendSpireWeekResultPush(u, weekId)) continue;
+    seen.add(r.uid);
     out.push({
       uid: r.uid,
       token: u.expoPushToken as string,
@@ -144,6 +167,30 @@ export interface SpireWeekResultPushSummary {
   candidates: number;
   sent: number;
   failedChunks: number;
+  optedOut?: number;
+  alreadySent?: number;
+}
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+/** Понедельник 00:00 UTC недели, в которую попадает nowMs (как spireWeekStartMs). */
+function weekStartUtcMs(nowMs: number): number {
+  const now = new Date(nowMs);
+  const daysSinceMonday = (now.getUTCDay() + 6) % 7;
+  return Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - daysSinceMonday);
+}
+
+/**
+ * ISO-неделя, итог которой подводит понедельничный крон (= spirePreviousWeek
+ * из spire_finalize_cron.ts). Своя копия, чтобы не делать циклический импорт
+ * (крон импортирует этот модуль). Формат как у spireWeekId: YYYY-Www.
+ */
+export function spireResultPushWeekId(nowMs: number): string {
+  const prevStart = weekStartUtcMs(weekStartUtcMs(nowMs) - 1);
+  const date = new Date(prevStart + 3 * DAY_MS); // четверг той недели задаёт год ISO-недели
+  const yearStart = Date.UTC(date.getUTCFullYear(), 0, 1);
+  const weekNum = Math.ceil(((date.getTime() - yearStart) / DAY_MS + 1) / 7);
+  return `${date.getUTCFullYear()}-W${String(weekNum).padStart(2, '0')}`;
 }
 
 /**
@@ -159,8 +206,14 @@ export interface SpireWeekResultPushSummary {
 export async function runSpireWeekResultPush(
   db: admin.firestore.Firestore,
   results: readonly SpireWeekResultPushInput[],
+  // зачем optional: вызывающий spireFinalizeCron сейчас правит другая сессия;
+  // без аргумента считаем ту же «прошлую неделю», что и крон.
+  weekId: string = spireResultPushWeekId(Date.now()),
 ): Promise<SpireWeekResultPushSummary> {
-  if (results.length === 0) return { results: 0, candidates: 0, sent: 0, failedChunks: 0 };
+  if (results.length === 0) {
+    console.log(LOG, JSON.stringify({ event: 'skip', reason: 'no_results', weekId }));
+    return { results: 0, candidates: 0, sent: 0, failedChunks: 0 };
+  }
 
   const GET_ALL_CHUNK = 300;
   const usersByUid = new Map<string, SpireWeekResultPushUser>();
@@ -171,21 +224,31 @@ export async function runSpireWeekResultPush(
     const snaps = await db.getAll(...refs);
     snaps.forEach((snap, idx) => {
       const data = snap.data() as Record<string, unknown> | undefined;
-      const prefsRaw = data?.pushPrefs;
-      const league = prefsRaw && typeof prefsRaw === 'object'
-        ? (prefsRaw as Record<string, unknown>).league
-        : undefined;
       usersByUid.set(slice[idx].uid, {
         expoPushToken: typeof data?.expoPushToken === 'string' ? data.expoPushToken : null,
         pushTokenLang: typeof data?.pushTokenLang === 'string' ? data.pushTokenLang : null,
-        pushPrefs: typeof league === 'boolean' ? { league } : null,
+        pushPrefs: readSpirePushPrefs(data?.pushPrefs),
+        sentForWeekId: readSpirePushMark(data, SPIRE_WEEK_RESULT_PUSH_MARK_FIELD),
       });
     });
   }
 
-  const candidates = buildSpireWeekResultCandidates(results, usersByUid);
+  let optedOut = 0;
+  let alreadySent = 0;
+  for (const u of usersByUid.values()) {
+    const reason = spireWeekResultSkipReason(u, weekId);
+    if (reason === 'opted_out') optedOut++;
+    else if (reason === 'already_sent') alreadySent++;
+  }
+  if (optedOut > 0 || alreadySent > 0) {
+    // Только счётчики — без uid/токенов.
+    console.log('[PUSH-PREFS]', JSON.stringify({ event: 'spire_week_result_skip', weekId, optedOut, alreadySent }));
+  }
+
+  const candidates = buildSpireWeekResultCandidates(results, usersByUid, weekId);
   if (candidates.length === 0) {
-    return { results: results.length, candidates: 0, sent: 0, failedChunks: 0 };
+    console.log(LOG, JSON.stringify({ event: 'skip', reason: 'no_candidates', weekId, optedOut, alreadySent }));
+    return { results: results.length, candidates: 0, sent: 0, failedChunks: 0, optedOut, alreadySent };
   }
 
   let sent = 0;
@@ -197,10 +260,20 @@ export async function runSpireWeekResultPush(
     } catch (err) {
       failedChunks++;
       console.error(LOG, JSON.stringify({ event: 'chunk_failed', error: String((err as Error)?.message ?? err) }));
+      continue;
+    }
+    try {
+      await stampSpirePushMarks(db, chunk.map((c) => c.uid), SPIRE_WEEK_RESULT_PUSH_MARK_FIELD, weekId);
+    } catch (err) {
+      // Пуш уже ушёл; без метки повторный прогон может его продублировать — громко.
+      console.error('[PUSH-PREFS]', JSON.stringify({
+        event: 'spire_week_result_mark_failed', weekId, count: chunk.length,
+        error: String((err as Error)?.message ?? err),
+      }));
     }
   }
 
-  const summary = { results: results.length, candidates: candidates.length, sent, failedChunks };
+  const summary = { results: results.length, candidates: candidates.length, sent, failedChunks, optedOut, alreadySent };
   console.log(LOG, JSON.stringify({ event: 'done', ...summary }));
   return summary;
 }

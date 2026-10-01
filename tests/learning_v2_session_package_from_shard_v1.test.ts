@@ -81,6 +81,9 @@ describe("session package children built from an authored shard", () => {
       listen_build_dictation: "Послушайте и восстановите фразу.",
       scripted_repeat_compare: "Повторите вслух и сравните с образцом.",
     };
+    const stageInstructionByFamily: Readonly<Record<string, readonly string[]>> = {
+      listen_choose: ["Послушайте и выберите услышанное слово."],
+    };
 
     for (const source of AUTHORED_EPISODE_01_SESSIONS) {
       const sourceShard = buildSessionShardFromSource(source);
@@ -111,7 +114,14 @@ describe("session package children built from an authored shard", () => {
         const optionTexts = interaction.responseOptions.map((option) => option.text);
         expect(new Set(interaction.responseOptions.map((option) => option.responseId)).size)
           .toBe(interaction.responseOptions.length);
-        expect(interaction.prompt).toContain(instructionByFamily[interaction.family]);
+        // зачем: с 04771d1ca (2026-08-24) карточки СЛОВ получают инструкцию своего
+        // этапа (VOCABULARY_STAGE_INSTRUCTION: «…выберите услышанное слово.»), а
+        // карточки фраз — общую инструкцию семейства. Обе — действующий контракт.
+        const allowedInstructions = [
+          instructionByFamily[interaction.family],
+          ...(stageInstructionByFamily[interaction.family] ?? []),
+        ];
+        expect(allowedInstructions.some((text) => interaction.prompt.includes(text))).toBe(true);
         seenFamilies.add(interaction.family);
 
         if (interaction.inputMode === "ordered_tokens") {

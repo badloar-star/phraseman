@@ -71,7 +71,20 @@ export type HydratedLibrary = Readonly<{
   /** 7C: названия живых наборов с сервера; нет — ключа нет (старый сервер / без названий). */
   titles?: Readonly<Record<string, HydratedPackTitle>>;
 }>;
+/** 8E: поля локальной карточки (без SRS), которыми засеять зеркало вместо серверных. */
+export type LocalMirrorOverride = Readonly<{ entityId: string; fields: Readonly<Record<string, unknown>> }>;
+/**
+ * 8E: доступ применения к зеркалу этой гидрации. `seeded` — карточки, чьё зеркало засеяла
+ * ЭТА гидрация (сервером); только для них решается «чья версия свежее». `seedFromLocal` —
+ * заменить засеянное зеркало полями локальной копии (до любых записей приложения).
+ */
+export type HydrationMirrorAccess = Readonly<{
+  seeded: ReadonlySet<string>;
+  seedFromLocal: (overrides: readonly LocalMirrorOverride[]) => Promise<number>;
+}>;
 export type HydrationSnapshot = Readonly<{
+  /** 8E: нет (тесты / старый вызов) — конфликты версий не решаются, поведение 6G. */
+  mirror?: HydrationMirrorAccess;
   lessons: readonly HydratedLesson[];
   cards: readonly HydratedCard[];
   libraries: readonly HydratedLibrary[];
@@ -416,7 +429,11 @@ export function parseHydration(entities: readonly PulledEntity[]): Parsed {
 }
 
 /** Засев зеркала: ТОЛЬКО где записи ещё нет (проверка внутри транзакции). */
-type Seeded = Readonly<{ seeded: number; kept: number; keptLibraries: ReadonlySet<string>; keptDeletedCards: ReadonlySet<string> }>;
+type Seeded = Readonly<{
+  seeded: number; kept: number; keptLibraries: ReadonlySet<string>; keptDeletedCards: ReadonlySet<string>;
+  /** 8E: карточки, засеянные этой гидрацией: id сущности → записанная запись зеркала. */
+  seededCards: ReadonlyMap<string, ScopeJson>;
+}>;
 
 function mirrorOf(value: ScopeJson | undefined): Readonly<Record<string, unknown>> | null {
   return plain(value) && plain(value.mirror) ? value.mirror : null;
@@ -427,6 +444,7 @@ async function seedMirrors(ports: AccountsV2HydrationPorts, parsed: Parsed): Pro
   let kept = 0;
   const keptLibraries = new Set<string>();
   const keptDeletedCards = new Set<string>();
+  const seededCards = new Map<string, ScopeJson>();
   for (let start = 0; start < parsed.mirrors.length; start += SEED_CHUNK) {
     if (!ports.isCurrent()) throw new Error('hydration_stale');
     const chunk = parsed.mirrors.slice(start, start + SEED_CHUNK);
@@ -446,6 +464,7 @@ async function seedMirrors(ports: AccountsV2HydrationPorts, parsed: Parsed): Pro
         }
         await tx.putRecord({ key, value: item.record });
         seeded += 1;
+        if (item.entityType === 'flashcard') seededCards.set(item.entityId, item.record);
       }
     });
   }
@@ -458,7 +477,54 @@ async function seedMirrors(ports: AccountsV2HydrationPorts, parsed: Parsed): Pro
       }
     });
   }
-  return { seeded, kept, keptLibraries, keptDeletedCards };
+  return { seeded, kept, keptLibraries, keptDeletedCards, seededCards };
+}
+
+/**
+ * 8E: засеянное зеркало карточки → поля локальной копии. зачем: когда неизвестно, чья
+ * версия свежее (или в пределах запаса по часам), производитель должен считать, что
+ * сервер уже знает локальную копию — тогда первый снимок ничего не шлёт и правку другого
+ * устройства не затирает, а у человека ничего не меняется. Только для записей, которые
+ * засеяла ЭТА гидрация и которые с тех пор не трогал производитель (сверка записи).
+ * SRS-поля зеркала остаются серверными (SRS — своё правило по времени правки).
+ */
+function createMirrorAccess(ports: AccountsV2HydrationPorts, seededCards: ReadonlyMap<string, ScopeJson>): HydrationMirrorAccess {
+  return Object.freeze({
+    seeded: new Set(seededCards.keys()),
+    seedFromLocal: async (overrides: readonly LocalMirrorOverride[]): Promise<number> => {
+      let written = 0;
+      let skipped = 0;
+      for (let start = 0; start < overrides.length; start += SEED_CHUNK) {
+        if (!ports.isCurrent()) throw new Error('hydration_stale');
+        const chunk = overrides.slice(start, start + SEED_CHUNK);
+        await ports.handle.withTransaction(async (tx) => {
+          for (const override of chunk) {
+            const seededRecord = seededCards.get(override.entityId);
+            const key = accountsV2ProducerEntityKey('flashcard', override.entityId);
+            const existing = await tx.readRecord(key);
+            if (seededRecord === undefined || existing === null || canonicalJson(existing.value) !== canonicalJson(seededRecord)) {
+              skipped += 1;
+              continue;
+            }
+            const seededMirror = mirrorOf(seededRecord) ?? {};
+            const serverFields = plain(seededMirror.fields) ? seededMirror.fields as Record<string, string> : {};
+            const fields: Record<string, string> = {};
+            for (const [name, value] of Object.entries(override.fields)) {
+              if (name !== 'srs' && name !== 'srsPolicy' && value !== undefined) fields[name] = canonicalJson(value);
+            }
+            for (const name of ['srs', 'srsPolicy']) {
+              if (typeof serverFields[name] === 'string') fields[name] = serverFields[name];
+            }
+            const base = plain(seededRecord) && Number.isSafeInteger(seededRecord.base) ? seededRecord.base as number : null;
+            await tx.putRecord({ key, value: mirrorRecord({ fields, deleted: false }, base) });
+            written += 1;
+          }
+        });
+      }
+      console.log(`${LOG} hydrate mirror_from_local written=${written} skipped=${skipped}`);
+      return written;
+    },
+  });
 }
 
 /** Снимок без того, что локальный производитель уже знает лучше сервера. */
@@ -565,7 +631,10 @@ export async function hydrateAccountsV2Scope(ports: AccountsV2HydrationPorts): P
     console.log(`${LOG} hydrate mirror seeded=${mirror.seeded} kept=${mirror.kept} `
       + `keptLibraries=${mirror.keptLibraries.size} keptDeletedCards=${mirror.keptDeletedCards.size}`);
     if (!ports.isCurrent()) return 'stale';
-    applied = await ports.applyLocal(withoutLocallyOwned(parsed.snapshot, mirror.keptLibraries, mirror.keptDeletedCards), ports.isCurrent);
+    // зачем (8E): применение получает доступ к засеянному зеркалу — решить «чья версия
+    // свежее» для карточек, уже лежащих на телефоне, ДО своих записей.
+    const snapshot = withoutLocallyOwned(parsed.snapshot, mirror.keptLibraries, mirror.keptDeletedCards);
+    applied = await ports.applyLocal(Object.freeze({ ...snapshot, mirror: createMirrorAccess(ports, mirror.seededCards) }), ports.isCurrent);
   } catch (error) {
     if (!ports.isCurrent()) {
       console.warn(`${LOG} hydrate stale_midway code=${errorCode(error)}`);

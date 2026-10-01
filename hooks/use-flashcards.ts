@@ -75,6 +75,18 @@ let writeQueueByAccount = new Map<string, {
 const FLASHCARD_CACHE_MAX_SCOPES = 8;
 const FLASHCARD_PENDING_MAX_SCOPES = 8;
 
+type PersistFlashcardsSkipReason =
+  | 'account_not_current'
+  | 'scope_unavailable'
+  | 'account_changed_before_commit'
+  | 'commit_not_current'
+  | 'storage_write_failed';
+
+/** Diagnostics for discarded writes; deliberately contains no card text or account identity. */
+function persistFlashcardsSkip(reason: PersistFlashcardsSkipReason): void {
+  console.warn(`[FLASHCARDS] persist skipped reason=${reason}`);
+}
+
 function setBoundedCache(key: string, cards: Flashcard[]): void {
   cardsInMemoryByScope.delete(key);
   cardsInMemoryByScope.set(key, cards);
@@ -274,23 +286,39 @@ async function persistFlashcards(
   const snapshot = cards.map(c => ({ ...c }));
   // зачем (6F ремонт №1, P2): владелец V2-операции — аккаунт в момент записи, не в момент постановки.
   const v2Owner = captureAccountsV2OwnerUid();
-  if (!isAccountOperationCurrent(accountToken)) return false;
+  if (!isAccountOperationCurrent(accountToken)) {
+    persistFlashcardsSkip('account_not_current');
+    return false;
+  }
   const scopeKey = scopedTargetKey(accountToken, target);
-  if (!scopeKey) return false;
+  if (!scopeKey) {
+    persistFlashcardsSkip('scope_unavailable');
+    return false;
+  }
   try {
-    if (!isAccountOperationCurrent(accountToken)) return false;
+    if (!isAccountOperationCurrent(accountToken)) {
+      persistFlashcardsSkip('account_changed_before_commit');
+      return false;
+    }
     const committed = await withAccountTransitionLock(async () => {
-      if (!isAccountOperationCurrent(accountToken)) return false;
+      if (!isAccountOperationCurrent(accountToken)) {
+        persistFlashcardsSkip('account_changed_before_commit');
+        return false;
+      }
       await AsyncStorage.setItem(flashcardsSavedKey(target), JSON.stringify(snapshot));
       return isAccountOperationCurrent(accountToken);
     });
-    if (!committed) return false;
+    if (!committed) {
+      persistFlashcardsSkip('commit_not_current');
+      return false;
+    }
     setBoundedCache(scopeKey, snapshot);
     // зачем (Account V2, 6F, dual-write): снимок сохранённых карточек → операции V2
     // (добавление/правка/удаление — разницей с зеркалом области). Фоном, за флагом.
     produceAccountsV2ChangeIfEnabled(v2Owner, () => ({ kind: 'card_snapshot', target, list: 'saved', cards: snapshot }));
     return true;
   } catch {
+    persistFlashcardsSkip('storage_write_failed');
     return false;
   }
 }
@@ -434,6 +462,38 @@ export const removeSavedFlashcardsFromAccountsV2 = async (
     const committed = await persistFlashcards(next, target, accountToken);
     if (!committed) console.warn(`[ACCOUNT-V2] hydrate saved_cards_remove persist_failed count=${current.length - next.length}`);
     return committed ? current.length - next.length : -1;
+  }, -1);
+};
+
+/**
+ * Account V2, Пакет 8E — гидрация: применить более свежую серверную версию к уже
+ * лежащим на телефоне сохранённым карточкам. `replace` получает СВЕЖУЮ карточку внутри
+ * очереди записи и возвращает замену или null (оставить: например, человек успел её
+ * изменить после решения). Возвращает число заменённых; -1 — аккаунт сменился / запись не прошла.
+ */
+export const replaceSavedFlashcardsFromAccountsV2 = async (
+  target: StudyTarget,
+  replace: (card: Readonly<Flashcard>) => Flashcard | null,
+): Promise<number> => {
+  const accountToken = captureAccountGeneration();
+  if (!isAccountOperationCurrent(accountToken)) {
+    console.warn('[ACCOUNT-V2] hydrate saved_cards_replace skip reason=account_not_current');
+    return -1;
+  }
+  return withWriteLock(accountToken, async () => {
+    const current = await loadFlashcardsForAccount(target, accountToken);
+    if (!isAccountOperationCurrent(accountToken)) return -1;
+    let replaced = 0;
+    const next = current.map((card) => {
+      const replacement = replace(card);
+      if (replacement === null) return card;
+      replaced += 1;
+      return { ...replacement, studyTarget: target, packLanguage: normalizePackLanguage(replacement.packLanguage ?? target) };
+    });
+    if (replaced === 0) return 0;
+    const committed = await persistFlashcards(next, target, accountToken);
+    if (!committed) console.warn(`[ACCOUNT-V2] hydrate saved_cards_replace persist_failed count=${replaced}`);
+    return committed ? replaced : -1;
   }, -1);
 };
 

@@ -251,6 +251,11 @@ export async function applyAccountsV2HydrationLocally(
   isCurrent: () => boolean,
 ): Promise<HydrationApplyResult> {
   const counts: Counts = {};
+  // зачем (8E): «чья версия свежее» для карточек, уже лежащих на телефоне — ПЕРВЫМ, до любых
+  // записей (каждая запись карточек запускает снимок производителя, который сравнивает с зеркалом).
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const conflicts = require('./accounts_v2_hydration_conflicts') as typeof import('./accounts_v2_hydration_conflicts');
+  await conflicts.applyHydratedCardConflicts(snapshot, isCurrent, counts);
   await applyHydratedLessons(snapshot.lessons, isCurrent, counts);
   // зачем (7D): удаления — ДО добавления: tombstone V2 / журнал убирают «воскресшее» и
   // запрещают добавить удалённое здесь (только если удаление свежее последней правки).

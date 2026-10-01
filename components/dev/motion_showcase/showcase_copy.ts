@@ -410,7 +410,6 @@ const RU = {
   fc_section_title: 'Карточки · раздел (главная)',
   fc_packs_title: 'Карточки · наборы',
   fc_my_packs_title: 'Карточки · мои наборы',
-  fc_market_dev_title: 'Карточки · маркет (dev)',
   fc_collection_title: 'Карточки · коллекция (список/стопка)',
   fc_swipe_title: 'Карточки · сессия свайпов',
   fc_blitz_title: 'Карточки · блиц-сессия',

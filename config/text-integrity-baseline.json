@@ -1417,37 +1417,6 @@
       }
     },
     {
-      "file": "app/flashcards_market_dev.tsx",
-      "ownerName": "FlashcardsMarketDevScreen",
-      "ownerPath": "FlashcardsMarketDevScreen",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ScrollView",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "a9e6bff2e7cc3a1b49b34095746c8418dec3e5da8701bdbd053763574b14caf7",
-      "count": 1,
-      "lineHints": [
-        288
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/streak_stats.tsx",
       "ownerName": "metricRow",
       "ownerPath": "LifetimeTotalsBlock>metricRow",

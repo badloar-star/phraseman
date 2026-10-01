@@ -612,19 +612,6 @@ export async function prefetchMarketplacePacks(): Promise<void> {
   DebugLogger.info('[STARTUP-READS]', 'marketplace prefetch: no-op (catalog stub, 0 reads)');
 }
 
-/** @deprecated Имя «dev» — фактически все купленные наборы; используйте loadOwnedPackIds. */
-export async function loadDevOwnedPackIds(studyTarget?: RuntimeStudyTarget): Promise<string[]> {
-  return loadOwnedPackIds(studyTarget);
-}
-
-export async function saveDevOwnedPackIds(ids: string[], studyTarget?: RuntimeStudyTarget): Promise<void> {
-  await saveOwnedPackIds(ids, studyTarget);
-}
-
-export async function setDevActivePack(packId: string, studyTarget?: RuntimeStudyTarget): Promise<void> {
-  await AsyncStorage.setItem(flashcardsMarketDevActivePackKey(studyTarget), packId);
-}
-
 export async function consumeDevActivePack(studyTarget?: RuntimeStudyTarget): Promise<string | null> {
   const key = flashcardsMarketDevActivePackKey(studyTarget);
   try {

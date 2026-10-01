@@ -283,7 +283,6 @@ export const FRENCH_TARGET_SYNC_KEYS = [
   customFlashcardsKey('fr'),
   flashcardsCommunityOwnedPacksKey('fr'),
   flashcardsOwnedPacksKey('fr'),
-  flashcardsMarketDevOwnedPacksKey('fr'),
   flashcardsProgressKey('fr'),
   flashcardsPackTrialGiftKey('fr'),
   flashcardsAchievementSavedCountKey('fr'),
@@ -1454,7 +1453,6 @@ const OWNED_UNION_RESTORE_BASE_KEYS = new Set<string>([
   'custom_avatar_owned_v1',        // {[id]: 'gradient:logoColor'}
   'flashcards_owned_packs_v1',     // ["packId", ...]
   'community_owned_pack_ids_v1',   // ["packId", ...]
-  'flashcards_market_dev_owned_v1',// ["packId", ...]
   'level_up_shown_levels_v1',      // [2, 3, ...] — acknowledged modals are strictly additive
   // зачем (аудит 2026-08-24): темы, купленные за 200 жемчужин, и темы «дедушек» —
   // такое же владение, как паки и ауры. Одной FC_RESTORE_MERGE_STRATEGIES было

@@ -16,7 +16,6 @@ export const SECTION: ShowcaseSection = {
     { id: 'fc-section', title: cs('fc_section_title'), kind: 'route', route: '/flashcards', detail: cs('real_screen') },
     { id: 'fc-packs', title: cs('fc_packs_title'), kind: 'route', route: '/flashcards_packs', detail: cs('real_screen') },
     { id: 'fc-my-packs', title: cs('fc_my_packs_title'), kind: 'route', route: '/flashcards_my_packs', detail: cs('real_screen') },
-    { id: 'fc-market-dev', title: cs('fc_market_dev_title'), kind: 'route', route: '/flashcards_market_dev', detail: cs('real_screen') },
     { id: 'fc-collection', title: cs('fc_collection_title'), kind: 'route', route: '/flashcards_collection', detail: cs('real_screen') },
     { id: 'fc-swipe', title: cs('fc_swipe_title'), kind: 'route', route: '/flashcards_swipe', detail: cs('real_screen') },
     { id: 'fc-blitz', title: cs('fc_blitz_title'), kind: 'route', route: '/flashcards_blitz_session', detail: cs('real_screen') },

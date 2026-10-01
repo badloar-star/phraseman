@@ -83,7 +83,6 @@ const BASELINE: Record<string, number> = {
   'app/flashcards/useCollectionData.ts': 17,
   'app/flashcards_blitz_session.tsx': 12,
   'app/flashcards_collection.tsx': 2,
-  'app/flashcards_market_dev.tsx': 1,
   'app/flashcards_my_packs.tsx': 5,
   'app/flashcards_packs.tsx': 7,
   'app/flashcards_recall_session.tsx': 4,

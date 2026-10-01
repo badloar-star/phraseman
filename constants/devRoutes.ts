@@ -3,7 +3,6 @@ function routeName(...parts: string[]): string {
 }
 
 export const POS_ANALYTICS_AUDIT_ROUTE_NAME = routeName('pos', 'analytics', 'audit');
-export const FLASHCARDS_MARKET_DEV_ROUTE_NAME = routeName('flashcards', 'market', 'dev');
 export const PHONE_STATE_SQLCIPHER_SMOKE_ROUTE_NAME = routeName('_phone', 'state', 'sqlcipher', 'smoke');
 // зачем: витрина «Движение · все поверхности» заменила старую Motion Lab
 // (решение владельца 2026-08-16): пункты запускают РЕАЛЬНЫЕ экраны/модалки.
@@ -27,7 +26,6 @@ const LEARNING_V2_MODES_SHOWCASE_RUN_DIR = routeName('learning', 'v2', 'modes', 
 export const LEARNING_V2_MODES_SHOWCASE_RUN_DIR_NAME = `${LEARNING_V2_MODES_SHOWCASE_RUN_DIR}/[family]`;
 
 export const POS_ANALYTICS_AUDIT_ROUTE = `/${POS_ANALYTICS_AUDIT_ROUTE_NAME}`;
-export const FLASHCARDS_MARKET_DEV_ROUTE = `/${FLASHCARDS_MARKET_DEV_ROUTE_NAME}`;
 export const PHONE_STATE_SQLCIPHER_SMOKE_ROUTE = `/${PHONE_STATE_SQLCIPHER_SMOKE_ROUTE_NAME}`;
 export const MOTION_SHOWCASE_ROUTE = `/${MOTION_SHOWCASE_ROUTE_NAME}`;
 export const CANCEL_FLOW_PREVIEW_ROUTE = `/${CANCEL_FLOW_PREVIEW_ROUTE_NAME}`;

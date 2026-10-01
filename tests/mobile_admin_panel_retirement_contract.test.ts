@@ -148,8 +148,9 @@ describe('mobile dev admin panel retirement', () => {
     const devRoutes = read('constants/devRoutes.ts');
 
     expect(devRoutes).toContain('POS_ANALYTICS_AUDIT_ROUTE_NAME');
-    expect(devRoutes).toContain('FLASHCARDS_MARKET_DEV_ROUTE_NAME');
+    // зачем: дев-рынок наборов за жемчуг удалён в PM-289 (D78) — сторож теперь требует «экрана нет».
+    expect(devRoutes).not.toContain('FLASHCARDS_MARKET_DEV_ROUTE');
     expect(fs.existsSync(path.join(ROOT, 'app', 'pos_analytics_audit.tsx'))).toBe(true);
-    expect(fs.existsSync(path.join(ROOT, 'app', 'flashcards_market_dev.tsx'))).toBe(true);
+    expect(fs.existsSync(path.join(ROOT, 'app', 'flashcards_market_dev.tsx'))).toBe(false);
   });
 });

@@ -1,6 +1,5 @@
 import type { Lang } from '../constants/i18n';
 import { triLang } from '../constants/i18n';
-import { FLASHCARDS_MARKET_DEV_ROUTE } from '../constants/devRoutes';
 import type { CardItem } from './flashcards/types';
 import { FRENCH_CONTENT_SOURCE_GATE } from './french_content_source_gate';
 import {
@@ -67,7 +66,7 @@ export function flashcardsSourceGateForTarget(
     reason: systemCardsEnabled
       ? 'french_flashcards_server_system_cards_available'
       : 'french_flashcards_source_gate',
-    blockedRoutes: enabled ? [] : ['/flashcards_collection', '/flashcards_swipe', '/flashcards_truefalse_session', FLASHCARDS_MARKET_DEV_ROUTE, '/pack_opening', '/shards_shop'],
+    blockedRoutes: enabled ? [] : ['/flashcards_collection', '/flashcards_swipe', '/flashcards_truefalse_session', '/pack_opening', '/shards_shop'],
     requiredEvidence: FRENCH_FLASHCARDS_REQUIRED_EVIDENCE,
   };
 }

@@ -30,7 +30,6 @@ const CONTENT_GATE_FILES = [
   path.join('app', 'flashcards.tsx'),
   path.join('app', 'flashcards_collection.tsx'),
   path.join('app', 'flashcards', 'FlashcardListItem.tsx'),
-  path.join('app', 'flashcards_market_dev.tsx'),
   path.join('app', 'arena_leaderboard.tsx'),
   path.join('app', 'league_race_visibility.ts'),
 ];

@@ -224,3 +224,4 @@ PM-108 → review (жалоба на один набор больше не ду�
 - Ядро: первая страница «Активности» 50 → 20 (cda51010c, Q44), тесты уведомлений 26/26.
 - **К выкладке (избранное видео):** firestore:rules, firestore:indexes, functions:refreshVideoSaveCounts. Клиентская часть — в сборке приложения.
 - Q49 (кнопка «Заблокировать» удаляет из друзей) передан «Дизайну»; кнопку он включит после выкладки friendBlockUser/friendUnblockUser.
+- 01.10: проверено (functions:list): friendBlockUser, friendUnblockUser, friendLikeActivity на проде. «Дизайн»: кнопка «Заблокировать» готова за FRIEND_BLOCK_UI_ENABLED=false (app/(tabs)/friends.tsx). Включение — после выкладки группы удаления аккаунта; координатор, дайте знать «Дизайну» (или ядру) после неё.

@@ -101,3 +101,20 @@ firebase deploy --only functions:webActivationReminderCron --project phraseman-e
 Любая функция из шага 1 откатывается удалением именно её:
 `firebase functions:delete <имя> --project phraseman-ea0b3` (1.6.24 её не вызывает).
 Шпиль выключается тем же переключателем в админке.
+
+---
+
+## Дополнения (решения координатора 01.10)
+
+- 🔴 **ПОЛНУЮ выкладку functions НЕ делать**, пока в нашу ветку не перенесён сторож почты
+  активации (`activationEmailRetryCron`, `resendKeyHealthCron`, `email_delivery_watchdog.ts`).
+  Сейчас он живёт только в облаке и в ветке `claude/sad-cannon-876ae9`; полная выкладка
+  удалит его молча. Именная выкладка из этого файла его НЕ трогает.
+- **TTL 90 дней для журналов ошибок/активности** (`app_errors`, `app_activity`): после того как
+  код начнёт писать поле `expireAt`, включите политику TTL в консоли:
+  Firebase Console → Firestore → TTL (Time-to-live) → «Create policy» → коллекция `app_errors`,
+  поле `expireAt`; то же для `app_activity`. Действует только на документы с этим полем.
+- **14 облачных функций без решения** (season* ×4, задания/сундук/щит друзей ×4,
+  `communityPurchasePack`, `profileCardUpgrade`, открытие курса Learning V2 ×2,
+  `statsInsightsGenerate`, `weeklyReviewGenerate`) — удалять после релиза, и только если их не
+  вызывает ни 2.0, ни живые версии 1.6.x; иначе — после окна принудительного обновления.

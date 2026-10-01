@@ -10,6 +10,7 @@ import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image as ExpoImage } from 'expo-image';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getRunesBalanceRead, peekRunes } from './runes_system';
 import { getPersonalProgressSnapshot, hydratePersonalProgress } from './personal_progress_store';
 import { useTheme } from '../components/ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -83,26 +84,31 @@ type AchievementGridMetrics = ReturnType<typeof getAchievementGridMetrics>;
 
 interface AchievementStats {
   streak: number;
-  shards: number;
+  /** Баланс монет — по нему считается «Монетная заначка» (id `shards_*` исторический). */
+  coins: number;
 }
 
+// зачем: первый кадр берёт монеты из снимка синхронно — полоска не прыгает с нуля.
 const emptyAchievementStats = (): AchievementStats => ({
   streak: 0,
-  shards: 0,
+  coins: peekRunes(),
 });
 
 async function loadAchievementStats(): Promise<AchievementStats> {
   try {
     await hydratePersonalProgress();
     const personalProgress = getPersonalProgressSnapshot();
-    const shardsRaw = await AsyncStorage.getItem('shards_balance');
-    const streak = personalProgress.streakCount;
-    const shards = parseInt(shardsRaw || '0') || 0;
+    // зачем (Ядро 01.10, D70/D78): достижение считается по монетам (c0605907b), а полоска
+    // читала удалённый жемчуг (shards_balance) — показывала чужое число. Берём кошелёк монет.
+    const { wallet } = await getRunesBalanceRead();
     return {
-      streak,
-      shards,
+      streak: personalProgress.streakCount,
+      coins: wallet.balance,
     };
-  } catch { return emptyAchievementStats(); }
+  } catch (error: unknown) {
+    console.warn('[ACHIEVEMENTS] stats:load_failed', error instanceof Error ? error.message : String(error));
+    return emptyAchievementStats();
+  }
 }
 
 function getAchievementProgress(id: string, stats: AchievementStats): [number, number] | null {
@@ -112,7 +118,7 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
   }
   if (id.startsWith('shards_')) {
     const n = parseInt(id.replace('shards_', ''));
-    if (!isNaN(n)) return [Math.min(stats.shards, n), n];
+    if (!isNaN(n)) return [Math.min(stats.coins, n), n];
   }
   return null;
 }

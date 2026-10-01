@@ -73,7 +73,7 @@ const BASELINE: Record<string, number> = {
   'app/daily_journey_production_host.ts': 2,
   'app/daily_phrase_quest.ts': 1,
   'app/daily_phrase_system.ts': 4,
-  'app/debug-logger.ts': 7,
+  'app/debug-logger.ts': 2, // PM-228 2026-10-01: 7 → 2 (остались .catch(() => undefined) в цепочке очереди — намеренный разрыв цепочки)
   'app/diagnostic_test.tsx': 2,
   'app/dialogue_v2_prepared_bot_voice_runtime.ts': 1,
   'app/error_report.ts': 3,

@@ -10,7 +10,9 @@ type AsyncStorageMock = {
   __reset?: () => void;
 };
 
-const flushAsyncWork = () => new Promise((resolve) => setTimeout(resolve, 0));
+// зачем (PM-228): журнал пишет на диск пачкой через 5 с (рефактор 2026-09-22), а ожидание
+// setTimeout(0) этот сброс не дожидалось — тест читал пустой ключ. Прокручиваем таймер сброса.
+const flushAsyncWork = () => jest.advanceTimersByTimeAsync(6_000);
 
 async function loadDebugLoggerWithFreshStorage() {
   jest.resetModules();
@@ -25,7 +27,9 @@ async function loadDebugLoggerWithFreshStorage() {
 }
 
 describe('DebugLogger storage contract', () => {
+  beforeEach(() => { jest.useFakeTimers(); });
   afterEach(() => {
+    jest.useRealTimers();
     delete (globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__;
     jest.restoreAllMocks();
   });

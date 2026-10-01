@@ -4,7 +4,7 @@ import { logAppError } from './app_health';
 import { maskDiagnosticText, newTraceId, sanitizeDiagnosticContext } from './diagnostic_mask';
 const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
 
-type DebugLogEntry = {
+export type DebugLogEntry = {
   timestamp: string;
   context: string;
   error: string;
@@ -22,6 +22,14 @@ const LEGACY_CLEANUP_INTERVAL_MS = 12 * 60 * 60 * 1000;
 
 let debugLogWriteQueue: Promise<void> = Promise.resolve();
 let lastLegacyCleanupAt = 0;
+
+// зачем (PM-228): журнал не может логировать собственные сбои через себя (рекурсия), но и немой
+// catch запрещён — причина уходит в консоль разработчика (в релизе console вырезан, нагрузки нет).
+function warnLoggerIo(tag: string): (err: unknown) => void {
+  return (err: unknown) => {
+    if (isDevRuntime) console.warn(`[debug-logger] ${tag}:`, err instanceof Error ? err.message : String(err));
+  };
+}
 
 function parseDebugLogs(raw: string | null): DebugLogEntry[] {
   if (!raw) return [];
@@ -54,10 +62,10 @@ function compactDebugLogs(logs: DebugLogEntry[], now: number): DebugLogEntry[] {
 async function cleanupLegacyDebugLogs(now: number): Promise<void> {
   if (now - lastLegacyCleanupAt < LEGACY_CLEANUP_INTERVAL_MS) return;
   lastLegacyCleanupAt = now;
-  const keys = await AsyncStorage.getAllKeys().catch(() => []);
+  const keys = await AsyncStorage.getAllKeys().catch((err: unknown) => { warnLoggerIo('legacy_keys_read_failed')(err); return [] as readonly string[]; });
   const legacyKeys = keys.filter((key) => key.startsWith(LEGACY_LOG_PREFIX));
   if (legacyKeys.length > 0) {
-    await AsyncStorage.multiRemove(legacyKeys).catch(() => {});
+    await AsyncStorage.multiRemove(legacyKeys).catch(warnLoggerIo('legacy_keys_remove_failed'));
   }
 }
 
@@ -85,11 +93,14 @@ let flushTimer: ReturnType<typeof setTimeout> | null = null;
 let flushScheduled = false;
 /** Реже этого на диск не пишем: всплеск ошибок даёт ОДНУ запись, а не сотню. */
 const DEBUG_LOG_FLUSH_DELAY_MS = 5_000;
+/** Буфер записей до первой подгрузки журнала с диска (тот же лимит и дедуп). */
+let pendingBeforeLoad: DebugLogEntry[] = [];
+let loadScheduled = false;
 
 /** Подтягивает журнал с диска один раз за запуск. Дальше память авторитетна. */
 async function ensureMemoryLogs(): Promise<DebugLogEntry[]> {
   if (memoryLogs) return memoryLogs;
-  const raw = await AsyncStorage.getItem(DEBUG_LOGS_KEY).catch(() => null);
+  const raw = await AsyncStorage.getItem(DEBUG_LOGS_KEY).catch((err: unknown) => { warnLoggerIo('journal_read_failed')(err); return null; });
   memoryLogs = compactDebugLogs(parseDebugLogs(raw), Date.now());
   return memoryLogs;
 }
@@ -128,47 +139,84 @@ function scheduleFlush(): void {
  * Кладёт запись в журнал. Диска НЕ касается — только память плюс отложенный
  * сброс. Повтор той же ошибки в пределах окна лишь увеличивает счётчик.
  */
-function persistDebugLog(entry: DebugLogEntry): void {
+// зачем (PM-228, «логи bounded»): число записей уже ограничено (160) и TTL 7 дней, но одна запись
+// могла нести стек на десятки КБ — 160 таких раздували ключ AsyncStorage до мегабайт и каждый
+// сброс сериализовал их целиком. Режем каждое поле до фиксированного размера ДО дедупа,
+// чтобы сравнение повторов шло по тем же строкам, что лягут на диск.
+export const DEBUG_LOG_FIELD_LIMITS = { context: 200, error: 1_000, stack: 2_000 } as const;
+
+function clampField(value: string, max: number): string {
+  return value.length > max ? `${value.slice(0, max)}…[+${value.length - max}]` : value;
+}
+
+export function boundDebugLogEntry(entry: DebugLogEntry): DebugLogEntry {
+  return {
+    ...entry,
+    context: clampField(entry.context, DEBUG_LOG_FIELD_LIMITS.context),
+    error: clampField(entry.error, DEBUG_LOG_FIELD_LIMITS.error),
+    stack: entry.stack == null ? undefined : clampField(entry.stack, DEBUG_LOG_FIELD_LIMITS.stack),
+  };
+}
+
+function persistDebugLog(rawEntry: DebugLogEntry): void {
+  const entry = boundDebugLogEntry(rawEntry);
   const now = Date.now();
 
   // Быстрый путь: журнал уже в памяти — решаем без единого обращения к диску.
   if (memoryLogs) {
-    const last = memoryLogs[memoryLogs.length - 1];
-    const lastAt = last ? Date.parse(last.timestamp) : 0;
-    if (
-      last
-      && last.context === entry.context
-      && last.error === entry.error
-      && last.severity === entry.severity
-      && Number.isFinite(lastAt)
-      && now - lastAt < DEBUG_LOG_DEDUPE_MS
-    ) {
-      last.timestamp = entry.timestamp;
-      last.stack = entry.stack ?? last.stack;
-      last.count = (last.count ?? 1) + 1;
-      scheduleFlush();
-      return;
-    }
-    memoryLogs.push(entry);
-    if (memoryLogs.length > MAX_DEBUG_LOGS) {
-      memoryLogs = memoryLogs.slice(-MAX_DEBUG_LOGS);
-    }
+    memoryLogs = appendDeduped(memoryLogs, entry, now);
     scheduleFlush();
     return;
   }
 
-  // Первый вызов за запуск: один раз поднимаем журнал с диска, дальше память.
+  // зачем (PM-228, найдено замером): до первой подгрузки журнала с диска КАЖДЫЙ вызов вешал
+  // свою задачу в очередь и клал запись без дедупа — шторм из 1000 одинаковых ошибок на старте
+  // давал 160 копий вместо одной со счётчиком и 1000 замыканий в очереди. Теперь до подгрузки
+  // записи копятся в ограниченном буфере с тем же дедупом, а подгрузка ставится ОДИН раз.
+  pendingBeforeLoad = appendDeduped(pendingBeforeLoad, entry, now);
+  if (loadScheduled) return;
+  loadScheduled = true;
   debugLogWriteQueue = debugLogWriteQueue
     .catch(() => undefined)
     .then(async () => {
-      const logs = await ensureMemoryLogs();
-      logs.push(entry);
-      if (logs.length > MAX_DEBUG_LOGS) memoryLogs = logs.slice(-MAX_DEBUG_LOGS);
+      let merged = await ensureMemoryLogs();
+      for (const pending of pendingBeforeLoad) {
+        merged = appendDeduped(merged, pending, Date.parse(pending.timestamp) || Date.now());
+      }
+      memoryLogs = merged;
+      pendingBeforeLoad = [];
       scheduleFlush();
     })
     .catch((err) => {
-      if (isDevRuntime) console.error('Failed to log:', err);
+      if (isDevRuntime) console.error('[debug-logger] подгрузка журнала не удалась:', err);
+    })
+    .finally(() => {
+      loadScheduled = false;
     });
+}
+
+/**
+ * Добавляет запись с дедупом последней. Мутирует массив намеренно: это горячий путь
+ * (сотни вызовов в цикле), копия массива из 160 записей на каждый вызов дороже самой записи.
+ */
+function appendDeduped(list: DebugLogEntry[], entry: DebugLogEntry, now: number): DebugLogEntry[] {
+  const last = list[list.length - 1];
+  const lastAt = last ? Date.parse(last.timestamp) : 0;
+  if (
+    last
+    && last.context === entry.context
+    && last.error === entry.error
+    && last.severity === entry.severity
+    && Number.isFinite(lastAt)
+    && now - lastAt < DEBUG_LOG_DEDUPE_MS
+  ) {
+    last.timestamp = entry.timestamp;
+    last.stack = entry.stack ?? last.stack;
+    last.count = (last.count ?? 1) + (entry.count ?? 1);
+    return list;
+  }
+  list.push(entry);
+  return list.length > MAX_DEBUG_LOGS ? list.slice(-MAX_DEBUG_LOGS) : list;
 }
 
 // зачем: PM-226 — единый контракт диагностической ошибки. Каждая запись несёт
@@ -281,12 +329,12 @@ export const DebugLogger = {
 
   clearOldLogs: async (daysOld: number = 7) => {
     const cutoffMs = Date.now() - (daysOld * 24 * 60 * 60 * 1000);
-    const raw = await AsyncStorage.getItem(DEBUG_LOGS_KEY).catch(() => null);
+    const raw = await AsyncStorage.getItem(DEBUG_LOGS_KEY).catch((err: unknown) => { warnLoggerIo('clear_read_failed')(err); return null; });
     const logs = parseDebugLogs(raw).filter((entry) => {
       const ts = Date.parse(entry.timestamp);
       return Number.isFinite(ts) && ts >= cutoffMs;
     }).slice(-MAX_DEBUG_LOGS);
-    await AsyncStorage.setItem(DEBUG_LOGS_KEY, JSON.stringify(logs)).catch(() => {});
+    await AsyncStorage.setItem(DEBUG_LOGS_KEY, JSON.stringify(logs)).catch(warnLoggerIo('clear_write_failed'));
 
     const allKeys = await AsyncStorage.getAllKeys();
     for (const key of allKeys) {

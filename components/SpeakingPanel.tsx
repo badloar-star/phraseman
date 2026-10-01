@@ -2193,7 +2193,7 @@ export function SpeakingPanel({
       case 'scoring':
         return L(lang, { ru: 'Проверяю…', uk: 'Перевіряю…', es: 'Comprobando…', 'pt-BR': 'Verificando…', vi: 'Đang kiểm tra…', id: 'Memeriksa…', tr: 'Kontrol ediyorum…', pl: 'Sprawdzam…' });
       case 'passed':
-        return L(lang, { ru: 'Отлично! Чисто сказано', uk: 'Чудово! Чітко сказано', es: '¡Genial! Bien dicho', 'pt-BR': 'Ótimo! Bem pronunciado', vi: 'Tuyệt! Nói rất rõ', id: 'Bagus! Diucapkan dengan jelas', tr: 'Harika! Temiz söyledin', pl: 'Świetnie! Powiedziane czysto' });
+        return L(lang, { ru: 'Отлично! Совпало с фразой', uk: 'Чудово! Збіглося з фразою', es: '¡Genial! Coincide con la frase', 'pt-BR': 'Ótimo! Bateu com a frase', vi: 'Tuyệt! Khớp với câu', id: 'Bagus! Cocok dengan frasa', tr: 'Harika! İfadeyle eşleşti', pl: 'Świetnie! Zgadza się z frazą' }); // Q61: совпадение, не оценка звучания
       case 'failed':
         return L(lang, { ru: 'Почти. Попробуй ещё раз', uk: 'Майже. Спробуй ще раз', es: 'Casi. Inténtalo otra vez', 'pt-BR': 'Quase. Tente de novo', vi: 'Gần đúng rồi. Thử lại nhé', id: 'Hampir. Coba lagi', tr: 'Neredeyse. Bir daha dene', pl: 'Prawie. Spróbuj jeszcze raz' });
       case 'no_speech':

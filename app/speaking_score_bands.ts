@@ -20,15 +20,17 @@ export function speakingBand(score: number, threshold: number): SpeakingBand {
 }
 
 const BAND_LABELS: Readonly<Record<SpeakingBand, Readonly<Record<string, string>>>> = {
+  // зачем (Q61, координатор 01.10): балл — совпадение распознанного текста с фразой, а не оценка
+  // звучания; подписи не обещают «чисто/чётко».
   excellent: {
-    ru: 'Отлично! Звучит чисто',
-    uk: 'Чудово! Звучить чисто',
-    es: '¡Excelente! Suena muy claro',
-    'pt-BR': 'Excelente! Soou muito claro',
-    vi: 'Xuất sắc! Nghe rất rõ',
-    id: 'Luar biasa! Terdengar jernih',
-    tr: 'Mükemmel! Çok temiz',
-    pl: 'Świetnie! Brzmi czysto',
+    ru: 'Отлично! Совпало с фразой',
+    uk: 'Чудово! Збіглося з фразою',
+    es: '¡Excelente! Coincide con la frase',
+    'pt-BR': 'Excelente! Bateu com a frase',
+    vi: 'Xuất sắc! Khớp với câu',
+    id: 'Luar biasa! Cocok dengan frasa',
+    tr: 'Mükemmel! İfadeyle eşleşti',
+    pl: 'Świetnie! Zgadza się z frazą',
   },
   good: {
     ru: 'Хорошо! Зачтено',
@@ -51,14 +53,14 @@ const BAND_LABELS: Readonly<Record<SpeakingBand, Readonly<Record<string, string>
     pl: 'Prawie się udało',
   },
   rough: {
-    ru: 'Пока нечётко — попробуй ещё',
-    uk: 'Поки нечітко — спробуй ще',
-    es: 'Aún no está claro — inténtalo otra vez',
-    'pt-BR': 'Ainda não está claro — tente de novo',
-    vi: 'Chưa rõ lắm — thử lại nhé',
-    id: 'Masih kurang jelas — coba lagi',
-    tr: 'Henüz net değil — bir daha dene',
-    pl: 'Jeszcze niewyraźnie — spróbuj ponownie',
+    ru: 'Пока не совпало — попробуй ещё',
+    uk: 'Поки не збіглося — спробуй ще',
+    es: 'Aún no coincide — inténtalo otra vez',
+    'pt-BR': 'Ainda não bateu — tente de novo',
+    vi: 'Chưa khớp — thử lại nhé',
+    id: 'Belum cocok — coba lagi',
+    tr: 'Henüz eşleşmedi — bir daha dene',
+    pl: 'Jeszcze się nie zgadza — spróbuj ponownie',
   },
 };
 

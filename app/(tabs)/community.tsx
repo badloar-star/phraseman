@@ -1,13 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { usePathname } from 'expo-router';
+import { useLocalSearchParams, usePathname } from 'expo-router';
 import { useLang } from '../../components/LangContext';
 import { triLang } from '../../constants/i18n';
 import { V2, V2_TYPE } from '../../constants/v2Style';
 import { useV2Palette } from '../../components/v2/useV2Palette';
 import V2SegmentedControl, { type V2Segment } from '../../components/v2/V2SegmentedControl';
 import { TabRuntimeOwnerOverride, useTabNav } from '../TabContext';
-import type { SubRuntimeOwnerId } from '../tab_page_model';
+import { SUB_RUNTIME_OWNER_IDS, type SubRuntimeOwnerId } from '../tab_page_model';
 import { useSpireTabEnabled } from '../spire_tab_flag';
 
 type Section = SubRuntimeOwnerId;
@@ -27,6 +27,13 @@ function sectionFromPath(pathname: string): Section | null {
   return /\/friends\/?$/.test(pathname) ? 'friends' : null;
 }
 
+// зачем (01.10, пуши Шпиля 7024103cd): /(tabs)/community?section=spire открывает нужный раздел
+// сразу. Неизвестное значение игнорируется; закрытый Шпиль сам вернётся к «Друзьям» (эффект ниже).
+function sectionFromParam(value: unknown): Section | null {
+  const raw = Array.isArray(value) ? value[0] : value;
+  return typeof raw === 'string' && (SUB_RUNTIME_OWNER_IDS as readonly string[]).includes(raw) ? raw as Section : null;
+}
+
 /**
  * Вкладка «Сообщество»: «Друзья | Наборы» под переключателем.
  * Раздел меняется мгновенно; открытые разделы остаются смонтированными (свой
@@ -36,15 +43,18 @@ export default function CommunityTabRoute() {
   const { lang } = useLang();
   const p = useV2Palette();
   const pathname = usePathname();
+  const { section: sectionParam } = useLocalSearchParams<{ section?: string }>();
   const { runtimeOwnerId } = useTabNav();
   const spireVisible = useSpireTabEnabled();
-  const [section, setSection] = useState<Section>(() => sectionFromPath(pathname) ?? 'friends');
+  const [section, setSection] = useState<Section>(() => sectionFromParam(sectionParam) ?? sectionFromPath(pathname) ?? 'friends');
   const [visited, setVisited] = useState<ReadonlySet<Section>>(() => new Set([section]));
 
   useEffect(() => {
-    const fromPath = sectionFromPath(pathname);
-    if (fromPath) setSection(fromPath);
-  }, [pathname]);
+    const fromParam = sectionFromParam(sectionParam);
+    if (sectionParam !== undefined && !fromParam) console.warn('[COMMUNITY] section param ignored', { sectionParam });
+    const next = fromParam ?? sectionFromPath(pathname);
+    if (next) setSection(next);
+  }, [pathname, sectionParam]);
 
   useEffect(() => {
     setVisited((prev) => (prev.has(section) ? prev : new Set([...prev, section])));

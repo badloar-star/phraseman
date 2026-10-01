@@ -168,6 +168,7 @@ function preserveNewerSnapshotSections(
     nextPatch.profile = current.profile;
   }
   if (progressMustStayCurrent && patch.progress && current.progress) {
+    console.log(`[STREAK] snapshot:keep_live streak=${current.progress.streak} rejected_storage=${patch.progress.streak}`);
     nextPatch.progress = {
       ...patch.progress,
       source: 'live',
@@ -222,6 +223,8 @@ export function patchAppSnapshotFromPersonalProgress(progress: Readonly<{
 }>): void {
   patchAppSnapshot((current) => {
     const now = Date.now();
+    // зачем (баг 01.10): временная трассировка — локальная серия в снимок Главной.
+    console.log(`[STREAK] snapshot:personal streak=${progress.streakCount} prev=${String(current.progress?.streak)}@${String(current.progress?.source)}`);
     return {
       progress: {
         source: 'local' as const,
@@ -271,6 +274,9 @@ export function patchAppSnapshotFromAuthoritativeCloudProgress(
   if (streak === null || streak === undefined) return false;
 
   const currentProgress = snapshot.progress;
+  // зачем (баг 01.10: Главная «1 день», «Твои результаты» 6): временная трассировка — облако
+  // как авторитетный источник серии перезаписывает снимок, из которого читает Главная.
+  console.log(`[STREAK] snapshot:authoritative_cloud streak=${streak} prev=${String(currentProgress?.streak)}@${String(currentProgress?.source)}`);
   const patch: Partial<AppSnapshot> = {};
   patch.progress = {
     source: 'live',

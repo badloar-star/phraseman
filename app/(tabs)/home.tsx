@@ -1128,6 +1128,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             setUserFrame((current) => current === visuals.frame ? current : visuals.frame);
         }
         if (progress && (progress.source === 'live' || (streak === 0 && progress.streak > 0))) {
+            // зачем (баг 01.10: чип «1 день» при серии 6): временная трассировка источника числа.
+            console.log(`[STREAK] home:snapshot_apply source=${progress.source} snapshot=${progress.streak} prev=${streak}`);
             setStreak(progress.streak);
             setDisplayStreak((current) => progress.source === 'live' ? progress.streak : current || progress.streak);
         }
@@ -1569,6 +1571,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 personalProgress.streakCount,
                 sharedSnapshotAtHydration.progress?.streak ?? 0,
             );
+            console.log(`[STREAK] home:hydration personal=${personalProgress.streakCount} snapshot=${String(sharedSnapshotAtHydration.progress?.streak)}@${String(sharedSnapshotAtHydration.progress?.source)} streakVal=${String(streakVal)} -> ${currentStreakNum}`);
             if (streakVal !== null || sharedSnapshotAtHydration.progress?.source === 'live')
                 setStreak(currentStreakNum);
             const lastStreakShown = parseInt(lastStreakShownRaw || '0') || 0;

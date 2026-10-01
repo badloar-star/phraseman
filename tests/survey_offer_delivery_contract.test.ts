@@ -25,7 +25,8 @@ describe('standalone survey delivery', () => {
   it('keeps the source-level Home callsite contract', () => {
     const client = fs.readFileSync(path.join(ROOT, 'app', 'survey_client.ts'), 'utf8');
     const home = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
-    const card = fs.readFileSync(path.join(ROOT, 'components', 'SurveyTaskCard.tsx'), 'utf8');
+    const hook = fs.readFileSync(path.join(ROOT, 'hooks', 'use_home_survey_entry.ts'), 'utf8');
+    const loader = fs.readFileSync(path.join(ROOT, 'app', 'home_survey_entry.ts'), 'utf8');
     const screen = fs.readFileSync(path.join(ROOT, 'app', 'survey_screen.tsx'), 'utf8');
     const controller = fs.readFileSync(path.join(ROOT, 'app', 'survey_flow_controller.ts'), 'utf8');
 
@@ -34,20 +35,13 @@ describe('standalone survey delivery', () => {
     expect(client).toContain('wait?: (ms: number) => Promise<void>');
     expect(client).toMatch(/Math\.min\(\d+, Math\.max\(0, [^\n]*options\.delayMs/);
     expect(client).toContain('await wait(delayMs)');
-    expect(home).toContain('fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang })');
-    expect(home).toContain('dayKey: getUtcDayKey()');
-    // зачем (01.10, удаление Главной V1): SurveyTaskCard и setOpenSurveyLaunch жили в V1-разметке.
+    // зачем (Q90, 01.10): загрузка вынесена из Главной в загрузчик с кэшем 6 ч; Главная держит только хук.
+    expect(loader).toContain('fetchActiveSurveyWithRetry({ stableId: input.stableId, platform: input.platform, lang: input.lang })');
+    expect(hook).toContain('dayKey: getUtcDayKey()');
+    expect(home).toContain('useHomeSurveyEntry(lang, homeRuntimeActive)');
     expect(home).toContain('<SurveySheetModal');
-    expect(home).not.toContain('primeSurvey({ survey: challenge.survey');
+    expect(home).not.toContain('primeSurvey(');
     expect(home).not.toContain("pathname: '/survey_screen'");
-    expect(card).toContain('challenge: SurveyOfferSnapshot');
-    expect(card).toContain('onOpen: (challenge: SurveyOfferSnapshot) => void');
-    expect(card).not.toContain('useFocusEffect');
-    expect(card).not.toContain('fetchActiveSurvey');
-    expect(card).not.toContain('getCanonicalUserId');
-    expect(card).not.toContain('useRouter');
-    expect(card).not.toContain('useState');
-    expect(card).not.toContain('primeSurvey');
     expect(screen).toContain('takePrimedSurvey(surveyId, scope)');
     expect(screen).toContain('<SurveySheetModal');
     expect(controller).toContain('await markSurveyOfferDone({');

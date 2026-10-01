@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useLayoutEffect, useCallback, useMemo } from 'react';
 // зачем: allowFontScaling={false} отключал системный размер шрифта — заголовки
 // обрезались при крупном шрифте и на длинных языках. FlowText переносит.
-import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, Easing, Platform, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle } from 'react-native';
+import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, Easing, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle } from 'react-native';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { useGuardedNav } from '../../hooks/use-guarded-nav';
@@ -59,15 +59,8 @@ import {
 } from '../../components/energy/EnergyInfoPopover';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import SurveySheetModal from '../../components/survey/SurveySheetModal';
+import { useHomeSurveyEntry } from '../../hooks/use_home_survey_entry';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
-import { fetchActiveSurveyWithRetry } from '../survey_client';
-import { buildActiveSurveyOffer, type SurveyOfferSnapshot } from '../survey_offer_model';
-import {
-    sameSurveyDurableScope,
-    type SurveyDurableScope,
-    type SurveyLaunch,
-} from '../survey_flow_controller';
-import { getCanonicalUserId } from '../user_id_policy';
 import { useOverlayVisible } from '../../components/OverlayArbiter';
 import SavedCardsFlight from '../../components/SavedCardsFlight';
 import {
@@ -479,28 +472,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const homeScrollYRef = useRef(0);
     const [dailyPhraseCardVisible, setDailyPhraseCardVisible] = useState(false);
     const dailyPhraseCardVisibleRef = useRef(false);
-    const [surveyOffer, setSurveyOffer] = useState<{
-        challenge: SurveyOfferSnapshot;
-        stableId: string;
-        dayKey: string;
-    } | null>(null);
-    const [openSurveyLaunch, setOpenSurveyLaunch] = useState<SurveyLaunch | null>(null);
-    const openSurveyAccountGenerationRef = useRef<AccountGenerationToken | null>(null);
-    const closeSurveySheet = useCallback(() => {
-        openSurveyAccountGenerationRef.current = null;
-        setOpenSurveyLaunch(null);
-    }, []);
-    const handleSurveyDurablyReconciled = useCallback((completed: SurveyDurableScope) => {
-        setSurveyOffer((current) => {
-            if (!current) return current;
-            const currentScope = {
-                stableId: current.stableId,
-                dayKey: current.dayKey,
-                surveyId: current.challenge.surveyId,
-            };
-            return sameSurveyDurableScope(currentScope, completed) ? null : current;
-        });
-    }, []);
     // зачем (аудит скорости 2026-08-22): раньше пересчитывался на КАЖДОМ кадре
     // скролла (scrollEventThrottle=16 ≈ 60/с) — сам расчёт дешёвый, но лишняя
     // работа на JS-потоке во время активного скролла. Троттлим по времени: при
@@ -573,66 +544,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => {
         homeRuntimeActiveRef.current = homeRuntimeActive;
     }, [homeRuntimeActive]);
-    useEffect(() => {
-        if (!homeRuntimeActive) return undefined;
-        let cancelled = false;
-        void (async () => {
-            try {
-                const stableId = await getCanonicalUserId();
-                if (!stableId || cancelled) return;
-                const result = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
-                if (cancelled) return;
-                if (!result.survey || result.completion) {
-                    setSurveyOffer(null);
-                    return;
-                }
-                setSurveyOffer({
-                    challenge: buildActiveSurveyOffer({ survey: result.survey, lang }),
-                    stableId,
-                    dayKey: getUtcDayKey(),
-                });
-            } catch {
-                if (!cancelled) setSurveyOffer(null);
-            }
-        })();
-        return () => { cancelled = true; };
-    }, [focusTick, homeRuntimeActive, lang]);
-    useEffect(() => {
-        if (!openSurveyLaunch) return undefined;
-        const openedAccount = openSurveyAccountGenerationRef.current;
-        if (!openedAccount) {
-            closeSurveySheet();
-            return undefined;
-        }
-        const closeIfSurveyScopeChanged = (account = captureAccountGeneration()) => {
-            const accountMismatch = account.phase !== 'active'
-                || account.generation !== openedAccount.generation
-                || account.stableId !== openSurveyLaunch.stableId;
-            const offerMismatch = Boolean(surveyOffer && (
-                surveyOffer.stableId !== openSurveyLaunch.stableId
-                || surveyOffer.dayKey !== openSurveyLaunch.dayKey
-            ));
-            const dayMismatch = getUtcDayKey() !== openSurveyLaunch.dayKey;
-            if (accountMismatch || offerMismatch || dayMismatch || openSurveyLaunch.lang !== lang) {
-                closeSurveySheet();
-            }
-        };
-        closeIfSurveyScopeChanged();
-        const subscription = subscribeAccountGeneration(closeIfSurveyScopeChanged);
-        const now = new Date();
-        const nextUtcDayMs = Date.UTC(
-            now.getUTCFullYear(),
-            now.getUTCMonth(),
-            now.getUTCDate() + 1,
-        );
-        const utcDayBoundaryTimeout = setTimeout(() => {
-            if (getUtcDayKey() !== openSurveyLaunch.dayKey) closeSurveySheet();
-        }, Math.max(1, nextUtcDayMs - Date.now() + 25));
-        return () => {
-            subscription.remove();
-            clearTimeout(utcDayBoundaryTimeout);
-        };
-    }, [closeSurveySheet, lang, openSurveyLaunch, surveyOffer]);
+    // зачем (Q90, координатор 01.10): опрос — строка в «Сегодня»; загрузка раз при входе с кэшем 6 ч,
+    // шторка монтируется только пока открыта (hooks/use_home_survey_entry.ts). Прежняя цепочка на
+    // каждый фокус Главной удалена.
+    const homeSurvey = useHomeSurveyEntry(lang, homeRuntimeActive);
     const firstHomeFrameEmittedRef = useRef(false);
     const notifyFirstHomeFrameReady = useCallback(() => {
         if (firstHomeFrameEmittedRef.current)
@@ -2645,6 +2560,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               title={triLang(lang, { ru: 'Сегодня', uk: 'Сьогодні', en: 'Today', es: 'Hoy', 'pt-BR': 'Hoje', vi: 'Hôm nay', id: 'Hari ini', tr: 'Bugün', pl: 'Dziś' }).toUpperCase()}
               tasks={homeV2Tasks}
               onOpenTask={(task) => go(task.route)}
+              surveyRow={homeSurvey.row ? { ...homeSurvey.row, onPress: homeSurvey.openSurvey } : null}
             />
             {/* зачем D129: «Фраза дня» только там, где есть банк фраз для языка (en, fr). */}
             {homeDailyPhraseVisible ? (
@@ -2783,12 +2699,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
       />
       <FeatureIntroEntry id="profile_card_first_visit" enabled={profileIntroRequested && homeRuntimeActive && homeProfilePlayer !== null} />
 
-      {openSurveyLaunch ? (
+      {homeSurvey.launch ? (
         <SurveySheetModal
-          visible={openSurveyLaunch !== null}
-          launch={openSurveyLaunch}
-          onClose={closeSurveySheet}
-          onDurablyReconciled={handleSurveyDurablyReconciled}
+          visible
+          launch={homeSurvey.launch}
+          onClose={homeSurvey.closeSurvey}
+          onDurablyReconciled={homeSurvey.onDurablyReconciled}
         />
       ) : null}
 

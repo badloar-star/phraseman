@@ -20,6 +20,8 @@ type Props = {
   title: string;
   tasks: readonly TodayTask[];
   onOpenTask: (task: TodayTask) => void;
+  /** Q90 (координатор 01.10): активный опрос — строка ПОД заданиями, тем же видом; null/нет — не рисуется. */
+  surveyRow?: Readonly<{ title: string; subtitle?: string; onPress: () => void }> | null;
 };
 
 /**
@@ -27,7 +29,7 @@ type Props = {
  * кружок-отметка, значок активности, название с подписью, счётчик progress/target.
  * «Показать все» владелец убрал: тап по задаче сразу ведёт в активность.
  */
-export default function HomeV2TodayCard({ title, tasks, onOpenTask }: Props) {
+export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow }: Props) {
   const p = useV2Palette();
   const glass = useV2GlassStyle();
   const rowGlass = useV2GlassStyle(true);
@@ -70,6 +72,27 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask }: Props) {
             </V2Pressable>
           );
         })}
+        {surveyRow ? (
+          <V2Pressable
+            testID="home-v2-today-survey"
+            accessibilityRole="button"
+            accessibilityLabel={`${surveyRow.title}${surveyRow.subtitle ? `. ${surveyRow.subtitle}` : ''}`}
+            onPress={surveyRow.onPress}
+            scaleTo={0.98}
+            style={[s.row, rowGlass]}
+          >
+            <V2GlassSheen seed={tasks.length + 1} />
+            <View style={[s.check, { borderColor: p.textMuted }]} /* guard-ok: D43 отметка-кружок, как у заданий */ />
+            <V2IconTile name="clipboard-outline" size={36} iconSize={19} />
+            <View style={s.copy}>
+              <Text numberOfLines={1} style={[s.taskTitle, { color: p.text }]}>{surveyRow.title}</Text>
+              {surveyRow.subtitle ? (
+                <Text numberOfLines={1} style={[s.taskSubtitle, { color: p.textSecondary }]}>{surveyRow.subtitle}</Text>
+              ) : null}
+            </View>
+            <Ionicons name="chevron-forward" size={16} color={p.textSecondary} />
+          </V2Pressable>
+        ) : null}
       </View>
     </View>
   );

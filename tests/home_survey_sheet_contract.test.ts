@@ -4,70 +4,77 @@ import path from 'node:path';
 const ROOT = path.resolve(__dirname, '..');
 const read = (relativePath: string) => fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
 
-describe('Home-owned survey sheet', () => {
+// зачем (Q90, координатор 01.10): опрос на Главной 2.0 — строка в «Сегодня»; сама цепочка
+// (загрузка, область запуска, закрытие по смене аккаунта/дня) живёт в хуке, а Главная
+// монтирует шторку только пока опрос открыт. Сторож охраняет эту границу.
+describe('Home-owned survey entry (Today row + sheet)', () => {
   const home = read('app/(tabs)/home.tsx');
+  const hook = read('hooks/use_home_survey_entry.ts');
+  const loader = read('app/home_survey_entry.ts');
+  const todayCard = read('components/home/v2/HomeV2TodayCard.tsx');
   const route = read('app/survey_screen.tsx');
-  const card = read('components/SurveyTaskCard.tsx');
   const layout = read('app/_layout.tsx');
 
-  test('owns one scoped launch and opens the delivered survey without a route handoff', () => {
-    expect(home).toContain("import SurveySheetModal from '../../components/survey/SurveySheetModal';");
-    expect(home).toContain('type SurveyLaunch,');
-    expect(home.match(/const \[openSurveyLaunch, setOpenSurveyLaunch\] = useState<SurveyLaunch \| null>\(null\);/g))
-      .toHaveLength(1);
-
-    // зачем (01.10, удаление Главной V1): вызов <SurveyTaskCard … setOpenSurveyLaunch({…}) /> жил
-    // в V1-разметке и удалён вместе с ней. На Главной 2.0 запуск опроса отсюда недостижим —
-    // это открытый вопрос координатору (нужен ли опрос в «Сегодня» V2). Пока сторожим то, что осталось:
-    // никакого обхода через роут и prime.
-    expect(home).not.toContain('primeSurvey({ survey: challenge.survey');
+  test('Home owns no survey chain: one hook call, one sheet mounted only while open', () => {
+    expect(home.match(/useHomeSurveyEntry\(lang, homeRuntimeActive\)/g)).toHaveLength(1);
+    expect(home).not.toContain('fetchActiveSurveyWithRetry(');
+    expect(home).not.toContain('setSurveyOffer');
+    expect(home).not.toContain('openSurveyLaunch');
+    expect(home.match(/<SurveySheetModal\b/g)).toHaveLength(1);
+    expect(home).toContain('{homeSurvey.launch ? (');
+    expect(home).toContain('launch={homeSurvey.launch}');
+    expect(home).toContain('onClose={homeSurvey.closeSurvey}');
+    expect(home).toContain('onDurablyReconciled={homeSurvey.onDurablyReconciled}');
+    // никакого обхода через роут и prime
+    expect(home).not.toContain('primeSurvey(');
     expect(home).not.toContain("pathname: '/survey_screen'");
-    expect(home.match(/fetchActiveSurveyWithRetry\(/g)).toHaveLength(1);
   });
 
-  test('mounts one stable sheet in the modal layer and closes stale scope', () => {
-    expect(home.match(/<SurveySheetModal\b/g)).toHaveLength(1);
-    expect(home).toContain('visible={openSurveyLaunch !== null}');
-    expect(home).toContain('launch={openSurveyLaunch}');
-    expect(home).toContain('onClose={closeSurveySheet}');
-    expect(home).toContain('openSurveyAccountGenerationRef');
-    // зачем (01.10): captureAccountGeneration() при открытии жил в V1-колбэке карточки — удалён.
-    expect(home).toContain('subscribeAccountGeneration');
-    expect(home).toContain("account.phase !== 'active'");
-    expect(home).toContain('account.generation !== openedAccount.generation');
-    expect(home).toContain('account.stableId !== openSurveyLaunch.stableId');
-    expect(home).toContain('surveyOffer.dayKey !== openSurveyLaunch.dayKey');
-    expect(home).toContain('openSurveyLaunch.lang !== lang');
-    expect(home).toContain('setOpenSurveyLaunch(null);');
+  test('the row lives in the Today card, only when a survey exists', () => {
+    expect(home).toContain('surveyRow={homeSurvey.row ? { ...homeSurvey.row, onPress: homeSurvey.openSurvey } : null}');
+    expect(todayCard).toContain('surveyRow?: Readonly<{ title: string; subtitle?: string; onPress: () => void }> | null;');
+    expect(todayCard).toContain('{surveyRow ? (');
+    expect(todayCard).toContain('testID="home-v2-today-survey"');
+  });
+
+  test('loads once per app entry through the 6-hour cache, not on every focus', () => {
+    expect(hook).toContain('loadHomeSurvey({ stableId, lang, platform: Platform.OS })');
+    expect(hook).toContain('[lang, runtimeActive]');
+    expect(hook).not.toContain('focusTick');
+    expect(loader).toContain('HOME_SURVEY_TTL_MS = 6 * 60 * 60_000');
+    expect(loader).toContain('settledThisProcess');
+    expect(loader.match(/fetchActiveSurveyWithRetry\(/g)).toHaveLength(1);
+  });
+
+  test('closes a stale scope (account / language / UTC day) with one boundary timeout, no polling', () => {
+    expect(hook).toContain("account.phase !== 'active'");
+    expect(hook).toContain('account.generation !== openedAccount.generation');
+    expect(hook).toContain('account.stableId !== launch.stableId');
+    expect(hook).toContain('launch.lang !== lang');
+    expect(hook).toContain('getUtcDayKey() !== launch.dayKey');
+    expect(hook).toContain('Date.UTC(');
+    expect(hook).toContain('setTimeout(');
+    expect(hook).toContain('clearTimeout(utcDayBoundaryTimeout)');
+    expect(hook).not.toContain('setInterval(');
   });
 
   test('clears only the exactly reconciled offer without closing a still-visible reward sheet', () => {
-    expect(home).toContain('sameSurveyDurableScope');
-    expect(home).toContain('const handleSurveyDurablyReconciled = useCallback');
-    const handlerStart = home.indexOf('const handleSurveyDurablyReconciled = useCallback');
-    const handlerEnd = home.indexOf('const refreshDailyPhraseVisibility', handlerStart);
-    const handler = home.slice(handlerStart, handlerEnd);
-
-    expect(handler).toContain('setSurveyOffer((current) =>');
-    expect(handler).toContain('current.challenge.surveyId');
-    expect(handler).not.toContain('current.challenge.survey.surveyId');
-    expect(handler).toContain('sameSurveyDurableScope(');
-    expect(handler).toContain('? null : current');
-    expect(handler).not.toContain('closeSurveySheet');
-    expect(handler).not.toContain('setOpenSurveyLaunch');
-    expect(home).toContain('onDurablyReconciled={handleSurveyDurablyReconciled}');
+    const start = hook.indexOf('const onDurablyReconciled = useCallback');
+    const end = hook.indexOf('return {', start);
+    const handler = hook.slice(start, end);
+    expect(handler).toContain('current.stableId !== completed.stableId');
+    expect(handler).toContain('current.survey.surveyId !== completed.surveyId');
+    expect(handler).toContain('markHomeSurveyCompleted(');
+    expect(handler).toContain('setOffer(null)');
+    expect(handler).not.toContain('closeSurvey');
+    expect(handler).not.toContain('setLaunch');
   });
 
-  test('uses one UTC-boundary timeout while open instead of polling', () => {
-    const lifecycleStart = home.indexOf('if (!openSurveyLaunch) return undefined;');
-    const lifecycleEnd = home.indexOf('const firstHomeFrameEmittedRef', lifecycleStart);
-    const lifecycle = home.slice(lifecycleStart, lifecycleEnd);
-
-    expect(lifecycle).toContain('Date.UTC(');
-    expect(lifecycle).toContain('setTimeout(');
-    expect(lifecycle).toContain('clearTimeout(');
-    expect(lifecycle).toContain('getUtcDayKey() !== openSurveyLaunch.dayKey');
-    expect(lifecycle).not.toContain('setInterval(');
+  test('every branch of the loader and the hook logs under [SURVEY-HOME]', () => {
+    expect(loader).toContain('[SURVEY-HOME]');
+    expect(hook).toContain('[SURVEY-HOME]');
+    expect(loader).not.toMatch(/catch\s*(\([^)]*\))?\s*\{\s*\}/);
+    expect(hook).not.toMatch(/catch\s*(\([^)]*\))?\s*\{\s*\}/);
   });
 
   test('keeps the legacy route as a scoped, idempotent wrapper over the same sheet', () => {
@@ -91,11 +98,5 @@ describe('Home-owned survey sheet', () => {
     expect(route).not.toContain('<SurveyRewardPanel');
     expect(route).not.toContain('QuestionBlock');
     expect(layout).toContain('<Stack.Screen name="survey_screen" />');
-  });
-
-  test('keeps the task card presentation-only', () => {
-    expect(card).not.toContain('useRouter');
-    expect(card).not.toContain('fetchActiveSurvey');
-    expect(card).not.toContain('primeSurvey');
   });
 });

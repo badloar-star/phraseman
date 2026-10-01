@@ -107,8 +107,8 @@ const SPIN_REWARD_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCop
     (id) => {
       const amount = Number(id.slice('pearls_'.length));
       return {
-        title: { 'pt-BR': `+${amount} pérolas`, vi: `+${amount} ngọc trai`, id: `+${amount} mutiara`, tr: `+${amount} inci`, pl: `+${amount} pereł` },
-        desc: { 'pt-BR': `${amount} pérolas para o seu saldo`, vi: `${amount} ngọc trai vào số dư của bạn`, id: `${amount} mutiara ke saldomu`, tr: `Bakiyene ${amount} inci`, pl: `${amount} pereł do twojego salda` },
+        title: { 'pt-BR': `+${amount} ${runeWord('pt-BR', amount)}`, vi: `+${amount} ${runeWord('vi', amount)}`, id: `+${amount} ${runeWord('id', amount)}`, tr: `+${amount} ${runeWord('tr', amount)}`, pl: `+${amount} ${runeWord('pl', amount)}` },
+        desc: { 'pt-BR': `${amount} ${runeWord('pt-BR', amount)} para o seu saldo`, vi: `${amount} ${runeWord('vi', amount)} vào số dư của bạn`, id: `${amount} ${runeWord('id', amount)} ke saldomu`, tr: `Bakiyene ${amount} ${runeWord('tr', amount)}`, pl: `${amount} ${runeWord('pl', amount)} do twojego salda` },
       };
     },
   ),
@@ -117,8 +117,8 @@ const SPIN_REWARD_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCop
     (id) => {
       const amount = Number(id.slice('stars_'.length));
       return {
-        title: { 'pt-BR': `+${amount} estrelas`, vi: `+${amount} sao`, id: `+${amount} bintang`, tr: `+${amount} yıldız`, pl: `+${amount} gwiazdek` },
-        desc: { 'pt-BR': `${amount} estrelas para o saldo único`, vi: `${amount} sao vào số dư chung`, id: `${amount} bintang ke saldo terpadu`, tr: `Birleşik bakiyene ${amount} yıldız`, pl: `${amount} gwiazdek do wspólnego salda` },
+        title: { 'pt-BR': `+${amount} ${runeWord('pt-BR', amount)}`, vi: `+${amount} ${runeWord('vi', amount)}`, id: `+${amount} ${runeWord('id', amount)}`, tr: `+${amount} ${runeWord('tr', amount)}`, pl: `+${amount} ${runeWord('pl', amount)}` },
+        desc: { 'pt-BR': `${amount} ${runeWord('pt-BR', amount)} para o saldo único`, vi: `${amount} ${runeWord('vi', amount)} vào số dư chung`, id: `${amount} ${runeWord('id', amount)} ke saldo terpadu`, tr: `Birleşik bakiyene ${amount} ${runeWord('tr', amount)}`, pl: `${amount} ${runeWord('pl', amount)} do wspólnego salda` },
       };
     },
   ),
@@ -411,8 +411,8 @@ const GIFT_F2P: GiftDef[] = [
   },
   {
     id: 'shards_3', rarity: 'common', icon: '◈', weight: 7,
-    titleRU: '+3 осколка', titleUK: '+3 уламки', titleEN: '+3 shards', titleES: '+3 fragmentos',
-    descRU: 'Три осколка на баланс', descUK: 'Три уламки на баланс', descEN: 'Three shards added to your balance', descES: 'Tres fragmentos para tu saldo',
+    titleRU: '+3 монеты', titleUK: '+3 монети', titleEN: '+3 coins', titleES: '+3 monedas',
+    descRU: 'Три монеты на баланс', descUK: 'Три монети на баланс', descEN: 'Three coins added to your balance', descES: 'Tres monedas para tu saldo',
   },
   {
     id: 'energy_plus2', rarity: 'rare', icon: '⚡', weight: 7,
@@ -429,8 +429,8 @@ const GIFT_F2P: GiftDef[] = [
   },
   {
     id: 'shards_6', rarity: 'rare', icon: '◈', weight: 6,
-    titleRU: '+6 осколков', titleUK: '+6 уламків', titleEN: '+6 shards', titleES: '+6 fragmentos',
-    descRU: 'Шесть осколков на баланс', descUK: 'Шість уламків на баланс', descEN: 'Six shards added to your balance', descES: 'Seis fragmentos para tu saldo',
+    titleRU: '+6 монет', titleUK: '+6 монет', titleEN: '+6 coins', titleES: '+6 monedas',
+    descRU: 'Шесть монет на баланс', descUK: 'Шість монет на баланс', descEN: 'Six coins added to your balance', descES: 'Seis monedas para tu saldo',
   },
   {
     id: 'cosmetic_avatar_common', rarity: 'rare', icon: '🎨', weight: 5,
@@ -466,8 +466,8 @@ const GIFT_F2P: GiftDef[] = [
   },
   {
     id: 'shards_10', rarity: 'epic', icon: '◈', weight: 2,
-    titleRU: '+10 осколков', titleUK: '+10 уламків', titleEN: '+10 shards', titleES: '+10 fragmentos',
-    descRU: 'Десять осколков на баланс', descUK: 'Десять уламків на баланс', descEN: 'Ten shards added to your balance', descES: 'Diez fragmentos para tu saldo',
+    titleRU: '+10 монет', titleUK: '+10 монет', titleEN: '+10 coins', titleES: '+10 monedas',
+    descRU: 'Десять монет на баланс', descUK: 'Десять монет на баланс', descEN: 'Ten coins added to your balance', descES: 'Diez monedas para tu saldo',
   },
   {
     id: 'wager_discount_25', rarity: 'epic', icon: '🎲', weight: 2,
@@ -514,18 +514,18 @@ const ACTIVE_LEVEL_GIFTS = GIFT_F2P.filter(gift => !RETIRED_LEVEL_GIFT_IDS.has(g
 const GIFT_PREMIUM: GiftDef[] = [
   {
     id: 'prem_shards_10', rarity: 'common', icon: '◈', weight: 5,
-    titleRU: '+10 осколков', titleUK: '+10 уламків', titleEN: '+10 shards', titleES: '+10 fragmentos',
-    descRU: 'Десять осколков на баланс', descUK: 'Десять уламків на баланс', descEN: 'Ten shards added to your balance', descES: 'Diez fragmentos para tu saldo',
+    titleRU: '+10 монет', titleUK: '+10 монет', titleEN: '+10 coins', titleES: '+10 monedas',
+    descRU: 'Десять монет на баланс', descUK: 'Десять монет на баланс', descEN: 'Ten coins added to your balance', descES: 'Diez monedas para tu saldo',
   },
   {
     id: 'prem_shards_15', rarity: 'rare', icon: '◈', weight: 4,
-    titleRU: '+15 осколков', titleUK: '+15 уламків', titleEN: '+15 shards', titleES: '+15 fragmentos',
-    descRU: 'Пятнадцать осколков на баланс', descUK: "П'ятнадцять уламків на баланс", descEN: 'Fifteen shards added to your balance', descES: 'Quince fragmentos para tu saldo',
+    titleRU: '+15 монет', titleUK: '+15 монет', titleEN: '+15 coins', titleES: '+15 monedas',
+    descRU: 'Пятнадцать монет на баланс', descUK: "П'ятнадцять монет на баланс", descEN: 'Fifteen coins added to your balance', descES: 'Quince monedas para tu saldo',
   },
   {
     id: 'prem_shards_20', rarity: 'epic', icon: '◈', weight: 4,
-    titleRU: '+20 осколков', titleUK: '+20 уламків', titleEN: '+20 shards', titleES: '+20 fragmentos',
-    descRU: 'Двадцать осколков на баланс', descUK: 'Двадцять уламків на баланс', descEN: 'Twenty shards added to your balance', descES: 'Veinte fragmentos para tu saldo',
+    titleRU: '+20 монет', titleUK: '+20 монет', titleEN: '+20 coins', titleES: '+20 monedas',
+    descRU: 'Двадцать монет на баланс', descUK: 'Двадцять монет на баланс', descEN: 'Twenty coins added to your balance', descES: 'Veinte monedas para tu saldo',
   },
   {
     id: 'premium_cosmetic_avatar', rarity: 'epic', icon: '🎨', weight: 2,
@@ -564,9 +564,10 @@ const spinPearlGift = (amount: 5 | 10 | 20 | 50 | 100 | 250 | 500 | 1_000): Gift
   const entry = spinRewardEntry(`pearls_${amount}`);
   return {
     id: entry.id, rarity: spinRewardRarity(entry), spinTier: entry.tier, icon: '🫧', weight: entry.weight,
-    titleRU: `+${amount} жемчужин`, titleUK: `+${amount} перлин`, titleES: `+${amount} perlas`,
-    descRU: `${amount} жемчужин в твой баланс`, descUK: `${amount} перлин на твій баланс`,
-    descES: `${amount} perlas para tu saldo`,
+    // зачем (PM-008, Q74): жемчуг удалён — единственная валюта монеты, слово берём из общего словаря.
+    titleRU: `+${amount} ${runeWord('ru', amount)}`, titleUK: `+${amount} ${runeWord('uk', amount)}`, titleES: `+${amount} ${runeWord('es', amount)}`,
+    descRU: `${amount} ${runeWord('ru', amount)} на твой баланс`, descUK: `${amount} ${runeWord('uk', amount)} на твій баланс`,
+    descES: `${amount} ${runeWord('es', amount)} para tu saldo`,
   };
 };
 

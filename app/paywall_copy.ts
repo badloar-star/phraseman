@@ -213,12 +213,12 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     // зачем (владелец, 2026-09-22): «Усиль прогресс», «legacy reward-бусты для ускорения» —
     // три строки подряд без единого понятного слова. Названо то, что реально
     // происходит: недельная таблица, награды, повышение.
-    titleRu: 'Соревнуйся за место в лиге',
-    titleUk: 'Змагайся за місце в лізі',
-    titleEs: 'Practica con la comunidad',
-    subtitleRu: 'Каждую неделю — таблица с живыми людьми, опыт растёт быстрее и подниматься проще. Вместе с этим открывается весь курс, разговоры и тренировки.',
-    subtitleUk: 'Щотижня — таблиця з живими людьми, досвід зростає швидше й підійматися простіше. Разом із цим відкривається увесь курс, розмови та тренування.',
-    subtitleEs: 'Cada semana, una tabla con personas reales: la experiencia sube más rápido y es más fácil ascender. Con esto se abre también el curso completo, los diálogos y los entrenamientos.',
+    titleRu: 'Занимайся без ограничений',
+    titleUk: 'Займайся без обмежень',
+    titleEs: 'Practica sin límites',
+    subtitleRu: 'Подписка открывает весь курс, разговоры и тренировки без дневных ограничений.',
+    subtitleUk: 'Передплата відкриває увесь курс, розмови та тренування без денних обмежень.',
+    subtitleEs: 'La suscripción abre el curso completo, los diálogos y los entrenamientos sin límites diarios.',
   },
   // зачем (владелец, 2026-09-22): экран открывается ПЯТЬЮ путями, и три из них
   // (dialogs_catalogue, dialogs_tutor_poster, ai_companion_direct_entry) —
@@ -256,9 +256,9 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     titleRu: 'Повторяй раунды без ограничений',
     titleUk: 'Повторюй раунди без обмежень',
     titleEs: 'Repite rondas sin límites',
-    subtitleRu: 'Plus открывает повтор любого пройденного раунда. Закрепляй сложные фразы без списания жемчужин.',
-    subtitleUk: 'Plus відкриває повтор будь-якого пройденого раунду. Закріплюй складні фрази без списання перлин.',
-    subtitleEs: 'Plus abre el repaso de cualquier ronda completada. Refuerza las frases difíciles sin gastar perlas.',
+    subtitleRu: 'Plus открывает повтор любого пройденного раунда. Закрепляй сложные фразы без списания монет.',
+    subtitleUk: 'Plus відкриває повтор будь-якого пройденого раунду. Закріплюй складні фрази без списання монет.',
+    subtitleEs: 'Plus abre el repaso de cualquier ronda completada. Refuerza las frases difíciles sin gastar monedas.',
   },
   // зачем (владелец, 2026-09-22): три статистических экрана заканчивались на
   // «— для Plus» — это ценник, а не приглашение. Заголовки теперь про то, что
@@ -314,9 +314,9 @@ PAYWALL_COPY.intro_ended = {
   // зачем (владелец, 2026-09-22): здесь событие точно произошло — подарочные три
   // дня кончились, — поэтому о прошлом говорить можно. Но «ты уже почувствовал»
   // было намёком вместо конкретики: перечисляем, что именно возвращается.
-  titleRu: 'Подарочный доступ закончился',
-  titleUk: 'Подарунковий доступ завершився',
-  titleEs: 'El acceso de regalo ha terminado',
+  titleRu: 'Бесплатный доступ закончился',
+  titleUk: 'Безкоштовний доступ завершився',
+  titleEs: 'El acceso gratuito ha terminado',
   subtitleRu: 'Понравилось, как идёт без ограничений? Подписка возвращает всё то же самое: курс целиком, разговоры без счётчика, тренировки и статистику.',
   subtitleUk: 'Сподобалося, як іде без обмежень? Передплата повертає все те саме: курс цілком, розмови без лічильника, тренування та статистику.',
   subtitleEs: '¿Te gustó avanzar sin límites? La suscripción devuelve exactamente eso: el curso completo, diálogos sin contador, entrenamientos y estadísticas.',
@@ -525,10 +525,10 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
   mastery: {
     title: { 'pt-BR': 'Repita lições sem limites', vi: 'Ôn lại bài học không giới hạn', id: 'Ulang pelajaran tanpa batas', tr: 'Dersleri sınırsız tekrar et', pl: 'Powtarzaj lekcje bez ograniczeń' },
     subtitle: {
-      'pt-BR': 'Com Plus, qualquer lição concluída fica aberta para repetir sem gastar pérolas, mesmo quando o preço subiria a cada repetição.',
-      vi: 'Với Plus, mọi bài đã hoàn thành đều có thể ôn lại mà không tốn ngọc trai, kể cả khi giá tăng sau mỗi lần học lại.',
-      id: 'Dengan Plus, semua pelajaran selesai bisa diulang tanpa memakai mutiara, bahkan saat harga naik di tiap pengulangan.',
-      tr: 'Plus ile tamamlanan her dersi inci harcamadan tekrar edersin, ücretsiz modda fiyat her tekrar artsa bile.',
+      'pt-BR': 'Com Plus, qualquer lição concluída fica aberta para repetir sem gastar moedas, mesmo quando o preço subiria a cada repetição.',
+      vi: 'Với Plus, mọi bài đã hoàn thành đều có thể ôn lại mà không tốn xu, kể cả khi giá tăng sau mỗi lần học lại.',
+      id: 'Dengan Plus, semua pelajaran selesai bisa diulang tanpa memakai koin, bahkan saat harga naik di tiap pengulangan.',
+      tr: 'Plus ile tamamlanan her dersi jeton harcamadan tekrar edersin, ücretsiz modda fiyat her tekrar artsa bile.',
       pl: 'Z Plus każda ukończona lekcja jest otwarta do powtórki bez monet, nawet gdy w trybie free cena rosłaby po każdym przejściu.',
     },
   },
@@ -617,12 +617,12 @@ PAYWALL_PLANNED_COPY.vip_expired = {
     pl: 'Wszystko, czego się nauczyłeś, zostało z tobą',
   },
   subtitle: {
-    en: 'The gift access has ended. A subscription brings it back in full: the course, dialogues with no counter, training and statistics.',
-    'pt-BR': 'O acesso de presente terminou. A assinatura o devolve por inteiro: o curso, os diálogos sem contador, os treinos e as estatísticas.',
-    vi: 'Quyền truy cập quà tặng đã kết thúc. Gói đăng ký trả lại trọn vẹn: khóa học, hội thoại không bộ đếm, luyện tập và thống kê.',
-    id: 'Akses hadiah sudah berakhir. Langganan mengembalikannya utuh: kursus, dialog tanpa penghitung, latihan, dan statistik.',
-    tr: 'Hediye erişimi sona erdi. Abonelik onu eksiksiz geri getirir: kurs, sayaçsız diyaloglar, antrenmanlar ve istatistikler.',
-    pl: 'Dostęp z prezentu się skończył. Subskrypcja przywraca go w całości: kurs, dialogi bez licznika, treningi i statystyki.',
+    en: 'The free access has ended. A subscription brings it back in full: the course, dialogues with no counter, training and statistics.',
+    'pt-BR': 'O acesso gratuito terminou. A assinatura o devolve por inteiro: o curso, os diálogos sem contador, os treinos e as estatísticas.',
+    vi: 'Quyền truy cập miễn phí đã kết thúc. Gói đăng ký trả lại trọn vẹn: khóa học, hội thoại không bộ đếm, luyện tập và thống kê.',
+    id: 'Akses gratis sudah berakhir. Langganan mengembalikannya utuh: kursus, dialog tanpa penghitung, latihan, dan statistik.',
+    tr: 'Ücretsiz erişim sona erdi. Abonelik onu eksiksiz geri getirir: kurs, sayaçsız diyaloglar, antrenmanlar ve istatistikler.',
+    pl: 'Darmowy dostęp się skończył. Subskrypcja przywraca go w całości: kurs, dialogi bez licznika, treningi i statystyki.',
   },
 };
 PAYWALL_PLANNED_COPY.notification_upsell = COURSE_AFTER_LESSON3_PLANNED_COPY;
@@ -667,12 +667,12 @@ PAYWALL_PLANNED_COPY.speaking = {
 };
 PAYWALL_PLANNED_COPY.intro_ended = {
   title: {
-    en: 'The gift access has ended',
-    'pt-BR': 'O acesso de presente terminou',
-    vi: 'Quyền truy cập quà tặng đã kết thúc',
-    id: 'Akses hadiah sudah berakhir',
-    tr: 'Hediye erişimi sona erdi',
-    pl: 'Dostęp z prezentu się skończył',
+    en: 'The free access has ended',
+    'pt-BR': 'O acesso gratuito terminou',
+    vi: 'Quyền truy cập miễn phí đã kết thúc',
+    id: 'Akses gratis sudah berakhir',
+    tr: 'Ücretsiz erişim sona erdi',
+    pl: 'Darmowy dostęp się skończył',
   },
   subtitle: {
     en: 'Liked how it goes without limits? A subscription brings back exactly the same: the whole course, dialogues with no counter, training and statistics.',
@@ -918,9 +918,9 @@ PAYWALL_COPY.vip_expired = {
   titleRu: 'Всё выученное осталось с тобой',
   titleUk: 'Усе вивчене залишилося з тобою',
   titleEs: 'Todo lo aprendido se queda contigo',
-  subtitleRu: 'Подарочный доступ закончился. Подписка возвращает его целиком: курс, разговоры без счётчика, тренировки и статистику.',
-  subtitleUk: 'Подарунковий доступ завершився. Передплата повертає його цілком: курс, розмови без лічильника, тренування та статистику.',
-  subtitleEs: 'El acceso de regalo ha terminado. La suscripción lo devuelve entero: el curso, los diálogos sin contador, los entrenamientos y las estadísticas.',
+  subtitleRu: 'Бесплатный доступ закончился. Подписка возвращает его целиком: курс, разговоры без счётчика, тренировки и статистику.',
+  subtitleUk: 'Безкоштовний доступ завершився. Передплата повертає його цілком: курс, розмови без лічильника, тренування та статистику.',
+  subtitleEs: 'El acceso gratuito ha terminado. La suscripción lo devuelve entero: el curso, los diálogos sin contador, los entrenamientos y las estadísticas.',
 };
 PAYWALL_COPY.notification_upsell = COURSE_AFTER_LESSON3_COPY;
 
@@ -978,7 +978,7 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
   ],
   mastery: [
     { ru: 'Безлимит повторов любого урока', uk: 'Безліміт повторів будь-якого уроку', es: 'Repeticiones ilimitadas de lecciones', 'pt-BR': 'Repetições ilimitadas de qualquer lição', vi: 'Ôn lại bất kỳ bài nào không giới hạn', id: 'Pengulangan pelajaran apa pun tanpa batas', tr: 'Her ders için sınırsız tekrar', pl: 'Powtórki dowolnej lekcji bez limitu' },
-    { ru: 'Не тратишь жемчужины на перепрохождения уроков', uk: 'Не витрачаєш перлини на перепроходження уроків', es: 'No gastas perlas al repetir lecciones', 'pt-BR': 'Você não gasta pérolas ao repetir lições', vi: 'Không tốn ngọc trai khi học lại bài', id: 'Tidak memakai mutiara saat mengulang pelajaran', tr: 'Ders tekrarında inci harcamazsın', pl: 'Nie wydajesz pereł na powtórki lekcji' },
+    { ru: 'Не тратишь монеты на перепрохождения уроков', uk: 'Не витрачаєш монети на перепроходження уроків', es: 'No gastas monedas al repetir lecciones', 'pt-BR': 'Você não gasta moedas ao repetir lições', vi: 'Không tốn xu khi học lại bài', id: 'Tidak memakai koin saat mengulang pelajaran', tr: 'Ders tekrarında jeton harcamazsın', pl: 'Nie wydajesz monet na powtórki lekcji' },
     { ru: 'Тренируй до идеального результата без давления', uk: 'Тренуй до ідеального результату без тиску', es: 'Entrena hasta perfeccionar sin presión', 'pt-BR': 'Treine até o resultado ideal sem pressão', vi: 'Luyện đến kết quả tốt nhất không áp lực', id: 'Latih sampai hasil ideal tanpa tekanan', tr: 'Baskı olmadan ideal sonuca kadar çalış', pl: 'Trenuj do idealnego wyniku bez presji' },
   ],
   stats: [
@@ -1132,7 +1132,7 @@ export const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPla
   ],
   mastery: [
     { 'pt-BR': 'Repetições ilimitadas de qualquer lição', vi: 'Ôn lại bất kỳ bài nào không giới hạn', id: 'Pengulangan pelajaran apa pun tanpa batas', tr: 'Her ders için sınırsız tekrar', pl: 'Powtórki dowolnej lekcji bez limitu' },
-    { 'pt-BR': 'Você não gasta pérolas ao repetir lições', vi: 'Không tốn ngọc trai khi học lại bài', id: 'Tidak memakai mutiara saat mengulang pelajaran', tr: 'Ders tekrarında inci harcamazsın', pl: 'Nie wydajesz pereł na powtórki lekcji' },
+    { 'pt-BR': 'Você não gasta moedas ao repetir lições', vi: 'Không tốn xu khi học lại bài', id: 'Tidak memakai koin saat mengulang pelajaran', tr: 'Ders tekrarında jeton harcamazsın', pl: 'Nie wydajesz monet na powtórki lekcji' },
     { 'pt-BR': 'Treine até o resultado ideal sem pressão', vi: 'Luyện đến kết quả tốt nhất không áp lực', id: 'Latih sampai hasil ideal tanpa tekanan', tr: 'Baskı olmadan ideal sonuca kadar çalış', pl: 'Trenuj do idealnego wyniku bez presji' },
   ],
   stats: [
@@ -1282,15 +1282,15 @@ PAYWALL_COPY.referral_ended = {
   // зачем (владелец, 2026-09-22): «ты видел, как идёт» — намёк вместо
   // конкретики. Перечисляем, что именно возвращается: человек только что этим
   // пользовался и узнаёт список.
-  titleRu: 'Подарочный доступ закончился',
-  titleUk: 'Подарунковий доступ завершився',
-  titleEs: 'Tu acceso de regalo terminó',
+  titleRu: 'Бесплатный доступ закончился',
+  titleUk: 'Безкоштовний доступ завершився',
+  titleEs: 'Tu acceso gratuito terminó',
   subtitleRu: 'Понравилось, как идёт без ограничений? Подписка возвращает всё то же самое: курс целиком, разговоры без счётчика, тренировки и статистику.',
   subtitleUk: 'Сподобалося, як іде без обмежень? Передплата повертає все те саме: курс цілком, розмови без лічильника, тренування та статистику.',
   subtitleEs: '¿Te gustó avanzar sin límites? La suscripción devuelve exactamente eso: el curso completo, diálogos sin contador, entrenamientos y estadísticas.',
 };
 PAYWALL_PLANNED_COPY.referral_ended = {
-  title: { en: 'The gift access has ended', 'pt-BR': 'Seu acesso de presente acabou', vi: 'Quyền truy cập quà tặng đã hết', id: 'Akses hadiah sudah berakhir', tr: 'Hediye erişimin sona erdi', pl: 'Dostęp z prezentu się skończył' },
+  title: { en: 'The free access has ended', 'pt-BR': 'Seu acesso gratuito acabou', vi: 'Quyền truy cập miễn phí đã hết', id: 'Akses gratis sudah berakhir', tr: 'Ücretsiz erişimin sona erdi', pl: 'Darmowy dostęp się skończył' },
   subtitle: {
     en: 'Liked how it goes without limits? A subscription brings back exactly the same: the whole course, dialogues with no counter, training and statistics.',
     'pt-BR': 'Gostou de como flui sem limites? A assinatura devolve exatamente isso: o curso inteiro, diálogos sem contador, treinos e estatísticas.',

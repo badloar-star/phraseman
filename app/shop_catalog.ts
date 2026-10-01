@@ -76,7 +76,7 @@ export const SHOP_CATEGORIES: readonly ShopCategory[] = Object.freeze([
   },
   {
     id: 'pearls', icon: 'diamond-outline',
-    title: { ru: 'Пополнить жемчуг', uk: 'Поповнити перлини', es: 'Recargar perlas', 'pt-BR': 'Recarregar pérolas', vi: 'Nạp ngọc trai', id: 'Isi mutiara', tr: 'İnci yükle', pl: 'Doładuj perły' },
+    title: { ru: 'Монеты', uk: 'Монети', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Jeton', pl: 'Monety' },
   },
 ]);
 
@@ -99,7 +99,7 @@ export const SHOP_ITEMS: readonly ShopItem[] = Object.freeze([
     id: 'spin-1', category: 'spin', currency: 'pearls', price: 40,
     tone: 'spin', icon: 'disc-outline',
     title: { ru: 'Спин рулетки', uk: 'Спін рулетки', es: 'Giro de ruleta', 'pt-BR': 'Giro da roleta', vi: 'Lượt quay', id: 'Putaran roda', tr: 'Çark çevirme', pl: 'Losowanie' },
-    detail: { ru: 'Один прокрут: жемчуг, монеты, косметика или дни Plus.', uk: 'Один прокрут: перлини, монети, косметика або дні Plus.', es: 'Un giro: perlas, monedas, cosméticos o días de Plus.', 'pt-BR': 'Um giro: pérolas, moedas, cosméticos ou dias de Plus.', vi: 'Một lượt quay: ngọc trai, xu, trang trí hoặc ngày Plus.', id: 'Satu putaran: mutiara, koin, kosmetik, atau hari Plus.', tr: 'Bir çevirme: inci, jeton, kozmetik ya da Plus günleri.', pl: 'Jedno losowanie: perły, monety, kosmetyki lub dni Plus.' },
+    detail: { ru: 'Один прокрут: монеты, косметика или дни Plus.', uk: 'Один прокрут: монети, косметика або дні Plus.', es: 'Un giro: monedas, cosméticos o días de Plus.', 'pt-BR': 'Um giro: moedas, cosméticos ou dias de Plus.', vi: 'Một lượt quay: xu, trang trí hoặc ngày Plus.', id: 'Satu putaran: koin, kosmetik, atau hari Plus.', tr: 'Bir çevirme: jeton, kozmetik ya da Plus günleri.', pl: 'Jedno losowanie: monety, kosmetyki lub dni Plus.' },
   },
   {
     id: 'spin-3', category: 'spin', currency: 'pearls', price: 100,

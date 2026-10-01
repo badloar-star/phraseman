@@ -4,7 +4,7 @@ import { CardItem, Category, CategoryId } from './types';
 export const STR = {
   ru: {
     title: 'Карточки',
-    hubTitle: 'Жемчужины',
+    hubTitle: 'Монеты',
     empty: 'Нет карточек', emptySub: '', nothingFound: 'Ничего не найдено',
     done: 'Все карточки просмотрены!', doneSub: 'Отличная работа', restart: 'Начать заново',
     cardOf: (a: number, b: number) => `${a} / ${b}`,
@@ -21,7 +21,7 @@ export const STR = {
   },
   en: {
     title: 'Flashcards',
-    hubTitle: 'Pearls',
+    hubTitle: 'Coins',
     empty: 'No flashcards', emptySub: '', nothingFound: 'Nothing found',
     done: 'All flashcards reviewed!', doneSub: 'Great job', restart: 'Start over',
     cardOf: (a: number, b: number) => `${a} / ${b}`,
@@ -38,7 +38,7 @@ export const STR = {
   },
   uk: {
     title: 'Картки',
-    hubTitle: 'Жемчужини',
+    hubTitle: 'Монети',
     empty: 'Немає карток', emptySub: '', nothingFound: 'Нічого не знайдено',
     done: 'Всі картки переглянуто!', doneSub: 'Чудова робота', restart: 'Почати знову',
     cardOf: (a: number, b: number) => `${a} / ${b}`,
@@ -55,7 +55,7 @@ export const STR = {
   },
   es: {
     title: 'Tarjetas',
-    hubTitle: 'Perlas',
+    hubTitle: 'Monedas',
     empty: 'No hay tarjetas', nothingFound: 'No se encontró nada',
     emptySub: '',
     done: '¡Has visto todas las tarjetas!',
@@ -84,7 +84,7 @@ export const STR = {
   },
   'pt-BR': {
     title: 'Cartões',
-    hubTitle: 'Perlas',
+    hubTitle: 'Moedas',
     empty: 'Nenhum cartão', nothingFound: 'Nada encontrado',
     emptySub: '',
     done: 'Todos os cartões foram vistos!',
@@ -113,7 +113,7 @@ export const STR = {
   },
   vi: {
     title: 'Thẻ',
-    hubTitle: 'Mảnh',
+    hubTitle: 'Xu',
     empty: 'Không có thẻ', nothingFound: 'Không tìm thấy gì',
     emptySub: '',
     done: 'Bạn đã xem hết thẻ!',
@@ -142,7 +142,7 @@ export const STR = {
   },
   'id': {
     title: 'Kartu',
-    hubTitle: 'Shard',
+    hubTitle: 'Koin',
     empty: 'Tidak ada kartu', nothingFound: 'Tidak ditemukan',
     emptySub: '',
     done: 'Semua kartu sudah dilihat!',
@@ -171,7 +171,7 @@ export const STR = {
   },
   tr: {
     title: 'Kartlar',
-    hubTitle: 'Parçalar',
+    hubTitle: 'Jeton',
     empty: 'Kart yok', nothingFound: 'Hiçbir şey bulunamadı',
     emptySub: '',
     done: 'Tüm kartlar görüldü!',
@@ -200,7 +200,7 @@ export const STR = {
   },
   pl: {
     title: 'Karty',
-    hubTitle: 'Perły',
+    hubTitle: 'Monety',
     empty: 'Brak kart', nothingFound: 'Nic nie znaleziono',
     emptySub: '',
     done: 'Wszystkie karty obejrzane!',

@@ -86,13 +86,13 @@ export const ACHIEVEMENT_CATALOG_V2: readonly AchievementDefinitionV2[] = [
   active({ id:'streak_clean_365', icon:'🛡️', category:'streak', foundationGroup:'streak', nameRu:'Без страховочного троса', descRu:'Год без починки и заморозки. Красиво, сложно и слегка подозрительно.' }),
 
   // Исторический максимум баланса — 7
-  active({ id:'shards_100', icon:'◉', category:'special', foundationGroup:'shards', nameRu:'Перламутровая заначка', descRu:'Сто жемчужин на балансе. Маленькая подушка финансовой важности.' }),
+  active({ id:'shards_100', icon:'◉', category:'special', foundationGroup:'shards', nameRu:'Монетная заначка', descRu:'Сто монет на балансе. Маленькая подушка финансовой важности.' }),
   active({ id:'shards_250', icon:'◉', category:'special', foundationGroup:'shards', nameRu:'Карман подозрительно звенит', descRu:'Двести пятьдесят. Идти стало тяжелее, но приятнее.' }),
-  active({ id:'shards_500', icon:'◉', category:'special', foundationGroup:'shards', nameRu:'Жемчужный хомяк', descRu:'Пятьсот жемчужин. Щёки не проверяли, но всё понятно.' }),
-  active({ id:'shards_1000', icon:'◉', category:'special', foundationGroup:'shards', nameRu:'Тысяча и ни одной ракушки', descRu:'Четыре цифры жемчужин. Море официально завидует.' }),
+  active({ id:'shards_500', icon:'◉', category:'special', foundationGroup:'shards', nameRu:'Монетный хомяк', descRu:'Пятьсот монет. Щёки не проверяли, но всё понятно.' }),
+  active({ id:'shards_1000', icon:'◉', category:'special', foundationGroup:'shards', nameRu:'Тысяча и ни одной дырявой монеты', descRu:'Четыре цифры монет. Копилка официально гордится.' }),
   active({ id:'shards_2500', icon:'◉', category:'special', foundationGroup:'shards', nameRu:'Сундук перестал закрываться', descRu:'Две с половиной тысячи. Крышка держится на честном слове.' }),
-  active({ id:'shards_5000', icon:'◉', category:'special', foundationGroup:'shards', nameRu:'Личный жемчужный фонд', descRu:'Пять тысяч. Можно выпускать квартальный отчёт.' }),
-  active({ id:'shards_10000', icon:'◉', category:'special', foundationGroup:'shards', nameRu:'Центробанк нервничает', descRu:'Десять тысяч жемчужин. Экономисты просят ничего резко не покупать.' }),
+  active({ id:'shards_5000', icon:'◉', category:'special', foundationGroup:'shards', nameRu:'Личный монетный фонд', descRu:'Пять тысяч. Можно выпускать квартальный отчёт.' }),
+  active({ id:'shards_10000', icon:'◉', category:'special', foundationGroup:'shards', nameRu:'Центробанк нервничает', descRu:'Десять тысяч монет. Экономисты просят ничего резко не покупать.' }),
 
   // Foreground-время — 6
   active({ id:'time_foreground_10h', icon:'⏱', category:'special', foundationGroup:'time', nameRu:'Десять часов куда-то делись', descRu:'Мы нашли их здесь. Выглядели занятыми.' }),

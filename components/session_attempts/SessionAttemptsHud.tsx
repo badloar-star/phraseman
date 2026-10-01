@@ -310,7 +310,7 @@ function SessionAttemptsHud({
         <Pressable
           testID="session-attempts-dev-gift-animation"
           accessibilityRole="button"
-          accessibilityLabel="DEV: показать анимацию подарка восстановления сердец"
+          accessibilityLabel="DEV: показать анимацию восстановления сердец"
           hitSlop={8}
           onPress={triggerDevGiftAnimation}
           style={({ pressed }) => [styles.devGiftButton, { opacity: pressed ? 0.65 : 1 }]}

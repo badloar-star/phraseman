@@ -100,9 +100,9 @@ function notificationLabel(type: UserNotificationType, lang: Lang): string {
     case 'activity_like':
       return triLang(lang, { ru: 'поставил(а) вам лайк', uk: 'поставив(ла) вам лайк', en: 'liked you', es: 'te dio un like', 'pt-BR': 'curtiu você', vi: 'đã thích bạn', id: 'menyukaimu', tr: 'seni beğendi', pl: 'dał(a) ci polubienie' });
     case 'arena_partner_invite':
-      return triLang(lang, { ru: 'приглашает стать Арена-парой', uk: 'запрошує стати Арена-парою', en: 'invites you to become an Arena Pair', es: 'te invita a formar una Pareja de Arena', 'pt-BR': 'convida você para uma Dupla da Arena', vi: 'mời bạn lập Cặp đôi Arena', id: 'mengundangmu menjadi Partner Arena', tr: 'seni Arena Eşleşmesine davet ediyor', pl: 'zaprasza cię do Pary Areny' });
+      return triLang(lang, { ru: 'отправил(а) вам приглашение', uk: 'надіслав(ла) вам запрошення', en: 'sent you an invitation', es: 'te envió una invitación', 'pt-BR': 'enviou um convite', vi: 'đã gửi lời mời cho bạn', id: 'mengirimimu undangan', tr: 'sana davet gönderdi', pl: 'wysłał(a) ci zaproszenie' });
     case 'arena_partner_nudge':
-      return triLang(lang, { ru: 'ждёт вас в Арена-паре', uk: 'чекає на вас в Арена-парі', en: 'is waiting for you in the Arena Pair', es: 'te espera en Pareja de Arena', 'pt-BR': 'espera por você na Dupla da Arena', vi: 'đang chờ bạn trong Cặp đôi Arena', id: 'menunggumu di Partner Arena', tr: 'Arena Eşleşmesinde seni bekliyor', pl: 'czeka na ciebie w Parze Areny' });
+      return triLang(lang, { ru: 'напомнил(а) о себе', uk: 'нагадав(ла) про себе', en: 'sent you a reminder', es: 'te envió un recordatorio', 'pt-BR': 'enviou um lembrete', vi: 'đã nhắc bạn', id: 'mengirimimu pengingat', tr: 'sana hatırlatma gönderdi', pl: 'przypomniał(a) o sobie' });
     case 'friend_nudge':
       return triLang(lang, { ru: 'зовёт позаниматься', uk: 'кличе позайматися', en: 'is inviting you to study', es: 'te invita a estudiar', 'pt-BR': 'chama você para estudar', vi: 'rủ bạn học', id: 'mengajakmu belajar', tr: 'seni çalışmaya çağırıyor', pl: 'zaprasza do nauki' });
     case 'arena_friend_invite':
@@ -501,7 +501,7 @@ function NotificationCenterButton({
               {reportRewardPearls(reward.rewardBundle) > 0 ? (
                 <Reanimated.View entering={reduceMotion ? undefined : FadeInDown.delay(270).duration(260)} style={styles.rewardLine}>
                   <Ionicons name="diamond-outline" size={21} color="#39B985" />
-                  <Text style={[styles.rewardLineText, { color: t.textPrimary }]}>{`+${reportRewardPearls(reward.rewardBundle)} ${triLang(lang as Lang, { ru: 'жемчугов', uk: 'перлин', en: 'pearls', es: 'perlas', 'pt-BR': 'pérolas', vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł' })}`}</Text>
+                  <Text style={[styles.rewardLineText, { color: t.textPrimary }]}>{`+${reportRewardPearls(reward.rewardBundle)} ${triLang(lang as Lang, { ru: 'монет', uk: 'монет', en: 'coins', es: 'monedas', 'pt-BR': 'moedas', vi: 'xu', id: 'koin', tr: 'jeton', pl: 'monet' })}`}</Text>
                 </Reanimated.View>
               ) : null}
             </View>

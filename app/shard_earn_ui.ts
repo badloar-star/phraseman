@@ -1,5 +1,5 @@
 /**
- * Подписи к модалке осколков по reasonKey (RU / UK / ES).
+ * Подписи к модалке начисления монет по reasonKey (RU / UK / ES).
  */
 import type { ShardSource } from './shards_system';
 import type { Lang, PlannedInterfaceLang } from '../constants/i18n';
@@ -30,9 +30,9 @@ const LABELS: Record<string, ShardEarnLabel> = {
     pl: "Idealnie: bez błędów, zasłużona nagroda",
   },
   lesson_quiz_passed: {
-    ru: 'Зачёт сдан — знания закреплены, жемчужины твои',
-    uk: 'Залік здано — знання закріплені, перлини твої',
-    en: 'Quiz passed — knowledge locked in, pearls are yours',
+    ru: 'Зачёт сдан — знания закреплены, монеты твои',
+    uk: 'Залік здано — знання закріплені, монети твої',
+    en: 'Quiz passed — knowledge locked in, coins are yours',
     es: 'Examen de nivel superado: conocimiento asegurado',
     'pt-BR': "Teste de nível superado: conhecimento consolidado",
     vi: "Bài kiểm tra cấp độ đã qua: kiến thức đã vững",
@@ -129,11 +129,11 @@ const LABELS: Record<string, ShardEarnLabel> = {
     pl: "Bonus aktualizacji: dzięki, że jesteś na bieżąco",
   },
   remote_shard_reward: {
-    ru: 'Команда начислила жемчужины — твоя помощь не забыта',
-    uk: 'Команда нарахувала перлини — твоя допомога не забута',
-    en: 'The team credited pearls — your help wasn\'t forgotten',
-    es: 'Perlas del equipo: tu ayuda cuenta',
-    'pt-BR': "Pérolas da equipe: sua ajuda conta",
+    ru: 'Команда начислила монеты — твоя помощь не забыта',
+    uk: 'Команда нарахувала монети — твоя допомога не забута',
+    en: 'The team credited coins — your help wasn\'t forgotten',
+    es: 'Monedas del equipo: tu ayuda cuenta',
+    'pt-BR': "Moedas da equipe: sua ajuda conta",
     vi: "Xu từ đội ngũ: sự hỗ trợ của bạn rất đáng giá",
     id: "Koin dari tim: bantuanmu berarti",
     tr: "Ekipten jetonlar: yardımın değerli",
@@ -184,27 +184,26 @@ const LABELS: Record<string, ShardEarnLabel> = {
     pl: "Diagnoza idealna: słaby punkt jest wyraźnie mocniejszy",
   },
   fc_checkpoint: {
-    ru: 'Сундук недельного трека карточек открыт — монеты превратились в осколки',
-    uk: 'Скриню тижневого треку карток відкрито — зірки стали осколками',
-    en: 'Weekly flashcard chest opened — coins turned into pearls',
-    es: 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',
-
-    'pt-BR': 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',
-    vi: 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',
-    id: 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',
-    tr: 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',
-    pl: 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',
+    ru: 'Сундук недельного трека карточек открыт — награда в монетах',
+    uk: 'Скриню тижневого треку карток відкрито — нагорода в монетах',
+    en: 'Weekly flashcard chest opened — reward in coins',
+    es: 'Cofre del progreso semanal abierto: recompensa en monedas',
+    'pt-BR': 'Baú do progresso semanal aberto: recompensa em moedas',
+    vi: 'Đã mở rương tiến độ tuần: phần thưởng bằng xu',
+    id: 'Peti progres mingguan terbuka: hadiah berupa koin',
+    tr: 'Haftalık ilerleme sandığı açıldı: ödül jeton olarak',
+    pl: 'Skrzynia tygodniowego postępu otwarta: nagroda w monetach',
   },
   generic_raw: {
-    ru: 'Начисление жемчужин',
-    uk: 'Нарахування перлин',
-    en: 'Pearls credited',
-    es: 'Perlas acreditados',
-    'pt-BR': "Pérolas de conhecimento creditados",
-    vi: "Đã cộng xu tri thức",
-    id: "Koin pengetahuan dikreditkan",
-    tr: "Bilgi jetonları eklendi",
-    pl: "Monety wiedzy przyznane",
+    ru: 'Начисление монет',
+    uk: 'Нарахування монет',
+    en: 'Coins credited',
+    es: 'Monedas acreditadas',
+    'pt-BR': "Moedas creditadas",
+    vi: "Đã cộng xu",
+    id: "Koin dikreditkan",
+    tr: "Jetonlar eklendi",
+    pl: "Monety przyznane",
   },
 };
 

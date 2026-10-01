@@ -33,9 +33,9 @@ describe('avatar showcase localized copy', () => {
   });
 
   it('describes a numeric filter with its currency and value tier', () => {
-    expect(avatarShowcasePriceFilterLabel(50, 'ru')).toBe('50 жемчужин · Старт');
-    expect(avatarShowcasePriceFilterLabel(70, 'uk')).toBe('70 перлин · Виразні');
-    expect(avatarShowcasePriceFilterLabel(100, 'pl')).toBe('100 pereł · Premium');
-    expect(avatarShowcasePriceFilterLabel(500, 'vi')).toBe('500 ngọc trai · Thần thoại');
+    expect(avatarShowcasePriceFilterLabel(50, 'ru')).toBe('50 монет · Старт');
+    expect(avatarShowcasePriceFilterLabel(70, 'uk')).toBe('70 монет · Виразні');
+    expect(avatarShowcasePriceFilterLabel(100, 'pl')).toBe('100 monet · Premium');
+    expect(avatarShowcasePriceFilterLabel(500, 'vi')).toBe('500 xu · Thần thoại');
   });
 });

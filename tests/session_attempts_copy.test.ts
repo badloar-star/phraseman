@@ -28,8 +28,8 @@ describe('session attempts copy', () => {
     const copy = getSessionAttemptsCopy('ru');
     expect(copy.exhaustedTitle).toBe('Попытки закончились');
     expect(copy.exhaustedBody).toBe('Восстановите все 3 попытки и повторите этот вопрос.');
-    expect(copy.useGift).toBe('Использовать подарок');
-    expect(copy.restoreForRunes).toBe('Восстановить · 25 рун');
+    expect(copy.useGift).toBe('Использовать второй шанс');
+    expect(copy.restoreForRunes).toBe('Восстановить · 25 монет');
     expect(copy.restartWithEnergy).toBe('Начать заново');
     expect(copy.endSession).toBe('Завершить сессию');
     expect(copy.permanentGift).toBe('Без срока действия');

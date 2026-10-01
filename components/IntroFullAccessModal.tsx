@@ -27,7 +27,7 @@ type Props = {
 
 function introCopy(lang: Lang) {
   return {
-    welcomeEyebrow: triLang(lang, { ru: 'Подарок на старт', uk: 'Подарунок на старт', en: 'A gift to start', es: 'Regalo inicial', 'pt-BR': 'Presente inicial', vi: 'Quà khởi đầu', id: 'Hadiah awal', tr: 'Başlangıç hediyesi', pl: 'Prezent na start' }),
+    welcomeEyebrow: triLang(lang, { ru: 'Бонус на старт', uk: 'Бонус на старт', en: 'A bonus to start', es: 'Bonus inicial', 'pt-BR': 'Bônus inicial', vi: 'Thưởng khởi đầu', id: 'Bonus awal', tr: 'Başlangıç bonusu', pl: 'Bonus na start' }),
     welcomeTitle: triLang(lang, { ru: 'Три дня доступа начались', uk: 'Три дні доступу почалися', en: 'Your three days of access have begun', es: 'Empezaron tus tres días de acceso', 'pt-BR': 'Seus três dias de acesso começaram', vi: 'Ba ngày truy cập đã bắt đầu', id: 'Tiga hari akses dimulai', tr: 'Üç günlük erişim başladı', pl: 'Trzy dni dostępu się zaczęły' }),
     // зачем (совет 2026-09-30, B8): «условия для 2.0 уточняются» — не ответ человеку. Три дня
     // intro-доступа дают ровно hasPremiumAccess (PremiumContext: introState.active), то есть все
@@ -44,7 +44,7 @@ function introCopy(lang: Lang) {
       pl: 'Wszystkie funkcje Plus są otwarte: lekcje, karty i nauka bez zużywania energii.',
     }),
     welcomeCta: triLang(lang, { ru: 'Начать', uk: 'Почати', en: 'Start', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Mulai', tr: 'Başla', pl: 'Zacznij' }),
-    welcomeFooter: triLang(lang, { ru: 'Это подарок. Подписка не включается автоматически.', uk: 'Це подарунок. Підписка не вмикається автоматично.', en: 'This is a gift. A subscription does not start automatically.', es: 'Es un regalo. La suscripción no se activa automáticamente.', 'pt-BR': 'É um presente. A assinatura não é ativada automaticamente.', vi: 'Đây là quà tặng. Gói đăng ký không tự động bật.', id: 'Ini hadiah. Langganan tidak aktif otomatis.', tr: 'Bu bir hediye. Abonelik otomatik başlamaz.', pl: 'To prezent. Subskrypcja nie włącza się automatycznie.' }),
+    welcomeFooter: triLang(lang, { ru: 'Это бонус. Подписка не включается автоматически.', uk: 'Це бонус. Підписка не вмикається автоматично.', en: 'This is a bonus. A subscription does not start automatically.', es: 'Es un bonus. La suscripción no se activa automáticamente.', 'pt-BR': 'É um bônus. A assinatura não é ativada automaticamente.', vi: 'Đây là phần thưởng. Gói đăng ký không tự động bật.', id: 'Ini bonus. Langganan tidak aktif otomatis.', tr: 'Bu bir bonus. Abonelik otomatik başlamaz.', pl: 'To bonus. Subskrypcja nie włącza się automatycznie.' }),
     endedEyebrow: triLang(lang, { ru: 'Три дня позади', uk: 'Три дні позаду', en: 'Three days behind you', es: 'Tres días atrás', 'pt-BR': 'Três dias para trás', vi: 'Ba ngày đã qua', id: 'Tiga hari telah berlalu', tr: 'Üç gün geride kaldı', pl: 'Trzy dni za tobą' }),
     endedTitle: triLang(lang, { ru: 'Три дня доступа завершились', uk: 'Три дні доступу завершилися', en: 'Your three days of access have ended', es: 'Terminaron tus tres días de acceso', 'pt-BR': 'Seus três dias de acesso terminaram', vi: 'Ba ngày truy cập đã kết thúc', id: 'Tiga hari akses telah berakhir', tr: 'Üç günlük erişim sona erdi', pl: 'Trzy dni dostępu dobiegły końca' }),
     endedBody: triLang(lang, {

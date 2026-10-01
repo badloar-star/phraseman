@@ -1127,8 +1127,8 @@ export default function LearningV2LessonMap() {
                 accessibilityLiveRegion="polite"
                 accessibilityLabel={
                   walletStars === null
-                    ? localized(lang, "Подтверждённый баланс рун ещё не создан", "The confirmed rune balance is not available yet")
-                    : localized(lang, `Подтверждённый баланс: ${walletStarsLabel} ${runeWord("ru", Math.round(walletStars))}`, `Confirmed balance: ${walletStarsLabel} runes`)
+                    ? localized(lang, "Подтверждённый баланс монет ещё не создан", "The confirmed coin balance is not available yet")
+                    : localized(lang, `Подтверждённый баланс: ${walletStarsLabel} ${runeWord("ru", Math.round(walletStars))}`, `Confirmed balance: ${walletStarsLabel} coins`)
                 }
                 style={[
                   styles.wallet,

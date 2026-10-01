@@ -139,10 +139,10 @@ export default function FlashcardsMarketDevScreen() {
       emitAppEvent(
         'action_toast',
         actionToastTri('error', {
-          ru: 'Недостаточно жемчужин для покупки.',
-          uk: 'Недостатньо перлин для купівлі.',
-          es: 'No tienes suficientes perlas para comprar.',
-          'pt-BR': 'Você não tem pérolas suficientes para comprar.',
+          ru: 'Недостаточно монет для покупки.',
+          uk: 'Недостатньо монет для купівлі.',
+          es: 'No tienes suficientes monedas para comprar.',
+          'pt-BR': 'Você não tem moedas suficientes para comprar.',
           vi: 'Bạn không có đủ xu để mua.',
           id: 'Koin tidak cukup untuk membeli.',
           tr: 'Satın almak için yeterli jetonun yok.',
@@ -252,15 +252,15 @@ export default function FlashcardsMarketDevScreen() {
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{subtitle}</Text>
             <Text style={{ marginTop: 6, color: t.textSecond, fontSize: f.sub }}>
               {triLang(lang, {
-                ru: 'Этап 1: каталог. Этап 2: покупка за жемчужины и ownership.',
-                uk: 'Етап 1: каталог. Етап 2: купівля за перлини та ownership.',
-                en: 'Phase 1: catalog. Phase 2: purchase with pearls and ownership.',
-                es: 'Fase 1: catálogo. Fase 2: pagos con perlas y colección propia.',
-                'pt-BR': 'Fase 1: catálogo. Fase 2: compra com pérolas e ownership.',
-                vi: 'Giai đoạn 1: danh mục. Giai đoạn 2: mua bằng ngọc trai và quyền sở hữu.',
-                id: 'Tahap 1: katalog. Tahap 2: pembelian dengan mutiara dan ownership.',
-                tr: 'Aşama 1: katalog. Aşama 2: incilerle satın alma ve sahiplik.',
-                pl: 'Etap 1: katalog. Etap 2: zakup za perły i ownership.',
+                ru: 'Этап 1: каталог. Этап 2: покупка за монеты и ownership.',
+                uk: 'Етап 1: каталог. Етап 2: купівля за монети та ownership.',
+                en: 'Phase 1: catalog. Phase 2: purchase with coins and ownership.',
+                es: 'Fase 1: catálogo. Fase 2: pagos con monedas y colección propia.',
+                'pt-BR': 'Fase 1: catálogo. Fase 2: compra com moedas e ownership.',
+                vi: 'Giai đoạn 1: danh mục. Giai đoạn 2: mua bằng xu và quyền sở hữu.',
+                id: 'Tahap 1: katalog. Tahap 2: pembelian dengan koin dan ownership.',
+                tr: 'Aşama 1: katalog. Aşama 2: jetonlarla satın alma ve sahiplik.',
+                pl: 'Etap 1: katalog. Etap 2: zakup za monety i ownership.',
               })}
             </Text>
           </View>

@@ -80,47 +80,7 @@ export const FEATURE_INTRO_REGISTRY: readonly FeatureIntroDef[] = [
   ...SECTION_FEATURE_INTROS,
   ...APPROVED_FEATURE_INTROS,
   ...TRAINING_FEATURE_INTROS,
-  {
-    id: 'arena_first_visit',
-    trigger: 'first_visit',
-    screenRoute: '/arena',
-    icon: 'flash',
-    family: 'premiere',
-    art: 'arena',
-    title: (lang) => triLang(lang, {
-      ru: 'Твой выход на Арену',
-      uk: 'Арена',
-      en: 'Arena',
-      es: 'Arena',
-      'pt-BR': 'Arena',
-      vi: 'Đấu trường',
-      id: 'Arena',
-      tr: 'Arena',
-      pl: 'Arena',
-    }),
-    body: (lang) => triLang(lang, {
-      ru: 'Здесь вы с соперником отвечаете на задания по фразам. Победы поднимают ранг и приносят монеты. Сначала освоимся — соперника выберем следующим шагом.',
-      uk: 'Дуелі один на один по фразах. Перемагай і піднімайся по рангах — від Бронзи до Легенди. За перемоги — монети.',
-      en: 'One-on-one phrase duels. Win and climb the ranks — from Bronze to Legend. Victories earn coins.',
-      es: 'Duelos uno contra uno con frases. Gana y sube de rango, desde Bronce hasta Leyenda. Las victorias dan monedas.',
-      'pt-BR': 'Duelos um contra um com frases. Vença e suba de rank, do Bronze até Lenda. As vitórias dão moedas.',
-      vi: 'Đấu 1 chọi 1 bằng các câu học. Thắng để lên rank, từ Đồng đến Huyền thoại. Chiến thắng cho xu.',
-      id: 'Duel satu lawan satu dengan frasa. Menang untuk naik rank, dari Perunggu sampai Legenda. Kemenangan memberi koin.',
-      tr: 'Cümlelerle birebir düellolar. Kazan ve rütbe yüksel, Bronzdan Efsaneye kadar. Zaferler jeton kazandırır.',
-      pl: 'Pojedynki 1 na 1 na frazy. Wygrywaj i pnij się w rangach — od Brązu do Legendy. Zwycięstwa dają monety.',
-    }),
-    ctaLabel: (lang) => triLang(lang, {
-      ru: 'Открыть Арену',
-      uk: 'Відкрити Арену',
-      en: 'Explore Arena',
-      es: 'Explorar la Arena',
-      'pt-BR': 'Explorar a Arena',
-      vi: 'Khám phá Đấu trường',
-      id: 'Jelajahi Arena',
-      tr: 'Arenayı keşfet',
-      pl: 'Poznaj Arenę',
-    }),
-  },
+  // зачем (PM-008, Q74): интро «Арена» удалено вместе с Ареной (D83) — маршрута /arena больше нет.
 ];
 
 export function featureIntroById(id: string): FeatureIntroDef | null {

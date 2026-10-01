@@ -37,7 +37,7 @@ import Animated, {
 import { getVolumetricShadow, useTheme } from '../../components/ThemeContext';
 import type { Lang } from '../../constants/i18n';
 import { BRAND_SHARDS_ES } from '../../constants/terms_es';
-// зачем: единая валюта — жемчуг; формы «жемчужина/жемчужины/жемчужин» берём из
+// зачем: единая валюта — монеты; формы «монета/монеты/монет» берём из
 // общего словаря, чтобы склонения не разъезжались между экранами.
 import {
   ruKnowledgeShardsAccusativeAfterNumber,
@@ -180,64 +180,65 @@ function triRunesTopUp(lang: Lang): string {
 }
 
 function paywallModalCopy(lang: Lang): PaywallModalCopy {
+  // зачем (PM-008, Q74): жемчуг и «подарок» в 2.0 удалены — единственная валюта монеты,
+  // а режим voucher описывает «бесплатное открытие», без слова «подарок».
   if (lang === 'uk') {
     return {
       cancel: 'Скасувати',
       buy: 'Купити',
-      buyShards: 'Купити перлини',
-      // зачем: «за» тут управляет знахідним відмінком — «за 1 перлину», не «за 1 перлина».
+      buyShards: 'Як заробити монети',
+      // зачем: «за» тут управляет знахідним відмінком — «за 1 монету», не «за 1 монета».
       forShards: (n: number) => `Купити за ${n} ${ukKnowledgeShardsAccusativeAfterNumber(n)}`,
-      insufficientTitle: 'Недостатньо перлин',
+      insufficientTitle: 'Недостатньо монет',
       insufficientIntro:
-        'Поповніть баланс у магазині — кнопка нижче відкриє вкладку з пакетами.',
+        'Монети заробляються в уроках і тренуваннях — кнопка нижче покаже, як.',
       balanceBlockTitle: 'Для цього набору',
       ctaSub: 'Покупка в одне торкання',
-      shopCtaSub: 'Пакети перлин у магазині',
+      shopCtaSub: 'Монети — за уроки й тренування',
       voucherKicker: 'Безкоштовний набір',
-      voucherTitle: 'Використати подарунок?',
+      voucherTitle: 'Відкрити безкоштовно?',
       voucherIntro:
-        'Цей набір назавжди додасться у «Картки» безкоштовно — перлини витрачати не потрібно.',
+        'Цей набір назавжди додасться у «Картки» безкоштовно — монети витрачати не потрібно.',
       voucherWarn:
-        'Подарунок одноразовий: одразу після підтвердження він зникне і вже не повернеться.',
-      voucherCta: 'Використати подарунок',
+        'Безкоштовне відкриття одноразове: одразу після підтвердження воно буде використане.',
+      voucherCta: 'Відкрити безкоштовно',
       voucherCtaBusy: '',
-      voucherCtaSub: 'Подарунок «згорить» одразу після цього',
+      voucherCtaSub: 'Один раз — після підтвердження',
       packKindLabel: 'Набір',
       metaCards: (n: number) => `${n} карток`,
-      // зачем: было русское «жемчужин» в украинском блоке + именительный падеж;
-      // «не вистачає» управляет родовим — «не вистачає ще 1 перлини».
+      // зачем: «не вистачає» управляет родовим — «не вистачає ще 1 монети».
       shortageRemaining: (n: number) => `Не вистачає ще ${n} ${ukKnowledgeShardsGenitiveAfterNumber(n)}`,
       needLabel: 'Потрібно',
       youHaveLabel: 'У вас',
       costLabel: 'Вартість',
-      shardsUnit: 'жемчужин',
+      shardsUnit: 'монет',
       waitBusy: '',
       reportPack: 'Поскаржитися на набір',
       hidePack: 'Не показувати мені',
     };
   }
   if (lang === 'es') {
-    const S = BRAND_SHARDS_ES;
+    const S = BRAND_SHARDS_ES.toLowerCase();
     return {
       cancel: 'Cancelar',
       buy: 'Comprar',
-      buyShards: `Comprar ${S}`,
+      buyShards: 'Cómo ganar monedas',
       forShards: (n: number) => `Comprar por ${n} ${S}`,
       insufficientTitle: `No tienes suficientes ${S}`,
       insufficientIntro:
-        `Recarga saldo en la tienda de ${S}. El botón de abajo te lleva a los paquetes.`,
+        'Gana monedas con lecciones y prácticas. El botón de abajo te muestra cómo.',
       balanceBlockTitle: 'Para este paquete',
       ctaSub: 'Compra con un solo toque',
-      shopCtaSub: `Paquetes de ${S} en la tienda`,
+      shopCtaSub: 'Las monedas se ganan con lecciones y prácticas',
       voucherKicker: 'Paquete gratis',
-      voucherTitle: '¿Usar el regalo?',
+      voucherTitle: '¿Abrir gratis?',
       voucherIntro:
         `Este paquete se añadirá para siempre a «Tarjetas» gratis; no gastarás ${S}.`,
       voucherWarn:
-        'El regalo es de un solo uso: al confirmar, desaparecerá y no podrás recuperarlo.',
-      voucherCta: 'Usar regalo',
+        'La apertura gratis es de un solo uso: se aplicará al confirmar.',
+      voucherCta: 'Abrir gratis',
       voucherCtaBusy: '',
-      voucherCtaSub: 'El regalo se consumirá al confirmar',
+      voucherCtaSub: 'Un solo uso, al confirmar',
       packKindLabel: 'Paquete',
       metaCards: (n: number) => `${n} tarjetas`,
       shortageRemaining: (n: number) => `Te faltan ${n} ${S}`,
@@ -252,123 +253,123 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
   }
   if (lang === 'pt-BR') {
     return {
-      cancel: 'Cancelar', buy: 'Abrir', buyShards: 'Comprar pérolas',
-      forShards: (n: number) => `Abrir por ${n} pérolas`,
-      insufficientTitle: 'Pérolas insuficientes',
-      insufficientIntro: 'Recarregue o saldo na loja. O botão abaixo abre os pacotes.',
+      cancel: 'Cancelar', buy: 'Abrir', buyShards: 'Como ganhar moedas',
+      forShards: (n: number) => `Abrir por ${n} moedas`,
+      insufficientTitle: 'Moedas insuficientes',
+      insufficientIntro: 'Ganhe moedas com lições e treinos. O botão abaixo mostra como.',
       balanceBlockTitle: 'Para este pacote', ctaSub: 'Compra com um toque',
-      shopCtaSub: 'Pacotes de pérolas na loja', voucherKicker: 'Pacote grátis',
-      voucherTitle: 'Usar o presente?',
-      voucherIntro: 'Este pacote será adicionado às suas «Cartas» gratuitamente e para sempre — você não gastará pérolas.',
-      voucherWarn: 'O presente é de uso único: ele desaparecerá logo após a confirmação e não poderá ser recuperado.',
-      voucherCta: 'Usar presente', voucherCtaBusy: '',
-      voucherCtaSub: 'O presente será usado na confirmação', packKindLabel: 'Pacote',
-      metaCards: (n: number) => `${n} cartões`, shortageRemaining: (n: number) => `Faltam ${n} pérolas`,
+      shopCtaSub: 'Moedas vêm de lições e treinos', voucherKicker: 'Pacote grátis',
+      voucherTitle: 'Abrir de graça?',
+      voucherIntro: 'Este pacote será adicionado às suas «Cartas» gratuitamente e para sempre — você não gastará moedas.',
+      voucherWarn: 'A abertura gratuita é de uso único: será aplicada logo após a confirmação.',
+      voucherCta: 'Abrir de graça', voucherCtaBusy: '',
+      voucherCtaSub: 'Uso único, na confirmação', packKindLabel: 'Pacote',
+      metaCards: (n: number) => `${n} cartões`, shortageRemaining: (n: number) => `Faltam ${n} moedas`,
       needLabel: 'Necessário', youHaveLabel: 'Você tem', costLabel: 'Custo',
-      shardsUnit: 'pérolas', waitBusy: '', reportPack: 'Denunciar pacote', hidePack: 'Não mostrar novamente',
+      shardsUnit: 'moedas', waitBusy: '', reportPack: 'Denunciar pacote', hidePack: 'Não mostrar novamente',
     };
   }
   if (lang === 'vi') {
     return {
-      cancel: 'Hủy', buy: 'Mở', buyShards: 'Mua ngọc trai',
-      forShards: (n: number) => `Mở với ${n} ngọc trai`,
-      insufficientTitle: 'Không đủ ngọc trai',
-      insufficientIntro: 'Hãy nạp thêm trong cửa hàng. Nút bên dưới sẽ mở các gói.',
+      cancel: 'Hủy', buy: 'Mở', buyShards: 'Cách kiếm xu',
+      forShards: (n: number) => `Mở với ${n} xu`,
+      insufficientTitle: 'Không đủ xu',
+      insufficientIntro: 'Hãy kiếm xu qua bài học và luyện tập. Nút bên dưới sẽ chỉ cách.',
       balanceBlockTitle: 'Cho gói này', ctaSub: 'Mua chỉ với một chạm',
-      shopCtaSub: 'Gói ngọc trai trong cửa hàng', voucherKicker: 'Gói miễn phí',
-      voucherTitle: 'Dùng quà tặng?',
-      voucherIntro: 'Gói này sẽ được thêm miễn phí vĩnh viễn vào «Thẻ» — bạn không cần dùng ngọc trai.',
-      voucherWarn: 'Quà chỉ dùng một lần: sau khi xác nhận, quà sẽ biến mất và không thể lấy lại.',
-      voucherCta: 'Dùng quà', voucherCtaBusy: '', voucherCtaSub: 'Quà sẽ được dùng sau khi xác nhận',
+      shopCtaSub: 'Xu có từ bài học và luyện tập', voucherKicker: 'Gói miễn phí',
+      voucherTitle: 'Mở miễn phí?',
+      voucherIntro: 'Gói này sẽ được thêm miễn phí vĩnh viễn vào «Thẻ» — bạn không cần dùng xu.',
+      voucherWarn: 'Lượt mở miễn phí chỉ dùng một lần: sẽ được áp dụng ngay sau khi xác nhận.',
+      voucherCta: 'Mở miễn phí', voucherCtaBusy: '', voucherCtaSub: 'Một lần, sau khi xác nhận',
       packKindLabel: 'Gói', metaCards: (n: number) => `${n} thẻ`,
-      shortageRemaining: (n: number) => `Còn thiếu ${n} ngọc trai`, needLabel: 'Cần',
-      youHaveLabel: 'Bạn có', costLabel: 'Giá', shardsUnit: 'ngọc trai', waitBusy: '',
+      shortageRemaining: (n: number) => `Còn thiếu ${n} xu`, needLabel: 'Cần',
+      youHaveLabel: 'Bạn có', costLabel: 'Giá', shardsUnit: 'xu', waitBusy: '',
       reportPack: 'Báo cáo gói này', hidePack: 'Không hiển thị lại',
     };
   }
   if (lang === 'id') {
     return {
-      cancel: 'Batal', buy: 'Buka', buyShards: 'Beli mutiara',
-      forShards: (n: number) => `Buka seharga ${n} mutiara`,
-      insufficientTitle: 'Mutiara tidak cukup',
-      insufficientIntro: 'Isi saldo di toko. Tombol di bawah akan membuka paket.',
+      cancel: 'Batal', buy: 'Buka', buyShards: 'Cara mendapatkan koin',
+      forShards: (n: number) => `Buka seharga ${n} koin`,
+      insufficientTitle: 'Koin tidak cukup',
+      insufficientIntro: 'Dapatkan koin lewat pelajaran dan latihan. Tombol di bawah menunjukkan caranya.',
       balanceBlockTitle: 'Untuk paket ini', ctaSub: 'Beli dalam satu ketukan',
-      shopCtaSub: 'Paket mutiara di toko', voucherKicker: 'Paket gratis',
-      voucherTitle: 'Gunakan hadiah?',
-      voucherIntro: 'Paket ini akan ditambahkan ke «Kartu» secara gratis untuk selamanya — kamu tidak perlu memakai mutiara.',
-      voucherWarn: 'Hadiah hanya dapat digunakan sekali: setelah dikonfirmasi, hadiah akan hilang dan tidak bisa dikembalikan.',
-      voucherCta: 'Gunakan hadiah', voucherCtaBusy: '', voucherCtaSub: 'Hadiah akan digunakan setelah konfirmasi',
+      shopCtaSub: 'Koin didapat dari pelajaran dan latihan', voucherKicker: 'Paket gratis',
+      voucherTitle: 'Buka gratis?',
+      voucherIntro: 'Paket ini akan ditambahkan ke «Kartu» secara gratis untuk selamanya — kamu tidak perlu memakai koin.',
+      voucherWarn: 'Pembukaan gratis hanya berlaku sekali: akan diterapkan segera setelah dikonfirmasi.',
+      voucherCta: 'Buka gratis', voucherCtaBusy: '', voucherCtaSub: 'Sekali pakai, setelah konfirmasi',
       packKindLabel: 'Paket', metaCards: (n: number) => `${n} kartu`,
-      shortageRemaining: (n: number) => `Kurang ${n} mutiara`, needLabel: 'Dibutuhkan',
-      youHaveLabel: 'Kamu punya', costLabel: 'Harga', shardsUnit: 'mutiara', waitBusy: '',
+      shortageRemaining: (n: number) => `Kurang ${n} koin`, needLabel: 'Dibutuhkan',
+      youHaveLabel: 'Kamu punya', costLabel: 'Harga', shardsUnit: 'koin', waitBusy: '',
       reportPack: 'Laporkan paket ini', hidePack: 'Jangan tampilkan lagi',
     };
   }
   if (lang === 'tr') {
     return {
-      cancel: 'İptal', buy: 'Aç', buyShards: 'İnci satın al',
-      forShards: (n: number) => `${n} inci karşılığında aç`,
-      insufficientTitle: 'Yeterli incin yok',
-      insufficientIntro: 'Mağazadan bakiyeni doldur. Aşağıdaki düğme paketleri açar.',
+      cancel: 'İptal', buy: 'Aç', buyShards: 'Jeton nasıl kazanılır',
+      forShards: (n: number) => `${n} jeton karşılığında aç`,
+      insufficientTitle: 'Yeterli jetonun yok',
+      insufficientIntro: 'Derslerden ve alıştırmalardan jeton kazan. Aşağıdaki düğme nasıl yapılacağını gösterir.',
       balanceBlockTitle: 'Bu paket için', ctaSub: 'Tek dokunuşla satın al',
-      shopCtaSub: 'Mağazada inci paketleri', voucherKicker: 'Ücretsiz paket',
-      voucherTitle: 'Hediyeyi kullan?',
-      voucherIntro: 'Bu paket «Kartlar»ına ücretsiz olarak kalıcı biçimde eklenecek — inci harcaman gerekmiyor.',
-      voucherWarn: 'Hediye tek kullanımlıktır: onaydan hemen sonra kaybolur ve geri alınamaz.',
-      voucherCta: 'Hediyeyi kullan', voucherCtaBusy: '', voucherCtaSub: 'Hediye onayla birlikte kullanılır',
+      shopCtaSub: 'Jetonlar ders ve alıştırmalardan gelir', voucherKicker: 'Ücretsiz paket',
+      voucherTitle: 'Ücretsiz açılsın mı?',
+      voucherIntro: 'Bu paket «Kartlar»ına ücretsiz olarak kalıcı biçimde eklenecek — jeton harcaman gerekmiyor.',
+      voucherWarn: 'Ücretsiz açma tek kullanımlıktır: onaydan hemen sonra uygulanır.',
+      voucherCta: 'Ücretsiz aç', voucherCtaBusy: '', voucherCtaSub: 'Tek kullanım, onayla birlikte',
       packKindLabel: 'Paket', metaCards: (n: number) => `${n} kart`,
-      shortageRemaining: (n: number) => `${n} inci eksik`, needLabel: 'Gerekli',
-      youHaveLabel: 'Sende', costLabel: 'Fiyat', shardsUnit: 'inci', waitBusy: '',
+      shortageRemaining: (n: number) => `${n} jeton eksik`, needLabel: 'Gerekli',
+      youHaveLabel: 'Sende', costLabel: 'Fiyat', shardsUnit: 'jeton', waitBusy: '',
       reportPack: 'Paketi bildir', hidePack: 'Bir daha gösterme',
     };
   }
   if (lang === 'pl') {
     return {
-      cancel: 'Anuluj', buy: 'Otwórz', buyShards: 'Kup perły',
-      forShards: (n: number) => `Otwórz za ${n} pereł`,
-      insufficientTitle: 'Za mało pereł',
-      insufficientIntro: 'Doładuj saldo w sklepie. Przycisk poniżej otworzy pakiety.',
+      cancel: 'Anuluj', buy: 'Otwórz', buyShards: 'Jak zdobyć monety',
+      forShards: (n: number) => `Otwórz za ${n} monet`,
+      insufficientTitle: 'Za mało monet',
+      insufficientIntro: 'Zdobywaj monety w lekcjach i treningach. Przycisk poniżej pokaże, jak.',
       balanceBlockTitle: 'Dla tego pakietu', ctaSub: 'Kup jednym dotknięciem',
-      shopCtaSub: 'Pakiety pereł w sklepie', voucherKicker: 'Darmowy pakiet',
-      voucherTitle: 'Użyć prezentu?',
-      voucherIntro: 'Ten pakiet zostanie na zawsze dodany do «Kart» za darmo — nie wydasz pereł.',
-      voucherWarn: 'Prezent jest jednorazowy: zaraz po potwierdzeniu zniknie i nie będzie można go odzyskać.',
-      voucherCta: 'Użyj prezentu', voucherCtaBusy: '', voucherCtaSub: 'Prezent zostanie użyty po potwierdzeniu',
+      shopCtaSub: 'Monety zdobywasz w lekcjach i treningach', voucherKicker: 'Darmowy pakiet',
+      voucherTitle: 'Otworzyć za darmo?',
+      voucherIntro: 'Ten pakiet zostanie na zawsze dodany do «Kart» za darmo — nie wydasz monet.',
+      voucherWarn: 'Darmowe otwarcie jest jednorazowe: zostanie użyte zaraz po potwierdzeniu.',
+      voucherCta: 'Otwórz za darmo', voucherCtaBusy: '', voucherCtaSub: 'Jednorazowo, po potwierdzeniu',
       packKindLabel: 'Pakiet', metaCards: (n: number) => `${n} kart`,
-      shortageRemaining: (n: number) => `Brakuje ${n} pereł`, needLabel: 'Potrzebujesz',
-      youHaveLabel: 'Masz', costLabel: 'Cena', shardsUnit: 'pereł', waitBusy: '',
+      shortageRemaining: (n: number) => `Brakuje ${n} monet`, needLabel: 'Potrzebujesz',
+      youHaveLabel: 'Masz', costLabel: 'Cena', shardsUnit: 'monet', waitBusy: '',
       reportPack: 'Zgłoś pakiet', hidePack: 'Nie pokazuj ponownie',
     };
   }
   return {
     cancel: 'Отмена',
     buy: 'Открыть',
-    buyShards: 'Пополнить жемчуг',
-    // зачем: «за» требует винительного — «Открыть за 1 жемчужину», не «за 1 жемчужина».
+    buyShards: 'Как заработать монеты',
+    // зачем: «за» требует винительного — «Открыть за 1 монету», не «за 1 монета».
     forShards: (n: number) => `Открыть за ${n} ${ruKnowledgeShardsAccusativeAfterNumber(n)}`,
-    insufficientTitle: 'Недостаточно жемчуга',
+    insufficientTitle: 'Недостаточно монет',
     insufficientIntro:
-      'Пополни баланс в магазине — кнопка ниже откроет вкладку с пакетами.',
+      'Монеты зарабатываются в уроках и тренировках — кнопка ниже покажет, как.',
     balanceBlockTitle: 'Для этого набора',
     ctaSub: 'Откроется в одно касание',
-    shopCtaSub: 'Пакеты жемчуга в магазине',
-    voucherKicker: 'Набор в подарок',
-    voucherTitle: 'Использовать подарок?',
+    shopCtaSub: 'Монеты — за уроки и тренировки',
+    voucherKicker: 'Бесплатный набор',
+    voucherTitle: 'Открыть бесплатно?',
     voucherIntro:
-      'Этот набор навсегда добавится в «Карточки» бесплатно — жемчуг тратить не нужно.',
+      'Этот набор навсегда добавится в «Карточки» бесплатно — монеты тратить не нужно.',
     voucherWarn:
-      'Подарок одноразовый: сразу после подтверждения он исчезнет и больше не вернётся.',
-    voucherCta: 'Использовать подарок',
+      'Бесплатное открытие одноразовое: сразу после подтверждения оно будет использовано.',
+    voucherCta: 'Открыть бесплатно',
     voucherCtaBusy: '',
-    voucherCtaSub: 'Подарок «сгорит» сразу после этого',
+    voucherCtaSub: 'Один раз — после подтверждения',
     packKindLabel: 'Набор',
     metaCards: (n: number) => `${n} карточек`,
-    // зачем: «не хватает» требует родительного — «не хватает ещё 1 жемчужины».
+    // зачем: «не хватает» требует родительного — «не хватает ещё 1 монеты».
     shortageRemaining: (n: number) => `Не хватает ещё ${n} ${ruKnowledgeShardsGenitiveAfterNumber(n)}`,
     needLabel: 'Нужно',
     youHaveLabel: 'У тебя',
-    costLabel: 'Нужно жемчуга',
-    shardsUnit: 'жемчужин',
+    costLabel: 'Нужно монет',
+    shardsUnit: 'монет',
     waitBusy: '',
     reportPack: 'Пожаловаться на набор',
     hidePack: 'Не показывать мне',

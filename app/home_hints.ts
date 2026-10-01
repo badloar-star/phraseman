@@ -23,7 +23,7 @@ export const DEV_HOME_HINT_FIXTURES: readonly PublishedHomeHint[] = [
   { id: 'dev-video', category: 'video', audience: 'all', textRu: 'Видео зовёт на короткий английский просмотр.' },
   { id: 'dev-plus', category: 'plus', audience: 'plus', textRu: 'Загляни в Plus и изучи его возможности.' },
   { id: 'dev-referrals', category: 'referrals', audience: 'all', textRu: 'Возможно, пора позвать языкового союзника.' },
-  { id: 'dev-arena', category: 'arena', audience: 'all', textRu: 'Арена готова к маленькому матчу.' },
+  { id: 'dev-arena', category: 'arena', audience: 'all', textRu: 'Тренировка готова к маленькому подходу.' },
   { id: 'dev-settings', category: 'settings', audience: 'all', textRu: 'Шестерёнка приготовила настройки.' },
   { id: 'dev-learning', category: 'learning', audience: 'all', textRu: 'Одна фраза сегодня — уже хороший шаг.' },
 ];

@@ -798,9 +798,9 @@ export function usePackDeeplinkGuard(args: {
       emitAppEvent(
         'action_toast',
         actionToastTri('info', {
-          ru: 'Набор ещё не куплен. Его можно открыть за осколки в магазине (вкладка с наборами карточек).',
-          uk: 'Набір ще не куплено. Його можна відкрити за осколки в магазині (вкладка з наборами карток).',
-          es: 'Aún no has comprado este pack. Puedes obtenerlo por fragmentos en la tienda (pestaña de packs de Tarjetas).',
+          ru: 'Набор ещё не открыт. Его можно открыть за монеты в магазине (вкладка с наборами карточек).',
+          uk: 'Набір ще не відкрито. Його можна відкрити за монети в магазині (вкладка з наборами карток).',
+          es: 'Aún no has desbloqueado este pack. Puedes obtenerlo por monedas en la tienda (pestaña de packs de Tarjetas).',
         }),
       );
       onDeniedRef.current('not_owned');

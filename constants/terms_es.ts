@@ -9,4 +9,5 @@
  * • Quiz section: prefer «cuestionario(s)» in user-visible copy (professional ELT tone, matches tabs
  *   in LangContext). Keep code identifiers / analytics as quiz.
  */
-export const BRAND_SHARDS_ES = 'Perlas';
+// зачем (PM-008, Q74): жемчуг удалён, единственная валюта 2.0 — монеты («monedas»).
+export const BRAND_SHARDS_ES = 'Monedas';

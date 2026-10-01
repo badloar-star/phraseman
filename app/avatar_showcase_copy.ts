@@ -1,4 +1,5 @@
 import type { Lang } from '../constants/i18n';
+import { runeWord } from '../constants/runes';
 
 const TIER_TITLES: Record<number, Record<Lang, string>> = {
   50: { ru: 'Старт', uk: 'Старт', en: 'Starter', es: 'Inicio', 'pt-BR': 'Início', vi: 'Khởi đầu', id: 'Awal', tr: 'Başlangıç', pl: 'Start' },
@@ -42,12 +43,7 @@ export function avatarShowcaseCountLabel(count: number, lang: Lang): string {
 }
 
 export function avatarShowcasePriceFilterLabel(price: number, lang: Lang): string {
-  const currency = lang === 'ru'
-    ? slavicPlural(price, 'жемчужина', 'жемчужины', 'жемчужин')
-    : lang === 'uk'
-      ? slavicPlural(price, 'перлина', 'перлини', 'перлин')
-      : lang === 'pl'
-        ? polishPlural(price, 'perła', 'perły', 'pereł')
-        : ({ en: 'pearls', es: 'perlas', 'pt-BR': 'pérolas', vi: 'ngọc trai', id: 'mutiara', tr: 'inci' } as const)[lang];
+  // зачем: единственная валюта 2.0 — монеты; слово берём из общего словаря, а не держим свою копию про жемчуг
+  const currency = runeWord(lang, price);
   return `${price} ${currency} · ${avatarShowcaseTierTitle(price, lang)}`;
 }

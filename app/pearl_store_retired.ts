@@ -34,19 +34,19 @@ export function logPearlStoreEntryBlocked(source: PearlShortageSource, need: num
   console.warn('[PM-057] pearl_store_entry_blocked', JSON.stringify({ source, need }));
 }
 
-/** Лог + короткое сообщение «не хватает жемчуга» вместо перехода в магазин. */
+/** Лог + короткое сообщение «не хватает монет» вместо перехода в магазин. */
 export function notifyPearlShortageWithoutStore(source: PearlShortageSource, need: number | null): void {
   logPearlStoreEntryBlocked(source, need);
   emitAppEvent('action_toast', actionToastTri('info', {
-    ru: 'Не хватает жемчуга',
-    uk: 'Не вистачає перлин',
-    en: 'Not enough pearls',
-    es: 'No tienes suficientes perlas',
-    'pt-BR': 'Pérolas insuficientes',
-    vi: 'Không đủ ngọc trai',
-    id: 'Mutiara tidak cukup',
-    tr: 'İnci yetersiz',
-    pl: 'Za mało pereł',
+    ru: 'Не хватает монет',
+    uk: 'Не вистачає монет',
+    en: 'Not enough coins',
+    es: 'No tienes suficientes monedas',
+    'pt-BR': 'Moedas insuficientes',
+    vi: 'Không đủ xu',
+    id: 'Koin tidak cukup',
+    tr: 'Jeton yetersiz',
+    pl: 'Za mało monet',
   }));
 }
 

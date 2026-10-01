@@ -801,7 +801,7 @@ export default function SettingsMain() {
       case 'promo_lifetime':
         return L('Промокод', 'Промокод', 'Promo code', 'Código promocional', 'Código promocional', 'Mã khuyến mãi', 'Kode promo', 'Promo kod', 'Kod promocyjny');
       case 'referral':
-        return L('Подарок за приглашения', 'Подарунок за запрошення', 'Referral gift', 'Regalo por invitaciones', 'Presente por convite', 'Quà mời bạn bè', 'Hadiah undangan', 'Davet hediyesi', 'Prezent za zaproszenia');
+        return L('Plus за приглашения', 'Plus за запрошення', 'Plus for referrals', 'Plus por invitaciones', 'Plus por convites', 'Plus nhờ mời bạn bè', 'Plus dari undangan', 'Davet Plus', 'Plus za zaproszenia');
       case 'survey_vip':
         return L('Plus за опрос', 'Plus за опитування', 'Plus for survey', 'Plus por encuesta', 'Plus por pesquisa', 'Plus từ khảo sát', 'Plus dari survei', 'Anket Plus', 'Plus za ankietę');
       case 'idea_reward':
@@ -1644,14 +1644,14 @@ export default function SettingsMain() {
                         'Zakup nadal się synchronizuje',
                       ),
                       L(
-                        'Смена аккаунта отменена: незавершённое списание жемчуга нельзя переносить или пропускать. Подключись к интернету и попробуй снова.',
-                        'Зміну акаунту скасовано: незавершене списання перлин не можна переносити або пропускати. Підключися до інтернету й спробуй ще раз.',
-                        'Account switch cancelled: an unfinished pearl charge cannot be carried over or skipped. Connect to the internet and try again.',
-                        'El cambio de cuenta se canceló: un gasto de perlas pendiente no se puede trasladar ni omitir. Conéctate a internet e inténtalo de nuevo.',
-                        'A troca de conta foi cancelada: um gasto de pérolas pendente não pode ser transferido nem ignorado. Conecte-se à internet e tente novamente.',
+                        'Смена аккаунта отменена: незавершённое списание монет нельзя переносить или пропускать. Подключись к интернету и попробуй снова.',
+                        'Зміну акаунту скасовано: незавершене списання монет не можна переносити або пропускати. Підключися до інтернету й спробуй ще раз.',
+                        'Account switch cancelled: an unfinished coin charge cannot be carried over or skipped. Connect to the internet and try again.',
+                        'El cambio de cuenta se canceló: un gasto de monedas pendiente no se puede trasladar ni omitir. Conéctate a internet e inténtalo de nuevo.',
+                        'A troca de conta foi cancelada: um gasto de moedas pendente não pode ser transferido nem ignorado. Conecte-se à internet e tente novamente.',
                         'Đã hủy đổi tài khoản: khoản trừ xu đang chờ không thể chuyển hoặc bỏ qua. Hãy kết nối internet rồi thử lại.',
-                        'Pergantian akun dibatalkan: pengeluaran shard yang tertunda tidak dapat dipindahkan atau dilewati. Sambungkan internet lalu coba lagi.',
-                        'Hesap değişimi iptal edildi: bekleyen inci harcaması taşınamaz veya atlanamaz. İnternete bağlanıp tekrar dene.',
+                        'Pergantian akun dibatalkan: pengeluaran koin yang tertunda tidak dapat dipindahkan atau dilewati. Sambungkan internet lalu coba lagi.',
+                        'Hesap değişimi iptal edildi: bekleyen jeton harcaması taşınamaz veya atlanamaz. İnternete bağlanıp tekrar dene.',
                         'Zmiana konta została anulowana: oczekującego wydatku monet nie można przenieść ani pominąć. Połącz się z internetem i spróbuj ponownie.',
                       ),
                       [
@@ -1672,25 +1672,25 @@ export default function SettingsMain() {
                   if (!res.ok && res.reason === 'shard_queue_quarantined') {
                     showGlassAlert(
                       L(
-                        'Нужна проверка жемчуга',
-                        'Потрібна перевірка перлин',
-                        'Pearls need to be checked',
-                        'Se deben revisar las perlas',
-                        'É preciso verificar as pérolas',
+                        'Нужна проверка монет',
+                        'Потрібна перевірка монет',
+                        'Coins need to be checked',
+                        'Se deben revisar las monedas',
+                        'É preciso verificar as moedas',
                         'Cần kiểm tra xu',
-                        'Shard perlu diperiksa',
-                        'Parçaların kontrol edilmesi gerekiyor',
-                        'Perły wymagają sprawdzenia',
+                        'Koin perlu diperiksa',
+                        'Jetonların kontrol edilmesi gerekiyor',
+                        'Monety wymagają sprawdzenia',
                       ),
                       L(
-                        'Смена аккаунта отменена: локальная очередь жемчуга повреждена или принадлежит неизвестному аккаунту. Данные сохранены для восстановления.',
-                        'Зміну акаунту скасовано: локальна черга перлин пошкоджена або належить невідомому акаунту. Дані збережено для відновлення.',
-                        'Account switch cancelled: the local pearl queue is corrupted or belongs to an unknown account. Data was kept for recovery.',
-                        'El cambio de cuenta se canceló: la cola local de perlas está dañada o pertenece a una cuenta desconocida. Los datos se conservaron para recuperarlos.',
-                        'A troca de conta foi cancelada: a fila local de pérolas está danificada ou pertence a uma conta desconhecida. Os dados foram preservados para recuperação.',
+                        'Смена аккаунта отменена: локальная очередь монет повреждена или принадлежит неизвестному аккаунту. Данные сохранены для восстановления.',
+                        'Зміну акаунту скасовано: локальна черга монет пошкоджена або належить невідомому акаунту. Дані збережено для відновлення.',
+                        'Account switch cancelled: the local coin queue is corrupted or belongs to an unknown account. Data was kept for recovery.',
+                        'El cambio de cuenta se canceló: la cola local de monedas está dañada o pertenece a una cuenta desconocida. Los datos se conservaron para recuperarlos.',
+                        'A troca de conta foi cancelada: a fila local de moedas está danificada ou pertence a uma conta desconhecida. Os dados foram preservados para recuperação.',
                         'Đã hủy đổi tài khoản: hàng đợi xu cục bộ bị hỏng hoặc thuộc về tài khoản không xác định. Dữ liệu đã được giữ lại để khôi phục.',
-                        'Pergantian akun dibatalkan: antrean shard lokal rusak atau milik akun yang tidak diketahui. Data disimpan untuk pemulihan.',
-                        'Hesap değişimi iptal edildi: yerel inci kuyruğu bozuk veya bilinmeyen bir hesaba ait. Veriler kurtarma için saklandı.',
+                        'Pergantian akun dibatalkan: antrean koin lokal rusak atau milik akun yang tidak diketahui. Data disimpan untuk pemulihan.',
+                        'Hesap değişimi iptal edildi: yerel jeton kuyruğu bozuk veya bilinmeyen bir hesaba ait. Veriler kurtarma için saklandı.',
                         'Zmiana konta została anulowana: lokalna kolejka monet jest uszkodzona lub należy do nieznanego konta. Dane zachowano do odzyskania.',
                       ),
                       [

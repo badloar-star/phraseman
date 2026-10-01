@@ -90,14 +90,14 @@ describe('SessionAttemptsRecoveryModal', () => {
 
     const labels = within(modal).getAllByLabelText(/.+/).map((node) => node.props.accessibilityLabel);
     expect(labels).toEqual([
-      'Использовать подарок',
-      'Восстановить · 25 рун',
+      'Использовать второй шанс',
+      'Восстановить · 25 монет',
       'Начать заново',
       'Завершить сессию',
     ]);
 
-    await fireEvent.press(view.getByLabelText('Использовать подарок'));
-    await fireEvent.press(view.getByLabelText('Восстановить · 25 рун'));
+    await fireEvent.press(view.getByLabelText('Использовать второй шанс'));
+    await fireEvent.press(view.getByLabelText('Восстановить · 25 монет'));
     await fireEvent.press(view.getByLabelText('Начать заново'));
     await fireEvent.press(view.getByLabelText('Завершить сессию'));
     expect(onUseGift).toHaveBeenCalledTimes(1);
@@ -124,11 +124,11 @@ describe('SessionAttemptsRecoveryModal', () => {
       />,
     );
 
-    expect(view.queryByText('Использовать подарок')).toBeNull();
+    expect(view.queryByText('Использовать второй шанс')).toBeNull();
     expect(view.queryByText('Без срока действия')).toBeNull();
-    expect(view.getByText('Нужно ещё 1 руну')).toBeTruthy();
+    expect(view.getByText('Нужно ещё 1 монету')).toBeTruthy();
 
-    const runeButton = view.getByLabelText('Восстановить · 25 рун');
+    const runeButton = view.getByLabelText('Восстановить · 25 монет');
     const restartButton = view.getByLabelText('Начать заново · −1');
     const exitButton = view.getByLabelText('Завершить сессию');
     expect(runeButton.props.accessibilityState).toEqual({ disabled: true });

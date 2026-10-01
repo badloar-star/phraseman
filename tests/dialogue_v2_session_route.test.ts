@@ -35,6 +35,8 @@ jest.mock('expo-router', () => ({
 }));
 jest.mock('../app/dialogue_v2_catalogue_client', () => ({
   fetchReleasedDialogueV2Catalogue: (...args: unknown[]) => mockFetchCatalogue(...args),
+  // Нет локального снимка в тесте — первый кадр берёт сеть (мок), как раньше.
+  peekDialogueV2Catalogue: () => null,
 }));
 jest.mock('../app/dialogue_v2_briefing_model', () => ({
   buildDialogueV2BriefingModel: (...args: unknown[]) => mockBuildModel(...args),
@@ -145,7 +147,7 @@ describe('Dialogue V2 session route', () => {
 
   it('loads a verified ID-only V2 session inside the existing consent gate', async () => {
     await render(h(DialogueV2SessionRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
 
     expect(mockConsent).toHaveBeenCalledTimes(1);
     expect(mockFetchCatalogue).toHaveBeenCalledWith('de');
@@ -158,25 +160,27 @@ describe('Dialogue V2 session route', () => {
     }));
   });
 
-  it('keeps the loading surface visible until the server session is confirmed or rejected', async () => {
+  // зачем (владелец 01.10: «диалоги должны открываться без загрузок»): экран диалога виден,
+  // пока сессия на сервере ещё стартует; полноэкранной загрузки нет.
+  it('shows the dialogue screen while the server session is still starting', async () => {
     let resolveStart!: (value: { sessionId: string; expiresAtMs: number } | null) => void;
     mockStartSession.mockImplementationOnce(() => new Promise((resolve) => {
       resolveStart = resolve;
     }));
 
     const screen = await render(h(DialogueV2SessionRoute));
-    await expect(screen.findByTestId('dialogue-v2-session-loading')).resolves.toBeTruthy();
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled());
+    expect(screen.queryByTestId('dialogue-v2-session-loading')).toBeNull();
     expect(screen.queryByTestId('dialogue-v2-session-unavailable')).toBeNull();
 
     await act(async () => {
       resolveStart({ sessionId: `d2s_${'b'.repeat(32)}`, expiresAtMs: Date.UTC(2026, 9, 1) });
     });
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
   });
 
   it('sends only the exact bounded turn request and appends verified reply bubbles', async () => {
     await render(h(DialogueV2SessionRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Guten Tag!'); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
 
@@ -200,7 +204,7 @@ describe('Dialogue V2 session route', () => {
     });
     mockTakeVoiceAttachment.mockReturnValue(voice);
     await render(h(DialogueV2SessionRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
 
     await act(async () => {
       mockUseVoice.mock.calls.at(-1)[0].onTranscript('Guten Tag!');
@@ -233,7 +237,7 @@ describe('Dialogue V2 session route', () => {
       play: mockPlayVoice, takeVoiceAttachment: mockTakeVoiceAttachment,
     });
     await render(h(DialogueV2SessionRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Guten Tag!'); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
 
@@ -243,7 +247,7 @@ describe('Dialogue V2 session route', () => {
 
   it('ends the writable chat by navigating with IDs only to the terminal debrief', async () => {
     await render(h(DialogueV2SessionRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onComplete(); });
     expect(mockReplace).toHaveBeenCalledWith({
       pathname: '/dialogue_v2_completion',
@@ -261,17 +265,21 @@ describe('Dialogue V2 session route', () => {
     mockParams.mockReturnValue({ scenarioId: 'work_01' });
     mockSendTurn.mockRejectedValue(new Error('internal detail'));
     await render(h(DialogueV2SessionRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Guten Tag!'); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
     // Макет C18: неудачный ход — плашка «Повторить» в ленте, разговор остаётся на экране.
     await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].turnError).toBe(true));
   });
 
-  it('does not invoke a text turn when starting the server session fails', async () => {
+  // зачем (владелец 01.10): при сбое старта экран «недоступно» не показывается — диалог виден,
+  // старт тихо повторяется фоном, а ход без сессии на сервер не уходит.
+  it('does not invoke a text turn when starting the server session fails, and shows no unavailable screen', async () => {
     mockStartSession.mockRejectedValue(new Error('internal detail'));
     const screen = await render(h(DialogueV2SessionRoute));
-    await expect(screen.findByText('Диалоги недоступны')).resolves.toBeTruthy();
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
+    expect(screen.queryByText('Диалоги недоступны')).toBeNull();
+    expect(mockScreen).toHaveBeenCalled();
     expect(mockSendTurn).not.toHaveBeenCalled();
   });
 
@@ -280,7 +288,7 @@ describe('Dialogue V2 session route', () => {
       kind: 'silence', replayed: false,
     });
     const screen = await render(h(DialogueV2SessionRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Guten Tag!'); });
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onSend(); });
     await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].turnError).toBe(true));
@@ -299,7 +307,7 @@ describe('Dialogue V2 session route', () => {
       resolveBytes = resolve;
     }));
     await render(h(DialogueV2SessionRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Guten Tag!'); });
     await act(async () => {
       mockScreen.mock.calls.at(-1)[0].onSend();
@@ -330,7 +338,7 @@ describe('Dialogue V2 session route', () => {
       },
     });
     await render(h(DialogueV2SessionRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Kaffee.'); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
 
@@ -362,7 +370,7 @@ describe('Dialogue V2 session route', () => {
     };
     mockSendTurn.mockRejectedValueOnce(new DialogueV2TurnFailureError('quota_exhausted', null));
     await render(h(DialogueV2SessionRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Hallo'); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
 
@@ -384,7 +392,7 @@ describe('Dialogue V2 session route', () => {
       },
     });
     await render(h(DialogueV2SessionRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Danke!'); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
     await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].bottom).toBe('ended'));
@@ -405,7 +413,7 @@ describe('Dialogue V2 session route', () => {
     };
     mockSendTurn.mockRejectedValueOnce(new DialogueV2TurnFailureError('paused'));
     const screen = await render(h(DialogueV2SessionRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Hallo'); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
     await expect(screen.findByTestId('dialogue-v2-session-paused')).resolves.toBeTruthy();
@@ -414,7 +422,7 @@ describe('Dialogue V2 session route', () => {
   it('hides the monthly remainder and why-limit for Plus', async () => {
     mockUsePremium.mockReturnValue({ accessResolved: true, hasPremiumAccess: true });
     await render(h(DialogueV2SessionRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Hallo'); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
     await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].messages).toHaveLength(2));

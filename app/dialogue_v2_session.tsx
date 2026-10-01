@@ -8,6 +8,7 @@ import AiDialogConsentGate from './ai_dialog_consent_gate';
 import { buildDialogueV2BriefingModel, type DialogueV2BriefingModel } from './dialogue_v2_briefing_model';
 import {
   fetchReleasedDialogueV2Catalogue,
+  peekDialogueV2Catalogue,
   type DialogueV2CatalogueReleaseEnvelope,
   type DialogueV2CatalogueStudyTarget,
 } from './dialogue_v2_catalogue_client';
@@ -111,7 +112,15 @@ function SessionContent() {
   const labels = useMemo(() => labelsFor(lang), [lang]);
   const coachingLabels = useMemo(() => dialogueV2SessionCoachingLabels(lang), [lang]);
   const scenarioId = validScenarioId(params.scenarioId) ? params.scenarioId : null;
-  const [state, setState] = useState<SessionState>({ kind: 'loading' });
+  // зачем (владелец 01.10: «диалоги должны открываться без загрузок»): первый кадр — каталог
+  // с телефона (кэш → встроенный снимок) синхронно; сеть обновляет фоном.
+  const localSessionState = (target: unknown): SessionState => {
+    if (!supportedTarget(target)) return { kind: 'unavailable' };
+    const envelope = peekDialogueV2Catalogue(target);
+    return envelope ? { kind: 'available', envelope } : { kind: 'loading' };
+  };
+  const [state, setState] = useState<SessionState>(() => localSessionState(studyTarget));
+  const [startAttempt, setStartAttempt] = useState(0);
   const [messages, setMessages] = useState<readonly DialogueV2SessionMessage[]>([]);
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
@@ -144,14 +153,17 @@ function SessionContent() {
     setServerSession(null);
     setServerSessionState('idle');
     pendingTurnRef.current = null;
-    setState({ kind: 'loading' });
+    setState((previous) => (previous.kind === 'available' ? previous : localSessionState(studyTarget)));
     void fetchReleasedDialogueV2Catalogue(studyTarget).then((envelope) => {
       if (!active) return;
-      if (!envelope) console.warn('[DIALOGUE-V2] session:load → catalogue empty', { scenarioId, studyTarget });
-      setState(envelope ? { kind: 'available', envelope } : { kind: 'unavailable' });
+      if (!envelope) {
+        // Остаёмся на локальном каталоге — никакого экрана «недоступно».
+        console.warn('[DIALOGUE-V2] session:load → network catalogue empty, keep local', { scenarioId, studyTarget });
+        return;
+      }
+      setState((previous) => (previous.kind === 'available' && previous.envelope === envelope ? previous : { kind: 'available', envelope }));
     }).catch((error: unknown) => {
-      console.warn('[DIALOGUE-V2] session:load → catalogue failed', error instanceof Error ? error.message : String(error));
-      if (active) setState({ kind: 'unavailable' });
+      console.warn('[DIALOGUE-V2] session:load → catalogue failed, keep local', error instanceof Error ? error.message : String(error));
     });
     return () => { active = false; };
   }, [scenarioId, studyTarget]);
@@ -184,23 +196,39 @@ function SessionContent() {
   useEffect(() => {
     if (!model?.unlocked || !scenarioId || !supportedTarget(studyTarget)) return undefined;
     let active = true;
-    setServerSession(null);
+    let retryTimer: ReturnType<typeof setTimeout> | null = null;
+    const scheduleRetry = () => {
+      // зачем (владелец 01.10): без экрана «недоступно» — тихий повтор старта в фоне (до 5 раз).
+      if (startAttempt >= 5) { setServerSessionState('unavailable'); return; }
+      retryTimer = setTimeout(() => setStartAttempt((value) => value + 1), 4_000);
+    };
+    if (startAttempt === 0) setServerSession(null);
     setServerSessionState('starting');
     void startDialogueV2TextSession({ studyTarget, scenarioId }).then((started) => {
       if (!active) return;
       if (!started) {
-        console.warn('[DIALOGUE-V2] session:start → server returned no session', { scenarioId });
-        setServerSessionState('unavailable');
+        console.warn('[DIALOGUE-V2] session:start → server returned no session, silent retry', { scenarioId, attempt: startAttempt });
+        scheduleRetry();
         return;
       }
       setServerSession(started);
       setServerSessionState('ready');
     }).catch((error: unknown) => {
-      console.warn('[DIALOGUE-V2] session:start → failed', error instanceof Error ? error.message : String(error));
-      if (active) setServerSessionState('unavailable');
+      console.warn('[DIALOGUE-V2] session:start → failed, silent retry', { attempt: startAttempt, error: error instanceof Error ? error.message : String(error) });
+      if (active) scheduleRetry();
     });
-    return () => { active = false; };
-  }, [model, scenarioId, studyTarget]);
+    return () => { active = false; if (retryTimer) clearTimeout(retryTimer); };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [model?.unlocked, scenarioId, studyTarget, startAttempt]);
+
+  // Ход, отправленный до готовности сессии, уходит сам, как только сервер ответил (мягкое «отправка…»).
+  useEffect(() => {
+    const pending = pendingTurnRef.current;
+    if (!serverSession || !pending || sending) return;
+    console.log('[DIALOGUE-V2] turn:flush → session ready, sending queued turn', { scenarioId });
+    void runPendingTurn(pending);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [serverSession]);
 
   // зачем (C19): «слишком много сообщений» — без «Повторить», пока не остынет; потом повтор можно.
   useEffect(() => {
@@ -263,6 +291,7 @@ function SessionContent() {
 
   const runPendingTurn = async (pending: Readonly<{ turnId: string; userMessage: string; learnerId: string }>) => {
     if (!serverSession || !scenarioId || !supportedTarget(studyTarget)) {
+      setSending(false);
       console.warn('[DIALOGUE-V2] turn:run → skipped, session not ready', { hasSession: !!serverSession, scenarioId });
       return;
     }
@@ -302,7 +331,7 @@ function SessionContent() {
 
   const send = async () => {
     const userMessage = draft.trim();
-    if (!model?.unlocked || !serverSession || !scenarioId || !supportedTarget(studyTarget)
+    if (!model?.unlocked || !scenarioId || !supportedTarget(studyTarget)
       || sending || turnStartingRef.current || voice.status !== 'idle'
       || coaching.quotaExhausted || coaching.ended
       || userMessage.length < 1 || userMessage.length > 2_000) return;
@@ -320,6 +349,13 @@ function SessionContent() {
           id: learnerId, author: 'learner' as const, text: userMessage,
           ...(voiceAttachment ? { voice: { uri: voiceAttachment.uri } } : {}),
         })]));
+      }
+      if (!serverSession) {
+        // Сессия ещё стартует — пузырь уже на экране, ход уйдёт эффектом выше.
+        console.log('[DIALOGUE-V2] turn:send → queued until session ready', { scenarioId });
+        setSending(true);
+        turnStartingRef.current = false;
+        return;
       }
       await runPendingTurn(pending);
     } catch (error: unknown) {
@@ -394,7 +430,9 @@ function SessionContent() {
       />
     );
   }
-  if (state.kind === 'loading' || (model?.unlocked === true && serverSessionState !== 'unavailable' && !serverSession)) {
+  // зачем (владелец 01.10): экран диалога появляется сразу; «загрузка» только если на телефоне
+  // нет даже встроенного каталога (поломка сборки).
+  if (state.kind === 'loading') {
     return (
       <DialogueGlassGate
         glass={glass}
@@ -406,7 +444,7 @@ function SessionContent() {
       />
     );
   }
-  if (!model || !model.unlocked || serverSessionState === 'unavailable' || !serverSession) {
+  if (!model || !model.unlocked) {
     // зачем: ранний выход без лога делал «недоступно» немым (правило «сперва логи»).
     if (typeof __DEV__ !== 'undefined' && __DEV__) console.warn('[DIALOGUE-V2] session:render → unavailable gate', {
       scenarioId,

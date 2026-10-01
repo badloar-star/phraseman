@@ -187,9 +187,9 @@ const styles = StyleSheet.create({
   avatar: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
   column: { maxWidth: '78%', minWidth: 0 },
   columnEnd: { alignItems: 'flex-end' },
-  who: { fontSize: 14, lineHeight: 19, fontWeight: '500', marginHorizontal: 6, marginBottom: 6 },
+  who: { fontSize: 13, lineHeight: 18, fontWeight: '400', marginHorizontal: 6, marginBottom: 6 },
   bubble: { borderRadius: 20, paddingHorizontal: 18, paddingVertical: 14 },
-  bubbleText: { fontSize: 17, lineHeight: 24, fontWeight: '500' },
+  bubbleText: { fontSize: 16, lineHeight: 22, fontWeight: '400' },
   actions: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 8 },
   actionsEnd: { justifyContent: 'flex-end' },
   typing: {

@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
   headRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 12, paddingHorizontal: 6 },
   headCopy: { flex: 1, minWidth: 0 },
   heading: { fontSize: 26, lineHeight: 31, fontWeight: '700', letterSpacing: -0.4 },
-  headingSubtitle: { fontSize: 15, lineHeight: 20, marginTop: 6 },
+  headingSubtitle: { fontSize: 16, lineHeight: 21, marginTop: 6 },
   close: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   scroll: { flexGrow: 0, flexShrink: 1, minHeight: 0 },
   content: { paddingTop: 18, paddingBottom: 4 },
@@ -252,6 +252,6 @@ const styles = StyleSheet.create({
   row: { minHeight: 76, paddingHorizontal: 12, paddingVertical: 12, borderRadius: 18, borderWidth: StyleSheet.hairlineWidth, flexDirection: 'row', alignItems: 'center', gap: 14 }, // guard-ok: D43 — тонкая рамка как на скрине владельца
   icon: { width: 48, height: 48, borderRadius: 14, borderWidth: StyleSheet.hairlineWidth, alignItems: 'center', justifyContent: 'center' }, // guard-ok: D43
   copy: { flex: 1, minWidth: 0 },
-  rowTitle: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
-  description: { fontSize: 14, lineHeight: 19, marginTop: 3 },
+  rowTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  description: { fontSize: 13, lineHeight: 18, marginTop: 3 },
 });

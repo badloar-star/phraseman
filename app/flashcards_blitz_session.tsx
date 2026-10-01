@@ -1320,7 +1320,7 @@ export default function FlashcardsBlitzSession() {
             <PracticeBackButton glass={blitzGlass} color={t.textPrimary} onPress={leave} testID="fc-blitz-back" accessibilityLabel={backLabel} />
             <PracticeHeaderTitle glass={blitzGlass} title={blitzTitle}>
               <ScrollView horizontal style={{ maxWidth: '100%', flexGrow: 0 }} showsHorizontalScrollIndicator={false}>
-                <Text style={{ color: blitzGlass.secondary, fontSize: 15, lineHeight: 20, marginTop: 2 }}>{deckTitle}</Text>
+                <Text style={{ color: blitzGlass.secondary, fontSize: 16, lineHeight: 21, marginTop: 2 }}>{deckTitle}</Text>
               </ScrollView>
             </PracticeHeaderTitle>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>

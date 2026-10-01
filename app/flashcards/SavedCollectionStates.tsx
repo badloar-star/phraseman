@@ -116,8 +116,8 @@ const styles = StyleSheet.create({
   state: { flex: 1, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 88, paddingHorizontal: 30 },
   icon: { width: 61, height: 61, borderRadius: 18, borderWidth: 1, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   title: { fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center', marginTop: 18 },
-  detail: { fontSize: 15, lineHeight: 20, textAlign: 'center', marginTop: 8 },
+  detail: { fontSize: 16, lineHeight: 21, textAlign: 'center', marginTop: 8 },
   action: { minHeight: 46, borderRadius: 14, paddingHorizontal: 22, alignItems: 'center', justifyContent: 'center', marginTop: 22 },
-  actionText: { fontSize: 15, fontWeight: '700' },
+  actionText: { fontSize: 16, fontWeight: '700' },
   pressed: { opacity: 0.82 },
 });

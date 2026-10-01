@@ -58,7 +58,7 @@ function FlagMark({ code, width, height, color }: { code: PackLanguage; width: n
   if (code === NO_PACK_LANGUAGE) return <Ionicons name="globe-outline" size={height + 2} color={color} style={{ width, textAlign: 'center' }} />;
   const art = FLAG_ART[code];
   if (art) return <Image source={art} style={{ width, height, borderRadius: 3 }} contentFit="cover" />;
-  return <Text style={{ width, fontSize: 12, fontWeight: '800', color, textAlign: 'center' }}>{PACK_LANGUAGE_META[code].shortName}</Text>;
+  return <Text style={{ width, fontSize: 13, fontWeight: '700', color, textAlign: 'center' }}>{PACK_LANGUAGE_META[code].shortName}</Text>;
 }
 
 export default function PackLanguagePicker({ lang, t, value, onChange, disabled = false, allowNone = false }: Props) {
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 8,
   },
-  code: { fontSize: 15, fontWeight: '700' },
+  code: { fontSize: 16, fontWeight: '700' },
   overlay: {
     flex: 1,
     justifyContent: 'flex-start',

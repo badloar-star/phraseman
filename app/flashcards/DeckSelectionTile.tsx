@@ -148,7 +148,7 @@ export default function DeckSelectionTile({
               testID={`${testIDPrefix}-count-${deck.deckId}`}
               style={[
                 styles.compactCount,
-                { color: liquidGlass.secondary, fontSize: 14 * textScale, lineHeight: 20 * textScale },
+                { color: liquidGlass.secondary, fontSize: 13 * textScale, lineHeight: 18 * textScale },
               ]}
             >
               {countLabel}

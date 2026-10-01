@@ -249,9 +249,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     paddingVertical: 1,
   },
-  durationText: { fontSize: 10, fontWeight: '800' },
+  durationText: { fontSize: 13, fontWeight: '700' },
   openingVeil: { alignItems: 'center', justifyContent: 'center' },
   main: { flex: 1, minWidth: 0, justifyContent: 'center' },
-  title: { fontSize: 15, lineHeight: 19, fontWeight: '800' },
+  title: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   social: { marginTop: 7 },
 });

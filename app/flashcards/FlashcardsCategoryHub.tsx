@@ -287,7 +287,7 @@ function CommunityPackTileBase({
                 backgroundColor: g.sheet, borderWidth: 1, borderColor: g.glassEdge,
               }}
             >
-              <Text style={{ fontSize: 9, fontWeight: '800', color: g.secondary }}>{pack.cardCount}</Text>
+              <Text style={{ fontSize: 13, fontWeight: '700', color: g.secondary }}>{pack.cardCount}</Text>
             </View>
           ) : null}
           {isTop ? (
@@ -326,10 +326,10 @@ function CommunityPackTileBase({
             {normalizePackLanguage(pack.packLanguage ?? pack.studyTarget) === NO_PACK_LANGUAGE ? (
               <View testID={`flashcards-pack-card-nolang-${pack.id}`} style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
                 <Ionicons name="globe-outline" size={11} color={g.text} />
-                <Text numberOfLines={1} style={{ fontSize: 9, lineHeight: 12, fontWeight: '700', color: g.text }}>{noPackLanguageLabel(lang)}</Text>
+                <Text numberOfLines={1} style={{ fontSize: 13, lineHeight: 17, fontWeight: '700', color: g.text }}>{noPackLanguageLabel(lang)}</Text>
               </View>
             ) : (
-              <Text style={{ fontSize: 11, lineHeight: 13 }}>
+              <Text style={{ fontSize: 13, lineHeight: 17 }}>
                 {PACK_LANGUAGE_META[normalizePackLanguage(pack.packLanguage ?? pack.studyTarget)].flagGlyph}
               </Text>
             )}
@@ -685,7 +685,7 @@ export default function FlashcardsCategoryHub({
         borderColor: t.border,
       }}
     >
-      <Text style={{ fontSize: 10, fontWeight: '800', color: t.textSecond }}>{label}</Text>
+      <Text style={{ fontSize: 13, fontWeight: '700', color: t.textSecond }}>{label}</Text>
     </View>
   );
 
@@ -787,7 +787,7 @@ export default function FlashcardsCategoryHub({
           {packTileLabel}
         </FlowText>
         {pack.isPendingUpdateReview ? (
-          <Text style={{ fontSize: 9, color: hubLabelAccent, fontWeight: '800', marginTop: 3, textAlign: 'center' }}>
+          <Text style={{ fontSize: 13, color: hubLabelAccent, fontWeight: '700', marginTop: 3, textAlign: 'center' }}>
             {triLang(lang, {
               ru: 'На проверке', uk: 'На перевірці', en: 'In review', es: 'En revisión',
               'pt-BR': 'Em revisão', vi: 'Đang duyệt', id: 'Sedang ditinjau', tr: 'İncelemede', pl: 'W trakcie sprawdzania',
@@ -888,7 +888,7 @@ export default function FlashcardsCategoryHub({
           }}
           hitSlop={{ top: 6, bottom: 6, left: 8, right: 8 }}
         >
-          <Text style={{ color: t.wrong, fontSize: 12, fontWeight: '800', textDecorationLine: 'underline' }}>
+          <Text style={{ color: t.wrong, fontSize: 13, fontWeight: '700', textDecorationLine: 'underline' }}>
             {triLang(lang, {
               ru: 'Пожаловаться на набор',
               uk: 'Поскаржитися на набір',
@@ -916,7 +916,7 @@ export default function FlashcardsCategoryHub({
           }}
           hitSlop={{ top: 6, bottom: 6, left: 8, right: 8 }}
         >
-          <Text style={{ color: t.textMuted, fontSize: 12, fontWeight: '800', textDecorationLine: 'underline' }}>
+          <Text style={{ color: t.textMuted, fontSize: 13, fontWeight: '700', textDecorationLine: 'underline' }}>
             {triLang(lang, {
               ru: 'Не показывать мне',
               uk: 'Не показувати мені',
@@ -988,7 +988,7 @@ export default function FlashcardsCategoryHub({
             >
               <CatalogTileGlass g={g} />
               <Ionicons name="document-text-outline" size={20} color={t.accent} />
-              <Text style={{ color: isGradientSurface ? t.textPrimary : t.accent, fontWeight: '800', fontSize: 14 }}>
+              <Text style={{ color: isGradientSurface ? t.textPrimary : t.accent, fontWeight: '700', fontSize: 13 }}>
                 {triLang(lang, {
                   ru: 'Продолжить создание набора',
                   uk: 'Продовжити створення набору',
@@ -1007,7 +1007,7 @@ export default function FlashcardsCategoryHub({
             <View testID="flashcards-community-empty" style={{ width: hubBarW, minHeight: 132, borderRadius: 18, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden', alignItems: 'center', justifyContent: 'center', padding: 18, gap: 9 }}>
               <CatalogTileGlass g={g} />
               <Ionicons name={catalogCommunityPacks.length === 0 ? 'albums-outline' : 'search-outline'} size={24} color={g.secondary} />
-              <FlowText testID="flashcards-community-empty-label" provenance="authored" style={{ color: g.secondary, fontSize: 14, lineHeight: 20, textAlign: 'center' }}>
+              <FlowText testID="flashcards-community-empty-label" provenance="authored" style={{ color: g.secondary, fontSize: 13, lineHeight: 18, textAlign: 'center' }}>
                 {catalogCommunityPacks.length === 0
                   ? triLang(lang, {
                       ru: 'Здесь появятся наборы после публикации.',

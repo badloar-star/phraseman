@@ -570,7 +570,7 @@ function PhraseCardImpl({
     paddingBottom: facePadBottom,
   };
 
-  const edgeLabelStyle = { color: g.secondary, fontSize: 12, fontWeight: '600' as const, letterSpacing: 2, textAlign: 'center' as const };
+  const edgeLabelStyle = { color: g.secondary, fontSize: 13, fontWeight: '700' as const, letterSpacing: 2, textAlign: 'center' as const };
   const defaultFront = (
     <>
       {edgeLabels ? <Text style={edgeLabelStyle}>{edgeLabels.front}</Text> : null}

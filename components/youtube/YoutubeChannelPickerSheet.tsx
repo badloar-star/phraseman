@@ -103,6 +103,6 @@ const styles = StyleSheet.create({
   row: { minHeight: 60, borderRadius: 18, padding: 10, flexDirection: 'row', alignItems: 'center', gap: 11 },
   icon: { width: 42, height: 42, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   rowBody: { flex: 1 },
-  rowText: { flex: 1, fontSize: 14, fontWeight: '900' },
-  languages: { marginTop: 2, fontSize: 11, fontWeight: '700' },
+  rowText: { flex: 1, fontSize: 13, fontWeight: '700' },
+  languages: { marginTop: 2, fontSize: 13, fontWeight: '700' },
 });

@@ -484,7 +484,7 @@ test('actual compact rows ignore stale covers, wrap text, localize counts, and p
   assert.equal(flatStyle(title.props.style).fontWeight, '700');
   const subtitle = compact.nodes.find(node => node.props?.testID === 'fc-deck-option-count-saved');
   assert.equal(subtitle.props.children, '1 card');
-  assert.equal(flatStyle(subtitle.props.style).fontSize, 17.5);
+  assert.equal(flatStyle(subtitle.props.style).fontSize, 13 * 1.25); // D139
   const checkbox = compact.nodes.find(node => node.props?.testID === 'fc-deck-option-checkbox-saved');
   assert.equal(flatStyle(checkbox.props.style).width, 24);
   assert.equal(flatStyle(checkbox.props.style).height, 24);
@@ -533,7 +533,7 @@ test('start keeps the same optimistic payload and compact CTA remains fully wrap
   const label = visit(start).find(node => node.props?.testID === 'fc-deck-start-label');
   assert.equal(label.props.numberOfLines, undefined);
   assert.equal(label.props.maxFontSizeMultiplier, undefined);
-  assert.ok(Math.abs(flatStyle(label.props.style).fontSize - (17 * (1.3 / 1.15) * 1.2)) < 1e-9);
+  assert.ok(Math.abs(flatStyle(label.props.style).fontSize - (16 * (1.3 / 1.15) * 1.2)) < 1e-9);
   assert.equal(flatStyle(label.props.style).fontWeight, '700');
   start.props.onPress();
   assert.equal(h.calls.haptic, 1);

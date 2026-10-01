@@ -19,7 +19,7 @@ test('My Packs uses exact live liquid tokens, glass materials and approved typog
   assert.ok(source.includes('<MyPacksGlass'));
   assert.ok(source.includes("'dimezisBlurView'"));
   assert.ok(source.includes('fontSize: 34, lineHeight: 40'));
-  assert.ok(source.includes('fontSize: 15, lineHeight: 21'));
+  assert.ok(source.includes('fontSize: 16, lineHeight: 22'));
   assert.ok(source.includes('height: 46'));
 });
 

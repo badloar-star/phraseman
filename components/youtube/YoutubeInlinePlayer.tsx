@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
   shell: { borderRadius: 20, borderWidth: 1, overflow: 'hidden', marginBottom: 12 },
   previewShell: { flex: 1, width: '100%', backgroundColor: '#000000' },
   header: { minHeight: 56, paddingHorizontal: 12, paddingVertical: 6, flexDirection: 'row', alignItems: 'center', gap: 8 },
-  title: { flex: 1, minWidth: 0, fontSize: 14, lineHeight: 19, fontWeight: '900' },
+  title: { flex: 1, minWidth: 0, fontSize: 13, lineHeight: 18, fontWeight: '700' },
   roundButton: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
   playerWrap: { width: '100%', backgroundColor: '#000000' },
   cardPlayerWrap: { aspectRatio: 16 / 9 },

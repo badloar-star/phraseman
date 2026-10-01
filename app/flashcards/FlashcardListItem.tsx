@@ -785,7 +785,7 @@ function FlashcardListItemImpl({
                     paddingVertical: 3,
                   }}
                 >
-                  <Text style={{ color: t.accent, fontSize: 10, fontWeight: '800', letterSpacing: 0.4 }}>DEV PACK</Text>
+                  <Text style={{ color: t.accent, fontSize: 13, fontWeight: '700', letterSpacing: 0.4 }}>DEV PACK</Text>
                 </View>
               )}
               {savedGlass ? (
@@ -943,7 +943,7 @@ function FlashcardListItemImpl({
                     paddingVertical: 3,
                   }}
                 >
-                  <Text style={{ color: t.accent, fontSize: 10, fontWeight: '800', letterSpacing: 0.4 }}>DEV PACK</Text>
+                  <Text style={{ color: t.accent, fontSize: 13, fontWeight: '700', letterSpacing: 0.4 }}>DEV PACK</Text>
                 </View>
               )}
               <ScrollView decelerationRate="fast"
@@ -1245,14 +1245,14 @@ const styles = StyleSheet.create({
   savedNumber: { width: 19, alignSelf: 'flex-start', marginTop: 8, fontSize: 13, lineHeight: 18, fontWeight: '700' },
   savedTextScroll: { flex: 1, maxHeight: 94 },
   savedTextContent: { justifyContent: 'center', paddingVertical: 4 },
-  savedWord: { fontSize: 17, lineHeight: 21, fontWeight: '700' },
-  savedIpa: { fontSize: 12, lineHeight: 16, marginTop: 1 },
-  savedTranslation: { fontSize: 12, lineHeight: 16, marginTop: 2 },
+  savedWord: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  savedIpa: { fontSize: 13, lineHeight: 17, marginTop: 1 },
+  savedTranslation: { fontSize: 13, lineHeight: 17, marginTop: 2 },
   savedActions: { alignSelf: 'stretch', justifyContent: 'space-between', alignItems: 'center' },
   savedAction: { width: 31, height: 31, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   videoMomentWrap: { position: 'absolute', top: 8, zIndex: 5 },
   videoMomentChip: { height: 30, borderRadius: 15, borderWidth: 1, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', gap: 4 },
-  videoMomentText: { fontSize: 12, lineHeight: 16, fontWeight: '700', fontVariant: ['tabular-nums'] },
+  videoMomentText: { fontSize: 13, lineHeight: 17, fontWeight: '700', fontVariant: ['tabular-nums'] },
 });
 
 const FlashcardListItem = React.memo(FlashcardListItemImpl);

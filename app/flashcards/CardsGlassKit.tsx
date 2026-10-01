@@ -167,8 +167,8 @@ export function CardsGlassPrimaryButton({
       {!disabled && !ghost ? <ThemeAccentFill glass={g} radius={27} /> : null}
       <Text
         style={{
-          fontSize: 17,
-          lineHeight: 22,
+          fontSize: 16,
+          lineHeight: 21,
           fontWeight: '700',
           textAlign: 'center',
           color: disabled ? g.mutedText : ghost ? g.text : g.accentInk,

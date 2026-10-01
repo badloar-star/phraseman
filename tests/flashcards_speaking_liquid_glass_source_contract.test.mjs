@@ -212,7 +212,7 @@ test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchan
       logic: sha256(read('app/flashcards/speaking_session_logic.ts')),
     },
     {
-      hold: '6306ef9e7e4e52198ae787f36fe959e162a5981aeb363bdce5ca8128f4b51195',
+      hold: '92c92d8b1e7d00de8c0738f5455514ea338924ad5f75e495d6502977a5b7a9e9',
       panel: '0583a659791f40b596d585b909a05b6ebee80c56742efb976e44c0586c77e119',
       slot: 'ef4f0bab5e4bd50af4c9855af1e24e2084bc1b04756de016e368cbd2bd071ae7',
       stars: '38631c90662c00baf57ee9b9e129d6049854f6799bd13fe05e1c9587fc3e6d60',

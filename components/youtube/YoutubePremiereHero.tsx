@@ -186,9 +186,9 @@ const styles = StyleSheet.create({
   details: { paddingTop: 12 },
   state: { position: 'absolute', left: 12, top: 12, minHeight: 26, borderRadius: 13, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: 'rgba(0,0,0,0.6)' },
   liveDot: { width: 8, height: 8, borderRadius: 4, backgroundColor: '#FFFFFF' },
-  badgeText: { color: '#FFFFFF', fontSize: 12, fontWeight: '700', letterSpacing: 0.3 },
-  title: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
-  countdown: { marginTop: 4, fontSize: 14, fontWeight: '600' },
+  badgeText: { color: '#FFFFFF', fontSize: 13, fontWeight: '700', letterSpacing: 0.3 },
+  title: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  countdown: { marginTop: 4, fontSize: 13, fontWeight: '700' },
   cta: { minHeight: 44, marginTop: 12, borderRadius: 22, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
   ctaGhost: { backgroundColor: 'transparent', borderWidth: 1 }, // guard-ok: `.cta.gh` макета — тонкая 1 px полупрозрачная кромка
   ctaText: { fontSize: 16, fontWeight: '600' },

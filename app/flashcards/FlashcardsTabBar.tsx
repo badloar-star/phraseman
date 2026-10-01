@@ -356,7 +356,7 @@ function TabMenuItem({
             <Ionicons name={icon} size={17} color={t.accent} />
           </View>
           <Text
-            style={{ color: t.textPrimary, fontSize: 14, fontWeight: '800' }}
+            style={{ color: t.textPrimary, fontSize: 13, fontWeight: '700' }}
             numberOfLines={1}
           >
             {label}

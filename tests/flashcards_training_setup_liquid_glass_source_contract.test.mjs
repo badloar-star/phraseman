@@ -19,7 +19,7 @@ const sha256 = value => crypto.createHash('sha256').update(value).digest('hex');
 const LOCALES = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
 const THEMES = ['graphite', 'polar', 'slate', 'ink', 'lavender', 'iris', 'rose', 'terracotta', 'taupe', 'olive', 'sage', 'eucalyptus', 'marine'];
 const PROTECTED_FILES = new Map([
-  ['app/flashcards/DeckSelectionTile.tsx', '66045ca246c71271aabfe658c06ab51db20d5de9dfd386ca4525ee4804374a4e'],
+  ['app/flashcards/DeckSelectionTile.tsx', 'bce9ce4ebaabf7258e3cbf509f3f166835f17f18271e02edcd299b5608a979cf'],
   // зачем (30.09): темы 2.0 — ссылка раздела в цвете темы (p.link, 0c6d2549f); в «Спокойно» = textSecondary.
   ['components/v2/V2Kit.tsx', 'd5568332a1efe80d3e311be53c8b93b3abceae48cf45f79186662471bc34a9db'],
   ['components/v2/V2Pressable.tsx', '109ed9abd8f4f9cad448dad5ea3cac1c0ea7f058f86d8e6dae571ba807a37a83'],
@@ -335,7 +335,7 @@ test('actual route uses stable four-edge ownership, compact wrapping type, and s
   assert.equal(flatStyle(title.props.style).textAlign, 'left');
   assert.equal(flatStyle(header.props.style).gap, 14);
   assert.ok(!nodes.some(node => node.props?.testID === 'fc-training-setup-header-trailing'));
-  assert.equal(flatStyle(byId('fc-training-setup-summary').props.style).fontSize, 15 * expectedScale);
+  assert.equal(flatStyle(byId('fc-training-setup-summary').props.style).fontSize, 16 * expectedScale); // D139
   assert.equal(flatStyle(byId('fc-training-setup-summary').props.style).lineHeight, 21 * expectedScale);
   assert.equal(byId('fc-training-setup-summary').props.maxFontSizeMultiplier, undefined);
 

@@ -576,7 +576,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               style={[styles.bottomTab, communitySort === 'new' ? { backgroundColor: g.selected } : null]}
             >
               <Ionicons name={communitySort === 'new' ? 'sparkles' : 'sparkles-outline'} size={20} color={communitySort === 'new' ? g.text : g.secondary} />
-              <Text style={{ color: communitySort === 'new' ? g.text : g.secondary, fontSize: 12, fontWeight: '800', marginTop: 3 }}>{newPacksLabel}</Text>
+              <Text style={{ color: communitySort === 'new' ? g.text : g.secondary, fontSize: 13, fontWeight: '700', marginTop: 3 }}>{newPacksLabel}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               testID="flashcards-packs-create"
@@ -600,7 +600,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               style={[styles.bottomTab, communitySort === 'popular' ? { backgroundColor: g.selected } : null]}
             >
               <Ionicons name={communitySort === 'popular' ? 'trophy' : 'trophy-outline'} size={20} color={communitySort === 'popular' ? g.text : g.secondary} />
-              <Text style={{ color: communitySort === 'popular' ? g.text : g.secondary, fontSize: 12, fontWeight: '800', marginTop: 3 }}>{topPacksLabel}</Text>
+              <Text style={{ color: communitySort === 'popular' ? g.text : g.secondary, fontSize: 13, fontWeight: '700', marginTop: 3 }}>{topPacksLabel}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -703,6 +703,6 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
     includeFontPadding: false,
     textAlignVertical: 'center',
-    fontSize: 14,
+    fontSize: 13,
   },
 });

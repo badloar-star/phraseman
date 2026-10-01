@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 12,
     bottom: 10,
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '700',
     color: 'rgba(255,255,255,0.92)',
   },

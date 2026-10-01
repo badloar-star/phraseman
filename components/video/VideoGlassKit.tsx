@@ -128,5 +128,5 @@ const styles = StyleSheet.create({
     gap: 12,
     marginTop: 16,
   },
-  noteText: { flex: 1, fontSize: 14.5, lineHeight: 19, fontWeight: '500' },
+  noteText: { flex: 1, fontSize: 16, lineHeight: 21, fontWeight: '400' },
 });

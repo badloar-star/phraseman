@@ -48,7 +48,7 @@ export default function FlashcardsCategoryBar({
                 <View style={{ position: 'absolute', bottom: -4, left: '25%', right: '25%', height: 2, borderRadius: 1, backgroundColor: t.textPrimary }} />
               )}
               <Ionicons name={cat.icon as any} size={33} color={color} />
-              <Text style={{ fontSize: 10, color, fontWeight: active ? '600' : '400', letterSpacing: 0.1 }} numberOfLines={1}>
+              <Text style={{ fontSize: 13, color, fontWeight: active ? '600' : '400', letterSpacing: 0.1 }} numberOfLines={1}>
                 {label}
               </Text>
             </TouchableOpacity>

@@ -642,7 +642,7 @@ export default function CollectionListView({
             }}
             style={{ alignSelf: 'flex-end', marginRight: 16, marginBottom: 2, paddingHorizontal: 8, paddingVertical: 3, borderRadius: 6, borderWidth: 1, borderColor: '#FF6B00' }}
           >
-            <Text style={{ fontSize: 9, color: '#FF6B00', fontWeight: '800' }}>
+            <Text style={{ fontSize: 13, color: '#FF6B00', fontWeight: '700' }}>
               {triLang(lang, {
                 ru: 'DEV: показать подсказку', uk: 'DEV: показати підказку', en: 'DEV: show hint', es: 'DEV: mostrar ayuda',
                 'pt-BR': 'DEV: mostrar dica', vi: 'DEV: hiện gợi ý', id: 'DEV: tampilkan petunjuk', tr: 'DEV: ipucunu göster', pl: 'DEV: pokaż podpowiedź',
@@ -846,7 +846,7 @@ export default function CollectionListView({
         <Reanimated.View entering={reduceMotion ? undefined : FadeInDown.duration(LUM.contentMs)} testID="fc-selection-action-bar" style={{ position: 'absolute', left: 0, right: 0, bottom: 0, backgroundColor: g.sheet, paddingHorizontal: 20, paddingTop: 12, paddingBottom: insets.bottom > 0 ? 12 : 20, borderTopWidth: 1, borderTopColor: g.glassEdge, overflow: 'hidden' }}>
           <SavedListGlass tint={g.selected} edge={g.glassEdge} />
           {!canCreatePack ? (
-            <Text style={{ color: g.secondary, fontSize: 14, lineHeight: 18, textAlign: 'center', marginBottom: 10 }}>
+            <Text style={{ color: g.secondary, fontSize: 13, lineHeight: 17, textAlign: 'center', marginBottom: 10 }}>
               {triLang(lang, {
                 ru: `Выбери ещё ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} карточек, чтобы создать набор`, uk: `Познач ще ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} карток, щоб створити набір`,
                 en: `Select ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} more cards to create a pack`, es: `Elige ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} tarjetas más para crear un pack`,
@@ -1069,6 +1069,6 @@ export function CollectionEmptyState({
 // ─── Styles (перенесены из монолита — геометрия карточки-строки) ─────────────
 const st = StyleSheet.create({
   sourceBadge:  { position:'absolute', top:18, left:18, paddingHorizontal:10, paddingVertical:4, borderRadius:20, borderWidth:1 },
-  sourceBadgeText: { fontSize:11, fontWeight:'700', textTransform:'uppercase', letterSpacing:0.6 },
+  sourceBadgeText: { fontSize: 13, fontWeight: '700', textTransform:'uppercase', letterSpacing:0.6 },
   centerState:  { flex:1, alignItems:'center', justifyContent:'center', paddingHorizontal:32 },
 });

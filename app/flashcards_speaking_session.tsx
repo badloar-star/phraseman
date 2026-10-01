@@ -1254,7 +1254,7 @@ export default function FlashcardsSpeakingSession() {
       <PracticeHeaderTitle glass={speakingGlass} title={labels.title}>
         {interactive ? (
           <ScrollView horizontal style={{ maxWidth: '100%', flexGrow: 0 }} showsHorizontalScrollIndicator={false}>
-            <Text style={{ color: speakingGlass.secondary, fontSize: 15, lineHeight: 20, marginTop: 2 }}>{deckTitle}</Text>
+            <Text style={{ color: speakingGlass.secondary, fontSize: 16, lineHeight: 21, marginTop: 2 }}>{deckTitle}</Text>
           </ScrollView>
         ) : (
           <View style={{ marginTop: 4 }}><SkeletonBlock width={120} height={f.caption} /></View>
@@ -1520,7 +1520,7 @@ RU: ${card.translation}`}
                 <SpeakingResultSheen glass={speakingGlass} />
                 {spokenTranscript ? (
                   <View style={styles.transcriptBlock} testID="fc-speak-transcript">
-                    <Text style={{ color: t.textMuted, fontSize: 12 * textScale, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase' }}>
+                    <Text style={{ color: t.textMuted, fontSize: 13 * textScale, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase' }}>
                       {labels.spokenTranscript}
                     </Text>
                     <Text style={{ color: t.textPrimary, fontSize: 20 * textScale, lineHeight: 26 * textScale, fontWeight: '600', textAlign: 'center' }}>
@@ -1677,7 +1677,7 @@ const styles = StyleSheet.create({
   progressTrack: { height: 6, borderRadius: 4, marginTop: 22, marginHorizontal: 20, overflow: 'hidden' },
   progressFill: { height: 6, borderRadius: 4 },
   progressRow: { minHeight: 22, marginTop: 12, marginHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  progressLabel: { fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] },
+  progressLabel: { fontSize: 16, lineHeight: 21, fontWeight: '700', fontVariant: ['tabular-nums'] },
   // Отдельная верхняя строка рун уплотнила экран: опускаем карточку ниже,
   // чтобы её верх не заходил на progress bar.
   cardArea: { flexGrow: 1, justifyContent: 'center', paddingHorizontal: 20, paddingTop: 34 },

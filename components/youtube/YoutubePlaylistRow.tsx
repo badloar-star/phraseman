@@ -44,5 +44,5 @@ const styles = StyleSheet.create({
   stackTwo: { position: 'absolute', left: 16, right: 16, top: -11, height: 10, borderTopLeftRadius: 10, borderTopRightRadius: 10, zIndex: 1 },
   body: { flex: 1, minWidth: 0 },
   title: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
-  count: { marginTop: 4, fontSize: 14, fontWeight: '600' },
+  count: { marginTop: 4, fontSize: 13, fontWeight: '700' },
 });

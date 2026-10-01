@@ -132,9 +132,9 @@ const styles = StyleSheet.create({
   loading: { gap: 14, marginTop: 14 },
   content: { paddingBottom: 32 },
   title: { marginTop: 14, fontSize: 30, lineHeight: 36, fontWeight: '700' },
-  subtitle: { marginTop: 4, fontSize: 15, lineHeight: 20, fontWeight: '500' },
-  description: { marginTop: 10, fontSize: 14, lineHeight: 20, fontWeight: '500' },
+  subtitle: { marginTop: 4, fontSize: 16, lineHeight: 21, fontWeight: '400' },
+  description: { marginTop: 10, fontSize: 13, lineHeight: 18, fontWeight: '400' },
   playAll: { minHeight: 48, marginTop: 18, borderRadius: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12 },
-  playAllText: { fontSize: 17, fontWeight: '700' },
+  playAllText: { fontSize: 16, fontWeight: '700' },
   videoList: { marginTop: 20 },
 });

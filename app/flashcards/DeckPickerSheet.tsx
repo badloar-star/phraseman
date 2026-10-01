@@ -367,7 +367,7 @@ export default function DeckPickerSheet({
                     accessible
                     style={{
                       color: summary.deckCount > 0 ? glass.secondary : glass.mutedText,
-                      fontSize: 15 * textScale,
+                      fontSize: 16 * textScale,
                       lineHeight: 21 * textScale,
                       fontWeight: '400',
                       marginTop: 4,
@@ -429,7 +429,7 @@ export default function DeckPickerSheet({
                 <Text
                   style={{
                     color: glass.text,
-                    fontSize: 15 * textScale,
+                    fontSize: 16 * textScale,
                     lineHeight: 21 * textScale,
                     fontWeight: '700',
                     marginHorizontal: 4,
@@ -463,7 +463,7 @@ export default function DeckPickerSheet({
                         <Text
                           style={{
                             color: active ? glass.ctaInk : glass.text,
-                            fontSize: 15 * textScale,
+                            fontSize: 16 * textScale,
                             lineHeight: 21 * textScale,
                             fontWeight: '700',
                           }}
@@ -496,7 +496,7 @@ export default function DeckPickerSheet({
                   testID="fc-deck-start-label"
                   style={{
                     color: canStart ? glass.ctaInk : glass.mutedText,
-                    fontSize: 17 * textScale,
+                    fontSize: 16 * textScale,
                     lineHeight: 23 * textScale,
                     fontWeight: '700',
                     textAlign: 'center',

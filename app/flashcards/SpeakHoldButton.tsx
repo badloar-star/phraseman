@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
   dots: { marginTop: 4 },
   label: {
     marginTop: 4,
-    fontSize: 12,
+    fontSize: 13,
     fontWeight: '700',
     letterSpacing: 0.2,
     height: 18,

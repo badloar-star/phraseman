@@ -774,7 +774,7 @@ export default function FlashcardsMyPacksScreen() {
                   borderColor: g.glassEdge,
                 }}
               >
-                <Text style={{ fontSize: 9, fontWeight: '800', color: g.text }}>{pack.cardCount}</Text>
+                <Text style={{ fontSize: 13, fontWeight: '700', color: g.text }}>{pack.cardCount}</Text>
               </View>
             ) : null}
             <View
@@ -789,9 +789,9 @@ export default function FlashcardsMyPacksScreen() {
               {packLang === NO_PACK_LANGUAGE ? (
                 <View testID={`fc-my-packs-pack-nolang-${pack.id}`} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, maxWidth: tileW - 16 }}>
                   <Ionicons name="globe-outline" size={11} color={g.text} />
-                  <Text numberOfLines={1} style={{ flexShrink: 1, fontSize: 9, lineHeight: 12, fontWeight: '700', color: g.text }}>{noPackLanguageLabel(lang)}</Text>
+                  <Text numberOfLines={1} style={{ flexShrink: 1, fontSize: 13, lineHeight: 17, fontWeight: '700', color: g.text }}>{noPackLanguageLabel(lang)}</Text>
                 </View>
-              ) : flagArt ? <Image source={flagArt} style={{ width: 18, height: 12, borderRadius: 2 }} contentFit="cover" /> : <Text style={{ fontSize: 10, lineHeight: 13, fontWeight: '800', color: g.text }}>{PACK_LANGUAGE_META[packLang].shortName}</Text>}
+              ) : flagArt ? <Image source={flagArt} style={{ width: 18, height: 12, borderRadius: 2 }} contentFit="cover" /> : <Text style={{ fontSize: 13, lineHeight: 17, fontWeight: '700', color: g.text }}>{PACK_LANGUAGE_META[packLang].shortName}</Text>}
             </View>
             </TouchableOpacity>
             {editable ? (
@@ -837,7 +837,7 @@ export default function FlashcardsMyPacksScreen() {
               </TouchableOpacity>
             ) : null}
           </View>
-          <FlowText testID={`fc-my-packs-title-${pack.id}`} provenance="user" style={{ color: g.text, fontSize: 14, lineHeight: 18, fontWeight: '700', marginTop: 6, textAlign: 'center' }}>
+          <FlowText testID={`fc-my-packs-title-${pack.id}`} provenance="user" style={{ color: g.text, fontSize: 13, lineHeight: 17, fontWeight: '700', marginTop: 6, textAlign: 'center' }}>
             {label}
           </FlowText>
         </View>
@@ -855,7 +855,7 @@ export default function FlashcardsMyPacksScreen() {
           <View style={styles.sectionHead}>
             <Text
               accessibilityRole="header"
-              style={{ color: g.text, fontSize: 18, fontWeight: '800', letterSpacing: 0.2 }}
+              style={{ color: g.text, fontSize: 16, fontWeight: '700', letterSpacing: 0.2 }}
             >
               {title}
             </Text>
@@ -864,7 +864,7 @@ export default function FlashcardsMyPacksScreen() {
               pointerEvents="none"
             >
               <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
-              <Text style={{ color: g.secondary, fontSize: 11, fontWeight: '800' }}>{packs.length}</Text>
+              <Text style={{ color: g.secondary, fontSize: 13, fontWeight: '700' }}>{packs.length}</Text>
             </View>
           </View>
           {/* Кнопка правки — только в «Созданных мной»: в «Добавленных» лежат
@@ -928,7 +928,7 @@ export default function FlashcardsMyPacksScreen() {
               {copy.title}
             </Text>
             {/* PM-093/094: короткое описание раздела — одна строка, не пересказ кнопок. */}
-            <Text style={{ color: g.secondary, fontSize: 15, lineHeight: 21, fontWeight: '600', marginTop: 4 }}>
+            <Text style={{ color: g.secondary, fontSize: 16, lineHeight: 22, fontWeight: '700', marginTop: 4 }}>
               {copy.sectionHint}
             </Text>
 
@@ -971,7 +971,7 @@ export default function FlashcardsMyPacksScreen() {
                 >
                   <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
                   <Ionicons name={myPacksSort === 'updated' ? 'time-outline' : 'text-outline'} size={16} color={g.secondary} />
-                  <Text style={{ color: g.secondary, fontSize: 12, fontWeight: '700' }}>
+                  <Text style={{ color: g.secondary, fontSize: 13, fontWeight: '700' }}>
                     {myPacksSort === 'updated' ? copy.sortByUpdated : copy.sortByName}
                   </Text>
                 </TouchableOpacity>
@@ -982,7 +982,7 @@ export default function FlashcardsMyPacksScreen() {
             {renderSection('created', copy.created, visibleGroups.created)}
 
             {packCount > 0 && visiblePackCount === 0 ? (
-              <Text style={{ color: g.secondary, fontSize: 15, marginTop: 16, textAlign: 'center' }}>
+              <Text style={{ color: g.secondary, fontSize: 16, marginTop: 16, textAlign: 'center' }}>
                 {copy.noSearchResults}
               </Text>
             ) : null}
@@ -994,7 +994,7 @@ export default function FlashcardsMyPacksScreen() {
                   <View testID="fc-my-packs-loading" style={{ alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-between' }}>
                     {[0, 1, 2].map((index) => <View key={index} style={{ width: tileW * 0.78, height: tileW * 0.78, borderRadius: 18, backgroundColor: g.opaqueControl }} />)}
                   </View>
-                ) : <Text style={{ color: g.secondary, fontSize: 14, fontWeight: '600', textAlign: 'center' }}>
+                ) : <Text style={{ color: g.secondary, fontSize: 13, fontWeight: '700', textAlign: 'center' }}>
                   {copy.empty}
                 </Text>}
                 {loadStatus === 'ready' ? (
@@ -1014,7 +1014,7 @@ export default function FlashcardsMyPacksScreen() {
                     backgroundColor: g.sheet,
                   }}
                 >
-                  <Text style={{ color: g.text, fontSize: 14, fontWeight: '800' }}>{copy.browse}</Text>
+                  <Text style={{ color: g.text, fontSize: 13, fontWeight: '700' }}>{copy.browse}</Text>
                 </TouchableOpacity>) : null}
               </View>
             ) : null}
@@ -1050,7 +1050,7 @@ export default function FlashcardsMyPacksScreen() {
             <View testID="fc-delete-pack-confirm-modal" style={{ width: '100%', maxWidth: 360, alignSelf: 'center', padding: 22, borderRadius: 26, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.sheet, overflow: 'hidden' }}>
               <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
               <Text accessibilityRole="header" style={{ color: g.text, fontSize: 22, fontWeight: '800' }}>{copy.deletePack}</Text>
-              <Text style={{ color: g.secondary, fontSize: 15, lineHeight: 22, marginTop: 10 }}>
+              <Text style={{ color: g.secondary, fontSize: 16, lineHeight: 22, marginTop: 10 }}>
                 {deletePackTarget ? `«${packTitleForInterface(deletePackTarget, lang) || packHubCodeName(deletePackTarget)}» — ${triLang(lang, {
                   ru: 'набор будет убран из твоих наборов.', uk: 'набір буде прибрано з твоїх наборів.', en: 'this pack will be removed from your packs.', es: 'este pack se quitará de tus packs.',
                   'pt-BR': 'este pacote será removido dos seus pacotes.', vi: 'bộ thẻ này sẽ bị xóa khỏi các bộ của bạn.', id: 'paket ini akan dihapus dari paketmu.', tr: 'bu paketlerinden kaldırılacak.', pl: 'ten zestaw zostanie usunięty z Twoich zestawów.',
@@ -1085,7 +1085,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
   },
-  searchInput: { flex: 1, height: 44, paddingVertical: 0, fontSize: 14 },
+  searchInput: { flex: 1, height: 44, paddingVertical: 0, fontSize: 13 },
   sortBtn: {
     flexDirection: 'row',
     alignItems: 'center',

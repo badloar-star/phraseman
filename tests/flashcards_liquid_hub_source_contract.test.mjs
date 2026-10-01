@@ -437,10 +437,10 @@ test('actual populated community rail is transparent outside 112dp category cove
   assert.ok(visit(cover).some(node => node.type === 'ActivityIndicator'), 'opening state remains visible');
   assert.ok(visit(cover).some(node => node.type === 'Ionicons' && node.props.name === 'checkmark-circle'), 'owned state remains visible');
   const title = byId(tree, `saved-top-pack-title-${pack.id}`);
-  assert.deepEqual(flatStyle(title.props.style), { fontSize: 12, lineHeight: 16, fontWeight: '700', marginTop: 5, color: '#FFFFFF' });
+  assert.deepEqual(flatStyle(title.props.style), { fontSize: 13, lineHeight: 17, fontWeight: '700', marginTop: 5, color: '#FFFFFF' });
   assert.equal(title.props.numberOfLines, undefined);
   const author = byId(tree, `saved-top-pack-author-${pack.id}`);
-  assert.equal(flatStyle(author.props.style).fontSize, 10);
+  assert.equal(flatStyle(author.props.style).fontSize, 13);
   assert.equal(flatStyle(author.props.style).marginTop, 1);
   const badge = byId(tree, `saved-top-pack-count-${pack.id}`);
   const badgeStyle = flatStyle(badge.props.style);

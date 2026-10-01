@@ -102,8 +102,8 @@ const styles = StyleSheet.create({
   tile: { width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   tileSmall: { width: 55, height: 55, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
   cardText: { flex: 1, minWidth: 0 },
-  cardTitle: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
-  cardBody: { fontSize: 15, lineHeight: 20, marginTop: 6 },
+  cardTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  cardBody: { fontSize: 16, lineHeight: 21, marginTop: 6 },
   gate: { flexDirection: 'row', alignItems: 'flex-start', gap: 18, marginTop: 32, paddingTop: 22, paddingBottom: 24, paddingLeft: 20, paddingRight: 18 },
   gateCta: { alignSelf: 'flex-start', marginTop: 16 },
 });

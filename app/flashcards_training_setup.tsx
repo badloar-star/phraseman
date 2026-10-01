@@ -125,7 +125,7 @@ function SetupAction({
     >
       <Text style={[
         styles.actionLabel,
-        { color: glass.accentInk, fontSize: 17 * textScale, lineHeight: 22 * textScale },
+        { color: glass.accentInk, fontSize: 16 * textScale, lineHeight: 22 * textScale },
       ]}>{label}</Text>
     </V2Pressable>
   );
@@ -525,7 +525,7 @@ export default function FlashcardsTrainingSetupScreen() {
               <Text
                 testID="fc-training-setup-summary"
                 accessibilityLiveRegion="polite"
-                style={[styles.summary, { color: t.textPrimary, fontSize: 15 * textScale, lineHeight: 21 * textScale }]}
+                style={[styles.summary, { color: t.textPrimary, fontSize: 16 * textScale, lineHeight: 21 * textScale }]}
               >
                 {selectionExplanation}
               </Text>
@@ -570,7 +570,7 @@ export default function FlashcardsTrainingSetupScreen() {
               <SetupSurface testID="fc-training-setup-error" glass={glass} style={styles.messageBox}>
                 <Text accessibilityLiveRegion="polite" style={[
                   styles.message,
-                  { color: t.textSecond, fontSize: 15 * textScale, lineHeight: 22 * textScale },
+                  { color: t.textSecond, fontSize: 16 * textScale, lineHeight: 22 * textScale },
                 ]}>{loadErrorMessage}</Text>
               </SetupSurface>
             ) : decks.length === 0 ? (
@@ -584,7 +584,7 @@ export default function FlashcardsTrainingSetupScreen() {
                   <>
                     <Text style={[
                       styles.suggestHeading,
-                      { color: t.textPrimary, fontSize: 17 * textScale, lineHeight: 23 * textScale },
+                      { color: t.textPrimary, fontSize: 16 * textScale, lineHeight: 22 * textScale },
                     ]}>{suggestHeading}</Text>
                     <View style={styles.suggestRow}>
                       {suggestedPacks.map((pack) => {
@@ -631,7 +631,7 @@ export default function FlashcardsTrainingSetupScreen() {
                   <Text
                     testID="fc-training-setup-empty-message"
                     accessibilityLiveRegion="polite"
-                    style={[styles.message, { color: t.textSecond, fontSize: 15 * textScale, lineHeight: 22 * textScale }]}
+                    style={[styles.message, { color: t.textSecond, fontSize: 16 * textScale, lineHeight: 22 * textScale }]}
                   >
                     {selectionExplanation}
                   </Text>
@@ -665,7 +665,7 @@ export default function FlashcardsTrainingSetupScreen() {
             {!blitzHasEnoughCards && summary.cardCount > 0 ? (
               <Text accessibilityLiveRegion="polite" style={[
                 styles.validation,
-                { color: t.wrong, fontSize: 14 * textScale, lineHeight: 20 * textScale },
+                { color: t.wrong, fontSize: 13 * textScale, lineHeight: 18 * textScale },
               ]}>{blitzMinimumLabel}</Text>
             ) : null}
           </ScrollView>
@@ -681,7 +681,7 @@ export default function FlashcardsTrainingSetupScreen() {
               quota={quotaPreview}
               textColor={t.textSecond}
               mutedColor={t.wrong}
-              textMetrics={{ fontSize: 12 * textScale, lineHeight: 17 * textScale }}
+              textMetrics={{ fontSize: 13 * textScale, lineHeight: 17 * textScale }}
               style={styles.quota}
             />
             {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся.

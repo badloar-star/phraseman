@@ -160,14 +160,14 @@ export function DialogueV2CatalogueSection({
                       </View>
                       <View style={{ flex: 1, minWidth: 0 }}>
                         <Text
-                          style={{ color: locked ? glass.secondary : glass.text, fontSize: 17, lineHeight: 22, fontWeight: '600' }}
+                          style={{ color: locked ? glass.secondary : glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}
                           maxFontSizeMultiplier={1.3}
                         >
                           {item.title}
                         </Text>
                         {locked ? (
                           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 2 }}>
-                            <Text style={{ color: glass.secondary, fontSize: 14, lineHeight: 19 }} maxFontSizeMultiplier={1.3}>
+                            <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18 }} maxFontSizeMultiplier={1.3}>
                               {labels.lockedAtRank(item.rankRequired)}
                             </Text>
                             <Image

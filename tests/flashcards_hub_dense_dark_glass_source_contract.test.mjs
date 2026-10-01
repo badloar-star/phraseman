@@ -11,11 +11,11 @@ assert.match(source, /backgroundColor: g\.opaqueCard/, 'library rows use the app
 assert.match(source, /rgba\(239,241,255,0\.09\)/, 'library sheen uses the exact cool-white mock tint');
 assert.match(source, /libraryRow: \{ minHeight: 58,/, 'library rows return to the original 2.0 geometry');
 assert.match(source, /libraryIcon: \{ width: 38, height: 38,/, 'row icons return to the original 2.0 geometry');
-assert.match(source, /libraryTitle: \{ fontSize: 14, lineHeight: 19,/, 'row typography must remain dense');
-assert.match(source, /librarySubtitle: \{ fontSize: 11, lineHeight: 15,/, 'row supporting copy must remain dense');
+assert.match(source, /libraryTitle: \{ fontSize: 13, lineHeight: 18,/, 'row typography must remain dense');
+assert.match(source, /librarySubtitle: \{ fontSize: 13, lineHeight: 18,/, 'row supporting copy must remain dense');
 assert.match(source, /trainDock: \{ paddingHorizontal: 20, paddingTop: 9 \}/, 'fixed CTA dock returns to the original spacing');
 assert.match(source, /trainButton: \{ minHeight: 52,/, 'fixed CTA returns to the original 2.0 geometry');
-assert.match(source, /trainText: \{ flexShrink: 1, fontSize: 14, lineHeight: 19,/, 'CTA typography must be compact');
+assert.match(source, /trainText: \{ flexShrink: 1, fontSize: 13, lineHeight: 18,/, 'CTA typography must be compact');
 assert.match(source, /savedArt=\{true\}/, 'saved library entry needs the approved card illustration');
 assert.match(source, /require\('\.\.\/\.\.\/assets\/images\/v2\/cards_hub_saved\.webp'\)/, 'saved entry uses neutral card-and-plant art rather than a legacy theme path');
 assert.match(source, /savedArt: \{ width: 36, height: 36 \}/, 'saved illustration fills the restored icon tile without clipping');

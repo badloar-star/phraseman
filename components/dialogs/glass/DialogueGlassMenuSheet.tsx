@@ -115,5 +115,5 @@ const styles = StyleSheet.create({
   closeBtn: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   item: { marginTop: 14, minHeight: 62, flexDirection: 'row', alignItems: 'center', gap: 18, paddingHorizontal: 4, paddingVertical: 8 },
   tile: { width: 46, height: 46, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
-  itemText: { flex: 1, fontSize: 17, lineHeight: 22, fontWeight: '600' },
+  itemText: { flex: 1, fontSize: 16, lineHeight: 21, fontWeight: '700' },
 });

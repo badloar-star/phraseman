@@ -512,7 +512,7 @@ export default function CollectionDeckView({
           paddingTop: 10,
         }}
       >
-        <Text testID="fc-deck-counter" style={{ color: g.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600' }}>
+        <Text testID="fc-deck-counter" style={{ color: g.secondary, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>
           {index + 1}/{total}
         </Text>
         <Pressable
@@ -533,7 +533,7 @@ export default function CollectionDeckView({
             opacity: pressed ? 0.7 : 1,
           })}
         >
-          <Text style={{ color: g.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600' }}>
+          <Text style={{ color: g.secondary, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>
             {triLang(lang, {
               ru: 'К списку', uk: 'До списку', en: 'To the list', es: 'A la lista',
               'pt-BR': 'Para a lista', vi: 'Về danh sách', id: 'Ke daftar', tr: 'Listeye dön', pl: 'Do listy',

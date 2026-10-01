@@ -593,7 +593,7 @@ const styles = StyleSheet.create({
   packsIcon: { width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
   packsCopy: { flex: 1, minWidth: 0 },
   packsTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
-  packsSub: { fontSize: 14, lineHeight: 19, marginTop: 2 },
+  packsSub: { fontSize: 13, lineHeight: 18, marginTop: 2 },
   trainCta: { minHeight: 52, borderRadius: 26, marginTop: 4, marginBottom: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 18 },
   trainText: { fontSize: 16, fontWeight: '700' },
   heroPlayer: { width: '100%', aspectRatio: 16 / 9, borderRadius: 24, overflow: 'hidden', marginTop: 18, marginBottom: 14, backgroundColor: '#000000' },

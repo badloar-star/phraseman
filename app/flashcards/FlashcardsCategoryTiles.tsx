@@ -99,11 +99,11 @@ export default function FlashcardsCategoryTiles({
               <Text
                 style={{
                   marginTop: 6,
-                  fontSize: 10,
+                  fontSize: 13,
                   fontWeight: active ? '700' : '500',
                   color,
                   textAlign: 'center',
-                  lineHeight: 12,
+                  lineHeight: 17,
                 }}
                 numberOfLines={2}
               >

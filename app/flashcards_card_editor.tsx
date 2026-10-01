@@ -473,8 +473,8 @@ export default function FlashcardsCardEditorScreen() {
   // кромка, а не цветная толстая рамка. Логика ввода/сохранения не менялась.
   const fieldLabelStyle = {
     color: g.secondary,
-    fontSize: 14,
-    lineHeight: 18,
+    fontSize: 13,
+    lineHeight: 17,
     fontWeight: '700' as const,
     letterSpacing: 0.2,
   };
@@ -505,7 +505,7 @@ export default function FlashcardsCardEditorScreen() {
                 onPress={leaveEditor}
               />
               <View style={{ flex: 1, alignItems: 'center', minWidth: 0 }}>
-                <Text style={{ color: g.text, fontSize: 18, lineHeight: 24, fontWeight: '700', textAlign: 'center' }}>
+                <Text style={{ color: g.text, fontSize: 16, lineHeight: 21, fontWeight: '700', textAlign: 'center' }}>
                   {isEdit ? s.editCard : s.newCard}
                 </Text>
               </View>
@@ -579,7 +579,7 @@ export default function FlashcardsCardEditorScreen() {
                   <TextInput
                     testID="fc-editor-en"
                     accessibilityLabel="qa-fc-editor-en"
-                    style={[inputInnerStyle, { fontSize: 18, lineHeight: 24, fontWeight: '600' }]}
+                    style={[inputInnerStyle, { fontSize: 16, lineHeight: 21, fontWeight: '700' }]}
                     value={draftEN}
                     onChangeText={setDraftEN}
                     autoFocus
@@ -596,8 +596,8 @@ export default function FlashcardsCardEditorScreen() {
                       testID="fc-editor-transcription"
                       style={{
                         color: g.secondary,
-                        fontSize: 14,
-                        lineHeight: 20,
+                        fontSize: 13,
+                        lineHeight: 18,
                         fontStyle: 'italic',
                         letterSpacing: 0.25,
                         marginTop: 6,
@@ -624,7 +624,7 @@ export default function FlashcardsCardEditorScreen() {
                     }}
                   >
                     <Ionicons name="alert-circle-outline" size={18} color={g.text} />
-                    <Text style={{ color: g.text, fontSize: 14, lineHeight: 20, flex: 1 }}>
+                    <Text style={{ color: g.text, fontSize: 13, lineHeight: 18, flex: 1 }}>
                       {triLang(lang, {
                         ru: `Карточка «${duplicateOfEn}» уже есть в коллекции.`,
                         uk: `Картка «${duplicateOfEn}» вже є в колекції.`,
@@ -647,7 +647,7 @@ export default function FlashcardsCardEditorScreen() {
                     ref={backInputRef}
                     testID="fc-editor-tr"
                     accessibilityLabel="qa-fc-editor-tr"
-                    style={[inputInnerStyle, { fontSize: 18, lineHeight: 24, fontWeight: '600' }]}
+                    style={[inputInnerStyle, { fontSize: 16, lineHeight: 21, fontWeight: '700' }]}
                     value={draftTR}
                     onChangeText={setDraftTR}
                     returnKeyType={descriptionOpen ? 'next' : 'done'}
@@ -678,7 +678,7 @@ export default function FlashcardsCardEditorScreen() {
                       paddingHorizontal: 16,
                     }}
                   >
-                    <Text style={{ color: g.text, fontSize: 15, lineHeight: 20, fontWeight: '600' }}>
+                    <Text style={{ color: g.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>
                       {triLang(lang, {
                         ru: 'Подсказка', uk: 'Підказка', en: 'Hint', es: 'Sugerencia',
                         'pt-BR': 'Sugestão', vi: 'Gợi ý', id: 'Saran', tr: 'İpucu', pl: 'Podpowiedź',
@@ -754,7 +754,7 @@ export default function FlashcardsCardEditorScreen() {
                   </TouchableOpacity>
                 )}
 
-                <Text style={{ color: g.mutedText, fontSize: 14, lineHeight: 19, marginTop: 14 }}>
+                <Text style={{ color: g.mutedText, fontSize: 13, lineHeight: 18, marginTop: 14 }}>
                   {triLang(lang, {
                     ru: 'Карточка появится во вкладке «Свои» и будет доступна в тренировках.',
                     uk: 'Картка з’явиться у вкладці «Свої» і буде доступна в тренуваннях.',

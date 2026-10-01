@@ -295,7 +295,7 @@ export function DialogueV2SessionScreen({
                 accessibilityLabel={headerMood?.label ?? labels.subtitle}
               >
                 {headerMood ? <DialogueGlassMoodFace mood={headerMood.mood} color={glass.secondary} /> : null}
-                <Text numberOfLines={1} maxFontSizeMultiplier={1.3} style={{ color: glass.secondary, fontSize: 15, lineHeight: 19 }}>
+                <Text numberOfLines={1} maxFontSizeMultiplier={1.3} style={{ color: glass.secondary, fontSize: 16, lineHeight: 21 }}>
                   {headerMood?.label ?? labels.subtitle}
                 </Text>
               </View>
@@ -442,7 +442,7 @@ export function DialogueV2SessionScreen({
                     <Text
                       testID={`dialogue-v2-translation-${message.id}`}
                       maxFontSizeMultiplier={1.5}
-                      style={{ fontSize: 17, lineHeight: 24, fontStyle: 'italic', fontWeight: '400', color: glass.secondary }}
+                      style={{ fontSize: 16, lineHeight: 22, fontStyle: 'italic', fontWeight: '400', color: glass.secondary }}
                     >
                       {message.translation}
                     </Text>
@@ -542,7 +542,7 @@ export function DialogueV2SessionScreen({
               <Text
                 testID="dialogue-v2-session-voice-hint"
                 maxFontSizeMultiplier={1.3}
-                style={{ textAlign: 'center', fontSize: 15, lineHeight: 20, fontWeight: '600', color: voiceBusy ? glass.text : glass.secondary, flexShrink: 1 }}
+                style={{ textAlign: 'center', fontSize: 16, lineHeight: 21, fontWeight: '700', color: voiceBusy ? glass.text : glass.secondary, flexShrink: 1 }}
               >
                 {voiceHint}
               </Text>
@@ -554,7 +554,7 @@ export function DialogueV2SessionScreen({
                   accessibilityLabel={voiceFailure.actionLabel}
                   hitSlop={10}
                 >
-                  <Text maxFontSizeMultiplier={1.3} style={{ fontSize: 15, lineHeight: 20, fontWeight: '600', color: glass.text }}>
+                  <Text maxFontSizeMultiplier={1.3} style={{ fontSize: 16, lineHeight: 21, fontWeight: '700', color: glass.text }}>
                     {voiceFailure.actionLabel}
                   </Text>
                 </Pressable>

@@ -472,7 +472,7 @@ export default function FlashcardsVideoPacksScreen() {
               accessibilityLabel={copy.search}
               placeholder={copy.search}
               placeholderTextColor={g.secondary}
-              style={[styles.searchInput, { color: g.text, fontSize: 15 }]}
+              style={[styles.searchInput, { color: g.text, fontSize: 16 }]}
               returnKeyType="search"
             />
           </View>
@@ -528,7 +528,7 @@ export default function FlashcardsVideoPacksScreen() {
               <Text style={[styles.stateTitle, { color: g.text, fontSize: 20 }]}>
                 {copy.notFoundTitle}
               </Text>
-              <Text style={[styles.stateBody, { color: g.secondary, fontSize: 15 }]}>
+              <Text style={[styles.stateBody, { color: g.secondary, fontSize: 16 }]}>
                 {copy.notFoundBody}
               </Text>
               {searching ? (
@@ -572,7 +572,7 @@ const styles = StyleSheet.create({
   header: { minHeight: 60, paddingHorizontal: 16, paddingTop: 8, paddingBottom: 8, flexDirection: 'row', alignItems: 'center', gap: 10 },
   headerBtn: { width: 46, height: 46, borderRadius: 23, borderWidth: 1, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
   screenTitle: { paddingHorizontal: 16, marginTop: 4, paddingBottom: 12, fontSize: 34, lineHeight: 40, fontWeight: '800' },
-  summary: { paddingHorizontal: 16, marginTop: -4, paddingBottom: 12, fontSize: 15, lineHeight: 20, fontWeight: '500' },
+  summary: { paddingHorizontal: 16, marginTop: -4, paddingBottom: 12, fontSize: 16, lineHeight: 21, fontWeight: '400' },
   searchRow: { marginHorizontal: 16, height: 46, borderWidth: 1, overflow: 'hidden', borderRadius: 14, flexDirection: 'row', alignItems: 'center', gap: 9, paddingHorizontal: 13 },
   searchInput: { flex: 1, padding: 0, fontWeight: '600' },
   sorts: { flexDirection: 'row', gap: 8, paddingHorizontal: 16, paddingTop: 12, paddingBottom: 12 },

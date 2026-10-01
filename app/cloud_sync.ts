@@ -641,6 +641,10 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   ...DAILY_JOURNEY_FREEZE_ACCOUNT_LOCAL_PREFIXES,
   'external_economy_result_v1:',
   'external_economy_event_applied_v1:',
+  // зачем (PM-210, экономия чтений): курсор «до сюда события применены» — данные
+  // аккаунта; переезжает и стирается вместе с маркерами выше, иначе чужой курсор
+  // молча пропустил бы события нового владельца.
+  'external_economy_event_cursor_v1:',
   // зачем (D70/D84): квитанция обнуления жемчуга пишется в той же операции журнала
   // жемчуга — путешествует и стирается вместе с ним (след для поддержки).
   'pearl_retire_d70_receipt_v1:',

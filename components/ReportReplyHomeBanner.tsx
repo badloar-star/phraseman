@@ -74,7 +74,8 @@ function ReportReplyHomeBanner({ active, refreshTick, onOpen }: Props) {
       const hidden = await dismissedIds(currentOwner);
       const cached = await readCachedUserNotifications();
       if (alive) setRow(latestUnreadReportReply(cached, hidden));
-      const fresh = await refreshUserNotificationsOnce({ force: true });
+      // зачем (Ядро 01.10, экономия чтений): каждый фокус Главной больше не ходит в сеть — не чаще раза в 30 с.
+      const fresh = await refreshUserNotificationsOnce({ minIntervalMs: 30_000 });
       if (alive) setRow(latestUnreadReportReply(fresh, hidden));
     })();
     return () => { alive = false; };

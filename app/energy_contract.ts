@@ -19,7 +19,7 @@ export const ENERGY_BASE_CAPACITY = 5 as const;
  * (его читает profile_card_system) — к запасу энергии ярус больше НИЧЕГО не
  * добавляет (PM-081, D07).
  */
-export const PROFILE_CARD_ENERGY_MAX_LEVEL = 5 as const;
+export const PROFILE_CARD_MAX_LEVEL = 5 as const;
 /** Постоянный потолок = базовый запас: прибавок сверху больше нет (PM-081). */
 export const ENERGY_PERMANENT_CAPACITY_LIMIT: number = ENERGY_BASE_CAPACITY;
 /** Retired energy gifts/boosters cannot add capacity or refill units. */

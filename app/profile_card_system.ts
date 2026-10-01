@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { PROFILE_CARD_ENERGY_MAX_LEVEL } from './energy_contract';
+import { PROFILE_CARD_MAX_LEVEL } from './energy_contract';
 
 export const PROFILE_CARD_LEVEL_KEY = 'profile_card_level';
 /** Owner decision PM-185: cosmetic profile-card upgrade price, in coins. */
@@ -15,23 +15,13 @@ export const PROFILE_CARD_LEGEND_NO_KEY = 'profile_card_legend_no';
 // РЕШЕНИЕ 2026-07-05 (владелец): лестница из 5 уровней вместо одного. Каждый уровень —
 // заметно другой визуал + новый публичный блок информации на карточке. Покупка строго
 // по порядку, цены растут — высокие уровни редкие и статусные.
-export const PROFILE_CARD_MAX_LEVEL = PROFILE_CARD_ENERGY_MAX_LEVEL;
+export { PROFILE_CARD_MAX_LEVEL };
 export const PROFILE_CARD_UPGRADE_COST = 200;
 
 export type ProfileCardLevel = 0 | 1 | 2 | 3 | 4 | 5;
 
-// Фаза 2 бонусов карточки (ТЗ 2026-07-19): +5% осколков (×1.05) со всех
-// ЗАРАБОТАННЫХ начислений для уровня IV+ (кумулятивно IV…V, с уровнем не растёт).
-// Только заработок: траты, покупки за реальные деньги (RevenueCat) и серверные
-// компенсации/начисления бонус не получают. shards_system НЕ импортирует этот
-// модуль (анти-цикл) — значение там продублировано литералом
-// со ссылкой на эту константу.
-export const PROFILE_CARD_SHARD_BOOST = 1.05;
-
-/** Множитель осколков бонуса карточки: уровень IV+ → PROFILE_CARD_SHARD_BOOST, иначе 1. */
-export function profileCardShardMultiplier(level: ProfileCardLevel): number {
-  return level >= 4 ? PROFILE_CARD_SHARD_BOOST : 1;
-}
+// зачем: PM-183-A2 — множитель осколков карточки IV+ (PROFILE_CARD_SHARD_BOOST) удалён:
+// бонусы яруса сняты (D07/PM-081), карточка — чистая косметика.
 // РЕШЕНИЕ 2026-07-05: линейка по luxury-ресёрчу — чистые «электрические» свечения на
 // почти чёрном (без золота/фиолета/камней). Рост редкости, вершина уходит в стелс-платину.
 // steel → teal → azure → crimson → platinum(holo).

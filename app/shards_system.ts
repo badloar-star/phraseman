@@ -193,31 +193,10 @@ const consumeStorePurchasedShardsOnSpend = async (amount: number): Promise<numbe
 };
 
 
-/**
- * Фаза 2 бонусов карточки: +5% осколков (×1.05) со всех ЗАРАБОТАННЫХ начислений
- * для уровня карточки IV+. Значение зеркалит PROFILE_CARD_SHARD_BOOST, ключ —
- * PROFILE_CARD_LEVEL_KEY из app/profile_card_system.ts — модуль сюда НЕ
- * импортируем, чтобы не поймать цикл.
- */
-const readProfileCardShardMultiplier = async (): Promise<number> => 1;
-
-/** Бонусная часть Фазы 2: вверх до целого; при base > 0 и активном перке минимум +1. */
-const profileCardShardBonus = (_baseAmount: number, _perkM: number): number => 0;
-
-/**
- * Причины addShardsRaw, которые НЕ являются заработком — бонус карточки на них
- * не действует: покупка за реальные деньги (RevenueCat), возвраты и
- * подарки/компенсации (обновление, админ-рассылка).
- */
-const PROFILE_CARD_PERK_EXCLUDED_REASONS: ReadonlySet<string> = new Set([
-  'shards_store_purchase',
-  // зачем: возврат за несостоявшуюся покупку пака — НЕ заработок. Без этой
-  // строки бонус карточки IV+ начислил бы при откате +5% сверх возвращённой
-  // суммы, и юзер выходил бы в плюс от неудачной покупки.
-  'card_pack_refund',
-  'release_wave_bonus',
-  'global_broadcast_modal',
-]);
+// зачем: PM-183-A2 — бонус осколков за карточку IV+ удалён (бонусы яруса сняты, D07/PM-081):
+// заглушки множителя/бонуса и список исключённых причин убраны. В payload грантов оставлен
+// `perkBonus: 0` — форма запроса неизменна, чтобы повтор уже подготовленной операции
+// не стал «конфликтом».
 
 export const getShardAchievementEligibleBalance = async (balance?: number): Promise<number> => {
   const total = balance === undefined ? await getShardsBalance() : Math.max(0, Math.floor(Number(balance) || 0));
@@ -874,11 +853,7 @@ export const addShards = async (source: ShardSource, opts: AddShardOpts): Promis
     if (!eventId || eventId.length > 512) return 0;
     const amount = SHARD_REWARDS[source];
     if (!Number.isFinite(amount) || amount <= 0) return 0;
-    // Фаза 2: +5% осколков за карточку IV+ — единая точка каталожного заработка;
-    // бонус едет в той же клиентской дельте на сервер, отдельной операции нет.
-    const perkM = await readProfileCardShardMultiplier();
-    const perkBonus = profileCardShardBonus(amount, perkM);
-    const totalAmount = amount + perkBonus;
+    const totalAmount = amount;
     if (clientEconomyConstitutionEnabled()) {
       const eventHash = await Crypto.digestStringAsync(
         Crypto.CryptoDigestAlgorithm.SHA256,
@@ -891,7 +866,7 @@ export const addShards = async (source: ShardSource, opts: AddShardOpts): Promis
       grant: {
         kind: 'ordinary_personal_reward',
         subjectId: source,
-        payload: { baseAmount: amount, perkBonus, eventId },
+        payload: { baseAmount: amount, perkBonus: 0, eventId },
       },
       localWrites: opts.localWrites,
       showEarnModal: !opts?.suppressEarnEvent,
@@ -927,7 +902,7 @@ export const addShards = async (source: ShardSource, opts: AddShardOpts): Promis
       void bumpLifetimeShardsEarned(totalAmount, accountToken);
       logShardTransaction('earn', totalAmount, source, cloudApplied.balance, cloudApplied.balanceBefore);
       if (!opts?.suppressEarnEvent) {
-        emitAppEvent('shards_earned', { amount: totalAmount, ...(perkBonus > 0 ? { bonus: perkBonus } : {}), reasonKey: source });
+        emitAppEvent('shards_earned', { amount: totalAmount, reasonKey: source });
       }
       return totalAmount;
     }
@@ -972,7 +947,7 @@ export const addShards = async (source: ShardSource, opts: AddShardOpts): Promis
     await emitShardsBalanceUpdated(newBalance, meta);
     if (!isCurrent()) return 0;
     if (!opts?.suppressEarnEvent) {
-      emitAppEvent('shards_earned', { amount: totalAmount, ...(perkBonus > 0 ? { bonus: perkBonus } : {}), reasonKey: source });
+      emitAppEvent('shards_earned', { amount: totalAmount, reasonKey: source });
     }
     return totalAmount;
   } catch (error) {
@@ -1093,11 +1068,7 @@ export const addShardsRaw = async (
     if (!isCurrent() || !Number.isFinite(amount) || amount <= 0) return 0;
     const idempotencyKey = options?.idempotencyKey?.trim();
     if (idempotencyKey && !/^[A-Za-z0-9_:-]{8,80}$/.test(idempotencyKey)) return 0;
-    // Фаза 2: +5% осколков за карточку IV+ — для клиент-сформированного заработка;
-    // покупки/пари/возвраты/компенсации исключены, серверные начисления сюда не проходят.
-    const perkM = PROFILE_CARD_PERK_EXCLUDED_REASONS.has(logReason) ? 1 : await readProfileCardShardMultiplier();
-    const perkBonus = profileCardShardBonus(amount, perkM);
-    const totalAmount = amount + perkBonus;
+    const totalAmount = amount;
     if (clientEconomyConstitutionEnabled()) {
       const clientResult = await commitShardCreditOperation({
       operationId: idempotencyKey ?? newShardOpId(),
@@ -1106,7 +1077,7 @@ export const addShardsRaw = async (
       grant: {
         kind: 'ordinary_personal_reward',
         subjectId: String(logReason || 'raw').replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 160) || 'raw',
-        payload: { baseAmount: amount, perkBonus },
+        payload: { baseAmount: amount, perkBonus: 0 },
       },
       localWrites: options?.localWrites,
       showEarnModal: options?.showEarnModal,
@@ -1169,7 +1140,7 @@ export const addShardsRaw = async (
       if (!isCurrent()) return 0;
       if (options.showEarnModal) {
         const k = options.earnModalKey ?? logReason ?? 'generic_raw';
-        emitAppEvent('shards_earned', { amount: totalAmount, ...(perkBonus > 0 ? { bonus: perkBonus } : {}), reasonKey: k });
+        emitAppEvent('shards_earned', { amount: totalAmount, reasonKey: k });
       }
       return totalAmount;
     }
@@ -1206,7 +1177,7 @@ export const addShardsRaw = async (
       logShardTransaction('earn', totalAmount, logReason, cloudApplied.balance, cloudApplied.balanceBefore);
       if (options?.showEarnModal) {
         const k = options.earnModalKey ?? logReason ?? 'generic_raw';
-        emitAppEvent('shards_earned', { amount: totalAmount, ...(perkBonus > 0 ? { bonus: perkBonus } : {}), reasonKey: k });
+        emitAppEvent('shards_earned', { amount: totalAmount, reasonKey: k });
       }
       return totalAmount;
     }
@@ -1261,7 +1232,7 @@ export const addShardsRaw = async (
     if (!isCurrent()) return 0;
     if (options?.showEarnModal) {
       const k = options.earnModalKey ?? logReason ?? 'generic_raw';
-      emitAppEvent('shards_earned', { amount: totalAmount, ...(perkBonus > 0 ? { bonus: perkBonus } : {}), reasonKey: k });
+      emitAppEvent('shards_earned', { amount: totalAmount, reasonKey: k });
     }
     return totalAmount;
   } catch (error) {
@@ -1422,7 +1393,7 @@ export async function commitShardCreditOperation(
     }
     setShardsBalanceMemory(Math.max(0, result.balanceAfter), operationToken);
     if (result.status === 'applied') {
-      if (PROFILE_CARD_PERK_EXCLUDED_REASONS.has(input.reason) && input.reason === 'shards_store_purchase') {
+      if (input.reason === 'shards_store_purchase') {
         await bumpStorePurchasedShardsTotal(input.amount);
       }
       void bumpLifetimeShardsEarned(input.amount, operationToken);
@@ -1955,12 +1926,7 @@ export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test')
   );
   const amount = SHARD_REWARDS[source];
   if (!isCurrent() || !Number.isFinite(amount) || amount <= 0) return 0;
-  // Фаза 2: +5% осколков за карточку IV+ — awardOneTime свой клиентский earn
-  // (exam/diagnostic), бонус в той же транзакции/локальной записи.
-  const perkM = await readProfileCardShardMultiplier();
-  if (!isCurrent()) return 0;
-  const perkBonus = profileCardShardBonus(amount, perkM);
-  const totalAmount = amount + perkBonus;
+  const totalAmount = amount;
   if (clientEconomyConstitutionEnabled()) {
     const events = await getOneTimeEvents();
     if (events.has(source)) return 0;
@@ -1972,7 +1938,7 @@ export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test')
       grant: {
         kind: 'one_time_reward',
         subjectId: source,
-        payload: { baseAmount: amount, perkBonus },
+        payload: { baseAmount: amount, perkBonus: 0 },
       },
       localWrites: [[ONE_TIME_KEY, JSON.stringify([...events])]],
       showEarnModal: true,
@@ -2065,7 +2031,7 @@ export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test')
         if (!isCurrent()) return 0;
         void bumpLifetimeShardsEarned(totalAmount, accountToken);
         logShardTransaction('earn', totalAmount, source, currentBalance, currentBalance - totalAmount, accountToken);
-        emitAppEvent('shards_earned', { amount: totalAmount, ...(perkBonus > 0 ? { bonus: perkBonus } : {}), reasonKey: source });
+        emitAppEvent('shards_earned', { amount: totalAmount, reasonKey: source });
         return totalAmount;
       }
     }
@@ -2097,7 +2063,7 @@ export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test')
       const preparedEvent = await prepareShardsBalanceUpdatedPayload(result.balance, result.meta);
       if (!isCurrent()) return 0;
       emitAppEvent('shards_balance_updated', preparedEvent);
-      emitAppEvent('shards_earned', { amount: totalAmount, ...(perkBonus > 0 ? { bonus: perkBonus } : {}), reasonKey: source });
+      emitAppEvent('shards_earned', { amount: totalAmount, reasonKey: source });
     }
     return result.awarded;
   } catch {

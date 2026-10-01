@@ -23,7 +23,7 @@ import { HOME_RUNE_ICON_SOURCE } from './home/homeRuneAsset';
  *
  * Owner correction 26.08: the wallet currency is represented by the same
  * shipped rune asset as Home/Wallet, never by a font glyph. Count is the
- * actual credited interaction award (1..3 normally, 2/4/6 on Super Sunday),
+ * actual credited interaction award (1..3; Super Sunday retired, D147),
  * not a decorative fixed particle count.
  *
  * Координаты from/to приходят в оконной системе (measureInWindow); оверлей

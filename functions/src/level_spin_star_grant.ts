@@ -22,7 +22,7 @@ import {
   type StarOpReceipt,
   type StarOpRequest,
 } from './stars_ledger';
-import { applySuperSundayRuneMultiplier } from '../../modules/economy/super_sunday_runes';
+import { applySuperSundayRuneMultiplier, legacySuperSundayAmount } from '../../modules/economy/super_sunday_runes';
 
 /**
  * Серверный кошелёк монет (Q13).
@@ -144,7 +144,13 @@ export function parseLevelSpinStarComposite(input: unknown): LevelSpinStarCompos
   if (value.deliveryToken !== undefined && !DELIVERY_TOKEN.test(value.deliveryToken)) invalidComposite('delivery_token');
   if (promotionEligibility !== undefined && promotionEligibility !== 'gameplay'
     && promotionEligibility !== 'excluded_compensation') invalidComposite('promotion_eligibility');
-  if (!Number.isSafeInteger(baseAmount) || value.amount !== amount) invalidComposite('amount');
+  // зачем (D147): «Супер-воскресенье» снято, но старые сборки ещё шлют ×2 в воскресенье.
+  // Переходно принимаем и такую сумму (с логом), иначе человек остался бы без монет.
+  const legacyAmount = promotionEligibility === 'gameplay' && Number.isSafeInteger(value.createdAtMs)
+    && Number.isSafeInteger(baseAmount) ? legacySuperSundayAmount(baseAmount, Number(value.createdAtMs)) : amount;
+  const acceptedLegacy = value.amount !== amount && legacyAmount !== amount && value.amount === legacyAmount;
+  if (!Number.isSafeInteger(baseAmount) || (value.amount !== amount && !acceptedLegacy)) invalidComposite('amount');
+  if (acceptedLegacy) console.warn(`[SUPER-SUNDAY-RETIRED] legacy x2 accepted request=${requestId.slice(0, 8)} base=${baseAmount} amount=${String(value.amount)}`);
   if (value.reason !== 'level_spin_star_reward') invalidComposite('reason');
   if (!Number.isSafeInteger(value.createdAtMs) || Number(value.createdAtMs) < 0) invalidComposite('created_at');
   if (!FINGERPRINT.test(String(value.requestFingerprint ?? ''))) invalidComposite('fingerprint_shape');

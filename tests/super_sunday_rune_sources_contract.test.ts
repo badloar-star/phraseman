@@ -21,7 +21,6 @@ describe('Super Sunday live earn source wiring', () => {
     const practiceServer = read('functions/src/practice_rune_grant.ts');
     const learningPlayer = read('app/learning_v2_direct_session_player_v1.tsx');
     const levelGift = read('app/level_gift_system.ts');
-    const quests = read('app/quests_client.ts');
     const reportCompensation = read('app/report_reward_bundle.ts');
 
     expect(learningComposite).toContain(
@@ -47,24 +46,22 @@ describe('Super Sunday live earn source wiring', () => {
       'runSummary?.targetLanguage === "en"',
     );
     // D49: «Дневной путь» удалён целиком — его шлюза больше нет.
-    for (const gameplayGateway of [levelGift, quests]) {
-      expect(gameplayGateway).toContain("promotionEligibility: 'gameplay'");
-    }
+    // D140: «Задания» (quests_client) удалены целиком — их шлюза тоже нет.
+    // D147: «Супер-воскресенье» снято; подарки уровня больше не начисляют монеты с удвоением.
+    expect(levelGift).not.toContain('applySuperSundayRuneMultiplier');
     expect(reportCompensation).toContain(
       "promotionEligibility: 'excluded_compensation'",
     );
   });
 
-  it('finalizes every server-owned Friends rune award before receipts', () => {
+  // зачем (01.10): награды «Вместе» монетами сняты вместе с подарками; сторож — что удвоение не вернулось.
+  it('Friends together no longer awards doubled runes (D147)', () => {
     // зачем: D78 — серверная Арена (arena_v2.ts/arena_expansion.ts) удалена; её рунные награды больше не начисляются.
     const friends = read('functions/src/friends_together.ts');
 
-    expect(friends).toContain('applySuperSundayRuneMultiplier(baseStars, now)');
-    expect(friends).toContain('applySuperSundayRuneMultiplier(baseStarsAwarded, now)');
+    // D147: «Супер-воскресенье» снято — награды «Вместе» без удвоения.
+    expect(friends).not.toContain('applySuperSundayRuneMultiplier');
 
-    expect(friends).toContain('delta: stars');
-    expect(friends).toContain('delta: starsAwarded');
-    expect(friends).toContain('rewards: { drops, stars: starsAwarded }');
   });
 
   it('doubles video wallet grants without turning video into league earnings', () => {

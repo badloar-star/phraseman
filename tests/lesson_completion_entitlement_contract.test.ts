@@ -24,16 +24,16 @@ describe('lesson completion entitlement wiring', () => {
     expect(completion.slice(queue, announcement)).toContain('getVerifiedPremiumAccessStatus({');
   });
 
-  it('renders the ResultsSequence next-unlock subtitle only for a verified didUnlock', () => {
+  it('renders the done-screen next-unlock note only for a verified didUnlock', () => {
     const hint = completion.indexOf('const nextLessonUnlockHint =');
     const hintEnd = completion.indexOf('const [showReview', hint);
-    const results = completion.indexOf('<ResultsSequence', hintEnd);
+    const results = completion.indexOf('<V2DoneScreen', hintEnd);
     const hintBlock = completion.slice(hint, hintEnd);
     expect(hint).toBeGreaterThan(-1);
     expect(hintEnd).toBeGreaterThan(hint);
     expect(hintBlock).toContain('shouldAnnounceNextLessonUnlock(');
     expect(hintBlock).toContain("params.unlocked === '1'");
     expect(hintBlock).not.toContain('completionRequiresPremium\n    ?');
-    expect(completion.slice(results, results + 800)).toContain('subtitle={nextLessonUnlockHint}');
+    expect(completion.slice(results, results + 1500)).toContain('starsNote={nextLessonUnlockHint}');
   });
 });

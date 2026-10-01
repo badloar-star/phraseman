@@ -74,6 +74,7 @@ import { submitProgressEvent } from './progress_events_client';
 import { getLessonData } from './lesson_data_all';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ResultsSequence from '../components/feedback/ResultsSequence';
+import V2DoneScreen from '../components/completion/V2DoneScreen';
 import CombinedLessonBreakdown from '../components/CombinedLessonBreakdown';
 import FeedbackRatingCard from '../components/FeedbackRatingCard';
 import { shouldPromptFeedback, markFeedbackPrompted } from './feedback_prompt_throttle';
@@ -606,6 +607,9 @@ export default function LessonComplete() {
   const [reviewContext, setReviewContext] = useState<ReviewContext>('perfect_lesson');
   const [showAuthPrompt, setShowAuthPrompt] = useState(false);
   const [lessonScore, setLessonScore] = useState<number>(0);
+  // зачем (макет E, 01.10): общий итог показывает «верно / ошибок / точность» — считаем из того же
+  // прогресса, что и балл; null, пока прогресс не прочитан (блок не рисуется, ничего не выдумываем).
+  const [lessonCounts, setLessonCounts] = useState<{ correct: number; wrong: number } | null>(null);
   const [lessonCefr,  setLessonCefr]  = useState<string>('A1');
   const [medalTier, setMedalTier]     = useState<MedalTier>('none');
   const [medalImproved, setMedalImproved] = useState(false);
@@ -970,6 +974,7 @@ export default function LessonComplete() {
         const totalAnswers = Array.isArray(p) && p.length > 0 ? Math.min(p.length, 50) : 50;
         const score = parseFloat(((Math.min(correct, totalAnswers) / totalAnswers) * 5).toFixed(1));
         setLessonScore(score);
+        setLessonCounts({ correct: Math.min(correct, totalAnswers), wrong: p.filter(x => x === 'wrong').length });
         const { newTier, prevTier, isNewBest, newPassCount } = await saveMedalProgress(lessonId, score, p, studyTarget);
         submitProgressEvent({
           eventId: [
@@ -1215,20 +1220,21 @@ export default function LessonComplete() {
       return (
         <ScreenGradient>
           <SafeAreaView style={{ flex: 1 }}>
-            <ResultsSequence
-              stars={RESULTS_STARS_BY_TIER[medalTier]}
-              // зачем (владелец 2026-09-17): в комбо звёзд нет — они часть
-              // медали конкретной темы, а комбо тем не присваивает.
-              showStars={!isComboCompletion}
-              runes={practiceRunes.runes}
-              title={c.title}
-              subtitle={nextLessonUnlockHint}
-              badge={medalTier !== 'none' && MEDAL_IMAGES_COMPLETE[medalTier] ? (
-                <Image source={MEDAL_IMAGES_COMPLETE[medalTier]} style={{ width: 110, height: 110 }} contentFit="contain" />
-              ) : undefined}
-              // зачем (владелец 2026-09-17): разбивка по темам — главное, ради чего
-              // идут в комбо. Ставим её ПЕРЕД формой отзыва: сначала ответ на вопрос
-              // «какая тема просела», потом всё остальное.
+            {/* зачем (владелец 01.10): «старые экраны все должны быть заменены на макетные» —
+                итог урока = общий экран завершения 2.0 (learn.html E, D36/D64.1, PM-137). */}
+            <V2DoneScreen
+              testID="lesson-complete-done"
+              title={triLang(lang, { ru: 'Урок пройден', en: 'Lesson complete', uk: 'Урок пройдено', es: 'Lección completada', 'pt-BR': 'Lição concluída', vi: 'Đã hoàn thành bài học', id: 'Pelajaran selesai', tr: 'Ders tamamlandı', pl: 'Lekcja ukończona' })}
+              subtitle={isComboCompletion ? undefined : triLang(lang, { ru: `Урок ${lessonId}`, en: `Lesson ${lessonId}`, uk: `Урок ${lessonId}`, es: `Lección ${lessonId}`, 'pt-BR': `Lição ${lessonId}`, vi: `Bài ${lessonId}`, id: `Pelajaran ${lessonId}`, tr: `Ders ${lessonId}`, pl: `Lekcja ${lessonId}` })}
+              stars={isComboCompletion ? null : RESULTS_STARS_BY_TIER[medalTier]}
+              starsNote={nextLessonUnlockHint}
+              correct={lessonCounts?.correct ?? null}
+              wrong={lessonCounts?.wrong ?? null}
+              coinsGained={practiceRunes.runes}
+              plusNote={completionRequiresPremium ? {
+                title: triLang(lang, { ru: 'Следующий урок входит в Plus', en: 'The next lesson is part of Plus', uk: 'Наступний урок входить у Plus', es: 'La siguiente lección es de Plus', 'pt-BR': 'A próxima lição faz parte do Plus', vi: 'Bài tiếp theo thuộc gói Plus', id: 'Pelajaran berikutnya termasuk Plus', tr: 'Sonraki ders Plus kapsamında', pl: 'Następna lekcja jest w Plus' }),
+                body: triLang(lang, { ru: 'Первые три урока открыты бесплатно. Дальше — с Plus.', en: 'The first three lessons are free. After that — with Plus.', uk: 'Перші три уроки відкриті безкоштовно. Далі — з Plus.', es: 'Las tres primeras lecciones son gratis. Después, con Plus.', 'pt-BR': 'As três primeiras lições são grátis. Depois, com Plus.', vi: 'Ba bài đầu miễn phí. Sau đó cần Plus.', id: 'Tiga pelajaran pertama gratis. Selanjutnya dengan Plus.', tr: 'İlk üç ders ücretsiz. Sonrası Plus ile.', pl: 'Pierwsze trzy lekcje są darmowe. Dalej — z Plus.' }),
+              } : undefined}
               feedbackSlot={(isComboCompletion && comboBreakdown.length > 0) || showLessonFeedback ? (
                 <View style={{ width: '100%', gap: 12 }}>
                 {isComboCompletion && comboBreakdown.length > 0 ? (
@@ -1277,10 +1283,10 @@ export default function LessonComplete() {
                 ) : null}
                 </View>
               ) : undefined}
-              ctaPrimaryLabel={completionRequiresPremium
+              primaryLabel={completionRequiresPremium
                 ? triLang(lang, { ru: 'Открыть Plus', en: 'Open Plus', uk: 'Відкрити Plus', es: 'Abrir Plus', 'pt-BR': 'Abrir Plus', vi: 'Mở Plus', id: 'Buka Plus', tr: 'Plus’ı aç', pl: 'Otwórz Plus' })
                 : triLang(lang, { ru: 'Продолжить', en: 'Continue', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })}
-              onCtaPrimary={() => {
+              onPrimary={() => {
                 if (pendingReview.current) {
                   pendingReview.current = false;
                   setShowReview(true);
@@ -1288,6 +1294,9 @@ export default function LessonComplete() {
                 }
                 goNext();
               }}
+              secondaryLabel={isComboCompletion ? undefined : triLang(lang, { ru: 'Пройти ещё раз', en: 'Try again', uk: 'Пройти ще раз', es: 'Repetir', 'pt-BR': 'Fazer de novo', vi: 'Làm lại', id: 'Ulangi', tr: 'Tekrar yap', pl: 'Jeszcze raz' })}
+              onSecondary={isComboCompletion ? undefined : handleRepeatLesson}
+              onClose={goBackFromComplete}
             />
             <ReviewPromptModal
               visible={showReview}

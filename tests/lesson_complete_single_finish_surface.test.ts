@@ -7,18 +7,19 @@ const completionEnd = source.indexOf('testID="lesson-complete-loading"', complet
 const completionSurface = source.slice(completionStart, completionEnd);
 
 describe('lesson completion single finish surface', () => {
-  it('keeps the shared results sequence and renders the earned medal tier', () => {
-    expect(completionSurface).toContain('<ResultsSequence');
-    expect(completionSurface).toContain('stars={RESULTS_STARS_BY_TIER[medalTier]}');
+  // зачем (владелец 01.10): итог урока = общий экран 2.0 по макету learn.html E.
+  it('renders the shared 2.0 done screen with the earned stars', () => {
+    expect(completionSurface).toContain('<V2DoneScreen');
+    expect(completionSurface).toContain('stars={isComboCompletion ? null : RESULTS_STARS_BY_TIER[medalTier]}');
     expect(completionSurface).toContain('goNext();');
   });
 
   it('shows only the next-lesson unlock hint, without follow-up completion overlays', () => {
-    expect(completionSurface).toContain('subtitle={nextLessonUnlockHint}');
+    expect(completionSurface).toContain('starsNote={nextLessonUnlockHint}');
     expect(source).toContain('const [completionRequiresPremium, setCompletionRequiresPremium] = useState(false);');
     expect(source).toContain('readLegacyFreeLessonCap(studyTarget).catch(() => undefined)');
     expect(source).toContain('requiresPremiumForLesson(lessonId + 1, legacyFreeLessonCap)');
-    expect(source).toContain("ru: 'Следующий урок доступен в Plus'");
+    expect(source).toContain("ru: 'Следующий урок входит в Plus'");
     expect(completionSurface).toContain("ru: 'Открыть Plus'");
     for (const removedSurface of [
       'BonusXPCard',

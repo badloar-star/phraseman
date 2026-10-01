@@ -31,8 +31,10 @@ describe('spire residents mirror', () => {
     const client = readFileSync(path.join(ROOT, 'modules/spire/residents.ts'), 'utf8');
     expect(client).toMatch(/export const SPIRE_ROOM_SIZE = 30;/);
     expect(client).toMatch(/export const SPIRE_RESIDENT_UID_PREFIX = 'res_';/);
-    const leagueResidents = readFileSync(path.join(ROOT, 'functions/src/league_residents.ts'), 'utf8');
-    expect(leagueResidents).toMatch(/export const LEAGUE_GROUP_SIZE = 30;/);
-    expect(leagueResidents).toMatch(/export const RESIDENT_UID_PREFIX = 'res_';/);
+    // зачем (PM-276-A1): лиги удалены (D74/D78/D83, league_residents.ts больше нет) —
+    // эталон размера комнаты и префикса бота теперь серверный модуль Шпиля.
+    const server = readFileSync(path.join(ROOT, 'functions/src/spire_residents.ts'), 'utf8');
+    expect(server).toMatch(/const LEAGACY_ROOM_SIZE = 30;/);
+    expect(server).toMatch(/const RESIDENT_UID_PREFIX = 'res_';/);
   });
 });

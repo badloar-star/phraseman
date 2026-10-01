@@ -237,10 +237,12 @@ export const V2_TYPE = {
   largeTitle: { fontSize: 34, lineHeight: 40, fontWeight: '800' as const, letterSpacing: -0.6 },
   title: { fontSize: 24, lineHeight: 30, fontWeight: '800' as const, letterSpacing: -0.3 },
   section: { fontSize: 20, lineHeight: 26, fontWeight: '700' as const, letterSpacing: -0.2 },
-  headline: { fontSize: 17, lineHeight: 22, fontWeight: '700' as const },
-  body: { fontSize: 15, lineHeight: 21, fontWeight: '500' as const },
-  subtitle: { fontSize: 14, lineHeight: 19, fontWeight: '500' as const },
-  caption: { fontSize: 12, lineHeight: 16, fontWeight: '500' as const },
+  // зачем (D139, владелец 01.10): обычный текст — ровно 2 размера, 16 и 13; иерархия весом и цветом.
+  // Заголовки выше (largeTitle/title/section) — по утверждённым макетам.
+  headline: { fontSize: 16, lineHeight: 21, fontWeight: '700' as const },
+  body: { fontSize: 16, lineHeight: 22, fontWeight: '400' as const },
+  subtitle: { fontSize: 13, lineHeight: 18, fontWeight: '400' as const },
+  caption: { fontSize: 13, lineHeight: 17, fontWeight: '400' as const },
   /** «ПРОДОЛЖИТЬ ОБУЧЕНИЕ», «СЕГОДНЯ», «ФРАЗА ДНЯ». */
-  overline: { fontSize: 12, lineHeight: 16, fontWeight: '700' as const, letterSpacing: 1.4 },
+  overline: { fontSize: 13, lineHeight: 17, fontWeight: '700' as const, letterSpacing: 1.4 },
 } as const;

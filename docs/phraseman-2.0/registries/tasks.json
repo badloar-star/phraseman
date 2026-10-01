@@ -267,7 +267,10 @@
         "id": "PM-006-A1",
         "text": "Для каждой работы известны триггер, владелец, старт/остановка, очередь, чтения, записи, кеш и отмена",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "2026-10-01: реестр фоновой работы клиента docs/phraseman-2.0/evidence/PM-210_background_jobs.md приведён к коду (+5 работ Шпиля, flashcards_swipe appState 2, снята строка StreakReviveModal) — npx tsx tests/pm210_background_jobs_registry.probe.ts → PM-210 PROBE PASS: registeredRows=97 scannedSites=123 files=73 warnings=0. По каждой работе есть владелец, триггер, TTL (старт/стоп), отмена, очередь (queues), бюджет.",
+          "NOT_MET: в реестре нет отдельных колонок «чтения», «записи», «кеш» — чтения/записи свёрнуты в budget/queues, кеш не указан; честные unknown остаются: dedupe 35, budget 19, queues 7, cancellation 6, ttl 3, trigger 1 из 97 строк. Закрыть: добавить в пробу FIELD_NAMES reads/writes/cache и дозаполнить 97 строк по коду (отдельная задача, без решения владельца)."
+        ]
       }
     ],
     "depends_on": [],

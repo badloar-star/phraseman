@@ -35,7 +35,7 @@
 
 | Показатель | Значение |
 |---|---|
-| Сканируемых мест фоновой работы | 118 в 72 файлах (84 сканируемые строки + 9 ручных outbox/timeoutLoop) |
+| Сканируемых мест фоновой работы | 123 в 73 файлах (обновлено 2026-10-01) (88 сканируемых строк + 9 ручных outbox/timeoutLoop) |
 | Сетевые фоновые аренды (`networkLease`) | 18 файлов, все под забором ИТС |
 | Бесконечные таймеры-циклы вне экрана | 2: `foreground_usage_ms` (5 мин, только active), `app_messages` ×3 (мёртвые, см. ниже) |
 | Системные фоновые задачи ОС (TaskManager/BackgroundFetch) | 0 (удалены в D47) |
@@ -80,7 +80,7 @@
 | `app/community_pack_create.tsx` | `appState` | 1 | сохранение черновика набора при уходе в фон | P1 | создание набора (сессия «Дизайн») | AppState→background/inactive | пока открыт экран создания | запись по одному ключу черновика | cleanup эффекта | 1 запись AsyncStorage на уход в фон | JS, AsyncStorage |
 | `app/exam.tsx` | `setInterval` | 1 | таймер экзамена 1 с | P0 | экран экзамена | старт попытки | до конца попытки/размонтирования | `timerRef` | `clearInterval` в cleanup | 1 тик/с | JS |
 | `app/flashcards_blitz_session.tsx` | `setInterval` | 2 | таймер блица (отсчёт раунда) | P0 | блиц карточек | старт раунда | до конца раунда | `intervalRef` | `clearInterval` | 1 тик/с (unknown точнее) | JS |
-| `app/flashcards_swipe.tsx` | `appState` | 1 | сброс памяти свайпов на диск при уходе в фон | P1 | свайп карточек | AppState≠active | пока открыт экран | `flushSwipeMemoryNow` идемпотентен | cleanup + финальный flush | 1 запись на уход в фон | AsyncStorage |
+| `app/flashcards_swipe.tsx` | `appState` | 2 | сброс памяти свайпов на диск при уходе в фон; сохранение черновика сессии при уходе в фон (`flushDraftSave`, 2026-10-01) | P1 | свайп карточек | AppState≠active | пока открыт экран | `flushSwipeMemoryNow` идемпотентен; черновик — один таймер `draftSaveTimerRef` | cleanup + финальный flush обоих | ≤2 записи AsyncStorage на уход в фон | AsyncStorage |
 | `app/foreground_usage_ms.ts` | `appState` | 1 | учёт времени в приложении: старт/стоп тикера | P3 | статистика времени | AppState | жизнь процесса (ставится из `_layout`) | один `intervalId` | функция-снятие из `installForegroundUsageMsTracker` | локально | AsyncStorage |
 | `app/foreground_usage_ms.ts` | `setInterval` | 1 | flush открытой сессии в дневные бакеты | P3 | статистика времени | AppState→active | пока приложение active | `intervalId` пересоздаётся одним | `clearInterval` при уходе в фон | 1 запись раз в 5 мин | AsyncStorage |
 | `app/learning-v2/lesson/[id].tsx` | `appState` | 1 | пауза анимации ореола узла карты в фоне | P0 | карта Learning V2 | AppState | пока смонтирован узел | unknown | `subscription.remove()` | локально | UI-поток (reanimated) |
@@ -131,7 +131,6 @@
 | `components/RegistrationPromptModal.tsx` | `setInterval` | 1 | тикер восстановления 1 с | P0 | регистрация | открыта модалка | пока открыта | unknown | `clearInterval` | 1 тик/с | UI |
 | `components/ShineOverlay.tsx` | `appState` | 1 | МЁРТВО (0 импортёров): пауза блика | P0 | UI-кит | не монтируется | не монтируется | unknown | cleanup | нет нагрузки | UI |
 | `components/SkeletonShimmer.tsx` | `appState` | 1 | пауза шиммера скелетона в фоне | P0 | UI-кит | AppState | пока виден скелетон | unknown | cleanup | локально | UI |
-| `components/StreakReviveModal.tsx` | `setInterval` | 1 | отсчёт оффера спасения стрика 1 с | P0 | стрик | модалка видима и active | пока открыта | unknown | `clearInterval` | 1 тик/с | UI |
 | `components/StreakRiskToastHost.tsx` | `appState` | 1 | проверка «стрик под угрозой» на resume | P3 | стрик | AppState→active | жизнь корня | foreground-задача `streak_risk_toast_check` | cancel + remove | локально | FGQ |
 | `components/StreakRiskToastHost.tsx` | `foregroundTask` | 1 | та же проверка через очередь foreground-задач | P3 | стрик | mount + active | до выполнения | ключ `streak_risk_toast_check` | `cancel()` | локально | FGQ |
 | `components/daily_journey/DailyJourneyProductionModalHost.tsx` | `appState` | 1 | показ модалки дневного пути на resume | P3 | дневной путь | AppState→active | жизнь хоста | unknown | cleanup | локально | JS |
@@ -164,6 +163,11 @@
 | `app/learning_v2_completion_retry_cursor.ts` | `outbox` | 1 | курсор ретраев завершений V2 | P1 | Learning V2 | планировщик завершений | до drain | scope hash аккаунта | `clearCursor` | ретраи 10 с…5 мин | AsyncStorage |
 | `app/_layout.tsx` | `timeoutLoop` | 1 | ретрай бутстрапа после восстановления auth (`createAuthRecoveryBootRetryScheduler`) | P1 | auth | провал бутстрапа | до успеха | флаг `authRecoveryBootstrapInFlight` | `cancel()` в cleanup | unknown | ACL, сеть |
 | `app/nickname_guard.ts` | `timeoutLoop` | 1 | 3 отложенные попытки генерации ника | P3 | профиль | нет ника после входа | до 3 попыток | `pendingNicknameRetry` | `clearTimeout` при фоне | 3 попытки на запуск | Firestore (unknown) |
+| `app/spire/use_spire_game.ts` | `afterInteractions` | 1 | прогрев пакета недели Шпиля после анимаций входа (2026-10-01) | P4 | Шпиль | вход на экран, комната загружена | до конца загрузки пакета | `inFlight` по ключу пакета (`app/spire/spire_pack_client.ts`) | флаг `alive` в cleanup (сам хэндл InteractionManager не отменяется) | 1 загрузка пакета недели (~1 МБ JSON) при промахе кэша | IM, сеть |
+| `app/spire/use_spire_game.ts` | `setInterval` | 1 | досылка очереди отчётов Шпиля раз в 5 мин (`SPIRE_REPORT_FLUSH_INTERVAL_MS`) | P3 | Шпиль | экран Шпиля смонтирован | пока открыт экран | unknown | `clearInterval` + `flush('screen_leave')` в cleanup | ≤1 вызов отправки отчётов за 5 мин (unknown при пустой очереди) | Functions, AsyncStorage |
+| `app/spire/use_spire_game.ts` | `appState` | 1 | досылка очереди отчётов Шпиля при уходе в фон | P1 | Шпиль | AppState≠active | пока открыт экран | unknown | `sub.remove()` в cleanup | ≤1 вызов отправки отчётов на уход в фон | Functions, AsyncStorage |
+| `app/spire/use_spire_step_runner.ts` | `setInterval` | 1 | тик бюджета времени ступени, 250 мс | P0 | Шпиль (ступень) | фаза `playing` | пока идёт ступень | один `id` на эффект | `clearInterval` в cleanup | 4 тика/с, локально | JS, UI |
+| `app/spire/use_spire_step_runner.ts` | `appState` | 1 | пауза ступени при сворачивании, продолжение при возврате | P0 | Шпиль (ступень) | AppState | пока смонтирован раннер | нет (перезапись фазы) | `sub.remove()` в cleanup | локально | JS |
 
 ## Что сканер не видит (известные ограничения)
 

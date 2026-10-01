@@ -34,11 +34,6 @@ import {
   legacyFreeLessonCapKey,
   legacyFreeLessonMigrationKey,
 } from '../app/target_storage_keys';
-import {
-  createDefaultPersonalPlanState,
-  getCachedPersonalPlanState,
-  savePersonalPlanState,
-} from '../app/personal_plan_state';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/user_id_policy', () => ({
@@ -315,21 +310,9 @@ it('fails account wipe when shared receipt storage silently drops retained owner
   expect(store.level_gift_effect_receipts_v1).toBe('{}');
 });
 
-it('clears the in-memory personal-plan state when the current account is wiped', async () => {
-  await savePersonalPlanState(createDefaultPersonalPlanState({
-    planId: 'gavan',
-    minutesPerDay: 5,
-    planInstanceId: 'account-a-cached-plan',
-  }));
-  expect(getCachedPersonalPlanState()?.planInstanceId).toBe('account-a-cached-plan');
-
-  await wipeLocalAccountData();
-
-  expect(getCachedPersonalPlanState()).not.toEqual(
-    expect.objectContaining({ planInstanceId: 'account-a-cached-plan' }),
-  );
-});
-
+// зачем: in-memory состояние личного плана жило в app/personal_plan_state.ts,
+// модуль удалён вместе с фичей в 2.0 (efe19ae9d). Стирание его ключей на диске
+// по-прежнему проверяют кейсы ниже.
 it('removes legacy lesson caps and migration markers during account switch wipe', async () => {
   const legacyKeys = [
     legacyFreeLessonCapKey('en'),

@@ -42,4 +42,10 @@ export const RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS = [
   'xp_migration_v2',
   'xp_level_restore_250_to_400_v1',
   'week_points_migrated_v1',
+  // Синк-ключи удалённого личного плана (были в SYNC_KEYS до efe19ae9d).
+  'personal_plan_state_v1',
+  'personal_plan_progress_v1',
+  'personal_plan_completed_tasks_v1',
+  'personal_plan_task_progress_v1',
+  'personal_plan_xp_ledger_v1',
 ] as const;

@@ -572,6 +572,14 @@ export function getRuntimeSyncKeys(keys: readonly unknown[] = SYNC_KEYS): string
 }
 
 const RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS = [
+  // зачем: личный план удалён в 2.0 (efe19ae9d), и снимок выкинул его журналы
+  // отсюда — они перестали стираться при смене аккаунта и доставались
+  // следующему человеку. Возвращены ровно те ключи, что были до снимка.
+  'personal_plan_attempt_events_v1',
+  'personal_plan_counted_phrases_v1',
+  'personal_plan_recovery_applied_actions_v1',
+  'personal_plan_onboarding_nickname_pending_v1',
+  'personal_plan_pending_activation_v1',
   'plan_day_shard_rewards_v1',
   // Paid/pending shard grants are durable ownership evidence. The legacy
   // singleton and its quarantine-owner proof must travel with the same backup,
@@ -594,6 +602,8 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'max_voice_review_receipt_v1:',
   'max_voice_review_receipts_v1:',
   'mistake_practice_v2::',
+  // Журнал дней удалённого личного плана (см. RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS).
+  'personal_plan_day_runtime_v1:',
   'learning_v2_lesson1_progress:',
   'learning_v2_progress:',
   'v2:outbox:v1:',

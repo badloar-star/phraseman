@@ -330,3 +330,8 @@ E24: docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md, E24_store_de
 - admin/v2/legacy.html + functions/src/index.ts закоммичены e342c2772 (ядро уведомлено «файлы свободны»).
 - **Функции к удалению при выкладке (15, НЕ удалял, не выкладывал):** adminGrantVoiceMinutes, aiDialogBuyExtraReplies, communityRedeemPackGiftVoucher, flashcardPackGiftRedeem, flashcardPackGiftSyncState, flashcardPackGiftGrantGlobalBroadcast, questGetActive, questReportProgress, questClaimReward, adminWriteQuest, adminActivateQuest, adminArchiveQuest, adminDeleteQuest, adminListQuests, collectiblesClaimDrop. Также убран параметр VOICE_MINUTE_SANDBOX_STABLE_UIDS и эти функции из deploy-профилей functions/package.json.
 - Остальной пакет (~95 файлов, удаление модулей/экранов) НЕ закоммичен: сторожа массового/широкого коммита требуют флагов, классификатор Claude их запретил — владельцу дана команда (список файлов: scratchpad commit_list.txt сессии Account V2). app/_layout.tsx и app/community_packs/functionsClient.ts — смешаны с сессией App Check, докоммит после неё.
+
+## §30 — 2026-10-01: расшифровка из YouTube — ГОТОВО К ВЫКЛАДКЕ
+- Подключено (коммит выше c5900fd1f): admin/v2/legacy.html (кнопка, «Подключить YouTube», «или загрузить файл», возврат после согласия; синтаксис блока проверен node --check; guard_admin_login 0) и экспорты в functions/src/index.ts; проверка типов functions 0 ошибок.
+- Выложить: functions adminYoutubeOAuthStart, youtubeOAuthCallback, adminYoutubeChannelsList, adminFetchVideoTranscript, adminAlignVideoPhraseTranscript; firestore:rules; firestore:indexes; hosting.
+- ДО выкладки функций владелец должен завести секреты YOUTUBE_OAUTH_CLIENT_ID и YOUTUBE_OAUTH_CLIENT_SECRET (§28) — иначе деплой функций с этими секретами упадёт.

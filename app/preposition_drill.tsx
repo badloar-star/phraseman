@@ -26,8 +26,8 @@ import BouncyScrollView from '../components/BouncyScrollView';
 import ClozeGapText from '../components/ClozeGapText';
 import { useAudio } from '../hooks/use-audio';
 import fk from './feedback/feedback_kit';
-import VictoryBurst from '../components/feedback/VictoryBurst';
-import { prepDrillDoneTitle, prepDrillDoneSubtitle } from './feedback/feedback_i18n';
+import V2DoneScreen, { type V2DoneError } from '../components/completion/V2DoneScreen';
+import { pluralWord } from '../constants/plural';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { getLessonPrepositionPack } from './lesson_prepositions';
 import { useEffectivePlatformOS } from './platform_ui_preview';
@@ -96,8 +96,8 @@ function PrepositionDrillScreen() {
   const [selected, setSelected] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
-  const [victoryShown, setVictoryShown] = useState(false);
-  const victoryFiredRef = useRef(false);
+  // зачем (макет итога предлогов): ошибки «было → верно» за прогон — локально, без сети.
+  const runErrorsRef = useRef<V2DoneError[]>([]);
   const [answeredIds, setAnsweredIds] = useState<string[]>([]);
   const [wrongIds, setWrongIds] = useState<string[]>([]);
   const [reviewMode, setReviewMode] = useState(false);
@@ -190,16 +190,6 @@ function PrepositionDrillScreen() {
     const payload: PrepositionProgress = { answeredIds: nextAnswered, wrongIds: nextWrong };
     AsyncStorage.setItem(progressKey, JSON.stringify(payload)).catch(() => {});
   };
-
-  // [FeedbackKit] Мини-победа на финал прогона — один раз при первом достижении
-  // конца (guard victoryFiredRef). Показываем и на обычном прогоне, и на review;
-  // перфект (0 ошибок в основном прогоне) отмечаем усиленным празднованием ниже.
-  useEffect(() => {
-    if (!done) return;
-    if (victoryFiredRef.current) return;
-    victoryFiredRef.current = true;
-    setVictoryShown(true);
-  }, [done]);
 
   // ── Дроп коллекционной карточки за закрытый раздел предлогов ──────────────
   // зачем: владелец попросил шанс карточки и за закрытие предлогов. Шанс/кап/
@@ -345,6 +335,7 @@ function PrepositionDrillScreen() {
       saveProgress(nextAnswered, nextWrong);
     } else {
       fk.verdict({ correct: false });
+      runErrorsRef.current = [...runErrorsRef.current, { label: item.sentenceTemplate.replace(/_{2,}/g, '…'), was: option, ok: item.correct }];
       const nextAnswered = answeredIds.includes(item.id) ? answeredIds : [...answeredIds, item.id];
       const nextWrong = wrongIds.includes(item.id) ? wrongIds : [...wrongIds, item.id];
       setAnsweredIds(nextAnswered);
@@ -370,9 +361,7 @@ function PrepositionDrillScreen() {
     setSelected(null);
     setIsCorrect(false);
     setCorrectCount(0);
-    // [FeedbackKit] Новый прогон — разрешение показать финал снова.
-    victoryFiredRef.current = false;
-    setVictoryShown(false);
+    runErrorsRef.current = [];
   };
 
   const restartAll = () => {
@@ -382,9 +371,7 @@ function PrepositionDrillScreen() {
     setSelected(null);
     setIsCorrect(false);
     setCorrectCount(0);
-    // [FeedbackKit] Новый прогон — разрешение показать финал снова.
-    victoryFiredRef.current = false;
-    setVictoryShown(false);
+    runErrorsRef.current = [];
   };
 
   const scrollBottomPad =
@@ -631,128 +618,38 @@ function PrepositionDrillScreen() {
               ) : null}
             </View>
           ) : (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16, padding: 20 }}>
-              <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: glass.opaqueControl, justifyContent: 'center', alignItems: 'center' }}>
-                <Ionicons name="checkmark-done-outline" size={28} color={t.correct} />
-              </View>
-              <Text style={{ color: glass.text, fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center' }}>
-                {triLang(lang, {
-                  uk: 'Прийменники відпрацьовано!',
-                  ru: 'Предлоги отработаны!',
-                  en: 'Prepositions practiced!',
-                  es: '¡Preposiciones repasadas!',
-                  'pt-BR': 'Preposições praticadas!',
-                  vi: 'Đã luyện xong giới từ!',
-                  id: 'Preposisi selesai dilatih!',
-                  tr: 'Edatlar çalışıldı!',
-                  pl: 'Przyimki przećwiczone!',
-                })}
-              </Text>
-              <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600' }}>
-                {triLang(lang, {
-                  uk: 'Точність: ',
-                  ru: 'Точность: ',
-                  en: 'Accuracy: ',
-                  es: 'Precisión: ',
-                  'pt-BR': 'Precisão: ',
-                  vi: 'Độ chính xác: ',
-                  id: 'Akurasi: ',
-                  tr: 'Doğruluk: ',
-                  pl: 'Dokładność: ',
-                })}{accuracy}% ({correctCount}/{total})
-              </Text>
-              <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20 }}>
-                {triLang(lang, {
-                  uk: `Помилок: ${wrongIds.length}`,
-                  ru: `Ошибок: ${wrongIds.length}`,
-                  en: `Mistakes: ${wrongIds.length}`,
-                  es: `Errores: ${wrongIds.length}`,
-                  'pt-BR': `Erros: ${wrongIds.length}`,
-                  vi: `Lỗi: ${wrongIds.length}`,
-                  id: `Kesalahan: ${wrongIds.length}`,
-                  tr: `Hata: ${wrongIds.length}`,
-                  pl: `Błędy: ${wrongIds.length}`,
-                })}
-              </Text>
-
-              <PracticeCta
-                glass={glass}
-                onPress={() => { fk.tap(); backToLesson(); }}
-                style={{ marginTop: 8 }}
-                label={triLang(lang, {
-                  uk: 'До уроку',
-                  ru: 'К уроку',
-                  en: 'Back to lesson',
-                  es: 'Volver a la lección',
-                  'pt-BR': 'Voltar para a lição',
-                  vi: 'Về bài học',
-                  id: 'Kembali ke pelajaran',
-                  tr: 'Derse dön',
-                  pl: 'Do lekcji',
-                })}
-              />
-
-              <Pressable
-                accessibilityRole="button"
-                onPress={() => { fk.tap(); restartAll(); }}
-                style={({ pressed }) => ({ minHeight: 44, paddingHorizontal: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, opacity: pressed ? 0.7 : 1 })}
-              >
-                <Ionicons name="refresh-outline" size={18} color={glass.secondary} />
-                <Text style={{ color: glass.secondary, fontSize: 16, fontWeight: '600' }}>
-                  {triLang(lang, {
-                    uk: 'Ще раз',
-                    ru: 'Снова',
-                    en: 'Again',
-                    es: 'Otra vez',
-                    'pt-BR': 'De novo',
-                    vi: 'Làm lại',
-                    id: 'Ulangi',
-                    tr: 'Tekrar',
-                    pl: 'Jeszcze raz',
-                  })}
-                </Text>
-              </Pressable>
-
-              {wrongIds.length > 0 && !reviewMode && (
-                <Pressable
-                  accessibilityRole="button"
-                  onPress={() => { fk.tap(); restartWrong(); }}
-                  style={({ pressed }) => ({ minHeight: 44, paddingHorizontal: 28, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, opacity: pressed ? 0.7 : 1 })}
-                >
-                  <Text style={{ color: glass.text, fontSize: 16, fontWeight: '600' }}>
-                    {triLang(lang, {
-                      uk: 'Закріпити промахи',
-                      ru: 'Закрепить промахи',
-                      en: 'Fix mistakes',
-                      es: 'Repasar fallos',
-                      'pt-BR': 'Corrigir erros',
-                      vi: 'Sửa lỗi',
-                      id: 'Perbaiki kesalahan',
-                      tr: 'Hataları düzelt',
-                      pl: 'Popraw błędy',
-                    })}
-                  </Text>
-                </Pressable>
-              )}
-            </View>
+            // зачем (владелец 01.10): итог предлогов = общий экран завершения 2.0 по макету learn.html.
+            <V2DoneScreen
+              testID="preposition-drill-complete"
+              title={triLang(lang, { ru: 'Предлоги отработаны', uk: 'Прийменники відпрацьовано', en: 'Prepositions practised', es: 'Preposiciones practicadas', 'pt-BR': 'Preposições praticadas', vi: 'Đã luyện giới từ', id: 'Preposisi dilatih', tr: 'Edatlar çalışıldı', pl: 'Przyimki przećwiczone' })}
+              subtitle={triLang(lang, {
+                ru: `Тренажёр предлогов · Урок ${lessonId} · ${total} ${pluralWord(lang, total, { one: 'вызов', few: 'вызова', many: 'вызовов' })}`,
+                uk: `Тренажер прийменників · Урок ${lessonId} · ${total} ${pluralWord(lang, total, { one: 'завдання', few: 'завдання', many: 'завдань' })}`,
+                en: `Preposition drill · Lesson ${lessonId} · ${total} challenges`,
+                es: `Preposiciones · Lección ${lessonId} · ${total} retos`,
+                'pt-BR': `Preposições · Lição ${lessonId} · ${total} desafios`,
+                vi: `Giới từ · Bài ${lessonId} · ${total} thử thách`,
+                id: `Preposisi · Pelajaran ${lessonId} · ${total} tantangan`,
+                tr: `Edatlar · Ders ${lessonId} · ${total} görev`,
+                pl: `Przyimki · Lekcja ${lessonId} · ${total} ${pluralWord(lang, total, { one: 'zadanie', few: 'zadania', many: 'zadań' })}`,
+              })}
+              stars={null}
+              correct={total > 0 ? correctCount : null}
+              wrong={total > 0 ? Math.max(0, total - correctCount) : null}
+              coinsGained={0}
+              errors={runErrorsRef.current}
+              primaryLabel={wrongIds.length > 0 && !reviewMode
+                ? triLang(lang, { ru: 'Закрепить промахи', uk: 'Закріпити промахи', en: 'Fix mistakes', es: 'Repasar fallos', 'pt-BR': 'Corrigir erros', vi: 'Sửa lỗi', id: 'Perbaiki kesalahan', tr: 'Hataları düzelt', pl: 'Popraw błędy' })
+                : triLang(lang, { ru: 'К уроку', uk: 'До уроку', en: 'To the lesson', es: 'A la lección', 'pt-BR': 'Para a lição', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derse', pl: 'Do lekcji' })}
+              onPrimary={() => { fk.tap(); if (wrongIds.length > 0 && !reviewMode) restartWrong(); else backToLesson(); }}
+              secondaryLabel={wrongIds.length > 0 && !reviewMode
+                ? triLang(lang, { ru: 'К уроку', uk: 'До уроку', en: 'To the lesson', es: 'A la lección', 'pt-BR': 'Para a lição', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derse', pl: 'Do lekcji' })
+                : triLang(lang, { ru: 'Ещё раз', uk: 'Ще раз', en: 'Again', es: 'Otra vez', 'pt-BR': 'De novo', vi: 'Làm lại', id: 'Ulangi', tr: 'Tekrar', pl: 'Jeszcze raz' })}
+              onSecondary={() => { fk.tap(); if (wrongIds.length > 0 && !reviewMode) backToLesson(); else restartAll(); }}
+              onClose={() => { fk.tap(); backToLesson(); }}
+            />
           )}
-          {/* [FeedbackKit] Мини-победа на финал прогона. Перфект (основной прогон
-              без ошибок) — усиленное празднование: аккорд + больше конфетти. Сам
-              награду за идеальный проход НЕ трогаем (см. эффект perfect-bonus выше). */}
-          {(() => {
-            const perfectRun = !reviewMode && total > 0 && wrongIds.length === 0;
-            return (
-              <VictoryBurst
-                visible={victoryShown}
-                title={prepDrillDoneTitle(lang)}
-                subtitle={prepDrillDoneSubtitle(lang, correctCount, total)}
-                heroIcon={perfectRun ? 'trophy' : 'flag'}
-                celebrateSound={perfectRun ? 'chord' : 'medal'}
-                confettiCount={perfectRun ? 120 : 60}
-                onDone={() => setVictoryShown(false)}
-              />
-            );
-          })()}
+          {/* зачем (владелец 01.10, макет): вспышки поверх итога нет — итог сам показывает результат. */}
         </View>
         </ContentWrap>
 

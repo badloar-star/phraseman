@@ -8,7 +8,9 @@ jest.mock('react-native-safe-area-context', () => ({ SafeAreaView: ({ children }
 jest.mock('../components/AddToFlashcard', () => () => null);
 jest.mock('../components/ContentWrap', () => ({ children }: any) => children);
 jest.mock('../components/DuoPressable', () => ({ children }: any) => children);
-jest.mock('../components/feedback/VictoryBurst', () => () => null);
+// зачем: итог слов теперь общий экран 2.0 (тянет expo-image); тест — про банк слов, итог не нужен.
+jest.mock('../components/completion/V2DoneScreen', () => () => null);
+jest.mock('../components/practice/PracticeChrome', () => ({ PracticeBackButton: () => null, PracticeHeaderTitle: () => null }));
 jest.mock('../components/CollectibleDropModal', () => () => null);
 jest.mock('../components/LangContext', () => ({
   useLang: () => ({ lang: 'ru', s: { words: {} } }),

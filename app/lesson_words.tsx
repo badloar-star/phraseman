@@ -41,7 +41,6 @@ import {
   type ScheduledAnimatedStateUpdate,
 } from '../components/animationScheduling';
 import fk from './feedback/feedback_kit';
-import VictoryBurst from '../components/feedback/VictoryBurst';
 import { wordsSessionDoneTitle, wordsSessionDoneSubtitle } from './feedback/feedback_i18n';
 import { loadFlashcards } from '../hooks/use-flashcards';
 import { useAudio } from '../hooks/use-audio';
@@ -2786,10 +2785,6 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
   const [learnedCnt, setLearnedCnt] = useState(initialTrainingState.learnedCnt);
   const sessionTouchedRef = useRef(false);
   // Счётчик ошибок на слово в этой сессии (для порога тренера: 2+ ошибки → активация)
-  // [FeedbackKit] Показ VictoryBurst на финал сессии — один раз (guard от
-  // повторного показа при ре-рендерах, пока allDone держится true).
-  const [victoryShown, setVictoryShown] = useState(false);
-  const victoryFiredRef = useRef(false);
   // зачем (владелец, 2026-08-27): растёт при каждом «Повторить» —
   // completionOrdinal нужен серверу для идемпотентности расписки, второй
   // проход без выхода с экрана не должен конфликтовать по operationId с первым.
@@ -2843,14 +2838,10 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
         setPracticeRepeatConfirm(false);
         return true;
       }
-      if (victoryShown) {
-        setVictoryShown(false);
-        return true;
-      }
       return false;
     });
     return () => onAndroidBackIntercept(null);
-  }, [onAndroidBackIntercept, practiceRepeatConfirm, victoryShown]);
+  }, [onAndroidBackIntercept, practiceRepeatConfirm]);
 
   // Блокировка: не даём запустить обработку дважды
   const locked = useRef(false);
@@ -2887,18 +2878,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
 
   const validQueue = useMemo(() => sanitizeTrainingQueue(queue), [queue]);
 
-  // [FeedbackKit] Мини-победа на финал сессии Training — один раз при первом
-  // достижении завершения (guard victoryFiredRef; сбрасывается в startPractice).
-  // Только ощущение поверх существующего экрана итога — экономику не трогает.
   const sessionFinished = allDone || (validQueue.length === 0 && learnedCnt >= words.length);
-  useEffect(() => {
-    if (!sessionFinished) return;
-    if (victoryFiredRef.current) return;
-    if (!sessionTouchedRef.current) return; // не показываем, если вошли в уже пройденный раздел без ответов
-    victoryFiredRef.current = true;
-    setVictoryShown(true);
-  }, [sessionFinished]);
-
   // ── Дроп коллекционной карточки за закрытый словарь урока ─────────────────
   // зачем: владелец попросил шанс карточки не только за урок, но и за закрытие
   // словаря. Шанс/дневной кап/pity — общие с уроком, считает сервер. eventId =
@@ -3121,9 +3101,6 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
     runWrongRef.current = 0;
     runErrorsRef.current = [];
     locked.current = false;
-    // [FeedbackKit] Новый прогон — разрешаем показать финальную мини-победу снова.
-    victoryFiredRef.current = false;
-    setVictoryShown(false);
     // Новый проход рун: новая копилка по цене повтора + новый ordinal для
     // серверной расписки следующего зачёта.
     practiceRunes.startNewCompletion();
@@ -3192,16 +3169,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
         }}
         confirmVariant="accent"
       />
-      {/* [FeedbackKit] Мини-победа «Слова закреплены» — карточка с пружиной,
-          звук/конфетти, уходит сама или по тапу. Монтируется только на показ. */}
-      <VictoryBurst
-        visible={victoryShown}
-        title={wordsSessionDoneTitle(lang)}
-        subtitle={wordsSessionDoneSubtitle(lang, learnedCnt, words.length)}
-        heroIcon="library"
-        celebrateSound="medal"
-        onDone={() => setVictoryShown(false)}
-      />
+      {/* зачем (владелец 01.10, макет F8): вспышки поверх итога слов нет. */}
     </View>
   );
 

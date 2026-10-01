@@ -133,8 +133,7 @@ import {
   type FriendTogetherPairState,
 } from '../friends_together/together_store';
 import { nudgeFriend, isNudgedToday, primeNudgedTodayCache, type NudgeErrorReason } from '../friends_together/nudge_client';
-import { claimFriendLevel } from '../friends_together/claims_client';
-import { LEVEL_NAMES, nextThreshold, starRewardForLevelRange } from '../friends_together/together_days';
+import { LEVEL_NAMES, nextThreshold } from '../friends_together/together_days';
 import FriendListRow from '../../components/friends_together/FriendListRow';
 import FriendTogetherSheet from '../../components/friends_together/FriendTogetherSheet';
 import {
@@ -147,7 +146,6 @@ import {
   type FriendSheetPendingAction,
   type FriendSheetSession,
 } from '../../components/friends_together/friend_sheet_session';
-import FriendLevelUpModal from '../../components/friends_together/FriendLevelUpModal';
 import FriendStudyInviteModal from '../../components/friends_together/FriendStudyInviteModal';
 import {
   acknowledgeMarker,
@@ -768,15 +766,12 @@ export default function FriendsTabScreen() {
   // не рисуем модульный снапшот вслепую при смене аккаунта.
   const [togetherSnapshot, setTogetherSnapshot] = useState<FriendsTogetherSnapshot | null>(null);
   const [togetherSheetSession, setTogetherSheetSession] = useState<FriendSheetSession<FriendProfile> | null>(null);
-  const [levelUpModal, setLevelUpModal] = useState<{ friendUid: string; level: number; starsGranted: number } | null>(null);
   const [friendEvents, setFriendEvents] = useState<FriendSocialEvent[]>([]);
   const [friendMarkerClockMs, setFriendMarkerClockMs] = useState(Date.now());
   const [studyInvite, setStudyInvite] = useState<{ event: FriendSocialEvent; friendName: string; friendCoinRank: number | null } | null>(null);
 
-  const [levelClaimBusy, setLevelClaimBusy] = useState(false);
   const [optimisticNudgedUids, setOptimisticNudgedUids] = useState<Set<string>>(() => new Set());
   const [nudgedTick, setNudgedTick] = useState(0);
-  const levelUpShownRef = useRef<Set<string>>(new Set());
 
   // DEV-only: боты «Вместе» — сквозная ручная проверка без реальных друзей и без
   // единого чтения/записи Firestore (owner, 2026-08-17). Полностью выпадает из
@@ -830,49 +825,13 @@ export default function FriendsTabScreen() {
     void primeNudgedTodayCache().then(() => setNudgedTick((n) => n + 1));
   }, [friendsTogetherUiEnabled]);
 
-  // Уровень дружбы вырос с последнего клейма — открыть модалку один раз на пару+уровень.
-  useEffect(() => {
-    if (!friendsTogetherUiEnabled || !togetherSnapshot || levelUpModal) return;
-    for (const pair of Object.values(togetherSnapshot.pairs) as FriendTogetherPairState[]) {
-      if (pair.level > pair.claimedLevel && pair.level >= 2) {
-        const key = `${pair.friendUid}:${pair.level}`;
-        if (levelUpShownRef.current.has(key)) continue;
-        levelUpShownRef.current.add(key);
-        setLevelUpModal({ friendUid: pair.friendUid, level: pair.level, starsGranted: starRewardForLevelRange(pair.claimedLevel, pair.level) });
-        break; // одна модалка за раз — не наваливаем каскад окон
-      }
-    }
-  }, [friendsTogetherUiEnabled, togetherSnapshot, levelUpModal]);
 
+  // зачем (Q6, координатор 01.10, D09/D78): окно «уровень дружбы вырос» с пустой
+  // фанфарой сундука удалено целиком; уровни дружбы остаются как данные.
   const [myProfile, setMyProfile] = useState<{
     name: string; avatar: string; frame: string; aura?: string; streak: number | null;
   } | null>(null);
 
-  const handleClaimFriendLevel = useCallback(async () => {
-    if (!levelUpModal || levelClaimBusy) return;
-    const { friendUid, level } = levelUpModal;
-    setLevelClaimBusy(true);
-    try {
-      const result = await claimFriendLevel(friendUid, level);
-      if (result.ok) {
-        setLevelUpModal(null);
-      } else {
-        emitAppEvent('action_toast', {
-          type: 'error',
-          messageRu: 'Не удалось забрать награду — попробуй ещё раз',
-          messageUk: 'Не вдалося забрати нагороду — спробуй ще раз',
-          messageEs: 'No se pudo reclamar la recompensa. Inténtalo de nuevo',
-          messagePtBr: 'Não foi possível resgatar a recompensa. Tente novamente',
-          messageVi: 'Không thể nhận phần thưởng — hãy thử lại',
-          messageId: 'Hadiah gagal diambil — coba lagi',
-          messageTr: 'Ödül alınamadı — tekrar dene',
-          messagePl: 'Nie udało się odebrać nagrody — spróbuj ponownie',
-        });
-      }
-    } finally {
-      setLevelClaimBusy(false);
-    }
-  }, [levelClaimBusy, levelUpModal]);
 
   // DEV-only: обработчики панели ботов — каждый просто мутирует локальное
   // AsyncStorage-состояние ботов и перечитывает снапшот, ничего не шлёт в сеть.
@@ -2171,7 +2130,7 @@ export default function FriendsTabScreen() {
 
   return (
     <ScreenGradient artBackdrop="friends">
-      <FeatureIntroEntry id="friends_first_visit" enabled={friendsRuntimeActive && !addModalOpen && !selectedPlayer && !togetherSheetSession && !levelUpModal && !accessEndedOpen && !devBotsSheetOpen && !studyInvite && !deleteTarget} />
+      <FeatureIntroEntry id="friends_first_visit" enabled={friendsRuntimeActive && !addModalOpen && !selectedPlayer && !togetherSheetSession && !accessEndedOpen && !devBotsSheetOpen && !studyInvite && !deleteTarget} />
       <View testID="screen-friends" style={{ flex: 1 }}>
       <BouncyWrap style={bouncyStyle}>
         <AnimatedFlashList decelerationRate="fast"
@@ -2303,24 +2262,6 @@ export default function FriendsTabScreen() {
               setPendingTogetherSheetAction(current => queueFirstFriendSheetAction(current, { kind: 'delete', profile: friendProfile }));
               requestDismiss();
             }}
-          />
-        );
-      })()}
-
-      {friendsTogetherPolicy.enabled && levelUpModal && (() => {
-        const friendProfile = profiles[levelUpModal.friendUid];
-        if (!friendProfile) return null;
-        return (
-          <FriendLevelUpModal
-            visible
-            friendName={friendProfile.name}
-            friendAvatar={friendProfile.avatar}
-            friendAura={friendProfile.aura}
-            myAvatar={myProfile?.avatar ?? '1'}
-            level={levelUpModal.level}
-            starsGranted={levelUpModal.starsGranted}
-            claimBusy={levelClaimBusy}
-            onClaim={() => { void handleClaimFriendLevel(); }}
           />
         );
       })()}

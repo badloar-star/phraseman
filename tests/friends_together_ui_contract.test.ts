@@ -16,7 +16,6 @@ const SETTINGS_FILE = path.join(process.cwd(), 'app/settings_notifications.tsx')
 
 const COMPONENT_FILES = [
   'FriendTogetherSheet.tsx',
-  'FriendLevelUpModal.tsx',
   'FriendListRow.tsx',
 ];
 
@@ -72,9 +71,10 @@ describe('friends_together UI contract', () => {
     }
   });
 
-  test('level-up modal uses the shared reward-impact engine', () => {
-    const levelUp = readComponent('FriendLevelUpModal.tsx');
-    expect(levelUp).toContain('useRewardImpactHybrid');
+  // 01.10 (Q6, координатор, D09/D78): окно «уровень дружбы вырос» с пустой фанфарой сундука удалено.
+  test('friend level-up modal is removed for good', () => {
+    expect(fs.existsSync(path.join(COMPONENTS_DIR, 'FriendLevelUpModal.tsx'))).toBe(false);
+    expect(fs.readFileSync(FRIENDS_TAB_FILE, 'utf8')).not.toContain('FriendLevelUpModal');
   });
 
   test('use_reward_impact_hybrid engine itself gates on useReduceMotion', () => {
@@ -100,7 +100,6 @@ describe('friends_together UI contract', () => {
   test('friends.tsx imports the new components', () => {
     const source = fs.readFileSync(FRIENDS_TAB_FILE, 'utf8');
     expect(source).toContain("from '../../components/friends_together/FriendTogetherSheet'");
-    expect(source).toContain("from '../../components/friends_together/FriendLevelUpModal'");
   });
 
   test('settings_notifications.tsx has a "Друзья" toggle bound to prefs.categories.friends', () => {

@@ -102,7 +102,6 @@ const COSMETIC_UI_TRACE = new RegExp(
 const ALLOWLIST: Readonly<Record<string, 'design-ui' | 'stub'>> = {
   'app/community_packs/PackCommentsSheet.tsx': 'design-ui',
   'components/NotificationCenterButton.tsx': 'design-ui',
-  'components/friends_together/FriendLevelUpModal.tsx': 'design-ui',
   'components/friends_together/FriendTogetherSheet.tsx': 'design-ui',
 };
 

@@ -57,7 +57,8 @@ test('daily phrase hands off after native dismissal and preserves widget links',
 });
 test('friends explanation yields to active confirmation modals', () => {
   const entry = read('app/(tabs)/friends.tsx').split('\n').find(line => line.includes('id="friends_first_visit"'));
-  for (const name of ['studyInvite', 'deleteTarget', 'levelUpModal']) {
+  // 01.10 (Q6): окно уровня дружбы удалено целиком — levelUpModal больше нет.
+  for (const name of ['studyInvite', 'deleteTarget']) {
     assert.ok(entry?.includes(`!${name}`), name);
   }
 });

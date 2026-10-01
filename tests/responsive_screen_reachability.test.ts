@@ -32,7 +32,6 @@ describe('short-window action reachability', () => {
 
   it.each([
     'components/celebration/ReferralFriendRewardHybrid.tsx',
-    'components/friends_together/FriendLevelUpModal.tsx',
     'components/PersonalAdminMessageModal.tsx',
     'components/GlobalBroadcastModal.tsx',
   ])('keeps the complete reward/message reachable in %s', file => {

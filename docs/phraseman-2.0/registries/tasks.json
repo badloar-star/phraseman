@@ -11407,7 +11407,7 @@
         "text": "Каждая function/trigger/cron привязана к сохраняемой возможности",
         "accepted": false,
         "evidence": [
-          "NOT_MET (владелец: 14 облачных функций без кода и решения + 2 в коде): 2026-10-01 карта по 03_DECISIONS (328c30cad, 304b23c9d) — код 503 точки: keep 415, dormant 28 (D96), retired 57, ложное 1, без решения 2 (statsInsightsGenerate, weeklyReviewGenerate); облако-без-кода 112 (PM-007): 96 retired по D02/D70/D74/D78/D81/D90/D102/D110/D124, 2 keep (activationEmailRetryCron/resendKeyHealthCron — перенести код), 14 без решения (season*, friend quest/chest/shield, communityPurchasePack, profileCardUpgrade, CourseUnlock×2, statsInsights/weeklyReview). Проба tests/pm221_server_domain_map.probe.ts PASS с храповиком allowlist."
+          "NOT_MET (владелец: 14 облачных функций без кода и решения + 2 в коде): 2026-10-01 карта по 03_DECISIONS (328c30cad, 304b23c9d) — код 503 точки: keep 415, dormant 28 (D96), retired 57, ложное 1, без решения 2 (statsInsightsGenerate, weeklyReviewGenerate); облако-без-кода 112 (PM-007): 96 retired по D02/D70/D74/D78/D81/D90/D102/D110/D124, 2 keep (activationEmailRetryCron/resendKeyHealthCron — код перенесён в ветку 01.10, email_delivery_watchdog.ts; облако-без-кода теперь 110), 14 без решения (season*, friend quest/chest/shield, communityPurchasePack, profileCardUpgrade, CourseUnlock×2, statsInsights/weeklyReview). Проба tests/pm221_server_domain_map.probe.ts PASS с храповиком allowlist."
         ]
       },
       {

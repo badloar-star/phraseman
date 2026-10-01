@@ -6,7 +6,7 @@
 
 ## Список 1 — объявлено в коде
 
-Всего: **438** (default 427, max 0, content 9, english-test 2). Кронов (schedule): **21**.
+Всего: **440** (default 429, max 0, content 9, english-test 2). Кронов (schedule): **23**.
 
 ### Кроны
 
@@ -14,6 +14,7 @@
 |---|---|---|
 | default | `accountDeleteRetryCron` | functions/src/account_delete_worker.ts:86 |
 | default | `accountMergeOutboxRetryCron` | functions/src/auth_merge.ts:1322 |
+| default | `activationEmailRetryCron` | functions/src/email_delivery_watchdog.ts:459 |
 | default | `adminAlertDailyDigestsCron` | functions/src/admin_alert_digests.ts:51 |
 | default | `adminAlertRecoveryCron` | functions/src/admin_alert_dispatcher.ts:390 |
 | default | `adminPushJobsCron` | functions/src/admin_push_jobs.ts:566 |
@@ -24,13 +25,14 @@
 | default | `premiumExpiryCron` | functions/src/premium_expiry_cron.ts:296 |
 | default | `premiumExpiryReminderCron` | functions/src/index.ts:484 |
 | default | `reEngagePushCron` | functions/src/index.ts:461 |
+| default | `resendKeyHealthCron` | functions/src/email_delivery_watchdog.ts:361 |
 | default | `soc2ReadinessCollectorCron` | functions/src/soc2_readiness_collector.ts:240 |
 | default | `spireFinalizeCron` | functions/src/spire_finalize_cron.ts:89 |
 | default | `spirePackWeeklyCron` | functions/src/spire_pack_build.ts:522 |
 | default | `spireZoneWarningCron` | functions/src/spire_zone_warning_push.ts:310 |
 | default | `supportOpsCron` | functions/src/index.ts:523 |
 | default | `userNotificationsCleanupCron` | functions/src/user_notifications.ts:173 |
-| default | `webActivationReminderCron` | functions/src/web_activation_reminders.ts:236 |
+| default | `webActivationReminderCron` | functions/src/web_activation_reminders.ts:243 |
 | default | `webLeadNudgeCron` | functions/src/web_leads.ts:425 |
 | default | `youtubeCatalogSyncCron` | functions/src/youtube_catalog.ts:411 |
 
@@ -50,6 +52,7 @@
 | default | `accountMergeOutboxWorker` | trigger | functions/src/auth_merge.ts:1314 |
 | default | `accountsV2DeletionStatus` | callable | functions/src/accounts_v2_deletion/status_callable.ts:131 |
 | default | `accountsV2SyncApply` | callable | functions/src/accounts_v2_adapter/callable.ts:470 |
+| default | `activationEmailRetryCron` | schedule | functions/src/email_delivery_watchdog.ts:459 |
 | default | `adminActivateCourseRelease` | callable | functions/src/language_release.ts:51 |
 | default | `adminActivateQuest` | callable | functions/src/quests.ts:489 |
 | default | `adminActivateTelegramPremiumOrder` | callable | functions/src/telegram_premium_admin.ts:256 |
@@ -99,8 +102,8 @@
 | default | `adminArenaPublicationStatus` | callable | functions/src/admin_arena_publication.ts:182 |
 | default | `adminAuditAccountDeleteCoverage` | callable | functions/src/account_delete_ai_audit.ts:51 |
 | default | `adminBackfillVideoPacks` | callable | functions/src/video_phrases.ts:511 |
-| default | `adminCancelGiftCertificateBatchOperation` | callable | functions/src/web_checkout.ts:2245 |
-| default | `adminCancelStripeSubscriptionRenewal` | callable | functions/src/web_checkout.ts:2804 |
+| default | `adminCancelGiftCertificateBatchOperation` | callable | functions/src/web_checkout.ts:2286 |
+| default | `adminCancelStripeSubscriptionRenewal` | callable | functions/src/web_checkout.ts:2845 |
 | default | `adminCardTtsRequeuePack` | callable | functions/src/card_tts_worker.ts:491 |
 | default | `adminCleanupExpiredAppMessages` | callable | functions/src/admin_app_messages.ts:848 |
 | default | `adminCommunityPackApplyQaFixes` | callable | functions/src/admin_community_pack_qa.ts:546 |
@@ -113,7 +116,7 @@
 | default | `adminCreateContentGenerationJob` | callable | functions/src/admin_content_factory.ts:92 |
 | default | `adminCreateContentStage` | callable | functions/src/admin_content_stages.ts:241 |
 | default | `adminCreateContentStageBulkPlan` | callable | functions/src/admin_content_stage_bulk.ts:98 |
-| default | `adminCreateGiftCertificateBatch` | callable | functions/src/web_checkout.ts:2139 |
+| default | `adminCreateGiftCertificateBatch` | callable | functions/src/web_checkout.ts:2180 |
 | default | `adminCreatePlan` | callable | functions/src/admin_plans/callables.ts:25 |
 | default | `adminCreateV2GenerationPlan` | callable | functions/src/admin_v2_generation.ts:361 |
 | default | `adminDeactivateGlobalBroadcast` | callable | functions/src/admin_global_broadcast.ts:600 |
@@ -122,7 +125,7 @@
 | default | `adminDecideUserIdea` | callable | functions/src/user_ideas.ts:634 |
 | default | `adminDeleteAppMessage` | callable | functions/src/admin_app_messages.ts:798 |
 | default | `adminDeleteDuplicateUser` | callable | functions/src/admin_user_operations.ts:365 |
-| default | `adminDeleteGiftCertificate` | callable | functions/src/web_checkout.ts:2325 |
+| default | `adminDeleteGiftCertificate` | callable | functions/src/web_checkout.ts:2366 |
 | default | `adminDeleteQuest` | callable | functions/src/quests.ts:542 |
 | default | `adminDeleteShardSurvey` | callable | functions/src/shard_survey.ts:385 |
 | default | `adminDeleteUserIdea` | callable | functions/src/user_ideas.ts:476 |
@@ -149,8 +152,8 @@
 | default | `adminGetDiagnosticsOverview` | callable | functions/src/admin_diagnostics_overview.ts:71 |
 | default | `adminGetDirectorDigest` | callable | functions/src/admin_director_digest.ts:478 |
 | default | `adminGetFeedbackStats` | callable | functions/src/feedback_admin_stats.ts:84 |
-| default | `adminGetGiftCertificateBatchOperation` | callable | functions/src/web_checkout.ts:2227 |
-| default | `adminGetGiftCertificateDownload` | callable | functions/src/web_checkout.ts:2373 |
+| default | `adminGetGiftCertificateBatchOperation` | callable | functions/src/web_checkout.ts:2268 |
+| default | `adminGetGiftCertificateDownload` | callable | functions/src/web_checkout.ts:2414 |
 | default | `adminGetHomeHintsCatalog` | callable | functions/src/admin_home_hints.ts:59 |
 | default | `adminGetLearningV2CourseWorkspaceProjection` | callable | functions/src/admin_content_stages.ts:295 |
 | default | `adminGetOnboardingFunnel` | callable | functions/src/onboarding_funnel.ts:311 |
@@ -178,7 +181,7 @@
 | default | `adminListContentStageDependencies` | callable | functions/src/admin_content_stages.ts:317 |
 | default | `adminListContentStages` | callable | functions/src/admin_content_stages.ts:286 |
 | default | `adminListFeedbackEntries` | callable | functions/src/feedback_entries.ts:231 |
-| default | `adminListGiftCertificates` | callable | functions/src/web_checkout.ts:2267 |
+| default | `adminListGiftCertificates` | callable | functions/src/web_checkout.ts:2308 |
 | default | `adminListGlobalBroadcasts` | callable | functions/src/admin_global_broadcast.ts:493 |
 | default | `adminListMistakeExplanationCache` | callable | functions/src/admin_explain_cache.ts:86 |
 | default | `adminListOpsLog` | callable | functions/src/admin_ops_log.ts:213 |
@@ -217,7 +220,7 @@
 | default | `adminRelinkProvider` | callable | functions/src/admin_auth_repair.ts:311 |
 | default | `adminRepairAuthLink` | callable | functions/src/admin_auth_repair.ts:131 |
 | default | `adminRepairPendingReferralPurchase` | callable | functions/src/admin_referral_purchase_repair.ts:313 |
-| default | `adminReplaceSyntheticGiftCertificate` | callable | functions/src/web_checkout.ts:2500 |
+| default | `adminReplaceSyntheticGiftCertificate` | callable | functions/src/web_checkout.ts:2541 |
 | default | `adminReplyToReport` | callable | functions/src/report_replies.ts:356 |
 | default | `adminRequestUserMerge` | callable | functions/src/admin_user_operations.ts:345 |
 | default | `adminResetUserProgress` | callable | functions/src/admin_user_operations.ts:467 |
@@ -241,7 +244,7 @@
 | default | `adminSearchUsers` | callable | functions/src/admin_user_profile.ts:265 |
 | default | `adminSeedV2E1DemoSource` | callable | functions/src/content_factory/v2_e1_compilation_worker.ts:349 |
 | default | `adminSendPersonalAppMessage` | callable | functions/src/admin_app_messages.ts:414 |
-| default | `adminSendPreparedGiftCertificate` | callable | functions/src/web_checkout.ts:2554 |
+| default | `adminSendPreparedGiftCertificate` | callable | functions/src/web_checkout.ts:2595 |
 | default | `adminSetAppMessageActive` | callable | functions/src/admin_app_messages.ts:548 |
 | default | `adminSetIdeaSubmissionRestriction` | callable | functions/src/user_idea_reports.ts:259 |
 | default | `adminSetReferralRouletteEmergencyStop` | callable | functions/src/admin_referrals.ts:1298 |
@@ -283,8 +286,8 @@
 | default | `adminTestAlerts` | callable | functions/src/admin_config_controls.ts:176 |
 | default | `adminTranslateMessage` | callable | functions/src/admin_translate.ts:88 |
 | default | `adminUpdateAppMessage` | callable | functions/src/admin_app_messages.ts:697 |
-| default | `adminUpdateGiftCertificatePersonalization` | callable | functions/src/web_checkout.ts:2457 |
-| default | `adminUpdateGiftCertificateRecipient` | callable | functions/src/web_checkout.ts:2414 |
+| default | `adminUpdateGiftCertificatePersonalization` | callable | functions/src/web_checkout.ts:2498 |
+| default | `adminUpdateGiftCertificateRecipient` | callable | functions/src/web_checkout.ts:2455 |
 | default | `adminUpdateReportStatus` | callable | functions/src/admin_reports_center.ts:653 |
 | default | `adminUpdateUserProfileField` | callable | functions/src/admin_user_operations.ts:234 |
 | default | `adminUserBriefs` | callable | functions/src/admin_user_briefs.ts:160 |
@@ -390,8 +393,8 @@
 | default | `openAiDialogModelConfig` | callable | functions/src/openai_dialog_model_config.ts:159 |
 | default | `openAiDialogQuotaConfig` | callable | functions/src/openai_dialog_model_config.ts:200 |
 | default | `openAiJobsConfig` | callable | functions/src/openai_jobs_config.ts:252 |
-| default | `paypalOrderCapture` | http | functions/src/web_checkout.ts:3268 |
-| default | `paypalOrderCreate` | http | functions/src/web_checkout.ts:3185 |
+| default | `paypalOrderCapture` | http | functions/src/web_checkout.ts:3311 |
+| default | `paypalOrderCreate` | http | functions/src/web_checkout.ts:3228 |
 | default | `practiceRuneGrant` | callable | functions/src/practice_rune_grant.ts:302 |
 | default | `premiumDialogReview` | callable | functions/src/premium_dialog_review.ts:594 |
 | default | `premiumDialogSend` | callable | functions/src/premium_dialog.ts:1045 |
@@ -424,6 +427,7 @@
 | default | `referralListMyInvites` | callable | functions/src/referral.ts:854 |
 | default | `referralSpin` | callable | functions/src/referral_spin.ts:138 |
 | default | `reportUserIdea` | callable | functions/src/user_idea_reports.ts:67 |
+| default | `resendKeyHealthCron` | schedule | functions/src/email_delivery_watchdog.ts:361 |
 | default | `resolveLearningV2WalletRewardReceipt` | callable | functions/src/learning_v2_wallet_reward_callable.ts:138 |
 | default | `revenueCatPremiumReconcileMine` | callable | functions/src/revenuecat_reconcile.ts:389 |
 | default | `revenueCatShardsWebhook` | http | functions/src/revenuecat_shards.ts:1295 |
@@ -434,7 +438,7 @@
 | default | `spirePackWeeklyCron` | schedule | functions/src/spire_pack_build.ts:522 |
 | default | `spireReportSteps` | callable | functions/src/spire_progress.ts:118 |
 | default | `spireZoneWarningCron` | schedule | functions/src/spire_zone_warning_push.ts:310 |
-| default | `stripeWebhook` | http | functions/src/web_checkout.ts:3072 |
+| default | `stripeWebhook` | http | functions/src/web_checkout.ts:3113 |
 | default | `submitClientReport` | callable | functions/src/client_reports.ts:645 |
 | default | `submitExplainReport` | callable | functions/src/explain/explain_reports.ts:127 |
 | default | `submitFeedbackEntry` | callable | functions/src/feedback_entries.ts:157 |
@@ -458,12 +462,12 @@
 | default | `videoWatchRunesClaim` | callable | functions/src/video_watch_runes.ts:188 |
 | default | `vipRevokeMine` | callable | functions/src/vip_revoke.ts:31 |
 | default | `voiceMinuteWalletMine` | callable | functions/src/voice_minutes_api.ts:46 |
-| default | `webActivationReminderCron` | schedule | functions/src/web_activation_reminders.ts:236 |
-| default | `webCheckoutCreate` | http | functions/src/web_checkout.ts:2916 |
+| default | `webActivationReminderCron` | schedule | functions/src/web_activation_reminders.ts:243 |
+| default | `webCheckoutCreate` | http | functions/src/web_checkout.ts:2957 |
 | default | `webLeadCapture` | http | functions/src/web_leads.ts:346 |
 | default | `webLeadNudgeCron` | schedule | functions/src/web_leads.ts:425 |
-| default | `webOrderStatus` | http | functions/src/web_checkout.ts:3394 |
-| default | `webPrices` | http | functions/src/web_checkout.ts:3353 |
+| default | `webOrderStatus` | http | functions/src/web_checkout.ts:3437 |
+| default | `webPrices` | http | functions/src/web_checkout.ts:3396 |
 | default | `youtubeCatalogSyncCron` | schedule | functions/src/youtube_catalog.ts:411 |
 | content | `adminConfirmV2OwnerEpisode` | callable | functions/src/content_factory/v2_owner_episode_confirmation_adapter_v1.ts:522 |
 | content | `adminGetV2OwnerGeneratorSetupCatalog` | callable | functions/src/content_factory/v2_owner_generator_setup_catalog_v1.ts:524 |
@@ -1002,9 +1006,8 @@
 
 ## Расхождения (НЕ удалены автоматически)
 
-### В облаке, но нет в коде: 112
+### В облаке, но нет в коде: 110
 
-- `activationEmailRetryCron`
 - `adminGetCoinExchangeCenter`
 - `adminGetCosmeticAssetArchive`
 - `adminGetMaxVoiceOpsDashboard`
@@ -1102,7 +1105,6 @@
 - `profileCardUpgrade`
 - `recalcCoinExchangeRate`
 - `referralDevGrantSpin`
-- `resendKeyHealthCron`
 - `resetWeeklyXpCron`
 - `resolveLearningV2CourseUnlockReceipt`
 - `seasonBuyPass`

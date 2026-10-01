@@ -57,6 +57,7 @@ firebase deploy --only firestore:rules --project phraseman-ea0b3
 | Видео-наборы | `adminAlignVideoPhraseTranscript`, `adminBackfillVideoPacks` | да — только админ | транскрипция фраз видео в админке |
 | Прочее 2.0 | `dailyPollVote`, `customCardMilestoneNotify`, `profileCardBioSetMine`, `giftsToCoinsMigrationReport` | да — новые имена | опрос дня, уведомление о своих карточках, «о себе» в визитке, строка-итог миграции подарков |
 | Письма сайта | `webActivationReminderCron` | да (к приложению не относится) | **шлёт настоящие письма** оплатившим на сайте, кто не активировал доступ. Включайте осознанно |
+| Сторож почты активации | `activationEmailRetryCron`, `resendKeyHealthCron` | да (к приложению не относится) | **В облаке УЖЕ есть** (выложены из ветки `claude/sad-cannon-876ae9`); выкладка ЗАМЕНИТ их нашей версией (перенос 01.10). Совместимость с данными облачной версии: тот же документ `admin_config/email_watchdog` и те же поля дедупа/пробы, те же поля заявки `customerEmailRetryCount`/`customerEmailLastRetryAtMs`, старый статус письма `failed` по-прежнему досылается. Отличия нашей версии: досылает и новые статусы (`provider_rejected`, `transport_unknown`, `skipped_no_resend_from`), не трогает уже активированные заявки, пишет пульс в `cron_heartbeats`. Секреты `RESEND_API_KEY` и `ADMIN_ALERT_BOT_TOKEN` уже есть в Secret Manager |
 
 **Не выкладывать сейчас (своя очередь):**
 - `accountsV2SyncApply`, `accountsV2DeletionStatus` — у Account V2 свой план (сессия Account V2).
@@ -80,6 +81,16 @@ firebase deploy --only functions:cardTtsPackWorker,functions:adminCardTtsRequeue
 firebase deploy --only functions:webActivationReminderCron --project phraseman-ea0b3
 ```
 
+```bash
+firebase deploy --only functions:activationEmailRetryCron,functions:resendKeyHealthCron --project phraseman-ea0b3
+```
+
+Мгновенный алерт о проваленном письме живёт внутри `stripeWebhook` / `paypalOrderCapture`
+(web_checkout.ts, 01.10: алерт + секрет `ADMIN_ALERT_BOT_TOKEN`). Он заработает только после
+выкладки этих двух платёжных функций — выкладывайте их отдельно и осознанно (в web_checkout.ts
+этой ветки есть и другие изменения относительно облака), после проверки оплаты на сайте.
+Без этого защиту дают оба крона выше: ключ проверяется раз в 12 ч, письма досылаются раз в 6 ч.
+
 Если CLI попросит значение секрета (например ключ OpenAI) — это значит, секрет у функции
 ещё не заведён; вводите его сами, в чат не вставляйте.
 
@@ -101,7 +112,7 @@ firebase deploy --only functions:webActivationReminderCron --project phraseman-e
 | `levelSpinStarGrant` (новый кошелёк монет, 6d5835ef8) | в облаке живёт старая версия, через неё 1.6.24 начисляет спины. Новая версия спины **отклоняет** → у людей в сторе пропадут награды спинов |
 | `report_replies` / `admin_reports_center` (награда за жалобу в монетах v2, f20328d12) и hosting админки | 1.6.24 не умеет забирать награду v2 |
 | `shard_survey_core` | менять вместе с релизом (белые списки маршрутов 2.0) |
-| удаление 112 функций облака без кода | часть вызывает 1.6.24, а 3 вызывает даже 2.0 — см. PM-007 |
+| удаление 110 функций облака без кода (было 112; сторож почты перенесён 01.10) | часть вызывает 1.6.24, а 3 вызывает даже 2.0 — см. PM-007 |
 
 Порядок в день релиза: `functions:levelSpinStarGrant` → остальные изменённые функции → hosting админки (подробно — PROGRESS.md, Q13).
 
@@ -122,10 +133,10 @@ firebase deploy --only functions:webActivationReminderCron --project phraseman-e
 
 ## Дополнения (решения координатора 01.10)
 
-- 🔴 **ПОЛНУЮ выкладку functions НЕ делать**, пока в нашу ветку не перенесён сторож почты
-  активации (`activationEmailRetryCron`, `resendKeyHealthCron`, `email_delivery_watchdog.ts`).
-  Сейчас он живёт только в облаке и в ветке `claude/sad-cannon-876ae9`; полная выкладка
-  удалит его молча. Именная выкладка из этого файла его НЕ трогает.
+- ✅ **Сторож почты активации перенесён в нашу ветку (01.10)** — `email_delivery_watchdog.ts`,
+  экспорт `activationEmailRetryCron` + `resendKeyHealthCron` в `functions/src/index.ts`. Полная
+  выкладка его больше НЕ удалит (сверка PM-007: «в облаке, но нет в коде» 112 → 110). Запрет на
+  полную выкладку из-за сторожа снят; остальные причины не делать её до релиза — шаг 2 выше.
 - **TTL 90 дней для журналов ошибок/активности** (`app_errors`, `app_activity`): после того как
   код начнёт писать поле `expireAt`, включите политику TTL в консоли:
   Firebase Console → Firestore → TTL (Time-to-live) → «Create policy» → коллекция `app_errors`,

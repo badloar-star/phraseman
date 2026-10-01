@@ -33,13 +33,13 @@ assert.deepEqual(stillLive, [], 'A1: крон удалённой фичи всё
 const missing = MUST_STAY.filter((n) => !live.has(n));
 assert.deepEqual(missing, [], 'A2: удаление аккаунта / покупки / Plus потеряли экспорт');
 
-// зачем (§6 плана, сверка PM-007): сторож почты активации живёт в облаке, но его кода в этой
-// ветке нет (коммиты 3d3f7a824 + bcfbd5836 только в claude/sad-cannon-876ae9). Полная выкладка
-// удалит его молча. Не роняем пробу (перенос — отдельная задача), но кричим при каждом прогоне.
-const CLOUD_ONLY_MUST_PORT = ['activationEmailRetryCron', 'resendKeyHealthCron'];
-const notPorted = CLOUD_ONLY_MUST_PORT.filter((n) => !live.has(n));
-if (notPorted.length > 0) {
-  process.stdout.write(`[PM-222] WARNING: в облаке есть, в коде нет — перенести ДО полной выкладки functions: ${notPorted.join(', ')}\n`);
-}
+// зачем (§6 плана, сверка PM-007): сторож почты активации живёт в облаке; 01.10.2026 его код
+// перенесён в эту ветку (email_delivery_watchdog.ts, из коммитов 3d3f7a824 + bcfbd5836 ветки
+// claude/sad-cannon-876ae9). Теперь это жёсткая проверка: пропажа экспорта = полная выкладка
+// молча удалит сторожа почты — ровно тот класс бага, который он закрывает.
+const CLOUD_WATCHDOG_MUST_STAY = ['activationEmailRetryCron', 'resendKeyHealthCron'];
+const notPorted = CLOUD_WATCHDOG_MUST_STAY.filter((n) => !live.has(n));
+assert.deepEqual(notPorted, [], 'A3: сторож почты активации потерял экспорт — полная выкладка удалит его из облака');
+process.stdout.write(`[PM-222] OK: сторож почты активации в коде: ${CLOUD_WATCHDOG_MUST_STAY.join(', ')}\n`);
 
 process.stdout.write(`PM-222 PROBE PASS: retired_not_exported=${RETIRED_CONSUMERS.length} must_stay_exported=${MUST_STAY.length} live_exports=${live.size}\n`);

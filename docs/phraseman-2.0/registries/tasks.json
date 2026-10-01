@@ -7959,7 +7959,8 @@
     ],
     "notes": [
       "Дизайн: экран сессии и итога диалога по макету dialogs.html; проверка в эмуляторе в очереди (эмулятор занят другой сессией)",
-      "2026-10-01 независимое ревью пачки 4 (agent-reviewer, Q75/§32): PASS по сути (source-level; на эмуляторе/устройстве не проверялось). UI-задача: gate DESIGN применим, остаётся review."
+      "2026-10-01 независимое ревью пачки 4 (agent-reviewer, Q75/§32): PASS по сути (source-level; на эмуляторе/устройстве не проверялось). UI-задача: gate DESIGN применим, остаётся review.",
+      "2026-10-01 пачка 10: блокер «Начать диалог» снят (06405b494, уникальный номер операции энергии на попытку), но остаётся review: ждём от «Дизайна» DESIGN-скриншоты экрана сессии/итога диалога после починки и подпись gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES (Q86)."
     ],
     "actual_cost": null,
     "kind": "code",
@@ -13773,7 +13774,7 @@
     ],
     "basis": "OWNER",
     "stage": "D",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -13806,7 +13807,7 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": "agent-reviewer (Sonnet), пачка 9Б",
+    "reviewer": "agent-reviewer (Sonnet), пачка 10",
     "evidence": [
       "docs/phraseman-2.0/PROGRESS.md: PM-253 progress checkpoint",
       "PROGRESS_ENTRY_TEMPLATE.md (03b927170): поля Task ID, Base/Result SHA, Changed files, Tests, Screenshots, Risks, Next action + Reviewer; ссылка из docs/QA_RELEASE.md; правило result_sha для code-задач: tools/validate.py:55 ('code done without result SHA')"
@@ -13814,15 +13815,17 @@
     "notes": [
       "A2 accepted from deterministic registry counts; A1 remains open because this working tree has no result commit SHA and no screenshot pack for every task.",
       "2026-10-01 пачка 9: НЕ тот же случай, что PM-251. A1 действительно NOT_MET (шаблона записи «Task ID, base/result SHA, changed files, tests, screenshots, risks, next action» нет; result_sha пуст у большинства задач партии, снимков нет) — это содержание, а не формальность gate; Q97 покрывает только PM-251. Кроме того gate IMPLEMENTATION_AND_MIGRATION_READY ещё не покрыт ни Q97, ни пакетом. Нужно: шаблон записи в PROGRESS.md + заполнение result_sha при переводе в done, затем A1; N/A по аналогии с Q97 — только по отдельному решению координатора (вопрос Q100).",
-      "2026-10-01 пачка 9Б: A1 ПРИНЯТ (шаблон покрывает все поля критерия). Статус остаётся review: gate IMPLEMENTATION_AND_MIGRATION_READY не покрыт; N/A по аналогии с Q97 только по решению координатора — вопрос Q100 в INBOX_COORDINATOR_FROM_CORE.md отсутствует и ответа нет. Ждёт Q100."
+      "2026-10-01 пачка 9Б: A1 ПРИНЯТ (шаблон покрывает все поля критерия). Статус остаётся review: gate IMPLEMENTATION_AND_MIGRATION_READY не покрыт; N/A по аналогии с Q97 только по решению координатора — вопрос Q100 в INBOX_COORDINATOR_FROM_CORE.md отсутствует и ответа нет. Ждёт Q100.",
+      "2026-10-01 пачка 10: Q100 получен (INBOX §59) — gate IMPLEMENTATION_AND_MIGRATION_READY = N/A как docs-only; A1/A2 приняты, закрыто."
     ],
     "actual_cost": null,
     "kind": "audit",
-    "review_verdict": "CHANGES_REQUIRED",
+    "review_verdict": "PASS",
     "gate_evidence": {
-      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "IMPLEMENTATION_AND_MIGRATION_READY": "N/A (Q100, INBOX_COORDINATOR_FROM_CORE.md §59, решение координатора 01.10, по аналогии с Q97): задача docs-only — шаблон записи прогресса PROGRESS_ENTRY_TEMPLATE.md и подсчёт процента, кода/данных/миграций нет, откат = git revert документа"
     },
-    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_model": "unknown",
     "actual_reasoning": "unrecorded"
   },
   {

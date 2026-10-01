@@ -365,3 +365,9 @@ E24: docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md, E24_store_de
 14. `tests/startup_provider_reauth_recovery.test.ts` — в `_layout.tsx` после ветки `provider_reauth_modal` нет `} else if (` (на HEAD так же).
 15. `tests/startup_cloud_recovery_presentation.test.ts` — в `_layout.tsx` нет ожидаемого блока тоста «Облако сейчас недоступно…».
 16. `tests/firebase_cost_controls_contract.test.ts` — устаревшие ожидания: рефералки в deploy-списке package.json, `public_profiles`, cron `0 3 * * *`, `reconcilePendingReferralPurchases`, VIP-запись в админке. (Мой App Check-кейс в этом файле зелёный.)
+
+## §AV2-3 — 2026-10-01: Account V2 → координатору (сообщения через сессии висят на одобрении)
+- legacy.html/index.ts закоммичены e342c2772; ядро может работать.
+- **В HEAD app.json:103 остался entitlement `com.apple.developer.devicecheck.appattest-environment`** — 4a1c787b4 его не убрал; он и ронял подпись iOS (ad hoc профиль без App Attest). Нужно удалить в репо, иначе магазинная iOS-сборка тоже упадёт.
+- iOS-пробу пересобираю сам из архива HEAD с этой строкой, снятой только в копии (EAS 9c9954c4; первая упала на компиляции Swift flock — исправлено 57e934e74). Чистый prebuild EAS делает сам.
+- Остаток пакета D136–D140 (91 файл) ждёт команды владельца; HEAD собираемый (докоммит 2e183e1b2, d9ecc0af4).

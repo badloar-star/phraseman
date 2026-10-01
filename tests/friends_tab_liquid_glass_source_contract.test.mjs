@@ -80,3 +80,14 @@ test('new UI strings go through the nine-language translator', () => {
   assert.ok(found.includes("pl: 'Wysyłanie zaproszenia…'"));
   assert.ok(friends.includes("'Twoi znajomi'"));
 });
+
+// зачем (координатор 01.10, замер эмулятора): на экранах ниже 700 dp окно «Добавить друга»
+// стоит в верхней трети, иначе клавиатура закрывает поле. Окно по-прежнему не двигается за
+// клавиатурой (решение владельца 26.07): ни KeyboardAvoidingView, ни подписки на клавиатуру.
+test('add-friend dialog sits in the upper third on short screens and never follows the keyboard', () => {
+  assert.ok(dialog.includes('export const SHORT_SCREEN_DP = 700;'));
+  assert.ok(dialog.includes('const shortScreen = viewportHeight < SHORT_SCREEN_DP;'));
+  assert.ok(dialog.includes("shortScreen ? { justifyContent: 'flex-start'"));
+  assert.ok(!dialog.includes('<KeyboardAvoidingView'), 'no KeyboardAvoidingView');
+  assert.ok(!/Keyboard\.addListener|keyboardDidShow/.test(dialog), 'no keyboard subscription');
+});

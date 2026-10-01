@@ -44,6 +44,13 @@ const DIALOG_WIDTH_RATIO = 0.92;
 const DIALOG_MAX_WIDTH = 460;
 /** Окно не должно упираться в края даже при открытой клавиатуре и мелком экране. */
 const DIALOG_MAX_HEIGHT_RATIO = 0.74;
+/**
+ * зачем (координатор 01.10, замер на эмуляторе): на коротком экране (<700 dp) центрированное
+ * окно уходит под клавиатуру — поле ввода закрыто. Правило владельца «окно не ездит за
+ * клавиатурой» соблюдаем: окно по-прежнему неподвижно, просто стоит в верхней трети.
+ */
+export const SHORT_SCREEN_DP = 700;
+const SHORT_SCREEN_TOP_RATIO = 0.1;
 
 interface CenteredDialogShellProps {
   visible: boolean;
@@ -99,6 +106,7 @@ export default function CenteredDialogShell({
 
   const dialogWidth = Math.min(viewportWidth * DIALOG_WIDTH_RATIO, DIALOG_MAX_WIDTH);
   const dialogMaxHeight = viewportHeight * DIALOG_MAX_HEIGHT_RATIO;
+  const shortScreen = viewportHeight < SHORT_SCREEN_DP;
 
   return (
     <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={dismissDialog}>
@@ -108,7 +116,7 @@ export default function CenteredDialogShell({
         </Pressable>
 
         {/* pointerEvents="box-none" — тап мимо окна доходит до подложки и закрывает его. */}
-        <View style={styles.centerer} pointerEvents="box-none">
+        <View style={[styles.centerer, shortScreen ? { justifyContent: 'flex-start', paddingTop: Math.round(viewportHeight * SHORT_SCREEN_TOP_RATIO) } : null]} pointerEvents="box-none">
           <Animated.View
             testID={testID}
             accessibilityViewIsModal

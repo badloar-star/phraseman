@@ -114,7 +114,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -124,7 +124,7 @@
         "id": "PM-003-A1",
         "text": "Каждый новый найденный пункт имеет source locator, ID, статус и задачу",
         "accepted": true,
-      "evidence": [
+        "evidence": [
           "tools/pm003_source_reconcile.mjs: 259 требований, у всех задача, 216 locator-ов 0 расхождений; расшифровка 68/68 привязана (37 через anchor R, 31 через registries/screenshot_coverage.json D+R); новый R258 (S01) -> PM-004"
         ]
       },
@@ -142,15 +142,22 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "evidence": [
+      "tools/pm003_source_reconcile.mjs (прогон ревью 2026-10-01: 259 требований, 216 locator-ов, расхождений 0, расшифровка 68/68 привязана, unconfirmed S12,S57)",
+      "registries/screenshot_coverage.json",
+      "commit 8dbda7e2a",
+      "commit 6a37ebc28"
+    ],
+    "notes": [
+      "2026-10-01 независимое ревью (agent-reviewer, Q75/§32): PASS. Скрипт перепрогнан, привязка 37 (anchor) + 31 (coverage) = 68, не подтверждено S12/S57 помечены отдельно со статусом NOT_CONFIRMED."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
+    "kind": "audit",
+    "review_verdict": "PASS",
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "claude-sonnet-5.5 (Co-Authored-By 8dbda7e2a, 6a37ebc28)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
     "id": "PM-004",
@@ -162,7 +169,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -182,18 +189,22 @@
     "audit_sha": "385daed73",
     "result_sha": null,
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
     "evidence": [
-      "registries/screen_inventory.json"
+      "registries/screen_inventory.json",
+      "evidence/PM-004_route_registry.md (на HEAD: 100 маршрутов, keep 70 / archive 13 / redesign 15 / remove 2, needs-owner-decision 0)",
+      "scripts/pm004_route_registry.mjs",
+      "commits 2f4937ef5, 82836a31c, ba4236df8, 3591d0115"
     ],
     "notes": [
-      "139 маршрутов: keep 55, remove 29, conserve 6 (MAX), redesign 12, unknown 37 (пейволы, аватар, коллекции, достижения, диалоги, Идеи). Критерий не принят: 37 unknown. Мёртвые кандидаты: app/modal.tsx, learning-v2/lesson/[id].tsx без входа, personal_plan_exercise_transition/task_done, flashcards_audio"
+      "139 маршрутов: keep 55, remove 29, conserve 6 (MAX), redesign 12, unknown 37 (пейволы, аватар, коллекции, достижения, диалоги, Идеи). Критерий не принят: 37 unknown. Мёртвые кандидаты: app/modal.tsx, learning-v2/lesson/[id].tsx без входа, personal_plan_exercise_transition/task_done, flashcards_audio",
+      "2026-10-01 независимое ревью (agent-reviewer, Q75/§32): PASS. Реестр на HEAD пересчитан по таблице (100 строк, 0 вопросов владельцу), числа в evidence критерия (101/71) устарели после Q11 (3591d0115, экран ошибок удалён). Оговорка: scripts/pm004_route_registry.mjs грязный от другой сессии (D140: /collectibles_screen -> remove); после коммита D140 реестр перегенерировать."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
+    "kind": "audit",
+    "review_verdict": "PASS",
     "gate_evidence": {},
-    "actual_model": "sonnet-5",
+    "actual_model": "sonnet-5 (аудит 24.09) + claude-opus-5.5 (реестр 01.10: Co-Authored-By 2f4937ef5, 82836a31c, ba4236df8)",
     "actual_reasoning": "high"
   },
   {
@@ -205,7 +216,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -214,16 +225,16 @@
       {
         "id": "PM-005-A1",
         "text": "Каждый first-party файл классифицирован",
-      "accepted": true,
-      "evidence": [
+        "accepted": true,
+        "evidence": [
           "docs/phraseman-2.0/tools/build_file_inventory.mjs: git ls-files 44534 файлов, классифицировано 44534, unclassified=0; registries/file_inventory.json (docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md)"
         ]
       },
       {
         "id": "PM-005-A2",
         "text": "отдельно native/server/assets/tests/generated/vendor",
-      "accepted": true,
-      "evidence": [
+        "accepted": true,
+        "evidence": [
           "file_inventory.json counts: native 35, server 1681, assets 5349, tests 4024, generated 2128, vendor 0 (node_modules не в git — исключение записано); категории отдельно"
         ]
       },
@@ -241,15 +252,22 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "evidence": [
+      "registries/file_inventory.json",
+      "tools/build_file_inventory.mjs (прогон ревью на HEAD b8cc51b31 без записи: 44593 файла, unclassified 0)",
+      "evidence/E01_E02_baseline_batch_2026-10-01.md",
+      "commit 0033c9ea7"
+    ],
+    "notes": [
+      "2026-10-01 независимое ревью (agent-reviewer, Q75/§32): PASS по трём критериям. Оговорки: реестр хранит сводку и правила (entries пуст, классификация воспроизводится скриптом); граф зависимостей/release_reachable не строился (честно в not_done), хотя заголовок задачи говорит «и зависимостей» — вынести в отдельную задачу при необходимости."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
+    "kind": "audit",
+    "review_verdict": "PASS",
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "claude-sonnet-5.5 (Co-Authored-By 0033c9ea7)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
     "id": "PM-006",
@@ -281,16 +299,17 @@
     "audit_sha": "385daed73",
     "result_sha": null,
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
     "evidence": [
       "registries/job_inventory.json"
     ],
     "notes": [
-      "33 клиентские работы: keep 16, remove-with-feature 6, unknown 11. Самое тяжёлое: root init в app/_layout.tsx:2140-2393 (десятки сетевых вызовов на старте без лимита), прогрев Арены и маркетплейса на каждом старте. Не все ~140 AppState-файлов прочитаны построчно"
+      "33 клиентские работы: keep 16, remove-with-feature 6, unknown 11. Самое тяжёлое: root init в app/_layout.tsx:2140-2393 (десятки сетевых вызовов на старте без лимита), прогрев Арены и маркетплейса на каждом старте. Не все ~140 AppState-файлов прочитаны построчно",
+      "2026-10-01 независимое ревью (agent-reviewer, Q75/§32): FAIL (регресс после evidence). Проба tests/pm210_background_jobs_registry.probe.ts (сторож критерия A1) падает на HEAD: 3 фоновые работы не внесены в реестр evidence/PM-210_background_jobs.md — components/completion/V2DoneScreen.tsx (setInterval), hooks/use_dialogue_v2_warmup.ts (afterInteractions), hooks/use_today_tasks.ts (appState); плюс 7 устаревших строк (app_check_init.ts, CollectibleArtFrame, HoloFoilCard, ProfileCardMotionFx, QuestSheetModal, ShineOverlay, DailyJourneyProductionModalHost). Нужно: дозаполнить триггер/reads/writes/cache/отмену для 3 новых, удалить 7 устаревших, добиться PASS пробы."
     ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
+    "review_verdict": "CHANGES_REQUIRED",
     "gate_evidence": {},
     "actual_model": "sonnet-5",
     "actual_reasoning": "high"
@@ -304,7 +323,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -333,18 +352,22 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
     "evidence": [
-      "registries/job_inventory.json"
+      "registries/job_inventory.json",
+      "evidence/PM-007_code_vs_cloud_functions.md (код 440, облако 516, расхождения без удаления)",
+      "scripts/pm007_code_vs_cloud_functions.mjs",
+      "commits aefd6c5dc, 3f63c244d, 0fc5659fa"
     ],
     "notes": [
-      "30 серверных записей; 25 scheduled задеплоены (functions:list, 509 функций в облаке). resetWeeklyXpCron — перевести на монеты, не выключать. webActivationReminderCron есть в коде, нет в облаке. Арена ~45 callable + arenaV2CleanupHourly — консервация отдельной задачей"
+      "30 серверных записей; 25 scheduled задеплоены (functions:list, 509 функций в облаке). resetWeeklyXpCron — перевести на монеты, не выключать. webActivationReminderCron есть в коде, нет в облаке. Арена ~45 callable + arenaV2CleanupHourly — консервация отдельной задачей",
+      "2026-10-01 независимое ревью (agent-reviewer, Q75/§32): PASS. Два списка и раздел «Расхождения (НЕ удалены автоматически)» есть; скрипт читает только исходники и присланный JSON; автоудаления функций в репозитории нет (--force есть лишь в деплое кодбазы english-test, это не удаление расхождений). Данные облака (516) по присланному владельцем списку — проверить на проде ревьюер не мог."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
+    "kind": "audit",
+    "review_verdict": "PASS",
     "gate_evidence": {},
-    "actual_model": "sonnet-5",
+    "actual_model": "sonnet-5 (аудит 24.09) + claude-opus-5.5 (облачная сверка 01.10: Co-Authored-By 3f63c244d; aefd6c5dc — «Claude Opus»)",
     "actual_reasoning": "high"
   },
   {
@@ -395,7 +418,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -423,18 +446,22 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
     "evidence": [
-      "registries/asset_inventory.json"
+      "registries/asset_inventory.json",
+      "evidence/PM-009_asset_bundle_inventory.md (3877 файлов: исходники 109.10 МБ, в архиве EAS 17.24 МБ, в бандле 15.87 МБ)",
+      "scripts/pm009_asset_bundle_inventory.mjs",
+      "commit b79603b2a"
     ],
     "notes": [
-      "assets 210 МБ/5293 файла; dalli 79 МБ уже вне сборки (.easignore); avatar-auras-hd 5 МБ без импортёров — кандидат; level-spin-rewards 1 МБ уйдёт со спинами; тяжёлых 3D/ML библиотек нет"
+      "assets 210 МБ/5293 файла; dalli 79 МБ уже вне сборки (.easignore); avatar-auras-hd 5 МБ без импортёров — кандидат; level-spin-rewards 1 МБ уйдёт со спинами; тяжёлых 3D/ML библиотек нет",
+      "2026-10-01 независимое ревью (agent-reviewer, Q75/§32): PASS. Оговорка: после снимка (b79603b2a) коммит ce1fad0af (D137, Главная) начал require() у assets/images/v2/spiral_notepad.png и home_menu/home-forest-league.webp — они значатся «кандидатами на удаление», удалять нельзя; перед любым удалением повторить git grep (требование самого документа)."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
+    "kind": "audit",
+    "review_verdict": "PASS",
     "gate_evidence": {},
-    "actual_model": "sonnet-5",
+    "actual_model": "sonnet-5 (аудит 24.09) + claude-opus (b79603b2a, версия не указана)",
     "actual_reasoning": "high"
   },
   {
@@ -593,25 +620,25 @@
     "acceptance": [
       {
         "id": "PM-013-A1",
-      "text": "В контракте разделены баланс монет, ранг монеты, прогресс курса и недельный результат",
-      "accepted": true,
-      "evidence": [
-        "Owner decision 2026-09-27: preserve the existing progress screen structure without XP/legacy levels",
-        "tests/coin_identity_resolver_contract.probe.ts: COIN IDENTITY RESOLVER: PASS",
-        "tests/pm055_xp_multiplier_runtime_retirement.probe.ts: PM-055 XP MULTIPLIER RETIREMENT: PASS",
-        "2026-09-28 source audit: Home reads coin rank via useMyCoinRank, weekly result via weekDone/weekPoints, and Learning V2 uses the separate course_local_progress_v1 store",
-        "tests/pm013_progress_separation.probe.ts: PM-013 PROGRESS SEPARATION: PASS",
+        "text": "В контракте разделены баланс монет, ранг монеты, прогресс курса и недельный результат",
+        "accepted": true,
+        "evidence": [
+          "Owner decision 2026-09-27: preserve the existing progress screen structure without XP/legacy levels",
+          "tests/coin_identity_resolver_contract.probe.ts: COIN IDENTITY RESOLVER: PASS",
+          "tests/pm055_xp_multiplier_runtime_retirement.probe.ts: PM-055 XP MULTIPLIER RETIREMENT: PASS",
+          "2026-09-28 source audit: Home reads coin rank via useMyCoinRank, weekly result via weekDone/weekPoints, and Learning V2 uses the separate course_local_progress_v1 store",
+          "tests/pm013_progress_separation.probe.ts: PM-013 PROGRESS SEPARATION: PASS",
           "2026-09-30 docs/phraseman-2.0/docs/PRODUCT.md: добавлен раздел «Модель прогресса без XP (PM-013)» — четыре разделённые величины (баланс монет, ранг монеты, прогресс курса, недельный результат) со ссылками на реализацию; проба tests/pm013_progress_separation.probe.ts PASS. Формулировка производна от решений владельца PM-013/PM-019/PM-070; визуальная приёмка экрана НЕ проводилась."
-      ]
+        ]
       },
       {
         "id": "PM-013-A2",
-      "text": "XP не возвращается под новым именем",
-      "accepted": true,
-      "evidence": [
-        "tests/pm055_xp_multiplier_runtime_retirement.probe.ts: PM-055 XP MULTIPLIER RETIREMENT: PASS",
-        "2026-09-28 active runtime scan: no registerXP/addXP/awardXP/getXPMultiplier/xp_multiplier symbols outside compatibility readers"
-      ]
+        "text": "XP не возвращается под новым именем",
+        "accepted": true,
+        "evidence": [
+          "tests/pm055_xp_multiplier_runtime_retirement.probe.ts: PM-055 XP MULTIPLIER RETIREMENT: PASS",
+          "2026-09-28 active runtime scan: no registerXP/addXP/awardXP/getXPMultiplier/xp_multiplier symbols outside compatibility readers"
+        ]
       }
     ],
     "depends_on": [],
@@ -622,13 +649,24 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": ["Owner decision 2026-09-27: общий экран прогресса сохраняется по структуре, но полностью без XP и старых уровней; разделить баланс монет, ранг монеты, прогресс курса и недельный результат."],
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "evidence": [
+      "docs/PRODUCT.md раздел «Модель прогресса без XP (PM-013)»",
+      "tests/pm013_progress_separation.probe.ts (прогон ревью: PASS)",
+      "tests/coin_identity_resolver_contract.probe.ts (PASS)",
+      "tests/pm055_xp_multiplier_runtime_retirement.probe.ts (PASS)"
+    ],
+    "notes": [
+      "Owner decision 2026-09-27: общий экран прогресса сохраняется по структуре, но полностью без XP и старых уровней; разделить баланс монет, ранг монеты, прогресс курса и недельный результат.",
+      "2026-10-01 независимое ревью (agent-reviewer, Q75/§32): содержание PASS (критерии A1/A2 подтверждены, три пробы прошли). В done НЕ переведена: БЛОКЕР — actual_model не установить (evidence-коммит efe19ae9d — общий снимок без Co-Authored-By; прочие записи — аудит без указания модели). Нужна запись автора от координатора."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "OWNER_DECISION_RECORDED": "PROGRESS.md раздел 1 D64.1 (XP полностью удалён, владелец 2026-09-24) + решение владельца 2026-09-27 (notes задачи, docs/PRODUCT.md раздел PM-013)"
+    },
     "actual_model": null,
     "actual_reasoning": null
   },
@@ -641,7 +679,7 @@
     ],
     "basis": "DECISION",
     "stage": "A",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -670,17 +708,28 @@
       "OWNER_DECISION_RECORDED"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "a1f7514f2",
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": ["Owner decision 2026-09-27: диалоги открываются по рангу монеты; Plus не получает обход этого правила без отдельного решения."],
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "evidence": [
+      "03_DECISIONS.md D124 (OWNER_FINAL 2026-09-30)",
+      "commit a1f7514f2",
+      "tests/dialogue_v2_access_contract.test.ts 4/4 (прогон ревью)",
+      "tests/ai_dialog_level_lock.test.ts 9/9 (прогон ревью)"
+    ],
+    "notes": [
+      "Owner decision 2026-09-27: диалоги открываются по рангу монеты; Plus не получает обход этого правила без отдельного решения.",
+      "2026-10-01 независимое ревью (agent-reviewer, Q75/§32): PASS. legacyDialogScenarioRankRequired даёт A1->1, A2->6, B1->11, B2->14 (первая позиция уровня в DIALOGUE_V2_CEFR_SEQUENCE); тест «does not make a purchase or subscription an alternative unlock path» на месте; файлы после a1f7514f2 не менялись."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "decision",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "OWNER_DECISION_RECORDED": "03_DECISIONS.md D124 — OWNER_FINAL 2026-09-30: доступ к диалогам только по монетному рангу, Plus без обхода"
+    },
+    "actual_model": "claude-opus (версия не указана; Co-Authored-By a1f7514f2)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
   "id": "PM-015",
@@ -883,13 +932,20 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "evidence": [
+      "tests/fc_custom_cards_store.test.ts 11/11, tests/pack_publish_limit_client.test.ts 3/3, functions/src/community_pack_publish_limit.test.ts 7/7 (прогон ревью 2026-10-01)",
+      "functions/src/pack_publish_limit.ts (PACK_PUBLISH_DAILY_LIMIT=3), commits 8330803a8, 734800ed0"
+    ],
+    "notes": [
+      "2026-10-01 независимое ревью (agent-reviewer, Q75/§32): критерии A1/A2 подтверждены (удаление без списаний; лимит 3 публикации/сутки, 50 карточек в наборе, Free 50 своих карточек). В done НЕ переведена: owner-gate PROPOSED_SCOPE_APPROVED — D17 остаётся PROPOSED, Q55 решён координатором и в 03_DECISIONS.md не записан (Q68 ждёт записи D-номером); решение владельца не подтверждено. Не выложено на прод (DEPLOY)."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
     "actual_model": null,
     "actual_reasoning": null
   },
@@ -998,7 +1054,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -1028,17 +1084,25 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "evidence": [
+      "sources/03_design_rejection.txt + R021 (дословный отказ от PhraseMan_Home_Graphite.png)",
+      "evidence/E01_E02_baseline_batch_2026-10-01.md (раздел PM-021)",
+      "git ls-files: PhraseMan_Home_Graphite.png в репозитории отсутствует",
+      "commit 0033c9ea7"
+    ],
     "notes": [
-      "Само решение владельцем уже принято и отражено в документах. Повторно спрашивать 5/10/100 или возвращать «Графит» нельзя. Осталось закрепить решение и проверить отсутствие противоречий в фактическом проекте; это ещё не принятый кодовый результат."
+      "Само решение владельцем уже принято и отражено в документах. Повторно спрашивать 5/10/100 или возвращать «Графит» нельзя. Осталось закрепить решение и проверить отсутствие противоречий в фактическом проекте; это ещё не принятый кодовый результат.",
+      "2026-10-01 независимое ревью (agent-reviewer, Q75/§32): PASS. R021 дословно в источнике; макета в git нет; gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES стоит на 107 задачах; «graphite» в docs/design/v2-app — токен тёмной темы, не отклонённый макет."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "decision",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
+    "actual_model": "claude-sonnet-5.5 (Co-Authored-By 0033c9ea7)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
     "id": "PM-022",

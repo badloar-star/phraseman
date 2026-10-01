@@ -4834,14 +4834,8 @@ export default function LessonsTab({
             tr: "Enerji yükleniyor",
             pl: "Energia jest ładowana",
           })}
-          style={{
-            width: 88,
-            height: 24,
-            borderRadius: 12,
-            borderWidth: 1,
-            borderColor: learnGlass.glassEdge,
-            backgroundColor: learnGlass.opaqueControl,
-          }}
+          // зачем (владелец 01.10): у энергии нигде нет фона — место держим прозрачным, без капсулы.
+          style={{ width: 60, height: 24 }}
         />
       )}
     </View>

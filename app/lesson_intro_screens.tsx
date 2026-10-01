@@ -760,14 +760,8 @@ export default function LessonIntroScreens({
           ) : (
             <View
               testID="lesson-intro-energy-loading"
-              style={{
-                width: 88,
-                height: 30,
-                borderRadius: 15,
-                borderWidth: StyleSheet.hairlineWidth,
-                borderColor: introGlass.glassEdge,
-                backgroundColor: introGlass.opaqueControl,
-              }}
+              // зачем (владелец 01.10): у энергии нигде нет фона — место держим прозрачным, без капсулы.
+              style={{ width: 60, height: 30 }}
             />
           )}
 

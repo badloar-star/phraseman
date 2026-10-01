@@ -1218,14 +1218,8 @@ function LessonMenu() {
                   tr: 'Enerji yükleniyor',
                   pl: 'Energia jest ładowana',
                 })}
-                style={{
-                  width: 88,
-                  height: 30,
-                  borderRadius: 15,
-                  borderWidth: 1,
-                  borderColor: lessonMenuGlass.glassEdge,
-                  backgroundColor: lessonMenuGlass.opaqueControl,
-                }}
+                // зачем (владелец 01.10): у энергии нигде нет фона — место держим прозрачным, без капсулы.
+                style={{ width: 60, height: 30 }}
               />
             )}
             <LessonMenuRoundButton

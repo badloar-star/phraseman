@@ -4,7 +4,8 @@ import { buildSessionShardFromSource } from '../modules/learning-v2/content/sour
 describe('episode 1 Full B1 session 8 checkpoint source', () => {
   test('has no new vocabulary and gives every practice card one unique retrieval target', () => {
     expect(EPISODE_01_SESSION_08_SOURCE.sessionKindOverride).toBe('checkpoint');
-    expect(EPISODE_01_SESSION_08_SOURCE.vocabulary).toBeUndefined();
+    // зачем: поле переименовано в newVocabulary (04771d1ca, 2026-08-24); смысл тот же — новых слов нет.
+    expect(EPISODE_01_SESSION_08_SOURCE.newVocabulary ?? []).toHaveLength(0);
     const cards = buildSessionShardFromSource(EPISODE_01_SESSION_08_SOURCE).cards.slice(3);
     expect(cards).toHaveLength(6);
     expect(cards.filter((card) => card.family === 'speed_match')).toHaveLength(1);

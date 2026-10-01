@@ -499,6 +499,42 @@ describe('submitClientReport', () => {
     expect(errorDocs[0]).toMatchObject({ uid: 'stable-reporter' });
   });
 
+  test('PM-227-A2: injected test failure is FOUND by the admin App Health and moderation queries', async () => {
+    // зачем: PM-227-A2 «тестовый сбой найден, а не только вызван logger». Сбой проходит
+    // настоящий обработчик, а затем ищется ТЕМИ ЖЕ условиями, которыми его ищет админка
+    // admin/v2/legacy.html (App Health: createdAt >= ISO-окно 24 ч, orderBy createdAt;
+    // очередь модерации: status in ['new','open']). Если сервер сменит тип createdAt
+    // (ISO-строка ↔ Timestamp) или статус, админка перестанет видеть ошибки — тест упадёт.
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const adminHtml = fs.readFileSync(path.resolve(__dirname, '../../admin/v2/legacy.html'), 'utf8');
+    expect(adminHtml).toMatch(/window\._appHealthRangeSince = new Date\(Date\.now\(\) - hours \* 60 \* 60 \* 1000\)\.toISOString\(\);/);
+    expect(adminHtml).toMatch(/collection\(db, 'app_errors'\), where\('createdAt', '>=', window\._appHealthRangeSince\), orderBy\('createdAt', 'desc'\)/);
+    expect(adminHtml).toMatch(/const MQ_APP_ERROR_OPEN_STATUSES = \['new', 'open'\];/);
+
+    await callSubmitClientReport({
+      kind: 'app_error',
+      payload: {
+        platform: 'android', appVersion: '2.0.0', buildNumber: '131', feature: 'pm227', screen: 'probe',
+        severity: 'critical', context: 'pm227:injected_failure', fingerprint: 'pm227probe',
+        errorName: 'Pm227ProbeError', message: 'PM-227 injected failure',
+      },
+    });
+
+    const windowSince = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+    const appHealthView = reportDocs('app_errors')
+      .filter((d) => typeof d.createdAt === 'string' && (d.createdAt as string) >= windowSince)
+      .sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)));
+    const moderationView = reportDocs('app_errors')
+      .filter((d) => ['new', 'open'].includes(String(d.status)));
+    for (const view of [appHealthView, moderationView]) {
+      expect(view.find((d) => d.fingerprint === 'pm227probe')).toMatchObject({
+        context: 'pm227:injected_failure', severity: 'critical', message: 'PM-227 injected failure',
+        feature: 'pm227', appVersion: '2.0.0',
+      });
+    }
+  });
+
   test('atomically records a release-aware server aggregate without uid or report text', async () => {
     await callSubmitClientReport({
       kind: 'app_error',

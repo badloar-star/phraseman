@@ -11634,8 +11634,11 @@
       {
         "id": "PM-227-A2",
         "text": "тестовый сбой найден, а не только вызван logger",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-10-01 сервер: functions/src/client_reports.test.ts тест 'PM-227-A2: injected test failure is FOUND by the admin App Health and moderation queries' — вброшенный сбой проходит настоящий submitClientReport и находится теми же условиями, что в admin/v2/legacy.html (createdAt >= ISO-окно 24 ч + orderBy createdAt; status in ['new','open']); тест сверяет и сами строки запросов в legacy.html. cd functions && jest src/client_reports.test.ts → 18/18 PASS.",
+          "2026-10-01 клиент: tests/pm227_app_health_transport_visible.test.ts 2/2 PASS (logAppCritical → submitClientReport('app_error', context/feature/screen/severity/message/errorName/fingerprint); отказ транспорта пишет [APP-HEALTH] transport_failed вместо немого catch). 8 немых catch в app/app_health.ts заменены логом; tests/app_health_throttle_cache.test.ts 1/1 PASS; npm run typecheck = 36 (базовая линия)."
+        ]
       }
     ],
     "depends_on": [],

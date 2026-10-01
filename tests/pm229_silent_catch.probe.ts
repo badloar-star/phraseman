@@ -45,7 +45,6 @@ const BASELINE: Record<string, number> = {
   'app/ai_mistake_explain_client.ts': 2,
   'app/analytics.ts': 1,
   'app/analytics_consent.ts': 1,
-  'app/app_health.ts': 8,
   'app/app_resume_policy.ts': 1,
   'app/app_snapshot_bootstrap.ts': 7,
   'app/audio_session_coordinator.ts': 2,

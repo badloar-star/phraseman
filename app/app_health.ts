@@ -25,6 +25,14 @@ const THROTTLE_STORAGE_LIMIT = 192;
 const THROTTLE_STORAGE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 const THROTTLE_PRUNE_INTERVAL_MS = 6 * 60 * 60 * 1000;
 const healthThrottleCache = new Map<string, number>();
+
+// зачем: PM-227 — немой catch запрещён (CLAUDE.md «Сперва логи»). Здесь нельзя звать
+// DebugLogger: он сам вызывает logAppError, и отказ транспорта ушёл бы в рекурсию.
+// Поэтому только console.warn с единым префиксом [APP-HEALTH] — без текста ошибки
+// пользователя, только шаг и сообщение исключения.
+function warnHealthIo(step: string, error: unknown): void {
+  console.warn('[APP-HEALTH]', step, error instanceof Error ? error.message : String(error));
+}
 let lastThrottlePruneAt = 0;
 let throttlePruneInFlight = false;
 
@@ -76,11 +84,11 @@ async function pruneStoredThrottleKeys(now: number): Promise<void> {
   throttlePruneInFlight = true;
   lastThrottlePruneAt = now;
   try {
-    const keys = await AsyncStorage.getAllKeys().catch(() => []);
+    const keys = await AsyncStorage.getAllKeys().catch((e) => { warnHealthIo('throttle_prune_keys_failed', e); return [] as readonly string[]; });
     const throttleKeys = keys.filter((key) => key.startsWith(THROTTLE_PREFIX));
     if (throttleKeys.length === 0) return;
 
-    const rows = await AsyncStorage.multiGet(throttleKeys).catch(() => []);
+    const rows = await AsyncStorage.multiGet(throttleKeys).catch((e) => { warnHealthIo('throttle_prune_read_failed', e); return [] as readonly (readonly [string, string | null])[]; });
     const keep: Array<{ key: string; at: number }> = [];
     const remove: string[] = [];
     for (const [key, value] of rows) {
@@ -98,7 +106,7 @@ async function pruneStoredThrottleKeys(now: number): Promise<void> {
     }
 
     if (remove.length > 0) {
-      await AsyncStorage.multiRemove(remove).catch(() => {});
+      await AsyncStorage.multiRemove(remove).catch((e) => warnHealthIo('throttle_prune_remove_failed', e));
       remove.forEach((key) => healthThrottleCache.delete(key));
     }
   } finally {
@@ -116,14 +124,14 @@ async function shouldSend(fingerprint: string, severity: AppHealthSeverity, samp
   const cachedLast = healthThrottleCache.get(key) ?? 0;
   if (now - cachedLast < throttleMs) return false;
 
-  const lastRaw = await AsyncStorage.getItem(key).catch(() => null);
+  const lastRaw = await AsyncStorage.getItem(key).catch((e) => { warnHealthIo('throttle_read_failed', e); return null; });
   const last = parseInt(lastRaw || '0', 10) || 0;
   rememberThrottle(key, last);
   if (now - last < throttleMs) return false;
 
   rememberThrottle(key, now);
-  await AsyncStorage.setItem(key, String(now)).catch(() => {});
-  void pruneStoredThrottleKeys(now).catch(() => {});
+  await AsyncStorage.setItem(key, String(now)).catch((e) => warnHealthIo('throttle_write_failed', e));
+  void pruneStoredThrottleKeys(now).catch((e) => warnHealthIo('throttle_prune_failed', e));
   return true;
 }
 
@@ -148,7 +156,7 @@ export async function logAppError(context: string, error: unknown, meta: AppHeal
   const shouldWrite = meta.writeToFirestore ?? severity === 'critical';
   if (!shouldWrite) return;
 
-  const userName = await AsyncStorage.getItem('user_name').catch(() => null);
+  const userName = await AsyncStorage.getItem('user_name').catch((e) => { warnHealthIo('user_name_read_failed', e); return null; });
   const appVersion = Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown';
   const buildNumber = Constants.nativeBuildVersion ?? 'unknown';
 
@@ -168,7 +176,7 @@ export async function logAppError(context: string, error: unknown, meta: AppHeal
     platform: Platform.OS,
     osVersion: String(Platform.Version),
     deviceName: Constants.deviceName ?? null,
-  }).catch(() => {});
+  }).catch((e) => warnHealthIo(`transport_failed:${context}`, e));
 }
 
 export function logAppWarning(context: string, error: unknown, meta: Omit<AppHealthMeta, 'severity'> = {}) {

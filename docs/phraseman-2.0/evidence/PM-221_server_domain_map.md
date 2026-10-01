@@ -58,6 +58,125 @@
 | statsInsightsGenerate | callable | ai/audio | functions/src/stats_insights.ts | экспорта нет, вызова из клиента нет, решения в 03_DECISIONS нет: удалить код или подключить в 2.0 |
 | weeklyReviewGenerate | callable | ai/audio | functions/src/weekly_review.ts | экспорта нет, вызова из клиента нет, решения в 03_DECISIONS нет: удалить код или подключить в 2.0 |
 
+## В облаке, но нет в коде (сверка PM-007): 112
+
+Статусы: keep 2, retired-tombstone 96, needs-owner-decision 14. Полная выкладка `default` удалит ВСЕ эти функции — keep здесь значит «код надо вернуть в ветку до выкладки».
+
+| Функция | Домен | Статус | Основание |
+|---|---|---|---|
+| activationEmailRetryCron | purchases/subscriptions | keep | сторож почты активации (инцидент 21.09). Код только в ветке claude/sad-cannon-876ae9 (3d3f7a824, bcfbd5836) — ПЕРЕНЕСТИ до полной выкладки, иначе удалится молча (PM-222 §6) |
+| adminGetCoinExchangeCenter | purchases/subscriptions | retired-tombstone | D70/D78/D84: жемчуг и биржа удалены; клиентский вызов shardsApplyDelta — только досылка старой очереди, not-found снимается как постоянный отказ (PM-222 §6.1) |
+| adminGetCosmeticAssetArchive | other | retired-tombstone | D102/D108: косметика удалена |
+| adminGetMaxVoiceOpsDashboard | ai/audio | retired-tombstone | MAX законсервирован (CLAUDE.md 2026-09-04) |
+| adminListMaxVoiceFeedback | ai/audio | retired-tombstone | MAX законсервирован (CLAUDE.md 2026-09-04) |
+| adminMoveLeagueUser | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| adminRefundCommunityPackPurchase | purchases/subscriptions | retired-tombstone | D110: удалить |
+| adminResetLeaguePoints | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| adminSetCoinExchangeRate | purchases/subscriptions | retired-tombstone | D70/D78/D84: жемчуг и биржа удалены; клиентский вызов shardsApplyDelta — только досылка старой очереди, not-found снимается как постоянный отказ (PM-222 §6.1) |
+| adminSetCosmeticAssetSaleStatus | other | retired-tombstone | D102/D108: косметика удалена |
+| adminSetShardBalance | purchases/subscriptions | retired-tombstone | D70/D78/D84: жемчуг и биржа удалены; клиентский вызов shardsApplyDelta — только досылка старой очереди, not-found снимается как постоянный отказ (PM-222 §6.1) |
+| aiDialogSyncPurchase | purchases/subscriptions | retired-tombstone | D124: покупки диалогов за руны не учитываются; клиентский вызов мёртв (PM-222 §6.1) |
+| arenaExpansionHome | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaGhostAccept | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaGhostCreate | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaGhostDecline | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaGhostStatus | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaMatchLabGet | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaPartnerAccept | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaPartnerClaimSpotlight | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaPartnerInvite | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaPartnerNudge | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaPartnerPause | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaPartnerPreferences | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaPartnerRemove | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaRivalAccept | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaRivalLeave | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaRivalMute | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaRivalNext | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaRivalPropose | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaStarEquip | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaStarPurchase | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaStarStore | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaTodayStart | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaTodaySubmitAnswer | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaTodaySubmitSpeedAttempt | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaTodaySync | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2CleanupHourly | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2DevFriendBotCreate | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2FindMatch | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2Forfeit | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2FriendsBoard | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2Home | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2InviteAccept | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2InviteCancel | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2InviteCreate | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2InviteDecline | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2InviteReady | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2InviteStatus | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2MatchAccept | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2MatchDecline | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2MatchFinish | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2MatchPlan | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2MatchSettle | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2OnQueueWrite | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2QueueCancel | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2QuickBotFallback | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2RankedBotFallback | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2ReleaseStaleMatch | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2SeasonClaim | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2SubmitAnswer | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2SubmitSpeedAttempt | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| arenaV2SyncMatch | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| authorizeLearningV2CourseUnlock | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
+| communityPurchasePack | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
+| computeLeaderboardStatsCron | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| cosmeticAssetCatalogGet | other | retired-tombstone | D102/D108: косметика удалена |
+| devRunesGrant | ai/audio | retired-tombstone | D81: репетитор Макса и dev-выдачи удалить |
+| devShardsGrant | ai/audio | retired-tombstone | D81: репетитор Макса и dev-выдачи удалить |
+| exchangeCoinsForStars | purchases/subscriptions | retired-tombstone | D70/D78/D84: жемчуг и биржа удалены; клиентский вызов shardsApplyDelta — только досылка старой очереди, not-found снимается как постоянный отказ (PM-222 §6.1) |
+| friendClaimQuestReward | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
+| friendConsumeChainShield | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
+| friendGetActiveQuest | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
+| friendSendGift | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
+| friendThankGift | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
+| friendsClaimWeeklyChest | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
+| getCoinExchangeHistory | purchases/subscriptions | retired-tombstone | D70/D78/D84: жемчуг и биржа удалены; клиентский вызов shardsApplyDelta — только досылка старой очереди, not-found снимается как постоянный отказ (PM-222 §6.1) |
+| getCoinExchangeQuote | purchases/subscriptions | retired-tombstone | D70/D78/D84: жемчуг и биржа удалены; клиентский вызов shardsApplyDelta — только досылка старой очереди, not-found снимается как постоянный отказ (PM-222 §6.1) |
+| leaderboardUpdateDailyAnalytics | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| leagueActivateGroupBoost | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| leagueChestClaim | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| leagueFinalizeCron | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| leagueJoinOrUpdateGroup | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| leagueResidentsTickCron | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| leagueSyncMyBoost | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| leagueUpdateMyMember | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| levelGiftActivatePackGift | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
+| levelGiftReserve | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
+| levelRewardSpinAcknowledge | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
+| levelRewardSpinClaim | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
+| levelRewardSpinDelivery | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
+| levelRewardSpinEnrollV1 | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
+| levelRewardSpinStatus | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
+| levelSpinActivatePackGift | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
+| maxVoiceConfigAdmin | ai/audio | retired-tombstone | MAX законсервирован (CLAUDE.md 2026-09-04) |
+| profileCardUpgrade | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
+| recalcCoinExchangeRate | purchases/subscriptions | retired-tombstone | D70/D78/D84: жемчуг и биржа удалены; клиентский вызов shardsApplyDelta — только досылка старой очереди, not-found снимается как постоянный отказ (PM-222 §6.1) |
+| referralDevGrantSpin | ai/audio | retired-tombstone | D81: репетитор Макса и dev-выдачи удалить |
+| resendKeyHealthCron | purchases/subscriptions | keep | сторож почты активации (инцидент 21.09). Код только в ветке claude/sad-cannon-876ae9 (3d3f7a824, bcfbd5836) — ПЕРЕНЕСТИ до полной выкладки, иначе удалится молча (PM-222 §6) |
+| resetWeeklyXpCron | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
+| resolveLearningV2CourseUnlockReceipt | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
+| seasonBuyPass | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
+| seasonClaimReward | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
+| seasonRedeemConsumable | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
+| seasonSendFriendShield | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
+| shardsApplyDelta | purchases/subscriptions | retired-tombstone | D70/D78/D84: жемчуг и биржа удалены; клиентский вызов shardsApplyDelta — только досылка старой очереди, not-found снимается как постоянный отказ (PM-222 §6.1) |
+| statsInsightsGenerate | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
+| submitMaxVoiceFeedback | ai/audio | retired-tombstone | MAX законсервирован (CLAUDE.md 2026-09-04) |
+| tutorTextTopics | ai/audio | retired-tombstone | D81: репетитор Макса и dev-выдачи удалить |
+| tutorTextTurn | ai/audio | retired-tombstone | D81: репетитор Макса и dev-выдачи удалить |
+| weeklyReviewGenerate | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
+| welcomeGiftClaim | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
+
 ## Полная таблица
 
 | Функция | Тип | Домен | Возможность | Статус | Экспорт index.ts | Файл |
@@ -273,7 +392,7 @@
 | questReportProgress | callable | sync/progress | Связка записи профиля пользователя, квесты и регламентные сверки | keep | да | functions/src/quests.ts:274 |
 | soc2ReadinessCollectorCron | schedule | sync/progress | Связка записи профиля пользователя, квесты и регламентные сверки | keep | да | functions/src/soc2_readiness_collector.ts:240 |
 | usersWriteRouter | trigger | sync/progress | Связка записи профиля пользователя, квесты и регламентные сверки | keep | да | functions/src/users_write_router.ts:16 |
-| adminCardTtsRequeuePack | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/card_tts_worker.ts:480 |
+| adminCardTtsRequeuePack | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/card_tts_worker.ts:491 |
 | adminCreateAssetJob | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_asset_studio.ts:244 |
 | adminGenerateDailyDigest | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_daily_digest.ts:1055 |
 | adminGetAdminConfigWorkspace | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_config_controls.ts:156 |
@@ -330,7 +449,7 @@
 | adminListMaxVoiceFeedback | callable | ai/audio | Раздел MAX (голосовой звонок с ИИ) — законсервирован владельцем 2026-09-04 | retired-tombstone | нет | functions/src/max_voice_feedback.ts:152 |
 | adminListMistakeExplanationCache | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/admin_explain_cache.ts:86 |
 | adminTranslateMessage | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/admin_translate.ts:88 |
-| cardTtsPackWorker | trigger | ai/audio | Озвучка карточек OpenAI TTS при одобрении набора (D128) | keep | да | functions/src/card_tts_worker.ts:452 |
+| cardTtsPackWorker | trigger | ai/audio | Озвучка карточек OpenAI TTS при одобрении набора (D128) | keep | да | functions/src/card_tts_worker.ts:463 |
 | dialogueV2Catalogue | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_catalogue_callable.ts:62 |
 | dialogueV2FreeformPreparedBotVoiceResolve | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_freeform_prepared_bot_voice_callable.ts:178 |
 | dialogueV2FreeformSessionStart | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_freeform_session_start_callable.ts:247 |
@@ -342,7 +461,7 @@
 | dialogueV2SessionStart | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_session_start_callable.ts:192 |
 | dialogueV2TextTurn | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_turn_production_callable.ts:799 |
 | explainChoice | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/explain_choice.ts:76 |
-| explainMistake | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/mistake_explain.ts:786 |
+| explainMistake | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/mistake_explain.ts:787 |
 | explainPhrase | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/explain_phrase.ts:109 |
 | maxVoiceClearMemory | callable | ai/audio | Раздел MAX (голосовой звонок с ИИ) — законсервирован владельцем 2026-09-04 | retired-tombstone | нет | functions/src/max_voice_memory_controls.ts:344 |
 | maxVoiceConfigAdmin | callable | ai/audio | Раздел MAX (голосовой звонок с ИИ) — законсервирован владельцем 2026-09-04 | retired-tombstone | нет | functions/src/max_voice_config.ts:412 |

@@ -179,7 +179,48 @@ export function buildDomainMap(root = process.cwd()) {
   const live = readLiveExports(root);
   const rows = bundle.records.filter((r) => SERVER_ROUTE_TYPES.includes(r.routeType)).map((r) => classify(r, live));
   const domainCollections = Object.fromEntries(DOMAINS.map((d) => [d, collectionsOf(root, rows.filter((r) => r.domain === d).map((r) => r.sourcePath))]));
-  return { rows, liveExportCount: live.size, domainCollections };
+  return { rows, liveExportCount: live.size, domainCollections, cloudOnly: readCloudOnly(root) };
+}
+
+// --- Облако без кода (PM-007, сверка ядра 3f63c244d) ---
+// зачем (PM-221-A1): «каждая function» — это и то, что крутится в облаке, хотя кода в ветке уже нет.
+// Полная выкладка удалит такие функции; карта обязана сказать, какие из них уходят по решению,
+// а какие уйдут СЛУЧАЙНО. Источник — список в evidence/PM-007 (снят владельцем/ядром, только чтение).
+const PM007_PATH = 'docs/phraseman-2.0/evidence/PM-007_code_vs_cloud_functions.md';
+const CLOUD_ONLY_RULES = [
+  { n: /^(activationEmailRetryCron|resendKeyHealthCron)$/u, d: 'purchases/subscriptions', s: 'keep', why: 'сторож почты активации (инцидент 21.09). Код только в ветке claude/sad-cannon-876ae9 (3d3f7a824, bcfbd5836) — ПЕРЕНЕСТИ до полной выкладки, иначе удалится молча (PM-222 §6)' },
+  { n: /^(arena|adminMoveLeague|adminResetLeague|league|leaderboard|computeLeaderboard|resetWeeklyXp)/u, d: 'spire/arena', s: 'retired-tombstone', why: 'Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222)' },
+  { n: /^(tutorText|devRunesGrant|devShardsGrant|referralDevGrantSpin)/u, d: 'ai/audio', s: 'retired-tombstone', why: 'D81: репетитор Макса и dev-выдачи удалить' },
+  { n: /^(maxVoice|adminGetMaxVoice|adminListMaxVoice|submitMaxVoice)/u, d: 'ai/audio', s: 'retired-tombstone', why: 'MAX законсервирован (CLAUDE.md 2026-09-04)' },
+  { n: /^(cosmeticAssetCatalogGet|adminGetCosmeticAssetArchive|adminSetCosmeticAssetSaleStatus)$/u, d: 'other', s: 'retired-tombstone', why: 'D102/D108: косметика удалена' },
+  { n: /^(shardsApplyDelta|adminSetShardBalance|adminGetCoinExchangeCenter|adminSetCoinExchangeRate|exchangeCoinsForStars|getCoinExchange|recalcCoinExchangeRate)/u, d: 'purchases/subscriptions', s: 'retired-tombstone', why: 'D70/D78/D84: жемчуг и биржа удалены; клиентский вызов shardsApplyDelta — только досылка старой очереди, not-found снимается как постоянный отказ (PM-222 §6.1)' },
+  { n: /^adminRefundCommunityPackPurchase$/u, d: 'purchases/subscriptions', s: 'retired-tombstone', why: 'D110: удалить' },
+  { n: /^aiDialogSyncPurchase$/u, d: 'purchases/subscriptions', s: 'retired-tombstone', why: 'D124: покупки диалогов за руны не учитываются; клиентский вызов мёртв (PM-222 §6.1)' },
+  { n: /^(levelGift|levelRewardSpin|levelSpinActivatePackGift|friendSendGift|friendThankGift|welcomeGiftClaim)/u, d: 'social/friends', s: 'retired-tombstone', why: 'подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты)' },
+];
+
+export function readCloudOnly(root = process.cwd()) {
+  let md = '';
+  try {
+    md = readFileSync(resolve(root, PM007_PATH), 'utf8');
+  } catch (err) {
+    process.stderr.write(`[PM-221] нет ${PM007_PATH}: облачная сверка пропущена (${err?.message ?? err})\n`);
+    return [];
+  }
+  const start = md.indexOf('### В облаке, но нет в коде');
+  if (start < 0) {
+    process.stderr.write('[PM-221] в PM-007 нет раздела «В облаке, но нет в коде» — сверка пропущена\n');
+    return [];
+  }
+  const tail = md.slice(start).split('\n').slice(1);
+  const end = tail.findIndex((l) => l.startsWith('### '));
+  const names = (end < 0 ? tail : tail.slice(0, end)).flatMap((l) => [...l.matchAll(/`([A-Za-z0-9_]+)`/gu)].map((m) => m[1]));
+  return [...new Set(names)].sort().map((name) => {
+    const rule = CLOUD_ONLY_RULES.find((r) => r.n.test(name));
+    return rule
+      ? { name, domain: rule.d, status: rule.s, reason: rule.why }
+      : { name, domain: 'other', status: 'needs-owner-decision', reason: 'в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит' };
+  });
 }
 
 function countBy(rows, key) {
@@ -188,7 +229,7 @@ function countBy(rows, key) {
   return m;
 }
 
-export function renderMarkdown({ rows, liveExportCount, domainCollections = {} }) {
+export function renderMarkdown({ rows, liveExportCount, domainCollections = {}, cloudOnly = [] }) {
   const esc = (s) => String(s).replaceAll('|', '\\|');
   const sorted = [...rows].sort((a, b) => DOMAINS.indexOf(a.domain) - DOMAINS.indexOf(b.domain) || a.name.localeCompare(b.name));
   const out = [];
@@ -218,6 +259,13 @@ export function renderMarkdown({ rows, liveExportCount, domainCollections = {} }
     '- Всё, что не удалось классифицировать уверенно, либо не экспортируется без записи о решении, — `needs-owner-decision`.', '');
   out.push('## Список needs-owner-decision', '', '| Функция | Тип | Домен | Файл | Причина |', '|---|---|---|---|---|');
   for (const r of sorted.filter((x) => x.status === 'needs-owner-decision')) out.push(`| ${r.name} | ${r.type} | ${r.domain} | ${esc(r.sourcePath)} | ${esc(r.reason)} |`);
+  if (cloudOnly.length) {
+    const cst = countBy(cloudOnly, 'status');
+    out.push('', `## В облаке, но нет в коде (сверка PM-007): ${cloudOnly.length}`, '',
+      `Статусы: ${STATUSES.filter((s) => cst.get(s)).map((s) => `${s} ${cst.get(s)}`).join(', ')}. Полная выкладка \`default\` удалит ВСЕ эти функции — keep здесь значит «код надо вернуть в ветку до выкладки».`, '',
+      '| Функция | Домен | Статус | Основание |', '|---|---|---|---|');
+    for (const r of cloudOnly) out.push(`| ${r.name} | ${r.domain} | ${r.status} | ${esc(r.reason)} |`);
+  }
   out.push('', '## Полная таблица', '', '| Функция | Тип | Домен | Возможность | Статус | Экспорт index.ts | Файл |', '|---|---|---|---|---|---|---|');
   for (const r of sorted) out.push(`| ${r.name} | ${r.type} | ${r.domain} | ${esc(r.capability)} | ${r.status} | ${r.exported ? 'да' : 'нет'} | ${esc(r.sourcePath)}:${r.line} |`);
   out.push('', '## Честные ограничения', '',

@@ -65,6 +65,7 @@ import { readRecentHistory, writeHistoryPoints, writePeakTier } from './business
 import { buildBusinessTierSnapshot } from './business_tier_snapshot';
 import { readPeakTier } from './business_tier_history_store';
 import { readJarvisPmBusinessContext } from './pm_business_context';
+import { swallowed } from '../swallowed_error';
 
 /**
  * Суточные планировщики Джарвиса — второй режим работы наряду с «по кнопке».
@@ -215,7 +216,7 @@ export const jarvisDailyDepartmentsCron = onSchedule(DEPARTMENTS_SCHEDULE_OPTION
 
   // зачем проверять режим ДО работы: если владелец выключил Джарвиса, прогон
   // не должен стоить ни одного чтения. Одно чтение конфига вместо десятков.
-  const controlSnapshot = await db.doc(JARVIS_CONTROL_DOC).get().catch(() => null);
+  const controlSnapshot = await db.doc(JARVIS_CONTROL_DOC).get().catch(swallowed('jarvis_crons:db.doc(JARVIS_CONTROL_DOC).get()', null));
   const controlData = controlSnapshot?.data();
   const control = parseControl(controlData);
   if (!canRun(control)) {
@@ -684,7 +685,7 @@ export const jarvisDailyBusinessHistoryCron = onSchedule(HISTORY_SCHEDULE_OPTION
     storedPeakTier,
     nowMs,
   });
-  await writePeakTier(db, snapshot.currentTier, nowMs).catch(() => undefined);
+  await writePeakTier(db, snapshot.currentTier, nowMs).catch(swallowed('jarvis_crons:writePeakTier(db, snapshot.currentTier, nowMs)', undefined));
 
   logger.info('jarvis_daily_business_history', {
     dayKey: point.dayKey,

@@ -1,5 +1,6 @@
 import { createHash } from 'crypto';
 import { HttpsError } from 'firebase-functions/v2/https';
+import { swallowed } from './swallowed_error';
 
 export const SUPPORT_REPLY_SCHEMA_VERSION = 2;
 // Telegram review gives the owner three hours. The immutable prepared payload
@@ -299,12 +300,12 @@ export async function dispatchSupportReply(
       return { operationId: operation.operationId, state: 'accepted', replayed: false, outboundMessageId };
     } catch (error) {
       const errorCode = boundedErrorCode(error);
-      await dependencies.markUnknown(operation.operationId, invocationId, errorCode).catch(() => undefined);
+      await dependencies.markUnknown(operation.operationId, invocationId, errorCode).catch(swallowed('support_reply_delivery:(operation.operationId, invocationId, errorCode)', undefined));
       return { operationId: operation.operationId, state: 'delivery_unknown', replayed: false, outboundMessageId, errorCode };
     }
   } catch (error) {
     const errorCode = boundedErrorCode(error);
-    await dependencies.markUnknown(operation.operationId, invocationId, errorCode).catch(() => undefined);
+    await dependencies.markUnknown(operation.operationId, invocationId, errorCode).catch(swallowed('support_reply_delivery:(operation.operationId, invocationId, errorCode)', undefined));
     return { operationId: operation.operationId, state: 'delivery_unknown', replayed: false, errorCode };
   }
 }

@@ -4,6 +4,7 @@ import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 import { defineString } from 'firebase-functions/params';
 import { createHash } from 'crypto';
 import { RESEND_API_KEY } from './resend_secret';
+import { swallowed } from './swallowed_error';
 
 /** Опционально: ключ Resend для письма на почту при новом обращении (Firebase params / secrets env). */
 const notifyEmail = defineString('WEB_CONTACT_NOTIFY_EMAIL', { default: 'support.phraseman@gmail.com' });
@@ -257,7 +258,7 @@ export const submitWebsiteContact = onRequest(
     const text = `From: ${name || '—'} <${email}>\nTopic: ${topic}\nPage: ${pageUrl || '—'}\n\n${message}\n\n— id: ${docRef.id}`;
     const emailed = await notifyViaResend(subject, text);
     if (emailed) {
-      await docRef.update({ emailNotifiedAt: FieldValue.serverTimestamp() }).catch(() => {});
+      await docRef.update({ emailNotifiedAt: FieldValue.serverTimestamp() }).catch(swallowed('website_contact:( emailNotifiedAt FieldValue.serverTimestamp() )', undefined));
     }
 
     res.status(200).json({ ok: true, id: docRef.id, notified: emailed });

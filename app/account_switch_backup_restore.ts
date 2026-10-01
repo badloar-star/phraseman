@@ -28,7 +28,7 @@ import {
   hashCanonicalBody,
   utf8ByteLengthV1,
 } from '../modules/learning-v2/policies/decision_registry';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, reportSwallowed } from './debug-logger';
 
 // Литерал продублирован из app/cloud_sync.ts (ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY):
 // константа там не экспортируется. При смене ключа менять в обоих местах.
@@ -239,7 +239,11 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(
       return { status: 'expired' };
     }
 
-    const currentId = await getCanonicalUserId().catch(() => null);
+    const currentId = await getCanonicalUserId().catch((error: unknown) => {
+      // зачем: PM-229 — без причины нельзя отличить «аккаунт неизвестен» от сбоя чтения.
+      reportSwallowed('account_switch_backup_restore:canonical_user_id', error);
+      return null;
+    });
     if (!generationIsCurrent()) return { status: 'stale_generation' };
     if (!backup.stableId || !currentId || backup.stableId !== currentId) {
     // Чужой (или неизвестный) аккаунт — копию не трогаем: владелец может вернуться.

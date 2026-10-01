@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin';
 import { cleanupLegacyAuthIdentityDuplicates } from './auth_identity';
+import { swallowed } from './swallowed_error';
 
 const USERS = 'users';
 const CURSOR_DOC = 'app_meta/identity_cleanup_cursor';
@@ -18,12 +19,12 @@ type CleanupPageResult = {
 export async function cleanupLegacyIdentityDuplicatesPage(): Promise<CleanupPageResult> {
   const db = admin.firestore();
   const cursorRef = db.doc(CURSOR_DOC);
-  const cursorSnap = await cursorRef.get().catch(() => null);
+  const cursorSnap = await cursorRef.get().catch(swallowed('identity_cleanup:cursorRef.get()', null));
   const lastUserId = String(cursorSnap?.data()?.lastUserId ?? '').trim();
 
   let query: FirebaseFirestore.Query = db.collection(USERS).orderBy('__name__').limit(PAGE_SIZE);
   if (lastUserId) {
-    const lastSnap = await db.collection(USERS).doc(lastUserId).get().catch(() => null);
+    const lastSnap = await db.collection(USERS).doc(lastUserId).get().catch(swallowed('identity_cleanup:db.collection(USERS).doc(lastUserId).get()', null));
     if (lastSnap?.exists) query = query.startAfter(lastSnap);
   }
 

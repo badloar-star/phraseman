@@ -19,6 +19,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import * as admin from 'firebase-admin';
+import { swallowed } from './swallowed_error';
 
 export const SUPPORT_BUTTON_TEXT_RU = 'Связаться с поддержкой';
 export const SUPPORT_CALLBACK_START = 'support:start';
@@ -358,7 +359,7 @@ async function deliverAdminReply(
       token,
       adminChatId,
       `Не удалось доставить ответ пользователю ${targetUserId} (возможно, он заблокировал бота).`,
-    ).catch(() => undefined);
+    ).catch(swallowed('telegram_support:)', undefined));
     return false;
   }
 }

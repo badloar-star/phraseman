@@ -34,6 +34,7 @@ import { buildPromoVipPatch } from './promo_codes';
 import { activationRewardForPlan, generateActivationCode } from './web_checkout';
 import { writeAccessProjectionFromPatch } from './access_projection';
 import { enqueueAdminAlert } from './admin_alert_outbox';
+import { swallowed } from './swallowed_error';
 
 const TELEGRAM_API = 'https://api.telegram.org';
 const REGION = 'us-central1';
@@ -302,7 +303,7 @@ async function telegramRequest(token: string, method: string, payload: Record<st
     headers: { 'content-type': 'application/json; charset=utf-8' },
     body: JSON.stringify(payload),
   });
-  const data = await response.json().catch(() => null) as { ok?: boolean; description?: string; result?: unknown } | null;
+  const data = await response.json().catch(swallowed('telegram_premium_bot:response.json()', null)) as { ok?: boolean; description?: string; result?: unknown } | null;
   if (!response.ok || !data?.ok) {
     throw new Error(`Telegram ${method} failed: ${data?.description || `HTTP ${response.status}`}`);
   }

@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, swallowError } from './debug-logger';
 
 export const ACCOUNT_DELETE_PENDING_AUTH_KEY = 'account_delete_pending_auth_v1';
 export const ACCOUNT_DELETE_PENDING_AUTH_SECURE_KEY = 'account_delete_pending_auth_v2';
@@ -454,7 +454,7 @@ export async function persistAccountDeletePendingAuthLock(
   await AsyncStorage.setItem(
     ACCOUNT_DELETE_PENDING_AUTH_KEY,
     JSON.stringify(mirrorLock(normalized)),
-  ).catch(() => {});
+  ).catch(swallowError('account_delete_quarantine:mirror_lock_write'));
   return true;
 }
 
@@ -802,7 +802,7 @@ async function discardBrokenGuardRecords(secureStore: SecureStoreModule | null):
       secureStore.deleteItemAsync(ACCOUNT_DELETE_PENDING_AUTH_SECURE_KEY),
       secureStore.deleteItemAsync(ACCOUNT_DELETE_PENDING_AUTH_ANCHOR_KEY),
     ]);
-    await AsyncStorage.removeItem(ACCOUNT_DELETE_PENDING_AUTH_KEY).catch(() => {});
+    await AsyncStorage.removeItem(ACCOUNT_DELETE_PENDING_AUTH_KEY).catch(swallowError('account_delete_quarantine:pending_auth_remove'));
   } catch (e) {
     // зачем (запрет немого catch): не снялось — след придёт снова, причина
     // обязана быть видна. Но вход мы всё равно НЕ запираем.
@@ -1012,7 +1012,7 @@ async function forceClearExpiredAccountDeleteLock(): Promise<void> {
       secureStore.deleteItemAsync(ACCOUNT_DELETE_PENDING_AUTH_SECURE_KEY),
       secureStore.deleteItemAsync(ACCOUNT_DELETE_PENDING_AUTH_ANCHOR_KEY),
     ]);
-    await AsyncStorage.removeItem(ACCOUNT_DELETE_PENDING_AUTH_KEY).catch(() => {});
+    await AsyncStorage.removeItem(ACCOUNT_DELETE_PENDING_AUTH_KEY).catch(swallowError('account_delete_quarantine:pending_auth_remove'));
     knownGuardState = 'none';
     knownDeletedProviderUid = null;
   } catch (e) {

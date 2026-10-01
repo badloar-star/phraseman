@@ -18,6 +18,7 @@ import {
 import { sendTransactionalEmail } from './admin_email';
 import { sendTelegramAlert, ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
 import { RESEND_API_KEY } from './resend_secret';
+import { swallowed } from './swallowed_error';
 
 /**
  * Самообслуживаемое восстановление доступа к аккаунту по email-коду.
@@ -633,7 +634,7 @@ export const authRequestRecoveryCode = onCall(REQUEST_RECOVERY_CALLABLE_OPTIONS,
         sendError: stableTransactionalEmailError(sendResult.error),
         updatedAt: now,
       }, { merge: true });
-    }).catch(() => {});
+    }).catch(swallowed('auth_recovery:)', undefined));
     if (sendResult.error === 'resend_key_missing') {
       throw new HttpsError('failed-precondition', 'resend_key_missing');
     }
@@ -1870,7 +1871,7 @@ export const authIssueRecoveryHandoffToken = onCall(
         phrasemanRecoveryEventId: recoveryEventId,
       });
     } catch {
-      await clearHandoffLeaseIfOwned(db, eventRef, leaseId, requestIdHash).catch(() => {});
+      await clearHandoffLeaseIfOwned(db, eventRef, leaseId, requestIdHash).catch(swallowed('auth_recovery:aseIfOwned(db, eventRef, leaseId, requestIdHash)', undefined));
       throw new HttpsError('internal', 'recovery_handoff_mint_failed');
     }
 
@@ -1911,7 +1912,7 @@ export const authIssueRecoveryHandoffToken = onCall(
         finalizedMetadata.handoffAcknowledgeUntil = handoffAcknowledgeUntil;
       });
     } catch {
-      await clearHandoffLeaseIfOwned(db, eventRef, leaseId, requestIdHash).catch(() => {});
+      await clearHandoffLeaseIfOwned(db, eventRef, leaseId, requestIdHash).catch(swallowed('auth_recovery:aseIfOwned(db, eventRef, leaseId, requestIdHash)', undefined));
       throw new HttpsError('internal', 'recovery_handoff_unavailable');
     }
 

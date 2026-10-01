@@ -22,6 +22,7 @@ import {
 import {
   writeFirstAuthLinkGrowthAggregate,
 } from './growth_daily_aggregate';
+import { swallowed } from './swallowed_error';
 
 const USERS = 'users';
 const AUTH_LINKS = 'auth_links';
@@ -914,7 +915,7 @@ async function finishUserIdentityRepairBestEffort(
   const now = Date.now();
   let repairedIdentityLink = userAuthUidChanged;
   const lbRef = db.collection(LEADERBOARD).doc(stableId);
-  const lbSnap = await lbRef.get().catch(() => null);
+  const lbSnap = await lbRef.get().catch(swallowed('auth_identity:lbRef.get()', null));
   if (lbSnap?.exists) {
     const currentLeaderboardAuthUid = String(lbSnap.data()?.firebaseAuthUid ?? '').trim();
     if (currentLeaderboardAuthUid !== authUid) {
@@ -1180,7 +1181,7 @@ async function hideNameIndexForDuplicateUid(
   duplicateUid: string,
   stableId: string,
 ): Promise<number> {
-  const snap = await db.collection('name_index').where('uid', '==', duplicateUid).limit(50).get().catch(() => null);
+  const snap = await db.collection('name_index').where('uid', '==', duplicateUid).limit(50).get().catch(swallowed('auth_identity:ex).where(uid, ==, duplicateUid).limit(50).get()', null));
   if (!snap || snap.empty) return 0;
   const batch = db.batch();
   const now = Date.now();
@@ -1211,7 +1212,7 @@ async function cleanupSiblingStableIdentityDuplicates(
     leagueGroupsTouched: 0,
     leagueMembersHidden: 0,
   };
-  const siblingsSnap = await db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(50).get().catch(() => null);
+  const siblingsSnap = await db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(50).get().catch(swallowed('auth_identity:re(firebaseAuthUid, ==, authUid).limit(50).get()', null));
   if (!siblingsSnap || siblingsSnap.empty) return out;
 
   for (const sibling of siblingsSnap.docs) {
@@ -1249,7 +1250,7 @@ async function cleanupSiblingStableIdentityDuplicates(
       out.usersHidden += 1;
     });
 
-    out.nameIndexHidden += await hideNameIndexForDuplicateUid(db, duplicateUid, stableId).catch(() => 0);
+    out.nameIndexHidden += await hideNameIndexForDuplicateUid(db, duplicateUid, stableId).catch(swallowed('auth_identity:hide_name_index_for_duplicate_uid', 0));
     const leagueStats = await cleanupDuplicateLeagueMembers(db, stableId, duplicateUid);
     out.leagueGroupsTouched += leagueStats.leagueGroupsTouched;
     out.leagueMembersHidden += leagueStats.leagueMembersHidden;
@@ -1295,7 +1296,7 @@ export async function cleanupLegacyAuthIdentityDuplicates(
 
   const now = Date.now();
   const userRef = db.collection(USERS).doc(stableId);
-  const userSnap = await userRef.get().catch(() => null);
+  const userSnap = await userRef.get().catch(swallowed('auth_identity:userRef.get()', null));
   const userData = userSnap?.data() || {};
   if (String(userData.firebaseAuthUid ?? '').trim() !== authUid) return { ...stats, skipped: true };
   const lastCleanupAt = readNumber(userData.identityCleanupAt) ?? 0;
@@ -1307,7 +1308,7 @@ export async function cleanupLegacyAuthIdentityDuplicates(
   const legacyLbRef = db.collection(LEADERBOARD).doc(authUid);
   const [stableLbSnap, legacyLbSnap, authLinkSnap] = await Promise.all([
     readIdentityOrThrow(stableLbRef.get()),
-    legacyLbRef.get().catch(() => null),
+    legacyLbRef.get().catch(swallowed('auth_identity:legacyLbRef.get()', null)),
     readIdentityOrThrow(db.collection(AUTH_LINKS).doc(authUid).get()),
   ]);
   const stableLeaderboardAuthUid = String(stableLbSnap?.data()?.firebaseAuthUid ?? '').trim();
@@ -1324,7 +1325,7 @@ export async function cleanupLegacyAuthIdentityDuplicates(
         linkedStableId,
         legacyLeaderboardExists: true,
         reason: opts?.reason ?? 'unknown',
-      }).catch(() => {});
+      }).catch(swallowed('auth_identity:)', undefined));
       stats.candidatesRecorded += 1;
     }
     return { ...stats, skipped: true };

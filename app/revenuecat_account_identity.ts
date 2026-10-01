@@ -5,6 +5,7 @@ import {
   withAccountTransitionLockWithDeadline,
   type AccountGenerationToken,
 } from './account_generation';
+import { reportSwallowed } from './debug-logger';
 
 const RC_ACCOUNT_COMMIT_LOCK_TIMEOUT_MS = 1_500;
 
@@ -18,7 +19,11 @@ function generationIsCurrent(token: AccountGenerationToken): token is AccountGen
 
 async function exactRevenueCatIdentityMatches(token: AccountGenerationToken): Promise<boolean> {
   if (!generationIsCurrent(token)) return false;
-  const appUserId = await Purchases.getAppUserID().catch(() => '');
+  const appUserId = await Purchases.getAppUserID().catch((error: unknown) => {
+    // зачем: PM-229 — сбой чтения RevenueCat-личности = «не совпало», но причина должна быть видна.
+    reportSwallowed('revenuecat_account_identity:get_app_user_id', error);
+    return '';
+  });
   return generationIsCurrent(token) && appUserId === token.stableId;
 }
 

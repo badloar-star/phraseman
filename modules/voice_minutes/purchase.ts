@@ -1,7 +1,7 @@
 import type { CustomerInfo, MakePurchaseResult, PurchasesOfferings, PurchasesPackage } from 'react-native-purchases';
 
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../../app/account_generation';
-import { DebugLogger } from '../../app/debug-logger';
+import { DebugLogger, swallowError } from '../../app/debug-logger';
 import { initRevenueCat, syncRevenueCatIdentity } from '../../app/revenuecat_init';
 import {
   clearPendingVoiceMinutePurchase,
@@ -89,7 +89,7 @@ export async function executeVoiceMinutePurchase(
       });
       if (!deps.isCurrent()) return { status: 'stale', transactionId };
       if (wallet.credited && wallet.eventCount > baseline.eventCount) {
-        await deps.clearPending(stableId, transactionId).catch(() => undefined);
+        await deps.clearPending(stableId, transactionId).catch(swallowError('voice_minutes_purchase:clear_pending'));
         return { status: 'credited', transactionId, wallet };
       }
     }

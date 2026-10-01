@@ -135,6 +135,7 @@ import {
   type SupportReplyPayload,
   type SupportReplyState,
 } from './support_reply_delivery';
+import { reportSwallowedServer, swallowed } from './swallowed_error';
 
 const REGION = 'us-central1';
 export const GMAIL_SUPPORT_APP_PASSWORD = defineSecret('GMAIL_SUPPORT_APP_PASSWORD');
@@ -1184,7 +1185,7 @@ async function fetchEmailsViaImap(
       lock.release();
     }
   } finally {
-    await client.logout().catch(() => undefined);
+    await client.logout().catch(swallowed('support_inbox:client.logout()', undefined));
   }
   return {
     emails: out, selectedUids: [], forwardUids: [], backfillUids: [], parseFailed: false, failedUids: [],
@@ -1293,7 +1294,7 @@ async function fetchOwnerSentRepliesViaImap(
       lock.release();
     }
   } finally {
-    await client.logout().catch(() => undefined);
+    await client.logout().catch(swallowed('support_inbox:client.logout()', undefined));
   }
 }
 
@@ -1936,7 +1937,7 @@ export async function generateAgentManagerSupportDraft(input: Readonly<{
   }
   const cfg = await resolveJobConfig(input.db, 'support');
   try { assertJobEnabled(cfg, 'support'); } catch { return Object.freeze({ kind: 'unavailable', outputHash: null }); }
-  const ownerInstructions = await readSupportOwnerInstructions(input.db).catch(() => null);
+  const ownerInstructions = await readSupportOwnerInstructions(input.db).catch(swallowed('support_inbox:readSupportOwnerInstructions(input.db)', null));
   if (!ownerInstructions) return Object.freeze({ kind: 'unavailable', outputHash: null });
   if (supportCouncilNeedsModel(source)) {
     const budget = await checkAndReserveBudget({
@@ -3202,7 +3203,7 @@ async function buildCouncilReviewedSupportReply(input: {
         promptTokens: draftResult.promptTokens + reviewPromptTokens,
         completionTokens: draftResult.completionTokens + reviewCompletionTokens,
       }),
-    }).catch(() => undefined);
+    }).catch(swallowed('support_inbox:)', undefined));
     const selected = selectFinalAutoReply({
       issue, risk, context: draftResult.context, draft: draftResult.envelope, review,
       ownerInstructions: input.ownerInstructions,
@@ -4107,8 +4108,10 @@ export async function runSupportAutoReplyRetryCron(nowMs: number = Date.now()): 
   let currentInstructions: SupportOwnerInstructionsSnapshot | null = null;
   try {
     currentInstructions = await readSupportOwnerInstructions(db);
-  } catch {
+  } catch (error) {
     // A transient config read must not invalidate a currently prepared draft.
+    // зачем: PM-229 — черновик сохраняем, но причину сбоя чтения настроек пишем в лог.
+    reportSwallowedServer('support_inbox:read_owner_instructions_for_draft', error);
   }
   const apiKey = String(SUPPORT_OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
   const appPassword = String(GMAIL_SUPPORT_APP_PASSWORD.value() || process.env.GMAIL_SUPPORT_APP_PASSWORD || '').trim();
@@ -4475,7 +4478,7 @@ async function buildCouncilReviewedSupportRevision(input: {
         promptTokens: candidate.promptTokens + reviewPromptTokens,
         completionTokens: candidate.completionTokens + reviewCompletionTokens,
       }),
-    }).catch(() => undefined);
+    }).catch(swallowed('support_inbox:)', undefined));
     const selected = selectFinalAutoReply({
       issue, risk, context, draft: candidate.envelope, review, ownerInstructions,
     });
@@ -5100,7 +5103,7 @@ export async function runSupportTelegramAutoSendDeadline(nowMs: number = Date.no
       } satisfies SupportTelegramJobDoc, { merge: false });
       tx.update(row.ref, { state: 'dispatching', autoSendAtMs: null, updatedAtMs: nowMs });
       return true;
-    }).catch(() => false);
+    }).catch(swallowed('support_inbox:auto_send_review_transaction', false));
     if (won) queued += 1;
   }
   return { scanned: snap.size, queued };
@@ -5773,7 +5776,10 @@ export const adminSupportDispatchReplyBatch = onCall(
               markUnknown: (operationId, invocationId, errorCode) => markSupportReplyDeliveryUnknown(db, operationId, invocationId, errorCode, actor),
               createInvocationId: randomUUID,
             });
-          } catch { /* Child state is summarized transactionally below. */ }
+          } catch (error) {
+            // Child state is summarized transactionally below; причину сбоя доставки не теряем.
+            reportSwallowedServer('support_inbox:reply_delivery_worker', error);
+          }
         }
       };
       await Promise.all(Array.from({ length: Math.min(3, batch.children.length) }, () => worker()));

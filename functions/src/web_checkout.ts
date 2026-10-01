@@ -34,6 +34,7 @@ import { buildPromoVipPatch } from './promo_codes';
 import { GIFT_CERTIFICATE_PHRASES, resolveGiftPhrase } from './gift_certificate_phrases';
 import { writeAccessProjectionFromPatch } from './access_projection';
 import { ADMIN_SENSITIVE_WRITE_OPTIONS, requireAdminAppCheck } from './callable_options';
+import { swallowed } from './swallowed_error';
 
 const REGION = 'us-central1';
 const ORDERS_COLLECTION = 'web_premium_orders';
@@ -1115,7 +1116,7 @@ export async function readBoundedGiftCertificateAssetBody(
       if (chunk.done) break;
       byteLength += chunk.value.byteLength;
       if (byteLength > GIFT_CERTIFICATE_ASSET_MAX_BYTES) {
-        await reader.cancel('gift_certificate_asset_size_invalid').catch(() => undefined);
+        await reader.cancel('gift_certificate_asset_size_invalid').catch(swallowed('web_checkout:ader.cancel(gift_certificate_asset_size_invalid)', undefined));
         throw new HttpsError('failed-precondition', 'gift_certificate_asset_size_invalid');
       }
       chunks.push(Buffer.from(chunk.value));

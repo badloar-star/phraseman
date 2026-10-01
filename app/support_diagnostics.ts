@@ -12,6 +12,7 @@ import {
   type SupportDiagnosticBundle,
   type SupportDiagnosticEvent,
 } from './support_diagnostic_schema';
+import { swallowError } from './debug-logger';
 
 const STORAGE_PREFIX = 'support_diagnostics_v1';
 export const SUPPORT_DIAGNOSTIC_TTL_MS = 24 * 60 * 60 * 1_000;
@@ -48,7 +49,7 @@ async function readEvents(key: string): Promise<SupportDiagnosticEvent[]> {
       .map(sanitizeSupportDiagnosticEvent)
       .filter((event): event is SupportDiagnosticEvent => event !== null);
   } catch {
-    if (raw !== null) await AsyncStorage.removeItem(key).catch(() => undefined);
+    if (raw !== null) await AsyncStorage.removeItem(key).catch(swallowError('support_diagnostics:remove_corrupt_key'));
     return [];
   }
 }
@@ -84,7 +85,7 @@ export async function recordSupportDiagnostic(
     if (!isCurrentAccountGeneration(context.token)) return;
     if (events.length === 0) await AsyncStorage.removeItem(context.key);
     else await AsyncStorage.setItem(context.key, JSON.stringify(events));
-  }).catch(() => undefined);
+  }).catch(swallowError('support_diagnostics:record_event'));
 }
 
 export async function captureSupportDiagnosticBundle(nowMs: number = Date.now()): Promise<SupportDiagnosticBundle | null> {
@@ -105,6 +106,6 @@ export async function clearSupportDiagnosticsForCurrentAccount(): Promise<void> 
   if (!context) return;
   await withMutationLock(async () => {
     if (!isCurrentAccountGeneration(context.token)) return;
-    await AsyncStorage.removeItem(context.key).catch(() => undefined);
+    await AsyncStorage.removeItem(context.key).catch(swallowError('support_diagnostics:clear_events'));
   });
 }

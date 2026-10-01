@@ -11,6 +11,7 @@ import {
   revenueCatPremiumMetadata,
   type PremiumStorePlan,
 } from './premium_revenuecat_state';
+import { reportSwallowed } from './debug-logger';
 
 export type ManagePlanChangeResult =
   | { status: 'stale' }
@@ -25,7 +26,11 @@ export function isManageSubscriptionOperationCurrent(generation: AccountGenerati
 
 async function revenueCatIdentityMatches(generation: AccountGenerationToken): Promise<boolean> {
   if (!isManageSubscriptionOperationCurrent(generation)) return false;
-  const appUserId = await Purchases.getAppUserID().catch(() => '');
+  const appUserId = await Purchases.getAppUserID().catch((error: unknown) => {
+    // зачем: PM-229 — сбой чтения RevenueCat-личности = «не совпало», но причина должна быть видна.
+    reportSwallowed('manage_subscription_purchase:get_app_user_id', error);
+    return '';
+  });
   return isManageSubscriptionOperationCurrent(generation) && appUserId === generation.stableId;
 }
 

@@ -37,6 +37,7 @@ import {
   type AccountsV2EnqueueOutcome,
 } from './accounts_v2_deletion/pipeline';
 import { createFirestoreAccountsV2DeletionDeps } from './accounts_v2_deletion/pipeline_firestore';
+import { swallowed } from './swallowed_error';
 
 const REGION = 'us-central1';
 const DELETE_BATCH_LIMIT = 100;
@@ -617,10 +618,10 @@ async function getEmailsForDeletion(
   };
 
   const [authUser, stableUserSnap, authUserSnap, authLinkSnap] = await Promise.all([
-    admin.auth().getUser(authUid).catch(() => null),
-    db.collection('users').doc(stableUid).get().catch(() => null),
-    stableUid === authUid ? Promise.resolve(null) : db.collection('users').doc(authUid).get().catch(() => null),
-    db.collection('auth_links').doc(authUid).get().catch(() => null),
+    admin.auth().getUser(authUid).catch(swallowed('account_delete:admin.auth().getUser(authUid)', null)),
+    db.collection('users').doc(stableUid).get().catch(swallowed('account_delete:db.collection(users).doc(stableUid).get()', null)),
+    stableUid === authUid ? Promise.resolve(null) : db.collection('users').doc(authUid).get().catch(swallowed('account_delete:ve(null) db.collection(users).doc(authUid).get()', null)),
+    db.collection('auth_links').doc(authUid).get().catch(swallowed('account_delete:db.collection(auth_links).doc(authUid).get()', null)),
   ]);
 
   add(authUser?.email);
@@ -638,11 +639,11 @@ async function resolveStableUidForDelete(
   requestedStableId: unknown,
 ): Promise<string> {
   const resolveKnownStableUid = async (): Promise<string> => {
-    const authLinkSnap = await db.collection('auth_links').doc(authUid).get().catch(() => null);
+    const authLinkSnap = await db.collection('auth_links').doc(authUid).get().catch(swallowed('account_delete:db.collection(auth_links).doc(authUid).get()', null));
     const linkedStableId = cleanId(authLinkSnap?.data()?.stable_id);
     if (linkedStableId) return linkedStableId;
 
-    const direct = await db.collection('users').doc(authUid).get().catch(() => null);
+    const direct = await db.collection('users').doc(authUid).get().catch(swallowed('account_delete:db.collection(users).doc(authUid).get()', null));
     if (direct?.exists) return authUid;
 
     const byAuth = await db.collection('users').where('firebaseAuthUid', '==', authUid).limit(1).get();
@@ -654,8 +655,8 @@ async function resolveStableUidForDelete(
   const requested = cleanId(requestedStableId);
   if (requested) {
     const [userSnap, authLinkSnap] = await Promise.all([
-      db.collection('users').doc(requested).get().catch(() => null),
-      db.collection('auth_links').doc(authUid).get().catch(() => null),
+      db.collection('users').doc(requested).get().catch(swallowed('account_delete:db.collection(users).doc(requested).get()', null)),
+      db.collection('auth_links').doc(authUid).get().catch(swallowed('account_delete:db.collection(auth_links).doc(authUid).get()', null)),
     ]);
     const linkedAuthUid = cleanId(userSnap?.data()?.firebaseAuthUid);
     const linkedStableId = cleanId(authLinkSnap?.data()?.stable_id);

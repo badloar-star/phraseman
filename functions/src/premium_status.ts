@@ -19,6 +19,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import * as admin from 'firebase-admin';
+import { swallowed } from './swallowed_error';
 
 export type ProgressLike = Record<string, unknown> | null | undefined;
 
@@ -202,7 +203,7 @@ async function readPremiumDocument(
   transaction?: FirebaseFirestore.Transaction,
 ): Promise<FirebaseFirestore.DocumentSnapshot | null> {
   if (transaction) return transaction.get(ref);
-  return ref.get().catch(() => null);
+  return ref.get().catch(swallowed('premium_status:ref.get()', null));
 }
 
 async function readPremiumQuery(
@@ -210,7 +211,7 @@ async function readPremiumQuery(
   transaction?: FirebaseFirestore.Transaction,
 ): Promise<FirebaseFirestore.QuerySnapshot | null> {
   if (transaction) return transaction.get(query);
-  return query.get().catch(() => null);
+  return query.get().catch(swallowed('premium_status:query.get()', null));
 }
 
 /**
@@ -396,8 +397,8 @@ export async function resolveIsLifetimePlan(
 
   if (authUid) {
     const [linkSnap, byAuth] = await Promise.all([
-      db.collection('auth_links').doc(authUid).get().catch(() => null),
-      db.collection('users').where('firebaseAuthUid', '==', authUid).limit(5).get().catch(() => null),
+      db.collection('auth_links').doc(authUid).get().catch(swallowed('premium_status:db.collection(auth_links).doc(authUid).get()', null)),
+      db.collection('users').where('firebaseAuthUid', '==', authUid).limit(5).get().catch(swallowed('premium_status:ere(firebaseAuthUid, ==, authUid).limit(5).get()', null)),
     ]);
     add(linkSnap?.data()?.stable_id);
     byAuth?.docs?.forEach((doc) => add(doc.id));
@@ -410,7 +411,7 @@ export async function resolveIsLifetimePlan(
     let lifetimeActive = false;
     await Promise.all(ids.map(async (id) => {
       checked.add(id);
-      const snap = await db.collection('users').doc(id).get().catch(() => null);
+      const snap = await db.collection('users').doc(id).get().catch(swallowed('premium_status:db.collection(users).doc(id).get()', null));
       if (!snap?.exists) return;
       const data = snap.data() ?? {};
       add(data.canonicalStableId);
@@ -450,8 +451,8 @@ export async function resolveIsMaxTier(
 
   if (authUid) {
     const [linkSnap, byAuth] = await Promise.all([
-      db.collection('auth_links').doc(authUid).get().catch(() => null),
-      db.collection('users').where('firebaseAuthUid', '==', authUid).limit(5).get().catch(() => null),
+      db.collection('auth_links').doc(authUid).get().catch(swallowed('premium_status:db.collection(auth_links).doc(authUid).get()', null)),
+      db.collection('users').where('firebaseAuthUid', '==', authUid).limit(5).get().catch(swallowed('premium_status:ere(firebaseAuthUid, ==, authUid).limit(5).get()', null)),
     ]);
     add(linkSnap?.data()?.stable_id);
     byAuth?.docs.forEach((doc) => add(doc.id));
@@ -464,7 +465,7 @@ export async function resolveIsMaxTier(
     let maxActive = false;
     await Promise.all(ids.map(async (id) => {
       checked.add(id);
-      const snap = await db.collection('users').doc(id).get().catch(() => null);
+      const snap = await db.collection('users').doc(id).get().catch(swallowed('premium_status:db.collection(users).doc(id).get()', null));
       if (!snap?.exists) return;
       const data = snap.data() ?? {};
       add(data.canonicalStableId);

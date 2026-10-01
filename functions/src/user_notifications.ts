@@ -2,6 +2,7 @@ import * as admin from 'firebase-admin';
 import { withCronHeartbeat } from './cron_heartbeat';
 import { onDocumentCreated } from 'firebase-functions/v2/firestore';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
+import { swallowed } from './swallowed_error';
 
 const REGION = 'us-central1';
 
@@ -117,7 +118,7 @@ export const notifyOnFriendAccepted = onDocumentCreated(
       }, now),
     );
     // Заявка принята — событие «вам заявка» отработано, убираем его из центра.
-    await userNotificationRef(db, friendUid, `friend_request_${ownerUid}`).delete().catch(() => {});
+    await userNotificationRef(db, friendUid, `friend_request_${ownerUid}`).delete().catch(swallowed('user_notifications:db, friendUid, friend_request_ownerUid).delete()', undefined));
   },
 );
 

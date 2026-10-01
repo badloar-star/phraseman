@@ -7,6 +7,35 @@ type NotificationRouter = {
   replace?: (route: any) => void;
 };
 
+export type ServerPushTapRoute = Readonly<{ pathname: string; params: Record<string, string> }>;
+
+/**
+ * Куда вести тап по серверным пушам Plus и Шпиля (null — тип не наш).
+ *
+ * зачем: PM-200 — premium_expiry_reminder и spire_* падали в `default` → Главная.
+ * Ведём на существующие экраны, новых маршрутов не заводим:
+ *  - подписка истекает (kind=subscription) → управление подпиской
+ *    (/manage_subscription; без plan/accountGeneration экран сам дотянет план);
+ *  - VIP-доступ истекает (kind=vip) → пейвол-диспетчер /premium_modal: VIP
+ *    не продлевается в сторе, «управлять» там нечем;
+ *  - spire_week_result / spire_zone_warning → вкладка «Сообщество», где живёт
+ *    раздел «Шпиль». Отдельного маршрута на сам раздел нет (переключатель
+ *    читает только /friends), поэтому открывается вкладка, а не сегмент.
+ */
+export function serverPushTapRoute(data: Record<string, unknown>): ServerPushTapRoute | null {
+  switch (data.type) {
+    case 'premium_expiry_reminder':
+      return data.kind === 'vip'
+        ? { pathname: '/premium_modal', params: { context: 'notification_premium_expiry', source: 'notification_premium_expiry' } }
+        : { pathname: '/manage_subscription', params: { source: 'notification_premium_expiry' } };
+    case 'spire_week_result':
+    case 'spire_zone_warning':
+      return { pathname: '/(tabs)/community', params: { source: String(data.type) } };
+    default:
+      return null;
+  }
+}
+
 /**
  * Small cold-start adapter for push taps.
  *
@@ -100,6 +129,18 @@ export function setupNotificationTapHandler(router: NotificationRouter): () => v
           break;
         case 'tournament_starting':
           break;
+        case 'premium_expiry_reminder':
+        case 'spire_week_result':
+        case 'spire_zone_warning': {
+          const route = serverPushTapRoute(data);
+          if (!route) {
+            console.warn('[PUSH-PREFS] tap: no route, fallback home', { type: data.type });
+            navTabHome();
+            break;
+          }
+          scheduleNav(() => router.push(route));
+          break;
+        }
         default:
           navTabHome();
       }

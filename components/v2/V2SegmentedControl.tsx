@@ -77,7 +77,7 @@ export default function V2SegmentedControl<K extends string>({ segments, value, 
             onPress={() => { if (!selected) onChange(segment.key); }}
             style={s.segment}
           >
-            <Text numberOfLines={1} style={[s.label, { color: selected ? p.text : p.textSecondary }]}>
+            <Text style={[s.label, { color: selected ? p.text : p.textSecondary }]}>
               {segment.label}
             </Text>
           </Pressable>
@@ -92,7 +92,8 @@ const HEIGHT = 44;
 
 const s = StyleSheet.create({
   track: {
-    height: HEIGHT,
+    minHeight: HEIGHT, // зачем (text-integrity): длинная подпись de/fr переносится, а не режется
+
     borderRadius: V2.radius.control,
     borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
     flexDirection: 'row',
@@ -105,6 +106,6 @@ const s = StyleSheet.create({
     bottom: PAD,
     borderRadius: V2.radius.control,
   },
-  segment: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  label: { ...V2_TYPE.subtitle, fontWeight: '700' },
+  segment: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 6, paddingVertical: 4 },
+  label: { ...V2_TYPE.subtitle, fontWeight: '700', textAlign: 'center' },
 });

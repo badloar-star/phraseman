@@ -326,7 +326,7 @@ function CommunityPackTileBase({
             {normalizePackLanguage(pack.packLanguage ?? pack.studyTarget) === NO_PACK_LANGUAGE ? (
               <View testID={`flashcards-pack-card-nolang-${pack.id}`} style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
                 <Ionicons name="globe-outline" size={11} color={g.text} />
-                <Text numberOfLines={1} style={{ fontSize: 13, lineHeight: 17, fontWeight: '700', color: g.text }}>{noPackLanguageLabel(lang)}</Text>
+                <Text style={{ flexShrink: 1, fontSize: 13, lineHeight: 17, fontWeight: '700', color: g.text }}>{noPackLanguageLabel(lang)}</Text>
               </View>
             ) : (
               <Text style={{ fontSize: 13, lineHeight: 17 }}>

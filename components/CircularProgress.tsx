@@ -154,7 +154,6 @@ function CircularProgress({
       <AnimatedText
         animatedProps={labelProps}
         style={{ color: textColor, fontSize, fontWeight: '700', textAlign: 'center' }}
-        numberOfLines={1}
       >
         {Math.round(clamped)}%
       </AnimatedText>

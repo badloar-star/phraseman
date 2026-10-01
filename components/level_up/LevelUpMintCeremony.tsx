@@ -358,7 +358,7 @@ export default function LevelUpMintCeremony({ visible, from, to, onDone, onCue }
           <View style={styles.caption} pointerEvents="none">
             <Animated.View style={titleStyle}>
               <Text style={styles.eyebrow}>{copy.newLevel}</Text>
-              <Text style={styles.title} numberOfLines={2} accessibilityRole="header">
+              <Text style={styles.title} accessibilityRole="header">
                 {to.name}
               </Text>
             </Animated.View>

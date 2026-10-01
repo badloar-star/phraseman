@@ -226,7 +226,6 @@ export default function FlashcardsVoicePickerScreen() {
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
             <Text
               style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', flexShrink: 1 }}
-              numberOfLines={1}
             >
               {title}
             </Text>
@@ -247,7 +246,7 @@ export default function FlashcardsVoicePickerScreen() {
               </View>
             ) : null}
           </View>
-          <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }} numberOfLines={1}>
+          <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
             {sub}
           </Text>
         </View>

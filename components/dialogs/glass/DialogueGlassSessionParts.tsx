@@ -97,7 +97,7 @@ export function DialogueGlassGoalCard({
       </View>
       <View style={styles.goalText}>
         <Text maxFontSizeMultiplier={1.3} style={[styles.goalKicker, { color: glass.secondary }]}>{kicker}</Text>
-        <Text numberOfLines={1} maxFontSizeMultiplier={1.3} style={[styles.goalLabel, { color: glass.text }]}>{label}</Text>
+        <Text maxFontSizeMultiplier={1.3} style={[styles.goalLabel, { color: glass.text }]}>{label}</Text>
       </View>
       <PressableHybrid
         testID={testID ? `${testID}-hint` : undefined}

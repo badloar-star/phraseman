@@ -78,7 +78,7 @@ export default function OfflineDataNotice({ message }: OfflineDataNoticeProps) {
       testID="offline-data-notice"
     >
       <Ionicons name="cloud-offline-outline" size={19} color={t.gold} />
-      <Text style={[styles.text, { color: t.textPrimary, fontSize: f.caption }]} numberOfLines={2}>
+      <Text style={[styles.text, { color: t.textPrimary, fontSize: f.caption }]}>
         {message}
       </Text>
     </Reanimated.View>

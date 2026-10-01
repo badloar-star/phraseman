@@ -209,7 +209,7 @@ function Accordion({
         style={{ flexDirection: 'row', alignItems: 'center', gap: 8, paddingHorizontal: 14, paddingVertical: 12, backgroundColor: defaultOpen ? c.surfaceBg : 'transparent' }}
       >
         <Ionicons name={icon} size={17} color={iconColor ?? c.accent} />
-        <Text style={{ flex: 1, color: c.primary, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2} numberOfLines={2}>{title}</Text>
+        <Text style={{ flex: 1, color: c.primary, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>{title}</Text>
         {count ? <Text style={{ color: c.muted, fontSize: f.caption }} maxFontSizeMultiplier={1.1}>{count}</Text> : null}
         <Ionicons name="chevron-down" size={17} color={c.muted} style={{ transform: [{ rotate: open ? '180deg' : '0deg' }] }} />
       </TouchableOpacity>

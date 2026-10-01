@@ -21,7 +21,8 @@ const THEMES = ['graphite', 'polar', 'slate', 'ink', 'lavender', 'iris', 'rose',
 const PROTECTED_FILES = new Map([
   ['app/flashcards/DeckSelectionTile.tsx', 'bce9ce4ebaabf7258e3cbf509f3f166835f17f18271e02edcd299b5608a979cf'],
   // зачем (30.09): темы 2.0 — ссылка раздела в цвете темы (p.link, 0c6d2549f); в «Спокойно» = textSecondary.
-  ['components/v2/V2Kit.tsx', 'b940f72037987ae13b15d488ddc9f51c0a72645255e0a8762784ee4243e63e81'],
+  // зачем (text-integrity 01.10): сняты обрезки подписей, кнопки и плашки растут по тексту — бизнес-логика не менялась.
+  ['components/v2/V2Kit.tsx', 'bef63e4eb47e4b40097ce081e01b5793ceb075a369a7b9de82e53951c16f9ea7'],
   ['components/v2/V2Pressable.tsx', '109ed9abd8f4f9cad448dad5ea3cac1c0ea7f058f86d8e6dae571ba807a37a83'],
 ]);
 const PROTECTED_RUNTIME = {

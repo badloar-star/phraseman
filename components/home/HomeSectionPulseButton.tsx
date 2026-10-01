@@ -98,8 +98,7 @@ function HomeSectionPulseButton({
         style={[styles.pill, { backgroundColor: surface }, count > 0 ? null : styles.pillBare, pillStyle]}
       >
         <Text
-          style={[styles.label, { color: accented ? t.textPrimary : t.textMuted, fontSize: Math.max(12, f.label - 1) }]}
-          numberOfLines={1}
+          style={[styles.label, { flexShrink: 1, color: accented ? t.textPrimary : t.textMuted, fontSize: Math.max(12, f.label - 1) }]}
         >
           {label}
         </Text>

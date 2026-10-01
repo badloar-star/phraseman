@@ -789,7 +789,7 @@ export default function FlashcardsMyPacksScreen() {
               {packLang === NO_PACK_LANGUAGE ? (
                 <View testID={`fc-my-packs-pack-nolang-${pack.id}`} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, maxWidth: tileW - 16 }}>
                   <Ionicons name="globe-outline" size={11} color={g.text} />
-                  <Text numberOfLines={1} style={{ flexShrink: 1, fontSize: 13, lineHeight: 17, fontWeight: '700', color: g.text }}>{noPackLanguageLabel(lang)}</Text>
+                  <Text style={{ flexShrink: 1, fontSize: 13, lineHeight: 17, fontWeight: '700', color: g.text }}>{noPackLanguageLabel(lang)}</Text>
                 </View>
               ) : flagArt ? <Image source={flagArt} style={{ width: 18, height: 12, borderRadius: 2 }} contentFit="cover" /> : <Text style={{ fontSize: 13, lineHeight: 17, fontWeight: '700', color: g.text }}>{PACK_LANGUAGE_META[packLang].shortName}</Text>}
             </View>

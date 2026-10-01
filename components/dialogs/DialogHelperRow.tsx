@@ -135,8 +135,7 @@ export default function DialogHelperRow({
               ]}
             >
               <Text
-                style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}
-                numberOfLines={1}
+                style={{ flexShrink: 1, color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}
                 maxFontSizeMultiplier={1.2}
               >
                 {suggestion}

@@ -129,8 +129,8 @@ export function V2ScreenHeader({ title, subtitle, onBack, backLabel = 'Back', ri
     <View testID={testID} style={s.header}>
       {onBack ? <V2IconButton icon="chevron-back" onPress={onBack} accessibilityLabel={backLabel} testID={testID ? `${testID}-back` : undefined} /> : null}
       <View style={s.headerCopy}>
-        {title ? <Text accessibilityRole="header" numberOfLines={1} style={[s.headerTitle, { color: p.text }]}>{title}</Text> : null}
-        {subtitle ? <Text numberOfLines={1} style={[s.headerSubtitle, { color: p.textSecondary }]}>{subtitle}</Text> : null}
+        {title ? <Text accessibilityRole="header" style={[s.headerTitle, { color: p.text }]}>{title}</Text> : null}
+        {subtitle ? <Text style={[s.headerSubtitle, { color: p.textSecondary }]}>{subtitle}</Text> : null}
       </View>
       {right ?? <View style={{ width: onBack ? V2.iconButton : 0 }} />}
     </View>
@@ -143,7 +143,7 @@ export function V2LargeTitle({ title, subtitle, right }: { title: string; subtit
   return (
     <View style={s.largeTitleRow}>
       <View style={{ flex: 1, minWidth: 0 }}>
-        <Text accessibilityRole="header" numberOfLines={2} style={[s.largeTitle, { color: p.text }]}>{title}</Text>
+        <Text accessibilityRole="header" style={[s.largeTitle, { color: p.text }]}>{title}</Text>
         {subtitle ? <Text style={[s.largeSubtitle, { color: p.textSecondary }]}>{subtitle}</Text> : null}
       </View>
       {right}
@@ -200,8 +200,8 @@ export const V2Row = memo(function V2Row({ title, subtitle, icon, iconShape = 's
     <>
       {leading ?? (icon ? <V2IconTile name={icon} shape={iconShape} size={V2.rowIcon} iconSize={21} /> : null)}
       <View style={s.rowCopy}>
-        <Text numberOfLines={2} style={[s.rowTitle, { color: disabled ? p.textSecondary : p.text }]}>{title}</Text>
-        {subtitle ? <Text numberOfLines={2} style={[s.rowSubtitle, { color: p.textSecondary }]}>{subtitle}</Text> : null}
+        <Text style={[s.rowTitle, { color: disabled ? p.textSecondary : p.text }]}>{title}</Text>
+        {subtitle ? <Text style={[s.rowSubtitle, { color: p.textSecondary }]}>{subtitle}</Text> : null}
       </View>
       {badge ? <V2Badge label={badge} /> : null}
       {trailing}
@@ -255,7 +255,7 @@ export const V2Button = memo(function V2Button({ label, onPress, variant = 'prim
       scaleTo={0.97}
       style={[
         s.button,
-        { height, borderRadius: height / 2, backgroundColor: bg, opacity: disabled ? 0.45 : 1 },
+        { minHeight: height, paddingVertical: 6, borderRadius: height / 2, backgroundColor: bg, opacity: disabled ? 0.45 : 1 },
         variant === 'secondary' ? { borderWidth: 1, borderColor: p.outline } : null, // guard-ok: D43 контурная кнопка
         size === 'small' ? { paddingHorizontal: 16 } : null,
         style,
@@ -264,7 +264,8 @@ export const V2Button = memo(function V2Button({ label, onPress, variant = 'prim
       {loading ? <ActivityIndicator color={fg} /> : (
         <>
           {iconPosition === 'leading' ? iconNode : null}
-          <Text numberOfLines={1} style={[size === 'large' ? s.buttonLabel : s.buttonLabelSmall, { color: fg }]}>{label}</Text>
+          {/* зачем (text-integrity, 01.10): подписи не обрезаем многоточием — длинные de/fr/es переносятся. */}
+          <Text style={[size === 'large' ? s.buttonLabel : s.buttonLabelSmall, { color: fg, flexShrink: 1, textAlign: 'center' }]}>{label}</Text>
           {iconPosition === 'trailing' ? iconNode : null}
         </>
       )}
@@ -280,7 +281,7 @@ export const V2Badge = memo(function V2Badge({ label, tone = 'glass' }: { label:
     <View
       style={[s.badge, tone === 'glass' ? { backgroundColor: p.control } : { borderWidth: 1, borderColor: p.stroke }]} // guard-ok: D43
     >
-      <Text numberOfLines={1} style={[s.badgeText, { color: p.text }]}>{label}</Text>
+      <Text style={[s.badgeText, { color: p.text, flexShrink: 1 }]}>{label}</Text>
     </View>
   );
 });
@@ -348,9 +349,9 @@ export function V2StatStrip({ stats }: { stats: readonly V2Stat[] }) {
           {i > 0 ? <View style={[s.statDivider, { backgroundColor: p.divider }]} /> : null}
           <View style={s.stat} accessible accessibilityLabel={`${stat.label}: ${stat.value}`}>
             <Ionicons name={stat.icon} size={22} color={p.iconTint} />
-            <View style={{ minWidth: 0 }}>
-              <Text numberOfLines={1} style={[s.statLabel, { color: p.textSecondary }]}>{stat.label}</Text>
-              <Text numberOfLines={1} style={[s.statValue, { color: p.text }]}>{stat.value}</Text>
+            <View style={{ minWidth: 0, flexShrink: 1 }}>
+              <Text style={[s.statLabel, { color: p.textSecondary }]}>{stat.label}</Text>
+              <Text style={[s.statValue, { color: p.text }]}>{stat.value}</Text>
             </View>
           </View>
         </React.Fragment>
@@ -375,7 +376,7 @@ export const V2AnswerOption = memo(function V2AnswerOption({ label, onPress, sta
       scaleTo={0.98}
       style={[s.answer, { borderColor: border, backgroundColor: bg, opacity: state === 'dimmed' ? 0.45 : 1 }]} // guard-ok: D43 контур варианта ответа
     >
-      <Text numberOfLines={3} style={[s.answerText, { color: p.text }]}>{label}</Text>
+      <Text style={[s.answerText, { color: p.text }]}>{label}</Text>
     </V2Pressable>
   );
 });
@@ -424,7 +425,7 @@ const s = StyleSheet.create({
   button: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 24 },
   buttonLabel: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
   buttonLabelSmall: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
-  badge: { minWidth: 34, height: 28, paddingHorizontal: 10, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
+  badge: { minWidth: 34, minHeight: 28, maxWidth: '100%', paddingHorizontal: 10, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
   badgeText: { fontSize: 13, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },
   track: { height: V2.progress.height, borderRadius: V2.progress.height / 2, overflow: 'hidden' },
   fill: { height: '100%', borderRadius: V2.progress.height / 2, minWidth: V2.progress.height * 2 },

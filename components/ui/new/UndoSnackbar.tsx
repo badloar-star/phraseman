@@ -170,7 +170,7 @@ export default function UndoSnackbar({
 
         <View style={styles.body}>
           <Text style={[styles.label, { color: t.accent }]}>{label.toUpperCase()}</Text>
-          <Text style={[styles.msg, { color: t.textPrimary, fontSize: f.bodyLg }]} numberOfLines={2}>
+          <Text style={[styles.msg, { color: t.textPrimary, fontSize: f.bodyLg }]}>
             {message}
           </Text>
         </View>

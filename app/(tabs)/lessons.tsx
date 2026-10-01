@@ -1277,7 +1277,6 @@ const LessonCard = React.memo(function LessonCard({
                 высоких» плашек. Две строки держат высоту 72, а многоточие
                 владелец запретил, поэтому кегль чуть меньше, а не обрезка. */}
             <Text
-              numberOfLines={learningV2 ? 2 : undefined}
               style={{
                 color: lessonTextColor,
                 fontSize: learningV2 ? f.body - 2 : f.body,

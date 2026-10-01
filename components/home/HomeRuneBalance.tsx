@@ -95,7 +95,6 @@ export default memo(function HomeRuneBalance({
       <Text
         testID="home-rune-balance-value"
         style={[styles.balance, { color, fontSize: valueSize }]}
-        numberOfLines={1}
         maxFontSizeMultiplier={1}
       >
         {displayBalance}

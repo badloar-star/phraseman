@@ -122,7 +122,6 @@ function CategoryOptionRow<T extends string>({
           <Ionicons name={option.icon} size={18} color={t.accent} />
         </View>
         <Text
-          numberOfLines={1}
           style={{ color: t.textPrimary, fontSize: f.body, fontWeight: selected ? '900' : '700', flex: 1 }}
         >
           {option.label}
@@ -264,7 +263,7 @@ export default function AchievementCategoryDock<T extends string>({
           <View style={[styles.capsuleIcon, { backgroundColor: t.accentBg }]}>
             <Ionicons name={selected.icon} size={18} color={t.accent} />
           </View>
-          <Text numberOfLines={1} style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
+          <Text style={{ flexShrink: 1, color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
             {selected.label}
           </Text>
           <Ionicons name={open ? 'chevron-down' : 'chevron-up'} size={17} color={t.textMuted} />

@@ -285,7 +285,7 @@ export function DialogueV2SessionScreen({
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
             <DialogueGlassBackButton glass={glass} onPress={requestBack} accessibilityLabel={labels.back} />
             <View style={{ flex: 1, minWidth: 0, marginLeft: 4 }}>
-              <Text numberOfLines={1} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: glass.text, fontSize: 20, lineHeight: 24, fontWeight: '700', letterSpacing: -0.2 }}>
+              <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: glass.text, fontSize: 20, lineHeight: 24, fontWeight: '700', letterSpacing: -0.2 }}>
                 {title}
               </Text>
               <View
@@ -295,7 +295,7 @@ export function DialogueV2SessionScreen({
                 accessibilityLabel={headerMood?.label ?? labels.subtitle}
               >
                 {headerMood ? <DialogueGlassMoodFace mood={headerMood.mood} color={glass.secondary} /> : null}
-                <Text numberOfLines={1} maxFontSizeMultiplier={1.3} style={{ color: glass.secondary, fontSize: 16, lineHeight: 21 }}>
+                <Text maxFontSizeMultiplier={1.3} style={{ flexShrink: 1, color: glass.secondary, fontSize: 16, lineHeight: 21 }}>
                   {headerMood?.label ?? labels.subtitle}
                 </Text>
               </View>

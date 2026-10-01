@@ -76,8 +76,6 @@ export default function CombinedLessonBreakdown({
           >
             <View style={{ flex: 1, minWidth: 0, gap: 6 }}>
               <Text
-                numberOfLines={1}
-                ellipsizeMode="tail"
                 maxFontSizeMultiplier={1.3}
                 style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}
               >

@@ -47,10 +47,15 @@ test('every registered tint is free; only unknown names fall back to graphite', 
   assert.equal(resolveLiquidGlassTheme(null), 'graphite');
 });
 
-test('app mapping only tints neutral roles and preserves success, error and rewards', () => {
+// зачем (владелец 01.10): в 2.0 жёлтого нет — «золото» наград = акцент темы; верно/ошибка остаются.
+const GOLD_KEYS = new Set(['gold', 'goldBg', 'textOnGold']);
+const KEPT_KEYS = Object.keys(base).filter((key) => !GOLD_KEYS.has(key));
+test('app mapping tints neutral roles, keeps success/error, and maps gold to the theme accent', () => {
   for (const id of LIQUID_GLASS_THEME_IDS) {
     const theme = makeLiquidGlassTheme(id, base);
-    for (const key of Object.keys(base)) assert.equal(theme[key], base[key], `${id}: ${key}`);
+    for (const key of KEPT_KEYS) assert.equal(theme[key], base[key], `${id}: ${key}`);
+    assert.equal(theme.gold, liquidGlassTokens(id).accentBright, `${id}: gold = accentBright`);
+    assert.equal(theme.textOnGold, liquidGlassTokens(id).accentInk, `${id}: textOnGold = accentInk`);
     assert.equal(theme.bgPrimary, liquidGlassTokens(id).bg);
     assert.equal(theme.accent, liquidGlassTokens(id).cta);
     assert.equal(theme.textPrimary, liquidGlassTokens(id).text);
@@ -140,11 +145,12 @@ test('light: tinted light background, white cards, dark text, readable buttons f
   }
 });
 
-test('every variant keeps success, error and rewards untouched and never mutates the calm cache', () => {
+test('every variant keeps success and error, maps gold to the accent, and never mutates the calm cache', () => {
   for (const variant of ALL_VARIANTS) {
     for (const id of LIQUID_GLASS_THEME_IDS) {
       const theme = makeLiquidGlassTheme(id, base, variant);
-      for (const key of Object.keys(base)) assert.equal(theme[key], base[key], `${id}/${variant.level}/${variant.appearance}: ${key}`);
+      for (const key of KEPT_KEYS) assert.equal(theme[key], base[key], `${id}/${variant.level}/${variant.appearance}: ${key}`);
+      assert.equal(theme.gold, liquidGlassTokens(id, variant).accentBright);
       assert.equal(theme.accent, liquidGlassTokens(id, variant).accent);
     }
   }

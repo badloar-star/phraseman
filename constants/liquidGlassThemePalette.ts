@@ -147,6 +147,13 @@ export function makeLiquidGlassTheme(id: LiquidGlassThemeId, base: Theme, varian
     // сюда приходит цвет темы — экраны, красящие выбор и ссылки через theme.accent, получают его сами.
     accent: t.accent,
     accentBg: t.accentSoft,
+    // зачем (владелец 01.10, «ни одного элемента не по макету»; аудит MOCKUP_GAP_AUDIT):
+    // gold/goldBg/textOnGold протекали из старой базы (#FFC800) — ~112 мест красились жёлтым
+    // в любой теме (звёзды оценки, кольцо серии…). В 2.0 жёлтого нет: «золото» = акцент темы
+    // (в «Спокойно» — нейтральный светлый, как белые звёзды макета).
+    gold: t.accentBright,
+    goldBg: t.accentSoft,
+    textOnGold: t.accentInk,
     shadowDark: t.bg,
     shadowLight: t.glassEdge,
     borderHighlight: t.glassEdge,

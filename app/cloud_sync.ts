@@ -579,6 +579,46 @@ const RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS = [
   'pending_shard_grants_v1_quarantine_owner_v1',
 ] as const;
 
+// зачем: снимок 2.0 (efe19ae9d, 2026-09-30) убрал XP, лигу и их подарки из
+// SYNC_KEYS — и тем самым из инвентаря стирания при смене аккаунта (он строится
+// из SYNC_KEYS). На устройствах, обновившихся с 1.x, эти ключи остаются на диске,
+// и следующий вошедший аккаунт наследовал чужие XP/уровень/очки лиги. Фичи
+// сняты, но старые значения обязаны стираться вместе с аккаунтом.
+// Сторож: tests/cloud_sync_identity_anchor.test.ts.
+export const RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS = [
+  'user_total_xp',
+  'user_prev_xp',
+  'weekly_xp',
+  'weekly_xp_period_start',
+  'season_cosmetics_v1',
+  'admin_energy_command',
+  'profile_card_level',
+  'profile_card_theme',
+  'profile_card_motion',
+  'profile_card_public_focus',
+  'gift_xp_bank_v1',
+  'achievement_league_boost_count',
+  'league_state_v3',
+  'league_result_pending',
+  'league_result_consumed_sig',
+  'week_leaderboard',
+  'week_points_v2',
+  'chain_shield',
+  'gift_xp_multiplier',
+  'club_gift_free_boost_v1',
+  'level_premium_pack_unlock_gifts_v1',
+  'level_up_shown_levels_v1',
+  'wager_discount',
+  'wager_discount_uses_v1',
+  'league_chest_energy_override_v1',
+  'league_chest_xp_override_v1',
+  'league_gold_theme_unlocked_v1',
+  'league_gold_theme_unlocked_at',
+  'xp_migration_v2',
+  'xp_level_restore_250_to_400_v1',
+  'week_points_migrated_v1',
+] as const;
+
 const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'mistake_practice_v2::',
   'learning_v2_lesson1_progress:',
@@ -796,6 +836,7 @@ export function accountLocalDataKeysForToday(todayKey: string = getUtcDayKey()):
     'login_bonus_v1',
     'last_opened_lesson',
     ...RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS,
+    ...RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS,
     ...CUSTOMIZATION_ACCOUNT_LOCAL_KEYS,
     ...LEVEL_UP_ACCOUNT_LOCAL_KEYS,
     ...LEGACY_TODAY_ACCOUNT_STORAGE_KEYS,

@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { accountOwnedStorageKeysFrom } from './cloud_sync';
+import { accountOwnedStorageKeysFrom, RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS } from './cloud_sync';
 import { DebugLogger } from './debug-logger';
 
 const NON_AUTHORITATIVE_BOOT_KEYS = new Set<string>([
@@ -20,6 +20,10 @@ const NON_AUTHORITATIVE_BOOT_KEYS = new Set<string>([
   // зачем (Account V2, 7D): журнал удалений карточек — служебный след, не прогресс;
   // сам по себе не должен делать установку «непустой» при передаче учётных данных.
   'accounts_v2_card_deletions_v1',
+  // зачем: XP/лига/их подарки сняты в 2.0. Их старые ключи стираются вместе с
+  // аккаунтом, но прогрессом не являются и никуда не синхронизируются — значит,
+  // не должны делать установку «непустой» ни при восстановлении, ни при передаче.
+  ...RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS,
 ]);
 
 type LocalAccountStorage = {

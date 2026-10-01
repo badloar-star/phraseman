@@ -4535,13 +4535,18 @@
         "id": "PM-086-A1",
         "text": "Free и Plus, все режимы и локали проверены",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "Исходная часть доказана той же пробой: ENERGY_SESSION_COST=1 (app/energy_contract.ts:100), все 14 режимов EnergyActivityKey в ENERGY_ACTIVITY_PRICES = ENERGY_SESSION_COST или 0; energyGateMessage во всех 9 локалях берёт число из ${required}, NoEnergyModal — из activityEnergyCost.",
+          "NOT_MET: «проверены» Free и Plus во всех режимах и локалях на устройстве — нужен прогон в эмуляторе (FINAL_PHASE п.1), этой сессии эмулятор запрещён → сессия Дизайн/эмулятор."
+        ]
       },
       {
         "id": "PM-086-A2",
         "text": "текст доступности не описывает устаревшие 10/20/25",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-10-01 npx tsx tests/pm086_energy_price_text.probe.ts → PASS (files=2456, a11y-выражений=943): ни один accessibilityLabel/Hint и ни один строковый/шаблонный литерал не ставит 10/20/25 рядом с ⚡/словом «энергия» (9 языков); аллоулист 1 — app/level_gift_system.ts (награда +20 снятых подарков PM-048, не цена). Ярлык энергии Главной app/(tabs)/home.tsx:3224 — только «Энергия: N»."
+        ]
       }
     ],
     "depends_on": [],

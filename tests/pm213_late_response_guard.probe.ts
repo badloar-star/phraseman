@@ -27,6 +27,7 @@ const GUARDED: Record<string, string> = {
   'app/ai_dialog_ownership.ts': 'диалоги: владелец сессии',
   'app/video_watch_runes_client.ts': 'видео: накопление/начисление рун за просмотр',
   'app/youtube_channel_preference.ts': 'видео: выбранный канал',
+  'app/dialogs_progress.ts': 'диалоги: отметка «Пройдено» (markDialogCompleted, PM-200)',
 };
 
 /** Исключения: файл -> причина. Только сокращать. */
@@ -37,8 +38,6 @@ const EXCEPTIONS: Record<string, string> = {
     'сетевой клиент без локальной записи; результат применяет экран через ownership-проверки',
   'app/mistake_practice_capture.ts':
     'адаптер над mistake_practice_store: запись идёт через appendMistakeEvent, где assertCurrentOwner уже стоит',
-  'app/dialogs_progress.ts':
-    'TODO PM-213: markDialogCompleted делает чтение->await->setItem без проверки поколения аккаунта; поздняя запись может попасть в ключ нового аккаунта. Добавить captureAccountGeneration перед await и isCurrentAccountGeneration перед setItem',
 };
 
 const read = (rel: string): string => {

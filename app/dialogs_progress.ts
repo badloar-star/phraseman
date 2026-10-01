@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { dialogueStateStorageKey } from './dialogue_language_registry';
 
 export const DIALOGS_COMPLETED_KEY = 'dialogs_completed_ids_v1';
@@ -53,14 +54,34 @@ export async function markDialogCompleted(studyTarget: unknown, scenarioId: stri
   if (!scenarioId) return;
   const storageKey = dialogsCompletedStorageKey(studyTarget);
   if (!storageKey) return;
+  // зачем: PM-213/PM-200 — отметка зовётся «в фоне» (void) после конца диалога.
+  // Если между началом и записью сменился аккаунт, запоздавшая запись попала бы
+  // в локальное состояние НОВОГО аккаунта. Поколение фиксируем до первого await
+  // и сверяем перед setItem — тот же приём, что в coin_rank_upgrade_v1.
+  const token = captureAccountGeneration();
+  if (!isCurrentAccountGeneration(token)) {
+    console.warn('[DIALOG-PROGRESS] skip mark: account not active', {
+      scenarioId,
+      phase: token.phase,
+      generation: token.generation,
+    });
+    return;
+  }
   try {
     const current = await getCompletedDialogIds(studyTarget);
     if (current.has(scenarioId)) return;
+    if (!isCurrentAccountGeneration(token)) {
+      console.warn('[DIALOG-PROGRESS] skip mark: account changed during read', {
+        scenarioId,
+        capturedGeneration: token.generation,
+      });
+      return;
+    }
     const next = [...current, scenarioId];
     await AsyncStorage.setItem(storageKey, JSON.stringify(next));
     emitAppEvent('dialogs_progress_changed', undefined);
   } catch (e) {
-      // best-effort: при сбое записи диалог просто покажется «новым» в следующий раз
-      DebugLogger.error('dialogs_progress:next', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
+    // best-effort: при сбое записи диалог просто покажется «новым» в следующий раз
+    DebugLogger.error('dialogs_progress:next', e instanceof Error ? e : new Error(String(e)), 'warning');
+  }
 }

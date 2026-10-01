@@ -7,6 +7,11 @@ import {
   isDialogCompleted,
   markDialogCompleted,
 } from '../app/dialogs_progress';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+  invalidateAccountGeneration,
+} from '../app/account_generation';
 
 // Эмитим событие — мокаем, чтобы тест не зависел от DeviceEventEmitter и проверял,
 // что обновление списка инициируется ровно при реальной отметке (не идемпотентной).
@@ -22,6 +27,8 @@ describe('dialogs_progress (local completed scenarios)', () => {
     await AsyncStorage.removeItem(dialogsCompletedStorageKey('fr')!);
     await AsyncStorage.removeItem(dialogsCompletedStorageKey('de')!);
     emitAppEvent.mockClear();
+    __resetAccountGenerationForTests();
+    beginAccountGeneration('user-a');
   });
 
   it('starts empty', async () => {
@@ -85,5 +92,33 @@ describe('dialogs_progress (local completed scenarios)', () => {
     expect(await getCompletedDialogIds('it')).toEqual(new Set());
     expect(await isDialogCompleted('it', 'legacy-en')).toBe(false);
     expect(await AsyncStorage.getItem(DIALOGS_COMPLETED_KEY)).toBe(JSON.stringify(['legacy-en']));
+  });
+
+  // PM-200/PM-213: поздняя отметка не пишет в чужой аккаунт.
+  it('skips the write when the account is not active', async () => {
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    invalidateAccountGeneration();
+    await markDialogCompleted('en', 'coffee');
+    beginAccountGeneration('user-a');
+    expect(await isDialogCompleted('en', 'coffee')).toBe(false);
+    expect(emitAppEvent).not.toHaveBeenCalled();
+    expect(warn.mock.calls.some((c) => String(c[0]).includes('[DIALOG-PROGRESS]'))).toBe(true);
+    warn.mockRestore();
+  });
+
+  it('skips the write when the account changes between read and write', async () => {
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    const realGetItem = AsyncStorage.getItem.bind(AsyncStorage);
+    const spy = jest.spyOn(AsyncStorage, 'getItem').mockImplementationOnce(async (key: string) => {
+      const value = await realGetItem(key);
+      beginAccountGeneration('user-b');
+      return value;
+    });
+    await markDialogCompleted('en', 'coffee');
+    spy.mockRestore();
+    expect(await isDialogCompleted('en', 'coffee')).toBe(false);
+    expect(emitAppEvent).not.toHaveBeenCalled();
+    expect(warn.mock.calls.some((c) => String(c[0]).includes('account changed'))).toBe(true);
+    warn.mockRestore();
   });
 });

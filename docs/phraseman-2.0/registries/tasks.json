@@ -170,7 +170,8 @@
         "text": "Для каждого маршрута есть владелец, входы, deep links, статус keep/redesign/remove/archive и SHA проверки",
         "accepted": false,
         "evidence": [
-          "Owner decision and product notes define coin rank, author title and paid profile card as separate concepts; runtime identity probe passes. Full purchase/visibility flow acceptance remains open."
+          "2026-10-01: node scripts/pm004_route_registry.mjs → docs/phraseman-2.0/evidence/PM-004_route_registry.md, SHA проверки ea8413669: 100 маршрутов из фактического app/, у каждого владелец (feature), входы (число + file:line), deep link phraseman://… (+ отметка push-уведомлений), статус и основание (номер решения/реестр 24.09): keep 70, redesign 15, archive 12, remove 2 (/shop, /pack_opening — кандидаты на удаление), 49 исчезнувших маршрутов с тем, что получает старая ссылка (+native-intent/+not-found). Удалён неиспользуемый шаблон app/modal.tsx.",
+          "NOT_MET: 1 маршрут ждёт владельца — /phrase_analytics_screen («Аналитика ошибок», Premium) без входа из приложения, только из DEV-витрины: вернуть вход / оставить скрытым (archive) / удалить?"
         ]
       }
     ],

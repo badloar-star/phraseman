@@ -21,7 +21,8 @@ export default function YoutubeChannelTabs({ value, onChange }: {
   };
   return (
     <View style={[styles.wrap, { borderBottomColor: g.glassEdge }]}>
-      {(['home', 'all', 'playlists'] as const).map((tab) => {
+      {/* зачем (владелец 01.10): вкладки «Все видео» нет — канал показывает «Главная» и «Плейлисты». */}
+      {(['home', 'playlists'] as const).map((tab) => {
         const active = value === tab;
         return (
           <TouchableOpacity

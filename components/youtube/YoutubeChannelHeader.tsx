@@ -21,7 +21,8 @@ export default function YoutubeChannelHeader({ channel, title, onBack, onOpenCha
   /** Крупный заголовок; по умолчанию — название канала. */
   title?: string;
   onBack?: () => void;
-  onOpenChannels: () => void;
+  /** Без обработчика пилюля только показывает канал (канал задаётся языком обучения). */
+  onOpenChannels?: () => void;
   onOpenYoutube: () => void;
 }) {
   const { lang } = useLang();
@@ -46,15 +47,27 @@ export default function YoutubeChannelHeader({ channel, title, onBack, onOpenCha
           <Ionicons name="logo-youtube" size={20} color={g.text} />
         </TapScale>
       </View>
-      <TapScale testID="youtube-all-channels" accessibilityRole="button" accessibilityLabel={channelAccessibilityLabel} onPress={onOpenChannels} style={[styles.channelPill, { backgroundColor: g.card, borderColor: g.glassEdge }]}>
+      {(() => {
+      const pillBody = (
         <View style={styles.channelPillContent}>
           {channel.avatarUrl
             ? <Image testID="youtube-channel-avatar" accessible={false} source={{ uri: channel.avatarUrl }} style={styles.avatar} contentFit="cover" />
             : <View testID="youtube-channel-avatar" style={[styles.avatar, { backgroundColor: g.opaqueControl }]}><Text style={[styles.avatarText, { color: g.text }]}>{initials}</Text></View>}
           <FlowText testID="youtube-channel-name" provenance="external" style={[styles.channelName, { color: g.text }]}>{channel.displayName}</FlowText>
-          <Ionicons name="chevron-down" size={17} color={g.secondary} style={styles.channelChevron} />
+          {onOpenChannels ? <Ionicons name="chevron-down" size={17} color={g.secondary} style={styles.channelChevron} /> : null}
         </View>
-      </TapScale>
+      );
+      // зачем (владелец 01.10): каждый канал — отдельный контур по языку обучения; выбора каналов нет.
+      return onOpenChannels ? (
+        <TapScale testID="youtube-all-channels" accessibilityRole="button" accessibilityLabel={channelAccessibilityLabel} onPress={onOpenChannels} style={[styles.channelPill, { backgroundColor: g.card, borderColor: g.glassEdge }]}>
+          {pillBody}
+        </TapScale>
+      ) : (
+        <View testID="youtube-channel-pill" accessible accessibilityLabel={channel.displayName} style={[styles.channelPill, { backgroundColor: g.card, borderColor: g.glassEdge }]}>
+          {pillBody}
+        </View>
+      );
+      })()}
     </View>
   );
 }

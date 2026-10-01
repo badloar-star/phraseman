@@ -33,13 +33,15 @@ describe('multichannel YouTube catalog UI contract', () => {
     expect(source).not.toContain('resolvePreferredYoutubeChannel(manifest, lang,');
   });
 
-  it('replaces the old channel strip with all-channels picker and three stable tabs', () => {
+  // зачем (владелец 01.10): вкладки «Все видео» нет; канал — контур языка обучения.
+  it('replaces the old channel strip and shows two tabs: home and playlists', () => {
     const source = `${screen()}\n${components()}`;
     expect(source).toContain('testID="youtube-all-channels"');
     expect(source).not.toContain('youtube-all-channels-legacy');
     expect(source).toContain('testID={`youtube-channel-${channel.id}`}');
     expect(source).toContain("testID={`youtube-tab-${tab}`}");
-    expect(source).toContain("(['home', 'all', 'playlists'] as const)");
+    expect(source).toContain("(['home', 'playlists'] as const)");
+    expect(source).not.toContain("(['home', 'all', 'playlists'] as const)");
     expect(screen()).toContain('testID="youtube-catalog-all-videos"');
     expect(screen()).toContain('data={allVideos}');
     expect(screen()).toContain('renderItem={({ item }) => renderVideoCard(item, true)}');

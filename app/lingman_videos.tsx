@@ -195,7 +195,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     if (refresh) setRefreshing(true); else if (!catalogRef.current) setLoading(true);
     try {
       const manifest = catalogRef.current?.manifest ?? await fetchYoutubeCatalogManifest();
-      const currentPreference = getYoutubeChannelPreference(token);
+      // зачем (владелец 01.10): канал = контур языка обучения; ручной выбор канала не применяется.
+      const currentPreference: YoutubeChannelPreference = { mode: 'auto' };
       const resolution = resolvePreferredYoutubeChannel(manifest, studyTarget, currentPreference);
       if (resolution.clearedInvalidManual) {
         await setYoutubeChannelPreference({ mode: 'auto' }, token);
@@ -393,7 +394,6 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
           channel={activeChannel}
           title={inTab ? copy.tabTitle : undefined}
           onBack={inTab ? undefined : () => safeRouterBack(router, '/(tabs)/home' as any)}
-          onOpenChannels={() => setPickerVisible(true)}
           onOpenYoutube={() => openExternalUrl(activeChannel.url)}
         />
         <YoutubeChannelTabs value={tab} onChange={changeTab} />

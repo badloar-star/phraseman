@@ -7,9 +7,10 @@ const tabs = readFileSync(new URL('../components/youtube/YoutubeChannelTabs.tsx'
 const card = readFileSync(new URL('../components/youtube/YoutubeVideoCard.tsx', import.meta.url), 'utf8');
 const header = readFileSync(new URL('../components/youtube/YoutubeChannelHeader.tsx', import.meta.url), 'utf8');
 
-test('all three channel tabs are live on the same catalog', () => {
+// зачем (владелец 01.10): видимых вкладок две — «Все видео» убрана.
+test('channel tabs are live on the same catalog', () => {
   assert.ok(tabs.includes("'home' | 'all' | 'playlists'"), 'three-tab state type');
-  assert.ok(tabs.includes("['home', 'all', 'playlists']"), 'three visible tab buttons');
+  assert.ok(tabs.includes("['home', 'playlists']"), 'two visible tab buttons');
   assert.ok(screen.includes("tab === 'all'"), 'All Videos branch');
   assert.ok(screen.includes('videosList(allVideos'), 'All Videos renders real catalog data');
   assert.ok(card.includes('compact?: boolean'), 'card supports approved compact All Videos row');

@@ -28,3 +28,22 @@ test('semantic marks stay: energy unit and stars', () => {
   assert.match(read('app/energy_activity_titles.ts'), /⚡/u);
   assert.match(read('components/lessons/LessonsListGlassKit.tsx'), /2★/u);
 });
+
+// Пуши (решение координатора 01.10): не больше одного эмодзи и только в начале строки.
+test('push copy has at most one emoji, only at the start of a line', () => {
+  const src = read('app/notifications.ts');
+  const EMO = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{1F000}-\u{1F2FF}]/gu;
+  const bad = [];
+  for (const m of src.matchAll(/(['"`])((?:\.|(?!\1)[^\\n])*)\1/g)) {
+    const body = m[2];
+    const all = body.match(EMO) || [];
+    if (all.length === 0) continue;
+    const leadsWithEmoji = /^[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{1F000}-\u{1F2FF}]/u.test(body);
+    if (all.length > 1 || !leadsWithEmoji) bad.push(body.slice(0, 60));
+  }
+  assert.deepEqual(bad, []);
+});
+
+test('the epic gift label has no sparkle', () => {
+  assert.doesNotMatch(read('app/level_gift_system.ts'), /['`]✨ /u);
+});

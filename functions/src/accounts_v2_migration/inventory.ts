@@ -278,8 +278,10 @@ const SUBCOLLECTION_RULES: readonly InventoryRule[] = [
     'Журнал рун (stars_ledger): итог уже в балансе users/{uid}.stars (runesToCoins).'),
   rule('s.dialogues', 'subcollection', { exact: ['dialogue_v2_memory', 'dialogue_v2_freeform_memory', 'dialogue_v2_bot_voice_claims'] },
     'info', 'no_v2_domain', [], 'Память диалогов.'),
-  rule('s.personal_sync', 'subcollection', { exact: ['personal_sync_segments'] }, 'hold', 'no_owner_decision', [],
-    'Журналы телефона смешивают учёбу и экономику — нужен отдельный разбор.'),
+  // зачем (OD26, владелец 2026-10-01): журналы телефона НЕ блокируют перенос — остаются на месте
+  // (keep_in_place, не переносятся и не удаляются), уроки/карточки/наборы переносятся как обычно.
+  rule('s.personal_sync', 'subcollection', { exact: ['personal_sync_segments'] }, 'keep_in_place', 'kept_in_v2_store', ['OD26'],
+    'Решение владельца OD26: журналы телефона остаются в хранилище 2.0, перенос не блокируют.'),
   rule('s.social', 'subcollection', {
     exact: ['notifications', 'idea_inbox', 'friends', 'friend_requests', 'friend_requests_sent', 'idea_likes_sent',
       'activity_like_stats', 'activity_likes_received', 'friend_activity_like_daily_limits', 'friend_activity_likes_sent', 'community_seller_inbox'],

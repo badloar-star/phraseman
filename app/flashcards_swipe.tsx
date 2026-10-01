@@ -52,6 +52,7 @@ import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/
 import { PracticeCta, PracticeProgressRow, PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useAudio, inferExpoSpeechLanguage } from '../hooks/use-audio';
 import { type Flashcard } from '../hooks/use-flashcards';
+import { writeSwipeMemoryMerged, type SwipeMemoryRows } from './flashcards/swipe_memory_write';
 import { loadSelectedSavedContour, peekSelectedSavedContour } from './flashcards/saved_language_contour';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
@@ -309,8 +310,13 @@ function compactMemory(memory: SwipeMemory): SwipeMemory {
 }
 
 async function saveSwipeMemory(memory: SwipeMemory, studyTarget?: RuntimeStudyTarget, v2Owner: string | null = null): Promise<void> {
-  const compact = compactMemory(memory);
-  await AsyncStorage.setItem(flashcardsSwipeMemoryKey(studyTarget), JSON.stringify(compact));
+  // зачем (Account V2 6G, ремонт №1): запись — слиянием с диском под общей очередью ключа,
+  // иначе снимок экрана затирал память, слитую гидрацией V2 (новее по lastSeenAt).
+  const compact = await writeSwipeMemoryMerged(
+    flashcardsSwipeMemoryKey(studyTarget),
+    memory as SwipeMemoryRows,
+    (rows) => compactMemory(rows as SwipeMemory) as SwipeMemoryRows,
+  ) as SwipeMemory;
   // зачем (Account V2, 6F, dual-write): память свайпов → поле `srs` карточек V2
   // (updatedAtMs = lastSeenAt, время правки на телефоне). Уже пачкой (отложенная
   // запись), шлются только изменившиеся записи. Фоном, за флагом.

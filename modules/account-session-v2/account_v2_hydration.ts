@@ -73,7 +73,7 @@ export type AccountsV2HydrationPorts = Readonly<{
 }>;
 
 export type AccountsV2HydrationOutcome =
-  | 'already_hydrated' | 'hydrated' | 'stale' | 'server_disabled'
+  | 'already_hydrated' | 'hydrated' | 'migration_pending' | 'stale' | 'server_disabled'
   | 'migration_failed' | 'migration_wait' | 'pull_failed' | 'apply_failed' | 'state_unreadable';
 
 type State = Readonly<{
@@ -130,10 +130,15 @@ async function writeState(handle: AccountsV2HydrationPorts['handle'], state: Sta
   });
 }
 
-/** Нужен ли вызов переноса по отметке области. */
+/** Перенос окончателен (done/already_done); hold и not_found_yet — пересматриваются. */
+export function migrationFinal(status: string | null): boolean {
+  return status === 'done' || status === 'already_done';
+}
+
+/** Нужен ли вызов переноса по отметке области (hold / not_found_yet — не чаще раза в сутки). */
 export function migrationNeeded(state: State, nowMs: number): boolean {
-  if (state.migration === 'done' || state.migration === 'already_done') return false;
-  if (state.migration === 'hold' && state.migrationAtMs !== null) {
+  if (migrationFinal(state.migration)) return false;
+  if ((state.migration === 'hold' || state.migration === 'not_found_yet') && state.migrationAtMs !== null) {
     const age = nowMs - state.migrationAtMs;
     return age < 0 || age >= ACCOUNTS_V2_MIGRATION_HOLD_RECHECK_MS;
   }
@@ -165,7 +170,7 @@ async function runMigration(ports: AccountsV2HydrationPorts): Promise<MigrationS
     const operations = ownData(data, 'operations');
     console.log(`${LOG} hydrate migrate status=${typeof status === 'string' ? status : 'invalid'} `
       + `ops=${Number.isSafeInteger(operations) ? operations as number : -1} round=${round} ms=${ports.nowMs() - startedAt}`);
-    if (status === 'done' || status === 'already_done' || status === 'hold') return { status };
+    if (status === 'done' || status === 'already_done' || status === 'hold' || status === 'not_found_yet') return { status };
     if (status !== 'partial') {
       console.warn(`${LOG} hydrate migrate_response_invalid`);
       return { fail: 'migration_failed' };
@@ -391,8 +396,12 @@ export async function hydrateAccountsV2Scope(ports: AccountsV2HydrationPorts): P
     console.warn(`${LOG} hydrate state_unreadable code=${errorCode(error)}`);
     return 'state_unreadable';
   }
-  if (state.hydratedAtMs !== null) {
-    console.log(`${LOG} hydrate skip reason=already_hydrated entities=${state.entities}`);
+  const wasHydrated = state.hydratedAtMs !== null;
+  // зачем (ревью 6G, ремонт №1): гидрированная область ОКОНЧАТЕЛЬНА только при окончательном
+  // переносе. После hold / not_found_yet (старый документ ещё не найден) перенос
+  // перепроверяется раз в сутки; стал done — тянем и применяем ещё раз (идемпотентно).
+  if (wasHydrated && !migrationNeeded(state, ports.nowMs())) {
+    console.log(`${LOG} hydrate skip reason=already_hydrated entities=${state.entities} migration=${state.migration ?? 'none'}`);
     return 'already_hydrated';
   }
   if (migrationNeeded(state, ports.nowMs())) {
@@ -408,6 +417,11 @@ export async function hydrateAccountsV2Scope(ports: AccountsV2HydrationPorts): P
     }
   } else {
     console.log(`${LOG} hydrate migrate_skip status=${state.migration ?? 'none'}`);
+  }
+  if (wasHydrated && !migrationFinal(state.migration)) {
+    // Перенос всё ещё не окончателен — новых данных в V2 от него нет, повторный pull не нужен.
+    console.log(`${LOG} hydrate migration_still_pending status=${state.migration ?? 'none'} recheckHours=24`);
+    return 'migration_pending';
   }
   const pulled = await pullAll(ports);
   if ('fail' in pulled) return pulled.fail;

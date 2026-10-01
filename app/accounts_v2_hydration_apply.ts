@@ -25,6 +25,14 @@ import { flashcardsSwipeMemoryKey, lessonBestScoreKey } from './target_storage_k
  * включённом флаге и только когда гидрация дошла до применения. Перед каждым
  * хранилищем — isCurrent(): смена аккаунта обрывает применение.
  * Каждый пропуск — лог [ACCOUNT-V2] с кодом.
+ *
+ * TEMP (ремонт №1, P3, задокументировано): журнала локальных удалений карточек
+ * и наборов в приложении НЕТ (до V2 удаление просто убирало элемент). Поэтому
+ * при ПЕРВОМ включении V2 на старом телефоне карточка, удалённая локально после
+ * последней облачной копии, может вернуться из перенесённых данных. После
+ * включения удаления идут tombstone через зеркало производителя — такие
+ * сущности гидрация не отдаёт (withoutLocallyOwned). Урок: окно между чтением и
+ * записью оценки узкое (одна пара multiGet/multiSet), сервер хранит лучший.
  */
 
 const LOG = '[ACCOUNT-V2]';
@@ -131,49 +139,61 @@ export async function applyHydratedCards(cards: readonly HydratedCard[], isCurre
   counts.cards_invalid = invalid;
 }
 
+type SrsTally = { written: number; keptLocal: number };
+
+/** Слить SRS сервера в строки памяти: только где время правки сервера новее. */
+function mergeSrsRows(
+  memory: Readonly<Record<string, Record<string, number>>>, items: readonly HydratedCard[], tally: SrsTally,
+): Record<string, Record<string, number>> | null {
+  let changed = false;
+  const next: Record<string, Record<string, number>> = { ...memory };
+  for (const card of items) {
+    const srs = card.srs as Readonly<Record<string, unknown>>;
+    const time = srs.updatedAtMs;
+    if (typeof time !== 'number' || !Number.isSafeInteger(time) || time <= 0) continue;
+    const memoryKey = `${TRAINING_PREFIX[card.list]}${card.id}`;
+    const local = next[memoryKey];
+    const localTime = typeof local?.lastSeenAt === 'number' ? local.lastSeenAt : 0;
+    if (localTime >= time) { tally.keptLocal += 1; continue; }
+    const row: Record<string, number> = { ...MEMORY_DEFAULTS, lastSeenAt: time };
+    for (const name of MEMORY_FIELDS) {
+      const value = srs[name];
+      if (typeof value === 'number' && Number.isFinite(value)) row[name] = value;
+    }
+    next[memoryKey] = row;
+    changed = true;
+    tally.written += 1;
+  }
+  return changed ? next : null;
+}
+
 /** SRS → память свайпов: сервер только если его время правки новее локального lastSeenAt. */
 export async function applyHydratedSrs(cards: readonly HydratedCard[], isCurrent: () => boolean, counts: Counts): Promise<void> {
-  let written = 0;
-  let keptLocal = 0;
+  const tally: SrsTally = { written: 0, keptLocal: 0 };
   const withSrs = cards.filter((card) => !card.deleted && card.srs !== null);
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const writer = require('./flashcards/swipe_memory_write') as typeof import('./flashcards/swipe_memory_write');
   for (const [target, items] of groupByTarget(withSrs, counts, 'srs')) {
     guard(isCurrent);
     const key = flashcardsSwipeMemoryKey(target);
-    const raw = await AsyncStorage.getItem(key);
-    let memory: Record<string, Record<string, number>> = {};
-    try {
-      const parsed: unknown = raw === null ? {} : JSON.parse(raw);
-      if (typeof parsed === 'object' && parsed !== null && !Array.isArray(parsed)) memory = parsed as Record<string, Record<string, number>>;
-    } catch (error) {
-      // зачем: битую память не перезаписываем вслепую — пропуск языка с логом.
-      console.warn(`${LOG} hydrate srs memory_unreadable kind=${error instanceof Error ? error.name : typeof error}`);
-      counts.srs_memory_unreadable = (counts.srs_memory_unreadable ?? 0) + 1;
-      continue;
-    }
-    let changed = false;
-    const next: Record<string, Record<string, number>> = { ...memory };
-    for (const card of items) {
-      const srs = card.srs as Readonly<Record<string, unknown>>;
-      const time = srs.updatedAtMs;
-      if (typeof time !== 'number' || !Number.isSafeInteger(time) || time <= 0) continue;
-      const memoryKey = `${TRAINING_PREFIX[card.list]}${card.id}`;
-      const local = next[memoryKey];
-      const localTime = typeof local?.lastSeenAt === 'number' ? local.lastSeenAt : 0;
-      if (localTime >= time) { keptLocal += 1; continue; }
-      const row: Record<string, number> = { ...MEMORY_DEFAULTS, lastSeenAt: time };
-      for (const name of MEMORY_FIELDS) {
-        const value = srs[name];
-        if (typeof value === 'number' && Number.isFinite(value)) row[name] = value;
+    // зачем (ремонт №1, P3): чтение-слияние-запись под той же очередью, что сохранение
+    // свайпов (swipe_memory_write) — свайп между нашим чтением и записью не теряется,
+    // а снимок экрана при своей записи сливается с диском по времени правки.
+    await writer.withSwipeMemoryLock(key, async () => {
+      const disk = await writer.readSwipeMemoryRows(key);
+      if (disk === null) {
+        // зачем: битую память не перезаписываем вслепую — пропуск языка с логом.
+        console.warn(`${LOG} hydrate srs memory_unreadable`);
+        counts.srs_memory_unreadable = (counts.srs_memory_unreadable ?? 0) + 1;
+        return;
       }
-      next[memoryKey] = row;
-      changed = true;
-      written += 1;
-    }
-    guard(isCurrent);
-    if (changed) await AsyncStorage.setItem(key, JSON.stringify(next));
+      const next = mergeSrsRows(disk as Record<string, Record<string, number>>, items, tally);
+      guard(isCurrent);
+      if (next !== null) await AsyncStorage.setItem(key, JSON.stringify(next));
+    });
   }
-  counts.srs_written = written;
-  counts.srs_kept_local = keptLocal;
+  counts.srs_written = tally.written;
+  counts.srs_kept_local = tally.keptLocal;
 }
 
 /** Библиотека наборов: объединение живых id сервера без tombstone. */

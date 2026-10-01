@@ -129,6 +129,7 @@ function migratePort(w: World): import('./migrate_mine').AccountsV2MigratePort {
 function pullPort(w: World): import('./pull_mine').AccountsV2PullPort {
   const rate = new Map<string, Readonly<Record<string, unknown>> | null>();
   return {
+    async deletionPending(uid) { w.calls.push(`deletion:${uid}`); return w.deletion.has(uid); },
     async consumeRate(uid, decide) {
       w.calls.push(`rate:${uid}`);
       const decision = decide(rate.get(uid) ?? null);
@@ -266,11 +267,24 @@ describe('accountsV2MigrateMine — перенос при первом вход�
     expect(JSON.stringify([...(w.v2.entities.get(UID) ?? new Map()).entries()])).toBe(before);
   });
 
-  it('нет старого документа → done, legacyFound=false, ноль операций', async () => {
+  it('нет старого документа → not_found_yet (перепроверяемо), НЕ done; позже документ появился → перенос', async () => {
+    // зачем (ревью P2): auth_links может появиться позже входа — вечный done потерял бы старые данные.
     const w = world();
     const result = await migrate.handleAccountsV2MigrateMine(migratePort(w), { auth: { uid: UID } }, flags(true), deps());
-    expect([result.status, result.legacyFound, result.operations]).toEqual(['done', false, 0]);
+    expect([result.status, result.legacyFound, result.operations]).toEqual(['not_found_yet', false, 0]);
     expect(w.calls.filter((call) => call.startsWith('apply'))).toEqual([]);
+    expect(w.meta.get(UID)).toMatchObject({ status: 'not_found_yet' });
+    // в пределах суток — ответ из отметки, старое не перечитывается
+    w.calls.length = 0;
+    const soon = await migrate.handleAccountsV2MigrateMine(migratePort(w), { auth: { uid: UID } }, flags(true), deps(NOW + 3_600_000));
+    expect(soon.status).toBe('not_found_yet');
+    expect(w.calls).toEqual([`readMeta:${UID}`]);
+    // привязка и документ появились; через сутки — перенос
+    w.authLinks.set(UID, STABLE);
+    w.users.set(STABLE, legacyUser());
+    const later = await migrate.handleAccountsV2MigrateMine(migratePort(w), { auth: { uid: UID } }, flags(true), deps(NOW + 25 * 3_600_000));
+    expect(later.status).toBe('done');
+    expect(w.v2.count(UID)).toBe(5);
   });
 });
 
@@ -286,13 +300,12 @@ describe('accountsV2MigrateMine — HOLD и частота', () => {
     expect(w.meta.get(UID)).toMatchObject({ status: 'hold', holdReasons: ['identity_hidden'] });
   });
 
-  it('журналы телефона (personal_sync) → hold по инвентарю, V2 не пишется', async () => {
+  it('журналы телефона (personal_sync) НЕ блокируют перенос (OD26 keep_in_place)', async () => {
     const w = seeded();
     w.personal.add(STABLE);
     const result = await migrate.handleAccountsV2MigrateMine(migratePort(w), { auth: { uid: UID } }, flags(true), deps());
-    expect(result.status).toBe('hold');
-    expect(result.holdReasons).toContain('no_owner_decision');
-    expect(w.v2.count(UID)).toBe(0);
+    expect(result.status).toBe('done');
+    expect(w.v2.count(UID)).toBe(5);
   });
 
   it('hold моложе суток отвечается из отметки, старые данные не перечитываются', async () => {
@@ -387,6 +400,16 @@ describe('accountsV2PullMine — гидрация', () => {
     const srs = pulled.find((entity) => entity.entityId === 'en:saved:c1')?.state as Data;
     expect(((srs.fields as Data).srs as Data).value).toMatchObject({ updatedAtMs: SRS_TIME, correct: 2 });
     expect(w.calls.every((call) => call.endsWith(UID))).toBe(true);
+  });
+
+  it('идёт удаление аккаунта → отказ, сущности не читаются', async () => {
+    const w = seeded();
+    await migrate.handleAccountsV2MigrateMine(migratePort(w), { auth: { uid: UID } }, flags(true), deps());
+    w.deletion.add(UID);
+    w.calls.length = 0;
+    const error = await rejection(pull.handleAccountsV2PullMine(pullPort(w), { auth: { uid: UID }, data: null }, flags(true), pullDeps()));
+    expect(error.message).toBe('account_deletion_pending');
+    expect(w.calls).toEqual([`deletion:${UID}`]);
   });
 
   it('битая запись не уходит клиенту — skipped', async () => {

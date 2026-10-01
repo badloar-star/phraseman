@@ -30,7 +30,7 @@ import { ACCOUNTS_V2_COLLECTIONS, accountsV2MetaPath, accountsV2UidPathSafe } fr
  * Наружу — только тип, id сущности, ревизия, время и разобранное состояние.
  *
  * Ворота: флаг syncEnabled (выкл → accounts_v2_disabled, 0 чтений данных) →
- * auth → uid для пути → курсор/размер → блок в памяти (0 чтений) → счётчик
+ * auth → uid для пути → курсор/размер → блок в памяти (0 чтений) → маркер удаления (1 чтение) → счётчик
  * частоты accounts_v2_meta/pull_rate (1 чтение + 1 запись; отказ — 1 чтение) →
  * один запрос страницы (≤ limit чтений). Клиент тянет один раз на установку и
  * при смене аккаунта — без опроса.
@@ -70,6 +70,8 @@ export type AccountsV2PullRequest = Readonly<{ auth?: Readonly<{ uid?: string }>
 export type StoredEntityDoc = Readonly<{ id: string; data: unknown }>;
 
 export type AccountsV2PullPort = Readonly<{
+  /** Идёт удаление аккаунта (маркер account_deletion_auth_markers/{uid}) — данные не отдаём. */
+  deletionPending(uid: string): Promise<boolean>;
   /** Счётчик частоты: decide получает сохранённый документ, его write пишется в той же транзакции. */
   consumeRate(uid: string, decide: (stored: Readonly<Record<string, unknown>> | null) => ReturnType<typeof decideAccountsV2Rate>): Promise<void>;
   /** Сущности под uid по возрастанию id документа, строго после afterDocId. */
@@ -183,6 +185,18 @@ export async function handleAccountsV2PullMine(
     console.warn(`${LOG} pull rate_limited_cached uid=${tag} retryAfterMs=${blocked - nowMs}`);
     throw rateLimitedError(blocked - nowMs);
   }
+  let deleting: boolean;
+  try {
+    deleting = await port.deletionPending(uid);
+  } catch (error) {
+    console.error(`${LOG} pull deletion_check_failed uid=${tag} ${errorTag(error)}`);
+    throw retryableError();
+  }
+  if (deleting) {
+    // зачем (ревью P3): удаляемый аккаунт не должен заново наполнять новый телефон своими данными.
+    console.warn(`${LOG} pull reject reason=account_deletion_pending uid=${tag}`);
+    throw finalError('failed-precondition', 'account_deletion_pending');
+  }
   try {
     await port.consumeRate(uid, (stored) => decideAccountsV2Rate(stored, nowMs, deps.rate, tag));
   } catch (error) {
@@ -219,6 +233,10 @@ export async function handleAccountsV2PullMine(
 /** Firestore-реализация: счётчик — одна транзакция; страница — один запрос с limit. */
 export function createFirestorePullPort(db: Firestore): AccountsV2PullPort {
   return Object.freeze({
+    async deletionPending(uid) {
+      const marker = await db.collection('account_deletion_auth_markers').doc(uid).get(); // guard-ok: один документ
+      return marker.exists;
+    },
     async consumeRate(uid, decide) {
       const ref = db.doc(accountsV2MetaPath(uid, ACCOUNTS_V2_PULL_RATE_META));
       const refusal = await db.runTransaction(async (tx) => {

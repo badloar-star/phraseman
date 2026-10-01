@@ -22,6 +22,7 @@ import { loadCommunityOwnedPackIds, mergeCommunityOwnedPackIdsFromAccountsV2 } f
 import { loadFlashcards, mergeSavedFlashcardsFromAccountsV2, saveFlashcards, type Flashcard } from '../hooks/use-flashcards';
 import { flashcardsSwipeMemoryKey, lessonBestScoreKey } from '../app/target_storage_keys';
 import { beginAccountGeneration } from '../app/account_generation';
+import { writeSwipeMemoryMerged } from '../app/flashcards/swipe_memory_write';
 
 /*
  * Account V2, Пакет 6G — перенос при первом входе (OD21) и гидрация новой установки.
@@ -91,7 +92,7 @@ function server(entities: unknown[], migrateStatus: string | Error = 'done', pag
   };
 }
 
-function harness(script: ServerScript, adapter = new MemoryScopeStorageAdapter(), opts: { withHydration?: boolean } = {}) {
+function harness(script: ServerScript, adapter = new MemoryScopeStorageAdapter(), opts: { withHydration?: boolean; nowMs?: number } = {}) {
   const state = { enabled: true, authUid: A as string | null };
   const timers: { run: () => void; delayMs: number }[] = [];
   const sent: AccountSyncWireBatch[] = [];
@@ -112,7 +113,7 @@ function harness(script: ServerScript, adapter = new MemoryScopeStorageAdapter()
     newNonce: () => `n${++nonce}`,
     setTimer: jest.fn((run: () => void, delayMs: number) => { timers.push({ run, delayMs }); return timers.length; }),
     clearTimer: () => undefined,
-    nowMs: () => NOW,
+    nowMs: () => opts.nowMs ?? NOW,
     random: () => 0,
     ...(opts.withHydration === false ? {} : {
       hydration: {
@@ -193,7 +194,7 @@ describe('account v2 hydration 6G — controller flow', () => {
     await runHydration(second);
     expect(script.migrate).toHaveBeenCalledTimes(1);
     expect(script.pull).toHaveBeenCalledTimes(1);
-    expect(lines()).toContain('[ACCOUNT-V2] hydrate skip reason=already_hydrated entities=1');
+    expect(lines()).toContain('[ACCOUNT-V2] hydrate skip reason=already_hydrated entities=1 migration=done');
   });
 
   test('migration hold is not an error: pull + apply still run, hold recorded', async () => {
@@ -205,6 +206,45 @@ describe('account v2 hydration 6G — controller flow', () => {
     expect(script.applied).toHaveLength(1);
     const mark = h.adapter.snapshot(`account:${A}`).find((record) => record.key === ACCOUNTS_V2_HYDRATION_STATE_KEY)?.value;
     expect(mark).toMatchObject({ migration: 'hold', migrationAtMs: NOW });
+  });
+
+  test.each(['hold', 'not_found_yet'])('after %s: hydrated but NOT final — same day no network; next day migration rechecked; done → pull+apply again', async (pending) => {
+    const script = server([lessonEntity], pending);
+    const adapter = new MemoryScopeStorageAdapter();
+    const first = harness(script, adapter);
+    await first.controller.setAuthUid(A);
+    await settle();
+    await runHydration(first);
+    expect(script.applied).toHaveLength(1);
+    await first.controller.stop('test');
+    // тот же день — ни сети, ни применения
+    const sameDay = harness(script, adapter, { nowMs: NOW + 3_600_000 });
+    await sameDay.controller.setAuthUid(A);
+    await settle();
+    await runHydration(sameDay);
+    await sameDay.controller.stop('test');
+    expect(script.migrate).toHaveBeenCalledTimes(1);
+    expect(script.pull).toHaveBeenCalledTimes(1);
+    // следующий день, перенос всё ещё не окончателен — только перепроверка, без pull
+    const stillPending = harness(script, adapter, { nowMs: NOW + 25 * 3_600_000 });
+    await stillPending.controller.setAuthUid(A);
+    await settle();
+    await runHydration(stillPending);
+    await stillPending.controller.stop('test');
+    expect(script.migrate).toHaveBeenCalledTimes(2);
+    expect(script.pull).toHaveBeenCalledTimes(1);
+    expect(lines()).toContain(`[ACCOUNT-V2] hydrate migration_still_pending status=${pending} recheckHours=24`);
+    // hold снят → done: pull и применение ещё раз, отметка окончательная
+    script.migrate.mockResolvedValueOnce({ data: { status: 'done', operations: 3 } });
+    const lifted = harness(script, adapter, { nowMs: NOW + 50 * 3_600_000 });
+    await lifted.controller.setAuthUid(A);
+    await settle();
+    await runHydration(lifted);
+    expect(script.migrate).toHaveBeenCalledTimes(3);
+    expect(script.pull).toHaveBeenCalledTimes(2);
+    expect(script.applied).toHaveLength(2);
+    const mark = adapter.snapshot(`account:${A}`).find((record) => record.key === ACCOUNTS_V2_HYDRATION_STATE_KEY)?.value;
+    expect(mark).toMatchObject({ migration: 'done' });
   });
 
   test('migration failure: no pull, no apply, no mark (retried next start)', async () => {
@@ -359,6 +399,24 @@ describe('account v2 hydration 6G — local apply rules', () => {
     expect(counts).toMatchObject({ srs_written: 2, srs_kept_local: 1 });
     await expect(applyHydratedSrs([card('c4', NOW)], () => false, {})).rejects.toThrow('hydration_stale');
     expect(JSON.parse(String(await AsyncStorage.getItem(key)))['saved:all:c4']).toBeUndefined();
+  });
+
+  test('swipe save and hydration share one queue and merge by edit time (no lost rows either way)', async () => {
+    const key = flashcardsSwipeMemoryKey('en');
+    await AsyncStorage.setItem(key, JSON.stringify({ 'saved:all:old': { correct: 1, lastSeenAt: NOW - 9000 } }));
+    // экран держит снимок, сделанный ДО гидрации, и пишет его одновременно с гидрацией
+    const screenSnapshot = { 'saved:all:old': { correct: 1, lastSeenAt: NOW - 9000 }, 'saved:all:swiped': { correct: 1, lastSeenAt: NOW } };
+    const card = { target: 'en', list: 'saved' as const, id: 'hyd', deleted: false, fields: {}, srs: { updatedAtMs: NOW - 10, correct: 7 } };
+    await Promise.all([
+      applyHydratedSrs([card], () => true, {}),
+      writeSwipeMemoryMerged(key, screenSnapshot),
+    ]);
+    const memory = JSON.parse(String(await AsyncStorage.getItem(key)));
+    expect(Object.keys(memory).sort()).toEqual(['saved:all:hyd', 'saved:all:old', 'saved:all:swiped']);
+    expect(memory['saved:all:hyd']).toMatchObject({ correct: 7 });
+    // снимок экрана со СТАРОЙ строкой не затирает более свежую на диске
+    await writeSwipeMemoryMerged(key, { 'saved:all:hyd': { correct: 0, lastSeenAt: 1 } });
+    expect(JSON.parse(String(await AsyncStorage.getItem(key)))['saved:all:hyd']).toMatchObject({ correct: 7 });
   });
 
   test('saved cards: only missing ones are added (by id and by phrase), existing stay as they are', async () => {

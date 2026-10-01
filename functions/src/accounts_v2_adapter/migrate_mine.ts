@@ -39,7 +39,7 @@ import { accountsV2MetaPath, accountsV2UidPathSafe, applyBatchInFirestore } from
  *   personal_sync) + на пакет ≤ 50 операций: N+M чтений и записей + 1 запись отметки.
  * Повторный вход: 1 чтение отметки. Клиент зовёт перенос один раз на установку.
  *
- * Отметка: { status: 'done'|'hold'|'partial', version, atMs, lastAttemptAtMs,
+ * Отметка: { status: 'done'|'hold'|'partial'|'not_found_yet', version, atMs, lastAttemptAtMs,
  *   operations, nextBatch?, opsSha256?, holdReasons? } — только коды и числа.
  */
 
@@ -67,7 +67,7 @@ const FLASHCARD_PAGES = 'flashcard_pages';
 const PERSONAL_SYNC = 'personal_sync_segments';
 const BLOCK_CACHE_MAX = 10_000;
 
-export type AccountsV2MigrationStatus = 'done' | 'already_done' | 'hold' | 'partial';
+export type AccountsV2MigrationStatus = 'done' | 'already_done' | 'hold' | 'partial' | 'not_found_yet';
 export type AccountsV2MigrateResponse = Readonly<{
   status: AccountsV2MigrationStatus;
   version: number;
@@ -193,7 +193,10 @@ export function decideAccountsV2Migration(meta: Meta | null, nowMs: number): Gat
   if (sameVersion && status === 'done') {
     return { kind: 'answer', response: respond('already_done', 0, emptyOutcomes(), [], meta.legacyFound !== false) };
   }
-  if (sameVersion && status === 'hold' && atMs !== null && nowMs - atMs >= 0 && nowMs - atMs < ACCOUNTS_V2_MIGRATION_LIMITS.holdRecheckMs) {
+  // зачем (ревью P2): hold и not_found_yet — НЕ окончательны, пересматриваются раз в сутки.
+  if (sameVersion && (status === 'hold' || status === 'not_found_yet') && atMs !== null && nowMs - atMs >= 0
+    && nowMs - atMs < ACCOUNTS_V2_MIGRATION_LIMITS.holdRecheckMs) {
+    if (status === 'not_found_yet') return { kind: 'answer', response: respond('not_found_yet', 0, emptyOutcomes(), [], false) };
     const reasons = Array.isArray(meta.holdReasons) ? meta.holdReasons.filter((item): item is string => typeof item === 'string') : [];
     return { kind: 'answer', response: respond('hold', 0, emptyOutcomes(), reasons) };
   }
@@ -260,6 +263,17 @@ async function runMigration(
     throw finalError('failed-precondition', 'account_deletion_pending');
   }
   const legacy = await readLegacySnapshot(port, uid, resolved.docId, tag);
+  if (!legacy.found) {
+    // зачем (ревью P2): привязка auth_links/старый документ могут появиться ПОСЛЕ входа
+    // (вход опережает слой личности). Вечный done здесь навсегда терял бы старые данные
+    // человека — пишем перепроверяемый статус (раз в сутки, как hold), V2 не трогаем.
+    await port.writeMeta(uid, {
+      status: 'not_found_yet', version: ACCOUNTS_V2_MIGRATION_VERSION, atMs: nowMs, lastAttemptAtMs: nowMs,
+      operations: 0, legacyFound: false,
+    });
+    console.warn(`${LOG} migrate not_found_yet uid=${tag} sameDoc=${resolved.docId === uid} recheckMs=${ACCOUNTS_V2_MIGRATION_LIMITS.holdRecheckMs}`);
+    return respond('not_found_yet', 0, emptyOutcomes(), [], false);
+  }
   if (legacy.pagesOverflow) return writeHold(port, uid, tag, nowMs, ['pages_over_limit'], true);
   let result;
   try {

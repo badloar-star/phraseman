@@ -117,7 +117,6 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.system.destructive_done': event(require('../../assets/audio/sfx/v1/system/pm_system_destructive_done_v1.m4a'), 0.34, 84, 2500, 580, 'system'),
 
   'pm.energy.empty': event(require('../../assets/audio/sfx/v1/energy/pm_energy_empty_v1.m4a'), 0.32, 73, 5000, 620, 'energy'),
-  'pm.energy.refilled': event(require('../../assets/audio/sfx/v1/energy/pm_energy_refilled_v1.m4a'), 0.42, 70, 3000, 720, 'energy'),
   'pm.streak.saved': event(require('../../assets/audio/sfx/v1/streak/pm_streak_saved_v1.m4a'), 0.54, 84, 5000, 1080, 'streak'),
 
   'pm.reward.small': event(require('../../assets/audio/sfx/v1/reward/pm_reward_small_v1.m4a'), 0.42, 64, 1800, 720, 'reward', { deferAfterVoice: true }),
@@ -288,7 +287,6 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.hearts.lost': event(require('../../assets/audio/sfx/v1/hearts/pm_heart_lost_v1.m4a'), 0.30, 64, 400, 500, 'hearts'),
   'pm.hearts.restored': event(require('../../assets/audio/sfx/v1/hearts/pm_hearts_restored_v1.m4a'), 0.48, 78, 2000, 1200, 'hearts'),
 
-  'pm.customization.applied': event(require('../../assets/audio/sfx/v1/commerce/pm_customization_applied_v1.m4a'), 0.38, 62, 800, 550, 'commerce'),
 
 });
 

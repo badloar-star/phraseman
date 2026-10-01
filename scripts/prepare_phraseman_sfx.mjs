@@ -50,7 +50,6 @@ export const ASSET_SPECS = Object.freeze([
   asset('pm.system.destructive_done', 'system', 'pm_system_destructive_done_glass_a_v1'),
 
   asset('pm.energy.empty', 'energy', 'pm_energy_empty_glass_a_v1'),
-  asset('pm.energy.refilled', 'energy', 'pm_energy_refilled_glass_a_v1'),
   asset('pm.streak.saved', 'streak', 'pm_streak_saved_glass_a_v1'),
 
   asset('pm.reward.small', 'reward', 'pm_reward_small_glass_a_v1.wav_Create_a_0.72-secon_variation4.wav'),

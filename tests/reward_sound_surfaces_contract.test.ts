@@ -13,7 +13,8 @@ describe('reward sound surfaces', () => {
 
   test('exam result and restored streak use exact semantic events', () => {
     expect(read('app/level_exam.tsx')).toContain("passed ? 'pm.complete.exam_pass' : 'pm.complete.exam_retry'");
-    expect(read('app/(tabs)/home.tsx')).toContain("soundDirector.request('pm.streak.saved'");
+    // зачем (01.10): кнопка заморозки серии была только в старой Главной V1 (удалена, 4169840e9);
+    // звук pm.streak.saved остаётся в каталоге — заморозка для Plus сохраняется по D107.
   });
 
   test('toast payload can override the generic tone for exact events', () => {
@@ -21,6 +22,6 @@ describe('reward sound surfaces', () => {
     const toast = read('components/ActionToast.tsx');
     expect(events).toContain('soundEventId?: SoundEventId');
     expect(toast).toContain('payload.soundEventId ?? TOAST_SOUND_EVENTS[payload.type]');
-    expect(read('app/energy_shard_refill.ts')).toContain("soundEventId: 'pm.energy.refilled'");
+    // зачем (PM-206, 01.10): пополнение энергии за осколки удалено вместе со звуком pm.energy.refilled.
   });
 });

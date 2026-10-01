@@ -57,7 +57,6 @@ export const SOUND_MOTION: Readonly<Partial<Record<SoundEventId, SoundMotionProf
   'pm.system.error_recoverable': { audibleMs: 344, attackMs: 109, hits: [109], shape: 'perc', bright: 0.17 },
   'pm.system.destructive_done': { audibleMs: 328, attackMs: 47, hits: [47, 94, 156, 219], shape: 'multi', bright: 0.00 },
   'pm.energy.empty': { audibleMs: 734, attackMs: 31, hits: [31, 156, 234, 281, 359, 406, 453, 500], shape: 'multi', bright: 0.44 },
-  'pm.energy.refilled': { audibleMs: 531, attackMs: 281, hits: [94, 156, 219, 281, 344, 391], shape: 'multi', bright: 0.05 },
   'pm.streak.saved': { audibleMs: 297, attackMs: 78, hits: [78, 156], shape: 'double', bright: 0.97 },
   'pm.reward.small': { audibleMs: 422, attackMs: 156, hits: [63, 156], shape: 'double', bright: 0.96 },
   'pm.reward.chest_open': { audibleMs: 398, attackMs: 141, hits: [141, 188, 328], shape: 'triple', bright: 0.02 },

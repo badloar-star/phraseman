@@ -61,9 +61,12 @@ describe('semantic sound event catalog', () => {
     // зачем: PM-206-A2 (2026-09-30) — сняты 22 id без вызывающих (награды/спины/
     // соцсобытия, pm.voice.turn_ready и т.п., см. tests/pm206_sound_event_callers.probe.ts),
     // каталог 120 → 98, со звуком 91 → 70. Счёт подтверждён пробой: catalog=98, orphaned=0.
-    expect(ids).toHaveLength(98);
+    // PM-206 (01.10): −2 осиротевших (pm.energy.refilled — пополнение за осколки удалено;
+    // pm.customization.applied — без вызывающих), файлы удалены. Проба: catalog=95, orphaned=0.
+    expect(ids).toHaveLength(95);
     // D83: −9 файлов Арены (стали немыми).
-    expect(enabled).toHaveLength(70);
+    // 01.10: −3 со звуком относительно прежних 70: два осиротевших PM-206 + один снятый раньше другой сессией (каталог тогда стал 97).
+    expect(enabled).toHaveLength(67);
     expect(disabled).toEqual(MISSING_EVENTS);
     enabled.forEach((id) => expect(SOUND_EVENTS[id].source).toBeTruthy());
   });

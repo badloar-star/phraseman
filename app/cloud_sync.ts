@@ -4604,6 +4604,9 @@ export type AccountDeleteCredentialProof = {
 export function startCloudDeletionEnqueue(
   stableId: string | null,
   proof?: AccountDeleteCredentialProof,
+  // зачем (Account V2, Пакет 6B): ключ удаления V2 (base64url 32 байта) — отдельным
+  // полем accountsV2Deletion; без него (флаг V2 выключен) запрос байт-в-байт прежний.
+  accountsV2Deletion?: AccountDeleteCredentialProof | null,
 ): AccountDeleteEnqueueOperation<AccountDeleteEnqueueAck> {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) {
     return startAccountDeleteEnqueueWithDeadline(
@@ -4622,11 +4625,14 @@ export function startCloudDeletionEnqueue(
         stableId?: string | null;
         operationId: string;
         capability: string;
+        accountsV2Deletion?: AccountDeleteCredentialProof;
       }, AccountDeleteEnqueueAck>(
         'accountDeleteEnqueue',
         { timeout: ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS },
       );
-      const res = await fn({ stableId, ...proof });
+      const res = await fn(accountsV2Deletion
+        ? { stableId, ...proof, accountsV2Deletion: { operationId: accountsV2Deletion.operationId, capability: accountsV2Deletion.capability } }
+        : { stableId, ...proof });
       if (
         !res.data?.ok
         || !res.data.jobId

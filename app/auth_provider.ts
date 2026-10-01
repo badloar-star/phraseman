@@ -52,8 +52,10 @@ import {
   type StableAuthLinkMetadata,
   type StableAuthLinkEnsureResult,
   type AccountDeleteEnqueueAck,
+  type AccountDeleteCredentialProof,
 } from './cloud_sync';
 import type { AccountDeleteEnqueueOperation } from './account_delete_enqueue';
+import { beginAccountsV2DeletionIfEnabled } from './accounts_v2_client_flag';
 import {
   ACCOUNT_DELETE_PENDING_AUTH_TTL_MS,
   ACCOUNT_DELETE_PENDING_AUTH_KEY,
@@ -3503,6 +3505,11 @@ async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | 'loca
   // зачем: для связанной/неизвестной личности отказываем ДО стирания. Без замка
   // тот же провайдер вошёл бы снова и восстановил данные; аноним этим не связан.
   if (!isProvablyAnonymousAccount && !pendingDeleteLock) return null;
+  // зачем (Account V2, Пакет 6B, TG-F76EA3701B55): точка невозврата пройдена —
+  // V2 отсоединяется СИНХРОННО здесь, до стирания и до любой сети (отправка
+  // остановлена, область закрыта, защёлка переживёт перезапуск), и готовит ключ
+  // удаления V2. Флаг выключен → null: поток удаления байт-в-байт прежний.
+  const accountsV2DeletionPending = beginAccountsV2DeletionIfEnabled(pendingDeleteProviderUid);
   // The deletion guard above is the point of no return for linked identities.
   // SQLCipher retirement, writer drains and every local clear are one
   // registered flight below. Retries join it, so late native work cannot touch
@@ -3539,9 +3546,20 @@ async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | 'loca
     pendingDeleteLock = localCleared.lock;
   }
   emitAppEvent('account_deleted');
+  // зачем (Пакет 6B): ключ V2 ушёл бы без SecureStore-копии бесполезным — ждём его
+  // не дольше локального шага; нет ключа — шлём без поля, сервер сотрёт V2 и так.
+  const accountsV2Deletion = accountsV2DeletionPending
+    ? await withLocalStepDeadline(() => accountsV2DeletionPending, null)
+    : null;
+  if (accountsV2DeletionPending && !accountsV2Deletion) {
+    console.warn('[ACCOUNT-V2] delete enqueue_without_v2_key');
+  }
+  // Без ключа V2 вызов прежний — ровно два аргумента.
+  const accountsV2EnqueueArgs: [] | [AccountDeleteCredentialProof] = accountsV2Deletion ? [accountsV2Deletion] : [];
   const cloudDeleteEnqueueOperation = startCloudDeletionEnqueue(
     pendingDeleteStableId,
     pendingDeleteLock ? accountDeleteCredentialProof(pendingDeleteLock) ?? undefined : undefined,
+    ...accountsV2EnqueueArgs,
   );
   return {
     pendingDeleteLock,

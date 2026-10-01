@@ -155,6 +155,7 @@ import {
   subscribeFirebaseAuthUid,
 } from './auth_provider';
 import { startRemoteAccountDeletionMonitor } from './remote_account_deletion_monitor';
+import { syncAccountsV2ClientAuth } from './accounts_v2_client_flag';
 import { getCanonicalUserId } from './user_id_policy';
 import { dismissReleaseNotesModalPermanently, shouldOfferReleaseNotesModal } from './release_notes_modal';
 import {
@@ -1080,6 +1081,18 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     return subscribeFirebaseAuthUid(setSpireAuthenticatedUid);
   }, []);
+
+  useEffect(() => {
+    // зачем (Account V2, Пакет 6B, TG-F76EA3701B55): клиент V2 (outbox → сервер)
+    // стартует только после входа (uid известен) и НЕ на первом кадре; при
+    // выключенном флаге — ни require, ни чтений, ни сети. Смена uid (выход,
+    // другой аккаунт) останавливает раннер и закрывает область старого uid.
+    if (!ready || !firstContentReady) {
+      if (__DEV__) console.log(`[ACCOUNT-V2] layout skip ready=${ready} firstContentReady=${firstContentReady}`);
+      return;
+    }
+    syncAccountsV2ClientAuth(spireAuthenticatedUid);
+  }, [firstContentReady, ready, spireAuthenticatedUid]);
 
   useEffect(() => {
     const readiness = {

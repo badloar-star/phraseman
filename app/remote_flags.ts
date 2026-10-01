@@ -105,6 +105,12 @@ export type RemoteBoolKey =
   // выключение этого флага НЕ трогает уже купивших по акции (их цена держится
   // магазином, а не этим флагом).
   | 'discount_offer_banner_enabled'
+  // зачем (Account V2, Пакет 6B, TG-F76EA3701B55): клиентская синхронизация V2
+  // (outbox → accountsV2SyncApply) и ключ удаления V2. Дефолт FALSE = sell-switch:
+  // пока выключен — ни чтений, ни записей, ни сети, модули V2 даже не грузятся.
+  // Включает только владелец (Firestore remote_config, «Пульт»), и только вместе
+  // с серверным config/accounts_v2.syncEnabled.
+  | 'accounts_v2_client_enabled'
   // Приветственный подарок «3 дня полного доступа» для НОВЫХ юзеров (72ч intro).
   // Дефолт TRUE = kill-switch: новые получают подарок и приветственный модал как
   // сейчас. Админ ставит false в «Пульте» → НОВЫЕ юзеры больше не получают ни
@@ -227,6 +233,8 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Fail-safe rollout brake. The owner must deliberately disable it only
   // after internal/shadow evidence is green.
   phone_state_emergency_stop: true,
+  // Account V2 (Пакет 6B): выключено до явного решения владельца.
+  accounts_v2_client_enabled: false,
   // Рулетка+рефералка: дефолт true (kill-switch). Ключ лежит в numbers
   // (boolean), подхват — спец-веткой в applyRemoteConfigSnapshot ниже.
   // Отдельный hard stop. Отсутствие ключа безопасно сохраняет рабочее состояние.
@@ -436,7 +444,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
     'phone_state_shadow_enabled', 'phone_state_sync_enabled', 'phone_state_emergency_stop',
     'force_update_enabled', 'manual_update_enabled', 'video_button_enabled', 'video_phrases_enabled',
     'promo_banner_enabled', 'promo_codes_enabled', 'discount_offer_banner_enabled',
-    'lifetime_button_enabled', 'paywall_reviews_enabled',
+    'lifetime_button_enabled', 'paywall_reviews_enabled', 'accounts_v2_client_enabled',
     'gate_lessons_premium', 'gate_speaking_premium', 'gate_ai_dialog_premium', 'gate_stats_premium',
     'gate_flashcards_premium', 'gate_themes_premium', 'gate_avatar_auras_premium', 'gate_mastery_premium',
     'gate_energy_premium', 'gate_arena_premium', 'gate_mistake_practice_premium', 'gate_extra_languages_premium',

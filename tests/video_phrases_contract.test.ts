@@ -1,5 +1,5 @@
 import { normalizeVideoPhraseDraft, normalizeVideoPhraseList, videoPhraseId } from '../app/video_phrases_contract';
-import { fetchPublishedVideoPhrasesWithReader } from '../app/video_phrases_client';
+import { fetchPublishedVideoPhrasesWithReader, withVideoPhrasesTimeout } from '../app/video_phrases_client';
 
 describe('video phrase contract', () => {
   it('normalizes a phrase to phrase, translation and explanation only', () => {
@@ -82,5 +82,31 @@ describe('video phrase contract', () => {
       translation: 'А',
       explanation: 'Е',
     }]);
+  });
+});
+
+/** PM-117-A2: снятый/закрытый набор и зависшая сеть дают честный исход, не вечную загрузку. */
+describe('video phrases honest states', () => {
+  it('удалённый набор (нет документа) или снятая публикация — пустой список', async () => {
+    await expect(fetchPublishedVideoPhrasesWithReader('abc12345678', { get: async () => null })).resolves.toEqual([]);
+    await expect(fetchPublishedVideoPhrasesWithReader('abc12345678', {
+      get: async (path) => (path.endsWith('/versions/v1') ? { status: 'archived', phrases: [] } : { activeVersion: 'v1' }),
+    })).resolves.toEqual([]);
+  });
+
+  it('зависший запрос завершается отказом по таймауту', async () => {
+    jest.useFakeTimers();
+    try {
+      const hung = withVideoPhrasesTimeout(new Promise<never>(() => undefined), 'abc12345678', 1000);
+      const assertion = expect(hung).rejects.toThrow('video_phrases_timeout');
+      jest.advanceTimersByTime(1000);
+      await assertion;
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  it('быстрый ответ проходит без таймаута', async () => {
+    await expect(withVideoPhrasesTimeout(Promise.resolve(['ok']), 'abc12345678', 1000)).resolves.toEqual(['ok']);
   });
 });

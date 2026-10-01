@@ -186,3 +186,27 @@ done требует одновременно: все критерии приня
 | PM-112 | PASS по сути | video_save_counts.test PASS; правило «клиент только читает» подтверждено; коммит af528a897 | review (gate DESIGN) |
 
 Оговорки: actual_model для задач без записи проставлено «unknown, снимок нескольких сессий», actual_reasoning «unrecorded» (§34). result_sha проставлен только там, где есть отдельный коммит (PM-046, 108, 109, 111, 112); у PM-078…090 код входил в общие снимки. Работоспособность на устройстве/в проде не проверялась.
+
+
+## Пачка 4 — независимое ревью (2026-10-01, Q75/§32)
+
+Ревьюер: agent-reviewer (Sonnet 5.5) по поручению координатора. Задачи: PM-113, 141, 144, 145, 147, 148, 150, 152, 154, 155. Общие gates BASELINE_SHA_APPROVED / DOMAIN_AUDIT_AND_IMPACT_ACCEPTED — пакетом [GATES_COMMON_2026-10-01.md](GATES_COMMON_2026-10-01.md). Тесты гонялись под слотом светофора. Вердикты — также в worklog.jsonl (REVIEW_VERDICT). Запись в tasks.json — через mark.write_task_block; render_views.py не запускался. validate.py: ошибок по задачам пачки нет (550 прежних — тема Q77).
+
+Итог: PASS -> done: 6 (PM-147, 148, 150, 152, 154, 155). PASS по сути, ждут gate (остаются review): 4 — PM-113 (PROPOSED_SCOPE_APPROVED + DESIGN), PM-141, 145, 144 (DESIGN). FAIL: 0.
+
+| Задача | Вердикт | Что проверено | Статус после |
+|---|---|---|---|
+| PM-113 | PASS по сути | клиентские video_save_counts_client + video_favorites + video_favorites_rules_contract PASS, functions video_save_counts.test PASS; onSnapshot в app/video_*.ts нет, один документ video_save_counts/public, TTL 6 ч; VIDEO.md «Факт реализации» считает стоимость; af528a897, 790e24a99. D19 (OWNER_FINAL) утверждает фичу, но схема «без realtime, раз в 6 ч» остаётся предложением | review (gates PROPOSED_SCOPE_APPROVED, DESIGN; DESIGN по сути неприменим — логика без UI) |
+| PM-141 | PASS по сути | D124; dialogue_v2_access_contract PASS; сравнение Free/Plus на пейволе (PaywallBenefitComparison: «30 в месяц» / безлимит); a1f7514f2 | review (gate DESIGN, по сути неприменим) |
+| PM-144 | PASS по сути | dialogue_v2_session_route + dialogue_v2_session_screen PASS, source-контракт макета 8/8; перевод, разбор, голос собеседника проброшены; на устройстве не проверялось | review (gate DESIGN применим) |
+| PM-145 | PASS по сути | functions dialog_quota_contract + premium_dialog_plus_daily_cap + dialogue_reply_access_contract 22/22; D111 (Free 30/мес), D123 (потолок Plus 300/сутки); premium_dialog.ts грязный от другой сессии (комментарий), не влияет | review (gate DESIGN, по сути неприменим) |
+| PM-147 | PASS | lesson_lock_system (3 теста PM-147) + legacy_free_lesson_access + monetization_policy PASS; D122; 8cb088357, da298f561 | done (code) |
+| PM-148 | PASS | покупка за жемчуг удалена целиком (модуль и флаг сняты в efe19ae9d), buyLessonWithPearls нигде не вызывается; d70_pearls_removed.probe PASS, lesson_plus_pearl_action/gate_modal PASS, купленные ранее уроки читаются (lessons_pearl_unlock_storage). Прежние тесты retired/plus_gate из evidence удалены вместе с модулем | done (code, 4ce929532) |
+| PM-150 | PASS | resolveLessonAccess: premium_required раньше progress_required; buildPremiumLessonUnlocks требует 2★ у предыдущего и для Plus; тесты PASS | done (code, da298f561) |
+| PM-152 | PASS | lesson_star_scale 4/4, пороги по D125 (зачёт уровня 2★/60%, Лингман 100%, сдача 70%); открытые зачёты не пересчитываются. НАЙДЕНО: tests/unit/lesson_lock_system.test.ts ждал порог 4.5 и падал после D125 — исправлено коммитом e4a420a91, 27/27 | done (code, e9fb1e924) |
+| PM-154 | PASS | COURSES_FUTURE_PLANS.md: 1600 как ориентир, ступени A1–B2 (границы 9/19/29 совпадают с кодом), реестры лексики/форм, повторы, редактор, без облачного STT; пилотный язык — за владельцем | done (documentation) |
+| PM-155 | PASS | чек-лист из 6 проверок, выборка 100%/10%, блокировка урока; процесс ещё не запускался (критерий этого не требует) | done (documentation) |
+
+Где gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES по сути неприменим (нет видимого UI, только правила/политика/логика): PM-113, PM-141, PM-145. Применим: PM-144 (экран сессии диалога).
+
+Оговорки: actual_model «unknown, снимок нескольких сессий», actual_reasoning «unrecorded» (§34). result_sha у PM-144 не проставлен (серия из 6 коммитов). Работоспособность на устройстве/в проде не проверялась.

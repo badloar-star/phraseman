@@ -988,6 +988,8 @@ export function UndoDeleteSnackbar({
   );
 }
 
+let collectionSilentRetries = 0;
+
 // ── Empty state (вынесен из early-return монолита; хедер остаётся у контейнера) ──
 export function CollectionEmptyState({
   lang,
@@ -1011,6 +1013,23 @@ export function CollectionEmptyState({
   onLeave: () => void;
   onRetry: () => void | Promise<void>;
 }) {
+  // зачем (владелец 01.10: «никаких не загрузилось и кнопок Повторить»): сбой загрузки —
+  // тихий повтор в фоне (до 5 раз по 20 с на процесс), без кнопки.
+  useEffect(() => {
+    if (!loadError) return undefined;
+    if (collectionSilentRetries >= 5) {
+      console.warn('[FC-COLLECTION] empty: silent retries exhausted', { attempts: collectionSilentRetries });
+      return undefined;
+    }
+    const timer = setTimeout(() => {
+      collectionSilentRetries += 1;
+      console.warn('[FC-COLLECTION] empty: silent retry', { attempt: collectionSilentRetries });
+      void Promise.resolve(onRetry()).catch((error: unknown) => {
+        console.warn('[FC-COLLECTION] empty: retry failed', error instanceof Error ? error.message : String(error));
+      });
+    }, 20_000);
+    return () => clearTimeout(timer);
+  }, [loadError, onRetry]);
   return (
     <View style={st.centerState}>
       <Ionicons name={searchActive ? 'search-outline' : 'bookmark-outline'} size={56} color={t.textGhost} />
@@ -1042,26 +1061,6 @@ export function CollectionEmptyState({
           })}
         </Text>
       </TouchableOpacity>
-      )}
-      {loadError && (
-        <TouchableOpacity
-          onPress={() => { void onRetry(); }}
-          style={{ marginTop: 16, backgroundColor: t.bgSurface, borderRadius: 12, paddingHorizontal: 22, paddingVertical: 12, borderWidth: 1, borderColor: t.border }}
-        >
-          <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-            {triLang(lang, {
-              ru: 'Повторить загрузку',
-              uk: 'Повторити завантаження',
-              en: 'Retry loading',
-              es: 'Reintentar la carga',
-              'pt-BR': 'Tentar carregar de novo',
-              vi: 'Tải lại',
-              id: 'Coba muat ulang',
-              tr: 'Yüklemeyi tekrar dene',
-              pl: 'Spróbuj wczytać ponownie',
-            })}
-          </Text>
-        </TouchableOpacity>
       )}
     </View>
   );

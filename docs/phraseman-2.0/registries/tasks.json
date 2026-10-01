@@ -8517,8 +8517,10 @@
       {
         "id": "PM-162-A2",
         "text": "удалить/заблокировать при необходимости безопасно, без игровой экономики",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Q41: functions/src/friend_block.ts (friendBlockUser/friendUnblockUser, лимит 500, идемпотентно), firestore.rules users/{uid}/blocked + запрет заявки от заблокированного, клиент app/friend_block.ts (optimistic+откат); тесты functions 214/214 (friend_block 4, likes+блок/не-друг), tests/friend_block 7/7. Удаление друга — существующий deleteFriend. Не задеплоено; кнопка UI — Дизайн."
+        ]
       }
     ],
     "depends_on": [],
@@ -8604,7 +8606,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -8621,9 +8623,9 @@
       {
         "id": "PM-164-A2",
         "text": "cooldown, block и retry не позволяют спамить",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "NOT_MET (владелец/PM-162-A2: функции «заблокировать» в друзьях нет — нет данных, по которым блокировать): cooldown и retry сделаны в 7b041cb73 — от одного человека одному получателю строка+push не чаще раза в 6 ч (FRIEND_HELLO_NOTIFY_COOLDOWN_MS, users/{uid}/friend_hello_cooldowns, правило Firestore только сервер), повтор вызова — idempotentReplay; тесты friend_activity_likes 30/30. Не задеплоено."
+          "Q41/Q42/Q43: cooldown 6ч+retry (7b041cb73) + блок: friend_activity_likes.ts тихо не доставляет от заблокированного (reason blocked, нейтральный ответ), не-друг считается без push; тесты friend_activity_likes 34/34. Не задеплоено."
         ]
       }
     ],

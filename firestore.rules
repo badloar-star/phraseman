@@ -1635,6 +1635,13 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // Q41 (PM-162-A2): список заблокированных. users/{me}/blocked/{actorUid} = { createdAt, source }.
+    // Читает владелец (клиентский кэш списка), пишет только сервер (friendBlockUser/friendUnblockUser).
+    match /users/{userId}/blocked/{actorUid} {
+      allow read: if canonicalUserMatchesAuth(userId);
+      allow write: if false;
+    }
+
     // PM-111/112: личное избранное видео. Связь аккаунт↔ролик, id = videoId —
     // один человек учитывается в счётчике ровно один раз. Пишет и читает только
     // владелец; форма документа зафиксирована, чтобы туда нельзя было сложить
@@ -2391,6 +2398,8 @@ service cloud.firestore {
         && canonicalUserMatchesAuth(senderUid)
         && targetUid != senderUid
         && !exists(/databases/$(database)/documents/banned_users/$(senderUid))
+        // Q41: получатель заблокировал отправителя — заявку не принимаем.
+        && !exists(/databases/$(database)/documents/users/$(targetUid)/blocked/$(senderUid))
         && request.resource.data.status == 'pending'
         && request.resource.data.createdAt is number
         && (!request.resource.data.keys().hasAny(['fromName'])

@@ -37,6 +37,17 @@ describe('account delete: friend_hello_cooldowns of other users', () => {
     expect(stats.queriesRun).toBe(2);
   });
 
+  it('Q41: also removes users/{peer}/blocked/{uid} in the same pass', async () => {
+    const { db, ctx, stats, recursiveDelete } = makeCtx(new Set([
+      'users/peer1/blocked/stable-123',
+      'users/peer2/friend_hello_cooldowns/stable-123',
+    ]));
+    await deleteFriendHelloCooldownsAboutUser(db as any, 'stable-123', ctx as any, stats as any, ['peer1', 'peer2']);
+    const paths = recursiveDelete.mock.calls.map((c) => (c[0] as { path: string }).path).sort();
+    expect(paths).toEqual(['users/peer1/blocked/stable-123', 'users/peer2/friend_hello_cooldowns/stable-123']);
+    expect(stats.queriesRun).toBe(2);
+  });
+
   it('skips on empty uid', async () => {
     const { db, ctx, stats, recursiveDelete } = makeCtx(new Set());
     await deleteFriendHelloCooldownsAboutUser(db as any, '', ctx as any, stats as any, ['p']);

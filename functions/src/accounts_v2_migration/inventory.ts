@@ -292,6 +292,11 @@ const SUBCOLLECTION_RULES: readonly InventoryRule[] = [
   // запись как friend_activity_like_daily_limits: переносить нечего, на перенос не влияет.
   rule('s.friend_hello_cooldowns', 'subcollection', { exact: ['friend_hello_cooldowns'] }, 'info', 'no_v2_domain', [],
     'Служебное окно тишины «Привета», только сервер.'),
+  // зачем (Q41, PM-162-A2): список заблокированных — личные данные человека, переезд не должен их терять
+  // (иначе заблокированный снова сможет слать «Привет»/заявки). Пишет только сервер; остаётся на месте
+  // как video_favorites, удаляется вместе с аккаунтом рекурсивно (и чужие записи — в account_delete).
+  rule('s.blocked', 'subcollection', { exact: ['blocked'] }, 'keep_in_place', 'kept_in_v2_store', [],
+    'PM-162: список заблокированных остаётся в хранилище 2.0, перенос не блокирует.'),
   rule('s.social', 'subcollection', {
     exact: ['notifications', 'idea_inbox', 'friends', 'friend_requests', 'friend_requests_sent', 'idea_likes_sent',
       'activity_like_stats', 'activity_likes_received', 'friend_activity_like_daily_limits', 'friend_activity_likes_sent', 'community_seller_inbox'],

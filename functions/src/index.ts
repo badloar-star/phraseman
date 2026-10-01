@@ -116,6 +116,7 @@ const {
 const { friendEnsureMyCode } = require("./friend_codes");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { friendLookupUser } = require("./friend_lookup");
+const { friendBlockUser, friendUnblockUser } = require("./friend_block");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   friendLikeActivity,
@@ -341,6 +342,8 @@ exports.nameReleaseMine = nameReleaseMine;
 // Файл help_board_decommission.ts оставлен на диске как история решения.
 exports.friendEnsureMyCode = friendEnsureMyCode;
 exports.friendLookupUser = friendLookupUser;
+exports.friendBlockUser = friendBlockUser;
+exports.friendUnblockUser = friendUnblockUser;
 exports.friendLikeActivity = friendLikeActivity;
 exports.friendUnlikeActivity = friendUnlikeActivity;
 exports.onAppMessageReactionWritten = onAppMessageReactionWritten;

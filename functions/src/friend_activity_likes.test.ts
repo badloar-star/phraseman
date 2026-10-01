@@ -668,10 +668,52 @@ describe('PM-164 «Привет»: один раз, окно тишины, по�
 
   test('cooldown is per receiver: another friend still gets the first hello', async () => {
     docs.set('users/target2', { displayName: 'Target 2', expoPushToken: 'ExponentPushToken[t2]' });
+    docs.set('users/target2/friends/sender', { createdAt: 1 }); // Q42: push только другу
     docs.set('users/target', { displayName: 'Target', expoPushToken: 'ExponentPushToken[target]' });
     await callProfileLike();
     await callProfileLike({ targetStableId: 'target2' });
     expect(pushMock()).toHaveBeenCalledTimes(2);
+  });
+
+  test('Q41: hello from a sender blocked by the target is dropped silently (no rows, no push, neutral reply)', async () => {
+    docs.set('users/target', { displayName: 'Target', expoPushToken: 'ExponentPushToken[target]' });
+    docs.set('users/target/blocked/sender', { createdAt: 1 });
+    const result = await callProfileLike();
+    expect(result).toMatchObject({ ok: true, targetUid: 'target' });
+    expect(docs.get('users/target/activity_like_stats/summary')).toBeUndefined();
+    expect(docs.get(receivedLikePath('target', 'like.profile'))).toBeUndefined();
+    expect(docs.get(likeNotificationPath('target', 'like.profile'))).toBeUndefined();
+    expect(docs.get(sentLikePath('target', 'like.profile'))).toBeUndefined();
+    expect(pushMock()).not.toHaveBeenCalled();
+  });
+
+  test('Q41: blocked friend in event mode is also dropped; unblocked sender is delivered', async () => {
+    docs.set('users/target', { displayName: 'Target', expoPushToken: 'ExponentPushToken[target]' });
+    docs.set('users/target/blocked/sender', { createdAt: 1 });
+    await callLike();
+    expect(docs.get('users/target/my_events/event-1')?.activityLikeCount).toBeUndefined();
+    expect(pushMock()).not.toHaveBeenCalled();
+    docs.delete('users/target/blocked/sender');
+    await callLike();
+    expect(docs.get('users/target/my_events/event-1')).toMatchObject({ activityLikeCount: 1 });
+    expect(pushMock()).toHaveBeenCalledTimes(1);
+  });
+
+  test('Q42: hello from a non-friend counts and lands in the feed but sends no push', async () => {
+    docs.set('users/target', { displayName: 'Target', expoPushToken: 'ExponentPushToken[target]' });
+    docs.delete('users/target/friends/sender');
+    const result = await callProfileLike();
+    expect(result).toMatchObject({ ok: true, targetActivityLikeTotal: 1 });
+    expect(docs.get(likeNotificationPath('target', 'like.profile'))).toMatchObject({ type: 'activity_like' });
+    expect(pushMock()).not.toHaveBeenCalled();
+  });
+
+  test('Q42: activityLikePushBlockReason not_friend', () => {
+    const { activityLikePushBlockReason } = require('./friend_activity_likes') as {
+      activityLikePushBlockReason: (d: Record<string, unknown> | undefined, now: number, isFriend?: boolean) => string | null;
+    };
+    expect(activityLikePushBlockReason(undefined, Date.UTC(2026, 4, 14, 12), false)).toBe('not_friend');
+    expect(activityLikePushBlockReason(undefined, Date.UTC(2026, 4, 14, 12), true)).toBeNull();
   });
 
   test('policy: decision table', () => {

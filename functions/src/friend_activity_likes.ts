@@ -9,6 +9,7 @@ import {
   FRIEND_HELLO_COOLDOWN_COLLECTION,
   friendHelloNotifyDecision,
 } from './friend_hello_policy';
+import { FRIEND_BLOCKED_COLLECTION } from './friend_block';
 
 const REGION = 'us-central1';
 const MAX_ID_LEN = 160;
@@ -114,7 +115,10 @@ function readFriendsPushPref(data: Record<string, unknown> | undefined): Record<
 export function activityLikePushBlockReason(
   targetData: Record<string, unknown> | undefined,
   nowMs: number,
-): 'friends_opt_out' | 'quiet_hours' | null {
+  isFriend = true,
+): 'friends_opt_out' | 'quiet_hours' | 'not_friend' | null {
+  // зачем (Q42): «Привет» от НЕ-друга засчитывается, но push не шлём — незнакомец не будит человека.
+  if (!isFriend) return 'not_friend';
   const pref = readFriendsPushPref(targetData);
   if (pref.enabled === false) return 'friends_opt_out';
   const tz = typeof pref.tz === 'number' && Number.isFinite(pref.tz) ? pref.tz : null;
@@ -215,12 +219,14 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
     .doc(receiptId);
   // PM-164: окно тишины «Привет» хранится у отправителя — по документу на получателя.
   const helloCooldownRef = senderRef.collection(FRIEND_HELLO_COOLDOWN_COLLECTION).doc(targetStableId);
+  // Q41: получатель мог заблокировать отправителя — одно чтение в той же пачке.
+  const blockedRef = targetRef.collection(FRIEND_BLOCKED_COLLECTION).doc(senderStableId);
   const now = Date.now();
   const nowIso = new Date(now).toISOString();
 
   const result = await db.runTransaction(async (tx) => {
     const [senderSnap, targetSnap, targetFriendSnap, eventSnap, statsSnap, sentLikeSnap, legacyLikeSnap,
-      receivedSnap, helloCooldownSnap] = await Promise.all([
+      receivedSnap, helloCooldownSnap, blockedSnap] = await Promise.all([
       tx.get(senderRef),
       tx.get(targetRef),
       tx.get(targetFriendRef),
@@ -230,6 +236,7 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
       tx.get(legacyLikeQuery),
       tx.get(receivedRef),
       tx.get(helloCooldownRef),
+      tx.get(blockedRef),
     ]);
 
     if (!senderSnap.exists) {
@@ -291,6 +298,23 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
     }
 
     const eventLikeCount = parseCount(eventData.activityLikeCount) + 1;
+    // зачем (Q41): получатель заблокировал отправителя — тихо не доставляем: ни счётчиков, ни строки,
+    // ни push, ни записи у отправителя. Ответ такой же по форме, как при успехе, чтобы не раскрывать блокировку.
+    if (blockedSnap.exists) {
+      console.log('[FRIEND-BLOCK] hello dropped silently', { kind: isProfileLike ? 'profile' : 'event' });
+      return {
+        ok: true,
+        date: today,
+        targetUid: targetStableId,
+        eventId,
+        activityLikeCount: eventLikeCount,
+        targetActivityLikeTotal: parseCount(statsSnap.data()?.total) + 1,
+        _pushToken: '',
+        _pushBlockReason: 'blocked',
+        _senderName: '',
+        _notificationId: '',
+      };
+    }
     const totalLikeCount = parseCount(statsSnap.data()?.total) + 1;
     const senderName = resolveSenderName(senderData, (request.data as Record<string, unknown>)?.senderDisplayName);
     const notificationId = likeNotificationId(receiptId);
@@ -395,7 +419,7 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
       _pushToken: typeof targetSnap.data()?.expoPushToken === 'string'
         ? targetSnap.data()!.expoPushToken as string
         : '',
-      _pushBlockReason: activityLikePushBlockReason(targetSnap.data(), now),
+      _pushBlockReason: activityLikePushBlockReason(targetSnap.data(), now, targetFriendSnap.exists),
       _senderName: senderName,
       _notificationId: notificationId,
     };

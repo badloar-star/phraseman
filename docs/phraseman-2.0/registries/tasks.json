@@ -401,14 +401,18 @@
       {
         "id": "PM-009-A1",
         "text": "Размер исходного файла отделён от вклада в release bundle",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-10-01: node scripts/pm009_asset_bundle_inventory.mjs → docs/phraseman-2.0/evidence/PM-009_asset_bundle_inventory.md: для каждого из 3877 файлов assets/ раздельно — размер исходника, попадание в архив EAS (.easignore) и вклад в бандл (статический require из клиентского кода или ссылка app.json). Итог: исходники 109.10 МБ, в архиве EAS 17.24 МБ, в бандле 15.87 МБ (512 файлов); 91.29 МБ assets/audio/learning-v2 исключены .easignore:152. Оговорка: верхняя граница без графа достижимости бандлера; реальный diff .aab/.ipa требует EAS-сборки."
+        ]
       },
       {
         "id": "PM-009-A2",
         "text": "для удаления найден путь импортирования и подтверждены остальные потребители",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Тот же документ: у каждого файла — путь импортирования (file:line каждого require/app.json), по каталогам — все файлы-потребители; раздел «Кандидаты на удаление» — 88 файлов/1.38 МБ с подтверждённым нулём require и ссылок app.json (многострочных require нет: git grep 'require($' = 0). Скрипт ничего не удаляет; MAX-ассеты (home_menu/max, sfx/v1/max) под пломбой владельца не трогать."
+        ]
       }
     ],
     "depends_on": [],

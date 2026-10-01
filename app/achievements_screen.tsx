@@ -126,20 +126,9 @@ export { ACHIEVEMENT_IMAGE } from '../constants/achievementImageAssets';
 import { achievementImageSource } from '../constants/achievementImageAssets';
 import { prefetchAllAchievementArt } from './achievement_art_prefetch';
 
-// ── Иконки по ачивке (Ionicons) ───────────────────────────────────────────────
-export const ACHIEVEMENT_ICON: Record<string, any> = {
-  streak_3:           'flame',
-  streak_7:           'medal',
-  streak_14:          'medal-outline',
-  streak_30:          'ribbon',
-  streak_60:          'ribbon-outline',
-  streak_100:         'diamond',
-  streak_200:         'diamond-outline',
-  streak_365:         'star',
-  streak_500:         'crown',
-  comeback:           'rocket',
-  shards_100:         'diamond',
-};
+// ── Иконки по ачивке (Ionicons) — constants/achievementIcons.ts ──
+export { ACHIEVEMENT_ICON } from '../constants/achievementIcons';
+import { ACHIEVEMENT_ICON } from '../constants/achievementIcons';
 
 // ── Цвет категории ────────────────────────────────────────────────────────────
 export const CAT_COLOR: Record<string, string> = {

@@ -41,6 +41,7 @@ import { devRandomizeLifetimePathDailyMetrics, loadLifetimeTotalsChartDays, load
 import { ALL_ACHIEVEMENTS, achievementNameForLang, loadAchievementStates } from './achievements';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import AchievementArt from '../components/AchievementArt';
+import { ACHIEVEMENT_ICON } from '../constants/achievementIcons';
 import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import { isLightThemeMode, type ThemeMode } from '../constants/theme';
@@ -1718,7 +1719,7 @@ function RecentAchievementsCard({
           {(latest.length > 0 ? latest : [null, null, null, null]).map((achievement, index) => (
             <View key={achievement?.id ?? `empty-${index}`} accessibilityLabel={achievement ? achievementNameForLang(achievement, lang) : undefined} style={{ width: 58, height: 58, marginLeft: index === 0 ? 0 : -9, zIndex: 10 - index, backgroundColor: 'transparent', borderWidth: 0, alignItems: 'center', justifyContent: 'center' }}>
               {achievement
-                ? <AchievementArt achievementId={achievement.id} size={58} fallbackIconName="trophy" tintColor={t.textGhost} iconColor={t.bgPrimary} />
+                ? <AchievementArt achievementId={achievement.id} size={58} fallbackIconName={ACHIEVEMENT_ICON[achievement.id] ?? 'trophy'} tintColor={t.textGhost} iconColor={t.bgPrimary} />
                 : <Ionicons name="trophy-outline" size={22} color={t.textGhost}/>}
             </View>
           ))}

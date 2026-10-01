@@ -392,3 +392,10 @@ E24: docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md, E24_store_de
 - Q79 Автор PM-013 (коммит-снимок efe19ae9d без Co-Authored-By): запишите модель или разрешите «unknown» → done? **рек.** «unknown, снимок нескольких сессий» с пометкой.
 - Q80 Записать Q55 (3 публикации в сутки, Free и Plus, сутки UTC) в 03_DECISIONS.md номером D — без этого PM-018 не пройдёт owner-gate.
 - Q81 Починить render_views.py (D131 в requirement_ids) — ядро сделает, если ок. **рек. да**
+
+## §34 — 2026-10-01: РЕШЕНО КООРДИНАТОРОМ (§33)
+- Q78 да — actual_reasoning «unrecorded», модель из Co-Authored-By.
+- Q79 да — «unknown, снимок нескольких сессий» с пометкой → PM-013 в done при PASS по сути.
+- Q80 сделано координатором: D141 в 03_DECISIONS.md (3 публикации в сутки, Free и Plus, сутки UTC) — PM-018 проходит owner-gate.
+- Q81 да — чинить render_views.py; заодно mark.py не должен переформатировать весь tasks.json (точечная запись), и скрипт PM-007 не должен затирать свой evidence.
+- Темп хороший (+7 в done). Продолжай пачки по 10 без остановки.

@@ -161,3 +161,8 @@ iOS-шлюз в `account_native_expo_environment.ts` остаётся закры
 - `requireCommit` отказал из-за чужих незакоммиченных правок → сборка из `git archive HEAD` (b37ea0279+) во временной папке scratchpad, `EAS_NO_VCS=1`, node_modules — junction (без копии).
 - Сборка: https://expo.dev/accounts/badloar/projects/phraseman/builds/0098ba07-d923-47ad-a289-bc1c199fc2f7
 - **Результат сборки 0098ba07: ERRORED (XCODE_BUILD_ERROR) — до компиляции Swift не дошло.** Профиль ad hoc «*[expo] app.phraseman AdHoc 1781944018913» не поддерживает App Attest, а app.json:103 требует entitlement `com.apple.developer.devicecheck.appattest-environment` (остаток App Check: RNFBAppCheck, @react-native-firebase/app-check, plugins/withIosFirebaseEarlyConfigure.js). По правилу владельца App Check убирается ОТДЕЛЬНОЙ сессией — заведена задача «Remove leftover App Check / App Attest from iOS build». После неё — повторить сборку из чистого HEAD (тот же способ: git archive → EAS_NO_VCS=1).
+
+## Сборка 8bb4d1e2 — FINISHED (2026-10-01)
+- **iOS-часть патча expo-sqlite скомпилировалась** (впервые). Путь: 0098ba07 (подпись: App Attest) → a610b454 (Swift: flock) → 9c9954c4 (приведение типа не помогло) → 8bb4d1e2 OK (`@_silgen_name("flock")`, коммит 1282d3e80).
+- Собрано из `git archive HEAD` с entitlement App Attest, снятым только в копии (в репо app.json:103 ещё стоит — у сессии App Check/координатора).
+- Установка: https://expo.dev/accounts/badloar/projects/phraseman/builds/8bb4d1e2-d7b9-4742-ba5f-c40cbbc43884 → ждём 3 квитанции владельца (шаги 7–13 выше).

@@ -406,3 +406,6 @@ docs/phraseman-2.0/sources/
 
 # Account V2 6D: local Firebase Emulator test accounts (generated, never commit)
 scripts/accounts-v2-emulator-seed.local.json
+
+# PM-008: полный дамп пользовательских строк (генерируется tools/pm008_copy_inventory.mjs)
+docs/phraseman-2.0/registries/copy_inventory_full.json

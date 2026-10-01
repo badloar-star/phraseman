@@ -1860,9 +1860,12 @@ test('account switch with confirmed discard backs up and proceeds despite unreso
     signOutAndWipeForAccountSwitch({ allowWipeWithoutSync: true, allowPendingShardSpendDiscard: true }),
   ).resolves.toEqual({ ok: true, synced: true });
 
+  // зачем: с abf5ceaaf (2026-09-22) копия может вытеснить чужую аварийную копию
+  // ТОЛЬКО при явном согласии на отказ от данных (discard) — иначе false.
   expect(saveAccountSwitchEmergencyBackup).toHaveBeenCalledWith(
     'pending_shard_spend_discard_before_account_switch',
     'local-stable-id',
+    { allowShelveOtherOwnerBackup: true },
   );
   expect(accountGeneration.invalidateAccountGeneration).toHaveBeenCalled();
   expect(beginPremiumAccountTransition).toHaveBeenCalled();
@@ -1879,9 +1882,12 @@ test('account switch with confirmed discard backs up and proceeds despite quaran
     signOutAndWipeForAccountSwitch({ allowWipeWithoutSync: true, allowPendingShardSpendDiscard: true }),
   ).resolves.toEqual({ ok: true, synced: true });
 
+  // зачем: с abf5ceaaf (2026-09-22) копия может вытеснить чужую аварийную копию
+  // ТОЛЬКО при явном согласии на отказ от данных (discard) — иначе false.
   expect(saveAccountSwitchEmergencyBackup).toHaveBeenCalledWith(
     'pending_shard_spend_discard_before_account_switch',
     'local-stable-id',
+    { allowShelveOtherOwnerBackup: true },
   );
   expect(accountGeneration.invalidateAccountGeneration).toHaveBeenCalled();
   expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
@@ -1930,9 +1936,12 @@ test('account switch may preserve a pending earn only after its exact owner queu
     ok: true,
     synced: true,
   });
+  // зачем: с abf5ceaaf (2026-09-22) копия может вытеснить чужую аварийную копию
+  // ТОЛЬКО при явном согласии на отказ от данных (discard) — иначе false.
   expect(saveAccountSwitchEmergencyBackup).toHaveBeenCalledWith(
     'pending_shard_earn_before_account_switch',
     'local-stable-id',
+    { allowShelveOtherOwnerBackup: false },
   );
   expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
 });
@@ -2245,9 +2254,12 @@ test('account switch preserves sign-out-before-wipe after the bounded premium dr
 
   await expect(signOutAndWipeForAccountSwitch()).resolves.toEqual({ ok: true, synced: true });
 
+  // зачем: с abf5ceaaf (2026-09-22) копия может вытеснить чужую аварийную копию
+  // ТОЛЬКО при явном согласии на отказ от данных (discard) — иначе false.
   expect(saveAccountSwitchEmergencyBackup).toHaveBeenCalledWith(
     'final_account_snapshot_before_switch',
     'local-stable-id',
+    { allowShelveOtherOwnerBackup: false },
   );
   expect(waitForPremiumAccountWorkIdleWithDeadline).toHaveBeenCalledWith(1_500);
   expect(authState.calls.indexOf('signout')).toBeLessThan(authState.calls.indexOf('wipe'));

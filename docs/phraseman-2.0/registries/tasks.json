@@ -310,10 +310,9 @@
       {
         "id": "PM-007-A1",
         "text": "Созданы два списка — объявленные в коде и живые в облаке",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "2026-10-01 код-сторона ГОТОВА: node scripts/pm007_code_vs_cloud_functions.mjs → docs/phraseman-2.0/evidence/PM-007_code_vs_cloud_functions.md: 436 функций в коде (default 425, content 9, english-test 2, max 0 — запломбирован), из них 21 крон, у каждой тип и file:line.",
-          "NOT_MET: список «живые в облаке» требует чтения прода — этой сессии запрещено. Владелец: firebase functions:list --project phraseman-ea0b3 --json > .tmp/pm007_cloud_functions.json && node scripts/pm007_code_vs_cloud_functions.mjs --cloud .tmp/pm007_cloud_functions.json — скрипт сам допишет список облака и оба расхождения (режим --cloud проверен на синтетическом файле)."
+          "2026-10-01: оба списка в docs/phraseman-2.0/evidence/PM-007_code_vs_cloud_functions.md — код 438 (scripts/pm007_code_vs_cloud_functions.mjs), облако 516 (firebase functions:list --project phraseman-ea0b3 --json, только чтение, по решению владельца R5); расхождения: в облаке без кода 112, в коде без облака 34; коммит 3f63c244d."
         ]
       },
       {

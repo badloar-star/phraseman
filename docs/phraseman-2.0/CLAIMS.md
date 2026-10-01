@@ -101,3 +101,4 @@ Q32 живой прогон 2.0 (логи [COIN-RECONCILE]/[GIFTS-TO-COINS]) н�
 Q37 inventory keep_in_place video_favorites + Q38 выгрузка фраз для Telegram в админке + Q40 язык жалобы на набор — Ядро — взял 14:11 (очередь, одним исполнителем)
 PM-233 (E23 ledger покупок/прав; preflight+сухой прогон, без прод-данных) — New session [29b65f] / Account V2 — взял 15:37 — готово 15:55 (см. коммит PM-233)
 PM-233-FOLLOWUP (D136–D140: удалить денежные/наградные пути MAX, жемчуг, +10 ответов, подарочные наборы, квесты, коллекции; скрипт D137 без прода) — New session [29b65f] / Account V2 — взял 16:22
+PM-234 (правила оплаченной косметики/бустов — сводка решений D70…D140) — New session [29b65f] / Account V2 — взял 18:03 — готово 18:03 (evidence/PM-234_paid_cosmetics_boosts_rules.md)

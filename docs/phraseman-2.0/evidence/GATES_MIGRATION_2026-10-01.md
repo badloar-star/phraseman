@@ -155,4 +155,29 @@
 - Замечания (не блокирующие): комментарий `energy_state_v2.ts:176` ссылается на несуществующее имя `readAndRecoverState` (на деле `getEnergyState`/`checkAndRecover`); повреждённый payload тоже даёт полный запас 5 (L183) — в пакете не отражено.
 - Прод: серверных скриптов миграции энергии нет.
 
-Ревьюер пакета: agent-reviewer (Sonnet), 2026-10-01 — **FAIL (M1, M2); M3, M4 PASS** → ядро исправило M1 (решение владельца 01.10: без компенсации, флаг выкл.) и M2 (проба, ссылки), M3 (убран D42); **нужно повторное ревью M1–M3** · Подпись координатора: _ожидает_
+## Повторное ревью M1–M3 (agent-reviewer, Sonnet, 2026-10-01)
+
+| # | Миграция | Решение владельца | Проверка с выводом | Откат и судьба данных | Итог |
+|---|---|---|---|---|---|
+| M1 | подарки/спины: удаление без компенсации | PASS (ответ владельца 01.10 в сессии ядра + `PROGRESS.md` L376 от 27.09; Q12 отменён) | PASS | PASS | **PASS** |
+| M2 | множители XP | PASS (R055, D07, D147 существуют) | PASS (проба зелёная, числа совпадают) | PASS | **PASS** |
+| M3 | ранг монеты | PASS (D42 убран; D34/D60/D62 существуют) | PASS (прошлый прогон) | PASS | **PASS** |
+
+Доказательства (команда -> вывод):
+- `grep gifts_to_coins_enabled app/remote_flags.ts` -> `:253 gifts_to_coins_enabled: false`.
+- `app/gifts_to_coins_migration_v1.ts:553-557` -> `if (!enabled) { log('skip reason=flag_off ...'); return 'flag_off'; }` до `planRun`/зачисления/списания. Ветки `already_done` и `blocked_backoff` выше только досылают отчёт и чистят старый дневной путь, монеты не трогают.
+- `npm run test:one -- tests/gifts_to_coins_disabled_owner_2026_10_01.test.ts` -> `Tests: 1 passed, 1 total`.
+- `app/retired_account_local_keys.ts` содержит `gift_xp_bank_v1`, `gift_xp_multiplier`, `club_gift_free_boost_v1`; используется в `app/cloud_sync.ts:822` (инвентарь стирания при смене аккаунта) и `app/local_account_data.ts:27` -> утверждение «ключи стираются при смене аккаунта» подтверждено.
+- «Откат = включить флаг, код компенсации сохранён»: `defaultGiftsToCoinsDeps().isEnabled = getRemoteBool('gifts_to_coins_enabled')` (:668), весь код миграции на месте за флагом -> верно (кэш Remote Config до ~6 ч).
+- `npx tsx tests/xp_boost_tokens_compat_only.probe.ts` -> `PASS (3182 files; compat-only hits in 6/6 allowlisted files)`, exit 0; числа совпадают с пакетом и с `PM-055_xp_multiplier_completeness_2026-10-01.md` (3182).
+- R055: `docs/phraseman-2.0/registries/requirements.json:802` «Удалить множители опыта и бусты», basis OWNER, источник `sources/02_screenshot_transcript.md#S09` «Убрать все множители опыта»; спецификация `docs/phraseman-2.0/docs/REMOVAL.md:8` («XP / уровни / множители — удалить»). D07 (`03_DECISIONS.md` L12), D147 (L118) существуют и по смыслу подходят.
+- M3: ссылки D34 (`PROGRESS.md` L17, 20 рангов, +1000), D60 (L39, монеты), D62 (L41, ассеты и анимация повышения) существуют; D42 из ссылок убран.
+
+Замечания (не блокируют):
+1. D-номер решения владельца «удалить подарки без компенсации» ещё не записан в `03_DECISIONS.md` (за координатором); решение зафиксировано ссылкой на ответ владельца и `PROGRESS.md` L376.
+2. Риск: если в Remote Config прода `gifts_to_coins_enabled=true`, он перекроет дефолт `false` — владельцу проверить (пакет это уже отмечает).
+3. M3: «цена N x 1000» — это D34, а не D62 (D62 — ассеты/анимация повышения); при желании поправить подпись.
+4. Путь `docs/REMOVAL.md` в M2 фактически `docs/phraseman-2.0/docs/REMOVAL.md`.
+5. Код перевода в монеты не удалён (при `false` мёртвый груз) — сознательно, ради отката.
+
+Ревьюер пакета: agent-reviewer (Sonnet), 2026-10-01 — **PASS, готово к подписи координатора** (M1–M4 PASS; повторное ревью M1–M3 выше) · Подпись координатора: _ожидает_

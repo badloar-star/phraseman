@@ -891,6 +891,20 @@ async function recoverProjection(
       AsyncStorage.getItem(levelSpinStarGrantOutboxKey(ownerStableId)),
       AsyncStorage.getItem(levelSpinStarPreparedKey(ownerStableId)),
     ]);
+    if (projectionRaw === null) {
+      // зачем ([COIN-DIVERGENCE]): проекции на диске нет — восстановление стартует
+      // с нуля. Печатаем, что в этот момент видит снимок: если там уже монеты,
+      // источник «0 при 9830» — подмена/стирание ключа проекции (выход, очистка,
+      // восстановление из облака), а не арифметика кошелька.
+      const progressNow = getAppSnapshot().progress;
+      DebugLogger.info('[COIN-DIVERGENCE] recover:projection_absent', JSON.stringify({
+        owner: ownerStableId.slice(0, 8),
+        snapshotStars: progressNow ? progressNow.stars ?? null : 'no_progress',
+        storedOperations: storedOperations.length,
+        phoneCredits: phoneState.credits.length,
+        phoneAcks: phoneStateAcknowledgements.length,
+      }));
+    }
     const prepared = parsePrepared(preparedRaw, ownerStableId);
     for (const operation of prepared) {
       if (!await hasValidLocalRuneFingerprint(operation)) throw new Error('level_spin_star_prepared_corrupt');
@@ -1058,11 +1072,46 @@ async function recoverProjection(
   }, accountTransitionLockLease);
 }
 
+function hasRecoverySpendOperation(projection: LevelSpinStarProjection): boolean {
+  return projection.operations.some((operation) => (
+    operation.schemaVersion !== 'client-level-spin-star-operation.v1'
+    && operation.schemaVersion !== 'client-practice-rune-operation.v1'
+  ));
+}
+
+// зачем (владелец 01.10, [COIN-DIVERGENCE], тест tests/coin_divergence_cold_start.test.ts):
+// на холодном старте восстановление может пройти ВСЛЕПУЮ — observeCurrentSnapshot
+// не видит секции progress (снимок ещё не поднят) либо проекция на диске была
+// пустой/подменённой, пока снимок уже показал настоящие монеты. Публикация такой
+// проекции затирала видимые 9830 нулём. Пока проекция не подтверждена сервером
+// (serverSeq 0) и в ней нет трат, понижение ничем не объяснено — значит, это
+// слепое восстановление, а не настоящее списание. Занизить баланс нельзя:
+// повторяем восстановление уже с поднятым снимком — observe берёт БОЛЬШЕЕ и
+// записывает его на диск, чтобы следующий старт не прочитал 0.
+function unconfirmedBlindDrop(projection: LevelSpinStarProjection): number | null {
+  if (projection.serverSeq !== 0 || hasRecoverySpendOperation(projection)) return null;
+  const progress = getAppSnapshot().progress;
+  if (!progress) return null;
+  const snapshotStars = Math.max(0, Math.trunc(progress.stars ?? 0));
+  return snapshotStars > visibleProjection(projection).balance ? snapshotStars : null;
+}
+
 export async function recoverAndHydrateLevelSpinStarGrants(
   token: AccountGenerationToken,
   options: Readonly<{ syncNow?: boolean }> = {},
 ): Promise<Readonly<{ balance: number; earnedTotal: number }>> {
-  const projection = await recoverProjection(token);
+  let projection = await recoverProjection(token);
+  const blindDropFrom = unconfirmedBlindDrop(projection);
+  if (blindDropFrom !== null) {
+    DebugLogger.info('[COIN-DIVERGENCE] hydrate:blind_drop_reobserve', JSON.stringify({
+      owner: token.stableId?.slice(0, 8) ?? null,
+      snapshotStars: blindDropFrom,
+      projectionBalance: visibleProjection(projection).balance,
+      serverBalance: projection.serverBalance,
+      operations: projection.operations.length,
+    }));
+    projection = await recoverProjection(token);
+  }
   publishProjection(token, projection);
   if (options.syncNow !== false) {
     void syncPendingLevelSpinStarGrants(token).catch(() => {});

@@ -26,10 +26,6 @@
 
 ## «Супер-воскресенье» (буст МОНЕТ ×2) — снято решением D147 (b053c3ac4)
 
-`modules/economy/super_sunday_runes.ts`: `SUPER_SUNDAY_MULTIPLIER = 2` — по воскресеньям (UTC)
-монеты за занятия удваиваются. Живое: используется в `learning_v2_direct_session_player_v1.tsx`,
-`practice_rune_settlement.ts`, `mistake_practice_rewards.ts`, `level_spin_star_grants.ts`,
-`learning_session_rune_reward_composite_v1.ts`, `mistake_correction_wallet_composite.ts`.
-В `03_DECISIONS.md` решения про него нет. Это не множитель опыта, но это «буст» из заголовка
-задачи. Нужно решение: оставить как часть экономики монет 2.0 или снять. До решения
-ничего не меняется (вопрос Q87 координатору).
+`modules/economy/super_sunday_runes.ts`: удвоение действует только для начислений раньше 2026-10-01 UTC
+(старые воскресные квитанции повторяются той же суммой); сервер переходно принимает ×2 от старых
+сборок с логом `[SUPER-SUNDAY-RETIRED]`. Сторож: `tests/super_sunday_retired_d147.test.ts` (6/6).

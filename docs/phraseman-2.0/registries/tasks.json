@@ -2335,7 +2335,10 @@
         "id": "PM-048-A2",
         "text": "старые данные удаляемой механики удалены без компенсации по последнему решению владельца",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "2026-10-01 NOT_MET (владелец/после релиза): старые данные подарков в боевой базе не удалены — по D90/D91 чистка идёт скриптом с пробным прогоном сразу после релиза клиента 2.0, запуск — владелец. Код-сторона готова: правило миграции Account V2 помечает поля drop gifts_spins_boosts_removed (functions/src/accounts_v2_migration/inventory.ts:165-167, 232-233, 265-266; D09/D90).",
+          "ВОПРОС владельцу: формулировка «без компенсации» расходится с D51/D53 (неиспользованные спины и подарки → монеты молча, таблица «Средне»). Какое решение последнее для подарков — D51/D53 (с компенсацией) или «без компенсации»?"
+        ]
       }
     ],
     "depends_on": [],
@@ -2594,14 +2597,16 @@
         "text": "Баланс обновляется без reward-flight очереди",
         "accepted": false,
         "evidence": [
-          "commit 2c81341eb only changed app/boons/boon_engine.ts (day/week/return boons off at source of truth); it does not prove removal of the reward-flight queue. Rune-flight code is still present (components/LearningV2RuneFlight.tsx, hooks/usePracticeRuneFlight.ts, HomeRewardCollectFlight). 2026-09-29: accepted reset to false pending owner decision on which rune/reward flights remain in PhraseMan 2.0."
+          "2026-10-01 NOT_MET (Дизайн): по D75 полёт рун/наград и «новый день» заменяются ОДНИМ полётом монет. Сейчас живы app/reward_flight_queue.ts (сумматор в памяти, баланс не ждёт очередь — источник правды снапшот), components/home/HomeRewardCollectFlight.tsx, components/LearningV2RuneFlight.tsx, hooks/usePracticeRuneFlight.ts и вызовы в 15 экранах. Это анимация и Главная (home.tsx у сессии Дизайн)."
         ]
       },
       {
         "id": "PM-052-A2",
         "text": "звук и анимация не запускаются скрыто",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "2026-10-01 NOT_MET (Дизайн): проверять «звук и анимация не запускаются скрыто» имеет смысл после замены на единый полёт монет (D75); до этого старые полёты и звук pm.reward.rune_flight_start живы."
+        ]
       }
     ],
     "depends_on": [],
@@ -3399,7 +3404,10 @@
         "id": "PM-066-A1",
         "text": "Есть unreachable evidence, bundle diff и проверка cold start",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "Бандл-часть подтверждена ранее (tests/android_bundle_hygiene_contract.test.ts 10/10, PROGRESS 2026-09-28); недостижимость ассетов — docs/phraseman-2.0/evidence/PM-009_asset_bundle_inventory.md (88 файлов без потребителей).",
+          "2026-10-01 NOT_MET: проверка cold start на устройстве/эмуляторе не выполнена — эмулятор этой сессии запрещён (FINAL_PHASE п.4, слабый профиль)."
+        ]
       },
       {
         "id": "PM-066-A2",
@@ -10549,7 +10557,10 @@
         "id": "PM-205-A1",
         "text": "Удалены manifests, seeds, background prefetch и облачные файлы только после проверки клиентов/allowlist",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "2026-10-01 NOT_MET. Найдено: скачивание озвучки V2 (D47) снято только у вызова — app/learning-v2/lesson/[id].tsx:852 (комментарий), но мёртвая цепочка осталась: app/learning_v2_activity_audio_preload_v1.ts (463 строки, preloadCurrent… нигде не вызывается) + app/learning_v2_activity_audio_transport_v1.ts (257 строк, прямой GET firebasestorage) + хук app/use_learning_v2_activity_audio_session_v1.ts, который подключён в app/learning-v2/session/[id].tsx:408 и всегда отдаёт status unavailable. Удаление затрагивает 9 тестов/проб (learning_v2_activity_audio_preload_v1, _transport_v1, auxiliary_session_mount, course_session_audio_preload, factory_production_audio_contract, remote_audio_pack_contract, session1 gate, pm212, pm229) — отдельный срез.",
+          "Облачные файлы озвучки в Storage — удалять только владельцу после allowlist «наш голос» (D18/D47); прод этой сессии запрещён."
+        ]
       }
     ],
     "depends_on": [
@@ -12889,7 +12900,9 @@
         "id": "PM-253-A1",
         "text": "Task ID, base/result SHA, changed files, tests, screenshots, risks и next action",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "2026-10-01 NOT_MET: журнал PROGRESS.md ведётся построчно с Task ID и коммитами, у критериев есть evidence, но по задачам нет полного набора «base/result SHA + changed files + tests + screenshots + risks + next action»: result_sha пуст у 12 из 13 задач партии review-batch4 (есть только у PM-086), скриншотов нет (эмулятор этой сессии запрещён). Закрыть: шаблон записи в PROGRESS + заполнение result_sha при переводе в done."
+        ]
       },
       {
         "id": "PM-253-A2",

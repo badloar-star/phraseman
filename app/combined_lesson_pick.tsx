@@ -145,7 +145,7 @@ export default function CombinedLessonPickScreen() {
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingBottom: 12 }}>
           <Text
             maxFontSizeMultiplier={1.3}
-            style={{ flex: 1, color: glass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600' }}
+            style={{ flex: 1, color: glass.secondary, fontSize: 16, lineHeight: 22, fontWeight: '700' }}
           >
             {picked.length === 0
               ? triLang(lang, {

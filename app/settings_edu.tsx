@@ -276,10 +276,10 @@ export default function SettingsEdu() {
             <Text style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', marginTop: 10 }}>
               {loc.edu.title}
             </Text>
-            <Text style={{ color: t.textMuted, fontSize: 15, lineHeight: 20, marginTop: 7 }}>
+            <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 22, marginTop: 7 }}>
               {L({ ru: 'Проверка ответа, ввод и единая озвучка', uk: 'Перевірка відповіді, введення та єдине озвучення', en: 'Answer checking, input, and voice', es: 'Comprobación, escritura y voz', 'pt-BR': 'Verificação, digitação e voz', vi: 'Kiểm tra câu trả lời, nhập và giọng nói', id: 'Pemeriksaan jawaban, input, dan suara', tr: 'Cevap kontrolü, giriş ve ses', pl: 'Sprawdzanie odpowiedzi, wpisywanie i głos' })}
             </Text>
-            <Text style={{ color: t.textMuted, fontSize: 11, lineHeight: 14, fontWeight: '700', letterSpacing: 0.6, marginTop: 24, marginHorizontal: 4, marginBottom: 10 }}>
+            <Text style={{ color: t.textMuted, fontSize: 13, lineHeight: 18, fontWeight: '700', letterSpacing: 0.6, marginTop: 24, marginHorizontal: 4, marginBottom: 10 }}>
               {L({ ru: 'ОТВЕТ', uk: 'ВІДПОВІДЬ', en: 'ANSWER', es: 'RESPUESTA', 'pt-BR': 'RESPOSTA', vi: 'CÂU TRẢ LỜI', id: 'JAWABAN', tr: 'YANIT', pl: 'ODPOWIEDŹ' })}
             </Text>
             <View style={{ gap: 10 }}>
@@ -299,7 +299,7 @@ export default function SettingsEdu() {
             })}
             </View>
 
-            <Text style={{ color: t.textMuted, fontSize: 11, lineHeight: 14, fontWeight: '700', letterSpacing: 0.6, marginTop: 24, marginHorizontal: 4, marginBottom: 10 }}>
+            <Text style={{ color: t.textMuted, fontSize: 13, lineHeight: 18, fontWeight: '700', letterSpacing: 0.6, marginTop: 24, marginHorizontal: 4, marginBottom: 10 }}>
               {L({ ru: 'ЗВУК', uk: 'ЗВУК', en: 'SOUND', es: 'SONIDO', 'pt-BR': 'SOM', vi: 'ÂM THANH', id: 'SUARA', tr: 'SES', pl: 'DŹWIĘK' })}
             </Text>
             <View style={{ gap: 10 }}>

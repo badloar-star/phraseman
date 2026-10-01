@@ -147,7 +147,7 @@ function TableHeader({ cols, t, f }: { cols: string[]; t: any; f: any }) {
           { flex: 1, paddingVertical: 8, paddingHorizontal: 6, alignItems: 'center' },
           i < cols.length - 1 && { borderRightWidth: 0.5, borderRightColor: t.border },
         ]}>
-          <Text style={{ color: t.textSecond, fontSize: 12, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.3, textAlign: 'center' }} maxFontSizeMultiplier={1}>
+          <Text style={{ color: t.textSecond, fontSize: 13, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.3, textAlign: 'center' }} maxFontSizeMultiplier={1}>
             {col}
           </Text>
         </View>
@@ -164,7 +164,7 @@ function TableRow({ cells, isEven, t, f, firstBold }: { cells: string[]; isEven:
           { flex: 1, paddingVertical: 10, paddingHorizontal: 8, justifyContent: 'center' },
           i < cells.length - 1 && { borderRightWidth: 0.5, borderRightColor: t.border },
         ]}>
-          <Text style={{ color: t.textPrimary, fontSize: 11, fontWeight: (i === 0 && firstBold) ? '700' : '400', lineHeight: 17 }} maxFontSizeMultiplier={1}>
+          <Text style={{ color: t.textPrimary, fontSize: 13, fontWeight: (i === 0 && firstBold) ? '700' : '400', lineHeight: 18 }} maxFontSizeMultiplier={1}>
             {cell}
           </Text>
         </View>
@@ -179,7 +179,7 @@ function Table({ label, headers, rows, t, f, firstBold }: {
   return (
     <View style={{ marginBottom: 16 }}>
       {label && (
-        <Text style={{ color: t.textSecond, fontSize: 11, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 8 }} maxFontSizeMultiplier={1}>
+        <Text style={{ color: t.textSecond, fontSize: 13, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 8 }} maxFontSizeMultiplier={1}>
           {label}
         </Text>
       )}

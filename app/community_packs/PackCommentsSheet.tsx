@@ -556,7 +556,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
     });
     const badge = (label: string) => (
       <View style={{ backgroundColor: glass.opaqueControl, borderRadius: 8, paddingHorizontal: 8, height: 20, justifyContent: 'center' }}>
-        <Text style={{ color: glass.secondary, fontSize: 11, fontWeight: '700' }}>{label}</Text>
+        <Text style={{ color: glass.secondary, fontSize: 13, fontWeight: '700' }}>{label}</Text>
       </View>
     );
     return (
@@ -717,7 +717,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
               <View style={{ width: 55, height: 55, borderRadius: 16, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
                 <Ionicons name="chatbubble-outline" size={24} color={glass.text} />
               </View>
-              <Text style={{ color: glass.text, fontSize: 18, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>{emptyTitle}</Text>
+              <Text style={{ color: glass.text, fontSize: 16, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>{emptyTitle}</Text>
               <Text style={{ color: glass.secondary, fontSize: f.body, marginTop: 6, textAlign: 'center' }}>{emptyBody}</Text>
             </View>
           ) : (
@@ -781,7 +781,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
                 </TouchableOpacity>
               </View>
               {counter.visible ? (
-                <Text style={{ color: counter.left <= 10 ? glass.text : glass.mutedText, fontSize: 12, fontWeight: counter.left <= 10 ? '700' : '400', marginTop: 8, marginLeft: 16 }}>
+                <Text style={{ color: counter.left <= 10 ? glass.text : glass.mutedText, fontSize: 13, fontWeight: counter.left <= 10 ? '700' : '400', marginTop: 8, marginLeft: 16 }}>
                   {triLang(lang, { ru: `${counter.left} осталось`, uk: `${counter.left} залишилось`, en: `${counter.left} left`, es: `${counter.left} restantes`, 'pt-BR': `${counter.left} restantes`, vi: `còn ${counter.left}`, id: `${counter.left} tersisa`, tr: `${counter.left} kaldı`, pl: `${counter.left} pozostało` })}
                 </Text>
               ) : null}

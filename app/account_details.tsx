@@ -246,7 +246,7 @@ export default function AccountDetailsScreen() {
                 style={{ marginTop: 10, minHeight: 44 }}
                 contentStyle={{ minHeight: 44, paddingHorizontal: 18, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
               >
-                <Text style={{ color: glass.text, fontSize: 15, lineHeight: 20, fontWeight: '700' }}>{nameLabel}</Text>
+                <Text style={{ color: glass.text, fontSize: 16, lineHeight: 22, fontWeight: '700' }}>{nameLabel}</Text>
               </PressableHybrid>
             </View>
 
@@ -290,7 +290,7 @@ export default function AccountDetailsScreen() {
                       style={{ minHeight: 44, alignSelf: 'center' }}
                       contentStyle={{ minHeight: 44, paddingHorizontal: 14, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
                     >
-                      <Text style={{ color: glass.text, fontSize: 14, lineHeight: 19, fontWeight: '700' }}>{copyLabel}</Text>
+                      <Text style={{ color: glass.text, fontSize: 13, lineHeight: 18, fontWeight: '700' }}>{copyLabel}</Text>
                     </PressableHybrid>
                   ) : <View />}
                 />

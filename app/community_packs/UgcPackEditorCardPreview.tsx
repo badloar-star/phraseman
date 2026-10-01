@@ -246,8 +246,8 @@ export default function UgcPackEditorCardPreview({
                 top: 14,
                 left: 12,
                 color: t.accent,
-                fontSize: 10,
-                fontWeight: '800',
+                fontSize: 13,
+                fontWeight: '700',
                 letterSpacing: 0.6,
                 zIndex: 1,
               }}
@@ -299,7 +299,7 @@ export default function UgcPackEditorCardPreview({
         </TouchableOpacity>
 
         <Animated.View style={{ position: 'absolute', top: 14, left: 44, opacity: cFrontOp, zIndex: 1 }} pointerEvents="none">
-          <Text style={{ color: t.textGhost, fontSize: 10, fontWeight: '800', letterSpacing: 0.6 }}>{frontLabel}</Text>
+          <Text style={{ color: t.textGhost, fontSize: 13, fontWeight: '700', letterSpacing: 0.6 }}>{frontLabel}</Text>
         </Animated.View>
 
         {hasDescription ? (
@@ -343,7 +343,7 @@ export default function UgcPackEditorCardPreview({
             borderColor: t.border,
           }}
         >
-          <Text style={{ color: t.textMuted, fontSize: 11, fontWeight: '800', letterSpacing: 0.5, marginBottom: 8 }}>
+          <Text style={{ color: t.textMuted, fontSize: 13, fontWeight: '700', letterSpacing: 0.5, marginBottom: 8 }}>
             {triLang(lang, {
               uk: 'ОПИСАННЯ',
               ru: 'ОПИСАНИЕ',

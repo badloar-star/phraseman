@@ -352,7 +352,7 @@ export default function SettingsNotifications() {
   const master = prefs.master;
   const timeRowActive = master && dailyEnabled;
 
-  const sectionTitleStyle = { color: t.textMuted, fontSize: 11, lineHeight: 14, fontWeight: '700' as const, letterSpacing: 0.6, marginTop: 24, marginHorizontal: 4, marginBottom: 10 };
+  const sectionTitleStyle = { color: t.textMuted, fontSize: 13, lineHeight: 18, fontWeight: '700' as const, letterSpacing: 0.6, marginTop: 24, marginHorizontal: 4, marginBottom: 10 };
   const statusCardStyle = { borderRadius: 14, paddingVertical: 14, paddingHorizontal: 16, gap: 12, flexDirection: 'row' as const, alignItems: 'flex-start' as const, backgroundColor: glass.opaqueCard, borderWidth: 1, borderColor: glass.glassEdge, overflow: 'hidden' as const };
   const rowStyle = { minHeight: 64, borderRadius: 14, paddingVertical: 10, paddingHorizontal: 14, gap: 14, flexDirection: 'row' as const, alignItems: 'center' as const, backgroundColor: glass.opaqueCard, borderWidth: 1, borderColor: glass.glassEdge, overflow: 'hidden' as const };
 
@@ -425,10 +425,10 @@ export default function SettingsNotifications() {
               <LinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
               <Ionicons name="chatbubble-outline" size={20} color={glass.lightTint} />
               <View style={{ flex: 1, minWidth: 0 }}>
-                <FlowText testID="notif-master-label" provenance="authored" style={{ color: t.textPrimary, fontSize: 15, lineHeight: 20, fontWeight: '700' }}>
+                <FlowText testID="notif-master-label" provenance="authored" style={{ color: t.textPrimary, fontSize: 16, lineHeight: 22, fontWeight: '700' }}>
                   {masterLabel}
                 </FlowText>
-                <FlowText testID="notif-master-hint" provenance="authored" style={{ color: t.textMuted, fontSize: 14, lineHeight: 20, marginTop: 2 }}>
+                <FlowText testID="notif-master-hint" provenance="authored" style={{ color: t.textMuted, fontSize: 13, lineHeight: 18, marginTop: 2 }}>
                   {masterHint}
                 </FlowText>
               </View>
@@ -457,7 +457,7 @@ export default function SettingsNotifications() {
                   <RowIcon name="time-outline" glass={glass} />
                   <FlowText testID="notif-time-label" provenance="authored" style={{ color: t.textPrimary, fontSize: 16, lineHeight: 21, fontWeight: '700', flex: 1, minWidth: 0 }}>{timeLabel}</FlowText>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginLeft: 8 }}>
-                    <FlowText testID="notif-time-value" provenance="authored" style={{ color: glass.secondary, fontSize: 14, lineHeight: 19, fontWeight: '400' }}>{pad(hour)}:{pad(minute)}</FlowText>
+                    <FlowText testID="notif-time-value" provenance="authored" style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, fontWeight: '400' }}>{pad(hour)}:{pad(minute)}</FlowText>
                     <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
                   </View>
                 </PressableHybrid>

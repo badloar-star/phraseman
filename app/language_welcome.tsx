@@ -525,7 +525,7 @@ const styles = StyleSheet.create({
   footer: { paddingHorizontal: 22, paddingBottom: 14, paddingTop: 8 },
   primaryButtonOuter: { borderRadius: 18, overflow: 'hidden' },
   primaryButton: { paddingVertical: 16, alignItems: 'center', justifyContent: 'center', borderRadius: 18 },
-  primaryButtonText: { color: '#07111F', fontSize: 17, fontWeight: '800' },
+  primaryButtonText: { color: '#07111F', fontSize: 16, fontWeight: '700' },
   pressed: { opacity: 0.85 },
   disabled: { opacity: 0.55 },
 
@@ -565,7 +565,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   doneCopy: { alignItems: 'center', marginTop: 22 },
-  doneEyebrow: { color: '#8AB9FF', fontSize: 14, fontWeight: '700', letterSpacing: 0.3, marginBottom: 6 },
+  doneEyebrow: { color: '#8AB9FF', fontSize: 13, fontWeight: '700', letterSpacing: 0.3, marginBottom: 6 },
   doneTitle: { color: '#F7FAFF', fontSize: 30, fontWeight: '800', textAlign: 'center', marginBottom: 14 },
   doneText: { color: '#C6D3FF', fontSize: 16, lineHeight: 24, textAlign: 'center', maxWidth: 320 },
 });

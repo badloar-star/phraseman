@@ -71,7 +71,7 @@ export function PackCardRow({
       >
         <Text style={{ color: g.text, fontSize: 16, lineHeight: 22, fontWeight: '600' }}>{front}</Text>
         {back ? (
-          <Text style={{ color: g.secondary, fontSize: 14, lineHeight: 20, marginTop: 2 }}>{back}</Text>
+          <Text style={{ color: g.secondary, fontSize: 13, lineHeight: 18, marginTop: 2 }}>{back}</Text>
         ) : null}
       </TouchableOpacity>
       <TouchableOpacity

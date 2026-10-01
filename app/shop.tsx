@@ -628,7 +628,7 @@ const styles = StyleSheet.create({
   priceRow: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   priceText: { fontWeight: '900', fontVariant: ['tabular-nums'] },
   badge: { position: 'absolute', top: 0, right: 0, paddingHorizontal: 6, paddingVertical: 3, borderTopRightRadius: 18, borderBottomLeftRadius: 10 },
-  badgeText: { fontSize: 8.5, fontWeight: '900', letterSpacing: 0.3 },
+  badgeText: { fontSize: 13, fontWeight: '700', letterSpacing: 0.3 },
   empty: { alignItems: 'center', paddingHorizontal: 30, paddingVertical: 34, gap: 8 },
   emptyTitle: { fontWeight: '800' },
   emptyBody: { textAlign: 'center', lineHeight: 19 },

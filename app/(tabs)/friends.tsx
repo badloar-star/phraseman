@@ -672,7 +672,7 @@ function AddFriendModal({
                 gap: 10,
               }}
             >
-              <Text style={{ color: glass.secondary, fontSize: 11 * textScale, lineHeight: 14 * textScale, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1.7 }}>
+              <Text style={{ color: glass.secondary, fontSize: 13 * textScale, lineHeight: 18 * textScale, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1.7 }}>
                 {inputLabel}
               </Text>
               <View style={{ flexDirection: 'row', gap: 10 }}>
@@ -687,7 +687,7 @@ function AddFriendModal({
                     borderColor: glass.glassEdge,
                     minHeight: 54,
                     paddingHorizontal: 14, paddingVertical: 12,
-                    fontSize: 18 * textScale, fontWeight: '500', color: glass.text,
+                    fontSize: 16 * textScale, fontWeight: '400', color: glass.text,
                     letterSpacing: codeMode ? 4 : 0,
                   }}
                   placeholder=""
@@ -2078,7 +2078,7 @@ export default function FriendsTabScreen() {
               {L('Активные заявки', 'Активні заявки', 'Active requests', 'Solicitudes activas', 'Solicitações ativas', 'Lời mời đang chờ', 'Permintaan aktif', 'Aktif istekler', 'Aktywne zaproszenia')}
             </FriendsSectionTitle>
             <View style={{ minWidth: 33, height: 24, paddingHorizontal: 9, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl }}>
-              <Text style={{ color: glass.text, fontSize: 14, fontWeight: '700' }}>{requests.length}</Text>
+              <Text style={{ color: glass.text, fontSize: 13, fontWeight: '700' }}>{requests.length}</Text>
             </View>
           </>
         ) : hasFriendRows ? (
@@ -2098,7 +2098,7 @@ export default function FriendsTabScreen() {
           style={{ minWidth: 64, minHeight: 44, borderRadius: 22, backgroundColor: glass.opaqueControl, flexDirection: 'row', gap: 5, justifyContent: 'center', alignItems: 'center', flexShrink: 0 }}
         >
           <Ionicons name="flask-outline" size={16} color={glass.text} />
-          <FlowText testID="friends-together-dev-badge" provenance="authored" style={{ color: glass.text, fontSize: 11, fontWeight: '900', letterSpacing: 0.5 }}>DEV</FlowText>
+          <FlowText testID="friends-together-dev-badge" provenance="authored" style={{ color: glass.text, fontSize: 13, fontWeight: '700', letterSpacing: 0.5 }}>DEV</FlowText>
         </TouchableOpacity>
       )}
       {hasRequests || hasFriendRows ? (

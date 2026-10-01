@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   declinedTitle: { fontSize: 24, lineHeight: 30, fontWeight: '700', textAlign: 'center' },
-  declinedBody: { fontSize: 15, lineHeight: 22, textAlign: 'center', maxWidth: 320 },
+  declinedBody: { fontSize: 16, lineHeight: 22, textAlign: 'center', maxWidth: 320 },
   primaryAction: {
     width: '100%',
     minHeight: 52,

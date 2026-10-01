@@ -280,11 +280,11 @@ const styles = StyleSheet.create({
   chipOn: { borderWidth: 1 }, // guard-ok: 1px кромка 2.0
   segment: { flexDirection: 'row', gap: 4, padding: 4, borderRadius: 16, marginTop: 20 },
   segmentItem: { flex: 1, minHeight: 38, borderRadius: 12, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 4 },
-  segmentText: { fontSize: 15, lineHeight: 19, fontWeight: '600', textAlign: 'center' },
+  segmentText: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
   list: { flexDirection: 'column', alignItems: 'stretch', padding: 0, paddingVertical: 0, paddingHorizontal: 0, gap: 0, borderRadius: 20, marginTop: 14 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 14, minHeight: 58, paddingVertical: 8, paddingLeft: 14, paddingRight: 16 },
   rowText: { flex: 1, minWidth: 0 },
-  rowName: { fontSize: 16.5, lineHeight: 21, fontWeight: '600' },
+  rowName: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
   radio: { width: 22, height: 22, borderRadius: 11, borderWidth: 1.6, alignItems: 'center', justifyContent: 'center' }, // guard-ok: кольцо радио
   radioDot: { width: 12, height: 12, borderRadius: 6 },
 });

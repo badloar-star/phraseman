@@ -3125,7 +3125,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           <Text style={{ color: '#fff', fontSize: 20, fontWeight: '800', textAlign: 'center', marginBottom: 8 }}>
             {triLang(lang, { ru: 'Аккаунт заблокирован', uk: 'Обліковий запис заблоковано', en: 'Account blocked', es: 'Cuenta bloqueada', 'pt-BR': 'Conta bloqueada', vi: 'Tài khoản đã bị khóa', id: 'Akun diblokir', tr: 'Hesap engellendi', pl: 'Konto zablokowane' })}
           </Text>
-          <Text style={{ color: '#9ca3af', fontSize: 14, textAlign: 'center', lineHeight: 20, marginBottom: 16 }}>
+          <Text style={{ color: '#9ca3af', fontSize: 13, textAlign: 'center', lineHeight: 18, marginBottom: 16 }}>
             {triLang(lang, { ru: 'Доступ к приложению ограничен. Если считаете блокировку ошибочной — напишите в поддержку.', uk: 'Доступ до застосунку обмежено. Якщо вважаєте блокування помилковим — напишіть у підтримку.', en: "Access to the app is restricted. If you think this block is a mistake, contact support.", es: 'El acceso a la aplicación está restringido. Si crees que el bloqueo es un error, contacta con soporte.', 'pt-BR': 'O acesso ao aplicativo está restrito. Se achar que o bloqueio foi um erro, entre em contato com o suporte.', vi: 'Quyền truy cập ứng dụng bị hạn chế. Nếu bạn cho rằng tài khoản bị khóa nhầm, hãy liên hệ hỗ trợ.', id: 'Akses ke aplikasi dibatasi. Jika menurutmu pemblokiran ini keliru, hubungi dukungan.', tr: 'Uygulamaya erişim kısıtlandı. Engellemenin hatalı olduğunu düşünüyorsanız destek ekibiyle iletişime geçin.', pl: 'Dostęp do aplikacji jest ograniczony. Jeśli uważasz, że blokada jest błędna, skontaktuj się z pomocą techniczną.' })}
           </Text>
           <TouchableOpacity
@@ -3170,8 +3170,8 @@ const styles = StyleSheet.create({
   },
   startupSplashSubtitle: {
     marginTop: 10,
-    fontSize: 15,
-    fontWeight: '600',
+    fontSize: 16,
+    fontWeight: '700',
     letterSpacing: 0.2,
     color: 'rgb(174,170,161)',
     fontFamily: APP_FONT_FAMILY,

@@ -407,11 +407,11 @@ export default function CommunityPackSocialBar({
             size={12}
             color={snapshot.liked ? t.accent : t.textMuted}
           />
-          <Text style={{ color: t.textSecond, fontSize: 10, fontWeight: '700' }}>{snapshot.likesCount}</Text>
+          <Text style={{ color: t.textSecond, fontSize: 13, fontWeight: '700' }}>{snapshot.likesCount}</Text>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
           <Ionicons name="people-outline" size={12} color={t.textMuted} />
-          <Text style={{ color: t.textSecond, fontSize: 10, fontWeight: '700' }}>{snapshot.addedCount}</Text>
+          <Text style={{ color: t.textSecond, fontSize: 13, fontWeight: '700' }}>{snapshot.addedCount}</Text>
         </View>
         {renderCommentsCount(12, 10, 3)}
       </View>
@@ -486,7 +486,7 @@ export default function CommunityPackSocialBar({
           }}
         >
           {isAdded ? <Ionicons name="checkmark" size={18} color={g.text} /> : null}
-          <Text style={{ color: isAdded ? g.text : g.ctaInk, fontSize: 15, lineHeight: 20, fontWeight: '700' }}>
+          <Text style={{ color: isAdded ? g.text : g.ctaInk, fontSize: 16, lineHeight: 22, fontWeight: '700' }}>
             {isAdded ? ownedLabel : addLabel}
           </Text>
           {isAdded ? null : <Ionicons name="add" size={18} color={g.ctaInk} />}
@@ -528,7 +528,7 @@ export default function CommunityPackSocialBar({
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
           <Ionicons name="people-outline" size={18} color={g.secondary} />
           <Text style={{ color: g.secondary, fontSize: 13, fontWeight: '700' }}>{snapshot.addedCount}</Text>
-          <Text style={{ color: g.mutedText, fontSize: 12 }}>{addedLabel}</Text>
+          <Text style={{ color: g.mutedText, fontSize: 13 }}>{addedLabel}</Text>
         </View>
 
         {renderCommentsCount(18, 13, 5)}
@@ -546,7 +546,7 @@ export default function CommunityPackSocialBar({
             }}
           >
             <Ionicons name="trending-up-outline" size={12} color={g.text} />
-            <Text style={{ color: g.text, fontSize: 11, fontWeight: '800' }}>{topLabel}</Text>
+            <Text style={{ color: g.text, fontSize: 13, fontWeight: '700' }}>{topLabel}</Text>
           </View>
         ) : null}
       </View>
@@ -565,7 +565,7 @@ export default function CommunityPackSocialBar({
           backgroundColor: isAdded ? g.opaqueControl : g.cta,
         }}
       >
-        <Text style={{ color: isAdded ? g.text : g.ctaInk, fontSize: 14, fontWeight: '800' }}>
+        <Text style={{ color: isAdded ? g.text : g.ctaInk, fontSize: 13, fontWeight: '700' }}>
           {isAdded ? ownedLabel : addLabel}
         </Text>
       </TouchableOpacity>

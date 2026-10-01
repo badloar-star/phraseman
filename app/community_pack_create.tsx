@@ -951,7 +951,7 @@ export default function CommunityPackCreateScreen() {
     </View>
   );
   const newPackTitle = L('Новый набор', 'Новий набір', 'New pack', 'Nuevo pack', 'Novo pack', 'Bộ thẻ mới', 'Paket baru', 'Yeni paket', 'Nowy pakiet');
-  const glassInput = { color: g.text, fontSize: 18, lineHeight: 24, paddingHorizontal: 0, paddingVertical: 0, marginTop: 6 } as const;
+  const glassInput = { color: g.text, fontSize: 16, lineHeight: 22, paddingHorizontal: 0, paddingVertical: 0, marginTop: 6 } as const;
   const fieldLabel = { color: g.secondary, fontSize: 13, lineHeight: 18, fontWeight: '700' as const, letterSpacing: 0.2 };
   const cardsCountText = `${rows.length} ${L('из', 'з', 'of', 'de', 'de', 'trên', 'dari', '/', 'z')} 10–50`;
 
@@ -1167,10 +1167,10 @@ export default function CommunityPackCreateScreen() {
                   по прямому запрету владельца НЕ трогали — механизм начисления
                   автору цел и оживёт, если цену вернут. */}
               <View style={{ marginTop: 24, flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between' }}>
-                <Text style={{ color: g.text, fontSize: 18, lineHeight: 24, fontWeight: '700' }}>
+                <Text style={{ color: g.text, fontSize: 16, lineHeight: 22, fontWeight: '700' }}>
                   {L('Карточки', 'Картки', 'Cards', 'Tarjetas', 'Cartões', 'Thẻ', 'Kartu', 'Kartlar', 'Karty')}
                 </Text>
-                <Text testID="ugc-pack-cards-count" style={{ color: g.mutedText, fontSize: 15, lineHeight: 20, fontWeight: '600' }}>
+                <Text testID="ugc-pack-cards-count" style={{ color: g.mutedText, fontSize: 16, lineHeight: 22, fontWeight: '700' }}>
                   {cardsCountText}
                 </Text>
               </View>
@@ -1357,7 +1357,7 @@ export default function CommunityPackCreateScreen() {
         >
           {({ requestDismiss }) => (
             <View style={{ paddingHorizontal: 16, paddingBottom: 8 }}>
-              <Text style={{ color: g.text, fontSize: 18, lineHeight: 24, fontWeight: '700', paddingHorizontal: 4, paddingBottom: 8 }}>
+              <Text style={{ color: g.text, fontSize: 16, lineHeight: 22, fontWeight: '700', paddingHorizontal: 4, paddingBottom: 8 }}>
                 {menuRow?.en ?? ''}
               </Text>
               <PackMenuRow

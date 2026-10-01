@@ -114,7 +114,7 @@ export const SECTION: ShowcaseSection = {
     { id: 'shards-shop', title: cs('shards_shop_title'), kind: 'route', route: '/shards_shop', detail: cs('real_screen') },
     // зачем (D70/D78): пункт /coin_exchange удалён из дев-витрины вместе с экраном биржи.
     // зачем (D57/PM-062): пункт /avatar_select удалён из дев-витрины вместе с экраном.
-    { id: 'collectibles-screen', title: cs('collectibles_screen_title'), kind: 'route', route: '/collectibles_screen', detail: cs('real_screen') },
+    // D140: экран коллекций удалён.
     { id: 'achievements-screen', title: cs('achievements_screen_title'), kind: 'route', route: '/achievements_screen', detail: cs('real_screen') },
     // зачем (PM-046, владелец): пункт /level_reward_spin удалён из дев-витрины вместе с экраном.
     { id: 'referrals', title: cs('referrals_invite_title'), kind: 'route', route: '/referrals', detail: cs('real_screen') },

@@ -23,7 +23,7 @@ const HYBRID_DEFAULT_SURFACES = [
   'app/flashcards/DeckPickerSheet.tsx',
   'components/AiConsentSheetModal.tsx',
   'components/CertificateNameModal.tsx',
-  'components/CollectibleDropModal.tsx',
+  // D140: components/CollectibleDropModal.tsx удалён вместе с коллекциями.
   'components/DeleteAccountConfirmModal.tsx',
   'components/InGameToast.tsx',
   'components/IntroFullAccessModal.tsx',

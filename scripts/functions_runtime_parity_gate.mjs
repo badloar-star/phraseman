@@ -61,8 +61,9 @@ for (const builtFile of builtFiles) {
 }
 
 const builtSources = readFileSync(builtIndex, 'utf8');
-// зачем: D70/D78 — shards_apply_delta удалён; якорь сверки — стабильный модуль «Заданий».
-if (!builtSources.includes('require("./quests")')) {
+// зачем: D70/D78 — shards_apply_delta удалён; D140 — «Задания» (quests) тоже удалены.
+// Якорь сверки — стабильный модуль снятия Plus (vip_revoke).
+if (!builtSources.includes('require("./vip_revoke")')) {
   fail('compiled entrypoint does not contain the expected application exports');
 }
 

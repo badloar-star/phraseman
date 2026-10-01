@@ -5,7 +5,6 @@
 // годится, но для читаемости демо-компонентов ниже используется JSX).
 import React from 'react';
 import type { ShowcaseSection } from '../types';
-import CollectibleDropModal from '../../../CollectibleDropModal';
 import RouletteWinModal from '../../../roulette_win_modal';
 import RouletteWinCelebration from '../../../roulette_win_celebration';
 import ReferralFriendRewardModal from '../../../referral_friend_reward_modal';
@@ -21,44 +20,7 @@ export const SECTION: ShowcaseSection = {
   order: 10,
   title: cs('celebrations_section_title'),
   items: [
-    {
-      id: 'celebrations-collectible-drop',
-      title: cs('celebrations_collectible_drop_title'),
-      detail: cs('celebrations_collectible_drop_detail'),
-      kind: 'render',
-      render: ({ onClose }) => (
-        <CollectibleDropModal
-          outcome={{
-            cardId: 'animals_01',
-            setId: 'set01_animals',
-            rarity: 'common',
-            setCompleted: false,
-            secretCardId: null,
-          }}
-          onClose={onClose}
-        />
-      ),
-    },
-    {
-      id: 'celebrations-collectible-drop-hybrid',
-      approval: 'pending',
-      title: cs('celebrations_collectible_drop_hybrid_title'),
-      detail: cs('celebrations_collectible_drop_detail'),
-      kind: 'render',
-      render: ({ onClose }) => (
-        <CollectibleDropModal
-          outcome={{
-            cardId: 'animals_01',
-            setId: 'set01_animals',
-            rarity: 'common',
-            setCompleted: false,
-            secretCardId: null,
-          }}
-          onClose={onClose}
-          motionVariant="hybrid"
-        />
-      ),
-    },
+    // D140 (владелец 2026-10-01): дроп карточки коллекции удалён вместе с разделом.
     {
       id: 'celebrations-roulette-win-modal',
       title: cs('celebrations_roulette_win_modal_title'),

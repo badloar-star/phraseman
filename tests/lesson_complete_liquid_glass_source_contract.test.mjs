@@ -8,7 +8,8 @@ test('lesson completion keeps its live outcomes while its neutral surfaces use L
   assert.match(source, /import \{ glassFill \} from '\.\.\/components\/GlassSurface';/);
   assert.ok((source.match(/glassFill\(t\.bgCard, 0\.46\)/g) ?? []).length >= 4);
   assert.match(source, /<ResultsSequence/);
-  assert.match(source, /<CollectibleDropModal/);
+  // D140 (владелец 2026-10-01): дроп карточки коллекции удалён вместе с разделом.
+  assert.doesNotMatch(source, /<CollectibleDropModal/);
   assert.match(source, /<ReviewPromptModal/);
 });
 

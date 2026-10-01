@@ -160,9 +160,6 @@ const RU = {
   celebrations_level_gift_dual_hybrid_title: 'Сундук после повышения уровня (цепочка _layout, пара для Plus) · гибрид',
   celebrations_level_gift_dual_detail: 'реальный компонент — демо-пара F2P+премиум, deliveryMode=inventory',
   celebrations_demo_user_name: 'Демо',
-  celebrations_collectible_drop_title: 'Дроп карточки коллекции',
-  celebrations_collectible_drop_hybrid_title: 'Дроп карточки коллекции · гибрид',
-  celebrations_collectible_drop_detail: 'реальный компонент — реальная карточка каталога (animals_01, common)',
   celebrations_roulette_win_modal_title: 'Рулетка — карточка выигрыша',
   celebrations_roulette_win_modal_hybrid_title: 'Рулетка — карточка выигрыша · гибрид',
   celebrations_roulette_win_modal_detail: 'реальный компонент — демо-приз (дни Plus)',
@@ -470,7 +467,6 @@ const RU = {
   phrase_analytics_title: 'Аналитика фраз ученика',
   shards_shop_title: 'Магазин осколков',
   avatar_select_title: 'Выбор аватара',
-  collectibles_screen_title: 'Коллекция (артефакты/значки)',
   achievements_screen_title: 'Достижения',
   // зачем (PM-046, владелец): level_reward_spin_title удалён — экран убран.
   referrals_invite_title: 'Пригласить друзей (рефералка)',

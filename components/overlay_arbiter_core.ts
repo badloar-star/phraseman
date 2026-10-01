@@ -21,7 +21,6 @@ export type OverlayKey =
   | 'compassBriefing'
   | 'lessonResultsSequence'
   | 'lessonCompleteNotif'
-  | 'collectibleDrop'
   | 'reviewPrompt'
   | 'coinsMigration'
   | 'shardsEarned'
@@ -64,11 +63,10 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'devHub',
   'compassBriefing',
   // lessonResultsSequence — полноэкранная секвенция наград на lesson_complete (FeedbackKit
-  // §2.1). Стоит ВЫШЕ всего каскада этого экрана (lessonCompleteNotif → collectibleDrop →
-  // coachToast): празднование играет ПЕРВЫМ, модалки наград ждут его завершения в очереди.
+  // §2.1). Стоит ВЫШЕ всего каскада этого экрана (lessonCompleteNotif →
+  // coachToast; дроп коллекции удалён по D140): празднование играет ПЕРВЫМ, модалки наград ждут его завершения в очереди.
   'lessonResultsSequence',
   'lessonCompleteNotif',
-  'collectibleDrop',
   'reviewPrompt',
   'shardsEarned',
   'coachToast',
@@ -132,7 +130,6 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'themedAlert',
   'devHub',
   'compassBriefing',
-  'collectibleDrop',
   'reviewPrompt',
   'coinsMigration',
 ]);
@@ -184,7 +181,6 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   compassBriefing: false,
   lessonResultsSequence: false,
   lessonCompleteNotif: false,
-  collectibleDrop: false,
   reviewPrompt: false,
   shardsEarned: false,
   coachToast: false,

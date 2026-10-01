@@ -29,9 +29,6 @@ import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import { useFirstQuestionEnergyGate } from '../hooks/useFirstQuestionEnergyGate';
 import { canChargePreparedTrainingEntry } from './energy_contract';
 import NoEnergyModal from '../components/NoEnergyModal';
-import CollectibleDropModal from '../components/CollectibleDropModal';
-import { useOverlayVisible } from '../components/OverlayArbiter';
-import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
 import { useAudio } from '../hooks/use-audio';
 import fk from './feedback/feedback_kit';
 import VictoryBurst from '../components/feedback/VictoryBurst';
@@ -394,23 +391,8 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
     loadSettings().then(s => { setVoiceOut(s.voiceOut); setSpeechRate(s.speechRate); });
   }, []);
 
-  // ── Дроп коллекционной карточки за закрытый раздел глаголов ───────────────
-  // зачем: владелец попросил шанс карточки и за закрытие неправильных глаголов.
-  // Шанс/дневной кап/pity — общие с уроком, решает сервер. eventId =
-  // verbs:<цель>:<урок> без дня: раздел закрывается один раз, повторный вход в
-  // уже пройденный раздел карточку не даёт (леджер идемпотентен по eventId).
-  const [cardDrop, setCardDrop] = useState<CollectibleDropOutcome | null>(null);
-  const cardDropRolledRef = useRef(false);
-  const cardDropVisible = useOverlayVisible('collectibleDrop', cardDrop != null);
-
-  useEffect(() => {
-    if (!allDone || !sectionProgress.complete) return;
-    if (cardDropRolledRef.current) return;
-    cardDropRolledRef.current = true;
-    void maybeRollCollectibleDrop('verbs', `${studyTarget ?? 'en'}:${lessonId ?? 0}`, { dailyScoped: false })
-      .then((drop) => { if (drop) setCardDrop(drop); })
-      .catch(() => {});
-  }, [allDone, sectionProgress.complete, studyTarget, lessonId]);
+  // зачем: D140 (владелец 2026-10-01) — коллекции («Сокровищница») удалены целиком:
+  // дропа карточки за закрытый раздел больше нет.
 
   const buildStep = useCallback((verb: IrregularVerb, stepIdx: number) => {
     const form = FORM_SEQ[stepIdx];
@@ -719,15 +701,6 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
           void continuePortion(true);
         }}
         onClose={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
-      />
-      {/* Карточка за закрытый раздел глаголов — сюрприз поверх экрана итога. */}
-      <CollectibleDropModal
-        outcome={cardDropVisible ? cardDrop : null}
-        onClose={() => setCardDrop(null)}
-        onOpenCollection={() => {
-          setCardDrop(null);
-          router.push('/collectibles_screen' as any);
-        }}
       />
     </>
   );

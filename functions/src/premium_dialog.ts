@@ -63,8 +63,9 @@ const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
 const REGION = 'us-central1';
 const RATE_COLLECTION = 'premium_dialog_rate_limits';
-// Экспортировано: ai_dialog_extra_replies.ts пишет extraCapToday в тот же документ,
-// чтобы докупленные реплики жили рядом с dailyCount/resetAtMs, а не в отдельной коллекции.
+// Экспортировано для соседних модулей квоты. Поле extraCapThisMonth/extraCapToday
+// раньше писала докупка «+10 реплик» (удалена по D139, 2026-10-01); уже купленное
+// в текущем месяце по-прежнему читается и расширяет лимит до сброса месяца.
 export const QUOTA_COLLECTION = 'premium_dialog_quotas';
 export const BILLING_COLLECTION = 'premium_dialog_billing';
 const TRANSLATION_CACHE_COLLECTION = 'premium_dialog_translations';

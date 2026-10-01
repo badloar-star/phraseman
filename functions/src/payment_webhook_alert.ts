@@ -26,7 +26,9 @@ export type PaymentWebhookKind =
   | 'refund_reversed'
   | 'transfer'
   | 'premium_lineage'
-  | 'voice_minutes';
+  // зачем: D103/D136/D139 — оплата снятого товара (жемчуг, минуты/подписка MAX):
+  // деньги списаны, но ничего не начислено — владелец должен это видеть.
+  | 'retired_product';
 
 const MAX_MESSAGE_LENGTH = 900;
 

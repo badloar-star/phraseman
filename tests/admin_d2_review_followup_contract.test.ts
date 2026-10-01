@@ -58,7 +58,8 @@ describe('Admin D2 post-review security and truth contracts', () => {
     expect(stageFunctions).toContain('functions:adminVerifyGlobalBroadcastPrivacyReadiness');
     expect(stageFunctions).toContain('functions:globalBroadcastClaim');
     expect(stageFunctions).toContain('functions:globalBroadcastListActive');
-    expect(stageFunctions).toContain('functions:flashcardPackGiftGrantGlobalBroadcast');
+    // D140: подарочные наборы удалены — функции в профиле деплоя быть не должно.
+    expect(stageFunctions).not.toContain('functions:flashcardPackGiftGrantGlobalBroadcast');
     expect(stageFunctions).toContain('hosting:admin');
     expect(stageFunctions).not.toContain('firestore:rules');
     expect(stageRules).toContain('firestore:rules');

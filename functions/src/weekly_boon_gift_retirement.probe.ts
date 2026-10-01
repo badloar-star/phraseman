@@ -13,7 +13,14 @@ for (const retired of [
 ]) {
   assert.equal(source.includes(retired), false, `retired server weekly gift remains: ${retired}`);
 }
-assert.equal(source.includes('if (!voucherId) throw new HttpsError'), true, 'gift redemption still allows grant-less issuance');
-assert.equal(source.includes('export const flashcardPackGiftRedeem = onCall'), true, 'valid gift redemption removed');
-assert.equal(source.includes('export const flashcardPackGiftSyncState = onCall'), true, 'gift synchronization removed');
+// зачем: D140 (владелец 2026-10-01) — подарочные наборы удалены целиком: ни
+// погашения, ни синхронизации ваучеров на сервере больше нет.
+for (const removed of [
+  'export const flashcardPackGiftRedeem',
+  'export const flashcardPackGiftSyncState',
+  'export const communityRedeemPackGiftVoucher',
+  'export const flashcardPackGiftGrantGlobalBroadcast',
+]) {
+  assert.equal(source.includes(removed), false, `D140: pack-gift callable returned: ${removed}`);
+}
 console.log('server weekly boon gift path retired');

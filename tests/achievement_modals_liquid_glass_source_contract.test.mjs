@@ -71,17 +71,4 @@ test('AchievementModal (achievements_screen) is an opaque glass dossier without 
   assert.ok(src.includes('<AchievementModal'), 'вызов на месте');
 });
 
-test('CardDetailModal (collectibles_screen) is Liquid Glass with prev/next and audio preserved', () => {
-  const src = read('../app/collectibles_screen.tsx');
-  const block = between(src, 'function CardDetailModal', '/* ── экран');
-  assert.ok(block.includes('liquidGlassTokens(liquidGlassThemeId)'));
-  assert.ok(block.includes('glass.bg') || block.includes('glass.opaqueSheet'));
-  noThickBorders(block, 'CardDetailModal');
-  assert.doesNotMatch(block, /borderWidth/, 'без обводок');
-  assert.doesNotMatch(block, /t\.textPrimary|t\.bgCard|t\.border\b/, 'нет старых токенов темы');
-  assert.ok(block.includes('onNavigate(siblings[index - 1])') && block.includes('onNavigate(siblings[index + 1])'));
-  assert.ok(block.includes('speak(en)') && block.includes('speak(ex)'));
-  assert.ok(block.includes('accessibilityLabel') && block.includes('accessibilityState'), 'доступность кнопок');
-  assert.ok(block.includes('onRequestClose={onClose}'));
-  assert.match(src, /<CardDetailModal[\s\S]{0,200}onNavigate=/);
-});
+// D140 (владелец 2026-10-01): экран коллекций (CardDetailModal) удалён вместе с разделом.

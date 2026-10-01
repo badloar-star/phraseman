@@ -67,7 +67,7 @@ describe('Admin D2 review truth and server-boundary contract', () => {
       'adminPublishGlobalBroadcast',
       'adminScrubGlobalBroadcastMetadata',
       'adminVerifyGlobalBroadcastPrivacyReadiness',
-      'flashcardPackGiftGrantGlobalBroadcast',
+      // D140: flashcardPackGiftGrantGlobalBroadcast удалена (подарочные наборы).
       'globalBroadcastClaim',
       'globalBroadcastListActive',
     ]);

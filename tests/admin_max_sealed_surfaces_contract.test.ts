@@ -36,13 +36,16 @@ describe('admin MAX surfaces sealed (Q2)', () => {
   });
 
   it('загрузчики и действия MAX выходят рано с логом, без вызова функций', () => {
-    for (const name of ['loadMaxTrialTiers', 'saveMaxTrialTier', 'maxOpsLoad', 'grantVoiceMinutes']) {
+    for (const name of ['loadMaxTrialTiers', 'saveMaxTrialTier', 'maxOpsLoad']) {
       expect(html).toContain(`[ADMIN-MAX-SEAL] ${name} skipped: section sealed`);
     }
   });
 
-  it('кнопка выдачи минут скрыта, вместо неё заметка', () => {
-    expect(html).toContain('data-max-sealed="voice-minutes"');
-    expect(html).toContain(`data-action="grant-voice-minutes" \${window.ADMIN_MAX_SEALED ? 'hidden' : ''}`);
+  // зачем: D136 (владелец 2026-10-01) — выдача минут MAX удалена целиком
+  // (кнопка, обработчик и серверная adminGrantVoiceMinutes), а не спрятана.
+  it('выдачи минут MAX в админке нет совсем (D136)', () => {
+    expect(html).not.toContain('data-action="grant-voice-minutes"');
+    expect(html).not.toContain('window.grantVoiceMinutes');
+    expect(html).not.toContain("httpsCallable(functionsUs, 'adminGrantVoiceMinutes')");
   });
 });

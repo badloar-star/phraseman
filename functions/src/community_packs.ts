@@ -9,8 +9,6 @@ import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { ACCOUNT_DELETE_AUTH_MARKERS, ACCOUNT_DELETE_TOMBSTONES } from './account_delete_job';
 import { applyFlashcardRegistryDocumentMutation, planFlashcardRegistryPackMutation } from './content_factory/flashcard_registry_mutations';
-import { resolvePremiumAccess } from './premium_status';
-import { requireGlobalBroadcastPublicAuthority } from './global_broadcast_public_schema';
 import { isCommunityPackLanguage, normalizeCommunityPackLanguage, type CommunityPackLanguage } from './community_pack_language';
 import { enqueueCardTtsJob } from './card_tts_jobs';
 import { readPackPublishSlot, writePackPublishSlot } from './pack_publish_limit';
@@ -18,10 +16,6 @@ import { readPackPublishSlot, writePackPublishSlot } from './pack_publish_limit'
 const COMMUNITY_PACKS = 'community_packs';
 const COMMUNITY_SUBMISSIONS = 'community_pack_submissions';
 const COMMUNITY_PURCHASES = 'community_pack_purchases';
-const FLASHCARD_PACK_GIFT_CLAIMS = 'flashcard_pack_gift_claims';
-const FLASHCARD_PACK_GIFT_ENTITLEMENTS = 'flashcard_pack_gift_entitlements';
-const FLASHCARD_PACK_GIFT_GRANTS = 'flashcard_pack_gift_grants';
-const PACK_GIFT_DURATION_MS = 48 * 60 * 60 * 1000;
 const COMMUNITY_RATINGS = 'community_pack_ratings';
 const SELLER_INBOX = 'community_seller_inbox';
 const FLASHCARD_SEMANTIC_KEYS = 'content_factory_flashcard_semantic_keys';
@@ -70,7 +64,6 @@ const UGC_PACK_PRICE_STEP_RUNES = 100;
 /** Базис 10_000 = 100 %. Часть цены не передаётся автору (остаётся в экономике приложения). */
 type CommunityStudyTarget = 'en' | 'fr';
 
-const OFFICIAL_FLASHCARD_PACK_IDS = new Set<string>();
 const UGC_CARD_THEME_KEYS = new Set([
   'neon_lime',
   'aqua_pulse',
@@ -1116,277 +1109,15 @@ export const communityFetchPackCardsIfAccessible = onCall({ region: 'us-central1
 // зачем: D110 — админ-возврат покупки набора удалён
 // решением владельца: платных продаж наборов больше нет, возвращать нечего.
 
-type FlashcardPackGiftType = 'official' | 'community';
-
-async function stableIdentityAliases(
-  db: FirebaseFirestore.Firestore,
-  stableUid: string,
-): Promise<string[]> {
-  const hidden = await db.collection('users').where('canonicalStableId', '==', stableUid).get();
-  return [...new Set([stableUid, ...hidden.docs.map((doc) => doc.id)])];
-}
-
-function giftClaimId(stableUid: string, occurrenceId: string): string {
-  return `${stableUid}__${occurrenceId.replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 180)}`;
-}
-
-function officialPackIdsFromUserProgress(user: Record<string, unknown>): string[] {
-  const progress = user.progress && typeof user.progress === 'object' && !Array.isArray(user.progress)
-    ? user.progress as Record<string, unknown>
-    : {};
-  const stored = progress.flashcards_owned_packs_v1;
-  let parsed: unknown = stored;
-  if (typeof stored === 'string') {
-    try {
-      parsed = JSON.parse(stored) as unknown;
-    } catch {
-      return [];
-    }
-  }
-  return Array.isArray(parsed)
-    ? parsed.filter((item): item is string => typeof item === 'string' && OFFICIAL_FLASHCARD_PACK_IDS.has(item))
-    : [];
-}
-
-async function redeemFlashcardPackGift(request: {
-  auth?: { uid?: string } | null;
-  data?: Record<string, unknown>;
-}) {
-  if (!request.auth) throw new HttpsError('unauthenticated', 'Auth required');
-
-  const requestedBuyerStableId = String(request.data?.buyerStableId ?? '').trim();
-  const packId = String(request.data?.packId ?? '').trim();
-  const packType = String(request.data?.packType ?? 'community') as FlashcardPackGiftType;
-  if (packType === 'official') throw new HttpsError('not-found', 'pack_not_found');
-  const voucherId = String(request.data?.voucherId ?? '').trim();
-  const requestedOccurrenceId = String(request.data?.voucherOccurrenceId ?? '').trim();
-  const requestedStudyTarget = request.data?.studyTarget;
-  if (!requestedBuyerStableId || !packId || !['official', 'community'].includes(packType)) {
-    throw new HttpsError('invalid-argument', 'buyerStableId, packType and packId required');
-  }
-
-  if (voucherId && !/^[A-Za-z0-9_-]{1,180}$/.test(voucherId)) throw new HttpsError('invalid-argument', 'voucher_id_invalid');
-  if (requestedOccurrenceId && !/^[A-Za-z0-9_-]{1,180}$/.test(requestedOccurrenceId)) {
-    throw new HttpsError('invalid-argument', 'voucher_occurrence_id_invalid');
-  }
-  const now = Date.now();
-  const db = admin.firestore();
-  const buyerStableId = await resolveStableUidForAuth(db, request.auth.uid!, requestedBuyerStableId, {
-    requireKnownIdentity: true,
-  });
-  const studyTarget = normalizeCommunityPackStudyTarget(requestedStudyTarget);
-  const aliases = await stableIdentityAliases(db, buyerStableId);
-  let occurrenceId = '';
-
-  // A server grant is the authority for its occurrence. Never let the client
-  // select another claim namespace for the same voucher id.
-  if (voucherId) {
-    const grant = await db.collection(FLASHCARD_PACK_GIFT_GRANTS).doc(voucherId).get();
-    const data = grant.data() ?? {};
-    if (!grant.exists || !aliases.includes(String(data.ownerStableUid ?? ''))) {
-      throw new HttpsError('failed-precondition', 'no_pack_gift_voucher');
-    }
-    occurrenceId = String(data.occurrenceId ?? '').trim() || voucherId;
-    if (requestedOccurrenceId && requestedOccurrenceId !== occurrenceId) {
-      throw new HttpsError('failed-precondition', 'voucher_occurrence_mismatch');
-    }
-  } else {
-    occurrenceId = requestedOccurrenceId;
-  }
-
-  // Recovery must not depend on the voucher/config still being active: a server
-  // receipt is the durable authority for the exact choice already made.
-  if (occurrenceId) {
-    const priorClaimSnaps = await Promise.all(aliases.map((alias) => db.collection(FLASHCARD_PACK_GIFT_CLAIMS)
-      .doc(giftClaimId(alias, occurrenceId)).get()));
-    const priorClaim = priorClaimSnaps.find((snap) => snap.exists);
-    if (priorClaim) {
-      const data = priorClaim.data() ?? {};
-      if (String(data.packId ?? '') !== packId || String(data.packType ?? '') !== packType || String(data.studyTarget ?? '') !== studyTarget) {
-        throw new HttpsError('failed-precondition', 'pack_gift_already_used');
-      }
-      return { alreadyOwned: false as const, gifted: true as const, replayed: true as const, packId, packType, studyTarget };
-    }
-  }
-  if (!voucherId) throw new HttpsError('failed-precondition', 'no_pack_gift_voucher');
-  if (!occurrenceId) throw new HttpsError('failed-precondition', 'no_pack_gift_voucher');
-  const purchaseId = `${buyerStableId}__${packId}`;
-  const packRef = db.collection(COMMUNITY_PACKS).doc(packId);
-  const purchaseRef = db.collection(COMMUNITY_PURCHASES).doc(purchaseId);
-  const entitlementRef = db.collection(FLASHCARD_PACK_GIFT_ENTITLEMENTS)
-    .doc(`${buyerStableId}__${packType}__${packId}`);
-  const claimRefs = aliases.map((alias) => db.collection(FLASHCARD_PACK_GIFT_CLAIMS).doc(giftClaimId(alias, occurrenceId)));
-  const canonicalClaimRef = db.collection(FLASHCARD_PACK_GIFT_CLAIMS).doc(giftClaimId(buyerStableId, occurrenceId));
-  const grantRef = voucherId ? db.collection(FLASHCARD_PACK_GIFT_GRANTS).doc(voucherId) : null;
-  const entitlementRefs = aliases.map((alias) => db.collection(FLASHCARD_PACK_GIFT_ENTITLEMENTS)
-    .doc(`${alias}__${packType}__${packId}`));
-  const purchaseRefs = aliases.map((alias) => db.collection(COMMUNITY_PURCHASES).doc(`${alias}__${packId}`));
-
-  return db.runTransaction(async (tx) => {
-    const claimSnaps = await Promise.all(claimRefs.map((ref) => tx.get(ref)));
-    const priorClaim = claimSnaps.find((snap) => snap.exists);
-    if (priorClaim) {
-      const data = priorClaim.data() ?? {};
-      if (String(data.packId ?? '') !== packId || String(data.packType ?? '') !== packType || String(data.studyTarget ?? '') !== studyTarget) {
-        throw new HttpsError('failed-precondition', 'pack_gift_already_used');
-      }
-      return { alreadyOwned: false as const, gifted: true as const, replayed: true as const, packId, packType, studyTarget };
-    }
-
-    if (grantRef) {
-      const grant = await tx.get(grantRef);
-      const data = grant.data() ?? {};
-      const storedOccurrenceId = String(data.occurrenceId ?? '').trim() || voucherId;
-      if (!grant.exists || !aliases.includes(String(data.ownerStableUid ?? '')) || storedOccurrenceId !== occurrenceId) {
-        throw new HttpsError('failed-precondition', 'no_pack_gift_voucher');
-      }
-      if (data.claimedAt != null || Number(data.expiresAt ?? 0) <= now) {
-        throw new HttpsError('failed-precondition', 'no_pack_gift_voucher');
-      }
-      const allowedPackId = String(data.allowedPackId ?? '').trim();
-      // зачем: официальные наборы удалены (решение владельца) — ваучер, привязанный к official-набору, больше нечем погасить
-      if (allowedPackId) {
-        throw new HttpsError('permission-denied', 'voucher_pack_mismatch');
-      }
-    }
-
-    const entitlementSnaps = await Promise.all(entitlementRefs.map((ref) => tx.get(ref)));
-    const alreadyEntitled = entitlementSnaps.some((snap) => snap.exists);
-    const aliasPurchaseSnaps = await Promise.all(purchaseRefs.map((ref) => tx.get(ref)));
-    if (alreadyEntitled || aliasPurchaseSnaps.some((snap) => snap.exists)) {
-      return { alreadyOwned: true as const, gifted: false as const, packId, packType, studyTarget };
-    }
-    let authorStableId = '';
-    const [packSnap, purchaseSnap] = await Promise.all([tx.get(packRef), tx.get(purchaseRef)]);
-    if (!packSnap.exists) throw new HttpsError('not-found', 'pack_not_found');
-    const pack = packSnap.data() as { listingStatus?: string; authorStableId?: string; studyTarget?: unknown };
-    requireMatchingPackStudyTarget(studyTarget, pack as Record<string, unknown>);
-    if (pack.listingStatus !== 'published') throw new HttpsError('failed-precondition', 'pack_not_published');
-    authorStableId = String(pack.authorStableId ?? '').trim();
-    if (!authorStableId) throw new HttpsError('failed-precondition', 'pack_author_missing');
-    if (aliases.includes(authorStableId)) throw new HttpsError('failed-precondition', 'own_pack_not_giftable');
-    if (purchaseSnap.exists) return { alreadyOwned: true as const, gifted: false as const, packId, packType, studyTarget };
-    tx.set(purchaseRef, {
-      packId, studyTarget, buyerStableId, authorStableId,
-      status: 'completed',
-      priceShards: 0, authorNetShards: 0, platformFeeShards: 0,
-      acquisitionSource: 'pack_gift_voucher', giftOccurrenceId: occurrenceId, createdAt: now,
-    });
-
-    tx.set(entitlementRef, {
-      buyerStableId, packId, packType, studyTarget, giftOccurrenceId: occurrenceId, createdAt: now,
-    });
-    tx.set(canonicalClaimRef, {
-      buyerStableId, ownerAliases: aliases, packId, packType, studyTarget,
-      occurrenceId, createdAt: now,
-    });
-    if (grantRef) tx.set(grantRef, { claimedAt: now, claimedPackId: packId, claimedPackType: packType }, { merge: true });
-
-    return { alreadyOwned: false as const, gifted: true as const, packId, packType, studyTarget };
-  });
-}
+// зачем: D140 (владелец 2026-10-01) — подарочные наборы удалены: callable
+// communityRedeemPackGiftVoucher, flashcardPackGiftRedeem, flashcardPackGiftSyncState и
+// flashcardPackGiftGrantGlobalBroadcast сняты вместе с погашением ваучеров (непогашенные
+// ваучеры аннулированы). Уже полученные наборы остаются: их владение живёт в
+// community_pack_purchases и локальной библиотеке, этот код их не трогал.
 
 // зачем: D108 — мёртвый серверный розыгрыш подарков уровня (0 вызовов после снятия
 // callables) удалён: он всё ещё выбирал косметику (cosmetic_avatar_*/premium_cosmetic_*).
 // зачем: level-gift / level-spin pack callables (levelGiftReserve, levelGiftActivatePackGift, levelSpinActivatePackGift) удалены целиком — они были не экспортированы и лишь бросали level_*_retired; мёртвый код после throw ломал tsc и весь build functions
-
-/** Creates the voucher proof while the authoritative broadcast is still active. */
-export const flashcardPackGiftGrantGlobalBroadcast = onCall({ enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
-  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'Auth required');
-  const authUid = request.auth.uid;
-  const requestedStableId = String(request.data?.stableId ?? '').trim();
-  const broadcastId = String(request.data?.broadcastId ?? '').trim();
-  if (!requestedStableId || !/^[A-Za-z0-9_-]{1,180}$/.test(broadcastId)) {
-    throw new HttpsError('invalid-argument', 'stableId and broadcastId required');
-  }
-  const db = admin.firestore();
-  const stableUid = await resolveStableUidForAuth(db, authUid, requestedStableId, { requireKnownIdentity: true });
-  const now = Date.now();
-  const voucherId = `global_broadcast_${broadcastId}_${stableUid}`;
-  const broadcastRef = db.collection('global_broadcast_modals').doc(broadcastId);
-  const grantRef = db.collection(FLASHCARD_PACK_GIFT_GRANTS).doc(voucherId);
-  return db.runTransaction(async (tx) => {
-    const [broadcastSnap, grantSnap] = await Promise.all([
-      tx.get(broadcastRef), tx.get(grantRef),
-    ]);
-    const broadcast = broadcastSnap.data() ?? {};
-    if (grantSnap.exists) {
-      const existing = grantSnap.data() ?? {};
-      if (String(existing.ownerStableUid ?? '') !== stableUid) throw new HttpsError('permission-denied', 'voucher_owner_mismatch');
-      return { voucherId, expiresAt: Number(existing.expiresAt ?? 0), replayed: true as const };
-    }
-    requireGlobalBroadcastPublicAuthority(broadcast);
-    if (!broadcastSnap.exists || broadcast.active !== true || broadcast.rewardType !== 'pack_trial_48h') {
-      throw new HttpsError('failed-precondition', 'broadcast_pack_gift_not_eligible');
-    }
-    const isPremium = await resolvePremiumAccess(db, stableUid, now, authUid, tx);
-    const audience = String(broadcast.premiumAudience ?? 'all');
-    if ((audience === 'premium' && !isPremium) || (audience === 'free' && isPremium)) {
-      throw new HttpsError('permission-denied', 'broadcast_audience_mismatch');
-    }
-    const expiresAt = now + PACK_GIFT_DURATION_MS;
-    tx.set(grantRef, { ownerStableUid: stableUid, source: 'global_broadcast', sourceId: broadcastId, occurrenceId: voucherId, expiresAt, createdAt: now });
-    return { voucherId, expiresAt };
-  });
-});
-
-/** Restores durable pack-gift state on a new device without trusting client storage. */
-export const flashcardPackGiftSyncState = onCall({ enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
-  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'Auth required');
-  const requestedStableId = String(request.data?.stableId ?? '').trim();
-  if (!requestedStableId) throw new HttpsError('invalid-argument', 'stableId required');
-  const db = admin.firestore();
-  const stableUid = await resolveStableUidForAuth(db, request.auth.uid, requestedStableId, { requireKnownIdentity: true });
-  const aliases = await stableIdentityAliases(db, stableUid);
-  const now = Date.now();
-
-  const [grantQueries, entitlementQueries, userSnaps] = await Promise.all([
-    Promise.all(aliases.map((alias) => db.collection(FLASHCARD_PACK_GIFT_GRANTS)
-      .where('ownerStableUid', '==', alias).get())),
-    Promise.all(aliases.map((alias) => db.collection(FLASHCARD_PACK_GIFT_ENTITLEMENTS)
-      .where('buyerStableId', '==', alias).get())),
-    Promise.all(aliases.map((alias) => db.collection('users').doc(alias).get())),
-  ]);
-  const activeGrants = grantQueries.flatMap((snap) => snap.docs.flatMap((doc) => {
-    const grant = doc.data() ?? {};
-    const expiresAt = Number(grant.expiresAt ?? 0);
-    const occurrenceId = String(grant.occurrenceId ?? doc.id).trim() || doc.id;
-    if (!Number.isFinite(expiresAt) || expiresAt <= now || grant.claimedAt != null) return [];
-    return [{ voucherId: doc.id, occurrenceId, expiresAt, source: String(grant.source ?? 'server_grant') }];
-  }));
-  const activeGrantClaimSnaps = await Promise.all(activeGrants.map((grant) => Promise.all(
-    aliases.map((alias) => db.collection(FLASHCARD_PACK_GIFT_CLAIMS).doc(giftClaimId(alias, grant.occurrenceId)).get()),
-  )));
-  const vouchers: { voucherId?: string; occurrenceId: string; expiresAt: number; source: string }[] = activeGrants
-    .filter((_grant, index) => !activeGrantClaimSnaps[index].some((snap) => snap.exists));
-
-  const entitlementMap = new Map<string, { packId: string; packType: FlashcardPackGiftType; studyTarget: CommunityStudyTarget }>();
-  for (const snap of entitlementQueries) {
-    for (const doc of snap.docs) {
-      const row = doc.data() ?? {};
-      const packId = String(row.packId ?? '').trim();
-      const packType = String(row.packType ?? '') as FlashcardPackGiftType;
-      const studyTarget = String(row.studyTarget ?? '') as CommunityStudyTarget;
-      if (!packId || packType !== 'community' || !['en', 'fr'].includes(studyTarget)) continue;
-      entitlementMap.set(`${packType}:${studyTarget}:${packId}`, { packId, packType, studyTarget });
-    }
-  }
-  for (const userSnap of userSnaps) {
-    for (const packId of officialPackIdsFromUserProgress((userSnap.data() ?? {}) as Record<string, unknown>)) {
-      entitlementMap.set(`official:en:${packId}`, { packId, packType: 'official', studyTarget: 'en' });
-    }
-  }
-  return { vouchers, entitlements: [...entitlementMap.values()] };
-});
-
-/** One server-authoritative receipt for official and community gift redemption. */
-export const flashcardPackGiftRedeem = onCall({ enforceAppCheck: ENFORCE_APP_CHECK }, redeemFlashcardPackGift);
-
-/** Backwards-compatible callable name for clients already shipped during rollout. */
-export const communityRedeemPackGiftVoucher = onCall(
-  { enforceAppCheck: ENFORCE_APP_CHECK },
-  (request) => redeemFlashcardPackGift({ ...request, data: { ...(request.data ?? {}), packType: 'community' } }),
-);
 
 /**
  * Список непрочитанных событий продажи для автора (для модалки при входе).

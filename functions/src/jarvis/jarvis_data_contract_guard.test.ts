@@ -375,14 +375,9 @@ const MONEY_WRITER_CONTRACTS = [
     writerPattern: /VOICE_MINUTE_EVENT_COLLECTION\s*=\s*'voice_minute_events'[\s\S]{0,12000}\boccurredAtMs\b/,
     readerPattern: /fetchVoiceMinuteEvents[\s\S]{0,1800}\.where\('occurredAtMs',\s*'>=',\s*sinceMs\)/,
   },
-  {
-    writer: 'functions/src/admin_voice_minutes.ts',
-    reader: 'functions/src/jarvis/money_firestore_fetcher.ts',
-    collection: 'voice_minute_events',
-    field: 'admin_grant explicit non-revenue disposition',
-    writerPattern: /createVoiceMinuteAdminGrantEvent\(\{[\s\S]{0,1800}appendVoiceMinuteEventInTransaction\(tx,\s*db,\s*event\)/,
-    readerPattern: /fetchVoiceMinuteEvents[\s\S]{0,1800}\.where\('environment',\s*'==',\s*'PRODUCTION'\)[\s\S]{0,1800}kind !== 'purchase_grant' && kind !== 'purchase_refund'/,
-  },
+  // зачем: D136 (владелец 2026-10-01) — admin_voice_minutes.ts (adminGrantVoiceMinutes)
+  // удалён; новых admin_grant в voice_minute_events нет, читатель Джарвиса
+  // по-прежнему пропускает исторические не-выручечные записи.
   {
     writer: 'app/paywall_funnel.ts',
     reader: 'functions/src/jarvis/money_firestore_fetcher.ts',

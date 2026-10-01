@@ -10,13 +10,14 @@ import { join } from 'node:path';
 import { IGNORED, LEDGER, buildReport, prodCountPlan, scanMarkers } from './pm233_purchase_ledger_dry_run.mjs';
 
 const SCRIPT = 'scripts/pm233_purchase_ledger_dry_run.mjs';
-const STATUSES = new Set(['keep', 'convert_decided', 'retire_decided', 'needs_decision']);
+const STATUSES = new Set(['keep', 'convert_decided', 'retire_decided', 'needs_decision', 'removed']);
 
 test('every entitlement marker found in code is in the ledger (or ignored with a reason), none is stale', () => {
   const report = buildReport();
   assert.deepEqual(report.uncovered, [], `маркеры права без строки ledger: ${report.uncovered.join(', ')}`);
   assert.deepEqual(report.stale, [], `маркеры ledger, которых больше нет в коде: ${report.stale.join(', ')}`);
   assert.deepEqual(report.staleIgnored, [], `протухшие исключения: ${report.staleIgnored.join(', ')}`);
+  assert.deepEqual(report.resurrected, [], `удалённые пути начисления вернулись в код: ${report.resurrected.join(', ')}`);
   for (const [key, reason] of Object.entries(IGNORED)) assert.ok(reason.trim().length > 3, `нет причины для ${key}`);
 });
 
@@ -82,4 +83,23 @@ test('script is read-only: no prod client, no network, no file writes; --prod is
   assert.match(refused.stderr, /refused/);
   const out = execFileSync(process.execPath, [SCRIPT, '--check'], { encoding: 'utf8' });
   assert.match(out, /uncovered=0 stale=0/);
+});
+
+// зачем: D136–D140 (владелец 2026-10-01) — удалённые пути покупок/наград записаны строками
+// со статусом removed; их маркеры не должны вернуться, а вернувшийся ловится сторожем.
+test('removed money paths are recorded and a resurrected marker fails the guard', () => {
+  const removedRows = LEDGER.filter((row) => row.status === 'removed');
+  for (const id of ['pearls_store_packs', 'dialog_extra_replies', 'pack_gifts', 'max_subscription', 'max_voice_minutes', 'quests', 'collectibles']) {
+    assert.ok(removedRows.some((row) => row.id === id), `строка ${id} не помечена removed`);
+  }
+  assert.deepEqual(LEDGER.filter((row) => row.status === 'needs_decision').map((row) => row.id), [], 'все Q-233 закрыты решениями D136–D140');
+  const dir = mkdtempSync(join(tmpdir(), 'pm233-removed-'));
+  try {
+    mkdirSync(join(dir, 'functions', 'src'), { recursive: true });
+    writeFileSync(join(dir, 'functions', 'src', 'back.ts'), 'export const questClaimReward = onCall(async () => null);' + String.fromCharCode(10));
+    const report = buildReport(scanMarkers(dir));
+    assert.ok(report.resurrected.includes('quests:callable:questClaimReward'));
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
 });

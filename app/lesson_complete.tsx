@@ -10,7 +10,6 @@ import { Animated, BackHandler, Modal, Platform, Pressable, ScrollView, Share, T
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SoftContextualUpsellCard from '../components/SoftContextualUpsellCard';
-import CollectibleDropModal from '../components/CollectibleDropModal';
 import ContentWrap from '../components/ContentWrap';
 import { glassFill } from '../components/GlassSurface';
 import { ResultsGlassBackButton } from '../components/results/ResultsGlass';
@@ -32,7 +31,6 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useSoftUpsellOpportunity } from '../hooks/use_soft_upsell_opportunity';
 import { checkAchievements } from './achievements';
-import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
 import { STORE_URL } from './config';
 import { checkGemAchievements, loadMedalInfo, saveMedalProgress, type MedalTier } from './medal_utils';
 import { markNextNavigationAsReplace } from './navigation_back';
@@ -694,7 +692,7 @@ export default function LessonComplete() {
   // через 1200мс) вставали в очередь ЗА секвенцией. Рендерим её только когда
   // медаль/оценка загружены (resultsReady) — иначе звёзды/бейдж стартуют пустыми.
   // Закрытие (CTA/тап/back) выставляет seqDone → слот освобождается → дальше
-  // штатный каскад: medal-notif → collectible drop → review → coach-toast.
+  // штатный каскад: medal-notif → review → coach-toast.
   // Чисто визуальный слой: экономика (saveMedalProgress/submitProgressEvent/
   // syncToCloud/tryUnlock*) не трогается.
   const [resultsReady, setResultsReady] = useState(false);
@@ -725,19 +723,8 @@ export default function LessonComplete() {
     setShowReview(true);
   }, [activeNotif, seqDone]);
 
-  // Дроп карточки «Сокровищницы»: сервер решает (шанс/кап/без дублей), мы лишь
-  // показываем сюрприз ПОСЛЕ всей очереди наград — никогда поверх других модалок.
-  const [pendingCardDrop, setPendingCardDrop] = useState<CollectibleDropOutcome | null>(null);
-  const [shownCardDrop, setShownCardDrop] = useState<CollectibleDropOutcome | null>(null);
-  const collectibleDropVisible = useOverlayVisible('collectibleDrop', shownCardDrop != null);
-  useEffect(() => {
-    // Окно «тишины» стартует только после закрытия секвенции наград (seqDone).
-    if (!seqDone || !pendingCardDrop || shownCardDrop || activeNotif) return;
-    // 900мс непрерывной «тишины»: пауза между нотификациями очереди 400мс —
-    // таймер переживает её только когда очередь действительно опустела.
-    const timer = setTimeout(() => setShownCardDrop(pendingCardDrop), 900);
-    return () => clearTimeout(timer);
-  }, [pendingCardDrop, shownCardDrop, activeNotif, seqDone]);
+  // зачем: D140 (владелец 2026-10-01) — коллекции («Сокровищница») удалены целиком:
+  // дропа карточки за закрытый раздел больше нет.
 
   const scaleAnim  = useRef(new Animated.Value(0)).current;
   const fadeAnim   = useRef(new Animated.Value(0)).current;
@@ -928,11 +915,6 @@ export default function LessonComplete() {
         if (!cancelled) setCompletionXpReady(true);
       });
       void markLessonFinishedOnce(lessonId, studyTarget);
-      // Qualifying-активность для Сокровищницы. eventId детерминирован
-      // (lesson:id:день) — повтор того же урока в тот же день не дропает.
-      void maybeRollCollectibleDrop('lesson', String(lessonId)).then((drop) => {
-        if (!cancelled && drop) setPendingCardDrop(drop);
-      }).catch(() => {});
     })();
 
     // Загружаем оценку урока, сохраняем медаль
@@ -1167,7 +1149,7 @@ export default function LessonComplete() {
   // Раньше lesson_complete не перехватывал hardwareBackPress — pop возвращал на
   // экран lesson1, который при полном прогрессе тут же снова делал replace на
   // lesson_complete → бесконечная петля «завершение ⇆ урок». Теперь «Назад»:
-  //   1) если открыт оверлей (награда/ревью/карточка/регистрация/премиум-баннер) —
+  //   1) если открыт оверлей (награда/ревью/регистрация/премиум-баннер) —
   //      закрываем его, не уходя с экрана;
   //   2) иначе уходим туда же, куда и кнопка «Назад» в шапке — в меню урока.
   // Это детерминированный выход без возврата в урок, что и разрывает цикл.
@@ -1182,11 +1164,6 @@ export default function LessonComplete() {
       if (showPremiumBanner) {
         setShowPremiumBanner(false);
         premiumBannerAnim.setValue(0);
-        return true;
-      }
-      if (shownCardDrop) {
-        setShownCardDrop(null);
-        setPendingCardDrop(null);
         return true;
       }
       if (showAuthPrompt) {
@@ -1209,7 +1186,6 @@ export default function LessonComplete() {
     sequenceShowing,
     showPremiumBanner,
     premiumBannerAnim,
-    shownCardDrop,
     showAuthPrompt,
     showReview,
     activeNotif,
@@ -1697,18 +1673,6 @@ export default function LessonComplete() {
         visible={showAuthPrompt && seqDone}
         context="lesson1"
         onClose={() => setShowAuthPrompt(false)}
-      />
-      <CollectibleDropModal
-        outcome={collectibleDropVisible ? shownCardDrop : null}
-        onClose={() => {
-          setShownCardDrop(null);
-          setPendingCardDrop(null);
-        }}
-        onOpenCollection={() => {
-          setShownCardDrop(null);
-          setPendingCardDrop(null);
-          router.push('/collectibles_screen' as any);
-        }}
       />
     </SafeAreaView>
     </ScreenGradient>

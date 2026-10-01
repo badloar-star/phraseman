@@ -38,7 +38,6 @@ const BASELINE: Record<string, number> = {
   'app/age_consent_cloud.ts': 5,
   'app/ai_companion_session.tsx': 1,
   'app/ai_dialog_client.ts': 5,
-  'app/ai_dialog_extra_replies_client.ts': 2,
   'app/ai_dialog_hint_economy.ts': 1,
   'app/ai_dialog_ownership.ts': 3,
   'app/ai_dialog_session.tsx': 5,
@@ -132,11 +131,11 @@ const BASELINE: Record<string, number> = {
   'app/legacy_free_lesson_access.ts': 1,
   'app/lesson1.tsx': 32,
   'app/lesson_bonus_grant.ts': 3,
-  'app/lesson_complete.tsx': 18,
-  'app/lesson_irregular_verbs.tsx': 2,
+  'app/lesson_complete.tsx': 17, // PM-233 D140 2026-10-01: 18 → 17 (снят дроп коллекции)
+  'app/lesson_irregular_verbs.tsx': 1, // PM-233 D140: 2 → 1 (снят дроп коллекции)
   'app/lesson_menu.tsx': 4,
   'app/lesson_premium_gate.ts': 2,
-  'app/lesson_words.tsx': 3,
+  'app/lesson_words.tsx': 2, // PM-233 D140: 3 → 2 (снят дроп коллекции)
   'app/level_exam.tsx': 3,
   'app/level_exam_attempts.ts': 1,
   'app/level_spin_star_grants.ts': 2,
@@ -155,7 +154,7 @@ const BASELINE: Record<string, number> = {
   'app/premium_guard.ts': 16,
   'app/premium_revenuecat_state.ts': 1,
   'app/premium_vip_storage.ts': 2,
-  'app/preposition_drill.tsx': 3,
+  'app/preposition_drill.tsx': 2, // PM-233 D140: 3 → 2 (снят дроп коллекции)
   'app/promo_code_client.ts': 1,
   'app/promo_code_entry.tsx': 1,
   'app/public_profile_snapshot.ts': 1,

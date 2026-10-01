@@ -22,7 +22,8 @@ describe('Jarvis money real-writer and index contract', () => {
   test('guard points at current real writers, keeps the legacy client journal dead, and validates contextual writes', () => {
     expect(guard).toContain("writer: 'functions/src/revenuecat_shards.ts'");
     expect(guard).toContain("writer: 'functions/src/voice_minutes.ts'");
-    expect(guard).toContain("writer: 'functions/src/admin_voice_minutes.ts'");
+    // D136: admin_voice_minutes.ts удалён — строки контракта для него быть не должно.
+    expect(guard).not.toContain("writer: 'functions/src/admin_voice_minutes.ts'");
     expect(guard).toContain("writer: 'app/paywall_funnel.ts'");
     expect(guard).toContain("formerWriter: 'app/economy/client_shard_operation_sync.ts'");
     expect(guard).not.toContain("writer: 'app/economy/client_shard_operation_sync.ts'");

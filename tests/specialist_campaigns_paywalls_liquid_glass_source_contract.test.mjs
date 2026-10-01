@@ -8,7 +8,7 @@ const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf
 const glassFiles = {
   vipSurvey: 'components/VipSurveyModal.tsx',
   vipReview: 'components/VipSurveyReviewPromptModal.tsx',
-  quest: 'components/QuestSheetModal.tsx',
+  // QuestSheetModal удалён 2026-10-01 вместе с «Заданиями» (D140).
   promoEntry: 'app/promo_code_entry.tsx',
   referral: 'components/referral_code_sheet.tsx',
   featureIntro: 'components/FeatureIntroModal.tsx',
@@ -28,16 +28,13 @@ test('every migrated surface reads liquidGlassTokens and has no legacy palette o
 });
 
 test('surveys, quest sheet and code screens no longer use the old theme roles', () => {
-  for (const name of ['vipSurvey', 'vipReview', 'quest', 'promoEntry', 'referral']) {
+  for (const name of ['vipSurvey', 'vipReview', 'promoEntry', 'referral']) {
     assert.doesNotMatch(src[name], /\bt\.(accent|bgCard|bgSurface2?|textPrimary|textSecond|textMuted|correctText|correct|wrong|border)\b/, `${name}: legacy theme roles`);
   }
   assert.doesNotMatch(src.vipSurvey, /#(131A24|1D2633|182131|0F172A|64748B|475569|EF4444)/i, 'vip survey slate palette');
   assert.doesNotMatch(src.vipReview, /#(16A34A|22C55E|0F7A32)/i, 'vip review green palette');
 });
 
-test('quest sheet does not truncate reward names', () => {
-  assert.doesNotMatch(src.quest, /numberOfLines/);
-});
 
 test('tap targets are at least 44dp on the migrated close/back buttons', () => {
   assert.match(src.vipSurvey, /roundButton:\s*\{[^}]*width:\s*44,\s*height:\s*44/);

@@ -22,7 +22,6 @@ const GUARDED: Record<string, string> = {
   'app/cloud_sync.ts': 'облачная синхронизация прогресса (локально <-> Firestore)',
   'app/mistake_practice_store.ts': 'журнал «Мои ошибки» (события, страницы манифеста)',
   'app/coin_rank_upgrade_v1.ts': 'повышение ранга монеты + публичный снимок профиля',
-  'app/ai_dialog_extra_replies_client.ts': 'диалоги: доп. реплики (запись баланса/состояния)',
   'app/ai_dialog_hint_economy.ts': 'диалоги: экономика подсказок',
   'app/ai_dialog_ownership.ts': 'диалоги: владелец сессии',
   'app/youtube_channel_preference.ts': 'видео: выбранный канал',

@@ -9,7 +9,6 @@ describe('AI dialogue calendar-month quota wiring', () => {
   const stream = read('functions/src/premium_dialog_stream.ts');
   // зачем: D78/D81 — текстовый репетитор (tutor_text_turn.ts) удалён из кода.
   const config = read('functions/src/openai_dialog_model_config.ts');
-  const grant = read('functions/src/ai_dialog_extra_replies.ts');
 
   test('Free consumes 30/month while Plus receives a no-write unlimited reservation', () => {
     expect(send).toContain('startOfNextUtcMonth');
@@ -36,10 +35,10 @@ describe('AI dialogue calendar-month quota wiring', () => {
     expect(stream).toContain('releaseMonthlyQuota');
   });
 
-  test('legacy paid grants are dual-written into the current-month schema for rollback', () => {
-    expect(grant).toContain('extraCapThisMonth: nextQuota.extraCapThisMonth');
-    expect(grant).toContain('extraCapToday: nextQuota.extraCapToday');
-    expect(grant).toContain('monthlyCount: nextQuota.monthlyCount');
-    expect(grant).toContain('dailyCount: nextQuota.dailyCount');
+  // зачем: D139 (владелец 2026-10-01) — докупка «+10 реплик» удалена; писателя
+  // extraCapThisMonth больше нет, а купленное ранее в этом месяце ещё читается.
+  test('the paid +10 replies grant is gone, but this month purchased extras still widen the cap', () => {
+    expect(fs.existsSync(path.join(root, 'functions/src/ai_dialog_extra_replies.ts'))).toBe(false);
+    expect(send).toContain('extraCapThisMonth');
   });
 });

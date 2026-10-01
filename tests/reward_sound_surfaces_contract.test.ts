@@ -6,7 +6,8 @@ const read = (relativePath: string) => fs.readFileSync(path.join(root, relativeP
 
 describe('reward sound surfaces', () => {
   test('visual reward surfaces request their dedicated events', () => {
-    expect(read('components/CollectibleDropModal.tsx')).toContain("soundDirector.request('pm.reward.chest_open'");
+    // D140 (владелец 2026-10-01): CollectibleDropModal удалён вместе с коллекциями.
+    expect(fs.existsSync(path.join(root, 'components/CollectibleDropModal.tsx'))).toBe(false);
     // зачем (PM-206-A2): pm.reward.level_up убран из каталога — показ повышения переехал на Главную и звук не просил.
   });
 

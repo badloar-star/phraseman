@@ -141,7 +141,7 @@ describe('OverlayArbiter watchdog scope (anti — выселение живой 
       'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
       'entitlementExpired', 'referralWelcome',
       'lessonResultsSequence', 'lessonCompleteNotif',
-      'collectibleDrop', 'reviewPrompt', 'coinsMigration',
+      'reviewPrompt', 'coinsMigration',
     ];
     for (const k of protectedKeys) {
       expect(isForceEvictable(k)).toBe(false);
@@ -223,7 +223,7 @@ describe('OverlayArbiter: исчерпывающая классификация 
     // иначе празднование обрывается на середине, пока юзер его смотрит.
     'lessonResultsSequence',
     'lessonCompleteNotif',
-    'collectibleDrop', 'reviewPrompt',
+    'reviewPrompt',
     // coinsMigration — одноразовый информ-модал: закрывает юзер по CTA, выселять нельзя.
     'coinsMigration',
   ];
@@ -282,7 +282,7 @@ describe('OverlayArbiter native-modal handoff gap', () => {
   });
 
   it('isNativeModal: нативные модалки — да, тосты/in-place — нет', () => {
-    for (const k of ['onboardingWelcome', 'authRecovery', 'update', 'notifNudge', 'introFullAccess', 'levelUp', 'premiumCelebration', 'collectibleDrop', 'entitlementExpired', 'referralWelcome'] as OverlayKey[]) {
+    for (const k of ['onboardingWelcome', 'authRecovery', 'update', 'notifNudge', 'introFullAccess', 'levelUp', 'premiumCelebration', 'entitlementExpired', 'referralWelcome'] as OverlayKey[]) {
       expect(isNativeModal(k)).toBe(true);
     }
     for (const k of ['actionToast', 'coachToast'] as OverlayKey[]) {

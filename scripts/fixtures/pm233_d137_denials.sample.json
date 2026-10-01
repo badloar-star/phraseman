@@ -1,0 +1,12 @@
+{
+  "note": "Синтетические записи revenuecat_premium_denials для сухого прогона D137. Реальных uid здесь нет.",
+  "denials": [
+    { "id": "evt_a1", "reason": "owner_lineage_limit", "ownerUid": "fixture-user-1", "eventId": "rc-1" },
+    { "id": "evt_a2", "reason": "owner_lineage_limit", "ownerUid": "fixture-user-1", "eventId": "rc-2" },
+    { "id": "evt_b1", "reason": "owner_lineage_limit", "ownerUid": "fixture-user-2", "eventId": "rc-3" },
+    { "id": "evt_c1", "reason": "account_deletion_pending_or_tombstoned", "ownerUid": "fixture-user-3" },
+    { "id": "evt_d1", "reason": "ambiguous_owner", "ownerUids": ["fixture-user-4", "fixture-user-5"] },
+    { "id": "evt_e1", "reason": "missing_authoritative_owner" },
+    { "id": "transfer_f1", "reason": "transfer_lineage_limit", "identityHashes": ["0f0f"] }
+  ]
+}

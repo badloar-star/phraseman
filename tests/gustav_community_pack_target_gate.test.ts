@@ -206,7 +206,8 @@ describe('Gustav community pack target gate', () => {
     expect(functionsSource).toContain("throw new HttpsError('failed-precondition', 'Pack study target mismatch')");
     expect(functionsSource).toContain('studyTarget,');
     expect(functionsClientSource).toContain("studyTarget?: 'en' | 'fr'");
-    expect(purchaseSource).toContain('studyTarget: storageStudyTarget(studyTarget)');
+    // D140: погашение подарочного набора (единственный study-target вызов здесь) удалено.
+    expect(purchaseSource).not.toContain('callFlashcardPackGiftRedeem');
     expect(firestoreSource).toContain('studyTarget: storageStudyTarget(studyTarget)');
     expect(alertsSource).toContain('fetchCommunityPackMeta(pid, eventStudyTarget)');
     expect(reportModalSource).toContain('studyTarget,');

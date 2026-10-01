@@ -170,3 +170,30 @@ official_packs, lessons_pearl_unlock, tournaments_bank, max_subscription, friend
 - Q-233-5/6 (косметика, диалоги за руны): без возврата — D138.
 - Q-233-2: веб-оплата остаётся; Q-233-3: приём покупок жемчуга — удалить код; Q-233-4: ворота V2 никто не открывал; Q-233-7: «+10 ответов» убрать — D139.
 - Q-233-8: подарочные наборы — удалить код, ваучеры аннулировать; Q-233-9: Арена — чистить (D90); Q-233-12/13: квесты и коллекции убрать — D140.
+
+## Удаление по D136–D140 (2026-10-01, пакет pm233-retired-money-paths-removal, TG-BD3987644955)
+
+Статус `removed` в `LEDGER` = путь начисления/покупки удалён из кода; `removedMarkers` — маркеры, которых в
+коде быть НЕ должно (`--check` падает, если вернулись: поле `resurrected`). Все Q-233-1…13 закрыты решениями.
+
+- **removed:** `pearls_store_packs` (D139), `dialog_extra_replies` (D139), `pack_gifts` (D140), `max_subscription`
+  и `max_voice_minutes` (D136, остальной MAX — по пломбе), `quests` и `collectibles` (D140).
+- **Вебхук RevenueCat:** жемчуг, минуты и подписка MAX → один лог-отказ `[REVENUECAT] retired_product` (точные id в
+  `functions/src/revenuecat_shards.ts:41`), алерт владельцу только при реальном списании денег, начислений нет.
+- **D137:** только скрипт `scripts/pm233_grant_plus_for_denials.mjs` (по умолчанию план без PII; исполнение — лишь с
+  `--execute --confirm=D137_GRANT_PLUS --days=N` и целью эмулятор/прод с `--project` + `--owner-command`). Сухой
+  прогон по фикстуре `scripts/fixtures/pm233_d137_denials.sample.json`; эмулятор и прод — NOT_RUN.
+- Проверка: `node scripts/pm233_purchase_ledger_dry_run.mjs --check` → `products=39 markers=192 uncovered=0 stale=0 resurrected=0`.
+
+## Refresh 2026-10-01 — source-only
+
+После последующих retirement-изменений повторная проверка дала:
+
+```text
+node scripts/pm233_purchase_ledger_dry_run.mjs --check
+PM-233 ledger: products=39 markers=193 uncovered=0 stale=0 resurrected=0
+node --test scripts/pm233_purchase_ledger_dry_run.test.mjs
+6 passed, 0 failed
+```
+
+Скан обнаружил и затем классифицировал `local_key:league_gold_theme_unlocked_v1` в строке legacy themes. Прод-агрегаты, Firestore, deploy и операции с пользовательскими данными не выполнялись; все production volumes остаются `unknown`.

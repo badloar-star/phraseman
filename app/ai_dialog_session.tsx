@@ -94,14 +94,6 @@ import { trackEvent } from './analytics';
 import { captureAccountGeneration } from './account_generation';
 import { markAiDialogDailyQuotaExhausted, parseAiDialogQuotaObservation, quotaObservationFromDialogError, readAiDialogDailyQuota, recordAiDialogDailyQuotaFromServer, type AiDialogQuotaObservation } from './ai_dialog_daily_quota';
 import { REVENUE_MONTHLY_LIMITS } from './revenue_daily_limits';
-import {
-  buyDialogExtraRepliesLocally,
-  makeDialogExtraRepliesRequestId,
-  requireDialogExtraRepliesProviderReady,
-  syncDialogExtraRepliesPurchase,
-  DIALOG_EXTRA_REPLIES_COUNT,
-  DIALOG_EXTRA_REPLIES_PRICE_RUNES,
-} from './ai_dialog_extra_replies_client';
 import { readUnifiedLevelSpinStars } from './level_spin_star_grants';
 import {
   buyDialogHintLocally,
@@ -346,12 +338,6 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
 
   useEffect(() => {
     if (!accessResolved || !dialogueRuntimeOpen) return;
-    // зачем (владелец 2026-09-17): если покупка +10 реплик состоялась локально,
-    // но фоновая отправка на сервер не успела завершиться (приложение убито,
-    // сеть пропала) — досинхронизируем при каждом новом входе в диалог. Иначе
-    // extraCapToday на сервере не вырастет, и следующая реплика получит отказ
-    // квоты, хотя руны уже честно списаны на телефоне.
-    void syncDialogExtraRepliesPurchase(captureAccountGeneration(), studyTarget);
     if (hasPremiumAccess) {
       setDailyQuotaRemaining(null);
       setDailyQuotaGate('open');
@@ -433,61 +419,9 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     };
   }, [hasPremiumAccess]);
 
-  /**
-   * Докупка +10 реплик за 300 рун (владелец, 2026-09-17). Баланс читается
-   * только чтобы решить, показывать кнопку активной или бледной — сама
-   * покупка внутри buyDialogExtraRepliesLocally перечитывает актуальное
-   * значение под локом, так что устаревшее число здесь не может списать лишнее.
-   */
-  const [runesBalanceForBuy, setRunesBalanceForBuy] = useState<number | null>(null);
-  useEffect(() => {
-    if (dailyQuotaGate !== 'exhausted' || hasPremiumAccess) return;
-    let cancelled = false;
-    const token = captureAccountGeneration();
-    void readUnifiedLevelSpinStars(token).then(({ balance }) => {
-      if (!cancelled) setRunesBalanceForBuy(balance);
-    });
-    return () => { cancelled = true; };
-  }, [dailyQuotaGate, hasPremiumAccess]);
-
-  const buyingExtraRepliesRef = useRef(false);
-  const [buyingExtraReplies, setBuyingExtraReplies] = useState(false);
-  const handleBuyExtraReplies = useCallback(() => {
-    // Защита от двойного тапа: второй тап до завершения первого игнорируется,
-    // а не ставится в очередь — повторная покупка не то, чего ждёт человек
-    // от одного тапа по одной и той же кнопке.
-    if (buyingExtraRepliesRef.current) return;
-    buyingExtraRepliesRef.current = true;
-    setBuyingExtraReplies(true);
-    const token = captureAccountGeneration();
-    const requestId = makeDialogExtraRepliesRequestId();
-    void (async () => {
-      try {
-        const result = await buyDialogExtraRepliesLocally(token, requestId);
-        if (!result.ok) {
-          DebugLogger.info('[DIALOG-EXTRA-REPLIES] purchase declined', JSON.stringify({ reason: result.reason }));
-          if (result.reason === 'insufficient_runes') setRunesBalanceForBuy(0);
-          return;
-        }
-        // Мгновенно, в том же кадре: открываем поле ввода на +10 реплик и
-        // показываем списанный баланс — сеть в это решение не входит.
-        setRunesBalanceForBuy(result.balance);
-        setDailyQuotaRemaining((prev) => (prev ?? 0) + result.repliesGranted);
-        setDailyQuotaGate('open');
-        void trackEvent('ai_dialog_extra_replies_bought', { scenarioId: scenario.id });
-        void syncDialogExtraRepliesPurchase(token, studyTarget);
-      } catch (error) {
-        DebugLogger.error(
-          'ai_dialog_session:buy_extra_replies_failed',
-          error instanceof Error ? error : new Error(String(error)),
-          'warning',
-        );
-      } finally {
-        buyingExtraRepliesRef.current = false;
-        setBuyingExtraReplies(false);
-      }
-    })();
-  }, [accountStableId, dailyQuotaRemaining, scenario.id, studyTarget]);
+  // зачем: D139 (владелец 2026-10-01) — докупка «+10 реплик за 300 монет» убрана
+  // целиком (кнопка, клиент и серверная aiDialogBuyExtraReplies). Месячная
+  // квота D111 остаётся; на стене лимита — только «Разбор» и «Plus».
 
   /** Явный тап по «Plus» на карточке стены — только отсюда ведём на пейвол. */
   const openDialogPaywall = useCallback(() => {
@@ -1692,7 +1626,6 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
           model?: string;
         };
         try {
-          await requireDialogExtraRepliesProviderReady(captureAccountGeneration(), studyTarget);
           const streamed = await callPremiumDialogStream(payload, {
             onDelta: pushStreamDelta,
             onReset: resetStreamDraft,
@@ -1918,7 +1851,6 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
         quotaVersion: number;
       };
       try {
-        await requireDialogExtraRepliesProviderReady(captureAccountGeneration(), studyTarget);
         const streamed = await callPremiumDialogStream(payload, {
           onDelta: pushStreamDelta,
           onReset: resetStreamDraft,
@@ -3162,62 +3094,6 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                     pl: `W przyszłym miesiącu znowu ${dailyQuotaLimit}. Rozmowa jest zapisana: wrócisz w to samo miejsce.`,
                   })}
                 </Text>
-                {/* Докупка реплик за руны (владелец 2026-09-17, макет вариант Б):
-                    монета + цена, ставится ПЕРВОЙ строкой над «Разбор»/«Plus» —
-                    самый дешёвый и мгновенный путь продолжить именно этот разговор.
-                    Кнопка не гейтится сетью: buyDialogExtraRepliesLocally сама
-                    решает, хватает ли рун, читая локальный баланс под локом. */}
-                {runesBalanceForBuy !== null && (
-                  <TouchableOpacity
-                    onPress={handleBuyExtraReplies}
-                    disabled={buyingExtraReplies || runesBalanceForBuy < DIALOG_EXTRA_REPLIES_PRICE_RUNES}
-                    activeOpacity={0.86}
-                    accessibilityRole="button"
-                    accessibilityState={{ disabled: buyingExtraReplies || runesBalanceForBuy < DIALOG_EXTRA_REPLIES_PRICE_RUNES }}
-                    accessibilityLabel={triLang(lang, {
-                      ru: `Ещё ${DIALOG_EXTRA_REPLIES_COUNT} реплик за ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} монет`,
-                      uk: `Ще ${DIALOG_EXTRA_REPLIES_COUNT} реплік за ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} монет`,
-                      en: `${DIALOG_EXTRA_REPLIES_COUNT} more lines for ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} coins`,
-                      es: `${DIALOG_EXTRA_REPLIES_COUNT} frases más por ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} monedas`,
-                      'pt-BR': `Mais ${DIALOG_EXTRA_REPLIES_COUNT} falas por ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} moedas`,
-                      vi: `Thêm ${DIALOG_EXTRA_REPLIES_COUNT} lượt với ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} xu`,
-                      id: `${DIALOG_EXTRA_REPLIES_COUNT} balasan lagi seharga ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} koin`,
-                      tr: `${DIALOG_EXTRA_REPLIES_PRICE_RUNES} rune karşılığında ${DIALOG_EXTRA_REPLIES_COUNT} replik daha`,
-                      pl: `Jeszcze ${DIALOG_EXTRA_REPLIES_COUNT} wypowiedzi za ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} monet`,
-                    })}
-                    style={{
-                      minHeight: 50,
-                      borderRadius: 16,
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: 7,
-                      backgroundColor: t.bgSurface2,
-                      opacity: runesBalanceForBuy < DIALOG_EXTRA_REPLIES_PRICE_RUNES ? 0.5 : 1,
-                    }}
-                  >
-                    {buyingExtraReplies ? (
-                      <ActivityIndicator size="small" color={t.textPrimary} />
-                    ) : (
-                      <>
-                        <Ionicons name="disc" size={18} color={t.gold} />
-                        <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
-                          {triLang(lang, {
-                            ru: `Ещё ${DIALOG_EXTRA_REPLIES_COUNT} реплик · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
-                            uk: `Ще ${DIALOG_EXTRA_REPLIES_COUNT} реплік · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
-                            en: `+${DIALOG_EXTRA_REPLIES_COUNT} lines · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
-                            es: `+${DIALOG_EXTRA_REPLIES_COUNT} frases · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
-                            'pt-BR': `+${DIALOG_EXTRA_REPLIES_COUNT} falas · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
-                            vi: `+${DIALOG_EXTRA_REPLIES_COUNT} lượt · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
-                            id: `+${DIALOG_EXTRA_REPLIES_COUNT} balasan · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
-                            tr: `+${DIALOG_EXTRA_REPLIES_COUNT} replik · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
-                            pl: `+${DIALOG_EXTRA_REPLIES_COUNT} wypowiedzi · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
-                          })}
-                        </Text>
-                      </>
-                    )}
-                  </TouchableOpacity>
-                )}
                 <View style={{ flexDirection: 'row', gap: 8, marginTop: 4 }}>
                   {userExchanges > 0 ? (
                     <TouchableOpacity

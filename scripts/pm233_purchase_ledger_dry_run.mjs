@@ -55,7 +55,9 @@ const cnt = (target, where = null, note = '') => Object.freeze({ aggregate: 'cou
 
 /**
  * LEDGER — продукт/право → источник транзакции → хранение → писатели/читатели → судьба в 2.0 → риск.
- * status: keep | convert_decided | retire_decided | needs_decision.
+ * status: keep | convert_decided | retire_decided | needs_decision | removed.
+ * removed — путь начисления/покупки удалён из кода (D136–D140); removedMarkers — маркеры, которых
+ * в коде быть НЕ должно (вернулись = регрессия, --check падает); markers — оставшиеся следы данных.
  * Ссылки file:line сняты с HEAD dad5070501f1 (2026-10-01); живые места печатает --json.
  */
 export const LEDGER = Object.freeze([
@@ -112,10 +114,10 @@ export const LEDGER = Object.freeze([
     storage: 'revenuecat_premium_denials/{receiptId или transfer_*}',
     writers: ['functions/src/revenuecat_shards.ts:500', 'functions/src/revenuecat_shards.ts:655', 'functions/src/revenuecat_shards.ts:1125'],
     readers: ['functions/src/jarvis/all_departments_callables.ts:173'],
-    fate: 'Решения 2.0 нет. Это люди, которые заплатили, но Plus не получили.',
-    decisions: [],
-    status: 'needs_decision',
-    question: 'Q-233-1: Что делать с оплаченными, но отклонёнными чеками Plus (denials) — разбирать вручную, выдать Plus днями (D86), или оставить как есть?',
+    fate: 'D137 (владелец 2026-10-01): выдать Plus всем подтверждённым магазином, но отклонённым сервером. Исполнение — только скрипт scripts/pm233_grant_plus_for_denials.mjs по команде владельца (по умолчанию сухой прогон).',
+    decisions: ['D137'],
+    status: 'convert_decided',
+    question: 'Q-233-1 закрыт: D137 — выдать Plus (прод только по команде владельца).',
     risk: 'high',
     riskNote: 'Деньги взяты, право не выдано; при чистке D90 их нельзя удалять как «мусор».',
     markers: ['collection:revenuecat_premium_denials'],
@@ -133,9 +135,9 @@ export const LEDGER = Object.freeze([
     writers: ['functions/src/web_checkout.ts:2957', 'functions/src/web_checkout.ts:3113', 'functions/src/web_checkout.ts:3311', 'functions/src/promo_codes.ts:262'],
     readers: ['functions/src/web_checkout.ts:3437', 'functions/src/web_activation_reminders.ts:26', 'functions/src/email_delivery_watchdog.ts:39'],
     fate: 'Решениями 2.0 не затронуто — продолжает работать.',
-    decisions: [],
+    decisions: ['D139'],
     status: 'keep',
-    question: 'Q-233-2: Подтвердить, что веб-оплата и ручная активация остаются в 2.0 без изменений (заказы в статусе ожидания активации — уже оплачены).',
+    question: 'Q-233-2 закрыт: D139 — веб-оплата (Stripe/PayPal + промокод) остаётся как есть.',
     risk: 'high',
     riskNote: 'Заказ, оплаченный и не активированный вручную, — деньги без права.',
     markers: ['collection:web_premium_orders', 'callable:webCheckoutCreate', 'callable:stripeWebhook', 'callable:paypalOrderCreate', 'callable:paypalOrderCapture', 'callable:webOrderStatus'],
@@ -252,14 +254,14 @@ export const LEDGER = Object.freeze([
     id: 'pearls_store_packs',
     product: 'Жемчуг за реальные деньги (пакеты 30/80/180/420)',
     money: 'real',
-    source: 'RevenueCat consumable → вебхук; сейчас продукт помечен снятым (лог [D103] revenuecat_shard_product_retired)',
+    source: 'RevenueCat consumable → вебхук отвечает лог-отказом [REVENUECAT] retired_product (D139: код приёма удалён)',
     storage: 'revenuecat_shard_transactions; revenuecat_shard_refunds; баланс users/{uid}.shards (+shard_log); локально shards_store_purchased_total_v1, незавершённые покупки app/shards_pending_grants.ts',
-    writers: ['functions/src/revenuecat_shards.ts:895', 'app/shards_pending_grants.ts'],
+    writers: ['functions/src/revenuecat_shards.ts:41', 'app/shards_pending_grants.ts'],
     readers: ['functions/src/admin_shard_refunds.ts:86', 'functions/src/admin_analytics.ts:177', 'functions/src/auth_merge.ts:903'],
-    fate: 'Сгорает без компенсации (D103, D70); пакеты в сторах снимает владелец. Остатки обнуляет только клиент (D84).',
-    decisions: ['D70', 'D84', 'D103'],
-    status: 'retire_decided',
-    question: 'Q-233-3: Пакеты жемчуга уже сняты с продажи в App Store и Google Play? Покупка, прошедшая после снятия на сервере, теперь не начисляется ничего — нужен ли ручной возврат таким людям?',
+    fate: 'Код приёма покупок удалён (D139); вебхук на товар — только лог-отказ и алерт владельцу при списании денег. Остатки сгорают без компенсации (D70, D103); пакеты в сторах снимает владелец.',
+    decisions: ['D70', 'D84', 'D103', 'D139'],
+    status: 'removed',
+    question: 'Q-233-3 закрыт: D139 — приём покупок жемчуга на сервере удалить.',
     risk: 'high',
     riskNote: 'Реальные деньги без компенсации — риск жалоб/возвратов и ревью стора; решение владельца принято осознанно.',
     markers: [
@@ -334,9 +336,9 @@ export const LEDGER = Object.freeze([
     writers: ['functions/src/learning_v2_access_production_callable.ts:16'],
     readers: ['functions/src/learning_v2_access_production_callable.ts:23'],
     fate: 'Решения нет: Learning V2 включён в 2.0 (D96), а кошелёк звёзд не переносится (OD10).',
-    decisions: ['D96', 'OD10'],
-    status: 'needs_decision',
-    question: 'Q-233-4: Открытые за звёзды ворота Learning V2 остаются открытыми в 2.0 (как уроки, открытые жемчугом)?',
+    decisions: ['D96', 'OD10', 'D139'],
+    status: 'retire_decided',
+    question: 'Q-233-4 закрыт: D139 — ворота за звёзды никто не открывал (раздел не был доступен), переносить нечего.',
     risk: 'medium',
     riskNote: 'Если ворота привязаны к звёздам, отказ от звёзд может закрыть купленное.',
     markers: ['callable:finalizeLearningV2AccessPurchase', 'literal:v2_gate_receipts'],
@@ -386,8 +388,8 @@ export const LEDGER = Object.freeze([
     readers: ['app/cloud_sync.ts:1608', 'constants/customization_storage_keys.ts:4'],
     fate: 'Удаляется целиком, включая купленное (D102, D108); неиспользованные подарки — монетами по таблице gifts_to_coins (D53, D57).',
     decisions: ['D57', 'D61', 'D102', 'D108'],
-    status: 'needs_decision',
-    question: 'Q-233-5: Купленные за РУНЫ (теперь монеты) образы/ауры удаляются без возврата монет? MIGRATIONS требует «индивидуальную политику ledger», D108 говорит только «удаляются».',
+    status: 'retire_decided',
+    question: 'Q-233-5 закрыт: D138 — купленное за руны удаляется без возврата.',
     risk: 'medium',
     riskNote: 'Руны — те же монеты 2.0: человек видит, что потраченное исчезло.',
     markers: ['local_key:custom_avatar_owned_v1', 'local_key:custom_avatar_gift_owned_v1', 'local_key:avatar_aura_owned_v1', 'local_key:avatar_aura_gift_owned_v1'],
@@ -398,7 +400,7 @@ export const LEDGER = Object.freeze([
     product: 'Темы оформления (раньше за жемчуг)',
     money: 'in_app',
     source: 'Покупка темы за жемчуг (удалена), «дедушкины» темы',
-    storage: 'owned_theme_modes_v1, grandfathered_theme_modes_v1 (локально + progress)',
+    storage: 'owned_theme_modes_v1, grandfathered_theme_modes_v1, league_gold_theme_unlocked_v1 (локально + progress)',
     writers: ['app/theme_ownership_store.ts:87', 'app/theme_ownership_merge.ts:48'],
     readers: ['app/cloud_sync.ts:379'],
     fate: 'Все темы бесплатны (D119) — купленное право стало шире, потери нет.',
@@ -407,7 +409,7 @@ export const LEDGER = Object.freeze([
     question: null,
     risk: 'low',
     riskNote: 'Потраченный жемчуг не возвращается (D70).',
-    markers: ['local_key:owned_theme_modes_v1'],
+    markers: ['local_key:owned_theme_modes_v1', 'local_key:league_gold_theme_unlocked_v1'],
     countPlan: [],
   },
   {
@@ -471,8 +473,8 @@ export const LEDGER = Object.freeze([
     readers: ['app/ai_dialog_ownership.ts:62'],
     fate: 'Старые покупки диалогов за руны не учитываются; доступ — только ранг монеты (D124, D05). aiDialogSyncPurchase в index.ts не экспортируется.',
     decisions: ['D05', 'D124'],
-    status: 'needs_decision',
-    question: 'Q-233-6: За диалоги, купленные рунами, вернуть монеты (сумма из журнала покупок) или «не учитываются» без возврата? D124 говорит только о доступе. Подколлекция users/{uid}/dialog_access нет в инвентаре Account V2 → перенос встанет в HOLD unknown_field.',
+    status: 'retire_decided',
+    question: 'Q-233-6 закрыт: D138 — диалоги, купленные за руны, удаляются без возврата.',
     risk: 'medium',
     riskNote: 'Потраченные монеты без права.',
     markers: ['local_key:ai_dialog_owned_ids_v1', 'local_key:ai_dialog_owned_outbox_v1', 'collection:dialog_access', 'callable:aiDialogSyncPurchase'],
@@ -482,17 +484,18 @@ export const LEDGER = Object.freeze([
     id: 'dialog_extra_replies',
     product: '+10 ответов в Диалогах за 300 монет',
     money: 'in_app',
-    source: 'buyDialogExtraRepliesLocally → aiDialogBuyExtraReplies',
-    storage: 'premium_dialog_quotas/{quota} поле extraCapThisMonth; users/{uid}/reward_claims/dialog_extra_replies_*; локально ai_dialog_extra_replies_*',
-    writers: ['app/ai_dialog_extra_replies_client.ts:216', 'functions/src/ai_dialog_extra_replies.ts:172'],
-    readers: ['functions/src/premium_dialog.ts:284', 'functions/src/dialog_quota_contract.ts:45'],
-    fate: 'Квота Free — 30 ответов в месяц (D111); судьба покупки «+10» в 2.0 не записана.',
-    decisions: ['D111'],
-    status: 'needs_decision',
-    question: 'Q-233-7: Покупка «+10 ответов за 300 монет» остаётся в 2.0? Купленные и неиспользованные в этом месяце — сохраняются в месячном счётчике?',
+    source: 'Удалено (D139): кнопка «+10», клиент buyDialogExtraRepliesLocally и callable aiDialogBuyExtraReplies',
+    storage: 'premium_dialog_quotas/{quota} поле extraCapThisMonth (купленное ранее читается до сброса месяца); users/{uid}/reward_claims (история)',
+    writers: [],
+    readers: ['functions/src/premium_dialog.ts:297', 'functions/src/dialog_quota_contract.ts:45'],
+    fate: 'Покупка «+10 ответов за 300 монет» убрана (D139); месячная квота Free 30 (D111) остаётся.',
+    decisions: ['D111', 'D139'],
+    status: 'removed',
+    question: 'Q-233-7 закрыт: D139 — покупку «+10 ответов» убрать.',
     risk: 'low',
     riskNote: 'Расходуется в пределах месяца.',
-    markers: ['collection:premium_dialog_quotas', 'collection:reward_claims', 'callable:aiDialogBuyExtraReplies'],
+    markers: ['collection:premium_dialog_quotas', 'collection:reward_claims'],
+    removedMarkers: ['callable:aiDialogBuyExtraReplies'],
     countPlan: [cnt('collectionGroup reward_claims', null, 'включает и другие награды — фильтровать по префиксу id нельзя агрегатом; нужен отдельный тип поля')],
   },
   {
@@ -550,20 +553,18 @@ export const LEDGER = Object.freeze([
     id: 'pack_gifts',
     product: 'Подарочные наборы карточек (ваучеры, гранты из рассылок)',
     money: 'granted',
-    source: 'communityRedeemPackGiftVoucher, flashcardPackGiftRedeem, flashcardPackGiftSyncState, flashcardPackGiftGrantGlobalBroadcast',
+    source: 'Удалено (D140): communityRedeemPackGiftVoucher, flashcardPackGiftRedeem, flashcardPackGiftSyncState, flashcardPackGiftGrantGlobalBroadcast и их клиентские вызовы',
     storage: 'flashcard_pack_gift_claims, flashcard_pack_gift_entitlements, flashcard_pack_gift_grants; локально flashcard_pack_gift_inventory_v2',
-    writers: ['functions/src/community_packs.ts:1137', 'functions/src/community_packs.ts:1280', 'functions/src/global_broadcast_claim.ts:181'],
+    writers: ['functions/src/global_broadcast_claim.ts:181'],
     readers: ['app/flashcards/pack_trial_gift.ts:38'],
-    fate: 'Подарки убираются (D09); официальные наборы удалены (D68). Callable всё ещё экспортированы в functions/src/index.ts:602–605.',
-    decisions: ['D09', 'D68'],
-    status: 'needs_decision',
-    question: 'Q-233-8: Непогашенные подарочные ваучеры на наборы СООБЩЕСТВА — погасить автоматически в библиотеку, перевести в монеты по таблице или аннулировать? И снимать ли эти 4 callable (D78)?',
+    fate: 'Код подарочных наборов удалён (D140), непогашенные ваучеры аннулированы; полученные наборы остаются в библиотеке. Остаток: рассылка с наградой pack_trial_48h ещё пишет flashcard_pack_gift_grants (погасить нечем) — отдельный хвост.',
+    decisions: ['D09', 'D68', 'D140'],
+    status: 'removed',
+    question: 'Q-233-8 закрыт: D140 — код удалить, ваучеры аннулировать, полученные наборы остаются.',
     risk: 'low',
     riskNote: '',
-    markers: [
-      'collection:flashcard_pack_gift_claims', 'collection:flashcard_pack_gift_entitlements', 'collection:flashcard_pack_gift_grants',
-      'callable:communityRedeemPackGiftVoucher', 'callable:flashcardPackGiftRedeem', 'callable:flashcardPackGiftSyncState', 'callable:flashcardPackGiftGrantGlobalBroadcast',
-    ],
+    markers: ['collection:flashcard_pack_gift_grants'],
+    removedMarkers: ['collection:flashcard_pack_gift_claims', 'collection:flashcard_pack_gift_entitlements', 'callable:communityRedeemPackGiftVoucher', 'callable:flashcardPackGiftRedeem', 'callable:flashcardPackGiftSyncState', 'callable:flashcardPackGiftGrantGlobalBroadcast'],
     countPlan: [cnt('collection flashcard_pack_gift_entitlements', null, 'выданные права на подарочные наборы')],
   },
   {
@@ -610,8 +611,8 @@ export const LEDGER = Object.freeze([
     readers: ['functions/src/account_delete.ts:318'],
     fate: 'Магазин удалён, купленные украшения «в данных не трогаем» (D79); при этом данные Арены чистятся после релиза (D90).',
     decisions: ['D79', 'D83', 'D90'],
-    status: 'needs_decision',
-    question: 'Q-233-9: D79 «купленные украшения не трогаем» и D90 «данные Арены чистятся» противоречат для arena_v2_entitlements. Чистка D90 исключает эти права или нет? Остаток звёзд Арены — без компенсации?',
+    status: 'retire_decided',
+    question: 'Q-233-9 закрыт: D140 — украшения за звёзды Арены чистятся вместе с данными Арены (D90 главнее D79).',
     risk: 'low',
     riskNote: '',
     markers: ['literal:arena_v2_star_ledger', 'literal:arena_v2_entitlements'],
@@ -638,14 +639,14 @@ export const LEDGER = Object.freeze([
     id: 'max_subscription',
     product: 'Подписка MAX (phraseman_max_monthly_v1)',
     money: 'real',
-    source: 'RevenueCat; клиент чек больше не признаёт, сверка отвечает retired_max_product',
+    source: 'RevenueCat; вебхук — лог-отказ [REVENUECAT] retired_product; клиент чек не признаёт, сверка отвечает retired_max_product',
     storage: 'RevenueCat / стор',
-    writers: [],
+    writers: ['functions/src/revenuecat_shards.ts:49'],
     readers: ['app/revenuecat_premium_access.ts:7', 'functions/src/revenuecat_reconcile.ts:355'],
-    fate: 'MAX законсервирован (D11, пломба 2026-09-04).',
-    decisions: ['D11'],
-    status: 'needs_decision',
-    question: 'Q-233-10: Есть ли ещё активные подписки MAX в сторе? Если да — стор продолжает списывать деньги без доступа: отменить и вернуть деньги (делает владелец в консолях сторов)?',
+    fate: 'Денежный код MAX удалён (D136): вебхук только логирует отказ и поднимает алерт при списании. Отказы в клиенте и в сверке оставлены — они не дают MAX-чеку стать Plus. Активные подписки в сторах отменяет владелец.',
+    decisions: ['D11', 'D136'],
+    status: 'removed',
+    question: 'Q-233-10 закрыт: D136 — удалить код, ничего не возвращать.',
     risk: 'high',
     riskNote: 'Возможное списание без права.',
     markers: ['store_product:phraseman_max_monthly_v1'],
@@ -655,21 +656,18 @@ export const LEDGER = Object.freeze([
     id: 'max_voice_minutes',
     product: 'Минуты голосового звонка MAX (30/120/300) и пробные минуты',
     money: 'real',
-    source: 'RevenueCat consumable → вебхук (ветка voice_minutes всё ещё начисляет); adminGrantVoiceMinutes; voiceMinuteWalletMine',
+    source: 'Приём денег удалён (D136): ветка вебхука (теперь лог-отказ) и adminGrantVoiceMinutes. Остался законсервированный MAX: voiceMinuteWalletMine (чтение), расход минут в звонке',
     storage: 'voice_minute_wallets, voice_minute_events, voice_minute_denials; voice_call_quotas (пробник/резервы), voice_call_billing',
-    writers: ['functions/src/revenuecat_shards.ts:1342', 'functions/src/voice_minutes.ts:447', 'functions/src/admin_voice_minutes.ts:92', 'functions/src/max_voice_quota.ts:461'],
+    writers: ['functions/src/voice_minutes.ts:4', 'functions/src/max_voice_quota.ts:45'],
     readers: ['functions/src/voice_minutes_api.ts:46', 'modules/voice_minutes/catalog.ts:6'],
-    fate: 'Законсервировано (D11); код и данные не удаляются.',
-    decisions: ['D11', 'D81'],
-    status: 'needs_decision',
-    question: 'Q-233-11: Остатки купленных минут — заморозить до возврата MAX или вернуть деньги? Сняты ли пакеты минут с продажи (вебхук всё ещё зачисляет минуты), и оставлять ли кнопку выдачи минут в админке?',
+    fate: 'Денежный код MAX удалён (D136); остальной законсервированный код MAX и данные — по пломбе 2026-09-04 (D11).',
+    decisions: ['D11', 'D81', 'D136'],
+    status: 'removed',
+    question: 'Q-233-11 закрыт: D136 — удалить ветку вебхука минут и adminGrantVoiceMinutes, ничего не возвращать.',
     risk: 'high',
     riskNote: 'Оплаченный баланс, которым нельзя воспользоваться, пока раздел закрыт.',
-    markers: [
-      'store_product:phraseman_voice_minutes_30', 'store_product:phraseman_voice_minutes_120', 'store_product:phraseman_voice_minutes_300',
-      'collection:voice_minute_wallets', 'collection:voice_minute_events', 'collection:voice_minute_denials', 'collection:voice_call_quotas', 'collection:voice_call_billing',
-      'callable:adminGrantVoiceMinutes', 'callable:voiceMinuteWalletMine', 'callable:voiceMinuteDevGrant',
-    ],
+    markers: ['store_product:phraseman_voice_minutes_30', 'store_product:phraseman_voice_minutes_120', 'store_product:phraseman_voice_minutes_300', 'collection:voice_minute_wallets', 'collection:voice_minute_events', 'collection:voice_call_quotas', 'collection:voice_call_billing', 'callable:voiceMinuteWalletMine', 'callable:voiceMinuteDevGrant'],
+    removedMarkers: ['callable:adminGrantVoiceMinutes', 'collection:voice_minute_denials'],
     countPlan: [
       cnt('collection voice_minute_wallets', null, 'кошельков минут'),
       cnt('collection voice_minute_events', ['kind', '==', 'purchase'], 'покупок (имя поля проверить по voice_minutes.ts)'),
@@ -747,34 +745,36 @@ export const LEDGER = Object.freeze([
     id: 'quests',
     product: 'Квесты: дни Plus и жемчуг за выполнение',
     money: 'granted',
-    source: 'questClaimReward',
+    source: 'Удалено (D140): questClaimReward и весь модуль «Заданий» (сервер, клиент, окно)',
     storage: 'reward_claims + external_economy_events; дни Plus в premium/vip',
-    writers: ['functions/src/quests.ts:351', 'functions/src/quests.ts:405'],
+    writers: [],
     readers: [],
-    fate: 'Решения в 2.0 нет (блок «Сегодня» D49 — новая механика).',
-    decisions: ['D49'],
-    status: 'needs_decision',
-    question: 'Q-233-12: Квесты (questClaimReward, награда — дни Plus и жемчуг) остаются в 2.0 или удаляются? Если остаются — жемчужную часть заменить монетами?',
+    fate: 'Квесты убраны (D140); уже выданные дни Plus сохраняются.',
+    decisions: ['D49', 'D140'],
+    status: 'removed',
+    question: 'Q-233-12 закрыт: D140 — квесты убрать.',
     risk: 'low',
     riskNote: '',
-    markers: ['callable:questClaimReward'],
+    markers: [],
+    removedMarkers: ['callable:questClaimReward'],
     countPlan: [],
   },
   {
     id: 'collectibles',
     product: 'Коллекционные предметы (сеты, бонус жемчуга за сет)',
     money: 'granted',
-    source: 'collectiblesClaimDrop (выключенная совместимая заглушка)',
+    source: 'Удалено (D140): заглушка collectiblesClaimDrop и клиент коллекций (экран, дроп, каталог)',
     storage: 'collectibles_owned_v1, collectibles_state_v1 (server-owned в progress + локально)',
-    writers: ['functions/src/collectibles_retired.ts:28', 'app/collectibles/storage.ts:195'],
-    readers: ['app/collectibles/storage.ts:101'],
-    fate: 'В inventory Account V2 — hold no_owner_decision (p.collectibles).',
-    decisions: [],
-    status: 'needs_decision',
-    question: 'Q-233-13: Коллекции удаляются в 2.0? Если да — компенсация не нужна (наград за сет жемчугом больше нет)?',
+    writers: [],
+    readers: ['app/cloud_sync.ts:1190'],
+    fate: 'Коллекции убраны (D140). Ключи progress остаются в списке серверных (клиент их не пишет) до чистки данных; в инвентаре Account V2 строка p.collectibles всё ещё hold no_owner_decision — обновить на drop.',
+    decisions: ['D140'],
+    status: 'removed',
+    question: 'Q-233-13 закрыт: D140 — коллекции убрать.',
     risk: 'low',
     riskNote: '',
-    markers: ['local_key:collectibles_owned_v1', 'callable:collectiblesClaimDrop'],
+    markers: ['local_key:collectibles_owned_v1'],
+    removedMarkers: ['callable:collectiblesClaimDrop'],
     countPlan: [cnt('collection users', ['progress.collectibles_owned_v1', '!=', null], '')],
   },
 ]);
@@ -885,6 +885,10 @@ export function buildReport(found = scanMarkers()) {
   const uncovered = [...found.keys()].filter((key) => !ledgerMarkers.has(key) && !(key in IGNORED)).sort();
   const stale = [...ledgerMarkers.keys()].filter((key) => !found.has(key)).sort();
   const staleIgnored = Object.keys(IGNORED).filter((key) => !found.has(key)).sort();
+  // зачем: D136–D140 — удалённые пути начисления не должны тихо вернуться в код.
+  const resurrected = LEDGER.flatMap((row) => (row.removedMarkers ?? [])
+    .filter((key) => found.has(key))
+    .map((key) => `${row.id}:${key}`)).sort();
   const rows = LEDGER.map((row) => ({
     ...row,
     prodVolume: U, // PM-233-A2: прод не читался — объём неизвестен, а не 0.
@@ -898,6 +902,8 @@ export function buildReport(found = scanMarkers()) {
     uncovered,
     stale,
     staleIgnored,
+    resurrected,
+    removed: LEDGER.filter((r) => r.status === 'removed').map((r) => r.id),
     rows,
   };
 }
@@ -913,12 +919,13 @@ export function prodCountPlan() {
 }
 
 function printTable(report) {
-  console.log(`PM-233 ledger: products=${report.products} markers=${report.markersFound} uncovered=${report.uncovered.length} stale=${report.stale.length}`);
+  console.log(`PM-233 ledger: products=${report.products} markers=${report.markersFound} uncovered=${report.uncovered.length} stale=${report.stale.length} resurrected=${report.resurrected.length}`);
   for (const row of report.rows) {
     console.log(`- ${row.id} [${row.status}] risk=${row.risk} prod=${row.prodVolume} :: ${row.product}`);
   }
   if (report.uncovered.length) console.log(`UNCOVERED: ${report.uncovered.join(', ')}`);
   if (report.stale.length) console.log(`STALE: ${report.stale.join(', ')}`);
+  if (report.resurrected.length) console.log(`RESURRECTED (удалённое вернулось): ${report.resurrected.join(', ')}`);
 }
 
 function main(argv) {
@@ -936,8 +943,8 @@ function main(argv) {
   } else {
     printTable(report);
   }
-  if (argv.includes('--check') && (report.uncovered.length || report.stale.length || report.staleIgnored.length)) {
-    console.error(`[PM233-LEDGER] check failed uncovered=${report.uncovered.length} stale=${report.stale.length} staleIgnored=${report.staleIgnored.length}`);
+  if (argv.includes('--check') && (report.uncovered.length || report.stale.length || report.staleIgnored.length || report.resurrected.length)) {
+    console.error(`[PM233-LEDGER] check failed uncovered=${report.uncovered.length} stale=${report.stale.length} staleIgnored=${report.staleIgnored.length} resurrected=${report.resurrected.length}`);
     return 1;
   }
   return 0;

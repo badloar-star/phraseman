@@ -23,9 +23,9 @@
  * дневной лимит 10 реплик остаётся всегда, поэтому вскрытый каталог не даёт
  * бесконечного расхода OpenAI.
  *
- * Идемпотентность — тот же паттерн, что у докупки реплик
- * (app/ai_dialog_extra_replies_client.ts): operationId стабилен и выводится из
- * scenarioId, поэтому повторный тап и ретрай сети не спишут руны дважды.
+ * Идемпотентность: operationId стабилен и выводится из scenarioId, поэтому
+ * повторный тап и ретрай сети не спишут руны дважды (тот же паттерн был у
+ * удалённой по D139 докупки реплик).
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getApp } from '@react-native-firebase/app';

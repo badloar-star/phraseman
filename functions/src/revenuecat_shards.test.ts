@@ -17,9 +17,7 @@ const {
   revenueCatLifecycleReasonFields,
   handlePremiumSubscriptionEvent,
   qualifyReferralFromVerifiedPremiumOutcome,
-  voiceMinutePackFromProduct,
-  sandboxVoiceMinuteOwnerAllowed,
-  handleVoiceMinutePackEvent,
+  retiredProductFamily,
 } = __revenueCatWebhookTestHooks;
 
 describe('paid access achievement facts', () => {
@@ -139,16 +137,23 @@ describe('RevenueCat webhook premium matching', () => {
     }
   });
 
-  it('recognizes only the exact one-time voice-minute products', () => {
-    expect(voiceMinutePackFromProduct('phraseman_voice_minutes_30')).toEqual({ seconds: 1_800 });
-    expect(voiceMinutePackFromProduct('phraseman_voice_minutes_120')).toEqual({ seconds: 7_200 });
-    expect(voiceMinutePackFromProduct('phraseman_voice_minutes_300')).toEqual({ seconds: 18_000 });
+  // зачем: D136 — минуты MAX больше не продаются; товар распознаётся только как снятый.
+  it('classifies MAX voice-minute products as retired and never as premium', () => {
+    for (const productId of [
+      'phraseman_voice_minutes_30',
+      'phraseman_voice_minutes_120',
+      'phraseman_voice_minutes_300',
+    ]) {
+      expect(retiredProductFamily(productId)).toBe('max_voice_minutes');
+      expect(looksLikePremiumSubscription({ product_id: productId, entitlement_ids: ['premium', 'max'] }))
+        .toBe(false);
+    }
     for (const productId of [
       'phraseman_voice_minutes_60',
       'phraseman_voice_minutes_120:base',
       'phraseman_voice_minutes_300_fake',
     ]) {
-      expect(voiceMinutePackFromProduct(productId)).toBeNull();
+      expect(retiredProductFamily(productId)).toBeNull();
       expect(looksLikePremiumSubscription({ product_id: productId, entitlement_ids: ['premium', 'max'] }))
         .toBe(false);
     }
@@ -470,239 +475,6 @@ describe('RevenueCat premium lineage transaction contract', () => {
   });
 });
 
-describe('RevenueCat paid voice-minute journal', () => {
-  type Store = Record<string, Record<string, any>>;
-
-  function setupVoiceMinuteWebhook() {
-    const admin = require('firebase-admin');
-    if (!admin.apps.length) admin.initializeApp({ projectId: 'demo-test' });
-    const store: Store = {
-      users: { 'stable-voice': { progress: { premium_plan: 'yearly', shards: '777' } } },
-      auth_links: {},
-      account_identity_owner_map: {},
-      account_deletion_tombstones: {},
-      account_deletion_auth_markers: {},
-      account_deletion_permanent_denials: {},
-      voice_minute_events: {},
-      voice_minute_wallets: {},
-      voice_minute_denials: {},
-    };
-    const ref = (collection: string, id: string) => ({
-      collection,
-      id,
-      path: `${collection}/${id}`,
-      get: async () => ({
-        exists: store[collection]?.[id] !== undefined,
-        data: () => store[collection]?.[id],
-      }),
-      set: async (data: any, options?: { merge?: boolean }) => {
-        store[collection] = store[collection] ?? {};
-        store[collection][id] = options?.merge
-          ? { ...(store[collection][id] ?? {}), ...data }
-          : { ...data };
-      },
-    });
-    const db: any = {
-      collection: (collection: string) => ({ doc: (id: string) => ref(collection, id) }),
-      runTransaction: async (work: (tx: any) => Promise<unknown>) => work({
-        get: (documentRef: any) => documentRef.get(),
-        set: (documentRef: any, data: any, options?: { merge?: boolean }) => documentRef.set(data, options),
-      }),
-    };
-    const fsMock: any = jest.spyOn(admin, 'firestore').mockReturnValue(db);
-    fsMock.FieldValue = { serverTimestamp: () => 'server-ts' };
-    (admin.firestore as any).FieldValue = fsMock.FieldValue;
-    const res: any = { statusCode: 0, body: null };
-    res.status = (code: number) => { res.statusCode = code; return res; };
-    res.json = (body: any) => { res.body = body; return res; };
-    res.send = (body: any) => { res.body = body; return res; };
-    return { admin, store, res };
-  }
-
-  const PURCHASE = {
-    id: 'rc-voice-purchase-1',
-    type: 'NON_RENEWING_PURCHASE',
-    environment: 'PRODUCTION',
-    store: 'APP_STORE',
-    transaction_id: 'store-voice-tx-1',
-    original_transaction_id: 'store-voice-tx-1',
-    product_id: 'phraseman_voice_minutes_120',
-    event_timestamp_ms: 1_800_000_000_000,
-    purchased_at_ms: 1_800_000_000_000,
-    app_user_id: 'stable-voice',
-  } as any;
-
-  it('writes exactly one immutable grant and wallet projection without touching Premium or shards', async () => {
-    const { admin, store, res } = setupVoiceMinuteWebhook();
-    try {
-      await handleVoiceMinutePackEvent(
-        PURCHASE, 'NON_RENEWING_PURCHASE', PURCHASE.product_id, { seconds: 7_200 }, res,
-      );
-      expect(res.statusCode).toBe(200);
-      expect(res.body).toMatchObject({ ok: true, kind: 'voice_minutes', applied: true, availableSeconds: 7_200 });
-      expect(Object.values(store.voice_minute_events)).toHaveLength(1);
-      expect(Object.values(store.voice_minute_events)[0]).toMatchObject({
-        kind: 'purchase_grant', ownerStableId: 'stable-voice', seconds: 7_200,
-      });
-      expect(store.voice_minute_wallets['stable-voice']).toMatchObject({
-        grantedSeconds: 7_200, refundedSeconds: 0, chargedSeconds: 0,
-        reservedSeconds: 0, availableSeconds: 7_200,
-      });
-      expect(store.users['stable-voice'].progress).toEqual({ premium_plan: 'yearly', shards: '777' });
-    } finally {
-      (admin.firestore as jest.Mock).mockRestore();
-    }
-  });
-
-  it('replays the same purchase receipt without a second grant', async () => {
-    const { admin, store, res } = setupVoiceMinuteWebhook();
-    try {
-      await handleVoiceMinutePackEvent(
-        PURCHASE, 'NON_RENEWING_PURCHASE', PURCHASE.product_id, { seconds: 7_200 }, res,
-      );
-      await handleVoiceMinutePackEvent(
-        PURCHASE, 'NON_RENEWING_PURCHASE', PURCHASE.product_id, { seconds: 7_200 }, res,
-      );
-      expect(Object.values(store.voice_minute_events)).toHaveLength(1);
-      expect(store.voice_minute_wallets['stable-voice'].grantedSeconds).toBe(7_200);
-      expect(res.body).toMatchObject({ applied: false, reason: 'duplicate', availableSeconds: 7_200 });
-    } finally {
-      (admin.firestore as jest.Mock).mockRestore();
-    }
-  });
-
-  it('matches sandbox owners only against the exact server allowlist', () => {
-    expect(sandboxVoiceMinuteOwnerAllowed('stable-voice', ' stable-other,stable-voice\nthird ')).toBe(true);
-    expect(sandboxVoiceMinuteOwnerAllowed('stable-voice', 'stable-voice-copy')).toBe(false);
-    expect(sandboxVoiceMinuteOwnerAllowed('stable-voice', '')).toBe(false);
-  });
-
-  it('authenticates the webhook before the narrow SANDBOX minute exception is evaluated', () => {
-    const source = fs.readFileSync(path.join(__dirname, 'revenuecat_shards.ts'), 'utf8');
-    const webhook = source.slice(source.indexOf('export const revenueCatShardsWebhook'));
-    const authGuard = webhook.indexOf("if (!expectedAuth || !authMatches(req.headers.authorization, expectedAuth))");
-    const productLookup = webhook.indexOf('const voiceMinutePack = voiceMinutePackFromProduct(productId);');
-    const sandboxGate = webhook.indexOf('if (isSandboxEvent(event) && !voiceMinutePack)');
-    const minuteDispatch = webhook.indexOf('if (voiceMinutePack)');
-
-    expect(authGuard).toBeGreaterThan(-1);
-    expect(authGuard).toBeLessThan(productLookup);
-    expect(productLookup).toBeLessThan(sandboxGate);
-    expect(sandboxGate).toBeLessThan(minuteDispatch);
-    expect(webhook).toContain("res.status(401).send('Unauthorized')");
-  });
-
-  it('credits an allowlisted verified SANDBOX minute purchase exactly once without touching Premium or shards', async () => {
-    const { admin, store, res } = setupVoiceMinuteWebhook();
-    try {
-      const sandboxPurchase = {
-        ...PURCHASE,
-        id: 'rc-voice-sandbox-1',
-        environment: 'SANDBOX',
-        transaction_id: 'sandbox-store-voice-tx-1',
-        original_transaction_id: 'sandbox-store-voice-tx-1',
-      } as any;
-      await handleVoiceMinutePackEvent(
-        sandboxPurchase, 'NON_RENEWING_PURCHASE', sandboxPurchase.product_id, { seconds: 7_200 }, res, 'stable-voice',
-      );
-      await handleVoiceMinutePackEvent(
-        sandboxPurchase, 'NON_RENEWING_PURCHASE', sandboxPurchase.product_id, { seconds: 7_200 }, res, 'stable-voice',
-      );
-
-      expect(res.body).toMatchObject({
-        ok: true,
-        kind: 'voice_minutes',
-        applied: false,
-        reason: 'duplicate',
-        availableSeconds: 7_200,
-      });
-      expect(Object.values(store.voice_minute_events)).toHaveLength(1);
-      expect(Object.values(store.voice_minute_events)[0]).toMatchObject({
-        kind: 'purchase_grant',
-        environment: 'SANDBOX',
-        ownerStableId: 'stable-voice',
-        seconds: 7_200,
-      });
-      expect(store.voice_minute_wallets['stable-voice']).toMatchObject({
-        grantedSeconds: 7_200,
-        availableSeconds: 7_200,
-      });
-      expect(store.users['stable-voice'].progress).toEqual({ premium_plan: 'yearly', shards: '777' });
-    } finally {
-      (admin.firestore as jest.Mock).mockRestore();
-    }
-  });
-
-  it('keeps a verified SANDBOX minute purchase denied when its resolved owner is not allowlisted', async () => {
-    const { admin, store, res } = setupVoiceMinuteWebhook();
-    try {
-      const sandboxPurchase = {
-        ...PURCHASE,
-        id: 'rc-voice-sandbox-denied-1',
-        environment: 'SANDBOX',
-        transaction_id: 'sandbox-store-voice-denied-1',
-        original_transaction_id: 'sandbox-store-voice-denied-1',
-      } as any;
-      await handleVoiceMinutePackEvent(
-        sandboxPurchase, 'NON_RENEWING_PURCHASE', sandboxPurchase.product_id, { seconds: 7_200 }, res, '',
-      );
-      expect(res.body).toMatchObject({
-        ok: true,
-        kind: 'voice_minutes',
-        applied: false,
-        ignored: 'voice_minutes_sandbox_owner_not_allowlisted',
-      });
-      expect(Object.values(store.voice_minute_events)).toHaveLength(0);
-      expect(Object.values(store.voice_minute_wallets)).toHaveLength(0);
-      expect(store.users['stable-voice'].progress).toEqual({ premium_plan: 'yearly', shards: '777' });
-    } finally {
-      (admin.firestore as jest.Mock).mockRestore();
-    }
-  });
-
-  it('rejects an unknown RevenueCat environment without changing the wallet', async () => {
-    const { admin, store, res } = setupVoiceMinuteWebhook();
-    try {
-      await handleVoiceMinutePackEvent(
-        { ...PURCHASE, environment: 'UNKNOWN' },
-        'NON_RENEWING_PURCHASE', PURCHASE.product_id, { seconds: 7_200 }, res,
-      );
-      expect(res.body).toMatchObject({ ok: true, ignored: 'voice_minutes_unknown_environment' });
-      expect(Object.values(store.voice_minute_events)).toHaveLength(0);
-      expect(Object.values(store.voice_minute_wallets)).toHaveLength(0);
-    } finally {
-      (admin.firestore as jest.Mock).mockRestore();
-    }
-  });
-
-  it('appends one refund reversal bound to the original purchase and preserves completed accounting', async () => {
-    const { admin, store, res } = setupVoiceMinuteWebhook();
-    try {
-      await handleVoiceMinutePackEvent(
-        PURCHASE, 'NON_RENEWING_PURCHASE', PURCHASE.product_id, { seconds: 7_200 }, res,
-      );
-      const refund = {
-        ...PURCHASE,
-        id: 'rc-voice-refund-1',
-        type: 'REFUND',
-        event_timestamp_ms: 1_800_000_100_000,
-      } as any;
-      await handleVoiceMinutePackEvent(refund, 'REFUND', refund.product_id, { seconds: 7_200 }, res);
-      await handleVoiceMinutePackEvent(refund, 'REFUND', refund.product_id, { seconds: 7_200 }, res);
-
-      expect(Object.values(store.voice_minute_events)).toHaveLength(2);
-      expect(Object.values(store.voice_minute_events).find((event: any) => event.kind === 'purchase_refund'))
-        .toMatchObject({ ownerStableId: 'stable-voice', seconds: 7_200 });
-      expect(store.voice_minute_wallets['stable-voice']).toMatchObject({
-        grantedSeconds: 7_200, refundedSeconds: 7_200, availableSeconds: 0,
-      });
-      expect(store.users['stable-voice'].progress).toEqual({ premium_plan: 'yearly', shards: '777' });
-    } finally {
-      (admin.firestore as jest.Mock).mockRestore();
-    }
-  });
-});
-
 // ── TRANSFER: anonymous → stable_id (scenario #13) ────────────────────────────
 describe('RevenueCat webhook TRANSFER (anonymous → stable id)', () => {
   it('prefers stable recipients and lists donors', () => {
@@ -873,10 +645,10 @@ describe('RevenueCat webhook TRANSFER (anonymous → stable id)', () => {
   });
 });
 
-// зачем: D103 (владелец, 2026-09-30) — пакеты жемчуга за реальные деньги больше
-// не начисляются и возвраты по ним не списываются. Покупка снятого товара обязана
-// оставить алерт владельцу (деньги списаны), а не пройти молча.
-describe('D103: retired pearl packs are never credited', () => {
+// зачем: D103/D139 (жемчуг) и D136 (MAX) — владелец 2026-10-01: код приёма денег
+// за эти товары удалён. Покупка снятого товара обязана оставить алерт владельцу
+// (деньги списаны), а не пройти молча; начисления и списания нет ни в одной ветке.
+describe('D103/D136/D139: retired products are never credited', () => {
   function setup() {
     const admin = require('firebase-admin');
     if (!admin.apps.length) admin.initializeApp({ projectId: 'demo-test' });
@@ -890,7 +662,7 @@ describe('D103: retired pearl packs are never credited', () => {
           get: async () => ({ exists: false, data: () => undefined }),
         }),
       }),
-      runTransaction: async () => { throw new Error('no transaction expected for retired pearl packs'); },
+      runTransaction: async () => { throw new Error('no transaction expected for retired products'); },
     };
     const fsMock: any = jest.spyOn(admin, 'firestore').mockReturnValue(db);
     fsMock.FieldValue = admin.firestore.FieldValue ?? { serverTimestamp: () => 'ts' };
@@ -902,7 +674,7 @@ describe('D103: retired pearl packs are never credited', () => {
   }
 
   const EVENT = {
-    id: 'evt-shards-retired',
+    id: 'evt-retired',
     type: 'NON_RENEWING_PURCHASE',
     app_id: 'app.phraseman',
     environment: 'PRODUCTION',
@@ -915,26 +687,43 @@ describe('D103: retired pearl packs are never credited', () => {
     app_user_id: 'stable-user',
   } as any;
 
-  it('answers 200 ignored and writes no economy event for a purchase, but raises an owner alert', async () => {
+  it('classifies every retired family and leaves Plus untouched', () => {
+    expect(retiredProductFamily('phraseman_shards_30')).toBe('pearl_pack');
+    expect(retiredProductFamily('phraseman_shards_420')).toBe('pearl_pack');
+    expect(retiredProductFamily('phraseman_voice_minutes_120')).toBe('max_voice_minutes');
+    expect(retiredProductFamily('phraseman_max_monthly_v1')).toBe('max_subscription');
+    expect(retiredProductFamily('phraseman_max_monthly_v1:monthly-base')).toBe('max_subscription');
+    expect(retiredProductFamily('phraseman_premium_yearly')).toBeNull();
+    expect(retiredProductFamily('phraseman_premium_lifetime_v1')).toBeNull();
+    expect(retiredProductFamily('')).toBeNull();
+  });
+
+  it.each([
+    ['phraseman_shards_80', 'NON_RENEWING_PURCHASE'],
+    ['phraseman_voice_minutes_120', 'NON_RENEWING_PURCHASE'],
+    ['phraseman_max_monthly_v1', 'RENEWAL'],
+  ])('answers 200 ignored for %s %s, writes no economy event, but raises an owner alert', async (productId, eventType) => {
     const { admin, writes, res } = setup();
     try {
-      await __revenueCatWebhookTestHooks.handleRetiredShardProductEvent(
-        EVENT, 'NON_RENEWING_PURCHASE', 'phraseman_shards_80', res,
+      await __revenueCatWebhookTestHooks.handleRetiredProductEvent(
+        { ...EVENT, product_id: productId, type: eventType }, eventType, productId,
+        retiredProductFamily(productId) as any, res,
       );
       expect(res.statusCode).toBe(200);
-      expect(res.body).toMatchObject({ ok: true, ignored: 'shards_retired_d103' });
+      expect(res.body).toMatchObject({ ok: true, ignored: 'retired_product' });
       expect(writes.some((w) => w.collection === 'external_economy_events')).toBe(false);
+      expect(writes.some((w) => w.collection.startsWith('voice_minute'))).toBe(false);
       expect(writes.some((w) => w.collection === 'app_errors')).toBe(true);
     } finally {
       (admin.firestore as jest.Mock).mockRestore();
     }
   });
 
-  it.each(['REFUND', 'REFUND_REVERSED'])('ignores %s without any write', async (eventType) => {
+  it.each(['REFUND', 'REFUND_REVERSED', 'CANCELLATION', 'EXPIRATION'])('ignores %s without any write', async (eventType) => {
     const { admin, writes, res } = setup();
     try {
-      await __revenueCatWebhookTestHooks.handleRetiredShardProductEvent(
-        { ...EVENT, type: eventType }, eventType, 'phraseman_shards_80', res,
+      await __revenueCatWebhookTestHooks.handleRetiredProductEvent(
+        { ...EVENT, type: eventType }, eventType, 'phraseman_shards_80', 'pearl_pack', res,
       );
       expect(res.statusCode).toBe(200);
       expect(writes).toEqual([]);
@@ -943,10 +732,34 @@ describe('D103: retired pearl packs are never credited', () => {
     }
   });
 
-  it('keeps no pearl crediting code in the webhook', () => {
+  it('does not alert for a SANDBOX purchase of a retired product', async () => {
+    const { admin, writes, res } = setup();
+    try {
+      await __revenueCatWebhookTestHooks.handleRetiredProductEvent(
+        { ...EVENT, environment: 'SANDBOX', product_id: 'phraseman_voice_minutes_30' },
+        'NON_RENEWING_PURCHASE', 'phraseman_voice_minutes_30', 'max_voice_minutes', res,
+      );
+      expect(res.body).toMatchObject({ ok: true, ignored: 'retired_product' });
+      expect(writes).toEqual([]);
+    } finally {
+      (admin.firestore as jest.Mock).mockRestore();
+    }
+  });
+
+  it('keeps no pearl or voice-minute crediting code in the webhook and routes retired products first', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'src', 'revenuecat_shards.ts'), 'utf8');
     expect(source).not.toContain('appendExternalEconomyEvent');
     expect(source).not.toContain('async function handleShardPurchaseEvent');
     expect(source).not.toContain("collection('shard_log')");
+    expect(source).not.toContain("from './voice_minutes'");
+    expect(source).not.toContain('handleVoiceMinutePackEvent');
+    expect(source).not.toContain('VOICE_MINUTE_SANDBOX_STABLE_UIDS');
+    const webhook = source.slice(source.indexOf('export const revenueCatShardsWebhook'));
+    const auth = webhook.indexOf('authMatches(req.headers.authorization, expectedAuth)');
+    const retired = webhook.indexOf('const retiredFamily = retiredProductFamily(productId);');
+    const sandbox = webhook.indexOf('if (isSandboxEvent(event))');
+    expect(auth).toBeGreaterThan(-1);
+    expect(retired).toBeGreaterThan(auth);
+    expect(sandbox).toBeGreaterThan(retired);
   });
 });

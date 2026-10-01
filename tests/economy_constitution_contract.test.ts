@@ -142,8 +142,11 @@ describe('Economy Constitution — client authority is a permanent source contra
     expect(shop).not.toContain("source: 'revenuecat_sdk_purchase'");
     const webhook = read('functions/src/revenuecat_shards.ts');
     expect(webhook).not.toContain('appendExternalEconomyEvent');
-    expect(webhook).toContain('handleRetiredShardProductEvent');
-    expect(webhook).toContain("ignored: 'shards_retired_d103'");
+    // зачем: D139/D136 (2026-10-01) — снятые товары (жемчуг, минуты/подписка MAX)
+    // идут в один лог-отказ `[REVENUECAT] retired_product`.
+    expect(webhook).toContain('handleRetiredProductEvent');
+    expect(webhook).toContain("['phraseman_shards_80', 'pearl_pack']");
+    expect(webhook).toContain("ignored: 'retired_product'");
   });
 
   test('cloud restore cannot overwrite a migrated client ledger balance', () => {

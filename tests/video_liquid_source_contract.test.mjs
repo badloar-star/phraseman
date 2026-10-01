@@ -12,7 +12,8 @@ test('channel tabs are live on the same catalog', () => {
   assert.ok(tabs.includes("'home' | 'playlists'"), 'two-tab state type');
   assert.ok(tabs.includes("['home', 'playlists']"), 'two visible tab buttons');
   assert.ok(!screen.includes("tab === 'all'"), 'no All Videos branch');
-  assert.ok(/videosList\([^)]*allVideos/.test(screen), 'Home renders real catalog data');
+  // зачем (FINAL_PHASE п.4): ролики Главной вкладки — виртуальный список по реальному каталогу.
+  assert.ok(screen.includes('savedOnly ? savedVideos : allVideos.filter') && screen.includes('data={homeListVideos}'), 'Home renders real catalog data');
   assert.ok(card.includes('compact?: boolean'), 'card supports approved compact All Videos row');
   assert.ok(card.includes('width: 150'), 'compact row retains 150px thumbnail width');
 });

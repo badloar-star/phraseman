@@ -15,7 +15,8 @@ const packs = read('app/flashcards_video_packs.tsx');
 const views = read('components/video/formatViewCount.ts');
 
 test('video.html: packs row lives inside the Home tab after the premiere, before "New videos"', () => {
-  const home = screen.slice(screen.indexOf('testID="lingman-videos-list" showsVerticalScrollIndicator'));
+  // зачем (FINAL_PHASE п.4): Главная вкладка — FlashList, премьера и плашки в ListHeaderComponent.
+  const home = screen.slice(screen.indexOf('ref={homeListRef}'));
   assert.ok(home.indexOf('packsRow}') > home.indexOf('<YoutubePremiereHero'), 'packs row after the premiere hero');
   assert.ok(home.indexOf('{packsRow}') < home.indexOf('{copy.recent}'), 'packs row before the section title');
   assert.ok(screen.includes('testID="video-tab-packs-row"'), 'packs row keeps its testID and action');

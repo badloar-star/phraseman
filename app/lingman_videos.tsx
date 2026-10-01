@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 import { useGlassAlert } from '../hooks/use-glass-alert'; // зачем: стеклянное окно вместо нативного Alert (overlays-runtime «video reminder»)
-import { FlashList } from '@shopify/flash-list';
+import { FlashList, type FlashListRef } from '@shopify/flash-list';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -132,10 +132,10 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const [expandedPhraseVideoId, setExpandedPhraseVideoId] = useState<string | null>(null);
   // зачем (Ядро 01.10): вход из «Из видео» с videoId — ролик сразу открывается и экран
   // прокручивается к нему (раньше только подсвечивался). Один раз на videoId.
-  const homeScrollRef = useRef<ScrollView | null>(null);
-  const cardYRef = useRef<Map<string, number>>(new Map());
+  // зачем (FINAL_PHASE п.4, 61 ролик): список роликов виртуализирован — прокрутка к ролику
+  // идёт по индексу в данных списка, а не по замеренному y карточки.
+  const homeListRef = useRef<FlashListRef<YoutubeVideoSnapshot> | null>(null);
   const deepLinkHandledRef = useRef<string | null>(null);
-  const deepLinkScrollPendingRef = useRef<string | null>(null);
   // зачем: «Напомнить» меняется на «Напоминание установлено» мгновенно (оптимистично), система догоняет.
   const [remindedIds, setRemindedIds] = useState<readonly string[]>([]);
 
@@ -342,9 +342,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     console.log('[VIDEO-TAB] deeplink: открываю ролик', JSON.stringify({ target }));
     setTab('home');
     setActiveVideoId(target);
-    const knownY = cardYRef.current.get(target);
-    deepLinkScrollPendingRef.current = target;
-    if (knownY !== undefined) scrollToDeepLinked(target, knownY);
+    // Список монтируется на следующем кадре после смены вкладки — прокрутка после него.
+    requestAnimationFrame(() => scrollToDeepLinked(target));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allVideos, deepLinkedVideoId]);
   const changeTab = useCallback((nextTab: YoutubeChannelTab) => {
@@ -380,6 +379,10 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       : catalog.channel
     : legacyChannelSnapshot();
   const hero = catalog?.activeEvent && (catalog.activeEvent.state === 'upcoming' || catalog.activeEvent.state === 'live') ? catalog.activeEvent : null;
+  // Данные виртуального списка «Главной» вкладки: сохранённые или все ролики без премьеры (она в шапке).
+  const homeListVideos = useMemo(() => (savedOnly ? savedVideos : allVideos.filter((video) => video.id !== hero?.id)), [allVideos, hero?.id, savedOnly, savedVideos]);
+  // Всё, от чего зависит вид карточки, — иначе FlashList не перерисует видимые строки.
+  const homeListExtra = useMemo(() => ({ activeVideoId, expandedPhraseVideoId, saved: favorites.savedIds, remindedIds, screenRuntimeActive }), [activeVideoId, expandedPhraseVideoId, favorites.savedIds, remindedIds, screenRuntimeActive]);
   const pickerManifest = catalog?.manifest ?? {
     schemaVersion: 1 as const,
     activeVersion: 'fallback',
@@ -439,19 +442,19 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       /></> : undefined}
     />
   );
-  const scrollToDeepLinked = (videoId: string, y: number) => {
-    if (deepLinkScrollPendingRef.current !== videoId) return;
-    deepLinkScrollPendingRef.current = null;
-    console.log('[VIDEO-TAB] deeplink: прокрутка к ролику', JSON.stringify({ videoId, y }));
-    homeScrollRef.current?.scrollTo({ y: Math.max(0, y - 12), animated: true });
+  const scrollToDeepLinked = (videoId: string) => {
+    const index = homeListVideos.findIndex((video) => video.id === videoId);
+    console.log('[VIDEO-TAB] deeplink: прокрутка к ролику', JSON.stringify({ videoId, index, hasList: !!homeListRef.current }));
+    if (index < 0) {
+      // Ролик — премьера в шапке списка: она и так сверху.
+      homeListRef.current?.scrollToOffset({ offset: 0, animated: true });
+      return;
+    }
+    homeListRef.current?.scrollToIndex({ index, animated: true, viewOffset: 12 });
   };
-  const videosList = (videos: YoutubeVideoSnapshot[], compact = false) => videos.map((video) => (
-    <View key={video.id} onLayout={(event) => {
-      const y = event.nativeEvent.layout.y;
-      cardYRef.current.set(video.id, y);
-      scrollToDeepLinked(video.id, y);
-    }}>{renderVideoCard(video, compact)}</View>
-  ));
+  const renderHomeVideo = useCallback(({ item }: { item: YoutubeVideoSnapshot }) => renderVideoCard(item),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [activeVideoId, expandedPhraseVideoId, favorites.savedIds, saveCountOf, remindedIds, screenRuntimeActive, lang]);
 
   const skeletonHeight = Math.round((windowWidth - V2.screenPad * 2) * 9 / 16);
   // зачем: плашка «Наборы из видео» стоит в макете внутри вкладки «Главная» — после премьеры,
@@ -535,7 +538,18 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
               <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={16} />
             </View></ScrollView>
         ) : (
-          <ScrollView ref={homeScrollRef} decelerationRate="fast" testID="lingman-videos-list" showsVerticalScrollIndicator={false} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={[styles.list, inTab ? { paddingBottom: tabContentBottomPad } : null]}>
+          <FlashList
+            ref={homeListRef}
+            decelerationRate="fast"
+            testID="lingman-videos-list"
+            data={homeListVideos}
+            keyExtractor={(item) => item.id}
+            renderItem={renderHomeVideo}
+            extraData={homeListExtra}
+            showsVerticalScrollIndicator={false}
+            refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />}
+            contentContainerStyle={inTab ? { ...styles.list, paddingBottom: tabContentBottomPad } : styles.list}
+            ListHeaderComponent={<>
             {hero && !savedOnly ? hero.id === activeVideoId ? (
               <View style={styles.heroPlayer}>
                 <YoutubeInlinePlayer
@@ -558,9 +572,9 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
             {savedOnly ? null : packsRow}
             {savedRow}
             {savedOnly ? null : <Text style={[styles.sectionTitle, { color: g.text }]}>{copy.recent}</Text>}
-            {videosList(savedOnly ? savedVideos : allVideos.filter((video) => video.id !== hero?.id))}
-            {!hero && !allVideos.length && <View testID="lingman-videos-empty" />}
-          </ScrollView>
+            </>}
+            ListEmptyComponent={!hero ? <View testID="lingman-videos-empty" /> : null}
+          />
         )}
 
         <YoutubeChannelPickerSheet visible={pickerVisible} manifest={pickerManifest} preference={preference} onSelect={(value) => void selectPreference(value)} onClose={() => setPickerVisible(false)} motionVariant="hybrid" />

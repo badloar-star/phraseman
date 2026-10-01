@@ -63,6 +63,9 @@ import {
   type FriendRequestEntry,
 } from '../firestore_friend_requests';
 import { blockUser, refreshBlockedList } from '../friend_block';
+// зачем (Ядро 01.10): кнопку «Заблокировать» включать только после выкладки friendBlockUser/friendUnblockUser —
+// без функций каждое нажатие кончалось бы откатом и ошибкой. Включить: true (после подтверждения координатора).
+const FRIEND_BLOCK_UI_ENABLED = false;
 import { CLOUD_SYNC_ENABLED, ENABLE_DEV_TOOLS, IS_EXPO_GO } from '../config';
 import { getCanonicalUserId } from '../user_id_policy';
 import { ensureAnonUser } from '../cloud_sync';
@@ -2305,7 +2308,7 @@ export default function FriendsTabScreen() {
               setPendingTogetherSheetAction(current => queueFirstFriendSheetAction(current, { kind: 'delete', profile: friendProfile }));
               requestDismiss();
             }}
-            onBlock={devBot ? null : (requestDismiss) => {
+            onBlock={devBot || !FRIEND_BLOCK_UI_ENABLED ? null : (requestDismiss) => {
               setPendingTogetherSheetAction(current => queueFirstFriendSheetAction(current, { kind: 'block', profile: friendProfile }));
               requestDismiss();
             }}

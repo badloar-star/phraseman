@@ -294,3 +294,5 @@ Governance-ID: TG-9A2AA679981A
 Governance-ID: TG-BE747503D86D
 Governance-ID: TG-CB9BF2E434CD
 — 01.10 «Дизайн»: кнопка «Заблокировать» у друга/в карточке профиля (Q41/Q48/Q49).
+Governance-ID: TG-B8FDED5F5661
+— 01.10 «Дизайн»: кнопка «Заблокировать» за выключателем до выкладки friendBlockUser/friendUnblockUser.

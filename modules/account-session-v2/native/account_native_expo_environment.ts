@@ -20,8 +20,13 @@ import {
  * Каталог: `<defaultDatabaseDirectory>/accounts-v2` = files/SQLite/accounts-v2
  * (уже исключён из бэкапа манифестом бэкапа Android).
  *
- * Только Android: нативная часть доказана на Android (WAL-кампания 6/6).
- * iOS — null с логом: честно не открываем, пока нет доказательства на iOS.
+ * Android: нативная часть доказана (WAL-кампания 6/6).
+ * iOS (Пакет 6H, OD17): Swift-часть патча (flock-блокировка, аренда, защита
+ * семейства файлов) есть, но ни разу не собиралась и не запускалась на iPhone.
+ * Поэтому iOS открывается ТОЛЬКО в сборке пробы (EAS-профиль
+ * ios-account-v2-proof, EXPO_PUBLIC_ACCOUNT_V2_IOS_PROOF=1); в остальных
+ * сборках — null с логом, как раньше. Снять это ограничение можно только после
+ * квитанции пробы с iPhone владельца.
  * Модуль грузится лениво из accounts_v2_client_runtime.ts и только при
  * включённом клиентском флаге — при выключенном ни один require ниже не идёт.
  */
@@ -46,8 +51,14 @@ type SqliteModule = Readonly<{
   openDatabaseAsync(name: string, options: object, directory: string): Promise<AccountNativeSqliteDatabase>;
 }>;
 
+type NativeProvisionLock = Readonly<{
+  releaseAsync(): Promise<void>;
+  /** Только iOS-часть патча: бэкап-исключение + file protection каталога и семейства (с обратным чтением). */
+  protectAccountDatabaseFamilyAsync?: () => Promise<void>;
+}>;
+
 type NativeSqliteModule = Readonly<{
-  acquireAccountProvisionLockAsync(databasePath: string): Promise<{ releaseAsync(): Promise<void> }>;
+  acquireAccountProvisionLockAsync(databasePath: string): Promise<NativeProvisionLock>;
 }>;
 
 type CryptoModule = Readonly<{
@@ -62,6 +73,14 @@ function platformOs(): string {
   return String((require('react-native') as { Platform: { OS: string } }).Platform.OS);
 }
 
+/**
+ * Сборка пробы iPhone (Пакет 6H). Читается в момент вызова: Babel Expo подставляет
+ * EXPO_PUBLIC_* на этапе сборки, а тесты меняют process.env на лету.
+ */
+export function isAccountV2IosProofBuild(): boolean {
+  return process.env.EXPO_PUBLIC_ACCOUNT_V2_IOS_PROOF === '1';
+}
+
 function accountsDirectory(sqlite: SqliteModule): string {
   const root = sqlite.defaultDatabaseDirectory;
   if (typeof root !== 'string' || root.trim().length === 0) throw new Error('account_native_scope_directory_unknown');
@@ -72,7 +91,7 @@ function fileUri(path: string): string {
   return path.startsWith('file://') ? path : `file://${path}`;
 }
 
-/** null — платформа без доказанного хранилища (iOS/web) или модули недоступны. Никогда не бросает. */
+/** null — платформа без доказанного хранилища (iOS вне сборки пробы, web) или модули недоступны. Никогда не бросает. */
 export function createExpoAccountNativeEnvironment(): AccountNativeEnvironment | null {
   let os: string;
   try {
@@ -81,11 +100,14 @@ export function createExpoAccountNativeEnvironment(): AccountNativeEnvironment |
     console.warn(`${LOG} storage platform_unknown kind=${kindOf(error)}`);
     return null;
   }
-  if (os !== 'android') {
-    // зачем: на iOS нативная аренда и SQLCipher ещё не доказаны на устройстве — не открываем.
+  const iosProof = os === 'ios' && isAccountV2IosProofBuild();
+  if (os !== 'android' && !iosProof) {
+    // зачем: на iOS нативная аренда и SQLCipher ещё не доказаны на устройстве — не открываем
+    // нигде, кроме сборки пробы iPhone (Пакет 6H).
     console.warn(`${LOG} storage platform_unproven os=${os}`);
     return null;
   }
+  if (iosProof) console.log(`${LOG} storage platform_ios_proof_build`);
   let sqlite: SqliteModule;
   let nativeSqlite: NativeSqliteModule;
   let secureStore: SecureStoreModule;
@@ -133,7 +155,24 @@ export function createExpoAccountNativeEnvironment(): AccountNativeEnvironment |
     randomKeyBytes: () => crypto.getRandomBytesAsync(32),
     acquireProvisionLock: async (databaseName: string): Promise<AccountNativeProvisionLock> => {
       const lock = await nativeSqlite.acquireAccountProvisionLockAsync(pathOf(databaseName));
-      return Object.freeze({ release: () => lock.releaseAsync() });
+      if (!iosProof) return Object.freeze({ release: () => lock.releaseAsync() });
+      const protect = lock.protectAccountDatabaseFamilyAsync;
+      if (typeof protect !== 'function') {
+        // зачем: на iOS без защиты семейства база ушла бы в iCloud-бэкап — блокировку
+        // отпускаем и отказываем (провиженер уведёт в quarantine_unreadable, не в создание).
+        console.warn(`${LOG} storage ios_family_protection_missing`);
+        try {
+          await lock.releaseAsync();
+        } catch (error) {
+          console.warn(`${LOG} storage ios_family_protection_missing_release_failed kind=${kindOf(error)}`);
+        }
+        throw new Error('account_native_provision_family_protection_unavailable');
+      }
+      return Object.freeze({
+        release: () => lock.releaseAsync(),
+        // зачем: вызывать как метод нативного объекта (SharedObject), а не оторванной функцией.
+        protectFamily: () => protect.call(lock),
+      });
     },
     fileExists: async (name: string) => new fileSystem.File(fileUri(pathOf(name))).exists,
     deleteFile: async (name: string) => { new fileSystem.File(fileUri(pathOf(name))).delete(); },

@@ -138,6 +138,22 @@ function nonEmptyStringField(row: unknown, field: string): boolean {
   return typeof value === 'string' && value.trim().length > 0;
 }
 
+/**
+ * Защита семейства файлов под удерживаемой блокировкой (только iOS-блокировка несёт protectFamily).
+ * Android: поля нет — ничего не делаем, поведение прежнее.
+ */
+async function protectFamilyUnderLease(lease: object, stage: 'before_open' | 'after_proof'): Promise<void> {
+  const protect = (lease as Partial<Lease>).lock?.protectFamily;
+  if (protect === undefined) return;
+  try {
+    await protect();
+  } catch (error) {
+    console.warn(`${LOG} storage family_protection_failed stage=${stage} code=${codeOf(error)}`);
+    throw new AccountNativeScopeAdapterError('account_native_scope_family_protection_failed');
+  }
+  console.log(`${LOG} storage family_protected stage=${stage}`);
+}
+
 function createPorts(
   env: AccountNativeEnvironment,
   manifest: AccountNativeStorageManifest,
@@ -147,7 +163,10 @@ function createPorts(
       throw new AccountNativeScopeAdapterError('account_native_scope_key_policy_mismatch');
     }
   };
-  const open = async (plan: V2StoragePlan, keyHex: string): Promise<Candidate> => {
+  const open = async (lease: object, plan: V2StoragePlan, keyHex: string): Promise<Candidate> => {
+    // зачем (Пакет 6H, iOS): каталог accounts-v2 получает защиту и исключение из бэкапа
+    // ДО создания файлов — новые файлы наследуют класс защиты каталога.
+    await protectFamilyUnderLease(lease, 'before_open');
     const database = await env.openDatabase(artifactSelector(plan, `v2.${plan.identity.kind}.db.main`));
     return keyedCandidate(database, keyHex);
   };
@@ -194,9 +213,9 @@ function createPorts(
       assertPolicy(policy);
       await env.secure.set(selector, keyHex);
     },
-    createNew: (_lease: object, plan: V2StoragePlan, keyHex: string) => open(plan, keyHex),
-    openExisting: (_lease: object, plan: V2StoragePlan, keyHex: string) => open(plan, keyHex),
-    proveKeyedSameConnection: async (_lease: object, candidate: Candidate) => {
+    createNew: (lease: object, plan: V2StoragePlan, keyHex: string) => open(lease, plan, keyHex),
+    openExisting: (lease: object, plan: V2StoragePlan, keyHex: string) => open(lease, plan, keyHex),
+    proveKeyedSameConnection: async (lease: object, candidate: Candidate) => {
       try {
         const cipher = await candidate.handle.getFirstAsync('PRAGMA cipher_version', []);
         if (!nonEmptyStringField(cipher, 'cipher_version')) {
@@ -206,11 +225,19 @@ function createPorts(
         }
         // Чужой ключ даёт «file is not a database» именно здесь.
         await candidate.handle.getFirstAsync('SELECT count(*) AS table_count FROM sqlite_schema', []);
-        return true;
       } catch (error) {
         console.warn(`${LOG} storage proof_failed kind=${kindOf(error)}`);
         return false;
       }
+      try {
+        // зачем (Пакет 6H, iOS): после открытия файлы семейства уже на диске — защищаем
+        // и их (с обратным чтением в Swift). Не вышло — база не открывается вовсе.
+        await protectFamilyUnderLease(lease, 'after_proof');
+      } catch (error) {
+        console.warn(`${LOG} storage proof_failed reason=family_protection code=${codeOf(error)}`);
+        return false;
+      }
+      return true;
     },
     writeActiveLineage: async (_lease: object, selector: string, lineage: number) => {
       await env.secure.set(selector, encodeLineage(lineage, 'active'));

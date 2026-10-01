@@ -26,6 +26,19 @@
         "EXPO_PUBLIC_EXPLAIN_ENABLED": "true"
       }
     },
+    "ios-account-v2-proof": {
+      "distribution": "internal",
+      "environment": "production",
+      "autoIncrement": false,
+      "ios": {
+        "buildConfiguration": "Release"
+      },
+      "env": {
+        "EXPO_PUBLIC_ACCOUNT_V2_IOS_PROOF": "1",
+        "EXPO_PUBLIC_DISABLE_EXPO_UPDATES": "1",
+        "EXPO_PUBLIC_STORE_RELEASE": "0"
+      }
+    },
     "testflight-dev": {
       "environment": "production",
       "channel": "testflight-dev",

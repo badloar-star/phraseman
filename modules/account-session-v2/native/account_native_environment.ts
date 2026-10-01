@@ -14,8 +14,9 @@ import {
  * (account_native_scope_erase.ts) — чистая логика поверх этих портов, поэтому
  * их можно проверить в jest без телефона. Настоящие порты (expo-sqlite с
  * патчем аренды, SecureStore, expo-file-system, expo-crypto) собирает
- * account_native_expo_environment.ts — только на Android и только при
- * включённом клиентском флаге (ленивый require).
+ * account_native_expo_environment.ts — на Android, а на iOS только в сборке
+ * пробы iPhone (Пакет 6H, EXPO_PUBLIC_ACCOUNT_V2_IOS_PROOF=1), и только при
+ * включённом клиентском флаге либо из экрана пробы (ленивый require).
  *
  * Ключ SQLCipher живёт только в SecureStore; в логи не попадают ни ключ, ни
  * uid, ни хэш области — только коды и числа.
@@ -41,8 +42,19 @@ export type AccountNativeSqliteDatabase = Readonly<{
   getAllAsync(source: string, params: readonly (null | number | string)[]): Promise<unknown>;
 }>;
 
-/** Нативная провиженинг-блокировка файла базы (FileChannel.lock из патча). */
-export type AccountNativeProvisionLock = Readonly<{ release(): Promise<void> }>;
+/**
+ * Нативная провиженинг-блокировка файла базы (FileChannel.lock на Android, flock на iOS).
+ *
+ * protectFamily — только iOS (Пакет 6H): Swift-часть патча ставит каталогу
+ * accounts-v2 и каждому существующему файлу семейства исключение из бэкапа
+ * (NSURLIsExcludedFromBackupKey) и защиту completeUntilFirstUserAuthentication,
+ * с обратным чтением. На Android поля нет: каталог уже исключён правилами бэкапа.
+ * Если поле есть — адаптер обязан его вызвать, а провал = отказ открыть.
+ */
+export type AccountNativeProvisionLock = Readonly<{
+  release(): Promise<void>;
+  protectFamily?: () => Promise<void>;
+}>;
 
 export type AccountNativeEnvironment = Readonly<{
   /** Сырой JSON манифеста; адаптер сам проверяет его validateAccountNativeStorageManifest. */

@@ -228,9 +228,23 @@ const emulatorDevLoginBlockList = process.env.EXPO_PUBLIC_FIREBASE_EMULATOR_HOST
   ? []
   : emulatorDevLoginFiles.map((file) => new RegExp(`^${escapePathForRegex(path.join(__dirname, file))}$`));
 
+// зачем (Account V2, Пакет 6H, OD17): экран и модули пробы хранилища на iPhone
+// ФИЗИЧЕСКИ отсутствуют в любой сборке без EXPO_PUBLIC_ACCOUNT_V2_IOS_PROOF=1 —
+// его задаёт только EAS-профиль ios-account-v2-proof. Сторож:
+// tests/account_v2_ios_proof_6h_v2.test.ts.
+const iosAccountProofFiles = [
+  'app/dev-account-v2-ios-proof.tsx',
+  'runtime-probes/ios-account-sqlcipher/probe.ts',
+  'runtime-probes/ios-account-sqlcipher/probe_native.ts',
+];
+const iosAccountProofBlockList = process.env.EXPO_PUBLIC_ACCOUNT_V2_IOS_PROOF === '1'
+  ? []
+  : iosAccountProofFiles.map((file) => new RegExp(`^${escapePathForRegex(path.join(__dirname, file))}$`));
+
 config.resolver.blockList = [
   ...blockList,
   ...emulatorDevLoginBlockList,
+  ...iosAccountProofBlockList,
   adminExceptRuntimeAvatars,
   ...ignoredRootFolders.map(
     (folder) => new RegExp(`^${escapePathForRegex(path.join(__dirname, folder))}[/\\\\].*`),

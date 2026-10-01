@@ -38,3 +38,16 @@ PM-078 — New session [800fa3] (аудит→реализация) — взял
 PM-183 — New session [800fa3] (аудит→реализация) — взял 00:14
 PM-033 — Дизайн [Claude Opus 5.5] (контраст токенов тем, без эмулятора) — взял 00:30
 NOTIF-FIXES (PM-200 находки: opt-out/тихие часы/дедуп пушей + dialogs_progress поколение аккаунта) — New session [800fa3] — взял 02:48 — готово 03:13 3da889f35..4ed9dc1b6
+PM-004 — New session [800fa3] (доказательства review) — взял 03:24
+PM-006 — New session [800fa3] (доказательства review) — взял 03:24
+PM-007 — New session [800fa3] (доказательства review) — взял 03:24
+PM-009 — New session [800fa3] (доказательства review) — взял 03:24
+PM-048 — New session [800fa3] (доказательства review) — взял 03:24
+PM-052 — New session [800fa3] (доказательства review) — взял 03:24
+PM-066 — New session [800fa3] (доказательства review) — взял 03:24
+PM-086 — New session [800fa3] (доказательства review) — взял 03:24
+PM-180 — New session [800fa3] (доказательства review) — взял 03:24
+PM-205 — New session [800fa3] (доказательства review) — взял 03:24
+PM-206 — New session [800fa3] (доказательства review) — взял 03:24
+PM-227 — New session [800fa3] (доказательства review) — взял 03:24
+PM-253 — New session [800fa3] (доказательства review) — взял 03:24

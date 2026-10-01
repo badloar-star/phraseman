@@ -21,6 +21,7 @@ import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useLang } from '../LangContext';
 import { usePremium } from '../PremiumContext';
 import { useStudyTarget } from '../StudyTargetContext';
+import { dialogueV2UiCopy } from '../../app/dialogue_v2_ui_copy';
 import { useV2Palette } from '../v2/useV2Palette';
 import {
   DialogueV2CatalogueSection,
@@ -221,6 +222,12 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
       ? projectAuthorizedDialogueV2Catalogue({ ...input, packets: embedded.packets })
       : null;
   }, [headings, localCoinRank, state, studyTarget]);
+  // зачем (владелец 01.10: «диалоги в русском интерфейсе все на английском»): название сценария —
+  // на языке интерфейса (данные Ядра); нет перевода — как в пакете.
+  const localizedItems = useMemo(() => (projection?.items ?? []).map((item) => {
+    const ui = dialogueV2UiCopy(lang, item.id);
+    return ui?.title ? { ...item, title: ui.title } : item;
+  }), [lang, projection]);
   const plusTools = (
     <>
       {showQuotaRow && freeTier && quotaRemaining !== null ? (
@@ -276,7 +283,7 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
       {plusTools}
       <DialogueV2CatalogueSection
         worlds={projection.worlds}
-        items={projection.items}
+        items={localizedItems}
         labels={copy}
         onPressItem={onPressItem}
       />

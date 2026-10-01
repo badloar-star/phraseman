@@ -85,6 +85,8 @@ describe('Dialogue V2 briefing route', () => {
     expect(mockFetchCatalogue).toHaveBeenCalledWith('de');
     expect(mockBuildModel).toHaveBeenCalledWith({
       packets: envelope.packets, studyTarget: 'de', scenarioId: 'work_01', localCoinRank: 3,
+      // зачем (владелец 01.10): служебный текст сцены — на языке интерфейса.
+      uiLang: 'ru',
     });
     expect(mockScreen).toHaveBeenCalledWith(expect.objectContaining({
       ...unlockedModel,

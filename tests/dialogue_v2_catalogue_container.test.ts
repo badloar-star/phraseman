@@ -23,6 +23,8 @@ jest.mock('react-native', () => ({
   Platform: { OS: 'ios' },
   StyleSheet: { flatten: (style: unknown) => style },
 }));
+// Переводы названий проверяет свой тест модуля; здесь — только проекция каталога.
+jest.mock('../app/dialogue_v2_ui_copy', () => ({ dialogueV2UiCopy: () => null }));
 jest.mock('../app/dialogue_v2_catalogue_client', () => ({
   fetchReleasedDialogueV2Catalogue: (...args: unknown[]) => mockFetchCatalogue(...args),
   peekDialogueV2Catalogue: (...args: unknown[]) => mockPeekCatalogue(...args),

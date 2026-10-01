@@ -175,8 +175,10 @@ function SessionContent() {
       studyTarget,
       scenarioId,
       localCoinRank,
+      // зачем (владелец 01.10): служебный текст сцены — на языке интерфейса.
+      uiLang: lang,
     });
-  }, [localCoinRank, scenarioId, state, studyTarget]);
+  }, [lang, localCoinRank, scenarioId, state, studyTarget]);
 
   // Первая реплика персонажа — сразу в ленте, до любого хода пользователя.
   useEffect(() => {

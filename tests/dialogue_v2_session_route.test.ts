@@ -153,6 +153,8 @@ describe('Dialogue V2 session route', () => {
     expect(mockFetchCatalogue).toHaveBeenCalledWith('de');
     expect(mockBuildModel).toHaveBeenCalledWith({
       packets: envelope.packets, studyTarget: 'de', scenarioId: 'work_01', localCoinRank: 3,
+      // зачем (владелец 01.10): служебный текст сцены — на языке интерфейса.
+      uiLang: 'ru',
     });
     expect(mockStartSession).toHaveBeenCalledWith({ studyTarget: 'de', scenarioId: 'work_01' });
     expect(mockScreen.mock.calls[0][0]).toEqual(expect.objectContaining({

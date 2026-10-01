@@ -1,6 +1,8 @@
 import { getDialogueV2CatalogueEntry } from '../shared/dialogue_v2_catalogue_index';
 import { projectAuthorizedDialogueV2Catalogue } from './dialogue_v2_authorized_catalogue_projection';
 
+import { dialogueV2UiCopy } from './dialogue_v2_ui_copy';
+
 export type DialogueV2BriefingModel = Readonly<{
   title: string;
   cefr: string;
@@ -18,6 +20,8 @@ export type DialogueV2BriefingModelInput = Readonly<{
   studyTarget: unknown;
   scenarioId: unknown;
   localCoinRank: unknown;
+  /** Язык интерфейса: служебный текст (название, описание, задания, имена) — на нём. */
+  uiLang?: unknown;
 }>;
 
 const INTERNAL_WORLD_HEADINGS = Object.freeze([
@@ -63,17 +67,23 @@ export function buildDialogueV2BriefingModel(
   const item = catalogue?.items.find((candidate) => candidate.id === input.scenarioId);
   const packet = item ? packetWithId(input.packets, item.id) : null;
   if (!item || !packet) return null;
+  // зачем (владелец 01.10): служебный текст сцены — на языке интерфейса (данные Ядра,
+  // app/dialogue_v2_ui_copy.ts); перевода нет — показываем пакет как раньше. Реплики не трогаем.
+  const ui = input.uiLang === undefined ? null : dialogueV2UiCopy(input.uiLang, item.id);
   return Object.freeze({
-    title: packet.content.title,
+    title: ui?.title ?? packet.content.title,
     cefr: item.cefr,
-    briefing: packet.content.briefing,
+    briefing: ui?.briefing ?? packet.content.briefing,
     rankRequired: item.rankRequired,
     unlocked: item.status !== 'locked',
-    objectives: Object.freeze(packet.scenario.objectives.map((objective) => Object.freeze({ ...objective }))),
+    objectives: Object.freeze(packet.scenario.objectives.map((objective) => Object.freeze({
+      ...objective,
+      label: ui?.objectiveLabels[objective.id] ?? objective.label,
+    }))),
     participants: Object.freeze(packet.scenario.personas.map((participant) => Object.freeze({
       id: participant.id,
-      displayName: participant.displayName,
-      styleNote: participant.styleNote,
+      displayName: ui?.personas[participant.id]?.displayName ?? participant.displayName,
+      styleNote: ui?.personas[participant.id]?.styleNote ?? participant.styleNote,
     }))),
     opening: openingOf(packet),
   });

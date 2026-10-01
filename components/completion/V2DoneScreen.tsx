@@ -37,6 +37,8 @@ export type V2DoneError = Readonly<{ label: string; was: string; ok: string }>;
 export type V2DoneScreenProps = Readonly<{
   title: string;
   subtitle?: string;
+  /** Плашка «Счёт: 1 250» под заголовком (Блиц). */
+  scoreLabel?: string;
   /** 0–3; null — у режима нет звёзд (комбо, карточки). */
   stars: number | null;
   starsNote?: string;
@@ -145,6 +147,11 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
         <View style={s.titleBox}>
           <Text accessibilityRole="header" style={[s.title, { color: g.text }]}>{props.title}</Text>
           {props.subtitle ? <Text style={[s.sub, { color: g.secondary }]}>{props.subtitle}</Text> : null}
+          {props.scoreLabel ? (
+            <View style={[s.scorePill, { backgroundColor: g.opaqueCard }]}>
+              <Text style={[s.scoreText, { color: g.text }]}>{props.scoreLabel}</Text>
+            </View>
+          ) : null}
         </View>
 
         {stars != null ? (
@@ -251,6 +258,8 @@ const s = StyleSheet.create({
   titleBox: { alignItems: 'center', marginTop: 18 },
   title: { fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.4, textAlign: 'center' },
   sub: { fontSize: 16, lineHeight: 22, marginTop: 6, textAlign: 'center' },
+  scorePill: { marginTop: 12, height: 32, borderRadius: 16, paddingHorizontal: 14, alignItems: 'center', justifyContent: 'center' },
+  scoreText: { fontSize: 15, fontWeight: '700', fontVariant: ['tabular-nums'] },
   stars: { flexDirection: 'row', justifyContent: 'center', gap: 14, marginTop: 22 },
   starsNote: { textAlign: 'center', fontSize: 15, fontWeight: '600', marginTop: 10 },
   // guard-ok: 1px полупрозрачная обводка — по макету 2.0 (исключение владельца 24.09)

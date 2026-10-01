@@ -24,6 +24,7 @@ import PressableHybrid from '../../components/PressableHybrid';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { AnimatedCountUpText } from '../../components/AnimatedCountUpText';
 import FeedbackRatingCard from '../../components/FeedbackRatingCard';
+import V2DoneScreen from '../../components/completion/V2DoneScreen';
 import { triLang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { useScreen } from '../../hooks/use-screen';
@@ -209,245 +210,54 @@ function SessionResultScreenImpl({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [feedback?.entityId]);
 
+  // зачем (владелец 01.10): «старые экраны все заменить на макетные» — итог тренировки карточек
+  // = общий экран завершения 2.0 (practice.html «Единый экран завершения», PM-137).
+  const retryWrongLabel = learnLeft > 0
+    ? triLang(lang, { ru: `Добить: Ещё учу (${learnLeft})`, uk: `Добити: Ще вчу (${learnLeft})`, en: `Finish off: Still learning (${learnLeft})`, es: `Rematar: Aún aprendo (${learnLeft})`, 'pt-BR': `Finalizar: Ainda aprendendo (${learnLeft})`, vi: `Ôn tiếp: Đang học (${learnLeft})`, id: `Tuntaskan: Masih belajar (${learnLeft})`, tr: `Bitir: Hâlâ öğreniyorum (${learnLeft})`, pl: `Dokończ: Wciąż uczę się (${learnLeft})` })
+    : retryLabel;
   return (
-    <ScreenGradient>
-      <View
-        testID={`${testID}-safe-frame`}
-        style={{
-          flex: 1,
-          paddingTop: insets.top,
-          paddingRight: insets.right,
-          paddingBottom: insets.bottom,
-          paddingLeft: insets.left,
-        }}
-      >
-        <ContentWrap>
-          <ScrollView decelerationRate="fast"
-            style={styles.scroll}
-            contentContainerStyle={styles.scrollContent}
-            showsVerticalScrollIndicator={false}
-            automaticallyAdjustKeyboardInsets
-            keyboardShouldPersistTaps="handled"
-          >
-          <View style={styles.container} testID={testID}>
-            <PressableHybrid
-              accessibilityLabel={triLang(lang, {
-                ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar',
-                vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
-              })}
-              testID={`${testID}-close`}
-              variant="icon"
-              withHaptic={false}
-              withSound={false}
-              onPress={() => {
-                fcHaptic('tap');
-                onDone();
-              }}
-              style={styles.closeTarget}
-              contentStyle={[
-                styles.closeVisual,
-                { backgroundColor: glass.opaqueControl, borderColor: glass.glassEdge },
-              ]}
-            >
-              <Ionicons name="close" size={20} color={t.textPrimary} />
-            </PressableHybrid>
-            <View style={styles.centerBlock}>
-              <Text
-                testID={`${testID}-title`}
-                style={[
-                  styles.title,
-                  { color: t.textPrimary, fontSize: 30 * textScale, lineHeight: 36 * textScale },
-                ]}
-              >
-                {triLang(lang, {
-                  ru: 'Тренировка завершена', uk: 'Тренування завершено', en: 'Practice complete', es: 'Práctica terminada',
-                  'pt-BR': 'Prática concluída', vi: 'Đã hoàn thành luyện tập', id: 'Latihan selesai', tr: 'Alıştırma tamamlandı', pl: 'Ćwiczenie ukończone',
-                })}
-              </Text>
-
-              {/* E12 (блиц): итоговый счёт очков */}
-              {scoreText ? (
-                <View
-                  testID={`${testID}-score`}
-                  style={[styles.scorePill, { backgroundColor: `${accent}1A`, borderColor: `${accent}66` }]}
-                >
-                  <Text style={{ color: accent, fontSize: 15 * textScale, lineHeight: 20 * textScale, fontWeight: '700', letterSpacing: 0.4, textAlign: 'center' }}>
-                    {scoreText}
-                  </Text>
-                </View>
-              ) : null}
-
-              {/* Единый счёт для всех активных режимов карточек. */}
-              <View
-                testID={`${testID}-stats`}
-                style={[
-                  styles.statsCard,
-                  stackStats && styles.statsCardStacked,
-                  { backgroundColor: glass.opaqueCard, borderColor: glass.glassEdge },
-                ]}
-              >
-                <ResultSurfaceSheen glass={glass} testID={`${testID}-stats-sheen`} />
-                <>
-                  <View
-                    accessible
-                    accessibilityLabel={`${correct} ${triLang(lang, { ru: 'верно', uk: 'вірно', en: 'correct', es: 'correcto', 'pt-BR': 'correto', vi: 'đúng', id: 'benar', tr: 'doğru', pl: 'poprawnie' })}`}
-                    style={[styles.stat, stackStats && styles.statStacked]}
-                  >
-                    <AnimatedCountUpText
-                      value={correct}
-                      style={{ color: t.correct, fontSize: 30 * textScale, lineHeight: 34 * textScale, fontWeight: '700', textAlign: 'center' }}
-                      accessible={false}
-                      importantForAccessibility="no-hide-descendants"
-                    />
-                    <Text style={{ color: t.textMuted, fontSize: 13 * textScale, lineHeight: 18 * textScale, fontWeight: '700', textAlign: 'center' }}>
-                      {triLang(lang, {
-                        ru: 'верно', uk: 'вірно', en: 'correct', es: 'correcto',
-                        'pt-BR': 'correto', vi: 'đúng', id: 'benar', tr: 'doğru', pl: 'poprawnie',
-                      })}
-                    </Text>
-                  </View>
-                  <View style={[styles.statDivider, stackStats && styles.statDividerStacked, { backgroundColor: glass.glassEdge }]} />
-                  <View
-                    accessible
-                    accessibilityLabel={`${wrong} ${triLang(lang, { ru: 'ошибок', uk: 'помилок', en: 'mistakes', es: 'errores', 'pt-BR': 'erros', vi: 'lỗi', id: 'kesalahan', tr: 'hata', pl: 'błędów' })}`}
-                    style={[styles.stat, stackStats && styles.statStacked]}
-                  >
-                    <AnimatedCountUpText
-                      value={wrong}
-                      style={{ color: t.wrong, fontSize: 30 * textScale, lineHeight: 34 * textScale, fontWeight: '700', textAlign: 'center' }}
-                      accessible={false}
-                      importantForAccessibility="no-hide-descendants"
-                    />
-                    <Text style={{ color: t.textMuted, fontSize: 13 * textScale, lineHeight: 18 * textScale, fontWeight: '700', textAlign: 'center' }}>
-                      {triLang(lang, {
-                        ru: 'ошибок', uk: 'помилок', en: 'mistakes', es: 'errores',
-                        'pt-BR': 'erros', vi: 'lỗi', id: 'kesalahan', tr: 'hata', pl: 'błędów',
-                      })}
-                    </Text>
-                  </View>
-                  <View style={[styles.statDivider, stackStats && styles.statDividerStacked, { backgroundColor: glass.glassEdge }]} />
-                  <View
-                    accessible
-                    accessibilityLabel={`${accuracyPct}% ${triLang(lang, { ru: 'точность', uk: 'точність', en: 'accuracy', es: 'precisión', 'pt-BR': 'precisão', vi: 'độ chính xác', id: 'akurasi', tr: 'doğruluk', pl: 'dokładność' })}`}
-                    style={[styles.stat, stackStats && styles.statStacked]}
-                  >
-                    <View accessible={false} style={{ flexDirection: 'row', alignItems: 'baseline', flexShrink: 1 }}>
-                      <AnimatedCountUpText
-                        value={accuracyPct}
-                        style={{ color: t.textPrimary, fontSize: 30 * textScale, lineHeight: 34 * textScale, fontWeight: '700', textAlign: 'center' }}
-                        accessible={false}
-                        importantForAccessibility="no-hide-descendants"
-                      />
-                      <Text accessible={false} style={{ color: t.textPrimary, fontSize: 30 * textScale, lineHeight: 34 * textScale, fontWeight: '700' }}>%</Text>
-                    </View>
-                    <Text style={{ color: t.textMuted, fontSize: 13 * textScale, lineHeight: 18 * textScale, fontWeight: '700', textAlign: 'center' }}>
-                      {triLang(lang, {
-                        ru: 'точность', uk: 'точність', en: 'accuracy', es: 'precisión',
-                        'pt-BR': 'precisão', vi: 'độ chính xác', id: 'akurasi', tr: 'doğruluk', pl: 'dokładność',
-                      })}
-                    </Text>
-                  </View>
-                </>
-              </View>
-
-              {/* Руны: единое итоговое начисление для активных режимов карточек. */}
-              {runesGained > 0 ? <ResultRuneAward amount={runesGained} testID={testID} /> : null}
-
-              {/* Оценка сессии (владелец 2026-08-25): статичный блок под
-                  остальным содержимым экрана, ничего не блокирует. */}
-              {feedback && showFeedback ? (
-                <View style={{ marginTop: 18, width: '100%' }}>
-                  <FeedbackRatingCard
-                    kind="vocab"
-                    entityId={feedback.entityId}
-                    entityLabel={feedback.entityLabel}
-                    lang={lang}
-                    title={triLang(lang, { ru: 'Слова того стоили?', en: 'Were these words worth it?', uk: 'Слова були варті того?', es: '¿Valieron la pena estas palabras?',
-                      'pt-BR': 'As palavras valeram a pena?', vi: 'Những từ này có đáng học không?',
-                      id: 'Kata-katanya sepadan?', tr: 'Bu kelimeler değdi mi?', pl: 'Czy te słowa były warte?',
-                    })}
-                    placeholder={triLang(lang, { ru: 'Каких слов не хватило? Какие лишние?', en: 'Which words were missing? Which were pointless?', uk: 'Яких слів забракло? Які зайві?', es: '¿Qué palabras faltaron? ¿Cuáles sobraban?',
-                      'pt-BR': 'Que palavras faltaram? Quais sobraram?', vi: 'Thiếu những từ nào? Từ nào thừa?',
-                      id: 'Kata apa yang kurang? Mana yang tak perlu?', tr: 'Hangi kelimeler eksikti? Hangileri gereksiz?', pl: 'Jakich słów zabrakło? Które zbędne?',
-                    })}
-                    sendLabel={triLang(lang, { ru: 'Отправить', en: 'Send', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar',
-                      vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij',
-                    })}
-                    thanksLabel={triLang(lang, { ru: 'Спасибо! Отзыв отправлен', en: 'Thanks! Feedback sent', uk: 'Дякуємо! Відгук надіслано', es: '¡Gracias! Comentario enviado',
-                      'pt-BR': 'Obrigado! Comentário enviado', vi: 'Cảm ơn! Đã gửi phản hồi',
-                      id: 'Terima kasih! Masukan terkirim', tr: 'Teşekkürler! Geri bildirim gönderildi', pl: 'Dziękujemy! Opinia wysłana',
-                    })}
-                    ratingA11yLabel={triLang(lang, { ru: 'Оценка', en: 'Rating', uk: 'Оцінка', es: 'Valoración', 'pt-BR': 'Avaliação',
-                      vi: 'Đánh giá', id: 'Penilaian', tr: 'Puan', pl: 'Ocena',
-                    })}
-                    testID={`${testID}-feedback`}
-                    presentation="liquid-glass-rate"
-                  />
-                </View>
-              ) : null}
-            </View>
-
-            {/* CTA */}
-            <View style={styles.ctaBlock}>
-              <PressableHybrid
-                accessibilityRole="button"
-                variant="primary"
-                withHaptic={false}
-                withSound={false}
-                onPress={() => {
-                  fcHaptic('tap');
-                  onDone();
-                }}
-                testID={`${testID}-done`}
-                style={styles.actionTarget}
-                contentStyle={[styles.doneBtn, { backgroundColor: glass.accent }]}
-              >
-                <Text style={{ color: glass.accentInk, fontSize: 17 * textScale, lineHeight: 22 * textScale, fontWeight: '700', textAlign: 'center', flexShrink: 1 }}>
-                  {triLang(lang, {
-                    ru: 'Готово', uk: 'Готово', en: 'Done', es: 'Listo',
-                    'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe',
-                  })}
-                </Text>
-              </PressableHybrid>
-              {onRetryWrong && (learnLeft > 0 || retryLabel) ? (
-                <View style={styles.retryWrap}>
-                  <PressableHybrid
-                    accessibilityRole="button"
-                    variant="secondary"
-                    withHaptic={false}
-                    withSound={false}
-                    onPress={() => {
-                      fcHaptic('tap');
-                      onRetryWrong();
-                    }}
-                    testID={`${testID}-retry`}
-                    style={styles.actionTarget}
-                    contentStyle={styles.retryBtn}
-                  >
-                    <Ionicons name="refresh" size={18} color={accent} />
-                    <Text style={{ color: accent, fontSize: 16 * textScale, lineHeight: 22 * textScale, fontWeight: '700', textAlign: 'center', flexShrink: 1 }}>
-                      {retryLabel ??
-                        triLang(lang, {
-                          ru: `Добить: Ещё учу (${learnLeft})`,
-                          uk: `Добити: Ще вчу (${learnLeft})`,
-                          en: `Finish: Still learning (${learnLeft})`,
-                          es: `Rematar: Aprendiendo (${learnLeft})`,
-                          'pt-BR': `Terminar: Ainda aprendendo (${learnLeft})`,
-                          vi: `Hoàn thành: Đang học (${learnLeft})`,
-                          id: `Selesaikan: Masih belajar (${learnLeft})`,
-                          tr: `Bitir: Hâlâ öğreniyorum (${learnLeft})`,
-                          pl: `Dokończ: Jeszcze się uczę (${learnLeft})`,
-                        })}
-                    </Text>
-                  </PressableHybrid>
-                </View>
-              ) : null}
-            </View>
-          </View>
-          </ScrollView>
-        </ContentWrap>
-      </View>
-    </ScreenGradient>
+    <V2DoneScreen
+      testID={testID}
+      title={triLang(lang, { ru: 'Тренировка завершена', uk: 'Тренування завершено', en: 'Practice complete', es: 'Práctica terminada', 'pt-BR': 'Treino concluído', vi: 'Đã xong buổi luyện', id: 'Latihan selesai', tr: 'Alıştırma bitti', pl: 'Trening ukończony' })}
+      scoreLabel={scoreText}
+      stars={null}
+      correct={correct}
+      wrong={wrong}
+      coinsGained={runesGained}
+      feedbackSlot={feedback && showFeedback ? (
+        <FeedbackRatingCard
+            kind="vocab"
+            entityId={feedback.entityId}
+            entityLabel={feedback.entityLabel}
+            lang={lang}
+            title={triLang(lang, { ru: 'Слова того стоили?', en: 'Were these words worth it?', uk: 'Слова були варті того?', es: '¿Valieron la pena estas palabras?',
+              'pt-BR': 'As palavras valeram a pena?', vi: 'Những từ này có đáng học không?',
+              id: 'Kata-katanya sepadan?', tr: 'Bu kelimeler değdi mi?', pl: 'Czy te słowa były warte?',
+            })}
+            placeholder={triLang(lang, { ru: 'Каких слов не хватило? Какие лишние?', en: 'Which words were missing? Which were pointless?', uk: 'Яких слів забракло? Які зайві?', es: '¿Qué palabras faltaron? ¿Cuáles sobraban?',
+              'pt-BR': 'Que palavras faltaram? Quais sobraram?', vi: 'Thiếu những từ nào? Từ nào thừa?',
+              id: 'Kata apa yang kurang? Mana yang tak perlu?', tr: 'Hangi kelimeler eksikti? Hangileri gereksiz?', pl: 'Jakich słów zabrakło? Które zbędne?',
+            })}
+            sendLabel={triLang(lang, { ru: 'Отправить', en: 'Send', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar',
+              vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij',
+            })}
+            thanksLabel={triLang(lang, { ru: 'Спасибо! Отзыв отправлен', en: 'Thanks! Feedback sent', uk: 'Дякуємо! Відгук надіслано', es: '¡Gracias! Comentario enviado',
+              'pt-BR': 'Obrigado! Comentário enviado', vi: 'Cảm ơn! Đã gửi phản hồi',
+              id: 'Terima kasih! Masukan terkirim', tr: 'Teşekkürler! Geri bildirim gönderildi', pl: 'Dziękujemy! Opinia wysłana',
+            })}
+            ratingA11yLabel={triLang(lang, { ru: 'Оценка', en: 'Rating', uk: 'Оцінка', es: 'Valoración', 'pt-BR': 'Avaliação',
+              vi: 'Đánh giá', id: 'Penilaian', tr: 'Puan', pl: 'Ocena',
+            })}
+            testID={`${testID}-feedback`}
+            presentation="liquid-glass-rate"
+          />
+      ) : undefined}
+      primaryLabel={triLang(lang, { ru: 'Готово', uk: 'Готово', en: 'Done', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
+      onPrimary={() => { fcHaptic('tap'); onDone(); }}
+      secondaryLabel={onRetryWrong && retryWrongLabel ? retryWrongLabel : undefined}
+      onSecondary={onRetryWrong && retryWrongLabel ? () => { fcHaptic('tap'); onRetryWrong(); } : undefined}
+      onClose={onDone}
+    />
   );
 }
 

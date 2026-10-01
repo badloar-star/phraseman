@@ -181,3 +181,57 @@ functions собраны `npm --prefix functions run build` (экспорты `a
 `resource-exhausted` вместо `already_done`: блок «попытка идёт» в памяти инстанса не снимался после успеха.
 Починка: блок снимается после done/hold (остаётся только для partial), тест «сразу после done на том же инстансе».
 Итоговый прогон: **12/12 PASS**.
+
+
+---
+
+## 6G/7A/7C/7D телефонный E2E + откат 7B (TG-4E116864AC73), 2026-10-01 вечер
+
+Pixel_8 (emulator-5554), dev-сборка 1.6.24, свой бандлер (супервизор, `EXPO_PUBLIC_FIREBASE_EMULATOR_HOST=10.0.2.2`),
+Firebase Emulator Suite заново (functions собраны, `accountsV2MigrateMine/PullMine/SyncApply` загружены), сидер — 3 аккаунта
+(uid-хэши a=b7a2dcf20f, b=1f0adf811b, c=e736e73a51). Старые данные: a — `users/stable-e2e-a` (+`auth_links`): уроки 1–2,
+3 сохранённые карточки a1..a3, память свайпов a1, библиотека 2 набора; b — `users/<uid>` (2 карточки); c — пусто.
+Логи — `adb logcat ReactNativeJS` (вывод бандлера без TTY логов приложения не несёт). Флаги клиента — через кэш remote config
+приложения (как в 6E/6F: сетевое чтение `remote_config/app` до входа не идёт), серверные — в эмуляторе Firestore.
+Сессия прервана по просьбе координатора (эмулятор нужен «Дизайну»): часть сценариев не прогнана.
+
+| Сц. | Итог | Факт (ключевые строки) |
+|---|---|---|
+| A. первый вход, V2 вкл | **FAIL (дефект)** | `hydrate migrate status=hold ops=0`; сервер: `migrate hold reasons=unknown_field writes=0_v2`, отметка `{legacyFound:true, holdReasons:["unknown_field"]}`. Виновники — корневые поля, которые приложение пишет в `users/{stableId}` при входе: `accountGeneration` (getLearningV2AccountBinding → `ensureAccountGeneration`), `updatedAt`; `classifyRootField` для них (и для `last_active_at`, `created_at`, которые пишет старый cloud_sync) → `hold/unknown_field`. После снятия двух полей из ТЕСТОВОГО документа и сброса отметки: `migrate a status=done ops=6 applied=6` (2 урока + 3 карточки + библиотека). |
+| B. новая установка (pm clear → вход a) | **PASS** (с оговоркой) | `storage opened decision=provision_new hydrate=true` → `migrate status=already_done` → `pull_done entities=6` → `mirror seeded=6` → 1-й проход `saved_cards persist_failed count=3` → `apply_failed code=StaleHydration`; следующий старт: `migrate_skip already_done` → `applied … cards_added=3 srs_written=1 library_titles_written=2` → `legacy_marker_set` → `outcome=hydrated`. На экране «Сохранённые»: 3 карточки. Старый restore в эмуляторе не работает (`boot restore failed identity_unavailable`), поэтому «сначала старый restore» не наблюдался. |
+| C. выключатель 7A вкл | **PARTIAL** | restore: `legacy_restore_decision skip=true reason=v2_owns_domains flag=true client=true platformSupported=true hydrated=true` + `legacy_skip domain=saved_cards/swipe_memory/community_library phase=restore keys=1`. Удаление карточки a1 (долгое нажатие → «Удалить»): `journal record list=saved count=1` → `producer done kind=card_snapshot planned=1` → `transport call_ok ops=1`; V2: `en:saved:a1 rev=4 {deleted:true}`; старое облако: `progress.flashcards_v1` по-прежнему `[a1,a2,a3]`. `legacy_write_decision` НЕ наблюдался: старый `doSyncToCloud` в эмуляторе не доходит до решения — `authEnsureStableLink` → `identity_check_unavailable` (функции эмулятора: `admin.firestore.FieldValue/Timestamp` undefined, блокер 1, node 24 вместо 22) и ранний `return` без лога. |
+| D. выход → вход тем же | NOT_RUN | — |
+| E. смена a→b→c | NOT_RUN | — |
+| F. выключатель выкл | NOT_RUN | (по коду: при `false` решение не вызывается и не логируется — проверено только тестами 7A) |
+| G. названия наборов (7C) | **PASS** | названия пришли «с другого устройства» (настоящий `accountsV2SyncApply`, отдельная операция `itemTitles`, `applied serverRevision=2`) → на новой установке `library_titles_written=2`, локально `community_owned_pack_titles_v1` = «Набор Путешествия», «Набор Кафе». |
+| H. удалённая не воскресает после pm clear | NOT_RUN | pm clear + вход a: dev-вход дважды не обработался (`lifecycle skip reason=auth_changed`, строки входа нет), время вышло. Риск остаётся: после pm clear метки нет → старый restore со старым облаком, где a1 жив. |
+| I. откат 7B | NOT_RUN / BLOCKED | старый писатель в эмуляторе не пишет вовсе (см. C) — возобновление записи после выключения флага здесь не наблюдаемо. |
+| J. старый клиент после done (PM-235) | **PASS — риск подтверждён** | запись «старого клиента» прямо в `users/stable-e2e-a.progress.flashcards_v1` (+`oldclient1`, `last_active_at`) после done: `pull a entities=6` — `oldclient1` нет; `migrate a status=already_done ops=0` — повторного сканирования нет; при выключателе вкл restore эти ключи пропускает. Правка со старого телефона после переноса для V2 невидима. |
+
+### Найденные дефекты
+
+1. 🔴 **Перенос OD21 уходит в HOLD у реальных людей**: корень `users/{id}` несёт служебные поля, которых нет в
+   `ROOT_RULES` (`functions/src/accounts_v2_migration/inventory.ts`): `accountGeneration` (пишет Learning V2 при первом
+   обращении), `updatedAt`, `last_active_at`/`created_at` (пишет старый cloud_sync на каждой записи) → `unknown_field` → hold
+   ВСЕГО аккаунта. В 6G не пойман: в сиде были только `progress` и `canonicalStableId`. Нужна классификация корневых полей
+   по реальной переписи (решение координатора/владельца: drop/keep_in_place) и сторож с реальным составом документа.
+2. 🟡 **Гидрация: «persist_failed» без причины**: `persistFlashcards` (hooks/use-flashcards.ts) выходит `return false` 4 раза
+   без лога и глушит исключение немым `catch {}` → `apply_failed StaleHydration`; самоизлечилось на следующем старте.
+   Логи ранних выходов ставил для диагностики, но откатил: по указанию координатора коммитится только квитанция
+   (пакет `account-v2-e2e-flashcards-persist-logs-2026-10-01.md`).
+3. 🟡/💸 **Лишние записи после гидрации**: сразу после `hydrate done` производитель отправил `card_snapshot planned=3` —
+   засеянное зеркало отличается от локальной карточки полями `studyTarget/packLanguage`; ревизии a2/a3 выросли до 3
+   без изменений пользователя.
+4. 🟡 Экран «Мои наборы» с id наборов, которых нет в каталоге, висит на скелетоне (эмулятор, каталог пуст).
+5. Окружение: dev-клиент после pm clear грузит бандл с `10.0.2.2:8081` и рвётся на 68 МБ (`ProtocolException: Expected
+   leading [0-9a-fA-F] character but was 0xd`); помогло `debug_http_host=localhost:8081` в префах + `adb reverse`.
+   Чужие правки дерева перезагружали JS каждые 1–2 мин (и раз уронили Главную `noAndroidOutline`), выключено HMR-префом
+   тестового приложения.
+
+### Уборка
+
+Флаги эмулятора Firestore возвращены (`accounts_v2_client_enabled=false`, `accounts_v2_legacy_sync_disabled=false`,
+`syncEnabled=false`), затем эмуляторы остановлены (деревья процессов сняты, порты 4000/4400/4500/5001/8080/9000/9099/9199/8081
+свободны), свой бандлер остановлен, `adb reverse --remove-all`. Данные app.phraseman восстановлены из снимка до прогона
+(108 681 728 байт; после распаковки files/databases/shared_prefs/no_backup ≈ 107 МБ), приложение остановлено.
+Код приложения не изменён (диагностическая правка откачена, diff пуст). Очередь эмулятора не отдана — отдаёт координатор.

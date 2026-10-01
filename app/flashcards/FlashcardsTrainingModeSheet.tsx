@@ -110,20 +110,20 @@ export default function FlashcardsTrainingModeSheet({
           vi: 'Nói', id: 'Lisan', tr: 'Sözlü', pl: 'Ustnie',
         }),
         description: triLang(lang, {
-          ru: 'Произноси фразы вслух и практикуй разговорную речь. Можно остановиться и попробовать ещё раз.',
-          uk: 'Промовляй фрази вголос і тренуй розмовне мовлення. Можна зупинитися та спробувати ще раз.',
-          en: 'Say phrases aloud and practise speaking. You can pause and try again.',
-          es: 'Di frases en voz alta y practica la conversación. Puedes parar e intentarlo de nuevo.',
-          'pt-BR': 'Diga frases em voz alta e pratique a fala. Você pode parar e tentar novamente.',
-          vi: 'Đọc các câu thành tiếng và luyện nói. Bạn có thể dừng lại và thử lần nữa.',
-          id: 'Ucapkan frasa dan latih percakapan. Kamu bisa berhenti dan mencoba lagi.',
-          tr: 'Cümleleri sesli söyle ve konuşma pratiği yap. Durup tekrar deneyebilirsin.',
-          pl: 'Wypowiadaj frazy na głos i ćwicz mówienie. Możesz się zatrzymać i spróbować ponownie.',
+          ru: 'Произноси фразы вслух и тренируй разговорную речь.',
+          uk: 'Промовляй фрази вголос і тренуй розмовне мовлення.',
+          en: 'Say phrases aloud and practise speaking.',
+          es: 'Di frases en voz alta y practica la conversación.',
+          'pt-BR': 'Diga frases em voz alta e pratique a fala.',
+          vi: 'Đọc các câu thành tiếng và luyện nói.',
+          id: 'Ucapkan frasa dan latih percakapan.',
+          tr: 'Cümleleri sesli söyle ve konuşma pratiği yap.',
+          pl: 'Wypowiadaj frazy na głos i ćwicz mówienie.',
         }),
       },
       {
         mode: 'truefalse',
-        icon: 'checkmark-done-outline',
+        icon: 'checkmark-circle-outline',
         title: triLang(lang, {
           ru: 'Правда / ложь', uk: 'Правда / неправда', en: 'True / false', es: 'Verdadero / falso',
           'pt-BR': 'Verdadeiro / falso', vi: 'Đúng / sai', id: 'Benar / salah',
@@ -143,7 +143,7 @@ export default function FlashcardsTrainingModeSheet({
       },
       {
         mode: 'recall',
-        icon: 'create-outline',
+        icon: 'pencil-outline',
         title: triLang(lang, {
           ru: 'Вспомни и напиши', uk: 'Згадай і напиши', en: 'Recall and write', es: 'Recuerda y escribe',
           'pt-BR': 'Lembre e escreva', vi: 'Nhớ và viết', id: 'Ingat dan tulis',
@@ -166,78 +166,69 @@ export default function FlashcardsTrainingModeSheet({
   }, [lang]);
 
   const heading = triLang(lang, {
-    ru: 'Выбери режим тренировки', uk: 'Обери режим тренування', en: 'Choose a training mode',
-    es: 'Elige un modo de práctica', 'pt-BR': 'Escolha um modo de treino', vi: 'Chọn chế độ luyện tập',
-    id: 'Pilih mode latihan', tr: 'Çalışma modu seç', pl: 'Wybierz tryb ćwiczeń',
+    ru: 'Тренироваться с карточками', uk: 'Тренуватися з картками', en: 'Practise with cards',
+    es: 'Practicar con tarjetas', 'pt-BR': 'Treinar com cartões', vi: 'Luyện tập với thẻ',
+    id: 'Latihan dengan kartu', tr: 'Kartlarla çalış', pl: 'Ćwicz z kartami',
   });
   const subtitle = triLang(lang, {
-    ru: 'Один набор — много способов учиться', uk: 'Один набір — багато способів учитися',
-    en: 'One pack — many ways to learn', es: 'Un pack, muchas formas de aprender',
-    'pt-BR': 'Um pacote, muitas formas de aprender', vi: 'Một bộ thẻ, nhiều cách học',
-    id: 'Satu paket, banyak cara belajar', tr: 'Bir paket, öğrenmenin birçok yolu',
-    pl: 'Jeden zestaw, wiele sposobów nauki',
+    ru: 'Выбери формат тренировки', uk: 'Обери формат тренування',
+    en: 'Choose how to practise', es: 'Elige el formato de práctica',
+    'pt-BR': 'Escolha o formato do treino', vi: 'Chọn hình thức luyện tập',
+    id: 'Pilih format latihan', tr: 'Çalışma biçimini seç',
+    pl: 'Wybierz formę ćwiczeń',
   });
 
   return (
-    <Modal visible={visible} transparent animationType="fade" statusBarTranslucent onRequestClose={onClose} onDismiss={finishDismiss}>
-      <View style={[styles.modalRoot, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 12 }]}>
-        <Pressable style={[StyleSheet.absoluteFill, styles.backdrop]} onPress={onClose} accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })} />
-        <View testID="fc-training-mode-sheet" accessibilityViewIsModal style={[styles.dialog, { maxHeight: screenHeight - insets.top - insets.bottom - 24, backgroundColor: g.opaqueSheet }]}>
+    <Modal visible={visible} transparent animationType="slide" statusBarTranslucent onRequestClose={onClose} onDismiss={finishDismiss}>
+      {/* зачем (владелец 01.10, скрин «Тренироваться с карточками»): шторка снизу с ручкой,
+          заголовок слева в две строки, подпись, круглая ×; крупные строки «значок в квадрате ·
+          название · описание · ›». Цвета — наши токены liquid glass. */}
+      <View style={styles.modalRoot}>
+        <Pressable style={[StyleSheet.absoluteFill, styles.backdrop]} onPress={onClose} accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} />
+        <View testID="fc-training-mode-sheet" accessibilityViewIsModal style={[styles.sheet, { maxHeight: screenHeight - insets.top - 24, paddingBottom: insets.bottom + 16, backgroundColor: g.opaqueSheet }]}>
           <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-            <LinearGradient
-              pointerEvents="none"
-              colors={[g.opaqueSheet, g.opaqueSheet, g.opaqueSheet]}
-              locations={[0, 0.48, 1]}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 0.9, y: 1 }}
-              style={[StyleSheet.absoluteFill, styles.dialogWash]}
-            />
             <LinearGradient colors={[g.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
             <View style={[styles.rim, { backgroundColor: g.glassEdge }]} />
           </View>
-      <ScrollView
-        style={styles.scroll}
-        contentContainerStyle={styles.content}
-        showsVerticalScrollIndicator={false}
-        nestedScrollEnabled
-      >
-        <View style={styles.headingBlock}>
-          <Text accessibilityRole="header" style={[styles.heading, { color: g.text }]}>{heading}</Text>
-          <Text style={[styles.headingSubtitle, { color: g.secondary }]}>{subtitle}</Text>
-        </View>
-        <View style={styles.list}>
-          {rows.map((row, rowIndex) => {
-            const disabled = row.mode === 'speaking' && !speakingEnabled;
-            return (
-              <Pressable
-              ref={rowIndex === 0 ? firstRowRef : undefined}
-              key={row.mode}
-              testID={`fc-training-mode-${row.mode}`}
-              accessibilityRole="button"
-              accessibilityLabel={`${row.title}. ${row.description}`}
-              accessibilityState={{ disabled }}
-              disabled={disabled}
-              onPress={() => onSelect(row.mode)}
-              style={({ pressed }) => [styles.row, { backgroundColor: g.card, opacity: disabled ? 0.48 : pressed ? 0.82 : 1 }]}
-            >
-              <View style={[styles.icon, { backgroundColor: g.opaqueControl }]}>
-                <Ionicons name={row.icon} size={24} color={g.lightTint} />
-              </View>
-              <View style={styles.copy}>
-                <View style={styles.titleLine}>
-                  <Text style={[styles.rowTitle, { color: g.text }]}>{row.title}</Text>
-                </View>
-                <Text style={[styles.description, { color: g.secondary }]}>{row.description}</Text>
-              </View>
-              <Ionicons name="chevron-forward" size={20} color={g.secondary} />
-              </Pressable>
-            );
-          })}
-        </View>
-      </ScrollView>
-          <Pressable testID="fc-training-mode-cancel" accessibilityRole="button" onPress={onClose} style={({ pressed }) => [styles.cancelButton, { backgroundColor: g.card, opacity: pressed ? 0.82 : 1 }]}>
-            <Text style={[styles.cancelText, { color: g.text }]}>{triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}</Text>
-          </Pressable>
+          <View style={[styles.grabber, { backgroundColor: g.glassEdge }]} />
+          <View style={styles.headRow}>
+            <View style={styles.headCopy}>
+              <Text accessibilityRole="header" style={[styles.heading, { color: g.text }]}>{heading}</Text>
+              <Text style={[styles.headingSubtitle, { color: g.secondary }]}>{subtitle}</Text>
+            </View>
+            <Pressable testID="fc-training-mode-cancel" accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} hitSlop={6} onPress={onClose} style={({ pressed }) => [styles.close, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.8 : 1 }]}>
+              <Ionicons name="close" size={22} color={g.text} />
+            </Pressable>
+          </View>
+          <ScrollView style={styles.scroll} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} nestedScrollEnabled>
+            <View style={styles.list}>
+              {rows.map((row, rowIndex) => {
+                const disabled = row.mode === 'speaking' && !speakingEnabled;
+                return (
+                  <Pressable
+                    ref={rowIndex === 0 ? firstRowRef : undefined}
+                    key={row.mode}
+                    testID={`fc-training-mode-${row.mode}`}
+                    accessibilityRole="button"
+                    accessibilityLabel={`${row.title}. ${row.description}`}
+                    accessibilityState={{ disabled }}
+                    disabled={disabled}
+                    onPress={() => onSelect(row.mode)}
+                    style={({ pressed }) => [styles.row, { backgroundColor: g.card, borderColor: g.glassEdge, opacity: disabled ? 0.48 : pressed ? 0.82 : 1 }]}
+                  >
+                    <View style={[styles.icon, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}>
+                      <Ionicons name={row.icon} size={24} color={g.text} />
+                    </View>
+                    <View style={styles.copy}>
+                      <Text style={[styles.rowTitle, { color: g.text }]}>{row.title}</Text>
+                      <Text style={[styles.description, { color: g.secondary }]}>{row.description}</Text>
+                    </View>
+                    <Ionicons name="chevron-forward" size={20} color={g.secondary} />
+                  </Pressable>
+                );
+              })}
+            </View>
+          </ScrollView>
         </View>
       </View>
     </Modal>
@@ -245,23 +236,22 @@ export default function FlashcardsTrainingModeSheet({
 }
 
 const styles = StyleSheet.create({
-  modalRoot: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 },
+  modalRoot: { flex: 1, justifyContent: 'flex-end' },
   backdrop: { backgroundColor: '#000000AA' },
-  dialog: { width: '100%', maxWidth: 420, borderRadius: 24, flexShrink: 1, overflow: 'hidden', paddingHorizontal: 12, paddingTop: 22, paddingBottom: 12 },
-  dialogWash: { opacity: 1 },
+  sheet: { width: '100%', borderTopLeftRadius: 30, borderTopRightRadius: 30, overflow: 'hidden', paddingHorizontal: 16, paddingTop: 10 },
   rim: { height: 1, marginHorizontal: 1 },
+  grabber: { alignSelf: 'center', width: 40, height: 5, borderRadius: 3, marginBottom: 14 },
+  headRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 12, paddingHorizontal: 6 },
+  headCopy: { flex: 1, minWidth: 0 },
+  heading: { fontSize: 26, lineHeight: 31, fontWeight: '700', letterSpacing: -0.4 },
+  headingSubtitle: { fontSize: 15, lineHeight: 20, marginTop: 6 },
+  close: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   scroll: { flexGrow: 0, flexShrink: 1, minHeight: 0 },
-  content: { paddingHorizontal: 0, paddingBottom: 12 },
-  headingBlock: { alignItems: 'center', paddingHorizontal: 4 },
-  heading: { fontSize: 18, lineHeight: 24, fontWeight: '700', textAlign: 'center' },
-  headingSubtitle: { fontSize: 12, lineHeight: 17, marginTop: 4, textAlign: 'center' },
-  list: { marginTop: 14, gap: 6 },
-  row: { minHeight: 56, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 13, flexDirection: 'row', alignItems: 'center', gap: 10, overflow: 'hidden' },
-  icon: { width: 34, height: 34, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
+  content: { paddingTop: 18, paddingBottom: 4 },
+  list: { gap: 10 },
+  row: { minHeight: 76, paddingHorizontal: 12, paddingVertical: 12, borderRadius: 18, borderWidth: StyleSheet.hairlineWidth, flexDirection: 'row', alignItems: 'center', gap: 14 }, // guard-ok: D43 — тонкая рамка как на скрине владельца
+  icon: { width: 48, height: 48, borderRadius: 14, borderWidth: StyleSheet.hairlineWidth, alignItems: 'center', justifyContent: 'center' }, // guard-ok: D43
   copy: { flex: 1, minWidth: 0 },
-  titleLine: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  rowTitle: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
-  description: { fontSize: 10, lineHeight: 13, marginTop: 2 },
-  cancelButton: { minHeight: 42, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
-  cancelText: { fontSize: 12, lineHeight: 17, fontWeight: '700' },
+  rowTitle: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
+  description: { fontSize: 14, lineHeight: 19, marginTop: 3 },
 });

@@ -60,7 +60,7 @@ describe('approved Cards hub entry', () => {
     expect(topPacks).not.toContain('numberOfLines={');
   });
 
-  test('mode choice is a centered modal and setup is a normal full screen', () => {
+  test('mode choice is a bottom sheet (owner 01.10) and setup is a normal full screen', () => {
     const sheetPath = path.join(ROOT, 'app', 'flashcards', 'FlashcardsTrainingModeSheet.tsx');
     const setupPath = path.join(ROOT, 'app', 'flashcards_training_setup.tsx');
     expect(fs.existsSync(sheetPath)).toBe(true);
@@ -73,8 +73,8 @@ describe('approved Cards hub entry', () => {
     const hub = read('app', 'flashcards', 'FlashcardsHubScreen.tsx');
 
     expect(sheet).toContain('<Modal');
-    expect(sheet).toContain('styles.dialog');
-    expect(sheet).toContain('styles.cancelButton');
+    expect(sheet).toContain('styles.sheet');
+    expect(sheet).toContain('styles.close');
     expect(sheet).toContain("mode: 'blitz'");
     expect(sheet).toContain("mode: 'speaking'");
     expect(sheet).toContain("mode: 'truefalse'");

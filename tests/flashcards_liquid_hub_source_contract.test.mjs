@@ -688,13 +688,14 @@ test('focused validators reject translucent rows, framed tiles, retired art and 
   }
 });
 
-test('training selector is centered modal with four visible rows, disabled speaking state and cancel', () => {
+// зачем (владелец 01.10): окно выбора тренировки — шторка снизу по скрину владельца.
+test('training selector is a bottom sheet with four rows, disabled speaking state and a round close', () => {
   const source = read('FlashcardsTrainingModeSheet.tsx');
-  assert.ok(source.includes('Выбери режим тренировки'));
-  assert.ok(source.includes('Один набор — много способов учиться'));
+  assert.ok(source.includes('Тренироваться с карточками'));
+  assert.ok(source.includes('Выбери формат тренировки'));
   assert.ok(source.includes('<Modal'));
-  assert.ok(source.includes('styles.dialog'));
-  assert.ok(source.includes('styles.cancelButton'));
+  assert.ok(source.includes('styles.sheet'));
+  assert.ok(source.includes('styles.close'));
   assert.ok(source.includes("row.mode === 'speaking' && !speakingEnabled"));
   assert.ok(!source.includes("allRows.filter((row) => row.mode !== 'speaking')"));
 });

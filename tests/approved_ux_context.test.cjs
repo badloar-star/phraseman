@@ -77,6 +77,6 @@ test('approved recovery copy explains causes and a way back without promises of 
     ['app/flashcards/SessionResultScreen.tsx', 'Тренировка завершена'],
     // 30.09: personal_plan_theory удалён вместе с «Личным планом» (970f8e7b8).
     ['app/survey_screen.tsx', 'Можно вернуться в приложение'],
-    ['app/flashcards/FlashcardsTrainingModeSheet.tsx', 'Можно остановиться и попробовать ещё раз'],
+    // 01.10: описание «Устно» сокращено по скрину владельца — строка про паузу убрана.
   ]) assert.ok(read(file).includes(copy), file);
 });

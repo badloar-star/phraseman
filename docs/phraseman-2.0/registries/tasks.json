@@ -1456,7 +1456,7 @@
     ],
     "basis": "OWNER",
     "stage": "B",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -1465,14 +1465,18 @@
       {
         "id": "PM-031-A1",
         "text": "Включён новый знак диалогов",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "01.10: плитки Главной 2.0 на одном наборе арта assets/images/v2 (book_stack / chat_bubbles — новый знак диалогов / notecard_stack), components/home/v2/HomeV2FeatureTiles.tsx: accessibilityRole=button + accessibilityLabel «название. подпись», арт accessible=false; таббар app/(tabs)/_layout.tsx — только Ionicons outline/filled парами; новых библиотек иконок нет"
+        ]
       },
       {
         "id": "PM-031-A2",
         "text": "ассеты визуально согласованы, доступные подписи заданы, лишняя библиотека не добавлена",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "01.10: плитки Главной 2.0 на одном наборе арта assets/images/v2 (book_stack / chat_bubbles — новый знак диалогов / notecard_stack), components/home/v2/HomeV2FeatureTiles.tsx: accessibilityRole=button + accessibilityLabel «название. подпись», арт accessible=false; таббар app/(tabs)/_layout.tsx — только Ionicons outline/filled парами; новых библиотек иконок нет"
+        ]
       }
     ],
     "depends_on": [],
@@ -1481,10 +1485,14 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
+    "reviewer": "координатор (Fable) по поручению владельца 01.10",
+    "evidence": [
+      "01.10: плитки Главной 2.0 на одном наборе арта assets/images/v2 (book_stack / chat_bubbles — новый знак диалогов / notecard_stack), components/home/v2/HomeV2FeatureTiles.tsx: accessibilityRole=button + accessibilityLabel «название. подпись», арт accessible=false; таббар app/(tabs)/_layout.tsx — только Ionicons outline/filled парами; новых библиотек иконок нет"
+    ],
+    "notes": [
+      "Внутри разделов (брифинг диалога, комикс-интро) остаётся Ionicons chatbubbles — это стандартная смысловая иконка, не знак раздела"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

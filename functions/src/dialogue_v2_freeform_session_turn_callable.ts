@@ -4,6 +4,7 @@ import { types as nodeTypes } from 'node:util';
 import * as admin from 'firebase-admin';
 import { defineSecret } from 'firebase-functions/params';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { withAiKillSwitch } from './ai_kill_switch';
 
 import {
   parseDialogueV2FreeformSessionTurnShape,
@@ -519,7 +520,8 @@ export const DIALOGUE_V2_FREEFORM_SESSION_TURN_OPTIONS = Object.freeze({
   secrets: [DIALOGUE_V2_FREEFORM_OPENAI_API_KEY, DIALOGUE_V2_SESSION_HMAC_KEY],
 });
 
+// зачем (Q102): аварийный стоп ИИ «Пульта» закрывает и свободный разговор.
 export const dialogueV2FreeformSessionTurn = onCall(
   DIALOGUE_V2_FREEFORM_SESSION_TURN_OPTIONS,
-  createDialogueV2FreeformSessionTurnHandler(productionDependencies()),
+  withAiKillSwitch('dialogueV2FreeformSessionTurn', createDialogueV2FreeformSessionTurnHandler(productionDependencies())),
 );

@@ -2,6 +2,7 @@ import { createHmac, randomBytes } from 'node:crypto';
 import { types as nodeTypes } from 'node:util';
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { withAiKillSwitch } from './ai_kill_switch';
 
 import {
   parseDialogueV2FreeformSessionStartShape,
@@ -244,7 +245,8 @@ export const DIALOGUE_V2_FREEFORM_SESSION_START_OPTIONS = Object.freeze({
   secrets: [DIALOGUE_V2_SESSION_HMAC_KEY],
 });
 
+// зачем (Q102): аварийный стоп ИИ «Пульта» закрывает и свободный разговор.
 export const dialogueV2FreeformSessionStart = onCall(
   DIALOGUE_V2_FREEFORM_SESSION_START_OPTIONS,
-  createDialogueV2FreeformSessionStartHandler(productionDependencies()),
+  withAiKillSwitch('dialogueV2FreeformSessionStart', createDialogueV2FreeformSessionStartHandler(productionDependencies())),
 );

@@ -21,6 +21,7 @@ import {
 } from './dialogue_ai_language_contract';
 import { resolvePremiumAccess } from './premium_status';
 import { resolveRemoteBool } from './remote_gates';
+import { aiKillSwitchOn } from './ai_kill_switch';
 import { enforceFreeJobGenLimit, refundFreeJobGenLimit, type FreeJobGenReservation } from './explain/explain_budget';
 import { PAID_AI_FETCH_TIMEOUT_MS, paidAiFetchFailureReason } from './paid_ai_fetch_timeout';
 import {
@@ -602,6 +603,11 @@ export const premiumDialogReview = onCall({
   if (!request.auth?.uid) {
     console.warn('premium_dialog_review rejected', { reason: 'auth_required' });
     throw new HttpsError('unauthenticated', 'auth_required');
+  }
+  // зачем (Q102): аварийный стоп ИИ «Пульта» раньше не закрывал разбор диалога.
+  if (await aiKillSwitchOn('premiumDialogReview')) {
+    console.warn('[AI-KILL-SWITCH] rejected', JSON.stringify({ callable: 'premiumDialogReview' }));
+    throw new HttpsError('unavailable', 'ai_globally_disabled');
   }
 
   const data = (request.data ?? {}) as DialogReviewRequest;

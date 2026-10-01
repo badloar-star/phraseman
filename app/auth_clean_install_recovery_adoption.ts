@@ -19,7 +19,6 @@ import {
 import { clearCompletedCleanInstallRecoveryJournalIfExact } from './auth_clean_install_recovery_journal';
 import { beginPremiumAccountTransition, waitForPremiumAccountWorkIdleWithDeadline } from './premium_guard';
 import { syncRevenueCatIdentity } from './revenuecat_init';
-import { loadShardsFromCloud } from './shards_system';
 import { getStableId, setStableId } from './stable_id';
 import { beginCleanInstallRecoveryTransition } from './auth_clean_install_recovery_transition';
 import { emitAppEvent } from './events';
@@ -281,8 +280,8 @@ async function finishTargetAdoption(
     return { result: 'quarantined', reason: 'restore_failed' };
   }
   if (!isCurrent()) return { result: 'quarantined', reason: 'target_generation_changed' };
-  await loadShardsFromCloud(isCurrent);
-  if (!isCurrent()) return { result: 'quarantined', reason: 'target_generation_changed' };
+  // зачем (PM-289, D70): журнал жемчуга при восстановлении больше не открывается —
+  // валюта удалена; ни одного чтения Firestore ради неё на этом пути.
   await syncRevenueCatIdentity(isCurrent);
   if (!isCurrent()) return { result: 'quarantined', reason: 'target_generation_changed' };
   const completedRaw = await persistJournal({ ...journal, phase: 'completed' });

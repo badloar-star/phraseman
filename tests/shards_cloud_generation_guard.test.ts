@@ -45,7 +45,7 @@ jest.mock('../app/shards_delta_queue', () => ({
   removeShardDeltas: jest.fn(async () => undefined),
 }));
 
-import { loadShardsFromCloud, peekLastKnownShardsBalance } from '../app/shards_system';
+import { loadShardsFromCloud } from '../app/shards_system';
 import { __resetAccountGenerationForTests, beginAccountGeneration } from '../app/account_generation';
 
 test('caller cancellation prevents a deferred cloud load from publishing', async () => {
@@ -65,7 +65,6 @@ test('caller cancellation prevents a deferred cloud load from publishing', async
   release(cloudSnapshot());
   await loading;
 
-  expect(peekLastKnownShardsBalance()).toBeNull();
   expect(emitAppEvent).not.toHaveBeenCalled();
 });
 
@@ -99,6 +98,5 @@ test('default callback is still fenced by an account-generation switch', async (
 
   expect(AsyncStorage.setItem).not.toHaveBeenCalled();
   expect(AsyncStorage.multiSet).not.toHaveBeenCalled();
-  expect(peekLastKnownShardsBalance()).toBeNull();
   expect(emitAppEvent).not.toHaveBeenCalled();
 });

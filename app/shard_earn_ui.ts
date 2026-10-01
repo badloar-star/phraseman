@@ -1,7 +1,6 @@
 /**
  * Подписи к модалке начисления монет по reasonKey (RU / UK / ES).
  */
-import type { ShardSource } from './shards_system';
 import type { Lang, PlannedInterfaceLang } from '../constants/i18n';
 
 type ShardEarnLabel = { ru: string; uk: string; en: string; es: string } & Record<PlannedInterfaceLang, string>;
@@ -218,20 +217,6 @@ export function labelForShardModalReason(key: string | undefined, lang: Lang): s
   const row = LABELS[key];
   if (row) return pickLabel(row, lang);
   return key;
-}
-
-/** Склейка из нескольких типов наград за урок (одна модалка). */
-export function formatLessonShardBatchReason(keys: ShardSource[], lang: Lang): string {
-  const unique = [...new Set(keys)];
-  if (unique.length === 0) {
-    return pickLabel(LABELS.generic_raw, lang);
-  }
-  if (unique.length === 1) {
-    return labelForShardModalReason(unique[0], lang);
-  }
-  const sep = ' · ';
-  const parts = unique.map((k) => labelForShardModalReason(k, lang));
-  return parts.join(sep);
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

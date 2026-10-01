@@ -36,7 +36,6 @@ import {
   OWNED_THEMES_KEY,
   mergeOwnedThemesRestoreValue,
 } from './theme_ownership_merge';
-import { resumePendingShardDeltas } from './shards_system';
 import { shardDeltaQueueStorageKey } from './shards_delta_queue';
 import { resumePendingReportReplyShardClaims } from './app_messages';
 import { getAuthLinkCacheTtlMs } from './remote_flags';
@@ -492,11 +491,8 @@ export const SYNC_KEYS = [
   'community_owned_pack_ids_v1',
   irregularVerbsGlobalKey('en'),
 
-  // ── Осколки: дополнительные ключи (баланс/история — отдельный канал) ───────
-  // Сам баланс (shards) живёт в users/{uid}.shards и грузится через
-  // loadShardsFromCloud(); здесь только защита от повтора single-time событий
-  // и служебные маркеры разовых событий.
-  'shards_one_time_events',
+  // зачем (PM-289, D70/D78): ключи жемчуга (shards_one_time_events,
+  // shards_lifetime_*) из синхронизации убраны — валюта удалена, писателей нет.
 
   // ── UI / поведение ─────────────────────────────────────────────────────────
   // app_theme / app_font_size / haptics_tap — только локально на устройстве (см. wipeLocalAccountData KEEP).
@@ -525,8 +521,6 @@ export const SYNC_KEYS = [
   'phraseman_foreground_daily_ms_v1',
 
   // ── Блок «Весь путь» / метрики статистики (локально накапливаются) ─────────
-  'shards_lifetime_earned_v1',
-  'shards_lifetime_spent_v1',
   /** Посуточные счётчики для графиков «Весь путь» (JSON { дата → метрики }). */
   'stats_daily_breakdown_v1',
   // ── Уроки 1..32 (per-lesson) ───────────────────────────────────────────────
@@ -1366,7 +1360,6 @@ export const MONOTONIC_COUNTER_RESTORE_KEYS = [
   'achievement_energy_refill_count',
   'achievement_gift_sent_count',
   'achievement_shards_spent_total',
-  'shards_lifetime_earned_v1',
 ] as const;
 const MONOTONIC_COUNTER_RESTORE_KEY_SET = new Set<string>(MONOTONIC_COUNTER_RESTORE_KEYS);
 
@@ -3033,9 +3026,8 @@ async function doSyncToCloud(): Promise<void> {
     }
     await resumePendingReportReplyShardClaims().catch(swallowError('cloud_sync:doSyncToCloud'));
     if (!isSyncGenerationCurrent()) return;
-    // K3: проиграть офлайн-очередь атомарных дельт осколков (идемпотентно по opId).
-    await resumePendingShardDeltas().catch(swallowError('cloud_sync:doSyncToCloud'));
-    if (!isSyncGenerationCurrent()) return;
+    // зачем (PM-289, D70): досылка старой очереди дельт жемчуга со старта снята —
+    // строки и так применены локально; их снимает предпроверка выхода из аккаунта.
     await repairDevSeededStreakInStorage();
     if (!isSyncGenerationCurrent()) return;
     // зачем (Account V2, Пакет 7A, OD19; ремонт №1): при выключателе

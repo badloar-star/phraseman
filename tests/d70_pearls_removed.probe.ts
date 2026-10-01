@@ -118,7 +118,6 @@ const SPEND_OR_GRANT_CALL = new RegExp(
  *   docs/phraseman-2.0/evidence/D70_pearl_removal_inventory.md.
  */
 const ALLOWLIST: Readonly<Record<string, 'design-ui' | 'history' | 'pending'>> = {
-  'app/shards_system.ts': 'history',
   'functions/src/external_economy_events.ts': 'history',
   // зона соревнований (турниры) — не трогаем в этом заходе
   'functions/src/tournament_weekly_payout.ts': 'pending',

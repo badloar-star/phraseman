@@ -200,7 +200,7 @@ it('removes purchase recovery and spend ledger during account switch wipe', asyn
   CUSTOMIZATION_ACCOUNT_LOCAL_KEYS.forEach((key) => { store[key] = 'sentinel'; });
   patchAppSnapshot({
     customization: {
-      source: 'storage', updatedAt: 1, activeAvatar: '18', level: 1, shards: 1,
+      source: 'storage', updatedAt: 1, activeAvatar: '18', level: 1,
     },
   });
 

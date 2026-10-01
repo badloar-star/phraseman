@@ -26,9 +26,9 @@ export type StatsDailyMetric =
   | 'words_learned'
   | 'flashcards_saved'
   | 'phrases_learned'
-  | 'plan_tasks_completed'
-  | 'shards_earned'
-  | 'shards_spent';
+  | 'plan_tasks_completed';
+// зачем (PM-289, D70): метрики жемчуга (shards_earned/shards_spent) удалены вместе
+// с валютой; старые строки в хранилище просто игнорируются при чтении.
 
 const METRICS_LIST: StatsDailyMetric[] = [
   'lessons_completed',
@@ -36,8 +36,6 @@ const METRICS_LIST: StatsDailyMetric[] = [
   'flashcards_saved',
   'phrases_learned',
   'plan_tasks_completed',
-  'shards_earned',
-  'shards_spent',
 ];
 
 /** Что можно открыть из блока «Весь путь». */
@@ -217,16 +215,12 @@ export type DevLifetimePathRandomSums = {
   wordsLearned: number;
   flashcardsSaved: number;
   phrasesLearned: number;
-  shardsEarned: number;
-  shardsSpent: number;
 };
 
 const ZERO_DEV_SUMS: DevLifetimePathRandomSums = {
   wordsLearned: 0,
   flashcardsSaved: 0,
   phrasesLearned: 0,
-  shardsEarned: 0,
-  shardsSpent: 0,
 };
 
 /**
@@ -246,15 +240,11 @@ export async function devRandomizeLifetimePathDailyMetrics(dayCount: number): Pr
         words_learned: randIntInclusive(0, 45),
         flashcards_saved: randIntInclusive(0, 14),
         phrases_learned: randIntInclusive(0, 60),
-        shards_earned: randIntInclusive(0, 90),
-        shards_spent: randIntInclusive(0, 55),
       };
       store[day] = row;
       sums.wordsLearned += row.words_learned ?? 0;
       sums.flashcardsSaved += row.flashcards_saved ?? 0;
       sums.phrasesLearned += row.phrases_learned ?? 0;
-      sums.shardsEarned += row.shards_earned ?? 0;
-      sums.shardsSpent += row.shards_spent ?? 0;
     }
     const pruned = pruneStore(store);
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(pruned));

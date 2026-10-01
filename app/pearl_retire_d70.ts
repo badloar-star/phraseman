@@ -34,7 +34,6 @@ import {
   isTerminalPreparedRecoveryReason,
   recoverPreparedClientShardOperation,
 } from './economy/client_shard_operation_ledger';
-import { emitAppEvent } from './events';
 import { getShardsBalance } from './shards_system';
 import { DebugLogger } from './debug-logger';
 
@@ -198,9 +197,9 @@ export async function retireLocalPearlBalance(
       log('exit account_changed after_debit');
       return 'account_changed';
     }
-    // Обновить память баланса и экраны, которые слушают событие баланса.
+    // зачем (PM-289 этап 2): событие баланса жемчуга больше никто не слушает (Главная
+    // его не показывает) — только сверка проекции для лога.
     const balanceAfter = await getShardsBalance();
-    emitAppEvent('shards_balance_updated', { balance: balanceAfter, op: 'spend', reason: PEARL_RETIRE_REASON });
     const outcome: PearlRetireOutcome = result.status === 'applied' ? 'retired' : 'already_retired';
     log(`done ${outcome} before=${result.balanceBefore} after=${result.balanceAfter} projected=${balanceAfter}`);
     return outcome;

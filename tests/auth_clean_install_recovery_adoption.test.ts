@@ -91,6 +91,7 @@ const syncRevenueCat = jest.fn(async () => { events.push('revenuecat'); return t
 jest.mock('../app/revenuecat_init', () => ({
   syncRevenueCatIdentity: (...args: unknown[]) => syncRevenueCat(...args as []),
 }));
+// зачем (PM-289 этап 2, D70): восстановление больше не открывает журнал жемчуга.
 const loadShards = jest.fn(async () => { events.push('shards'); });
 jest.mock('../app/shards_system', () => ({ loadShardsFromCloud: () => loadShards() }));
 
@@ -196,9 +197,10 @@ describe('dedicated clean-install L→S recovery adoption', () => {
     expect(setStableId).toHaveBeenCalledWith('target-stable');
     expect(events).toEqual([
       'invalidate', 'premium', 'quiesce', 'backup', 'sign-in', 'wipe',
-      'stable:target-stable', 'begin:target-stable', 'ack', 'restore', 'shards',
+      'stable:target-stable', 'begin:target-stable', 'ack', 'restore',
       'revenuecat', 'clear-clean',
     ]);
+    expect(loadShards).not.toHaveBeenCalled();
     expect(storage.has(adoption.AUTH_CLEAN_INSTALL_ADOPTION_KEY)).toBe(false);
   });
 

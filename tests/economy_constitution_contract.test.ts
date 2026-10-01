@@ -73,11 +73,21 @@ describe('Economy Constitution — client authority is a permanent source contra
     expect(violations).toEqual([]);
   });
 
-  test('legacy standalone client/server spend APIs are non-mutating', () => {
+  test('legacy standalone client/server spend APIs are removed, not stubbed (PM-289, D78)', () => {
     const client = read('app/shards_system.ts');
-    const legacySpendStart = client.indexOf('export const spendShardsIdempotent');
-    const legacySpendGuard = client.slice(legacySpendStart, legacySpendStart + 700);
-    expect(legacySpendGuard).toContain("return 'failed';");
+    // зачем (PM-289 этап 2): начисления/траты жемчуга удалены целиком — не заглушки.
+    for (const removed of [
+      'spendShardsIdempotent', 'spendShards', 'addShards', 'addShardsRaw',
+      'commitShardCompositeOperation', 'commitShardCreditOperation',
+      'awardOneTime', 'onStreakUpdated', 'SHARD_REWARDS',
+      'keepShardsBalanceLocalAtLeast', 'addShardsLocalOnlyForPendingServerClaim',
+      'replaceShardsBalanceLocal', 'replaceShardsBalanceForAccountGeneration',
+      'peekLastKnownShardsBalance', 'primeShardsBalanceFromBootStorage',
+    ]) {
+      expect(client).not.toMatch(new RegExp(`export (?:const|async function|function) ${removed}(?![A-Za-z0-9_])`));
+    }
+    expect(client).not.toContain('callShardsApplyDelta');
+    expect(client).not.toContain('shardsApplyDelta');
 
     // зачем: D70/D78 — серверная заглушка shards_apply_delta удалена целиком.
     expect(fs.existsSync(path.join(root, 'functions/src/shards_apply_delta.ts'))).toBe(false);
@@ -157,9 +167,11 @@ describe('Economy Constitution — client authority is a permanent source contra
     const loadStart = shards.indexOf('export const loadShardsFromCloud');
     const load = shards.slice(loadStart);
     expect(load).toContain('await hasClientShardLedgerState(uid)');
-    expect(load).toContain('Cloud is storage only.');
     expect(load.indexOf('await hasClientShardLedgerState(uid)'))
-      .toBeLessThan(load.indexOf('const cloudRaw = Number.isSafeInteger'));
+      .toBeLessThan(load.indexOf('initializeClientShardLedgerOpeningBalance('));
+    // PM-289: легаси-ветка «облако новее локали» (мёртвая с конституции) удалена.
+    expect(load).not.toContain('const cloudRaw = Number.isSafeInteger');
+    expect(load).not.toContain('shards_admin_override_at');
   });
 
   test('account switch/wipe includes every owner-scoped economy journal prefix', () => {

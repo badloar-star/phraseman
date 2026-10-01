@@ -988,8 +988,6 @@ function mergeDevRandomSumsIntoLifetime(base: LifetimeProfileStats, sums: DevLif
         wordsLearned: sums.wordsLearned,
         flashcardsSaved: sums.flashcardsSaved,
         phrasesLearned: sums.phrasesLearned,
-        shardsEarned: sums.shardsEarned,
-        shardsSpent: sums.shardsSpent,
     };
 }
 /** зачем: achievementCount раньше стартовал с useState(0) и рисовал «Все 0»,

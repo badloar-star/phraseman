@@ -49,7 +49,6 @@ const ALLOW: Record<string, Allow> = {
   'app/energy_peek_cache.ts::primeEnergyPeekFromBoot': { count: 1, reason: 'решение владельца 2026-08-24: EnergyProvider монтируется ВЫШЕ загрузчика снапшота; прогрев из загрузчика опаздывал к первому кадру' },
   'app/runes_system.ts::primeRunesPeekFromBoot': { count: 1, reason: 'та же причина, что у энергии: счётчик рун на первом кадре Главной' },
   // ── Долг чужих зон (снимать там, где их владелец) ──────────────────────
-  'app/shards_system.ts::primeShardsBalanceFromBootStorage': { count: 1, reason: 'жемчуг (D70) — зона исполнителя по жемчугу; уходит вместе с shards_system' },
   'app/flashcards/low_power.ts::getItem': { count: 1, reason: 'ДОЛГ PM-212: app/flashcards/* — файлы сессии «Дизайн»; сделать чтение ленивым по первому вызову' },
   'app/flashcards/SoundService.ts::getItem': { count: 2, reason: 'ДОЛГ PM-212: app/flashcards/* — файлы сессии «Дизайн»; сделать чтение ленивым по первому вызову' },
   'app/flashcards/voice_prefs.ts::getItem': { count: 1, reason: 'ДОЛГ PM-212: app/flashcards/* — файлы сессии «Дизайн»; сделать чтение ленивым по первому вызову' },

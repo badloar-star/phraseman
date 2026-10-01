@@ -4,13 +4,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { readCustomCards } from './flashcards/storage';
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
-import { bumpStatsDaily } from './stats_daily_breakdown';
-import {
-  captureAccountGeneration,
-  isCurrentAccountGeneration,
-  withAccountTransitionLock,
-  type AccountGenerationToken,
-} from './account_generation';
 import {
   diagnosticLastKey,
   lessonProgressKey,
@@ -22,63 +15,12 @@ import { DebugLogger } from './debug-logger';
 const WORD_REQUIRED = 3;
 const MIN_ACTIVE_MS = 60_000;
 
-const K_SHARDS_EARNED = 'shards_lifetime_earned_v1';
-const K_SHARDS_SPENT = 'shards_lifetime_spent_v1';
+// зачем (PM-289, D70): счётчики жемчуга «заработано/потрачено за всё время» удалены
+// вместе с валютой — ни один экран их больше не показывает.
 
 /** Сколько фраз в одном уроке по сетке прогресса (см. lesson1). */
 const LESSON_PHRASE_SLOTS_CAP = 50;
 const LIFETIME_STATS_TARGETS: readonly RuntimeStudyTarget[] = ['en', 'fr'];
-
-function parseIntSafe(v: string | null, def = 0): number {
-  const n = parseInt(v ?? '', 10);
-  return Number.isFinite(n) && n >= 0 ? n : def;
-}
-
-async function readCounter(key: string): Promise<number> {
-  return parseIntSafe(await AsyncStorage.getItem(key), 0);
-}
-
-async function incCounter(
-  key: string,
-  delta: number,
-  accountToken: AccountGenerationToken,
-): Promise<boolean> {
-  if (!Number.isFinite(delta) || delta <= 0 || !isCurrentAccountGeneration(accountToken)) return false;
-  try {
-    const increment = async (): Promise<boolean> => {
-      if (!isCurrentAccountGeneration(accountToken)) return false;
-      const cur = await readCounter(key);
-      if (!isCurrentAccountGeneration(accountToken)) return false;
-      await AsyncStorage.setItem(key, String(cur + Math.floor(delta)));
-      return isCurrentAccountGeneration(accountToken);
-    };
-    return withAccountTransitionLock(increment);
-  } catch {
-    return false;
-  }
-}
-
-export async function bumpLifetimeShardsEarned(
-  amount: number,
-  accountToken?: AccountGenerationToken,
-): Promise<void> {
-  const operationToken = accountToken ?? captureAccountGeneration();
-  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return;
-  const committed = await incCounter(K_SHARDS_EARNED, amount, operationToken);
-  if (!committed || !isCurrentAccountGeneration(operationToken)) return;
-  await bumpStatsDaily('shards_earned', amount, undefined, operationToken);
-}
-
-export async function bumpLifetimeShardsSpent(
-  amount: number,
-  accountToken?: AccountGenerationToken,
-): Promise<void> {
-  const operationToken = accountToken ?? captureAccountGeneration();
-  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return;
-  const committed = await incCounter(K_SHARDS_SPENT, amount, operationToken);
-  if (!committed || !isCurrentAccountGeneration(operationToken)) return;
-  await bumpStatsDaily('shards_spent', amount, undefined, operationToken);
-}
 
 /**
  * Сколько фраз из уроков сейчас в состоянии «выучено» (correct / replay_correct),
@@ -142,8 +84,6 @@ export type LifetimeProfileStats = {
   flashcardsSaved: number;
   phrasesLearned: number;
   englishLevel: string | null;
-  shardsEarned: number;
-  shardsSpent: number;
   appDaysUnion: number;
   longestStreakDays: number;
 };
@@ -157,8 +97,6 @@ function isLifetimeProfileStatsSnapshot(o: unknown): o is LifetimeProfileStats {
     'wordsLearned',
     'flashcardsSaved',
     'phrasesLearned',
-    'shardsEarned',
-    'shardsSpent',
     'appDaysUnion',
     'longestStreakDays',
   ] as const;
@@ -203,16 +141,12 @@ export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> 
     fgDaily,
     flashCards,
     phrasesLearned,
-    shardsE,
-    shardsS,
   ] = await Promise.all([
     countLearnedWordsTotal(),
     AsyncStorage.getItem(diagnosticLastKey('en')),
     getForegroundDailyMsMap(),
     readAllCustomCards(),
     countPhrasesLearnedFromLessonProgress(),
-    readCounter(K_SHARDS_EARNED),
-    readCounter(K_SHARDS_SPENT),
   ]);
   let diagnosticLevel: string | null = null;
   if (diagnosticLastRaw) {
@@ -250,8 +184,6 @@ export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> 
     flashcardsSaved: flashCards.length,
     phrasesLearned,
     englishLevel: diagnosticLevel,
-    shardsEarned: shardsE,
-    shardsSpent: shardsS,
     appDaysUnion,
     longestStreakDays: longest,
   };

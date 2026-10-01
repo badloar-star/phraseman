@@ -28,7 +28,11 @@ import {
   loadAchievementStatesForTarget,
   markAchievementsNotified,
 } from '../app/achievements';
-import { commitShardCreditOperation } from '../app/shards_system';
+// зачем (PM-289 этап 2): commitShardCreditOperation удалён из shards_system — берём
+// функцию из фабрики мока, чтобы проверять, что достижения жемчуг не начисляют.
+const { commitShardCreditOperation } = jest.requireMock('../app/shards_system') as {
+  commitShardCreditOperation: jest.Mock;
+};
 import {
   __resetAccountGenerationForTests,
   beginAccountGeneration,

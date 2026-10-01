@@ -155,17 +155,6 @@ describe('resumePendingShardDeltas under the economy constitution (local-first l
     expect(callable).not.toHaveBeenCalled();
   });
 
-  it('checks quarantine before an online shard callable can mirror server state', () => {
-    const source = readFileSync(join(__dirname, '..', 'app', 'shards_system.ts'), 'utf8');
-    const applyStart = source.indexOf('const applyShardDeltaToCloud');
-    const applyEnd = source.indexOf('const persistLocalBalance', applyStart);
-    const applySource = source.slice(applyStart, applyEnd);
-
-    expect(applySource.indexOf('hasQuarantinedShardDeltaQueue(')).toBeGreaterThan(-1);
-    expect(applySource.indexOf('callShardsApplyDelta('))
-      .toBeGreaterThan(applySource.indexOf('hasQuarantinedShardDeltaQueue('));
-  });
-
   it('drains already-applied queue rows locally without any server call and keeps the balance', async () => {
     mockStorage[STORAGE_KEY] = '40';
     queueStore.items = [

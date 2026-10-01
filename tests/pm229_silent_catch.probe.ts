@@ -25,7 +25,7 @@ const SKIP_DIRS = new Set(['node_modules', '__tests__', 'graphify-out', '__mocks
 // Только сокращать. Новые файлы сюда не добавлять — логируй причину.
 const BASELINE: Record<string, number> = {
   'app/(tabs)/friends.tsx': 9,
-  'app/(tabs)/home.tsx': 5, // D49 2026-10-01: 13 → 12 (удалён «Дневной путь»)
+  'app/(tabs)/home.tsx': 4, // PM-289 2026-10-02: 5 → 4 (снято начисление жемчуга за серию)
   'app/(tabs)/lessons.tsx': 1,
   'app/(tabs)/settings.tsx': 4,
   'app/_layout.tsx': 115,
@@ -147,8 +147,6 @@ const BASELINE: Record<string, number> = {
   'app/saved_cards_first_run.ts': 3,
   'app/screen_snapshot_store.ts': 2,
   'app/settings_poll_vote.ts': 1,
-  'app/shards_pending_grants.ts': 1,
-  'app/shards_system.ts': 14,
   'app/stable_id.ts': 14,
   'app/statsCache.ts': 3,
   'app/stats_daily_breakdown.ts': 1,

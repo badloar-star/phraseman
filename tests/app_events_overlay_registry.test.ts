@@ -24,7 +24,6 @@ const INTENTIONAL_DIRECT_EVENT_LISTENERS = new Set([
   'premium_activated @ components/EnergyContext.tsx',
   'premium_deactivated @ components/EnergyContext.tsx',
   'remote_config_changed @ app/(tabs)/settings.tsx',
-  'shards_earned @ app/(tabs)/home.tsx',
   'vip_activated @ app/(tabs)/settings.tsx',
   'vip_activated @ components/EnergyContext.tsx',
   'vip_deactivated @ components/EnergyContext.tsx',

@@ -81,12 +81,6 @@ export type AppEventMap = {
     /** Фаза 2: бонусная часть от карточки IV+ (уже входит в amount; опционально — для отдельного показа). */
     bonus?: number;
   };
-  shards_balance_updated: {
-    balance: number;
-    op?: 'earn' | 'spend' | 'replace' | 'admin';
-    reason?: string;
-    eligibleAchievementBalance?: number;
-  };
   /**
    * Куплен «дневной пропуск» за жемчужины (+N попыток сверх дневного лимита).
    * Эмитит `app/quota_day_pass.ts`; слушают превью квот, чтобы кнопка ожила сразу.

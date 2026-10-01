@@ -86,22 +86,23 @@ describe('DevBotsSheet interaction', () => {
 
     await fireEvent.press(screen.getByTestId('dev-bots-add-3'));
     expect(screen.getByTestId('dev-bot-card-devbot_test_1')).toBeTruthy();
-    expect(screen.getByText('Ada · 3d · 500 XP')).toBeTruthy();
+    // зачем (координатор §48): XP снят в 2.0 (PM-055) — карточка бота «имя · дни».
+    expect(screen.getByText('Ada · 3d')).toBeTruthy();
 
     await fireEvent.press(screen.getByLabelText('Ada: +1 day'));
     expect(screen.getByTestId('dev-bot-today-devbot_test_1')).toBeTruthy();
-    expect(screen.getByText('Ada · 4d · 500 XP')).toBeTruthy();
+    expect(screen.getByText('Ada · 4d')).toBeTruthy();
 
     await fireEvent.press(screen.getByLabelText('Ada: nudges me'));
     expect(screen.getByTestId('dev-bot-incoming-devbot_test_1')).toBeTruthy();
 
-    await fireEvent.press(screen.getByLabelText('Ada: gift ready'));
-    expect(screen.getByTestId('dev-bot-gift-devbot_test_1')).toBeTruthy();
+    // Подарки друзей сняты (PM-048/D66) — сценария «gift ready» в dev-листе больше нет.
+    expect(screen.queryByLabelText('Ada: gift ready')).toBeNull();
   });
 
-  it('offers a dedicated explicit chest reset', async () => {
+  // Сундук «Вместе» снят вместе с подарками — отдельной кнопки сброса нет.
+  it('no longer offers the retired chest reset', async () => {
     const screen = await render(<Harness />);
-    expect(screen.getByTestId('dev-bots-chest-reset')).toBeTruthy();
-    expect(screen.getByText('Сбросить сундук')).toBeTruthy();
+    expect(screen.queryByTestId('dev-bots-chest-reset')).toBeNull();
   });
 });

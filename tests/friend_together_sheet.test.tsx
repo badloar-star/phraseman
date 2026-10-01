@@ -56,6 +56,8 @@ jest.mock('../components/text-integrity', () => {
   return { FlowText: ({ children, ...props }: React.ComponentProps<typeof NativeText>) => mockReact.createElement(NativeText, props, children) };
 });
 
+import { buttonForegroundForBackground } from '../constants/color_contrast';
+
 jest.mock('../components/ThemeContext', () => ({
   useTheme: () => ({
     theme: { accent: '#C8FF00', accentBg: '#E8FFC0', gold: '#D9A400', goldBg: '#FFF1B0', bgSurface2: '#EFEFEF', textPrimary: '#111111', textSecond: '#555555', textMuted: '#777777', wrongBg: '#FDE2E2', wrong: '#9D1A1A' },
@@ -105,8 +107,16 @@ describe('FriendTogetherSheet', () => {
       await user.press(action);
     }
     expect(mockPressableProps['friend-together-sheet-nudge'].variant).toBe('primary');
-    expect(StyleSheet.flatten(mockPressableProps['friend-together-sheet-nudge'].style).backgroundColor).toBe('#C8FF00');
-    expect(StyleSheet.flatten(screen.getByTestId('friend-together-sheet-nudge-label').props.style).color).toBe('#07110A');
+    // зачем (координатор §48, 2026-10-01): лист перешёл на токены стекла 2.0 (useLv2Glass),
+    // цвета больше не берутся из theme.accent. Сторожим отношения, а не hex: активный
+    // «Напомнить» — акцентная заливка, отличная от обычных кнопок, а подпись на ней —
+    // контрастный цвет для этой заливки.
+    const nudgeBg = StyleSheet.flatten(mockPressableProps['friend-together-sheet-nudge'].style).backgroundColor;
+    const highFiveBg = StyleSheet.flatten(mockPressableProps['friend-together-sheet-high-five'].style).backgroundColor;
+    expect(nudgeBg).toBeTruthy();
+    expect(nudgeBg).not.toBe(highFiveBg);
+    expect(StyleSheet.flatten(screen.getByTestId('friend-together-sheet-nudge-label').props.style).color)
+      .toBe(buttonForegroundForBackground(String(nudgeBg)));
 
     expect(value.onNudge).toHaveBeenCalledWith();
     expect(value.onHighFive).toHaveBeenCalledWith();
@@ -133,8 +143,9 @@ describe('FriendTogetherSheet', () => {
     expect(action.props.accessibilityState.disabled).toBe(true);
     expect(action.props.accessibilityLabel).toBe('Вы уже занимались сегодня');
     expect(mockPressableProps['friend-together-sheet-nudge'].variant).toBe('secondary');
-    expect(StyleSheet.flatten(mockPressableProps['friend-together-sheet-nudge'].style).backgroundColor).toBe('#EFEFEF');
-    expect(StyleSheet.flatten(screen.getByTestId('friend-together-sheet-nudge-label').props.style).color).toBe('#555555');
+    // Выключенный «Напомнить» выглядит как обычная кнопка (та же заливка, что у «Дай пять»).
+    expect(StyleSheet.flatten(mockPressableProps['friend-together-sheet-nudge'].style).backgroundColor)
+      .toBe(StyleSheet.flatten(mockPressableProps['friend-together-sheet-high-five'].style).backgroundColor);
     await userEvent.setup().press(action);
     expect(value.onNudge).not.toHaveBeenCalled();
   });

@@ -283,7 +283,9 @@ describe('SurveySheetModal', () => {
     const screen = await render(<SurveySheetModal visible launch={{ ...launch, lang: 'pl' }} onClose={jest.fn()} />);
 
     expect(screen.getAllByTestId('survey-sheet-shell')).toHaveLength(1);
-    expect(mockShellProps.glowColor).toBe('#9cff00');
+    // зачем (координатор §48): свечение — токен стекла 2.0 (glass.cta), не неон старой темы.
+    expect(typeof mockShellProps.glowColor).toBe('string');
+    expect(mockShellProps.glowColor).not.toBe('#9cff00');
     expect(mockShellProps.backdropAccessible).toBe(false);
     expect(screen.getByRole('header', { name: launch.survey.title })).toBeTruthy();
     expect(screen.getByTestId('survey-sheet-close').props.accessibilityLabel).toBe('Zamknij ankietę');
@@ -383,20 +385,27 @@ describe('SurveySheetModal', () => {
     expect(firstOption.props.variant).toBe('card');
     await fireEvent.press(firstOption);
     expect(flow.pickOption).toHaveBeenCalledWith('q1', 'a');
-    // Макет A «Прилив»: у вопроса с вариантами нет кнопки внизу, переход автоматический.
-    expect(screen.queryByTestId('survey-sheet-cta')).toBeNull();
+    // Владелец 21.09: «юзер может клоцать любую, пока не нажал Отправить» — автоперехода
+    // «Прилив» нет; кнопка внизу видна всегда и выключена, пока ответ не выбран.
+    expect(screen.getByTestId('survey-sheet-cta').props.accessibilityState).toEqual(expect.objectContaining({ disabled: true }));
 
     const readyFlow = editingFlow();
     mockUseSurveyFlowController.mockReturnValue(readyFlow);
     await screen.unmount();
     const readyScreen = await render(<SurveySheetModal visible launch={launch} onClose={jest.fn()} />);
     expect(readyScreen.getByRole('radio', { name: 'Короткие задания' }).props.accessibilityState.selected).toBe(true);
-    expect(StyleSheet.flatten(readyScreen.getByRole('radio', { name: 'Короткие задания' }).props.style).backgroundColor).toBe('#222');
-    expect(StyleSheet.flatten(readyScreen.getByTestId('survey-option-a-tone').props.style).backgroundColor).toBe('rgba(139, 92, 246, 0.16)');
-    expect(readyScreen.getByTestId('ionicon-checkmark-circle', { includeHiddenElements: true }).props.color).toBe('#B98CFF');
+    // Цвета — токены стекла 2.0: выбранный вариант несёт свой тон поверх фона строки.
+    const readyBg = StyleSheet.flatten(readyScreen.getByRole('radio', { name: 'Короткие задания' }).props.style).backgroundColor;
+    const readyTone = StyleSheet.flatten(readyScreen.getByTestId('survey-option-a-tone').props.style).backgroundColor;
+    expect(readyTone).toBeTruthy();
+    expect(readyTone).not.toBe(readyBg);
+    expect(readyScreen.getByTestId('ionicon-checkmark-circle', { includeHiddenElements: true })).toBeTruthy();
     // Не последний шаг: плашки «+1» в строке ещё нет, награда только на последнем вопросе.
     expect(readyScreen.queryByTestId('survey-option-a-reward')).toBeNull();
+    // Повторный тап по варианту только выбирает — дальше ведёт исключительно кнопка внизу.
     await fireEvent.press(readyScreen.getByRole('radio', { name: 'Короткие задания' }));
+    expect(readyFlow.goNext).not.toHaveBeenCalled();
+    await fireEvent.press(readyScreen.getByTestId('survey-sheet-cta'));
     await waitFor(() => expect(readyFlow.goNext).toHaveBeenCalledTimes(1));
   });
 
@@ -517,7 +526,9 @@ describe('SurveySheetModal', () => {
     expect(mockRouterPush).not.toHaveBeenCalled();
 
     screen.unmount();
-    expect(mockRouterPush).toHaveBeenCalledWith('/lingman_videos');
+    // React 19 исполняет очистку эффектов после возврата unmount — переход по обещанию
+    // приходит следом (трасса [SURVEY-CTA] «размонтирование → navigation done»).
+    await waitFor(() => expect(mockRouterPush).toHaveBeenCalledWith('/lingman_videos'));
   });
 
   test('defers the Store page to the reward screen and opens it after dismissal', async () => {
@@ -547,10 +558,17 @@ describe('SurveySheetModal', () => {
     const screen = await render(<SurveySheetModal visible launch={launch} onClose={jest.fn()} />);
     const selected = screen.getByRole('radio', { name: 'Короткие задания' });
 
-    expect(StyleSheet.flatten(selected.props.style).backgroundColor).toBe('#F0F4EF');
-    expect(StyleSheet.flatten(screen.getByTestId('survey-option-a-tone').props.style).backgroundColor).toBe('rgba(139, 92, 246, 0.16)');
-    expect(screen.getByTestId('survey-option-a-label').props.style).toEqual(expect.arrayContaining([expect.objectContaining({ color: '#162018' })]));
-    expect(screen.getByTestId('ionicon-radio-button-on', { includeHiddenElements: true }).props.color).toBe('#6D28D9');
+    // Цвета — токены стекла 2.0. Инвариант: выбранный вариант подсвечен своим тоном,
+    // текст варианта не сливается с его фоном, отметка выбора видна.
+    const optionBg = StyleSheet.flatten(selected.props.style).backgroundColor;
+    const toneBg = StyleSheet.flatten(screen.getByTestId('survey-option-a-tone').props.style).backgroundColor;
+    expect(toneBg).toBeTruthy();
+    expect(toneBg).not.toBe(optionBg);
+    const labelColor = StyleSheet.flatten(screen.getByTestId('survey-option-a-label').props.style).color;
+    expect(labelColor).toBeTruthy();
+    expect(labelColor).not.toBe(optionBg);
+    // Отметка выбранного варианта — checkmark-circle (2.0), не radio-button-on.
+    expect(screen.getByTestId('ionicon-checkmark-circle', { includeHiddenElements: true })).toBeTruthy();
   });
 
   test('routes first-step back to close and switches the final CTA to submit', async () => {
@@ -697,7 +715,7 @@ describe('SurveySheetModal', () => {
     expect(screen.getByTestId('survey-sheet-back').props.withHaptic).toBe(false);
     expect(screen.getByTestId('survey-sheet-close').props.withHaptic).toBe(false);
     expect(screen.getByRole('radio', { name: 'Короткие задания' }).props.withHaptic).toBe(false);
-    expect(screen.queryByTestId('survey-sheet-cta')).toBeNull();
+    expect(screen.getByTestId('survey-sheet-cta').props.withHaptic).toBe(false);
   });
 
   test.each([

@@ -29,6 +29,9 @@ const S = {
   promptGap: ['Вставь слово', 'Встав слово', 'Fill in the word', 'Completa la palabra', 'Complete a palavra', 'Điền từ', 'Isi kata', 'Kelimeyi yerleştir', 'Wstaw słowo'],
   promptOdd: ['Найди лишнее', 'Знайди зайве', 'Find the odd one out', 'Encuentra la intrusa', 'Encontre o intruso', 'Tìm từ khác loại', 'Temukan yang berbeda', 'Farklı olanı bul', 'Znajdź niepasujące'],
   promptBuild: ['Собери перевод', 'Склади переклад', 'Build the translation', 'Arma la traducción', 'Monte a tradução', 'Ghép bản dịch', 'Susun terjemahan', 'Çeviriyi oluştur', 'Ułóż tłumaczenie'],
+  // зачем (Ядро 01.10, PM-286): задания на слух — своя подсказка, а не общая «Выбери перевод».
+  promptListenChoose: ['Послушай и выбери', 'Послухай і обери', 'Listen and choose', 'Escucha y elige', 'Ouça e escolha', 'Nghe và chọn', 'Dengarkan dan pilih', 'Dinle ve seç', 'Posłuchaj i wybierz'],
+  promptListenBuild: ['Послушай и собери', 'Послухай і склади', 'Listen and build', 'Escucha y arma', 'Ouça e monte', 'Nghe và ghép', 'Dengarkan dan susun', 'Dinle ve oluştur', 'Posłuchaj i ułóż'],
   promptMatch: ['Найди пары', 'Знайди пари', 'Match the pairs', 'Une las parejas', 'Ligue os pares', 'Nối các cặp', 'Cocokkan pasangan', 'Eşleri bul', 'Połącz pary'],
   onward: ['Дальше', 'Далі', 'Continue', 'Continuar', 'Continuar', 'Tiếp tục', 'Lanjut', 'Devam', 'Dalej'],
   correctIs: ['Правильно:', 'Правильно:', 'Correct:', 'Correcto:', 'Correto:', 'Đáp án:', 'Benar:', 'Doğrusu:', 'Poprawnie:'],

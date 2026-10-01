@@ -11,7 +11,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import * as Speech from 'expo-speech';
+import { useAudio } from '../../hooks/use-audio';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { triLang } from '../../constants/i18n';
 import { resolveSpireListenAudio } from '../../modules/spire/listen_audio';
@@ -41,6 +41,8 @@ const PROMPT_KEY: Record<string, SpireGameStringKey> = {
   find_oddity: 'promptOdd',
   translate_build: 'promptBuild',
   speed_match: 'promptMatch',
+  listen_choose: 'promptListenChoose',
+  listen_build: 'promptListenBuild',
 };
 
 function strings(value: unknown): string[] {
@@ -177,15 +179,18 @@ function SpireTaskView(props: Props) {
   // зачем (PM-286, Ядро 01.10): у заданий «на слух» своей озвучки нет — фразу произносит голос
   // телефона (device-tts из пакета). Нечитаемый URI — не молчим: лог с причиной.
   const hasAudio = typeof task.payload.audioUri === 'string' && task.payload.audioUri.length > 0;
+  // зачем (Ядро 01.10, сторож audio_never_permanently_silent): озвучка через общий арбитр звука —
+  // уважает тумблер голоса, глушится записью микрофона и уступает другим экранам.
+  const { speak, stop } = useAudio();
   const listen = useCallback(() => {
     const audio = resolveSpireListenAudio(task.payload, String(props.studyTarget ?? ''));
     if (!audio.ok) {
       console.warn('[SPIRE] listen: no audio', { taskId: task.taskId, reason: audio.reason, detail: audio.detail });
       return;
     }
-    Speech.stop();
-    Speech.speak(audio.text, { language: audio.speechLanguage });
-  }, [props.studyTarget, task.payload, task.taskId]);
+    stop();
+    speak(audio.text, undefined, { language: audio.speechLanguage });
+  }, [props.studyTarget, speak, stop, task.payload, task.taskId]);
   const listenLabel = triLang(lang, { ru: 'Прослушать', uk: 'Прослухати', en: 'Listen', es: 'Escuchar', 'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengarkan', tr: 'Dinle', pl: 'Posłuchaj' });
   return (
     <View testID="spire-task">

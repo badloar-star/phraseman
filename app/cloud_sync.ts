@@ -4577,6 +4577,15 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
   resetAppSnapshotForAccountSwitch();
   const { resetPersonalProgressForAccountTransition } = await import('./personal_progress_store');
   resetPersonalProgressForAccountTransition();
+  // зачем: PM-213 — список друзей и кэш профилей (память + диск, общий ключ без uid) прошлого
+  // владельца не должны попасть на первый кадр нового аккаунта; ошибка не блокирует смену, но
+  // пишется в лог с префиксом [FRIENDS-WARM].
+  try {
+    const { resetFriendsTabSwrWarmForAccountSwitch } = await import('./friends_tab_swr_warm');
+    await resetFriendsTabSwrWarmForAccountSwitch();
+  } catch (e) {
+    console.warn('[FRIENDS-WARM] сброс при смене аккаунта не выполнен', JSON.stringify({ reason: e instanceof Error ? e.message : String(e) }));
+  }
   // зачем: без этого PlayerProfileModal мог мгновенно отрендерить множители
   // зачем: без этого club_screen мог мгновенно отрендерить ранг/группу лиги
   // зачем: ключ снапшота практики содержит только target+язык, БЕЗ uid — без сброса

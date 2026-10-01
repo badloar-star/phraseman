@@ -2,6 +2,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { APP_SNAPSHOT_RESOURCE_LIMITS, limitArray, patchAppSnapshot } from './app_snapshot_store';
 import type { FriendEntry, FriendRequestEntry } from './firestore_friend_requests';
 import { DebugLogger } from './debug-logger';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+
+// зачем: PM-213 — кэш друзей (память + диск) раньше не принадлежал аккаунту: модульный
+// `primePromise` читал общий ключ один раз за процесс, `warm` и `_profilesCache` переживали
+// смену аккаунта, а позднее чтение диска, начатое для прошлого владельца, могло лечь в память
+// нового. Лог с этим префиксом покажет, какое чтение отброшено и почему.
+const WARM_LOG = '[FRIENDS-WARM]';
 
 /** Тот же ключ, что во вкладке — один источник правды для SWR. */
 export const FRIENDS_TAB_SWR_CACHE_KEY = 'friends_tab_swr_v1';
@@ -34,6 +41,8 @@ export type FriendsTabWarmSnapshot = {
 
 let warm: FriendsTabWarmSnapshot | null = null;
 let primePromise: Promise<void> | null = null;
+// зачем: смена эпохи сбрасывает все чтения, начатые до смены аккаунта, даже если токен поколения ещё не успел обновиться.
+let resetEpoch = 0;
 
 function publishFriendsSnapshot(source: 'storage' | 'memory'): void {
   if (!warm) return;
@@ -119,12 +128,30 @@ export function upsertProfilesCache(updates: Record<string, FriendsProfileCacheE
  */
 export function startFriendsTabSwrPrime(): Promise<void> {
   if (!primePromise) {
-    primePromise = (async () => {
+    // зачем: владелец чтения фиксируется ДО await — ответ диска, пришедший уже после смены
+    // аккаунта, не должен записаться в память нового владельца (поздний результат).
+    const ownerToken = captureAccountGeneration();
+    const ownerKnown = ownerToken.stableId !== null && ownerToken.phase === 'active';
+    const epochAtStart = resetEpoch;
+    let run: Promise<void> | null = null;
+    run = (async () => {
       try {
         const [swrRaw, profRaw] = await Promise.all([
           AsyncStorage.getItem(FRIENDS_TAB_SWR_CACHE_KEY),
           AsyncStorage.getItem(FRIEND_PROFILES_CACHE_KEY),
         ]);
+        if (epochAtStart !== resetEpoch || (ownerKnown && !isCurrentAccountGeneration(ownerToken))) {
+          // зачем: чтение устарело — сбрасываем once-промис, чтобы следующий вызов
+          // прочитал диск уже для текущего владельца, а не вернул пустой результат.
+          console.warn(`${WARM_LOG} prime отброшен: аккаунт сменился во время чтения диска`, JSON.stringify({
+            ownerGeneration: ownerToken.generation,
+            epochChanged: epochAtStart !== resetEpoch,
+            hadSwr: swrRaw !== null,
+            hadProfiles: profRaw !== null,
+          }));
+          if (primePromise === run) primePromise = null;
+          return;
+        }
 
         const profiles: Record<string, FriendsTabProfileWarm> = {};
         if (profRaw) {
@@ -169,6 +196,7 @@ export function startFriendsTabSwrPrime(): Promise<void> {
       DebugLogger.error('friends_tab_swr_warm:requests', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     })();
+    primePromise = run;
   }
   return primePromise;
 }
@@ -188,4 +216,31 @@ export function memoryUpsertFriendsTabSwr(
   const keepProfiles = warm?.canonicalUid === canonicalUid ? warm.profiles : {};
   warm = { canonicalUid, friends, requests, profiles: keepProfiles ?? {} };
   publishFriendsSnapshot('memory');
+}
+
+/**
+ * Сброс при смене аккаунта (вызывается из стирания локальных данных аккаунта).
+ *
+ * зачем: PM-213 — друзья прошлого владельца не должны попасть на первый кадр нового:
+ * память (`warm`, `_profilesCache`, once-промис) и дисковые ключи — это воспроизводимый
+ * кэш (см. REPRODUCIBLE_CACHE_KEYS в phone_state_recovery), его потеря стоит одного
+ * обычного чтения списка при открытии вкладки «Друзья». Память чистим синхронно, до
+ * await диска, чтобы ни один рендер между ними не увидел чужой список.
+ */
+export async function resetFriendsTabSwrWarmForAccountSwitch(): Promise<void> {
+  const hadWarm = warm !== null;
+  const hadProfiles = Object.keys(_profilesCache).length;
+  warm = null;
+  _profilesCache = {};
+  primePromise = null;
+  resetEpoch += 1;
+  console.log(`${WARM_LOG} сброс при смене аккаунта`, JSON.stringify({ hadWarm, hadProfiles }));
+  try {
+    await AsyncStorage.multiRemove([FRIENDS_TAB_SWR_CACHE_KEY, FRIEND_PROFILES_CACHE_KEY]);
+  } catch (e) {
+    // зачем: непрочитанный диск не должен ломать смену аккаунта, но причину пишем —
+    // иначе чужой список вернулся бы после рестарта молча.
+    console.warn(`${WARM_LOG} диск не очищен при смене аккаунта`, JSON.stringify({ reason: e instanceof Error ? e.message : String(e) }));
+    DebugLogger.error('friends_tab_swr_warm:reset', e instanceof Error ? e : new Error(String(e)), 'warning');
+  }
 }

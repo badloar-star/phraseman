@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Главная по языкам</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* таббар — как в system.html (components/v2/V2TabBar.tsx), ширина капсулы от числа вкладок */
+.tb { position: absolute; left: 12px; right: 12px; bottom: 26px; height: 66px; border-radius: 33px; z-index: 35; display: flex; padding: 0 9px;
+  background: linear-gradient(180deg, rgba(44,44,46,.86), rgba(20,20,22,.92)); -webkit-backdrop-filter: blur(24px) saturate(150%); backdrop-filter: blur(24px) saturate(150%);
+  box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.22), inset -1px -1.5px 0 -.2px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.07), 0 22px 44px -14px rgba(0,0,0,.85); }
+.tb .cap { position: absolute; top: 9px; bottom: 9px; left: 9px; border-radius: 18px;
+  background: linear-gradient(160deg, rgba(255,255,255,.16), rgba(255,255,255,.05) 60%, rgba(255,255,255,.09));
+  box-shadow: inset 1px 1px 0 rgba(255,255,255,.28), inset -1px -1px 0 rgba(0,0,0,.35); }
+.tb .it { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #8A8A8D; font-size: 10.5px; font-weight: 600; position: relative; z-index: 1; }
+.tb .it.on { color: #fff; }
+.tb .it svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+/* Главная 2.0 — по компонентам components/home/v2/* */
+.hstats { display: flex; align-items: center; gap: 8px; }
+.hstat { display: flex; align-items: center; gap: 6px; height: 38px; padding: 0 12px; border-radius: 19px; background: #1C1C1E; border: 1px solid var(--line); font-size: 15px; font-weight: 700; }
+.hstat img { width: 20px; height: 20px; border-radius: 50%; }
+.hflag { width: 30px; height: 20px; border-radius: 4px; object-fit: cover; }
+.cont { margin-top: 16px; border-radius: 22px; padding: 16px; background: var(--card-2); border: 1px solid var(--line); display: flex; align-items: center; gap: 14px; }
+.cont .pr { height: 6px; border-radius: 3px; background: #2A2A2C; margin-top: 10px; overflow: hidden; }
+.cont .pr i { display: block; height: 100%; width: 40%; background: #fff; border-radius: 3px; }
+.tiles { display: flex; gap: 8px; margin-top: 14px; }
+.tl { flex: 1; min-height: 156px; border-radius: 20px; padding: 0 10px 10px; background: var(--card-2); border: 1px solid var(--line); display: flex; flex-direction: column; overflow: hidden; }
+.tl .art { height: 92px; display: flex; align-items: center; }
+.tl .art img { width: 84px; height: 84px; object-fit: contain; }
+.tl .t { font-size: 17px; font-weight: 700; }
+.tl .s { font-size: 12px; line-height: 16px; color: var(--sec); margin-top: 4px; }
+.tl .ar { width: 26px; height: 26px; border-radius: 13px; background: #2A2A2C; display: flex; align-items: center; justify-content: center; margin: auto 0 0 auto; }
+.tl.wide { flex-direction: row; align-items: center; min-height: 110px; padding: 10px 14px; gap: 12px; }
+.tl.wide .art { height: auto; }
+.tl.wide .ar { margin: 0 0 0 auto; }
+.rail { display: flex; gap: 10px; overflow: hidden; margin-top: 4px; }
+.rail .v { width: 220px; flex: none; }
+.rail .th { aspect-ratio: 16/9; border-radius: 14px; background: radial-gradient(90% 120% at 80% 20%, #3B3B3F, #121214 70%); border: 1px solid var(--line); display: flex; align-items: flex-end; padding: 10px; font-size: 13px; font-weight: 800; text-transform: uppercase; }
+.rail .vt { font-size: 14px; font-weight: 700; margin-top: 8px; }
+.today { margin-top: 18px; border-radius: 22px; padding: 14px 14px 6px; background: var(--card-2); border: 1px solid var(--line); }
+.today .row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+.today .row:first-of-type { border-top: none; }
+.today .ck { width: 24px; height: 24px; border-radius: 12px; border: 1.5px solid #4A4A4E; flex: none; }
+.today .rw { margin-left: auto; color: var(--sec); font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+.today .rw img { width: 16px; height: 16px; border-radius: 50%; }
+.phrase { margin-top: 18px; border-radius: 22px; padding: 16px; background: var(--card-2); border: 1px solid var(--line); display: flex; gap: 14px; align-items: center; }
+.phrase img { width: 64px; height: 64px; object-fit: contain; }
+.legend { max-width: 980px; font-size: 15px; line-height: 22px; color: #D6D6D8; margin: 14px 0 0; }
+.legend b { color: #fff; }
+.cov { width: 100%; max-width: 980px; border-collapse: collapse; font-size: 14px; margin-top: 18px; }
+.cov td, .cov th { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); color: #D6D6D8; }
+.cov th { color: var(--sec); font-weight: 600; }
+.yes { color: #fff; font-weight: 700; } .no { color: #6B6B70; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Главная и таббар по языкам</h1>
+  <p class="page-lead">Что видит человек, когда для языка готовы не все разделы. Правило владельца (D129/D130): раздел не готов — его нет совсем: ни плитки на Главной, ни вкладки в таббаре, ни задания в «Сегодня». Показывается только то, что есть. Источник — таблица app/learning_language_surface_readiness.ts.</p>
+  <nav class="page-nav"><a href="index.html">Все разделы</a><a href="system.html">Системное</a></nav>
+  <table class="cov" id="cov"></table>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+const { icon, phone, col, block } = K;
+const A = 'assets/';
+const img = (n) => A + n; // одна точка входа для картинок (отдельная версия подменяет её на встроенные)
+const TI = {
+  home: '<path d="M4 11l8-7 8 7v8.5a1.5 1.5 0 01-1.5 1.5h-4v-6h-5v6h-4A1.5 1.5 0 014 19.5z"/>',
+  book: '<path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M4 20.5A2.5 2.5 0 016.5 18H20v3H6.5"/>',
+  video: '<rect x="3" y="5.5" width="18" height="13" rx="3.5"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/>',
+  people: '<circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.5-3.2 2.7-5 5.5-5s5 1.8 5.5 5"/><circle cx="16.5" cy="9.5" r="2.6"/><path d="M15.5 14.2c2.6-.3 4.6 1.3 5 4.3"/>',
+  gear: '<circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.4M12 18.8v2.4M4.2 7.5l2 1.2M17.8 15.3l2 1.2M4.2 16.5l2-1.2M17.8 8.7l2-1.2"/><circle cx="12" cy="12" r="7"/>',
+};
+const ALL_TABS = [['home', 'Главная'], ['book', 'Обучение'], ['video', 'Видео'], ['people', 'Сообщество'], ['gear', 'Настройки']];
+const tabbar = (tabs) => `<div class="tb"><div class="cap" style="width:calc((100% - 18px) / ${tabs.length})"></div>${tabs.map(([k, l], i) => `<div class="it${i === 0 ? ' on' : ''}"><svg viewBox="0 0 24 24">${TI[k]}</svg>${l}</div>`).join('')}</div>`;
+const coin = img('coin_rank_00.webp');
+
+// Готовность по таблице (дата 30.09): lessons / dialogues / daily_phrase / videos / flashcards / spire
+const LANGS = {
+  en: { name: 'Английский', flag: 'language_en', lessons: 1, dialogues: 1, phrase: 1, videos: 1, cards: 1, spire: 1 },
+  es: { name: 'Испанский', flag: 'language_es_dev', lessons: 0, dialogues: 1, phrase: 0, videos: 1, cards: 1, spire: 1 },
+  de: { name: 'Немецкий', flag: 'language_de', lessons: 0, dialogues: 1, phrase: 0, videos: 1, cards: 1, spire: 1 },
+  fr: { name: 'Французский', flag: 'language_fr_dev', lessons: 0, dialogues: 1, phrase: 1, videos: 1, cards: 1, spire: 1 },
+  it: { name: 'Итальянский', flag: 'language_it', lessons: 0, dialogues: 0, phrase: 0, videos: 1, cards: 1, spire: 0 },
+};
+const TILE = {
+  lessons: ['book_stack', 'Уроки', 'Грамматика шаг за шагом'],
+  dialogues: ['chat_bubbles', 'Диалоги', 'Реальные ситуации'],
+  cards: ['notecard_stack', 'Карточки', 'Слова, фразы и выражения'],
+};
+const tile = (key, wide) => { const [art, t, s] = TILE[key]; return wide
+  ? `<div class="tl wide"><div class="art"><img src="${img(art + ".png")}" alt=""></div><div><div class="t">${t}</div><div class="s">${s}</div></div><div class="ar">${icon('fwd', 's16')}</div></div>`
+  : `<div class="tl"><div class="art"><img src="${img(art + ".png")}" alt=""></div><div class="t">${t}</div><div class="s">${s}</div><div class="ar">${icon('fwd', 's16')}</div></div>`; };
+const header = (L) => `<div class="hstats"><span class="hstat">${icon('flame', 's18')}12</span><span class="hstat"><img src="${coin}" alt="">1 240</span><span class="hstat">${icon('boltF', 's18')}5</span><span style="margin-left:auto" class="flex"><img class="hflag" src="${img(L.flag + ".webp")}" alt=""><span class="rb fill" style="margin-left:8px">${icon('chatDots', 's18')}</span></span></div>`;
+const cont = `<div class="cont"><img src="${img("book_stack.png")}" style="width:56px;height:56px;object-fit:contain" alt=""><div class="grow"><div style="font-size:13px;color:var(--sec);font-weight:700;letter-spacing:1.5px">ПРОДОЛЖИТЬ</div><div style="font-size:17px;font-weight:700;margin-top:3px">Урок 4 · Present Simple</div><div class="pr"><i></i></div></div></div>`;
+const rail = (L) => `<div class="sec" style="margin-top:22px"><div class="ti" style="font-size:18px">Видео</div><div class="ac">${icon('fwd', 's16')}</div></div><div class="rail">${['Catch a flight', 'Small talk', 'Get over it'].map((t) => `<div class="v"><div class="th">${t}</div><div class="vt">${t} — ${L.name.toLowerCase()} канал</div></div>`).join('')}</div>`;
+const TODAY = {
+  lessons: ['Пройти урок', 20], dialogues: ['Один диалог', 15], cards: ['Тренировка карточек', 10], videos: ['Посмотреть видео', 10], phrase: ['Фраза дня', 5], spire: ['Ступень Шпиля', 15],
+};
+const today = (L) => {
+  const keys = ['lessons', 'dialogues', 'cards', 'phrase', 'spire', 'videos'].filter((k) => L[k]).slice(0, 4);
+  return `<div class="today"><div style="font-size:18px;font-weight:700;padding:2px 2px 6px">Сегодня</div>${keys.map((k) => `<div class="row"><span class="ck"></span><span style="font-size:15px;font-weight:600">${TODAY[k][0]}</span><span class="rw"><img src="${coin}" alt="">${TODAY[k][1]}</span></div>`).join('')}</div>`;
+};
+const phrase = `<div class="phrase"><img src="${img("mug_quote.png")}" alt=""><div><div style="font-size:13px;color:var(--sec);font-weight:700;letter-spacing:1.5px">ФРАЗА ДНЯ</div><div style="font-size:17px;font-weight:700;margin-top:3px">Ça marche !</div><div style="font-size:14px;color:var(--sec)">Договорились!</div></div></div>`;
+
+const home = (code, opt = {}) => {
+  const L = LANGS[code];
+  const tiles = ['lessons', 'dialogues', 'cards'].filter((k) => L[k]);
+  const wide = tiles.length === 1 && opt.single !== 'small';
+  const tabs = ALL_TABS.filter(([k]) => k !== 'book' || L.lessons);
+  return phone(`${header(L)}${L.lessons ? cont : ''}<div class="tiles">${tiles.map((k) => tile(k, wide)).join('')}</div>${L.videos ? rail(L) : ''}${today(L)}${L.phrase ? phrase : ''}<div style="height:110px"></div>`, { time: '9:41', fixed: tabbar(tabs) });
+};
+
+document.getElementById('cov').innerHTML = `<tr><th>Язык</th><th>Уроки + «Обучение»</th><th>Диалоги</th><th>Карточки</th><th>Видео</th><th>Фраза дня</th><th>Шпиль</th></tr>` +
+  Object.values(LANGS).map((L) => `<tr><td>${L.name}</td>${['lessons', 'dialogues', 'cards', 'videos', 'phrase', 'spire'].map((k) => `<td class="${L[k] ? 'yes' : 'no'}">${L[k] ? 'есть' : 'нет'}</td>`).join('')}</tr>`).join('');
+
+document.getElementById('root').innerHTML =
+  block('langs', 'Главная по языкам (как сейчас решено в таблице)', 'Английский — всё. Испанский и немецкий — без уроков: нет вкладки «Обучение», нет «Продолжить», плиток две. Французский — как испанский, плюс фраза дня. Итальянский — только карточки и видео.', [
+    col('Английский', home('en')), col('Испанский / Немецкий', home('es')), col('Французский', home('fr')), col('Итальянский', home('it')),
+  ]) +
+  block('single', 'Когда плитка одна (итальянский): как её показать', 'Вариант 1 — одна широкая плитка во всю ширину. Вариант 2 — обычная маленькая плитка слева, справа пусто.', [
+    col('Вариант 1 · широкая', home('it')), col('Вариант 2 · маленькая', home('it', { single: 'small' })),
+  ]);
+</script>
+</body>
+</html>

@@ -1605,3 +1605,15 @@
   Q9 PM-080: approved list of coin sources (D104 reports/mailings/collection bonuses, D105 roulette, D109 reports, practiceRuneGrant) — confirm; server videoWatchRunesClaim export to remove after release.
   Q10 PM-200: practice reminders allowlist — which reminders stay.
 2026-10-01 — OWNER (direct, in this session): «Больше не останавливай работу, чтобы у меня что-либо спрашивать… сессия-координатор обязана принимать решения, все вопросы направляй ему». Q1–Q10 sent to the coordinator session («Сессии с таймером и автоматизацией»); answers will be recorded as «РЕШЕНО ЗА ВЛАДЕЛЬЦА (координатор)».
+2026-10-01 — РЕШЕНО КООРДИНАТОРОМ (Fable), 01.10 (владелец напрямую поручил координатору принимать решения):
+  Q1 (c): убрать карточку «Арена» в Пульте (#cp-arena-card + JS) и мёртвую admin/arena-config.html; серверные adminArenaConfigGet/Set ПОКА оставить (admin_arena_publication.ts:261 обновляет arena_v2_config/current, который создаёт только Set) — задача: перенести создание документа в публикацию Шпиля, затем удалить функции; поправить тесты admin_single_surface_contract / arena_admin_config_page.
+  Q2 (b): MAX в админке — скрыть за пломбой MAX_SECTION_SEALED_BY_OWNER_2026_09_04 (вкладка «Здоровье MAX», чип «Звонок MAX», пробник по тирам, выдача минут); код не удалять (D11).
+  Q3 (c): удалить опросы про XP/Арену/Лигу из библиотеки админки; убрать /(tabs)/arena и /club_screen из белых списков (legacy.html, app/survey_client.ts; functions shard_survey_core.ts — деплой после релиза). Живые shard_surveys в Firestore не трогать.
+  Q4 (a): награда за жалобу в монетах сейчас без деплоя — формат v2 {coins} в report_replies / admin_reports_center / промпте ИИ / REPORT_REWARD_BUNDLES, с чтением старого v1 (isExactRewardBundle), чтобы старые неполученные награды не падали на claim.
+  Q5 (b): убрать «Студию персонажа» (avatar_dna_* ключи, modules/avatar-dna*, components/avatar-dna, app/avatar_dna_*); в списках админки инициалы, ранг монеты — только в карточке пользователя (из public_profiles, без +1 чтения на строку); удалить «Нимб» в beta_testers.html и папки admin/v2/avatar-auras, season-auras.
+  Q6 (b): убрать FriendLevelUpModal (исполняет «Дизайн»), уровни дружбы как данные остаются.
+  Q7 (a): D66 принят — PM-230-A1 заменён; PM-230-A2 остаётся.
+  Q8 (a): путь озвучки D128 утверждён, D18 закрыт.
+  Q9 (a): список источников монет утверждён; после релиза снять videoWatchRunesClaim (functions/src/index.ts:1064, firestore.rules:281/323); мёртвые app/video_watch_runes_client.ts, hooks/use_video_watch_energy_boost.ts можно удалить сейчас.
+  Q10 (a): напоминания — только ежедневное и «серия под угрозой».
+  Подтверждено: пуши Шпиля и «давно не заходил» подчиняются pushPrefs.streak.

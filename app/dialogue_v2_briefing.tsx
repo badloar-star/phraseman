@@ -7,9 +7,12 @@ import {
 } from './dialogue_v2_briefing_model';
 import {
   fetchReleasedDialogueV2Catalogue,
+  peekDialogueV2Catalogue,
   type DialogueV2CatalogueReleaseEnvelope,
   type DialogueV2CatalogueStudyTarget,
 } from './dialogue_v2_catalogue_client';
+import { prestartDialogueV2TextSession } from './dialogue_v2_turn_client';
+import { markDialogueV2StartTap } from './dialogue_v2_session_prestart';
 import { useMyCoinRank } from '../hooks/use_my_coin_rank';
 import { triLang } from '../constants/i18n';
 import { useLang } from '../components/LangContext';
@@ -123,20 +126,33 @@ export default function DialogueV2BriefingRoute() {
   const energyIntent = useEnergySessionIntent('ai_dialog', `dialogue_v2:${scenarioId ?? 'none'}`, String(dialogueAttempt));
   const startInFlightRef = useRef(false);
   const [noEnergy, setNoEnergy] = useState(false);
-  const [state, setState] = useState<BriefingState>({ kind: 'loading' });
+  // зачем (владелец 01.10: «диалоги открываются без загрузки»): первый кадр — из каталога в
+  // памяти/снимке (peek), сеть только обновляет фоном и не откатывает показанное на «недоступно».
+  const [state, setState] = useState<BriefingState>(() => {
+    const peeked = scenarioId && supportedTarget(studyTarget) ? peekDialogueV2Catalogue(studyTarget) : null;
+    return peeked ? { kind: 'available', envelope: peeked } : { kind: 'loading' };
+  });
 
   useEffect(() => {
     if (!scenarioId || !supportedTarget(studyTarget)) {
+      console.warn('[DIALOGUE-V2] briefing: no scenario or unsupported target', { scenarioId, studyTarget });
       setState({ kind: 'unavailable' });
       return undefined;
     }
+    // зачем (Ядро 01.10): брифинг открыт не только из хаба (например, из «Сегодня») — фоновый
+    // старт сессии, пока человек читает. Ничего не тратит; повтор для той же сцены не шлёт второй запрос.
+    prestartDialogueV2TextSession({ studyTarget, scenarioId });
     let active = true;
-    setState({ kind: 'loading' });
     void fetchReleasedDialogueV2Catalogue(studyTarget).then((envelope) => {
       if (!active) return;
-      setState(envelope ? { kind: 'available', envelope } : { kind: 'unavailable' });
-    }).catch(() => {
-      if (active) setState({ kind: 'unavailable' });
+      if (envelope) setState({ kind: 'available', envelope });
+      else setState((prev) => {
+        console.warn('[DIALOGUE-V2] briefing: catalogue refresh empty', { scenarioId, kept: prev.kind });
+        return prev.kind === 'available' ? prev : { kind: 'unavailable' };
+      });
+    }).catch((error: unknown) => {
+      console.warn('[DIALOGUE-V2] briefing: catalogue refresh failed', { scenarioId, message: error instanceof Error ? error.message : String(error) });
+      if (active) setState((prev) => (prev.kind === 'available' ? prev : { kind: 'unavailable' }));
     });
     return () => {
       active = false;
@@ -177,6 +193,8 @@ export default function DialogueV2BriefingRoute() {
         }
         if (startInFlightRef.current) return;
         startInFlightRef.current = true;
+        // зачем (Ядро 01.10, замер): «тап → готовность первого хода».
+        if (supportedTarget(studyTarget) && scenarioId) markDialogueV2StartTap({ studyTarget, scenarioId }, Date.now());
         void (async () => {
           try {
             const result = await confirmSpendOne(energyIntent);

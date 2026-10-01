@@ -2,6 +2,7 @@ import { useRouter } from 'expo-router';
 import * as Crypto from 'expo-crypto';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+import { dialogueV2FreeformOpening } from './dialogue_v2_freeform_opening';
 import { DialogueV2FreeformScreen, type DialogueV2FreeformMessage } from '../components/dialogs/DialogueV2FreeformScreen';
 import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
@@ -72,6 +73,13 @@ async function secureTurnId(): Promise<string> {
   return `d2ft_${Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('')}`;
 }
 
+// зачем (владелец 01.10: «первая реплика всегда уже на экране»): открывающая фраза собеседника
+// в первом кадре, без сети. Сервер берёт ту же фразу первым ходом (данные Ядра).
+function freeformOpeningMessages(studyTarget: unknown): readonly DialogueV2FreeformMessage[] {
+  const opening = dialogueV2FreeformOpening(studyTarget);
+  return opening ? Object.freeze([Object.freeze({ id: 'assistant_opening', author: 'assistant' as const, text: opening })]) : Object.freeze([]);
+}
+
 export default function DialogueV2FreeformRoute() {
   const router = useRouter();
   const { studyTarget } = useStudyTarget();
@@ -80,7 +88,7 @@ export default function DialogueV2FreeformRoute() {
   const glass = useDialogueGlass();
   const labels = useMemo(() => labelsFor(lang), [lang]);
   const [session, setSession] = useState<ServerSession | null>(null);
-  const [messages, setMessages] = useState<readonly DialogueV2FreeformMessage[]>([]);
+  const [messages, setMessages] = useState<readonly DialogueV2FreeformMessage[]>(() => freeformOpeningMessages(studyTarget));
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
   const [unavailable, setUnavailable] = useState(false);
@@ -137,9 +145,10 @@ export default function DialogueV2FreeformRoute() {
     const generation = generationRef.current + 1;
     generationRef.current = generation;
     replaceSession(null);
-    setMessages([]);
+    setMessages(freeformOpeningMessages(studyTarget));
     setDraft('');
     pendingRef.current = null;
+    queuedSendRef.current = false;
     startingRef.current = false;
     setSending(false);
     setUnavailable(false);
@@ -189,9 +198,25 @@ export default function DialogueV2FreeformRoute() {
     }
   }, [isCurrentPending]);
 
+  const queuedSendRef = useRef(false);
+  const sendRef = useRef<() => Promise<void>>(async () => undefined);
+  useEffect(() => {
+    if (!session || !queuedSendRef.current) return;
+    queuedSendRef.current = false;
+    console.log('[DIALOGUE-V2] freeform: session ready, flushing queued send'); // guard-ok
+    void sendRef.current();
+  }, [session]);
+
   const send = async () => {
     const userMessage = draft.trim();
     const currentSession = sessionRef.current;
+    // зачем (владелец 01.10: «диалоги без загрузки»): экран открыт до ответа сервера; отправку,
+    // нажатую раньше готовности сессии, держим в очереди и шлём, как только сессия пришла.
+    if (!currentSession && userMessage.length > 0 && voice.status === 'idle') {
+      console.log('[DIALOGUE-V2] freeform: send queued until session ready', { length: userMessage.length }); // guard-ok
+      queuedSendRef.current = true;
+      return;
+    }
     if (!currentSession || !isSupportedTarget(targetRef.current) || sending || startingRef.current
       || voice.status !== 'idle'
       || userMessage.length < 1) return;
@@ -199,7 +224,8 @@ export default function DialogueV2FreeformRoute() {
     let turnId: string;
     try {
       turnId = await secureTurnId();
-    } catch {
+    } catch (error: unknown) {
+      console.warn('[DIALOGUE-V2] freeform: turn id failed', { message: error instanceof Error ? error.message : String(error) });
       startingRef.current = false;
       setUnavailable(true);
       return;
@@ -230,6 +256,7 @@ export default function DialogueV2FreeformRoute() {
     setDraft('');
     await runPendingTurn(pending);
   };
+  sendRef.current = send;
 
   if (!accessResolved) {
     return <DialogueGlassGate glass={glass} testID="dialogue-v2-freeform-loading" backLabel={labels.back} onBack={() => router.back()} loading title={labels.loading} />;
@@ -275,8 +302,5 @@ export default function DialogueV2FreeformRoute() {
     );
   }
 
-  if (!session) {
-    return <DialogueGlassGate glass={glass} testID="dialogue-v2-freeform-loading" backLabel={labels.back} onBack={() => router.back()} loading title={labels.loading} />;
-  }
   return <DialogueV2FreeformScreen title={labels.title} memoryNote={labels.memory} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => router.back()} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={voice.start} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} />;
 }

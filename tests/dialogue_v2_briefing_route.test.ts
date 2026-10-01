@@ -24,7 +24,13 @@ jest.mock('expo-router', () => ({
 }));
 jest.mock('../app/dialogue_v2_catalogue_client', () => ({
   fetchReleasedDialogueV2Catalogue: (...args: unknown[]) => mockFetchCatalogue(...args),
+  // зачем: первый кадр брифинга берётся из каталога в памяти; в узловом тесте его нет — экран ждёт сеть.
+  peekDialogueV2Catalogue: () => null,
 }));
+const mockPrestart = jest.fn();
+const mockMarkStartTap = jest.fn();
+jest.mock('../app/dialogue_v2_turn_client', () => ({ prestartDialogueV2TextSession: (...args: unknown[]) => mockPrestart(...args) }));
+jest.mock('../app/dialogue_v2_session_prestart', () => ({ markDialogueV2StartTap: (...args: unknown[]) => mockMarkStartTap(...args) }));
 jest.mock('../app/dialogue_v2_briefing_model', () => ({
   buildDialogueV2BriefingModel: (...args: unknown[]) => mockBuildModel(...args),
 }));

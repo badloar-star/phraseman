@@ -13,6 +13,9 @@ const mockUseLang = jest.fn();
 const mockBack = jest.fn();
 const mockPush = jest.fn();
 const mockScreen: jest.Mock = jest.fn(() => null);
+// зачем: открывающая фраза (данные Ядра) по умолчанию выключена — старые проверки ленты про ходы;
+// отдельный тест ниже проверяет, что она стоит в первом кадре.
+const mockOpening: jest.Mock = jest.fn((): string | null => null);
 const mockVoice = {
   status: 'idle' as const,
   voiceDraft: null as { uri: string; transcript: string } | null,
@@ -63,6 +66,8 @@ jest.mock('../app/dialogue_v2_freeform_prepared_bot_voice_asset_registry', () =>
   resolveBundledDialogueV2FreeformPreparedBotVoiceAsset: jest.fn(async () => null),
 }));
 
+jest.mock('../app/dialogue_v2_freeform_opening', () => ({ dialogueV2FreeformOpening: (target: unknown) => mockOpening(target) }));
+
 import DialogueV2FreeformRoute from '../app/dialogue_v2_freeform';
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -74,6 +79,7 @@ describe('Dialogue V2 freeform route', () => {
     mockUseStudyTarget.mockReturnValue({ studyTarget: 'de' });
     mockUsePremium.mockReturnValue({ accessResolved: true, hasPremiumAccess: true });
     mockUseLang.mockReturnValue({ lang: 'ru' });
+    mockOpening.mockImplementation(() => null);
     mockStart.mockResolvedValue({ ok: true, sessionId: `d2fs_${'a'.repeat(32)}`, expiresAtMs: Date.UTC(2026, 9, 1) });
     mockTurn.mockResolvedValue({
       ok: true,
@@ -92,7 +98,7 @@ describe('Dialogue V2 freeform route', () => {
 
   it('starts its own Plus-only session and sends a bounded freeform turn with stable message IDs', async () => {
     await render(h(DialogueV2FreeformRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled()); await act(async () => { await Promise.resolve(); }); // экран открыт сразу (без загрузки); ждём ответ старта
     expect(mockStart).toHaveBeenCalledWith({ studyTarget: 'de' });
 
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Guten Tag!'); });
@@ -124,7 +130,7 @@ describe('Dialogue V2 freeform route', () => {
     mockVoice.voiceDraft = localVoice;
     mockVoice.takeVoiceAttachment.mockReturnValue(localVoice);
     await render(h(DialogueV2FreeformRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled()); await act(async () => { await Promise.resolve(); }); // экран открыт сразу (без загрузки); ждём ответ старта
 
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Guten   Tag!'); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
@@ -144,7 +150,7 @@ describe('Dialogue V2 freeform route', () => {
     mockVoice.voiceDraft = { uri: 'file:///cache/mismatched-freeform-voice.m4a', transcript: 'Guten Morgen!' };
     mockVoice.takeVoiceAttachment.mockReturnValue(null);
     await render(h(DialogueV2FreeformRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled()); await act(async () => { await Promise.resolve(); }); // экран открыт сразу (без загрузки); ждём ответ старта
 
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Guten Abend!'); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
@@ -158,7 +164,7 @@ describe('Dialogue V2 freeform route', () => {
 
   it('discards a locally recorded voice draft before resetting a changed language contour', async () => {
     const screen = await render(h(DialogueV2FreeformRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled()); await act(async () => { await Promise.resolve(); }); // экран открыт сразу (без загрузки); ждём ответ старта
     mockUseStudyTarget.mockReturnValue({ studyTarget: 'en' });
     await screen.rerender(h(DialogueV2FreeformRoute));
     await waitFor(() => expect(mockStart).toHaveBeenCalledWith({ studyTarget: 'en' }));
@@ -182,7 +188,7 @@ describe('Dialogue V2 freeform route', () => {
       expiresAtMs: Date.UTC(2026, 9, 1),
     });
     const screen = await render(h(DialogueV2FreeformRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled()); await act(async () => { await Promise.resolve(); }); // экран открыт сразу (без загрузки); ждём ответ старта
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Noch einmal.'); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
     await expect(screen.findByLabelText('Повторить')).resolves.toBeTruthy();
@@ -197,7 +203,7 @@ describe('Dialogue V2 freeform route', () => {
   it('shows the same neutral retry state when client turn-ID generation fails', async () => {
     mockCrypto.getRandomBytesAsync.mockRejectedValueOnce(new Error('native entropy detail'));
     const screen = await render(h(DialogueV2FreeformRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled()); await act(async () => { await Promise.resolve(); }); // экран открыт сразу (без загрузки); ждём ответ старта
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Hallo.'); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
     await expect(screen.findByLabelText('Повторить')).resolves.toBeTruthy();
@@ -212,7 +218,7 @@ describe('Dialogue V2 freeform route', () => {
       .mockResolvedValueOnce({ ok: true, sessionId: `d2fs_${'b'.repeat(32)}`, expiresAtMs: Date.UTC(2026, 9, 1) });
     mockTurn.mockImplementationOnce(() => new Promise((_, reject) => { rejectOldTurn = reject; }));
     const screen = await render(h(DialogueV2FreeformRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled()); await act(async () => { await Promise.resolve(); }); // экран открыт сразу (без загрузки); ждём ответ старта
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Alte Nachricht.'); });
     void mockScreen.mock.calls.at(-1)[0].onSend();
     await waitFor(() => expect(mockTurn).toHaveBeenCalledTimes(1));
@@ -234,7 +240,7 @@ describe('Dialogue V2 freeform route', () => {
       .mockResolvedValueOnce({ ok: true, sessionId: `d2fs_${'b'.repeat(32)}`, expiresAtMs: Date.UTC(2026, 9, 1) });
     mockTurn.mockImplementationOnce(() => new Promise((resolve) => { resolveOldTurn = resolve; }));
     const screen = await render(h(DialogueV2FreeformRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled()); await act(async () => { await Promise.resolve(); }); // экран открыт сразу (без загрузки); ждём ответ старта
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Alte Nachricht.'); });
     void mockScreen.mock.calls.at(-1)[0].onSend();
     await waitFor(() => expect(mockTurn).toHaveBeenCalledTimes(1));
@@ -252,7 +258,7 @@ describe('Dialogue V2 freeform route', () => {
 
   it('clears already-rendered messages when the language contour changes', async () => {
     const screen = await render(h(DialogueV2FreeformRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled()); await act(async () => { await Promise.resolve(); }); // экран открыт сразу (без загрузки); ждём ответ старта
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Guten Tag!'); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
     await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].messages).toHaveLength(2));
@@ -279,7 +285,7 @@ describe('Dialogue V2 freeform route', () => {
   it('rejects a 2048-code-unit four-byte draft before optimistic append or callable transport', async () => {
     const oversizedUtf8Draft = '😀'.repeat(1024);
     await render(h(DialogueV2FreeformRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled()); await act(async () => { await Promise.resolve(); }); // экран открыт сразу (без загрузки); ждём ответ старта
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft(oversizedUtf8Draft); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
     expect(mockTurn).not.toHaveBeenCalled();
@@ -291,10 +297,20 @@ describe('Dialogue V2 freeform route', () => {
     ['CRLF text', 'Hallo\r\nnoch'],
   ])('does not optimistically append or transport non-canonical %s', async (_name, draft) => {
     await render(h(DialogueV2FreeformRoute));
-    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled()); await act(async () => { await Promise.resolve(); }); // экран открыт сразу (без загрузки); ждём ответ старта
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft(draft); });
     await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
     expect(mockTurn).not.toHaveBeenCalled();
     expect(mockScreen.mock.calls.at(-1)[0].messages).toEqual([]);
+  });
+  it('shows the persona opening line in the very first frame, before the session starts', async () => {
+    mockOpening.mockImplementation(() => 'Hallo! Worüber möchtest du heute sprechen?');
+    mockStart.mockImplementation(() => new Promise(() => undefined));
+    await render(h(DialogueV2FreeformRoute));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled());
+    expect(mockScreen.mock.calls[0][0].messages).toEqual([
+      { id: 'assistant_opening', author: 'assistant', text: 'Hallo! Worüber möchtest du heute sprechen?' },
+    ]);
+    expect(mockOpening).toHaveBeenCalledWith('de');
   });
 });

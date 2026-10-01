@@ -120,16 +120,54 @@ export function mergeOwnedIdReads(
   return { ids: [...new Set(ids)], status };
 }
 
+/**
+ * Пакет 8C: `missingPackIds` — наборы, которых ТОЧНО нет (каталог прочитан полностью и
+ * набора в нём нет; документ набора в облаке не существует). Такой набор не держит экран
+ * в загрузке: остальные показываются, отсутствующий тихо не показывается (лог [MY-PACKS]).
+ * Сбой сети/чтения — не «отсутствует»: id остаётся нерешённым → 'stale' (тихий повтор).
+ */
 export function classifyMyPacksResolution({
   sourceStatuses,
   ownedIds,
   resolvedPackIds,
+  missingPackIds = [],
 }: {
   sourceStatuses: readonly MyPacksReadStatus[];
   ownedIds: readonly string[];
   resolvedPackIds: readonly string[];
+  missingPackIds?: readonly string[];
 }): MyPacksReadStatus {
   if (!sourceStatuses.every((status) => status === 'ready')) return 'stale';
-  const resolved = new Set(resolvedPackIds);
+  const resolved = new Set([...resolvedPackIds, ...missingPackIds]);
   return ownedIds.every((id) => resolved.has(id)) ? 'ready' : 'stale';
+}
+
+/** 8C: «набора нет» на сессию — 30 мин; потом проверяем снова (набор могли вернуть в каталог). */
+export const MY_PACKS_MISSING_TTL_MS = 30 * 60 * 1000;
+
+/**
+ * 8C: кэш отрицательного ответа «документа набора нет». зачем: без него каждый фокус
+ * экрана и каждый тихий повтор заново читали бы из Firestore наборы, которых нет
+ * (лишние чтения на каждом рендере). Ограничен по размеру; время подаётся снаружи.
+ */
+export class MissingPackCache {
+  readonly #until: BoundedScopeCache<number>;
+
+  constructor(readonly maxEntries: number, readonly ttlMs: number) {
+    // зачем: в конструкторе, не в инициализаторе поля — поле инициализируется раньше параметров.
+    this.#until = new BoundedScopeCache<number>(maxEntries);
+  }
+
+  isMissing(key: string, nowMs: number): boolean {
+    const until = this.#until.get(key);
+    return until !== undefined && until > nowMs;
+  }
+
+  markMissing(key: string, nowMs: number): void {
+    this.#until.set(key, nowMs + this.ttlMs);
+  }
+
+  clear(): void {
+    this.#until.clear();
+  }
 }

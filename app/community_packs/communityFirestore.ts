@@ -590,5 +590,33 @@ export async function fetchCommunityPackMeta(
   }
 }
 
+/**
+ * Пакет 8C: то же чтение, что fetchCommunityPackMeta, но с различением исходов.
+ * зачем: «Мои наборы» держали экран в загрузке, пока хоть один добавленный набор не
+ * найден — а несуществующий набор (удалён, тестовый id) не находится никогда. Теперь
+ * 'missing' (документа нет / облако выключено в этой сборке) — окончательно для сессии,
+ * 'error' (сеть, права) — повтор позже. Без uid/id в логах.
+ */
+export type CommunityPackMetaResult =
+  | { status: 'found'; pack: FlashcardMarketPack }
+  | { status: 'missing'; reason: 'not_found' | 'unmappable' | 'cloud_disabled' }
+  | { status: 'error' };
+
+export async function fetchCommunityPackMetaResult(
+  packId: string,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<CommunityPackMetaResult> {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return { status: 'missing', reason: 'cloud_disabled' };
+  try {
+    const snap = await firestore().collection(COMMUNITY_PACKS_COLLECTION).doc(packId).get();
+    if (!snap.exists) return { status: 'missing', reason: 'not_found' };
+    const pack = mapCommunityPackDocToMarket(packId, snap.data() as Record<string, unknown>, { forCatalog: false, studyTarget });
+    return pack ? { status: 'found', pack } : { status: 'missing', reason: 'unmappable' };
+  } catch (e) {
+    console.warn(`[MY-PACKS] meta_fetch_failed kind=${e instanceof Error ? e.name : typeof e}`);
+    return { status: 'error' };
+  }
+}
+
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

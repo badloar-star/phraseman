@@ -55,7 +55,7 @@ import { safeRouterBack } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
 import { soundDirector } from '../modules/audio/sound_director';
 import { loadCommunityOwnedPackIdsResult } from './community_packs/communityOwnedStorage';
-import { fetchCommunityPackMeta, loadAuthorCommunityPacksPendingUpdate, invalidateCommunityPackCatalog } from './community_packs/communityFirestore';
+import { fetchCommunityPackMetaResult, loadAuthorCommunityPacksPendingUpdate, invalidateCommunityPackCatalog } from './community_packs/communityFirestore';
 import { isLocalAuthorPackId, loadLocalAuthorPacks, loadLocalAuthorPacksResult, localAuthorPackToMarketPack, removeLocalAuthorPack } from './community_packs/localAuthorPacks';
 import { withdrawLocalAuthorPack } from './community_packs/publishLocalPack';
 import { stageCommunityPackCardsForNavigation } from './community_packs/staging';
@@ -91,7 +91,12 @@ import {
   subscribeAccountGeneration,
 } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
-import { canCommitAccountScopedResult, classifyMyPacksResolution } from './flashcards/myPacksDataIntegrity';
+import {
+  canCommitAccountScopedResult,
+  classifyMyPacksResolution,
+  MissingPackCache,
+  MY_PACKS_MISSING_TTL_MS,
+} from './flashcards/myPacksDataIntegrity';
 
 const COLS = 3;
 const GAP = 10;
@@ -133,6 +138,10 @@ type MyPacksLoadResult = {
 };
 
 const EMPTY_GROUPS: MyPacksGroups = { added: [], created: [] };
+
+// зачем (Account V2, 8C): «набора нет» запоминается на 30 мин на процесс — фокусы экрана и
+// тихие повторы не читают заново из Firestore документы, которых нет.
+const missingPackCache = new MissingPackCache(200, MY_PACKS_MISSING_TTL_MS);
 
 // PM-096: согласованная сортировка «Мои наборы» — по дате изменения, сохраняется
 // локально (без сети, без Firestore-чтений). 'updated' — новые сверху (как уже
@@ -363,12 +372,35 @@ export default function FlashcardsMyPacksScreen() {
     ]);
     /** Наборы сообщества, добавленные себе: метаданные из каталога, иначе точечно из облака. */
     const missing = communityOwnedIds.filter((id) => !known.has(id) && !catalogById.has(id));
-    const metas = missing.length > 0
-      ? await Promise.all(missing.map((id) => fetchCommunityPackMeta(id, studyTarget).catch(() => null)))
+    // зачем (8C): у загрузки есть конец. Набор, которого ТОЧНО нет (документа нет — удалён,
+    // тестовый id; облако выключено), больше не держит экран на скелетоне: остальные
+    // показываются, отсутствующий тихо не показывается. Сбой сети — повтор, как раньше.
+    const nowMs = Date.now();
+    const cachedMissing = missing.filter((id) => missingPackCache.isMissing(`${studyTarget}:${id}`, nowMs));
+    const toFetch = missing.filter((id) => !cachedMissing.includes(id));
+    const fetched = toFetch.length > 0
+      ? await Promise.all(toFetch.map((id) => fetchCommunityPackMetaResult(id, studyTarget)
+        .catch(() => ({ status: 'error' as const }))))
       : [];
     if (!isCurrentAccountGeneration(operationAccount)) {
+      console.log('[MY-PACKS] resolve skip reason=account_changed');
       return { groups: EMPTY_GROUPS, status: 'stale', accountScope: operationScope };
     }
+    const metas: FlashcardMarketPack[] = [];
+    const fetchedMissing: string[] = [];
+    let fetchErrors = 0;
+    fetched.forEach((result, index) => {
+      if (result.status === 'found') metas.push(result.pack);
+      else if (result.status === 'missing') {
+        fetchedMissing.push(toFetch[index]);
+        missingPackCache.markMissing(`${studyTarget}:${toFetch[index]}`, nowMs);
+      } else fetchErrors += 1;
+    });
+    // Купленные/официальные id, которых нет в ПОЛНОСТЬЮ прочитанном каталоге (снят, скрыт): тоже не ждём.
+    const ownedOutsideCatalog = catalogResult.status === 'ready'
+      ? ownedIds.filter((id) => !catalogById.has(id) && !authoredLocalIds.has(id) && !communityOwnedIds.includes(id))
+      : [];
+    const definitelyMissing = [...cachedMissing, ...fetchedMissing, ...ownedOutsideCatalog];
 
     // Один сборщик на оба пути (см. groupPacks) — синхронный первый кадр и это
     // дочитывание раскладывают наборы одинаково, поэтому список не перестраивается.
@@ -393,9 +425,15 @@ export default function FlashcardsMyPacksScreen() {
       ownedIds: [...new Set([...ownedIds, ...communityOwnedIds])],
       resolvedPackIds: [
         ...catalog.map((pack) => pack.id),
-        ...metas.filter((pack): pack is FlashcardMarketPack => Boolean(pack)).map((pack) => pack.id),
+        ...metas.map((pack) => pack.id),
       ],
+      missingPackIds: definitelyMissing,
     });
+    // Лог решения: только числа (без uid и id наборов).
+    console.log(`[MY-PACKS] resolve owned=${ownedIds.length} community=${communityOwnedIds.length} catalog=${catalog.length}`
+      + ` catalog_status=${catalogResult.status} fetched=${toFetch.length} found=${metas.length}`
+      + ` missing_fetched=${fetchedMissing.length} missing_cached=${cachedMissing.length}`
+      + ` missing_outside_catalog=${ownedOutsideCatalog.length} fetch_errors=${fetchErrors} status=${status}`);
     return {
       groups: groupPacks(filterPacksByLanguage(visible, packLanguage), isMine),
       status,
@@ -412,9 +450,13 @@ export default function FlashcardsMyPacksScreen() {
       setOpeningPackId(null);
       setLoadStatus('loading');
       void loadMine().then((next) => {
-        if (cancelled) return;
+        if (cancelled) { console.log('[MY-PACKS] commit skip reason=cancelled'); return; }
         const currentScope = accountScopeKey(captureAccountGeneration());
-        if (!canCommitAccountScopedResult(next.accountScope, currentScope)) return;
+        if (!canCommitAccountScopedResult(next.accountScope, currentScope)) {
+          console.log('[MY-PACKS] commit skip reason=account_scope_changed');
+          return;
+        }
+        console.log(`[MY-PACKS] commit status=${next.status} added=${next.groups.added.length} created=${next.groups.created.length}`);
         if (next.status === 'stale') {
           setGroups((prev) => prev.added.length + prev.created.length > 0 ? prev : next.groups);
           setLoadStatus('stale');

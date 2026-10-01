@@ -7,6 +7,8 @@ import {
   canCommitAccountScopedResult,
   classifyMyPacksResolution,
   isValidLocalAuthorPackStorageItem,
+  MissingPackCache,
+  MY_PACKS_MISSING_TTL_MS,
   mergeOwnedIdReads,
   parseStrictArrayJson,
   readArrayWithStatus,
@@ -155,4 +157,60 @@ test('UGC metadata outage leaves an owned id unresolved and prevents false ready
     ownedIds: [],
     resolvedPackIds: [],
   }), 'stale');
+});
+
+// Пакет 8C: «Мои наборы» с id вне каталога висели на скелетоне — несуществующий набор не
+// находится никогда, а 'stale' держал экран в загрузке и гонял тихие повторы.
+test('8C: definitely-missing pack ids do not hold the screen; outages still do', () => {
+  assert.equal(classifyMyPacksResolution({
+    sourceStatuses: ['ready', 'ready', 'ready', 'ready', 'ready'],
+    ownedIds: ['official-a', 'ugc-deleted', 'test-id'],
+    resolvedPackIds: ['official-a'],
+    missingPackIds: ['ugc-deleted', 'test-id'],
+  }), 'ready');
+  // сбой чтения метаданных — не «нет набора»: остаётся stale (тихий повтор)
+  assert.equal(classifyMyPacksResolution({
+    sourceStatuses: ['ready', 'ready'],
+    ownedIds: ['official-a', 'ugc-outage'],
+    resolvedPackIds: ['official-a'],
+    missingPackIds: [],
+  }), 'stale');
+  // источник не прочитан — отсутствующие наборы не делают ready
+  assert.equal(classifyMyPacksResolution({
+    sourceStatuses: ['ready', 'stale'],
+    ownedIds: ['ugc-deleted'],
+    resolvedPackIds: [],
+    missingPackIds: ['ugc-deleted'],
+  }), 'stale');
+});
+
+test('8C: negative answer is cached for the TTL, then re-checked; bounded', () => {
+  const cache = new MissingPackCache(2, MY_PACKS_MISSING_TTL_MS);
+  cache.markMissing('en:a', 1_000);
+  assert.equal(cache.isMissing('en:a', 1_000 + MY_PACKS_MISSING_TTL_MS - 1), true);
+  assert.equal(cache.isMissing('en:a', 1_000 + MY_PACKS_MISSING_TTL_MS), false);
+  assert.equal(cache.isMissing('fr:a', 1_000), false);
+  cache.markMissing('en:b', 1_000);
+  cache.markMissing('en:c', 1_000);
+  assert.equal(cache.isMissing('en:a', 1_001), false);
+  assert.equal(cache.isMissing('en:c', 1_001), true);
+});
+
+test('8C: screen wiring — outcome-aware fetch, negative cache, missing ids in resolution, [MY-PACKS] logs', async () => {
+  const { readFileSync } = await import('node:fs');
+  const { join } = await import('node:path');
+  const screen = readFileSync(join(__dirname, '..', 'app', 'flashcards_my_packs.tsx'), 'utf8');
+  const firestoreSource = readFileSync(join(__dirname, '..', 'app', 'community_packs', 'communityFirestore.ts'), 'utf8');
+  const has = (text: string, part: string): void => assert.ok(text.includes(part), `missing: ${part}`);
+  has(screen, 'fetchCommunityPackMetaResult(id, studyTarget)');
+  has(screen, 'missingPackCache.isMissing(');
+  has(screen, 'missingPackCache.markMissing(');
+  has(screen, 'missingPackIds: definitelyMissing');
+  has(screen, "const ownedOutsideCatalog = catalogResult.status === 'ready'");
+  has(screen, '[MY-PACKS] resolve owned=');
+  has(screen, '[MY-PACKS] commit status=');
+  assert.ok(!screen.includes("if (loadStatus === 'loading') return null"));
+  // отсутствие документа — окончательно; сбой — повтор
+  has(firestoreSource, "if (!snap.exists) return { status: 'missing', reason: 'not_found' };");
+  has(firestoreSource, "return { status: 'error' };");
 });

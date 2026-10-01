@@ -21,18 +21,27 @@
 .hstat { display: flex; align-items: center; gap: 6px; height: 38px; padding: 0 12px; border-radius: 19px; background: #1C1C1E; border: 1px solid var(--line); font-size: 15px; font-weight: 700; }
 .hstat img { width: 20px; height: 20px; border-radius: 50%; }
 .hflag { width: 30px; height: 20px; border-radius: 4px; object-fit: cover; }
-.cont { margin-top: 16px; border-radius: 22px; padding: 16px; background: var(--card-2); border: 1px solid var(--line); display: flex; align-items: center; gap: 14px; }
-.cont .pr { height: 6px; border-radius: 3px; background: #2A2A2C; margin-top: 10px; overflow: hidden; }
-.cont .pr i { display: block; height: 100%; width: 40%; background: #fff; border-radius: 3px; }
+.cont { margin-top: 16px; border-radius: 22px; min-height: 96px; background: var(--card-2); border: 1px solid var(--line); position: relative; overflow: hidden; }
+.cont .cp { padding: 14px 43% 14px 16px; }
+.cont .ov { font-size: 12px; font-weight: 700; letter-spacing: 1.6px; color: var(--sec); }
+.cont .tt { font-size: 18px; line-height: 22px; font-weight: 800; letter-spacing: -.3px; margin-top: 6px; }
+.cont .ct { font-size: 15px; color: var(--sec); margin-top: 6px; }
+.cont .pr { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.cont .tr { flex: 1; height: 6px; border-radius: 3px; background: #2A2A2C; overflow: hidden; } .cont .tr i { display: block; height: 100%; width: 8%; min-width: 12px; background: #fff; border-radius: 3px; }
+.cont .ar { width: 32px; height: 32px; border-radius: 16px; background: #2A2A2C; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; flex: none; }
+.cont .art { position: absolute; right: 6px; top: 0; bottom: 0; width: 42%; display: flex; align-items: center; justify-content: flex-end; }
+.cont .art img { width: 118px; height: 118px; object-fit: contain; }
+.cont .bg { position: absolute; right: 12px; bottom: 10px; min-height: 26px; padding: 4px 12px; border-radius: 13px; background: #2A2A2C; border: 1px solid var(--line); font-size: 13px; font-weight: 700; }
 .tiles { display: flex; gap: 8px; margin-top: 14px; }
-.tl { flex: 1; min-width: 0; border-radius: 20px; background: var(--card-2); border: 1px solid var(--line); overflow: hidden; }
-/* три плитки: колонка, ниже прежних (156 → ~115) */
-.tl.c3 { min-height: 100px; padding: 10px 10px 11px; display: flex; flex-direction: column; }
-.tl.c3 img { width: 40px; height: 40px; object-fit: contain; display: block; margin-bottom: 6px; }
-/* две плитки: строка, арт слева */
-.tl.c2 { min-height: 78px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; }
-.tl.c2 img { width: 52px; height: 52px; object-fit: contain; flex: none; }
-.tl .t { font-size: 17px; font-weight: 700; }
+.tl { flex: 1; min-width: 0; border-radius: 20px; background: var(--card-2); border: 1px solid var(--line); overflow: hidden; position: relative; }
+/* три плитки: низкие (96), название и подпись слева сверху, арт справа снизу */
+.tl.c3 { min-height: 96px; padding: 12px 10px; }
+.tl.c3 .tx { position: relative; z-index: 1; padding-right: 4px; }
+.tl.c3 img { position: absolute; right: 4px; bottom: 4px; width: 50px; height: 50px; object-fit: contain; }
+/* две плитки: низкие (78), текст слева, арт справа */
+.tl.c2 { min-height: 78px; padding: 10px 12px; display: flex; align-items: center; gap: 8px; }
+.tl.c2 img { width: 56px; height: 56px; object-fit: contain; flex: none; margin-left: auto; }
+.tl .t { font-size: 16px; line-height: 20px; font-weight: 700; }
 .tl .s { font-size: 12px; line-height: 16px; color: var(--sec); margin-top: 3px; }
 .rail { display: flex; gap: 10px; overflow: hidden; margin-top: 4px; }
 .rail .v { width: 220px; flex: none; }
@@ -94,10 +103,10 @@ const TILE = {
   cards: ['notecard_stack', 'Карточки', 'Слова, фразы и выражения'],
 };
 const tile = (key, n) => { const [art, t, sub] = TILE[key]; return n === 3
-  ? `<div class="tl c3"><img src="${img(art + '.png')}" alt=""><div class="t">${t}</div><div class="s">${sub}</div></div>`
-  : `<div class="tl c2"><img src="${img(art + '.png')}" alt=""><div style="min-width:0"><div class="t">${t}</div><div class="s">${sub}</div></div></div>`; };
+  ? `<div class="tl c3"><div class="tx"><div class="t">${t}</div></div><img src="${img(art + '.png')}" alt=""></div>`
+  : `<div class="tl c2"><div style="min-width:0"><div class="t">${t}</div><div class="s">${sub}</div></div><img src="${img(art + '.png')}" alt=""></div>`; };
 const header = (L) => `<div class="hstats"><span class="hstat">${icon('flame', 's18')}12</span><span class="hstat"><img src="${coin}" alt="">1 240</span><span class="hstat">${icon('boltF', 's18')}5</span><span style="margin-left:auto" class="flex"><img class="hflag" src="${img(L.flag + ".webp")}" alt=""><span class="rb fill" style="margin-left:8px">${icon('chatDots', 's18')}</span></span></div>`;
-const cont = `<div class="cont"><img src="${img("book_stack.png")}" style="width:56px;height:56px;object-fit:contain" alt=""><div class="grow"><div style="font-size:13px;color:var(--sec);font-weight:700;letter-spacing:1.5px">ПРОДОЛЖИТЬ</div><div style="font-size:17px;font-weight:700;margin-top:3px">Урок 4 · Present Simple</div><div class="pr"><i></i></div></div></div>`;
+const cont = `<div class="cont"><div class="art"><img src="${img('spiral_notepad.png')}" alt=""></div><span class="bg">Урок 1</span><div class="cp"><div class="ov">ПРОДОЛЖИТЬ ОБУЧЕНИЕ</div><div class="tt">Местоимения и глагол To Be</div><div class="ct">0 / 50</div><div class="pr"><div class="tr"><i></i></div><span class="ar">${icon('fwd', 's16')}</span></div></div></div>`;
 const rail = (L) => `<div class="sec" style="margin-top:22px"><div class="ti" style="font-size:18px">Видео</div><div class="ac">${icon('fwd', 's16')}</div></div><div class="rail">${['Catch a flight', 'Small talk', 'Get over it'].map((t) => `<div class="v"><div class="th">${t}</div><div class="vt">${t} — ${L.name.toLowerCase()} канал</div></div>`).join('')}</div>`;
 const TODAY = {
   lessons: ['Пройти урок', 20], dialogues: ['Один диалог', 15], cards: ['Тренировка карточек', 10], videos: ['Посмотреть видео', 10], phrase: ['Фраза дня', 5], spire: ['Ступень Шпиля', 15],

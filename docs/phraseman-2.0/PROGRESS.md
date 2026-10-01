@@ -1680,3 +1680,16 @@
 2026-10-01 — R5 PM-007 облако снято (firebase functions:list, только чтение): code=438, cloud=516; в облаке без кода 112, в коде без облака 34 (новые 2.0, ещё не выложены) — docs/phraseman-2.0/evidence/PM-007_code_vs_cloud_functions.md.
   🔴 ЛОВУШКА ПОЛНОЙ ВЫКЛАДКИ: 3 функции удалены из кода, но ЖИВОЙ клиент их вызывает — полная выкладка functions удалит их из облака и сломает: shardsApplyDelta (app/shards_system.ts:701 — серверная запись баланса осколков), aiDialogSyncPurchase (app/ai_dialog_ownership.ts:292 — покупка диалогов), resolveLearningV2CourseUnlockReceipt (app/learning_v2_owner_repository_runtime.ts:423). Плюс admin/v2/legacy.html зовёт adminGetMaxVoiceOpsDashboard/adminListMaxVoiceFeedback/maxVoiceConfigAdmin (MAX за пломбой — ок) и упоминает communityPurchasePack в тексте. Передано пачке E22 (PM-221/222) на разбор: вернуть функцию или убрать вызов клиента.
   💸 В облаке ещё КРУТЯТСЯ кроны удалённых фич (стоят денег): leagueFinalizeCron, leagueResidentsTickCron, resetWeeklyXpCron, computeLeaderboardStatsCron, leaderboardUpdateDailyAnalytics, arenaV2CleanupHourly, resendKeyHealthCron, activationEmailRetryCron (+ arenaV2OnQueueWrite триггер). Снимаются только выкладкой/удалением — владелец (план PM-222).
+
+### 01.10 РЕШЕНИЯ ВЛАДЕЛЬЦА (ответы «Дизайну» напрямую)
+1. Шесть мёртвых компонентов (PremiumGoldButton, LingmanVideosButton, RewardCardV2, AudioWaveform, ShineOverlay, ProfileCardMotionFx) — **удалить**, тесты поправить.
+2. Главная: бесконечные анимации (значок «Входящих», колокол, плашки задания/опроса, молния, огонь, кнопка раздела, фон) — **сделать короткими, 2–3 раза и покой**. Вид Главной не меняется.
+3. Главная: перенос «expressões» посреди слова при шрифте 1.3 — **починить** (только перенос).
+4. Экран «Разбор твоих ошибок» — **весь в токены 2.0** (цвета/поверхности, содержание не трогать).
+5. PM-028 плитки→списки — **только там, где список уже нарисован в макетах** docs/design/v2-app.
+6. PM-026 шрифты — **ровно 2 размера**, одна семья (Inter), обычный и жирный; иерархия весом и цветом.
+7. Пуши и «ИИ отдыхает» без эмодзи на конце — **добавить точки**.
+8. Устаревшие красные тесты (~15) — **обновить под код** (живое правило переписать, сторож удалённого убрать, ничего не ослаблять вслепую).
+9. Расхождение монет (publishProjection затирает progress.stars=0 при runes_wallet 9830) — **чинит сессия «Ядро»**.
+10. Иконки достижений — **сейчас, стандартными иконками** в цвете темы.
+11. Проверка в эмуляторе — **один проход пачкой** со скриншотами.

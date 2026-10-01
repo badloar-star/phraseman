@@ -941,6 +941,12 @@ export { webLeadCapture, webLeadNudgeCron } from "./web_leads";
 // с кодом провалилось, повторов не было, самый старый ждал почти месяц.
 export { webActivationReminderCron } from "./web_activation_reminders";
 
+// ── Сторож почты: мёртвый ключ Resend и недоставленные коды активации ─────────
+// зачем: 28.08–21.09.2026 письма с кодами падали молча, трое оплативших сидели
+// без доступа три недели. Оба крона уже живут в облаке (выложены из ветки
+// claude/sad-cannon-876ae9); перенесены 01.10.2026, чтобы полная выкладка их не удалила.
+export { resendKeyHealthCron, activationEmailRetryCron } from "./email_delivery_watchdog";
+
 // ── Турниры (Фаза 1 MVP, спека docs/tournaments/2026-07-21-tournaments-mode-spec.md) ──
 // ⛔ ТУРНИРЫ ВЫКЛЮЧЕНЫ ФУЛЛ (владелец, 2026-08-23). НЕ ВКЛЮЧАТЬ ОБРАТНО.
 // зачем: логика уже была заглушена гейтом TOURNAMENTS_RELEASED=false (2026-08-10),
@@ -1133,6 +1139,11 @@ export { adminAuditAccountDeleteCoverage } from "./account_delete_ai_audit";
 // меняет для людей. Включает только владелец — после Пакета 6B и проверки.
 export { accountsV2SyncApply } from "./accounts_v2_adapter/callable";
 export { accountsV2DeletionStatus } from "./accounts_v2_deletion/status_callable";
+// зачем (Account V2, Пакет 6G, OD21): перенос старых данных при первом входе
+// каждого и гидрация своей учётки на новой установке. За тем же флагом
+// config/accounts_v2.syncEnabled (выкл → accounts_v2_disabled, ноль чтений данных).
+export { accountsV2MigrateMine } from "./accounts_v2_adapter/migrate_mine";
+export { accountsV2PullMine } from "./accounts_v2_adapter/pull_mine";
 // зачем (владелец, 2026-08-23): кнопка публикации курса в админке
 // (admin/v2/legacy.html) зовёт adminPublishAuthoredLearningV2Course — это
 // доставка контента без OTA: опубликовал, и приложение видит новый материал.

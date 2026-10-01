@@ -26,7 +26,9 @@ import { defineSecret, defineString } from 'firebase-functions/params';
 import { HttpsError, onCall, onRequest } from 'firebase-functions/v2/https';
 
 import { hasClaimedPermission } from './admin/permissions';
+import { ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
 import { upsertEmailContact } from './email_contacts';
+import { notifyActivationEmailFailure } from './email_delivery_watchdog';
 import { RESEND_API_KEY } from './resend_secret';
 import { buildPromoVipPatch } from './promo_codes';
 import { GIFT_CERTIFICATE_PHRASES, resolveGiftPhrase } from './gift_certificate_phrases';
@@ -2029,6 +2031,30 @@ export function buildActivationEmail(
   return { subject, text, html };
 }
 
+/**
+ * Алерт владельцу о проваленном письме с кодом (сторож почты, инцидент 21.09.2026).
+ * зачем: раньше провал только писался в заявку и никто не узнавал — трое
+ * оплативших ждали доступ три недели. Никогда не бросает: алерт не имеет права
+ * сломать обработку оплаты. Неоплаченные заявки и подарочные доставки сторож
+ * отсеивает сам по статусу.
+ */
+async function alertActivationEmailFailure(
+  order: FirebaseFirestore.DocumentData,
+  orderId: string,
+  httpStatus: number | null,
+  errorText: string,
+): Promise<void> {
+  await notifyActivationEmailFailure({
+    orderId,
+    orderStatus: order.status,
+    plan: order.planDuration || order.plan,
+    amountCents: order.amountCents,
+    currency: order.currency,
+    httpStatus,
+    errorText,
+  }).catch((e) => logger.error('[EMAIL-WATCHDOG] alert dispatch failed', { orderId, reason: String(e).slice(0, 300) }));
+}
+
 // зачем: экспортируем, чтобы крон напоминаний (web_activation_reminders.ts)
 // досылал письмо ТЕМ ЖЕ путём, а не заводил вторую копию отправки. Одна
 // точка отправки — один набор статусов доставки, один формат письма.
@@ -2040,7 +2066,17 @@ export async function sendActivationEmail(
   const orderId = cleanShortText(order.orderId, 120);
   const activationCode = cleanShortText(order.activationCode, 48);
   const to = cleanEmail(order.email) ?? cleanEmail(order.customerEmail) ?? cleanEmail(order.payerEmail);
-  if (!activationCode || !to) return false;
+  if (!activationCode || !to) {
+    // зачем: ранний выход обязан логировать причину — немой return и есть класс
+    // бага «почта умерла молча» (инцидент 21.09.2026).
+    logger.error('[EMAIL-WATCHDOG] activation email not attempted', {
+      orderId: orderId || '(none)',
+      hasActivationCode: Boolean(activationCode),
+      hasRecipient: Boolean(to),
+      orderStatus: String(order.status ?? ''),
+    });
+    return false;
+  }
 
   const key = RESEND_API_KEY.value();
   if (!key) {
@@ -2049,6 +2085,8 @@ export async function sendActivationEmail(
       customerEmailSentTo: to,
     };
     await markActivationEmailOutcome(orderId, statusRef, patch);
+    // зачем: пустой ключ = почта мертва целиком; это потеря денег, не мелочь.
+    await alertActivationEmailFailure(order, orderId, null, 'RESEND_API_KEY пуст');
     return false;
   }
   const from = webCheckoutEmailFrom.value().trim();
@@ -2058,6 +2096,7 @@ export async function sendActivationEmail(
       customerEmailSentTo: to,
     };
     await markActivationEmailOutcome(orderId, statusRef, patch);
+    await alertActivationEmailFailure(order, orderId, null, 'WEB_CHECKOUT_EMAIL_FROM пуст');
     return false;
   }
 
@@ -2086,6 +2125,7 @@ export async function sendActivationEmail(
         customerEmailError: bodyText.slice(0, 500),
       };
       await markActivationEmailOutcome(orderId, statusRef, patch);
+      await alertActivationEmailFailure(order, orderId, response.status, bodyText.slice(0, 500));
       return false;
     }
     let providerId = '';
@@ -2113,6 +2153,7 @@ export async function sendActivationEmail(
     };
     await markActivationEmailOutcome(orderId, statusRef, patch);
     logger.warn('web_checkout activation email error', e);
+    await alertActivationEmailFailure(order, orderId, null, String(e).slice(0, 500));
     return false;
   }
 }
@@ -3076,7 +3117,9 @@ export const stripeWebhook = onRequest(
     timeoutSeconds: 30,
     maxInstances: 3,
     invoker: 'public',
-    secrets: [STRIPE_WEBHOOK_SECRET, RESEND_API_KEY],
+    // зачем ADMIN_ALERT_BOT_TOKEN: без него алерт сторожа о проваленном письме
+    // читал бы пустой токен и молчал (в облачной версии так и было).
+    secrets: [STRIPE_WEBHOOK_SECRET, RESEND_API_KEY, ADMIN_ALERT_BOT_TOKEN],
   },
   async (req, res) => {
     if (req.method !== 'POST') {
@@ -3272,7 +3315,7 @@ export const paypalOrderCapture = onRequest(
     timeoutSeconds: 30,
     maxInstances: 5,
     invoker: 'public',
-    secrets: [PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, RESEND_API_KEY],
+    secrets: [PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, RESEND_API_KEY, ADMIN_ALERT_BOT_TOKEN],
   },
   async (req, res) => {
     if (applyCors(req as unknown as AnyRequest, res as unknown as AnyResponse)) return;

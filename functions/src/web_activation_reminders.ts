@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
 import { logger } from 'firebase-functions';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
+import { ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
 import { withCronHeartbeat } from './cron_heartbeat';
 import { RESEND_API_KEY } from './resend_secret';
 import { sendActivationEmail, webCheckoutEmailFrom, webCheckoutSupportEmail } from './web_checkout';
@@ -197,9 +198,15 @@ export async function sweepActivationReminders(
     try {
       // Идемпотентность: один ключ на (заказ, номер напоминания) — повторный
       // прогон в тот же день не создаст у Resend второе письмо.
+      // зачем statusRef = undefined (01.10.2026, перенос сторожа почты): с
+      // переданным doc.ref sendActivationEmail работает в режиме подарочной
+      // доставки и ПЕРЕЗАПИСЫВАЕТ поле status заказа статусом доставки
+      // ('sent'/'failed'/'delivery_unknown'). Заказ терял paid_pending_activation —
+      // следующие напоминания не шли, сторож почты переставал видеть оплату.
+      // Без statusRef статус письма пишется в тот же заказ по orderId, а status не трогается.
       ok = await sendActivationEmail(
         { ...order, orderId: doc.id },
-        doc.ref,
+        undefined,
         `reminder-${doc.id}-${decision.reminderIndex}`,
       );
     } catch (e) {
@@ -246,7 +253,9 @@ export const webActivationReminderCron = onSchedule(
     // Только RESEND_API_KEY — секрет. Отправитель и адрес поддержки это
     // defineString-параметры: они доступны функции без объявления в secrets,
     // импорт выше нужен, чтобы параметры зарегистрировались при деплое.
-    secrets: [RESEND_API_KEY],
+    // ADMIN_ALERT_BOT_TOKEN — чтобы алерт сторожа почты о провале письма
+    // (email_delivery_watchdog) реально ушёл, а не прочитал пустой токен.
+    secrets: [RESEND_API_KEY, ADMIN_ALERT_BOT_TOKEN],
   },
   withCronHeartbeat('webActivationReminderCron', async () => {
     const result = await sweepActivationReminders(admin.firestore(), Date.now());

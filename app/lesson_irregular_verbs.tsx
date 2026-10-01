@@ -35,6 +35,8 @@ import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collect
 import { useAudio } from '../hooks/use-audio';
 import fk from './feedback/feedback_kit';
 import VictoryBurst from '../components/feedback/VictoryBurst';
+import V2DoneScreen, { type V2DoneError } from '../components/completion/V2DoneScreen';
+import { pluralWord } from '../constants/plural';
 import { verbLearnedDoneTitle, verbFormsSubtitle } from './feedback/feedback_i18n';
 import { MOTION_SCALE } from '../constants/motion';
 import { loadSettings } from './settings_edu';
@@ -419,6 +421,10 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
     locked.current = false;
   }, [allVerbs]);
 
+  // зачем (макет итога глаголов): «верно / ошибок / точность» и ошибки «было → верно» за порцию.
+  const runCorrectRef = useRef(0);
+  const runWrongRef = useRef(0);
+  const runErrorsRef = useRef<V2DoneError[]>([]);
   const initVerb = useCallback((verb: IrregularVerb) => {
     setStep(0);
     hadErrorThisVerb.current = false;
@@ -444,6 +450,10 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
   }, [initVerb, lessonId, studyTarget]);
 
   const continuePortion = useCallback(async (restart = false) => {
+    // новая порция — новый счёт итога
+    runCorrectRef.current = 0;
+    runWrongRef.current = 0;
+    runErrorsRef.current = [];
     if (continuationInFlightRef.current || practiceRunes.hydrating || !allDone) return;
     const next = sectionProgress.next;
     if (!restart && next.length === 0) return;
@@ -515,11 +525,14 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
     if (voiceOut) speakAudio(word, speechRate, { language: 'en-US' });
 
     if (isCorrect) {
+      runCorrectRef.current += 1;
       // [FeedbackKit] fk.correct даёт haptic + тёплый «дин-дон».
       fk.verdict({ correct: true });
     } else {
       fk.verdict({ correct: false });
       hadErrorThisVerb.current = true;
+      runWrongRef.current += 1;
+      runErrorsRef.current = [...runErrorsRef.current, { label: verb.base, was: word, ok: correct }];
 
       const vKey = verb.base;
       // зачем (22.09): здесь стоял замок `studyTarget === 'en' || 'fr'` — для
@@ -651,116 +664,62 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
 
   if (allDone) return (
     <>
-      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', gap: 16, padding: 20 }}>
-        <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: glass.opaqueControl, justifyContent: 'center', alignItems: 'center' }}>
-          <Ionicons name="checkmark-done-outline" size={28} color={t.correct} />
-        </View>
-        <Text style={{ color: glass.text, fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center' }}>
-          {hasNextPortion ? triLang(lang, {
-            ru: 'Порция глаголов пройдена!', uk: 'Порцію дієслів пройдено!',
-            en: 'Verb batch complete!', es: '¡Grupo de verbos completado!',
-            'pt-BR': 'Grupo de verbos concluído!', vi: 'Đã hoàn thành nhóm động từ!',
-            id: 'Kelompok kata kerja selesai!', tr: 'Fiil grubu tamamlandı!', pl: 'Partia czasowników ukończona!',
-          }) : triLang(lang, {
-            ru: 'Все глаголы выучены!',
-            uk: 'Всі дієслова вивчено!',
-            en: 'All verbs learned!',
-            es: '¡Has aprendido todos los verbos!',
-            'pt-BR': 'Todos os verbos foram aprendidos!',
-            vi: 'Bạn đã học xong tất cả động từ!',
-            id: 'Semua kata kerja sudah dipelajari!',
-            tr: 'Tüm fiiller öğrenildi!',
-            pl: 'Wszystkie czasowniki opanowane!',
-          })}
-        </Text>
-        <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] }}>{learnedCnt} / {portionVerbs.length}</Text>
-        {hasNextPortion ? (
-          <>
-            <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, fontVariant: ['tabular-nums'] }}>
-              {sectionProgress.learned} / {sectionProgress.total}
-            </Text>
-            <PracticeCta
-              glass={glass}
-              testID="irregular-verbs-next-portion"
-              disabled={continuing || practiceRunes.hydrating}
-              onPress={() => { fk.tap(); void continuePortion(); }}
-              trailingArrow
-              label={triLang(lang, {
-                ru: 'Следующая порция', uk: 'Наступна порція', en: 'Next batch', es: 'Siguiente grupo',
-                'pt-BR': 'Próximo grupo', vi: 'Nhóm tiếp theo', id: 'Kelompok berikutnya', tr: 'Sonraki grup', pl: 'Następna partia',
-              })}
-            />
-          </>
-        ) : null}
-        {continuationFailed ? (
-              <Text accessibilityLiveRegion="polite" style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, textAlign: 'center' }}>
-                {triLang(lang, {
-                  ru: 'Не удалось сохранить награду. Нажмите ещё раз.', uk: 'Не вдалося зберегти нагороду. Натисніть ще раз.',
-                  en: 'Could not save the reward. Tap again.', es: 'No se pudo guardar la recompensa. Pulsa de nuevo.',
-                  'pt-BR': 'Não foi possível salvar a recompensa. Toque novamente.', vi: 'Chưa lưu được phần thưởng. Hãy nhấn lại.',
-                  id: 'Hadiah belum tersimpan. Ketuk lagi.', tr: 'Ödül kaydedilemedi. Tekrar dokunun.', pl: 'Nie udało się zapisać nagrody. Naciśnij ponownie.',
-                })}
-              </Text>
-        ) : null}
-        {totalPts > 0 && (
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: glass.opaqueControl, borderRadius: 19, paddingHorizontal: 16, minHeight: 38 }}>
-            <Ionicons name="star" size={16} color={t.correct} />
-            {/* зачем (владелец, 2026-08-27): count-up вместо статичного числа —
-                pack.words.plusPoints(n) возвращает целую строку с числом внутри,
-                поэтому число вырезается по заведомо уникальному маркеру. */}
-            <Text style={{ color: t.correct, fontSize: 17, fontWeight: '700' }}>
-              {pack.words.plusPoints(9999999).replace('9999999', '')}
-            </Text>
-            <AnimatedCountUpText
-              value={totalPts}
-              style={{ color: t.correct, fontSize: 17, fontWeight: '700', minWidth: 24 }}
-              accessibilityLabel={pack.words.plusPoints(totalPts)}
-            />
-          </View>
-        )}
-        {practiceRunes.runes > 0 && (
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: glass.opaqueControl, borderRadius: 19, paddingHorizontal: 16, minHeight: 38 }}>
-            {/* guard-ok: декоративный ассет, смысл несёт число рядом */}
-            <Image
-              source={require('../assets/images/coins/coin_rank_00.webp')}
-              style={{ width: 18, height: 18 }}
-              contentFit="contain"
-              accessible={false}
-              accessibilityElementsHidden
-              importantForAccessibility="no"
-            />
-            <Text style={{ color: glass.text, fontSize: 17, fontWeight: '700' }}>+</Text>
-            <AnimatedCountUpText
-              value={practiceRunes.runes}
-              style={{ color: glass.text, fontSize: 17, fontWeight: '700', minWidth: 24 }}
-              accessibilityLabel={`+${practiceRunes.runes}`}
-            />
-          </View>
-        )}
-        {(() => {
-          const backLabel = triLang(lang, { ru: 'К уроку', uk: 'До уроку', en: 'To lesson', es: 'Volver a la lección', 'pt-BR': 'Voltar à lição', vi: 'Về bài học', id: 'Kembali ke pelajaran', tr: 'Derse dön', pl: 'Do lekcji' });
-          const goBack = () => { fk.tap(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); };
-          // зачем: главная кнопка одна (макет): «Следующая порция», а если её нет — «К уроку».
-          return hasNextPortion ? (
-            <Pressable accessibilityRole="button" onPress={goBack} style={({ pressed }) => ({ minHeight: 44, paddingHorizontal: 24, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.7 : 1 })}>
-              <Text style={{ color: glass.secondary, fontSize: 16, fontWeight: '600' }}>{backLabel}</Text>
-            </Pressable>
-          ) : (
-            <PracticeCta glass={glass} label={backLabel} onPress={goBack} style={{ marginTop: 8 }} />
-          );
-        })()}
-        <Pressable
-          accessibilityRole="button"
-          disabled={continuing || practiceRunes.hydrating}
-          style={({ pressed }) => ({ minHeight: 44, paddingHorizontal: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, opacity: continuing || practiceRunes.hydrating ? 0.45 : pressed ? 0.7 : 1 })}
-          onPress={() => { fk.tap(); void continuePortion(true); }}
-        >
-          <Ionicons name="refresh-outline" size={18} color={glass.secondary} />
-          <Text style={{ color: glass.secondary, fontSize: 16, fontWeight: '600' }}>
-            {triLang(lang, { ru: 'Начать заново', uk: 'Спочатку', en: 'Start over', es: 'Desde el principio', 'pt-BR': 'Começar de novo', vi: 'Bắt đầu lại', id: 'Mulai lagi', tr: 'Baştan başla', pl: 'Zacznij od nowa' })}
+      {/* зачем (владелец 01.10): итог глаголов = общий экран завершения 2.0 по макету learn.html. */}
+      <V2DoneScreen
+        testID="irregular-verbs-complete"
+        title={hasNextPortion
+          ? triLang(lang, { ru: 'Порция глаголов пройдена', uk: 'Порцію дієслів пройдено', en: 'Verb batch complete', es: 'Grupo de verbos completado', 'pt-BR': 'Grupo de verbos concluído', vi: 'Đã xong nhóm động từ', id: 'Kelompok kata kerja selesai', tr: 'Fiil grubu tamamlandı', pl: 'Partia czasowników ukończona' })
+          : triLang(lang, { ru: 'Все глаголы выучены', uk: 'Усі дієслова вивчено', en: 'All verbs learned', es: 'Todos los verbos aprendidos', 'pt-BR': 'Todos os verbos aprendidos', vi: 'Đã học xong mọi động từ', id: 'Semua kata kerja dipelajari', tr: 'Tüm fiiller öğrenildi', pl: 'Wszystkie czasowniki opanowane' })}
+        subtitle={triLang(lang, {
+          ru: `Неправильные глаголы · Урок ${lessonId ?? 0} · ${portionVerbs.length} ${pluralWord(lang, portionVerbs.length, { one: 'глагол', few: 'глагола', many: 'глаголов' })}`,
+          uk: `Неправильні дієслова · Урок ${lessonId ?? 0} · ${portionVerbs.length} ${pluralWord(lang, portionVerbs.length, { one: 'дієслово', few: 'дієслова', many: 'дієслів' })}`,
+          en: `Irregular verbs · Lesson ${lessonId ?? 0} · ${portionVerbs.length} verbs`,
+          es: `Verbos irregulares · Lección ${lessonId ?? 0} · ${portionVerbs.length} verbos`,
+          'pt-BR': `Verbos irregulares · Lição ${lessonId ?? 0} · ${portionVerbs.length} verbos`,
+          vi: `Động từ bất quy tắc · Bài ${lessonId ?? 0} · ${portionVerbs.length} động từ`,
+          id: `Kata kerja tak beraturan · Pelajaran ${lessonId ?? 0} · ${portionVerbs.length} kata kerja`,
+          tr: `Düzensiz fiiller · Ders ${lessonId ?? 0} · ${portionVerbs.length} fiil`,
+          pl: `Czasowniki nieregularne · Lekcja ${lessonId ?? 0} · ${portionVerbs.length} ${pluralWord(lang, portionVerbs.length, { one: 'czasownik', few: 'czasowniki', many: 'czasowników' })}`,
+        })}
+        stars={null}
+        correct={runCorrectRef.current + runWrongRef.current > 0 ? runCorrectRef.current : null}
+        wrong={runCorrectRef.current + runWrongRef.current > 0 ? runWrongRef.current : null}
+        coinsGained={practiceRunes.runes}
+        errors={runErrorsRef.current}
+        feedbackSlot={continuationFailed ? (
+          <Text accessibilityLiveRegion="polite" style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, textAlign: 'center' }}>
+            {triLang(lang, {
+              ru: 'Не удалось сохранить награду. Нажмите ещё раз.', uk: 'Не вдалося зберегти нагороду. Натисніть ще раз.',
+              en: 'Could not save the reward. Tap again.', es: 'No se pudo guardar la recompensa. Pulsa de nuevo.',
+              'pt-BR': 'Não foi possível salvar a recompensa. Toque novamente.', vi: 'Chưa lưu được phần thưởng. Hãy nhấn lại.',
+              id: 'Hadiah belum tersimpan. Ketuk lagi.', tr: 'Ödül kaydedilemedi. Tekrar dokunun.', pl: 'Nie udało się zapisać nagrody. Naciśnij ponownie.',
+            })}
           </Text>
-        </Pressable>
-      </ScrollView>
+        ) : undefined}
+        primaryLabel={hasNextPortion
+          ? triLang(lang, { ru: 'Следующая порция', uk: 'Наступна порція', en: 'Next batch', es: 'Siguiente grupo', 'pt-BR': 'Próximo grupo', vi: 'Nhóm tiếp theo', id: 'Kelompok berikutnya', tr: 'Sonraki grup', pl: 'Następna partia' })
+          : triLang(lang, { ru: 'К уроку', uk: 'До уроку', en: 'To the lesson', es: 'A la lección', 'pt-BR': 'Para a lição', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derse', pl: 'Do lekcji' })}
+        onPrimary={() => {
+          if (hasNextPortion) {
+            if (continuing || practiceRunes.hydrating) return;
+            void continuePortion();
+            return;
+          }
+          safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
+        }}
+        secondaryLabel={hasNextPortion
+          ? triLang(lang, { ru: 'К уроку', uk: 'До уроку', en: 'To the lesson', es: 'A la lección', 'pt-BR': 'Para a lição', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derse', pl: 'Do lekcji' })
+          : triLang(lang, { ru: 'Начать заново', uk: 'Спочатку', en: 'Start over', es: 'Desde el principio', 'pt-BR': 'Começar de novo', vi: 'Bắt đầu lại', id: 'Mulai lagi', tr: 'Baştan başla', pl: 'Od nowa' })}
+        onSecondary={() => {
+          if (hasNextPortion) {
+            safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
+            return;
+          }
+          if (continuing || practiceRunes.hydrating) return;
+          void continuePortion(true);
+        }}
+        onClose={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
+      />
       {/* Карточка за закрытый раздел глаголов — сюрприз поверх экрана итога. */}
       <CollectibleDropModal
         outcome={cardDropVisible ? cardDrop : null}

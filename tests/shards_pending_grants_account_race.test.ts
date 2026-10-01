@@ -54,83 +54,26 @@ describe('pending shard grants v2 account ownership', () => {
     getAppUserID.mockImplementation(async () => accounts.captureAccountGeneration().stableId ?? '');
   });
 
-  it('stores journals only under the exact current owner and B cannot read A', async () => {
-    const accounts = await import('../app/account_generation');
+  // зачем (PM-289 этап 2, D70/D78): запись/чтение журнала ожиданий удалены вместе с
+  // жемчугом; остался только снос ключей удаляемого аккаунта (зовёт auth_provider).
+  it('removes every owner-scoped key of the deleted account and nothing of another owner', async () => {
     const pending = await import('../app/shards_pending_grants');
-    const tokenA = accounts.captureAccountGeneration();
-    await expect(pending.recordPendingShardGrant(tokenA, grant)).resolves.toMatchObject({ status: 'recorded' });
-    expect(storage.has('pending_shard_grants_v2:stable-A')).toBe(true);
-
-    accounts.beginAccountGeneration('stable-B');
-    const tokenB = accounts.captureAccountGeneration();
-    await expect(pending.listPendingShardGrants(tokenB)).resolves.toEqual([]);
-    expect(storage.has('pending_shard_grants_v2:stable-A')).toBe(true);
-  });
-
-  it('quarantines raw ownerless v1 without adoption', async () => {
-    const raw = JSON.stringify([grant]);
-    storage.set('pending_shard_grants_v1', raw);
-    const accounts = await import('../app/account_generation');
-    const pending = await import('../app/shards_pending_grants');
-
-    await expect(pending.listPendingShardGrants(accounts.captureAccountGeneration())).resolves.toEqual([]);
-    const evidence = JSON.parse(storage.get('pending_shard_grants_quarantine_v1:stable-A') ?? '{}');
-    expect(evidence).toMatchObject({ ownerStableId: 'stable-A', reason: 'ownerless_v1', raw });
-    expect(storage.has('pending_shard_grants_v1')).toBe(true);
-  });
-
-  it('quarantines a mismatched v2 owner and hard-fails an occupied different evidence slot', async () => {
-    const raw = envelope('stable-B');
-    storage.set('pending_shard_grants_v2:stable-A', raw);
-    const accounts = await import('../app/account_generation');
-    const pending = await import('../app/shards_pending_grants');
-    const tokenA = accounts.captureAccountGeneration();
-
-    await expect(pending.recordPendingShardGrant(tokenA, grant)).resolves.toMatchObject({ status: 'quarantined' });
-    const evidenceKey = 'pending_shard_grants_quarantine_v1:stable-A';
-    expect(JSON.parse(storage.get(evidenceKey) ?? '{}')).toMatchObject({ reason: 'owner_mismatch', raw });
-
-    storage.set(evidenceKey, JSON.stringify({ version: 1, ownerStableId: 'stable-A', reason: 'other', raw: 'other' }));
-    await expect(pending.recordPendingShardGrant(tokenA, grant)).resolves.toMatchObject({ status: 'conflict' });
-  });
-
-  it('reports journal storage failure instead of claiming durable recovery', async () => {
-    const accounts = await import('../app/account_generation');
-    const pending = await import('../app/shards_pending_grants');
-    mockSetItem.mockRejectedValueOnce(new Error('disk full'));
-
-    await expect(pending.recordPendingShardGrant(accounts.captureAccountGeneration(), grant))
-      .resolves.toMatchObject({ status: 'storage_unavailable' });
-    expect(storage.has('pending_shard_grants_v2:stable-A')).toBe(false);
-  });
-
-  it('cancels queued A record and clear after generation changes to B', async () => {
-    const accounts = await import('../app/account_generation');
-    const pending = await import('../app/shards_pending_grants');
-    const tokenA = accounts.captureAccountGeneration();
     storage.set('pending_shard_grants_v2:stable-A', envelope('stable-A'));
-    let release!: () => void;
-    let started!: () => void;
-    const acquired = new Promise<void>((resolve) => { started = resolve; });
-    const held = accounts.withAccountTransitionLock(async () => {
-      started();
-      await new Promise<void>((resolve) => { release = resolve; });
-    });
-    await acquired;
-    const queuedRecord = pending.recordPendingShardGrant(tokenA, { ...grant, journalId: 'journal-new' });
-    const queuedClear = pending.clearPendingShardGrant(tokenA, grant.journalId);
-    accounts.invalidateAccountGeneration();
-    accounts.beginAccountGeneration('stable-B');
-    release();
-    await held;
+    storage.set('pending_shard_grants_quarantine_v1:stable-A', '{}');
+    storage.set('pending_shard_grants_recovery_needed_v1:stable-A', '1');
+    storage.set('pending_shard_grants_v2:stable-B', envelope('stable-B'));
 
-    await expect(queuedRecord).resolves.toMatchObject({ status: 'stale' });
-    await expect(queuedClear).resolves.toBe(false);
-    expect(storage.get('pending_shard_grants_v2:stable-A')).toBe(envelope('stable-A'));
+    await expect(pending.removePendingShardGrantsForAccount('stable-A')).resolves.toBe('cleaned');
+    expect(storage.has('pending_shard_grants_v2:stable-A')).toBe(false);
+    expect(storage.has('pending_shard_grants_quarantine_v1:stable-A')).toBe(false);
+    expect(storage.has('pending_shard_grants_recovery_needed_v1:stable-A')).toBe(false);
+    expect(storage.has('pending_shard_grants_delete_cleanup_v1:stable-A')).toBe(false);
+    expect(storage.has('pending_shard_grants_v2:stable-B')).toBe(true);
+    expect(pending).not.toHaveProperty('recordPendingShardGrant');
+    expect(pending).not.toHaveProperty('listPendingShardGrants');
   });
 
-  it('leaves a verified delete marker on failure, retries for A, and B cannot process it', async () => {
-    const accounts = await import('../app/account_generation');
+  it('leaves a verified delete marker on failure and finishes on the next removal', async () => {
     const pending = await import('../app/shards_pending_grants');
     storage.set('pending_shard_grants_v2:stable-A', envelope('stable-A'));
     mockRemoveItem.mockRejectedValueOnce(new Error('remove failed'));
@@ -139,15 +82,14 @@ describe('pending shard grants v2 account ownership', () => {
     const markerKey = 'pending_shard_grants_delete_cleanup_v1:stable-A';
     expect(JSON.parse(storage.get(markerKey) ?? '{}')).toMatchObject({ version: 1, ownerStableId: 'stable-A' });
 
-    accounts.beginAccountGeneration('stable-B');
-    await expect(pending.retryPendingShardGrantDeleteCleanup(accounts.captureAccountGeneration(), 'stable-A'))
-      .resolves.toBe('not_owner');
-    expect(storage.has(markerKey)).toBe(true);
-
-    accounts.beginAccountGeneration('stable-A');
-    await expect(pending.retryPendingShardGrantDeleteCleanup(accounts.captureAccountGeneration(), 'stable-A'))
-      .resolves.toBe('cleaned');
+    await expect(pending.removePendingShardGrantsForAccount('stable-A')).resolves.toBe('cleaned');
     expect(storage.has(markerKey)).toBe(false);
     expect(storage.has('pending_shard_grants_v2:stable-A')).toBe(false);
+  });
+
+  it('refuses an empty owner', async () => {
+    const pending = await import('../app/shards_pending_grants');
+    jest.spyOn(console, 'warn').mockImplementation(() => {});
+    await expect(pending.removePendingShardGrantsForAccount('  ')).resolves.toBe('cleanup_pending');
   });
 });

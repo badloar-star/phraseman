@@ -145,10 +145,6 @@ function clientShardGrantReceiptStorageKey(ownerStableId: string, operationId: s
   return `${CLIENT_SHARD_GRANT_RECEIPT_PREFIX}${ownerPart(ownerStableId)}:${operationId}`;
 }
 
-export function clientShardCloudSyncedStorageKey(ownerStableId: string, operationId: string): string {
-  return `${CLIENT_SHARD_CLOUD_SYNCED_PREFIX}${ownerPart(ownerStableId)}:${operationId}`;
-}
-
 function finiteBalance(value: unknown): number | null {
   const parsed = Number(value);
   return Number.isSafeInteger(parsed) ? parsed : null;
@@ -1295,25 +1291,6 @@ export async function recoverPreparedClientShardOperation(
   }
 }
 
-export function clientShardOperationForCloud(operation: ClientShardOperation): Record<string, unknown> {
-  return {
-    schemaVersion: operation.schemaVersion,
-    operationId: operation.operationId,
-    ownerStableId: operation.ownerStableId,
-    authority: operation.authority,
-    direction: operation.direction,
-    amount: operation.amount,
-    delta: operation.delta,
-    revision: operation.revision,
-    balanceBefore: operation.balanceBefore,
-    balanceAfter: operation.balanceAfter,
-    reason: operation.reason,
-    grant: operation.grant,
-    createdAtMs: operation.createdAtMs,
-    requestFingerprint: operation.requestFingerprint,
-  };
-}
-
 export async function readStoredClientShardOperation(
   ownerStableId: string,
   operationId: string,
@@ -1385,45 +1362,4 @@ export async function readClientShardLedgerOpeningBalance(ownerStableId: string)
     owner,
   );
   return state?.openingBalance ?? null;
-}
-
-/** Rebase an already-migrated device onto the one immutable cloud opening. */
-export async function reconcileClientShardLedgerOpeningBalance(
-  expectedOwnerStableId: string,
-  canonicalOpeningBalance: number,
-): Promise<number | null> {
-  const canonical = finiteBalance(canonicalOpeningBalance);
-  if (canonical === null || canonical < 0) return null;
-  const ownerStableId = String(await getStableId()).trim();
-  const accountToken = captureAccountGeneration();
-  if (
-    ownerStableId !== expectedOwnerStableId
-    || !isCurrentAccountGeneration(accountToken, ownerStableId)
-  ) return null;
-  return withAccountTransitionLock(async () => withStorageLock(async () => {
-    if (!isCurrentAccountGeneration(accountToken, ownerStableId)) return null;
-    const key = clientShardLedgerStateStorageKey(ownerStableId);
-    const state = parseState(await AsyncStorage.getItem(key), ownerStableId);
-    if (!state) return null;
-    if (state.openingBalance === canonical) return state.balance;
-    const balance = state.balance + canonical - state.openingBalance;
-    if (!Number.isSafeInteger(balance)) return null;
-    const next: ClientShardLedgerState = {
-      ...state,
-      openingBalance: canonical,
-      balance,
-      updatedAtMs: Date.now(),
-    };
-    await AsyncStorage.multiSet([
-      [key, JSON.stringify(next)],
-      [BALANCE_KEY, String(Math.max(0, balance))],
-      [BALANCE_META_KEY, JSON.stringify({
-        updatedAtMs: next.updatedAtMs,
-        op: 'replace',
-        reason: 'immutable_opening_rebase',
-        authority: 'client_operation_ledger_v1',
-      })],
-    ]);
-    return balance;
-  }));
 }

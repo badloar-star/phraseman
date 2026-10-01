@@ -183,7 +183,8 @@ describe('notification cache account isolation', () => {
     expect(persisted.map((notification: { id: string }) => notification.id)).toEqual(['live-friend-request']);
   });
 
-  it('keeps owner-only Arena partner nudges visible with their bounded navigation payload', async () => {
+  // PM-167 (D74/D83): Арена удалена — её приглашения партнёра больше не показываются в «Активности».
+  it('hides retired Arena partner nudges and invites', async () => {
     (getCanonicalUserId as jest.Mock).mockResolvedValue('stable-arena-partner');
     mockDocsByUid['stable-arena-partner'] = [{
       id: 'arena-partner-pair-day',
@@ -207,16 +208,7 @@ describe('notification cache account isolation', () => {
       },
     }];
 
-    await expect(refreshUserNotificationsOnce({ force: true })).resolves.toEqual([
-      expect.objectContaining({
-        type: 'arena_partner_nudge',
-        nav: { kind: 'arena_partner', partnershipId: 'pair-safe-id' },
-      }),
-      expect.objectContaining({
-        type: 'arena_partner_invite',
-        nav: { kind: 'arena_partner', partnershipId: 'pair-invite-id' },
-      }),
-    ]);
+    await expect(refreshUserNotificationsOnce({ force: true })).resolves.toEqual([]);
   });
 
   it('physically purges a retired tournament notification from the offline cache', async () => {

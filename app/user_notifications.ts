@@ -19,6 +19,20 @@ const CACHE_KEY_PREFIX = 'user_notifications_cache_v2:';
 const LAST_REFRESH_KEY_PREFIX = 'user_notifications_last_refresh_ms_v2:';
 const MAX_NOTIFICATIONS = 50;
 const MAX_MEMORY_OWNERS = 2;
+/**
+ * PM-172: страница «Активности» при догрузке старых событий (курсор по createdAt).
+ * зачем: на старте читаем только первую страницу (MAX_NOTIFICATIONS), старое —
+ * только по запросу экрана; в кэше держим не больше USER_NOTIFICATIONS_CACHE_MAX.
+ */
+export const USER_NOTIFICATIONS_PAGE_SIZE = 20;
+const USER_NOTIFICATIONS_CACHE_MAX = 200;
+/**
+ * PM-172: даже «принудительное» обновление не чаще раза в это окно.
+ * зачем: баннер ответа на главной и открытие центра просили force на КАЖДОЕ
+ * появление — 50 чтений за каждый заход на главную. Свежее 30 секунд — то же самое.
+ */
+export const USER_NOTIFICATIONS_FORCE_FLOOR_MS = 30_000;
+const LOG = '[ACTIVITY-FEED]';
 
 export type UserNotificationType =
   | 'friend_request'
@@ -110,26 +124,36 @@ export interface UserNotification {
   createdAt: number;
 }
 
+/**
+ * Что показывает «Активность» (центр событий).
+ * зачем (PM-167, D74/D83): Арена и Лиги удалены — их приглашения/ответы
+ * (arena_partner_*, arena_friend_*) больше не создаются, а старые строки в базе
+ * и в кэше остались. Типы в union оставлены только чтобы читать старые данные;
+ * показ — по этому списку, всё прочее fail-closed.
+ */
 export const VISIBLE_USER_NOTIFICATION_TYPES: ReadonlySet<string> = new Set<UserNotificationType>([
   'friend_request',
   'friend_accepted',
   'activity_like',
-  'arena_partner_invite',
-  'arena_partner_nudge',
   'friend_nudge',
-  'arena_friend_invite',
-  'arena_friend_accepted',
-  'arena_friend_declined',
-  'arena_friend_cancelled',
-  'arena_friend_expired',
   'report_reply',
   'pack_comment',
+]);
+
+/** PM-167: мёртвые действия друзей — подарки (PM-170) и дуэли Арены (D83). */
+export const RETIRED_FRIEND_EVENT_ACTIONS: ReadonlySet<string> = new Set<UserNotificationFriendEventAction>([
+  'gift',
+  'duel_invite',
+  'duel_state',
 ]);
 
 export function isUserNotificationVisible(row: UserNotification): boolean {
   // Unknown/legacy types are fail-closed. In particular, cached tournament
   // bank notifications cannot reappear in the notification center.
-  return Boolean(row) && VISIBLE_USER_NOTIFICATION_TYPES.has(String(row.type || ''));
+  if (!row || !VISIBLE_USER_NOTIFICATION_TYPES.has(String(row.type || ''))) return false;
+  const nav = row.nav;
+  if (nav && nav.kind === 'friend_event' && RETIRED_FRIEND_EVENT_ACTIONS.has(nav.action)) return false;
+  return true;
 }
 
 function onlyVisibleUserNotifications(list: readonly UserNotification[]): UserNotification[] {
@@ -424,28 +448,42 @@ export async function refreshUserNotificationsOnce(options: {
 
   const refresh = (async (): Promise<UserNotification[]> => {
     const now = Date.now();
-    const minIntervalMs = Math.max(0, Math.floor(Number(options.minIntervalMs ?? 0)) || 0);
-    if (!options.force && minIntervalMs > 0) {
-      const lastRefreshMs = await readLastRefreshMs(ownerUid);
-      if (lastRefreshMs > 0 && now - lastRefreshMs < minIntervalMs) {
-        const currentOwnerUid = await getNotificationOwnerUid();
-        return currentOwnerUid === ownerUid ? (cachedMemoryByOwner.get(ownerUid) ?? readCachedUserNotifications()) : [];
-      }
+    const requestedIntervalMs = Math.max(0, Math.floor(Number(options.minIntervalMs ?? 0)) || 0);
+    // зачем (PM-172): force — это «не ждать TTL экрана», но не «читать заново каждый раз».
+    const minIntervalMs = options.force
+      ? USER_NOTIFICATIONS_FORCE_FLOOR_MS
+      : Math.max(requestedIntervalMs, USER_NOTIFICATIONS_FORCE_FLOOR_MS);
+    const lastRefreshMs = await readLastRefreshMs(ownerUid);
+    const sinceLastMs = lastRefreshMs > 0 ? now - lastRefreshMs : null;
+    if (sinceLastMs !== null && sinceLastMs >= 0 && sinceLastMs < minIntervalMs) {
+      console.log(LOG, 'refresh skipped: ttl', { force: options.force === true, sinceLastMs, minIntervalMs });
+      const currentOwnerUid = await getNotificationOwnerUid();
+      return currentOwnerUid === ownerUid ? (cachedMemoryByOwner.get(ownerUid) ?? readCachedUserNotifications()) : [];
     }
 
     const query = getNotificationsQuery(ownerUid);
-    if (!query) return readCachedUserNotifications();
+    if (!query) {
+      console.log(LOG, 'refresh skipped: no firestore (expo go / sync off)');
+      return readCachedUserNotifications();
+    }
     try {
+      const startedAt = Date.now();
       const snap = await query.get();
       const currentOwnerUid = await getNotificationOwnerUid();
-      if (currentOwnerUid !== ownerUid) return [];
+      if (currentOwnerUid !== ownerUid) {
+        console.log(LOG, 'refresh dropped: account changed during request');
+        return [];
+      }
+      const docs = snap.docs || [];
       const list = onlyVisibleUserNotifications(
-        (snap.docs || []).map((doc: any) => normalizeNotification(doc.id, doc.data?.() || {})),
+        docs.map((doc: any) => normalizeNotification(doc.id, doc.data?.() || {})),
       );
+      console.log(LOG, 'refresh ok', { reads: docs.length, visible: list.length, tookMs: Date.now() - startedAt, force: options.force === true });
       const cachedList = writeCache(ownerUid, list);
       await writeLastRefreshMs(ownerUid, now);
       return cachedList;
-    } catch {
+    } catch (error: unknown) {
+      console.warn(LOG, 'refresh failed, serving cache', { message: error instanceof Error ? error.message : String(error) });
       const currentOwnerUid = await getNotificationOwnerUid();
       return currentOwnerUid === ownerUid ? readCachedUserNotifications() : [];
     }
@@ -457,6 +495,58 @@ export async function refreshUserNotificationsOnce(options: {
     if (refreshInFlightByOwner.get(ownerUid) === refresh) {
       refreshInFlightByOwner.delete(ownerUid);
     }
+  }
+}
+
+export type OlderUserNotificationsPage = Readonly<{
+  /** Весь список «Активности» после догрузки (первая страница + старые). */
+  list: UserNotification[];
+  /** Сколько строк пришло этой страницей (до фильтра мёртвых типов). */
+  fetched: number;
+  /** Есть ли ещё старее — по полноте страницы. */
+  hasMore: boolean;
+}>;
+
+/**
+ * PM-172: догрузить события старше последнего показанного (курсор = createdAt).
+ * Вызывается ТОЛЬКО экраном по прокрутке/кнопке «Показать ещё» — на старте не нужно.
+ * Без realtime: одно чтение страницы (limit), кэш дополняется и обрезается.
+ */
+export async function loadOlderUserNotifications(): Promise<OlderUserNotificationsPage> {
+  const ownerUid = await getNotificationOwnerUid();
+  if (!ownerUid) {
+    console.log(LOG, 'older skipped: no owner');
+    return { list: [], fetched: 0, hasMore: false };
+  }
+  const current = cachedMemoryByOwner.get(ownerUid) ?? await readCachedUserNotifications();
+  const oldest = current.reduce((min, row) => Math.min(min, Number(row.createdAt) || Number.MAX_SAFE_INTEGER), Number.MAX_SAFE_INTEGER);
+  const db = getFirestore();
+  if (!db || current.length === 0 || oldest === Number.MAX_SAFE_INTEGER) {
+    console.log(LOG, 'older skipped', { hasDb: Boolean(db), cached: current.length });
+    return { list: current, fetched: 0, hasMore: false };
+  }
+  try {
+    const snap = await db.collection('users').doc(ownerUid).collection('notifications')
+      .orderBy('createdAt', 'desc')
+      .startAfter(oldest)
+      .limit(USER_NOTIFICATIONS_PAGE_SIZE)
+      .get();
+    if (await getNotificationOwnerUid() !== ownerUid) {
+      console.log(LOG, 'older dropped: account changed during request');
+      return { list: [], fetched: 0, hasMore: false };
+    }
+    const docs = snap.docs || [];
+    const older = docs.map((doc: any) => normalizeNotification(doc.id, doc.data?.() || {}));
+    const known = new Set(current.map((row) => row.id));
+    const merged = [...current, ...older.filter((row: UserNotification) => !known.has(row.id))]
+      .slice(0, USER_NOTIFICATIONS_CACHE_MAX);
+    const list = writeCache(ownerUid, merged);
+    const hasMore = docs.length >= USER_NOTIFICATIONS_PAGE_SIZE && list.length < USER_NOTIFICATIONS_CACHE_MAX;
+    console.log(LOG, 'older ok', { reads: docs.length, total: list.length, hasMore });
+    return { list, fetched: docs.length, hasMore };
+  } catch (error: unknown) {
+    console.warn(LOG, 'older failed', { message: error instanceof Error ? error.message : String(error) });
+    return { list: current, fetched: 0, hasMore: true };
   }
 }
 

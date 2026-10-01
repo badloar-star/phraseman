@@ -16,15 +16,21 @@ import {
 } from '../app/user_notifications';
 
 describe('friend social notification contract', () => {
+  it('shows friend_nudge in the notification center', () => {
+    expect(VISIBLE_USER_NOTIFICATION_TYPES.has('friend_nudge')).toBe(true);
+  });
+
+  // PM-167 (D74/D83): Арена удалена — её приглашения в «Активности» больше не показываются.
   it.each([
-    'friend_nudge',
     'arena_friend_invite',
     'arena_friend_accepted',
     'arena_friend_declined',
     'arena_friend_cancelled',
     'arena_friend_expired',
-  ] as const)('shows %s in the notification center', (type) => {
-    expect(VISIBLE_USER_NOTIFICATION_TYPES.has(type)).toBe(true);
+    'arena_partner_invite',
+    'arena_partner_nudge',
+  ] as const)('hides retired Arena type %s', (type) => {
+    expect(VISIBLE_USER_NOTIFICATION_TYPES.has(type)).toBe(false);
   });
 
   it('parses a validated friend-event navigation payload', () => {

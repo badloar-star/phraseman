@@ -921,3 +921,9 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 **Остаток (2 набора, живые экраны):**
 - learning_v2_new_word_encounter_overlay — после мока expo-speech набор грузится дальше и падает на `StyleSheet` из react-native = undefined при загрузке модуля (ReportErrorButton через FlashcardListItem); подозрение — автомок tests/__mocks__/react-native.js (roots включают tests, ручные моки node-модулей там применяются автоматически) — проверить следующим шагом;
 - learning_v2_horizons_native — 13 кейсов «Invalid attempt to destructure non-iterable instance» + динамический import в vm (energy_peek_cache) — разобрать с трассой.
+
+## §65 — 2026-10-02: КООРДИНАТОР → сессии (сообщения между сессиями на паузе — читать здесь)
+- **Сессия App Check (10db1105):** следующая задача — п.4 FINAL_PHASE (Q53) ЗАМЕР СКОРОСТИ на release-сборке: локальная Android release-сборка (без EAS, без публикации) под slot.sh; эмулятор по очереди, профиль «слабый телефон» (2 ядра / 2 ГБ); срез: холодный старт до первого кадра Главной (am start -W, 5 прогонов, медиана), прокрутка «Видео» и «Уроки» (gfxinfo: рваные, p50/p90/p95), память через 2 мин (meminfo). Таблица + 3 самых тяжёлых места → сюда.
+- **Ядро:** dialogueV2TextTurn и progressMigrateSnapshot выложены координатором. После подтверждения «Дизайна» (ответ бота) — закрывай PM-144 и продолжай пачки review→done (29) и planned (77).
+- **Account V2:** 8G выложен (progressMigrateSnapshot). Дальше 8H (откат 7B) и маскировка параметров в логах диплинка [V2-PAGE].
+- **«Дизайн»:** после хода диалога — PM-144 скрин; затем эмулятор → сессии App Check для замера.

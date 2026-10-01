@@ -16,6 +16,11 @@ const SURVEY_APP_ROUTES = new Set([
 ]);
 
 function readPresetLibrary() {
+  // зачем: Q3 (координатор 01.10) — из библиотеки админки удалены 9 опросов про
+  // XP/Арену/Лигу, осталось 54. Этот скрипт публикует ротацию версии
+  // owner-selected-63-v1 по ПОРЯДКУ пресетов — повторный запуск сломал бы порядок
+  // живых документов shard_surveys. Новая ротация = новая версия + решение владельца.
+  throw new Error('survey_library_publish_retired_q3: library has 54 presets, live rotation owner-selected-63-v1 is frozen');
   const source = readFileSync(new URL('../admin/v2/legacy.html', import.meta.url), 'utf8');
   const match = source.match(/const SHARD_SURVEY_PRESETS =\s*(\[[\s\S]*?\n  \]);\s*\n  const SS_SURVEY_ACTION_ROUTES/);
   if (!match) throw new Error('preset_library_not_found');

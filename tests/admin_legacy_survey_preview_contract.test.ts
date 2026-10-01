@@ -80,7 +80,8 @@ describe('live admin shard survey connection', () => {
 
   test('ships the owner-selected 63-poll preset library into the live admin editor', () => {
     expect(surveyMarkup).toContain('id="ss-preset-library"');
-    expect(surveyMarkup).toContain('Библиотека 63 опросов');
+    // зачем: Q3 (координатор 01.10) — опросы про XP/Арену/Лигу удалены из библиотеки (63 → 54).
+    expect(surveyMarkup).toContain('Библиотека 54 опросов');
     expect(surveySection).toContain('const SHARD_SURVEY_PRESETS =');
     expect(surveySection).toContain('window.openShardSurveyPreset');
     expect(surveySection).toContain('business theme must not be mentioned');
@@ -92,6 +93,27 @@ describe('live admin shard survey connection', () => {
     expect(ids).toHaveLength(63);
     expect(new Set(ids).size).toBe(63);
     expect(ids).toEqual(expect.arrayContaining([1, 2, 3, 5, 7, 37, 65, 74, 81, 100]));
+  });
+
+  // зачем: Q3 (координатор 01.10) — XP (D02), Арена (D83) и Лига (D54) удалены:
+  // их опросы и переходы убраны из библиотеки и белого списка. Порядок ротации
+  // живых документов (SHARD_SURVEY_PRESET_IDS, 63) не трогаем.
+  test('library has no XP/Arena/League presets and no routes into deleted sections', () => {
+    const match = liveAdmin.match(/const SHARD_SURVEY_PRESETS =\s*(\[[\s\S]*?\n  \]);\s*\n  const SS_SURVEY_ACTION_ROUTES/);
+    expect(match).not.toBeNull();
+    const presets = JSON.parse(match![1]) as Array<{ id: number }>;
+    expect(presets).toHaveLength(54);
+    const ids = presets.map((preset) => preset.id);
+    for (const removed of [10, 11, 50, 53, 56, 58, 60, 61, 64]) expect(ids).not.toContain(removed);
+    const text = JSON.stringify(presets);
+    expect(text).not.toMatch(/Арен|Лиг|XP/u);
+    expect(text).not.toContain('/(tabs)/arena');
+    expect(text).not.toContain('/club_screen');
+    const routes = liveAdmin.slice(liveAdmin.indexOf('const SS_SURVEY_ACTION_ROUTES'), liveAdmin.indexOf('function ssPrepareOptionActionForSave'));
+    expect(routes).not.toContain("'/(tabs)/arena'");
+    expect(routes).not.toContain("'/club_screen'");
+    expect(surveyClient).not.toContain("'/(tabs)/arena'");
+    expect(surveyClient).not.toContain("'/club_screen'");
   });
 
   test('keeps preset actions allowlisted and preserves them when preparing a draft', () => {

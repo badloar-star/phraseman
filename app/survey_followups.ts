@@ -9,6 +9,7 @@
 // списком на финальном экране, когда опрос уже отправлен и уходить безопасно.
 // ════════════════════════════════════════════════════════════════════════════
 import type { AnswersState } from './survey_flow_controller';
+import { isSurveyAppRoute } from './survey_client';
 import type { SurveyAppRoute, SurveyQuestionClient } from './survey_client';
 
 export type SurveyFollowUp =
@@ -33,6 +34,12 @@ export function collectSurveyFollowUps(input: {
     if (!optionId) continue;
     const action = question.options.find((option) => option.id === optionId)?.action;
     if (!action) continue;
+    // зачем: Q3 (координатор 01.10) — сервер до релиза ещё может прислать переход
+    // в удалённые Арену/Лигу; такую кнопку не показываем.
+    if (action.kind === 'app_route' && !isSurveyAppRoute(action.route)) {
+      console.warn('[SURVEY-FOLLOWUP] dropped app_route outside allowlist', { questionId: question.id, optionId, route: action.route });
+      continue;
+    }
     const cta = action.cta.trim();
     if (!cta) continue; // без подписи кнопка была бы безымянной — пропускаем
     const key = action.kind === 'app_route' ? `route:${action.route}` : 'store_review';

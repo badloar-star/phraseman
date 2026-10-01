@@ -25,8 +25,9 @@ export const SURVEY_APP_ROUTES = [
   '/(tabs)/home',
   '/flashcards',
   '/streak_stats',
-  '/(tabs)/arena',
-  '/club_screen',
+  // зачем: Q3 (координатор 01.10) — '/(tabs)/arena' и '/club_screen' убраны: Арена и
+  // Лига удалены (D74/D83/D54). Живые опросы с этими переходами после деплоя просто
+  // теряют кнопку (parseSurveyOptionAction вернёт undefined). Деплой — после релиза.
   '/lingman_videos',
   '/support_report',
   '/flashcards_training_setup?mode=blitz',

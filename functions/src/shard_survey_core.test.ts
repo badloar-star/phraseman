@@ -1,5 +1,6 @@
 import {
   parseSurveyConfig,
+  SURVEY_APP_ROUTES,
   validateAnswers,
   matchesAudience,
   passesCooldown,
@@ -154,6 +155,26 @@ describe('parseSurveyConfig', () => {
       }],
     });
     expect((c!.questions[0].options[0] as any).action?.route).toBe('/referrals');
+    expect((c!.questions[0].options[1] as any).action).toBeUndefined();
+  });
+
+  // зачем: Q3 (координатор 01.10) — переходы в удалённые Арену и Лигу больше не отдаются.
+  it('не отдаёт переходы в удалённые Арену и Лигу', () => {
+    expect(SURVEY_APP_ROUTES as readonly string[]).not.toContain('/(tabs)/arena');
+    expect(SURVEY_APP_ROUTES as readonly string[]).not.toContain('/club_screen');
+    const c = parseSurveyConfig({
+      ...validConfigInput,
+      questions: [{
+        id: 'q',
+        type: 'single_choice',
+        text: { ru: 'Куда пойдём?' },
+        options: [
+          { id: 'arena', label: { ru: 'Арена' }, action: { kind: 'app_route', route: '/(tabs)/arena', cta: { ru: 'Открыть' } } },
+          { id: 'league', label: { ru: 'Лига' }, action: { kind: 'app_route', route: '/club_screen', cta: { ru: 'Открыть' } } },
+        ],
+      }],
+    });
+    expect((c!.questions[0].options[0] as any).action).toBeUndefined();
     expect((c!.questions[0].options[1] as any).action).toBeUndefined();
   });
 

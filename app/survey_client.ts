@@ -22,19 +22,29 @@ export type SurveyQuestionClient = {
   }[];
 };
 
-export type SurveyAppRoute =
-  // зачем: PM-171 — маршрут '/ideas_catalog' убран из союза вместе с удалённым разделом «Идеи».
-  | '/referrals'
-  | '/settings_themes'
-  | '/settings_notifications'
-  | '/(tabs)/home'
-  | '/flashcards'
-  | '/streak_stats'
-  | '/(tabs)/arena'
-  | '/lingman_videos'
-  | '/support_report'
-  | '/flashcards_training_setup?mode=blitz'
-  | '/achievements_screen';
+// зачем: PM-171 — маршрут '/ideas_catalog' убран вместе с удалённым разделом «Идеи».
+// зачем: Q3 (координатор 01.10) — переход в Арену убран (раздел удалён, D83), а список
+// стал значением: сервер с новым белым списком уедет только после релиза, и до тех пор
+// живой опрос может прислать переход в Арену/Лигу — клиент отсекает его сам
+// (survey_followups.ts). Зеркало functions/src/shard_survey_core.ts SURVEY_APP_ROUTES.
+export const SURVEY_APP_ROUTES = [
+  '/referrals',
+  '/settings_themes',
+  '/settings_notifications',
+  '/(tabs)/home',
+  '/flashcards',
+  '/streak_stats',
+  '/lingman_videos',
+  '/support_report',
+  '/flashcards_training_setup?mode=blitz',
+  '/achievements_screen',
+] as const;
+
+export type SurveyAppRoute = (typeof SURVEY_APP_ROUTES)[number];
+
+export function isSurveyAppRoute(route: unknown): route is SurveyAppRoute {
+  return typeof route === 'string' && (SURVEY_APP_ROUTES as readonly string[]).includes(route);
+}
 
 export type ActiveSurvey = {
   surveyId: string;

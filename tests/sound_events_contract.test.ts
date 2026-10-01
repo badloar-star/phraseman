@@ -58,9 +58,12 @@ describe('semantic sound event catalog', () => {
     // файлы. После полного retirement коллекционных предметов и всех звуков
     // paywall-контуров каталог содержит 134 / 114; Daily Journey добавляет
     // ровно один intro-cue: 135 / 115.
-    expect(ids).toHaveLength(120);
+    // зачем: PM-206-A2 (2026-09-30) — сняты 22 id без вызывающих (награды/спины/
+    // соцсобытия, pm.voice.turn_ready и т.п., см. tests/pm206_sound_event_callers.probe.ts),
+    // каталог 120 → 98, со звуком 91 → 70. Счёт подтверждён пробой: catalog=98, orphaned=0.
+    expect(ids).toHaveLength(98);
     // D83: −9 файлов Арены (стали немыми).
-    expect(enabled).toHaveLength(91);
+    expect(enabled).toHaveLength(70);
     expect(disabled).toEqual(MISSING_EVENTS);
     enabled.forEach((id) => expect(SOUND_EVENTS[id].source).toBeTruthy());
   });

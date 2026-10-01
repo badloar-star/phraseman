@@ -10587,8 +10587,11 @@
       {
         "id": "PM-206-A1",
         "text": "Системные ответы и учебное аудио разделены",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-10-01 npx tsx tests/pm206_system_vs_learning_audio.probe.ts → PASS: две настройки (effectsEnabled←uiSounds, voiceEnabled←voiceOut, modules/audio/sound_settings.ts:12-13); каталог системных звуков = 71 файл только из assets/audio/sfx/; SoundDirector/SoundArbiter/expo_sfx_backend не зависят от речи; SoundArbiter отбрасывает звук при выключенных эффектах, SpokenAudioArbiter отказывает при выключенной озвучке (audio_runtime_arbiter.ts:55); 5 плееров учебной речи (phrase_audio_player, use-audio, use_managed_spoken_audio_player, V2 local playback, flashcards SoundService) берут claimSpokenAudio и не трогают системные id.",
+          "npm run test:one: tests/audio_runtime_arbiter.test.ts 5/5 PASS; tests/sound_events_contract.test.ts 5/5 PASS (устаревшие счётчики 120/91 после PM-206-A2 исправлены на 98/70 — подсчёт по modules/audio/sound_events.ts)."
+        ]
       },
       {
         "id": "PM-206-A2",

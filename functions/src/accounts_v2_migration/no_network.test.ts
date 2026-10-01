@@ -34,7 +34,9 @@ const CORE_CLOSURE: Readonly<Record<string, readonly string[]>> = {
   'accounts_v2_migration/report.ts': ['../accounts_v2_contract', '../accounts_v2_merge', './inventory', './ledger', 'crypto'],
   'accounts_v2_migration/srs_memory.ts': ['../accounts_v2_contract'],
   'accounts_v2_contract.ts': ['crypto'],
-  'accounts_v2_merge.ts': ['./accounts_v2_contract'],
+  // зачем (7C): названия наборов — чистый модуль слияния, тоже без сети.
+  'accounts_v2_merge.ts': ['./accounts_v2_contract', './accounts_v2_library_titles'],
+  'accounts_v2_library_titles.ts': ['./accounts_v2_contract'],
   'accounts_v2_validate.ts': ['./accounts_v2_contract'],
 };
 

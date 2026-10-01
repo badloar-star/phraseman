@@ -20,7 +20,8 @@ import { flashcardsSwipeMemoryKey, lessonBestScoreKey } from './target_storage_k
  *   карточка  — добавляем недостающие (по id и по фразе), существующие не трогаем;
  *               удалённые на сервере (tombstone) не добавляем и локально не удаляем;
  *   SRS       — по времени правки: сервер, только если его updatedAtMs новее lastSeenAt;
- *   наборы    — объединение живых id без tombstone, локальные не удаляем.
+ *   наборы    — объединение живых id без tombstone, локальные не удаляем;
+ *   названия  — (7C) только для наборов, что есть локально, и только без локального названия.
  * Модуль грузится лениво (require из accounts_v2_client_runtime) — только при
  * включённом флаге и только когда гидрация дошла до применения. Перед каждым
  * хранилищем — isCurrent(): смена аккаунта обрывает применение.
@@ -199,20 +200,30 @@ export async function applyHydratedSrs(cards: readonly HydratedCard[], isCurrent
 /** Библиотека наборов: объединение живых id сервера без tombstone. */
 export async function applyHydratedLibraries(libraries: readonly HydratedLibrary[], isCurrent: () => boolean, counts: Counts): Promise<void> {
   let added = 0;
+  let titled = 0;
   for (const [target, items] of groupByTarget(libraries, counts, 'library')) {
     guard(isCurrent);
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const store = require('./community_packs/communityOwnedStorage') as typeof import('./community_packs/communityOwnedStorage');
     for (const library of items) {
-      const result = await store.mergeCommunityOwnedPackIdsFromAccountsV2(library.items, library.removed, target);
+      const result = library.items.length === 0 && library.removed.length === 0
+        ? 0 : await store.mergeCommunityOwnedPackIdsFromAccountsV2(library.items, library.removed, target);
       if (result < 0) {
         counts.library_skipped = (counts.library_skipped ?? 0) + 1;
         continue;
       }
       added += result;
+      // зачем (7C): названия — после id (пишутся только для наборов, что уже есть локально),
+      // локальные названия не затираются.
+      if (library.titles === undefined) continue;
+      guard(isCurrent);
+      const named = await store.mergeCommunityOwnedPackTitlesFromAccountsV2(library.titles, target);
+      if (named < 0) counts.library_titles_skipped = (counts.library_titles_skipped ?? 0) + 1;
+      else titled += named;
     }
   }
   counts.library_added = added;
+  counts.library_titles_written = titled;
 }
 
 /**

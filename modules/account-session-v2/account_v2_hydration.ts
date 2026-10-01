@@ -1,7 +1,12 @@
 import type { AccountScopeHandle, ScopeJson } from './account_scope_store';
 import { isAccountsV2DisabledError } from './account_sync_callable_transport';
 import { accountsV2ProducerEntityKey, accountsV2ProducerListIndexKey } from './account_sync_producer';
-import { canonicalJson, listIndexKey, type EntityMirror } from './account_sync_producer_plan';
+import {
+  ACCOUNT_SYNC_LIBRARY_TITLE_MAX_CHARS,
+  canonicalJson,
+  listIndexKey,
+  type EntityMirror,
+} from './account_sync_producer_plan';
 
 /*
  * Account V2, Пакет 6G (TG-4CAC183BF512) — перенос при первом входе (OD21) и
@@ -50,7 +55,13 @@ export type HydratedCard = Readonly<{
   /** Значение поля `srs` ({ updatedAtMs, …память }), если есть. */
   srs: Readonly<Record<string, unknown>> | null;
 }>;
-export type HydratedLibrary = Readonly<{ target: string; items: readonly string[]; removed: readonly string[] }>;
+/** 7C: название набора в форме локального хранилища (communityOwnedStorage). */
+export type HydratedPackTitle = Readonly<{ titleRu: string; titleUk: string; titleEs: string }>;
+export type HydratedLibrary = Readonly<{
+  target: string; items: readonly string[]; removed: readonly string[];
+  /** 7C: названия живых наборов с сервера; нет — ключа нет (старый сервер / без названий). */
+  titles?: Readonly<Record<string, HydratedPackTitle>>;
+}>;
 export type HydrationSnapshot = Readonly<{
   lessons: readonly HydratedLesson[];
   cards: readonly HydratedCard[];
@@ -279,6 +290,40 @@ function stateFields(state: Record<string, unknown>): Readonly<Record<string, un
   return values;
 }
 
+function titleString(value: unknown): value is string {
+  return typeof value === 'string' && value.length <= ACCOUNT_SYNC_LIBRARY_TITLE_MAX_CHARS;
+}
+
+/**
+ * 7C: названия из состояния библиотеки (`[[id, ru, uk, es]]`) — только живые id.
+ * Битая запись пропускается (лог), библиотека из-за неё не теряется.
+ */
+function libraryTitles(raw: unknown, live: ReadonlySet<string>): Readonly<{
+  titles: Readonly<Record<string, HydratedPackTitle>>; mirror: Readonly<Record<string, string>>;
+}> | null {
+  if (raw === undefined) return null;
+  if (!Array.isArray(raw)) {
+    console.warn(`${LOG} hydrate library_titles_malformed reason=not_array`);
+    return null;
+  }
+  const titles: Record<string, HydratedPackTitle> = {};
+  const mirror: Record<string, string> = {};
+  let bad = 0;
+  for (const entry of raw as unknown[]) {
+    if (!Array.isArray(entry) || entry.length !== 4 || typeof entry[0] !== 'string' || !live.has(entry[0])
+      || !titleString(entry[1]) || !titleString(entry[2]) || !titleString(entry[3])
+      || Object.prototype.hasOwnProperty.call(titles, entry[0])) { bad += 1; continue; }
+    Object.defineProperty(titles, entry[0], {
+      value: Object.freeze({ titleRu: entry[1], titleUk: entry[2], titleEs: entry[3] }), enumerable: true, writable: true, configurable: true,
+    });
+    Object.defineProperty(mirror, entry[0], {
+      value: canonicalJson([entry[1], entry[2], entry[3]]), enumerable: true, writable: true, configurable: true,
+    });
+  }
+  if (bad > 0) console.warn(`${LOG} hydrate library_titles_malformed entries=${bad}`);
+  return Object.keys(titles).length > 0 ? { titles: Object.freeze(titles), mirror: Object.freeze(mirror) } : null;
+}
+
 /** Ответ сервера → снимок для приложения + записи зеркала. Непонятное — пропуск (счётчик). */
 export function parseHydration(entities: readonly PulledEntity[]): Parsed {
   const lessons: HydratedLesson[] = [];
@@ -327,8 +372,15 @@ export function parseHydration(entities: readonly PulledEntity[]): Parsed {
       const items = ids(state.items);
       const removed = ids(state.removed);
       if (split.rest !== 'community_packs' || items === null || removed === null) { skipped += 1; continue; }
-      libraries.push(Object.freeze({ target: split.target, items: Object.freeze(items), removed: Object.freeze(removed) }));
-      mirrors.push({ entityType: 'library_membership', entityId: entity.entityId, record: mirrorRecord({ items }, entity.revision) });
+      const titled = libraryTitles(state.titles, new Set(items));
+      libraries.push(Object.freeze({
+        target: split.target, items: Object.freeze(items), removed: Object.freeze(removed),
+        ...(titled === null ? {} : { titles: titled.titles }),
+      }));
+      // зачем (7C): зеркало знает названия сервера — первый снимок приложения не шлёт их заново.
+      mirrors.push({ entityType: 'library_membership', entityId: entity.entityId, record: mirrorRecord(
+        { items, ...(titled === null ? {} : { titles: titled.mirror }) }, entity.revision,
+      ) });
     } else {
       skipped += 1;
     }
@@ -394,7 +446,12 @@ export function withoutLocallyOwned(
   return Object.freeze({
     lessons: snapshot.lessons,
     cards: snapshot.cards.filter((card) => !keptDeletedCards.has(`${card.target}:${card.list}:${card.id}`)),
-    libraries: snapshot.libraries.filter((library) => !keptLibraries.has(`${library.target}:community_packs`)),
+    // зачем (7C): у библиотеки с локальным зеркалом id не трогаем (удаления в очереди), но
+    // названия безопасны — они только подписывают уже имеющиеся локально наборы.
+    libraries: snapshot.libraries.flatMap((library) => {
+      if (!keptLibraries.has(`${library.target}:community_packs`)) return [library];
+      return library.titles === undefined ? [] : [Object.freeze({ target: library.target, items: [], removed: [], titles: library.titles })];
+    }),
   });
 }
 

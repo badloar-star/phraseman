@@ -10,7 +10,8 @@
  *   карточка  `<target>:saved|custom:<id>`  `{ op:'upsert', fields[, unsetFields] }` / `{ op:'tombstone' }`;
  *   SRS       та же карточка, поле `srs` = `{ updatedAtMs: lastSeenAt, …CardMemory }`
  *             (решение владельца: время правки на телефоне);
- *   библиотека `<target>:community_packs`   `{ itemIds }` / `{ removeItemIds }`.
+ *   библиотека `<target>:community_packs`   `{ itemIds }` / `{ removeItemIds }`;
+ *   названия наборов (7C) той же сущности  `{ itemTitles: [[id, ru, uk, es]] }` — отдельной операцией.
  * Идентификаторы сущностей — ровно как в dry-run миграции (Пакет 5), чтобы
  * перенос и живая запись попадали в одни и те же сущности.
  * Без сети, без хранилища, без часов: всё нужное приходит аргументами.
@@ -22,7 +23,11 @@ export type AccountsV2Change =
   | Readonly<{ kind: 'lesson_result'; target: ProducerTarget; lessonId: number; score: number; passed: boolean }>
   | Readonly<{ kind: 'card_snapshot'; target: ProducerTarget; list: 'saved' | 'custom'; cards: readonly unknown[] }>
   | Readonly<{ kind: 'swipe_memory'; target: ProducerTarget; memory: Readonly<Record<string, unknown>> }>
-  | Readonly<{ kind: 'library_snapshot'; target: ProducerTarget; packIds: readonly unknown[] }>;
+  | Readonly<{
+    kind: 'library_snapshot'; target: ProducerTarget; packIds: readonly unknown[];
+    /** 7C: локальные названия наборов по id (`{ titleRu, titleUk, titleEs }`); необязательно. */
+    titles?: Readonly<Record<string, unknown>>;
+  }>;
 
 export type ProducerEntityType = 'lesson_progress' | 'flashcard' | 'library_membership';
 
@@ -38,6 +43,8 @@ export type EntityMirror = Readonly<{
    * встреченные в локальном снимке — их отсутствие локально НЕ снятие поля.
    */
   unseen?: readonly string[];
+  /** 7C: названия наборов, уже поставленные в очередь (или засеянные с сервера): id → canonicalJson([ru, uk, es]). */
+  titles?: Readonly<Record<string, string>>;
 }>;
 
 export type PlannedOperation = Readonly<{
@@ -72,6 +79,14 @@ export const ACCOUNT_SYNC_CARD_UNSET_PROTECTED_FIELDS = Object.freeze(['id', 'sr
 const MEMORY_FIELDS = ['correct', 'wrong', 'hints', 'seen', 'mastered', 'lastSeenAt', 'nextDueAt', 'ease'] as const;
 const TRAINING_KEY = /^(saved|custom):all:(.+)$/;
 const LIBRARY_CHUNK = 500;
+/**
+ * Пакет 7C: названия наборов — ровно серверный контракт
+ * (functions/src/accounts_v2_contract.ts → ACCOUNTS_V2_LIBRARY_TITLE*; сверяет
+ * functions/src/accounts_v2_library_titles.test.ts по тексту этого файла).
+ */
+export const ACCOUNT_SYNC_LIBRARY_TITLES_KEY = 'itemTitles';
+export const ACCOUNT_SYNC_LIBRARY_TITLE_MAX_CHARS = 200;
+export const ACCOUNT_SYNC_LIBRARY_TITLES_MAX_PER_OP = 100;
 /**
  * Снимок, где пропало больше половины известных элементов (и их не меньше 5), или
  * пустой снимок при непустом индексе — почти наверняка не удаление человеком,
@@ -315,6 +330,34 @@ async function planSwipe(
   return operations;
 }
 
+/** Строка названия в пределе контракта; не режем суррогатную пару пополам. */
+function clipTitle(value: unknown): string {
+  if (typeof value !== 'string') return '';
+  if (value.length <= ACCOUNT_SYNC_LIBRARY_TITLE_MAX_CHARS) return value;
+  const cut = value.slice(0, ACCOUNT_SYNC_LIBRARY_TITLE_MAX_CHARS);
+  const last = cut.charCodeAt(cut.length - 1);
+  return last >= 0xd800 && last <= 0xdbff ? cut.slice(0, -1) : cut;
+}
+
+type TitleEntry = readonly [string, string, string, string];
+
+/** Локальные названия → четвёрки контракта (только id снимка, хотя бы одна непустая строка). */
+function titleEntries(titles: Readonly<Record<string, unknown>> | undefined, ids: readonly string[], notes: string[]): TitleEntry[] {
+  if (titles === undefined || !plainRecord(titles)) return [];
+  const out: TitleEntry[] = [];
+  let empty = 0;
+  for (const id of ids) {
+    if (!Object.prototype.hasOwnProperty.call(titles, id)) continue;
+    const raw = titles[id];
+    const title = plainRecord(raw) ? raw : {};
+    const entry: TitleEntry = [id, clipTitle(title.titleRu), clipTitle(title.titleUk), clipTitle(title.titleEs)];
+    if (entry[1] === '' && entry[2] === '' && entry[3] === '') { empty += 1; continue; }
+    out.push(entry);
+  }
+  if (empty > 0) notes.push(`library_titles_empty count=${empty}`);
+  return out;
+}
+
 async function planLibrary(
   change: Extract<AccountsV2Change, { kind: 'library_snapshot' }>,
   readMirror: MirrorReader,
@@ -323,7 +366,8 @@ async function planLibrary(
   const ids = [...new Set(change.packIds.filter((id): id is string => typeof id === 'string' && id.length > 0))];
   if (ids.length !== change.packIds.length) notes.push(`library_ids_dropped count=${change.packIds.length - ids.length}`);
   const entityId = `${change.target}:community_packs`;
-  const known = (await readMirror('library_membership', entityId))?.items ?? [];
+  const mirror = await readMirror('library_membership', entityId);
+  const known = mirror?.items ?? [];
   const knownSet = new Set(known);
   const added = ids.filter((id) => !knownSet.has(id)).sort();
   const present = new Set(ids);
@@ -334,9 +378,20 @@ async function planLibrary(
   }
   const operations: PlannedOperation[] = [];
   let items = [...known];
+  // зачем (7C): зеркало названий. Добавляемый id теряет прежнюю отметку (сервер мог
+  // снять название при чужом удалении — пришлём снова), удалённый — тоже (сервер снимает).
+  const addedSet = new Set(added);
+  let sentTitles: Record<string, string> = {};
+  for (const [id, value] of Object.entries(mirror?.titles ?? {})) {
+    if (!addedSet.has(id)) sentTitles[id] = value;
+  }
   const push = (payload: unknown): void => {
     operations.push(Object.freeze({
-      entityType: 'library_membership' as const, entityId, payload, mirror: Object.freeze({ items: Object.freeze([...items]) }),
+      entityType: 'library_membership' as const, entityId, payload,
+      mirror: Object.freeze({
+        items: Object.freeze([...items]),
+        ...(Object.keys(sentTitles).length > 0 ? { titles: Object.freeze({ ...sentTitles }) } : {}),
+      }),
     }));
   };
   for (let start = 0; start < added.length; start += LIBRARY_CHUNK) {
@@ -347,7 +402,20 @@ async function planLibrary(
   for (let start = 0; start < removed.length; start += LIBRARY_CHUNK) {
     const gone = new Set(removed.slice(start, start + LIBRARY_CHUNK));
     items = items.filter((id) => !gone.has(id));
+    sentTitles = Object.fromEntries(Object.entries(sentTitles).filter(([id]) => !gone.has(id)));
     push({ removeItemIds: [...gone] });
+  }
+  // зачем (7C, урок 7A P2b): названия — ОТДЕЛЬНОЙ операцией после id: старый сервер
+  // ответит payload_invalid только на неё, id той же правки не потеряются.
+  const live = new Set(items);
+  const changed = titleEntries(change.titles, ids, notes)
+    .filter((entry) => live.has(entry[0]) && sentTitles[entry[0]] !== canonicalJson(entry.slice(1)))
+    .sort((left, right) => (left[0] < right[0] ? -1 : left[0] > right[0] ? 1 : 0));
+  for (let start = 0; start < changed.length; start += ACCOUNT_SYNC_LIBRARY_TITLES_MAX_PER_OP) {
+    const chunk = changed.slice(start, start + ACCOUNT_SYNC_LIBRARY_TITLES_MAX_PER_OP);
+    sentTitles = { ...sentTitles };
+    for (const entry of chunk) sentTitles[entry[0]] = canonicalJson(entry.slice(1));
+    push({ [ACCOUNT_SYNC_LIBRARY_TITLES_KEY]: chunk.map((entry) => [...entry]) });
   }
   return operations;
 }

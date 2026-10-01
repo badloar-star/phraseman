@@ -100,6 +100,10 @@ export async function loadCommunityOwnedPackTitles(
   }
 }
 
+function sameTitle(left: CommunityOwnedPackTitle | undefined, right: CommunityOwnedPackTitle): boolean {
+  return left !== undefined && left.titleRu === right.titleRu && left.titleUk === right.titleUk && left.titleEs === right.titleEs;
+}
+
 export async function addCommunityOwnedPackId(
   id: string,
   studyTarget?: RuntimeStudyTarget,
@@ -108,6 +112,8 @@ export async function addCommunityOwnedPackId(
   // зачем (6F ремонт №1, P2): владелец V2-операции — аккаунт в момент записи, не в момент постановки.
   const v2Owner = captureAccountsV2OwnerUid();
   const cur = await loadCommunityOwnedPackIds(studyTarget);
+  let packIds = cur;
+  let libraryChanged = false;
   if (!cur.includes(id)) {
     const next = [...cur, id];
     const key = flashcardsCommunityOwnedPacksKey(studyTarget);
@@ -115,23 +121,37 @@ export async function addCommunityOwnedPackId(
     const token = captureAccountGeneration();
     const cacheKey = warmOwnedIdsKey(key, token);
     if (cacheKey && isCurrentAccountGeneration(token)) warmOwnedIdsByKey.set(cacheKey, next);
-    // зачем (Account V2, 6F, dual-write): набор добавлен в библиотеку → операция V2
-    // `<target>:community_packs` { itemIds }. Фоном, за флагом.
-    const target = storageStudyTarget(studyTarget);
-    produceAccountsV2ChangeIfEnabled(v2Owner, () => ({ kind: 'library_snapshot', target, packIds: next }));
+    packIds = next;
+    libraryChanged = true;
   }
   // зачем: сохраняем название рядом с id в момент добавления набора — единственный
   // надёжный момент, когда оно точно есть под рукой, без похода в сеть позже
   // (шит «Что слушаем?» иначе показывал сырой id вместо названия — жалоба владельца).
+  let titles: Record<string, CommunityOwnedPackTitle> | null = null;
   if (title && (title.titleRu || title.titleUk || title.titleEs)) {
     try {
-      const titles = await loadCommunityOwnedPackTitles(studyTarget);
-      titles[id] = title;
-      await AsyncStorage.setItem(flashcardsCommunityOwnedPackTitlesKey(studyTarget), JSON.stringify(titles));
+      const loaded = await loadCommunityOwnedPackTitles(studyTarget);
+      titles = loaded;
+      // зачем (7C): то же название не переписываем — ни лишней записи, ни лишней операции V2.
+      if (!sameTitle(loaded[id], title)) {
+        titles = { ...loaded, [id]: title };
+        await AsyncStorage.setItem(flashcardsCommunityOwnedPackTitlesKey(studyTarget), JSON.stringify(titles));
+        libraryChanged = true;
+      }
     } catch (e) {
       // не критично — фолбэк на код набора остаётся рабочим
       DebugLogger.error('communityOwnedStorage:titles', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
+  }
+  if (libraryChanged) {
+    // зачем (Account V2, 6F, dual-write): набор добавлен в библиотеку → операция V2
+    // `<target>:community_packs` { itemIds }. Фоном, за флагом.
+    // зачем (7C): вместе с локальными названиями — производитель шлёт ОТДЕЛЬНОЙ операцией
+    // только изменившиеся, чтобы новая установка показывала название, а не код набора.
+    const target = storageStudyTarget(studyTarget);
+    const snapshotTitles = titles;
+    produceAccountsV2ChangeIfEnabled(v2Owner, () => ({ kind: 'library_snapshot', target, packIds,
+      ...(snapshotTitles === null ? {} : { titles: snapshotTitles }) }));
   }
 }
 
@@ -165,6 +185,66 @@ export async function mergeCommunityOwnedPackIdsFromAccountsV2(
   const cacheKey = warmOwnedIdsKey(key, token);
   if (cacheKey && isCurrentAccountGeneration(token)) warmOwnedIdsByKey.set(cacheKey, next);
   return next.length - loaded.ids.length;
+}
+
+/**
+ * Account V2, Пакет 7C — названия наборов из своей учётки V2 (гидрация).
+ * зачем: новая установка получала только id, и выбор наборов показывал сырой
+ * код набора. Правило: название пишется только для набора, который есть в
+ * локальной библиотеке, и только если локального названия нет (локальное не
+ * затираем никогда). Хранилище наборов или названий нечитаемо — не пишем вовсе.
+ * Возвращает число записанных названий; -1 — пропуск (лог).
+ */
+export async function mergeCommunityOwnedPackTitlesFromAccountsV2(
+  serverTitles: Readonly<Record<string, CommunityOwnedPackTitle>>,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<number> {
+  const token = captureAccountGeneration();
+  const loaded = await loadCommunityOwnedPackIdsResult(studyTarget, token);
+  if (loaded.status !== 'ready' || !isCurrentAccountGeneration(token)) {
+    console.warn(`[ACCOUNT-V2] hydrate library_titles skip reason=${loaded.status === 'ready' ? 'account_changed' : 'storage_stale'}`);
+    return -1;
+  }
+  const key = flashcardsCommunityOwnedPackTitlesKey(studyTarget);
+  let raw: string | null;
+  try {
+    raw = await AsyncStorage.getItem(key);
+  } catch (error) {
+    console.warn(`[ACCOUNT-V2] hydrate library_titles skip reason=titles_unreadable kind=${error instanceof Error ? error.name : typeof error}`);
+    return -1;
+  }
+  // зачем: битое хранилище названий нельзя «починить» записью только серверных —
+  // parseTitles вернул бы {} и затёр бы все локальные названия.
+  if (raw !== null) {
+    let parsed: unknown = null;
+    try { parsed = JSON.parse(raw); } catch { parsed = null; }
+    if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) {
+      console.warn('[ACCOUNT-V2] hydrate library_titles skip reason=titles_malformed');
+      return -1;
+    }
+  }
+  const local = parseTitles(raw);
+  const owned = new Set(loaded.ids);
+  const next: Record<string, CommunityOwnedPackTitle> = { ...local };
+  let written = 0;
+  for (const [id, title] of Object.entries(serverTitles)) {
+    if (!owned.has(id) || !title || !(title.titleRu || title.titleUk || title.titleEs)) continue;
+    const mine = local[id];
+    if (mine && (mine.titleRu || mine.titleUk || mine.titleEs)) continue;
+    // зачем: defineProperty — id `__proto__` остаётся обычным полем, прототип не подменяется.
+    Object.defineProperty(next, id, {
+      value: { titleRu: String(title.titleRu ?? ''), titleUk: String(title.titleUk ?? ''), titleEs: String(title.titleEs ?? '') },
+      enumerable: true, writable: true, configurable: true,
+    });
+    written += 1;
+  }
+  if (written === 0) return 0;
+  if (!isCurrentAccountGeneration(token)) {
+    console.warn('[ACCOUNT-V2] hydrate library_titles skip reason=account_changed');
+    return -1;
+  }
+  await AsyncStorage.setItem(key, JSON.stringify(next));
+  return written;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

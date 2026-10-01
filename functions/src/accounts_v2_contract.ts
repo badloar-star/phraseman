@@ -129,6 +129,25 @@ export const ACCOUNTS_V2_OPERATION_MAX_FUTURE_SKEW_MS = 10 * 60 * 1000;
 export const ACCOUNTS_V2_LIBRARY_MAX_TOMBSTONES = 1000;
 
 /**
+ * Пакет 7C (TEMP из 6G) — названия наборов в сущности библиотеки.
+ * `{ itemTitles: [[id, titleRu, titleUk, titleEs], …] }` — ОТДЕЛЬНАЯ операция
+ * (никогда вместе с itemIds/removeItemIds). Состояние: необязательное поле
+ * `titles` (те же четвёрки, по id, только для живых id; пустое — ключа нет).
+ * зачем: гидрация восстанавливала только id, и выбор наборов показывал сырой код.
+ * Название едет в той же сущности — ноль дополнительных чтений Firestore.
+ * Отдельная операция — урок 7A P2b: старый сервер ответит payload_invalid
+ * только на неё, а id наборов той же правки не потеряются.
+ * Лимиты: строка ≤ 200 единиц UTF-16 (как обрезает community_packs.ts), до 100
+ * записей в операции, все названия состояния ≤ 64 КиБ по формуле проводных
+ * байт — место под id и tombstone в пределе состояния остаётся. Клиент держит
+ * те же константы (сверяет accounts_v2_library_titles.test.ts по тексту).
+ */
+export const ACCOUNTS_V2_LIBRARY_TITLES_KEY = 'itemTitles';
+export const ACCOUNTS_V2_LIBRARY_TITLE_MAX_CHARS = 200;
+export const ACCOUNTS_V2_LIBRARY_TITLES_MAX_PER_OP = 100;
+export const ACCOUNTS_V2_LIBRARY_TITLES_MAX_BYTES = 65_536;
+
+/**
  * Предел хранимого `stateJson` в единицах Firestore: байты UTF-8 строки + 1.
  * зачем (ремонт №3, P1 обоих ревью): ограничивает не только документ
  * (≤ 1 МиБ), но и ОДНУ транзакцию — запрос коммита Firestore ≤ 10 МиБ.

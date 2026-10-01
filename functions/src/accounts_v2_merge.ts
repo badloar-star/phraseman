@@ -14,6 +14,13 @@ import {
   type JsonObject,
   type JsonValue,
 } from './accounts_v2_contract';
+import {
+  isLibraryTitlesPayload,
+  keepLiveTitles,
+  mergeTitleEntries,
+  parseTitlesPayload,
+  type LibraryTitle,
+} from './accounts_v2_library_titles';
 
 /*
  * Account V2, Пакет 3S — слияние по доменам (урок, карточка, библиотека) и
@@ -82,7 +89,14 @@ export type FlashcardState = Readonly<{ deleted: boolean; fields: Readonly<Recor
 export type LibraryItem = readonly [string, number];
 /** Tombstone членства: [id предмета, ревизия сущности, на которой его удалили]. */
 export type LibraryTombstone = readonly [string, number];
-export type LibraryMembershipState = Readonly<{ items: readonly LibraryItem[]; removed: readonly LibraryTombstone[] }>;
+/**
+ * Пакет 7C: `titles` — необязательные названия живых наборов
+ * (accounts_v2_library_titles.ts). Пустых названий нет — ключа нет: состояние
+ * без названий байт-в-байт прежней формы (откат функций его читает).
+ */
+export type LibraryMembershipState = Readonly<{
+  items: readonly LibraryItem[]; removed: readonly LibraryTombstone[]; titles?: readonly LibraryTitle[];
+}>;
 
 export type MergeResult<S, C extends string> =
   | Readonly<{ ok: true; state: S; changed: boolean }>
@@ -336,7 +350,8 @@ export function collectLibraryGarbage(
   const evictable = byAge.filter(([, revision]) => revision <= evictableUpTo).length;
   const sizes = byAge.map((entry) => accountsV2JsonWireBytes(entry as unknown as JsonValue));
   // Байты Firestore всего состояния = остальное (с пустым `removed`) + записи + запятые.
-  const other = accountsV2JsonWireBytes({ items: state.items, removed: [] } as unknown as JsonValue) + 1;
+  // зачем (7C): названия — часть состояния и его предела байт.
+  const other = accountsV2JsonWireBytes(withTitles(state.items, [], state.titles) as unknown as JsonValue) + 1;
   let keptBytes = sizes.reduce((total, size) => total + size, 0);
   let drop = 0;
   const kept = (): number => byAge.length - drop;
@@ -348,7 +363,36 @@ export function collectLibraryGarbage(
   }
   if (overflows()) return null;
   if (drop === 0) return state;
-  return { items: state.items, removed: byAge.slice(drop).sort(byId) };
+  return withTitles(state.items, byAge.slice(drop).sort(byId), state.titles);
+}
+
+/** Состояние библиотеки; `titles` — только непустое (иначе прежняя форма). */
+function withTitles(
+  items: readonly LibraryItem[], removed: readonly LibraryTombstone[], titles: readonly LibraryTitle[] | undefined,
+): LibraryMembershipState {
+  return titles !== undefined && titles.length > 0 ? { items, removed, titles } : { items, removed };
+}
+
+/**
+ * Пакет 7C — операция названий `{ itemTitles }`: пишет названия живых id.
+ * зачем: не разрушающая правка — база не проверяется (конфликт «из будущего»
+ * отсекает вызывающий раньше), пропущенный не живой id — не conflict.
+ */
+function mergeLibraryTitles(current: LibraryMembershipState | null, payload: JsonValue): LibraryMergeResult {
+  const entries = parseTitlesPayload(payload);
+  if (entries === null) return { ok: false, code: 'payload_invalid' };
+  const live = new Set((current?.items ?? []).map(([id]) => id));
+  const merged = mergeTitleEntries(current?.titles, live, entries);
+  if (!merged.ok) return { ok: false, code: merged.code };
+  if (!merged.changed || current === null) {
+    return { ok: true, changed: false, conflict: false, state: current ?? { items: [], removed: [] } };
+  }
+  const state = withTitles(current.items, current.removed, merged.titles);
+  // Предел состояния целиком (id + tombstone + названия) — честный отказ, без тихой потери.
+  if (accountsV2JsonWireBytes(state as unknown as JsonValue) + 1 > ACCOUNTS_V2_MAX_ENTITY_STATE_BYTES) {
+    return { ok: false, code: 'entity_state_too_large' };
+  }
+  return { ok: true, changed: true, conflict: false, state };
 }
 
 /**
@@ -376,6 +420,8 @@ export function mergeLibraryMembership(
   nextRevision: number,
   batchStartRevision: number = nextRevision - 1,
 ): LibraryMergeResult {
+  // зачем (7C): названия — отдельная операция той же сущности.
+  if (isLibraryTitlesPayload(payload)) return mergeLibraryTitles(current, payload);
   const change = libraryChange(payload);
   if (change === null) return { ok: false, code: 'payload_invalid' };
   const live = new Map<string, number>(current === null ? [] : current.items);
@@ -407,8 +453,10 @@ export function mergeLibraryMembership(
   }
   if (!changed && current !== null) return { ok: true, changed, conflict, state: current };
   // зачем: детерминированный порядок — одинаковое состояние при любом порядке прихода.
+  // зачем (7C): удалённый id теряет название; названия остальных сохраняются.
   const state = collectLibraryGarbage(
-    { items: [...live].sort(byId), removed: [...removed].sort(byId) }, batchStartRevision,
+    withTitles([...live].sort(byId), [...removed].sort(byId), keepLiveTitles(current?.titles, new Set(live.keys()))),
+    batchStartRevision,
   );
   if (state === null) return { ok: false, code: 'entity_state_too_large' };
   return { ok: true, changed, conflict, state };

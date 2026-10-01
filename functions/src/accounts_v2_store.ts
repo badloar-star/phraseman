@@ -24,6 +24,7 @@ import {
   ownKeysOf,
   srsUpdatedAt,
 } from './accounts_v2_merge';
+import { storedTitlesValid } from './accounts_v2_library_titles';
 
 /*
  * Account V2, Пакет 3S — кодек записей порта: запись и чтение (fail closed).
@@ -114,11 +115,15 @@ function checkLibraryEntries(raw: JsonValue | undefined, entityRevision: number,
  * больше предела (сборка мусора его держит).
  */
 function checkLibraryShape(state: JsonObject, entityRevision: number): void {
-  if (!hasExactKeys(state, ['items', 'removed'])) corrupt();
+  // зачем (7C): необязательное `titles` — названия живых наборов; без него форма прежняя.
+  const titled = Object.prototype.hasOwnProperty.call(state, 'titles');
+  if (!hasExactKeys(state, titled ? ['items', 'removed', 'titles'] : ['items', 'removed'])) corrupt();
   const seen = new Set<string>();
   checkLibraryEntries(state.items, entityRevision, seen);
+  const live = new Set(seen);
   checkLibraryEntries(state.removed, entityRevision, seen);
   if ((state.removed as readonly JsonValue[]).length > ACCOUNTS_V2_LIBRARY_MAX_TOMBSTONES) corrupt();
+  if (titled && !storedTitlesValid(state.titles, live)) corrupt();
 }
 
 function checkFlashcardField(name: string, field: JsonValue, entityRevision: number): void {

@@ -9350,7 +9350,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -9382,21 +9382,24 @@
     "audit_sha": null,
     "result_sha": "41648d48d",
     "owner": "Claude Opus 5.5 (аудит)",
-    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32 (пачка 5, 01.10)",
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 6, 01.10)",
     "evidence": [
-      "commit 41648d48d"
+      "commit 41648d48d",
+      "2026-10-01 ревью: npx tsx tests/pm171_ideas_section_retired.probe.ts → PASS (2378 файлов, 3 удалённых файла отсутствуют)"
     ],
     "notes": [
       "Экраны/клиент/прогрев idea_inbox на старте удалены; 15 серверных функций идей и флаг ideas_enabled оставлены (админка использует). functions/src/shard_survey_core.ts изменён (тип маршрута) — не задеплоено",
       "Аудит 25.09: код закоммичен и в порядке, A1 (данные не уничтожены) подтверждён — 15 серверных функций и флаг оставлены нетронутыми. A2 не accept: functions/src/shard_survey_core.ts изменён, но НЕ задеплоен на Cloud Functions по заметке автора — деплой это отдельное необратимое действие, не делаю его сам без явного разрешения владельца",
-      "2026-10-01 пачка 5: PASS по сути (pm171_ideas_section_retired.probe PASS, 2379 файлов; shard_survey_core.test PASS). Остаётся review: коммит правит settings.tsx/_layout/feature_intro (видимый раздел убран) — ждёт DESIGN. Серверная правка shard_survey_core.ts (тип маршрута) не задеплоена — владелец."
+      "2026-10-01 пачка 5: PASS по сути (pm171_ideas_section_retired.probe PASS, 2379 файлов; shard_survey_core.test PASS). Остаётся review: коммит правит settings.tsx/_layout/feature_intro (видимый раздел убран) — ждёт DESIGN. Серверная правка shard_survey_core.ts (тип маршрута) не задеплоена — владелец.",
+      "2026-10-01 пачка 6: done. Серверная часть (functions/src/shard_survey_core.ts, тип маршрута) НЕ задеплоена — выкладка с релизом 2.0, DEPLOY_NOW.md Шаг 2; владельцу."
     ],
     "actual_cost": null,
     "kind": "code",
-    "review_verdict": "PASS по сути",
+    "review_verdict": "PASS",
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "покрыто требованием владельца «скрыть идеи» (источник PM-171): только удаление раздела, нового вида нет — evidence/DESIGN_GATE_OWNER_REVIEW.md, «Покрыто решениями»"
     },
     "actual_model": "sonnet-5",
     "actual_reasoning": "high"
@@ -10064,7 +10067,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10095,24 +10098,27 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "ace685121",
     "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
-    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32 (пачка 5, 01.10)",
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 6, 01.10)",
     "evidence": [
-      "01.10: улучшенная визитка «Про» за 10 000 монет уже реализована 30.09 по одобренному владельцем макету profile-card-pro.html — ace685121 (обычная и «Про», 6 стилей), c51386627 (бесплатно купившим старые уровни), b40b1161a (9 языков), 9d6aa9dca (модерация текста), 15e3eea72 (системный «Назад»). Цена PROFILE_CARD_PRO_PRICE_COINS = PROFILE_CARD_UPGRADE_PRICE_COINS (app/profile_card_pro_v1.ts:41), одно улучшение без 5 уровней и без новой валюты. D73 снят владельцем 01.10."
+      "01.10: улучшенная визитка «Про» за 10 000 монет уже реализована 30.09 по одобренному владельцем макету profile-card-pro.html — ace685121 (обычная и «Про», 6 стилей), c51386627 (бесплатно купившим старые уровни), b40b1161a (9 языков), 9d6aa9dca (модерация текста), 15e3eea72 (системный «Назад»). Цена PROFILE_CARD_PRO_PRICE_COINS = PROFILE_CARD_UPGRADE_PRICE_COINS (app/profile_card_pro_v1.ts:41), одно улучшение без 5 уровней и без новой валюты. D73 снят владельцем 01.10.",
+      "2026-10-01 ревью: коммиты ace685121, c51386627, b40b1161a, 9d6aa9dca, 15e3eea72 существуют; tests/profile_card_pro_legacy_grant.test.ts 3/3 PASS"
     ],
     "notes": [
       "Owner has not seen the proposed improved business-card variants; do not choose or implement a variant until it is shown explicitly.",
       "Анимация перехода на Pro не запускалась в эмуляторе из-за выключенных анимаций системы (0×), возвращено 1× — нужна перепроверка владельцем.",
-      "2026-10-01 пачка 5: PASS по сути (profile_card_pro_legacy_grant 3/3; PROFILE_CARD_PRO_PRICE_COINS = PROFILE_CARD_UPGRADE_PRICE_COINS, app/profile_card_pro_v1.ts:41; коммиты ace685121, c51386627, b40b1161a, 9d6aa9dca, 15e3eea72 существуют). Остаётся review: видимая визитка «Про» — gate DESIGN; анимация перехода на Pro не проверена в эмуляторе (системные анимации 0×) — владельцу."
+      "2026-10-01 пачка 5: PASS по сути (profile_card_pro_legacy_grant 3/3; PROFILE_CARD_PRO_PRICE_COINS = PROFILE_CARD_UPGRADE_PRICE_COINS, app/profile_card_pro_v1.ts:41; коммиты ace685121, c51386627, b40b1161a, 9d6aa9dca, 15e3eea72 существуют). Остаётся review: видимая визитка «Про» — gate DESIGN; анимация перехода на Pro не проверена в эмуляторе (системные анимации 0×) — владельцу.",
+      "2026-10-01 пачка 6: done. Анимация перехода на «Про» в эмуляторе не проверялась (системные анимации были выключены) — перепроверка на устройстве владельцу."
     ],
     "actual_cost": null,
     "kind": "code",
-    "review_verdict": "PASS по сути",
+    "review_verdict": "PASS",
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "OWNER_DECISION_RECORDED": "03_DECISIONS.md D73 (макеты до выбора), D114 (все 6 стилей в «Про»), снятие D73 владельцем 01.10; реализация по макету profile-card-pro.html"
+      "OWNER_DECISION_RECORDED": "03_DECISIONS.md D73 (макеты до выбора), D114 (все 6 стилей в «Про»), снятие D73 владельцем 01.10; реализация по макету profile-card-pro.html",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "03_DECISIONS.md D73 / D114 (OWNER_FINAL 30.09: вид и правила визитки «Про», все 6 стилей) — evidence/DESIGN_GATE_OWNER_REVIEW.md, «Покрыто решениями»; макет profile-card-pro.html в репозитории отсутствует, основание — сами решения"
     },
     "actual_model": "unknown, снимок нескольких сессий",
     "actual_reasoning": "unrecorded"
@@ -10226,7 +10232,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10258,20 +10264,26 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
-    "reviewer": "self-check (не независимое ревью)",
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 6, 01.10)",
     "evidence": [
       "Share.share штатный; в сообщении нет email, uid/stableId и личных ошибок — только имя, звание, подпись визитки",
-      "Работает без XP (XP удалён целиком)"
+      "Работает без XP (XP удалён целиком)",
+      "2026-10-01 ревью: Share.share({message}) — сообщение собирается из имени, звания ранга и био; email/uid/личных ошибок нет (PlayerProfileModal.tsx:212-217)"
     ],
     "notes": [
-      "Дизайн: визитка 2.0"
+      "Дизайн: визитка 2.0",
+      "2026-10-01 пачка 6: PASS. Отдельного автотеста на состав сообщения нет — не блокирует."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "design",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "D151 (01.10): «Поделиться» живёт в визитке; код components/PlayerProfileModal.tsx:212-217 (handleShare), кнопка :311 — вид не менялся"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-188",
@@ -10471,7 +10483,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -10501,17 +10513,25 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "eb8719cb0",
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 6, 01.10)",
+    "evidence": [
+      "2026-10-01 ревью: mistake_pronunciation_facet_writer_contract, lesson_mistake_facet, mistake_practice_session_target_isolation, mistake_practice_projection PASS; фасет pronunciation пишется после оценённой попытки (flashcards_speaking_session.tsx:930-937)"
+    ],
+    "notes": [
+      "2026-10-01 пачка 6: PASS. tests/mistakes_hub_contract.test.ts красный (ожидает gate_mistake_practice_premium в app/feature_gates.ts; ключ снят в снимке efe19ae9d) — к PM-192 не относится, у владельца пейвола."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "N/A: eb8719cb0 меняет app/lesson_mistake_facet.ts, mistake_facet_copy.ts, mistake_practice_insights.ts — убран ярлык источника «Арена» (D83), новых экранов/вида нет"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-193",
@@ -10571,7 +10591,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10601,17 +10621,23 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "348b71f45",
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 6, 01.10)",
+    "evidence": [
+      "2026-10-01 ревью: mistake_practice_session_target_isolation 4/4, mistake_practice_projection PASS; modules/mistake-practice/projection.ts:237-275 — правило «исправлено»"
+    ],
     "notes": [],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "N/A: 348b71f45 — только тест (tests/mistake_practice_session_target_isolation.test.ts); экранов не менял"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-195",
@@ -10757,15 +10783,20 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 6, 01.10)",
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "2026-10-01 пачка 6: PASS по сути (settings_root_liquid_glass_source_contract 10/10, settings_notifications_liquid_glass 10/10). Остаётся review: видимый экран Настроек, перенос «1 в 1» по макету profile.html#PRF-01 — макета нет в docs/design/v2-app и одобрение владельца не найдено; нужна ссылка на макет/решение либо скриншоты (ждёт DESIGN)."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS по сути",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-198",
@@ -10776,7 +10807,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -10809,17 +10840,22 @@
     "audit_sha": null,
     "result_sha": "ddf8e551e",
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 6, 01.10)",
     "evidence": [
-      "commit ddf8e551e"
+      "commit ddf8e551e",
+      "2026-10-01 ревью: max_bundle_detachment.probe 6 checks; fc_voice_prefs, settings_sound_controls_contract, flashcards_audio_contract PASS (12 тестов)"
     ],
     "notes": [
       "Пункт «Уроки с MAX» и категория max_lessons убраны; пломба MAX не тронута"
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "только удаление пункта «Уроки с MAX» из app/settings_notifications.tsx (раздел MAX запломбирован владельцем 2026-09-04, CLAUDE.md); нового вида нет; tests/settings_notifications_liquid_glass 10/10"
+    },
     "actual_model": "sonnet-5",
     "actual_reasoning": "high"
   },
@@ -10832,7 +10868,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10862,17 +10898,23 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "0aecaf24c",
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 6, 01.10)",
+    "evidence": [
+      "2026-10-01 ревью: tests/cache_reset_contract.test.ts 9/9 PASS"
+    ],
     "notes": [],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "N/A: 0aecaf24c меняет только ветку результата в settings.tsx (состояние failed уже отрисовывалось, settings.tsx:1343); новых элементов нет"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-200",
@@ -10883,7 +10925,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10915,15 +10957,23 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 6, 01.10)",
+    "evidence": [
+      "2026-10-01 ревью: pm200_retired_notification_types.probe PASS (2378 файлов); notification_tap_server_push_routes PASS; notifications_triggers/energy_full PASS"
+    ],
+    "notes": [
+      "2026-10-01 пачка 6: PASS. Найдено вне критериев: tests/notifications_weekly_recap.test.ts не компилируется (импорт удалённого app/weekly_xp, вызов с аргументом) — устарел, воскресное уведомление weekly_recap живо; тест надо переписать."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "audit",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "N/A: 71a3cdf8c, 4ed9dc1b6 — документ; 3da889f35, 7024103cd — app/dialogs_progress.ts и notification_tap_handler.ts без UI"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-201",
@@ -10934,7 +10984,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10958,20 +11008,26 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "efe19ae9d",
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 6, 01.10)",
+    "evidence": [
+      "2026-10-01 ревью: tests/notifications_retired_local_cancel.test.ts 5/5 PASS"
+    ],
     "notes": [],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "N/A: app/retired_local_notifications.ts и тест — без UI"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
-  "id": "PM-202",
+    "id": "PM-202",
     "epic": "E20",
     "title": "Снять серверные отправки удалённых событий",
     "requirement_ids": [
@@ -10979,16 +11035,16 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-  "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
     "spec": "docs/SETTINGS_AUDIO.md",
     "acceptance": [
       {
-      "id": "PM-202-A1",
-      "text": "Проверены cron, triggers, queues, old tokens и admin actions",
-      "accepted": true,
+        "id": "PM-202-A1",
+        "text": "Проверены cron, triggers, queues, old tokens и admin actions",
+        "accepted": true,
         "evidence": [
           "2026-09-29 reruns: tests/server_remote_event_allowlist.probe.ts PASS; tests/retired_server_deploy_targets.probe.ts exit 0; tests/retired_weekly_xp_cron_source.probe.ts exit 0; node tests/server_decision_atlas_contract.mjs PASS (inventory covers schedule/firestore-trigger/callable/http route types).",
           "Verified by file listing: no league/season-pass/weekly-xp cron source remains in functions/src; index.ts states legacy league controls are no longer exported (adminSaveV2SeasonDraft is Learning V2 course content, not Season Pass).",
@@ -10996,14 +11052,14 @@
         ]
       },
       {
-      "id": "PM-202-A2",
-      "text": "юридически/функционально необходимые сообщения сохранены",
-      "accepted": true,
-      "evidence": [
-        "app messages visibility/background suites PASS 22/22",
-        "user notifications contract PASS 30/30",
-        "server remote-event and Firestore listener allowlists PASS"
-      ]
+        "id": "PM-202-A2",
+        "text": "юридически/функционально необходимые сообщения сохранены",
+        "accepted": true,
+        "evidence": [
+          "app messages visibility/background suites PASS 22/22",
+          "user notifications contract PASS 30/30",
+          "server remote-event and Firestore listener allowlists PASS"
+        ]
       }
     ],
     "depends_on": [],
@@ -11015,15 +11071,29 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
-    "evidence": ["tests/server_remote_event_allowlist.probe.ts", "tests/retired_weekly_xp_cron_source.probe.ts: PASS", "node tests/server_decision_atlas_contract.mjs: SERVER DECISION ATLAS: PASS", "2026-09-28: deployment allowlist forbids retired spin-weight and roulette admin setters; probe PASS", "2026-09-28: latest server remote event allowlist probe: PASS"],
-    "notes": ["Preflight inventory: retired league/XP exports are absent; notification, subscription-expiry and progress-sync exports remain. Cron/trigger/queue/admin audit is still open."],
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 6, 01.10)",
+    "evidence": [
+      "tests/server_remote_event_allowlist.probe.ts",
+      "tests/retired_weekly_xp_cron_source.probe.ts: PASS",
+      "node tests/server_decision_atlas_contract.mjs: SERVER DECISION ATLAS: PASS",
+      "2026-09-28: deployment allowlist forbids retired spin-weight and roulette admin setters; probe PASS",
+      "2026-09-28: latest server remote event allowlist probe: PASS",
+      "2026-10-01 ревью: server_remote_event_allowlist, retired_server_deploy_targets, retired_weekly_xp_cron_source — PASS; server_decision_atlas_contract PASS; server_retired_scheduler_surface — PASS после правки списка живых callable (levelSpinStarGrant возвращён как кошелёк монет, Q13): cron/триггеры/push-типы удалённых механик — 0"
+    ],
+    "notes": [
+      "Preflight inventory: retired league/XP exports are absent; notification, subscription-expiry and progress-sync exports remain. Cron/trigger/queue/admin audit is still open.",
+      "2026-10-01 пачка 6: PASS. Проба server_retired_scheduler_surface была красной из-за Q13 (levelSpinStarGrant — живой кошелёк монет); добавлен LIVE_CALLABLES. Выкладка функций — владельцу."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "audit",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "N/A: серверные пробы, UI нет"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-203",
@@ -11207,10 +11277,11 @@
       {
         "id": "PM-206-A2",
         "text": "ненужные sound event IDs больше не вызываются",
-        "accepted": true,
+        "accepted": false,
         "evidence": [
           "2026-09-30 npx tsx tests/pm206_sound_event_callers.probe.ts: catalog=98, unknownCalls=0, orphanedCatalogIds=0 (after removing 14 uncalled ids plus dead pm.voice.turn_ready and its hook hooks/use-turn-ready-cue.ts, orphaned by MAX removal; .m4a assets removed only where unreferenced).",
-          "2026-09-30 repository runner (test:one), sound tests: reward_sound_surfaces_contract PASS, sound_event_call_sites_contract PASS. sound_motion_contract: 6 failures are PRE-EXISTING (32 audio events, 28 of them pm.arena.*, have no SOUND_MOTION entries at HEAD either); not caused by this change, Arena files are not to be touched. Source-level evidence only."
+          "2026-09-30 repository runner (test:one), sound tests: reward_sound_surfaces_contract PASS, sound_event_call_sites_contract PASS. sound_motion_contract: 6 failures are PRE-EXISTING (32 audio events, 28 of them pm.arena.*, have no SOUND_MOTION entries at HEAD either); not caused by this change, Arena files are not to be touched. Source-level evidence only.",
+          "NOT_MET (ревью 01.10): каталог звуков сейчас 97, probe pm206_sound_event_callers: orphanedCatalogIds=2 (pm.energy.refilled — файл app/energy_shard_refill.ts удалён; pm.customization.applied — вызовов нет); красные guard-тесты sound_events_contract (98 != 97), sound_event_call_sites_contract (2 сироты), reward_sound_surfaces_contract (ждёт pm.streak.saved на Главной, снят D107). Нужно: удалить/пристроить 2 звука и обновить 3 теста"
         ]
       }
     ],
@@ -11223,21 +11294,26 @@
     "audit_sha": "64227deea0ef4bde948a5e10b85f0b2960b56e83",
     "result_sha": null,
     "owner": "Codex (bounded static preflight)",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 6, 01.10)",
     "evidence": [
       "modules/audio/sound_events.ts",
       "modules/audio/sound_motion.ts",
       "docs/phraseman-2.0/tasks/PM-206.md"
     ],
     "notes": [
-      "2026-09-24 аудит Sonnet: 133 звуковых события, праздничные файлы общие для спинов/сундуков/подарков/достижений, десятки тестов завязаны на точный список. Решение оркестратора: звуки снимаются ВМЕСТЕ с каждой механикой (PM-046 спины, PM-048 подарки, PM-053 тосты, PM-056 сундуки...), PM-206 закрывается последним — финальная чистка осиротевших файлов и реестра"
+      "2026-09-24 аудит Sonnet: 133 звуковых события, праздничные файлы общие для спинов/сундуков/подарков/достижений, десятки тестов завязаны на точный список. Решение оркестратора: звуки снимаются ВМЕСТЕ с каждой механикой (PM-046 спины, PM-048 подарки, PM-053 тосты, PM-056 сундуки...), PM-206 закрывается последним — финальная чистка осиротевших файлов и реестра",
+      "2026-10-01 пачка 6: A1 PASS (pm206_system_vs_learning_audio, audio_runtime_arbiter 5/5). A2 NOT_MET: см. критерий — 2 осиротевших звука и 3 красных guard-теста (регресс после D107 и удаления energy_shard_refill)."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "CHANGES_REQUIRED",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "N/A: звук, видимого UI нет"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-207",

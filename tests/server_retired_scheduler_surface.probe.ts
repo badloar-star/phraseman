@@ -40,12 +40,16 @@ const ALLOWED_CALLABLES: Record<string, string> = {
 };
 const PUSH_TYPE = /(?:type|kind|pushType|notificationType)['"]?\s*[:=]\s*['"]([a-z0-9_]+)['"]/g;
 const RETIRED_PUSH = /(?:^|_)(?:league|xp|boon|level_gift|levelgift|season_pass|weekly_review)(?:_|$)/;
+// зачем (PM-202, ревью 01.10): levelSpinStarGrant возвращён как серверный кошелёк монет (Q13) — это не
+// «спин», а живая запись монет без рассылок; имя прежнее ради совместимости клиента.
+const LIVE_CALLABLES = new Set(['levelSpinStarGrant']);
 const callableOffenders: string[] = [];
 const pushOffenders: string[] = [];
 for (const file of walk(root)) {
   const source = fs.readFileSync(file, 'utf8');
   for (const match of source.matchAll(CALLABLE)) {
     if (!RETIRED_CALLABLE.test(match[1])) continue;
+    if (LIVE_CALLABLES.has(match[1])) continue;
     const code = ALLOWED_CALLABLES[match[1]];
     if (!code || !source.includes(code)) callableOffenders.push(`${path.relative(root, file)}: ${match[1]}`);
   }

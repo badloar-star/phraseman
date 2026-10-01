@@ -254,3 +254,25 @@ done требует одновременно: все критерии приня
 | PM-184 | PASS по сути | profile_card_pro_legacy_grant 3/3, цена из PM-185, 5 коммитов существуют; gate OWNER_DECISION_RECORDED закрыт D73/D114; видимая визитка «Про»; анимация перехода не проверена в эмуляторе | review (ждёт DESIGN) |
 
 Оговорки: actual_model «unknown, снимок нескольких сессий», actual_reasoning «unrecorded» (§34). Деплой функций/правил (PM-164, PM-171), Remote Config gifts_to_coins_enabled=false на проде и работа на устройстве не проверялись — владельцу.
+
+## Пачка 6 + PM-171/184 + PM-168 тон (agent-reviewer, Sonnet 5.5, 01.10)
+
+Итог: в done 10 задач (PM-171, 184, 187, 192, 194, 198, 199, 200, 201, 202). Остаются review: PM-168 (ждёт подписи координатора по тону), PM-197 (ждёт DESIGN), PM-206 (A2 NOT_MET). validate.py по этим задачам ошибок не даёт.
+
+| Задача | Вердикт | Основание | Статус |
+|---|---|---|---|
+| PM-171 | PASS | pm171_ideas_section_retired.probe PASS (2378 файлов); DESIGN — требование владельца «скрыть идеи», только удаление; сервер shard_survey_core — выкладка с релизом 2.0 (DEPLOY_NOW Шаг 2), владельцу | done (code, 41648d48d) |
+| PM-184 | PASS | D73/D114 есть и совпадают по смыслу; 5 коммитов существуют; profile_card_pro_legacy_grant 3/3; анимацию на устройстве — владельцу | done (code, ace685121) |
+| PM-187 | PASS | PlayerProfileModal.tsx:212-217 — Share.share, в сообщении имя/звание/био, без email/uid/ошибок; DESIGN — D151 | done (design) |
+| PM-192 | PASS | 4 теста ошибок PASS (25/25 вместе с PM-194/199); DESIGN N/A (eb8719cb0 убирает ярлык «Арена»). mistakes_hub_contract красный — не по PM-192 (снят gate_mistake_practice_premium в снимке) | done (code, eb8719cb0) |
+| PM-194 | PASS | session_target_isolation 4/4, projection PASS; 348b71f45 — только тест, DESIGN N/A | done (code, 348b71f45) |
+| PM-197 | PASS по сути | settings_root_liquid_glass 10/10, settings_notifications_liquid_glass 10/10; видимый экран по макету profile.html#PRF-01, макета в docs/design/v2-app нет, одобрения не найдено | review (ждёт DESIGN) |
+| PM-198 | PASS | max_bundle_detachment 6 checks; fc_voice_prefs/settings_sound_controls/flashcards_audio PASS; только удаление пункта (пломба MAX) | done (code, ddf8e551e) |
+| PM-199 | PASS | cache_reset_contract 9/9; DESIGN N/A (ветка результата, состояние failed уже было) | done (code, 0aecaf24c) |
+| PM-200 | PASS | pm200_retired_notification_types PASS (2378); tap routes, triggers PASS. Вне критериев: notifications_weekly_recap.test.ts не компилируется (импорт удалённого weekly_xp) | done (audit) |
+| PM-201 | PASS | notifications_retired_local_cancel 5/5 | done (code, efe19ae9d) |
+| PM-202 | PASS | allowlist, deploy_targets, weekly_xp_cron, decision_atlas PASS; server_retired_scheduler_surface была красной из-за Q13 (levelSpinStarGrant — живой кошелёк), список живых callable дополнен, PASS | done (audit) |
+| PM-206 | CHANGES_REQUIRED | A1 PASS; A2 NOT_MET: 2 осиротевших звука (pm.energy.refilled, pm.customization.applied), красные sound_events_contract (98≠97), sound_event_call_sites_contract, reward_sound_surfaces_contract | review |
+| PM-168 | тон проверен | 10 из 51 опроса переписаны, сторож 53/53; таблица — в DESIGN_GATE_OWNER_REVIEW.md, «PM-168 — ревью тона»; подпись координатора ожидается | review |
+
+Побочно исправлено: tests/server_retired_scheduler_surface.probe.ts (LIVE_CALLABLES), admin/v2/legacy.html (10 текстов опросов). Не проверялось: выкладка функций/правил, устройство.

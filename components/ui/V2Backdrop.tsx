@@ -109,7 +109,7 @@ export const TournamentBackdrop = memo(function TournamentBackdrop({ variant, ca
       )
       : withRepeat(
         withTiming(1, { duration: 7000, easing: Easing.inOut(Easing.sin) }),
-        -1,
+        4, // зачем (владелец 01.10 №2, PM-032): 2 вдоха и покой (чётное число — заканчивает в 0)
         true,
       );
     return () => {

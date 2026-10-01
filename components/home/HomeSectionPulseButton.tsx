@@ -61,7 +61,7 @@ function HomeSectionPulseButton({
     phase.value = 0;
     phase.value = withRepeat(
       withTiming(1, { duration: pulsePeriodMs / 2, easing: Easing.inOut(Easing.sin) }),
-      -1,
+      4 /* зачем (владелец 01.10 №2): коротко и покой */,
       true,
     );
     return () => cancelAnimation(phase);

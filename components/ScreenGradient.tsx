@@ -147,8 +147,7 @@ function Orb({ x, y, r, color, opacity, delay }: {
           easing: Easing.inOut(Easing.sin),
           useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER,
         }),
-      ])
-    );
+      ]), { iterations: 2 }) /* зачем (владелец 01.10 №2, PM-032): фон Главной — коротко и покой */;
     const t = setTimeout(() => anim.start(), delay * 600);
     return () => { clearTimeout(t); anim.stop(); };
   }, [delay, pulse]);
@@ -255,8 +254,7 @@ function GoldFabricFlow() {
           easing: Easing.inOut(Easing.sin),
           useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER,
         }),
-      ])
-    );
+      ]), { iterations: 2 }) /* зачем (владелец 01.10 №2, PM-032): фон Главной — коротко и покой */;
     const crossAnim = Animated.loop(
       Animated.sequence([
         Animated.timing(cross, {
@@ -271,8 +269,7 @@ function GoldFabricFlow() {
           easing: Easing.inOut(Easing.sin),
           useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER,
         }),
-      ])
-    );
+      ]), { iterations: 2 }) /* зачем (владелец 01.10 №2, PM-032): фон Главной — коротко и покой */;
     const threadAnim = Animated.loop(
       Animated.sequence([
         Animated.timing(threads, {
@@ -287,8 +284,7 @@ function GoldFabricFlow() {
           easing: Easing.inOut(Easing.sin),
           useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER,
         }),
-      ])
-    );
+      ]), { iterations: 2 }) /* зачем (владелец 01.10 №2, PM-032): фон Главной — коротко и покой */;
     const sweepAnim = Animated.loop(
       Animated.sequence([
         Animated.timing(sweep, {
@@ -303,8 +299,7 @@ function GoldFabricFlow() {
           easing: Easing.inOut(Easing.sin),
           useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER,
         }),
-      ])
-    );
+      ]), { iterations: 2 }) /* зачем (владелец 01.10 №2, PM-032): фон Главной — коротко и покой */;
     mainAnim.start();
     crossAnim.start();
     threadAnim.start();
@@ -483,8 +478,7 @@ function CinemaParticle({
           easing: Easing.inOut(Easing.sin),
           useNativeDriver: SCREEN_GRADIENT_USE_NATIVE_DRIVER,
         }),
-      ]),
-    );
+      ]), { iterations: 2 }) /* зачем (владелец 01.10 №2, PM-032): фон Главной — коротко и покой */;
     const delay = index * 420;
     const timer = setTimeout(() => anim.start(), delay);
     return () => {

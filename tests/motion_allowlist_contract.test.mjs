@@ -19,7 +19,6 @@ const ALLOWED = {
   'app/voice_equalizer.tsx': [1, 'эквалайзер, пока идёт звук'],
   'components/AiTypingBubble.tsx': [2, 'собеседник печатает'],
   'components/CleanOnboarding.tsx': [2, 'онбординг не трогаем (владелец)'],
-  'components/ScreenGradient.tsx': [6, 'фон Главной, гейт фокуса и AppState'],
   'components/dialogs/glass/DialogueGlassChat.tsx': [1, 'собеседник печатает'],
   'components/learning-v2-lab/ModeDemoPlayer.tsx': [1, 'лаборатория режимов (дев)'],
   'components/learning-v2/horizons/HorizonArtwork.tsx': [1, 'фон горизонтов, гейт фокуса и AppState'],
@@ -33,9 +32,7 @@ const ALLOWED = {
   'components/SkeletonShimmer.tsx': [1, 'скелетон (загрузка)'],
   'components/stats/AiBlockNote.tsx': [1, 'ИИ готовит разбор (загрузка)'],
   'modules/learning-v2/modes/scripted_repeat_compare_mode_v1.tsx': [1, 'идёт запись/звук'],
-  'components/home/HomeSectionPulseButton.tsx': [1, 'Главная: вид не трогаем (владелец)'],
   'components/LearningV2MapNode.tsx': [1, 'хвост PM-032: ореол узла карты'],
-  'components/ui/V2Backdrop.tsx': [1, 'фон Главной через ScreenGradient (вид не трогаем)'],
 };
 
 function walk(dir, out) {
@@ -94,9 +91,7 @@ test('decorative loops fixed in PM-032 stay one-shot', () => {
     'app/streak_stats.tsx',
     'components/SaveToCardsButton.tsx',
     'app/learning-v2/lesson/[id].tsx',
-    'components/CollectibleArtFrame.tsx',
-    'components/collectibles/CollectiblesEmptyStateMotion.tsx',
-    'components/HoloFoilCard.tsx',
+    // D140: CollectibleArtFrame / CollectiblesEmptyStateMotion / HoloFoilCard удалены с коллекциями.
     'components/level_up/LevelUpMintCeremony.tsx',
     'components/paywall/PaywallMotion.tsx',
   ]) assert.equal(found[f] ?? 0, 0, f);

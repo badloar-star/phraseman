@@ -80,7 +80,9 @@ describe('approved Cards hub entry', () => {
     expect(sheet).toContain("mode: 'truefalse'");
     expect(sheet).toContain("mode: 'recall'");
     expect(sheet).not.toContain("mode: 'listening'");
-    expect(sheet).toContain('isSpeakingEnabled()');
+    // зачем: удалённый выключатель речи ушёл вместе с remote_config_client (fb9d8d8e6) —
+    // isSpeakingEnabled() больше нет в коде, строка «Устно» доступна всегда.
+    expect(sheet).not.toContain('isSpeakingEnabled()');
     expect(sheet).toContain("row.mode === 'speaking' && !speakingEnabled");
     expect(hub).toContain('useFlashcardTrainingQuotaPreview()');
     expect(hub).toContain("quotaPreview.status === 'exhausted'");

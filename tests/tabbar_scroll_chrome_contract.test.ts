@@ -50,15 +50,6 @@ describe('flashcards tabbar mirrors the home scroll chrome', () => {
     }
   });
 
-  it('drives the capsule from the lists, without per-frame setState', () => {
-    const bar = fs.readFileSync(fc('flashcards', 'FlashcardsTabBar.tsx'), 'utf8');
-    expect(bar).toContain('export function useFcTabBarScroll()');
-    expect(bar).toContain('useAnimatedScrollHandler');
-    expect(bar).toContain('fcTabChromeAction(y, lastY.value)');
-    // Хром — только transform/opacity, и ни одного бесконечного цикла.
-    expect(bar).not.toMatch(/withRepeat\([\s\S]{0,220}?,\s*-1/);
-  });
-
   // зачем (2.0, снимок 1.6.16 / 6ce8e6b4e): собственная капсула «Карточек» снята с
   // экранов раздела — они живут под общим V2TabBar. Сторож не даёт вернуть второй
   // таббар поверх общего («Мои наборы» — плоский роут, см. 2026-08-13).

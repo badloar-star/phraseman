@@ -83,7 +83,6 @@ const BASELINE: Record<string, number> = {
   'app/firestore_leaderboard.ts': 7,
   'app/flashcards/CollectionListView.tsx': 1,
   'app/flashcards/FlashcardsHubScreen.tsx': 4,
-  'app/flashcards/FlashcardsTabBar.tsx': 2,
   'app/flashcards/PhraseCard.tsx': 1,
   'app/flashcards/SoundService.ts': 5,
   'app/flashcards/collection_view_prefs.ts': 1,

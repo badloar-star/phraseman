@@ -16,18 +16,11 @@ describe('Cards sibling navigation contract', () => {
     expect(layout).not.toMatch(/name="flashcards_collection" options=\{cardsSiblingAnimationOptions\}/);
   });
 
-  // зачем (2.0, снимок 1.6.16 / 6ce8e6b4e): своя капсула «Карточек» (FlashcardsTabBar)
-  // снята с экранов — раздел живёт под общим V2TabBar, а её Back-обработчик и меню
-  // «Создать» больше не монтируются. Прежние проверки сторожили немонтируемый код;
-  // теперь сторожим, что вторая капсула не вернулась незаметно.
-  test('the retired Cards capsule tab bar is not mounted by any screen', () => {
-    for (const file of ['flashcards.tsx', 'flashcards_collection.tsx', 'flashcards_packs.tsx', 'flashcards_my_packs.tsx']) {
-      const full = path.join(root, 'app', file);
-      if (!fs.existsSync(full)) continue;
-      const source = fs.readFileSync(full, 'utf8');
-      expect(source).not.toMatch(/imports+FlashcardsTabBar/);
-      expect(source).not.toContain('<FlashcardsTabBar');
-    }
+  // зачем (2.0): своя капсула «Карточек» (FlashcardsTabBar) удалена как мёртвый код —
+  // раздел живёт под общим V2TabBar (координатор, 01.10). Её Back-обработчик и меню
+  // «Создать» ушли вместе с ней; монтирование сторожит fc_cards_hub_entry_contract.
+  test('the retired Cards capsule tab bar stays deleted', () => {
+    expect(fs.existsSync(path.join(root, 'app', 'flashcards', 'FlashcardsTabBar.tsx'))).toBe(false);
   });
 
   test('collection Back clears local UI state before leaving the route', () => {

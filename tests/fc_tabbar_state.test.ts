@@ -85,26 +85,15 @@ describe('стаггер появления кнопок (§5.2)', () => {
     const delays = FC_TRAIN_OPTIONS.map((_, i) =>
       fcTabMenuItemDelay(i, { open: true, total: FC_TRAIN_OPTIONS.length }),
     );
-    expect(delays).toEqual([
-      0,
-      FC_TABBAR_STAGGER_MS,
-      FC_TABBAR_STAGGER_MS * 2,
-      FC_TABBAR_STAGGER_MS * 3,
-      FC_TABBAR_STAGGER_MS * 4,
-    ]);
+    // зачем: в меню 3 пункта (train/speak/blitz) — «Ошибки» на Главной (D144), прослушивание удалено.
+    expect(delays).toEqual([0, FC_TABBAR_STAGGER_MS, FC_TABBAR_STAGGER_MS * 2]);
   });
 
   it('при сворачивании порядок обратный', () => {
     const delays = FC_TRAIN_OPTIONS.map((_, i) =>
       fcTabMenuItemDelay(i, { open: false, total: FC_TRAIN_OPTIONS.length }),
     );
-    expect(delays).toEqual([
-      FC_TABBAR_STAGGER_MS * 4,
-      FC_TABBAR_STAGGER_MS * 3,
-      FC_TABBAR_STAGGER_MS * 2,
-      FC_TABBAR_STAGGER_MS,
-      0,
-    ]);
+    expect(delays).toEqual([FC_TABBAR_STAGGER_MS * 2, FC_TABBAR_STAGGER_MS, 0]);
   });
 
   it('reduce motion — без стаггера; мусорный индекс не ломает расчёт', () => {
@@ -186,13 +175,13 @@ describe('маршруты пунктов «Тренировка» (§5.2)', () 
    * DeckPickerSheet внутри самого экрана (flashcards_blitz_session.tsx).
    */
   it('«Говорить» прячется за remote kill-switch речи; «Блиц» виден всегда, размер пула не влияет', () => {
-    expect(visibleFcTrainOptions(20)).toEqual(['errors', 'train', 'speak', 'blitz']);
-    expect(visibleFcTrainOptions(20, { speakingEnabled: true })).toEqual(['errors', 'train', 'speak', 'blitz']);
-    expect(visibleFcTrainOptions(20, { speakingEnabled: false })).toEqual(['errors', 'train', 'blitz']);
-    expect(visibleFcTrainOptions(1, { speakingEnabled: false })).toEqual(['errors', 'train', 'blitz']);
-    expect(visibleFcTrainOptions(0, { speakingEnabled: false })).toEqual(['errors', 'train', 'blitz']);
+    expect(visibleFcTrainOptions(20)).toEqual(['train', 'speak', 'blitz']);
+    expect(visibleFcTrainOptions(20, { speakingEnabled: true })).toEqual(['train', 'speak', 'blitz']);
+    expect(visibleFcTrainOptions(20, { speakingEnabled: false })).toEqual(['train', 'blitz']);
+    expect(visibleFcTrainOptions(1, { speakingEnabled: false })).toEqual(['train', 'blitz']);
+    expect(visibleFcTrainOptions(0, { speakingEnabled: false })).toEqual(['train', 'blitz']);
     expect(visibleFcTrainOptions(null)).toEqual(FC_TRAIN_OPTIONS);
-    expect(visibleFcTrainOptions(null, { speakingEnabled: false })).toEqual(['errors', 'train', 'blitz']);
+    expect(visibleFcTrainOptions(null, { speakingEnabled: false })).toEqual(['train', 'blitz']);
   });
 });
 
@@ -208,9 +197,9 @@ describe('маршруты группы «+» и правой позиции', (
     expect(buildFcCreateRoute('pack')).toEqual({ pathname: '/community_pack_create', params: {} });
   });
 
-  it('в группе «+» две кнопки, а «Ошибки» стоят первой кнопкой тренировки', () => {
+  it('в группе «+» две кнопки; в тренировке только режимы карточек (без «Ошибок» и прослушивания)', () => {
     expect(FC_CREATE_OPTIONS).toEqual(['card', 'pack']);
-    expect(FC_TRAIN_OPTIONS).toEqual(['errors', 'train', 'listen', 'speak', 'blitz']);
+    expect(FC_TRAIN_OPTIONS).toEqual(['train', 'speak', 'blitz']);
   });
 
   it('вход в раздел — сохранённые карточки, правая позиция — каталог наборов (§5.1/§5.3)', () => {

@@ -7,7 +7,7 @@
  * раздела, а не один экран).
  * Здесь только состояние раскрытия, тайминги стаггера и сборка маршрутов режимов —
  * без React и без нативных модулей, чтобы всё покрывалось юнит-тестами
- * (tests/fc_tabbar_state.test.ts). Анимация/рендер — `FlashcardsTabBar.tsx`.
+ * (tests/fc_tabbar_state.test.ts). (Капсула-рендер удалена в 2.0 — раздел под общим V2TabBar.)
  */
 import { BLITZ_MIN_CARDS } from './blitz_logic';
 import { deckRouteParam, SOLO_DECK_ID, type FcDeckId } from './deck_selection';

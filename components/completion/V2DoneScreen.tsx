@@ -15,7 +15,8 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useLang } from '../LangContext';
 import { useLv2Glass, type Lv2Glass } from '../learning-v2/LearningV2Glass';
 import { HOME_RUNE_ICON_SOURCE } from '../home/homeRuneAsset';
-import { RuneBalanceChip } from '../RuneBalanceChip';
+import { peekRunes } from '../../app/runes_system';
+import { subscribeAppSnapshot } from '../../app/app_snapshot_store';
 import { triLang, type Lang } from '../../constants/i18n';
 import { runeWord } from '../../constants/runes';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -113,6 +114,22 @@ const CoinAward = memo(function CoinAward({ amount, lang, g, animate }: { amount
   );
 });
 
+// Плашка баланса в шапке — как .pill макета: фон, тонкая обводка, монета и число «1 285».
+// Первый кадр синхронно из снапшота (Performance Bible), дальше — подписка на снапшот.
+const BalancePill = memo(function BalancePill({ g, lang }: { g: Lv2Glass; lang: Lang }) {
+  const [balance, setBalance] = useState(() => peekRunes());
+  useEffect(() => subscribeAppSnapshot(() => setBalance(peekRunes())), []);
+  const value = Math.max(0, Math.round(Number(balance) || 0));
+  // Hermes не всегда группирует toLocaleString — делим на тройки сами (неразрывный пробел).
+  const text = String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  return (
+    <View testID="v2-done-balance" accessible accessibilityLabel={`${value} ${runeWord(lang, value)}`} style={[s.balance, { backgroundColor: g.opaqueCard, borderColor: g.line }]}>
+      <Image source={HOME_RUNE_ICON_SOURCE} style={s.balanceCoin} contentFit="contain" accessible={false} />
+      <Text style={[s.balanceText, { color: g.text }]}>{text}</Text>
+    </View>
+  );
+});
+
 export default function V2DoneScreen(props: V2DoneScreenProps) {
   const g = useLv2Glass();
   const { lang } = useLang();
@@ -141,7 +158,7 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
           >
             <Ionicons name="close" size={20} color={g.text} />
           </Pressable>
-          <RuneBalanceChip color={g.text} interactive={false} testID="v2-done-balance" />
+          <BalancePill g={g} lang={lang} />
         </View>
 
         <View style={s.titleBox}>
@@ -254,6 +271,10 @@ const s = StyleSheet.create({
   root: { flex: 1 },
   content: { paddingHorizontal: 20 },
   head: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 44 },
+  // guard-ok: 1px полупрозрачная обводка плашки — по макету 2.0
+  balance: { flexDirection: 'row', alignItems: 'center', gap: 8, height: 40, borderRadius: 20, borderWidth: StyleSheet.hairlineWidth, paddingHorizontal: 12 },
+  balanceCoin: { width: 20, height: 20 },
+  balanceText: { fontSize: 17, fontWeight: '700', fontVariant: ['tabular-nums'] },
   round: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   titleBox: { alignItems: 'center', marginTop: 18 },
   title: { fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.4, textAlign: 'center' },

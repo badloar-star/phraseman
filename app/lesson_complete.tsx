@@ -75,6 +75,7 @@ import { getLessonData } from './lesson_data_all';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ResultsSequence from '../components/feedback/ResultsSequence';
 import V2DoneScreen from '../components/completion/V2DoneScreen';
+import { lessonNamesForLang } from '../constants/lessons';
 import CombinedLessonBreakdown from '../components/CombinedLessonBreakdown';
 import FeedbackRatingCard from '../components/FeedbackRatingCard';
 import { shouldPromptFeedback, markFeedbackPrompted } from './feedback_prompt_throttle';
@@ -1225,9 +1226,16 @@ export default function LessonComplete() {
             <V2DoneScreen
               testID="lesson-complete-done"
               title={triLang(lang, { ru: 'Урок пройден', en: 'Lesson complete', uk: 'Урок пройдено', es: 'Lección completada', 'pt-BR': 'Lição concluída', vi: 'Đã hoàn thành bài học', id: 'Pelajaran selesai', tr: 'Ders tamamlandı', pl: 'Lekcja ukończona' })}
-              subtitle={isComboCompletion ? undefined : triLang(lang, { ru: `Урок ${lessonId}`, en: `Lesson ${lessonId}`, uk: `Урок ${lessonId}`, es: `Lección ${lessonId}`, 'pt-BR': `Lição ${lessonId}`, vi: `Bài ${lessonId}`, id: `Pelajaran ${lessonId}`, tr: `Ders ${lessonId}`, pl: `Lekcja ${lessonId}` })}
+              subtitle={isComboCompletion ? undefined : [
+                triLang(lang, { ru: `Урок ${lessonId}`, en: `Lesson ${lessonId}`, uk: `Урок ${lessonId}`, es: `Lección ${lessonId}`, 'pt-BR': `Lição ${lessonId}`, vi: `Bài ${lessonId}`, id: `Pelajaran ${lessonId}`, tr: `Ders ${lessonId}`, pl: `Lekcja ${lessonId}` }),
+                lessonNamesForLang(lang)[lessonId - 1],
+              ].filter(Boolean).join(' · ')}
               stars={isComboCompletion ? null : RESULTS_STARS_BY_TIER[medalTier]}
-              starsNote={nextLessonUnlockHint}
+              starsNote={!isComboCompletion && RESULTS_STARS_BY_TIER[medalTier] === 1
+                ? triLang(lang, { ru: 'Для следующего урока нужно 2★', en: 'You need 2★ for the next lesson', uk: 'Для наступного уроку потрібно 2★', es: 'Necesitas 2★ para la siguiente lección', 'pt-BR': 'Você precisa de 2★ para a próxima lição', vi: 'Cần 2★ để mở bài tiếp theo', id: 'Butuh 2★ untuk pelajaran berikutnya', tr: 'Sonraki ders için 2★ gerekir', pl: 'Do następnej lekcji potrzeba 2★' })
+                : nextLessonUnlockHint
+                  ? triLang(lang, { ru: 'Следующий урок открыт', en: 'The next lesson is open', uk: 'Наступний урок відкрито', es: 'La siguiente lección está abierta', 'pt-BR': 'A próxima lição está aberta', vi: 'Bài tiếp theo đã mở', id: 'Pelajaran berikutnya terbuka', tr: 'Sonraki ders açıldı', pl: 'Następna lekcja jest otwarta' })
+                  : undefined}
               correct={lessonCounts?.correct ?? null}
               wrong={lessonCounts?.wrong ?? null}
               coinsGained={practiceRunes.runes}
@@ -1283,10 +1291,19 @@ export default function LessonComplete() {
                 ) : null}
                 </View>
               ) : undefined}
+              // зачем (макет learn.html E1–E4): у каждого исхода свои кнопки.
               primaryLabel={completionRequiresPremium
                 ? triLang(lang, { ru: 'Открыть Plus', en: 'Open Plus', uk: 'Відкрити Plus', es: 'Abrir Plus', 'pt-BR': 'Abrir Plus', vi: 'Mở Plus', id: 'Buka Plus', tr: 'Plus’ı aç', pl: 'Otwórz Plus' })
-                : triLang(lang, { ru: 'Продолжить', en: 'Continue', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })}
+                : !isComboCompletion && RESULTS_STARS_BY_TIER[medalTier] === 1
+                  ? triLang(lang, { ru: 'Повторить урок', en: 'Repeat the lesson', uk: 'Повторити урок', es: 'Repetir la lección', 'pt-BR': 'Repetir a lição', vi: 'Học lại bài', id: 'Ulangi pelajaran', tr: 'Dersi tekrarla', pl: 'Powtórz lekcję' })
+                  : isComboCompletion
+                    ? triLang(lang, { ru: 'Продолжить', en: 'Continue', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })
+                    : triLang(lang, { ru: 'Следующий урок', en: 'Next lesson', uk: 'Наступний урок', es: 'Siguiente lección', 'pt-BR': 'Próxima lição', vi: 'Bài tiếp theo', id: 'Pelajaran berikutnya', tr: 'Sonraki ders', pl: 'Następna lekcja' })}
               onPrimary={() => {
+                if (!completionRequiresPremium && !isComboCompletion && RESULTS_STARS_BY_TIER[medalTier] === 1) {
+                  handleRepeatLesson();
+                  return;
+                }
                 if (pendingReview.current) {
                   pendingReview.current = false;
                   setShowReview(true);
@@ -1294,8 +1311,12 @@ export default function LessonComplete() {
                 }
                 goNext();
               }}
-              secondaryLabel={isComboCompletion ? undefined : triLang(lang, { ru: 'Пройти ещё раз', en: 'Try again', uk: 'Пройти ще раз', es: 'Repetir', 'pt-BR': 'Fazer de novo', vi: 'Làm lại', id: 'Ulangi', tr: 'Tekrar yap', pl: 'Jeszcze raz' })}
-              onSecondary={isComboCompletion ? undefined : handleRepeatLesson}
+              secondaryLabel={isComboCompletion ? undefined : completionRequiresPremium
+                ? triLang(lang, { ru: 'Остаться на бесплатном', en: 'Stay on Free', uk: 'Залишитися на безкоштовному', es: 'Seguir en gratis', 'pt-BR': 'Ficar no grátis', vi: 'Tiếp tục bản miễn phí', id: 'Tetap gratis', tr: 'Ücretsiz devam et', pl: 'Zostań przy darmowym' })
+                : RESULTS_STARS_BY_TIER[medalTier] === 1
+                  ? triLang(lang, { ru: 'К списку уроков', en: 'To the lesson list', uk: 'До списку уроків', es: 'A la lista de lecciones', 'pt-BR': 'Para a lista de lições', vi: 'Về danh sách bài', id: 'Ke daftar pelajaran', tr: 'Ders listesine', pl: 'Do listy lekcji' })
+                  : triLang(lang, { ru: 'Пройти ещё раз', en: 'Try again', uk: 'Пройти ще раз', es: 'Repetir', 'pt-BR': 'Fazer de novo', vi: 'Làm lại', id: 'Ulangi', tr: 'Tekrar yap', pl: 'Jeszcze raz' })}
+              onSecondary={isComboCompletion ? undefined : (completionRequiresPremium || RESULTS_STARS_BY_TIER[medalTier] === 1) ? goBackFromComplete : handleRepeatLesson}
               onClose={goBackFromComplete}
             />
             <ReviewPromptModal

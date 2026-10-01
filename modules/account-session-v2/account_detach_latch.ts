@@ -116,6 +116,10 @@ export function createAccountDetachLatch(store: AccountsV2SecureStorePort): Acco
   const reset = (): Promise<boolean> => serial(async () => {
     try {
       await store.deleteItemAsync(ACCOUNTS_V2_DETACH_LATCH_KEY);
+      // зачем (6E ревью, P3): учёт терминальных неудач без защёлки бесхозный — снимаем вместе.
+      await store.deleteItemAsync(ACCOUNTS_V2_TERMINAL_ERASE_KEY).catch((error: unknown) => {
+        console.warn(`${LOG} latch terminal_prune_failed kind=${kindOf(error)}`);
+      });
       console.warn(`${LOG} latch reset_after_corrupt`);
       return true;
     } catch (error) {
@@ -169,6 +173,12 @@ export function createAccountDetachLatch(store: AccountsV2SecureStorePort): Acco
       const next = [...new Set(uids)].filter(validUid).slice(-MAX_ENTRIES);
       if (next.length !== new Set(uids).size) console.warn(`${LOG} latch replace_dropped count=${new Set(uids).size - next.length}`);
       const ok = await write(next);
+      // зачем (6E ревью, P3): учёт терминальных неудач только для uid, оставшихся в защёлке.
+      if (ok) {
+        const terminal = await readTerminal();
+        const kept = new Map([...terminal].filter(([uid]) => next.includes(uid)));
+        if (kept.size !== terminal.size) await writeTerminal(kept);
+      }
       console.log(`${LOG} latch replace ok=${ok} entries=${next.length}`);
       return ok;
     }),

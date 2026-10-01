@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   flashcardsCommunityOwnedPacksKey,
   flashcardsCommunityOwnedPackTitlesKey,
+  storageStudyTarget,
   type RuntimeStudyTarget,
 } from '../target_storage_keys';
 import { DebugLogger } from '../debug-logger';
@@ -11,6 +12,7 @@ import {
   type AccountGenerationToken,
 } from '../account_generation';
 import { accountScopeKey } from '../account_scope_key';
+import { captureAccountsV2OwnerUid, produceAccountsV2ChangeIfEnabled } from '../accounts_v2_client_flag';
 import { BoundedScopeCache, parseStrictArrayJson } from '../flashcards/myPacksDataIntegrity';
 
 const warmOwnedIdsByKey = new BoundedScopeCache<string[]>(16);
@@ -103,6 +105,8 @@ export async function addCommunityOwnedPackId(
   studyTarget?: RuntimeStudyTarget,
   title?: CommunityOwnedPackTitle,
 ): Promise<void> {
+  // зачем (6F ремонт №1, P2): владелец V2-операции — аккаунт в момент записи, не в момент постановки.
+  const v2Owner = captureAccountsV2OwnerUid();
   const cur = await loadCommunityOwnedPackIds(studyTarget);
   if (!cur.includes(id)) {
     const next = [...cur, id];
@@ -111,6 +115,10 @@ export async function addCommunityOwnedPackId(
     const token = captureAccountGeneration();
     const cacheKey = warmOwnedIdsKey(key, token);
     if (cacheKey && isCurrentAccountGeneration(token)) warmOwnedIdsByKey.set(cacheKey, next);
+    // зачем (Account V2, 6F, dual-write): набор добавлен в библиотеку → операция V2
+    // `<target>:community_packs` { itemIds }. Фоном, за флагом.
+    const target = storageStudyTarget(studyTarget);
+    produceAccountsV2ChangeIfEnabled(v2Owner, () => ({ kind: 'library_snapshot', target, packIds: next }));
   }
   // зачем: сохраняем название рядом с id в момент добавления набора — единственный
   // надёжный момент, когда оно точно есть под рукой, без похода в сеть позже

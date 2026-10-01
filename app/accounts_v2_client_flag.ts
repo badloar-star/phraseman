@@ -96,6 +96,56 @@ export function clearStoredAccountsV2DeletionCredentialIfEnabled(lockOperationId
   });
 }
 
+export type AccountsV2ChangeInput = import('../modules/account-session-v2/account_sync_producer_plan').AccountsV2Change;
+
+/**
+ * Пакет 6F, ремонт №1 (P2): владелец изменения — uid Firebase В МОМЕНТ записи.
+ * зачем: изменение аккаунта A, отложенное (setTimeout, отложенная запись свайпов),
+ * не должно попасть в область B, если человек успел сменить аккаунт. Места записи
+ * зовут это СИНХРОННО в начале своей записи. Флаг выключен — null без чтений.
+ */
+export function captureAccountsV2OwnerUid(): string | null {
+  if (!isAccountsV2ClientEnabled()) return null;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const uid = String(require('@react-native-firebase/auth').default()?.currentUser?.uid ?? '').trim();
+    return uid.length > 0 ? uid : null;
+  } catch (error) {
+    console.warn(`[ACCOUNT-V2] produce owner_unavailable kind=${error instanceof Error ? error.name : typeof error}`);
+    return null;
+  }
+}
+
+/**
+ * Account V2, Пакет 6F (dual-write): изменение урока / карточек / свайпов /
+ * библиотеки → операции V2. Флаг выключен — НИЧЕГО (ни require, ни чтений,
+ * ни таймеров). Включён — работа уходит из текущего кадра (setTimeout 0):
+ * экран уже обновлён старым путём, V2 догоняет фоном. Никогда не бросает.
+ * ownerUid — из captureAccountsV2OwnerUid() в момент записи (ремонт №1, P2).
+ */
+export function produceAccountsV2ChangeIfEnabled(ownerUid: string | null, build: () => AccountsV2ChangeInput): void {
+  if (!isAccountsV2ClientEnabled()) return;
+  if (ownerUid === null) {
+    console.warn('[ACCOUNT-V2] produce skip reason=no_owner');
+    return;
+  }
+  setTimeout(() => {
+    const client = loadAccountsV2ClientIfEnabled();
+    if (client === null) {
+      console.log('[ACCOUNT-V2] produce skip reason=client_unavailable');
+      return;
+    }
+    let change: AccountsV2ChangeInput;
+    try {
+      change = build();
+    } catch (error) {
+      console.warn(`[ACCOUNT-V2] produce build_failed kind=${error instanceof Error ? error.name : typeof error}`);
+      return;
+    }
+    void client.produceAccountsV2Change(change, ownerUid, isAccountsV2ClientEnabled);
+  }, 0);
+}
+
 /**
  * Ответ постановки удаления — настоящий успех (сервер принял и закрыл ключ).
  * зачем (Пакет 6D, хвост 6C P3): аноним снимал ключ V2 при ЛЮБОМ ответе; без

@@ -219,8 +219,18 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
   return context.resolveRequest(context, moduleName, platform);
 };
 
+// зачем (Account V2, решение владельца OD23): dev-вход по почте против эмулятора
+// ФИЗИЧЕСКИ отсутствует в сборке без EXPO_PUBLIC_FIREBASE_EMULATOR_HOST (магазинные
+// сборки её не задают): маршрут и модуль входа не попадают в граф Metro вовсе,
+// а не просто уводят на главную. Сторож: tests/account_v2_producer_6f_v2.test.ts.
+const emulatorDevLoginFiles = ['app/dev-emulator-login.tsx', 'app/firebase_emulator_dev_login.ts'];
+const emulatorDevLoginBlockList = process.env.EXPO_PUBLIC_FIREBASE_EMULATOR_HOST
+  ? []
+  : emulatorDevLoginFiles.map((file) => new RegExp(`^${escapePathForRegex(path.join(__dirname, file))}$`));
+
 config.resolver.blockList = [
   ...blockList,
+  ...emulatorDevLoginBlockList,
   adminExceptRuntimeAvatars,
   ...ignoredRootFolders.map(
     (folder) => new RegExp(`^${escapePathForRegex(path.join(__dirname, folder))}[/\\\\].*`),

@@ -100,7 +100,8 @@ import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } fr
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { flashcardContentLang } from './spanish_content_gate';
 import { getCanonicalUserId } from './user_id_policy';
-import { flashcardsSwipeHintSeenKey, flashcardsSwipeMemoryKey, type RuntimeStudyTarget } from './target_storage_keys';
+import { flashcardsSwipeHintSeenKey, flashcardsSwipeMemoryKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import { captureAccountsV2OwnerUid, produceAccountsV2ChangeIfEnabled } from './accounts_v2_client_flag';
 import {
   flashcardsCommunityPacksAvailableForTarget,
   flashcardsOfficialPacksAvailableForTarget,
@@ -307,8 +308,14 @@ function compactMemory(memory: SwipeMemory): SwipeMemory {
   );
 }
 
-async function saveSwipeMemory(memory: SwipeMemory, studyTarget?: RuntimeStudyTarget): Promise<void> {
-  await AsyncStorage.setItem(flashcardsSwipeMemoryKey(studyTarget), JSON.stringify(compactMemory(memory)));
+async function saveSwipeMemory(memory: SwipeMemory, studyTarget?: RuntimeStudyTarget, v2Owner: string | null = null): Promise<void> {
+  const compact = compactMemory(memory);
+  await AsyncStorage.setItem(flashcardsSwipeMemoryKey(studyTarget), JSON.stringify(compact));
+  // зачем (Account V2, 6F, dual-write): память свайпов → поле `srs` карточек V2
+  // (updatedAtMs = lastSeenAt, время правки на телефоне). Уже пачкой (отложенная
+  // запись), шлются только изменившиеся записи. Фоном, за флагом.
+  const target = storageStudyTarget(studyTarget);
+  produceAccountsV2ChangeIfEnabled(v2Owner, () => ({ kind: 'swipe_memory', target, memory: compact }));
 }
 
 /**
@@ -326,7 +333,7 @@ async function saveSwipeMemory(memory: SwipeMemory, studyTarget?: RuntimeStudyTa
  * SWIPE_MEMORY_FLUSH_MS и закрывается раньше, если человек уходит.
  */
 const SWIPE_MEMORY_FLUSH_MS = 1_500;
-let pendingSwipeMemory: { memory: SwipeMemory; studyTarget?: RuntimeStudyTarget } | null = null;
+let pendingSwipeMemory: { memory: SwipeMemory; studyTarget?: RuntimeStudyTarget; v2Owner: string | null } | null = null;
 let pendingSwipeMemoryTimer: ReturnType<typeof setTimeout> | null = null;
 
 function flushSwipeMemoryNow(): void {
@@ -337,7 +344,7 @@ function flushSwipeMemoryNow(): void {
   const pending = pendingSwipeMemory;
   if (!pending) return;
   pendingSwipeMemory = null;
-  void saveSwipeMemory(pending.memory, pending.studyTarget).catch((error: unknown) => {
+  void saveSwipeMemory(pending.memory, pending.studyTarget, pending.v2Owner).catch((error: unknown) => {
     // зачем: немой catch запрещён правилом владельца — иначе прогресс карточек
     // мог бы теряться месяцами без единого следа в логах.
     console.warn('[SWIPE-MEMORY] flush:catch', error instanceof Error ? error.message : String(error)); // guard-ok: лог в catch обязателен
@@ -345,7 +352,9 @@ function flushSwipeMemoryNow(): void {
 }
 
 function scheduleSwipeMemorySave(memory: SwipeMemory, studyTarget?: RuntimeStudyTarget): void {
-  pendingSwipeMemory = { memory, studyTarget };
+  // зачем (6F ремонт №1, P2): запись отложена до 1,5 с — владелец V2-операции
+  // фиксируется в момент свайпа, а не в flush (аккаунт мог смениться).
+  pendingSwipeMemory = { memory, studyTarget, v2Owner: captureAccountsV2OwnerUid() };
   if (pendingSwipeMemoryTimer) return;
   pendingSwipeMemoryTimer = setTimeout(() => {
     pendingSwipeMemoryTimer = null;

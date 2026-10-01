@@ -19,6 +19,7 @@ import {
 // иначе смена языка в рантайме не подхватывается и всё уходит в английское
 // хранилище (протечка языков, найдено 2026-09-05).
 import type { CardItem } from './types';
+import { captureAccountsV2OwnerUid, produceAccountsV2ChangeIfEnabled } from '../accounts_v2_client_flag';
 import { CUSTOM_CARD_OWNER_ALERT_MILESTONE } from './custom_card_access';
 import {
   captureCustomCardMilestoneOwner,
@@ -78,6 +79,7 @@ async function commit(
   cards: CardItem[],
   target: StudyTarget,
   milestoneOwner: CustomCardMilestoneOwner,
+  v2Owner: string | null,
 ): Promise<void> {
   // Encrypted local state commits first; AsyncStorage is a compatibility mirror.
   // If the new store is locally unavailable, the existing durable mirror keeps
@@ -85,6 +87,8 @@ async function commit(
   await commitPhoneStateCustomCards(previous, cards).catch(() => undefined);
   await AsyncStorage.setItem(customFlashcardsKey(target), JSON.stringify(cards));
   cacheByTarget[target] = cards;
+  // зачем (Account V2, 6F, dual-write): снимок своих карточек → операции V2. Фоном, за флагом.
+  produceAccountsV2ChangeIfEnabled(v2Owner, () => ({ kind: 'card_snapshot', target, list: 'custom', cards }));
   // Saving is already durable. Owner telemetry is deliberately detached and
   // fail-open: offline/auth/Telegram failures can never become a card error.
   if (cards.length >= CUSTOM_CARD_OWNER_ALERT_MILESTONE && cards.length >= previous.length) {
@@ -104,11 +108,13 @@ export function updateCustomCards(
   // Capture before any awaited disk work: if an account switch happens during
   // the save, the old library count must never be attributed to the new owner.
   const milestoneOwner = captureCustomCardMilestoneOwner();
+  // зачем (6F ремонт №1, P2): владелец V2-операции — аккаунт в момент записи, не в момент постановки.
+  const v2Owner = captureAccountsV2OwnerUid();
   return withWriteLock(target, async () => {
     const current = await loadFromDisk(target);
     const next = mutator(current);
     if (next !== current) {
-      await commit(current, next, target, milestoneOwner);
+      await commit(current, next, target, milestoneOwner, v2Owner);
     }
     return next;
   });

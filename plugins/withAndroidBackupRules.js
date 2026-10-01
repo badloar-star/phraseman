@@ -141,6 +141,6 @@ module.exports = function withAndroidBackupRules(config) {
   return config;
 };
 
-// Для сторожа (tests/android_backup_rules_securestore_guard.test.ts).
+// Для сторожа (tests/account_v2_tails_6e_v2.test.ts, раздел «(1) Android backup»).
 module.exports.BACKUP_RULES_XML = BACKUP_RULES_XML;
 module.exports.DATA_EXTRACTION_RULES_XML = DATA_EXTRACTION_RULES_XML;

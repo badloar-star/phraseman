@@ -133,6 +133,12 @@ export type AccountSyncLocalMutationTransaction = Readonly<{
   readRecord(key: string): Promise<ScopeRecord | null>;
   putRecord(record: ScopeRecord): Promise<void>;
   deleteRecord(key: string): Promise<void>;
+  /**
+   * Пакет 6F, ремонт №1 (P3): ревизия сервера из квитанции операции — ВНУТРИ той же
+   * транзакции, что и постановка (служебные ключи outbox напрямую закрыты).
+   * null — квитанции нет (операция в очереди, в карантине или неизвестна).
+   */
+  readAckServerRevision(operationId: string): Promise<number | null>;
 }>;
 
 export type AccountSyncLocalMutation = (
@@ -436,6 +442,11 @@ export function createAccountSyncOutbox(
         });
       }),
       deleteRecord: (rawKey) => track(() => transaction.deleteRecord(domainKey(rawKey))),
+      readAckServerRevision: (operationId) => track(async () => {
+        if (typeof operationId !== 'string' || operationId.length === 0) return fail('account_sync_outbox_invalid_input');
+        const record = await transaction.readRecord(operationKey('ack', operationId));
+        return record === null ? null : parseAck(record.value, ownerUid).receipt.serverRevision;
+      }),
     });
     let callbackFailed = false;
     let callbackError: unknown;

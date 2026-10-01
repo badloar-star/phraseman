@@ -137,6 +137,20 @@ export function syncAccountsV2ClientAuthUid(uid: string | null, isEnabled: () =>
   });
 }
 
+/**
+ * Пакет 6F: изменение приложения (урок/карточки/свайпы/библиотека) → outbox V2.
+ * Никогда не отклоняется; без живой сессии — лог и ничего.
+ */
+export function produceAccountsV2Change(
+  change: import('./account_sync_producer_plan').AccountsV2Change,
+  ownerUid: string,
+  isEnabled: () => boolean,
+): Promise<void> {
+  return getController(isEnabled).produce(change, ownerUid).catch((error: unknown) => {
+    console.warn(`${LOG} runtime produce_failed kind=${kindOf(error)}`);
+  });
+}
+
 /** Записи ключа в полёте по привязке: снятие ждёт свою запись. */
 const credentialWrites = new Map<string, Promise<AccountsV2DeletionCredential | null>>();
 

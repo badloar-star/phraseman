@@ -2,6 +2,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
 import { COURSE_LEVEL_RANGES } from './course_levels';
 import { DebugLogger } from './debug-logger';
+import { captureAccountsV2OwnerUid, produceAccountsV2ChangeIfEnabled } from './accounts_v2_client_flag';
+import { LESSON_UNLOCK_PERCENT, lessonScoreMeetsPercent } from './lesson_star_scale';
 import {
   lessonBestScoreKey,
   lessonPassCountKey,
@@ -141,6 +143,8 @@ export const saveMedalProgress = async (
   newPassCount: number;
   passCountIncreased: boolean;
 }> => {
+  // зачем (6F ремонт №1, P2): владелец V2-операции — аккаунт в момент записи, не в момент постановки.
+  const v2Owner = captureAccountsV2OwnerUid();
   try {
     const progressTotal = Array.isArray(progressArr) && progressArr.length > 0
       ? Math.min(progressArr.length, 50)
@@ -184,6 +188,15 @@ export const saveMedalProgress = async (
     }
     await AsyncStorage.multiSet(writes);
     invalidateMedalsCache();
+    if (isNewBest) {
+      // зачем (Account V2, 6F, dual-write): новый лучший результат урока — операция V2
+      // (флаг выкл — ноль работы; вкл — фоном, вне кадра). Сущность `<target>:lesson:<N>`.
+      const target = storageStudyTarget(studyTarget);
+      produceAccountsV2ChangeIfEnabled(v2Owner, () => ({
+        kind: 'lesson_result', target, lessonId, score: newBest,
+        passed: lessonScoreMeetsPercent(newBest, LESSON_UNLOCK_PERCENT),
+      }));
+    }
 
     return {
       newTier,

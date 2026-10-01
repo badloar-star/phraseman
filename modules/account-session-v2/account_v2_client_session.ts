@@ -12,6 +12,8 @@ import { createAccountSyncRunner, type AccountSyncRunner, type AccountSyncRunner
 import { createAccountSyncCallableSend } from './account_sync_callable_transport';
 import { createAccountDeletionDetacher, type AccountDeletionDetachResult } from './account_deletion_detach';
 import type { AccountDetachLatch } from './account_detach_latch';
+import { createAccountsV2Producer } from './account_sync_producer';
+import type { AccountsV2Change } from './account_sync_producer_plan';
 
 /*
  * Account V2, Пакет 6B (TG-F76EA3701B55) — жизненный цикл клиента V2.
@@ -50,6 +52,12 @@ const TERMINAL_ERASE_CODE = /manifest_mismatch|marker_foreign|lineage_exhausted/
  */
 const TERMINAL_ERASE_MAX_ATTEMPTS = 3;
 const TERMINAL_ERASE_RETRY_MS = 24 * 60 * 60 * 1000;
+/**
+ * Пакет 6F: пауза перед отправкой после новых операций производителя.
+ * зачем: свайпы и правки идут пачками — одна отправка на пачку, а не вызов
+ * callable на каждое действие (лимит 20 вызовов/мин на uid, Firebase-экономия).
+ */
+const PRODUCER_WAKE_MS = 3_000;
 
 type AccountScopeValue = Extract<AccountScope, { kind: 'account' }>;
 
@@ -88,6 +96,11 @@ export type AccountsV2ClientController = Readonly<{
    * область uid; затем стирает её, защёлка на диске — до подтверждённого стирания.
    */
   beginDeletionDetach(uid: string | null): Promise<AccountDeletionDetachResult | null>;
+  /**
+   * Пакет 6F: изменение приложения → операции в outbox текущей области (dual-write).
+   * Нет живой сессии текущего uid — ничего (лог). Никогда не отклоняется.
+   */
+  produce(change: AccountsV2Change, ownerUid: string): Promise<void>;
   status(): AccountsV2ClientStatus;
 }>;
 
@@ -96,6 +109,7 @@ type Session = {
   readonly scope: AccountScopeValue;
   readonly fence: SessionFence;
   readonly runner: AccountSyncRunner;
+  readonly produce: (change: AccountsV2Change) => Promise<Readonly<{ enqueued: number }>>;
   alive: boolean;
   sending: boolean;
   draining: boolean;
@@ -423,7 +437,12 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
       writeDispatchState: (expected, state) => outbox.writeDispatchState(expected, state),
     }, (expected) => holder.session !== null && holder.session.alive && sameSessionFence(expected, fence),
     { nowMs, random: ports.random });
-    const created: Session = { uid, scope, fence, runner, alive: true, sending: true, draining: false, timer: null };
+    const producer = createAccountsV2Producer({
+      uid, fence, handle, outbox, newOperationId: () => `v2p-${ports.newNonce()}`,
+    });
+    const created: Session = {
+      uid, scope, fence, runner, produce: producer.produce, alive: true, sending: true, draining: false, timer: null,
+    };
     holder.session = created;
     if (detachedInProcess.has(uid) || ports.currentAuthUid() !== uid) {
       // зачем: пока область открывалась, uid успели удалить или сменить — не оставляем её открытой.
@@ -551,6 +570,32 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
     }),
     stop: (reason: string) => serial(() => stopCurrent(reason)),
     beginDeletionDetach,
+    produce: (change: AccountsV2Change, ownerUid: string) => serial(async () => {
+      const current = session;
+      if (!ports.isEnabled()) { console.log(`${LOG} producer skip reason=flag_off kind=${change.kind}`); return; }
+      if (current === null || !current.alive) { console.warn(`${LOG} producer skip reason=no_session kind=${change.kind}`); return; }
+      if (ownerUid !== current.uid) {
+        // зачем (ремонт №1, P2): изменение записано аккаунтом, который уже не владеет
+        // открытой областью (смена A→B между записью и постановкой) — в чужую область не пишем.
+        console.warn(`${LOG} producer skip reason=uid_mismatch kind=${change.kind}`);
+        return;
+      }
+      if (ports.currentAuthUid() !== current.uid) {
+        // зачем: смена аккаунта идёт прямо сейчас — область ещё не переключилась.
+        console.warn(`${LOG} producer skip reason=auth_mismatch kind=${change.kind}`);
+        return;
+      }
+      let enqueued = 0;
+      try {
+        enqueued = (await current.produce(change)).enqueued;
+      } catch (error) {
+        console.warn(`${LOG} producer threw kind=${change.kind} code=${codeOf(error)}`);
+        return;
+      }
+      if (enqueued > 0 && current.alive && current.sending && !current.draining && current.timer === null) {
+        schedule(current, PRODUCER_WAKE_MS);
+      }
+    }),
     status: () => Object.freeze({
       uid: session?.uid ?? null,
       sending: session?.sending ?? false,

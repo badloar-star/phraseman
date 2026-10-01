@@ -13,6 +13,7 @@ import {
   type AccountGenerationToken,
 } from '../app/account_generation';
 import { accountScopeKey } from '../app/account_scope_key';
+import { captureAccountsV2OwnerUid, produceAccountsV2ChangeIfEnabled } from '../app/accounts_v2_client_flag';
 import { normalizePackLanguage, type PackLanguage } from '../app/flashcards/pack_languages';
 import { FREE_CUSTOM_CARD_LIMIT, PLUS_CUSTOM_CARD_LIMIT } from '../app/flashcards/custom_card_access';
 
@@ -268,6 +269,8 @@ async function persistFlashcards(
 ): Promise<boolean> {
   const target = cacheTarget(studyTarget);
   const snapshot = cards.map(c => ({ ...c }));
+  // зачем (6F ремонт №1, P2): владелец V2-операции — аккаунт в момент записи, не в момент постановки.
+  const v2Owner = captureAccountsV2OwnerUid();
   if (!isAccountOperationCurrent(accountToken)) return false;
   const scopeKey = scopedTargetKey(accountToken, target);
   if (!scopeKey) return false;
@@ -280,6 +283,9 @@ async function persistFlashcards(
     });
     if (!committed) return false;
     setBoundedCache(scopeKey, snapshot);
+    // зачем (Account V2, 6F, dual-write): снимок сохранённых карточек → операции V2
+    // (добавление/правка/удаление — разницей с зеркалом области). Фоном, за флагом.
+    produceAccountsV2ChangeIfEnabled(v2Owner, () => ({ kind: 'card_snapshot', target, list: 'saved', cards: snapshot }));
     return true;
   } catch {
     return false;

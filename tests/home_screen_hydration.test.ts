@@ -16,7 +16,7 @@ import {
 
 const base: HomeScreenHydration = {
   userName: 'A', streak: 1, displayStreak: 1, weekDone: [], weekPoints: 0,
-  shardsBalance: 0, lessonsCompleted: 0, freezeActive: false, premiumFreezeUsed: false,
+  shardsBalance: 0, lessonsCompleted: 0,
   userAvatar: '', userAvatarAura: null, userFrame: '', lastLessonId: null,
   lastLessonProgress: 0, lastLessonScore: '0',
 };

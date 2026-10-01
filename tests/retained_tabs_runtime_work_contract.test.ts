@@ -5,21 +5,6 @@ const root = path.join(__dirname, '..');
 const read = (relativePath: string) => fs.readFileSync(path.join(root, relativePath), 'utf8');
 
 describe('retained tabs runtime work contract', () => {
-  it('defers Save Progress checks while Home is not the runtime owner', () => {
-    const source = read('components/SaveProgressBanner.tsx');
-
-    expect(source).toContain('ownerActive?: boolean');
-    expect(source).toContain('function SaveProgressBanner({ ownerActive = true, hasSavedLearningProgress = false, motionVariant =');
-    expect(source).toContain('if (!ownerActiveRef.current)');
-    expect(source).toContain('dirtyRef.current = true;');
-    expect(source).toContain('if (!hasSavedLearningProgressRef.current)');
-    expect(source).not.toContain("AsyncStorage.getItem('user_total_xp')");
-    expect(source).toContain('const checkGenerationRef = useRef(0);');
-    expect(source).toContain('if (checkInFlightRef.current) {');
-    expect(source).toMatch(/dirtyRef\.current = true;\s+return checkInFlightRef\.current;/);
-    expect(source).toContain("DeviceEventEmitter.addListener('account_deleted'");
-  });
-
   it('keeps stats refreshes dirty while the retained stats route is inactive', () => {
     const source = read('app/streak_stats.tsx');
 
@@ -55,9 +40,9 @@ describe('retained tabs runtime work contract', () => {
     expect(source).toContain('const homeDataDirtyRef = useRef(true);');
     expect(source).toContain('if (homeDataDirtyRef.current) {');
     expect(source).toContain('shardsDirtyRef.current = true;');
-    expect(source).toContain('shardsAnim.stopAnimation();');
-    expect(source).toContain('shardsAnim.setValue(1);');
-    expect(source).toContain('shardsBonusAnim.setValue(0);');
+    // зачем (Q92, 01.10): всплывающий бонус «+N» осколков и его анимации с Главной удалены.
+    expect(source).not.toContain('shardsBonusAnim');
+    expect(source).not.toContain('shardsAnim');
     const deferredReload = source.slice(source.indexOf('if (needsReloadRef.current)'), source.indexOf('useEffect(() => {\n        if (!homeRuntimeActive)', source.indexOf('if (needsReloadRef.current)')));
     expect(deferredReload).toMatch(/if \(!homeRuntimeActiveRef\.current\) \{[\s\S]*homeDataDirtyRef\.current = true;[\s\S]*return;/);
     expect(deferredReload).toMatch(/InteractionManager\.runAfterInteractions\(\(\) => \{[\s\S]*else if \(mountedRef\.current\)[\s\S]*homeDataDirtyRef\.current = true;/);

@@ -15,23 +15,22 @@ describe('home dev hint control', () => {
     expect(source.map((item) => item.id)).toEqual(['a', 'b']);
   });
 
-  it('keeps the session-limited random hint wiring (dev simulator removed with Home V1, 01.10)', () => {
-    expect(homeSource).toContain('SELECTED_HOME_HINTS_SNAPSHOT');
-    expect(homeSource).toContain('homeHintShownThisAppSession');
-    expect(homeSource).toContain('if (homeHintShownThisAppSession) return undefined;');
-    expect(homeSource).toContain("if (state === 'background') homeHintShownThisAppSession = false;");
-    expect(homeSource).not.toContain('transform: [{ scale: statsHintPulseAnim }]');
+  // зачем (Q92, координатор 01.10): подсказки статистики на Главной 2.0 удалены целиком — их нигде
+  // не было видно, а запрос опубликованного снимка (Firestore) уходил при каждом входе в приложение.
+  // Библиотека home_hints остаётся (админка), но Главная её больше не использует.
+  it('keeps the Statistics-card hint chain out of Home', () => {
+    expect(homeSource).not.toContain('SELECTED_HOME_HINTS_SNAPSHOT');
+    expect(homeSource).not.toContain('loadPublishedHomeHints');
+    expect(homeSource).not.toContain('homeHintShownThisAppSession');
+    expect(homeSource).not.toContain('showStatsPulseHint');
+    expect(homeSource).not.toContain('statsHintPulseAnim');
+    expect(homeSource).not.toContain('showRandomFromSnapshot');
   });
 
-  it('uses a fresh random eligible hint for the Statistics-card hint at runtime', () => {
-    const runtimeHintEffect = homeSource.slice(
-      homeSource.indexOf('const showRandomFromSnapshot'),
-      homeSource.indexOf('showRandomFromSnapshot(localSnapshot'),
-    );
-
-    expect(runtimeHintEffect).toContain(
-      "pickRandomHomeHint(snapshot.items.filter((item) => item.audience === 'all' || item.audience === audience))",
-    );
-    expect(runtimeHintEffect).not.toContain('selectNextHomeHint(snapshot, audience, before)');
+  // зачем (Q92): подсказка энергии и всплывашка энергии с Главной удалены (энергии на Главной нет, D151).
+  it('keeps the energy tooltip and the energy subscription out of Home', () => {
+    expect(homeSource).not.toContain('EnergyInfoPopover');
+    expect(homeSource).not.toContain('energyTooltip');
+    expect(homeSource).not.toContain('useEnergy(');
   });
 });

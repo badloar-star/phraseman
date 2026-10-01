@@ -24,8 +24,6 @@ export type HomeScreenHydration = {
   weekPoints: number;
   shardsBalance: number;
   lessonsCompleted: number;
-  freezeActive: boolean;
-  premiumFreezeUsed: boolean;
   userAvatar: string;
   userAvatarAura?: string | null;
   userFrame: string;

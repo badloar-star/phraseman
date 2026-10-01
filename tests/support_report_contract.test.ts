@@ -65,19 +65,12 @@ describe('in-app support report contract', () => {
     expect(layout).toContain('appIsActive');
   });
 
-  it('places a dismissible direct-open reply banner immediately after the last lesson', () => {
+  // зачем (Q91, координатор 01.10): баннер ответа на жалобу с Главной удалён — ответ есть в колокольчике.
+  it('keeps the report reply out of Home: no banner, no requested-reply plumbing', () => {
     const home = read('app/(tabs)/home.tsx');
-    const banner = read('components/ReportReplyHomeBanner.tsx');
-    // зачем (01.10, удаление Главной V1): баннер ответа стоял в V1-разметке после «Продолжить урок».
-    // Главная 2.0: ответ на жалобу открывается из колокольчика (requestedReportReply → NotificationCenterButton).
-    expect(home).not.toContain('<ReportReplyHomeBanner');
-    expect(home).toContain('requestedReportReply={requestedReportReply}');
-    expect(banner).toContain('testID="home-report-reply-banner"');
-    expect(banner).toContain('onPress={open}');
-    expect(banner).toContain('testID="home-report-reply-banner-close"');
-    expect(banner).toContain('onPress={dismiss}');
-    expect(banner).toContain('persistDismissed(owner, selected.id)');
-    expect(banner).toContain('onOpen(selected)');
+    expect(home).not.toContain('ReportReplyHomeBanner');
+    expect(home).not.toContain('requestedReportReply');
+    expect(home).toContain('<NotificationCenterButton');
   });
 
   // зачем (PhraseMan 2.0): XP удалён целиком; отправка отчёта больше ничего не начисляет.

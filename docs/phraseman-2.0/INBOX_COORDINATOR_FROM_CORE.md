@@ -422,3 +422,14 @@ E24: docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md, E24_store_de
 - 🔴 tests/local_account_data.test.ts — 5 кейсов: журналы `max_voice_*_outbox_v1` / `max_voice_review_receipt*` больше не входят в инвентарь аккаунта → при смене аккаунта не стираются (там текст голосовой обратной связи). Тот же класс, что №13; MAX под пломбой — нужно решение, стирать ли старые журналы.
 - tests/auth_provider_behavior.test.ts — 4 кейса про смену аккаунта при незавершённых списаниях падают (вероятно та же конституция экономики) — не разбирал.
 - tests/cloud_sync_customization_account_isolation.test.ts — импортирует удалённый app/personal_plan_state.
+
+## §35 — 2026-10-01: review→done пачка 2 (3bedd9f0f) + починка инструментов и проб
+
+- Пачка 2: done 5 — PM-006, PM-013, PM-018, PM-030, PM-031. По сути PASS, ждут owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES — PM-036, PM-043, PM-044, PM-045. FAIL — PM-032 (вечные анимации на Главной: HomeSectionPulseButton, ScreenGradient ×6, V2Backdrop — зона «Дизайна», решение владельца 01.10 №2), PM-034 (матрица состояний — самопроверка, хвост с ❌ противоречит шапке, прохода в эмуляторе нет), PM-046 и PM-055 (красные пробы после миграции подарков).
+- Ядро: пробы PM-046/PM-055 зелёные (последний коммит): server_remote_event_allowlist разрешает ровно экспорт giftsToCoinsMigrationReport; xp_boost_tokens_compat_only — cloud_sync (стирание старых ключей), gifts_to_coins_table_v1 (перевод в монеты), accounts_v2 inventory (опись) — всё только совместимость. Повторное ревью — в пачке 3 (gate MIGRATION_AND_ROLLBACK_APPROVED… всё ещё не закрыт — нужен ваш ответ Q83).
+- Инструменты (ad41aa417): mark.py меняет только блок задачи (CRLF сохраняется); render_views.py не падает на D131; pm007-скрипт по умолчанию dry-run и не затирает список облака. Карточки tasks/*.md перегенерируем один раз после всех пачек.
+
+Вопросы:
+- Q82 «Онбординг не трогаем» распространяется на эмодзи (CleanOnboarding, 4 места)? **рек. да** (так принят PM-030).
+- Q83 Gate MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE для PM-046/PM-055: подтвердить пакетом по миграции подарков в монеты (Q12, отчёт giftsToCoinsMigrationReport, идемпотентность g2c1_/g2cdj_)? **рек. да**
+- Q84 PM-032 — передать «Дизайну» сокращение вечных анимаций Главной до 2–3 повторов и покоя? **рек. да**

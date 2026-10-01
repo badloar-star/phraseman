@@ -17,7 +17,12 @@ const LEGACY_CACHE_KEY = 'user_notifications_cache_v1';
 const LEGACY_LAST_REFRESH_KEY = 'user_notifications_last_refresh_ms_v1';
 const CACHE_KEY_PREFIX = 'user_notifications_cache_v2:';
 const LAST_REFRESH_KEY_PREFIX = 'user_notifications_last_refresh_ms_v2:';
-const MAX_NOTIFICATIONS = 50;
+// зачем (Q44, координатор 01.10): первая страница 50 → 20 — у «Активности» есть
+// «Показать ещё» («Дизайн»), старое догружается по запросу; на старте 20 чтений вместо 50.
+const MAX_NOTIFICATIONS = 20;
+// Пометка прочитанным не зависит от размера первой страницы: после «Показать ещё»
+// на экране бывает больше строк, батч Firestore держит до 500 операций.
+const MAX_MARK_READ_IDS = 200;
 const MAX_MEMORY_OWNERS = 2;
 /**
  * PM-172: страница «Активности» при догрузке старых событий (курсор по createdAt).
@@ -552,7 +557,7 @@ export async function loadOlderUserNotifications(): Promise<OlderUserNotificatio
 
 /** Пометить события прочитанными (батчем; правила пускают только read/readAt/updatedAt). */
 export async function markUserNotificationsRead(ids: string[]): Promise<void> {
-  const normalizedIds = new Set(ids.slice(0, MAX_NOTIFICATIONS).map((id) => String(id || '').trim()).filter(Boolean));
+  const normalizedIds = new Set(ids.slice(0, MAX_MARK_READ_IDS).map((id) => String(id || '').trim()).filter(Boolean));
   if (normalizedIds.size === 0) return;
   const stableUid = await getNotificationOwnerUid();
   if (!stableUid) return;

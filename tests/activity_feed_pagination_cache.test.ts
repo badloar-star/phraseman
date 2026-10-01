@@ -103,16 +103,17 @@ describe('activity feed (PM-167/PM-172)', () => {
     nowMs += 10 * USER_NOTIFICATIONS_FORCE_FLOOR_MS;
     seed(120);
     const first = await refreshUserNotificationsOnce({ force: true });
-    expect(first).toHaveLength(50);
-    expect(mockCalls).toEqual([{ kind: 'first', limit: 50 }]);
+    // Q44: первая страница 20, дальше — «Показать ещё».
+    expect(first).toHaveLength(20);
+    expect(mockCalls).toEqual([{ kind: 'first', limit: 20 }]);
 
     const page = await loadOlderUserNotifications();
     expect(mockCalls[1]).toEqual({ kind: 'older', cursor: first[first.length - 1].createdAt, limit: USER_NOTIFICATIONS_PAGE_SIZE });
     expect(page.fetched).toBe(USER_NOTIFICATIONS_PAGE_SIZE);
-    expect(page.list).toHaveLength(50 + USER_NOTIFICATIONS_PAGE_SIZE);
+    expect(page.list).toHaveLength(20 + USER_NOTIFICATIONS_PAGE_SIZE);
     expect(new Set(page.list.map((r) => r.id)).size).toBe(page.list.length);
     expect(page.hasMore).toBe(true);
-    expect(await readCachedUserNotifications()).toHaveLength(70);
+    expect(await readCachedUserNotifications()).toHaveLength(40);
   });
 
   it('refresh respects the screen TTL; even force is floored', async () => {

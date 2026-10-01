@@ -3,6 +3,8 @@
 module.exports = {
   preset: 'react-native',
   roots: ['<rootDir>/tests', '<rootDir>/components', '<rootDir>/app'],
+  // зачем (координатор §47, 2026-10-01): наборы клиентского MAX сняты вместе с ним (D81);
+  // два из них уже были удалены, но оставались в списке.
   testMatch: [
     '<rootDir>/tests/energy_cost_badge_plus.test.tsx',
     '<rootDir>/tests/session_attempts_recovery_modal.test.tsx',
@@ -17,21 +19,37 @@ module.exports = {
     '<rootDir>/tests/level_exam_intro.test.tsx',
     '<rootDir>/tests/friends_together_dev_bots_sheet.test.tsx',
     '<rootDir>/tests/learning_v2_intro_reader_a.test.tsx',
-    '<rootDir>/tests/max_tutor_live_components.test.tsx',
-    '<rootDir>/tests/max_memory_settings.test.tsx',
-    '<rootDir>/tests/privacy_settings_tutor_memory.test.tsx',
     '<rootDir>/tests/ai_dialog_energy_target_remount.test.tsx',
-    '<rootDir>/tests/max_voice_accessibility.test.tsx',
-    '<rootDir>/tests/max_call_live_caption_view.test.ts',
     '<rootDir>/tests/friend_list_row.test.tsx',
     '<rootDir>/tests/friend_together_sheet.test.tsx',
     '<rootDir>/tests/avatar_view_v2_fallback.test.tsx',
     '<rootDir>/tests/home_rune_balance_render.test.tsx',
+    // зачем (координатор §47, 2026-10-01): эти .test.tsx не стояли НИ В ОДНОМ testMatch —
+    // ни основной конфиг (только **/*.test.ts), ни этот их не исполняли; «зелёный» был
+    // иллюзией. Каждый новый .tsx-тест вписывать сюда поимённо.
+    '<rootDir>/tests/fc_blitz_attempts_integration.test.tsx',
+    '<rootDir>/tests/fc_speaking_attempts_integration.test.tsx',
+    '<rootDir>/tests/fc_swipe_attempts_integration.test.tsx',
+    '<rootDir>/tests/irregular_verbs_attempts_integration.test.tsx',
+    '<rootDir>/tests/learning_v2_horizons_native.test.tsx',
+    '<rootDir>/tests/learning_v2_new_word_encounter_overlay.test.tsx',
+    '<rootDir>/tests/learning_v2_owner_selection.test.tsx',
+    '<rootDir>/tests/learning_v2_practice_viewport.test.tsx',
+    '<rootDir>/tests/learning_v2_rune_flight_lifecycle.test.tsx',
+    '<rootDir>/tests/lesson_session_attempts_integration.test.tsx',
+    '<rootDir>/tests/lesson_words_attempts_integration.test.tsx',
+    '<rootDir>/tests/mistake_practice_attempts_integration.test.tsx',
+    '<rootDir>/tests/session_attempts_hud.test.tsx',
+    '<rootDir>/tests/session_attempt_gift_rescue_entry.test.tsx',
+    '<rootDir>/tests/theme_selection_runtime.test.tsx',
+    '<rootDir>/tests/use_session_attempts.test.tsx',
   ],
   setupFilesAfterEnv: ['<rootDir>/tests/setup_jest_write_guard.js'],
   transformIgnorePatterns: [
     '<rootDir>/tests/setup_jest_write_guard.js',
-    'node_modules/(?!((jest-)?react-native|@react-native(-community)?)/)',
+    // expo-* / @expo/* поставляются как ESM — без трансформации набор не загружался
+    // (expo-linear-gradient, expo-blur, expo/virtual/env).
+    'node_modules/(?!((jest-)?react-native|@react-native(-community)?|expo(-[a-z-]+)?|@expo(/[a-z-]+)?)/)',
   ],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
@@ -40,6 +58,13 @@ module.exports = {
     '^expo-secure-store$': '<rootDir>/tests/__mocks__/expo-secure-store.js',
     '^expo-crypto$': '<rootDir>/tests/__mocks__/expo-crypto.js',
     '^expo-haptics$': '<rootDir>/tests/__mocks__/expo-haptics.js',
+    // Официальный мок пакета: без нативного модуля импорт падал на PlatformLocalStorage.
+    '^@react-native-async-storage/async-storage$': '@react-native-async-storage/async-storage/jest/async-storage-mock',
+    // Нативные expo-модули (EventEmitter expo-modules-core) — простые хост-заглушки.
+    '^expo-linear-gradient$': '<rootDir>/tests/__mocks__/expo-linear-gradient.js',
+    '^expo-blur$': '<rootDir>/tests/__mocks__/expo-blur.js',
+    '^expo/virtual/env$': '<rootDir>/tests/__mocks__/expo-virtual-env.js',
+    '^@react-native-firebase/app$': '<rootDir>/tests/__mocks__/react-native-firebase-app.js',
   },
   forceExit: true,
   maxWorkers: 1,

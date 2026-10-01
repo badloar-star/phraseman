@@ -3390,8 +3390,12 @@
       {
         "id": "PM-066-A2",
         "text": "native package удаляется только после проверки общих потребителей",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-10-01: expo-background-task снят только после проверки потребителей — docs/phraseman-2.0/evidence/PM-066_orphan_resource_scan.md (ноль вызовов BackgroundTask.* в app/hooks/modules/components, не config-plugin в app.json); удаление в package.json+package-lock.json вошло в efe19ae9d; npm ls expo-background-task --depth=0 = (empty); git grep по app/components/hooks/modules/app.json/eas.json — только исторический комментарий app/_layout.tsx:827.",
+          "Общий потребитель проверен и НЕ удалён: expo-task-manager@14.0.9 (package.json:292) остаётся — его использует expo-notifications (node_modules/expo-notifications/build/registerTaskAsync.js), прямых вызовов TaskManager в коде нет; снимать только отдельной задачей с native-ребилдом.",
+          "Остаток A1 (cold start на устройстве) не заявлен."
+        ]
       }
     ],
     "depends_on": [],
@@ -9270,8 +9274,11 @@
       {
         "id": "PM-180-A2",
         "text": "paid history учтена",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-180_paid_history_accounted_2026-10-01.md: ускорители/Season Pass покупались только за осколки-жемчуг (D58; коммит 47187a218 seasonBuyPass = 350 жемчужин), SKU/RevenueCat/entitlement за реальные деньги нет (git grep league/club boost — только совместимость level_gift_system.ts:921,1128, constants/levelGiftRewardIcons.ts:6, global_broadcast_claim.ts:24).",
+          "Вопрос компенсации из D58 закрыт решениями владельца D70 (жемчуг без компенсации, D15 отменено) и D103 (купленный за деньги жемчуг сгорает без компенсации). Боевая база не открывалась; снятие пакетов жемчуга в сторах и чистка данных лиги (D90) — владелец."
+        ]
       }
     ],
     "depends_on": [],

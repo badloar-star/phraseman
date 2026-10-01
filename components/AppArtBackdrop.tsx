@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { usePathname } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import type { ThemeMode } from '../constants/theme';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import {
   resolveAppArtBackdropName,
   type AppArtBackdropName,
@@ -37,8 +38,12 @@ const EDGE_SCRIMS: Record<ThemeMode, FourStop> = {
 };
 
 function AppArtBackdrop({ name }: { name: AppArtBackdropName }) {
-  const { themeMode } = useTheme();
+  const { themeMode, liquidGlassThemeId } = useTheme();
   void name;
+  // зачем (эмулятор 01.10): затемнения рассчитаны на тёмные темы (чёрный до 68%) — в светлом
+  // оформлении 2.0 они превращали светлый фон «Твоих результатов» и экранов на ScreenGradient
+  // в мутно-серый. В светлом фон даёт сама тема, затемнение не рисуем.
+  if (liquidGlassTokens(liquidGlassThemeId).isLight) return null;
 
   return (
     <View pointerEvents="none" style={styles.root}>

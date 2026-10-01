@@ -1487,14 +1487,19 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const runesOwnerRef = useRef<string | null>(captureAccountGeneration().stableId?.trim() || null);
     const reconcileHomeRunes = useCallback((token = captureAccountGeneration()) => {
         const stableId = token.stableId?.trim();
-        if (!stableId || !isCurrentAccountGeneration(token, stableId)) return;
+        if (!stableId || !isCurrentAccountGeneration(token, stableId)) {
+            console.warn('[HOME-COINS] reconcile:skip', JSON.stringify({ hasStableId: !!stableId, phase: token.phase }));
+            return;
+        }
         void getRunesBalance().then(({ balance }) => {
-            if (mountedRef.current && isCurrentAccountGeneration(token, stableId)) {
+            const current = mountedRef.current && isCurrentAccountGeneration(token, stableId);
+            if (current) {
                 setRunesBalance(balance);
                 setRunesKnown(true);
             }
-        }).catch(() => {
+        }).catch((error: unknown) => {
             // Первый кадр уже взят из snapshot; durable-сверка может безопасно повториться на focus.
+            console.warn('[HOME-COINS] reconcile:failed', error instanceof Error ? error.message : String(error));
         });
     }, []);
     useEffect(() => {

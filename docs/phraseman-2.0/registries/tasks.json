@@ -15250,5 +15250,55 @@
     },
     "actual_model": "unknown, снимок нескольких сессий",
     "actual_reasoning": "unrecorded"
+  },
+  {
+    "id": "PM-289",
+    "epic": "E06",
+    "title": "Удалить код жемчуга целиком (журнал, облачная подтяжка, pending grants)",
+    "requirement_ids": [
+      "R057",
+      "R058"
+    ],
+    "basis": "OWNER",
+    "stage": "C",
+    "status": "planned",
+    "profile": "S2",
+    "model": "gpt-6-sol",
+    "reasoning": "high",
+    "spec": "docs/REMOVAL.md",
+    "acceptance": [
+      {
+        "id": "PM-289-A1",
+        "text": "В клиенте не осталось вызовов загрузки/синхронизации жемчуга (loadShardsFromCloud, shards_pending_grants, external_shard_event_sync, client_shard_operation_sync) — ни на старте, ни при входе/восстановлении аккаунта; монеты (руны/звёзды) работают как раньше",
+        "accepted": false,
+        "evidence": []
+      },
+      {
+        "id": "PM-289-A2",
+        "text": "Код жемчуга удалён (D78: удаляемое удаляем, а не заглушаем), сторожа economy_constitution_contract и post_auth_generation_guard_contract переписаны под удаление; обнуление остатка (D70/D84) не теряется или осознанно снято с обоснованием",
+        "accepted": false,
+        "evidence": []
+      }
+    ],
+    "depends_on": [],
+    "gates": [
+      "BASELINE_SHA_APPROVED",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE"
+    ],
+    "audit_sha": null,
+    "result_sha": null,
+    "owner": null,
+    "reviewer": null,
+    "evidence": [],
+    "notes": [
+      "2026-10-01 заведена по §57 координатора. Уже сделано: шаги жемчуга сняты с холодного старта (3b4ba428c), из lesson1 и рефералки (199174517). Осталось: вход/восстановление (auth_provider, auth_clean_install_recovery_adoption), журнал и pending grants, pearl_retire_d70 (открывает журнал через loadShardsFromCloud), сторожа."
+    ],
+    "actual_cost": null,
+    "kind": "code",
+    "review_verdict": null,
+    "gate_evidence": [],
+    "actual_model": null,
+    "actual_reasoning": null
   }
 ]

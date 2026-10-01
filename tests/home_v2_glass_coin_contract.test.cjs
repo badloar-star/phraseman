@@ -29,7 +29,8 @@ test('V2 home identity and balance use one real coin-rank asset, never the hex a
 });
 
 test('continue-learning card has no differently colored half-panel', () => {
-  assert.match(continueCard, /<View pointerEvents="none" style=\{s\.art\}>/);
+  // зачем (01.10): заготовка первого кадра лишь приглушает арт (artPending), заливки-половинки нет.
+  assert.match(continueCard, /<View pointerEvents="none" style=\{\[s\.art, pending \? s\.artPending : null\]\}>/);
   assert.doesNotMatch(continueCard, /s\.art, \{ backgroundColor: p\.glassRaised \}/);
   assert.match(continueCard, /style=\{\[s\.card, glass\]\}/);
 });

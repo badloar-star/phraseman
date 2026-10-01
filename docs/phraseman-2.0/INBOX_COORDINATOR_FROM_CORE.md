@@ -399,3 +399,26 @@ E24: docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md, E24_store_de
 - Q80 сделано координатором: D141 в 03_DECISIONS.md (3 публикации в сутки, Free и Plus, сутки UTC) — PM-018 проходит owner-gate.
 - Q81 да — чинить render_views.py; заодно mark.py не должен переформатировать весь tasks.json (точечная запись), и скрипт PM-007 не должен затирать свой evidence.
 - Темп хороший (+7 в done). Продолжай пачки по 10 без остановки.
+
+#### Итог по 16 наборам (2026-10-01, Governance-ID TG-EA4C27A3B554)
+1. shards_delta_queue_reconcile — **тест снятого пути**: 17 кейсов серверной досылки удалены (конституция экономики с 2026-08-15), добавлены проверки живого контракта; 7/7 — `ac0038b88`.
+2. learning_v2_activity_auxiliary_client — **исправлено** (мок ensureStableAuthLink) — `be888aef3`.
+3. learning_v2_activity_released_session_client_v1 — **исправлено** (то же) — `be888aef3`.
+4. learning_v2_course_released_session_client_v2 — **исправлено** (то же) — `be888aef3`.
+5. learning_v2_course_released_session_client_v3 — **исправлено**: сеть проверяется на не-английском курсе, отдельный тест «английский не ходит на сервер», мок supplementalAudioCount — `c5f2761ce`.
+6. learning_v2_active_course_catalog_client_v1 — **исправлено** (так же + тест bundled_factory без сети) — `c5f2761ce`.
+7. learning_v2_bundled_session_material — **частично**: проверка «нет контента» перенесена на урок 32 (уроки 1–3 теперь в бандле) — `e4f3ede6a`. Кейс «56 кандидатов» **остаётся красным**: TS-ошибки в modules/learning-v2/content/source/* (~40, напр. `en` нет в типе LocalizedSource, а авторы его пишут — expandLocalized английский текст отбрасывает и ставит маркер «не переведено»). Правка типа меняет отпечатки контента → решение владельцу контента/ядру, я не трогал.
+8. learning_v2_course_session_completed_sync_v1 — **исправлено**: подменён журнал ошибок и добавлена проверка, что отказ пишется как critical — `e4f3ede6a`.
+9. learning_v2_required_session_completion_sync — **исправлено**: подменён только нативный шов встроенной озвучки (expo-asset); 20/20 — `2ee73c8bc`.
+10. intro_full_access — **тест удалённой функции**: админские помощники сняты 2026-08-08; кейс удалён, инвариант «один раз на установку» оставлен — `6d587f6e8`.
+11. max_voice_feedback_client_account_race (+ max_voice_feedback_outbox) — **удалены как тесты удалённой фичи** (MAX законсервирован, модули удалены) — `6d587f6e8`.
+12. auth_provider_stable_link — **исправлено**: ждём swallowError (PM-229), немой catch запрещён — `6d587f6e8`.
+13. cloud_sync_identity_anchor — **РЕАЛЬНЫЙ БАГ исправлен**: снимок 2.0 убрал XP/лигу из SYNC_KEYS, и при смене аккаунта их ключи перестали стираться — следующий аккаунт наследовал чужие XP/уровень/очки. Добавлен список RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS в стирание; в local_account_data они не считаются прогрессом (иначе ломали бы решение «есть локальные данные» при восстановлении) — `b8cc51b31`.
+14. startup_provider_reauth_recovery — **РЕАЛЬНЫЙ БАГ исправлен** (см. 15) — `821f49048`.
+15. startup_cloud_recovery_presentation — **РЕАЛЬНЫЙ БАГ исправлен**: ветку тоста «Облако сейчас недоступно…» случайно снёс коммит e140ed18b (архив турниров, 23.08) — после переустановки при сбое облака человек видел пустой прогресс без объяснения. Ветка восстановлена + dev-лог [STARTUP-RECOVERY] — `821f49048`.
+16. firebase_cost_controls_contract — **исправлено** под архитектуру 2.0 (деплой функций целиком, start.js удалён, профиль пишет сервер, перцентильный крон снят, премиум-крон раз в сутки, ремонт рефералов явный); гарантии стоимости не ослаблены; 17/17 — `14dd88661`.
+
+Попутно найдено (вне списка, не правил):
+- 🔴 tests/local_account_data.test.ts — 5 кейсов: журналы `max_voice_*_outbox_v1` / `max_voice_review_receipt*` больше не входят в инвентарь аккаунта → при смене аккаунта не стираются (там текст голосовой обратной связи). Тот же класс, что №13; MAX под пломбой — нужно решение, стирать ли старые журналы.
+- tests/auth_provider_behavior.test.ts — 4 кейса про смену аккаунта при незавершённых списаниях падают (вероятно та же конституция экономики) — не разбирал.
+- tests/cloud_sync_customization_account_isolation.test.ts — импортирует удалённый app/personal_plan_state.

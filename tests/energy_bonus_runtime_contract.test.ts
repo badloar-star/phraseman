@@ -18,8 +18,12 @@ describe('bonus energy runtime contract', () => {
 
     const runLoad = source.slice(source.indexOf('const runLoad'), source.indexOf('const load ='));
     expect(runLoad.indexOf('readUnlimited()')).toBeLessThan(runLoad.indexOf('withAccountTransitionLock'));
-    expect(runLoad.indexOf('withAccountTransitionLock')).toBeLessThan(runLoad.indexOf('readAndRecoverState(dynMax, recoveryMs, accountToken)'));
-    expect(runLoad.indexOf('readAndRecoverState(dynMax, recoveryMs, accountToken)')).toBeLessThan(runLoad.indexOf('settledBonus?.capacity ?? 0'));
+    // зачем (координатор §46, 2026-10-01): readAndRecoverState получил четвёртый
+    // аргумент (unlimited); сверяем по префиксу вызова — порядок шагов прежний.
+    const recoverCall = 'readAndRecoverState(dynMax, recoveryMs, accountToken';
+    expect(runLoad.indexOf(recoverCall)).toBeGreaterThan(-1);
+    expect(runLoad.indexOf('withAccountTransitionLock')).toBeLessThan(runLoad.indexOf(recoverCall));
+    expect(runLoad.indexOf(recoverCall)).toBeLessThan(runLoad.indexOf('settledBonus?.capacity ?? 0'));
   });
 
   test('an open app schedules a reload for the exact bonus expiration', () => {
@@ -38,14 +42,14 @@ describe('bonus energy runtime contract', () => {
     expect(source).toContain('bonusCapacityRef.current + dynMaxRef.current');
   });
 
-  test('EnergyBar bounds rendered slots without changing the active capacity used by recovery', () => {
+  // зачем (координатор §46, 2026-10-01): EnergyBar 2.0 — компактная пилюля
+  // «значок + число», слотов больше нет. Суть контракта прежняя: показанное число
+  // и ёмкость учитывают временный бонус, не раздувая постоянный максимум.
+  test('EnergyBar shows the active total against the active capacity including the bonus', () => {
     const source = read('components/EnergyBar.tsx');
-    expect(source).toContain('const MAX_RENDERED_ENERGY_SLOTS = 32');
-    expect(source).toContain('const activeBonusCapacity = Math.max(0, Math.floor(bonusEnergyCapacity))');
-    expect(source).toContain('const renderedBonusCapacity = Math.min(');
-    expect(source).toContain('Array.from({ length: renderedBonusCapacity })');
-    expect(source).not.toContain('Array.from({ length: safeBonusCapacity })');
-    expect(source).toContain('maxEnergy + activeBonusCapacity');
+    expect(source).toContain('const activeCap = maxEnergy + Math.max(0, bonusEnergyCapacity)');
+    expect(source).toContain('const current = Math.max(0, Math.min(activeCap, energy + bonusEnergy))');
+    expect(source).not.toMatch(/Array\.from\(\{ length: (?:safe|active)BonusCapacity \}\)/);
   });
 
   test('temporary bonus never inflates persisted base energy or the permanent maximum', () => {
@@ -62,16 +66,6 @@ describe('bonus energy runtime contract', () => {
     expect(energySource).not.toContain('readBonusEnergyExtra');
   });
 
-  test('the home energy control increases current energy and temporary maximum', () => {
-    const source = read('app/(tabs)/home.tsx');
-    expect(source).toContain('homeEnergyA11yLabel');
-    expect(source).toContain('energyCount + energyBonus');
-    expect(source).toContain('energyMax + energyBonusCapacity');
-    expect(source).toContain('`${homeEnergyTotal}/${homeEnergyMax}`');
-    expect(source).toContain('{homeEnergyCountLabel}');
-    expect(source).toContain('`${homeEnergyTotal}/${homeEnergyMax} · `');
-    expect(source).not.toContain('`${energyCount}/${energyMax} · `');
-    expect(source).not.toContain('{`+${energyBonus}`}');
-    expect(source).toContain('accessibilityLabel={homeEnergyA11yLabel}');
-  });
+  // Кейс «энергия на Главной» снят: владелец убрал энергию с Главной 2.0
+  // (01.10); это охраняет home_v2_no_energy_no_share_owner_2026_10_01.test.ts.
 });

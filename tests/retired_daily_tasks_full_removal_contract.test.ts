@@ -101,8 +101,9 @@ describe("retired Daily Tasks full-removal boundary", () => {
   });
 
   test("future Compass and its evidence pipeline survive the retirement", () => {
+    // зачем (координатор §46, 2026-10-01): weekly_review_briefing.ts удалён ещё
+    // 24.08 (b47eb0e01); снимок и типы Компаса, а также слот арбитра живы.
     for (const relativePath of [
-      "app/weekly_review_briefing.ts",
       "app/weekly_review_snapshot.ts",
       "app/weekly_review_types.ts",
     ]) {

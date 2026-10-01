@@ -82,6 +82,15 @@ function createRun(options: Options = {}) {
     lessonNamesForStudyTarget: (lang: string, target: string) =>
       Array.from({ length: 32 }, (_, i) => `${lang}:${target}:lesson${i + 1}`),
     mountedRef: { current: options.mounted ?? true },
+    // зачем (координатор §46, 2026-10-01): блок теперь анимирует позднюю вставку
+    // карточки «Продолжить обучение» (30.09) — это UI-приёмники, не логика
+    // подсчёта; дублируем их пустыми. console — для диагностических трасс блока.
+    lastLessonShownRef: { current: false },
+    continueResolvedRef: { current: false },
+    setContinueResolved: () => {},
+    animateNextLayoutTransition: () => {},
+    console: { log: () => {}, warn: () => {}, error: () => {} },
+    __DEV__: false,
     setLessonsCompleted: (value: number) => { calls.completed.push(value); },
     setLastLesson: (value: LastLesson | null) => { calls.last.push(value); },
     step: (value: string) => { calls.steps.push(value); },

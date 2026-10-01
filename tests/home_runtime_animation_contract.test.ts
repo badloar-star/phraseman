@@ -12,7 +12,16 @@ describe('Home runtime animation ownership', () => {
     // overlay has actually finished.
     expect(source).toContain('const homeRuntimeActive = useRuntimeActive(isHomeOwner && homeOnboardingDone);');
     expect(source).toContain('if (!homeRuntimeActive || !shouldPulse)');
-    expect(source).toContain('if (!homeStatsReady || !homeRuntimeActive)');
+    // зачем (координатор §46, 2026-10-01): условие homeStatsReady стерегло цикл
+    // статистики Главной V1 — он удалён вместе с ней (4169840e9). Вместо одной
+    // строки сторожим общее правило: КАЖДЫЙ повторяющийся цикл Главной стоит в
+    // эффекте с ранним выходом по !homeRuntimeActive (чужой таб/фон — без анимации).
+    const loopStarts = [...source.matchAll(/Animated\.loop\(|withRepeat\(/g)].map((match) => match.index ?? 0);
+    expect(loopStarts.length).toBeGreaterThan(0);
+    for (const loopStart of loopStarts) {
+      const effectStart = source.lastIndexOf('useEffect(', loopStart);
+      expect(source.slice(effectStart, loopStart)).toContain('!homeRuntimeActive');
+    }
   });
 
   // зачем (2026-08-25): кейс сторожил, что WeeklyReviewCard получает активность

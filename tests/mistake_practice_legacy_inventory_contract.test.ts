@@ -157,8 +157,21 @@ describe('retired My Practice inventory', () => {
       ...filesUnder('scripts'),
       ...filesUnder('tests'),
     ].filter((relativePath) => !allowlist.has(relativePath));
+    // зачем (координатор §46, 2026-10-01): сторож о КОДЕ — идентификаторы и
+    // подписи тренера не должны вернуться в программу. Пояснения «// зачем: ...
+    // удалены вместе с разделом "Моя практика"» — история, а не возврат; их
+    // строки комментариев (и хвост строки после //) не сканируем.
+    const withoutComments = (text: string): string => text
+      .split('\n')
+      .map((line) => {
+        const trimmed = line.trimStart();
+        if (trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.startsWith('/*')) return '';
+        const commentAt = line.indexOf(' // ');
+        return commentAt >= 0 ? line.slice(0, commentAt) : line;
+      })
+      .join('\n');
     const violations = scanned.flatMap((relativePath) => {
-      const source = read(relativePath).toLocaleLowerCase();
+      const source = withoutComments(read(relativePath)).toLocaleLowerCase();
       return RETIRED_TRAINER_SIGNALS
         .filter((signal) => source.includes(signal.toLocaleLowerCase()))
         .map((signal) => `${relativePath}: ${signal}`);

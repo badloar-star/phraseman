@@ -10,7 +10,10 @@ describe('home title picker source contract', () => {
     expect(source).toContain("const HOME_SELECTED_TITLE_KEY = 'home_selected_title_key_v1'");
     expect(source).toContain('const storedTitleKey = homeStorage.get(HOME_SELECTED_TITLE_KEY) ?? null');
     expect(source).toContain('AsyncStorage.setItem(HOME_SELECTED_TITLE_KEY, item.key)');
-    expect(source).toContain('const currentTitleKey = selectedTitleRow?.key ?? fallbackTitleKey;');
+    // зачем (координатор §46, 2026-10-01): уровневые звания сняты вместе с XP —
+    // запасной вариант теперь первое заработанное особое звание (computeHomeTitles).
+    // Суть прежняя: выбранное заработанное звание главнее запасного.
+    expect(source).toMatch(/const currentTitleKey = selectedTitleRow\?\.key\s*\?\? \(earnedSpecialTitles\[0\]/);
     expect(source).toContain('current: title.key === currentTitleKey');
   });
 

@@ -18,6 +18,11 @@
  * прямой явной команде владельца вида «включи MAX обратно»; ни «починка
  * импорта», ни «раз уж рядом правлю», ни «в Пульте флаг включён» такой командой
  * НЕ являются. Снимая пломбу по команде владельца — удалите и этот файл.
+ *
+ * 2026-10-01 (координатор §46): по D81 (владелец 30.09) клиентский MAX удалён
+ * целиком — экраны, флаги, орб. Клиентская пломба (max_voice_flags.ts) ушла
+ * вместе с кодом, который она закрывала; сторож УСИЛЕН: теперь он требует, чтобы
+ * клиентского кода MAX не было вовсе. Серверные пломбы ниже — без изменений.
  */
 import fs from 'fs';
 import path from 'path';
@@ -26,19 +31,18 @@ const read = (...p: string[]): string =>
   fs.readFileSync(path.join(process.cwd(), ...p), 'utf8');
 
 describe('раздел MAX законсервирован', () => {
-  it('клиентская пломба стоит и закрывает вход раньше env и «Пульта»', () => {
-    const flags = read('app', 'max_voice_flags.ts');
-    expect(flags).toContain('MAX_SECTION_SEALED_BY_OWNER_2026_09_04 = true');
-    // Пломба обязана проверяться ПЕРВОЙ строкой функции: иначе QA-override или
-    // удалённый флаг откроют раздел в обход решения владельца.
-    const fn = flags.slice(flags.indexOf('export function isMaxVoiceCallEnabled'));
-    const sealIdx = fn.indexOf('MAX_SECTION_SEALED_BY_OWNER_2026_09_04');
-    const envIdx = fn.indexOf('envOverride()');
-    const remoteIdx = fn.indexOf('getRemoteBool');
-    expect(sealIdx).toBeGreaterThan(-1);
-    expect(sealIdx).toBeLessThan(envIdx);
-    expect(sealIdx).toBeLessThan(remoteIdx);
-    expect(fn).toMatch(/if \(MAX_SECTION_SEALED_BY_OWNER_2026_09_04\) return false;/u);
+  it('клиентского MAX нет: ни экранов, ни флага включения, ни маршрутов (D81)', () => {
+    const exists = (...p: string[]): boolean => fs.existsSync(path.join(process.cwd(), ...p));
+    for (const file of [
+      'max_voice_flags.ts', 'max_lessons.tsx', 'max_call_prestart.tsx',
+      'max_call_session.tsx', 'max_voice_review.tsx', 'max_paywall.tsx',
+    ]) {
+      expect(exists('app', file)).toBe(false);
+    }
+    const appFiles = fs.readdirSync(path.join(process.cwd(), 'app'));
+    expect(appFiles.filter((name) => /^max_.*\.tsx$/u.test(name))).toEqual([]);
+    const layout = read('app', '_layout.tsx');
+    expect(layout).not.toMatch(/name="max_/u);
   });
 
   it('НИ ОДНА функция MAX не деплоится: деньги по расписанию не тратятся', () => {
@@ -73,19 +77,20 @@ describe('раздел MAX законсервирован', () => {
     }
   });
 
-  it('MAX остаётся запечатан, а его тематический орб служит только плитке Диалоги', () => {
+  it('на Главной и в каталоге Диалогов нет входа в MAX', () => {
     const home = read('app', '(tabs)', 'home.tsx');
+    const dialogs = read('components', 'DialogsTabContent.tsx');
     const quickItems = home.slice(
       home.indexOf('const quickItems = ['),
-      home.indexOf('const visibleQuickItems'),
+      home.indexOf('const homeV2AllTiles'),
     );
     expect(quickItems).not.toContain("key: 'max'");
     expect(quickItems).toContain("key: 'dialogs'");
     expect(quickItems).toContain("nav.push('/ai_dialog_home' as never)");
-    // Решение владельца 2026-09-12: визуал MAX переиспользуется в точности,
-    // но не открывает MAX и не снимает серверную/клиентскую пломбу.
-    expect(home).toContain('const maxOrbLayers = getMaxHomeOrbLayers(themeMode)');
-    expect(home).toContain("item.key === 'dialogs'");
-    expect(home).toContain('<MaxHomeOrb');
+    // Орб MAX на плитке Диалогов был только в Главной V1 (удалена 01.10).
+    expect(home).not.toContain('<MaxHomeOrb');
+    for (const source of [home, dialogs]) {
+      expect(source).not.toMatch(/['"]\/max_(?:lessons|call|voice|paywall)/u);
+    }
   });
 });

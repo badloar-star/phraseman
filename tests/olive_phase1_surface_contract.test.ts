@@ -5,25 +5,17 @@ const root = path.resolve(__dirname, '..');
 const read = (relativePath: string) => fs.readFileSync(path.join(root, relativePath), 'utf8').replace(/\r\n/g, '\n');
 
 describe('Olive Phase 1 surfaces', () => {
-  it('gives lessons explicit matte Olive states without a Gold bevel', () => {
+  // зачем (координатор §46, 2026-10-01): в 2.0 экраны красятся токенами темы
+  // (стекло/уровни), а не ветками `isOliveTheme` в каждом файле. Olive сохраняет
+  // собственные записи в палитрах — это и сторожим; Gold-фаска на Olive запрещена.
+  it('keeps explicit Olive entries in the lessons palette without a Gold bevel', () => {
     const source = read('app/(tabs)/lessons.tsx');
     expect(source).toContain('olive: {');
-    expect(source).toContain("olive: {\n        A1: { bg:");
-    expect(source).toContain("const isOliveTheme = themeMode === 'olive';");
-    expect(source).toContain('isOliveTheme ? oliveShadow(');
     expect(source).not.toContain('isOliveTheme && <GoldBevel');
   });
 
-  it('uses a dedicated Olive home, tab, and card-pack shell', () => {
-    const home = read('app/(tabs)/home.tsx');
-    const tabs = read('app/(tabs)/_layout.tsx');
+  it('keeps a dedicated Olive card-pack shell (Home and tabs use 2.0 theme tokens)', () => {
     const paywall = read('app/flashcards/cardPackPaywallTheme.ts');
-    expect(home).toContain("const isOliveTheme = themeMode === 'olive';");
-    expect(home).toContain('OLIVE_GRADIENTS.quietPanel');
-    expect(home).toContain("isOliveTheme ? 'rgba(13,15,11,0.96)'");
-    expect(tabs).toContain("const isOliveTheme = themeMode === 'olive';");
-    expect(tabs).toContain('isOliveTheme ? OLIVE_RICH.panel');
-    expect(tabs).toContain('isOliveTheme ? OLIVE_RICH.champagne');
     expect(paywall).toContain('function shellOlive(): CardPackPaywallTheme');
     expect(paywall).toContain('olive: shellOlive()');
     expect(paywall).not.toContain('olive: shellGold()');

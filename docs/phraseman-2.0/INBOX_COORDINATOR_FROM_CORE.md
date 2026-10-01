@@ -728,3 +728,56 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 - docs/phraseman-2.0/evidence/GATES_MIGRATION_M5_ACCOUNTS_V2_2026-10-01.md (ссылка в конце GATES_MIGRATION_2026-10-01.md, M1–M4 не тронуты). Ревью agent-reviewer: **PASS, готово к подписи координатора** (все 4 критерия PASS). Коммит 6632921d2.
 - Осиротевшие PM-235/236/237 приняты и закоммичены: compatibility.ts и backup_manifest.ts — модели, к рантайму НЕ подключены (записано честно; подключать/удалять — твоё решение). PM-235.md — статус «0/2 закрыты, оба частично» (T2, T6, OD20).
 - Также за день: 8A (корневые поля, 282423672), 8B (нормализация зеркала, a1423e1b4), 8E (старая копия не затирает правку другого устройства, 87ce9bd49). Дальше: 8C «Мои наборы» скелетон, 8D эмулятор функций node 22, PM-235 T1–T5.
+
+#### §46 исполнено: 3 заранее падавших набора + наборы, читающие home.tsx (2026-10-01)
+
+**(1) Три набора, падавшие ДО моих правок — зелёные (ea12cdc6f).**
+- factory_native_projection_v1 и factory_production_audio_contract были сценариями из голых assert БЕЗ единого test() — jest их не исполнял вовсе («must contain at least one test»), контракт фактически не проверялся. Тело обёрнуто в test; TS7022 (зацикленный вывод типа от assert-сужения в цикле) — явные типы; одно сравнение node:assert ломалось на массивах из разных realm песочницы → expect().toEqual.
+- mode_native_instruction_projection импортировал удалённую осознанно es-сессию 2 (f5a01076d) — сторож перенесён на все текущие авторские занятия en+es (332 авторские инструкции; «повтори вслух» не приклеивает фразу в конец).
+
+**(2) Наборы, читающие home.tsx.** Нашёл 79 таких наборов (у ядра было 81), прогнал 4 порциями под светофором: падало 40 наборов. Правило «устарел → привести, баг → чинить». **Итог: 34 из 35 оставшихся зелёные (контрольный прогон двумя порциями + добивка, 46/47 тестов), 1 красный намеренно (вес арта — реальный долг скорости), 4 устаревших набора удалены, 1 не тронут (чужая правка).** Попутная находка: achievements (не компилировался) и два набора factory_native (без единого test()) давно не исполнялись целиком — их «зелёный» был иллюзией.
+
+| Набор | Было | Стало | Почему |
+|---|---|---|---|
+| achievements | не компилировался (MAX_LEVEL, событие 'xp') | ✅ | XP/уровни сняты (PM-055); событие 'comeback' не базовое → вечный промис чтения утекал в 2 следующих кейса (таймауты); каталог 2.0 = 41; экран — кадр из кэша, потом пересчёт |
+| app_art_backdrop_contract | 2 падения | ✅ | minimalDark снят из ThemeMode; экрана подарков уровня нет |
+| app_snapshot_bootstrap_contract | 1 | ✅ | студия кастомизации упрощена: аватар в общем стартовом multiGet |
+| energy_bonus_runtime_contract | 3 | ✅ | сигнатура readAndRecoverState +unlimited; EnergyBar 2.0 — пилюля без слотов; энергии на Главной нет (владелец 01.10) |
+| energy_freeze_contract | 1 | ✅ | LessonEnergyLightning — обёртка над EnergyBar, таймер там |
+| account_delete_immediate_onboarding_contract | 1 | ✅ | отложенного окна «аккаунт удалён» нет (правило владельца) — контракт перевёрнут: после события ничего не откладывается |
+| app_events_overlay_registry | 3 | **НЕ ТРОГАЛ** | файл в незакоммиченной правке другой сессии (SaveProgressBanner). Готово к внесению: emit-only pack_trial_gift_set/consumed (слушатель жил в магазине, снят в 2.0; ваучер выдаётся broadcast'ом) и post_delete_identity_ready (слушателя не было с рождения 29.08); direct `remote_config_changed @ components/EnergyContext.tsx`; оверлеи без владельца arenaOpponentFound (Арена D83), coachToast (хост снят 24.08), friendGift (PM-048/D66), levelUp (уровни сняты), streakRevive (D107). Для emit-only нужен раздел «### Owner review: `…`» в CLASS_REGISTRY_EVENTS_TOASTS.md |
+| home_lesson_progress_single_pass | 17 (ReferenceError) | ✅ | блок стал анимировать позднюю вставку карточки «Продолжить» — UI-приёмники заглушены в песочнице (+ console/__DEV__ для трасс) |
+| home_rune_asset_header_contract | 2 | ✅ | ассет монеты в coins/ через homeRuneAsset.ts; сброс при смене владельца тот же (записан блоком); ряд «Быстрый старт» V1 снят |
+| home_learning_cta_contract | 1 | **КРАСНЫЙ — реальный долг** | карточка 2.0 — HomeV2ContinueCard, один арт «блокнот» на все темы. Арт — PNG **1 236 838 байт** на первом кадре Главной (бюджет был 150 000) → пережать в webp (ассет «Дизайна») |
+| home_social_notifications_contract | 4 | ✅ | catch'и пишут причину (reportSwallowed); с 29.08 прочитанность по тапу строки, а не открытием центра (если нужен «как в Telegram» — решение владельца); набор optimisticReportClaimIds снят |
+| home_reference_cards_contract | 2 | ✅ | «Задания дня» и карточка «Сегодня» V1 сняты |
+| home_runtime_animation_contract | 1 | ✅ | цикл статистики V1 удалён; сторож обобщён: КАЖДЫЙ Animated.loop Главной под !homeRuntimeActive |
+| home_primary_tiles_without_practice | 1 | ✅ | сетка V1 и орб MAX сняты; порядок «Уроки → Диалоги → Карточки» сторожится на плитках 2.0 |
+| home_startup_stability | 2 | ✅ | ряда Лиги на Главной нет; опрос вынесен в useHomeSurveyEntry (Q90) |
+| home_streak_paywall_revive_serialization_contract | 1 | ✅ | восстановление серии снято (D107) — сторож ретайра + пейвол серии жив |
+| navigation_back | 1 | ✅ | /max_paywall удалён → роль unknown |
+| max_call_home_entry / max_lessons_screen / max_voice_review_server | не запускались (ENOENT) | **удалены** | проверяли только удалённые экраны клиентского MAX (D81); их суть (нет входа на Главной/в Диалогах) перенесена в max_section_sealed |
+| max_section_sealed_contract | 2 | ✅ | клиентский MAX удалён целиком (D81) — сторож УСИЛЕН: файлов/маршрутов max_* в клиенте быть не должно; серверные пломбы без изменений |
+| mistake_practice_legacy_inventory_contract | 1 | ✅ | «Моя практика» только в комментариях-пояснениях об удалении — комментарии не сканируются, код по-прежнему строго |
+| home_theme_art_contract | 2 | ✅ | размеры плиток V1 сняты; каждый арт плиток 2.0 обязан существовать |
+| olive_phase1_surface_contract | 2 | ✅ | темы 2.0 красят экраны токенами, веток isOliveTheme нет; записи Olive в палитрах сторожатся |
+| home_title_selection_source | 1 | ✅ | запасное звание — первое заработанное особое (уровневые сняты) |
+| lifecycle_owner_loss_contract | 1 | ✅ | флага оффера восстановления нет (D107); отметки недели — догоняющее чтение |
+| onboarding_finish_navigation | 1 | ✅ | снят `as any`, расширены зависимости — порядок «Главная, потом снять оверлей» тот же |
+| home_week_dots_compact_layout | 1 | ✅ | панель статуса V1 снята; сторож пульса точки дня (гейт активности/уменьшения движения) |
+| home_xp_bar_only_contract | 1 | ✅ | перевёрнут: ни полоски, ни числа опыта |
+| plan_content_prefetch_contract | 10 (ENOENT) | **удалён** | личный план удалён по решению владельца (PM-219, HANDOVER 01.10) |
+| rune_balance_snapshot_preservation_contract | 2 | ✅ | форма: старт — максимум диска и снапшота, «неизвестно» = undefined, не 0; сторож принимает и HEAD, и незакоммиченную правку соседней сессии |
+| paywall_exit_offer_themed_modal_contract | 14 (ENOENT paywall_a..g) | ✅ | варианты A–G удалены; единственный экран PaywallPlusScreen выключает оффер выхода (disableExitOffer: true) — сторож требует: включат оффер → обязан рисоваться ThemedConfirmModal (иначе крестик «мёртвый») |
+| section_asset_preload | 3 | ✅ | плитки Лиги и тематические плитки хаба карточек сняты |
+| retired_daily_tasks_full_removal_contract | 1 | ✅ | weekly_review_briefing.ts удалён ещё 24.08 |
+| sage_porcelain_real_device_visibility_contract | 3 | ✅ | светлость через isLightThemeMode; числовые контрасты палитры Sage сохранены |
+| retained_tabs_runtime_work_contract | 2 | ✅ | половину (Главная, Q92) уже поправила соседняя сессия в 6fda2a139; я — энергия (таймер пилюли за подсказкой) и Диалоги (completedGenerationRef) |
+| runes_wallet_no_shop_contract | 1 | ✅ | на Главной 2.0 монеты ведут в /coin_rank; кошелёк — чип баланса в шапке уроков |
+| streak_feather_breathing_contract | 1 | ✅ | в редизайне 2.0 крупное перо снято и с Главной, и со статистики — дыхание сейчас не включает ни один экран (вернуть? — решение владельца) |
+| ux_audit_safe_fixes_contract | не запускался (ENOENT arena_leaderboard) | ✅ | Арена удалена; счётчик ошибок Главной — getMistakePracticeHomeCounts, catch пишет причину |
+| product_analytics_screen_registry | 1 | ✅ | /max_paywall → unknown_screen |
+
+Проверено попутно: «крестик пейвола не закрывает окно» ([PAYWALL-CLOSE], эмулятор 01.10) — НЕ из-за оффера выхода: PaywallPlusScreen передаёт disableExitOffer: true, ветка оффера не срабатывает. Причину ищите дальше по трассе (doClose / навигация).
+
+⚡ Скорость (не правил — home.tsx и ассеты в работе других сессий): (1) арт «блокнот» 1.24 МБ PNG + плитки 2.0 book_stack/notecard_stack/spiral_notepad/chat_bubbles по 145–230 КБ PNG — всё на первом кадре Главной, пережать в webp; (2) в home.tsx мёртвый пульс точки недели: weekDotPulseAnim анимируется и setWeekDotAnimationToken даёт лишний ре-рендер на загрузке, но нигде не рисуется (наследие V1); (3) section_asset_preload греет иконки разделов V1 (practice/exam/shop/heroMap) — проверить, показываются ли они ещё где-то.

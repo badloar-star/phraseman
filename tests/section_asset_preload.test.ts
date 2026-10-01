@@ -20,20 +20,24 @@ function read(relativePath: string): string {
 describe('прогрев ассетов разделов и стабильная высота главной', () => {
   it('прогрев покрывает все иконки разделов с главной', () => {
     const source = read('app/section_asset_preload.ts');
+    // зачем (координатор §46, 2026-10-01): плитка Лиги ушла вместе с лигой (2.0) —
+    // menu.league больше не греется. Остальные иконки разделов — в силе.
+    expect(source).not.toContain('menu.league');
     for (const slot of [
-      'menu.lesson', 'menu.cards', 'menu.league', 'menu.test',
+      'menu.lesson', 'menu.cards', 'menu.test',
       'menu.practice', 'menu.dialogs', 'menu.exam', 'menu.shop', 'menu.heroMap',
     ]) {
       expect(source).toContain(slot);
     }
   });
 
-  it('прогрев покрывает плитки хаба карточек', () => {
+  // Карточки 2.0 больше не рисуют тематические плитки-иконки хаба (лента из
+  // векторных иконок и обложек наборов) — греть нечего, и реестр снят.
+  it('не греет снятые тематические плитки хаба карточек', () => {
     const source = read('app/section_asset_preload.ts');
-    for (const slot of ['hub.saved', 'hub.custom', 'hub.training', 'hub.audio', 'hub.collection']) {
-      expect(source).toContain(slot);
-    }
-    expect(source).not.toContain('hub.arena');
+    expect(source).not.toMatch(/hub\.(?:saved|custom|training|audio|collection|arena)/);
+    // Имя реестра осталось только в шапке-комментарии — запрещаем сам импорт.
+    expect(source).not.toMatch(/import[^;]*FLASHCARDS_MODE_ICON_ASSETS/);
   });
 
   it('греет только активную тему, а не все 12 сразу', () => {
@@ -79,8 +83,4 @@ describe('прогрев ассетов разделов и стабильная
     expect(codeLines.some((line) => /useState\(false\)[^\n]*belowFold/i.test(line))).toBe(false);
   });
 
-  it('реестр иконок хаба экспортирован для прогрева', () => {
-    expect(read('app/flashcards/FlashcardsCategoryHub.tsx'))
-      .toContain('export const FLASHCARDS_MODE_ICON_ASSETS');
-  });
 });

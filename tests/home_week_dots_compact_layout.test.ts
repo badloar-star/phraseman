@@ -6,10 +6,14 @@ const ROOT = path.resolve(__dirname, '..');
 describe('home weekly dot compact layout', () => {
   const source = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
 
-  it('keeps the experimental home status week dots compact', () => {
-    expect(source).toContain('const experimentalStatusWeekDotSize = eliteStatsCompact ? 28 : 31');
-    expect(source).toContain('gap: 6');
-    expect(source).toContain('size={eliteStatsCompact ? 16 : 18}');
-    expect(source).toContain('fontSize: eliteStatsCompact ? 11 : 13');
+  // зачем (координатор §46, 2026-10-01): компактные точки недели жили в
+  // экспериментальной панели статуса Главной V1 (удалена 01.10). От них осталась
+  // только пульсация точки дня — её и сторожим: не крутится вне активной Главной
+  // и при «уменьшить движение».
+  it('drops the V1 status week dots and gates the remaining day pulse', () => {
+    expect(source).not.toContain('experimentalStatusWeekDotSize');
+    const effectStart = source.indexOf('if (!weekDotAnimationToken || !homeRuntimeActive || homeMotionReduceMotion) {');
+    expect(effectStart).toBeGreaterThan(-1);
+    expect(source.slice(effectStart, effectStart + 200)).toContain('weekDotPulseAnim.stopAnimation();');
   });
 });

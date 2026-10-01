@@ -4,13 +4,11 @@ import path from 'node:path';
 const ROOT = path.resolve(__dirname, '..');
 const HOME_PATH = path.join(ROOT, 'app', '(tabs)', 'home.tsx');
 const RUNE_COMPONENT_PATH = path.join(ROOT, 'components', 'home', 'HomeRuneBalance.tsx');
-const RUNE_ASSET_PATH = path.join(
-  ROOT,
-  'assets',
-  'images',
-  'level-spin-rewards',
-  'coin_rank_00.webp',
-);
+// Путь к ассету валюты живёт в одном месте — homeRuneAsset.ts (HomeRuneBalance реэкспортирует).
+const RUNE_ASSET_MODULE_PATH = path.join(ROOT, 'components', 'home', 'homeRuneAsset.ts');
+// зачем (координатор §46, 2026-10-01): ассет монеты переехал из level-spin-rewards
+// в coins/ вместе с ретайром спинов уровня; компонент ссылается на новый путь.
+const RUNE_ASSET_PATH = path.join(ROOT, 'assets', 'images', 'coins', 'coin_rank_00.webp');
 
 function read(filePath: string): string {
   return fs.readFileSync(filePath, 'utf8').replace(/\r\n/g, '\n');
@@ -27,7 +25,8 @@ describe('Home rune asset balance lives in the quick-start title row', () => {
     expect(fs.existsSync(RUNE_ASSET_PATH)).toBe(true);
     expect(fs.existsSync(RUNE_COMPONENT_PATH)).toBe(true);
     const runeComponent = read(RUNE_COMPONENT_PATH);
-    expect(runeComponent).toContain(
+    expect(runeComponent).toContain("import { HOME_RUNE_ICON_SOURCE } from './homeRuneAsset';");
+    expect(read(RUNE_ASSET_MODULE_PATH)).toContain(
       "require('../../assets/images/coins/coin_rank_00.webp')",
     );
     expect(home).toContain(
@@ -35,7 +34,8 @@ describe('Home rune asset balance lives in the quick-start title row', () => {
     );
     expect(home).not.toContain('subscribeRunesBalance');
     expect(home).toContain('subscribeAppSnapshot');
-    expect(home).toContain("import HomeRuneBalance from '../../components/home/HomeRuneBalance';");
+    // Главная 2.0 берёт из HomeRuneBalance только иконку (полёт частиц) — чипа V1 нет.
+    expect(home).toContain("import { HOME_RUNE_ICON_SOURCE } from '../../components/home/HomeRuneBalance';");
     expect(home).toContain('const [runesBalance, setRunesBalance] = useState(() => peekRunes());');
     expect(home).toContain('const unsubscribeRunesSnapshot = subscribeAppSnapshot');
     expect(home).toContain('const runesAccountSubscription = subscribeAccountGeneration');
@@ -44,7 +44,8 @@ describe('Home rune asset balance lives in the quick-start title row', () => {
     // Безусловный ноль срабатывал и на обычном старте (cloud_sync зовёт
     // beginInitialAccountGeneration уже после первого кадра), и правильный
     // баланс на секунду падал в ноль. Сторожим оба требования сразу.
-    expect(home).toContain('if (ownerChanged) setRunesBalance(0);');
+    // Сброс записан блоком вместе с флагом «баланс известен» — условие то же.
+    expect(home).toMatch(/if \(ownerChanged\) \{ setRunesBalance\(0\);/);
     expect(home).not.toContain('            setRunesBalance(0);\n');
     expect(home).toContain('const ownerChanged = previousOwner !== null && previousOwner !== nextOwner;');
     expect(home).toContain('runesOwnerRef.current = nextOwner;');
@@ -53,75 +54,8 @@ describe('Home rune asset balance lives in the quick-start title row', () => {
     expect(home).toContain('runesAccountSubscription.remove();');
   });
 
-  it('renders energy, pearls and runes on the right of the quick-start title, not in the header or the level card', () => {
-    const home = read(HOME_PATH);
-
-    const titleIndex = home.indexOf('testID="home-quickstart-title"');
-    const currencyIndex = home.indexOf('testID="home-quickstart-currency-row"');
-
-    expect(titleIndex).toBeGreaterThanOrEqual(0);
-    // Валюты идут ПОСЛЕ заголовка в том же ряду — значит, справа от него.
-    expect(currencyIndex).toBeGreaterThan(titleIndex);
-
-    // Срез до ряда плиток, а не окном фиксированной длины: окно ложно падало,
-    // как только в блок добавляли комментарии (класс бага formatting-drift).
-    const tilesIndex = home.indexOf('visibleQuickItems.map', currencyIndex);
-    expect(tilesIndex).toBeGreaterThan(currencyIndex);
-    const currencyBlock = home.slice(currencyIndex, tilesIndex);
-    expect(currencyBlock).toContain('<EnergyBar');
-    expect(currencyBlock).toContain('testID="home-quickstart-shards"');
-    expect(currencyBlock).toContain('<HomeRuneBalance');
-    expect(currencyBlock).toContain('balance={rewardCollect.displayRunes(runesBalance)}');
-
-    // Порядок: энергия, жемчужины, руны. Без этой проверки перестановку не заметить.
-    const energyIndex = home.indexOf('<EnergyBar', currencyIndex);
-    const shardsIndex = home.indexOf('testID="home-quickstart-shards"', currencyIndex);
-    const runesIndex = home.indexOf('testID="home-quickstart-runes"', currencyIndex);
-    expect(energyIndex).toBeGreaterThan(0);
-    expect(shardsIndex).toBeGreaterThan(energyIndex);
-    expect(shardsIndex).toBeGreaterThan(0);
-    expect(runesIndex).toBeGreaterThan(shardsIndex);
-
-    // Плотная строка: чип рун не резервирует 46px тап-цели шапки и не заводит
-    // вторую группу доступности внутри кнопки (иначе баланс читается дважды).
-    expect(currencyBlock).toContain('reserveTapHeight={false}');
-    expect(currencyBlock).toContain('standaloneA11y={false}');
-    expect(currencyBlock).toContain('compactFromThousands');
-    expect(currencyBlock).toContain('formatCompactNumber(rewardCollect.displayShards(shardsBalance))');
-
-    // Обе валюты одного размера — иначе строка выглядит рассогласованно.
-    expect(currencyBlock).toContain('iconSize={homeQuickCurrencyIconSize}');
-    expect(currencyBlock).toContain('width: homeQuickCurrencyIconSize, height: homeQuickCurrencyIconSize');
-
-    // Склонение: «1 жемчужина», а не «1 жемчужин»; у рун — общий runeAmount.
-    expect(currencyBlock).toContain('ruKnowledgeShardsAfterNumber(shardsBalance)');
-    expect(home).toContain('runeAmount(lang, runesBalance)');
-
-    // Соседние кнопки не перекрывают зоны нажатия по горизонтали.
-    expect(currencyBlock).not.toContain('hitSlop={10}');
-
-    // Всплывающее «+N» живёт рядом с иконкой жемчужин, а не в хедере.
-    const bonusIndex = home.indexOf('testID="home-shards-bonus"');
-    expect(bonusIndex).toBeGreaterThan(currencyIndex);
-    expect(bonusIndex).toBeLessThan(tilesIndex);
-    // Распорка между заголовком и валютами прижимает их к правому краю.
-    expect(home.slice(titleIndex, currencyIndex)).toContain('flex: 1, minWidth: 0');
-
-    // Валют больше нет ни в хедере, ни на карточке уровня.
-    expect(home).not.toContain('testID="home-stats-currency-row"');
-    const headerIndex = home.indexOf('testID="home-header-currency-actions"');
-    const headerEndIndex = home.indexOf('testID="home-header-secondary-actions"');
-    expect(headerIndex).toBeGreaterThanOrEqual(0);
-    expect(headerEndIndex).toBeGreaterThan(headerIndex);
-    const headerBlock = home.slice(headerIndex, headerEndIndex);
-    expect(headerBlock).not.toContain('<HomeRuneBalance');
-    expect(headerBlock).not.toContain("nav.push('/shards_shop')");
-
-    expect(home).toContain('const homeHeaderCompact = CONTENT_W < 370;');
-    expect(home).toContain('testID="home-header-currency-actions"');
-    expect(home).toContain('testID="home-header-secondary-actions"');
-    expect(home).toContain("flexDirection: homeHeaderCompact ? 'column' : 'row'");
-  });
+  // Кейс «валюты справа от заголовка "Быстрый старт"» снят: это раскладка Главной V1,
+  // удалённой 01.10 (4169840e9); у Главной 2.0 нет ни ряда «Быстрый старт», ни шапки V1.
 
   it('keeps energy out of the Home screen entirely', () => {
     // зачем (01.10, удаление Главной V1; владелец: «на главной не надо энергию показывать»):

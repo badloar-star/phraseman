@@ -19,8 +19,11 @@ describe('Settings account deletion immediate clean-onboarding handoff', () => {
     expect(success).toContain('deleteInFlightRef.current = false;');
     expect(success.indexOf('setDeleting(false);')).toBeLessThan(success.indexOf('onRequestClose();'));
     expect(success.indexOf('onRequestClose();')).toBeLessThan(success.indexOf("emitAppEvent('account_deleted')"));
-    expect(success.indexOf("emitAppEvent('account_deleted')"))
-      .toBeLessThan(success.indexOf('setTimeout(() => {'));
+    // зачем (координатор §46, 2026-10-01): отложенное окно «аккаунт удалён» через
+    // setTimeout снято (правило владельца: уведомлений об удалении не показывать).
+    // Контракт теперь обратный: после события корня ничего не откладывается.
+    expect(success.indexOf("emitAppEvent('account_deleted')")).toBeGreaterThan(-1);
+    expect(success).not.toContain('setTimeout(');
   });
 
   test('the root event destroys every native account/settings presentation before mounting onboarding', () => {

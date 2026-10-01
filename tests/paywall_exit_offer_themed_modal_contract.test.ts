@@ -20,14 +20,19 @@ import fs from 'fs';
 import path from 'path';
 
 const ROOT = path.join(__dirname, '..');
-const PAYWALL_VARIANTS = ['a', 'b', 'c', 'd', 'e', 'f', 'g'] as const;
+// зачем (координатор §46, 2026-10-01): семь вариантов пейвола A–G удалены — единственный
+// экран теперь components/paywall/PaywallPlusScreen.tsx. Он выключает оффер выхода
+// (disableExitOffer: true). Если оффер когда-нибудь включат, экран ОБЯЗАН рисовать
+// его ThemedConfirmModal: иначе хук на первом закрытии поставит оффер вместо закрытия,
+// и крестик станет «мёртвым».
+const PAYWALL_SCREENS = ['components/paywall/PaywallPlusScreen.tsx'] as const;
 
 function readPurchaseHook(): string {
   return fs.readFileSync(path.join(ROOT, 'app', 'paywall_purchase.ts'), 'utf8');
 }
 
-function readPaywallScreen(variant: string): string {
-  return fs.readFileSync(path.join(ROOT, 'app', `paywall_${variant}.tsx`), 'utf8');
+function readPaywallScreen(screen: string): string {
+  return fs.readFileSync(path.join(ROOT, screen), 'utf8');
 }
 
 describe('paywall exit-intent offer uses the themed modal, not a native Alert', () => {
@@ -81,10 +86,12 @@ describe('paywall exit-intent offer uses the themed modal, not a native Alert', 
     expect(source).toContain("router.replace('/(tabs)/home' as any);");
   });
 
-  it.each(PAYWALL_VARIANTS)('renders the offer with ThemedConfirmModal on paywall %s', (variant) => {
-    const source = readPaywallScreen(variant);
+  it.each(PAYWALL_SCREENS)('renders the offer with ThemedConfirmModal on %s (or disables it)', (screen) => {
+    const source = readPaywallScreen(screen);
 
-    expect(source).toContain("import ThemedConfirmModal from '../components/ThemedConfirmModal';");
+    // Допустимы два исхода: экран рисует оффер ИЛИ явно выключает его в хуке.
+    if (/disableExitOffer:\s*true/.test(source)) return;
+    expect(source).toMatch(/import ThemedConfirmModal from '[./]+(?:components\/)?ThemedConfirmModal';/);
     expect(source).toContain('<ThemedConfirmModal');
     expect(source).toContain('visible={!!p.exitOffer}');
     // Подтверждение и отказ обязаны звать колбэки хука — иначе аналитика
@@ -93,8 +100,8 @@ describe('paywall exit-intent offer uses the themed modal, not a native Alert', 
     expect(source).toContain('p.exitOffer?.onCancel()');
   });
 
-  it.each(PAYWALL_VARIANTS)('does not fall back to a native Alert on paywall %s', (variant) => {
-    const source = readPaywallScreen(variant);
+  it.each(PAYWALL_SCREENS)('does not fall back to a native Alert on %s', (screen) => {
+    const source = readPaywallScreen(screen);
 
     expect(source).not.toContain('Alert.alert(');
   });

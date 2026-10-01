@@ -19,16 +19,23 @@ describe('retained tabs runtime work contract', () => {
     const lessons = read('app/(tabs)/lessons.tsx');
     const dialogs = read('components/DialogsTabContent.tsx');
 
+    // зачем (координатор §46, 2026-10-01): форма сменилась, инварианты те же.
+    // EnergyBar 2.0 — пилюля: таймер идёт только пока открыта подсказка, а она
+    // открывается лишь на сфокусированном экране активного владельца. lessons.tsx
+    // перешёл на двойные кавычки; генерационный счётчик Диалогов переименован.
     expect(energy).toContain('ownerActive?: boolean;');
-    expect(energy).toContain('useEnergyCountdown({ visible: screenFocused && ownerActive })');
-    expect(lessons).toContain("const lessonsTabVisible = isRetainedTab && runtimeOwnerId === 'lessons';");
+    expect(energy).toContain('const popoverEligible = !hasPremiumAccess && focused && ownerActive;');
+    expect(energy).toContain('const popoverVisible = infoVisible && popoverEligible;');
+    expect(energy).toMatch(/useEnergyCountdown\(\{\s*visible: popoverVisible,?\s*\}\)/);
+    expect(lessons).toMatch(/const lessonsTabVisible = isRetainedTab && runtimeOwnerId === ["']lessons["'];/);
     expect(lessons).toContain('const lessonsRuntimeActive = useRuntimeActive(');
     expect(lessons).toContain('isRetainedTab ? lessonsTabVisible : true');
-    expect(lessons).toContain('<EnergyBar size={30} ownerActive={lessonsRuntimeActive}/>');
-    expect(lessons).toContain('active={lessonsRuntimeActive && page === \'dialogs\'}');
+    expect(lessons).toMatch(/<EnergyBar size=\{30\} ownerActive=\{lessonsRuntimeActive\}\s*\/>/);
+    expect(lessons).toMatch(/active=\{lessonsRuntimeActive && page === ["']dialogs["']\}/);
     expect(dialogs).toContain('active?: boolean;');
     expect(dialogs).toContain('if (!active) return;');
-    expect(dialogs).toContain('const refreshGenerationRef = useRef(0);');
+    expect(dialogs).toContain('const generation = ++completedGenerationRef.current;');
+    expect(dialogs).toContain('generation !== completedGenerationRef.current');
     expect(dialogs).toContain('completedDirtyRef.current = true;');
   });
 

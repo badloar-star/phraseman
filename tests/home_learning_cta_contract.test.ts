@@ -15,36 +15,37 @@ describe('home learning CTA contract', () => {
     expect(source).toContain("router.push({ pathname: '/lesson_menu', params: { id: String(lastLesson.id) } } as never)");
   });
 
-  it('uses dedicated per-theme art for the last-lesson card', () => {
-    const cardStart = source.indexOf('testID="home-continue-lesson"');
-    const cardEnd = source.indexOf('{/* «Задание»', cardStart);
+  // зачем (координатор §46, 2026-10-01): дизайн 2.0 — один утверждённый арт
+  // «блокнот» для всех тем (тема тонирует стекло вокруг, предмет не меняется),
+  // карточка — HomeV2ContinueCard. Намерение прежнее: подготовленный арт, а не
+  // общий menuImages.lesson, и арт есть у КАЖДОЙ темы.
+  it('uses the approved continue-card art for every theme', () => {
+    const cardStart = source.indexOf('<HomeV2ContinueCard');
+    const cardEnd = source.indexOf(') : null}', cardStart);
     const cardSource = source.slice(cardStart, cardEnd);
     const assetPath = path.join(process.cwd(), 'app', 'home_last_lesson_assets.ts');
 
+    expect(cardStart).toBeGreaterThan(-1);
     expect(source).toContain("import { getHomeLastLessonImage } from '../home_last_lesson_assets';");
     expect(source).toContain('const lastLessonImage = getHomeLastLessonImage(themeMode);');
-    // зачем (владелец 2026-09-21): карточка переключается между уроком и
-    // ошибками, поэтому арт выбирается условно. Намерение проверки прежнее —
-    // берём подготовленный арт ТЕМЫ, а не общий menuImages.lesson.
     expect(source).toContain('const priorityCardImage = priorityCardShowsMistakes');
     expect(source).toContain('? getHomeMistakesImage(themeMode)');
     expect(source).toContain(': lastLessonImage;');
-    expect(cardSource).toContain('source={priorityCardImage}');
-    expect(cardSource).not.toContain('source={menuImages.lesson}');
-    expect(cardSource).not.toContain('align="center"');
-    expect(fs.existsSync(assetPath)).toBe(true);
+    expect(cardSource).toContain('art={priorityCardImage}');
+    expect(cardSource).not.toContain('menuImages.lesson');
 
     const assetSource = fs.readFileSync(assetPath, 'utf8');
-
-    let totalAssetBytes = 0;
-    for (const theme of ['indigo', 'sagePorcelain', 'midnight', 'ember', 'aurora', 'volt', 'forest', 'gold']) {
-      const fileName = `home-last-lesson-${theme}.webp`;
-      const filePath = path.join(process.cwd(), 'assets', 'images', 'home_last_lesson', fileName);
-      expect(assetSource).toContain(fileName);
-      expect(fs.existsSync(filePath)).toBe(true);
-      totalAssetBytes += fs.statSync(filePath).size;
+    const artMatch = assetSource.match(/const HOME_LAST_LESSON_ART = require\("\.\.\/(assets\/images\/home_last_lesson\/[^"]+)"\);/);
+    expect(artMatch).not.toBeNull();
+    const artPath = path.join(process.cwd(), artMatch![1]!);
+    expect(fs.existsSync(artPath)).toBe(true);
+    for (const theme of ['dark', 'gold', 'olive', 'midnight', 'ember', 'aurora', 'volt', 'indigo', 'sagePorcelain']) {
+      expect(assetSource).toMatch(new RegExp(`\\b${theme}: HOME_LAST_LESSON_ART,`));
     }
-    expect(totalAssetBytes).toBeLessThanOrEqual(150_000);
+    // Бюджет веса сохранён НАМЕРЕННО: арт грузится на первом кадре Главной.
+    // 2026-10-01 блокнот — PNG 1 236 838 байт (прежний бюджет всех тем 150 000).
+    // Падение здесь — реальный долг скорости (пережать в webp), а не устаревший тест.
+    expect(fs.statSync(artPath).size).toBeLessThanOrEqual(150_000);
   });
 
   // зачем: плитка быстрого старта «Уроки» открывает полный список уроков —

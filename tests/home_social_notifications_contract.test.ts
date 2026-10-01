@@ -15,8 +15,10 @@ describe('home social notification center', () => {
     expect(model).toContain("import { getCanonicalUserId } from './user_id_policy'");
     expect(model).toContain('async function getNotificationOwnerUid');
     expect(model).toContain('await ensureAnonUser();');
-    expect(model).toContain('await ensureStableAuthLink().catch(() => false);');
-    expect(model).toContain('const stableUid = await getCanonicalUserId().catch(() => null);');
+    // зачем (координатор §46, 2026-10-01): catch'и больше не немые — пишут причину
+    // через reportSwallowed (правило владельца); порядок шагов и фолбэки те же.
+    expect(model).toMatch(/await ensureStableAuthLink\(\)\.catch\(\(error: unknown\) => \{ reportSwallowed\([^)]*\); return false; \}\);/);
+    expect(model).toMatch(/const stableUid = await getCanonicalUserId\(\)\.catch\(\(error: unknown\) => \{ reportSwallowed\([^)]*\); return null; \}\);/);
     expect(model).toMatch(/\.collection\('users'\)\s*\.doc\(stableUid\)\s*\.collection\('notifications'\)/);
 
     expect(rules).toContain('match /users/{userId}/notifications/{notificationId}');
@@ -34,13 +36,22 @@ describe('home social notification center', () => {
     expect(button).toContain("AppState.addEventListener('change'");
     expect(button).toContain('if (state === \'active\')');
     const openStart = button.indexOf('const open = useCallback');
-    const openEnd = button.indexOf('const select', openStart);
+    // Конец обработчика — следующий колбэк (раньше был const select…, его нет).
+    const openEnd = button.indexOf('const close = useCallback', openStart);
     const openHandler = button.slice(openStart, openEnd);
     expect(openHandler).toContain('refreshUserNotificationsOnce({ force: true })');
     expect(button).toContain('markedReadIdsRef.current.has(row.id)');
     expect(button).toContain('setItems((current) => current.map');
-    expect(openHandler).toContain('const refreshedUnreadIds = visibleList');
-    expect(openHandler).toContain('void markUserNotificationsRead(refreshedUnreadIds)');
+    // зачем (координатор §46, 2026-10-01): с 29.08 (f5a01076d) непрочитанность
+    // гасится по тапу строки, а не открытием центра. Сторожим текущий контракт:
+    // мгновенная локальная отметка, защита от повторной отправки, запись фоном.
+    expect(openHandler).not.toContain('markUserNotificationsRead');
+    const rowStart = button.indexOf('const openNotification = useCallback');
+    const rowHandler = button.slice(rowStart, button.indexOf("if (row.type === 'report_reply' && row.reportReply)", rowStart));
+    expect(rowHandler).toContain('if (!row.read && !markedReadIdsRef.current.has(row.id))');
+    expect(rowHandler).toContain('markedReadIdsRef.current.add(row.id);');
+    expect(rowHandler.indexOf('setItems((current) => current.map'))
+      .toBeLessThan(rowHandler.indexOf('void markUserNotificationsRead([row.id]);'));
   });
 
   it('clears private bell state immediately and safely when the Firebase account changes', () => {
@@ -55,7 +66,11 @@ describe('home social notification center', () => {
     expect(authEffect).toContain('setItems([]);');
     expect(authEffect).toContain('setSelectedId(null);');
     expect(authEffect).toContain('markedReadIdsRef.current.clear();');
-    expect(authEffect).toContain('optimisticReportClaimIdsRef.current.clear();');
+    // Набор optimisticReportClaimIds снят: забор награды отмечается прямо в строке
+    // (markReportReplyClaimedLocally) — при смене аккаунта гасим его состояние.
+    expect(authEffect).toContain('setClaimingMessageId(null);');
+    expect(authEffect).toContain('setClaimErrorMessageId(null);');
+    expect(authEffect).toContain('hiddenNotificationIdsRef.current.clear();');
     expect(authEffect).toContain('catch');
     expect(button).toContain('requestGenerationRef.current === generation');
   });
@@ -65,7 +80,7 @@ describe('home social notification center', () => {
     const home = read(path.join('app', '(tabs)', 'home.tsx'));
     const notifications = read(path.join('app', 'user_notifications.ts'));
 
-    expect(home).toContain('<NotificationCenterButton isHomeTabActive={homeRuntimeActive} homeFocusTick={focusTick} />');
+    expect(home).toMatch(/<NotificationCenterButton\s+isHomeTabActive=\{homeRuntimeActive\}\s+homeFocusTick=\{focusTick\}\s*\/>/);
     expect(button).toContain('isHomeTabActive: boolean;');
     expect(button).toContain('homeFocusTick: number;');
     expect(button).toContain('NOTIFICATION_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 12 * 60 * 60_000');

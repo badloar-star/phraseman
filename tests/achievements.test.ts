@@ -29,12 +29,15 @@ import {
   markAchievementsNotified,
 } from '../app/achievements';
 import { commitShardCreditOperation } from '../app/shards_system';
-import { MAX_LEVEL } from '../constants/theme';
 import {
   __resetAccountGenerationForTests,
   beginAccountGeneration,
   withAccountTransitionLock,
 } from '../app/account_generation';
+
+// зачем (координатор §46, 2026-10-01): app/achievements.ts пишет трассы под if (__DEV__)
+// (правило «сперва логи»); в node-окружении jest глобала нет — задаём, как соседние наборы.
+(globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__ = false;
 
 const idsOf = (items: { id: string }[]) => items.map(x => x.id);
 
@@ -69,7 +72,10 @@ describe('achievements', () => {
     (AsyncStorage.getItem as jest.Mock).mockReturnValueOnce(statesRead);
     beginAccountGeneration('account-a');
 
-    const request = checkAchievements({ type: 'comeback' });
+    // зачем (координатор §46, 2026-10-01): 'comeback' выбыл из базовых событий 2.0
+    // (FOUNDATION_ACHIEVEMENT_EVENT_TYPES) и выходит до чтения — подготовленный
+    // вечный промис чтения не забирался и подвешивал два следующих кейса.
+    const request = checkAchievements({ type: 'streak', streak: 3 });
     for (let i = 0; i < 12 && (AsyncStorage.getItem as jest.Mock).mock.calls.length === 0; i += 1) {
       await Promise.resolve();
     }
@@ -78,7 +84,11 @@ describe('achievements', () => {
     release(null);
 
     await expect(request).resolves.toEqual([]);
-    expect(AsyncStorage.setItem).not.toHaveBeenCalled();
+    // Служебный пульс app_health может писать в любой момент — сторожим именно
+    // состояние достижений аккаунта A, а не все записи хранилища.
+    const achievementWrites = (AsyncStorage.setItem as jest.Mock).mock.calls
+      .filter(([key]) => String(key).startsWith('achievement'));
+    expect(achievementWrites).toEqual([]);
   });
 
   it('rejects exported achievement storage boundaries before identity initialization', async () => {
@@ -141,7 +151,8 @@ describe('achievements', () => {
   it('has the approved unique catalog and safe locale fallback for every active achievement', () => {
     const ids = idsOf(ALL_ACHIEVEMENTS);
     expect(new Set(ids).size).toBe(ids.length);
-    expect(ids.length).toBe(79);
+    // Каталог 2.0 (achievement_catalog_v2.ts) — 41 запись (было 79 до ретайра XP/уровней).
+    expect(ids.length).toBe(41);
 
     const activeIds = ALL_ACHIEVEMENTS.filter(achievement => !achievement.retired).map(achievement => achievement.id);
     for (const achievement of ALL_ACHIEVEMENTS.filter(row => !row.retired)) {
@@ -185,13 +196,15 @@ describe('achievements', () => {
     expect(categoryImageComponent).toContain('onError={() => setImageFailed(true)}');
   });
 
-  it('does not define level achievements above the real level cap', () => {
-    const impossibleLevelIds = ALL_ACHIEVEMENTS
-      .map(a => ({ id: a.id, match: a.id.match(/^level_(\d+)$/) }))
-      .filter(({ match }) => match && Number(match[1]) > MAX_LEVEL)
-      .map(({ id }) => id);
+  // зачем (координатор §46, 2026-10-01): XP и уровни сняты в 2.0 — константы
+  // MAX_LEVEL и события 'xp' больше нет. Прежняя проверка «уровни не выше
+  // потолка» превратилась в инвариант ретайра: ни одной XP/уровневой награды.
+  it('does not keep XP or level achievements after the 2.0 retirement', () => {
+    const retiredIds = ALL_ACHIEVEMENTS
+      .map(a => a.id)
+      .filter(id => /^(?:level|xp)_\d+$/.test(id));
 
-    expect(impossibleLevelIds).toEqual([]);
+    expect(retiredIds).toEqual([]);
   });
 
   it('does not leave the achievements promo count hard-coded to the old total', () => {
@@ -249,7 +262,8 @@ describe('achievements', () => {
 
   it('shows no achievement before unlock and keeps a dev-only catalog reveal', () => {
     const screenPath = path.join(__dirname, '..', 'app', 'achievements_screen.tsx');
-    const source = fs.readFileSync(screenPath, 'utf8');
+    // CRLF рабочей копии нормализуем — проверки многострочных фрагментов ниже.
+    const source = fs.readFileSync(screenPath, 'utf8').replace(/\r\n/g, '\n');
 
     expect(source).toContain('const showAllAchievements = ENABLE_DEV_TOOLS && devShowAllAchievements;');
     expect(source).toContain('ALL_ACHIEVEMENTS.filter(isVisibleAchievement)');
@@ -260,7 +274,11 @@ describe('achievements', () => {
     expect(source).toContain('const visibleCountLabel = achievementCountPairLabel(unlockedCount, totalCount, lang);');
     expect(source).not.toContain('const collectionAchievements = useMemo(');
     expect(source).not.toContain('!achievement.secret || showAllAchievements');
-    expect(source).toContain('const fallbackStates = await loadAchievementStates().catch(() => []);');
+    // Мгновенный кадр из кэша, затем пересчёт (backfill) и перерисовка только при изменении.
+    const cachedLoad = source.indexOf('const cachedStates = await loadAchievementStates().catch(');
+    const backfill = source.indexOf("await checkAchievements({ type: 'backfill', studyTarget });", cachedLoad);
+    expect(cachedLoad).toBeGreaterThan(-1);
+    expect(backfill).toBeGreaterThan(cachedLoad);
     expect(source).toContain('shelfCategoryOptions.length > 2 && (');
     expect(source).toContain('testID="achievements-back"');
     expect(source).toContain('accessibilityState={{ selected: showAllAchievements }}');
@@ -282,13 +300,12 @@ describe('achievements', () => {
     expect(source).not.toContain('ListHeaderComponent={nearestAchievements.length > 0 ?');
   });
 
-  it('unlocks the retained streak, XP and balance foundations', async () => {
+  it('unlocks the retained streak and balance foundations', async () => {
     await checkAchievements({ type: 'streak', streak: 1000 });
-    await checkAchievements({ type: 'xp', totalXP: 2000000 });
     await checkAchievements({ type: 'shards', balance: 1000 });
 
     const unlocked = await unlockedIds();
-    for (const id of ['streak_1000', 'xp_2000000', 'shards_1000']) {
+    for (const id of ['streak_1000', 'shards_1000']) {
       expect(unlocked.has(id)).toBe(true);
     }
   });

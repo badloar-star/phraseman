@@ -56,10 +56,14 @@ describe('раздел «Руны» — без товаров и магазин�
     expect(screen.includes('adjustsFontSizeToFit')).toBe(false);
   });
 
-  it('маршрут зарегистрирован и открывается из обеих шапок', () => {
+  // зачем (координатор §46, 2026-10-01): на Главной 2.0 монеты — строка статистики,
+  // тап ведёт в /coin_rank (макет 2.0); кошелёк открывается чипом баланса в шапке
+  // уроков (RuneBalanceChip → /runes_wallet). Маршрут обязан быть зарегистрирован.
+  it('маршрут зарегистрирован и открывается чипом баланса в шапке уроков', () => {
     expect(read('app/_layout.tsx').includes('name="runes_wallet"')).toBe(true);
-    expect(read('app/(tabs)/home.tsx').includes("'/runes_wallet'")).toBe(true);
-    expect(read('app/(tabs)/lessons.tsx').includes('"/runes_wallet"')).toBe(true);
+    expect(read('components/RuneBalanceChip.tsx').includes("router.push('/runes_wallet')")).toBe(true);
+    expect(read('app/(tabs)/lessons.tsx').includes('<RuneBalanceChip')).toBe(true);
+    expect(read('app/(tabs)/home.tsx').includes("nav.push('/coin_rank')")).toBe(true);
   });
 });
 

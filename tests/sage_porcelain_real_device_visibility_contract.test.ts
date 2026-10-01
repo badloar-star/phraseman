@@ -25,31 +25,26 @@ function contrast(foreground: string, background: string): number {
 }
 
 describe('Sage Porcelain real-device visibility regressions', () => {
-  it('uses the Sage accent navigation capsule with readable light icons', () => {
-    const source = read('app/(tabs)/_layout.tsx');
-
-    expect(source).toContain("const isSagePorcelainTabChrome = themeMode === 'sagePorcelain';");
-    expect(source).toContain('const tabPillBackground = isSagePorcelainTabChrome ? t.accent : TAB_UNDERLAY_DIM_BG;');
-    expect(source).toContain('const tabIconActive = isSagePorcelainTabChrome ? t.correctText : t.accent;');
-    expect(source).toContain('const tabIconMuted = isSagePorcelainTabChrome');
-    expect(source).toContain('withAlpha(t.correctText, 0.72)');
-    expect(source).toContain('const color = visuallyFocused ? tabIconActive : tabIconMuted;');
-    expect(source).toContain('borderColor: isSagePorcelainTabChrome ? t.btnShadow : \'transparent\'');
+  // зачем (координатор §46, 2026-10-01): в темах 2.0 светлость определяет
+  // isLightThemeMode (единственная светлая тема — sagePorcelain), а не сравнения
+  // `=== 'sagePorcelain'` в каждом файле; капсула таб-бара 2.0 строится общими
+  // токенами стекла, без отдельной ветки Sage. Числовые инварианты контраста
+  // палитры Sage — прежние и обязательны.
+  it('keeps the Sage palette contrast that the navigation capsule relies on', () => {
+    const tabs = read('app/(tabs)/_layout.tsx');
+    expect(tabs).not.toContain("themeMode === 'sagePorcelain'");
     expect(contrast(SAGE_PORCELAIN.correctText, SAGE_PORCELAIN.accent)).toBeGreaterThanOrEqual(4.5);
   });
 
-  it('gives Sage home tiles semantic light surfaces and bundles their nested icons', () => {
+  it('detects the light Sage theme on Home and bundles its nested icons', () => {
     const source = read('app/(tabs)/home.tsx');
+    const theme = read('constants/theme.ts');
     const appJson = JSON.parse(read('app.json')) as {
       expo: { updates: { assetPatternsToBeBundled: string[] } };
     };
 
-    expect(source).toContain("const isSketchLightTheme = themeMode === 'sagePorcelain';");
-    expect(source).toContain("const isPaperHomeTheme = themeMode === 'sagePorcelain';");
-    expect(source).toContain("const sketchHomePanelGradient = [t.bgCard, t.bgSurface]");
-    expect(source).toContain('borderColor: isPaperHomeTheme ? homeThemePanelBorder : \'transparent\'');
-    expect(source).toContain('const homeThemeTrackBg = isPaperHomeTheme ? t.bgSurface2');
-    expect(source).toContain('colors={isPaperHomeTheme ? [t.accent, t.accent]');
+    expect(theme).toContain("export function isLightThemeMode(mode: ThemeMode): boolean { return mode === 'sagePorcelain'; }");
+    expect(source).toContain('const isSketchLightTheme = isLightThemeMode(themeMode);');
     expect(appJson.expo.updates.assetPatternsToBeBundled).toContain('assets/images/home_menu/**/*');
     expect(contrast(SAGE_PORCELAIN.accent, SAGE_PORCELAIN.bgSurface2)).toBeGreaterThanOrEqual(3);
   });
@@ -57,12 +52,14 @@ describe('Sage Porcelain real-device visibility regressions', () => {
   it('uses dark semantic ink on Sage lesson cards and removes the white glow', () => {
     const source = read('app/(tabs)/lessons.tsx');
 
-    expect(source).toContain("const isSagePorcelainTheme = themeMode === 'sagePorcelain';");
-    expect(source).toContain('isSagePorcelainTheme\n    ? t.textPrimary');
+    expect(source).toContain('const isSagePorcelainTheme = isLightThemeMode(themeMode);');
+    expect(source).toContain('const isSagePorcelainCard = isLightThemeMode(_themeMode);');
+    // отступ ветки сменился — сверяем смысл, а не пробелы
+    expect(source).toMatch(/isSagePorcelainTheme\s*\? t\.textPrimary/);
     expect(source).toMatch(/isSagePorcelainCard\s*\? \[bg, lightenHex\(bg, 1\.08\), lightenHex\(bg, 1\.14\)\]/);
     expect(source).toMatch(/isSagePorcelainCard\s*\? \[lightenHex\(bg, 1\.04\), bg, lightenHex\(bg, 1\.1\)\]/);
     expect(source).toContain('...(isSagePorcelainCard ? {} : LESSON_CARD_WHITE_TEXT_SHADOW)');
-    expect(source).toContain("const lockedCardHasLightFill = _themeMode === 'sagePorcelain';");
+    expect(source).toContain('const lockedCardHasLightFill = isLightThemeMode(_themeMode);');
   });
 
   it('keeps both Sage tournament hero gradient stops readable on the light hero surface', () => {

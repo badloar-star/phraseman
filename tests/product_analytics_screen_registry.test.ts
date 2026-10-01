@@ -14,7 +14,6 @@ describe('product analytics screen registry', () => {
     ['/arena_today?source=home', 'arena_today'],
     ['/arena_star_wallet', 'arena_star_wallet'],
     ['/manage_subscription', 'manage_subscription'],
-    ['/max_paywall', 'max_paywall'],
   ])('maps %s to %s without leaking parameters', (pathname, expected) => {
     expect(productAnalyticsScreenId(pathname)).toBe(expected);
   });
@@ -26,6 +25,8 @@ describe('product analytics screen registry', () => {
 
   it('maps unknown and malformed routes to a fixed value', () => {
     expect(productAnalyticsScreenId('/arena_game')).toBe('unknown_screen');
+    // зачем (координатор §46, 2026-10-01): экран /max_paywall удалён (D81) — в реестре его нет.
+    expect(productAnalyticsScreenId('/max_paywall')).toBe('unknown_screen');
     expect(productAnalyticsScreenId('/quizzes')).toBe('unknown_screen');
     expect(productAnalyticsScreenId('/private/new-screen/secret')).toBe('unknown_screen');
     expect(productAnalyticsScreenId('https://evil.example/path')).toBe('unknown_screen');

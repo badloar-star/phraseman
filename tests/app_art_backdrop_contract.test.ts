@@ -48,7 +48,9 @@ describe('app art backdrop registry', () => {
     const screenGradient = fs.readFileSync(path.join(__dirname, '..', 'components', 'ScreenGradient.tsx'), 'utf8');
     const screenBackground = fs.readFileSync(path.join(__dirname, '..', 'constants', 'screenBackground.ts'), 'utf8');
     const paywallShared = fs.readFileSync(path.join(__dirname, '..', 'components', 'paywall', 'paywallShared.tsx'), 'utf8');
-    const modes = ['dark', 'gold', 'minimalDark', 'midnight', 'ember', 'aurora', 'volt'];
+    // зачем (координатор §46, 2026-10-01): minimalDark снят из ThemeMode в 2.0;
+    // список = фактический ThemeMode (constants/theme.ts).
+    const modes = ['dark', 'gold', 'olive', 'midnight', 'ember', 'aurora', 'volt', 'indigo', 'sagePorcelain'];
     const bloomRenderIndex = screenGradient.indexOf('<CinemaBloom mode={layer.bloomMode} reduceMotion={reduceMotion} />');
     const goldFabricRenderIndex = screenGradient.indexOf('<GoldFabricFlow />');
 
@@ -98,9 +100,9 @@ describe('app art backdrop registry', () => {
       ['/flashcards', 'flashcards'],
       ['/progress_map', 'progressMap'],
       ['/shards_shop', 'shardsShop'],
-      ['/level_gifts_inventory', 'levelGifts'],
       ['/streak_stats', 'statistics'],
       ['/settings_themes', 'settings'],
+      // экран подарков уровня снят вместе с уровнями (2.0, PM-055) — маршрута нет.
     ] as const;
 
     for (const [route, expected] of cases) {

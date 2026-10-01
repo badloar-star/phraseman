@@ -16,13 +16,14 @@ describe('owner-loss lifecycle contracts', () => {
     expect(source).toContain('void refreshReferralState({ force });');
   });
 
-  test('Home marks late revive and week-marker reads dirty for one resume catch-up', () => {
+  // зачем (координатор §46, 2026-10-01): оффер платного восстановления серии снят
+  // (D107) — его «грязного» флага больше нет. Отметки недели по-прежнему не
+  // читаются в фоне, а помечаются для одного догоняющего чтения при возврате.
+  test('Home marks late week-marker reads dirty for one resume catch-up', () => {
     const source = read('app/(tabs)/home.tsx');
 
-    expect(source).toContain('reviveOfferDirtyRef.current = true;');
-    expect(source).toContain('streakMarkersDirtyRef.current = true;');
-    expect(source).toContain('if (!homeRuntimeActiveRef.current) {\n                    reviveOfferDirtyRef.current = true;');
-    expect(source).toContain('if (!homeRuntimeActiveRef.current) {\n                    streakMarkersDirtyRef.current = true;');
+    expect(source).not.toContain('reviveOfferDirtyRef');
+    expect(source).toMatch(/if \(!homeRuntimeActiveRef\.current\) \{\s*streakMarkersDirtyRef\.current = true;/);
   });
 
   test('SpeakingPanel watchdog callbacks own their timer and capture generation', () => {

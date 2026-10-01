@@ -57,8 +57,13 @@ describe('Rune balance survives every snapshot progress rebuild', () => {
     // вовсе — без переноса первый кадр Главной показывал ноль рун.
     const bootstrap = read('app', 'app_snapshot_bootstrap.ts');
     expect(bootstrap).toContain('patchAppSnapshot((current) => ({');
-    expect(bootstrap).toContain('stars: current.progress?.stars ?? 0');
-    expect(bootstrap).toContain('starsEarnedTotal: current.progress?.starsEarnedTotal ?? 0');
+    // зачем (координатор §46, 2026-10-01): форма поменялась — старт берёт максимум
+    // из диска (bootRunes) и текущего снапшота, а «неизвестно» хранит как undefined,
+    // не 0 (иначе Главная 22 с показывала «0»). Инвариант прежний: поле stars
+    // строится ИЗ текущего значения снапшота, а не теряется.
+    const progressBuild = bootstrap.slice(bootstrap.indexOf('function buildProgressSnapshot('));
+    expect(progressBuild).toMatch(/stars:[^\n]*\n?[^\n]*current\.progress\?\.stars/);
+    expect(progressBuild).toMatch(/starsEarnedTotal:[^\n]*\n?[^\n]*current\.progress\?\.starsEarnedTotal/);
   });
 
   it('home hydration carries stars over', () => {
@@ -67,8 +72,9 @@ describe('Rune balance survives every snapshot progress rebuild', () => {
     // Функциональная форма: руны читаются в момент применения патча, иначе между
     // вычислением литерала и записью может проскочить начисление.
     expect(home).toContain('patchAppSnapshot((currentSnapshot) => ({');
-    expect(home).toContain('stars: currentSnapshot.progress?.stars ?? 0');
-    expect(home).toContain('starsEarnedTotal: currentSnapshot.progress?.starsEarnedTotal ?? 0');
+    // Без «?? 0»: неизвестный баланс остаётся undefined, а не превращается в ноль.
+    expect(home).toMatch(/stars: currentSnapshot\.progress\?\.stars(?: \?\? 0)?,/);
+    expect(home).toMatch(/starsEarnedTotal: currentSnapshot\.progress\?\.starsEarnedTotal(?: \?\? 0)?,/);
   });
 
   it('publishProjection skips no-op publishes', () => {

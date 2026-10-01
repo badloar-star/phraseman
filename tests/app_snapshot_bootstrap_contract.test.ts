@@ -40,9 +40,11 @@ describe('app snapshot bootstrap contract', () => {
   it('primes account-scoped customization in the startup multiGet', () => {
     const bootstrap = readProjectFile('app', 'app_snapshot_bootstrap.ts');
 
-    expect(bootstrap).toContain('CUSTOMIZATION_STORAGE_KEYS');
-    expect(bootstrap).toContain('buildCustomizationSnapshot(values, now, 0, avatarDNA ?? undefined)');
-    expect(bootstrap).toContain('customization:');
+    // зачем (координатор §46, 2026-10-01): студия кастомизации упрощена в 2.0 —
+    // отдельного набора CUSTOMIZATION_STORAGE_KEYS и avatarDNA больше нет;
+    // снимок кастомизации строится из аватара в том же стартовом multiGet.
+    expect(bootstrap).toMatch(/const BOOT_[A-Z_]*KEYS[\s\S]*?'user_avatar'/);
+    expect(bootstrap).toContain('customization: buildCustomizationSnapshot(values, now, 0)');
   });
 
   it('visible high-traffic screens seed their first frame from the shared snapshot', () => {

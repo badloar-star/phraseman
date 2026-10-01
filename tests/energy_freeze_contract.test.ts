@@ -15,10 +15,17 @@ describe('energy freeze visual contract', () => {
   });
 
   it('does not poll storage every second from lesson energy UI', () => {
+    // зачем (координатор §46, 2026-10-01): LessonEnergyLightning 2.0 — тонкая
+    // обёртка над общей пилюлей EnergyBar; таймер живёт там (useEnergyCountdown,
+    // только пока открыта подсказка). Запрет опроса хранилища — на обоих файлах.
     const lessonEnergy = fs.readFileSync(path.join(__dirname, '..', 'components', 'LessonEnergyLightning.tsx'), 'utf8');
+    const energyBar = fs.readFileSync(path.join(__dirname, '..', 'components', 'EnergyBar.tsx'), 'utf8');
 
-    expect(lessonEnergy).toContain('useEnergyCountdown');
-    expect(lessonEnergy).not.toContain('getTimeUntilNextRecovery');
-    expect(lessonEnergy).not.toContain('setInterval(');
+    expect(lessonEnergy).toContain("import EnergyBar from './EnergyBar'");
+    expect(energyBar).toContain('useEnergyCountdown({');
+    for (const source of [lessonEnergy, energyBar]) {
+      expect(source).not.toContain('getTimeUntilNextRecovery');
+      expect(source).not.toContain('setInterval(');
+    }
   });
 });

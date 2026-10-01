@@ -234,11 +234,13 @@ describe('safeRouterBack', () => {
     expect(navigation.navigationRoutePolicyForAudit('/flashcards_collection?pack=x')).toEqual({ role: 'child', section: 'flashcards' });
   });
 
-  it('treats MAX paywall as a contextual non-back target', () => {
+  // зачем (координатор §46, 2026-10-01): экран /max_paywall удалён осознанно
+  // (раздел MAX запечатан, f5a01076d) — у навигации для него больше нет политики.
+  it('has no navigation policy for the removed MAX paywall', () => {
     const navigation = loadNavigationBack();
 
     expect(navigation.navigationRoutePolicyForAudit('/max_paywall?source=paywall_a')).toEqual({
-      role: 'portal',
+      role: 'unknown',
       section: null,
     });
   });

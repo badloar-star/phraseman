@@ -76,7 +76,11 @@ describe("bundled Learning V2 session material (no network)", () => {
     ).toThrow("learning_v2_course_released_session_app_client_v3_invalid");
   });
 
-  test("all 56 candidates produce the exact 3-intro + 12-practice real device run before review release", () => {
+  // зачем (D149, координатор как владелец контента, 2026-10-01): фиксированные
+  // «12 упражнений» устарели. Норма: 3 интро; практика = авторский манифест
+  // занятия (source.modeNativePractice) и не меньше 6; занятие 1 — как во
+  // встроенном релизе (17).
+  test("all 56 candidates produce a 3-intro run whose practice matches the authored manifest (D149)", () => {
     const count = authoredLearningV2SessionCount();
     expect(count).toBe(56);
     for (const source of AUTHORED_EPISODE_01_SESSIONS) {
@@ -110,11 +114,14 @@ describe("bundled Learning V2 session material (no network)", () => {
           evaluatorCapsuleChild: children.evaluatorCapsule,
           auxiliaryChild: children.auxiliary,
         } as never);
+      const authoredPractice = source.modeNativePractice?.length ?? 0;
+      expect(authoredPractice).toBeGreaterThanOrEqual(6);
+      if (sessionOrdinal === 1) expect(authoredPractice).toBe(17);
       expect(getLearningV2CourseSessionDeviceRunSummaryV1(run)).toMatchObject({
         sessionOrdinal,
         introInteractionCount: 3,
-        practiceInteractionCount: 12,
-        interactionCount: 15,
+        practiceInteractionCount: authoredPractice,
+        interactionCount: 3 + authoredPractice,
       });
     }
   });

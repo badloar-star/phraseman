@@ -99,6 +99,12 @@ const ALLOWLIST_FILES = new Set([
   // зачем 2026-08-24: deliveryToken: 'delivery0000000001' — тестовая фикстура
   // спин-журнала (последовательные нули), не ключ; ловилась как named-secret-assign.
   'tests/phone_state_existing_journal_adapters.test.ts',
+  // зачем 2026-10-01 (Account V2, WAL): фраза авторизации запуска кампании
+  // 'wal-campaign-authorized-by-owner-2026-09-30' — открытый предохранитель от
+  // случайного запуска на устройстве, не ключ; байты лаунчера заморожены (proof of record).
+  'runtime-probes/android-account-sqlcipher-recovery/launch-campaign.ps1',
+  'runtime-probes/android-account-sqlcipher-recovery/run-proof.ps1',
+  'tests/account_sqlcipher_wal_recovery_android_runtime_launcher.test.ts',
   '.env.local.template',
   'subscription-recovery/.env.example',
   'SECURITY_AUDIT_2026-06-07.md', // documents redacted/example key prefixes

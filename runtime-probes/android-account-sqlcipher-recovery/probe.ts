@@ -26,6 +26,11 @@ export const MARKERS = Object.freeze({
   committedWalReady: 'account_sqlcipher_recovery_committed_wal_ready',
   recoveryPass: 'account_sqlcipher_recovery_recovery_pass',
   finalReopenPass: 'account_sqlcipher_recovery_final_reopen_pass',
+  // зачем: хост не видит порядок SQL внутри процесса; эти два фиксированных маркера
+  // в recovery-verify доказывают «авторитетное чтение ДО checkpoint» наблюдаемым
+  // фактом, из которого лаунчер строит RecoveryOrdering, а не выдумывает его.
+  recoveryAuthoritativeRead: 'account_sqlcipher_recovery_authoritative_read',
+  recoveryCheckpointed: 'account_sqlcipher_recovery_checkpointed',
 } as const);
 
 const TEST_KEY_HEX = 'a7e8d6441e52d6d6fe3bf41f32b36bcfa422d753d8a2f4f859f29f558a6339de';
@@ -422,7 +427,19 @@ function markerFor(mode: RecoveryMode): string {
   }[mode];
 }
 
-async function execute(connection: Connection, mode: RecoveryMode): Promise<'close' | 'hold'> {
+function emitProgress(emit: (marker: string) => void, marker: string): void {
+  try {
+    emit(marker);
+  } catch {
+    fail('account_sqlcipher_recovery_emit_failed');
+  }
+}
+
+async function execute(
+  connection: Connection,
+  mode: RecoveryMode,
+  emit: (marker: string) => void,
+): Promise<'close' | 'hold'> {
   await configure(connection);
   if (mode === 'prepare') {
     await awaitCall(connection, connection.execAsync, [CREATE_BATCH_SQL], 'account_sqlcipher_recovery_schema_failed');
@@ -458,7 +475,9 @@ async function execute(connection: Connection, mode: RecoveryMode): Promise<'clo
     await requireBatch(connection, 'committed-v1');
     await requireAbsent(connection, 'dirty-v1');
     await requireIntegrity(connection);
+    emitProgress(emit, MARKERS.recoveryAuthoritativeRead);
     await checkpoint(connection);
+    emitProgress(emit, MARKERS.recoveryCheckpointed);
     await requireBatch(connection, 'committed-v1');
     return 'close';
   }
@@ -468,15 +487,25 @@ async function execute(connection: Connection, mode: RecoveryMode): Promise<'clo
   return 'close';
 }
 
-function knownClosed(error: unknown): boolean {
+// зачем: эмулятор 2026-09-30 отдал close_ineffective — нативный слой заворачивает отказ в
+// «Invalid arguments: account_native_sqlite_*». Словарь выровнен с канонической
+// SQLCipher-пробой (PASS 2026-09-27 на том же эмуляторе) и привязан к имени метода:
+// отказ чужого метода не доказывает, что закрыт именно этот.
+function knownClosed(error: unknown, method: 'closeSync' | 'execSync'): boolean {
   if (!isObject(error)) return false;
   try {
     const descriptor = Object.getOwnPropertyDescriptor(error, 'message');
     if (descriptor === undefined || !Object.prototype.hasOwnProperty.call(descriptor, 'value')) return false;
-    return descriptor.value === 'account_native_sqlite_closed' ||
+    const prefix = `Call to function 'NativeDatabase.${method}' has been rejected.\n→ Caused by: `;
+    const closed = descriptor.value === 'account_native_sqlite_closed' ||
+      descriptor.value === `${prefix}Access to closed resource` ||
+      descriptor.value === `${prefix}Invalid arguments: account_native_sqlite_closed`;
+    // зачем: ревью P3 — «revoked» не доказывает физическое закрытие; для closeSync он не
+    // принимается. execSync после revoke законно отвечает revoked.
+    if (method === 'closeSync') return closed;
+    return closed ||
       descriptor.value === 'account_native_sqlite_revoked' ||
-      descriptor.value === "Call to function 'NativeDatabase.closeSync' has been rejected.\n→ Caused by: Access to closed resource" ||
-      descriptor.value === "Call to function 'NativeDatabase.execSync' has been rejected.\n→ Caused by: Access to closed resource";
+      descriptor.value === `${prefix}Invalid arguments: account_native_sqlite_revoked`;
   } catch {
     return false;
   }
@@ -503,12 +532,12 @@ async function cleanup(connection: Connection): Promise<void> {
   try {
     invokeCaptured(connection.cleanup.closeSync, []);
   } catch (error) {
-    closeRejected = knownClosed(error);
+    closeRejected = knownClosed(error, 'closeSync');
   }
   try {
     invokeCaptured(connection.cleanup.execSync, [POST_CLOSE_SQL]);
   } catch (error) {
-    execRejected = knownClosed(error);
+    execRejected = knownClosed(error, 'execSync');
   }
   if (!closeRejected || !execRejected) fail('account_sqlcipher_recovery_close_ineffective');
 }
@@ -592,14 +621,16 @@ export async function runAndroidAccountSqlcipherRecoveryProbe(
 
   let disposition: 'close' | 'hold';
   try {
-    disposition = await execute(connection, mode);
+    disposition = await execute(connection, mode, emit);
   } catch (error) {
     try {
       await cleanup(connection);
     } catch (cleanupError) {
       throw normalizeFailure(cleanupError, 'account_sqlcipher_recovery_close_failed');
     }
-    throw normalizeFailure(error, isFailure(error) ? error.message as FailureCode : 'account_sqlcipher_recovery_emit_failed');
+    // зачем: P3 — чужая (не RecoveryFailure) ошибка не имеет отношения к emit; честный
+    // фиксированный код — общий провал, иначе квитанция врёт о причине.
+    throw normalizeFailure(error, 'account_sqlcipher_recovery_failed');
   }
 
   if (disposition === 'hold') {

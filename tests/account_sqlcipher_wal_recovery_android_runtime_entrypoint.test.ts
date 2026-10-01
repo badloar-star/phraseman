@@ -149,22 +149,40 @@ function phaseBinding(index: number): PhaseBinding {
   });
 }
 
-// зачем: пакет §5 Phase 2 требует снять baseline WAL ДО отправки launch. Поэтому
-// каждая фаза начинается с bootstrap-ack (хост проверил pid/starttime после bootstrap),
-// а в dirty-hold baseline-bound стоит строго между bootstrap-ack и launch-ack.
+// зачем: пакет §5 Phase 2 требует снять baseline WAL ДО ОТПРАВКИ launch (а не только
+// до launch-ack). Поэтому каждая фаза: bootstrap-ack (хост проверил pid/starttime после
+// bootstrap) → [baseline-bound только в dirty-hold] → launch-sent (хост отправил launch)
+// → launch-ack (процесс принял привязку). Порядок baseline-bound < launch-sent и есть
+// доказательство «baseline до отправки launch».
 function phaseEvents(mode: Mode): readonly string[] {
   return {
-    prepare: ['bootstrap-ack', 'launch-ack', 'prepare-pass'],
+    prepare: ['bootstrap-ack', 'launch-sent', 'launch-ack', 'prepare-pass'],
     'dirty-hold': [
-      'bootstrap-ack', 'baseline-bound', 'launch-ack', 'dirty-ready', 'wal-delta-validated', 'sigkill-sent', 'proc-gone',
+      'bootstrap-ack', 'baseline-bound', 'launch-sent', 'launch-ack', 'dirty-ready', 'wal-delta-validated',
+      'sigkill-sent', 'proc-gone',
     ],
-    'rollback-verify': ['bootstrap-ack', 'launch-ack', 'rollback-pass'],
+    'rollback-verify': ['bootstrap-ack', 'launch-sent', 'launch-ack', 'rollback-pass'],
     'committed-wal-hold': [
-      'bootstrap-ack', 'launch-ack', 'committed-wal-ready', 'wal-present-validated', 'sigkill-sent', 'proc-gone',
+      'bootstrap-ack', 'launch-sent', 'launch-ack', 'committed-wal-ready', 'wal-present-validated', 'sigkill-sent',
+      'proc-gone',
     ],
-    'recovery-verify': ['bootstrap-ack', 'launch-ack', 'authoritative-read', 'checkpoint', 'recovery-pass'],
-    'final-reopen': ['bootstrap-ack', 'launch-ack', 'final-reopen-pass'],
+    'recovery-verify': [
+      'bootstrap-ack', 'launch-sent', 'launch-ack', 'authoritative-read', 'checkpoint', 'recovery-pass',
+    ],
+    'final-reopen': ['bootstrap-ack', 'launch-sent', 'launch-ack', 'final-reopen-pass'],
   }[mode];
+}
+
+// зачем: aggregate привязан к транскрипту через transcriptSha256 — SHA-256 канонического
+// JSON (ключи по порядку кодовых единиц, без пробелов). Та же функция живёт в раннере;
+// расхождение реализаций сразу роняет тест TranscriptDigest.
+function canonicalJson(value: unknown): string {
+  if (value === null || typeof value === 'boolean' || typeof value === 'number' || typeof value === 'string') {
+    return JSON.stringify(value);
+  }
+  if (Array.isArray(value)) return `[${value.map(canonicalJson).join(',')}]`;
+  const record = value as Record<string, unknown>;
+  return `{${Object.keys(record).sort().map((key) => `${JSON.stringify(key)}:${canonicalJson(record[key])}`).join(',')}}`;
 }
 
 type Transcript = ReturnType<typeof phaseTranscript>;
@@ -215,6 +233,10 @@ function failureCleanup() {
 
 function sha256Hex(value: string): string {
   return createHash('sha256').update(value, 'utf8').digest('hex');
+}
+
+function transcriptSha256(transcript: unknown = phaseTranscript()): string {
+  return sha256Hex(canonicalJson(transcript));
 }
 
 function aggregatePhases() {
@@ -276,11 +298,23 @@ function acceptedAggregate() {
     nativeSha256: '4'.repeat(64),
     apkSha256: '5'.repeat(64),
     deviceIdentitySha256: '6'.repeat(64),
+    transcriptSha256: transcriptSha256(),
     abi: 'x86_64',
   };
 }
 
+function publication(
+  aggregate: Record<string, unknown> = acceptedAggregate(),
+  cleanup: Record<string, unknown> = successfulCleanup(),
+  transcript: unknown = phaseTranscript(),
+  status: unknown = 'pass',
+): Record<string, unknown> {
+  return { status, aggregate, cleanup, transcript };
+}
+
 const AGGREGATE_BOOLEAN_FACTS = [
+  'checkpointAfterAuthoritativeRead',
+  'plaintextCanaryAbsent',
   'dirtyWalPrefixMatch',
   'dirtyWalSaltsMatch',
   'dirtyWalChecksumsValid',
@@ -296,6 +330,7 @@ const AGGREGATE_HASH_FACTS = [
   'nativeSha256',
   'apkSha256',
   'deviceIdentitySha256',
+  'transcriptSha256',
 ] as const;
 
 const AGGREGATE_SECTION8_FACTS = [
@@ -405,9 +440,19 @@ function remainingSection8Mutations(): readonly (readonly [string, Record<string
     ['phase name number', withPhase(0, { name: 1 })],
     ['phase extra key', withPhase(0, { extra: true })],
     ['dirty event kinds with baseline after launch-ack', withPhase(1, {
-      eventKinds: ['bootstrap-ack', 'launch-ack', 'baseline-bound', 'dirty-ready', 'wal-delta-validated', 'sigkill-sent', 'proc-gone'],
+      eventKinds: [
+        'bootstrap-ack', 'launch-sent', 'launch-ack', 'baseline-bound', 'dirty-ready', 'wal-delta-validated',
+        'sigkill-sent', 'proc-gone',
+      ],
     })],
-    ['event kinds without bootstrap-ack', withPhase(0, { eventKinds: ['launch-ack', 'prepare-pass'] })],
+    ['dirty event kinds with baseline after launch-sent', withPhase(1, {
+      eventKinds: [
+        'bootstrap-ack', 'launch-sent', 'baseline-bound', 'launch-ack', 'dirty-ready', 'wal-delta-validated',
+        'sigkill-sent', 'proc-gone',
+      ],
+    })],
+    ['event kinds without launch-sent', withPhase(0, { eventKinds: ['bootstrap-ack', 'launch-ack', 'prepare-pass'] })],
+    ['event kinds without bootstrap-ack', withPhase(0, { eventKinds: ['launch-sent', 'launch-ack', 'prepare-pass'] })],
     ['event kinds string', withPhase(0, { eventKinds: 'bootstrap-ack' })],
     ['phase pid string', withPhase(0, { pid: String(phases[0].pid) })],
     ['phase pid zero', withPhase(0, { pid: 0 })],
@@ -713,7 +758,7 @@ describe('Android Account V2 SQLCipher recovery entrypoint and host validators',
     }
   });
 
-  test('runner source is library-only until separate device authorization and contains no device/build launcher', () => {
+  test('runner source stays library-only: device work lives only in the separately authorized launcher', () => {
     const source = fs.readFileSync(RUNNER, 'utf8');
     expect(source).toContain("[ValidateSet('WalDelta'");
     expect(source).toContain('device_campaign_not_authorized');
@@ -748,6 +793,20 @@ describe('Android Account V2 SQLCipher recovery entrypoint and host validators',
     // зачем: регрессия P1 — baseline обязан сниматься ДО команды launch (§5 Phase 2).
     ['dirty baseline-bound after launch-ack', (payload: ReturnType<typeof phaseTranscript>) => {
       swapKinds(payload, 1, 'baseline-bound', 'launch-ack');
+    }],
+    // зачем: открытый P2 — baseline обязан предшествовать ОТПРАВКЕ launch, не только ack.
+    ['dirty baseline-bound after launch-sent', (payload: ReturnType<typeof phaseTranscript>) => {
+      swapKinds(payload, 1, 'baseline-bound', 'launch-sent');
+    }],
+    ['dirty launch-sent missing', (payload: ReturnType<typeof phaseTranscript>) => {
+      payload.phases[1].events = payload.phases[1].events.filter((event) => event.kind !== 'launch-sent');
+    }],
+    ['launch-sent after launch-ack', (payload: ReturnType<typeof phaseTranscript>) => {
+      swapKinds(payload, 4, 'launch-sent', 'launch-ack');
+    }],
+    ['launch-sent cross-bound', (payload: ReturnType<typeof phaseTranscript>) => {
+      payload.phases[2].events = payload.phases[2].events.map((event) =>
+        event.kind === 'launch-sent' ? { ...event, binding: payload.phases[3].binding } : event);
     }],
     ['dirty baseline-bound before bootstrap-ack', (payload: ReturnType<typeof phaseTranscript>) => {
       swapKinds(payload, 1, 'bootstrap-ack', 'baseline-bound');
@@ -812,10 +871,33 @@ describe('Android Account V2 SQLCipher recovery entrypoint and host validators',
     expectReject('PhaseTranscript', payload, 'phase_transcript_invalid');
   });
 
-  test('every phase transcript starts with bootstrap-ack and dirty-hold binds baseline before launch-ack', () => {
-    for (const mode of MODES) expect(phaseEvents(mode)[0]).toBe('bootstrap-ack');
+  test('every phase transcript starts with bootstrap-ack and dirty-hold binds baseline before launch-sent', () => {
+    for (const mode of MODES) {
+      expect(phaseEvents(mode)[0]).toBe('bootstrap-ack');
+      expect(phaseEvents(mode).indexOf('launch-sent') + 1).toBe(phaseEvents(mode).indexOf('launch-ack'));
+    }
     const dirty = phaseEvents('dirty-hold');
-    expect(dirty.indexOf('baseline-bound')).toBeLessThan(dirty.indexOf('launch-ack'));
+    expect(dirty.indexOf('baseline-bound')).toBeLessThan(dirty.indexOf('launch-sent'));
+  });
+
+  test.each(MODES.map((mode, index) => [mode, index] as const))(
+    'rejects transcript whose %s phase omits launch-sent',
+    (_mode, index) => {
+      const payload = phaseTranscript();
+      payload.phases[index].events = payload.phases[index].events.filter((event) => event.kind !== 'launch-sent');
+      expectReject('PhaseTranscript', payload, 'phase_transcript_invalid');
+    },
+  );
+
+  test('TranscriptDigest equals SHA-256 of the canonical transcript JSON computed independently', () => {
+    const result = expectPass('TranscriptDigest', phaseTranscript());
+    expect(result.transcriptSha256).toBe(transcriptSha256());
+  });
+
+  test('TranscriptDigest refuses an invalid transcript instead of hashing it', () => {
+    const payload = phaseTranscript();
+    swapKinds(payload, 1, 'baseline-bound', 'launch-sent');
+    expectReject('TranscriptDigest', payload, 'phase_transcript_invalid');
   });
 
   test.each(MODES.map((mode, index) => [mode, index] as const))(
@@ -881,6 +963,15 @@ describe('Android Account V2 SQLCipher recovery entrypoint and host validators',
     ['owner null', { expected: BINDING, observed: BINDING, signal: 9, owner: null }],
     ['missing owner', { expected: BINDING, observed: BINDING, signal: 9 }],
     ['extra key', { expected: BINDING, observed: BINDING, signal: 9, owner: 'app.phraseman', extra: true }],
+    // зачем: .NET `$` пропускает завершающий \n — такие значения обязаны отсекаться.
+    ['nonce with trailing newline', (() => {
+      const binding = { ...BINDING, launchNonce: `${BINDING.launchNonce}\n` };
+      return { expected: binding, observed: binding, signal: 9, owner: 'app.phraseman' };
+    })()],
+    ['starttime with trailing newline', (() => {
+      const binding = { ...BINDING, starttime: `${BINDING.starttime}\n` };
+      return { expected: binding, observed: binding, signal: 9, owner: 'app.phraseman' };
+    })()],
   ])('KillBinding rejects coercive/malformed schema: %s', (_name, payload) => {
     expectReject('KillBinding', payload, 'kill_binding_invalid');
   });
@@ -976,43 +1067,85 @@ describe('Android Account V2 SQLCipher recovery entrypoint and host validators',
   });
 
   test('publishes PASS only from a strictly typed accepted aggregate and validated successful cleanup', () => {
-    expectPass('EvidencePublication', { status: 'pass', aggregate: acceptedAggregate(), cleanup: successfulCleanup() });
+    expectPass('EvidencePublication', publication());
   });
 
   test.each([
-    ['accepted string', { status: 'pass', aggregate: { ...acceptedAggregate(), accepted: 'true' }, cleanup: successfulCleanup() }],
-    ['phase count string', { status: 'pass', aggregate: { ...acceptedAggregate(), phaseCount: '6' }, cleanup: successfulCleanup() }],
-    ['phase count fraction', { status: 'pass', aggregate: { ...acceptedAggregate(), phaseCount: 5.5 }, cleanup: successfulCleanup() }],
-    ['checkpoint number', { status: 'pass', aggregate: { ...acceptedAggregate(), checkpointAfterAuthoritativeRead: 1 }, cleanup: successfulCleanup() }],
-    ['canary null', { status: 'pass', aggregate: { ...acceptedAggregate(), plaintextCanaryAbsent: null }, cleanup: successfulCleanup() }],
-    ['missing aggregate field', { status: 'pass', aggregate: { accepted: true, phaseCount: 6, checkpointAfterAuthoritativeRead: true }, cleanup: successfulCleanup() }],
-    ['aggregate extra key', { status: 'pass', aggregate: { ...acceptedAggregate(), extra: true }, cleanup: successfulCleanup() }],
-    ['invalid cleanup', { status: 'pass', aggregate: acceptedAggregate(), cleanup: { ...successfulCleanup(), apkRecaptured: false } }],
-    ['status null', { status: null, aggregate: acceptedAggregate(), cleanup: successfulCleanup() }],
-    ['payload extra key', { status: 'pass', aggregate: acceptedAggregate(), cleanup: successfulCleanup(), extra: true }],
+    ['transcript missing', (() => { const value = publication(); delete value.transcript; return value; })()],
+    ['transcript of another campaign', publication(acceptedAggregate(), successfulCleanup(), (() => {
+      const value = phaseTranscript();
+      value.phases[5].binding = { ...value.phases[5].binding, launchNonce: 'e'.repeat(32) };
+      value.phases[5].events = value.phases[5].events.map((event) => ({ ...event, binding: value.phases[5].binding }));
+      return value;
+    })())],
+    ['transcript hash of a different transcript', publication(aggregateWith('transcriptSha256', 'd'.repeat(64)))],
+    ['transcript invalid but hash matches', (() => {
+      const value = phaseTranscript();
+      swapKinds(value, 1, 'baseline-bound', 'launch-sent');
+      return publication(aggregateWith('transcriptSha256', transcriptSha256(value)), successfulCleanup(), value);
+    })()],
+    ['aggregate phase pid differs from transcript', (() => {
+      const value = phaseTranscript();
+      const rebound = { ...value.phases[2].binding, pid: 9999 };
+      value.phases[2].binding = rebound;
+      value.phases[2].events = value.phases[2].events.map((event) => ({ ...event, binding: rebound }));
+      return publication(aggregateWith('transcriptSha256', transcriptSha256(value)), successfulCleanup(), value);
+    })()],
+    ['aggregate starttime differs from transcript', (() => {
+      const value = phaseTranscript();
+      const rebound = { ...value.phases[0].binding, starttime: '5' };
+      value.phases[0].binding = rebound;
+      value.phases[0].events = value.phases[0].events.map((event) => ({ ...event, binding: rebound }));
+      return publication(aggregateWith('transcriptSha256', transcriptSha256(value)), successfulCleanup(), value);
+    })()],
+    ['aggregate nonce hash differs from transcript', (() => {
+      const value = phaseTranscript();
+      const rebound = { ...value.phases[3].binding, launchNonce: '8'.repeat(32) };
+      value.phases[3].binding = rebound;
+      value.phases[3].events = value.phases[3].events.map((event) => ({ ...event, binding: rebound }));
+      return publication(aggregateWith('transcriptSha256', transcriptSha256(value)), successfulCleanup(), value);
+    })()],
+    ['aggregate runtime hash differs from transcript', (() => {
+      const value = phaseTranscript();
+      const rebound = { ...value.phases[4].binding, runtimeIdentity: '9'.repeat(32) };
+      value.phases[4].binding = rebound;
+      value.phases[4].events = value.phases[4].events.map((event) => ({ ...event, binding: rebound }));
+      return publication(aggregateWith('transcriptSha256', transcriptSha256(value)), successfulCleanup(), value);
+    })()],
+  ])('EvidencePublication binds aggregate to the transcript: rejects %s', (_name, payload) => {
+    expectReject('EvidencePublication', payload, 'evidence_publication_invalid');
+  });
+
+  test.each([
+    ['accepted string', publication({ ...acceptedAggregate(), accepted: 'true' })],
+    ['phase count string', publication({ ...acceptedAggregate(), phaseCount: '6' })],
+    ['phase count fraction', publication({ ...acceptedAggregate(), phaseCount: 5.5 })],
+    ['checkpoint number', publication({ ...acceptedAggregate(), checkpointAfterAuthoritativeRead: 1 })],
+    ['canary null', publication({ ...acceptedAggregate(), plaintextCanaryAbsent: null })],
+    ['missing aggregate field', publication({ accepted: true, phaseCount: 6, checkpointAfterAuthoritativeRead: true })],
+    ['aggregate extra key', publication({ ...acceptedAggregate(), extra: true })],
+    ['invalid cleanup', publication(acceptedAggregate(), { ...successfulCleanup(), apkRecaptured: false })],
+    ['status null', publication(acceptedAggregate(), successfulCleanup(), phaseTranscript(), null)],
+    ['payload extra key', { ...publication(), extra: true }],
   ])('EvidencePublication rejects coercive/unvalidated proof: %s', (_name, payload) => {
     expectReject('EvidencePublication', payload, 'evidence_publication_invalid');
   });
 
   test.each(section8Mutations())('EvidencePublication PASS requires packet §8 fact: %s', (_name, aggregate) => {
-    expectReject('EvidencePublication', { status: 'pass', aggregate, cleanup: successfulCleanup() }, 'evidence_publication_invalid');
+    expectReject('EvidencePublication', publication(aggregate), 'evidence_publication_invalid');
   });
 
   test('publishes PASS for an absent pre-dirty WAL baseline with zero pre frames', () => {
-    expectPass('EvidencePublication', {
-      status: 'pass',
-      aggregate: {
-        ...acceptedAggregate(),
-        dirtyWalPreFrameCount: 0,
-        dirtyWalPostFrameCount: 3,
-        dirtyWalBaselineFact: { kind: 'absent', length: 0, sha256: null },
-      },
-      cleanup: successfulCleanup(),
-    });
+    expectPass('EvidencePublication', publication({
+      ...acceptedAggregate(),
+      dirtyWalPreFrameCount: 0,
+      dirtyWalPostFrameCount: 3,
+      dirtyWalBaselineFact: { kind: 'absent', length: 0, sha256: null },
+    }));
   });
 
   test.each(remainingSection8Mutations())('EvidencePublication PASS requires remaining §8 fact: %s', (_name, aggregate) => {
-    expectReject('EvidencePublication', { status: 'pass', aggregate, cleanup: successfulCleanup() }, 'evidence_publication_invalid');
+    expectReject('EvidencePublication', publication(aggregate), 'evidence_publication_invalid');
   });
 
   test('accepts a structurally valid absent-baseline dirty WAL delta', () => {

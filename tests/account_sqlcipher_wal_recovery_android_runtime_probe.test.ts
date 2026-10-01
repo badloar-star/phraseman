@@ -54,12 +54,17 @@ type FakeOptions = Readonly<{
   rows?: Readonly<Record<string, unknown>>;
   commitValue?: unknown;
   closeNoop?: boolean;
+  closedMessage?: (method: 'closeSync' | 'execSync') => string;
   methodResult?: 'promise' | 'non-promise';
   wrongReceiver?: boolean;
 }>;
 
 function closedError(): Error {
   return new Error('account_native_sqlite_closed');
+}
+
+function closedFor(options: FakeOptions, method: 'closeSync' | 'execSync'): Error {
+  return options.closedMessage === undefined ? closedError() : new Error(options.closedMessage(method));
 }
 
 function createFake(options: FakeOptions = {}) {
@@ -92,12 +97,12 @@ function createFake(options: FakeOptions = {}) {
     closeSync: function closeSync(this: unknown): void {
       if (this !== native || options.wrongReceiver) throw new Error('C:\\private\\receiver');
       events.push('native:closeSync');
-      if (closed) throw closedError();
+      if (closed) throw closedFor(options, 'closeSync');
     },
     execSync: function execSync(this: unknown, sql: string): void {
       if (this !== native || options.wrongReceiver) throw new Error('C:\\private\\receiver');
       events.push(`native:execSync:${sql}`);
-      if (closed) throw closedError();
+      if (closed) throw closedFor(options, 'execSync');
       if (revoked) throw new Error('account_native_sqlite_revoked');
     },
   };
@@ -207,6 +212,8 @@ describe('Android Account V2 SQLCipher WAL recovery probe', () => {
       'account_sqlcipher_recovery_committed_wal_ready',
       'account_sqlcipher_recovery_recovery_pass',
       'account_sqlcipher_recovery_final_reopen_pass',
+      'account_sqlcipher_recovery_authoritative_read',
+      'account_sqlcipher_recovery_checkpointed',
     ]);
   });
 
@@ -340,7 +347,11 @@ describe('Android Account V2 SQLCipher WAL recovery probe', () => {
         'PRAGMA wal_checkpoint(TRUNCATE)': [{ busy: 0, log: 0, checkpointed: 0 }],
       },
     });
-    await fresh.runAndroidAccountSqlcipherRecoveryProbe(fake.port, 'recovery-verify', (marker) => fake.emitted.push(marker));
+    await fresh.runAndroidAccountSqlcipherRecoveryProbe(
+      fake.port,
+      'recovery-verify',
+      (marker) => { fake.events.push(`emit:${marker}`); fake.emitted.push(marker); },
+    );
     const checkpoint = fake.events.indexOf(`all:${CHECKPOINT_SQL}`);
     expect(checkpoint).toBeGreaterThan(0);
     expect(fake.events.filter((event) => event === `all:${CHECKPOINT_SQL}`)).toHaveLength(1);
@@ -359,8 +370,48 @@ describe('Android Account V2 SQLCipher WAL recovery probe', () => {
     }
     expect(fake.events.lastIndexOf(readEvent('first', BATCH_SQL, ['committed-v1']))).toBeGreaterThan(checkpoint);
     expect(fake.events.lastIndexOf(readEvent('all', ITEMS_SQL, ['committed-v1']))).toBeGreaterThan(checkpoint);
-    expect(fake.emitted).toEqual([MARKERS.recoveryPass]);
+    // зачем: хост не может сам «увидеть» порядок чтение→checkpoint внутри процесса,
+    // поэтому проба сообщает его фиксированными маркерами; хост строит из них
+    // RecoveryOrdering, а не выдумывает события транскрипта.
+    const authoritativeMarker = fake.events.indexOf(`emit:${MARKERS.recoveryAuthoritativeRead}`);
+    const checkpointedMarker = fake.events.indexOf(`emit:${MARKERS.recoveryCheckpointed}`);
+    expect(authoritativeMarker).toBeGreaterThan(fake.events.indexOf(`all:${INTEGRITY_SQL}`));
+    expect(authoritativeMarker).toBeLessThan(checkpoint);
+    expect(checkpointedMarker).toBeGreaterThan(checkpoint);
+    expect(checkpointedMarker).toBeLessThan(fake.events.lastIndexOf(readEvent('first', BATCH_SQL, ['committed-v1'])));
+    expect(fake.emitted).toEqual([
+      MARKERS.recoveryAuthoritativeRead,
+      MARKERS.recoveryCheckpointed,
+      MARKERS.recoveryPass,
+    ]);
   });
+
+  test('recovery-verify fails closed without checkpoint when the authoritative-read marker cannot be emitted', async () => {
+    const fresh = await loadFreshProbe();
+    const fake = createFake();
+    await expectCode(
+      () => fresh.runAndroidAccountSqlcipherRecoveryProbe(fake.port, 'recovery-verify', (marker) => {
+        if (marker === MARKERS.recoveryAuthoritativeRead) throw new Error('C:\\private\\emit');
+        fake.emitted.push(marker);
+      }),
+      'account_sqlcipher_recovery_emit_failed',
+    );
+    expect(fake.events).not.toContain(`all:${CHECKPOINT_SQL}`);
+    expect(fake.events).toContain('native:revoke');
+    expect(fake.emitted).toEqual([]);
+  });
+
+  test.each(['prepare', 'rollback-verify', 'final-reopen'] as const)(
+    '%s emits no recovery ordering markers',
+    async (mode) => {
+      const fresh = await loadFreshProbe();
+      const fake = createFake();
+      await fresh.runAndroidAccountSqlcipherRecoveryProbe(fake.port, mode, (marker) => fake.emitted.push(marker));
+      expect(fake.emitted).toHaveLength(1);
+      expect(fake.emitted).not.toContain(MARKERS.recoveryAuthoritativeRead);
+      expect(fake.emitted).not.toContain(MARKERS.recoveryCheckpointed);
+    },
+  );
 
   test('rollback-verify reads dirty-v1 counts with the exact parameter before integrity', async () => {
     const fresh = await loadFreshProbe();
@@ -420,6 +471,47 @@ describe('Android Account V2 SQLCipher WAL recovery probe', () => {
     const operation = () => fresh.runAndroidAccountSqlcipherRecoveryProbe(fake.port, 'final-reopen', () => undefined);
     if (code.length > 0) await expectCode(operation, code);
     else await operation();
+  });
+
+  // зачем: первый прогон на эмуляторе (2026-09-30) упал close_ineffective — нативный слой
+  // заворачивает отказ закрытого ресурса в «Invalid arguments: account_native_sqlite_*».
+  // Этот словарь уже доказан канонической SQLCipher-пробой 2026-09-27 на том же эмуляторе.
+  test.each([
+    ['closed resource', (method: string) => `Call to function 'NativeDatabase.${method}' has been rejected.
+→ Caused by: Access to closed resource`],
+    ['wrapped closed', (method: string) => `Call to function 'NativeDatabase.${method}' has been rejected.
+→ Caused by: Invalid arguments: account_native_sqlite_closed`],
+    ['execSync revoked, closeSync closed', (method: string) => method === 'execSync'
+      ? `Call to function 'NativeDatabase.${method}' has been rejected.
+→ Caused by: Invalid arguments: account_native_sqlite_revoked`
+      : `Call to function 'NativeDatabase.${method}' has been rejected.
+→ Caused by: Invalid arguments: account_native_sqlite_closed`],
+  ] as const)('accepts the proven native post-close rejection (%s)', async (_name, message) => {
+    const fresh = await loadFreshProbe();
+    const fake = createFake({ closedMessage: message });
+    await fresh.runAndroidAccountSqlcipherRecoveryProbe(fake.port, 'prepare', (marker) => fake.emitted.push(marker));
+    expect(fake.emitted).toEqual([MARKERS.preparePass]);
+  });
+
+  test.each([
+    ['foreign method name', (method: string) => `Call to function 'NativeDatabase.${method === 'closeSync' ? 'execSync' : 'closeSync'}' has been rejected.
+→ Caused by: Access to closed resource`],
+    ['unknown cause', (method: string) => `Call to function 'NativeDatabase.${method}' has been rejected.
+→ Caused by: disk I/O error`],
+    // зачем: ревью P3 — revoked ≠ closed: closeSync, ответивший «revoked», не доказывает закрытие.
+    ['closeSync answers revoked', (method: string) => `Call to function 'NativeDatabase.${method}' has been rejected.
+→ Caused by: Invalid arguments: account_native_sqlite_revoked`],
+    ['closeSync answers bare revoked', (method: string) => method === 'closeSync'
+      ? 'account_native_sqlite_revoked'
+      : 'account_native_sqlite_closed'],
+  ] as const)('rejects an unproven post-close error (%s) as close_ineffective', async (_name, message) => {
+    const fresh = await loadFreshProbe();
+    const fake = createFake({ closedMessage: message });
+    await expectCode(
+      () => fresh.runAndroidAccountSqlcipherRecoveryProbe(fake.port, 'prepare', (marker) => fake.emitted.push(marker)),
+      'account_sqlcipher_recovery_close_ineffective',
+    );
+    expect(fake.emitted).toEqual([]);
   });
 
   test('requires physical close evidence before emitting a PASS marker', async () => {

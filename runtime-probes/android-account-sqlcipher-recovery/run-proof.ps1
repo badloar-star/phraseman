@@ -1,25 +1,86 @@
 [CmdletBinding()]
 param(
-  [ValidateSet('WalDelta', 'PhaseTranscript', 'KillBinding', 'ProcDisappearance', 'FamilyPath', 'FileFact', 'RecoveryOrdering', 'CleanupOutcome', 'EvidencePublication')]
+  [ValidateSet('WalDelta', 'PhaseTranscript', 'TranscriptDigest', 'KillBinding', 'ProcDisappearance', 'FamilyPath', 'FileFact', 'RecoveryOrdering', 'CleanupOutcome', 'EvidencePublication')]
   [string]$LibraryMode,
-  [string]$PayloadBase64
+  [string]$PayloadBase64,
+  [string]$DeviceCampaignAuthorization,
+  [string]$Serial
 )
 
 $ErrorActionPreference = 'Stop'
 $DatabaseSelector = 'files/SQLite/accounts-v2/accounts-v2-g-588b372845f968ba31b0e12c84bb17559ce7dc6de13247456e6cae9e3e971643.db'
-$Hex32 = '^[0-9a-f]{32}$'
-$Hex64 = '^[0-9a-f]{64}$'
-$Decimal = '^[1-9][0-9]*$'
+# зачем: \z вместо $ — в .NET `$` пропускает завершающий перевод строки, и
+# hex с переводом строки на конце проходил бы как валидный nonce/хэш.
+$Hex32 = '^[0-9a-f]{32}\z'
+$Hex64 = '^[0-9a-f]{64}\z'
+$Decimal = '^[1-9][0-9]*\z'
+# зачем: владелец 2026-09-30 разрешил кампанию на эмуляторе. Раннер открывается ТОЛЬКО
+# этим точным токеном; без него (по умолчанию) — прежний fail-closed
+# device_campaign_not_authorized. Сам раннер не трогает устройство: вся работа с ним — в
+# отдельном лаунчере launch-campaign.ps1, который повторно проверяет тот же токен.
+$DeviceCampaignToken = 'wal-campaign-authorized-by-owner-2026-09-30'
 
 function Stop-Fixed([string]$Code) {
   [Console]::Error.WriteLine($Code)
   exit 1
 }
 
+# зачем: P3 — вывод и дайджест транскрипта обязаны быть каноническими (ключи в
+# порядковом сравнении, без пробелов), иначе один и тот же факт даёт разные хэши.
+function ConvertTo-CanonicalJson([object]$Value) {
+  if ($null -eq $Value) { return 'null' }
+  if ($Value -is [bool]) { if ($Value) { return 'true' } else { return 'false' } }
+  if ($Value -is [int] -or $Value -is [long]) {
+    return ([long]$Value).ToString([Globalization.CultureInfo]::InvariantCulture)
+  }
+  if ($Value -is [string]) {
+    $builder = [Text.StringBuilder]::new()
+    [void]$builder.Append('"')
+    foreach ($character in $Value.ToCharArray()) {
+      if ([int]$character -lt 32) { Stop-Fixed 'canonical_json_invalid' }
+      if ($character -eq [char]34) { [void]$builder.Append([char]92).Append([char]34) }
+      elseif ($character -eq [char]92) { [void]$builder.Append([char]92).Append([char]92) }
+      else { [void]$builder.Append($character) }
+    }
+    [void]$builder.Append('"')
+    return $builder.ToString()
+  }
+  if ($Value -is [System.Array]) {
+    $items = @(foreach ($item in $Value) { ConvertTo-CanonicalJson $item })
+    return '[' + ($items -join ',') + ']'
+  }
+  if ($Value -is [System.Collections.IDictionary]) {
+    $keys = [string[]]@($Value.Keys)
+    [Array]::Sort($keys, [StringComparer]::Ordinal)
+    $pairs = @(foreach ($key in $keys) { (ConvertTo-CanonicalJson $key) + ':' + (ConvertTo-CanonicalJson $Value[$key]) })
+    return '{' + ($pairs -join ',') + '}'
+  }
+  if ($Value -is [System.Management.Automation.PSCustomObject]) {
+    $keys = [string[]]@($Value.PSObject.Properties.Name)
+    [Array]::Sort($keys, [StringComparer]::Ordinal)
+    $pairs = @(foreach ($key in $keys) { (ConvertTo-CanonicalJson $key) + ':' + (ConvertTo-CanonicalJson $Value.$key) })
+    return '{' + ($pairs -join ',') + '}'
+  }
+  Stop-Fixed 'canonical_json_invalid'
+}
+
+function Get-Sha256Text([string]$Value) {
+  $hasher = [Security.Cryptography.SHA256]::Create()
+  try {
+    return -join ($hasher.ComputeHash([Text.Encoding]::UTF8.GetBytes($Value)) | ForEach-Object { $_.ToString('x2') })
+  } finally {
+    $hasher.Dispose()
+  }
+}
+
+function Get-CanonicalSha256([object]$Value) {
+  return Get-Sha256Text (ConvertTo-CanonicalJson $Value)
+}
+
 function Write-Pass([hashtable]$Facts = @{}) {
-  $ordered = [ordered]@{ status = 'pass' }
+  $ordered = @{ status = 'pass' }
   foreach ($key in $Facts.Keys) { $ordered[$key] = $Facts[$key] }
-  [Console]::Out.WriteLine(($ordered | ConvertTo-Json -Compress -Depth 8))
+  [Console]::Out.WriteLine((ConvertTo-CanonicalJson $ordered))
   exit 0
 }
 
@@ -222,32 +283,37 @@ function Invoke-WalDelta([object]$Payload) {
 
 $PhaseModes = @('prepare', 'dirty-hold', 'rollback-verify', 'committed-wal-hold', 'recovery-verify', 'final-reopen')
 # зачем: каждая фаза начинается с bootstrap-ack — хост проверил pid/starttime процесса
-# после bootstrap, ещё до отправки launch. В dirty-hold baseline WAL снимается ДО launch
-# (пакет §5 Phase 2), поэтому baseline-bound стоит строго перед launch-ack. В убиваемых
-# фазах SIGKILL допустим только после валидации WAL (delta для dirty, присутствие для
-# committed), а исчезновение /proc/<pid> обязано быть последним. Точная упорядоченная
-# последовательность ниже и есть проверка порядка.
+# после bootstrap. Затем launch-sent (хост ОТПРАВИЛ launch) и launch-ack (процесс его
+# принял). Пакет §5 Phase 2 требует baseline WAL до ОТПРАВКИ launch, поэтому в
+# dirty-hold baseline-bound стоит строго перед launch-sent (открытый P2 ревью №3). В
+# убиваемых фазах SIGKILL допустим только после валидации WAL (delta для dirty,
+# присутствие для committed), а исчезновение /proc/<pid> обязано быть последним.
+# Точная упорядоченная последовательность ниже и есть проверка порядка.
 $PhaseEvents = @{
-  'prepare' = @('bootstrap-ack', 'launch-ack', 'prepare-pass')
+  'prepare' = @('bootstrap-ack', 'launch-sent', 'launch-ack', 'prepare-pass')
   'dirty-hold' = @(
-    'bootstrap-ack', 'baseline-bound', 'launch-ack', 'dirty-ready', 'wal-delta-validated', 'sigkill-sent', 'proc-gone'
+    'bootstrap-ack', 'baseline-bound', 'launch-sent', 'launch-ack', 'dirty-ready', 'wal-delta-validated',
+    'sigkill-sent', 'proc-gone'
   )
-  'rollback-verify' = @('bootstrap-ack', 'launch-ack', 'rollback-pass')
+  'rollback-verify' = @('bootstrap-ack', 'launch-sent', 'launch-ack', 'rollback-pass')
   'committed-wal-hold' = @(
-    'bootstrap-ack', 'launch-ack', 'committed-wal-ready', 'wal-present-validated', 'sigkill-sent', 'proc-gone'
+    'bootstrap-ack', 'launch-sent', 'launch-ack', 'committed-wal-ready', 'wal-present-validated', 'sigkill-sent',
+    'proc-gone'
   )
-  'recovery-verify' = @('bootstrap-ack', 'launch-ack', 'authoritative-read', 'checkpoint', 'recovery-pass')
-  'final-reopen' = @('bootstrap-ack', 'launch-ack', 'final-reopen-pass')
+  'recovery-verify' = @(
+    'bootstrap-ack', 'launch-sent', 'launch-ack', 'authoritative-read', 'checkpoint', 'recovery-pass'
+  )
+  'final-reopen' = @('bootstrap-ack', 'launch-sent', 'launch-ack', 'final-reopen-pass')
 }
 
-function Invoke-PhaseTranscript([object]$Payload) {
+function Test-PhaseTranscript([object]$Payload) {
   if (-not (Get-ExactProperties $Payload @('phases')) -or -not (Test-ObjectArray $Payload.phases)) {
-    Stop-Fixed 'phase_transcript_invalid'
+    return $false
   }
   $modes = $PhaseModes
   $expectedEvents = $PhaseEvents
   $phases = @($Payload.phases)
-  if ($phases.Count -ne $modes.Count) { Stop-Fixed 'phase_transcript_invalid' }
+  if ($phases.Count -ne $modes.Count) { return $false }
   $processIdentities = @()
   $runtimeIdentities = @()
   $launchNonces = @()
@@ -257,30 +323,42 @@ function Invoke-PhaseTranscript([object]$Payload) {
         $phase.mode -isnot [string] -or $phase.mode -cne $modes[$phaseIndex] -or
         -not (Test-Binding $phase.binding) -or -not (Test-ObjectArray $phase.events) -or
         -not (Test-Boolean $phase.procDisappeared) -or $phase.procDisappeared -ne $true) {
-      Stop-Fixed 'phase_transcript_invalid'
+      return $false
     }
     $processIdentity = "$($phase.binding.pid)|$($phase.binding.starttime)"
     if ($processIdentities -ccontains $processIdentity -or
         $runtimeIdentities -ccontains $phase.binding.runtimeIdentity -or
         $launchNonces -ccontains $phase.binding.launchNonce) {
-      Stop-Fixed 'phase_transcript_invalid'
+      return $false
     }
     $processIdentities += $processIdentity
     $runtimeIdentities += $phase.binding.runtimeIdentity
     $launchNonces += $phase.binding.launchNonce
     $events = @($phase.events)
     $kinds = @($expectedEvents[$phase.mode])
-    if ($events.Count -ne $kinds.Count) { Stop-Fixed 'phase_transcript_invalid' }
+    if ($events.Count -ne $kinds.Count) { return $false }
     for ($eventIndex = 0; $eventIndex -lt $kinds.Count; $eventIndex += 1) {
       $event = $events[$eventIndex]
       if (-not (Get-ExactProperties $event @('kind', 'binding')) -or
           $event.kind -isnot [string] -or $event.kind -cne $kinds[$eventIndex] -or
           -not (Test-SameBinding $phase.binding $event.binding)) {
-        Stop-Fixed 'phase_transcript_invalid'
+        return $false
       }
     }
   }
+  return $true
+}
+
+function Invoke-PhaseTranscript([object]$Payload) {
+  if (-not (Test-PhaseTranscript $Payload)) { Stop-Fixed 'phase_transcript_invalid' }
   Write-Pass
+}
+
+# зачем: дайджест выдаётся только для валидного транскрипта — хэш «чего угодно» не
+# доказывает ничего и позволил бы привязать aggregate к мусору.
+function Invoke-TranscriptDigest([object]$Payload) {
+  if (-not (Test-PhaseTranscript $Payload)) { Stop-Fixed 'phase_transcript_invalid' }
+  Write-Pass @{ transcriptSha256 = (Get-CanonicalSha256 $Payload) }
 }
 
 function Invoke-KillBinding([object]$Payload) {
@@ -404,7 +482,8 @@ $AggregateTrueFacts = @(
   'dirtyWalAllDeltaCommitMarkersZero', 'quickCheckOk'
 )
 $AggregateHashFacts = @(
-  'packetSha256', 'sourceSha256', 'launcherSha256', 'nativeSha256', 'apkSha256', 'deviceIdentitySha256'
+  'packetSha256', 'sourceSha256', 'launcherSha256', 'nativeSha256', 'apkSha256', 'deviceIdentitySha256',
+  'transcriptSha256'
 )
 # зачем: остаток P2-C — остальные факты §8: версия схемы, фазы с хэшами привязки,
 # кадры WAL до/после грязной транзакции, точные счётчики отката (0/0 dirty-строк) и
@@ -548,10 +627,32 @@ function Test-Aggregate([object]$Aggregate, [string]$Status) {
   return $Status -ceq 'failure' -and $Aggregate.accepted -eq $false
 }
 
+# зачем: открытый P3 — aggregate был не привязан к транскрипту, и PASS можно было собрать
+# из фаз одной кампании и фактов другой. Теперь транскрипт обязан быть валидным, его
+# канонический SHA-256 равен aggregate.transcriptSha256, а каждая фаза aggregate несёт
+# ровно те pid/starttime и хэши nonce/runtime, что стоят в транскрипте.
+function Test-TranscriptBinding([object]$Aggregate, [object]$Transcript) {
+  if (-not (Test-PhaseTranscript $Transcript)) { return $false }
+  if ((Get-CanonicalSha256 $Transcript) -cne $Aggregate.transcriptSha256) { return $false }
+  $transcriptPhases = @($Transcript.phases)
+  $aggregatePhases = @($Aggregate.phases)
+  for ($index = 0; $index -lt $PhaseModes.Count; $index += 1) {
+    $binding = $transcriptPhases[$index].binding
+    $phase = $aggregatePhases[$index]
+    if ([long]$phase.pid -ne [long]$binding.pid -or $phase.starttime -cne $binding.starttime -or
+        $phase.launchNonceSha256 -cne (Get-Sha256Text $binding.launchNonce) -or
+        $phase.runtimeIdentitySha256 -cne (Get-Sha256Text $binding.runtimeIdentity)) {
+      return $false
+    }
+  }
+  return $true
+}
+
 function Invoke-EvidencePublication([object]$Payload) {
-  if (-not (Get-ExactProperties $Payload @('status', 'aggregate', 'cleanup')) -or
+  if (-not (Get-ExactProperties $Payload @('status', 'aggregate', 'cleanup', 'transcript')) -or
       $Payload.status -isnot [string] -or
       -not (Test-Aggregate $Payload.aggregate $Payload.status) -or
+      -not (Test-TranscriptBinding $Payload.aggregate $Payload.transcript) -or
       -not (Test-CleanupOutcome $Payload.cleanup) -or
       ($Payload.status -ceq 'pass' -and $Payload.cleanup.campaignStatus -cne 'pass') -or
       ($Payload.status -ceq 'failure' -and $Payload.cleanup.campaignStatus -cne 'failure')) {
@@ -560,7 +661,12 @@ function Invoke-EvidencePublication([object]$Payload) {
   Write-Pass
 }
 
-if ([string]::IsNullOrEmpty($LibraryMode)) { Stop-Fixed 'device_campaign_not_authorized' }
+if ([string]::IsNullOrEmpty($LibraryMode)) {
+  if ($DeviceCampaignAuthorization -cne $DeviceCampaignToken) { Stop-Fixed 'device_campaign_not_authorized' }
+  $launcher = Join-Path $PSScriptRoot 'launch-campaign.ps1'
+  & $launcher -Authorization $DeviceCampaignAuthorization -Serial $Serial
+  exit $LASTEXITCODE
+}
 if ([string]::IsNullOrEmpty($PayloadBase64)) { Stop-Fixed 'library_payload_invalid' }
 try {
   if ($PayloadBase64 -ceq '__STDIN__') { $PayloadBase64 = [Console]::In.ReadToEnd() }
@@ -573,6 +679,7 @@ try {
 switch ($LibraryMode) {
   'WalDelta' { Invoke-WalDelta $payload }
   'PhaseTranscript' { Invoke-PhaseTranscript $payload }
+  'TranscriptDigest' { Invoke-TranscriptDigest $payload }
   'KillBinding' { Invoke-KillBinding $payload }
   'ProcDisappearance' { Invoke-ProcDisappearance $payload }
   'FamilyPath' { Invoke-FamilyPath $payload }

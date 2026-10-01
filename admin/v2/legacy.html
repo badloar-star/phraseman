@@ -11994,6 +11994,12 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#fbbf24">Аккаунты V2: клиент</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Выкл по умолчанию. Вкл → телефон (только Android) ведёт зашифрованную копию и шлёт изменения на сервер, если сервер тоже включён (карточка ниже).</div></div>
         <label title="Включить или выключить клиент Account V2" style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-accounts_v2_client_enabled" class="cp-toggle" onchange="saveControlPanelBool('accounts_v2_client_enabled', this.checked)" disabled/><span id="cp-bool-label-accounts_v2_client_enabled" class="cp-bool-chip">…</span></label>
       </div>
+      <!-- зачем (Account V2, Пакет 7A, OD19): выключатель старой синхронизации V2-доменов — тот же писатель remote_config/app.bools. Включать ТОЛЬКО после проверки на 3 аккаунтах (OD24). -->
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico">🔌</div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#fbbf24">Аккаунты V2: выключить старую синхронизацию</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Выкл по умолчанию. Вкл → карточки, память свайпов и библиотеку наборов ведёт только V2 (если клиент V2 включён и область открыта). Монеты, серия, экзамены, достижения, Plus и профиль синхронизируются как прежде.</div></div>
+        <label title="Выключить старую синхронизацию карточек и библиотеки" style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-accounts_v2_legacy_sync_disabled" class="cp-toggle" onchange="saveControlPanelBool('accounts_v2_legacy_sync_disabled', this.checked)" disabled/><span id="cp-bool-label-accounts_v2_legacy_sync_disabled" class="cp-bool-chip">…</span></label>
+      </div>
     </div>
   </div>
 
@@ -34681,6 +34687,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     { key: 'video_phrases_enabled',    label: 'Фразы из видео',                  def: true,  hint: 'Вкл по умолчанию → опубликованные фразы показываются под открытым видео на главной и в каталоге. Выкл → блок фраз скрыт, видео продолжает работать.' },
     { key: 'intro_full_access_enabled', label: 'Подарок «3 дня» новым юзерам',    def: false, hint: 'Выкл по умолчанию. Включение выдаёт будущим новичкам 72ч полного доступа и приветственный модал. Уже выданные подарки не отбираются — активные докатывают свои часы.' },
     { key: 'accounts_v2_client_enabled', label: 'Аккаунты V2: клиент',           def: false, hint: 'Выкл по умолчанию (sell-switch, Пакет 6C). Вкл → Android-клиент ведёт зашифрованную копию и шлёт изменения, если сервер (config/accounts_v2.syncEnabled) тоже включён.' },
+    { key: 'accounts_v2_legacy_sync_disabled', label: 'Аккаунты V2: без старой синхронизации', def: false, hint: 'Выкл по умолчанию (Пакет 7A, OD19). Вкл → старая синхронизация карточек, памяти свайпов и библиотеки наборов не работает там, где клиент V2 включён и область открыта. Остальное — как прежде. Включать после проверки на 3 аккаунтах.' },
   ];
 
   // Флаги Компаса вынесены в отдельную вкладку «🧭 Компас» (управление там),

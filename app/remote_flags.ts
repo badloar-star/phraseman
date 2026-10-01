@@ -111,6 +111,12 @@ export type RemoteBoolKey =
   // Включает только владелец (Firestore remote_config, «Пульт»), и только вместе
   // с серверным config/accounts_v2.syncEnabled.
   | 'accounts_v2_client_enabled'
+  // зачем (Account V2, Пакет 7A, OD19): выключатель СТАРОЙ синхронизации для
+  // доменов V2 (карточки, память свайпов, библиотека наборов сообщества). Дефолт
+  // FALSE: старая синхронизация работает ровно как раньше. Включает только
+  // владелец («Пульт») после проверки на 3 аккаунтах (OD24); действует только
+  // вместе с accounts_v2_client_enabled и открытой областью V2.
+  | 'accounts_v2_legacy_sync_disabled'
   // D51/D53, Q12 (2026-10-01): рубильник миграции «Подарки и спины → монеты».
   // Дефолт TRUE = kill-switch: false в remote_config/app.bools останавливает
   // НОВЫЕ прогоны; уже прошедшие не трогает, зачисленное не забирается.
@@ -239,6 +245,8 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   phone_state_emergency_stop: true,
   // Account V2 (Пакет 6B): выключено до явного решения владельца.
   accounts_v2_client_enabled: false,
+  // Account V2 (Пакет 7A): старая синхронизация V2-доменов включена, пока владелец не решит.
+  accounts_v2_legacy_sync_disabled: false,
   // зачем (D51, Q12): миграция едет включённой, флаг — аварийный стоп без релиза.
   gifts_to_coins_enabled: true,
   // Рулетка+рефералка: дефолт true (kill-switch). Ключ лежит в numbers
@@ -451,6 +459,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
     'force_update_enabled', 'manual_update_enabled', 'video_button_enabled', 'video_phrases_enabled',
     'promo_banner_enabled', 'promo_codes_enabled', 'discount_offer_banner_enabled',
     'lifetime_button_enabled', 'paywall_reviews_enabled', 'accounts_v2_client_enabled',
+    'accounts_v2_legacy_sync_disabled',
     'gifts_to_coins_enabled',
     'gate_lessons_premium', 'gate_speaking_premium', 'gate_ai_dialog_premium', 'gate_stats_premium',
     'gate_flashcards_premium', 'gate_themes_premium', 'gate_avatar_auras_premium', 'gate_mastery_premium',

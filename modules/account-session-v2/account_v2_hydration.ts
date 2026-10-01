@@ -68,6 +68,18 @@ export type AccountsV2HydrationPorts = Readonly<{
   applyLocal: (snapshot: HydrationSnapshot, isCurrent: () => boolean) => Promise<HydrationApplyResult>;
   /** Сессия жива и uid Firebase = владелец области. */
   isCurrent: () => boolean;
+  /**
+   * Пакет 7A, ремонт №1: область гидрирована при ОКОНЧАТЕЛЬНОМ переносе — V2
+   * содержит всё старое облако этого uid. Только тогда выключатель старой
+   * синхронизации может пропускать старый restore/запись. Необязателен (тесты 6G).
+   */
+  markHydrated?: () => Promise<void>;
+  /**
+   * Ремонт №2 (P1): метка этого uid есть на телефоне = применение V2 уже прошло на
+   * ЭТОЙ установке после последней локальной чистки. Нет метки (выход → вход того же
+   * uid, чистка, переустановка) — гидрированная область применяется ЗАНОВО.
+   */
+  isLocallyApplied?: () => Promise<boolean>;
   nowMs: () => number;
   sleep: (ms: number) => Promise<void>;
 }>;
@@ -298,7 +310,13 @@ export function parseHydration(entities: readonly PulledEntity[]): Parsed {
       }));
       const mirrorFields: Record<string, string> = {};
       for (const [name, value] of Object.entries(values)) mirrorFields[name] = canonicalJson(value);
-      mirrors.push({ entityType: 'flashcard', entityId: entity.entityId, record: mirrorRecord({ fields: mirrorFields, deleted: state.deleted }, entity.revision) });
+      // зачем (7A, ремонт №2, P2a): поля сервера телефон ещё не видел — применение add-only
+      // могло не дописать их в существующую локальную карточку; без этой пометки первый
+      // снимок слал бы `unsetFields` и стирал чужую правку на сервере.
+      const unseen = Object.keys(fields).filter((name) => name !== 'id').sort();
+      mirrors.push({ entityType: 'flashcard', entityId: entity.entityId, record: mirrorRecord(
+        { fields: mirrorFields, deleted: state.deleted, ...(unseen.length > 0 ? { unseen } : {}) }, entity.revision,
+      ) });
       if (!state.deleted) {
         const key = listIndexKey(split.target, list);
         liveByList.set(key, [...(liveByList.get(key) ?? []), match[2]]);
@@ -380,11 +398,34 @@ export function withoutLocallyOwned(
   });
 }
 
+/** Метка гидрации для выключателя старой синхронизации; сбой не роняет гидрацию (лог). */
+async function markHydratedSafe(ports: AccountsV2HydrationPorts): Promise<void> {
+  if (ports.markHydrated === undefined || !ports.isCurrent()) return;
+  try {
+    await ports.markHydrated();
+    console.log(`${LOG} hydrate legacy_marker_set`);
+  } catch (error) {
+    console.warn(`${LOG} hydrate legacy_marker_failed code=${errorCode(error)}`);
+  }
+}
+
+/** Применено ли V2 на этой установке (метка). Сбой чтения → «нет»: повторное применение идемпотентно. */
+async function locallyAppliedSafe(ports: AccountsV2HydrationPorts): Promise<boolean> {
+  if (ports.isLocallyApplied === undefined) return true;
+  try {
+    return await ports.isLocallyApplied();
+  } catch (error) {
+    console.warn(`${LOG} hydrate legacy_marker_read_failed code=${errorCode(error)} -> reapply`);
+    return false;
+  }
+}
+
 /**
  * Один проход гидрации области. Никогда не бросает: исход — код (и лог).
  * Отметка ставится ТОЛЬКО после успешного применения; любой провал = повтор
  * при следующем старте сессии (не опрос: проход один на открытие области).
  */
+
 export async function hydrateAccountsV2Scope(ports: AccountsV2HydrationPorts): Promise<AccountsV2HydrationOutcome> {
   const startedAt = ports.nowMs();
   let state: State;
@@ -401,8 +442,16 @@ export async function hydrateAccountsV2Scope(ports: AccountsV2HydrationPorts): P
   // переносе. После hold / not_found_yet (старый документ ещё не найден) перенос
   // перепроверяется раз в сутки; стал done — тянем и применяем ещё раз (идемпотентно).
   if (wasHydrated && !migrationNeeded(state, ports.nowMs())) {
-    console.log(`${LOG} hydrate skip reason=already_hydrated entities=${state.entities} migration=${state.migration ?? 'none'}`);
-    return 'already_hydrated';
+    // зачем (7A, ремонт №2, P1): метку ставим ТОЛЬКО в том запуске, где применение реально
+    // прошло. Область гидрирована, но метки этого uid на телефоне нет (выход → вход, чистка,
+    // переустановка, гидрация до появления метки) — локальные карточки могли быть стёрты:
+    // тянем и применяем заново (идемпотентно, «не хуже локального»), иначе пустые карточки.
+    const reapply = migrationFinal(state.migration) && !(await locallyAppliedSafe(ports));
+    if (!reapply) {
+      console.log(`${LOG} hydrate skip reason=already_hydrated entities=${state.entities} migration=${state.migration ?? 'none'}`);
+      return 'already_hydrated';
+    }
+    console.log(`${LOG} hydrate reapply reason=local_marker_missing entities=${state.entities}`);
   }
   if (migrationNeeded(state, ports.nowMs())) {
     const migration = await runMigration(ports);
@@ -450,6 +499,10 @@ export async function hydrateAccountsV2Scope(ports: AccountsV2HydrationPorts): P
     // зачем: без отметки следующий старт повторит гидрацию — применение идемпотентно («не хуже локального»).
     console.warn(`${LOG} hydrate mark_failed code=${errorCode(error)}`);
   }
+  // зачем (7A, ремонт №1): метка «V2 владеет данными этого uid» — только при окончательном
+  // переносе. hold / not_found_yet → без метки: старый restore остаётся (иначе пустые карточки).
+  if (migrationFinal(state.migration)) await markHydratedSafe(ports);
+  else console.log(`${LOG} hydrate legacy_marker_skip migration=${state.migration ?? 'none'}`);
   const summary = Object.entries(applied).map(([key, value]) => `${key}=${value}`).join(' ');
   console.log(`${LOG} hydrate done entities=${pulled.entities.length} ${summary} ms=${ports.nowMs() - startedAt}`);
   return 'hydrated';

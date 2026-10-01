@@ -489,6 +489,22 @@ describe('P2: SRS re-issue ids are deterministic and later edits win', () => {
     expect(plan[1].operation.payload).toEqual({ op: 'upsert', fields: { srsPolicy: { mode: 'x', updatedAtMs: 2_000_000 } } });
   });
 
+  // зачем (Пакет 7A): поле, СНЯТОЕ более поздней операцией, не воскрешается перевыпуском.
+  test('7A: fields unset by a later operation are dropped from the re-issue; later unset op is accepted', () => {
+    const rejected = op('card-op-1', 'card/7', { op: 'upsert', fields: {
+      note: 'old', back: 'kept', srs: { interval: 3, updatedAtMs: FUTURE },
+    } }, 6);
+    const later = op('card-op-2', 'card/7', { op: 'upsert', fields: {}, unsetFields: ['note'] }, 6);
+    const plan = planAccountSyncSrsReissue({ ...base, rejected, laterOperations: [later] });
+    expect(plan[0].operation.payload).toEqual({ op: 'upsert', fields: { back: 'kept' } });
+    const badLater = op('card-op-3', 'card/7', { op: 'upsert', fields: {}, unsetFields: 'note' }, 6);
+    expect(() => planAccountSyncSrsReissue({ ...base, rejected, laterOperations: [badLater] }))
+      .toThrow('account_sync_invalid_input');
+    const rejectedWithUnset = op('card-op-4', 'card/7', { op: 'upsert', fields: { srs: { updatedAtMs: FUTURE } }, unsetFields: ['x'] }, 6);
+    expect(() => planAccountSyncSrsReissue({ ...base, rejected: rejectedWithUnset, laterOperations: [] }))
+      .toThrow('account_sync_invalid_input');
+  });
+
   test('re-issued rest goes after the later operation and cannot overwrite it', async () => {
     const { outbox } = await harness();
     const rejected = op('card-op-1', 'card/7', { op: 'upsert', fields: { front: 'old', srs: { updatedAtMs: FUTURE } } }, 6);

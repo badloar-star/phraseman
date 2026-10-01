@@ -91,6 +91,23 @@ function fileUri(path: string): string {
   return path.startsWith('file://') ? path : `file://${path}`;
 }
 
+/**
+ * Пакет 7A, ремонт №1: поддерживает ли платформа область V2 — ТА ЖЕ проверка,
+ * что открывает хранилище ниже (Android или сборка пробы iPhone), но без
+ * загрузки нативных модулей. зачем: решение о пропуске старого restore обязано
+ * совпадать с реальной возможностью V2 (iOS вне пробы — область не откроется).
+ */
+export function isAccountV2NativePlatformSupported(): boolean {
+  let os: string;
+  try {
+    os = platformOs();
+  } catch (error) {
+    console.warn(`${LOG} storage platform_unknown kind=${kindOf(error)}`);
+    return false;
+  }
+  return os === 'android' || (os === 'ios' && isAccountV2IosProofBuild());
+}
+
 /** null — платформа без доказанного хранилища (iOS вне сборки пробы, web) или модули недоступны. Никогда не бросает. */
 export function createExpoAccountNativeEnvironment(): AccountNativeEnvironment | null {
   let os: string;

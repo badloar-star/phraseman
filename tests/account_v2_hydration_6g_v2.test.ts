@@ -92,7 +92,10 @@ function server(entities: unknown[], migrateStatus: string | Error = 'done', pag
   };
 }
 
-function harness(script: ServerScript, adapter = new MemoryScopeStorageAdapter(), opts: { withHydration?: boolean; nowMs?: number } = {}) {
+function harness(script: ServerScript, adapter = new MemoryScopeStorageAdapter(), opts: {
+  withHydration?: boolean; nowMs?: number; markHydrated?: (uid: string) => Promise<void>;
+  isLocallyApplied?: (uid: string) => Promise<boolean>; clearHydratedMarker?: () => Promise<void>;
+} = {}) {
   const state = { enabled: true, authUid: A as string | null };
   const timers: { run: () => void; delayMs: number }[] = [];
   const sent: AccountSyncWireBatch[] = [];
@@ -123,6 +126,9 @@ function harness(script: ServerScript, adapter = new MemoryScopeStorageAdapter()
           script.applied.push(snapshot);
           return { lessons_written: snapshot.lessons.length };
         }),
+        ...(opts.markHydrated === undefined ? {} : { markHydrated: opts.markHydrated }),
+        ...(opts.isLocallyApplied === undefined ? {} : { isLocallyApplied: opts.isLocallyApplied }),
+        ...(opts.clearHydratedMarker === undefined ? {} : { clearHydratedMarker: opts.clearHydratedMarker }),
       },
     }),
   } satisfies AccountsV2ClientPorts;
@@ -247,6 +253,83 @@ describe('account v2 hydration 6G — controller flow', () => {
     expect(mark).toMatchObject({ migration: 'done' });
   });
 
+  // зачем (Пакет 7A, ремонт №1): метка для выключателя старой синхронизации ставится ТОЛЬКО
+  // при окончательном переносе — иначе пропуск старого restore оставил бы пустые карточки.
+  test.each([
+    ['done', 1],
+    ['hold', 0],
+    ['not_found_yet', 0],
+  ])('7A: legacy marker after migration=%s → markHydrated calls=%s', async (status, calls) => {
+    const markHydrated = jest.fn(async () => undefined);
+    const h = harness(server([lessonEntity], status), new MemoryScopeStorageAdapter(), { markHydrated });
+    await h.controller.setAuthUid(A);
+    await settle();
+    await runHydration(h);
+    expect(markHydrated).toHaveBeenCalledTimes(calls);
+    if (calls > 0) expect(markHydrated).toHaveBeenCalledWith(A);
+  });
+
+  // зачем (7A, ремонт №2, P1): выход → вход того же uid стирает локальные карточки и метку
+  // (общий wipe). Гидрированная область обязана примениться ЗАНОВО, а метка — встать только
+  // в запуске, где применение прошло. С меткой — без сети (экономия Firebase).
+  test('7A r2: exit → re-login of the same uid: marker wiped → area re-applied, marker set again; marker present → no pull', async () => {
+    const adapter = new MemoryScopeStorageAdapter();
+    const script = server([lessonEntity, cardEntity('c1')]);
+    let marker: string | null = null;
+    const markHydrated = jest.fn(async (uid: string) => { marker = uid; });
+    const isLocallyApplied = jest.fn(async (uid: string) => marker === uid);
+    const start = async (): Promise<void> => {
+      const h = harness(script, adapter, { markHydrated, isLocallyApplied });
+      await h.controller.setAuthUid(A);
+      await settle();
+      await runHydration(h);
+      await h.controller.stop('test');
+    };
+    await start();
+    expect(script.applied).toHaveLength(1);
+    expect(marker).toBe(A);
+    await start(); // метка на месте — область не тянется заново
+    expect(script.pull).toHaveBeenCalledTimes(1);
+    expect(script.applied).toHaveLength(1);
+    marker = null; // выход: общий wipe стёр карточки и метку
+    await start();
+    expect(script.pull).toHaveBeenCalledTimes(2);
+    expect(script.applied).toHaveLength(2);
+    expect(script.applied[1].cards.map((card) => card.id)).toEqual(['c1']);
+    expect(marker).toBe(A);
+    expect(lines()).toContain('[ACCOUNT-V2] hydrate reapply reason=local_marker_missing entities=2');
+  });
+
+  test('7A r2: marker read failure → re-apply (idempotent); marker write failure is logged only', async () => {
+    const adapter = new MemoryScopeStorageAdapter();
+    const script = server([lessonEntity]);
+    const first = harness(script, adapter);
+    await first.controller.setAuthUid(A);
+    await settle();
+    await runHydration(first);
+    await first.controller.stop('test');
+    const markHydrated = jest.fn(async () => { throw new Error('disk_full'); });
+    const isLocallyApplied = jest.fn(async () => { throw new Error('io'); });
+    const second = harness(script, adapter, { markHydrated, isLocallyApplied });
+    await second.controller.setAuthUid(A);
+    await settle();
+    await runHydration(second);
+    expect(script.pull).toHaveBeenCalledTimes(2);
+    expect(markHydrated).toHaveBeenCalledWith(A);
+    expect(lines().some((line) => line.includes('[ACCOUNT-V2] hydrate legacy_marker_failed'))).toBe(true);
+  });
+
+  test('7A r2: seeded card mirror marks server fields as unseen (phone did not see them yet)', async () => {
+    const script = server([cardEntity('c1')]);
+    const h = harness(script);
+    await h.controller.setAuthUid(A);
+    await settle();
+    await runHydration(h);
+    const record = h.adapter.snapshot(`account:${A}`).find((item) => item.key === accountsV2ProducerEntityKey('flashcard', 'en:saved:c1'));
+    const mirror = (record?.value as { mirror: { unseen?: string[] } }).mirror;
+    expect(mirror.unseen).toEqual(['en']);
+  });
+
   test('migration failure: no pull, no apply, no mark (retried next start)', async () => {
     const script = server([lessonEntity], Object.assign(new Error('x'), { code: 'functions/unavailable' }));
     const h = harness(script);
@@ -269,6 +352,22 @@ describe('account v2 hydration 6G — controller flow', () => {
     await runHydration(h);
     expect(script.pull).not.toHaveBeenCalled();
     expect(h.controller.status().serverDisabled).toBe(true);
+  });
+
+  // зачем (7A, ремонт №2, P3): V2 выключена на сервере → метка снимается, restore со
+  // следующего старта идёт старым путём (иначе перенесённая бэкапом метка = пустые карточки).
+  test('7A r2: server disabled → legacy marker cleared', async () => {
+    const script = server([lessonEntity], Object.assign(new Error('accounts_v2_disabled'), {
+      code: 'functions/failed-precondition', details: { final: true, code: 'accounts_v2_disabled' },
+    }));
+    const clearHydratedMarker = jest.fn(async () => undefined);
+    const h = harness(script, new MemoryScopeStorageAdapter(), { clearHydratedMarker });
+    await h.controller.setAuthUid(A);
+    await settle();
+    await runHydration(h);
+    await settle();
+    expect(clearHydratedMarker).toHaveBeenCalledTimes(1);
+    expect(lines()).toContain('[ACCOUNT-V2] lifecycle legacy_marker_cleared reason=server_disabled');
   });
 
   test('partial migration continues after the pause, then pulls', async () => {

@@ -358,13 +358,74 @@ describe('account v2 producer 6F — repair 1', () => {
     expect(empty.notes).toEqual(['card_mass_delete_skipped removed=1 known=1']);
   });
 
-  test('P3: a removed card field is reported (contract has no field removal), other fields still sent', async () => {
+  // зачем (Пакет 7A): TEMP ремонта №1 закрыт — пропавшее поле теперь снимается `unsetFields`.
+  test('7A: a removed card field is sent as unsetFields together with changed fields; repeat → none', async () => {
     const mirrors: Mirrors = new Map();
     const index = new Map<string, readonly string[]>();
     await planAndApply({ kind: 'card_snapshot', target: 'en', list: 'saved', cards: [{ id: 'c', en: 'x', note: 'n' }] }, mirrors, index);
     const next = await planAndApply({ kind: 'card_snapshot', target: 'en', list: 'saved', cards: [{ id: 'c', en: 'y' }] }, mirrors, index);
-    expect(next.operations[0].payload).toEqual({ op: 'upsert', fields: { en: 'y' } });
-    expect(next.notes).toEqual(['card_field_removal_unsupported count=1']);
+    // ремонт №2 (P2b): снятие — отдельной операцией после правки полей.
+    expect(next.operations.map((op) => op.payload)).toEqual([
+      { op: 'upsert', fields: { en: 'y' } },
+      { op: 'upsert', fields: {}, unsetFields: ['note'] },
+    ]);
+    expect(next.operations[0].mirror.fields).toHaveProperty('note');
+    expect(next.notes).toEqual(['card_field_unset count=1']);
+    expect(mirrors.get(keyOf('flashcard', 'en:saved:c'))?.fields).not.toHaveProperty('note');
+    const again = await planAndApply({ kind: 'card_snapshot', target: 'en', list: 'saved', cards: [{ id: 'c', en: 'y' }] }, mirrors, index);
+    expect(again.operations).toEqual([]);
+  });
+
+  test('7A: only-removal op has empty fields; srs/srsPolicy/id are never unset; unchanged card → no op', async () => {
+    const mirrors: Mirrors = new Map([[keyOf('flashcard', 'en:saved:c'), {
+      fields: { id: '"c"', en: '"x"', note: '"n"', srs: '{}', srsPolicy: '{}' }, deleted: false,
+    }]]);
+    const index = new Map<string, readonly string[]>([['en:saved', ['c']]]);
+    const removal = await planAndApply({ kind: 'card_snapshot', target: 'en', list: 'saved', cards: [{ id: 'c', en: 'x' }] }, mirrors, index);
+    expect(removal.operations.map((op) => op.payload)).toEqual([{ op: 'upsert', fields: {}, unsetFields: ['note'] }]);
+    expect(mirrors.get(keyOf('flashcard', 'en:saved:c'))?.fields).toEqual({ id: '"c"', en: '"x"', srs: '{}', srsPolicy: '{}' });
+  });
+
+  test('7A: more than 64 dropped fields → first 64 now (sorted), the rest on the next snapshot', async () => {
+    const fields: Record<string, string> = { id: '"c"' };
+    for (let i = 0; i < 70; i += 1) fields[`f${String(i).padStart(2, '0')}`] = '"v"';
+    const mirrors: Mirrors = new Map([[keyOf('flashcard', 'en:saved:c'), { fields, deleted: false }]]);
+    const index = new Map<string, readonly string[]>([['en:saved', ['c']]]);
+    const first = await planAndApply({ kind: 'card_snapshot', target: 'en', list: 'saved', cards: [{ id: 'c' }] }, mirrors, index);
+    expect(first.operations).toHaveLength(1);
+    const unset1 = (first.operations[0].payload as { unsetFields: string[] }).unsetFields;
+    expect(unset1).toHaveLength(64);
+    expect(first.notes).toEqual(['card_field_unset_deferred count=6', 'card_field_unset count=64']);
+    const second = await planAndApply({ kind: 'card_snapshot', target: 'en', list: 'saved', cards: [{ id: 'c' }] }, mirrors, index);
+    expect((second.operations[0].payload as { unsetFields: string[] }).unsetFields).toEqual(['f64', 'f65', 'f66', 'f67', 'f68', 'f69']);
+  });
+
+  // зачем (ремонт №2, P2a): поле, засеянное гидрацией с сервера и не встреченное в локальной
+  // копии, НЕ снимается — иначе add-only применение + первый снимок стёрли бы чужую правку.
+  test('7A r2: unseen (server-seeded) fields are never unset; once seen locally, a later removal is unset', async () => {
+    const mirrors: Mirrors = new Map([[keyOf('flashcard', 'en:saved:c'), {
+      fields: { id: '"c"', en: '"x"', note: '"server note"' }, deleted: false, unseen: ['en', 'note'],
+    }]]);
+    const index = new Map<string, readonly string[]>([['en:saved', ['c']]]);
+    const first = await planAndApply({ kind: 'card_snapshot', target: 'en', list: 'saved', cards: [{ id: 'c', en: 'x' }] }, mirrors, index);
+    expect(first.operations).toEqual([]);
+    expect(first.notes).toEqual(['card_field_unset_unseen_skipped count=1']);
+    // локальная правка карточки: зеркало запоминает, что `en` уже видел, `note` — нет
+    const edited = await planAndApply({ kind: 'card_snapshot', target: 'en', list: 'saved', cards: [{ id: 'c', en: 'y' }] }, mirrors, index);
+    expect(edited.operations.map((op) => op.payload)).toEqual([{ op: 'upsert', fields: { en: 'y' } }]);
+    expect(mirrors.get(keyOf('flashcard', 'en:saved:c'))?.unseen).toEqual(['note']);
+    // `note` появилось локально (увидел), затем удалено человеком → снятие
+    await planAndApply({ kind: 'card_snapshot', target: 'en', list: 'saved', cards: [{ id: 'c', en: 'y', note: 'mine' }] }, mirrors, index);
+    expect(mirrors.get(keyOf('flashcard', 'en:saved:c'))?.unseen).toBeUndefined();
+    const removed = await planAndApply({ kind: 'card_snapshot', target: 'en', list: 'saved', cards: [{ id: 'c', en: 'y' }] }, mirrors, index);
+    expect(removed.operations.map((op) => op.payload)).toEqual([{ op: 'upsert', fields: {}, unsetFields: ['note'] }]);
+  });
+
+  test('7A r2: swipe SRS op keeps the unseen list', async () => {
+    const mirrors: Mirrors = new Map([[keyOf('flashcard', 'en:saved:c'), { fields: { note: '"n"' }, deleted: false, unseen: ['note'] }]]);
+    const plan = await planAndApply({ kind: 'swipe_memory', target: 'en', memory: { 'saved:all:c': { lastSeenAt: 5, correct: 1 } } }, mirrors, new Map());
+    expect(plan.operations).toHaveLength(1);
+    expect(mirrors.get(keyOf('flashcard', 'en:saved:c'))?.unseen).toEqual(['note']);
   });
 
   test('P3: base/sequence re-checked INSIDE the transaction; a receipt landing in between → retried with fresh base', async () => {

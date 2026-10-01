@@ -7,7 +7,7 @@
  * (что уже поставлено в очередь) и превращается в минимальные операции по
  * контракту ядра (functions/src/accounts_v2_contract.ts + accounts_v2_merge.ts):
  *   урок      `<target>:lesson:<N>`         `{ passed, score }` (лучший, D66);
- *   карточка  `<target>:saved|custom:<id>`  `{ op:'upsert', fields }` / `{ op:'tombstone' }`;
+ *   карточка  `<target>:saved|custom:<id>`  `{ op:'upsert', fields[, unsetFields] }` / `{ op:'tombstone' }`;
  *   SRS       та же карточка, поле `srs` = `{ updatedAtMs: lastSeenAt, …CardMemory }`
  *             (решение владельца: время правки на телефоне);
  *   библиотека `<target>:community_packs`   `{ itemIds }` / `{ removeItemIds }`.
@@ -33,6 +33,11 @@ export type EntityMirror = Readonly<{
   fields?: Readonly<Record<string, string>>;
   deleted?: boolean;
   items?: readonly string[];
+  /**
+   * Ремонт №2 (P2a): поля карточки, засеянные гидрацией с сервера и ещё не
+   * встреченные в локальном снимке — их отсутствие локально НЕ снятие поля.
+   */
+  unseen?: readonly string[];
 }>;
 
 export type PlannedOperation = Readonly<{
@@ -56,6 +61,14 @@ export type ListIndexReader = (key: string) => Promise<readonly string[] | null>
 
 /** Поля карточки, которые живут в SRS-операциях свайпов, а не в снимке карточки. */
 const SRS_FIELDS = new Set(['srs', 'srsPolicy']);
+/**
+ * Пакет 7A: снятие полей карточки — ровно серверный контракт
+ * (functions/src/accounts_v2_contract.ts → ACCOUNTS_V2_CARD_UNSET_*; сверяет
+ * functions/src/accounts_v2_card_unset.test.ts по тексту этого файла).
+ */
+export const ACCOUNT_SYNC_CARD_UNSET_KEY = 'unsetFields';
+export const ACCOUNT_SYNC_CARD_UNSET_MAX_FIELDS = 64;
+export const ACCOUNT_SYNC_CARD_UNSET_PROTECTED_FIELDS = Object.freeze(['id', 'srs', 'srsPolicy'] as const);
 const MEMORY_FIELDS = ['correct', 'wrong', 'hints', 'seen', 'mastered', 'lastSeenAt', 'nextDueAt', 'ease'] as const;
 const TRAINING_KEY = /^(saved|custom):all:(.+)$/;
 const LIBRARY_CHUNK = 500;
@@ -145,31 +158,62 @@ function cardRows(cards: readonly unknown[], notes: string[]): readonly CardRow[
 }
 
 /**
- * TEMP (ремонт №1, P3): удаление ОТДЕЛЬНОГО поля карточки не отправляется — в
- * контракте ядра нет операции «убрать поле» (upsert сливает поля, `null` был бы
- * значением, а не удалением). Поле остаётся на сервере прежним; зеркало его тоже
- * помнит, чтобы не было ложных повторов. Закрыть вместе с операцией разрешения
- * вариантов (TEMP ядра) — до отключения старой синхронизации (Пакет 7).
+ * Пакет 7A (закрыт TEMP ремонта №1, P3): пропавшее из снимка поле карточки
+ * снимается операцией `unsetFields` (контракт ядра). Не больше
+ * ACCOUNT_SYNC_CARD_UNSET_MAX_FIELDS имён за операцию — остальные снимутся
+ * следующим снимком: зеркало забывает только реально отправленные имена.
+ * Защищённые поля (id, SRS) не снимаются никогда.
+ *
+ * Ремонт №2:
+ *  - P2a: снимаются только поля, которые ЭТОТ телефон сам видел. Гидрация засевает
+ *    зеркало полями сервера и помечает их `unseen`; поле становится «увиденным», когда
+ *    появляется в локальном снимке. Иначе локальной копии, которой гидрация не
+ *    дописала поле (применение add-only), хватило бы на снятие чужой правки.
+ *  - P2b: снятие — ОТДЕЛЬНАЯ операция после операции полей. Старый сервер (без
+ *    `unsetFields`) отклонит только её (`payload_invalid`), правки полей не потеряются.
+ *    Порядок выкладки: функции раньше клиента (пакет 7A).
  */
-function cardUpsert(entityId: string, row: CardRow, mirror: EntityMirror | null, notes: string[]): PlannedOperation | null {
+function cardUpsert(entityId: string, row: CardRow, mirror: EntityMirror | null, notes: string[]): PlannedOperation[] {
   const known = mirror?.fields ?? {};
-  const dropped = Object.keys(known).filter((name) => name !== 'srs' && name !== 'srsPolicy' && !(name in row.fields));
-  if (dropped.length > 0) notes.push(`card_field_removal_unsupported count=${dropped.length}`);
+  const protectedNames = ACCOUNT_SYNC_CARD_UNSET_PROTECTED_FIELDS as readonly string[];
+  const unseenBefore = mirror?.unseen ?? [];
+  const nextUnseen = unseenBefore.filter((name) => name in known && !(name in row.fields));
+  const dropped = Object.keys(known)
+    .filter((name) => !protectedNames.includes(name) && !(name in row.fields) && !unseenBefore.includes(name))
+    .sort();
+  const skippedUnseen = unseenBefore.filter((name) => name in known && !(name in row.fields)).length;
+  if (skippedUnseen > 0) notes.push(`card_field_unset_unseen_skipped count=${skippedUnseen}`);
+  const unset = dropped.slice(0, ACCOUNT_SYNC_CARD_UNSET_MAX_FIELDS);
+  if (dropped.length > unset.length) notes.push(`card_field_unset_deferred count=${dropped.length - unset.length}`);
   const changed: Record<string, unknown> = {};
-  const nextFields: Record<string, string> = { ...known };
+  const afterFields: Record<string, string> = { ...known };
   for (const [name, value] of Object.entries(row.fields)) {
     const canonical = canonicalJson(value);
     if (known[name] === canonical) continue;
     changed[name] = value;
-    nextFields[name] = canonical;
+    afterFields[name] = canonical;
   }
-  if (Object.keys(changed).length === 0) return null;
-  return Object.freeze({
-    entityType: 'flashcard' as const,
-    entityId,
-    payload: { op: 'upsert', fields: changed },
-    mirror: Object.freeze({ fields: Object.freeze(nextFields), deleted: false }),
+  const mirrorOf = (fields: Record<string, string>): EntityMirror => Object.freeze({
+    fields: Object.freeze(fields), deleted: false, ...(nextUnseen.length > 0 ? { unseen: Object.freeze([...nextUnseen]) } : {}),
   });
+  const operations: PlannedOperation[] = [];
+  if (Object.keys(changed).length > 0) {
+    operations.push(Object.freeze({
+      entityType: 'flashcard' as const, entityId, payload: { op: 'upsert', fields: changed }, mirror: mirrorOf({ ...afterFields }),
+    }));
+  }
+  if (unset.length > 0) {
+    notes.push(`card_field_unset count=${unset.length}`);
+    const withoutUnset: Record<string, string> = { ...afterFields };
+    for (const name of unset) delete withoutUnset[name];
+    operations.push(Object.freeze({
+      entityType: 'flashcard' as const,
+      entityId,
+      payload: { op: 'upsert', fields: {}, [ACCOUNT_SYNC_CARD_UNSET_KEY]: unset },
+      mirror: mirrorOf(withoutUnset),
+    }));
+  }
+  return operations;
 }
 
 async function planCards(
@@ -191,8 +235,7 @@ async function planCards(
       resurrect += 1;
       continue;
     }
-    const planned = cardUpsert(entityId, row, mirror, notes);
-    if (planned !== null) operations.push(planned);
+    operations.push(...cardUpsert(entityId, row, mirror, notes));
   }
   if (resurrect > 0) notes.push(`card_resurrect_unsupported count=${resurrect}`);
   const ids = rows.map((row) => row.id);
@@ -260,7 +303,11 @@ async function planSwipe(
       entityType: 'flashcard' as const,
       entityId,
       payload: { op: 'upsert', fields: { srs } },
-      mirror: Object.freeze({ fields: Object.freeze({ ...(mirror?.fields ?? {}), srs: canonical }), deleted: false }),
+      // зачем (ремонт №2, P2a): SRS-операция не должна терять список «не виденных» полей.
+      mirror: Object.freeze({
+        fields: Object.freeze({ ...(mirror?.fields ?? {}), srs: canonical }), deleted: false,
+        ...(mirror?.unseen !== undefined && mirror.unseen.length > 0 ? { unseen: mirror.unseen } : {}),
+      }),
     }));
   }
   if (packCards > 0) notes.push(`swipe_pack_cards_skipped count=${packCards}`);

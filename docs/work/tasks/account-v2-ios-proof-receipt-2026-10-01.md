@@ -155,3 +155,8 @@ npx eas-cli build --platform ios --profile ios-account-v2-proof
 iOS-шлюз в `account_native_expo_environment.ts` остаётся закрытым для всех сборок, кроме пробы. Снимать его — только после трёх `verdict=pass` с iPhone и отдельного решения.
 
 **Откат:** удалить профиль из `eas.json`, файлы `runtime-probes/ios-account-sqlcipher/*`, `app/dev-account-v2-ios-proof.tsx`, блок в `metro.config.js`; правка адаптера без `protectFamily` поведение не меняет.
+
+## Запуск сборки (2026-10-01)
+- iPhone уже был в профиле (UDID …201E, профиль ad hoc MC37VGZV45 активен до 14.05.2027) — device:create не нужен.
+- `requireCommit` отказал из-за чужих незакоммиченных правок → сборка из `git archive HEAD` (b37ea0279+) во временной папке scratchpad, `EAS_NO_VCS=1`, node_modules — junction (без копии).
+- Сборка: https://expo.dev/accounts/badloar/projects/phraseman/builds/0098ba07-d923-47ad-a289-bc1c199fc2f7

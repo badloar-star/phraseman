@@ -63,6 +63,23 @@ export const ACCOUNTS_V2_REJECT_CODES = Object.freeze([
 export const ACCOUNTS_V2_SRS_FIELDS = Object.freeze(['srs', 'srsPolicy'] as const);
 
 /**
+ * Пакет 7A (TEMP из 6F закрыт): снятие полей карточки.
+ * `{ op: 'upsert', fields: {…}, unsetFields: ['note', …] }` — поле убирается из
+ * состояния карточки. зачем: раньше пропавшее на телефоне поле (например,
+ * удалённая заметка) навсегда оставалось на сервере — `null` был бы значением,
+ * а не удалением, и после отключения старой синхронизации другое устройство
+ * получило бы «воскресшее» поле.
+ * Белый список: снимать можно ЛЮБОЕ поле содержимого карточки, КРОМЕ
+ * защищённых — `id` (личность карточки) и SRS (`srs`, `srsPolicy` живут по
+ * своему правилу LWW-по-времени, их снятие не предусмотрено). Не больше
+ * ACCOUNTS_V2_CARD_UNSET_MAX_FIELDS имён, без повторов, без пересечения с
+ * `fields`. Клиент держит те же константы (сверяет accounts_v2_card_unset.test.ts).
+ */
+export const ACCOUNTS_V2_CARD_UNSET_KEY = 'unsetFields';
+export const ACCOUNTS_V2_CARD_UNSET_MAX_FIELDS = 64;
+export const ACCOUNTS_V2_CARD_UNSET_PROTECTED_FIELDS = Object.freeze(['id', 'srs', 'srsPolicy'] as const);
+
+/**
  * Ремонт №4 (решение владельца 2026-09-30): «самый свежий» SRS — по ВРЕМЕНИ
  * ПРАВКИ на телефоне. Конверт клиента не меняется: время лежит внутри самого
  * SRS-значения — объект с целым полем `updatedAtMs` (≥ 0, safe integer).

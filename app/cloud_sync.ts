@@ -243,6 +243,13 @@ import {
 } from './legacy_free_lesson_access';
 import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 import { readFlashcardPages, writeFlashcardPages } from './flashcards_cloud_pages';
+import {
+  isAccountsV2LegacyDomainKey,
+  isAccountsV2LegacySwitchFlagOn,
+  omitAccountsV2LegacyDomains,
+  resolveAccountsV2LegacySkip,
+  ACCOUNTS_V2_LEGACY_HYDRATED_MARKER_KEY,
+} from './accounts_v2_legacy_sync_switch';
 import type { StudyTarget as FlashcardStudyTarget } from './study_target';
 
 const FRENCH_SYNC_LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 1);
@@ -761,6 +768,9 @@ export function accountLocalDataKeysForToday(todayKey: string = getUtcDayKey()):
     LAST_SYNC_SNAPSHOT_KEY,
     CREATED_AT_SYNC_KEY,
     STABLE_AUTH_LINK_CACHE_KEY,
+    // зачем (Account V2, 7A ремонт №2, P1): метка «V2 применена на этой установке»
+    // принадлежит аккаунту — после выхода/смены она не должна пропускать restore.
+    ACCOUNTS_V2_LEGACY_HYDRATED_MARKER_KEY,
     'cloud_migration_v1',
     // Кэши лидербордов (содержат предыдущего юзера)
     'global_lb_cache',
@@ -3012,12 +3022,21 @@ async function doSyncToCloud(): Promise<void> {
     if (!isSyncGenerationCurrent()) return;
     await repairDevSeededStreakInStorage();
     if (!isSyncGenerationCurrent()) return;
+    // зачем (Account V2, Пакет 7A, OD19; ремонт №1): при выключателе
+    // accounts_v2_legacy_sync_disabled (+ клиент V2, платформа с областью, метка
+    // гидрации uid, открытая область того же uid) карточки, память свайпов и библиотеку
+    // ведёт V2 — в старое облако (progress.* и flashcard_pages) они не уходят.
+    // Выключатель false → `&&` не доходит до await, omit отдаёт тот же объект:
+    // путь байт-в-байт прежний. Проверка поколения ниже накрывает и это ожидание.
+    const legacyV2SkipOnWrite = isAccountsV2LegacySwitchFlagOn()
+      && await resolveAccountsV2LegacySkip('write', getAuthUserId());
     const pairs = await AsyncStorage.multiGet(getRuntimeSyncKeys());
     if (!isSyncGenerationCurrent()) return;
-    const data: Record<string, string | null> = {};
+    const storedData: Record<string, string | null> = {};
     for (const [key, value] of pairs) {
-      data[key] = value;
+      storedData[key] = value;
     }
+    const data = omitAccountsV2LegacyDomains(storedData, 'write', legacyV2SkipOnWrite);
     // Маппинг: внутренние ключи → ключи Firestore для аналитики
     const achievementsV1 = await AsyncStorage.getItem('achievements_v1');
     if (!isSyncGenerationCurrent()) return;
@@ -3333,10 +3352,20 @@ async function applyRestoreFromUserDoc(
   const progressData = root.progress && typeof root.progress === 'object' && !Array.isArray(root.progress)
     ? root.progress as Record<string, unknown>
     : {};
-  const cloudData = filterLegacyProgressForPhoneState(
+  // зачем (Account V2, Пакет 7A): при активном выключателе старое облако по
+  // V2-доменам больше не обновляется — его значения устаревшие и НЕ должны
+  // перетирать карточки/свайпы/библиотеку, которые ведёт и гидрирует V2.
+  // Неактивно → omit возвращает тот же объект (путь прежний).
+  // Ремонт №1: restore НЕ зависит от открытой области (на холодном старте её ещё нет) —
+  // только флаг + клиент V2 + платформа с областью + метка гидрации этого uid
+  // (resolveAccountsV2LegacySkip). Без метки — старый restore, пустых карточек не будет.
+  const legacyV2SkipOnRestore = isAccountsV2LegacySwitchFlagOn()
+    && await resolveAccountsV2LegacySkip('restore', getAuthUserId());
+  assertCurrent();
+  const cloudData = omitAccountsV2LegacyDomains(filterLegacyProgressForPhoneState(
     progressData as Record<string, string | null>,
     phoneStateOwnsCore,
-  );
+  ), 'restore', legacyV2SkipOnRestore);
   // Raw user_avatar/frame/aura fields are compatibility projections only. A
   // stale cloud snapshot must not revoke a locally committed purchase or a
   // newer PhoneState selection operation.
@@ -3749,6 +3778,8 @@ async function applyRestoreFromUserDoc(
     ] as Array<[string, FlashcardStudyTarget]>)) {
       // Документ главнее, только если он ещё содержит карточки (аккаунт не мигрирован).
       if (cloudData[key] !== null && cloudData[key] !== undefined) continue;
+      // зачем (Пакет 7A): V2 ведёт карточки — страницы старого облака не читаем (лог уже в omit).
+      if (legacyV2SkipOnRestore && isAccountsV2LegacyDomainKey(key)) continue;
       const fromPages = await readFlashcardPages(restoreUid, target);
       assertCurrent();
       if (fromPages) pairs.push([key, fromPages]);
@@ -4093,6 +4124,11 @@ export async function forceSyncToCloud(): Promise<boolean> {
       // Server-owned ключи — та же причина: пишет только CF.
       else if (isServerOwnedProgressKey(key)) delete data[key];
     }
+    // зачем (Account V2, Пакет 7A): как в doSyncToCloud — при активном выключателе
+    // V2-домены (карточки/свайпы/библиотека) в старое облако не переносятся; их
+    // outbox V2 живёт в области uid и уйдёт сам. Неактивно → тот же объект.
+    const forceData = omitAccountsV2LegacyDomains(data, 'write', isAccountsV2LegacySwitchFlagOn()
+      && await resolveAccountsV2LegacySkip('write', getAuthUserId()));
 
     const now = Date.now();
     const docRef = db.collection('users').doc(uid);
@@ -4121,7 +4157,7 @@ export async function forceSyncToCloud(): Promise<boolean> {
           last_active_at: now,
           ...(shouldSendCreatedAt ? { created_at: now } : {}),
         },
-        data,
+        forceData,
       ),
       FORCE_SYNC_FIRESTORE_WRITE_MS,
       'firestore_set',
@@ -4131,7 +4167,7 @@ export async function forceSyncToCloud(): Promise<boolean> {
     pendingSync = false;
     await AsyncStorage.setItem(
       LAST_SYNC_SNAPSHOT_KEY,
-      JSON.stringify(encodeCloudSyncSnapshotRecord(data)),
+      JSON.stringify(encodeCloudSyncSnapshotRecord(forceData)),
     ).catch(swallowError('cloud_sync:forceSyncToCloud'));
     if (shouldSendCreatedAt) {
       await AsyncStorage.setItem(CREATED_AT_SYNC_KEY, '1').catch(swallowError('cloud_sync:forceSyncToCloud'));

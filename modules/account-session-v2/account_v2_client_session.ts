@@ -67,7 +67,14 @@ const PRODUCER_WAKE_MS = 3_000;
 const HYDRATION_DELAY_MS = 2_000;
 
 /** Пакет 6G: сеть и применение гидрации (боевые — в accounts_v2_client_runtime.ts). */
-export type AccountsV2HydrationClientPorts = Pick<AccountsV2HydrationPorts, 'callMigrate' | 'callPull' | 'applyLocal'>;
+export type AccountsV2HydrationClientPorts = Pick<AccountsV2HydrationPorts, 'callMigrate' | 'callPull' | 'applyLocal'> & Readonly<{
+  /** Пакет 7A, ремонт №1: метка «область uid гидрирована при окончательном переносе». */
+  markHydrated?: (uid: string) => Promise<void>;
+  /** Ремонт №2 (P1): метка этого uid есть на телефоне (применение прошло после последней чистки). */
+  isLocallyApplied?: (uid: string) => Promise<boolean>;
+  /** Ремонт №2 (P3): сервер V2 выключен — снять метку, чтобы restore шёл старым путём. */
+  clearHydratedMarker?: () => Promise<void>;
+}>;
 
 type AccountScopeValue = Extract<AccountScope, { kind: 'account' }>;
 
@@ -295,6 +302,13 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
     }
     target.runner.invalidate();
     console.warn(`${LOG} lifecycle server_disabled sending_stopped_until_restart`);
+    // зачем (7A, ремонт №2, P3): V2 на сервере выключена — данные к телефону через неё не
+    // придут; метка снимается, и restore со следующего старта идёт старым путём.
+    const clear = ports.hydration?.clearHydratedMarker;
+    if (clear !== undefined) {
+      clear().then(() => console.warn(`${LOG} lifecycle legacy_marker_cleared reason=server_disabled`),
+        (error: unknown) => console.warn(`${LOG} lifecycle legacy_marker_clear_failed code=${codeOf(error)}`));
+    }
   };
 
   const guardedCall = (uid: string) => async (batch: AccountSyncWireBatch): Promise<unknown> => {
@@ -454,6 +468,8 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
         callPull: hydration.callPull,
         applyLocal: hydration.applyLocal,
         isCurrent,
+        markHydrated: hydration.markHydrated === undefined ? undefined : () => hydration.markHydrated!(target.uid),
+        isLocallyApplied: hydration.isLocallyApplied === undefined ? undefined : () => hydration.isLocallyApplied!(target.uid),
         nowMs,
         sleep: (ms) => new Promise<void>((resolve) => { ports.setTimer(resolve, ms); }),
       }).then((outcome) => {

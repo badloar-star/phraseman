@@ -92,14 +92,28 @@ function ownEntries(record: PlainRecord): readonly (readonly [string, unknown])[
   });
 }
 
-function upsertFields(rejected: AccountSyncOwnedOperation): PlainRecord {
+function upsertFields(rejected: AccountSyncOwnedOperation, allowUnset = false): PlainRecord {
   const payload = rejected.operation.payload;
   if (!plainRecord(payload)) return invalid();
-  const keys = Object.keys(payload).sort();
+  // зачем (Пакет 7A): у более поздних операций допустим третий ключ `unsetFields`;
+  // у отклонённой (SRS) — нет: производитель не смешивает SRS со снятием полей.
+  const keys = Object.keys(payload).filter((key) => !(allowUnset && key === 'unsetFields')).sort();
   if (keys.length !== 2 || keys[0] !== 'fields' || keys[1] !== 'op' || payload.op !== 'upsert') return invalid();
   const fields = payload.fields;
   if (!plainRecord(fields)) return invalid();
   return fields;
+}
+
+/**
+ * Пакет 7A: имена, снятые более поздней операцией (`{ op, fields, unsetFields }`).
+ * Возвращает [] для операции без снятия; форма снятия проверяет сервер.
+ */
+function laterUnsetNames(later: AccountSyncOwnedOperation): readonly string[] {
+  const payload = later.operation.payload;
+  if (!plainRecord(payload) || !Object.prototype.hasOwnProperty.call(payload, 'unsetFields')) return [];
+  const names = payload.unsetFields;
+  if (!Array.isArray(names) || !names.every((name) => typeof name === 'string')) return invalid();
+  return names as readonly string[];
 }
 
 /** Поля, переписанные более поздними операциями карточки; null — карточку позже удалили. */
@@ -116,7 +130,10 @@ function overwrittenByLater(
       || operation.operationId === rejected.operation.operationId) return invalid();
     const payload = operation.payload;
     if (plainRecord(payload) && payload.op === 'tombstone' && Object.keys(payload).length === 1) return null;
-    Object.keys(upsertFields(later)).forEach((name) => overwritten.add(name));
+    // зачем (Пакет 7A): более поздняя операция могла СНЯТЬ поле (`unsetFields`) —
+    // перевыпуск старого значения после неё воскресил бы удалённое поле.
+    laterUnsetNames(later).forEach((name) => overwritten.add(name));
+    Object.keys(upsertFields(later, true)).forEach((name) => overwritten.add(name));
   }
   return overwritten;
 }

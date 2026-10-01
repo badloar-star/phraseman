@@ -96,6 +96,21 @@ export function clearStoredAccountsV2DeletionCredentialIfEnabled(lockOperationId
   });
 }
 
+/**
+ * Пакет 7A: uid открытой области V2, если клиент V2 УЖЕ загружен; иначе null.
+ * зачем: читает выключатель старой синхронизации на горячем пути cloud_sync —
+ * поэтому НИКАКОГО require здесь: не загружен клиент — значит и область не открыта.
+ */
+export function accountsV2OpenScopeUidIfLoaded(): string | null {
+  if (loaded === null || !isAccountsV2ClientEnabled()) return null;
+  try {
+    return loaded.accountsV2OpenScopeUid();
+  } catch (error) {
+    console.warn(`[ACCOUNT-V2] legacy_skip scope_status_failed kind=${error instanceof Error ? error.name : typeof error}`);
+    return null;
+  }
+}
+
 export type AccountsV2ChangeInput = import('../modules/account-session-v2/account_sync_producer_plan').AccountsV2Change;
 
 /**

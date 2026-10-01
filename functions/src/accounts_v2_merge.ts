@@ -1,4 +1,7 @@
 import {
+  ACCOUNTS_V2_CARD_UNSET_KEY,
+  ACCOUNTS_V2_CARD_UNSET_MAX_FIELDS,
+  ACCOUNTS_V2_CARD_UNSET_PROTECTED_FIELDS,
   ACCOUNTS_V2_LIBRARY_MAX_TOMBSTONES,
   ACCOUNTS_V2_MAX_ENTITY_STATE_BYTES,
   ACCOUNTS_V2_SRS_FIELDS,
@@ -165,6 +168,22 @@ function srsNewer(stamp: SrsStamp, value: JsonValue, existing: FlashcardFieldSta
 }
 
 /**
+ * Пакет 7A: имена снимаемых полей карточки или null (payload_invalid).
+ * Массив 1..ACCOUNTS_V2_CARD_UNSET_MAX_FIELDS непустых строк, без повторов,
+ * не защищённые (id, SRS) и не присланные в той же операции в `fields`.
+ */
+export function cardUnsetNames(raw: JsonValue | undefined, fieldNames: readonly string[]): readonly string[] | null {
+  if (!Array.isArray(raw) || raw.length === 0 || raw.length > ACCOUNTS_V2_CARD_UNSET_MAX_FIELDS) return null;
+  const names = raw as readonly JsonValue[];
+  if (!names.every(entityIdString)) return null;
+  const list = names as readonly string[];
+  if (new Set(list).size !== list.length) return null;
+  const protectedNames = ACCOUNTS_V2_CARD_UNSET_PROTECTED_FIELDS as readonly string[];
+  if (list.some((name) => protectedNames.includes(name) || fieldNames.includes(name))) return null;
+  return list;
+}
+
+/**
  * Карточка: `{ op: 'upsert', fields: {…} }` или `{ op: 'tombstone' }`.
  * - Непересекающиеся поля сливаются (частичное обновление).
  * - Поле, изменённое после baseRevision клиента другим устройством, не
@@ -178,6 +197,9 @@ function srsNewer(stamp: SrsStamp, value: JsonValue, existing: FlashcardFieldSta
  * - Tombstone главнее любого позднего update; воскрешения нет.
  * - Значения полей (включая неизвестные, любые ключи и вложенные массивы)
  *   хранятся как есть — внутри stateJson.
+ * - Пакет 7A: `unsetFields` убирает поля, которые устройство видело (ревизия
+ *   поля ≤ базы, вариантов нет); иначе поле остаётся, исход conflict.
+ *   Отсутствующее поле — без изменений. `fields` может быть пустым, если есть снятие.
  */
 export function mergeFlashcard(
   current: FlashcardState | null,
@@ -195,11 +217,15 @@ export function mergeFlashcard(
     return { ok: true, changed: true, conflict: false, state: { deleted: true, fields: {} } };
   }
   const fields = ownValue(payload, 'fields');
-  if (op !== 'upsert' || !hasExactKeys(payload, ['op', 'fields']) || !isJsonObject(fields)) {
+  const withUnset = hasExactKeys(payload, ['op', 'fields', ACCOUNTS_V2_CARD_UNSET_KEY]);
+  if (op !== 'upsert' || !(withUnset || hasExactKeys(payload, ['op', 'fields'])) || !isJsonObject(fields)) {
     return { ok: false, code: 'payload_invalid' };
   }
   const names = ownKeysOf(fields);
-  if (names.length === 0) return { ok: false, code: 'payload_invalid' };
+  const unset = withUnset ? cardUnsetNames(ownValue(payload, ACCOUNTS_V2_CARD_UNSET_KEY), names) : [];
+  if (unset === null) return { ok: false, code: 'payload_invalid' };
+  // зачем (7A): операция обязана что-то менять — либо поля, либо снятие полей.
+  if (names.length === 0 && unset.length === 0) return { ok: false, code: 'payload_invalid' };
   const srsProblem = srsFieldsProblem(fields, nowMs);
   if (srsProblem !== null) return { ok: false, code: srsProblem };
   if (current !== null && current.deleted) return { ok: true, changed: false, conflict: true, state: current };
@@ -208,6 +234,19 @@ export function mergeFlashcard(
   );
   let changed = false;
   let conflict = false;
+  for (const name of unset) {
+    const existing = merged.get(name);
+    if (existing === undefined) continue;
+    // зачем (7A): снимаем только то, что устройство ВИДЕЛО (ревизия поля ≤ базы) и
+    // без вариантов другого устройства. Иначе снятие стёрло бы чужую более позднюю
+    // правку или неразрешённый вариант — поле остаётся, исход conflict (как у fields).
+    if (existing.revision > baseRevision || existing.variants.length > 0) {
+      conflict = true;
+      continue;
+    }
+    merged.delete(name);
+    changed = true;
+  }
   for (const name of names) {
     const value = fields[name];
     const existing = merged.get(name);
@@ -247,7 +286,7 @@ export function mergeFlashcard(
       changed = true;
     }
   }
-  if (!changed && current !== null) return { ok: true, changed, conflict, state: current };
+  if (!changed) return { ok: true, changed, conflict, state: current ?? { deleted: false, fields: {} } };
   const outFields: Record<string, FlashcardFieldState> = {};
   for (const [name, field] of merged) defineData(outFields, name, field);
   return { ok: true, changed, conflict, state: { deleted: false, fields: outFields } };

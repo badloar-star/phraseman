@@ -18,6 +18,11 @@ import {
   type AccountsV2HydrationClientPorts,
 } from './account_v2_client_session';
 import type { HydrationApplyResult, HydrationSnapshot } from './account_v2_hydration';
+import {
+  clearAccountsV2LegacyHydratedMarker,
+  readAccountsV2LegacyHydratedUid,
+  writeAccountsV2LegacyHydratedMarker,
+} from './accounts_v2_legacy_marker';
 
 /*
  * Account V2, Пакет 6B (TG-F76EA3701B55) — боевые порты клиента V2.
@@ -122,6 +127,11 @@ const HYDRATION_PORTS: AccountsV2HydrationClientPorts = Object.freeze({
   callPull: (request: Readonly<{ cursor: string | null; limit: number }>) =>
     callableOf('accountsV2PullMine', SYNC_CALLABLE_TIMEOUT_MS)({ cursor: request.cursor, limit: request.limit }),
   applyLocal: applyHydrationLocally,
+  // зачем (7A, ремонт №1): метка для выключателя старой синхронизации (accounts_v2_legacy_marker.ts).
+  markHydrated: (uid: string) => writeAccountsV2LegacyHydratedMarker(uid, Date.now()),
+  // зачем (7A, ремонт №2): применение заново после чистки; снятие метки при выключенном сервере.
+  isLocallyApplied: async (uid: string) => (await readAccountsV2LegacyHydratedUid()) === uid,
+  clearHydratedMarker: clearAccountsV2LegacyHydratedMarker,
 });
 
 /** Настоящее хранилище области; null — платформа/окружение не готовы (лог внутри). */
@@ -167,6 +177,18 @@ export function syncAccountsV2ClientAuthUid(uid: string | null, isEnabled: () =>
   getController(isEnabled).setAuthUid(uid).catch((error: unknown) => {
     console.warn(`${LOG} runtime set_auth_failed kind=${kindOf(error)}`);
   });
+}
+
+/**
+ * Пакет 7A: uid ОТКРЫТОЙ области V2 (живая сессия, сервер не выключен) или null.
+ * зачем: выключатель старой синхронизации (accounts_v2_legacy_sync_disabled)
+ * действует только пока V2 реально ведёт данные этого аккаунта. Синхронно,
+ * без чтений: только состояние контроллера в памяти.
+ */
+export function accountsV2OpenScopeUid(): string | null {
+  if (controller === null) return null;
+  const status = controller.status();
+  return status.serverDisabled ? null : status.uid;
 }
 
 /**

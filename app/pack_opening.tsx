@@ -167,11 +167,13 @@ function FlippableCard({
       pulse.setValue(0);
       return;
     }
+    // зачем (PM-032, allowlist движения): вечная пульсация запрещена — декоративный цикл стал разовой реакцией.
     const loop = Animated.loop(
       Animated.sequence([
         Animated.timing(pulse, { toValue: 1, duration: 1400, useNativeDriver: true }),
         Animated.timing(pulse, { toValue: 0, duration: 1400, useNativeDriver: true }),
       ]),
+      { iterations: 3 },
     );
     loop.start();
     return () => loop.stop();

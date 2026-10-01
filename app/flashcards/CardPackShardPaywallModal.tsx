@@ -526,9 +526,10 @@ export default function CardPackShardPaywallModal({
       backdropO.value = withTiming(1, { duration: 320, easing: Easing.out(Easing.cubic) });
       sheetY.value = withSpring(0, { damping: 18, stiffness: 90, mass: 0.9 });
       sheetOpacity.value = withTiming(1, { duration: 240 });
+      // зачем (PM-032): разовая реакция на открытие, а не вечная пульсация CTA.
       ctaPulse.value = withRepeat(
         withSequence(withTiming(1, { duration: 1200, easing: Easing.inOut(Easing.sin) }), withTiming(0, { duration: 1200, easing: Easing.inOut(Easing.sin) })),
-        -1,
+        2,
         true,
       );
     } else {

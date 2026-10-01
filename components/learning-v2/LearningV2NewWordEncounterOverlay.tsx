@@ -228,6 +228,8 @@ export default function LearningV2NewWordEncounterOverlay({
           useNativeDriver: true,
         }),
       ]),
+      // зачем (PM-032, allowlist движения): вечная пульсация запрещена — декоративный цикл стал разовой реакцией.
+      { iterations: 3 },
     );
     pulse.start();
     return () => {

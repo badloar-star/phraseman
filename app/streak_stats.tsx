@@ -1842,7 +1842,8 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             withTiming(-4, { duration: 110, easing: Easing.bezier(0.22, 1, 0.36, 1) }),
             withTiming(0, { duration: 160, easing: Easing.bezier(0.77, 0, 0.175, 1) }),
             withDelay(6000, withTiming(0, { duration: 1 })),
-        ), -1, false);
+        // зачем (PM-032): три подпрыгивания и покой, а не вечный зов.
+        ), 3, false);
     }, [dailyJourneyUnreadHop]);
     const dailyJourneyUnreadController = useMemo(() => createDailyJourneyStatsUnreadController({
         captureToken: captureAccountGeneration,

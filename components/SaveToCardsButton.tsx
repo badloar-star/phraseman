@@ -82,7 +82,8 @@ export function SaveToCardsButton({
         withTiming(1, { duration: 900, easing: Easing.out(Easing.quad) }),
         withTiming(0.15, { duration: 900, easing: Easing.in(Easing.quad) }),
       ),
-      -1,
+      // зачем (PM-032): приглашение мигает трижды и успокаивается.
+      3,
       false,
     );
     return () => cancelAnimation(glow);

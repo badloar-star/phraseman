@@ -512,6 +512,8 @@ export default function LessonIntroScreens({
           useNativeDriver: true,
         }),
       ]),
+      // зачем (PM-032, allowlist движения): вечная пульсация запрещена — декоративный цикл стал разовой реакцией.
+      { iterations: 3 },
     );
     bob.start();
     return () => {
@@ -559,6 +561,8 @@ export default function LessonIntroScreens({
           useNativeDriver: true,
         }),
       ]),
+      // зачем (PM-032, allowlist движения): вечная пульсация запрещена — декоративный цикл стал разовой реакцией.
+      { iterations: 3 },
     );
     pulse.start();
     return () => pulse.stop();

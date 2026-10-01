@@ -886,11 +886,13 @@ export default function LessonComplete() {
       Animated.timing(fadeAnim, { toValue: 1, duration: 500, useNativeDriver: true }).start();
     }, 300);
     // Мягкое покачивание
+    // зачем (PM-032, allowlist движения): вечная пульсация запрещена — декоративный цикл стал разовой реакцией.
     const bounce = Animated.loop(
       Animated.sequence([
         Animated.timing(bounceAnim, { toValue: -8, duration: 700, useNativeDriver: true }),
         Animated.timing(bounceAnim, { toValue: 0,  duration: 700, useNativeDriver: true }),
-      ])
+      ]),
+      { iterations: 2 },
     );
     const bounceStartTimer = setTimeout(() => { if (!reducedMotionLoop) bounce.start(); }, 400);
     return () => {

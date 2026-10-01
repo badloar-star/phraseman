@@ -339,6 +339,8 @@ export default function CollectionListView({
           Animated.timing(deleteHintPulse, { toValue: 1.025, duration: 700, useNativeDriver: true }),
           Animated.timing(deleteHintPulse, { toValue: 1, duration: 700, useNativeDriver: true }),
         ]),
+        // зачем (PM-032): разовая реакция, а не вечная пульсация.
+        { iterations: 3 },
       );
       deleteHintPulseLoop.current.start();
     });

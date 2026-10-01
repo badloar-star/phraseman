@@ -25,15 +25,15 @@
 .cont .pr { height: 6px; border-radius: 3px; background: #2A2A2C; margin-top: 10px; overflow: hidden; }
 .cont .pr i { display: block; height: 100%; width: 40%; background: #fff; border-radius: 3px; }
 .tiles { display: flex; gap: 8px; margin-top: 14px; }
-.tl { flex: 1; min-height: 156px; border-radius: 20px; padding: 0 10px 10px; background: var(--card-2); border: 1px solid var(--line); display: flex; flex-direction: column; overflow: hidden; }
-.tl .art { height: 92px; display: flex; align-items: center; }
-.tl .art img { width: 84px; height: 84px; object-fit: contain; }
+.tl { flex: 1; min-width: 0; border-radius: 20px; background: var(--card-2); border: 1px solid var(--line); overflow: hidden; }
+/* три плитки: колонка, ниже прежних (156 → ~115) */
+.tl.c3 { min-height: 100px; padding: 10px 10px 11px; display: flex; flex-direction: column; }
+.tl.c3 img { width: 40px; height: 40px; object-fit: contain; display: block; margin-bottom: 6px; }
+/* две плитки: строка, арт слева */
+.tl.c2 { min-height: 78px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; }
+.tl.c2 img { width: 52px; height: 52px; object-fit: contain; flex: none; }
 .tl .t { font-size: 17px; font-weight: 700; }
-.tl .s { font-size: 12px; line-height: 16px; color: var(--sec); margin-top: 4px; }
-.tl .ar { width: 26px; height: 26px; border-radius: 13px; background: #2A2A2C; display: flex; align-items: center; justify-content: center; margin: auto 0 0 auto; }
-.tl.wide { flex-direction: row; align-items: center; min-height: 110px; padding: 10px 14px; gap: 12px; }
-.tl.wide .art { height: auto; }
-.tl.wide .ar { margin: 0 0 0 auto; }
+.tl .s { font-size: 12px; line-height: 16px; color: var(--sec); margin-top: 3px; }
 .rail { display: flex; gap: 10px; overflow: hidden; margin-top: 4px; }
 .rail .v { width: 220px; flex: none; }
 .rail .th { aspect-ratio: 16/9; border-radius: 14px; background: radial-gradient(90% 120% at 80% 20%, #3B3B3F, #121214 70%); border: 1px solid var(--line); display: flex; align-items: flex-end; padding: 10px; font-size: 13px; font-weight: 800; text-transform: uppercase; }
@@ -72,6 +72,8 @@ const TI = {
   book: '<path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M4 20.5A2.5 2.5 0 016.5 18H20v3H6.5"/>',
   video: '<rect x="3" y="5.5" width="18" height="13" rx="3.5"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/>',
   people: '<circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.5-3.2 2.7-5 5.5-5s5 1.8 5.5 5"/><circle cx="16.5" cy="9.5" r="2.6"/><path d="M15.5 14.2c2.6-.3 4.6 1.3 5 4.3"/>',
+  cards: '<rect x="4" y="6" width="13" height="14" rx="2.5"/><path d="M8 3.5h9.5A2.5 2.5 0 0120 6v11"/>',
+  chat: '<path d="M4 6.5A2.5 2.5 0 016.5 4h11A2.5 2.5 0 0120 6.5v7a2.5 2.5 0 01-2.5 2.5H10l-4 3.5V16h0A2.5 2.5 0 014 13.5z"/>',
   gear: '<circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.4M12 18.8v2.4M4.2 7.5l2 1.2M17.8 15.3l2 1.2M4.2 16.5l2-1.2M17.8 8.7l2-1.2"/><circle cx="12" cy="12" r="7"/>',
 };
 const ALL_TABS = [['home', 'Главная'], ['book', 'Обучение'], ['video', 'Видео'], ['people', 'Сообщество'], ['gear', 'Настройки']];
@@ -91,9 +93,9 @@ const TILE = {
   dialogues: ['chat_bubbles', 'Диалоги', 'Реальные ситуации'],
   cards: ['notecard_stack', 'Карточки', 'Слова, фразы и выражения'],
 };
-const tile = (key, wide) => { const [art, t, s] = TILE[key]; return wide
-  ? `<div class="tl wide"><div class="art"><img src="${img(art + ".png")}" alt=""></div><div><div class="t">${t}</div><div class="s">${s}</div></div><div class="ar">${icon('fwd', 's16')}</div></div>`
-  : `<div class="tl"><div class="art"><img src="${img(art + ".png")}" alt=""></div><div class="t">${t}</div><div class="s">${s}</div><div class="ar">${icon('fwd', 's16')}</div></div>`; };
+const tile = (key, n) => { const [art, t, sub] = TILE[key]; return n === 3
+  ? `<div class="tl c3"><img src="${img(art + '.png')}" alt=""><div class="t">${t}</div><div class="s">${sub}</div></div>`
+  : `<div class="tl c2"><img src="${img(art + '.png')}" alt=""><div style="min-width:0"><div class="t">${t}</div><div class="s">${sub}</div></div></div>`; };
 const header = (L) => `<div class="hstats"><span class="hstat">${icon('flame', 's18')}12</span><span class="hstat"><img src="${coin}" alt="">1 240</span><span class="hstat">${icon('boltF', 's18')}5</span><span style="margin-left:auto" class="flex"><img class="hflag" src="${img(L.flag + ".webp")}" alt=""><span class="rb fill" style="margin-left:8px">${icon('chatDots', 's18')}</span></span></div>`;
 const cont = `<div class="cont"><img src="${img("book_stack.png")}" style="width:56px;height:56px;object-fit:contain" alt=""><div class="grow"><div style="font-size:13px;color:var(--sec);font-weight:700;letter-spacing:1.5px">ПРОДОЛЖИТЬ</div><div style="font-size:17px;font-weight:700;margin-top:3px">Урок 4 · Present Simple</div><div class="pr"><i></i></div></div></div>`;
 const rail = (L) => `<div class="sec" style="margin-top:22px"><div class="ti" style="font-size:18px">Видео</div><div class="ac">${icon('fwd', 's16')}</div></div><div class="rail">${['Catch a flight', 'Small talk', 'Get over it'].map((t) => `<div class="v"><div class="th">${t}</div><div class="vt">${t} — ${L.name.toLowerCase()} канал</div></div>`).join('')}</div>`;
@@ -106,23 +108,24 @@ const today = (L) => {
 };
 const phrase = `<div class="phrase"><img src="${img("mug_quote.png")}" alt=""><div><div style="font-size:13px;color:var(--sec);font-weight:700;letter-spacing:1.5px">ФРАЗА ДНЯ</div><div style="font-size:17px;font-weight:700;margin-top:3px">Ça marche !</div><div style="font-size:14px;color:var(--sec)">Договорились!</div></div></div>`;
 
-const home = (code, opt = {}) => {
+const TAB_OF = { lessons: ['book', 'Обучение'], dialogues: ['chat', 'Диалоги'], cards: ['cards', 'Карточки'] };
+const home = (code) => {
   const L = LANGS[code];
   const tiles = ['lessons', 'dialogues', 'cards'].filter((k) => L[k]);
-  const wide = tiles.length === 1 && opt.single !== 'small';
-  const tabs = ALL_TABS.filter(([k]) => k !== 'book' || L.lessons);
-  return phone(`${header(L)}${L.lessons ? cont : ''}<div class="tiles">${tiles.map((k) => tile(k, wide)).join('')}</div>${L.videos ? rail(L) : ''}${today(L)}${L.phrase ? phrase : ''}<div style="height:110px"></div>`, { time: '9:41', fixed: tabbar(tabs) });
+  // D136: один готовый раздел — не плиткой на Главной, а вкладкой в таббаре
+  const solo = tiles.length === 1 ? tiles[0] : null;
+  const second = L.lessons ? TAB_OF.lessons : solo ? TAB_OF[solo] : null;
+  const tabs = [ALL_TABS[0], ...(second ? [second] : []), ...ALL_TABS.slice(2)];
+  const tilesRow = tiles.length >= 2 ? `<div class="tiles">${tiles.map((k) => tile(k, tiles.length)).join('')}</div>` : '';
+  return phone(`${header(L)}${L.lessons ? cont : ''}${tilesRow}${L.videos ? rail(L) : ''}${today(L)}${L.phrase ? phrase : ''}<div style="height:110px"></div>`, { time: '9:41', fixed: tabbar(tabs) });
 };
 
 document.getElementById('cov').innerHTML = `<tr><th>Язык</th><th>Уроки + «Обучение»</th><th>Диалоги</th><th>Карточки</th><th>Видео</th><th>Фраза дня</th><th>Шпиль</th></tr>` +
   Object.values(LANGS).map((L) => `<tr><td>${L.name}</td>${['lessons', 'dialogues', 'cards', 'videos', 'phrase', 'spire'].map((k) => `<td class="${L[k] ? 'yes' : 'no'}">${L[k] ? 'есть' : 'нет'}</td>`).join('')}</tr>`).join('');
 
 document.getElementById('root').innerHTML =
-  block('langs', 'Главная по языкам (как сейчас решено в таблице)', 'Английский — всё. Испанский и немецкий — без уроков: нет вкладки «Обучение», нет «Продолжить», плиток две. Французский — как испанский, плюс фраза дня. Итальянский — только карточки и видео.', [
-    col('Английский', home('en')), col('Испанский / Немецкий', home('es')), col('Французский', home('fr')), col('Итальянский', home('it')),
-  ]) +
-  block('single', 'Когда плитка одна (итальянский): как её показать', 'Вариант 1 — одна широкая плитка во всю ширину. Вариант 2 — обычная маленькая плитка слева, справа пусто.', [
-    col('Вариант 1 · широкая', home('it')), col('Вариант 2 · маленькая', home('it', { single: 'small' })),
+  block('langs', 'Главная по языкам (D136)', 'Готовы все три раздела — три плитки. Одного нет — две, по ширине экрана, арт слева. Готов только один — на Главной плиток нет, раздел стоит вкладкой в таббаре (итальянский: «Карточки»). Плитки ниже прежних, стрелок нет.', [
+    col('Английский · 3 плитки', home('en')), col('Испанский / Немецкий · 2 плитки', home('es')), col('Французский · 2 плитки + фраза дня', home('fr')), col('Итальянский · 1 раздел → таббар', home('it')),
   ]);
 </script>
 </body>

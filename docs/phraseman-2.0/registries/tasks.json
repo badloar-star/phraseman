@@ -2421,7 +2421,7 @@
       "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "72d217bfc",
     "owner": "Codex (working-tree retirement pass)",
     "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
     "evidence": [
@@ -2429,20 +2429,23 @@
       "constants/levelGiftRewardIcons.ts: 6 недостающих ID добавлены (pearls_1000, stars_2000, plus_days_14, plus_days_30, xp_bank_1500, cosmetic_theme)",
       "tests/level_gift_reward_icons.test.ts 3/3 PASS (был сломан 1/3)",
       "2026-09-28 server season progression fail-closed: season stars/spin eligibility disabled and season document write guarded; backend test runner still needs a configured globals-enabled invocation",
-      "прогон ревью 2026-10-01: jest tests/home_spin_entry_contract + level_spin_star_callable_retired + level_gift_reward_icons: 3 suites, 6/6 (A1); probes level_gift_client/server_retirement, pm048_gift_section_retirement PASS (A2)"
+      "прогон ревью 2026-10-01: jest tests/home_spin_entry_contract + level_spin_star_callable_retired + level_gift_reward_icons: 3 suites, 6/6 (A1); probes level_gift_client/server_retirement, pm048_gift_section_retirement PASS (A2)",
+      "прогон ревью пачки 3 (01.10): probes server_remote_event_allowlist, level_gift_client_retirement, level_gift_server_retirement, pm048_gift_section_retirement — PASS; клиентские наборы home_spin_entry_contract + level_spin_star_callable_retired — PASS; коммит 6e73af547 (разрешён только giftsToCoinsMigrationReport)"
     ],
     "notes": [
       "Экран /level_reward_spin и эксклюзивные модули удалены; реферальная рулетка (referrals) НЕ тронута; SpinRewardPlaque/LevelSpinRewardModal остались в dev/ResultsSequence (мёртвый проп). tests/level_gift_reward_icons + runtime_lifecycle_ratchet правки НЕ закоммичены (блок as_any ratchet из-за чужого home.tsx)",
       "Аудит 25.09: список LEVEL_GIFT_REWARD_ICON_IDS отставал от ALL_LEVEL_GIFT_DEFS на 6 записей. Экран /level_reward_spin удалён, референциальная рулетка не тронута.",
       "2026-09-28: серверная сезонная eligibility закрыта fail-closed (baseStars/todayStars/spin=false); запись entry.season условная. Backend runner still needs globals-enabled invocation.",
-      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): FAIL (регресс после evidence): tests/server_remote_event_allowlist.probe.ts, указанный в A2 как PASS, на HEAD красный — «retired remote-event token remains: gifts_to_coins» (токен появился с миграцией Q12 «Подарки и спины -> монеты», сторож не обновлён). Остальные пробы и jest зелёные. Также owner-gate MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE (серверные старые события/клейм ждут деплой владельцем) не закрыт. Нужно: решить судьбу токена в пробе (внести gifts_to_coins в разрешённые, раз миграция D51/Q12 легитимна), затем повторное ревью."
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): FAIL (регресс после evidence): tests/server_remote_event_allowlist.probe.ts, указанный в A2 как PASS, на HEAD красный — «retired remote-event token remains: gifts_to_coins» (токен появился с миграцией Q12 «Подарки и спины -> монеты», сторож не обновлён). Остальные пробы и jest зелёные. Также owner-gate MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE (серверные старые события/клейм ждут деплой владельцем) не закрыт. Нужно: решить судьбу токена в пробе (внести gifts_to_coins в разрешённые, раз миграция D51/Q12 легитимна), затем повторное ревью.",
+      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути. Пробы на HEAD: server_remote_event_allowlist PASS, level_gift_client/server_retirement PASS (exit 0), pm048_gift_section_retirement PASS; клиентские наборы home_spin_entry_contract + level_spin_star_callable_retired PASS. Совместимость (коммит 6e73af547) проверена по существу: в пробе разрешён ровно один экспорт giftsToCoinsMigrationReport (админ-отчёт миграции подарков в монеты; пишет одну строку-счётчики в коллекцию отчётов, XP/событий/наград не выдаёт; замечание: комментарий «только чтение» неточен — функция пишет отчёт). Новых источников XP/событий нет. Статус остаётся review: ждёт owner-gate MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE (Q83)."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": "CHANGES_REQUIRED",
+    "kind": "code",
+    "review_verdict": "PASS",
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE": "НЕ закрыт: owner-gate, ждёт Q83 (решение координатора)"
     },
     "actual_model": "sonnet-5",
     "actual_reasoning": "high"
@@ -3014,7 +3017,8 @@
       "P3g level gift retired effects: server/client probes RED→GREEN; focused ESLint and diff check passed; focused Jest OOM",
       "P3h profile-card XP definition: tests/profile_card_xp_definition_retirement.probe.ts RED→GREEN exit 0; focused ESLint 0 errors",
       "2026-09-28: level_gift_client_retirement.probe.ts + level_gift_server_retirement.probe.ts: PASS",
-      "прогон ревью 2026-10-01: pm055_xp_multiplier_runtime_retirement PASS, pm055_xp_surface_retirement PASS, xp_boost_tokens_compat_only FAIL"
+      "прогон ревью 2026-10-01: pm055_xp_multiplier_runtime_retirement PASS, pm055_xp_surface_retirement PASS, xp_boost_tokens_compat_only FAIL",
+      "прогон ревью пачки 3 (01.10): xp_boost_tokens_compat_only PASS, pm055_xp_multiplier_runtime_retirement PASS, pm055_xp_surface_retirement PASS; A1 по-прежнему NOT accepted"
     ],
     "notes": [
       "D02/D09 дают решение удалить XP-множители и награды; P1 снял их влияние на app/xp_manager.ts без стирания legacy данных или изменения sync/Auth/Rules/Functions/покупок.",
@@ -3028,14 +3032,16 @@
       "P3f removed six retired reward options from global broadcast publishing/client/admin. Old broadcasts and receipts yield no retired reward mutation, while messages/shards/pack trial remain. Published functions and old data remain untouched; A1/A2 open.",
       "P3g removed retired XP/shield/league effects from level gifts; six shards IDs added to client fallback. Tests device/Jest not green; A1/A2 open.",
       "P3h removed unused profile-card XP boost definition, preserving IV+ earned-shards perk and card levels. Other XP sources, cache, notifications and gates remain open.",
-      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): FAIL. A1 (покупки, выдача, расчёт, UI, кеш и notifications убраны): evidence и notes признают, что выдача/покупки/кеш/notifications не проверены как полностью удалённые («A1 остаётся open»); сторож xp_boost_tokens_compat_only красный (3 файла вне compat-списка, два из них — миграция подарков->монеты Q12 и инвентарь Account V2, т.е. возможно легитимные, но список не обновлён). A2 (Plus-права) подтверждён по bounded scan 28.09. Также owner-gate MIGRATION_AND_ROLLBACK не закрыт. Нужно: довести/подтвердить остальные источники, обновить compat-список пробы осознанно, owner-gate."
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): FAIL. A1 (покупки, выдача, расчёт, UI, кеш и notifications убраны): evidence и notes признают, что выдача/покупки/кеш/notifications не проверены как полностью удалённые («A1 остаётся open»); сторож xp_boost_tokens_compat_only красный (3 файла вне compat-списка, два из них — миграция подарков->монеты Q12 и инвентарь Account V2, т.е. возможно легитимные, но список не обновлён). A2 (Plus-права) подтверждён по bounded scan 28.09. Также owner-gate MIGRATION_AND_ROLLBACK не закрыт. Нужно: довести/подтвердить остальные источники, обновить compat-список пробы осознанно, owner-gate.",
+      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): FAIL по критерию A1. Обе пробы теперь зелёные (xp_boost_tokens_compat_only PASS: 3178 файлов, 6/6 compat-файлов; pm055_xp_multiplier_runtime_retirement PASS, pm055_xp_surface_retirement PASS); три файла, добавленных коммитом 6e73af547, проверены: app/cloud_sync.ts (стирание старых ключей gift_xp_*), app/gifts_to_coins_table_v1.ts (оценка старых XP-предметов в монетах), functions/src/accounts_v2_migration/inventory.ts (опись старых полей) — только совместимость, не новый источник XP. НО A1 (покупки, выдача, расчёт, UI, кеш и notifications убраны) остаётся accepted=false: evidence и notes признают «частично», записи о закрытии остальных источников/кеша/notifications нет; старый текст «спины остаются» устарел (спины удалены PM-046). Нужно: исполнитель либо доказывает полноту удаления и принимает A1, либо оставляет открытым. Также ждёт gate MIGRATION (Q83)."
     ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": "CHANGES_REQUIRED",
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE": "НЕ закрыт: owner-gate, ждёт Q83 (решение координатора)"
     },
     "actual_model": "sonnet-5",
     "actual_reasoning": "high"
@@ -4338,15 +4344,24 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": ["Owner decision 2026-09-27: старые руны не переводить в монеты; автоматическую конвертацию не добавлять."],
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "evidence": [
+      "прогон ревью пачки 3 (01.10): coin_rank_upgrade.test PASS; node:test coin_rank_upgrade_guard_behavior 4/4; probe coin_rank_ceremony_once PASS; app/coin_rank_upgrade_v1.ts:145-150 публикация после multiSet"
+    ],
+    "notes": [
+      "Owner decision 2026-09-27: старые руны не переводить в монеты; автоматическую конвертацию не добавлять.",
+      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути. coin_rank_upgrade.test PASS; coin_rank_upgrade_guard_behavior (node:test) 4/4; probe coin_rank_ceremony_once PASS; код coin_rank_upgrade_v1.ts: публикация нового ранга только после AsyncStorage.multiSet (A1), operationId + замки (A2), поколение аккаунта (A3). Остаётся review: gate MIGRATION не закрыт (вопрос координатору: закрывается ли он решением «руны в монеты не конвертировать» или отдельным пакетом)."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE": "НЕ закрыт: owner-gate, ждёт Q83 (решение координатора)"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-079",
@@ -4389,15 +4404,23 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "evidence": [
+      "прогон ревью пачки 3 (01.10): coin_rank_upgrade.test + dialogue_v2_access_contract — PASS"
+    ],
+    "notes": [
+      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути. Ранг в отдельном ключе coin_rank_v1:<owner>, пишет только coin_rank_upgrade_v1.ts; coin_rank_upgrade.test PASS (нехватка монет: ни списания, ни ранга); dialogue_v2_access_contract PASS (доступ к диалогам по рангу). Остаётся review: gate MIGRATION не закрыт."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE": "НЕ закрыт: owner-gate, ждёт Q83 (решение координатора)"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-080",
@@ -4677,17 +4700,24 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "evidence": [
+      "прогон ревью пачки 3 (01.10): energy_first_question_gate.test — PASS"
+    ],
     "notes": [
-      "Owner decision 2026-09-28: повторное списание энергии при возврате в незавершённый урок не считать багом и не менять. Оставить поведение как есть; задача deferred до отдельного решения."
+      "Owner decision 2026-09-28: повторное списание энергии при возврате в незавершённый урок не считать багом и не менять. Оставить поведение как есть; задача deferred до отдельного решения.",
+      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути. energy_first_question_gate.test PASS; все три критерия подтверждены тестом: один operationId на попытку, remount/retry/prefetch/double-tap без повторного списания, неготовый урок не списывает. Решение владельца 28.09 про повторное списание при возврате в незавершённый урок учтено (поведение не менять). Source-level, на устройстве не проверялось. Остаётся review: gate MIGRATION не закрыт."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE": "НЕ закрыт: owner-gate, ждёт Q83 (решение координатора)"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-085",
@@ -4730,15 +4760,23 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "evidence": [
+      "прогон ревью пачки 3 (01.10): чтение components/energy/AnimatedEnergyNumber.tsx:40-56,86"
+    ],
+    "notes": [
+      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути (источник). components/energy/AnimatedEnergyNumber.tsx: consumedOperationIds (одна анимация на операцию, лимит 128), pointerEvents none, при reducedMotion значение ставится сразу. Отдельного теста нет, визуально/на устройстве не проверялось. Остаётся review: gate MIGRATION не закрыт; видимая правка — также вопрос к gate дизайна."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "design",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE": "НЕ закрыт: owner-gate, ждёт Q83 (решение координатора)"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-086",
@@ -4950,15 +4988,23 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "evidence": [
+      "прогон ревью пачки 3 (01.10): energy_cap_d98_migration.test — PASS; D98 в 03_DECISIONS.md:69"
+    ],
+    "notes": [
+      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути. D98 OWNER_FINAL 30.09 в 03_DECISIONS.md; раздел «Решение по миграции» в docs/ENERGY.md; app/bonus_energy_store.ts не выдаёт бонусов, потолок 5; energy_cap_d98_migration.test PASS. Остаётся review: gate MIGRATION (подтверждение отката/необратимости обрезки >5) не закрыт."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "decision",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE": "НЕ закрыт: owner-gate, ждёт Q83 (решение координатора)"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-090",
@@ -5001,15 +5047,23 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "evidence": [
+      "прогон ревью пачки 3 (01.10): pm090_zero_energy_no_forced_ads_contract.test + energy_first_question_gate.test — PASS"
+    ],
+    "notes": [
+      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути. pm090_zero_energy_no_forced_ads_contract.test PASS, energy_first_question_gate PASS; NoEnergyModal считает timeToStartMs (A1), рекламного SDK нет, списание только при показе первого вопроса (A2). Остаётся review: gate MIGRATION не закрыт."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE": "НЕ закрыт: owner-gate, ждёт Q83 (решение координатора)"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-091",
@@ -5944,17 +5998,25 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "7b64aa008",
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "evidence": [
+      "прогон ревью пачки 3 (01.10): functions client_reports, video_phrases, video_save_counts 43/43; community_pack_private_by_default PASS; коммит 7b64aa008"
+    ],
+    "notes": [
+      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути. functions: client_reports + video_phrases + video_save_counts, 3 набора, 43/43; клиент community_pack_private_by_default 3/3; коммит 7b64aa008 существует. Оговорка: functions/src/community_packs.ts грязный от другой сессии (удаление подарков). Остаётся review: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES не закрыт."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "НЕ закрыт: owner-gate, ждёт подтверждения владельца/«Дизайна»"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-109",
@@ -5997,17 +6059,25 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "84e03f439",
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "evidence": [
+      "прогон ревью пачки 3 (01.10): functions video_phrases PASS; коммит 84e03f439"
+    ],
+    "notes": [
+      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути. functions video_phrases.test PASS (в составе 43/43); коммит 84e03f439 существует. Остаётся review: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES не закрыт."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "НЕ закрыт: owner-gate, ждёт подтверждения владельца/«Дизайна»"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-110",
@@ -6101,17 +6171,25 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "af528a897",
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "evidence": [
+      "прогон ревью пачки 3 (01.10): video_favorites + video_favorites_rules_contract PASS; коммит af528a897"
+    ],
+    "notes": [
+      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути. video_favorites.test + video_favorites_rules_contract.test PASS; firestore.rules не менялись после evidence; коммит af528a897. UI-кнопка — зона «Дизайн», деплой правил — владелец. Остаётся review: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES не закрыт."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "НЕ закрыт: owner-gate, ждёт подтверждения владельца/«Дизайна»"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-112",
@@ -6165,17 +6243,25 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "af528a897",
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "evidence": [
+      "прогон ревью пачки 3 (01.10): functions video_save_counts PASS; video_favorites_rules_contract PASS; коммит af528a897"
+    ],
+    "notes": [
+      "2026-10-01 независимое ревью пачки 3 (agent-reviewer, Q75/§32): PASS по сути. functions video_save_counts.test PASS (в составе 43/43); правило video_save_counts: клиент только читает (video_favorites_rules_contract PASS); коммит af528a897. Остаётся review: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES не закрыт."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "НЕ закрыт: owner-gate, ждёт подтверждения владельца/«Дизайна»"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-113",

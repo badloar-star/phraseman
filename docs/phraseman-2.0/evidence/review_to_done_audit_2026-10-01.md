@@ -162,3 +162,27 @@ done требует одновременно: все критерии приня
 | PM-055 | FAIL | PM-055-A1 переведён в NOT_MET: evidence признаёт «частично»; xp_boost_tokens_compat_only.probe красный (app/cloud_sync.ts, app/gifts_to_coins_table_v1.ts, functions/src/accounts_v2_migration/inventory.ts); owner-gate MIGRATION не закрыт | review (CHANGES_REQUIRED) |
 
 Оговорки: actual_reasoning для done-задач — «unrecorded» (Q78); у PM-006 сохранено «high» из аудита. mark.py/render_views.py не запускались; правка tasks.json точечная, с сохранением CRLF. Две красные пробы (PM-046, PM-055) — следствие миграции подарков в монеты (Q12): либо расширить их белые списки осознанно, либо убрать токены.
+
+
+## Пачка 3 — независимое ревью (2026-10-01, Q75/§32)
+
+Ревьюер: agent-reviewer (Sonnet 5.5) по поручению координатора. Задачи: PM-046, 055 (повторно), 078, 079, 084, 085, 089, 090, 108, 109, 111, 112. Общие gates BASELINE_SHA_APPROVED / DOMAIN_AUDIT_AND_IMPACT_ACCEPTED — пакетом [GATES_COMMON_2026-10-01.md](GATES_COMMON_2026-10-01.md). У всех 12 задач есть ещё один gate, пакетом не закрытый: MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE (PM-046…090) или DESIGN_APPROVED_FOR_VISIBLE_CHANGES (PM-108…112), поэтому по §32 никто не переведён в done. Тесты гонялись под слотом светофора. Вердикты — также в worklog.jsonl (REVIEW_VERDICT). Использован mark.write_task_block (меняются только блоки задач, CRLF сохранён); render_views.py не запускался.
+
+Итог: PASS -> done: 0. PASS по сути, ждут owner-gate (остаются review): 11 — PM-046, 078, 079, 084, 085, 089, 090 (MIGRATION), PM-108, 109, 111, 112 (DESIGN). FAIL: 1 — PM-055 (критерий A1 не принят).
+
+| Задача | Вердикт | Что проверено | Статус после |
+|---|---|---|---|
+| PM-046 | PASS по сути | пробы server_remote_event_allowlist, level_gift_client/server_retirement, pm048_gift_section_retirement — PASS на HEAD; home_spin_entry_contract + level_spin_star_callable_retired PASS. Коммит 6e73af547 разрешает в пробе ровно один экспорт giftsToCoinsMigrationReport — админ-отчёт миграции подарков в монеты (пишет одну строку-счётчики, XP/событий/наград не выдаёт). Замечание: комментарий «только чтение» в пробе неточен (функция пишет отчёт) | review (ждёт Q83) |
+| PM-055 | FAIL (A1) | пробы xp_boost_tokens_compat_only (3178 файлов, 6/6 compat), pm055_xp_multiplier_runtime_retirement, pm055_xp_surface_retirement — PASS; три добавленных compat-файла (cloud_sync — стирание старых ключей, gifts_to_coins_table_v1 — оценка в монетах, accounts_v2_migration/inventory — опись) — только совместимость, нового источника XP нет. Но A1 остаётся accepted=false: evidence признаёт «частично», закрытие кеша/notifications/остальных источников не показано | review (CHANGES_REQUIRED; плюс Q83) |
+| PM-078 | PASS по сути | coin_rank_upgrade.test PASS, guard_behavior (node:test) 4/4, probe coin_rank_ceremony_once PASS; публикация ранга после multiSet | review (gate MIGRATION) |
+| PM-079 | PASS по сути | coin_rank_upgrade.test + dialogue_v2_access_contract PASS | review (gate MIGRATION) |
+| PM-084 | PASS по сути | energy_first_question_gate.test PASS (один operationId, без повторного списания, неготовый урок не списывает); source-level | review (gate MIGRATION) |
+| PM-085 | PASS по сути | чтение AnimatedEnergyNumber.tsx: одна анимация на операцию, reduce motion — сразу; теста нет | review (gate MIGRATION) |
+| PM-089 | PASS по сути | D98 OWNER_FINAL, раздел ENERGY.md, energy_cap_d98_migration.test PASS | review (gate MIGRATION: откат/необратимость обрезки >5) |
+| PM-090 | PASS по сути | pm090_zero_energy_no_forced_ads_contract + energy_first_question_gate PASS; NoEnergyModal показывает время до следующей единицы | review (gate MIGRATION) |
+| PM-108 | PASS по сути | functions client_reports/video_phrases/video_save_counts 43/43; community_pack_private_by_default PASS; коммит 7b64aa008. community_packs.ts грязный от другой сессии | review (gate DESIGN) |
+| PM-109 | PASS по сути | video_phrases.test PASS; коммит 84e03f439 | review (gate DESIGN) |
+| PM-111 | PASS по сути | video_favorites + video_favorites_rules_contract PASS; коммит af528a897; UI — зона «Дизайн», деплой правил — владелец | review (gate DESIGN) |
+| PM-112 | PASS по сути | video_save_counts.test PASS; правило «клиент только читает» подтверждено; коммит af528a897 | review (gate DESIGN) |
+
+Оговорки: actual_model для задач без записи проставлено «unknown, снимок нескольких сессий», actual_reasoning «unrecorded» (§34). result_sha проставлен только там, где есть отдельный коммит (PM-046, 108, 109, 111, 112); у PM-078…090 код входил в общие снимки. Работоспособность на устройстве/в проде не проверялась.

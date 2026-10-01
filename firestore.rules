@@ -3331,9 +3331,21 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // Видео-студия: refresh token каналов YouTube и одноразовые state OAuth —
+    // только сервер (Admin SDK). Исключены и из админского catch-all ниже:
+    // браузерная админка не должна читать токены (youtube_captions_oauth.ts).
+    match /admin_youtube_channels/{docId} {
+      allow read, write: if false;
+    }
+    match /admin_youtube_oauth_states/{docId} {
+      allow read, write: if false;
+    }
+
     match /{collection}/{document=**} {
       allow read, write: if isAdmin()
         && collection != 'users'
+        && collection != 'admin_youtube_channels'
+        && collection != 'admin_youtube_oauth_states'
         && collection != 'accounts_v2'
         && collection != 'account_deletion_tombstones'
         && collection != 'account_deletion_auth_markers'

@@ -22,30 +22,31 @@ import {
  * 0 вызовов ИИ — чистое сопоставление текста, копейки на вызов.
  */
 const REGION = 'us-central1';
-const VIDEO_ID_RE = /^[0-9A-Za-z_-]{11}$/;
+export const VIDEO_ID_RE = /^[0-9A-Za-z_-]{11}$/;
 
-function requireContentWriter(auth: { uid?: string; token?: Record<string, unknown> } | undefined): string {
+export function requireContentWriter(auth: { uid?: string; token?: Record<string, unknown> } | undefined): string {
   if (!auth?.uid || !auth.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
   const role: AdminRole = hasAdminRole(auth.token.adminRole) ? auth.token.adminRole : 'owner';
   if (!hasPermission(role, 'content.draft.write')) throw new HttpsError('permission-denied', 'Role cannot edit video phrases');
   return auth.uid;
 }
 
-export const adminAlignVideoPhraseTranscript = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, memory: '512MiB', timeoutSeconds: 60 }, async (request) => {
-  const uid = requireContentWriter(request.auth as { uid?: string; token?: Record<string, unknown> } | undefined);
-  const videoId = String(request.data?.videoId ?? '').trim();
-  if (!VIDEO_ID_RE.test(videoId)) throw new HttpsError('invalid-argument', 'video_id_invalid');
-
+/**
+ * Подобрать время фраз по тексту транскрипции. Общая часть для ручной загрузки
+ * файла и для «Взять из YouTube» (youtube_captions_oauth.ts) — чтобы логика была одна.
+ */
+export function alignVideoPhraseTranscript(input: Readonly<{ videoId: string; rawPhrases: unknown; transcript: string; uid: string; source: string }>) {
+  const { videoId, uid } = input;
   let phrases;
-  try { phrases = normalizeVideoPhraseList(videoId, request.data?.phrases); }
+  try { phrases = normalizeVideoPhraseList(videoId, input.rawPhrases); }
   catch (error) { throw new HttpsError('invalid-argument', error instanceof Error ? error.message : 'phrases_invalid'); }
   if (!phrases.length) throw new HttpsError('invalid-argument', 'phrases_required');
 
   let cues;
-  try { cues = parseTranscript(String(request.data?.transcript ?? '')); }
+  try { cues = parseTranscript(String(input.transcript ?? '')); }
   catch (error) {
     const reason = error instanceof Error ? error.message : 'transcript_invalid';
-    console.warn(`[VIDEO-TIMING] ${videoId}: транскрипция отклонена — ${reason}`);
+    console.warn(`[VIDEO-TIMING] ${videoId}: транскрипция отклонена (${input.source}) — ${reason}`);
     throw new HttpsError('invalid-argument', reason);
   }
 
@@ -58,7 +59,7 @@ export const adminAlignVideoPhraseTranscript = onCall({ region: REGION, enforceA
   });
   const found = matches.filter((match) => match.startSec !== null).length;
   const unsure = matches.filter((match) => match.startSec !== null && match.score < TIMING_CONFIDENT_SCORE).length;
-  console.log(`[VIDEO-TIMING] ${videoId} uid=${uid}: реплик ${cues.length}, фраз ${phrases.length}, найдено ${found}, проверить ${unsure}, не найдено ${phrases.length - found}, ${Date.now() - startedAt} мс`);
+  console.log(`[VIDEO-TIMING] ${videoId} uid=${uid} source=${input.source}: реплик ${cues.length}, фраз ${phrases.length}, найдено ${found}, проверить ${unsure}, не найдено ${phrases.length - found}, ${Date.now() - startedAt} мс`);
 
   return {
     ok: true,
@@ -69,4 +70,11 @@ export const adminAlignVideoPhraseTranscript = onCall({ region: REGION, enforceA
     matches,
     counts: { found, unsure, missing: phrases.length - found },
   };
+}
+
+export const adminAlignVideoPhraseTranscript = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, memory: '512MiB', timeoutSeconds: 60 }, async (request) => {
+  const uid = requireContentWriter(request.auth as { uid?: string; token?: Record<string, unknown> } | undefined);
+  const videoId = String(request.data?.videoId ?? '').trim();
+  if (!VIDEO_ID_RE.test(videoId)) throw new HttpsError('invalid-argument', 'video_id_invalid');
+  return alignVideoPhraseTranscript({ videoId, rawPhrases: request.data?.phrases, transcript: String(request.data?.transcript ?? ''), uid, source: 'file' });
 });

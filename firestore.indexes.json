@@ -1291,6 +1291,12 @@
       "indexes": []
     },
     {
+      "collectionGroup": "admin_youtube_oauth_states",
+      "fieldPath": "expireAt",
+      "ttl": true,
+      "indexes": []
+    },
+    {
       "collectionGroup": "arena_v2_target_profiles",
       "fieldPath": "mastery",
       "indexes": []

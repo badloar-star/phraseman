@@ -235,8 +235,7 @@ function fixedChildSection(pathname: string): NavigationSection | null {
   ) return 'lessons';
 
   if (
-    pathname === '/phrase_analytics_screen'
-    || pathname === '/_pos_analytics_audit'
+    pathname === '/_pos_analytics_audit'
     || pathname === '/pos_analytics_audit'
   ) return 'practice';
 

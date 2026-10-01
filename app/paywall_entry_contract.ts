@@ -53,7 +53,6 @@ export const PAYWALL_SOURCE_VALUES = [
   'avatar_aura_picker',
   'flashcards_collection',
   'mistake_practice_direct',
-  'phrase_analytics',
   'settings_theme_picker',
   'stats_streak',
   'intro_ended',

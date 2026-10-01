@@ -10,7 +10,7 @@ const STATIC_SCREEN_NAMES = [
   'lesson_theory_v2', 'lesson_words', 'level_exam',
   // зачем (2026-09-30, D78): экраны paywall_a…g удалены — пейвол Plus живёт в premium_modal.
   'lingman_videos', 'manage_subscription', 'pack_opening',
-  'phrase_analytics_screen', 'premium_modal',
+  'premium_modal',
   'preposition_drill', 'privacy_screen', 'promo_code_entry',
   'referrals', 'settings_edu', 'settings_language',
   'settings_notifications', 'settings_themes', 'shards_shop', 'streak_stats', 'terms_screen',

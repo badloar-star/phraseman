@@ -83,8 +83,9 @@ describe("retired coach diagnosis full-removal boundary", () => {
   });
 
   test("живые соседние поверхности остались на месте", () => {
-    // Разбор фраз — экран жив и считает ошибки сам, без «погашенных тренировкой».
-    expect(exists("app/phrase_analytics_screen.tsx")).toBe(true);
+    // зачем (владелец 01.10, Q11): экран «Разбор твоих ошибок» удалён; данные разбора
+    // фраз (phrase_analytics.ts) живы — их читают уроки.
+    expect(exists("app/phrase_analytics_screen.tsx")).toBe(false);
     expect(exists("app/phrase_analytics.ts")).toBe(true);
     const analytics = read("app/phrase_analytics.ts");
     expect(analytics).toContain("const activeCategories = resolved.categories;");

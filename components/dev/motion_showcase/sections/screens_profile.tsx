@@ -111,7 +111,6 @@ export const SECTION: ShowcaseSection = {
     { id: 'privacy-screen', title: cs('privacy_screen_title'), kind: 'route', route: '/privacy_screen', detail: cs('real_screen') },
     { id: 'terms-screen', title: cs('terms_screen_title'), kind: 'route', route: '/terms_screen', detail: cs('real_screen') },
     { id: 'streak-stats', title: cs('streak_stats_title'), kind: 'route', route: '/streak_stats', detail: cs('real_screen') },
-    { id: 'phrase-analytics', title: cs('phrase_analytics_title'), kind: 'route', route: '/phrase_analytics_screen', detail: cs('real_screen') },
     { id: 'shards-shop', title: cs('shards_shop_title'), kind: 'route', route: '/shards_shop', detail: cs('real_screen') },
     // зачем (D70/D78): пункт /coin_exchange удалён из дев-витрины вместе с экраном биржи.
     // зачем (D57/PM-062): пункт /avatar_select удалён из дев-витрины вместе с экраном.

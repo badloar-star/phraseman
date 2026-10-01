@@ -143,7 +143,7 @@ export default function PosAnalyticsAuditScreen() {
     <ScreenGradient>
       <SafeAreaView testID="screen-pos-analytics-audit" style={{ flex: 1 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingVertical: 14 }}>
-          <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/phrase_analytics_screen' as any); }} hitSlop={12} style={{ padding: 4 }}>
+          <TouchableOpacity onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/home' as any); }} hitSlop={12} style={{ padding: 4 }}>
             <Ionicons name="chevron-back" size={26} color={t.textPrimary} />
           </TouchableOpacity>
           <View style={{ flex: 1 }}>

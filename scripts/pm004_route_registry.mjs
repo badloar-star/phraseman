@@ -63,7 +63,6 @@ const OVERRIDES = {
   '/learning_v2_modes_showcase_run/[family]': ['archive', 'dev-инструменты', 'запуск режима из dev-витрины'],
   '/learning-v2/intro-reader-fixture': ['archive', 'dev-инструменты', 'dev-фикстура интро-ридера'],
   '/dev-emulator-login': ['archive', 'dev-инструменты', 'вход тестовым аккаунтом Auth-эмулятора; работает только при __DEV__ + EXPO_PUBLIC_FIREBASE_EMULATOR_HOST (Account V2, 2065c99bc)'],
-  '/phrase_analytics_screen': ['keep', 'ошибки (Premium)', 'Разбор твоих ошибок: вход из «Работы над ошибками» (решение владельца 01.10, Дизайн 82836a31c)'],
 };
 const STATUS_FROM_OLD = { keep: 'keep', redesign: 'redesign', remove: 'remove', conserve: 'archive' };
 

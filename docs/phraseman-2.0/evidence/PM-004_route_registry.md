@@ -1,12 +1,12 @@
 # PM-004 — реестр экранов и маршрутов
 
-Сгенерировано `node scripts/pm004_route_registry.mjs`. **SHA проверки: `82836a31c`** (общий для всех строк — дерево app/ прочитано на этом коммите).
+Сгенерировано `node scripts/pm004_route_registry.mjs`. **SHA проверки: `93a89a1ce`** (общий для всех строк — дерево app/ прочитано на этом коммите).
 
 Экран = `.tsx` в `app/` с `export default`-компонентом, без `_`-префикса (кроме `_layout`), не PascalCase-компонент и не колокейтед-компонент в `app/flashcards/`, `app/community_packs/`, `app/feedback/` (тот же критерий, что в `registries/screen_inventory.json`, 24.09).
 
 Входы — строки маршрута в кавычках в `app/ components/ hooks/ modules/` (push/replace/Link/реестры навигации), регистрация `<Stack.Screen>` не считается. Deep link — любой маршрут открывается схемой `phraseman://` (Expo Router, `app/+native-intent.tsx` пропускает путь как есть, кроме перечисленных ниже редиректов); `push-уведомление` — маршрут встречается в `app/notification_tap_handler.ts`. Универсальная ссылка `https://knowlyapps.com/phraseman/invite` → `/home` (app.json intentFilters + +native-intent).
 
-Статусы: keep 71, archive 13, redesign 15, remove 2; всего **101**.
+Статусы: keep 70, archive 13, redesign 15, remove 2; всего **100**.
 
 | Маршрут | Файл | Владелец | Статус | Основание | Входов | Примеры входов | Deep link |
 |---|---|---|---|---|---:|---|---|
@@ -14,7 +14,7 @@
 | `/(tabs)/arena` | app/(tabs)/arena.tsx | навигация | **archive** | D83: legacy-якорь URL /arena, рендерит null | 8 | app/(tabs)/_layout.tsx:319<br>app/(tabs)/_layout.tsx:328 | phraseman://arena |
 | `/(tabs)/community` | app/(tabs)/community.tsx | Сообщество | **redesign** | D39: новая вкладка «Сообщество» | 5 | app/(tabs)/home.tsx:2904<br>app/(tabs)/_layout.tsx:319 | phraseman://community<br>push-уведомление |
 | `/(tabs)/friends` | app/(tabs)/friends.tsx | Сообщество/друзья | **redesign** | D39: друзья внутри «Сообщества» | 15 | app/(tabs)/home.tsx:2906<br>app/(tabs)/_layout.tsx:319 | phraseman://friends<br>push-уведомление |
-| `/(tabs)/home` | app/(tabs)/home.tsx | Главная | **redesign** | D42/D50/D97: Главная из блоков референса | 70 | app/(tabs)/index.tsx:10<br>app/(tabs)/_layout.tsx:319 | phraseman://home<br>push-уведомление |
+| `/(tabs)/home` | app/(tabs)/home.tsx | Главная | **redesign** | D42/D50/D97: Главная из блоков референса | 71 | app/(tabs)/index.tsx:10<br>app/(tabs)/_layout.tsx:319 | phraseman://home<br>push-уведомление |
 | `/(tabs)/index` | app/(tabs)/index.tsx | приложение (общая инфраструктура) | **keep** | реестр 24.09 (keep) | 0 | нет (корень/табы/динамический путь) | phraseman://index |
 | `/(tabs)/journal` | app/(tabs)/journal.tsx | навигация | **archive** | legacy-якорь URL /journal (файл = реэкспорт lessons, не рендерится) | 5 | app/(tabs)/_layout.tsx:316<br>app/(tabs)/_layout.tsx:319 | phraseman://journal |
 | `/(tabs)/lessons` | app/(tabs)/lessons.tsx | Обучение | **redesign** | D39/D97: вкладка «Обучение» | 20 | app/(tabs)/friends.tsx:2275<br>app/(tabs)/_layout.tsx:319 | phraseman://lessons |
@@ -30,7 +30,7 @@
 | `/ai_dialog_home` | app/ai_dialog_home.tsx | Диалоги | **keep** | D05/D111: Диалоги остаются (лимит Free 30 ответов/мес) | 8 | app/(tabs)/home.tsx:3147<br>app/ai_dialog_target_gate.ts:64 | phraseman://ai_dialog_home |
 | `/ai_dialog_session` | app/ai_dialog_session.tsx | Диалоги | **keep** | D05/D111 | 7 | app/ai_dialog_briefing.tsx:315<br>app/ai_dialog_target_gate.ts:64 | phraseman://ai_dialog_session |
 | `/coin_rank` | app/coin_rank.tsx | ранг монеты | **keep** | D34/D93 | 3 | app/(tabs)/home.tsx:3365<br>app/(tabs)/home.tsx:3647 | phraseman://coin_rank |
-| `/collectibles_screen` | app/collectibles_screen.tsx | коллекция фраз | **keep** | PROGRESS 2026-09-27: коллекция — одобренная поверхность, дропы сняты | 6 | app/lesson_complete.tsx:1674<br>app/lesson_irregular_verbs.tsx:770 | phraseman://collectibles_screen |
+| `/collectibles_screen` | app/collectibles_screen.tsx | коллекция фраз | **keep** | PROGRESS 2026-09-27: коллекция — одобренная поверхность, дропы сняты | 6 | app/lesson_complete.tsx:1675<br>app/lesson_irregular_verbs.tsx:770 | phraseman://collectibles_screen |
 | `/combined_lesson_pick` | app/combined_lesson_pick.tsx | learning_v1 | **keep** | реестр 24.09 (keep) | 1 | app/(tabs)/lessons.tsx:4175 | phraseman://combined_lesson_pick |
 | `/community_pack_create` | app/community_pack_create.tsx | наборы сообщества | **keep** | D35/D85 | 11 | app/flashcards/FlashcardsCategoryHub.tsx:770<br>app/flashcards/FlashcardsCategoryHub.tsx:854 | phraseman://community_pack_create |
 | `/dev-emulator-login` | app/dev-emulator-login.tsx | dev-инструменты | **archive** | вход тестовым аккаунтом Auth-эмулятора; работает только при __DEV__ + EXPO_PUBLIC_FIREBASE_EMULATOR_HOST (Account V2, 2065c99bc) | 0 | нет (корень/табы/динамический путь) | phraseman://dev-emulator-login |
@@ -46,7 +46,7 @@
 | `/flashcards_audio` | app/flashcards_audio.tsx | карточки | **archive** | редирект на /flashcards (старые ссылки) | 0 | нет (корень/табы/динамический путь) | phraseman://flashcards_audio |
 | `/flashcards_blitz_session` | app/flashcards_blitz_session.tsx | flashcards | **keep** | реестр 24.09 (keep) | 8 | app/flashcards/tabbar_state.ts:232<br>app/flashcards/training_entry.ts:14 | phraseman://flashcards_blitz_session |
 | `/flashcards_card_editor` | app/flashcards_card_editor.tsx | flashcards | **keep** | реестр 24.09 (keep) | 5 | app/flashcards/tabbar_state.ts:252<br>app/flashcards_collection.tsx:819 | phraseman://flashcards_card_editor |
-| `/flashcards_collection` | app/flashcards_collection.tsx | flashcards | **keep** | реестр 24.09 (keep) | 17 | app/community_pack_create.tsx:901<br>app/flashcards/FlashcardsCategoryHub.tsx:590 | phraseman://flashcards_collection |
+| `/flashcards_collection` | app/flashcards_collection.tsx | flashcards | **keep** | реестр 24.09 (keep) | 16 | app/community_pack_create.tsx:901<br>app/flashcards/FlashcardsCategoryHub.tsx:590 | phraseman://flashcards_collection |
 | `/flashcards_market_dev` | app/flashcards_market_dev.tsx | flashcards | **keep** | реестр 24.09 (keep) | 1 | components/dev/motion_showcase/sections/screens_flashcards.ts:19 | phraseman://flashcards_market_dev |
 | `/flashcards_my_packs` | app/flashcards_my_packs.tsx | flashcards | **keep** | реестр 24.09 (keep) | 8 | app/flashcards/FlashcardsCategoryHub.tsx:943<br>app/flashcards/FlashcardsHubScreen.tsx:607 | phraseman://flashcards_my_packs |
 | `/flashcards_packs` | app/flashcards_packs.tsx | flashcards | **keep** | реестр 24.09 (keep) | 7 | app/flashcards/FlashcardsHubScreen.tsx:610<br>app/flashcards/FlashcardsHubScreen.tsx:644 | phraseman://flashcards_packs |
@@ -59,7 +59,7 @@
 | `/flashcards_voice_picker` | app/flashcards_voice_picker.tsx | flashcards | **keep** | реестр 24.09 (keep) | 3 | app/navigation_back.ts:91<br>app/settings_edu.tsx:351 | phraseman://flashcards_voice_picker |
 | `/hint` | app/hint.tsx | learning_v1 | **keep** | реестр 24.09 (keep) | 5 | app/lesson1.tsx:1528<br>app/lesson_menu.tsx:1146 | phraseman://hint |
 | `/index` | app/index.tsx | приложение (общая инфраструктура) | **keep** | реестр 24.09 (keep) | 0 | нет (корень/табы/динамический путь) | phraseman://index |
-| `/language_welcome` | app/language_welcome.tsx | приложение (общая инфраструктура) | **keep** | реестр 24.09 (keep) | 4 | app/navigation_back.ts:259<br>components/dev/motion_showcase/sections/screens_profile.tsx:129 | phraseman://language_welcome |
+| `/language_welcome` | app/language_welcome.tsx | приложение (общая инфраструктура) | **keep** | реестр 24.09 (keep) | 4 | app/navigation_back.ts:258<br>components/dev/motion_showcase/sections/screens_profile.tsx:128 | phraseman://language_welcome |
 | `/learning-v2/course` | app/learning-v2/course.tsx | learning_v2 | **redesign** | реестр 24.09 (redesign) | 8 | app/learning-v2/lesson/[id].tsx:1120<br>app/learning-v2/session/[id].tsx:1299 | phraseman://learning-v2/course |
 | `/learning-v2/intro-reader-fixture` | app/learning-v2/intro-reader-fixture.tsx | dev-инструменты | **archive** | dev-фикстура интро-ридера | 0 | нет (корень/табы/динамический путь) | phraseman://learning-v2/intro-reader-fixture |
 | `/learning-v2/lesson/[id]` | app/learning-v2/lesson/[id].tsx | learning_v2 | **redesign** | реестр 24.09 (redesign) | 0 | нет (корень/табы/динамический путь) | phraseman://learning-v2/lesson/[id] |
@@ -70,7 +70,7 @@
 | `/learning_v2_modes_showcase_run/[family]` | app/learning_v2_modes_showcase_run/[family].tsx | dev-инструменты | **archive** | запуск режима из dev-витрины | 0 | нет (корень/табы/динамический путь) | phraseman://learning_v2_modes_showcase_run/[family] |
 | `/learning_v2_session_intro` | app/learning_v2_session_intro.tsx | learning_v2 | **redesign** | реестр 24.09 (redesign) | 1 | components/dev/motion_showcase/sections/screens_learn.ts:33 | phraseman://learning_v2_session_intro |
 | `/learning_v2_session_intro_check` | app/learning_v2_session_intro_check.tsx | learning_v2 | **redesign** | реестр 24.09 (redesign) | 1 | components/dev/motion_showcase/sections/screens_learn.ts:34 | phraseman://learning_v2_session_intro_check |
-| `/lesson1` | app/lesson1.tsx | learning_v1 | **keep** | реестр 24.09 (keep) | 10 | app/combined_lesson_pick.tsx:80<br>app/lesson_complete.tsx:1147 | phraseman://lesson1 |
+| `/lesson1` | app/lesson1.tsx | learning_v1 | **keep** | реестр 24.09 (keep) | 10 | app/combined_lesson_pick.tsx:80<br>app/lesson_complete.tsx:1148 | phraseman://lesson1 |
 | `/lesson_complete` | app/lesson_complete.tsx | learning_v1 | **keep** | реестр 24.09 (keep) | 6 | app/lesson1.tsx:3211<br>app/lesson1.tsx:3239 | phraseman://lesson_complete |
 | `/lesson_help` | app/lesson_help.tsx | learning_v1 | **keep** | реестр 24.09 (keep) | 5 | app/lesson1.tsx:1528<br>app/lesson_menu.tsx:1149 | phraseman://lesson_help |
 | `/lesson_intro_screens` | app/lesson_intro_screens.tsx | learning_v1 | **keep** | реестр 24.09 (keep) | 1 | components/dev/motion_showcase/sections/screens_learn.ts:20 | phraseman://lesson_intro_screens |
@@ -85,17 +85,16 @@
 | `/lingman_videos` | app/lingman_videos.tsx | видео | **keep** | D50/D132: лента видео | 10 | app/(tabs)/home.tsx:3897<br>app/feature_intro_sections_copy.ts:61 | phraseman://lingman_videos<br>push-уведомление |
 | `/manage_subscription` | app/manage_subscription.tsx | приложение (общая инфраструктура) | **keep** | реестр 24.09 (keep) | 8 | app/(tabs)/settings.tsx:866<br>app/navigation_back.ts:80 | phraseman://manage_subscription<br>push-уведомление |
 | `/mistake_detail` | app/mistake_detail.tsx | mistakes | **keep** | реестр 24.09 (keep) | 1 | app/mistakes_list.tsx:92 | phraseman://mistake_detail |
-| `/mistake_practice_session` | app/mistake_practice_session.tsx | mistakes | **keep** | реестр 24.09 (keep) | 9 | app/learning-v2/lesson/[id].tsx:1280<br>app/mistakes_hub.tsx:201 | phraseman://mistake_practice_session |
+| `/mistake_practice_session` | app/mistake_practice_session.tsx | mistakes | **keep** | реестр 24.09 (keep) | 9 | app/learning-v2/lesson/[id].tsx:1280<br>app/mistakes_hub.tsx:191 | phraseman://mistake_practice_session |
 | `/mistakes_hub` | app/mistakes_hub.tsx | mistakes | **keep** | реестр 24.09 (keep) | 3 | app/(tabs)/home.tsx:3086<br>app/learning_v2_direct_session_player_v1.tsx:2422 | phraseman://mistakes_hub |
-| `/mistakes_list` | app/mistakes_list.tsx | mistakes | **keep** | реестр 24.09 (keep) | 2 | app/mistakes_hub.tsx:206<br>app/mistake_detail.tsx:118 | phraseman://mistakes_list |
-| `/motion_showcase` | app/motion_showcase.tsx | dev-инструменты | **archive** | production-safe gate, dev-витрина | 1 | app/navigation_back.ts:263 | phraseman://motion_showcase |
+| `/mistakes_list` | app/mistakes_list.tsx | mistakes | **keep** | реестр 24.09 (keep) | 2 | app/mistakes_hub.tsx:196<br>app/mistake_detail.tsx:118 | phraseman://mistakes_list |
+| `/motion_showcase` | app/motion_showcase.tsx | dev-инструменты | **archive** | production-safe gate, dev-витрина | 1 | app/navigation_back.ts:262 | phraseman://motion_showcase |
 | `/pack_opening` | app/pack_opening.tsx | gifts_spins_chests | **remove** | реестр 24.09 (remove) | 4 | app/flashcards_target_gate.ts:70<br>app/navigation_back.ts:142 | phraseman://pack_opening |
-| `/phrase_analytics_screen` | app/phrase_analytics_screen.tsx | ошибки (Premium) | **keep** | Разбор твоих ошибок: вход из «Работы над ошибками» (решение владельца 01.10, Дизайн 82836a31c) | 4 | app/mistakes_hub.tsx:216<br>app/navigation_back.ts:238 | phraseman://phrase_analytics_screen |
-| `/pos_analytics_audit` | app/pos_analytics_audit.tsx | dev-инструменты | **archive** | production-safe gate, dev-аудит | 1 | app/navigation_back.ts:240 | phraseman://pos_analytics_audit |
-| `/premium_modal` | app/premium_modal.tsx | монетизация | **keep** | один пейвол Plus за диспетчером (владелец 2026-09-30) | 51 | app/(tabs)/friends.tsx:2190<br>app/(tabs)/home.tsx:2702 | phraseman://premium_modal<br>push-уведомление |
+| `/pos_analytics_audit` | app/pos_analytics_audit.tsx | dev-инструменты | **archive** | production-safe gate, dev-аудит | 1 | app/navigation_back.ts:239 | phraseman://pos_analytics_audit |
+| `/premium_modal` | app/premium_modal.tsx | монетизация | **keep** | один пейвол Plus за диспетчером (владелец 2026-09-30) | 50 | app/(tabs)/friends.tsx:2190<br>app/(tabs)/home.tsx:2702 | phraseman://premium_modal<br>push-уведомление |
 | `/premium_modal_v2` | app/premium_modal_v2.tsx | монетизация | **archive** | редирект на /premium_modal | 1 | app/navigation_back.ts:102 | phraseman://premium_modal_v2 |
 | `/preposition_drill` | app/preposition_drill.tsx | learning_v1 | **keep** | реестр 24.09 (keep) | 4 | app/lesson_menu.tsx:1091<br>app/navigation_back.ts:231 | phraseman://preposition_drill |
-| `/privacy_screen` | app/privacy_screen.tsx | приложение (общая инфраструктура) | **keep** | реестр 24.09 (keep) | 3 | app/navigation_back.ts:256<br>app/privacy_settings.tsx:330 | phraseman://privacy_screen |
+| `/privacy_screen` | app/privacy_screen.tsx | приложение (общая инфраструктура) | **keep** | реестр 24.09 (keep) | 3 | app/navigation_back.ts:255<br>app/privacy_settings.tsx:330 | phraseman://privacy_screen |
 | `/privacy_settings` | app/privacy_settings.tsx | приложение (общая инфраструктура) | **keep** | реестр 24.09 (keep) | 4 | app/(tabs)/settings.tsx:1312<br>app/ai_dialog_consent_gate.tsx:142 | phraseman://privacy_settings |
 | `/promo_code_entry` | app/promo_code_entry.tsx | монетизация | **keep** | PM-221-A2: покупки/промокоды — защищённый домен | 4 | app/(tabs)/settings.tsx:1082<br>app/(tabs)/settings.tsx:1109 | phraseman://promo_code_entry |
 | `/referrals` | app/referrals.tsx | приложение (общая инфраструктура) | **keep** | реестр 24.09 (keep) | 7 | app/(tabs)/settings.tsx:1113<br>app/(tabs)/settings.tsx:1147 | phraseman://referrals |
@@ -108,11 +107,11 @@
 | `/shop` | app/shop.tsx | монетизация | **remove** | D09/D70/D102: dev-магазин спинов/косметики за жемчуг, входа из приложения нет — кандидат на удаление | 2 | app/navigation_back.ts:84<br>app/_layout.tsx:2891 | phraseman://shop |
 | `/streak_stats` | app/streak_stats.tsx | streak | **keep** | реестр 24.09 (keep) | 7 | app/(tabs)/home.tsx:3402<br>app/(tabs)/home.tsx:3635 | phraseman://streak_stats |
 | `/support_report` | app/support_report.tsx | приложение (общая инфраструктура) | **keep** | реестр 24.09 (keep) | 5 | app/(tabs)/settings.tsx:1337<br>app/manage_subscription.tsx:668 | phraseman://support_report |
-| `/survey_screen` | app/survey_screen.tsx | приложение (общая инфраструктура) | **keep** | реестр 24.09 (keep) | 2 | app/navigation_back.ts:92<br>components/dev/motion_showcase/sections/screens_profile.tsx:126 | phraseman://survey_screen |
-| `/terms_screen` | app/terms_screen.tsx | приложение (общая инфраструктура) | **keep** | реестр 24.09 (keep) | 3 | app/navigation_back.ts:257<br>app/privacy_settings.tsx:342 | phraseman://terms_screen |
+| `/survey_screen` | app/survey_screen.tsx | приложение (общая инфраструктура) | **keep** | реестр 24.09 (keep) | 2 | app/navigation_back.ts:92<br>components/dev/motion_showcase/sections/screens_profile.tsx:125 | phraseman://survey_screen |
+| `/terms_screen` | app/terms_screen.tsx | приложение (общая инфраструктура) | **keep** | реестр 24.09 (keep) | 3 | app/navigation_back.ts:256<br>app/privacy_settings.tsx:342 | phraseman://terms_screen |
 | `/v2_kit_preview` | app/v2_kit_preview.tsx | dev-инструменты | **archive** | витрина только для разработки | 0 | нет (корень/табы/динамический путь) | phraseman://v2_kit_preview |
 
-## Маршруты из реестра 24.09, файлов которых больше нет (49)
+## Маршруты из реестра 24.09, файлов которых больше нет (50)
 
 | Маршрут | Что получает старая ссылка |
 |---|---|
@@ -164,6 +163,7 @@
 | `/personal_plan_task_done` | +not-found |
 | `/personal_plan_thank_you` | +not-found |
 | `/personal_plan_theory` | +not-found |
+| `/phrase_analytics_screen` | +not-found |
 | `/season_pass` | +not-found |
 
 ## Открытые вопросы владельцу (0)

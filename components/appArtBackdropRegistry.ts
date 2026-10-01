@@ -61,7 +61,6 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   pack_opening: 'flashcards',
   shards_shop: 'shardsShop',
   streak_stats: 'statistics',
-  phrase_analytics_screen: 'statistics',
   settings_edu: 'settings',
   settings_notifications: 'settings',
   settings_themes: 'settings',

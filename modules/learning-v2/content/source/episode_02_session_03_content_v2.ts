@@ -453,7 +453,7 @@ const builder = (
   const word = words[Math.min(index, words.length - 1)]!;
   const target = kind === "word" ? word.target : phrases[index]!.english;
   const meaning = kind === "word" ? word.meaning : PHRASE_SPECS[index]!.meaning;
-  const tokens = target.match(/[A-Za-z]+(?:['’][A-Za-z]+)?/gu) ?? [];
+  const tokens: readonly string[] = target.match(/[A-Za-z]+(?:['’][A-Za-z]+)?/gu) ?? [];
   const authoredDistractorTokens = kind === "word"
     ? word.contacts.build_form.distractors.map((entry) => entry.value)
     : ["I", "She", "We", "He", "They", "am", "is", "are", "not", "aware", "convinced", "concerned", "confident", "satisfied"]

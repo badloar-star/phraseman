@@ -1,4 +1,5 @@
 import type { LearningV2ModeNativePayloadV1 } from "../../contracts/mode_native_payload_v1";
+import type { LearningV2InterfaceLocale } from "../generator_course_contract";
 import type { EpisodeSourcePhrase } from "./episode_01_source_v1";
 import { LESSON2_RETRIEVAL_VOCABULARY_V1 } from "./lesson2_retrieval_vocabulary_v1";
 import { EPISODE_02_SESSION_03_VOCABULARY_V2 } from "./episode_02_session_03_content_v2";
@@ -370,7 +371,7 @@ const phraseFromSpec = (spec: PhraseSpec): EpisodeSourcePhrase => {
     distractors: [
       {
         value: `${spec.subject} ${spec.be} ${spec.adjective}.`,
-        reason: grammarReason("not", MISSING_NOT_LABEL[locale])[locale],
+        reason: grammarReason("not", MISSING_NOT_LABEL[locale]!)[locale],
         trapType: "grammar" as const,
       },
       {
@@ -463,7 +464,7 @@ const builder = (
   const word = words[Math.min(index, words.length - 1)]!;
   const target = kind === "word" ? word.target : phrases[index]!.english;
   const meaning = kind === "word" ? word.meaning : PHRASE_SPECS[index]!.meaning;
-  const tokens = target.match(/[A-Za-z]+(?:['’][A-Za-z]+)?/gu) ?? [];
+  const tokens: readonly string[] = target.match(/[A-Za-z]+(?:['’][A-Za-z]+)?/gu) ?? [];
   const authoredDistractorTokens = kind === "word"
     ? word.contacts.build_form.distractors.map((entry) => entry.value)
     : ["It", "I", "She", "We", "He", "They", "am", "is", "are", "not", "visible", "hidden", "clear", "aware", "convinced", "concerned"]
@@ -543,7 +544,8 @@ const phraseChoice = (): LearningV2ModeNativePayloadV1 => {
     choiceFeedback: alternatives.map((targetText, optionIndex) => ({
       responseId: `${spec.id}:${optionIndex}`,
       correct: optionIndex === 0,
-      feedbackByLocale: feedbackByOption[optionIndex]!,
+      // зачем: тип локалей этого файла без `en`; данные те же — только тип (решение 2026-10-01).
+      feedbackByLocale: feedbackByOption[optionIndex]! as unknown as Readonly<Record<LearningV2InterfaceLocale, string>>,
     })),
   };
 };

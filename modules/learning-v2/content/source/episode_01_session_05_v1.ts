@@ -33,12 +33,12 @@ const exactVocabulary = EPISODE_01_SESSION_04_EXACT_VOCABULARY_V2.map((entry, in
   meaning: EPISODE_01_SESSION_05_EXACT_WORDS_V2[index]!.meaning,
   contacts: Object.fromEntries(Object.entries(entry.contacts).map(([stage, contact]) => [stage, {
     ...contact,
-    guidance: replaceLocalizedState(contact.guidance),
+    guidance: replaceLocalizedState(contact.guidance as unknown as Readonly<Record<string, string>>),
     distractors: contact.distractors.map((distractor) => ({
       ...distractor,
       feedback: optionFeedback(distractor.value, EPISODE_01_SESSION_05_EXACT_WORDS_V2[index]!.target),
     })),
-  }])) as typeof entry.contacts,
+  }])) as unknown as typeof entry.contacts,
 }));
 const exactPhrases = EPISODE_01_SESSION_04_EXACT_PHRASES_SOURCE_V2.map((entry) => {
   const stateIndex = oldStates.indexOf(entry.english.split(' ').at(-1)! as typeof oldStates[number]);

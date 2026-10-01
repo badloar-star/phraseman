@@ -44,7 +44,7 @@ for (const phrase of authored.phrases as any[]) {
 for (const phrase of authored.phrases as any[]) {
   const ending = phrase.words[2].correct as string;
   const endings = words.filter((word) => word !== ending);
-  const fallbacks = ['strong', 'smart', 'hungry'].filter((word) => word !== ending && !endings.includes(word));
+  const fallbacks = ['strong', 'smart', 'hungry'].filter((word) => word !== ending && !(endings as readonly string[]).includes(word));
   phrase.words[2].distractors = [...endings, ...fallbacks].slice(0, 3).map((value: string, index: number) => ({
     value, reasonCode: 's13:' + ending + ':not:' + value + ':' + index, trapType: 'semantic_neighbor',
     why: value + ' is a different description; this phrase specifically needs ' + ending + ' after is.',

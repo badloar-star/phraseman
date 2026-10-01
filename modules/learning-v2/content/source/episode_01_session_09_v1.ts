@@ -54,7 +54,7 @@ const phrasePlan = [
 ] as const;
 const phraseModel = (index: number, subject: string, ending: string) => {
   const subjectAlternatives: Record<string, readonly string[]> = { He: ['She', 'It', 'You'], She: ['He', 'It', 'I'], It: ['He', 'She', 'You'] };
-  const availableEndings = vocabulary.filter((word) => word !== ending).concat(['ready', 'happy', 'fine', 'angry', 'scared'].filter((word) => word !== ending));
+  const availableEndings = (vocabulary.filter((word) => word !== ending) as string[]).concat(['ready', 'happy', 'fine', 'angry', 'scared'].filter((word) => word !== ending));
   const offset = index % availableEndings.length;
   const endingAlternatives = [...availableEndings.slice(offset), ...availableEndings.slice(0, offset)].slice(0, 3);
   const word = (correct: string, alternatives: readonly string[], category: string) => ({

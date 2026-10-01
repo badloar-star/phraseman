@@ -50,7 +50,7 @@ const voiceVocabulary = EPISODE_01_SESSION_04_EXACT_VOCABULARY_V2.slice(0, 2).ma
       value: replaceStates(distractor.value, wordStates),
       feedback: feedbackFor(replaceStates(distractor.value, wordStates), EPISODE_01_SESSION_07_EXACT_WORDS_V2[index]!.target),
     })),
-  }])) as typeof entry.contacts,
+  }])) as unknown as typeof entry.contacts,
 }));
 const voicePhrases = EPISODE_01_SESSION_04_EXACT_PHRASES_SOURCE_V2.slice(0, 4).map((entry) => ({
   ...entry,
@@ -103,7 +103,7 @@ export const EPISODE_01_SESSION_07_SOURCE: SessionSource = Object.freeze({
       ru: 'Calm правильно, потому что это уже знакомое состояние после I am.', uk: 'Calm правильно, бо це вже знайомий стан після I am.', es: 'Calm es correcto porque es un estado conocido después de I am.', 'pt-BR': 'Calm está correto porque é um estado conhecido depois de I am.', vi: 'Calm đúng vì đây là trạng thái đã biết sau I am.', id: 'Calm benar karena ini keadaan yang sudah dikenal setelah I am.', tr: 'Calm doğrudur, çünkü I am sonrasında bilinen bir durumdur.', pl: 'Calm jest poprawne, ponieważ to znany stan po I am.',
     } : exact.question.explanation;
     return { ...exact, question: { ...exact.question, choices: [sameAcrossLocales(distinctCorrect), exact.question.choices[1], exact.question.choices[2]], explanation } };
-  }),
+  }) as unknown as SessionSource['introPages'],
   newVocabulary: voiceVocabulary,
   phrases: voicePhrases,
   modeNativePlanId: LESSON1_SESSION_07_MODE_NATIVE_PLAN_ID_V2,

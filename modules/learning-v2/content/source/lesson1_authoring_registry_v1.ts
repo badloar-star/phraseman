@@ -14,6 +14,8 @@ export interface Lesson1AuthoringRegistryEntryV1 {
   readonly forbiddenFutureFingerprint?: string;
   readonly ownerDecisionRef?: string;
   readonly unlockDecisionRef?: string;
+  /** Ссылка на самопроверку, после которой урок 2 закрыт автоматически (lesson2 registry). */
+  readonly selfReviewReceiptRef?: string;
 }
 
 export interface Lesson1AuthoringPreflightV1 {

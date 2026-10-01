@@ -66,7 +66,7 @@ const intro = replace(json(EPISODE_01_SESSION_04_EXACT_INTRO_V2), [
   ['I am hungry', 'She is old'], ['I am thirsty', 'He is kind'], ['I am sick', 'She is funny'],
   ['I am', 'She is'], ['I', 'She'], ['am', 'is'], ['hungry', 'old'], ['thirsty', 'kind'], ['sick', 'funny'],
   ['you', 'he'], ['You', 'He'],
-]) as any[];
+]) as unknown as any[];
 const introBody = (page: any, body: ReturnType<typeof L>) => {
   page.body = body;
   page.bodyRuns = Object.fromEntries(Object.entries(body).map(([locale, text]) => [locale, [{ text, semantic: 'explanation' }]]));

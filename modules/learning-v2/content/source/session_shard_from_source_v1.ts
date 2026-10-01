@@ -227,7 +227,11 @@ export interface SessionModeNativePracticeSourceV1 {
     | 'retrieve_meaning'
     | 'build_form'
     | 'apply_in_phrase'
-    | 'speak_with_model';
+    | 'speak_with_model'
+    // зачем: хореография урока (Lesson1LearningStageV1) и авторские занятия уже
+    // используют эти этапы, а сравнение authored/expected их ожидает — тип отстал.
+    | 'delayed_recall'
+    | 'independent_assessment';
   readonly target:
     | Readonly<{ kind: 'vocabulary'; sourceIndex: number }>
     | Readonly<{

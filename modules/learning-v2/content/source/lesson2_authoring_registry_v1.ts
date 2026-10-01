@@ -133,7 +133,7 @@ function assertRegistryShape(
       throw new Error(`lesson2_authoring_manual_approval_retired:session=${entry.sessionOrdinal}`);
     }
     if (
-      (entry.status === "AUTO_PASS" || entry.status === "SELF_REVIEW_PASS") &&
+      (entry.status === "AUTO_PASS" || (entry.status as string) === "SELF_REVIEW_PASS") &&
       !entry.candidateFingerprint?.trim()
     ) {
       throw new Error(`lesson2_candidate_fingerprint_missing:session=${entry.sessionOrdinal}:status=${entry.status}`);

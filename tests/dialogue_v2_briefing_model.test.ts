@@ -21,6 +21,8 @@ describe('Dialogue V2 briefing model', () => {
     expect(model).toMatchObject({ title: 'Chat work_04', cefr: 'A1', rankRequired: 4, unlocked: false });
     expect(model?.objectives).toHaveLength(6);
     expect(model?.participants).toEqual([{ id: 'maya', displayName: 'Maya', styleNote: 'Warm and concise.' }]);
+    // Пакет без content.opening (пока Ядро не добавило поле) — первой реплики нет, экран не падает.
+    expect(model?.opening).toBeNull();
   });
 
   it('fails closed for an unknown route id or an extended public packet', () => {

@@ -9,6 +9,8 @@ export type DialogueV2BriefingModel = Readonly<{
   unlocked: boolean;
   objectives: readonly Readonly<{ id: string; label: string }>[];
   participants: readonly Readonly<{ id: string; displayName: string; styleNote: string }>[];
+  /** Первая реплика персонажа из пакета (content.opening) — видна в первом кадре; нет поля — null. */
+  opening: Readonly<{ personaId: string; text: string }> | null;
 }>;
 
 export type DialogueV2BriefingModelInput = Readonly<{
@@ -29,7 +31,7 @@ type VerifiedPacket = Readonly<{
     personas: readonly Readonly<{ id: string; displayName: string; styleNote: string }>[];
     objectives: readonly Readonly<{ id: string; label: string }>[];
   }>;
-  content: Readonly<{ title: string; briefing: string }>;
+  content: Readonly<{ title: string; briefing: string; opening?: unknown }>;
 }>;
 
 function packetWithId(packets: readonly unknown[], scenarioId: string): VerifiedPacket | null {
@@ -73,5 +75,17 @@ export function buildDialogueV2BriefingModel(
       displayName: participant.displayName,
       styleNote: participant.styleNote,
     }))),
+    opening: openingOf(packet),
   });
+}
+
+// зачем (владелец 01.10: «первая реплика всегда уже должна быть на экране»): поле content.opening
+// добавляет Ядро; пока его нет или оно битое — null, экран открывается без падения.
+function openingOf(packet: VerifiedPacket): Readonly<{ personaId: string; text: string }> | null {
+  const raw = packet.content.opening;
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
+  const { personaId, text } = raw as { personaId?: unknown; text?: unknown };
+  if (typeof personaId !== 'string' || typeof text !== 'string' || text.trim().length === 0 || text.length > 600) return null;
+  if (!packet.scenario.personas.some((persona) => persona.id === personaId)) return null;
+  return Object.freeze({ personaId, text: text.trim() });
 }

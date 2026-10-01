@@ -178,6 +178,21 @@ function SessionContent() {
     });
   }, [localCoinRank, scenarioId, state, studyTarget]);
 
+  // Первая реплика персонажа — сразу в ленте, до любого хода пользователя.
+  useEffect(() => {
+    if (!model?.opening) return;
+    const opening = model.opening;
+    setMessages((current) => {
+      if (current.length > 0) return current;
+      const author = model.participants.find((participant) => participant.id === opening.personaId);
+      console.log('[DIALOGUE-V2] session:opening → shown', { scenarioId, personaId: opening.personaId });
+      return Object.freeze([Object.freeze({
+        id: 'persona_0', author: 'persona' as const, authorLabel: author?.displayName ?? '', text: opening.text,
+      })]);
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [model?.opening]);
+
   const voice = useDialogueV2VoiceMessage({
     studyTarget: supportedTarget(studyTarget) ? studyTarget : 'en',
     promptText: model?.title ?? '',

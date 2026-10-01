@@ -34,6 +34,8 @@ export const MAX_REMINDERS = REMINDER_SCHEDULE_DAYS.length;
 const DAY_MS = 24 * 60 * 60 * 1000;
 /** Страховка от двух писем в сутки, если крон запустится повторно. */
 const MIN_GAP_MS = 20 * 60 * 60 * 1000;
+// зачем (Q17): окно, в которое напоминание не шлётся после успешной досылки сторожем почты.
+export const WATCHDOG_RECENT_MS = 20 * 60 * 60 * 1000;
 /** Заказы старше этого срока не трогаем: поздно напоминать, нужен человек. */
 const MAX_ORDER_AGE_MS = 60 * DAY_MS;
 /** Сколько заказов разбираем за прогон. Их единицы, запас огромный. */
@@ -63,6 +65,10 @@ export function decideReminder(input: {
    * поля мало: спрашиваем ещё и сам код.
    */
   codeAlreadyRedeemed?: boolean;
+  /** customerEmailLastRetryAtMs — когда сторож почты последний раз досылал письмо. */
+  watchdogRetryAtMs?: unknown;
+  /** customerEmailStatus — итог последней отправки письма активации. */
+  emailStatus?: unknown;
   nowMs: number;
 }): ReminderDecision {
   const status = typeof input.status === 'string' ? input.status : '';
@@ -89,6 +95,19 @@ export function decideReminder(input: {
   const lastAtMs = Number(input.lastReminderAtMs);
   if (Number.isFinite(lastAtMs) && lastAtMs > 0 && input.nowMs - lastAtMs < MIN_GAP_MS) {
     return { send: false, reason: 'too_soon_after_last', detail: Math.floor((input.nowMs - lastAtMs) / 1000) };
+  }
+
+  // зачем (решение координатора 01.10, Q17): если сторож почты только что успешно
+  // дослал то же письмо, напоминание в тот же день выглядит как спам — откладываем
+  // его до следующего прогона, причина видна в логе.
+  const watchdogAtMs = Number(input.watchdogRetryAtMs);
+  if (input.emailStatus === 'sent' && Number.isFinite(watchdogAtMs) && watchdogAtMs > 0
+    && input.nowMs - watchdogAtMs >= 0 && input.nowMs - watchdogAtMs < WATCHDOG_RECENT_MS) {
+    return {
+      send: false,
+      reason: 'watchdog_email_recent',
+      detail: Math.floor((input.nowMs - watchdogAtMs) / 60_000),
+    };
   }
 
   const dueAfterDays = REMINDER_SCHEDULE_DAYS[sent];
@@ -178,6 +197,8 @@ export async function sweepActivationReminders(
       hasEmail: Boolean(email),
       hasActivationCode: Boolean(activationCode),
       codeAlreadyRedeemed: activationCode ? redeemedCodes.has(activationCode) : false,
+      watchdogRetryAtMs: order.customerEmailLastRetryAtMs,
+      emailStatus: order.customerEmailStatus,
       nowMs,
     });
 

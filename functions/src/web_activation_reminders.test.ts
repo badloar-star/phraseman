@@ -62,6 +62,24 @@ describe('расписание напоминаний', () => {
 });
 
 describe('защита от лишних писем', () => {
+  // зачем (Q17, координатор 01.10): сторож почты только что дослал то же письмо —
+  // напоминание в тот же день выглядело бы как спам.
+  it('после успешной досылки сторожем < 20 ч напоминание откладывается', () => {
+    const d = decideReminder(baseOrder({ watchdogRetryAtMs: NOW - 2 * 60 * 60 * 1000, emailStatus: 'sent' }));
+    expect(d.send).toBe(false);
+    if (!d.send) expect(d.reason).toBe('watchdog_email_recent');
+  });
+
+  it('досылка сторожем была > 20 ч назад — напоминание идёт по расписанию', () => {
+    const d = decideReminder(baseOrder({ watchdogRetryAtMs: NOW - 21 * 60 * 60 * 1000, emailStatus: 'sent' }));
+    expect(d.send).toBe(true);
+  });
+
+  it('досылка сторожем провалилась — напоминание не откладывается', () => {
+    const d = decideReminder(baseOrder({ watchdogRetryAtMs: NOW - 2 * 60 * 60 * 1000, emailStatus: 'provider_rejected' }));
+    expect(d.send).toBe(true);
+  });
+
   it('активированный заказ писем не получает', () => {
     const d = decideReminder(baseOrder({ status: 'activated' }));
     expect(d.send).toBe(false);

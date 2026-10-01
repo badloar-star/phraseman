@@ -148,7 +148,7 @@ firebase deploy --only functions:stripeWebhook,functions:paypalOrderCapture --pr
 |---|---|
 | `levelSpinStarGrant` (новый кошелёк монет, 6d5835ef8) | в облаке живёт старая версия, через неё 1.6.24 начисляет спины. Новая версия спины **отклоняет** → у людей в сторе пропадут награды спинов |
 | `report_replies` / `admin_reports_center` (награда за жалобу в монетах v2, f20328d12) и hosting админки | 1.6.24 не умеет забирать награду v2 |
-| `shard_survey_core` | менять вместе с релизом (белые списки маршрутов 2.0) |
+| `shard_survey_core` → функции `submitShardSurvey`, `getActiveShardSurvey`, `adminWriteShardSurvey`, `adminDeleteShardSurvey` | менять вместе с релизом (белые списки маршрутов 2.0; PM-171 — убран переход `/ideas_catalog`, 41648d48d) |
 | `adminPublishAuthoredLearningV2Course` — сторож D150 (06143603d): публикация авторского курса en блокируется, пока урок 1 расходится со встроенным релизом | выкладывать пакетом релиза 2.0. Функция живёт в кодовой базе **content** (functions-content) — выкладывать как `--only functions:content:adminPublishAuthoredLearningV2Course`. Сборка content теперь копирует эталон урока 1 (factory_native en/l01, 168 JSON, ~3 МБ) в lib — сторож сравнивает уроки; при отсутствии эталона остаётся fail-closed (`publish_lesson1_release_reference_unavailable`). Сейчас 78 расхождений → публикация en будет отклонена с причиной `publish_lesson1_diverges_from_release`, это и нужно |
 | удаление 110 функций облака без кода (было 112; сторож почты перенесён 01.10) | часть вызывает 1.6.24, а 3 вызывает даже 2.0 — см. PM-007 |
 

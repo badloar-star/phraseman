@@ -9401,7 +9401,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -9418,8 +9418,10 @@
       {
         "id": "PM-183-A2",
         "text": "удалены недействующие подписи и бонусы",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "0aa34329b: мёртвый бонус осколков визитки удалён, PROFILE_CARD_MAX_LEVEL"
+        ]
       }
     ],
     "depends_on": [],
@@ -9843,7 +9845,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -9860,8 +9862,10 @@
       {
         "id": "PM-192-A2",
         "text": "не заменено другим выдуманным объяснением",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "eb8719cb0: пустой ответ → missing_token (не meaning), источник «Арена» убран; тест mistake_pronunciation_facet_writer_contract"
+        ]
       }
     ],
     "depends_on": [],
@@ -9907,8 +9911,10 @@
       {
         "id": "PM-193-A2",
         "text": "нет смешанных локалей",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "7afa8eb8b: tests/mistake_study_target_languages_contract 6/6 — es/de/fr/it пишутся и читаются под своим языком"
+        ]
       }
     ],
     "depends_on": [],
@@ -9939,7 +9945,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -9948,8 +9954,10 @@
       {
         "id": "PM-194-A1",
         "text": "Тренировка использует правильный язык/карточки",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "348b71f45: tests/mistake_practice_session_target_isolation 4/4 — сессия es/fr/de/it не подмешивает en"
+        ]
       },
       {
         "id": "PM-194-A2",
@@ -10091,7 +10099,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -10108,8 +10116,10 @@
       {
         "id": "PM-197-A2",
         "text": "нет Макса, тем, спинов и удалённых уведомлений",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "267d8a6ac: settings_root_liquid_glass_source_contract doesNotMatch MAX/спины/подарки/арена/лиги, 10/10"
+        ]
       }
     ],
     "depends_on": [],
@@ -10196,7 +10206,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10213,8 +10223,10 @@
       {
         "id": "PM-199-A2",
         "text": "есть тест офлайн",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "0aecaf24c: cache_reset_contract 9/9 — сбой хранилища не даёт «Готово», без сети"
+        ]
       }
     ],
     "depends_on": [],
@@ -10254,8 +10266,10 @@
       {
         "id": "PM-200-A1",
         "text": "Для каждого типа назначение, trigger, opt-out, дедупликация и ссылка",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "71a3cdf8c: evidence/PM-200_notification_allowlist.md — тип/триггер/opt-out/дедуп/deeplink для всех пушей и локальных"
+        ]
       },
       {
         "id": "PM-200-A2",
@@ -10409,8 +10423,10 @@
       {
         "id": "PM-203-A2",
         "text": "не создаётся параллельный audio engine на каждом экране",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "adb40be8d: tests/audio_player_arbiter_guard 3/3 — плееры только под арбитром, исключения с причиной"
+        ]
       }
     ],
     "depends_on": [],

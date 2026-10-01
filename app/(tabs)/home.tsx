@@ -1478,6 +1478,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => { langRef.current = lang; }, [lang]);
     const [shardsBalance, setShardsBalance] = useState(() => peekLastKnownShardsBalance() ?? hh?.shardsBalance ?? snapshotShards);
     const [runesBalance, setRunesBalance] = useState(() => peekRunes());
+    // зачем (эмулятор 01.10, лог [HOME-COINS]): сплеш снимается по потолку 1 с, а снимок прогресса
+    // может ещё читаться с диска — peekRunes() отдаёт 0, и Главная показывала «0 монет», потом
+    // прыжок на реальное число (Performance Bible: без zero-then-jump). Пока прогресса нет — «—».
+    const [runesKnown, setRunesKnown] = useState(() => getAppSnapshot().progress != null);
     // зачем: помним, ЧЕЙ баланс сейчас на экране, чтобы отличить смену аккаунта
     // (обнулять обязательно) от инициализации того же аккаунта на старте (нельзя).
     const runesOwnerRef = useRef<string | null>(captureAccountGeneration().stableId?.trim() || null);
@@ -1487,6 +1491,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         void getRunesBalance().then(({ balance }) => {
             if (mountedRef.current && isCurrentAccountGeneration(token, stableId)) {
                 setRunesBalance(balance);
+                setRunesKnown(true);
             }
         }).catch(() => {
             // Первый кадр уже взят из snapshot; durable-сверка может безопасно повториться на focus.
@@ -1495,6 +1500,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => {
         const unsubscribeRunesSnapshot = subscribeAppSnapshot(() => {
             setRunesBalance(peekRunes());
+            if (getAppSnapshot().progress != null) setRunesKnown(true);
         });
         const runesAccountSubscription = subscribeAccountGeneration((token) => {
             // Никогда не показываем retained-значение предыдущего аккаунта.
@@ -1509,7 +1515,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             const nextOwner = token.stableId?.trim() || null;
             const ownerChanged = previousOwner !== null && previousOwner !== nextOwner;
             runesOwnerRef.current = nextOwner;
-            if (ownerChanged) setRunesBalance(0);
+            if (ownerChanged) { setRunesBalance(0); setRunesKnown(getAppSnapshot().progress != null); }
             if (homeRuntimeActiveRef.current && token.phase === 'active') {
                 reconcileHomeRunes(token);
             }
@@ -3630,9 +3636,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     ) : (
                       <View style={{ width: 20, height: 20, borderRadius: 10, backgroundColor: t.bgSurface2 }} />
                     ),
-                    value: String(rewardCollect.displayRunes(runesBalance)),
+                    value: runesKnown ? String(rewardCollect.displayRunes(runesBalance)) : '—',
                     label: homeV2CoinsLabel,
-                    accessibilityLabel: `${homeV2CoinsLabel}: ${rewardCollect.displayRunes(runesBalance)}`,
+                    accessibilityLabel: `${homeV2CoinsLabel}: ${runesKnown ? rewardCollect.displayRunes(runesBalance) : '—'}`,
                     onPress: () => { nav.push('/coin_rank'); },
                   },
                 ]}

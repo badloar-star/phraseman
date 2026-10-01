@@ -477,6 +477,8 @@ function releaseRepository(
   });
 }
 
+const FREE_EMPTY_STRUCTURED_MEMORY = Object.freeze({ sharedSummary: null, scenarioCheckpoint: null });
+
 function productionDependencies(
   quotaTurn?: Readonly<{ sessionId: string; turnId: string }>,
   billingStableUid?: string,
@@ -514,6 +516,11 @@ function productionDependencies(
       scenarioId,
       isPremium,
     ) => {
+      // зачем (баг 01.10, прод: у Free первый ход диалога — access_unavailable): память диалогов —
+      // функция Plus, её чтение для Free отвечает dialogue_v2_memory_plus_required, а ядро
+      // хода превращало это в «доступ недоступен». Доступ к диалогам даёт ранг монеты (D124),
+      // не Plus — поэтому Free идёт с пустой памятью, без чтения Firestore.
+      if (!isPremium) return FREE_EMPTY_STRUCTURED_MEMORY;
       const db = database();
       const result = await executeDialogueV2MemoryRead({
         auth: { uid: authUid },

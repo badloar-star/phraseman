@@ -101,8 +101,8 @@ const briefingCopy = (lang: ReturnType<typeof useLang>['lang']) => ({
     id: 'Terlalu lama — ketuk lagi', tr: 'Çok uzun sürdü — tekrar dokun', pl: 'Trwało za długo — naciśnij ponownie',
   }),
   getRunes: triLang(lang, {
-    ru: 'Где взять руны', uk: 'Де взяти руни', en: 'Where to get runes', es: 'Dónde conseguir runas',
-    'pt-BR': 'Onde conseguir runas', vi: 'Lấy rune ở đâu', id: 'Cara dapat rune', tr: 'Rün nasıl alınır', pl: 'Gdzie zdobyć runy',
+    ru: 'Где взять монеты', uk: 'Де взяти монети', en: 'Where to get coins', es: 'Dónde conseguir monedas',
+    'pt-BR': 'Onde conseguir moedas', vi: 'Lấy xu ở đâu', id: 'Cara dapat koin', tr: 'Jeton nasıl alınır', pl: 'Gdzie zdobyć monety',
   }),
 });
 

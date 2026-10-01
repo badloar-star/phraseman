@@ -3175,15 +3175,15 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                     accessibilityRole="button"
                     accessibilityState={{ disabled: buyingExtraReplies || runesBalanceForBuy < DIALOG_EXTRA_REPLIES_PRICE_RUNES }}
                     accessibilityLabel={triLang(lang, {
-                      ru: `Ещё ${DIALOG_EXTRA_REPLIES_COUNT} реплик за ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} рун`,
-                      uk: `Ще ${DIALOG_EXTRA_REPLIES_COUNT} реплік за ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} рун`,
-                      en: `${DIALOG_EXTRA_REPLIES_COUNT} more lines for ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} runes`,
-                      es: `${DIALOG_EXTRA_REPLIES_COUNT} frases más por ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} runas`,
-                      'pt-BR': `Mais ${DIALOG_EXTRA_REPLIES_COUNT} falas por ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} runas`,
-                      vi: `Thêm ${DIALOG_EXTRA_REPLIES_COUNT} lượt với ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} rune`,
-                      id: `${DIALOG_EXTRA_REPLIES_COUNT} balasan lagi seharga ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} rune`,
+                      ru: `Ещё ${DIALOG_EXTRA_REPLIES_COUNT} реплик за ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} монет`,
+                      uk: `Ще ${DIALOG_EXTRA_REPLIES_COUNT} реплік за ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} монет`,
+                      en: `${DIALOG_EXTRA_REPLIES_COUNT} more lines for ${DIALOG_EXTRA_REPLIES_PRICE_COINS} coins`,
+                      es: `${DIALOG_EXTRA_REPLIES_COUNT} frases más por ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} monedas`,
+                      'pt-BR': `Mais ${DIALOG_EXTRA_REPLIES_COUNT} falas por ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} moedas`,
+                      vi: `Thêm ${DIALOG_EXTRA_REPLIES_COUNT} lượt với ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} xu`,
+                      id: `${DIALOG_EXTRA_REPLIES_COUNT} balasan lagi seharga ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} koin`,
                       tr: `${DIALOG_EXTRA_REPLIES_PRICE_RUNES} rune karşılığında ${DIALOG_EXTRA_REPLIES_COUNT} replik daha`,
-                      pl: `Jeszcze ${DIALOG_EXTRA_REPLIES_COUNT} wypowiedzi za ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} run`,
+                      pl: `Jeszcze ${DIALOG_EXTRA_REPLIES_COUNT} wypowiedzi za ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} monet`,
                     })}
                     style={{
                       minHeight: 50,
@@ -3205,7 +3205,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                           {triLang(lang, {
                             ru: `Ещё ${DIALOG_EXTRA_REPLIES_COUNT} реплик · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
                             uk: `Ще ${DIALOG_EXTRA_REPLIES_COUNT} реплік · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
-                            en: `+${DIALOG_EXTRA_REPLIES_COUNT} lines · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
+                            en: `+${DIALOG_EXTRA_REPLIES_COUNT} lines · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_COINS}`,
                             es: `+${DIALOG_EXTRA_REPLIES_COUNT} frases · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
                             'pt-BR': `+${DIALOG_EXTRA_REPLIES_COUNT} falas · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
                             vi: `+${DIALOG_EXTRA_REPLIES_COUNT} lượt · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,

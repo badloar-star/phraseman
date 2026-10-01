@@ -122,9 +122,9 @@ export function useSessionAttemptAutoReset({
      */
     const restoreAttemptsNow = async (burnRunes: boolean): Promise<void> => {
       if (!burnRunes) {
-        DebugLogger.warn('[ATTEMPTS-RESET]', 'восстановление БЕЗ платы: инвентарь недостоверен, руны сессии сохраняем');
+        DebugLogger.warn('[ATTEMPTS-RESET]', 'восстановление БЕЗ платы: инвентарь недостоверен, монеты сессии сохраняем');
       } else {
-        DebugLogger.info('[ATTEMPTS-RESET]', `путь без подарка: сжигаем руны сессии, hasForfeitFn=${String(Boolean(callbacks.forfeitSessionRunes))}`);
+        DebugLogger.info('[ATTEMPTS-RESET]', `путь без подарка: сжигаем монеты сессии, hasForfeitFn=${String(Boolean(callbacks.forfeitSessionRunes))}`);
       }
       if (burnRunes) await Promise.resolve(callbacks.forfeitSessionRunes?.()).catch((reason) => {
         // The local rune buffer clears before persistence. Restore attempts even
@@ -138,7 +138,7 @@ export function useSessionAttemptAutoReset({
       }
       callbacks.restoreAttempts();
       callbacks.onRestored?.();
-      DebugLogger.info('[ATTEMPTS-RESET]', `итог: попытки восстановлены, экран разблокирован (плата рунами=${String(burnRunes)})`);
+      DebugLogger.info('[ATTEMPTS-RESET]', `итог: попытки восстановлены, экран разблокирован (плата монетами=${String(burnRunes)})`);
     };
 
     void (async () => {

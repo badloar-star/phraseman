@@ -1,48 +1,36 @@
+import { Image } from 'expo-image';
 import React, { memo } from 'react';
-import { StyleSheet, Text, type TextStyle } from 'react-native';
+import { type ImageStyle, type StyleProp, type TextStyle } from 'react-native';
 
-import { RUNE_GLYPH_PRIMARY } from '../constants/runes';
+import { HOME_RUNE_ICON_SOURCE } from './home/homeRuneAsset';
 
 /**
- * Глиф валюты «руны» для статичных счётчиков и подписей.
+ * Значок валюты для статичных счётчиков и подписей.
  *
- * зачем (владелец, 22.08 + 23.08): вместо Ionicons "star" валюта показывается
- * руническим символом старшего футарка. В счётчиках всегда ОДНА «дежурная»
- * руна ᚠ — случайный глиф заставлял бы цифру «прыгать» при каждом ре-рендере;
- * разные символы живут только в анимации начисления (LearningV2RuneFlight).
- *
- * Символ — обычный текст: системные шрифты его содержат, ассеты не нужны.
- * Цвет обязателен и приходит из токенов темы — золотой не хардкодится.
+ * зачем (владелец 01.10): валюта 2.0 — монеты, руны удалены. Раньше здесь был
+ * рунический символ ᚠ; теперь — картинка монеты (та же, что в балансе и наградах).
+ * Имя компонента прежнее, чтобы не трогать все места вызова; `color` больше не
+ * нужен картинке, но остаётся в пропсах для совместимости вызовов.
  */
 
 interface Props {
-  /** Кегль глифа. Совпадает с размером иконки, которую он заменил. */
+  /** Размер значка. Совпадает с размером иконки, которую он заменил. */
   size: number;
-  /** Цвет из токенов темы (t.gold, P.onGold и т.п.). */
-  color: string;
-  style?: TextStyle;
+  /** Не используется картинкой; оставлен для совместимости вызовов. */
+  color?: string;
+  style?: StyleProp<TextStyle | ImageStyle>;
 }
 
-export const RuneGlyph = memo(function RuneGlyph({ size, color, style }: Props) {
+export const RuneGlyph = memo(function RuneGlyph({ size, style }: Props) {
   return (
-    <Text
-      allowFontScaling={false}
-      // Глиф декоративен: смысл несёт число рядом и accessibilityLabel родителя.
-      accessibilityElementsHidden
-      importantForAccessibility="no"
-      style={[
-        styles.glyph,
-        { fontSize: size, lineHeight: Math.round(size * 1.16), color },
-        style,
-      ]}
-    >
-      {RUNE_GLYPH_PRIMARY}
-    </Text>
+    <Image
+      source={HOME_RUNE_ICON_SOURCE}
+      // Значок декоративен: смысл несёт число рядом и accessibilityLabel родителя.
+      accessible={false}
+      contentFit="contain"
+      style={[{ width: size, height: size }, style as StyleProp<ImageStyle>]}
+    />
   );
-});
-
-const styles = StyleSheet.create({
-  glyph: { fontWeight: '700', textAlign: 'center' },
 });
 
 export default RuneGlyph;

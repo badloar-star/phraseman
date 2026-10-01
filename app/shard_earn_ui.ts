@@ -184,9 +184,9 @@ const LABELS: Record<string, ShardEarnLabel> = {
     pl: "Diagnoza idealna: słaby punkt jest wyraźnie mocniejszy",
   },
   fc_checkpoint: {
-    ru: 'Сундук недельного трека карточек открыт — руны превратились в осколки',
+    ru: 'Сундук недельного трека карточек открыт — монеты превратились в осколки',
     uk: 'Скриню тижневого треку карток відкрито — зірки стали осколками',
-    en: 'Weekly flashcard chest opened — runes turned into pearls',
+    en: 'Weekly flashcard chest opened — coins turned into pearls',
     es: 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',
 
     'pt-BR': 'Cofre del progreso semanal abierto: estrellas hechas fragmentos',

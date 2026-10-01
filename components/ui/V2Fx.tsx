@@ -22,7 +22,8 @@ import React, {
   useState,
 } from 'react';
 import { AccessibilityInfo, StyleSheet, Text, View } from 'react-native';
-import { RUNE_GLYPH_PRIMARY, pickRuneGlyphs } from '../../constants/runes';
+import { pickRuneGlyphs } from '../../constants/runes';
+import RuneGlyph from '../RuneGlyph';
 import Animated, {
   Easing,
   cancelAnimation,
@@ -55,23 +56,10 @@ const SPARK_PATH = 'M12 2.8c0.9 4.4 2.2 6.8 4.4 8 1.6 0.9 3.1 1.1 4.8 1.2-1.7 0.
  * Имя StarGlyph сохранено: это внутренняя точка сборки восьми турнирных
  * экранов, переименование файла к тексту отношения не имеет.
  */
-export function StarGlyph({ size, color, glyph }: { size: number; color: string; glyph?: string }) {
-  return (
-    <Text
-      allowFontScaling={false}
-      accessibilityElementsHidden
-      importantForAccessibility="no"
-      style={{
-        fontSize: size,
-        lineHeight: Math.round(size * 1.16),
-        fontWeight: '700',
-        textAlign: 'center',
-        color,
-      }}
-    >
-      {glyph ?? RUNE_GLYPH_PRIMARY}
-    </Text>
-  );
+// зачем (владелец 01.10): валюта 2.0 — монеты, руны удалены; вместо рунического
+// символа — картинка монеты. Пропсы color/glyph оставлены для совместимости вызовов.
+export function StarGlyph({ size }: { size: number; color?: string; glyph?: string }) {
+  return <RuneGlyph size={size} />;
 }
 
 export function SparkGlyph({ size, color }: { size: number; color: string }) {

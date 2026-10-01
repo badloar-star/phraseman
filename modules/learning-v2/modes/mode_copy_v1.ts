@@ -135,13 +135,13 @@ export function learningV2RuneAccessibilityLabelV1(
   const slavicOne = mod10 === 1 && mod100 !== 11;
   const slavicFew = mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14);
   const noun: Readonly<Record<LearningV2InterfaceLocale, string>> = {
-    ru: slavicOne ? "руна" : slavicFew ? "руны" : "рун",
-    uk: slavicOne ? "руна" : slavicFew ? "руни" : "рун",
+    ru: slavicOne ? "монета" : slavicFew ? "монеты" : "монет",
+    uk: slavicOne ? "монета" : slavicFew ? "монети" : "монет",
     es: integer === 1 ? "runa" : "runas",
     "pt-BR": integer === 1 ? "runa" : "runas",
-    vi: "rune",
-    id: "rune",
-    tr: "rün",
+    vi: "xu",
+    id: "koin",
+    tr: "jeton",
     pl: integer === 1 ? "runa" : slavicFew ? "runy" : "run",
     en: integer === 1 ? "rune" : "runes",
   };

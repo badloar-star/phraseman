@@ -22,7 +22,7 @@ import { FlowText } from '../components/text-integrity/FlowText';
 import { onAppEvent } from './events';
 import { peekRunesBalance, subscribeRunesBalance } from './runes_system';
 import { peekLastKnownShardsBalance } from './shards_system';
-import { RUNE_GLYPH_PRIMARY } from '../constants/runes';
+import RuneGlyph from '../components/RuneGlyph';
 import {
   SHOP_CATEGORIES,
   SHOP_ITEMS,
@@ -118,7 +118,7 @@ const COPY = {
 
 /** Родительный падеж валюты для строк вида «У тебя 5 рун». */
 const CURRENCY_GENITIVE = {
-  runes: { ru: 'рун', uk: 'рун', es: 'runas', en: 'runes', 'pt-BR': 'runas', vi: 'rune', id: 'rune', tr: 'rün', pl: 'run' },
+  runes: { ru: 'монет', uk: 'монет', es: 'monedas', en: 'coins', 'pt-BR': 'moedas', vi: 'xu', id: 'koin', tr: 'jeton', pl: 'monet' },
   pearls: { ru: 'жемчужин', uk: 'перлин', es: 'perlas', en: 'pearls', 'pt-BR': 'pérolas', vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł' },
 } as const;
 
@@ -158,7 +158,8 @@ const MEDAL_TONES: Record<ShopItem['tone'], readonly [string, string, string]> =
 
 function CurrencyMark({ currency, size, color }: { currency: 'runes' | 'pearls'; size: number; color: string }) {
   if (currency === 'runes') {
-    return <Text style={{ fontSize: size, color, fontWeight: '900', lineHeight: size * 1.25 }}>{RUNE_GLYPH_PRIMARY}</Text>;
+    // зачем (владелец 01.10): монета вместо рунического символа.
+    return <RuneGlyph size={size} />;
   }
   return (
     <View

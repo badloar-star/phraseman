@@ -36,13 +36,13 @@ export function dailyJourneyRewardAccessibilityLabel(
       });
     case 'runes':
       return triLang(lang, {
-        ru: `${amount} ${eastSlavicForm(amount, 'руна', 'руны', 'рун')}`,
-        uk: `${amount} ${eastSlavicForm(amount, 'руна', 'руни', 'рун')}`,
+        ru: `${amount} ${eastSlavicForm(amount, 'монета', 'монеты', 'монет')}`,
+        uk: `${amount} ${eastSlavicForm(amount, 'монета', 'монети', 'монет')}`,
         en: `${amount} ${amount === 1 ? 'rune' : 'runes'}`,
         es: `${amount} ${amount === 1 ? 'runa' : 'runas'}`,
         'pt-BR': `${amount} ${amount === 1 ? 'runa' : 'runas'}`,
-        vi: `${amount} rune`, id: `${amount} rune`, tr: `${amount} rün`,
-        pl: `${amount} ${polishForm(amount, 'runa', 'runy', 'run')}`,
+        vi: `${amount} xu`, id: `${amount} koin`, tr: `${amount} jeton`,
+        pl: `${amount} ${polishForm(amount, 'moneta', 'monety', 'monet')}`,
       });
     case 'spins':
       return triLang(lang, {

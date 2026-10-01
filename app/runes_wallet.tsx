@@ -83,7 +83,7 @@ export default function RunesWalletScreen() {
   // Keeping this screen on that same source avoids a missing/stale secondary
   // server snapshot and guarantees that tapping the shared HUD cannot crash.
   const receivedTotal = wallet.earnedTotal;
-  const title = triLang(lang, { ru: 'Руны', uk: 'Руни', en: 'Runes', es: 'Runas', 'pt-BR': 'Runas', vi: 'Rune', id: 'Rune', tr: 'Rünler', pl: 'Runy' });
+  const title = triLang(lang, { ru: 'Монеты', uk: 'Монети', en: 'Coins', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Rünler', pl: 'Monety' });
   const earnedTotalLabel = triLang(lang, {
     ru: `получено за всё время — ${receivedTotal}`,
     uk: `отримано за весь час — ${receivedTotal}`,

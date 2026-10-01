@@ -63,16 +63,18 @@ export function pickRuneGlyphs(count: number): readonly string[] {
  */
 type PluralForms = Readonly<{ one: string; few: string; many: string }>;
 
+// зачем (владелец 01.10): валюта 2.0 — монеты, руны удалены. Имя функции осталось
+// прежним (его зовут ~десяток экранов), а слово — «монета» на всех языках.
 const RUNE_WORDS: Readonly<Record<string, PluralForms>> = Object.freeze({
-  ru: { one: 'руна', few: 'руны', many: 'рун' },
-  uk: { one: 'руна', few: 'руни', many: 'рун' },
-  en: { one: 'rune', few: 'runes', many: 'runes' },
-  pl: { one: 'runa', few: 'runy', many: 'run' },
-  es: { one: 'runa', few: 'runas', many: 'runas' },
-  'pt-BR': { one: 'runa', few: 'runas', many: 'runas' },
-  vi: { one: 'rune', few: 'rune', many: 'rune' },
-  id: { one: 'rune', few: 'rune', many: 'rune' },
-  tr: { one: 'rün', few: 'rün', many: 'rün' },
+  ru: { one: 'монета', few: 'монеты', many: 'монет' },
+  uk: { one: 'монета', few: 'монети', many: 'монет' },
+  en: { one: 'coin', few: 'coins', many: 'coins' },
+  pl: { one: 'moneta', few: 'monety', many: 'monet' },
+  es: { one: 'moneda', few: 'monedas', many: 'monedas' },
+  'pt-BR': { one: 'moeda', few: 'moedas', many: 'moedas' },
+  vi: { one: 'xu', few: 'xu', many: 'xu' },
+  id: { one: 'koin', few: 'koin', many: 'koin' },
+  tr: { one: 'jeton', few: 'jeton', many: 'jeton' },
 });
 
 const SLAVIC_PLURAL = new Set(['ru', 'uk', 'pl']);

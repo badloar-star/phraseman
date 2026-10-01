@@ -197,9 +197,9 @@ export default function DialogWhySheet({
                   >
                     {gate.denied === 'no_runes'
                       ? triLang(lang, {
-                          ru: 'Не хватает рун', uk: 'Не вистачає рун', en: 'Not enough runes',
-                          es: 'Faltan runas', 'pt-BR': 'Faltam runas', vi: 'Không đủ rune',
-                          id: 'Rune tidak cukup', tr: 'Rün yetersiz', pl: 'Za mało run',
+                          ru: 'Не хватает монет', uk: 'Не вистачає монет', en: 'Not enough coins',
+                          es: 'Faltan monedas', 'pt-BR': 'Faltam moedas', vi: 'Không đủ xu',
+                          id: 'Koin tidak cukup', tr: 'Jeton yetersiz', pl: 'Za mało monet',
                         })
                       : triLang(lang, {
                           ru: 'Не получилось. Попробуйте ещё раз.',

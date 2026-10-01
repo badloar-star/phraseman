@@ -139,32 +139,32 @@ type PaywallModalCopy = {
  */
 function triRunesWord(lang: Lang): string {
   const map: Record<string, string> = {
-    ru: 'рун', uk: 'рун', en: 'runes', es: 'runas', 'pt-BR': 'runas',
-    vi: 'rune', id: 'rune', tr: 'rün', pl: 'run',
+    ru: 'монет', uk: 'монет', en: 'coins', es: 'monedas', 'pt-BR': 'moedas',
+    vi: 'xu', id: 'koin', tr: 'jeton', pl: 'monet',
   };
   return map[lang] ?? map.en;
 }
 
 function triRunesBuyFor(lang: Lang, n: number): string {
   const map: Record<string, string> = {
-    ru: `Открыть за ${n} рун`,
-    uk: `Відкрити за ${n} рун`,
-    en: `Unlock for ${n} runes`,
-    es: `Abrir por ${n} runas`,
-    'pt-BR': `Abrir por ${n} runas`,
-    vi: `Mở với ${n} rune`,
-    id: `Buka seharga ${n} rune`,
-    tr: `${n} rün karşılığında aç`,
-    pl: `Otwórz za ${n} run`,
+    ru: `Открыть за ${n} монет`,
+    uk: `Відкрити за ${n} монет`,
+    en: `Unlock for ${n} coins`,
+    es: `Abrir por ${n} monedas`,
+    'pt-BR': `Abrir por ${n} moedas`,
+    vi: `Mở với ${n} xu`,
+    id: `Buka seharga ${n} koin`,
+    tr: `${n} jeton karşılığında aç`,
+    pl: `Otwórz za ${n} monet`,
   };
   return map[lang] ?? map.en;
 }
 
 function triRunesShort(lang: Lang): string {
   const map: Record<string, string> = {
-    ru: 'Не хватает рун', uk: 'Не вистачає рун', en: 'Not enough runes',
-    es: 'Faltan runas', 'pt-BR': 'Faltam runas', vi: 'Không đủ rune',
-    id: 'Rune tidak cukup', tr: 'Rün yetersiz', pl: 'Za mało run',
+    ru: 'Не хватает монет', uk: 'Не вистачає монет', en: 'Not enough coins',
+    es: 'Faltan monedas', 'pt-BR': 'Faltam moedas', vi: 'Không đủ xu',
+    id: 'Koin tidak cukup', tr: 'Jeton yetersiz', pl: 'Za mało monet',
   };
   return map[lang] ?? map.en;
 }
@@ -172,9 +172,9 @@ function triRunesShort(lang: Lang): string {
 /** Runy ne pokupayut za den'gi - ih zarabatyvayut. Poetomu «kak zarabotat'», ne «kupit'». */
 function triRunesTopUp(lang: Lang): string {
   const map: Record<string, string> = {
-    ru: 'Как заработать руны', uk: 'Як заробити руни', en: 'How to earn runes',
-    es: 'Cómo ganar runas', 'pt-BR': 'Como ganhar runas', vi: 'Cách kiếm rune',
-    id: 'Cara mendapatkan rune', tr: 'Rün nasıl kazanılır', pl: 'Jak zdobyć runy',
+    ru: 'Как заработать монеты', uk: 'Як заробити монети', en: 'How to earn coins',
+    es: 'Cómo ganar monedas', 'pt-BR': 'Como ganhar moedas', vi: 'Cách kiếm xu',
+    id: 'Cara mendapatkan koin', tr: 'Jeton nasıl kazanılır', pl: 'Jak zdobyć monety',
   };
   return map[lang] ?? map.en;
 }

@@ -80,9 +80,9 @@ function ResultRuneAward({ amount, testID }: Readonly<{ amount: number; testID: 
         testID={`${testID}-runes`}
         accessible
         accessibilityLabel={triLang(lang, {
-          ru: `Начислено рун: ${amount}`, uk: `Нараховано рун: ${amount}`, en: `Runes earned: ${amount}`,
-          es: `Runas ganadas: ${amount}`, 'pt-BR': `Runas ganhas: ${amount}`, vi: `Rune nhận được: ${amount}`,
-          id: `Rune diperoleh: ${amount}`, tr: `Kazanılan rün: ${amount}`, pl: `Zdobyte runy: ${amount}`,
+          ru: `Начислено монет: ${amount}`, uk: `Нараховано монет: ${amount}`, en: `Coins earned: ${amount}`,
+          es: `Monedas ganadas: ${amount}`, 'pt-BR': `Moedas ganhas: ${amount}`, vi: `Xu nhận được: ${amount}`,
+          id: `Koin diperoleh: ${amount}`, tr: `Kazanılan jeton: ${amount}`, pl: `Zdobyte monety: ${amount}`,
         })}
         style={styles.runeAward}
       >

@@ -54,8 +54,8 @@ function rewardLabel(reward: QuestReward, lang: Parameters<typeof triLang>[0]): 
   switch (reward.kind) {
     case 'runes':
       return triLang(lang, {
-        ru: plural('руна', 'руны', 'рун'), uk: 'рун', en: 'runes',
-        es: 'runas', 'pt-BR': 'runas', vi: 'rune', id: 'rune', tr: 'rün', pl: 'run',
+        ru: plural('монета', 'монеты', 'монет'), uk: 'монет', en: 'coins',
+        es: 'monedas', 'pt-BR': 'moedas', vi: 'xu', id: 'koin', tr: 'jeton', pl: 'monet',
       });
     case 'plus_days':
       return triLang(lang, {

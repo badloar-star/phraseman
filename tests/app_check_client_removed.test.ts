@@ -44,6 +44,9 @@ const FORBIDDEN: ReadonlyArray<readonly [string, RegExp]> = [
   ["App Check env switch", /EXPO_PUBLIC_(?:ENABLE_)?APP_CHECK/],
   ["deleted client helper", /\bapp_check_init\b|initFirebaseAppCheckIfAvailable|isFirebaseAppCheckReady/],
   ["attestation providers", /\bplayIntegrity\b|appAttestWithDeviceCheckFallback/],
+  // зачем: entitlement App Attest пережил 4a1c787b4 и ронял подпись iOS
+  // (ad hoc-профиль без App Attest) — магазинная сборка упала бы так же.
+  ["iOS App Attest entitlement", /devicecheck\.appattest-environment/i],
 ];
 
 function collectSources(dir: string, acc: string[] = []): string[] {
@@ -85,6 +88,12 @@ describe("App Check is removed from the client forever (owner seal 2026-08-17)",
       .map((name) => path.join(root, name))
       .filter((file) => fs.existsSync(file));
     expect(violationsIn(files)).toEqual([]);
+  });
+
+  test("iOS config requests no App Attest / DeviceCheck entitlement", () => {
+    const appJson = JSON.parse(fs.readFileSync(path.join(root, "app.json"), "utf8"));
+    const entitlements = appJson.expo?.ios?.entitlements ?? {};
+    expect(Object.keys(entitlements).filter((key) => /devicecheck|appattest/i.test(key))).toEqual([]);
   });
 
   test("the native package is not a dependency", () => {

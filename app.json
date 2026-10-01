@@ -99,9 +99,6 @@
         "applinks:knowlyapps.com"
       ],
       "googleServicesFile": "./GoogleService-Info.plist",
-      "entitlements": {
-        "com.apple.developer.devicecheck.appattest-environment": "production"
-      },
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "NSPhotoLibraryUsageDescription": "Phraseman не открывает вашу медиатеку. Разрешение запрашивается только если вы сами решите сохранить изображение с результатами обучения.",

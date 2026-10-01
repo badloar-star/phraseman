@@ -5747,7 +5747,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -5764,14 +5764,20 @@
       {
         "id": "PM-108-A2",
         "text": "дубликаты жалоб ограничены",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "functions/src/client_reports.ts communityPackReportDedupeDocId: жалоба одного человека на набор/отклик = один документ, повтор не тратит лимит",
+          "functions/src/client_reports.test.ts deduplicates repeated reports — 19/19, коммит 7b64aa008"
+        ]
       },
       {
         "id": "PM-108-A3",
         "text": "приватные наборы не становятся публичными по умолчанию",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "app/community_packs/localAuthorPacks.ts saveLocalAuthorPack: публичность только по явному publishToCommunity=true (было !== false)",
+          "tests/community_pack_private_by_default.test.ts 3/3; сервер: заявка только явным communitySubmitPackForReview и уходит в pending до модерации (functions/src/community_packs.ts:561), коммит 7b64aa008"
+        ]
       }
     ],
     "depends_on": [],
@@ -5802,7 +5808,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -5811,14 +5817,20 @@
       {
         "id": "PM-109-A1",
         "text": "Связь videoId/deckId, языки и доступность валидируются",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "functions/src/video_phrases.ts: videoId по regex (videoId()), набор = детерминированный community_packs/video_<videoId>, клиент video:<videoId>; язык набора из PACK_LANGUAGES вкл. it (D130); доступность: публикуется только черновик с ≥1 фразой (decideVideoPhrasePublish), клиент читает только status=published",
+          "functions/src/video_phrases.test.ts 16/16 (детектор языка, decide), коммит 84e03f439"
+        ]
       },
       {
         "id": "PM-109-A2",
         "text": "публикация не создаёт дубликаты при повторе",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "functions/src/video_phrases.ts decideVideoPhrasePublish: повтор публикации активной версии = already_published без записей; набор пересобирается под тем же id video_<videoId>",
+          "functions/src/video_phrases.test.ts 'повтор публикации активной версии — успех без записи', коммит 84e03f439"
+        ]
       }
     ],
     "depends_on": [],
@@ -5859,13 +5871,17 @@
         "id": "PM-110-A1",
         "text": "YouTube, Telegram-материал и набор приложения используют один проверенный список фраз",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (владелец): в приложении один список — активная версия video_phrase_sets (фразы под роликом, «Из видео», набор video_<id>; docs/phraseman-2.0/docs/VIDEO.md «Факт реализации»), но Telegram-материал и описание YouTube вне кода: правка черновика после разбора документа расходит списки, сверку подтверждает владелец"
+        ]
       },
       {
         "id": "PM-110-A2",
         "text": "не добавляется новая автопубликация без запроса",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Автопубликации нет: публикация только кнопкой админа adminPublishVideoPhrases (admin/v2/legacy.html vp-publish); youtubeCatalogSyncCron только читает YouTube; в functions/src нет отправки видео-контента в Telegram/YouTube; новых публикаций в пачке не добавлено — docs/phraseman-2.0/docs/VIDEO.md, коммит 790e24a99"
+        ]
       }
     ],
     "depends_on": [],
@@ -5896,7 +5912,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -5905,14 +5921,20 @@
       {
         "id": "PM-111-A1",
         "text": "Сохранить/убрать идемпотентно",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "app/video_favorites_core.ts applyLocalFavoriteToggle: повтор того же действия changed=false, без записи в сеть; app/video_favorites.ts toggle с откатом и last-write-guard",
+          "tests/video_favorites.test.ts 11/11 ('сохранить/убрать идемпотентно: повтор не идёт в сеть'), коммит af528a897; UI-кнопка — зона «Дизайн», деплой правил — владелец"
+        ]
       },
       {
         "id": "PM-111-A2",
         "text": "состояние принадлежит аккаунту, сохраняется при повторном входе и не течёт между пользователями",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Связь users/{stableUid}/video_favorites/{videoId}; firestore.rules: пишет/читает только personalEconomyOwnerMatchesAuth(userId), форма hasOnly; локальный кэш по ключу video_favorites_v1::<stableId>, чужой ownerId отбрасывается; повторный вход/новое устройство — refreshFromCloud",
+          "tests/video_favorites.test.ts ('повторный вход на новом устройстве', 'смена аккаунта ... не течёт'), tests/video_favorites_rules_contract.test.ts 5/5, коммит af528a897"
+        ]
       }
     ],
     "depends_on": [],
@@ -5943,7 +5965,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -5952,20 +5974,29 @@
       {
         "id": "PM-112-A1",
         "text": "Один пользователь учитывается один раз",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "id связи = videoId внутри users/{uid} → один человек = одна связь; агрегат = count() по collection group (functions/src/video_save_counts.ts)",
+          "functions/src/video_save_counts.test.ts 'один пользователь учитывается один раз' 4/4, коммит af528a897"
+        ]
       },
       {
         "id": "PM-112-A2",
         "text": "удаление сохранения уменьшает агрегат",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "unsave удаляет связь, удаление аккаунта сносит users/{uid} рекурсивно (account_delete.ts deleteDocTree) → следующий пересчёт count() меньше; агрегат считает состояние, а не события — повтор события не удваивает",
+          "functions/src/video_save_counts.test.ts 'убрал из избранного или удалил аккаунт — агрегат уменьшается', коммит af528a897"
+        ]
       },
       {
         "id": "PM-112-A3",
         "text": "клиент не может назначить произвольное число",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "firestore.rules match /video_save_counts/{docId}: allow create, update, delete: if false; число пишет только refreshVideoSaveCounts; клиент лишь читает",
+          "tests/video_favorites_rules_contract.test.ts 'агрегат клиент только читает', коммит af528a897"
+        ]
       }
     ],
     "depends_on": [
@@ -5998,7 +6029,7 @@
     ],
     "basis": "PROPOSAL",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -6007,20 +6038,29 @@
       {
         "id": "PM-113-A1",
         "text": "Агрегат входит в порцию каталога/кеш",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "app/video_save_counts.ts: один документ video_save_counts/public на весь каталог, кэш в памяти и на диске 6 ч, пересчёт только устаревших id; onSnapshot нет",
+          "tests/video_save_counts_client.test.ts 5/5, tests/video_favorites_rules_contract.test.ts 'нет realtime', коммит af528a897"
+        ]
       },
       {
         "id": "PM-113-A2",
         "text": "стоимость событий сохранения посчитана",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/docs/VIDEO.md «Факт реализации»: тап = 1 запись + правила; пересчёт ≈1 чтение count()/ролик раз в 6 ч; каталог = 1 чтение/6 ч; пример 100 роликов × 10 000 человек; functions/src/video_save_counts.ts шапка",
+          "коммиты af528a897, 790e24a99"
+        ]
       },
       {
         "id": "PM-113-A3",
         "text": "допустима отмеченная eventual consistency",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Агрегат обновляется не чаще раза в 6 ч на ролик (отмечено в VIDEO.md и коде); своё нажатие видно сразу — displayVideoSaveCount ±1 (app/video_favorites_core.ts)",
+          "tests/video_favorites.test.ts 'счётчик: своё изменение после расчёта агрегата видно сразу', коммит af528a897"
+        ]
       }
     ],
     "depends_on": [],
@@ -6062,13 +6102,17 @@
         "id": "PM-114-A1",
         "text": "Переход не вызывает скачки позиции, перерисовку всех строк или внезапное скрытие действий",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (устройство + «Дизайн»): компактная строка → карточка с плеером меняет высоту строки в FlashList «Все видео» (app/lingman_videos.tsx:436, compact={compact && video.id !== activeVideoId}); renderItem замыкает activeVideoId без extraData — перерисовка/скачок проверяются только на телефоне с замером; правка экрана — зона «Дизайн»"
+        ]
       },
       {
         "id": "PM-114-A2",
         "text": "необязательная анимация обсуждена",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (владелец/«Дизайн»): анимация перехода компактной строки не обсуждалась, решения в 03_DECISIONS.md нет; spec VIDEO.md допускает компактность без сложной анимации layout"
+        ]
       }
     ],
     "depends_on": [],
@@ -6216,13 +6260,18 @@
         "id": "PM-117-A1",
         "text": "При наличии связанного набора путь прямой",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET («Дизайн»): из «Из видео» тап ведёт на /lingman_videos?videoId (app/flashcards_video_packs.tsx:338), но экран лишь подсвечивает ролик (highlighted, app/lingman_videos.tsx:351) — не открывает и не прокручивает к нему; под роликом нет кнопки практики к тому же набору video_<videoId> (spec VIDEO.md). Нужны: автопоказ ролика по videoId и кнопка «Тренировать» → flashcards_collection {pack: video_<id>, preview: 1}"
+        ]
       },
       {
         "id": "PM-117-A2",
         "text": "при удалённом/закрытом наборе честное состояние, а не бесконечный loading",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "app/video_phrases_client.ts withVideoPhrasesTimeout 15 с: зависший запрос → отказ → YoutubeVideoPhrases state 'error' с повтором; снятый/закрытый набор (нет activeVersion / версия не published) → [] → блок скрыт (components/youtube/YoutubeVideoPhrases.tsx: if (!phrases.length) return null), не вечный скелетон",
+          "tests/video_phrases_contract.test.ts +3 (honest states), коммит 1451ed327"
+        ]
       }
     ],
     "depends_on": [],
@@ -6262,14 +6311,19 @@
       {
         "id": "PM-118-A1",
         "text": "Нет autoplay/прогрева всех роликов",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Плеер монтируется только у ролика, выбранного тапом (activeVideoId, один на экран; app/lingman_videos.tsx, components/home/HomeYoutubeFeatureCard.tsx); mediaPlaybackRequiresUserAction={!autoPlay}; превью — expo-image с дисковым кэшем, hqdefault, без Image.prefetch/прогрева",
+          "tests/video_player_lifecycle_contract.test.ts 3/3, коммит ea70142c4; tests/lingman_videos_catalog_contract.test.ts 'one user-initiated inline player'"
+        ]
       },
       {
         "id": "PM-118-A2",
         "text": "уход с экрана освобождает плеер и возвращает аудиофокус TTS",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (устройство): освобождение плеера есть — неактивный YoutubeInlinePlayer возвращает null (WebView размонтирован, components/youtube/YoutubeInlinePlayer.tsx:184), Главная снимает плеер при уходе (ownerActive), тест ea70142c4; возврат аудиофокуса TTS после закрытия WebView кодом не делается (нет вызова setManagedAudioMode в плеере) и проверяется только на iPhone/Android: включить ролик → закрыть → озвучка карточки"
+        ]
       }
     ],
     "depends_on": [],

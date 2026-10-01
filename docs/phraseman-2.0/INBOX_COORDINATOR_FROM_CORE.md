@@ -591,3 +591,13 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 - Источник: factory_native_course_v1.ts ставит `transcription: null` при сборке карточки из `wordCard` (в generated_release нет поля транскрипции).
 - Тест learning_v2_new_word_encounter_projection_v1 фиксирует текущее состояние (null), чтобы появление/потеря были замечены осознанно.
 - Решить отдельно: кто заполняет (генератор релиза / редакторский реестр слов) и как (словарь IPA, а не выдумка — см. память о выдуманной транскрипции 2026-09-21).
+
+## §44 — 2026-10-01: выкладка PM-164/PM-171; DESIGN для PM-168/171/184
+
+- **PM-164 («Привет»)**: friendLikeActivity и правило friend_hello_cooldowns уже на проде (вы выкладывали после §16; functions:list подтверждает friendLikeActivity). Добавлять нечего. Блокировка (friendBlockUser/friendUnblockUser + rules) — тоже выложена ранее.
+- **PM-171 («Идеи» скрыты)**: клиент + одна серверная правка — functions/src/shard_survey_core.ts (маршрут '/ideas_catalog' убран из разрешённых переходов опросов). К выкладке: **submitShardSurvey, getActiveShardSurvey, adminWriteShardSurvey, adminDeleteShardSurvey** (все импортируют shard_survey_core). Rules/indexes — не нужны. Не платёжное. Для стор-сборки 1.6.24: опрос с переходом на «Идеи» сервер теперь не примет к записи — такой пресет удалён из библиотеки (PM-168), живые опросы владельца не трогались; поведение ответа на опрос не меняется.
+- **DESIGN** (docs/phraseman-2.0/evidence/DESIGN_GATE_OWNER_REVIEW.md):
+  - PM-171 — покрыто требованием владельца «скрыть идеи» (только удаление, нового вида нет — как PM-036).
+  - PM-184 — покрыто D73/D114 (OWNER_FINAL 30.09, вид и правила визитки «Про»); файла макета profile-card-pro.html в репо нет — основание сами решения.
+  - PM-168 — нужен взгляд владельца на тон текстов опросов (скриншот не нужен, 3–4 примера из библиотеки) — в разделе «Нужен взгляд владельца».
+  Следующий ревьюер закроет PM-171/PM-184 по этим ссылкам.

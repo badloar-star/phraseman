@@ -21,7 +21,7 @@ import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useLang } from '../LangContext';
 import { usePremium } from '../PremiumContext';
 import { useStudyTarget } from '../StudyTargetContext';
-import { dialogueV2UiCopy } from '../../app/dialogue_v2_ui_copy';
+import { dialogueV2UiCopy, dialogueV2UiWorldTitle } from '../../app/dialogue_v2_ui_copy';
 import { useV2Palette } from '../v2/useV2Palette';
 import {
   DialogueV2CatalogueSection,
@@ -44,19 +44,22 @@ type CatalogueState =
   | Readonly<{ kind: 'available'; envelope: DialogueV2CatalogueReleaseEnvelope }>;
 
 function dialogueV2WorldHeadings(lang: ReturnType<typeof useLang>['lang']): readonly DialogueV2CatalogueWorld[] {
+  // зачем (владелец 01.10, данные Ядра): названия миров — на языке интерфейса для всех 9 языков;
+  // нет в снимке — прежние подписи ниже.
+  const fromUi = (id: string, fallback: string): string => dialogueV2UiWorldTitle(lang, id) ?? fallback;
   return Object.freeze([
-    Object.freeze({ id: 'social', title: triLang(lang, {
+    Object.freeze({ id: 'social', title: fromUi('social', triLang(lang, {
       ru: 'Общение', uk: 'Спілкування', en: 'Social', es: 'Social', fr: 'Social', de: 'Soziales',
-    }) }),
-    Object.freeze({ id: 'work', title: triLang(lang, {
+    })) }),
+    Object.freeze({ id: 'work', title: fromUi('work', triLang(lang, {
       ru: 'Дела', uk: 'Справи', en: 'Work', es: 'Trabajo', fr: 'Travail', de: 'Arbeit',
-    }) }),
-    Object.freeze({ id: 'travel', title: triLang(lang, {
+    })) }),
+    Object.freeze({ id: 'travel', title: fromUi('travel', triLang(lang, {
       ru: 'Поездки', uk: 'Подорожі', en: 'Travel', es: 'Viajes', fr: 'Voyages', de: 'Reisen',
-    }) }),
-    Object.freeze({ id: 'everyday', title: triLang(lang, {
+    })) }),
+    Object.freeze({ id: 'everyday', title: fromUi('everyday', triLang(lang, {
       ru: 'Каждый день', uk: 'Щодня', en: 'Everyday', es: 'Día a día', fr: 'Quotidien', de: 'Alltag',
-    }) }),
+    })) }),
   ]);
 }
 

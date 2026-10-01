@@ -37,6 +37,8 @@ export interface FriendTogetherSheetProps {
   onNudge: (() => void) | null;
   onHighFive: () => void;
   onDelete: ((requestDismiss: () => void) => void) | null;
+  /** Q41 (координатор 01.10): «Заблокировать» — под «Удалить из друзей». */
+  onBlock?: ((requestDismiss: () => void) => void) | null;
 }
 
 const FRIENDSHIP_LEVELS: readonly Record<Lang, string>[] = [
@@ -88,6 +90,7 @@ function FriendTogetherSheet({
   onNudge,
   onHighFive,
   onDelete,
+  onBlock = null,
 }: FriendTogetherSheetProps) {
   const { f } = useTheme();
   const g = useLv2Glass();
@@ -109,6 +112,7 @@ function FriendTogetherSheet({
   const highFiveLabel = highFived
     ? L('Дай пять отправлено', 'П’ять відправлено', 'High five sent', 'Choca esos cinco enviado', 'Toca aqui enviado', 'Đập tay đã gửi', 'Tos sudah dikirim', 'Çak gönderildi', 'Piątka wysłana')
     : L('Дать пять', 'Дати п’ять', 'High five', 'Chocar los cinco', 'Toca aqui', 'Đập tay', 'Beri tos', 'Çak', 'Przybij piątkę');
+  const blockLabel = L('Заблокировать', 'Заблокувати', 'Block', 'Bloquear', 'Bloquear', 'Chặn', 'Blokir', 'Engelle', 'Zablokuj');
   const deleteLabel = L('Удалить из друзей', 'Видалити з друзів', 'Remove from friends', 'Eliminar de amigos', 'Remover dos amigos', 'Xóa khỏi bạn bè', 'Hapus dari teman', 'Arkadaşlardan kaldır', 'Usuń ze znajomych');
   const incomingLabel = L('Друг зовёт вас заниматься сегодня.', 'Друг кличе вас займатися сьогодні.', 'Your friend is inviting you to study today.', 'Tu amistad te invita a estudiar hoy.', 'Seu amigo convida você para estudar hoje.', 'Bạn của bạn mời bạn học hôm nay.', 'Temanmu mengajakmu belajar hari ini.', 'Arkadaşın seni bugün çalışmaya çağırıyor.', 'Twój znajomy zaprasza Cię dziś do nauki.');
 
@@ -171,6 +175,7 @@ function FriendTogetherSheet({
               {together && onNudge && <PressableHybrid testID="friend-together-sheet-nudge" onPress={() => onNudge()} disabled={nudgeDisabled} accessibilityLabel={nudgeLabel} variant={nudgeDisabled ? 'secondary' : 'primary'} style={[styles.actionBtn, { backgroundColor: nudgeDisabled ? g.opaqueControl : g.cta }]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-nudge-label" provenance="authored" style={{ color: nudgeDisabled ? g.secondary : buttonForegroundForBackground(g.cta), fontSize: f.body, fontWeight: '700' }}>{nudgeLabel}</FlowText></PressableHybrid>}
               <PressableHybrid testID="friend-together-sheet-high-five" onPress={() => onHighFive()} accessibilityLabel={highFiveLabel} accessibilityState={{ selected: highFived }} variant="secondary" style={[styles.actionBtn, { backgroundColor: g.opaqueControl }]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-high-five-label" provenance="authored" style={{ color: g.text, fontSize: f.body, fontWeight: '700' }}>{highFiveLabel}</FlowText></PressableHybrid>
               {onDelete && <PressableHybrid testID="friend-together-sheet-delete" onPress={() => onDelete(requestDismiss)} accessibilityLabel={deleteLabel} variant="secondary" style={[styles.actionBtn, styles.deleteAction, { backgroundColor: g.badFill }]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-delete-label" provenance="authored" style={{ color: g.bad, fontSize: f.body, fontWeight: '700' }}>{deleteLabel}</FlowText></PressableHybrid>}
+              {onBlock && <PressableHybrid testID="friend-together-sheet-block" onPress={() => onBlock(requestDismiss)} accessibilityLabel={blockLabel} variant="secondary" style={[styles.actionBtn, styles.deleteAction]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-block-label" provenance="authored" style={{ color: g.bad, fontSize: f.body, fontWeight: '400' }}>{blockLabel}</FlowText></PressableHybrid>}
             </View>
           </ScrollView>
         </>

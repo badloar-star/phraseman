@@ -62,6 +62,7 @@ import {
   type FriendEntry,
   type FriendRequestEntry,
 } from '../firestore_friend_requests';
+import { blockUser, refreshBlockedList } from '../friend_block';
 import { CLOUD_SYNC_ENABLED, ENABLE_DEV_TOOLS, IS_EXPO_GO } from '../config';
 import { getCanonicalUserId } from '../user_id_policy';
 import { ensureAnonUser } from '../cloud_sync';
@@ -1186,6 +1187,8 @@ export default function FriendsTabScreen() {
 
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerInfo | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<{ uid: string; name: string } | null>(null);
+  // зачем (Q41/Q48/Q49, координатор 01.10): блокировка из шторки друга, заодно удаляет из друзей.
+  const [blockTarget, setBlockTarget] = useState<{ uid: string; name: string } | null>(null);
   const [pendingTogetherSheetAction, setPendingTogetherSheetAction] = useState<FriendSheetPendingAction<FriendProfile> | null>(null);
 
   /** Анти-клин iOS: одновременный present двух <Modal> глушит тачи всего экрана («мёртвый экран»
@@ -1739,11 +1742,50 @@ export default function FriendsTabScreen() {
       });
   }, [L, showFeedback]);
 
+  // Список блокировок — из кэша сразу, с сервера не чаще раза в 6 ч (TTL внутри стора).
+  useEffect(() => {
+    refreshBlockedList().catch((error: unknown) => {
+      console.warn('[FRIEND-BLOCK] ui: refresh failed', error instanceof Error ? error.message : String(error));
+    });
+  }, []);
+
   const handleDeleteConfirm = useCallback((uid: string, name: string) => {
     if (modalWedgeGuardRef.current) return;
     hapticTap();
     setDeleteTarget({ uid, name });
   }, []);
+
+  const handleBlockConfirm = useCallback((uid: string, name: string) => {
+    if (modalWedgeGuardRef.current) return;
+    hapticTap();
+    setBlockTarget({ uid, name });
+  }, []);
+
+  const runBlock = useCallback((target: { uid: string; name: string }) => {
+    // Optimistic: друг исчезает сразу; отказ сервера — возвращаем и говорим причину.
+    const previousFriend = friends.find(friend => friend.uid === target.uid) ?? null;
+    setFriends(prev => prev.filter(friend => friend.uid !== target.uid));
+    setSelectedPlayer(current => (current?.uid === target.uid || current?.friendUid === target.uid ? null : current));
+    const rollback = () => {
+      if (previousFriend) setFriends(prev => prev.some(friend => friend.uid === previousFriend.uid) ? prev : [previousFriend, ...prev]);
+    };
+    void blockUser(target.uid).then((result) => {
+      console.log('[FRIEND-BLOCK] ui: block result', JSON.stringify({ uid: target.uid.slice(0, 6), result }));
+      if (result === 'ok') {
+        showFeedback(L('Пользователь заблокирован', 'Користувача заблоковано', 'User blocked', 'Usuario bloqueado', 'Usuário bloqueado', 'Đã chặn người dùng', 'Pengguna diblokir', 'Kullanıcı engellendi', 'Użytkownik zablokowany'));
+        if (previousFriend) {
+          deleteFriend(target.uid).catch((error: unknown) => {
+            console.warn('[FRIEND-BLOCK] ui: delete after block failed', error instanceof Error ? error.message : String(error));
+          });
+        }
+        return;
+      }
+      rollback();
+      showFeedback(result === 'limit'
+        ? L('Достигнут предел списка', 'Досягнуто межі списку', 'Block list is full', 'La lista está llena', 'A lista está cheia', 'Danh sách đã đầy', 'Daftar sudah penuh', 'Liste dolu', 'Lista jest pełna')
+        : L('Не получилось заблокировать. Попробуй ещё раз', 'Не вдалося заблокувати. Спробуй ще раз', 'Could not block. Try again', 'No se pudo bloquear. Inténtalo de nuevo', 'Não deu para bloquear. Tente novamente', 'Chưa chặn được. Hãy thử lại', 'Belum bisa diblokir. Coba lagi', 'Engellenemedi. Tekrar dene', 'Nie udało się zablokować. Spróbuj ponownie'));
+    });
+  }, [L, friends, showFeedback]);
 
   const openProfile = useCallback((profile: FriendProfile) => {
     if (modalWedgeGuardRef.current) return;
@@ -1850,7 +1892,7 @@ export default function FriendsTabScreen() {
   }, [highFivedUids, myProfile?.name]);
 
   // Обновляем гард на каждый рендер: любая открытая модалка блокирует открытие следующей.
-  const modalWedgeActive = selectedPlayer !== null || deleteTarget !== null
+  const modalWedgeActive = selectedPlayer !== null || deleteTarget !== null || blockTarget !== null
     || addModalOpen
     || togetherSheetSession !== null;
   modalWedgeGuardRef.current = modalWedgeActive;
@@ -1864,8 +1906,9 @@ export default function FriendsTabScreen() {
     // зачем: D83 — клиентская Арена удалена, дуэли с другом больше нет;
     // из шторки друга остаётся только удаление.
     if (action.kind === 'delete') handleDeleteConfirm(action.profile.uid, action.profile.name);
+    else if (action.kind === 'block') handleBlockConfirm(action.profile.uid, action.profile.name);
     else if (__DEV__) console.warn('[D83-ARENA-RETIRED] friend sheet duel action ignored', { kind: action.kind });
-  }, [handleDeleteConfirm, modalWedgeActive, pendingTogetherSheetAction, togetherSheetSession]);
+  }, [handleBlockConfirm, handleDeleteConfirm, modalWedgeActive, pendingTogetherSheetAction, togetherSheetSession]);
 
   // ── Derived ────────────────────────────────────────────────────────────────
 
@@ -2262,6 +2305,10 @@ export default function FriendsTabScreen() {
               setPendingTogetherSheetAction(current => queueFirstFriendSheetAction(current, { kind: 'delete', profile: friendProfile }));
               requestDismiss();
             }}
+            onBlock={devBot ? null : (requestDismiss) => {
+              setPendingTogetherSheetAction(current => queueFirstFriendSheetAction(current, { kind: 'block', profile: friendProfile }));
+              requestDismiss();
+            }}
           />
         );
       })()}
@@ -2292,6 +2339,22 @@ export default function FriendsTabScreen() {
           onReset={() => { void handleDevReset(); }}
         />
       )}
+
+      <ThemedConfirmModal
+        visible={blockTarget !== null}
+        title={L('Заблокировать?', 'Заблокувати?', 'Block?', '¿Bloquear?', 'Bloquear?', 'Chặn?', 'Blokir?', 'Engellensin mi?', 'Zablokować?')}
+        message={blockTarget?.name ?? ''}
+        cancelLabel={L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'İptal', 'Anuluj')}
+        confirmLabel={L('Заблокировать', 'Заблокувати', 'Block', 'Bloquear', 'Bloquear', 'Chặn', 'Blokir', 'Engelle', 'Zablokuj')}
+        confirmVariant="default"
+        testIDPrefix="friends-block-confirm"
+        onCancel={() => setBlockTarget(null)}
+        onConfirm={() => {
+          const target = blockTarget;
+          setBlockTarget(null);
+          if (target) runBlock(target);
+        }}
+      />
 
       <ThemedConfirmModal
         visible={deleteTarget !== null}

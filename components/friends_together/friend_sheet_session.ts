@@ -5,7 +5,7 @@ export type FriendSheetSession<T extends { uid: string }> = {
 };
 
 export type FriendSheetPendingAction<T extends { uid: string }> = {
-  kind: 'delete' | 'duel';
+  kind: 'delete' | 'duel' | 'block';
   profile: T;
 };
 

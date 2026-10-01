@@ -2914,7 +2914,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="mistakes_list" />
       <Stack.Screen name="mistake_detail" />
       <Stack.Screen name="flashcards_voice_picker" />
-      <Stack.Screen name="phrase_analytics_screen" />
     </Stack>
   ), [
     tTheme.bgPrimary,

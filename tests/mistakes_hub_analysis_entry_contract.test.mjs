@@ -1,25 +1,17 @@
-// зачем (решение владельца 01.10 через Ядро): экран «Разбор твоих ошибок» не удаляем —
-// вход в него из хаба «Работа над ошибками». Замок Premium живёт на самом экране
-// (пейвол source 'phrase_analytics'); хаб только показывает значок замка.
+// зачем (владелец 01.10, окончательно): экран «Разбор твоих ошибок» убран из 2.0.
+// Хаб «Работа над ошибками» не ведёт на него, маршрута в Stack нет; сам экран
+// удаляет сессия «Ядро». Сторож не даёт вернуть вход по старой памяти.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
 const hub = readFileSync(new URL('../app/mistakes_hub.tsx', import.meta.url), 'utf8');
-const screen = readFileSync(new URL('../app/phrase_analytics_screen.tsx', import.meta.url), 'utf8');
+const layout = readFileSync(new URL('../app/_layout.tsx', import.meta.url), 'utf8');
 
-test('the mistakes hub opens the mistakes breakdown screen', () => {
-  assert.match(hub, /testID="mistakes-hub-analysis"/);
-  assert.match(hub, /router\.push\('\/phrase_analytics_screen'/);
-  assert.match(hub, /hasPremiumAccess \? null : <Ionicons name="lock-closed"/);
+test('the mistakes hub has no entry to the retired breakdown screen', () => {
+  assert.doesNotMatch(hub, /mistakes-hub-analysis|phrase_analytics_screen/);
 });
 
-test('the breakdown screen keeps its own Premium gate with the phrase_analytics paywall source', () => {
-  assert.match(screen, /source: 'phrase_analytics'/);
-  assert.match(screen, /!isPremium \?/);
-});
-
-test('the breakdown gate uses 2.0 theme tokens, no gold', () => {
-  assert.match(screen, /liquidGlassTokens\(liquidGlassThemeId\)/);
-  assert.doesNotMatch(screen, /GATE_LUX\s*=|#C9A227|#B8860B|#9a7b32/);
+test('the root stack does not register the retired breakdown route', () => {
+  assert.doesNotMatch(layout, /name="phrase_analytics_screen"/);
 });

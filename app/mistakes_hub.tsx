@@ -8,7 +8,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 // зачем: тот же контрол обновления, что в лиге — один язык жеста по приложению.
 import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
 import { useLang } from '../components/LangContext';
-import { usePremium } from '../components/PremiumContext';
 import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -55,15 +54,6 @@ const copyFor = (lang: Lang) => triLang(lang, {
   id: { title: 'Latihan kesalahan', back: 'Kembali', ready: 'siap', corrected: 'diperbaiki', map30: '30 hari terakhir', mistakes: { one: "kesalahan", few: "kesalahan", many: "kesalahan" }, sources: 'Asal kesalahan', all: 'Semua', start: 'Latih', startAll: 'Latih semua', list: 'Kesalahanku', empty: 'Semua sudah diperbaiki', emptyBody: 'Kesalahan baru dari pelajaran dan kartu akan muncul di sini.', shelf: 'Lihat yang diperbaiki', noData: 'Belum ada kesalahan' },
   tr: { title: 'Hata çalışması', back: 'Geri', ready: 'hazır', corrected: 'düzeltildi', map30: 'Son 30 gün', mistakes: { one: "hata", few: "hata", many: "hata" }, sources: 'Nereden geliyor', all: 'Tümü', start: 'Çalış', startAll: 'Tümünü çalış', list: 'Hatalarım', empty: 'Hepsi düzeltildi', emptyBody: 'Ders ve kartlardan gelen yeni hatalar burada kendiliğinden görünür.', shelf: 'Düzeltilenleri gör', noData: 'Henüz hata yok' },
   pl: { title: 'Praca nad błędami', back: 'Wstecz', ready: 'gotowe', corrected: 'poprawione', map30: 'Ostatnie 30 dni', mistakes: { one: "błąd", few: "błędy", many: "błędów" }, sources: 'Skąd pochodzą', all: 'Wszystkie', start: 'Przećwicz', startAll: 'Przećwicz wszystkie', list: 'Moje błędy', empty: 'Wszystko poprawione', emptyBody: 'Nowe błędy z lekcji i fiszek pojawią się tu same.', shelf: 'Zobacz poprawione', noData: 'Nie ma jeszcze błędów' },
-});
-
-// зачем (решение владельца 01.10 через Ядро): экран «Разбор твоих ошибок» остаётся,
-// вход в него — отсюда: сначала видишь слабые места, потом тренируешь. Название
-// то же, что у заголовка самого экрана, чтобы переход не удивлял.
-const analysisLabel = (lang: Lang) => triLang(lang, {
-  ru: 'Разбор твоих ошибок', uk: 'Розбір твоїх помилок', en: 'Breakdown of your mistakes',
-  es: 'Análisis de tus errores', 'pt-BR': 'Análise dos seus erros', vi: 'Phân tích lỗi của bạn',
-  id: 'Analisis kesalahanmu', tr: 'Hatalarının analizi', pl: 'Analiza twoich błędów',
 });
 
 /** Peek-кэш: повторный вход рисует прошлое состояние сразу, без скелетона. */
@@ -206,15 +196,6 @@ export default function MistakesHubScreen() {
     router.push({ pathname: '/mistakes_list', params: { filter } } as never);
   }, [router]);
 
-  // Замок Premium живёт на самом экране разбора (пейвол source 'phrase_analytics'),
-  // здесь только честный значок, чтобы тап не обманывал ожиданий.
-  const { hasPremiumAccess } = usePremium();
-  const openAnalysis = useCallback(() => {
-    hapticTap();
-    // guard-ok: трассировка входа (правило «сперва логи»)
-    console.log('[MISTAKES-HUB] open_analysis', JSON.stringify({ premium: hasPremiumAccess, active }));
-    router.push('/phrase_analytics_screen' as never);
-  }, [active, hasPremiumAccess, router]);
 
   return (
     <ScreenGradient>
@@ -289,19 +270,6 @@ export default function MistakesHubScreen() {
                 </View>
               </View>
 
-              <Pressable
-                testID="mistakes-hub-analysis"
-                accessibilityRole="button"
-                accessibilityLabel={analysisLabel(lang)}
-                accessibilityHint={hasPremiumAccess ? undefined : 'Premium'}
-                onPress={openAnalysis}
-                style={({ pressed }) => [styles.listLink, { backgroundColor: g.opaqueCard, transform: [{ scale: pressed ? 0.98 : 1 }] }]}
-              >
-                <Ionicons name="analytics-outline" size={22} color={g.text} />
-                <Text style={[styles.cardTitle, { color: g.text, fontSize: f.body, flex: 1 }]}>{analysisLabel(lang)}</Text>
-                {hasPremiumAccess ? null : <Ionicons name="lock-closed" size={18} color={g.secondary} />}
-                <Ionicons name="chevron-forward" size={20} color={g.secondary} />
-              </Pressable>
 
               {/* Наблюдение: готово до открытия (кэш ИИ на сегодня или правило). Без подписи «ИИ». */}
               <View style={[styles.card, { backgroundColor: g.opaqueControl }]}>

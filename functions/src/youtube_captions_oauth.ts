@@ -146,6 +146,11 @@ export const youtubeOAuthCallback = onRequest(
         return;
       }
       const nowMs = Date.now();
+      // зачем (владелец 01.10): в блоке «Подключение каналов» видно, КТО подключил канал.
+      const connectedByEmail = await admin.auth().getUser(uid).then((user) => user.email ?? '').catch((error: unknown) => {
+        console.warn(`${LOG} oauth:callback email lookup failed uid=${uid} reason=${codeOf(error)}`);
+        return '';
+      });
       const batch = db().batch();
       for (const channel of channels) {
         batch.set(db().collection(CHANNELS_COLLECTION).doc(channel.id), {
@@ -156,6 +161,7 @@ export const youtubeOAuthCallback = onRequest(
           status: 'connected',
           connectedAtMs: nowMs,
           connectedByUid: uid,
+          connectedByEmail,
         });
       }
       await batch.commit();
@@ -177,6 +183,8 @@ export const adminYoutubeChannelsList = onCall({ region: REGION, enforceAppCheck
     title: String(doc.get('title') ?? ''),
     status: String(doc.get('status') ?? 'connected'),
     connectedAtMs: Number(doc.get('connectedAtMs') ?? 0),
+    connectedByUid: String(doc.get('connectedByUid') ?? ''),
+    connectedByEmail: String(doc.get('connectedByEmail') ?? ''),
   }));
   console.log(`${LOG} channels:list count=${channels.length}`);
   return { ok: true, channels };

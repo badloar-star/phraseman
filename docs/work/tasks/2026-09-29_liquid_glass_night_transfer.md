@@ -297,3 +297,5 @@ Governance-ID: TG-CB9BF2E434CD
 Governance-ID: TG-B8FDED5F5661
 — 01.10 «Дизайн»: кнопка «Заблокировать» за выключателем до выкладки friendBlockUser/friendUnblockUser.
 Governance-ID: TG-A8173CD1DDA8
+Governance-ID: TG-018C3BAF4957
+— 01.10 «Дизайн»: блокировка включена (координатор: функции и удаление аккаунта на проде).

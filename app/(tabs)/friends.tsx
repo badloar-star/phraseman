@@ -65,7 +65,7 @@ import {
 import { blockUser, refreshBlockedList } from '../friend_block';
 // зачем (Ядро 01.10): кнопку «Заблокировать» включать только после выкладки friendBlockUser/friendUnblockUser —
 // без функций каждое нажатие кончалось бы откатом и ошибкой. Включить: true (после подтверждения координатора).
-const FRIEND_BLOCK_UI_ENABLED = false;
+const FRIEND_BLOCK_UI_ENABLED = true; // координатор 01.10: функции блокировки и удаления аккаунта выложены
 import { CLOUD_SYNC_ENABLED, ENABLE_DEV_TOOLS, IS_EXPO_GO } from '../config';
 import { getCanonicalUserId } from '../user_id_policy';
 import { ensureAnonUser } from '../cloud_sync';

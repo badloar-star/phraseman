@@ -29,7 +29,9 @@ export type AccountSyncOutboxErrorCode =
   | 'account_sync_outbox_transaction_failed';
 
 export class AccountSyncOutboxError extends Error {
-  declare readonly code: AccountSyncOutboxErrorCode;
+  // зачем: без `declare` — Babel (Metro) без allowDeclareFields падает на нём; значение
+  // ставит defineProperties в конструкторе (неизменяемое), поле лишь объявляет тип.
+  readonly code!: AccountSyncOutboxErrorCode;
 
   constructor(rawCode: unknown) {
     const allowed: readonly AccountSyncOutboxErrorCode[] = [

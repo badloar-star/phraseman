@@ -41,7 +41,9 @@ const ERROR_CODES: readonly AccountSqliteScopeConnectionErrorCode[] = Object.fre
 ]);
 
 export class AccountSqliteScopeConnectionError extends Error {
-  declare readonly code: AccountSqliteScopeConnectionErrorCode;
+  // зачем: без `declare` — Babel (Metro) без allowDeclareFields падает на нём; значение
+  // ставит defineProperties в конструкторе (неизменяемое), поле лишь объявляет тип.
+  readonly code!: AccountSqliteScopeConnectionErrorCode;
 
   constructor(rawCode: unknown) {
     const code = typeof rawCode === 'string'

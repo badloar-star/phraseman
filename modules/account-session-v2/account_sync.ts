@@ -157,7 +157,9 @@ export type AccountSyncInvariantErrorCode =
   | 'account_sync_invalid_input' | 'account_sync_invalid_event_for_state';
 
 export class AccountSyncInvariantError extends Error {
-  declare readonly code: AccountSyncInvariantErrorCode;
+  // зачем: без `declare` — Babel (Metro) без allowDeclareFields падает на нём; значение
+  // ставит defineProperties в конструкторе (неизменяемое), поле лишь объявляет тип.
+  readonly code!: AccountSyncInvariantErrorCode;
 
   constructor(rawCode: unknown) {
     const code: AccountSyncInvariantErrorCode =

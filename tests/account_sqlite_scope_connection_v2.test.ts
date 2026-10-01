@@ -664,7 +664,7 @@ describe('account SQLite scope connection V2', () => {
       },
       (selectedFixture) => {
         selectedFixture.sql.seed(selected);
-        selectedFixture.sql.recordsSchemaSql = `${SQL.createRecords} /* drift */`;
+        selectedFixture.sql.recordsSchemaSql = `${SQL.createRecords} /* drift */` as typeof SQL.createRecords;
       },
       ...(['trigger', 'view', 'index'] as const).map((type) => (
         selectedFixture: ReturnType<typeof fixture>,

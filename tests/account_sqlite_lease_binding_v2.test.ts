@@ -13,7 +13,7 @@ async function expectLeaseCode(
     expect(error).toBeInstanceOf(AccountSqliteLeaseBindingError);
     expect((error as AccountSqliteLeaseBindingError).code).toBe(code);
     expect(Object.isFrozen(error)).toBe(true);
-    expect(Reflect.ownKeys(error).sort()).toEqual(['code', 'message', 'name']);
+    expect(Reflect.ownKeys(error as object).sort()).toEqual(['code', 'message', 'name']);
     expect(String(error)).not.toContain('private');
     return;
   }

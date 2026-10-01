@@ -6,7 +6,9 @@ export type AccountSqliteLeaseBindingErrorCode =
   | 'account_native_sqlite_closed';
 
 export class AccountSqliteLeaseBindingError extends Error {
-  declare readonly code: AccountSqliteLeaseBindingErrorCode;
+  // зачем: без `declare` — Babel (Metro) без allowDeclareFields падает на нём; значение
+  // ставит defineProperties в конструкторе (неизменяемое), поле лишь объявляет тип.
+  readonly code!: AccountSqliteLeaseBindingErrorCode;
 
   constructor(rawCode: unknown) {
     const allowed: readonly AccountSqliteLeaseBindingErrorCode[] = [

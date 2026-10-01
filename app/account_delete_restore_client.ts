@@ -12,7 +12,6 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { DebugLogger } from './debug-logger';
 
 const FUNCTIONS_REGION = 'us-central1';
@@ -34,7 +33,6 @@ async function callable<TReq extends object, TRes>(name: string) {
 export async function fetchAccountDeleteStatus(): Promise<AccountDeleteStatus | null> {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return null;
   try {
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = await callable<Record<string, never>, AccountDeleteStatus>('accountDeleteStatusMine');
     const res = await fn({} as Record<string, never>);
     return res.data ?? null;
@@ -58,7 +56,6 @@ export type RestoreOutcome =
 export async function restoreDeletedAccount(): Promise<RestoreOutcome> {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return { ok: false, reason: 'network' };
   try {
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = await callable<Record<string, never>, { restored: boolean }>('accountDeleteRestoreMine');
     const res = await fn({} as Record<string, never>);
     return res.data?.restored ? { ok: true } : { ok: false, reason: 'not_restorable' };

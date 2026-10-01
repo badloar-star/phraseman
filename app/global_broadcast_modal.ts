@@ -11,7 +11,6 @@ import { submitClientReport } from './client_reports';
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { ensureStableAuthLinkForStableIdDetailed } from './cloud_sync';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withCallableTimeout } from './callable_timeout';
 import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken, type AccountTransitionLockLease, withAccountTransitionLock } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
@@ -257,7 +256,6 @@ async function claimGlobalBroadcastReward(
 ): Promise<GlobalBroadcastClaimResponse> {
   const link = await ensureStableAuthLinkForStableIdDetailed(stableId);
   if (!link.ok || link.stableUid !== stableId) throw new Error('broadcast_identity_changed');
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = httpsCallable<{ stableId: string; broadcastId: string }, GlobalBroadcastClaimResponse>(
     getFunctions(getApp(), 'us-central1'),
     'globalBroadcastClaim',
@@ -362,7 +360,6 @@ export async function fetchPendingGlobalBroadcastModal(
   if (!isCurrentAccountGeneration(accountToken, uid)) return null;
 
   try {
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
     const listActive = httpsCallable<{ limit: number }, GlobalBroadcastPublicListResponse>(
       getFunctions(getApp(), 'us-central1'),
       'globalBroadcastListActive',

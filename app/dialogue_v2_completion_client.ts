@@ -1,7 +1,6 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import {
   buildDialogueV2CompletionReview,
   type DialogueV2CompletionReview,
@@ -103,7 +102,6 @@ export async function completeDialogueV2Session(
   const selection = safeSelection(input);
   if (!selection) return null;
   try {
-    await initFirebaseAppCheckIfAvailable();
     const callable = httpsCallable<DialogueV2CompletionSelection, unknown>(
       getFunctions(getApp(), REGION),
       'dialogueV2SessionComplete',

@@ -4,7 +4,6 @@ import Constants from 'expo-constants';
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ensureAnonUser } from './cloud_sync';
 import { mergeStreakByActivityDate } from './streak_safety';
 import { getCanonicalUserId } from './user_id_policy';
@@ -487,8 +486,6 @@ async function ensureProgressSnapshotMigratedForOwner(stableId: string): Promise
   await ensureAnonUser();
   const migratedKey = progressOwnerKey(PROGRESS_MIGRATED_KEY, stableId);
   if (await AsyncStorage.getItem(migratedKey)) return true;
-  const appCheckReady = await initFirebaseAppCheckIfAvailable().catch((error: unknown) => { reportSwallowed('progress_events_client:ensureProgressSnapshotMigratedForOwner', error); return false; });
-  if (!appCheckReady) return false;
   const frozen = await readOwnedProgressBaseline(stableId);
   const progress = frozen ?? await readLocalProgressSnapshot();
   const fn = callable<{ stableId: string; progress: Record<string, string> }, { ok: true; migrated: boolean }>('progressMigrateSnapshot');
@@ -524,8 +521,6 @@ async function ensureProgressSnapshotMigratedWithBaseline(
   await ensureAnonUser();
   const migratedKey = progressOwnerKey(PROGRESS_MIGRATED_KEY, stableId);
   if (await AsyncStorage.getItem(migratedKey)) return true;
-  const appCheckReady = await initFirebaseAppCheckIfAvailable().catch((error: unknown) => { reportSwallowed('progress_events_client:ensureProgressSnapshotMigratedWithBaseline', error); return false; });
-  if (!appCheckReady) return false;
   const frozen = await readOwnedProgressBaseline(stableId);
   const progress = frozen ?? snapshotOverride ?? await readLocalProgressSnapshot();
   const fn = callable<{ stableId: string; progress: Record<string, string> }, { ok: true; migrated: boolean }>('progressMigrateSnapshot');
@@ -556,8 +551,8 @@ export async function mirrorProgressResultToLocal(result: ProgressEventResult): 
 }
 
 async function submitQueuedEvent(event: QueuedProgressEvent): Promise<ProgressEventResult> {
-  const appCheckReady = await initFirebaseAppCheckIfAvailable().catch((error: unknown) => { reportSwallowed('progress_events_client:submitQueuedEvent', error); return false; });
-  if (!appCheckReady) throw new Error('app_check_unavailable');
+  // зачем: прежде без токена App Check событие прогресса не уходило вовсе
+  // (throw app_check_unavailable) — сервер его не требует, пломба 2026-08-17.
   const fn = callable<QueuedProgressEvent, ProgressEventResult>('progressSubmitEvent');
   const accountGeneration = captureAccountGeneration();
   const res = await withTimeout(fn(event), CALLABLE_TIMEOUT_MS, 'progress_submit_event');

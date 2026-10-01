@@ -5,7 +5,6 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { triLang, type Lang } from '../constants/i18n';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import {
   aiOffline,
   AiOfflineError,
@@ -364,7 +363,6 @@ export interface CallPremiumDialogSendOptions {
  */
 export function warmPremiumDialog(studyTarget: string): void {
   void warmAiFunction('premiumDialogSend', async () => {
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'premiumDialogSend');
     return fn({ warmupPing: true, studyTarget });
   });
@@ -379,7 +377,6 @@ export function warmPremiumDialog(studyTarget: string): void {
  */
 export function warmPremiumDialogTranslate(studyTarget: string): void {
   void warmAiFunction('premiumDialogTranslate', async () => {
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'premiumDialogTranslate');
     return fn({ warmupPing: true, studyTarget });
   });
@@ -400,7 +397,6 @@ export async function callPremiumDialogSend(
   if (existing) return existing;
 
   const request = (async () => {
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = httpsCallable<PremiumDialogRequest, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'premiumDialogSend',
@@ -683,7 +679,6 @@ export async function callPremiumDialogReview(
   if (existing) return existing;
 
   const request = (async () => {
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = httpsCallable<PremiumDialogReviewRequest, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'premiumDialogReview',
@@ -775,7 +770,6 @@ export async function callPremiumDialogTranslate(
   if (existing) return existing;
 
   const request = (async () => {
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = httpsCallable<PremiumDialogTranslateRequest, PremiumDialogTranslateResponse>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'premiumDialogTranslate',

@@ -176,8 +176,6 @@ async function callClaim(messageId: string): Promise<{ rewardBundle: ReportRewar
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) throw new Error('cloud_disabled');
   const { getApp } = require('@react-native-firebase/app');
   const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
-  const { initFirebaseAppCheckIfAvailable } = require('./app_check_init');
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = httpsCallable(getFunctions(getApp(), 'us-central1'), 'claimReportReward');
   const result = await fn({ messageId });
   const data = (result?.data ?? {}) as Record<string, unknown>;

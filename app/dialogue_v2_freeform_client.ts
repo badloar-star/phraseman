@@ -7,7 +7,6 @@ import {
   type DialogueV2FreeformSessionStart,
   type DialogueV2FreeformSessionTurn,
 } from '../shared/dialogue_v2_freeform_session_contract';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 
 const FUNCTIONS_REGION = 'us-central1';
 const SESSION_ID_RE = /^d2fs_[A-Za-z0-9_-]{32,96}$/;
@@ -144,7 +143,6 @@ export async function startDialogueV2FreeformSession(
   const request = parseDialogueV2FreeformSessionStartShape(selection);
   if (!request) return null;
   try {
-    await initFirebaseAppCheckIfAvailable();
     const callable = httpsCallable<DialogueV2FreeformSessionStart, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2FreeformSessionStart',
@@ -161,7 +159,6 @@ export async function sendDialogueV2FreeformTurn(
   const request = parseDialogueV2FreeformSessionTurnShape(selection);
   if (!request) return null;
   try {
-    await initFirebaseAppCheckIfAvailable();
     const callable = httpsCallable<DialogueV2FreeformSessionTurn, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2FreeformSessionTurn',
@@ -182,7 +179,6 @@ export async function requestDialogueV2FreeformPreparedBotVoice(
   const request = validPreparedBotVoiceRequest(selection);
   if (!request) return null;
   try {
-    await initFirebaseAppCheckIfAvailable();
     const callable = httpsCallable<DialogueV2FreeformPreparedBotVoiceRequest, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2FreeformPreparedBotVoiceResolve',

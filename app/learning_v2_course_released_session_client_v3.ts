@@ -2,7 +2,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getApp } from "@react-native-firebase/app";
 import { getFunctions, httpsCallable } from "@react-native-firebase/functions";
 
-import { initFirebaseAppCheckIfAvailable } from "./app_check_init";
 import { withCallableTimeout } from "./callable_timeout";
 import {
   ensureAnonUser,
@@ -715,7 +714,6 @@ async function fetchNetwork(
   return withBackgroundNetworkLease(
     "learning-v2.course-released-session-v3",
     async (lease) => {
-      await initFirebaseAppCheckIfAvailable().catch(() => false);
       lease.assertCurrent();
       const callable = httpsCallable<
         {

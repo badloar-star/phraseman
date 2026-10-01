@@ -12,7 +12,6 @@ jest.mock('@react-native-firebase/functions', () => ({
   httpsCallable: jest.fn(() => mockCallableInvoker),
 }));
 jest.mock('../app/config', () => ({ CLOUD_SYNC_ENABLED: true, IS_EXPO_GO: false }));
-jest.mock('../app/app_check_init', () => ({ initFirebaseAppCheckIfAvailable: jest.fn(async () => undefined) }));
 jest.mock('../app/account_generation', () => ({
   captureAccountGeneration: jest.fn(() => ({ generation: accountGeneration, stableId: accountStableId, phase: 'active' })),
   isCurrentAccountGeneration: jest.fn((token: { generation: number; stableId: string }, owner: string) => (

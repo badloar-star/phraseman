@@ -15,7 +15,6 @@ import {
   isCurrentBackgroundNetworkLease,
   type BackgroundNetworkLease,
 } from './interactive_network_quiet';
-import { isFirebaseAppCheckReady } from './app_check_init';
 import {
   COMPLETION_CREDENTIAL_MIN_TTL_MS,
   LEARNING_V2_COMPLETION_FIREBASE_PROJECT_ID,
@@ -34,7 +33,6 @@ const MAX_RESPONSE_BYTES = 512 * 1024;
 const MAX_STREAM_CHUNKS = 8_192;
 const MAX_JWT_PAYLOAD_CHARS = 8_192;
 const MAX_AUTH_TOKEN_TTL_MS = 2 * 60 * 60 * 1_000;
-const MAX_APP_CHECK_TOKEN_TTL_MS = 8 * 24 * 60 * 60 * 1_000;
 const CALLABLE_ERROR_STATUSES = new Set([
   'OK',
   'CANCELLED',
@@ -62,8 +60,6 @@ type CompletionCredentialSnapshot = Readonly<{
   authUid: string;
   authToken: string;
   authExpiresAtMs: number;
-  appCheckToken: string;
-  appCheckExpiresAtMs: number;
   epoch: number;
 }>;
 
@@ -251,12 +247,10 @@ const completionCredentialSnapshotIsUsable = (
   currentFirebaseAuthUid() === snapshot.authUid &&
   Number.isSafeInteger(snapshot.accountGeneration) && snapshot.accountGeneration >= 0 &&
   Number.isSafeInteger(snapshot.epoch) && snapshot.epoch >= 1 &&
-  TOKEN.test(snapshot.authToken) && TOKEN.test(snapshot.appCheckToken) &&
+  TOKEN.test(snapshot.authToken) &&
   Number.isSafeInteger(nowMs) &&
   Number.isSafeInteger(snapshot.authExpiresAtMs) &&
-  Number.isSafeInteger(snapshot.appCheckExpiresAtMs) &&
-  snapshot.authExpiresAtMs - nowMs >= COMPLETION_CREDENTIAL_MIN_TTL_MS &&
-  snapshot.appCheckExpiresAtMs - nowMs >= COMPLETION_CREDENTIAL_MIN_TTL_MS;
+  snapshot.authExpiresAtMs - nowMs >= COMPLETION_CREDENTIAL_MIN_TTL_MS;
 
 export const clearLearningV2CompletionCredentialCache = (): void => {
   activeCredentialHandle = null;
@@ -281,8 +275,6 @@ const publishLearningV2CompletionCredentialPair = (
   authUid: string,
   authToken: string,
   authExpiresAtMs: number,
-  appCheckToken: string,
-  appCheckExpiresAtMs: number,
 ): CompletionCredentialHandle | null => {
   if (!isCapturedAccountGenerationToken(account) ||
     account.phase !== 'active' || !account.stableId ||
@@ -290,10 +282,8 @@ const publishLearningV2CompletionCredentialPair = (
     account.stableId.length > 256 || currentFirebaseAuthUid() !== authUid ||
     typeof authUid !== 'string' || authUid.length === 0 || authUid.length > 256 ||
     typeof authToken !== 'string' ||
-    !TOKEN.test(authToken) || typeof appCheckToken !== 'string' ||
-    !TOKEN.test(appCheckToken) || !Number.isSafeInteger(authExpiresAtMs) ||
-    authExpiresAtMs <= 0 || !Number.isSafeInteger(appCheckExpiresAtMs) ||
-    appCheckExpiresAtMs <= 0) return null;
+    !TOKEN.test(authToken) || !Number.isSafeInteger(authExpiresAtMs) ||
+    authExpiresAtMs <= 0) return null;
   const handle = Object.freeze({}) as CompletionCredentialHandle;
   credentialsByHandle.set(handle, Object.freeze({
     projectId: LEARNING_V2_COMPLETION_FIREBASE_PROJECT_ID,
@@ -302,8 +292,6 @@ const publishLearningV2CompletionCredentialPair = (
     authUid,
     authToken,
     authExpiresAtMs,
-    appCheckToken,
-    appCheckExpiresAtMs,
     epoch: credentialEpoch,
   }));
   activeCredentialHandle = handle;
@@ -343,22 +331,18 @@ export const attemptWarmLearningV2CompletionCredentialsCachePreferred = async (
   if (!isCapturedAccountGenerationToken(account) || account.phase !== 'active' ||
     !account.stableId || account.stableId.length > 256 ||
     !isCurrentAccountGeneration(account, account.stableId) ||
-    !isCurrentBackgroundNetworkLease(lease) || !pinnedFirebaseProjectIsCurrent() ||
-    !isFirebaseAppCheckReady()) return 'unavailable';
+    !isCurrentBackgroundNetworkLease(lease) || !pinnedFirebaseProjectIsCurrent()) return 'unavailable';
   let authModule: any;
-  let appCheckModule: any;
   let capturedUser: object;
   let authUid: string;
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     authModule = require('@react-native-firebase/auth');
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    appCheckModule = require('@react-native-firebase/app-check').default;
     const candidate = authModule.default()?.currentUser;
     const uid = candidate?.uid;
     if (!candidate || typeof candidate !== 'object' || typeof uid !== 'string' ||
-      uid.length === 0 || uid.length > 256 || typeof authModule.getIdTokenResult !== 'function' ||
-      typeof appCheckModule !== 'function') return 'unavailable';
+      uid.length === 0 || uid.length > 256 ||
+      typeof authModule.getIdTokenResult !== 'function') return 'unavailable';
     capturedUser = candidate;
     authUid = uid;
   } catch {
@@ -400,34 +384,15 @@ export const attemptWarmLearningV2CompletionCredentialsCachePreferred = async (
       authExpirationFromSdk - authCheckedAtMs < COMPLETION_CREDENTIAL_MIN_TTL_MS ||
       authExpirationFromSdk - authCheckedAtMs > MAX_AUTH_TOKEN_TTL_MS) return 'unavailable';
 
-    lease.assertCurrent();
-    let appCheckResult: unknown;
-    try {
-      appCheckResult = await appCheckModule().getToken(false);
-    } catch {
-      lease.assertCurrent();
-      return credentialWarmFenceIsCurrent(account, lease, authUid, expectedCredentialEpoch)
-        ? 'unavailable' : 'stale';
-    }
-    if (!credentialWarmFenceIsCurrent(account, lease, authUid, expectedCredentialEpoch)) return 'stale';
-    const appCheckToken = ownDataValue(appCheckResult, 'token');
-    if (typeof appCheckToken !== 'string') return 'unavailable';
-    const appCheckPayload = jwtPayload(appCheckToken);
-    const appCheckExpiresAtMs = appCheckPayload ? jwtExpirationMs(appCheckPayload) : null;
-    const nowMs = Date.now();
-    if (!appCheckPayload || appCheckExpiresAtMs === null || !Number.isSafeInteger(nowMs) ||
-      authExpirationFromSdk - nowMs < COMPLETION_CREDENTIAL_MIN_TTL_MS ||
-      appCheckExpiresAtMs - nowMs < COMPLETION_CREDENTIAL_MIN_TTL_MS ||
-      authExpirationFromSdk - nowMs > MAX_AUTH_TOKEN_TTL_MS ||
-      appCheckExpiresAtMs - nowMs > MAX_APP_CHECK_TOKEN_TTL_MS) return 'unavailable';
+    // зачем: «пропуск» запроса теперь = только токен входа. Токен App Check
+    // снят навсегда (пломба владельца 2026-08-17): сервер его не проверяет,
+    // а без него завершение урока прежде молча не уходило ('unavailable').
     if (!credentialWarmFenceIsCurrent(account, lease, authUid, expectedCredentialEpoch)) return 'stale';
     const published = publishLearningV2CompletionCredentialPair(
       account,
       authUid,
       authToken,
       authExpirationFromSdk,
-      appCheckToken,
-      appCheckExpiresAtMs,
     );
     return published && peekLearningV2CompletionCredentialHandle(account) === published
       ? 'published' : 'stale';
@@ -582,7 +547,6 @@ export const callLearningV2CompletionFunctionViaFetch = async (
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${credentials.authToken}`,
-        'X-Firebase-AppCheck': credentials.appCheckToken,
       },
       body: body.encoded,
       signal: controller.signal,

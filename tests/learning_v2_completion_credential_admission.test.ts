@@ -16,20 +16,14 @@ jest.mock('expo/fetch', () => ({ fetch: jest.fn() }));
 
 const mockAuthState: { currentUser: { uid: string } | null } = { currentUser: null };
 const mockGetIdTokenResult = jest.fn();
-const mockGetAppCheckToken = jest.fn();
 jest.mock('@react-native-firebase/auth', () => ({
   __esModule: true,
   default: () => mockAuthState,
   getIdTokenResult: (...args: unknown[]) => mockGetIdTokenResult(...args),
 }));
-jest.mock('@react-native-firebase/app-check', () => ({
-  __esModule: true,
-  default: () => ({ getToken: (...args: unknown[]) => mockGetAppCheckToken(...args) }),
-}));
 jest.mock('@react-native-firebase/app', () => ({
   getApp: () => ({ options: { projectId: 'phraseman-ea0b3' } }),
 }));
-jest.mock('../app/app_check_init', () => ({ isFirebaseAppCheckReady: () => true }));
 
 const NOW = 1_000_000;
 const EXP_MS = NOW + 600_000;
@@ -55,9 +49,6 @@ beforeEach(() => {
     }),
     expirationTime: new Date(EXP_MS).toISOString(),
   });
-  mockGetAppCheckToken.mockReset().mockResolvedValue({
-    token: jwt({ exp: EXP_MS / 1_000 }),
-  });
   beginAccountGeneration('stable-admission-user');
 });
 
@@ -68,15 +59,12 @@ test('publishes once and a later admission is a zero-native ready hit', async ()
   await expect(attemptLearningV2CompletionCredentialAdmission()).resolves.toBe('ready');
   expect(mockGetIdTokenResult).toHaveBeenCalledTimes(1);
   expect(mockGetIdTokenResult).toHaveBeenCalledWith(mockAuthState.currentUser, false);
-  expect(mockGetAppCheckToken).toHaveBeenCalledTimes(1);
-  expect(mockGetAppCheckToken).toHaveBeenCalledWith(false);
 });
 
 test('interactive quiet defers admission and starts zero native token work', async () => {
   const quiet = beginInteractiveNetworkQuiet();
   await expect(attemptLearningV2CompletionCredentialAdmission()).resolves.toBe('deferred');
   expect(mockGetIdTokenResult).not.toHaveBeenCalled();
-  expect(mockGetAppCheckToken).not.toHaveBeenCalled();
   releaseInteractiveNetworkQuiet(quiet);
   await Promise.resolve();
 });

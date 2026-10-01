@@ -1,5 +1,4 @@
 import {
-  APP_CHECK_REAL_ATTESTATION_ENABLED,
   CLOUD_SYNC_ENABLED,
   IS_EXPO_GO,
 } from './config';
@@ -91,8 +90,6 @@ export const SECONDARY_AUTH_RECOVERY_APP_NAME = 'phraseman-auth-recovery-seconda
 export const SECONDARY_AUTH_RECOVERY_DATABASE_URL =
   'https://phraseman-auth-recovery-unused.invalid';
 
-const APP_CHECK_TOKEN_TIMEOUT_MS = 5_000;
-
 function defaultCallableFactory(
   functions: unknown,
   name: SecondaryRecoveryCallableName,
@@ -150,59 +147,12 @@ function isJwtLikeToken(value: unknown): value is string {
     && /^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/.test(value);
 }
 
-function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
-  let timeout: ReturnType<typeof setTimeout> | undefined;
-  const deadline = new Promise<never>((_, reject) => {
-    timeout = setTimeout(() => reject(errorWithCode('secondary_app_check_timeout')), ms);
-  });
-  return Promise.race([promise, deadline]).finally(() => {
-    if (timeout !== undefined) clearTimeout(timeout);
-  });
-}
-
-async function initializeSecondaryAppCheck(app: unknown): Promise<void> {
+// зачем: App Check для вторичного приложения снят навсегда (пломба владельца
+// 2026-08-17, аудит E24 2026-10-01). Осталась только проверка, что облако
+// вообще доступно в этой сборке — прежде её делал шаг инициализации App Check.
+function assertSecondaryRecoveryCloudAvailable(): void {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) {
-    throw errorWithCode('secondary_app_check_unavailable');
-  }
-
-  const debugToken = String(process.env.EXPO_PUBLIC_APP_CHECK_DEBUG_TOKEN || '').trim();
-  const useDebugProvider =
-    !APP_CHECK_REAL_ATTESTATION_ENABLED
-    && (process.env.EXPO_PUBLIC_ENABLE_APP_CHECK_DEBUG === '1' || debugToken.length > 0);
-  if (!APP_CHECK_REAL_ATTESTATION_ENABLED && !useDebugProvider) {
-    throw errorWithCode('secondary_app_check_unavailable');
-  }
-
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const appCheckModule = require('@react-native-firebase/app-check');
-    const provider = new appCheckModule.ReactNativeFirebaseAppCheckProvider();
-    provider.configure(useDebugProvider ? {
-      android: { provider: 'debug', ...(debugToken ? { debugToken } : {}) },
-      apple: { provider: 'debug', ...(debugToken ? { debugToken } : {}) },
-    } : {
-      android: { provider: 'playIntegrity' },
-      apple: { provider: 'appAttestWithDeviceCheckFallback' },
-    });
-    const appCheck = await appCheckModule.initializeAppCheck(app, {
-      provider,
-      isTokenAutoRefreshEnabled: false,
-    });
-    let result = await withTimeout(
-      Promise.resolve(appCheckModule.getToken(appCheck, false)),
-      APP_CHECK_TOKEN_TIMEOUT_MS,
-    );
-    if (!isJwtLikeToken(result?.token)) {
-      result = await withTimeout(
-        Promise.resolve(appCheckModule.getToken(appCheck, true)),
-        APP_CHECK_TOKEN_TIMEOUT_MS,
-      );
-    }
-    if (!isJwtLikeToken(result?.token)) throw errorWithCode('secondary_app_check_unavailable');
-    appCheckModule.setTokenAutoRefreshEnabled(appCheck, true);
-  } catch (error) {
-    if ((error as Error)?.message === 'secondary_app_check_unavailable') throw error;
-    throw errorWithCode('secondary_app_check_unavailable', error);
+    throw errorWithCode('secondary_cloud_unavailable');
   }
 }
 
@@ -381,8 +331,7 @@ async function startSecondaryAuthRecoverySessionInternal(
     cleanup = makeIdempotentCleanup(secondaryApp, defaultAuth, expectedDefaultUid);
     assertDefaultUidUnchanged(defaultAuth, expectedDefaultUid);
 
-    await initializeSecondaryAppCheck(secondaryApp);
-    assertDefaultUidUnchanged(defaultAuth, expectedDefaultUid);
+    assertSecondaryRecoveryCloudAvailable();
 
     const nativeCredential = await acquireCredential(provider);
     assertDefaultUidUnchanged(defaultAuth, expectedDefaultUid);

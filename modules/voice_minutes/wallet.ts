@@ -2,7 +2,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 
 import { withCallableTimeout } from '../../app/callable_timeout';
-import { initFirebaseAppCheckIfAvailable } from '../../app/app_check_init';
 
 const FUNCTIONS_REGION = 'us-central1';
 const PENDING_PREFIX = '@phraseman/voice-minutes/pending/v1/';
@@ -69,7 +68,6 @@ function getWalletCallable(): WalletCallable {
 export async function readVoiceMinuteWalletStatus(
   expected: Readonly<{ expectedTransactionId?: string; expectedProductId?: string }> = {},
 ): Promise<VoiceMinuteWalletStatus> {
-  await initFirebaseAppCheckIfAvailable().catch(() => false);
   const response = await withCallableTimeout(
     getWalletCallable()(expected),
     'voiceMinuteWalletMine',

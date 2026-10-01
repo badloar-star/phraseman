@@ -2,7 +2,6 @@ import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 
 import { getDialogueV2CatalogueEntry } from '../shared/dialogue_v2_catalogue_index';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 
 const FUNCTIONS_REGION = 'us-central1';
 const STUDY_TARGETS = new Set(['en', 'es', 'fr', 'de']);
@@ -287,7 +286,6 @@ export async function resumeDialogueV2Memory(
   if (!request) return null;
 
   try {
-    await initFirebaseAppCheckIfAvailable();
     const callable = httpsCallable<DialogueV2MemoryResumeSelection, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2MemoryResume',
@@ -306,7 +304,6 @@ export async function viewDialogueV2Memory(
   const request = safeManagementSelection(selection);
   if (!request) return null;
   try {
-    await initFirebaseAppCheckIfAvailable();
     const callable = httpsCallable<DialogueV2MemoryManagementSelection, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2MemoryView',
@@ -325,7 +322,6 @@ export async function clearDialogueV2Memory(
   const request = safeManagementSelection(selection);
   if (!request) return null;
   try {
-    await initFirebaseAppCheckIfAvailable();
     const callable = httpsCallable<DialogueV2MemoryManagementSelection, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2MemoryClear',

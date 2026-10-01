@@ -5,7 +5,6 @@ jest.mock('@react-native-firebase/functions', () => ({
   getFunctions: jest.fn(() => ({})),
   httpsCallable: mockHttpsCallable,
 }));
-jest.mock('../app/app_check_init', () => ({ initFirebaseAppCheckIfAvailable: jest.fn(async () => undefined) }));
 
 // eslint-disable-next-line import/first
 import { completeDialogueV2Session } from '../app/dialogue_v2_completion_client';

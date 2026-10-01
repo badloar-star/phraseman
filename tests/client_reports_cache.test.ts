@@ -4,14 +4,10 @@ const mockCallableInvoker = jest.fn(async ({ kind }: { kind: string }) => ({
   data: { ok: true, id: `${kind}_id`, collection: `${kind}s` },
 }));
 const mockHttpsCallable = jest.fn((_functions: unknown, _name: string) => mockCallableInvoker);
-const mockInitFirebaseAppCheckIfAvailable = jest.fn(async () => true);
 
 jest.mock('../app/config', () => ({
   CLOUD_SYNC_ENABLED: true,
   IS_EXPO_GO: false,
-}));
-jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: () => mockInitFirebaseAppCheckIfAvailable(),
 }));
 jest.mock('@react-native-firebase/app', () => ({
   getApp: () => mockGetApp(),
@@ -28,7 +24,7 @@ async function loadClientReportsWithFreshCache() {
 }
 
 describe('client reports cache', () => {
-  it('dedupes concurrent AppCheck warmup and reuses the submitClientReport callable', async () => {
+  it('reuses the submitClientReport callable across concurrent reports', async () => {
     const { submitClientReport } = await loadClientReportsWithFreshCache();
 
     await Promise.all([
@@ -36,7 +32,6 @@ describe('client reports cache', () => {
       submitClientReport('app_activity', { n: 2 }),
     ]);
 
-    expect(mockInitFirebaseAppCheckIfAvailable).toHaveBeenCalledTimes(1);
     expect(mockGetApp).toHaveBeenCalledTimes(1);
     expect(mockGetFunctions).toHaveBeenCalledTimes(1);
     expect(mockGetFunctions).toHaveBeenCalledWith({ name: '[DEFAULT]' }, 'us-central1');
@@ -60,7 +55,6 @@ describe('client reports cache', () => {
 
     expect(mockHttpsCallable).toHaveBeenCalledTimes(1);
     expect(mockCallableInvoker).toHaveBeenCalledTimes(3);
-    expect(mockInitFirebaseAppCheckIfAvailable).toHaveBeenCalledTimes(2);
   });
 
   it('forwards owner binding and the stable idempotency key only when supplied', async () => {

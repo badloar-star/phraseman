@@ -21,7 +21,6 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getCanonicalUserId } from './user_id_policy';
 import { DebugLogger } from './debug-logger';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withCallableTimeout } from './callable_timeout';
 
 const FUNCTIONS_REGION = 'us-central1';
@@ -79,7 +78,6 @@ export async function claimIntroFullAccessOnCloud(): Promise<IntroFullAccessClai
     throw new Error('intro_full_access_cloud_unavailable');
   }
 
-  await initFirebaseAppCheckIfAvailable().catch(() => false);
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { getApp } = require('@react-native-firebase/app');
   // eslint-disable-next-line @typescript-eslint/no-require-imports

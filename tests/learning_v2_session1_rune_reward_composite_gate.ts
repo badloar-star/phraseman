@@ -240,9 +240,6 @@ function installNativeLoaderStubs(): () => void {
     if (request === "@react-native-firebase/functions") {
       return { getFunctions: () => ({}), httpsCallable: () => async () => ({}) };
     }
-    if (request === "./app_check_init") {
-      return { initFirebaseAppCheckIfAvailable: async () => undefined };
-    }
     if (request === "./cloud_sync") {
       return { ensureAnonUser: async () => "gate-user" };
     }

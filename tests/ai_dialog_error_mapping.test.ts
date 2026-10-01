@@ -7,9 +7,6 @@ jest.mock('@react-native-firebase/functions', () => ({
   httpsCallable: jest.fn(),
 }));
 
-jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: jest.fn(async () => false),
-}));
 
 import {
   classifyPremiumDialogError,

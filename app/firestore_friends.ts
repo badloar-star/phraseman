@@ -4,7 +4,6 @@ import { ensureAnonUser } from './cloud_sync';
 import { generateRandomCode, isValidFriendCode, isValidInviteCodeLookup, normalizeInviteCodeInput } from './friend_code';
 import { getCanonicalUserId } from './user_id_policy';
 import { getStableId } from './stable_id';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { DebugLogger } from './debug-logger';
 
 /** Устаревший глобальный ключ — без привязки к stableId; мигрируем в v2 при чтении. */
@@ -288,7 +287,6 @@ async function resolveCloudFriendCodeViaCallable(
 }
 
 async function callFriendEnsureMyCode(stableId: string): Promise<string> {
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<{ stableId: string }, { code: string }>('friendEnsureMyCode');
   const { data } = await fn({ stableId });
   const code = normalizeInviteCodeInput(data?.code);

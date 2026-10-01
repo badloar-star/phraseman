@@ -1,7 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withCallableTimeout } from './callable_timeout';
 import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
 import { withBackgroundNetworkLease } from './interactive_network_quiet';
@@ -242,7 +241,6 @@ export async function loadLearningV2ActiveCourseCatalogV1(rawLocator: LearningV2
   const cacheKey = key(locator, accountScopeHash);
   try {
     const response = await withBackgroundNetworkLease('learning_v2_catalog', async (lease) => {
-      await initFirebaseAppCheckIfAvailable().catch(() => false);
       lease.assertCurrent();
       const result = await withCallableTimeout(httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), CALLABLE_NAME)(locator), CALLABLE_NAME, 20_000);
       lease.assertCurrent();

@@ -3,12 +3,8 @@ import path from 'path';
 
 const mockCallable = jest.fn();
 const mockHttpsCallable = jest.fn(() => mockCallable);
-const mockInitAppCheck = jest.fn(async () => true);
 
 jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
-jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: mockInitAppCheck,
-}));
 jest.mock('../app/callable_timeout', () => ({
   withCallableTimeout: <T>(promise: Promise<T>) => promise,
 }));
@@ -87,12 +83,12 @@ describe('RevenueCat client projection sync', () => {
     expect(mockCallable).toHaveBeenCalledTimes(2);
   });
 
-  it('uses App Check, bounded account caches and the auth-only callable payload', () => {
+  it('uses bounded account caches and the auth-only callable payload', () => {
     const sourcePath = path.join(process.cwd(), 'app', 'revenuecat_projection_sync.ts');
     expect(fs.existsSync(sourcePath)).toBe(true);
     const source = fs.readFileSync(sourcePath, 'utf8');
     expect(source).toContain("'revenueCatPremiumReconcileMine'");
-    expect(source).toContain('initFirebaseAppCheckIfAvailable');
+    expect(source).not.toContain('initFirebaseAppCheckIfAvailable');
     expect(source).toContain('withCallableTimeout');
     expect(source).toContain('MAX_TRACKED_ACCOUNTS');
     expect(source).not.toContain('stableId: stableUid');

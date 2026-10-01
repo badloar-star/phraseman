@@ -269,9 +269,6 @@ jest.mock('@react-native-firebase/functions', () => ({
     return jest.fn(async () => ({ data: {} }));
   }),
 }));
-jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: jest.fn(async () => undefined),
-}));
 jest.mock('../app/cloud_sync', () => ({
   ensureAnonUser: jest.fn(async () => canonicalUidOverride),
 }));
@@ -325,9 +322,6 @@ beforeEach(() => {
       if (name === 'friendEnsureMyCode') return mockFriendEnsureMyCode;
       return jest.fn(async () => ({ data: {} }));
     }),
-  }));
-  jest.mock('../app/app_check_init', () => ({
-    initFirebaseAppCheckIfAvailable: jest.fn(async () => undefined),
   }));
   jest.mock('../app/cloud_sync', () => ({
     ensureAnonUser: jest.fn(async () => canonicalUidOverride),

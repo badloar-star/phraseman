@@ -8,7 +8,6 @@
  */
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withExplainCallableTimeout } from './explain_callable_timeout';
 import { aiOffline, AiOfflineError } from './ai_kill_switch_copy';
 
@@ -69,7 +68,6 @@ export async function callExplainChoice(req: ExplainChoiceRequest): Promise<Expl
   if (existing) return existing;
 
   const request = (async () => {
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = httpsCallable<ExplainChoiceRequest, ExplainChoiceResponse>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'explainChoice',

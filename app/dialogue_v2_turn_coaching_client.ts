@@ -7,7 +7,6 @@ import {
   type DialogueV2PreparedBotVoiceSelection,
 } from '../shared/dialogue_v2_prepared_bot_voice_selection_contract';
 import { parseAiDialogQuotaObservation, type AiDialogQuotaObservation } from './ai_dialog_daily_quota';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { DialogueV2TextTurnUnavailableError, type DialogueV2TextTurnStudyTarget } from './dialogue_v2_turn_client';
 
 // зачем (владелец 2026-09-30, D112): клиент 2.0 шлёт ход V2 с языком интерфейса и получает
@@ -255,7 +254,6 @@ export async function sendDialogueV2CoachedTextTurn(
   const startedAt = Date.now();
   let data: unknown;
   try {
-    await initFirebaseAppCheckIfAvailable();
     const callable = httpsCallable<DialogueV2CoachedTurnRequest, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2TextTurn',

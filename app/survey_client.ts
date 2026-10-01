@@ -5,7 +5,6 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 
 const FUNCTIONS_REGION = 'us-central1';
 
@@ -78,7 +77,6 @@ function callable<TReq, TRes>(name: string) {
 }
 
 async function callFunction<TReq, TRes>(name: string, data: TReq): Promise<TRes> {
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<TReq, TRes>(name);
   const res = await fn(data);
   return res.data;

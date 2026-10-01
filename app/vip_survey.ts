@@ -5,7 +5,6 @@ import { CLOUD_SYNC_ENABLED, ENABLE_DEV_TOOLS, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLinkForStableId, resetAnonAuthCacheForSignOut } from './cloud_sync';
 import { emitAppEvent } from './events';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { getVerifiedPremiumAccessStatus, invalidatePremiumCache } from './premium_guard';
 import { markVipCelebrationPending } from './vip_celebration_state';
 import {
@@ -199,7 +198,6 @@ export async function submitVipSurveyFromApp(params: {
   const generation = captureAccountGeneration();
   if (!isCurrentAccountGeneration(generation, stableId)) throw new Error('stale_account_generation');
   await ensureStableAuthLinkForStableId(stableId).catch(() => false);
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
 
   const fn = callable<SubmitVipSurveyRequest, SubmitVipSurveyResponse>('submitVipSurvey');
   const payload: SubmitVipSurveyRequest = {
@@ -227,7 +225,6 @@ export async function recordVipSurveyReviewClickFromApp(params: {
   const stableId = await ensureAnonUser();
   if (!stableId) return false;
   await ensureStableAuthLinkForStableId(stableId).catch(() => false);
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
 
   const fn = callable<RecordVipSurveyReviewClickRequest, RecordVipSurveyReviewClickResponse>('recordVipSurveyReviewClick');
   const result = (await fn({

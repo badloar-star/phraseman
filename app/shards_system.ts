@@ -6,7 +6,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 import firestore from '@react-native-firebase/firestore';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { DebugLogger } from './debug-logger';
 import { withStorageLock } from './storage_mutex';
 import { getCanonicalUserId } from './user_id_policy';
@@ -2296,8 +2295,8 @@ export const resumePendingShardDeltas = async (): Promise<{ resolved: number; pe
       if (!isCurrent() || queue.length === 0) {
         return { resolved: 0, pending: isCurrent() ? 0 : queue.length };
       }
-      const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
-      if (!isCurrent() || !appCheckReady) return { resolved: 0, pending: queue.length };
+      // зачем: досылка осколков больше не ждёт App Check (снят навсегда, 2026-08-17).
+      if (!isCurrent()) return { resolved: 0, pending: queue.length };
       const uid = await getCanonicalUserId().catch(() => null);
       if (!isCurrent() || uid !== ownerStableId) return { resolved: 0, pending: queue.length };
       const localSnapshot = await getShardsBalance();

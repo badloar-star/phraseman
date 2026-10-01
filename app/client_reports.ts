@@ -1,5 +1,4 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withCallableTimeout } from './callable_timeout';
 
 const FUNCTIONS_REGION = 'us-central1';
@@ -38,7 +37,6 @@ type SubmitClientReportCallable = (
 ) => Promise<{ data: SubmitClientReportResult }>;
 
 let submitClientReportCallable: SubmitClientReportCallable | null = null;
-let appCheckWarmupInFlight: Promise<void> | null = null;
 
 function callable<TReq, TRes>(name: string) {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -57,25 +55,12 @@ function getSubmitClientReportCallable(): SubmitClientReportCallable {
   return submitClientReportCallable;
 }
 
-function warmClientReportAppCheck(): Promise<void> {
-  if (!appCheckWarmupInFlight) {
-    appCheckWarmupInFlight = initFirebaseAppCheckIfAvailable()
-      .catch(() => false)
-      .then(() => undefined)
-      .finally(() => {
-        appCheckWarmupInFlight = null;
-      });
-  }
-  return appCheckWarmupInFlight;
-}
-
 export async function submitClientReport(
   kind: ClientReportKind,
   payload: Record<string, unknown>,
   options: SubmitClientReportOptions = {},
 ): Promise<SubmitClientReportResult | null> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
-  await warmClientReportAppCheck();
   const fn = getSubmitClientReportCallable();
   // 30с вместо ~70с дефолта RN Firebase: на висящей сети кнопка «Отправить»
   // не должна крутить спиннер больше минуты.

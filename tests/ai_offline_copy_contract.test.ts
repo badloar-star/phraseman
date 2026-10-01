@@ -20,9 +20,6 @@ jest.mock('@react-native-firebase/functions', () => ({
   getFunctions: jest.fn(),
   httpsCallable: jest.fn(),
 }));
-jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: jest.fn(async () => false),
-}));
 
 const LANGS = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
 

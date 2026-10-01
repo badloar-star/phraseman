@@ -7,7 +7,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import * as Crypto from 'expo-crypto';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import {
   isCurrentAccountGeneration,
   withAccountTransitionLock,
@@ -292,7 +291,6 @@ export async function syncDialogExtraRepliesPurchase(
     let synced = 0;
     let pending = 0;
     let latestQuota: QuotaObservation | null = null;
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
     for (const requestId of requestIds) {
       if (!isCurrentAccountGeneration(token, ownerStableId)) break;
       const envelope = parseEnvelope(

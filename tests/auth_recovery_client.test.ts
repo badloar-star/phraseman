@@ -9,9 +9,6 @@ jest.mock('../app/config', () => ({
   IS_EXPO_GO: false,
   IS_STORE_RELEASE: false,
 }));
-jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: jest.fn(async () => true),
-}));
 jest.mock('../app/user_id_policy', () => ({
   clearArenaAuthUidCache: jest.fn(),
   getAuthUserId: () => mockCurrentAuthUid,

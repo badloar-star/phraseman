@@ -231,12 +231,11 @@ describe('onboarding funnel client recorder', () => {
     expect(sent).toEqual(['started', 'completed']);
   });
 
-  it('delivery readiness requires current auth and App Check, including a final auth check', async () => {
+  it('delivery readiness requires current auth (no App Check step), including a final auth check', async () => {
     type ReadinessFactory = (dependencies: {
       ensureAuthenticated(): Promise<unknown>;
       waitForCurrentAuth(): Promise<boolean>;
       hasCurrentAuth(): boolean;
-      initAppCheck(): Promise<boolean>;
     }) => () => Promise<boolean>;
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const module = require('../app/onboarding_funnel') as {
@@ -247,30 +246,18 @@ describe('onboarding funnel client recorder', () => {
     expect(typeof createReadiness).toBe('function');
     if (!createReadiness) return;
 
-    const missingAuthAppCheck = jest.fn(async () => true);
     const missingAuth = createReadiness({
       ensureAuthenticated: async () => {},
       waitForCurrentAuth: async () => false,
       hasCurrentAuth: () => false,
-      initAppCheck: missingAuthAppCheck,
     });
     await expect(missingAuth()).resolves.toBe(false);
-    expect(missingAuthAppCheck).not.toHaveBeenCalled();
-
-    const rejectedAppCheck = createReadiness({
-      ensureAuthenticated: async () => {},
-      waitForCurrentAuth: async () => true,
-      hasCurrentAuth: () => true,
-      initAppCheck: async () => false,
-    });
-    await expect(rejectedAppCheck()).resolves.toBe(false);
 
     const authStates = [true, false];
     const losesAuth = createReadiness({
       ensureAuthenticated: async () => {},
       waitForCurrentAuth: async () => true,
       hasCurrentAuth: () => authStates.shift() ?? false,
-      initAppCheck: async () => true,
     });
     await expect(losesAuth()).resolves.toBe(false);
 
@@ -278,7 +265,6 @@ describe('onboarding funnel client recorder', () => {
       ensureAuthenticated: async () => {},
       waitForCurrentAuth: async () => true,
       hasCurrentAuth: () => true,
-      initAppCheck: async () => true,
     });
     await expect(ready()).resolves.toBe(true);
   });

@@ -5,9 +5,6 @@ import path from 'node:path';
 const mockCallable = jest.fn();
 
 jest.mock('../app/config', () => ({ CLOUD_SYNC_ENABLED: true, IS_EXPO_GO: false }));
-jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: jest.fn(async () => true),
-}));
 jest.mock('@react-native-firebase/app', () => ({ getApp: jest.fn(() => ({})) }));
 jest.mock('@react-native-firebase/functions', () => ({
   getFunctions: jest.fn(() => ({})),

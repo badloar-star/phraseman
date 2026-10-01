@@ -6,9 +6,6 @@ jest.mock('@react-native-firebase/functions', () => ({
   getFunctions: jest.fn(),
   httpsCallable: jest.fn(),
 }));
-jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: jest.fn(async () => false),
-}));
 
 // Jest hoists the dependency mocks above this import at runtime.
 // eslint-disable-next-line import/first

@@ -50,9 +50,6 @@ jest.mock("../app/config", () => ({
   CLOUD_SYNC_ENABLED: true,
   IS_EXPO_GO: false,
 }));
-jest.mock("../app/app_check_init", () => ({
-  initFirebaseAppCheckIfAvailable: jest.fn(async () => true),
-}));
 jest.mock("../app/learning_v2_owner_repository_runtime", () => ({
   commitLearningV2ServerWalletReward: (request: unknown) =>
     mockCommitLearningV2ServerWalletReward(request),

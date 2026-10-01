@@ -7,7 +7,6 @@ jest.mock('@react-native-firebase/functions', () => ({
   getFunctions: jest.fn(() => ({ region: 'us-central1' })),
   httpsCallable: (functions: unknown, name: string) => mockHttpsCallable(functions, name),
 }));
-jest.mock('../app/app_check_init', () => ({ initFirebaseAppCheckIfAvailable: jest.fn(async () => undefined) }));
 
 import {
   DIALOGUE_V2_WARM_INTERVAL_MS,

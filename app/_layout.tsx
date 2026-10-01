@@ -89,7 +89,6 @@ import { triLang, type Lang } from '../constants/i18n';
 import { getInstalledAppVersion } from './app_version';
 import { ENABLE_DEV_TOOLS, ENABLE_TOURNAMENTS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
 import { SECTION_SHEET_STACK_OPTIONS } from './section_sheet_navigation';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { subscribeNetStatus } from './net_status';
 import { resumePendingOnboardingFunnel } from './onboarding_funnel';
 import { cleanupRetiredMistakePracticeStorage } from './mistake_practice_legacy_cleanup';
@@ -1849,7 +1848,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       })();
       void startFriendsTabSwrPrime().catch(() => {});
       const startShopWarm = async () => {
-        await initFirebaseAppCheckIfAvailable().catch(() => {});
         if (!IS_EXPO_GO) void initRevenueCat();
         void prefetchMarketplacePacks().catch(() => {});
       };
@@ -1873,7 +1871,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         import('@react-native-firebase/crashlytics')
           .then(m => m.default().setCrashlyticsCollectionEnabled(true))
           .catch(() => {});
-        void initFirebaseAppCheckIfAvailable().catch(() => {});
       }
 
       await AsyncStorage.multiSet([
@@ -2160,17 +2157,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       const startupIdentityPairsPromise: Promise<readonly [string, string | null][]> =
         AsyncStorage.multiGet(startupIdentityKeys).catch(() => []);
 
-      // Start cloud hydration early, but do not hold the first app frame on network/app-check.
+      // Start cloud hydration early, but do not hold the first app frame on network.
+      // зачем: прежде восстановление из облака ждало прогрев App Check до 1,2 с;
+      // App Check снят навсегда (пломба владельца 2026-08-17, аудит E24).
       if (!IS_EXPO_GO && !forceOnboardingForQA) {
-        const appCheckWarmup = Promise.race([
-          initFirebaseAppCheckIfAvailable(),
-          new Promise<void>((resolve) => setTimeout(resolve, 1200)),
-        ]).catch(() => {});
         const bootCoordinator = createBootCloudRestoreCoordinator({
-          restore: async () => {
-            await appCheckWarmup;
-            return restoreCloudForBoot();
-          },
+          restore: () => restoreCloudForBoot(),
           hasLocalAccountData: () => hasMeaningfulLocalAccountData(),
           onHydrated: () => emitAppEvent('cloud_profile_hydrated'),
         });

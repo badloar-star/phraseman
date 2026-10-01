@@ -31,7 +31,6 @@ type Allow = Readonly<{ count: number; reason: string }>;
 // с объяснением, почему работа обязана идти при импорте, а не по вызову.
 const ALLOW: Record<string, Allow> = {
   // ── Регистрация в памяти (без сети, без диска) ──────────────────────────
-  'app/app_check_init.ts::registerInteractiveNetworkQuietParticipant': { count: 1, reason: 'реестр «тихой сети» запечатывается на старте: участник обязан встать до печати; только запись в Map, сети нет' },
   'app/net_status.ts::registerInteractiveNetworkQuietParticipant': { count: 1, reason: 'то же: пауза проб сети на время занятия; проба идёт только при живых подписчиках' },
   'modules/audio/audio_runtime_arbiter.ts::registerStop': { count: 1, reason: 'процессная связка «голос выключен → стоп речи», чистая память' },
   'modules/audio/audio_runtime_arbiter.ts::subscribeManagedAudioMode': { count: 1, reason: 'микрофон главнее воспроизведения — подписка на локальный стор аудиорежима' },

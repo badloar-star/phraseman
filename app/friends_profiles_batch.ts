@@ -16,7 +16,6 @@
  */
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { isReferralCloudEnabled } from './referral_flags';
 
 const REGION = 'us-central1';
@@ -95,7 +94,6 @@ function setBatchCacheEntry(uid: string, entry: CacheEntry): void {
 }
 
 async function fetchBatch(uids: string[]): Promise<Record<string, FriendProfileBatchRecord | null>> {
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<{ uids: string[] }, ProfilesResponse>('friendsGetProfiles');
   const res = await fn({ uids });
   return res.data?.profiles ?? {};

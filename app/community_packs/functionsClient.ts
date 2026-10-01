@@ -2,7 +2,6 @@ import { getApp } from '@react-native-firebase/app';
 import { DebugLogger } from '../debug-logger';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
-import { initFirebaseAppCheckIfAvailable } from '../app_check_init';
 import type { LevelSpinStarCreditExactResult } from '../../modules/phone-state/domains/economy';
 // зачем (2026-09-20): здесь было жёстко зашито `'en' | 'fr'` в десяти подписях —
 // тип отстал от реального набора языков (добавились es и de), и любой вызов
@@ -23,7 +22,6 @@ function callable<TReq, TRes>(name: string) {
 }
 
 async function callFunction<TReq, TRes>(name: string, data: TReq): Promise<TRes> {
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<TReq, TRes>(name);
   try {
     const res = await fn(data);

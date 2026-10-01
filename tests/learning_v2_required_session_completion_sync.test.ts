@@ -10,7 +10,6 @@ let submitCallGate: Promise<void> | null = null;
 let submitCallStarted: (() => void) | null = null;
 const mockAuthState: { currentUser: { uid: string } | null } = { currentUser: null };
 const mockGetIdTokenResult = jest.fn();
-const mockGetAppCheckToken = jest.fn();
 const mockCommitServerWalletReward = jest.fn();
 let walletRewardRequestForSubmit: Readonly<{
   schemaVersion: 'learning-v2-server-wallet-reward-request.v1';
@@ -25,18 +24,11 @@ jest.mock('@react-native-firebase/auth', () => ({
   default: () => mockAuthState,
   getIdTokenResult: (...args: unknown[]) => mockGetIdTokenResult(...args),
 }));
-jest.mock('@react-native-firebase/app-check', () => ({
-  __esModule: true,
-  default: () => ({ getToken: (...args: unknown[]) => mockGetAppCheckToken(...args) }),
-}));
 jest.mock('@react-native-firebase/app', () => ({
   getApp: () => ({ options: { projectId: 'phraseman-ea0b3' } }),
 }));
 jest.mock('../app/config', () => ({ CLOUD_SYNC_ENABLED: true, IS_EXPO_GO: false }));
 jest.mock('../app/stable_id', () => ({ getStableId: jest.fn(async () => 'stable-user-1') }));
-jest.mock('../app/app_check_init', () => ({
-  isFirebaseAppCheckReady: jest.fn(() => true),
-}));
 jest.mock('../app/learning_v2_owner_repository_runtime', () => {
   const actual = jest.requireActual('../app/learning_v2_owner_repository_runtime');
   return {
@@ -139,7 +131,6 @@ beforeEach(async () => {
   submitCalls.mockClear();
   expoFetchMock.mockReset();
   mockGetIdTokenResult.mockReset();
-  mockGetAppCheckToken.mockReset();
   bindingCallGate = null;
   bindingCallStarted = null;
   submitCallGate = null;
@@ -174,13 +165,11 @@ beforeEach(async () => {
     sub: authUid,
     exp: EXP_MS / 1_000,
   });
-  const appCheckToken = jwt({ exp: EXP_MS / 1_000 });
   mockAuthState.currentUser = { uid: authUid };
   mockGetIdTokenResult.mockResolvedValue({
     token: authToken,
     expirationTime: new Date(EXP_MS).toISOString(),
   });
-  mockGetAppCheckToken.mockResolvedValue({ token: appCheckToken });
   expoFetchMock.mockImplementation(async (url, init) => {
     if (String(url).endsWith('/getLearningV2AccountBinding')) {
       bindingCallStarted?.();
@@ -266,11 +255,9 @@ afterEach(() => jest.restoreAllMocks());
 test('empty cold-start recovery performs no completion HTTP', async () => {
   clearLearningV2CompletionCredentialCache();
   mockGetIdTokenResult.mockClear();
-  mockGetAppCheckToken.mockClear();
   await expect(flushPendingRequiredSessionCompletions()).resolves.toBe(0);
   expect(expoFetchMock).not.toHaveBeenCalled();
   expect(mockGetIdTokenResult).not.toHaveBeenCalled();
-  expect(mockGetAppCheckToken).not.toHaveBeenCalled();
   expect(submitCalls).not.toHaveBeenCalled();
 });
 
@@ -310,7 +297,6 @@ test('pending work without a memory credential stays exact and requests external
   clearLearningV2CompletionCredentialCache();
   expoFetchMock.mockClear();
   mockGetIdTokenResult.mockClear();
-  mockGetAppCheckToken.mockClear();
 
   await expect(attemptPendingRequiredSessionCompletions()).resolves.toEqual({
     processed: 0,
@@ -318,7 +304,6 @@ test('pending work without a memory credential stays exact and requests external
   });
   expect(expoFetchMock).not.toHaveBeenCalled();
   expect(mockGetIdTokenResult).not.toHaveBeenCalled();
-  expect(mockGetAppCheckToken).not.toHaveBeenCalled();
   expect((await outbox.list(localScope)).find((item) => item.mutationId === mutationId))
     .toMatchObject({ status: 'pending', payloadFingerprint: expect.any(String) });
 });
@@ -390,7 +375,6 @@ test('consumes the transport receipt after exact compaction and safely replays t
     headers: {
       'Content-Type': 'application/json',
       Authorization: expect.stringMatching(/^Bearer /),
-      'X-Firebase-AppCheck': expect.any(String),
     },
   });
   expect(JSON.parse(String(expoFetchMock.mock.calls[1]?.[1]?.body))).toMatchObject({

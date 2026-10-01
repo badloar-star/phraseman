@@ -8,7 +8,6 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withCallableTimeout } from './callable_timeout';
 
 const FUNCTIONS_REGION = 'us-central1';
@@ -60,7 +59,6 @@ export async function redeemPromoCode(rawCode: string): Promise<PromoRedeemResul
 
   const request = (async (): Promise<PromoRedeemResult> => {
     try {
-      await initFirebaseAppCheckIfAvailable().catch(() => {});
       const fn = httpsCallable<{ code: string }, RedeemResponse>(
         getFunctions(getApp(), FUNCTIONS_REGION),
         'promoCodeRedeem',

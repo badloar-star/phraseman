@@ -14,7 +14,7 @@ describe('startup provider reauthentication recovery', () => {
 
   it('keeps a stable-owner mismatch distinct from generic identity and transport failures', () => {
     const hooks = __cloudSyncTestHooks as unknown as {
-      classifyCloudAccessFailure?: (error: unknown, appCheckReady: boolean) => string;
+      classifyCloudAccessFailure?: (error: unknown) => string;
       cloudRestoreFailureForStableLink?: (failure?: string) => string;
     };
     const classify = hooks.classifyCloudAccessFailure;
@@ -26,7 +26,6 @@ describe('startup provider reauthentication recovery', () => {
 
     expect(mapFailure(classify(
       { code: 'functions/permission-denied', message: 'stable_id_mismatch' },
-      false,
     ))).toBe('provider_reauth_required');
     expect(mapFailure('stable_id_mismatch')).toBe('provider_reauth_required');
     expect(mapFailure('identity_unavailable')).toBe('identity_unavailable');

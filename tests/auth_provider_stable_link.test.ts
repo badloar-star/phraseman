@@ -11,15 +11,15 @@ describe('auth provider stable-id linking', () => {
   const cloudSyncSource = readFileSync(cloudSyncPath, 'utf8');
   const accountDeleteQuarantineSource = readFileSync(accountDeleteQuarantinePath, 'utf8');
   const registrationPromptSource = readFileSync(registrationPromptPath, 'utf8');
-  it('tries server-authoritative stable-link repair even when local App Check is unavailable', () => {
+  it('repairs the stable link through the server without any App Check step', () => {
     const start = cloudSyncSource.indexOf('export async function ensureStableAuthLinkForStableIdDetailed');
     const end = cloudSyncSource.indexOf('export async function ensureStableAuthLinkForStableId(', start);
     const body = cloudSyncSource.slice(start, end);
 
-    expect(body).toContain('const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false)');
-    expect(body).not.toContain('if (!appCheckReady)');
-    expect(body.indexOf('initFirebaseAppCheckIfAvailable')).toBeLessThan(body.indexOf("'authEnsureStableLink'"));
-    expect(body).toContain('classifyCloudAccessFailure(error, appCheckReady)');
+    expect(body).not.toContain('initFirebaseAppCheckIfAvailable');
+    expect(body).not.toContain('appCheckReady');
+    expect(body).toContain("'authEnsureStableLink'");
+    expect(body).toContain('classifyCloudAccessFailure(error)');
   });
   const legacyRuntimePattern =
     /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;

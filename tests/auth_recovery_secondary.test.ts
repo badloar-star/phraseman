@@ -81,29 +81,6 @@ jest.mock('@react-native-firebase/auth', () => ({
   getIdTokenResult: (user: unknown, forceRefresh: boolean) => mockGetIdTokenResult(user, forceRefresh),
 }), { virtual: true });
 
-const mockProviderConfigure = jest.fn();
-class MockAppCheckProvider {
-  configure(options: unknown): void {
-    mockProviderConfigure(options);
-  }
-}
-const mockAppCheckInstance = { owner: mockSecondaryApp };
-const mockInitializeAppCheck = jest.fn(async (app: unknown, _options: unknown) => {
-  if (app !== mockSecondaryApp) throw new Error('appcheck_not_secondary');
-  return mockAppCheckInstance;
-});
-let mockAppCheckToken = `${'a'.repeat(40)}.${'b'.repeat(40)}.${'c'.repeat(40)}`;
-const mockGetAppCheckToken = jest.fn(async (_appCheck: unknown, _forceRefresh: boolean) => ({ token: mockAppCheckToken }));
-const mockSetAppCheckAutoRefresh = jest.fn();
-jest.mock('@react-native-firebase/app-check', () => ({
-  ReactNativeFirebaseAppCheckProvider: MockAppCheckProvider,
-  initializeAppCheck: (app: unknown, options: unknown) => mockInitializeAppCheck(app, options),
-  getToken: (appCheck: unknown, forceRefresh: boolean) => mockGetAppCheckToken(appCheck, forceRefresh),
-  setTokenAutoRefreshEnabled: (appCheck: unknown, enabled: boolean) => (
-    mockSetAppCheckAutoRefresh(appCheck, enabled)
-  ),
-}), { virtual: true });
-
 const mockGetFunctions = jest.fn((app: unknown, region: string) => {
   if (app !== mockSecondaryApp) throw new Error('functions_not_secondary');
   return mockFunctions;
@@ -113,7 +90,6 @@ jest.mock('@react-native-firebase/functions', () => ({
 }), { virtual: true });
 
 jest.mock('../app/config', () => ({
-  APP_CHECK_REAL_ATTESTATION_ENABLED: true,
   CLOUD_SYNC_ENABLED: true,
   IS_EXPO_GO: false,
 }));
@@ -143,10 +119,9 @@ describe('secondary Firebase auth recovery session foundation', () => {
       firebase: { sign_in_provider: 'google.com' },
       email_verified: true,
     };
-    mockAppCheckToken = `${'a'.repeat(40)}.${'b'.repeat(40)}.${'c'.repeat(40)}`;
   });
 
-  it('starts only a fixed named secondary Auth/AppCheck/Functions session', async () => {
+  it('starts only a fixed named secondary Auth/Functions session (no App Check)', async () => {
     const acquireCredential = jest.fn(async () => ({
       idToken: 'google-token', email: 'verified@example.com', displayName: 'Verified User',
     }));
@@ -167,8 +142,6 @@ describe('secondary Firebase auth recovery session foundation', () => {
       apiKey: 'api-key', appId: 'app-id', projectId: 'project-id',
       databaseURL: SECONDARY_AUTH_RECOVERY_DATABASE_URL,
     }), SECONDARY_AUTH_RECOVERY_APP_NAME);
-    expect(mockInitializeAppCheck).toHaveBeenCalledWith(mockSecondaryApp, expect.any(Object));
-    expect(mockSetAppCheckAutoRefresh).toHaveBeenCalledWith(mockAppCheckInstance, true);
     expect(acquireCredential).toHaveBeenCalledTimes(1);
     expect(mockSignInWithCredential).toHaveBeenCalledWith(mockSecondaryAuth, mockGoogleCredential);
     expect(mockGetIdTokenResult).toHaveBeenCalledWith(expect.objectContaining({ uid: 'verified-provider-uid' }), true);
@@ -219,17 +192,6 @@ describe('secondary Firebase auth recovery session foundation', () => {
     }))).rejects.toThrow(code);
 
     expect(mockGetFunctions).not.toHaveBeenCalled();
-    expect(mockEvents.slice(-2)).toEqual(['signout:secondary', 'delete:secondary']);
-  });
-
-  it('fails closed for an invalid per-app App Check token and cleans secondary state', async () => {
-    mockAppCheckToken = 'not-a-jwt';
-
-    await expect(startSecondaryAuthRecoverySession('google', async () => ({
-      idToken: 'google-token', email: null, displayName: null,
-    }))).rejects.toThrow('secondary_app_check_unavailable');
-
-    expect(mockSignInWithCredential).not.toHaveBeenCalled();
     expect(mockEvents.slice(-2)).toEqual(['signout:secondary', 'delete:secondary']);
   });
 

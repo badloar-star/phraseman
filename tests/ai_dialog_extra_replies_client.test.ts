@@ -18,7 +18,6 @@ jest.mock('@react-native-firebase/functions', () => ({
   getFunctions: jest.fn(() => ({})),
   httpsCallable: jest.fn(),
 }));
-jest.mock('../app/app_check_init', () => ({ initFirebaseAppCheckIfAvailable: jest.fn(async () => {}) }));
 jest.mock('../app/config', () => ({ CLOUD_SYNC_ENABLED: true, IS_EXPO_GO: false }));
 jest.mock('../app/phone_state_economy_bridge', () => ({
   commitPhoneStateNonMonetaryEconomyGrant: jest.fn(),

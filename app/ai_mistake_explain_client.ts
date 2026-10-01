@@ -1,6 +1,5 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { EXPLAIN_CALLABLE_TIMEOUT_MS, withExplainCallableTimeout } from './explain_callable_timeout';
 import { aiOffline, AiOfflineError } from './ai_kill_switch_copy';
 import { readExplainLocalCache, writeExplainLocalCache } from './explain_local_cache';
@@ -100,7 +99,6 @@ export interface CallExplainMistakeOptions {
 export function warmExplainMistake(): void {
   if (getNetStatus() !== 'online') return;
   void warmAiFunction('explainMistake', async () => {
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'explainMistake');
     return fn({ warmupPing: true });
   });
@@ -152,7 +150,6 @@ export async function callExplainMistake(
   if (existing) return existing;
 
   const request = (async () => {
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = httpsCallable<ExplainMistakeRequest, ExplainMistakeResponse>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'explainMistake',

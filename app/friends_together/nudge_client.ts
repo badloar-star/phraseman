@@ -10,7 +10,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
-import { initFirebaseAppCheckIfAvailable } from '../app_check_init';
 import { getLocalDayKey } from '../local_date';
 import { prepareTogetherSender } from './sender_identity';
 
@@ -132,7 +131,6 @@ export async function nudgeFriend(friendUid: string): Promise<NudgeResult> {
     const requestId = makeRequestId();
     const attempt = async (): Promise<NudgeResult> => {
       try {
-        await initFirebaseAppCheckIfAvailable().catch(() => {});
         // зачем: сервер требует stableId и берёт имя зовущего из senderDisplayName —
         // иначе пуш уйдёт как «Friend» (аудит 2026-08-17).
         const fn = httpsCallable<

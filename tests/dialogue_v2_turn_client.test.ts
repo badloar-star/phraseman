@@ -3,15 +3,11 @@ const mockGetApp = jest.fn(() => ({ name: 'app' }));
 const mockGetFunctions = jest.fn(() => ({ region: 'us-central1' }));
 const mockCallableRun = jest.fn();
 const mockHttpsCallable = jest.fn(() => mockCallableRun);
-const mockInitAppCheck = jest.fn(async () => undefined);
 
 jest.mock('@react-native-firebase/app', () => ({ getApp: mockGetApp }));
 jest.mock('@react-native-firebase/functions', () => ({
   getFunctions: mockGetFunctions,
   httpsCallable: mockHttpsCallable,
-}));
-jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: mockInitAppCheck,
 }));
 
 import {
@@ -68,21 +64,18 @@ describe('Dialogue V2 text turn Firebase client', () => {
     expect(mockCallableRun).toHaveBeenCalledWith({ studyTarget: 'de', scenarioId: 'work_01' });
   });
 
-  it('initializes App Check and sends only the session-bound text-turn request', async () => {
+  it('sends only the session-bound text-turn request', async () => {
     const sessionId = `d2s_${'a'.repeat(32)}`;
     const turnId = `d2t_${'b'.repeat(16)}`;
     await expect(sendDialogueV2TextTurn({
       sessionId, turnId, studyTarget: 'de', scenarioId: 'work_01', userMessage: 'Guten Tag!',
     })).resolves.toEqual(replyEnvelope);
 
-    expect(mockInitAppCheck).toHaveBeenCalledTimes(1);
     expect(mockGetFunctions).toHaveBeenCalledWith({ name: 'app' }, 'us-central1');
     expect(mockHttpsCallable).toHaveBeenCalledWith({ region: 'us-central1' }, 'dialogueV2TextTurn');
     expect(mockCallableRun).toHaveBeenCalledWith({
       sessionId, turnId, studyTarget: 'de', scenarioId: 'work_01', userMessage: 'Guten Tag!',
     });
-    expect(mockInitAppCheck.mock.invocationCallOrder[0])
-      .toBeLessThan(mockHttpsCallable.mock.invocationCallOrder[0]);
   });
 
   it.each([
@@ -97,7 +90,6 @@ describe('Dialogue V2 text turn Firebase client', () => {
   ])('does not contact Firebase for invalid or caller-authored authority', async (request) => {
     await expect(sendDialogueV2TextTurn(request as never)).resolves.toBeNull();
 
-    expect(mockInitAppCheck).not.toHaveBeenCalled();
     expect(mockCallableRun).not.toHaveBeenCalled();
   });
 

@@ -3,15 +3,11 @@ const mockGetApp = jest.fn(() => ({ name: 'app' }));
 const mockGetFunctions = jest.fn(() => ({ region: 'us-central1' }));
 const mockCallableRun = jest.fn();
 const mockHttpsCallable = jest.fn(() => mockCallableRun);
-const mockInitAppCheck = jest.fn(async () => undefined);
 
 jest.mock('@react-native-firebase/app', () => ({ getApp: mockGetApp }));
 jest.mock('@react-native-firebase/functions', () => ({
   getFunctions: mockGetFunctions,
   httpsCallable: mockHttpsCallable,
-}));
-jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: mockInitAppCheck,
 }));
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -54,15 +50,12 @@ describe('Dialogue V2 catalogue: raw network call', () => {
     mockCallableRun.mockResolvedValue({ data: releaseEnvelope });
   });
 
-  it('initializes App Check and sends only the selected learning language', async () => {
+  it('sends only the selected learning language', async () => {
     await expect(fetchDialogueV2CatalogueFromNetwork('en')).resolves.toEqual(releaseEnvelope);
 
-    expect(mockInitAppCheck).toHaveBeenCalledTimes(1);
     expect(mockGetFunctions).toHaveBeenCalledWith({ name: 'app' }, 'us-central1');
     expect(mockHttpsCallable).toHaveBeenCalledWith({ region: 'us-central1' }, 'dialogueV2Catalogue');
     expect(mockCallableRun).toHaveBeenCalledWith({ studyTarget: 'en' });
-    expect(mockInitAppCheck.mock.invocationCallOrder[0])
-      .toBeLessThan(mockHttpsCallable.mock.invocationCallOrder[0]);
   });
 
   it.each([
@@ -174,7 +167,6 @@ describe('Dialogue V2 catalogue: cache → embedded → background', () => {
 
   it('does not call Firebase for a target outside the four V2 language contours', async () => {
     await expect(fetchReleasedDialogueV2Catalogue('pt-BR' as never)).resolves.toBeNull();
-    expect(mockInitAppCheck).not.toHaveBeenCalled();
     expect(mockCallableRun).not.toHaveBeenCalled();
   });
 });

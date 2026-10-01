@@ -7,8 +7,8 @@ const limitCardSource = fs.readFileSync(path.join(__dirname, '..', 'components',
 const hookSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'use_mistake_explain.ts'), 'utf8');
 
 describe('AI mistake explanation client contract', () => {
-  it('calls the protected explainMistake callable with App Check initialized', () => {
-    expect(clientSource).toContain('initFirebaseAppCheckIfAvailable');
+  it('calls the protected explainMistake callable without App Check', () => {
+    expect(clientSource).not.toContain('initFirebaseAppCheckIfAvailable');
     expect(clientSource).toContain("'explainMistake'");
     expect(clientSource).toContain('ExplainMistakeRequest');
     expect(clientSource).toContain('ExplainMistakeResponse');

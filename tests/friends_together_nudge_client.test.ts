@@ -4,7 +4,6 @@
  * double-tap guard while a call is in flight. Same mocking pattern as friend_gifts.test.ts.
  */
 const mockCallableInvoker = jest.fn(async (_payload: unknown) => ({ data: { ok: true } }));
-const mockInitFirebaseAppCheckIfAvailable = jest.fn(async () => undefined);
 const mockStorage: Record<string, string> = {};
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -27,9 +26,6 @@ jest.mock('../app/config', () => ({
   IS_EXPO_GO: false,
 }));
 
-jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: mockInitFirebaseAppCheckIfAvailable,
-}));
 
 jest.mock('../app/local_date', () => ({
   getLocalDayKey: jest.fn(() => '2026-08-17'),

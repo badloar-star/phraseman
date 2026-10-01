@@ -6,7 +6,6 @@ import {
   parseDialogueV2PreparedBotVoiceSelection,
   type DialogueV2PreparedBotVoiceSelection,
 } from '../shared/dialogue_v2_prepared_bot_voice_selection_contract';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import {
   consumeDialogueV2StartTapAgeMs,
   registerDialogueV2Prestart,
@@ -283,7 +282,6 @@ export function prestartDialogueV2TextSession(selection: DialogueV2SessionStartR
 
 async function requestDialogueV2TextSessionFromNetwork(request: DialogueV2SessionStartRequest): Promise<DialogueV2SessionStartResponse | null> {
   try {
-    await initFirebaseAppCheckIfAvailable();
     const callable = httpsCallable<DialogueV2SessionStartRequest, unknown>(getFunctions(getApp(), FUNCTIONS_REGION), 'dialogueV2SessionStart');
     return safeStartResponse((await callable(request)).data);
   } catch (error) {
@@ -307,7 +305,6 @@ export async function sendDialogueV2TextTurn(
   if (!request) return null;
 
   try {
-    await initFirebaseAppCheckIfAvailable();
     const callable = httpsCallable<DialogueV2TextTurnRequest, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2TextTurn',

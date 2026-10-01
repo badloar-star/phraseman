@@ -34,9 +34,6 @@ jest.mock("../app/config", () => ({
   CLOUD_SYNC_ENABLED: true,
   IS_EXPO_GO: false,
 }));
-jest.mock("../app/app_check_init", () => ({
-  initFirebaseAppCheckIfAvailable: jest.fn(async () => true),
-}));
 jest.mock("../app/callable_timeout", () => ({
   withCallableTimeout: jest.fn(async (promise: Promise<unknown>) => promise),
 }));

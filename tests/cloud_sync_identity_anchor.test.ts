@@ -15,7 +15,6 @@ const mockCallable = jest.fn(async () => ({
 const mockSetStableId = jest.fn<Promise<void>, [string]>(async () => undefined);
 
 jest.mock('../app/config', () => ({ CLOUD_SYNC_ENABLED: true, IS_EXPO_GO: false, IS_STORE_RELEASE: false }));
-jest.mock('../app/app_check_init', () => ({ initFirebaseAppCheckIfAvailable: jest.fn(async () => true) }));
 jest.mock('../app/user_id_policy', () => ({
   getAuthUserId: jest.fn(() => 'provider-a'),
   getCanonicalUserId: jest.fn(async () => 'stable-a'),
@@ -59,7 +58,7 @@ describe('cloud sync identity anchor', () => {
     expect(__cloudSyncTestHooks.classifyCloudAccessFailure({
       code: 'functions/failed-precondition',
       message,
-    }, true)).toBe(expected);
+    })).toBe(expected);
   });
 
   it('opens the authoritative identity gate only when the server confirms identityReady', async () => {

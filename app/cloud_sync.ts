@@ -30,7 +30,6 @@ import {
   INTRO_FULL_ACCESS_STARTED_AT_KEY,
   INTRO_FULL_ACCESS_ENDS_AT_KEY,
 } from './intro_full_access_keys';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import {
   GRANDFATHERED_THEMES_KEY,
   OWNED_THEMES_KEY,
@@ -985,10 +984,7 @@ export type StableAuthLinkMetadata = {
 let stableAuthLinkPromise: Promise<StableAuthLinkEnsureResult> | null = null;
 let stableAuthLinkKey = '';
 
-function classifyCloudAccessFailure(
-  error: unknown,
-  appCheckReady: boolean,
-): StableAuthLinkFailure {
+function classifyCloudAccessFailure(error: unknown): StableAuthLinkFailure {
   const code = String((error as { code?: unknown })?.code ?? '').toLowerCase();
   const message = String((error as { message?: unknown })?.message ?? error).toLowerCase();
   const combined = `${code} ${message}`;
@@ -999,11 +995,9 @@ function classifyCloudAccessFailure(
   if (combined.includes('stable_id_mismatch')) return 'stable_id_mismatch';
   if (combined.includes('auth_required')) return 'identity_unavailable';
 
-  const explicitlyAppCheck = combined.includes('app check') || combined.includes('appcheck');
-  const missingAttestationLikely = code.includes('unauthenticated');
-  if (explicitlyAppCheck || (!appCheckReady && missingAttestationLikely)) {
-    return 'app_check_unavailable';
-  }
+  // зачем: App Check снят с клиента навсегда (пломба владельца 2026-08-17,
+  // E24 2026-10-01). Сервер его не требует, поэтому «unauthenticated» больше
+  // не переводится в app_check_unavailable — это честная ошибка входа ниже.
 
   if (
     code.includes('unavailable')
@@ -1768,7 +1762,6 @@ function ensureAnonAuthReady(): Promise<void> {
   if (auth.currentUser) return Promise.resolve();
   _anonAuthReady = (async () => {
     try {
-      await initFirebaseAppCheckIfAvailable().catch((error: unknown) => { reportSwallowed('cloud_sync:ensureAnonAuthReady', error); return false; });
       await withTimeout(auth.signInAnonymously(), ANON_AUTH_READY_TIMEOUT_MS, 'anon_auth_ready');
     } catch {
       // офлайн / транзиентная ошибка — следующий вызов ensureAnonUser
@@ -1975,7 +1968,6 @@ export async function ensureStableAuthLinkForStableIdDetailed(
 
   stableAuthLinkKey = promiseKey;
   stableAuthLinkPromise = (async () => {
-    const appCheckReady = await initFirebaseAppCheckIfAvailable().catch((error: unknown) => { reportSwallowed('cloud_sync:ensureStableAuthLinkForStableIdDetailed', error); return false; });
     try {
       const fn = callable<
         { stableId: string; linkMetadata?: StableAuthLinkMetadata },
@@ -2000,7 +1992,7 @@ export async function ensureStableAuthLinkForStableIdDetailed(
       };
     } catch (error) {
       if (__DEV__) console.warn('[cloud_sync] authEnsureStableLink callable failed', error);
-      const failure = classifyCloudAccessFailure(error, appCheckReady);
+      const failure = classifyCloudAccessFailure(error);
       return {
         ok: false,
         requestedStableId: stableId,
@@ -2172,7 +2164,6 @@ export async function requestAuthRecoveryCode(
 ): Promise<AuthRecoveryCodeRequestResult> {
   const stableId = String(stableIdRaw || '').trim();
   const expectedAuthUid = captureRecoveryAuthSession();
-  await initFirebaseAppCheckIfAvailable().catch((error: unknown) => { reportSwallowed('cloud_sync:requestAuthRecoveryCode', error); return false; });
   assertRecoveryAuthSession(expectedAuthUid);
   const fn = callable<{ stableId: string }, AuthRecoveryCodeRequestResult>(
     'authRequestRecoveryCode',
@@ -2208,7 +2199,6 @@ export async function confirmAuthRecoveryCode(
   const stableId = String(stableIdRaw || '').trim();
   const code = String(codeRaw || '').trim();
   const expectedAuthUid = captureRecoveryAuthSession();
-  await initFirebaseAppCheckIfAvailable().catch((error: unknown) => { reportSwallowed('cloud_sync:confirmAuthRecoveryCode', error); return false; });
   assertRecoveryAuthSession(expectedAuthUid);
   const fn = callable<
     { stableId: string; code: string },
@@ -2253,7 +2243,6 @@ export async function completeAuthRecoveryHandoffViaServer(
     throw new Error('auth_recovery_event_id_invalid');
   }
   const expectedAuthUid = captureRecoveryAuthSession();
-  await initFirebaseAppCheckIfAvailable().catch((error: unknown) => { reportSwallowed('cloud_sync:completeAuthRecoveryHandoffViaServer', error); return false; });
   assertRecoveryAuthSession(expectedAuthUid);
   const fn = callable<
     { recoveryEventId: string },
@@ -2298,7 +2287,6 @@ export async function mergeStableAccountsViaServer(
   const b = String(stableIdB || '').trim();
   if (!a || !b) return null;
   try {
-    await initFirebaseAppCheckIfAvailable().catch(swallowError('cloud_sync:mergeStableAccountsViaServer'));
     const fn = callable<
       { stableIdA: string; stableIdB: string },
       MergeStableAccountsResult
@@ -3906,7 +3894,6 @@ async function restoreAndMigrateFromCloudResult(
   const accountGeneration = captureAccountGeneration();
   const isCurrent = () => isCurrentAccountGeneration(accountGeneration, uid);
   if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
-  const appCheckReady = await initFirebaseAppCheckIfAvailable().catch((error: unknown) => { reportSwallowed('cloud_sync:restoreAndMigrateFromCloudResult', error); return false; });
   try {
     const stableLink = await ensureStableAuthLinkForStableIdDetailed(uid);
     if (!stableLink.ok || stableLink.stableUid !== uid) {
@@ -3961,7 +3948,7 @@ async function restoreAndMigrateFromCloudResult(
     return completedCloudRestoreAttempt(applied);
   } catch (error) {
     return failedCloudRestoreAttempt(
-      cloudRestoreFailureForStableLink(classifyCloudAccessFailure(error, appCheckReady)),
+      cloudRestoreFailureForStableLink(classifyCloudAccessFailure(error)),
     );
   }
 }
@@ -4624,7 +4611,6 @@ export async function deleteCloudData(): Promise<void> {
   if (await isAccountDeleteIdentityQuarantined()) return;
   const canonicalUid = await getCanonicalUserId();
   await ensureAnonUser();
-  await initFirebaseAppCheckIfAvailable().catch(swallowError('cloud_sync:deleteCloudData'));
   const fn = callable<
     { stableId?: string | null },
     {
@@ -4670,7 +4656,7 @@ export function startCloudDeletionEnqueue(
     );
   }
   return startAccountDeleteEnqueueWithDeadline(
-    () => initFirebaseAppCheckIfAvailable().catch(swallowError('cloud_sync:startCloudDeletionEnqueue')),
+    async () => undefined,
     async () => {
       if (!proof?.operationId || !proof.capability) {
         throw new Error('account_delete_credential_proof_missing');

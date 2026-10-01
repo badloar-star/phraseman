@@ -4,9 +4,6 @@ jest.mock('../app/referral_flags', () => ({
   isReferralCloudEnabled: () => true,
 }));
 
-jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: jest.fn(async () => undefined),
-}));
 
 jest.mock('@react-native-firebase/app', () => ({
   getApp: jest.fn(() => ({})),

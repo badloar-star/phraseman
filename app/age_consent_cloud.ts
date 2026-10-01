@@ -6,7 +6,6 @@ import * as Crypto from 'expo-crypto';
 import { Platform } from 'react-native';
 import { getAnalyticsConsentState, setAnalyticsConsent, type AnalyticsConsentState } from './analytics_consent';
 import { getInstalledAppVersion } from './app_version';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import {
   ensureAnonUser,
   ensureStableAuthLink,
@@ -60,7 +59,6 @@ type ReadinessDependencies = {
   ensureAuthenticated(): Promise<unknown>;
   waitForCurrentAuth(): Promise<boolean>;
   hasCurrentAuth(): boolean;
-  initAppCheck(): Promise<boolean>;
   ensureStableLink(): Promise<boolean>;
 };
 
@@ -108,7 +106,6 @@ export function createAgeConsentDeliveryReadiness(
       await dependencies.ensureAuthenticated();
       if ((await dependencies.waitForCurrentAuth()) !== true) return false;
       if (!dependencies.hasCurrentAuth()) return false;
-      if ((await dependencies.initAppCheck()) !== true) return false;
       if ((await dependencies.ensureStableLink()) !== true) return false;
       return dependencies.hasCurrentAuth();
     } catch {
@@ -201,7 +198,6 @@ const prepareDefaultDelivery = createAgeConsentDeliveryReadiness({
   ensureAuthenticated: () => ensureAnonUser(),
   waitForCurrentAuth: () => waitForAnonAuth(),
   hasCurrentAuth: () => Boolean(getCurrentUid()),
-  initAppCheck: () => initFirebaseAppCheckIfAvailable(),
   ensureStableLink: () => ensureStableAuthLink(),
 });
 

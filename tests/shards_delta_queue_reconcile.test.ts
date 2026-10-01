@@ -11,7 +11,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const applyResult = jest.fn();
 const callable = jest.fn((p: unknown) => Promise.resolve({ data: applyResult(p) }));
 const httpsCallable = jest.fn(() => callable);
-let appCheckReady = true;
 let queueQuarantined = false;
 let accountGeneration = { generation: 1, stableId: 'u1', phase: 'active' as const };
 const hasQuarantinedShardDeltaQueue = jest.fn(async () => queueQuarantined);
@@ -42,9 +41,6 @@ jest.mock('@react-native-firebase/firestore', () => ({
   ),
 }));
 jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
-jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: jest.fn(async () => appCheckReady),
-}));
 jest.mock('../app/debug-logger', () => ({ reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()), DebugLogger: { error: jest.fn() } }));
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 jest.mock('../app/user_id_policy', () => ({
@@ -102,7 +98,6 @@ const mockStorage: Record<string, string> = {};
 
 beforeEach(() => {
   jest.clearAllMocks();
-  appCheckReady = true;
   queueQuarantined = false;
   hasQuarantinedShardDeltaQueue.mockReset();
   hasQuarantinedShardDeltaQueue.mockImplementation(async () => queueQuarantined);
@@ -123,18 +118,6 @@ describe('resumePendingShardDeltas — authoritative server balance wins (K3 fin
     const source = readFileSync(join(__dirname, '..', 'app', 'shards_system.ts'), 'utf8');
     expect(source).not.toContain('resumePendingShardDeltasLegacy');
     expect(source).not.toContain('legacyResumeShardDeltasInFlight');
-  });
-
-  it('keeps the ordered replay queue untouched while App Check is unavailable', async () => {
-    appCheckReady = false;
-    queueStore.items = [
-      { opId: 'op-earn', ownerStableId: 'u1', delta: 5, type: 'earn', reason: 'r', createdAtMs: 1 },
-      { opId: 'op-spend', ownerStableId: 'u1', delta: 3, type: 'spend', reason: 'r', createdAtMs: 2 },
-    ];
-
-    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 0, pending: 2 });
-    expect(httpsCallable).not.toHaveBeenCalled();
-    expect(queueStore.items.map((item: any) => item.opId)).toEqual(['op-earn', 'op-spend']);
   });
 
   // Раньше эти два кейса требовали «не досылать НИЧЕГО, пока есть карантин».

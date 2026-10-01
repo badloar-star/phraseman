@@ -17,9 +17,6 @@ jest.mock('@react-native-firebase/functions', () => ({
   httpsCallable: jest.fn(() => mockCallable),
 }));
 
-jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: jest.fn(async () => true),
-}));
 
 jest.mock('../app/ai_kill_switch_copy', () => ({
   aiOffline: jest.fn(() => false),

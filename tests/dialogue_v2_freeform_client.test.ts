@@ -3,15 +3,11 @@ const mockGetApp = jest.fn(() => ({ name: 'app' }));
 const mockGetFunctions = jest.fn(() => ({ region: 'us-central1' }));
 const mockCallableRun = jest.fn();
 const mockHttpsCallable = jest.fn(() => mockCallableRun);
-const mockInitAppCheck = jest.fn(async () => undefined);
 
 jest.mock('@react-native-firebase/app', () => ({ getApp: mockGetApp }));
 jest.mock('@react-native-firebase/functions', () => ({
   getFunctions: mockGetFunctions,
   httpsCallable: mockHttpsCallable,
-}));
-jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: mockInitAppCheck,
 }));
 
 import {
@@ -94,7 +90,6 @@ describe('Dialogue V2 freeform callable client', () => {
     { studyTarget: 'de', scenarioId: 'work_01' },
   ])('does not call Firebase for invalid or scenario-shaped start input', async (input) => {
     await expect(startDialogueV2FreeformSession(input as never)).resolves.toBeNull();
-    expect(mockInitAppCheck).not.toHaveBeenCalled();
     expect(mockCallableRun).not.toHaveBeenCalled();
   });
 

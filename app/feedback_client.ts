@@ -7,7 +7,6 @@
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withCallableTimeout } from './callable_timeout';
 
 const FUNCTIONS_REGION = 'us-central1';
@@ -40,7 +39,6 @@ type SubmitRequest = { payload: Record<string, unknown> };
 type SubmitCallable = (data: SubmitRequest) => Promise<{ data: SubmitResult }>;
 
 let submitCallable: SubmitCallable | null = null;
-let appCheckWarmupInFlight: Promise<void> | null = null;
 
 function callable<TReq, TRes>(name: string) {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -57,25 +55,12 @@ function getSubmitCallable(): SubmitCallable {
   return submitCallable;
 }
 
-function warmAppCheck(): Promise<void> {
-  if (!appCheckWarmupInFlight) {
-    appCheckWarmupInFlight = initFirebaseAppCheckIfAvailable()
-      .catch(() => false)
-      .then(() => undefined)
-      .finally(() => {
-        appCheckWarmupInFlight = null;
-      });
-  }
-  return appCheckWarmupInFlight;
-}
-
 /**
  * Отправить отзыв. Бросает при сбое сети (вызывающий код кладёт запись в
  * очередь и досылает позже). null — только когда облако недоступно вовсе.
  */
 export async function submitFeedbackEntry(input: FeedbackEntryInput): Promise<SubmitResult | null> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
-  await warmAppCheck();
   const appVersion = Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown';
   const aiSummaryConsentGranted = input.aiSummaryConsent === true
     && input.aiSummaryConsentVersion === FEEDBACK_AI_SUMMARY_CONSENT_VERSION;

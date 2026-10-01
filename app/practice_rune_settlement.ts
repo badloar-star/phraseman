@@ -24,7 +24,6 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 
 import { getStableId } from './stable_id';
 import { getAppSnapshot } from './app_snapshot_store';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { DebugLogger } from './debug-logger';
 import { waitForActiveAccountGeneration } from './account_generation';
@@ -94,7 +93,6 @@ async function fingerprintFor(input: Readonly<{
 async function callPracticeRuneGrant(
   operation: PracticeRuneOperation,
 ): Promise<PracticeRuneMaterializationAck> {
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = httpsCallable<{ operation: PracticeRuneOperation }, PracticeRuneMaterializationAck>(
     getFunctions(getApp(), FUNCTIONS_REGION),
     'practiceRuneGrant',

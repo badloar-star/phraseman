@@ -217,60 +217,24 @@ describe("Firebase cost controls", () => {
     expect(friendsScreenSource).not.toContain("friendUids.map(async uid =>");
   });
 
-  it("does not let native App Check mint placeholder tokens before a real provider is configured", () => {
+  // зачем: App Check снят с клиента навсегда (пломба владельца 2026-08-17,
+  // аудит E24 2026-10-01). Прежний тест сторожил прогрев App Check на старте —
+  // отменённое правило. Полный сторож клиента: tests/app_check_client_removed.test.ts.
+  it("keeps App Check out of the boot path and sealed off on the server", () => {
     const firebaseJson = JSON.parse(read("firebase.json")) as {
-      "react-native"?: { app_check_token_auto_refresh?: boolean };
+      "react-native"?: Record<string, unknown>;
     };
-    const appCheckSource = read("app/app_check_init.ts");
     const layoutSource = read("app/_layout.tsx");
     const callableOptionsSource = read("functions/src/callable_options.ts");
     const indexSource = read("functions/src/index.ts");
-    const accountDeleteSource = read("functions/src/account_delete.ts");
-    const vipRevokeSource = read("functions/src/vip_revoke.ts");
-    const premiumDialogSource = read("functions/src/premium_dialog.ts");
-    const explainPhraseSource = read("functions/src/explain_phrase.ts");
 
-    expect(firebaseJson["react-native"]?.app_check_token_auto_refresh).toBe(
-      false,
-    );
-    expect(appCheckSource).toContain("APP_CHECK_TOKEN_TIMEOUT_MS = 3500");
-    expect(appCheckSource).toContain("EXPO_PUBLIC_APP_CHECK_DEBUG_TOKEN");
-    expect(appCheckSource).toContain("EXPO_PUBLIC_ENABLE_APP_CHECK_DEBUG");
-    expect(appCheckSource).toContain("provider: 'debug'");
-    expect(appCheckSource).toContain("provider: 'playIntegrity'");
-    expect(appCheckSource).toContain(
-      "provider: 'appAttestWithDeviceCheckFallback'",
-    );
-    expect(appCheckSource).toContain("appCheck().getToken(false)");
-    expect(appCheckSource).toContain("appCheck().getToken(true)");
-    expect(appCheckSource).toContain("isJwtLikeToken");
-    expect(appCheckSource).toContain("isTokenAutoRefreshEnabled: false");
-    expect(appCheckSource).toContain("setAppCheckAutoRefreshEnabled(false)");
-    expect(appCheckSource).toContain("setAppCheckAutoRefreshEnabled(true)");
-    expect(appCheckSource).toContain("appCheckInitPromise = null");
+    expect(firebaseJson["react-native"] ?? {}).not.toHaveProperty("app_check_token_auto_refresh");
+    expect(layoutSource).not.toContain("appCheckWarmup");
+    expect(layoutSource).not.toContain("initFirebaseAppCheckIfAvailable");
 
-    expect(layoutSource).toContain("const appCheckWarmup = Promise.race([");
-    expect(layoutSource).toContain("initFirebaseAppCheckIfAvailable(),");
-    expect(layoutSource).toContain(
-      "new Promise<void>((resolve) => setTimeout(resolve, 1200))",
-    );
-
-    expect(callableOptionsSource).toContain(
-      "ENFORCE_APP_CHECK = process.env.ENFORCE_APP_CHECK === 'true'",
-    );
-    expect(callableOptionsSource).toContain(
-      "appCheckGroup('ENFORCE_APP_CHECK_SENSITIVE')",
-    );
-    expect(callableOptionsSource).toContain(
-      "appCheckGroup('ENFORCE_APP_CHECK_OPENAI')",
-    );
-    expect(callableOptionsSource).toContain(
-      "enforceAppCheck: ENFORCE_APP_CHECK",
-    );
-    expect(accountDeleteSource).toContain("ENFORCE_APP_CHECK_SENSITIVE");
-    expect(vipRevokeSource).toContain("ENFORCE_APP_CHECK_SENSITIVE");
-    expect(premiumDialogSource).toContain("ENFORCE_APP_CHECK_OPENAI");
-    expect(explainPhraseSource).toContain("ENFORCE_APP_CHECK_OPENAI");
+    expect(callableOptionsSource).toContain("export const ENFORCE_APP_CHECK = false;");
+    expect(callableOptionsSource).toContain("export const ENFORCE_APP_CHECK_SENSITIVE = false;");
+    expect(callableOptionsSource).toContain("export const ENFORCE_APP_CHECK_OPENAI = false;");
 
     // The only manually verified HTTP endpoint was Arena's question timeout;
     // the endpoint was deleted with Arena, so it must not be reintroduced.

@@ -48,12 +48,12 @@ beforeEach(() => {
 });
 
 describe('intro full access gift', () => {
-  it('claims through the App-Check callable and contains no direct client write path', () => {
+  it('claims through the authenticated callable and contains no direct client write path', () => {
     const giftCloudSource = fs.readFileSync(path.join(process.cwd(), 'app', 'gift_access_cloud.ts'), 'utf8');
     const introSource = fs.readFileSync(path.join(process.cwd(), 'app', 'intro_full_access.ts'), 'utf8');
 
     expect(giftCloudSource).toContain("'introFullAccessClaim'");
-    expect(giftCloudSource).toContain('initFirebaseAppCheckIfAvailable');
+    expect(giftCloudSource).not.toContain('initFirebaseAppCheckIfAvailable');
     expect(giftCloudSource).not.toContain('persistGiftAccessOnCloud');
     expect(giftCloudSource).not.toContain(".doc(uid).set(");
     expect(introSource).toContain('await claimIntroFullAccessOnCloud()');

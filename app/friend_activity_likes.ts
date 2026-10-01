@@ -3,7 +3,6 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import * as Crypto from 'expo-crypto';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { getAuthUserId, getCanonicalUserId } from './user_id_policy';
 import { DebugLogger } from './debug-logger';
 
@@ -286,7 +285,6 @@ export async function sendFriendActivityLike(data: {
     throw new Error('target_unavailable');
   }
   await ensureActivityLikeAuthLink(senderStableId);
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<
     { senderStableId: string; targetStableId: string; eventId?: string; senderDisplayName?: string },
     FriendActivityLikeResponse
@@ -319,7 +317,6 @@ export async function removeFriendActivityLike(data: {
     throw new Error('target_unavailable');
   }
   await ensureActivityLikeAuthLink(senderStableId);
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<
     { senderStableId: string; targetStableId: string; eventId?: string },
     FriendActivityUnlikeResponse

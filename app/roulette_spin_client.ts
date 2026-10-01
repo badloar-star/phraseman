@@ -12,7 +12,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { captureAccountGeneration, type AccountGenerationToken } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import { getCanonicalUserId } from './user_id_policy';
@@ -216,7 +215,6 @@ export async function claimReferralSpins(): Promise<ClaimSpinResult | null> {
   const stableId = await getCanonicalUserId();
   if (!stableId) return null;
   const requestEpoch = currentSpinCreditMutationEpoch(stableId);
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<{ referrerStableId: string }, ClaimSpinResult>('referralClaimSpin');
   const res = await fn({ referrerStableId: stableId });
   if (typeof res.data?.spinsTotal === 'number') {
@@ -240,7 +238,6 @@ export function peekCachedSpinCredits(): number {
 // ── Спин ─────────────────────────────────────────────────────────────────────
 
 async function callReferralSpinOnce(stableId: string, spinRequestId: string): Promise<SpinResult> {
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<{ stableId: string; spinRequestId: string }, SpinResult>('referralSpin');
   const res = await fn({ stableId, spinRequestId });
   return res.data;

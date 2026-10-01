@@ -7,7 +7,6 @@ import {
   isCurrentAccountGeneration,
   type AccountGenerationToken,
 } from "./account_generation";
-import { initFirebaseAppCheckIfAvailable } from "./app_check_init";
 import {
   isCurrentBackgroundNetworkLease,
   type BackgroundNetworkLease,
@@ -28,7 +27,6 @@ const MAX_STREAM_CHUNKS = 1_024;
 type CredentialPair = Readonly<{
   authUid: string;
   authToken: string;
-  appCheckToken: string;
 }>;
 
 export interface LearningV2ActivityAudioTransportHandleV1 {
@@ -88,13 +86,9 @@ async function credentials(
   lease: BackgroundNetworkLease,
 ): Promise<CredentialPair> {
   if (!currentFence(account, lease)) fail();
-  if (!(await initFirebaseAppCheckIfAvailable())) fail();
-  if (!currentFence(account, lease)) fail();
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const authModule = require("@react-native-firebase/auth");
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const appCheck = require("@react-native-firebase/app-check").default;
     const user = authModule.default()?.currentUser;
     const authUid = user?.uid;
     if (
@@ -103,8 +97,7 @@ async function credentials(
       typeof authUid !== "string" ||
       authUid.length < 1 ||
       authUid.length > 256 ||
-      typeof authModule.getIdTokenResult !== "function" ||
-      typeof appCheck !== "function"
+      typeof authModule.getIdTokenResult !== "function"
     )
       fail();
     lease.assertCurrent();
@@ -120,13 +113,9 @@ async function credentials(
       Date.parse(expirationTime) - Date.now() < 120_000
     )
       fail();
-    lease.assertCurrent();
-    const appCheckResult = await appCheck().getToken(false);
-    if (!currentFence(account, lease, authUid)) fail();
-    const appCheckToken = ownValue(appCheckResult, "token");
-    if (typeof appCheckToken !== "string" || !TOKEN_RE.test(appCheckToken))
-      fail();
-    return Object.freeze({ authUid, authToken, appCheckToken });
+    // зачем: заголовок App Check снят — Storage проверен в консоли
+    // как UNENFORCED (2026-10-01), пломба владельца 2026-08-17.
+    return Object.freeze({ authUid, authToken });
   } catch {
     fail();
   }
@@ -221,7 +210,6 @@ export async function downloadLearningV2ActivityAudioBytesV1(input: {
     method: "GET",
     headers: {
       Authorization: `Firebase ${pair.authToken}`,
-      "X-Firebase-AppCheck": pair.appCheckToken,
     },
     signal: lease.signal,
     redirect: "error",

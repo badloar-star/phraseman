@@ -38,9 +38,6 @@ jest.mock('../app/level_spin_star_grants', () => ({
   practiceRuneOperationStorageKey: (owner: string, operationId: string) => `operation:${owner}:${operationId}`,
 }));
 jest.mock('../app/config', () => ({ CLOUD_SYNC_ENABLED: true, IS_EXPO_GO: false }));
-jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: jest.fn().mockResolvedValue(undefined),
-}));
 jest.mock('../app/app_snapshot_store', () => ({
   getAppSnapshot: jest.fn(() => ({ progress: { stars: 12, starsEarnedTotal: 12 } })),
 }));

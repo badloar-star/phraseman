@@ -12,7 +12,6 @@ const account = Object.freeze({
 });
 const user = Object.freeze({ uid: "auth-1" });
 const authToken = `a.${"b".repeat(80)}.c`;
-const appCheckToken = `d.${"e".repeat(80)}.f`;
 
 jest.mock("@react-native-firebase/app", () => ({
   getApp: () => ({
@@ -29,9 +28,6 @@ jest.mock("../app/account_generation", () => ({
   isCapturedAccountGenerationToken: (value: unknown) => value === account,
   isCurrentAccountGeneration: () => accountCurrent,
 }));
-jest.mock("../app/app_check_init", () => ({
-  initFirebaseAppCheckIfAvailable: async () => true,
-}));
 jest.mock("../app/interactive_network_quiet", () => ({
   isCurrentBackgroundNetworkLease: (value: unknown) => value === lease,
 }));
@@ -42,10 +38,6 @@ jest.mock("@react-native-firebase/auth", () => ({
     token: authToken,
     expirationTime: new Date(Date.now() + 10 * 60_000).toISOString(),
   }),
-}));
-jest.mock("@react-native-firebase/app-check", () => ({
-  __esModule: true,
-  default: () => ({ getToken: async () => ({ token: appCheckToken }) }),
 }));
 
 /* eslint-disable import/first -- Firebase/native transport is mocked first */
@@ -125,11 +117,12 @@ describe("Learning V2 authenticated activity-audio transport", () => {
       method: "GET",
       headers: {
         Authorization: `Firebase ${authToken}`,
-        "X-Firebase-AppCheck": appCheckToken,
       },
       credentials: "omit",
       redirect: "error",
     });
+    // зачем: App Check снят навсегда (пломба владельца 2026-08-17).
+    expect(Object.keys(options.headers)).toEqual(["Authorization"]);
   });
 
   it("rejects copied transport handles, stale accounts and byte overrun", async () => {

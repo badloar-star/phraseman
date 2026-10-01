@@ -8,7 +8,6 @@
  */
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withExplainCallableTimeout } from './explain_callable_timeout';
 import { aiOffline, AiOfflineError } from './ai_kill_switch_copy';
 import { readExplainLocalCache, writeExplainLocalCache } from './explain_local_cache';
@@ -74,7 +73,6 @@ export interface CallExplainPhraseOptions {
  */
 export function warmExplainPhrase(): void {
   void warmAiFunction('explainPhrase', async () => {
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'explainPhrase');
     return fn({ warmupPing: true });
   });
@@ -97,7 +95,6 @@ export async function callExplainPhrase(
   if (existing) return existing;
 
   const request = (async () => {
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = httpsCallable<ExplainPhraseRequest, ExplainPhraseResponse>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'explainPhrase',
@@ -177,7 +174,6 @@ export interface SubmitExplainReportResponse {
 export async function callSubmitExplainReport(
   req: SubmitExplainReportRequest,
 ): Promise<SubmitExplainReportResponse> {
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = httpsCallable<SubmitExplainReportRequest, SubmitExplainReportResponse>(
     getFunctions(getApp(), FUNCTIONS_REGION),
     'submitExplainReport',

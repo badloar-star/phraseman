@@ -3,15 +3,11 @@ const mockGetApp = jest.fn(() => ({ name: 'app' }));
 const mockGetFunctions = jest.fn(() => ({ region: 'us-central1' }));
 const mockCallableRun = jest.fn();
 const mockHttpsCallable = jest.fn(() => mockCallableRun);
-const mockInitAppCheck = jest.fn(async () => undefined);
 
 jest.mock('@react-native-firebase/app', () => ({ getApp: mockGetApp }));
 jest.mock('@react-native-firebase/functions', () => ({
   getFunctions: mockGetFunctions,
   httpsCallable: mockHttpsCallable,
-}));
-jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: mockInitAppCheck,
 }));
 
 import {
@@ -42,16 +38,13 @@ describe('Dialogue V2 memory resume Firebase client', () => {
     mockCallableRun.mockResolvedValue({ data: validResponse });
   });
 
-  it('initializes App Check and sends exactly the safe selection to the deployed callable', async () => {
+  it('sends exactly the safe selection to the deployed callable', async () => {
     await expect(resumeDialogueV2Memory({ studyTarget: 'de', scenarioId: 'social_01' }))
       .resolves.toEqual(validResponse);
 
-    expect(mockInitAppCheck).toHaveBeenCalledTimes(1);
     expect(mockGetFunctions).toHaveBeenCalledWith({ name: 'app' }, 'us-central1');
     expect(mockHttpsCallable).toHaveBeenCalledWith({ region: 'us-central1' }, 'dialogueV2MemoryResume');
     expect(mockCallableRun).toHaveBeenCalledWith({ studyTarget: 'de', scenarioId: 'social_01' });
-    expect(mockInitAppCheck.mock.invocationCallOrder[0])
-      .toBeLessThan(mockHttpsCallable.mock.invocationCallOrder[0]);
   });
 
   it('does not call Firebase for a selection with fields outside studyTarget and scenarioId', async () => {
@@ -61,7 +54,6 @@ describe('Dialogue V2 memory resume Firebase client', () => {
       transcript: 'never sent',
     } as never)).resolves.toBeNull();
 
-    expect(mockInitAppCheck).not.toHaveBeenCalled();
     expect(mockCallableRun).not.toHaveBeenCalled();
   });
 
@@ -112,7 +104,6 @@ describe('Dialogue V2 Plus memory management Firebase client', () => {
 
     await expect(viewDialogueV2Memory({ studyTarget: 'de' })).resolves.toEqual(managementView);
 
-    expect(mockInitAppCheck).toHaveBeenCalledTimes(1);
     expect(mockHttpsCallable).toHaveBeenCalledWith(
       { region: 'us-central1' },
       'dialogueV2MemoryView',
@@ -150,7 +141,6 @@ describe('Dialogue V2 Plus memory management Firebase client', () => {
       await expect(viewDialogueV2Memory(selection as never)).resolves.toBeNull();
       await expect(clearDialogueV2Memory(selection as never)).resolves.toBeNull();
     }
-    expect(mockInitAppCheck).not.toHaveBeenCalled();
     expect(mockCallableRun).not.toHaveBeenCalled();
   });
 

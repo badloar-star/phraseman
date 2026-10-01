@@ -249,7 +249,6 @@
     "@react-native-community/slider": "5.0.1",
     "@react-native-firebase/analytics": "^21.14.0",
     "@react-native-firebase/app": "^21.14.0",
-    "@react-native-firebase/app-check": "^21.14.0",
     "@react-native-firebase/auth": "^21.14.0",
     "@react-native-firebase/crashlytics": "^21.14.0",
     "@react-native-firebase/firestore": "^21.14.0",

@@ -1929,8 +1929,6 @@ async function claimReportReplyShardsForAccount(
   // Lazy require — модуль functions не должен грузиться (и падать в Expo Go) на импорте.
   const { getApp } = require('@react-native-firebase/app');
   const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
-  const { initFirebaseAppCheckIfAvailable } = require('./app_check_init');
-  await initFirebaseAppCheckIfAvailable().catch(swallowError('app_messages:appCheckInit'));
   if (!isCurrentAccountGeneration(accountToken, ownerUid)) {
     throw new Error('report_reply_claim_account_changed');
   }

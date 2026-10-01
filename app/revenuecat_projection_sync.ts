@@ -1,4 +1,3 @@
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withCallableTimeout } from './callable_timeout';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 
@@ -67,7 +66,6 @@ export async function syncRevenueCatProjectionForAccount(stableUid: string): Pro
   if (existing) return existing;
 
   const pending = (async () => {
-    await initFirebaseAppCheckIfAvailable().catch((error: unknown) => { reportSwallowed('revenuecat_projection_sync:syncRevenueCatProjectionForAccount', error); return false; });
     const response = await withCallableTimeout(
       getReconcileCallable()({}),
       'revenueCatPremiumReconcileMine',

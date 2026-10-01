@@ -27,7 +27,6 @@ type ReadinessFactory = (dependencies: {
   ensureAuthenticated(): Promise<unknown>;
   waitForCurrentAuth(): Promise<boolean>;
   hasCurrentAuth(): boolean;
-  initAppCheck(): Promise<boolean>;
   ensureStableLink(): Promise<boolean>;
 }) => () => Promise<boolean>;
 
@@ -155,40 +154,25 @@ describe('age consent cloud delivery', () => {
     expect(storage.setItem).not.toHaveBeenCalled();
   });
 
-  it('requires current Auth, explicit App Check success, and a stable auth link', async () => {
+  it('requires current Auth and a stable auth link (no App Check step)', async () => {
     const { createReadiness } = loadFactories();
     expect(typeof createReadiness).toBe('function');
     if (!createReadiness) return;
 
-    const appCheckWithoutAuth = jest.fn(async () => true);
     const stableLinkWithoutAuth = jest.fn(async () => true);
     const missingAuth = createReadiness({
       ensureAuthenticated: async () => {},
       waitForCurrentAuth: async () => false,
       hasCurrentAuth: () => false,
-      initAppCheck: appCheckWithoutAuth,
       ensureStableLink: stableLinkWithoutAuth,
     });
     await expect(missingAuth()).resolves.toBe(false);
-    expect(appCheckWithoutAuth).not.toHaveBeenCalled();
     expect(stableLinkWithoutAuth).not.toHaveBeenCalled();
-
-    const linkAfterRejectedAppCheck = jest.fn(async () => true);
-    const rejectedAppCheck = createReadiness({
-      ensureAuthenticated: async () => {},
-      waitForCurrentAuth: async () => true,
-      hasCurrentAuth: () => true,
-      initAppCheck: async () => false,
-      ensureStableLink: linkAfterRejectedAppCheck,
-    });
-    await expect(rejectedAppCheck()).resolves.toBe(false);
-    expect(linkAfterRejectedAppCheck).not.toHaveBeenCalled();
 
     const rejectedLink = createReadiness({
       ensureAuthenticated: async () => {},
       waitForCurrentAuth: async () => true,
       hasCurrentAuth: () => true,
-      initAppCheck: async () => true,
       ensureStableLink: async () => false,
     });
     await expect(rejectedLink()).resolves.toBe(false);
@@ -197,7 +181,6 @@ describe('age consent cloud delivery', () => {
       ensureAuthenticated: async () => {},
       waitForCurrentAuth: async () => true,
       hasCurrentAuth: () => true,
-      initAppCheck: async () => true,
       ensureStableLink: async () => true,
     });
     await expect(ready()).resolves.toBe(true);

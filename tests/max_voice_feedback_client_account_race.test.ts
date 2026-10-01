@@ -19,15 +19,6 @@ let mockReleaseWarmup: (() => void) | null = null;
 let mockWarmupObserved: Promise<void> = Promise.resolve();
 let mockObserveWarmup: (() => void) | null = null;
 const mockWarmupStarted = jest.fn();
-jest.mock('../app/app_check_init', () => ({
-  initFirebaseAppCheckIfAvailable: jest.fn(() => {
-    mockWarmupStarted();
-    mockObserveWarmup?.();
-    return new Promise<boolean>((resolve) => {
-      mockReleaseWarmup = () => resolve(true);
-    });
-  }),
-}));
 
 const mockCallable = jest.fn(async () => ({ data: { ok: true, id: 'feedback-A-session-1' } }));
 jest.mock('@react-native-firebase/app', () => ({ getApp: jest.fn(() => ({})) }));

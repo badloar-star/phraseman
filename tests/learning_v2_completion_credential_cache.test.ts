@@ -14,23 +14,14 @@ jest.mock('expo/fetch', () => ({ fetch: jest.fn() }));
 
 const mockAuthState: { currentUser: { uid: string } | null } = { currentUser: null };
 const mockGetIdTokenResult = jest.fn();
-const mockGetAppCheckToken = jest.fn();
-const mockAppCheckReady = { value: true };
 
 jest.mock('@react-native-firebase/auth', () => ({
   __esModule: true,
   default: () => mockAuthState,
   getIdTokenResult: (...args: unknown[]) => mockGetIdTokenResult(...args),
 }));
-jest.mock('@react-native-firebase/app-check', () => ({
-  __esModule: true,
-  default: () => ({ getToken: (...args: unknown[]) => mockGetAppCheckToken(...args) }),
-}));
 jest.mock('@react-native-firebase/app', () => ({
   getApp: () => ({ options: { projectId: 'phraseman-ea0b3' } }),
-}));
-jest.mock('../app/app_check_init', () => ({
-  isFirebaseAppCheckReady: () => mockAppCheckReady.value,
 }));
 
 const NOW = 1_000_000;
@@ -42,7 +33,6 @@ const jwt = (payload: Record<string, unknown>) => [
 ].join('.');
 
 let authToken = '';
-let appCheckToken = '';
 
 const configureNativePair = (uid: string) => {
   authToken = jwt({
@@ -51,13 +41,11 @@ const configureNativePair = (uid: string) => {
     sub: uid,
     exp: EXP_MS / 1_000,
   });
-  appCheckToken = jwt({ exp: EXP_MS / 1_000 });
   mockAuthState.currentUser = { uid };
   mockGetIdTokenResult.mockResolvedValue({
     token: authToken,
     expirationTime: new Date(EXP_MS).toISOString(),
   });
-  mockGetAppCheckToken.mockResolvedValue({ token: appCheckToken });
 };
 
 const warmPair = async (stableId: string) => {
@@ -74,8 +62,6 @@ const warmPair = async (stableId: string) => {
 beforeEach(() => {
   jest.spyOn(Date, 'now').mockReturnValue(NOW);
   mockGetIdTokenResult.mockReset();
-  mockGetAppCheckToken.mockReset();
-  mockAppCheckReady.value = true;
 });
 
 afterEach(() => jest.restoreAllMocks());
@@ -92,9 +78,7 @@ test('publishes one opaque memory-only credential pair', async () => {
     hasCredentialPair: true,
   });
   expect(JSON.stringify(learningV2CompletionCredentialCacheState())).not.toContain(authToken);
-  expect(JSON.stringify(learningV2CompletionCredentialCacheState())).not.toContain(appCheckToken);
   expect(mockGetIdTokenResult).toHaveBeenCalledWith(mockAuthState.currentUser, false);
-  expect(mockGetAppCheckToken).toHaveBeenCalledWith(false);
 });
 
 test('account switch clears tokens and makes a detached old handle unusable', async () => {
@@ -145,6 +129,5 @@ test('late old account and forged account capability fail without native calls o
   )).resolves.toBe('unavailable');
   expect(getterCalls).toBe(0);
   expect(mockGetIdTokenResult).not.toHaveBeenCalled();
-  expect(mockGetAppCheckToken).not.toHaveBeenCalled();
   expect(learningV2CompletionCredentialCacheState()).toMatchObject({ hasCredentialPair: false });
 });

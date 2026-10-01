@@ -1,7 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 import { Platform } from 'react-native';
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ensureAnonUser, getCurrentUid, waitForAnonAuth } from './cloud_sync';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 
@@ -49,7 +48,6 @@ type DeliveryReadinessDependencies = {
   ensureAuthenticated(): Promise<unknown>;
   waitForCurrentAuth(): Promise<boolean>;
   hasCurrentAuth(): boolean;
-  initAppCheck(): Promise<boolean>;
 };
 
 export function createOnboardingFunnelDeliveryReadiness(
@@ -60,7 +58,6 @@ export function createOnboardingFunnelDeliveryReadiness(
       await dependencies.ensureAuthenticated();
       if ((await dependencies.waitForCurrentAuth()) !== true) return false;
       if (!dependencies.hasCurrentAuth()) return false;
-      if ((await dependencies.initAppCheck()) !== true) return false;
       return dependencies.hasCurrentAuth();
     } catch {
       return false;
@@ -207,7 +204,6 @@ const prepareDefaultDelivery = createOnboardingFunnelDeliveryReadiness({
   ensureAuthenticated: () => ensureAnonUser(),
   waitForCurrentAuth: () => waitForAnonAuth(),
   hasCurrentAuth: () => Boolean(getCurrentUid()),
-  initAppCheck: () => initFirebaseAppCheckIfAvailable(),
 });
 
 const defaultRecorder = createOnboardingFunnelRecorder({

@@ -59,12 +59,9 @@ export const TESTFLIGHT_DEV_TOOLS = process.env.EXPO_PUBLIC_TESTFLIGHT_DEV_TOOLS
 export const ENABLE_AUTH_IDENTITY_DEBUG =
   process.env.EXPO_PUBLIC_AUTH_IDENTITY_DEBUG === '1' && !IS_STORE_RELEASE;
 
-/**
- * Real App Attest / Play Integrity mode is independent from store UI/revenue gates.
- * Store-installed QA builds can keep dev tools while still requiring real attestation.
- */
-export const APP_CHECK_REAL_ATTESTATION_ENABLED =
-  IS_STORE_RELEASE || process.env.EXPO_PUBLIC_APP_CHECK_REAL_ATTESTATION === '1';
+// ⛔ App Check снят с клиента навсегда (пломба владельца 2026-08-17, аудит E24
+// 2026-10-01): ни Play Integrity, ни App Attest приложение не запрашивает.
+// Сторож: tests/app_check_client_removed.test.ts.
 
 /** true только в реальном dev-рантайме Metro (не preview, не стор). */
 const IS_DEV_RUNTIME = typeof __DEV__ !== 'undefined' && __DEV__;

@@ -2,7 +2,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 
-import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 
 const FUNCTIONS_REGION = 'us-central1';
 const STUDY_TARGETS = new Set(['en', 'es', 'fr', 'de']);
@@ -134,7 +133,6 @@ export async function fetchDialogueV2CatalogueFromNetwork(
   if (!safeStudyTarget(studyTarget)) return null;
 
   try {
-    await initFirebaseAppCheckIfAvailable();
     const callable = httpsCallable<Readonly<{ studyTarget: DialogueV2CatalogueStudyTarget }>, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2Catalogue',

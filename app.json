@@ -184,7 +184,6 @@
             "forceStaticLinking": [
               "RNFBApp",
               "RNFBAnalytics",
-              "RNFBAppCheck",
               "RNFBAuth",
               "RNFBCrashlytics",
               "RNFBFirestore",
@@ -219,7 +218,6 @@
       "./plugins/withProductionAndroidBundleHygiene",
       "./plugins/withAsyncStorageCapacity",
       "./plugins/withAndroidSplashWindowBackground",
-      "./plugins/withIosFirebaseEarlyConfigure",
       "@bacons/apple-targets",
       "./plugins/withIosFirebaseFunctionsSwift63Workaround",
       "./plugins/withIosFirebaseCrashlyticsUpload",

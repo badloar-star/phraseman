@@ -24,20 +24,14 @@ jest.mock('expo/fetch', () => ({ fetch: jest.fn() }));
 
 const mockAuthState: { currentUser: { uid: string } | null } = { currentUser: null };
 const mockGetIdTokenResult = jest.fn();
-const mockGetAppCheckToken = jest.fn();
 jest.mock('@react-native-firebase/auth', () => ({
   __esModule: true,
   default: () => mockAuthState,
   getIdTokenResult: (...args: unknown[]) => mockGetIdTokenResult(...args),
 }));
-jest.mock('@react-native-firebase/app-check', () => ({
-  __esModule: true,
-  default: () => ({ getToken: (...args: unknown[]) => mockGetAppCheckToken(...args) }),
-}));
 jest.mock('@react-native-firebase/app', () => ({
   getApp: () => ({ options: { projectId: 'phraseman-ea0b3' } }),
 }));
-jest.mock('../app/app_check_init', () => ({ isFirebaseAppCheckReady: () => true }));
 
 const NOW = 1_000_000;
 const EXP_MS = NOW + 600_000;
@@ -47,7 +41,6 @@ const jwt = (payload: Record<string, unknown>) => [
   'signature',
 ].join('.');
 let authToken = '';
-let appCheckToken = '';
 let credentialHandle: CompletionCredentialHandle;
 let account: AccountGenerationToken;
 const expoFetchMock = expoFetch as jest.MockedFunction<typeof expoFetch>;
@@ -60,13 +53,11 @@ const configureNativePair = (uid: string, suffix = '') => {
     exp: EXP_MS / 1_000,
     suffix,
   });
-  appCheckToken = jwt({ exp: EXP_MS / 1_000, suffix });
   mockAuthState.currentUser = { uid };
   mockGetIdTokenResult.mockResolvedValue({
     token: authToken,
     expirationTime: new Date(EXP_MS).toISOString(),
   });
-  mockGetAppCheckToken.mockResolvedValue({ token: appCheckToken });
 };
 
 const warmCredentialPair = async () => {
@@ -128,7 +119,6 @@ const callBinding = () => withBackgroundNetworkLease(
 beforeEach(async () => {
   expoFetchMock.mockReset();
   mockGetIdTokenResult.mockReset();
-  mockGetAppCheckToken.mockReset();
   jest.spyOn(Date, 'now').mockReturnValue(NOW);
   account = beginAccountGeneration('stable-user-1');
   configureNativePair('firebase-auth-1');
@@ -149,7 +139,6 @@ test('uses the exact allowlisted callable wire protocol and returns result', asy
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${authToken}`,
-      'X-Firebase-AppCheck': appCheckToken,
     },
     body: '{"data":{}}',
     redirect: 'error',

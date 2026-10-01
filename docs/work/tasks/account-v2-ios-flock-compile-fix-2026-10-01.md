@@ -31,3 +31,6 @@ Accept temporarily: другие ошибки компиляции Swift/ObjC м
 ## Rollback
 
 git revert коммита патча.
+
+## Итерация 2 (EAS 9c9954c4)
+Приведение `(Darwin.flock as (Int32,Int32)->Int32)` не скомпилировалось: в Swift-модуле имя `flock` — только `flock.Type` (struct), функция не импортирована. Решение: `@_silgen_name("flock") private func phrasemanSystemFlock(_:_:) -> Int32` на той же строке, что `import Darwin` (структура патча не меняется), и вызовы через него.

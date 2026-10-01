@@ -210,3 +210,47 @@ done требует одновременно: все критерии приня
 Где gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES по сути неприменим (нет видимого UI, только правила/политика/логика): PM-113, PM-141, PM-145. Применим: PM-144 (экран сессии диалога).
 
 Оговорки: actual_model «unknown, снимок нескольких сессий», actual_reasoning «unrecorded» (§34). result_sha у PM-144 не проставлен (серия из 6 коммитов). Работоспособность на устройстве/в проде не проверялась.
+
+
+
+## Пачка 5 + закрытие по подписанному gate MIGRATION + D151 (2026-10-01, Q75/§32)
+
+Ревьюер: agent-reviewer (Sonnet 5.5) по поручению координатора. Общие gates — [GATES_COMMON_2026-10-01.md](GATES_COMMON_2026-10-01.md). Подпись gate MIGRATION в [GATES_MIGRATION_2026-10-01.md](GATES_MIGRATION_2026-10-01.md) проверена (строка «Подпись координатора: ПОДПИСАНО», коммит 8d23c297c). Тесты — под слотом светофора. Запись в tasks.json — mark.write_task_block (CRLF сохранён); render_views.py не запускался; validate.py — ошибок по задачам этой пачки нет.
+
+Итог: в done переведено 17 задач из 20 (7 по gate MIGRATION + PM-055, 2 по D151, 8 из пачки 5). Остаются review: 3 (PM-168, PM-171, PM-184 — ждут DESIGN).
+
+### A) Закрытие по подписанному gate MIGRATION
+| Задача | Вердикт | Основание | Статус |
+|---|---|---|---|
+| PM-046 | PASS | M1; пробы level_gift_client/server_retirement, pm048, server_remote_event_allowlist PASS; home_spin_entry + level_spin_star_callable_retired PASS | done (code, 72d217bfc) |
+| PM-078 | PASS | M3; coin_rank_upgrade.test PASS, guard_behavior 4/4 (node:test) | done (code, 276fc003f) |
+| PM-079 | PASS | M3; coin_rank_upgrade + dialogue_v2_access_contract PASS | done (code, 276fc003f) |
+| PM-084 | PASS | M4; energy_first_question_gate 10/10 | done (code, efe19ae9d) |
+| PM-085 | PASS | M4; чтение components/energy/AnimatedEnergyNumber.tsx (одна анимация на operationId, reduce motion); теста нет | done (design) |
+| PM-089 | PASS | M4; energy_cap_d98_migration PASS | done (decision) |
+| PM-090 | PASS | M4; pm090_zero_energy_no_forced_ads_contract PASS | done (code, 8cb088357) |
+| PM-055 | PASS, A1 принят | аудит PM-055_xp_multiplier_completeness (6 измерений) подтверждён: xp_boost_tokens_compat_only (3183 файла, compat 6/6), pm055_xp_multiplier_runtime_retirement, pm055_xp_surface_retirement PASS; ни один экран не передаёт multipliers в ResultsSequence; старые ключи стираются; super_sunday_retired_d147 PASS | done (code, efe19ae9d) |
+
+У всех нет иных незакрытых gates (PM-085 без DESIGN в списке gates), все критерии приняты.
+
+### B) D151 (энергии и «Поделиться» на Главной нет)
+| Задача | Что сделано | Статус |
+|---|---|---|
+| PM-043 | A1 переписан: энергия на Главной V2 не показывается (D151), на занятиях единый useEnergy; evidence — сторож home_v2_no_energy_no_share_owner_2026_10_01 3/3 + DESIGN_GATE_OWNER_REVIEW «Отклонено владельцем»; DESIGN закрыт D151 | done (design) |
+| PM-045 | A1 переписан: «Поделиться» в визитке (PlayerProfileModal handleShare, кнопка), в шапке Главной нет; DESIGN закрыт D151 | done (design) |
+
+### C) Пачка 5
+| Задача | Вердикт | Что проверено | Статус |
+|---|---|---|---|
+| PM-158 | PASS | COURSES_FUTURE_PLANS.md, раздел PM-158; платный STT не подключён (expo-speech-recognition, max_voice_config запломбирован) | done (documentation) |
+| PM-159 | PASS | раздел PM-159; порог зачёта — вопрос Q-G владельцу, критерии не блокирует | done (documentation) |
+| PM-164 | PASS | 7b041cb73/7232941b9: functions friend_activity_likes + shard_survey_core 78/78; UI нет (только functions, firestore.rules) — DESIGN N/A | done (code) |
+| PM-167 | PASS | d373a9e1c: activity_feed_pagination_cache, friend_social_notification_types, user_notifications_account_cache PASS; без UI — DESIGN N/A | done (code) |
+| PM-172 | PASS | тот же коммит; страница 50 на старте, курсор, пол force 30 с, onSnapshot нет; «Показать ещё» — Дизайну | done (code) |
+| PM-180 | PASS | git grep: остатки только совместимость; server_remote_event_allowlist PASS; A2 — PM-180_paid_history_accounted (D58/D70/D103); UI нет — DESIGN N/A | done (audit) |
+| PM-183 | PASS | НАЙДЕНО: tests/energy_contract.test.ts не компилировался (TS2353 после 0aa34329b) — исправлен, 17/17; в карточке нет энергии/осколков — DESIGN N/A | done (code, 0aa34329b) |
+| PM-168 | PASS по сути | survey_library_editorial_guard PASS; правит admin/v2/legacy.html (видимые тексты опросов) | review (ждёт DESIGN) |
+| PM-171 | PASS по сути | pm171_ideas_section_retired.probe PASS; правит settings.tsx/_layout; серверная правка shard_survey_core.ts не задеплоена | review (ждёт DESIGN) |
+| PM-184 | PASS по сути | profile_card_pro_legacy_grant 3/3, цена из PM-185, 5 коммитов существуют; gate OWNER_DECISION_RECORDED закрыт D73/D114; видимая визитка «Про»; анимация перехода не проверена в эмуляторе | review (ждёт DESIGN) |
+
+Оговорки: actual_model «unknown, снимок нескольких сессий», actual_reasoning «unrecorded» (§34). Деплой функций/правил (PM-164, PM-171), Remote Config gifts_to_coins_enabled=false на проде и работа на устройстве не проверялись — владельцу.

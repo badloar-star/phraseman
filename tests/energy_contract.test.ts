@@ -31,7 +31,8 @@ describe('numeric energy contract', () => {
   // PM-081 (D07): «никаких бонусов cap/rate от визиток/видео».
   describe('no profile-card capacity bonus', () => {
     it('ignores the profile card, the remote base and garbage input', () => {
-      expect(permanentEnergyCapacity({ profileCardLevel: 5 })).toBe(5);
+      // зачем (PM-183 ревью 01.10): тип входа больше не знает profileCardLevel (0aa34329b) — проверяем, что мусорное поле игнорируется
+      expect(permanentEnergyCapacity({ profileCardLevel: 5 } as { base?: number })).toBe(5);
       expect(permanentEnergyCapacity({ base: 100 })).toBe(5);
       expect(permanentEnergyCapacity({})).toBe(5);
       expect(profileCardEnergyCapacity(0)).toBe(5);

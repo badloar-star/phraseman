@@ -801,6 +801,8 @@ export {
 export { adminAlignVideoPhraseTranscript } from "./video_phrase_timing";
 // PM-112/113: ленивый пересчёт счётчика уникальных сохранений ролика (count()).
 export { refreshVideoSaveCounts } from "./video_save_counts";
+// Видео-студия: расшифровка ролика прямо из YouTube (OAuth владельца канала).
+export { adminYoutubeOAuthStart, youtubeOAuthCallback, adminYoutubeChannelsList, adminFetchVideoTranscript } from "./youtube_captions_oauth";
 export {
   adminCreateContentStage,
   adminControlContentStage,

@@ -153,6 +153,20 @@ export function isValidExpoPushToken(token: unknown): token is string {
  *
  * Приоритет: стрик под угрозой важнее «давно не заходил» (потеря серии больнее).
  */
+/**
+ * зачем: PM-200 — «давно не заходил» (inactive_return/inactive_long) не имели
+ * opt-out: выключить их можно было только отозвав токен. Отдельной категории
+ * для них в разделе «Уведомления» нет, а новый тумблер — это новый UI. Сервер
+ * видит лишь два зеркала: pushPrefs.streak = master && «Серия под угрозой» и
+ * pushPrefs.offers = master && «Скидки и предложения». Возврат к занятиям — это
+ * напоминание про учёбу/серию, а не предложение, поэтому все re-engage пуши
+ * подчиняются pushPrefs.streak: выключил мастер или «Серию» — сервер молчит.
+ * Явный false выключает; нет поля = старый клиент = слать (как раньше).
+ */
+export function isReEngageOptedOut(u: ReEngageUser): boolean {
+  return u.pushPrefs?.streak === false;
+}
+
 export function classifyReEngageUser(u: ReEngageUser, now: number): ReEngageReason | null {
   if (!isValidExpoPushToken(u.expoPushToken)) return null;
   if (u.lastActiveAt == null) return null;
@@ -174,9 +188,12 @@ export function classifyReEngageUser(u: ReEngageUser, now: number): ReEngageReas
   // зачем: юзер может выключить «Серия под угрозой» в разделе уведомлений —
   // клиент зеркалит выбор в pushPrefs.streak. Отсутствие поля = старый клиент = слать.
   if (streak >= STREAK_AT_RISK_MIN && hoursInactive >= STREAK_RISK_INACTIVE_HOURS && hoursInactive < 24) {
-    if (u.pushPrefs?.streak === false) return null;
+    if (isReEngageOptedOut(u)) return null;
     return 'streak_at_risk';
   }
+
+  // PM-200: тот же opt-out для «давно не заходил» (см. isReEngageOptedOut).
+  if (isReEngageOptedOut(u)) return null;
 
   const daysInactive = msInactive / DAY_MS;
 
@@ -427,6 +444,7 @@ export async function runReEngagePush(now: number = Date.now()): Promise<{
   const STAMP_BATCH = 400;
 
   let scanned = 0;
+  let optedOut = 0;
   const allCandidates: ReEngageCandidate[] = [];
   let lastDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
 
@@ -467,11 +485,16 @@ export async function runReEngagePush(now: number = Date.now()): Promise<{
       parseReEngageUser(doc.id, doc.data() as Record<string, unknown>),
     );
     scanned += pageUsers.length;
+    optedOut += pageUsers.filter(isReEngageOptedOut).length;
     allCandidates.push(...selectReEngageCandidates(pageUsers, now));
 
     if (snap.size < PAGE_SIZE) break;
   }
 
+  if (optedOut > 0) {
+    // Только счётчик: без uid/токенов и без строки на каждого человека.
+    console.log('[PUSH-PREFS] re_engage skip: pushPrefs.streak=false', { optedOut, scanned });
+  }
   if (allCandidates.length === 0) {
     return { scanned, candidates: 0, sent: 0, failedChunks: 0, ticketCount: 0 };
   }

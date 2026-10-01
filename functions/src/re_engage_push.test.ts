@@ -155,9 +155,15 @@ describe('classifyReEngageUser', () => {
     });
     expect(classifyReEngageUser(u, NOW)).toBeNull();
   });
-  it('pushPrefs.streak === false НЕ трогает inactive_return (другая категория)', () => {
-    const u = user({ lastActiveAt: NOW - 5 * DAY, pushPrefs: { streak: false } });
-    expect(classifyReEngageUser(u, NOW)).toBe('inactive_return');
+  // PM-200: решение изменено — «давно не заходил» подчиняется тому же opt-out
+  // (pushPrefs.streak = master && «Серия под угрозой»), иначе выключить их было нельзя.
+  it('PM-200: pushPrefs.streak === false глушит и inactive_return, и inactive_long', () => {
+    expect(classifyReEngageUser(user({ lastActiveAt: NOW - 5 * DAY, pushPrefs: { streak: false } }), NOW)).toBeNull();
+    expect(classifyReEngageUser(user({ lastActiveAt: NOW - 20 * DAY, pushPrefs: { streak: false } }), NOW)).toBeNull();
+  });
+  it('PM-200: offers=false не трогает inactive_return (другая категория), нет поля — шлём', () => {
+    expect(classifyReEngageUser(user({ lastActiveAt: NOW - 5 * DAY, pushPrefs: { offers: false } }), NOW)).toBe('inactive_return');
+    expect(classifyReEngageUser(user({ lastActiveAt: NOW - 20 * DAY, pushPrefs: null }), NOW)).toBe('inactive_long');
   });
   it('pushPrefs отсутствует (старый клиент) — стрик-риск шлём как раньше', () => {
     const u = user({ streakCount: STREAK_AT_RISK_MIN, lastActiveAt: NOW - 22 * HOUR, pushPrefs: null });

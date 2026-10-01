@@ -221,7 +221,8 @@ export default function LevelUpMintCeremony({ visible, from, to, onDone, onCue }
     if (visible && ready && !runReduced && runtimeActive) {
       idle.value = withRepeat(
         withTiming(1, { duration: MINT_TIMELINE.idle.halfPeriod, easing: Easing.inOut(Easing.sin) }),
-        -1,
+        // зачем (PM-032, решение координатора 01.10): декор — 2–3 повтора и покой, не вечный цикл.
+        4,
         true,
       );
     } else {

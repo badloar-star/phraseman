@@ -42,18 +42,11 @@ const ALLOWED = {
   'components/home/HomeSectionPulseButton.tsx': [1, 'Главная: вид не трогаем (владелец)'],
   'components/NotificationCenterButton.tsx': [1, 'колокол в шапке Главной'],
   'components/SurveyTaskCard.tsx': [1, 'плашка опроса на Главной'],
-  // ХВОСТ PM-032: декоративные, ждут решения по макетам (разовая реакция или убрать)
-  'app/learning-v2/lesson/[id].tsx': [1, 'хвост PM-032: ореол'],
-  'components/CollectibleArtFrame.tsx': [3, 'хвост PM-032: блеск коллекционной рамки'],
-  'components/collectibles/CollectiblesEmptyStateMotion.tsx': [2, 'хвост PM-032: дрейф пустого состояния'],
-  'components/HoloFoilCard.tsx': [1, 'хвост PM-032: голограмма карточки'],
   'components/LearningV2MapNode.tsx': [1, 'хвост PM-032: ореол узла карты'],
-  'components/level_up/LevelUpMintCeremony.tsx': [1, 'хвост PM-032: покой после церемонии'],
-  'components/paywall/PaywallMotion.tsx': [3, 'хвост PM-032: декор пейвола'],
-  'components/ProfileCardMotionFx.tsx': [2, 'хвост PM-032: эффекты карточки игрока'],
-  'components/ShineOverlay.tsx': [1, 'хвост PM-032: блик'],
-  'components/ui/V2Backdrop.tsx': [1, 'хвост PM-032: фон 2.0'],
-  // мёртвый код без импортёров — на экран не попадает; удалить отдельной чисткой
+  'components/ProfileCardMotionFx.tsx': [2, 'не импортируется'],
+  'components/ShineOverlay.tsx': [1, 'не импортируется'],
+  'components/ui/V2Backdrop.tsx': [1, 'фон Главной через ScreenGradient (вид не трогаем)'],
+  // мёртвый код без импортёров — на экран не попадает; удаление ждёт владельца (защита запретила 01.10)
   'components/LingmanVideosButton.tsx': [1, 'не импортируется'],
   'components/PremiumGoldButton.tsx': [1, 'не импортируется'],
   'components/reward_v2/RewardCardV2.tsx': [1, 'не импортируется'],
@@ -114,5 +107,11 @@ test('decorative loops fixed in PM-032 stay one-shot', () => {
     'app/flashcards/CardPackShardPaywallModal.tsx',
     'app/streak_stats.tsx',
     'components/SaveToCardsButton.tsx',
+    'app/learning-v2/lesson/[id].tsx',
+    'components/CollectibleArtFrame.tsx',
+    'components/collectibles/CollectiblesEmptyStateMotion.tsx',
+    'components/HoloFoilCard.tsx',
+    'components/level_up/LevelUpMintCeremony.tsx',
+    'components/paywall/PaywallMotion.tsx',
   ]) assert.equal(found[f] ?? 0, 0, f);
 });

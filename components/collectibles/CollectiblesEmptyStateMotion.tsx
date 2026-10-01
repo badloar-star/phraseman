@@ -113,13 +113,14 @@ export default function CollectiblesEmptyStateMotion({
       subtitleEntrance.value = withDelay(400, withTiming(1, COPY_TIMING));
     }
 
+    // зачем (PM-032, решение координатора 01.10): декор — 2–3 повтора и покой, не вечный цикл.
     rearDrift.value = withDelay(
       720,
-      withRepeat(withTiming(1, DRIFT_TIMING), -1, true),
+      withRepeat(withTiming(1, DRIFT_TIMING), 2, true),
     );
     middleDrift.value = withDelay(
       1320,
-      withRepeat(withTiming(1, DRIFT_TIMING), -1, true),
+      withRepeat(withTiming(1, DRIFT_TIMING), 2, true),
     );
 
     return stopAnimations;

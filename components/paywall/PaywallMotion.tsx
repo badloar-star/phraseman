@@ -117,7 +117,8 @@ export function PaywallIdleFloat({ children, style, haloColor = 'rgba(255,255,25
       phase.value = 0;
       phase.value = withRepeat(
         withTiming(1, { duration: 2000, easing: Easing.inOut(Easing.sin) }),
-        -1,
+        // зачем (PM-032, решение координатора 01.10): декор — 2–3 повтора и покой, не вечный цикл.
+        4,
         true,
       );
     };
@@ -190,7 +191,7 @@ export function PaywallCtaShine() {
           withTiming(1, { duration: CTA_SHINE_SWEEP_MS, easing: Easing.inOut(Easing.sin) }),
           withTiming(0, { duration: 0 }),
         ),
-        -1,
+        3,
       );
     };
     const stop = () => {
@@ -269,7 +270,7 @@ export function PaywallBadgePop({ children, style, delay = 0, pulse = false }: {
       pulsePhase.value = 0;
       pulsePhase.value = withRepeat(
         withTiming(1, { duration: 1300, easing: Easing.inOut(Easing.sin) }),
-        -1,
+        4,
         true,
       );
     };

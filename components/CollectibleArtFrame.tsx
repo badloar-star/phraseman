@@ -68,7 +68,8 @@ const Sheen = memo(function Sheen({ w, h, radius, delay }: { w: number; h: numbe
       sweep.value = 0;
       sweep.value = withDelay(
         delay,
-        withRepeat(withTiming(1, { duration: 5200, easing: Easing.inOut(Easing.ease) }), -1, false),
+        // зачем (PM-032, решение координатора 01.10): декор — 2–3 повтора и покой, не вечный цикл.
+        withRepeat(withTiming(1, { duration: 5200, easing: Easing.inOut(Easing.ease) }), 2, false),
       );
     };
     const stop = () => {
@@ -124,7 +125,7 @@ const Sparkle = memo(function Sparkle({ color, delay, style }: { color: string; 
       v.value = 0;
       v.value = withDelay(
         delay,
-        withRepeat(withSequence(withTiming(1, { duration: 700 }), withTiming(0, { duration: 900 })), -1, false),
+        withRepeat(withSequence(withTiming(1, { duration: 700 }), withTiming(0, { duration: 900 })), 3, false),
       );
     };
     const stop = () => {
@@ -189,7 +190,7 @@ function CollectibleArtFrame({
     const start = () => {
       cancelAnimation(pulse);
       pulse.value = 0;
-      pulse.value = withRepeat(withTiming(1, { duration: 1600, easing: Easing.inOut(Easing.ease) }), -1, true);
+      pulse.value = withRepeat(withTiming(1, { duration: 1600, easing: Easing.inOut(Easing.ease) }), 4, true);
     };
     const stop = () => {
       cancelAnimation(pulse);

@@ -144,7 +144,8 @@ export default function HoloFoilCard({
     const start = () => {
       cancelAnimation(idle);
       idle.value = 0;
-      idle.value = withRepeat(withTiming(1, { duration: 2600, easing: Easing.linear }), -1, false);
+      // зачем (PM-032, решение координатора 01.10): декор — 2–3 повтора и покой, не вечный цикл.
+      idle.value = withRepeat(withTiming(1, { duration: 2600, easing: Easing.linear }), 3, false);
     };
     const stop = () => {
       cancelAnimation(idle);

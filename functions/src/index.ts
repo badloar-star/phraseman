@@ -815,6 +815,8 @@ export {
   adminBackfillVideoPacks,
 } from "./video_phrases";
 export { adminAlignVideoPhraseTranscript } from "./video_phrase_timing";
+// PM-112/113: ленивый пересчёт счётчика уникальных сохранений ролика (count()).
+export { refreshVideoSaveCounts } from "./video_save_counts";
 export {
   adminCreateContentStage,
   adminControlContentStage,

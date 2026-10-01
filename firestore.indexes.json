@@ -1211,6 +1211,14 @@
   ],
   "fieldOverrides": [
     {
+      "collectionGroup": "video_favorites",
+      "fieldPath": "videoId",
+      "indexes": [
+        { "order": "ASCENDING", "queryScope": "COLLECTION" },
+        { "order": "ASCENDING", "queryScope": "COLLECTION_GROUP" }
+      ]
+    },
+    {
       "collectionGroup": "accounts_v2_ops",
       "fieldPath": "expireAt",
       "ttl": true,

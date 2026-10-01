@@ -1629,6 +1629,28 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    // PM-111/112: личное избранное видео. Связь аккаунт↔ролик, id = videoId —
+    // один человек учитывается в счётчике ровно один раз. Пишет и читает только
+    // владелец; форма документа зафиксирована, чтобы туда нельзя было сложить
+    // посторонние данные. Удаление аккаунта сносит users/{uid} рекурсивно.
+    match /users/{userId}/video_favorites/{videoId} {
+      allow read, delete: if personalEconomyOwnerMatchesAuth(userId);
+      allow create, update: if personalEconomyOwnerMatchesAuth(userId)
+        && personalEconomyAccountActive(userId)
+        && videoId.matches('^[0-9A-Za-z_-]{11}$')
+        && request.resource.data.keys().hasOnly(['videoId', 'savedAtMs'])
+        && request.resource.data.videoId == videoId
+        && request.resource.data.savedAtMs is int
+        && request.resource.data.savedAtMs > 0;
+    }
+
+    // PM-112-A3/PM-113: агрегат уникальных сохранений. Считает только сервер
+    // (refreshVideoSaveCounts, count() по связям); клиент число не назначает.
+    match /video_save_counts/{docId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if false;
+    }
+
     // Community idea likes: callable functions own receipts and counters;
     // the sender may read their own receipts to restore the filled heart.
     match /users/{userId}/idea_likes_sent/{ideaId} {

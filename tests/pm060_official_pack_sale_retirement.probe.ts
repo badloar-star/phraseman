@@ -20,7 +20,9 @@ assert.ok(!functionPackage.includes('functions:communityPurchasePack'), 'safe de
 assert.ok(!serverCommunity.includes('adminRefundCommunityPackPurchase'), 'D110: removed admin refund callable must stay removed');
 assert.ok(serverCommunity.includes("const COMMUNITY_PURCHASES = 'community_pack_purchases'"), 'community purchase receipts must remain readable');
 assert.ok(serverCommunity.includes('export const communityFetchPackCardsIfAccessible = onCall('), 'community buyers must retain their content access endpoint');
-assert.ok(serverCommunity.includes("if (packType === 'official') throw new HttpsError('not-found', 'pack_not_found')"), 'server must reject new official gifts');
+// зачем: D140 (владелец 2026-10-01) — погашение подарочных наборов удалено целиком,
+// поэтому новых official-подарков сервер не выдаёт вовсе.
+assert.ok(!serverCommunity.includes('export const flashcardPackGiftRedeem'), 'D140: pack-gift redemption must stay removed');
 
 const marketplace = readFileSync('app/flashcards/marketplace.ts', 'utf8');
 assert.ok(marketplace.includes('export const BUNDLED_MARKETPLACE_PACKS: FlashcardMarketPack[] = [];'), 'official catalog must be empty');
@@ -34,8 +36,8 @@ assert.ok(!marketplace.includes(".collection('card_packs')"), 'official catalog 
 const targetGate = readFileSync('app/flashcards_target_gate.ts', 'utf8');
 assert.ok(targetGate.includes('export function flashcardsOfficialPacksAvailableForTarget'), 'official source gate must remain callable');
 assert.ok(targetGate.includes('return false;'), 'official source gate must be closed for every study target');
-const giftSync = readFileSync('app/flashcards/pack_gift_sync.ts', 'utf8');
-assert.ok(!giftSync.includes('addOwnedPackId('), 'gift sync must not restore retired official ownership');
+// D140: синхронизация подарков удалена вместе с файлом.
+assert.ok(!existsSync('app/flashcards/pack_gift_sync.ts'), 'D140: gift sync must stay removed');
 const giftTrial = readFileSync('app/flashcards/pack_trial_gift.ts', 'utf8');
 assert.ok(!giftTrial.includes('bundled_marketplace_manifest.json'), 'trial gifts must not load official catalog');
 

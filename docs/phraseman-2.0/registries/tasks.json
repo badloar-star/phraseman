@@ -8613,14 +8613,18 @@
       {
         "id": "PM-164-A1",
         "text": "Получатель видит событие один раз",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "7b041cb73: functions/src/friend_hello_policy.ts + friend_activity_likes.ts — одно событие (отправитель×получатель×событие) доставляется один раз: повтор после «снять» не переписывает строку в «Активности» и не шлёт push (reason already_delivered); functions/src/friend_activity_likes.test.ts 30/30 (6 новых PM-164)"
+        ]
       },
       {
         "id": "PM-164-A2",
         "text": "cooldown, block и retry не позволяют спамить",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (владелец/PM-162-A2: функции «заблокировать» в друзьях нет — нет данных, по которым блокировать): cooldown и retry сделаны в 7b041cb73 — от одного человека одному получателю строка+push не чаще раза в 6 ч (FRIEND_HELLO_NOTIFY_COOLDOWN_MS, users/{uid}/friend_hello_cooldowns, правило Firestore только сервер), повтор вызова — idempotentReplay; тесты friend_activity_likes 30/30. Не задеплоено."
+        ]
       }
     ],
     "depends_on": [],
@@ -8740,7 +8744,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -8749,14 +8753,18 @@
       {
         "id": "PM-167-A1",
         "text": "События сохранены без дублирования чтений",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "d373a9e1c: социальные события (Привет, позвать заниматься) живут строками единого центра users/{uid}/notifications; маркеры друзей строятся из тех же закэшированных строк (friendSocialEventsFromNotifications), одновременные обновления склеиваются, realtime нет; tests/activity_feed_pagination_cache.test.ts 4/4 (1 чтение на список+маркеры), user_notifications_account_cache 'coalesces' PASS"
+        ]
       },
       {
         "id": "PM-167-A2",
         "text": "мёртвые типы подарков/арены отфильтрованы",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "d373a9e1c: app/user_notifications.ts — arena_partner_*/arena_friend_* убраны из VISIBLE_USER_NOTIFICATION_TYPES (D74/D83), действия gift/duel_invite/duel_state — RETIRED_FRIEND_EVENT_ACTIONS; старые строки вычищаются из кэша; tests/activity_feed_pagination_cache.test.ts, friend_social_notification_types, user_notifications_account_cache — 37/37"
+        ]
       }
     ],
     "depends_on": [],
@@ -8787,7 +8795,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -8796,14 +8804,18 @@
       {
         "id": "PM-168-A1",
         "text": "Удалены натужный юмор, канцелярит и пустые вопросы",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "3b3764566: admin/v2/legacy.html SHARD_SURVEY_PRESETS — 51 опрос переписан (один ясный вопрос, без шуточных вариантов и «— или …?», без канцелярита); удалены 1 («Идеи», PM-171), 62/63 (руны/жемчуг, D03/D104); живые shard_surveys и ротация owner-selected-63-v1 не тронуты, publish не запускался"
+        ]
       },
       {
         "id": "PM-168-A2",
         "text": "каждое новое содержание проходит редакторскую проверку",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "3b3764566: tests/survey_library_editorial_guard.test.ts — каждый опрос библиотеки проходит редакторскую проверку (удалённые функции, маркеры натужного юмора, канцелярит, «!», эмодзи, длины, 3–5 различных вариантов, маршрут жив и в белом списке); 53/53 PASS"
+        ]
       }
     ],
     "depends_on": [],
@@ -8986,7 +8998,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -8995,14 +9007,18 @@
       {
         "id": "PM-172-A1",
         "text": "Нет всей истории на старте приложения",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "d373a9e1c: на старте читается только первая страница (limit 50, orderBy createdAt desc), старое — loadOlderUserNotifications() курсором startAfter(createdAt) по 20, кэш ≤200; tests/activity_feed_pagination_cache.test.ts 'start reads one bounded page' PASS. Кнопка «Показать ещё» — зона «Дизайна»"
+        ]
       },
       {
         "id": "PM-172-A2",
         "text": "refresh выполняется только по политике экрана/TTL",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "d373a9e1c: refreshUserNotificationsOnce — любое обновление через TTL экрана, force не чаще USER_NOTIFICATIONS_FORCE_FLOOR_MS=30 с (баннер главной читал 50 строк на каждый заход); test 'refresh respects the screen TTL; even force is floored' PASS; onSnapshot в модуле нет"
+        ]
       }
     ],
     "depends_on": [],
@@ -14329,7 +14345,7 @@
         "text": "Звук: стартовый пакет V2 или голос телефона (D47); проверено на устройстве, что звучит",
         "accepted": false,
         "evidence": [
-          "NOT_MET (сессия «Дизайн» + сервер пакета + проверка на устройстве владельцем): источник звука решён D47 — голос телефона; резолвер modules/spire/listen_audio.ts + tests/spire_listen_audio.test.ts 4/4 (все 611 заданий черновика en разрешаются в device_tts), коммит 1fdc4b904. Не сделано: listen/dictate всё ещё pendingKinds в functions/src/spire_pack_contract.ts:388 (в пакет не попадают); кнопки «прослушать» с expo-speech в components/spire/SpireTaskView.tsx нет; на устройстве не проверено"
+          "NOT_MET (владелец: послушать на устройстве, что голос телефона звучит): звук решён D47 — голос телефона; c657451a8 — черновик en (611) включён в пакет недели en по Q34 (а): functions/src/spire_listen_draft_pool.ts + spire_pack_contract.ts (с 6 этажа 3/10 заданий на слух), сборщик spire_pack_build.ts::loadListenDraftPool, es/de/fr без изменений (хеш = снимок до правки). Тесты: functions spire_pack_listen 5/5, spire_pack_* 34/34; клиент tests/spire_listen_pack_client.test.ts — пакет разбирается, каждое listen/dictate разрешается в device_tts en-US и проверяется по отпечаткам (41/41 вместе со spire_listen_audio/spire_game_pure/arena parity). Кнопка «Прослушать» e790206f0, фраза скрыта до ответа 33f5a46b9. Не сделано: проверка звука на устройстве; пакет на проде не пересобран (нужен деплой функций + adminSpirePackBuild en)"
         ]
       }
     ],

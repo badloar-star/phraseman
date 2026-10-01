@@ -252,3 +252,5 @@ compatibility.ts, backup_manifest.ts (+тесты), two_device_idempotency.test.
 В коммит включены логи [FLASHCARDS] persistFlashcards и их тест — осиротевшая правка параллельной сессии (просмотрена в ревью 8A/8E: без PII).
 
 ## ИТОГ: Пакет 8C («Мои наборы» без вечного скелетона) — ПРИНЯТ (SPEC+SECURITY APPROVE), 2026-10-01. missing ≠ error, кэш отрицательного ответа 30 мин. Вопрос координатору: карточка «набор недоступен» — задача «Дизайн»? P2: каталог официальных наборов — заглушка (купленные официальные не видны, как и до 8C).
+
+## ИТОГ: Пакет 8D (эмулятор функций, admin.firestore.FieldValue) — ПРИНЯТ (SPEC+SECURITY APPROVE), 2026-10-01. Причина — прокси firebase-tools делает bind стрелочной admin.firestore и теряет статики (не node 24). Починка только при FUNCTIONS_EMULATOR и пропавших статиках; прод не затронут. Блокер 1 снят → можно прогнать D/E/F/H/I и откат 7B на эмуляторе (по очереди). Хвосты: auth_identity throwIdentityCheckUnavailable без лога причины; functions/.env.<demo> для неинтерактивного старта; другие кодбазы.

@@ -2,6 +2,9 @@
 // кодбазу functions-content. Замер: она тянула в память все авторские сессии
 // курса и стоила 236 МБ из 380 МБ основного бандла, то есть за неё платили
 // все 240 функций при каждом холодном старте. Деплой: functions:content.
+// зачем (Account V2, 8D): ПЕРВЫМ — до любых модулей: в эмуляторе функций прокси firebase-admin
+// теряет статики admin.firestore (FieldValue/Timestamp); в проде ничего не делает.
+import "./emulator_admin_namespace_fix";
 import * as admin from "firebase-admin";
 import { withCronHeartbeat } from './cron_heartbeat';
 export { soc2ReadinessCollectorCron } from './soc2_readiness_collector';

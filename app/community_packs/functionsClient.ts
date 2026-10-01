@@ -129,6 +129,24 @@ export async function callLevelSpinStarComposite(
   );
 }
 
+/** Q-COIN (b): ответ разовой серверной сверки кошелька (functions/src/coin_reconcile_v1.ts). */
+export type CoinReconcileV1Response = Readonly<{
+  status: 'raised' | 'nothing_to_raise' | 'replayed';
+  raisedBy: number;
+  operationIds: readonly string[];
+  starsBalance: number;
+  starsEarnedTotal: number;
+  starsSeq: number;
+}>;
+
+export async function callCoinReconcileV1(data: {
+  ownerStableId: string;
+  /** Только для лога сервера: основанием для подъёма НЕ является. */
+  clientVisibleBalance: number;
+}): Promise<CoinReconcileV1Response> {
+  return callFunction<typeof data, CoinReconcileV1Response>('coinReconcileV1', data);
+}
+
 export async function callCommunityRedeemPackGiftVoucher(data: {
   buyerStableId: string;
   packId: string;

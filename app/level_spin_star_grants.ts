@@ -119,6 +119,23 @@ type LevelSpinStarProjection = Readonly<{
   serverBalance: number;
   serverEarnedTotal: number;
   serverSeq: number;
+  /**
+   * Q-COIN (a), координатор 01.10, [COIN-DIVERGENCE]: монеты, которые жили только
+   * на телефоне и которых нет в серверном кошельке users/{uid}.stars.
+   *
+   * зачем отдельным полем, а не «max в serverBalance»: при первой квитанции
+   * (serverSeq 0 → N) берём БОЛЬШЕЕ из локальной базы и серверного баланса, но
+   * если вписать большее прямо в serverBalance, СЛЕДУЮЩАЯ квитанция (seq N+1)
+   * законно заменит его серверным числом — и разница пропадёт на втором же
+   * начислении. Здесь serverBalance остаётся точной копией сервера (замена по
+   * новому seq, защита от позднего ответа — как раньше), а разница живёт рядом
+   * и прибавляется к видимому балансу. Снимается только квитанцией серверной
+   * сверки coinReconcileV1 (applyCoinReconcileReceiptV1). Поле пишется лишь
+   * когда > 0, чтобы прежние проекции на диске не менялись ни байтом.
+   */
+  unconfirmedLocalLift?: number;
+  /** Квитанция coinReconcileV1 уже применена — повтор не снимает разницу дважды. */
+  coinReconcileV1Applied?: true;
 }>;
 
 const REQUEST_ID_RE = /^[A-Za-z0-9_-]{16,80}$/;
@@ -503,7 +520,9 @@ function parseProjection(raw: string | null, ownerStableId: string): LevelSpinSt
       || Number(value.serverBalance ?? (value as { serverBalanceFloor?: unknown }).serverBalanceFloor) < 0
       || !Number.isSafeInteger(value.serverEarnedTotal ?? (value as { serverEarnedFloor?: unknown }).serverEarnedFloor)
       || Number(value.serverEarnedTotal ?? (value as { serverEarnedFloor?: unknown }).serverEarnedFloor) < 0
-      || !Number.isSafeInteger(value.serverSeq ?? 0) || Number(value.serverSeq ?? 0) < 0) {
+      || !Number.isSafeInteger(value.serverSeq ?? 0) || Number(value.serverSeq ?? 0) < 0
+      || !Number.isSafeInteger(value.unconfirmedLocalLift ?? 0) || Number(value.unconfirmedLocalLift ?? 0) < 0
+      || (value.coinReconcileV1Applied !== undefined && value.coinReconcileV1Applied !== true)) {
       throw new Error('level_spin_star_projection_corrupt');
     }
     const legacyOperationAliases = new Map<string, string>();
@@ -557,6 +576,9 @@ function parseProjection(raw: string | null, ownerStableId: string): LevelSpinSt
       serverBalance: Number(value.serverBalance ?? value.serverBalanceFloor),
       serverEarnedTotal: Number(value.serverEarnedTotal ?? value.serverEarnedFloor),
       serverSeq: Number(value.serverSeq ?? 0),
+      ...(Number(value.unconfirmedLocalLift ?? 0) > 0
+        ? { unconfirmedLocalLift: Number(value.unconfirmedLocalLift) } : {}),
+      ...(value.coinReconcileV1Applied === true ? { coinReconcileV1Applied: true as const } : {}),
     });
   } catch (error) {
     if (error instanceof Error && (
@@ -610,13 +632,65 @@ function unacknowledgedPracticeEarnedTotal(projection: LevelSpinStarProjection):
 
 function visibleProjection(projection: LevelSpinStarProjection): Readonly<{ balance: number; earnedTotal: number }> {
   const overlay = unacknowledgedTotal(projection);
-  const balance = projection.serverBalance + overlay;
+  const balance = projection.serverBalance + unconfirmedLiftOf(projection) + overlay;
   if (!Number.isSafeInteger(balance) || balance < 0) throw new Error('level_spin_star_balance_invalid');
   return Object.freeze({
     balance,
     // Practice is earned progress; gifts and purchases are balance-only.
     earnedTotal: projection.serverEarnedTotal + unacknowledgedPracticeEarnedTotal(projection),
   });
+}
+
+function unconfirmedLiftOf(projection: Readonly<{ unconfirmedLocalLift?: number }>): number {
+  return Math.max(0, Math.trunc(projection.unconfirmedLocalLift ?? 0));
+}
+
+/** Пишет разницу только когда > 0 — проекции без разницы остаются байт в байт прежними. */
+function withUnconfirmedLift(
+  projection: LevelSpinStarProjection,
+  lift: number,
+): LevelSpinStarProjection {
+  const { unconfirmedLocalLift: _previous, ...rest } = projection;
+  return Object.freeze(lift > 0 ? { ...rest, unconfirmedLocalLift: lift } : rest);
+}
+
+export type CoinBasisPath = 'sync_ack' | 'phone_state_ack' | 'merge_server_stars' | 'practice_ack' | 'reconcile_v1';
+
+/**
+ * Q-COIN (a), координатор 01.10: первая серверная квитанция при НЕподтверждённой
+ * локальной базе (serverSeq 0) больше не заменяет монеты серверными.
+ *
+ * `localBasisAfter` — локальная база ПОСЛЕ того, что эта квитанция подтвердила
+ * (база + разница + суммы операций, чей overlay квитанция снимает). Возвращает
+ * новую пару: serverBalance = точный серверный баланс, разница = насколько
+ * локальная база выше. Видимое = max(локальное, серверное) — ровно как путь
+ * практики. При serverSeq > 0 база подтверждена: сервер заменяет баланс как
+ * раньше (законное понижение тратами, тест «exact materialization»), а уже
+ * накопленная разница переносится без изменений.
+ */
+function adoptServerBasis(input: Readonly<{
+  path: CoinBasisPath;
+  ownerStableId: string;
+  currentSeq: number;
+  currentLift: number;
+  localBasisAfter: number;
+  observedBalance: number;
+  observedSeq: number;
+}>): Readonly<{ serverBalance: number; lift: number }> {
+  if (input.currentSeq !== 0) {
+    return Object.freeze({ serverBalance: input.observedBalance, lift: input.currentLift });
+  }
+  const lift = Math.max(0, input.localBasisAfter - input.observedBalance);
+  DebugLogger.info('[COIN-DIVERGENCE] basis:first_server_observation', JSON.stringify({
+    path: input.path,
+    owner: input.ownerStableId.slice(0, 8),
+    localBasisAfter: input.localBasisAfter,
+    serverBalance: input.observedBalance,
+    serverSeq: input.observedSeq,
+    chosen: lift > 0 ? 'local_kept_as_lift' : 'server',
+    lift,
+  }));
+  return Object.freeze({ serverBalance: input.observedBalance, lift });
 }
 
 function withOperations(
@@ -964,12 +1038,20 @@ async function recoverProjection(
     let serverBalance = projection.serverBalance;
     let serverEarnedTotal = projection.serverEarnedTotal;
     let serverSeq = projection.serverSeq;
+    // Q-COIN (a): сумма операций, чей overlay снимают квитанции этого прохода —
+    // она входит в локальную базу «после», с которой сравнивается сервер.
+    let newlyAcknowledgedAmount = 0;
     for (const acknowledgement of phoneStateAcknowledgements) {
       const operation = projection.operations.find((candidate) => (
         candidate.operationId === acknowledgement.operationId
       ));
       if (operation && operation.requestFingerprint !== acknowledgement.requestFingerprint) {
         throw new Error('level_spin_star_phone_state_corrupt');
+      }
+      if (operation && acknowledged[operation.operationId] !== operation.requestFingerprint
+        && (operation.schemaVersion === 'client-level-spin-star-operation.v1'
+          || operation.schemaVersion === 'client-practice-rune-operation.v1')) {
+        newlyAcknowledgedAmount += operation.amount;
       }
       if (operation) acknowledged[operation.operationId] = acknowledgement.requestFingerprint;
       if (acknowledgement.starsSeq > serverSeq) {
@@ -978,13 +1060,28 @@ async function recoverProjection(
       }
       serverEarnedTotal = Math.max(serverEarnedTotal, acknowledgement.starsEarnedTotal);
     }
-    projection = Object.freeze({
+    // зачем (Q-COIN a): раньше первая квитанция PhoneState при serverSeq 0
+    // ЗАМЕНЯЛА локальную базу серверной (9830 → 10). Решаем по ИТОГУ прохода,
+    // а не по первой квитанции: квитанции приходят в любом порядке, и разница,
+    // посчитанная по одной из них, потеряла бы операции из соседних.
+    const phoneBasis = serverSeq > projection.serverSeq
+      ? adoptServerBasis({
+          path: 'phone_state_ack',
+          ownerStableId,
+          currentSeq: projection.serverSeq,
+          currentLift: unconfirmedLiftOf(projection),
+          localBasisAfter: projection.serverBalance + unconfirmedLiftOf(projection) + newlyAcknowledgedAmount,
+          observedBalance: serverBalance,
+          observedSeq: serverSeq,
+        })
+      : Object.freeze({ serverBalance, lift: unconfirmedLiftOf(projection) });
+    projection = withUnconfirmedLift(Object.freeze({
       ...projection,
       acknowledged: Object.freeze(acknowledged),
-      serverBalance,
+      serverBalance: phoneBasis.serverBalance,
       serverEarnedTotal,
       serverSeq,
-    });
+    }), phoneBasis.lift);
     const outbox = parseOutbox(outboxRaw, ownerStableId);
     const pending = new Map(outbox.filter((operation) => (
       projection.acknowledged[operation.operationId] !== operation.requestFingerprint
@@ -1126,6 +1223,17 @@ export async function recoverAndHydrateLevelSpinStarGrants(
       .catch((error: unknown) => {
         console.warn(`[GIFTS-TO-COINS] catch step=scheduler_import error=${String(error)}`);
       });
+    // зачем (Q-COIN b, координатор 01.10): разовая серверная сверка — после
+    // восстановления кошелька, тем же единственным стартовым вызовом. Модуль
+    // ленивый; сам решает, нужна ли сверка (разница «только на телефоне» или
+    // застрявшие спиновые начисления), иначе сети нет вовсе.
+    if (coinReconcileV1NeedFor(projection).needed) {
+      void import('./coin_reconcile_v1_client')
+        .then(({ runCoinReconcileV1Once }) => runCoinReconcileV1Once(token))
+        .catch((error: unknown) => {
+          DebugLogger.warn('[COIN-RECONCILE]', `catch step=client_import error=${String(error)}`);
+        });
+    }
   }
   return visibleProjection(projection);
 }
@@ -1142,6 +1250,12 @@ export async function mergeLevelSpinServerStars(
      * Передаёт тот, кто синхронизировал покупку; обычные снапшоты не передают.
      */
     settledSpendOperationIds?: readonly string[];
+    /**
+     * Сколько монет ЭТОТ ответ сервера начислил (приз рулетки, награда рассылки).
+     * Нужен только при неподтверждённой базе (serverSeq 0, Q-COIN a): локальная
+     * база этого приза ещё не содержит, и без него он растворился бы в max.
+     */
+    serverCreditedDelta?: unknown;
   }>,
   // Аренда вызывающего — см. комментарий у readUnifiedLevelSpinStars (самозахват).
   accountTransitionLockLease?: AccountTransitionLockLease,
@@ -1202,18 +1316,41 @@ export async function mergeLevelSpinServerStars(
         settled: settledSpends.size, serverSeq: seq, serverBalance: balance,
       }));
     }
-    const next = Object.freeze({
+    const balanceAdoptable = newer && Number.isSafeInteger(balance) && balance >= 0;
+    // зачем (Q-COIN a): при serverSeq 0 снимок сервера раньше ЗАМЕНЯЛ локальную
+    // базу. Локальная база «после» = база + разница + снятые траты (runeDelta < 0:
+    // сервер их уже вычел) + приз, который этот ответ начислил на сервере
+    // (рулетка, рассылка) — иначе приз растворился бы в большем из двух чисел.
+    const settledSpendDelta = current.operations.reduce((total, operation) => (
+      settledSpends.has(operation.operationId) && operation.schemaVersion === 'client-rune-spend-operation.v1'
+        ? total + operation.runeDelta : total
+    ), 0);
+    const creditedDelta = Number(observation.serverCreditedDelta ?? 0);
+    const mergeBasis = balanceAdoptable
+      ? adoptServerBasis({
+          path: 'merge_server_stars',
+          ownerStableId,
+          currentSeq: current.serverSeq,
+          currentLift: unconfirmedLiftOf(current),
+          localBasisAfter: Math.max(0, current.serverBalance + unconfirmedLiftOf(current) + settledSpendDelta
+            + (Number.isSafeInteger(creditedDelta) && creditedDelta > 0 ? creditedDelta : 0)),
+          observedBalance: balance,
+          observedSeq: seq,
+        })
+      : Object.freeze({ serverBalance: current.serverBalance, lift: unconfirmedLiftOf(current) });
+    const next = withUnconfirmedLift(Object.freeze({
       ...current,
       operations: settledSpends.size > 0
         ? current.operations.filter((operation) => !settledSpends.has(operation.operationId))
         : current.operations,
-      serverBalance: newer && Number.isSafeInteger(balance) && balance >= 0
-        ? balance : current.serverBalance,
+      // serverBalance — всегда точная копия сервера (adoptServerBasis не меняет
+      // само число, только считает разницу); большее живёт в unconfirmedLocalLift.
+      serverBalance: balanceAdoptable ? balance : current.serverBalance,
       serverEarnedTotal: !hasUnacknowledgedServerMaterialization
         && Number.isSafeInteger(earned) && earned >= 0
         ? Math.max(current.serverEarnedTotal, earned) : current.serverEarnedTotal,
       serverSeq: newer ? seq : current.serverSeq,
-    });
+    }), mergeBasis.lift);
     if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
     // Файл операции удаляем ВМЕСТЕ со снятием из проекции: `recoverProjection`
     // собирает операции сканом по префиксу и иначе вернул бы трату обратно —
@@ -2270,12 +2407,30 @@ export async function acknowledgePracticeRuneGrantLocally(
       const operationWasUnacknowledged = Boolean(storedOperation)
         && current.acknowledged[operation.operationId] !== operation.requestFingerprint;
       const newer = ack.starsSeq > current.serverSeq;
-      const next = Object.freeze({
+      // зачем (Q-COIN a, единообразие): при serverSeq 0 большее больше не
+      // вписывается в serverBalance — следующая квитанция (seq > 0) законно
+      // заменила бы его серверным числом и разница пропала бы. Видимое то же:
+      // сервер + разница = max(локальное, серверное).
+      const practiceBasis = newer && current.serverSeq === 0
+        ? adoptServerBasis({
+            path: 'practice_ack',
+            ownerStableId,
+            currentSeq: current.serverSeq,
+            currentLift: unconfirmedLiftOf(current),
+            localBasisAfter: current.serverBalance + unconfirmedLiftOf(current)
+              + (operationWasUnacknowledged ? operation.amount : 0),
+            observedBalance: ack.starsBalance,
+            observedSeq: ack.starsSeq,
+          })
+        : null;
+      const next = withUnconfirmedLift(Object.freeze({
         ...current,
         acknowledged: Object.freeze(acknowledged),
         // Exact ack removes this operation's local overlay. Preserve the same
         // visible value even when the cloud snapshot started behind this phone.
-        serverBalance: newer
+        serverBalance: practiceBasis
+          ? practiceBasis.serverBalance
+          : newer
           ? Math.max(
             current.serverBalance + (operationWasUnacknowledged ? operation.amount : 0),
             ack.starsBalance,
@@ -2288,7 +2443,7 @@ export async function acknowledgePracticeRuneGrantLocally(
           )
           : Math.max(current.serverEarnedTotal, ack.starsEarnedTotal),
         serverSeq: newer ? ack.starsSeq : current.serverSeq,
-      });
+      }), practiceBasis ? practiceBasis.lift : unconfirmedLiftOf(current));
       if (!isCurrentAccountGeneration(token, ownerStableId)) {
         throw new Error('level_spin_star_identity_changed');
       }
@@ -2360,17 +2515,35 @@ export async function syncPendingLevelSpinStarGrants(
           await AsyncStorage.getItem(levelSpinStarProjectionKey(ownerStableId)),
           ownerStableId,
         ), [operation]);
-        const next: LevelSpinStarProjection = Object.freeze({
+        // зачем (Q-COIN a): квитанция синка при serverSeq 0 раньше ЗАМЕНЯЛА
+        // неподтверждённую локальную базу серверной — 9830 → 10 (тест (d)).
+        const syncWasUnacknowledged = currentProjection.acknowledged[operation.operationId]
+          !== operation.requestFingerprint;
+        const syncBasis = ack.starsSeq > currentProjection.serverSeq
+          ? adoptServerBasis({
+              path: 'sync_ack',
+              ownerStableId,
+              currentSeq: currentProjection.serverSeq,
+              currentLift: unconfirmedLiftOf(currentProjection),
+              localBasisAfter: currentProjection.serverBalance + unconfirmedLiftOf(currentProjection)
+                + (syncWasUnacknowledged ? operation.amount : 0),
+              observedBalance: ack.starsBalance,
+              observedSeq: ack.starsSeq,
+            })
+          : Object.freeze({
+              serverBalance: currentProjection.serverBalance,
+              lift: unconfirmedLiftOf(currentProjection),
+            });
+        const next: LevelSpinStarProjection = withUnconfirmedLift(Object.freeze({
           ...currentProjection,
           acknowledged: Object.freeze({
             ...currentProjection.acknowledged,
             [operation.operationId]: operation.requestFingerprint,
           }),
-          serverBalance: ack.starsSeq > currentProjection.serverSeq
-            ? ack.starsBalance : currentProjection.serverBalance,
+          serverBalance: syncBasis.serverBalance,
           serverEarnedTotal: Math.max(currentProjection.serverEarnedTotal, ack.starsEarnedTotal),
           serverSeq: Math.max(currentProjection.serverSeq, ack.starsSeq),
-        });
+        }), syncBasis.lift);
         if (!isCurrentAccountGeneration(token, ownerStableId)) return null;
         await AsyncStorage.multiSet([
           [levelSpinStarProjectionKey(ownerStableId), JSON.stringify(next)],
@@ -2417,6 +2590,190 @@ export async function syncPendingLevelSpinStarGrants(
   }
   if (!isCurrentAccountGeneration(token, ownerStableId)) return { synced: 0, pending: 0 };
   return { synced, pending: (await readOutbox(ownerStableId)).length };
+}
+
+// ── Q-COIN (b): квитанция серверной сверки coinReconcileV1 ────────────────────
+
+export type CoinReconcileV1Receipt = Readonly<{
+  /** Сколько сервер добавил в users/{uid}.stars этой сверкой (0 — нечего было поднимать). */
+  raisedBy: number;
+  /** operationId спиновых начислений `level_spin:<requestId>.<lane>`, проведённых сверкой. */
+  operationIds: readonly string[];
+  starsBalance: number;
+  starsEarnedTotal: number;
+  starsSeq: number;
+}>;
+
+/** Нужна ли сверка: есть разница «только на телефоне» или застрявшие спиновые начисления. */
+export function coinReconcileV1NeedFor(
+  projection: Readonly<{
+    operations: readonly { operationId: string; requestFingerprint: string; schemaVersion: string }[];
+    acknowledged: Readonly<Record<string, string>>;
+    unconfirmedLocalLift?: number;
+    coinReconcileV1Applied?: true;
+  }>,
+): Readonly<{ needed: boolean; lift: number; unackedSpinCredits: number; applied: boolean }> {
+  const unackedSpinCredits = projection.operations.filter((operation) => (
+    operation.schemaVersion === 'client-level-spin-star-operation.v1'
+    && operation.operationId.startsWith('level_spin:')
+    && projection.acknowledged[operation.operationId] !== operation.requestFingerprint
+  )).length;
+  const lift = unconfirmedLiftOf(projection);
+  const applied = projection.coinReconcileV1Applied === true;
+  return Object.freeze({ needed: !applied && (lift > 0 || unackedSpinCredits > 0), lift, unackedSpinCredits, applied });
+}
+
+export async function readCoinReconcileV1Need(
+  token: AccountGenerationToken,
+): Promise<ReturnType<typeof coinReconcileV1NeedFor>> {
+  return coinReconcileV1NeedFor(await recoverProjection(token));
+}
+
+/**
+ * Применяет квитанцию сверки РОВНО один раз (метка coinReconcileV1Applied).
+ *
+ * зачем так: сервер поднял баланс на raisedBy за спиновые начисления, которых
+ * не было в журнале. Часть из них ещё висит у телефона overlay-операциями
+ * (operationIds) — их помечаем подтверждёнными, иначе монеты задвоятся
+ * (сервер + overlay). Остаток raisedBy уже сидел в «разнице только на телефоне» —
+ * снимаем его оттуда (не ниже нуля). Видимый баланс от этого НЕ падает:
+ * сервер вырос ровно на столько, сколько ушло из overlay и разницы.
+ */
+export async function applyCoinReconcileReceiptV1(
+  token: AccountGenerationToken,
+  receipt: CoinReconcileV1Receipt,
+): Promise<Readonly<{ balance: number; earnedTotal: number; applied: boolean }>> {
+  const ownerStableId = token.stableId?.trim();
+  if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) {
+    throw new Error('level_spin_star_identity_changed');
+  }
+  if (!Number.isSafeInteger(receipt.raisedBy) || receipt.raisedBy < 0
+    || !Array.isArray(receipt.operationIds) || receipt.operationIds.length > 4_096
+    || receipt.operationIds.some((id) => typeof id !== 'string' || !id.startsWith('level_spin:'))
+    || !Number.isSafeInteger(receipt.starsBalance) || receipt.starsBalance < 0
+    || !Number.isSafeInteger(receipt.starsEarnedTotal) || receipt.starsEarnedTotal < 0
+    || !Number.isSafeInteger(receipt.starsSeq) || receipt.starsSeq < 0) {
+    DebugLogger.warn('[COIN-RECONCILE]', `apply:receipt_invalid raisedBy=${String(receipt.raisedBy)} seq=${String(receipt.starsSeq)}`);
+    throw new Error('coin_reconcile_receipt_invalid');
+  }
+  let applied = false;
+  // зачем: спиновые начисления живут ещё и в PhoneState (star_credit) — после
+  // компакции recoverProjection вернёт их из PhoneState как НЕподтверждённые,
+  // если рядом нет durable-квитанции. Поэтому, как и синк, сначала пишем
+  // квитанцию star_credit_ack в PhoneState и только потом снимаем overlay.
+  const before = await recoverProjection(token);
+  if (before.coinReconcileV1Applied !== true) {
+    for (const operation of before.operations) {
+      if (operation.schemaVersion !== 'client-level-spin-star-operation.v1') continue;
+      if (!receipt.operationIds.includes(operation.operationId)) continue;
+      if (before.acknowledged[operation.operationId] === operation.requestFingerprint) continue;
+      const ackOperationId = levelSpinStarCreditAckOperationId(operation.operationId);
+      if (!ackOperationId) throw new Error('coin_reconcile_ack_id_invalid');
+      const stored = await commitPhoneStateNonMonetaryEconomyGrant({
+        operationId: ackOperationId,
+        kind: 'star_credit_ack',
+        entitlementId: operation.operationId,
+        expectedOwnerStableId: ownerStableId,
+        expectedAccountGeneration: token.generation,
+        exactResult: Object.freeze({
+          schemaVersion: 'client-level-spin-star-ack.v1',
+          operationId: operation.operationId,
+          ownerStableId,
+          requestFingerprint: operation.requestFingerprint,
+          starsBalance: receipt.starsBalance,
+          starsEarnedTotal: receipt.starsEarnedTotal,
+          starsSeq: receipt.starsSeq,
+        }),
+      });
+      if (!stored || !isCurrentAccountGeneration(token, ownerStableId)) {
+        DebugLogger.warn('[COIN-RECONCILE]', `apply:phone_state_ack_not_stored op=${operation.operationId}`);
+        throw new Error('coin_reconcile_phone_state_ack_failed');
+      }
+    }
+  }
+  const projection = await withAccountTransitionLock(async (lease) => {
+    await recoverProjection(token, lease);
+    return withStorageLock(async () => {
+      if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
+      const current = parseProjection(
+        await AsyncStorage.getItem(levelSpinStarProjectionKey(ownerStableId)),
+        ownerStableId,
+      );
+      if (current.coinReconcileV1Applied === true) {
+        DebugLogger.info('[COIN-RECONCILE]', `apply:already_applied seq=${current.serverSeq}`);
+        return current;
+      }
+      const reconciled = new Set(receipt.operationIds);
+      // Overlay, который покрыла сверка, считаем по состоянию ДО записи квитанций
+      // в PhoneState: повторное восстановление выше уже могло снять его само.
+      const overlayCovered = before.operations.reduce((total, operation) => (
+        operation.schemaVersion === 'client-level-spin-star-operation.v1'
+          && reconciled.has(operation.operationId)
+          && before.acknowledged[operation.operationId] !== operation.requestFingerprint
+          ? total + operation.amount : total
+      ), 0);
+      const acknowledged: Record<string, string> = { ...current.acknowledged };
+      let coveredStillUnacknowledged = 0;
+      for (const operation of current.operations) {
+        if (operation.schemaVersion !== 'client-level-spin-star-operation.v1') continue;
+        if (!reconciled.has(operation.operationId)) continue;
+        if (acknowledged[operation.operationId] === operation.requestFingerprint) continue;
+        acknowledged[operation.operationId] = operation.requestFingerprint;
+        coveredStillUnacknowledged += operation.amount;
+      }
+      const currentLift = unconfirmedLiftOf(current);
+      const newer = receipt.starsSeq > current.serverSeq;
+      // Две ветки:
+      // • база НЕ была подтверждена (serverSeq 0 до сверки): сервер уже содержит
+      //   raisedBy — сравниваем его с локальной базой как первую квитанцию
+      //   (большее). Если квитанции PhoneState уже сделали это сами
+      //   (current.serverSeq > 0), разницу не трогаем — вычесть ещё раз = потеря.
+      // • база подтверждена: сервер заменяет баланс, а из разницы снимаем ту часть
+      //   raisedBy, что не была overlay (она и сидела в разнице), не ниже нуля.
+      const basis = before.serverSeq === 0
+        ? newer && current.serverSeq === 0
+          ? adoptServerBasis({
+              path: 'reconcile_v1',
+              ownerStableId,
+              currentSeq: 0,
+              currentLift,
+              localBasisAfter: current.serverBalance + currentLift + coveredStillUnacknowledged,
+              observedBalance: receipt.starsBalance,
+              observedSeq: receipt.starsSeq,
+            })
+          : Object.freeze({
+              serverBalance: newer ? receipt.starsBalance : current.serverBalance,
+              lift: currentLift,
+            })
+        : Object.freeze({
+            serverBalance: newer ? receipt.starsBalance : current.serverBalance,
+            lift: Math.max(0, currentLift - Math.max(0, receipt.raisedBy - overlayCovered)),
+          });
+      DebugLogger.info('[COIN-RECONCILE]', `apply raisedBy=${receipt.raisedBy} overlayCovered=${overlayCovered} liftBefore=${currentLift} liftAfter=${basis.lift} seqBeforeReconcile=${before.serverSeq} seqNow=${current.serverSeq} receiptSeq=${receipt.starsSeq} newer=${newer}`);
+      const next = withUnconfirmedLift(Object.freeze({
+        ...current,
+        acknowledged: Object.freeze(acknowledged),
+        serverBalance: basis.serverBalance,
+        serverEarnedTotal: Math.max(current.serverEarnedTotal, receipt.starsEarnedTotal),
+        serverSeq: newer ? receipt.starsSeq : current.serverSeq,
+        coinReconcileV1Applied: true as const,
+      }), basis.lift);
+      if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
+      // Outbox: подтверждённые сверкой спиновые операции больше не отправляем —
+      // кошелёк всё равно отклоняет спины (coin_wallet_source_not_allowed).
+      const outbox = await readOutbox(ownerStableId);
+      await AsyncStorage.multiSet([
+        [levelSpinStarProjectionKey(ownerStableId), JSON.stringify(next)],
+        [levelSpinStarGrantOutboxKey(ownerStableId), JSON.stringify(
+          outbox.filter((candidate) => !reconciled.has(candidate.operationId)),
+        )],
+      ]);
+      applied = true;
+      return next;
+    });
+  });
+  publishProjection(token, projection);
+  return Object.freeze({ ...visibleProjection(projection), applied });
 }
 
 export default function __RouteShim() { return null; }

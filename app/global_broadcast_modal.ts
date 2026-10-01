@@ -297,6 +297,8 @@ async function applyBroadcastReward(
         ...(Number.isFinite(stars) ? { stars: Math.max(0, Math.trunc(stars)) } : {}),
         ...(Number.isFinite(earned) ? { starsEarnedTotal: Math.max(0, Math.trunc(earned)) } : {}),
         starsSeq: seq,
+        // зачем (Q-COIN a): награда не растворяется в «большем из двух» при serverSeq 0.
+        serverCreditedDelta: Number(claim.rewardAmount ?? 0),
       }, lease);
       DebugLogger.info('BROADCAST-REWARD', `coins merged id=${payload.id} amount=${claim.rewardAmount ?? 0} seq=${seq} balance=${visible.balance}`);
       return;

@@ -9,6 +9,10 @@ import {
   readUnifiedLevelSpinStars,
   recoverAndHydrateLevelSpinStarGrants,
   syncPendingLevelSpinStarGrants,
+  acknowledgePracticeRuneGrantLocally,
+  applyCoinReconcileReceiptV1,
+  commitPracticeRuneGrantLocally,
+  readCoinReconcileV1Need,
 } from '../app/level_spin_star_grants';
 
 // зачем (владелец 01.10, [COIN-DIVERGENCE]): на холодном старте progress.stars
@@ -142,18 +146,46 @@ describe('hypothesis (a): recovery observes no progress section, publish lands a
   });
 });
 
-// (d) ВОСПРОИЗВОДИТСЯ, но НЕ чинится здесь: это осознанная серверная авторитетность
-// (новее starsSeq — истина, см. level_spin_star_grants.test.ts «exact materialization»).
-// Если серверный кошелёк users/{uid}.stars отстаёт от локальной базы (монеты жили
-// только на телефоне), первая же квитанция сервера опускает баланс до серверного.
-// Нужна сверка серверного кошелька с локальной базой — вопрос координатору.
-// Включить тесты, когда решение принято.
-describe.skip('hypothesis (d): first server observation replaces an unconfirmed local basis (serverSeq 0)', () => {
+
+// Q-COIN (a), координатор 01.10: при неподтверждённой локальной базе (serverSeq 0)
+// первая квитанция сервера с более новым starsSeq берёт БОЛЬШЕЕ из (сервер,
+// локальная база) — во всех путях. Разница «только на телефоне» держится
+// отдельным полем и не теряется на следующих квитанциях (seq > 0).
+function practiceOperation(amount = 9) {
+  const { createHash } = jest.requireActual('crypto') as typeof import('crypto');
+  const operation = {
+    schemaVersion: 'client-practice-rune-operation.v1' as const,
+    operationId: 'practice_rune:flashcards_blitz_attempt1_1',
+    ownerStableId: OWNER,
+    activity: 'flashcards_blitz' as const,
+    sessionKey: 'attempt1',
+    completionOrdinal: 1,
+    amount,
+    reason: 'practice_session_reward' as const,
+    createdAtMs: 1_800_000_000_000,
+  };
+  const requestFingerprint = createHash('sha256').update(JSON.stringify({
+    schemaVersion: 1, ownerStableId: operation.ownerStableId, activity: operation.activity,
+    sessionKey: operation.sessionKey, completionOrdinal: operation.completionOrdinal,
+    amount: operation.amount, reason: operation.reason, createdAtMs: operation.createdAtMs,
+  })).digest('hex');
+  return Object.freeze({ ...operation, requestFingerprint });
+}
+
+function ackTransport(balance: number, seq: number): void {
+  transport().mockImplementation(async (operation: { operationId: string; requestFingerprint: string }) => ({
+    materialized: true, operationId: operation.operationId, requestFingerprint: operation.requestFingerprint,
+    replayed: false, starsBalance: balance, starsEarnedTotal: balance, starsSeq: seq,
+  }));
+}
+
+describe('Q-COIN (a): first server observation keeps the larger of server and unconfirmed local basis', () => {
   test('merge of a server snapshot {stars:0, seq:1} over local-only 9830', async () => {
     storeProjection(9830, 0);
     progress = { stars: 9830, starsEarnedTotal: 0 };
     await mergeLevelSpinServerStars(captureAccountGeneration(), { stars: 0, starsEarnedTotal: 0, starsSeq: 1 });
     expect(progress.stars).toBe(9830);
+    expect(storedProjection()).toMatchObject({ serverBalance: 0, serverSeq: 1, unconfirmedLocalLift: 9830 });
   });
 
   test('sync ack of a new coin grant over local-only 9830', async () => {
@@ -162,13 +194,162 @@ describe.skip('hypothesis (d): first server observation replaces an unconfirmed 
     const token = captureAccountGeneration();
     await enqueueLevelSpinStarGrant({ token, requestId: 'request0000000001', lane: 'base', giftId: 'stars_10' }, { syncNow: false });
     expect(progress.stars).toBe(9840);
-    transport().mockImplementation(async (operation: { operationId: string; requestFingerprint: string }) => ({
-      materialized: true, operationId: operation.operationId, requestFingerprint: operation.requestFingerprint,
-      replayed: false, starsBalance: 10, starsEarnedTotal: 10, starsSeq: 1,
-    }));
+    ackTransport(10, 1);
     await syncPendingLevelSpinStarGrants(token);
     expect(JSON.parse(storage[levelSpinStarGrantOutboxKey(OWNER)])).toEqual([]);
     expect(progress.stars).toBe(9840);
     expect(storedProjection().serverSeq).toBe(1);
+  });
+
+  test('the difference survives the SECOND ack (seq 1 -> 2): no loss on the next grant', async () => {
+    storeProjection(9830, 0);
+    progress = { stars: 9830, starsEarnedTotal: 0 };
+    const token = captureAccountGeneration();
+    await enqueueLevelSpinStarGrant({ token, requestId: 'request0000000001', lane: 'base', giftId: 'stars_10' }, { syncNow: false });
+    ackTransport(10, 1);
+    await syncPendingLevelSpinStarGrants(token);
+    await enqueueLevelSpinStarGrant({ token, requestId: 'request0000000002', lane: 'base', giftId: 'stars_20' }, { syncNow: false });
+    expect(progress.stars).toBe(9860);
+    ackTransport(30, 2);
+    await syncPendingLevelSpinStarGrants(token);
+    expect(progress.stars).toBe(9860);
+    expect((await readUnifiedLevelSpinStars(token)).balance).toBe(9860);
+    expect((await recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false })).balance).toBe(9860);
+  });
+
+  test('server above the local basis wins (no artificial lift)', async () => {
+    storeProjection(100, 0);
+    progress = { stars: 100, starsEarnedTotal: 0 };
+    await mergeLevelSpinServerStars(captureAccountGeneration(), { stars: 500, starsEarnedTotal: 0, starsSeq: 3 });
+    expect(progress.stars).toBe(500);
+    expect(storedProjection()).not.toHaveProperty('unconfirmedLocalLift');
+  });
+
+  test('a server prize in the same response is not swallowed by max (serverCreditedDelta)', async () => {
+    storeProjection(9830, 0);
+    progress = { stars: 9830, starsEarnedTotal: 0 };
+    await mergeLevelSpinServerStars(captureAccountGeneration(), {
+      stars: 500, starsEarnedTotal: 0, starsSeq: 1, serverCreditedDelta: 500,
+    });
+    expect(progress.stars).toBe(10_330);
+  });
+
+  test('confirmed basis (serverSeq > 0): server lowering is still legitimate, late response ignored', async () => {
+    storeProjection(9830, 0);
+    progress = { stars: 9830, starsEarnedTotal: 0 };
+    const token = captureAccountGeneration();
+    await mergeLevelSpinServerStars(token, { stars: 1000, starsEarnedTotal: 0, starsSeq: 1 });
+    expect(progress.stars).toBe(9830);
+    await mergeLevelSpinServerStars(token, { stars: 700, starsEarnedTotal: 0, starsSeq: 2 });
+    expect(progress.stars).toBe(9530);
+    await mergeLevelSpinServerStars(token, { stars: 5, starsEarnedTotal: 0, starsSeq: 1 });
+    expect(progress.stars).toBe(9530);
+    await mergeLevelSpinServerStars(token, { stars: 700, starsEarnedTotal: 0, starsSeq: 2 });
+    expect(progress.stars).toBe(9530);
+  });
+
+  test('a local spend after the lift lowers the balance as before', async () => {
+    storeProjection(9830, 0);
+    progress = { stars: 9830, starsEarnedTotal: 0 };
+    const token = captureAccountGeneration();
+    await mergeLevelSpinServerStars(token, { stars: 0, starsEarnedTotal: 0, starsSeq: 1 });
+    const { prepareRuneSpend, publishRuneSpend } = await import('../app/level_spin_star_grants');
+    const prepared = await prepareRuneSpend({
+      token, operationId: 'spend_test_000000002', kind: 'dialog_hint', subjectId: 'hint-2', price: 300,
+    });
+    if (!prepared.ok) throw new Error('spend_not_prepared');
+    await AsyncStorage.multiSet(prepared.durableWrites.map(([k, v]) => [k, v] as [string, string]));
+    publishRuneSpend(token, prepared);
+    expect(progress.stars).toBe(9530);
+    expect((await recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false })).balance).toBe(9530);
+  });
+
+  test('PhoneState receipt in recoverProjection keeps the larger basis', async () => {
+    storeProjection(9830, 0);
+    progress = { stars: 9830, starsEarnedTotal: 0 };
+    const token = captureAccountGeneration();
+    await enqueueLevelSpinStarGrant({ token, requestId: 'request0000000003', lane: 'base', giftId: 'stars_50' }, { syncNow: false });
+    expect(progress.stars).toBe(9880);
+    const [operation] = JSON.parse(storage[levelSpinStarGrantOutboxKey(OWNER)]) as {
+      operationId: string; requestFingerprint: string;
+    }[];
+    bridge().readPhoneStateStarCreditState.mockResolvedValue({
+      credits: [operation],
+      acknowledgements: [{
+        schemaVersion: 'client-level-spin-star-ack.v1', operationId: operation.operationId, ownerStableId: OWNER,
+        requestFingerprint: operation.requestFingerprint, starsBalance: 50, starsEarnedTotal: 50, starsSeq: 1,
+      }],
+    });
+    expect((await recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false })).balance).toBe(9880);
+    expect(progress.stars).toBe(9880);
+    expect(storedProjection()).toMatchObject({ serverBalance: 50, serverSeq: 1, unconfirmedLocalLift: 9830 });
+    expect((await recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false })).balance).toBe(9880);
+  });
+
+  test('practice ack keeps the larger basis and the lift survives a later sync ack', async () => {
+    storeProjection(9830, 0);
+    progress = { stars: 9830, starsEarnedTotal: 0 };
+    const token = captureAccountGeneration();
+    const operation = practiceOperation(9);
+    await commitPracticeRuneGrantLocally(token, operation);
+    expect(progress.stars).toBe(9839);
+    await acknowledgePracticeRuneGrantLocally(token, operation, {
+      materialized: true, operationId: operation.operationId, requestFingerprint: operation.requestFingerprint,
+      replayed: false, starsBalance: 9, starsEarnedTotal: 9, starsSeq: 1,
+    });
+    expect(progress.stars).toBe(9839);
+    await enqueueLevelSpinStarGrant({ token, requestId: 'request0000000004', lane: 'base', giftId: 'stars_10' }, { syncNow: false });
+    ackTransport(19, 2);
+    await syncPendingLevelSpinStarGrants(token);
+    expect(progress.stars).toBe(9849);
+  });
+});
+
+describe('Q-COIN (b): reconcile receipt is applied once and never doubles coins', () => {
+  test('lift absorbed by the server raise: visible unchanged, lift reduced, replay is a no-op', async () => {
+    storeProjection(9830, 0);
+    progress = { stars: 9830, starsEarnedTotal: 0 };
+    const token = captureAccountGeneration();
+    await mergeLevelSpinServerStars(token, { stars: 0, starsEarnedTotal: 0, starsSeq: 1 });
+    expect(await readCoinReconcileV1Need(token)).toMatchObject({ needed: true, lift: 9830 });
+    const receipt = {
+      raisedBy: 2000, operationIds: ['level_spin:requestOld000000001.base'],
+      starsBalance: 2000, starsEarnedTotal: 0, starsSeq: 2,
+    };
+    expect((await applyCoinReconcileReceiptV1(token, receipt)).balance).toBe(9830);
+    expect(storedProjection()).toMatchObject({
+      serverBalance: 2000, serverSeq: 2, unconfirmedLocalLift: 7830, coinReconcileV1Applied: true,
+    });
+    expect(await applyCoinReconcileReceiptV1(token, receipt)).toMatchObject({ balance: 9830, applied: false });
+    expect(await readCoinReconcileV1Need(token)).toMatchObject({ needed: false, applied: true });
+  });
+
+  test('server raise above the lift restores the missing coins', async () => {
+    storeProjection(100, 0);
+    progress = { stars: 100, starsEarnedTotal: 0 };
+    const token = captureAccountGeneration();
+    await mergeLevelSpinServerStars(token, { stars: 0, starsEarnedTotal: 0, starsSeq: 1 });
+    expect((await applyCoinReconcileReceiptV1(token, {
+      raisedBy: 1000, operationIds: ['level_spin:requestOld000000002.base'],
+      starsBalance: 1000, starsEarnedTotal: 0, starsSeq: 2,
+    })).balance).toBe(1000);
+  });
+
+  test('a stuck local spin credit covered by the reconcile is acknowledged, not doubled', async () => {
+    storeProjection(0, 1);
+    progress = { stars: 0, starsEarnedTotal: 0 };
+    const token = captureAccountGeneration();
+    await enqueueLevelSpinStarGrant({ token, requestId: 'request0000000005', lane: 'base', giftId: 'stars_250' }, { syncNow: false });
+    expect(progress.stars).toBe(250);
+    expect(await readCoinReconcileV1Need(token)).toMatchObject({ needed: true, unackedSpinCredits: 1 });
+    expect((await applyCoinReconcileReceiptV1(token, {
+      raisedBy: 250, operationIds: ['level_spin:request0000000005.base'],
+      starsBalance: 250, starsEarnedTotal: 0, starsSeq: 2,
+    })).balance).toBe(250);
+    expect(JSON.parse(storage[levelSpinStarGrantOutboxKey(OWNER)])).toEqual([]);
+    expect(bridge().commitPhoneStateNonMonetaryEconomyGrant).toHaveBeenCalledWith(expect.objectContaining({
+      kind: 'star_credit_ack', entitlementId: 'level_spin:request0000000005.base',
+    }));
+    expect((await recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false })).balance).toBe(250);
   });
 });

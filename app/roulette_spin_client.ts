@@ -197,6 +197,9 @@ async function mergeReferralSpinCoins(token: AccountGenerationToken, data: SpinR
       ...(Number.isFinite(stars) ? { stars: Math.max(0, Math.trunc(stars)) } : {}),
       ...(Number.isFinite(earned) ? { starsEarnedTotal: Math.max(0, Math.trunc(earned)) } : {}),
       starsSeq: seq,
+      // зачем (Q-COIN a): при неподтверждённой локальной базе приз не должен
+      // раствориться в «большем из двух» — кошелёк прибавит его к локальной базе.
+      serverCreditedDelta: Number(data.prizeCoins ?? 0),
     });
     spinTrace('coins_merged', { prizeCoins: data.prizeCoins ?? 0, serverSeq: seq, visibleBalance: visible.balance });
   } catch (e) {

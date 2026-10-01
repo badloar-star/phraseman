@@ -1,13 +1,8 @@
-// Страж имён шпилей-камней (PM-278, T29). Шпиль N = бывшая лига N, поэтому
-// имён ровно столько же, сколько лиг, и в каждой локали интерфейса все 12.
-// Сработал — допиши перевод, а не ослабляй проверку.
-import { CLUBS } from '../app/league_engine';
+// Страж имён шпилей-камней (PM-278, T29). Шпиль N = бывшая лига N — 12 ступеней,
+// в каждой локали интерфейса все 12. Сработал — допиши перевод, а не ослабляй проверку.
+// зачем правка 01.10: Лиги удалены (D74/D83) вместе с app/league_engine.ts и миграцией
+// functions/src/spire_league_migration_contract.ts — сравнение «лига → шпиль» снято.
 import { SOURCE_LOCALES } from '../app/source_locales';
-import {
-  LEAGUE_TIER_COUNT,
-  SPIRE_TIER_COUNT as SERVER_SPIRE_TIER_COUNT,
-  leagueIdToSpireTier,
-} from '../functions/src/spire_league_migration_contract';
 import {
   SPIRE_TIER_COUNT,
   SPIRE_TIER_NAMES,
@@ -18,19 +13,10 @@ import {
 const OWNER_T29 = ['Гранит', 'Базальт', 'Мрамор', 'Нефрит', 'Кварц', 'Агат', 'Оникс', 'Аметист', 'Опал', 'Топаз', 'Обсидиан', 'Алмаз'];
 
 describe('имена шпилей-камней', () => {
-  it('12 лиг = 12 шпилей на клиенте и на сервере', () => {
-    expect(CLUBS).toHaveLength(12);
-    expect(SPIRE_TIER_COUNT).toBe(CLUBS.length);
-    expect(SERVER_SPIRE_TIER_COUNT).toBe(CLUBS.length);
-    expect(LEAGUE_TIER_COUNT).toBe(CLUBS.length);
-  });
-
-  it('каждая лига CLUBS переходит в шпиль с тем же индексом', () => {
-    for (const club of CLUBS) {
-      expect(leagueIdToSpireTier(club.id)).toEqual({ tier: club.id, clamped: false });
-    }
-    expect(spireTierName(CLUBS[0].id, 'ru')).toBe('Гранит');
-    expect(spireTierName(CLUBS[CLUBS.length - 1].id, 'ru')).toBe('Алмаз');
+  it('12 ступеней-камней: Гранит … Алмаз', () => {
+    expect(SPIRE_TIER_COUNT).toBe(12);
+    expect(spireTierName(0, 'ru')).toBe('Гранит');
+    expect(spireTierName(11, 'ru')).toBe('Алмаз');
   });
 
   it('русские имена — ровно решение владельца T29', () => {

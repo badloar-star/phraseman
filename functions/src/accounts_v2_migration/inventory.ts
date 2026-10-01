@@ -162,6 +162,12 @@ const PROGRESS_RULES: readonly InventoryRule[] = [
     // guard-ok: таблица классификации для отчёта dry-run, баланс не пишется и не понижается.
     pattern: /^(lesson\d{1,4}_(words|irregular)_shards_granted|shards_topic_[A-Za-z0-9]+_granted)$/,
   }, 'drop', 'pearls_removed', ['D70', 'D84', 'D103'], 'Жемчуг (shards) удалён с остатками, без компенсации.'),
+  // зачем (D51/D53, Q12 2026-10-01): компенсация неиспользованных подарков/спинов
+  // считается ТОЛЬКО на телефоне из локальных ключей (app/gifts_to_coins_*), эти
+  // серверные поля она не читает. Порядок: релиз 2.0 → миграция на телефоне
+  // (WAL done + строка gifts_to_coins_migrations/{uid}) → лишь потом чистка D90.
+  // Монеты лежат в stars/star_operations (r.runes_balance keep_in_place) и
+  // этим drop не затрагиваются. DROPPED_BUT_READ держит поля от чистки report.ts.
   rule('p.spins_gifts_boosts', 'progress', {
     exact: ['level_reward_spin_balance', 'club_gift_free_boost_v1', 'chain_shield', 'login_bonus_v1'],
   }, 'drop', 'gifts_spins_boosts_removed', ['D09', 'D90'], 'Подарки, спины уровня, бусты, бонусы входа удалены.'),

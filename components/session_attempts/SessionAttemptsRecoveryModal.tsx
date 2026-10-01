@@ -8,7 +8,7 @@ import HybridAlertShell from '../modal_fx/HybridAlertShell';
 import { useTheme } from '../ThemeContext';
 import { lv2Alpha, useLv2Glass } from '../learning-v2/LearningV2Glass';
 
-const RUNE_ASSET = require('../../assets/images/level-spin-rewards/stars_10.webp');
+const RUNE_ASSET = require('../../assets/images/coins/coin_rank_00.webp');
 
 type Props = {
   visible: boolean;

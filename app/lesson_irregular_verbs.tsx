@@ -722,7 +722,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: glass.opaqueControl, borderRadius: 19, paddingHorizontal: 16, minHeight: 38 }}>
             {/* guard-ok: декоративный ассет, смысл несёт число рядом */}
             <Image
-              source={require('../assets/images/level-spin-rewards/stars_10.webp')}
+              source={require('../assets/images/coins/coin_rank_00.webp')}
               style={{ width: 18, height: 18 }}
               contentFit="contain"
               accessible={false}

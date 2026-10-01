@@ -9,7 +9,7 @@ const RUNE_ASSET_PATH = path.join(
   'assets',
   'images',
   'level-spin-rewards',
-  'stars_10.webp',
+  'coin_rank_00.webp',
 );
 
 function read(filePath: string): string {
@@ -28,7 +28,7 @@ describe('Home rune asset balance lives in the quick-start title row', () => {
     expect(fs.existsSync(RUNE_COMPONENT_PATH)).toBe(true);
     const runeComponent = read(RUNE_COMPONENT_PATH);
     expect(runeComponent).toContain(
-      "require('../../assets/images/level-spin-rewards/stars_10.webp')",
+      "require('../../assets/images/coins/coin_rank_00.webp')",
     );
     expect(home).toContain(
       "import { getRunesBalance, peekRunes } from '../runes_system';",

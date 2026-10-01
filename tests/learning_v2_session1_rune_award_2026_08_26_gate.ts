@@ -44,7 +44,7 @@ assert.ok(
   "the top-right rune HUD must render the existing rune asset",
 );
 assert.ok(
-  canonicalRuneAsset.includes("level-spin-rewards/stars_10.webp"),
+  canonicalRuneAsset.includes("coins/coin_rank_00.webp"),
   "the shared rune source must resolve to the canonical shipped asset",
 );
 assert.ok(

@@ -14,7 +14,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { soundDirector } from '../modules/audio/sound_director';
 import AnimatedCountUpText from './AnimatedCountUpText';
 
-const RUNE_ASSET = require('../assets/images/level-spin-rewards/stars_10.webp');
+const RUNE_ASSET = require('../assets/images/coins/coin_rank_00.webp');
 
 /**
  * PracticeRuneCounter — счётчик рун, заработанных В ЭТОЙ сессии.

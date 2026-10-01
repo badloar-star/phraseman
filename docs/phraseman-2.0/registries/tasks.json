@@ -168,10 +168,9 @@
       {
         "id": "PM-004-A1",
         "text": "Для каждого маршрута есть владелец, входы, deep links, статус keep/redesign/remove/archive и SHA проверки",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "2026-10-01: node scripts/pm004_route_registry.mjs → docs/phraseman-2.0/evidence/PM-004_route_registry.md, SHA проверки ea8413669: 100 маршрутов из фактического app/, у каждого владелец (feature), входы (число + file:line), deep link phraseman://… (+ отметка push-уведомлений), статус и основание (номер решения/реестр 24.09): keep 70, redesign 15, archive 12, remove 2 (/shop, /pack_opening — кандидаты на удаление), 49 исчезнувших маршрутов с тем, что получает старая ссылка (+native-intent/+not-found). Удалён неиспользуемый шаблон app/modal.tsx.",
-          "NOT_MET: 1 маршрут ждёт владельца — /phrase_analytics_screen («Аналитика ошибок», Premium) без входа из приложения, только из DEV-витрины: вернуть вход / оставить скрытым (archive) / удалить?"
+          "2026-10-01: node scripts/pm004_route_registry.mjs → routes=101 keep 71 / archive 13 / redesign 15 / remove 2, needs-owner-decision 0, sha=82836a31c (docs/phraseman-2.0/evidence/PM-004_route_registry.md). Последний вопрос закрыт решением владельца 01.10: /phrase_analytics_screen keep, вход из «Работы над ошибками» (82836a31c); /dev-emulator-login archive (ba4236df8)."
         ]
       }
     ],

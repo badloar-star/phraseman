@@ -892,3 +892,10 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 - **learning_v2_owner_selection** — 7 падений. Сторожит `LearningV2PulseCourse`, а этот компонент **с 30.09 нигде не рендерится** (карта = LearningV2ChaptersCourse, 4fa4ab32b; PulseCourse упомянут в lessons.tsx только в комментариях). То же касается learning_v2_owner_selected_motion_variant_contract (я привёл его в §47 — сторожит мёртвый код). **Нужно решение: удалить мёртвый компонент вместе с двумя наборами** (не удалял — решение координатора).
 - **nickname_edit_modal_availability** — 7: после починки среды падает «немым» AggregateError; следующий шаг — развернуть вложенные ошибки (как в §47 с Recall).
 - **learning_v2_new_word_encounter_overlay** (живой: карточка слова в плеере) и **learning_v2_horizons_native** — среда: нативные expo-speech/EventEmitter и динамический import в vm; следующий шаг — моки expo-speech и разбор.
+
+## §64 — 2026-10-02: РЕШЕНО КООРДИНАТОРОМ (§63-ядро, §48)
+- dialogueV2TextTurn с логами УЖЕ выложен координатором 01.10 ~22:40 UTC. Логов [DIALOGUE-V2-TURN] пока нет — повтор хода ждёт эмулятора (у Account V2; попрошен освободить/пустить «Дизайн» на 5 мин).
+- Q107: замер — дедлайн очереди утверждать после замера вместе с PM-215-A3.
+- Q108: D153 принят (46ec3d9fc).
+- PM-243: принято по рекомендациям (§63 координатора).
+- Мёртвый LearningV2PulseCourse (с 30.09 не рендерится) — удалить вместе с learning_v2_owner_selection и learning_v2_owner_selected_motion_variant_contract (сессия App Check, grep 0 импортов).

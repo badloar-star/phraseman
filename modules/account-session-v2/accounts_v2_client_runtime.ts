@@ -1,7 +1,11 @@
 import type { AccountSyncWireBatch } from './account_sync';
 import { ACCOUNTS_V2_SYNC_CALLABLE } from './account_sync_callable_transport';
+import type { ScopeStorageAdapter } from './account_scope_store';
 import {
+  ACCOUNTS_V2_UNBOUND_DELETION,
+  clearAccountsV2DeletionCredential,
   createAccountsV2DeletionCredential,
+  isValidAccountsV2DeletionBinding,
   persistAccountsV2DeletionCredential,
   readAccountsV2DeletionCredential,
   type AccountsV2DeletionCredential,
@@ -21,11 +25,11 @@ import {
  * через app/accounts_v2_client_flag.ts и только при включённом флаге, поэтому
  * при выключенном флаге ни один из этих require не выполняется.
  *
- * TEMP (до включения): нативного хранилища областей (SQLCipher-адаптер поверх
- * native/account_sqlite_scope_connection + provisioner) ещё нет — порт
- * createStorageAdapter отдаёт null, и контроллер честно не открывает область
- * (лог `storage_unavailable`). Ключ удаления V2 при этом уже генерируется и
- * уходит на сервер — он не зависит от локального хранилища.
+ * Пакет 6C (TG-88837487B247): createStorageAdapter отдаёт настоящий адаптер
+ * области (SQLCipher поверх native/*) — только на Android; iOS и любая поломка
+ * окружения → null с логом, и контроллер честно не открывает область (клиент
+ * не пишет). Нативные модули хранилища грузятся лениво уже здесь, внутри порта.
+ * Ключ удаления V2 не зависит от локального хранилища.
  */
 
 const LOG = '[ACCOUNT-V2]';
@@ -89,16 +93,33 @@ async function callSync(batch: AccountSyncWireBatch): Promise<unknown> {
   return call(batch);
 }
 
+/** Настоящее хранилище области; null — платформа/окружение не готовы (лог внутри). */
+function createNativeStorageAdapter(): ScopeStorageAdapter | null {
+  try {
+    /* eslint-disable @typescript-eslint/no-require-imports */
+    const { createExpoAccountNativeEnvironment } = require('./native/account_native_expo_environment') as
+      typeof import('./native/account_native_expo_environment');
+    const { createAccountNativeScopeAdapter } = require('./native/account_native_scope_adapter') as
+      typeof import('./native/account_native_scope_adapter');
+    /* eslint-enable @typescript-eslint/no-require-imports */
+    const environment = createExpoAccountNativeEnvironment();
+    if (environment === null) return null;
+    const adapter = createAccountNativeScopeAdapter(environment);
+    console.log(`${LOG} runtime storage_adapter_ready`);
+    return adapter;
+  } catch (error) {
+    // зачем: битый манифест/модуль — не открываем область вовсе, клиент не пишет.
+    console.warn(`${LOG} runtime storage_adapter_failed kind=${kindOf(error)}`);
+    return null;
+  }
+}
+
 function getController(isEnabled: () => boolean): AccountsV2ClientController {
   enabledGate = isEnabled;
   if (controller !== null) return controller;
   controller = createAccountsV2ClientController({
     isEnabled: () => enabledGate(),
-    createStorageAdapter: () => {
-      // зачем: нативный адаптер областей ещё не подключён (см. TEMP выше) — не открываем ничего.
-      console.warn(`${LOG} runtime storage_adapter_not_wired`);
-      return null;
-    },
+    createStorageAdapter: createNativeStorageAdapter,
     latch: createAccountDetachLatch(secureStore() ?? MISSING_SECURE_STORE),
     callSync,
     currentAuthUid,
@@ -116,16 +137,23 @@ export function syncAccountsV2ClientAuthUid(uid: string | null, isEnabled: () =>
   });
 }
 
+/** operationId замка удаления; нет замка (аноним) — общая привязка «без замка». */
+function bindingOf(lockOperationId: string | null): string {
+  return lockOperationId === null ? ACCOUNTS_V2_UNBOUND_DELETION : lockOperationId;
+}
+
 /**
- * Ключ удаления V2 из SecureStore — для повтора постановки после перезапуска.
+ * Ключ удаления V2 замка lockOperationId — для повтора постановки после перезапуска.
  * зачем (ревью 6B, P3): иначе повтор уходил без accountsV2Deletion и телефон
  * терял право узнать этап и дотолкнуть стирание. Никогда не отклоняется.
  */
-export async function readStoredAccountsV2DeletionCredential(): Promise<AccountsV2DeletionCredential | null> {
+export async function readStoredAccountsV2DeletionCredential(
+  lockOperationId: string | null,
+): Promise<AccountsV2DeletionCredential | null> {
   const store = secureStore();
   if (store === null) return null;
   try {
-    const credential = await readAccountsV2DeletionCredential(store);
+    const credential = await readAccountsV2DeletionCredential(store, bindingOf(lockOperationId));
     console.log(`${LOG} delete stored_credential found=${credential !== null}`);
     return credential;
   } catch (error) {
@@ -134,7 +162,28 @@ export async function readStoredAccountsV2DeletionCredential(): Promise<Accounts
   }
 }
 
-async function createPersistedCredential(): Promise<AccountsV2DeletionCredential | null> {
+/**
+ * Удаление замка lockOperationId завершено (сервер принял постановку) — ключ V2
+ * больше не нужен телефону. зачем (хвост 6B P3): ключ не живёт вечно под
+ * постоянным именем. Чужой замок не трогает. Никогда не отклоняется.
+ */
+export async function clearStoredAccountsV2DeletionCredential(lockOperationId: string | null): Promise<boolean> {
+  const store = secureStore();
+  if (store === null) return false;
+  try {
+    return await clearAccountsV2DeletionCredential(store, bindingOf(lockOperationId));
+  } catch (error) {
+    console.warn(`${LOG} delete clear_credential_failed kind=${kindOf(error)}`);
+    return false;
+  }
+}
+
+async function createPersistedCredential(lockOperationId: string | null): Promise<AccountsV2DeletionCredential | null> {
+  const binding = bindingOf(lockOperationId);
+  if (!isValidAccountsV2DeletionBinding(binding)) {
+    console.warn(`${LOG} delete credential_binding_invalid`);
+    return null;
+  }
   const store = secureStore();
   if (store === null) return null;
   let credential: AccountsV2DeletionCredential;
@@ -144,7 +193,7 @@ async function createPersistedCredential(): Promise<AccountsV2DeletionCredential
     console.warn(`${LOG} delete credential_failed kind=${kindOf(error)}`);
     return null;
   }
-  if (!await persistAccountsV2DeletionCredential(store, credential)) {
+  if (!await persistAccountsV2DeletionCredential(store, credential, binding)) {
     // зачем: ключ, которого нет на телефоне, бесполезен — не шлём; сервер сотрёт V2 и без него.
     console.warn(`${LOG} delete credential_not_persisted`);
     return null;
@@ -161,6 +210,7 @@ async function createPersistedCredential(): Promise<AccountsV2DeletionCredential
 export function beginAccountsV2Deletion(
   uid: string | null,
   isEnabled: () => boolean,
+  lockOperationId: string | null = null,
 ): Promise<AccountsV2DeletionCredential | null> {
   let detaching: Promise<unknown>;
   try {
@@ -172,7 +222,7 @@ export function beginAccountsV2Deletion(
   void detaching.catch((error: unknown) => {
     console.warn(`${LOG} delete detach_failed kind=${kindOf(error)}`);
   });
-  return createPersistedCredential().catch((error: unknown) => {
+  return createPersistedCredential(lockOperationId).catch((error: unknown) => {
     console.warn(`${LOG} delete credential_threw kind=${kindOf(error)}`);
     return null;
   });

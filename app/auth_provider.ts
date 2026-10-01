@@ -57,6 +57,7 @@ import {
 import type { AccountDeleteEnqueueOperation } from './account_delete_enqueue';
 import {
   beginAccountsV2DeletionIfEnabled,
+  clearStoredAccountsV2DeletionCredentialIfEnabled,
   readStoredAccountsV2DeletionCredentialIfEnabled,
 } from './accounts_v2_client_flag';
 import {
@@ -881,7 +882,7 @@ async function ensureAccountDeleteCredentialSafe(
   // зачем (Account V2, ревью 6B, P3): повтор после перезапуска шлёт сохранённый
   // ключ V2, иначе телефон терял право узнать этап и дотолкнуть стирание V2.
   // Флаг выключен → null: вызов прежний, ровно два аргумента. Фон, не UI.
-  const storedAccountsV2Key = readStoredAccountsV2DeletionCredentialIfEnabled();
+  const storedAccountsV2Key = readStoredAccountsV2DeletionCredentialIfEnabled(lock.operationId);
   const retryAccountsV2Deletion = storedAccountsV2Key
     ? await withLocalStepDeadline(() => storedAccountsV2Key, null)
     : null;
@@ -889,7 +890,11 @@ async function ensureAccountDeleteCredentialSafe(
   try {
     const op = startCloudDeletionEnqueue(lock.stableId, proof, ...retryAccountsV2Args);
     const ack = await op.acknowledgment;
-    if (ack.authReleased === true && ack.credentialSafe === true) return true;
+    if (ack.authReleased === true && ack.credentialSafe === true) {
+      // зачем (Пакет 6C): постановка принята — ключ V2 этого замка больше не нужен телефону.
+      if (retryAccountsV2Deletion) clearStoredAccountsV2DeletionCredentialIfEnabled(lock.operationId);
+      return true;
+    }
   } catch (e) {
       // The closure may have committed and deleted Auth while its response was lost.
       DebugLogger.error('auth_provider:ack', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -3522,7 +3527,10 @@ async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | 'loca
   // V2 отсоединяется СИНХРОННО здесь, до стирания и до любой сети (отправка
   // остановлена, область закрыта, защёлка переживёт перезапуск), и готовит ключ
   // удаления V2. Флаг выключен → null: поток удаления байт-в-байт прежний.
-  const accountsV2DeletionPending = beginAccountsV2DeletionIfEnabled(pendingDeleteProviderUid);
+  const accountsV2DeletionPending = beginAccountsV2DeletionIfEnabled(
+    pendingDeleteProviderUid,
+    pendingDeleteLock?.operationId ?? null,
+  );
   // The deletion guard above is the point of no return for linked identities.
   // SQLCipher retirement, writer drains and every local clear are one
   // registered flight below. Retries join it, so late native work cannot touch
@@ -3674,6 +3682,8 @@ async function finishAccountDeletion(
         return { ok: false, reason: 'pending_guard_persist_failed' };
       }
       localExitLock = advanced.lock;
+      // зачем (Пакет 6C, хвост 6B P3): сервер принял постановку — ключ V2 замка снимаем.
+      clearStoredAccountsV2DeletionCredentialIfEnabled(pendingDeleteLock.operationId);
     } else {
       // зачем: для анонима ждём только отправки запроса, а подтверждение сервера
       // остаётся фоновой работой под замком — медленная сеть не имеет права
@@ -3687,6 +3697,8 @@ async function finishAccountDeletion(
           logAuthEvent('auth_account_delete_enqueue_failed');
         });
       await cloudDeleteEnqueueOperation.dispatchSettled;
+      // зачем (Пакет 6C): у анонима повтора нет — ключ ушёл с запросом, копия не нужна.
+      clearStoredAccountsV2DeletionCredentialIfEnabled(null);
     }
 
     if (requiresDurableServerDeletion && localExitLock) {

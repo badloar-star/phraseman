@@ -11979,8 +11979,41 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Подарок «3 дня полного доступа» новым</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Выкл по умолчанию — новые пользователи не получают автоматический подарок. Включение выдаёт будущим новичкам 72ч полного доступа и приветственный модал. Уже выданные подарки НЕ отбираются — активные докатывают свои часы.</div></div>
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-intro_full_access_enabled" class="cp-toggle" onchange="saveControlPanelBool('intro_full_access_enabled', this.checked)" disabled/><span id="cp-bool-label-intro_full_access_enabled" class="cp-bool-chip">…</span></label>
       </div>
+      <!-- зачем (Account V2, Пакет 6C): клиентский флаг V2 — тот же общий писатель remote_config/app.bools. -->
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico">🔐</div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#fbbf24">Аккаунты V2: клиент</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Выкл по умолчанию. Вкл → телефон (только Android) ведёт зашифрованную копию и шлёт изменения на сервер, если сервер тоже включён (карточка ниже).</div></div>
+        <label title="Включить или выключить клиент Account V2" style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-accounts_v2_client_enabled" class="cp-toggle" onchange="saveControlPanelBool('accounts_v2_client_enabled', this.checked)" disabled/><span id="cp-bool-label-accounts_v2_client_enabled" class="cp-bool-chip">…</span></label>
+      </div>
     </div>
   </div>
+
+  <!-- ACCOUNTS_V2_SERVER_FLAGS_START (Пакет 6C): один документ config/accounts_v2, читается раз при открытии вкладки -->
+  <div class="cp-card" id="accounts-v2-server-card" aria-labelledby="accounts-v2-server-title">
+    <div class="cp-card-title" id="accounts-v2-server-title" style="color:#fbbf24">🔐 Аккаунты V2: сервер</div>
+    <div class="cp-card-sub">
+      Пишет в <code style="color:#818cf8">config/accounts_v2</code>. Сервер подхватывает в течение ~15 секунд.
+      <b style="color:#f87171">Метку everEnabled не снимать никогда</b>: сервер ставит её сам при первом включении,
+      и по ней стирает данные V2 при удалении аккаунта даже после выключения флагов.
+    </div>
+    <div style="margin-top:8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <span id="accounts-v2-server-status" class="cp-status-chip" role="status" aria-live="polite">Загрузка…</span>
+      <span id="accounts-v2-server-ever" style="font-size:11.5px;color:#94a3b8">everEnabled: —</span>
+    </div>
+    <div style="margin-top:12px;display:flex;flex-direction:column;gap:2px">
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico">⇅</div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Синхронизация (syncEnabled)</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Сервер принимает изменения от клиентов V2. Выкл → клиенты останавливают отправку до перезапуска, данные не теряются.</div></div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="accounts-v2-server-syncEnabled" class="cp-toggle" onchange="saveAccountsV2ServerFlag('syncEnabled', this.checked)" disabled/><span id="accounts-v2-server-label-syncEnabled" class="cp-bool-chip">…</span></label>
+      </div>
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico">🧹</div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Стирание при удалении (deletionPurgeEnabled)</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Удаление аккаунта стирает и данные V2 на сервере.</div></div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="accounts-v2-server-deletionPurgeEnabled" class="cp-toggle" onchange="saveAccountsV2ServerFlag('deletionPurgeEnabled', this.checked)" disabled/><span id="accounts-v2-server-label-deletionPurgeEnabled" class="cp-bool-chip">…</span></label>
+      </div>
+    </div>
+  </div>
+  <!-- ACCOUNTS_V2_SERVER_FLAGS_END -->
 
   <!-- PHONE_STATE_ROLLOUT_START -->
   <div class="cp-card" id="phone-state-rollout-card" aria-labelledby="phone-state-rollout-title">
@@ -34702,6 +34735,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     { key: 'video_button_enabled',     label: 'Кнопка «Видео» на главной',       def: true,  hint: 'Вкл по умолчанию. Выкл → иконка-плей с входом на экран видео прячется в шапке главной у всех живьём, без релиза. Какой канал показывать — настраивается в карточке «YouTube-канал» (вкладка Remote Config).' },
     { key: 'video_phrases_enabled',    label: 'Фразы из видео',                  def: true,  hint: 'Вкл по умолчанию → опубликованные фразы показываются под открытым видео на главной и в каталоге. Выкл → блок фраз скрыт, видео продолжает работать.' },
     { key: 'intro_full_access_enabled', label: 'Подарок «3 дня» новым юзерам',    def: false, hint: 'Выкл по умолчанию. Включение выдаёт будущим новичкам 72ч полного доступа и приветственный модал. Уже выданные подарки не отбираются — активные докатывают свои часы.' },
+    { key: 'accounts_v2_client_enabled', label: 'Аккаунты V2: клиент',           def: false, hint: 'Выкл по умолчанию (sell-switch, Пакет 6C). Вкл → Android-клиент ведёт зашифрованную копию и шлёт изменения, если сервер (config/accounts_v2.syncEnabled) тоже включён.' },
   ];
 
   // Флаги Компаса вынесены в отдельную вкладку «🧭 Компас» (управление там),
@@ -35036,6 +35070,61 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     if (typeof window.loadControlPanelPremium === 'function') void window.loadControlPanelPremium();
     if (typeof window.loadBusinessTier === 'function') void window.loadBusinessTier(false);
     if (typeof window.loadPhoneStateRollout === 'function') void window.loadPhoneStateRollout();
+    if (typeof window.loadAccountsV2ServerFlags === 'function') void window.loadAccountsV2ServerFlags();
+  };
+
+  // ── Account V2 (Пакет 6C): серверные флаги config/accounts_v2 ─────────────
+  // зачем: владелец включает V2 на сервере без консоли Firebase. Одно чтение
+  // документа при открытии «Пульта»; запись — только своё поле (merge), админом
+  // (правило firestore.rules: config/accounts_v2 → isAdmin()). everEnabled
+  // админка НЕ пишет никогда — это липкая метка сервера для стирания V2.
+  const ACCOUNTS_V2_SERVER_FIELDS = ['syncEnabled', 'deletionPurgeEnabled'];
+  function accountsV2ServerStatus(msg, color) {
+    window.__cpStatus(document.getElementById('accounts-v2-server-status'), msg, color);
+  }
+  function accountsV2ServerRender(field, on) {
+    const cb = document.getElementById('accounts-v2-server-' + field);
+    const lbl = document.getElementById('accounts-v2-server-label-' + field);
+    if (cb) { cb.checked = !!on; cb.disabled = false; }
+    if (lbl) { lbl.textContent = on ? 'Вкл' : 'Выкл'; lbl.setAttribute('data-on', on ? '1' : '0'); }
+  }
+  window.loadAccountsV2ServerFlags = async function() {
+    accountsV2ServerStatus('Загрузка…');
+    try {
+      const snap = await getDoc(doc(db, 'config', 'accounts_v2'));
+      const data = snap.exists() ? (snap.data() || {}) : {};
+      for (const field of ACCOUNTS_V2_SERVER_FIELDS) accountsV2ServerRender(field, data[field] === true);
+      const ever = document.getElementById('accounts-v2-server-ever');
+      if (ever) ever.textContent = 'everEnabled: ' + (data.everEnabled === true ? 'да (не снимать)' : 'нет');
+      accountsV2ServerStatus(snap.exists() ? 'Загружено' : 'Документа нет — всё выключено.', '#4ade80');
+    } catch (e) {
+      console.warn('[ACCOUNT-V2] admin server_flags_load_failed', e && e.code ? e.code : e);
+      accountsV2ServerStatus('Ошибка чтения: ' + (e && e.message ? e.message : e), '#f87171');
+    }
+  };
+  window.saveAccountsV2ServerFlag = async function(field, checked) {
+    if (!ACCOUNTS_V2_SERVER_FIELDS.includes(field)) {
+      console.warn('[ACCOUNT-V2] admin server_flag_rejected field=' + field);
+      return;
+    }
+    const cb = document.getElementById('accounts-v2-server-' + field);
+    if (cb) cb.disabled = true;
+    accountsV2ServerStatus('Сохранение…');
+    try {
+      const adminEmail = (auth.currentUser && auth.currentUser.email) || 'unknown';
+      await setDoc(doc(db, 'config', 'accounts_v2'), {
+        [field]: !!checked,
+        updatedAt: new Date().toISOString(),
+        updatedBy: adminEmail,
+      }, { merge: true });
+      accountsV2ServerRender(field, !!checked);
+      accountsV2ServerStatus('✅ Сохранено. Сервер подхватит в течение ~15 секунд.', '#4ade80');
+      if (typeof logAction === 'function') void logAction('accounts_v2_server_flag', 'config/accounts_v2', { field, value: !!checked });
+    } catch (e) {
+      console.warn('[ACCOUNT-V2] admin server_flag_save_failed', e && e.code ? e.code : e);
+      accountsV2ServerStatus('Ошибка сохранения: ' + (e && e.message ? e.message : e), '#f87171');
+      if (cb) { cb.checked = !checked; cb.disabled = false; }
+    }
   };
 
   // Обобщённая запись ОДНОГО булевого флага в remote_config/app.bools, сохраняя

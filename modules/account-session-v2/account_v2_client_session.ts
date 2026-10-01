@@ -36,12 +36,21 @@ const LOG = '[ACCOUNT-V2]';
 const MAX_BATCHES_PER_DRAIN = 20;
 /** Пауза между проходами без явной паузы от раннера. */
 const DRAIN_YIELD_MS = 5_000;
+/**
+ * Не чаще одного перезапуска вставшей отправки за это окно.
+ * зачем (ревью 6B, P3): возврат в приложение не должен каждый раз заново
+ * открывать базу и раннер, если отправка встала по устойчивой причине.
+ */
+const RESUME_MIN_INTERVAL_MS = 120_000;
 
 type AccountScopeValue = Extract<AccountScope, { kind: 'account' }>;
 
 export type AccountsV2ClientPorts = Readonly<{
   isEnabled: () => boolean;
-  /** Нативное хранилище областей; null — ещё не подключено (область не открываем). */
+  /**
+   * Нативное хранилище областей; null — не подключено (область не открываем).
+   * Может нести `discoverPendingEraseUids()` (Пакет 6C) — след незаконченных стираний.
+   */
   createStorageAdapter: () => ScopeStorageAdapter | null;
   latch: AccountDetachLatch;
   /** callable accountsV2SyncApply: результат httpsCallable (`{ data }`) или его ошибка. */
@@ -112,7 +121,9 @@ class AccountsV2AuthMismatch extends Error {
 export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): AccountsV2ClientController {
   const nowMs = ports.nowMs ?? Date.now;
   let store: AccountScopeStore | null = null;
+  let storeAdapter: ScopeStorageAdapter | null = null;
   let storeChecked = false;
+  let lastResumeAtMs = Number.NEGATIVE_INFINITY;
   let session: Session | null = null;
   let generation = 0;
   let serverDisabled = false;
@@ -133,6 +144,7 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
     storeChecked = true;
     try {
       const adapter = ports.createStorageAdapter();
+      storeAdapter = adapter;
       store = adapter === null ? null : createAccountScopeStore(adapter);
     } catch (error) {
       console.warn(`${LOG} lifecycle storage_adapter_failed code=${codeOf(error)}`);
@@ -260,6 +272,41 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
     }
   };
 
+  /** Найденные хранилищем uid с незаконченным стиранием (метка вывода из строя). */
+  const discoverPendingErase = async (): Promise<readonly string[]> => {
+    const discover = (storeAdapter as { discoverPendingEraseUids?: unknown } | null)?.discoverPendingEraseUids;
+    if (typeof discover !== 'function') {
+      console.log(`${LOG} latch discover_unsupported`);
+      return [];
+    }
+    try {
+      const found = await Reflect.apply(discover, storeAdapter, []) as unknown;
+      return Array.isArray(found) ? found.filter((uid): uid is string => typeof uid === 'string' && uid.length > 0) : [];
+    } catch (error) {
+      console.warn(`${LOG} latch discover_failed code=${codeOf(error)}`);
+      return [];
+    }
+  };
+
+  /**
+   * Испорченная защёлка (ревью 6B, P2 + хвост 6C): сперва дочищаем всё, что
+   * удалось найти (метки хранилища + uid, удалённые в этом процессе), и только
+   * ПОСЛЕ этого прохода сбрасываем запись. Хранилища нет — прохода не было,
+   * запись не трогаем (V2 и так не откроется без хранилища).
+   */
+  const recoverCorruptLatch = async (): Promise<void> => {
+    const st = getStore();
+    if (st === null) {
+      console.warn(`${LOG} latch reset_deferred reason=storage_unavailable`);
+      return;
+    }
+    const uids = [...new Set([...await discoverPendingErase(), ...detachedInProcess])];
+    console.warn(`${LOG} latch corrupt_recovery pending=${uids.length}`);
+    if (uids.length > 0) await resumePendingErase(st, uids);
+    const reset = await ports.latch.reset();
+    console.warn(`${LOG} latch corrupt_recovery_done reset=${reset}`);
+  };
+
   const openSession = async (uid: string, st: AccountScopeStore): Promise<void> => {
     generation += 1;
     const scope = accountScope(uid);
@@ -309,7 +356,7 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
       // зачем (ревью 6B, P2): отказ — только в этот раз. Битая запись в Keychain
       // переживает переустановку и иначе выключала бы V2 навсегда для всех аккаунтов.
       console.warn(`${LOG} lifecycle skip reason=latch_unreadable code=${latch.code}`);
-      if (latch.code === 'latch_corrupt') await ports.latch.reset();
+      if (latch.code === 'latch_corrupt') await recoverCorruptLatch();
       return;
     }
     const st = getStore();
@@ -392,6 +439,12 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
         // reauth, fail-closed раннера). Повтор того же uid перезапускает сессию
         // свежим раннером; «сервер выключен» — до следующего запуска, не трогаем.
         if (session.sending || serverDisabled) return;
+        const sinceMs = nowMs() - lastResumeAtMs;
+        if (sinceMs < RESUME_MIN_INTERVAL_MS) {
+          console.log(`${LOG} lifecycle resume_throttled sinceMs=${sinceMs} minMs=${RESUME_MIN_INTERVAL_MS}`);
+          return;
+        }
+        lastResumeAtMs = nowMs();
         console.log(`${LOG} lifecycle resume_after_stop generation=${session.fence.generation}`);
       }
       await stopCurrent(uid === null ? 'sign_out' : 'account_switch');

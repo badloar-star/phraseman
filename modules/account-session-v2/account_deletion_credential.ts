@@ -10,6 +10,12 @@
  *
  * Ключ хранится только в SecureStore (порт); в логах — только коды.
  * Переустановка / потеря ключа: ничего не показываем (решение владельца 15).
+ *
+ * Пакет 6C (TG-88837487B247, хвост ревью 6B P3): запись привязана к замку
+ * удаления — `bindingId` = operationId замка (аноним без замка —
+ * ACCOUNTS_V2_UNBOUND_DELETION). Читается только своим замком и снимается
+ * после завершения его удаления; запись прежнего формата (v1, без привязки)
+ * не отдаётся никому и стирается первым же снятием.
  */
 
 const LOG = '[ACCOUNT-V2]';
@@ -24,6 +30,16 @@ const MAX_GENERATION_TRIES = 3;
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
 
 export type AccountsV2DeletionCredential = Readonly<{ operationId: string; capability: string }>;
+
+/** Привязка для удаления без замка (анонимный аккаунт). */
+export const ACCOUNTS_V2_UNBOUND_DELETION = 'accounts_v2_unbound_deletion';
+const RECORD_VERSION = 2;
+
+/** bindingId — operationId замка удаления (та же форма, что у operationId V2). */
+export function isValidAccountsV2DeletionBinding(bindingId: unknown): bindingId is string {
+  return typeof bindingId === 'string' && bindingId.length >= 1 && bindingId.length <= 220
+    && !bindingId.includes('/') && bindingId.trim() === bindingId;
+}
 
 export type AccountsV2SecureStorePort = Readonly<{
   getItemAsync(key: string): Promise<string | null>;
@@ -109,12 +125,19 @@ export async function createAccountsV2DeletionCredential(
   throw new Error('accounts_v2_credential_generation_failed');
 }
 
-/** Пишет ключ в SecureStore и сверяет чтением. false — не сохранён (в лог — код). */
+/** Пишет ключ, привязанный к замку bindingId, и сверяет чтением. false — не сохранён (в лог — код). */
 export async function persistAccountsV2DeletionCredential(
   store: AccountsV2SecureStorePort,
   credential: AccountsV2DeletionCredential,
+  bindingId: string,
 ): Promise<boolean> {
-  const raw = JSON.stringify({ v: 1, operationId: credential.operationId, capability: credential.capability });
+  if (!isValidAccountsV2DeletionBinding(bindingId)) {
+    console.warn(`${LOG} credential persist_rejected code=invalid_binding`);
+    return false;
+  }
+  const raw = JSON.stringify({
+    v: RECORD_VERSION, bindingId, operationId: credential.operationId, capability: credential.capability,
+  });
   try {
     await store.setItemAsync(ACCOUNTS_V2_DELETION_CREDENTIAL_KEY, raw);
     const readBack = await store.getItemAsync(ACCOUNTS_V2_DELETION_CREDENTIAL_KEY);
@@ -127,28 +150,84 @@ export async function persistAccountsV2DeletionCredential(
   }
 }
 
-/** Сохранённый ключ (для повторной отправки/статуса); битая запись — null с логом. */
-export async function readAccountsV2DeletionCredential(
-  store: AccountsV2SecureStorePort,
-): Promise<AccountsV2DeletionCredential | null> {
+type StoredRecord = Readonly<{ bindingId: string; credential: AccountsV2DeletionCredential }>;
+
+type ParsedRecord =
+  | Readonly<{ kind: 'absent' }>
+  | Readonly<{ kind: 'unreadable' }>
+  | Readonly<{ kind: 'invalid' }>
+  | Readonly<{ kind: 'stored'; record: StoredRecord }>;
+
+async function readRecord(store: AccountsV2SecureStorePort): Promise<ParsedRecord> {
   let raw: string | null;
   try {
     raw = await store.getItemAsync(ACCOUNTS_V2_DELETION_CREDENTIAL_KEY);
   } catch (error) {
     console.warn(`${LOG} credential read_failed kind=${error instanceof Error ? error.name : typeof error}`);
-    return null;
+    return Object.freeze({ kind: 'unreadable' });
   }
-  if (raw === null) return null;
+  if (raw === null) return Object.freeze({ kind: 'absent' });
   try {
-    const parsed = JSON.parse(raw) as { v?: unknown; operationId?: unknown; capability?: unknown };
-    if (parsed.v === 1 && isValidAccountsV2DeletionOperationId(parsed.operationId)
+    const parsed = JSON.parse(raw) as { v?: unknown; bindingId?: unknown; operationId?: unknown; capability?: unknown };
+    if (parsed.v === RECORD_VERSION && isValidAccountsV2DeletionBinding(parsed.bindingId)
+      && isValidAccountsV2DeletionOperationId(parsed.operationId)
       && isStrongAccountsV2Capability(parsed.capability)) {
-      return Object.freeze({ operationId: parsed.operationId as string, capability: parsed.capability as string });
+      return Object.freeze({
+        kind: 'stored',
+        record: Object.freeze({
+          bindingId: parsed.bindingId,
+          credential: Object.freeze({ operationId: parsed.operationId as string, capability: parsed.capability as string }),
+        }),
+      });
     }
   } catch (error) {
     console.warn(`${LOG} credential parse_failed kind=${error instanceof Error ? error.name : typeof error}`);
-    return null;
+    return Object.freeze({ kind: 'invalid' });
   }
   console.warn(`${LOG} credential stored_invalid`);
-  return null;
+  return Object.freeze({ kind: 'invalid' });
+}
+
+/**
+ * Сохранённый ключ замка bindingId (для повторной отправки после перезапуска).
+ * Чужой замок, прежний формат или битая запись — null с логом.
+ */
+export async function readAccountsV2DeletionCredential(
+  store: AccountsV2SecureStorePort,
+  bindingId: string,
+): Promise<AccountsV2DeletionCredential | null> {
+  const parsed = await readRecord(store);
+  if (parsed.kind !== 'stored') return null;
+  if (parsed.record.bindingId !== bindingId) {
+    // зачем: ключ другого удаления не уходит с этим замком — сервер связал бы их неверно.
+    console.warn(`${LOG} credential binding_mismatch`);
+    return null;
+  }
+  return parsed.record.credential;
+}
+
+/**
+ * Снять ключ после завершения удаления замка bindingId. Ключ чужого замка не
+ * трогаем (false); битую/прежнюю запись стираем. true — записи этого замка нет.
+ */
+export async function clearAccountsV2DeletionCredential(
+  store: AccountsV2SecureStorePort,
+  bindingId: string,
+): Promise<boolean> {
+  const parsed = await readRecord(store);
+  if (parsed.kind === 'absent') return true;
+  if (parsed.kind === 'unreadable') return false;
+  if (parsed.kind === 'stored' && parsed.record.bindingId !== bindingId) {
+    console.warn(`${LOG} credential clear_skipped reason=other_binding`);
+    return false;
+  }
+  try {
+    await store.deleteItemAsync(ACCOUNTS_V2_DELETION_CREDENTIAL_KEY);
+    const left = await store.getItemAsync(ACCOUNTS_V2_DELETION_CREDENTIAL_KEY);
+    console.log(`${LOG} credential cleared ok=${left === null} kind=${parsed.kind}`);
+    return left === null;
+  } catch (error) {
+    console.warn(`${LOG} credential clear_failed kind=${error instanceof Error ? error.name : typeof error}`);
+    return false;
+  }
 }

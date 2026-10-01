@@ -380,3 +380,15 @@ E24: docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md, E24_store_de
 - §AV2-3 app.json entitlement appattest-environment — поручено сессии App Check (её зона) удалить в репо.
 - §AV2-2 функции к удалению (15) — удаление на проде только вместе с выпуском 2.0 (стор-сборка 1.6.24 может их вызывать). Массовый коммит 91 файла — команда передана владельцу; обходить запрет классификатора не будем.
 - 16 падающих наборов тестов — чинит сессия App Check (10db1105), ядру не брать.
+
+## §33 — 2026-10-01: review→done, пачка 1 (6debdabea)
+
+Независимый ревьюер: PASS → done 7 из 10: PM-003, 004, 005, 007, 009, 014, 021. Остались review: PM-006 (проба фоновых работ падала — ядро дочинило реестр, 7e6fa6bdb, проба PASS; повторное ревью в пачке 2), PM-013 (по сути PASS, но автора evidence-коммита efe19ae9d не установить), PM-018 (по сути PASS, ждёт записи Q55 номером D в 03_DECISIONS.md).
+Общий пакет gates: docs/phraseman-2.0/evidence/GATES_COMMON_2026-10-01.md (BASELINE_SHA_APPROVED, DOMAIN_AUDIT_AND_IMPACT_ACCEPTED).
+Находки ревьюера: mark.py переформатирует весь tasks.json (~600 КБ дифф) — правили точечно; render_views.py падает на KeyError 'D131' (в requirement_ids стоит D-номер, которого нет в requirements.json) и успел перезаписать карточки — восстановлено; скрипт PM-007 при запуске затирает свой evidence — восстановлено. PM-009: spiral_notepad.png и home-forest-league.webp теперь используются Главной (D137) — НЕ удалять.
+
+Вопросы:
+- Q78 actual_reasoning в git не фиксируется: принять «unrecorded» (модель — из Co-Authored-By) для done? **рек. да**
+- Q79 Автор PM-013 (коммит-снимок efe19ae9d без Co-Authored-By): запишите модель или разрешите «unknown» → done? **рек.** «unknown, снимок нескольких сессий» с пометкой.
+- Q80 Записать Q55 (3 публикации в сутки, Free и Plus, сутки UTC) в 03_DECISIONS.md номером D — без этого PM-018 не пройдёт owner-gate.
+- Q81 Починить render_views.py (D131 в requirement_ids) — ядро сделает, если ок. **рек. да**

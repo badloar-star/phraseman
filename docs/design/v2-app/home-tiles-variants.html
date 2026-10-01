@@ -6,6 +6,7 @@
 <title>Плитки Главной</title>
 <link rel="stylesheet" href="kit.css">
 <style>
+/* ── каркас Главной (как в приложении) ── */
 .tb { position: absolute; left: 12px; right: 12px; bottom: 26px; height: 66px; border-radius: 33px; z-index: 35; display: flex; padding: 0 9px;
   background: linear-gradient(180deg, rgba(44,44,46,.86), rgba(20,20,22,.92)); -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px);
   box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.22), inset 0 0 0 1px rgba(255,255,255,.07), 0 22px 44px -14px rgba(0,0,0,.85); }
@@ -16,90 +17,114 @@
 .hstats { display: flex; align-items: center; gap: 8px; }
 .hstat { display: flex; align-items: center; gap: 6px; height: 38px; padding: 0 12px; border-radius: 19px; background: #1C1C1E; border: 1px solid var(--line); font-size: 15px; font-weight: 700; }
 .hstat img { width: 20px; height: 20px; border-radius: 50%; }
-.cont { margin-top: 16px; border-radius: 22px; min-height: 96px; background: var(--card-2); border: 1px solid var(--line); position: relative; overflow: hidden; }
-.cont .cp { padding: 14px 43% 14px 16px; }
-.cont .ov { font-size: 12px; font-weight: 700; letter-spacing: 1.6px; color: var(--sec); }
-.cont .tt { font-size: 18px; line-height: 22px; font-weight: 800; letter-spacing: -.3px; margin-top: 6px; }
-.cont .ct { font-size: 15px; color: var(--sec); margin-top: 6px; }
-.cont .pr { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
-.cont .tr { flex: 1; height: 6px; border-radius: 3px; background: #2A2A2C; overflow: hidden; } .cont .tr i { display: block; height: 100%; width: 8%; min-width: 12px; background: #fff; border-radius: 3px; }
-.cont .ar { width: 32px; height: 32px; border-radius: 16px; background: #2A2A2C; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; flex: none; }
-.cont .art { position: absolute; right: 6px; top: 0; bottom: 0; width: 42%; display: flex; align-items: center; justify-content: flex-end; }
-.cont .art img { width: 118px; height: 118px; object-fit: contain; }
-.cont .bg { position: absolute; right: 12px; bottom: 10px; min-height: 26px; padding: 4px 12px; border-radius: 13px; background: #2A2A2C; border: 1px solid var(--line); font-size: 13px; font-weight: 700; }
+.g { background: linear-gradient(160deg, rgba(255,255,255,.055), rgba(255,255,255,.02) 60%), var(--card-2); border: 1px solid var(--line); box-shadow: inset 0 1px 0 rgba(255,255,255,.06); }
 .rail { display: flex; gap: 10px; overflow: hidden; margin-top: 4px; }
-.rail .v { width: 200px; flex: none; } .rail .th { aspect-ratio: 16/9; border-radius: 14px; background: radial-gradient(90% 120% at 80% 20%, #3B3B3F, #121214 70%); border: 1px solid var(--line); }
-.slot { margin-top: 14px; }
-.g { background: var(--card-2); border: 1px solid var(--line); }
-.t17 { font-size: 17px; font-weight: 700; line-height: 21px; } .t15 { font-size: 15px; font-weight: 700; line-height: 19px; }
-.sub { font-size: 12px; line-height: 16px; color: var(--sec); margin-top: 2px; }
-.mini { font-size: 12px; color: var(--sec); font-weight: 600; }
-/* 1 · Сегментная панель */
-.v1 { display: flex; border-radius: 22px; overflow: hidden; }
-.v1 > div { flex: 1; padding: 12px 10px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; }
-.v1 > div + div { border-left: 1px solid var(--line); }
-.v1 img { width: 44px; height: 44px; object-fit: contain; }
-/* 2 · Обложки */
-.v2 { display: flex; gap: 8px; }
-.v2 > div { flex: 1; height: 104px; border-radius: 20px; position: relative; overflow: hidden; }
-.v2 img { position: absolute; right: -14px; top: -10px; width: 92px; height: 92px; object-fit: contain; opacity: .95; }
-.v2 .lb { position: absolute; left: 12px; bottom: 11px; right: 10px; }
-.v2 > div::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,.55)); }
-.v2 .lb { z-index: 1; }
-/* 3 · Список-меню */
-.v3 { border-radius: 22px; overflow: hidden; }
-.v3 > div { display: flex; align-items: center; gap: 12px; padding: 10px 14px; min-height: 58px; }
-.v3 > div + div { border-top: 1px solid var(--line); }
-.v3 img { width: 38px; height: 38px; object-fit: contain; flex: none; order: 2; margin-left: auto; }
-/* 4 · Асимметрия */
-.v4 { display: grid; grid-template-columns: 1.15fr 1fr; grid-template-rows: 1fr 1fr; gap: 8px; height: 140px; }
-.v4 > div { border-radius: 20px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; overflow: hidden; }
-.v4 > div:first-child { grid-row: 1 / 3; flex-direction: column; align-items: flex-start; justify-content: flex-end; position: relative; }
-.v4 > div:first-child img { position: absolute; right: 8px; top: 8px; width: 64px; height: 64px; }
-.v4 img { width: 34px; height: 34px; object-fit: contain; flex: none; order: 2; margin-left: auto; }
-.v4.two { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; height: 76px; }
-.v4.two > div:first-child { grid-row: auto; flex-direction: row; align-items: center; justify-content: flex-start; }
-.v4.two > div:first-child img { position: static; width: 34px; height: 34px; }
-/* 5 · Иконки без подписей-расшифровок */
-.v5 { display: flex; gap: 8px; }
-.v5 > div { flex: 1; height: 96px; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
-.v5 img { width: 48px; height: 48px; object-fit: contain; }
-/* 6 · Карусель */
-.v6 { display: flex; gap: 10px; overflow: hidden; margin-right: -20px; }
-.v6 > div { width: 150px; flex: none; height: 100px; border-radius: 20px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
-.v6 img { position: absolute; right: 8px; top: 8px; width: 46px; height: 46px; object-fit: contain; }
-.v6.two > div { flex: 1; width: auto; } .v6.two { margin-right: 0; }
-/* 7 · С живым числом */
-.v7 { display: flex; gap: 8px; }
-.v7 > div { flex: 1; border-radius: 20px; padding: 10px 11px 11px; display: flex; flex-direction: column; gap: 2px; min-height: 96px; }
-.v7 .top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
-.v7 img { width: 34px; height: 34px; object-fit: contain; }
-.v7 .num { font-size: 22px; font-weight: 800; letter-spacing: -.4px; }
-/* 8 · Стопка строк во всю ширину */
-.v8 { display: flex; flex-direction: column; gap: 8px; }
-.v8 > div { height: 60px; border-radius: 18px; display: flex; align-items: center; gap: 12px; padding: 0 14px; position: relative; overflow: hidden; }
-.v8 img { width: 72px; height: 72px; object-fit: contain; position: absolute; right: -6px; top: -6px; opacity: .9; }
-/* 9 · Док */
-.v9 { border-radius: 26px; padding: 12px 8px 10px; display: flex; justify-content: space-around; }
-.v9 > div { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 90px; }
-.v9 .ic { width: 58px; height: 58px; border-radius: 18px; background: #232326; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; }
-.v9 img { width: 40px; height: 40px; object-fit: contain; }
-/* 10 · Главная одна + рядом */
-.v10 { display: flex; gap: 8px; height: 112px; }
-.v10 > div { border-radius: 20px; overflow: hidden; position: relative; }
-.v10 .hero { flex: 1.6; padding: 12px; display: flex; flex-direction: column; justify-content: flex-end; }
-.v10 .hero img { position: absolute; right: 6px; top: 6px; width: 70px; height: 70px; object-fit: contain; }
-.v10 .side { flex: 1; display: flex; flex-direction: column; gap: 8px; background: transparent; border: none; }
-.v10 .side > div { flex: 1; border-radius: 18px; display: flex; align-items: center; gap: 8px; padding: 0 10px; background: var(--card-2); border: 1px solid var(--line); }
-.v10 .side img { width: 30px; height: 30px; object-fit: contain; order: 2; margin-left: auto; }
-.v10.two .side > div:last-child { display: none; }
-.note { max-width: 980px; font-size: 15px; line-height: 22px; color: #D6D6D8; margin-top: 6px; }
+.rail .v { width: 220px; flex: none; } .rail .th { aspect-ratio: 16/9; border-radius: 14px; background: radial-gradient(90% 120% at 80% 20%, #3B3B3F, #121214 70%); border: 1px solid var(--line); }
+.rail .vt { font-size: 14px; font-weight: 700; margin-top: 8px; }
+.today { margin-top: 18px; border-radius: 22px; padding: 14px 14px 6px; }
+.today .row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+.today .row:first-of-type { border-top: none; }
+.today .ck { width: 24px; height: 24px; border-radius: 12px; border: 1.5px solid #4A4A4E; flex: none; }
+.today .rw { margin-left: auto; color: var(--sec); font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+.today .rw img { width: 16px; height: 16px; border-radius: 50%; }
+.slot { margin-top: 16px; }
+.kick { font-size: 11.5px; font-weight: 700; letter-spacing: 1.6px; color: var(--sec); text-transform: uppercase; }
+.t18 { font-size: 18px; line-height: 22px; font-weight: 800; letter-spacing: -.3px; }
+.t16 { font-size: 16px; line-height: 20px; font-weight: 700; }
+.mut { font-size: 13px; line-height: 17px; color: var(--sec); }
+.chip { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border-radius: 15px; background: #F2F1F6; color: #0B0C0E; font-size: 13px; font-weight: 800; }
+.chip.dk { background: #2A2A2C; color: #fff; border: 1px solid var(--line); }
+
+/* 1 · Разворот: одна панель, две половины, арт выглядывает над швом */
+.c1 { position: relative; height: 104px; border-radius: 24px; display: flex; overflow: visible; }
+.c1 > .h { flex: 1; position: relative; padding: 14px 14px; display: flex; flex-direction: column; justify-content: flex-end; }
+.c1 > .h + .h { border-left: 1px solid var(--line); }
+.c1 > .h img { position: absolute; right: 8px; top: -18px; width: 72px; height: 72px; object-fit: contain; filter: drop-shadow(0 10px 14px rgba(0,0,0,.55)); }
+.c1.one > .h img { width: 96px; height: 96px; top: -26px; right: 14px; }
+
+/* 2 · Веер: две карты на столе под углом, при одной — колода */
+.c2 { position: relative; height: 120px; }
+.c2 .card { position: absolute; top: 8px; width: 58%; height: 100px; border-radius: 20px; padding: 12px 14px; display: flex; flex-direction: column; justify-content: flex-end; box-shadow: 0 18px 30px -16px rgba(0,0,0,.8); }
+.c2 .card img { position: absolute; right: 8px; top: 8px; width: 54px; height: 54px; object-fit: contain; }
+.c2 .a { left: 0; transform: rotate(-3deg); z-index: 2; }
+.c2 .b { right: 0; transform: rotate(3deg); z-index: 1; }
+.c2.one .card { width: 82%; left: 9%; right: auto; }
+.c2.one .d1 { transform: rotate(-5deg) translateY(4px); opacity: .45; z-index: 1; }
+.c2.one .d2 { transform: rotate(3deg) translateY(2px); opacity: .7; z-index: 2; }
+.c2.one .d3 { transform: rotate(0); z-index: 3; }
+
+/* 3 · Пузырь и стопка: форма плитки = сам предмет раздела */
+.c3 { display: flex; gap: 10px; align-items: flex-end; height: 112px; }
+.c3 .bub { flex: 1; height: 92px; border-radius: 22px 22px 22px 6px; padding: 12px 14px; position: relative; display: flex; flex-direction: column; justify-content: flex-end; }
+.c3 .bub::after { content: ""; position: absolute; left: -1px; bottom: -10px; width: 18px; height: 14px; background: inherit; border-left: 1px solid var(--line); border-bottom: 1px solid var(--line); clip-path: polygon(0 0, 100% 0, 0 100%); }
+.c3 .stk { flex: 1; height: 92px; position: relative; }
+.c3 .stk .p { position: absolute; inset: 0; border-radius: 18px; }
+.c3 .stk .p1 { transform: translate(8px, -12px); opacity: .35; } .c3 .stk .p2 { transform: translate(4px, -6px); opacity: .6; }
+.c3 .stk .p3 { padding: 12px 14px; display: flex; flex-direction: column; justify-content: flex-end; }
+.c3 img { position: absolute; right: 8px; top: 8px; width: 50px; height: 50px; object-fit: contain; }
+.c3.one .stk { flex: none; width: 100%; }
+
+/* 4 · Предмет на полке: стеклянная полка через весь экран */
+.c4 { position: relative; height: 128px; display: flex; justify-content: space-around; align-items: flex-end; padding-bottom: 30px; }
+.c4 .shelf { position: absolute; left: 0; right: 0; bottom: 22px; height: 10px; border-radius: 5px; background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.04)); box-shadow: 0 12px 20px -8px rgba(0,0,0,.9); }
+.c4 .obj { position: relative; display: flex; flex-direction: column; align-items: center; z-index: 1; }
+.c4 .obj img { width: 84px; height: 84px; object-fit: contain; filter: drop-shadow(0 8px 6px rgba(0,0,0,.6)); }
+.c4 .lbl { position: absolute; bottom: -26px; white-space: nowrap; font-size: 14px; font-weight: 700; }
+.c4.one .obj img { width: 104px; height: 104px; }
+
+/* 5 · Билеты: перфорация и корешок с артом */
+.c5 { display: flex; gap: 10px; }
+.c5 .tk { flex: 1; height: 86px; border-radius: 16px; display: flex; position: relative; overflow: hidden;
+  -webkit-mask: radial-gradient(circle 9px at 70% 0, transparent 98%, #000) top/100% 51% no-repeat, radial-gradient(circle 9px at 70% 100%, transparent 98%, #000) bottom/100% 51% no-repeat; }
+.c5 .tk .m { flex: 7; padding: 12px 12px; display: flex; flex-direction: column; justify-content: center; border-right: 1.5px dashed rgba(255,255,255,.18); }
+.c5 .tk .s { flex: 3; display: flex; align-items: center; justify-content: center; }
+.c5 .tk img { width: 46px; height: 46px; object-fit: contain; }
+
+/* 6 · Превью содержимого: внутри плитки — кусочек самого раздела */
+.c6 { display: flex; gap: 10px; }
+.c6 .pv { flex: 1; height: 112px; border-radius: 22px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+.c6 .msg { align-self: flex-start; max-width: 92%; padding: 7px 10px; border-radius: 14px 14px 14px 4px; background: #2A2A2C; font-size: 13px; font-weight: 600; }
+.c6 .msg.me { align-self: flex-end; background: #F2F1F6; color: #0B0C0E; border-radius: 14px 14px 4px 14px; }
+.c6 .fc { height: 52px; border-radius: 12px; background: #232326; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 800; transform: rotate(-2deg); }
+.c6.one .pv { height: 138px; }
+
+/* 7 · Сегмент + превью: переключатель и одна живая карточка */
+.c7 .seg { display: flex; padding: 4px; border-radius: 16px; background: #161618; border: 1px solid var(--line); }
+.c7 .seg div { flex: 1; height: 34px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 14px; font-weight: 700; color: var(--sec); }
+.c7 .seg div.on { background: #2A2A2C; color: #fff; box-shadow: inset 0 1px 0 rgba(255,255,255,.12); }
+.c7 .seg img { width: 20px; height: 20px; object-fit: contain; }
+.c7 .body { margin-top: 8px; height: 92px; border-radius: 20px; padding: 12px 14px; position: relative; display: flex; flex-direction: column; justify-content: center; }
+.c7 .body img { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 70px; height: 70px; object-fit: contain; }
+
+/* 8 · Живое число: раздел говорит, что делать сейчас */
+.c8 { display: flex; gap: 10px; }
+.c8 .n { flex: 1; height: 98px; border-radius: 22px; padding: 12px 14px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+.c8 .big { font-size: 40px; line-height: 40px; font-weight: 800; letter-spacing: -1.4px; }
+.c8 img { position: absolute; right: -14px; bottom: -14px; width: 92px; height: 92px; object-fit: contain; opacity: .9; }
+
+/* 9 · Встроено в «Продолжить»: быстрые действия на полке под карточкой */
+.c9 { border-radius: 24px; overflow: hidden; }
+.c9 .top { padding: 14px 16px; position: relative; min-height: 86px; }
+.c9 .top img { position: absolute; right: 10px; top: 6px; width: 82px; height: 82px; object-fit: contain; }
+.c9 .acts { display: flex; border-top: 1px solid var(--line); }
+.c9 .acts div { flex: 1; display: flex; align-items: center; gap: 10px; padding: 10px 14px; }
+.c9 .acts div + div { border-left: 1px solid var(--line); }
+.c9 .acts img { width: 32px; height: 32px; object-fit: contain; }
+
+/* 10 · Выход за край экрана: арт уходит за правую границу, плитки разной ширины */
+.c10 { display: flex; gap: 10px; margin-right: calc(var(--pad) * -1); }
+.c10 > div { height: 100px; border-radius: 22px 0 0 22px; position: relative; overflow: hidden; padding: 12px 14px; display: flex; flex-direction: column; justify-content: flex-end; }
+.c10 .w { flex: 1.5; border-radius: 22px; }
+.c10 .x { flex: 1; }
+.c10 img { position: absolute; right: -10px; top: 0; width: 88px; height: 88px; object-fit: contain; }
+.c10.one .w { flex: 1; border-radius: 22px 0 0 22px; }
+.c10.one img { width: 120px; height: 120px; right: 10px; top: -10px; }
 </style>
 </head>
 <body>
 <div class="page">
-  <h1 class="page-h1">Плитки разделов на Главной — 10 вариантов</h1>
-  <p class="page-lead">Правило D136: все разделы готовы — три, одного нет — два, готов один — на Главной его нет (только таббар). Каждый вариант показан в двух состояниях: три раздела (английский) и два (испанский / немецкий / французский). Выберите номер.</p>
+  <h1 class="page-h1">Главная, когда готовы 2 раздела или 1 — 10 идей</h1>
+  <p class="page-lead">Три раздела не трогаем — они утверждены. Ниже 10 разных идей, а не размеры: каждая показана в целой Главной — для двух разделов (Диалоги + Карточки: испанский, немецкий, французский) и для одного (только Карточки: итальянский). Цвета наши, графит и стекло. Выберите номер.</p>
   <nav class="page-nav"><a href="index.html">Все разделы</a><a href="home-by-language-mockup.html">Главная по языкам</a></nav>
   <div id="root"></div>
 </div>
@@ -111,40 +136,54 @@ const img = (n) => A + n;
 const coin = img('coin_rank_00.webp');
 const TI = {
   home: '<path d="M4 11l8-7 8 7v8.5a1.5 1.5 0 01-1.5 1.5h-4v-6h-5v6h-4A1.5 1.5 0 014 19.5z"/>',
-  book: '<path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M4 20.5A2.5 2.5 0 016.5 18H20v3H6.5"/>',
   video: '<rect x="3" y="5.5" width="18" height="13" rx="3.5"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/>',
   people: '<circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.5-3.2 2.7-5 5.5-5s5 1.8 5.5 5"/><circle cx="16.5" cy="9.5" r="2.6"/><path d="M15.5 14.2c2.6-.3 4.6 1.3 5 4.3"/>',
   gear: '<circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.4M12 18.8v2.4M4.2 7.5l2 1.2M17.8 15.3l2 1.2M4.2 16.5l2-1.2M17.8 8.7l2-1.2"/><circle cx="12" cy="12" r="7"/>',
+  cards: '<rect x="4" y="6" width="13" height="14" rx="2.5"/><path d="M8 3.5h9.5A2.5 2.5 0 0120 6v11"/>',
 };
-const tabbar = (withLearn) => { const tabs = [['home', 'Главная'], ...(withLearn ? [['book', 'Обучение']] : []), ['video', 'Видео'], ['people', 'Сообщество'], ['gear', 'Настройки']];
+const tabbar = (one) => { const tabs = [['home', 'Главная'], ...(one ? [['cards', 'Карточки']] : []), ['video', 'Видео'], ['people', 'Сообщество'], ['gear', 'Настройки']];
   return `<div class="tb"><div class="cap" style="width:calc((100% - 18px) / ${tabs.length})"></div>${tabs.map(([k, l], i) => `<div class="it${i === 0 ? ' on' : ''}"><svg viewBox="0 0 24 24">${TI[k]}</svg>${l}</div>`).join('')}</div>`; };
 const header = `<div class="hstats"><span class="hstat">${icon('flame', 's18')}12</span><span class="hstat"><img src="${coin}" alt="">1 240</span><span class="hstat">${icon('boltF', 's18')}5</span><span class="rb fill" style="margin-left:auto">${icon('chatDots', 's18')}</span></div>`;
-const cont = `<div class="cont"><div class="art"><img src="${img('spiral_notepad.png')}" alt=""></div><span class="bg">Урок 1</span><div class="cp"><div class="ov">ПРОДОЛЖИТЬ ОБУЧЕНИЕ</div><div class="tt">Местоимения и глагол To Be</div><div class="ct">0 / 50</div><div class="pr"><div class="tr"><i></i></div><span class="ar">${icon('fwd', 's16')}</span></div></div></div>`;
-const rail = `<div class="sec" style="margin-top:20px"><div class="ti" style="font-size:18px">Видео</div></div><div class="rail">${[0, 1, 2].map(() => '<div class="v"><div class="th"></div></div>').join('')}</div>`;
-const S = {
-  lessons: { art: 'book_stack.png', t: 'Уроки', s: 'Грамматика шаг за шагом', n: 'Урок 4', nn: '4/32' },
-  dialogues: { art: 'chat_bubbles.png', t: 'Диалоги', s: 'Реальные ситуации', n: '3 сцены', nn: '3' },
-  cards: { art: 'notecard_stack.png', t: 'Карточки', s: 'Слова, фразы и выражения', n: '12 к повтору', nn: '12' },
-};
-const im = (k) => `<img src="${img(S[k].art)}" alt="">`;
-const V = {
-  1: ['Сегментная панель', 'Одна стеклянная панель, разрезанная тонкими линиями на 3 (или 2) части. Читается как единый «пульт».', (ks) => `<div class="v1 g">${ks.map((k) => `<div>${im(k)}<div class="t15">${S[k].t}</div></div>`).join('')}</div>`],
-  2: ['Обложки', 'Арт крупно выходит за край плитки, название — внизу на затемнении. Как обложки альбомов.', (ks) => `<div class="v2">${ks.map((k) => `<div class="g">${im(k)}<div class="lb"><div class="t17">${S[k].t}</div></div></div>`).join('')}</div>`],
-  3: ['Список-меню', 'Одна карточка со строками, как группа в «Настройках» iOS. Самый компактный и спокойный.', (ks) => `<div class="v3 g">${ks.map((k) => `<div>${im(k)}<div class="grow"><div class="t15">${S[k].t}</div><div class="sub">${S[k].s}</div></div><span style="color:var(--muted)">${icon('fwd', 's16')}</span></div>`).join('')}</div>`],
-  4: ['Асимметрия', 'Главный раздел — большая плитка слева, два других — стопкой справа. При двух — две равные низкие.', (ks) => `<div class="v4${ks.length === 2 ? ' two' : ''}">${ks.map((k) => `<div class="g">${im(k)}<div><div class="t15">${S[k].t}</div>${ks.length === 3 && k === ks[0] ? `<div class="sub">${S[k].s}</div>` : ''}</div></div>`).join('')}</div>`],
-  5: ['Только знак и слово', 'Квадратные плитки: арт и название, без подписей. Максимально чисто, всё ниже 100 pt.', (ks) => `<div class="v5">${ks.map((k) => `<div class="g">${im(k)}<div class="t15">${S[k].t}</div></div>`).join('')}</div>`],
-  6: ['Карусель', 'Плитки шире, третья выглядывает справа — намёк, что можно листать. При двух — помещаются ровно.', (ks) => `<div class="v6${ks.length === 2 ? ' two' : ''}">${ks.map((k) => `<div class="g">${im(k)}<div class="mini">&nbsp;</div><div class="t17">${S[k].t}</div></div>`).join('')}</div>`],
-  7: ['С живым числом', 'На плитке — главное число раздела: номер урока, сцены, сколько карточек ждёт повтора. Плитка сразу говорит, что делать.', (ks) => `<div class="v7">${ks.map((k) => `<div class="g"><div class="top">${im(k)}<span class="num">${S[k].nn}</span></div><div class="t15">${S[k].t}</div><div class="sub">${S[k].n}</div></div>`).join('')}</div>`],
-  8: ['Полосы во всю ширину', 'Строки высотой 60 pt одна под другой, арт выглядывает справа за край. Удобно жать большим пальцем.', (ks) => `<div class="v8">${ks.map((k) => `<div class="g"><div><div class="t15">${S[k].t}</div><div class="sub">${S[k].s}</div></div>${im(k)}</div>`).join('')}</div>`],
-  9: ['Док', 'Как док на iPhone: стеклянная полка с иконками-разделами и подписями под ними.', (ks) => `<div class="v9 g">${ks.map((k) => `<div><div class="ic">${im(k)}</div><div class="mini" style="color:var(--text)">${S[k].t}</div></div>`).join('')}</div>`],
-  10: ['Главный + спутники', 'Самый важный раздел — крупно, остальные — две маленькие строки рядом. При двух — главный и одна строка.', (ks) => `<div class="v10${ks.length === 2 ? ' two' : ''}"><div class="hero g">${im(ks[0])}<div class="t17">${S[ks[0]].t}</div><div class="sub">${S[ks[0]].s}</div></div><div class="side">${ks.slice(1).map((k) => `<div>${im(k)}<div class="t15">${S[k].t}</div></div>`).join('')}</div></div>`],
-};
-const screen = (render, ks, withLearn) => phone(`${header}${withLearn ? cont : ''}<div class="slot">${render(ks)}</div>${rail}<div style="height:110px"></div>`, { time: '9:41', fixed: tabbar(withLearn) });
-document.getElementById('root').innerHTML = Object.entries(V).map(([n, [name, lead, render]]) =>
-  block(`v${n}`, `${n} · ${name}`, lead, [
-    col('Три раздела', screen(render, ['lessons', 'dialogues', 'cards'], true)),
-    col('Два раздела', screen(render, ['dialogues', 'cards'], false)),
-  ])).join('');
+const rail = `<div class="sec" style="margin-top:22px"><div class="ti" style="font-size:18px">Видео</div></div><div class="rail">${['Catch a flight', 'Small talk'].map((t) => `<div class="v"><div class="th"></div><div class="vt">${t}</div></div>`).join('')}</div>`;
+const today = (one) => `<div class="today g"><div style="font-size:18px;font-weight:700;padding:2px 2px 6px">Сегодня</div>${(one ? [['Тренировка карточек', 10], ['Посмотреть видео', 10]] : [['Один диалог', 15], ['Тренировка карточек', 10], ['Ступень Шпиля', 15]]).map(([t, c]) => `<div class="row"><span class="ck"></span><span style="font-size:15px;font-weight:600">${t}</span><span class="rw"><img src="${coin}" alt="">${c}</span></div>`).join('')}</div>`;
+const D = { art: img('chat_bubbles.png'), t: 'Диалоги', s: 'Реальные ситуации' };
+const C = { art: img('notecard_stack.png'), t: 'Карточки', s: 'Слова, фразы и выражения' };
+
+const V = [
+  ['Разворот', 'Одна стеклянная панель, разделённая швом. Предметы раздела стоят на её верхнем крае и выглядывают наружу — как вещи на столе. При одном разделе предмет крупнее и панель целиком его.',
+    (one) => one ? `<div class="c1 one g"><div class="h"><img src="${C.art}" alt=""><div class="kick">Сегодня</div><div class="t18">Карточки</div><div class="mut">12 фраз ждут повтора</div></div></div>`
+      : `<div class="c1 g"><div class="h"><img src="${D.art}" alt=""><div class="t16">${D.t}</div><div class="mut">${D.s}</div></div><div class="h"><img src="${C.art}" alt=""><div class="t16">${C.t}</div><div class="mut">12 к повтору</div></div></div>`],
+  ['Веер', 'Разделы лежат как две карты, брошенные на стол, под лёгким углом и внахлёст. При одном разделе — колода из трёх карт, верхняя ровная.',
+    (one) => one ? `<div class="c2 one"><div class="card g d1"></div><div class="card g d2"></div><div class="card g d3"><img src="${C.art}" alt=""><div class="t18">Карточки</div><div class="mut">12 фраз ждут повтора</div></div></div>`
+      : `<div class="c2"><div class="card g a"><img src="${D.art}" alt=""><div class="t16">${D.t}</div><div class="mut">${D.s}</div></div><div class="card g b"><img src="${C.art}" alt=""><div class="t16">${C.t}</div><div class="mut">12 к повтору</div></div></div>`],
+  ['Форма = предмет', '«Диалоги» — плитка в форме реплики с хвостиком, «Карточки» — стопка из трёх листов. Раздел узнаётся по силуэту ещё до чтения.',
+    (one) => one ? `<div class="c3 one"><div class="stk"><div class="p p1 g"></div><div class="p p2 g"></div><div class="p p3 g"><img src="${C.art}" alt=""><div class="t18">Карточки</div><div class="mut">12 фраз ждут повтора</div></div></div></div>`
+      : `<div class="c3"><div class="bub g"><img src="${D.art}" alt=""><div class="t16">${D.t}</div><div class="mut">${D.s}</div></div><div class="stk"><div class="p p1 g"></div><div class="p p2 g"></div><div class="p p3 g"><img src="${C.art}" alt=""><div class="t16">${C.t}</div><div class="mut">12 к повтору</div></div></div></div>`],
+  ['Полка', 'Без плиток вообще: предметы разделов стоят на стеклянной полке через весь экран, подпись — под полкой. Тап по предмету открывает раздел.',
+    (one) => one ? `<div class="c4 one"><div class="shelf"></div><div class="obj"><img src="${C.art}" alt=""><div class="lbl">Карточки · 12 к повтору</div></div></div>`
+      : `<div class="c4"><div class="shelf"></div><div class="obj"><img src="${D.art}" alt=""><div class="lbl">${D.t}</div></div><div class="obj"><img src="${C.art}" alt=""><div class="lbl">${C.t}</div></div></div>`],
+  ['Билеты', 'Каждый раздел — билет с вырезами и перфорацией, предмет на отрывном корешке. При одном — длинный билет во всю ширину.',
+    (one) => one ? `<div class="c5"><div class="tk g"><div class="m"><div class="kick">Сегодня</div><div class="t18">Карточки</div><div class="mut">12 фраз ждут повтора</div></div><div class="s"><img src="${C.art}" alt="" style="width:62px;height:62px"></div></div></div>`
+      : `<div class="c5"><div class="tk g"><div class="m"><div class="t16">${D.t}</div><div class="mut">3 сцены</div></div><div class="s"><img src="${D.art}" alt=""></div></div><div class="tk g"><div class="m"><div class="t16">${C.t}</div><div class="mut">12 к повтору</div></div><div class="s"><img src="${C.art}" alt=""></div></div></div>`],
+  ['Кусочек раздела', 'Внутри плитки — живой фрагмент: в «Диалогах» начало следующей сцены, в «Карточках» — фраза, которая ждёт повтора. Хочется нажать и продолжить.',
+    (one) => one ? `<div class="c6 one"><div class="pv g"><div class="kick">Карточки · 12 к повтору</div><div class="fc" style="height:64px;font-size:20px">Pitch in</div><span class="chip" style="align-self:flex-start">Повторить</span></div></div>`
+      : `<div class="c6"><div class="pv g"><div class="kick">Диалоги</div><div class="msg">¿Qué te pongo?</div><div class="msg me">Un café, por favor</div></div><div class="pv g"><div class="kick">Карточки</div><div class="fc">Pitch in</div><div class="mut">12 к повтору</div></div></div>`],
+  ['Переключатель', 'Сверху переключатель разделов, ниже — одна большая карточка выбранного раздела. При одном разделе переключателя нет, остаётся карточка.',
+    (one) => one ? `<div class="c7"><div class="body g"><img src="${C.art}" alt=""><div class="kick">Карточки</div><div class="t18">12 фраз ждут повтора</div><div class="mut">≈ 4 минуты</div></div></div>`
+      : `<div class="c7"><div class="seg"><div class="on"><img src="${D.art}" alt="">Диалоги</div><div><img src="${C.art}" alt="">Карточки</div></div><div class="body g"><img src="${D.art}" alt=""><div class="kick">Следующая сцена</div><div class="t18">В кафе</div><div class="mut">3 сцены открыто</div></div></div>`],
+  ['Большое число', 'Главное — не название, а что сделать сейчас: «3» сцены, «12» к повтору. Предмет уходит в угол и за край плитки.',
+    (one) => one ? `<div class="c8"><div class="n g" style="height:110px"><div class="kick">Карточки</div><div><div class="big">12</div><div class="mut">фраз ждут повтора</div></div><img src="${C.art}" alt="" style="width:120px;height:120px"></div></div>`
+      : `<div class="c8"><div class="n g"><div class="kick">Диалоги</div><div><div class="big">3</div><div class="mut">сцены открыто</div></div><img src="${D.art}" alt=""></div><div class="n g"><div class="kick">Карточки</div><div><div class="big">12</div><div class="mut">к повтору</div></div><img src="${C.art}" alt=""></div></div>`],
+  ['Одна карточка дня', 'Разделы не спорят за место: одна карточка «Сегодня занимаемся» с главным разделом сверху и быстрыми переходами в оба раздела снизу.',
+    (one) => one ? `<div class="c9 g"><div class="top"><img src="${C.art}" alt=""><div class="kick">Сегодня занимаемся</div><div class="t18" style="max-width:60%">Карточки</div><div class="mut">12 фраз ждут повтора</div></div><div class="acts"><div><span class="chip">Начать</span><span class="mut">≈ 4 минуты</span></div></div></div>`
+      : `<div class="c9 g"><div class="top"><img src="${D.art}" alt=""><div class="kick">Сегодня занимаемся</div><div class="t18" style="max-width:60%">Сцена «В кафе»</div><div class="mut">Диалоги · 3 сцены</div></div><div class="acts"><div><img src="${D.art}" alt=""><span class="t16">Диалоги</span></div><div><img src="${C.art}" alt=""><span class="t16">Карточки</span></div></div></div>`],
+  ['За край экрана', 'Плитки разной ширины, правая уходит за край экрана вместе с предметом — Главная ощущается шире телефона. При одном разделе плитка тянется за край целиком.',
+    (one) => one ? `<div class="c10 one"><div class="w g"><img src="${C.art}" alt=""><div class="kick">Сегодня</div><div class="t18">Карточки</div><div class="mut">12 фраз ждут повтора</div></div></div>`
+      : `<div class="c10"><div class="w g"><img src="${D.art}" alt="" style="right:6px"><div class="t16">${D.t}</div><div class="mut">${D.s}</div></div><div class="x g"><img src="${C.art}" alt=""><div class="t16">${C.t}</div><div class="mut">12 к повтору</div></div></div>`],
+];
+const screen = (render, one) => phone(`${header}<div class="slot">${render(one)}</div>${rail}${today(one)}<div style="height:110px"></div>`, { time: '9:41', fixed: tabbar(one) });
+document.getElementById('root').innerHTML = V.map(([name, lead, render], i) =>
+  block(`v${i + 1}`, `${i + 1} · ${name}`, lead, [col('Два раздела', screen(render, false)), col('Один раздел', screen(render, true))])).join('');
 </script>
 </body>
 </html>

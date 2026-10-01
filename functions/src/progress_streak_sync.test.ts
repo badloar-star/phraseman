@@ -61,6 +61,24 @@ describe('streak_sync: правдоподобная серия телефона'
     expect(applied.streakEvidence).toMatchObject({ accepted: false, reason: 'active_days_missing' });
   });
 
+  // зачем (координатор §60+): стор-сборка 1.6.24 шлёт серию с уроком БЕЗ списка дней —
+  // сервер обязан принимать как раньше, иначе у всех на текущей версии серия встанет.
+  it('старый клиент: урок без списка дней — серия принимается как раньше', () => {
+    const lesson = normalizeProgressEvent({
+      eventId: 'lesson:1:complete:old_client',
+      type: 'lesson_complete',
+      clientLocalDate: '2026-10-02',
+      payload: { lessonId: 1, score: 3, clientStreakCount: '6', clientLastActiveDate: '2026-10-01' },
+    });
+    const applied = applyProgressEvent(serverProgress, lesson, now, {
+      accountCreatedAtMs: Date.parse('2026-09-01T00:00:00Z'),
+    });
+    expect(applied.streakEvidence).toMatchObject({ accepted: true, reason: 'plausible' });
+    expect(applied.streakCount).toBe(7);
+    // created_at у аккаунта нет — потолка нет, как раньше
+    expect(applyProgressEvent(serverProgress, lesson, now, {}).streakCount).toBe(7);
+  });
+
   it('старые события без списка проверяются только возрастом аккаунта', () => {
     const decision = streakEvidencePlausibility({
       claimed: 6, clientLast: '2026-10-01', activeDays: null, requireActiveDays: false, accountCreatedAtMs: null,

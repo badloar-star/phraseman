@@ -21,6 +21,7 @@ import { DialogueV2BriefingScreen } from '../components/dialogs/DialogueV2Briefi
 import { DialogueGlassGate, useDialogueGlass } from '../components/dialogs/glass/DialogueGlassKit';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
+import { actionToastTri, emitAppEvent } from './events';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
 
@@ -106,6 +107,21 @@ function DialogueV2BriefingTransientScreen({
   );
 }
 
+// зачем (владелец: ни одной мёртвой кнопки): отказ старта диалога — понятное сообщение.
+function dialogueStartFailedToast() {
+  return actionToastTri('error', {
+    ru: 'Не получилось начать диалог. Попробуй ещё раз',
+    uk: 'Не вдалося почати діалог. Спробуй ще раз',
+    en: 'Could not start the dialogue. Please try again',
+    es: 'No se pudo iniciar el diálogo. Inténtalo de nuevo',
+    'pt-BR': 'Não foi possível iniciar o diálogo. Tente de novo',
+    vi: 'Không thể bắt đầu hội thoại. Hãy thử lại',
+    id: 'Gagal memulai dialog. Coba lagi',
+    tr: 'Diyalog başlatılamadı. Tekrar dene',
+    pl: 'Nie udało się rozpocząć dialogu. Spróbuj ponownie',
+  });
+}
+
 /**
  * ID-only V2 briefing route. It never serializes packet content through Expo
  * navigation and never redirects to a legacy session while a V2 session is absent.
@@ -123,7 +139,13 @@ export default function DialogueV2BriefingRoute() {
   // Plus не тратит (confirmSpendOne вернёт 'unlimited'). Латч — от двойного тапа.
   const { confirmSpendOne, acknowledgeSessionStart } = useEnergy();
   const [dialogueAttempt, setDialogueAttempt] = useState(0);
-  const energyIntent = useEnergySessionIntent('ai_dialog', `dialogue_v2:${scenarioId ?? 'none'}`, String(dialogueAttempt));
+  // зачем (баг 01.10, «Дизайн»: «Начать диалог» — мёртвая кнопка, operation_id_conflict):
+  // номер операции энергии = тип + попытка, БЕЗ сценария; попытка с 0 на каждом открытии
+  // брифинга давала один и тот же номер «energy:ai_dialog:0» для всех диалогов — второй
+  // диалог упирался в запись первого, а повтор того же диалога проходил бесплатно.
+  // Номер попытки = случайная метка открытия экрана + счётчик (новый после каждой попытки).
+  const [briefingNonce] = useState(() => `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 10)}`);
+  const energyIntent = useEnergySessionIntent('ai_dialog', `dialogue_v2:${scenarioId ?? 'none'}`, `${briefingNonce}_${dialogueAttempt}`);
   const startInFlightRef = useRef(false);
   const [noEnergy, setNoEnergy] = useState(false);
   // зачем (владелец 01.10: «диалоги открываются без загрузки»): первый кадр — из каталога в
@@ -199,7 +221,13 @@ export default function DialogueV2BriefingRoute() {
           try {
             const result = await confirmSpendOne(energyIntent);
             console.log('[DIALOGUE-V2] start energy', { scenarioId, result, operationId: energyIntent.operationId, attempt: dialogueAttempt }); // guard-ok: ранний выход старта логируется
-            if (result === 'cancelled') return;
+            if (result === 'cancelled') {
+              // зачем (владелец: ни одной мёртвой кнопки): отказ старта — понятная реакция и
+              // новый номер попытки, чтобы следующий тап не упёрся в ту же запись.
+              setDialogueAttempt((n) => n + 1);
+              emitAppEvent('action_toast', dialogueStartFailedToast());
+              return;
+            }
             if (result === 'insufficient') {
               setNoEnergy(true);
               return;
@@ -212,6 +240,8 @@ export default function DialogueV2BriefingRoute() {
             } as never);
           } catch (error: unknown) {
             console.warn('[DIALOGUE-V2] start energy failed', { scenarioId, message: error instanceof Error ? error.message : String(error) });
+            setDialogueAttempt((n) => n + 1);
+            emitAppEvent('action_toast', dialogueStartFailedToast());
           } finally {
             startInFlightRef.current = false;
           }

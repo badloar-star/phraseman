@@ -1,5 +1,5 @@
 import { useFocusEffect, useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState, useRef } from 'react';
 import { Text, View } from 'react-native';
 
 import {
@@ -160,13 +160,11 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
     router.push({ pathname: '/dialogue_v2_memory' } as never);
   }, [accessResolved, router]);
 
-  // зачем (надсмотрщик 30.09): «Повторить» на ошибке каталога — счётчик перезапускает загрузку.
-  // Двойной тап безопасен: на время загрузки карточки с кнопкой нет (state = loading).
+  // зачем (владелец 01.10: «ТАКОГО НИГДЕ НЕ ДОЛЖНО БЫТЬ» про «Диалоги не загрузились»): кнопки
+  // «Повторить» нет — если сеть ничего не дала, показываем то, что уже на телефоне, и сами
+  // тихо повторяем в фоне (до 3 раз, через 30 с). Пользователь ошибок не видит.
   const [reloadNonce, setReloadNonce] = useState(0);
-  const retryCatalogue = useCallback(() => {
-    console.warn('[DIALOGUE-V2] hub:catalogue → retry', { studyTarget, attempt: reloadNonce + 1 });
-    setReloadNonce((value) => value + 1);
-  }, [reloadNonce, studyTarget]);
+  const silentRetriesRef = useRef(0);
 
   useEffect(() => {
     if (!supportedTarget(studyTarget)) {
@@ -174,6 +172,7 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
       return undefined;
     }
     let active = true;
+    let retryTimer: ReturnType<typeof setTimeout> | null = null;
     // Смена языка: сразу лучшее локальное (кэш/встроенное), без промежуточного «Загрузка…».
     setState((previous) => {
       const local = initialCatalogueState(studyTarget);
@@ -184,10 +183,15 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
     void fetchReleasedDialogueV2Catalogue(studyTarget, { awaitRefresh: true }).then((envelope) => {
       if (!active) return;
       if (!envelope) {
-        console.warn('[DIALOGUE-V2] hub:catalogue → no envelope (embedded snapshot invalid)', { studyTarget });
-        setState({ kind: 'unavailable' });
+        // Остаёмся на локальном каталоге; повтор — тихо в фоне.
+        console.warn('[DIALOGUE-V2] hub:catalogue → no envelope, keep local + silent retry', { studyTarget, retry: silentRetriesRef.current });
+        if (silentRetriesRef.current < 3) {
+          silentRetriesRef.current += 1;
+          retryTimer = setTimeout(() => setReloadNonce((value) => value + 1), 30_000);
+        }
         return;
       }
+      silentRetriesRef.current = 0;
       // Тот же объект — не трогаем состояние (без лишнего ре-рендера и «прыжка»).
       setState((previous) => (previous.kind === 'available' && previous.envelope === envelope
         ? previous
@@ -198,6 +202,7 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
     });
     return () => {
       active = false;
+      if (retryTimer) clearTimeout(retryTimer);
     };
   }, [reloadNonce, studyTarget]);
 
@@ -242,17 +247,11 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
     />
   );
 
+  // зачем (владелец 01.10: «не должно быть состояния "диалоги загружаются"»): встроенный снимок
+  // есть всегда, сюда попадаем только при поломке сборки — без строки «загрузка», лог причины.
   if (state.kind === 'loading') {
-    return (
-      <>
-        {plusTools}
-        <View testID="dialogue-v2-catalogue-loading" style={{ marginTop: V2.gap }}>
-          <Text style={{ color: palette.textSecondary, ...V2_TYPE.body }} maxFontSizeMultiplier={1.2}>
-            {copy.loading}
-          </Text>
-        </View>
-      </>
-    );
+    console.warn('[DIALOGUE-V2] hub:render → no local catalogue (embedded missing)', { studyTarget });
+    return plusTools;
   }
 
   if (!supportedTarget(studyTarget) || (projection && projection.items.length === 0)) {
@@ -266,20 +265,10 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
   }
 
   if (!projection) {
-    if (typeof __DEV__ !== 'undefined' && __DEV__) console.warn('[DIALOGUE-V2] hub:render → catalogue unavailable', { studyTarget });
-    return (
-      <>
-        {plusTools}
-        <DialogueV2HubLanguageGate
-          testID="dialogue-v2-catalogue-unavailable"
-          icon="cloud-offline-outline"
-          title={hubCopy.loadErrorTitle}
-          text={hubCopy.loadErrorText}
-          ctaLabel={hubCopy.loadErrorRetry}
-          onPress={retryCatalogue}
-        />
-      </>
-    );
+    // зачем (владелец 01.10): никакой карточки ошибки. Проекция не прошла и встроенного нет —
+    // показываем остальное, сеть повторяется фоном (эффект выше). Лог причины остаётся.
+    console.warn('[DIALOGUE-V2] hub:render → no projection, background retry', { studyTarget });
+    return plusTools;
   }
 
   return (

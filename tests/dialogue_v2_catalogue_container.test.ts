@@ -199,24 +199,21 @@ describe('DialogueV2CatalogueContainer', () => {
     expect(mockSection).not.toHaveBeenCalled();
   });
 
-  it('shows a retryable load-error card only when even the embedded snapshot is unusable', async () => {
+  // зачем (владелец 01.10: «Диалоги не загрузились — ТАКОГО НИГДЕ НЕ ДОЛЖНО БЫТЬ»): ни карточки
+  // ошибки, ни кнопки «Повторить» — тихий повтор в фоне, пользователь ошибок не видит.
+  it('never shows an error card or a loading line, even when the network and projection fail', async () => {
     mockFetchCatalogue.mockResolvedValue(null);
     const screen = await render(h(DialogueV2CatalogueContainer, { onPressItem: jest.fn() }));
-
-    await expect(screen.findByText('Диалоги не загрузились')).resolves.toBeTruthy();
-    expect(mockSection).not.toHaveBeenCalled();
-    // зачем (30.09): «Повторить» заново запрашивает каталог, а не оставляет тупик.
-    const callsBeforeRetry = mockFetchCatalogue.mock.calls.length;
-    await act(async () => { screen.getByTestId('dialogue-v2-catalogue-unavailable').props.onPress(); });
-    expect(mockFetchCatalogue.mock.calls.length).toBe(callsBeforeRetry + 1);
-    await expect(screen.findByText('Диалоги не загрузились')).resolves.toBeTruthy();
+    expect(screen.queryByText('Диалоги не загрузились')).toBeNull();
+    expect(screen.queryByTestId('dialogue-v2-catalogue-unavailable')).toBeNull();
+    expect(screen.queryByTestId('dialogue-v2-catalogue-loading')).toBeNull();
 
     mockFetchCatalogue.mockResolvedValue(packetEnvelope);
     mockProjection.mockReturnValue(null);
     await screen.unmount();
-    const retry = await render(h(DialogueV2CatalogueContainer, { onPressItem: jest.fn() }));
-    await expect(retry.findByText('Диалоги не загрузились')).resolves.toBeTruthy();
-    expect(mockSection).not.toHaveBeenCalled();
+    const again = await render(h(DialogueV2CatalogueContainer, { onPressItem: jest.fn() }));
+    expect(again.queryByText('Диалоги не загрузились')).toBeNull();
+    expect(again.queryByTestId('dialogue-v2-catalogue-unavailable')).toBeNull();
   });
 
   it('shows the monthly remainder for Free and the Plus card when it is used up (A1/A5, D111)', async () => {

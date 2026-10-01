@@ -14,17 +14,12 @@ const DIRS = ['app', 'components', 'modules', 'hooks'];
 // файл → сколько вечных циклов в нём разрешено и почему
 const ALLOWED = {
   'app/(tabs)/friends.tsx': [1, 'скелетон поиска друга (загрузка)'],
-  'app/(tabs)/home.tsx': [2, 'Главная: вид не трогаем (владелец)'],
   'app/_layout.tsx': [1, 'заставка запуска (загрузка)'],
   'app/lesson1.tsx': [1, 'мигающий курсор ввода'],
   'app/voice_equalizer.tsx': [1, 'эквалайзер, пока идёт звук'],
   'components/AiTypingBubble.tsx': [2, 'собеседник печатает'],
-  'components/AppMessagesInbox.tsx': [1, 'значок непрочитанного в шапке Главной'],
   'components/CleanOnboarding.tsx': [2, 'онбординг не трогаем (владелец)'],
-  'components/EnergyIcon.tsx': [1, 'энергия на Главной'],
-  'components/QuestTaskCard.tsx': [1, 'плашка задания на Главной'],
   'components/ScreenGradient.tsx': [6, 'фон Главной, гейт фокуса и AppState'],
-  'components/StreakChainIcon.tsx': [1, 'огонь серии на Главной'],
   'components/dialogs/glass/DialogueGlassChat.tsx': [1, 'собеседник печатает'],
   'components/learning-v2-lab/ModeDemoPlayer.tsx': [1, 'лаборатория режимов (дев)'],
   'components/learning-v2/horizons/HorizonArtwork.tsx': [1, 'фон горизонтов, гейт фокуса и AppState'],
@@ -39,8 +34,6 @@ const ALLOWED = {
   'components/stats/AiBlockNote.tsx': [1, 'ИИ готовит разбор (загрузка)'],
   'modules/learning-v2/modes/scripted_repeat_compare_mode_v1.tsx': [1, 'идёт запись/звук'],
   'components/home/HomeSectionPulseButton.tsx': [1, 'Главная: вид не трогаем (владелец)'],
-  'components/NotificationCenterButton.tsx': [1, 'колокол в шапке Главной'],
-  'components/SurveyTaskCard.tsx': [1, 'плашка опроса на Главной'],
   'components/LearningV2MapNode.tsx': [1, 'хвост PM-032: ореол узла карты'],
   'components/ui/V2Backdrop.tsx': [1, 'фон Главной через ScreenGradient (вид не трогаем)'],
 };

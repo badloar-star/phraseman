@@ -280,7 +280,7 @@ function NotificationCenterButton({
       withTiming(2, { duration: 90, easing: Easing.inOut(Easing.cubic) }),
       withTiming(0, { duration: 110, easing: Easing.out(Easing.cubic) }),
       withTiming(0, { duration: 2400 }),
-    ), -1, false);
+    ), 3, false); /* зачем (владелец 01.10): анимации на Главной короткие — 3 раза и покой */
     return () => cancelAnimation(bellShakeDeg);
   }, [bellShakeDeg, combinedUnreadCount, reduceMotion]);
   const bellShakeStyle = useAnimatedStyle(() => ({ transform: [{ rotate: `${bellShakeDeg.value}deg` }] }));

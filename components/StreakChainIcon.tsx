@@ -64,7 +64,7 @@ function StreakChainIconBase({
           withTiming(BREATH_SCALE, { duration: BREATH_HALF_MS, easing: Easing.inOut(Easing.ease) }),
           withTiming(1, { duration: BREATH_HALF_MS, easing: Easing.inOut(Easing.ease) }),
         ),
-        -1,
+        3, /* зачем (владелец 01.10): анимации на Главной короткие — 3 раза и покой */
         false,
       );
     } else {

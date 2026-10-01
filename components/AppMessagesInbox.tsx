@@ -410,6 +410,7 @@ function AppMessagesInbox({
           Animated.timing(badgePulse, { toValue: 1.08, duration: 650, useNativeDriver: true }),
           Animated.timing(badgePulse, { toValue: 1, duration: 650, useNativeDriver: true }),
         ]),
+        { iterations: 3 }, /* зачем (владелец 01.10): анимации на Главной короткие — 3 раза и покой */
       );
       loop.start();
     };

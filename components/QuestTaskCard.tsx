@@ -68,6 +68,7 @@ function QuestTaskCard({ quest, onOpen }: QuestTaskCardProps) {
         Animated.timing(pulse, { toValue: 1, duration: ready ? 900 : 1600, easing: Easing.out(Easing.quad), useNativeDriver: true }),
         Animated.timing(pulse, { toValue: 0, duration: ready ? 900 : 1600, easing: Easing.in(Easing.quad), useNativeDriver: true }),
       ]),
+      { iterations: 3 }, /* зачем (владелец 01.10): анимации на Главной короткие — 3 раза и покой */
     );
     loop.start();
     return () => loop.stop();

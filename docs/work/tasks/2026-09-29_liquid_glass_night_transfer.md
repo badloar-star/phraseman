@@ -150,3 +150,136 @@ Governance-ID: TG-9D93C0474E08
 Governance-ID: TG-91C5233A500A
 
 Governance-ID: TG-D6423CBAEDEA
+
+Governance-ID: TG-441649D2D3A8
+
+Governance-ID: TG-441649D2D3A8
+
+Governance-ID: TG-441649D2D3A8
+
+Governance-ID: TG-52600C8FF291
+
+Governance-ID: TG-419C92ED5962
+
+Governance-ID: TG-419C92ED5962
+
+Governance-ID: TG-419C92ED5962
+
+Governance-ID: TG-419C92ED5962
+
+Governance-ID: TG-419C92ED5962
+
+Governance-ID: TG-419C92ED5962
+
+Governance-ID: TG-419C92ED5962
+
+Governance-ID: TG-B25C0524B362
+
+Governance-ID: TG-B25C0524B362
+
+Governance-ID: TG-55F7AE2C1F46
+
+Governance-ID: TG-B25C0524B362
+
+Governance-ID: TG-B25C0524B362
+
+Governance-ID: TG-AD5DF93014BB
+
+Governance-ID: TG-ECB47B12B46E
+
+Governance-ID: TG-07F6FC9A42A2
+- 30.09: эмулятор — неизвестная ссылка + «назад» = пустой экран; временная трассировка [DEFERRED-REDIRECT] в components/DeferredRedirect.tsx, диагноз по логам.
+
+Governance-ID: TG-33F29313E545
+- 30.09: тест звёзд меню урока; «Повторить» на хабе Диалогов; проход тем/экранов в эмуляторе.
+
+Governance-ID: TG-AAA8ACA01409
+- 30.09: красные home_counters_first_frame / approved_ux_context; профиль и длинные тексты; Шпиль без прод-данных; задачи v2-app.
+
+Governance-ID: TG-BBEF57DCC6AD
+- 01.10: PM-128 длинные строки на уровне кода (без эмулятора — он у AccountV2).
+
+Governance-ID: TG-D5AAF079D3AC
+- 01.10: эмулятор — PM-128 длинные строки, профиль, PM-033-A1 (TalkBack/крупный шрифт/анимации), safe area.
+
+Governance-ID: TG-6ECE387280F3
+- 01.10: PM-033-A1 по коду — бесконечные анимации без reduce motion.
+
+Governance-ID: TG-F7387C7AFC11
+- 01.10: PM-033-A1 — бесконечные анимации учитывают «Уменьшить движение» (скелетон, друзья, голо-карта, лента сообщений, итог урока, открытие набора, эквалайзер).
+
+Governance-ID: TG-BD17FC47F590
+- 01.10: после b95865d99 — эмулятор: длинные строки, профиль, TalkBack/крупный шрифт, safe area.
+
+Governance-ID: TG-6705057C5632
+- 01.10: Сообщество — параметр ?section=spire|friends|packs для пушей; бандлер фоном без панели (решение владельца).
+
+Governance-ID: TG-358C74A26DCF
+- 01.10 решения координатора: Q6 убрать FriendLevelUpModal; PM-044 шкала огня из ассета; PM-035/PM-139 done; задача на вырезание home_menu.
+
+Governance-ID: TG-13C7F35FE467
+- 01.10 Q9: YoutubeInlinePlayer без рун/буста за просмотр (D07, PM-080-A3), сторож импортов.
+
+- 01.10: StatsPremiumBlur — токены 2.0 вместо золота, без мелькания замка до accessResolved.
+- 2026-10-01T06:01:41Z Governance-ID: TG-PM032-1790834501 — PM-032 разовые реакции вместо вечных циклов (lesson_complete, pack_opening, CollectionListView, lesson_intro_screens, NewWordEncounterOverlay) + сторож allowlist
+
+Governance-ID: TG-FEA7004DAE87
+- 01.10 пачка координатора: хвост PM-032 (10 циклов -> 2-3 повтора, reduceMotion - нет), удаление 4 мёртвых файлов, далее E03/E04/E12/E13/E09/E16/E18/E19/E07/E11/E20 по макетам docs/design/v2-app. Главная/онбординг не трогаются. Откат: git revert. Проверка: motion_allowlist_contract + проверка типов по файлам.
+
+Governance-ID: TG-7DA5FD1A482A
+- 01.10: хвост PM-032 + удаление мёртвых анимационных компонентов; затем вход «Разбор» из «Мои ошибки» на /phrase_analytics_screen (решение владельца через Ядро). Откат: git revert.
+
+Governance-ID: TG-89A059BB454B
+- 01.10 уточнения координатора: Q11 вход в разбор — уже сделан (82836a31c, 38d7e0a94); Q9 плеер — сделан ранее этой сессией (импорты наград сняты). Дальше E03.
+
+Governance-ID: TG-61D85770A26B
+- 01.10 PM-030 по решению координатора: пуши — не больше одного эмодзи в начале строки; ✨ у живых текстов подарков убрать; иконки достижений — хвост в PROGRESS.md; PM-030 → review.
+
+Governance-ID: TG-61D85770A26B
+- 01.10 владелец: старый итог урока с руной — заменить на макет E (learn.html, общий экран завершения D36/D64.1, PM-137); ассет руны stars_10.webp -> монета coin_rank_00.webp во всех местах.
+
+Governance-ID: TG-57149E6B1E7D
+- 01.10 владелец: руны везде заменить на монеты (картинка и подписи в интерфейсе).
+
+Governance-ID: TG-478184BAF41E
+- 01.10 владелец: видимые тексты «руны» → «монеты» на 9 языках (183 строки, 21 файл), идентификаторы кода не трогаются.
+
+Governance-ID: TG-22E5B4DC94F3
+- 01.10 фикс регрессии: замена руны→монеты задела идентификаторы внутри ${} (DIALOG_EXTRA_REPLIES_PRICE_RUNES); итог урока → V2DoneScreen.
+
+Governance-ID: TG-D57CD27481A1
+- 01.10 аудит макетов: жёлтый из темы (gold/goldBg/textOnGold) → токены акцента; далее топ нарушителей из MOCKUP_GAP_AUDIT.md.
+
+Governance-ID: TG-61FAB88E1123
+- 01.10 итоги режимов по макету (глаголы, предлоги); затем «Сегодня»: переходы по типам заданий (по просьбе Ядра).
+
+Governance-ID: TG-EBB7CE1C2D70
+- 01.10 владелец: (1) анимация смены ранга и перехода на Pro не запускается — сперва логи [RANK-CEREMONY]; (2) смена темы не меняет Главную — Главная обязана следовать теме как все экраны.
+
+Governance-ID: TG-C4F8690B27E2
+- 01.10 владелец: все задачи сохранять — очередь docs/phraseman-2.0/OWNER_TASKS_QUEUE.md; тема Главной (v2StyleGlassVariant); видео без «Все видео».
+
+Governance-ID: TG-7E5948EC4F72
+- 01.10 тема Главной: palette 2.0 в «Спокойно» тёмном из токенов темы; проверка сценариев монет для Ядра.
+
+Governance-ID: TG-AF3C2DCB2AB9
+- 01.10 пачка координатора (слова владельца): нет экранов ошибок/загрузки/пустых; диалоги открываются мгновенно с первой репликой; «Сегодня» — переходы; макет «Из видео»; PM-184 визитка; список выключенного.
+
+Governance-ID: TG-E824FAE5DE13
+- 01.10 первая реплика диалога из packet.content.opening (контракт с Ядром), зачистка экранов ошибок/загрузки.
+
+Governance-ID: TG-22B1CD68DEDD
+- 01.10 владелец: значок энергии крупнее и без фона везде; убрать кнопку «Подарки» из статистики и все входы в «Подарки»; служебные строки Диалогов на языке интерфейса (ru/uk).
+
+Governance-ID: TG-204CF3F8E119
+- 01.10 «Сегодня»: переходы по типам заданий (TODAY_TASK_ROUTES), лог [TODAY-TASKS] route.
+
+Governance-ID: TG-D0B2E9D90FC3
+- 01.10 прогон «Сегодня»: cards ок; mistakes и spire_steps — тупики (передано Ядру).
+
+Governance-ID: TG-4729D5E30F54
+- 01.10 перепроверка «Сегодня» после фикса Ядра (тупики убраны).
+
+Governance-ID: TG-8F2C05E9000D
+Governance-ID: TG-F03D258E6B05
+— 01.10 «Дизайн»: экраны без «загружается/не загрузилось» (карточки, Диалоги, Главная, видео, диагностика), короткие анимации Главной (3 повтора и покой). Откат: git revert соответствующих коммитов.

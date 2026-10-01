@@ -54,7 +54,7 @@ function useSurveyCardPulse(enabled: boolean) {
         withTiming(PULSE_SCALE, { duration: PULSE_HALF_MS, easing: Easing.inOut(Easing.sin) }),
         withTiming(1, { duration: PULSE_HALF_MS, easing: Easing.inOut(Easing.sin) }),
       ),
-      -1,
+      3, /* зачем (владелец 01.10): анимации на Главной короткие — 3 раза и покой */
       false,
     );
     return () => cancelAnimation(scale);

@@ -64,7 +64,7 @@ function EnergyIcon({
       duration: 2600,
       easing: Easing.linear,
       useNativeDriver: true,
-    }));
+    }), { iterations: 3 }); /* зачем (владелец 01.10): анимации на Главной короткие — 3 раза и покой */
     sweepLoopRef.current = loop;
     loop.start();
     return () => {

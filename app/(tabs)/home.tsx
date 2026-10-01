@@ -1617,7 +1617,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const loop = Animated.loop(Animated.sequence([
             Animated.timing(statsHintPulseAnim, { toValue: 0.52, duration: 2200, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
             Animated.timing(statsHintPulseAnim, { toValue: 1, duration: 2200, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
-        ]));
+        ]), { iterations: 3 }); /* зачем (владелец 01.10): анимации на Главной короткие — 3 раза и покой */
         statsHintLoopRef.current = loop;
         loop.start();
     }, [homeMotionReduceMotion, statsHintPulseAnim]);
@@ -2056,7 +2056,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const loop = Animated.loop(Animated.sequence([
             Animated.timing(homeFeatureTipHintPulse, { toValue: 1, duration: 1250, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
             Animated.timing(homeFeatureTipHintPulse, { toValue: 0, duration: 1250, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-        ]));
+        ]), { iterations: 3 }); /* зачем (владелец 01.10): анимации на Главной короткие — 3 раза и покой */
         loop.start();
         return () => {
             loop.stop();

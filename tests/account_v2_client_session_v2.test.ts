@@ -290,6 +290,58 @@ describe('account v2 client session v2', () => {
     expect(h.adapter!.openCalls).toEqual([]);
   });
 
+  test('corrupt latch denies ONCE, then the record is reset and V2 works again', async () => {
+    const secure = secureStore();
+    secure.map.set(ACCOUNTS_V2_DETACH_LATCH_KEY, '{broken');
+    const h = build({ secure });
+    await h.controller.setAuthUid(A);
+    await settle();
+    expect(h.adapter!.openCalls).toEqual([]);
+    expect(secure.map.has(ACCOUNTS_V2_DETACH_LATCH_KEY)).toBe(false);
+    // Следующий вход (тот же или другой uid, в т.ч. после переустановки) — работает.
+    await h.controller.setAuthUid(A);
+    await settle();
+    expect(h.adapter!.openCalls).toEqual([`account:${A}`]);
+    expect(h.controller.status().uid).toBe(A);
+  });
+
+  test('uids latched while storage was missing: wiring storage later erases nothing, clears, opens', async () => {
+    const secure = secureStore();
+    const before = build({ adapter: null, secure });
+    await expect(before.controller.beginDeletionDetach(A)).resolves.toBeNull();
+    expect(secure.map.get(ACCOUNTS_V2_DETACH_LATCH_KEY)).toContain(A);
+    const adapter = new MemoryScopeStorageAdapter();
+    const after = build({ adapter, secure });
+    after.state.authUid = B;
+    await after.controller.setAuthUid(B);
+    await settle();
+    expect(adapter.eraseCalls).toEqual([`account:${A}`]);
+    expect(secure.map.has(ACCOUNTS_V2_DETACH_LATCH_KEY)).toBe(false);
+    expect(after.controller.status().uid).toBe(B);
+    const lines = warn.mock.calls.map((args) => args.join(' '));
+    expect(lines.some((line) => line.includes('erase resume_failed'))).toBe(false);
+  });
+
+  test('a transient uid mismatch does not stick: the same uid again resumes sending', async () => {
+    const adapter = new MemoryScopeStorageAdapter();
+    await seed(adapter, A, ['op-1']);
+    const h = build({ adapter });
+    h.ports.currentAuthUid
+      .mockImplementationOnce(() => A)
+      .mockImplementationOnce(() => A)
+      .mockImplementationOnce(() => B)
+      .mockImplementation(() => A);
+    await h.controller.setAuthUid(A);
+    await settle();
+    expect(h.ports.callSync).not.toHaveBeenCalled();
+    expect(h.controller.status().sending).toBe(false);
+    await h.controller.setAuthUid(A);
+    await settle();
+    expect(h.ports.callSync).toHaveBeenCalledTimes(1);
+    expect(h.keys(A).some((key) => key.startsWith(`${PREFIX}pending:`))).toBe(false);
+    expect(h.keys(A).some((key) => key.startsWith(`${PREFIX}quarantine:`))).toBe(false);
+  });
+
   test('deletion without an open scope still persists the latch and erases', async () => {
     const adapter = new MemoryScopeStorageAdapter();
     await seed(adapter, A, ['op-1']);

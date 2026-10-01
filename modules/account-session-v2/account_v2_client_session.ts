@@ -182,6 +182,12 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
       target.sending = false;
       return false;
     }
+    if (result.state.phase.tag === 'stopped') {
+      // зачем: остановленный раннер больше ничего не отправит — без этого проход крутил бы пустые круги.
+      console.warn(`${LOG} drain runner_stopped`);
+      target.sending = false;
+      return false;
+    }
     const transport = result.transport;
     if (transport?.action === 'reauth') {
       // зачем: uid Firebase не совпал с владельцем области — ждём setAuthUid.
@@ -299,7 +305,13 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
     if (serverDisabled) { console.log(`${LOG} lifecycle skip reason=server_disabled`); return; }
     if (detachedInProcess.has(uid)) { console.warn(`${LOG} lifecycle skip reason=detached_in_process`); return; }
     const latch = await ports.latch.read();
-    if (!latch.ok) { console.warn(`${LOG} lifecycle skip reason=latch_unreadable code=${latch.code}`); return; }
+    if (!latch.ok) {
+      // зачем (ревью 6B, P2): отказ — только в этот раз. Битая запись в Keychain
+      // переживает переустановку и иначе выключала бы V2 навсегда для всех аккаунтов.
+      console.warn(`${LOG} lifecycle skip reason=latch_unreadable code=${latch.code}`);
+      if (latch.code === 'latch_corrupt') await ports.latch.reset();
+      return;
+    }
     const st = getStore();
     if (st === null) { console.warn(`${LOG} lifecycle skip reason=storage_unavailable`); return; }
     if (!eraseResumed) {
@@ -375,7 +387,13 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
   return Object.freeze({
     setAuthUid: (uid: string | null) => serial(async () => {
       // зачем: тот же uid и флаг включён — ничего не делаем; флаг выключили живьём — стоп.
-      if (session !== null && session.uid === uid && ports.isEnabled()) return;
+      if (session !== null && session.uid === uid && ports.isEnabled()) {
+        // зачем (ревью 6B, P3): отправка могла встать (мгновенное расхождение uid →
+        // reauth, fail-closed раннера). Повтор того же uid перезапускает сессию
+        // свежим раннером; «сервер выключен» — до следующего запуска, не трогаем.
+        if (session.sending || serverDisabled) return;
+        console.log(`${LOG} lifecycle resume_after_stop generation=${session.fence.generation}`);
+      }
       await stopCurrent(uid === null ? 'sign_out' : 'account_switch');
       if (uid === null) { console.log(`${LOG} lifecycle idle reason=no_uid`); return; }
       await start(uid);

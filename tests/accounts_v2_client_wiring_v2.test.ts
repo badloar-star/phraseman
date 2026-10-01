@@ -103,6 +103,8 @@ describe('accounts v2 client wiring v2', () => {
     expect(credential).not.toBeNull();
     expect(credentialModule.isStrongAccountsV2Capability(credential!.capability)).toBe(true);
     expect(secure.get(credentialModule.ACCOUNTS_V2_DELETION_CREDENTIAL_KEY)).toContain(credential!.capability);
+    // Повтор после перезапуска читает тот же ключ.
+    await expect(runtime.readStoredAccountsV2DeletionCredential()).resolves.toEqual(credential);
     for (let index = 0; index < 20; index += 1) await new Promise((resolve) => setImmediate(resolve));
     // Нативного хранилища областей ещё нет — защёлка остаётся до стирания (будущий запуск).
     expect(secure.get('accounts_v2_detach_latch_v1')).toContain('uid-a');
@@ -127,6 +129,26 @@ describe('accounts v2 client wiring v2', () => {
     expect(body).toContain('...accountsV2EnqueueArgs,');
   });
 
+  test('retry after restart resends the stored V2 key; fast phase waits at most 250 ms', () => {
+    const source = read('app/auth_provider.ts');
+    const retry = functionBody(source, 'async function ensureAccountDeleteCredentialSafe(');
+    const readKey = retry.indexOf('readStoredAccountsV2DeletionCredentialIfEnabled()');
+    const send = retry.indexOf('startCloudDeletionEnqueue(lock.stableId, proof, ...retryAccountsV2Args)');
+    expect(readKey).toBeGreaterThan(0);
+    expect(send).toBeGreaterThan(readKey);
+    expect(source).toContain('const ACCOUNTS_V2_KEY_FAST_WAIT_MS = 250;');
+    const prepare = functionBody(source, 'async function prepareAccountDeletion(');
+    expect(prepare).toContain('withLocalStepDeadline(() => accountsV2DeletionPending, null, ACCOUNTS_V2_KEY_FAST_WAIT_MS)');
+  });
+
+  test('flag OFF: the restart retry does not load the V2 client either', () => {
+    const factory = jest.fn(() => ({ readStoredAccountsV2DeletionCredential: jest.fn() }));
+    jest.doMock('../modules/account-session-v2/accounts_v2_client_runtime', factory);
+    const gate = require('../app/accounts_v2_client_flag') as typeof import('../app/accounts_v2_client_flag');
+    expect(gate.readStoredAccountsV2DeletionCredentialIfEnabled()).toBeNull();
+    expect(factory).not.toHaveBeenCalled();
+  });
+
   test('enqueue request carries accountsV2Deletion only when a V2 key exists', () => {
     const body = functionBody(read('app/cloud_sync.ts'), 'export function startCloudDeletionEnqueue(');
     expect(body).toContain('accountsV2Deletion: { operationId: accountsV2Deletion.operationId, capability: accountsV2Deletion.capability }');
@@ -139,6 +161,12 @@ describe('accounts v2 client wiring v2', () => {
     expect(at).toBeGreaterThan(0);
     const effect = layout.slice(layout.lastIndexOf('useEffect(() => {', at), at);
     expect(effect).toContain('if (!ready || !firstContentReady)');
+    // Поздний «Пульт» и живое выключение доходят до клиента; foreground снимает залипшую паузу.
+    expect(layout.slice(at, at + 600)).toContain(
+      '}, [accountsV2ClientFlag, appIsActive, firstContentReady, ready, spireAuthenticatedUid]);',
+    );
+    expect(layout).toContain("onAppEvent('remote_config_changed', () => setAccountsV2ClientFlag(isAccountsV2ClientEnabled()))");
+    expect(layout).toContain('useState(false);');
     // Тяжёлый клиент не импортируется статически ни одним файлом приложения.
     for (const file of ['app/_layout.tsx', 'app/auth_provider.ts', 'app/cloud_sync.ts', 'app/accounts_v2_client_flag.ts']) {
       expect(read(file)).not.toMatch(/^import[^;]*accounts_v2_client_runtime/m);

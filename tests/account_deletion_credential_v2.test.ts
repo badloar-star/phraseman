@@ -141,6 +141,15 @@ describe('account detach latch v2', () => {
     await expect(latch.read()).resolves.toEqual({ ok: true, uids: ['uid-a'] });
   });
 
+  test('reset removes a corrupt record so the latch reads empty again', async () => {
+    const store = secureStore();
+    store.map.set(ACCOUNTS_V2_DETACH_LATCH_KEY, '{"v":2}');
+    const latch = createAccountDetachLatch(store);
+    await expect(latch.read()).resolves.toEqual({ ok: false, code: 'latch_corrupt' });
+    await expect(latch.reset()).resolves.toBe(true);
+    await expect(latch.read()).resolves.toEqual({ ok: true, uids: [] });
+  });
+
   test('write failure reports false', async () => {
     const store = secureStore();
     store.failWrites = true;

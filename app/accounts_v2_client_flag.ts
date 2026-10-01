@@ -64,5 +64,19 @@ export function beginAccountsV2DeletionIfEnabled(
   return client.beginAccountsV2Deletion(uid, isAccountsV2ClientEnabled);
 }
 
+/**
+ * Повтор постановки удаления после перезапуска: сохранённый ключ V2 (если есть).
+ * null — флаг выключен (повтор идёт ровно как раньше, без поля V2).
+ */
+export function readStoredAccountsV2DeletionCredentialIfEnabled():
+  Promise<Readonly<{ operationId: string; capability: string }> | null> | null {
+  const client = loadAccountsV2ClientIfEnabled();
+  if (client === null) {
+    if (__DEV__) console.log('[ACCOUNT-V2] delete_retry skip reason=flag_off');
+    return null;
+  }
+  return client.readStoredAccountsV2DeletionCredential();
+}
+
 /* expo-router route shim */
 export default function __RouteShim() { return null; }

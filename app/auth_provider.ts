@@ -55,7 +55,10 @@ import {
   type AccountDeleteCredentialProof,
 } from './cloud_sync';
 import type { AccountDeleteEnqueueOperation } from './account_delete_enqueue';
-import { beginAccountsV2DeletionIfEnabled } from './accounts_v2_client_flag';
+import {
+  beginAccountsV2DeletionIfEnabled,
+  readStoredAccountsV2DeletionCredentialIfEnabled,
+} from './accounts_v2_client_flag';
 import {
   ACCOUNT_DELETE_PENDING_AUTH_TTL_MS,
   ACCOUNT_DELETE_PENDING_AUTH_KEY,
@@ -875,8 +878,16 @@ async function ensureAccountDeleteCredentialSafe(
 ): Promise<boolean> {
   const proof = accountDeleteCredentialProof(lock);
   if (!proof) return false;
+  // зачем (Account V2, ревью 6B, P3): повтор после перезапуска шлёт сохранённый
+  // ключ V2, иначе телефон терял право узнать этап и дотолкнуть стирание V2.
+  // Флаг выключен → null: вызов прежний, ровно два аргумента. Фон, не UI.
+  const storedAccountsV2Key = readStoredAccountsV2DeletionCredentialIfEnabled();
+  const retryAccountsV2Deletion = storedAccountsV2Key
+    ? await withLocalStepDeadline(() => storedAccountsV2Key, null)
+    : null;
+  const retryAccountsV2Args: [] | [AccountDeleteCredentialProof] = retryAccountsV2Deletion ? [retryAccountsV2Deletion] : [];
   try {
-    const op = startCloudDeletionEnqueue(lock.stableId, proof);
+    const op = startCloudDeletionEnqueue(lock.stableId, proof, ...retryAccountsV2Args);
     const ack = await op.acknowledgment;
     if (ack.authReleased === true && ack.credentialSafe === true) return true;
   } catch (e) {
@@ -3463,6 +3474,8 @@ type PreparedAccountDeletion = {
  * Ни одна локальная запись не имеет права держать пользователя дольше секунды.
  */
 const ACCOUNT_DELETE_LOCAL_STEP_TIMEOUT_MS = 1_000;
+/** Account V2: сколько быстрая фаза удаления ждёт уже начатый ключ V2 (см. prepareAccountDeletion). */
+const ACCOUNTS_V2_KEY_FAST_WAIT_MS = 250;
 // The complete wipe is a sequence of several individually bounded native
 // operations (writer drains, SecureStore lineage rotation, module cleanup,
 // AsyncStorage clear and strict readback). Giving their entire chain the same
@@ -3548,11 +3561,17 @@ async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | 'loca
   emitAppEvent('account_deleted');
   // зачем (Пакет 6B): ключ V2 ушёл бы без SecureStore-копии бесполезным — ждём его
   // не дольше локального шага; нет ключа — шлём без поля, сервер сотрёт V2 и так.
+  // зачем (ревью 6B, P3): ключ начали готовить ДО стирания (оно и так длиннее),
+  // поэтому здесь он обычно уже готов; ждём не дольше ACCOUNTS_V2_KEY_FAST_WAIT_MS,
+  // чтобы быстрая фаза (её ждёт UI) не росла на секунду. Не успел — запрос уходит
+  // без ключа: сервер всё равно сотрёт V2 (6A), теряется лишь право узнать этап;
+  // повтор после перезапуска (ensureAccountDeleteCredentialSafe) шлёт ключ с диска.
+  const accountsV2WaitStartedAt = Date.now();
   const accountsV2Deletion = accountsV2DeletionPending
-    ? await withLocalStepDeadline(() => accountsV2DeletionPending, null)
+    ? await withLocalStepDeadline(() => accountsV2DeletionPending, null, ACCOUNTS_V2_KEY_FAST_WAIT_MS)
     : null;
   if (accountsV2DeletionPending && !accountsV2Deletion) {
-    console.warn('[ACCOUNT-V2] delete enqueue_without_v2_key');
+    console.warn(`[ACCOUNT-V2] delete enqueue_without_v2_key waitedMs=${Date.now() - accountsV2WaitStartedAt}`);
   }
   // Без ключа V2 вызов прежний — ровно два аргумента.
   const accountsV2EnqueueArgs: [] | [AccountDeleteCredentialProof] = accountsV2Deletion ? [accountsV2Deletion] : [];

@@ -155,7 +155,7 @@ import {
   subscribeFirebaseAuthUid,
 } from './auth_provider';
 import { startRemoteAccountDeletionMonitor } from './remote_account_deletion_monitor';
-import { syncAccountsV2ClientAuth } from './accounts_v2_client_flag';
+import { isAccountsV2ClientEnabled, syncAccountsV2ClientAuth } from './accounts_v2_client_flag';
 import { getCanonicalUserId } from './user_id_policy';
 import { dismissReleaseNotesModalPermanently, shouldOfferReleaseNotesModal } from './release_notes_modal';
 import {
@@ -904,6 +904,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const [accountGeneration, setAccountGeneration] = useState(() => captureAccountGeneration());
   const [appIsActive, setAppIsActive] = useState(AppState.currentState === 'active');
   const [spireAuthenticatedUid, setSpireAuthenticatedUid] = useState<string | null>(null);
+  // Account V2 (ревью 6B): значение клиентского флага; false до первого эффекта — ничего на первом кадре.
+  const [accountsV2ClientFlag, setAccountsV2ClientFlag] = useState(false);
   const [notifNudgeVisible, setNotifNudgeVisible] = useState(false);
   const [startupAuthRecoveryVisible, setStartupAuthRecoveryVisible] = useState(false);
   const startupAuthRecoveryOfferedRef = useRef(false);
@@ -1092,7 +1094,18 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       return;
     }
     syncAccountsV2ClientAuth(spireAuthenticatedUid);
-  }, [firstContentReady, ready, spireAuthenticatedUid]);
+    // зачем (ревью 6B, P3): флаг и возврат на передний план — в зависимостях:
+    // поздний «Пульт» включает клиент, живое выключение его останавливает, а
+    // возврат в приложение снимает залипшую паузу отправки (тот же uid → resume).
+  }, [accountsV2ClientFlag, appIsActive, firstContentReady, ready, spireAuthenticatedUid]);
+
+  useEffect(() => {
+    // зачем (ревью 6B, P3): флаг читается из памяти ПОСЛЕ первого кадра и
+    // перечитывается только по событию применения remote_config — без опроса.
+    setAccountsV2ClientFlag(isAccountsV2ClientEnabled());
+    const sub = onAppEvent('remote_config_changed', () => setAccountsV2ClientFlag(isAccountsV2ClientEnabled()));
+    return () => sub.remove();
+  }, []);
 
   useEffect(() => {
     const readiness = {

@@ -32,6 +32,12 @@ export type AccountDetachLatch = Readonly<{
   mark(uid: string): Promise<boolean>;
   /** Снять защёлку (только после подтверждённого стирания). */
   clear(uid: string): Promise<boolean>;
+  /**
+   * Стереть испорченную запись целиком. зачем (ревью 6B, P2): Keychain iOS
+   * переживает переустановку — битая запись иначе навсегда выключала бы V2 на
+   * устройстве для всех будущих аккаунтов. Отказ один раз, затем сброс.
+   */
+  reset(): Promise<boolean>;
 }>;
 
 function kindOf(value: unknown): string {
@@ -90,8 +96,20 @@ export function createAccountDetachLatch(store: AccountsV2SecureStorePort): Acco
     }
   };
 
+  const reset = (): Promise<boolean> => serial(async () => {
+    try {
+      await store.deleteItemAsync(ACCOUNTS_V2_DETACH_LATCH_KEY);
+      console.warn(`${LOG} latch reset_after_corrupt`);
+      return true;
+    } catch (error) {
+      console.warn(`${LOG} latch reset_failed kind=${kindOf(error)}`);
+      return false;
+    }
+  });
+
   return Object.freeze({
     read,
+    reset,
     mark: (uid: string) => serial(async () => {
       if (!validUid(uid)) {
         console.warn(`${LOG} latch mark_rejected code=invalid_uid`);

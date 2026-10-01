@@ -3,6 +3,7 @@ import { ACCOUNTS_V2_SYNC_CALLABLE } from './account_sync_callable_transport';
 import {
   createAccountsV2DeletionCredential,
   persistAccountsV2DeletionCredential,
+  readAccountsV2DeletionCredential,
   type AccountsV2DeletionCredential,
   type AccountsV2SecureStorePort,
 } from './account_deletion_credential';
@@ -113,6 +114,24 @@ export function syncAccountsV2ClientAuthUid(uid: string | null, isEnabled: () =>
   getController(isEnabled).setAuthUid(uid).catch((error: unknown) => {
     console.warn(`${LOG} runtime set_auth_failed kind=${kindOf(error)}`);
   });
+}
+
+/**
+ * Ключ удаления V2 из SecureStore — для повтора постановки после перезапуска.
+ * зачем (ревью 6B, P3): иначе повтор уходил без accountsV2Deletion и телефон
+ * терял право узнать этап и дотолкнуть стирание. Никогда не отклоняется.
+ */
+export async function readStoredAccountsV2DeletionCredential(): Promise<AccountsV2DeletionCredential | null> {
+  const store = secureStore();
+  if (store === null) return null;
+  try {
+    const credential = await readAccountsV2DeletionCredential(store);
+    console.log(`${LOG} delete stored_credential found=${credential !== null}`);
+    return credential;
+  } catch (error) {
+    console.warn(`${LOG} delete stored_credential_failed kind=${kindOf(error)}`);
+    return null;
+  }
 }
 
 async function createPersistedCredential(): Promise<AccountsV2DeletionCredential | null> {

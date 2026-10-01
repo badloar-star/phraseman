@@ -284,6 +284,14 @@ const SUBCOLLECTION_RULES: readonly InventoryRule[] = [
   // (keep_in_place, не переносятся и не удаляются), уроки/карточки/наборы переносятся как обычно.
   rule('s.personal_sync', 'subcollection', { exact: ['personal_sync_segments'] }, 'keep_in_place', 'kept_in_v2_store', ['OD26'],
     'Решение владельца OD26: журналы телефона остаются в хранилище 2.0, перенос не блокируют.'),
+  // зачем (Q37, PM-111): избранное видео — личные данные ученика, не журнал и не домен переноса 2.0;
+  // остаётся на месте (рекомендация ядра), удаляется вместе с аккаунтом рекурсивно.
+  rule('s.video_favorites', 'subcollection', { exact: ['video_favorites'] }, 'keep_in_place', 'kept_in_v2_store', [],
+    'PM-111: личное избранное видео остаётся в хранилище 2.0, перенос не блокирует.'),
+  // зачем (PM-164): окно тишины «Привета» пишет только сервер (rules: read/write false) — служебная
+  // запись как friend_activity_like_daily_limits: переносить нечего, на перенос не влияет.
+  rule('s.friend_hello_cooldowns', 'subcollection', { exact: ['friend_hello_cooldowns'] }, 'info', 'no_v2_domain', [],
+    'Служебное окно тишины «Привета», только сервер.'),
   rule('s.social', 'subcollection', {
     exact: ['notifications', 'idea_inbox', 'friends', 'friend_requests', 'friend_requests_sent', 'idea_likes_sent',
       'activity_like_stats', 'activity_likes_received', 'friend_activity_like_daily_limits', 'friend_activity_likes_sent', 'community_seller_inbox'],

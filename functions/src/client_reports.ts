@@ -84,6 +84,19 @@ function enumText<T extends string>(value: unknown, allowed: readonly T[], fallb
   return allowed.includes(out) ? out : fallback;
 }
 
+// зачем (Q40): язык жалобы на набор — это язык обучения набора; прежний enum ['en','fr'] писал жалобы на
+// es/de/it наборы как английские. Серверный двойник app/learning_language_contour.ts (functions не импортирует
+// app/*); совпадение держит тест client_reports.test.ts. Неизвестный язык — фолбэк 'en' с логом, не отказ:
+// жалобу на контент терять нельзя.
+export const REPORT_STUDY_TARGETS = ['en', 'es', 'fr', 'de', 'it'] as const;
+
+function reportStudyTarget(value: unknown): (typeof REPORT_STUDY_TARGETS)[number] {
+  const raw = text(value, 80);
+  if ((REPORT_STUDY_TARGETS as readonly string[]).includes(raw)) return raw as (typeof REPORT_STUDY_TARGETS)[number];
+  console.warn('[CLIENT-REPORTS] community_pack_report: unknown studyTarget, fallback en', { received: raw || null });
+  return 'en';
+}
+
 function numeric(value: unknown, fallback = 0): number {
   const n = Number(value);
   return Number.isFinite(n) ? n : fallback;
@@ -305,7 +318,7 @@ function buildReportDoc(
       packId,
       packTitle: text(payload.packTitle, 220),
       authorStableId: nullableText(payload.authorStableId, 180),
-      studyTarget: enumText(payload.studyTarget, ['en', 'fr'] as const, 'en'),
+      studyTarget: reportStudyTarget(payload.studyTarget),
       reason: enumText(
         payload.reason,
         ['offensive', 'sexual', 'spam', 'copyright', 'wrong_translation', 'other'] as const,

@@ -1029,6 +1029,43 @@ async function deleteCollectionGroupMatches(
     await deleteQuery(q, ctx, stats);
   }
   await deleteCrossUserDocumentIdMatches(db, stableUid, authUid, ctx, stats, peerUids);
+  await deleteFriendHelloCooldownsAboutUser(db, stableUid, ctx, stats, peerUids);
+}
+
+/**
+ * зачем (PM-164, Q37): окно тишины «Привета» лежит у ОТПРАВИТЕЛЯ users/{sender}/friend_hello_cooldowns/{targetStableId}
+ * без поля targetUid — у удаляемого получателя в чужих деревьях остаются записи с его id как docId.
+ * Собственные подколлекции (friend_hello_cooldowns, video_favorites) сносит рекурсивное удаление users/{uid}.
+ * Отдельная функция, а не спека в COLLECTION_GROUP_DOCUMENT_ID_SPECS: тот путь закреплён тестом на число документов.
+ * Тот же обход peer-uid (узкий) / полный перебор (аварийный fallback), что у друзей; один getAll на отправителя.
+ */
+export const FRIEND_HELLO_COOLDOWN_GROUP = 'friend_hello_cooldowns';
+
+export async function deleteFriendHelloCooldownsAboutUser(
+  db: admin.firestore.Firestore,
+  stableUid: string,
+  ctx: DeleteContext,
+  stats: DeleteStats,
+  peerUids?: string[] | null,
+): Promise<void> {
+  const targetId = cleanId(stableUid);
+  if (!targetId) {
+    console.warn('[ACCOUNT-DELETE] friend_hello_cooldowns: empty stableUid, skip');
+    return;
+  }
+  const userRefs = peerUids
+    ? peerUids.map((uid) => db.collection('users').doc(uid))
+    : await db.collection('users').listDocuments();
+  console.log('[ACCOUNT-DELETE] friend_hello_cooldowns: scanning senders', { senders: userRefs.length, narrow: Boolean(peerUids) });
+  const concurrency = 20;
+  for (let offset = 0; offset < userRefs.length; offset += concurrency) {
+    await Promise.all(userRefs.slice(offset, offset + concurrency).map(async (userRef) => {
+      stats.queriesRun += 1;
+      const snapshot = await userRef.collection(FRIEND_HELLO_COOLDOWN_GROUP).doc(targetId).get();
+      if (snapshot.exists) await deleteDocTree(ctx, snapshot.ref);
+    }));
+    if (typeof ctx.writer.flush === 'function') await ctx.writer.flush();
+  }
 }
 
 /**

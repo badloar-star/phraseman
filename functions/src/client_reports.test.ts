@@ -642,6 +642,33 @@ describe('submitClientReport', () => {
     expect(report).not.toHaveProperty('commentText');
   });
 
+  // Q40: язык жалобы на набор — любой язык обучения проекта, не только en/fr.
+  test.each(['en', 'es', 'fr', 'de', 'it'])('keeps studyTarget %s of a reported pack', async (studyTarget) => {
+    await callSubmitClientReport({
+      kind: 'community_pack_report',
+      payload: { packId: `pack-lang-${studyTarget}`, packTitle: 'T', reason: 'spam', studyTarget },
+    });
+    expect(reportDocs('community_pack_reports').find((r) => r.packId === `pack-lang-${studyTarget}`)).toMatchObject({ studyTarget });
+  });
+
+  test('falls back to en for an unknown studyTarget', async () => {
+    await callSubmitClientReport({
+      kind: 'community_pack_report',
+      payload: { packId: 'pack-lang-xx', packTitle: 'T', reason: 'spam', studyTarget: 'klingon' },
+    });
+    expect(reportDocs('community_pack_reports').find((r) => r.packId === 'pack-lang-xx')).toMatchObject({ studyTarget: 'en' });
+  });
+
+  test('server language list mirrors app/learning_language_contour.ts', () => {
+    const fs = require('fs') as typeof import('fs');
+    const path = require('path') as typeof import('path');
+    const src = fs.readFileSync(path.resolve(__dirname, '../../app/learning_language_contour.ts'), 'utf8');
+    const match = /LEARNING_LANGUAGE_TARGETS = \[([^\]]+)\]/.exec(src);
+    const client = (match?.[1] ?? '').split(',').map((x) => x.trim().replace(/['"]/g, '')).filter(Boolean);
+    const { REPORT_STUDY_TARGETS } = require('./client_reports');
+    expect([...REPORT_STUDY_TARGETS]).toEqual(client);
+  });
+
   // PM-108-A2: повторная жалоба того же человека на тот же набор/отклик —
   // один документ, окно лимита не тратится; другой отклик — отдельная жалоба.
   test('deduplicates repeated reports of the same pack or comment by the same reporter', async () => {

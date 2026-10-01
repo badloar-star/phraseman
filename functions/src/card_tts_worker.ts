@@ -16,6 +16,7 @@ import { onDocumentWritten } from 'firebase-functions/v2/firestore';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { isPaidAiFetchAbort, paidAiFetchFailureReason } from './paid_ai_fetch_timeout';
+import { aiGloballyDisabled } from './remote_gates';
 import {
   CARD_TTS_CONCURRENCY,
   CARD_TTS_DAILY_CHAR_CAP,
@@ -360,6 +361,16 @@ export async function runCardTtsJob(packId: string, deps: CardTtsWorkerDeps): Pr
   }));
 
   if (missing.length > 0) {
+    // зачем (PM-224): глобальный рубильник ИИ «Пульта» (remote_config/app.bools.ai_global_disable)
+    // останавливал диалоги и объяснения, но не озвучку карточек — платный TTS шёл мимо него.
+    // Проверяем только когда реально есть что синтезировать: повторное использование клипов бесплатно.
+    // Набор не теряется: статус deferred_budget, вернуть в очередь — adminCardTtsRequeuePack.
+    if (await aiGloballyDisabled(deps.db)) {
+      console.warn('[CARD-TTS] run:deferred ai_globally_disabled', JSON.stringify({ packId, chars, toSynthesize: missing.length }));
+      const result = { status: 'deferred_budget', reason: 'ai_globally_disabled', characters: chars } as const;
+      await finishJob(deps, packId, claimedAt, result);
+      return result;
+    }
     let budget: { ok: boolean; used: number };
     try {
       budget = await reserveDailyChars(deps, chars);

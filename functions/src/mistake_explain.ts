@@ -11,6 +11,7 @@ import {
   type FreeJobGenReservation,
 } from './explain/explain_budget';
 import { resolveConfiguredDialogModel } from './openai_dialog_model_config';
+import { aiGloballyDisabled } from './remote_gates';
 import { PAID_AI_FETCH_TIMEOUT_MS, paidAiFetchFailureReason } from './paid_ai_fetch_timeout';
 import { resolvePromptLangKey, PROMPT_LANGUAGES } from './explain/explain_prompts';
 import {
@@ -826,6 +827,14 @@ export const explainMistake = onCall({
   const cached = await readCachedMistakeExplanation(mistakeHash);
   const cachedModel = text(cached?.model, 100) || MODEL_DEFAULT;
   const resolveProvider = async (): Promise<{ apiKey: string; model: string }> => {
+    // зачем (PM-224): глобальный рубильник ИИ «Пульта» останавливал диалоги и объяснения фраз,
+    // но не разбор ошибок. Проверка ТОЛЬКО на промахе кэша (здесь, перед платным вызовом):
+    // кэш бесплатен и отдаётся даже при выключенном ИИ. Бросаем внутри try вызывающего —
+    // pending-замок снимается штатно, дневной кап ещё не списан.
+    if (await aiGloballyDisabled(db)) {
+      console.warn('[PM-224] explainMistake blocked', JSON.stringify({ reason: 'ai_globally_disabled', variant: payload.variant }));
+      throw new HttpsError('failed-precondition', 'ai_globally_disabled');
+    }
     const apiKey = text(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY, 300);
     if (!apiKey) throw new HttpsError('failed-precondition', 'openai_key_missing');
     const model = await resolveConfiguredDialogModel(

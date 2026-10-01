@@ -301,6 +301,20 @@ describe('explainMistake PM-231 limits', () => {
     expect(global.fetch).toHaveBeenCalledTimes(4);
   });
 
+  // PM-224: глобальный рубильник ИИ «Пульта» останавливает платный разбор, но не кэш.
+  it('global AI kill switch blocks a fresh paid breakdown but still serves the warm cache', async () => {
+    await expect(callExplain(validPayload)).resolves.toMatchObject({ ok: true, fromCache: false });
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+    docs.set('remote_config/app', { bools: { ai_global_disable: true } });
+
+    await expect(callExplain(validPayload, 'auth-2')).resolves.toMatchObject({ ok: true, fromCache: true });
+    await expect(callExplain({ ...validPayload, userAnswer: 'I has q' })).rejects.toMatchObject({
+      code: 'failed-precondition',
+      message: 'ai_globally_disabled',
+    });
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+  });
+
   it('passes a per-attempt fetch timeout and maps a timeout to a retryable error with the credit refunded', async () => {
     const failing = jest.fn(async (_url: string, init: { signal?: AbortSignal }) => {
       expect(init.signal).toBeInstanceOf(AbortSignal);

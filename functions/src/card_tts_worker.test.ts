@@ -150,6 +150,27 @@ describe('card_tts_worker (D128)', () => {
     expect(calls).toHaveLength(0);
   });
 
+  // PM-224: глобальный рубильник ИИ «Пульта» останавливает платный TTS до вызова OpenAI.
+  it('defers without paying when the global AI kill switch is on', async () => {
+    const { store, calls, deps } = setup(published([{ id: 'a', en: 'Hola' }]));
+    store.set('remote_config/app', { bools: { ai_global_disable: true } });
+    await enqueueCardTtsJob(deps.db, 'p1', 'moderation_approve');
+    const result = await runCardTtsJob('p1', deps);
+    expect(result).toMatchObject({ status: 'deferred_budget', reason: 'ai_globally_disabled' });
+    expect(calls).toHaveLength(0);
+    expect(store.has('card_tts_daily_budget/2026-09-30')).toBe(false);
+  });
+
+  it('kill switch does not block free reuse of already voiced clips', async () => {
+    const already = cardTtsObjectPath('es', cardTtsKey('es', 'Hola'));
+    const { store, calls, deps } = setup(published([{ id: 'a', en: 'Hola' }]), [already]);
+    store.set('remote_config/app', { bools: { ai_global_disable: true } });
+    await enqueueCardTtsJob(deps.db, 'p1', 'moderation_approve');
+    const result = await runCardTtsJob('p1', deps);
+    expect(result).toMatchObject({ status: 'done', reused: 1, synthesized: 0 });
+    expect(calls).toHaveLength(0);
+  });
+
   it('caps runs per pack per day', async () => {
     const { store, deps } = setup(published([{ id: 'a', en: 'Hola' }]));
     await enqueueCardTtsJob(deps.db, 'p1', 'moderation_approve');

@@ -90,6 +90,13 @@ export interface LocalizedSource {
   readonly ru: string;
   readonly uk: string;
   readonly es: string;
+  /**
+   * зачем (решение координатора 2026-10-01): английский интерфейс — штатная
+   * локаль, и авторы пишут `en`, но тип его не знал, а expandLocalized подменял
+   * английский текст маркером «не переведено». Теперь настоящий английский
+   * проходит как есть; без `en` маркер остаётся — гейт перевода не ослаблен.
+   */
+  readonly en?: string;
   readonly 'pt-BR'?: string;
   readonly vi?: string;
   readonly id?: string;
@@ -108,6 +115,7 @@ export function expandLocalized(
     ru: source.ru,
     uk: source.uk,
     es: source.es,
+    en: source.en,
     'pt-BR': source['pt-BR'],
     vi: source.vi,
     id: source.id,
@@ -146,6 +154,8 @@ export interface LocalizedIntroRunsSource {
   readonly ru: readonly LearningV2IntroTextRunV1[];
   readonly uk: readonly LearningV2IntroTextRunV1[];
   readonly es: readonly LearningV2IntroTextRunV1[];
+  /** См. LocalizedSource.en. */
+  readonly en?: readonly LearningV2IntroTextRunV1[];
   readonly 'pt-BR'?: readonly LearningV2IntroTextRunV1[];
   readonly vi?: readonly LearningV2IntroTextRunV1[];
   readonly id?: readonly LearningV2IntroTextRunV1[];
@@ -239,6 +249,7 @@ function expandLocalizedIntroRuns(
     ru: source.ru,
     uk: source.uk,
     es: source.es,
+    en: source.en,
     'pt-BR': source['pt-BR'],
     vi: source.vi,
     id: source.id,

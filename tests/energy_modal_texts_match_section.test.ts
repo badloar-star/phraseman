@@ -29,6 +29,7 @@ const ALL_ACTIVITIES: EnergyActivityKey[] = [
   'diagnostic_test',
   'level_exam',
   'arena_match',
+  'spire_step',
   'theory',
   'reading',
   'video',

@@ -54,6 +54,7 @@ describe('numeric energy contract', () => {
     ['diagnostic_test', 1],
     ['level_exam', 1],
     ['arena_match', 1],
+    ['spire_step', 1],
     ['theory', 0],
     ['reading', 0],
     ['video', 0],

@@ -86,6 +86,9 @@ export type EnergyActivityKey =
   | 'diagnostic_test'
   | 'level_exam'
   | 'arena_match'
+  // зачем (PM-274, TOWER T3): ступень Шпиля — своё занятие в общем каталоге
+  // цен 2.0, а не молчаливый откат в 'classic_lesson' по умолчанию.
+  | 'spire_step'
   | 'theory'
   | 'reading'
   | 'video';
@@ -117,6 +120,7 @@ const ENERGY_ACTIVITY_PRICES: Readonly<Record<EnergyActivityKey, EnergyActivityC
   diagnostic_test: ENERGY_SESSION_COST,
   level_exam: ENERGY_SESSION_COST,
   arena_match: ENERGY_SESSION_COST,
+  spire_step: ENERGY_SESSION_COST,
   theory: 0,
   reading: 0,
   video: 0,
@@ -185,6 +189,7 @@ export function energyActivityForSessionKind(kindInput: string): EnergyActivityK
   if (kind === 'theory') return 'theory';
   if (kind === 'reading') return 'reading';
   if (kind === 'video') return 'video';
+  if (kind === 'spire_step') return 'spire_step';
   return 'classic_lesson';
 }
 

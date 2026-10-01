@@ -82,6 +82,12 @@ export function energyActivityTitle(activity: EnergyActivityKey, lang: Lang): st
         ru: 'матча', uk: 'матчу', en: 'a match', es: 'un combate', 'pt-BR': 'uma partida',
         vi: 'một trận đấu', id: 'sebuah pertandingan', tr: 'bir maç', pl: 'meczu',
       });
+    case 'spire_step':
+      return triLang(lang, {
+        ru: 'ступени Шпиля', uk: 'сходинки Шпиля', en: 'a Spire step', es: 'un escalón de la Aguja',
+        'pt-BR': 'um degrau da Torre', vi: 'một bậc Tháp', id: 'satu anak tangga Menara',
+        tr: 'bir Kule basamağı', pl: 'stopnia Iglicy',
+      });
     case 'theory':
       return triLang(lang, {
         ru: 'теории', uk: 'теорії', en: 'the theory', es: 'la teoría', 'pt-BR': 'a teoria',

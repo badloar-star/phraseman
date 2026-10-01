@@ -59,7 +59,7 @@ export function availableTodayTaskKinds(
 
 /**
  * Закреплённые типы дня.
- * зачем (D138, владелец 01.10): вход в «Мои ошибки» на Главной — только строкой
+ * зачем (D144, владелец 01.10): вход в «Мои ошибки» на Главной — только строкой
  * «Сегодня». Если раздел открыт и ошибок на задание хватает — строка есть всегда.
  */
 export function pinnedTodayTaskKinds(available: readonly TodayTaskKindCore[]): TodayTaskKindCore[] {

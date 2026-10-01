@@ -297,7 +297,7 @@ export function refreshTodayTasks(
         await persist(day);
         publish(day);
       }
-      // D138: закреплённые типы (готовые «Мои ошибки») обязаны быть в дне.
+      // D144: закреплённые типы (готовые «Мои ошибки») обязаны быть в дне.
       const pinnedNow = pinnedKinds.filter((kind) => normalized.includes(kind));
       const pin = ensurePinnedTodayTasks(day, pinnedNow);
       if (pin.pinned.length > 0) {

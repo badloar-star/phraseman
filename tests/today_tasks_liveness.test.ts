@@ -35,7 +35,7 @@ describe('today tasks liveness', () => {
     expect(state).toBe(started);
   });
 
-  // D138: «Мои ошибки» на Главной — только строкой «Сегодня»; при готовых ошибках строка есть всегда.
+  // D144: «Мои ошибки» на Главной — только строкой «Сегодня»; при готовых ошибках строка есть всегда.
   it('закреплённый тип вытесняет последнее нетронутое задание и встаёт в порядок пула', () => {
     const day = dayWith(['lesson', 'dialog', 'cards']);
     const { state, pinned } = ensurePinnedTodayTasks(day, ['mistakes']);

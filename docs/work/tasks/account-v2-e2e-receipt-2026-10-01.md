@@ -235,3 +235,38 @@ Firebase Emulator Suite заново (functions собраны, `accountsV2Migra
 свободны), свой бандлер остановлен, `adb reverse --remove-all`. Данные app.phraseman восстановлены из снимка до прогона
 (108 681 728 байт; после распаковки files/databases/shared_prefs/no_backup ≈ 107 МБ), приложение остановлено.
 Код приложения не изменён (диагностическая правка откачена, diff пуст). Очередь эмулятора не отдана — отдаёт координатор.
+
+### Второй заход (после 8A–8F, блокер 1 снят пакетом 8D), 2026-10-02 ~00:00–00:12
+
+Та же схема (Pixel_8, свой бандлер с `EXPO_PUBLIC_FIREBASE_EMULATOR_HOST`, Firebase Emulator Suite, сидер; uid-хэши
+a=05df4d016d, b=037eec26ce, c=8c4fa23d9d). Старая синхронизация в эмуляторе теперь пишет (`authEnsureStableLink` 200,
+`users/stable-e2e-a.last_active_at` растёт). Таймбокс урезан координатором до ~30 мин и прерван паузой.
+
+| Сц. | Итог | Факт |
+|---|---|---|
+| A. первый вход, V2 вкл (повтор) | **PASS** (с оговоркой сида) | `hydrate migrate status=done ops=6 round=1 ms=246` — HOLD больше нет (8A). 1-й проход снова `saved_cards persist_failed count=3` → `apply_failed StaleHydration` (dev-вход срабатывает дважды: `signed_in label=a` ×2); следующий старт: `cards_added=3 srs_written=1` → `legacy_marker_set` → `outcome=hydrated`; сразу после — `producer … planned=0` (лишней отправки после гидрации больше нет, 8B). |
+| C. выключатель 7A вкл | **PASS** | `legacy_write_decision skip=true reason=v2_owns_domains flag=true client=true platformSupported=true hydrated=true scopeOpen=true` + `legacy_skip … phase=write`: saved_cards keys=3, custom_cards 2, community_library 2, swipe_memory 1. Не-V2 ключи пишутся (`progress` 703 ключа, `last_active_at`). До метки: `legacy_restore_decision skip=false reason=not_hydrated` (старый restore работает). Удаление a1: `journal record` → `producer planned=1` → `transport call_ok ops=1`; V2 `en:saved:a1 {deleted:true}`; старое облако `flashcards_v1` = `[a1,a2,a3]` (не тронуто). |
+| I/T6. откат 7B (вкл → правка → выкл) | **FAIL (дефект)** | После выключения (`legacy=false`, перезапуск) решений нет (так и задумано), старая синхронизация пишет (`last_active_at` обновился, ключей 709), НО `progress.flashcards_v1` в старом облаке остался `[a1,a2,a3]`, на телефоне `[a2,a3]`. По фактам: снимок последней синхронизации `cloud_last_sync_snapshot_v1` уже содержит `flashcards_v1` = `[a2,…]` — синхронизация считает облако совпадающим, полный снимок карточек НЕ уходит. Следствие: удалённая при включённом выключателе карточка воскреснет из старого облака при любом старом restore (новая установка без метки, iOS, откат). Нужны логи в `doSyncToCloud` (diff по V2-ключам до/после выключения) и правка: при `skip` не класть V2-ключи в снимок или сбрасывать их из снимка при выключении. |
+| D. выход → вход | NOT_RUN | пауза координатора |
+| E. смена a→b→c | NOT_RUN | — |
+| F. выключатель выкл | частично | при `false` решений и `legacy_skip` нет, запись по-старому (см. I), но карточки не дописываются из-за дефекта I |
+| H. удалённая после pm clear | NOT_RUN | (риск подтверждён косвенно: старое облако после I несёт a1) |
+
+**Новые находки:**
+1. 🔴 **`progressMigrateSnapshot` стирает старый `progress`.** На первом сиде (без `progress_migrations/client_snapshot_v1`)
+   вход на чистой установке вызвал `progressMigrateSnapshot` с пустым снимком телефона → `tx.set(userRef, { progress: patch }, { merge: true })`
+   с пустым `patch` заменил карту `progress` на `{}` (+`progressServerAuthoritative`) ДО `accountsV2MigrateMine` → перенос
+   `done ops=0 legacyFound=true`, метка гидрации поставлена, карточки потеряны и в старом облаке, и в V2. Касается
+   аккаунтов без `client_snapshot_v1`. Во втором прогоне сид получил `client_snapshot_v1` → перенос `ops=6`. Нужна
+   проверка на проде (сколько `users` без `progress_migrations`) и запрет замены карты пустым снимком.
+2. 🔴 Откат 7B не возвращает полный снимок карточек в старое облако (сценарий I).
+3. 🟡 Приватность: `[V2-PAGE] deeplink:url_event` / `deeplink:push` пишут в лог полный URL диплинка с параметрами
+   (в тесте — тестовый пароль dev-входа). Любой диплинк с токеном/кодом попадёт в логи — маскировать query.
+4. 🟡 `persist_failed`/`StaleHydration` воспроизводится стабильно при двойном срабатывании входа; самоизлечение на
+   следующем старте; логов ранних выходов `persistFlashcards` по-прежнему нет.
+
+**Уборка второго захода:** флаги эмулятора Firestore выключены (`accounts_v2_client_enabled=false`,
+`accounts_v2_legacy_sync_disabled=false`, `syncEnabled=false`); приложение остановлено, данные восстановлены из снимка
+до захода (108 530 688 байт); `adb reverse --remove-all`; свой бандлер, Firebase Emulator Suite и logcat остановлены
+(деревья процессов сняты, порты свободны). Временный `functions/.env.<demo>` не создавался (запуск с
+`--project phraseman-ea0b3`, `.env.phraseman-ea0b3` уже был). Очередь эмулятора не отдана.

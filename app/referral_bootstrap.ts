@@ -7,7 +7,6 @@ import {
   getReferralCallableErrorCode,
   isReferralCloudEnabled,
 } from './referral_cloud';
-import { loadShardsFromCloud } from './shards_system';
 import { getCanonicalUserId } from './user_id_policy';
 import { DebugLogger, swallowError } from './debug-logger';
 
@@ -144,7 +143,7 @@ async function applyReferralCodeNow(
     if (!res?.ok) return 'error';
     await AsyncStorage.setItem(appliedStorageKey(stableId), code);
     logEvent('referral_applied', { already: res.already ? 1 : 0 });
-    await loadShardsFromCloud().catch(swallowError('referral_bootstrap:applyReferralCodeNow'));
+    // зачем (§57 координатора): подтяжка жемчуга после рефералки снята — жемчуг удалён (D70/D103).
     // Авто-дружба: отправляем запрос пригласившему, чтобы он сразу появился в друзьях.
     // Best-effort и только при первом apply (не already), чтобы не слать повторно.
     if (!res.already && res.referrerStableId) {

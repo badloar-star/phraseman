@@ -3179,11 +3179,7 @@ function LessonScreen() {
           void import('./cloud_sync')
             .then((m) => m.syncToCloud({ forceNow: true }))
             .catch(() => {});
-          void import('./shards_system')
-            .then((m) => {
-              setTimeout(() => m.loadShardsFromCloud().catch(() => {}), 2000);
-            })
-            .catch(() => {});
+          // зачем (§57 координатора): подтяжка жемчуга через 2 с после урока 1 снята — жемчуг удалён (D70/D103).
         }
 
         const analyticsAttempt = lessonAnalyticsAttemptRef.current!;

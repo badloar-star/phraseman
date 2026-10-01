@@ -13,7 +13,6 @@ import { publishYoutubePosition, registerYoutubeSeekHandler, takePendingYoutubeS
 import { createYoutubeSeekController } from '../../app/youtube_seek_controller';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
-import { useVideoWatchEnergyBoost } from '../../hooks/use_video_watch_energy_boost';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { FlowText } from '../text-integrity';
@@ -80,23 +79,9 @@ export default function YoutubeInlinePlayer({
   const [playerKey, setPlayerKey] = useState(0);
   const webViewRef = useRef<WebView>(null);
   const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
-  // зачем (PM-116): бейджи-обещания «энергия быстрее»/«руны за просмотр» убраны
-  // из плеера — начисление (логика) остаётся не тронутым, это PM-115. Хук
-  // по-прежнему нужен ради setPlaying/reportPlaybackSample — моста плеер→счётчик.
-  const { setPlaying, reportPlaybackSample } = useVideoWatchEnergyBoost(videoId);
-
-  // Родитель снимает active (ушли с экрана, свернули приложение, закрыли
-  // карточку) — WebView размонтируется и сообщения от него больше не придут.
-  // Гасим отсчёт сами, иначе последний отрезок остался бы «играющим».
-  useEffect(() => {
-    if (!active) setPlaying(false);
-  }, [active, setPlaying]);
-  // Смена ролика или перезапуск после ошибки — тоже пауза до нового плея.
-  useEffect(() => {
-    setPlaying(false);
-  }, [playerKey, setPlaying, videoId]);
-  // Размонтирование плеера закрывает отсчёт при любом пути ухода.
-  useEffect(() => () => setPlaying(false), [setPlaying]);
+  // зачем (Q9, координатор 01.10; D07, PM-080-A3): видео не даёт ни монет, ни рун, ни
+  // ускорения энергии. Отсчёт просмотра под награду (use_video_watch_energy_boost) снят
+  // целиком; мост плеер→экран остаётся только ради подсветки фразы и перемотки.
 
   // зачем (владелец 2026-09-25): тап по фразе под плеером перематывает ролик.
   // Контроллер держит очередь до «плеер готов»; обработчик на шине живёт, пока
@@ -158,12 +143,10 @@ export default function YoutubeInlinePlayer({
     </View>
   ), [chrome.accent]);
   const handleLoadStart = useCallback(() => setPlayerError(false), []);
-  // зачем (владелец 2026-09-02): ускорение энергии обязано прекращаться при
-  // любой поломке плеера — иначе «сломанное видео» продолжало бы копить время.
   const handlePlayerError = useCallback(() => {
+    console.warn('[VIDEO-PLAYER] player error', JSON.stringify({ videoId }));
     setPlayerError(true);
-    setPlaying(false);
-  }, [setPlaying]);
+  }, [videoId]);
 
   // Мост из embed-HTML: единственный источник правды о том, играет ли видео.
   const handlePlayerMessage = useCallback((event: WebViewMessageEvent) => {
@@ -185,23 +168,18 @@ export default function YoutubeInlinePlayer({
       if (parsed.type !== 'playback') return;
       const positionMs = Number(parsed.positionMs);
       if (!Number.isFinite(positionMs) || positionMs < 0) {
-        setPlaying(false);
+        if (__DEV__) console.log(`[VIDEO-PLAYER] bridge: invalid position=${String(parsed.positionMs)}`);
         return;
       }
       // Позиция для подсветки текущей фразы: канал уже шлёт пробы раз в секунду
       // и только пока видео играет — отдельного опроса не заводим.
       publishYoutubePosition(videoId, positionMs / 1000);
-      reportPlaybackSample({
-        sourceId: videoId,
-        playing: parsed.playing === true,
-        positionMs,
-      });
     } catch {
-      // Не JSON — это не наш мост (YouTube шлёт и свои сообщения). Пишем
-      // причину: без неё поломка моста однажды тихо остановит начисление.
-      if (__DEV__) console.log(`[VIDEO-ENERGY] bridge: unparsable message=${raw.slice(0, 64)}`);
+      // Не JSON — это не наш мост (YouTube шлёт и свои сообщения). Пишем причину:
+      // без неё поломка моста однажды тихо остановит подсветку фраз.
+      if (__DEV__) console.log(`[VIDEO-PLAYER] bridge: unparsable message=${raw.slice(0, 64)}`);
     }
-  }, [reportPlaybackSample, seekController, setPlaying, videoId]);
+  }, [seekController, videoId]);
 
   if (!active) return null;
 
@@ -243,9 +221,6 @@ export default function YoutubeInlinePlayer({
           </TouchableOpacity>
         </View>
       )}
-      {/* зачем (PM-116): значки «энергия быстрее»/«руны за просмотр» убраны —
-          владелец просил убрать тексты-обещания наград за просмотр видео.
-          Начисление энергии/рун (use_video_watch_energy_boost) не тронуто. */}
       {presentation === 'preview' ? (
         <View pointerEvents="box-none" style={styles.previewActions}>
           {onClose ? (

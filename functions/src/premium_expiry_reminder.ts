@@ -67,6 +67,8 @@ export interface ExpiryReminderUser {
   pushTokenTimezone?: string | null;
   progress: ProgressLike;
   lastExpiryReminderAt?: number | null; // users/{uid}.lastPremiumExpiryReminderAt (ms)
+  /** users/{uid}.pushPrefs.offers — клиент пишет `master && categories.offers`. */
+  offersPushEnabled?: boolean | null;
 }
 
 export interface ExpiryReminderCandidate {
@@ -77,6 +79,22 @@ export interface ExpiryReminderCandidate {
   subscriptionPlan?: 'plus' | 'max';
   /** До какого срока продлён доступ (ms) — для stamping (не слать повторно про тот же). */
   expiryMs: number;
+}
+
+function readOffersPushPref(raw: unknown): boolean | null {
+  if (!raw || typeof raw !== 'object') return null;
+  const offers = (raw as Record<string, unknown>).offers;
+  return typeof offers === 'boolean' ? offers : null;
+}
+
+/**
+ * зачем: PM-200 — напоминание о продлении Plus по смыслу «подписка/предложение»,
+ * поэтому подчиняется тумблеру «Скидки и предложения» (pushPrefs.offers), как и
+ * локальные upsell/intro-пуши. Семантика та же, что у re_engage: только явный
+ * `false` выключает; нет поля = старый клиент = слать.
+ */
+export function isExpiryReminderOptedOut(u: ExpiryReminderUser): boolean {
+  return u.offersPushEnabled === false;
 }
 
 /** Достаёт нужные поля из сырого Firestore-документа users/{uid}. */
@@ -91,6 +109,7 @@ export function parseExpiryReminderUser(
     pushTokenTimezone: typeof data?.pushTokenTimezone === 'string' ? data.pushTokenTimezone : null,
     progress: (data?.progress ?? {}) as Record<string, unknown>,
     lastExpiryReminderAt: num(data?.lastPremiumExpiryReminderAt),
+    offersPushEnabled: readOffersPushPref(data?.pushPrefs),
   };
 }
 
@@ -147,6 +166,7 @@ export function classifyExpiryReminder(
   now: number,
 ): ExpiryReminderCandidate | null {
   if (!isValidExpoPushToken(u.expoPushToken)) return null;
+  if (isExpiryReminderOptedOut(u)) return null;
   // Тихие часы 22:00–09:00 по локальному времени пользователя — не будим ночью.
   if (isInQuietHours(now, u.pushTokenTimezone)) return null;
 
@@ -256,6 +276,8 @@ export interface ExpiryReminderSummary {
   candidates: number;
   sent: number;
   failed: number;
+  /** Сколько отсеяно по pushPrefs.offers === false (PM-200). */
+  optedOut: number;
 }
 
 /**
@@ -281,6 +303,7 @@ export async function runPremiumExpiryReminder(
   const STAMP_BATCH = 400;
 
   let scanned = 0;
+  let optedOut = 0;
   const allCandidates: ExpiryReminderCandidate[] = [];
   let lastDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
 
@@ -299,13 +322,18 @@ export async function runPremiumExpiryReminder(
       parseExpiryReminderUser(d.id, d.data() as Record<string, unknown>),
     );
     scanned += pageUsers.length;
+    optedOut += pageUsers.filter(isExpiryReminderOptedOut).length;
     allCandidates.push(...selectExpiryReminderCandidates(pageUsers, now));
 
     if (snap.size < PAGE_SIZE) break;
   }
 
+  if (optedOut > 0) {
+    // Только счётчик — без uid/токенов: это не PII и не шумит по строке на человека.
+    console.log('[PUSH-PREFS] premium_expiry_reminder skip: offers opt-out', { optedOut, scanned });
+  }
   if (allCandidates.length === 0) {
-    return { scanned, candidates: 0, sent: 0, failed: 0 };
+    return { scanned, candidates: 0, sent: 0, failed: 0, optedOut };
   }
 
   // 2) Отправка (общий хелпер сам чанкует по 100 и собирает сводку).
@@ -338,5 +366,6 @@ export async function runPremiumExpiryReminder(
     candidates: allCandidates.length,
     sent: sendSummary.sentCount,
     failed: sendSummary.failedCount,
+    optedOut,
   };
 }

@@ -3,6 +3,7 @@ import {
   classifyExpiryReminder,
   selectExpiryReminderCandidates,
   buildExpiryReminderMessage,
+  parseExpiryReminderUser,
   REMINDER_COOLDOWN_DAYS,
   type ExpiryReminderUser,
 } from './premium_expiry_reminder';
@@ -184,5 +185,24 @@ describe('selectExpiryReminderCandidates + build', () => {
   test('неизвестный язык падает на ru', () => {
     const msg = buildExpiryReminderMessage({ uid: 'u', token: TOKEN, lang: 'zz', kind: 'subscription', expiryMs: IN_3_DAYS });
     expect(msg.title).toContain('Plus');
+  });
+});
+
+describe('PM-200: pushPrefs.offers', () => {
+  const sub = { premium_plan: 'monthly', premium_expiry: String(IN_3_DAYS) };
+
+  test('явный offers=false → не шлём', () => {
+    expect(classifyExpiryReminder(user(sub, { offersPushEnabled: false }), NOW)).toBeNull();
+  });
+
+  test('offers=true или поля нет (старый клиент) → шлём', () => {
+    expect(classifyExpiryReminder(user(sub, { offersPushEnabled: true }), NOW)).not.toBeNull();
+    expect(classifyExpiryReminder(user(sub, { offersPushEnabled: null }), NOW)).not.toBeNull();
+  });
+
+  test('parseExpiryReminderUser читает pushPrefs.offers только как boolean', () => {
+    expect(parseExpiryReminderUser('u', { pushPrefs: { offers: false } }).offersPushEnabled).toBe(false);
+    expect(parseExpiryReminderUser('u', { pushPrefs: { offers: 'false' } }).offersPushEnabled).toBeNull();
+    expect(parseExpiryReminderUser('u', {}).offersPushEnabled).toBeNull();
   });
 });

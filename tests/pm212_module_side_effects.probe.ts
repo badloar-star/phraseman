@@ -66,8 +66,6 @@ const ALLOW_JSON: Record<string, string> = {
   'app/terms_screen.tsx::./legal/terms_of_use_en.json': 'экран условий, 24 КБ',
   'app/terms_screen.tsx::./legal/terms_of_use_en_ios.json': 'то же, iOS-вариант 24 КБ',
   'app/product_analytics_event_catalog.ts::./product_analytics_governance.json': 'каталог событий аналитики, 20 КБ, нужен до первого события',
-  'modules/avatar-dna/catalog.ts::../../config/avatar-dna/catalog.v1.json': 'каталог аватара, 121 КБ; только экраны аватара',
-  'modules/avatar-dna-3d/resolver.ts::../../config/avatar-dna/human_v2_style.v1.json': 'рецепт стиля 3D-аватара, 4 КБ',
   'modules/learning-v2/content/source/approved_first_ten_source_v2.ts::./approved_first_ten_candidate_v2.json': '3.3 МБ, старая система Learning V2; модуль достаётся только ленивым require() из authored_sessions_v1 (сессии строятся по обращению)',
   'modules/phone-state/legacy_inventory.ts::../../config/phone-state-legacy-inventory.v1.json': '74 КБ, нужен контрольной точке открытия phone-state на старте (auth/покупки)',
 };

@@ -5,6 +5,10 @@ import { ENFORCE_APP_CHECK } from './callable_options';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
 import { sendExpoPush, type ExpoPushTransport } from './expo_push';
 import { isQuietHours } from './friends_together_core';
+import {
+  FRIEND_HELLO_COOLDOWN_COLLECTION,
+  friendHelloNotifyDecision,
+} from './friend_hello_policy';
 
 const REGION = 'us-central1';
 const MAX_ID_LEN = 160;
@@ -209,11 +213,14 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
   const receivedRef = targetRef
     .collection('activity_likes_received')
     .doc(receiptId);
+  // PM-164: окно тишины «Привет» хранится у отправителя — по документу на получателя.
+  const helloCooldownRef = senderRef.collection(FRIEND_HELLO_COOLDOWN_COLLECTION).doc(targetStableId);
   const now = Date.now();
   const nowIso = new Date(now).toISOString();
 
   const result = await db.runTransaction(async (tx) => {
-    const [senderSnap, targetSnap, targetFriendSnap, eventSnap, statsSnap, sentLikeSnap, legacyLikeSnap] = await Promise.all([
+    const [senderSnap, targetSnap, targetFriendSnap, eventSnap, statsSnap, sentLikeSnap, legacyLikeSnap,
+      receivedSnap, helloCooldownSnap] = await Promise.all([
       tx.get(senderRef),
       tx.get(targetRef),
       tx.get(targetFriendRef),
@@ -221,6 +228,8 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
       tx.get(statsRef),
       tx.get(sentLikeRef),
       tx.get(legacyLikeQuery),
+      tx.get(receivedRef),
+      tx.get(helloCooldownRef),
     ]);
 
     if (!senderSnap.exists) {
@@ -285,6 +294,21 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
     const totalLikeCount = parseCount(statsSnap.data()?.total) + 1;
     const senderName = resolveSenderName(senderData, (request.data as Record<string, unknown>)?.senderDisplayName);
     const notificationId = likeNotificationId(receiptId);
+    // зачем (PM-164): получатель видит событие один раз, а частые «Привет» от одного
+    // человека в окне тишины засчитываются без строки и без push (friend_hello_policy.ts).
+    const lastNotifiedRaw = Number(helloCooldownSnap.data()?.lastNotifiedAt);
+    const delivery = friendHelloNotifyDecision({
+      receiptExists: receivedSnap.exists,
+      lastNotifiedAtMs: helloCooldownSnap.exists && Number.isFinite(lastNotifiedRaw) ? lastNotifiedRaw : null,
+      nowMs: now,
+    });
+    console.log('[FRIEND-HELLO] delivery', {
+      kind: isProfileLike ? 'profile' : 'event',
+      reason: delivery.reason,
+      notify: delivery.notify,
+      receiptExists: receivedSnap.exists,
+      lastNotifiedAgoMs: Number.isFinite(lastNotifiedRaw) ? now - lastNotifiedRaw : null,
+    });
 
     if (!isProfileLike) {
       tx.set(eventRef, {
@@ -313,15 +337,34 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
       createdAtIso: nowIso,
     });
 
-    tx.set(receivedRef, {
-      date: today,
-      eventId,
-      kind: isProfileLike ? 'profile' : 'event',
-      fromUid: senderStableId,
-      fromName: senderName,
-      ts: now,
-      tsIso: nowIso,
-    });
+    if (delivery.writeReceipt) {
+      tx.set(receivedRef, {
+        date: today,
+        eventId,
+        kind: isProfileLike ? 'profile' : 'event',
+        fromUid: senderStableId,
+        fromName: senderName,
+        ts: now,
+        tsIso: nowIso,
+      });
+    }
+
+    if (!delivery.notify) {
+      return {
+        ok: true,
+        date: today,
+        targetUid: targetStableId,
+        eventId,
+        activityLikeCount: eventLikeCount,
+        targetActivityLikeTotal: totalLikeCount,
+        _pushToken: '',
+        _pushBlockReason: delivery.reason,
+        _senderName: senderName,
+        _notificationId: '',
+      };
+    }
+
+    tx.set(helloCooldownRef, { targetUid: targetStableId, lastNotifiedAt: now, lastEventId: eventId }, { merge: true });
 
     // Единый центр событий: «X поставил вам лайк» (раньше жило только в ленте друзей).
     tx.set(
@@ -362,7 +405,10 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
   const senderName = (result as { _senderName?: string })._senderName ?? 'Friend';
   const notificationId = (result as { _notificationId?: string })._notificationId ?? '';
   const pushBlockReason = (result as { _pushBlockReason?: string | null })._pushBlockReason ?? null;
-  if (pushToken && notificationId && pushBlockReason) {
+  if (!notificationId) {
+    // PM-164: событие уже доставлялось или окно тишины — строки и push нет, причина выше в [FRIEND-HELLO].
+    console.log('[FRIEND-HELLO] notify skipped', { reason: pushBlockReason });
+  } else if (pushToken && notificationId && pushBlockReason) {
     console.log('[PUSH-PREFS] activity_like push skipped', { type: 'activity_like', reason: pushBlockReason });
   } else if (pushToken && notificationId) {
     void sendExpoPush(

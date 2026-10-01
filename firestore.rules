@@ -1629,6 +1629,12 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    // PM-164: окно тишины «Привет» (отправитель → получатель). Пишет и читает
+    // только friendLikeActivity (Admin SDK); клиенту поле не нужно.
+    match /users/{userId}/friend_hello_cooldowns/{targetId} {
+      allow read, write: if false;
+    }
+
     // PM-111/112: личное избранное видео. Связь аккаунт↔ролик, id = videoId —
     // один человек учитывается в счётчике ровно один раз. Пишет и читает только
     // владелец; форма документа зафиксирована, чтобы туда нельзя было сложить

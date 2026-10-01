@@ -614,4 +614,73 @@ describe('friendUnlikeActivity (toggle off)', () => {
   });
 });
 
+describe('PM-164 «Привет»: один раз, окно тишины, повтор', () => {
+  const pushMock = () => (require('./expo_push') as { sendExpoPush: jest.Mock }).sendExpoPush;
+
+  test('unlike → like again: counters move, but the receiver row and push are NOT repeated', async () => {
+    docs.set('users/target', { displayName: 'Target', expoPushToken: 'ExponentPushToken[target]' });
+    await callProfileLike();
+    expect(pushMock()).toHaveBeenCalledTimes(1);
+    docs.set(likeNotificationPath('target', 'like.profile'), {
+      ...docs.get(likeNotificationPath('target', 'like.profile')), read: true,
+    });
+    const delivered = docs.get(likeNotificationPath('target', 'like.profile'));
+
+    await callUnlike();
+    jest.setSystemTime(new Date('2026-05-15T10:00:00.000Z'));
+    await expect(callProfileLike()).resolves.toMatchObject({ ok: true, targetActivityLikeTotal: 1 });
+
+    expect(pushMock()).toHaveBeenCalledTimes(1);
+    expect(docs.get(likeNotificationPath('target', 'like.profile'))).toEqual(delivered);
+  });
+
+  test('second hello to the same person inside the cooldown is counted silently', async () => {
+    docs.set('users/target', { displayName: 'Target', expoPushToken: 'ExponentPushToken[target]' });
+    docs.set('users/target/my_events/event-2', { uid: 'target', type: 'level_up', ts: Date.now() - 500 });
+    await callLike({ eventId: 'event-1' });
+    jest.setSystemTime(new Date('2026-05-14T11:00:00.000Z'));
+    await expect(callLike({ eventId: 'event-2' })).resolves.toMatchObject({ ok: true, targetActivityLikeTotal: 2 });
+
+    expect(pushMock()).toHaveBeenCalledTimes(1);
+    expect(docs.get(likeNotificationPath('target', 'event-1'))).toBeDefined();
+    expect(docs.get(likeNotificationPath('target', 'event-2'))).toBeUndefined();
+    expect(docs.get(receivedLikePath('target', 'event-2'))).toMatchObject({ fromUid: 'sender' });
+    expect(docs.get('users/sender/friend_hello_cooldowns/target')).toMatchObject({ lastEventId: 'event-1' });
+  });
+
+  test('after the cooldown the next hello is delivered again', async () => {
+    docs.set('users/target', { displayName: 'Target', expoPushToken: 'ExponentPushToken[target]' });
+    docs.set('users/target/my_events/event-2', { uid: 'target', type: 'level_up', ts: Date.now() - 500 });
+    await callLike({ eventId: 'event-1' });
+    jest.setSystemTime(new Date('2026-05-14T16:00:01.000Z'));
+    await callLike({ eventId: 'event-2' });
+
+    expect(pushMock()).toHaveBeenCalledTimes(2);
+    expect(docs.get(likeNotificationPath('target', 'event-2'))).toMatchObject({ type: 'activity_like' });
+  });
+
+  test('network retry / double tap of the same hello: one row, one push, one count', async () => {
+    docs.set('users/target', { displayName: 'Target', expoPushToken: 'ExponentPushToken[target]' });
+    await callProfileLike();
+    await expect(callProfileLike()).resolves.toMatchObject({ idempotentReplay: true, targetActivityLikeTotal: 1 });
+    expect(pushMock()).toHaveBeenCalledTimes(1);
+  });
+
+  test('cooldown is per receiver: another friend still gets the first hello', async () => {
+    docs.set('users/target2', { displayName: 'Target 2', expoPushToken: 'ExponentPushToken[t2]' });
+    docs.set('users/target', { displayName: 'Target', expoPushToken: 'ExponentPushToken[target]' });
+    await callProfileLike();
+    await callProfileLike({ targetStableId: 'target2' });
+    expect(pushMock()).toHaveBeenCalledTimes(2);
+  });
+
+  test('policy: decision table', () => {
+    const { friendHelloNotifyDecision, FRIEND_HELLO_NOTIFY_COOLDOWN_MS } = require('./friend_hello_policy');
+    expect(friendHelloNotifyDecision({ receiptExists: true, lastNotifiedAtMs: null, nowMs: 10 })).toEqual({ notify: false, writeReceipt: false, reason: 'already_delivered' });
+    expect(friendHelloNotifyDecision({ receiptExists: false, lastNotifiedAtMs: null, nowMs: 10 })).toEqual({ notify: true, writeReceipt: true, reason: 'first_delivery' });
+    expect(friendHelloNotifyDecision({ receiptExists: false, lastNotifiedAtMs: 0, nowMs: FRIEND_HELLO_NOTIFY_COOLDOWN_MS - 1 }).reason).toBe('cooldown');
+    expect(friendHelloNotifyDecision({ receiptExists: false, lastNotifiedAtMs: 0, nowMs: FRIEND_HELLO_NOTIFY_COOLDOWN_MS }).reason).toBe('first_delivery');
+  });
+});
+
 export {};

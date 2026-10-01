@@ -17,11 +17,22 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { emitAppEvent } from './events';
 import { withBackgroundNetworkLease } from './interactive_network_quiet';
 import { applyRemoteConfigSnapshot } from './remote_flags';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, reportSwallowed } from './debug-logger';
 
 const REMOTE_CONFIG_COLLECTION = 'remote_config';
 const REMOTE_CONFIG_DOC = 'app';
 const REMOTE_CONFIG_CACHE_KEY = 'remote_config_cache_v1';
+// Когда кэш выше в последний раз подтверждён сетью (мс эпохи, строкой).
+const REMOTE_CONFIG_FETCHED_AT_KEY = 'remote_config_fetched_at_v1';
+// зачем: Firebase-экономия (PM-210, владелец). Раньше `remote_config/app` читался на
+// КАЖДОМ запуске, хотя кэш применяется до сети. Свежий кэш (моложе 6 ч) — сеть
+// пропускаем. Почему 6 ч: живого опроса нет (снят PM-212), поэтому открытое
+// приложение и так видит «Пульт» только после перезапуска; TTL ограничивает лишь
+// частые перезапуски. Худший случай для рубильников (`phone_state_emergency_stop`,
+// `force_update_enabled` + `min_app_version`, `accounts_v2_client_enabled`,
+// `gifts_to_coins_enabled`): кто уже запускал приложение в последние 6 ч, получит
+// их не позже чем через 6 ч. Нужна мгновенность — `refreshRemoteConfigNow()`.
+export const REMOTE_CONFIG_NETWORK_TTL_MS = 6 * 60 * 60 * 1000;
 const REMOTE_CONFIG_MAX_CACHE_BYTES = 64 * 1024;
 const REMOTE_CONFIG_MAX_KEYS_PER_SECTION = 256;
 const REMOTE_CONFIG_MAX_KEY_LENGTH = 100;
@@ -64,7 +75,8 @@ async function getFirestoreModule(): Promise<FirestoreFactory | null> {
   try {
     const mod = await import('@react-native-firebase/firestore');
     return mod.default as unknown as FirestoreFactory;
-  } catch {
+  } catch (error) {
+    reportSwallowed('remote_config_client:firestoreImport', error);
     return null;
   }
 }
@@ -131,13 +143,45 @@ function sanitizeRaw(raw: unknown): RawConfig {
   });
 }
 
-function applyAndCache(raw: RawConfig | undefined): void {
+function applyAndCache(raw: RawConfig | undefined, fetchedAtMs: number = Date.now()): void {
   const clean = sanitizeRaw(raw);
   const encoded = JSON.stringify(clean);
-  try { boundedUtf8Bytes(encoded, REMOTE_CONFIG_MAX_CACHE_BYTES); } catch { return; }
+  try { boundedUtf8Bytes(encoded, REMOTE_CONFIG_MAX_CACHE_BYTES); } catch (error) {
+    DebugLogger.warn('[STARTUP-READS]', `remote_config: network doc rejected (overflow): ${String(error)}`);
+    return;
+  }
   applyRemoteConfigSnapshot(clean);
   emitAppEvent('remote_config_changed');
-  void AsyncStorage.setItem(REMOTE_CONFIG_CACHE_KEY, encoded).catch(() => {});
+  // зачем: метка свежести пишется ВМЕСТЕ с кэшем — кэш без метки снова гнал бы
+  // сеть, а метка без кэша выдавала бы дефолты за «свежие».
+  void AsyncStorage.multiSet([
+    [REMOTE_CONFIG_CACHE_KEY, encoded],
+    [REMOTE_CONFIG_FETCHED_AT_KEY, String(fetchedAtMs)],
+  ]).catch((error: unknown) => reportSwallowed('remote_config_client:cacheWrite', error));
+}
+
+type RemoteConfigCacheAge =
+  | Readonly<{ fresh: true; ageMs: number }>
+  | Readonly<{ fresh: false; reason: string; ageMs: number | null }>;
+
+async function readRemoteConfigCacheAge(nowMs: number, cacheApplied: boolean): Promise<RemoteConfigCacheAge> {
+  if (!cacheApplied) return { fresh: false, reason: 'no_cache', ageMs: null };
+  let rawFetchedAt: string | null = null;
+  try {
+    rawFetchedAt = await AsyncStorage.getItem(REMOTE_CONFIG_FETCHED_AT_KEY);
+  } catch (error) {
+    reportSwallowed('remote_config_client:fetchedAtRead', error);
+    return { fresh: false, reason: 'fetched_at_read_failed', ageMs: null };
+  }
+  const fetchedAtMs = Number(rawFetchedAt);
+  if (!rawFetchedAt || !Number.isFinite(fetchedAtMs) || fetchedAtMs <= 0) {
+    return { fresh: false, reason: 'no_fetched_at', ageMs: null };
+  }
+  const ageMs = nowMs - fetchedAtMs;
+  // Часы перевели назад: метке верить нельзя, идём в сеть.
+  if (ageMs < 0) return { fresh: false, reason: 'clock_skew', ageMs };
+  if (ageMs >= REMOTE_CONFIG_NETWORK_TTL_MS) return { fresh: false, reason: 'expired', ageMs };
+  return { fresh: true, ageMs };
 }
 
 /**
@@ -145,30 +189,60 @@ function applyAndCache(raw: RawConfig | undefined): void {
  * visibility decision. Network refresh remains deliberately separate.
  */
 export async function primeRemoteConfigCacheFromStorage(): Promise<void> {
+  await applyRemoteConfigCacheFromStorage();
+}
+
+/** То же, но сообщает, применился ли кэш (нужно решению «идти ли в сеть»). */
+async function applyRemoteConfigCacheFromStorage(): Promise<boolean> {
   try {
     const raw = await AsyncStorage.getItem(REMOTE_CONFIG_CACHE_KEY);
-    if (!raw) return;
+    if (!raw) {
+      DebugLogger.info('[STARTUP-READS]', 'remote_config: no local cache');
+      return false;
+    }
     boundedUtf8Bytes(raw, REMOTE_CONFIG_MAX_CACHE_BYTES);
     const parsed = JSON.parse(raw) as RawConfig;
     applyRemoteConfigSnapshot(sanitizeRaw(parsed));
     emitAppEvent('remote_config_changed');
+    return true;
   } catch (e) {
       // Cache is best-effort.
       DebugLogger.error('remote_config_client:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+      return false;
     }
 }
 
 /**
  * One-shot load at startup: apply cache immediately (so flags are right before
- * the network responds), then fetch the live doc once. Safe to call always.
+ * the network responds), then fetch the live doc once — unless the cache was
+ * confirmed by the network less than REMOTE_CONFIG_NETWORK_TTL_MS ago.
+ * `force: true` always goes to the network. Safe to call always.
  */
-export async function loadRemoteConfig(): Promise<void> {
-  if (startupLoadPromise) return startupLoadPromise;
+export async function loadRemoteConfig(options: Readonly<{ force?: boolean; nowMs?: number }> = {}): Promise<void> {
+  const force = options.force === true;
+  if (startupLoadPromise) {
+    if (!force) return startupLoadPromise;
+    // Принудительный вызов не «прилипает» к стартовому, который мог пропустить
+    // сеть по TTL: дожидаемся его и идём в сеть сами.
+    await startupLoadPromise.catch((error: unknown) => reportSwallowed('remote_config_client:awaitStartup', error));
+  }
   explicitRefreshDemand += 1;
   const loading = (async () => {
     try {
-      await primeRemoteConfigCacheFromStorage();
-      await refreshRemoteConfigFromNetwork();
+      const cacheApplied = await applyRemoteConfigCacheFromStorage();
+      const nowMs = Number.isFinite(options.nowMs) ? Number(options.nowMs) : Date.now();
+      if (!force) {
+        const age = await readRemoteConfigCacheAge(nowMs, cacheApplied);
+        if (age.fresh) {
+          DebugLogger.info('[STARTUP-READS]', `remote_config: cache fresh (ageMin=${Math.round(age.ageMs / 60_000)}, ttlMin=${REMOTE_CONFIG_NETWORK_TTL_MS / 60_000}) -> network skipped`);
+          return;
+        }
+        DebugLogger.info('[STARTUP-READS]', `remote_config: network read (reason=${age.reason}, ageMs=${age.ageMs ?? 'n/a'})`);
+      } else {
+        DebugLogger.info('[STARTUP-READS]', 'remote_config: network read (reason=force)');
+      }
+      const raw = await refreshRemoteConfigFromNetwork(nowMs);
+      DebugLogger.info('[STARTUP-READS]', `remote_config: network result=${raw ? 'applied' : 'empty_or_skipped'}`);
     } catch (e) {
       // Keep cache/defaults on any failure (offline, permission, or session deferral).
       DebugLogger.error('remote_config_client:loading', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -218,10 +292,10 @@ let sharedNetworkRefreshPromise: Promise<RawConfig | null> | null = null;
 let startupLoadPromise: Promise<void> | null = null;
 let explicitRefreshDemand = 0;
 
-const refreshRemoteConfigFromNetwork = (): Promise<RawConfig | null> => {
+const refreshRemoteConfigFromNetwork = (nowMs: number = Date.now()): Promise<RawConfig | null> => {
   if (sharedNetworkRefreshPromise) return sharedNetworkRefreshPromise;
   const refresh = readRemoteConfigFromNetwork().then((raw) => {
-    if (raw && hasRemoteRefreshDemand()) applyAndCache(raw);
+    if (raw && hasRemoteRefreshDemand()) applyAndCache(raw, nowMs);
     return raw;
   }).finally(() => {
     if (sharedNetworkRefreshPromise === refresh) sharedNetworkRefreshPromise = null;
@@ -229,6 +303,11 @@ const refreshRemoteConfigFromNetwork = (): Promise<RawConfig | null> => {
   sharedNetworkRefreshPromise = refresh;
   return refresh;
 };
+
+/** Принудительно перечитать `remote_config/app`, минуя TTL кэша (рубильник «сейчас»). */
+export function refreshRemoteConfigNow(): Promise<void> {
+  return loadRemoteConfig({ force: true });
+}
 
 export function subscribeRemoteConfig(): { remove: () => void } {
   // Retained only for source compatibility. Persistent Remote Config polling

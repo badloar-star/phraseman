@@ -2,14 +2,12 @@ import React, { memo } from 'react';
 import { Animated, View } from 'react-native';
 import { Image } from 'expo-image';
 import { getAvatarByIndex } from '../constants/avatars';
-import { AvatarDNAStage } from './avatar-dna/AvatarDNAStage';
-import type { AvatarDNA, AvatarV2Projection } from '../modules/avatar-dna/contracts';
 import { coinRankRowForDisplay, isValidCoinRank } from '../app/coin_rank_table_v1';
 
 interface Props {
   avatar?: string | null;
-  avatarV2?: AvatarV2Projection | null;
-  localDNA?: AvatarDNA | null;
+  // зачем: Q5 (координатор 01.10) — «Студия персонажа» (Avatar DNA) и портрет V2
+  // удалены вместе с их пропсами; аватар = монета ранга или старая картинка.
   size?: number;
   style?: any;
   /**
@@ -63,7 +61,7 @@ function AvatarImageWithFallback({
   );
 }
 
-function AvatarView({ avatar, avatarV2, localDNA, size = 44, style, coinRank }: Props) {
+function AvatarView({ avatar, size = 44, style, coinRank }: Props) {
   // зачем (PM-076, D62 п.2): параллельный путь к старому показу — если ранг монеты
   // известен, рисуем монету ранга из единой таблицы. Старые ветки ниже не трогаем:
   // Чужие аватары (друзья и арена) ранга не несут и показываются как раньше.
@@ -74,9 +72,6 @@ function AvatarView({ avatar, avatarV2, localDNA, size = 44, style, coinRank }: 
   const avatarIndex = avatar && /^\d+$/.test(avatar) ? parseInt(avatar) : 1;
   const avatarDef = getAvatarByIndex(avatarIndex);
   const avatarImage = avatarDef?.image;
-
-  const portraitUrl = avatarV2?.state === 'ready' ? avatarV2.portraitUrl : null;
-  const [failedPortraitUrl, setFailedPortraitUrl] = React.useState<string | null>(null);
 
   if (coinRow) {
     return (
@@ -92,26 +87,9 @@ function AvatarView({ avatar, avatarV2, localDNA, size = 44, style, coinRank }: 
     );
   }
 
-  let content: React.ReactNode;
-  if (portraitUrl && portraitUrl !== failedPortraitUrl) {
-    content = (
-      <Image
-        testID="avatar-v2-image"
-        source={{ uri: portraitUrl }}
-        style={{ width: size, height: size }}
-        contentFit="contain"
-        cachePolicy="memory-disk"
-        accessibilityLabel="Avatar"
-        onError={() => setFailedPortraitUrl(portraitUrl)}
-      />
-    );
-  } else if (localDNA) {
-    content = <AvatarDNAStage dna={localDNA} camera="portrait" size={size} />;
-  } else {
-    content = avatarImage
-      ? <AvatarImageWithFallback source={avatarImage} size={size} />
-      : <View style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: '#273449' }} />;
-  }
+  const content: React.ReactNode = avatarImage
+    ? <AvatarImageWithFallback source={avatarImage} size={size} />
+    : <View style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: '#273449' }} />;
 
   return (
     <View style={[{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }, style]}>

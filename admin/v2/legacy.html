@@ -33295,7 +33295,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     { key: 'max_energy', label: 'Лимит энергии (PM-081: ровно 5)', def: 5, min: 5, max: 5 },
     { key: 'energy_recovery_interval_ms', label: 'Интервал +1 энергии (мс, PM-083: ровно 10 мин)', def: 600000, min: 600000, max: 600000 },
     { key: 'paywall_v2_pct', label: 'АРХИВ: paywall_v2_pct (не управляет новым пейволом)', def: 100, min: 0, max: 100 },
-    { key: 'avatar_dna_rollout_pct', label: 'Студия персонажа: доля пользователей, %', def: 0, min: 0, max: 100 },
+    // зачем: Q5 (координатор 01.10) — «Студия персонажа» удалена, её доля выката больше не настраивается.
     // зачем: D101/D70 — платная заморозка серии за жемчуг удалена, её цена больше не настраивается.
     { key: 'referral_reward_days', label: 'Рефералы: дней Plus за друга (другу и пригласившему)', def: 7, min: 0, max: 3650 },
     { key: 'referral_max_claims_month', label: 'Рефералы: кап наград/месяц (антифрод)', def: 30, min: 0, max: 100000 },
@@ -33304,7 +33304,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   const RC_BOOL_FIELDS = [
     { key: 'numeric_energy_v2', label: 'Числовая энергия 0–300 включена', def: true },
     { key: 'referral_enabled', label: 'Реферальная программа включена', def: true },
-    { key: 'avatar_dna_enabled', label: 'Студия персонажа включена', def: false },
     { key: 'ai_global_disable', label: '⛔ ВЫКЛЮЧИТЬ ВЕСЬ ИИ (галочка = ИИ выключен у всех)', def: false },
     { key: 'speaking_enabled', label: 'Режим «Устно» включён', def: true },
     { key: 'support_diagnostics_enabled', label: 'Диагностика обращений включена', def: true },

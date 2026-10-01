@@ -1,7 +1,8 @@
+import fs from 'fs';
+import path from 'path';
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 import AvatarView from '../components/AvatarView';
-import { starterAvatarDNA } from '../modules/avatar-dna/catalog';
 
 jest.unmock('react-native');
 
@@ -13,61 +14,35 @@ jest.mock('expo-image', () => {
   };
 });
 
-jest.mock('../components/LevelBadge', () => {
-  const ReactModule = jest.requireActual('react');
-  const { View: NativeView } = jest.requireActual('react-native');
-  return function MockLevelBadge() {
-    return ReactModule.createElement(NativeView, { testID: 'level-badge' });
-  };
-});
+// Таблица рангов тянет expo-цепочку (virtual/env), которую rntl-конфиг не
+// транспилирует; для проверки ветвления хватает её контракта.
+jest.mock('../app/coin_rank_table_v1', () => ({
+  isValidCoinRank: (value: unknown) => typeof value === 'number' && Number.isInteger(value) && value >= 0 && value <= 19,
+  coinRankRowForDisplay: (rank: number) => ({ source: { testUri: `coin_${rank}` }, levelTitle: `rank ${rank}` }),
+}));
 
-jest.mock('../components/LevelAvatarMaterialOverlay', () => {
-  const ReactModule = jest.requireActual('react');
-  const { View: NativeView } = jest.requireActual('react-native');
-  return function MockLevelAvatarMaterialOverlay() {
-    return ReactModule.createElement(NativeView, { testID: 'level-material-overlay' });
-  };
-});
-
-describe('AvatarView v2 fallback chain', () => {
-  const avatarV2 = {
-    schemaVersion: 1 as const,
-    state: 'ready' as const,
-    renderId: 'r1',
-    portraitUrl: 'https://cdn.example/p.webp',
-    studioUrl: 'https://cdn.example/s.webp',
-    manifestVersion: 1 as const,
-  };
-
-  it('prefers a ready v2 portrait and falls back to legacy when it errors', async () => {
-    const view = await render(
-      <AvatarView avatar="custom:custom-gen-01:ember:black" avatarV2={avatarV2} auraId="aura-ember" />,
-    );
-
-    expect(view.getByTestId('avatar-v2-image').props.source).toEqual({ uri: avatarV2.portraitUrl });
-    await fireEvent(view.getByTestId('avatar-v2-image'), 'error');
-    // зачем: D108 — купленный аватар и аура больше не рисуются: только базовый аватар.
+// зачем: Q5 (координатор 01.10) — «Студия персонажа» (Avatar DNA) и портрет V2
+// удалены. Аватар = монета ранга, если ранг известен, иначе старая картинка.
+describe('AvatarView after Avatar DNA removal (Q5)', () => {
+  it('renders the coin of the rank when the rank is known', async () => {
+    const view = await render(<AvatarView avatar="1" coinRank={3} />);
+    expect(view.getByTestId('avatar-coin-rank')).toBeTruthy();
+    expect(view.queryByTestId('avatar-dna-stage')).toBeNull();
     expect(view.queryByTestId('avatar-v2-image')).toBeNull();
+  });
+
+  it('falls back to the base image for removed cosmetics without DNA or portrait paths', async () => {
+    const view = await render(<AvatarView avatar="custom:custom-gen-01:ember:black" auraId="aura-ember" />);
+    expect(view.queryByTestId('avatar-coin-rank')).toBeNull();
+    expect(view.queryByTestId('avatar-dna-stage')).toBeNull();
     expect(view.queryByTestId('custom-avatar-badge')).toBeNull();
     expect(view.queryByTestId('avatar-aura')).toBeNull();
   });
 
-  it('falls back from a failed ready portrait to the owner local DNA stage', async () => {
-    const view = await render(
-      <AvatarView avatar="1" avatarV2={avatarV2} localDNA={starterAvatarDNA('starter_warm_01')} />,
-    );
-
-    await fireEvent(view.getByTestId('avatar-v2-image'), 'error');
-    expect(view.getByTestId('avatar-dna-stage')).toBeTruthy();
-    expect(view.getAllByTestId(/^avatar-layer-/)).not.toHaveLength(0);
-  });
-
-  it('uses local DNA before legacy when no ready projection exists', async () => {
-    const view = await render(
-      <AvatarView avatar="custom:custom-gen-01:ember:black" localDNA={starterAvatarDNA('starter_warm_01')} />,
-    );
-
-    expect(view.getByTestId('avatar-dna-stage')).toBeTruthy();
-    expect(view.queryByTestId('custom-avatar-badge')).toBeNull();
+  it('no longer imports the Avatar DNA stage or contracts', () => {
+    const source = fs.readFileSync(path.join(__dirname, '../components/AvatarView.tsx'), 'utf8');
+    expect(source).not.toContain('avatar-dna');
+    expect(source).not.toContain('localDNA');
+    expect(source).not.toContain('avatarV2');
   });
 });

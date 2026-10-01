@@ -7,6 +7,8 @@ export const CUSTOMIZATION_PURCHASE_INTENT_KEY = 'customization_purchase_intent_
 export const SHARD_SPEND_OP_LEDGER_KEY = 'shard_spend_op_ledger_v1';
 export const CUSTOM_AVATAR_GIFT_REPLAY_KEY = 'custom_avatar_gift_replay_v1';
 
+// зачем: Q5 (координатор 01.10) — «Студия персонажа» удалена. Префиксы оставлены
+// ТОЛЬКО в списке очистки при смене аккаунта, чтобы стереть остатки на устройствах.
 export const AVATAR_DNA_STATE_PREFIX = 'avatar_dna_state_v1:';
 export const AVATAR_DNA_DRAFT_PREFIX = 'avatar_dna_draft_v1:';
 export const AVATAR_DNA_INVITATION_PREFIX = 'avatar_dna_invitation_v1:';

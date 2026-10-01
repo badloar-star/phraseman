@@ -27,7 +27,8 @@ import {
   REFERRAL_STATE_STORAGE_KEY,
   hydrateReferralStateFromRaw,
 } from './referrals_cache';
-import { readAvatarDNAState, type AvatarDNAStoredState } from '../modules/avatar-dna/storage';
+// зачем: Q5 (координатор 01.10) — «Студия персонажа» (Avatar DNA) удалена: первый
+// кадр больше не читает её состояние (минус один поход в хранилище и модуль каталога).
 
 const BOOT_PROFILE_KEYS = [
   'user_name',
@@ -105,7 +106,6 @@ function buildProfileSnapshot(
   values: Map<string, string | null>,
   now: number,
   vipSnapshot: VipStorageValues | null,
-  avatarDNA: AvatarDNAStoredState | null,
 ): AppSnapshotProfile {
   const vipUntil = Number(vipSnapshot?.vip_until ?? '0') || 0;
   // зачем: пожизненный VIP-грант (сертификат «Pro — навсегда», промокод,
@@ -130,7 +130,6 @@ function buildProfileSnapshot(
     premiumPlan: values.get('premium_plan')?.trim().toLowerCase() || undefined,
     vipActive: vipUntil > now || vipLifetime,
     vipLifetime,
-    ...(avatarDNA ? { avatarDNA } : {}),
   };
 }
 
@@ -229,17 +228,13 @@ export async function primeAppSnapshotFromStorage(
     BOOT_STUDY_TARGET_KEY,
     REFERRAL_STATE_STORAGE_KEY,
   ];
-  const [storageRead, friends, , avatarDNA, bootRunes] = await Promise.all([
+  const [storageRead, friends, , bootRunes] = await Promise.all([
     AsyncStorage.multiGet(keys).then(
       (pairs) => ({ ok: true as const, pairs }),
       () => ({ ok: false as const, pairs: [] as [string, string | null][] }),
     ),
     primeFriendsSnapshot(now),
     hydrateUserSettingsFromStorage(settingsBootReadScope).catch(() => {}),
-    readAvatarDNAState(
-      ownerStableId,
-      accountGeneration.generation,
-    ).catch(() => null),
     // зачем: руны в общий multiGet не входят — их ключ зависит от владельца
     // (level_spin_star_projection_v1:<uid>). Читаем параллельно, чтобы старт не
     // стал длиннее ни на один лишний последовательный поход в хранилище.
@@ -265,7 +260,7 @@ export async function primeAppSnapshotFromStorage(
     now,
   );
   if (!isAccountCurrent()) return;
-  const profile = buildProfileSnapshot(values, now, vipSnapshot, avatarDNA);
+  const profile = buildProfileSnapshot(values, now, vipSnapshot);
   if (!isAccountCurrent()) return;
   // зачем: отдать уже прочитанный баланс жемчужин в общий peek — экраны, которые
   // читают его синхронно (Главная), рисуют настоящее число сразу, а не ноль до
@@ -280,7 +275,7 @@ export async function primeAppSnapshotFromStorage(
   patchAppSnapshot((current) => ({
     profile,
     progress: buildProgressSnapshot(values, studyTarget, now, current, bootRunes),
-    customization: buildCustomizationSnapshot(values, now, 0, avatarDNA ?? undefined),
+    customization: buildCustomizationSnapshot(values, now, 0),
     lessons: {
       source: 'storage',
       updatedAt: now,

@@ -8,7 +8,6 @@ import {
   resetAppSnapshotForAccountSwitch,
   subscribeAppSnapshot,
 } from '../app/app_snapshot_store';
-import { starterAvatarDNA } from '../modules/avatar-dna/catalog';
 
 describe('app snapshot store contract', () => {
   beforeEach(() => {
@@ -232,17 +231,13 @@ describe('app snapshot store contract', () => {
     expect(APP_SNAPSHOT_RESOURCE_LIMITS.serializedSnapshotBudgetBytes).toBeLessThanOrEqual(300 * 1024);
   });
 
-  it('clears account-scoped customization ownership and styles', () => {
-    const dna = starterAvatarDNA('starter_warm_01');
+  // зачем: Q5 (координатор 01.10) — Avatar DNA удалён: снимок очищает кастомизацию
+  // при смене аккаунта, сверка DNA между профилем и кастомизацией снята.
+  it('clears account-scoped customization on account switch', () => {
     patchAppSnapshot({
       profile: {
         source: 'storage', updatedAt: 100, name: 'Ada', avatar: '18', frame: '',
         premiumActive: false, vipActive: false,
-        avatarDNA: {
-          schemaVersion: 1, ownerStableId: 'u1', accountGeneration: 4,
-          confirmedDNA: dna, lastConfirmedDNA: dna, manifestVersion: 1,
-          lastGood: { portrait: 'portrait_1', studio: 'studio_1' }, updatedAtMs: 90,
-        },
       },
       customization: {
         source: 'storage',
@@ -250,49 +245,12 @@ describe('app snapshot store contract', () => {
         activeAvatar: '18',
         level: 18,
         shards: 77,
-        avatarDNA: {
-          schemaVersion: 1, ownerStableId: 'u1', accountGeneration: 4,
-          confirmedDNA: dna, lastConfirmedDNA: dna, manifestVersion: 1,
-          lastGood: { portrait: 'portrait_1', studio: 'studio_1' }, updatedAtMs: 90,
-        },
       },
     });
 
     resetAppSnapshotForAccountSwitch();
 
     expect(getAppSnapshot().customization).toBeUndefined();
-    expect(getAppSnapshot().profile?.avatarDNA).toBeUndefined();
-  });
-
-  it('keeps a live profile and later local Avatar DNA projection consistent', () => {
-    const dna = starterAvatarDNA('starter_warm_01');
-    patchAppSnapshotFromAuthoritativeCloudProgress({
-      progressServerAuthoritative: true,
-      progress: { user_name: 'Live Ada', user_total_xp: '900', streak_count: '4' },
-    }, 500);
-    const avatarDNA = {
-      schemaVersion: 1 as const,
-      ownerStableId: 'u1',
-      accountGeneration: 4,
-      confirmedDNA: dna,
-      lastConfirmedDNA: dna,
-      manifestVersion: 1,
-      lastGood: { portrait: 'portrait_1', studio: 'studio_1' },
-      updatedAtMs: 600,
-    };
-    const customization = {
-      source: 'storage' as const,
-      updatedAt: 600,
-      activeAvatar: '18',
-      level: 4,
-      shards: 7,
-      avatarDNA,
-    };
-
-    patchAppSnapshot({ customization });
-
-    expect(getAppSnapshot().profile).toBeUndefined();
-    expect(getAppSnapshot().customization?.avatarDNA).toEqual(avatarDNA);
   });
 
 });

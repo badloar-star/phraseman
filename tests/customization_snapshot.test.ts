@@ -2,9 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { buildCustomizationSnapshot } from '../app/customization_snapshot';
-import { starterAvatarDNA } from '../modules/avatar-dna/catalog';
-import type { AvatarDNAStoredState } from '../modules/avatar-dna/storage';
-import { avatarDNAStateStorageKey, commitAvatarDNA } from '../modules/avatar-dna/storage';
 import {
   __resetAccountGenerationForTests,
   beginAccountGeneration,
@@ -43,132 +40,34 @@ describe('customization snapshot', () => {
   });
 
   // зачем: D108 — купленные ауры/аватары удалены: снимок их больше не несёт.
-  it('does not carry removed cosmetics (D108)', () => {
+  // зачем: Q5 (координатор 01.10) — Avatar DNA («Студия персонажа») тоже удалён.
+  it('does not carry removed cosmetics or Avatar DNA (D108, Q5)', () => {
     const snapshot = buildCustomizationSnapshot(new Map([
       ['user_avatar', '18'],
       ['user_avatar_aura', 'aura-ember'],
       ['custom_avatar_owned_v1', JSON.stringify({ 'custom-01': 'violet:black' })],
       ['avatar_aura_owned_v1', JSON.stringify({ 'aura-aurora': true })],
-    ]), 100, 18);
-    expect(Object.keys(snapshot).sort()).toEqual(['activeAvatar', 'avatarDNA', 'level', 'shards', 'source', 'updatedAt']);
-  });
-
-  it('carries validated account-matching Avatar DNA while preserving legacy fields', () => {
-    const dna = starterAvatarDNA('starter_warm_01');
-    const avatarDNA: AvatarDNAStoredState = {
-      schemaVersion: 1,
-      ownerStableId: 'u1',
-      accountGeneration: 4,
-      confirmedDNA: dna,
-      lastConfirmedDNA: dna,
-      manifestVersion: 1,
-      lastGood: { portrait: 'portrait_1', studio: 'studio_1' },
-      updatedAtMs: 90,
-    };
-    const snapshot = buildCustomizationSnapshot(new Map([
-      ['user_avatar', '18'],
       ['shards_balance', '44'],
-    ]), 100, 18, avatarDNA);
-
-    expect(snapshot).toMatchObject({
-      activeAvatar: '18',
-      shards: 44,
-      avatarDNA: {
-        ownerStableId: 'u1',
-        accountGeneration: 4,
-        confirmedDNA: dna,
-        lastGood: { portrait: 'portrait_1', studio: 'studio_1' },
-      },
-    });
+    ]), 100, 18);
+    expect(Object.keys(snapshot).sort()).toEqual(['activeAvatar', 'level', 'shards', 'source', 'updatedAt']);
+    expect(snapshot).toMatchObject({ activeAvatar: '18', shards: 44 });
   });
 
-  it('publishes matching Avatar DNA in the first local app snapshot', async () => {
-    const dna = starterAvatarDNA('starter_warm_01');
-    const generation = beginAccountGeneration('u1').generation;
-    await commitAvatarDNA({
-      ownerStableId: 'u1',
-      accountGeneration: generation,
-      dna,
-      renderIds: { portrait: 'portrait_1', studio: 'studio_1' },
-      manifestVersion: 1,
-    });
-    await AsyncStorage.multiSet([
-      ['user_avatar', '18'],
-      ['user_total_xp', '100'],
-      ['shards_balance', '7'],
-    ]);
-
-    await primeAppSnapshotFromStorage('en');
-
-    expect(getAppSnapshot().profile?.avatarDNA).toMatchObject({
-      ownerStableId: 'u1',
-      accountGeneration: generation,
-      confirmedDNA: dna,
-      lastGood: { portrait: 'portrait_1', studio: 'studio_1' },
-    });
-    expect(getAppSnapshot().customization?.avatarDNA).toEqual(
-      getAppSnapshot().profile?.avatarDNA,
-    );
-  });
-
-  it('hydrates durable Avatar DNA after the process generation restarts at one', async () => {
-    const dna = starterAvatarDNA('starter_warm_01');
-    beginAccountGeneration('other-owner');
-    const savedGeneration = beginAccountGeneration('u1').generation;
-    await commitAvatarDNA({
-      ownerStableId: 'u1', accountGeneration: savedGeneration, dna,
-      renderIds: { portrait: 'portrait_restart', studio: 'studio_restart' }, manifestVersion: 1,
-    });
-    __resetAccountGenerationForTests();
-    resetAppSnapshotForAccountSwitch();
-    const restartedGeneration = beginAccountGeneration('u1').generation;
-
-    await primeAppSnapshotFromStorage('en');
-
-    expect(getAppSnapshot().profile?.avatarDNA).toMatchObject({
-      ownerStableId: 'u1',
-      accountGeneration: restartedGeneration,
-      confirmedDNA: dna,
-      lastGood: { portrait: 'portrait_restart', studio: 'studio_restart' },
-    });
-  });
-
-  it('publishes deeply frozen DNA so profile and customization cannot mutate each other', async () => {
-    const dna = starterAvatarDNA('starter_warm_01');
-    const generation = beginAccountGeneration('u1').generation;
-    await commitAvatarDNA({
-      ownerStableId: 'u1', accountGeneration: generation, dna,
-      renderIds: { portrait: 'portrait_frozen', studio: 'studio_frozen' }, manifestVersion: 1,
-    });
-    await primeAppSnapshotFromStorage('en');
-    const profileDNA = getAppSnapshot().profile?.avatarDNA;
-    const customizationDNA = getAppSnapshot().customization?.avatarDNA;
-
-    expect(Object.isFrozen(profileDNA)).toBe(true);
-    expect(Object.isFrozen(profileDNA?.confirmedDNA.base)).toBe(true);
-    expect(() => {
-      (customizationDNA?.confirmedDNA.base as { skinToneId: string }).skinToneId = 'skin_mutated';
-    }).toThrow();
-    expect(getAppSnapshot().profile?.avatarDNA?.confirmedDNA.base.skinToneId).toBe(
-      dna.base.skinToneId,
-    );
-  });
-
-  it('omits corrupt Avatar DNA from the first snapshot without losing legacy profile state', async () => {
+  it('publishes the first local snapshot without Avatar DNA even if old DNA data is on the device', async () => {
     const generation = beginAccountGeneration('u1').generation;
     await AsyncStorage.multiSet([
       ['user_avatar', '18'],
       ['user_total_xp', '100'],
       ['shards_balance', '7'],
-      [avatarDNAStateStorageKey('u1', generation), '{bad'],
+      [`avatar_dna_state_v1:${encodeURIComponent('u1')}:${generation}`, '{"schemaVersion":1}'],
     ]);
 
     await primeAppSnapshotFromStorage('en');
 
     expect(getAppSnapshot().profile).toMatchObject({ avatar: '18' });
-    expect(getAppSnapshot().profile?.avatarDNA).toBeUndefined();
+    expect(getAppSnapshot().profile).not.toHaveProperty('avatarDNA');
     expect(getAppSnapshot().customization).toMatchObject({ activeAvatar: '18', shards: 7 });
-    expect(getAppSnapshot().customization?.avatarDNA).toBeUndefined();
+    expect(getAppSnapshot().customization).not.toHaveProperty('avatarDNA');
   });
 
   it('stays lightweight for startup', () => {
@@ -178,7 +77,8 @@ describe('customization snapshot', () => {
     expect(source).not.toContain("from '../constants/avatar_auras'");
     expect(source).not.toContain('require(');
     const bootstrapSource = fs.readFileSync(path.join(__dirname, '../app/app_snapshot_bootstrap.ts'), 'utf8');
-    expect(bootstrapSource).toContain('readAvatarDNAState(');
-    expect(bootstrapSource).toContain('avatarDNA');
+    // зачем: Q5 — старт больше не читает состояние «Студии персонажа».
+    expect(bootstrapSource).not.toContain('readAvatarDNAState(');
+    expect(bootstrapSource).not.toContain('modules/avatar-dna');
   });
 });

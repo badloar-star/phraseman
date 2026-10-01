@@ -1,7 +1,6 @@
 import { useRef, useSyncExternalStore } from 'react';
 import type { FriendEntry, FriendRequestEntry } from './firestore_friend_requests';
 import type { CustomizationSnapshot } from './customization_snapshot';
-import type { AvatarDNAStoredState } from '../modules/avatar-dna/storage';
 
 export const APP_SNAPSHOT_RESOURCE_LIMITS = {
   friendProfileMaxEntries: 240,
@@ -35,7 +34,6 @@ export interface AppSnapshotProfile extends AppSnapshotMeta {
    * «Plus» → «Pro» после reload().
    */
   vipLifetime?: boolean;
-  avatarDNA?: AvatarDNAStoredState;
 }
 
 export interface AppSnapshotProgress extends AppSnapshotMeta {
@@ -180,30 +178,6 @@ function preserveNewerSnapshotSections(
   return nextPatch;
 }
 
-function preserveAvatarDNASnapshotConsistency(
-  current: Readonly<AppSnapshot>,
-  patch: Partial<AppSnapshot>,
-): Partial<AppSnapshot> {
-  const customization = patch.customization;
-  if (!customization?.avatarDNA) return patch;
-  const avatarDNA = customization.avatarDNA;
-  const visibleProfile = patch.profile ?? current.profile;
-  if (!visibleProfile || visibleProfile.avatarDNA === avatarDNA) return patch;
-  if (
-    visibleProfile.avatarDNA
-    && visibleProfile.avatarDNA.ownerStableId !== avatarDNA.ownerStableId
-  ) {
-    return {
-      ...patch,
-      customization: { ...customization, avatarDNA: undefined },
-    };
-  }
-  return {
-    ...patch,
-    profile: { ...visibleProfile, avatarDNA },
-  };
-}
-
 export function getAppSnapshot(): Readonly<AppSnapshot> {
   return snapshot;
 }
@@ -230,12 +204,11 @@ export function subscribeAppSnapshot(listener: Listener): () => void {
 
 export function patchAppSnapshot(patchOrFn: Patch): void {
   const requestedPatch = typeof patchOrFn === 'function' ? patchOrFn(snapshot) : patchOrFn;
-  const preservedPatch = requestedPatch
+  // зачем: Q5 (координатор 01.10) — сверка Avatar DNA между профилем и
+  // кастомизацией снята вместе со «Студией персонажа».
+  const patch = requestedPatch
     ? preserveNewerSnapshotSections(snapshot, requestedPatch)
     : requestedPatch;
-  const patch = preservedPatch
-    ? preserveAvatarDNASnapshotConsistency(snapshot, preservedPatch)
-    : preservedPatch;
   if (!patch || !shallowPatchChanged(snapshot, patch)) return;
   snapshot = { ...snapshot, ...patch };
   emitSnapshotChanged();

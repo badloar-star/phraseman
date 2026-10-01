@@ -144,3 +144,18 @@ PM-108 → review (жалоба на один набор больше не ду�
 - Q46 Формат выгрузки для Telegram: сейчас «Название + N. фраза — перевод + объяснение». Оставить? **рек. да**
 - Q47 account_delete_revenuecat_phase2.test падает из-за чужих незакоммиченных правок в account_delete_job.ts — передать сессии Account V2.
 В работе: исполнитель Q41 (блокировка users/{uid}/blocked + серверные проверки + удаление/инвентарь/Privacy) и Q42 («Привет» не-другу без push).
+
+## §18 — 2026-10-01: Q41 блокировка + Q42 «Привет» не-другу (7232941b9)
+
+- Блокировка: callable friendBlockUser / friendUnblockUser ({stableId, actorUid}), запись users/{me}/blocked/{actorUid} только сервером, лимит 500, идемпотентно, заодно удаляет входящую заявку от блокируемого. Лог [FRIEND-BLOCK].
+- «Привет» от заблокированного — ничего не пишется и не шлётся, ответ нейтральный (факт блокировки не раскрывается). Заявки в друзья от заблокированного режутся правилом firestore.rules (!exists blocked). Проверил правило — переменные targetUid/senderUid в нужном match.
+- Q42: «Привет» не-другу засчитывается, строка в активности есть, push нет (reason not_friend). Другу — как раньше.
+- Удаление аккаунта чистит blocked и friend_hello_cooldowns о человеке у других одним обходом; инвентарь V2: blocked = keep_in_place. Privacy: абзац EN+RU в legal/LEGAL_2_0_DRAFT.md.
+- Тесты: functions 214/214 по затронутым, проверка типов functions — 0 ошибок; клиент friend_block 7/7.
+- PM-164 → review; PM-162-A2 = true (A1 не наш).
+- Выложить: functions friendBlockUser, friendUnblockUser, friendLikeActivity, группа удаления аккаунта; firestore:rules. Удаление аккаунта — до включения кнопки в UI.
+- API «Дизайну» (app/friend_block.ts, отправлено): blockUser/unblockUser → 'ok'|'limit'|'error'; isBlockedLocally, getBlockedUids, subscribeToBlocked, refreshBlockedList(force?) (при входе на «Друзья», сервер не чаще раза в 6 ч). Optimistic: мгновенно, откат, двойной тап.
+
+Вопросы:
+- Q48 Заблокированный, отправляя заявку, получает обычную ошибку (permission-denied из правил): (а) оставить, общий текст ошибки **рек.** / (б) показывать «отправлено» (маскирует и бан).
+- Q49 Кнопка «Заблокировать» заодно удаляет из друзей (deleteFriend)? **рек. да** — решает UI.

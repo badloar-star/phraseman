@@ -45,10 +45,15 @@ jest.mock('../app/user_id_policy', () => ({
 jest.mock('../app/local_date', () => ({ getUtcDayKey: () => mockUtcDayKey }));
 jest.mock('../hooks/use-haptics', () => ({ hapticTap: jest.fn(), hapticSuccess: jest.fn() }));
 jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'en' }) }));
+// зачем (координатор §48, 2026-10-01): экран опроса перешёл на Liquid Glass и
+// масштаб шрифта (FONT_SCALE · fontSize · uiScale) — мок темы без этих полей ронял
+// рендер на первой строке, и ни одна проверка гонок аккаунта не исполнялась.
 jest.mock('../components/ThemeContext', () => ({
+  FONT_SCALE: { small: 0.9, medium: 1, large: 1.15 },
   useTheme: () => ({
     theme: { bgCard: '#111', bgPrimary: '#000', accent: '#9cff00', correctText: '#07110A' },
     f: { body: 16, label: 14, h1: 28, h2: 22, numMd: 18 }, themeMode: 'dark',
+    fontSize: 'medium', uiScale: 1, liquidGlassThemeId: 'graphite',
   }),
 }));
 jest.mock('../constants/theme', () => ({
@@ -247,7 +252,7 @@ test('unscoped identity rejection exits the loader through the unavailable state
     await Promise.resolve();
   });
 
-  expect(view.getByText('Опрос недоступен.')).toBeTruthy();
+  expect(view.getByTestId('survey-fallback-message')).toBeTruthy(); // экран-заглушка вместо опроса
   expect(mockSubmitSurvey).not.toHaveBeenCalled();
   await view.unmount();
 });
@@ -280,7 +285,7 @@ test('rejects URL account A before reading its handoff when active identity is a
 
   expect(mockTakePrimedSurvey).not.toHaveBeenCalled();
   expect(view.queryByTestId('compat-survey-sheet')).toBeNull();
-  expect(view.getByText('Опрос недоступен.')).toBeTruthy();
+  expect(view.getByTestId('survey-fallback-message')).toBeTruthy(); // экран-заглушка вместо опроса
   await view.unmount();
 });
 
@@ -292,7 +297,7 @@ test.each(['2098-12-31', '2099-01-02'])('rejects non-current route day %s before
 
   expect(mockTakePrimedSurvey).not.toHaveBeenCalled();
   expect(view.queryByTestId('compat-survey-sheet')).toBeNull();
-  expect(view.getByText('Опрос недоступен.')).toBeTruthy();
+  expect(view.getByTestId('survey-fallback-message')).toBeTruthy(); // экран-заглушка вместо опроса
   await view.unmount();
 });
 

@@ -5,6 +5,9 @@ import { render } from '@testing-library/react-native';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 
 jest.mock('react-native', () => ({
+  // зачем (координатор §48): HUD теперь читает app/config (ENABLE_DEV_TOOLS), а тот —
+  // Platform.OS; без него набор падал на импорте и не исполнялся вовсе.
+  Platform: { OS: 'ios', select: (values: Record<string, unknown>) => values.ios ?? values.default },
   View: 'View',
   StyleSheet: {
     absoluteFillObject: { position: 'absolute', inset: 0 },

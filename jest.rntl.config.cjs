@@ -44,12 +44,15 @@ module.exports = {
     '<rootDir>/tests/theme_selection_runtime.test.tsx',
     '<rootDir>/tests/use_session_attempts.test.tsx',
   ],
+  // Официальная настройка gesture-handler для jest (без неё — «RNGestureHandlerModule could not be found»).
+  setupFiles: ['react-native-gesture-handler/jestSetup'],
   setupFilesAfterEnv: ['<rootDir>/tests/setup_jest_write_guard.js'],
   transformIgnorePatterns: [
     '<rootDir>/tests/setup_jest_write_guard.js',
     // expo-* / @expo/* поставляются как ESM — без трансформации набор не загружался
     // (expo-linear-gradient, expo-blur, expo/virtual/env).
-    'node_modules/(?!((jest-)?react-native|@react-native(-community)?|expo(-[a-z-]+)?|@expo(/[a-z-]+)?)/)',
+    // + react-native-* (reanimated mock.ts) и @react-navigation/* (через expo-router) — тоже ESM.
+    'node_modules/(?!((jest-)?react-native(-[a-z-]+)?|@react-native(-community)?|@react-navigation/[a-z-]+|expo(-[a-z-]+)?|@expo(/[a-z-]+)?)/)',
   ],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
@@ -65,6 +68,14 @@ module.exports = {
     '^expo-blur$': '<rootDir>/tests/__mocks__/expo-blur.js',
     '^expo/virtual/env$': '<rootDir>/tests/__mocks__/expo-virtual-env.js',
     '^@react-native-firebase/app$': '<rootDir>/tests/__mocks__/react-native-firebase-app.js',
+    // зачем (координатор §48): остальные firebase-модули — ESM, заглушки уже лежат в
+    // tests/__mocks__ (ими пользуется основной конфиг); reanimated — официальный мок.
+    '^@react-native-firebase/functions$': '<rootDir>/tests/__mocks__/react-native-firebase-functions.js',
+    '^@react-native-firebase/firestore$': '<rootDir>/tests/__mocks__/react-native-firebase-firestore.js',
+    '^@react-native-firebase/auth$': '<rootDir>/tests/__mocks__/react-native-firebase-auth.js',
+    '^react-native-reanimated$': 'react-native-reanimated/mock',
+    '^expo-router$': '<rootDir>/tests/__mocks__/expo-router.js',
+    '^expo-audio$': '<rootDir>/tests/__mocks__/expo-audio.js',
   },
   forceExit: true,
   maxWorkers: 1,

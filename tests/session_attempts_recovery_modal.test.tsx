@@ -129,7 +129,8 @@ describe('SessionAttemptsRecoveryModal', () => {
     expect(view.getByText('Нужно ещё 1 монету')).toBeTruthy();
 
     const runeButton = view.getByLabelText('Восстановить · 25 монет');
-    const restartButton = view.getByLabelText('Начать заново · −1');
+    // зачем (координатор §48): PM-086 — цена энергии с кнопки снята, подпись без «· −1».
+    const restartButton = view.getByLabelText('Начать заново');
     const exitButton = view.getByLabelText('Завершить сессию');
     expect(runeButton.props.accessibilityState).toEqual({ disabled: true });
     expect(runeButton.props.onPress).toBeUndefined();

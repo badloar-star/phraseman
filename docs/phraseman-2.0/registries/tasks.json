@@ -278,7 +278,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -301,17 +301,20 @@
     "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
     "evidence": [
-      "registries/job_inventory.json"
+      "registries/job_inventory.json",
+      "2026-10-01 повторное ревью: npx tsx tests/pm210_background_jobs_registry.probe.ts -> PM-210 PROBE PASS: registeredRows=94 scannedSites=117 files=70 warnings=0 (числа в evidence критерия 98/124/74 устарели после удаления мёртвого кода; commit 7e6fa6bdb)",
+      "commit 7e6fa6bdb"
     ],
     "notes": [
       "33 клиентские работы: keep 16, remove-with-feature 6, unknown 11. Самое тяжёлое: root init в app/_layout.tsx:2140-2393 (десятки сетевых вызовов на старте без лимита), прогрев Арены и маркетплейса на каждом старте. Не все ~140 AppState-файлов прочитаны построчно",
-      "2026-10-01 независимое ревью (agent-reviewer, Q75/§32): FAIL (регресс после evidence). Проба tests/pm210_background_jobs_registry.probe.ts (сторож критерия A1) падает на HEAD: 3 фоновые работы не внесены в реестр evidence/PM-210_background_jobs.md — components/completion/V2DoneScreen.tsx (setInterval), hooks/use_dialogue_v2_warmup.ts (afterInteractions), hooks/use_today_tasks.ts (appState); плюс 7 устаревших строк (app_check_init.ts, CollectibleArtFrame, HoloFoilCard, ProfileCardMotionFx, QuestSheetModal, ShineOverlay, DailyJourneyProductionModalHost). Нужно: дозаполнить триггер/reads/writes/cache/отмену для 3 новых, удалить 7 устаревших, добиться PASS пробы."
+      "2026-10-01 независимое ревью (agent-reviewer, Q75/§32): FAIL (регресс после evidence). Проба tests/pm210_background_jobs_registry.probe.ts (сторож критерия A1) падает на HEAD: 3 фоновые работы не внесены в реестр evidence/PM-210_background_jobs.md — components/completion/V2DoneScreen.tsx (setInterval), hooks/use_dialogue_v2_warmup.ts (afterInteractions), hooks/use_today_tasks.ts (appState); плюс 7 устаревших строк (app_check_init.ts, CollectibleArtFrame, HoloFoilCard, ProfileCardMotionFx, QuestSheetModal, ShineOverlay, DailyJourneyProductionModalHost). Нужно: дозаполнить триггер/reads/writes/cache/отмену для 3 новых, удалить 7 устаревших, добиться PASS пробы.",
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): PASS (повторно после FAIL пачки 1). Проба на HEAD зелёная: 94 строки, 117 мест, 0 предупреждений; 3 новые работы (V2DoneScreen, use_dialogue_v2_warmup, use_today_tasks) внесены, 7 устаревших строк убраны (7e6fa6bdb); колонки priority/owner/trigger/TTL/dedupe/cancellation/budget/queues/reads/writes/cache на месте, unknown только в 3 строках и с причиной. Файл реестра и проба после 7e6fa6bdb не менялись."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": "CHANGES_REQUIRED",
+    "kind": "audit",
+    "review_verdict": "PASS",
     "gate_evidence": {},
-    "actual_model": "sonnet-5",
+    "actual_model": "claude-sonnet-5 (аудит 30.09) + claude-opus-5.5 (дочинка реестра 01.10: Co-Authored-By 7e6fa6bdb)",
     "actual_reasoning": "high"
   },
   {
@@ -612,7 +615,7 @@
     ],
     "basis": "DECISION",
     "stage": "A",
-    "status": "review",
+    "status": "done",
     "profile": "A1",
     "model": "gpt-6-astra",
     "reasoning": "low",
@@ -654,21 +657,23 @@
       "docs/PRODUCT.md раздел «Модель прогресса без XP (PM-013)»",
       "tests/pm013_progress_separation.probe.ts (прогон ревью: PASS)",
       "tests/coin_identity_resolver_contract.probe.ts (PASS)",
-      "tests/pm055_xp_multiplier_runtime_retirement.probe.ts (PASS)"
+      "tests/pm055_xp_multiplier_runtime_retirement.probe.ts (PASS)",
+      "повторное ревью 2026-10-01: pm013_progress_separation.probe PASS, coin_identity_resolver_contract.probe PASS, pm055_xp_multiplier_runtime_retirement.probe PASS"
     ],
     "notes": [
       "Owner decision 2026-09-27: общий экран прогресса сохраняется по структуре, но полностью без XP и старых уровней; разделить баланс монет, ранг монеты, прогресс курса и недельный результат.",
-      "2026-10-01 независимое ревью (agent-reviewer, Q75/§32): содержание PASS (критерии A1/A2 подтверждены, три пробы прошли). В done НЕ переведена: БЛОКЕР — actual_model не установить (evidence-коммит efe19ae9d — общий снимок без Co-Authored-By; прочие записи — аудит без указания модели). Нужна запись автора от координатора."
+      "2026-10-01 независимое ревью (agent-reviewer, Q75/§32): содержание PASS (критерии A1/A2 подтверждены, три пробы прошли). В done НЕ переведена: БЛОКЕР — actual_model не установить (evidence-коммит efe19ae9d — общий снимок без Co-Authored-By; прочие записи — аудит без указания модели). Нужна запись автора от координатора.",
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32; Q78/Q79/Q80 приняты координатором §34): PASS (повтор). Модель автора записана как «unknown, снимок нескольких сессий» по Q79. Критерии A1/A2 и три пробы подтверждены заново; gates BASELINE_SHA_APPROVED (пакет) и OWNER_DECISION_RECORDED (D64.1 + решение владельца 27.09) с evidence."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
+    "kind": "documentation",
     "review_verdict": "PASS",
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
       "OWNER_DECISION_RECORDED": "PROGRESS.md раздел 1 D64.1 (XP полностью удалён, владелец 2026-09-24) + решение владельца 2026-09-27 (notes задачи, docs/PRODUCT.md раздел PM-013)"
     },
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "unknown, снимок нескольких сессий (evidence-коммит efe19ae9d без Co-Authored-By; Q79 принято координатором)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
     "id": "PM-014",
@@ -901,7 +906,7 @@
     ],
     "basis": "PROPOSAL",
     "stage": "A",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -930,24 +935,28 @@
       "PROPOSED_SCOPE_APPROVED"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "734800ed0",
     "owner": null,
     "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
     "evidence": [
       "tests/fc_custom_cards_store.test.ts 11/11, tests/pack_publish_limit_client.test.ts 3/3, functions/src/community_pack_publish_limit.test.ts 7/7 (прогон ревью 2026-10-01)",
-      "functions/src/pack_publish_limit.ts (PACK_PUBLISH_DAILY_LIMIT=3), commits 8330803a8, 734800ed0"
+      "functions/src/pack_publish_limit.ts (PACK_PUBLISH_DAILY_LIMIT=3), commits 8330803a8, 734800ed0",
+      "03_DECISIONS.md D141 (OWNER_FINAL 2026-10-01, Q55+Q67): 3 новые заявки в сутки на человека, Free и Plus одинаково, сутки UTC; правки, повтор заявки и действия админа слот не тратят",
+      "повторное ревью 2026-10-01: tests/fc_custom_cards_store 11/11 + tests/pack_publish_limit_client 3/3 (14/14), functions community_pack_publish_limit 7/7; functions/src/pack_publish_limit.ts: PACK_PUBLISH_DAILY_LIMIT=3, dayKey = UTC (toISOString), без ветки по Plus; community_packs.ts:559/576 слот читается и пишется в транзакции создания заявки, у админа null, повтор по submissionKey слот не тратит"
     ],
     "notes": [
-      "2026-10-01 независимое ревью (agent-reviewer, Q75/§32): критерии A1/A2 подтверждены (удаление без списаний; лимит 3 публикации/сутки, 50 карточек в наборе, Free 50 своих карточек). В done НЕ переведена: owner-gate PROPOSED_SCOPE_APPROVED — D17 остаётся PROPOSED, Q55 решён координатором и в 03_DECISIONS.md не записан (Q68 ждёт записи D-номером); решение владельца не подтверждено. Не выложено на прод (DEPLOY)."
+      "2026-10-01 независимое ревью (agent-reviewer, Q75/§32): критерии A1/A2 подтверждены (удаление без списаний; лимит 3 публикации/сутки, 50 карточек в наборе, Free 50 своих карточек). В done НЕ переведена: owner-gate PROPOSED_SCOPE_APPROVED — D17 остаётся PROPOSED, Q55 решён координатором и в 03_DECISIONS.md не записан (Q68 ждёт записи D-номером); решение владельца не подтверждено. Не выложено на прод (DEPLOY).",
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32; Q78/Q79/Q80 приняты координатором §34): PASS. D141 есть в 03_DECISIONS.md и совпадает с реализацией (3 новых в сутки, одинаково Free/Plus, сутки UTC, правки/повтор/админ слот не тратят). В рабочем дереве functions/src/community_packs.ts грязный от другой сессии (удаление подарков наборов), строки лимита не затронуты. Не выложено на прод (деплой — владелец)."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
+    "kind": "code",
     "review_verdict": "PASS",
     "gate_evidence": {
-      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "PROPOSED_SCOPE_APPROVED": "03_DECISIONS.md D141 (OWNER_FINAL 2026-10-01, Q55 + Q67, решение координатора по поручению владельца; реализация совпадает: 3/сутки, Free и Plus, UTC)"
     },
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "claude-opus-5.5 (Co-Authored-By 8330803a8, 734800ed0)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
     "id": "PM-019",
@@ -1485,7 +1494,7 @@
     ],
     "basis": "OWNER",
     "stage": "B",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -1515,21 +1524,27 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
-    "reviewer": "координатор (Fable) по поручению владельца 01.10",
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
     "evidence": [
       "01.10: декоративные эмодзи убраны — тосты оплаты/серии, итог урока (медали, «закрыт», благодарность→иконка, подарок, эмодзи вопроса оценки), пак (подсказка, CTA), диагностика, жалоба на набор, сообщения «ИИ отдыхает» (279 строк); смысловые ⚡/★/✓ оставлены; сторож tests/decorative_emoji_retired_contract.test.mjs",
-      "01.10 по решению координатора: пуши notifications.ts — максимум один эмодзи в начале строки (234 литерала), ✨ убран у ярлыка подарка; контент и «поделиться» оставлены; сторож tests/decorative_emoji_retired_contract.test.mjs 11/11"
+      "01.10 по решению координатора: пуши notifications.ts — максимум один эмодзи в начале строки (234 литерала), ✨ убран у ярлыка подарка; контент и «поделиться» оставлены; сторож tests/decorative_emoji_retired_contract.test.mjs 11/11",
+      "tests/decorative_emoji_retired_contract.test.mjs 11/11 (прогон ревью 2026-10-01)",
+      "commits 15d2dac83, 7da9de30b, 89dc91468",
+      "PROGRESS.md раздел «01.10 Дизайн — PM-030 -> review»: решение координатора (контент и «поделиться» не трогаем, пуши — один эмодзи в начале)"
     ],
     "notes": [
       "Хвост A1: учебный контент (lesson_help_theory_data, idioms), пуш-тексты notifications.ts, тексты «поделиться» (уходят наружу), иконки достижений и ✨ подарков — нужен отдельный проход с решением координатора",
-      "Хвост: иконки достижений — при редизайне экрана достижений (PROGRESS.md)"
+      "Хвост: иконки достижений — при редизайне экрана достижений (PROGRESS.md)",
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): PASS. Сторож 11/11 (тосты оплаты/серии, итог урока, пак, диагностика, «ИИ отдыхает», пуши, ярлык подарка). Выборочный скан app/ и components/ по *.tsx: декоративных эмодзи вне комментариев нет, кроме онбординга (CleanOnboarding 👋👍⭐👥 — «онбординг не трогаем», решение владельца) и экрана бана (app/_layout.tsx, 🚫 — знак-смысл). Иконки достижений: поле icon каталога с эмодзи в экране не рендерится (экран берёт Ionicons из constants/achievementIcons.ts). Оговорка для координатора: если «онбординг не трогаем» не распространяется на эмодзи, 4 места в онбординге — хвост."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "design",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
+    "actual_model": "claude-opus-5.5 (Co-Authored-By 15d2dac83, 7da9de30b, 89dc91468)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
     "id": "PM-031",
@@ -1540,7 +1555,7 @@
     ],
     "basis": "OWNER",
     "stage": "B",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -1570,19 +1585,24 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
-    "reviewer": "координатор (Fable) по поручению владельца 01.10",
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
     "evidence": [
-      "01.10: плитки Главной 2.0 на одном наборе арта assets/images/v2 (book_stack / chat_bubbles — новый знак диалогов / notecard_stack), components/home/v2/HomeV2FeatureTiles.tsx: accessibilityRole=button + accessibilityLabel «название. подпись», арт accessible=false; таббар app/(tabs)/_layout.tsx — только Ionicons outline/filled парами; новых библиотек иконок нет"
+      "01.10: плитки Главной 2.0 на одном наборе арта assets/images/v2 (book_stack / chat_bubbles — новый знак диалогов / notecard_stack), components/home/v2/HomeV2FeatureTiles.tsx: accessibilityRole=button + accessibilityLabel «название. подпись», арт accessible=false; таббар app/(tabs)/_layout.tsx — только Ionicons outline/filled парами; новых библиотек иконок нет",
+      "git ls-files: assets/images/v2/{book_stack,chat_bubbles,notecard_stack}.png на месте; app/(tabs)/home.tsx:3394 плитка «Диалоги» на chat_bubbles.png; HomeV2FeatureTiles.tsx:25-34 accessibilityRole/Label у плитки, арт accessible=false; app/(tabs)/_layout.tsx — только Ionicons парами outline/filled; новых иконных библиотек в package.json нет (прогон ревью 2026-10-01)",
+      "commit b51a31ee3"
     ],
     "notes": [
-      "Внутри разделов (брифинг диалога, комикс-интро) остаётся Ionicons chatbubbles — это стандартная смысловая иконка, не знак раздела"
+      "Внутри разделов (брифинг диалога, комикс-интро) остаётся Ionicons chatbubbles — это стандартная смысловая иконка, не знак раздела",
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): PASS по коду (знак диалогов включён, доступные подписи, лишней библиотеки нет). Оговорка: визуальная согласованность арта глазами не проверялась (нет эмулятора); картинки филлер-плиток помечены в коде как временные (владелец пришлёт свои)."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "design",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
+    "actual_model": "claude-opus-5.5 (Co-Authored-By b51a31ee3)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
     "id": "PM-032",
@@ -1623,19 +1643,23 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
-    "reviewer": "координатор (Fable) по поручению владельца 01.10",
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
     "evidence": [
       "tests/motion_allowlist_contract.test.mjs: каждый вечный цикл в списке с причиной, список только сокращается; 8 декоративных циклов стали разовыми (lesson_complete, pack_opening, CollectionListView, lesson_intro_screens ×2, NewWordEncounterOverlay, CardPackShardPaywallModal, streak_stats, SaveToCardsButton)",
-      "01.10 хвост: lesson/[id] ореол, CollectibleArtFrame x3, CollectiblesEmptyStateMotion x2, HoloFoilCard, LevelUpMintCeremony, PaywallMotion x3 — 2–4 повтора и покой; reduceMotion их гасит; сторож tests/motion_allowlist_contract.test.mjs 2/2"
+      "01.10 хвост: lesson/[id] ореол, CollectibleArtFrame x3, CollectiblesEmptyStateMotion x2, HoloFoilCard, LevelUpMintCeremony, PaywallMotion x3 — 2–4 повтора и покой; reduceMotion их гасит; сторож tests/motion_allowlist_contract.test.mjs 2/2",
+      "tests/motion_allowlist_contract.test.mjs 2/2 (прогон ревью; в рабочем дереве файл грязный от другой сессии: правка D140 убирает 3 удалённых компонента)"
     ],
     "notes": [
       "01.10: хвост — 10 файлов помечены «хвост PM-032» (коллекционные рамки, пейвол, карточка игрока, фон 2.0, ореолы); Главная и онбординг исключены по запрету владельца",
-      "Вечными оставлены по правилам: загрузка, курсор, звук/печать, Главная и онбординг (запрет владельца), V2Backdrop (фон Главной). Шесть мёртвых компонентов не удалены: защита запретила удаление, ждёт владельца."
+      "Вечными оставлены по правилам: загрузка, курсор, звук/печать, Главная и онбординг (запрет владельца), V2Backdrop (фон Главной). Шесть мёртвых компонентов не удалены: защита запретила удаление, ждёт владельца.",
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): FAIL по критерию A1 («нет бесконечной пульсации»). Сторож 2/2 зелёный, ранее перечисленные декоративные циклы действительно стали разовыми, но решение владельца 01.10 №2 (PROGRESS.md, «РЕШЕНИЯ ВЛАДЕЛЬЦА»: на Главной «кнопка раздела, фон» — сделать короткими) не исполнено: в allowlist остаются вечные циклы components/home/HomeSectionPulseButton.tsx (withRepeat), components/ScreenGradient.tsx (6 Animated.loop, фон Главной), components/ui/V2Backdrop.tsx; в allowlist стоит причина «вид Главной не трогаем», которую решение владельца отменяет. Нужно: короткие повторы 2–3 раза + покой у этих трёх (зона «Дизайн»), сжать allowlist."
     ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "review_verdict": "CHANGES_REQUIRED",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
     "actual_model": null,
     "actual_reasoning": null
   },
@@ -1729,18 +1753,22 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
-    "reviewer": "self-check (не независимое ревью)",
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
     "evidence": [
       "docs/phraseman-2.0/evidence/STATE_CHECKLIST_2026-09-30.md: матрица 758 состояний × макет × статус (747 ✅, остальное — решения владельца/не применимо/одобренная Главная)",
-      "Каждая строка сверки указывает реальный файл экрана и коммит переноса; старые экраны не прячутся за фасадом (удалённые — удалены, D78/D108)"
+      "Каждая строка сверки указывает реальный файл экрана и коммит переноса; старые экраны не прячутся за фасадом (удалённые — удалены, D78/D108)",
+      "evidence/STATE_CHECKLIST_2026-09-30.md: 768 строк матрицы (746 ✅, 8 🏠, 2 ❌, прочее ➖), прогон ревью"
     ],
     "notes": [
-      "Дизайн: визуальный проход в эмуляторе — в очереди"
+      "Дизайн: визуальный проход в эмуляторе — в очереди",
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): НЕ принято. A1: матрица существует, но это самопроверка дизайнера по файлам (многие строки «не закоммичен»/«+правки в дереве»), в конце документа остаётся список невыполненного (Learning V2 82 = 78 🟠+4 ❌, старый урок 41 🟠, диагностика 27 🟠, диалоги V2 25 = 18 🟠+7 ❌, нативные Alert 17 и т.д.) — он противоречит шапке «747 ✅» и не помечен как устаревший. A2: «ни один старый экран не спрятан за фасадом» без эмуляторного прохода не подтвердить (в notes задачи: «визуальный проход в эмуляторе — в очереди»). Нужно: актуализировать итоговую часть матрицы, провести проход в эмуляторе/на устройстве, независимо подтвердить."
     ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "review_verdict": "CHANGES_REQUIRED",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
     "actual_model": null,
     "actual_reasoning": null
   },
@@ -1845,13 +1873,22 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "evidence": [
+      "tests/d83_arena_client_deleted.probe.ts: D83 PASS (прогон ревью 2026-10-01)",
+      "app/+native-intent.ts:45 /arena*, /arena_* -> Главная; app/(tabs)/arena.tsx — пустой якорь",
+      "commit bfdc8e783"
+    ],
+    "notes": [
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): содержание PASS (A1/A2: проба зелёная, deeplink-и арены ведут на Главную, в modules/arena только 4 разрешённых файла). В done НЕ переведена: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES (новый таббар) — одобрение владельцем макета не записано."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
     "actual_model": null,
     "actual_reasoning": null
   },
@@ -2189,13 +2226,22 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "evidence": [
+      "components/EnergyBar.tsx:60-61,165 (useEnergy из общего EnergyContext; hasPremiumAccess -> null)",
+      "app/(tabs)/home.tsx:1373 showHomeEnergy=!hasPremiumAccess",
+      "app/energy_first_question_gate.ts:199-201 Plus -> unlimited без списания; tests/energy_first_question_gate.test.ts 11/11 (прогон ревью)"
+    ],
+    "notes": [
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): содержание PASS (A1 общий источник useEnergy у шапки/Главной/занятий; A2 у Plus бар скрыт, списания нет, тест 11/11). В done НЕ переведена: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES; evidence-коммит задачи не указан (автора модели установить нельзя)."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
     "actual_model": null,
     "actual_reasoning": null
   },
@@ -2243,21 +2289,27 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
-    "reviewer": "координатор (Fable) по поручению владельца 01.10",
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
     "evidence": [
       "components/streak/StreakFlameFill.tsx: контур огня заполняется по стадиям 0–10, после 10 — насыщение к 30 дням (токены темы, без новых ассетов); app/streak_stats.tsx",
       "tests/streak_flame_fill_contract.test.mjs",
       "эмулятор 01.10: 4 и 5 дней = 40%/50% заливки",
       "РЕШЕНО КООРДИНАТОРОМ (Fable), 01.10 — владелец поручил координатору принимать решения; docs/phraseman-2.0/PROGRESS.md",
-      "StreakFlameFill статичен: нет withRepeat/Animated.loop, нет чтений сети (сторож A2)"
+      "StreakFlameFill статичен: нет withRepeat/Animated.loop, нет чтений сети (сторож A2)",
+      "tests/streak_flame_fill_contract.test.mjs 4/4 (прогон ревью 2026-10-01)",
+      "commit 747deb70d"
     ],
     "notes": [
-      "Дизайн 01.10: шкала из существующего векторного огня по решению координатора; заменим, если появится макет"
+      "Дизайн 01.10: шкала из существующего векторного огня по решению координатора; заменим, если появится макет",
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): содержание PASS (A1 заливка контура 0–10 и насыщение к 30; A2 нет withRepeat/Animated.loop и сетевых чтений, сторож 4/4). В done НЕ переведена: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES — шкала принята координатором, не владельцем (\"заменим, если появится макет\")."
     ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
     "actual_model": null,
     "actual_reasoning": null
   },
@@ -2302,18 +2354,23 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
-    "reviewer": "self-check (не независимое ревью)",
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
     "evidence": [
       "components/PlayerProfileModal.tsx handleShare: своя визитка → системный Share.share с именем, званием ранга и своим текстом; других сценариев у кнопки нет",
-      "В сообщение не попадает XP (XP удалён); только имя, звание, подпись"
+      "В сообщение не попадает XP (XP удалён); только имя, звание, подпись",
+      "components/PlayerProfileModal.tsx:212-220 handleShare: Share.share({message}) — имя, звание ранга, подпись; XP нет (прогон ревью; файл в рабочем дереве имеет чужую правку стиля bannerText, к шарингу не относится)"
     ],
     "notes": [
-      "Дизайн: визитка 2.0 (коммиты f445814c1 ace685121)"
+      "Дизайн: визитка 2.0 (коммиты f445814c1 ace685121)",
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): содержание PASS (A1 единственный сценарий — системный Share; A2 XP в сообщении нет). В done НЕ переведена: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES (визитка 2.0); отдельного теста на шаринг нет."
     ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
     "actual_model": null,
     "actual_reasoning": null
   },
@@ -2346,7 +2403,7 @@
       {
         "id": "PM-046-A2",
         "text": "серверные старые события обработаны отдельно",
-      "accepted": true,
+        "accepted": true,
         "evidence": [
           "tests/level_gift_server_retirement.probe.ts: exit 0",
           "tests/server_remote_event_allowlist.probe.ts: PASS",
@@ -2366,22 +2423,27 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Codex (working-tree retirement pass)",
-    "reviewer": "self-check оркестратора (не независимое ревью)",
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
     "evidence": [
       "commits 72d217bfc a3b826949 5c98ac424",
       "constants/levelGiftRewardIcons.ts: 6 недостающих ID добавлены (pearls_1000, stars_2000, plus_days_14, plus_days_30, xp_bank_1500, cosmetic_theme)",
-    "tests/level_gift_reward_icons.test.ts 3/3 PASS (был сломан 1/3)",
-    "2026-09-28 server season progression fail-closed: season stars/spin eligibility disabled and season document write guarded; backend test runner still needs a configured globals-enabled invocation"
+      "tests/level_gift_reward_icons.test.ts 3/3 PASS (был сломан 1/3)",
+      "2026-09-28 server season progression fail-closed: season stars/spin eligibility disabled and season document write guarded; backend test runner still needs a configured globals-enabled invocation",
+      "прогон ревью 2026-10-01: jest tests/home_spin_entry_contract + level_spin_star_callable_retired + level_gift_reward_icons: 3 suites, 6/6 (A1); probes level_gift_client/server_retirement, pm048_gift_section_retirement PASS (A2)"
     ],
     "notes": [
       "Экран /level_reward_spin и эксклюзивные модули удалены; реферальная рулетка (referrals) НЕ тронута; SpinRewardPlaque/LevelSpinRewardModal остались в dev/ResultsSequence (мёртвый проп). tests/level_gift_reward_icons + runtime_lifecycle_ratchet правки НЕ закоммичены (блок as_any ratchet из-за чужого home.tsx)",
       "Аудит 25.09: список LEVEL_GIFT_REWARD_ICON_IDS отставал от ALL_LEVEL_GIFT_DEFS на 6 записей. Экран /level_reward_spin удалён, референциальная рулетка не тронута.",
-      "2026-09-28: серверная сезонная eligibility закрыта fail-closed (baseStars/todayStars/spin=false); запись entry.season условная. Backend runner still needs globals-enabled invocation."
+      "2026-09-28: серверная сезонная eligibility закрыта fail-closed (baseStars/todayStars/spin=false); запись entry.season условная. Backend runner still needs globals-enabled invocation.",
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): FAIL (регресс после evidence): tests/server_remote_event_allowlist.probe.ts, указанный в A2 как PASS, на HEAD красный — «retired remote-event token remains: gifts_to_coins» (токен появился с миграцией Q12 «Подарки и спины -> монеты», сторож не обновлён). Остальные пробы и jest зелёные. Также owner-gate MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE (серверные старые события/клейм ждут деплой владельцем) не закрыт. Нужно: решить судьбу токена в пробе (внести gifts_to_coins в разрешённые, раз миграция D51/Q12 легитимна), затем повторное ревью."
     ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "review_verdict": "CHANGES_REQUIRED",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
     "actual_model": "sonnet-5",
     "actual_reasoning": "high"
   },
@@ -2910,13 +2972,14 @@
       {
         "id": "PM-055-A1",
         "text": "Убраны покупки, выдача, расчёт, UI, кеш и notifications",
-        "accepted": true,
+        "accepted": false,
         "evidence": [
           "Частично удалены level-up очереди и XP-подарок друзьям; остальные покупки, выдача, кеш и notifications не проверены как полностью удалённые. См. tasks/PM-055.md и PROGRESS.md.",
-          "Частично: серверный level-gift каталог и завершение клейма больше не выдают XP/щит/лигобуст; клиентский запасной розыгрыш и старые квитанции не восстанавливают снятые эффекты. Шесть серверных shard-ID добавлены в клиентский каталог с идемпотентной локальной выдачей; мёртвые XP multiplier/xpBoostAlreadyActive поля квитанции удалены. Спины и прочие источники остаются; целевой Jest завершился OOM."
-        ,"tests/pm055_xp_multiplier_runtime_retirement.probe.ts: PM-055 XP MULTIPLIER RETIREMENT: PASS",
-        "tests/pm055_xp_surface_retirement.probe.ts: PM-055 XP SURFACE RETIREMENT: PASS",
-          "2026-09-30 tests/xp_boost_tokens_compat_only.probe.ts: PASS (3254 файлов app/components/modules/hooks/functions/src; токены xp_boost/xp_multiplier/double_xp/xp_2x/xp_bank вне комментариев встречаются только в 3 compat-файлах, читающих историю: level_spin_local_contract.ts→shards_6, phone-state economy.ts, global_broadcast_claim.ts→rewardType none). Source-уровень: рантайм/устройство не проверялись."
+          "Частично: серверный level-gift каталог и завершение клейма больше не выдают XP/щит/лигобуст; клиентский запасной розыгрыш и старые квитанции не восстанавливают снятые эффекты. Шесть серверных shard-ID добавлены в клиентский каталог с идемпотентной локальной выдачей; мёртвые XP multiplier/xpBoostAlreadyActive поля квитанции удалены. Спины и прочие источники остаются; целевой Jest завершился OOM.",
+          "tests/pm055_xp_multiplier_runtime_retirement.probe.ts: PM-055 XP MULTIPLIER RETIREMENT: PASS",
+          "tests/pm055_xp_surface_retirement.probe.ts: PM-055 XP SURFACE RETIREMENT: PASS",
+          "2026-09-30 tests/xp_boost_tokens_compat_only.probe.ts: PASS (3254 файлов app/components/modules/hooks/functions/src; токены xp_boost/xp_multiplier/double_xp/xp_2x/xp_bank вне комментариев встречаются только в 3 compat-файлах, читающих историю: level_spin_local_contract.ts→shards_6, phone-state economy.ts, global_broadcast_claim.ts→rewardType none). Source-уровень: рантайм/устройство не проверялись.",
+          "NOT_MET (ревью 2026-10-01): evidence самого критерия признаёт «частично»; проба tests/xp_boost_tokens_compat_only.probe.ts на HEAD красная — токены xp_boost/xp_multiplier вне compat-списка в app/cloud_sync.ts, app/gifts_to_coins_table_v1.ts, functions/src/accounts_v2_migration/inventory.ts"
         ]
       },
       {
@@ -2937,7 +3000,7 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Codex",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
     "evidence": [
       "docs/superpowers/plans/2026-09-26-pm-055-xp-multiplier-retirement-preflight.md",
       "focused Jest PM-055 P1: 2/2 PASS",
@@ -2949,26 +3012,31 @@
       "P3e individual admin grant: retired XP boosts and chain shields rejected; narrow probe, ESLint and diff check passed",
       "P3f global broadcast: retired XP boosts, shields and league perks rejected for new publish and neutralized for old claims; narrow probe, ESLint and diff check passed",
       "P3g level gift retired effects: server/client probes RED→GREEN; focused ESLint and diff check passed; focused Jest OOM",
-    "P3h profile-card XP definition: tests/profile_card_xp_definition_retirement.probe.ts RED→GREEN exit 0; focused ESLint 0 errors",
-    "2026-09-28: level_gift_client_retirement.probe.ts + level_gift_server_retirement.probe.ts: PASS"
+      "P3h profile-card XP definition: tests/profile_card_xp_definition_retirement.probe.ts RED→GREEN exit 0; focused ESLint 0 errors",
+      "2026-09-28: level_gift_client_retirement.probe.ts + level_gift_server_retirement.probe.ts: PASS",
+      "прогон ревью 2026-10-01: pm055_xp_multiplier_runtime_retirement PASS, pm055_xp_surface_retirement PASS, xp_boost_tokens_compat_only FAIL"
     ],
     "notes": [
       "D02/D09 дают решение удалить XP-множители и награды; P1 снял их влияние на app/xp_manager.ts без стирания legacy данных или изменения sync/Auth/Rules/Functions/покупок.",
       "P1 оставляет compatibility UI API нейтральным и не расходует chest/Season Pass/gift sources. A1 остаётся open: выдача, покупки, UI, cache, notifications и schema требуют отдельных пакетов с migration gates.",
       "Full owned Jest: 28/29; assertion energy_reload при level-crossing не менялась P1. Старые friends/profile-card contracts ожидают удаляемые multiplier source-shape и должны сниматься отдельным UI/call-site packet.",
       "P2 снял profile/gift/lesson/Home UI and call-sites. P2 eslint is NOT_GREEN: 14 errors/147 warnings in unresolved project-wide policy checks; full TypeScript/full Jest not claimed PASS. A1/A2 remain open for paid issuance/source, cache, notifications, legacy schema/data and Plus/migration gates.",
-    "P3b removed only six direct XP/multiplier offers from the static catalog after fresh review fixed a per-ID negative-test gap. It preserves wallets, history, progress, storage/sync, Rules/Functions and all existing legacy records; server/client producers and migration remain open.",
-    "P3c retired only the UI entry for a new league group XP boost. An active historical boost card and buyer/profile/countdown/like/count remain visible; purchase implementation is dormant, not deleted. Backend, economy, schema, storage/sync and Rules/Functions were untouched. A1/A2 remain open.",
-    "P3d removed the public local club XP catalog and made activation unconditionally deny even after a caller mutates the exported array. Legacy label reads remain available, historical records are not deleted, and getXPMultiplier is neutral without Premium/server reads. A1/A2 remain open for other sources, cached data, notifications and migration gates.",
-    "P3e removed per-user admin issue paths for XP boosts and chain shields without affecting shards. Level gifts and other producers remain; no deployment or remote data cleanup was done. A1/A2 remain open.",
-    "P3f removed six retired reward options from global broadcast publishing/client/admin. Old broadcasts and receipts yield no retired reward mutation, while messages/shards/pack trial remain. Published functions and old data remain untouched; A1/A2 open.",
-    "P3g removed retired XP/shield/league effects from level gifts; six shards IDs added to client fallback. Tests device/Jest not green; A1/A2 open.",
-    "P3h removed unused profile-card XP boost definition, preserving IV+ earned-shards perk and card levels. Other XP sources, cache, notifications and gates remain open."
+      "P3b removed only six direct XP/multiplier offers from the static catalog after fresh review fixed a per-ID negative-test gap. It preserves wallets, history, progress, storage/sync, Rules/Functions and all existing legacy records; server/client producers and migration remain open.",
+      "P3c retired only the UI entry for a new league group XP boost. An active historical boost card and buyer/profile/countdown/like/count remain visible; purchase implementation is dormant, not deleted. Backend, economy, schema, storage/sync and Rules/Functions were untouched. A1/A2 remain open.",
+      "P3d removed the public local club XP catalog and made activation unconditionally deny even after a caller mutates the exported array. Legacy label reads remain available, historical records are not deleted, and getXPMultiplier is neutral without Premium/server reads. A1/A2 remain open for other sources, cached data, notifications and migration gates.",
+      "P3e removed per-user admin issue paths for XP boosts and chain shields without affecting shards. Level gifts and other producers remain; no deployment or remote data cleanup was done. A1/A2 remain open.",
+      "P3f removed six retired reward options from global broadcast publishing/client/admin. Old broadcasts and receipts yield no retired reward mutation, while messages/shards/pack trial remain. Published functions and old data remain untouched; A1/A2 open.",
+      "P3g removed retired XP/shield/league effects from level gifts; six shards IDs added to client fallback. Tests device/Jest not green; A1/A2 open.",
+      "P3h removed unused profile-card XP boost definition, preserving IV+ earned-shards perk and card levels. Other XP sources, cache, notifications and gates remain open.",
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): FAIL. A1 (покупки, выдача, расчёт, UI, кеш и notifications убраны): evidence и notes признают, что выдача/покупки/кеш/notifications не проверены как полностью удалённые («A1 остаётся open»); сторож xp_boost_tokens_compat_only красный (3 файла вне compat-списка, два из них — миграция подарков->монеты Q12 и инвентарь Account V2, т.е. возможно легитимные, но список не обновлён). A2 (Plus-права) подтверждён по bounded scan 28.09. Также owner-gate MIGRATION_AND_ROLLBACK не закрыт. Нужно: довести/подтвердить остальные источники, обновить compat-список пробы осознанно, owner-gate."
     ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "review_verdict": "CHANGES_REQUIRED",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
     "actual_model": "sonnet-5",
     "actual_reasoning": "high"
   },

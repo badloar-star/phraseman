@@ -137,3 +137,28 @@ done требует одновременно: все критерии приня
 Общая оговорка по полю actual_reasoning: уровень рассуждения в git не фиксируется. У PM-003/005/014/021 записано «unrecorded» (модель установлена по Co-Authored-By); у PM-004/007/009 сохранено прежнее «high» из аудита 24.09. Если координатор требует известный уровень — эти задачи надо вернуть в review (вопрос Q-пачки 1).
 
 Инструменты: mark.py НЕ использовался — он перезаписывает весь tasks.json в другом форматировании (правка бы дала диффом ~600 КБ вместо ~240 строк) и не умеет kind/gate_evidence. Блоки 10 задач заменены точечно скриптом из scratchpad с сохранением CRLF. render_views.py не запускался в итоге: он падает на KeyError 'D131' (в requirement_ids задачи есть D-номер, которого нет в requirements.json) — карточки tasks/*.md у изменённых задач остаются прежними, перегенерировать после починки генератора.
+
+
+## Пачка 2 — независимое ревью (2026-10-01, Q75/§32)
+
+Ревьюер: agent-reviewer (Sonnet 5.5) по поручению координатора. Задачи: PM-006 (повторно), 013 и 018 (повторно, по §34), 030, 031, 032, 034, 036, 043, 044, 045, 046, 055. Общие gates BASELINE_SHA_APPROVED / DOMAIN_AUDIT_AND_IMPACT_ACCEPTED — пакетом [GATES_COMMON_2026-10-01.md](GATES_COMMON_2026-10-01.md); DESIGN_APPROVED_FOR_VISIBLE_CHANGES и MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE пакетом НЕ закрыты. Вердикты — также в worklog.jsonl (REVIEW_VERDICT). validate.py: ошибок по задачам пачки нет. Решения §34: Q78 («unrecorded» для actual_reasoning принято), Q79 (PM-013: «unknown, снимок нескольких сессий»), Q80 (Q55 записан как D141).
+
+Итог: PASS -> done: 5 (PM-006, PM-013, PM-018, PM-030, PM-031). PASS по сути, ждут owner-gate (остаются review): 4 (PM-036, 043, 044, 045 — DESIGN_APPROVED_FOR_VISIBLE_CHANGES). FAIL / CHANGES_REQUIRED: 4 (PM-032, 034, 046, 055).
+
+| Задача | Вердикт | Что проверено | Статус после |
+|---|---|---|---|
+| PM-006 | PASS | `npx tsx tests/pm210_background_jobs_registry.probe.ts` -> PASS, 94 строки / 117 мест / 0 предупреждений; 3 новые работы внесены, 7 устаревших убраны (7e6fa6bdb); колонки reads/writes/cache/cancellation на месте, unknown в 3 строках с причиной | done (audit) |
+| PM-013 | PASS | пробы pm013_progress_separation, coin_identity_resolver_contract, pm055_xp_multiplier_runtime_retirement — PASS; gates BASELINE (пакет) и OWNER_DECISION_RECORDED (D64.1) с evidence; модель автора «unknown, снимок нескольких сессий» (Q79) | done (documentation) |
+| PM-018 | PASS | D141 в 03_DECISIONS.md совпадает с кодом: functions/src/pack_publish_limit.ts (лимит 3, ключ суток UTC, без ветки по Plus), community_packs.ts:559/576 — слот в транзакции создания заявки, у админа null, повтор по submissionKey слот не тратит; тесты клиента 14/14 (fc_custom_cards_store 11 + pack_publish_limit_client 3), сервера community_pack_publish_limit 7/7; result_sha 734800ed0. community_packs.ts в дереве грязный от другой сессии (удаление подарков), строки лимита не затронуты. На прод не выложено | done (code) |
+| PM-030 | PASS | decorative_emoji_retired_contract 11/11; скан app/components: декоративных эмодзи нет, кроме онбординга (решение владельца «не трогаем») и 🚫 на экране бана; поле icon каталога достижений не рендерится (экран на Ionicons); решение координатора по контенту/пушам в PROGRESS.md | done (design) |
+| PM-031 | PASS | assets book_stack/chat_bubbles/notecard_stack в git, плитка «Диалоги» на chat_bubbles (home.tsx:3394), a11y-подписи в HomeV2FeatureTiles, таббар только Ionicons, новых библиотек нет. Визуально глазами не проверялось | done (design) |
+| PM-032 | FAIL | сторож 2/2 зелёный, но A1 не выполнен по решению владельца 01.10 №2: вечные циклы остаются у HomeSectionPulseButton, ScreenGradient (6), V2Backdrop | review (CHANGES_REQUIRED) |
+| PM-034 | FAIL | матрица STATE_CHECKLIST 768 строк (746 ✅, 2 ❌) — самопроверка; хвост документа с 🟠/❌ противоречит шапке; эмуляторный проход «в очереди» | review (CHANGES_REQUIRED) |
+| PM-036 | PASS по сути | d83_arena_client_deleted.probe PASS; native-intent ведёт /arena* на Главную | review (owner-gate DESIGN_APPROVED) |
+| PM-043 | PASS по сути | EnergyBar/Home на общем useEnergy, у Plus скрыто и без списания; energy_first_question_gate 11/11 | review (owner-gate DESIGN_APPROVED) |
+| PM-044 | PASS по сути | streak_flame_fill_contract 4/4 | review (owner-gate DESIGN_APPROVED; шкала принята координатором, не владельцем) |
+| PM-045 | PASS по сути | handleShare: только Share.share(имя, звание, подпись), XP нет; отдельного теста на шаринг нет | review (owner-gate DESIGN_APPROVED) |
+| PM-046 | FAIL | клиентские наборы 3 файла 6/6, пробы retirement PASS; НО server_remote_event_allowlist.probe красный: токен gifts_to_coins (миграция Q12) — регресс после evidence; owner-gate MIGRATION не закрыт | review (CHANGES_REQUIRED) |
+| PM-055 | FAIL | PM-055-A1 переведён в NOT_MET: evidence признаёт «частично»; xp_boost_tokens_compat_only.probe красный (app/cloud_sync.ts, app/gifts_to_coins_table_v1.ts, functions/src/accounts_v2_migration/inventory.ts); owner-gate MIGRATION не закрыт | review (CHANGES_REQUIRED) |
+
+Оговорки: actual_reasoning для done-задач — «unrecorded» (Q78); у PM-006 сохранено «high» из аудита. mark.py/render_views.py не запускались; правка tasks.json точечная, с сохранением CRLF. Две красные пробы (PM-046, PM-055) — следствие миграции подарков в монеты (Q12): либо расширить их белые списки осознанно, либо убрать токены.

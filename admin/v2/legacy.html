@@ -11568,7 +11568,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         <div class="h-btn"><div class="h-btn-name">Рубильники фич</div><div class="h-btn-desc">Переключатели ON/OFF для крупных функций. Выключил — функция пропадает у всех пользователей прямо сейчас. Включил — появляется обратно. Покупки и доступы при этом не отзываются.</div></div>
         <div class="h-btn"><div class="h-btn-name">🤖 Управление ИИ — Модель диалога</div><div class="h-btn-desc">Выбираешь, какая модель ChatGPT отвечает в ИИ-диалоге (Theo). Nano/mini — дешевле и быстрее. GPT-4.1 — умнее, но дороже. Здесь же — сколько ответов в день получает бесплатный и платный пользователь.</div></div>
         <div class="h-btn"><div class="h-btn-name">📊 Бюджет OpenAI →</div><div class="h-btn-desc">Открывает вкладку с расходами на ChatGPT — сколько потрачено сегодня, за неделю, на что именно.</div></div>
-        <div class="h-btn"><div class="h-btn-name">💾 Сохранить функции</div><div class="h-btn-desc">Сохраняет настройки фоновых ИИ-функций (еженедельный обзор, статистика, объяснялка, диалог Theo). Обязательно жать после изменений.</div></div>
+        <div class="h-btn"><div class="h-btn-name">💾 Сохранить функции</div><div class="h-btn-desc">Сохраняет настройки фоновых ИИ-функций (еженедельный обзор, статистика, объяснялка). Обязательно жать после изменений.</div></div>
         <div class="h-btn"><div class="h-btn-name">🚨 Мягкий баннер (режим обслуживания)</div><div class="h-btn-desc">У пользователей появляется плашка сверху «идут технические работы», но приложение продолжает работать.</div></div>
         <div class="h-btn"><div class="h-btn-name">🚨 Жёсткий блок (режим обслуживания)</div><div class="h-btn-desc">Приложение показывает экран «недоступно» — никто ничего не может делать.<br><span class="h-note">⚠️ Блокирует приложение для ВСЕХ. Не забудь выключить после работ!</span></div></div>
         <div class="h-btn"><div class="h-btn-name">💾 Сохранить текст (обслуживание)</div><div class="h-btn-desc">Сохраняет текст сообщения об обслуживании на трёх языках (русский, украинский, испанский).</div></div>
@@ -12270,9 +12270,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       <div style="margin-top:6px"><span id="cp-aijobs-status" class="cp-status-chip">Загрузка…</span></div>
       <div id="cp-aijobs-rows" style="margin-top:10px;display:flex;flex-direction:column;gap:8px"></div>
       <div style="margin-top:10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;color:#cbd5e1;font-size:12.5px;font-weight:700">
-          <input type="checkbox" id="cp-aijob-dialog-enabled" class="cp-toggle"/> ИИ-диалог (Theo) включён
-        </label>
+        <!-- зачем (решение координатора 01.10): галка «ИИ-диалог (Theo) включён» снята — сервер её не читал; единый стоп-кран ИИ — ai_global_disable. -->
         <button type="button" class="cp-btn" onclick="saveControlPanelAiJobs()" style="background:#5b21b6;border:1px solid #7c3aed;color:#fff;padding:9px 16px;border-radius:8px;cursor:pointer;font-weight:700;min-height:38px">💾 Сохранить функции</button>
         <button type="button" class="cp-btn" onclick="loadControlPanelAiJobs()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Перечитать</button>
       </div>
@@ -36723,9 +36721,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
             + '</div>';
         }).join('');
       }
-      const dlg = (jobs.dialog || {});
-      const dlgEl = document.getElementById('cp-aijob-dialog-enabled');
-      if (dlgEl) dlgEl.checked = dlg.enabled !== false;
       cpAiJobsSetStatus('Загружено. 0 в «кап/день» = без глобального ограничения.', '#4ade80');
     } catch (e) {
       cpAiJobsSetStatus('Ошибка загрузки: ' + (e && e.message ? e.message : e) + ' (нужны права admin)', '#f87171');
@@ -36745,8 +36740,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
           enabled: en ? !!en.checked : undefined,
         });
       }
-      const dlgEl = document.getElementById('cp-aijob-dialog-enabled');
-      await getOpenAiJobsConfigCallable()({ action: 'set', job: 'dialog', enabled: dlgEl ? !!dlgEl.checked : undefined });
       if (typeof logAction === 'function') logAction('control_panel_ai_jobs_save', 'admin_runtime_config/openai_jobs', {});
       cpAiJobsSetStatus('✅ Сохранено. Сервер применит за секунды.', '#4ade80');
       void window.loadControlPanelAiJobs();

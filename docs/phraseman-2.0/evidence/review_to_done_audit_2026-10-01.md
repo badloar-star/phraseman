@@ -297,3 +297,25 @@ done требует одновременно: все критерии приня
 | PM-227 | PASS | pm227_app_health_transport_visible 2/2, app_health_throttle_cache 1/1, functions client_reports 26/26 | done (code) |
 
 Оговорки: actual_model «unknown, снимок нескольких сессий», actual_reasoning «unrecorded» (§34). Деплой функций/правил (PM-108/109/112/227) и цифры биллинга (PM-223) не проверялись — владельцу.
+
+## Пачка 8 (agent-reviewer, Sonnet 5.5, 01.10)
+
+Итог: в done 4 задачи (PM-206, 274, 276, 280). Остаются review 7: PM-233, 235, 236, 237 (gate MIGRATION не покрыт пакетом), PM-251 (gate IMPLEMENTATION_AND_MIGRATION_READY), PM-279 и PM-288 (ждут DESIGN). validate.py по этим 11 задачам ошибок не даёт.
+
+| Задача | Вердикт | Основание | Статус |
+|---|---|---|---|
+| PM-206 | PASS | A2 перепроверен на HEAD: pm206_sound_event_callers.probe catalog=95, unknownCalls=0, orphanedCatalogIds=0; sound_events_contract 5/5, sound_event_call_sites_contract 5/5, reward_sound_surfaces_contract 3/3; A1: pm206_system_vs_learning_audio PASS, audio_runtime_arbiter 9/9; DESIGN N/A по f5287d290 (только .m4a, .ts, .mjs, тесты) | done (code, f5287d290) |
+| PM-274 | PASS | spire_energy_charge_contract 7/7; use_spire_step_runner.ts:89-166, energy_contract.ts:123; 63c7f95e7 без UI | done (code, 63c7f95e7) |
+| PM-276 | PASS | functions (spire_finalize_core, spire_residents, spire_coins, spire_progress_contract, video_phrases) 59/59; spire_residents_mirror_contract 2/2; сторожа лиг exit 0; A1 переписан (прежний требовал правки удалённых файлов лиги); gate IMPLEMENTATION_AND_MIGRATION_READY: код, тесты, откат по DEPLOY_NOW.md | done (code, e67597b64) |
+| PM-280 | PASS | spire_coins/progress_contract/finalize_core в 59/59; today_tasks_counting 17/17, today_tasks_wiring_contract 10/10, spire_report_queue 7/7; серия — spire_report_client.ts:87; задача в пуле — today_tasks_core.ts:49 | done (code, c9ba37a23) |
+| PM-233 | PASS по сути | сторож 6/6; products=39 markers=193 uncovered=0 stale=0; прод не открывался | review (gate MIGRATION) |
+| PM-235 | PASS по сути | functions accounts_v2_migration 11 suites 216/216; файлы не в коммите (сессия Account V2); эмулятор/устройство не делались | review (gate MIGRATION, не закоммичено) |
+| PM-236 | PASS по сути | то же | review (gate MIGRATION, не закоммичено) |
+| PM-237 | PASS по сути | то же; реальный backup/restore не выполнялся | review (gate MIGRATION, не закоммичено) |
+| PM-251 | PASS по сути | prompts 04/05 read-only, 01_BIBLE.md:52, E24 §PM-251; reviewer==owner 0 из 82 | review (gate IMPLEMENTATION_AND_MIGRATION_READY у docs-only задачи) |
+| PM-279 | PASS по сути | spire_game_source_contract 12/12; 4 коммита существуют; макет spire.html есть, одобрения и сверки в эмуляторе нет | review (ждёт DESIGN) |
+| PM-288 | PASS по сути | video_pack_phrase_moment 10/10, lingman_youtube 16/16, кнопка транскрипта в админке есть; чип «▶ м:сс» не в одобренном макете | review (ждёт DESIGN) |
+
+PM-288: requirement_ids D131 → R259 (добавлен в requirements.json; PM-288 внесён в E09 epics.json); spec исправлен на 03_DECISIONS.md. Карточки tasks/PM-288.md нет — её создаёт render_views.py (не запускался).
+
+Оговорки: actual_model «unknown, снимок нескольких сессий», actual_reasoning «unrecorded» (§34). Выкладка функций Шпиля и прод-подсчёты PM-233 — владельцу. Строка в PROGRESS.md не добавлена: файл грязный от другой сессии.

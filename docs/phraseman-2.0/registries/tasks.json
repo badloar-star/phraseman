@@ -11271,7 +11271,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -11289,11 +11289,12 @@
       {
         "id": "PM-206-A2",
         "text": "ненужные sound event IDs больше не вызываются",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
           "2026-09-30 npx tsx tests/pm206_sound_event_callers.probe.ts: catalog=98, unknownCalls=0, orphanedCatalogIds=0 (after removing 14 uncalled ids plus dead pm.voice.turn_ready and its hook hooks/use-turn-ready-cue.ts, orphaned by MAX removal; .m4a assets removed only where unreferenced).",
           "2026-09-30 repository runner (test:one), sound tests: reward_sound_surfaces_contract PASS, sound_event_call_sites_contract PASS. sound_motion_contract: 6 failures are PRE-EXISTING (32 audio events, 28 of them pm.arena.*, have no SOUND_MOTION entries at HEAD either); not caused by this change, Arena files are not to be touched. Source-level evidence only.",
-          "NOT_MET (ревью 01.10): каталог звуков сейчас 97, probe pm206_sound_event_callers: orphanedCatalogIds=2 (pm.energy.refilled — файл app/energy_shard_refill.ts удалён; pm.customization.applied — вызовов нет); красные guard-тесты sound_events_contract (98 != 97), sound_event_call_sites_contract (2 сироты), reward_sound_surfaces_contract (ждёт pm.streak.saved на Главной, снят D107). Нужно: удалить/пристроить 2 звука и обновить 3 теста"
+          "NOT_MET (ревью 01.10): каталог звуков сейчас 97, probe pm206_sound_event_callers: orphanedCatalogIds=2 (pm.energy.refilled — файл app/energy_shard_refill.ts удалён; pm.customization.applied — вызовов нет); красные guard-тесты sound_events_contract (98 != 97), sound_event_call_sites_contract (2 сироты), reward_sound_surfaces_contract (ждёт pm.streak.saved на Главной, снят D107). Нужно: удалить/пристроить 2 звука и обновить 3 теста",
+          "2026-10-01 повторное ревью пачки 8 на HEAD: npx tsx tests/pm206_sound_event_callers.probe.ts → catalog=95, unknownCalls=0, orphanedCatalogIds=0 (2 сироты pm.energy.refilled и pm.customization.applied сняты вместе с файлами в f5287d290); npm run test:one: sound_events_contract 5/5, sound_event_call_sites_contract 5/5, reward_sound_surfaces_contract 3/3 PASS. Прежний NOT_MET (97, 2 сироты, 3 красных сторожа) снят."
         ]
       }
     ],
@@ -11304,25 +11305,27 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": "64227deea0ef4bde948a5e10b85f0b2960b56e83",
-    "result_sha": null,
+    "result_sha": "f5287d290",
     "owner": "Codex (bounded static preflight)",
-    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 6, 01.10)",
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 8, 01.10)",
     "evidence": [
       "modules/audio/sound_events.ts",
       "modules/audio/sound_motion.ts",
-      "docs/phraseman-2.0/tasks/PM-206.md"
+      "docs/phraseman-2.0/tasks/PM-206.md",
+      "2026-10-01 пачка 8: A1 перепроверен — pm206_system_vs_learning_audio.probe PASS (sfx files=68), audio_runtime_arbiter 9/9"
     ],
     "notes": [
       "2026-09-24 аудит Sonnet: 133 звуковых события, праздничные файлы общие для спинов/сундуков/подарков/достижений, десятки тестов завязаны на точный список. Решение оркестратора: звуки снимаются ВМЕСТЕ с каждой механикой (PM-046 спины, PM-048 подарки, PM-053 тосты, PM-056 сундуки...), PM-206 закрывается последним — финальная чистка осиротевших файлов и реестра",
-      "2026-10-01 пачка 6: A1 PASS (pm206_system_vs_learning_audio, audio_runtime_arbiter 5/5). A2 NOT_MET: см. критерий — 2 осиротевших звука и 3 красных guard-теста (регресс после D107 и удаления energy_shard_refill)."
+      "2026-10-01 пачка 6: A1 PASS (pm206_system_vs_learning_audio, audio_runtime_arbiter 5/5). A2 NOT_MET: см. критерий — 2 осиротевших звука и 3 красных guard-теста (регресс после D107 и удаления energy_shard_refill).",
+      "2026-10-01 пачка 8: done. sound_motion_contract (прежние 6 красных по pm.arena.*) в критерии не входит и в пачке не проверялся."
     ],
     "actual_cost": null,
     "kind": "code",
-    "review_verdict": "CHANGES_REQUIRED",
+    "review_verdict": "PASS",
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "N/A: звук, видимого UI нет"
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "N/A: f5287d290 — .m4a, modules/audio/sound_events.ts, sound_motion.ts, scripts/prepare_phraseman_sfx.mjs и тесты; ни .tsx, ни components, ни admin; видимого UI нет"
     },
     "actual_model": "unknown, снимок нескольких сессий",
     "actual_reasoning": "unrecorded"
@@ -12691,13 +12694,17 @@
         "id": "PM-233-A1",
         "text": "Есть источник транзакций и список затронутых продуктов",
         "accepted": true,
-        "evidence": ["docs/phraseman-2.0/evidence/PM-233_purchase_ledger.md"]
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-233_purchase_ledger.md"
+        ]
       },
       {
         "id": "PM-233-A2",
         "text": "приблизительное «одна покупка» не принято за фактическую выборку",
         "accepted": true,
-        "evidence": ["docs/phraseman-2.0/evidence/PM-233_purchase_ledger.md"]
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-233_purchase_ledger.md"
+        ]
       }
     ],
     "depends_on": [],
@@ -12709,16 +12716,24 @@
     "audit_sha": null,
     "result_sha": "PM233-SOURCE-20261001",
     "owner": "/root",
-    "reviewer": "pending independent completeness review",
-    "evidence": ["docs/phraseman-2.0/evidence/PM-233_purchase_ledger.md"],
-    "notes": ["Source ledger only; production counts/compensation, Firestore and deploy remain NOT_RUN."],
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 8, 01.10)",
+    "evidence": [
+      "docs/phraseman-2.0/evidence/PM-233_purchase_ledger.md",
+      "2026-10-01 ревью пачки 8: node --test scripts/pm233_purchase_ledger_dry_run.test.mjs 6/6 PASS; node scripts/pm233_purchase_ledger_dry_run.mjs → products=39 markers=193 uncovered=0 stale=0 resurrected=0 (в доке 203 — дрейф после чистки кода); все объёмы unknown, прод не открывался"
+    ],
+    "notes": [
+      "Source ledger only; production counts/compensation, Firestore and deploy remain NOT_RUN.",
+      "2026-10-01 пачка 8: PASS по сути, остаётся review — gate MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE не покрыт подписанным GATES_MIGRATION (там M1–M4 для PM-046…090). Задача read-only (разрушающего шага нет): предложено координатору покрыть пакетом M5 или подтвердить N/A."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": "source-pass-pending-independent-review",
+    "kind": "audit",
+    "review_verdict": "PASS по сути",
     "gate_evidence": {
       "ledger_check": "products=39 markers=193 uncovered=0 stale=0 resurrected=0",
       "node_guard": "6/6 passed",
-      "production_mode": "refused / NOT_RUN"
+      "production_mode": "refused / NOT_RUN",
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
     },
     "actual_model": "gpt-5.6-terra",
     "actual_reasoning": "medium"
@@ -12789,13 +12804,17 @@
         "id": "PM-235-A1",
         "text": "Есть schemaVersion, cutover, read/write compatibility и условия блокировки старых клиентов",
         "accepted": true,
-        "evidence": ["docs/phraseman-2.0/evidence/PM-235_migration_compatibility.md"]
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-235_migration_compatibility.md"
+        ]
       },
       {
         "id": "PM-235-A2",
         "text": "rollout обратим до purge",
         "accepted": true,
-        "evidence": ["docs/phraseman-2.0/evidence/PM-235_migration_compatibility.md"]
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-235_migration_compatibility.md"
+        ]
       }
     ],
     "depends_on": [],
@@ -12807,17 +12826,25 @@
     "audit_sha": null,
     "result_sha": "65F7E3017C407D59432334854A906C71A2A1B0D185D029730701E51EFBC1B883",
     "owner": "/root",
-    "reviewer": "pending independent review",
-    "evidence": ["docs/phraseman-2.0/evidence/PM-235_migration_compatibility.md"],
-    "notes": ["Source gate only; device/runtime, backup/restore, Firestore cutover, production purge and release acceptance remain open."],
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 8, 01.10)",
+    "evidence": [
+      "docs/phraseman-2.0/evidence/PM-235_migration_compatibility.md",
+      "2026-10-01 ревью пачки 8: functions/ npx jest src/accounts_v2_migration --runInBand → 11 suites, 216/216 PASS; файлы compatibility.ts + compatibility.test.ts и evidence-документ в git status — «??» (не закоммичены, ведёт сессия Account V2)"
+    ],
+    "notes": [
+      "Source gate only; device/runtime, backup/restore, Firestore cutover, production purge and release acceptance remain open.",
+      "2026-10-01 пачка 8: PASS по сути, остаётся review: (1) код и evidence не в коммите (result_sha — хеш, не git SHA; коммитит сессия Account V2); (2) gate MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE не покрыт подписанным пакетом (нужен M5: решение владельца, проверка, шаг отката до purge, судьба данных, прод только владелец); (3) эмулятор/устройство и реальный backup/restore не выполнялись — исполнитель сам оставил их открытыми."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": "source-pass-pending-independent-review",
+    "kind": "code",
+    "review_verdict": "PASS по сути",
     "gate_evidence": {
       "migration_source_tests": "7 suites / 187 tests passed",
       "eslint": "PASS",
       "functions_tsc": "PASS",
-      "no_network_import_closure": "PASS"
+      "no_network_import_closure": "PASS",
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
     },
     "actual_model": "gpt-5.6-terra",
     "actual_reasoning": "medium"
@@ -12841,7 +12868,9 @@
         "id": "PM-236-A1",
         "text": "Повтор, прерывание, offline write и возврат старой версии не увеличивают баланс и не теряют права",
         "accepted": true,
-        "evidence": ["docs/phraseman-2.0/evidence/PM-236_two_device_idempotency.md"]
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-236_two_device_idempotency.md"
+        ]
       }
     ],
     "depends_on": [],
@@ -12853,17 +12882,25 @@
     "audit_sha": null,
     "result_sha": "82FC302B56184F479575EBD8607532AE4082C6E7E9B667974531CFE550381953",
     "owner": "/root",
-    "reviewer": "pending independent review",
-    "evidence": ["docs/phraseman-2.0/evidence/PM-236_two_device_idempotency.md"],
-    "notes": ["Source/in-memory gate only; real Firebase Emulator/device two-device E2E, backup/restore and release acceptance remain open."],
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 8, 01.10)",
+    "evidence": [
+      "docs/phraseman-2.0/evidence/PM-236_two_device_idempotency.md",
+      "2026-10-01 ревью пачки 8: functions/ npx jest src/accounts_v2_migration --runInBand → 11 suites, 216/216 PASS; файлы two_device_idempotency.test.ts и evidence-документ в git status — «??» (не закоммичены, ведёт сессия Account V2)"
+    ],
+    "notes": [
+      "Source/in-memory gate only; real Firebase Emulator/device two-device E2E, backup/restore and release acceptance remain open.",
+      "2026-10-01 пачка 8: PASS по сути, остаётся review: (1) код и evidence не в коммите (result_sha — хеш, не git SHA; коммитит сессия Account V2); (2) gate MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE не покрыт подписанным пакетом (нужен M5: решение владельца, проверка, шаг отката до purge, судьба данных, прод только владелец); (3) эмулятор/устройство и реальный backup/restore не выполнялись — исполнитель сам оставил их открытыми."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": "source-pass-pending-independent-review",
+    "kind": "code",
+    "review_verdict": "PASS по сути",
     "gate_evidence": {
       "focused_two_device": "1 suite / 3 tests passed",
       "migration_source_tests": "8 suites / 190 tests passed",
       "eslint": "PASS",
-      "functions_tsc": "PASS"
+      "functions_tsc": "PASS",
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
     },
     "actual_model": "gpt-5.6-terra",
     "actual_reasoning": "medium"
@@ -12887,13 +12924,17 @@
         "id": "PM-237-A1",
         "text": "Проверен восстановленный набор данных/refs",
         "accepted": true,
-        "evidence": ["docs/phraseman-2.0/evidence/PM-237_backup_restore.md"]
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-237_backup_restore.md"
+        ]
       },
       {
         "id": "PM-237-A2",
         "text": "наличие файла backup не считается проверенным rollback",
         "accepted": true,
-        "evidence": ["docs/phraseman-2.0/evidence/PM-237_backup_restore.md"]
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-237_backup_restore.md"
+        ]
       }
     ],
     "depends_on": [],
@@ -12905,18 +12946,26 @@
     "audit_sha": null,
     "result_sha": "B528DCE09B24676D8DFFC4C37C26C07879F5598B59C60818C11E492F34036E6D",
     "owner": "/root",
-    "reviewer": "pending independent review",
-    "evidence": ["docs/phraseman-2.0/evidence/PM-237_backup_restore.md"],
-    "notes": ["Source manifest round-trip only; real Firebase Emulator/device backup-restore and rollback acceptance remain open."],
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 8, 01.10)",
+    "evidence": [
+      "docs/phraseman-2.0/evidence/PM-237_backup_restore.md",
+      "2026-10-01 ревью пачки 8: functions/ npx jest src/accounts_v2_migration --runInBand → 11 suites, 216/216 PASS; файлы backup_manifest.ts + backup_manifest.test.ts и evidence-документ в git status — «??» (не закоммичены, ведёт сессия Account V2)"
+    ],
+    "notes": [
+      "Source manifest round-trip only; real Firebase Emulator/device backup-restore and rollback acceptance remain open.",
+      "2026-10-01 пачка 8: PASS по сути, остаётся review: (1) код и evidence не в коммите (result_sha — хеш, не git SHA; коммитит сессия Account V2); (2) gate MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE не покрыт подписанным пакетом (нужен M5: решение владельца, проверка, шаг отката до purge, судьба данных, прод только владелец); (3) эмулятор/устройство и реальный backup/restore не выполнялись — исполнитель сам оставил их открытыми."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": "source-pass-pending-independent-review",
+    "kind": "code",
+    "review_verdict": "PASS по сути",
     "gate_evidence": {
       "focused_backup_restore": "1 suite / 5 tests passed",
       "migration_source_tests": "9 suites / 197 tests passed",
       "eslint": "PASS",
       "functions_tsc": "PASS",
-      "no_network_import_closure": "PASS"
+      "no_network_import_closure": "PASS",
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
     },
     "actual_model": "gpt-5.6-terra",
     "actual_reasoning": "medium"
@@ -13596,15 +13645,21 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 8, 01.10)",
+    "evidence": [
+      "2026-10-01 ревью пачки 8: prompts/04_REVIEW_UX_COPY.md и 05_REVIEW_TECH_COST.md — read-only; 01_BIBLE.md:52; evidence/E24_release_process_2026-10-01.md (847f2156a) §PM-251; в реестре reviewer заполнен у 82 задач, reviewer==owner — 0"
+    ],
+    "notes": [
+      "2026-10-01 пачка 8: PASS по сути, остаётся review: gate IMPLEMENTATION_AND_MIGRATION_READY не покрыт пакетом, у docs-only задачи нет кода/отката — нужен ответ координатора, подтверждать ли N/A."
+    ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "audit",
+    "review_verdict": "PASS по сути",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-252",
@@ -14169,7 +14224,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -14201,20 +14256,26 @@
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "63c7f95e7",
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 8, 01.10)",
+    "evidence": [
+      "2026-10-01 ревью пачки 8: npm run test:one tests/spire_energy_charge_contract.test.ts 7/7 PASS; app/spire/use_spire_step_runner.ts:89-166 (useEnergySessionIntent + chargeStartedRef; refundOne только если первое задание не показано/экран закрыт во время списания); app/energy_contract.ts:123,192 spire_step = ENERGY_SESSION_COST; 63c7f95e7 — только app/*.ts и тесты, UI нет; PM-084/PM-273/PM-275 в done"
+    ],
     "notes": [
       "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
-      "Preflight PM-273 (2026-09-24): EnergyActivityKey сейчас 10/20/25 (старый масштаб), T3 требует 1 за ступень по новому контракту 5/1/10 (E08, ещё planned). PM-274 физически ждёт PM-084 (списание ровно при начале занятия) — добавлена явная зависимость, иначе цена спишется по старой шкале."
+      "Preflight PM-273 (2026-09-24): EnergyActivityKey сейчас 10/20/25 (старый масштаб), T3 требует 1 за ступень по новому контракту 5/1/10 (E08, ещё planned). PM-274 физически ждёт PM-084 (списание ровно при начале занятия) — добавлена явная зависимость, иначе цена спишется по старой шкале.",
+      "2026-10-01 пачка 8: done. Нет DESIGN-gate у задачи."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
   "id": "PM-275",
@@ -14304,7 +14365,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -14312,10 +14373,11 @@
     "acceptance": [
       {
         "id": "PM-276-A1",
-        "text": "league_finalize_cron и app/league_engine.ts изменены зеркально в одном коммите; сторожа лиг зелёные",
+        "text": "Итог Шпиля — отдельный крон spireFinalizeCron; зеркало сервер↔клиент для зон (functions/src/spire_residents.ts ↔ modules/spire/residents.ts) сторожится тестом; сторожа лиг не сломаны (формулировка про league_finalize_cron/league_engine устарела: лиги удалены D74/D78/D83)",
         "accepted": true,
         "evidence": [
-          "Формулировка устарела: лиги удалены (D74/D78/D83, app/league_engine.ts и league_finalize_cron.ts отсутствуют). Эквивалент зеркала сервер↔клиент для Шпиля: functions/src/spire_residents.ts ↔ modules/spire/residents.ts (общий spireLiveZoneSize, итог spire_finalize_core.ts), сторож tests/spire_residents_mirror_contract.test.ts 2/2 (починен от ссылки на удалённый league_residents.ts, коммит 9475593a4); functions spire_finalize_core+spire_residents+spire_coins 35/35; scripts/guard_league_demotion.mjs и guard_league_refresh_ttl.mjs exit 0"
+          "Формулировка устарела: лиги удалены (D74/D78/D83, app/league_engine.ts и league_finalize_cron.ts отсутствуют). Эквивалент зеркала сервер↔клиент для Шпиля: functions/src/spire_residents.ts ↔ modules/spire/residents.ts (общий spireLiveZoneSize, итог spire_finalize_core.ts), сторож tests/spire_residents_mirror_contract.test.ts 2/2 (починен от ссылки на удалённый league_residents.ts, коммит 9475593a4); functions spire_finalize_core+spire_residents+spire_coins 35/35; scripts/guard_league_demotion.mjs и guard_league_refresh_ttl.mjs exit 0",
+          "2026-10-01 пачка 8: tests/spire_residents_mirror_contract.test.ts 2/2 PASS; node scripts/guard_league_demotion.mjs и guard_league_refresh_ttl.mjs exit 0; functions spire_residents.test.ts PASS в 59/59"
         ]
       },
       {
@@ -14339,9 +14401,9 @@
       "IMPLEMENTATION_AND_MIGRATION_READY"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "e67597b64",
     "owner": "Claude Opus 5.5 (сессия «Башня», субагент)",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 8, 01.10)",
     "evidence": [
       "functions/src/spire_finalize_core.ts",
       "functions/src/spire_finalize_cron.ts",
@@ -14352,19 +14414,25 @@
       "functions/src/index.ts",
       "firestore.rules",
       "functions/src/admin_diagnostics_overview.ts",
-      "docs/phraseman-2.0/evidence/PM-276_weekly_finalize.md"
+      "docs/phraseman-2.0/evidence/PM-276_weekly_finalize.md",
+      "2026-10-01 ревью пачки 8: functions/ spire_finalize_core, spire_residents, spire_coins, spire_progress_contract, video_phrases → 5 suites, 59/59 PASS"
     ],
     "notes": [
       "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
       "D59/D60: недельный итог обязан использовать ту же функцию зон (spireLiveZoneSize из functions/src/spire_residents.ts), что и spire_groups.ts — боты в общем числе для зоны, но без награды/повышения; допустима просадка чисел ботов при входе живого в зону.",
       "2026-09-24: отдельный крон spireFinalizeCron (пн 00:01 UTC) по spire_groups прошлой недели; итог комнаты — чистая computeSpireRoomResults (ступени, ничья reachedAtMs, затем totalMs; зоны spireLiveZoneSize по живым; боты только для «место X из 30»). Итог -> users/{uid}/spire_week_results/{weekId}_{lang}, новый шпиль -> leaderboard.spireTiers.{lang} только при смене, finalizedAt на комнату для ретрая. D59 применено в spireLiveZoneSize (оба зеркала + тест): зона от комнаты с ботами (5 из 30), одинокий живой повышается. Лидер вершины не понижается (отличие от лиги). Тесты и проверка типов НЕ прогнаны (щадящий режим).",
       "A1 не принят: формулировка устарела — требует зеркальной правки файлов лиги, а Шпиль после PM-277 живёт в своей коллекции, файлы лиги не тронуты по заданию. Предложено переписать критерий. Монеты за место/повышение посчитаны (rewardCoins, rewardStatus pending_wallet), но НЕ начислены — нет готового модуля кошелька 2.0 (PM-069/PM-280). Открытые О-276-1..5 — в evidence.",
-      "Проверено (сессия «Башня», 2026-09-24): точечные jest-прогоны — 66/66 новых тестов зелёные (spire_finalize_core, spire_league_migration_contract, spire_residents/mirror после правки D59, spire_tier_names). Точечная проверка типов functions/ — 0 ошибок."
+      "Проверено (сессия «Башня», 2026-09-24): точечные jest-прогоны — 66/66 новых тестов зелёные (spire_finalize_core, spire_league_migration_contract, spire_residents/mirror после правки D59, spire_tier_names). Точечная проверка типов functions/ — 0 ошибок.",
+      "2026-10-01 пачка 8: done. Текст A1 переписан (прежний требовал правки удалённых файлов лиги — предложено самим исполнителем в PM-276_weekly_finalize.md). Открытый вопрос О-276-2 (при 6–25 живых понижение жёстче) — решение владельца, на критерии не влияет. Выкладка кронов — владельцу (DEPLOY_NOW)."
     ],
     "actual_cost": null,
     "kind": "code",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "IMPLEMENTATION_AND_MIGRATION_READY": "код: e67597b64 + 6b3b1b037, рабочее дерево по файлам Шпиля чистое; functions: spire_finalize_core + spire_residents + spire_coins + spire_progress_contract + video_phrases 59/59 PASS (2026-10-01); откат: функции Шпиля ещё не выложены (DEPLOY_NOW.md стр.54, шаг 3 п.1 — config/spire_v1.enabled в проде отсутствует, включает владелец из админки), любая функция откатывается удалением (DEPLOY_NOW.md стр.175); новые данные только аддитивные (users/{uid}/spire_week_results, leaderboard.spireTiers)"
+    },
     "actual_model": "claude-opus-5-5",
     "actual_reasoning": "high"
   },
@@ -14557,23 +14625,27 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
-    "reviewer": "self-check (не независимое ревью)",
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 8, 01.10)",
     "evidence": [
       "components/spire/SpireTour.tsx (тур), SpireHomeScreen (вкладка «Сообщество» вместо Лиги), SpireResultPanel (итог ступени), SpireFloorInfo/SpireTowerSvg (этаж/Страж/вершина), SpireWeekResultCard (итог недели), нет энергии — как в уроке",
       "commits 951f3bf87 6ea086014 315c3edb6 847fe6ff0",
       "tests: spire_game_source_contract (node --test) PASS",
-      "Первый кадр из локального кэша (app/spire/spire_local_store.ts); итог недели — карточка фактом по документу крона, хранится только «закрыто» (spire_week_result_client.ts) — не durable-очередь"
+      "Первый кадр из локального кэша (app/spire/spire_local_store.ts); итог недели — карточка фактом по документу крона, хранится только «закрыто» (spire_week_result_client.ts) — не durable-очередь",
+      "2026-10-01 ревью пачки 8: node --test tests/spire_game_source_contract.test.mjs 12/12 PASS (в т.ч. отсутствие немых catch, спиннера, durable-очереди); коммиты 951f3bf87, 6ea086014, 315c3edb6, 847fe6ff0 существуют; правят components/spire/*.tsx"
     ],
     "notes": [
       "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
-      "Дизайн: проверка в эмуляторе в очереди (эмулятор занят другой сессией)"
+      "Дизайн: проверка в эмуляторе в очереди (эмулятор занят другой сессией)",
+      "2026-10-01 пачка 8: PASS по сути, остаётся review — ждёт DESIGN_APPROVED_FOR_VISIBLE_CHANGES: макет docs/design/v2-app/spire.html есть, MOCKUP_GAP_AUDIT.md:156 «не сверено построчно», в DESIGN_GATE_OWNER_REVIEW.md Шпиля нет, проверки в эмуляторе не было. Reviewer в реестре был «self-check» — заменён независимым."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS по сути",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-280",
@@ -14584,7 +14656,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -14620,9 +14692,9 @@
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "c9ba37a23",
     "owner": "Claude Opus 5.5 (сессия «Башня», субагент)",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 8, 01.10)",
     "evidence": [
       "functions/src/spire_coins.ts",
       "functions/src/spire_coins.test.ts",
@@ -14633,7 +14705,8 @@
       "app/spire_report_client.ts",
       "components/home/v2/home_v2_types.ts",
       "components/home/v2/HomeV2TodayCard.tsx",
-      "docs/phraseman-2.0/evidence/PM-280_coins_and_streak.md"
+      "docs/phraseman-2.0/evidence/PM-280_coins_and_streak.md",
+      "2026-10-01 ревью пачки 8: functions spire_coins + spire_progress_contract + spire_finalize_core в 59/59 PASS; client tests/today_tasks_counting 17/17, today_tasks_wiring_contract 10/10, spire_report_queue 7/7 PASS; today_tasks_core.ts:17,21,49 (spire_steps, цель 3), use_spire_game.ts:249 (засчитывание), use_today_tasks.ts:49 (за флагом spire_tab_enabled), spire_report_client.ts:87 (updateStreakOnActivity); c9ba37a23 + 0432d5b57 существуют"
     ],
     "notes": [
       "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
@@ -14642,12 +14715,16 @@
       "A2 не принят целиком: хука useTodayTasks в коде нет (только placeholder) — добавлен тип spire_steps в TodayTaskKind + иконка, контракт задачи в evidence; пул и счёт — PM-259.",
       "Тесты и проверка типов не прогнаны (условие задачи); хук проверки типов на правках functions/ ошибок не показал. Открыто О-280-1..6 (16+ над облаками, класс призов для рангов D34, серия при запуске приложения, переезд аккаунта в понедельник, испорченный баланс, время крона).",
       "Проверено (сессия «Башня», 2026-09-24): реальный jest-прогон (не самодельная замена раннера) — 105/105 spire-тестов зелёные (functions/: spire_coins, spire_pack_contract, spire_progress_contract, spire_finalize_core, spire_league_migration_contract, spire_residents — 91 тестов; tests/: spire_report_queue, spire_residents_mirror_contract, spire_tier_names — 14 тестов). Полный npm run typecheck: 181 ошибка, ВСЕ в известном чужом долге (learning-v2/content/source и preview, flashcards, чужой скрипт) — 0 в файлах Шпиля.",
-      "D62: О-280-1 закрыт — этажи 16+ («над облаками») платят за ступень как обычно, без бонуса за этаж (бонуса там не было по замыслу T32)."
+      "D62: О-280-1 закрыт — этажи 16+ («над облаками») платят за ступень как обычно, без бонуса за этаж (бонуса там не было по замыслу T32).",
+      "2026-10-01 пачка 8: done. Нет DESIGN-gate у задачи. Открытые вопросы О-280-2..6 (класс призов рангов D34, серия при запуске, переезд аккаунта в понедельник, испорченный баланс, время крона) — в PM-280_coins_and_streak.md, на критерии не влияют. Выкладка — владельцу."
     ],
     "actual_cost": null,
     "kind": "code",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
     "actual_model": "claude-opus-5-5",
     "actual_reasoning": "high"
   },
@@ -15068,7 +15145,7 @@
     "epic": "E09",
     "title": "Наборы из видео: тап по фразе открывает ролик на её моменте",
     "requirement_ids": [
-      "D131"
+      "R259"
     ],
     "basis": "OWNER",
     "stage": "C",
@@ -15076,7 +15153,7 @@
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
-    "spec": "docs/phraseman-2.0/03_DECISIONS.md#D131",
+    "spec": "03_DECISIONS.md",
     "acceptance": [
       {
         "id": "PM-288-A1",
@@ -15118,18 +15195,25 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "fbdc873fb",
     "owner": null,
-    "reviewer": null,
-    "evidence": [],
+    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 8, 01.10)",
+    "evidence": [
+      "2026-10-01 ревью пачки 8: npm run test:one video_pack_phrase_moment 10/10, lingman_youtube 16/16; functions video_phrases в 59/59 PASS; admin/v2/legacy.html:54747 кнопка #vp-transcript → adminAlignVideoPhraseTranscript (functions/src/index.ts:801); fbdc873fb существует"
+    ],
     "notes": [
-      "Уже есть: shared/video_transcript_timing.ts, functions/src/video_phrase_timing.ts (adminAlignVideoPhraseTranscript), app/youtube_player_seek_bus.ts, components/youtube/YoutubeVideoPhrases.tsx (тап под плеером). Не хватает: связка до наборов карточек из видео."
+      "Уже есть: shared/video_transcript_timing.ts, functions/src/video_phrase_timing.ts (adminAlignVideoPhraseTranscript), app/youtube_player_seek_bus.ts, components/youtube/YoutubeVideoPhrases.tsx (тап под плеером). Не хватает: связка до наборов карточек из видео.",
+      "2026-10-01 пачка 8: PASS по сути, остаётся review — ждёт DESIGN: fbdc873fb добавляет в FlashcardListItem.tsx новый видимый чип «▶ м:сс»; одобренный 01.10 макет video-packs-from-video-mockup.html такого чипа не содержит, D131 даёт поведение, не вид. requirement_ids исправлен D131→R259 (в requirements.json добавлен R259, в epics.json PM-288 внесён в E09) — validate.py больше не ругается на PM-288. Карточки tasks/PM-288.md нет: её создаёт render_views.py, не запускался (PM-257).",
+      "2026-10-01 пачка 8: spec исправлен с «docs/phraseman-2.0/03_DECISIONS.md#D131» на «03_DECISIONS.md» (validate.py ищет файл от корня пакета; якорь D131 — в requirement R259)."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS по сути",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   }
 ]

@@ -7,6 +7,11 @@ import {
   type DialogueV2PreparedBotVoiceSelection,
 } from '../shared/dialogue_v2_prepared_bot_voice_selection_contract';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import {
+  consumeDialogueV2StartTapAgeMs,
+  registerDialogueV2Prestart,
+  takeDialogueV2Prestart,
+} from './dialogue_v2_session_prestart';
 
 const FUNCTIONS_REGION = 'us-central1';
 const STUDY_TARGETS = new Set(['en', 'es', 'fr', 'de']);
@@ -219,14 +224,74 @@ function safeStartResponse(value: unknown): DialogueV2SessionStartResponse | nul
   return Object.freeze({ ok: true, sessionId: response.sessionId, expiresAtMs: response.expiresAtMs as number });
 }
 
+/**
+ * Старт серверной сессии для экрана диалога. Если на этот язык:сцену уже идёт/готов
+ * фоновый старт (prestartDialogueV2TextSession, при открытии брифинга), берём его —
+ * экран получает сессию без второго сетевого круга. Иначе — обычный сетевой старт.
+ * Лог [DIALOGUE-V2] start timing: сколько ждали готовности (от вызова и от тапа «Начать»).
+ */
 export async function startDialogueV2TextSession(selection: DialogueV2SessionStartRequest): Promise<DialogueV2SessionStartResponse | null> {
   const request = safeStartRequest(selection);
-  if (!request) return null;
+  if (!request) {
+    console.warn('[DIALOGUE-V2] start timing', JSON.stringify({ event: 'request_invalid' }));
+    return null;
+  }
+  const calledAt = Date.now();
+  const prestarted = takeDialogueV2Prestart(request, calledAt);
+  let source: 'prestart_ready' | 'prestart_pending' | 'network' | 'network_after_prestart_failed' = 'network';
+  let session: DialogueV2SessionStartResponse | null = null;
+  if (prestarted) {
+    session = await prestarted.promise;
+    source = prestarted.state === 'ready' ? 'prestart_ready' : 'prestart_pending';
+    if (!session) source = 'network_after_prestart_failed';
+  }
+  if (!session) {
+    try {
+      session = await requestDialogueV2TextSessionFromNetwork(request);
+    } catch (error) {
+      console.warn('[DIALOGUE-V2] start timing', JSON.stringify({
+        scenarioId: request.scenarioId, source, ready: false, failed: true, sinceCallMs: Date.now() - calledAt,
+      }));
+      throw error;
+    }
+  }
+  const readyAt = Date.now();
+  // зачем (владелец 01.10, задача «замер»): «тап → готовность первого хода» до/после прогрева.
+  console.log('[DIALOGUE-V2] start timing', JSON.stringify({
+    scenarioId: request.scenarioId,
+    source,
+    ready: Boolean(session),
+    sinceCallMs: readyAt - calledAt,
+    sinceTapMs: consumeDialogueV2StartTapAgeMs(request, readyAt),
+  }));
+  return session;
+}
+
+/**
+ * Фоновый старт сессии, пока человек читает брифинг (до «Начать»). Ничего не тратит:
+ * энергия — на «Начать», квота — сервером на первом ходе ученика. Повтор для той же
+ * сцены, пока прежний жив, не шлёт второй запрос. Никогда не бросает.
+ */
+export function prestartDialogueV2TextSession(selection: DialogueV2SessionStartRequest): void {
+  const request = safeStartRequest(selection);
+  if (!request) {
+    console.warn('[DIALOGUE-V2] prestart', JSON.stringify({ event: 'request_invalid' }));
+    return;
+  }
+  registerDialogueV2Prestart(request, () => requestDialogueV2TextSessionFromNetwork(request), Date.now());
+}
+
+async function requestDialogueV2TextSessionFromNetwork(request: DialogueV2SessionStartRequest): Promise<DialogueV2SessionStartResponse | null> {
   try {
     await initFirebaseAppCheckIfAvailable();
     const callable = httpsCallable<DialogueV2SessionStartRequest, unknown>(getFunctions(getApp(), FUNCTIONS_REGION), 'dialogueV2SessionStart');
     return safeStartResponse((await callable(request)).data);
-  } catch {
+  } catch (error) {
+    // Немой catch запрещён: код отказа виден в логе, наружу — нейтральная ошибка.
+    console.warn('[DIALOGUE-V2] start:catch', JSON.stringify({
+      code: String((error as { code?: unknown })?.code ?? '').slice(0, 60),
+      reason: String((error as { message?: unknown })?.message ?? error).slice(0, 120),
+    }));
     throw new DialogueV2TextTurnUnavailableError();
   }
 }

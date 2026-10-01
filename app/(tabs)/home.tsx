@@ -57,6 +57,7 @@ import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
+import { useDialogueV2Warmup } from '../../hooks/use_dialogue_v2_warmup';
 import { coinRankRowForDisplay, isValidCoinRank } from '../coin_rank_table_v1';
 import AvatarView from '../../components/AvatarView';
 import { checkAchievements, loadAchievementStates } from '../achievements';
@@ -602,6 +603,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // готовности. studyTarget синхронный (peek), поэтому первый кадр уже финальный.
     const homeLearnVisible = isLearnTabVisibleForTarget(studyTarget);
     const homeDialoguesVisible = isLearningSurfaceReady(studyTarget, 'dialogues');
+    // зачем (владелец 01.10: диалоги «ДОЛЖНЫ» прогреваться): плитка «Диалоги» видна —
+    // греем функции старта/хода после первого кадра, не чаще раза в 10 минут.
+    useDialogueV2Warmup(homeDialoguesVisible, 'home_tile');
     const homeFlashcardsVisible = isLearningSurfaceReady(studyTarget, 'flashcards');
     const homeVideosVisible = isLearningSurfaceReady(studyTarget, 'videos');
     const homeDailyPhraseVisible = isLearningSurfaceReady(studyTarget, 'daily_phrase');

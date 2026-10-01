@@ -59,6 +59,8 @@ import { useTheme } from './ThemeContext';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { V2 } from '../constants/v2Style';
 import { DialogueV2CatalogueContainer } from './dialogs/DialogueV2CatalogueContainer';
+import { prestartDialogueV2TextSession } from '../app/dialogue_v2_turn_client';
+import { useDialogueV2Warmup } from '../hooks/use_dialogue_v2_warmup';
 import { useV2Palette } from './v2/useV2Palette';
 // зачем (v2, 2026-08-23): владелец задал эталон — раздел «Статистика»: всё
 // крупное, никаких мелких плиток/подписей. Полки карточек 128px заменены
@@ -135,6 +137,10 @@ export default function DialogsTabContent({
 }: DialogsTabContentProps) {
   const router = useRouter();
   const palette = useV2Palette();
+  const { studyTarget } = useStudyTarget();
+  // зачем (владелец 01.10: диалоги «ДОЛЖНЫ» прогреваться): хаб на экране — греем
+  // функции старта и хода (≤1 раза в 10 мин, после первого кадра).
+  useDialogueV2Warmup(true, 'hub');
 
   return (
     <Animated.ScrollView
@@ -147,10 +153,17 @@ export default function DialogsTabContent({
       <View style={{ paddingHorizontal: V2.screenPad }}>
         <DialogueV2CatalogueContainer
           showQuotaRow={!quotaInHeader}
-          onPressItem={(item) => router.push({
-            pathname: '/dialogue_v2_briefing',
-            params: { scenarioId: item.id },
-          } as never)}
+          onPressItem={(item) => {
+            // зачем (владелец 01.10): сессия стартует фоном, пока человек читает брифинг;
+            // энергия и квота при этом НЕ тратятся (энергия — на «Начать», квота — на ходе).
+            if (item.status === 'available' && (studyTarget === 'en' || studyTarget === 'es' || studyTarget === 'fr' || studyTarget === 'de')) {
+              prestartDialogueV2TextSession({ studyTarget, scenarioId: item.id });
+            }
+            router.push({
+              pathname: '/dialogue_v2_briefing',
+              params: { scenarioId: item.id },
+            } as never);
+          }}
         />
       </View>
     </Animated.ScrollView>

@@ -401,3 +401,6 @@ docs/phraseman-2.0/sources/
 
 # очередь на эмулятор — локальное состояние
 .claude/semaphore/emulator.lock.d/
+
+# Account V2 6D: local Firebase Emulator test accounts (generated, never commit)
+scripts/accounts-v2-emulator-seed.local.json

@@ -1,0 +1,9 @@
+{
+  "note": "Пример формы. Настоящий файл scripts/accounts-v2-emulator-seed.local.json пишет сидер (он в .gitignore). Учётки существуют ТОЛЬКО в локальном Firebase Auth Emulator.",
+  "project": "phraseman-ea0b3",
+  "accounts": [
+    { "label": "a", "email": "accounts-v2-e2e-a@phraseman.test", "password": "<generated-by-seeder>", "uid": "<emulator-uid>" },
+    { "label": "b", "email": "accounts-v2-e2e-b@phraseman.test", "password": "<generated-by-seeder>", "uid": "<emulator-uid>" },
+    { "label": "c", "email": "accounts-v2-e2e-c@phraseman.test", "password": "<generated-by-seeder>", "uid": "<emulator-uid>" }
+  ]
+}

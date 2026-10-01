@@ -1,0 +1,91 @@
+# Квитанция: Account V2 — Пакет 6D, E2E на Firebase Emulator Suite (2026-10-01)
+
+Governance-ID: TG-D3DE53F2D345 · Пакет: `account-v2-pkg6d-emulator-e2e-2026-10-01.md`
+
+Прод не затрагивался: ни деплоя, ни реальных аккаунтов, ни паролей владельца.
+Учётки — 3 локальных аккаунта Auth Emulator (`scripts/accounts-v2-emulator-seed.local.json`,
+в .gitignore). В квитанции uid — только усечённый sha256 (`a=06a30cbbad`, `b=bb9ef4e2ad`, `c=eef33cd38d`).
+
+## Окружение
+
+- `firebase emulators:start --only auth,firestore,functions,storage,database --project phraseman-ea0b3`
+  (firebase-tools 15.15.0). Storage/RTDB эмулируются, чтобы функции не обращались к проду.
+  Оговорка: при не-demo id проекта CLI читает метаданные проекта через свою авторизацию
+  (данные не читаются/не пишутся).
+- Functions собраны `npm --prefix functions run build` (exit 0); экспорты `accountsV2SyncApply`,
+  `accountsV2DeletionStatus`, `accountDeleteEnqueue` загружены в эмулятор.
+- Сидер: `scripts/accounts-v2-emulator-seed.mjs` — 3 аккаунта; `config/accounts_v2 {syncEnabled, deletionPurgeEnabled}=true`;
+  `remote_config/app.bools.accounts_v2_client_enabled` переключался off/on. Firestore эмулятора
+  очищался перед каждым прогоном (`DELETE /emulator/v1/.../documents`).
+- Android: Pixel_8 (emulator-5554), dev-сборка app.phraseman 1.5.60, Metro (супервизор) с
+  `EXPO_PUBLIC_FIREBASE_EMULATOR_HOST=10.0.2.2`. Очередь эмулятора и слоты светофора соблюдены.
+
+## A. Серверный E2E (настоящий клиент V2 → callable в эмуляторе) — `tests/accounts_v2_emulator_e2e_v2.test.ts`
+
+Контроллер → outbox → раннер → callable-транспорт; хранилище области — память (общая на
+«перезапуски»), защёлка — тот же SecureStore-порт. Итоговый прогон: **4/4 PASS**.
+
+| Шаг | a | b | c |
+|---|---|---|---|
+| Флаг выкл: вызовов accountsV2SyncApply | 0 | 0 | 0 |
+| Флаг вкл: вызовов / сущностей в `accounts_v2/{uid}` / мс | 1 / 2 / 2067 | 1 / 2 / 521 | 1 / 2 / 511 |
+| outbox опустел (ack), проблем квитанций | да, 0 | да, 0 | да, 0 |
+| Перезапуск: новых вызовов / сущностей | 0 / 2 | 0 / 2 | 0 / 2 |
+| Выход: сессия | закрыта | закрыта | закрыта |
+| Другой аккаунт шлёт мой пакет | permission-denied `uid_mismatch`, final | то же | то же |
+| Чтение `accounts_v2/{uid}` клиентом (чужой / сам) | 403 / 403 | 403 / 403 | 403 / 403 |
+| Удаление: локальная область | detached, closed, erased, 0 записей | то же | то же |
+| `accountDeleteEnqueue` | **INTERNAL** (блокер 1) | то же | то же |
+| Квитанция V2 → статус (nudge) → `accounts_v2` после стирания | v2_purged → 0 сущностей | то же | то же |
+| После завершения квитанции / чужой ключ | completed / permission-denied | то же | то же |
+
+Удаление (шаг 7) шло обходом блокера 1: квитанция V2 выпущена тем же серверным кодом
+(`functions/lib/.../firestore_ports.js`, Admin SDK, только `FIRESTORE_EMULATOR_HOST`), стирание и
+этапы — через НАСТОЯЩИЙ callable `accountsV2DeletionStatus` с ключом телефона (`purpose: deletion_status`).
+
+## B. Android-эмулятор
+
+| Проверка | Факт |
+|---|---|
+| Dev-подключение к эмуляторам | `[FIREBASE-EMU] connected host=10.0.2.2 services=auth,firestore,functions,functions:us-central1 failed=none`; натив: «emulator host will be used» |
+| Первая попытка (логи сначала) | `functions` падал `ReferenceError: Property 'moduleWithDashes' doesn't exist` (баг RNFB при незагруженном пакете functions) → исправлено: сначала `require('@react-native-firebase/functions').getFunctions` |
+| Флаг выкл | `[ACCOUNT-V2] auth_sync skip reason=flag_off`; новых вызовов accountsV2SyncApply с телефона: 0 (194 → 194 по логу эмулятора) |
+| Флаг вкл на телефоне | не применился: remote config читается из кэша (`из кэша remote_config_cache_v1`) — сетевое чтение `remote_config/app` требует входа (блокер 2) |
+| Путь базы V2 | `files/SQLite/accounts-v2/` (defaultDatabaseDirectory expo-sqlite), файлы 0600 владельца приложения; соседняя `phone-state-v1-*.db` в `files/SQLite/` |
+| Бэкап (readback из установленного APK, aapt2) | `allowBackup=true`, `fullBackupContent=@xml/backup_rules`, `dataExtractionRules=@xml/data_extraction_rules`; include только `sharedpref "."` и `database RKStorage` → **files/SQLite/accounts-v2 НЕ в бэкапе** ✔; **SecureStore.xml (sharedpref) В бэкапе** ✘ (находка 3) |
+
+## Блокеры (честно)
+
+1. **`accountDeleteEnqueue` в эмуляторе → INTERNAL**: `TypeError: Cannot read properties of undefined (reading 'serverTimestamp')`
+   в `functions/lib/functions/src/account_delete_job.js:125` (`admin.firestore.FieldValue`). В обычном Node
+   (`firebase-admin` 13.10.0) то же выражение работает → вероятно, прокси firebase-admin эмулятора
+   firebase-tools 15.15 + node 24. Не V2-код, вне области пакета; конвейер удаления с 14-дневным окном
+   на эмуляторе целиком не пройден.
+2. **Вход тестовыми аккаунтами на телефоне невозможен без паролей владельца**: в приложении нет
+   входа по почте/паролю (только Google/Apple; Google требует реального аккаунта — запрещено).
+   Сохранённая прод-сессия против Auth Emulator даёт `INVALID_REFRESH_TOKEN`; после её снятия
+   приложение создало анонимного пользователя, но слой идентичности (stable_id `users/*`,
+   `auth_links`) в пустом эмуляторе отвечает PERMISSION_DENIED и remote config остаётся из кэша.
+   Поэтому телефонные шаги «вход → урок/карточка → accounts_v2 → смена аккаунта → удаление»
+   выполнены серверным E2E с настоящим клиентским кодом (раздел A), а не тапами.
+3. **Нет производителя операций в приложении**: ни один экран не кладёт уроки/карточки в outbox V2
+   (`outbox.enqueue` вызывается только из тестов) — включение флага сейчас ничего не синхронизирует.
+   Это задача следующего пакета (подключение доменов к outbox).
+
+## Находки
+
+- SecureStore в бэкапе (`include sharedpref "."`): значения зашифрованы ключом Keystore (он не
+  переезжает), после восстановления записи нечитаемы → `latch_read_failed`/`key_unreadable`.
+  `latch_read_failed` (в отличие от `latch_corrupt`) не запускает восстановление → V2 может
+  остаться выключенным на восстановленном устройстве. Предложение: исключить `sharedpref
+  SecureStore.xml` (в плагине уже лежат `secure_store_*_rules.xml`, но манифест ссылается на другие).
+- Строгая проверка ответов клиента (только простые объекты своего realm) верна для Hermes;
+  в Jest-харнессе ответы fetch пришлось копировать литералами (иначе `receipt_shape` и вечный retry).
+
+## Уборка
+
+- Firebase emulators остановлены (дерево процессов 48932 снято, порты 9099/8080/5001/4000/9000/9199/4400/4500 свободны).
+- Metro (8081) остановлен, сирот нет; `adb reverse tcp:8081`, добавленный мной, снят (список пуст, как до начала).
+- Данные app.phraseman восстановлены из снимка до теста (tar files/databases/shared_prefs/no_backup,
+  108 945 920 байт, размер после восстановления совпал); прод-сессия на месте; приложение остановлено.
+- Очередь эмулятора отпущена, слоты светофора отданы.

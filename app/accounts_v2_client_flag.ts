@@ -96,5 +96,29 @@ export function clearStoredAccountsV2DeletionCredentialIfEnabled(lockOperationId
   });
 }
 
+/**
+ * Ответ постановки удаления — настоящий успех (сервер принял и закрыл ключ).
+ * зачем (Пакет 6D, хвост 6C P3): аноним снимал ключ V2 при ЛЮБОМ ответе; без
+ * успеха ключ — единственное право телефона узнать этап удаления, его не снимаем.
+ */
+export function isAccountsV2DeletionAckSuccessful(ack: unknown): boolean {
+  if (typeof ack !== 'object' || ack === null) return false;
+  const value = ack as { ok?: unknown; jobId?: unknown; authReleased?: unknown; credentialSafe?: unknown };
+  return value.ok === true && typeof value.jobId === 'string' && value.jobId.length > 0
+    && value.authReleased === true && value.credentialSafe === true;
+}
+
+/** Снять ключ V2 замка только после УСПЕШНОГО ответа сервера. Никогда не бросает. */
+export function clearStoredAccountsV2DeletionCredentialAfterAckIfEnabled(
+  lockOperationId: string | null,
+  ack: unknown,
+): void {
+  if (!isAccountsV2DeletionAckSuccessful(ack)) {
+    console.warn('[ACCOUNT-V2] delete_clear skip reason=ack_not_successful');
+    return;
+  }
+  clearStoredAccountsV2DeletionCredentialIfEnabled(lockOperationId);
+}
+
 /* expo-router route shim */
 export default function __RouteShim() { return null; }

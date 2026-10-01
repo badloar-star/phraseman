@@ -3,5 +3,8 @@
 // Этот импорт стоит ПЕРВЫМ и самоустанавливает обёртку при загрузке модуля,
 // до сайд-эффектов expo-router/entry и всех стартовых миграций.
 import './app/async_storage_null_bind_guard';
+// Account V2, Пакет 6D: dev-only подключение к Firebase Emulator Suite —
+// только при __DEV__ И EXPO_PUBLIC_FIREBASE_EMULATOR_HOST; до любого обращения к Firebase.
+import './app/firebase_emulator_dev_boot';
 
 import 'expo-router/entry';

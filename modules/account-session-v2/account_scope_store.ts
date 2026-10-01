@@ -83,12 +83,24 @@ export type AccountScopeStoreErrorCode =
 
 export class AccountScopeStoreError extends Error {
   readonly code: AccountScopeStoreErrorCode;
+  /**
+   * Код адаптера, из-за которого упала операция (только безопасная форма кода).
+   * зачем (Пакет 6D, хвост 6C P3): клиенту нужно отличить «повтор не поможет»
+   * (чужой манифест метки) от временного сбоя, а обёртка стора код терял.
+   */
+  readonly causeCode: string | null;
 
-  constructor(code: AccountScopeStoreErrorCode) {
+  constructor(code: AccountScopeStoreErrorCode, causeCode: string | null = null) {
     super(code);
     this.name = 'AccountScopeStoreError';
     this.code = code;
+    this.causeCode = causeCode;
   }
+}
+
+function safeCauseCode(error: unknown): string | null {
+  const raw = typeof error === 'object' && error !== null && 'code' in error ? (error as { code: unknown }).code : null;
+  return typeof raw === 'string' && /^[\w/-]{1,96}$/.test(raw) ? raw : null;
 }
 
 type AttemptStatus = 'opening' | 'open' | 'closing' | 'failed_open' | 'failed_close';
@@ -605,7 +617,7 @@ export function createAccountScopeStore(
               fail('account_scope_erase_proof_invalid');
             }
           },
-          () => fail('account_scope_erase_failed'),
+          (error: unknown) => { throw new AccountScopeStoreError('account_scope_erase_failed', safeCauseCode(error)); },
         )
         .finally(() => {
           if (eraseReservations.get(scope.scopeKey) === operation) eraseReservations.delete(scope.scopeKey);

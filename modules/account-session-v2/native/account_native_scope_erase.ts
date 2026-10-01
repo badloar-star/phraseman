@@ -197,9 +197,17 @@ export function createAccountNativeScopeEraser(
     if (read.kind === 'corrupt') {
       // зачем (ревью 6C, P3): битая метка = стирание было начато. Линия erased_empty V
       // значит, что шаг 2 для V-1 уже прошёл — дочищаем V-1; иначе — текущую.
-      const lineage = stored.kind !== 'stored' ? 1
-        : stored.state === 'erased_empty' && stored.value > 1 ? stored.value - 1 : stored.value;
-      console.warn(`${LOG} erase marker_corrupt_recovering lineage=${lineage}`);
+      // зачем (Пакет 6D, хвост 6C P3): но если у линии V есть свои остатки (ключ/файлы —
+      // например, открытие после прошлого стирания упало до публикации линии), V-1 уже
+      // пуста, а стирать надо V. Иначе остатки V пережили бы стирание.
+      let lineage = stored.kind !== 'stored' ? 1 : stored.value;
+      let reason = stored.kind !== 'stored' ? 'lineage_absent' : `lineage_${stored.state}`;
+      if (stored.kind === 'stored' && stored.state === 'erased_empty' && stored.value > 1) {
+        const currentEmpty = await isEmpty(await planFor(manifest, scope, stored.value, env.digestSha256));
+        lineage = currentEmpty ? stored.value - 1 : stored.value;
+        reason = currentEmpty ? 'erased_empty_current_clean' : 'erased_empty_current_residue';
+      }
+      console.warn(`${LOG} erase marker_corrupt_recovering lineage=${lineage} reason=${reason}`);
       await writeMarker(scope, await planFor(manifest, scope, lineage, env.digestSha256), markerSelector);
       return lineage;
     }

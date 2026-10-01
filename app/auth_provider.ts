@@ -58,6 +58,7 @@ import type { AccountDeleteEnqueueOperation } from './account_delete_enqueue';
 import {
   beginAccountsV2DeletionIfEnabled,
   clearStoredAccountsV2DeletionCredentialIfEnabled,
+  clearStoredAccountsV2DeletionCredentialAfterAckIfEnabled,
   readStoredAccountsV2DeletionCredentialIfEnabled,
 } from './accounts_v2_client_flag';
 import {
@@ -3697,8 +3698,8 @@ async function finishAccountDeletion(
       void cloudDeleteEnqueueOperation.acknowledgment
         .then((ack) => {
           logAuthEvent('auth_account_delete_enqueued', { status: ack.status });
-          // зачем (ревью 6C, P3): ключ V2 анонима снимаем только после ответа сервера.
-          clearStoredAccountsV2DeletionCredentialIfEnabled(null);
+          // зачем (ревью 6C, P3; Пакет 6D): ключ V2 анонима снимаем только после УСПЕШНОГО ответа сервера.
+          clearStoredAccountsV2DeletionCredentialAfterAckIfEnabled(null, ack);
         })
         .catch((e) => {
           if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: enqueue failed; pending guard retained', e);

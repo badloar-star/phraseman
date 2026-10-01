@@ -359,6 +359,24 @@ describe('account native scope adapter v2 (Пакет 6C)', () => {
     expect(device.markers()).toEqual([]);
   });
 
+  test('6D P3: corrupt marker + erased_empty(2) WITH residue of lineage 2 → lineage 2 is erased, not 1', async () => {
+    const device = new FakeDevice();
+    await writeRecord(device, 1, 'k1', 'hello');
+    await createAccountNativeScopeAdapter(device.env()).eraseClosedAccountScope(scopeA);
+    expect(device.lineage()).toEqual({ v: 1, value: 2, state: 'erased_empty' });
+    // Открытие линии 2 упало до публикации active: ключ и файл линии 2 есть, линия — erased_empty(2).
+    const hash = createHash('sha256').update(A).digest('hex');
+    device.secure.set(`accounts_v2_account_key_${hash}_2`, 'b'.repeat(64));
+    device.files.set(`accounts-v2-a-${hash}-2.db`, { key: 'b'.repeat(64), schema: [], metadata: [], records: new Map([['k2', 'x']]) });
+    device.secure.set(`accounts_v2_account_retire_${hash}`, '{broken');
+    await expect(createAccountNativeScopeAdapter(device.env()).eraseClosedAccountScope(scopeA))
+      .resolves.toMatchObject({ outcome: 'erased' });
+    expect(device.files.size).toBe(0);
+    expect(device.keyNames()).toEqual([]);
+    expect(device.markers()).toEqual([]);
+    expect(device.lineage()).toEqual({ v: 1, value: 3, state: 'erased_empty' });
+  });
+
   test('retirement is planned BEFORE the marker: an exhausted lineage writes no marker (§5.3)', async () => {
     const device = new FakeDevice();
     const hash = createHash('sha256').update(A).digest('hex');

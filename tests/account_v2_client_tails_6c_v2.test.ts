@@ -119,7 +119,7 @@ describe('account v2 client tails 6C', () => {
     expect(controller.status().uid).toBeNull();
   });
 
-  test('corrupt latch: a FAILED pending erase keeps the latch (no reset)', async () => {
+  test('corrupt latch: a FAILED pending erase keeps the uid latched (no reset; 6D: rewritten as a valid latch)', async () => {
     const events: string[] = [];
     const secure = secureStore();
     secure.map.set(ACCOUNTS_V2_DETACH_LATCH_KEY, '{broken');
@@ -129,7 +129,8 @@ describe('account v2 client tails 6C', () => {
     await controller.setAuthUid(A);
     await settle();
     expect(events).toEqual(['discover', `erase:${B}`]);
-    expect(secure.map.get(ACCOUNTS_V2_DETACH_LATCH_KEY)).toBe('{broken');
+    // Пакет 6D (хвост 6C P3): B не теряется, но битая запись больше не блокирует V2 навсегда.
+    expect(JSON.parse(secure.map.get(ACCOUNTS_V2_DETACH_LATCH_KEY)!)).toEqual({ v: 1, uids: [B] });
   });
 
   test('corrupt latch: discovery is given the uids this process knows (current + deleted)', async () => {
@@ -236,7 +237,7 @@ describe('account v2 client tails 6C', () => {
     // Аноним: ключ снимается только после ответа сервера, а не сразу после отправки.
     const anonStart = source.indexOf('void cloudDeleteEnqueueOperation.acknowledgment', advancedOk);
     const anonThen = source.slice(anonStart, source.indexOf('.catch(', anonStart));
-    expect(anonThen).toContain('clearStoredAccountsV2DeletionCredentialIfEnabled(null)');
+    expect(anonThen).toContain('clearStoredAccountsV2DeletionCredentialAfterAckIfEnabled(null, ack)');
     const dispatchAt = source.indexOf('await cloudDeleteEnqueueOperation.dispatchSettled;', anonStart);
     expect(source.slice(dispatchAt, dispatchAt + 200)).not.toContain('clearStoredAccountsV2DeletionCredentialIfEnabled');
   });

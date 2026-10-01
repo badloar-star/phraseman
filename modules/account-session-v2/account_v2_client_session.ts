@@ -42,6 +42,8 @@ const DRAIN_YIELD_MS = 5_000;
  * открывать базу и раннер, если отправка встала по устойчивой причине.
  */
 const RESUME_MIN_INTERVAL_MS = 120_000;
+/** Коды стирания, которые повтор не исправит (хвост 6C P3) — отдельная ветка лога. */
+const TERMINAL_ERASE_CODE = /manifest_mismatch|marker_foreign|lineage_exhausted/;
 
 type AccountScopeValue = Extract<AccountScope, { kind: 'account' }>;
 
@@ -101,6 +103,13 @@ function kindOf(value: unknown): string {
 function codeOf(value: unknown): string {
   const raw = typeof value === 'object' && value !== null && 'code' in value ? (value as { code: unknown }).code : null;
   return typeof raw === 'string' && /^[\w/-]{1,64}$/.test(raw) ? raw : kindOf(value);
+}
+
+/** Код адаптера под обёрткой стора (causeCode), иначе собственный код ошибки. */
+function causeCodeOf(value: unknown): string {
+  const raw = typeof value === 'object' && value !== null && 'causeCode' in value
+    ? (value as { causeCode: unknown }).causeCode : null;
+  return typeof raw === 'string' && /^[\w/-]{1,96}$/.test(raw) ? raw : codeOf(value);
 }
 
 function accountScope(uid: string): AccountScopeValue {
@@ -260,20 +269,28 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
     return ports.callSync(batch);
   };
 
-  /** true — все стирания подтверждены; false — хоть одно упало (в лог — код). */
-  const resumePendingErase = async (st: AccountScopeStore, uids: readonly string[]): Promise<boolean> => {
-    let allErased = true;
+  /** uid, чьё стирание упало (пусто — все подтверждены; в лог — код каждой неудачи). */
+  const resumePendingErase = async (st: AccountScopeStore, uids: readonly string[]): Promise<readonly string[]> => {
+    const failed: string[] = [];
     for (const uid of uids) {
       try {
         const evidence = await st.eraseClosedAccountScope(accountScope(uid));
         const cleared = await ports.latch.clear(uid);
         console.log(`${LOG} erase resumed outcome=${evidence.outcome} records=${evidence.erasedRecordCount} latchCleared=${cleared}`);
       } catch (error) {
-        allErased = false;
-        console.warn(`${LOG} erase resume_failed code=${codeOf(error)}`);
+        failed.push(uid);
+        const code = codeOf(error);
+        const cause = causeCodeOf(error);
+        // зачем (Пакет 6D, хвост 6C P3): «чужой манифест / чужая метка / линия кончилась»
+        // повтором не лечатся — отдельная ветка лога, чтобы это было видно, а не тонуло в io.
+        if (TERMINAL_ERASE_CODE.test(cause)) {
+          console.warn(`${LOG} erase resume_terminal code=${code} cause=${cause} uidStaysLatched=true`);
+        } else {
+          console.warn(`${LOG} erase resume_failed code=${code} cause=${cause}`);
+        }
       }
     }
-    return allErased;
+    return failed;
   };
 
   /** Найденные хранилищем uid с незаконченным стиранием (метка вывода из строя). */
@@ -308,9 +325,16 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
     const known = [...new Set([...detachedInProcess, ...(authUid === null ? [] : [authUid])])];
     const uids = [...new Set([...await discoverPendingErase(known), ...detachedInProcess])];
     console.warn(`${LOG} latch corrupt_recovery pending=${uids.length} known=${known.length}`);
-    if (uids.length > 0 && !await resumePendingErase(st, uids)) {
-      // зачем (ревью 6C, P2): стирание не прошло — запись не сбрасываем, повтор на следующем запуске.
-      console.warn(`${LOG} latch reset_deferred reason=erase_failed`);
+    const failed = uids.length > 0 ? await resumePendingErase(st, uids) : [];
+    if (failed.length > 0) {
+      // зачем (ревью 6C P2 + хвост P3, Пакет 6D): упавшие uid НЕ теряем, но и битую запись
+      // не держим вечно — переписываем её валидной защёлкой ровно из упавших uid
+      // (mark поверх битой записи пишет только свой uid). Дальше они дотираются обычным
+      // путём на каждом запуске, а остальные аккаунты V2 больше не заблокированы
+      // стабильно падающим стиранием. Не записалось — запись остаётся битой, повтор позже.
+      let rewritten = true;
+      for (const uid of failed) rewritten = (await ports.latch.mark(uid)) && rewritten;
+      console.warn(`${LOG} latch corrupt_rewritten failed=${failed.length} ok=${rewritten}`);
       return;
     }
     const reset = await ports.latch.reset();

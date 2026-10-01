@@ -280,6 +280,9 @@
     "android_task_executor_maximum_pool_size": 0
   },
   "emulators": {
+    "auth": {
+      "port": 9099
+    },
     "functions": {
       "port": 5001
     },

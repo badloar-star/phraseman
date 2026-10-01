@@ -351,6 +351,8 @@ functions/src/generated/support_repo_context.json
 functions/src/generated/spire_multilingual_es.json
 functions/src/generated/spire_multilingual_de.json
 functions/src/generated/spire_multilingual_fr.json
+# PM-286: черновик Шпиля «на слух» (en), производный от content/arena-multilingual/generated/en/spire_listen_dictate_draft.jsonl
+functions/src/generated/spire_listen_draft_en.json
 
 # Огрызки от упавших правок редактора (*.tsx.tmp.<pid>.<hash>) — мусор,
 # засоряют git status и grep-поиск по проекту.

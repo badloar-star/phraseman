@@ -28,10 +28,22 @@ const ABOVE_CLOUDS_FALLBACK = [11, 12, 13, 14, 15] as const;
 type TaskKind = SpireStepTask['kind'];
 const TASK_KINDS: readonly TaskKind[] = ['choice', 'translate', 'timeattack', 'voice', 'listen', 'dictate', 'match'];
 
+/**
+ * PM-286: режимы Шпиля «на слух» и «диктант» (Learning V2, голос телефона D47).
+ * зачем: их нет среди режимов Арены, а пакет недели en их несёт — без этого списка
+ * decodeTask отбраковал бы задание, и вместе с ним весь пакет (набор без 10 заданий).
+ */
+export const SPIRE_LISTEN_PACK_MODES = ['listen_choose', 'listen_build'] as const;
+export type SpirePackTaskMode = ArenaTaskMode | typeof SPIRE_LISTEN_PACK_MODES[number];
+
+function isSpirePackTaskMode(value: unknown): value is SpirePackTaskMode {
+  return isArenaTaskMode(value) || (SPIRE_LISTEN_PACK_MODES as readonly unknown[]).includes(value);
+}
+
 /** Публичное задание пакета — то, что видит игрок (без ответа). */
 export type SpirePackTask = Readonly<{
   taskId: string;
-  mode: ArenaTaskMode;
+  mode: SpirePackTaskMode;
   kind: TaskKind;
   difficulty: number;
   payload: Readonly<Record<string, unknown>>;
@@ -68,7 +80,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 function decodeTask(raw: unknown): SpirePackTask | null {
   if (!isRecord(raw)) return null;
   if (typeof raw.taskId !== 'string' || raw.taskId.length === 0) return null;
-  if (!isArenaTaskMode(raw.mode)) return null;
+  if (!isSpirePackTaskMode(raw.mode)) return null;
   if (!TASK_KINDS.includes(raw.kind as TaskKind)) return null;
   if (!isRecord(raw.payload)) return null;
   const difficulty = typeof raw.difficulty === 'number' && Number.isInteger(raw.difficulty) ? raw.difficulty : 1;

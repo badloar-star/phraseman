@@ -62,6 +62,8 @@ import {
   spireReleaseMultilingualPool,
   type SpireMultilingualLang,
 } from './spire_multilingual_pool';
+import { SPIRE_LISTEN_DRAFT_RELEASED_LANGS, spireListenDraftPool } from './spire_listen_draft_pool';
+import type { TournamentTask as ListenDraftTask } from './tournament_core';
 import {
   SPIRE_PACK_MAX_TIER,
   SPIRE_PACK_SCHEMA,
@@ -221,6 +223,38 @@ export function loadMultilingualPool(lang: SpireLang): {
   log('multilingual_pool_loaded', { ...stats, tasksSha256: released.tasksSha256 });
   const rejected = stats.totalRows - stats.converted;
   return { tasks, reads: 0, rejected };
+}
+
+/* ------------------------ на слух / диктант (PM-286) ----------------------- */
+
+/**
+ * Черновик listen/dictate из Learning V2 (координатор 01.10, Q34 (а): только en).
+ * Ленивый require bundled-файла (copy_generated_assets.js), 0 чтений Firestore.
+ * Нет файла / язык не допущен → пустой список и причина в логе: пакет собирается
+ * без звука, как раньше (pendingKinds в пакете это честно показывает).
+ */
+export function loadListenDraftPool(lang: SpireLang): { tasks: ListenDraftTask[]; reason?: string } {
+  if (!SPIRE_LISTEN_DRAFT_RELEASED_LANGS.includes(lang)) {
+    log('listen_draft_skipped', { lang, reason: 'lang_not_released_q34a' });
+    return { tasks: [], reason: 'lang_not_released_q34a' };
+  }
+  let rows: unknown[];
+  try {
+    // guard-ok: require одного сгенерированного файла, не Firestore-запрос.
+    const bundle = require(`./generated/spire_listen_draft_${lang}.json`) as { schemaVersion?: unknown; rows?: unknown };
+    if (bundle?.schemaVersion !== 'spire-listen-draft-bundle-v1' || !Array.isArray(bundle.rows)) {
+      throw new Error('listen_draft_bundle_invalid');
+    }
+    rows = bundle.rows;
+  } catch (error) {
+    // guard-ok: без черновика пакет всё равно собирается (без звука); причина в логе.
+    const reason = errMessage(error);
+    warn('listen_draft_missing', { lang, reason });
+    return { tasks: [], reason };
+  }
+  const pool = spireListenDraftPool(lang, rows);
+  log('listen_draft_loaded', { lang, totalRows: pool.totalRows, accepted: pool.tasks.length, rejected: pool.rejected });
+  return { tasks: pool.tasks };
 }
 
 /** Стабильная проекция причины прямого multilingual-пула в admin unavailableLangs. */
@@ -437,11 +471,15 @@ export async function runSpirePackBuild(input: SpirePackRunInput): Promise<{
       warn('lang_unavailable', { lang, reason });
       continue;
     }
-    const pool = resolved.ok ? await loadPool(db, resolved.publication, lang) : multilingualPool!;
+    const basePool = resolved.ok ? await loadPool(db, resolved.publication, lang) : multilingualPool!;
+    // зачем (PM-286, Q34 (а)): задания на слух добавляются к пулу языка; для es/de/fr — пусто.
+    const listenDraft = loadListenDraftPool(lang);
+    const pool = { ...basePool, tasks: [...basePool.tasks, ...listenDraft.tasks] };
     const excludedTaskIds = flags.ids;
     poolReads += pool.reads;
     log('pool_loaded', {
       lang, reads: pool.reads, accepted: pool.tasks.length, rejected: pool.rejected,
+      listenDraft: listenDraft.tasks.length, listenDraftReason: listenDraft.reason ?? null,
       legacy: resolved.ok ? resolved.publication.legacy === true : false,
       multilingualDirect: !resolved.ok,
     });

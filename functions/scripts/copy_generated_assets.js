@@ -100,3 +100,28 @@ for (const lang of multilingualLangs) {
   multilingualCopied += 1;
 }
 console.log(`[assets] multilingual-пулов Шпиля собрано: ${multilingualCopied}/${multilingualLangs.length}`);
+
+/*
+ * PM-286 (координатор 01.10, Q34 (а)): черновик Шпиля «на слух»/«диктант» из
+ * Learning V2 — только en. Источник .jsonl в git, производный .json в
+ * .gitignore, читает spire_pack_build.ts::loadListenDraftPool. Нет источника —
+ * не роняем сборку: пакет en соберётся без звука, сборщик напишет причину.
+ */
+const listenDraftLangs = ['en'];
+for (const lang of listenDraftLangs) {
+  const jsonlPath = path.resolve(__dirname, '..', '..', 'content', 'arena-multilingual', 'generated', lang, 'spire_listen_dictate_draft.jsonl');
+  if (!fs.existsSync(jsonlPath)) {
+    console.warn(`[assets] черновик на слух ${lang} отсутствует — пакет ${lang} соберётся без звука`);
+    continue;
+  }
+  const rows = fs.readFileSync(jsonlPath, 'utf8')
+    .split('\n')
+    .filter((line) => line.trim())
+    .map((line) => JSON.parse(line));
+  const json = JSON.stringify({ schemaVersion: 'spire-listen-draft-bundle-v1', rows });
+  for (const to of [multilingualSrcTo, multilingualLibTo]) {
+    fs.mkdirSync(to, { recursive: true });
+    fs.writeFileSync(path.join(to, `spire_listen_draft_${lang}.json`), json);
+  }
+  console.log(`[assets] spire_listen_draft_${lang}.json → src+lib (${rows.length} заданий)`);
+}

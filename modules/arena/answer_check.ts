@@ -53,7 +53,9 @@ export function arenaAnswerFingerprint(saltId: string, taskId: string, answer: u
 
 export type ArenaAnswerCheckTask = Readonly<{
   taskId: string;
-  mode: ArenaTaskMode;
+  // зачем (PM-286): Шпиль проверяет этой же функцией задания «на слух» (listen_choose/listen_build);
+  // проверка смотрит только на kind, режим — для логов.
+  mode: ArenaTaskMode | 'listen_choose' | 'listen_build';
   kind: 'choice' | 'translate' | 'timeattack' | 'voice' | 'listen' | 'dictate' | 'match';
   answerFingerprints: readonly string[];
 }>;

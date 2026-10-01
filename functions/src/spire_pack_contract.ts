@@ -28,7 +28,9 @@ import {
   type SpireTimerConfig,
 } from './spire_config_contract';
 import {
+  answerFingerprint,
   toPublicTournamentTask,
+  validateTournamentTask,
   validateTournamentTaskForNewRoom,
   type TournamentTask,
 } from './tournament_core';
@@ -49,22 +51,56 @@ export const SPIRE_PACK_VOICE_FROM_FLOOR = 11;
  * уровне сложности добиралась соседним, а не роняла сборку.
  */
 const CHOICE_FAMILY = ['guess_phrase', 'fill_gap', 'find_oddity'] as const;
-type SpirePackMode = typeof CHOICE_FAMILY[number] | 'translate_build' | 'speed_match';
+/**
+ * PM-286: «на слух» (listen_choose) и «диктант» (listen_build) — своё семейство.
+ * зачем отдельно: текстовый слот никогда не добирается заданием на слух, и
+ * наоборот — иначе у пулов без звука (es/de/fr) поменялся бы состав пакета.
+ */
+const LISTEN_FAMILY = ['listen_choose', 'listen_build'] as const;
+type SpirePackMode = typeof CHOICE_FAMILY[number] | 'translate_build' | 'speed_match' | typeof LISTEN_FAMILY[number];
 
 /** Сколько заданий каждого вида в наборе из 10 — по этажу (§4.4). */
-type FloorMix = Readonly<{ choice: number; translate_build: number; speed_match: number }>;
+type FloorMix = Readonly<{
+  choice: number;
+  translate_build: number;
+  speed_match: number;
+  listen_choose: number;
+  listen_build: number;
+}>;
+
+/** Есть ли в пуле задания на слух / диктант (PM-286). */
+export type SpireListenAvailability = Readonly<{ listen: boolean; dictate: boolean }>;
+
+/** §4.4: «+ на слух, диктант» — с 6 этажа. */
+export const SPIRE_PACK_LISTEN_FROM_FLOOR = 6;
 
 /**
  * §4.4 «Сложность вверх», раскладка режимов по этажам:
  *   1–2 выбор + пары; 3–4 + сборка/перевод; 5/10/15 Страж — смешанный набор.
- *   6–9 «+ на слух, диктант» и 11+ «+ голос» — этих заданий в пуле нет
- *   (PM-286: звук не решён; голос из Арены снят), поэтому такие этажи
- *   собираются как 3–4, а трудность растёт за счёт доли сложных (см. hardness).
+ *   6–9 «+ на слух, диктант» — есть, если в пуле есть задания на слух (PM-286:
+ *   сейчас только en, черновик Learning V2, голос телефона по D47); иначе этаж
+ *   собирается как 3–4. 11+ «+ голос» — голосовых заданий нет (из Арены сняты),
+ *   трудность растёт за счёт доли сложных (см. hardness).
  */
-export function spireFloorMix(floor: number): FloorMix {
-  if (spireIsGuardianFloor(floor)) return { choice: 4, translate_build: 4, speed_match: 2 };
-  if (floor <= 2) return { choice: 8, translate_build: 0, speed_match: 2 };
-  return { choice: 6, translate_build: 3, speed_match: 1 };
+export function spireFloorMix(
+  floor: number,
+  listen: SpireListenAvailability = { listen: false, dictate: false },
+): FloorMix {
+  const none = { listen_choose: 0, listen_build: 0 };
+  const withListen = floor >= SPIRE_PACK_LISTEN_FROM_FLOOR && (listen.listen || listen.dictate);
+  if (spireIsGuardianFloor(floor)) {
+    if (!withListen) return { choice: 4, translate_build: 4, speed_match: 2, ...none };
+    // зачем (PM-286): Страж 10/15 — «смешанный набор», значит и звук в нём есть, но поменьше.
+    const lc = listen.listen ? 1 : 0;
+    const lb = listen.dictate ? 1 : 0;
+    return { choice: 4 - lc, translate_build: 4 - lb, speed_match: 2, listen_choose: lc, listen_build: lb };
+  }
+  if (floor <= 2) return { choice: 8, translate_build: 0, speed_match: 2, ...none };
+  if (!withListen) return { choice: 6, translate_build: 3, speed_match: 1, ...none };
+  // зачем (PM-286, §4.4 «6–9 + на слух, диктант»): 3 из 10 — звук; выбор и сборка уступают место.
+  const lc = listen.listen ? 2 : 0;
+  const lb = listen.dictate ? 1 : 0;
+  return { choice: 6 - lc, translate_build: 3 - lb, speed_match: 1, listen_choose: lc, listen_build: lb };
 }
 
 /**
@@ -221,8 +257,22 @@ export function spirePackHash(packWithoutHash: unknown): string {
 
 type PlayableTask = Readonly<{ task: TournamentTask; mode: SpirePackMode; difficulty: number }>;
 
-/** Задание годится Шпилю: режим Арены из «выбор/пары/сборка», публичная форма собирается. */
-function toPlayable(task: TournamentTask): PlayableTask | null {
+/** Задание «на слух» звучит голосом телефона только на языке пакета (D47). */
+function isDeviceTtsFor(task: TournamentTask, lang: string): boolean {
+  return typeof task.payload.audioUri === 'string'
+    && new RegExp(`^device-tts:${lang}:[0-9a-f]+$`).test(task.payload.audioUri);
+}
+
+/** Задание годится Шпилю: режим Арены из «выбор/пары/сборка» (или звук PM-286), публичная форма собирается. */
+function toPlayable(task: TournamentTask, lang: string): PlayableTask | null {
+  if ((LISTEN_FAMILY as readonly string[]).includes(task.mode)) {
+    // зачем (PM-286): listen/dictate у Арены сняты с новых комнат (task_mode_retired) и
+    // требуют разбор по каждому варианту — Шпилю они нужны без этого. Проверяем
+    // базовый контракт задания + что звук есть на языке пакета.
+    if (task.isVoice === true || !Number.isInteger(task.difficulty) || task.difficulty < 1 || task.difficulty > 3) return null;
+    if (!validateTournamentTask(task).ok || !isDeviceTtsFor(task, lang)) return null;
+    return { task, mode: task.mode as SpirePackMode, difficulty: task.difficulty };
+  }
   if (!arenaIsTaskMode(task.mode) || task.isVoice === true) return null;
   if (!Number.isInteger(task.difficulty) || task.difficulty < 1 || task.difficulty > 3) return null;
   if (!validateTournamentTaskForNewRoom(task).ok) return null;
@@ -244,6 +294,13 @@ function cellKey(mode: string, difficulty: number): string {
 function fallbackCells(mode: SpirePackMode, difficulty: number): string[] {
   const byDistance = [difficulty, difficulty + 1, difficulty - 1, difficulty + 2, difficulty - 2]
     .filter((d) => d >= 1 && d <= 3);
+  if ((LISTEN_FAMILY as readonly string[]).includes(mode)) {
+    // Звуковой слот: сначала свой режим, потом второй звуковой, дальше — как текстовый.
+    const out: string[] = [];
+    for (const m of [mode, ...LISTEN_FAMILY.filter((x) => x !== mode)]) for (const d of byDistance) out.push(cellKey(m, d));
+    for (const m of [...CHOICE_FAMILY, 'translate_build', 'speed_match']) for (const d of byDistance) out.push(cellKey(m, d));
+    return Array.from(new Set(out));
+  }
   const family: SpirePackMode[] = (CHOICE_FAMILY as readonly string[]).includes(mode)
     ? [mode, ...CHOICE_FAMILY.filter((m) => m !== mode)]
     : [mode];
@@ -252,6 +309,42 @@ function fallbackCells(mode: SpirePackMode, difficulty: number): string[] {
   const every: SpirePackMode[] = [...CHOICE_FAMILY, 'translate_build', 'speed_match'];
   for (const m of every) for (const d of byDistance) out.push(cellKey(m, d));
   return Array.from(new Set(out));
+}
+
+/**
+ * PM-286: публичная форма задания на слух для пакета.
+ * зачем phrase В пакете (у Арены публичная форма её прячет): у Шпиля нет файла
+ * озвучки — фразу произносит голос телефона (D47), и для этого клиенту нужен
+ * её текст. До ответа экран фразу не показывает (components/spire/SpireTaskView.tsx).
+ * Ставок и призов у Шпиля нет — обмен осознанный, как и отпечатки ответов (§4).
+ * correctTokenCount — чтобы диктант знал, когда ответ собран (как translate_build).
+ */
+function toPublicListenTask(
+  task: TournamentTask,
+  saltId: string,
+): { task: SpirePackPublicTask; prints: string[] } | null {
+  const p = task.payload;
+  if (task.mode === 'listen_choose') {
+    if (!Array.isArray(p.options) || !Number.isInteger(p.correctIndex)) return null;
+    return {
+      task: {
+        taskId: task.taskId, mode: task.mode, kind: 'listen', difficulty: task.difficulty,
+        payload: { audioUri: String(p.audioUri), phrase: String(p.phrase), options: (p.options as string[]).slice() },
+      },
+      prints: [answerFingerprint(saltId, task.taskId, p.correctIndex)],
+    };
+  }
+  if (!Array.isArray(p.wordBank) || !Array.isArray(p.correctTokens)) return null;
+  return {
+    task: {
+      taskId: task.taskId, mode: task.mode, kind: 'dictate', difficulty: task.difficulty,
+      payload: {
+        audioUri: String(p.audioUri), phrase: String(p.phrase), wordBank: (p.wordBank as string[]).slice(),
+        correctTokenCount: (p.correctTokens as string[]).length,
+      },
+    },
+    prints: [answerFingerprint(saltId, task.taskId, p.correctTokens)],
+  };
 }
 
 /* ------------------------------- сборка ---------------------------------- */
@@ -270,8 +363,14 @@ export function buildSpirePack(input: SpirePackBuildInput): SpirePackBuildResult
   const excluded = new Set(input.excludedTaskIds ?? []);
   const playable = input.pool
     .filter((task) => !excluded.has(task.taskId))
-    .map(toPlayable)
+    .map((task) => toPlayable(task, input.lang))
     .filter((p): p is PlayableTask => p !== null);
+  // зачем (PM-286): звуковые слоты появляются только если в пуле есть такие задания
+  // (сейчас — только en, Q34 (а)); у пулов без звука пакет байт-в-байт прежний.
+  const listenAvail: SpireListenAvailability = {
+    listen: playable.some((p) => p.mode === 'listen_choose'),
+    dictate: playable.some((p) => p.mode === 'listen_build'),
+  };
   const cells = new Map<string, Cursor>();
   // Сортировка по taskId до перемешивания: порядок чтения из Firestore не влияет на пакет.
   const sorted = playable.slice().sort((a, b) => a.task.taskId.localeCompare(b.task.taskId));
@@ -311,7 +410,7 @@ export function buildSpirePack(input: SpirePackBuildInput): SpirePackBuildResult
 
   const floors: SpirePackFloor[] = [];
   for (let floor = 1; floor <= SPIRE_SUMMIT_FLOOR; floor += 1) {
-    const mix = spireFloorMix(floor);
+    const mix = spireFloorMix(floor, listenAvail);
     const hardness = Number(spireHardness(input.tier, floor).toFixed(4));
     const [easy, mid, hard] = spireDifficultyCounts(hardness);
     const steps: SpirePackStep[] = [];
@@ -325,6 +424,8 @@ export function buildSpirePack(input: SpirePackBuildInput): SpirePackBuildResult
         for (let i = 0; i < mix.choice; i += 1) modes.push(CHOICE_FAMILY[(i + setIndex + step) % CHOICE_FAMILY.length]);
         for (let i = 0; i < mix.translate_build; i += 1) modes.push('translate_build');
         for (let i = 0; i < mix.speed_match; i += 1) modes.push('speed_match');
+        for (let i = 0; i < mix.listen_choose; i += 1) modes.push('listen_choose');
+        for (let i = 0; i < mix.listen_build; i += 1) modes.push('listen_build');
         const difficulties = [
           ...Array<number>(easy).fill(1), ...Array<number>(mid).fill(2), ...Array<number>(hard).fill(3),
         ];
@@ -350,6 +451,13 @@ export function buildSpirePack(input: SpirePackBuildInput): SpirePackBuildResult
         const tasks: SpirePackPublicTask[] = [];
         const answerFingerprints: string[][] = [];
         for (const p of chosen) {
+          if ((LISTEN_FAMILY as readonly string[]).includes(p.mode)) {
+            const listenTask = toPublicListenTask(p.task, saltId);
+            if (!listenTask) return { ok: false, reason: 'public_task_rejected', detail: { taskId: p.task.taskId } };
+            tasks.push(listenTask.task);
+            answerFingerprints.push(listenTask.prints);
+            continue;
+          }
           const publicTask = toPublicTournamentTask(p.task, saltId);
           if (!publicTask) return { ok: false, reason: 'public_task_rejected', detail: { taskId: p.task.taskId } };
           // Как arenaPlanTask: объяснения во время игры не показываются, а весят больше всего.
@@ -384,9 +492,11 @@ export function buildSpirePack(input: SpirePackBuildInput): SpirePackBuildResult
       floorMin: input.timer.floorMinRatio,
     },
     aboveCloudsCyclesFloors: [11, 12, 13, 14, 15],
+    // зачем (PM-286): вид, который реально попал в пакет, из «отложенных» уходит;
+    // у пулов без звука (es/de/fr) запись прежняя — и packHash тоже.
     pendingKinds: {
-      listen: 'audio_source_undecided_pm286',
-      dictate: 'audio_source_undecided_pm286',
+      ...(listenAvail.listen ? {} : { listen: 'audio_source_undecided_pm286' }),
+      ...(listenAvail.dictate ? {} : { dictate: 'audio_source_undecided_pm286' }),
       voice: `voice_tasks_absent_in_arena_pool_required_from_floor_${SPIRE_PACK_VOICE_FROM_FLOOR}`,
     },
     source: { ...input.source, poolTaskCount: playable.length },

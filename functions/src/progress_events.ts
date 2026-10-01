@@ -965,6 +965,55 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
   return result;
 });
 
+/**
+ * Пакет 8G (TG-6FDDD994F361) — план записей progressMigrateSnapshot.
+ *
+ * зачем: при пустом снимке patch = {} и запись `set(user, { progress: {} }, { merge: true })`
+ * в Admin SDK даёт маску поля `progress` целиком (пустой map — лист) → облачный progress
+ * человека ЗАМЕНЯЛСЯ пустым до переноса (E2E 2026-10-02). Правила:
+ *  - пустой снимок (0 ключей) → НИЧЕГО не пишем, маркер не ставим: переносить нечего, а
+ *    маркер закрыл бы перенос для устройства, у которого локальный прогресс есть;
+ *  - ключ `progress` попадает в запись ТОЛЬКО с непустым patch: тогда маска merge —
+ *    `progress.<ключ>` по каждому ключу, существующие ключи не трогаются; patch
+ *    (buildMigrationPatch) только добавляет/повышает, ключей не удаляет;
+ *  - непустой снимок с пустым patch (сервер уже не хуже) → маркер и служебные поля, без progress.
+ */
+export type ProgressMigrationPlan =
+  | Readonly<{ decision: 'already_migrated' | 'empty_snapshot'; userUpdate: null; marker: null; keys: readonly string[] }>
+  | Readonly<{
+    decision: 'migrated' | 'nothing_to_migrate';
+    userUpdate: Record<string, unknown>;
+    marker: Record<string, unknown>;
+    keys: readonly string[];
+  }>;
+
+export function planProgressMigration(input: Readonly<{
+  snapshot: ProgressMap;
+  existing: ProgressMap;
+  migrationExists: boolean;
+  authUid: string;
+  now: Date;
+  serverTimestamp: () => unknown;
+}>): ProgressMigrationPlan {
+  if (input.migrationExists) return { decision: 'already_migrated', userUpdate: null, marker: null, keys: [] };
+  if (Object.keys(input.snapshot).length === 0) return { decision: 'empty_snapshot', userUpdate: null, marker: null, keys: [] };
+  const patch = buildMigrationPatch(input.snapshot, input.existing, input.now);
+  const keys = Object.keys(patch).sort();
+  const userUpdate: Record<string, unknown> = {
+    ...(keys.length > 0 ? { progress: patch } : {}),
+    firebaseAuthUid: input.authUid,
+    progressServerAuthoritative: true,
+    progressMigratedAt: input.serverTimestamp(),
+    updatedAt: input.serverTimestamp(),
+  };
+  return {
+    decision: keys.length > 0 ? 'migrated' : 'nothing_to_migrate',
+    userUpdate,
+    marker: { migrated: true, keys, createdAt: input.serverTimestamp() },
+    keys,
+  };
+}
+
 export const progressMigrateSnapshot = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   const authUid = request.auth?.uid;
   if (!authUid) throw new HttpsError('unauthenticated', 'auth_required');
@@ -980,23 +1029,19 @@ export const progressMigrateSnapshot = onCall(HOT_CALLABLE_OPTIONS, async (reque
 
   return db.runTransaction(async (tx) => {
     const [userSnap, migrationSnap] = await Promise.all([tx.get(userRef), tx.get(migrationRef)]);
-    if (migrationSnap.exists) {
-      return { ok: true, stableUid, migrated: false, reason: 'already_migrated' };
-    }
     const existing = getProgress(userSnap.data());
-    const patch = buildMigrationPatch(snapshot, existing, now);
-    tx.set(userRef, {
-      progress: patch,
-      firebaseAuthUid: authUid,
-      progressServerAuthoritative: true,
-      progressMigratedAt: admin.firestore.FieldValue.serverTimestamp(),
-      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-    }, { merge: true });
-    tx.set(migrationRef, {
-      migrated: true,
-      keys: Object.keys(patch).sort(),
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    const plan = planProgressMigration({
+      snapshot, existing, migrationExists: migrationSnap.exists, authUid, now,
+      serverTimestamp: () => admin.firestore.FieldValue.serverTimestamp(),
     });
-    return { ok: true, stableUid, migrated: true, keys: Object.keys(patch).sort() };
+    // Лог решения без uid: размеры и ветка (правило владельца «логи на каждом решении»).
+    console.log(`[PROGRESS-MIGRATE] decision=${plan.decision} snapshot_keys=${Object.keys(snapshot).length} `
+      + `existing_keys=${Object.keys(existing).length} user_exists=${userSnap.exists} patch_keys=${plan.keys.length}`);
+    if (plan.userUpdate === null) {
+      return { ok: true, stableUid, migrated: false, reason: plan.decision };
+    }
+    tx.set(userRef, plan.userUpdate, { merge: true });
+    tx.set(migrationRef, plan.marker);
+    return { ok: true, stableUid, migrated: true, keys: [...plan.keys] };
   });
 });

@@ -278,7 +278,7 @@ export default function CoinRankScreen() {
   const missing = balance !== null && next ? Math.max(0, next.priceToReach - balance) : null;
   const progress = balance !== null && next ? Math.max(0, Math.min(1, balance / next.priceToReach)) : 0;
   const ctaLabel = upgrading || balanceReconciling
-    ? (lang === 'ru' ? 'Повышаем…' : 'Upgrading…')
+    ? triLang(lang, { ru: 'Повышаем…', uk: 'Підвищуємо…', en: 'Upgrading…', es: 'Subiendo…', 'pt-BR': 'Subindo…', vi: 'Đang nâng hạng…', id: 'Menaikkan…', tr: 'Yükseltiliyor…', pl: 'Awansujemy…' })
     : rank === null || balance === null
       ? copy.loading
       : isMaxRank
@@ -318,7 +318,7 @@ export default function CoinRankScreen() {
       <View style={[styles.header, { paddingTop: insets.top + 8 }]}>
         <V2Pressable
           testID="coin-rank-back"
-          accessibilityLabel={lang === 'ru' ? 'Назад' : 'Back'}
+          accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
           onPress={goBack}
           scaleTo={0.94}
           style={[styles.backButton, glass]}

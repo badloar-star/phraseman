@@ -7,6 +7,10 @@ import {
 import type { DailyJourneyGiftOccurrenceV1 } from './daily_journey_gift_inbox';
 import { commitDailyJourneyFreezeGrant } from './daily_journey_freeze_ledger';
 import { enqueueLevelSpinStarGrant } from './level_spin_star_grants';
+import {
+  dailyJourneySpinCompensationGrants,
+  reserveDailyJourneySpinCompensation,
+} from './gifts_to_coins_spin_cap_v1';
 import { DebugLogger } from './debug-logger';
 
 const RUNE_DENOMINATIONS = Object.freeze([1_000, 500, 250, 100, 50, 20, 10] as const);
@@ -108,8 +112,37 @@ export async function applyDailyJourneyGiftActivation(
       return;
     }
     case 'spins': {
-      DebugLogger.info('[SPIN-RETIRED]', `source=daily_journey op=${claimOperationId}`
-        + ` amount=${occurrence.reward.amount} action=closed_without_compensation`);
+      // зачем (D51/D53; координатор 2026-10-01, Q12): спин как механика убран
+      // (PM-047), но закрыть его «без начисления» нельзя — человек теряет
+      // компенсацию, а миграция «Подарки → монеты» увидит подарок уже забранным.
+      // Платим по таблице D53 (130 монет за спин, общий потолок 20) ТЕМИ ЖЕ
+      // ключами, что и миграция (gifts_to_coins_spin_cap_v1): кто бы ни пришёл
+      // вторым, кошелёк схлопнет повтор. Подарок закрывает штатная квитанция.
+      const ownerStableId = occurrence.ownerStableId;
+      const reservation = await reserveDailyJourneySpinCompensation(
+        ownerStableId, occurrence.operationId, occurrence.reward.amount,
+      );
+      assertCurrent(token, ownerStableId);
+      const grants = await dailyJourneySpinCompensationGrants(
+        ownerStableId, occurrence.operationId, reservation.paidSpins,
+      );
+      for (const grant of grants) {
+        await enqueueLevelSpinStarGrant({
+          token,
+          requestId: grant.requestId,
+          lane: 'base',
+          giftId: grant.giftId,
+          promotionEligibility: 'excluded_compensation',
+        });
+        assertCurrent(token, ownerStableId);
+      }
+      DebugLogger.info(
+        '[SPIN-RETIRED]',
+        `source=daily_journey op=${claimOperationId} amount=${occurrence.reward.amount}`
+        + ` promised=spins action=closed_with_coins paidSpins=${reservation.paidSpins}`
+        + ` capped=${reservation.cappedSpins} coins=${grants.reduce((sum, grant) => sum + Number(grant.giftId.replace('stars_', '')), 0)}`
+        + ` ops=${grants.length} replayed=${reservation.replayed} reason=PM-047_D53_compensation`,
+      );
       return;
     }
     case 'energy_full':

@@ -39,8 +39,8 @@ jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 jest.mock('../app/shards_system', () => ({ commitShardCreditOperation: jest.fn() }));
 jest.mock('../app/level_spin_star_grants', () => ({ enqueueLevelSpinStarGrant: jest.fn() }));
 // PM-047 (владелец): спин убран как механика — daily_journey_gift_activation.ts
-// больше не импортирует функцию выдачи локального спина, spins-награда
-// закрывается молча логом [SPIN-RETIRED] через DebugLogger.
+// больше не импортирует функцию выдачи локального спина; spins-награда
+// закрывается компенсацией монетами (D51/D53, Q12) и логом [SPIN-RETIRED].
 jest.mock('../app/debug-logger', () => ({
   reportSwallowed: jest.fn(), swallowError: jest.fn(() => jest.fn()),
   DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() },
@@ -136,11 +136,24 @@ it.each(rewardCases)('maps $kind amount $amount exactly and activates only on cl
     expect(new Set(calls.map(([input]) => input.requestId)).size).toBe(calls.length);
     calls.forEach(([input]) => expect(input.token).toBe(token));
   } else if (reward.kind === 'spins') {
-    // PM-047 (владелец): спин как механика убран — claim закрывается без
-    // начисления, вместо выдачи локального спина пишется [SPIN-RETIRED].
+    // PM-047 + D51/D53 (Q12, 2026-10-01): спин как механика убран, claim
+    // закрывается компенсацией 130 монет за спин (общий потолок 20) с
+    // excluded_compensation и логом [SPIN-RETIRED] action=closed_with_coins.
+    const calls = (enqueueLevelSpinStarGrant as jest.Mock).mock.calls;
+    expect(calls.reduce((sum, [input]) => sum + runeAmount(input.giftId), 0)).toBe(reward.amount * 130);
+    expect(new Set(calls.map(([input]) => input.requestId)).size).toBe(calls.length);
+    calls.forEach(([input]) => {
+      expect(input.token).toBe(token);
+      expect(input.promotionEligibility).toBe('excluded_compensation');
+      expect(input.requestId).toMatch(/^g2cdj_[a-f0-9]{32}_\d+$/);
+    });
     expect(DebugLogger.info).toHaveBeenCalledWith(
       '[SPIN-RETIRED]',
       expect.stringContaining(`op=${claimOperationId}`),
+    );
+    expect(DebugLogger.info).toHaveBeenCalledWith(
+      '[SPIN-RETIRED]',
+      expect.stringContaining('action=closed_with_coins'),
     );
   } else if (reward.kind === 'freeze') {
     expect(commitDailyJourneyFreezeGrant).toHaveBeenCalledWith({

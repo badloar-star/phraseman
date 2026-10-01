@@ -182,3 +182,14 @@ firebase deploy --only functions:stripeWebhook,functions:paypalOrderCapture --pr
   `communityPurchasePack`, `profileCardUpgrade`, открытие курса Learning V2 ×2,
   `statsInsightsGenerate`, `weeklyReviewGenerate`) — удалять после релиза, и только если их не
   вызывает ни 2.0, ни живые версии 1.6.x; иначе — после окна принудительного обновления.
+- **Диалоги V2 — первая реплика, прогрев, служебный текст (Ядро, 01.10)** — выкладывать ВСЕЙ
+  группой «Диалоги V2» из шага 1 (одна команда выше, ничего нового в ней нет). Почему всей группой:
+  встроенный выпуск `functions/src/generated/dialogue_v2_server_release.json` получил
+  `content.opening` во всех 304 пакетах — хэши пакетов изменились, и функции, читающие выпуск
+  (`dialogueV2Catalogue`, `dialogueV2SessionStart`, `dialogueV2TextTurn`, `dialogueV2SessionComplete`,
+  `dialogueV2Memory*`), должны жить на одном выпуске. Что даёт выкладка: `{ warm: true }` в
+  `dialogueV2SessionStart`/`dialogueV2TextTurn` (мгновенный ответ, без чтений и OpenAI);
+  первая реплика персонажа — первым ходом в истории модели (`dialogueV2TextTurn`), открывающая
+  фраза свободного разговора (`dialogueV2FreeformSessionTurn`). `minInstances` НЕ менялся (0).
+  До выкладки телефон всё равно показывает реплику (она во встроенном снимке), а прогрев
+  тихо пишет в лог отказ и ни на что не влияет.

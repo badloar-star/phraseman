@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { accountOwnedStorageKeysFrom, RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS } from './cloud_sync';
+import { accountOwnedStorageKeysFrom } from './cloud_sync';
+import { RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS } from './retired_account_local_keys';
 import { DebugLogger } from './debug-logger';
 
 const NON_AUTHORITATIVE_BOOT_KEYS = new Set<string>([

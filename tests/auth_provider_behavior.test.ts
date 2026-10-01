@@ -496,6 +496,8 @@ test('sign-in over an anonymous user tries linkWithCredential FIRST (does not de
 });
 
 test('preserves anonymous identity when the credential belongs to an existing provider account', async () => {
+  // зачем: XP снят в 2.0 и прогрессом не считается — локальные данные изображаем
+  // живым ключом прогресса (unlocked_lessons), а не user_total_xp.
   // linkWithCredential rejects with "provider already bound to another account".
   authState.linkImpl = async () => {
     const err: any = new Error('credential already in use');
@@ -503,7 +505,7 @@ test('preserves anonymous identity when the credential belongs to an existing pr
     throw err;
   };
 
-  const { signInWithProvider } = loadAuthProvider({ user_total_xp: '10' });
+  const { signInWithProvider } = loadAuthProvider({ unlocked_lessons: '[1,2]' });
   const res = await signInWithProvider('google');
 
   expect(authState.calls).toContain('link');
@@ -1014,7 +1016,7 @@ test('failed background restore never pushes local state over an existing cloud 
 test('missing cloud document is distinct from restore failure and may safely upload local account data', async () => {
   restoreFromCloudDetailed.mockResolvedValueOnce('not_found');
 
-  const { signInWithProvider } = loadAuthProvider({ user_total_xp: '10' });
+  const { signInWithProvider } = loadAuthProvider({ unlocked_lessons: '[1,2]' });
   const result = await signInWithProvider('google');
   await new Promise<void>((resolve) => setImmediate(resolve));
 
@@ -1026,7 +1028,7 @@ test('missing cloud document is distinct from restore failure and may safely upl
 test('processed cloud document still permits upload when newer local progress needed no restore writes', async () => {
   restoreFromCloudDetailed.mockResolvedValueOnce('restored');
 
-  const { signInWithProvider } = loadAuthProvider({ user_total_xp: '25' });
+  const { signInWithProvider } = loadAuthProvider({ unlocked_lessons: '[1,2]' });
   const result = await signInWithProvider('google');
   await new Promise<void>((resolve) => setImmediate(resolve));
 

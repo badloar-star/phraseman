@@ -10,6 +10,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS } from './retired_account_local_keys';
 import { beginSettingsStorageMutation } from '../lib/startup_settings_read_scope';
 import { IS_EXPO_GO, CLOUD_SYNC_ENABLED, IS_STORE_RELEASE } from './config';
 import { getUtcDayKey } from './local_date';
@@ -579,47 +580,19 @@ const RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS = [
   'pending_shard_grants_v1_quarantine_owner_v1',
 ] as const;
 
-// зачем: снимок 2.0 (efe19ae9d, 2026-09-30) убрал XP, лигу и их подарки из
-// SYNC_KEYS — и тем самым из инвентаря стирания при смене аккаунта (он строится
-// из SYNC_KEYS). На устройствах, обновившихся с 1.x, эти ключи остаются на диске,
-// и следующий вошедший аккаунт наследовал чужие XP/уровень/очки лиги. Фичи
-// сняты, но старые значения обязаны стираться вместе с аккаунтом.
-// Сторож: tests/cloud_sync_identity_anchor.test.ts.
-export const RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS = [
-  'user_total_xp',
-  'user_prev_xp',
-  'weekly_xp',
-  'weekly_xp_period_start',
-  'season_cosmetics_v1',
-  'admin_energy_command',
-  'profile_card_level',
-  'profile_card_theme',
-  'profile_card_motion',
-  'profile_card_public_focus',
-  'gift_xp_bank_v1',
-  'achievement_league_boost_count',
-  'league_state_v3',
-  'league_result_pending',
-  'league_result_consumed_sig',
-  'week_leaderboard',
-  'week_points_v2',
-  'chain_shield',
-  'gift_xp_multiplier',
-  'club_gift_free_boost_v1',
-  'level_premium_pack_unlock_gifts_v1',
-  'level_up_shown_levels_v1',
-  'wager_discount',
-  'wager_discount_uses_v1',
-  'league_chest_energy_override_v1',
-  'league_chest_xp_override_v1',
-  'league_gold_theme_unlocked_v1',
-  'league_gold_theme_unlocked_at',
-  'xp_migration_v2',
-  'xp_level_restore_250_to_400_v1',
-  'week_points_migrated_v1',
-] as const;
+// Ключи снятых в 2.0 XP/лиги стираются вместе с аккаунтом — см. retired_account_local_keys.ts.
+export { RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS };
 
 const ACCOUNT_LOCAL_KEY_PREFIXES = [
+  // зачем: снимок 2.0 (efe19ae9d) выкинул эти префиксы вместе с разделом MAX, и
+  // журналы голосовой обратной связи (там текст пользователя) перестали
+  // стираться при смене аккаунта — доставались следующему человеку на телефоне.
+  // MAX законсервирован, но старые журналы на устройствах 1.x остались: они
+  // обязаны бэкапиться, стираться и проверяться на остаток вместе с аккаунтом.
+  'max_voice_finalize_outbox_v1:',
+  'max_voice_feedback_outbox_v1:',
+  'max_voice_review_receipt_v1:',
+  'max_voice_review_receipts_v1:',
   'mistake_practice_v2::',
   'learning_v2_lesson1_progress:',
   'learning_v2_progress:',

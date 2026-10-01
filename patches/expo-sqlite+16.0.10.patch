@@ -1497,7 +1497,7 @@ diff --git a/node_modules/expo-sqlite/ios/SQLiteModule.swift b/node_modules/expo
 +    var releaseFailed = false
 +    stateQueue.sync {
 +      guard ownsLock else { return }
-+      if Darwin.flock(fileDescriptor, LOCK_UN) != 0 {
++      if (Darwin.flock as (Int32, Int32) -> Int32)(fileDescriptor, LOCK_UN) != 0 {
 +        releaseFailed = true
 +        return
 +      }
@@ -1512,7 +1512,7 @@ diff --git a/node_modules/expo-sqlite/ios/SQLiteModule.swift b/node_modules/expo
 +  private func releaseAccountProvisionLockBestEffort() {
 +    stateQueue.sync {
 +      guard ownsLock else { return }
-+      guard Darwin.flock(fileDescriptor, LOCK_UN) == 0 else { return }
++      guard (Darwin.flock as (Int32, Int32) -> Int32)(fileDescriptor, LOCK_UN) == 0 else { return }
 +      ownsLock = false
 +      _ = Darwin.close(fileDescriptor)
 +    }
@@ -1746,7 +1746,7 @@ diff --git a/node_modules/expo-sqlite/ios/SQLiteModule.swift b/node_modules/expo
 +    guard fileDescriptor >= 0 else {
 +      throw InvalidArgumentsException("account_native_provision_lock_failed")
 +    }
-+    guard Darwin.flock(fileDescriptor, LOCK_EX) == 0 else {
++    guard (Darwin.flock as (Int32, Int32) -> Int32)(fileDescriptor, LOCK_EX) == 0 else {
 +      _ = Darwin.close(fileDescriptor)
 +      throw InvalidArgumentsException("account_native_provision_lock_failed")
 +    }

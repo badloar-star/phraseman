@@ -246,7 +246,9 @@ const ROOT_RULES: readonly InventoryRule[] = [
     'Решение владельца 10 (2026-09-30): звёзды (v2_access_stars и метки) не переносятся.'),
   rule('r.currency_counters', 'root', {
     exact: ['practice_runes_daily', 'videoWatchRunesDaily', 'videoWatchRuneSessionV1', 'videoWatchRuneCarryMsV1',
-      'coins_migration_v1', 'coins_migration_v1_record'],
+      'coins_migration_v1', 'coins_migration_v1_record',
+      // зачем: Q13 — счётчики лимитов серверного кошелька монет (не баланс).
+      'coinWalletLimitsV1'],
   }, 'info', 'currency_counter_not_balance', ['D03'], 'Дневные счётчики и метки кошельков — не баланс; баланс рун идёт через runesToCoins.'),
   // зачем (решение владельца 11): вход в V2 новый — служебные поля входа не переносятся и
   // не блокируют. Опасные ЗНАЧЕНИЯ (identityHidden:true, anon_merge_claim, чужой

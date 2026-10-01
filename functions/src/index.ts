@@ -1076,6 +1076,11 @@ export { globalBroadcastListActive } from "./global_broadcast_public";
 // зачем (владелец, 2026-08-27): руны за семь учебных активностей — урок,
 // словарь, неправильные глаголы, блиц, тренировка, отработка ошибок, голос.
 export { practiceRuneGrant } from "./practice_rune_grant";
+// зачем: серверный кошелёк монет, спины удалены (владелец 01.10, Q13). Имя
+// прежнее — клиент шлёт сюда награды за жалобы, «Дневной путь» и компенсацию
+// подарков. Белый список и лимиты — coin_wallet_policy.ts. Деплой — ПЕРВЫМ
+// после релиза (docs/phraseman-2.0/PROGRESS.md).
+export { levelSpinStarGrant } from "./level_spin_star_grant";
 // зачем (D51/D53, Q12 2026-10-01): строка-итог миграции «Подарки → монеты»
 // для контроля в админке. Деплой — прицельно и только после релиза 2.0 (D91).
 export { giftsToCoinsMigrationReport } from "./gifts_to_coins_report";

@@ -1,21 +1,58 @@
 import fs from 'fs';
 import path from 'path';
 
-test('Spin stars persist an exact client composite without a server-selected reward contract', () => {
-  const client = fs.readFileSync(path.join(process.cwd(), 'app', 'level_spin_star_grants.ts'), 'utf8');
-  const functionsClient = fs.readFileSync(path.join(process.cwd(), 'app', 'community_packs', 'functionsClient.ts'), 'utf8');
-  const appLayout = fs.readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'), 'utf8');
+// зачем: серверный кошелёк монет, спины удалены (владелец 01.10, Q13).
+// Сторож: спинов нет, серверный кошелёк монет `levelSpinStarGrant` есть,
+// неизвестный источник — отказ. Клиентский контракт `{ operation }` не меняется.
 
-  expect(fs.existsSync(path.join(process.cwd(), 'functions', 'src', 'level_spin_star_grant.ts'))).toBe(false);
+const root = process.cwd();
+const read = (...parts: string[]) => fs.readFileSync(path.join(root, ...parts), 'utf8');
 
+test('server coin wallet callable exists under the old name and is exported', () => {
+  const index = read('functions', 'src', 'index.ts');
+  const wallet = read('functions', 'src', 'level_spin_star_grant.ts');
+  expect(index).toContain('export { levelSpinStarGrant } from "./level_spin_star_grant";');
+  expect(wallet).toContain('export const levelSpinStarGrant = onCall(HOT_CALLABLE_OPTIONS');
+  expect(wallet).toContain('// зачем: серверный кошелёк монет, спины удалены (владелец 01.10)');
+  expect(wallet).toContain("throw new HttpsError('unauthenticated', 'auth_required')");
+  expect(wallet).not.toMatch(/enforceAppCheck\s*:\s*true/);
+});
+
+test('spin logic stays deleted: no server spin modules, no spin source in the wallet white list', () => {
+  for (const retired of ['level_spin_merge.ts', 'level_spin_enrollment.ts', 'level_reward_spins.ts']) {
+    expect(fs.existsSync(path.join(root, 'functions', 'src', retired))).toBe(false);
+  }
+  expect(fs.existsSync(path.join(root, 'app', 'local_level_spins.ts'))).toBe(false);
+  const policy = read('functions', 'src', 'coin_wallet_policy.ts');
+  expect(policy).toContain("'coin_wallet_source_not_allowed'");
+  const sourcePatterns = policy.match(/const SOURCE_PATTERNS[\s\S]*?\] as const\);/)?.[0] ?? '';
+  expect(sourcePatterns).toContain('report_reward_');
+  expect(sourcePatterns).toContain('dailyjourney_');
+  expect(sourcePatterns).toContain('g2c1_');
+  expect(sourcePatterns).toContain('g2cdj_');
+  const prefixes = [...sourcePatterns.matchAll(/\[\/\^([a-z0-9_]+?)_\[/g)].map((m) => m[1]);
+  expect(prefixes).toEqual(['report_reward', 'dailyjourney', 'g2c1', 'g2cdj']);
+  for (const prefix of prefixes) expect(prefix).not.toMatch(/spin|quest|video|level/i);
+});
+
+test('client keeps sending the exact composite to the same callable', () => {
+  const client = read('app', 'level_spin_star_grants.ts');
+  const functionsClient = read('app', 'community_packs', 'functionsClient.ts');
+  const appLayout = read('app', '_layout.tsx');
   expect(client).toContain('commitPhoneStateNonMonetaryEconomyGrant');
   expect(client).toContain('callLevelSpinStarComposite(operation)');
   expect(client).toContain('requestFingerprint !== operation.requestFingerprint');
-  expect(client).not.toContain('creditedTotal');
   expect(functionsClient).toContain("'levelSpinStarGrant'");
   expect(functionsClient).toContain('{ operation }');
   expect(functionsClient).toContain('operation: LevelSpinStarCreditExactResult');
-  expect(functionsClient).not.toContain('{ operation: unknown }');
-  expect(functionsClient).not.toContain('callLevelSpinStarGrant');
   expect(appLayout).toContain('recoverAndHydrateLevelSpinStarGrants(token)');
+});
+
+test('wallet limit counters are server-only in Firestore Rules', () => {
+  const rules = read('firestore.rules');
+  const updateGuard = rules.match(/function hasNoShardWrites\(\) \{[\s\S]*?\n    \}/)?.[0] ?? '';
+  const createGuard = rules.match(/function newDocHasNoShardWrites\(\) \{[\s\S]*?\n    \}/)?.[0] ?? '';
+  expect(updateGuard).toContain("'coinWalletLimitsV1'");
+  expect(createGuard).toContain("'coinWalletLimitsV1'");
+  expect(updateGuard).toContain("'stars'");
 });

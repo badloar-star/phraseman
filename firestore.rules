@@ -286,6 +286,10 @@ service cloud.firestore {
           // может подделать startedAt/carry и тем самым ускорить начисление.
           'videoWatchRuneSessionV1',
           'videoWatchRuneCarryMsV1',
+          // зачем: Q13 (владелец 01.10) — счётчики лимитов серверного кошелька
+          // монет (levelSpinStarGrant). Пишет только сервер в транзакции
+          // начисления; открой клиенту — и он обнулял бы суточный потолок.
+          'coinWalletLimitsV1',
         ]);
     }
 
@@ -326,6 +330,8 @@ service cloud.firestore {
           'videoWatchRunesDaily',
           'videoWatchRuneSessionV1',
           'videoWatchRuneCarryMsV1',
+          // Q13: счётчики лимитов кошелька монет — только сервер.
+          'coinWalletLimitsV1',
         ]);
     }
 

@@ -11255,11 +11255,13 @@
     "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": "agent-reviewer (Sonnet), пачка 9",
     "evidence": [
-      "commits 219d80a72 3e19b799c cd7a90984"
+      "commits 219d80a72 3e19b799c cd7a90984",
+      "085bfc5ff, 8fcc7cf2e, 048584a5b: удалена мёртвая цепочка скачивания озвучки V2 (прогрев, транспорт, хуки сессии, фоновая закачка, audio_plan); сторож learning_v2_no_audio_download_guard 15/15; perf_freeze 12/12, layout_stability 15/15; PM-210/212/229/206 PASS; typecheck 0"
     ],
     "notes": [
       "D47: скачивание озвучки V2 удалено, V2 на TTS; D48: V1 текущий+следующий урок заранее",
-      "2026-10-01 пачка 9: A1 NOT_MET подтверждено на HEAD — app/learning_v2_activity_audio_preload_v1.ts, learning_v2_activity_audio_transport_v1.ts, use_learning_v2_activity_audio_session_v1.ts на месте (мёртвая цепочка D47), удаление затрагивает 9 тестов/проб — отдельный срез ядра; облачные файлы — владельцу."
+      "2026-10-01 пачка 9: A1 NOT_MET подтверждено на HEAD — app/learning_v2_activity_audio_preload_v1.ts, learning_v2_activity_audio_transport_v1.ts, use_learning_v2_activity_audio_session_v1.ts на месте (мёртвая цепочка D47), удаление затрагивает 9 тестов/проб — отдельный срез ядра; облачные файлы — владельцу.",
+      "2026-10-01 доделано по замечанию пачки 9. A1 NOT_MET (владелец): облачные файлы озвучки в Storage удаляет только владелец после allowlist «наш голос» (D18/D47). Стартовый пакет и файлы озвучки в сборке оставлены по D47."
     ],
     "actual_cost": null,
     "kind": "code",

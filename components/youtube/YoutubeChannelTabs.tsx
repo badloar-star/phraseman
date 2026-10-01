@@ -5,7 +5,7 @@ import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 
-export type YoutubeChannelTab = 'home' | 'all' | 'playlists';
+export type YoutubeChannelTab = 'home' | 'playlists';
 
 export default function YoutubeChannelTabs({ value, onChange }: {
   value: YoutubeChannelTab;
@@ -17,7 +17,6 @@ export default function YoutubeChannelTabs({ value, onChange }: {
   const labels = {
     home: triLang(lang, { ru: 'Главная', uk: 'Головна', en: 'Home', es: 'Inicio', 'pt-BR': 'Início', vi: 'Trang chính', id: 'Beranda', tr: 'Ana sayfa', pl: 'Główna' }),
     playlists: triLang(lang, { ru: 'Плейлисты', uk: 'Плейлисти', en: 'Playlists', es: 'Listas de reproducción', 'pt-BR': 'Playlists', vi: 'Danh sách', id: 'Playlist', tr: 'Oynatma listeleri', pl: 'Playlisty' }),
-    all: triLang(lang, { ru: 'Все видео', uk: 'Усі відео', en: 'All videos', es: 'Todos los vídeos', 'pt-BR': 'Todos os vídeos', vi: 'Tất cả video', id: 'Semua video', tr: 'Tüm videolar', pl: 'Wszystkie filmy' }),
   };
   return (
     <View style={[styles.wrap, { borderBottomColor: g.glassEdge }]}>

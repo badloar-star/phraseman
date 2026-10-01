@@ -288,3 +288,7 @@ Governance-ID: TG-D95DBB6D8340
 Governance-ID: TG-9C9A081E1457
 Governance-ID: TG-B60B0CE57EBF
 — 01.10 «Дизайн»: видео — избранное, число сохранений, «Тренировать», открытие по videoId, звук после плеера, раскрытие строки ~180 мс.
+Governance-ID: TG-0B29A2924F32
+Governance-ID: TG-D12805B5FB5F
+Governance-ID: TG-9A2AA679981A
+Governance-ID: TG-BE747503D86D

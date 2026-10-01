@@ -6,12 +6,11 @@ const screen = readFileSync(new URL('../app/lingman_videos.tsx', import.meta.url
 const tabs = readFileSync(new URL('../components/youtube/YoutubeChannelTabs.tsx', import.meta.url), 'utf8');
 const header = readFileSync(new URL('../components/youtube/YoutubeChannelHeader.tsx', import.meta.url), 'utf8');
 
-test('All videos virtualizes the real catalog while retaining the inline-player data path', () => {
-  const allBranch = screen.slice(screen.indexOf("tab === 'all' ?"), screen.indexOf("        ) : (", screen.indexOf("tab === 'all' ?")));
-  assert.ok(allBranch.includes('<FlashList'), 'All Videos uses a virtual list');
-  assert.ok(allBranch.includes('data={allVideos}'), 'All Videos keeps the catalog as its data source');
-  assert.ok(allBranch.includes('renderItem={({ item }) => renderVideoCard(item, true)}'), 'All Videos retains the real video/card callback');
-  assert.ok(!allBranch.includes('<ScrollView'), 'All Videos does not mount every catalog card');
+// зачем (владелец 01.10): вкладки «Все видео» нет — ветки списка всех роликов в экране тоже нет.
+test('All videos tab is gone; one real inline player remains', () => {
+  assert.ok(!screen.includes("tab === 'all'"), 'no All Videos branch');
+  assert.ok(!screen.includes('youtube-catalog-all-videos'), 'no All Videos list');
+  assert.ok(!tabs.includes("'all'"), 'no all tab in the type');
   assert.ok(screen.includes('inlinePlayer={video.id === activeVideoId ? ('), 'one real inline player remains wired');
 });
 

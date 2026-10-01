@@ -42,9 +42,9 @@ describe('multichannel YouTube catalog UI contract', () => {
     expect(source).toContain("testID={`youtube-tab-${tab}`}");
     expect(source).toContain("(['home', 'playlists'] as const)");
     expect(source).not.toContain("(['home', 'all', 'playlists'] as const)");
-    expect(screen()).toContain('testID="youtube-catalog-all-videos"');
-    expect(screen()).toContain('data={allVideos}');
-    expect(screen()).toContain('renderItem={({ item }) => renderVideoCard(item, true)}');
+    // зачем (владелец 01.10): вкладка «Все видео» удалена вместе с веткой экрана.
+    expect(screen()).not.toContain('testID="youtube-catalog-all-videos"');
+    expect(screen()).not.toContain("tab === 'all'");
   });
 
   it('keeps playlist rows exclusively on the playlists tab', () => {
@@ -80,7 +80,7 @@ describe('multichannel YouTube catalog UI contract', () => {
     expect(source).toContain('active={screenRuntimeActive}');
     expect(source).toContain('inlinePlayer={video.id === activeVideoId ? (');
     expect(source).toContain('presentation="preview"');
-    expect(source).toContain('{inlinePlayer ?? (');
+    expect(source).toContain('{inlinePlayer ? <Animated.View entering={VIDEO_PLAYER_REVEAL}');
     expect(videoCard).not.toContain('testID="lingman-video-watch"');
     expect(videoCard).not.toContain('testID="lingman-video-open-youtube"');
     expect(videoCard).not.toContain('onOpenYoutube');

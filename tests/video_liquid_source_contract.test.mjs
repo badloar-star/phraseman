@@ -9,10 +9,10 @@ const header = readFileSync(new URL('../components/youtube/YoutubeChannelHeader.
 
 // зачем (владелец 01.10): видимых вкладок две — «Все видео» убрана.
 test('channel tabs are live on the same catalog', () => {
-  assert.ok(tabs.includes("'home' | 'all' | 'playlists'"), 'three-tab state type');
+  assert.ok(tabs.includes("'home' | 'playlists'"), 'two-tab state type');
   assert.ok(tabs.includes("['home', 'playlists']"), 'two visible tab buttons');
-  assert.ok(screen.includes("tab === 'all'"), 'All Videos branch');
-  assert.ok(screen.includes('videosList(allVideos'), 'All Videos renders real catalog data');
+  assert.ok(!screen.includes("tab === 'all'"), 'no All Videos branch');
+  assert.ok(/videosList\([^)]*allVideos/.test(screen), 'Home renders real catalog data');
   assert.ok(card.includes('compact?: boolean'), 'card supports approved compact All Videos row');
   assert.ok(card.includes('width: 150'), 'compact row retains 150px thumbnail width');
 });

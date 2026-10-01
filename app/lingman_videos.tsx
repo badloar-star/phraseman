@@ -35,6 +35,9 @@ import { useTabContentBottomPad } from '../hooks/use-tab-content-bottom-pad';
 import { V2 } from '../constants/v2Style';
 import { VideoGlassSheen } from '../components/video/VideoGlassKit';
 import { DebugLogger } from './debug-logger';
+import { useVideoFavorites, useVideoSaveCounts } from '../hooks/use_video_favorites';
+import { actionToastTri, emitAppEvent } from './events';
+import { pluralWord } from '../constants/plural';
 import {
   getActiveYoutubeChannel,
   getLingmanYoutubeSnapshot,
@@ -100,7 +103,10 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const tabContentBottomPad = useTabContentBottomPad();
   const { width: windowWidth } = useWindowDimensions();
   const router = useRouter();
-  const { videoId: deepLinkedVideoId, channelId: deepLinkedChannelId } = useLocalSearchParams<{ videoId?: string; channelId?: string }>();
+  const { videoId: deepLinkedVideoId, channelId: deepLinkedChannelId, saved: savedParam } = useLocalSearchParams<{ videoId?: string; channelId?: string; saved?: string }>();
+  // зачем (макет video-favorites, вариант A): плашка «Сохранённые видео» открывает этот же экран
+  // в режиме списка сохранённых (без вкладок), чтобы не дублировать плеер, фразы и каталог.
+  const savedOnly = !inTab && savedParam === '1';
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { liquidGlassThemeId } = useTheme();
@@ -150,6 +156,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     videoPacksSub: triLang(lang, { ru: 'Фразы из роликов карточками', uk: 'Фрази з роликів картками', en: 'Phrases from the videos as cards', es: 'Frases de los videos en tarjetas', 'pt-BR': 'Frases dos vídeos em cartões', vi: 'Cụm từ trong video thành thẻ', id: 'Frasa dari video jadi kartu', tr: 'Videolardaki ifadeler kart olarak', pl: 'Zwroty z filmów jako fiszki' }),
     recent: triLang(lang, { ru: 'Новые видео', uk: 'Нові відео', en: 'New videos', es: 'Videos nuevos', 'pt-BR': 'Vídeos novos', vi: 'Video mới', id: 'Video baru', tr: 'Yeni videolar', pl: 'Nowe filmy' }),
     error: triLang(lang, { ru: 'Не удалось поставить напоминание.', uk: 'Не вдалося встановити нагадування.', en: 'Could not set the reminder.', es: 'No se pudo activar el recordatorio.', 'pt-BR': 'Não foi possível definir o lembrete.', vi: 'Không thể đặt lời nhắc.', id: 'Pengingat tidak dapat dibuat.', tr: 'Hatırlatıcı ayarlanamadı.', pl: 'Nie udało się ustawić przypomnienia.' }),
+    savedVideos: triLang(lang, { ru: 'Сохранённые видео', uk: 'Збережені відео', en: 'Saved videos', es: 'Vídeos guardados', 'pt-BR': 'Vídeos salvos', vi: 'Video đã lưu', id: 'Video tersimpan', tr: 'Kaydedilen videolar', pl: 'Zapisane filmy' }),
+    train: triLang(lang, { ru: 'Тренировать фразы ролика', uk: 'Тренувати фрази ролика', en: 'Practise this video’s phrases', es: 'Practicar las frases del vídeo', 'pt-BR': 'Treinar as frases do vídeo', vi: 'Luyện cụm từ của video', id: 'Latih frasa video ini', tr: 'Videonun ifadelerini çalış', pl: 'Ćwicz zwroty z filmu' }),
     reminderSet: triLang(lang, { ru: 'Напоминание установлено', uk: 'Нагадування встановлено', en: 'Reminder set', es: 'Recordatorio activado', 'pt-BR': 'Lembrete definido', vi: 'Đã đặt lời nhắc', id: 'Pengingat dibuat', tr: 'Hatırlatıcı ayarlandı', pl: 'Ustawiono przypomnienie' }),
   }), [lang]);
 
@@ -285,6 +293,28 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   };
 
   const allVideos = catalog?.videos ?? snapshot?.videos.map(legacyVideoSnapshot) ?? [];
+  const favorites = useVideoFavorites();
+  const shownVideoIds = useMemo(() => allVideos.map((video) => video.id), [allVideos]);
+  const saveCountOf = useVideoSaveCounts(shownVideoIds, favorites.state);
+  const savedVideos = useMemo(() => {
+    const byId = new Map(allVideos.map((video) => [video.id, video] as const));
+    return favorites.savedIds.map((id) => byId.get(id)).filter((video): video is YoutubeVideoSnapshot => !!video);
+  }, [allVideos, favorites.savedIds]);
+  // Optimistic: вид меняется сразу (стор публикует локально), отказ сети — стор откатывает, тут тост.
+  const toggleSave = useCallback((videoId: string) => {
+    void favorites.toggle(videoId).then((outcome) => {
+      if (outcome === 'ok') return;
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось сохранить, попробуйте ещё раз', uk: 'Не вдалося зберегти, спробуйте ще раз', en: 'Couldn’t save, please try again',
+        es: 'No se pudo guardar, inténtalo de nuevo', 'pt-BR': 'Não foi possível salvar, tente de novo', vi: 'Không lưu được, hãy thử lại',
+        id: 'Gagal menyimpan, coba lagi', tr: 'Kaydedilemedi, tekrar dene', pl: 'Nie udało się zapisać, spróbuj ponownie',
+      }));
+    });
+  }, [favorites]);
+  const trainVideo = useCallback((videoId: string) => {
+    console.log('[VIDEO-TAB] тренировать фразы ролика', JSON.stringify({ videoId }));
+    router.push({ pathname: '/flashcards_collection', params: { pack: `video_${videoId}`, preview: '1' } } as never);
+  }, [router]);
   const openVideo = (video: YoutubeVideoSnapshot) => {
     hapticTap();
     if (!catalog && snapshot) {
@@ -372,6 +402,9 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       compact={compact && video.id !== activeVideoId}
       highlighted={video.id === deepLinkedVideoId || video.id === activeVideoId}
       onWatch={() => openVideo(video)}
+      saved={favorites.isSaved(video.id)}
+      saveCount={saveCountOf(video.id)}
+      onToggleSave={() => toggleSave(video.id)}
       inlinePlayer={video.id === activeVideoId ? (
         <YoutubeInlinePlayer
           videoId={video.id}
@@ -381,14 +414,29 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
           presentation="preview"
         />
       ) : undefined}
-      belowPlayer={!compact || video.id === activeVideoId ? <YoutubeVideoPhrases
+      belowPlayer={!compact || video.id === activeVideoId ? <>
+      {video.id === activeVideoId ? (
+        <TouchableOpacity
+          testID={`video-train-${video.id}`}
+          accessibilityRole="button"
+          accessibilityLabel={copy.train}
+          activeOpacity={0.86}
+          onPressIn={() => hapticTap()}
+          onPress={() => trainVideo(video.id)}
+          style={[styles.trainCta, { backgroundColor: g.cta }]}
+        >
+          <Ionicons name="layers-outline" size={18} color={g.ctaInk} />
+          <Text style={[styles.trainText, { color: g.ctaInk }]}>{copy.train}</Text>
+        </TouchableOpacity>
+      ) : null}
+      <YoutubeVideoPhrases
         packLanguage={normalizePackLanguage(activeChannel.languageTags[0]?.split('-')[0])}
         sourceTitle={activeChannel.displayName}
         videoId={video.id}
         expanded={expandedPhraseVideoId === video.id}
         onToggle={() => setExpandedPhraseVideoId((current) => current === video.id ? null : video.id)}
         testID={`video-phrases-${video.id}`}
-      /> : undefined}
+      /></> : undefined}
     />
   );
   const scrollToDeepLinked = (videoId: string, y: number) => {
@@ -427,6 +475,30 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       <Ionicons name="chevron-forward" size={20} color={g.secondary} />
     </TouchableOpacity>
   ) : null;
+  const savedRow = !savedOnly && savedVideos.length > 0 ? (
+    <TouchableOpacity
+      testID="video-saved-row"
+      accessibilityRole="button"
+      accessibilityLabel={copy.savedVideos}
+      activeOpacity={0.8}
+      onPressIn={() => hapticTap()}
+      onPress={() => router.push({ pathname: '/lingman_videos', params: { saved: '1' } } as never)}
+      style={[styles.packsRow, { backgroundColor: g.card, borderColor: g.glassEdge }]}
+    >
+      <VideoScreenGlass tint={g.selected} edge={g.glassEdge} />
+      <View style={[styles.packsIcon, { backgroundColor: g.opaqueControl }]}><Ionicons name="bookmark-outline" size={20} color={g.text} /></View>
+      <View style={styles.packsCopy}>
+        <Text style={[styles.packsTitle, { color: g.text }]}>{copy.savedVideos}</Text>
+        <Text style={[styles.packsSub, { color: g.secondary }]}>{triLang(lang, {
+          ru: `${savedVideos.length} ${pluralWord(lang, savedVideos.length, { one: 'ролик', few: 'ролика', many: 'роликов' })}`,
+          uk: `${savedVideos.length} ${pluralWord(lang, savedVideos.length, { one: 'ролик', few: 'ролики', many: 'роликів' })}`,
+          en: `${savedVideos.length} videos`, es: `${savedVideos.length} vídeos`, 'pt-BR': `${savedVideos.length} vídeos`, vi: `${savedVideos.length} video`,
+          id: `${savedVideos.length} video`, tr: `${savedVideos.length} video`, pl: `${savedVideos.length} ${pluralWord(lang, savedVideos.length, { one: 'film', few: 'filmy', many: 'filmów' })}`,
+        })}</Text>
+      </View>
+      <Ionicons name="chevron-forward" size={20} color={g.secondary} />
+    </TouchableOpacity>
+  ) : null;
 
   return (
     <ScreenGradient artBackdrop="home">
@@ -436,11 +508,11 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       <SafeAreaView testID="lingman-videos-screen" style={styles.container} edges={inTab ? ['left', 'right'] : ['top', 'left', 'right', 'bottom']}>
         <YoutubeChannelHeader
           channel={activeChannel}
-          title={inTab ? copy.tabTitle : undefined}
+          title={inTab ? copy.tabTitle : savedOnly ? copy.savedVideos : undefined}
           onBack={inTab ? undefined : () => safeRouterBack(router, '/(tabs)/home' as any)}
           onOpenYoutube={() => openExternalUrl(activeChannel.url)}
         />
-        <YoutubeChannelTabs value={tab} onChange={changeTab} />
+        {savedOnly ? null : <YoutubeChannelTabs value={tab} onChange={changeTab} />}
         {/* зачем (владелец 01.10): плашек «устарел/офлайн» и экрана ошибки нет — показываем то, что есть, обновляем тихо. */}
         {issue !== 'none' && snapshot && <View testID="lingman-videos-fallback-notice" />}
 
@@ -464,14 +536,9 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
               <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={16} />
               <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={16} />
             </View></ScrollView>
-        ) : tab === 'all' ? (
-          <FlashList decelerationRate="fast" testID="youtube-catalog-all-videos" data={allVideos} keyExtractor={(item) => item.id} renderItem={({ item }) => renderVideoCard(item, true)} showsVerticalScrollIndicator={false} contentContainerStyle={[styles.list, inTab ? { paddingBottom: tabContentBottomPad } : null]} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} ListEmptyComponent={<View style={styles.skeletons}>
-              <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={16} />
-              <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={16} />
-            </View>} />
         ) : (
           <ScrollView ref={homeScrollRef} decelerationRate="fast" testID="lingman-videos-list" showsVerticalScrollIndicator={false} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={[styles.list, inTab ? { paddingBottom: tabContentBottomPad } : null]}>
-            {hero ? hero.id === activeVideoId ? (
+            {hero && !savedOnly ? hero.id === activeVideoId ? (
               <View style={styles.heroPlayer}>
                 <YoutubeInlinePlayer
                   videoId={hero.id}
@@ -482,7 +549,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
                 />
               </View>
             ) : <YoutubePremiereHero video={hero} reminded={remindedIds.includes(hero.id)} onWatch={() => openVideo(hero)} onRemind={() => void remind(hero)} /> : null}
-            {hero ? <YoutubeVideoPhrases
+            {hero && !savedOnly ? <YoutubeVideoPhrases
               packLanguage={normalizePackLanguage(activeChannel.languageTags[0]?.split('-')[0])}
               sourceTitle={activeChannel.displayName}
               videoId={hero.id}
@@ -490,9 +557,10 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
               onToggle={() => setExpandedPhraseVideoId((current) => current === hero.id ? null : hero.id)}
               testID={`video-phrases-${hero.id}`}
             /> : null}
-            {packsRow}
-            <Text style={[styles.sectionTitle, { color: g.text }]}>{copy.recent}</Text>
-            {videosList(allVideos.filter((video) => video.id !== hero?.id))}
+            {savedOnly ? null : packsRow}
+            {savedRow}
+            {savedOnly ? null : <Text style={[styles.sectionTitle, { color: g.text }]}>{copy.recent}</Text>}
+            {videosList(savedOnly ? savedVideos : allVideos.filter((video) => video.id !== hero?.id))}
             {!hero && !allVideos.length && <View testID="lingman-videos-empty" />}
           </ScrollView>
         )}
@@ -526,5 +594,7 @@ const styles = StyleSheet.create({
   packsCopy: { flex: 1, minWidth: 0 },
   packsTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   packsSub: { fontSize: 14, lineHeight: 19, marginTop: 2 },
+  trainCta: { minHeight: 52, borderRadius: 26, marginTop: 4, marginBottom: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 18 },
+  trainText: { fontSize: 16, fontWeight: '700' },
   heroPlayer: { width: '100%', aspectRatio: 16 / 9, borderRadius: 24, overflow: 'hidden', marginTop: 18, marginBottom: 14, backgroundColor: '#000000' },
 });

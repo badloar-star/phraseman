@@ -346,3 +346,22 @@ E24: docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md, E24_store_de
 - Q75 Принимать «координатор (Fable) по поручению владельца» как reviewer + PASS (так уже подписаны PM-035, PM-139)? **рек. да** — пакетом, с записью в worklog. Тогда ядро заполнит kind/actual_model/result_sha.
 - Q76 Gates BASELINE_SHA_APPROVED и DOMAIN_AUDIT_AND_IMPACT_ACCEPTED подтверждать одним общим evidence-пакетом? **рек. да**
 - Q77 88 задач уже в done тоже не проходят validate.py (нет reviewer/PASS) — подогнать правило под практику или дозаполнить done? **рек.** дозаполнить тем же пакетом после Q75.
+
+### Заранее падающие тесты — найдены при снятии App Check (2026-10-01)
+Прогон 56 наборов (`npm run test:one`) после коммита 4a1c787b4: 16 наборов падают, к App Check НЕ относятся. Для двух (`cloud_sync_identity_anchor`, `startup_provider_reauth_recovery`) падение подтверждено на исходной версии HEAD; остальные — по тексту ошибки. Разбор — ядру.
+1. `tests/shards_delta_queue_reconcile.test.ts` — ~17 кейсов: в `app/shards_system.ts` `clientEconomyConstitutionEnabled = () => true`, досылка очереди снимает строки без вызова сервера; тесты ждут серверный путь.
+2. `tests/learning_v2_activity_auxiliary_client.test.ts` — мок `../app/cloud_sync` без `ensureStableAuthLink` (TypeError).
+3. `tests/learning_v2_activity_released_session_client_v1.test.ts` — то же (`ensureStableAuthLink`, `release is not a function`).
+4. `tests/learning_v2_course_released_session_client_v2.test.ts` — то же (`ensureStableAuthLink`, `resolveNetwork/release is not a function`).
+5. `tests/learning_v2_course_released_session_client_v3.test.ts` — `learning_v2_factory_session_unavailable`: для en сессия теперь только из бандла.
+6. `tests/learning_v2_active_course_catalog_client_v1.test.ts` — ждут `source: network`, приходит `bundled_factory`; кейс отказа серверного авторитета больше не бросает.
+7. `tests/learning_v2_bundled_session_material.test.ts` — «урок без локального контента» уже имеет бандл (ожидали null).
+8. `tests/learning_v2_course_session_completed_sync_v1.test.ts` — падает воркер: мок AsyncStorage = `{}`, а `DebugLogger.error(critical)` → `app_health.getItem` не функция.
+9. `tests/learning_v2_required_session_completion_sync.test.ts` — не парсится: цепочка импортов тянет ESM `expo-asset` (нужен мок/transformIgnorePatterns).
+10. `tests/intro_full_access.test.ts` — нет экспортов `resetIntroFullAccessForAdmin` / `activateIntroFullAccessForAdmin`.
+11. `tests/max_voice_feedback_client_account_race.test.ts` — модули `app/max_voice_feedback_client`, `max_voice_feedback_outbox` удалены (раздел MAX законсервирован) — тест мёртв.
+12. `tests/auth_provider_stable_link.test.ts` — ждёт `writeStableAuthLinkCache(...).catch(() => {})`, в коде `swallowError(...)` (после PM-229).
+13. `tests/cloud_sync_identity_anchor.test.ts` — «wipes account-scoped storage before adopting a different server canonical id»: остаётся `999999999` (на HEAD так же).
+14. `tests/startup_provider_reauth_recovery.test.ts` — в `_layout.tsx` после ветки `provider_reauth_modal` нет `} else if (` (на HEAD так же).
+15. `tests/startup_cloud_recovery_presentation.test.ts` — в `_layout.tsx` нет ожидаемого блока тоста «Облако сейчас недоступно…».
+16. `tests/firebase_cost_controls_contract.test.ts` — устаревшие ожидания: рефералки в deploy-списке package.json, `public_profiles`, cron `0 3 * * *`, `reconcilePendingReferralPurchases`, VIP-запись в админке. (Мой App Check-кейс в этом файле зелёный.)

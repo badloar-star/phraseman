@@ -1,4 +1,5 @@
 import type { Firestore } from 'firebase-admin/firestore';
+import { logExpireAt } from './log_ttl';
 
 /**
  * Сигнал владельцу, когда падает вебхук платежей.
@@ -78,6 +79,8 @@ export function buildPaymentWebhookFailureDoc(
     appVersion: 'cloud-functions',
     createdAtMs: input.nowMs,
     createdAt: new Date(input.nowMs).toISOString(),
+    // зачем: журнал ошибок живёт 90 дней (TTL по expireAt), см. log_ttl.ts
+    expireAt: logExpireAt(input.nowMs),
     status: 'new',
   };
 }

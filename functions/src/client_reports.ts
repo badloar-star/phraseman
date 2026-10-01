@@ -3,6 +3,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { createHash } from 'crypto';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import { logExpireAt } from './log_ttl';
 import {
   commitPreparedQualityDailyAggregate,
   isQualityReportKind,
@@ -410,6 +411,8 @@ function buildReportDoc(
       userName: nullableText(payload.userName, 120),
       osVersion: nullableText(payload.osVersion, 80),
       deviceName: nullableText(payload.deviceName, 160),
+      // зачем: журнал ошибок живёт 90 дней (TTL по expireAt), см. log_ttl.ts
+      expireAt: logExpireAt(now),
       status: 'new',
     };
   }
@@ -425,6 +428,8 @@ function buildReportDoc(
       userName: nullableText(payload.userName, 120),
       osVersion: nullableText(payload.osVersion, 80),
       appState: nullableText(payload.appState, 40),
+      // зачем: журнал активности живёт 90 дней (TTL по expireAt), см. log_ttl.ts
+      expireAt: logExpireAt(now),
     };
   }
 

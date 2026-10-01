@@ -13,6 +13,7 @@
 
 import * as admin from 'firebase-admin';
 import { withCronHeartbeat } from './cron_heartbeat';
+import { logExpireAt } from './log_ttl';
 import * as functions from 'firebase-functions/v2';
 import { defineSecret } from 'firebase-functions/params';
 import type { Firestore } from 'firebase-admin/firestore';
@@ -264,6 +265,8 @@ async function recordProviderHealthFailure(
     appVersion: 'cloud-functions',
     createdAtMs: nowMs,
     createdAt: new Date(nowMs).toISOString(),
+    // зачем: журнал ошибок живёт 90 дней (TTL по expireAt), см. log_ttl.ts
+    expireAt: logExpireAt(nowMs),
     status: 'new',
   }, { merge: true });
 }

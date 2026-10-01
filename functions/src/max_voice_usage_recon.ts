@@ -28,6 +28,7 @@ import { defineSecret } from 'firebase-functions/params';
 import type { Firestore } from 'firebase-admin/firestore';
 
 import { withCronHeartbeat } from './cron_heartbeat';
+import { logExpireAt } from './log_ttl';
 import { ALLOWED_REALTIME_MODELS } from './max_voice_config';
 import { VOICE_BILLING_COLLECTION, VOICE_PRICES } from './max_voice_session_end';
 import { utcDayKey } from './max_voice_mint';
@@ -270,6 +271,8 @@ async function recordDriftAlert(db: Firestore, dayKey: string, note: string, now
     appVersion: 'cloud-functions',
     createdAtMs: nowMs,
     createdAt: new Date(nowMs).toISOString(),
+    // зачем: журнал ошибок живёт 90 дней (TTL по expireAt), см. log_ttl.ts
+    expireAt: logExpireAt(nowMs),
     status: 'new',
   }, { merge: true });
 }

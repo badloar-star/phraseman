@@ -497,6 +497,10 @@ describe('submitClientReport', () => {
     // это осознанный компромисс поддержки (админ должен видеть, кому чинить),
     // зафиксирован явно как контракт, а не проверен по ошибке.
     expect(errorDocs[0]).toMatchObject({ uid: 'stable-reporter' });
+    // зачем: журнал живёт 90 дней — TTL удаляет запись по expireAt (log_ttl.ts)
+    const expireAt = (errorDocs[0] as { expireAt?: { toMillis(): number } }).expireAt;
+    const createdAtMs = (errorDocs[0] as { createdAtMs: number }).createdAtMs;
+    expect(expireAt?.toMillis()).toBe(createdAtMs + 90 * 86_400_000);
   });
 
   test('PM-227-A2: injected test failure is FOUND by the admin App Health and moderation queries', async () => {

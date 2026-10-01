@@ -1207,17 +1207,9 @@ function LessonMenu() {
             ) : (
               <View
                 testID="lesson-menu-energy-loading"
-                accessibilityLabel={triLang(lang, {
-                  ru: 'Энергия загружается',
-                  uk: 'Енергія завантажується',
-                  en: 'Energy is loading',
-                  es: 'La energía se está cargando',
-                  'pt-BR': 'A energia está carregando',
-                  vi: 'Đang tải năng lượng',
-                  id: 'Energi sedang dimuat',
-                  tr: 'Enerji yükleniyor',
-                  pl: 'Energia jest ładowana',
-                })}
+                // зачем (владелец 01.10: «никаких загружается»): пустое место под энергию — скрыто от чтения с экрана.
+                accessibilityElementsHidden
+                importantForAccessibility="no-hide-descendants"
                 // зачем (владелец 01.10): у энергии нигде нет фона — место держим прозрачным, без капсулы.
                 style={{ width: 60, height: 30 }}
               />

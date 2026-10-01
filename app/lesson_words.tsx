@@ -3678,7 +3678,8 @@ function LessonWords() {
           />
         ) : frenchRemoteWordsLoading ? (
           <View testID="lesson-words-french-remote-loading" style={{ flex:1 }}>
-            <WordsTrainingSkeleton glass={glass} kicker={pickTriLang(lang, { ru: 'Загружаем французский словарь…', uk: 'Завантажуємо французький словник…', es: 'Cargando vocabulario francés…', 'pt-BR': 'Carregando vocabulário francês…', vi: 'Đang tải từ vựng tiếng Pháp…', id: 'Memuat kosakata Prancis…', tr: 'Fransızca kelime listesi yükleniyor…', pl: 'Ładowanie francuskiego słownictwa…' })} />
+            {/* зачем (владелец 01.10): скелетон занятия без надписи «Загружаем…». */}
+            <WordsTrainingSkeleton glass={glass} kicker="" />
           </View>
         ) : tab === 'list' ? (
           <WordList

@@ -858,7 +858,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const [homeStatsReady, setHomeStatsReady] = useState(() => !!((homeStatsLoadedOnce && hh) || appSnapshot.profile || appSnapshot.progress));
     // true только когда загрузка ОБОРВАЛАСЬ и показывать нечего (первый запуск + оффлайн).
     // Если есть кэш/hydration — баннер НЕ показываем: экран деградирует до кэша молча.
-    const [loadFailedNoData, setLoadFailedNoData] = useState(false);
+    // зачем (владелец 01.10: «никаких не загрузилось»): первая загрузка Главной упала и показать
+    // нечего — вместо плашки «Проверь соединение» тихо повторяем загрузку в фоне (до 5 раз по 20 с).
+    const homeSilentRetryRef = useRef(0);
     const [weekDone, setWeekDone] = useState<boolean[]>(() => {
         const w = hh?.weekDone;
         return w && w.length === 7 ? [...w] : new Array(7).fill(false);
@@ -2242,8 +2244,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             const lastStreakShownRaw = homeStorage.get('streak_last_shown') ?? null;
             const lastWeekDotAnimationRaw = homeStorage.get(HOME_WEEK_DOT_ANIMATION_KEY) ?? null;
             const premiumSignals = new Map(premiumSignalPairs);
-            // Данные успешно прочитаны — снимаем баннер ошибки, если он был после прошлого сбоя.
-            if (mountedRef.current && loadFailedNoData) setLoadFailedNoData(false);
+            homeSilentRetryRef.current = 0;
             setWeekMarkers(currentWeekMarkers);
             // зачем (владелец, 2026-08-24: «счёт жемчужин на секунду показал неправду»):
             // getShardsBalance() отдаёт 0 не только как настоящий ноль, но и как
@@ -2553,10 +2554,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         }
         catch (error) {
             DebugLogger.error('home.tsx:checkDailyReward', error, 'warning');
-            // Если это ПЕРВАЯ загрузка (ещё ни разу не было успешной) и она упала —
-            // показывать нечего (нет кэша/hydration). Включаем баннер «Обновить».
-            // Когда кэш уже есть (homeStatsLoadedOnce) — молча остаёмся на нём.
-            if (mountedRef.current && !homeStatsLoadedOnce) setLoadFailedNoData(true);
+            // ПЕРВАЯ загрузка упала (кэша нет) — тихий повтор в фоне; кэш есть — молча остаёмся на нём.
+            if (mountedRef.current && !homeStatsLoadedOnce) {
+                if (homeSilentRetryRef.current < 5) {
+                    homeSilentRetryRef.current += 1;
+                    console.warn('[HOME] first load failed, silent retry', { attempt: homeSilentRetryRef.current });
+                    setTimeout(() => { if (mountedRef.current) void loadData(); }, 20_000);
+                } else {
+                    console.warn('[HOME] first load failed, silent retries exhausted', { attempts: homeSilentRetryRef.current });
+                }
+            }
         }
         finally {
             endPerf();
@@ -4237,38 +4244,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
 
       </View>
 
-      {/* Баннер сбоя — только когда грузить было нечего (первый запуск + оффлайн). */}
-      {loadFailedNoData ? (
-        <View pointerEvents="box-none" style={{ position: 'absolute', left: 16, right: 16, bottom: 24 + bottomInset, alignItems: 'center' }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, maxWidth: 420, backgroundColor: glassFill(t.bgCard, 0.46), borderRadius: 16, paddingVertical: 12, paddingHorizontal: 16, borderWidth: 0, borderColor: 'transparent' }}>
-            <Ionicons name="cloud-offline-outline" size={22} color={t.textMuted} />
-            <Text style={{ flex: 1, color: t.textPrimary, fontSize: 13, fontWeight: '600' }}>
-              {triLang(lang, {
-                ru: 'Не удалось загрузить данные. Проверь соединение.',
-                uk: 'Не вдалося завантажити дані. Перевір з’єднання.',
-                en: 'Couldn’t load data. Check your connection.',
-                es: 'No se pudieron cargar los datos. Revisa tu conexión.',
-                'pt-BR': 'Não foi possível carregar os dados. Verifique sua conexão.',
-                vi: 'Không tải được dữ liệu. Kiểm tra kết nối của bạn.',
-                id: 'Gagal memuat data. Periksa koneksimu.',
-                tr: 'Veriler yüklenemedi. Bağlantını kontrol et.',
-                pl: 'Nie udało się wczytać danych. Sprawdź połączenie.',
-              })}
-            </Text>
-            <TouchableOpacity
-              accessibilityRole="button"
-              accessibilityLabel={triLang(lang, { ru: 'Обновить', uk: 'Оновити', en: 'Refresh', es: 'Actualizar', 'pt-BR': 'Atualizar', vi: 'Tải lại', id: 'Muat ulang', tr: 'Yenile', pl: 'Odśwież' })}
-              activeOpacity={0.82}
-              onPress={() => { setLoadFailedNoData(false); void loadData(); }}
-              style={{ paddingVertical: 6, paddingHorizontal: 12, borderRadius: 10, backgroundColor: t.accent + '22' }}
-            >
-              <Text style={{ color: t.accent, fontSize: 13, fontWeight: '700' }}>
-                {triLang(lang, { ru: 'Обновить', uk: 'Оновити', en: 'Refresh', es: 'Actualizar', 'pt-BR': 'Atualizar', vi: 'Tải lại', id: 'Muat ulang', tr: 'Yenile', pl: 'Odśwież' })}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      ) : null}
 
       {/* Сбор наград: частицы валюты слетаются со всех сторон в свой счётчик.
           Монтируется ТОЛЬКО на время волны — в покое на экране нет ни одного

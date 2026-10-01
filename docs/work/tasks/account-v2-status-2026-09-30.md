@@ -257,3 +257,11 @@ compatibility.ts, backup_manifest.ts (+тесты), two_device_idempotency.test.
 
 ## ИТОГ: Пакет 8F (client_too_old, PM-235 T1/T2/T5) — ПРИНЯТ (SPEC+SECURITY APPROVE), 2026-10-01. minClientVersion в config/accounts_v2 (нет/0 = выкл); отказ до данных; клиент останавливает V2 для этой сборки, операции ждут в outbox; лог причины в auth_identity без message/uid. **Функции 8F раньше клиента 8F (обязательно).** План выпуска (T1) и правило «две выкладки» (T5) — evidence PM-235 §7.
 - ⚠️ `modules/account-session-v2/accounts_v2_client_runtime.ts` (строки callMigrate/callPull с clientVersion) НЕ закоммичен: в файле чужие незакоммиченные ханки (auth transition coordinator). Докоммитить, когда та сессия сохранит свою часть. До этого HEAD: синхронизация шлёт версию, перенос/pull — нет (сервер трактует как 0 — важно только при включённом минимуме).
+
+## E2E второй заход (2026-10-02, квитанция 66270d794) — пауза ради «Дизайна»
+- PASS: A (первый вход без HOLD, done ops=6), C (выключатель: V2-домены в старое облако не пишутся, остальное пишется).
+- **🔴 FAIL I/T6 (откат 7B):** снимок `cloud_last_sync_snapshot_v1` уже содержит новое `flashcards_v1`, хотя в облако не уходило → после выключения флага старая синхронизация считает облако актуальным и не дописывает → удалённая карточка вернётся из старого облака. → Пакет 8H.
+- **🔴 progressMigrateSnapshot (functions/src/progress_events.ts) затирает progress пустым снимком** на чистой установке у аккаунта без маркера `client_snapshot_v1` (ДО переноса OD21) — существующий прод-код. → Пакет 8G (первым).
+- 🟡 Логи диплинка `[V2-PAGE] deeplink:url_event/push` пишут ссылку целиком с параметрами (в тесте — тестовый пароль dev-входа) → маскировать.
+- 🟡 Первый проход гидрации после dev-входа: persist_failed/StaleHydration.
+- Не прогнаны: D, E, H.

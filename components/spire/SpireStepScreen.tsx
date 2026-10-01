@@ -98,6 +98,7 @@ function StepBody({ lang, session, uid, studyTarget, showEnergy, onFinish, onAbo
             onChoice={runner.submitChoice}
             onTokens={runner.submitTokens}
             onItems={runner.submitItems}
+            studyTarget={studyTarget}
           />
         )}
         {fb ? (

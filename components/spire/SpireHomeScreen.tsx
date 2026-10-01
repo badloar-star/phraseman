@@ -17,6 +17,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { triLang } from '../../constants/i18n';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { spireReadWeekLocal } from '../../app/spire_report_client';
@@ -85,6 +86,9 @@ async function readCurrentLocalWeek(lang: SpireLang): Promise<SpireWeekLocal | n
   DebugLogger.info(LOG, `home: локальная неделя ok (tier=${local.tier} floor=${local.floor} stepInFloor=${local.stepInFloor} steps=${local.stepsCleared}) из AsyncStorage`);
   return local;
 }
+
+/** D77: языки Шпиля с пометкой «бета» (первые 2–4 недели после 30.09). */
+const SPIRE_BETA_LANGS: readonly string[] = ['es', 'de', 'fr'];
 
 export default function SpireHomeScreen() {
   const { lang } = useLang();
@@ -195,7 +199,16 @@ export default function SpireHomeScreen() {
       <ScrollView contentContainerStyle={[s.content, { paddingBottom: bottomPad + (game.outcome ? 300 : 120) }]} showsVerticalScrollIndicator={false}>
         <View style={s.head}>
           <View style={s.headText}>
-            <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{spireText(lang, 'title')}</Text>
+            <View style={s.titleRow}>
+              <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{spireText(lang, 'title')}</Text>
+              {/* зачем (D77, владелец 30.09): пулы es/de/fr без проверки носителем — первые 2–4 недели
+                  с пометкой «бета» рядом с языком. Снять: убрать язык из SPIRE_BETA_LANGS. */}
+              {spireLang && SPIRE_BETA_LANGS.includes(spireLang) ? (
+                <View style={[s.betaPill, { backgroundColor: p.cardRaised }]} testID="spire-beta-pill">
+                  <Text style={[s.betaText, { color: p.textSecondary }]}>{triLang(lang, { ru: 'бета', uk: 'бета', en: 'beta', es: 'beta', 'pt-BR': 'beta', vi: 'beta', id: 'beta', tr: 'beta', pl: 'beta' })}</Text>
+                </View>
+              ) : null}
+            </View>
             <Text style={[s.subtitle, { color: p.textSecondary }]}>{subtitle}</Text>
           </View>
           <V2Pressable
@@ -268,6 +281,9 @@ const s = StyleSheet.create({
   head: { flexDirection: 'row', alignItems: 'flex-start', gap: 10, marginTop: 6 },
   headText: { flex: 1, minWidth: 0 },
   title: { ...V2_TYPE.largeTitle, letterSpacing: -0.5 },
+  titleRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  betaPill: { borderRadius: 10, paddingHorizontal: 8, paddingVertical: 3 },
+  betaText: { fontSize: 13, lineHeight: 16, fontWeight: '700', letterSpacing: 0.3 },
   subtitle: { fontSize: 16, lineHeight: 20, marginTop: 6 },
   rulesBtn: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   note: { marginTop: 16, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 12, flexDirection: 'row', alignItems: 'flex-start', gap: 10 },

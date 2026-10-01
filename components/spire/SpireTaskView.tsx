@@ -11,6 +11,10 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import * as Speech from 'expo-speech';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { triLang } from '../../constants/i18n';
+import { resolveSpireListenAudio } from '../../modules/spire/listen_audio';
 import type { Lang } from '../../constants/i18n';
 import type { SpirePackTask } from '../../modules/spire/pack_plan';
 import type { SpireFeedback } from '../../app/spire/use_spire_step_runner';
@@ -27,6 +31,8 @@ type Props = Readonly<{
   onChoice: (index: number) => void;
   onTokens: (tokens: readonly string[]) => void;
   onItems: (selections: readonly number[]) => void;
+  /** Язык обучения: для заданий «на слух» (PM-286) — на каком голосе телефона произнести фразу. */
+  studyTarget?: string;
 }>;
 
 const PROMPT_KEY: Record<string, SpireGameStringKey> = {
@@ -168,12 +174,32 @@ function SpireTaskView(props: Props) {
     : task.kind === 'match' || task.kind === 'timeattack'
       ? <ItemsTask {...props} />
       : <ChoiceTask {...props} />;
+  // зачем (PM-286, Ядро 01.10): у заданий «на слух» своей озвучки нет — фразу произносит голос
+  // телефона (device-tts из пакета). Нечитаемый URI — не молчим: лог с причиной.
+  const hasAudio = typeof task.payload.audioUri === 'string' && task.payload.audioUri.length > 0;
+  const listen = useCallback(() => {
+    const audio = resolveSpireListenAudio(task.payload, String(props.studyTarget ?? ''));
+    if (!audio.ok) {
+      console.warn('[SPIRE] listen: no audio', { taskId: task.taskId, reason: audio.reason, detail: audio.detail });
+      return;
+    }
+    Speech.stop();
+    Speech.speak(audio.text, { language: audio.speechLanguage });
+  }, [props.studyTarget, task.payload, task.taskId]);
+  const listenLabel = triLang(lang, { ru: 'Прослушать', uk: 'Прослухати', en: 'Listen', es: 'Escuchar', 'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengarkan', tr: 'Dinle', pl: 'Posłuchaj' });
   return (
     <View testID="spire-task">
       <Text style={[s.overline, { color: p.textSecondary }]}>{spireGameText(lang, promptKey).toUpperCase()}</Text>
       {phrase && task.kind !== 'match' && task.kind !== 'timeattack' ? (
         <View style={[s.question, { backgroundColor: p.cardRaised }]}>
-          <Text accessibilityRole="header" style={[s.phrase, { color: p.text }]}>{phrase}</Text>
+          <View style={s.questionRow}>
+            <Text accessibilityRole="header" style={[s.phrase, s.phraseFlex, { color: p.text }]}>{phrase}</Text>
+            {hasAudio ? (
+              <V2Pressable onPress={listen} accessibilityRole="button" accessibilityLabel={listenLabel} style={[s.listen, { backgroundColor: p.card }]} testID="spire-task-listen">
+                <Ionicons name="volume-high" size={22} color={p.text} />
+              </V2Pressable>
+            ) : null}
+          </View>
         </View>
       ) : null}
       <View style={s.body}>{body}</View>
@@ -185,6 +211,9 @@ const s = StyleSheet.create({
   overline: { fontSize: 13, fontWeight: '700', letterSpacing: 1.5, marginTop: 28, marginHorizontal: 2 },
   question: { marginTop: 14, minHeight: 72, borderRadius: 18, paddingHorizontal: 18, paddingVertical: 16, justifyContent: 'center' },
   phrase: { fontSize: 22, lineHeight: 28, fontWeight: '700' },
+  questionRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  phraseFlex: { flex: 1 },
+  listen: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   body: { marginTop: 18 },
   stack: { gap: 12 },
   opt: { minHeight: 56, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 14, justifyContent: 'center' },

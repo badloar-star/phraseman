@@ -145,7 +145,13 @@ export function loadTodayDailyPoll(): Promise<DailyPollSnapshot> {
 function classifyVoteError(error: unknown): DailyPollVoteErrorReason {
   const err = error as { code?: unknown; message?: unknown };
   const text = `${String(err?.code ?? '')} ${String(err?.message ?? '')}`.toLowerCase();
-  if (text.includes('daily_poll_not_found') || text.includes('not-found')) return 'not_found';
+  // зачем (аудит 01.10): голый 'not-found' без daily_poll_not_found = функция dailyPollVote
+  // НЕ выложена в облако; раньше человек видел ложное «Этот опрос уже закрыт».
+  if (text.includes('daily_poll_not_found')) return 'not_found';
+  if (text.includes('not-found')) {
+    DebugLogger.warn(DAILY_POLL_LOG, `голос: функция dailyPollVote не найдена в облаке (не выложена?) — ${text.trim()}`);
+    return 'unknown';
+  }
   if (text.includes('archived') || text.includes('not_today') || text.includes('option_invalid') || text.includes('options_broken')) return 'closed';
   if (text.includes('unavailable') || text.includes('network') || text.includes('deadline')) return 'offline';
   return 'unknown';

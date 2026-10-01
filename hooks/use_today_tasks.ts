@@ -17,8 +17,12 @@ import { captureAccountGeneration } from '../app/account_generation';
 import type { LearningLanguageTarget } from '../app/learning_language_contour';
 import { isSpireTabEnabled, primeSpireTabFlag, useSpireTabEnabled } from '../app/spire_tab_flag';
 import { isTodayTaskKindAvailableForTarget } from '../app/today_task_surface_filter';
+import { loadSpireConfig } from '../app/spire_config_client';
+import { getMistakePracticeReadyCount } from '../app/mistake_practice_insights';
+import { MISTAKE_STUDY_TARGETS, type MistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import {
   TODAY_TASK_POOL,
+  TODAY_TASK_RULES,
   createTodayTasksDay,
   todayLocalDayKey,
   type TodayTaskKindCore,
@@ -27,10 +31,44 @@ import {
 import { peekTodayTasks, refreshTodayTasks, subscribeTodayTasks } from '../modules/today-tasks/today_tasks_store';
 import { todayTasksToView } from '../modules/today-tasks/today_tasks_view';
 
-export function availableTodayTaskKinds(target: LearningLanguageTarget, spireEnabled: boolean): TodayTaskKindCore[] {
-  return TODAY_TASK_POOL.filter((kind) => (
-    (kind !== 'spire_steps' || spireEnabled) && isTodayTaskKindAvailableForTarget(kind, target)
-  ));
+/**
+ * Живая выполнимость типов, которую нельзя знать синхронно.
+ * зачем («Дизайн» 01.10, прогон в эмуляторе): задание «Шпиль» выпадало при выключенном
+ * config/spire_v1 («откроется чуть позже»), а «Ошибки 0/5» — при пустом журнале ошибок.
+ * Оба — тупики: задание видно, а выполнить нельзя.
+ */
+export type TodayTaskLiveness = Readonly<{ spireLive?: boolean; mistakesReady?: number }>;
+
+export function availableTodayTaskKinds(
+  target: LearningLanguageTarget,
+  spireEnabled: boolean,
+  live: TodayTaskLiveness = {},
+): TodayTaskKindCore[] {
+  return TODAY_TASK_POOL.filter((kind) => {
+    if (kind === 'spire_steps' && (!spireEnabled || live.spireLive === false)) return false;
+    // Ошибок для повтора должно хватать на цель задания, иначе задание не выполнить.
+    if (kind === 'mistakes' && typeof live.mistakesReady === 'number'
+      && live.mistakesReady < TODAY_TASK_RULES.mistakes.target) return false;
+    return isTodayTaskKindAvailableForTarget(kind, target);
+  });
+}
+
+async function readTodayTaskLiveness(target: LearningLanguageTarget): Promise<TodayTaskLiveness> {
+  const [spireLive, mistakesReady] = await Promise.all([
+    loadSpireConfig()
+      .then((config) => config.enabled === true)
+      .catch((error: unknown) => {
+        console.warn(`[TODAY-TASKS] hook:spire_config_failed ${String(error)} → Шпиль не выдаём`);
+        return false;
+      }),
+    (MISTAKE_STUDY_TARGETS as readonly string[]).includes(target)
+      ? getMistakePracticeReadyCount(target as MistakeStudyTarget).catch((error: unknown) => {
+        console.warn(`[TODAY-TASKS] hook:mistakes_count_failed ${String(error)} → «Ошибки» не выдаём`);
+        return 0;
+      })
+      : Promise.resolve(0),
+  ]);
+  return { spireLive, mistakesReady };
 }
 
 function firstFrameState(target: LearningLanguageTarget): TodayTasksDayState {
@@ -64,9 +102,10 @@ export function useTodayTasks(lang: Lang, studyTarget: LearningLanguageTarget): 
       // гидратации, никогда не включил бы Шпиль.
       void primeSpireTabFlag()
         .catch((error: unknown) => console.warn(`[TODAY-TASKS] hook:spire_flag_prime_failed ${String(error)}`))
-        .then(() => {
-          const kinds = availableTodayTaskKinds(studyTarget, isSpireTabEnabled());
-          console.log(`[TODAY-TASKS] hook:refresh ${JSON.stringify({ reason, studyTarget, kinds })}`);
+        .then(() => readTodayTaskLiveness(studyTarget))
+        .then((live) => {
+          const kinds = availableTodayTaskKinds(studyTarget, isSpireTabEnabled(), live);
+          console.log(`[TODAY-TASKS] hook:refresh ${JSON.stringify({ reason, studyTarget, kinds, live })}`);
           return refreshTodayTasks(kinds);
         })
         .then((next) => {

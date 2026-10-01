@@ -25,6 +25,7 @@ import {
   markTodayTaskRewardGranted,
   needsNewTodayTasksDay,
   parseTodayTasksDayState,
+  replaceUnavailableTodayTasks,
   todayLocalDayKey,
   todayTaskRewardGiftIds,
   todayTaskRewardSeed,
@@ -108,7 +109,10 @@ function publish(next: TodayTasksDayState | null): void {
 
 function serialized<T>(work: () => Promise<T>): Promise<T> {
   const run = queue.then(work, work);
-  queue = run.catch(() => undefined);
+  // зачем: очередь не должна застревать на упавшей задаче, но причина обязана быть видна (немой catch запрещён).
+  queue = run.catch((error: unknown) => {
+    warn('queue:previous_failed', { error: errText(error) });
+  });
   return run;
 }
 
@@ -281,7 +285,14 @@ export function refreshTodayTasks(kinds: readonly TodayTaskKindCore[]): Promise<
         });
         log('available:set', { kinds: normalized });
       }
-      const day = await loadDay();
+      let day = await loadDay();
+      const swap = replaceUnavailableTodayTasks(day, normalized);
+      if (swap.replaced.length > 0) {
+        day = swap.state;
+        log('day:replaced_unavailable', { replaced: swap.replaced, available: normalized });
+        await persist(day);
+        publish(day);
+      }
       return await settlePendingRewards(day);
     } catch (error) {
       warn('refresh:failed', { error: errText(error) });

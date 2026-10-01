@@ -189,7 +189,8 @@ describe('засчитывание по типам', () => {
     expect(grants.filter((g) => g.kind === 'spire_steps')).toHaveLength(1);
   });
 
-  it('видео: 60 секунд воспроизведения через шину плеера; без монет (Q9)', async () => {
+  // зачем (Q21, координатор 01.10): видео-задание платит как остальные — награда за задание дня.
+  it('видео: 60 секунд воспроизведения через шину плеера; 50 монет за задание дня (Q21)', async () => {
     await startDayWith(['video', 'dialog', 'cards']);
     for (let s = 0; s < 59; s += 1) {
       nowMs = DAY1_NOON + s * 1000;
@@ -202,8 +203,8 @@ describe('засчитывание по типам', () => {
     jest.spyOn(Date, 'now').mockReturnValue(nowMs);
     publishYoutubePosition('vid1', 59);
     await flush();
-    expect(task('video')).toMatchObject({ done: true, rewardCoins: 0, rewardStatus: 'none' });
-    expect(grants.filter((g) => g.kind === 'video')).toHaveLength(0);
+    expect(task('video')).toMatchObject({ done: true, rewardCoins: 50 });
+    expect(grants.filter((g) => g.kind === 'video')).toHaveLength(1);
   });
 
   it('тип не из набора дня не меняет состояние', async () => {

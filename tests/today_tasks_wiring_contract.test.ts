@@ -40,7 +40,8 @@ describe('«Сегодня»: проводка событий активност
     for (const kind of kinds) expect(covered.has(kind)).toBe(true);
   });
 
-  it('видео не платит монет (Q9)', () => {
-    expect(read('modules/today-tasks/today_tasks_core.ts')).toMatch(/video:\s*Object\.freeze\(\{[^}]*rewardCoins:\s*0/);
+  // зачем (Q21, координатор 01.10): видео-задание платит как остальные — награда за задание дня, не за просмотр.
+  it('видео-задание платит 50 монет за выполненное задание дня (Q21)', () => {
+    expect(read('modules/today-tasks/today_tasks_core.ts')).toMatch(/video:\s*Object\.freeze\(\{[^}]*rewardCoins:\s*50/);
   });
 });

@@ -36,14 +36,15 @@ export type TodayTaskRule = Readonly<{
  * Правила типов. Суммы монет — ОТКРЫТЫЙ вопрос D49 («суммы — спросить владельца
  * при реализации»): стоит рабочее значение 50 (кратно номиналу stars_50 серверного
  * кошелька, 3 задачи = 150/день — далеко ниже суточного потолка 2000 у dailyjourney_).
- * Видео — 0: Q9 «видео не источник монет»; задание засчитывается, но не платит,
- * пока координатор/владелец не решат иначе (вопрос в отчёте).
+ * Суммы решены координатором 01.10: Q20 — 50 за задание (≤150/день).
+ * Видео — тоже 50 (Q21): это награда за выполненное задание дня из источника «Сегодня»,
+ * а не за сам просмотр (Q9 запрещает платить за просмотр, не за задание дня).
  */
 export const TODAY_TASK_RULES: Readonly<Record<TodayTaskKindCore, TodayTaskRule>> = Object.freeze({
   lesson: Object.freeze({ target: 1, unitsPerStep: 1, rewardCoins: 50 }),
   dialog: Object.freeze({ target: 1, unitsPerStep: 1, rewardCoins: 50 }),
   cards: Object.freeze({ target: 10, unitsPerStep: 1, rewardCoins: 50 }),
-  video: Object.freeze({ target: 1, unitsPerStep: 60, rewardCoins: 0 }),
+  video: Object.freeze({ target: 1, unitsPerStep: 60, rewardCoins: 50 }),
   mistakes: Object.freeze({ target: 5, unitsPerStep: 1, rewardCoins: 50 }),
   spire_steps: Object.freeze({ target: 3, unitsPerStep: 1, rewardCoins: 50 }),
 });
@@ -150,6 +151,32 @@ export function createTodayTasksDay(
     dayKey,
     tasks: Object.freeze(selectTodayTaskKinds(ownerKey, dayKey, availableKinds).map(freshTask)),
   });
+}
+
+/**
+ * Заменить в текущем дне задания, ставшие невыполнимыми (раздел выключен, ошибок
+ * не хватает), на другие доступные типы — только если по заданию НЕ было прогресса.
+ * зачем («Дизайн» 01.10, эмулятор): «Шпиль 0/3» при выключенном Шпиле и «Ошибки 0/5»
+ * при пустом журнале висели тупиком до полуночи. Начатые/выполненные задания не
+ * трогаем — иначе ломается «один раз в день» и можно «перебрасывать» набор.
+ */
+export function replaceUnavailableTodayTasks(
+  state: TodayTasksDayState,
+  availableKinds: readonly TodayTaskKindCore[],
+): Readonly<{ state: TodayTasksDayState; replaced: readonly { from: TodayTaskKindCore; to: TodayTaskKindCore }[] }> {
+  const used = new Set(state.tasks.map((task) => task.kind));
+  const spare = TODAY_TASK_POOL.filter((kind) => availableKinds.includes(kind) && !used.has(kind));
+  const replaced: { from: TodayTaskKindCore; to: TodayTaskKindCore }[] = [];
+  const tasks = state.tasks.map((task) => {
+    const untouched = !task.done && task.units === 0 && task.unitKeys.length === 0;
+    if (availableKinds.includes(task.kind) || !untouched) return task;
+    const next = spare.shift();
+    if (!next) return task;
+    replaced.push({ from: task.kind, to: next });
+    return freshTask(next);
+  });
+  if (replaced.length === 0) return { state, replaced };
+  return { state: Object.freeze({ ...state, tasks: Object.freeze(tasks) }), replaced };
 }
 
 /** Нужен ли новый день: другой владелец или наступила локальная полночь. */

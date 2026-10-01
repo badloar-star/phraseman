@@ -92,13 +92,13 @@ describe('multichannel YouTube catalog UI contract', () => {
     expect(read('app/_layout.tsx')).toContain('<Stack.Screen name="lingman_playlist" />');
   });
 
-  it('has explicit loading, empty, stale, offline and error surfaces', () => {
+  it('shows skeletons instead of error/offline/stale surfaces (владелец 01.10)', () => {
     const source = screen();
-    for (const id of ['youtube-catalog-loading', 'youtube-catalog-empty', 'youtube-catalog-stale', 'youtube-catalog-offline', 'youtube-catalog-error']) {
-      expect(source).toContain(`testID="${id}"`);
+    expect(source).toContain('testID="youtube-catalog-loading"');
+    for (const id of ['youtube-catalog-stale', 'youtube-catalog-offline', 'youtube-catalog-error', 'youtube-catalog-retry']) {
+      expect(source).not.toContain(id);
     }
-    expect(source).toContain('actionTestID="youtube-catalog-retry"');
-    expect(source).toContain('onAction={() => void loadCatalog(undefined, true)}');
+    expect(source).toContain("issue === 'error'");
   });
 
   it('keeps the redesigned shell visible while the catalog is still on RSS fallback', () => {

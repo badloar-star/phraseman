@@ -72,8 +72,8 @@ test('video rail scrolls horizontally and plays only the selected real video', (
 test('video rail reserves geometry while loading and does not label network failures as an empty catalog', () => {
   const rail = fs.readFileSync(railPath, 'utf8');
   assert.match(rail, /status: 'loading' \| 'ready' \| 'error'/);
-  assert.match(rail, /status === 'loading'/);
-  assert.match(rail, /status === 'error'/);
+  assert.doesNotMatch(rail, /unavailable|temporarily|Нет доступных видео/); // владелец 01.10
+  assert.match(rail, /home-v2-video-loading/);
   assert.match(rail, /height: 138/);
   assert.match(home, /setHomeV2VideoStatus\('error'\)/);
   assert.match(home, /setHomeV2VideoStatus\(snapshot\.error && snapshot\.videos\.length === 0 \? 'error' : 'ready'\)/);

@@ -20,7 +20,7 @@ test('video.html: packs row lives inside the Home tab after the premiere, before
   assert.ok(home.indexOf('{packsRow}') < home.indexOf('{copy.recent}'), 'packs row before the section title');
   assert.ok(screen.includes('testID="video-tab-packs-row"'), 'packs row keeps its testID and action');
   assert.ok(screen.includes("router.push('/flashcards_video_packs' as never)"), 'packs row keeps its route');
-  assert.match(screen, /\{packsRow\}\s*<VideoStateBlock g=\{g\} icon="play" text=\{copy\.empty\}/, 'empty state shows the packs row like the mockup');
+  assert.match(screen, /\{packsRow\}\s*<View style=\{styles\.skeletons\}>/, 'пустой каталог: ряд наборов и скелетоны (владелец 01.10)');
   assert.ok(screen.includes('<YoutubeChannelTabs value={tab} onChange={changeTab} />'), 'tabs are drawn in every state');
 });
 
@@ -63,9 +63,8 @@ test('video.html: playlist row and playlist screen follow the mockup', () => {
 test('video.html: loading, empty, error and note states use the shared glass kit', () => {
   assert.ok(kit.includes('export function VideoStateBlock') && kit.includes('width: 61, height: 61'), 'state tile 61');
   assert.ok(kit.includes('export function VideoNote') && kit.includes('fontSize: 14.5, lineHeight: 19'), 'note 14.5/19');
-  assert.ok(screen.includes('testID="youtube-catalog-error"') && screen.includes('actionTestID="youtube-catalog-retry"'), 'error keeps testIDs');
-  assert.ok(screen.includes('<VideoNote g={g} icon="cloud-offline-outline"'), 'offline note');
-  assert.ok(screen.includes('<VideoNote g={g} icon="flag-outline" text={copy.stale}'), 'stale note');
+  assert.ok(!screen.includes('testID="youtube-catalog-error"') && !screen.includes('youtube-catalog-retry'), 'владелец 01.10: ни ошибки, ни retry');
+  assert.ok(!screen.includes('<VideoNote'), 'владелец 01.10: ни offline, ни stale плашек');
   assert.ok(screen.includes('SkeletonBlock width="100%" height={skeletonHeight} borderRadius={22}'), 'loading skeleton geometry');
   assert.ok(screen.includes("DebugLogger.error('[VIDEO-TAB]:loadCatalog'"), 'no silent catch on catalog load');
 });

@@ -5,7 +5,6 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import { LinearGradient } from '../components/SafeLinearGradient';
-import { VideoStateBlock } from '../components/video/VideoGlassKit';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import YoutubeVideoCard from '../components/youtube/YoutubeVideoCard';
 import YoutubeInlinePlayer from '../components/youtube/YoutubeInlinePlayer';
@@ -52,16 +51,31 @@ export default function LingmanPlaylistScreen() {
     playAll: triLang(lang, { ru: 'Воспроизвести всё', uk: 'Відтворити все', en: 'Play all', es: 'Reproducir todo', 'pt-BR': 'Reproduzir tudo', vi: 'Phát tất cả', id: 'Putar semua', tr: 'Tümünü oynat', pl: 'Odtwórz wszystko' }),
     back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
     videos: triLang(lang, { ru: 'видео', uk: 'відео', en: 'videos', es: 'videos', 'pt-BR': 'vídeos', vi: 'video', id: 'video', tr: 'video', pl: 'filmów' }),
-    empty: triLang(lang, { ru: 'Видео этого плейлиста пока недоступны.', uk: 'Відео цього плейлиста поки недоступні.', en: 'Playlist videos are not available yet.', es: 'Los vídeos de esta lista aún no están disponibles.', 'pt-BR': 'Os vídeos ainda não estão disponíveis.', vi: 'Video chưa khả dụng.', id: 'Video belum tersedia.', tr: 'Videolar henüz kullanılamıyor.', pl: 'Filmy nie są jeszcze dostępne.' }),
   };
 
   useEffect(() => {
-    if (!channelId) { setLoading(false); return; }
-    void revalidateYoutubeChannelCatalog({ channelId, token, previous: catalogRef.current, commit: (next) => { catalogRef.current = next; setCatalog(next); } })
-      .then((next) => { if (next) { catalogRef.current = next; setCatalog(next); } })
-      .catch((error: unknown) => { DebugLogger.error('[VIDEO-PLAYLIST]:revalidate', error, 'warning'); })
-      .finally(() => setLoading(false));
-  }, [channelId, token]);
+    if (!channelId) { console.warn('[VIDEO-PLAYLIST] нет channelId, каталог не запрашиваем'); setLoading(false); return; }
+    let cancelled = false;
+    // зачем (владелец 01.10): нет экрана «видео недоступны» — при пустом результате
+    // тихо повторяем до 5 раз с паузой 20 с, пока показан скелетон.
+    const hasPlaylist = () => !!catalogRef.current?.playlists.some((item) => item.id === playlistId);
+    const run = async () => {
+      for (let attempt = 1; attempt <= 5 && !cancelled; attempt += 1) {
+        try {
+          const next = await revalidateYoutubeChannelCatalog({ channelId, token, previous: catalogRef.current, commit: (n) => { catalogRef.current = n; if (!cancelled) setCatalog(n); } });
+          if (next && !cancelled) { catalogRef.current = next; setCatalog(next); }
+        } catch (error: unknown) {
+          DebugLogger.error('[VIDEO-PLAYLIST]:revalidate', error, 'warning');
+        }
+        if (hasPlaylist()) break;
+        console.warn('[VIDEO-PLAYLIST] плейлист пока не найден, попытка', attempt, 'из 5, playlistId=', playlistId);
+        if (attempt < 5) await new Promise<void>((resolve) => setTimeout(resolve, 20000));
+      }
+      if (!cancelled) setLoading(false);
+    };
+    void run();
+    return () => { cancelled = true; };
+  }, [channelId, playlistId, token]);
 
   const openVideo = (video: (typeof videos)[number]) => setActiveVideoId(video.id);
   const closeVideo = useCallback(() => setActiveVideoId(null), []);
@@ -80,7 +94,7 @@ export default function LingmanPlaylistScreen() {
         <View style={styles.topbar}>
           <TouchableOpacity accessibilityRole="button" accessibilityLabel={copy.back} onPress={() => safeRouterBack(router, '/lingman_videos' as any)} style={[styles.back, { backgroundColor: g.card, borderColor: g.glassEdge }]}><Ionicons name="chevron-back" size={22} color={g.text} /></TouchableOpacity>
         </View>
-        {loading && !playlist ? <View style={styles.loading}><SkeletonBlock width="70%" height={32} borderRadius={10} /><SkeletonBlock width="40%" height={18} borderRadius={8} /><SkeletonBlock width="100%" height={48} borderRadius={24} /></View> : playlist ? (
+        {!playlist ? <View testID="youtube-playlist-skeleton" style={styles.loading}><SkeletonBlock width="70%" height={32} borderRadius={10} /><SkeletonBlock width="40%" height={18} borderRadius={8} /><SkeletonBlock width="100%" height={48} borderRadius={24} /><SkeletonBlock width="100%" height={180} borderRadius={16} /><SkeletonBlock width="100%" height={180} borderRadius={16} /></View> : (
           <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
             <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{playlist.title}</Text>
             <Text style={[styles.subtitle, { color: g.secondary }]}>{subtitle}</Text>
@@ -103,9 +117,9 @@ export default function LingmanPlaylistScreen() {
                   />
                 ) : undefined}
               />
-            )) : <VideoStateBlock g={g} icon="play" text={copy.empty} style={styles.emptyState} />}</View>
+            )) : <View style={styles.loading}><SkeletonBlock width="100%" height={180} borderRadius={16} /><SkeletonBlock width="100%" height={180} borderRadius={16} /></View>}</View>
           </ScrollView>
-        ) : <VideoStateBlock g={g} icon="play" text={copy.empty} style={styles.emptyState} />}
+        )}
       </SafeAreaView>
     </ScreenGradient>
   );
@@ -123,5 +137,4 @@ const styles = StyleSheet.create({
   playAll: { minHeight: 48, marginTop: 18, borderRadius: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12 },
   playAllText: { fontSize: 17, fontWeight: '700' },
   videoList: { marginTop: 20 },
-  emptyState: { paddingTop: 96 },
 });

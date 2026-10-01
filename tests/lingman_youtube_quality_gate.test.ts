@@ -51,7 +51,8 @@ describe('lingman YouTube quality gate', () => {
     expect(player).toContain('onShouldStartLoadWithRequest');
     expect(player).toContain('shouldKeepLingmanPlayerNavigationInApp');
     expect(player).toContain('testID="lingman-player-webview"');
-    expect(player).toContain('testID="lingman-player-error"');
+    expect(player).not.toContain('testID="lingman-player-error"');
+    expect(player).toContain('testID="lingman-player-poster"');
     expect(player).not.toContain('lingman-inline-player-youtube');
     expect(player).not.toContain('Linking.openURL');
   });

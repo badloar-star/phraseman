@@ -33,7 +33,7 @@ import { safeRouterBack } from './navigation_back';
 import { useTabNav } from './TabContext';
 import { useTabContentBottomPad } from '../hooks/use-tab-content-bottom-pad';
 import { V2 } from '../constants/v2Style';
-import { VideoGlassSheen, VideoNote, VideoStateBlock } from '../components/video/VideoGlassKit';
+import { VideoGlassSheen } from '../components/video/VideoGlassKit';
 import { DebugLogger } from './debug-logger';
 import {
   getActiveYoutubeChannel,
@@ -143,11 +143,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     videoPacks: triLang(lang, { ru: 'Наборы из видео', uk: 'Набори з відео', en: 'Packs from videos', es: 'Packs de videos', 'pt-BR': 'Pacotes dos vídeos', vi: 'Bộ thẻ từ video', id: 'Paket dari video', tr: 'Videolardan paketler', pl: 'Zestawy z filmów' }),
     videoPacksSub: triLang(lang, { ru: 'Фразы из роликов карточками', uk: 'Фрази з роликів картками', en: 'Phrases from the videos as cards', es: 'Frases de los videos en tarjetas', 'pt-BR': 'Frases dos vídeos em cartões', vi: 'Cụm từ trong video thành thẻ', id: 'Frasa dari video jadi kartu', tr: 'Videolardaki ifadeler kart olarak', pl: 'Zwroty z filmów jako fiszki' }),
     recent: triLang(lang, { ru: 'Новые видео', uk: 'Нові відео', en: 'New videos', es: 'Videos nuevos', 'pt-BR': 'Vídeos novos', vi: 'Video mới', id: 'Video baru', tr: 'Yeni videolar', pl: 'Nowe filmy' }),
-    empty: triLang(lang, { ru: 'Здесь пока нет опубликованных видео.', uk: 'Тут поки немає опублікованих відео.', en: 'No published videos here yet.', es: 'Todavía no hay videos publicados aquí.', 'pt-BR': 'Ainda não há vídeos publicados.', vi: 'Chưa có video được đăng.', id: 'Belum ada video.', tr: 'Henüz video yok.', pl: 'Nie ma jeszcze filmów.' }),
-    offline: triLang(lang, { ru: 'Показываем сохранённый каталог. Обновим, когда появится связь.', uk: 'Показуємо збережений каталог. Оновимо після відновлення зв’язку.', en: 'Showing the saved catalog. We will refresh when back online.', es: 'Mostramos el catálogo guardado. Lo actualizaremos cuando haya conexión.', 'pt-BR': 'Mostrando o catálogo salvo.', vi: 'Đang hiển thị danh mục đã lưu.', id: 'Menampilkan katalog tersimpan.', tr: 'Kaydedilmiş katalog gösteriliyor.', pl: 'Wyświetlamy zapisany katalog.' }),
-    stale: triLang(lang, { ru: 'Каталог давно не обновлялся', uk: 'Каталог давно не оновлювався', en: 'The catalog update is delayed', es: 'La actualización del catálogo está retrasada', 'pt-BR': 'Atualização do catálogo atrasada', vi: 'Danh mục chưa được cập nhật', id: 'Pembaruan katalog tertunda', tr: 'Katalog güncellemesi gecikti', pl: 'Aktualizacja katalogu jest opóźniona' }),
-    error: triLang(lang, { ru: 'Не удалось загрузить каталог. Потяни вниз, чтобы повторить.', uk: 'Не вдалося завантажити каталог. Потягни вниз, щоб повторити.', en: 'Could not load the catalog. Pull down to retry.', es: 'No se pudo cargar el catálogo. Desliza hacia abajo para reintentar.', 'pt-BR': 'Não foi possível carregar.', vi: 'Không thể tải danh mục.', id: 'Katalog tidak dapat dimuat.', tr: 'Katalog yüklenemedi.', pl: 'Nie udało się wczytać katalogu.' }),
-    retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' }),
+    error: triLang(lang, { ru: 'Не удалось поставить напоминание.', uk: 'Не вдалося встановити нагадування.', en: 'Could not set the reminder.', es: 'No se pudo activar el recordatorio.', 'pt-BR': 'Não foi possível definir o lembrete.', vi: 'Không thể đặt lời nhắc.', id: 'Pengingat tidak dapat dibuat.', tr: 'Hatırlatıcı ayarlanamadı.', pl: 'Nie udało się ustawić przypomnienia.' }),
     reminderSet: triLang(lang, { ru: 'Напоминание установлено', uk: 'Нагадування встановлено', en: 'Reminder set', es: 'Recordatorio activado', 'pt-BR': 'Lembrete definido', vi: 'Đã đặt lời nhắc', id: 'Pengingat dibuat', tr: 'Hatırlatıcı ayarlandı', pl: 'Ustawiono przypomnienie' }),
   }), [lang]);
 
@@ -234,6 +230,23 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     void loadCatalog();
   }, [loadCatalog, screenRuntimeActive]);
 
+  // зачем (владелец 01.10): вместо экрана ошибки — тихий повтор (до 5 раз по 20 с),
+  // пока каталога нет совсем; пользователь видит скелетоны.
+  const catalogRetryRef = useRef(0);
+  useEffect(() => {
+    if (issue !== 'error' || catalog || snapshot || !screenRuntimeActive) return;
+    if (catalogRetryRef.current >= 5) {
+      console.warn('[VIDEO-TAB] тихие повторы каталога исчерпаны (5), остаются скелетоны');
+      return;
+    }
+    const timer = setTimeout(() => {
+      catalogRetryRef.current += 1;
+      console.warn('[VIDEO-TAB] тихий повтор каталога, попытка', catalogRetryRef.current);
+      void loadCatalog();
+    }, 20000);
+    return () => clearTimeout(timer);
+  }, [issue, catalog, snapshot, screenRuntimeActive, loadCatalog]);
+
   // зачем: экран мог открыться раньше, чем приложение опознало пользователя.
   // Каталог грузится и без этого, но после активации личности перезапрашиваем —
   // теперь снапшот ляжет в аккаунт-скоупный кэш и переживёт следующий заход.
@@ -314,7 +327,6 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       ? { ...catalog.channel, displayName: LINGMAN_CHANNEL_DISPLAY_NAME }
       : catalog.channel
     : legacyChannelSnapshot();
-  const stale = !!catalog && Date.now() - Date.parse(catalog.manifest.sourceRefreshedAt) > 26 * 60 * 60_000;
   const hero = catalog?.activeEvent && (catalog.activeEvent.state === 'upcoming' || catalog.activeEvent.state === 'live') ? catalog.activeEvent : null;
   const pickerManifest = catalog?.manifest ?? {
     schemaVersion: 1 as const,
@@ -397,15 +409,10 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
           onOpenYoutube={() => openExternalUrl(activeChannel.url)}
         />
         <YoutubeChannelTabs value={tab} onChange={changeTab} />
-        {stale && <VideoNote g={g} icon="flag-outline" text={copy.stale} testID="youtube-catalog-stale" />}
-        {issue === 'offline' && <VideoNote g={g} icon="cloud-offline-outline" text={copy.offline} testID="youtube-catalog-offline" />}
+        {/* зачем (владелец 01.10): плашек «устарел/офлайн» и экрана ошибки нет — показываем то, что есть, обновляем тихо. */}
         {issue !== 'none' && snapshot && <View testID="lingman-videos-fallback-notice" />}
 
-        {issue === 'error' && !catalog && !snapshot ? (
-          <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={inTab ? { paddingBottom: tabContentBottomPad } : undefined}>
-            <VideoStateBlock g={g} icon="cloud-offline-outline" text={copy.error} testID="youtube-catalog-error" actionLabel={copy.retry} actionTestID="youtube-catalog-retry" actionDisabled={refreshing} onAction={() => void loadCatalog(undefined, true)} style={styles.errorState} />
-          </ScrollView>
-        ) : visibleLoading && !catalog && !snapshot ? (
+        {(visibleLoading || issue === 'error') && !catalog && !snapshot ? (
           <View testID="youtube-catalog-loading" style={styles.skeletons}>
             <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={22} />
             <SkeletonBlock width="100%" height={64} borderRadius={12} />
@@ -414,13 +421,22 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
         ) : allVideos.length === 0 && (catalog?.playlists.length ?? 0) === 0 ? (
           <ScrollView decelerationRate="fast" testID="youtube-catalog-empty" refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={inTab ? { paddingBottom: tabContentBottomPad } : undefined}>
             {packsRow}
-            <VideoStateBlock g={g} icon="play" text={copy.empty} style={styles.emptyState} />
+            <View style={styles.skeletons}>
+              <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={16} />
+              <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={16} />
+            </View>
           </ScrollView>
         ) : tab === 'playlists' ? (
           catalog ? <FlashList decelerationRate="fast" testID="lingman-videos-list" data={catalog.playlists} keyExtractor={(item) => item.id} renderItem={({ item }) => <YoutubePlaylistRow playlist={item} onPress={() => openPlaylist(item.id)} />} showsVerticalScrollIndicator={false} contentContainerStyle={[styles.list, inTab ? { paddingBottom: tabContentBottomPad } : null]} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} />
-            : <ScrollView decelerationRate="fast" testID="youtube-catalog-playlists-empty" contentContainerStyle={inTab ? { paddingBottom: tabContentBottomPad } : undefined}><VideoStateBlock g={g} icon="play" text={copy.empty} style={styles.emptyState} /></ScrollView>
+            : <ScrollView decelerationRate="fast" testID="youtube-catalog-playlists-empty" contentContainerStyle={inTab ? { paddingBottom: tabContentBottomPad } : undefined}><View style={styles.skeletons}>
+              <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={16} />
+              <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={16} />
+            </View></ScrollView>
         ) : tab === 'all' ? (
-          <FlashList decelerationRate="fast" testID="youtube-catalog-all-videos" data={allVideos} keyExtractor={(item) => item.id} renderItem={({ item }) => renderVideoCard(item, true)} showsVerticalScrollIndicator={false} contentContainerStyle={[styles.list, inTab ? { paddingBottom: tabContentBottomPad } : null]} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} ListEmptyComponent={<VideoStateBlock g={g} icon="play" text={copy.empty} style={styles.emptyState} />} />
+          <FlashList decelerationRate="fast" testID="youtube-catalog-all-videos" data={allVideos} keyExtractor={(item) => item.id} renderItem={({ item }) => renderVideoCard(item, true)} showsVerticalScrollIndicator={false} contentContainerStyle={[styles.list, inTab ? { paddingBottom: tabContentBottomPad } : null]} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} ListEmptyComponent={<View style={styles.skeletons}>
+              <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={16} />
+              <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={16} />
+            </View>} />
         ) : (
           <ScrollView decelerationRate="fast" testID="lingman-videos-list" showsVerticalScrollIndicator={false} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={[styles.list, inTab ? { paddingBottom: tabContentBottomPad } : null]}>
             {hero ? hero.id === activeVideoId ? (
@@ -462,8 +478,6 @@ const styles = StyleSheet.create({
   sectionTitle: { marginTop: 26, marginBottom: 14, marginHorizontal: 2, fontSize: 20, lineHeight: 26, fontWeight: '700' },
   skeletons: { gap: 18, marginTop: 18 },
   skeletonCard: { gap: 10, marginTop: 4 },
-  emptyState: { paddingTop: 96 },
-  errorState: { paddingTop: 120 },
   packsRow: {
     minHeight: 64,
     borderRadius: 14,

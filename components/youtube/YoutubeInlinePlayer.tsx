@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image } from 'expo-image';
 import type { WebViewMessageEvent } from 'react-native-webview';
 import WebView from 'react-native-webview';
 import {
@@ -12,7 +13,6 @@ import { getLingmanYoutubeChrome } from '../../app/lingman_youtube_chrome';
 import { publishYoutubePosition, registerYoutubeSeekHandler, takePendingYoutubeSeek } from '../../app/youtube_player_seek_bus';
 import { createYoutubeSeekController } from '../../app/youtube_seek_controller';
 import { triLang } from '../../constants/i18n';
-import { hapticTap } from '../../hooks/use-haptics';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { FlowText } from '../text-integrity';
@@ -114,29 +114,29 @@ export default function YoutubeInlinePlayer({
 
   const copy = useMemo(() => ({
     close: triLang(lang, { ru: 'Закрыть видео', uk: 'Закрити відео', en: 'Close video', es: 'Cerrar vídeo', 'pt-BR': 'Fechar vídeo', vi: 'Đóng video', id: 'Tutup video', tr: 'Videoyu kapat', pl: 'Zamknij wideo' }),
-    retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' }),
-    loadError: triLang(lang, {
-      ru: 'Плеер временно не загрузился. Попробуйте ещё раз.',
-      uk: 'Плеєр тимчасово не завантажився. Спробуйте ще раз.',
-      en: 'The player did not load. Please try again.',
-      es: 'El reproductor no se cargó. Inténtalo de nuevo.',
-      'pt-BR': 'O player não carregou. Tente novamente.',
-      vi: 'Trình phát chưa tải được. Vui lòng thử lại.',
-      id: 'Pemutar gagal dimuat. Coba lagi.',
-      tr: 'Oynatıcı yüklenemedi. Lütfen tekrar deneyin.',
-      pl: 'Odtwarzacz się nie załadował. Spróbuj ponownie.',
-    }),
   }), [lang]);
 
   const playerHtml = useMemo(
     () => buildLingmanEmbedHtml(videoId, { autoplay: autoPlay, startSec }),
     [autoPlay, startSec, videoId],
   );
-  const retry = useCallback(() => {
-    hapticTap();
-    setPlayerError(false);
-    setPlayerKey((value) => value + 1);
-  }, []);
+  // зачем (владелец 01.10): текста об ошибке и кнопки «Повторить» нет. При сбое плеера
+  // остаётся постер (превью ролика), а WebView перезапускается тихо: до 5 попыток по 20 с.
+  const retryCountRef = useRef(0);
+  useEffect(() => {
+    if (!playerError || !active) return undefined;
+    if (retryCountRef.current >= 5) {
+      console.warn('[VIDEO-PLAYER] тихие повторы исчерпаны (5), остаётся постер', JSON.stringify({ videoId }));
+      return undefined;
+    }
+    const timer = setTimeout(() => {
+      retryCountRef.current += 1;
+      console.warn('[VIDEO-PLAYER] тихий повтор плеера, попытка', retryCountRef.current, JSON.stringify({ videoId }));
+      setPlayerError(false);
+      setPlayerKey((value) => value + 1);
+    }, 20000);
+    return () => clearTimeout(timer);
+  }, [playerError, active, videoId, playerKey]);
   const renderLoading = useCallback(() => (
     <View style={styles.playerLoading}>
       <ActivityIndicator color={chrome.accent} />
@@ -208,17 +208,13 @@ export default function YoutubeInlinePlayer({
           style={styles.webview}
         />
       ) : (
-        <View testID="lingman-player-error" style={styles.error}>
-          <Ionicons name="alert-circle-outline" size={30} color={chrome.accent} />
-          <Text style={[styles.errorText, { color: t.textMuted }]}>{copy.loadError}</Text>
-          <TouchableOpacity
-            accessibilityRole="button"
-            accessibilityLabel={copy.retry}
-            onPress={retry}
-            style={[styles.retryButton, { borderColor: chrome.accent, backgroundColor: chrome.accentFaint }]}
-          >
-            <Text style={[styles.retryText, { color: chrome.accent }]}>{copy.retry}</Text>
-          </TouchableOpacity>
+        <View testID="lingman-player-poster" style={styles.error}>
+          <Image
+            source={{ uri: `https://i.ytimg.com/vi/${encodeURIComponent(videoId)}/hqdefault.jpg` }}
+            style={StyleSheet.absoluteFill}
+            contentFit="cover"
+            accessible={false}
+          />
         </View>
       )}
       {presentation === 'preview' ? (
@@ -276,9 +272,6 @@ const styles = StyleSheet.create({
   webview: { flex: 1, backgroundColor: '#000000' },
   playerLoading: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center', backgroundColor: '#000000' },
   error: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 18 },
-  errorText: { fontSize: 13, lineHeight: 18, textAlign: 'center', fontWeight: '800' },
-  retryButton: { minHeight: 44, borderRadius: 14, borderWidth: 1, paddingHorizontal: 18, alignItems: 'center', justifyContent: 'center' },
-  retryText: { fontSize: 13, fontWeight: '900' },
   previewActions: { position: 'absolute', top: 8, right: 8, zIndex: 2, flexDirection: 'row', gap: 8 },
   previewButton: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(5,8,18,0.82)' },
 });

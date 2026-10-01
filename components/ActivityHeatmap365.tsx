@@ -672,7 +672,8 @@ function ActivityHeatmap365() {
           setLoadState({ target: studyTarget, analytics, status: 'ready', stale: false });
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        console.warn('[HEATMAP365] загрузка аналитики не удалась, остаёмся на локальных данных', error instanceof Error ? error.message : String(error));
         if (!cancelled) {
           setLoadState((current) => current.target === studyTarget && current.analytics
             ? { ...current, status: 'ready', stale: true }
@@ -691,15 +692,9 @@ function ActivityHeatmap365() {
   const days = currentSnapshot.analytics?.days ?? [];
   const yearModel = useMemo(() => buildCanonicalYear(days), [days]);
   const hasActivity = days.some((day) => day.active && !day.future);
-  const statusText = currentSnapshot.status === 'error'
-    ? copy(lang, { ru: 'Данные недоступны', en: 'Data unavailable' })
-    : currentSnapshot.status === 'loading'
-      ? copy(lang, { ru: 'Загружаем данные', en: 'Loading data' })
-      : currentSnapshot.stale
-        ? copy(lang, { ru: 'Последние сохранённые данные', en: 'Last saved data' })
-        : !hasActivity
-          ? copy(lang, { ru: 'Пока нет данных', en: 'No data yet' })
-          : null;
+  // зачем (владелец 01.10): никаких «Загружаем/Данные недоступны/Пока нет данных» —
+  // сетка рисуется сразу из локальных данных, пустые дни — просто пустые клетки.
+  const statusText: string | null = null;
 
   return (
     <View testID="stats-activity-365">

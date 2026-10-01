@@ -34,8 +34,6 @@ export default function HomeV2VideoRail({ videos, status, ownerActive, onSeeAll 
 
   const title = triLang(lang, { ru: 'Видео', uk: 'Відео', en: 'Videos', es: 'Vídeos', 'pt-BR': 'Vídeos', vi: 'Video', id: 'Video', tr: 'Videolar', pl: 'Wideo' });
   const seeAll = triLang(lang, { ru: 'Смотреть все', uk: 'Дивитися всі', en: 'See all', es: 'Ver todos', 'pt-BR': 'Ver todos', vi: 'Xem tất cả', id: 'Lihat semua', tr: 'Tümünü gör', pl: 'Zobacz wszystkie' });
-  const empty = triLang(lang, { ru: 'Нет доступных видео', uk: 'Немає доступних відео', en: 'No videos available', es: 'No hay vídeos disponibles', 'pt-BR': 'Nenhum vídeo disponível', vi: 'Chưa có video', id: 'Belum ada video', tr: 'Kullanılabilir video yok', pl: 'Brak dostępnych filmów' });
-  const unavailable = triLang(lang, { ru: 'Видео временно недоступны', uk: 'Відео тимчасово недоступні', en: 'Videos are temporarily unavailable', es: 'Los vídeos no están disponibles temporalmente', 'pt-BR': 'Vídeos indisponíveis no momento', vi: 'Video tạm thời không khả dụng', id: 'Video sementara tidak tersedia', tr: 'Videolar geçici olarak kullanılamıyor', pl: 'Filmy są chwilowo niedostępne' });
 
   return (
     <View testID="home-v2-video-rail" style={s.section}>
@@ -64,13 +62,14 @@ export default function HomeV2VideoRail({ videos, status, ownerActive, onSeeAll 
             </Pressable>
           ))}
         </ScrollView>
-      ) : status === 'loading' ? (
+      ) : (
+        // зачем (владелец 01.10): рейка не прячется и не пишет «недоступны/нет видео» —
+        // при любом статусе без данных те же скелетоны резервной геометрии 246x138.
+        // status оставлен в Props для совместимости с Home; повтор загрузки — на стороне Home.
         <View testID="home-v2-video-loading" style={s.placeholderRow} accessibilityLabel={title}>
           <View style={[s.placeholderCard, { backgroundColor: p.glassRaised, borderColor: p.stroke }]} />
           <View style={[s.placeholderCard, { backgroundColor: p.glassRaised, borderColor: p.stroke }]} />
         </View>
-      ) : (
-        <View style={s.emptyWrap}><Text style={[s.empty, { color: p.textSecondary }]}>{status === 'error' ? unavailable : empty}</Text></View>
       )}
       {VideoPlayerModal && selectedVideo ? <VideoPlayerModal video={selectedVideo} onClose={() => setActiveVideoId(null)} /> : null}
     </View>
@@ -88,6 +87,4 @@ const s = StyleSheet.create({
   cardContent: { flex: 1, justifyContent: 'flex-end', alignItems: 'flex-start', padding: 8 },
   placeholderRow: { height: 138, flexDirection: 'row', gap: 9, overflow: 'hidden' },
   placeholderCard: { width: 246, height: 138, borderRadius: 0, borderWidth: StyleSheet.hairlineWidth },
-  emptyWrap: { height: 138, justifyContent: 'center' },
-  empty: { fontSize: 14 },
 });

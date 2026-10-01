@@ -197,7 +197,6 @@ export default function CoinRankScreen() {
     cost: triLang(lang, { ru: 'Стоимость повышения', uk: 'Вартість підвищення', en: 'Upgrade cost', es: 'Coste de la mejora', 'pt-BR': 'Custo da promoção', vi: 'Chi phí nâng hạng', id: 'Biaya naik peringkat', tr: 'Yükseltme bedeli', pl: 'Koszt awansu' }),
     remaining: triLang(lang, { ru: 'Осталось накопить', uk: 'Залишилося накопичити', en: 'Still needed', es: 'Te falta', 'pt-BR': 'Ainda falta', vi: 'Còn thiếu', id: 'Masih kurang', tr: 'Kalan', pl: 'Brakuje jeszcze' }),
     enough: triLang(lang, { ru: 'Монет достаточно для повышения', uk: 'Монет достатньо для підвищення', en: 'Enough coins to upgrade', es: 'Tienes monedas suficientes para subir', 'pt-BR': 'Moedas suficientes para subir', vi: 'Đủ xu để nâng hạng', id: 'Koin cukup untuk naik peringkat', tr: 'Yükseltmek için yeterli jeton var', pl: 'Masz dość monet na awans' }),
-    loading: triLang(lang, { ru: 'Загружаем данные', uk: 'Завантажуємо дані', en: 'Loading data', es: 'Cargando datos', 'pt-BR': 'Carregando dados', vi: 'Đang tải dữ liệu', id: 'Memuat data', tr: 'Veriler yükleniyor', pl: 'Wczytujemy dane' }),
     upgrade: triLang(lang, { ru: 'Повысить ранг', uk: 'Підвищити ранг', en: 'Upgrade rank', es: 'Subir de rango', 'pt-BR': 'Subir de rank', vi: 'Nâng hạng', id: 'Naik peringkat', tr: 'Rütbeyi yükselt', pl: 'Awansuj' }),
     max: triLang(lang, { ru: 'Достигнут максимальный ранг', uk: 'Досягнуто максимального рангу', en: 'Maximum rank reached', es: 'Has alcanzado el rango máximo', 'pt-BR': 'Rank máximo alcançado', vi: 'Đã đạt hạng cao nhất', id: 'Peringkat maksimum tercapai', tr: 'En yüksek rütbeye ulaşıldı', pl: 'Osiągnięto najwyższą rangę' }),
   }), [lang]);
@@ -286,7 +285,7 @@ export default function CoinRankScreen() {
   const ctaLabel = upgrading || balanceReconciling
     ? triLang(lang, { ru: 'Повышаем…', uk: 'Підвищуємо…', en: 'Upgrading…', es: 'Subiendo…', 'pt-BR': 'Subindo…', vi: 'Đang nâng hạng…', id: 'Menaikkan…', tr: 'Yükseltiliyor…', pl: 'Awansujemy…' })
     : rank === null || balance === null
-      ? copy.loading
+      ? ' ' // зачем (владелец 01.10): без текста «Загружаем» — резерв высоты
       : isMaxRank
         ? copy.max
         : `${copy.upgrade} · ${formatCoins(next!.priceToReach)} ${copy.coins}`;
@@ -352,7 +351,6 @@ export default function CoinRankScreen() {
             />
           ) : (
             <View testID="coin-rank-loading-asset" style={[styles.heroPlaceholder, { backgroundColor: g.opaqueCard }]}>
-              <ActivityIndicator color={g.cta} />
             </View>
           )}
           <Text style={[styles.overline, { color: p.textSecondary }]}>{copy.current.toUpperCase()}</Text>
@@ -360,7 +358,7 @@ export default function CoinRankScreen() {
             {current ? coinRankTitle(current.rank, lang) : '—'}
           </Text>
           <Text style={[styles.rankMeta, { color: p.textSecondary }]}>
-            {rank === null ? copy.loading : `${copy.level} ${rank} · ${coinRankMetal(current!.rank, lang)}`}
+            {rank === null ? ' ' : `${copy.level} ${rank} · ${coinRankMetal(current!.rank, lang)}`}
           </Text>
         </View>
 
@@ -394,7 +392,7 @@ export default function CoinRankScreen() {
               </View>
               <Text style={[styles.statusText, { color: missing === 0 ? p.text : p.textSecondary }]}>
                 {balance === null
-                  ? copy.loading
+                  ? ' '
                   : missing === 0
                     ? copy.enough
                     : `${copy.remaining}: ${formatCoins(missing!)} ${copy.coins}`}
@@ -403,7 +401,7 @@ export default function CoinRankScreen() {
           ) : (
             <View style={styles.maxState}>
               <Ionicons name="checkmark-circle" size={30} color={p.iconTint} />
-              <Text style={[styles.maxTitle, { color: p.text }]}>{rank === null ? copy.loading : copy.max}</Text>
+              <Text style={[styles.maxTitle, { color: p.text }]}>{rank === null ? ' ' : copy.max}</Text>
             </View>
           )}
         </View>

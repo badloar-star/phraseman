@@ -148,17 +148,6 @@ function diagnosticSkillA11y(lang: Lang, kind: keyof typeof DIAGNOSTIC_SKILL_A11
 
 function diagnosticUiCopy(lang: Lang) {
   return {
-    loadError: triLang(lang, {
-      ru: 'Вопросы не загрузились. Проверь сеть и попробуй снова.',
-      uk: 'Не вдалося завантажити питання. Спробуй пізніше.',
-      en: 'Couldn’t load the questions. Try again later.',
-      es: 'No se pudieron cargar las preguntas. Inténtalo más tarde.',
-      'pt-BR': 'Não foi possível carregar as perguntas. Tente novamente mais tarde.',
-      vi: 'Không thể tải câu hỏi. Hãy thử lại sau.',
-      id: 'Pertanyaan tidak dapat dimuat. Coba lagi nanti.',
-      tr: 'Sorular yüklenemedi. Daha sonra tekrar dene.',
-      pl: 'Nie udało się wczytać pytań. Spróbuj później.',
-    }),
     back: triLang(lang, {
       ru: 'Вернуться',
       uk: 'Повернутися',
@@ -1186,16 +1175,34 @@ export default function DiagnosticTest() {
       let cancelled = false;
       setQuestions([]);
       setQuestionsLoading(true);
-      loadFrenchRemoteDiagnosticQuestions(diagnosticSourceLocale, 20)
-        .then(items => {
-          if (!cancelled) setQuestions(items as Question[]);
-        })
-        .catch(() => {
-          if (!cancelled) setQuestions([]);
-        })
-        .finally(() => {
-          if (!cancelled) setQuestionsLoading(false);
-        });
+      // зачем (владелец 01.10): тихий повтор вместо экрана ошибки — до 5 попыток
+      // с паузой 20 с; пользователь всё это время видит скелетон вопроса.
+      const DIAG_RETRY_MAX = 5;
+      const DIAG_RETRY_DELAY_MS = 20000;
+      const run = async () => {
+        for (let attempt = 1; attempt <= DIAG_RETRY_MAX && !cancelled; attempt += 1) {
+          try {
+            const items = await loadFrenchRemoteDiagnosticQuestions(diagnosticSourceLocale, 20);
+            if (cancelled) return;
+            if (items.length > 0) {
+              setQuestions(items as Question[]);
+              setQuestionsLoading(false);
+              return;
+            }
+            console.warn('[DIAG-QUESTIONS] пустой ответ, попытка', attempt, 'из', DIAG_RETRY_MAX);
+          } catch (e) {
+            console.warn('[DIAG-QUESTIONS] ошибка загрузки, попытка', attempt, e instanceof Error ? e.message : String(e));
+          }
+          if (attempt < DIAG_RETRY_MAX) {
+            await new Promise<void>((resolve) => setTimeout(resolve, DIAG_RETRY_DELAY_MS));
+          }
+        }
+        if (!cancelled) {
+          console.warn('[DIAG-QUESTIONS] все попытки исчерпаны, остаётся скелетон');
+          setQuestionsLoading(false);
+        }
+      };
+      void run();
       return () => { cancelled = true; };
     }
     setQuestionsLoading(false);
@@ -1481,7 +1488,10 @@ export default function DiagnosticTest() {
   // загрузке на миг видел ложное сообщение об ошибке. Теперь пока идёт загрузка —
   // зарезервированный скелетон карточек вопроса (та же геометрия, что и quiz-экран
   // ниже), а текст об ошибке — только когда загрузка реально завершилась пусто.
-  if ((phase === 'quiz' || isFrenchDiagnostic) && questionsLoading) {
+  // зачем (владелец 01.10): экранов ошибок нет вообще. Пустой список вопросов
+  // (источник пуст/недоступен) — тот же скелетон, а загрузка тихо повторяется
+  // в эффекте выше; текста «Вопросы не загрузились» больше нет.
+  if ((phase === 'quiz' || isFrenchDiagnostic) && (questionsLoading || !q || questions.length === 0)) {
     return (
       <ScreenGradient artBackdrop="diagnosticTest">
         <SafeAreaView style={{ flex: 1 }}>
@@ -1495,24 +1505,6 @@ export default function DiagnosticTest() {
               <SkeletonBlock width="100%" height={56} borderRadius={16} style={{ marginTop: 10 }} />
               <SkeletonBlock width="100%" height={56} borderRadius={16} style={{ marginTop: 10 }} />
             </View>
-          </ContentWrap>
-        </SafeAreaView>
-      </ScreenGradient>
-    );
-  }
-
-  if ((phase === 'quiz' || isFrenchDiagnostic) && (!q || questions.length === 0)) {
-    return (
-      <ScreenGradient artBackdrop="diagnosticTest">
-        <SafeAreaView style={{ flex: 1 }}>
-          <ContentWrap>
-            <ExamHeader glass={glass} title={s.diagnostic.start} onBack={() => safeRouterBack(router)} backLabel={diagnosticUi.back} />
-            <PracticeStatePanel
-              glass={glass}
-              icon="cloud-offline-outline"
-              message={diagnosticUi.loadError}
-              action={{ label: diagnosticUi.back, onPress: () => safeRouterBack(router), icon: 'chevron-back' }}
-            />
           </ContentWrap>
         </SafeAreaView>
       </ScreenGradient>

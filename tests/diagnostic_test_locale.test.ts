@@ -54,7 +54,7 @@ describe('diagnostic test planned locale runtime copy', () => {
   it('routes quiz shell labels through explicit planned locale copy', () => {
     expect(source).toContain('function diagnosticUiCopy');
     expect(source).toContain('const diagnosticUi = useMemo(() => diagnosticUiCopy(lang), [lang])');
-    expect(source).toContain('{diagnosticUi.loadError}');
+    expect(source).not.toContain('diagnosticUi.loadError'); // владелец 01.10: экрана ошибки нет
     expect(source).toContain('{diagnosticUi.back}');
     expect(source).toContain('{diagnosticUi.cancel}');
     // зачем: стрелка теперь рисуется самой кнопкой (<PracticeCta trailingArrow>), а не символом в строке подписи.

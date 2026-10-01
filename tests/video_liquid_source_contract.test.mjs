@@ -25,7 +25,7 @@ test('video channel uses active 13-theme glass without replacing real thumbnails
   assert.ok(card.includes('video.thumbnailUrl'), 'real thumbnail source');
   assert.ok(screen.includes('<YoutubeInlinePlayer'), 'real inline player stays wired');
   assert.ok(screen.includes('VideoScreenGlass tint={g.selected}'), 'static screen material');
-  assert.ok(screen.includes('testID="youtube-catalog-error"'), 'real retry state retained');
+  assert.ok(!screen.includes('testID="youtube-catalog-error"'), 'владелец 01.10: экрана ошибки нет');
   // зачем: состояния «нет сети / устарел / ошибка» переехали в components/video/VideoGlassKit (макет video.html).
   const kit = readFileSync(new URL('../components/video/VideoGlassKit.tsx', import.meta.url), 'utf8');
   assert.ok(kit.includes('{ backgroundColor: g.card, borderColor: g.glassEdge }'), 'note surface uses current tint');

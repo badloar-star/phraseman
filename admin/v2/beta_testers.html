@@ -221,7 +221,7 @@
     <section id="login" class="login">
       <div class="login-card">
         <h1>Бета тестеры</h1>
-        <p>Вход только для админа PhraseMan. Здесь — список бета-тестеров и управление: аура «Нимб», Plus навсегда, энергия.</p>
+        <p>Вход только для админа PhraseMan. Здесь — список бета-тестеров и управление: Plus навсегда, энергия.</p>
         <button id="signin">Войти с Google</button>
         <div id="login-error" class="error"></div>
       </div>
@@ -269,13 +269,12 @@
                   <th>Ник</th>
                   <th>Email</th>
                   <th>UID</th>
-                  <th>Аура</th>
                   <th>Plus</th>
                   <th>С</th>
                 </tr>
               </thead>
               <tbody id="rows">
-                <tr><td colspan="6" class="muted" style="text-align:center;padding:38px">Загрузка...</td></tr>
+                <tr><td colspan="5" class="muted" style="text-align:center;padding:38px">Загрузка...</td></tr>
               </tbody>
             </table>
           </div>
@@ -309,7 +308,8 @@
     const db = getFirestore(app);
     const provider = new GoogleAuthProvider();
 
-    const NIMBUS_AURA_ID = 'aura-nimbus';
+    // зачем: Q5 (координатор 01.10) — бета-аура убрана: ауры и Студия персонажа
+    // удалены в 2.0 (D61), аватар = монета ранга. Бета-статус больше не пишет ауру.
     const $ = (id) => document.getElementById(id);
     let betaRows = [];
     let currentUid = null;
@@ -338,13 +338,6 @@
       const la = (data && typeof data.linkedAuth === 'object') ? data.linkedAuth : null;
       const p = readProgress(data);
       return (la && la.email) || data.email || data.lowerEmail || p.user_email || '';
-    }
-    function parseOwned(progress) {
-      try {
-        const raw = progress.avatar_aura_owned_v1;
-        if (!raw) return {};
-        return typeof raw === 'string' ? JSON.parse(raw) : raw;
-      } catch { return {}; }
     }
     function isPlusForever(progress) {
       const plan = String(progress.vip_plan || '').toLowerCase();
@@ -387,8 +380,6 @@
             uid: d.id,
             name: nameOf(data, d.id),
             email: emailOf(data),
-            aura: p.user_avatar_aura || '',
-            ownsNimbus: !!parseOwned(p)[NIMBUS_AURA_ID],
             plus: isPlusForever(p),
             since: p.beta_tester_since || '',
           };
@@ -410,7 +401,7 @@
       $('count').textContent = String(betaRows.length);
       $('status').textContent = betaRows.length + ' бета-тестеров';
       if (!betaRows.length) {
-        $('rows').innerHTML = '<tr><td colspan="6" class="muted" style="text-align:center;padding:38px">Пока никого. Впиши UID или ник выше и назначь.</td></tr>';
+        $('rows').innerHTML = '<tr><td colspan="5" class="muted" style="text-align:center;padding:38px">Пока никого. Впиши UID или ник выше и назначь.</td></tr>';
         return;
       }
       $('rows').innerHTML = betaRows.map((r) => `
@@ -418,7 +409,6 @@
           <td><button type="button" class="nick-btn" data-uid="${escapeHtml(r.uid)}">${escapeHtml(r.name)}</button></td>
           <td>${r.email ? `<a href="mailto:${escapeHtml(r.email)}" style="color:var(--acc-soft);text-decoration:none">${escapeHtml(r.email)}</a>` : '<span class="muted">—</span>'}</td>
           <td class="muted" style="font-size:11px">${escapeHtml(r.uid)}</td>
-          <td>${r.aura === NIMBUS_AURA_ID ? '<span class="pill">🔵 Нимб</span>' : (r.ownsNimbus ? '<span class="pill">есть Нимб</span>' : '<span class="muted">—</span>')}</td>
           <td>${r.plus ? '<span class="pill plus">Plus ∞</span>' : '<span class="muted">—</span>'}</td>
           <td class="muted" style="font-size:11px">${fmtSince(r.since)}</td>
         </tr>
@@ -525,8 +515,6 @@
       const p = readProgress(data);
       const email = emailOf(data);
       const isBeta = String(p.beta_tester || '') === 'true';
-      const ownsNimbus = !!parseOwned(p)[NIMBUS_AURA_ID];
-      const activeNimbus = p.user_avatar_aura === NIMBUS_AURA_ID;
       const plus = isPlusForever(p);
 
       $('detail-title').textContent = nameOf(data, uid);
@@ -537,15 +525,14 @@
           <div class="drow"><span class="k">Ник</span><span class="v">${escapeHtml(nameOf(data, uid))}</span></div>
           <div class="drow"><span class="k">Email</span><span class="v">${email ? `<a href="mailto:${escapeHtml(email)}" style="color:var(--acc-soft);text-decoration:none">${escapeHtml(email)}</a>` : '<span class="muted">—</span>'}</span></div>
           <div class="drow"><span class="k">Бета-статус</span><span class="v">${isBeta ? '<span class="pill">✓ бета</span>' : '<span class="pill off">нет</span>'}</span></div>
-          <div class="drow"><span class="k">Аура «Нимб»</span><span class="v">${activeNimbus ? '<span class="pill">🔵 активна</span>' : ownsNimbus ? '<span class="pill">в наличии</span>' : '<span class="muted">нет</span>'}</span></div>
           <div class="drow"><span class="k">Plus навсегда</span><span class="v">${plus ? '<span class="pill plus">Plus ∞</span>' : '<span class="muted">нет</span>'}</span></div>
         </div>
         <div class="dsec">
           <h3>Управление</h3>
           <div class="actions">
             ${isBeta
-              ? '<button type="button" class="btn-danger" data-act="unset-beta">✕ Снять бета-статус (аура остаётся)</button>'
-              : '<button type="button" class="btn-primary" data-act="set-beta">🔵 Назначить бета-тестером + выдать «Нимб»</button>'}
+              ? '<button type="button" class="btn-danger" data-act="unset-beta">✕ Снять бета-статус</button>'
+              : '<button type="button" class="btn-primary" data-act="set-beta">🔵 Назначить бета-тестером</button>'}
             <button type="button" class="btn-plus" data-act="grant-plus">💚 Выдать Plus навсегда</button>
             <button type="button" class="btn-warn" data-act="energy-fill">⚡ Налить энергию до максимума</button>
             <button type="button" class="btn-danger" data-act="energy-drain">🪫 Обнулить энергию</button>
@@ -585,31 +572,23 @@
       }
     }
 
-    // Назначить/снять бета-статус. При назначении: выдаём «Нимб» в owned + делаем активной.
-    // При снятии: убираем ТОЛЬКО флаг статуса — аура остаётся на аккаунте (навсегда).
+    // Назначить/снять бета-статус. Только флаг статуса — ауры в 2.0 нет (Q5).
     async function setBeta(uid, on) {
-      const snap = await getDoc(doc(db, 'users', uid));
-      const p = readProgress(snap.data() || {});
       if (on) {
-        const owned = parseOwned(p);
-        owned[NIMBUS_AURA_ID] = true;
         await updateDoc(doc(db, 'users', uid), {
           'progress.beta_tester': 'true',
           'progress.beta_tester_since': String(Date.now()),
-          'progress.avatar_aura_owned_v1': JSON.stringify(owned),
-          'progress.avatar_aura_gift_owned_v1': NIMBUS_AURA_ID,
-          'progress.user_avatar_aura': NIMBUS_AURA_ID,
           beta_admin_updated_at: new Date().toISOString(),
         });
         await logAdmin('beta_set', uid, {});
-        toast('🔵 Бета-статус выдан + «Нимб» активирован', 'ok');
+        toast('🔵 Бета-статус выдан', 'ok');
       } else {
         await updateDoc(doc(db, 'users', uid), {
           'progress.beta_tester': 'false',
           beta_admin_updated_at: new Date().toISOString(),
         });
         await logAdmin('beta_unset', uid, {});
-        toast('Бета-статус снят (аура осталась)', 'ok');
+        toast('Бета-статус снят', 'ok');
       }
     }
 

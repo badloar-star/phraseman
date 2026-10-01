@@ -127,7 +127,7 @@ export function SpeakingButton({
               </View>
             )}
           </View>
-          <Text style={{ color: t.textMuted, fontSize: 11, marginTop: 4 }}>{label}</Text>{/* guard-ok: подпись иконки футера, а не расшифровка под названием */}
+          <Text style={{ color: t.textMuted, fontSize: 13, marginTop: 4 }}>{label}</Text>{/* guard-ok: подпись иконки футера, а не расшифровка под названием */}
           {/* зачем (владелец 2026-09-13): остаток дневных попыток виден заранее,
               а не в момент отказа. Высота ряда постоянна (компонент сам держит
               распорку), поэтому подпись и соседи по футеру не сдвигаются. */}
@@ -163,7 +163,7 @@ export function SpeakingButton({
           ]}
         >
           <Ionicons name="mic" size={18} color={t.accent} />
-          <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '600' }}>{label}</Text>
+          <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '700' }}>{label}</Text>
           {/* В пилюле точки идут в один ряд с подписью: высота строки задана
               иконкой и текстом, поэтому ряд точек её не меняет ни в одном состоянии. */}
           <SpeakingQuotaDots

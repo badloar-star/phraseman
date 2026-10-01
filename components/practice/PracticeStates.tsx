@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     minHeight: 48, borderRadius: 24, width: '100%', paddingHorizontal: 52,
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12,
   },
-  ctaText: { fontSize: 17, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
+  ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
   ctaSmall: {
     minHeight: 44, borderRadius: 22, paddingHorizontal: 18, alignSelf: 'center',
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10,
@@ -207,15 +207,15 @@ const styles = StyleSheet.create({
   ctaArrow: { position: 'absolute', right: 22, top: 0, bottom: 0, justifyContent: 'center' },
   panel: { flex: 1, alignSelf: 'stretch', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 28, paddingBottom: 40 },
   panelTile: { width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
-  panelMessage: { marginTop: 18, fontSize: 17, lineHeight: 23, fontWeight: '600', textAlign: 'center' },
+  panelMessage: { marginTop: 18, fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
   panelTitle: { marginTop: 18, fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center' },
-  panelSub: { marginTop: 8, fontSize: 15, lineHeight: 21, textAlign: 'center' },
+  panelSub: { marginTop: 8, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   panelAction: { marginTop: 22 },
   progressWrap: { paddingHorizontal: 16 },
   track: { height: 6, borderRadius: 3, overflow: 'hidden' },
   fill: { width: '100%', height: '100%', borderRadius: 3, transformOrigin: 'left' },
   progressRow: { minHeight: 22, marginTop: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
-  progressLabel: { minWidth: 44, fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] },
+  progressLabel: { minWidth: 44, fontSize: 16, lineHeight: 22, fontWeight: '700', fontVariant: ['tabular-nums'] },
   progressRight: { textAlign: 'right' },
   qc: {
     // guard-ok: 1 px полупрозрачная кромка `.qc` макета (исключение PhraseMan 2.0).

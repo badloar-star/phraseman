@@ -2733,8 +2733,8 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   inlineTokensText: { width: '100%', textAlign: 'center' },
-  inlineToken: { fontSize: 18, lineHeight: 24, fontWeight: '800' },
-  inlineStatus: { minHeight: 18, fontSize: 12, lineHeight: 16, fontWeight: '700', textAlign: 'center' },
+  inlineToken: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
+  inlineStatus: { minHeight: 18, fontSize: 13, lineHeight: 18, fontWeight: '700', textAlign: 'center' },
   inlineSettingsAction: {
     minHeight: 44,
     alignItems: 'center',
@@ -2763,10 +2763,10 @@ const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 16,
   },
-  title: { fontSize: 18, fontWeight: '700' },
-  diffSound: { fontSize: 12, marginTop: -10, marginBottom: 10, textAlign: 'center' },
+  title: { fontSize: 16, fontWeight: '700' },
+  diffSound: { fontSize: 13, marginTop: -10, marginBottom: 10, textAlign: 'center' },
   hintLine: { fontSize: 13, textAlign: 'center', marginTop: -12, marginBottom: 12 },
-  perfectLine: { fontSize: 14, fontWeight: '700', textAlign: 'center', marginBottom: 14 },
+  perfectLine: { fontSize: 13, fontWeight: '700', textAlign: 'center', marginBottom: 14 },
   // Подчёркиваемое (тренируемое) слово: тонкая линия чуть ниже букв. paddingBottom
   // отводит бордер от базовой линии, чтобы не перечёркивать хвосты букв (g, y, p).
   drillWord: { paddingBottom: 3 },
@@ -2780,7 +2780,7 @@ const styles = StyleSheet.create({
   waveWrap: { minHeight: 110, justifyContent: 'center', alignItems: 'center', marginBottom: 12 },
   ringWrap: { alignItems: 'center', justifyContent: 'center' },
   ringTarget: { fontSize: 13, fontWeight: '600', marginTop: 8 },
-  status: { fontSize: 14, textAlign: 'center', marginBottom: 20, minHeight: 20 },
+  status: { fontSize: 13, textAlign: 'center', marginBottom: 20, minHeight: 20 },
   micBtn: {
     width: 72,
     height: 72,
@@ -2789,7 +2789,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   retry: { marginTop: 16 },
-  retryText: { fontSize: 15, fontWeight: '600' },
+  retryText: { fontSize: 16, fontWeight: '700' },
   actionBtn: {
     marginTop: 18,
     paddingHorizontal: 24,
@@ -2798,7 +2798,7 @@ const styles = StyleSheet.create({
     minWidth: 180,
     alignItems: 'center',
   },
-  actionBtnText: { color: '#fff', fontSize: 15, fontWeight: '700' },
+  actionBtnText: { color: '#fff', fontSize: 16, fontWeight: '700' },
 });
 
 export default SpeakingPanel;

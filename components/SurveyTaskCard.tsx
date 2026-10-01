@@ -175,5 +175,5 @@ const styles = StyleSheet.create({
     height: SURVEY_HYBRID.taskIconSize,
   },
   copy: { flex: 1, minWidth: 0 },
-  title: { fontSize: 14, lineHeight: 18, fontWeight: '800' },
+  title: { fontSize: 13, lineHeight: 18, fontWeight: '700' },
 });

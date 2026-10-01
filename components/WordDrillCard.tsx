@@ -266,7 +266,7 @@ const styles = StyleSheet.create({
   },
   word: { fontSize: 20, fontWeight: '700' },
   status: { fontSize: 13, marginBottom: 6 },
-  detail: { fontSize: 12, marginBottom: 10 },
+  detail: { fontSize: 13, marginBottom: 10 },
   actionsRow: { flexDirection: 'row', gap: 10, marginTop: 4 },
   pill: {
     flexDirection: 'row',

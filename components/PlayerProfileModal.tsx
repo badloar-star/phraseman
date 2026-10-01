@@ -605,7 +605,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.95)',
     shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 15, shadowOffset: { width: 0, height: 10 }, elevation: 8,
   },
-  bannerText: { color: '#111111', fontSize: 15, fontWeight: '800' },
+  bannerText: { color: '#111111', fontSize: 16, fontWeight: '700' },
   dim2: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.5)' },
 });
 

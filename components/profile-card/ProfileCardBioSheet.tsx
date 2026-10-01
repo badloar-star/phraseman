@@ -143,8 +143,8 @@ const styles = StyleSheet.create({
     borderWidth: 1, // guard-ok: поле ввода .vz-field — тонкий полупрозрачный кант (исключение 2.0)
     borderColor: 'rgba(255,255,255,0.14)',
     color: '#FFFFFF',
-    fontSize: 17,
-    lineHeight: 24,
+    fontSize: 16,
+    lineHeight: 22,
     textAlignVertical: 'top',
   },
   meta: { flexDirection: 'row', justifyContent: 'space-between', gap: 10, marginTop: 8 },

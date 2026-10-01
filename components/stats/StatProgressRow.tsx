@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   headerRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   chip: { width: 28, height: 28, borderRadius: 9, alignItems: 'center', justifyContent: 'center' },
   label: { flex: 1, minWidth: 0, fontSize: 13, fontWeight: '800' },
-  value: { fontSize: 15, fontWeight: '900' },
+  value: { fontSize: 16, fontWeight: '700' },
   track: { height: 9, borderRadius: 6, overflow: 'hidden' },
   fill: { height: '100%', borderRadius: 6, overflow: 'hidden', minWidth: 6 },
 });

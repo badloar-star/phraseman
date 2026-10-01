@@ -138,7 +138,7 @@ function ReportReplyHomeBanner({ active, refreshTick, onOpen }: Props) {
         <View style={{ width: 41, height: 41, borderRadius: 10, backgroundColor: glass.selected, alignItems: 'center', justifyContent: 'center' }}>
           <Ionicons name="chatbox-ellipses" size={20} color={glass.cta} />
         </View>
-        <Text style={{ flex: 1, flexShrink: 1, color: glass.text, fontSize: 14 * textScale, lineHeight: 19 * textScale, fontWeight: '700' }}>
+        <Text style={{ flex: 1, flexShrink: 1, color: glass.text, fontSize: 13 * textScale, lineHeight: 18 * textScale, fontWeight: '700' }}>
           {label}
         </Text>
         <Ionicons name="chevron-forward" size={19} color={glass.secondary} />

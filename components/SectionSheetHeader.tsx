@@ -90,7 +90,7 @@ export default function SectionSheetHeader({
         <FlowText
           testID="section-sheet-title"
           provenance="authored"
-          style={{ color: t.textPrimary, fontSize: 17, fontWeight: '600', textAlign: 'center' }}
+          style={{ color: t.textPrimary, fontSize: 16, fontWeight: '700', textAlign: 'center' }}
         >
           {title}
         </FlowText>

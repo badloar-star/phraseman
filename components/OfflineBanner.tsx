@@ -347,7 +347,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   surfaceText: {
-    fontSize: 12.5,
+    fontSize: 13,
     fontWeight: '700',
   },
 });

@@ -91,7 +91,7 @@ export default memo(ReleaseNotesV2Modal);
 const styles = StyleSheet.create({
   scroll: { flexShrink: 1 },
   scrollContent: { paddingTop: 12, paddingBottom: 8 },
-  eyebrow: { fontSize: 12, lineHeight: 16, fontWeight: '700', letterSpacing: 2 },
+  eyebrow: { fontSize: 13, lineHeight: 18, fontWeight: '700', letterSpacing: 2 },
   title: { fontSize: 28, lineHeight: 34, fontWeight: '700', marginTop: 6 },
   hero: {
     height: 180,
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   },
   itemText: { flex: 1, minWidth: 0 },
   itemTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
-  itemBody: { fontSize: 14, lineHeight: 20, fontWeight: '400', marginTop: 2 },
+  itemBody: { fontSize: 13, lineHeight: 18, fontWeight: '400', marginTop: 2 },
   ctaWrap: { width: '100%', marginTop: 12 },
   cta: { minHeight: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700' },

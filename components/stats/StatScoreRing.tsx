@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   wrap: { alignItems: 'center', justifyContent: 'center' },
   center: { position: 'absolute', alignItems: 'center', justifyContent: 'center' },
   centerNum: { fontSize: 30, fontWeight: '900', lineHeight: 34, textAlign: 'center' },
-  sub: { fontSize: 10, fontWeight: '800', marginTop: 1, textAlign: 'center' },
+  sub: { fontSize: 13, fontWeight: '700', marginTop: 1, textAlign: 'center' },
 });
 
 export default StatScoreRing;

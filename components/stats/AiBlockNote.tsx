@@ -174,10 +174,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   avatar: { width: 26, height: 26, borderRadius: 9, alignItems: 'center', justifyContent: 'center', marginTop: 1 },
-  author: { fontSize: 10, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 2 },
+  author: { fontSize: 13, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 2 },
   note: { fontSize: 13, fontWeight: '600', lineHeight: 18 },
-  lockedText: { flex: 1, minWidth: 0, fontSize: 12.5, fontWeight: '700', lineHeight: 17 },
-  loadingText: { flex: 1, minWidth: 0, fontSize: 12.5, fontWeight: '700', fontStyle: 'italic' },
+  lockedText: { flex: 1, minWidth: 0, fontSize: 13, fontWeight: '700', lineHeight: 18 },
+  loadingText: { flex: 1, minWidth: 0, fontSize: 13, fontWeight: '700', fontStyle: 'italic' },
 });
 
 export default AiBlockNote;

@@ -523,20 +523,20 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   tierLabel: {
-    fontSize: 10.5,
-    fontWeight: '800',
+    fontSize: 13,
+    fontWeight: '700',
     letterSpacing: 1.4,
     marginBottom: 3,
   },
   title: {
-    fontSize: 17,
-    fontWeight: '800',
+    fontSize: 16,
+    fontWeight: '700',
     letterSpacing: 0.2,
     marginBottom: 3,
   },
   subtitle: {
-    fontSize: 12.5,
-    fontWeight: '500',
-    lineHeight: 16,
+    fontSize: 13,
+    fontWeight: '400',
+    lineHeight: 18,
   },
 });

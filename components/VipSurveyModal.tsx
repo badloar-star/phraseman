@@ -431,7 +431,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
                 }}
                 style={styles.confirmExitStay}
               >
-                <Text style={{ color: chrome.muted, fontSize: 15, fontWeight: '600', textAlign: 'center' }}>
+                <Text style={{ color: chrome.muted, fontSize: 16, fontWeight: '700', textAlign: 'center' }}>
                   {copy.exitStay}
                 </Text>
               </Pressable>
@@ -621,8 +621,8 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   progressText: {
-    fontSize: 11,
-    fontWeight: '900',
+    fontSize: 13,
+    fontWeight: '700',
     textAlign: 'center',
   },
   progressTrack: {
@@ -648,9 +648,9 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   introTitle: {
-    fontSize: 15,
-    lineHeight: 19,
-    fontWeight: '900',
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '700',
     marginBottom: 4,
   },
   introBody: {
@@ -686,9 +686,9 @@ const styles = StyleSheet.create({
   optionText: {
     flex: 1,
     minWidth: 0,
-    fontSize: 15,
-    lineHeight: 20,
-    fontWeight: '800',
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '700',
   },
   commentBox: {
     minHeight: 110,
@@ -707,8 +707,8 @@ const styles = StyleSheet.create({
   },
   optionalText: {
     marginTop: 6,
-    fontSize: 11,
-    fontWeight: '800',
+    fontSize: 13,
+    fontWeight: '700',
   },
   reviewBody: {
     lineHeight: 22,
@@ -742,8 +742,8 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   primaryButtonText: {
-    fontSize: 15,
-    fontWeight: '900',
+    fontSize: 16,
+    fontWeight: '700',
     textAlign: 'center',
   },
   confirmExitWrap: {

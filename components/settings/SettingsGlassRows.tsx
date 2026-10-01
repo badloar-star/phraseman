@@ -38,7 +38,7 @@ export function SettingsGlassEyebrow({ title, glass }: { title: string; glass: S
   return (
     <Text
       accessibilityRole="header"
-      style={{ color: glass.secondary, fontSize: 11, lineHeight: 14, fontWeight: '700', letterSpacing: 1.7, marginTop: 24, marginHorizontal: 4, marginBottom: 10 }}
+      style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, fontWeight: '700', letterSpacing: 1.7, marginTop: 24, marginHorizontal: 4, marginBottom: 10 }}
     >
       {title}
     </Text>
@@ -111,7 +111,7 @@ export function SettingsGlassRow({ glass, testID, title, sub, value, icon, leadi
       </View>
       {right ?? (
         <>
-          {value ? <Text style={{ color: glass.secondary, fontSize: 14, lineHeight: 19, textAlign: 'right', flexShrink: 1, maxWidth: '45%' }}>{value}</Text> : null}
+          {value ? <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, textAlign: 'right', flexShrink: 1, maxWidth: '45%' }}>{value}</Text> : null}
           {onPress ? <Ionicons name="chevron-forward" size={18} color={glass.secondary} /> : null}
         </>
       )}

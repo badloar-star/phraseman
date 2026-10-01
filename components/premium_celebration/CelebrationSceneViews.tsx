@@ -605,7 +605,7 @@ const styles = StyleSheet.create({
     position: 'absolute', top: -6, paddingHorizontal: 9, paddingVertical: 3,
     borderRadius: 9, backgroundColor: C.capBg,
   },
-  gaugeCapText: { color: C.capText, fontSize: 11.5, fontWeight: '800', letterSpacing: 0.4 },
+  gaugeCapText: { color: C.capText, fontSize: 13, fontWeight: '700', letterSpacing: 0.4 },
   gaugeInf: { position: 'absolute', top: -10 },
   gaugeInfText: { fontSize: 22, fontWeight: '900' },
 
@@ -622,7 +622,7 @@ const styles = StyleSheet.create({
   bubble: { maxWidth: '84%', paddingHorizontal: 14, paddingVertical: 11, borderRadius: 17 },
   bubbleMe: { alignSelf: 'flex-end', borderBottomRightRadius: 6 },
   bubbleAi: { alignSelf: 'flex-start', borderBottomLeftRadius: 6 },
-  bubbleText: { fontSize: 13.5, fontWeight: '600', lineHeight: 18 },
+  bubbleText: { fontSize: 13, fontWeight: '700', lineHeight: 18 },
 
   wave: { flexDirection: 'row', alignItems: 'center', gap: 5, height: 120 },
   waveBar: { width: 6, borderRadius: 3 },
@@ -658,7 +658,7 @@ const styles = StyleSheet.create({
 
   streakRow: { flexDirection: 'row', gap: 8, alignItems: 'flex-end' },
   streakDay: { width: 31, height: 31, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
-  streakDayText: { fontSize: 12.5, fontWeight: '800' },
+  streakDayText: { fontSize: 13, fontWeight: '700' },
   shieldDrop: { position: 'absolute' },
 
   auraStage: { width: 170, height: 170, alignItems: 'center', justifyContent: 'center' },

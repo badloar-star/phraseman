@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   body: {
-    fontSize: 15,
+    fontSize: 16,
     lineHeight: 22,
     fontWeight: '400',
     textAlign: 'center',
@@ -284,8 +284,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   secondaryBtnText: {
-    fontSize: 15,
-    lineHeight: 21,
+    fontSize: 16,
+    lineHeight: 22,
     fontWeight: '700',
   },
 });

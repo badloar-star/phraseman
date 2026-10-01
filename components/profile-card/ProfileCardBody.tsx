@@ -139,5 +139,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.05)',
     borderWidth: 1, borderColor: 'rgba(255,255,255,0.18)', // guard-ok: .vz-lock hairline из макета
   },
-  lockText: { color: 'rgba(255,255,255,0.72)', fontSize: 14, fontWeight: '600', flexShrink: 1 },
+  lockText: { color: 'rgba(255,255,255,0.72)', fontSize: 13, fontWeight: '700', flexShrink: 1 },
 });

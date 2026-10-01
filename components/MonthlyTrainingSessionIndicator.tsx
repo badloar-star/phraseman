@@ -73,5 +73,5 @@ export default function MonthlyTrainingSessionIndicator({
 
 const styles = StyleSheet.create({
   wrap: { alignItems: 'center' },
-  text: { fontSize: 12, lineHeight: 17, fontWeight: '800', textAlign: 'center' },
+  text: { fontSize: 13, lineHeight: 18, fontWeight: '700', textAlign: 'center' },
 });

@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   twoLine: { flexShrink: 1, minWidth: 0, alignItems: 'flex-start', gap: 4 },
-  twoTitle: { fontSize: 15, lineHeight: 18, fontWeight: '800' },
+  twoTitle: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
   twoSubRow: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   twoSub: { fontSize: 13, lineHeight: 16, fontWeight: '700', fontVariant: ['tabular-nums'] },
   badge: { height: 30, paddingHorizontal: 12, justifyContent: 'center', overflow: 'hidden' },
@@ -131,5 +131,5 @@ const styles = StyleSheet.create({
     gap: 8,
     alignSelf: 'center',
   },
-  rankText: { fontSize: 15, fontWeight: '700' },
+  rankText: { fontSize: 16, fontWeight: '700' },
 });

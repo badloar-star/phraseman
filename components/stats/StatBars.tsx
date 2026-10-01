@@ -348,9 +348,9 @@ export function StatBars({
 const styles = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'flex-end', gap: ROW_GAP, paddingHorizontal: 2 },
   col: { flex: 1, alignItems: 'center', gap: 5 },
-  topLabel: { fontSize: 9, fontWeight: '800' },
+  topLabel: { fontSize: 13, fontWeight: '700' },
   bottomWrap: { alignItems: 'center' },
-  bottomLabel: { fontSize: 10 },
+  bottomLabel: { fontSize: 13 },
   todayDot: { width: 4, height: 4, borderRadius: 2, marginTop: 3 },
   bubbleZone: { height: BUBBLE_ZONE_H, justifyContent: 'flex-end' },
   bubble: {
@@ -365,7 +365,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bubbleValue: { fontSize: 13, fontWeight: '800', fontVariant: ['tabular-nums'] },
-  bubbleCaption: { fontSize: 10, fontWeight: '700', marginTop: 1 },
+  bubbleCaption: { fontSize: 13, fontWeight: '700', marginTop: 1 },
 });
 
 export default StatBars;

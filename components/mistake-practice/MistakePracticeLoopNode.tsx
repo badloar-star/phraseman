@@ -65,5 +65,5 @@ const styles = StyleSheet.create({
   copy: { flex: 1 },
   title: { fontWeight: '700' },
   plus: { minHeight: 30, borderRadius: 12, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'center' },
-  plusText: { fontWeight: '700', fontSize: 12 },
+  plusText: { fontWeight: '700', fontSize: 13 },
 });

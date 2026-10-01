@@ -111,8 +111,8 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   label: {
-    fontSize: 17,
-    fontWeight: '800',
+    fontSize: 16,
+    fontWeight: '700',
     letterSpacing: 0.3,
   },
 });

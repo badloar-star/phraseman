@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
   hero: { height: HERO_HEIGHT, marginTop: 14, borderRadius: 28, overflow: 'hidden' },
   heroBadge: { position: 'absolute', left: 14, top: 14, zIndex: 12 },
   heroCoin: { position: 'absolute', width: 118, height: 118 },
-  heroName: { position: 'absolute', left: 0, right: 0, bottom: 14, textAlign: 'center', color: '#FFFFFF', fontSize: 18, fontWeight: '800' },
+  heroName: { position: 'absolute', left: 0, right: 0, bottom: 14, textAlign: 'center', color: '#FFFFFF', fontSize: 16, fontWeight: '700' },
   heroEdge: { borderRadius: 28 }, // guard-ok: кант превью = кант визитки (1–1,5pt, полупрозрачный)
   swatches: { flexDirection: 'row', gap: 10, marginTop: 14, justifyContent: 'space-between' },
   swatchOuter: { flex: 1, maxWidth: 60, aspectRatio: 1 },
@@ -191,10 +191,10 @@ const styles = StyleSheet.create({
   swatchRingOn: { borderWidth: 2, borderColor: '#FFFFFF', padding: 2 }, // guard-ok: выбранный стиль (outline в макете)
   swatch: { flex: 1, borderRadius: 16, overflow: 'hidden' },
   caption: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 12, gap: 10 },
-  captionName: { fontSize: 14, color: 'rgba(255,255,255,0.72)', flexShrink: 1 },
+  captionName: { fontSize: 13, color: 'rgba(255,255,255,0.72)', flexShrink: 1 },
   captionRight: { flexDirection: 'row', alignItems: 'center', gap: 5 },
-  captionMuted: { fontSize: 14, color: 'rgba(255,255,255,0.72)' },
-  captionValue: { fontSize: 14, fontWeight: '700', color: '#FFFFFF', fontVariant: ['tabular-nums'] },
+  captionMuted: { fontSize: 13, color: 'rgba(255,255,255,0.72)' },
+  captionValue: { fontSize: 13, fontWeight: '700', color: '#FFFFFF', fontVariant: ['tabular-nums'] },
   warn: { color: '#FFB547' },
   ctaOuter: { marginTop: 14 },
   ctaText: { fontSize: 16, fontWeight: '800' },

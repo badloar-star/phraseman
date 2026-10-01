@@ -114,7 +114,7 @@ export function ResultsGlassCountPill({
     >
       <Text
         maxFontSizeMultiplier={1.3}
-        style={{ color: glass.text, fontSize: 14, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] }}
+        style={{ color: glass.text, fontSize: 13, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] }}
       >
         {label}
       </Text>
@@ -148,7 +148,7 @@ export function ResultsGlassEmptyState({
       </Text>
       <Text
         maxFontSizeMultiplier={1.3}
-        style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, textAlign: 'center' }}
+        style={{ color: glass.secondary, fontSize: 16, lineHeight: 22, textAlign: 'center' }}
       >
         {body}
       </Text>

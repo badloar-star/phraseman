@@ -268,7 +268,7 @@ export default function MaintenanceGate() {
           style={{ flex: 1, maxHeight: 64 }}
           contentContainerStyle={{ justifyContent: 'center', minHeight: 46, paddingVertical: 4 }}
         >
-          <Text style={{ color: glass.text, fontSize: 14, lineHeight: 20, fontWeight: '700', textAlign: 'center' }}>
+          <Text style={{ color: glass.text, fontSize: 13, lineHeight: 18, fontWeight: '700', textAlign: 'center' }}>
             {message}
           </Text>
         </ScrollView>

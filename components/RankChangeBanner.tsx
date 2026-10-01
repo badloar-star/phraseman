@@ -151,15 +151,15 @@ function RankChangeHybridCard({
               editable={false}
               pointerEvents="none"
               animatedProps={numAnimatedProps as never}
-              style={{ color: accent, fontSize: 17, fontWeight: '700', minWidth: 44 }}
+              style={{ color: accent, fontSize: 16, fontWeight: '700', minWidth: 44 }}
             />
-            <Text style={{ color: accent, fontSize: 15, fontWeight: '700', flexShrink: 1 }}>
+            <Text style={{ color: accent, fontSize: 16, fontWeight: '700', flexShrink: 1 }}>
               {title}
             </Text>
           </View>
           <Ionicons name="close" size={16} color={textColor} style={{ opacity: 0.5 }} />
         </View>
-        <Text style={{ color: textColor, fontSize: 12.5, marginTop: 4, fontWeight: '400', opacity: 0.82 }} /* guard-ok: не расшифровка заголовка — основной текст баннера (кого обогнал), роль как message in ActionToast */>
+        <Text style={{ color: textColor, fontSize: 13, marginTop: 4, fontWeight: '400', opacity: 0.82 }} /* guard-ok: не расшифровка заголовка — основной текст баннера (кого обогнал), роль как message in ActionToast */>
           {subtitle}
         </Text>
       </Pressable>

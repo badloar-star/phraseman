@@ -250,6 +250,51 @@ function applyOverrides(repoRoot: string, files: Partial<Record<DialogueV2UiCopy
   }
 }
 
+/**
+ * зачем (координатор 01.10, «Дизайн» на эмуляторе): брифинг повторял название сцены
+ * («Задача: Поздороваться после знакомства.») — заглавная посреди фразы и дубль заголовка,
+ * который и так стоит над брифингом. Ledger и кандидат не трогаем (квитанция одобрения):
+ * при сборке показа убираем предложение, содержащее название, на всех языках одним правилом.
+ * Если названия в брифинге нет или после удаления пусто — брифинг остаётся как есть.
+ */
+function dropTitleSentenceFromBriefings(files: Partial<Record<DialogueV2UiCopyLang, DialogueV2UiCopyFile>>): void {
+  const split = (text: string): string[] => text.split(/(?<=[.!?。])\s+/u);
+  const labelOf = (sentence: string): string | null => {
+    const colon = sentence.indexOf(':');
+    return colon > 0 && colon <= 24 ? sentence.slice(0, colon + 1).trim().toLocaleLowerCase() : null;
+  };
+  for (const uiLang of DIALOGUE_V2_UI_COPY_LANGS) {
+    const file = files[uiLang];
+    if (!file) continue;
+    // 1) предложение с названием сцены; запоминаем его метку («Задача:», «Завдання:»…).
+    const labels = new Set<string>();
+    for (const scenario of Object.values(file.scenarios)) {
+      const title = scenario.title.trim().toLocaleLowerCase();
+      for (const sentence of split(scenario.briefing)) {
+        if (title && sentence.toLocaleLowerCase().includes(title)) { const label = labelOf(sentence); if (label) labels.add(label); }
+      }
+    }
+    // 2) убираем предложение с названием ИЛИ с той же меткой (там название записано не дословно).
+    let changed = 0;
+    const scenarios: Record<string, DialogueV2UiCopyScenario> = {};
+    for (const [id, scenario] of Object.entries(file.scenarios)) {
+      const title = scenario.title.trim().toLocaleLowerCase();
+      const sentences = split(scenario.briefing);
+      const kept = sentences.filter((sentence) => {
+        const lower = sentence.toLocaleLowerCase();
+        const label = labelOf(sentence);
+        return !((title && lower.includes(title)) || (label !== null && labels.has(label)));
+      });
+      const next = kept.join(' ').trim();
+      if (kept.length < sentences.length && next) { changed += 1; scenarios[id] = Object.freeze({ ...scenario, briefing: next }); }
+      else scenarios[id] = scenario;
+    }
+    process.stdout.write(`${LOG} briefing:title_sentence_dropped ${uiLang} ${changed}/${Object.keys(file.scenarios).length} labels=${[...labels].join('|') || '-'}
+`);
+    files[uiLang] = Object.freeze({ ...file, scenarios: Object.freeze(scenarios) });
+  }
+}
+
 // ── Автопроверки (решение координатора Q19 (а)) ─────────────────────────────
 
 const CYRILLIC_RE = /[Ѐ-ӿ]/u;
@@ -342,6 +387,7 @@ export function buildDialogueV2UiCopy(repoRoot: string): DialogueV2UiCopyBuild {
     files[uiLang] = fromTranslation(repoRoot, uiLang, skeleton);
   }
   applyOverrides(repoRoot, files);
+  dropTitleSentenceFromBriefings(files);
   const issues = DIALOGUE_V2_UI_COPY_LANGS.flatMap((uiLang) => {
     const file = files[uiLang];
     return file ? checkDialogueV2UiCopy(file, skeleton) : [];

@@ -1,6 +1,6 @@
 // ─── «Вместе»: идентичность отправителя для callables ────────────────────────
-// зачем: серверные callables (friendsTogetherClaimLevel / friendsNudge)
-// требуют stableId — как и friend_gifts. Аудит 2026-08-17 нашёл,
+// зачем: серверный callable friendsNudge
+// требует stableId — как и friend_gifts (удалены). Аудит 2026-08-17 нашёл,
 // что клиентские обёртки его не передавали, и сервер отклонял бы каждый вызов
 // с invalid-argument. Здесь один помощник по образцу prepareFriendGiftSender:
 // canonical stableId + гарантированный auth-link + отображаемое имя для пуша.

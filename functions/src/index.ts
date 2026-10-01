@@ -1041,12 +1041,9 @@ export { referralClaimSpin } from "./referral_claim_spin";
 export { friendsGetProfiles } from "./friends_profiles";
 
 // ── «Вместе» (docs/plans/2026-08-16-friends-together-implementation.ru.md) ──
-// Веха уровня дружбы и «Позвать» — вкладка Друзья, за флагом
+// «Позвать» — вкладка Друзья, за флагом
 // friends_together_enabled на клиенте.
-export {
-  friendsTogetherClaimLevel,
-  friendsNudge,
-} from "./friends_together";
+export { friendsNudge } from "./friends_together";
 export { publicProfileProjectMine } from "./public_profile_projection";
 // Визитка «Про» (2026-09-30): свой текст до 80 символов — только через сервер.
 export { profileCardBioSetMine } from "./profile_card_bio";

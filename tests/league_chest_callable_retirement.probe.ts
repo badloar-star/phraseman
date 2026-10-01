@@ -9,10 +9,10 @@ const friendsServer = readFileSync(path.resolve(__dirname, '..', 'functions/src/
 const functionsIndex = readFileSync(path.resolve(__dirname, '..', 'functions/src/index.ts'), 'utf8');
 const friendsScreen = readFileSync(path.resolve(__dirname, '..', 'app/(tabs)/friends.tsx'), 'utf8');
 const homeScreen = readFileSync(path.resolve(__dirname, '..', 'app/(tabs)/home.tsx'), 'utf8');
-const claimsClient = readFileSync(path.resolve(__dirname, '..', 'app/friends_together/claims_client.ts'), 'utf8');
 assert.ok(!/export const friendsClaimWeeklyChest\b/.test(friendsServer), 'retired friends chest callable remains exported');
 assert.ok(!/\bfriendsClaimWeeklyChest\b/.test(functionsIndex), 'retired friends chest remains in deploy entry');
 assert.ok(!/\bFriendsChestCard\b|\bclaimWeeklyChest\b/.test(friendsScreen), 'retired friends chest remains in client screen');
 assert.ok(!/\bhomeLeagueChest\b|\bgetLeagueChestGoal\b/.test(homeScreen), 'retired league chest remains on Home');
-assert.ok(!/\bclaimWeeklyChest\b/.test(claimsClient), 'retired friends chest callable remains in client bundle');
+// зачем (PM-170, D78): весь клиент наград «Вместе» удалён, а не оставлен заглушкой.
+assert.ok(!existsSync(path.resolve(__dirname, '..', 'app/friends_together/claims_client.ts')), 'retired friends level-claim client remains');
 console.log('league and friends chest entry points retired');

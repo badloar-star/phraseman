@@ -2529,13 +2529,6 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    // Клеймы сундука недели «Вместе» — читает только владелец, пишет только сервер
-    // (friendsClaimWeeklyChest, транзакционно, идемпотентно по weekKey=docId).
-    match /users/{userId}/friends_chest_claims/{weekKey} {
-      allow read: if canonicalUserMatchesAuth(userId);
-      allow write: if false;
-    }
-
     // «Позвать» — дневные лимиты/receipts обеих сторон в доке владельца (friendsNudge).
     // Читает только владелец (та же модель, что friend_activity_like_daily_limits выше).
     match /users/{userId}/friend_nudges/{dayKey} {

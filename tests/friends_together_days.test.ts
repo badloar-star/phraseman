@@ -1,9 +1,6 @@
 import {
-  BONUS_PERCENT_BY_LEVEL,
   LEVEL_THRESHOLDS,
   MAX_WINDOW_DAYS,
-  STAR_REWARD_BY_LEVEL,
-  bonusPercentForLevel,
   daysTogether,
   decodeActiveDays,
   encodeActiveDays,
@@ -12,9 +9,6 @@ import {
   markActiveDay,
   mergeActiveDays,
   nextThreshold,
-  starRewardForLevel,
-  starRewardForLevelRange,
-  friendGiftCostForLevel,
   type ActiveDays,
 } from '../app/friends_together/together_days';
 
@@ -41,20 +35,6 @@ describe('together_days codec', () => {
     const encoded = encodeActiveDays([anchor, farDate], anchor);
     expect(encoded.bits.length).toBeLessThanOrEqual(MAX_WINDOW_DAYS);
     expect(decodeActiveDays(encoded).has(farDate)).toBe(false);
-  });
-});
-
-describe('Together milestone and gift perks', () => {
-  it('keeps every unclaimed milestone reward when several levels are crossed', () => {
-    expect(starRewardForLevelRange(1, 5)).toBe(85);
-    expect(starRewardForLevelRange(3, 5)).toBe(70);
-    expect(starRewardForLevelRange(5, 5)).toBe(0);
-  });
-
-  it('applies the 25% friend-gift discount from level 3', () => {
-    expect(friendGiftCostForLevel(8, 2)).toBe(8);
-    expect(friendGiftCostForLevel(8, 3)).toBe(6);
-    expect(friendGiftCostForLevel(30, 5)).toBe(22);
   });
 });
 
@@ -215,18 +195,3 @@ describe('levelForDays / nextThreshold', () => {
   });
 });
 
-describe('bonusPercentForLevel / starRewardForLevel', () => {
-  it('matches the documented tables', () => {
-    expect(BONUS_PERCENT_BY_LEVEL).toEqual([0, 0, 0, 0, 0, 0]);
-    expect(STAR_REWARD_BY_LEVEL).toEqual([0, 0, 5, 10, 20, 50]);
-    expect(bonusPercentForLevel(1)).toBe(0);
-    expect(bonusPercentForLevel(2)).toBe(0);
-    expect(bonusPercentForLevel(3)).toBe(0);
-    expect(bonusPercentForLevel(4)).toBe(0);
-    expect(bonusPercentForLevel(5)).toBe(0);
-    expect(starRewardForLevel(2)).toBe(5);
-    expect(starRewardForLevel(3)).toBe(10);
-    expect(starRewardForLevel(4)).toBe(20);
-    expect(starRewardForLevel(5)).toBe(50);
-  });
-});

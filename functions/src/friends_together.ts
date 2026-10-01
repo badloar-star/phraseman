@@ -2,11 +2,10 @@
  * «Вместе» — сервер (docs/plans/2026-08-16-friends-together-implementation.ru.md §3).
  *
  * Callable-обёртки вокруг чистых функций friends_together_core.ts:
- *  - friendsTogetherClaimLevel — retired compatibility callable (always fails closed).
  *  - friendsNudge — «Позвать» (пуш другу, дневные лимиты, тихие часы).
  *  - applyReferralPairBonus — хук из referral.ts: пара стартует с bonusDays=3.
  *
- * Legacy claim/reward issuance is intentionally absent; only the notification nudge path remains active.
+ * Награды за уровни дружбы (PM-170, D78) удалены целиком, а не оставлены заглушкой: остался только «Позвать».
  */
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
@@ -104,13 +103,6 @@ async function resolveConfig(db: admin.firestore.Firestore): Promise<FriendsToge
     return { ...FRIENDS_TOGETHER_DEFAULTS };
   }
 }
-
-/* -------------------------------- friendsTogetherClaimLevel ------------------------------- */
-export const friendsTogetherClaimLevel = onCall(CALLABLE_BASE, async (request) => {
-  // 2.0 policy: claim state is closed locally by the client; this legacy
-  // callable remains exported only so older bundles fail closed safely.
-  throw new HttpsError('failed-precondition', 'friends_together_claim_retired');
-});
 
 /* -------------------------------- friendsNudge ------------------------------- */
 

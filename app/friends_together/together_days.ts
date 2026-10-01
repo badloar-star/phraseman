@@ -150,10 +150,6 @@ export function daysTogether(a: ActiveDays | null | undefined, b: ActiveDays | n
 // ── Уровни дружбы ─────────────────────────────────────────────────────────
 export const LEVEL_THRESHOLDS: readonly number[] = [0, 3, 10, 30, 100];
 export const LEVEL_NAMES: readonly string[] = ['', 'Знакомые', 'Приятели', 'Друзья', 'Близкие', 'Лучшие'];
-/** Friendship milestones now grant stars only. */
-export const BONUS_PERCENT_BY_LEVEL: readonly number[] = [0, 0, 0, 0, 0, 0];
-/** Звёзды за взятие вехи уровня (индекс = level). */
-export const STAR_REWARD_BY_LEVEL: readonly number[] = [0, 0, 5, 10, 20, 50];
 
 /** Уровень дружбы 1..5 по числу дней вместе. */
 export function levelForDays(days: number, thresholds: readonly number[] = LEVEL_THRESHOLDS): number {
@@ -170,34 +166,6 @@ export function nextThreshold(level: number, thresholds: readonly number[] = LEV
   const idx = Math.max(1, Math.min(thresholds.length, Math.floor(level)));
   if (idx >= thresholds.length) return null;
   return thresholds[idx];
-}
-
-/** Бонус к legacy reward (%) за уровень дружбы; уровень 1 (Знакомые) бонуса не даёт. */
-export function bonusPercentForLevel(level: number): number {
-  const idx = Math.max(0, Math.min(BONUS_PERCENT_BY_LEVEL.length - 1, Math.floor(level)));
-  return BONUS_PERCENT_BY_LEVEL[idx] ?? 0;
-}
-
-/** Звёзды за клейм вехи уровня. */
-export function starRewardForLevel(level: number): number {
-  const idx = Math.max(0, Math.min(STAR_REWARD_BY_LEVEL.length - 1, Math.floor(level)));
-  return STAR_REWARD_BY_LEVEL[idx] ?? 0;
-}
-
-/** Сумма всех ещё не забранных звёзд при скачке через несколько уровней. */
-export function starRewardForLevelRange(claimedLevel: number, targetLevel: number): number {
-  const from = Math.max(1, Math.min(LEVEL_THRESHOLDS.length, Math.floor(claimedLevel) || 1));
-  const to = Math.max(1, Math.min(LEVEL_THRESHOLDS.length, Math.floor(targetLevel) || 1));
-  if (to <= from) return 0;
-  let total = 0;
-  for (let level = from + 1; level <= to; level += 1) total += starRewardForLevel(level);
-  return total;
-}
-
-/** L3 «Друзья»+: целочисленная цена подарка на 25% ниже. */
-export function friendGiftCostForLevel(baseCost: number, level: number): number {
-  const cost = Number.isFinite(baseCost) ? Math.max(1, Math.floor(baseCost)) : 1;
-  return level >= 3 ? Math.max(1, Math.floor(cost * 0.75)) : cost;
 }
 
 /* expo-router: не показываем как маршрут при авто-обнаружении файлов в app/ */

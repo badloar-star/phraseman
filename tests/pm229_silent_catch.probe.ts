@@ -96,7 +96,7 @@ const BASELINE: Record<string, number> = {
   'app/friends_tab_swr_warm.ts': 1,
   'app/friends_together/nudge_client.ts': 1,
   'app/friends_together/sender_identity.ts': 3,
-  'app/friends_together/together_store.ts': 7,
+  'app/friends_together/together_store.ts': 3, // PM-170 (D78): 7 → 3 — удалён клиент наград «Вместе» (markFriendLevelClaimedLocally и запись бонуса)
   'app/gift_access_cloud.ts': 1,
   'app/gift_account_storage.ts': 1,
   'app/global_broadcast_modal.ts': 7,

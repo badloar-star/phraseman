@@ -5,12 +5,9 @@ import {
   daysTogether,
   levelForDays,
   nextThreshold,
-  bonusPercentForLevel,
-  starsForLevel,
   isQuietHours,
   nudgeLimitBlockReason,
   friendsTogetherConfigFromNumbers,
-  starsForLevelRange,
   shiftDayKey,
   FRIENDSHIP_LEVEL_THRESHOLDS,
   MAX_ACTIVE_DAYS_WINDOW,
@@ -122,41 +119,11 @@ describe('friends_together_core: levels', () => {
     expect(nextThreshold(100)).toBeNull();
   });
 
-  test('legacy XP bonus is retired for all friendship levels', () => {
-    expect(bonusPercentForLevel(1)).toBe(0);
-    expect(bonusPercentForLevel(2)).toBe(0);
-    expect(bonusPercentForLevel(3)).toBe(0);
-    expect(bonusPercentForLevel(4)).toBe(0);
-    expect(bonusPercentForLevel(5)).toBe(0);
-  });
-
-  test('starsForLevel: 0 for level 1, then 5/10/20/50', () => {
-    expect(starsForLevel(1)).toBe(0);
-    expect(starsForLevel(2)).toBe(5);
-    expect(starsForLevel(3)).toBe(10);
-    expect(starsForLevel(4)).toBe(20);
-    expect(starsForLevel(5)).toBe(50);
-    expect(starsForLevel(6)).toBe(0); // out of range
-    expect(starsForLevel(0)).toBe(0);
-  });
-
   test('custom thresholds array changes level mapping', () => {
     const custom = [0, 1, 2];
     expect(levelForDays(1, custom)).toBe(2);
     expect(levelForDays(2, custom)).toBe(3);
     expect(nextThreshold(0, custom)).toBe(1);
-  });
-});
-
-describe('friends_together_core: cumulative milestone rewards', () => {
-  test('awards every unclaimed milestone when a pair jumps several levels', () => {
-    expect(starsForLevelRange(1, 5)).toBe(5 + 10 + 20 + 50);
-    expect(starsForLevelRange(3, 5)).toBe(20 + 50);
-  });
-
-  test('does not award an already claimed or lower level again', () => {
-    expect(starsForLevelRange(5, 5)).toBe(0);
-    expect(starsForLevelRange(5, 3)).toBe(0);
   });
 });
 

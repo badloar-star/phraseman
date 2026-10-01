@@ -1,8 +1,8 @@
 /**
  * «Вместе» — стор пар друзей. Считает per-friend состояние (дни/уровень/сегодня
- * общий день/забранный уровень) из батча профилей друзей + своих активных дней +
+ * общий день) из батча профилей друзей + своих активных дней +
  * серверных `friend_pairs`, кэширует снапшот в AsyncStorage для мгновенного первого
- * кадра, обновляет только по явному вызову (открытие вкладки Друзья / после клейма) —
+ * кадра, обновляет только по явному вызову (открытие вкладки Друзья) —
  * НИКАКИХ листенеров и таймеров (Firebase-экономия и локальный-first контракт).
  *
  * Источник: docs/plans/2026-08-16-friends-together-implementation.ru.md §4, §6.
@@ -14,7 +14,6 @@ import { getCanonicalUserId } from '../user_id_policy';
 import type { FriendProfileBatchRecord } from '../friends_profiles_batch';
 import { getFriendsTogetherConfig } from './together_config';
 import {
-  bonusPercentForLevel,
   daysTogether,
   decodeActiveDays,
   hasCommonDay,
@@ -24,7 +23,6 @@ import {
 import { DebugLogger } from '../debug-logger';
 
 const SNAPSHOT_KEY = 'friends_together_snapshot_v1';
-const BONUS_KEY = 'friends_together_bonus_v1';
 const PAIRS_CACHE_KEY = 'friends_together_pairs_cache_v1';
 const PAIRS_CACHE_TTL_MS = 6 * 60 * 60 * 1000; // владелец: чужие цифры не чаще раза в 6ч
 const PAIRS_CACHE_SCHEMA_VERSION = 2;
@@ -37,8 +35,6 @@ export type FriendPairServerState = Readonly<{
   friendUid: string;
   /** Реферальный бонус дней, начисленный сервером (friend_pairs.bonusDays). */
   bonusDays: number;
-  /** Уровень, который МЫ уже забрали звёздами за эту пару (friend_pairs.claimedLevel[me]). */
-  claimedLevel: number;
 }>;
 
 export type FriendTogetherPairState = Readonly<{
@@ -46,8 +42,6 @@ export type FriendTogetherPairState = Readonly<{
   days: number;
   level: number;
   todayCommon: boolean;
-  claimedLevel: number;
-  bonusPercent: number;
 }>;
 
 export type FriendsTogetherSnapshot = Readonly<{
@@ -59,8 +53,11 @@ export type FriendsTogetherSnapshot = Readonly<{
 type PairsCachePayload = Readonly<{
   schemaVersion: typeof PAIRS_CACHE_SCHEMA_VERSION;
   fetchedAtMs: number;
-  pairs: Record<string, { bonusDays: number; claimedLevel: number }>;
+  pairs: Record<string, { bonusDays: number }>;
 }>;
+
+// зачем (PM-170, D78/D148): награды за уровни дружбы (звёзды, «забранный уровень», процентный бонус) удалены
+// целиком — остались только дни вместе, уровень и «сегодня общий день». Старые кэши с лишними полями читаются без ошибок.
 
 // ── Firestore access (lazy require — тот же паттерн, что firestore_friend_requests.ts) ──
 const getFirestore = () => {
@@ -92,7 +89,6 @@ function parsePairsCache(raw: string | null): PairsCachePayload | null {
       if (!isRecord(v)) continue;
       pairs[uid] = {
         bonusDays: Number.isFinite(v.bonusDays) ? Math.max(0, Math.floor(Number(v.bonusDays))) : 0,
-        claimedLevel: Number.isFinite(v.claimedLevel) ? Math.max(0, Math.floor(Number(v.claimedLevel))) : 0,
       };
     }
     return { schemaVersion: PAIRS_CACHE_SCHEMA_VERSION, fetchedAtMs: parsed.fetchedAtMs, pairs };
@@ -113,7 +109,7 @@ export async function loadFriendPairsServerState(
   const uniqueUids = [...new Set(friendUids.filter(Boolean))];
   const out: Record<string, FriendPairServerState> = {};
   for (const uid of uniqueUids) {
-    out[uid] = { friendUid: uid, bonusDays: 0, claimedLevel: 0 };
+    out[uid] = { friendUid: uid, bonusDays: 0 };
   }
   if (uniqueUids.length === 0) return out;
 
@@ -132,7 +128,6 @@ export async function loadFriendPairsServerState(
         out[uid] = {
           friendUid: uid,
           bonusDays: hit.bonusDays,
-          claimedLevel: hit.claimedLevel,
         };
       }
     }
@@ -157,14 +152,10 @@ export async function loadFriendPairsServerState(
       const uids = Array.isArray(data.uids) ? (data.uids as unknown[]).map(String) : [];
       const otherUid = uids.find((u) => u !== myUid);
       if (!otherUid) return;
-      const claimedLevelMap = isRecord(data.claimedLevel) ? data.claimedLevel : {};
       const bonusDays = Number.isFinite(data.bonusDays) ? Math.max(0, Math.floor(Number(data.bonusDays))) : 0;
-      const claimedLevel = Number.isFinite(claimedLevelMap[myUid])
-        ? Math.max(0, Math.floor(Number(claimedLevelMap[myUid])))
-        : 0;
-      fetchedPairs[otherUid] = { bonusDays, claimedLevel };
+      fetchedPairs[otherUid] = { bonusDays };
       if (uniqueUids.includes(otherUid)) {
-        out[otherUid] = { friendUid: otherUid, bonusDays, claimedLevel };
+        out[otherUid] = { friendUid: otherUid, bonusDays };
       }
     });
     await AsyncStorage.setItem(pairsCacheKey, JSON.stringify({
@@ -186,41 +177,6 @@ let _memorySnapshotUid: string | null = null;
 
 export function getFriendsTogetherSnapshot(): FriendsTogetherSnapshot | null {
   return _memorySnapshot;
-}
-
-/**
- * Сразу после успешного серверного клейма обновляет память И оба дисковых кэша.
- * Иначе после перезапуска старый 6-часовой pair-cache снова показывал модалку уже
- * забранного уровня.
- */
-export async function markFriendLevelClaimedLocally(friendUid: string, level: number): Promise<void> {
-  const myUid = await getCanonicalUserId();
-  if (!myUid) return;
-  const claimedLevel = Math.max(1, Math.floor(level));
-  const pair = _memorySnapshot?.pairs[friendUid];
-  if (_memorySnapshot && pair) {
-    _memorySnapshot = {
-      ..._memorySnapshot,
-      pairs: {
-        ..._memorySnapshot.pairs,
-        [friendUid]: { ...pair, claimedLevel: Math.max(pair.claimedLevel, claimedLevel) },
-      },
-    };
-    await AsyncStorage.setItem(scopedKey(SNAPSHOT_KEY, myUid), JSON.stringify(_memorySnapshot)).catch(() => {});
-  }
-
-  const pairsCacheKey = scopedKey(PAIRS_CACHE_KEY, myUid);
-  const cached = parsePairsCache(await AsyncStorage.getItem(pairsCacheKey).catch(() => null));
-  const cachedPair = cached?.pairs[friendUid];
-  if (cached && cachedPair) {
-    await AsyncStorage.setItem(pairsCacheKey, JSON.stringify({
-      ...cached,
-      pairs: {
-        ...cached.pairs,
-        [friendUid]: { ...cachedPair, claimedLevel: Math.max(cachedPair.claimedLevel, claimedLevel) },
-      },
-    })).catch(() => {});
-  }
 }
 
 /** Прогреть снапшот из AsyncStorage (вызывать рядом со стартовым прогревом друзей). */
@@ -256,8 +212,7 @@ async function readMyActiveDays(): Promise<ActiveDays | null> {
 
 /**
  * Пересчитать состояние пар из батча профилей друзей (см. friends_profiles_batch.ts)
- * + серверных friend_pairs. Пишет снапшот в AsyncStorage и friends_together_bonus_v1
- * (максимальный legacy reward-бонус среди друзей уровня ≥2 с общим днём сегодня).
+ * + серверных friend_pairs. Пишет снапшот в AsyncStorage.
  * НЕ вызывает сеть сама по себе кроме loadFriendPairsServerState (кэш 6ч).
  */
 export async function refreshFriendsTogether(
@@ -271,29 +226,21 @@ export async function refreshFriendsTogether(
   const pairsServerState = await loadFriendPairsServerState(friendUids, { force: options.forcePairsRefresh });
 
   const pairs: Record<string, FriendTogetherPairState> = {};
-  let bestBonusPercent = 0;
 
   for (const profile of profiles) {
     if (!profile.uid) continue;
     const friendActiveDays = profile.activeDays ?? null;
-    const server = pairsServerState[profile.uid] ?? { friendUid: profile.uid, bonusDays: 0, claimedLevel: 0 };
+    const server = pairsServerState[profile.uid] ?? { friendUid: profile.uid, bonusDays: 0 };
     const days = daysTogether(myActiveDays, friendActiveDays, server.bonusDays);
     const level = levelForDays(days, getFriendsTogetherConfig().levelThresholds);
     const todayCommon = hasCommonDay(myActiveDays, friendActiveDays, myDayKey);
-    const bonusPercent = bonusPercentForLevel(level);
 
     pairs[profile.uid] = {
       friendUid: profile.uid,
       days,
       level,
       todayCommon,
-      claimedLevel: server.claimedLevel,
-      bonusPercent,
     };
-
-    if (todayCommon && level >= 2 && bonusPercent > bestBonusPercent) {
-      bestBonusPercent = bonusPercent;
-    }
   }
 
   const snapshot: FriendsTogetherSnapshot = { updatedAtMs: Date.now(), myDayKey, pairs };
@@ -301,10 +248,7 @@ export async function refreshFriendsTogether(
   _memorySnapshotUid = myUid;
 
   if (myUid) {
-    await Promise.all([
-      AsyncStorage.setItem(scopedKey(SNAPSHOT_KEY, myUid), JSON.stringify(snapshot)).catch(() => {}),
-      AsyncStorage.setItem(scopedKey(BONUS_KEY, myUid), JSON.stringify({ dayKey: myDayKey, percent: bestBonusPercent })).catch(() => {}),
-    ]);
+    await AsyncStorage.setItem(scopedKey(SNAPSHOT_KEY, myUid), JSON.stringify(snapshot)).catch(() => {});
   }
 
   return snapshot;

@@ -94,7 +94,6 @@ export function daysTogether(
 
 /** Пороги дней-вместе для уровней 1..5 (индекс = level-1). §1: Знакомые/Приятели/Друзья/Близкие/Лучшие. */
 export const FRIENDSHIP_LEVEL_THRESHOLDS: readonly number[] = [0, 3, 10, 30, 100];
-export const MAX_FRIENDSHIP_LEVEL = FRIENDSHIP_LEVEL_THRESHOLDS.length;
 
 /** Уровень дружбы по числу дней вместе (чистая функция, конфигурируемые пороги). */
 export function levelForDays(days: number, thresholds: readonly number[] = FRIENDSHIP_LEVEL_THRESHOLDS): number {
@@ -110,32 +109,6 @@ export function levelForDays(days: number, thresholds: readonly number[] = FRIEN
 export function nextThreshold(days: number, thresholds: readonly number[] = FRIENDSHIP_LEVEL_THRESHOLDS): number | null {
   const level = levelForDays(days, thresholds);
   return level >= thresholds.length ? null : (thresholds[level] ?? null);
-}
-
-/** Friendship milestones grant stars only. */
-const BONUS_PERCENT_BY_LEVEL: readonly number[] = [0, 0, 0, 0, 0];
-
-export function bonusPercentForLevel(level: number): number {
-  const idx = Math.max(1, Math.min(MAX_FRIENDSHIP_LEVEL, Math.floor(level) || 1)) - 1;
-  return BONUS_PERCENT_BY_LEVEL[idx] ?? 0;
-}
-
-/** Звёзды за веху уровня (клеймит каждый участник для себя). §0/§1: L2 5★ · L3 10★ · L4 20★ · L5 50★. */
-const LEVEL_STAR_REWARDS: readonly number[] = [0, 5, 10, 20, 50];
-
-export function starsForLevel(level: number): number {
-  if (level < 2 || level > MAX_FRIENDSHIP_LEVEL) return 0;
-  return LEVEL_STAR_REWARDS[level - 1] ?? 0;
-}
-
-/** Сумма всех ещё не забранных вех при скачке через несколько уровней. */
-export function starsForLevelRange(claimedLevel: number, targetLevel: number): number {
-  const from = Math.max(1, Math.min(MAX_FRIENDSHIP_LEVEL, Math.floor(claimedLevel) || 1));
-  const to = Math.max(1, Math.min(MAX_FRIENDSHIP_LEVEL, Math.floor(targetLevel) || 1));
-  if (to <= from) return 0;
-  let total = 0;
-  for (let level = from + 1; level <= to; level += 1) total += starsForLevel(level);
-  return total;
 }
 
 /* ------------------------------- quiet hours -------------------------------- */

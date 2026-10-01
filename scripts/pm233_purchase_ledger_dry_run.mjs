@@ -817,7 +817,6 @@ export const IGNORED = Object.freeze({
   'callable:adminIssueV2EpisodeVoiceReceipt': 'квитанция озвучки контента V2',
   'callable:dialogueV2FreeformPreparedBotVoiceResolve': 'озвучка реплики бота',
   'callable:jarvisTelegramApprovalWebhook': 'согласования Джарвиса в Telegram',
-  'callable:friendsTogetherClaimLevel': 'выключенная заглушка (всегда отказ), наград не выдаёт',
 });
 
 // ─── сканер (только чтение) ────────────────────────────────────────────────

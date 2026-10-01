@@ -216,7 +216,6 @@ describe('Economy Constitution — client authority is a permanent source contra
   test('Spin star persistence overlays unacked composites and accepts only newer server revisions', () => {
     const client = read('app/level_spin_star_grants.ts');
     const phoneStateEconomy = read('modules/phone-state/domains/economy.ts');
-    const friends = read('app/friends_together/claims_client.ts');
     const grants = read('app/level_spin_star_grants.ts');
     expect(client).toContain('unacknowledgedTotal(projection)');
     expect(client).toContain('seq > current.serverSeq');
@@ -233,7 +232,6 @@ describe('Economy Constitution — client authority is a permanent source contra
     expect(phoneStateEconomy).toContain('balanceAfter !== balanceBefore - 300');
     expect(grants).toContain('preparePaidLevelSpinRunePurchase({');
     expect(grants).toContain('[paidLevelSpinOutboxKey(owner), JSON.stringify(nextOutbox)]');
-    expect(friends).toContain('mergeLevelSpinServerStars(token');
     expect(grants).toContain('recoverAndHydrateLevelSpinStarGrants(token)');
   });
 });

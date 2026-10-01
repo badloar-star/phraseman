@@ -201,20 +201,6 @@ function reqId(prefix: string): string {
   return base.length >= 12 ? base : base.padEnd(12, '0');
 }
 
-async function claimLevel(overrides: Record<string, unknown> = {}) {
-  const { friendsTogetherClaimLevel } = require('./friends_together');
-  return friendsTogetherClaimLevel({
-    auth: { uid: 'auth-alice' },
-    data: {
-      stableId: 'alice',
-      friendUid: 'bob',
-      level: 2,
-      requestId: reqId('claim_level'),
-      ...overrides,
-    },
-  });
-}
-
 async function nudge(overrides: Record<string, unknown> = {}) {
   const { friendsNudge } = require('./friends_together');
   return friendsNudge({
@@ -253,15 +239,6 @@ afterEach(async () => {
   await Promise.resolve();
   global.fetch = originalFetch;
   jest.useRealTimers();
-});
-
-describe('friendsTogetherClaimLevel', () => {
-  test('fails closed after local retirement', async () => {
-    await expect(claimLevel()).rejects.toMatchObject({
-      code: 'failed-precondition',
-      message: 'friends_together_claim_retired',
-    });
-  });
 });
 
 describe('friendsNudge', () => {
@@ -384,15 +361,15 @@ describe('applyReferralPairBonus', () => {
     expect(docs.get('friend_pairs/alice__bob')).toMatchObject({ bonusDays: 3 });
   });
 
-  test('sets bonusDays=3 and boostUntilWeekKey to next week on first call', async () => {
+  // зачем (PM-170, D78): недельный буст пары удалён вместе с наградами «Вместе» — пара получает только bonusDays.
+  test('sets bonusDays=3 on first call and writes no weekly boost', async () => {
     const { applyReferralPairBonus } = require('./friends_together');
     const admin = require('firebase-admin');
     const db = admin.firestore();
     await applyReferralPairBonus(db, 'alice', 'bob', Date.parse('2026-08-17T10:00:00.000Z'));
     const pair = docs.get('friend_pairs/alice__bob');
     expect(pair?.bonusDays).toBe(3);
-    expect(typeof pair?.boostUntilWeekKey).toBe('string');
-    expect(pair?.boostUntilWeekKey).not.toBe('');
+    expect(pair).not.toHaveProperty('boostUntilWeekKey');
   });
 
   test('is idempotent: second call does not change an already-set bonus', async () => {
@@ -400,12 +377,11 @@ describe('applyReferralPairBonus', () => {
     const admin = require('firebase-admin');
     const db = admin.firestore();
     await applyReferralPairBonus(db, 'alice', 'bob', Date.parse('2026-08-17T10:00:00.000Z'));
-    const firstBoost = (docs.get('friend_pairs/alice__bob') as DocData).boostUntilWeekKey;
-    // Second call much later — should NOT overwrite boostUntilWeekKey.
+    // Second call much later — should NOT change the already-set bonus.
     await applyReferralPairBonus(db, 'alice', 'bob', Date.parse('2026-09-17T10:00:00.000Z'));
     const pair = docs.get('friend_pairs/alice__bob');
     expect(pair?.bonusDays).toBe(3);
-    expect(pair?.boostUntilWeekKey).toBe(firstBoost);
+    expect(pair).not.toHaveProperty('boostUntilWeekKey');
   });
 
   test('no-op for self-referral or empty ids', async () => {

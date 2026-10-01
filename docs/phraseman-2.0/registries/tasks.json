@@ -11556,7 +11556,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -11565,14 +11565,18 @@
       {
         "id": "PM-211-A1",
         "text": "Главный интерактивный экран не ждёт лигу/друзей/достижения/AI",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "31f6e03ac: прогрев друзей вне бюджета первого кадра (app_snapshot_bootstrap после публикации снапшота); поколение аккаунта до гидрации (beginInitialAccountGeneration); perf_freeze 12/12, layout_stability 15/15"
+        ]
       },
       {
         "id": "PM-211-A2",
         "text": "необходимые локальные данные и auth согласованы",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "31f6e03ac: прогрев друзей вне бюджета первого кадра (app_snapshot_bootstrap после публикации снапшота); поколение аккаунта до гидрации (beginInitialAccountGeneration); perf_freeze 12/12, layout_stability 15/15"
+        ]
       }
     ],
     "depends_on": [],
@@ -11582,10 +11586,15 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet (исполнитель сессии «Ядро»)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "31f6e03ac: прогрев друзей вне бюджета первого кадра (app_snapshot_bootstrap после публикации снапшота); поколение аккаунта до гидрации (beginInitialAccountGeneration); perf_freeze 12/12, layout_stability 15/15"
+    ],
+    "notes": [
+      "2026-10-01: выигрыш по времени не измерен на устройстве",
+      "2026-10-01: все критерии приняты — к независимому ревью"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -11659,7 +11668,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -11668,14 +11677,18 @@
       {
         "id": "PM-213-A1",
         "text": "Поздний ответ не пишет в другой аккаунт/локаль",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "766ce1bf5, 8728b5c4f: кэш друзей по аккаунту (friends_tab_swr_warm_account_scope 3/3), прогрев арта достижений под арендой тишины сети и стоп в фоне (achievement_art_prefetch_runtime 4/4); outbox/cloud_sync/отчёты не отменяются по blur"
+        ]
       },
       {
         "id": "PM-213-A2",
         "text": "отмена не теряет обязательную запись результата",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "766ce1bf5, 8728b5c4f: кэш друзей по аккаунту (friends_tab_swr_warm_account_scope 3/3), прогрев арта достижений под арендой тишины сети и стоп в фоне (achievement_art_prefetch_runtime 4/4); outbox/cloud_sync/отчёты не отменяются по blur"
+        ]
       }
     ],
     "depends_on": [],
@@ -11685,10 +11698,14 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet (исполнитель сессии «Ядро»)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "766ce1bf5, 8728b5c4f: кэш друзей по аккаунту (friends_tab_swr_warm_account_scope 3/3), прогрев арта достижений под арендой тишины сети и стоп в фоне (achievement_art_prefetch_runtime 4/4); outbox/cloud_sync/отчёты не отменяются по blur"
+    ],
+    "notes": [
+      "2026-10-01: все критерии приняты — к независимому ревью"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -11733,8 +11750,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "просмотр 11 экранов с setLoading(true): вечного skeleton не найдено (исполнитель Ядра, 44e86c4a4 RUNTIME.md)"
+    ],
+    "notes": [
+      "2026-10-01: A1 NOT_MET (Дизайн: пустое/ошибочное состояние — вёрстка), A2 NOT_MET (эмулятор: самолётный режим → «Мои наборы», комментарии набора; PackCommentsSheet и блиц без дедлайна)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -11760,14 +11781,18 @@
       {
         "id": "PM-215-A1",
         "text": "UI не блокируется длинной цепочкой",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "99cc78b2f: дедлайн 10 с на задачу foreground-очереди (app_resume_policy 10/10, «moves on after deadline»); prefetch не пишет в AsyncStorage и уступает занятию"
+        ]
       },
       {
         "id": "PM-215-A2",
         "text": "durable outbox не голодает из-за prefetch",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "99cc78b2f: дедлайн 10 с на задачу foreground-очереди (app_resume_policy 10/10, «moves on after deadline»); prefetch не пишет в AsyncStorage и уступает занятию"
+        ]
       },
       {
         "id": "PM-215-A3",
@@ -11785,8 +11810,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "99cc78b2f: дедлайн 10 с на задачу foreground-очереди (app_resume_policy 10/10, «moves on after deadline»); prefetch не пишет в AsyncStorage и уступает занятию"
+    ],
+    "notes": [
+      "2026-10-01: A3 NOT_MET — замер p50/p95 на релизном билде слабого телефона; дедлайн 10 с не измерен"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

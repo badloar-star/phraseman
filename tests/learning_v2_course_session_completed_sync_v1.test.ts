@@ -23,6 +23,15 @@ const callable = jest.fn(async () => ({
 }));
 
 jest.mock("@react-native-async-storage/async-storage", () => ({}));
+// зачем: с аудита 2026-08-29 провал отправки пишется DebugLogger.error(critical).
+// Настоящий журнал ходит в AsyncStorage (здесь пустой мок) и ронял воркер jest;
+// подменяем журнал и проверяем, что отказ действительно залогирован.
+const mockLogError = jest.fn();
+jest.mock("../app/debug-logger", () => ({
+  DebugLogger: { error: (...args: unknown[]) => mockLogError(...args) },
+  reportSwallowed: jest.fn(),
+  swallowError: () => () => undefined,
+}));
 jest.mock("@react-native-firebase/app", () => ({
   getApp: jest.fn(() => ({})),
 }));
@@ -90,11 +99,17 @@ describe("Learning V2 direct completion background sync", () => {
   });
 
   test("keeps the summary when transport or receipt is invalid", async () => {
+    mockLogError.mockClear();
     callable.mockRejectedValueOnce(new Error("offline"));
     await expect(
       attemptPendingLearningV2CourseSessionCompletedV1(),
     ).resolves.toEqual({ processed: 0, disposition: "retryable_failure" });
     expect(remove).not.toHaveBeenCalled();
+    expect(mockLogError).toHaveBeenCalledWith(
+      "learning_v2:session_completed_sync",
+      expect.objectContaining({ message: "offline" }),
+      "critical",
+    );
 
     callable.mockResolvedValueOnce({
       data: {

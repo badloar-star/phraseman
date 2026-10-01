@@ -55,11 +55,13 @@ const LOCATOR = Object.freeze({
 });
 
 describe("bundled Learning V2 session material (no network)", () => {
+  // зачем: в 2.0 встроены уроки 1–3 (фабричный контент); «нет локального
+  // контента» проверяем на последнем уроке курса, которого в бандле нет.
   test("returns null for a lesson that has no local content", () => {
     expect(
       bundledLearningV2CourseSessionMaterialV3({
         ...LOCATOR,
-        lessonOrdinal: 2,
+        lessonOrdinal: 32,
         sessionOrdinal: 1,
       }),
     ).toBeNull();

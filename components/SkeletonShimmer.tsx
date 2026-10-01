@@ -13,6 +13,7 @@ import Reanimated, {
   cancelAnimation,
   interpolate,
   useAnimatedStyle,
+  useReducedMotion,
   useSharedValue,
   withRepeat,
   withTiming,
@@ -58,12 +59,15 @@ function SkeletonBlockBase({
   const sweep = useSharedValue(0);
   const [measuredW, setMeasuredW] = useState(0);
   const isFocused = useIsScreenFocused();
+  // зачем (PM-033-A1): при системном «Уменьшить движение» блик не бегает —
+  // остаётся статичная плашка той же формы (при sweep=0 блик за левым краем).
+  const reducedMotion = useReducedMotion();
 
   // Луп бежит только когда экран виден И приложение на переднем плане: при
   // freezeOnBlur:false скелетон может пережить уход с экрана — гард гасит его,
   // чтобы блик не перерисовывался в фоне и не грел телефон.
   useEffect(() => {
-    if (!isFocused) {
+    if (!isFocused || reducedMotion) {
       cancelAnimation(sweep);
       sweep.value = 0;
       return;
@@ -92,7 +96,7 @@ function SkeletonBlockBase({
       appSub.remove();
       cancelAnimation(sweep);
     };
-  }, [sweep, durationMs, measuredW, isFocused]);
+  }, [sweep, durationMs, measuredW, isFocused, reducedMotion]);
 
   const bandWidth = Math.max(48, measuredW * 0.6);
 

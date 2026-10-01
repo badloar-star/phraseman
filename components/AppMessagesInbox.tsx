@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useReducedMotion } from 'react-native-reanimated';
 import {
   Animated,
   AppState,
@@ -390,11 +391,13 @@ function AppMessagesInbox({
     }
   }, [messages, selectedId]);
 
+  // зачем (PM-033-A1): «Уменьшить движение» — бесконечная анимация не запускается.
+  const reducedMotionLoop = useReducedMotion();
   useEffect(() => {
     // Пульс бейджа крутится только когда экран виден И приложение на переднем
     // плане: freezeOnBlur:false держит ушедшие экраны живыми — без гарда луп грел
     // бы телефон в фоне.
-    if (unreadCount <= 0 || !runtimeActive) {
+    if (unreadCount <= 0 || !runtimeActive || reducedMotionLoop) {
       badgePulse.setValue(1);
       return;
     }
@@ -426,7 +429,7 @@ function AppMessagesInbox({
       loop?.stop();
       loop = null;
     };
-  }, [badgePulse, unreadCount, runtimeActive]);
+  }, [badgePulse, unreadCount, runtimeActive, reducedMotionLoop]);
 
   // Новое сообщение прилетело: конверт «влетает» в иконку + звук — РОВНО ОДИН раз на
   // сообщение. Срабатывает для ID, которых ещё нет в сохранённом наборе animatedIds.

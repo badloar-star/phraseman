@@ -5,6 +5,7 @@ import DuoPressable from '../components/DuoPressable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useReducedMotion } from 'react-native-reanimated';
 import { Animated, BackHandler, Modal, Platform, Pressable, ScrollView, Share, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -870,6 +871,8 @@ export default function LessonComplete() {
   // секвенции наград: до seqDone статичный контент скрыт (scale/opacity = 0), и
   // крутить Animated.loop под полноэкранным оверлеем незачем (перф-бюджет §2.1).
   // Награды/оценка при этом идут с монтирования как раньше — см. эффект ниже.
+  // зачем (PM-033-A1): «Уменьшить движение» — бесконечная анимация не запускается.
+  const reducedMotionLoop = useReducedMotion();
   useEffect(() => {
     if (!lessonCompleteRuntimeActive || !seqDone) {
       bounceAnim.stopAnimation();
@@ -889,13 +892,13 @@ export default function LessonComplete() {
         Animated.timing(bounceAnim, { toValue: 0,  duration: 700, useNativeDriver: true }),
       ])
     );
-    const bounceStartTimer = setTimeout(() => bounce.start(), 400);
+    const bounceStartTimer = setTimeout(() => { if (!reducedMotionLoop) bounce.start(); }, 400);
     return () => {
       clearTimeout(fadeInTimer);
       clearTimeout(bounceStartTimer);
       bounce.stop();
     };
-  }, [seqDone, bounceAnim, fadeAnim, lessonCompleteRuntimeActive, scaleAnim]);
+  }, [seqDone, bounceAnim, fadeAnim, lessonCompleteRuntimeActive, scaleAnim, reducedMotionLoop]);
 
   useEffect(() => {
     let cancelled = false;

@@ -8,6 +8,7 @@ import { FlashList } from '@shopify/flash-list';
 import Reanimated, {
   FadeInDown,
   useAnimatedStyle,
+  useReducedMotion,
   useSharedValue,
   withRepeat,
   withTiming,
@@ -564,13 +565,15 @@ function PulseOn({ active, children }: { active: boolean; children: React.ReactN
   // пока пользователь сидел на главной. runtimeOwnerId — честный сигнал.
   const { runtimeOwnerId } = useTabNav();
   const runtimeActive = useRuntimeActive(runtimeOwnerId === 'friends');
+  // зачем (PM-033-A1): «Уменьшить движение» — без вечного пульса.
+  const reducedMotion = useReducedMotion();
   useEffect(() => {
-    if (active && runtimeActive) {
+    if (active && runtimeActive && !reducedMotion) {
       opacity.value = withRepeat(withTiming(0.6, { duration: 900 }), -1, true);
     } else {
       opacity.value = withTiming(1, { duration: 150 });
     }
-  }, [active, runtimeActive, opacity]);
+  }, [active, runtimeActive, reducedMotion, opacity]);
   const style = useAnimatedStyle(() => ({ opacity: opacity.value }));
   return <Reanimated.View style={style}>{children}</Reanimated.View>;
 }

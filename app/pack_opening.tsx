@@ -3,6 +3,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useReducedMotion } from 'react-native-reanimated';
 import {
   Animated,
   BackHandler,
@@ -156,10 +157,12 @@ function FlippableCard({
   const glow = useRef(new Animated.Value(0)).current;
   const pulse = useRef(new Animated.Value(0)).current;
   const previousFlipped = useRef(flipped);
+  // зачем (PM-033-A1): «Уменьшить движение» — бесконечная анимация не запускается.
+  const reducedMotionLoop = useReducedMotion();
 
   // Idle pulse на «рубашці» — м’яке дихання
   useEffect(() => {
-    if (!active || flipped) {
+    if (!active || flipped || reducedMotionLoop) {
       pulse.stopAnimation();
       pulse.setValue(0);
       return;
@@ -172,7 +175,7 @@ function FlippableCard({
     );
     loop.start();
     return () => loop.stop();
-  }, [active, flipped, pulse]);
+  }, [active, flipped, pulse, reducedMotionLoop]);
 
   useEffect(() => {
     const wasFlipped = previousFlipped.current;

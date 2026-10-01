@@ -22,6 +22,7 @@ import Animated, {
   withSequence,
   withTiming,
   type SharedValue,
+  useReducedMotion,
 } from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { LinearGradient } from './SafeLinearGradient';
@@ -130,7 +131,9 @@ export default function HoloFoilCard({
   // idle крутится ВЕЧНО (даёт мерцание искрам/наклон-шиммер) — гардим его фокусом
   // экрана и AppState: при freezeOnBlur:false карта дропа переживает уход с экрана,
   // и без гарда луп продолжал бы перерисовывать голо-эффект в фоне и греть телефон.
-  const idleAnimates = p.idleShimmer || p.glints > 0;
+  // зачем (PM-033-A1): «Уменьшить движение» — голо-мерцание не крутится.
+  const reducedMotion = useReducedMotion();
+  const idleAnimates = (p.idleShimmer || p.glints > 0) && !reducedMotion;
   useEffect(() => {
     if (!idleAnimates || !isFocused) {
       cancelAnimation(idle);

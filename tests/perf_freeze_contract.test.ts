@@ -81,6 +81,9 @@ describe('perf freeze contract', () => {
     const legacyAllowlist = new Set([
       'components/PremiumCelebrationModal.tsx', // модалка, unmount on close
       'app/flashcards/CardPackShardPaywallModal.tsx', // модалка, unmount on close
+      // хук без своего экрана: цикл включает визитка в модалке PlayerProfileModal/ProSheet
+      // (unmount on close), enabled = видимость && !reduceMotion (01.10, PM-033-A1).
+      'components/profile-card/useLoop.ts',
       // зачем: D83 — ArenaTimerRing/ArenaComboMeter удалены вместе с Ареной, их
       // исключения сняты (allowlist только сужается).
     ]);
@@ -189,7 +192,10 @@ describe('perf freeze contract', () => {
     expect(home).toContain('const requestHomeDataRefresh = () => {');
     expect(home).toContain('if (!homeRuntimeActiveRef.current) {');
     expect(home).toContain('homeDataDirtyRef.current = true;');
-    expect(home).toContain("DeviceEventEmitter.addListener('xp_changed', requestHomeDataRefresh)");
+    // 01.10: опыт (XP) удалён в 2.0 — подписка на xp_changed снята вместе с ним (a8abc1d85);
+    // коалесинг теперь срабатывает на облачном обновлении при возврате в приложение.
+    expect(home).not.toContain("addListener('xp_changed'");
+    expect(home).toContain("if (refreshKind === 'cloud') requestHomeDataRefresh();");
     // зачем (аудит скорости 2026-08-22): дешёвая ветка «обновить только сводку
     // заданий» была снята осознанно — в коде рядом есть комментарий про гонку
     // состояний (light refresh мог перезаписать более свежий результат полного

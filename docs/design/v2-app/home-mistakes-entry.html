@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вход в ошибки</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+.tb { position: absolute; left: 12px; right: 12px; bottom: 26px; height: 66px; border-radius: 33px; z-index: 35; display: flex; padding: 0 9px;
+  background: linear-gradient(180deg, rgba(44,44,46,.86), rgba(20,20,22,.92)); -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px);
+  box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.22), inset 0 0 0 1px rgba(255,255,255,.07), 0 22px 44px -14px rgba(0,0,0,.85); }
+.tb .cap { position: absolute; top: 9px; bottom: 9px; left: 9px; width: calc((100% - 18px) / 5); border-radius: 18px; background: linear-gradient(160deg, rgba(255,255,255,.16), rgba(255,255,255,.05) 60%, rgba(255,255,255,.09)); box-shadow: inset 1px 1px 0 rgba(255,255,255,.28); }
+.tb .it { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #8A8A8D; font-size: 10.5px; font-weight: 600; position: relative; z-index: 1; }
+.tb .it.on { color: #fff; }
+.tb .it svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.g { background: linear-gradient(160deg, rgba(255,255,255,.055), rgba(255,255,255,.02) 60%), var(--card-2); border: 1px solid var(--line); box-shadow: inset 0 1px 0 rgba(255,255,255,.06); }
+.hstats { display: flex; align-items: center; gap: 8px; }
+.hstat { display: flex; align-items: center; gap: 6px; height: 38px; padding: 0 12px; border-radius: 19px; background: #1C1C1E; border: 1px solid var(--line); font-size: 15px; font-weight: 700; position: relative; }
+.hstat img { width: 20px; height: 20px; border-radius: 50%; }
+/* «Продолжить обучение» — как в приложении: арт справа, бейдж «Урок», полоса и «›» */
+.cont { margin-top: 16px; border-radius: 22px; min-height: 96px; position: relative; }
+.cont .cp { padding: 14px 43% 14px 16px; }
+.ov { font-size: 12px; font-weight: 700; letter-spacing: 1.6px; color: var(--sec); }
+.cont .tt { font-size: 18px; line-height: 22px; font-weight: 800; letter-spacing: -.3px; margin-top: 6px; }
+.cont .ct { font-size: 15px; color: var(--sec); margin-top: 6px; }
+.cont .pr { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.cont .tr { flex: 1; height: 6px; border-radius: 3px; background: #2A2A2C; overflow: hidden; } .cont .tr i { display: block; height: 100%; width: 8%; min-width: 12px; background: #fff; }
+.cont .ar { width: 32px; height: 32px; border-radius: 16px; background: #2A2A2C; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; flex: none; }
+.cont .art { position: absolute; right: 6px; top: 0; bottom: 0; width: 42%; display: flex; align-items: center; justify-content: flex-end; overflow: hidden; border-radius: 22px; }
+.cont .art img { width: 118px; height: 118px; object-fit: contain; }
+.cont .bg { position: absolute; right: 12px; bottom: 10px; min-height: 26px; padding: 4px 12px; border-radius: 13px; background: #2A2A2C; border: 1px solid var(--line); font-size: 13px; font-weight: 700; z-index: 2; }
+/* утверждённые плитки (HomeV2FeatureTiles) */
+.tiles { display: flex; gap: 8px; margin-top: 14px; }
+.tl { flex: 1; min-height: 156px; border-radius: 20px; padding: 0 10px 10px; display: flex; flex-direction: column; overflow: hidden; }
+.tl .art { height: 92px; display: flex; align-items: center; } .tl .art img { width: 84px; height: 84px; object-fit: contain; }
+.tl .t { font-size: 17px; font-weight: 700; } .tl .s { font-size: 12px; line-height: 16px; color: var(--sec); margin-top: 4px; }
+.rail { display: flex; gap: 10px; overflow: hidden; margin-top: 4px; }
+.rail .v { width: 220px; flex: none; } .rail .th { aspect-ratio: 16/9; border-radius: 14px; background: radial-gradient(90% 120% at 80% 20%, #3B3B3F, #121214 70%); border: 1px solid var(--line); }
+.today { margin-top: 18px; border-radius: 22px; padding: 14px 14px 6px; }
+.today .row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+.today .row:first-of-type { border-top: none; }
+.today .ck { width: 24px; height: 24px; border-radius: 12px; border: 1.5px solid #4A4A4E; flex: none; }
+.today .rw { margin-left: auto; color: var(--sec); font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+.today .rw img { width: 16px; height: 16px; border-radius: 50%; }
+.num { display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 11px; background: #F2F1F6; color: #0B0C0E; font-size: 12.5px; font-weight: 800; }
+
+/* 1 · Стикер на блокноте: закладка торчит над карточкой «Продолжить» */
+.sticky { position: absolute; right: 26px; top: -20px; z-index: 3; display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 12px 0 6px; border-radius: 10px 10px 4px 4px; background: #F2F1F6; color: #0B0C0E; font-size: 13.5px; font-weight: 800; transform: rotate(4deg); box-shadow: 0 10px 18px -8px rgba(0,0,0,.8); }
+.sticky img { width: 26px; height: 26px; object-fit: contain; }
+/* 2 · Колода: за «Продолжить» лежит вторая карточка — ошибки */
+.deck { position: relative; margin-top: 16px; padding-bottom: 34px; }
+.deck .under { position: absolute; left: 10px; right: 10px; bottom: 0; height: 70px; border-radius: 20px; display: flex; align-items: flex-end; padding: 0 16px 9px; gap: 8px; }
+.deck .under img { width: 30px; height: 30px; object-fit: contain; }
+.deck .cont { margin-top: 0; z-index: 2; }
+/* 3 · Капсула в шапке */
+.hstat.err { background: #2A2A2C; }
+.hstat.err img { width: 24px; height: 24px; border-radius: 0; object-fit: contain; }
+.hstat.err::after { content: ""; position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; border-radius: 4px; background: #fff; box-shadow: 0 0 0 2px #1C1C1E; }
+/* 4 · Предмет на столе: блокнот ошибок лежит на стыке плиток и видео */
+.desk { position: relative; }
+.desk .obj { position: absolute; right: -6px; top: -46px; width: 110px; z-index: 4; transform: rotate(8deg); filter: drop-shadow(0 16px 18px rgba(0,0,0,.7)); }
+.desk .obj img { width: 110px; height: 110px; object-fit: contain; }
+.desk .obj .num { position: absolute; left: 4px; top: 10px; transform: rotate(-8deg); }
+/* 5 · Строка-герой в «Сегодня» */
+.hero { display: flex; align-items: center; gap: 12px; margin: 2px -4px 6px; padding: 10px 12px; border-radius: 16px; background: #232326; }
+.hero img { width: 46px; height: 46px; object-fit: contain; flex: none; }
+.ring { width: 38px; height: 38px; border-radius: 19px; background: conic-gradient(#fff 0 28%, #3A3A3E 28% 100%); display: flex; align-items: center; justify-content: center; flex: none; margin-left: auto; }
+.ring b { width: 30px; height: 30px; border-radius: 15px; background: #232326; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">«Мои ошибки» на Главной — 5 идей</h1>
+  <p class="page-lead">Сейчас вход в ошибки почти не виден: карточка «Продолжить» сама превращается в «Мои ошибки» лишь при большом числе ошибок. Ниже пять способов встроить раздел в Главную, не ломая утверждённую композицию. Показано, когда есть 7 ошибок; когда ошибок нет — элемента нет. Выберите номер.</p>
+  <nav class="page-nav"><a href="index.html">Все разделы</a></nav>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+const { icon, phone, col, block } = K;
+const A = 'assets/';
+const img = (n) => A + n;
+const coin = img('coin_rank_00.webp');
+const ERR = img('mistakes_notebook.webp');
+const TI = {
+  home: '<path d="M4 11l8-7 8 7v8.5a1.5 1.5 0 01-1.5 1.5h-4v-6h-5v6h-4A1.5 1.5 0 014 19.5z"/>',
+  book: '<path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M4 20.5A2.5 2.5 0 016.5 18H20v3H6.5"/>',
+  video: '<rect x="3" y="5.5" width="18" height="13" rx="3.5"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/>',
+  people: '<circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.5-3.2 2.7-5 5.5-5s5 1.8 5.5 5"/><circle cx="16.5" cy="9.5" r="2.6"/><path d="M15.5 14.2c2.6-.3 4.6 1.3 5 4.3"/>',
+  gear: '<circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.4M12 18.8v2.4M4.2 7.5l2 1.2M17.8 15.3l2 1.2M4.2 16.5l2-1.2M17.8 8.7l2-1.2"/><circle cx="12" cy="12" r="7"/>',
+};
+const tabbar = `<div class="tb"><div class="cap"></div>${[['home', 'Главная'], ['book', 'Обучение'], ['video', 'Видео'], ['people', 'Сообщество'], ['gear', 'Настройки']].map(([k, l], i) => `<div class="it${i === 0 ? ' on' : ''}"><svg viewBox="0 0 24 24">${TI[k]}</svg>${l}</div>`).join('')}</div>`;
+const header = (extra = '') => `<div class="hstats"><span class="hstat">${icon('flame', 's18')}12</span><span class="hstat"><img src="${coin}" alt="">1 240</span><span class="hstat">${icon('boltF', 's18')}5</span>${extra}<span class="rb fill" style="margin-left:auto">${icon('chatDots', 's18')}</span></div>`;
+const cont = (extra = '') => `<div class="cont g">${extra}<div class="art"><img src="${img('spiral_notepad.png')}" alt=""></div><span class="bg">Урок 1</span><div class="cp"><div class="ov">ПРОДОЛЖИТЬ ОБУЧЕНИЕ</div><div class="tt">Местоимения и глагол To Be</div><div class="ct">0 / 50</div><div class="pr"><div class="tr"><i></i></div><span class="ar">${icon('fwd', 's16')}</span></div></div></div>`;
+const tiles = `<div class="tiles">${[['book_stack', 'Уроки', 'Грамматика шаг за шагом'], ['chat_bubbles', 'Диалоги', 'Реальные ситуации'], ['notecard_stack', 'Карточки', 'Слова, фразы и выражения']].map(([a, t, s]) => `<div class="tl g"><div class="art"><img src="${img(a + '.png')}" alt=""></div><div class="t">${t}</div><div class="s">${s}</div></div>`).join('')}</div>`;
+const rail = `<div class="sec" style="margin-top:22px"><div class="ti" style="font-size:18px">Видео</div></div><div class="rail">${[0, 1].map(() => '<div class="v"><div class="th"></div></div>').join('')}</div>`;
+const todayRows = [['Пройти урок', 20], ['Тренировка карточек', 10], ['Один диалог', 15]];
+const today = (heroRow = '') => `<div class="today g"><div style="font-size:18px;font-weight:700;padding:2px 2px 6px">Сегодня</div>${heroRow}${todayRows.map(([t, c]) => `<div class="row"><span class="ck"></span><span style="font-size:15px;font-weight:600">${t}</span><span class="rw"><img src="${coin}" alt="">${c}</span></div>`).join('')}</div>`;
+const end = '<div style="height:110px"></div>';
+
+const V = [
+  ['Стикер на блокноте', 'К карточке «Продолжить обучение» приклеен стикер «7 ошибок» — торчит над её верхним краем, как закладка из блокнота. Тап по стикеру — в «Мои ошибки», тап по карточке — в урок, как сейчас.',
+    () => `${header()}<div style="height:6px"></div>${cont(`<div class="sticky"><img src="${ERR}" alt="">7 ошибок</div>`)}${tiles}${rail}${today()}${end}`],
+  ['Колода', 'За карточкой «Продолжить» лежит вторая — «Мои ошибки», выглядывает снизу полоской. Тап по полоске (или свайп вниз) выдвигает её наверх.',
+    () => `${header()}<div class="deck"><div class="under g"><img src="${ERR}" alt=""><span style="font-size:15px;font-weight:700">Мои ошибки</span><span class="num" style="margin-left:auto">7</span></div>${cont()}</div>${tiles}${rail}${today()}${end}`],
+  ['Капсула в шапке', 'Рядом с серией, монетами и энергией — четвёртая капсула: блокнот и число ошибок, с точкой, пока есть новые. Всегда на виду и не занимает места на экране.',
+    () => `${header(`<span class="hstat err"><img src="${ERR}" alt="">7</span>`)}${cont()}${tiles}${rail}${today()}${end}`],
+  ['Предмет на столе', 'Блокнот с ошибками лежит поверх Главной на стыке плиток и видео — чуть повёрнут, как вещь, оставленная на столе, с числом на обложке. Тап — в «Мои ошибки».',
+    () => `${header()}${cont()}<div class="desk">${tiles}<div class="obj" style="top:auto;bottom:-58px"><img src="${ERR}" alt=""><span class="num">7</span></div></div>${rail}${today()}${end}`],
+  ['Главная строка в «Сегодня»', 'В карточке «Сегодня» первой стоит особая строка: блокнот, «Разобрать 7 ошибок» и кольцо прогресса разбора. Ошибки становятся частью плана дня.',
+    () => `${header()}${cont()}${tiles}${rail}${today(`<div class="hero"><img src="${ERR}" alt=""><div><div style="font-size:15px;font-weight:700">Разобрать ошибки</div><div style="font-size:13px;color:var(--sec)">2 из 7 разобрано</div></div><span class="ring"><b>2/7</b></span></div>`)}${end}`],
+];
+document.getElementById('root').innerHTML = V.map(([name, lead, render], i) => block(`m${i + 1}`, `${i + 1} · ${name}`, lead, [col('7 ошибок', phone(render(), { time: '9:41', fixed: tabbar }))])).join('');
+</script>
+</body>
+</html>

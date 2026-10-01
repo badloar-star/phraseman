@@ -22,7 +22,7 @@ const root = path.resolve(__dirname, '..');
 const REGISTRY = process.env.PM210_REGISTRY ?? 'docs/phraseman-2.0/evidence/PM-210_background_jobs.md';
 const SCAN_DIRS = ['app', 'components', 'modules', 'hooks'] as const;
 const SKIP_DIRS = new Set(['node_modules', '__tests__', 'graphify-out', '__mocks__']);
-const FIELD_NAMES = ['job', 'priority', 'owner', 'trigger', 'ttl', 'dedupe', 'cancellation', 'budget', 'queues'] as const;
+const FIELD_NAMES = ['job', 'priority', 'owner', 'trigger', 'ttl', 'dedupe', 'cancellation', 'budget', 'queues', 'reads', 'writes', 'cache'] as const;
 
 export type JobKind =
   | 'setInterval' | 'appState' | 'runtimeAppState' | 'foregroundTask'

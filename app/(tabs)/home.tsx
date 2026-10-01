@@ -1291,11 +1291,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         setHomeV2VideoStatus(peek ? 'ready' : 'loading');
         setHomeV2VideoNoChannel(peek?.source === 'no_channel_for_target');
     }, [studyTarget]);
+    // зачем (владелец 01.10: «никаких недоступно»): сбой ленты — тихий повтор (до 5 раз по 20 с), плитки-скелетоны держат место.
+    const [homeRailRetryTick, setHomeRailRetryTick] = useState(0);
     // зачем D130/D132: лента Главной для es/fr/de/it — канал каталога с тегом языка.
     useEffect(() => {
         if (!homeRuntimeActive || !isVideoButtonEnabled()) return undefined;
         if (!homeVideoRailUsesCatalog(studyTarget) || !homeVideosVisible) return undefined;
         let alive = true;
+        let retryTimer: ReturnType<typeof setTimeout> | null = null;
         void loadHomeVideoRailForTarget(studyTarget)
             .then((rail) => {
                 if (!alive) return;
@@ -1305,10 +1308,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             })
             .catch((error: unknown) => {
                 console.warn('[LANG-SURFACE] home_rail:catch → error', { studyTarget, error: error instanceof Error ? error.message : String(error) }); // guard-ok: лог в catch обязателен
-                if (alive) setHomeV2VideoStatus('error');
+                if (!alive) return;
+                setHomeV2VideoStatus('error');
+                if (homeRailRetryTick >= 5) {
+                    console.warn('[LANG-SURFACE] home_rail: silent retries exhausted', { studyTarget, homeRailRetryTick });
+                    return;
+                }
+                retryTimer = setTimeout(() => { if (alive) setHomeRailRetryTick((n) => n + 1); }, 20_000);
             });
-        return () => { alive = false; };
-    }, [focusTick, homeRuntimeActive, homeVideosVisible, studyTarget]);
+        return () => { alive = false; if (retryTimer) clearTimeout(retryTimer); };
+    }, [focusTick, homeRailRetryTick, homeRuntimeActive, homeVideosVisible, studyTarget]);
     const [userAvatar, setUserAvatar] = useState(() => initialVisuals.avatar);
     // зачем: владелец (2026-08-27) — новичок не догадывается, что аватарка
     // кликабельна. Пока он ни разу не открыл раздел внешнего вида, она раз в

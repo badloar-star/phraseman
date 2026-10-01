@@ -58,9 +58,13 @@ export function reportRewardPearls(bundle: ReportRewardBundle): number {
   return bundle.version === 1 ? bundle.pearls : 0;
 }
 
-/** Есть ли что показать/забрать в интерфейсе (спины не считаются, PM-047). */
+/**
+ * Есть ли что показать/забрать в интерфейсе (спины не считаются, PM-047).
+ * зачем (01.10): жемчуг v1 не начисляется (D70/D104) — показывать его наградой («+1 монет»)
+ * значит обещать то, чего человек не получит. Видимая награда — только монеты.
+ */
 export function reportRewardHasVisibleReward(bundle: ReportRewardBundle): boolean {
-  return reportRewardCoins(bundle) > 0 || reportRewardPearls(bundle) > 0;
+  return reportRewardCoins(bundle) > 0;
 }
 
 const PENDING_KEY_PREFIX = 'report_reward_bundle_claims_v1:';

@@ -324,7 +324,14 @@ function pickLatest(activeDocs: Array<{ id: string; data: Record<string, unknown
   return sorted[0];
 }
 
+// зачем (01.10): фильтр прятал ЛЮБУЮ рассылку со словами «лига» + «система/компенсация» —
+// под него попало бы и сообщение владельца о 2.0 («лиги заменены Шпилем…»). Прячем только
+// старые рассылки о лигах, созданные до выхода 2.0; без даты — тоже старые.
+const RETIRED_LEAGUE_BROADCAST_CUTOFF_MS = Date.parse('2026-10-01T00:00:00Z');
+
 function isRetiredLeagueSystemBroadcast(payload: GlobalBroadcastModalPayload): boolean {
+  const createdMs = Date.parse(String(payload.createdAt ?? ''));
+  if (Number.isFinite(createdMs) && createdMs >= RETIRED_LEAGUE_BROADCAST_CUTOFF_MS) return false;
   const text = [
     payload.id,
     payload.titleRu,

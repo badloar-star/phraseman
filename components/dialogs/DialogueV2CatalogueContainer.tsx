@@ -64,8 +64,6 @@ function dialogueV2WorldHeadings(lang: ReturnType<typeof useLang>['lang']): read
 }
 
 function catalogueCopy(lang: ReturnType<typeof useLang>['lang']): Readonly<{
-  loading: string;
-  unavailable: string;
   lockedAtRank: (rank: number) => string;
 }> {
   return Object.freeze({
@@ -75,14 +73,6 @@ function catalogueCopy(lang: ReturnType<typeof useLang>['lang']): Readonly<{
       es: `Se desbloquea en el rango ${rank}`, 'pt-BR': `Desbloqueia no nível ${rank}`, vi: `Mở ở hạng ${rank}`,
       id: `Terbuka di peringkat ${rank}`, tr: `${rank}. rütbede açılır`, pl: `Odblokuje się na randze ${rank}`,
       fr: `Se débloque au rang ${rank}`, de: `Wird ab Rang ${rank} freigeschaltet`,
-    }),
-    loading: triLang(lang, {
-      ru: 'Загружаем диалоги…', uk: 'Завантажуємо діалоги…', en: 'Loading dialogues…',
-      es: 'Cargando diálogos…', fr: 'Chargement des dialogues…', de: 'Dialoge werden geladen…',
-    }),
-    unavailable: triLang(lang, {
-      ru: 'Диалоги недоступны', uk: 'Діалоги недоступні', en: 'Dialogues are unavailable',
-      es: 'Los diálogos no están disponibles', fr: 'Les dialogues sont indisponibles', de: 'Dialoge sind nicht verfügbar',
     }),
   });
 }

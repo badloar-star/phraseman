@@ -20,6 +20,18 @@ test('the dialogue hub renders no error card or manual retry', () => {
   assert.doesNotMatch(hub, /retryCatalogue/);
 });
 
+const strip = (path) => readFileSync(new URL(path, import.meta.url), 'utf8').replace(/\/\/[^\n]*|\/\*[\s\S]*?\*\//g, '');
+
+test('dialogue memory and hub notices carry no loading or load-error copy', () => {
+  const memory = strip('../app/dialogue_v2_memory.tsx');
+  assert.doesNotMatch(memory, /Загружаем память|Не удалось загрузить память|copy\.loading|copy\.unavailable/);
+  assert.match(memory, /memoryCacheByTarget/);
+  assert.match(memory, /MEMORY_SILENT_RETRIES/);
+  const notices = strip('../components/dialogs/DialogueV2HubNotices.tsx');
+  assert.doesNotMatch(notices, /Диалоги не загрузились|Проверьте интернет/);
+  assert.doesNotMatch(hub, /Загружаем диалоги|Диалоги недоступны/);
+});
+
 test('the first frame comes from the local catalogue and the network retries silently', () => {
   assert.match(hub, /peekDialogueV2Catalogue\(studyTarget\)/);
   assert.match(hub, /silentRetriesRef/);

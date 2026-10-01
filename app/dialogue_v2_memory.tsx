@@ -106,8 +106,6 @@ function memoryCopy(lang: ReturnType<typeof useLang>['lang']) {
     }),
     plusRequired: triLang(lang, { ru: 'Память диалогов доступна в Plus', uk: 'Пам’ять діалогів доступна в Plus', en: 'Dialogue memory is available with Plus', es: 'La memoria de diálogos está disponible con Plus', fr: 'La mémoire des dialogues est disponible avec Plus', de: 'Dialoggedächtnis ist mit Plus verfügbar' }),
     openPlus: triLang(lang, { ru: 'Посмотреть Plus', uk: 'Переглянути Plus', en: 'View Plus', es: 'Ver Plus', fr: 'Voir Plus', de: 'Plus ansehen' }),
-    loading: triLang(lang, { ru: 'Загружаем память…', uk: 'Завантажуємо пам’ять…', en: 'Loading memory…', es: 'Cargando memoria…', fr: 'Chargement de la mémoire…', de: 'Speicher wird geladen…' }),
-    unavailable: triLang(lang, { ru: 'Не удалось загрузить память', uk: 'Не вдалося завантажити пам’ять', en: 'Memory could not be loaded', es: 'No se pudo cargar la memoria', fr: 'Impossible de charger la mémoire', de: 'Speicher konnte nicht geladen werden' }),
     empty: triLang(lang, { ru: 'Для этого языка пока ничего не сохранено.', uk: 'Для цієї мови ще нічого не збережено.', en: 'Nothing has been saved for this language yet.', es: 'Todavía no hay nada guardado para este idioma.', fr: 'Rien n’est encore mémorisé pour cette langue.', de: 'Für diese Sprache wurde noch nichts gespeichert.' }),
     summary: triLang(lang, { ru: 'Учебная сводка', uk: 'Навчальний підсумок', en: 'Learning summary', es: 'Resumen de aprendizaje', fr: 'Résumé pédagogique', de: 'Lernzusammenfassung' }),
     strengths: triLang(lang, { ru: 'Получается хорошо', uk: 'Добре виходить', en: 'Going well', es: 'Va bien', fr: 'Points forts', de: 'Läuft gut' }),
@@ -134,6 +132,11 @@ function memoryCopy(lang: ReturnType<typeof useLang>['lang']) {
   });
 }
 
+/** Последняя полученная память по языку — только в памяти процесса (без диска: это данные Plus-аккаунта). */
+const memoryCacheByTarget = new Map<string, DialogueV2MemoryView>();
+const MEMORY_SILENT_RETRIES = 5;
+const MEMORY_SILENT_RETRY_MS = 20_000;
+
 export default function DialogueV2MemoryRoute() {
   const router = useRouter();
   const { studyTarget } = useStudyTarget();
@@ -141,7 +144,13 @@ export default function DialogueV2MemoryRoute() {
   const { accessResolved, hasPremiumAccess } = usePremium();
   const p = useV2Palette();
   const copy = useMemo(() => memoryCopy(lang), [lang]);
-  const [state, setState] = useState<MemoryState>({ kind: 'loading' });
+  // зачем (владелец 01.10: «никаких загружается / не загрузилось»): повторный заход — сразу последняя
+  // полученная память этого языка; сбой сети — тихий повтор в фоне, текста об ошибке нет.
+  const [state, setState] = useState<MemoryState>(() => {
+    const cached = typeof studyTarget === 'string' ? memoryCacheByTarget.get(studyTarget) : undefined;
+    return cached ? { kind: 'available', memory: cached } : { kind: 'loading' };
+  });
+  const [retryTick, setRetryTick] = useState(0);
   const [labels, setLabels] = useState<CatalogueLabels>(() => catalogueLabels(null, 'en'));
   const [clearing, setClearing] = useState(false);
 
@@ -152,21 +161,35 @@ export default function DialogueV2MemoryRoute() {
       return undefined;
     }
     let active = true;
-    setState({ kind: 'loading' });
+    let retryTimer: ReturnType<typeof setTimeout> | null = null;
+    const scheduleRetry = (reason: string) => {
+      if (retryTick >= MEMORY_SILENT_RETRIES) {
+        console.warn('[DIALOGUE-V2] memory: silent retries exhausted', { studyTarget, reason, retryTick });
+        return;
+      }
+      console.warn('[DIALOGUE-V2] memory: load failed, silent retry scheduled', { studyTarget, reason, retryTick });
+      retryTimer = setTimeout(() => { if (active) setRetryTick((n) => n + 1); }, MEMORY_SILENT_RETRY_MS);
+    };
     void Promise.all([
       viewDialogueV2Memory({ studyTarget }),
       fetchReleasedDialogueV2Catalogue(studyTarget),
     ]).then(([memory, envelope]) => {
       if (!active) return;
       setLabels(catalogueLabels(envelope, studyTarget));
-      setState(memory ? { kind: 'available', memory } : { kind: 'unavailable' });
-    }).catch(() => {
-      if (active) setState({ kind: 'unavailable' });
+      if (memory) {
+        memoryCacheByTarget.set(studyTarget, memory);
+        setState({ kind: 'available', memory });
+      } else {
+        scheduleRetry('empty_response');
+      }
+    }).catch((error: unknown) => {
+      if (active) scheduleRetry(error instanceof Error ? error.message : String(error));
     });
     return () => {
       active = false;
+      if (retryTimer) clearTimeout(retryTimer);
     };
-  }, [accessResolved, hasPremiumAccess, studyTarget]);
+  }, [accessResolved, hasPremiumAccess, retryTick, studyTarget]);
 
   const clearMemory = useCallback(async () => {
     if (clearing || !supportedTarget(studyTarget)) return;
@@ -174,12 +197,12 @@ export default function DialogueV2MemoryRoute() {
     try {
       const receipt = await clearDialogueV2Memory({ studyTarget });
       if (receipt) {
-        setState({
-          kind: 'available',
-          memory: { ok: true, studyTarget, sharedSummary: null, scenarioCheckpoints: [] },
-        });
+        const cleared: DialogueV2MemoryView = { ok: true, studyTarget, sharedSummary: null, scenarioCheckpoints: [] };
+        memoryCacheByTarget.set(studyTarget, cleared);
+        setState({ kind: 'available', memory: cleared });
       }
-    } catch {
+    } catch (error: unknown) {
+      console.warn('[DIALOGUE-V2] memory: clear failed', { studyTarget, message: error instanceof Error ? error.message : String(error) });
       Alert.alert(copy.clearFailed);
     } finally {
       setClearing(false);
@@ -259,8 +282,6 @@ export default function DialogueV2MemoryRoute() {
         <ScrollView contentContainerStyle={{ paddingHorizontal: V2.screenPad, paddingBottom: 32, gap: V2.gap }}>
           <Text style={{ color: p.textSecondary, ...V2_TYPE.body }}>{copy.intro}</Text>
 
-          {state.kind === 'loading' ? <Text style={{ color: p.textSecondary, ...V2_TYPE.body }}>{copy.loading}</Text> : null}
-          {state.kind === 'unavailable' ? <Text style={{ color: p.textSecondary, ...V2_TYPE.body }}>{copy.unavailable}</Text> : null}
           {memory && !hasMemory ? <Text style={{ color: p.textSecondary, ...V2_TYPE.body }}>{copy.empty}</Text> : null}
 
           {memory?.sharedSummary ? (

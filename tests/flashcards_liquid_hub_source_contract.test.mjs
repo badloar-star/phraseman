@@ -15,11 +15,15 @@ const THEME_IDS = [
 const PROTECTED_AST = '92db73a8934c603855540f4463f931d38bed73d30bad259e0e8ddc0963e99c9b';
 const HEADER_GLASS_BODY = '715db3b10a0abee044e76b8baed73f7ad5de81fb96a669ef0381f776fdf98019';
 const DEPENDENCY_HASHES = {
-  'app/flashcards/marketplace.ts': '6be20d876e0d6d44fd03c129b11566488545b59f97044d8c3e48ef4f01f04537',
+  // зачем: fb9d8d8e6 (PM-210, экономия старта) — прогрев пустого каталога стал честным no-op; хаб не затронут.
+  'app/flashcards/marketplace.ts': '0da53c2a89ef4886e4fc1b8e73870acd074326fac412d35f6dd160681d4666b5',
   'app/community_packs/packAuthorNames.ts': '101a068d8ec4e6fe9bc1dfb430c6da9695458b59391d7bf18012932ad7e70c45',
-  'app/community_packs/localAuthorPacks.ts': '0e29c9c4020533521ea6aaab723579163de4f919d5b94c91f808fb7543b47147',
-  'app/community_packs/CommunityPackSocialBar.tsx': 'c05a2d6665d8f9b5a68d773f047c77cf8b1daa8c380e63daef4f525de87972cc',
-  'constants/liquidGlassThemePalette.ts': '310804f71c92049bca92e155b2e16d2f25e77dc18e1d699ad9925b66c88b9b5d',
+  // зачем: 7b64aa008 (PM-108) — свой набор приватный по умолчанию; хаб не затронут.
+  'app/community_packs/localAuthorPacks.ts': 'bb872d1e7f6d66aa19ae0ec5f00b7dfea980c92fb6375dd6564609d5ef4297e9',
+  // зачем: c98e4ad1e (D145) — шкала текста 16/13.
+  'app/community_packs/CommunityPackSocialBar.tsx': '168418af86b86df427874993eede6faf9f648a7ada4d6cafb518a84591b9aa76',
+  // зачем: a5cbccab3 (темы 2.0) — «золото» темы = акцент.
+  'constants/liquidGlassThemePalette.ts': '28d6be604dc306d70938ea8e94cb534ff523daafce99808974ef2bd648cf8d49',
   'app/flashcards/packMarketplaceIcons.ts': '4d7d168a867514b096dc3a5541503db4759e68a2359020cb02cf695316f78b11',
   'hooks/useFlashcardTrainingQuotaPreview.ts': 'c4b61412f1e7530bf202e6c1f5053007875f763e28f12a18aebc27424bf6f0aa',
   'app/flashcards/training_entry.ts': '7bae7128ede11dfce800bb0f9f22f5d9a61ba195009346fb98a7b24b3c9d9a85',

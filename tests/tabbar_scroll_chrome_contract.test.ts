@@ -7,16 +7,10 @@ const fc = (...parts: string[]) => path.join(__dirname, '..', 'app', ...parts);
 
 describe('tabbar scroll chrome contract', () => {
   it('uses the shared scroll transport on every scrollable tab', () => {
-    const tournament = fs.readFileSync(tab('tournaments.tsx'), 'utf8');
+    // зачем: «Турниры» удалены вместе с Ареной (D74/D83) — сторожим оставшиеся табы.
     const friends = fs.readFileSync(tab('friends.tsx'), 'utf8');
     const settings = fs.readFileSync(tab('settings.tsx'), 'utf8');
 
-    expect(tournament).toContain('<BouncyScrollView');
-    // Владелец (2026-08-02): на «Турнирах» таббар НЕ сворачивается от скролла —
-    // таб кормит только верхнюю маску, не tabBarScrollY. Машина состояний в
-    // _layout при этом остаётся одна на всех (см. тест ниже).
-    expect(tournament).toContain('onScroll={topFadeScroll?.onScroll}');
-    expect(tournament).not.toContain('onScroll={topFadeScroll?.onScrollMaskOnly}');
     expect(friends).toContain('const handleFriendsScroll = useCallback((e: any) => {');
     expect(friends).toContain('topFadeScroll?.onScroll?.(e);');
     expect(friends).toContain('onScroll: handleFriendsScroll,');
@@ -25,16 +19,17 @@ describe('tabbar scroll chrome contract', () => {
     expect(settings).toContain('onScroll={handleSettingsScroll}');
   });
 
-  // зачем (2.0, референс владельца 24.09, D39/D43): таббар — неподвижная панель
-  // во всю ширину, а не капсула, которая сжимается от скролла. Сторож держит
-  // главное следствие: JS не слушает скролл активного таба ради хрома таббара.
-  it('keeps the docked 2.0 tab bar static while content scrolls', () => {
+  // зачем (2.0): владелец выбрал таббар «В · Тёплая кромка» (6c5c8326f, макет
+  // docs/design/tabbar/tabbar-variants.html) — общий V2TabBar, сжатие при скролле
+  // оставлено прежним. Прежняя версия теста ждала неподвижную панель s.tabDock,
+  // которую этот выбор заменил.
+  it('renders the owner-chosen V2 tab bar with one shared scroll-collapse machine', () => {
     const layout = fs.readFileSync(layoutPath, 'utf8');
-    expect(layout).toContain('s.tabDock,');
-    expect(layout).not.toContain('tabBarScrollY');
-    expect(layout).not.toContain('animateTabChrome');
-    expect(layout).not.toContain('TAB_SCROLL_COLLAPSED_SCALE');
-    expect(layout).not.toContain('tab-collapsed-orb');
+    expect(layout).toContain('import V2TabBar');
+    expect(layout).toContain('<V2TabBar');
+    expect(layout).toContain('topFadeScroll?.tabBarScrollY');
+    expect(layout).toContain('TAB_SCROLL_COLLAPSED_SCALE');
+    expect(layout).not.toContain('s.tabDock,');
   });
 });
 
@@ -62,18 +57,16 @@ describe('flashcards tabbar mirrors the home scroll chrome', () => {
     expect(bar).toContain('fcTabChromeAction(y, lastY.value)');
     // Хром — только transform/opacity, и ни одного бесконечного цикла.
     expect(bar).not.toMatch(/withRepeat\([\s\S]{0,220}?,\s*-1/);
+  });
 
-    const collection = fs.readFileSync(fc('flashcards_collection.tsx'), 'utf8');
-    const packs = fs.readFileSync(fc('flashcards_packs.tsx'), 'utf8');
-    /* Экран «Мои наборы» живёт на ПЛОСКОМ роуте: внутри `app/flashcards/`
-       expo-router его не разрешал и приложение падало (владелец, 2026-08-13). */
-    const myPacks = fs.readFileSync(fc('flashcards_my_packs.tsx'), 'utf8');
-    expect(collection).toContain('const tabScroll = useFcTabBarScroll();');
-    expect(collection).toContain('onScroll={sectionRoot ? tabScroll.onScroll : undefined}');
-    expect(packs).toContain('listener: tabScroll.onScroll,');
-    expect(myPacks).toContain('onScroll={tabScroll.scrollHandler}');
-    for (const source of [collection, packs, myPacks]) {
-      expect(source).toContain('scroll={tabScroll}');
+  // зачем (2.0, снимок 1.6.16 / 6ce8e6b4e): собственная капсула «Карточек» снята с
+  // экранов раздела — они живут под общим V2TabBar. Сторож не даёт вернуть второй
+  // таббар поверх общего («Мои наборы» — плоский роут, см. 2026-08-13).
+  it('flashcards screens do not render a second tab bar under the shared V2 one', () => {
+    for (const file of ['flashcards_collection.tsx', 'flashcards_packs.tsx', 'flashcards_my_packs.tsx']) {
+      const source = fs.readFileSync(fc(file), 'utf8');
+      expect(source).not.toContain('<FlashcardsTabBar');
+      expect(source).not.toContain('useFcTabBarScroll()');
     }
   });
 

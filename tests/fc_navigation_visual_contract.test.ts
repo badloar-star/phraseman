@@ -16,19 +16,18 @@ describe('Cards sibling navigation contract', () => {
     expect(layout).not.toMatch(/name="flashcards_collection" options=\{cardsSiblingAnimationOptions\}/);
   });
 
-  test('a visible sheet consumes Android Back before the tab menu or route', () => {
-    const tabbar = read('app', 'flashcards', 'FlashcardsTabBar.tsx');
-    const start = tabbar.indexOf("BackHandler.addEventListener('hardwareBackPress'");
-    const end = tabbar.indexOf('return () => sub.remove();', start);
-    const handler = tabbar.slice(start, end);
-
-    expect(start).toBeGreaterThanOrEqual(0);
-    expect(handler).toContain('if (pickerOption)');
-    expect(handler).toContain('setPickerOption(null);');
-    expect(handler).toContain('if (mistakeSheetVisible)');
-    expect(handler).toContain('setMistakeSheetVisible(false);');
-    expect(handler.indexOf('if (pickerOption)')).toBeLessThan(handler.indexOf('consumeFcTabBackPress(menu)'));
-    expect(handler.indexOf('if (mistakeSheetVisible)')).toBeLessThan(handler.indexOf('consumeFcTabBackPress(menu)'));
+  // зачем (2.0, снимок 1.6.16 / 6ce8e6b4e): своя капсула «Карточек» (FlashcardsTabBar)
+  // снята с экранов — раздел живёт под общим V2TabBar, а её Back-обработчик и меню
+  // «Создать» больше не монтируются. Прежние проверки сторожили немонтируемый код;
+  // теперь сторожим, что вторая капсула не вернулась незаметно.
+  test('the retired Cards capsule tab bar is not mounted by any screen', () => {
+    for (const file of ['flashcards.tsx', 'flashcards_collection.tsx', 'flashcards_packs.tsx', 'flashcards_my_packs.tsx']) {
+      const full = path.join(root, 'app', file);
+      if (!fs.existsSync(full)) continue;
+      const source = fs.readFileSync(full, 'utf8');
+      expect(source).not.toMatch(/imports+FlashcardsTabBar/);
+      expect(source).not.toContain('<FlashcardsTabBar');
+    }
   });
 
   test('collection Back clears local UI state before leaving the route', () => {
@@ -56,14 +55,4 @@ describe('Cards sibling navigation contract', () => {
     expect(handler).toContain("setSearchQuery('');");
   });
 
-  test('only sibling roots replace; create actions remain child pushes', () => {
-    const tabbar = read('app', 'flashcards', 'FlashcardsTabBar.tsx');
-    const start = tabbar.indexOf('const onCreateOption = useCallback(');
-    const end = tabbar.indexOf('const onPacksOption = useCallback(', start);
-    const handler = tabbar.slice(start, end);
-
-    expect(handler).toContain('router.push({ pathname: target.pathname, params: target.params } as any);');
-    expect(handler).not.toContain('go(target);');
-    expect(handler).not.toContain('markNextNavigationAsReplace()');
-  });
 });

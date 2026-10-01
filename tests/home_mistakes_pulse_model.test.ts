@@ -67,9 +67,11 @@ describe('home mistakes button', () => {
     expect(home).toContain('homeVideoLessonsLabel');
     // Гашение счётчика оптимистичное — сети не ждём.
     expect(home).toContain('markLingmanYoutubeCatalogSeen');
-    // Ошибки: два входа — переключаемая карточка и зарубка на полосе опыта.
-    expect(home).toContain('testID="home-xp-mistake-notch"');
+    // Ошибки: карточка-приоритет и строка в «Сегодня» (D144, владелец 01.10). Зарубка
+    // на полосе опыта ушла вместе с полосой в Главной 2.0.
+    expect(home).not.toContain('testID="home-xp-mistake-notch"');
     expect(home).toContain('openHomeMistakesHub');
+    expect(read('modules/today-tasks/today_tasks_core.ts')).toContain("'mistakes'");
   });
 
   test('порог 10 больше не закрывает раздел ошибок', () => {

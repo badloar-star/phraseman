@@ -26,7 +26,9 @@ it('keeps the category dock still until the OS motion preference resolves', () =
 });
 
 test('the selected shelf collectible is large enough to read as a display object', () => {
-  expect(carousel).toContain('Math.min(180, Math.round(itemWidth * 0.9))');
+  // зачем: витрину позже укрупнили до 216/1.06 (снимок 1.6.16) — тест сторожит «не меньше», а не старое число.
+  expect(carousel).toContain('Math.min(216, Math.round(itemWidth * 1.06))');
+  expect(carousel).not.toContain('Math.min(180, Math.round(itemWidth * 0.9))');
   expect(carousel).not.toContain('Math.min(156, Math.round(itemWidth * 0.84))');
   expect(carousel).not.toContain('Math.min(128, Math.round(itemWidth * 0.72))');
 });

@@ -407,6 +407,36 @@ describe('friendLikeActivity', () => {
     );
   });
 
+  test('PM-200: skips the high-five push when the target turned off «Друзья», keeps the bell entry', async () => {
+    docs.set('users/target', {
+      displayName: 'Target',
+      expoPushToken: 'ExponentPushToken[target]',
+      progress: { friends_push_v1: JSON.stringify({ enabled: false, tz: 180 }) },
+    });
+    const { sendExpoPush } = require('./expo_push') as { sendExpoPush: jest.Mock };
+    sendExpoPush.mockClear();
+    const log = jest.spyOn(console, 'log').mockImplementation(() => {});
+
+    await callProfileLike();
+
+    expect(docs.get(likeNotificationPath('target', 'like.profile'))).toMatchObject({ type: 'activity_like' });
+    expect(sendExpoPush).not.toHaveBeenCalled();
+    expect(log).toHaveBeenCalledWith('[PUSH-PREFS] activity_like push skipped', { type: 'activity_like', reason: 'friends_opt_out' });
+    log.mockRestore();
+  });
+
+  test('PM-200: activityLikePushBlockReason — opt-out, quiet hours by friends_push_v1.tz, default send', () => {
+    const { activityLikePushBlockReason } = require('./friend_activity_likes') as {
+      activityLikePushBlockReason: (d: Record<string, unknown> | undefined, now: number) => string | null;
+    };
+    const noonUtc = Date.UTC(2026, 4, 14, 12, 0, 0);
+    expect(activityLikePushBlockReason({ friends_push_v1: { enabled: false } }, noonUtc)).toBe('friends_opt_out');
+    // 12:00 UTC + 11 ч = 23:00 локально → тихие часы
+    expect(activityLikePushBlockReason({ progress: { friends_push_v1: '{"enabled":true,"tz":660}' } }, noonUtc)).toBe('quiet_hours');
+    expect(activityLikePushBlockReason({ friends_push_v1: { enabled: true, tz: 0 } }, noonUtc)).toBeNull();
+    expect(activityLikePushBlockReason(undefined, noonUtc)).toBeNull();
+  });
+
   test('rejects self likes before any writes', async () => {
     docs.set('users/sender/my_events/event-1', { uid: 'sender', type: 'level_up', ts: Date.now(), payload: {} });
 

@@ -4,6 +4,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
 import { sendExpoPush, type ExpoPushTransport } from './expo_push';
+import { isQuietHours } from './friends_together_core';
 
 const REGION = 'us-central1';
 const MAX_ID_LEN = 160;
@@ -75,6 +76,46 @@ function resolveSenderAvatar(senderData: Record<string, unknown>): string {
     ? senderData.progress as Record<string, unknown>
     : {};
   return String(senderProgress.user_avatar ?? '').trim().slice(0, 200);
+}
+
+function readFriendsPushPref(data: Record<string, unknown> | undefined): Record<string, unknown> {
+  const progress = (data?.progress && typeof data.progress === 'object' && !Array.isArray(data.progress))
+    ? data.progress as Record<string, unknown>
+    : {};
+  const raw = data?.friends_push_v1 ?? progress.friends_push_v1;
+  if (raw && typeof raw === 'object' && !Array.isArray(raw)) return raw as Record<string, unknown>;
+  if (typeof raw !== 'string' || !raw.trim()) return {};
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed as Record<string, unknown> : {};
+  } catch (error) {
+    console.warn('[PUSH-PREFS] activity_like friends_push_v1 unparsable', {
+      code: error instanceof Error ? error.name : typeof error,
+    });
+    return {};
+  }
+}
+
+/**
+ * Почему push «даёт пять» НЕ шлём (null = шлём).
+ *
+ * зачем: PM-200 — лайк слал push без оглядки на выбор человека. В разделе
+ * «Уведомления» за соцсобытия отвечает категория «Друзья»; клиент зеркалит её
+ * (вместе с мастер-тумблером) в `friends_push_v1 = { enabled, tz }` — ровно это
+ * поле уже уважает «Позвать» (friend_nudge). Берём то же правило и те же тихие
+ * часы 22–09 по поясу из friends_push_v1.tz. Сам лайк и запись в колокольчике
+ * остаются — глушим только push. Документ получателя уже прочитан в транзакции,
+ * лишних чтений нет.
+ */
+export function activityLikePushBlockReason(
+  targetData: Record<string, unknown> | undefined,
+  nowMs: number,
+): 'friends_opt_out' | 'quiet_hours' | null {
+  const pref = readFriendsPushPref(targetData);
+  if (pref.enabled === false) return 'friends_opt_out';
+  const tz = typeof pref.tz === 'number' && Number.isFinite(pref.tz) ? pref.tz : null;
+  if (isQuietHours(nowMs, tz)) return 'quiet_hours';
+  return null;
 }
 
 /** Persistent state belongs to the sender, so target + event are unique in that subcollection. */
@@ -311,6 +352,7 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
       _pushToken: typeof targetSnap.data()?.expoPushToken === 'string'
         ? targetSnap.data()!.expoPushToken as string
         : '',
+      _pushBlockReason: activityLikePushBlockReason(targetSnap.data(), now),
       _senderName: senderName,
       _notificationId: notificationId,
     };
@@ -319,7 +361,10 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
   const pushToken = (result as { _pushToken?: string })._pushToken ?? '';
   const senderName = (result as { _senderName?: string })._senderName ?? 'Friend';
   const notificationId = (result as { _notificationId?: string })._notificationId ?? '';
-  if (pushToken && notificationId) {
+  const pushBlockReason = (result as { _pushBlockReason?: string | null })._pushBlockReason ?? null;
+  if (pushToken && notificationId && pushBlockReason) {
+    console.log('[PUSH-PREFS] activity_like push skipped', { type: 'activity_like', reason: pushBlockReason });
+  } else if (pushToken && notificationId) {
     void sendExpoPush(
       pushToken,
       `${senderName} даёт пять`,
@@ -332,12 +377,18 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
       },
     ).then((transport: ExpoPushTransport) => {
       if (transport !== 'sent' && transport !== 'skipped') {
-        console.warn('friend_activity_like_push_failed', { transport });
+        console.warn('[PUSH-PREFS] activity_like push failed', { type: 'activity_like', code: transport });
       }
-    }).catch(() => {});
+    }).catch((error: unknown) => {
+      // зачем: PM-200 — немой catch прятал сбой отправки; код без PII.
+      console.warn('[PUSH-PREFS] activity_like push threw', {
+        type: 'activity_like',
+        code: error instanceof Error ? error.name : typeof error,
+      });
+    });
   }
 
-  const { _pushToken, _senderName, _notificationId, ...publicResult } = result as Record<string, unknown>;
+  const { _pushToken, _senderName, _notificationId, _pushBlockReason, ...publicResult } = result as Record<string, unknown>;
   return publicResult;
 });
 

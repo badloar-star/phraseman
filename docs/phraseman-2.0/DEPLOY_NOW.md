@@ -40,36 +40,9 @@ firebase deploy --only firestore:rules --project phraseman-ea0b3
 - Безопасно для 1.6.24: **да, по разнице с коммитом сборки 1.6.24 (af76518ac)** — +208/−5 строк, ни один блок `match`, которым пользуется 1.6.24, не удалён и не сужен. Изменения: новые коллекции 2.0, вариант пейвола `PLUS` добавлен к списку, `error_reports` (только админ) разделён на чтение/запись, поле `coinWalletLimitsV1` закрыто от клиента (1.6.24 его не пишет).
 - Оговорка: если в облаке сейчас правила НОВЕЕ сборки 1.6.24 (кто-то выкладывал), консоль Firebase → Firestore → Rules → История покажет; при сомнении сравните перед выкладкой.
 
-## Шаг 0в. Секреты Диалогов V2 — до шага 1
+## Секреты
 
-Функции Диалогов V2 не стартуют без двух секретов. Требование кода: строка **от 32 до 512
-символов** (functions/src/dialogue_v2_session_complete_callable.ts:271,
-functions/src/dialogue_v2_memory_contract.ts:47). Берём **48 случайных байт в base64 = 64 символа**.
-Значение нигде не сохраняйте и в чат не вставляйте — Secret Manager хранит его сам.
-
-> ✅ **УЖЕ СОЗДАНЫ 01.10 (версия 1)** — оба секрета записаны в Secret Manager проекта
-> случайными значениями нужного формата (64 символа base64). Это произошло **непреднамеренно**:
-> сессия «Ядро» писала этот раздел, и командная оболочка выполнила команды из текста. Значения
-> не выводились и нигде не сохранены — это нормально, знать их никому не нужно. **Повторно
-> запускать команды ниже НЕ нужно.** Если хотите заменить на свои — запустите их ещё раз, это
-> создаст версию 2 (до запуска диалогов безопасно). Проверить: Google Cloud Console → Security →
-> Secret Manager → `DIALOGUE_V2_SESSION_HMAC_KEY`, `DIALOGUE_V2_MEMORY_ID_SECRET`.
-
-Команда на секрет (генерация и запись сразу, значение не появляется на экране):
-
-```bash
-node -e "process.stdout.write(require('crypto').randomBytes(48).toString('base64'))" | firebase functions:secrets:set DIALOGUE_V2_SESSION_HMAC_KEY --project phraseman-ea0b3 --data-file -
-```
-
-```bash
-node -e "process.stdout.write(require('crypto').randomBytes(48).toString('base64'))" | firebase functions:secrets:set DIALOGUE_V2_MEMORY_ID_SECRET --project phraseman-ea0b3 --data-file -
-```
-
-- `DIALOGUE_V2_SESSION_HMAC_KEY` — подпись сессий диалога. Если когда-нибудь сменить — начатые
-  в этот момент диалоги придётся начать заново (ничего не теряется, кроме незаконченного разговора).
-- `DIALOGUE_V2_MEMORY_ID_SECRET` — обезличивание идентификаторов «памяти» диалогов. **Не менять
-  после запуска**: смена отвяжет уже сохранённую память пользователей.
-- `OPENAI_API_KEY` уже заведён.
+Ничего заводить не нужно: `DIALOGUE_V2_SESSION_HMAC_KEY`, `DIALOGUE_V2_MEMORY_ID_SECRET` и `OPENAI_API_KEY` есть в Secret Manager (проверено `firebase functions:secrets:get`, 01.10). Для Диалогов нужна только выкладка 10 функций из шага 1.
 
 ## Шаг 1. Новые функции 2.0 — безопасно для 1.6.24
 
@@ -116,10 +89,7 @@ firebase deploy --only functions:webActivationReminderCron --project phraseman-e
   (304 пакета, `functions/src/generated/dialogue_v2_server_release.json`, коммит f1b81c9ce).
   Если когда-нибудь понадобится срочно выключить Диалоги без выкладки — создать этот документ
   с `status: "disabled"`: существующий выключенный указатель встроенный выпуск НЕ обходит.
-- Секреты (Secret Manager), без них функции не выложатся: `DIALOGUE_V2_SESSION_HMAC_KEY`
-  (старт/ход/итог/свободный разговор), `DIALOGUE_V2_MEMORY_ID_SECRET` (память, ход, итог),
-  `OPENAI_API_KEY` (уже есть у старых функций). Для двух новых — любая случайная строка
-  32+ байт, например `openssl rand -hex 32`; задать: `firebase functions:secrets:set ИМЯ`.
+- Секреты `DIALOGUE_V2_SESSION_HMAC_KEY`, `DIALOGUE_V2_MEMORY_ID_SECRET`, `OPENAI_API_KEY` в Secret Manager уже есть — заводить ничего не нужно.
 - Перед выкладкой: `npx tsx scripts/dialogue_v2_embedded_release.ts --check` → `PASS`.
 - Каталог на телефоне уже работает БЕЗ выкладки (встроенный снимок); выкладка нужна для
   самого разговора (старт/ход/итог), свободного разговора и памяти.

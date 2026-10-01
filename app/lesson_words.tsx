@@ -20,6 +20,8 @@ import {
 import AddToFlashcard from '../components/AddToFlashcard';
 import ContentWrap from '../components/ContentWrap';
 import { triLang as pickTriLang, type Lang } from '../constants/i18n';
+import V2DoneScreen, { type V2DoneError } from '../components/completion/V2DoneScreen';
+import { pluralWord } from '../constants/plural';
 import { isCorrectAnswer } from '../constants/contractions';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -2824,6 +2826,11 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allDone, practiceRunes.hydrating]);
   const wrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
+  // зачем (макет learn.html F8): итог показывает «верно / ошибок / точность» и сами ошибки
+  // «было → верно» за этот проход. Считаем локально, без сети.
+  const runCorrectRef = useRef(0);
+  const runWrongRef = useRef(0);
+  const runErrorsRef = useRef<V2DoneError[]>([]);
 
   // зачем: системный «Назад» перехватывает родитель (LessonWords) — там обработчик активен
   // на ЛЮБОЙ вкладке, а Training монтируется только на вкладке тренировки. Свои модалки
@@ -2932,6 +2939,10 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
   }, [allDone, validQueue.length, learnedCnt, words, lang]);
 
   const recordWrongVocabularyAttempt = useCallback((card: Card, picked: string) => {
+    runWrongRef.current += 1;
+    if (!runErrorsRef.current.some((e) => e.label === card.word.en)) {
+      runErrorsRef.current = [...runErrorsRef.current, { label: card.word.en, was: picked, ok: card.correctOption }];
+    }
     wrongMistakesRef.current.push({
       phrase: card.word.en,
       tokenText: card.word.en,
@@ -2984,6 +2995,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
     // [FeedbackKit] fk.correct/fk.wrong дают тот же haptic + тёплый «дин-дон»/мягкий «туп».
     if (voiceOut) speakAudio(wordEn, speechRate, { language: 'en-US' });
     if (isRight) {
+      runCorrectRef.current += 1;
       fk.verdict({ correct: true });
     } else {
       fk.verdict({ correct: false });
@@ -3105,6 +3117,9 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
     applyLearnedCount(countLearnedWords(words, countsRef.current));
     setAllDone(false);
     wrongMistakesRef.current = [];
+    runCorrectRef.current = 0;
+    runWrongRef.current = 0;
+    runErrorsRef.current = [];
     locked.current = false;
     // [FeedbackKit] Новый прогон — разрешаем показать финальную мини-победу снова.
     victoryFiredRef.current = false;
@@ -3118,51 +3133,32 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
   const trainingStepLabel = `${learnedCnt} / ${words.length}`;
   if (allDone || (validQueue.length === 0 && learnedCnt >= words.length)) return (
     <View style={{ flex: 1 }}>
-      <View testID="lesson-words-complete" style={{ flex:1, justifyContent:'center', alignItems:'center', gap:16, padding:20 }}>
-        <View style={{ width:61,height:61,borderRadius:16,backgroundColor:glass.opaqueControl,justifyContent:'center',alignItems:'center' }}>
-          <Ionicons name="checkmark-done-outline" size={28} color={t.correct}/>
-        </View>
-        <Text style={{ color:glass.text, fontSize:20, lineHeight:26, fontWeight:'700', textAlign:'center' }}>{ws.allLearned}</Text>
-        <Text style={{ color:glass.secondary, fontSize:15, lineHeight:20, fontWeight:'600' }}>{ws.learnedOf(words.length, words.length)}</Text>
-        {practiceRunes.runes > 0 && (
-          <View style={{ flexDirection:'row',alignItems:'center',gap:6,backgroundColor:glass.opaqueControl,borderRadius:19,paddingHorizontal:16,minHeight:38 }}>
-            {/* guard-ok: декоративный ассет, смысл несёт число рядом */}
-            <Image
-              source={require('../assets/images/coins/coin_rank_00.webp')}
-              style={{ width:18, height:18 }}
-              contentFit="contain"
-              accessible={false}
-              accessibilityElementsHidden
-              importantForAccessibility="no"
-            />
-            <Text style={{ color:glass.text, fontSize:17, fontWeight:'700' }}>+</Text>
-            <AnimatedCountUpText
-              value={practiceRunes.runes}
-              style={{ color:glass.text, fontSize:17, fontWeight:'700', minWidth: 24 }}
-              accessibilityLabel={`+${practiceRunes.runes}`}
-            />
-          </View>
-        )}
-        <PracticeCta
-          glass={glass}
-          testID="lesson-words-complete-back"
-          label={pickTriLang(lang, { ru: 'К уроку', uk: 'До уроку', es: 'A la lección', 'pt-BR': 'Para a lição', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derse', pl: 'Do lekcji' })}
-          onPress={() => { hapticTap(); safeRouterBack(router, '/lessons_list'); }}
-          style={{ marginTop: 8 }}
-        />
-        <Pressable
-          testID="lesson-words-repeat"
-          accessibilityRole="button"
-          style={({ pressed }) => ({ minHeight: 44, paddingHorizontal: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, opacity: pressed ? 0.7 : 1 })}
-          onPress={() => {
-            fk.tap();
-            setPracticeRepeatConfirm(true);
-          }}
-        >
-          <Ionicons name="refresh-outline" size={18} color={glass.secondary} />
-          <Text style={{ color: glass.secondary, fontSize: 16, fontWeight: '600' }}>{pickTriLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Repetir', 'pt-BR': 'Repetir', vi: 'Lặp lại', id: 'Ulangi', tr: 'Tekrarla', pl: 'Powtórz' })}</Text>
-        </Pressable>
-      </View>
+      {/* зачем (владелец 01.10): итог слов = общий экран завершения 2.0, вариант learn.html F8. */}
+      <V2DoneScreen
+        testID="lesson-words-complete"
+        title={pickTriLang(lang, { ru: 'Слова пройдены', uk: 'Слова пройдено', en: 'Words done', es: 'Palabras completadas', 'pt-BR': 'Palavras concluídas', vi: 'Đã xong từ vựng', id: 'Kosakata selesai', tr: 'Kelimeler tamam', pl: 'Słowa ukończone' })}
+        subtitle={pickTriLang(lang, {
+          ru: `Слова урока · Урок ${lessonId} · ${words.length} ${pluralWord(lang, words.length, { one: 'слово', few: 'слова', many: 'слов' })}`,
+          uk: `Слова уроку · Урок ${lessonId} · ${words.length} ${pluralWord(lang, words.length, { one: 'слово', few: 'слова', many: 'слів' })}`,
+          en: `Lesson words · Lesson ${lessonId} · ${words.length} words`,
+          es: `Palabras de la lección · Lección ${lessonId} · ${words.length} palabras`,
+          'pt-BR': `Palavras da lição · Lição ${lessonId} · ${words.length} palavras`,
+          vi: `Từ của bài · Bài ${lessonId} · ${words.length} từ`,
+          id: `Kata pelajaran · Pelajaran ${lessonId} · ${words.length} kata`,
+          tr: `Ders kelimeleri · Ders ${lessonId} · ${words.length} kelime`,
+          pl: `Słowa lekcji · Lekcja ${lessonId} · ${words.length} ${pluralWord(lang, words.length, { one: 'słowo', few: 'słowa', many: 'słów' })}`,
+        })}
+        stars={null}
+        correct={runCorrectRef.current + runWrongRef.current > 0 ? runCorrectRef.current : null}
+        wrong={runCorrectRef.current + runWrongRef.current > 0 ? runWrongRef.current : null}
+        coinsGained={practiceRunes.runes}
+        errors={runErrorsRef.current}
+        primaryLabel={pickTriLang(lang, { ru: 'К уроку', uk: 'До уроку', en: 'To the lesson', es: 'A la lección', 'pt-BR': 'Para a lição', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derse', pl: 'Do lekcji' })}
+        onPrimary={() => safeRouterBack(router, '/lessons_list')}
+        secondaryLabel={pickTriLang(lang, { ru: 'Ещё раз', uk: 'Ще раз', en: 'Again', es: 'Otra vez', 'pt-BR': 'De novo', vi: 'Lần nữa', id: 'Sekali lagi', tr: 'Bir daha', pl: 'Jeszcze raz' })}
+        onSecondary={() => { fk.tap(); setPracticeRepeatConfirm(true); }}
+        onClose={() => safeRouterBack(router, '/lessons_list')}
+      />
       {/* Карточка за закрытый словарь — сюрприз поверх экрана итога. */}
       <CollectibleDropModal
         outcome={cardDropVisible ? cardDrop : null}

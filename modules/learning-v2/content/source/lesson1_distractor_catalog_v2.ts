@@ -500,7 +500,11 @@ function upgradePhraseInPlace(phrase: EpisodeSourcePhrase, sessionOrdinal: numbe
     localizedDetails?: EpisodeSourcePhrase['localizedDetails'];
   };
   mutable.words = words;
-  mutable.localizedDetails = localizedDetails;
+  // зачем: у фразы без localizedDetails прежнее присваивание создавало ключ со
+  // значением undefined, и хэш содержимого (canonical JSON) падал с
+  // canonical_json_non_json_value — гейт качества не мог проверить занятие.
+  // Нет деталей — нет и ключа; тексты и отпечатки фраз с деталями не меняются.
+  if (localizedDetails !== undefined) mutable.localizedDetails = localizedDetails;
   return phrase;
 }
 

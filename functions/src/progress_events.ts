@@ -177,10 +177,9 @@ function parseActiveDays(raw: unknown): Set<string> | null {
 }
 
 /**
- * Правдоподобие серии телефона (§59): не больше дней подряд в присланном списке активных дней
- * (журнал телефона в UTC, дата серии локальная — допускаем сдвиг на сутки) и не больше дней
- * с создания аккаунта. Без списка (старые события) — только возраст аккаунта; у streak_sync
- * список обязателен.
+ * Правдоподобие серии телефона (§59) — только для streak_sync: не больше дней подряд в
+ * присланном списке активных дней (журнал в UTC, дата серии локальная — сутки допуска) и не
+ * больше дней с создания аккаунта; список обязателен. Прочие события — без проверок, как раньше.
  */
 export function streakEvidencePlausibility(input: {
   claimed: number;
@@ -190,6 +189,10 @@ export function streakEvidencePlausibility(input: {
   accountCreatedAtMs: number | null;
 }): StreakEvidenceDecision {
   const { claimed, clientLast, activeDays, requireActiveDays, accountCreatedAtMs } = input;
+  // зачем (координатор, после §60): старые клиенты (стор 1.6.24) шлют серию с уроком без
+  // списка дней — для них НИКАКИХ новых проверок, ровно прежнее поведение; проверки
+  // (дни подряд и возраст аккаунта) — только у streak_sync клиента 2.0.
+  if (!requireActiveDays) return { accepted: true, reason: 'legacy_unchecked', claimed, cap: null };
   let cap: number | null = null;
   if (activeDays) {
     const prev = shiftDateKey(clientLast, -1);

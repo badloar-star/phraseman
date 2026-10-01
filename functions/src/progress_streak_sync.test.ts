@@ -73,17 +73,22 @@ describe('streak_sync: правдоподобная серия телефона'
     const applied = applyProgressEvent(serverProgress, lesson, now, {
       accountCreatedAtMs: Date.parse('2026-09-01T00:00:00Z'),
     });
-    expect(applied.streakEvidence).toMatchObject({ accepted: true, reason: 'plausible' });
+    expect(applied.streakEvidence).toMatchObject({ accepted: true, reason: 'legacy_unchecked' });
     expect(applied.streakCount).toBe(7);
-    // created_at у аккаунта нет — потолка нет, как раньше
-    expect(applyProgressEvent(serverProgress, lesson, now, {}).streakCount).toBe(7);
+    // старый клиент без потолка: аккаунт «создан вчера» — всё равно принимаем, как раньше
+    const youngAccount = applyProgressEvent(serverProgress, lesson, now, {
+      accountCreatedAtMs: Date.parse('2026-09-30T10:00:00Z'),
+    });
+    expect(youngAccount.streakEvidence).toMatchObject({ accepted: true, reason: 'legacy_unchecked' });
+    expect(youngAccount.streakCount).toBe(7);
   });
 
-  it('старые события без списка проверяются только возрастом аккаунта', () => {
+  it('старые события (не streak_sync) не проверяются вовсе', () => {
     const decision = streakEvidencePlausibility({
-      claimed: 6, clientLast: '2026-10-01', activeDays: null, requireActiveDays: false, accountCreatedAtMs: null,
+      claimed: 600, clientLast: '2026-10-01', activeDays: null, requireActiveDays: false,
+      accountCreatedAtMs: Date.parse('2026-09-30T00:00:00Z'),
     });
-    expect(decision).toMatchObject({ accepted: true, cap: null });
+    expect(decision).toMatchObject({ accepted: true, reason: 'legacy_unchecked', cap: null });
   });
 
   it('журнал в UTC может отставать на сутки от локальной даты серии', () => {

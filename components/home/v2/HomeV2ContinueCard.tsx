@@ -19,6 +19,12 @@ type Props = {
   accessibilityLabel: string;
   onPress: () => void;
   onLongPress?: () => void;
+  /**
+   * зачем (координатор 01.10, эмулятор: карточка появлялась позже и сдвигала Главную на ~290 px):
+   * урок ещё читается с диска — карточка стоит на своём месте той же геометрии, вместо текста
+   * заготовки. Первый кадр = финальная геометрия (Performance Bible).
+   */
+  pending?: boolean;
 };
 
 /**
@@ -26,25 +32,27 @@ type Props = {
  * название, счётчик x / N и полоса прогресса, круглая стрелка; справа арт
  * из утверждённого ассета с плашкой номера урока.
  */
-export default function HomeV2ContinueCard({ overline, title, done, total, art, badge, accessibilityLabel, onPress, onLongPress }: Props) {
+export default function HomeV2ContinueCard({ overline, title, done, total, art, badge, accessibilityLabel, onPress, onLongPress, pending = false }: Props) {
   const p = useV2Palette();
   const glass = useV2GlassStyle();
   const safeTotal = Math.max(1, total);
   const ratio = Math.max(0, Math.min(1, done / safeTotal));
   return (
     <V2Pressable
-      testID="home-continue-lesson"
+      testID={pending ? 'home-continue-lesson-pending' : 'home-continue-lesson'}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
+      accessibilityState={{ busy: pending }}
+      disabled={pending}
       onPress={onPress}
       onLongPress={onLongPress}
       scaleTo={0.98}
       style={[s.card, glass]}
     >
       <V2GlassSheen seed={0} />
-      <View pointerEvents="none" style={s.art}>
+      <View pointerEvents="none" style={[s.art, pending ? s.artPending : null]}>
         <Image source={art} style={s.artImage} contentFit="contain" accessible={false} />
-        {badge ? (
+        {badge && !pending ? (
           <View
             style={[s.badge, { backgroundColor: p.control, borderColor: p.hairline }]} // guard-ok: D43
           >
@@ -54,12 +62,21 @@ export default function HomeV2ContinueCard({ overline, title, done, total, art, 
       </View>
       <View style={s.copy}>
         <Text style={[s.overline, { color: p.textSecondary }]}>{overline}</Text>
-        <Text testID="home-continue-lesson-title" style={[s.title, { color: p.text }]}>{title}</Text>
-        <Text style={[s.counter, { color: p.textSecondary }]}>{`${done} / ${total}`}</Text>
+        {pending ? (
+          <>
+            <View style={[s.titleBar, { backgroundColor: p.control }]} />
+            <View style={[s.counterBar, { backgroundColor: p.control }]} />
+          </>
+        ) : (
+          <>
+            <Text testID="home-continue-lesson-title" style={[s.title, { color: p.text }]}>{title}</Text>
+            <Text style={[s.counter, { color: p.textSecondary }]}>{`${done} / ${total}`}</Text>
+          </>
+        )}
         <View style={s.progressRow}>
           <View style={[s.track, { backgroundColor: p.track }]}>
             {/* Ширина задаётся сразу — первый кадр = финальная геометрия. */}
-            <View style={[s.fill, { width: `${ratio * 100}%`, backgroundColor: p.progressFill }]} />
+            {pending ? null : <View style={[s.fill, { width: `${ratio * 100}%`, backgroundColor: p.progressFill }]} />}
           </View>
           <View style={[s.arrow, { backgroundColor: p.glassRaised, borderColor: p.stroke }]}>
             <Ionicons name="chevron-forward" size={18} color={p.text} />
@@ -80,6 +97,10 @@ const s = StyleSheet.create({
   },
   art: { position: 'absolute', right: 0, top: 0, bottom: 0, width: '42%', opacity: 0.95, alignItems: 'flex-end', justifyContent: 'center' },
   artImage: { width: 130, height: 130, marginRight: 6 },
+  artPending: { opacity: 0.35 },
+  // Заготовки повторяют строки: заголовок 20 + отступ 6, счётчик 18 + отступ 6.
+  titleBar: { height: 14, width: '78%', borderRadius: 7, marginTop: 6 + 3, marginBottom: 3 },
+  counterBar: { height: 12, width: 56, borderRadius: 6, marginTop: 6 + 3, marginBottom: 3 },
   badge: {
     position: 'absolute',
     right: 12,

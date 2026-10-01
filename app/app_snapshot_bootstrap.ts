@@ -168,8 +168,13 @@ function buildProgressSnapshot(
     streak: readInt(values.get('streak_count')),
     shards: readInt(values.get('shards_balance')),
     studyTarget: storageStudyTarget(studyTarget),
-    stars: Math.max(bootRunes?.balance ?? 0, current.progress?.stars ?? 0),
-    starsEarnedTotal: Math.max(bootRunes?.earnedTotal ?? 0, current.progress?.starsEarnedTotal ?? 0),
+    // зачем (эмулятор 01.10, лог [HOME-COINS]): неизвестные монеты — undefined, не 0; иначе Главная 22 с показывала «0».
+    stars: bootRunes === null && current.progress?.stars === undefined
+      ? undefined
+      : Math.max(bootRunes?.balance ?? 0, current.progress?.stars ?? 0),
+    starsEarnedTotal: bootRunes === null && current.progress?.starsEarnedTotal === undefined
+      ? undefined
+      : Math.max(bootRunes?.earnedTotal ?? 0, current.progress?.starsEarnedTotal ?? 0),
   };
 }
 

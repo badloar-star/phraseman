@@ -713,6 +713,23 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // зачем (эмулятор 30.09, лог [HOME-FIRST-FRAME]): на холодном старте снимок урока
     // живёт только в памяти — карточка «Продолжить обучение» приходила после loadData
     // и рывком сдвигала всю Главную. Ref помнит, была ли карточка, чтобы вставку анимировать.
+    // зачем (координатор 01.10, эмулятор: карточка «Продолжить» приходила через loadData и
+    // сдвигала Главную на ~290 px): пока урок не прочитан, место держит заготовка той же формы.
+    const [continueResolved, setContinueResolved] = useState(() => lastLesson !== null);
+    const continueResolvedRef = useRef(continueResolved);
+    useEffect(() => {
+        continueResolvedRef.current = continueResolved;
+        if (continueResolved) return undefined;
+        // Решение приносит loadData (урок или «нет урока», а при сбое — finally). Потолок —
+        // только страховка от зависшей загрузки: заготовку не держим вечно.
+        const timer = setTimeout(() => {
+            if (continueResolvedRef.current) return;
+            console.warn('[HOME-FIRST-FRAME] continue_card:ceiling — урок не прочитан за 20 с, заготовка снята');
+            animateNextLayoutTransition();
+            setContinueResolved(true);
+        }, 20_000);
+        return () => clearTimeout(timer);
+    }, [continueResolved]);
     const lastLessonShownRef = useRef(lastLesson !== null);
     useEffect(() => { lastLessonShownRef.current = lastLesson !== null; }, [lastLesson]);
     // зачем (22.09): null означал «раздела ошибок нет» — на Главной у
@@ -1155,7 +1172,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // зачем (эмулятор 01.10, лог [HOME-COINS]): сплеш снимается по потолку 1 с, а снимок прогресса
     // может ещё читаться с диска — peekRunes() отдаёт 0, и Главная показывала «0 монет», потом
     // прыжок на реальное число (Performance Bible: без zero-then-jump). Пока прогресса нет — «—».
-    const [runesKnown, setRunesKnown] = useState(() => getAppSnapshot().progress != null);
+    // зачем (эмулятор 01.10): «прогресс есть» ≠ «монеты известны» — секция progress
+    // появлялась раньше чтения монет с диска. Знаем баланс, только когда stars задан.
+    const [runesKnown, setRunesKnown] = useState(() => getAppSnapshot().progress?.stars !== undefined);
     // зачем: помним, ЧЕЙ баланс сейчас на экране, чтобы отличить смену аккаунта
     // (обнулять обязательно) от инициализации того же аккаунта на старте (нельзя).
     const runesOwnerRef = useRef<string | null>(captureAccountGeneration().stableId?.trim() || null);
@@ -1179,7 +1198,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => {
         const unsubscribeRunesSnapshot = subscribeAppSnapshot(() => {
             setRunesBalance(peekRunes());
-            if (getAppSnapshot().progress != null) setRunesKnown(true);
+            if (getAppSnapshot().progress?.stars !== undefined) setRunesKnown(true);
         });
         const runesAccountSubscription = subscribeAccountGeneration((token) => {
             // Никогда не показываем retained-значение предыдущего аккаунта.
@@ -1194,7 +1213,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             const nextOwner = token.stableId?.trim() || null;
             const ownerChanged = previousOwner !== null && previousOwner !== nextOwner;
             runesOwnerRef.current = nextOwner;
-            if (ownerChanged) { setRunesBalance(0); setRunesKnown(getAppSnapshot().progress != null); }
+            if (ownerChanged) { setRunesBalance(0); setRunesKnown(getAppSnapshot().progress?.stars !== undefined); }
             if (homeRuntimeActiveRef.current && token.phase === 'active') {
                 reconcileHomeRunes(token);
             }
@@ -1958,9 +1977,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     animateNextLayoutTransition();
                 }
                 setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: correct, score: scoreStr });
+                setContinueResolved(true);
             }
             else if (mountedRef.current) {
+                // Урока нет — заготовка уходит плавно, а не рывком.
+                if (!continueResolvedRef.current) {
+                    if (__DEV__) console.log('[HOME-FIRST-FRAME] continue_card:none — заготовка снята');
+                    animateNextLayoutTransition();
+                }
                 setLastLesson(null);
+                setContinueResolved(true);
             }
             // Крупная карта «Рівень / Ланцюжок»: не ждём лігу, медалі и ошибки — щоб не ловити вічний спінер.
             step('lessons+unlockLoop');
@@ -2013,8 +2039,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     // Гидратация Главной собирает progress ЗАНОВО и раньше роняла
                     // stars — счётчик рун падал в ноль до следующей публикации
                     // проекции. Руны сюда не приходят, переносим текущее значение.
-                    stars: currentSnapshot.progress?.stars ?? 0,
-                    starsEarnedTotal: currentSnapshot.progress?.starsEarnedTotal ?? 0,
+                    // зачем (эмулятор 01.10, лог [HOME-COINS]): неизвестные монеты — undefined, не 0; иначе Главная 22 с показывала «0».
+                    stars: currentSnapshot.progress?.stars,
+                    starsEarnedTotal: currentSnapshot.progress?.starsEarnedTotal,
                 },
             }));
             if (mountedRef.current)
@@ -2098,6 +2125,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             homeStatsLoadedOnce = true;
             if (mountedRef.current)
                 markHomeStatsReady();
+            // Загрузка закончилась (или упала) — заготовке карточки «Продолжить» больше нечего ждать.
+            if (mountedRef.current && !continueResolvedRef.current) {
+                if (__DEV__) console.log('[HOME-FIRST-FRAME] continue_card:resolved_in_finally');
+                animateNextLayoutTransition();
+                setContinueResolved(true);
+            }
             loadingRef.current = false;
             // Если во время загрузки пришёл ещё один запрос — выполняем его сейчас
             if (needsReloadRef.current) {
@@ -2319,6 +2352,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // зачем D129: «Продолжить урок» — это курс; без курса для языка плашку урока не рисуем.
         // зачем D134: плашка «Мои ошибки» — для любого языка, если ошибки есть (без условия курса).
         const priorityCardVisible = (lastLesson !== null && homeLearnVisible) || priorityCardShowsMistakes;
+        const continueCardPending = !continueResolved && homeLearnVisible && !priorityCardVisible;
         const priorityCardTitle = priorityCardShowsMistakes
             ? triLang(lang, {
                 ru: 'Мои ошибки', uk: 'Мої помилки', en: 'My mistakes', es: 'Mis errores',
@@ -2572,8 +2606,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 ]}
               />
             </View>
-            {priorityCardVisible ? (
+            {priorityCardVisible || continueCardPending ? (
               <HomeV2ContinueCard
+                pending={!priorityCardVisible && continueCardPending}
                 overline={triLang(lang, { ru: 'Продолжить обучение', uk: 'Продовжити навчання', en: 'Continue learning', es: 'Seguir aprendiendo', 'pt-BR': 'Continuar aprendendo', vi: 'Tiếp tục học', id: 'Lanjutkan belajar', tr: 'Öğrenmeye devam et', pl: 'Kontynuuj naukę' }).toUpperCase()}
                 title={priorityCardTitle}
                 done={priorityCardShowsMistakes ? 0 : Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}

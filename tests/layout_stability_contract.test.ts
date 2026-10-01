@@ -243,3 +243,33 @@ describe('layout stability contract (первый кадр = финальная 
     });
   });
 });
+
+// зачем (координатор 01.10, замер эмулятора на холодном старте): Главная показывала «0 монет»
+// ~20 с (секция progress снимка подставляла stars=0 до чтения кошелька с диска), а карточка
+// «Продолжить обучение» приходила после loadData и сдвигала экран на ~290 px. Оба случая —
+// zero-then-jump и поздняя вставка в поток; сторож держит исправление.
+describe('Главная: первый кадр без нуля монет и без поздней вставки карточки', () => {
+  const home = read('app/(tabs)/home.tsx');
+  const store = read('app/app_snapshot_store.ts');
+  const bootstrap = read('app/app_snapshot_bootstrap.ts');
+  const card = read('components/home/v2/HomeV2ContinueCard.tsx');
+
+  test('неизвестные монеты не превращаются в 0', () => {
+    for (const source of [home, store]) {
+      expect(source).not.toMatch(/stars: current(Snapshot)?\.?progress\?\.stars \?\? 0/);
+      expect(source).not.toMatch(/stars: currentProgress\?\.stars \?\? 0/);
+    }
+    expect(bootstrap).toContain('bootRunes === null && current.progress?.stars === undefined');
+    expect(home).toContain('useState(() => getAppSnapshot().progress?.stars !== undefined)');
+    expect(home).not.toContain('useState(() => getAppSnapshot().progress != null)');
+  });
+
+  test('карточка «Продолжить обучение» с первого кадра держит место заготовкой той же формы', () => {
+    expect(card).toContain('pending?: boolean;');
+    expect(card).toContain("testID={pending ? 'home-continue-lesson-pending' : 'home-continue-lesson'}");
+    expect(home).toContain('const continueCardPending = !continueResolved && homeLearnVisible && !priorityCardVisible;');
+    expect(home).toContain('{priorityCardVisible || continueCardPending ? (');
+    // Решение приносит loadData — в том числе из finally при сбое; заготовка уходит плавно.
+    expect(home).toMatch(/finally \{[\s\S]{0,1500}setContinueResolved\(true\)/);
+  });
+});

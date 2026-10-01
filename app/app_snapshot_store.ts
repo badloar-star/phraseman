@@ -235,8 +235,9 @@ export function patchAppSnapshotFromPersonalProgress(progress: Readonly<{
         // смену серии. peekRunes() читал undefined -> 0, счётчик падал в ноль и
         // возвращался, когда level_spin_star_grants публиковал проекцию.
         // Руны здесь не наши — переносим как есть, писатель у них ровно один.
-        stars: current.progress?.stars ?? 0,
-        starsEarnedTotal: current.progress?.starsEarnedTotal ?? 0,
+        // зачем (эмулятор 01.10, лог [HOME-COINS]): неизвестные монеты — undefined, не 0; иначе Главная 22 с показывала «0».
+        stars: current.progress?.stars,
+        starsEarnedTotal: current.progress?.starsEarnedTotal,
       },
     };
   });
@@ -277,8 +278,9 @@ export function patchAppSnapshotFromAuthoritativeCloudProgress(
     streak,
     shards: currentProgress?.shards ?? 0,
     studyTarget: currentProgress?.studyTarget ?? 'en',
-    stars: currentProgress?.stars ?? 0,
-    starsEarnedTotal: currentProgress?.starsEarnedTotal ?? 0,
+    // зачем (эмулятор 01.10, лог [HOME-COINS]): неизвестные монеты — undefined, не 0; иначе Главная 22 с показывала «0».
+    stars: currentProgress?.stars,
+    starsEarnedTotal: currentProgress?.starsEarnedTotal,
   };
   patchAppSnapshot(patch);
   return true;

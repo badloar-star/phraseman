@@ -1636,15 +1636,29 @@ export async function peekStoredLevelSpinStarsForBoot(
   token: AccountGenerationToken,
 ): Promise<Readonly<{ balance: number; earnedTotal: number }> | null> {
   const ownerStableId = token.stableId?.trim();
-  if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) return null;
+  // зачем (правило «немых выходов нет»; эмулятор 01.10: Главная рисовала 0 монет 14 с):
+  // каждый ранний выход говорит, почему стартовый снимок остался без монет.
+  if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) {
+    console.warn('[HOME-COINS] boot:skip', JSON.stringify({ reason: ownerStableId ? 'stale_generation' : 'no_stable_id', phase: token.phase }));
+    return null;
+  }
   try {
     const raw = await AsyncStorage.getItem(levelSpinStarProjectionKey(ownerStableId));
-    if (raw === null) return null;
-    if (!isCurrentAccountGeneration(token, ownerStableId)) return null;
-    return visibleProjection(parseProjection(raw, ownerStableId));
-  } catch {
+    if (raw === null) {
+      console.warn('[HOME-COINS] boot:skip', JSON.stringify({ reason: 'no_projection_on_disk' }));
+      return null;
+    }
+    if (!isCurrentAccountGeneration(token, ownerStableId)) {
+      console.warn('[HOME-COINS] boot:skip', JSON.stringify({ reason: 'generation_changed_during_read' }));
+      return null;
+    }
+    const visible = visibleProjection(parseProjection(raw, ownerStableId));
+    console.log('[HOME-COINS] boot:read', JSON.stringify({ balance: visible.balance }));
+    return visible;
+  } catch (error: unknown) {
     // Проекция битая — её починит recoverProjection в обычном потоке. Показать
     // «неизвестно» и дать снапшоту остаться прежним честнее, чем нарисовать 0.
+    console.warn('[HOME-COINS] boot:skip', JSON.stringify({ reason: 'projection_parse_failed', message: error instanceof Error ? error.message : String(error) }));
     return null;
   }
 }

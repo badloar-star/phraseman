@@ -44,6 +44,12 @@ const DRAIN_YIELD_MS = 5_000;
 const RESUME_MIN_INTERVAL_MS = 120_000;
 /** Коды стирания, которые повтор не исправит (хвост 6C P3) — отдельная ветка лога. */
 const TERMINAL_ERASE_CODE = /manifest_mismatch|marker_foreign|lineage_exhausted/;
+/**
+ * Пакет 6E: после стольких терминальных неудач uid стирается не чаще раза в сутки.
+ * зачем: повтор такие коды не лечит — каждый запуск тратил бы чтения/записи впустую.
+ */
+const TERMINAL_ERASE_MAX_ATTEMPTS = 3;
+const TERMINAL_ERASE_RETRY_MS = 24 * 60 * 60 * 1000;
 
 type AccountScopeValue = Extract<AccountScope, { kind: 'account' }>;
 
@@ -272,7 +278,16 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
   /** uid, чьё стирание упало (пусто — все подтверждены; в лог — код каждой неудачи). */
   const resumePendingErase = async (st: AccountScopeStore, uids: readonly string[]): Promise<readonly string[]> => {
     const failed: string[] = [];
+    const terminal = ports.latch.readTerminal === undefined ? new Map() : await ports.latch.readTerminal();
+    let capped = 0;
     for (const uid of uids) {
+      const record = terminal.get(uid);
+      if (record !== undefined && record.count >= TERMINAL_ERASE_MAX_ATTEMPTS && nowMs() - record.lastAtMs < TERMINAL_ERASE_RETRY_MS) {
+        // зачем (6E): терминальный код повтором не лечится — не чаще раза в сутки; uid остаётся в защёлке.
+        failed.push(uid);
+        capped += 1;
+        continue;
+      }
       try {
         const evidence = await st.eraseClosedAccountScope(accountScope(uid));
         const cleared = await ports.latch.clear(uid);
@@ -284,12 +299,14 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
         // зачем (Пакет 6D, хвост 6C P3): «чужой манифест / чужая метка / линия кончилась»
         // повтором не лечатся — отдельная ветка лога, чтобы это было видно, а не тонуло в io.
         if (TERMINAL_ERASE_CODE.test(cause)) {
-          console.warn(`${LOG} erase resume_terminal code=${code} cause=${cause} uidStaysLatched=true`);
+          const noted = ports.latch.noteTerminal === undefined ? null : await ports.latch.noteTerminal(uid, nowMs());
+          console.warn(`${LOG} erase resume_terminal code=${code} cause=${cause} uidStaysLatched=true attempts=${noted?.count ?? 'untracked'} cap=${TERMINAL_ERASE_MAX_ATTEMPTS}`);
         } else {
           console.warn(`${LOG} erase resume_failed code=${code} cause=${cause}`);
         }
       }
     }
+    if (capped > 0) console.log(`${LOG} erase terminal_capped count=${capped} retryAfterHours=24`);
     return failed;
   };
 
@@ -306,6 +323,19 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
     } catch (error) {
       console.warn(`${LOG} latch discover_failed code=${codeOf(error)}`);
       return [];
+    }
+  };
+
+  /** Сколько семейств файлов последнее обнаружение не смогло приписать uid (адаптер 6E). */
+  const unattributedAfterDiscovery = (): number => {
+    const read = (storeAdapter as { lastDiscoveryUnattributed?: unknown } | null)?.lastDiscoveryUnattributed;
+    if (typeof read !== 'function') return 0;
+    try {
+      const value = Reflect.apply(read, storeAdapter, []) as unknown;
+      return Number.isSafeInteger(value) && (value as number) >= 0 ? value as number : 0;
+    } catch (error) {
+      console.warn(`${LOG} latch unattributed_unreadable code=${codeOf(error)}`);
+      return 0;
     }
   };
 
@@ -332,13 +362,39 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
       // (mark поверх битой записи пишет только свой uid). Дальше они дотираются обычным
       // путём на каждом запуске, а остальные аккаунты V2 больше не заблокированы
       // стабильно падающим стиранием. Не записалось — запись остаётся битой, повтор позже.
-      let rewritten = true;
-      for (const uid of failed) rewritten = (await ports.latch.mark(uid)) && rewritten;
-      console.warn(`${LOG} latch corrupt_rewritten failed=${failed.length} ok=${rewritten}`);
+      // зачем (6E): одной записью (replace) — оборванный цикл mark мог потерять часть uid.
+      let rewritten: boolean;
+      if (ports.latch.replace !== undefined) {
+        rewritten = await ports.latch.replace(failed);
+      } else {
+        rewritten = true;
+        for (const uid of failed) rewritten = (await ports.latch.mark(uid)) && rewritten;
+      }
+      console.warn(`${LOG} latch corrupt_rewritten failed=${failed.length} ok=${rewritten} atomic=${ports.latch.replace !== undefined}`);
       return;
     }
     const reset = await ports.latch.reset();
-    console.warn(`${LOG} latch corrupt_recovery_done reset=${reset}`);
+    // зачем (6E): области без метки и без известного uid стереть нельзя (в имени только хэш) —
+    // защёлку сбрасываем, но сколько таких «бесхозных» осталось, видно в логе.
+    const orphans = unattributedAfterDiscovery();
+    if (orphans > 0) console.warn(`${LOG} latch reset_with_orphans unattributed=${orphans}`);
+    console.warn(`${LOG} latch corrupt_recovery_done reset=${reset} unattributed=${orphans}`);
+  };
+
+  /** true — повторное чтение защёлки снова упало, но само SecureStore пишет/читает (probe). */
+  const readFailureIsEntryOnly = async (): Promise<boolean> => {
+    const again = await ports.latch.read();
+    if (again.ok || again.code !== 'latch_read_failed') {
+      console.log(`${LOG} latch reread ok=${again.ok} code=${again.ok ? 'none' : again.code}`);
+      return false;
+    }
+    if (ports.latch.probe === undefined) {
+      console.warn(`${LOG} latch probe_unsupported stays_fail_closed`);
+      return false;
+    }
+    const healthy = await ports.latch.probe();
+    if (!healthy) console.warn(`${LOG} latch store_unhealthy stays_fail_closed`);
+    return healthy;
   };
 
   const openSession = async (uid: string, st: AccountScopeStore): Promise<void> => {
@@ -390,7 +446,15 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
       // зачем (ревью 6B, P2): отказ — только в этот раз. Битая запись в Keychain
       // переживает переустановку и иначе выключала бы V2 навсегда для всех аккаунтов.
       console.warn(`${LOG} lifecycle skip reason=latch_unreadable code=${latch.code}`);
-      if (latch.code === 'latch_corrupt') await recoverCorruptLatch();
+      if (latch.code === 'latch_corrupt') {
+        await recoverCorruptLatch();
+      } else if (latch.code === 'latch_read_failed' && await readFailureIsEntryOnly()) {
+        // зачем (6E): восстановленный телефон — ключ Keystore записи не переехал, запись
+        // не расшифровать никогда. SecureStore при этом жив → это «битая запись», а не
+        // «сломанное хранилище»: дочищаем найденное и сбрасываем, иначе V2 выключен навсегда.
+        console.warn(`${LOG} latch read_failed_treated_as_corrupt`);
+        await recoverCorruptLatch();
+      }
       return;
     }
     const st = getStore();

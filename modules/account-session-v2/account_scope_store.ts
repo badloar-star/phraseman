@@ -461,10 +461,16 @@ export function createAccountScopeStore(
   const settleCloseFailure = (
     attempt: ScopeAttempt,
     reject: (error: AccountScopeStoreError) => void,
+    reason: string,
+    cause: unknown = null,
   ): void => {
     attempt.status = 'failed_close';
     attempt.closePromise = null;
-    reject(new AccountScopeStoreError('account_scope_close_failed'));
+    const causeCode = cause === null ? null : safeCauseCode(cause) ?? (cause instanceof Error ? cause.name : typeof cause);
+    // зачем (Пакет 6E, логи сначала): на телефоне смена аккаунта упала close_failed без
+    // причины. Какая ветка и чем — обязано быть видно (ветка + код адаптера, без данных).
+    console.warn(`[ACCOUNT-V2] store close_failed reason=${reason} cause=${causeCode ?? 'none'}`);
+    reject(new AccountScopeStoreError('account_scope_close_failed', causeCode));
   };
 
   const revokeThenClose = (
@@ -477,8 +483,8 @@ export function createAccountScopeStore(
     let revokeResult: unknown;
     try {
       revokeResult = connection.revoke();
-    } catch {
-      settleCloseFailure(attempt, reject);
+    } catch (error) {
+      settleCloseFailure(attempt, reject, 'revoke_threw', error);
       return;
     }
     if (revokeResult !== undefined) {
@@ -486,21 +492,21 @@ export function createAccountScopeStore(
         (typeof revokeResult !== 'object' || revokeResult === null) &&
         typeof revokeResult !== 'function'
       ) {
-        settleCloseFailure(attempt, reject);
+        settleCloseFailure(attempt, reject, `revoke_returned_${typeof revokeResult}`);
         return;
       }
       attempt.pendingUnexpectedRevokeResult = true;
       observeUnexpectedRevokeResult(revokeResult, () => {
         attempt.pendingUnexpectedRevokeResult = false;
       });
-      settleCloseFailure(attempt, reject);
+      settleCloseFailure(attempt, reject, 'revoke_returned_object');
       return;
     }
     void Promise.resolve()
       .then(() => connection.close())
       .then(
         () => settleClosed(attempt, resolve),
-        () => settleCloseFailure(attempt, reject),
+        (error: unknown) => settleCloseFailure(attempt, reject, 'close_rejected', error),
       );
   };
 
@@ -526,7 +532,7 @@ export function createAccountScopeStore(
     }
     const connection = attempt.connection;
     if (connection === null) {
-      settleCloseFailure(attempt, rejectClose);
+      settleCloseFailure(attempt, rejectClose, 'no_connection');
       return closePromise;
     }
     revokeThenClose(attempt, connection, resolveClose, rejectClose);

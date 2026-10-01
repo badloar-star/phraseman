@@ -55,6 +55,11 @@ export type AccountNativeScopeAdapter = ScopeStorageAdapter & Readonly<{
    * их метка проверяется даже когда файлов семейства уже нет (сбой между §5.5 и §5.7).
    */
   discoverPendingEraseUids(knownUids?: readonly string[]): Promise<readonly string[]>;
+  /**
+   * Пакет 6E: сколько семейств файлов последнее обнаружение не смогло приписать uid
+   * (нет читаемой метки и uid неизвестен). Такие области стереть нельзя — только в лог.
+   */
+  lastDiscoveryUnattributed(): number;
 }>;
 
 // зачем (ревью 6C, P2): любой член семейства (main/-wal/-shm/-journal) — след области.
@@ -239,6 +244,7 @@ export function createAccountNativeScopeAdapter(env: AccountNativeEnvironment): 
   const ports = createPorts(env, manifest);
   const serial = createKeyedMutex();
   const eraser = createAccountNativeScopeEraser(env, manifest);
+  let lastUnattributed = 0;
 
   const openAccount = async (scope: AccountScopeValue, allowRecovery: boolean): Promise<ScopeStorageConnection> => {
     const lineage = await lineageForOpen(env, manifest, scope);
@@ -311,9 +317,11 @@ export function createAccountNativeScopeAdapter(env: AccountNativeEnvironment): 
         }
       }
       // зачем: область без читаемой метки и без известного uid не приписать (в имени только хэш) — считаем.
+      lastUnattributed = unattributed;
       console.log(`${LOG} storage discovered families=${familyHashes.size} known=${known.size} pending=${uids.size} unattributed=${unattributed}`);
       return Object.freeze([...uids]);
     },
+    lastDiscoveryUnattributed: (): number => lastUnattributed,
   });
 }
 

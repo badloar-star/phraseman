@@ -38,6 +38,10 @@ const path = require('path');
 // Cache directory Android вообще никогда не бэкапит — это документированное
 // поведение AutoBackup. Так что включать только то, что нам реально нужно
 // сохранить через переустановку.
+// зачем (Account V2, Пакет 6E): SecureStore.xml (expo-secure-store) — исключён.
+// Его значения зашифрованы ключом Android Keystore, который НЕ переезжает: после
+// восстановления записи нечитаемы, и защёлка/ключи Account V2 читались бы как сбой.
+// Честнее «нет записи», чем «запись есть, но не читается».
 const BACKUP_RULES_XML = `<?xml version="1.0" encoding="utf-8"?>
 <!--
   Auto Backup rules для Phraseman.
@@ -53,6 +57,7 @@ const BACKUP_RULES_XML = `<?xml version="1.0" encoding="utf-8"?>
 -->
 <full-backup-content>
   <include domain="sharedpref" path="."/>
+  <exclude domain="sharedpref" path="SecureStore.xml"/>
   <include domain="database" path="RKStorage"/>
 </full-backup-content>
 `;
@@ -70,10 +75,12 @@ const DATA_EXTRACTION_RULES_XML = `<?xml version="1.0" encoding="utf-8"?>
 <data-extraction-rules>
   <cloud-backup>
     <include domain="sharedpref" path="."/>
+    <exclude domain="sharedpref" path="SecureStore.xml"/>
     <include domain="database" path="RKStorage"/>
   </cloud-backup>
   <device-transfer>
     <include domain="sharedpref" path="."/>
+    <exclude domain="sharedpref" path="SecureStore.xml"/>
     <include domain="database" path="RKStorage"/>
   </device-transfer>
 </data-extraction-rules>
@@ -133,3 +140,7 @@ module.exports = function withAndroidBackupRules(config) {
   config = patchManifest(config);
   return config;
 };
+
+// Для сторожа (tests/android_backup_rules_securestore_guard.test.ts).
+module.exports.BACKUP_RULES_XML = BACKUP_RULES_XML;
+module.exports.DATA_EXTRACTION_RULES_XML = DATA_EXTRACTION_RULES_XML;

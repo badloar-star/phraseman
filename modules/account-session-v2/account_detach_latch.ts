@@ -38,7 +38,24 @@ export type AccountDetachLatch = Readonly<{
    * устройстве для всех будущих аккаунтов. Отказ один раз, затем сброс.
    */
   reset(): Promise<boolean>;
+  /**
+   * Пакет 6E: записать защёлку ОДНОЙ записью ровно из этих uid (поверх битой тоже).
+   * зачем: цикл mark после испорченной защёлки мог оборваться на середине и потерять uid.
+   */
+  replace?(uids: readonly string[]): Promise<boolean>;
+  /**
+   * Пакет 6E: SecureStore вообще пишет/читает? true — сломана только сама запись
+   * защёлки (восстановление на другом телефоне: ключ Keystore не переехал).
+   */
+  probe?(): Promise<boolean>;
+  /** Пакет 6E: учёт неисправимых (терминальных) неудач стирания по uid. */
+  readTerminal?(): Promise<ReadonlyMap<string, AccountTerminalEraseRecord>>;
+  noteTerminal?(uid: string, nowMs: number): Promise<AccountTerminalEraseRecord | null>;
 }>;
+
+export type AccountTerminalEraseRecord = Readonly<{ count: number; lastAtMs: number }>;
+export const ACCOUNTS_V2_TERMINAL_ERASE_KEY = 'accounts_v2_terminal_erase_v1';
+const PROBE_KEY = 'accounts_v2_store_probe_v1';
 
 function kindOf(value: unknown): string {
   return value instanceof Error ? value.name : typeof value;
@@ -107,9 +124,76 @@ export function createAccountDetachLatch(store: AccountsV2SecureStorePort): Acco
     }
   });
 
+  const readTerminal = async (): Promise<ReadonlyMap<string, AccountTerminalEraseRecord>> => {
+    try {
+      const raw = await store.getItemAsync(ACCOUNTS_V2_TERMINAL_ERASE_KEY);
+      if (raw === null) return new Map();
+      const parsed = JSON.parse(raw) as { v?: unknown; entries?: unknown };
+      if (parsed.v !== 1 || typeof parsed.entries !== 'object' || parsed.entries === null) {
+        console.warn(`${LOG} latch terminal_shape_invalid`);
+        return new Map();
+      }
+      const out = new Map<string, AccountTerminalEraseRecord>();
+      for (const [uid, row] of Object.entries(parsed.entries as Record<string, unknown>)) {
+        const value = row as { count?: unknown; lastAtMs?: unknown } | null;
+        if (validUid(uid) && Number.isSafeInteger(value?.count) && Number.isSafeInteger(value?.lastAtMs)) {
+          out.set(uid, Object.freeze({ count: value!.count as number, lastAtMs: value!.lastAtMs as number }));
+        }
+      }
+      return out;
+    } catch (error) {
+      // зачем: учёт неудач — лишь экономия повторов; нечитаем → считаем пустым, стирание всё равно пробуем.
+      console.warn(`${LOG} latch terminal_read_failed kind=${kindOf(error)}`);
+      return new Map();
+    }
+  };
+
+  const writeTerminal = async (entries: ReadonlyMap<string, AccountTerminalEraseRecord>): Promise<boolean> => {
+    try {
+      if (entries.size === 0) {
+        await store.deleteItemAsync(ACCOUNTS_V2_TERMINAL_ERASE_KEY);
+        return true;
+      }
+      await store.setItemAsync(ACCOUNTS_V2_TERMINAL_ERASE_KEY, JSON.stringify({ v: 1, entries: Object.fromEntries(entries) }));
+      return true;
+    } catch (error) {
+      console.warn(`${LOG} latch terminal_write_failed kind=${kindOf(error)}`);
+      return false;
+    }
+  };
+
   return Object.freeze({
     read,
     reset,
+    replace: (uids: readonly string[]) => serial(async () => {
+      const next = [...new Set(uids)].filter(validUid).slice(-MAX_ENTRIES);
+      if (next.length !== new Set(uids).size) console.warn(`${LOG} latch replace_dropped count=${new Set(uids).size - next.length}`);
+      const ok = await write(next);
+      console.log(`${LOG} latch replace ok=${ok} entries=${next.length}`);
+      return ok;
+    }),
+    probe: async () => {
+      try {
+        const token = `p${Date.now().toString(36)}`;
+        await store.setItemAsync(PROBE_KEY, token);
+        const ok = await store.getItemAsync(PROBE_KEY) === token;
+        await store.deleteItemAsync(PROBE_KEY);
+        console.log(`${LOG} latch probe ok=${ok}`);
+        return ok;
+      } catch (error) {
+        console.warn(`${LOG} latch probe_failed kind=${kindOf(error)}`);
+        return false;
+      }
+    },
+    readTerminal: () => serial(readTerminal),
+    noteTerminal: (uid: string, nowMs: number) => serial(async () => {
+      if (!validUid(uid)) return null;
+      const entries = new Map(await readTerminal());
+      const prior = entries.get(uid);
+      const next = Object.freeze({ count: (prior?.count ?? 0) + 1, lastAtMs: nowMs });
+      entries.set(uid, next);
+      return await writeTerminal(entries) ? next : null;
+    }),
     mark: (uid: string) => serial(async () => {
       if (!validUid(uid)) {
         console.warn(`${LOG} latch mark_rejected code=invalid_uid`);
@@ -130,6 +214,13 @@ export function createAccountDetachLatch(store: AccountsV2SecureStorePort): Acco
       if (!current.ok) {
         console.warn(`${LOG} latch clear_skipped code=${current.code}`);
         return false;
+      }
+      // зачем (6E): стёрто — учёт неисправимых неудач по этому uid больше не нужен.
+      const terminal = await readTerminal();
+      if (terminal.has(uid)) {
+        const rest = new Map(terminal);
+        rest.delete(uid);
+        await writeTerminal(rest);
       }
       if (!current.uids.includes(uid)) return true;
       const next = current.uids.filter((entry) => entry !== uid);

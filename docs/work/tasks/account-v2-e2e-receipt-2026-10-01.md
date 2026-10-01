@@ -89,3 +89,34 @@ Governance-ID: TG-D3DE53F2D345 · Пакет: `account-v2-pkg6d-emulator-e2e-202
 - Данные app.phraseman восстановлены из снимка до теста (tar files/databases/shared_prefs/no_backup,
   108 945 920 байт, размер после восстановления совпал); прод-сессия на месте; приложение остановлено.
 - Очередь эмулятора отпущена, слоты светофора отданы.
+
+
+---
+
+## Пакет 6E (TG-52A880319166) — повтор телефонного E2E, 2026-10-01
+
+Dev-вход: `phraseman://dev-emulator-login?…` (маршрут `app/dev-emulator-login.tsx`, работает только при
+`__DEV__` + `EXPO_PUBLIC_FIREBASE_EMULATOR_HOST`, только адреса `accounts-v2-e2e-*@phraseman.test`);
+учётки подставлял хост из gitignored seed-файла через adb, в логах — только метка a/b/c.
+Эмуляторы перезапущены начисто, сидер пересоздал 3 аккаунта (uid-хэши: a=6d3019363e…, b=2dc5f3ae34…, c=333c56abc9…).
+
+| Шаг | Факт на телефоне (Pixel_8, dev-сборка, бандлер с эмуляторами) |
+|---|---|
+| Вход a (dev-путь) | `[FIREBASE-EMU-LOGIN] signed_in label=a` |
+| Флаг выкл | `[ACCOUNT-V2] auth_sync skip reason=flag_off`, accountsV2SyncApply с телефона — 0 вызовов |
+| Флаг вкл | `runtime storage_adapter_ready` → `storage opened decision=…` → `lifecycle started generation=1` |
+| Область SQLCipher | `files/SQLite/accounts-v2/accounts-v2-a-<sha256(uid)>-1.db`, хэш совпал с uid a; первые байты файла случайные (нет «SQLite format 3») — база зашифрована |
+| Перезапуск | `storage opened decision=reopen_existing hydrate=false lineage=1` |
+| Смена a→b (первая попытка) | **дефект найден по логам**: `lease close_unexpected_result type=null` → `store close_failed reason=close_rejected` → `lifecycle open_failed code=account_scope_busy`. Kotlin `AsyncFunction` с `Unit` отдаёт в JS `null`, привязка ждала `undefined` — на Android ЛЮБОЕ закрытие области падало, смена аккаунта без перезапуска была невозможна |
+| Починка | `account_sqlite_lease_binding.ts`: `null` (Android) и `undefined` (iOS) = «закрыто», остальное — отказ; RED→GREEN тест |
+| Смена a→b→c→a после починки | на каждом шаге `lifecycle halted reason=account_switch` → `closed outcome=closed` → `storage opened` своей базы → `started generation=2/3/4`; 3 отдельных файла по хэшам a/b/c, ключи — отдельные записи SecureStore по хэшу |
+| Удаление a (UI «Eliminar cuenta»; язык приложения временно es — ru-слово кириллицей adb не печатает) | `lifecycle halted reason=account_delete` → `delete detach_started hadSession=true` → `credential_ready` → `latch mark ok=true` → `erase done lineage=1 next=2` → `detach done closed=closed erase=erased` → `latch clear ok=true` → `detach_done`; файл области a исчез, области b и c на месте |
+| Серверная часть удаления | `accountDeleteEnqueue` в эмуляторе — прежний блокер 1 (`serverTimestamp` undefined в прокси эмулятора); V2-стирание на сервере покрыто серверным E2E (раздел A) |
+
+Флаг на телефоне: свежий кэш remote config (TTL 6 ч — правка другой сессии в `remote_config_client.ts`)
+не давал перечитать документ; для прогона флаг подан через кэш приложения (AsyncStorage) с отметкой свежести.
+Бэкап: исключение `SecureStore.xml` — в плагине (сторож-тест); в установленной сборке ещё нет (нужны prebuild и пересборка APK).
+
+Уборка 6E: эмуляторы и бандлер остановлены (деревья процессов сняты, порты свободны), `adb reverse tcp:8081` снят,
+данные app.phraseman восстановлены из снимка до прогона (108 945 920 байт, язык `ru`, тестовых областей нет),
+очередь эмулятора и слоты отданы.

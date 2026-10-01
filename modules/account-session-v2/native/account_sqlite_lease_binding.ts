@@ -185,7 +185,11 @@ export function createAccountSqliteLeaseBinding(
         }
         void adoptNativePromise(nativeResult, 'account_native_sqlite_close_failed').then(
           (result) => {
-            if (result !== undefined) {
+            // зачем (Пакет 6E, найдено на эмуляторе по логу close_unexpected_result type=null):
+            // Kotlin AsyncFunction с Unit отдаёт в JS `null`, iOS — `undefined`. Оба = «закрыто».
+            // Любое другое значение — по-прежнему отказ (неизвестный нативный ответ).
+            if (result !== undefined && result !== null) {
+              console.warn(`[ACCOUNT-V2] lease close_unexpected_result type=${result === null ? 'null' : typeof result}`);
               closeFlight = null;
               reject(new AccountSqliteLeaseBindingError('account_native_sqlite_close_failed'));
               return;
@@ -198,7 +202,8 @@ export function createAccountSqliteLeaseBinding(
             closeMethod = null;
             resolve();
           },
-          () => {
+          (error: unknown) => {
+            console.warn(`[ACCOUNT-V2] lease close_native_rejected kind=${error instanceof Error ? error.name : typeof error}`);
             closeFlight = null;
             reject(new AccountSqliteLeaseBindingError('account_native_sqlite_close_failed'));
           },

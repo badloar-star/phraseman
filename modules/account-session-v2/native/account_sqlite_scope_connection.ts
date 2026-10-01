@@ -856,10 +856,19 @@ function createConnection(bundle: CapturedBundle): ScopeStorageConnection {
     }
   };
 
+  // зачем (Пакет 6E, логи сначала): на телефоне закрытие при смене аккаунта падало
+  // одним кодом из трёх разных веток — без ветки и вида ошибки причину не найти.
+  const closeTrace = (branch: string, error: unknown = null): void => {
+    const kind = error === null ? 'none' : error instanceof Error ? error.name : typeof error;
+    const message = error instanceof Error ? error.message.replace(/\s+/g, ' ').slice(0, 160) : 'n/a';
+    console.warn(`[ACCOUNT-V2] sqlite close_failed branch=${branch} status=${status} nativeRevoked=${nativeRevoked} lease=${lease !== null} kind=${kind} message=${message}`);
+  };
+
   const close = (): Promise<void> => {
     if (closeFlight !== null) return closeFlight;
     if (status === 'closed') return Promise.resolve();
     if (!nativeRevoked || lease === null) {
+      closeTrace('not_revoked_or_no_lease');
       return Promise.reject(new AccountSqliteScopeConnectionError(
         'account_sqlite_scope_close_failed',
       ));
@@ -875,7 +884,8 @@ function createConnection(bundle: CapturedBundle): ScopeStorageConnection {
     let nativeClose: Promise<void>;
     try {
       nativeClose = activeLease.close();
-    } catch {
+    } catch (error) {
+      closeTrace('native_close_threw', error);
       closeFlight = null;
       rejectFlight(new AccountSqliteScopeConnectionError('account_sqlite_scope_close_failed'));
       return installed;
@@ -887,7 +897,8 @@ function createConnection(bundle: CapturedBundle): ScopeStorageConnection {
         lease = null;
         resolveFlight();
       },
-      () => {
+      (error: unknown) => {
+        closeTrace('native_close_rejected', error);
         closeFlight = null;
         rejectFlight(new AccountSqliteScopeConnectionError(
           'account_sqlite_scope_close_failed',

@@ -3,6 +3,11 @@ import { Image } from 'expo-image';
 import { ACTIVE_FOUNDATION_IDS } from './achievement_catalog_v2';
 import { getAchievementImageUrl } from '../constants/achievement_image_urls';
 import { DebugLogger } from './debug-logger';
+import {
+  isInteractiveNetworkDeferredError,
+  withBackgroundNetworkLease,
+  type BackgroundNetworkLease,
+} from './interactive_network_quiet';
 
 /**
  * Событийный прогрев дискового кэша арта достижений.
@@ -39,18 +44,65 @@ let running = false;
 let backgroundStarted = false;
 const queue: string[] = [];
 
+// зачем: PM-213/PM-215 — прогрев арта (P4, 64 картинки) раньше не знал ни про фон, ни про
+// занятие: качал пачки при свёрнутом приложении и конкурировал с сетью живого урока Learning V2.
+// Теперь каждая пачка идёт под арендой «интерактивной тишины сети» (уступает занятию и
+// отменяется по её сигналу), а в фоне приложения очередь останавливается. Остановка ничего не
+// теряет: URL забываются, и следующее событие (возврат в active, экран достижений, уровень)
+// поставит их в очередь заново. Лог с префиксом покажет, что и почему остановлено.
+const PREFETCH_LOG = '[RUNTIME-PREFETCH]';
+const LEASE_SOURCE = 'achievement-art.prefetch';
+
 const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
+
+function stopAndForgetQueue(reason: string, batch: readonly string[] = []): void {
+  const dropped = queue.length + batch.length;
+  batch.forEach((url) => warmed.delete(url));
+  queue.forEach((url) => warmed.delete(url));
+  queue.length = 0;
+  console.log(`${PREFETCH_LOG} achievement_art остановлен`, JSON.stringify({ reason, dropped }));
+}
+
+/** Одна пачка под арендой; Image.prefetch не принимает сигнал, поэтому ждём либо итог, либо отмену аренды. */
+async function prefetchBatch(
+  batch: readonly string[],
+  lease: BackgroundNetworkLease,
+): Promise<PromiseSettledResult<boolean>[] | 'aborted'> {
+  const aborted = new Promise<'aborted'>((resolve) => {
+    if (lease.signal.aborted) { resolve('aborted'); return; }
+    lease.signal.addEventListener('abort', () => resolve('aborted'), { once: true });
+  });
+  const settled = Promise.allSettled(
+    // cachePolicy 'disk' — арт нужен на будущее, память под него не занимаем.
+    batch.map((url) => Image.prefetch(url, { cachePolicy: 'disk' })),
+  );
+  return Promise.race([settled, aborted]);
+}
 
 async function drain(): Promise<void> {
   if (running) return;
   running = true;
   try {
     while (queue.length > 0) {
+      if (AppState.currentState !== 'active') {
+        stopAndForgetQueue(`app_state=${AppState.currentState}`);
+        return;
+      }
       const batch = queue.splice(0, BATCH_SIZE);
-      const results = await Promise.allSettled(
-        // cachePolicy 'disk' — арт нужен на будущее, память под него не занимаем.
-        batch.map((url) => Image.prefetch(url, { cachePolicy: 'disk' })),
-      );
+      let results: PromiseSettledResult<boolean>[] | 'aborted';
+      try {
+        results = await withBackgroundNetworkLease(LEASE_SOURCE, (lease) => prefetchBatch(batch, lease));
+      } catch (error) {
+        if (isInteractiveNetworkDeferredError(error)) {
+          stopAndForgetQueue('interactive_network_quiet', batch);
+          return;
+        }
+        throw error;
+      }
+      if (results === 'aborted') {
+        stopAndForgetQueue('lease_aborted', batch);
+        return;
+      }
       results.forEach((result, index) => {
         // Не смогли — забываем URL, чтобы следующее событие попробовало снова.
         if (result.status === 'rejected') warmed.delete(batch[index]);

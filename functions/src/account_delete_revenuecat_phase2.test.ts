@@ -9,8 +9,17 @@ const webhookSource = fs.readFileSync(path.join(__dirname, 'revenuecat_shards.ts
 describe('account deletion RevenueCat permanent denial Phase 2 (RED)', () => {
   it('creates a permanent hashed denial receipt atomically with deletion enqueue', () => {
     expect(jobSource).toContain("ACCOUNT_DELETE_PERMANENT_DENIALS = 'account_deletion_permanent_denials'");
-    expect(jobSource).toContain('const permanentDenialRef = db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS)');
-    expect(jobSource).toContain('tx.set(permanentDenialRef');
+    // зачем (Q47): реализация давно есть, но по одному отказу на каждую личность
+    // замыкания (`denialRefs`), а не одной переменной `permanentDenialRef` —
+    // проверяем смысл (та же транзакция, хэш, без перезаписи), а не написание.
+    expect(jobSource).toMatch(/db\.collection\(ACCOUNT_DELETE_PERMANENT_DENIALS\)\s*\.doc\(accountDeletePermanentDenialId\(identity\)\)/);
+    const txStart = jobSource.indexOf('return db.runTransaction(async (tx) => {', jobSource.indexOf('const denialRefs = '));
+    expect(txStart).toBeGreaterThan(-1);
+    const txBody = jobSource.slice(txStart);
+    const denialWrite = txBody.indexOf('tx.set(denialRef, {');
+    expect(denialWrite).toBeGreaterThan(-1);
+    expect(txBody.slice(0, denialWrite)).toContain('if (denialSnapshots[index].exists) return;');
+    expect(txBody.slice(denialWrite, denialWrite + 200)).toContain('identityHash: sha256(identity)');
   });
 
   it('never garbage-collects the permanent denial with operational jobs and markers', () => {

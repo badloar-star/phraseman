@@ -5,6 +5,8 @@ import {
   executeAccountDeletion,
 } from './account_delete';
 import { createHash } from 'crypto';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 import { accountDeleteJobId, accountDeletePermanentDenialId } from './account_delete_job';
 
 const {
@@ -1188,5 +1190,91 @@ describe('accountDelete query deletion safety', () => {
     expect(docs.get(denialId('missing'))).toMatchObject({
       identityKind: 'account_delete_alias_closure', status: 'denied',
     });
+  });
+});
+
+describe('Account V2 (Пакет 6A): встраивание в конвейер удаления', () => {
+  const baseDb = () => makeDbStub({
+    users: { 'stable-123': { linkedAuth: { providerUid: 'auth-456' } } },
+    authLinks: { 'auth-456': { stable_id: 'stable-123' } },
+  });
+  const proof = { operationId: 'op-6a'.padEnd(32, 'x'), capability: 'c'.repeat(64) };
+
+  function run(extra: Record<string, unknown>, status: 'queued' | 'completed' = 'queued') {
+    const calls: string[] = [];
+    const deps = {
+      fence: jest.fn(async () => ({ stage: 'closure_fenced' as const, jobId: 'adel_hash' })),
+      resolveClosure: jest.fn(async () => ['stable-123', 'auth-456']),
+      enqueue: jest.fn(async () => { calls.push('closure_committed'); return { jobId: 'adel_hash', status, created: true }; }),
+      deleteUser: jest.fn(async () => { calls.push('auth_deleted'); }),
+      publishCredentialSafe: jest.fn(async () => { calls.push('credential_safe'); }),
+      ...extra,
+    };
+    return { calls, promise: enqueueAndReleaseAuthenticatedAccount(
+      baseDb() as unknown as FirebaseFirestore.Firestore, 'auth-456', 'stable-123', proof, deps,
+    ) };
+  }
+
+  it('ключ V2 кладётся заготовкой после фиксации замыкания и до освобождения Auth', async () => {
+    const prepare = jest.fn(async () => 'prepared' as const);
+    const credential = { operationId: 'op-v2-0123456789abcdef', capability: 'k'.repeat(43) };
+    const { calls, promise } = run({
+      accountsV2Credential: credential,
+      prepareAccountsV2: jest.fn(async (...args: unknown[]) => { calls.push('v2_prepared'); return prepare(...(args as [])); }),
+    });
+    await expect(promise).resolves.toMatchObject({ ok: true, credentialSafe: true });
+    expect(calls).toEqual(['closure_committed', 'v2_prepared', 'auth_deleted', 'credential_safe']);
+    expect(prepare).toHaveBeenCalledWith('adel_hash', 'auth-456', credential);
+  });
+
+  it('старый клиент без ключа V2 — подготовка не вызывается вовсе', async () => {
+    const prepareAccountsV2 = jest.fn();
+    const { promise } = run({ prepareAccountsV2 });
+    await promise;
+    expect(prepareAccountsV2).not.toHaveBeenCalled();
+  });
+
+  it('уже завершённая задача — заготовка не пишется', async () => {
+    const prepareAccountsV2 = jest.fn();
+    const { promise } = run({ accountsV2Credential: { any: 1 }, prepareAccountsV2 }, 'completed');
+    await promise;
+    expect(prepareAccountsV2).not.toHaveBeenCalled();
+  });
+
+  it('сбой V2 при постановке не срывает старое удаление', async () => {
+    const { promise } = run({ accountsV2Credential: {}, prepareAccountsV2: jest.fn(async () => 'failed' as const) });
+    await expect(promise).resolves.toMatchObject({ ok: true, authReleased: true, credentialSafe: true });
+  });
+
+  it('порядок в ядре: пломба → публикация квитанции → необратимые стадии → стирание V2 → Auth → completed', () => {
+    // зачем структурный сторож: ядро удаления целиком гоняется только на живом
+    // Firestore; порядок вызовов — сам контракт точки невозврата (Пакет 4/6A).
+    const source = readFileSync(join(__dirname, 'account_delete.ts'), 'utf8');
+    const body = source.slice(source.indexOf('export async function executeAccountDeletion'), source.indexOf('export async function enqueueForAuthenticatedAccount'));
+    const at = (needle: string): number => {
+      const index = body.indexOf(needle);
+      expect(index).toBeGreaterThan(-1);
+      return index;
+    };
+    const seal = at('await assertAccountIsNotSealedFromDeletion(authUid, ctx, stats)');
+    const rollback = at('revokeAccountsV2DeletionOnRollback(');
+    const publish = at("'accounts_v2_receipt'");
+    const denials = at("'permanent_denials'");
+    const merge = at("'merge_identity_records'");
+    const purge = at("'accounts_v2_purge'");
+    const tombstone = at("'tombstone'");
+    const authDelete = at('admin.auth().deleteUser(authUid)');
+    const complete = at('completeAccountsV2DeletionAtEnd(');
+    const done = at("accountDeleteLog(ctx, 'done'");
+    expect(seal).toBeLessThan(rollback);
+    expect(rollback).toBeLessThan(publish);
+    expect(publish).toBeLessThan(denials);
+    expect(merge).toBeLessThan(purge);
+    expect(purge).toBeLessThan(tombstone);
+    expect(authDelete).toBeLessThan(complete);
+    expect(complete).toBeLessThan(done);
+    // Публикация — единственная; выпуск сразу (issue…) в конвейере запрещён.
+    expect(source).not.toContain('issueAccountsV2DeletionReceipt');
+    expect(body.split('beginAccountsV2DeletionAtPointOfNoReturn(').length).toBe(2);
   });
 });

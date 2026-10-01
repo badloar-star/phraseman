@@ -241,15 +241,30 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
         actorStableUid: stableUid,
         nav: 'friends',
       },
-    ).then((transport: ExpoPushTransport) => {
-      if (transport !== 'sent' && transport !== 'skipped') {
-        console.warn('friends_together_nudge_push_failed', { transport });
-      }
-    }).catch(() => {});
+    ).then(logFriendNudgePushOutcome).catch(logFriendNudgePushError);
   }
 
   return { ok: true, requestId: result.requestId, sentAtMs: result.sentAtMs };
 });
+
+/**
+ * зачем: PM-200 — раньше отправка push «Позвать» глушилась немым `.catch(() => {})`:
+ * если Expo падал, мы не знали ни о сбое, ни о причине. Логируем только код/транспорт —
+ * без uid, имени и токена (PII в логи не уходит).
+ */
+export function logFriendNudgePushOutcome(transport: ExpoPushTransport): void {
+  if (transport === 'sent') return;
+  if (transport === 'skipped') {
+    console.warn('[PUSH-PREFS] friend_nudge push skipped', { type: 'friend_nudge', code: 'no_token' });
+    return;
+  }
+  console.warn('[PUSH-PREFS] friend_nudge push failed', { type: 'friend_nudge', code: transport });
+}
+
+export function logFriendNudgePushError(error: unknown): void {
+  const code = error instanceof Error ? error.name : typeof error;
+  console.warn('[PUSH-PREFS] friend_nudge push threw', { type: 'friend_nudge', code });
+}
 
 /* -------------------------------- referral hook ------------------------------- */
 

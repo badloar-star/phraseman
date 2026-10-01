@@ -418,3 +418,22 @@ describe('applyReferralPairBonus', () => {
     expect(Array.from(docs.keys()).some((k) => k.startsWith('friend_pairs/'))).toBe(false);
   });
 });
+
+describe('friend nudge push logging (PM-200)', () => {
+  test('logs failed/timeout transport with code and no PII; silent on sent', async () => {
+    const { logFriendNudgePushOutcome, logFriendNudgePushError } = require('./friends_together');
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    logFriendNudgePushOutcome('sent');
+    expect(warn).not.toHaveBeenCalled();
+    logFriendNudgePushOutcome('failed');
+    logFriendNudgePushOutcome('timeout');
+    logFriendNudgePushError(new TypeError('boom ExponentPushToken[bob]'));
+    expect(warn.mock.calls.map((c) => c[1])).toEqual([
+      { type: 'friend_nudge', code: 'failed' },
+      { type: 'friend_nudge', code: 'timeout' },
+      { type: 'friend_nudge', code: 'TypeError' },
+    ]);
+    expect(warn.mock.calls.every((c) => String(c[0]).startsWith('[PUSH-PREFS]'))).toBe(true);
+    warn.mockRestore();
+  });
+});

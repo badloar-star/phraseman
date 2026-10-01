@@ -294,7 +294,8 @@ function runCli(): void {
   let drift = 0;
   for (const [relativePath, expected] of outputs) {
     const absolute = path.join(repoRoot, ...relativePath.split('/'));
-    const current = fs.existsSync(absolute) ? fs.readFileSync(absolute, 'utf8') : null;
+    // зачем: git с autocrlf на Windows превращает LF в CRLF при checkout — это не расхождение контента.
+    const current = fs.existsSync(absolute) ? fs.readFileSync(absolute, 'utf8').replace(/\r\n/g, '\n') : null;
     const kb = (Buffer.byteLength(expected, 'utf8') / 1024).toFixed(1);
     if (mode === '--write') {
       fs.mkdirSync(path.dirname(absolute), { recursive: true });

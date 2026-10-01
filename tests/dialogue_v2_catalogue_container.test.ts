@@ -5,6 +5,8 @@ import { act, render, waitFor } from '@testing-library/react-native';
 const h = React.createElement;
 
 const mockFetchCatalogue = jest.fn();
+const mockPeekCatalogue = jest.fn();
+const mockEmbeddedCatalogue = jest.fn();
 const mockProjection = jest.fn();
 const mockUseStudyTarget = jest.fn();
 const mockUseMyCoinRank = jest.fn();
@@ -23,6 +25,8 @@ jest.mock('react-native', () => ({
 }));
 jest.mock('../app/dialogue_v2_catalogue_client', () => ({
   fetchReleasedDialogueV2Catalogue: (...args: unknown[]) => mockFetchCatalogue(...args),
+  peekDialogueV2Catalogue: (...args: unknown[]) => mockPeekCatalogue(...args),
+  getEmbeddedDialogueV2Catalogue: (...args: unknown[]) => mockEmbeddedCatalogue(...args),
 }));
 jest.mock('../app/dialogue_v2_authorized_catalogue_projection', () => ({
   projectAuthorizedDialogueV2Catalogue: (...args: unknown[]) => mockProjection(...args),
@@ -99,8 +103,33 @@ describe('DialogueV2CatalogueContainer', () => {
     mockUseLang.mockReturnValue({ lang: 'ru' });
     mockUsePremium.mockReturnValue({ accessResolved: true, hasPremiumAccess: true });
     mockFetchCatalogue.mockResolvedValue(packetEnvelope);
+    mockPeekCatalogue.mockReturnValue(null);
+    mockEmbeddedCatalogue.mockReturnValue(null);
     mockProjection.mockReturnValue(projection);
     mockReadQuota.mockResolvedValue({ status: 'unknown', limit: 30 });
+  });
+
+  it('renders the catalogue on the FIRST frame from cache/embedded, without waiting for the network (01.10)', async () => {
+    mockPeekCatalogue.mockReturnValue(packetEnvelope);
+    mockFetchCatalogue.mockReturnValue(new Promise(() => undefined));
+    const screen = await render(h(DialogueV2CatalogueContainer, { onPressItem: jest.fn() }));
+
+    expect(mockSection).toHaveBeenCalled();
+    expect(screen.queryByTestId('dialogue-v2-catalogue-loading')).toBeNull();
+    expect(screen.queryByText('Диалоги не загрузились')).toBeNull();
+    expect(mockPeekCatalogue).toHaveBeenCalledWith('de');
+    // Вход в хаб запускает фоновую проверку (окно 12 ч — внутри клиента каталога).
+    expect(mockFetchCatalogue).toHaveBeenCalledWith('de', { awaitRefresh: true });
+  });
+
+  it('falls back to the embedded approved catalogue when the network envelope fails revalidation', async () => {
+    const embedded = Object.freeze({ ok: true, packets: Object.freeze([{ scenario: { id: 'social_01' } }]) });
+    mockEmbeddedCatalogue.mockReturnValue(embedded);
+    mockProjection.mockImplementation((input: { packets: unknown }) => (input.packets === embedded.packets ? projection : null));
+    const screen = await render(h(DialogueV2CatalogueContainer, { onPressItem: jest.fn() }));
+
+    await waitFor(() => expect(mockSection).toHaveBeenCalled());
+    expect(screen.queryByText('Диалоги не загрузились')).toBeNull();
   });
 
   it('routes Plus tools without treating local catalogue state as entitlement authority', async () => {
@@ -140,7 +169,7 @@ describe('DialogueV2CatalogueContainer', () => {
 
     await waitFor(() => expect(mockSection).toHaveBeenCalledTimes(1));
 
-    expect(mockFetchCatalogue).toHaveBeenCalledWith('de');
+    expect(mockFetchCatalogue).toHaveBeenCalledWith('de', { awaitRefresh: true });
     expect(mockProjection).toHaveBeenCalledWith(expect.objectContaining({
       packets: packetEnvelope.packets,
       studyTarget: 'de',
@@ -170,7 +199,7 @@ describe('DialogueV2CatalogueContainer', () => {
     expect(mockSection).not.toHaveBeenCalled();
   });
 
-  it('shows a retryable load-error card when the release or revalidation fails', async () => {
+  it('shows a retryable load-error card only when even the embedded snapshot is unusable', async () => {
     mockFetchCatalogue.mockResolvedValue(null);
     const screen = await render(h(DialogueV2CatalogueContainer, { onPressItem: jest.fn() }));
 

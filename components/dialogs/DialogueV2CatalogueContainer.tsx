@@ -10,6 +10,8 @@ import { readAiDialogMonthlyQuota } from '../../app/ai_dialog_daily_quota';
 import { REVENUE_MONTHLY_LIMITS } from '../../app/revenue_daily_limits';
 import {
   fetchReleasedDialogueV2Catalogue,
+  getEmbeddedDialogueV2Catalogue,
+  peekDialogueV2Catalogue,
   type DialogueV2CatalogueReleaseEnvelope,
   type DialogueV2CatalogueStudyTarget,
 } from '../../app/dialogue_v2_catalogue_client';
@@ -85,6 +87,12 @@ function supportedTarget(value: unknown): value is DialogueV2CatalogueStudyTarge
   return typeof value === 'string' && V2_TARGETS.has(value);
 }
 
+function initialCatalogueState(studyTarget: unknown): CatalogueState {
+  if (!supportedTarget(studyTarget)) return { kind: 'unavailable' };
+  const envelope = peekDialogueV2Catalogue(studyTarget);
+  return envelope ? { kind: 'available', envelope } : { kind: 'loading' };
+}
+
 export type DialogueV2CatalogueContainerProps = Readonly<{
   onPressItem: (item: DialogueV2CatalogueLearnerItem) => void;
   /** Макет hubHead: на экране диалогов пилюля «N/30» в шапке — строку над каталогом не дублируем. */
@@ -102,7 +110,9 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
   const { accessResolved, hasPremiumAccess } = usePremium();
   const localCoinRank = useMyCoinRank();
   const palette = useV2Palette();
-  const [state, setState] = useState<CatalogueState>({ kind: 'loading' });
+  // зачем (владелец 01.10: «Диалоги не загрузились» не должно быть нигде): первый кадр —
+  // сразу из кэша этого запуска или встроенного снимка, без «Загрузка…» и без сети.
+  const [state, setState] = useState<CatalogueState>(() => initialCatalogueState(studyTarget));
   const headings = useMemo(() => dialogueV2WorldHeadings(lang), [lang]);
   const copy = useMemo(() => catalogueCopy(lang), [lang]);
   const hubCopy = useMemo(() => dialogueV2HubCopy(lang), [lang]);
@@ -164,14 +174,27 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
       return undefined;
     }
     let active = true;
-    setState({ kind: 'loading' });
-    void fetchReleasedDialogueV2Catalogue(studyTarget).then((envelope) => {
+    // Смена языка: сразу лучшее локальное (кэш/встроенное), без промежуточного «Загрузка…».
+    setState((previous) => {
+      const local = initialCatalogueState(studyTarget);
+      return previous.kind === 'available' && local.kind === 'available'
+        && previous.envelope === local.envelope ? previous : local;
+    });
+    // Вход в хаб: сеть только если кэш старше 12 ч (окно — в клиенте каталога).
+    void fetchReleasedDialogueV2Catalogue(studyTarget, { awaitRefresh: true }).then((envelope) => {
       if (!active) return;
-      setState(envelope ? { kind: 'available', envelope } : { kind: 'unavailable' });
+      if (!envelope) {
+        console.warn('[DIALOGUE-V2] hub:catalogue → no envelope (embedded snapshot invalid)', { studyTarget });
+        setState({ kind: 'unavailable' });
+        return;
+      }
+      // Тот же объект — не трогаем состояние (без лишнего ре-рендера и «прыжка»).
+      setState((previous) => (previous.kind === 'available' && previous.envelope === envelope
+        ? previous
+        : { kind: 'available', envelope }));
     }).catch((error: unknown) => {
-      // Причину пишет клиент каталога (catalogue:callable_failed); здесь — только факт экрана.
-      console.warn('[DIALOGUE-V2] hub:catalogue → unavailable', { studyTarget, active, error: error instanceof Error ? error.name : String(error) });
-      if (active) setState({ kind: 'unavailable' });
+      // Клиент каталога не бросает; сюда попадём только при поломке самого кода.
+      console.warn('[DIALOGUE-V2] hub:catalogue → unexpected rejection', { studyTarget, active, error: error instanceof Error ? error.name : String(error) });
     });
     return () => {
       active = false;
@@ -180,12 +203,18 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
 
   const projection = useMemo(() => {
     if (state.kind !== 'available' || !supportedTarget(studyTarget)) return null;
-    return projectAuthorizedDialogueV2Catalogue({
-      packets: state.envelope.packets,
-      studyTarget,
-      localCoinRank,
-      worldHeadings: headings,
+    const input = { studyTarget, localCoinRank, worldHeadings: headings };
+    const projected = projectAuthorizedDialogueV2Catalogue({ ...input, packets: state.envelope.packets });
+    if (projected) return projected;
+    // зачем: ответ сети/кэша не прошёл повторную проверку — показываем встроенный
+    // одобренный каталог, а не карточку ошибки.
+    const embedded = getEmbeddedDialogueV2Catalogue(studyTarget);
+    console.warn('[DIALOGUE-V2] hub:catalogue → projection rejected, falling back to embedded', {
+      studyTarget, sameAsEmbedded: embedded === state.envelope,
     });
+    return embedded && embedded !== state.envelope
+      ? projectAuthorizedDialogueV2Catalogue({ ...input, packets: embedded.packets })
+      : null;
   }, [headings, localCoinRank, state, studyTarget]);
   const plusTools = (
     <>

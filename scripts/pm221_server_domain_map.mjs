@@ -12,7 +12,10 @@ import { buildServerDecisionAtlas } from './server_decision_atlas/catalog.mjs';
 
 export const SERVER_ROUTE_TYPES = ['callable', 'http', 'schedule', 'firestore-trigger'];
 export const DOMAINS = ['auth', 'purchases/subscriptions', 'account-delete', 'support/reports', 'content/video', 'notifications', 'sync/progress', 'admin', 'ai/audio', 'learning-v2', 'social/friends', 'spire/arena', 'retired-tombstone', 'other'];
-export const STATUSES = ['keep', 'retired-tombstone', 'needs-owner-decision'];
+// зачем (PM-221-A1, 2026-10-01): «dormant» — возможность сохранена решением владельца (D96 Learning V2),
+// но у функции нет живого экспорта: в деплой не идёт; «atlas-false-positive» — атлас принял за функцию
+// пример из комментария. Оба статуса НЕ означают «мусор» и не дают права удалять.
+export const STATUSES = ['keep', 'dormant', 'retired-tombstone', 'atlas-false-positive', 'needs-owner-decision'];
 // зачем: A2 — эти домены принудительно keep, что бы ни говорили остальные правила.
 export const PROTECTED_DOMAINS = ['auth', 'purchases/subscriptions', 'account-delete', 'support/reports'];
 const TYPE_LABEL = { callable: 'callable', http: 'http', schedule: 'schedule', 'firestore-trigger': 'trigger' };
@@ -24,8 +27,7 @@ const C_SUP = 'Почта поддержки: чтение, ответы, авт
 const C_REP = 'Жалобы и обратная связь пользователей, очередь разбора и ответы';
 const C_MAX = 'Раздел MAX (голосовой звонок с ИИ) — законсервирован владельцем 2026-09-04';
 const C_TOUR = 'Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены';
-const C_ARENA = 'Арена: матчи, заходы, витрина звёзд, партнёры';
-const ARENA_WHY = 'Арену в 2.0 заменяет Шпиль; удаление решает владелец (пул заданий сохранить)';
+const C_ARENA_DEL = 'Арена: матчи, заходы, витрина звёзд, партнёры — удалить (D74/D78/D79); пул заданий Шпиля сохранён отдельным правилом';
 const C_SPIRE = 'Шпиль: группы, шаги, недельная финализация, паки';
 const C_SOC = 'Друзья, рефералы, идеи, публичный профиль, имена и сообщество наборов';
 const C_NOTIF = 'Уведомления, push, письма, объявления в приложении и алерты владельцу';
@@ -38,6 +40,16 @@ const C_ADM = 'Админка и аналитика владельца (Jarvis, 
 // n — regex по имени, f — regex по пути внутри functions/src. Первое совпадение побеждает.
 // Защищённые домены идут ПЕРВЫМИ, чтобы admin-префикс не утянул их в «admin».
 const RULES = [
+  // --- решения владельца из docs/phraseman-2.0/03_DECISIONS.md (PM-221-A1, 2026-10-01) ---
+  { n: /^myCron$/u, d: 'notifications', c: 'Пример обёртки withCronHeartbeat в doc-комментарии cron_heartbeat.ts — не функция', s: 'atlas-false-positive', why: 'ложное срабатывание атласа: строка в комментарии' },
+  { n: /^accountsV2DeletionStatus$/u, d: 'account-delete', c: C_DEL },
+  { n: /^accountsV2SyncApply$/u, d: 'sync/progress', c: 'Accounts V2: синхронизация прогресса устройства с аккаунтом (D66: сервер = синхронизация)' },
+  { n: /^cardTtsPackWorker$/u, d: 'ai/audio', c: 'Озвучка карточек OpenAI TTS при одобрении набора (D128)' },
+  { n: /^dailyPollVote$/u, d: 'social/friends', c: 'Опрос дня на Главной (решение владельца 30.09)' },
+  { n: /^(levelSpinStarGrant|giftsToCoinsMigrationReport)$/u, d: 'purchases/subscriptions', c: 'Кошелёк монет: начисление и отчёт миграции подарков в монеты (D03, Q12/Q13)' },
+  { n: /^profileCardBioSetMine$/u, d: 'social/friends', c: 'Визитка профиля: текст «о себе» (D73/D114)' },
+  { n: /^(statsInsightsGenerate|weeklyReviewGenerate)$/u, d: 'ai/audio', c: 'ИИ-заметки к статистике и ИИ-разбор ошибок для Plus (OpenAI)', s: 'needs-owner-decision', why: 'экспорта нет, вызова из клиента нет, решения в 03_DECISIONS нет: удалить код или подключить в 2.0' },
+  { n: /^(adminArenaConfig|adminArenaContent|adminArenaPublication)/u, d: 'spire/arena', c: 'Пул заданий Шпиля и его админ-публикация (CLAUDE.md: рабочая зависимость Шпиля, D74/D78)' },
   { n: /^(collectiblesClaimDrop|COLLECTIBLES_RETIRED_MESSAGE)$/u, d: 'retired-tombstone', c: 'Вежливый отказ старым клиентам за снятые коллекционные дропы' },
   { f: /help_board_decommission|collectibles_retired/u, d: 'retired-tombstone', c: 'Вежливый отказ старым клиентам за снятые Help Board / Compass / дропы' },
   { n: /^ACCOUNT_DELETE_RETRY_OPTIONS$/u, d: 'account-delete', c: 'Опции повтора воркера удаления аккаунта (константа, не функция — ложное срабатывание атласа)' },
@@ -53,13 +65,15 @@ const RULES = [
   { n: /premium|Premium|purchase|Purchase|revenueCat|RevenueCat|stripe|Stripe|paypal|PayPal|webCheckout|webPrices|webOrderStatus|GiftCertificate|promoCode|PromoCode|adminPublishPaywall|adminGetPaywall|adminSubscription|adminListPromo|introFullAccessClaim|TelegramPremium|adminInspectTelegram|vipRevoke|Vip|adminGrantAccess|CoinExchange|exchangeCoinsForStars|recalcCoinExchangeRate|voiceMinuteWallet|adminGrantVoiceMinutes|aiDialogBuyExtraReplies|aiDialogSyncPurchase|Refund|webLead|webActivation|adminCancelStripe|ShardRefunds/u, d: 'purchases/subscriptions', c: C_PURCH },
   { f: /^(web_checkout|web_leads|web_activation|premium_expiry|revenuecat|promo_codes|gift_access|learning_v2_access|telegram_premium|coin_exchange|vip_|admin_referral_purchase|admin_shard_refunds|admin_subscription|admin_paywall|admin_revenuecat)/u, d: 'purchases/subscriptions', c: C_PURCH },
   // --- вне защищённых доменов ---
-  { n: /^(devRunesGrant|devShardsGrant|referralDevGrantSpin|arenaV2DevFriendBotCreate)$/u, d: 'other', c: 'Разработческая выдача валюты/спина (флаги выключены по умолчанию)', s: 'needs-owner-decision', why: 'dev-выдача: нужно решение владельца, оставлять ли в проде' },
+  { n: /^(devRunesGrant|devShardsGrant|referralDevGrantSpin|arenaV2DevFriendBotCreate)$/u, d: 'other', c: 'Разработческая выдача валюты/спина — удалить (D81/D78)', tomb: true },
+  { n: /^tutorText/u, d: 'ai/audio', c: 'Текстовый репетитор с Максом — удалить вместе с MAX (D81)', tomb: true },
+  { n: /^cosmeticAssetCatalogGet$/u, d: 'other', c: 'Каталог косметики — удалить (D102/D108)', tomb: true },
   { n: /^(maxVoice|adminListMaxVoiceFeedback|submitMaxVoiceFeedback|adminGetMaxVoiceOpsDashboard|voiceMinuteDevGrant)/u, d: 'ai/audio', c: C_MAX, tomb: true },
   { f: /^(max_voice|voice_minutes_dev_grant)/u, d: 'ai/audio', c: C_MAX, tomb: true },
   { n: /ournament/u, d: 'spire/arena', c: C_TOUR, tomb: true },
   { f: /^(tournament|admin_tournament)/u, d: 'spire/arena', c: C_TOUR, tomb: true },
-  { n: /^(arena|adminArena)/u, d: 'spire/arena', c: C_ARENA, s: 'needs-owner-decision', why: ARENA_WHY },
-  { f: /^(arena_|admin_arena)/u, d: 'spire/arena', c: C_ARENA, s: 'needs-owner-decision', why: ARENA_WHY },
+  { n: /^(arena|adminArena)/u, d: 'spire/arena', c: C_ARENA_DEL, tomb: true },
+  { f: /^(arena_|admin_arena)/u, d: 'spire/arena', c: C_ARENA_DEL, tomb: true },
   { n: /^(spire|adminSpire)/u, d: 'spire/arena', c: C_SPIRE },
   { f: /^(spire_|admin_spire)/u, d: 'spire/arena', c: C_SPIRE },
   { n: /^(friend|referral|adminSpin|adminSetSpinWeights|adminSetReferralRoulette|adminReferral|adminRevokeReferral|adminListReferrals|adminGetReferralDashboard|adminAlertOnReferral|likeUserIdea|unlikeUserIdea|submitUserIdea|updateUserIdea|listPublicUserIdeas|getPublicUserIdea|adminListUserIdeas|adminDeleteUserIdea|adminSetUserIdea|adminDecideUserIdea|adminDraftIdeaDecision|adminRestoreUserIdea|adminSetIdeaSubmission|name(Check|Generate|Reserve|Release)|publicProfileProjectMine|communit|flashcardPackGift|customCardMilestoneNotify|adminRefundCommunityPackPurchase)/u, d: 'social/friends', c: C_SOC },
@@ -77,6 +91,43 @@ const RULES = [
   { n: /^(admin|jarvis)/u, d: 'admin', c: C_ADM },
   { f: /^(admin_|jarvis\/|warm_instance|openai_budget)/u, d: 'admin', c: C_ADM },
 ];
+
+// зачем (PM-221, «карта доменов и ВЛАДЕЛЬЦЕВ»): кто отвечает за домен. Решает всегда владелец
+// продукта; «сессия» — какая рабочая сессия правит код домена (D40: «Дизайн» — только UI).
+export const DOMAIN_OWNERS = {
+  auth: 'Логика/сервер (Accounts V2); вход в админку — CLAUDE.md «не ломать»',
+  'purchases/subscriptions': 'Логика/сервер (покупки, монеты); цены и пакеты в сторах — владелец',
+  'account-delete': 'Логика/сервер',
+  'support/reports': 'Логика/сервер + админка legacy.html',
+  'content/video': 'Логика/сервер + админка legacy.html',
+  notifications: 'Логика/сервер',
+  'sync/progress': 'Логика/сервер (D66 local-first)',
+  admin: 'Логика/сервер + админка legacy.html; Jarvis — jarvis_data_contract_guard',
+  'ai/audio': 'Логика/сервер; бюджет OpenAI — PM-224',
+  'learning-v2': 'Логика/сервер + фабрика курса',
+  'social/friends': 'Логика/сервер',
+  'spire/arena': 'Логика/сервер (Шпиль, D113)',
+  'retired-tombstone': 'Логика/сервер (надгробия старым клиентам)',
+  other: 'Логика/сервер',
+};
+
+// зачем: «коллекции» домена — литералы .collection('x') (включая подколлекции) в файлах его
+// функций. Статический разбор строк: имена через константы (collection(SOME_CONST)) не раскрываются.
+const COLLECTION_RE = /\.collection\(\s*(['"`])([A-Za-z0-9_-]+)\1/gu;
+export function collectionsOf(root, sourcePaths) {
+  const found = new Set();
+  for (const sp of new Set(sourcePaths)) {
+    let code = '';
+    try {
+      code = readFileSync(resolve(root, sp), 'utf8');
+    } catch (err) {
+      process.stderr.write(`[PM-221] не прочитан ${sp}: ${err?.message ?? err}\n`);
+      continue;
+    }
+    for (const m of code.matchAll(COLLECTION_RE)) found.add(m[2]);
+  }
+  return [...found].sort();
+}
 
 function stripComments(source) {
   return source.replace(/\/\*[\s\S]*?\*\//gu, '').replace(/(^|[^:'"`])\/\/[^\n]*/gu, '$1');
@@ -113,6 +164,7 @@ export function classify(record, liveExports) {
     status = exported ? 'needs-owner-decision' : 'retired-tombstone';
     reason = exported ? 'помечено как снятое владельцем, но экспорт в index.ts ещё жив' : 'снято владельцем, экспорта в index.ts нет';
   } else if (rule.s) { status = rule.s; reason = rule.why; }
+  else if (!exported && rule.d === 'learning-v2') { status = 'dormant'; reason = 'D96: Learning V2 сохраняется в 2.0; экспорта в index.ts нет — в деплой не идёт (подключить или удалить решает задача домена)'; }
   else if (!exported) { status = 'needs-owner-decision'; reason = 'нет живого экспорта в index.ts и нет записи о решении владельца'; }
   // зачем: A2 — защищённый домен нельзя сделать не-keep.
   if (PROTECTED_DOMAINS.includes(rule.d)) {
@@ -126,7 +178,8 @@ export function buildDomainMap(root = process.cwd()) {
   const bundle = buildServerDecisionAtlas(root);
   const live = readLiveExports(root);
   const rows = bundle.records.filter((r) => SERVER_ROUTE_TYPES.includes(r.routeType)).map((r) => classify(r, live));
-  return { rows, liveExportCount: live.size };
+  const domainCollections = Object.fromEntries(DOMAINS.map((d) => [d, collectionsOf(root, rows.filter((r) => r.domain === d).map((r) => r.sourcePath))]));
+  return { rows, liveExportCount: live.size, domainCollections };
 }
 
 function countBy(rows, key) {
@@ -135,25 +188,33 @@ function countBy(rows, key) {
   return m;
 }
 
-export function renderMarkdown({ rows, liveExportCount }) {
+export function renderMarkdown({ rows, liveExportCount, domainCollections = {} }) {
   const esc = (s) => String(s).replaceAll('|', '\\|');
   const sorted = [...rows].sort((a, b) => DOMAINS.indexOf(a.domain) - DOMAINS.indexOf(b.domain) || a.name.localeCompare(b.name));
   const out = [];
   out.push('# PM-221 — Карта серверных доменов и владельцев', '');
   out.push('Сгенерировано `node scripts/pm221_server_domain_map.mjs` (детерминированно: без даты и без обращения к сети).', '');
   out.push(`Всего серверных точек (callable/http/schedule/trigger) из атласа: **${rows.length}**. Имён с живым экспортом в \`functions/src/index.ts\`: ${liveExportCount}.`, '');
-  out.push('## Сводка по доменам', '', '| Домен | Всего | keep | retired-tombstone | needs-owner-decision |', '|---|---:|---:|---:|---:|');
+  out.push('## Сводка по доменам', '', `| Домен | Всего | ${STATUSES.join(' | ')} |`, `|---|---:|${STATUSES.map(() => '---:').join('|')}|`);
   for (const d of DOMAINS) {
     const g = rows.filter((r) => r.domain === d);
     if (!g.length) continue;
-    out.push(`| ${d} | ${g.length} | ${g.filter((r) => r.status === 'keep').length} | ${g.filter((r) => r.status === 'retired-tombstone').length} | ${g.filter((r) => r.status === 'needs-owner-decision').length} |`);
+    out.push(`| ${d} | ${g.length} | ${STATUSES.map((s) => g.filter((r) => r.status === s).length).join(' | ')} |`);
   }
   const st = countBy(rows, 'status');
-  out.push(`| **Итого** | **${rows.length}** | **${st.get('keep') ?? 0}** | **${st.get('retired-tombstone') ?? 0}** | **${st.get('needs-owner-decision') ?? 0}** |`, '');
+  out.push(`| **Итого** | **${rows.length}** | ${STATUSES.map((s) => `**${st.get(s) ?? 0}**`).join(' | ')} |`, '');
+  out.push('## Владельцы и коллекции доменов', '', 'Решения по любому домену принимает владелец продукта; колонка «Сессия» — кто правит код (D40).', '', '| Домен | Сессия | Коллекции Firestore (статический разбор файлов домена) |', '|---|---|---|');
+  for (const d of DOMAINS) {
+    if (!rows.some((r) => r.domain === d)) continue;
+    const cols = domainCollections[d] ?? [];
+    out.push(`| ${d} | ${esc(DOMAIN_OWNERS[d] ?? '—')} | ${cols.length ? cols.map((c) => '`' + c + '`').join(', ') : '— (имена через константы)'} |`);
+  }
+  out.push('');
   out.push('## Правила (A1/A2)', '',
     '- A1: у каждой строки есть домен и сохраняемая возможность одной фразой.',
     '- A2: домены auth, purchases/subscriptions, account-delete, support/reports всегда `keep` — даже если живого экспорта нет (тогда причина прямо говорит «проверить подключение»).',
-    '- retired-tombstone только там, где решение владельца записано в `functions/src/index.ts` / CLAUDE.md (MAX, турниры, надгробия Help Board и коллекций) и экспорта нет.',
+    '- retired-tombstone только там, где решение владельца записано в `03_DECISIONS.md` / `functions/src/index.ts` / CLAUDE.md (MAX, турниры, Арена D74/D78, tutorText и dev-выдачи D81, косметика D102) и экспорта нет.',
+    '- dormant — возможность сохранена решением (D96 Learning V2), но экспорта нет: функция не деплоится. atlas-false-positive — не функция (строка из комментария).',
     '- Всё, что не удалось классифицировать уверенно, либо не экспортируется без записи о решении, — `needs-owner-decision`.', '');
   out.push('## Список needs-owner-decision', '', '| Функция | Тип | Домен | Файл | Причина |', '|---|---|---|---|---|');
   for (const r of sorted.filter((x) => x.status === 'needs-owner-decision')) out.push(`| ${r.name} | ${r.type} | ${r.domain} | ${esc(r.sourcePath)} | ${esc(r.reason)} |`);

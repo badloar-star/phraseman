@@ -20,5 +20,12 @@ const sensitive = /^(auth|accountDelete|accountClaim|accountMerge|submitClientRe
 const sensitiveBad = rows.filter((r) => sensitive.test(r.name) && r.status !== 'keep');
 assert.deepEqual(sensitiveBad.map((r) => r.name), [], 'A2: чувствительная функция не keep');
 
-const inDomain = (d: string) => rows.filter((r) => r.domain === d).length;
+// зачем (PM-221-A1, 2026-10-01): храповик — без решения владельца остаются только эти функции.
+// Новая функция без домена-решения уронит пробу; закрытый вопрос — убрать имя отсюда.
+const OWNER_DECISION_ALLOWLIST = ['statsInsightsGenerate', 'weeklyReviewGenerate'];
+const undecided = rows.filter((r) => r.status === 'needs-owner-decision').map((r) => r.name).sort();
+const unexpected = undecided.filter((n) => !OWNER_DECISION_ALLOWLIST.includes(n));
+assert.deepEqual(unexpected, [], 'A1: новая функция без привязки к сохраняемой возможности');
+
+const inDomain =(d: string) => rows.filter((r) => r.domain === d).length;
 process.stdout.write(`PM-221 PROBE PASS: total=${rows.length} keep=${rows.filter((r) => r.status === 'keep').length} tombstone=${rows.filter((r) => r.status === 'retired-tombstone').length} owner-decision=${rows.filter((r) => r.status === 'needs-owner-decision').length} protected=${PROTECTED_DOMAINS.map((d: string) => `${d}=${inDomain(d)}`).join(',')}\n`);

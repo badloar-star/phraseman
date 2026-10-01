@@ -63,3 +63,13 @@ describe('серия: проводка в коде', () => {
     expect(read('modules/today-tasks/today_tasks_store.ts')).toMatch(/touchStreakForToday\(/);
   });
 });
+
+// зачем (Q106, координатор §62): «Монетная заначка» (shards_100…10000) считается по балансу монет.
+describe('достижения «Монетная заначка» — по монетам', () => {
+  const layout = read('app/_layout.tsx');
+  it('старт и обновления баланса монет проверяют достижения, жемчуг не читается', () => {
+    expect(layout).toMatch(/getRunesBalanceRead\(\)\)\s*\n\s*\.then\(\(read\) => checkAchievements\(\{ type: 'shards', balance: read\.wallet\.balance \}\)\)/);
+    expect(layout).toMatch(/onAppEvent\('runes_balance_updated'/);
+    expect(layout).not.toMatch(/getShardsBalance\(|getShardAchievementEligibleBalance\(|onAppEvent\('shards_balance_updated'/);
+  });
+});

@@ -46,7 +46,7 @@ import { EnergyProvider } from '../components/EnergyContext';
 // primeRunesPeekFromBoot в runes_system.ts) — раньше, чем первый кадр Главной
 // прочитает peekRunes(). Тот же приём, что у EnergyProvider/energy_peek_cache
 // чуть выше по файлу: чтение стартует до, а не только внутри bootstrap-гонки.
-import './runes_system';
+import { getRunesBalanceRead } from './runes_system';
 // зачем (владелец, 2026-09-01: «заработал руны в любом месте — на главной они
 // со всех сторон слетаются в счётчик»): начисление случается там, где Главной
 // нет в дереве (урок, спин, модалка приза), и его событие к возврату домой
@@ -135,7 +135,6 @@ import { incrementSessionCount } from './review_utils';
 import { checkForUpdate, UpdateInfo } from './update_check';
 import { flushPendingProgressEvents } from './progress_events_client';
 import { createDisposableAdoption } from './disposable_adoption';
-import { getShardAchievementEligibleBalance, getShardsBalance } from './shards_system';
 import ActionToast from '../components/ActionToast';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
 import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
@@ -2247,12 +2246,13 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       ]).catch(() => {});
       bootMark('startupLocalHydration RACE DONE');
       void startupLocalHydration.catch(() => {});
-      // Сразу читаем осколки в фоне — к моменту «Главной» peekLastKnownShardsBalance уже с кэшем.
+      // зачем (Q106, координатор §62): достижения shards_100…10000 («Монетная заначка») по
+      // названию про монеты, а считались по удалённому жемчугу. Теперь — баланс монет (руны,
+      // локальная проекция, без Firestore). Номера достижений прежние.
       void getStableId()
-        .then(() => getShardsBalance())
-        .then(balance => getShardAchievementEligibleBalance(balance))
-        .then(balance => checkAchievements({ type: 'shards', balance }).catch(() => {}))
-        .catch(() => {});
+        .then(() => getRunesBalanceRead())
+        .then((read) => checkAchievements({ type: 'shards', balance: read.wallet.balance }))
+        .catch((error: unknown) => console.warn('[ACHIEVEMENTS] coins_boot_check_failed', String(error)));
 
       let shouldPrimeLessonsAfterReveal = false;
       try {
@@ -2382,15 +2382,11 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     const sub = onAppEvent('achievement_unlocked', () => {
       setTimeout(flushPending, 200);
     });
-    const subShards = onAppEvent('shards_balance_updated', (payload) => {
-      const balance = typeof payload?.balance === 'number' ? payload.balance : null;
-      if (balance !== null) {
-        const eligible = typeof payload?.eligibleAchievementBalance === 'number'
-          ? payload.eligibleAchievementBalance
-          : null;
-        const run = eligible === null ? getShardAchievementEligibleBalance(balance) : Promise.resolve(eligible);
-        run.then((achievementBalance) => checkAchievements({ type: 'shards', balance: achievementBalance })).catch(() => {});
-      }
+    // зачем (Q106): «Монетная заначка» следит за балансом монет, а не жемчуга.
+    const subShards = onAppEvent('runes_balance_updated', ({ balance }) => {
+      if (typeof balance !== 'number') return;
+      checkAchievements({ type: 'shards', balance })
+        .catch((error: unknown) => console.warn('[ACHIEVEMENTS] coins_check_failed', String(error)));
     });
     const subForeground = onAppEvent('foreground_usage_changed', ({ totalMs }) => {
       void checkAchievements({ type: 'foreground_usage', totalMs });

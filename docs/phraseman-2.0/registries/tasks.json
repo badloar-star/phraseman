@@ -12758,13 +12758,17 @@
         "id": "PM-245-A1",
         "text": "Коротко, конкретно, без натужного юмора и самовольных объяснений",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (сессия «Дизайн»/Библия текстов): массовая переписка не выполнена; метод и перечень — docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md, раздел PM-245"
+        ]
       },
       {
         "id": "PM-245-A2",
         "text": "полезные описания карточек сохранены",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET: нечего подтверждать до переписки; защита описаний карточек вписана в метод (docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md)"
+        ]
       }
     ],
     "depends_on": [],
@@ -12896,13 +12900,17 @@
         "id": "PM-248-A1",
         "text": "Указаны реальные данные, цели, сервисы, хранение, права и контакты",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (владелец публикует; юрист): сверка с кодом и тексты EN+RU готовы в docs/phraseman-2.0/legal/LEGAL_2_0_DRAFT.md (раздел «Сверка с фактической реализацией»); опубликованный текст не менялся по решению владельца; TTL 90 дн. в коде не реализован — срок в политику нельзя"
+        ]
       },
       {
         "id": "PM-248-A2",
         "text": "удалённые функции не описаны как действующие",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET: в опубликованной EN-политике на 2026-10-01 остаются Shards 9, Runes 2, Arena 4, tournament 2, gift 8, voice tutor 7, XP 18; правки — в черновике docs/phraseman-2.0/legal/LEGAL_2_0_DRAFT.md, публикация перед релизом (владелец)"
+        ]
       }
     ],
     "depends_on": [],
@@ -12942,13 +12950,17 @@
         "id": "PM-249-A1",
         "text": "Текст учитывает реальные продукты и переход старых прав",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET: в опубликованных Terms Shards 12, Arena 4, gift 8, XP 25; абзац о переходе старых прав (D68/D70/D103/D100/D122) подготовлен в docs/phraseman-2.0/legal/LEGAL_2_0_DRAFT.md, нужна публикация и подтверждение владельца про сохранение Plus/вечного Pro"
+        ]
       },
       {
         "id": "PM-249-A2",
         "text": "финальная юридическая проверка отдельно, не выдана за выполненную",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/legal/LEGAL_2_0_DRAFT.md: явная строка «Юридическая проверка ЭТОГО черновика юристом: НЕ ПРОЙДЕНА и отдельно не выдаётся за пройденную»; пункт юриста остаётся открытым и в legal_compliance_deploy_checklist_2026-06-29.md §5"
+        ]
       }
     ],
     "depends_on": [],
@@ -12988,13 +13000,17 @@
         "id": "PM-250-A1",
         "text": "Нет копирования брендов/ассетов",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (владелец): происхождение/лицензии новых ассетов и визуальная сверка с чужими интерфейсами не доказываются кодом (docs/phraseman-2.0/evidence/E24_store_declarations_2026-10-01.md §5)"
+        ]
       },
       {
         "id": "PM-250-A2",
         "text": "privacy labels/Data Safety соответствуют фактическому коду и SDK",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (владелец заполняет консоли): таблица соответствия SDK↔декларации готова docs/phraseman-2.0/evidence/E24_store_declarations_2026-10-01.md; открыты расхождения: клиент всё ещё аттестует App Check при запломбированном проекте, TTL 90 дн. не реализован, ключ PostHog в стор-профиле не сверен"
+        ]
       }
     ],
     "depends_on": [],
@@ -13024,7 +13040,7 @@
     ],
     "basis": "OWNER",
     "stage": "D",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -13033,14 +13049,18 @@
       {
         "id": "PM-251-A1",
         "text": "Ревьюер не редактирует код и фиксирует проблемы с экраном/доказательством",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/prompts/04_REVIEW_UX_COPY.md и 05_REVIEW_TECH_COST.md: read-only, «Не менять код», замечание = screen/file:line + воспроизведение; 01_BIBLE.md:52; в реестре у 24 задач reviewer, случаев reviewer==owner 0"
+        ]
       },
       {
         "id": "PM-251-A2",
         "text": "нет притворства, что один проход — независимый агент",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "01_BIBLE.md:52 «если отдельный агент не запускался — писать самопроверка»; в реестре самопроверки подписаны «self-check (не независимое ревью)» (PM-002, PM-025); правило «независимый = отдельная сессия без контекста исполнителя» — docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md"
+        ]
       }
     ],
     "depends_on": [],
@@ -13080,13 +13100,17 @@
         "id": "PM-252-A1",
         "text": "Чек-листы пройдены по каждому затронутому разделу",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET: чек-лист по разделам составлен (docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md), но проход по каждому разделу не завершён: реестр planned 85 / review 87 / ready_audit 4 на 2026-10-01"
+        ]
       },
       {
         "id": "PM-252-A2",
         "text": "блокирующие замечания устранены/приняты явно",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET: открытое блокирующее замечание — TTL 90 дней app_errors/app_activity не реализован (нет expireAt и политики TTL), явного принятия нет"
+        ]
       }
     ],
     "depends_on": [],
@@ -13181,7 +13205,9 @@
         "id": "PM-254-A1",
         "text": "Старый/новый аккаунт, Free/Plus, purchases, offline, weak devices, локали и новый путь из YouTube проверены",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (эмулятор по очереди, песочница покупок — владелец): матрица и статус строк в docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md; на устройстве/в сторе ничего не прогонялось"
+        ]
       }
     ],
     "depends_on": [],
@@ -13267,13 +13293,17 @@
         "id": "PM-256-A1",
         "text": "Пользователь понимает, где карточки и что с его покупками",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (выбор владельца): 3 варианта текста в docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md; фразу про сохранение Plus и купленных наборов подтвердить"
+        ]
       },
       {
         "id": "PM-256-A2",
         "text": "нет обязательной праздничной модалки или ложного обещания",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET: зависит от способа показа и выбранного варианта; ни один вариант не требует модалки и не обещает компенсации (docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md)"
+        ]
       }
     ],
     "depends_on": [],
@@ -13312,20 +13342,26 @@
       {
         "id": "PM-257-A1",
         "text": "Модель и уровень указаны",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "registries/tasks.json: 276/276 задач с model и reasoning; tasks/PM-*.md 275/275 без расхождений с реестром (PM-288 без карточки); docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md"
+        ]
       },
       {
         "id": "PM-257-A2",
         "text": "аккаунт/клиент подтверждает доступность",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (владелец/клиент): нужен вывод клиента с доступными моделями; реестр рекомендует gpt-6-*, фактически работают сессии Claude"
+        ]
       },
       {
         "id": "PM-257-A3",
         "text": "автоматическое переключение не приписано текстовому промпту",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "01_BIBLE.md:65 «Промпт сам по себе не переключает модель»; prompts/01_START_READONLY.md:2; поиск «автоматически переключ*» по tasks/prompts/BIBLE — 0 вхождений"
+        ]
       }
     ],
     "depends_on": [],

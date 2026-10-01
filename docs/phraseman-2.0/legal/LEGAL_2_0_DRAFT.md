@@ -106,3 +106,53 @@ Store-декларации (PM-250): OpenAI уже указан как обра�
   только чтобы его заявки в друзья и «Привет» до вас не доходили. Заблокированному об этом не сообщается.
 - **Удаление:** список удаляется вместе с аккаунтом; записи о вас в списках других людей тоже удаляются.
 - Публиковать вместе с остальными правками 2.0 перед релизом.
+
+## Сверка с фактической реализацией (PM-248/PM-249, 2026-10-01)
+
+Юридическая проверка ЭТОГО черновика юристом: НЕ ПРОЙДЕНА и отдельно не выдаётся за пройденную (PM-249-A2). Нужна до публикации.
+Опубликованные тексты (`app/legal/*`, `legal/*`, `privacy.html`, `terms.html`) не менялись; `legal:sync` не запускался. Публикация — одним пакетом перед релизом (решение владельца).
+
+### Что в черновике, а что в коде (расхождения)
+
+| Тема | Факт в коде | Что в опубликованном тексте | Что сделать |
+|---|---|---|---|
+| Срок до удаления аккаунта | **14 дней**, не 30 (`functions/src/account_delete_grace.ts:21`); восстановление при входе в эти 14 дней | EN privacy §19/§20 и terms §3 уже говорят «14-day grace» — верно | Ничего. В ТЗ звучало «30 дней» — это неверно. 30 дней — только срок жизни служебной квитанции удаления Account V2 (`functions/src/accounts_v2_deletion/receipt.ts:37`, без содержимого, TTL по `expireAt`); 90 дней — срок «ожидающей» записи там же (строка 43) |
+| TTL 90 дней у `app_errors` / `app_activity` | **В коде НЕ реализован**: ни один писатель не ставит `expireAt` (`functions/src/client_reports.ts`, `payment_webhook_alert.ts`, `max_voice_*`), в `firestore.indexes.json` нет TTL-политики для этих коллекций (TTL есть только у accounts_v2_*, dialogue_v2_*, taskSecrets) | Числа «90» в тексте нет: «analytics/error records may be retained longer where needed» | **Не писать «90 дней» в политику, пока не будет кода + политики TTL в консоли.** Решение координатора 01.10 п.4 пока не исполнено. Нужна отдельная задача: `expireAt = now + 90 дн.` в писателях + политика TTL (включает владелец, DEPLOY_NOW) |
+| Хранилище прогресса на устройстве (Account V2) | SQLCipher: `app.config.js:161` (`useSQLCipher: true`); ключ в защищённом хранилище устройства, исключён из облачного бэкапа Android (`plugins/withAndroidBackupRules.js`, пакет 6E). Флаг V2 по пакету 6B — выключен | В тексте упомянуто шифрование только в общем виде (2 вхождения) | Добавить фразу (ниже). Публиковать вместе с включением V2, не раньше |
+| Блокировка пользователей | `users/{uid}/blocked/{id}`; чистится при удалении обоих участников (`account_delete.ts:1043-1044`) | Нет | Уже в черновике (Q41) — оставить |
+| «Привет»: окно тишины | `users/{sender}/friend_hello_cooldowns/{target}` — идентификатор получателя и время, 6 ч; сносится при удалении аккаунта (`account_delete.ts:1036-1038`); push не уходит не-другу | Нет | Добавить фразу (ниже) |
+| Избранные видео | `users/{uid}/video_favorites/{videoId}` + обезличенный счётчик | **Уже опубликовано** коммитом 39419617c (с `legal:sync`), хотя владелец решил публиковать разом | Сообщить координатору: часть черновика уже «живая»; это не вред (текст верный), но порядок публикации нарушен |
+| Жалобы (наборы, задания Шпиля) | `client_reports.ts`: запись жалобы с идентификатором автора и причиной; жалобы на задания Шпиля идут тем же путём (`client_reports.ts`, квитанция `spire_task_report_receipts`) | «Reports … records» есть в общем виде | Добавить Шпиль в перечень (ниже) |
+| Аналитика | PostHog (EU-хост, `app/posthog_client.ts`) и необязательная Firebase Analytics — только после согласия (`app/analytics_consent.ts`); Crashlytics включён всегда (`app/_layout.tsx:1874`) | Совпадает (аналитика молчит без согласия, Crashlytics работает) | Ничего |
+| App Check / аттестация устройства | Клиент в стор-сборке **всё ещё** запрашивает Play Integrity / App Attest (`app/config.ts:66`, `app/app_check_init.ts`, `app/_layout.tsx:1876`, пакет `@react-native-firebase/app-check`), хотя сервер его не требует и проект запломбирован «App Check не используется» (CLAUDE.md) | Одно упоминание «App Check» | **Конфликт с правилом проекта.** По CLAUDE.md снимать — отдельной сессией. Пока код жив, в Data Safety/App Privacy это «device/other IDs, диагностика» — см. таблицу PM-250. Решение за координатором |
+| Голос | Распознавание речи: `expo-speech-recognition` (микрофон + системное распознавание Google/Apple; на iOS по возможности на устройстве), `whisper.rn` на устройстве. Раздел MAX (голосовые звонки, WebRTC) законсервирован | В тексте 7 вхождений «voice tutor», 1 «voice call» | Убрать, как в таблице выше; оставить микрофон/распознавание для произношения и диалогов |
+| Опубликованные устаревшие слова | Privacy EN: Shards 9, Runes 2, Arena 4, tournament 2, gift 8, voice tutor 7, XP 18; Terms EN: Shards 12, Arena 4, gift 8, XP 25, boost 1 (счёт на 2026-10-01) | Описывают УДАЛЁННОЕ как действующее | PM-248-A2 / PM-249-A1 не принять до публикации правок |
+
+### Недостающее: готовый текст (EN + RU, коротко)
+
+**Privacy — Account storage / Хранение учётной записи (добавить в §3 или §19):**
+> EN: Your learning progress and cards are kept on your device in an encrypted local database. The encryption key stays in the device's secure storage and is excluded from cloud backups. A synchronized copy is kept on our servers so you can restore your progress; it is deleted with your account (14-day grace period, then irreversible). A short technical deletion receipt without your content is kept for up to 30 days to prove the deletion completed.
+> RU: Прогресс и карточки хранятся на вашем устройстве в зашифрованной локальной базе. Ключ шифрования лежит в защищённом хранилище устройства и не попадает в облачные резервные копии. Синхронизированная копия хранится на наших серверах, чтобы вы могли восстановить прогресс; она удаляется вместе с аккаунтом (14 дней на возврат, затем необратимо). Короткая техническая квитанция об удалении — без вашего содержимого — хранится до 30 дней, чтобы подтвердить, что удаление завершено.
+
+**Privacy — «Привет» (social features):**
+> EN: When you send a greeting to a friend, we store the recipient identifier and the time, only to avoid repeat notifications within a few hours. This record is deleted with either account.
+> RU: Когда вы отправляете «Привет» другу, мы храним идентификатор получателя и время — только чтобы не слать повторные уведомления в течение нескольких часов. Запись удаляется вместе с аккаунтом любого из участников.
+
+**Privacy — Spire reports / Жалобы на задания Шпиля:**
+> EN: If you report a Spire task as wrong, we store the task identifier, your account identifier and the reason you choose, to fix or remove the task. Spire language pools for Spanish, German and French are marked beta.
+> RU: Если вы сообщаете, что задание Шпиля составлено неверно, мы храним идентификатор задания, ваш идентификатор и выбранную причину — чтобы исправить или снять задание. Языковые пулы Шпиля для испанского, немецкого и французского помечены «бета».
+
+**Privacy — Retention (добавить ТОЛЬКО после реализации TTL):**
+> EN: Error and activity logs are kept for up to 90 days.
+> RU: Журналы ошибок и активности хранятся до 90 дней.
+(Сейчас в коде срока нет — формулировку не публиковать.)
+
+**Terms — переход старых прав (PM-249), одним абзацем в §8 «Virtual items»:**
+> EN: With version 2.0, the previous virtual balance (Shards, including any bought with real money) and the former Arena, tournament, gift and experience-point features end and are not compensated; official card sets that were unlocked with Shards are no longer offered. Plus subscriptions, lifetime Pro access and purchases of Community Packs you made are kept. Lifetime Pro owners receive Coins instead of Shards as referral prizes. Lessons that were free to you before the update stay free.
+> RU: С версией 2.0 прежний виртуальный баланс (жемчуг, включая купленный за реальные деньги), а также прежние Арена, турниры, подарки и очки опыта прекращаются без компенсации; официальные наборы карточек, открытые за жемчуг, больше не предлагаются. Подписки Plus, вечный Pro и ваши покупки наборов сообщества сохраняются. Владельцы вечного Pro получают монеты вместо жемчуга как призы реферальной рулетки. Уроки, которые были для вас бесплатными до обновления, остаются бесплатными.
+Основания в решениях: D68, D70, D103 (жемчуг за деньги сгорает), D100/D105, D122. Пункт «подписки Plus и вечный Pro сохраняются» подтвердить владельцу/юристу — в решениях прямо не записан (вопрос Q-Terms).
+
+### Что осталось не принятым
+- PM-248-A1/A2, PM-249-A1: нужна публикация (владелец) и юрист — NOT_MET.
+- Нет TTL 90 дней в коде — отдельная задача.
+- Конфликт «App Check запломбирован» ↔ клиент всё ещё аттестует.

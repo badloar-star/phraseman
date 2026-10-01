@@ -20,7 +20,7 @@ export type TodayTask = Readonly<{
   route: string;
 }>;
 
-// зачем (D137): пустые места ряда занимают другие готовые разделы.
+// зачем (D143): пустые места ряда занимают другие готовые разделы.
 export type HomeFeatureTileKey = 'lessons' | 'dialogs' | 'cards' | 'spire' | 'video_packs' | 'mistakes' | 'saved';
 
 export type HomeFeatureTile = Readonly<{

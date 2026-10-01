@@ -335,7 +335,7 @@ test('actual route uses stable four-edge ownership, compact wrapping type, and s
   assert.equal(flatStyle(title.props.style).textAlign, 'left');
   assert.equal(flatStyle(header.props.style).gap, 14);
   assert.ok(!nodes.some(node => node.props?.testID === 'fc-training-setup-header-trailing'));
-  assert.equal(flatStyle(byId('fc-training-setup-summary').props.style).fontSize, 16 * expectedScale); // D139
+  assert.equal(flatStyle(byId('fc-training-setup-summary').props.style).fontSize, 16 * expectedScale); // D145
   assert.equal(flatStyle(byId('fc-training-setup-summary').props.style).lineHeight, 21 * expectedScale);
   assert.equal(byId('fc-training-setup-summary').props.maxFontSizeMultiplier, undefined);
 
@@ -488,7 +488,7 @@ test('monthly quota actual output is byte-compatible by default and opt-in metri
       const optIn = Quota({ ...baseProps, textMetrics: { fontSize: 15, lineHeight: 21 } });
       assert.equal(beforeShape.type, 'View');
       assert.deepEqual(flatStyle(beforeShape.props.children.props.style), {
-        fontSize: 13, lineHeight: 18, fontWeight: '700', textAlign: 'center', // D139
+        fontSize: 13, lineHeight: 18, fontWeight: '700', textAlign: 'center', // D145
         color: quota.status === 'exhausted' ? 'muted' : 'text',
       });
       assert.deepEqual(flatStyle(optIn.props.children.props.style), {

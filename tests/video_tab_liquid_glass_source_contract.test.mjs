@@ -62,7 +62,7 @@ test('video.html: playlist row and playlist screen follow the mockup', () => {
 
 test('video.html: loading, empty, error and note states use the shared glass kit', () => {
   assert.ok(kit.includes('export function VideoStateBlock') && kit.includes('width: 61, height: 61'), 'state tile 61');
-  assert.ok(kit.includes('export function VideoNote') && kit.includes('fontSize: 16, lineHeight: 21'), 'note 16/21 (D139)');
+  assert.ok(kit.includes('export function VideoNote') && kit.includes('fontSize: 16, lineHeight: 21'), 'note 16/21 (D145)');
   assert.ok(!screen.includes('testID="youtube-catalog-error"') && !screen.includes('youtube-catalog-retry'), 'владелец 01.10: ни ошибки, ни retry');
   assert.ok(!screen.includes('<VideoNote'), 'владелец 01.10: ни offline, ни stale плашек');
   assert.ok(screen.includes('SkeletonBlock width="100%" height={skeletonHeight} borderRadius={22}'), 'loading skeleton geometry');

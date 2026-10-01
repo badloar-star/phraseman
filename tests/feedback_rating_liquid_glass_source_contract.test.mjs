@@ -303,7 +303,7 @@ test('renders a closed opaque liquid-glass card for all 13 themes with an access
     const title = byId(tree, 'feedback-probe-title');
     assert.equal(renderedText(title), 'Were these words worth it?');
     assert.equal(flatStyle(title.props.style).fontWeight, '700');
-    assert.equal(flatStyle(title.props.style).fontSize, 16 /* D139 */);
+    assert.equal(flatStyle(title.props.style).fontSize, 16 /* D145 */);
     assert.equal(flatStyle(title.props.style).lineHeight, 22);
     const closedContentHeight = effectiveClosedCardHeight(
       cardStyle, headerStyle, flatStyle(title.props.style).lineHeight,

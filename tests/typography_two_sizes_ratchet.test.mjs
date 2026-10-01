@@ -1,4 +1,4 @@
-// зачем (D139, владелец 01.10): обычный текст — ровно 2 размера, 16 и 13; заголовки (≥19) — по макетам.
+// зачем (D145, владелец 01.10): обычный текст — ровно 2 размера, 16 и 13; заголовки (≥19) — по макетам.
 // Экранов сотни, переводим пачками. Этот сторож-«храповик» считает в коде размеры текста меньше 19,
 // которые не 13 и не 16, и не даёт их числу расти: базу можно только уменьшать.
 // Обновить базу после пачки: node tests/typography_two_sizes_ratchet.test.mjs --update
@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const BASELINE = join(ROOT, 'config', 'typography-two-sizes-baseline.json');
 const DIRS = ['app', 'components', 'modules', 'constants'];
-// Исключения D139: онбординг не трогаем (решение владельца), дев-экраны не видит пользователь.
+// Исключения D145: онбординг не трогаем (решение владельца), дев-экраны не видит пользователь.
 const SKIP = [/(^|\/)dev\//, /onboarding/i, /CleanOnboarding/, /\.test\./, /_dev_/, /dev_hub/i, /motion_showcase/];
 const ALLOWED = new Set([13, 16]);
 
@@ -51,14 +51,14 @@ if (process.argv.includes('--update')) {
   console.log(`typography baseline updated: ${total}`);
 }
 
-test('text sizes other than 16/13 (below title size) never grow — D139', () => {
+test('text sizes other than 16/13 (below title size) never grow — D145', () => {
   const base = JSON.parse(readFileSync(BASELINE, 'utf8'));
   const grown = Object.entries(current).filter(([f, n]) => n > (base.files[f] ?? 0));
-  assert.deepEqual(grown, [], `новые размеры текста кроме 16/13: ${JSON.stringify(grown)} — используйте 16 или 13 (D139)`);
+  assert.deepEqual(grown, [], `новые размеры текста кроме 16/13: ${JSON.stringify(grown)} — используйте 16 или 13 (D145)`);
   assert.ok(total <= base.total, `всего ${total} > базы ${base.total}`);
 });
 
-test('V2 type scale uses only 16/13 for text and regular/bold weights — D139', () => {
+test('V2 type scale uses only 16/13 for text and regular/bold weights — D145', () => {
   const v2 = readFileSync(join(ROOT, 'constants', 'v2Style.ts'), 'utf8');
   const block = v2.slice(v2.indexOf('export const V2_TYPE'), v2.indexOf('} as const;', v2.indexOf('export const V2_TYPE')));
   for (const name of ['headline', 'body', 'subtitle', 'caption', 'overline']) {

@@ -45,7 +45,7 @@ assert.match(states, /minHeight: 48, borderRadius: 24/, '.cta 48/24');
 assert.match(states, /minHeight: 44, borderRadius: 22/, '.cta.sm keeps a 44 dp touch target');
 assert.match(states, /width: 61, height: 61, borderRadius: 16/, 'state tile 61/16');
 assert.match(states, /track: \{ height: 6, borderRadius: 3/, 'progress track 6 px');
-assert.match(states, /fontSize: 16, lineHeight: 22, fontWeight: '700', fontVariant: \['tabular-nums'\]/, '.prog labels 16/700 D139');
+assert.match(states, /fontSize: 16, lineHeight: 22, fontWeight: '700', fontVariant: \['tabular-nums'\]/, '.prog labels 16/700 D145');
 assert.match(states, /borderRadius: 16, borderWidth: StyleSheet\.hairlineWidth/, '.qc radius 16 with a 1 px edge');
 
 // Пусто / мало карточек / ошибка загрузки / данные тренировки не открылись — единая панель.

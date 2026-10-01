@@ -3407,10 +3407,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             cards: homeFlashcardsVisible,
         };
         const homeV2BaseTiles = homeV2AllTiles.filter((tile) => homeV2TileVisible[tile.key] === true);
-        // зачем (D137, владелец 01.10): ряд из трёх плиток утверждён и не меняется. Раздела у языка нет —
+        // зачем (D143, владелец 01.10): ряд из трёх плиток утверждён и не меняется. Раздела у языка нет —
         // его место занимает другой готовый раздел в той же плитке: нет Уроков → «Шпиль» (es/de/fr);
         // итальянский → «Наборы из видео», «Мои ошибки», запасной «Сохранённые» (порядок приоритета).
-        // Картинки временные — владелец пришлёт свои (D138).
+        // Картинки временные — владелец пришлёт свои (D143).
         const homeV2FillerTiles: (HomeFeatureTile & { available: boolean })[] = [
             {
                 key: 'spire',

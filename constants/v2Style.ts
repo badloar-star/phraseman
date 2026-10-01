@@ -237,7 +237,7 @@ export const V2_TYPE = {
   largeTitle: { fontSize: 34, lineHeight: 40, fontWeight: '800' as const, letterSpacing: -0.6 },
   title: { fontSize: 24, lineHeight: 30, fontWeight: '800' as const, letterSpacing: -0.3 },
   section: { fontSize: 20, lineHeight: 26, fontWeight: '700' as const, letterSpacing: -0.2 },
-  // зачем (D139, владелец 01.10): обычный текст — ровно 2 размера, 16 и 13; иерархия весом и цветом.
+  // зачем (D145, владелец 01.10): обычный текст — ровно 2 размера, 16 и 13; иерархия весом и цветом.
   // Заголовки выше (largeTitle/title/section) — по утверждённым макетам.
   headline: { fontSize: 16, lineHeight: 21, fontWeight: '700' as const },
   body: { fontSize: 16, lineHeight: 22, fontWeight: '400' as const },

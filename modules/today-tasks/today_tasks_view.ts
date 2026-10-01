@@ -22,7 +22,8 @@ export const TODAY_TASK_ROUTES: Readonly<Record<TodayTaskKindCore, string>> = Ob
   cards: '/flashcards',
   video: '/(tabs)/video',
   mistakes: '/mistakes_hub',
-  spire_steps: '/(tabs)/community',
+  // зачем (01.10): без раздела вкладка «Сообщество» открывает «Друзей» — ведём прямо в Шпиль.
+  spire_steps: '/(tabs)/community?section=spire',
 });
 
 function copyFor(kind: TodayTaskKindCore, lang: Lang): { title: string; subtitle?: string } {

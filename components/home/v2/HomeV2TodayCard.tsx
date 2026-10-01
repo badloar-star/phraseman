@@ -45,7 +45,11 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask }: Props) {
               accessibilityRole="button"
               accessibilityState={{ checked: task.done }}
               accessibilityLabel={`${task.title}${task.subtitle ? `. ${task.subtitle}` : ''}. ${counter}`}
-              onPress={() => onOpenTask(task)}
+              onPress={() => {
+                // зачем (владелец 01.10: «задания дня должны открывать свой раздел»): лог маршрута каждого нажатия.
+                console.log('[TODAY-TASKS] route', JSON.stringify({ kind: task.kind, route: task.route, done: task.done, progress: task.progress, target: task.target }));
+                onOpenTask(task);
+              }}
               scaleTo={0.98}
               style={[s.row, rowGlass]}
             >

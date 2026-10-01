@@ -202,8 +202,8 @@ const { mistakeHubAdvice } = require("./mistake_hub_advice");
 const { submitExplainReport } = require("./explain/explain_reports");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { vipRevokeMine } = require("./vip_revoke");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { collectiblesClaimDrop } = require("./collectibles_retired");
+// зачем: D140 (владелец 2026-10-01) — коллекции удалены целиком, вместе с
+// надгробием collectiblesClaimDrop (деплой удалит функцию, Firebase спросит).
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   submitShardSurvey,
@@ -211,19 +211,10 @@ const {
   adminWriteShardSurvey,
   adminDeleteShardSurvey,
 } = require("./shard_survey");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-// «Задания»: владелец назначает квест из админки, игрок выполняет и забирает
-// награду. Очередь разбирается сама при заходе игрока — крона нет.
-const {
-  questGetActive,
-  questReportProgress,
-  questClaimReward,
-  adminWriteQuest,
-  adminActivateQuest,
-  adminArchiveQuest,
-  adminDeleteQuest,
-  adminListQuests,
-} = require("./quests");
+// зачем: D140 (владелец 2026-10-01) — «Задания» (квесты) удалены целиком: 8 функций
+// (questGetActive, questReportProgress, questClaimReward, adminWriteQuest,
+// adminActivateQuest, adminArchiveQuest, adminDeleteQuest, adminListQuests).
+// Уже выданные дни Plus не трогаются. Деплой удалит функции (Firebase спросит).
 // зачем: D70/D78 — shardsApplyDelta (отключённая заглушка записи жемчуга) удалена.
 // зачем: D78 (владелец, 2026-09-30) — dev-выдачи devShardsGrant/devRunesGrant/
 // referralDevGrantSpin удалены из кода целиком (реализация, экспорт, клиент).
@@ -391,8 +382,6 @@ exports.explainMistake = explainMistake;
 exports.mistakeHubAdvice = mistakeHubAdvice;
 exports.submitExplainReport = submitExplainReport;
 exports.vipRevokeMine = vipRevokeMine;
-// Compatibility tombstone: old installed clients receive a permanent no-drop result.
-exports.collectiblesClaimDrop = collectiblesClaimDrop;
 exports.progressSubmitEvent = progressSubmitEvent;
 exports.progressMigrateSnapshot = progressMigrateSnapshot;
 exports.submitLearningV2RequiredSessionCompletion =
@@ -407,14 +396,6 @@ exports.adminAlertOnCancelSurvey = adminAlertOnCancelSurvey;
 exports.adminAlertOnUgcRefund = adminAlertOnUgcRefund;
 exports.adminAlertOnConfigWritten = adminAlertOnConfigWritten;
 exports.submitShardSurvey = submitShardSurvey;
-exports.questGetActive = questGetActive;
-exports.questReportProgress = questReportProgress;
-exports.questClaimReward = questClaimReward;
-exports.adminWriteQuest = adminWriteQuest;
-exports.adminActivateQuest = adminActivateQuest;
-exports.adminArchiveQuest = adminArchiveQuest;
-exports.adminDeleteQuest = adminDeleteQuest;
-exports.adminListQuests = adminListQuests;
 exports.getActiveShardSurvey = getActiveShardSurvey;
 exports.adminWriteShardSurvey = adminWriteShardSurvey;
 exports.adminDeleteShardSurvey = adminDeleteShardSurvey;
@@ -599,10 +580,9 @@ export {
   communityAdminModeratePack,
   communityAuthorRemovePack,
   communityFetchPackCardsIfAccessible,
-  communityRedeemPackGiftVoucher,
-  flashcardPackGiftRedeem,
-  flashcardPackGiftGrantGlobalBroadcast,
-  flashcardPackGiftSyncState,
+  // зачем: D140 (владелец 2026-10-01) — 4 callable подарочных наборов
+  // (communityRedeemPackGiftVoucher, flashcardPackGiftRedeem,
+  // flashcardPackGiftGrantGlobalBroadcast, flashcardPackGiftSyncState) удалены.
   communityListSellerInbox,
   communityMarkSellerInboxSeen,
 } from "./community_packs";
@@ -672,7 +652,8 @@ export {
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 // зачем: D70/D86 — корректировка баланса жемчуга удалена; выдача наград — монетами.
 export { adminGrantReward } from "./admin_grant";
-export { adminGrantVoiceMinutes } from "./admin_voice_minutes";
+// зачем: D136 (владелец 2026-10-01) — adminGrantVoiceMinutes удалена: денежный
+// код MAX убран; деплой удалит функцию (Firebase спросит подтверждение).
 export { adminGrantAccess, adminSetUserBan } from "./admin_access_controls";
 export {
   adminDeleteDuplicateUser,
@@ -1073,9 +1054,9 @@ export { introFullAccessClaim } from "./gift_access";
 // Руны за просмотр видео для Plus/Pro: 3 базовые руны за полную минуту,
 // одним вызовом в конце просмотра, потолок 600 в сутки.
 export { videoWatchRunesClaim } from "./video_watch_runes";
-// Докупка +10 реплик ИИ-диалога за 300 рун внутри диалога, когда бесплатный
-// дневной лимит исчерпан. Сколько угодно раз в день — предел только баланс рун.
-export { aiDialogBuyExtraReplies } from "./ai_dialog_extra_replies";
+// зачем: D139 (владелец 2026-10-01) — докупка «+10 реплик за 300 монет»
+// (aiDialogBuyExtraReplies) удалена; месячная квота D111 остаётся. Деплой удалит
+// функцию (Firebase спросит подтверждение).
 // Синхронизация покупок диалогов за руны (5 000 / 10 000). Сервер НЕ решает,
 // а догоняет: телефон авторитетен, здесь только журнал траты и сохранение
 // владения, чтобы переустановка приложения не потеряла купленное.

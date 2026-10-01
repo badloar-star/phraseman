@@ -52,9 +52,9 @@ describe('серия: проводка в коде', () => {
   it('на старте серия не ждёт шагов старой экономики (сбой/зависание осколков её не режет)', () => {
     const layout = read('app/_layout.tsx');
     const streakStart = layout.indexOf("touchStreakForToday('cold_start')");
-    const shards = layout.indexOf('await loadShardsFromCloud()');
     expect(streakStart).toBeGreaterThan(0);
-    expect(shards).toBeGreaterThan(streakStart);
+    // шаги жемчуга сняты со старта целиком (§55) — ждать серии больше нечего
+    expect(layout).not.toContain('await loadShardsFromCloud()');
     expect(layout).not.toMatch(/await updateStreakOnActivity\(\)/);
   });
 

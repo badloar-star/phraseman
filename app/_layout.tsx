@@ -135,7 +135,7 @@ import { incrementSessionCount } from './review_utils';
 import { checkForUpdate, UpdateInfo } from './update_check';
 import { flushPendingProgressEvents } from './progress_events_client';
 import { createDisposableAdoption } from './disposable_adoption';
-import { getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud } from './shards_system';
+import { getShardAchievementEligibleBalance, getShardsBalance } from './shards_system';
 import ActionToast from '../components/ActionToast';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
 import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
@@ -1920,39 +1920,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         // до 2.5 для уроков, которые в облаке уже значатся как открытые.
         // См. repairLessonUnlocksAfterRestore() и lesson_unlock_repair_v1 флаг.
         repairLessonUnlocksAfterRestore().catch(() => {});
-        bootStep('before_loadShardsFromCloud');
-        await loadShardsFromCloud().catch((error: unknown) => console.warn('[STREAK] boot:loadShardsFromCloud_failed', String(error)));
-        bootStep('after_loadShardsFromCloud');
-        // Дотягиваем pending shard-grants после оплаты: вебхук RC мог задержаться
-        // дольше окна waitForServerShardGrant в магазине. См. shards_pending_grants.ts.
-        void (async () => {
-          const {
-            resumePendingShardGrants,
-            resumePendingShardRecoveryNeeded,
-            retryPendingShardGrantDeleteCleanup,
-          } = await import('./shards_pending_grants');
-          const resumeAccount = captureAccountGeneration();
-          await retryPendingShardGrantDeleteCleanup(resumeAccount).catch(() => {});
-          await resumePendingShardRecoveryNeeded(resumeAccount).catch(() => {});
-          await resumePendingShardGrants(resumeAccount).catch(() => {});
-        })();
-        // .catch: единственный незащищённый await в цепочке — его сбой молча
-        // обрывал весь остаток пост-загрузки (стрик, pending-события, syncToCloud).
-        const freshShards = await AsyncStorage.getItem('shards_balance').catch(() => null);
-        bootStep(`shards_balance=${String(freshShards)}`);
-        const parsedShards = Number(freshShards);
-        if (Number.isFinite(parsedShards) && parsedShards >= 0) {
-          const balance = Math.floor(parsedShards);
-          emitAppEvent('shards_balance_updated', {
-            balance,
-            eligibleAchievementBalance: await getShardAchievementEligibleBalance(balance).catch((error: unknown) => {
-              // зачем: этот await не был защищён — его сбой молча обрывал цепочку до серии.
-              console.warn('[STREAK] boot:eligible_balance_failed', String(error));
-              return balance;
-            }),
-          });
-        }
-        bootStep('before_updateStreak');
+        // зачем (FINAL_PHASE п.4, §55 координатора): шаги жемчуга (осколков) убраны из
+        // холодного старта — загрузка из облака (~6 с, чтения Firestore), дотягивание
+        // оплаченных пакетов и событие баланса. Жемчуг удалён (D70/D84/D103: остаток и
+        // купленное сгорают без компенсации). Монеты живут на счёте рун/звёзд и от этих
+        // шагов не зависят; серверные события в этот журнал писали только турниры (сняты).
+        bootStep('before_await_streak');
         // зачем: PM-210 — шаг миграции недельных очков лиги (пустая заглушка после
         // удаления лиг в 2.0) убран из пост-загрузочной цепочки: фоновой работы нет.
         await streakBoot.catch((error: unknown) => console.warn('[STREAK] boot:updateStreak_failed', String(error)));

@@ -11,13 +11,15 @@ describe('shards store purchase account boundary', () => {
   // PM-057 (PhraseMan 2.0, D28): покупка жемчуга за реальные деньги убрана.
   // Прежний контракт сторожил системную покупку (RevenueCat purchasePackage,
   // запись pending-журнала) — это отменённое правило. Новый контракт: клиент
-  // НЕ открывает системный диалог магазина для жемчуга, но старые оплаченные
-  // покупки по-прежнему дотягиваются (resumePendingShardGrants) — PM-057-A2.
-  it('retires the shop route while startup still resumes already paid grants', () => {
+  // НЕ открывает системный диалог магазина для жемчуга. Прежнее «старые оплаченные
+  // покупки дотягиваются на старте» (PM-057-A2) отменено D103 (купленный жемчуг
+  // сгорает без компенсации) и FINAL_PHASE п.4 / §55: шаги жемчуга сняты с холодного старта.
+  it('retires the shop route and keeps pearl steps off the cold start', () => {
     expect(shop).toContain('<Redirect href="/flashcards_my_packs" />');
     expect(shop).not.toContain('Purchases.purchasePackage');
     expect(shop).not.toContain('recordPendingShardGrant(');
-    expect(layout).toContain('resumePendingShardGrants(resumeAccount)');
+    expect(layout).not.toContain('resumePendingShardGrants(');
+    expect(layout).not.toContain('await loadShardsFromCloud()');
   });
 
   it('uses only stable-id-scoped v2 journals and never adopts ownerless v1', () => {

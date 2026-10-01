@@ -14,7 +14,10 @@ describe('post-auth stale generation guards', () => {
   });
 
   test('shard and backup restores check generation immediately before local commits', () => {
-    expect(shardsSource).toContain('loadShardsFromCloud = async (isCurrent: () => boolean = () => true)');
+    // зачем (PM-289): параметр давно переименован в isCallerCurrent (68f4ef973), и сторож
+    // был красным на HEAD. Смысл тот же — загрузка жемчуга получает страж поколения.
+    // Целиком перепишется на «жемчуга больше нет» на этапе 2 PM-289.
+    expect(shardsSource).toContain('loadShardsFromCloud = async (isCallerCurrent: () => boolean = () => true)');
     expect(shardsSource).toMatch(/if \(!isCurrent\(\)\) return;\s+await AsyncStorage\.multiSet/);
     expect(backupSource).toContain('restoreAccountSwitchEmergencyBackupIfSafe(');
     expect(backupSource).toContain("return { status: 'stale_generation' }");

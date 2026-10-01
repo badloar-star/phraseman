@@ -65,8 +65,7 @@ describe('Gustav French diagnostic target gate', () => {
 
     expect(home).not.toContain("key: 'attest'");
     expect(home).not.toContain('const activityQuickItems =');
-    expect(home).toContain('activityQuickItems /');
-    expect(home).toContain('visibleActivityQuickItems / themedClubIcon');
+    expect(home).not.toContain('visibleActivityQuickItems');
     expect(diagnosticContentAvailableForTarget('fr')).toBe(true);
   });
 

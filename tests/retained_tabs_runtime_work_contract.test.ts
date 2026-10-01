@@ -54,7 +54,6 @@ describe('retained tabs runtime work contract', () => {
     // handoff must therefore request the initial data load.
     expect(source).toContain('const homeDataDirtyRef = useRef(true);');
     expect(source).toContain('if (homeDataDirtyRef.current) {');
-    expect(source).toContain('<SaveProgressBanner ownerActive={homeRuntimeActive} hasSavedLearningProgress={lessonsCompleted > 0} />');
     expect(source).toContain('shardsDirtyRef.current = true;');
     expect(source).toContain('shardsAnim.stopAnimation();');
     expect(source).toContain('shardsAnim.setValue(1);');

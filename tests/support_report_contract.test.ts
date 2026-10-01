@@ -68,13 +68,10 @@ describe('in-app support report contract', () => {
   it('places a dismissible direct-open reply banner immediately after the last lesson', () => {
     const home = read('app/(tabs)/home.tsx');
     const banner = read('components/ReportReplyHomeBanner.tsx');
-    const lesson = home.indexOf('testID="home-continue-lesson"');
-    const replyBanner = home.indexOf('<ReportReplyHomeBanner');
-    const followingQueue = home.indexOf('{/* Домашние подсказки', replyBanner);
-    expect(lesson).toBeGreaterThanOrEqual(0);
-    expect(replyBanner).toBeGreaterThan(lesson);
-    expect(followingQueue).toBeGreaterThan(replyBanner);
-    expect(home).toContain('onOpen={handleReportReplyBannerOpen}');
+    // зачем (01.10, удаление Главной V1): баннер ответа стоял в V1-разметке после «Продолжить урок».
+    // Главная 2.0: ответ на жалобу открывается из колокольчика (requestedReportReply → NotificationCenterButton).
+    expect(home).not.toContain('<ReportReplyHomeBanner');
+    expect(home).toContain('requestedReportReply={requestedReportReply}');
     expect(banner).toContain('testID="home-report-reply-banner"');
     expect(banner).toContain('onPress={open}');
     expect(banner).toContain('testID="home-report-reply-banner-close"');

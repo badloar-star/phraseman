@@ -62,11 +62,9 @@ describe('home mistakes button', () => {
     const home = read('app/(tabs)/home.tsx');
     expect(home).not.toContain('testID="home-mistakes-pulse-button"');
     expect(home).not.toContain('testID="home-videos-pulse-button"');
-    // Видео вернулось в шапку и называется «Видеоуроки» (владелец).
-    expect(home).toContain('testID="home-header-videos"');
-    expect(home).toContain('homeVideoLessonsLabel');
-    // Гашение счётчика оптимистичное — сети не ждём.
-    expect(home).toContain('markLingmanYoutubeCatalogSeen');
+    // зачем (01.10, удаление Главной V1): кнопка «Видеоуроки» в шапке жила только в V1;
+    // на Главной 2.0 видео — горизонтальная лента, шапка без видео-кнопки.
+    expect(home).not.toContain('testID="home-header-videos"');
     // Ошибки: карточка-приоритет и строка в «Сегодня» (D144, владелец 01.10). Зарубка
     // на полосе опыта ушла вместе с полосой в Главной 2.0.
     expect(home).not.toContain('testID="home-xp-mistake-notch"');

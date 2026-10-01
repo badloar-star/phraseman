@@ -67,8 +67,9 @@ describe('home YouTube feature card', () => {
     const sharedCard = readFileSync(path.join(root, 'components/youtube/YoutubeVideoCard.tsx'), 'utf8');
     const home = readFileSync(path.join(root, 'app/(tabs)/home.tsx'), 'utf8');
 
-    expect(home).toContain('<HomeYoutubeFeatureCard ownerActive={homeRuntimeActive} studyTarget={studyTarget} />');
-    expect(home.indexOf('<HomeYoutubeFeatureCard')).toBeGreaterThan(home.indexOf('<DailyPhraseCard'));
+    // зачем (01.10, удаление Главной V1): карточка монтировалась только в V1-разметке; Главная 2.0 показывает ленту видео.
+    // Файл компонента остаётся (кандидат на отдельную чистку), сам компонент сторожим как раньше.
+    expect(home).not.toContain('<HomeYoutubeFeatureCard');
     expect(card).toContain('fetchYoutubeHomeFeatureCatalog');
     expect(card).toContain('const manifest = await fetchYoutubeCatalogManifest();');
     expect(card).not.toContain('warm?.manifest ?? await fetchYoutubeCatalogManifest()');

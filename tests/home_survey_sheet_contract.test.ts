@@ -16,17 +16,12 @@ describe('Home-owned survey sheet', () => {
     expect(home.match(/const \[openSurveyLaunch, setOpenSurveyLaunch\] = useState<SurveyLaunch \| null>\(null\);/g))
       .toHaveLength(1);
 
-    const cardCallsite = home.slice(home.indexOf('<SurveyTaskCard'), home.indexOf('/>', home.indexOf('<SurveyTaskCard')) + 2);
-    expect(cardCallsite).toContain('setOpenSurveyLaunch({');
-    expect(cardCallsite).toContain('survey: challenge.survey');
-    expect(cardCallsite).toContain('stableId: surveyOffer.stableId');
-    expect(cardCallsite).toContain('dayKey: surveyOffer.dayKey');
-    expect(cardCallsite).toContain('lang,');
-    expect(cardCallsite).not.toContain('hapticTap');
-    expect(cardCallsite).not.toContain('primeSurvey');
-    expect(cardCallsite).not.toContain('router.push');
-    expect(cardCallsite).not.toContain('fetchActiveSurvey');
-    expect(cardCallsite).not.toContain('refetch');
+    // зачем (01.10, удаление Главной V1): вызов <SurveyTaskCard … setOpenSurveyLaunch({…}) /> жил
+    // в V1-разметке и удалён вместе с ней. На Главной 2.0 запуск опроса отсюда недостижим —
+    // это открытый вопрос координатору (нужен ли опрос в «Сегодня» V2). Пока сторожим то, что осталось:
+    // никакого обхода через роут и prime.
+    expect(home).not.toContain('primeSurvey({ survey: challenge.survey');
+    expect(home).not.toContain("pathname: '/survey_screen'");
     expect(home.match(/fetchActiveSurveyWithRetry\(/g)).toHaveLength(1);
   });
 
@@ -36,8 +31,7 @@ describe('Home-owned survey sheet', () => {
     expect(home).toContain('launch={openSurveyLaunch}');
     expect(home).toContain('onClose={closeSurveySheet}');
     expect(home).toContain('openSurveyAccountGenerationRef');
-    expect(home).toContain('const openedAccount = captureAccountGeneration();');
-    expect(home).toContain('openSurveyAccountGenerationRef.current = openedAccount;');
+    // зачем (01.10): captureAccountGeneration() при открытии жил в V1-колбэке карточки — удалён.
     expect(home).toContain('subscribeAccountGeneration');
     expect(home).toContain("account.phase !== 'active'");
     expect(home).toContain('account.generation !== openedAccount.generation');

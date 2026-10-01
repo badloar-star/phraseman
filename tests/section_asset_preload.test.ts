@@ -50,10 +50,8 @@ describe('прогрев ассетов разделов и стабильная
     expect(call).toContain('InteractionManager.runAfterInteractions');
   });
 
-  it('карточка статистики на главной держит одну высоту в обоих состояниях', () => {
+  it('карточка статистики на главной держит одну высоту в обоих состояниях (V1-карточка удалена 01.10, схлопывание не вернуть)', () => {
     const source = read('app/(tabs)/home.tsx');
-    expect(source).toContain('const HOME_STATS_CARD_MIN_HEIGHT = 196;');
-    expect(source).toContain('minHeight: HOME_STATS_CARD_MIN_HEIGHT');
     // Прежняя схлопывающаяся высота не должна вернуться (в комментарии-«зачем» она
     // упомянута намеренно — считаем только реальный код, без строк-комментариев).
     const codeLines = source

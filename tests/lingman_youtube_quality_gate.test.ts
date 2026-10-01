@@ -23,10 +23,11 @@ describe('lingman YouTube quality gate', () => {
   it('refreshes the home video badge on focus and app resume', () => {
     const home = readProjectFile('app/(tabs)/home.tsx');
 
-    // зачем (Главная 2.0, утверждена 30.09): вход в видео в хедере — своя кнопка
-    // «Видеоуроки» со счётчиком непросмотренных вместо LingmanVideosButton.
-    expect(home).toContain('testID="home-header-videos"');
-    expect(home).toContain('videoUnreadCount');
+    // зачем (01.10, удаление Главной V1): кнопка «Видеоуроки» со счётчиком жила в шапке V1.
+    // На Главной 2.0 видео — лента; снимок читается заново при фокусе (focusTick в зависимостях).
+    expect(home).not.toContain('testID="home-header-videos"');
+    expect(home).toContain('getLingmanYoutubeSnapshot');
+    expect(home).toContain('[focusTick, homeRuntimeActive, studyTarget]');
   });
 
   it('marks video notifications as seen as soon as the catalog opens', () => {

@@ -15,15 +15,9 @@ describe('home screen planned locale runtime copy', () => {
     }
   });
 
-  it('uses explicit planned weekday labels instead of RU weekday fallback', () => {
-    expect(HOME_SOURCE).toContain('const HOME_WEEK_DAYS: Record<Lang, readonly string[]>');
-    expect(HOME_SOURCE).toContain('const weekDays = HOME_WEEK_DAYS[lang] ?? HOME_WEEK_DAYS.ru;');
+  it('has no RU weekday fallback left (the week strip lived in Home V1, removed 01.10)', () => {
+    // зачем: подписи дней недели рисовала только полоса недели Главной V1; V2 её не
+    // показывает, таблица HOME_WEEK_DAYS удалена. Сторож не даёт вернуть RU-фолбэк.
     expect(HOME_SOURCE).not.toContain("const weekDays = lang === 'uk'");
-
-    expect(HOME_SOURCE).toContain("'pt-BR': ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom']");
-    expect(HOME_SOURCE).toContain("vi: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN']");
-    expect(HOME_SOURCE).toContain("id: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min']");
-    expect(HOME_SOURCE).toContain("tr: ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz']");
-    expect(HOME_SOURCE).toContain("pl: ['Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'Sb', 'Nd']");
   });
 });

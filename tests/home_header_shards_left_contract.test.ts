@@ -4,31 +4,22 @@ import path from 'node:path';
 const ROOT = path.resolve(__dirname, '..');
 const source = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
 
-// зачем: 2026-08-24 владелец убрал жемчужины из хедера — они уехали в правый
-// край строки заголовка «Быстрый старт». Прежняя версия этого сторожа требовала
-// обратного («жемчужины слева, до кнопки профиля»), то есть охраняла отменённое
-// правило, и падала. Размещение валют теперь сторожит
-// home_rune_asset_header_contract; здесь остаётся то, что к валютам не
-// относится и по-прежнему верно: состав кнопок хедера.
-//
-// Срез хедера обрезан по home-header-secondary-actions, а НЕ по {bannersJSX}:
-// bannersJSX рендерится сильно ниже, поэтому старый срез захватывал ещё и
-// «Быстрый старт» — из-за этого тест мерил порядок в чужом блоке.
-describe('home header composition', () => {
+// зачем (01.10, удаление Главной V1): сторож раньше резал V1-хедер по маркерам
+// «{/* ХЕДЕР:» и «home-header-secondary-actions» — их больше нет в коде. Намерение
+// прежнее: состав кнопок шапки не расползается, валюты в шапку не возвращаются.
+// Теперь срез — открывающий тег <HomeV2Header … до первого stats={[ (слоты колокольчика и аватара).
+describe('home header composition (Главная V2)', () => {
   it('keeps the header inbox retired and its button set intact', () => {
     expect(source).not.toContain("import AppMessagesInbox from '../../components/AppMessagesInbox'");
     expect(source).not.toContain('<AppMessagesInbox />');
 
-    const headerStart = source.indexOf('{/* ХЕДЕР:');
+    const headerStart = source.indexOf('<HomeV2Header');
     expect(headerStart).toBeGreaterThanOrEqual(0);
-    const headerEnd = source.indexOf('{/* Домашние подсказки', headerStart);
+    const headerEnd = source.indexOf('stats={[', headerStart);
     expect(headerEnd).toBeGreaterThan(headerStart);
     const header = source.slice(headerStart, headerEnd);
 
-    // зачем (Главная 2.0, утверждена владельцем 2026-09-30): вход в видео в хедере —
-    // своя кнопка «Видеоуроки» (testID home-header-videos) вместо LingmanVideosButton;
-    // колокольчик остаётся (PM-038 отменён) и получает ещё обработчики ответа на жалобу.
-    expect(header).toContain('testID="home-header-videos"');
+    // колокольчик остаётся (PM-038 отменён) и получает обработчики ответа на жалобу.
     expect(header).not.toContain('CommunityChatHubButton');
     expect(header).toContain('<NotificationCenterButton');
     expect(header).toContain('isHomeTabActive={homeRuntimeActive}');
@@ -36,10 +27,8 @@ describe('home header composition', () => {
   });
 
   it('no longer carries the pearl balance in the header itself', () => {
-    // Хедер = от маркера до начала вторичного ряда кнопок. Дальше идёт уже
-    // не хедер, поэтому именно этот срез и надо проверять на отсутствие валют.
-    const headerStart = source.indexOf('{/* ХЕДЕР:');
-    const headerEnd = source.indexOf('testID="home-header-secondary-actions"', headerStart);
+    const headerStart = source.indexOf('<HomeV2Header');
+    const headerEnd = source.indexOf('stats={[', headerStart);
     expect(headerStart).toBeGreaterThanOrEqual(0);
     expect(headerEnd).toBeGreaterThan(headerStart);
     const realHeader = source.slice(headerStart, headerEnd);

@@ -15,12 +15,7 @@ describe('home dev hint control', () => {
     expect(source.map((item) => item.id)).toEqual(['a', 'b']);
   });
 
-  it('keeps the random hint simulator dev-only and accessible', () => {
-    expect(homeSource).toContain('testID="home-dev-hint-demo"');
-    expect(homeSource).toContain('ENABLE_DEV_TOOLS &&');
-    expect(homeSource).toContain('Показать случайную подсказку');
-    expect(homeSource).toContain('setShowStatsPulseHint(true)');
-    expect(homeSource).toContain('opacity: statsHintPulseAnim');
+  it('keeps the session-limited random hint wiring (dev simulator removed with Home V1, 01.10)', () => {
     expect(homeSource).toContain('SELECTED_HOME_HINTS_SNAPSHOT');
     expect(homeSource).toContain('homeHintShownThisAppSession');
     expect(homeSource).toContain('if (homeHintShownThisAppSession) return undefined;');
@@ -31,7 +26,7 @@ describe('home dev hint control', () => {
   it('uses a fresh random eligible hint for the Statistics-card hint at runtime', () => {
     const runtimeHintEffect = homeSource.slice(
       homeSource.indexOf('const showRandomFromSnapshot'),
-      homeSource.indexOf('const handleDevHomeHintDemo'),
+      homeSource.indexOf('showRandomFromSnapshot(localSnapshot'),
     );
 
     expect(runtimeHintEffect).toContain(

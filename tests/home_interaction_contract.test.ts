@@ -6,7 +6,9 @@ const source = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'ut
 
 describe('home interaction contract', () => {
   const helperStart = source.indexOf('function TouchableOpacity(');
-  const helperEnd = source.indexOf('function getHomeMenuIconAlignment', helperStart);
+  // зачем (01.10, удаление Главной V1): прежний конец среза — function getHomeMenuIconAlignment —
+  // удалён вместе с V1; хелпер заканчивается первой «}» в начале строки.
+  const helperEnd = source.indexOf('\n}\n', helperStart);
   const helper = source.slice(helperStart, helperEnd);
 
   it('forwards children and every press handler explicitly', () => {

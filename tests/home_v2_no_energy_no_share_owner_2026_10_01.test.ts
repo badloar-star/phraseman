@@ -10,15 +10,16 @@ const header = fs.readFileSync(path.join(root, 'components', 'home', 'v2', 'Home
 
 function homeV2Block(): string {
   const start = home.indexOf('const renderHomeV2 = () => (');
-  const end = home.indexOf('if (HOME_V2_LAYOUT) return renderHomeV2();');
+  const end = home.indexOf('return renderHomeV2();');
   expect(start).toBeGreaterThan(0);
   expect(end).toBeGreaterThan(start);
   return home.slice(start, end);
 }
 
 describe('Главная V2: без энергии и без «Поделиться» в шапке (владелец 01.10)', () => {
-  it('Главная рендерится в виде V2', () => {
-    expect(home).toMatch(/const HOME_V2_LAYOUT = true;/);
+  it('Главная рендерится только в виде V2, V1-ветки и флага нет', () => {
+    expect(home).toContain('return renderHomeV2();');
+    expect(home).not.toMatch(/HOME_V2_LAYOUT/);
   });
   it('на Главной V2 нет энергии', () => {
     const block = homeV2Block();

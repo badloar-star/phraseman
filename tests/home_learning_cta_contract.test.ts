@@ -10,20 +10,9 @@ describe('home learning CTA contract', () => {
   it('renders the continue-lesson card instead of the plan cards', () => {
     expect(source).not.toContain('<PersonalPlanHomeRouteCard');
     expect(source).not.toContain('testID="home-personal-plan-card"');
-    expect(source).toContain('testID="home-continue-lesson"');
-    expect(source).toContain("router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } } as any)");
-  });
-
-  it('reuses the quick-start surface material for the priority card', () => {
-    const quickStartStart = source.indexOf('{visibleQuickItems.map((item, index) => {');
-    const priorityStart = source.indexOf('testID="home-continue-lesson"');
-    const priorityEnd = source.indexOf('{/* «Задание»', priorityStart);
-    const quickStartSource = source.slice(quickStartStart, priorityStart);
-    const prioritySource = source.slice(priorityStart, priorityEnd);
-
-    // Карточка и плитки быстрого старта берут один материал поверхности.
-    expect(quickStartSource.length).toBeGreaterThan(0);
-    expect(prioritySource).toContain('homeThemePanelGradient');
+    // зачем (01.10, удаление Главной V1): карточка «Продолжить» теперь HomeV2ContinueCard (testID внутри компонента).
+    expect(source).toContain('<HomeV2ContinueCard');
+    expect(source).toContain("router.push({ pathname: '/lesson_menu', params: { id: String(lastLesson.id) } } as never)");
   });
 
   it('uses dedicated per-theme art for the last-lesson card', () => {
@@ -82,34 +71,18 @@ describe('home learning CTA contract', () => {
     expect(source).not.toContain('personalPlanSnapshot: planSnapshot');
   });
 
-  it('swaps the lesson card for mistakes on long press', () => {
-    // зачем (владелец 2026-09-21): «плашка последнего урока при зажатии
-    // менялась анимированно на плашку раздела мои ошибки», и «зажатие
-    // работало» при любом числе ошибок.
-    //
-    // Это ОТМЕНА решения от 2026-09-14/15, по которому вход в ошибки жил
-    // отдельной кнопкой-пилюлей у заголовка «Сегодня», а переключение
-    // удержанием было запрещено. Ряд из двух пилюль удалён целиком: он был
-    // источником визуального шума на Главной.
-    expect(source).toContain('onLongPress={handleHomeLearningPriorityCardLongPress}');
-    expect(source).toContain('homePriorityCardFace');
+  it('keeps the long-press swap on the V2 card and no V1 press-scale wrapper', () => {
+    // зачем (01.10, удаление Главной V1): удержание-подмена урока на «Мои ошибки» осталась на
+    // карточке V2 (HomeV2ContinueCard), а масштаб при удержании жил в V1-обёртке и удалён.
     expect(source).toContain('priorityCardShowsMistakes');
-    // Пилюль у «Сегодня» больше нет — вход живёт на карточке и на полосе опыта.
+    expect(source).toContain('handleHomeLearningPriorityCardLongPress');
+    expect(source).toContain('homePriorityCardFace');
+    expect(source).not.toContain('<Reanimated.View style={homePriorityCardScaleStyle}>');
     expect(source).not.toContain('testID="home-mistakes-pulse-button"');
     expect(source).not.toContain('testID="home-videos-pulse-button"');
-    // Старые механизмы подмены не возвращаются.
     expect(source).not.toContain('showMistakesCard');
     expect(source).not.toContain('homeLearningPriorityOverride');
     expect(source).not.toContain('canToggleHomeLearningPriority');
     expect(source).not.toContain('MistakePracticeSetupSheet');
-  });
-
-  it('uses a reduced-motion-aware UI-thread scale while the priority card is held', () => {
-    expect(source).toContain('const homePriorityCardScale = useSharedValue(1);');
-    expect(source).toContain('const homePriorityCardScaleStyle = useAnimatedStyle(() => ({');
-    expect(source).toContain('onPressIn={handleHomeLearningPriorityCardPressIn}');
-    expect(source).toContain('onPressOut={handleHomeLearningPriorityCardPressOut}');
-    expect(source).toContain('<Reanimated.View style={homePriorityCardScaleStyle}>');
-    expect(source).toContain('homePriorityCardReduceMotion');
   });
 });

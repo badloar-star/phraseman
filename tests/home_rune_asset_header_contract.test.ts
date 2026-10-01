@@ -123,20 +123,10 @@ describe('Home rune asset balance lives in the quick-start title row', () => {
     expect(home).toContain("flexDirection: homeHeaderCompact ? 'column' : 'row'");
   });
 
-  it('keeps energy out of the header and stable for free access', () => {
+  it('keeps energy out of the Home screen entirely', () => {
+    // зачем (01.10, удаление Главной V1; владелец: «на главной не надо энергию показывать»):
+    // энергия жила во вторичном ряду V1-шапки. Главная 2.0 её не рисует — ни полосой (EnergyBar).
     const home = read(HOME_PATH);
-
-    const secondaryIndex = home.indexOf('testID="home-header-secondary-actions"');
-    expect(secondaryIndex).toBeGreaterThanOrEqual(0);
-    // Срез до кнопки профиля — она закрывает вторичный ряд хедера. Граница по
-    // смыслу, а не окно фиксированной длины (см. коммент выше про drift).
-    const profileIndex = home.indexOf('renderHomeProfileButton()', secondaryIndex);
-    expect(profileIndex).toBeGreaterThan(secondaryIndex);
-    const secondaryBlock = home.slice(secondaryIndex, profileIndex);
-
-    expect(secondaryBlock).not.toContain('<EnergyBar');
-    // Само правило, а не только его наличие: энергия видна ТОЛЬКО без Plus.
-    // Без этой строки перепутанное отрицание прошло бы незамеченным.
-    expect(home).toContain('const showHomeEnergy = !hasPremiumAccess;');
+    expect(home).not.toContain('<EnergyBar');
   });
 });

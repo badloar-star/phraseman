@@ -36,9 +36,7 @@ describe('standalone survey delivery', () => {
     expect(client).toContain('await wait(delayMs)');
     expect(home).toContain('fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang })');
     expect(home).toContain('dayKey: getUtcDayKey()');
-    expect(home).toContain('<SurveyTaskCard');
-    expect(home).toContain('setOpenSurveyLaunch({');
-    expect(home).toContain('survey: challenge.survey');
+    // зачем (01.10, удаление Главной V1): SurveyTaskCard и setOpenSurveyLaunch жили в V1-разметке.
     expect(home).toContain('<SurveySheetModal');
     expect(home).not.toContain('primeSurvey({ survey: challenge.survey');
     expect(home).not.toContain("pathname: '/survey_screen'");

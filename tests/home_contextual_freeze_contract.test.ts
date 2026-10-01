@@ -2,28 +2,15 @@ import fs from 'fs';
 import path from 'path';
 
 const source = fs.readFileSync(path.join(__dirname, '..', 'app', '(tabs)', 'home.tsx'), 'utf8');
-// зачем: якорь — фактическое имя герой-модуля (renderHomeHeroStatus). Прошлый
-// якорь ссылался на давно переименованную функцию, indexOf возвращал -1 и тест
-// проверял пустую строку, то есть молча ничего не гарантировал.
-const statusStart = source.indexOf('const renderHomeHeroStatus');
-const statusEnd = source.indexOf('return (<BouncyScrollView', statusStart);
-const statusSurface = source.slice(statusStart, statusEnd);
 
-describe('Home contextual streak freeze', () => {
-  it('anchors on the real hero status block', () => {
-    expect(statusStart).toBeGreaterThan(-1);
-    expect(statusEnd).toBeGreaterThan(statusStart);
-  });
-
-  it('puts the freeze shield inside the main streak status only when at risk', () => {
-    expect(statusSurface).toContain('testID="home-streak-freeze-shield"');
-    expect(statusSurface).toContain('streakAtRisk && !freezeActive');
-    expect(statusSurface).toContain('event.stopPropagation?.()');
-    expect(statusSurface).toContain('void handleFreezeStreak()');
-  });
-
-  it('keeps the shield a sibling of the streak count, not an overlay on the icon', () => {
-    expect(statusSurface).not.toContain("position: 'absolute',\n                            right: -7");
-    expect(statusSurface).toContain('hitSlop={10}');
+// зачем (01.10, удаление Главной V1): щит заморозки жил в V1-модуле renderHomeHeroStatus
+// (testID home-streak-freeze-shield). Главная V2 его не рисует, V1-разметка удалена.
+// Сторож теперь не даёт вернуть мёртвый герой-блок молча: если владелец решит вернуть
+// щит заморозки на V2, нужно новое решение в 03_DECISIONS.md и новый сторож.
+describe('Home contextual streak freeze (V1 hero removed)', () => {
+  it('has no V1 hero status block and no V1 freeze shield markup', () => {
+    expect(source).not.toContain('renderHomeHeroStatus');
+    expect(source).not.toContain('home-streak-freeze-shield');
+    expect(source).not.toContain('HOME_V2_LAYOUT');
   });
 });

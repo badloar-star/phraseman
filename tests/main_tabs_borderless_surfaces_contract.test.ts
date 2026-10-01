@@ -113,11 +113,12 @@ describe('main tabs borderless production surfaces', () => {
     const homeSource = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'home.tsx'), 'utf8');
     const marker = 'testID="home-stats-card"';
     const markerIndex = homeSource.indexOf(marker);
-    expect(markerIndex).toBeGreaterThan(-1);
+    // зачем (01.10, удаление Главной V1): карточка «Статистика» (home-stats-card) жила в V1-разметке.
+    // Главная 2.0 её не рисует; если вернётся — только без обводки.
+    if (markerIndex === -1) return;
 
     const cardBlock = homeSource.slice(markerIndex, homeSource.indexOf('overflow: \'hidden\'', markerIndex));
     expect(cardBlock).toContain('borderWidth: 0');
-    expect(cardBlock).not.toContain('borderWidth: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT');
   });
 
   it('migrates the reviewed Quizzes containers', () => {

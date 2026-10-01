@@ -990,10 +990,21 @@ export function buildSessionChildBodiesFromShard(
     ? shard.cards
     : practiceCards;
   const cardTargets = shard.cards.map((card) => card.contentItem.target.text);
+  // зачем: для планов занятий 1–2 число новых слов было зашито как 3. Когда в
+  // занятие 1 добавили четвёртое слово (en: ready, es: verdad), карточка-знакомство
+  // четвёртого слова молча перестала строиться, а сборщик шарда при этом уже
+  // передавал в хореографию 4 (newVocabulary.length) — два сборщика расходились.
+  // Число новых слов этих планов = число слов в их таблице «соедините пары»
+  // (speed_match: «I · am · here · ready»); нет таблицы — прежнее значение 3.
+  const fixedPlanVocabularyCount = (): number => {
+    const grid = authoredPracticeCards.find((card) => card.family === 'speed_match');
+    const words = grid?.contentItem.target.text.split(' · ').filter((word) => word.trim()) ?? [];
+    return words.length > 0 ? words.length : 3;
+  };
   const vocabularyCount = shard.modeNativePlanId === LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1
-    ? 3
+    ? fixedPlanVocabularyCount()
     : shard.modeNativePlanId === LESSON1_SESSION_02_MODE_NATIVE_PLAN_ID_V1
-    ? 3
+    ? fixedPlanVocabularyCount()
     : inferLesson1WordFirstVocabularyCountV1(cardTargets);
   const phraseCount = shard.modeNativePlanId === LESSON1_SESSION_01_MODE_NATIVE_PLAN_ID_V1
     ? 3

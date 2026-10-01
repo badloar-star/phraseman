@@ -13,6 +13,10 @@ import { evaluateLearningV2CourseSessionInteractionV1 } from "../modules/learnin
 import { createLearningV2CourseSessionDeviceRunV1 } from "../modules/learning-v2/runtime/course_session_device_run_v1";
 import { adaptLearningV2DirectSessionIntroV1 } from "../app/learning_v2_direct_session_intro_adapter_v1";
 
+// зачем (координатор §46, 2026-10-01): файл был сценарием из голых assert без
+// единого test(), и jest его не исполнял («must contain at least one test») —
+// контракт фактически не проверялся. Тело обёрнуто в один test без изменений.
+test("factory-native lesson 1 projection contract", () => {
 assert.deepEqual(FACTORY_NATIVE_AUTHORED_LOCALES_V1, ["ru", "uk"]);
 assert.equal(FACTORY_NATIVE_DISPLAY_LOCALE_FALLBACK_V1.es, "ru");
 
@@ -43,12 +47,20 @@ assert.ok(canonicalSessions.length >= 117, "the existing admitted course must no
 assert.equal(availability.targetLanguage, "en");
 assert.equal(availability.sessionCount, canonicalSessions.length);
 assert.equal(availability.releaseSource, "content/learning-v2-course/release/en");
-assert.deepEqual(availability.sessions.map((row) => row.courseSessionId),
-  canonicalSessions.map((row) => row.courseSessionId));
+// зачем: node:assert сверяет и прототип массива, а каталог приходит из другого
+// realm тестовой песочницы («no visual difference»). Сравниваем содержимое.
+expect(availability.sessions.map((row) => row.courseSessionId))
+  .toEqual(canonicalSessions.map((row) => row.courseSessionId));
 for (const [index, row] of availability.sessions.entries()) {
   assert.equal(row.lessonOrdinal, Math.floor(index / 56) + 1);
   assert.equal(row.sessionOrdinal, index % 56 + 1);
 }
+
+// зачем (координатор §46, 2026-10-01): assert.ok-сужение внутри цикла
+// зацикливает вывод типа (TS7022, набор не запускался вовсе). Тип берём
+// явно из сигнатуры — проверки те же.
+type FactoryMaterial = NonNullable<ReturnType<typeof materializeFactoryNativeLearningV2SessionV1>>;
+type FactoryAuxiliaryEntry = FactoryMaterial["auxiliaryChild"]["entries"][number];
 
 const first = materializeFactoryNativeLearningV2SessionV1({
   lessonOrdinal: 1,
@@ -186,9 +198,9 @@ for (const row of availability.sessions) for (const interfaceLocale of ["ru", "u
     session.auxiliaryChild.entries.map((entry) => entry.interactionId),
   );
   for (const page of session.introChild.pages) {
-    const auxiliary = session.auxiliaryChild.entries.find((entry) =>
+    const auxiliary: FactoryAuxiliaryEntry | undefined = session.auxiliaryChild.entries.find((entry) =>
       entry.interactionId === page.question.interactionId);
-    const feedback = auxiliary?.responseFeedbackById ?? {};
+    const feedback: NonNullable<FactoryAuxiliaryEntry["responseFeedbackById"]> = auxiliary?.responseFeedbackById ?? {};
     assert.equal(Object.keys(feedback).length,
       page.question.choicesByLocale[interfaceLocale].length - 1);
     for (const localizedFeedback of Object.values(feedback)) {
@@ -200,7 +212,8 @@ for (const row of availability.sessions) for (const interfaceLocale of ["ru", "u
     ...Object.values(session.wordEncounterQueuesByInteractionId).flat(),
   );
   for (const interaction of session.learnerChild.interactions) {
-    const semantic = session.practiceSemanticsByInteractionId[interaction.interactionId];
+    const semantic: FactoryMaterial["practiceSemanticsByInteractionId"][string] | undefined =
+      session.practiceSemanticsByInteractionId[interaction.interactionId];
     assert.ok(semantic?.canonicalTarget.trim());
     if (semantic.reviewedMeaningByLocale) {
       assert.equal(/^(?:Соберите|Складіть|Вставьте|Вставте|Послушайте|Прослухайте|Скажите|Промовте)\b/iu.test(
@@ -222,7 +235,7 @@ for (const row of availability.sessions) for (const interfaceLocale of ["ru", "u
   }
   for (const interaction of session.learnerChild.interactions) {
     if (interaction.inputMode === "single_choice") {
-      const verdicts = interaction.responseOptions.map((option) => evaluateLearningV2CourseSessionInteractionV1(
+      const verdicts: ReturnType<typeof evaluateLearningV2CourseSessionInteractionV1>["resultCode"][] = interaction.responseOptions.map((option) => evaluateLearningV2CourseSessionInteractionV1(
         session.evaluatorCapsuleChild,
         interaction.interactionId,
         { kind: "choice_token", value: option.responseId },
@@ -272,3 +285,4 @@ assert.equal(
 );
 
 console.log("Learning V2 factory native projection v1: PASS");
+});

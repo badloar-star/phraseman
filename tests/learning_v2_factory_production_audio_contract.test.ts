@@ -7,6 +7,10 @@ import {
 import { factoryNativeLearningV2AvailabilityV1 } from "../modules/learning-v2/content/factory_native/factory_native_catalog_v1";
 import { materializeFactoryNativeLearningV2SessionV1 } from "../modules/learning-v2/content/factory_native/factory_native_course_v1";
 
+// зачем (координатор §46, 2026-10-01): файл был сценарием из голых assert без
+// единого test(), и jest его не исполнял («must contain at least one test») —
+// контракт фактически не проверялся. Тело обёрнуто в один test без изменений.
+test("factory production audio contract", () => {
 const client = readFileSync("app/learning_v2_course_released_session_client_v3.ts", "utf8");
 const preload = readFileSync("app/learning_v2_course_session_audio_preload_v1.ts", "utf8");
 const factoryAudio = readFileSync("app/learning_v2_factory_production_audio_v1.ts", "utf8");
@@ -48,6 +52,13 @@ assert.match(
   /if \(!isCurrentAccountGeneration\(input\.account, input\.stableId\)\)[\s\S]{0,300}preparedFileUriByContentHash\.set/,
 );
 
+// зачем (координатор §46, 2026-10-01): assert.ok-сужение внутри цикла
+// зацикливает вывод типа (TS7022, набор не запускался вовсе). Тип берём
+// явно из сигнатуры — проверки те же.
+type FactoryAudioInteraction = NonNullable<
+  ReturnType<typeof buildLearningV2FactoryBundledAudioChildV1>
+>["interactions"][number];
+
 for (const session of factoryNativeLearningV2AvailabilityV1().sessions) {
   const material = materializeFactoryNativeLearningV2SessionV1({
     lessonOrdinal: session.lessonOrdinal,
@@ -59,7 +70,7 @@ for (const session of factoryNativeLearningV2AvailabilityV1().sessions) {
   assert.ok(audioChild, `${session.courseSessionId} must never fall back to device speech`);
   for (const interaction of material.learnerChild.interactions) {
     if (interaction.family !== "scripted_repeat_compare") continue;
-    const audio = audioChild.interactions.find(
+    const audio: FactoryAudioInteraction | undefined = audioChild.interactions.find(
       (candidate) => candidate.interactionId === interaction.interactionId,
     );
     assert.ok(audio?.fullPhraseFiles);
@@ -105,3 +116,4 @@ assert.match(
 );
 
 console.log("LEARNING V2 FACTORY PRODUCTION AUDIO CONTRACT: PASS");
+});

@@ -18,7 +18,7 @@ test('language settings use the approved liquid-glass scroll shell and geometry'
   assert.match(source, /width:\s*48,\s*height:\s*48/);
   assert.match(source, /name="close"\s+size=\{20\}/);
   assert.match(source, /fontSize:\s*34,\s*lineHeight:\s*40,\s*fontWeight:\s*'700',\s*marginTop:\s*10/);
-  assert.match(source, /fontSize:\s*15,\s*lineHeight:\s*20,\s*marginTop:\s*7/);
+  assert.match(source, /fontSize:\s*16,\s*lineHeight:\s*22,\s*marginTop:\s*7/);
   assert.match(source, /marginTop:\s*22/);
   assert.match(source, /minHeight:\s*64[\s\S]*?borderRadius:\s*14[\s\S]*?paddingVertical:\s*10[\s\S]*?paddingHorizontal:\s*14[\s\S]*?gap:\s*14/s);
   assert.match(source, /fontSize:\s*16,\s*lineHeight:\s*21,\s*fontWeight:\s*'700'/);

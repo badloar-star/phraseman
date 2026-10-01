@@ -59,8 +59,8 @@ export const type = Object.freeze({
   hero: { fontSize: 64, fontWeight: '900' as const, letterSpacing: -1 },
   title: { fontSize: 28, fontWeight: '900' as const, letterSpacing: -0.8 },
   section: { fontSize: 22, fontWeight: '900' as const, letterSpacing: -0.4 },
-  card: { fontSize: 17, fontWeight: '800' as const },
-  body: { fontSize: 15, fontWeight: '600' as const },
+  card: { fontSize: 16, fontWeight: '700' as const },
+  body: { fontSize: 16, fontWeight: '700' as const },
   label: { fontSize: 13, fontWeight: '700' as const },
 });
 

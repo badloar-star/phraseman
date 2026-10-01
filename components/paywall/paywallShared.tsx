@@ -534,9 +534,9 @@ const S = StyleSheet.create({
     paddingVertical: 22, paddingHorizontal: 19, marginTop: 10,
     borderRadius: 16, borderWidth: 0,
   },
-  priceRetryText: { fontSize: 15.5, lineHeight: 22, textAlign: 'center' },
+  priceRetryText: { fontSize: 16, lineHeight: 22, textAlign: 'center' },
   priceRetryBtn: { paddingVertical: 12, paddingHorizontal: 30, borderRadius: 14 },
-  priceRetryBtnText: { fontSize: 16.5, fontWeight: '900' },
+  priceRetryBtnText: { fontSize: 16, fontWeight: '700' },
   tagWrap: { gap: 8, marginTop: 14, alignSelf: 'stretch' },
   tagChip: {
     flexDirection: 'row', alignItems: 'center', alignSelf: 'center',
@@ -544,9 +544,9 @@ const S = StyleSheet.create({
   },
   tagText: { flexShrink: 1, fontSize: 13, fontWeight: '700' },
   testimonialCard: { borderRadius: 18, borderWidth: 0, paddingHorizontal: 17, paddingVertical: 15, marginTop: 14 },
-  testimonialTitle: { fontSize: 12, fontWeight: '900', letterSpacing: 0, marginBottom: 10 },
-  testimonialText: { fontSize: 14, lineHeight: 20, fontStyle: 'italic' },
-  testimonialAuthor: { fontSize: 12, marginTop: 5 },
+  testimonialTitle: { fontSize: 13, fontWeight: '700', letterSpacing: 0, marginBottom: 10 },
+  testimonialText: { fontSize: 13, lineHeight: 18, fontStyle: 'italic' },
+  testimonialAuthor: { fontSize: 13, marginTop: 5 },
   // Клиренс под парение (±5px) + вылет гало (6px), чтобы ScrollView не срезал
   // верх капсулы. Держим геометрию стабильной с первого кадра (Perf Bible).
   glyphFloat: { marginTop: 11 },
@@ -563,7 +563,7 @@ const S = StyleSheet.create({
   // хиро-объяснение (субтайтл + выгоды момента) — фиксированная геометрия с
   // первого кадра: копия синхронная, без загрузок и сдвигов (layout stability).
   heroExplainWrap: { marginTop: 9, alignItems: 'center' },
-  heroExplainSubtitle: { textAlign: 'center', fontSize: 14, lineHeight: 19.5, maxWidth: 320, opacity: 0.82 },
+  heroExplainSubtitle: { textAlign: 'center', fontSize: 13, lineHeight: 18, maxWidth: 320, opacity: 0.82 },
   heroExplainBens: { marginTop: 12, gap: 6, alignSelf: 'center' },
   heroExplainBenRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 8, maxWidth: 316 },
   heroExplainBenIcon: { marginTop: 1.5 },
@@ -573,7 +573,7 @@ const S = StyleSheet.create({
   socialText: { fontSize: 13, fontWeight: '700' },
   dividerRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 24, marginBottom: 3 },
   dividerLine: { flex: 1, height: StyleSheet.hairlineWidth },
-  dividerText: { fontSize: 11.5, fontWeight: '800', letterSpacing: 0 },
+  dividerText: { fontSize: 13, fontWeight: '700', letterSpacing: 0 },
   sticky: {
     position: 'absolute', left: 10, right: 10, bottom: 12, zIndex: 50,
     flexDirection: 'row', alignItems: 'center', gap: 10,
@@ -585,8 +585,8 @@ const S = StyleSheet.create({
     ...noAndroidOutline,
   },
   stickyTextWrap: { flex: 1, minWidth: 0 },
-  stickyTitle: { fontSize: 14, fontWeight: '900' },
-  stickySub: { fontSize: 12, marginTop: 2, fontVariant: ['tabular-nums'] },
+  stickyTitle: { fontSize: 13, fontWeight: '700' },
+  stickySub: { fontSize: 13, marginTop: 2, fontVariant: ['tabular-nums'] },
   stickyBtn: { borderRadius: 15, paddingVertical: 12, paddingHorizontal: 19, overflow: 'hidden' },
-  stickyBtnText: { fontSize: 14.5, fontWeight: '900' },
+  stickyBtnText: { fontSize: 16, fontWeight: '700' },
 });

@@ -21,7 +21,7 @@ const THEMES = ['graphite', 'polar', 'slate', 'ink', 'lavender', 'iris', 'rose',
 const PROTECTED_FILES = new Map([
   ['app/flashcards/DeckSelectionTile.tsx', 'bce9ce4ebaabf7258e3cbf509f3f166835f17f18271e02edcd299b5608a979cf'],
   // зачем (30.09): темы 2.0 — ссылка раздела в цвете темы (p.link, 0c6d2549f); в «Спокойно» = textSecondary.
-  ['components/v2/V2Kit.tsx', 'd5568332a1efe80d3e311be53c8b93b3abceae48cf45f79186662471bc34a9db'],
+  ['components/v2/V2Kit.tsx', 'b940f72037987ae13b15d488ddc9f51c0a72645255e0a8762784ee4243e63e81'],
   ['components/v2/V2Pressable.tsx', '109ed9abd8f4f9cad448dad5ea3cac1c0ea7f058f86d8e6dae571ba807a37a83'],
 ]);
 const PROTECTED_RUNTIME = {
@@ -488,11 +488,11 @@ test('monthly quota actual output is byte-compatible by default and opt-in metri
       const optIn = Quota({ ...baseProps, textMetrics: { fontSize: 15, lineHeight: 21 } });
       assert.equal(beforeShape.type, 'View');
       assert.deepEqual(flatStyle(beforeShape.props.children.props.style), {
-        fontSize: 12, lineHeight: 17, fontWeight: '800', textAlign: 'center',
+        fontSize: 13, lineHeight: 18, fontWeight: '700', textAlign: 'center', // D139
         color: quota.status === 'exhausted' ? 'muted' : 'text',
       });
       assert.deepEqual(flatStyle(optIn.props.children.props.style), {
-        fontSize: 15, lineHeight: 21, fontWeight: '800', textAlign: 'center',
+        fontSize: 15, lineHeight: 21, fontWeight: '700', textAlign: 'center',
         color: quota.status === 'exhausted' ? 'muted' : 'text',
       });
       assert.equal(typeof beforeShape.props.children.props.children, 'string');

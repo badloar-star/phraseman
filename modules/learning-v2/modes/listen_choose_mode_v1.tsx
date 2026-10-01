@@ -368,9 +368,9 @@ export default ListenChooseModeV1;
 const styles = StyleSheet.create({
   root: { gap: 14, alignItems: "center" },
   taskLabel: {
-    fontSize: 15,
-    lineHeight: 20,
-    fontWeight: "600",
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: "700",
     textAlign: "center",
   },
   playWrap: { width: 128, height: 128, alignItems: "center", justifyContent: "center" },
@@ -381,7 +381,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  playSub: { fontSize: 15, lineHeight: 20, fontWeight: "600" },
+  playSub: { fontSize: 16, lineHeight: 22, fontWeight: "700" },
   options: { width: "100%", gap: 10 },
   feedbackLane: { width: "100%" },
 });

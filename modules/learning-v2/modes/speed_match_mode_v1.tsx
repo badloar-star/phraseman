@@ -409,7 +409,7 @@ function SpeedMatchGridV1({ children }: { children: React.ReactNode }): React.JS
 const styles = StyleSheet.create({
   root: { flex: 1, gap: 14 },
   headerRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
-  taskLabel: { fontSize: 15, lineHeight: 20, fontWeight: "600" },
+  taskLabel: { fontSize: 16, lineHeight: 22, fontWeight: "700" },
   timerPill: {
     minHeight: 34,
     borderRadius: 17,
@@ -433,7 +433,7 @@ const styles = StyleSheet.create({
   cardText: { fontSize: 16, lineHeight: 21, fontWeight: "600" },
   timeoutCard: { padding: 16, gap: 14 },
   timeoutHead: { flexDirection: "row", alignItems: "center", gap: 12 },
-  feedbackText: { flex: 1, fontSize: 15, fontWeight: "700", lineHeight: 21 },
+  feedbackText: { flex: 1, fontSize: 16, fontWeight: "700", lineHeight: 22 },
   timeoutActions: { flexDirection: "row", flexWrap: "wrap", gap: 10 },
   timeoutButton: {
     flex: 1,

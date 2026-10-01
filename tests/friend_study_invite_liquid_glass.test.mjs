@@ -135,9 +135,9 @@ test('COM-04 invite uses the approved opaque Liquid Glass geometry, typography, 
   assert.match(modal, /marginTop: 14/);
   assert.match(modal, /fontSize: 22 \* textScale/);
   assert.match(modal, /lineHeight: 28 \* textScale/);
-  assert.match(modal, /fontSize: 14 \* textScale/);
-  assert.match(modal, /lineHeight: 20 \* textScale/);
-  assert.match(modal, /fontSize: 17 \* textScale/);
+  assert.match(modal, /fontSize: 13 \* textScale/);
+  assert.match(modal, /lineHeight: 18 \* textScale/);
+  assert.match(modal, /fontSize: 16 \* textScale/);
   assert.match(modal, /wrapStyle=\{styles\.primaryWrap\}/);
   assert.match(modal, /wrapStyle=\{styles\.secondaryWrap\}/);
   assert.match(modal, /primaryWrap: \{ marginTop: 20 \}/);

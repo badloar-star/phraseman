@@ -82,7 +82,7 @@ describe('numeric energy v2 contract', () => {
     expect(bar).toContain('const ENERGY_PILL_WIDTH = 60');
     expect(bar).toContain('const ENERGY_PILL_HEIGHT = 28');
     expect(bar).toContain('const ENERGY_PILL_TOUCH_HEIGHT = 44');
-    expect(bar).toContain('valueCompact: { width: 36, height: 21, fontSize: 15');
+    expect(bar).toContain('valueCompact: { width: 36, height: 22, fontSize: 16');
     expect(read('components/energy/AnimatedEnergyNumber.tsx')).toContain('maxFontSizeMultiplier={1.15}');
     expect(bar).toContain('width: ENERGY_PILL_WIDTH');
     expect(bar).not.toContain('capsuleCompact');

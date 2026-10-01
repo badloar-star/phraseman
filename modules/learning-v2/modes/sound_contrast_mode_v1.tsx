@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   cardWord: { fontSize: 27, fontWeight: "800" },
-  cardIpa: { marginTop: 5, fontSize: 15, fontWeight: "700", textAlign: "center" },
+  cardIpa: { marginTop: 5, fontSize: 16, fontWeight: "700", textAlign: "center" },
   listenBtn: {
     width: 34,
     height: 34,
@@ -242,5 +242,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   feedbackLane: { width: "100%", borderRadius: 18, padding: 12 },
-  feedbackText: { fontSize: 14.5, fontWeight: "600", lineHeight: 19 },
+  feedbackText: { fontSize: 16, fontWeight: "700", lineHeight: 22 },
 });

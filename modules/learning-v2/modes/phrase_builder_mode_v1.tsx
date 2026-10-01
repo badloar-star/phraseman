@@ -276,9 +276,9 @@ export default PhraseBuilderModeV1;
 const styles = StyleSheet.create({
   root: { gap: 14 },
   taskLabel: {
-    fontSize: 15,
-    lineHeight: 20,
-    fontWeight: "600",
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: "700",
   },
   heroRow: { flexDirection: "row", alignItems: "flex-start", gap: 12 },
   hero: { flex: 1, fontSize: 28, lineHeight: 34, fontWeight: "700", letterSpacing: -0.3 },
@@ -298,6 +298,6 @@ const styles = StyleSheet.create({
     gap: 8,
     paddingBottom: 10,
   },
-  placeholder: { fontSize: 15 },
+  placeholder: { fontSize: 16 },
   bank: { flexDirection: "row", flexWrap: "wrap", gap: 10, justifyContent: "flex-start" },
 });

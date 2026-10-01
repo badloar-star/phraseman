@@ -32,7 +32,7 @@ assert.match(forceSource, /accessibilityRole="alert"/, 'force update copy must a
 assert.match(forceSource, /<Ionicons\s+name="compass-outline"\s+size=\{32\}/, 'update mockup must use the compact Compass mark');
 assert.match(forceSource, /iconStage:\s*\{[\s\S]*?width:\s*72,[\s\S]*?height:\s*72,[\s\S]*?borderRadius:\s*36/, 'force update icon geometry must match the approved mockup');
 assert.match(forceSource, /title:\s*\{[\s\S]*?fontSize:\s*21,[\s\S]*?lineHeight:\s*27/, 'force update title geometry must match the approved mockup');
-assert.match(forceSource, /body:\s*\{[\s\S]*?fontSize:\s*15,[\s\S]*?lineHeight:\s*21/, 'force update body geometry must match the approved mockup');
+assert.match(forceSource, /body:\s*\{[\s\S]*?fontSize:\s*16,[\s\S]*?lineHeight:\s*22/, 'force update body geometry must match the approved mockup');
 assert.match(forceSource, /primaryButton:\s*\{[\s\S]*?minHeight:\s*48,[\s\S]*?borderRadius:\s*24/, 'force update CTA geometry must match the approved mockup');
 assert.doesNotMatch(forceSource, /#121826|#6366f1|#d97706|#3a2408/i, 'legacy blue/amber update chrome must be removed');
 
@@ -45,7 +45,7 @@ assert.match(optionalSource, /accessibilityRole="alert"/, 'ordinary update copy 
 assert.match(optionalSource, /<Ionicons\s+name="compass-outline"\s+size=\{32\}/, 'ordinary update mockup must use the compact Compass mark');
 assert.match(optionalSource, /iconStage:\s*\{[\s\S]*?width:\s*72,[\s\S]*?height:\s*72,[\s\S]*?borderRadius:\s*36/, 'ordinary update icon geometry must match the approved mockup');
 assert.match(optionalSource, /title:\s*\{[\s\S]*?fontSize:\s*21,[\s\S]*?lineHeight:\s*27/, 'ordinary update title geometry must match the approved mockup');
-assert.match(optionalSource, /body:\s*\{[\s\S]*?fontSize:\s*15,[\s\S]*?lineHeight:\s*21/, 'ordinary update body geometry must match the approved mockup');
+assert.match(optionalSource, /body:\s*\{[\s\S]*?fontSize:\s*16,[\s\S]*?lineHeight:\s*22/, 'ordinary update body geometry must match the approved mockup');
 assert.match(optionalSource, /updateBtn:\s*\{[\s\S]*?minHeight:\s*48,[\s\S]*?borderRadius:\s*24/, 'ordinary update CTA geometry must match the approved mockup');
 assert.match(optionalSource, /\ben:\s*\{[\s\S]*?title:[\s\S]*?body:[\s\S]*?update:[\s\S]*?close:/, 'ordinary update modal must retain explicit English copy alongside the other eight locales');
 assert.match(optionalSource, /if \(onPrimaryPress\) \{\s*onPrimaryPress\(\);\s*return;\s*\}/, 'custom update action must retain priority over store navigation');

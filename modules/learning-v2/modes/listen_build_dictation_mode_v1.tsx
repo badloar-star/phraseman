@@ -374,14 +374,14 @@ export default ListenBuildDictationModeV1;
 const styles = StyleSheet.create({
   root: { gap: 14, alignItems: "center" },
   taskLabel: {
-    fontSize: 15,
-    lineHeight: 20,
-    fontWeight: "600",
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: "700",
     textAlign: "center",
   },
   ringWrap: { width: 128, height: 128, alignItems: "center", justifyContent: "center" },
   ringBtn: { width: 104, height: 104, borderRadius: 52, alignItems: "center", justifyContent: "center" },
-  playSub: { fontSize: 15, lineHeight: 20, fontWeight: "600" },
+  playSub: { fontSize: 16, lineHeight: 22, fontWeight: "700" },
   revealText: { fontSize: 24, lineHeight: 30, fontWeight: "700", textAlign: "center", letterSpacing: -0.3 },
   answerRow: {
     minHeight: 64,

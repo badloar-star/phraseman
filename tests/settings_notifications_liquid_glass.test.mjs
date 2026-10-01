@@ -110,7 +110,7 @@ test('notification settings use the approved safe liquid-glass shell and card ge
   assert.match(source, /style=\{\{ width: 48, height: 48,[^}]*marginTop: 4 \}\}/);
   assert.match(source, /fontSize:\s*34,\s*lineHeight:\s*40,\s*fontWeight:\s*'700',\s*marginTop:\s*10/);
   assert.match(source, /const statusCardStyle[^;]*paddingVertical:\s*14[^;]*paddingHorizontal:\s*16[^;]*alignItems:\s*'flex-start'/s);
-  assert.match(source, /fontSize:\s*15,\s*lineHeight:\s*20,\s*fontWeight:\s*'700'/);
+  assert.match(source, /fontSize:\s*16,\s*lineHeight:\s*22,\s*fontWeight:\s*'700'/);
   assert.match(source, /const rowStyle[^;]*minHeight:\s*64[^;]*paddingVertical:\s*10[^;]*paddingHorizontal:\s*14[^;]*gap:\s*14/s);
   assert.match(source, /width:\s*41,\s*height:\s*41,\s*borderRadius:\s*10/);
   assert.match(source, /<Ionicons name=\{name\} size=\{20\}/);
@@ -152,7 +152,7 @@ test('time is a separate trailing value while its localized label remains free t
   assert.ok(timeRow.includes('accessibilityValue={{ text: `${pad(hour)}:${pad(minute)}` }}'), 'screen readers receive the current time as the control value');
   assert.match(timeRow, /<FlowText[^>]*style=\{\{[^}]*flex:\s*1,\s*minWidth:\s*0[^}]*\}\}>\{timeLabel\}<\/FlowText>/);
   assert.match(timeRow, /<View style=\{\{ flexDirection: 'row', alignItems: 'center', gap: 4, marginLeft: 8 \}\}>[\s\S]*\{pad\(hour\)\}:\{pad\(minute\)\}[\s\S]*chevron-forward/);
-  assert.ok(timeRow.includes("style={{ color: glass.secondary, fontSize: 14, lineHeight: 19, fontWeight: '400' }}"), 'the trailing value matches the mock secondary 14px regular treatment');
+  assert.ok(timeRow.includes("style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, fontWeight: '400' }}"), 'the trailing value matches the mock secondary 13px regular D139 treatment');
 });
 
 test('master and daily dependencies propagate disabled accessibility state', () => {

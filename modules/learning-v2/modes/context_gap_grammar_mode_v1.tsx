@@ -264,9 +264,9 @@ export default ContextGapGrammarModeV1;
 const styles = StyleSheet.create({
   root: { gap: 14 },
   taskLabel: {
-    fontSize: 15,
-    lineHeight: 20,
-    fontWeight: "600",
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: "700",
   },
   scene: { fontSize: 16, lineHeight: 22, fontWeight: "400" },
   heroRow: { flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap", gap: 10 },
@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 12,
-    fontSize: 18,
+    fontSize: 16,
   },
   audioBtn: {
     width: 38,

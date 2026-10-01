@@ -206,10 +206,10 @@ const styles = StyleSheet.create({
   },
   ring: { width: 34, height: 34, flexShrink: 0 },
   ringLabel: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center' },
-  count: { fontSize: 11.5, fontWeight: '800', fontVariant: ['tabular-nums'] },
+  count: { fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] },
   body: { flex: 1, minWidth: 0, gap: 2 },
-  label: { fontSize: 12, fontWeight: '800', letterSpacing: 0.4 },
+  label: { fontSize: 13, fontWeight: '700', letterSpacing: 0.4 },
   msg: { fontWeight: '700' },
   action: { flexShrink: 0, borderRadius: 12, paddingHorizontal: 15, paddingVertical: 10 },
-  actionText: { fontSize: 13.5, fontWeight: '800' },
+  actionText: { fontSize: 13, fontWeight: '700' },
 });

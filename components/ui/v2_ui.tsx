@@ -502,7 +502,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   ctaRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  ctaText: { fontSize: 17, fontWeight: '800', letterSpacing: 0.3 },
+  ctaText: { fontSize: 16, fontWeight: '700', letterSpacing: 0.3 },
   autoFill: {
     position: 'absolute',
     left: 0,
@@ -526,7 +526,7 @@ const styles = StyleSheet.create({
     borderRadius: radius.md,
     opacity: 0.7,
   },
-  chipText: { fontSize: 17.5, fontWeight: '700', letterSpacing: 0.2 },
+  chipText: { fontSize: 16, fontWeight: '700', letterSpacing: 0.2 },
   optBody: {
     borderRadius: radius.md + 2,
     paddingHorizontal: 18,
@@ -535,7 +535,7 @@ const styles = StyleSheet.create({
     minHeight: 56,
     justifyContent: 'center',
   },
-  optText: { fontSize: 16.5, fontWeight: '700', letterSpacing: 0.1, lineHeight: 22 },
+  optText: { fontSize: 16, fontWeight: '700', letterSpacing: 0.1, lineHeight: 22 },
   // зачем: вариант ответа переносится по словам и центрируется — плитка
   // растёт вниз (minHeight, не height), текст не сжимается и не обрезается.
   wrapText: { textAlign: 'center', flexShrink: 1 },
@@ -550,7 +550,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   pillRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  pillText: { fontSize: 14, fontWeight: '800', fontVariant: ['tabular-nums'] },
+  pillText: { fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] },
   segTrack: { flex: 1, flexDirection: 'row', gap: 5, height: 10 },
   seg: { flex: 1, borderRadius: 5, overflow: 'hidden' },
   segFillWrap: { transformOrigin: 'left', borderRadius: 5, overflow: 'hidden' },

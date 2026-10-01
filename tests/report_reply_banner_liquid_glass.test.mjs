@@ -37,8 +37,8 @@ test('ReportReplyHomeBanner uses the active neutral Liquid Glass material withou
   assert.match(source, /borderRadius: 21/, 'banner uses the approved 21dp radius');
   assert.match(source, /import \{ FONT_SCALE, useTheme \} from '\.\/ThemeContext';/, 'banner imports the existing in-app font preference scale');
   assert.match(source, /const \{ liquidGlassThemeId, fontSize, uiScale \} = useTheme\(\);/, 'banner reads active theme and in-app scale preferences');
-  assert.match(source, /const textScale = \(FONT_SCALE\[fontSize\] \/ FONT_SCALE\.medium\) \* uiScale;/, 'banner normalizes the approved 14/19 base against the existing medium preference');
-  assert.match(source, /fontSize: 14 \* textScale, lineHeight: 19 \* textScale, fontWeight: '700'/, 'title preserves the approved 14/19 base while honoring in-app preferences');
+  assert.match(source, /const textScale = \(FONT_SCALE\[fontSize\] \/ FONT_SCALE\.medium\) \* uiScale;/, 'banner normalizes the approved 13/18 base (D139) against the existing medium preference');
+  assert.match(source, /fontSize: 13 \* textScale, lineHeight: 18 \* textScale, fontWeight: '700'/, 'title preserves the approved 13/18 base (D139) while honoring in-app preferences');
   assert.match(source, /minHeight: 72/, 'banner minimum height is preserved');
   assert.match(source, /paddingLeft: 14, paddingRight: 74, paddingVertical: 12/, 'banner retains the approved content padding and close clearance');
   assert.match(source, /paddingRight: 74/, 'open target reserves the close hit target');

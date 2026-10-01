@@ -17,7 +17,7 @@ test('learning settings use the approved liquid-glass shell without losing setti
   assert.match(source, /width:\s*48,[\s\S]*height:\s*48,[\s\S]*borderRadius:\s*24/);
   assert.match(source, /fontSize:\s*34,[\s\S]*lineHeight:\s*40/);
   assert.match(source, /fontSize:\s*34,[\s\S]*marginTop:\s*10/);
-  assert.match(source, /fontSize:\s*15, lineHeight:\s*20, marginTop:\s*7/);
+  assert.match(source, /fontSize:\s*16, lineHeight:\s*22, marginTop:\s*7/);
   assert.match(source, /\{L\(\{ ru: 'ОТВЕТ'[\s\S]*?<View style=\{\{ gap: 10 \}\}>/);
   assert.match(source, /\{L\(\{ ru: 'ЗВУК'[\s\S]*?<View style=\{\{ gap: 10 \}\}>/);
   assert.match(source, /backgroundColor:\s*glass\.opaqueCard/);

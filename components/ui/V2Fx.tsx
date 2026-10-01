@@ -401,6 +401,6 @@ const FloatLabel = memo(function FloatLabel({
 const styles = StyleSheet.create({
   abs: { position: 'absolute', left: 0, top: 0 },
   confetto: { width: 9, height: 9, borderRadius: 2.5 },
-  label: { fontSize: 17, fontWeight: '900' },
+  label: { fontSize: 16, fontWeight: '700' },
   reaction: { fontSize: 40 },
 });

@@ -21,7 +21,7 @@ describe('Plus paywall yearly monthly equivalent display', () => {
     // Крупная цена «Года» = списываемая сумма за год (priceBig), «≈ в месяц» — мелкая подпись.
     expect(planCards).toContain('testID="paywall-year-price" style={[S.priceBig');
     expect(planCards).toContain('yearPerMonthApprox(lang, yearlyPerMonth)');
-    expect(planCards).toContain("planSmall: { marginTop: 3, fontSize: 13.5");
+    expect(planCards).toContain("planSmall: { marginTop: 3, fontSize: 13");
     expect(planCards).toContain("priceBig: { fontSize: 22");
   });
 

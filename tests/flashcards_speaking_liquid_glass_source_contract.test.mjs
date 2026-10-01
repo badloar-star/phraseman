@@ -213,7 +213,7 @@ test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchan
     },
     {
       hold: '92c92d8b1e7d00de8c0738f5455514ea338924ad5f75e495d6502977a5b7a9e9',
-      panel: '0583a659791f40b596d585b909a05b6ebee80c56742efb976e44c0586c77e119',
+      panel: '82a91d7a402f8c4a2c8f504d07aa1a25e00a3adaa03c834ba7eb44969867f930',
       slot: 'ef4f0bab5e4bd50af4c9855af1e24e2084bc1b04756de016e368cbd2bd071ae7',
       stars: '38631c90662c00baf57ee9b9e129d6049854f6799bd13fe05e1c9587fc3e6d60',
       logic: '3b4d1528d7223cb1ca37f52e0e2304b55552c86a7a3102cad6657a00cd4084ef',

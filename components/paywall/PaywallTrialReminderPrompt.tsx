@@ -90,7 +90,7 @@ const S = StyleSheet.create({
   body: { marginTop: 10, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   spacer: { flexGrow: 1, minHeight: 24 },
   cta: { alignSelf: 'stretch', minHeight: 58, borderRadius: 29, paddingHorizontal: 20, alignItems: 'center', justifyContent: 'center' },
-  ctaText: { fontSize: 17, lineHeight: 22, fontWeight: '800', textAlign: 'center' },
+  ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
   ghost: { alignSelf: 'stretch', minHeight: 50, marginTop: 10, alignItems: 'center', justifyContent: 'center' },
   ghostText: { fontSize: 16, fontWeight: '700' },
 });

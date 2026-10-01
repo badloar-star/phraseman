@@ -523,7 +523,7 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
 const S = StyleSheet.create({
   card: { borderRadius: 18, borderWidth: 0, paddingHorizontal: 17, paddingVertical: 15, marginTop: 14, overflow: 'hidden' },
   cardHighlight: { position: 'absolute', top: 0, left: 18, right: 18, height: 1, opacity: 0.72 },
-  cardTitle: { fontSize: 12, fontWeight: '900', letterSpacing: 0, marginBottom: 12 },
+  cardTitle: { fontSize: 13, fontWeight: '700', letterSpacing: 0, marginBottom: 12 },
 
   mirrorRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 9 },
   mirrorStat: {
@@ -535,17 +535,17 @@ const S = StyleSheet.create({
   // (напр. «87%», «12д»), статичного кегля 18 хватает без обрезки на iOS.
   mirrorValue: {
     alignSelf: 'stretch', textAlign: 'center',
-    fontSize: 18, fontWeight: '900', letterSpacing: 0, fontVariant: ['tabular-nums'],
+    fontSize: 16, fontWeight: '700', letterSpacing: 0, fontVariant: ['tabular-nums'],
   },
-  mirrorLabel: { fontSize: 11.5, marginTop: 4, textAlign: 'center' },
-  mirrorLine: { fontSize: 13.5, marginTop: 11, lineHeight: 19 },
+  mirrorLabel: { fontSize: 13, marginTop: 4, textAlign: 'center' },
+  mirrorLine: { fontSize: 13, marginTop: 11, lineHeight: 18 },
 
   pctRow: { flexDirection: 'row', alignItems: 'center', gap: 11 },
-  pctText: { flex: 1, fontSize: 14, lineHeight: 20 },
+  pctText: { flex: 1, fontSize: 13, lineHeight: 18 },
 
   personalHeader: { alignItems: 'stretch' },
-  personalMain: { fontSize: 17, lineHeight: 22, fontWeight: '900', letterSpacing: 0, textAlign: 'left' },
-  personalSub: { fontSize: 13.5, lineHeight: 19, marginTop: 8 },
+  personalMain: { fontSize: 16, lineHeight: 22, fontWeight: '700', letterSpacing: 0, textAlign: 'left' },
+  personalSub: { fontSize: 13, lineHeight: 18, marginTop: 8 },
   personalStats: {
     flexDirection: 'row',
     marginTop: 14, paddingTop: 12, paddingBottom: 12,
@@ -558,9 +558,9 @@ const S = StyleSheet.create({
   // зачем: было adjustsFontSizeToFit(0.76) — тот же класс бага, что у mirrorValue.
   personalStatValue: {
     alignSelf: 'stretch', textAlign: 'center',
-    fontSize: 17.5, fontWeight: '900', letterSpacing: 0, fontVariant: ['tabular-nums'],
+    fontSize: 16, fontWeight: '700', letterSpacing: 0, fontVariant: ['tabular-nums'],
   },
-  personalStatLabel: { alignSelf: 'stretch', fontSize: 11.5, marginTop: 3, textAlign: 'center' },
+  personalStatLabel: { alignSelf: 'stretch', fontSize: 13, marginTop: 3, textAlign: 'center' },
   // Польза в заголовке, без внутренних контейнеров
   valList: { marginTop: 13 },
   valPoint: { flexDirection: 'row', gap: 12, paddingVertical: 14 },
@@ -570,11 +570,11 @@ const S = StyleSheet.create({
     alignItems: 'center', justifyContent: 'center',
   },
   valPointText: { flex: 1, minWidth: 0 },
-  valCardTitle: { fontSize: 16.5, lineHeight: 21.5, fontWeight: '900', letterSpacing: 0, marginBottom: 4 },
-  valCardDesc: { fontSize: 14.2, lineHeight: 20.5 },
+  valCardTitle: { fontSize: 16, lineHeight: 22, fontWeight: '700', letterSpacing: 0, marginBottom: 4 },
+  valCardDesc: { fontSize: 13, lineHeight: 18 },
 
   faqQ: { paddingVertical: 12 },
   faqHead: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 9 },
-  faqQText: { flex: 1, fontSize: 14, fontWeight: '700' },
+  faqQText: { flex: 1, fontSize: 13, fontWeight: '700' },
   faqA: { fontSize: 13, lineHeight: 18.5, marginTop: 8 },
 });

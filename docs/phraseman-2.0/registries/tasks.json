@@ -9329,7 +9329,8 @@
         "text": "Привет и добавление друзей не зависят от удаляемых reward сервисов",
         "accepted": true,
         "evidence": [
-          "friends_together.ts:9 без наград, claim retired; пробы friend_gift_server_retirement, friend_gifts_without_xp_quests"
+          "friends_together.ts:9 без наград, claim retired; пробы friend_gift_server_retirement, friend_gifts_without_xp_quests",
+          "952b3121f: удалены claims_client, награды уровней «Вместе», callable friendsTogetherClaimLevel и правило friends_chest_claims в коде; friendsNudge/друзья не зависят от наград; friends_together_days 22/22, functions friends_together+core 43/43, проба pm170_friend_rewards_removed PASS"
         ]
       },
       {
@@ -9349,8 +9350,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "952b3121f: удалены claims_client, награды уровней «Вместе», callable friendsTogetherClaimLevel и правило friends_chest_claims в коде; friendsNudge/друзья не зависят от наград; friends_together_days 22/22, functions friends_together+core 43/43, проба pm170_friend_rewards_removed PASS"
+    ],
+    "notes": [
+      "2026-10-01: A2 NOT_MET (владелец при деплое): friendsTogetherClaimLevel в облаке вызывает 1.6.24 — удалять только после min_app_version ≥ 2.0 (DEPLOY_NOW Шаг 2)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -12785,7 +12790,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12794,14 +12799,18 @@
       {
         "id": "PM-234-A1",
         "text": "Жемчуг 1:10 не заменяет автоматом компенсацию всех покупок",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "bbc9323e2: evidence/PM-234_paid_cosmetics_boosts_rules.md (исправлено противоречие D148: альтернативы «монеты за подарки» нет; grandfathering D122); app/gifts_to_coins_table_v1.ts:33 PEARL_COINS=0; D70/D84/D103/D136–D140/D148"
+        ]
       },
       {
         "id": "PM-234-A2",
         "text": "grandfathering/refund/альтернатива согласованы",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "bbc9323e2: evidence/PM-234_paid_cosmetics_boosts_rules.md (исправлено противоречие D148: альтернативы «монеты за подарки» нет; grandfathering D122); app/gifts_to_coins_table_v1.ts:33 PEARL_COINS=0; D70/D84/D103/D136–D140/D148"
+        ]
       }
     ],
     "depends_on": [],
@@ -12812,10 +12821,14 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet (исполнитель сессии «Ядро»)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "bbc9323e2: evidence/PM-234_paid_cosmetics_boosts_rules.md (исправлено противоречие D148: альтернативы «монеты за подарки» нет; grandfathering D122); app/gifts_to_coins_table_v1.ts:33 PEARL_COINS=0; D70/D84/D103/D136–D140/D148"
+    ],
+    "notes": [
+      "2026-10-01: все критерии приняты — к независимому ревью"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -13310,8 +13323,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "bbc9323e2: проект evidence/PM-243_legacy_purge_deadline_2026-10-01.md (6 ворот, группы G1/G2/G3)"
+    ],
+    "notes": [
+      "2026-10-01: A1/A2 NOT_MET — сроки G1/G2 и бэкфилл expireAt ждут решения координатора/владельца (INBOX §62/Q107–Q109)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -13758,8 +13775,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "bbc9323e2: реестр блокирующих замечаний обновлён в evidence/E24_release_process_2026-10-01.md"
+    ],
+    "notes": [
+      "2026-10-01: A1/A2 NOT_MET — финальный проход невозможен до закрытия planned; открыты TTL-выкладка, генератор PM-221 vs D148, economy_constitution_contract:234"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -13988,7 +14009,8 @@
         "text": "Модель и уровень указаны",
         "accepted": true,
         "evidence": [
-          "registries/tasks.json: 276/276 задач с model и reasoning; tasks/PM-*.md 275/275 без расхождений с реестром (PM-288 без карточки); docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md"
+          "registries/tasks.json: 276/276 задач с model и reasoning; tasks/PM-*.md 275/275 без расхождений с реестром (PM-288 без карточки); docs/phraseman-2.0/evidence/E24_release_process_2026-10-01.md",
+          "bbc9323e2: пересчёт 277/277 задач с model/reasoning, 0 расхождений у 275 карточек (PM-288/289 без карточек — render_views); 01_BIBLE.md:65 «Промпт сам по себе не переключает модель»; prompts/01_START_READONLY.md:2"
         ]
       },
       {
@@ -14004,7 +14026,8 @@
         "text": "автоматическое переключение не приписано текстовому промпту",
         "accepted": true,
         "evidence": [
-          "01_BIBLE.md:65 «Промпт сам по себе не переключает модель»; prompts/01_START_READONLY.md:2; поиск «автоматически переключ*» по tasks/prompts/BIBLE — 0 вхождений"
+          "01_BIBLE.md:65 «Промпт сам по себе не переключает модель»; prompts/01_START_READONLY.md:2; поиск «автоматически переключ*» по tasks/prompts/BIBLE — 0 вхождений",
+          "bbc9323e2: пересчёт 277/277 задач с model/reasoning, 0 расхождений у 275 карточек (PM-288/289 без карточек — render_views); 01_BIBLE.md:65 «Промпт сам по себе не переключает модель»; prompts/01_START_READONLY.md:2"
         ]
       }
     ],
@@ -14017,8 +14040,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "bbc9323e2: пересчёт 277/277 задач с model/reasoning, 0 расхождений у 275 карточек (PM-288/289 без карточек — render_views); 01_BIBLE.md:65 «Промпт сам по себе не переключает модель»; prompts/01_START_READONLY.md:2"
+    ],
+    "notes": [
+      "2026-10-01: A2 NOT_MET (владелец): нужен вывод клиента со списком доступных моделей; проект соответствия профилей в evidence/E24_release_process_2026-10-01.md"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

@@ -43,6 +43,7 @@ import {
   type EnergySessionProjection,
 } from '../app/energy_session_operation_ledger';
 import { DebugLogger } from '../app/debug-logger';
+import { useFlashcardTrainingGrantBootMaintenance } from './use_flashcard_training_grant_boot_maintenance';
 import {
   activityEnergyCost,
   ENERGY_BASE_CAPACITY,
@@ -1004,6 +1005,9 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   }, [applySessionProjection, currentSessionProjection, load]);
 
   const refundOne = refundActivityStart;
+  // зачем (PM-210): разовая локальная чистка журнала оборванных входов в тренировки
+  // карточек после первого кадра; возврат энергии — тем же адаптером, что у экранов.
+  useFlashcardTrainingGrantBootMaintenance(energyReady, refundActivityStart);
 
   const acknowledgeSessionStart = useCallback(async (operationId: string): Promise<boolean> => {
     return acknowledgeEnergySessionStartInLedger(operationId, captureAccountGeneration());

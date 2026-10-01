@@ -117,7 +117,7 @@ Store-декларации (PM-250): OpenAI уже указан как обра�
 | Тема | Факт в коде | Что в опубликованном тексте | Что сделать |
 |---|---|---|---|
 | Срок до удаления аккаунта | **14 дней**, не 30 (`functions/src/account_delete_grace.ts:21`); восстановление при входе в эти 14 дней | EN privacy §19/§20 и terms §3 уже говорят «14-day grace» — верно | Ничего. В ТЗ звучало «30 дней» — это неверно. 30 дней — только срок жизни служебной квитанции удаления Account V2 (`functions/src/accounts_v2_deletion/receipt.ts:37`, без содержимого, TTL по `expireAt`); 90 дней — срок «ожидающей» записи там же (строка 43) |
-| TTL 90 дней у `app_errors` / `app_activity` | **В коде НЕ реализован**: ни один писатель не ставит `expireAt` (`functions/src/client_reports.ts`, `payment_webhook_alert.ts`, `max_voice_*`), в `firestore.indexes.json` нет TTL-политики для этих коллекций (TTL есть только у accounts_v2_*, dialogue_v2_*, taskSecrets) | Числа «90» в тексте нет: «analytics/error records may be retained longer where needed» | **Не писать «90 дней» в политику, пока не будет кода + политики TTL в консоли.** Решение координатора 01.10 п.4 пока не исполнено. Нужна отдельная задача: `expireAt = now + 90 дн.` в писателях + политика TTL (включает владелец, DEPLOY_NOW) |
+| TTL 90 дней у `app_errors` / `app_activity` | **Реализован в коде 01.10 (f8c948552), НЕ выложен** (на момент аудита не был: ни один писатель не ставит `expireAt` (`functions/src/client_reports.ts`, `payment_webhook_alert.ts`, `max_voice_*`), в `firestore.indexes.json` нет TTL-политики для этих коллекций (TTL есть только у accounts_v2_*, dialogue_v2_*, taskSecrets)) | Числа «90» в тексте нет: «analytics/error records may be retained longer where needed» | **Не писать «90 дней» в политику, пока не будет кода + политики TTL в консоли.** Решение координатора 01.10 п.4 пока не исполнено. Нужна отдельная задача: `expireAt = now + 90 дн.` в писателях + политика TTL (включает владелец, DEPLOY_NOW) |
 | Хранилище прогресса на устройстве (Account V2) | SQLCipher: `app.config.js:161` (`useSQLCipher: true`); ключ в защищённом хранилище устройства, исключён из облачного бэкапа Android (`plugins/withAndroidBackupRules.js`, пакет 6E). Флаг V2 по пакету 6B — выключен | В тексте упомянуто шифрование только в общем виде (2 вхождения) | Добавить фразу (ниже). Публиковать вместе с включением V2, не раньше |
 | Блокировка пользователей | `users/{uid}/blocked/{id}`; чистится при удалении обоих участников (`account_delete.ts:1043-1044`) | Нет | Уже в черновике (Q41) — оставить |
 | «Привет»: окно тишины | `users/{sender}/friend_hello_cooldowns/{target}` — идентификатор получателя и время, 6 ч; сносится при удалении аккаунта (`account_delete.ts:1036-1038`); push не уходит не-другу | Нет | Добавить фразу (ниже) |
@@ -142,10 +142,14 @@ Store-декларации (PM-250): OpenAI уже указан как обра�
 > EN: If you report a Spire task as wrong, we store the task identifier, your account identifier and the reason you choose, to fix or remove the task. Spire language pools for Spanish, German and French are marked beta.
 > RU: Если вы сообщаете, что задание Шпиля составлено неверно, мы храним идентификатор задания, ваш идентификатор и выбранную причину — чтобы исправить или снять задание. Языковые пулы Шпиля для испанского, немецкого и французского помечены «бета».
 
+**Privacy — Community pack publishing limit / Лимит публикации наборов (Q55, PM-018-A2):**
+> EN: To limit abuse, we store a per-account daily counter of community packs you published (the date and a number up to 3). It is deleted with your account.
+> RU: Чтобы ограничить злоупотребления, мы храним суточный счётчик опубликованных вами наборов сообщества (дату и число до 3). Он удаляется вместе с аккаунтом.
+
 **Privacy — Retention (добавить ТОЛЬКО после реализации TTL):**
 > EN: Error and activity logs are kept for up to 90 days.
 > RU: Журналы ошибок и активности хранятся до 90 дней.
-(Сейчас в коде срока нет — формулировку не публиковать.)
+(Код готов с 01.10 — `functions/src/log_ttl.ts`, коммит f8c948552: писатели ставят `expireAt`, политики TTL добавлены в `firestore.indexes.json`. Публиковать формулировку ТОЛЬКО после деплоя indexes и включения TTL в консоли, и помнить: записи ДО релиза без `expireAt` TTL не удалит — нужен одноразовый бэкфилл.)
 
 **Terms — переход старых прав (PM-249), одним абзацем в §8 «Virtual items»:**
 > EN: With version 2.0, the previous virtual balance (Shards, including any bought with real money) and the former Arena, tournament, gift and experience-point features end and are not compensated; official card sets that were unlocked with Shards are no longer offered. Lifetime Pro owners receive Coins instead of Shards as referral prizes. Lessons that were free to you before the update stay free.
@@ -154,5 +158,5 @@ Store-декларации (PM-250): OpenAI уже указан как обра�
 
 ### Что осталось не принятым
 - PM-248-A1/A2, PM-249-A1: нужна публикация (владелец) и юрист — NOT_MET.
-- Нет TTL 90 дней в коде — отдельная задача.
+- TTL 90 дней: код и политика в `firestore.indexes.json` готовы (f8c948552), НЕ выложены; старые записи без `expireAt` не удаляются без бэкфилла.
 - Конфликт «App Check запломбирован» ↔ клиент всё ещё аттестует.

@@ -306,3 +306,16 @@
 | 4910287e3 | 2026-07-14 | conflicts | 4/12 | fix: retire legacy profile card screen |
 | 7b8680865 | 2026-07-14 | files_gone | 0/1 | perf: stop loading retired profile card data |
 | 01551585a | 2026-07-19 | conflicts | 1/1 | feat(auth): redesign registration prompt as interactive bottom sheet |
+## Q66 — результат (2026-10-01)
+
+Решение владельца: сверить кандидатов из `codex/all-development-integration` и переносить недостающее отдельными коммитами.
+
+| Кандидат | Вердикт | Что сделано |
+|---|---|---|
+| 22372ce80 «preserve unicode analytics parameters» | **Перенесено, с изменением** | Коммит 0e7e610d2: `truncateFirebaseString` в `app/analytics.ts` режет по кодпоинтам и выбрасывает одиночные суррогаты. В оригинале `throw new Error('Invalid analytics string')` — у нас НЕ бросает (событие не теряется). Тест `tests/analytics_firebase_unicode.test.ts` 6/6 вместе с каталогом событий. |
+| 075cbcf97 `app/youtube_playback_runtime.ts` | **Архив, не переносить** | Модуль без потребителей в нашем дереве; на ветке он часть цепочки (youtube_analytics_contract → playback controller → player runtime message → admin_youtube_analytics). Этих звеньев у нас нет. Перенос одного звена = мёртвый код. |
+| 686cb0481 `functions/src/admin_youtube_analytics_core.ts` | **Архив, не переносить** | То же: ядро агрегации без вызывающего callable и без экрана админки (админка — только `admin/v2/legacy.html`). Если владелец захочет аналитику YouTube — переносить цепочку целиком отдельной задачей. |
+| be00b2169 «retain user emails during inbox sync» | **Эквивалент уже есть** | В `functions/src/support_inbox.ts` уже есть `classifyEmail` (категория вместо молчаливого отсева), письма не отбрасываются, выборка по UID-курсору с догрузкой и повтором упавших (`selectSupportImap*`), дедуп по Message-ID; тесты `support_inbox.test.ts` / `support_25_letters_sim.test.ts`. Наша реализация новее и шире (курсор + uidValidity вместо «хвоста последних N»). Переносить нечего. |
+| d0318e5f1 «support mail durable and lossless» | **Эквивалент уже есть** | Серверная часть присутствует: `support_reply_delivery.ts`, prepare/dispatch/cancel/resolve (+Batch) в `index.ts`, `runSupportReplyDispatchSweeper` и cron, права `support.*` в `admin/permissions.ts`. Клиентская часть коммита (`admin/index.html`, `admin/v2/scripts/*`) заморожена/удалена — не трогалась. |
+
+Ссылка в реестре: PM-239 / Q66.

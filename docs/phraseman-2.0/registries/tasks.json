@@ -851,7 +851,7 @@
     ],
     "basis": "PROPOSAL",
     "stage": "A",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -868,9 +868,9 @@
       {
         "id": "PM-018-A2",
         "text": "стоимость защищена лимитами создания/загрузки и объёма, а не удержанием пользовательских данных",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "NOT_MET (владелец/координатор): D17 PROPOSED, gate PROPOSED_SCOPE_APPROVED не снят; есть FREE_CUSTOM_CARD_LIMIT=50 (Plus безлимит), серверных rate-limit на создание/публикацию наборов нет — числа лимита не выбраны (docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md)"
+          "Q55 (решение координатора): серверный лимит 3 НОВЫХ публикации наборов в сутки на человека, Free и Plus, админ вне лимита — functions/src/pack_publish_limit.ts + communitySubmitPackForReview (коммиты 8330803a8, 734800ed0); объём набора ограничен 50 карточками (schema.ts:43), своих карточек Free 50; functions/src/community_pack_publish_limit.test.ts 7/7, tests/pack_publish_limit_client.test.ts 3/3. Не выложено (DEPLOY: functions+rules). D17 остаётся PROPOSED"
         ]
       }
     ],

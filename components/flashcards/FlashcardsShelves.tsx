@@ -52,7 +52,7 @@ interface Props {
 /** Заголовок полки (макет `.shelf-t`): 15px/800. */
 function ShelfTitle({ text, t }: { text: string; t: Theme }) {
   return (
-    <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '800', marginTop: 9, marginBottom: 7 }}>
+    <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '700', marginTop: 9, marginBottom: 7 }}>
       {text}
     </Text>
   );
@@ -106,14 +106,14 @@ function FlashcardsShelvesBase({
                   </Text>
                   {!!p.trial && (
                     <View style={{ position: 'absolute', top: 7, right: 7, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: 'rgba(6,7,10,0.72)' }}>
-                      <Text style={{ fontSize: 10, fontWeight: '800', color: t.gold, fontVariant: ['tabular-nums'] }}>
+                      <Text style={{ fontSize: 13, fontWeight: '700', color: t.gold, fontVariant: ['tabular-nums'] }}>
                         ⏳ {p.trial}
                       </Text>
                     </View>
                   )}
                   {p.isNew && (
                     <View style={{ position: 'absolute', top: 7, left: 7, paddingHorizontal: 8, paddingVertical: 4, borderRadius: 999, backgroundColor: t.accent }}>
-                      <Text style={{ fontSize: 10, fontWeight: '900', color: t.correctText }}>{labels.new}</Text>
+                      <Text style={{ fontSize: 13, fontWeight: '700', color: t.correctText }}>{labels.new}</Text>
                     </View>
                   )}
                 </LinearGradient>
@@ -122,7 +122,7 @@ function FlashcardsShelvesBase({
                       прогресса по набору в модели нет, а выдуманное число хуже
                       его отсутствия. Обложка и название самодостаточны.
                       text-integrity: название переносится, карточка растёт. */}
-                  <FlowText testID={`flashcards-shelf-continue-${p.id}`} provenance="authored" style={{ color: t.textPrimary, fontSize: 12.5, fontWeight: '800' }}>
+                  <FlowText testID={`flashcards-shelf-continue-${p.id}`} provenance="authored" style={{ color: t.textPrimary, fontSize: 13, fontWeight: '700' }}>
                     {p.title}
                   </FlowText>
                 </View>
@@ -156,15 +156,15 @@ function FlashcardsShelvesBase({
                 >
                   <Text style={{ fontSize: 16, fontWeight: '900', color: 'rgba(255,255,255,0.9)' }}>{p.mono}</Text>
                 </LinearGradient>
-                <FlowText testID={`flashcards-shelf-cinema-${p.id}`} provenance="authored" style={{ color: t.textPrimary, fontSize: 10.5, fontWeight: '700', marginTop: 5 }}>
+                <FlowText testID={`flashcards-shelf-cinema-${p.id}`} provenance="authored" style={{ color: t.textPrimary, fontSize: 13, fontWeight: '700', marginTop: 5 }}>
                   {p.title}
                 </FlowText>
                 {p.owned ? (
-                  <Text style={{ color: t.correct, fontSize: 10, fontWeight: '800', marginTop: 2 }}>
+                  <Text style={{ color: t.correct, fontSize: 13, fontWeight: '700', marginTop: 2 }}>
                     ✓ {labels.opened}
                   </Text>
                 ) : p.price !== undefined ? (
-                  <Text style={{ color: t.gold, fontSize: 10, fontWeight: '800', marginTop: 2, fontVariant: ['tabular-nums'] }}>
+                  <Text style={{ color: t.gold, fontSize: 13, fontWeight: '700', marginTop: 2, fontVariant: ['tabular-nums'] }}>
                     {p.price}
                   </Text>
                 ) : null}
@@ -197,8 +197,8 @@ function FlashcardsShelvesBase({
                   backgroundColor: t.bgSurface,
                 }}
               >
-                <Text style={{ fontSize: 18 }}>{th.emoji}</Text>
-                <FlowText testID={`flashcards-shelf-theme-${th.id}`} provenance="authored" style={{ color: t.textPrimary, fontSize: 11.5, fontWeight: '800', marginTop: 3, textAlign: 'center' }}>
+                <Text style={{ fontSize: 16 }}>{th.emoji}</Text>
+                <FlowText testID={`flashcards-shelf-theme-${th.id}`} provenance="authored" style={{ color: t.textPrimary, fontSize: 13, fontWeight: '700', marginTop: 3, textAlign: 'center' }}>
                   {th.label}
                 </FlowText>
               </TouchableOpacity>

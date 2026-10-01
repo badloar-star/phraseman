@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   coin: { width: 50, height: 50 },
-  label: { fontSize: 11, lineHeight: 15, marginTop: 4, textAlign: 'center' },
+  label: { fontSize: 13, lineHeight: 18, marginTop: 4, textAlign: 'center' },
 });
 
 export default memo(CoinRankCatalog);

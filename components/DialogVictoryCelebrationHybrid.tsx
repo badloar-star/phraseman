@@ -480,7 +480,7 @@ const styles = StyleSheet.create({
   },
   confettiLayer: { position: 'absolute', alignItems: 'center', justifyContent: 'center' },
   title: { color: PALETTE.text, fontSize: 28, fontWeight: '700', marginTop: 24, letterSpacing: 0.3, textAlign: 'center' },
-  subtitle: { color: PALETTE.textDim, fontSize: 15, marginTop: 7, textAlign: 'center' },
+  subtitle: { color: PALETTE.textDim, fontSize: 16, marginTop: 7, textAlign: 'center' },
   metricsRow: { flexDirection: 'row', gap: 12, marginTop: 26 },
   metricCard: {
     width: 96,
@@ -491,7 +491,7 @@ const styles = StyleSheet.create({
   },
   metricIcon: { marginBottom: 2 },
   metricValue: { color: PALETTE.text, fontSize: 16, fontWeight: '700', marginTop: 6 },
-  metricLabel: { color: PALETTE.textDim, fontSize: 12, marginTop: 3 },
+  metricLabel: { color: PALETTE.textDim, fontSize: 13, marginTop: 3 },
   bottom: { paddingHorizontal: 24, alignItems: 'center' },
   ctaWrap: { width: '100%', borderRadius: 18, overflow: 'hidden' },
   cta: {
@@ -501,7 +501,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
   },
-  ctaText: { color: PALETTE.ctaText, fontSize: 17, fontWeight: '700', letterSpacing: 0.3 },
+  ctaText: { color: PALETTE.ctaText, fontSize: 16, fontWeight: '700', letterSpacing: 0.3 },
 });
 
 export default DialogVictoryCelebrationHybrid;

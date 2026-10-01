@@ -385,9 +385,9 @@ const styles = StyleSheet.create({
   caption: { alignItems: 'center' },
   eyebrow: {
     color: 'rgba(245,245,247,0.62)',
-    fontSize: 15,
-    lineHeight: 20,
-    fontWeight: '600',
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '700',
     textAlign: 'center',
   },
   title: {
@@ -402,9 +402,9 @@ const styles = StyleSheet.create({
   sub: {
     marginTop: 8,
     color: 'rgba(245,245,247,0.62)',
-    fontSize: 15,
-    lineHeight: 20,
-    fontWeight: '500',
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '400',
     textAlign: 'center',
   },
   button: {
@@ -414,7 +414,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  buttonText: { color: '#0b0b0f', fontSize: 17, fontWeight: '700' },
+  buttonText: { color: '#0b0b0f', fontSize: 16, fontWeight: '700' },
 });
 
 export { MINT_BG };

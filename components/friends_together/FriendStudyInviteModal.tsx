@@ -58,7 +58,7 @@ function FriendStudyInviteModal({ visible, friendCoinRank = null, onStart, onDec
         <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: 22 * textScale, lineHeight: 28 * textScale }]}>
           {L('Пять минут на английский?', 'П’ять хвилин на англійську?', 'Five minutes of English?', '¿Cinco minutos de inglés?', 'Cinco minutos de inglês?', 'Năm phút học tiếng Anh?', 'Lima menit bahasa Inggris?', 'Beş dakika İngilizce?', 'Pięć minut angielskiego?')}
         </Text>
-        <Text style={[styles.body, { color: glass.secondary, fontSize: 14 * textScale, lineHeight: 20 * textScale }]}>
+        <Text style={[styles.body, { color: glass.secondary, fontSize: 13 * textScale, lineHeight: 18 * textScale }]}>
           {L('Друг зовёт вас заниматься сегодня.', 'Друг кличе вас позайматися сьогодні.', 'A friend is inviting you to study today.', 'Un amigo te invita a estudiar hoy.', 'Um amigo está convidando você para estudar hoje.', 'Một người bạn đang mời bạn học hôm nay.', 'Seorang teman mengajakmu belajar hari ini.', 'Bir arkadaşın seni bugün çalışmaya davet ediyor.', 'Znajomy zaprasza cię dziś do nauki.')}
         </Text>
         <DuoPressable
@@ -69,7 +69,7 @@ function FriendStudyInviteModal({ visible, friendCoinRank = null, onStart, onDec
           gradientColors={[glass.lightTint, glass.cta, glass.cta]}
           style={[styles.button, { backgroundColor: glass.accent }]}
         >
-          <Text style={[styles.buttonText, { color: glass.accentInk, fontSize: 17 * textScale }]}>
+          <Text style={[styles.buttonText, { color: glass.accentInk, fontSize: 16 * textScale }]}>
             {L('Начать занятие', 'Почати заняття', 'Start the lesson', 'Empezar lección', 'Começar lição', 'Bắt đầu bài học', 'Mulai pelajaran', 'Derse başla', 'Zacznij lekcję')}
           </Text>
         </DuoPressable>
@@ -80,7 +80,7 @@ function FriendStudyInviteModal({ visible, friendCoinRank = null, onStart, onDec
           wrapStyle={styles.secondaryWrap}
           style={[styles.button, styles.secondary, { backgroundColor: 'transparent', borderColor: glass.glassEdge }]}
         >
-          <Text style={[styles.buttonText, { color: glass.text, fontSize: 17 * textScale }]}>
+          <Text style={[styles.buttonText, { color: glass.text, fontSize: 16 * textScale }]}>
             {L('Не сейчас', 'Не зараз', 'Not now', 'Ahora no', 'Agora não', 'Không phải bây giờ', 'Jangan sekarang', 'Şimdi değil', 'Nie teraz')}
           </Text>
         </DuoPressable>

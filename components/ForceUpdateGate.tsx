@@ -611,8 +611,8 @@ const styles = StyleSheet.create({
   },
   body: {
     maxWidth: 330,
-    fontSize: 15,
-    lineHeight: 21,
+    fontSize: 16,
+    lineHeight: 22,
     fontWeight: '400',
     textAlign: 'center',
     marginTop: 8,
@@ -631,7 +631,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 5 },
     elevation: 5,
   },
-  primaryLabel: { fontSize: 17, lineHeight: 21, fontWeight: '700', textAlign: 'center' },
+  primaryLabel: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
   secondaryButton: {
     width: '100%',
     minHeight: 48,

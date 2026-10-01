@@ -63,8 +63,8 @@ function CollectionLimitHeaderBase({ saved, isPremium, t }: CollectionLimitHeade
           })}
           style={{
             color: ratio >= 1 ? t.wrong : t.textSecond,
-            fontSize: 14,
-            fontWeight: '800',
+            fontSize: 13,
+            fontWeight: '700',
             fontVariant: ['tabular-nums'],
           }}
         >

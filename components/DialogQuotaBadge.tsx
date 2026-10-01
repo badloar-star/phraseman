@@ -116,7 +116,7 @@ export default function DialogQuotaBadge({
       <Ionicons name="chatbubble-ellipses-outline" size={15} color={p.iconTint} />
       {variant === 'monthly' ? (
         <>
-          <Text style={{ color: p.text, fontSize: 15, fontWeight: '700' }}>{monthly}</Text>
+          <Text style={{ color: p.text, fontSize: 16, fontWeight: '700' }}>{monthly}</Text>
           {resetDate ? (
             // guard-ok: дата в той же строке пилюли через «·», не подпись под названием (стиль 2.0).
             <Text style={{ color: p.textSecondary, fontSize: 13, fontWeight: '600' }}>
@@ -125,7 +125,7 @@ export default function DialogQuotaBadge({
           ) : null}
         </>
       ) : (
-        <Text style={{ color: p.text, fontSize: 17, fontWeight: '700' }}>
+        <Text style={{ color: p.text, fontSize: 16, fontWeight: '700' }}>
           {safeRemaining}/{safeLimit}
         </Text>
       )}

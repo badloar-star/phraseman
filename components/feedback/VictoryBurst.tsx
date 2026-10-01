@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
   },
   hero: { textAlign: 'center' },
   title: { fontSize: 24, fontWeight: '900', textAlign: 'center', marginTop: 8, letterSpacing: 0.2 },
-  subtitle: { fontSize: 15, fontWeight: '600', textAlign: 'center', marginTop: 6, lineHeight: 21 },
+  subtitle: { fontSize: 16, fontWeight: '700', textAlign: 'center', marginTop: 6, lineHeight: 22 },
   statsRow: { flexDirection: 'row', gap: 10, marginTop: 20 },
   statCard: {
     minWidth: 84,
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   statValue: { fontSize: 20, fontWeight: '900' },
-  statLabel: { fontSize: 12, fontWeight: '600', marginTop: 3 },
+  statLabel: { fontSize: 13, fontWeight: '700', marginTop: 3 },
 });
 
 export default VictoryBurst;

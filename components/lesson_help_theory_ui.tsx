@@ -211,7 +211,7 @@ export function Table({ rows, t, f }: { rows: string[][]; t: Theme; f?: any }) {
             <View style={{ flexDirection: 'row', backgroundColor: c.surfaceBg }}>
               {header.map((cell, i) => (
                 <View key={i} style={{ width: TABLE_COL_MIN_W, paddingHorizontal: 10, paddingVertical: 11, borderRightWidth: i < numCols - 1 ? 0.5 : 0, borderRightColor: c.border }}>
-                  <Text style={{ color: c.primary, fontSize: 12, fontWeight: '800' }} maxFontSizeMultiplier={1}>{cell}</Text>
+                  <Text style={{ color: c.primary, fontSize: 13, fontWeight: '700' }} maxFontSizeMultiplier={1}>{cell}</Text>
                 </View>
               ))}
             </View>

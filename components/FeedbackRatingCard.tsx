@@ -159,7 +159,7 @@ export default function FeedbackRatingCard({
             testID={`${testID}-title`}
             style={[
               styles.liquidTitle,
-              { color: glass.text, fontSize: 17 * textScale, lineHeight: 22 * textScale },
+              { color: glass.text, fontSize: 16 * textScale, lineHeight: 22 * textScale },
             ]}
             maxFontSizeMultiplier={undefined}
           >

@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
   },
   body: {
     color: GRAPHITE.secondary,
-    fontSize: 15,
+    fontSize: 16,
     lineHeight: 22,
     textAlign: 'center',
     maxWidth: 440,
@@ -297,20 +297,20 @@ const styles = StyleSheet.create({
   },
   debugTitle: {
     color: '#FF6B6B',
-    fontSize: 12,
+    fontSize: 13,
     fontWeight: '700',
     marginBottom: 6,
   },
   debugText: {
     color: '#FFB4B4',
-    fontSize: 11,
+    fontSize: 13,
     fontFamily: Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' }),
     marginBottom: 6,
   },
   debugStack: {
     color: GRAPHITE.mutedText,
-    fontSize: 10,
+    fontSize: 13,
     fontFamily: Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' }),
-    lineHeight: 14,
+    lineHeight: 18,
   },
 });

@@ -643,13 +643,13 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   label: {
-    fontSize: 12,
-    fontWeight: '800',
+    fontSize: 13,
+    fontWeight: '700',
     letterSpacing: 0,
   },
   message: {
-    fontSize: 15,
-    lineHeight: 20,
+    fontSize: 16,
+    lineHeight: 22,
     fontWeight: '700',
     letterSpacing: 0,
   },
@@ -663,7 +663,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   actionLabel: {
-    fontSize: 13.5,
-    fontWeight: '800',
+    fontSize: 13,
+    fontWeight: '700',
   },
 });

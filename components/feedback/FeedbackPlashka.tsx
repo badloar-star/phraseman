@@ -132,10 +132,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginLeft: 4,
   },
-  iconGlyph: { fontSize: 18, fontWeight: '900', lineHeight: 22 },
+  iconGlyph: { fontSize: 16, fontWeight: '700', lineHeight: 22 },
   textCol: { flex: 1, paddingTop: 1 },
-  title: { fontSize: 17, fontWeight: '900', letterSpacing: 0.2 },
-  subtitle: { fontSize: 14, fontWeight: '600', marginTop: 4, lineHeight: 20 },
+  title: { fontSize: 16, fontWeight: '700', letterSpacing: 0.2 },
+  subtitle: { fontSize: 13, fontWeight: '700', marginTop: 4, lineHeight: 18 },
 });
 
 export default FeedbackPlashka;

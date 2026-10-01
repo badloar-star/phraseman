@@ -231,8 +231,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 2,
   },
-  valueCompact: { width: 36, height: 21, fontSize: 15, lineHeight: 19 },
-  infinity: { width: 30, textAlign: 'center', color: COLORS.value, fontSize: 17, lineHeight: 20, fontWeight: '900' },
+  valueCompact: { width: 36, height: 22, fontSize: 16, lineHeight: 22 },
+  infinity: { width: 30, textAlign: 'center', color: COLORS.value, fontSize: 16, lineHeight: 22, fontWeight: '700' },
   overchargeGlow: { shadowColor: COLORS.overcharge, shadowOpacity: 0.24, shadowRadius: 10, shadowOffset: { width: 0, height: 0 }, elevation: 7 },
 });
 

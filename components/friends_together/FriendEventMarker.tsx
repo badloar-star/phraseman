@@ -80,5 +80,5 @@ const styles = StyleSheet.create({
   badge: { width: 46, height: 46, borderRadius: 23, alignItems: 'center', justifyContent: 'center', backgroundColor: PORCELAIN, borderWidth: 1.5, borderColor: TEAL, shadowColor: GRAPHITE, shadowOpacity: 0.2, shadowRadius: 4, shadowOffset: { width: 0, height: 2 }, elevation: 3 },
   accentDot: { position: 'absolute', right: 5, bottom: 5, width: 7, height: 7, borderRadius: 4, backgroundColor: AMBER },
   flash: { position: 'absolute', right: 2, bottom: 2, width: 18, height: 18, borderRadius: 9, alignItems: 'center', justifyContent: 'center', backgroundColor: AMBER, borderWidth: 1.5, borderColor: PORCELAIN },
-  countdown: { marginTop: -4, paddingHorizontal: 5, paddingVertical: 1, borderRadius: 7, overflow: 'hidden', backgroundColor: PORCELAIN, color: GRAPHITE, borderWidth: 1, borderColor: TEAL, fontSize: 11, fontWeight: '700', fontVariant: ['tabular-nums'] },
+  countdown: { marginTop: -4, paddingHorizontal: 5, paddingVertical: 1, borderRadius: 7, overflow: 'hidden', backgroundColor: PORCELAIN, color: GRAPHITE, borderWidth: 1, borderColor: TEAL, fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] },
 });

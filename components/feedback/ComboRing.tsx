@@ -136,7 +136,7 @@ export function ComboRing({ value, level, size = 56 }: ComboRingProps) {
 
 const styles = StyleSheet.create({
   center: { alignItems: 'center', justifyContent: 'center' },
-  number: { fontSize: 18, fontWeight: '900', letterSpacing: 0.2 },
+  number: { fontSize: 16, fontWeight: '700', letterSpacing: 0.2 },
 });
 
 export default ComboRing;

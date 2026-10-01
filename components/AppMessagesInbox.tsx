@@ -1293,9 +1293,9 @@ const styles = StyleSheet.create({
     fontWeight: '900',
   },
   embeddedSectionMeta: {
-    fontSize: 11,
-    lineHeight: 15,
-    fontWeight: '800',
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '700',
     textTransform: 'uppercase',
   },
   embeddedRows: {
@@ -1316,21 +1316,21 @@ const styles = StyleSheet.create({
     minWidth: 0,
   },
   embeddedTitle: {
-    fontSize: 14,
-    lineHeight: 19,
-    fontWeight: '900',
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '700',
   },
   embeddedPreview: {
     marginTop: 3,
-    fontSize: 12,
-    lineHeight: 16,
-    fontWeight: '600',
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '700',
   },
   embeddedDate: {
     marginTop: 5,
-    fontSize: 10,
-    lineHeight: 13,
-    fontWeight: '800',
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '700',
   },
   embeddedDismiss: {
     position: 'absolute',
@@ -1363,8 +1363,8 @@ const styles = StyleSheet.create({
   undoText: {
     flex: 1,
     minWidth: 0,
-    fontSize: 12,
-    lineHeight: 16,
+    fontSize: 13,
+    lineHeight: 18,
     fontWeight: '700',
   },
   undoButton: {
@@ -1375,9 +1375,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   undoButtonText: {
-    fontSize: 12,
-    lineHeight: 16,
-    fontWeight: '900',
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '700',
   },
   headerButton: {
     width: 48,
@@ -1447,8 +1447,8 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     color: HOME_NOTIFICATION_BADGE_TEXT_COLOR,
-    fontSize: 10,
-    fontWeight: '900',
+    fontSize: 13,
+    fontWeight: '700',
   },
   backdrop: {
     ...StyleSheet.absoluteFillObject,
@@ -1495,9 +1495,9 @@ const styles = StyleSheet.create({
   },
   modalSub: {
     marginTop: 2,
-    fontSize: 14,
-    lineHeight: 19,
-    fontWeight: '600',
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '700',
   },
   roundIcon: {
     width: 44,
@@ -1551,8 +1551,8 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
   messageTitleRead: {
-    fontSize: 15,
-    lineHeight: 20,
+    fontSize: 16,
+    lineHeight: 22,
     fontWeight: '700',
   },
   messageMetaRow: {
@@ -1563,8 +1563,8 @@ const styles = StyleSheet.create({
     marginBottom: 7,
   },
   messageDate: {
-    fontSize: 12,
-    fontWeight: '800',
+    fontSize: 13,
+    fontWeight: '700',
   },
   pollBadge: {
     height: 22,
@@ -1576,8 +1576,8 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   pollBadgeText: {
-    fontSize: 10,
-    fontWeight: '900',
+    fontSize: 13,
+    fontWeight: '700',
   },
   vipSurveyBadge: {
     height: 22,
@@ -1589,13 +1589,13 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   vipSurveyBadgeText: {
-    fontSize: 10,
-    fontWeight: '900',
+    fontSize: 13,
+    fontWeight: '700',
   },
   messagePreview: {
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: '600',
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '700',
   },
   messagePreviewRead: {
     fontSize: 13,
@@ -1616,8 +1616,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
   messageRowCtaText: {
-    fontSize: 12,
-    fontWeight: '900',
+    fontSize: 13,
+    fontWeight: '700',
   },
   emptyState: {
     flex: 1,
@@ -1636,21 +1636,21 @@ const styles = StyleSheet.create({
   },
   emptyTitle: {
     marginTop: 8,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '700',
   },
   emptyBody: {
-    fontSize: 15,
-    lineHeight: 21,
+    fontSize: 16,
+    lineHeight: 22,
     textAlign: 'center',
-    fontWeight: '600',
+    fontWeight: '700',
   },
   detailContent: {
     paddingBottom: 6,
   },
   detailDate: {
-    fontSize: 11,
-    fontWeight: '900',
+    fontSize: 13,
+    fontWeight: '700',
     marginBottom: 8,
   },
   detailTitle: {
@@ -1660,9 +1660,9 @@ const styles = StyleSheet.create({
     marginBottom: 14,
   },
   detailBody: {
-    fontSize: 15,
-    lineHeight: 23,
-    fontWeight: '600',
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '700',
   },
   vipSurveyCard: {
     marginTop: 18,
@@ -1688,9 +1688,9 @@ const styles = StyleSheet.create({
     minWidth: 0,
   },
   vipSurveyTitle: {
-    fontSize: 15,
-    lineHeight: 20,
-    fontWeight: '900',
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '700',
     marginBottom: 4,
   },
   vipSurveyBody: {
@@ -1735,15 +1735,15 @@ const styles = StyleSheet.create({
     minWidth: 0,
   },
   pollLabel: {
-    fontSize: 10,
-    fontWeight: '900',
+    fontSize: 13,
+    fontWeight: '700',
     textTransform: 'uppercase',
     marginBottom: 3,
   },
   pollQuestion: {
-    fontSize: 15,
-    lineHeight: 20,
-    fontWeight: '900',
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '700',
   },
   pollOptions: {
     gap: 8,
@@ -1770,8 +1770,8 @@ const styles = StyleSheet.create({
   pollOptionMeta: {
     minWidth: 38,
     textAlign: 'right',
-    fontSize: 12,
-    fontWeight: '900',
+    fontSize: 13,
+    fontWeight: '700',
   },
   pollTrack: {
     height: 5,
@@ -1785,8 +1785,8 @@ const styles = StyleSheet.create({
   },
   pollFooter: {
     marginTop: 10,
-    fontSize: 11,
-    fontWeight: '800',
+    fontSize: 13,
+    fontWeight: '700',
   },
   reactions: {
     flexDirection: 'row',
@@ -1805,7 +1805,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   reactionText: {
-    fontSize: 12,
-    fontWeight: '900',
+    fontSize: 13,
+    fontWeight: '700',
   },
 });

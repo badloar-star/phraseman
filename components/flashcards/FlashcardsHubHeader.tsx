@@ -91,8 +91,8 @@ function FlashcardsHubHeaderBase({ title, balance, t, themeMode }: FlashcardsHub
         <Text
           style={{
             color: t.textPrimary,
-            fontSize: 15,
-            fontWeight: '800',
+            fontSize: 16,
+            fontWeight: '700',
             fontVariant: ['tabular-nums'],
           }}
         >

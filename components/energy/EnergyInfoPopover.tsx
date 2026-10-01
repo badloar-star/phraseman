@@ -291,10 +291,10 @@ export const EnergyInfoPopover = memo(function EnergyInfoPopover({
                 </View>
                 {isRecovering && formattedTime ? (
                   <View style={[styles.countdownRow, { backgroundColor: glass.selected }]}>
-                    <Text style={[styles.countdownLabel, { color: glass.secondary, fontSize: 12 * textScale, lineHeight: 17 * textScale }]}>
+                    <Text style={[styles.countdownLabel, { color: glass.secondary, fontSize: 13 * textScale, lineHeight: 18 * textScale }]}>
                       {copy.in}
                     </Text>
-                    <Text style={[styles.countdownValue, { color: glass.text, fontSize: 15 * textScale, lineHeight: 20 * textScale }]}>
+                    <Text style={[styles.countdownValue, { color: glass.text, fontSize: 16 * textScale, lineHeight: 22 * textScale }]}>
                       {formattedTime}
                     </Text>
                   </View>

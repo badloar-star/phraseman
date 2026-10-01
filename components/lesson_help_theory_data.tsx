@@ -62,7 +62,7 @@ function Formula({ slots, example, t, f }: { slots: FormulaSlot[]; example?: str
             <React.Fragment key={`${s.text}-${i}`}>
               <View style={{ backgroundColor: rs.bg, borderRadius: 9, paddingHorizontal: 11, paddingVertical: 7, alignItems: 'center', ...chipBorder }}>
                 <Text style={{ color: rs.fg, fontSize: f.body, fontWeight: '800' }} maxFontSizeMultiplier={1.15}>{s.text}</Text>
-                {s.sub ? <Text style={{ color: rs.fg, fontSize: 10, opacity: 0.85, marginTop: 3 }} maxFontSizeMultiplier={1.1}>{s.sub}</Text> : null}
+                {s.sub ? <Text style={{ color: rs.fg, fontSize: 13, opacity: 0.85, marginTop: 3 }} maxFontSizeMultiplier={1.1}>{s.sub}</Text> : null}
               </View>
               {i < slots.length - 1 ? <Text style={{ color: c.muted, fontSize: 16, fontWeight: '700' }}>+</Text> : null}
             </React.Fragment>

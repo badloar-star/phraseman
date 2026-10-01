@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   title: { fontSize: 24, fontWeight: '900', textAlign: 'center', letterSpacing: 0.2 },
-  subtitle: { fontSize: 15, fontWeight: '600', textAlign: 'center', marginTop: 8, lineHeight: 21 },
+  subtitle: { fontSize: 16, fontWeight: '700', textAlign: 'center', marginTop: 8, lineHeight: 22 },
 });
 
 export default TransitionBridge;

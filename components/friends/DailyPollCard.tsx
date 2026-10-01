@@ -140,7 +140,7 @@ export default function DailyPollCard({ active }: Props) {
       <Text
         testID="daily-poll-eyebrow"
         // guard-ok: `.eyebrow` макета — надпись НАД заголовком, не подпись под ним
-        style={{ color: glass.secondary, fontSize: 11 * textScale, lineHeight: 14 * textScale, fontWeight: '700', letterSpacing: 1.7, textTransform: 'uppercase' }}
+        style={{ color: glass.secondary, fontSize: 13 * textScale, lineHeight: 18 * textScale, fontWeight: '700', letterSpacing: 1.7, textTransform: 'uppercase' }}
       >
         {L('Опрос дня', 'Опитування дня', 'Poll of the day', 'Encuesta del día', 'Enquete do dia', 'Bình chọn hôm nay', 'Polling hari ini', 'Günün anketi', 'Ankieta dnia')}
       </Text>
@@ -249,7 +249,7 @@ const DailyPollOptionButton = React.memo(function DailyPollOptionButton({
         <FlowText
           testID="daily-poll-option-label"
           provenance="authored"
-          style={{ flexShrink: 1, textAlign: showResults ? 'left' : 'center', color: glass.text, fontSize: 16.5 * textScale, lineHeight: 21 * textScale, fontWeight: '600' }}
+          style={{ flexShrink: 1, textAlign: showResults ? 'left' : 'center', color: glass.text, fontSize: 16 * textScale, lineHeight: 22 * textScale, fontWeight: '700' }}
         >
           {label}
         </FlowText>

@@ -126,7 +126,7 @@ export default function HomeDiscountBadge({ onPress, percentLabel }: HomeDiscoun
             }}
           >
             <Ionicons name="sparkles" size={12} color="#12200A" />
-            <Text maxFontSizeMultiplier={1.2} style={{ color: '#12200A', fontSize: 12, fontWeight: '900' }}>
+            <Text maxFontSizeMultiplier={1.2} style={{ color: '#12200A', fontSize: 13, fontWeight: '700' }}>
               {percentLabel}
             </Text>
           </LinearGradient>

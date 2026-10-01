@@ -85,8 +85,8 @@ function StatusFilterChipsBase({
           provenance="authored"
           style={{
             color: active ? (color ?? t.accent) : t.textSecond,
-            fontSize: 12.5,
-            fontWeight: '800',
+            fontSize: 13,
+            fontWeight: '700',
           }}
         >
           {label}

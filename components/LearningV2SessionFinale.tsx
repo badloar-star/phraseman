@@ -139,7 +139,7 @@ export const LearningV2SessionFinale = memo(function LearningV2SessionFinale({
 const styles = StyleSheet.create({
   root: { alignItems: 'center', justifyContent: 'center', gap: 18, paddingVertical: 28 },
   stars: { flexDirection: 'row', alignItems: 'center', gap: 14 },
-  caption: { fontSize: 17, fontWeight: '700', textAlign: 'center' },
+  caption: { fontSize: 16, fontWeight: '700', textAlign: 'center' },
 });
 
 export default LearningV2SessionFinale;

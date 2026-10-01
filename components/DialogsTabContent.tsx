@@ -752,7 +752,7 @@ function DialogsTabContentBody({
                 })}
               </Text>
               <View style={{ borderRadius: 8, paddingHorizontal: 6, paddingVertical: 2, backgroundColor: t.accent }}>
-                <Text style={{ color: t.correctText, fontSize: 10, fontWeight: '900' }}>PLUS</Text>
+                <Text style={{ color: t.correctText, fontSize: 13, fontWeight: '700' }}>PLUS</Text>
               </View>
             </View>
             <Text

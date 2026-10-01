@@ -224,7 +224,7 @@ export default function LearningV2SessionOutcomeSheet({
             <Animated.View style={detailsStyle}>
               <Text testID="learning-v2-session-modal-kicker" style={[styles.kicker, { color: g.secondary }]}>{sessionLabel.toUpperCase()} {sessionOrdinal} · {chapterLabel.toUpperCase()} {chapterOrdinal}</Text>
               <Text style={[styles.title, { color: g.text, fontSize: layout.headingSize, lineHeight: 31 }]}>{title}</Text>
-              <Text style={[styles.message, { color: g.secondary, fontSize: 15, lineHeight: 22 }]}>{message}</Text>
+              <Text style={[styles.message, { color: g.secondary, fontSize: 16, lineHeight: 22 }]}>{message}</Text>
 
               <View style={styles.stats}>
                 {stats.map((stat) => (
@@ -245,7 +245,7 @@ export default function LearningV2SessionOutcomeSheet({
                   onPress={start}
                   style={[styles.primaryButton, { backgroundColor: g.accent, minHeight: layout.targetHeight, opacity: actionsDisabled ? 0.66 : 1 }]}
                 >
-                  <Text style={[styles.primaryLabel, { color: g.accentInk, fontSize: 17 }]}>{primaryLabel}</Text>
+                  <Text style={[styles.primaryLabel, { color: g.accentInk, fontSize: 16 }]}>{primaryLabel}</Text>
                   <Ionicons name="arrow-forward" size={20} color={g.ctaInk} />
                 </TouchableOpacity>
               </View>
@@ -271,12 +271,12 @@ const styles = StyleSheet.create({
   // «цоколь» шайбы (0 7px 0 в макете): та же площадка, смещённая вниз и затемнённая
   orbPlate: { position: "absolute", top: 13, overflow: "hidden" },
   orbPlateShade: { flex: 1, backgroundColor: "rgba(0,0,0,0.32)" },
-  kicker: { marginTop: 8, textAlign: "center", fontSize: 11, lineHeight: 16, fontWeight: "800", letterSpacing: 1.6 },
+  kicker: { marginTop: 8, textAlign: "center", fontSize: 13, lineHeight: 18, fontWeight: "700", letterSpacing: 1.6 },
   title: { marginTop: 9, textAlign: "center", fontWeight: "800", letterSpacing: -0.6 },
   message: { marginTop: 8, textAlign: "center", fontWeight: "400" },
   stats: { flexDirection: "row", gap: 7, marginTop: 18 },
   stat: { flex: 1, minHeight: 58, borderRadius: 16, paddingHorizontal: 6, paddingVertical: 9, alignItems: "center", justifyContent: "center", gap: 5 },
-  statText: { fontSize: 11.5, lineHeight: 14, fontWeight: "700", textAlign: "center" },
+  statText: { fontSize: 13, lineHeight: 18, fontWeight: "700", textAlign: "center" },
   divider: { height: StyleSheet.hairlineWidth, marginVertical: 18 },
   primaryWrap: { position: "relative" },
   primaryButton: { minHeight: 54, borderRadius: 27, paddingHorizontal: 20, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 9 },

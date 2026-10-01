@@ -347,7 +347,7 @@ function DailyPhraseCard({
             <Ionicons name="shield-checkmark-outline" size={20} color={v2.text} />
           </View>
           <View style={[styles.v2Copy, { paddingRight: 0 }]}>
-            <Text style={[styles.v2Phrase, { color: v2.text, marginTop: 0, fontSize: 18, lineHeight: 23 }]}>{gateCopy.title}</Text>
+            <Text style={[styles.v2Phrase, { color: v2.text, marginTop: 0, fontSize: 16, lineHeight: 22 }]}>{gateCopy.title}</Text>
             <Text style={[styles.v2Translation, { color: v2.textSecondary }]}>{gateCopy.body}</Text>
           </View>
         </View>

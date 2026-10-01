@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 13,
     paddingVertical: 11,
   },
-  rowText: { flex: 1, fontSize: 14.5, fontWeight: '700' },
+  rowText: { flex: 1, fontSize: 16, fontWeight: '700' },
 });
 
 export default LearningV2CheckpointOutcome;

@@ -265,18 +265,29 @@ function authoritativeNonNegativeInt(value: unknown, maximum: number): number | 
 export function patchAppSnapshotFromAuthoritativeCloudProgress(
   root: Record<string, unknown>,
   now: number = Date.now(),
+  mergedStreak?: number,
 ): boolean {
   if (root.progressServerAuthoritative !== true) return false;
   const rawProgress = root.progress;
   if (!rawProgress || typeof rawProgress !== 'object' || Array.isArray(rawProgress)) return false;
   const progress = rawProgress as Record<string, unknown>;
-  const streak = authoritativeNonNegativeInt(progress.streak_count, AUTHORITATIVE_STREAK_MAX);
-  if (streak === null || streak === undefined) return false;
+  const cloudStreak = authoritativeNonNegativeInt(progress.streak_count, AUTHORITATIVE_STREAK_MAX);
+  if (cloudStreak === null || cloudStreak === undefined) return false;
+  // зачем (баг 01.10, «Дизайн»: Главная «1 день» при серии 6): облако кладёт свою серию в
+  // снимок, а сервер узнаёт серию телефона только с событием занятия. Если вызывающий уже
+  // слил серию по дате активности (mergeStreakByActivityDate — то же правило, по которому
+  // сервер принимает серию телефона за тот же день), показываем слитое значение.
+  const streak = mergedStreak !== undefined
+    && Number.isSafeInteger(mergedStreak)
+    && mergedStreak >= 0
+    && mergedStreak <= AUTHORITATIVE_STREAK_MAX
+    ? mergedStreak
+    : cloudStreak;
 
   const currentProgress = snapshot.progress;
   // зачем (баг 01.10: Главная «1 день», «Твои результаты» 6): временная трассировка — облако
   // как авторитетный источник серии перезаписывает снимок, из которого читает Главная.
-  console.log(`[STREAK] snapshot:authoritative_cloud streak=${streak} prev=${String(currentProgress?.streak)}@${String(currentProgress?.source)}`);
+  console.log(`[STREAK] snapshot:authoritative_cloud cloud=${cloudStreak} merged=${String(mergedStreak)} -> ${streak} prev=${String(currentProgress?.streak)}@${String(currentProgress?.source)}`);
   const patch: Partial<AppSnapshot> = {};
   patch.progress = {
     source: 'live',

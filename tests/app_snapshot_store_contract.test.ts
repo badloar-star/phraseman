@@ -174,6 +174,26 @@ describe('app snapshot store contract', () => {
     });
   });
 
+  // зачем (баг 01.10, «Дизайн»: Главная «1 день» при серии 6): облачная серия отстаёт,
+  // пока сервер не получил событие занятия; в снимок идёт серия, слитая по дате активности.
+  it('renders the activity-date merged streak instead of a lagging cloud streak', () => {
+    jest.spyOn(console, 'log').mockImplementation(() => {});
+    expect(patchAppSnapshotFromAuthoritativeCloudProgress({
+      progressServerAuthoritative: true,
+      progress: { streak_count: '1' },
+    }, 500, 6)).toBe(true);
+    expect(getAppSnapshot().progress).toMatchObject({ source: 'live', streak: 6 });
+
+    // без слитого значения — облачное, как раньше; мусор в слитом значении игнорируется
+    resetAppSnapshotForAccountSwitch();
+    patchAppSnapshotFromAuthoritativeCloudProgress({
+      progressServerAuthoritative: true,
+      progress: { streak_count: '1' },
+    }, 500, Number.NaN);
+    expect(getAppSnapshot().progress).toMatchObject({ streak: 1 });
+    jest.restoreAllMocks();
+  });
+
   it('rejects untrusted or malformed cloud progress instead of rendering defaults', () => {
     expect(patchAppSnapshotFromAuthoritativeCloudProgress({
       progressServerAuthoritative: false,

@@ -3539,7 +3539,8 @@ async function applyRestoreFromUserDoc(
     assertCurrent();
     // Do this before AsyncStorage writes. SQLITE_FULL may reject persistence,
     // but must not make intact server legacy reward/streak render as Level 1 / zero days.
-    patchAppSnapshotFromAuthoritativeCloudProgress(root);
+    // зачем (баг 01.10): в снимок — серия, слитая по дате активности, а не голая облачная.
+    patchAppSnapshotFromAuthoritativeCloudProgress(root, Date.now(), mergedStreak.streak);
   }
   if (!shouldRestoreCloudProgress) {
     const stickyKeys = [

@@ -3522,6 +3522,8 @@ async function applyRestoreFromUserDoc(
     phoneStateOwnsCore
     || (progressServerAuthoritative && !hasPendingProgressEvents)
     || cloudStreak > localStreak;
+  // зачем (баг 01.10, серия 1 при 6 днях): временная трассировка слияния облака.
+  console.log(`[STREAK] cloud_restore local=${localStreak}@${String(localLastActiveRaw)} cloud=${cloudStreak}@${String(cloudData['last_active_date'])} merged=${mergedStreak.streak}@${String(mergedStreak.lastActive)} restore=${shouldRestoreCloudProgress} phoneOwns=${phoneStateOwnsCore} serverAuth=${progressServerAuthoritative} pending=${hasPendingProgressEvents}`);
 
   // Откат прогресса назад — потеря данных, и он обязан оставлять след НАВСЕГДА.
   //

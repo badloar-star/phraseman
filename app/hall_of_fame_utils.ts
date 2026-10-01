@@ -169,12 +169,18 @@ export const updateStreakOnActivity = async (
     const lastActive = await AsyncStorage.getItem(lastActiveKey);
 
     let streak = parseInt(await AsyncStorage.getItem('streak_count') || '0');
+    // зачем (баг «Дизайна» 01.10: серия 1 при 6 днях подряд): временная трассировка [STREAK] —
+    // вход, ветка и значения, что её решили. Убрать после диагноза, ранние выходы оставить.
+    const streakBefore = streak;
+    console.log(`[STREAK] update:enter today=${today} lastActive=${String(lastActive)} streak=${streak} sameDay=${isSameLocalOrUtcDay(lastActive)} yesterday=${isYesterdayFlexible(lastActive)}`);
 
     if (isSameLocalOrUtcDay(lastActive)) {
       // Уже активны сегодня — цепочку не меняем
+      console.log(`[STREAK] update:branch=same_day keep=${streak}`);
     } else if (isYesterdayFlexible(lastActive)) {
       // Активны вчера — продолжаем цепочку
       streak += 1;
+      console.log(`[STREAK] update:branch=yesterday ${streakBefore}->${streak}`);
       logStreakExtended(streak);
     } else {
       // Пропустили день — проверяем заморозку / починку цепочки
@@ -198,11 +204,13 @@ export const updateStreakOnActivity = async (
       }
       // 2. Первый вход в приложение
       else if (lastActive === null) {
+        console.log(`[STREAK] update:branch=first_launch ${streakBefore}->1`);
         streak = 1;
       }
       // 3. Цепочка потеряна
       else {
         const prevStreak = streak;
+        console.warn(`[STREAK] update:branch=LOST lastActive=${String(lastActive)} today=${today} missedExactlyOneDay=${missedExactlyOneDay} freezeActive=${isStreakFreezeActiveToday(freeze, today)} ${prevStreak}->1`);
         logStreakLost(prevStreak);
           AsyncStorage.getItem('app_lang').then(l => sendStreakWarningLazy(prevStreak, notificationLangFromStorageValue(l))).catch(() => {});
         // зачем: D101 — восстановление серии за жемчуг удалено: серия просто сбрасывается.

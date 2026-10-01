@@ -196,6 +196,8 @@ async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promis
   const statsMap: Record<string, unknown> = statsRaw ? JSON.parse(statsRaw) : {};
   const currentStreak = Math.max(0, parseInt(streakVal || '0', 10) || 0);
   const activityRows = buildStatsActivityRows(statsMap, fgDaily, currentStreak);
+  // зачем (баг 01.10): временная трассировка — что показывает «Твои результаты» и откуда (AsyncStorage streak_count vs дни активности).
+  console.log(`[STREAK] stats:read streak_count=${String(streakVal)} -> ${currentStreak} best=${String((activityRows as { bestStreak?: number }).bestStreak)} activeDays=${Object.keys(statsMap).length}`);
 
   const freeze = freezeRaw ? JSON.parse(freezeRaw) : null;
   const freezeIsActive = isStreakFreezeActiveToday(freeze, todayStr);

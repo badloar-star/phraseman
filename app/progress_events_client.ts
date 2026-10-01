@@ -543,6 +543,8 @@ export async function mirrorProgressResultToLocal(result: ProgressEventResult): 
   );
   const mergedStreak = mergedStreakState.streak;
   const mergedActiveDate = mergedStreakState.lastActive ?? result.activeDate;
+  // зачем (баг 01.10, серия 1 при 6 днях): временная трассировка — что пришло с сервера и что победило.
+  console.log(`[STREAK] progress_event:mirror local=${String(localStreak)}@${String(localLastActive)} server=${serverStreak}@${String(result.activeDate)} -> ${mergedStreak}@${String(mergedActiveDate)}`);
   await AsyncStorage.multiSet([
     ['streak_count', String(mergedStreak)],
     ['last_active_date', mergedActiveDate],

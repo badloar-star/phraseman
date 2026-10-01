@@ -1492,7 +1492,7 @@
     ],
     "basis": "OWNER",
     "stage": "B",
-    "status": "in_progress",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -1501,14 +1501,18 @@
       {
         "id": "PM-032-A1",
         "text": "Нет бесконечной пульсации",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "01.10 хвост: lesson/[id] ореол, CollectibleArtFrame x3, CollectiblesEmptyStateMotion x2, HoloFoilCard, LevelUpMintCeremony, PaywallMotion x3 — 2–4 повтора и покой; reduceMotion их гасит; сторож tests/motion_allowlist_contract.test.mjs 2/2"
+        ]
       },
       {
         "id": "PM-032-A2",
         "text": "разрешены только полезные переходы, переворот карточки и согласованные разовые реакции",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "01.10 хвост: lesson/[id] ореол, CollectibleArtFrame x3, CollectiblesEmptyStateMotion x2, HoloFoilCard, LevelUpMintCeremony, PaywallMotion x3 — 2–4 повтора и покой; reduceMotion их гасит; сторож tests/motion_allowlist_contract.test.mjs 2/2"
+        ]
       }
     ],
     "depends_on": [],
@@ -1518,12 +1522,14 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
-    "reviewer": null,
+    "reviewer": "координатор (Fable) по поручению владельца 01.10",
     "evidence": [
-      "tests/motion_allowlist_contract.test.mjs: каждый вечный цикл в списке с причиной, список только сокращается; 8 декоративных циклов стали разовыми (lesson_complete, pack_opening, CollectionListView, lesson_intro_screens ×2, NewWordEncounterOverlay, CardPackShardPaywallModal, streak_stats, SaveToCardsButton)"
+      "tests/motion_allowlist_contract.test.mjs: каждый вечный цикл в списке с причиной, список только сокращается; 8 декоративных циклов стали разовыми (lesson_complete, pack_opening, CollectionListView, lesson_intro_screens ×2, NewWordEncounterOverlay, CardPackShardPaywallModal, streak_stats, SaveToCardsButton)",
+      "01.10 хвост: lesson/[id] ореол, CollectibleArtFrame x3, CollectiblesEmptyStateMotion x2, HoloFoilCard, LevelUpMintCeremony, PaywallMotion x3 — 2–4 повтора и покой; reduceMotion их гасит; сторож tests/motion_allowlist_contract.test.mjs 2/2"
     ],
     "notes": [
-      "01.10: хвост — 10 файлов помечены «хвост PM-032» (коллекционные рамки, пейвол, карточка игрока, фон 2.0, ореолы); Главная и онбординг исключены по запрету владельца"
+      "01.10: хвост — 10 файлов помечены «хвост PM-032» (коллекционные рамки, пейвол, карточка игрока, фон 2.0, ореолы); Главная и онбординг исключены по запрету владельца",
+      "Вечными оставлены по правилам: загрузка, курсор, звук/печать, Главная и онбординг (запрет владельца), V2Backdrop (фон Главной). Шесть мёртвых компонентов не удалены: защита запретила удаление, ждёт владельца."
     ],
     "actual_cost": null,
     "kind": "unclassified",

@@ -15,14 +15,18 @@ jest.mock('@react-native-firebase/functions', () => ({
 }));
 jest.mock('../app/cloud_sync', () => ({
   ensureAnonUser: jest.fn(async () => 'stable-catalog-user'),
+  // зачем: с 2026-08-27 клиенты Learning V2 сперва вызывают ensureStableAuthLink (решение владельца).
+  ensureStableAuthLink: jest.fn(async () => true),
 }));
 
 const h = (value: string) => sha256Utf8(value);
 const localized = (prefix: string) => Object.fromEntries(LEARNING_V2_INTERFACE_LOCALES.map((locale) => [locale, `${prefix} ${locale}`])) as any;
+// зачем: английский каталог в 2.0 встроен в приложение (bundled_factory) и
+// сервер не вызывает; сетевой путь + LKG проверяем на не-английском курсе.
 const locator = Object.freeze({
   environment: 'lab' as const,
-  targetLanguage: 'en',
-  studyTarget: 'en',
+  targetLanguage: 'es',
+  studyTarget: 'es',
   learnerSourceLocale: 'ru',
   interfaceLocale: 'ru' as const,
   seasonId: 'neutral-course',
@@ -112,6 +116,17 @@ describe('Learning V2 active course catalog app client', () => {
       source: 'lkg',
       cacheAuthority: 'availability_only_not_release_or_correctness_authority',
     });
+  });
+
+  test('serves the English catalog from the bundled factory without calling the server', async () => {
+    jest.mocked(httpsCallable).mockClear();
+    const english = await loadLearningV2ActiveCourseCatalogV1({ ...locator, targetLanguage: 'en', studyTarget: 'en' });
+    expect(english).toMatchObject({
+      source: 'bundled_factory',
+      cacheAuthority: 'availability_only_not_release_or_correctness_authority',
+    });
+    expect(english.catalog.lessons.length).toBeGreaterThan(0);
+    expect(httpsCallable).not.toHaveBeenCalled();
   });
 
   test('rejects a callable that tries to restore server answer authority', async () => {

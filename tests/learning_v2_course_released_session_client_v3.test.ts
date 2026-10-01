@@ -14,6 +14,8 @@ jest.mock("@react-native-firebase/functions", () => ({
 }));
 jest.mock("../app/cloud_sync", () => ({
   ensureAnonUser: jest.fn(async () => "stable-1"),
+  // зачем: с 2026-08-27 клиенты Learning V2 сперва вызывают ensureStableAuthLink (решение владельца).
+  ensureStableAuthLink: jest.fn(async () => true),
 }));
 jest.mock("../app/stable_id", () => ({
   peekStableId: jest.fn(() => "stable-1"),
@@ -30,6 +32,8 @@ jest.mock("../app/learning_v2_course_session_audio_preload_v1", () => ({
     audioFingerprint: h("5"),
     localFileCount: 2,
     selectedFileCount: 2,
+    // зачем: поле добавлено в сводку озвучки 2026-09-20 (6c02e4088); у этой сессии доп. слов нет.
+    supplementalAudioCount: 0,
     preloadFingerprint: h("9"),
   }),
 }));
@@ -77,10 +81,13 @@ import { parseLearningV2CourseSessionEvaluatorCapsuleChildV1 } from "../modules/
 /* eslint-enable import/first */
 
 const storage = new Map<string, string>();
+// зачем: английский курс в 2.0 берётся только из встроенного контента
+// (bundled_factory) и сервер не вызывает; сетевой путь + LKG проверяем на
+// не-английском курсе, а английский — отдельным тестом ниже.
 const locator = Object.freeze({
   environment: "lab" as const,
-  targetLanguage: "en",
-  studyTarget: "en",
+  targetLanguage: "es",
+  studyTarget: "es",
   learnerSourceLocale: "ru",
   seasonId: "season-1",
   lessonOrdinal: 32,
@@ -155,7 +162,7 @@ describe("Learning V2 composite text+audio app client v3", () => {
     } as never);
     jest.mocked(parseLearningV2CourseSessionLearnerChildV1).mockReturnValue({
       courseSessionId,
-      targetLanguage: "en",
+      targetLanguage: "es",
       learnerFingerprint: h("2"),
     } as never);
     jest.mocked(parseLearningV2CourseSessionAuxiliaryChildV1).mockReturnValue({
@@ -183,6 +190,19 @@ describe("Learning V2 composite text+audio app client v3", () => {
     }) as never);
     preloadAudio.mockClear();
     await clearLearningV2CourseReleasedSessionCacheV3();
+  });
+
+  test("never calls the server for English: serves bundled material or fails closed", async () => {
+    jest.mocked(httpsCallable).mockClear();
+    const english = { ...locator, targetLanguage: "en", studyTarget: "en" };
+    let result: unknown = null;
+    try {
+      result = await loadCurrentLearningV2CourseReleasedSessionV3(english);
+    } catch (error) {
+      expect((error as Error).message).toBe("learning_v2_factory_session_unavailable");
+    }
+    if (result) expect(result).toMatchObject({ source: "bundled_factory" });
+    expect(httpsCallable).not.toHaveBeenCalled();
   });
 
   test("persists canonical text+audio descriptors and reuses account-scoped LKG", async () => {

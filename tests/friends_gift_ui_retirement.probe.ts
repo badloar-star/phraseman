@@ -23,7 +23,8 @@ assert.doesNotMatch(fs.readFileSync(path.join(root, 'app/phone_state_runtime.ts'
 assert.doesNotMatch(fs.readFileSync(path.join(root, 'app/hall_of_fame_utils.ts'), 'utf8'), /consumeFriendChainShield|chain_shield/);
 assert.doesNotMatch(fs.readFileSync(path.join(root, 'app/streak_stats.tsx'), 'utf8'), /chainShieldDays/);
 assert.doesNotMatch(fs.readFileSync(path.join(root, 'app/statsCache.ts'), 'utf8'), /chainShieldDays|chain_shield/);
-assert.doesNotMatch(fs.readFileSync(path.join(root, 'app/daily_journey_freeze_ledger.ts'), 'utf8'), /readEffectiveStreakProtection|chain_shield/);
+// D49: «Дневной путь» (и его журнал щитов) удалён целиком.
+assert.equal(fs.existsSync(path.join(root, 'app/daily_journey_freeze_ledger.ts')), false);
 const cloudSync = fs.readFileSync(path.join(root, 'app/cloud_sync.ts'), 'utf8');
 assert.doesNotMatch(cloudSync, /const cloudShield = cloudData\['chain_shield'\]/);
 assert.doesNotMatch(cloudSync, /const canonicalShield = canonicalGiftPerkStorageValue\(/);

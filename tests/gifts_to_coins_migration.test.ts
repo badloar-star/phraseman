@@ -21,7 +21,7 @@ import {
   isCurrentAccountGeneration,
   type AccountGenerationToken,
 } from '../app/account_generation';
-import { DAILY_JOURNEY_GIFT_CLAIM_RECEIPT_PREFIX } from '../constants/daily_journey_gift_storage_keys';
+import { LEGACY_DAILY_PATH_GIFT_CLAIM_RECEIPT_PREFIX as DAILY_JOURNEY_GIFT_CLAIM_RECEIPT_PREFIX } from '../app/gifts_to_coins_legacy_daily_path_v1';
 import {
   __giftsToCoinsTestHooks,
   giftsToCoinsWalKey,

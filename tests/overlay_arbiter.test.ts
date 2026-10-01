@@ -214,7 +214,7 @@ describe('OverlayArbiter: исчерпывающая классификация 
     'introFullAccess', 'levelUp', 'themedAlert',
     'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
     'entitlementExpired', 'referralWelcome', 'friendGift',
-    'dailyJourney', 'dailyJourneyDev', 'devHub', 'compassBriefing',
+    'devHub', 'compassBriefing',
     // coinsMigration — одноразовый информ-модал «Осколки → Монеты»: награды нет,
     // но окно закрывает юзер — выселять таймером нельзя.
     'coinsMigration',
@@ -279,14 +279,6 @@ describe('OverlayArbiter native-modal handoff gap', () => {
   it('classifies the streak revive prompt as a native modal requiring handoff', () => {
     expect(isNativeModal('streakRevive')).toBe(true);
     expect(needsHandoffGap('update', 'streakRevive')).toBe(true);
-  });
-
-  it('serializes the committed Daily Journey reveal as a protected native modal', () => {
-    expect(isForceEvictable('dailyJourney')).toBe(false);
-    expect(isNativeModal('dailyJourney')).toBe(true);
-    expect(needsHandoffGap('update', 'dailyJourney')).toBe(true);
-    expect(needsHandoffGap('dailyJourney', 'leagueResult')).toBe(true);
-    expect(isNativeModal('dailyJourneyDev')).toBe(true);
   });
 
   it('isNativeModal: нативные модалки — да, тосты/in-place — нет', () => {

@@ -21,7 +21,6 @@ describe('Super Sunday live earn source wiring', () => {
     const practiceServer = read('functions/src/practice_rune_grant.ts');
     const learningPlayer = read('app/learning_v2_direct_session_player_v1.tsx');
     const levelGift = read('app/level_gift_system.ts');
-    const dailyJourney = read('app/daily_journey_gift_activation.ts');
     const quests = read('app/quests_client.ts');
     const reportCompensation = read('app/report_reward_bundle.ts');
 
@@ -47,7 +46,8 @@ describe('Super Sunday live earn source wiring', () => {
     expect(learningPlayer).toContain(
       'runSummary?.targetLanguage === "en"',
     );
-    for (const gameplayGateway of [levelGift, dailyJourney, quests]) {
+    // D49: «Дневной путь» удалён целиком — его шлюза больше нет.
+    for (const gameplayGateway of [levelGift, quests]) {
       expect(gameplayGateway).toContain("promotionEligibility: 'gameplay'");
     }
     expect(reportCompensation).toContain(

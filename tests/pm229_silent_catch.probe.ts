@@ -25,7 +25,7 @@ const SKIP_DIRS = new Set(['node_modules', '__tests__', 'graphify-out', '__mocks
 // Только сокращать. Новые файлы сюда не добавлять — логируй причину.
 const BASELINE: Record<string, number> = {
   'app/(tabs)/friends.tsx': 9,
-  'app/(tabs)/home.tsx': 13,
+  'app/(tabs)/home.tsx': 12, // D49 2026-10-01: 13 → 12 (удалён «Дневной путь»)
   'app/(tabs)/lessons.tsx': 1,
   'app/(tabs)/settings.tsx': 4,
   'app/_layout.tsx': 125,
@@ -67,10 +67,6 @@ const BASELINE: Record<string, number> = {
   'app/community_packs/savedCardSetStaging.ts': 2,
   'app/community_packs/staging.ts': 1,
   'app/content_delivery_migration.ts': 1,
-  'app/daily_journey_gift_inbox.ts': 1,
-  'app/daily_journey_gift_inventory_adapter.ts': 1,
-  'app/daily_journey_home_orchestration.ts': 3,
-  'app/daily_journey_production_host.ts': 2,
   'app/daily_phrase_quest.ts': 1,
   'app/daily_phrase_system.ts': 4,
   'app/debug-logger.ts': 2, // PM-228 2026-10-01: 7 → 2 (остались .catch(() => undefined) в цепочке очереди — намеренный разрыв цепочки)
@@ -178,7 +174,7 @@ const BASELINE: Record<string, number> = {
   'app/stable_id.ts': 14,
   'app/statsCache.ts': 3,
   'app/stats_daily_breakdown.ts': 1,
-  'app/streak_stats.tsx': 7,
+  'app/streak_stats.tsx': 4, // D49 2026-10-01: 7 → 4 (удалена кнопка «Подарки»)
   'app/support_diagnostics.ts': 4,
   'app/support_report.tsx': 2,
   'app/survey_client.ts': 1,

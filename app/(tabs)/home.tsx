@@ -3331,17 +3331,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   В ПОТОКЕ под рядом дней
                   недели, а не абсолютом поверх: пилюля 44px перекрывала бы
                   подпись «Вс» в правом углу. */}
-              {/* зачем (владелец 2026-09-14): «спин и подарок маленькой иконкой
-                  в хедер». Широкие пилюли отсюда убраны — их место заняли иконки
-                  со счётчиками в шапке. Здесь остаётся ТОЛЬКО невидимая цель
-                  полёта награды: её терять нельзя, к ней летят подарки. */}
-              <View
-                testID="home-gift-entry-target"
-                ref={homeGiftEntryTargetRef as React.Ref<View>}
-                collapsable={false}
-                pointerEvents="none"
-                style={{ position: 'absolute', right: 0, bottom: 0, width: 104, height: 44 }}
-              />
               {showStatsPulseHint && (<Animated.Text accessibilityLiveRegion="polite" style={{
                     color: t.accent,
                     fontSize: 13,

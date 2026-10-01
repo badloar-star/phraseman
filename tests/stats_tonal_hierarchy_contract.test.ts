@@ -69,18 +69,10 @@ describe('statistics tonal hierarchy contract', () => {
     expect(heatmap).not.toContain('scrim?: StatsCardArtScrim');
   });
 
-  it('keeps the statistics gifts header action borderless and separated by tonal fill', () => {
+  it('D49: кнопки «Подарки» «Дневного пути» в шапке Статистики больше нет', () => {
     const screen = fs.readFileSync(path.join(ROOT, 'app', 'streak_stats.tsx'), 'utf8');
-    const giftActionStart = screen.indexOf('testID="stats-header-gifts"');
-    const giftActionEnd = screen.indexOf('</TouchableOpacity>', giftActionStart);
-    const giftAction = screen.slice(giftActionStart, giftActionEnd);
-
-    expect(giftActionStart).toBeGreaterThan(-1);
-    expect(giftAction).toContain('borderWidth: 0');
-    expect(giftAction).not.toContain('borderWidth: 1');
-    expect(giftAction).not.toContain('borderColor:');
-    expect(giftAction).toContain('statsCardGradient(t)');
-    expect(giftAction).not.toContain('statsGlowStyle');
+    expect(screen).not.toContain('stats-header-gifts');
+    expect(screen).not.toMatch(/daily_journey|DailyJourney/);
   });
 
   it('gives statistics cards semantic tonal gradients without realtime blur', () => {

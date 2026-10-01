@@ -41,6 +41,7 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
+import { pluralWord } from '../constants/plural';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
@@ -406,8 +407,28 @@ export default function FlashcardsVideoPacksScreen() {
     />
   ), [lang, openingPackId, openPack, t]);
 
-  const showEmpty = loadState === 'ready' && visible.length === 0;
   const searching = query.trim().length > 0;
+  // зачем (владелец 01.10: «этот экран больше никогда не должен быть пустым»; «ошибок не показываем»):
+  // нет данных или сбой — держим места строк и тихо повторяем загрузку в фоне (до 5 раз по 20 с).
+  // «Ничего не нашли» остаётся только как ответ на поиск пользователя.
+  const waitingForCatalog = !searching && packs.length === 0 && (loadState === 'error' || loadState === 'ready' || loadState === 'loading');
+  const silentRetryRef = useRef(0);
+  useEffect(() => {
+    if (!waitingForCatalog || loadState === 'loading') return undefined;
+    if (silentRetryRef.current >= 5) {
+      DebugLogger.warn(LOG, `каталог пуст после ${silentRetryRef.current} тихих повторов (loadState=${loadState}) — ждём данных Ядра`);
+      return undefined;
+    }
+    const timer = setTimeout(() => {
+      silentRetryRef.current += 1;
+      DebugLogger.info(LOG, `тихий повтор каталога #${silentRetryRef.current} (loadState=${loadState})`);
+      retryTargetKeyRef.current = targetKey;
+      setReloadTick((n) => n + 1);
+    }, 20_000);
+    return () => clearTimeout(timer);
+  }, [loadState, targetKey, waitingForCatalog]);
+  const showEmpty = searching && visible.length === 0;
+  const phraseTotal = visible.reduce((sum, pack) => sum + (Number(pack.cardCount) || 0), 0);
 
   return (
     <View style={{ flex: 1, backgroundColor: g.bg }}>
@@ -441,6 +462,21 @@ export default function FlashcardsVideoPacksScreen() {
           >
             {copy.title}
           </Text>
+          {visible.length > 0 ? (
+            <Text testID="fc-video-packs-summary" style={[styles.summary, { color: g.secondary }]}>
+              {triLang(lang, {
+                ru: `${visible.length} ${pluralWord(lang, visible.length, { one: 'набор', few: 'набора', many: 'наборов' })} · ${phraseTotal} ${pluralWord(lang, phraseTotal, { one: 'фраза', few: 'фразы', many: 'фраз' })}`,
+                uk: `${visible.length} ${pluralWord(lang, visible.length, { one: 'набір', few: 'набори', many: 'наборів' })} · ${phraseTotal} ${pluralWord(lang, phraseTotal, { one: 'фраза', few: 'фрази', many: 'фраз' })}`,
+                en: `${visible.length} packs · ${phraseTotal} phrases`,
+                es: `${visible.length} paquetes · ${phraseTotal} frases`,
+                'pt-BR': `${visible.length} pacotes · ${phraseTotal} frases`,
+                vi: `${visible.length} bộ · ${phraseTotal} cụm từ`,
+                id: `${visible.length} paket · ${phraseTotal} frasa`,
+                tr: `${visible.length} paket · ${phraseTotal} ifade`,
+                pl: `${visible.length} ${pluralWord(lang, visible.length, { one: 'zestaw', few: 'zestawy', many: 'zestawów' })} · ${phraseTotal} ${pluralWord(lang, phraseTotal, { one: 'fraza', few: 'frazy', many: 'fraz' })}`,
+              })}
+            </Text>
+          ) : null}
 
           <View style={[styles.searchRow, { backgroundColor: g.card, borderColor: g.glassEdge }]}>
             <VideoGlass tint={g.selected} edge={g.glassEdge} />
@@ -484,7 +520,7 @@ export default function FlashcardsVideoPacksScreen() {
             })}
           </View>
 
-          {loadState === 'loading' && packs.length === 0 ? (
+          {waitingForCatalog ? (
             /**
              * Скелет, а не спиннер по центру: первый кадр обязан совпадать по
              * геометрии с готовым списком, иначе экран «прыгает», когда данные
@@ -502,28 +538,14 @@ export default function FlashcardsVideoPacksScreen() {
                 </View>
               ))}
             </View>
-          ) : loadState === 'error' && packs.length === 0 ? (
-            <View style={styles.center}>
-              <View style={[styles.stateTile, { backgroundColor: g.opaqueControl }]}><Ionicons name="play" size={24} color={g.text} /></View>
-              <Text style={[styles.stateTitle, { color: g.text, fontSize: 20 }]}>{copy.errorTitle}</Text>
-              <Text style={[styles.stateBody, { color: g.secondary, fontSize: 15 }]}>{copy.errorBody}</Text>
-              <Pressable
-                testID="fc-video-packs-retry"
-                accessibilityRole="button"
-                onPress={retryCatalog}
-                style={({ pressed }) => [styles.stateAction, { backgroundColor: g.accent, opacity: pressed ? 0.8 : 1 }]}
-              >
-                <Text style={{ color: g.accentInk, fontSize: 16, fontWeight: '600' }}>{copy.retry}</Text>
-              </Pressable>
-            </View>
           ) : showEmpty ? (
             <View style={styles.center}>
               <View style={[styles.stateTile, { backgroundColor: g.opaqueControl }]}><Ionicons name={searching ? 'search' : 'play'} size={24} color={g.text} /></View>
               <Text style={[styles.stateTitle, { color: g.text, fontSize: 20 }]}>
-                {searching ? copy.notFoundTitle : copy.emptyTitle}
+                {copy.notFoundTitle}
               </Text>
               <Text style={[styles.stateBody, { color: g.secondary, fontSize: 15 }]}>
-                {searching ? copy.notFoundBody : copy.emptyBody}
+                {copy.notFoundBody}
               </Text>
               {searching ? (
                 <Pressable
@@ -566,6 +588,7 @@ const styles = StyleSheet.create({
   header: { minHeight: 60, paddingHorizontal: 16, paddingTop: 8, paddingBottom: 8, flexDirection: 'row', alignItems: 'center', gap: 10 },
   headerBtn: { width: 46, height: 46, borderRadius: 23, borderWidth: 1, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
   screenTitle: { paddingHorizontal: 16, marginTop: 4, paddingBottom: 12, fontSize: 34, lineHeight: 40, fontWeight: '800' },
+  summary: { paddingHorizontal: 16, marginTop: -4, paddingBottom: 12, fontSize: 15, lineHeight: 20, fontWeight: '500' },
   searchRow: { marginHorizontal: 16, height: 46, borderWidth: 1, overflow: 'hidden', borderRadius: 14, flexDirection: 'row', alignItems: 'center', gap: 9, paddingHorizontal: 13 },
   searchInput: { flex: 1, padding: 0, fontWeight: '600' },
   sorts: { flexDirection: 'row', gap: 8, paddingHorizontal: 16, paddingTop: 12, paddingBottom: 12 },

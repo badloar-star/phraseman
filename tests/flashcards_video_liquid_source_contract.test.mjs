@@ -22,8 +22,14 @@ test('Video list and row use current translucent theme material with native diff
   assert.match(screen, /colors=\{\[g\.bgTop, g\.bg, g\.bgBottom\]\}/);
 });
 
-test('Video retains distinct loading, error, empty and search states without clipped titles', () => {
-  for (const token of ["'loading' | 'ready' | 'error'", "loadState === 'loading'", "loadState === 'error'", 'searching ? copy.notFoundTitle : copy.emptyTitle', 'fc-video-packs-retry', 'fc-video-packs-clear-search', 'THUMB_W = 112', 'THUMB_H = 63']) {
+// зачем (владелец 01.10): «Из видео» никогда не пустой и без экранов ошибок — места строк + тихий повтор;
+// «Ничего не нашли» остаётся только для поиска.
+test('Video shows rows or row placeholders with silent retry, never an error or empty card', () => {
+  assert.doesNotMatch(screen, /fc-video-packs-retry/);
+  assert.doesNotMatch(screen, /copy.errorTitle|copy.emptyTitle/);
+  assert.match(screen, /silentRetryRef/);
+  assert.match(screen, /fc-video-packs-summary/);
+  for (const token of ["'loading' | 'ready' | 'error'", 'fc-video-packs-clear-search', 'THUMB_W = 112', 'THUMB_H = 63']) {
     assert.ok((screen + row).includes(token), `missing state: ${token}`);
   }
   assert.match(row, /<FlowText/);

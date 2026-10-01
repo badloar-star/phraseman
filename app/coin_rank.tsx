@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { subscribeAppSnapshot } from './app_snapshot_store';
+import { getAppSnapshot, subscribeAppSnapshot } from './app_snapshot_store';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -52,6 +52,12 @@ type CoinBalanceProjection = Readonly<{
   forceBalanceReconcile: () => Promise<'durable' | 'unavailable'>;
 }>;
 
+// зачем (эмулятор 01.10): на холодном старте снимок прогресса ещё читается с диска и
+// peekRunes() даёт 0 — экран показывал «0 монет» и гасил кнопку. Нет прогресса — баланс неизвестен.
+function peekKnownRunes(): number | null {
+  return getAppSnapshot().progress != null ? peekRunes() : null;
+}
+
 function useCoinBalance(): CoinBalanceProjection {
   const initialTokenRef = useRef<AccountToken>(captureAccountGeneration());
   const ownerRef = useRef<string | null>(activeOwner(initialTokenRef.current));
@@ -61,7 +67,7 @@ function useCoinBalance(): CoinBalanceProjection {
     ownerRef.current ? `${ownerRef.current}:${generationRef.current}` : null
   ));
   const [balance, setBalance] = useState<number | null>(() => (
-    ownerRef.current ? peekRunes() : null
+    ownerRef.current ? peekKnownRunes() : null
   ));
 
   const reconcile = useCallback((token: AccountToken = captureAccountGeneration()) => {
@@ -111,7 +117,7 @@ function useCoinBalance(): CoinBalanceProjection {
         || ownerRef.current !== owner
         || generationRef.current !== token.generation
         || !isCurrentAccountGeneration(token, owner)) return;
-      setBalance(peekRunes());
+      setBalance(peekKnownRunes());
     });
     const accountSubscription = subscribeAccountGeneration((token) => {
       if (!mounted) return;

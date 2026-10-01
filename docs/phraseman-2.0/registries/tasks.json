@@ -4782,7 +4782,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -4791,8 +4791,10 @@
       {
         "id": "PM-089-A1",
         "text": "Рекомендация — однократно выдать полный новый запас 5 и отдельно учесть оплаченные права",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "D98 (OWNER_FINAL 2026-09-30) заменил рекомендацию 'выдать 5' на 'обрезать >5 до 5, без долива'; платных прав на запас в коде нет: бонусы cap/rate удалены (D07), app/bonus_energy_store.ts возвращает null, потолок=5 (app/energy_contract.ts); tests/energy_cap_d98_migration.test.ts; docs/phraseman-2.0/docs/ENERGY.md раздел 'Решение по миграции'"
+        ]
       },
       {
         "id": "PM-089-A2",
@@ -4834,7 +4836,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -4851,8 +4853,10 @@
       {
         "id": "PM-090-A2",
         "text": "нет принудительной рекламы, повторных модалок и списания за простое открытие экрана",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Рекламного SDK нет (package.json), NoEnergyModal без рекламы и с однократным показом на попадание (app/lesson1.tsx isShowingEnergyFeedbackRef); списание только при показе первого вопроса, не при открытии экрана (D72, app/energy_first_question_gate.ts, tests/energy_first_question_gate.test.ts 10/10); tests/pm090_zero_energy_no_forced_ads_contract.test.ts 5/5"
+        ]
       }
     ],
     "depends_on": [],
@@ -7765,7 +7769,9 @@
         "id": "PM-146-A1",
         "text": "Курс работает в новом интерфейсе",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (экран/эмулятор): V1 engine/progress/content на месте и работают (A2), но оформление списка уроков V1 в новом интерфейсе меняет сессия «Дизайн» (components/lessons/LessonsListGlassKit.tsx в работе); визуальная сверка с макетом на эмуляторе не выполнена"
+        ]
       },
       {
         "id": "PM-146-A2",
@@ -7803,7 +7809,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -7820,8 +7826,10 @@
       {
         "id": "PM-147-A2",
         "text": "premium continuation проверен на новом и старом аккаунте",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "tests/lesson_lock_system.test.ts +3 теста PM-147: новый аккаунт (Plus продолжает с 4 после бронзы на 3, Free закрыт), старый (cap 6: 4–6 открыты без Plus, Plus продолжает 7), после конца Plus 4–6 остаются; 3 сюиты 77/77 (+legacy_free_lesson_access, monetization_policy)"
+        ]
       }
     ],
     "depends_on": [],
@@ -8128,13 +8136,17 @@
         "id": "PM-153-A1",
         "text": "Название не смешивает V1 с Learning V2",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (владелец): название не утверждено; в docs/phraseman-2.0/docs/COURSES_FUTURE_PLANS.md вопрос Q-A1 с вариантами (Тренировочный курс / оставить «Уроки» / Курс Phraseman), рекомендация — оставить «Уроки»"
+        ]
       },
       {
         "id": "PM-153-A2",
         "text": "контент пользователя не дублируется автоматически",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Правило позиционирования записано в docs/phraseman-2.0/docs/COURSES_FUTURE_PLANS.md (PM-153 п.2): перенос между уроками V1 и наборами пользователя только явным действием, не автоматически"
+        ]
       }
     ],
     "depends_on": [],
@@ -8164,7 +8176,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -8173,14 +8185,18 @@
       {
         "id": "PM-154-A1",
         "text": "32×50=1600 фраз на язык как предложенный объём",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/docs/COURSES_FUTURE_PLANS.md PM-154: 32×50=1600 фраз на язык как предложенный ориентир (COURSES.md), не гарантия качества"
+        ]
       },
       {
         "id": "PM-154-A2",
         "text": "есть ступени, реестр лексики/форм и редакторская проверка до публикации",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/docs/COURSES_FUTURE_PLANS.md PM-154: ступени A1–B2 по сетке V1, реестр лексики и реестр форм, план повторов, редакторская проверка носителем до публикации; пилот на одном языке (выбор языка — Q-C)"
+        ]
       }
     ],
     "depends_on": [],
@@ -8210,7 +8226,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -8219,8 +8235,10 @@
       {
         "id": "PM-155-A1",
         "text": "Проверяются естественность, уровень, перевод, повторение, произношение и фактическая обучающая последовательность",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/docs/COURSES_FUTURE_PLANS.md PM-155: чек-лист из 6 проверок (естественность, уровень, перевод, повторение, произношение, обучающая последовательность), выборка и правило блокировки урока; процесс описан, на языке ещё не запускался"
+        ]
       }
     ],
     "depends_on": [],
@@ -8259,14 +8277,18 @@
       {
         "id": "PM-156-A1",
         "text": "Текущий релиз 2.0 не зависит от завершения V2",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "D96 включил в 2.0 только планы V2; план V2 отдельно в docs/v2/LEARNING_V2_MASTER_WORK_PLAN.md; learning_v2 в таблице готовности включён только решением владельца (app/learning_language_surface_readiness.ts); DEPLOY_NOW.md: функции V2 не срочно"
+        ]
       },
       {
         "id": "PM-156-A2",
         "text": "артефакты и прогресс V2 не теряются при чистке веток",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (решение владельца): V2 в текущей ветке сохранён (content/learning-v2-course 4674 файла, modules/learning-v2 1169), но 7 веток несут коммиты V2, которых нет в ветке (codex/learning-v2-pilot 67, prod-snapshot/learning-v2-pilot-20260721 81, 5 orbit/codex-5d3a по 68) — нужен выбор способа архива, вопрос Q-D"
+        ]
       }
     ],
     "depends_on": [],
@@ -8305,13 +8327,17 @@
         "id": "PM-157-A1",
         "text": "Число проверяется отдельно от трёх уроков V1",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (владелец): раздельный счётчик от трёх уроков V1 описан в плане (COURSES_FUTURE_PLANS.md PM-157), но «согласовать» требует решения: какие 10 сессий и энергия — вопрос Q-E"
+        ]
       },
       {
         "id": "PM-157-A2",
         "text": "стоимость и права учитывают существующие покупки",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (владелец): принцип «существующие покупки не отбираются» записан, но стоимость и точные права требуют решения Q-E и сверки с ledger"
+        ]
       }
     ],
     "depends_on": [],
@@ -8340,7 +8366,7 @@
     ],
     "basis": "LATER",
     "stage": "LATER",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -8349,14 +8375,18 @@
       {
         "id": "PM-158-A1",
         "text": "Сначала качество/стоимость/согласия/retention",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/docs/COURSES_FUTURE_PLANS.md PM-158: порядок качество → стоимость → согласия → retention → fallback, сценарии на реальных акцентах"
+        ]
       },
       {
         "id": "PM-158-A2",
         "text": "не подключать платный API сейчас и не выдавать transcription за оценку произношения",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Платный STT для учеников не подключён (expo-speech-recognition на устройстве; транскрипция только в запломбированном MAX, functions/src/max_voice_config.ts); план запрещает выдавать транскрипцию за оценку произношения (COURSES_FUTURE_PLANS.md); нынешняя подпись балла «Устно» — вопрос Q-F"
+        ]
       }
     ],
     "depends_on": [],
@@ -8385,7 +8415,7 @@
     ],
     "basis": "LATER",
     "stage": "LATER",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -8394,14 +8424,18 @@
       {
         "id": "PM-159-A1",
         "text": "Те же учебные цели, голосовой способ прохождения",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/docs/COURSES_FUTURE_PLANS.md PM-159: те же учебные цели, способ ответа — атрибут попытки (tap|voice); опора на семейства режимов V2 (mode_native_authoring_contract_v1.ts, scripted_repeat_compare)"
+        ]
       },
       {
         "id": "PM-159-A2",
         "text": "не дублируется вся карта/прогресс без модели совместимости",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "COURSES_FUTURE_PLANS.md PM-159: карта и прогресс не дублируются — прогресс по учебной цели, один session ID, голос — режим внутри сессии; открытый порог зачёта — Q-G"
+        ]
       }
     ],
     "depends_on": [],
@@ -8487,13 +8521,17 @@
         "id": "PM-161-A1",
         "text": "Порог решения измерим и утверждён",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (владелец): метрика (активные пользователи карточек языка за 30 дней) предложена, порог не утверждён — вопрос Q-H (рекомендация ≥300)"
+        ]
       },
       {
         "id": "PM-161-A2",
         "text": "локаль карточек не означает обязательство написать курс немедленно",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "COURSES_FUTURE_PLANS.md PM-161: карточки на языке не обязывают писать курс; решение по порогу владельца, включение раздела только таблицей готовности (app/learning_language_surface_readiness.ts, D129/D130)"
+        ]
       }
     ],
     "depends_on": [],
@@ -10835,14 +10873,18 @@
       {
         "id": "PM-207-A1",
         "text": "Нет одновременной речи двух источников",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Арбитр звука: modules/audio/audio_runtime_arbiter.ts — добавлен слот видео (claimVideoAudio): озвучка ставит ролик на паузу, видео глушит озвучку/эффекты, микрофон паузит видео; YoutubeInlinePlayer берёт/снимает аренду по мосту playing; tests/audio_runtime_arbiter.test.ts (+4 теста PM-207), 5 аудио-сюитов 40/41 (1 падение SpireTaskView — чужой, существовало до правки)"
+        ]
       },
       {
         "id": "PM-207-A2",
         "text": "pause/resume/headphones/background обработаны",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "NOT_MET (устройство): код обрабатывает возврат из фона (stopAllAudioOwnersOnResume в app/_layout.tsx), аренды снимаются при паузе/конце/размонтировании, режимы interruptionMode заданы (app/audio_playback_mode.ts); но поведение при звонке, отключении/подключении наушников, iOS silent mode и pause/resume (на Android нет в Expo Speech) проверяется только на физическом устройстве — не проверено"
+        ]
       }
     ],
     "depends_on": [],

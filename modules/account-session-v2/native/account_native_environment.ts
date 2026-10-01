@@ -33,6 +33,8 @@ export type AccountNativeSecureStore = Readonly<{
 /** Подмножество SQLiteDatabase (expo-sqlite 16 + патч аренды), которым пользуется адаптер. */
 export type AccountNativeSqliteDatabase = Readonly<{
   nativeDatabase: unknown;
+  /** Обычное закрытие expo-sqlite — только когда аренды нет (сборка без патча). */
+  closeAsync?: () => Promise<void>;
   execAsync(source: string): Promise<void>;
   runAsync(source: string, params: readonly (null | number | string)[]): Promise<unknown>;
   getFirstAsync(source: string, params: readonly (null | number | string)[]): Promise<unknown>;

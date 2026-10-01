@@ -34,30 +34,43 @@ import {
  * без единой записи (ревью 6B, P2: uid, накопленные без хранилища).
  */
 
-type RetirementMarker = Readonly<{ scopeKey: `account:${string}`; oldLineage: number; nextLineage: number }>;
+type RetirementMarker = Readonly<{
+  scopeKey: `account:${string}`; oldLineage: number; nextLineage: number; manifestHash: string;
+}>;
 
-export function parseRetirementMarker(raw: string | null): RetirementMarker | null {
-  if (raw === null) return null;
+/** absent — метки нет; corrupt — есть, но не читается (это НЕ «нет»: стирание было начато). */
+export type RetirementMarkerRead =
+  | Readonly<{ kind: 'absent' }>
+  | Readonly<{ kind: 'corrupt' }>
+  | Readonly<{ kind: 'valid'; marker: RetirementMarker }>;
+
+export function parseRetirementMarker(raw: string | null): RetirementMarkerRead {
+  if (raw === null) return Object.freeze({ kind: 'absent' });
   try {
     const parsed = JSON.parse(raw) as {
-      v?: unknown; scopeKey?: unknown; oldLineage?: unknown; nextLineage?: unknown;
+      v?: unknown; scopeKey?: unknown; oldLineage?: unknown; nextLineage?: unknown; manifestHash?: unknown;
     };
     if (parsed.v === 1 && typeof parsed.scopeKey === 'string' && /^account:\S.*$/.test(parsed.scopeKey)
       && parsed.scopeKey.trim() === parsed.scopeKey
       && Number.isSafeInteger(parsed.oldLineage) && (parsed.oldLineage as number) > 0
-      && parsed.nextLineage === (parsed.oldLineage as number) + 1) {
+      && parsed.nextLineage === (parsed.oldLineage as number) + 1
+      && typeof parsed.manifestHash === 'string' && /^[0-9a-f]{64}$/.test(parsed.manifestHash)) {
       return Object.freeze({
-        scopeKey: parsed.scopeKey as `account:${string}`,
-        oldLineage: parsed.oldLineage as number,
-        nextLineage: parsed.nextLineage as number,
+        kind: 'valid',
+        marker: Object.freeze({
+          scopeKey: parsed.scopeKey as `account:${string}`,
+          oldLineage: parsed.oldLineage as number,
+          nextLineage: parsed.nextLineage as number,
+          manifestHash: parsed.manifestHash,
+        }),
       });
     }
   } catch (error) {
     console.warn(`${LOG} erase marker_parse_failed kind=${kindOf(error)}`);
-    return null;
+    return Object.freeze({ kind: 'corrupt' });
   }
   console.warn(`${LOG} erase marker_shape_invalid`);
-  return null;
+  return Object.freeze({ kind: 'corrupt' });
 }
 
 function fail(code: string): never {
@@ -143,34 +156,69 @@ export function createAccountNativeScopeEraser(
     })
   );
 
+  let manifestHashMemo: Promise<string> | null = null;
+  // зачем (§5.2): метка помнит, по какому манифесту она записана — иначе продолжение
+  // стирания после обновления манифеста могло бы удалять не те селекторы.
+  const manifestHash = (): Promise<string> => {
+    manifestHashMemo ??= env.digestSha256(JSON.stringify(manifest));
+    return manifestHashMemo;
+  };
+
+  /** §5.2–5.3: линия планируется ДО метки; метка пишется и сверяется. */
+  const writeMarker = async (scope: AccountScopeValue, plan: V2StoragePlan, markerSelector: string): Promise<void> => {
+    const retirement = planV2Retirement(plan.identity);
+    if (retirement.nextPersistentLineage === null) fail('account_native_scope_erase_lineage_exhausted');
+    const lineage = (plan.identity as { persistentLineage: number }).persistentLineage;
+    await writeVerified(
+      markerSelector,
+      JSON.stringify({
+        v: 1, scopeKey: scope.scopeKey, oldLineage: lineage, nextLineage: retirement.nextPersistentLineage,
+        manifestVersion: manifest.manifestVersion, manifestHash: await manifestHash(),
+      }),
+      'account_native_scope_erase_marker_failed',
+    );
+  };
+
+  /** Линия, которую надо дочистить. null — V2 здесь ничего не создавал (нечего стирать). */
+  const lineageToRetire = async (
+    scope: AccountScopeValue,
+    base: V2StoragePlan,
+    markerSelector: string,
+  ): Promise<number | null> => {
+    const read = parseRetirementMarker(await env.secure.get(markerSelector));
+    if (read.kind === 'valid') {
+      if (read.marker.scopeKey !== scope.scopeKey) fail('account_native_scope_erase_marker_foreign');
+      if (read.marker.manifestHash !== await manifestHash()) fail('account_native_scope_erase_marker_manifest_mismatch');
+      console.log(`${LOG} erase resume_from_marker lineage=${read.marker.oldLineage}`);
+      return read.marker.oldLineage;
+    }
+    const stored = await readLineageRecord(env.secure, artifactSelector(base, 'v2.account.lineage'));
+    if (stored.kind === 'unreadable' || stored.kind === 'malformed') fail(`account_native_scope_erase_lineage_${stored.kind}`);
+    if (read.kind === 'corrupt') {
+      // зачем (ревью 6C, P3): битая метка = стирание было начато. Линия erased_empty V
+      // значит, что шаг 2 для V-1 уже прошёл — дочищаем V-1; иначе — текущую.
+      const lineage = stored.kind !== 'stored' ? 1
+        : stored.state === 'erased_empty' && stored.value > 1 ? stored.value - 1 : stored.value;
+      console.warn(`${LOG} erase marker_corrupt_recovering lineage=${lineage}`);
+      await writeMarker(scope, await planFor(manifest, scope, lineage, env.digestSha256), markerSelector);
+      return lineage;
+    }
+    const lineage = stored.kind === 'stored' ? stored.value : 1;
+    const plan = await planFor(manifest, scope, lineage, env.digestSha256);
+    const nothingCreated = stored.kind === 'absent' || (stored.kind === 'stored' && stored.state === 'erased_empty');
+    if (nothingCreated && await isEmpty(plan)) {
+      console.log(`${LOG} erase already_absent lineageKind=${stored.kind}`);
+      return null;
+    }
+    await writeMarker(scope, plan, markerSelector);
+    return lineage;
+  };
+
   const erase = async (scope: AccountScopeValue): Promise<ScopeEraseEvidence> => {
     const base = await planFor(manifest, scope, 1, env.digestSha256);
     const markerSelector = artifactSelector(base, 'v2.account.retirement_marker');
-    const marker = parseRetirementMarker(await env.secure.get(markerSelector));
-    if (marker !== null && marker.scopeKey !== scope.scopeKey) fail('account_native_scope_erase_marker_foreign');
-    let lineage: number;
-    if (marker !== null) {
-      lineage = marker.oldLineage;
-      console.log(`${LOG} erase resume_from_marker lineage=${lineage}`);
-    } else {
-      const stored = await readLineageRecord(env.secure, artifactSelector(base, 'v2.account.lineage'));
-      if (stored.kind === 'unreadable' || stored.kind === 'malformed') fail(`account_native_scope_erase_lineage_${stored.kind}`);
-      lineage = stored.kind === 'stored' ? stored.value : 1;
-      const plan = await planFor(manifest, scope, lineage, env.digestSha256);
-      const nothingCreated = stored.kind === 'absent' || (stored.kind === 'stored' && stored.state === 'erased_empty');
-      if (nothingCreated && await isEmpty(plan)) {
-        console.log(`${LOG} erase already_absent lineageKind=${stored.kind}`);
-        return evidence(scope, 'already_absent');
-      }
-      await writeVerified(
-        markerSelector,
-        JSON.stringify({
-          v: 1, scopeKey: scope.scopeKey, oldLineage: lineage, nextLineage: lineage + 1,
-          manifestVersion: manifest.manifestVersion,
-        }),
-        'account_native_scope_erase_marker_failed',
-      );
-    }
+    const lineage = await lineageToRetire(scope, base, markerSelector);
+    if (lineage === null) return evidence(scope, 'already_absent');
     const plan = await planFor(manifest, scope, lineage, env.digestSha256);
     const lock = await env.acquireProvisionLock(artifactSelector(plan, 'v2.account.db.main'));
     try {

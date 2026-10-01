@@ -137,6 +137,9 @@ export function syncAccountsV2ClientAuthUid(uid: string | null, isEnabled: () =>
   });
 }
 
+/** Записи ключа в полёте по привязке: снятие ждёт свою запись. */
+const credentialWrites = new Map<string, Promise<AccountsV2DeletionCredential | null>>();
+
 /** operationId замка удаления; нет замка (аноним) — общая привязка «без замка». */
 function bindingOf(lockOperationId: string | null): string {
   return lockOperationId === null ? ACCOUNTS_V2_UNBOUND_DELETION : lockOperationId;
@@ -168,6 +171,13 @@ export async function readStoredAccountsV2DeletionCredential(
  * постоянным именем. Чужой замок не трогает. Никогда не отклоняется.
  */
 export async function clearStoredAccountsV2DeletionCredential(lockOperationId: string | null): Promise<boolean> {
+  // зачем (ревью 6C, P3, гонка FAST_WAIT): запрос мог уйти без ключа, пока ключ ещё
+  // пишется. Снятие ждёт окончания записи этого же замка — иначе запись легла бы ПОСЛЕ снятия.
+  const inFlight = credentialWrites.get(bindingOf(lockOperationId));
+  if (inFlight !== undefined) {
+    console.log(`${LOG} delete clear_waits_for_write`);
+    await inFlight;
+  }
   const store = secureStore();
   if (store === null) return false;
   try {
@@ -222,8 +232,12 @@ export function beginAccountsV2Deletion(
   void detaching.catch((error: unknown) => {
     console.warn(`${LOG} delete detach_failed kind=${kindOf(error)}`);
   });
-  return createPersistedCredential(lockOperationId).catch((error: unknown) => {
+  const binding = bindingOf(lockOperationId);
+  const writing = createPersistedCredential(lockOperationId).catch((error: unknown) => {
     console.warn(`${LOG} delete credential_threw kind=${kindOf(error)}`);
     return null;
   });
+  credentialWrites.set(binding, writing);
+  void writing.then(() => { if (credentialWrites.get(binding) === writing) credentialWrites.delete(binding); });
+  return writing;
 }

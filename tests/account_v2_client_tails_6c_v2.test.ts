@@ -60,13 +60,18 @@ async function settle(): Promise<void> {
 class DiscoveringAdapter extends MemoryScopeStorageAdapter {
   constructor(private readonly events: string[], private readonly pending: readonly string[]) { super(); }
 
-  async discoverPendingEraseUids(): Promise<readonly string[]> {
+  readonly knownSeen: (readonly string[])[] = [];
+  failErase = false;
+
+  async discoverPendingEraseUids(known: readonly string[] = []): Promise<readonly string[]> {
     this.events.push('discover');
+    this.knownSeen.push(known);
     return this.pending;
   }
 
   override async eraseClosedAccountScope(scope: Parameters<ScopeStorageAdapter['eraseClosedAccountScope']>[0]) {
     this.events.push(`erase:${scope.uid}`);
+    if (this.failErase) throw new Error('io');
     return super.eraseClosedAccountScope(scope);
   }
 }
@@ -112,6 +117,30 @@ describe('account v2 client tails 6C', () => {
     expect(events).toEqual(['discover', `erase:${B}`, 'reset']);
     expect(secure.map.has(ACCOUNTS_V2_DETACH_LATCH_KEY)).toBe(false);
     expect(controller.status().uid).toBeNull();
+  });
+
+  test('corrupt latch: a FAILED pending erase keeps the latch (no reset)', async () => {
+    const events: string[] = [];
+    const secure = secureStore();
+    secure.map.set(ACCOUNTS_V2_DETACH_LATCH_KEY, '{broken');
+    const adapter = new DiscoveringAdapter(events, [B]);
+    adapter.failErase = true;
+    const { controller } = controllerWith(adapter, secure, events);
+    await controller.setAuthUid(A);
+    await settle();
+    expect(events).toEqual(['discover', `erase:${B}`]);
+    expect(secure.map.get(ACCOUNTS_V2_DETACH_LATCH_KEY)).toBe('{broken');
+  });
+
+  test('corrupt latch: discovery is given the uids this process knows (current + deleted)', async () => {
+    const events: string[] = [];
+    const secure = secureStore();
+    secure.map.set(ACCOUNTS_V2_DETACH_LATCH_KEY, '{broken');
+    const adapter = new DiscoveringAdapter(events, []);
+    const { controller } = controllerWith(adapter, secure, events);
+    await controller.setAuthUid(A);
+    await settle();
+    expect(adapter.knownSeen).toEqual([[A]]);
   });
 
   test('corrupt latch without storage: no pass possible, so NO reset (stays fail-closed)', async () => {
@@ -200,6 +229,48 @@ describe('account v2 client tails 6C', () => {
     expect(enqueued).toBeGreaterThan(0);
     expect(clearAfterEnqueue).toBeGreaterThan(advancedOk);
     expect(clearAfterEnqueue - advancedOk).toBeLessThan(300);
+    // Ветка «ответ потерян → ждём квитанцию» тоже снимает ключ — только при успехе.
+    const waitAt = retry.indexOf('waitForAccountDeletionCredentialSafe(proof)');
+    const waitTail = retry.slice(waitAt, waitAt + 400);
+    expect(waitTail).toContain('if (safe) clearStoredAccountsV2DeletionCredentialIfEnabled(lock.operationId);');
+    // Аноним: ключ снимается только после ответа сервера, а не сразу после отправки.
+    const anonStart = source.indexOf('void cloudDeleteEnqueueOperation.acknowledgment', advancedOk);
+    const anonThen = source.slice(anonStart, source.indexOf('.catch(', anonStart));
+    expect(anonThen).toContain('clearStoredAccountsV2DeletionCredentialIfEnabled(null)');
+    const dispatchAt = source.indexOf('await cloudDeleteEnqueueOperation.dispatchSettled;', anonStart);
+    expect(source.slice(dispatchAt, dispatchAt + 200)).not.toContain('clearStoredAccountsV2DeletionCredentialIfEnabled');
+  });
+
+  test('clear waits for an in-flight key write of the same lock (FAST_WAIT race)', async () => {
+    jest.resetModules();
+    const secure = new Map<string, string>();
+    let releaseWrite!: () => void;
+    const writeGate = new Promise<void>((resolve) => { releaseWrite = resolve; });
+    jest.doMock('expo-secure-store', () => ({
+      getItemAsync: async (key: string) => secure.get(key) ?? null,
+      setItemAsync: async (key: string, value: string) => {
+        if (key === 'accounts_v2_deletion_credential_v1') await writeGate;
+        secure.set(key, value);
+      },
+      deleteItemAsync: async (key: string) => { secure.delete(key); },
+    }));
+    const nodeCrypto = jest.requireActual('crypto') as typeof import('crypto');
+    jest.doMock('expo-crypto', () => ({
+      getRandomBytesAsync: async (count: number) => Uint8Array.from(nodeCrypto.randomBytes(count)),
+      randomUUID: () => nodeCrypto.randomUUID(),
+    }));
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const runtime = require('../modules/account-session-v2/accounts_v2_client_runtime') as
+      typeof import('../modules/account-session-v2/accounts_v2_client_runtime');
+    const pending = runtime.beginAccountsV2Deletion(A, () => true, 'lock-op-1');
+    const clearing = runtime.clearStoredAccountsV2DeletionCredential('lock-op-1');
+    await settle();
+    releaseWrite();
+    await pending;
+    await expect(clearing).resolves.toBe(true);
+    expect(secure.has('accounts_v2_deletion_credential_v1')).toBe(false);
+    jest.dontMock('expo-secure-store');
+    jest.dontMock('expo-crypto');
   });
 
   test('iOS: the native storage environment is null with a log (never opened)', () => {

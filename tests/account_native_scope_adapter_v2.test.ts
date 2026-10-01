@@ -37,6 +37,9 @@ class FakeDevice {
   secureWrites = 0;
   cipherAvailable = true;
   failDeleteOnce: string | null = null;
+  failRemovePrefixOnce: string | null = null;
+  unpatchedNative = false;
+  plainCloses = 0;
   readonly heldLocks = new Set<string>();
   closes = 0;
 
@@ -47,7 +50,14 @@ class FakeDevice {
       secure: Object.freeze({
         get: async (key: string) => this.secure.get(key) ?? null,
         set: async (key: string, value: string) => { this.secureWrites += 1; this.secure.set(key, value); },
-        remove: async (key: string) => { this.secureWrites += 1; this.secure.delete(key); },
+        remove: async (key: string) => {
+          if (this.failRemovePrefixOnce !== null && key.startsWith(this.failRemovePrefixOnce)) {
+            this.failRemovePrefixOnce = null;
+            throw new Error('keychain_io');
+          }
+          this.secureWrites += 1;
+          this.secure.delete(key);
+        },
       }),
       randomKeyBytes: async () => new Uint8Array(randomBytes(32)),
       acquireProvisionLock: async (name: string) => {
@@ -81,6 +91,17 @@ class FakeDevice {
     };
     const view = () => staged ?? file;
     const device = this;
+    if (this.unpatchedNative) {
+      // Сборка без патча аренды: у нативной базы нет методов аренды, закрывается обычным closeAsync.
+      return Object.freeze({
+        nativeDatabase: Object.freeze({}),
+        closeAsync: async () => { device.plainCloses += 1; },
+        execAsync: async () => undefined,
+        getFirstAsync: async () => null,
+        getAllAsync: async () => [],
+        runAsync: async () => ({ changes: 0 }),
+      }) as unknown as AccountNativeSqliteDatabase;
+    }
     return Object.freeze({
       nativeDatabase: Object.freeze({
         revokeAccountLeaseSync(): undefined { revoked = true; return undefined; },
@@ -271,6 +292,90 @@ describe('account native scope adapter v2 (Пакет 6C)', () => {
     expect(device.markers()).toEqual([]);
     expect(device.files.size).toBe(0);
     await expect(restarted.discoverPendingEraseUids()).resolves.toEqual([]);
+  });
+
+  test('crash between files deleted (§5.5) and marker removed (§5.7): known uid is discovered; open finishes the erase', async () => {
+    const device = new FakeDevice();
+    await writeRecord(device, 1, 'k1', 'hello');
+    device.failRemovePrefixOnce = 'accounts_v2_account_retire_';
+    const adapter = createAccountNativeScopeAdapter(device.env());
+    await expect(adapter.eraseClosedAccountScope(scopeA)).rejects.toBeTruthy();
+    expect(device.files.size).toBe(0);
+    expect(device.markers()).toHaveLength(1);
+    // Файлов нет — по именам не найти; по известному uid — находится.
+    await expect(adapter.discoverPendingEraseUids([])).resolves.toEqual([]);
+    await expect(adapter.discoverPendingEraseUids([A, 'uid-z'])).resolves.toEqual([A]);
+    // Открытие видит recovery_required → дочищает под той же очередью → открывает свежую линию.
+    await expect(readRecord(device, 5, 'k1')).resolves.toBeNull();
+    expect(device.markers()).toEqual([]);
+    expect(device.lineage()).toEqual({ v: 1, value: 2, state: 'active' });
+  });
+
+  test('discovery attributes a family found only by a sidecar (-wal) name', async () => {
+    const device = new FakeDevice();
+    await writeRecord(device, 1, 'k1', 'hello');
+    const dbName = [...device.files.keys()][0];
+    device.failDeleteOnce = dbName;
+    const adapter = createAccountNativeScopeAdapter(device.env());
+    await expect(adapter.eraseClosedAccountScope(scopeA)).rejects.toBeTruthy();
+    device.files.clear();
+    device.sidecars.add(`${dbName}-wal`);
+    await expect(adapter.discoverPendingEraseUids([])).resolves.toEqual([A]);
+  });
+
+  test('marker carries the manifest hash (§5.2)', async () => {
+    const device = new FakeDevice();
+    await writeRecord(device, 1, 'k1', 'hello');
+    device.failDeleteOnce = [...device.files.keys()][0];
+    await expect(createAccountNativeScopeAdapter(device.env()).eraseClosedAccountScope(scopeA)).rejects.toBeTruthy();
+    const marker = JSON.parse(device.secure.get(device.markers()[0])!) as Record<string, unknown>;
+    expect(marker.manifestHash).toMatch(/^[0-9a-f]{64}$/);
+    expect(marker).toMatchObject({ v: 1, scopeKey: `account:${A}`, oldLineage: 1, nextLineage: 2, manifestVersion: 1 });
+  });
+
+  test('a corrupt marker is NOT absent: erase still retires the old lineage and removes it', async () => {
+    const device = new FakeDevice();
+    await writeRecord(device, 1, 'k1', 'hello');
+    const hash = createHash('sha256').update(A).digest('hex');
+    device.secure.set(`accounts_v2_account_retire_${hash}`, '{broken');
+    await expect(createAccountNativeScopeAdapter(device.env()).eraseClosedAccountScope(scopeA))
+      .resolves.toMatchObject({ outcome: 'erased' });
+    expect(device.files.size).toBe(0);
+    expect(device.keyNames()).toEqual([]);
+    expect(device.markers()).toEqual([]);
+  });
+
+  test('corrupt marker after the lineage bump (§5.2 done): erase still removes the OLD lineage files', async () => {
+    const device = new FakeDevice();
+    await writeRecord(device, 1, 'k1', 'hello');
+    device.failRemovePrefixOnce = 'accounts_v2_account_key_';
+    await expect(createAccountNativeScopeAdapter(device.env()).eraseClosedAccountScope(scopeA)).rejects.toBeTruthy();
+    expect(device.lineage()).toEqual({ v: 1, value: 2, state: 'erased_empty' });
+    device.secure.set(device.markers()[0], '{broken');
+    await expect(createAccountNativeScopeAdapter(device.env()).eraseClosedAccountScope(scopeA))
+      .resolves.toMatchObject({ outcome: 'erased' });
+    expect(device.files.size).toBe(0);
+    expect(device.keyNames()).toEqual([]);
+    expect(device.markers()).toEqual([]);
+  });
+
+  test('retirement is planned BEFORE the marker: an exhausted lineage writes no marker (§5.3)', async () => {
+    const device = new FakeDevice();
+    const hash = createHash('sha256').update(A).digest('hex');
+    const max = Number.MAX_SAFE_INTEGER;
+    device.secure.set(`accounts_v2_account_lineage_${hash}`, JSON.stringify({ v: 1, value: max, state: 'active' }));
+    device.secure.set(`accounts_v2_account_key_${hash}_${max}`, 'a'.repeat(64));
+    await expect(createAccountNativeScopeAdapter(device.env()).eraseClosedAccountScope(scopeA)).rejects.toBeTruthy();
+    expect(device.markers()).toEqual([]);
+  });
+
+  test('lease binding cannot be created (unpatched build): the opened DB is closed, open refused', async () => {
+    const device = new FakeDevice();
+    device.unpatchedNative = true;
+    const store = createAccountScopeStore(createAccountNativeScopeAdapter(device.env()));
+    await expect(store.open(scopeA, fence(A, 1))).rejects.toMatchObject({ code: 'account_scope_open_failed' });
+    expect(device.plainCloses).toBe(1);
+    expect(device.heldLocks.size).toBe(0);
   });
 
   test('adapter failure ⇒ the V2 client never opens a scope and never sends', async () => {

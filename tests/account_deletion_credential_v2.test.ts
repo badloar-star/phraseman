@@ -88,19 +88,19 @@ describe('account deletion credential v2', () => {
   test('credential round-trips through SecureStore; broken record reads as null', async () => {
     const store = secureStore();
     const credential = await createAccountsV2DeletionCredential((count) => Uint8Array.from(randomBytes(count)));
-    await expect(persistAccountsV2DeletionCredential(store, credential)).resolves.toBe(true);
-    await expect(readAccountsV2DeletionCredential(store)).resolves.toEqual(credential);
-    store.map.set(ACCOUNTS_V2_DELETION_CREDENTIAL_KEY, '{"v":1,"operationId":"short","capability":"x"}');
-    await expect(readAccountsV2DeletionCredential(store)).resolves.toBeNull();
+    await expect(persistAccountsV2DeletionCredential(store, credential, 'lock-op-1')).resolves.toBe(true);
+    await expect(readAccountsV2DeletionCredential(store, 'lock-op-1')).resolves.toEqual(credential);
+    store.map.set(ACCOUNTS_V2_DELETION_CREDENTIAL_KEY, '{"v":2,"bindingId":"lock-op-1","operationId":"short","capability":"x"}');
+    await expect(readAccountsV2DeletionCredential(store, 'lock-op-1')).resolves.toBeNull();
     store.failWrites = true;
-    await expect(persistAccountsV2DeletionCredential(store, credential)).resolves.toBe(false);
+    await expect(persistAccountsV2DeletionCredential(store, credential, 'lock-op-1')).resolves.toBe(false);
   });
 
   test('the secret never reaches the logs', async () => {
     const store = secureStore();
     const credential = await createAccountsV2DeletionCredential((count) => Uint8Array.from(randomBytes(count)));
     store.failWrites = true;
-    await persistAccountsV2DeletionCredential(store, credential);
+    await persistAccountsV2DeletionCredential(store, credential, 'lock-op-1');
     const lines = [...warn.mock.calls, ...log.mock.calls].map((args) => args.join(' '));
     expect(lines.some((line) => line.includes(credential.capability) || line.includes(credential.operationId))).toBe(false);
   });

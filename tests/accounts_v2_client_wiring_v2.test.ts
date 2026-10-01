@@ -103,10 +103,11 @@ describe('accounts v2 client wiring v2', () => {
     expect(credential).not.toBeNull();
     expect(credentialModule.isStrongAccountsV2Capability(credential!.capability)).toBe(true);
     expect(secure.get(credentialModule.ACCOUNTS_V2_DELETION_CREDENTIAL_KEY)).toContain(credential!.capability);
-    // Повтор после перезапуска читает тот же ключ.
-    await expect(runtime.readStoredAccountsV2DeletionCredential()).resolves.toEqual(credential);
+    // Повтор после перезапуска читает тот же ключ — только своим замком (Пакет 6C).
+    await expect(runtime.readStoredAccountsV2DeletionCredential(null)).resolves.toEqual(credential);
+    await expect(runtime.readStoredAccountsV2DeletionCredential('lock-op-other')).resolves.toBeNull();
     for (let index = 0; index < 20; index += 1) await new Promise((resolve) => setImmediate(resolve));
-    // Нативного хранилища областей ещё нет — защёлка остаётся до стирания (будущий запуск).
+    // Хранилище области в этом тесте не открывалось — защёлка остаётся до стирания (будущий запуск).
     expect(secure.get('accounts_v2_detach_latch_v1')).toContain('uid-a');
     jest.dontMock('expo-secure-store');
     jest.dontMock('expo-crypto');
@@ -115,7 +116,9 @@ describe('accounts v2 client wiring v2', () => {
   test('deletion: V2 detaches after the point of no return, BEFORE the local wipe and the network', () => {
     const body = functionBody(read('app/auth_provider.ts'), 'async function prepareAccountDeletion(');
     const guard = body.indexOf('if (!isProvablyAnonymousAccount && !pendingDeleteLock) return null;');
-    const detach = body.indexOf('beginAccountsV2DeletionIfEnabled(pendingDeleteProviderUid)');
+    const detach = body.indexOf('beginAccountsV2DeletionIfEnabled(');
+    // Пакет 6C: ключ V2 привязан к operationId замка удаления.
+    expect(body).toContain('pendingDeleteLock?.operationId ?? null,');
     const wipe = body.indexOf('wipeAndVerifyPostDeleteLocalData(');
     const network = body.indexOf('startCloudDeletionEnqueue(');
     expect(guard).toBeGreaterThan(0);
@@ -132,7 +135,7 @@ describe('accounts v2 client wiring v2', () => {
   test('retry after restart resends the stored V2 key; fast phase waits at most 250 ms', () => {
     const source = read('app/auth_provider.ts');
     const retry = functionBody(source, 'async function ensureAccountDeleteCredentialSafe(');
-    const readKey = retry.indexOf('readStoredAccountsV2DeletionCredentialIfEnabled()');
+    const readKey = retry.indexOf('readStoredAccountsV2DeletionCredentialIfEnabled(lock.operationId)');
     const send = retry.indexOf('startCloudDeletionEnqueue(lock.stableId, proof, ...retryAccountsV2Args)');
     expect(readKey).toBeGreaterThan(0);
     expect(send).toBeGreaterThan(readKey);
@@ -145,7 +148,8 @@ describe('accounts v2 client wiring v2', () => {
     const factory = jest.fn(() => ({ readStoredAccountsV2DeletionCredential: jest.fn() }));
     jest.doMock('../modules/account-session-v2/accounts_v2_client_runtime', factory);
     const gate = require('../app/accounts_v2_client_flag') as typeof import('../app/accounts_v2_client_flag');
-    expect(gate.readStoredAccountsV2DeletionCredentialIfEnabled()).toBeNull();
+    expect(gate.readStoredAccountsV2DeletionCredentialIfEnabled('lock-op')).toBeNull();
+    gate.clearStoredAccountsV2DeletionCredentialIfEnabled('lock-op');
     expect(factory).not.toHaveBeenCalled();
   });
 

@@ -1,6 +1,6 @@
 # Task packet: Account V2 — Пакет 6C: хранилище на телефоне + тумблеры в админке
 
-Governance-ID: TG-32BAC401A371
+Governance-ID: TG-75B2EECD5E7E
 Status: Done (SPEC+SECURITY APPROVE; P2 до включения флага)
 Owner: Claude session (Account V2, /loop)
 
@@ -38,3 +38,4 @@ RED→GREEN; tests/account_*_v2 по одному; Babel-сторож; perf/layo
 - P2 adapter.ts:58,257-284 + recoverCorruptLatch: поиск незаконченных стираний только по `.db` → сбой между шагами 5 и 7 + испорченная защёлка = вечный recovery_required. Fix: при открытии recovery_required → eraser.erase под той же очередью; искать все 4 суффикса; ошибку стирания не глотать (не сбрасывать защёлку).
 - P3: метка без хэша манифеста (§5.2), planV2Retirement после записи метки (§5.3 — до); битая метка = отсутствующая; лик открытой базы при ошибке lease_binding; ключ удаления: аноним снимает до ответа, гонка FAST_WAIT, ветка waitForAccountDeletionCredentialSafe не снимает.
 - Доказать на эмуляторе: defaultDatabaseDirectory, папка accounts-v2 до блокировки, исключение SecureStore из бэкапа.
+- Ремонт №1 (P2+P3) сделан: дочистка при recovery_required, поиск по 4 суффиксам + известные uid, защёлка не сбрасывается при упавшем стирании, хэш манифеста в метке, planV2Retirement до метки, битая метка = восстановление, закрытие базы при сбое lease_binding, ключ удаления снимается только после ответа/записи. Коммит срочно: c930bac6c не включил app/accounts_v2_client_flag.ts и 2 теста → HEAD не собирался.

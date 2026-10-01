@@ -51,11 +51,14 @@ export type AccountNativeScopeAdapter = ScopeStorageAdapter & Readonly<{
    * uid областей с незаконченным стиранием (найдена метка вывода из строя).
    * зачем (ревью 6B, P2): при испорченной защёлке это единственный след
    * «дочистить», который не лежит в самой защёлке. Никогда не отклоняется.
+   * knownUids (ревью 6C, P2): uid, известные процессу (текущий, удалённые) —
+   * их метка проверяется даже когда файлов семейства уже нет (сбой между §5.5 и §5.7).
    */
-  discoverPendingEraseUids(): Promise<readonly string[]>;
+  discoverPendingEraseUids(knownUids?: readonly string[]): Promise<readonly string[]>;
 }>;
 
-const DATABASE_NAME = /^accounts-v2-a-([0-9a-f]{64})-([1-9][0-9]{0,15})\.db$/;
+// зачем (ревью 6C, P2): любой член семейства (main/-wal/-shm/-journal) — след области.
+const DATABASE_NAME = /^accounts-v2-a-([0-9a-f]{64})-([1-9][0-9]{0,15})\.db(?:-wal|-shm|-journal)?$/;
 const KEY_HEX = /^[0-9a-f]{64}$/;
 
 type Lease = Readonly<{ lock: AccountNativeProvisionLock }>;
@@ -78,7 +81,20 @@ function changesOf(value: unknown): Readonly<{ changes: number }> {
 /** Ключ на том же соединении, затем свёртка соединения в кандидата провиженера. */
 async function keyedCandidate(database: AccountNativeSqliteDatabase, keyHex: string): Promise<Candidate> {
   // зачем: аренда — первым делом; без неё открытое соединение нечем было бы закрыть.
-  const leaseBinding = createAccountSqliteLeaseBinding(database.nativeDatabase);
+  let leaseBinding: ReturnType<typeof createAccountSqliteLeaseBinding>;
+  try {
+    leaseBinding = createAccountSqliteLeaseBinding(database.nativeDatabase);
+  } catch (error) {
+    // зачем (ревью 6C, P3): сборка без патча аренды — базу уже открыли, закрываем обычным путём.
+    console.warn(`${LOG} storage lease_binding_failed code=${codeOf(error)}`);
+    try {
+      if (typeof database.closeAsync === 'function') await database.closeAsync();
+      else console.warn(`${LOG} storage lease_binding_close_unavailable`);
+    } catch (closeError) {
+      console.warn(`${LOG} storage lease_binding_close_failed kind=${kindOf(closeError)}`);
+    }
+    throw new AccountNativeScopeAdapterError('account_native_scope_lease_unsupported');
+  }
   try {
     // keyHex уже проверен провиженером: ровно 64 строчных hex — подстановка безопасна.
     await database.execAsync(`PRAGMA key = "x'${keyHex}'"`);
@@ -224,7 +240,7 @@ export function createAccountNativeScopeAdapter(env: AccountNativeEnvironment): 
   const serial = createKeyedMutex();
   const eraser = createAccountNativeScopeEraser(env, manifest);
 
-  const openAccount = async (scope: AccountScopeValue): Promise<ScopeStorageConnection> => {
+  const openAccount = async (scope: AccountScopeValue, allowRecovery: boolean): Promise<ScopeStorageConnection> => {
     const lineage = await lineageForOpen(env, manifest, scope);
     const plan = await planFor(manifest, scope, lineage, env.digestSha256);
     const result = await provisionOrReopenV2(manifest, plan, ports);
@@ -237,6 +253,14 @@ export function createAccountNativeScopeAdapter(env: AccountNativeEnvironment): 
       const cleaned = await result.cleanup.retryCleanup();
       console.warn(`${LOG} storage open_cleanup outcome=${cleaned.outcome}`);
     }
+    if (result.decision === 'recovery_required' && allowRecovery) {
+      // зачем (ревью 6C, P2): метка вывода из строя = незаконченное стирание этой области.
+      // Без дочистки открытие отказывало бы вечно. Дочищаем (мы уже в очереди области)
+      // и пробуем открыть ОДИН раз; ошибка стирания уходит вызывающему.
+      console.warn(`${LOG} storage open_recovery erase_then_retry`);
+      await eraser.erase(scope);
+      return openAccount(scope, false);
+    }
     throw new AccountNativeScopeAdapterError(result.code);
   };
 
@@ -248,39 +272,47 @@ export function createAccountNativeScopeAdapter(env: AccountNativeEnvironment): 
         throw new AccountNativeScopeAdapterError('account_native_scope_guest_unsupported');
       }
       const hash = await hashOf(env, manifest, scope);
-      return serial(hash, () => openAccount(scope));
+      return serial(hash, () => openAccount(scope, true));
     },
     eraseClosedAccountScope: async (scope: AccountScopeValue) => {
       const hash = await hashOf(env, manifest, scope);
       return serial(hash, () => eraser.erase(scope));
     },
-    discoverPendingEraseUids: async (): Promise<readonly string[]> => {
-      let names: readonly string[];
+    discoverPendingEraseUids: async (knownUids: readonly string[] = []): Promise<readonly string[]> => {
+      let names: readonly string[] = [];
       try {
         names = await env.listFileNames();
       } catch (error) {
+        // зачем: без списка файлов ещё можно проверить известные uid — не выходим.
         console.warn(`${LOG} storage discover_list_failed kind=${kindOf(error)}`);
-        return Object.freeze([]);
       }
-      const hashes = [...new Set(names.flatMap((name) => {
+      const known = new Map<string, string>();
+      for (const uid of new Set(knownUids)) {
+        try {
+          known.set(await hashOf(env, manifest, accountScopeOf(uid)), uid);
+        } catch (error) {
+          console.warn(`${LOG} storage discover_known_invalid code=${codeOf(error)}`);
+        }
+      }
+      const familyHashes = new Set(names.flatMap((name) => {
         const match = DATABASE_NAME.exec(name);
         return match === null ? [] : [match[1]];
-      }))];
-      const uids: string[] = [];
+      }));
+      const uids = new Set<string>();
       let unattributed = 0;
-      for (const hash of hashes) {
+      for (const hash of new Set([...familyHashes, ...known.keys()])) {
         try {
-          const markerSelector = eraser.markerSelectorForHash(hash);
-          const marker = parseRetirementMarker(await env.secure.get(markerSelector));
-          if (marker === null) { unattributed += 1; continue; }
-          uids.push(marker.scopeKey.slice('account:'.length));
+          const read = parseRetirementMarker(await env.secure.get(eraser.markerSelectorForHash(hash)));
+          if (read.kind === 'valid') uids.add(read.marker.scopeKey.slice('account:'.length));
+          else if (read.kind === 'corrupt' && known.has(hash)) uids.add(known.get(hash)!);
+          else if (familyHashes.has(hash)) unattributed += 1;
         } catch (error) {
           console.warn(`${LOG} storage discover_marker_failed kind=${kindOf(error)}`);
         }
       }
-      // зачем: область без метки нельзя приписать uid (в имени только хэш) — не трогаем, но считаем.
-      console.log(`${LOG} storage discovered families=${hashes.length} pending=${uids.length} unattributed=${unattributed}`);
-      return Object.freeze(uids);
+      // зачем: область без читаемой метки и без известного uid не приписать (в имени только хэш) — считаем.
+      console.log(`${LOG} storage discovered families=${familyHashes.size} known=${known.size} pending=${uids.size} unattributed=${unattributed}`);
+      return Object.freeze([...uids]);
     },
   });
 }

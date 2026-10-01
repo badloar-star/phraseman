@@ -260,27 +260,31 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
     return ports.callSync(batch);
   };
 
-  const resumePendingErase = async (st: AccountScopeStore, uids: readonly string[]): Promise<void> => {
+  /** true — все стирания подтверждены; false — хоть одно упало (в лог — код). */
+  const resumePendingErase = async (st: AccountScopeStore, uids: readonly string[]): Promise<boolean> => {
+    let allErased = true;
     for (const uid of uids) {
       try {
         const evidence = await st.eraseClosedAccountScope(accountScope(uid));
         const cleared = await ports.latch.clear(uid);
         console.log(`${LOG} erase resumed outcome=${evidence.outcome} records=${evidence.erasedRecordCount} latchCleared=${cleared}`);
       } catch (error) {
+        allErased = false;
         console.warn(`${LOG} erase resume_failed code=${codeOf(error)}`);
       }
     }
+    return allErased;
   };
 
   /** Найденные хранилищем uid с незаконченным стиранием (метка вывода из строя). */
-  const discoverPendingErase = async (): Promise<readonly string[]> => {
+  const discoverPendingErase = async (knownUids: readonly string[]): Promise<readonly string[]> => {
     const discover = (storeAdapter as { discoverPendingEraseUids?: unknown } | null)?.discoverPendingEraseUids;
     if (typeof discover !== 'function') {
       console.log(`${LOG} latch discover_unsupported`);
       return [];
     }
     try {
-      const found = await Reflect.apply(discover, storeAdapter, []) as unknown;
+      const found = await Reflect.apply(discover, storeAdapter, [knownUids]) as unknown;
       return Array.isArray(found) ? found.filter((uid): uid is string => typeof uid === 'string' && uid.length > 0) : [];
     } catch (error) {
       console.warn(`${LOG} latch discover_failed code=${codeOf(error)}`);
@@ -300,9 +304,15 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
       console.warn(`${LOG} latch reset_deferred reason=storage_unavailable`);
       return;
     }
-    const uids = [...new Set([...await discoverPendingErase(), ...detachedInProcess])];
-    console.warn(`${LOG} latch corrupt_recovery pending=${uids.length}`);
-    if (uids.length > 0) await resumePendingErase(st, uids);
+    const authUid = ports.currentAuthUid();
+    const known = [...new Set([...detachedInProcess, ...(authUid === null ? [] : [authUid])])];
+    const uids = [...new Set([...await discoverPendingErase(known), ...detachedInProcess])];
+    console.warn(`${LOG} latch corrupt_recovery pending=${uids.length} known=${known.length}`);
+    if (uids.length > 0 && !await resumePendingErase(st, uids)) {
+      // зачем (ревью 6C, P2): стирание не прошло — запись не сбрасываем, повтор на следующем запуске.
+      console.warn(`${LOG} latch reset_deferred reason=erase_failed`);
+      return;
+    }
     const reset = await ports.latch.reset();
     console.warn(`${LOG} latch corrupt_recovery_done reset=${reset}`);
   };

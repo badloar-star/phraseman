@@ -55,27 +55,45 @@ export function syncAccountsV2ClientAuth(uid: string | null): void {
  */
 export function beginAccountsV2DeletionIfEnabled(
   uid: string | null,
+  lockOperationId: string | null = null,
 ): Promise<Readonly<{ operationId: string; capability: string }> | null> | null {
   const client = loadAccountsV2ClientIfEnabled();
   if (client === null) {
     if (__DEV__) console.log('[ACCOUNT-V2] delete skip reason=flag_off');
     return null;
   }
-  return client.beginAccountsV2Deletion(uid, isAccountsV2ClientEnabled);
+  // зачем (Пакет 6C, хвост 6B P3): ключ V2 привязан к замку удаления (его operationId).
+  return client.beginAccountsV2Deletion(uid, isAccountsV2ClientEnabled, lockOperationId);
 }
 
 /**
  * Повтор постановки удаления после перезапуска: сохранённый ключ V2 (если есть).
  * null — флаг выключен (повтор идёт ровно как раньше, без поля V2).
  */
-export function readStoredAccountsV2DeletionCredentialIfEnabled():
-  Promise<Readonly<{ operationId: string; capability: string }> | null> | null {
+export function readStoredAccountsV2DeletionCredentialIfEnabled(
+  lockOperationId: string | null,
+): Promise<Readonly<{ operationId: string; capability: string }> | null> | null {
   const client = loadAccountsV2ClientIfEnabled();
   if (client === null) {
     if (__DEV__) console.log('[ACCOUNT-V2] delete_retry skip reason=flag_off');
     return null;
   }
-  return client.readStoredAccountsV2DeletionCredential();
+  return client.readStoredAccountsV2DeletionCredential(lockOperationId);
+}
+
+/**
+ * Удаление замка завершено (сервер принял постановку) — снять ключ V2 этого
+ * замка. Флаг выключен и клиент не грузился — ничего. Никогда не бросает.
+ */
+export function clearStoredAccountsV2DeletionCredentialIfEnabled(lockOperationId: string | null): void {
+  const client = loadAccountsV2ClientIfEnabled();
+  if (client === null) {
+    if (__DEV__) console.log('[ACCOUNT-V2] delete_clear skip reason=flag_off');
+    return;
+  }
+  void client.clearStoredAccountsV2DeletionCredential(lockOperationId).then((cleared) => {
+    console.log(`[ACCOUNT-V2] delete credential_cleared ok=${cleared}`);
+  });
 }
 
 /* expo-router route shim */

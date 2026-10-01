@@ -899,7 +899,13 @@ async function ensureAccountDeleteCredentialSafe(
       // The closure may have committed and deleted Auth while its response was lost.
       DebugLogger.error('auth_provider:ack', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
-  return waitForAccountDeletionCredentialSafe(proof).catch(() => false);
+  return waitForAccountDeletionCredentialSafe(proof)
+    .then((safe) => {
+      // зачем (ревью 6C, P3): квитанция подтвердила постановку — ключ V2 замка больше не нужен.
+      if (safe) clearStoredAccountsV2DeletionCredentialIfEnabled(lock.operationId);
+      return safe;
+    })
+    .catch(() => false);
 }
 
 async function waitForPostDeleteAuthHydration(): Promise<boolean> {
@@ -3691,14 +3697,14 @@ async function finishAccountDeletion(
       void cloudDeleteEnqueueOperation.acknowledgment
         .then((ack) => {
           logAuthEvent('auth_account_delete_enqueued', { status: ack.status });
+          // зачем (ревью 6C, P3): ключ V2 анонима снимаем только после ответа сервера.
+          clearStoredAccountsV2DeletionCredentialIfEnabled(null);
         })
         .catch((e) => {
           if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: enqueue failed; pending guard retained', e);
           logAuthEvent('auth_account_delete_enqueue_failed');
         });
       await cloudDeleteEnqueueOperation.dispatchSettled;
-      // зачем (Пакет 6C): у анонима повтора нет — ключ ушёл с запросом, копия не нужна.
-      clearStoredAccountsV2DeletionCredentialIfEnabled(null);
     }
 
     if (requiresDurableServerDeletion && localExitLock) {

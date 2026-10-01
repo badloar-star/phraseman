@@ -6,7 +6,10 @@
 import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_registry";
 import { AUTHORED_EPISODE_01_SESSIONS } from "../modules/learning-v2/content/source/authored_sessions_v1";
 import { allAuthoredEsEpisode01Sessions } from "../modules/learning-v2/content/source/es_authored_sessions_v1";
-import { buildSessionChildBodiesFromShard } from "../modules/learning-v2/content/source/session_package_from_shard_v1";
+import {
+  buildSessionChildBodiesFromShard,
+  wordCardGapsV1,
+} from "../modules/learning-v2/content/source/session_package_from_shard_v1";
 import {
   buildSessionShardFromSource,
   FAMILY_INSTRUCTION,
@@ -21,14 +24,18 @@ type Interaction = Readonly<{
 }>;
 type Encounter = Readonly<{ lexicalItemId: string }>;
 
-const COURSES: ReadonlyArray<readonly [string, () => readonly SessionSource[]]> = [
-  ["en", () => AUTHORED_EPISODE_01_SESSIONS],
-  ["es", () => allAuthoredEsEpisode01Sessions()],
+// Третье поле — потолок отчёта «новое слово без карточки» (не блокирующий
+// гейт): долг может только уменьшаться. Замер 2026-10-01: en — 45 слов без
+// собственного упражнения + 84 без написанного текста карточки; es — 0.
+const COURSES: ReadonlyArray<readonly [string, () => readonly SessionSource[], number]> = [
+  ["en", () => AUTHORED_EPISODE_01_SESSIONS, 129],
+  ["es", () => allAuthoredEsEpisode01Sessions(), 0],
 ];
 
 function build(source: SessionSource) {
   const courseSessionId = `lesson-01:session:${String(source.requiredSessionOrdinal).padStart(2, "0")}`;
-  const children = buildSessionChildBodiesFromShard(buildSessionShardFromSource(source), "ru", courseSessionId);
+  const shard = buildSessionShardFromSource(source);
+  const children = buildSessionChildBodiesFromShard(shard, "ru", courseSessionId);
   const learner = children.learner as unknown as Readonly<{
     practiceInteractionCount: number;
     interactions: readonly Interaction[];
@@ -36,7 +43,12 @@ function build(source: SessionSource) {
   const auxiliary = children.auxiliary as unknown as Readonly<{
     entries: readonly Readonly<{ newWordEncounter?: Encounter }>[];
   }>;
-  return { children, learner, auxiliary };
+  const gaps = wordCardGapsV1(
+    shard.cards.filter((card) => card.taskSlot >= 4),
+    shard.targetLanguage,
+    (source.newVocabulary ?? []).map((entry) => entry.id),
+  );
+  return { children, learner, auxiliary, gaps };
 }
 
 const ruTexts = (table: Readonly<Record<string, { ru: string }>>): string[] =>
@@ -46,20 +58,29 @@ const COPY_TABLE_INSTRUCTIONS = [
   ...ruTexts(VOCABULARY_STAGE_INSTRUCTION),
 ];
 
-describe.each(COURSES)("authored pipeline invariants (%s)", (_course, sessions) => {
+describe.each(COURSES)("authored pipeline invariants (%s)", (_course, sessions, gapCeiling) => {
   test("(a) every session carries at least 6 practice tasks (D149)", () => {
     for (const source of sessions()) {
       expect(build(source).learner.practiceInteractionCount).toBeGreaterThanOrEqual(6);
     }
   });
 
-  test("(b) every new word of a session gets exactly one word card", () => {
+  // зачем (координатор, 2026-10-01): карточку-знакомство клиент принимает
+  // только на собственном упражнении слова и только с написанным текстом
+  // карточки. Каждое такое слово обязано получить ровно одну карточку; прочие
+  // идут в отчёт wordCardGapsV1, и этот отчёт не должен расти.
+  test("(b) every cardable new word gets exactly one word card; the gap report never grows", () => {
+    let gapCount = 0;
     for (const source of sessions()) {
-      const expected = (source.newVocabulary ?? []).map((entry) => entry.id);
-      const encounters = build(source).auxiliary.entries
+      const { auxiliary, gaps } = build(source);
+      const missing = new Set(gaps.map((gap) => gap.lexicalItemId));
+      const expected = (source.newVocabulary ?? []).map((entry) => entry.id).filter((id) => !missing.has(id));
+      const encounters = auxiliary.entries
         .flatMap((entry) => (entry.newWordEncounter ? [entry.newWordEncounter.lexicalItemId] : []));
       expect([...encounters].sort()).toEqual([...expected].sort());
+      gapCount += gaps.length;
     }
+    expect(gapCount).toBeLessThanOrEqual(gapCeiling);
   });
 
   test("(c) choice options are distinct, uniquely identified and never fewer than three", () => {

@@ -599,6 +599,15 @@ for (const entry of SESSION_07_FULL_B1_EDITORIAL) {
   EDITORIAL_BY_KEY.set(`en\u0000${entry.lexicalItemId}`, entry);
 }
 
+// Есть ли готовый текст карточки слова (без броска). Нужен сборщику занятия,
+// чтобы не ломать всё занятие, когда для слова ещё не написан текст карточки.
+export function hasLearningV2NewWordCardEditorialV1(
+  targetLanguage: string,
+  lexicalItemId: string,
+): boolean {
+  return EDITORIAL_BY_KEY.has(`${targetLanguage}\u0000${lexicalItemId}`);
+}
+
 export function learningV2NewWordCardEditorialV1(
   input: Readonly<{
     targetLanguage: string;

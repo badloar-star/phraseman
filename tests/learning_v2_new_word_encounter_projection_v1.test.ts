@@ -65,12 +65,26 @@ describe("Learning V2 new-word encounters of the bundled lesson 1 release", () =
     expect(total).toBe(198);
   });
 
-  test("ships learner-safe meanings for every active locale (no transcription in this release)", () => {
+  test("ships learner-safe meanings for every active locale (transcription from the project dictionary)", () => {
+    const covered = new Set<string>();
+    const all = new Set<string>();
     for (let ordinal = 1; ordinal <= 56; ordinal += 1) {
       for (const encounter of releasedEncounters(ordinal)) {
-        // зачем: встроенный релиз карточек слов идёт без транскрипции — факт
-        // фиксируем, чтобы её появление/потеря были замечены осознанно.
-        expect(encounter.transcription).toBeNull();
+        // зачем: транскрипция — из словаря проекта; где словарь не уверен,
+        // поле null (карточка без транскрипции), выдумки быть не может.
+        all.add(encounter.save.targetText);
+        if (encounter.transcription === null) continue;
+        expect(encounter.transcription).toMatch(/^\/[^/]+\/$/u);
+        covered.add(encounter.save.targetText);
+      }
+    }
+    // Покрытие фиксируем числом, чтобы рост/потеря были замечены осознанно.
+    expect([covered.size, all.size]).toEqual([91, 130]);
+  });
+
+  test("ships learner-safe meanings for every active locale", () => {
+    for (let ordinal = 1; ordinal <= 56; ordinal += 1) {
+      for (const encounter of releasedEncounters(ordinal)) {
         expect(Object.keys(encounter.save.meaningByLocale)).toEqual(LEARNING_V2_INTERFACE_LOCALES);
         expect(Object.keys(encounter.playfulMeaningByLocale)).toEqual(LEARNING_V2_INTERFACE_LOCALES);
         for (const locale of LEARNING_V2_INTERFACE_LOCALES) {

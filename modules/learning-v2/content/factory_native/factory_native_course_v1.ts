@@ -22,6 +22,17 @@ import {
 } from "../../runtime/course_session_evaluator_capsule_child_v1";
 import type { LearningV2ModeNativePayloadV1 } from "../../contracts/mode_native_payload_v1";
 import { hashCanonicalBody, sha256Utf8 } from "../../policies/decision_registry";
+import { getTranscription } from "../../../../app/transcription";
+
+
+// зачем (координатор, 2026-10-01, решение по §43): транскрипцию на карточках
+// слов берём из словаря проекта (app/transcription.ts), без скачивания CMU.
+// Словарь честно возвращает пустую строку, если не уверен хотя бы в одном
+// слове, — тогда карточка идёт без транскрипции (null), а не с выдумкой.
+function knownTranscriptionOrNull(word: string): string | null {
+  const ipa = getTranscription(word);
+  return ipa === "" ? null : ipa;
+}
 
 export {
   FACTORY_NATIVE_AUTHORED_LOCALES_V1,
@@ -471,7 +482,7 @@ export function materializeFactoryNativeLearningV2SessionV1(input: Readonly<{
           word,
           sense: lexicalSense(word, row.lessonOrdinal, row.sessionOrdinal),
         }).slice(0, 32)}`,
-        transcription: null,
+        transcription: knownTranscriptionOrNull(word),
         playfulMeaningByLocale: definitionByLocale,
         motionVariant: wordOrder % 2 === 0 ? "premium_a" : "lesson_hero_b",
         presentation: "blocking_task_overlay", dismissal: "continue_only", saveControl: "bookmark_icon",

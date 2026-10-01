@@ -61,7 +61,9 @@ const COMMUNITY_PACKS = 'community_packs';
 const videoPackId = (id: string) => `video_${id}`;
 
 /** Языки наборов — ровно те же, что в `app/flashcards/pack_languages.ts`. */
-const PACK_LANGUAGES = ['en', 'fr', 'de', 'es'] as const;
+// зачем (PM-109, D130): итальянский — язык наборов; без него итальянский ролик
+// получал бы чужой язык и прятался фильтром.
+const PACK_LANGUAGES = ['en', 'fr', 'de', 'es', 'it'] as const;
 type PackLanguageCode = (typeof PACK_LANGUAGES)[number];
 
 /**
@@ -78,7 +80,7 @@ type PackLanguageCode = (typeof PACK_LANGUAGES)[number];
 function detectPackLanguage(phrases: readonly VideoPhrase[]): PackLanguageCode {
   const sample = phrases.slice(0, 40).map((p) => p.phrase).join(' ').toLowerCase();
   if (!sample.trim()) return 'en';
-  const score: Record<PackLanguageCode, number> = { en: 0, fr: 0, de: 0, es: 0 };
+  const score: Record<PackLanguageCode, number> = { en: 0, fr: 0, de: 0, es: 0, it: 0 };
   // Диакритика — сильный признак, служебные слова — подтверждающий.
   if (/[àâçéèêëîïôûùü]/.test(sample)) score.fr += 3;
   if (/[äöüß]/.test(sample)) score.de += 3;
@@ -93,6 +95,10 @@ function detectPackLanguage(phrases: readonly VideoPhrase[]): PackLanguageCode {
   has(/\b(le|les|des|une|vous|dans|pour|avec|c'est)\b/, 'fr', 2);
   has(/\b(der|die|das|und|nicht|ein|mit|ich)\b/, 'de', 2);
   has(/\b(el|los|las|una|que|para|con|por|muy)\b/, 'es', 2);
+  // Итальянская «è/à» общая с французской (+3 там), поэтому итальянские
+  // служебные слова весят больше — иначе ничья уходит французскому.
+  has(/[ìò]/, 'it', 3);
+  has(/\b(gli|sono|della|questo|questa|anche|grazie|molto|che|io)\b/, 'it', 4);
   let best: PackLanguageCode = 'en';
   for (const code of PACK_LANGUAGES) if (score[code] > score[best]) best = code;
   return score[best] > 0 ? best : 'en';
@@ -227,6 +233,36 @@ async function syncVideoPack(
     console.error(`[VIDEO-PACK] набор для ролика ${id} НЕ сохранён: ${String(error)}`);
     return { ok: false, reason: 'write_failed' };
   }
+}
+
+/**
+ * PM-109: решение публикации — ЧИСТАЯ функция, чтобы контракт проверялся без
+ * моков Firestore.
+ * - повтор публикации той же (уже активной) версии — успех без записи, а не
+ *   ошибка: ретрай админки после обрыва сети не плодит дубли и не пугает отказом;
+ * - публиковать можно только черновик;
+ * - пустой список фраз не публикуется: набор ролика без карточек недоступен
+ *   людям, а раздел «Из видео» показал бы пустую строку.
+ */
+export type VideoPhrasePublishDecision =
+  | Readonly<{ action: 'publish' }>
+  | Readonly<{ action: 'already_published' }>
+  | Readonly<{ action: 'reject'; reason: 'draft_version_required' | 'phrases_empty' }>;
+
+export function decideVideoPhrasePublish(args: Readonly<{
+  versionExists: boolean;
+  versionStatus: unknown;
+  phraseCount: number;
+  activeVersion: string;
+  selectedVersion: string;
+}>): VideoPhrasePublishDecision {
+  if (!args.versionExists) return { action: 'reject', reason: 'draft_version_required' };
+  if (args.versionStatus === 'published' && args.activeVersion === args.selectedVersion) {
+    return { action: 'already_published' };
+  }
+  if (args.versionStatus !== 'draft') return { action: 'reject', reason: 'draft_version_required' };
+  if (args.phraseCount <= 0) return { action: 'reject', reason: 'phrases_empty' };
+  return { action: 'publish' };
 }
 
 type VideoPhraseSetStatus = 'none' | 'draft' | 'published' | 'published_with_draft';
@@ -423,14 +459,37 @@ export const adminPublishVideoPhrases = onCall({ region: REGION, enforceAppCheck
   let publishedAtMs = Date.now();
   /** Имя источника из версии — оно же станет заголовком набора. */
   let publishedSourceName = '';
+  let alreadyPublished = false;
   await db.runTransaction(async (tx) => {
     const snapshot = await tx.get(version);
-    if (!snapshot.exists || snapshot.data()?.status !== 'draft') throw new HttpsError('failed-precondition', 'draft_version_required');
-    const data = snapshot.data() ?? {};
-    const phrases = asPhrases(id, data.phrases);
-    const now = Date.now();
     const current = await tx.get(root);
+    const data = snapshot.data() ?? {};
     const previousVersion = String(current.data()?.activeVersion ?? '').trim();
+    const rawPhrases = Array.isArray(data.phrases) ? data.phrases : [];
+    const decision = decideVideoPhrasePublish({
+      versionExists: snapshot.exists,
+      versionStatus: data.status,
+      phraseCount: rawPhrases.length,
+      activeVersion: previousVersion,
+      selectedVersion,
+    });
+    console.log('[PM109-PUBLISH] decision', {
+      videoId: id, selectedVersion, previousVersion: previousVersion || null,
+      versionStatus: String(data.status ?? 'none'), phraseCount: rawPhrases.length,
+      decision: decision.action, reason: decision.action === 'reject' ? decision.reason : null,
+    });
+    if (decision.action === 'reject') throw new HttpsError('failed-precondition', decision.reason);
+    const phrases = asPhrases(id, data.phrases);
+    if (decision.action === 'already_published') {
+      // Без записей: фразы уже активны. Набор ниже пересобирается идемпотентно
+      // (тот же id video_<videoId>) — это лечит набор, не собравшийся в прошлый раз.
+      alreadyPublished = true;
+      publishedPhrases = phrases;
+      publishedAtMs = Number(data.publishedAtMs) || publishedAtMs;
+      publishedSourceName = String(data.sourceName ?? '').trim();
+      return;
+    }
+    const now = Date.now();
     tx.set(version, { status: 'published', publishedAtMs: now, publishedBy: actor.uid, phrases }, { merge: true });
     if (previousVersion && previousVersion !== selectedVersion) tx.set(root.collection('versions').doc(previousVersion), { status: 'archived', archivedAtMs: now }, { merge: true });
     tx.set(root, publishedRootPatch({ videoId: id, versionId: selectedVersion, phraseCount: phrases.length, actorUid: actor.uid, nowMs: now }), { merge: true });
@@ -455,7 +514,7 @@ export const adminPublishVideoPhrases = onCall({ region: REGION, enforceAppCheck
     nowMs: publishedAtMs,
   });
 
-  return { ok: true, videoId: id, activeVersion: selectedVersion, packCreated: pack.ok, packReason: pack.reason ?? null };
+  return { ok: true, videoId: id, activeVersion: selectedVersion, alreadyPublished, packCreated: pack.ok, packReason: pack.reason ?? null };
 });
 
 export const adminParseVideoPhraseDocument = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, secrets: [OPENAI_API_KEY], timeoutSeconds: 120 }, async (request) => {
@@ -579,4 +638,4 @@ export const adminBackfillVideoPacks = onCall({ region: REGION, enforceAppCheck:
   return { ok: true, scanned, created, skipped: skipped.slice(0, 50), skippedTotal: skipped.length };
 });
 
-export const __videoPhrasesTestHooks = { publishedRootPatch, buildVideoPackDoc, detectPackLanguage };
+export const __videoPhrasesTestHooks = { publishedRootPatch, buildVideoPackDoc, detectPackLanguage, decideVideoPhrasePublish };

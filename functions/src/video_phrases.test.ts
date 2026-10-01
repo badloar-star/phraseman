@@ -106,8 +106,35 @@ describe('video pack document', () => {
     expect(detect(say('der Flug ist verspätet', 'die Bordkarte'))).toBe('de');
     expect(detect(say('el vuelo está retrasado', 'la tarjeta de embarque'))).toBe('es');
     // Сомнение трактуем в пользу английского: так набор не прячется ни от кого.
+    // PM-109/D130: итальянский — язык набора; общая с французским «è» не перетягивает.
+    expect(detect(say('questo volo è in ritardo', 'grazie mille'))).toBe('it');
     expect(detect(say('ok', '123'))).toBe('en');
     expect(detect([])).toBe('en');
   });
 
+});
+
+/** PM-109: повтор публикации не создаёт дублей и не падает; пустое не публикуется. */
+describe('video phrase publish decision', () => {
+  const decide = __videoPhrasesTestHooks.decideVideoPhrasePublish;
+  const base = { versionExists: true, versionStatus: 'draft', phraseCount: 3, activeVersion: '', selectedVersion: 'draft-1' };
+
+  it('черновик с фразами публикуется', () => {
+    expect(decide(base)).toEqual({ action: 'publish' });
+  });
+
+  it('повтор публикации активной версии — успех без записи', () => {
+    expect(decide({ ...base, versionStatus: 'published', activeVersion: 'draft-1' })).toEqual({ action: 'already_published' });
+  });
+
+  it('опубликованная, но не активная версия, архив или отсутствующая — отказ', () => {
+    expect(decide({ ...base, versionStatus: 'published', activeVersion: 'draft-2' }))
+      .toEqual({ action: 'reject', reason: 'draft_version_required' });
+    expect(decide({ ...base, versionStatus: 'archived' })).toEqual({ action: 'reject', reason: 'draft_version_required' });
+    expect(decide({ ...base, versionExists: false })).toEqual({ action: 'reject', reason: 'draft_version_required' });
+  });
+
+  it('пустой список фраз не публикуется', () => {
+    expect(decide({ ...base, phraseCount: 0 })).toEqual({ action: 'reject', reason: 'phrases_empty' });
+  });
 });

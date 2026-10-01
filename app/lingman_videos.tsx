@@ -124,6 +124,12 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const [issue, setIssue] = useState<'none' | 'offline' | 'error'>('none');
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
   const [expandedPhraseVideoId, setExpandedPhraseVideoId] = useState<string | null>(null);
+  // зачем (Ядро 01.10): вход из «Из видео» с videoId — ролик сразу открывается и экран
+  // прокручивается к нему (раньше только подсвечивался). Один раз на videoId.
+  const homeScrollRef = useRef<ScrollView | null>(null);
+  const cardYRef = useRef<Map<string, number>>(new Map());
+  const deepLinkHandledRef = useRef<string | null>(null);
+  const deepLinkScrollPendingRef = useRef<string | null>(null);
   // зачем: «Напомнить» меняется на «Напоминание установлено» мгновенно (оптимистично), система догоняет.
   const [remindedIds, setRemindedIds] = useState<readonly string[]>([]);
 
@@ -295,6 +301,22 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   };
 
   const closeVideo = useCallback(() => setActiveVideoId(null), []);
+  useEffect(() => {
+    const target = typeof deepLinkedVideoId === 'string' ? deepLinkedVideoId : null;
+    if (!target || deepLinkHandledRef.current === target) return;
+    if (!allVideos.some((video) => video.id === target)) {
+      console.log('[VIDEO-TAB] deeplink: ролика ещё нет в каталоге — ждём', JSON.stringify({ target, videos: allVideos.length }));
+      return;
+    }
+    deepLinkHandledRef.current = target;
+    console.log('[VIDEO-TAB] deeplink: открываю ролик', JSON.stringify({ target }));
+    setTab('home');
+    setActiveVideoId(target);
+    const knownY = cardYRef.current.get(target);
+    deepLinkScrollPendingRef.current = target;
+    if (knownY !== undefined) scrollToDeepLinked(target, knownY);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allVideos, deepLinkedVideoId]);
   const changeTab = useCallback((nextTab: YoutubeChannelTab) => {
     setActiveVideoId(null);
     setExpandedPhraseVideoId(null);
@@ -369,8 +391,18 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       /> : undefined}
     />
   );
+  const scrollToDeepLinked = (videoId: string, y: number) => {
+    if (deepLinkScrollPendingRef.current !== videoId) return;
+    deepLinkScrollPendingRef.current = null;
+    console.log('[VIDEO-TAB] deeplink: прокрутка к ролику', JSON.stringify({ videoId, y }));
+    homeScrollRef.current?.scrollTo({ y: Math.max(0, y - 12), animated: true });
+  };
   const videosList = (videos: YoutubeVideoSnapshot[], compact = false) => videos.map((video) => (
-    <React.Fragment key={video.id}>{renderVideoCard(video, compact)}</React.Fragment>
+    <View key={video.id} onLayout={(event) => {
+      const y = event.nativeEvent.layout.y;
+      cardYRef.current.set(video.id, y);
+      scrollToDeepLinked(video.id, y);
+    }}>{renderVideoCard(video, compact)}</View>
   ));
 
   const skeletonHeight = Math.round((windowWidth - V2.screenPad * 2) * 9 / 16);
@@ -438,7 +470,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
               <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={16} />
             </View>} />
         ) : (
-          <ScrollView decelerationRate="fast" testID="lingman-videos-list" showsVerticalScrollIndicator={false} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={[styles.list, inTab ? { paddingBottom: tabContentBottomPad } : null]}>
+          <ScrollView ref={homeScrollRef} decelerationRate="fast" testID="lingman-videos-list" showsVerticalScrollIndicator={false} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={[styles.list, inTab ? { paddingBottom: tabContentBottomPad } : null]}>
             {hero ? hero.id === activeVideoId ? (
               <View style={styles.heroPlayer}>
                 <YoutubeInlinePlayer

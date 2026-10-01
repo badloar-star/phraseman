@@ -13,6 +13,8 @@ import { getLingmanYoutubeChrome } from '../../app/lingman_youtube_chrome';
 import { publishYoutubePosition, registerYoutubeSeekHandler, takePendingYoutubeSeek } from '../../app/youtube_player_seek_bus';
 import { createYoutubeSeekController } from '../../app/youtube_seek_controller';
 import { triLang } from '../../constants/i18n';
+import { setManagedAudioMode } from '../../app/audio_session_coordinator';
+import { UI_SFX_AUDIO_MODE } from '../../app/audio_playback_mode';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { FlowText } from '../text-integrity';
@@ -107,6 +109,14 @@ export default function YoutubeInlinePlayer({
       console.log(`[VIDEO-SEEK] ${videoId} обработчик снят`);
     };
   }, [active, seekController, videoId]);
+  // зачем (Ядро 01.10): плеер YouTube перехватывает аудиосессию; после закрытия возвращаем
+  // режим приложения (тот же, что ставит запуск), иначе озвучка фраз и звуки интерфейса молчат.
+  useEffect(() => () => {
+    console.log('[VIDEO-PLAYER] закрыт — возвращаю режим звука приложения', JSON.stringify({ videoId }));
+    setManagedAudioMode(UI_SFX_AUDIO_MODE).catch((error: unknown) => {
+      console.warn('[VIDEO-PLAYER] режим звука не вернулся', error instanceof Error ? error.message : String(error));
+    });
+  }, [videoId]);
   // Новый WebView (повтор после ошибки) снова ждёт готовности.
   useEffect(() => {
     seekController.reset();

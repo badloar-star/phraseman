@@ -15,6 +15,7 @@ import { createYoutubeSeekController } from '../../app/youtube_seek_controller';
 import { triLang } from '../../constants/i18n';
 import { setManagedAudioMode } from '../../app/audio_session_coordinator';
 import { UI_SFX_AUDIO_MODE } from '../../app/audio_playback_mode';
+import { claimVideoAudio, type SpokenAudioClaim } from '../../modules/audio/audio_runtime_arbiter';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { FlowText } from '../text-integrity';
@@ -117,6 +118,18 @@ export default function YoutubeInlinePlayer({
       console.warn('[VIDEO-PLAYER] режим звука не вернулся', error instanceof Error ? error.message : String(error));
     });
   }, [videoId]);
+  // зачем (PM-207): видео и озвучка не звучат одновременно. Пока ролик играет, он держит
+  // аренду звука в арбитре; озвучка/микрофон вытесняют его — тогда stop() ставит паузу в
+  // плеере. Аренда снимается при паузе, окончании и размонтировании (не залипает).
+  const audioClaimRef = useRef<SpokenAudioClaim | null>(null);
+  const releaseAudioClaim = useCallback((why: string) => {
+    const claim = audioClaimRef.current;
+    audioClaimRef.current = null;
+    if (!claim) return;
+    console.log('[VIDEO-PLAYER] аренда звука снята', JSON.stringify({ videoId, why }));
+    claim.release();
+  }, [videoId]);
+  useEffect(() => () => releaseAudioClaim('unmount'), [releaseAudioClaim]);
   // Новый WebView (повтор после ошибки) снова ждёт готовности.
   useEffect(() => {
     seekController.reset();
@@ -176,6 +189,21 @@ export default function YoutubeInlinePlayer({
         return;
       }
       if (parsed.type !== 'playback') return;
+      // Арбитраж звука: playing=true — взять аренду (если её нет или её отняли);
+      // playing=false — снять. Пробы раз в секунду идемпотентны.
+      if (parsed.playing === true) {
+        if (!audioClaimRef.current?.isCurrent()) {
+          const pauseVideo = () => {
+            console.log('[VIDEO-PLAYER] вытеснен другим звуком — пауза', JSON.stringify({ videoId }));
+            webViewRef.current?.injectJavaScript('(function(){try{var p=window.__lingmanPlayer;if(p&&p.pauseVideo)p.pauseVideo();}catch(e){}})();true;');
+          };
+          audioClaimRef.current = claimVideoAudio(pauseVideo, `video:${videoId}`);
+          // Идёт запись с микрофона — видео не имеет права звучать поверх неё.
+          if (!audioClaimRef.current) pauseVideo();
+        }
+      } else {
+        releaseAudioClaim('paused_or_ended');
+      }
       const positionMs = Number(parsed.positionMs);
       if (!Number.isFinite(positionMs) || positionMs < 0) {
         if (__DEV__) console.log(`[VIDEO-PLAYER] bridge: invalid position=${String(parsed.positionMs)}`);
@@ -189,7 +217,7 @@ export default function YoutubeInlinePlayer({
       // без неё поломка моста однажды тихо остановит подсветку фраз.
       if (__DEV__) console.log(`[VIDEO-PLAYER] bridge: unparsable message=${raw.slice(0, 64)}`);
     }
-  }, [seekController, videoId]);
+  }, [seekController, videoId, releaseAudioClaim]);
 
   if (!active) return null;
 

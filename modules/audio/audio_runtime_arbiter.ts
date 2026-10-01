@@ -114,6 +114,16 @@ export const ambientAudioArbiter = new SpokenAudioArbiter(
   () => getManagedAudioModeSnapshot().recordingActive,
 );
 
+// зачем (PM-207, SETTINGS_AUDIO «один audio owner»): ролик YouTube играет в WebView
+// со своим звуком и раньше не входил в арбитраж — озвучка фразы могла идти поверх
+// видео. Видео — отдельный слот: без аренды native-режима (её держит сам плеер) и
+// без проверки настройки голоса (видео не «голос приложения»).
+export const videoAudioArbiter = new SpokenAudioArbiter(
+  () => ({ release: () => undefined }),
+  () => true,
+  () => getManagedAudioModeSnapshot().recordingActive,
+);
+
 export class RecordingAudioArbiter {
   private nextId = 0;
   private activeOwner: ActiveOwner | null = null;
@@ -178,11 +188,37 @@ subscribeManagedAudioMode(() => {
   if (getManagedAudioModeSnapshot().recordingActive) {
     spokenAudioArbiter.stopCurrent();
     ambientAudioArbiter.stopCurrent();
+    // зачем (PM-207): микрофон главнее видео — ролик ставится на паузу своим stop().
+    videoAudioArbiter.stopCurrent();
   }
 });
 
 export function claimSpokenAudio(stop: () => void, owner = 'spoken:unknown'): SpokenAudioClaim | null {
-  return spokenAudioArbiter.claim(stop, owner);
+  const claim = spokenAudioArbiter.claim(stop, owner);
+  // зачем (PM-207): новая озвучка ставит играющий ролик на паузу — не говорят двое.
+  if (claim && videoAudioArbiter.hasOwner()) {
+    console.log(`[AUDIO-ARBITER] spoken "${owner}" вытесняет видео`);
+    videoAudioArbiter.stopCurrent();
+  }
+  if (!claim) console.log(`[AUDIO-ARBITER] spoken "${owner}" отклонён (голос выключен или идёт запись)`);
+  return claim;
+}
+
+/**
+ * Ролик начал играть: озвучка и фоновые эффекты замолкают, видео становится
+ * текущим владельцем. Запись с микрофона ролик не пускает (null) — вызывающий
+ * не обязан его гасить, плеер сам поставит паузу через stop().
+ */
+export function claimVideoAudio(stop: () => void, owner = 'video:unknown'): SpokenAudioClaim | null {
+  const claim = videoAudioArbiter.claim(stop, owner);
+  if (!claim) {
+    console.log(`[AUDIO-ARBITER] video "${owner}" отклонён (идёт запись с микрофона)`);
+    return null;
+  }
+  console.log(`[AUDIO-ARBITER] video "${owner}" взял звук, глушу озвучку и эффекты`);
+  spokenAudioArbiter.stopCurrent();
+  ambientAudioArbiter.stopCurrent();
+  return claim;
 }
 
 export async function whenSpokenAudioReady(claim: SpokenAudioClaim): Promise<boolean> {

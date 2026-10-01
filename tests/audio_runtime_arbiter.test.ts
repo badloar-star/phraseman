@@ -2,7 +2,14 @@ jest.mock('expo-audio', () => ({
   setAudioModeAsync: jest.fn().mockResolvedValue(undefined),
 }));
 
-import { RecordingAudioArbiter, SpokenAudioArbiter } from '../modules/audio/audio_runtime_arbiter';
+import {
+  RecordingAudioArbiter,
+  SpokenAudioArbiter,
+  claimSpokenAudio,
+  claimVideoAudio,
+  stopCurrentSpokenAudio,
+} from '../modules/audio/audio_runtime_arbiter';
+import { setManagedAudioMode } from '../app/audio_session_coordinator';
 
 describe('SpokenAudioArbiter', () => {
   let voiceEnabled = true;
@@ -89,5 +96,62 @@ describe('RecordingAudioArbiter', () => {
     expect(second.isCurrent()).toBe(true);
     expect(releases[0]).toHaveBeenCalledTimes(1);
     expect(releases[1]).not.toHaveBeenCalled();
+  });
+});
+
+// PM-207: видео, озвучка и микрофон — один владелец звука.
+describe('video / spoken / recording coordination (PM-207)', () => {
+  afterEach(async () => {
+    stopCurrentSpokenAudio();
+    await setManagedAudioMode({ allowsRecording: false } as never);
+  });
+
+  it('new spoken audio pauses a playing video', () => {
+    const pauseVideo = jest.fn();
+    const video = claimVideoAudio(pauseVideo)!;
+    expect(video.isCurrent()).toBe(true);
+
+    const spoken = claimSpokenAudio(jest.fn(), 'test:tts');
+
+    expect(spoken).not.toBeNull();
+    expect(pauseVideo).toHaveBeenCalledTimes(1);
+    expect(video.isCurrent()).toBe(false);
+    spoken!.release();
+  });
+
+  it('a video starting silences the current spoken audio', () => {
+    const stopSpoken = jest.fn();
+    const spoken = claimSpokenAudio(stopSpoken, 'test:tts')!;
+
+    const video = claimVideoAudio(jest.fn())!;
+
+    expect(stopSpoken).toHaveBeenCalledTimes(1);
+    expect(spoken.isCurrent()).toBe(false);
+    expect(video.isCurrent()).toBe(true);
+    video.release();
+  });
+
+  it('microphone capture pauses the video and keeps video and speech out', async () => {
+    const pauseVideo = jest.fn();
+    const video = claimVideoAudio(pauseVideo)!;
+
+    await setManagedAudioMode({ allowsRecording: true } as never);
+
+    expect(pauseVideo).toHaveBeenCalledTimes(1);
+    expect(video.isCurrent()).toBe(false);
+    expect(claimVideoAudio(jest.fn())).toBeNull();
+    expect(claimSpokenAudio(jest.fn(), 'test:tts')).toBeNull();
+  });
+
+  it('a naturally finished video releases without pausing and does not block speech', () => {
+    const pauseVideo = jest.fn();
+    const video = claimVideoAudio(pauseVideo)!;
+    video.release();
+
+    const spoken = claimSpokenAudio(jest.fn(), 'test:tts');
+
+    expect(pauseVideo).not.toHaveBeenCalled();
+    expect(spoken).not.toBeNull();
+    spoken!.release();
   });
 });

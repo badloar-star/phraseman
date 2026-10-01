@@ -401,3 +401,28 @@ describe('Граничные случаи', () => {
     expect(await isLessonUnlocked(33)).toBe(false);
   });
 });
+
+// PM-147-A2: Plus-продолжение курса проверено и на НОВОМ, и на СТАРОМ аккаунте.
+describe('PM-147: premium continuation on new and old accounts', () => {
+  it('new account: Plus continues 4 after bronze on 3, Free stays closed at 4', async () => {
+    store.lesson3_best_score = '3';
+    expect(await isLessonUnlockedByPremiumCourse(4)).toBe(true);
+    expect(await isLessonUnlockedByEarnedProgress(4)).toBe(false);
+  });
+
+  it('old account (legacy cap 6): 4–6 open without Plus; Plus continues 7 after bronze on 6', async () => {
+    store.legacy_free_lesson_cap_v1 = '6';
+    expect(await isLessonUnlockedByEarnedProgress(6)).toBe(true);
+    expect(await isLessonUnlockedByPremiumCourse(7)).toBe(false);
+    store.lesson6_best_score = '3';
+    expect(await isLessonUnlockedByPremiumCourse(7)).toBe(true);
+  });
+
+  it('old account after Plus ends: grandfathered 4–6 stay open, Plus-only 7 closes', async () => {
+    store.legacy_free_lesson_cap_v1 = '6';
+    store.lesson6_best_score = '3';
+    expect(await isLessonUnlockedByEarnedProgress(4)).toBe(true);
+    expect(await isLessonUnlockedByEarnedProgress(6)).toBe(true);
+    expect(await isLessonUnlockedByEarnedProgress(7)).toBe(false);
+  });
+});

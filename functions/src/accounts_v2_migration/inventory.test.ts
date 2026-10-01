@@ -109,12 +109,13 @@ describe('accounts_v2_migration inventory — экономика отброше�
     expect(classifySubcollection('star_operations').disposition).toBe('info');
   });
 
-  it('служебные поля входа → drop OD11 (не HOLD); флаг слияния практики ошибок — HOLD', () => {
+  it('служебные поля входа → drop OD11 (не HOLD); флаг слияния практики ошибок — keep_in_place (8A, OD20)', () => {
     for (const key of ['firebaseAuthUid', 'linkedAuth', 'identityCanonicalizedAt', 'identityMergedAt', 'identityCleanupAt',
       'identityCleanupReason', 'identityHidden', 'canonicalStableId', 'duplicateOfStableId', 'anon_merge_claim']) {
       expect(classifyRootField(key)).toMatchObject({ disposition: 'drop', decisions: ['OD11'] });
     }
-    expect(classifyRootField('mistakePracticeMergePending').disposition).toBe('hold');
+    // зачем (8A, решение координатора): флаг слияния практики ошибок — не домен V2, перенос не держит.
+    expect(classifyRootField('mistakePracticeMergePending')).toMatchObject({ disposition: 'keep_in_place', decisions: ['OD20'] });
   });
 
   it('рулетка рефералов остаётся (D80/D99) — не drop, а информационно (нет домена)', () => {
@@ -201,6 +202,16 @@ describe('accounts_v2_migration inventory — перенос, Plus и неизв
     expect(classifyRootField('premium').disposition).toBe('derive');
     expect(classifyRootField('premiumExpiry').disposition).toBe('derive');
     expect(classifySubcollection('access_projection').disposition).toBe('derive');
+  });
+
+  it('служебные метаданные корня пользователя не блокируют перенос', () => {
+    for (const key of ['accountGeneration', 'updatedAt', 'created_at', 'last_active_at']) {
+      expect(classifyRootField(key)).toMatchObject({
+        disposition: 'keep_in_place',
+        reason: 'runtime_metadata_retained',
+        decisions: ['OD20'],
+      });
+    }
   });
 
   it('неизвестное поле → HOLD unknown_field (корень, progress, подколлекция)', () => {

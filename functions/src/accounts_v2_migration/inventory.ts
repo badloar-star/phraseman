@@ -263,11 +263,47 @@ const ROOT_RULES: readonly InventoryRule[] = [
     exact: ['firebaseAuthUid', 'linkedAuth', 'identityHidden', 'canonicalStableId', 'duplicateOfStableId', 'anon_merge_claim',
       'identityCanonicalizedAt', 'identityMergedAt', 'identityCleanupAt', 'identityCleanupReason'],
   }, 'drop', 'login_service_field', ['OD11'], 'Решение владельца 11 (2026-09-30): служебные поля входа не переносятся, вход в V2 новый.'),
-  rule('r.mistake_merge', 'root', { exact: ['mistakePracticeMergePending'] }, 'hold', 'no_owner_decision', [],
-    'Флаг незавершённого слияния практики ошибок — не поле входа; решения нет.'),
+  // Эти поля создаются самим legacy-клиентом/контуром Account Generation как
+  // служебные метки времени и защиты от устаревших операций. Они не являются
+  // пользовательским прогрессом и не должны останавливать перенос аккаунта.
+  // До OD20 они явно остаются в легаси-документе: это не просто
+  // «информационное» поле, а часть retention-контракта, поэтому отчёт должен
+  // учитывать их в keptInPlace и cleanup allowlist.
+  rule('r.runtime_metadata', 'root', {
+    exact: ['accountGeneration', 'updatedAt', 'created_at', 'last_active_at'],
+  }, 'keep_in_place', 'runtime_metadata_retained', ['OD20'], 'Служебные метаданные документа пользователя; сохраняются до OD20.'),
+  // Эти поля пишутся серверными контурами уведомлений, модерации и account-id.
+  // Они не являются доменами переноса Account V2; сохраняем их в действующем
+  // документе пользователя до OD20, чтобы не потерять ограничения, push-настройки
+  // и служебную связь stable-id/account-id при переходе.
+  rule('r.service_metadata', 'root', {
+    exact: [
+      'accessBlocked', 'accountId', 'accountIdAssignedAt', 'accountIdAssignedReason',
+      'banned', 'bannedAt', 'duplicateCleanupJobId', 'duplicateCleanupQueuedAt',
+      'duplicateCleanupQueuedBy', 'duplicateCleanupStatus', 'ideaSubmissionBlocked',
+      'ideaSubmissionBlockedAtMs', 'ideaSubmissionBlockedBy', 'ideaSubmissionRestrictionReason',
+      'lastLessonReminderAt', 'lastPremiumExpiryReminderAt', 'lastPremiumExpiryReminderForMs',
+      'lastReEngagePushAt', 'lastTournamentPushAt', 'pushPrefs', 'pushTokenLang',
+      'pushTokenPlatform', 'pushTokenTimezone', 'pushTokenUpdatedAt', 'spireWeekResultPushWeekId',
+      'spireZoneWarningPushWeekId', 'tournament_best_place', 'tournament_free_entry_week_id',
+      'tournament_free_week', 'tournament_hot_streak', 'tournament_hot_streak_tier',
+      'tournament_last_slot_key', 'tournament_last_slot_room_id', 'tournament_title',
+      'tournament_titles_won', 'user_avatar', 'user_avatar_frame', 'expoPushToken',
+    ],
+  }, 'keep_in_place', 'service_metadata_retained', ['OD20'], 'Служебные поля уведомлений, модерации, турниров и account-id; сохраняются до OD20.'),
+  rule('r.achievements_root', 'root', { exact: ['achievements_state'] }, 'keep_in_place', 'kept_in_v2_store', ['OD8'],
+    'Состояние достижений остаётся в действующем хранилище 2.0 и не удаляется чисткой.'),
+  // зачем (8A, решение координатора по E2E 2026-10-01): «hold» стоял без причины («решения нет»), а
+  // поле пишется после каждого слияния аккаунтов → перенос OD21 вставал бы у многих. Практика ошибок —
+  // не домен V2, флаг остаётся на месте и перенос уроков/карточек/наборов не блокирует.
+  rule('r.mistake_merge', 'root', { exact: ['mistakePracticeMergePending'] }, 'keep_in_place', 'kept_in_v2_store', ['OD20'],
+    'Флаг слияния практики ошибок (не домен V2) — остаётся на месте, перенос не блокирует.'),
   rule('r.progress_markers', 'root', {
     exact: ['progressServerState', 'progressServerAuthoritative', 'progressServerCutoverAt', 'progressMigratedAt'],
-  }, 'hold', 'no_owner_decision', [], 'Технические маркеры старого прогресса.'),
+  // зачем (8A, решение координатора по E2E 2026-10-01): progressServerState пишется при КАЖДОМ
+  // завершении урока (progress_events.ts) → «hold» остановил бы перенос почти у всех. Это маркеры
+  // режима, данные уроков лежат в самом progress и читаются переносом как есть.
+  }, 'keep_in_place', 'kept_in_v2_store', ['OD20'], 'Технические маркеры прогресса — остаются на месте, перенос не блокируют.'),
 ];
 
 // ─── подколлекции users/{uid}/* ────────────────────────────────────────────

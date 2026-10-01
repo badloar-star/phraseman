@@ -23,6 +23,7 @@ import {
   countUnreadNotifications,
   deleteUserNotification,
   isUserNotificationVisible,
+  loadOlderUserNotifications,
   markUserNotificationsRead,
   readCachedUserNotifications,
   refreshUserNotificationsOnce,
@@ -63,6 +64,7 @@ type NotificationCenterButtonProps = {
 
 function centerCopy(lang: Lang) {
   return {
+    showMore: triLang(lang, { ru: 'Показать ещё', uk: 'Показати ще', en: 'Show more', es: 'Mostrar más', 'pt-BR': 'Mostrar mais', vi: 'Xem thêm', id: 'Tampilkan lagi', tr: 'Daha fazla göster', pl: 'Pokaż więcej' }),
     title: triLang(lang, { ru: 'Уведомления', en: 'Notifications', uk: 'Сповіщення', es: 'Notificaciones', 'pt-BR': 'Notificações', vi: 'Thông báo', id: 'Notifikasi', tr: 'Bildirimler', pl: 'Powiadomienia' }),
     empty: triLang(lang, {
       ru: 'Здесь пока тихо',
@@ -175,6 +177,25 @@ function NotificationCenterButton({
   const [visible, setVisible] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [items, setItems] = useState<UserNotification[]>([]);
+  // зачем (Ядро 01.10): «Показать ещё» догружает старые уведомления страницей; hasMore=false — кнопки нет.
+  const [hasOlder, setHasOlder] = useState(true);
+  const [loadingOlder, setLoadingOlder] = useState(false);
+  const loadingOlderRef = useRef(false);
+  const loadOlder = useCallback(() => {
+    if (loadingOlderRef.current) return;
+    loadingOlderRef.current = true;
+    setLoadingOlder(true);
+    void loadOlderUserNotifications().then((page) => {
+      console.log('[NOTIF] older page', JSON.stringify({ fetched: page.fetched, total: page.list.length, hasMore: page.hasMore }));
+      setItems(hideNotificationIds(page.list, hiddenNotificationIdsRef.current));
+      setHasOlder(page.hasMore);
+    }).catch((error: unknown) => {
+      console.warn('[NOTIF] older page failed', error instanceof Error ? error.message : String(error));
+    }).finally(() => {
+      loadingOlderRef.current = false;
+      setLoadingOlder(false);
+    });
+  }, []);
   const [teamUnreadCount, setTeamUnreadCount] = useState(0);
   const [teamMessageCount, setTeamMessageCount] = useState(0);
   const [teamDetailOpen, setTeamDetailOpen] = useState(false);
@@ -644,6 +665,19 @@ function NotificationCenterButton({
             keyExtractor={(row) => row.id}
             renderItem={renderNotificationRow}
             ListHeaderComponent={teamInboxSection}
+            ListFooterComponent={!teamDetailOpen && hasOlder && visibleItems.length > 0 ? (
+              <TouchableOpacity
+                testID="notification-center-load-older"
+                accessibilityRole="button"
+                accessibilityState={{ busy: loadingOlder }}
+                activeOpacity={0.76}
+                onPress={loadOlder}
+                disabled={loadingOlder}
+                style={[styles.loadOlder, { backgroundColor: t.bgSurface, opacity: loadingOlder ? 0.6 : 1 }]}
+              >
+                <Text style={[styles.loadOlderText, { color: t.textPrimary }]}>{copy.showMore}</Text>
+              </TouchableOpacity>
+            ) : null}
             ListEmptyComponent={!teamDetailOpen && teamMessageCount === 0 ? (
               <View style={{ minHeight: 320, alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 24 }}>
                 <Ionicons name="notifications-off-outline" size={40} color={t.textGhost} />
@@ -672,6 +706,8 @@ function NotificationCenterButton({
 }
 
 const styles = StyleSheet.create({
+  loadOlder: { minHeight: 48, borderRadius: 14, alignItems: 'center', justifyContent: 'center', marginTop: 6 },
+  loadOlderText: { fontSize: 15, fontWeight: '700' },
   headerPressable: {
     width: V2.iconButton,
     height: V2.iconButton,

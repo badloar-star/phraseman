@@ -46,6 +46,7 @@ const SYNC_STATE_PATH = 'youtube_catalog/sync_state';
 const MANUAL_REFRESH_PATH = 'youtube_catalog/manual_refresh';
 const CONFIG_HISTORY = 'youtube_catalog_history';
 const OPERATIONS = 'admin_command_operations';
+const FAILURE_BACKOFF_MS = 15 * 60_000;
 const ADMIN_LOG = 'admin_log';
 const DISCOVERY_INTERVAL_MS = 6 * 60 * 60_000;
 const MANUAL_REFRESH_RATE_LIMIT_MS = 60_000;
@@ -168,6 +169,21 @@ function playlistOrder(source: YoutubePlaylistSource, override: YoutubeCatalogCo
   return override?.order == null ? fallback : override.order;
 }
 
+// зачем 2026-10-01 (владелец: «новые видео не появляются с каналов»): поиск эфиров
+// (search.list, 100 единиц квоты) и один пропавший плейлист (404) роняли ВСЮ
+// синхронизацию. Состояние при сбое не сохранялось → крон каждые 5 минут
+// повторял поиск, сжигал дневную квоту YouTube, и с 30.09 13:41 каталог не
+// обновлялся вовсе. Необязательные части теперь деградируют до пустого списка,
+// а новые загрузки канала доезжают всегда.
+async function optionalYoutubeIds(label: string, load: () => Promise<string[]>): Promise<string[]> {
+  try {
+    return await load();
+  } catch (error) {
+    console.warn('[YT-CATALOG] optional part skipped', { label, code: safeErrorCode(error) });
+    return [];
+  }
+}
+
 async function buildYoutubeSnapshot(input: {
   config: YoutubeCatalogConfig;
   gateway: YoutubeDataGateway;
@@ -197,8 +213,8 @@ async function buildYoutubeSnapshot(input: {
     const [uploadIds, playlistSources, upcomingIds, liveIds] = await Promise.all([
       input.gateway.getUploadVideoIds(channelSource.uploadsPlaylistId, YOUTUBE_CATALOG_LIMITS.uploadsScanPerChannel),
       input.gateway.getPlaylists(channelSource.id, YOUTUBE_CATALOG_LIMITS.playlistsPerChannel),
-      discoveryIds.has(configChannel.id) ? input.gateway.searchEvents(channelSource.id, 'upcoming') : Promise.resolve([]),
-      discoveryIds.has(configChannel.id) ? input.gateway.searchEvents(channelSource.id, 'live') : Promise.resolve([]),
+      discoveryIds.has(configChannel.id) ? optionalYoutubeIds(`search_upcoming:${configChannel.id}`, () => input.gateway.searchEvents(channelSource.id, 'upcoming')) : Promise.resolve([]),
+      discoveryIds.has(configChannel.id) ? optionalYoutubeIds(`search_live:${configChannel.id}`, () => input.gateway.searchEvents(channelSource.id, 'live')) : Promise.resolve([]),
     ]);
     const pinnedIds = configChannel.pinnedVideos?.map((video) => video.id) ?? [];
     // зачем: Shorts должны отсеиваться ДО среза до videosPerChannel. Иначе канал,
@@ -230,7 +246,7 @@ async function buildYoutubeSnapshot(input: {
     const playlists: YoutubePlaylistSnapshot[] = [];
     const memberships = new Map<string, string[]>();
     for (const [index, playlist] of visiblePlaylists.entries()) {
-      const listedIds = await input.gateway.getPlaylistVideoIds(playlist.id, YOUTUBE_CATALOG_LIMITS.playlistItems);
+      const listedIds = await optionalYoutubeIds(`playlist:${playlist.id}`, () => input.gateway.getPlaylistVideoIds(playlist.id, YOUTUBE_CATALOG_LIMITS.playlistItems));
       const knownIds = listedIds.filter((id) => videoIds.includes(id));
       for (const id of knownIds) memberships.set(id, [...(memberships.get(id) ?? []), playlist.id]);
       for (let page = 0; page * YOUTUBE_CATALOG_LIMITS.playlistPageSize < knownIds.length; page += 1) {
@@ -339,6 +355,13 @@ export async function runYoutubeCatalogSyncWithDependencies(input: {
   } catch (error) {
     const code = safeErrorCode(error);
     if (lease) await input.store.recordFailure(lease, code, input.nowMs);
+    // зачем: без отступа крон повторял полную синхронизацию каждые 5 минут и
+    // добивал квоту YouTube; после сбоя ждём FAILURE_BACKOFF_MS.
+    if (lease && input.trigger === 'cron') {
+      await input.patchSyncState?.({ nextRunAtMs: input.nowMs + FAILURE_BACKOFF_MS }).catch((patchError) => {
+        console.warn('[YT-CATALOG] backoff patch failed', { code: safeErrorCode(patchError) });
+      });
+    }
     return { ok: false, code };
   }
 }
@@ -416,7 +439,8 @@ export const youtubeCatalogSyncCron = onSchedule({
   memory: '512MiB',
   secrets: [YOUTUBE_DATA_API_KEY],
 }, withCronHeartbeat('youtubeCatalogSyncCron', async () => {
-  await runYoutubeCatalogSync({ trigger: 'cron' });
+  const result = await runYoutubeCatalogSync({ trigger: 'cron' });
+  if (result.code !== 'not_due') console.log('[YT-CATALOG] cron result', { ok: result.ok, code: result.code, version: result.version ?? null });
 }));
 
 export const adminGetYoutubeCatalogWorkspace = onCall(
@@ -545,6 +569,7 @@ export const adminRefreshYoutubeCatalog = onCall(
     });
     if (claimed.replayed) return { ...claimed.result, replayed: true };
     const result = await runYoutubeCatalogSync({ trigger: 'manual', owner: `admin-${actorUid}-${nowMs}` });
+    console.log('[YT-CATALOG] manual result', { ok: result.ok, code: result.code, version: result.version ?? null });
     const auditRef = db.collection(ADMIN_LOG).doc();
     const audit = createAuditRecord({
       action: 'youtube_catalog.refresh',

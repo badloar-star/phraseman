@@ -124,4 +124,35 @@ describe('youtube catalog runtime', () => {
     expect(store.publishSnapshot).not.toHaveBeenCalled();
     expect(store.recordFailure).toHaveBeenCalledWith(lease, 'sync_failed', expect.any(Number));
   });
+  // зачем 2026-10-01: квота поиска (429) и пропавший плейлист (404) роняли всю
+  // синхронизацию и крон сжигал квоту повторами — новые видео не появлялись.
+  test('publishes uploads when search quota and a playlist fail; failed cron backs off', async () => {
+    const lease: YoutubeSyncLease = { owner: 'cron', token: 'cron:2', leaseUntilMs: 9999999 };
+    const store = {
+      readConfig: jest.fn().mockResolvedValue(CONFIG),
+      claimSyncLease: jest.fn().mockResolvedValue(lease),
+      publishSnapshot: jest.fn().mockResolvedValue('v-1'),
+      recordFailure: jest.fn().mockResolvedValue(undefined),
+      cleanupOldVersions: jest.fn().mockResolvedValue(0),
+      rollbackToVersion: jest.fn(),
+    } satisfies YoutubeCatalogStore;
+    const gateway = {
+      getChannel: jest.fn().mockResolvedValue({ id: 'UCx', uploadsPlaylistId: 'UUx', displayName: 'X', handle: '@x' }),
+      getUploadVideoIds: jest.fn().mockResolvedValue([]),
+      getPlaylists: jest.fn().mockResolvedValue([{ id: 'PL-gone', title: 'Gone', description: '' }]),
+      searchEvents: jest.fn().mockRejectedValue(new Error('quota')),
+      getVideos: jest.fn().mockResolvedValue([]),
+      getPlaylistVideoIds: jest.fn().mockRejectedValue(new Error('not_found')),
+    } as unknown as YoutubeDataGateway;
+    const patchSyncState = jest.fn().mockResolvedValue(undefined);
+    const nowMs = Date.parse('2026-10-01T12:00:00Z');
+    await expect(runYoutubeCatalogSyncWithDependencies({ nowMs, owner: 'cron', trigger: 'cron', store, gateway, patchSyncState }))
+      .resolves.toMatchObject({ ok: true, code: 'published' });
+    expect(store.publishSnapshot).toHaveBeenCalled();
+
+    const failingGateway = { getChannel: jest.fn().mockRejectedValue(new Error('api failed')) } as unknown as YoutubeDataGateway;
+    const backoffPatch = jest.fn().mockResolvedValue(undefined);
+    await runYoutubeCatalogSyncWithDependencies({ nowMs, owner: 'cron', trigger: 'cron', store, gateway: failingGateway, patchSyncState: backoffPatch });
+    expect(backoffPatch).toHaveBeenCalledWith({ nextRunAtMs: nowMs + 15 * 60_000 });
+  });
 });

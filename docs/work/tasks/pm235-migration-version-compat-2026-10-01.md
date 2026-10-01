@@ -1,7 +1,7 @@
 # Task packet: PM-235 — migration version и совместимость клиентов (E23, evidence)
 
 Governance-ID: TG-0AE4918142EE
-Status: In progress
+Status: Partial — A1/A2 частично; задачи T1–T8 координатору
 Owner: Claude session (Account V2 → очередь координатора)
 
 ## Outcome

@@ -216,3 +216,10 @@ TEMP-контракт для клиентского пакета (обязате
 ## ИТОГ: Пакет 7D (удалённые карточки не воскресают) — ПРИНЯТ (SPEC+SECURITY APPROVE), 2026-10-01. Локальный журнал удалений (≤500, стирается с аккаунтом); удаление побеждает только если строго свежее правки; наборы-покупки не удаляются. P3 → Пакет 7E (запас по часам, updatedAt своих карточек, «Вернуть»).
 
 ## ИТОГ: Пакет 7E (доработки журнала удалений) — ПРИНЯТ (SPEC+SECURITY APPROVE после ремонта №1), 2026-10-01. Запас 1 ч по часам; `updatedAt` своих карточек; «Вернуть» снимает запись и в ранней ветке. Ремонт: `updatedAt` в белом списке полей переноса (иначе HOLD аккаунта); битое значение снимается с отметкой informational. **Функции до клиента 7E.** `account_delete_revenuecat_phase2` красный до пакета (вторая фаза RevenueCat не сделана) — не Account V2.
+
+## 2026-10-01 — migration inventory/dry-run core refresh
+
+Сводная карта сохранения прогресса вынесена в `docs/reports/ACCOUNT_PRESERVED_PROGRESS_INVENTORY.md`. Повторная source-проверка: migration Functions 6 suites / 174/174, functions tsc exit 0, ESLint PASS; PM-233 ledger products=39, markers=193, uncovered=0, stale=0, resurrected=0; node guard 6/6. Прод/Firestore/deploy/apply не выполнялись. Пакет 5 остаётся source/spec evidence; новая установка, два устройства, backup/restore и реальный cutover ещё не являются принятыми runtime gates.
+
+## 🔴 Предусловие 7B (из PM-235, 2026-10-01)
+Включать `accounts_v2_legacy_sync_disabled` (7B) ТОЛЬКО после блокировки старых версий приложения (force_update + min_app_version = первая сборка 2.0): иначе старый телефон продолжит писать карточки в старое облако, а перенос уже `done/already_done` — правки со старого устройства в V2 не попадут никогда. Серверной проверки версии нет (T2 у координатора). Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md.

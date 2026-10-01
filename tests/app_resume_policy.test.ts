@@ -1,6 +1,7 @@
 import {
   createCoalescedAsyncRunner,
   FOREGROUND_INTERACTION_GRACE_MS,
+  FOREGROUND_TASK_DEADLINE_MS,
   getForegroundRefreshKind,
   scheduleCoalescedForegroundTask,
   shouldRunDeepForegroundRefresh,
@@ -105,5 +106,49 @@ describe('app resume policy', () => {
       jest.useRealTimers();
     }
   });
-});
 
+  // зачем: PM-215-A1 — зависшая задача не должна держать всю очередь (head-of-line blocking).
+  it('moves on after the per-task deadline when a task never settles', async () => {
+    jest.useFakeTimers();
+    jest.setSystemTime(0);
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    try {
+      const calls: string[] = [];
+      scheduleCoalescedForegroundTask('hung', () => new Promise<void>(() => {}), 0);
+      scheduleCoalescedForegroundTask('after-hung', () => { calls.push('after'); }, 0);
+
+      await jest.advanceTimersByTimeAsync(FOREGROUND_TASK_DEADLINE_MS - 1);
+      expect(calls).toEqual([]);
+
+      await jest.advanceTimersByTimeAsync(1 + 80);
+      expect(calls).toEqual(['after']);
+      expect(warn.mock.calls.some(([message]) => String(message).includes('[RUNTIME-QUEUE] дедлайн'))).toBe(true);
+    } finally {
+      warn.mockRestore();
+      jest.useRealTimers();
+    }
+  });
+
+  // зачем: PM-229/PM-215 — отказ задачи пишет причину и не останавливает очередь.
+  it('logs a failing task with its key and keeps draining', async () => {
+    jest.useFakeTimers();
+    jest.setSystemTime(0);
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    try {
+      const calls: string[] = [];
+      scheduleCoalescedForegroundTask('boom', () => { throw new Error('storage_down'); }, 0);
+      scheduleCoalescedForegroundTask('next', () => { calls.push('next'); }, 0);
+
+      await jest.advanceTimersByTimeAsync(0);
+      await jest.advanceTimersByTimeAsync(80);
+      expect(calls).toEqual(['next']);
+      const failure = warn.mock.calls.find(([message]) => String(message).includes('[RUNTIME-QUEUE] задача упала'));
+      expect(failure).toBeDefined();
+      expect(String(failure?.[1])).toContain('storage_down');
+      expect(String(failure?.[1])).toContain('boom');
+    } finally {
+      warn.mockRestore();
+      jest.useRealTimers();
+    }
+  });
+});

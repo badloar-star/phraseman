@@ -59,6 +59,18 @@ type ScheduledForegroundTask = {
 };
 
 const FOREGROUND_TASK_GAP_MS = 80;
+/**
+ * Потолок ожидания ОДНОЙ задачи очереди.
+ *
+ * зачем: PM-215 — очередь serial, и раньше зависшая задача (например, `await` без ответа)
+ * держала ВСЕ остальные навсегда (head-of-line blocking): тосты возврата из фона больше
+ * не показывались до перезапуска. По дедлайну очередь идёт дальше; саму задачу прервать
+ * нельзя (у неё нет сигнала отмены), поэтому она доигрывает в фоне, а её результат
+ * никто не ждёт. Значение 10 с — консервативная верхняя граница для локальных задач
+ * (AsyncStorage + показ тоста); точное число ставится по замеру на устройстве (PM-215-A3).
+ */
+export const FOREGROUND_TASK_DEADLINE_MS = 10_000;
+const QUEUE_LOG = '[RUNTIME-QUEUE]';
 const scheduledForegroundTasks = new Map<string, ScheduledForegroundTask>();
 let foregroundDrainTimer: ReturnType<typeof setTimeout> | null = null;
 let foregroundDrainInFlight = false;
@@ -75,6 +87,35 @@ function scheduleForegroundDrain(delayMs: number): void {
     }
     void drainForegroundTasks();
   }, Math.max(0, delayMs));
+}
+
+async function runForegroundTaskWithDeadline(task: ScheduledForegroundTask): Promise<void> {
+  const startedAt = Date.now();
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  const outcome = await Promise.race([
+    Promise.resolve().then(() => task.run()).then(
+      () => 'done' as const,
+      (error: unknown) => {
+        // зачем: раньше ошибка задачи глоталась пустым catch — причина пропадала.
+        console.warn(`${QUEUE_LOG} задача упала`, JSON.stringify({
+          key: task.key,
+          reason: error instanceof Error ? error.message : String(error),
+          ms: Date.now() - startedAt,
+        }));
+        return 'failed' as const;
+      },
+    ),
+    new Promise<'deadline'>((resolve) => {
+      timer = setTimeout(() => resolve('deadline'), FOREGROUND_TASK_DEADLINE_MS);
+    }),
+  ]);
+  if (timer) clearTimeout(timer);
+  if (outcome === 'deadline') {
+    console.warn(`${QUEUE_LOG} дедлайн: очередь идёт дальше, задача доигрывает в фоне`, JSON.stringify({
+      key: task.key,
+      deadlineMs: FOREGROUND_TASK_DEADLINE_MS,
+    }));
+  }
 }
 
 async function drainForegroundTasks(): Promise<void> {
@@ -95,7 +136,7 @@ async function drainForegroundTasks(): Promise<void> {
 
       scheduledForegroundTasks.delete(next.key);
       if (!next.cancelled) {
-        await Promise.resolve(next.run()).catch(() => {});
+        await runForegroundTaskWithDeadline(next);
       }
       if (scheduledForegroundTasks.size > 0) {
         await wait(FOREGROUND_TASK_GAP_MS);

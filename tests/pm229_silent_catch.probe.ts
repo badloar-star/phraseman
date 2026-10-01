@@ -40,8 +40,7 @@ const BASELINE: Record<string, number> = {
   'app/ai_dialog_session.tsx': 5,
   'app/analytics.ts': 1,
   'app/analytics_consent.ts': 1,
-  'app/app_resume_policy.ts': 1,
-  'app/app_snapshot_bootstrap.ts': 6, // Q5: чтение Avatar DNA на старте удалено
+  'app/app_snapshot_bootstrap.ts': 5, // Q5: чтение Avatar DNA на старте удалено
   'app/audio_session_coordinator.ts': 2,
   'app/auth_clean_install_recovery_flow.ts': 4,
   'app/auth_provider.ts': 26,

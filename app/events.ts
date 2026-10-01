@@ -60,8 +60,6 @@ export type AppEventMap = {
   collectibles_changed: undefined;
   gold_theme_unlocked: { source: string };
   achievement_unlocked: undefined;
-  avatar_dna_sync_requested: { ownerStableId: string; accountGeneration: number };
-  avatar_dna_saved: { ownerStableId: string };
   account_deleted: undefined;
   identity_retired: {
     source: 'cloud_mutation' | 'startup' | 'nickname' | 'provider_sign_in';

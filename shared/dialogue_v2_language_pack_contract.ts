@@ -64,9 +64,23 @@ export type DialogueV2LanguagePack = Readonly<{
     title: string;
     briefing: string;
     completionTone: string;
+    /**
+     * Первая реплика персонажа на изучаемом языке (владелец 01.10: «первая реплика
+     * всегда уже должна быть на экране»). Необязательна: пакет без неё валиден.
+     */
+    opening?: DialogueV2PacketOpening;
   }>;
   review: Readonly<Record<DialogueV2ReviewRole, DialogueV2ReviewVerdict>>;
 }>;
+
+export type DialogueV2PacketOpening = Readonly<{
+  /** Один из scenario.personas[].id — кто открывает разговор. */
+  personaId: string;
+  /** Текст на изучаемом языке, 1..600 знаков. */
+  text: string;
+}>;
+
+export const DIALOGUE_V2_OPENING_MAX_LENGTH = 600;
 
 /** Server-owned release pins; never construct this manifest from a request. */
 export type DialogueV2ApprovedLanguagePackPin = Readonly<{
@@ -181,6 +195,15 @@ export function validateDialogueV2LanguagePack(value: unknown): DialogueV2Langua
     || !learnerText(content.briefing, 8, 480)
     || !learnerText(content.completionTone, 3, 96)) {
     return { ok: false, error: 'learner_content_invalid' };
+  }
+  // зачем: первая реплика необязательна, но если есть — только от участника сцены.
+  if (content.opening !== undefined) {
+    const opening = record(content.opening);
+    if (!opening || Object.keys(opening).length !== 2
+      || typeof opening.personaId !== 'string' || !personaIds.has(opening.personaId)
+      || !learnerText(opening.text, 1, DIALOGUE_V2_OPENING_MAX_LENGTH)) {
+      return { ok: false, error: 'learner_content_invalid' };
+    }
   }
   const review = record(packet.review);
   if (!review || DIALOGUE_V2_REVIEW_ROLES.some((role) => !REVIEW_VERDICTS.has(review[role] as DialogueV2ReviewVerdict))) {

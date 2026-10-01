@@ -256,7 +256,8 @@ const CYRILLIC_RE = /[Ѐ-ӿ]/u;
 const LATIN_WORD_RE = /[A-Za-z]{3,}/u;
 const RUSSIAN_ONLY_LETTERS_RE = /[ыэъёЫЭЪЁ]/u;
 const VIETNAMESE_MARK_RE = /[ăâđêôơưàáảãạèéẻẽẹìíỉĩịòóỏõọùúủũụỳýỷỹỵ]/iu;
-const PLACEHOLDER_RE = /\{[^}]*\}|\bTODO\b|\bTBD\b|XXX|lorem|\.\.\.|…$|\[[^\]]*\]/iu;
+// зачем: TODO/XXX — с учётом регистра, иначе испанское «todo» ложно считается заглушкой.
+const PLACEHOLDER_RE = /\{[^}]*\}|\bTODO\b|\bTBD\b|XXX|[Ll]orem ipsum|\.\.\.|…$|\[[^\]]*\]/u;
 const CONTROL_RE = /[\u0000-\u001f\u007f]/u;
 // Явные английские служебные слова — признак непереведённой строки в не-английском языке.
 const ENGLISH_LEAK_RE = /\b(the|and|your|you|with|please|goal|task|chat with)\b/iu;

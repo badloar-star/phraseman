@@ -332,6 +332,20 @@ function safeServerConversationContext(
     : null;
 }
 
+function safeServerOpening(
+  value: DialogueV2ProviderTurnRequest['serverOpening'],
+): Readonly<{ personaId: string; text: string }> | null {
+  if (value === undefined) return null;
+  const opening = exactDataRecord(value);
+  const text = opening ? safeContextText(opening.text, CONTEXT_MAX_ASSISTANT_TEXT_BYTES) : null;
+  if (!opening || Object.keys(opening).length !== 2 || typeof opening.personaId !== 'string'
+    || !CONTEXT_PERSONA_ID_RE.test(opening.personaId) || !text) {
+    // Пакет уже прошёл авторизатор; сюда попадает только битый вызов — ход не строим.
+    throw new Error('provider_opening_invalid');
+  }
+  return Object.freeze({ personaId: opening.personaId, text });
+}
+
 function providerMessages(
   request: DialogueV2ProviderTurnRequest,
   nowMs: number,
@@ -348,8 +362,14 @@ function providerMessages(
   const systemPrompt = context.length > 0
     ? `${request.systemPrompt}\n${SERVER_CONTEXT_INSTRUCTION}`
     : request.systemPrompt;
+  const opening = safeServerOpening(request.serverOpening);
   return Object.freeze([
     Object.freeze({ role: 'system' as const, content: systemPrompt }),
+    // зачем (владелец 01.10): готовая первая реплика персонажа — первый ход собеседника
+    // в истории (из авторизованного пакета, не от клиента); ИИ её не генерирует.
+    ...(opening
+      ? [Object.freeze({ role: 'assistant' as const, content: JSON.stringify({ replies: [opening] }) })]
+      : []),
     ...context.flatMap((turn) => [
       Object.freeze({ role: 'user' as const, content: turn.userMessage }),
       Object.freeze({

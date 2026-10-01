@@ -68,6 +68,11 @@ export type DialogueV2ProviderTurnRequest = Readonly<{
   expectedPersonaIds: readonly string[];
   serverConversationContext?: readonly DialogueV2ProviderConversationTurn[];
   serverConversationContextExpiresAtMs?: number;
+  /**
+   * Первая реплика персонажа из авторизованного пакета (content.opening). Телефон
+   * показывает её сразу; провайдер видит её первым ходом собеседника в истории.
+   */
+  serverOpening?: Readonly<{ personaId: string; text: string }>;
   /** Только в расширенном режиме: ответ с разбором длиннее обычной реплики. */
   maxOutputTokens?: number;
 }>;
@@ -435,6 +440,14 @@ function buildSystemPrompt(
     ...(memory.sharedSummary || memory.scenarioCheckpoint
       ? [`SERVER_AUTHORIZED_STRUCTURED_MEMORY=${JSON.stringify(memory)}`]
       : []),
+    // зачем (владелец 01.10): разговор уже открыт готовой репликой персонажа — модель
+    // продолжает с неё, а не здоровается заново (первый ход ИИ не генерируется).
+    ...(packet.content.opening
+      ? [
+        'The conversation already began with SERVER_AUTHORIZED_OPENING (the first assistant message). Continue from it naturally; do not greet again or repeat it.',
+        `SERVER_AUTHORIZED_OPENING=${JSON.stringify({ personaId: packet.content.opening.personaId, text: packet.content.opening.text })}`,
+      ]
+      : []),
   ].join('\n');
 }
 
@@ -582,6 +595,9 @@ export async function executeDialogueV2TextTurn(
       userMessage: input.userMessage,
       expectedPersonaIds: personaIds,
       ...(input.interfaceLang ? { maxOutputTokens: DIALOGUE_V2_COACHING_MAX_OUTPUT_TOKENS } : {}),
+      ...(packet.content.opening
+        ? { serverOpening: Object.freeze({ personaId: packet.content.opening.personaId, text: packet.content.opening.text }) }
+        : {}),
     }));
   } catch {
     if (quota.consumed) {

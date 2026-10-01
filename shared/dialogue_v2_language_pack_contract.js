@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DIALOGUE_V2_REVIEW_ROLES = exports.DIALOGUE_V2_STUDY_TARGETS = void 0;
+exports.DIALOGUE_V2_OPENING_MAX_LENGTH = exports.DIALOGUE_V2_REVIEW_ROLES = exports.DIALOGUE_V2_STUDY_TARGETS = void 0;
 exports.validateDialogueV2LanguagePack = validateDialogueV2LanguagePack;
 exports.matchesDialogueV2ApprovedLanguagePackManifest = matchesDialogueV2ApprovedLanguagePackManifest;
 const dialogue_v2_contract_1 = require("./dialogue_v2_contract");
@@ -14,6 +14,7 @@ exports.DIALOGUE_V2_REVIEW_ROLES = [
     'stateIsolationJudge',
     'surfaceMatrixGate',
 ];
+exports.DIALOGUE_V2_OPENING_MAX_LENGTH = 600;
 const TOKEN_RE = /^(?=.{1,128}$)[a-z0-9]+(?:[_-][a-z0-9]+)*$/;
 const SHA256_RE = /^[a-f0-9]{64}$/;
 const PERSONA_STYLES = new Set(['warm', 'direct', 'calm', 'playful', 'formal']);
@@ -103,6 +104,15 @@ function validateDialogueV2LanguagePack(value) {
         || !learnerText(content.briefing, 8, 480)
         || !learnerText(content.completionTone, 3, 96)) {
         return { ok: false, error: 'learner_content_invalid' };
+    }
+    // зачем: первая реплика необязательна, но если есть — только от участника сцены.
+    if (content.opening !== undefined) {
+        const opening = record(content.opening);
+        if (!opening || Object.keys(opening).length !== 2
+            || typeof opening.personaId !== 'string' || !personaIds.has(opening.personaId)
+            || !learnerText(opening.text, 1, exports.DIALOGUE_V2_OPENING_MAX_LENGTH)) {
+            return { ok: false, error: 'learner_content_invalid' };
+        }
     }
     const review = record(packet.review);
     if (!review || exports.DIALOGUE_V2_REVIEW_ROLES.some((role) => !REVIEW_VERDICTS.has(review[role]))) {

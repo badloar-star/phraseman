@@ -8,6 +8,7 @@ import {
   createDialogueV2FreeformServerTextProducer,
   type DialogueV2FreeformTextProducerRequest,
 } from './dialogue_v2_freeform_text_provider';
+import { DIALOGUE_V2_FREEFORM_OPENINGS } from '../../shared/dialogue_v2_freeform_openings.generated';
 
 const NOW_MS = 2_000_000_000_000;
 const SESSION_ID = `d2fs_${'S'.repeat(32)}`;
@@ -44,6 +45,8 @@ describe('Dialogue V2 Plus freeform provider boundary', () => {
       studyTarget: 'en',
       systemInstruction: expect.stringContaining('English'),
       conversation: [
+        // Готовая открывающая фраза (владелец 01.10) — первым ходом собеседника.
+        { role: 'assistant', content: DIALOGUE_V2_FREEFORM_OPENINGS.en },
         { role: 'user', content: 'Hi! I want to practise introductions.' },
         { role: 'assistant', content: 'Great — what would you say first?' },
         { role: 'user', content: 'How would a local say this naturally?' },
@@ -113,7 +116,7 @@ describe('Dialogue V2 Plus freeform provider boundary', () => {
     expect(buildDialogueV2FreeformTextProducerRequest(
       serverTurn({ priorTurns: eightTurns }),
       NOW_MS,
-    ).conversation).toHaveLength(17);
+    ).conversation).toHaveLength(18);
 
     expect(() => buildDialogueV2FreeformTextProducerRequest(
       serverTurn({ priorTurns: [...eightTurns, eightTurns[0]] }),
@@ -175,7 +178,7 @@ describe('Dialogue V2 Plus freeform provider boundary', () => {
       .resolves.toContain('That sounds natural');
     expect(transport).toHaveBeenCalledTimes(1);
     const sent = transport.mock.calls[0][0];
-    expect(sent.conversation).toHaveLength(17);
+    expect(sent.conversation).toHaveLength(18);
     expect(sent.languageBranchMemory).toBeNull();
     expect(JSON.stringify(sent)).not.toMatch(/scenario|rank|persona|objective|completion/i);
   });

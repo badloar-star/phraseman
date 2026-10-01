@@ -7,6 +7,7 @@ import {
 import {
   DIALOGUE_V2_FREEFORM_MAX_USER_MESSAGE_BYTES,
 } from '../../shared/dialogue_v2_freeform_session_contract';
+import { DIALOGUE_V2_FREEFORM_OPENINGS } from '../../shared/dialogue_v2_freeform_openings.generated';
 import {
   DIALOGUE_V2_FREEFORM_SESSION_MAX_RAW_BYTES,
   DIALOGUE_V2_FREEFORM_SESSION_MAX_RAW_TURNS,
@@ -185,7 +186,12 @@ export function buildDialogueV2FreeformTextProducerRequest(
     throw invalidRequest();
   }
 
-  const conversation: DialogueV2FreeformTextProducerMessage[] = [];
+  // зачем (владелец 01.10: «первая реплика всегда уже должна быть на экране»): телефон
+  // показывает готовую открывающую фразу сразу; модель видит её первым ходом
+  // собеседника, поэтому не здоровается заново. Фраза — серверная константа языка.
+  const conversation: DialogueV2FreeformTextProducerMessage[] = [
+    Object.freeze({ role: 'assistant' as const, content: DIALOGUE_V2_FREEFORM_OPENINGS[target] }),
+  ];
   const canonicalHistory: Readonly<{
     turnId: string;
     userMessage: string;

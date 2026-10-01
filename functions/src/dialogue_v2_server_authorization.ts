@@ -214,6 +214,14 @@ function projectLearnerCataloguePacket(
       title: packet.content.title,
       briefing: packet.content.briefing,
       completionTone: packet.content.completionTone,
+      // зачем (владелец 01.10): первая реплика персонажа едет в learner-каталог, чтобы
+      // телефон показал её в первом кадре; поле есть только когда оно есть в выпуске.
+      ...(packet.content.opening ? {
+        opening: Object.freeze({
+          personaId: packet.content.opening.personaId,
+          text: packet.content.opening.text,
+        }),
+      } : {}),
     }),
   });
 }

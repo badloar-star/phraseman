@@ -8,6 +8,8 @@
  *   - functions/src/generated/dialogue_v2_server_release.json — полный серверный
  *     выпуск (манифест + 304 пакета), запасной источник для всех функций Диалогов V2,
  *     когда указателя в Firestore нет;
+ *   - content.opening каждого пакета — первая реплика персонажа из
+ *     content/dialogues-v2/opening-lines/opening_lines.v1.json (вне кандидата, с автопроверками);
  *   - shared/generated/dialogue_v2_learner_catalogue.<язык>.json — только поля
  *     learner-пакета (то же, что отдаёт dialogueV2Catalogue), чтобы телефон показал
  *     каталог сразу, даже без сети и без выложенной функции.
@@ -43,6 +45,7 @@ import {
   hashDialogueV2CandidateValue,
   type DialogueV2ContentCandidateManifest,
 } from './dialogue_v2_content_release_candidate';
+import { readDialogueV2OpeningLines, type DialogueV2OpeningLines } from './dialogue_v2_opening_lines';
 
 const LOG = '[DIALOGUE-V2-RELEASE]';
 const CANDIDATE_PATH = 'content/dialogues-v2/release-candidate/dialogue_v2_content_candidate.v1.json';
@@ -138,7 +141,23 @@ export type DialogueV2EmbeddedLearnerSnapshotFile = Readonly<{
 export type DialogueV2EmbeddedReleaseBuild = Readonly<{
   server: DialogueV2EmbeddedServerReleaseFile;
   snapshots: Readonly<Record<DialogueV2StudyTarget, DialogueV2EmbeddedLearnerSnapshotFile>>;
+  /** Открывающие фразы свободного разговора (shared/dialogue_v2_freeform_openings.generated.ts). */
+  freeformOpenings: Readonly<Record<DialogueV2StudyTarget, string>>;
 }>;
+
+/** Общий для телефона и сервера модуль открывающих фраз свободного разговора. */
+export const DIALOGUE_V2_FREEFORM_OPENINGS_PATH = 'shared/dialogue_v2_freeform_openings.generated.ts';
+
+export function serializeDialogueV2FreeformOpenings(openings: Readonly<Record<DialogueV2StudyTarget, string>>): string {
+  return [
+    '// СГЕНЕРИРОВАНО scripts/dialogue_v2_embedded_release.ts --write — руками не править.',
+    '// Источник: content/dialogues-v2/opening-lines/opening_lines.v1.json (freeform).',
+    '// зачем (владелец 01.10): первая реплика свободного разговора видна сразу; сервер',
+    '// кладёт ту же фразу первым ходом собеседника в историю (не генерирует её ИИ).',
+    `export const DIALOGUE_V2_FREEFORM_OPENINGS = Object.freeze(${JSON.stringify(openings, null, 2)} as const);`,
+    '',
+  ].join('\n');
+}
 
 /** Детерминированная сборка из одобренного кандидата; бросает при любом расхождении. */
 export function buildDialogueV2EmbeddedRelease(repoRoot: string): DialogueV2EmbeddedReleaseBuild {
@@ -151,6 +170,15 @@ export function buildDialogueV2EmbeddedRelease(repoRoot: string): DialogueV2Embe
   const reviewReceiptSha256 = hashDialogueV2CandidateValue(receiptRead.value);
   const ledgerPersonas = ledgerPersonasByScenario(record(readJson(repoRoot, LEDGER_PATH).value, 'ledger_invalid'));
   const profiles = record(record(readJson(repoRoot, PROFILES_PATH).value, 'profiles_invalid').targets, 'profiles_targets_invalid');
+  // зачем (владелец 01.10: «первая реплика всегда уже должна быть на экране»): реплики —
+  // отдельный файл вне одобренного кандидата; попадают в пакет только через автопроверки.
+  const openingRead = readDialogueV2OpeningLines(repoRoot, new Map(
+    [...ledgerPersonas].map(([scenarioId, personas]) => [scenarioId, personas.map((persona) => persona.id)]),
+  ));
+  if (openingRead.issues.length > 0) {
+    throw new Error(`opening_lines_check_failed:${openingRead.issues.length}:${openingRead.issues.slice(0, 5).join('|')}`);
+  }
+  const openingLines: DialogueV2OpeningLines = openingRead.lines;
 
   const packets: Record<string, DialogueV2LanguagePack> = {};
   const manifest: Record<string, DialogueV2ApprovedLanguagePackManifest[string]> = {};
@@ -215,6 +243,7 @@ export function buildDialogueV2EmbeddedRelease(repoRoot: string): DialogueV2Embe
         title: String(content.title),
         briefing: String(content.briefing),
         completionTone: String(content.completionTone),
+        opening: openingFor(openingLines, scenarioId, studyTarget, pin.key),
       },
       // Одобрение владельца 28.09 покрывает все шесть ролей (квитанция выше).
       review: Object.fromEntries(DIALOGUE_V2_REVIEW_ROLES.map((role) => [role, 'PASS'])),
@@ -267,7 +296,19 @@ export function buildDialogueV2EmbeddedRelease(repoRoot: string): DialogueV2Embe
       release,
     }),
     snapshots: Object.freeze(snapshots),
+    freeformOpenings: openingLines.freeform,
   });
+}
+
+function openingFor(
+  lines: DialogueV2OpeningLines,
+  scenarioId: string,
+  studyTarget: DialogueV2StudyTarget,
+  key: string,
+): Readonly<{ personaId: string; text: string }> {
+  const line = lines.scenarios[scenarioId]?.[studyTarget];
+  if (!line) throw new Error(`opening_line_missing:${key}`);
+  return { personaId: line.personaId, text: line.text };
 }
 
 /** Компактный JSON (без отступов): меньше бандл телефона и меньше парсинг на холодном старте функций. */
@@ -290,6 +331,7 @@ function runCli(): void {
       dialogueV2EmbeddedLearnerSnapshotPath(studyTarget),
       serializeDialogueV2EmbeddedArtifact(built.snapshots[studyTarget]),
     ]),
+    [DIALOGUE_V2_FREEFORM_OPENINGS_PATH, serializeDialogueV2FreeformOpenings(built.freeformOpenings)],
   ];
   let drift = 0;
   for (const [relativePath, expected] of outputs) {

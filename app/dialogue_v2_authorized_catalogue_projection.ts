@@ -6,7 +6,11 @@ import {
   DIALOGUE_V2_CATALOGUE_INDEX,
   type DialogueV2CatalogueEntry,
 } from '../shared/dialogue_v2_catalogue_index';
-import { DIALOGUE_V2_STUDY_TARGETS, type DialogueV2StudyTarget } from '../shared/dialogue_v2_language_pack_contract';
+import {
+  DIALOGUE_V2_OPENING_MAX_LENGTH,
+  DIALOGUE_V2_STUDY_TARGETS,
+  type DialogueV2StudyTarget,
+} from '../shared/dialogue_v2_language_pack_contract';
 import { DIALOGUE_V2_WORLD_IDS, type DialogueV2WorldId } from '../shared/dialogue_v2_contract';
 import { getDialogueV2LocalRankAccess } from './dialogue_v2_local_rank_access';
 
@@ -110,9 +114,22 @@ function validPacket(value: unknown, expected: DialogueV2CatalogueEntry, target:
     || policy.maxDirectReplies !== 1 || (policy.maxUsefulFollowUps !== 0 && policy.maxUsefulFollowUps !== 1)
     || policy.silenceAllowed !== true) return null;
   const content = plainRecord(packet.content);
-  return content && exactKeys(content, ['title', 'briefing', 'completionTone'])
-    && learnerText(content.title, 3, 120) && learnerText(content.briefing, 8, 480)
+  // зачем (контракт с «Дизайном» 01.10): content.opening = { personaId, text } — первая
+  // реплика на изучаемом языке, необязательна; если есть — строго от участника сцены.
+  const hasOpening = Boolean(content) && Object.prototype.hasOwnProperty.call(content, 'opening');
+  if (!content || !exactKeys(content, hasOpening
+    ? ['title', 'briefing', 'completionTone', 'opening']
+    : ['title', 'briefing', 'completionTone'])) return null;
+  if (hasOpening && !validOpening(content.opening, personaIds)) return null;
+  return learnerText(content.title, 3, 120) && learnerText(content.briefing, 8, 480)
     && learnerText(content.completionTone, 3, 96) ? content.title : null;
+}
+
+function validOpening(value: unknown, personaIds: ReadonlySet<string>): boolean {
+  const opening = plainRecord(value);
+  return Boolean(opening && exactKeys(opening, ['personaId', 'text'])
+    && typeof opening.personaId === 'string' && personaIds.has(opening.personaId)
+    && learnerText(opening.text, 1, DIALOGUE_V2_OPENING_MAX_LENGTH));
 }
 
 /**

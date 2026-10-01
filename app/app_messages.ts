@@ -1502,11 +1502,15 @@ export async function refreshAppMessagesSnapshotOnce(options: {
   if (!options.force) {
     const lastRefreshMs = await readLastBackgroundRefreshMs();
     if (lastRefreshMs > 0 && nowMs - lastRefreshMs < minIntervalMs) {
+      DebugLogger.info('[STARTUP-READS]', `app_messages: cache (ageMs=${nowMs - lastRefreshMs} < minIntervalMs=${minIntervalMs}) -> network skipped`);
       return cached;
     }
   }
 
-  if (!firestoreFactory || !uid) return cached;
+  if (!firestoreFactory || !uid) {
+    DebugLogger.info('[STARTUP-READS]', `app_messages: network unavailable (firestore=${firestoreFactory ? 'yes' : 'no'}, uid=${uid ? 'yes' : 'no'}) -> cache`);
+    return cached;
+  }
 
   try {
     const db = firestoreFactory();
@@ -1525,10 +1529,18 @@ export async function refreshAppMessagesSnapshotOnce(options: {
         .get()
         // Подколлекции может не быть / rules ещё не задеплоены — глобальная лента важнее.
         .catch(() => ({ docs: [] })),
+      // зачем (PM-210, экономия чтений): коллекция состояний растёт монотонно
+      // (документ на каждое прочитанное/скрытое сообщение) и не чистится — без
+      // limit давний аккаунт читал её ЦЕЛИКОМ. Берём свежие 80, как живой поток
+      // в subscribeUserAppMessages: состояния нужны только для сообщений из двух
+      // лент выше (тоже по 80), а любая запись состояния ставит updatedAtMs, так
+      // что только что тронутое сообщение всегда попадает в выборку.
       db
         .collection('users')
         .doc(uid)
         .collection(APP_MESSAGE_STATES_COLLECTION)
+        .orderBy('updatedAtMs', 'desc')
+        .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
         .get(),
       readLocalPreviewMessages(uid),
       readLocalPreviewStates(uid),
@@ -1560,8 +1572,10 @@ export async function refreshAppMessagesSnapshotOnce(options: {
     );
     await writeCachedSnapshot(snapshot, uid);
     await writeLastBackgroundRefreshMs(nowMs, uid);
+    DebugLogger.info('[STARTUP-READS]', `app_messages: network read messages=${messages.length} userMessages=${userMessages.length} states=${states.length}`);
     return snapshot;
-  } catch {
+  } catch (error) {
+    reportSwallowed('app_messages:refreshAppMessagesSnapshotOnce', error);
     return cached;
   }
 }

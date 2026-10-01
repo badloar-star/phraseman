@@ -601,9 +601,15 @@ export async function loadMarketplacePacks(
   return (await loadMarketplacePacksResult(studyTarget, sourceLocale)).packs;
 }
 
-/** Прогрев списка наборов при старте — к моменту открытия магазина/хаба список уже в памяти. */
+/**
+ * Прогрев списка наборов при старте.
+ * зачем (PM-210, экономия старта): каталог маркета сейчас пуст
+ * (`loadMarketplacePacksResult` — заглушка `[]`), греть нечего. Намеренный no-op
+ * без сети и без захвата поколения аккаунта; вызов из `_layout.tsx` оставлен,
+ * чтобы не трогать корень. Вернётся каталог — прогрев вернуть ЗДЕСЬ.
+ */
 export async function prefetchMarketplacePacks(): Promise<void> {
-  await loadMarketplacePacks().catch(() => {});
+  DebugLogger.info('[STARTUP-READS]', 'marketplace prefetch: no-op (catalog stub, 0 reads)');
 }
 
 /** @deprecated Имя «dev» — фактически все купленные наборы; используйте loadOwnedPackIds. */

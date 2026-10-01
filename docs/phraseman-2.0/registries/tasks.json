@@ -13898,11 +13898,9 @@
       {
         "id": "PM-280-A2",
         "text": "Тип задачи «Пройди N ступеней» в пуле «Сегодня»",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "components/home/v2/home_v2_types.ts",
-          "components/home/v2/HomeV2TodayCard.tsx",
-          "docs/phraseman-2.0/evidence/PM-280_coins_and_streak.md"
+          "modules/today-tasks/today_tasks_core.ts (spire_steps в пуле, цель 3), app/spire/use_spire_game.ts:249 (пройденная ступень → засчитывание), hooks/use_today_tasks.ts (за флагом spire_tab_enabled + D133); коммит 0432d5b57; tests/today_tasks_counting.test.ts 17/17, today_tasks_wiring_contract 10/10"
         ]
       }
     ],

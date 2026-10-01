@@ -13,6 +13,7 @@ import { resolvePremiumAccess } from './premium_status';
 import { requireGlobalBroadcastPublicAuthority } from './global_broadcast_public_schema';
 import { isCommunityPackLanguage, normalizeCommunityPackLanguage, type CommunityPackLanguage } from './community_pack_language';
 import { enqueueCardTtsJob } from './card_tts_jobs';
+import { readPackPublishSlot, writePackPublishSlot } from './pack_publish_limit';
 
 const COMMUNITY_PACKS = 'community_packs';
 const COMMUNITY_SUBMISSIONS = 'community_pack_submissions';
@@ -363,6 +364,8 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
     throw new HttpsError('unauthenticated', 'Auth required');
   }
   const callerAuthUid = request.auth.uid;
+  // зачем: Q55 — админские публикации суточный лимит наборов не трогает.
+  const isAdminCaller = request.auth.token?.admin === true;
   const requestedAuthorStableId = String(request.data?.authorStableId ?? '').trim();
   const rawPayload = request.data?.payload as SubmissionPayload | undefined;
   let updatePackId = String(request.data?.updatePackId ?? '').trim();
@@ -557,6 +560,10 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
         }
         return;
       }
+      // зачем: Q55 / PM-018-A2 — не более 3 НОВЫХ публикаций в сутки на человека.
+      // Слот читается и тратится в этой же транзакции, что и создание заявки;
+      // повтор той же заявки (existing.exists выше) сюда не доходит и слот не тратит.
+      const slot = isAdminCaller ? null : await readPackPublishSlot(tx, db, authorStableId, now);
       tx.create(subRef, {
         status: 'pending',
         authorStableId,
@@ -567,15 +574,22 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
         payloadHash,
         callerAuthUid,
       });
+      if (slot) writePackPublishSlot(tx, slot, now);
     });
   } else {
-    await subRef.set({
-      status: 'pending',
-      authorStableId,
-      submittedAt: now,
-      payload,
-      submissionKind: 'create',
-      callerAuthUid,
+    // зачем: Q55 — без ключа идемпотентности каждая отправка = новая заявка,
+    // поэтому слот лимита и заявка пишутся одной транзакцией.
+    await db.runTransaction(async (tx) => {
+      const slot = isAdminCaller ? null : await readPackPublishSlot(tx, db, authorStableId, now);
+      tx.set(subRef, {
+        status: 'pending',
+        authorStableId,
+        submittedAt: now,
+        payload,
+        submissionKind: 'create',
+        callerAuthUid,
+      });
+      if (slot) writePackPublishSlot(tx, slot, now);
     });
   }
   return { submissionId: subRef.id };

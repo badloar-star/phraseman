@@ -80,8 +80,9 @@ describe('live admin shard survey connection', () => {
 
   test('ships the owner-selected 63-poll preset library into the live admin editor', () => {
     expect(surveyMarkup).toContain('id="ss-preset-library"');
-    // зачем: Q3 (координатор 01.10) — опросы про XP/Арену/Лигу удалены из библиотеки (63 → 54).
-    expect(surveyMarkup).toContain('Библиотека 54 опросов');
+    // зачем: Q3 (координатор 01.10) — опросы про XP/Арену/Лигу удалены из библиотеки (63 → 54);
+    // PM-168 — ещё «Идеи» (1) и руны/жемчуг (62, 63): 54 → 51.
+    expect(surveyMarkup).toContain('Библиотека 51 опроса');
     expect(surveySection).toContain('const SHARD_SURVEY_PRESETS =');
     expect(surveySection).toContain('window.openShardSurveyPreset');
     expect(surveySection).toContain('business theme must not be mentioned');
@@ -102,9 +103,9 @@ describe('live admin shard survey connection', () => {
     const match = liveAdmin.match(/const SHARD_SURVEY_PRESETS =\s*(\[[\s\S]*?\n  \]);\s*\n  const SS_SURVEY_ACTION_ROUTES/);
     expect(match).not.toBeNull();
     const presets = JSON.parse(match![1]) as Array<{ id: number }>;
-    expect(presets).toHaveLength(54);
+    expect(presets).toHaveLength(51);
     const ids = presets.map((preset) => preset.id);
-    for (const removed of [10, 11, 50, 53, 56, 58, 60, 61, 64]) expect(ids).not.toContain(removed);
+    for (const removed of [1, 10, 11, 50, 53, 56, 58, 60, 61, 62, 63, 64]) expect(ids).not.toContain(removed);
     const text = JSON.stringify(presets);
     expect(text).not.toMatch(/Арен|Лиг|XP/u);
     expect(text).not.toContain('/(tabs)/arena');

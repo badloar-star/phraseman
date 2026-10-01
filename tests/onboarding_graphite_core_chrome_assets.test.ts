@@ -34,8 +34,7 @@ describe('Onboarding Graphite core chrome assets', () => {
   test('non-background chrome modules do not reference removed background groups', () => {
     const energySource = fs.readFileSync(path.join(ROOT, 'components/EnergyIcon.tsx'), 'utf8');
     const messagesSource = fs.readFileSync(path.join(ROOT, 'components/AppMessagesInbox.tsx'), 'utf8');
-    const lingmanSource = fs.readFileSync(path.join(ROOT, 'components/LingmanVideosButton.tsx'), 'utf8');
-    const combined = [energySource, messagesSource, lingmanSource].join('\n');
+    const combined = [energySource, messagesSource].join('\n');
 
     expect(combined).not.toContain('assets/images/app_backdrops');
     expect(combined).not.toContain('assets/images/theme_backdrops');

@@ -24,7 +24,6 @@
   "components/ReportErrorButton.tsx",
   "components/GlobalBroadcastModal.tsx",
   "components/ReferralWelcomeHost.tsx",
-  "components/reward_v2/RewardCardV2.tsx",
   "components/UpdateModal.tsx",
   "app/referral_access_ended_modal.tsx",
   "components/AccountSwitchRecoveryScreen.tsx",

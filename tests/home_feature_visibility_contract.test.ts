@@ -14,11 +14,4 @@ describe('home feature visibility', () => {
     expect(source).not.toContain('homeLeagueChest');
   });
 
-  it('keeps the video icon visible by default and avoids badge loading when disabled', () => {
-    const source = read('components/LingmanVideosButton.tsx');
-
-    expect(source).toContain('return { enabled: isVideoButtonEnabled() };');
-    expect(source).toContain('if (!ownerActive || !enabled) return;');
-    expect(source).toContain('if (!enabled) return null;');
-  });
 });

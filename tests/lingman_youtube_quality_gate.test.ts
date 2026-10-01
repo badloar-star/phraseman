@@ -10,37 +10,23 @@ function readProjectFile(relativePath: string): string {
 describe('lingman YouTube quality gate', () => {
   const catalogSource = () => readProjectFile('app/lingman_videos.tsx');
   const inlinePlayerSource = () => readProjectFile('components/youtube/YoutubeInlinePlayer.tsx');
-  const buttonSource = () => readProjectFile('components/LingmanVideosButton.tsx');
   const dataSource = () => readProjectFile('app/lingman_youtube.ts');
 
   it('uses theme-native chrome instead of hardcoded YouTube red in app surfaces', () => {
-    const combined = [catalogSource(), inlinePlayerSource(), buttonSource()].join('\n');
+    const combined = [catalogSource(), inlinePlayerSource()].join('\n');
 
     expect(combined).not.toMatch(/#E11D48|#EF4444/);
     expect(combined).toContain('getLingmanYoutubeChrome');
     expect(combined).toContain('accent');
   });
 
-  it('keeps the home YouTube entry accessible and at least 44 dp tall', () => {
-    const source = buttonSource();
-
-    expect(source).toContain('testID="home-lingman-youtube-button"');
-    expect(source).toContain('accessibilityRole="button"');
-    expect(source).toContain('AccessibilityInfo');
-    expect(source).toMatch(/height:\s*(4[4-9]|[5-9]\d)/);
-  });
-
   it('refreshes the home video badge on focus and app resume', () => {
-    const source = buttonSource();
     const home = readProjectFile('app/(tabs)/home.tsx');
 
-    expect(source).toContain('ownerActive?: boolean');
-    expect(source).toContain('if (!ownerActive || !enabled) return;');
     // зачем (Главная 2.0, утверждена 30.09): вход в видео в хедере — своя кнопка
     // «Видеоуроки» со счётчиком непросмотренных вместо LingmanVideosButton.
     expect(home).toContain('testID="home-header-videos"');
     expect(home).toContain('videoUnreadCount');
-    expect(source).toContain('remote_config_changed');
   });
 
   it('marks video notifications as seen as soon as the catalog opens', () => {
@@ -71,7 +57,7 @@ describe('lingman YouTube quality gate', () => {
   });
 
   it('connects the catalog to the Professor Lingman English YouTube channel', () => {
-    const combined = [catalogSource(), buttonSource(), dataSource()].join('\n');
+    const combined = [catalogSource(), dataSource()].join('\n');
 
     expect(dataSource()).toContain("LINGMAN_CHANNEL_ID = 'UCIr8fwZjbDtcUlQ-IKIbndg'");
     expect(dataSource()).toContain("LINGMAN_CHANNEL_HANDLE = '@professorlingman'");
@@ -103,7 +89,7 @@ describe('lingman YouTube quality gate', () => {
 
   it('uses the wired vector icon path without shipping dead per-theme YouTube art', () => {
     const assetDir = path.join(root, 'assets/images/lingman');
-    const combined = [catalogSource(), inlinePlayerSource(), buttonSource()].join('\n');
+    const combined = [catalogSource(), inlinePlayerSource()].join('\n');
     expect(combined).toContain("import Ionicons from '@expo/vector-icons/Ionicons'");
     for (const assetName of ['youtube-dark.webp', 'youtube-gold.webp', 'youtube-minimalDark.webp']) {
       expect(combined).not.toContain(assetName);

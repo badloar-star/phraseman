@@ -29,7 +29,6 @@ const REVIEWED_DYNAMIC_CONTEXTS = new Set([
   'app/level_exam.tsx:lessonPaywallContext(firstLessonForLevel)',
   'components/AiLimitUpsellCard.tsx:paywallContext',
   'components/NoEnergyModal.tsx:ctx',
-  'components/PremiumGoldButton.tsx:paywallContext',
   'components/StatsPremiumBlur.tsx:context',
   'components/EntitlementExpiredHost.tsx:context',
   'app/flashcards/FlashcardsHubScreen.tsx:context',
@@ -50,7 +49,6 @@ const REVIEWED_DYNAMIC_SOURCES = new Set([
   // контекстом того же компонента (paywallContext) — обе размерности типизированы
   // хостом, а не собираются строкой на месте.
   'components/AiLimitUpsellCard.tsx:paywallSource',
-  'components/PremiumGoldButton.tsx:paywallSource',
   // 2026-09-20: единый гейт дневного лимита «Работы над ошибками» —
   // `useMistakePracticeStartGate(source: PaywallSource)`. Тип параметра уже
   // замкнут контрактом, вызывающая поверхность передаёт литерал из списка.

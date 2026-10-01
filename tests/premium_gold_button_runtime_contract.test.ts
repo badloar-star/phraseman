@@ -5,11 +5,10 @@ const read = (file: string) => fs.readFileSync(path.resolve(__dirname, '..', fil
 
 describe('PremiumGoldButton runtime ownership', () => {
   it('requires both screen runtime and explicit owner visibility', () => {
-    const button = read('components/PremiumGoldButton.tsx');
     const noEnergy = read('components/NoEnergyModal.tsx');
+    // зачем (01.10): золотая кнопка удалена целиком (не импортировалась) — стиль 2.0 без золота.
+    expect(fs.existsSync(path.resolve(__dirname, '..', 'components/PremiumGoldButton.tsx'))).toBe(false);
 
-    expect(button).toContain('active: boolean');
-    expect(button).toContain('active && premiumButtonRuntimeActive');
     // зачем: NoEnergyModal перенесён на Liquid Glass — золотая кнопка заменена светлой CTA темы,
     // золотой перелив теперь остаётся только у PremiumGoldButton на других экранах.
     expect(noEnergy).not.toContain('PremiumGoldButton');

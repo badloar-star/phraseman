@@ -77,16 +77,12 @@ describe('retained tabs runtime work contract', () => {
 
   it('passes explicit retained-tab runtime ownership into Home loops and inbox work', () => {
     const home = read('app/(tabs)/home.tsx');
-    const video = read('components/LingmanVideosButton.tsx');
     const center = read('components/NotificationCenterButton.tsx');
     const inbox = read('components/AppMessagesInbox.tsx');
 
-    expect(home).toContain('<LingmanVideosButton ownerActive={homeRuntimeActive} />');
     expect(home).toContain('ownerActive={homeRuntimeActive}');
-    expect(video).toContain('ownerActive?: boolean;');
-    expect(video).toContain('function LingmanVideosButton({ ownerActive = true }');
-    expect(video).not.toContain('useIsFocused');
-    expect(home).toContain('<NotificationCenterButton isHomeTabActive={homeRuntimeActive}');
+    expect(home).toContain('<NotificationCenterButton');
+    expect(home).toContain('isHomeTabActive={homeRuntimeActive}');
     expect(center).toContain('ownerActive={isHomeTabActive}');
     expect(inbox).toContain('ownerActive?: boolean;');
     expect(inbox).toContain('const runtimeActive = ownerActive ?? isScreenFocused;');

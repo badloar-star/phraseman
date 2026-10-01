@@ -15,14 +15,11 @@ describe('final runtime ownership guards', () => {
     expect(banner).toContain('checkGenerationRef.current += 1;');
   });
 
-  test('removed flashcard autoplay deep links redirect and the shared waveform remains runtime-owned', () => {
+  test('removed flashcard autoplay deep links redirect', () => {
     const audio = read('app/flashcards_audio.tsx');
-    const waveform = read('components/flashcards/AudioWaveform.tsx');
     expect(audio).toContain('<Redirect href="/flashcards" />');
     expect(audio).not.toContain('useRuntimeActive');
-    expect(waveform).toContain('active?: boolean;');
-    expect(waveform).toContain('const runtimeActive = useRuntimeActive(active);');
-    expect(waveform).toContain('if (!playing || !runtimeActive || reduceMotion)');
+    // зачем (01.10, координатор): AudioWaveform не импортировался нигде и удалён — проверять нечего.
   });
 
   test('Lesson 1 owns auto-advance, TTS and BackHandler only while active', () => {

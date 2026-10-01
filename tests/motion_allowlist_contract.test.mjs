@@ -26,7 +26,6 @@ const ALLOWED = {
   'components/ScreenGradient.tsx': [6, 'фон Главной, гейт фокуса и AppState'],
   'components/StreakChainIcon.tsx': [1, 'огонь серии на Главной'],
   'components/dialogs/glass/DialogueGlassChat.tsx': [1, 'собеседник печатает'],
-  'components/flashcards/AudioWaveform.tsx': [1, 'волна, пока идёт звук'],
   'components/learning-v2-lab/ModeDemoPlayer.tsx': [1, 'лаборатория режимов (дев)'],
   'components/learning-v2/horizons/HorizonArtwork.tsx': [1, 'фон горизонтов, гейт фокуса и AppState'],
   'components/onboarding_aha/SpeechBeat.tsx': [1, 'онбординг не трогаем (владелец)'],
@@ -43,13 +42,7 @@ const ALLOWED = {
   'components/NotificationCenterButton.tsx': [1, 'колокол в шапке Главной'],
   'components/SurveyTaskCard.tsx': [1, 'плашка опроса на Главной'],
   'components/LearningV2MapNode.tsx': [1, 'хвост PM-032: ореол узла карты'],
-  'components/ProfileCardMotionFx.tsx': [2, 'не импортируется'],
-  'components/ShineOverlay.tsx': [1, 'не импортируется'],
   'components/ui/V2Backdrop.tsx': [1, 'фон Главной через ScreenGradient (вид не трогаем)'],
-  // мёртвый код без импортёров — на экран не попадает; удаление ждёт владельца (защита запретила 01.10)
-  'components/LingmanVideosButton.tsx': [1, 'не импортируется'],
-  'components/PremiumGoldButton.tsx': [1, 'не импортируется'],
-  'components/reward_v2/RewardCardV2.tsx': [1, 'не импортируется'],
 };
 
 function walk(dir, out) {

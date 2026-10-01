@@ -227,6 +227,19 @@ function memoryLabels(value: unknown, maximum: number): readonly string[] | null
   return Object.freeze(labels);
 }
 
+function errorBrief(error: unknown): Readonly<Record<string, unknown>> {
+  const value = error as { name?: unknown; code?: unknown; message?: unknown } | null;
+  return Object.freeze({
+    name: typeof value?.name === 'string' ? value.name : null,
+    code: typeof value?.code === 'string' ? value.code : null,
+    message: typeof value?.message === 'string' ? value.message.slice(0, 200) : String(error).slice(0, 200),
+  });
+}
+
+function logAccessUnavailable(stage: string, details: Readonly<Record<string, unknown>>): void {
+  console.warn('[DIALOGUE-V2-TURN] access_unavailable', JSON.stringify({ stage, ...details }));
+}
+
 function safeStructuredMemory(
   value: unknown,
   packet: DialogueV2LanguagePack,
@@ -557,7 +570,12 @@ export async function executeDialogueV2TextTurn(
   if (!packet) throw new DialogueV2TextTurnError('release_unavailable');
 
   const groupState = safeSessionGroupState(dependencies.sessionGroupState, packet);
-  if (!groupState) throw new DialogueV2TextTurnError('access_unavailable');
+  if (!groupState) {
+    // зачем (баг 01.10, прод-лог: core access_unavailable у Free social_01): каждая из четырёх
+    // причин «доступ недоступен» называет себя — иначе не понять, какая сработала.
+    logAccessUnavailable('group_state', { scenarioId: input.scenarioId });
+    throw new DialogueV2TextTurnError('access_unavailable');
+  }
   const personaIds = expectedPersonaIds(packet, input.userMessage, groupState);
   if (personaIds.length === 0) {
     return Object.freeze({ ok: true, kind: 'silence', replies: Object.freeze([] as []) });
@@ -567,24 +585,36 @@ export async function executeDialogueV2TextTurn(
   try {
     isPremium = await dependencies.resolvePremiumAccess(stableAccountId, authUid);
     if (typeof isPremium !== 'boolean') throw new Error('access_invalid');
-  } catch {
+  } catch (error) {
+    logAccessUnavailable('premium_access', { error: errorBrief(error) });
     throw new DialogueV2TextTurnError('access_unavailable');
   }
   let memory: DialogueV2ProviderStructuredMemory | null;
+  let rawMemory: unknown = undefined;
   try {
-    memory = safeStructuredMemory(await dependencies.resolveStructuredMemory(
+    rawMemory = await dependencies.resolveStructuredMemory(
       stableAccountId,
       authUid,
       input.studyTarget,
       input.scenarioId,
       isPremium,
-    ), packet, isPremium);
-  } catch {
+    );
+    memory = safeStructuredMemory(rawMemory, packet, isPremium);
+  } catch (error) {
+    logAccessUnavailable('memory_read_failed', { isPremium, error: errorBrief(error) });
     memory = null;
   }
-  if (!memory) throw new DialogueV2TextTurnError('access_unavailable');
+  if (!memory) {
+    const shape = rawMemory && typeof rawMemory === 'object'
+      ? Object.fromEntries(Object.entries(rawMemory as Record<string, unknown>)
+        .map(([key, value]) => [key, value === null ? 'null' : typeof value]))
+      : String(rawMemory);
+    logAccessUnavailable('memory_rejected', { isPremium, shape });
+    throw new DialogueV2TextTurnError('access_unavailable');
+  }
   const quota = await dependencies.reserveMonthlyQuota(authUid, stableAccountId, isPremium);
   if (!validQuotaReservation(quota)) {
+    logAccessUnavailable('quota_invalid', { isPremium });
     throw new DialogueV2TextTurnError('access_unavailable');
   }
 

@@ -904,8 +904,8 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
         { kind: 'words_learned', numValue: data.wordsLearned, label: triLang(lang, { ru: 'Слов выучено', uk: 'Слів вивчено', es: 'Palabras aprendidas', en: 'Words learned', 'pt-BR': 'Palavras aprendidas', vi: 'Từ đã học', id: 'Kata dipelajari', tr: 'Öğrenilen kelimeler', pl: 'Nauczone słowa' }) },
         { kind: 'phrases_learned', numValue: data.phrasesLearned, label: triLang(lang, { ru: 'Фраз выучено', uk: 'Фраз вивчено', es: 'Frases aprendidas', en: 'Phrases learned', 'pt-BR': 'Frases aprendidas', vi: 'Cụm từ đã học', id: 'Frasa dipelajari', tr: 'Öğrenilen ifadeler', pl: 'Nauczone zwroty' }) },
         { kind: 'flashcards_saved', numValue: data.flashcardsSaved, label: triLang(lang, { ru: 'Карточек сохранено', uk: 'Карток збережено', es: 'Tarjetas guardadas', en: 'Flashcards saved', 'pt-BR': 'Cartões salvos', vi: 'Thẻ đã lưu', id: 'Kartu disimpan', tr: 'Kaydedilen kartlar', pl: 'Zapisane fiszki' }) },
-        { kind: 'shards_earned', numValue: data.shardsEarned, label: triLang(lang, { ru: 'Монет заработано', uk: 'Монет зароблено', es: 'Monedas ganadas', en: 'Coins earned', 'pt-BR': 'Moedas ganhas', vi: 'Xu đã kiếm', id: 'Koin diperoleh', tr: 'Kazanılan jetonlar', pl: 'Zdobyte monety' }) },
-        { kind: 'shards_spent', numValue: data.shardsSpent, label: triLang(lang, { ru: 'Монет потрачено', uk: 'Монет витрачено', es: 'Monedas gastadas', en: 'Coins spent', 'pt-BR': 'Moedas gastas', vi: 'Xu đã dùng', id: 'Koin dipakai', tr: 'Harcanan jetonlar', pl: 'Wydane monety' }) },
+        // зачем (D70/D78, координатор 01.10): «Монет заработано/потрачено» считали ЖЕМЧУГ (shards) —
+        // жемчуг удалён владельцем; строки сняты с экрана, данные уберёт ядро вместе с кодом (PM-289).
     ];
     // В dev/teaser-режимах (gateExpandAll / showAllPathCharts) показываем все строки
     // без сворачивания, иначе прячем нулевые под раскрывашку, чтобы у новичка
@@ -981,8 +981,6 @@ const LIFETIME_PATH_DEV_CHART_KINDS: LifetimeTotalsChartKind[] = [
     'words_learned',
     'flashcards_saved',
     'phrases_learned',
-    'shards_earned',
-    'shards_spent',
 ];
 function mergeDevRandomSumsIntoLifetime(base: LifetimeProfileStats, sums: DevLifetimePathRandomSums): LifetimeProfileStats {
     return {

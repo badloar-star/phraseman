@@ -7,7 +7,8 @@ for (const source of [catalog, shop]) {
     throw new Error('retired streak boost remains in shop');
   }
 }
-if (!catalog.includes("ShopCategoryId = 'all' | 'spin' | 'look' | 'cards' | 'pearls'")) {
+// зачем (D70/D78, 01.10): жемчуг удалён — категории «жемчуг» и валюты «жемчуг» в магазине нет.
+if (!catalog.includes("ShopCategoryId = 'all' | 'spin' | 'look' | 'cards';") || /'pearls'/.test(catalog) || /pearls/.test(shop)) {
   throw new Error('shop category contract is not updated');
 }
 console.log('SHOP RETIRED BOOST: PASS');

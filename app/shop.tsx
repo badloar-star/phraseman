@@ -19,9 +19,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { FlowText } from '../components/text-integrity/FlowText';
-import { onAppEvent } from './events';
 import { peekRunesBalance, subscribeRunesBalance } from './runes_system';
-import { peekLastKnownShardsBalance } from './shards_system';
 import RuneGlyph from '../components/RuneGlyph';
 import {
   SHOP_CATEGORIES,
@@ -119,7 +117,6 @@ const COPY = {
 /** Родительный падеж валюты для строк вида «У тебя 5 рун». */
 const CURRENCY_GENITIVE = {
   runes: { ru: 'монет', uk: 'монет', es: 'monedas', en: 'coins', 'pt-BR': 'moedas', vi: 'xu', id: 'koin', tr: 'jeton', pl: 'monet' },
-  pearls: { ru: 'жемчужин', uk: 'перлин', es: 'perlas', en: 'pearls', 'pt-BR': 'pérolas', vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł' },
 } as const;
 
 const YOU_HAVE = {
@@ -156,21 +153,9 @@ const MEDAL_TONES: Record<ShopItem['tone'], readonly [string, string, string]> =
   aura: ['#a8397e', '#4a1637', '#FFB6DF'],
 };
 
-function CurrencyMark({ currency, size, color }: { currency: 'runes' | 'pearls'; size: number; color: string }) {
-  if (currency === 'runes') {
-    // зачем (владелец 01.10): монета вместо рунического символа.
-    return <RuneGlyph size={size} />;
-  }
-  return (
-    <View
-      style={{
-        width: size,
-        height: size,
-        borderRadius: size * 0.32,
-        backgroundColor: color,
-      }}
-    />
-  );
+// зачем (владелец 01.10; D70/D78): единственная валюта магазина — монета.
+function CurrencyMark({ size }: { currency: 'runes'; size: number; color: string }) {
+  return <RuneGlyph size={size} />;
 }
 
 type TileProps = Readonly<{
@@ -182,7 +167,7 @@ function ShopTile({ item, onPress }: TileProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const [from, to, glyph] = MEDAL_TONES[item.tone];
-  const priceColor = item.currency === 'runes' ? t.gold : '#A78BFA';
+  const priceColor = t.gold;
   return (
     <Pressable
       testID={`shop-tile-${item.id}`}
@@ -233,7 +218,6 @@ export default function ShopScreen() {
   // Первый кадр рисуется сразу правильными числами: оба кошелька читаются
   // синхронно из снапшота, никаких «0 и прыжок» (Performance Bible).
   const [runes, setRunes] = useState(() => peekRunesBalance().balance);
-  const [pearls, setPearls] = useState(() => peekLastKnownShardsBalance() ?? 0);
   const [category, setCategory] = useState<ShopCategoryId>('all');
   const [dockOpen, setDockOpen] = useState(false);
   const [sheetItem, setSheetItem] = useState<ShopItem | null>(null);
@@ -245,11 +229,6 @@ export default function ShopScreen() {
   const scrimOpacity = useRef(new Animated.Value(0)).current;
 
   useEffect(() => subscribeRunesBalance((value) => setRunes(value.balance)), []);
-  useEffect(() => {
-    // onAppEvent отдаёт { remove }, а не функцию-очистку — оборачиваем.
-    const subscription = onAppEvent('shards_balance_updated', ({ balance }) => setPearls(balance));
-    return () => subscription.remove();
-  }, []);
   useEffect(() => () => {
     if (noticeTimer.current) clearTimeout(noticeTimer.current);
   }, []);
@@ -338,7 +317,7 @@ export default function ShopScreen() {
   const dockBottom = Math.max(insets.bottom, 8) + DOCK.dockBottomGap;
   const menuBottom = dockBottom + DOCK.capsuleMinHeight + DOCK.menuGap;
 
-  const sheetBalance = sheetItem ? (sheetItem.currency === 'runes' ? runes : pearls) : 0;
+  const sheetBalance = sheetItem ? runes : 0;
   return (
     <View style={[styles.root, { backgroundColor: t.bgPrimary, paddingTop: insets.top }]}>
       <View style={styles.header}>
@@ -363,23 +342,23 @@ export default function ShopScreen() {
       </View>
 
       <View style={styles.wallets}>
-        {(['runes', 'pearls'] as const).map((currency) => (
+        {(['runes'] as const).map((currency) => (
           <Pressable
             key={currency}
             testID={`shop-wallet-${currency}`}
             accessibilityRole="button"
-            accessibilityLabel={`${triLang(lang, CURRENCY_GENITIVE[currency])}: ${currency === 'runes' ? runes : pearls}`}
-            onPress={() => setCategory(currency === 'runes' ? 'all' : 'pearls')}
+            accessibilityLabel={`${triLang(lang, CURRENCY_GENITIVE[currency])}: ${runes}`}
+            onPress={() => setCategory('all')}
             style={({ pressed }) => [
               styles.wallet,
               { backgroundColor: t.bgSurface, transform: [{ scale: pressed ? 0.975 : 1 }] },
             ]}
           >
-            <View style={[styles.walletIcon, { backgroundColor: currency === 'runes' ? '#6B551F' : '#4A3390' }]}>
-              <CurrencyMark currency={currency} size={17} color={currency === 'runes' ? '#E3CC88' : '#C4B5FD'} />
+            <View style={[styles.walletIcon, { backgroundColor: '#6B551F' }]}>
+              <CurrencyMark currency={currency} size={17} color={'#E3CC88'} />
             </View>
             <Text style={[styles.walletAmount, { color: t.textPrimary, fontSize: f.h3 }]}>
-              {currency === 'runes' ? runes : pearls}
+              {runes}
             </Text>
             <Ionicons name="add" size={19} color={t.textMuted} style={styles.walletPlus} />
           </Pressable>
@@ -568,13 +547,13 @@ export default function ShopScreen() {
               style={({ pressed }) => [
                 styles.cta,
                 {
-                  backgroundColor: sheetItem.currency === 'runes' ? t.gold : '#8B6FE8',
+                  backgroundColor: t.gold,
                   opacity: pressed ? 0.9 : 1,
                 },
               ]}
             >
               <Text style={[styles.ctaLabel, {
-                color: sheetItem.currency === 'runes' ? t.textOnGold : '#FFFFFF',
+                color: t.textOnGold,
                 fontSize: f.body,
               }]}>
                 {triLang(lang, COPY.previewAction)}

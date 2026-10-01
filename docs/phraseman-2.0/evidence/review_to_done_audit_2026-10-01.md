@@ -319,3 +319,31 @@ done требует одновременно: все критерии приня
 PM-288: requirement_ids D131 → R259 (добавлен в requirements.json; PM-288 внесён в E09 epics.json); spec исправлен на 03_DECISIONS.md. Карточки tasks/PM-288.md нет — её создаёт render_views.py (не запускался).
 
 Оговорки: actual_model «unknown, снимок нескольких сессий», actual_reasoning «unrecorded» (§34). Выкладка функций Шпиля и прод-подсчёты PM-233 — владельцу. Строка в PROGRESS.md не добавлена: файл грязный от другой сессии.
+
+## Пачка 9 (agent-reviewer, Sonnet, 01.10)
+
+Итог: в done 3 задачи (PM-168, PM-233, PM-251). Остальные review остаются: часть ждёт «Дизайн»/владельца/Account V2, часть — с невыполненными критериями (CHANGES_REQUIRED/NOT_MET). validate.py по задачам PM-168/233/251/253/205 ошибок не даёт.
+
+| Задача | Вердикт | Основание | Статус |
+|---|---|---|---|
+| PM-168 | PASS | survey_library_editorial_guard 53/53; 3b3764566 существует; подпись координатора §49 (632213983) + Q93 «ты» — DESIGN gate закрыт | done (code, 3b3764566) |
+| PM-233 | PASS | на HEAD: node --test pm233_purchase_ledger_dry_run 6/6; products=39 markers=193 uncovered=0 stale=0 resurrected=0; MIGRATION N/A по Q96 (§52, read-only) | done (audit) |
+| PM-251 | PASS | docs-only; IMPLEMENTATION gate N/A по Q97 (§52) — обоснование записано в gate_evidence | done (audit) |
+| PM-253 | CHANGES_REQUIRED | не тот случай, что PM-251: A1 NOT_MET по существу (нет шаблона записи прогресса с base/result SHA, changed files, tests, screenshots, risks, next action); IMPLEMENTATION gate Q97 на неё не распространяется | review |
+| PM-205 | CHANGES_REQUIRED | A1 NOT_MET подтверждён на HEAD: мёртвая цепочка audio preload/transport/session-хук D47 на месте (3 файла), удаление затрагивает 9 тестов — отдельный срез ядра | review |
+| PM-235/236/237 | ждут | пакет M5 Account V2 (6632921d2) готов к подписи координатора; модели не подключены к рантайму (записано честно) | review (не трогал) |
+| PM-034/044/144/279, PM-288 | ждут | сессия «Дизайн»: пересъёмка/подпись (PM-044 дни 5/10/15+, PM-144 снимков нет), макет для PM-279/288 | review (не трогал) |
+| PM-141 | ждёт «Дизайн» | критерии приняты; DESIGN: снимок брифинга снят до ac1010dbb — пересъёмка + пейвол Free/Plus; подпись координатора | review |
+| PM-145 | ждёт «Дизайн» | критерии приняты; снимок побайтово совпал с PM-141 — нужны плашка месячного остатка, сообщение потолка, погасшая «Повторить» | review |
+| PM-197 | ждёт «Дизайн» | критерии приняты; нужны полные снимки Настроек (ru, весь скролл) → независимый ревью по правилам стиля 2.0 → подпись координатора (§49) | review |
+| PM-086 | NOT_MET A1 | A2 перепроверен: pm086_energy_price_text.probe PASS (files=2429, a11y=877, modes=16, locales=9); A1 — проверка Free/Plus во всех режимах на устройстве; gate MIGRATION пакетом не покрыт (M4 не включает PM-086) | review (нужен «Дизайн»/эмулятор) |
+| PM-048 | NOT_MET A2 | перевод спинов/подарков в монеты — после релиза (Q12); gate MIGRATION: M1 покрывает PM-046, PM-048 в списке пакета нет | review (владелец/после релиза) |
+| PM-052 | NOT_MET A1/A2 | живы reward_flight_queue, HomeRewardCollectFlight, LearningV2RuneFlight, usePracticeRuneFlight (проверено на HEAD); замена на единый полёт монет D75 — зона «Дизайна» | review |
+| PM-066 | NOT_MET A1 | cold start на устройстве не снят; gate MIGRATION не покрыт | review (эмулятор) |
+| PM-073, PM-074 | NOT_MET A1/A2 | нет evidence; ранги/подписи ждут утверждения владельца; gate MIGRATION не покрыт | review (владелец) |
+| PM-039, PM-092, PM-093, PM-094, PM-096, PM-097, PM-129, PM-130, PM-134 | NOT_MET (по одному-двум критериям) | у неприятых критериев evidence пусто; все с gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES, которого нет ни в «Покрыто решениями», ни в «N/A» DESIGN_GATE_OWNER_REVIEW.md; PM-129/130 — редизайн экранов не начат (ждёт «Дизайн»); PM-096 A2: ключ fc_my_packs_sort_v1 в app/flashcards_my_packs.tsx:151 есть, но теста нет, файл сейчас правит другая сессия | review (нужны скриншоты «Дизайна» и подпись) |
+| PM-286 | NOT_MET A2 | звук на устройстве (владелец) + деплой пакета en | review (владелец) |
+| PM-287 | NOT_MET A1 | публикация es/de/fr на проде — владелец; пометка «бета» (D77) теперь есть: components/spire/SpireHomeScreen.tsx:90-91 (SPIRE_BETA_LANGS) — прежняя запись «в коде нет» устарела | review (владелец/прод) |
+
+Известные чужие падения (на вывод не повлияли): economy_constitution_contract, post_auth_generation_guard_contract, home_lesson_progress_single_pass; admin_legacy_survey_preview_contract (1/10, SURVEY_SHARD_AMOUNT).
+Оговорки: actual_model «unknown, снимок нескольких сессий», actual_reasoning «unrecorded» (§34). Прод/эмулятор/устройство не трогал.

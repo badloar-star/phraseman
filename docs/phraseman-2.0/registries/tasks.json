@@ -9210,7 +9210,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -9242,17 +9242,21 @@
     "audit_sha": null,
     "result_sha": "3b3764566",
     "owner": null,
-    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32 (пачка 5, 01.10)",
-    "evidence": [],
+    "reviewer": "agent-reviewer (Sonnet), пачка 9",
+    "evidence": [
+      "2026-10-01 пачка 9: test:one tests/survey_library_editorial_guard.test.ts -> 53/53 PASS; 3b3764566 существует; §49/Q93 в INBOX"
+    ],
     "notes": [
-      "2026-10-01 пачка 5: PASS по сути (survey_library_editorial_guard PASS, admin_legacy_survey_preview_contract). Остаётся review: коммит правит admin/v2/legacy.html — видимый текст опросов, ждёт DESIGN_APPROVED_FOR_VISIBLE_CHANGES; publish опросов не запускался."
+      "2026-10-01 пачка 5: PASS по сути (survey_library_editorial_guard PASS, admin_legacy_survey_preview_contract). Остаётся review: коммит правит admin/v2/legacy.html — видимый текст опросов, ждёт DESIGN_APPROVED_FOR_VISIBLE_CHANGES; publish опросов не запускался.",
+      "2026-10-01 пачка 9: done. Подпись координатора §49, обращение «ты» (Q93). admin_legacy_survey_preview_contract красный 1/10 по SURVEY_SHARD_AMOUNT — к текстам не относится."
     ],
     "actual_cost": null,
     "kind": "code",
-    "review_verdict": "PASS по сути",
+    "review_verdict": "PASS",
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "evidence/DESIGN_GATE_OWNER_REVIEW.md, «PM-168 — ревью тона» (agent-reviewer, 51 текст, 10 переписаны) + подпись координатора по поручению владельца: INBOX_COORDINATOR_FROM_CORE.md §49 (632213983) «PM-168: ПОДПИСАНО … Закрывай»; Q93 «ты» в опросах — ДА"
     },
     "actual_model": "unknown, снимок нескольких сессий",
     "actual_reasoning": "unrecorded"
@@ -11248,17 +11252,21 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet), пачка 9",
     "evidence": [
       "commits 219d80a72 3e19b799c cd7a90984"
     ],
     "notes": [
-      "D47: скачивание озвучки V2 удалено, V2 на TTS; D48: V1 текущий+следующий урок заранее"
+      "D47: скачивание озвучки V2 удалено, V2 на TTS; D48: V1 текущий+следующий урок заранее",
+      "2026-10-01 пачка 9: A1 NOT_MET подтверждено на HEAD — app/learning_v2_activity_audio_preload_v1.ts, learning_v2_activity_audio_transport_v1.ts, use_learning_v2_activity_audio_session_v1.ts на месте (мёртвая цепочка D47), удаление затрагивает 9 тестов/проб — отдельный срез ядра; облачные файлы — владельцу."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "kind": "code",
+    "review_verdict": "CHANGES_REQUIRED",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
     "actual_model": "sonnet-5",
     "actual_reasoning": "high"
   },
@@ -12684,7 +12692,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12716,24 +12724,27 @@
     "audit_sha": null,
     "result_sha": "PM233-SOURCE-20261001",
     "owner": "/root",
-    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 8, 01.10)",
+    "reviewer": "agent-reviewer (Sonnet), пачка 9",
     "evidence": [
       "docs/phraseman-2.0/evidence/PM-233_purchase_ledger.md",
-      "2026-10-01 ревью пачки 8: node --test scripts/pm233_purchase_ledger_dry_run.test.mjs 6/6 PASS; node scripts/pm233_purchase_ledger_dry_run.mjs → products=39 markers=193 uncovered=0 stale=0 resurrected=0 (в доке 203 — дрейф после чистки кода); все объёмы unknown, прод не открывался"
+      "2026-10-01 ревью пачки 8: node --test scripts/pm233_purchase_ledger_dry_run.test.mjs 6/6 PASS; node scripts/pm233_purchase_ledger_dry_run.mjs → products=39 markers=193 uncovered=0 stale=0 resurrected=0 (в доке 203 — дрейф после чистки кода); все объёмы unknown, прод не открывался",
+      "2026-10-01 пачка 9: на HEAD a5caf548d повторно node --test scripts/pm233_purchase_ledger_dry_run.test.mjs 6/6 PASS; node scripts/pm233_purchase_ledger_dry_run.mjs -> products=39 markers=193 uncovered=0 stale=0 resurrected=0; Q96 (§52): MIGRATION N/A"
     ],
     "notes": [
       "Source ledger only; production counts/compensation, Firestore and deploy remain NOT_RUN.",
-      "2026-10-01 пачка 8: PASS по сути, остаётся review — gate MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE не покрыт подписанным GATES_MIGRATION (там M1–M4 для PM-046…090). Задача read-only (разрушающего шага нет): предложено координатору покрыть пакетом M5 или подтвердить N/A."
+      "2026-10-01 пачка 8: PASS по сути, остаётся review — gate MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE не покрыт подписанным GATES_MIGRATION (там M1–M4 для PM-046…090). Задача read-only (разрушающего шага нет): предложено координатору покрыть пакетом M5 или подтвердить N/A.",
+      "2026-10-01 пачка 9: done. gate MIGRATION = N/A по Q96 (read-only). Прод-объёмы остаются unknown/NOT_RUN — владельцу."
     ],
     "actual_cost": null,
     "kind": "audit",
-    "review_verdict": "PASS по сути",
+    "review_verdict": "PASS",
     "gate_evidence": {
       "ledger_check": "products=39 markers=193 uncovered=0 stale=0 resurrected=0",
       "node_guard": "6/6 passed",
       "production_mode": "refused / NOT_RUN",
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE": "N/A (Q96, INBOX_COORDINATOR_FROM_CORE.md §52, решение координатора 01.10): PM-233 read-only — ledger читает исходники, прод-режим отказывает (production_mode refused), записей и разрушающего шага нет; перепроверено на HEAD: node --test scripts/pm233_purchase_ledger_dry_run.test.mjs 6/6, products=39 markers=193 uncovered=0 stale=0 resurrected=0"
     },
     "actual_model": "gpt-5.6-terra",
     "actual_reasoning": "medium"
@@ -13614,7 +13625,7 @@
     ],
     "basis": "OWNER",
     "stage": "D",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -13645,18 +13656,21 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 8, 01.10)",
+    "reviewer": "agent-reviewer (Sonnet), пачка 9",
     "evidence": [
-      "2026-10-01 ревью пачки 8: prompts/04_REVIEW_UX_COPY.md и 05_REVIEW_TECH_COST.md — read-only; 01_BIBLE.md:52; evidence/E24_release_process_2026-10-01.md (847f2156a) §PM-251; в реестре reviewer заполнен у 82 задач, reviewer==owner — 0"
+      "2026-10-01 ревью пачки 8: prompts/04_REVIEW_UX_COPY.md и 05_REVIEW_TECH_COST.md — read-only; 01_BIBLE.md:52; evidence/E24_release_process_2026-10-01.md (847f2156a) §PM-251; в реестре reviewer заполнен у 82 задач, reviewer==owner — 0",
+      "2026-10-01 пачка 9: Q97 (§52) — IMPLEMENTATION gate N/A с обоснованием; факты пачки 8 (prompts 04/05 read-only, 01_BIBLE.md:52) без изменений"
     ],
     "notes": [
-      "2026-10-01 пачка 8: PASS по сути, остаётся review: gate IMPLEMENTATION_AND_MIGRATION_READY не покрыт пакетом, у docs-only задачи нет кода/отката — нужен ответ координатора, подтверждать ли N/A."
+      "2026-10-01 пачка 8: PASS по сути, остаётся review: gate IMPLEMENTATION_AND_MIGRATION_READY не покрыт пакетом, у docs-only задачи нет кода/отката — нужен ответ координатора, подтверждать ли N/A.",
+      "2026-10-01 пачка 9: done. gate IMPLEMENTATION_AND_MIGRATION_READY = N/A по Q97 (docs-only)."
     ],
     "actual_cost": null,
     "kind": "audit",
-    "review_verdict": "PASS по сути",
+    "review_verdict": "PASS",
     "gate_evidence": {
-      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "IMPLEMENTATION_AND_MIGRATION_READY": "N/A (Q97, INBOX_COORDINATOR_FROM_CORE.md §52, решение координатора 01.10): задача docs-only — меняет только процесс и промпты (prompts/04_REVIEW_UX_COPY.md, 05_REVIEW_TECH_COST.md, 01_BIBLE.md), кода, данных и миграций нет, откатывать нечего (откат = git revert документа)"
     },
     "actual_model": "unknown, снимок нескольких сессий",
     "actual_reasoning": "unrecorded"
@@ -13752,19 +13766,22 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet), пачка 9",
     "evidence": [
       "docs/phraseman-2.0/PROGRESS.md: PM-253 progress checkpoint"
     ],
     "notes": [
-      "A2 accepted from deterministic registry counts; A1 remains open because this working tree has no result commit SHA and no screenshot pack for every task."
+      "A2 accepted from deterministic registry counts; A1 remains open because this working tree has no result commit SHA and no screenshot pack for every task.",
+      "2026-10-01 пачка 9: НЕ тот же случай, что PM-251. A1 действительно NOT_MET (шаблона записи «Task ID, base/result SHA, changed files, tests, screenshots, risks, next action» нет; result_sha пуст у большинства задач партии, снимков нет) — это содержание, а не формальность gate; Q97 покрывает только PM-251. Кроме того gate IMPLEMENTATION_AND_MIGRATION_READY ещё не покрыт ни Q97, ни пакетом. Нужно: шаблон записи в PROGRESS.md + заполнение result_sha при переводе в done, затем A1; N/A по аналогии с Q97 — только по отдельному решению координатора (вопрос Q100)."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "audit",
+    "review_verdict": "CHANGES_REQUIRED",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-254",

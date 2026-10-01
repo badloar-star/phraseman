@@ -24,6 +24,7 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { V2GlassSheen, useV2GlassStyle } from '../components/v2/V2Glass';
 import V2Pressable from '../components/v2/V2Pressable';
 import { useV2Palette } from '../components/v2/useV2Palette';
+import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { V2, V2_TYPE } from '../constants/v2Style';
 import {
@@ -178,19 +179,21 @@ export default function CoinRankScreen() {
     setBalanceReconciling(false);
   }, [ownerKey]);
 
+  // зачем (PM-128, эмулятор 01.10): раньше `lang === 'ru' ? … : English` — украинский,
+  // португальский и остальные видели экран по-английски. Теперь все 9 языков интерфейса.
   const copy = useMemo(() => ({
-    title: lang === 'ru' ? 'Ранг игрока' : 'Player rank',
-    current: lang === 'ru' ? 'Текущий ранг' : 'Current rank',
-    level: lang === 'ru' ? 'Уровень' : 'Level',
-    balance: lang === 'ru' ? 'Ваш баланс' : 'Your balance',
-    coins: lang === 'ru' ? 'монет' : 'coins',
-    next: lang === 'ru' ? 'Следующий ранг' : 'Next rank',
-    cost: lang === 'ru' ? 'Стоимость повышения' : 'Upgrade cost',
-    remaining: lang === 'ru' ? 'Осталось накопить' : 'Still needed',
-    enough: lang === 'ru' ? 'Монет достаточно для повышения' : 'Enough coins to upgrade',
-    loading: lang === 'ru' ? 'Загружаем данные' : 'Loading data',
-    upgrade: lang === 'ru' ? 'Повысить ранг' : 'Upgrade rank',
-    max: lang === 'ru' ? 'Достигнут максимальный ранг' : 'Maximum rank reached',
+    title: triLang(lang, { ru: 'Ранг игрока', uk: 'Ранг гравця', en: 'Player rank', es: 'Rango del jugador', 'pt-BR': 'Rank do jogador', vi: 'Hạng người chơi', id: 'Peringkat pemain', tr: 'Oyuncu rütbesi', pl: 'Ranga gracza' }),
+    current: triLang(lang, { ru: 'Текущий ранг', uk: 'Поточний ранг', en: 'Current rank', es: 'Rango actual', 'pt-BR': 'Rank atual', vi: 'Hạng hiện tại', id: 'Peringkat saat ini', tr: 'Mevcut rütbe', pl: 'Obecna ranga' }),
+    level: triLang(lang, { ru: 'Уровень', uk: 'Рівень', en: 'Level', es: 'Nivel', 'pt-BR': 'Nível', vi: 'Cấp', id: 'Level', tr: 'Seviye', pl: 'Poziom' }),
+    balance: triLang(lang, { ru: 'Ваш баланс', uk: 'Ваш баланс', en: 'Your balance', es: 'Tu saldo', 'pt-BR': 'Seu saldo', vi: 'Số dư của bạn', id: 'Saldo kamu', tr: 'Bakiyen', pl: 'Twoje saldo' }),
+    coins: triLang(lang, { ru: 'монет', uk: 'монет', en: 'coins', es: 'monedas', 'pt-BR': 'moedas', vi: 'xu', id: 'koin', tr: 'jeton', pl: 'monet' }),
+    next: triLang(lang, { ru: 'Следующий ранг', uk: 'Наступний ранг', en: 'Next rank', es: 'Siguiente rango', 'pt-BR': 'Próximo rank', vi: 'Hạng tiếp theo', id: 'Peringkat berikutnya', tr: 'Sonraki rütbe', pl: 'Następna ranga' }),
+    cost: triLang(lang, { ru: 'Стоимость повышения', uk: 'Вартість підвищення', en: 'Upgrade cost', es: 'Coste de la mejora', 'pt-BR': 'Custo da promoção', vi: 'Chi phí nâng hạng', id: 'Biaya naik peringkat', tr: 'Yükseltme bedeli', pl: 'Koszt awansu' }),
+    remaining: triLang(lang, { ru: 'Осталось накопить', uk: 'Залишилося накопичити', en: 'Still needed', es: 'Te falta', 'pt-BR': 'Ainda falta', vi: 'Còn thiếu', id: 'Masih kurang', tr: 'Kalan', pl: 'Brakuje jeszcze' }),
+    enough: triLang(lang, { ru: 'Монет достаточно для повышения', uk: 'Монет достатньо для підвищення', en: 'Enough coins to upgrade', es: 'Tienes monedas suficientes para subir', 'pt-BR': 'Moedas suficientes para subir', vi: 'Đủ xu để nâng hạng', id: 'Koin cukup untuk naik peringkat', tr: 'Yükseltmek için yeterli jeton var', pl: 'Masz dość monet na awans' }),
+    loading: triLang(lang, { ru: 'Загружаем данные', uk: 'Завантажуємо дані', en: 'Loading data', es: 'Cargando datos', 'pt-BR': 'Carregando dados', vi: 'Đang tải dữ liệu', id: 'Memuat data', tr: 'Veriler yükleniyor', pl: 'Wczytujemy dane' }),
+    upgrade: triLang(lang, { ru: 'Повысить ранг', uk: 'Підвищити ранг', en: 'Upgrade rank', es: 'Subir de rango', 'pt-BR': 'Subir de rank', vi: 'Nâng hạng', id: 'Naik peringkat', tr: 'Rütbeyi yükselt', pl: 'Awansuj' }),
+    max: triLang(lang, { ru: 'Достигнут максимальный ранг', uk: 'Досягнуто максимального рангу', en: 'Maximum rank reached', es: 'Has alcanzado el rango máximo', 'pt-BR': 'Rank máximo alcançado', vi: 'Đã đạt hạng cao nhất', id: 'Peringkat maksimum tercapai', tr: 'En yüksek rütbeye ulaşıldı', pl: 'Osiągnięto najwyższą rangę' }),
   }), [lang]);
 
   const showToast = useCallback((

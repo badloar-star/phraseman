@@ -18,7 +18,9 @@ import { flashcardsSwipeMemoryKey, lessonBestScoreKey } from './target_storage_k
  * Правила слияния «не затирать более свежее локальное»:
  *   урок      — «лучший из»: пишем, только если оценка сервера выше локальной;
  *   карточка  — добавляем недостающие (по id и по фразе), существующие не трогаем;
- *               удалённые на сервере (tombstone) не добавляем и локально не удаляем;
+ *               удалённые на сервере (tombstone) не добавляем; 7D: локально убираем
+ *               только если удаление (tombstone / журнал) свежее последней правки
+ *               (accounts_v2_hydration_deletions.ts);
  *   SRS       — по времени правки: сервер, только если его updatedAtMs новее lastSeenAt;
  *   наборы    — объединение живых id без tombstone, локальные не удаляем;
  *   названия  — (7C) только для наборов, что есть локально, и только без локального названия.
@@ -27,12 +29,11 @@ import { flashcardsSwipeMemoryKey, lessonBestScoreKey } from './target_storage_k
  * хранилищем — isCurrent(): смена аккаунта обрывает применение.
  * Каждый пропуск — лог [ACCOUNT-V2] с кодом.
  *
- * TEMP (ремонт №1, P3, задокументировано): журнала локальных удалений карточек
- * и наборов в приложении НЕТ (до V2 удаление просто убирало элемент). Поэтому
- * при ПЕРВОМ включении V2 на старом телефоне карточка, удалённая локально после
- * последней облачной копии, может вернуться из перенесённых данных. После
- * включения удаления идут tombstone через зеркало производителя — такие
- * сущности гидрация не отдаёт (withoutLocallyOwned). Урок: окно между чтением и
+ * 7D (закрыт TEMP ремонта №1, P3): журнал локальных удалений карточек
+ * (flashcards/card_deletion_journal.ts) + tombstone V2 со временем удаления.
+ * Остаток: удаления, сделанные ДО появления журнала, не восстановимы как факт —
+ * такая карточка ещё может вернуться из переноса один раз. Наборы: удаления
+ * человеком в приложении нет — воскрешать нечего. Урок: окно между чтением и
  * записью оценки узкое (одна пара multiGet/multiSet), сервер хранит лучший.
  */
 
@@ -101,9 +102,21 @@ function cardObject(card: HydratedCard): Record<string, unknown> | null {
   return fields.id === card.id ? fields : null;
 }
 
-/** Сохранённые и свои карточки: добавляем только недостающие живые. */
-export async function applyHydratedCards(cards: readonly HydratedCard[], isCurrent: () => boolean, counts: Counts): Promise<void> {
-  const live = cards.filter((card) => !card.deleted);
+/** Ключ сущности карточки V2 (`<язык>:<список>:<id>`) — общий с журналом удалений (7D). */
+function cardKey(card: HydratedCard): string {
+  return `${card.target}:${card.list}:${card.id}`;
+}
+
+/**
+ * Сохранённые и свои карточки: добавляем только недостающие живые.
+ * 7D: `blocked` — живые карточки сервера, удалённые здесь позже их последней правки
+ * (журнал удалений) — не добавляем.
+ */
+export async function applyHydratedCards(
+  cards: readonly HydratedCard[], isCurrent: () => boolean, counts: Counts, blocked: ReadonlySet<string> = new Set(),
+): Promise<void> {
+  const live = cards.filter((card) => !card.deleted && !blocked.has(cardKey(card)));
+  counts.cards_blocked_by_journal = cards.filter((card) => !card.deleted && blocked.has(cardKey(card))).length;
   counts.cards_tombstoned_skipped = cards.length - live.length;
   let added = 0;
   let invalid = 0;
@@ -169,9 +182,12 @@ function mergeSrsRows(
 }
 
 /** SRS → память свайпов: сервер только если его время правки новее локального lastSeenAt. */
-export async function applyHydratedSrs(cards: readonly HydratedCard[], isCurrent: () => boolean, counts: Counts): Promise<void> {
+export async function applyHydratedSrs(
+  cards: readonly HydratedCard[], isCurrent: () => boolean, counts: Counts, blocked: ReadonlySet<string> = new Set(),
+): Promise<void> {
   const tally: SrsTally = { written: 0, keptLocal: 0 };
-  const withSrs = cards.filter((card) => !card.deleted && card.srs !== null);
+  // зачем (7D): память удалённой здесь карточки не дописываем — карточки нет и не будет.
+  const withSrs = cards.filter((card) => !card.deleted && card.srs !== null && !blocked.has(cardKey(card)));
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const writer = require('./flashcards/swipe_memory_write') as typeof import('./flashcards/swipe_memory_write');
   for (const [target, items] of groupByTarget(withSrs, counts, 'srs')) {
@@ -236,8 +252,13 @@ export async function applyAccountsV2HydrationLocally(
 ): Promise<HydrationApplyResult> {
   const counts: Counts = {};
   await applyHydratedLessons(snapshot.lessons, isCurrent, counts);
-  await applyHydratedCards(snapshot.cards, isCurrent, counts);
-  await applyHydratedSrs(snapshot.cards, isCurrent, counts);
+  // зачем (7D): удаления — ДО добавления: tombstone V2 / журнал убирают «воскресшее» и
+  // запрещают добавить удалённое здесь (только если удаление свежее последней правки).
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const deletions = require('./accounts_v2_hydration_deletions') as typeof import('./accounts_v2_hydration_deletions');
+  const blocked = await deletions.applyHydratedCardDeletions(snapshot.cards, isCurrent, counts);
+  await applyHydratedCards(snapshot.cards, isCurrent, counts, blocked);
+  await applyHydratedSrs(snapshot.cards, isCurrent, counts, blocked);
   await applyHydratedLibraries(snapshot.libraries, isCurrent, counts);
   console.log(`${LOG} hydrate applied ${Object.entries(counts).map(([key, value]) => `${key}=${value}`).join(' ')}`);
   return Object.freeze(counts);

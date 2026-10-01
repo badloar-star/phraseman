@@ -54,6 +54,14 @@ export type HydratedCard = Readonly<{
   fields: Readonly<Record<string, unknown>>;
   /** Значение поля `srs` ({ updatedAtMs, …память }), если есть. */
   srs: Readonly<Record<string, unknown>> | null;
+  /**
+   * 7D: ревизия сущности на сервере (1 = записана один раз и больше не менялась) и
+   * время последнего изменения по часам сервера (для tombstone — время удаления;
+   * после tombstone сущность не меняется). Нет (старый сервер / тесты) — правила
+   * удаления считают время неизвестным и ничего не убирают.
+   */
+  revision?: number;
+  updatedAtMs?: number | null;
 }>;
 /** 7C: название набора в форме локального хранилища (communityOwnedStorage). */
 export type HydratedPackTitle = Readonly<{ titleRu: string; titleUk: string; titleEs: string }>;
@@ -107,7 +115,7 @@ type State = Readonly<{
   entities: number;
 }>;
 
-type PulledEntity = Readonly<{ entityType: string; entityId: string; revision: number; state: unknown }>;
+type PulledEntity = Readonly<{ entityType: string; entityId: string; revision: number; state: unknown; updatedAtMs?: number | null }>;
 
 function kindOf(value: unknown): string {
   return value instanceof Error ? value.name : typeof value;
@@ -209,9 +217,12 @@ function parsePulledEntity(raw: unknown): PulledEntity | null {
   const entityId = ownData(raw, 'entityId');
   const revision = ownData(raw, 'revision');
   const state = ownData(raw, 'state');
+  const updatedAtMs = ownData(raw, 'updatedAtMs');
   if (typeof entityType !== 'string' || typeof entityId !== 'string' || entityId.length === 0
     || !Number.isSafeInteger(revision) || (revision as number) < 1 || !plain(state)) return null;
-  return Object.freeze({ entityType, entityId, revision: revision as number, state });
+  // зачем (7D): время изменения нужно правилам удаления; нет/битое — null (ничего не убираем).
+  const time = Number.isSafeInteger(updatedAtMs) && (updatedAtMs as number) > 0 ? updatedAtMs as number : null;
+  return Object.freeze({ entityType, entityId, revision: revision as number, state, updatedAtMs: time });
 }
 
 type PullStep = Readonly<{ entities: readonly PulledEntity[] }> | Readonly<{ fail: AccountsV2HydrationOutcome }>;
@@ -352,6 +363,8 @@ export function parseHydration(entities: readonly PulledEntity[]): Parsed {
       cards.push(Object.freeze({
         target: split.target, list, id: match[2], deleted: state.deleted,
         fields: Object.freeze(fields), srs: plain(srs) ? Object.freeze({ ...srs }) : null,
+        revision: entity.revision,
+        updatedAtMs: Number.isSafeInteger(entity.updatedAtMs) && (entity.updatedAtMs as number) > 0 ? entity.updatedAtMs as number : null,
       }));
       const mirrorFields: Record<string, string> = {};
       for (const [name, value] of Object.entries(values)) mirrorFields[name] = canonicalJson(value);
@@ -445,7 +458,10 @@ export function withoutLocallyOwned(
 ): HydrationSnapshot {
   return Object.freeze({
     lessons: snapshot.lessons,
-    cards: snapshot.cards.filter((card) => !keptDeletedCards.has(`${card.target}:${card.list}:${card.id}`)),
+    // зачем (7D): tombstone сервера отдаём ВСЕГДА — по нему применение убирает «воскресшую»
+    // локально карточку (старый restore после выхода/входа); живую серверную карточку,
+    // удалённую в локальном зеркале, по-прежнему не отдаём (не воскрешаем).
+    cards: snapshot.cards.filter((card) => card.deleted || !keptDeletedCards.has(`${card.target}:${card.list}:${card.id}`)),
     // зачем (7C): у библиотеки с локальным зеркалом id не трогаем (удаления в очереди), но
     // названия безопасны — они только подписывают уже имеющиеся локально наборы.
     libraries: snapshot.libraries.flatMap((library) => {

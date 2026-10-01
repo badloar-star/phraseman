@@ -16,6 +16,7 @@ import { accountScopeKey } from '../app/account_scope_key';
 import { captureAccountsV2OwnerUid, produceAccountsV2ChangeIfEnabled } from '../app/accounts_v2_client_flag';
 import { normalizePackLanguage, type PackLanguage } from '../app/flashcards/pack_languages';
 import { FREE_CUSTOM_CARD_LIMIT, PLUS_CUSTOM_CARD_LIMIT } from '../app/flashcards/custom_card_access';
+import { forgetCardDeletions, recordCardDeletions } from '../app/flashcards/card_deletion_journal';
 
 export interface Flashcard {
   id: string;
@@ -405,6 +406,35 @@ export const mergeSavedFlashcardsFromAccountsV2 = async (
   }, -1);
 };
 
+/**
+ * Account V2, Пакет 7D — гидрация: убрать «воскресшие» сохранённые карточки.
+ * зачем: карточка, удалённая на другом устройстве (tombstone V2) или здесь же
+ * (журнал удалений), но возвращённая старым restore/переносом, иначе жила бы
+ * вечно. Решение «убрать/оставить» принимает вызывающий (`decide`) по СВЕЖЕЙ
+ * карточке внутри очереди записи — удаление побеждает только если оно свежее
+ * локальной правки. Возвращает число убранных; -1 — аккаунт сменился / запись не прошла.
+ * Журнал удалений НЕ пишется: это не действие человека, а применение уже известного удаления.
+ */
+export const removeSavedFlashcardsFromAccountsV2 = async (
+  target: StudyTarget,
+  decide: (card: Readonly<Flashcard>) => boolean,
+): Promise<number> => {
+  const accountToken = captureAccountGeneration();
+  if (!isAccountOperationCurrent(accountToken)) {
+    console.warn('[ACCOUNT-V2] hydrate saved_cards_remove skip reason=account_not_current');
+    return -1;
+  }
+  return withWriteLock(accountToken, async () => {
+    const current = await loadFlashcardsForAccount(target, accountToken);
+    if (!isAccountOperationCurrent(accountToken)) return -1;
+    const next = current.filter((card) => !decide(card));
+    if (next.length === current.length) return 0;
+    const committed = await persistFlashcards(next, target, accountToken);
+    if (!committed) console.warn(`[ACCOUNT-V2] hydrate saved_cards_remove persist_failed count=${current.length - next.length}`);
+    return committed ? current.length - next.length : -1;
+  }, -1);
+};
+
 export const FREE_FLASHCARD_LIMIT = FREE_CUSTOM_CARD_LIMIT;
 
 export type AddFlashcardResult = 'added' | 'duplicate' | 'limit_reached' | 'stale';
@@ -450,7 +480,11 @@ export const removeFlashcard = async (id: string, studyTarget?: RuntimeStudyTarg
     const target = cacheTarget(studyTarget);
     const cards = await loadFlashcardsForAccount(target, accountToken);
     if (!isAccountOperationCurrent(accountToken)) return;
-    await persistFlashcards(cards.filter(c => c.id !== id), target, accountToken);
+    const had = cards.some(c => c.id === id);
+    const committed = await persistFlashcards(cards.filter(c => c.id !== id), target, accountToken);
+    // зачем (Account V2, 7D): факт явного удаления — в журнал, чтобы перенос/restore/гидрация
+    // не вернули карточку. Только после успешной записи; фоном (UI не ждёт).
+    if (committed && had) void recordCardDeletions(target, 'saved', [id]);
   }, undefined);
 };
 
@@ -475,6 +509,8 @@ export const removeFlashcardWithSnapshot = async (
     const next = [...cards];
     next.splice(index, 1);
     if (!await persistFlashcards(next, target, accountToken)) throw new Error('Could not delete saved card');
+    // зачем (Account V2, 7D): явное удаление → журнал (см. removeFlashcard).
+    void recordCardDeletions(target, 'saved', [id]);
     return { card: { ...card, studyTarget: target }, index };
   }, null);
 };
@@ -500,6 +536,9 @@ export const restoreFlashcard = async (
     const at = index == null ? next.length : Math.max(0, Math.min(index, next.length));
     next.splice(at, 0, card);
     if (!await persistFlashcards(next, target, accountToken)) throw new Error('Could not restore saved card');
+    // зачем (Account V2, 7D): «Вернуть» отменяет удаление — запись журнала снимаем,
+    // иначе гидрация убрала бы возвращённую карточку как удалённую.
+    void forgetCardDeletions(target, 'saved', [card.id]);
   }, undefined);
 };
 
@@ -516,7 +555,10 @@ export const removeFlashcardByEnglish = async (
     const normalizedEn = en.trim().toLowerCase();
     const card = cards.find(c => c.en.trim().toLowerCase() === normalizedEn && normalizePackLanguage(c.packLanguage ?? c.studyTarget) === normalizePackLanguage(studyTarget));
     if (!card) return false;
-    return persistFlashcards(cards.filter(c => c.id !== card.id), target, accountToken);
+    const committed = await persistFlashcards(cards.filter(c => c.id !== card.id), target, accountToken);
+    // зачем (Account V2, 7D): явное удаление → журнал (см. removeFlashcard).
+    if (committed) void recordCardDeletions(target, 'saved', [card.id]);
+    return committed;
   }, false);
 };
 

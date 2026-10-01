@@ -17,6 +17,9 @@ const NON_AUTHORITATIVE_BOOT_KEYS = new Set<string>([
   'language_profile_v1::en',
   'language_profile_v1::fr',
   'week_points_migrated_v1',
+  // зачем (Account V2, 7D): журнал удалений карточек — служебный след, не прогресс;
+  // сам по себе не должен делать установку «непустой» при передаче учётных данных.
+  'accounts_v2_card_deletions_v1',
 ]);
 
 type LocalAccountStorage = {

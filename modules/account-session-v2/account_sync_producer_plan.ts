@@ -23,6 +23,12 @@ export type AccountsV2Change =
   | Readonly<{ kind: 'lesson_result'; target: ProducerTarget; lessonId: number; score: number; passed: boolean }>
   | Readonly<{ kind: 'card_snapshot'; target: ProducerTarget; list: 'saved' | 'custom'; cards: readonly unknown[] }>
   | Readonly<{ kind: 'swipe_memory'; target: ProducerTarget; memory: Readonly<Record<string, unknown>> }>
+  /**
+   * 7D: удаления, которых производитель не видел (карточка удалена на телефоне до
+   * включения V2 и вернулась бы из переноса). Ставит гидрация, когда журнал удалений
+   * свежее последней правки карточки на сервере.
+   */
+  | Readonly<{ kind: 'card_tombstones'; target: ProducerTarget; list: 'saved' | 'custom'; ids: readonly unknown[] }>
   | Readonly<{
     kind: 'library_snapshot'; target: ProducerTarget; packIds: readonly unknown[];
     /** 7C: локальные названия наборов по id (`{ titleRu, titleUk, titleEs }`); необязательно. */
@@ -276,6 +282,46 @@ async function planCards(
   return Object.freeze({ operations, listIndex: Object.freeze({ key: indexKey, ids }), notes });
 }
 
+/**
+ * 7D: tombstone для карточек из журнала удалений, решённых гидрацией.
+ * зачем: такие карточки на телефоне уже отсутствуют — снимок списка их не
+ * «теряет», и обычный путь (разница с индексом) удаление не отправит; без этого
+ * сервер вернул бы их на следующей новой установке. Уже удалённое в зеркале —
+ * пропуск (без дублей). Индекс списка сужается, только если он уже есть.
+ */
+async function planCardTombstones(
+  change: Extract<AccountsV2Change, { kind: 'card_tombstones' }>,
+  readMirror: MirrorReader,
+  readIndex: ListIndexReader,
+  notes: string[],
+): Promise<ProducerPlan> {
+  const ids = [...new Set((Array.isArray(change.ids) ? change.ids : [])
+    .filter((id): id is string => typeof id === 'string' && id.length > 0))];
+  if (change.list !== 'saved' && change.list !== 'custom') {
+    return Object.freeze({ operations: [], listIndex: null, notes: ['card_tombstones_list_invalid'] });
+  }
+  const operations: PlannedOperation[] = [];
+  let already = 0;
+  for (const id of ids) {
+    const entityId = `${change.target}:${change.list}:${id}`;
+    const mirror = await readMirror('flashcard', entityId);
+    if (mirror?.deleted === true) { already += 1; continue; }
+    operations.push(Object.freeze({
+      entityType: 'flashcard' as const,
+      entityId,
+      payload: { op: 'tombstone' },
+      mirror: Object.freeze({ fields: Object.freeze({}), deleted: true }),
+    }));
+  }
+  if (already > 0) notes.push(`card_tombstones_already count=${already}`);
+  const key = listIndexKey(change.target, change.list);
+  const previous = await readIndex(key);
+  const gone = new Set(ids);
+  const listIndex = previous === null || !previous.some((id) => gone.has(id))
+    ? null : Object.freeze({ key, ids: previous.filter((id) => !gone.has(id)) });
+  return Object.freeze({ operations, listIndex, notes });
+}
+
 /** CardMemory → значение поля `srs` (как srsFromMemoryRow миграции). null — у записи нет времени правки. */
 export function srsFromMemory(row: unknown): Record<string, number> | null {
   if (!plainRecord(row)) return null;
@@ -440,6 +486,8 @@ export async function planAccountsV2Change(
       return planCards(change, readMirror, readIndex, notes);
     case 'swipe_memory':
       return Object.freeze({ operations: await planSwipe(change, readMirror, notes), listIndex: null, notes });
+    case 'card_tombstones':
+      return planCardTombstones(change, readMirror, readIndex, notes);
     case 'library_snapshot':
       return Object.freeze({ operations: await planLibrary(change, readMirror, notes), listIndex: null, notes });
     default:

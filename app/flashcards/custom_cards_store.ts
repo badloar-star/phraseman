@@ -26,6 +26,7 @@ import {
   observeCustomCardMilestone,
   type CustomCardMilestoneOwner,
 } from './custom_card_milestone';
+import { forgetCardDeletions, recordCardDeletions } from './card_deletion_journal';
 
 export {
   CUSTOM_CARD_OWNER_ALERT_MILESTONE,
@@ -171,7 +172,13 @@ export function deleteCustomCard(
     const next = [...cards];
     next.splice(idx, 1);
     return next;
-  }, studyTarget).then(() => removed);
+  }, studyTarget).then(() => {
+    // зачем (Account V2, 7D): факт явного удаления — в журнал (после успешной записи),
+    // чтобы перенос/restore/гидрация не вернули карточку. Фоном, UI не ждёт.
+    const gone = removed as { card: CardItem; index: number } | null;
+    if (gone !== null) void recordCardDeletions(storageStudyTarget(studyTarget), 'custom', [gone.card.id]);
+    return removed;
+  });
 }
 
 /**
@@ -190,7 +197,10 @@ export function restoreCustomCard(
     const at = index == null ? next.length : Math.max(0, Math.min(index, next.length));
     next.splice(at, 0, card);
     return next;
-  }, studyTarget).then(() => undefined);
+  }, studyTarget).then(() => {
+    // зачем (Account V2, 7D): «Вернуть» отменяет удаление — снимаем запись журнала.
+    void forgetCardDeletions(storageStudyTarget(studyTarget), 'custom', [card.id]);
+  });
 }
 
 /** Только для юнит-тестов: сброс модульного состояния. */

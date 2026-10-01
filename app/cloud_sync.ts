@@ -250,6 +250,7 @@ import {
   resolveAccountsV2LegacySkip,
   ACCOUNTS_V2_LEGACY_HYDRATED_MARKER_KEY,
 } from './accounts_v2_legacy_sync_switch';
+import { CARD_DELETION_JOURNAL_KEY } from './flashcards/card_deletion_journal';
 import type { StudyTarget as FlashcardStudyTarget } from './study_target';
 
 const FRENCH_SYNC_LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 1);
@@ -771,6 +772,9 @@ export function accountLocalDataKeysForToday(todayKey: string = getUtcDayKey()):
     // зачем (Account V2, 7A ремонт №2, P1): метка «V2 применена на этой установке»
     // принадлежит аккаунту — после выхода/смены она не должна пропускать restore.
     ACCOUNTS_V2_LEGACY_HYDRATED_MARKER_KEY,
+    // зачем (Account V2, 7D): журнал удалений карточек принадлежит аккаунту — стирается
+    // вместе с его карточками при выходе/смене/удалении; в старое облако не уходит.
+    CARD_DELETION_JOURNAL_KEY,
     'cloud_migration_v1',
     // Кэши лидербордов (содержат предыдущего юзера)
     'global_lb_cache',

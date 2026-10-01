@@ -4,7 +4,7 @@
   "description": "Learning V2 content factory. Отдельная кодбаза: авторские сессии курса весят ~236 МБ в памяти и раздували старт ВСЕХ функций основного бандла.",
   "engines": { "node": "22" },
   "main": "lib/functions-content/index.js",
-  "scripts": { "build": "tsc" },
+  "scripts": { "build": "tsc && node scripts/copy_lesson1_release.js" },
   "dependencies": {
     "firebase-admin": "^13.10.0",
     "firebase-functions": "^7.2.5"

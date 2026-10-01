@@ -409,3 +409,8 @@ scripts/accounts-v2-emulator-seed.local.json
 
 # PM-008: полный дамп пользовательских строк (генерируется tools/pm008_copy_inventory.mjs)
 docs/phraseman-2.0/registries/copy_inventory_full.json
+
+# зачем (D150, 2026-10-01): сборка functions-content копирует эталон урока 1
+# (factory_native en/l01, 168 JSON) рядом со скомпилированным модулем для сторожа
+# публикации. Источник правды — modules/learning-v2/content/factory_native; копию не храним.
+/functions-content/lib/modules/learning-v2/content/factory_native/generated_release/

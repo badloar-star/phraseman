@@ -85,14 +85,14 @@ export default function BillingIssueToastHost() {
           // зачем (аудит по Библии, 2026-08-26): «чтобы не потерять» — давление
           // потерей. Правило 2 требует gain-framing: та же правда, но о том,
           // что человек сохраняет.
-          ru: '💳 Оплата не прошла — обнови карту, и Plus останется с тобой',
-          uk: '💳 Оплата не пройшла — онови картку, і Plus залишиться з тобою',
-          es: '💳 El pago no se completó — actualiza la tarjeta y Plus sigue contigo',
-          'pt-BR': '💳 O pagamento não passou — atualize o cartão e o Plus continua com você',
-          vi: '💳 Thanh toán chưa thành công — cập nhật thẻ để giữ Plus',
-          id: '💳 Pembayaran gagal — perbarui kartu dan Plus tetap milikmu',
-          tr: '💳 Ödeme geçmedi — kartı güncelle, Plus seninle kalsın',
-          pl: '💳 Płatność nie przeszła — zaktualizuj kartę i Plus zostaje z tobą',
+          ru: 'Оплата не прошла — обнови карту, и Plus останется с тобой',
+          uk: 'Оплата не пройшла — онови картку, і Plus залишиться з тобою',
+          es: 'El pago no se completó — actualiza la tarjeta y Plus sigue contigo',
+          'pt-BR': 'O pagamento não passou — atualize o cartão e o Plus continua com você',
+          vi: 'Thanh toán chưa thành công — cập nhật thẻ để giữ Plus',
+          id: 'Pembayaran gagal — perbarui kartu dan Plus tetap milikmu',
+          tr: 'Ödeme geçmedi — kartı güncelle, Plus seninle kalsın',
+          pl: 'Płatność nie przeszła — zaktualizuj kartę i Plus zostaje z tobą',
         }),
         motionVariant: 'hybrid',
       });

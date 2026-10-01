@@ -49,14 +49,14 @@ export default function StreakRiskToastHost() {
       // не менялись.
       emitAppEvent('action_toast', {
         ...actionToastTri('warning', {
-          ru: `🔥 Цепочка ${streakBefore} дн. сгорит в полночь — позанимайся, чтобы сохранить`,
-          uk: `🔥 Серія ${streakBefore} дн. згорить опівночі — позаймайся, щоб зберегти`,
-          es: `🔥 Tu racha de ${streakBefore} días se pierde a medianoche — practica para mantenerla`,
-          'pt-BR': `🔥 Sua sequência de ${streakBefore} dias acaba à meia-noite — pratique para manter`,
-          vi: `🔥 Chuỗi ${streakBefore} ngày sẽ mất lúc nửa đêm — hãy luyện tập để giữ`,
-          id: `🔥 Streak ${streakBefore} hari hilang tengah malam — berlatihlah untuk mempertahankan`,
-          tr: `🔥 ${streakBefore} günlük serin gece yarısı sönecek — sürdürmek için çalış`,
-          pl: `🔥 Seria ${streakBefore} dni zniknie o północy — poćwicz, by ją utrzymać`,
+          ru: `Цепочка ${streakBefore} дн. сгорит в полночь — позанимайся, чтобы сохранить`,
+          uk: `Серія ${streakBefore} дн. згорить опівночі — позаймайся, щоб зберегти`,
+          es: `Tu racha de ${streakBefore} días se pierde a medianoche — practica para mantenerla`,
+          'pt-BR': `Sua sequência de ${streakBefore} dias acaba à meia-noite — pratique para manter`,
+          vi: `Chuỗi ${streakBefore} ngày sẽ mất lúc nửa đêm — hãy luyện tập để giữ`,
+          id: `Streak ${streakBefore} hari hilang tengah malam — berlatihlah untuk mempertahankan`,
+          tr: `${streakBefore} günlük serin gece yarısı sönecek — sürdürmek için çalış`,
+          pl: `Seria ${streakBefore} dni zniknie o północy — poćwicz, by ją utrzymać`,
         }),
         motionVariant: 'hybrid',
       });

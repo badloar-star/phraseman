@@ -995,7 +995,7 @@ export function ResultsSequence({
             ) : null}
             {activeGiftVisible && activeGiftLabel ? (
               <RewardPill backgroundColor={t.bgSurface} immediate={effectiveReducedMotion}>
-                <Text style={[styles.rewardText, { color: t.textPrimary }]}>🎁 {activeGiftLabel}</Text>
+                <Text style={[styles.rewardText, { color: t.textPrimary }]}>{activeGiftLabel}</Text>
               </RewardPill>
             ) : null}
             {multiplierRewards.slice(0, visibleMultiplierCount).map((multiplier, index) => (
@@ -1079,7 +1079,7 @@ export function ResultsSequence({
           ) : null}
           {activeGiftVisible && activeGiftLabel ? (
             <RewardPill backgroundColor={t.bgSurface} immediate={effectiveReducedMotion}>
-              <Text style={[styles.rewardText, { color: t.textPrimary }]}>🎁 {activeGiftLabel}</Text>
+              <Text style={[styles.rewardText, { color: t.textPrimary }]}>{activeGiftLabel}</Text>
             </RewardPill>
           ) : null}
           {multiplierRewards.slice(0, visibleMultiplierCount).map((multiplier, index) => (

@@ -212,7 +212,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       costLabel: 'Вартість',
       shardsUnit: 'жемчужин',
       waitBusy: '',
-      reportPack: '⚐ Поскаржитися на набір',
+      reportPack: 'Поскаржитися на набір',
       hidePack: 'Не показувати мені',
     };
   }
@@ -246,7 +246,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       costLabel: 'Precio',
       shardsUnit: S,
       waitBusy: '',
-      reportPack: '⚐ Reportar este paquete',
+      reportPack: 'Reportar este paquete',
       hidePack: 'No mostrarme',
     };
   }
@@ -265,7 +265,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       voucherCtaSub: 'O presente será usado na confirmação', packKindLabel: 'Pacote',
       metaCards: (n: number) => `${n} cartões`, shortageRemaining: (n: number) => `Faltam ${n} pérolas`,
       needLabel: 'Necessário', youHaveLabel: 'Você tem', costLabel: 'Custo',
-      shardsUnit: 'pérolas', waitBusy: '', reportPack: '⚐ Denunciar pacote', hidePack: 'Não mostrar novamente',
+      shardsUnit: 'pérolas', waitBusy: '', reportPack: 'Denunciar pacote', hidePack: 'Não mostrar novamente',
     };
   }
   if (lang === 'vi') {
@@ -283,7 +283,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       packKindLabel: 'Gói', metaCards: (n: number) => `${n} thẻ`,
       shortageRemaining: (n: number) => `Còn thiếu ${n} ngọc trai`, needLabel: 'Cần',
       youHaveLabel: 'Bạn có', costLabel: 'Giá', shardsUnit: 'ngọc trai', waitBusy: '',
-      reportPack: '⚐ Báo cáo gói này', hidePack: 'Không hiển thị lại',
+      reportPack: 'Báo cáo gói này', hidePack: 'Không hiển thị lại',
     };
   }
   if (lang === 'id') {
@@ -301,7 +301,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       packKindLabel: 'Paket', metaCards: (n: number) => `${n} kartu`,
       shortageRemaining: (n: number) => `Kurang ${n} mutiara`, needLabel: 'Dibutuhkan',
       youHaveLabel: 'Kamu punya', costLabel: 'Harga', shardsUnit: 'mutiara', waitBusy: '',
-      reportPack: '⚐ Laporkan paket ini', hidePack: 'Jangan tampilkan lagi',
+      reportPack: 'Laporkan paket ini', hidePack: 'Jangan tampilkan lagi',
     };
   }
   if (lang === 'tr') {
@@ -319,7 +319,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       packKindLabel: 'Paket', metaCards: (n: number) => `${n} kart`,
       shortageRemaining: (n: number) => `${n} inci eksik`, needLabel: 'Gerekli',
       youHaveLabel: 'Sende', costLabel: 'Fiyat', shardsUnit: 'inci', waitBusy: '',
-      reportPack: '⚐ Paketi bildir', hidePack: 'Bir daha gösterme',
+      reportPack: 'Paketi bildir', hidePack: 'Bir daha gösterme',
     };
   }
   if (lang === 'pl') {
@@ -337,7 +337,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       packKindLabel: 'Pakiet', metaCards: (n: number) => `${n} kart`,
       shortageRemaining: (n: number) => `Brakuje ${n} pereł`, needLabel: 'Potrzebujesz',
       youHaveLabel: 'Masz', costLabel: 'Cena', shardsUnit: 'pereł', waitBusy: '',
-      reportPack: '⚐ Zgłoś pakiet', hidePack: 'Nie pokazuj ponownie',
+      reportPack: 'Zgłoś pakiet', hidePack: 'Nie pokazuj ponownie',
     };
   }
   return {
@@ -370,7 +370,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
     costLabel: 'Нужно жемчуга',
     shardsUnit: 'жемчужин',
     waitBusy: '',
-    reportPack: '⚐ Пожаловаться на набор',
+    reportPack: 'Пожаловаться на набор',
     hidePack: 'Не показывать мне',
   };
 }

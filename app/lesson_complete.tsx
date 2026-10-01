@@ -195,7 +195,7 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
         }}>
           {step === 'ask' ? (
             <>
-              <Text style={{ fontSize: 36, marginBottom: 14 }}>{variant.emoji}</Text>
+              {/* зачем (PM-030): крупный декоративный эмодзи над вопросом об оценке убран — заголовок самодостаточен. */}
               <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', textAlign: 'center', marginBottom: 8 }}>
                 {variant.title}
               </Text>
@@ -257,7 +257,8 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
             </>
           ) : (
             <>
-              <Text style={{ fontSize: 40, marginBottom: 12 }}>🙏</Text>
+              {/* зачем (PM-030): декоративный эмодзи заменён стандартной иконкой. */}
+              <Ionicons name="heart" size={40} color={t.textPrimary} style={{ marginBottom: 12 }} accessibilityElementsHidden importantForAccessibility="no" />
               <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}>
                 {triLang(lang, { ru: 'Спасибо!', en: 'Thank you!', uk: 'Дякуємо!', es: '¡Gracias!', 'pt-BR': 'Obrigado!', vi: 'Cảm ơn!', id: 'Terima kasih!', tr: 'Teşekkürler!', pl: 'Dziękujemy!' })}
               </Text>
@@ -320,9 +321,9 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
   };
 
   const medalLabel = (tier: MedalTier) => {
-    if (tier === 'bronze') return triLang(lang, { ru: '🥉 Бронзовая медаль!', en: '🥉 Bronze medal!', uk: '🥉 Бронзова медаль!', es: '¡🥉 Medalla de bronce!', 'pt-BR': '🥉 Medalha de bronze!', vi: '🥉 Huy chương đồng!', id: '🥉 Medali perunggu!', tr: '🥉 Bronz madalya!', pl: '🥉 Brązowy medal!' });
-    if (tier === 'silver') return triLang(lang, { ru: '🥈 Серебряная медаль!', en: '🥈 Silver medal!', uk: '🥈 Срібна медаль!', es: '¡🥈 Medalla de plata!', 'pt-BR': '🥈 Medalha de prata!', vi: '🥈 Huy chương bạc!', id: '🥈 Medali perak!', tr: '🥈 Gümüş madalya!', pl: '🥈 Srebrny medal!' });
-    return triLang(lang, { ru: '🥇 Золотая медаль!', en: '🥇 Gold medal!', uk: '🥇 Золота медаль!', es: '¡🥇 Medalla de oro!', 'pt-BR': '🥇 Medalha de ouro!', vi: '🥇 Huy chương vàng!', id: '🥇 Medali emas!', tr: '🥇 Altın madalya!', pl: '🥇 Złoty medal!' });
+    if (tier === 'bronze') return triLang(lang, { ru: 'Бронзовая медаль!', en: 'Bronze medal!', uk: 'Бронзова медаль!', es: '¡Medalla de bronce!', 'pt-BR': 'Medalha de bronze!', vi: 'Huy chương đồng!', id: 'Medali perunggu!', tr: 'Bronz madalya!', pl: 'Brązowy medal!' });
+    if (tier === 'silver') return triLang(lang, { ru: 'Серебряная медаль!', en: 'Silver medal!', uk: 'Срібна медаль!', es: '¡Medalla de plata!', 'pt-BR': 'Medalha de prata!', vi: 'Huy chương bạc!', id: 'Medali perak!', tr: 'Gümüş madalya!', pl: 'Srebrny medal!' });
+    return triLang(lang, { ru: 'Золотая медаль!', en: 'Gold medal!', uk: 'Золота медаль!', es: '¡Medalla de oro!', 'pt-BR': 'Medalha de ouro!', vi: 'Huy chương vàng!', id: 'Medali emas!', tr: 'Altın madalya!', pl: 'Złoty medal!' });
   };
 
   const shareMessage = () => {
@@ -1385,9 +1386,9 @@ export default function LessonComplete() {
               color: t.gold, fontSize: f.bodyLg, fontWeight: '700',
               marginTop: 6, opacity: fadeAnim,
             }}>
-              {medalTier === 'bronze' && triLang(lang, { ru: '🥉 Новая медаль!', en: '🥉 New medal!', uk: '🥉 Нова медаль!', es: '¡🥉 Medalla nueva!', 'pt-BR': '🥉 Nova medalha!', vi: '🥉 Huy chương mới!', id: '🥉 Medali baru!', tr: '🥉 Yeni madalya!', pl: '🥉 Nowy medal!' })}
-              {medalTier === 'silver' && triLang(lang, { ru: '🥈 Новая медаль!', en: '🥈 New medal!', uk: '🥈 Нова медаль!', es: '¡🥈 Medalla nueva!', 'pt-BR': '🥈 Nova medalha!', vi: '🥈 Huy chương mới!', id: '🥈 Medali baru!', tr: '🥈 Yeni madalya!', pl: '🥈 Nowy medal!' })}
-              {medalTier === 'gold'   && triLang(lang, { ru: '🥇 Золото!', en: '🥇 Gold!', uk: '🥇 Золото!', es: '¡🥇 Oro!', 'pt-BR': '🥇 Ouro!', vi: '🥇 Vàng!', id: '🥇 Emas!', tr: '🥇 Altın!', pl: '🥇 Złoto!' })}
+              {medalTier === 'bronze' && triLang(lang, { ru: 'Новая медаль!', en: 'New medal!', uk: 'Нова медаль!', es: '¡Medalla nueva!', 'pt-BR': 'Nova medalha!', vi: 'Huy chương mới!', id: 'Medali baru!', tr: 'Yeni madalya!', pl: 'Nowy medal!' })}
+              {medalTier === 'silver' && triLang(lang, { ru: 'Новая медаль!', en: 'New medal!', uk: 'Нова медаль!', es: '¡Medalla nueva!', 'pt-BR': 'Nova medalha!', vi: 'Huy chương mới!', id: 'Medali baru!', tr: 'Yeni madalya!', pl: 'Nowy medal!' })}
+              {medalTier === 'gold'   && triLang(lang, { ru: 'Золото!', en: 'Gold!', uk: 'Золото!', es: '¡Oro!', 'pt-BR': 'Ouro!', vi: 'Vàng!', id: 'Emas!', tr: 'Altın!', pl: 'Złoto!' })}
             </Animated.Text>
           )}
         </Animated.View>
@@ -1516,7 +1517,7 @@ export default function LessonComplete() {
                 }}
               >
                 <Text style={{ color: t.gold, fontSize: f.caption, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 4 }}>
-                  {triLang(lang, { ru: '🔓 Следующий урок закрыт', en: '🔓 Next lesson is locked', uk: '🔓 Наступний урок закрито', es: '🔓 La siguiente lección está bloqueada', 'pt-BR': '🔓 Próxima lição bloqueada', vi: '🔓 Bài tiếp theo đã bị khóa', id: '🔓 Pelajaran berikutnya terkunci', tr: '🔓 Sonraki ders kilitli', pl: '🔓 Następna lekcja jest zablokowana' })}
+                  {triLang(lang, { ru: 'Следующий урок закрыт', en: 'Next lesson is locked', uk: 'Наступний урок закрито', es: 'La siguiente lección está bloqueada', 'pt-BR': 'Próxima lição bloqueada', vi: 'Bài tiếp theo đã bị khóa', id: 'Pelajaran berikutnya terkunci', tr: 'Sonraki ders kilitli', pl: 'Następna lekcja jest zablokowana' })}
                 </Text>
                 <Text style={{ color: t.correctText, fontSize: 17, fontWeight: '800', textAlign: 'center', marginBottom: 2 }}>
                   {triLang(lang, { ru: 'Открыть Plus — продолжить →', en: 'Open Plus — continue →', uk: 'Відкрити Plus — продовжити →', es: 'Abrir Plus — continuar →', 'pt-BR': 'Abrir Plus — continuar →', vi: 'Mở Plus — tiếp tục →', id: 'Buka Plus — lanjutkan →', tr: 'Plus aç — devam et →', pl: 'Otwórz Plus — kontynuuj →' })}

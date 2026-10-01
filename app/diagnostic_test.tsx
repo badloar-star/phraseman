@@ -68,15 +68,15 @@ const makeDiagnosticAttemptId = (): string =>
 
 /** Encabezado del tipo «build»: mismo texto en pantalla y en reportes. */
 const DIAGNOSTIC_BUILD_HEADER = {
-  ru: '🧩 Собери фразу из слов',
-  uk: '🧩 Збери фразу зі слів',
-  en: '🧩 Build the phrase from words',
-  es: '🧩 Arma la frase con las palabras',
-  'pt-BR': '🧩 Monte a frase com as palavras',
-  vi: '🧩 Sắp xếp từ thành câu',
-  id: '🧩 Susun frasa dari kata-kata',
-  tr: '🧩 Kelimelerden ifadeyi kur',
-  pl: '🧩 Ułóż frazę ze słów',
+  ru: 'Собери фразу из слов',
+  uk: 'Збери фразу зі слів',
+  en: 'Build the phrase from words',
+  es: 'Arma la frase con las palabras',
+  'pt-BR': 'Monte a frase com as palavras',
+  vi: 'Sắp xếp từ thành câu',
+  id: 'Susun frasa dari kata-kata',
+  tr: 'Kelimelerden ifadeyi kur',
+  pl: 'Ułóż frazę ze słów',
 } as const;
 
 /** Подписи без эмодзи — для VoiceOver / TalkBack. */
@@ -93,11 +93,11 @@ function diagnosticBuildHeader(lang: Lang): string {
     uk: DIAGNOSTIC_BUILD_HEADER.uk,
     en: DIAGNOSTIC_BUILD_HEADER.en,
     es: DIAGNOSTIC_BUILD_HEADER.es,
-    'pt-BR': '🧩 Monte a frase com as palavras',
-    vi: '🧩 Sắp xếp từ thành câu',
-    id: '🧩 Susun frasa dari kata-kata',
-    tr: '🧩 Kelimelerden ifadeyi kur',
-    pl: '🧩 Ułóż frazę ze słów',
+    'pt-BR': 'Monte a frase com as palavras',
+    vi: 'Sắp xếp từ thành câu',
+    id: 'Susun frasa dari kata-kata',
+    tr: 'Kelimelerden ifadeyi kur',
+    pl: 'Ułóż frazę ze słów',
   });
 }
 

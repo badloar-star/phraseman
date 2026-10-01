@@ -661,15 +661,15 @@ export default function PackOpeningScreen() {
         <View style={styles.hint}>
           <Text style={[styles.hintText, { color: t.textMuted, fontSize: f.body }]}>
             {triLang(lang, {
-              ru: '💡 Нажми на карточку, чтобы открыть',
-              uk: '💡 Натисни на картку, щоб відкрити',
-              en: '💡 Tap a card to open it',
-              es: '💡 Toca una tarjeta para abrirla',
-              'pt-BR': '💡 Toque em um cartão para abrir',
-              vi: '💡 Chạm vào thẻ để mở',
-              id: '💡 Ketuk kartu untuk membuka',
-              tr: '💡 Açmak için bir karta dokun',
-              pl: '💡 Stuknij kartę, aby ją otworzyć',
+              ru: 'Нажми на карточку, чтобы открыть',
+              uk: 'Натисни на картку, щоб відкрити',
+              en: 'Tap a card to open it',
+              es: 'Toca una tarjeta para abrirla',
+              'pt-BR': 'Toque em um cartão para abrir',
+              vi: 'Chạm vào thẻ để mở',
+              id: 'Ketuk kartu untuk membuka',
+              tr: 'Açmak için bir karta dokun',
+              pl: 'Stuknij kartę, aby ją otworzyć',
             })}
           </Text>
         </View>
@@ -761,15 +761,15 @@ export default function PackOpeningScreen() {
           >
             <Text style={{ color: '#fff', fontSize: f.bodyLg, fontWeight: '700' }}>
               {triLang(lang, {
-                ru: '🎉 Начать учить',
-                uk: '🎉 Почати вчити',
-                en: '🎉 Start learning',
-                es: '🎉 Empezar a estudiar',
-                'pt-BR': '🎉 Começar a estudar',
-                vi: '🎉 Bắt đầu học',
-                id: '🎉 Mulai belajar',
-                tr: '🎉 Öğrenmeye başla',
-                pl: '🎉 Zacznij się uczyć',
+                ru: 'Начать учить',
+                uk: 'Почати вчити',
+                en: 'Start learning',
+                es: 'Empezar a estudiar',
+                'pt-BR': 'Começar a estudar',
+                vi: 'Bắt đầu học',
+                id: 'Mulai belajar',
+                tr: 'Öğrenmeye başla',
+                pl: 'Zacznij się uczyć',
               })}
             </Text>
           </Pressable>

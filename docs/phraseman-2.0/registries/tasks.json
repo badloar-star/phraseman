@@ -12055,7 +12055,8 @@
         "text": "auth/purchases/delete/support не считаются мусором автоматически",
         "accepted": true,
         "evidence": [
-          "2026-09-30 npx tsx tests/pm221_server_domain_map.probe.ts: PASS total=567 (keep 406, tombstone 57, owner-decision 104); every auth (19), purchases/subscriptions (72), account-delete (10) and support/reports (46) function is keep, enforced by the probe. Evidence docs/phraseman-2.0/evidence/PM-221_server_domain_map.md. Static source classification, not deployed-function verification."
+          "2026-09-30 npx tsx tests/pm221_server_domain_map.probe.ts: PASS total=567 (keep 406, tombstone 57, owner-decision 104); every auth (19), purchases/subscriptions (72), account-delete (10) and support/reports (46) function is keep, enforced by the probe. Evidence docs/phraseman-2.0/evidence/PM-221_server_domain_map.md. Static source classification, not deployed-function verification.",
+          "819353205: PM-221 PROBE PASS total=496 keep=409 tombstone=56 owner-decision=2 (статическая проверка)"
         ]
       }
     ],
@@ -12068,8 +12069,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "819353205: PM-221 PROBE PASS total=496 keep=409 tombstone=56 owner-decision=2 (статическая проверка)"
+    ],
+    "notes": [
+      "2026-10-01 исполнитель Ядра: A1 NOT_MET — 14 облачных функций без кода + 2 в коде ждут решения координатора (вопрос в INBOX)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -12105,7 +12110,8 @@
         "text": "восстановление покупок и удаление аккаунта продолжают работать",
         "accepted": true,
         "evidence": [
-          "2026-10-01 tests/pm222_cron_dependency_plan.probe.ts PASS: 11 функций удаления аккаунта/покупок/Plus (accountDelete*×5, premiumExpiry×2, revenueCat×2, adminAlertOnRevenueCatReceipt, accountMergeOutboxRetryCron) экспортируются и в выкладку удаления не попадут (506ca53bc). Source-level; при выкладке сверить список удаляемых с §3. Отдельно 🔴 §6: сторож почты активации есть только в облаке — перенести до выкладки."
+          "2026-10-01 tests/pm222_cron_dependency_plan.probe.ts PASS: 11 функций удаления аккаунта/покупок/Plus (accountDelete*×5, premiumExpiry×2, revenueCat×2, adminAlertOnRevenueCatReceipt, accountMergeOutboxRetryCron) экспортируются и в выкладку удаления не попадут (506ca53bc). Source-level; при выкладке сверить список удаляемых с §3. Отдельно 🔴 §6: сторож почты активации есть только в облаке — перенести до выкладки.",
+          "PM-222 PROBE PASS: 17 снятых не экспортируются, must_stay_exported=11, 423 живых экспорта"
         ]
       }
     ],
@@ -12118,8 +12124,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "PM-222 PROBE PASS: 17 снятых не экспортируются, must_stay_exported=11, 423 живых экспорта"
+    ],
+    "notes": [
+      "2026-10-01: A1 NOT_MET — окно слива очередей и выкладка владельцем после релиза 2.0 (D91/D78)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -12510,8 +12520,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "f5447d10c, ceb79a649: functions pm229_server_silent_catch 7/7; клиентских немых catch 813→784"
+    ],
+    "notes": [
+      "2026-10-01: A1 NOT_MET (частично): остаток auth_provider.ts 26, account_switch_quarantine 3 (правит другая сессия), shards_system 14, support_report.tsx (Дизайн)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -12545,8 +12559,10 @@
       {
         "id": "PM-230-A2",
         "text": "минимальные права без отключения защиты ради скорости",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "9082014f7: tests/pm230_firestore_rules_least_privilege 6/6, functions pm230_admin_callable_guard 4/4, evidence/PM-230_rules_and_admin_rights_audit.md (статически, эмулятор правил NOT_RUN)"
+        ]
       }
     ],
     "depends_on": [],
@@ -12558,8 +12574,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "9082014f7: tests/pm230_firestore_rules_least_privilege 6/6, functions pm230_admin_callable_guard 4/4, evidence/PM-230_rules_and_admin_rights_audit.md (статически, эмулятор правил NOT_RUN)"
+    ],
+    "notes": [
+      "2026-10-01: A1 по словам исполнителя заменён D66 — нужно подтверждение координатора"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -12616,8 +12636,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "76de2317d: ai_operation_billing (onUsage в openAiChat), тест 5/5"
+    ],
+    "notes": [
+      "2026-10-01: A3 с оговоркой — без usage остались TTS дайджеста, admin_asset_studio, TTS турниров, admin QA/перевод community-пакетов; решение координатора"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -15290,9 +15314,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "a850ef0f4 (этап 1, −1352 строки: external_shard_event_sync, дотягивание pending grants, повтор монет из облачного события), 57405c6de (сторож post_auth зелёный); typecheck 0"
+    ],
     "notes": [
-      "2026-10-01 заведена по §57 координатора. Уже сделано: шаги жемчуга сняты с холодного старта (3b4ba428c), из lesson1 и рефералки (199174517). Осталось: вход/восстановление (auth_provider, auth_clean_install_recovery_adoption), журнал и pending grants, pearl_retire_d70 (открывает журнал через loadShardsFromCloud), сторожа."
+      "2026-10-01 заведена по §57 координатора. Уже сделано: шаги жемчуга сняты с холодного старта (3b4ba428c), из lesson1 и рефералки (199174517). Осталось: вход/восстановление (auth_provider, auth_clean_install_recovery_adoption), журнал и pending grants, pearl_retire_d70 (открывает журнал через loadShardsFromCloud), сторожа.",
+      "2026-10-01 этап 1: A1/A2 NOT_MET — auth_provider правит другая сессия; жемчуг виден на Главной/в Магазине (Дизайн); pearl_retire_d70 и loadShardsFromCloud в восстановлении оставлены осознанно, иначе остаток не обнулится"
     ],
     "actual_cost": null,
     "kind": "code",

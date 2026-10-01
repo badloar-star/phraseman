@@ -79,7 +79,7 @@ export default function HomeV2VideoRail({ videos, status, ownerActive, onSeeAll 
 const s = StyleSheet.create({
   section: { marginTop: 0 },
   heading: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 26, marginBottom: 2 },
-  headingText: { fontSize: 18, lineHeight: 23, fontWeight: '800' },
+  headingText: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
   seeAll: { minHeight: 36, flexDirection: 'row', alignItems: 'center', gap: 4, justifyContent: 'flex-end' },
   seeAllText: { fontSize: 13, lineHeight: 18, fontWeight: '600' },
   rail: { gap: 9, paddingRight: V2.screenPad, paddingBottom: 2 },

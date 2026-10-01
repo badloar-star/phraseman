@@ -968,7 +968,7 @@ export default function ExamScreen() {
             'Dyplom jest gotowy — dodaj imię',
           )}
         </Text>
-        <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 21, textAlign: 'center' }}>
+        <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 22, textAlign: 'center' }}>
           {t3(
             `Ваш результат: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nУкажите имя — и сертификат появится ниже.`,
             `Ваш результат: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nВкажіть імʼя — і сертифікат зʼявиться нижче.`,
@@ -1011,7 +1011,7 @@ export default function ExamScreen() {
         />
         <View style={{paddingHorizontal:16}}>
           <ExamKvCard glass={glass} style={{marginTop:26}}>
-            <Text style={{color:glass.text,fontSize:15,fontWeight:'600',fontVariant:['tabular-nums']}}>
+            <Text style={{color:glass.text,fontSize:16,fontWeight:'700',fontVariant:['tabular-nums']}}>
               {lessonsCompleted} {t3('из 32 уроков завершено', 'з 32 уроків завершено', 'of 32 lessons completed', 'de 32 lecciones completadas', 'de 32 lições concluídas', 'trong 32 bài học đã hoàn thành', 'dari 32 pelajaran selesai', '/ 32 ders tamamlandı', 'z 32 lekcji ukończono')}
             </Text>
             <ExamTrack glass={glass} ratio={lessonsCompleted/32} style={{marginTop:12}} />
@@ -1109,7 +1109,7 @@ export default function ExamScreen() {
                 <View style={{flex:1}}>
                   <Text style={{color:glass.text,fontSize:16,lineHeight:22,fontWeight:'600'}}>{t3(item.ru, item.uk, item.ru, item.es, item.ptBr, item.vi, item.id, item.tr, item.pl)}</Text>
                   {'sub' in item && item.sub && (
-                    <Text style={{color:glass.secondary,fontSize:14,lineHeight:19,marginTop:3}}>
+                    <Text style={{color:glass.secondary,fontSize:13,lineHeight:18,marginTop:3}}>
                       {t3(
                         'диплом в приложении при результате 80% и выше',
                         'диплом у застосунку за результатом ≥ 80%',
@@ -1127,7 +1127,7 @@ export default function ExamScreen() {
               </View>
             ))}
           </View>
-          <Text style={{color:glass.secondary,fontSize:14,textAlign:'center',marginTop:16}}>
+          <Text style={{color:glass.secondary,fontSize:13,textAlign:'center',marginTop:16}}>
             {t3(
               'После начала таймер не останавливается',
               'Після початку таймер не зупиняється',
@@ -1197,11 +1197,11 @@ export default function ExamScreen() {
                     backgroundColor: isAnswered ? glass.opaqueControl : t.wrongBg,
                     justifyContent:'center', alignItems:'center',
                   }}>
-                    <Text style={{color:isAnswered?glass.text:t.wrong,fontSize:14,fontWeight:'700',fontVariant:['tabular-nums']}}>{i+1}</Text>
+                    <Text style={{color:isAnswered?glass.text:t.wrong,fontSize:13,fontWeight:'700',fontVariant:['tabular-nums']}}>{i+1}</Text>
                   </View>
                   <View style={{flex:1}}>
                     <Text style={{color:glass.text,fontSize:16,lineHeight:21,fontWeight:'600'}}>{t3('Урок', 'Урок', 'Lesson', 'Lección', 'Lição', 'Bài học', 'Pelajaran', 'Ders', 'Lekcja')} {qItem.lessonNum} · {examTopicForLang(qItem, lang)}</Text>
-                    <Text style={{color:isAnswered?glass.secondary:t.wrong,fontSize:14,lineHeight:19,marginTop:1}}>
+                    <Text style={{color:isAnswered?glass.secondary:t.wrong,fontSize:13,lineHeight:18,marginTop:1}}>
                       {isAnswered
                         ? t3('отв.', 'відп.', 'ans.', 'resp.', 'resp.', 'đã trả lời', 'jawab', 'cevap', 'odp.')
                         : t3('без отв.', 'без відп.', 'no ans.', 'sin resp.', 'sem resp.', 'chưa trả lời', 'tanpa jawaban', 'cevapsız', 'bez odp.')}
@@ -1215,7 +1215,7 @@ export default function ExamScreen() {
         </BouncyScrollView>
         <ExamFooter bottomInset={0}>
           {answered < questions.length && (
-            <Text style={{color:t.wrong,fontSize:15,textAlign:'center',marginBottom:6}}>
+            <Text style={{color:t.wrong,fontSize:16,textAlign:'center',marginBottom:6}}>
               {t3(
                 `${questions.length - answered} вопросов без ответа`,
                 `${questions.length - answered} питань без відповіді`,
@@ -1262,7 +1262,7 @@ export default function ExamScreen() {
             >
               {countdownNum}
             </Animated.Text>
-            <Text style={{ color: glass.secondary, fontSize: 17, fontWeight: '600', marginTop: 12 }}>
+            <Text style={{ color: glass.secondary, fontSize: 16, fontWeight: '700', marginTop: 12 }}>
               {t3('Приготовься', 'Приготуйся', 'Get ready', 'Prepárate', 'Prepare-se', 'Chuẩn bị', 'Bersiap', 'Hazırlan', 'Przygotuj się')}
             </Text>
           </View>
@@ -1353,11 +1353,11 @@ export default function ExamScreen() {
               </Text>
               {topicRows.map((row, i) => (
                 <View key={`${row.name}-${i}`} style={{flexDirection:'row',alignItems:'center',gap:12,paddingVertical:10}}>
-                  <Text style={{flex:1.3,color:glass.text,fontSize:15,lineHeight:20}}>{row.name}</Text>
+                  <Text style={{flex:1.3,color:glass.text,fontSize:16,lineHeight:21}}>{row.name}</Text>
                   <View style={{flex:1}}>
                     <ExamTrack glass={glass} ratio={row.all > 0 ? row.right / row.all : 0} />
                   </View>
-                  <Text style={{minWidth:36,textAlign:'right',color:glass.secondary,fontSize:14,fontVariant:['tabular-nums']}}>{row.right}/{row.all}</Text>
+                  <Text style={{minWidth:36,textAlign:'right',color:glass.secondary,fontSize:13,fontVariant:['tabular-nums']}}>{row.right}/{row.all}</Text>
                 </View>
               ))}
             </View>
@@ -1396,7 +1396,7 @@ export default function ExamScreen() {
           />
           <BouncyScrollView decelerationRate="fast" style={{flex:1}} contentContainerStyle={{paddingHorizontal:16,paddingTop:22,paddingBottom:24}}>
             <Text style={{color:glass.secondary,fontSize:13,letterSpacing:1.6,textTransform:'uppercase',textAlign:'center'}}>PHRASEMAN ACADEMY</Text>
-            <Text style={{color:glass.secondary,fontSize:14,textAlign:'center',marginTop:8,marginBottom:18,fontVariant:['tabular-nums']}}>
+            <Text style={{color:glass.secondary,fontSize:13,textAlign:'center',marginTop:8,marginBottom:18,fontVariant:['tabular-nums']}}>
               {`${certificate.score} / ${certificate.total} · ${certificate.pct}% · ${formatCertDate(certificate.completedAt, certificate.lang)}`}
             </Text>
             {renderCertificateBlock(520)}
@@ -1472,7 +1472,7 @@ export default function ExamScreen() {
           keyboardShouldPersistTaps="handled"
         >
           <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',gap:8,minHeight:44}}>
-            <Text style={{flex:1,color:glass.secondary,fontSize:15,lineHeight:20,fontWeight:'600'}}>
+            <Text style={{flex:1,color:glass.secondary,fontSize:16,lineHeight:21,fontWeight:'700'}}>
               {t3('Урок', 'Урок', 'Lesson', 'Lección', 'Lição', 'Bài học', 'Pelajaran', 'Ders', 'Lekcja')} {q.lessonNum} · {examTopicForLang(q, lang)}
             </Text>
             <PracticeRoundIconButton glass={glass} color={glass.text} icon="list-outline" onPress={()=>setPhase('review')} accessibilityLabel={t3('Проверка ответов', 'Перевірка відповідей', 'Reviewing answers', 'Revisión de respuestas', 'Revisão das respostas', 'Kiểm tra câu trả lời', 'Tinjau jawaban', 'Cevapları kontrol et', 'Sprawdzenie odpowiedzi')} />

@@ -27,7 +27,7 @@ test('меню урока: размеры макета learn.html B1–B4', () =
   assert.ok(/fontSize: 30,\s*lineHeight: 36,\s*fontWeight: '700'/.test(menu), 'название урока 30/36 700');
   assert.ok(menuGlass.includes('ROW_MIN_HEIGHT = 76'), 'строка пункта min-height 76');
   assert.ok(menuGlass.includes('width: 46') && menuGlass.includes('borderRadius: 23'), 'круглая плашка значка 46');
-  assert.ok(/fontSize: 17,\s*lineHeight: 22,\s*fontWeight: '700'/.test(menuGlass), 'заголовок пункта 17/22 700');
+  assert.ok(/fontSize: 16,\s*lineHeight: 21,\s*fontWeight: '700'/.test(menuGlass), 'заголовок пункта 16/21 700 (D139)');
   assert.ok(menuGlass.includes('width: 55') && menuGlass.includes('cardStyle(glass, 22)'), 'карточка совета: плитка 55, радиус 22');
   assert.ok(menuGlass.includes('height: 7'), 'трек прогресса 7');
   assert.ok(menuGlass.includes('size={22}'), 'крупные звёзды 22 (stars3 lg)');
@@ -56,9 +56,9 @@ test('интро урока: нейтральные токены темы вме
 
 test('интро урока: размеры макета C1–C3 и сохранённая механика раскрытия', () => {
   assert.ok(/const cardRadius = 20/.test(intro), 'карточка радиус 20');
-  assert.ok(/fontSize: 18,\s*lineHeight: 23,\s*fontWeight: '700'/.test(intro), 'заголовок блока 18/23 700');
+  assert.ok(/fontSize: 16,\s*lineHeight: 2[01],\s*fontWeight: '700'/.test(intro), 'заголовок блока 16/21 700 (D139)');
   assert.ok(intro.includes('width: 44') && intro.includes('borderRadius: 22'), 'круглая плашка значка 44');
-  assert.ok(introGlass.includes('fontSize: 17') && introGlass.includes("fontWeight: '600'"), 'пример: en 17/600');
+  assert.ok(introGlass.includes('fontSize: 16') && introGlass.includes("fontWeight: '700'"), 'пример: en 16/700 (D139)');
   assert.ok(introGlass.includes('borderTopWidth: 1'), 'пример отделён тонкой линией сверху');
   assert.ok(intro.includes('setRevealedCount((n) => Math.min(n + 1, totalBlocks))'), 'тап-раскрытие не менялось');
   assert.ok(intro.includes('onComplete();'), 'старт урока не менялся');

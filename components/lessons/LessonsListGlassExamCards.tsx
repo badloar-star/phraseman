@@ -76,8 +76,8 @@ export const LessonsListGlassExamCard = React.memo(function LessonsListGlassExam
         <Tile glass={glass} size={46} radius={12} icon="document-text" iconSize={22} />
       </View>
       <View style={{ flex: 1, minWidth: 0, opacity: faint ? 0.6 : 1 }}>
-        <Text style={{ color: glass.text, fontSize: 17, lineHeight: 22, fontWeight: '700' }}>{title}</Text>
-        <Text style={{ color: glass.secondary, fontSize: 14, lineHeight: 19, marginTop: 3 }}>{status}</Text>
+        <Text style={{ color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{title}</Text>
+        <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, marginTop: 3 }}>{status}</Text>
       </View>
       <Ionicons name="chevron-forward" size={20} color={glass.secondary} />
     </PressableHybrid>
@@ -114,8 +114,8 @@ export const LessonsListGlassAttestationCard = React.memo(function LessonsListGl
         <Text
           style={{
             color: glass.secondary,
-            fontSize: 12, // guard-ok: надстрочная метка `.ov` макета НАД названием, не подпись-расшифровка
-            lineHeight: 16,
+            fontSize: 13, // guard-ok: надстрочная метка `.ov` макета НАД названием, не подпись-расшифровка
+            lineHeight: 17,
             fontWeight: '700',
             letterSpacing: 2,
             textTransform: 'uppercase',

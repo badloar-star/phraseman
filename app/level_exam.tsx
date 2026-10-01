@@ -1241,10 +1241,10 @@ export default function LevelExam() {
             {wrongItems.length > 0 && (
               <View style={[examCardStyle(glass), { marginTop: 18, paddingHorizontal: 16, paddingVertical: 8 }]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 10 }}>
-                  <Text style={{ flex: 1, color: glass.text, fontSize: 17, fontWeight: '700' }}>
+                  <Text style={{ flex: 1, color: glass.text, fontSize: 16, fontWeight: '700' }}>
                     {triLang(lang, { ru: 'Что разобрать', uk: 'Що розібрати', en: 'What to review', es: 'Qué repasar', 'pt-BR': "Erros", vi: "Lỗi sai", id: "Kesalahan", tr: "Hatalar", pl: "Błędy" })}
                   </Text>
-                  <Text style={{ color: glass.secondary, fontSize: 15, fontWeight: '600', fontVariant: ['tabular-nums'] }}>{wrongItems.length}</Text>
+                  <Text style={{ color: glass.secondary, fontSize: 16, fontWeight: '700', fontVariant: ['tabular-nums'] }}>{wrongItems.length}</Text>
                 </View>
                 {wrongItems.map((item, i) => (
                   <View key={i} style={{ paddingVertical: 12, gap: 6, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: glass.line }}>
@@ -1264,11 +1264,11 @@ export default function LevelExam() {
                     <ClozeGapText text={item.q.q ?? ''} style={{ color: glass.text, fontSize: 16, lineHeight: 22 }} />
                     <View style={{ flexDirection: 'row', gap: 12, flexWrap: 'wrap' }}>
                       {item.chosen !== null && item.chosen !== undefined && (
-                        <Text style={{ color: t.wrong, fontSize: 15 }}>
+                        <Text style={{ color: t.wrong, fontSize: 16 }}>
                           ✗ {item.q.opts?.[item.chosen] ?? '—'}
                         </Text>
                       )}
-                      <Text style={{ color: t.correct, fontSize: 15 }}>
+                      <Text style={{ color: t.correct, fontSize: 16 }}>
                         ✓ {item.q.opts?.[item.correct] ?? '—'}
                       </Text>
                     </View>
@@ -1355,7 +1355,7 @@ export default function LevelExam() {
                 pl: levelTopicPlanned(q, 'pl'),
               })}
             </Text>
-            <Text style={{ color: glass.secondary, fontSize: 15, fontWeight: '600', fontVariant: ['tabular-nums'] }}>{lessonWord} {q.lessonNum}</Text>
+            <Text style={{ color: glass.secondary, fontSize: 16, fontWeight: '700', fontVariant: ['tabular-nums'] }}>{lessonWord} {q.lessonNum}</Text>
           </View>
 
           {/* Вопрос */}

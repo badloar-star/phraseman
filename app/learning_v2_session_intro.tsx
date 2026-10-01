@@ -665,7 +665,7 @@ export default function LearningV2SessionIntro({
                           ]}
                         >
                           <View style={[styles.answerLetter, { backgroundColor: correct ? g.good : wrong ? g.bad : g.opaqueControl }]}>
-                            <Text style={{ color: correct || wrong ? g.ctaInk : g.secondary, fontSize: 12, fontWeight: "700" }}>{String.fromCharCode(65 + choiceIndex)}</Text>
+                            <Text style={{ color: correct || wrong ? g.ctaInk : g.secondary, fontSize: 13, fontWeight: "700" }}>{String.fromCharCode(65 + choiceIndex)}</Text>
                           </View>
                           <Text
                             style={[
@@ -782,8 +782,8 @@ const styles = StyleSheet.create({
   },
   stageLabel: {
     flexShrink: 1,
-    fontSize: 12,
-    lineHeight: 17,
+    fontSize: 13,
+    lineHeight: 18,
     fontWeight: "700",
     letterSpacing: 1.6,
   },
@@ -828,8 +828,8 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   questionEyebrow: {
-    fontSize: 12,
-    lineHeight: 17,
+    fontSize: 13,
+    lineHeight: 18,
     fontWeight: "700",
     letterSpacing: 1.6,
     textTransform: "uppercase",
@@ -858,9 +858,9 @@ const styles = StyleSheet.create({
   },
   answerChoiceText: {
     flex: 1,
-    fontSize: 17,
-    lineHeight: 22,
-    fontWeight: "600",
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: "700",
   },
   correctMessage: {
     fontSize: 16,
@@ -869,8 +869,8 @@ const styles = StyleSheet.create({
     marginTop: 14,
   },
   explanation: {
-    fontSize: 15,
-    lineHeight: 21,
+    fontSize: 16,
+    lineHeight: 22,
     fontWeight: "400",
     marginTop: 14,
   },

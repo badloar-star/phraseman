@@ -46,7 +46,7 @@ const s = StyleSheet.create({
   text: { fontSize: 16, lineHeight: 22, marginTop: 8, textAlign: 'center' },
   cta: { marginTop: 26, minHeight: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center' },
   ghost: { marginTop: 12, minHeight: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center' },
-  ctaText: { fontSize: 17, fontWeight: '700' },
+  ctaText: { fontSize: 16, fontWeight: '700' },
 });
 
 export default memo(SpireExitSheet);

@@ -60,6 +60,6 @@ const styles = StyleSheet.create({
   tile: { minHeight: 44, borderRadius: 14, paddingHorizontal: 16, justifyContent: 'center' },
   tileBorder: { borderWidth: StyleSheet.hairlineWidth }, // guard-ok: 1 px glassEdge
   tileUsed: { opacity: 0.4 },
-  tileText: { fontSize: 17, lineHeight: 22, fontWeight: '600' },
+  tileText: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   bank: { flexDirection: 'row', flexWrap: 'wrap' },
 });

@@ -1544,7 +1544,7 @@ export default function DiagnosticTest() {
           ) : (
             <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 2 }}>
               <Text style={{ color: glass.text, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -1, fontVariant: ['tabular-nums'] }}>{examReadiness.percent}</Text>
-              <Text style={{ color: glass.secondary, fontSize: 18, fontWeight: '600' }}>%</Text>
+              <Text style={{ color: glass.secondary, fontSize: 16, fontWeight: '700' }}>%</Text>
             </View>
           )}
         />
@@ -1557,12 +1557,12 @@ export default function DiagnosticTest() {
         >
           <ExamTile glass={glass} icon="ribbon-outline" />
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: glass.text, fontSize: 17, lineHeight: 22, fontWeight: '700' }}>{s.home.examBtn}</Text>
+            <Text style={{ color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{s.home.examBtn}</Text>
             {/* зачем: examLessonsDone===null только на первом кадре до подгрузки — скелетон вместо ложного «0/32» */}
             {examLessonsDone === null ? (
               <SkeletonBlock width={90} height={16} borderRadius={4} style={{ marginTop: 6 }} />
             ) : (
-              <Text style={{ color: glass.secondary, fontSize: 14, lineHeight: 19, marginTop: 3 }}>
+              <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, marginTop: 3 }}>
                 {examLessonsDone}/32 {triLang(lang, { ru: 'уроков', uk: 'уроків', en: 'lessons', es: 'lecciones', 'pt-BR': 'lições', vi: 'bài học', id: 'pelajaran', tr: 'ders', pl: 'lekcji' })}
               </Text>
             )}
@@ -1608,7 +1608,7 @@ export default function DiagnosticTest() {
           <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 22, lineHeight: 28, fontWeight: '700', marginTop: 10, textAlign: 'center' }}>
             {diagnosticResultTitle(lang, result)}
           </Text>
-          <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 21, textAlign: 'center', marginTop: 8 }}>
+          <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 8 }}>
             {diagnosticResultMessage(lang, result)}
           </Text>
         </View>
@@ -1733,7 +1733,7 @@ export default function DiagnosticTest() {
                       }}
                       style={({ pressed }) => ({ backgroundColor: glass.opaqueControl, borderRadius: 14, minHeight: 44, paddingHorizontal: 14, justifyContent: 'center', opacity: pressed ? 0.8 : 1 })}
                     >
-                      <Text style={{ color: glass.text, fontSize: 17, fontWeight: '600' }}>{word}</Text>
+                      <Text style={{ color: glass.text, fontSize: 16, fontWeight: '700' }}>{word}</Text>
                     </Pressable>
                   ))
                 )}
@@ -1757,7 +1757,7 @@ export default function DiagnosticTest() {
                       }}
                       style={({ pressed }) => ({ backgroundColor: glass.opaqueCard, borderColor: glass.glassEdge, borderWidth: StyleSheet.hairlineWidth, borderRadius: 14, minHeight: 44, paddingHorizontal: 16, justifyContent: 'center', opacity: pressed ? 0.8 : 1 })}
                     >
-                      <Text style={{ color: glass.text, fontSize: 17, fontWeight: '600' }}>{word}</Text>
+                      <Text style={{ color: glass.text, fontSize: 16, fontWeight: '700' }}>{word}</Text>
                     </Pressable>
                   ))}
                 </View>

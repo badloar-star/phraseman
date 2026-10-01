@@ -287,18 +287,18 @@ const styles = StyleSheet.create({
   chipPlate: { borderRadius: 14, paddingBottom: 3, alignSelf: 'flex-start' },
   chip: { minHeight: 46, paddingHorizontal: 18, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
   chipCompact: { minHeight: 44, paddingHorizontal: 14 },
-  chipText: { fontSize: 17, lineHeight: 22, fontWeight: '600' },
+  chipText: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   opt: {
     minHeight: 58, borderRadius: 14, borderWidth: StyleSheet.hairlineWidth, // guard-ok: кромка макета 1 px
     paddingVertical: 12, alignItems: 'center', justifyContent: 'center',
   },
   optCompact: { minHeight: 48, paddingVertical: 8 },
-  optText: { fontSize: 17, lineHeight: 22, fontWeight: '600', textAlign: 'center' },
+  optText: { fontSize: 16, lineHeight: 21, fontWeight: '700', textAlign: 'center' },
   optMark: { position: 'absolute', right: 16, top: 0, bottom: 0, justifyContent: 'center' },
   cta: { minHeight: 52, borderRadius: 26, paddingHorizontal: 22, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 12 },
-  ctaText: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
+  ctaText: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   ctaRight: { position: 'absolute', right: 22 },
   expl: { flexDirection: 'row', alignItems: 'flex-start', gap: 12, paddingVertical: 14, paddingHorizontal: 16 },
   explIcon: { marginTop: 1 },
-  explText: { flex: 1, minWidth: 0, fontSize: 15, lineHeight: 21, fontWeight: '500' },
+  explText: { flex: 1, minWidth: 0, fontSize: 16, lineHeight: 22, fontWeight: '400' },
 });

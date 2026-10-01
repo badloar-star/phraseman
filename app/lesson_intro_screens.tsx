@@ -288,8 +288,8 @@ function IntroBlockCard({
                 styles.cardTitle,
                 {
                   color: glass.text,
-                  fontSize: 18,
-                  lineHeight: 23,
+                  fontSize: 16,
+                  lineHeight: 20,
                   fontWeight: '700',
                 },
               ]}
@@ -675,7 +675,7 @@ export default function LessonIntroScreens({
             },
           ]}
         >
-          <Text style={[styles.ctaText, { color: introGlass.accentInk, fontSize: 17, lineHeight: 22 }]}>
+          <Text style={[styles.ctaText, { color: introGlass.accentInk, fontSize: 16, lineHeight: 21 }]}>
             {startLabel}
           </Text>
           <View style={styles.ctaIconWrap}>
@@ -855,8 +855,8 @@ export default function LessonIntroScreens({
                       styles.tapHint,
                       {
                         color: introGlass.mutedText,
-                        fontSize: 14,
-                        lineHeight: 19,
+                        fontSize: 13,
+                        lineHeight: 18,
                         transform: [{ translateY: hintBob.interpolate({ inputRange: [0, 1], outputRange: [0, 4] }) }],
                       },
                     ]}
@@ -901,8 +901,8 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   headerSubtitle: {
-    fontSize: 15,
-    lineHeight: 20,
+    fontSize: 16,
+    lineHeight: 21,
     marginTop: 2,
   },
   reportFlag: {

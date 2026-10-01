@@ -302,8 +302,8 @@ export default function WordBankBuilder({
 
 const styles = StyleSheet.create({
   wrap: { padding: 14, borderRadius: 14, borderWidth: 0, marginTop: 10 },
-  hint: { fontSize: 11, letterSpacing: 0.5, textTransform: 'uppercase', fontWeight: '600', marginBottom: 4 },
-  prompt: { fontSize: 17, fontWeight: '600', marginBottom: 12 },
+  hint: { fontSize: 13, letterSpacing: 0.5, textTransform: 'uppercase', fontWeight: '700', marginBottom: 4 },
+  prompt: { fontSize: 16, fontWeight: '700', marginBottom: 12 },
   slots: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, minHeight: 48, padding: 8, borderRadius: 10, marginBottom: 12 },
   slotEmpty: {
     paddingHorizontal: 12,
@@ -315,14 +315,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  slotEmptyText: { fontSize: 12, fontWeight: '600' },
+  slotEmptyText: { fontSize: 13, fontWeight: '700' },
   slotFilled: { paddingHorizontal: 14, paddingVertical: 10, borderRadius: 10, minHeight: 44, justifyContent: 'center' },
   slotFilledText: { fontSize: 16, fontWeight: '600' },
   bank: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
   word: { paddingHorizontal: 14, paddingVertical: 12, borderRadius: 10, minHeight: 48, justifyContent: 'center' },
   wordText: { fontSize: 16, fontWeight: '600' },
   check: { marginTop: 12, paddingVertical: 14, borderRadius: 12, alignItems: 'center' },
-  checkText: { fontSize: 15, fontWeight: '600' },
+  checkText: { fontSize: 16, fontWeight: '700' },
   fb: { marginTop: 10, padding: 10, borderRadius: 10 },
   fbText: { fontSize: 13, lineHeight: 19, fontWeight: '500' },
 });

@@ -277,7 +277,7 @@ const styles = StyleSheet.create({
   awardCount: { minWidth: 24, textAlign: "left" },
   awardWord: { fontSize: 16, lineHeight: 22, fontWeight: "600", marginLeft: 10 },
   skills: { marginTop: 14, paddingTop: 14, paddingHorizontal: 16, paddingBottom: 6 },
-  cardTitle: { fontSize: 17, lineHeight: 22, fontWeight: "700", marginBottom: 6 },
+  cardTitle: { fontSize: 16, lineHeight: 21, fontWeight: "700", marginBottom: 6 },
   skillRow: {
     flexDirection: "row",
     alignItems: "center",

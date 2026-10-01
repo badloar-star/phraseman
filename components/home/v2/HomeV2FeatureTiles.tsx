@@ -65,6 +65,6 @@ const s = StyleSheet.create({
   artImage: { width: 84, height: 84 },
   title: { ...V2_TYPE.headline },
   footer: { flexDirection: 'row', justifyContent: 'flex-end', marginTop: 'auto', paddingTop: 6 },
-  subtitle: { ...V2_TYPE.caption, fontSize: 12, lineHeight: 16, marginTop: 4 },
+  subtitle: { ...V2_TYPE.caption, fontSize: 13, lineHeight: 17, marginTop: 4 },
   arrow: { width: 26, height: 26, borderRadius: 13, borderWidth: StyleSheet.hairlineWidth, alignItems: 'center', justifyContent: 'center', marginRight: -2 }, // guard-ok: D43
 });

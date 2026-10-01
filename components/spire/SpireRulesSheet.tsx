@@ -66,10 +66,10 @@ const s = StyleSheet.create({
   listContent: { gap: 14, paddingBottom: 4 },
   row: { flexDirection: 'row', alignItems: 'flex-start', gap: 12 },
   num: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
-  numText: { fontSize: 14, fontWeight: '700' },
+  numText: { fontSize: 13, fontWeight: '700' },
   line: { flex: 1, fontSize: 16, lineHeight: 22 },
   cta: { marginTop: 20, minHeight: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center' },
-  ctaText: { fontSize: 17, fontWeight: '700' },
+  ctaText: { fontSize: 16, fontWeight: '700' },
 });
 
 export default memo(SpireRulesSheet);

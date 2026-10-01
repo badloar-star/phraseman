@@ -109,7 +109,7 @@ export function LessonMenuHeader({
       <View style={{ flex: 1, minWidth: 0 }}>
         <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 20, lineHeight: 25, fontWeight: '700' }}>{title}</Text>
         {subtitle ? (
-          <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, marginTop: 2 }}>{subtitle}</Text>
+          <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 21, marginTop: 2 }}>{subtitle}</Text>
         ) : null}
       </View>
       {right}
@@ -176,9 +176,9 @@ export function LessonMenuRow({
         <Ionicons name={icon} size={22} color={rowIconColor(glass)} />
       </View>
       <View style={{ flex: 1, minWidth: 0 }}>
-        <Text style={{ color: glass.text, fontSize: 17, lineHeight: 22, fontWeight: '700' }}>{title}</Text>
+        <Text style={{ color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{title}</Text>
         {subtitle ? (
-          <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 19, marginTop: 2 }}>{subtitle}</Text>
+          <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 20, marginTop: 2 }}>{subtitle}</Text>
         ) : null}
       </View>
       <Ionicons name="chevron-forward" size={20} color={glass.secondary} />
@@ -225,7 +225,7 @@ export function LessonMenuTip({
       </View>
       <View style={{ flex: 1, minWidth: 0 }}>
         <Text style={{ color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{title}</Text>
-        <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, marginTop: 6 }}>{body}</Text>
+        <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 21, marginTop: 6 }}>{body}</Text>
       </View>
     </View>
   );
@@ -276,7 +276,7 @@ export function LessonMenuSummary({
           <View style={{ width: `${ratio * 100}%`, minWidth: 7, height: 7, borderRadius: 4, backgroundColor: glass.accent }} />
         </View>
       )}
-      <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] }}>{`${progress}/50`}</Text>
+      <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 21, fontWeight: '700', fontVariant: ['tabular-nums'] }}>{`${progress}/50`}</Text>
     </View>
   );
 }

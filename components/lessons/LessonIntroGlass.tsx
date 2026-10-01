@@ -11,7 +11,7 @@ export type LessonIntroGlassTokens = ReturnType<typeof liquidGlassTokens>;
 
 /** Стиль английской строки примера (17/22, 600) — общий для простого и rich-варианта. */
 export function introExampleEnStyle(glass: LessonIntroGlassTokens): TextStyle {
-  return { color: glass.text, fontSize: 17, lineHeight: 22, fontWeight: '600' };
+  return { color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' };
 }
 
 /** Одна строка примера: английский слева, перевод справа, сверху тонкая разделительная линия. */
@@ -32,8 +32,8 @@ export function LessonIntroExampleRow({
 }) {
   const translationStyle: StyleProp<TextStyle> = {
     color: glass.secondary,
-    fontSize: 15,
-    lineHeight: 20,
+    fontSize: 16,
+    lineHeight: 21,
     textAlign: 'right',
     flexShrink: 1,
     maxWidth: '48%',
@@ -53,11 +53,11 @@ export function LessonIntroExampleRow({
     >
       <View style={{ flexShrink: 1, flexGrow: 1, minWidth: 0 }}>
         {label ? (
-          <Text style={{ color: glass.mutedText, fontSize: 14, lineHeight: 18, marginBottom: 2 }}>{label}</Text> // guard-ok: метка примера из данных урока, не расшифровка
+          <Text style={{ color: glass.mutedText, fontSize: 13, lineHeight: 17, marginBottom: 2 }}>{label}</Text> // guard-ok: метка примера из данных урока, не расшифровка
         ) : null}
         {english}
         {note ? (
-          <Text style={{ color: glass.mutedText, fontSize: 14, lineHeight: 18, fontWeight: '600', marginTop: 3 }}>{note}</Text> // guard-ok: примечание примера из данных урока
+          <Text style={{ color: glass.mutedText, fontSize: 13, lineHeight: 17, fontWeight: '700', marginTop: 3 }}>{note}</Text> // guard-ok: примечание примера из данных урока
         ) : null}
       </View>
       {translation ? <Text style={translationStyle}>{translation}</Text> : null}

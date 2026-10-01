@@ -771,9 +771,9 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
   progressLabel: {
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: '600',
+    fontSize: 13,
+    lineHeight: 19,
+    fontWeight: '700',
   },
 
   // Разделы: одна карточка, строки с разделителем 1 px (.card.acc)
@@ -861,15 +861,15 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   exampleEn: {
-    fontSize: 15,
-    fontWeight: '600',
-    lineHeight: 24,
+    fontSize: 16,
+    fontWeight: '700',
+    lineHeight: 26,
     flexShrink: 1,
     paddingRight: 10,
   },
   exampleTranslation: {
-    fontSize: 15,
-    lineHeight: 24,
+    fontSize: 16,
+    lineHeight: 26,
     textAlign: 'right',
     flexShrink: 1,
   },
@@ -884,16 +884,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   fixWrong: {
-    fontSize: 15,
-    lineHeight: 22,
+    fontSize: 16,
+    lineHeight: 23,
   },
   fixArrow: {
     marginHorizontal: 8,
   },
   fixRight: {
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: '700',
-    lineHeight: 22,
+    lineHeight: 23,
     flexShrink: 1,
   },
 

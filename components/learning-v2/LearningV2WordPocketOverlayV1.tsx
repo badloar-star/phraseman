@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
   wordRow: { minHeight: 88, paddingLeft: 20, paddingRight: 12, paddingVertical: 12, flexDirection: "row", alignItems: "center", gap: 8 },
   wordCopy: { flex: 1, minHeight: 64, justifyContent: "center", gap: 4 },
   word: { fontSize: 24, lineHeight: 30, fontWeight: "600" },
-  meaning: { fontSize: 15, lineHeight: 21 },
+  meaning: { fontSize: 16, lineHeight: 22 },
   wordTool: { width: 44, minHeight: 44, alignItems: "center", justifyContent: "center" },
   wordSpeak: { width: 44, height: 44, borderRadius: 22 },
   overlay: {
@@ -187,8 +187,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   eyebrow: {
-    fontSize: 12,
-    lineHeight: 16,
+    fontSize: 13,
+    lineHeight: 17,
     fontWeight: "700",
     letterSpacing: 2.4,
     textTransform: "uppercase",
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     letterSpacing: -0.5,
   },
-  count: { marginTop: 4, fontSize: 15, lineHeight: 20 },
+  count: { marginTop: 4, fontSize: 16, lineHeight: 21 },
   close: {
     marginTop: 8,
     width: 44,

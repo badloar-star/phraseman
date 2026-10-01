@@ -126,13 +126,13 @@ const s = StyleSheet.create({
  paddingHorizontal: 20, paddingTop: 18, paddingBottom: 16 },
   over: { fontSize: 13, fontWeight: '700', letterSpacing: 2, textAlign: 'center' },
   title: { fontSize: 24, lineHeight: 30, fontWeight: '700', textAlign: 'center', marginTop: 8 },
-  sub: { fontSize: 15, lineHeight: 20, textAlign: 'center', marginTop: 6 },
+  sub: { fontSize: 16, lineHeight: 21, textAlign: 'center', marginTop: 6 },
   pills: { flexDirection: 'row', justifyContent: 'center', gap: 10, marginTop: 14 },
   pill: { height: 36, borderRadius: 18, paddingLeft: 7, paddingRight: 14, flexDirection: 'row', alignItems: 'center', gap: 8 },
   pillText: { fontSize: 16, fontWeight: '700' },
   cta: { marginTop: 18, minHeight: 56, borderRadius: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
   ghost: { marginTop: 8, minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
-  ctaText: { fontSize: 17, fontWeight: '700' },
+  ctaText: { fontSize: 16, fontWeight: '700' },
 });
 
 export default memo(SpireResultPanel);

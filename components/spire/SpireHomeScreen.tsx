@@ -287,7 +287,7 @@ const s = StyleSheet.create({
   subtitle: { fontSize: 16, lineHeight: 20, marginTop: 6 },
   rulesBtn: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   note: { marginTop: 16, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 12, flexDirection: 'row', alignItems: 'flex-start', gap: 10 },
-  noteText: { flex: 1, fontSize: 15, lineHeight: 20 },
+  noteText: { flex: 1, fontSize: 16, lineHeight: 21 },
   towerWrap: { marginTop: 18 },
   dim: { opacity: 0.55 },
   dock: { position: 'absolute', left: V2.screenPad, right: V2.screenPad },

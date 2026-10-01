@@ -161,9 +161,9 @@ const styles = StyleSheet.create({
   scroll: { flex: 1 },
   content: { paddingHorizontal: 16, paddingTop: 22, paddingBottom: 24 },
   energyPill: { minHeight: 38, minWidth: 74, borderRadius: 19, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 2 },
-  energyValue: { width: 40, fontSize: 18, lineHeight: 24 },
+  energyValue: { width: 40, fontSize: 16, lineHeight: 21 },
   energyInfinity: { width: 40, textAlign: 'center', fontSize: 22, lineHeight: 26, fontWeight: '700' },
   metric: { flexDirection: 'row', alignItems: 'center', gap: 10, minWidth: 0 },
   metricText: { flex: 1, fontSize: 16, lineHeight: 22, fontWeight: '600' },
-  bestResult: { marginTop: 14, fontSize: 15, lineHeight: 21 },
+  bestResult: { marginTop: 14, fontSize: 16, lineHeight: 22 },
 });

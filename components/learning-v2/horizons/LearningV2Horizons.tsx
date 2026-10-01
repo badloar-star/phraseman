@@ -251,7 +251,7 @@ export default function LearningV2Horizons(props: Props) {
       style={styles.utility}
     >
       <Ionicons name={icon} size={17} color={p.accent} />
-      <Text style={{ color: p.muted, fontSize: 12 }}>{label}</Text>
+      <Text style={{ color: p.muted, fontSize: 13 }}>{label}</Text>
     </Pressable>
   );
 
@@ -312,7 +312,7 @@ export default function LearningV2Horizons(props: Props) {
             <Text style={[styles.eyebrow, { color: p.accent }]}>
               {c.chapter.toUpperCase()} {chapter} / 7
             </Text>
-            <Text style={{ color: p.muted, fontSize: 11 }}>
+            <Text style={{ color: p.muted, fontSize: 13 }}>
               {chapterRows.filter((row) => row.state === "completed").length} /
               8
             </Text>
@@ -552,10 +552,10 @@ export default function LearningV2Horizons(props: Props) {
                 ))}
               </View>
               <View style={styles.mapCaption}>
-                <Text style={{ color: p.muted, fontSize: 11 }}>
+                <Text style={{ color: p.muted, fontSize: 13 }}>
                   {completed} / 56 · {c.complete.toLowerCase()}
                 </Text>
-                <Text style={{ color: p.muted, fontSize: 11 }}>
+                <Text style={{ color: p.muted, fontSize: 13 }}>
                   {c.chapter} {horizonChapter(currentRow?.sessionOrdinal ?? 1)}{" "}
                   / 7
                 </Text>
@@ -669,18 +669,18 @@ export default function LearningV2Horizons(props: Props) {
                     <Text
                       style={{
                         color: horizonPalette(ordinal, t).accent,
-                        fontSize: 18,
+                        fontSize: 16,
                         minWidth: 34,
                       }}
                     >
                       {String(ordinal).padStart(2, "0")}
                     </Text>
                     <View style={{ flex: 1 }}>
-                      <Text style={{ color: t.textPrimary, fontSize: 15 }}>
+                      <Text style={{ color: t.textPrimary, fontSize: 16 }}>
                         {item}
                       </Text>
                       <Text
-                        style={{ color: p.muted, fontSize: 11, marginTop: 5 }}
+                        style={{ color: p.muted, fontSize: 13, marginTop: 5 }}
                       >
                         {done} / 56
                       </Text>
@@ -724,7 +724,7 @@ const styles = StyleSheet.create({
   },
   description: { paddingHorizontal: 24, paddingTop: 12, paddingBottom: 12 },
   eyebrow: {
-    fontSize: 10,
+    fontSize: 13,
     letterSpacing: 1.5,
     fontWeight: "700",
     textAlign: "center",
@@ -750,7 +750,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   buttonText: {
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: "700",
     flexShrink: 1,
     textAlign: "center",
@@ -777,8 +777,8 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   mapTitle: {
-    fontSize: 18,
-    fontWeight: "600",
+    fontSize: 16,
+    fontWeight: "700",
     textAlign: "center",
     marginTop: 4,
   },
@@ -799,7 +799,7 @@ const styles = StyleSheet.create({
   nodeLabel: {
     width: 110,
     textAlign: "center",
-    fontSize: 10,
+    fontSize: 13,
     marginTop: 7,
     marginBottom: 3,
   },

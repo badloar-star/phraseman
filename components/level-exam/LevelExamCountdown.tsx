@@ -122,9 +122,9 @@ export default function LevelExamCountdown({ attemptId, level, lang = 'ru', acti
 
 const styles = StyleSheet.create({
   root: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 16, padding: 32 },
-  level: { fontSize: 15, lineHeight: 20, fontWeight: '600' },
+  level: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   numberSurface: { minWidth: 176, minHeight: 176, alignItems: 'center', justifyContent: 'center' },
   numberWrap: { alignItems: 'center', justifyContent: 'center' },
   number: { fontSize: 132, lineHeight: 140, fontWeight: '800', fontVariant: ['tabular-nums'] },
-  ready: { fontSize: 17, lineHeight: 22, fontWeight: '600' },
+  ready: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
 });

@@ -169,7 +169,7 @@ const s = StyleSheet.create({
   // Тонкая (1px) полупрозрачная кромка окна, как .tview в макете; толстых рамок нет.
   window: { height: WINDOW_HEIGHT, borderRadius: 22, overflow: 'hidden', borderWidth: 1 },
   rivals: { position: 'absolute', flexDirection: 'row', alignItems: 'center' },
-  rivalExtra: { marginLeft: 5, fontSize: 11, fontWeight: '700' },
+  rivalExtra: { marginLeft: 5, fontSize: 13, fontWeight: '700' },
   marker: { position: 'absolute', left: 0, top: 0, width: MARKER_SIZE, height: MARKER_SIZE, alignItems: 'center', justifyContent: 'center' },
   markerGlow: { position: 'absolute', width: MARKER_SIZE + 24, height: MARKER_SIZE + 24, borderRadius: (MARKER_SIZE + 24) / 2, backgroundColor: 'rgba(255,255,255,0.12)' },
   markerRing: { width: MARKER_SIZE, height: MARKER_SIZE, borderRadius: MARKER_SIZE / 2, backgroundColor: '#F2F1F6', alignItems: 'center', justifyContent: 'center' },

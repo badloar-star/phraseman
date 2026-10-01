@@ -168,10 +168,10 @@ export default function HorizonMistakeReview({
 const styles = StyleSheet.create({
   card: { paddingTop: 14, paddingBottom: 14, paddingHorizontal: 16 },
   head: { flexDirection: "row", alignItems: "center", gap: 10, paddingBottom: 2 },
-  title: { flexShrink: 1, fontSize: 17, lineHeight: 22, fontWeight: "700" },
-  count: { fontSize: 17, lineHeight: 22, fontWeight: "600" },
+  title: { flexShrink: 1, fontSize: 16, lineHeight: 21, fontWeight: "700" },
+  count: { fontSize: 16, lineHeight: 21, fontWeight: "700" },
   row: { flexDirection: "row", alignItems: "center", gap: 12, paddingVertical: 12 },
-  label: { width: 110, fontSize: 15, lineHeight: 20, fontWeight: "700" },
+  label: { width: 110, fontSize: 16, lineHeight: 21, fontWeight: "700" },
   pair: {
     flex: 1,
     minWidth: 0,
@@ -181,8 +181,8 @@ const styles = StyleSheet.create({
     columnGap: 10,
     rowGap: 6,
   },
-  given: { fontSize: 15, lineHeight: 20, textDecorationLine: "line-through" },
-  correct: { fontSize: 15, lineHeight: 20, fontWeight: "600" },
-  hint: { width: "100%", fontSize: 14, lineHeight: 20, marginTop: 2 },
+  given: { fontSize: 16, lineHeight: 21, textDecorationLine: "line-through" },
+  correct: { fontSize: 16, lineHeight: 21, fontWeight: "700" },
+  hint: { width: "100%", fontSize: 13, lineHeight: 19, marginTop: 2 },
   retry: { minHeight: 44, borderRadius: 22, marginTop: 6 },
 });

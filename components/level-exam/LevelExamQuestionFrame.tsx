@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   safeArea: { flex: 1 },
   trackWrap: { paddingHorizontal: 16, marginTop: 14 },
   content: { flexGrow: 1, paddingHorizontal: 16, paddingTop: 22, paddingBottom: 24 },
-  format: { fontSize: 15, lineHeight: 20, fontWeight: '600', marginBottom: 12 },
+  format: { fontSize: 16, lineHeight: 21, fontWeight: '700', marginBottom: 12 },
   promptCard: { paddingVertical: 22, paddingHorizontal: 22, minHeight: 96, justifyContent: 'center' },
   prompt: { fontSize: 24, lineHeight: 30, fontWeight: '600' },
   answers: { marginTop: 18, gap: 10 },

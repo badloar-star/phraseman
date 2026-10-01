@@ -82,7 +82,7 @@ const s = StyleSheet.create({
     padding: 12,
     paddingTop: 16,
   },
-  header: { ...V2_TYPE.overline, fontSize: 14, lineHeight: 18, letterSpacing: 1.6, marginLeft: 6, marginBottom: 12 },
+  header: { ...V2_TYPE.overline, fontSize: 13, lineHeight: 17, letterSpacing: 1.6, marginLeft: 6, marginBottom: 12 },
   list: { gap: 6 },
   row: {
     minHeight: 58,
@@ -103,7 +103,7 @@ const s = StyleSheet.create({
   },
   kindIcon: { width: 24, textAlign: 'center' },
   copy: { flex: 1, minWidth: 0 },
-  taskTitle: { fontSize: 15, lineHeight: 19, fontWeight: '700' },
+  taskTitle: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
   taskSubtitle: { ...V2_TYPE.caption, fontSize: 13, lineHeight: 17, marginTop: 1 },
-  counter: { fontSize: 14, lineHeight: 18, fontWeight: '600', fontVariant: ['tabular-nums'] },
+  counter: { fontSize: 13, lineHeight: 17, fontWeight: '700', fontVariant: ['tabular-nums'] },
 });

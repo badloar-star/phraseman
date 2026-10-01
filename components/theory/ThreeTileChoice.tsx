@@ -161,12 +161,12 @@ export default function ThreeTileChoice({
 
 const styles = StyleSheet.create({
   wrap: { padding: 14, borderRadius: 14, borderWidth: 0, marginTop: 10 },
-  hint: { fontSize: 11, letterSpacing: 0.5, textTransform: 'uppercase', fontWeight: '600', marginBottom: 10, textAlign: 'center' },
-  q: { fontSize: 17, lineHeight: 28, textAlign: 'center', marginBottom: 12 },
+  hint: { fontSize: 13, letterSpacing: 0.5, textTransform: 'uppercase', fontWeight: '700', marginBottom: 10, textAlign: 'center' },
+  q: { fontSize: 16, lineHeight: 26, textAlign: 'center', marginBottom: 12 },
   gap: { borderRadius: 8, overflow: 'hidden', fontWeight: '600' },
   tiles: { flexDirection: 'row', gap: 8 },
   tile: { flex: 1, paddingVertical: 14, borderRadius: 10, alignItems: 'center', minHeight: 52, justifyContent: 'center' },
   tileText: { fontSize: 16, fontWeight: '600' },
   whyBtn: { alignSelf: 'center', marginTop: 10, paddingVertical: 4, paddingHorizontal: 8 },
-  why: { fontSize: 12, textAlign: 'center' },
+  why: { fontSize: 13, textAlign: 'center' },
 });

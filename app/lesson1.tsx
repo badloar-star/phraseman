@@ -1446,8 +1446,8 @@ const LessonContent = React.memo(function LessonContent({
                   }}>
                     <Text style={{
                       color: replaySolvedCorrectly ? t.correct : (isErrorReplay ? t.wrong : t.correct),
-                      fontSize: 8,
-                      lineHeight: 10,
+                      fontSize: 13,
+                      lineHeight: 16,
                       textAlign: 'center',
                       width: (barWidth - (progressCellCount - 1) * 2) / progressCellCount,
                     }}>▼</Text>
@@ -1514,7 +1514,7 @@ const LessonContent = React.memo(function LessonContent({
                   <View style={{ position: 'relative' }}>
                     <Ionicons name="cut-outline" size={26} color={canUse50 ? glass.text : glass.mutedText} />
                     <View style={{ position: 'absolute', top: -4, right: -10, backgroundColor: canUse50 ? glass.cta : glass.mutedText, borderRadius: 8, minWidth: 16, height: 16, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 3 }}>
-                      <Text style={{ color: glass.accentInk, fontSize: 10, fontWeight: '700', lineHeight: 12 }}>{explainHintsLeft}</Text>
+                      <Text style={{ color: glass.accentInk, fontSize: 13, fontWeight: '700', lineHeight: 16 }}>{explainHintsLeft}</Text>
                     </View>
                   </View>
                   <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }}>50/50</Text>
@@ -1759,7 +1759,7 @@ const LessonContent = React.memo(function LessonContent({
               void triggerGrammarHint('the', true);
             }}
           >
-            <Text style={{ color: '#fff', fontSize: 11, fontWeight: '600' }}>DEV: grammar hint</Text>
+            <Text style={{ color: '#fff', fontSize: 13, fontWeight: '700' }}>DEV: grammar hint</Text>
           </TapScale>
         )}
 

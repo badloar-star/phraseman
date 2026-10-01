@@ -228,14 +228,14 @@ const s = StyleSheet.create({
   body: { marginTop: 18 },
   stack: { gap: 12 },
   opt: { minHeight: 56, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 14, justifyContent: 'center' },
-  optText: { fontSize: 17, lineHeight: 22, fontWeight: '600' },
+  optText: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   answer: { minHeight: 64, borderRadius: 16, padding: 10, flexDirection: 'row', flexWrap: 'wrap', gap: 8, alignItems: 'center' },
   bank: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   token: { minHeight: 44, borderRadius: 12, paddingHorizontal: 14, justifyContent: 'center' },
-  tokenText: { fontSize: 17, fontWeight: '600' },
+  tokenText: { fontSize: 16, fontWeight: '700' },
   itemHead: { minHeight: 60, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12, flexDirection: 'row', alignItems: 'center', gap: 12 },
   itemPrompt: { flex: 1, fontSize: 19, lineHeight: 24, fontWeight: '700' },
-  itemCount: { fontSize: 15, fontWeight: '600' },
+  itemCount: { fontSize: 16, fontWeight: '700' },
 });
 
 export default memo(SpireTaskView);

@@ -875,7 +875,7 @@ export default function LearningV2PulseCourse(props: Props) {
               style={[styles.section, { backgroundColor: selectedLevel === section.label ? g.cta : g.opaqueCard }]}
               contentStyle={styles.sectionContent}
             >
-              <Text style={{ fontSize: 15, fontWeight: '700', color: selectedLevel === section.label ? g.ctaInk : g.text }}>{section.label}</Text>
+              <Text style={{ fontSize: 16, fontWeight: '700', color: selectedLevel === section.label ? g.ctaInk : g.text }}>{section.label}</Text>
             </PressableHybrid>
           ))}
         </ScrollView>
@@ -1001,12 +1001,12 @@ const styles = StyleSheet.create({
   sectionContent: { minHeight: 44, paddingHorizontal: 14, paddingVertical: 7, justifyContent: 'center', alignItems: 'center' },
   utilitySection: { flexShrink: 1, maxWidth: 160 },
   utilitySectionContent: { flexDirection: 'row', gap: 6, paddingHorizontal: 12 },
-  utilitySectionText: { flexShrink: 1, fontSize: 14, lineHeight: 19, fontWeight: '700', textAlign: 'center' },
+  utilitySectionText: { flexShrink: 1, fontSize: 13, lineHeight: 18, fontWeight: '700', textAlign: 'center' },
   lesson: { minHeight: 76, borderRadius: 14, marginBottom: 10 },
   lessonContent: { minHeight: 76, flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 12, paddingHorizontal: 16 },
   lessonCopy: { flex: 1 },
   lessonMeta: { fontSize: 13, lineHeight: 17, fontWeight: '600', letterSpacing: 0.4, marginBottom: 2 },
-  lessonTitle: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
+  lessonTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   ring: { width: 48, height: 48 },
   ringCheck: { position: 'absolute', left: 14, top: 14 },
   workIcon: { position: 'absolute', left: 12, top: 12 },
@@ -1017,8 +1017,8 @@ const styles = StyleSheet.create({
     width: '100%', borderRadius: 16, paddingVertical: 12, paddingHorizontal: 18,
     alignItems: 'center', justifyContent: 'center',
   },
-  chapterNum: { fontSize: 12, fontWeight: '800', letterSpacing: 1.6, marginBottom: 6, textAlign: 'center' },
-  chapterTitle: { fontSize: 15, fontWeight: '700', lineHeight: 20, textAlign: 'center' },
+  chapterNum: { fontSize: 13, fontWeight: '700', letterSpacing: 1.6, marginBottom: 6, textAlign: 'center' },
+  chapterTitle: { fontSize: 16, fontWeight: '700', lineHeight: 21, textAlign: 'center' },
 
   // ---- Плашка урока: разворот между уроками, текст по центру ----
   plateRow: { width: '100%', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 },
@@ -1026,12 +1026,12 @@ const styles = StyleSheet.create({
     width: '100%', borderRadius: 22, paddingVertical: 28, paddingHorizontal: 22,
     alignItems: 'center', justifyContent: 'center',
   },
-  plateKicker: { fontSize: 11, fontWeight: '700', letterSpacing: 2.4, marginBottom: 8, textAlign: 'center' },
+  plateKicker: { fontSize: 13, fontWeight: '700', letterSpacing: 2.4, marginBottom: 8, textAlign: 'center' },
   // Владелец 20.09: «текст название урока уменьши, он сильно большой».
-  plateTitle: { fontSize: 18, fontWeight: '700', lineHeight: 23, textAlign: 'center' },
-  plateArc: { fontSize: 14, fontWeight: '400', lineHeight: 19, marginTop: 4, textAlign: 'center' },
+  plateTitle: { fontSize: 16, fontWeight: '700', lineHeight: 20, textAlign: 'center' },
+  plateArc: { fontSize: 13, fontWeight: '400', lineHeight: 18, marginTop: 4, textAlign: 'center' },
   plateCount: { marginTop: 16, borderRadius: 999, paddingVertical: 6, paddingHorizontal: 14 },
-  plateCountText: { fontSize: 14, fontWeight: '700', fontVariant: ['tabular-nums'] },
+  plateCountText: { fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] },
   // Полосы растворения у кромок карты. Лежат поверх списка, тач пропускают
   // (pointerEvents="none" на самих элементах), высота задаётся инлайном —
   // она зависит от safe-area конкретного телефона.

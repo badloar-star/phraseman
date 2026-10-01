@@ -146,7 +146,7 @@ const s = StyleSheet.create({
   back: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', marginRight: 6 },
   headText: { flex: 1, minWidth: 0 },
   title: { fontSize: 20, lineHeight: 25, fontWeight: '700' },
-  sub: { fontSize: 15, lineHeight: 19, marginTop: 2 },
+  sub: { fontSize: 16, lineHeight: 20, marginTop: 2 },
   hearts: { height: 37, borderRadius: 19, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 6 },
   heartOff: { opacity: 0.5 },
   content: { paddingHorizontal: V2.screenPad },
@@ -155,10 +155,10 @@ const s = StyleSheet.create({
   hint: { marginTop: 18, borderRadius: 16, paddingHorizontal: 16, paddingVertical: 14, gap: 4 },
   hintText: { fontSize: 16, lineHeight: 22 },
   hintBold: { fontWeight: '700' },
-  hintSub: { fontSize: 14, lineHeight: 19 },
+  hintSub: { fontSize: 13, lineHeight: 18 },
   onward: { marginTop: 10, minHeight: 48, borderRadius: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
-  onwardText: { fontSize: 17, fontWeight: '700' },
-  footer: { marginTop: 22, textAlign: 'center', fontSize: 15, fontWeight: '600' },
+  onwardText: { fontSize: 16, fontWeight: '700' },
+  footer: { marginTop: 22, textAlign: 'center', fontSize: 16, fontWeight: '700' },
 });
 
 export default memo(SpireStepScreen);

@@ -3045,8 +3045,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // ставим явно, без as const — массив остаётся изменяемым, как ждёт RN.
         const homeHeaderBadgeTextStyle: TextStyle = {
             color: '#211500',
-            fontSize: 11,
-            fontWeight: '900',
+            fontSize: 13,
+            fontWeight: '700',
             fontVariant: ['tabular-nums'], // guard-ok: счётчик бейджа, не баланс
         };
         // Метка одна на кнопку и на чип: чип свою группу доступности отдаёт.
@@ -3636,7 +3636,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     style={{ width: 44, minHeight: 46, alignItems: 'center', justifyContent: 'center' }}
                   >
                     <Ionicons name="bulb-outline" size={20} color={t.heroTextPrimary} />
-                    <Text style={{ color: t.heroTextPrimary, fontSize: 8, fontWeight: '900', marginTop: 1 }}>HINT</Text>
+                    <Text style={{ color: t.heroTextPrimary, fontSize: 13, fontWeight: '700', marginTop: 1 }}>HINT</Text>
                   </TouchableOpacity>
                 )}
                 {/* зачем (владелец, 2026-09-01): кнопка проигрывает анимацию
@@ -3664,7 +3664,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     <Ionicons name="sparkles-outline" size={20} color={t.heroTextPrimary} />
                     <Text
                       maxFontSizeMultiplier={1}
-                      style={{ color: t.heroTextPrimary, fontSize: 9, fontWeight: '900', lineHeight: 10 }}
+                      style={{ color: t.heroTextPrimary, fontSize: 13, fontWeight: '700', lineHeight: 16 }}
                     >
                       {homeDemoMode.label}
                     </Text>
@@ -3709,7 +3709,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                         что именно сейчас подставлено, и проверять нечего. */}
                     <Text
                       maxFontSizeMultiplier={1}
-                      style={{ color: devMistakesCardEnabled ? t.wrong : t.heroTextPrimary, fontSize: 9, fontWeight: '900', lineHeight: 10 }}
+                      style={{ color: devMistakesCardEnabled ? t.wrong : t.heroTextPrimary, fontSize: 13, fontWeight: '700', lineHeight: 16 }}
                     >
                       {devMistakesCardEnabled ? devMistakesCount : '?'}
                     </Text>
@@ -3846,7 +3846,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                             в ряду валют жемчуг и руны показывают одно число, и
                             энергия обязана читаться так же. Дробь «сейчас/максимум»
                             выбивалась из ряда; максимум остаётся в подсказке по тапу. */}
-                        <Text maxFontSizeMultiplier={1} style={{ color: t.textPrimary, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
+                        <Text maxFontSizeMultiplier={1} style={{ color: t.textPrimary, fontSize: 16, fontWeight: '700', fontVariant: ['tabular-nums'] }}>
                           {homeEnergyTotal}
                         </Text>
                       </View>
@@ -4039,7 +4039,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     {priorityCardTotalLabel ? (
                       <Text
                         maxFontSizeMultiplier={1.1}
-                        style={{ color: homeThemePanelMuted, fontSize: 15, lineHeight: 18, fontWeight: '800', marginLeft: 2, alignSelf: 'flex-end', marginBottom: 12, flexShrink: 0, fontVariant: ['tabular-nums'] /* guard-ok: знаменатель счётчика */ }}
+                        style={{ color: homeThemePanelMuted, fontSize: 16, lineHeight: 19, fontWeight: '700', marginLeft: 2, alignSelf: 'flex-end', marginBottom: 12, flexShrink: 0, fontVariant: ['tabular-nums'] /* guard-ok: знаменатель счётчика */ }}
                       >
                         {priorityCardTotalLabel}
                       </Text>
@@ -4127,9 +4127,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                         <Animated.Text
                           style={{
                             color: homeThemePanelMuted,
-                            fontSize: 10, // guard-ok: подсказка-хинт «тапни», не подпись-расшифровка под заголовком
-                            fontWeight: '800',
-                            lineHeight: 12,
+                            fontSize: 13, // guard-ok: подсказка-хинт «тапни», не подпись-расшифровка под заголовком
+                            fontWeight: '700',
+                            lineHeight: 16,
                             opacity: homeFeatureTipHintOpacity,
                             textAlign: 'center',
                             transform: [{ scale: homeFeatureTipHintScale }],

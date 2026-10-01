@@ -3515,8 +3515,8 @@ const styles = StyleSheet.create({
     marginTop: 38,
   },
   checkpointBody: {
-    fontSize: 17,
-    lineHeight: 24,
+    fontSize: 16,
+    lineHeight: 23,
     fontWeight: "400",
     textAlign: "center",
     marginTop: 12,
@@ -3573,7 +3573,7 @@ const styles = StyleSheet.create({
   progressColumn: { flex: 1, gap: 5 },
   progressTrack: { height: 6, borderRadius: 3, overflow: "hidden" },
   progressFill: { height: 6, borderRadius: 3 },
-  progressText: { fontSize: 14, lineHeight: 18, fontWeight: "600", fontVariant: ["tabular-nums"] },
+  progressText: { fontSize: 13, lineHeight: 17, fontWeight: "700", fontVariant: ["tabular-nums"] },
   headerActions: {
     flexDirection: "row",
     alignItems: "center",
@@ -3596,9 +3596,9 @@ const styles = StyleSheet.create({
     gap: 7,
   },
   devJumpToVoiceText: {
-    fontSize: 12,
-    lineHeight: 16,
-    fontWeight: "900",
+    fontSize: 13,
+    lineHeight: 17,
+    fontWeight: "700",
     letterSpacing: 0.35,
   },
   runeCounter: {
@@ -3612,8 +3612,8 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   runeCounterText: {
-    fontSize: 15,
-    lineHeight: 20,
+    fontSize: 16,
+    lineHeight: 21,
     fontWeight: "700",
     fontVariant: ["tabular-nums"],
   },
@@ -3628,8 +3628,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   modeCopy: { flex: 1 },
-  modeTitle: { fontSize: 15, lineHeight: 20, fontWeight: "900" },
-  modeNote: { fontSize: 12, lineHeight: 18, fontWeight: "600", marginTop: 2 },
+  modeTitle: { fontSize: 16, lineHeight: 21, fontWeight: "700" },
+  modeNote: { fontSize: 13, lineHeight: 20, fontWeight: "700", marginTop: 2 },
   promptRow: {
     marginTop: 28,
     flexDirection: "row",
@@ -3661,7 +3661,7 @@ const styles = StyleSheet.create({
     paddingVertical: 18,
     justifyContent: "center",
   },
-  assembledText: { fontSize: 18, lineHeight: 27, fontWeight: "800" },
+  assembledText: { fontSize: 16, lineHeight: 24, fontWeight: "700" },
   chips: { flexDirection: "row", flexWrap: "wrap", gap: 10 },
   chip: {
     minHeight: 48,
@@ -3678,7 +3678,7 @@ const styles = StyleSheet.create({
     gap: 7,
     paddingRight: 10,
   },
-  undoText: { fontSize: 14, fontWeight: "800" },
+  undoText: { fontSize: 13, fontWeight: "700" },
   speechBox: {
     minHeight: 190,
     borderRadius: 22,
@@ -3687,9 +3687,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   speechTitle: {
-    fontSize: 17,
-    lineHeight: 24,
-    fontWeight: "900",
+    fontSize: 16,
+    lineHeight: 23,
+    fontWeight: "700",
     marginTop: 12,
   },
   speechNote: {
@@ -3740,8 +3740,8 @@ const styles = StyleSheet.create({
   },
   voiceTranscriptText: {
     flex: 1,
-    fontSize: 15,
-    lineHeight: 22,
+    fontSize: 16,
+    lineHeight: 23,
     fontWeight: "700",
   },
   voiceStatus: { marginTop: 12 },
@@ -3762,8 +3762,8 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   voiceHeardLabel: {
-    fontSize: 12,
-    lineHeight: 16,
+    fontSize: 13,
+    lineHeight: 17,
     fontWeight: "700",
     letterSpacing: 3,
     textTransform: "uppercase",
@@ -3829,7 +3829,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  wordPocketBadgeText: { fontSize: 10, lineHeight: 13, fontWeight: "900" },
+  wordPocketBadgeText: { fontSize: 13, lineHeight: 17, fontWeight: "700" },
   footerRow: { flexDirection: "row", alignItems: "center", gap: 10 },
   footerMicOnly: {
     minHeight: 72,
@@ -3852,5 +3852,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: 17,
   },
-  skipText: { fontSize: 14, fontWeight: "800" },
+  skipText: { fontSize: 13, fontWeight: "700" },
 });

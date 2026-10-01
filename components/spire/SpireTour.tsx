@@ -124,14 +124,14 @@ const s = StyleSheet.create({
   heartPill: { height: 40, borderRadius: 20, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 9 },
   stones: { width: '100%', gap: 12, paddingHorizontal: 34 },
   stone: { minHeight: 60, borderRadius: 18, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  stoneText: { fontSize: 18, fontWeight: '700' },
+  stoneText: { fontSize: 16, fontWeight: '700' },
   title: { fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.4, marginTop: 34 },
-  text: { fontSize: 17, lineHeight: 24, marginTop: 12 },
+  text: { fontSize: 16, lineHeight: 23, marginTop: 12 },
   dots: { flexDirection: 'row', gap: 8, marginTop: 22 },
   dot: { width: 8, height: 8, borderRadius: 4 },
   spacer: { flex: 1 },
   cta: { minHeight: V2.cta.height, borderRadius: V2.cta.radius, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
-  ctaText: { fontSize: 17, fontWeight: '700' },
+  ctaText: { fontSize: 16, fontWeight: '700' },
 });
 
 export default memo(SpireTour);

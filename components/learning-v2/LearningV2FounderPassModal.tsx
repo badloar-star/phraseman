@@ -369,10 +369,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   passCopy: { flex: 1, minWidth: 0 },
-  passLabel: { fontSize: 12, lineHeight: 16, fontWeight: "700", letterSpacing: 2.4 },
+  passLabel: { fontSize: 13, lineHeight: 17, fontWeight: "700", letterSpacing: 2.4 },
   passName: { marginTop: 6, fontSize: 19, lineHeight: 25, fontWeight: "700" },
-  passMeta: { marginTop: 3, fontSize: 14, lineHeight: 19, fontWeight: "400" },
-  kicker: { marginTop: 24, fontSize: 11, lineHeight: 15, fontWeight: "800", letterSpacing: 1.6 },
+  passMeta: { marginTop: 3, fontSize: 13, lineHeight: 18, fontWeight: "400" },
+  kicker: { marginTop: 24, fontSize: 13, lineHeight: 18, fontWeight: "700", letterSpacing: 1.6 },
   title: { marginTop: 9, fontSize: 28, lineHeight: 34, fontWeight: "800", letterSpacing: -0.6 },
   body: { marginTop: 8, lineHeight: 22, fontWeight: "400" },
   feedback: {
@@ -383,6 +383,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     gap: 12,
   },
-  feedbackText: { flex: 1, fontSize: 15, lineHeight: 21, fontWeight: "400" },
+  feedbackText: { flex: 1, fontSize: 16, lineHeight: 22, fontWeight: "400" },
   cta: { marginTop: 22 },
 });

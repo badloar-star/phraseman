@@ -95,7 +95,7 @@ const s = StyleSheet.create({
   badgeText: { fontSize: 13, lineHeight: 16, fontWeight: '700' },
   copy: { flex: 1, paddingVertical: 14, paddingLeft: 16, paddingRight: '43%' },
   overline: { ...V2_TYPE.overline },
-  title: { fontSize: 18, lineHeight: 22, fontWeight: '800', letterSpacing: -0.3, marginTop: 6 },
+  title: { fontSize: 16, lineHeight: 20, fontWeight: '700', letterSpacing: -0.3, marginTop: 6 },
   counter: { ...V2_TYPE.subtitle, marginTop: 6 },
   progressRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 6 },
   track: { flex: 1, height: V2.progress.height, borderRadius: V2.progress.height / 2, overflow: 'hidden' },

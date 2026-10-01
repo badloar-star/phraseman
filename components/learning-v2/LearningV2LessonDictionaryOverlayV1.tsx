@@ -422,9 +422,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   headerCopy: { gap: 0 },
-  eyebrow: { fontSize: 12, lineHeight: 16, fontWeight: "700", letterSpacing: 2.4 },
+  eyebrow: { fontSize: 13, lineHeight: 17, fontWeight: "700", letterSpacing: 2.4 },
   title: { marginTop: 6, fontSize: 34, lineHeight: 40, fontWeight: "700", letterSpacing: -0.5 },
-  count: { marginTop: 4, fontSize: 15, lineHeight: 20, fontWeight: "400" },
+  count: { marginTop: 4, fontSize: 16, lineHeight: 21, fontWeight: "400" },
   close: { marginTop: 8, width: 44, height: 44, borderRadius: 14, alignItems: "center", justifyContent: "center" },
   listContent: { paddingBottom: 44 },
   // Поиск: тон подложки, без обводки контейнера (закон владельца).
@@ -451,8 +451,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 10,
   },
-  lessonHeadingText: { fontSize: 12, lineHeight: 16, fontWeight: "700", letterSpacing: 2.4 },
-  lessonHeadingCount: { fontSize: 12, lineHeight: 16, fontWeight: "700" },
+  lessonHeadingText: { fontSize: 13, lineHeight: 17, fontWeight: "700", letterSpacing: 2.4 },
+  lessonHeadingCount: { fontSize: 13, lineHeight: 17, fontWeight: "700" },
   row: {
     minHeight: 76,
     paddingLeft: 18,
@@ -472,7 +472,7 @@ const styles = StyleSheet.create({
   },
   wordCopy: { flex: 1 },
   target: { fontWeight: "600" },
-  meta: { marginTop: 3, fontSize: 14, lineHeight: 19, fontWeight: "400" },
+  meta: { marginTop: 3, fontSize: 13, lineHeight: 18, fontWeight: "400" },
   empty: { paddingTop: 120, paddingHorizontal: 34, alignItems: "center", gap: 12 },
   emptyText: { maxWidth: 320, fontSize: 16, lineHeight: 22, fontWeight: "400", textAlign: "center" },
 });

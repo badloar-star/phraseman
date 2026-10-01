@@ -80,12 +80,12 @@ function SpirePodium({ lang, members, onOpenAll }: Props) {
 
 const s = StyleSheet.create({
   head: { flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', marginTop: 26, marginHorizontal: 2 },
-  title: { fontSize: 18, lineHeight: 24, fontWeight: '700' },
+  title: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   count: { ...V2_TYPE.body, fontWeight: '600' },
   podium: { flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center', gap: 12, marginTop: 18 },
   col: { flex: 1, alignItems: 'center', gap: 8 },
-  name: { fontSize: 15, fontWeight: '600', textAlign: 'center', maxWidth: 110 },
-  steps: { fontSize: 14 },
+  name: { fontSize: 16, fontWeight: '700', textAlign: 'center', maxWidth: 110 },
+  steps: { fontSize: 13 },
   block: { width: '100%', borderTopLeftRadius: 14, borderTopRightRadius: 14, borderBottomLeftRadius: 6, borderBottomRightRadius: 6, alignItems: 'center', paddingTop: 10 },
   place: { fontSize: 20, fontWeight: '700' },
   all: { marginTop: 16, minHeight: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 },

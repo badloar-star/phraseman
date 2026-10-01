@@ -86,10 +86,10 @@ function SpireClimbDock({ lang, ready, busy, premium, block, onClimb }: Props) {
 
 const s = StyleSheet.create({
   cta: { minHeight: V2.cta.height, borderRadius: V2.cta.radius, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
-  ctaText: { fontSize: 17, fontWeight: '700' },
+  ctaText: { fontSize: 16, fontWeight: '700' },
   plus: { minHeight: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
-  plusText: { fontSize: 15, fontWeight: '600' },
-  note: { fontSize: 14, lineHeight: 19, textAlign: 'center', marginBottom: 10 },
+  plusText: { fontSize: 16, fontWeight: '700' },
+  note: { fontSize: 13, lineHeight: 18, textAlign: 'center', marginBottom: 10 },
 });
 
 export default memo(SpireClimbDock);

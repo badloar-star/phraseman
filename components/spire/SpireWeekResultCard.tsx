@@ -78,9 +78,9 @@ const s = StyleSheet.create({
   card: { marginTop: 16, borderRadius: 20, padding: 16, flexDirection: 'row', alignItems: 'flex-start', gap: 14 },
   dot: { width: 52, height: 52, borderRadius: 26 },
   text: { flex: 1, minWidth: 0 },
-  over: { fontSize: 12, fontWeight: '700', letterSpacing: 2 },
+  over: { fontSize: 13, fontWeight: '700', letterSpacing: 2 },
   title: { fontSize: 19, lineHeight: 24, fontWeight: '700', marginTop: 6 },
-  sub: { fontSize: 15, lineHeight: 20, marginTop: 4 },
+  sub: { fontSize: 16, lineHeight: 21, marginTop: 4 },
   close: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
 });
 

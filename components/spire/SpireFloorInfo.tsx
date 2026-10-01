@@ -82,8 +82,8 @@ const s = StyleSheet.create({
   text: { flex: 1, minWidth: 0 },
   who: { flexDirection: 'row' },
   whoOverlap: { marginLeft: -8 },
-  title: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
-  sub: { ...V2_TYPE.body, fontSize: 15, lineHeight: 19, marginTop: 2 },
+  title: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  sub: { ...V2_TYPE.body, fontSize: 16, lineHeight: 20, marginTop: 2 },
 });
 
 export default memo(SpireFloorInfo);

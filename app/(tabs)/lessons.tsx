@@ -657,8 +657,8 @@ function TabUnderlineButton({
             <Text
               style={{
                 color: badgeTextColor ?? "#fff",
-                fontSize: 10,
-                fontWeight: "900",
+                fontSize: 13,
+                fontWeight: "700",
               }}
               maxFontSizeMultiplier={1}
             >
@@ -1191,7 +1191,7 @@ const LessonCard = React.memo(function LessonCard({
                     ) : isComplete ? (
                       <Ionicons name="checkmark" size={15} color={useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor} />
                     ) : (
-                      <Text style={{ color: useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor, fontSize: 9.5, fontWeight: "700" }}>{progPct}%</Text>
+                      <Text style={{ color: useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor, fontSize: 13, fontWeight: "700" }}>{progPct}%</Text>
                     )}
                   </View>
                 ) : purchasedLesson ? (
@@ -1942,8 +1942,8 @@ function ChapterProgressRing({
           <Text
             style={{
               color: textColor,
-              fontSize: 10,
-              fontWeight: "900",
+              fontSize: 13,
+              fontWeight: "700",
               fontVariant: ["tabular-nums"],
             }}
           >
@@ -4706,9 +4706,9 @@ export default function LessonsTab({
                       <Text
                         style={{
                           color: t.correctText,
-                          fontSize: 9,
-                          lineHeight: 11,
-                          fontWeight: "900",
+                          fontSize: 13,
+                          lineHeight: 16,
+                          fontWeight: "700",
                         }}
                       >
                         {Math.min(99, learningV2DictionaryWords.length)}
@@ -4807,7 +4807,7 @@ export default function LessonsTab({
         <Text
           testID="legacy-lessons-coin-balance"
           maxFontSizeMultiplier={1.2}
-          style={{ color: learnGlass.text, fontSize: 15, fontWeight: "700", fontVariant: ["tabular-nums"] }}
+          style={{ color: learnGlass.text, fontSize: 16, fontWeight: "700", fontVariant: ["tabular-nums"] }}
         >
           {legacyCoinBalance === null ? "—" : String(legacyCoinBalance)}
         </Text>
@@ -4979,7 +4979,7 @@ export default function LessonsTab({
                     <Text
                       style={{
                         color: t.textPrimary,
-                        fontSize: 14,
+                        fontSize: 13,
                         fontWeight: "700",
                         letterSpacing: 0.4,
                       }}
@@ -5509,9 +5509,9 @@ export default function LessonsTab({
                   paddingHorizontal: 20,
                   marginTop: 10,
                   color: learnGlass.secondary,
-                  fontSize: 14,
-                  lineHeight: 19,
-                  fontWeight: "600",
+                  fontSize: 13,
+                  lineHeight: 18,
+                  fontWeight: "700",
                   textAlign: "right",
                 }}
               >
@@ -5550,14 +5550,14 @@ export default function LessonsTab({
               ListEmptyComponent={
                 legacyLessonQuery.trim() ? (
                   <View style={{ paddingHorizontal: 30, paddingTop: 60, alignItems: "center" }}>
-                    <Text style={{ color: learnGlass.text, fontSize: 18, fontWeight: "700", textAlign: "center" }}>
+                    <Text style={{ color: learnGlass.text, fontSize: 16, fontWeight: "700", textAlign: "center" }}>
                       {triLang(lang, {
                         ru: "Ничего не нашлось", uk: "Нічого не знайшлося", en: "Nothing found",
                         es: "No se encontró nada", "pt-BR": "Nada encontrado", vi: "Không tìm thấy gì",
                         id: "Tidak ada yang cocok", tr: "Bir şey bulunamadı", pl: "Nic nie znaleziono",
                       })}
                     </Text>
-                    <Text style={{ color: learnGlass.secondary, fontSize: 15, lineHeight: 21, marginTop: 8, textAlign: "center" }}>
+                    <Text style={{ color: learnGlass.secondary, fontSize: 16, lineHeight: 22, marginTop: 8, textAlign: "center" }}>
                       {triLang(lang, {
                         ru: "Попробуй короче — например «прош» вместо целой фразы.",
                         uk: "Спробуй коротше — наприклад «мин» замість цілої фрази.",
@@ -5802,9 +5802,9 @@ export default function LessonsTab({
                 <Text
                   style={{
                     color: learnGlass.text,
-                    fontSize: 15,
-                    lineHeight: 20,
-                    fontWeight: "600",
+                    fontSize: 16,
+                    lineHeight: 21,
+                    fontWeight: "700",
                     textAlign: "center",
                   }}
                 >

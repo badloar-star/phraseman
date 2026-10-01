@@ -104,7 +104,7 @@ export default function SpotTheSlip({ data, lang, theme, onSolved, initialProgre
 
 const styles = StyleSheet.create({
   wrap: { padding: 14, borderRadius: 14, borderWidth: 0, marginTop: 10 },
-  hint: { fontSize: 12.5, marginBottom: 10, textAlign: 'center' },
+  hint: { fontSize: 13, marginBottom: 10, textAlign: 'center' },
   row: { flexDirection: 'row', flexWrap: 'wrap', gap: 6, justifyContent: 'center' },
   chip: { paddingHorizontal: 13, paddingVertical: 10, borderRadius: 9, minHeight: 44, justifyContent: 'center' },
   chipText: { fontSize: 16, fontWeight: '600' },

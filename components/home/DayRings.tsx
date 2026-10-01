@@ -226,13 +226,13 @@ const s = StyleSheet.create({
   },
   // Вес 900 разрешён только числам (правило типографики №5) — здесь ровно числа.
   valueText: {
-    fontSize: 17,
-    fontWeight: '900',
+    fontSize: 16,
+    fontWeight: '700',
     fontVariant: ['tabular-nums'],
   },
   caption: {
     marginTop: 6,
-    fontSize: 11,
+    fontSize: 13,
     fontWeight: '700',
     textTransform: 'uppercase',
     letterSpacing: 0.8,

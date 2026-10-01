@@ -157,7 +157,7 @@ function NumberCircle({ glass, num, state, current }: {
       ) : locked ? (
         <Ionicons name="lock-closed" size={18} color={glass.secondary} />
       ) : (
-        <Text style={{ color: glass.text, fontSize: 17, fontWeight: '700', fontVariant: ['tabular-nums'] }}>
+        <Text style={{ color: glass.text, fontSize: 16, fontWeight: '700', fontVariant: ['tabular-nums'] }}>
           {num}
         </Text>
       )}
@@ -166,7 +166,7 @@ function NumberCircle({ glass, num, state, current }: {
 }
 
 function StatusRow({ glass, lang, state }: { glass: LessonsListGlass; lang: Lang; state: LessonsListCardState }) {
-  const muted = { color: glass.secondary, fontSize: 14, fontWeight: '600' as const };
+  const muted = { color: glass.secondary, fontSize: 13, fontWeight: '700' as const };
   if (state.kind === 'done') {
     return (
       <>
@@ -253,7 +253,7 @@ export const LessonsListGlassCard = React.memo(function LessonsListGlassCard({
         {fx ? <CirclePop key={`pop-${fx.key}`}>{circle}</CirclePop> : circle}
       </View>
       <View style={{ flex: 1, minWidth: 0, opacity: locked ? 0.8 : 1 }}>
-        <Text style={{ color: glass.text, fontSize: 17, lineHeight: 22, fontWeight: '700' }}>{name}</Text>
+        <Text style={{ color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{name}</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 8, minHeight: 18 }}>
           {fx ? <StatusFade key={`st-${fx.key}`}>{status}</StatusFade> : status}
         </View>

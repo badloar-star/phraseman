@@ -316,7 +316,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     router.push({ pathname: '/flashcards_collection', params: { pack: `video_${videoId}`, preview: '1' } } as never);
   }, [router]);
   const openVideo = (video: YoutubeVideoSnapshot) => {
-    hapticTap();
+    // зачем (правило владельца): хаптик только на управляющих кнопках — тап по плитке/строке без вибрации.
     if (!catalog && snapshot) {
       const videoIndex = allVideos.findIndex((item) => item.id === video.id);
       const unreadCount = snapshot.unreadCount ?? 0;
@@ -462,7 +462,6 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       accessibilityRole="button"
       accessibilityLabel={copy.videoPacks}
       activeOpacity={0.8}
-      onPressIn={() => hapticTap()}
       onPress={() => router.push('/flashcards_video_packs' as never)}
       style={[styles.packsRow, { backgroundColor: g.card, borderColor: g.glassEdge }]}
     >
@@ -481,7 +480,6 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       accessibilityRole="button"
       accessibilityLabel={copy.savedVideos}
       activeOpacity={0.8}
-      onPressIn={() => hapticTap()}
       onPress={() => router.push({ pathname: '/lingman_videos', params: { saved: '1' } } as never)}
       style={[styles.packsRow, { backgroundColor: g.card, borderColor: g.glassEdge }]}
     >

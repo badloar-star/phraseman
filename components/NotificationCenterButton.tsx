@@ -396,7 +396,7 @@ function NotificationCenterButton({
   }, [claimingMessageId, markReportReplyClaimedLocally]);
 
   const openNotification = useCallback((row: UserNotification) => {
-    hapticTap();
+    // зачем (правило владельца): хаптик только на управляющих кнопках — тап по плитке/строке без вибрации.
     if (!row.read && !markedReadIdsRef.current.has(row.id)) {
       markedReadIdsRef.current.add(row.id);
       setItems((current) => current.map((candidate) => candidate.id === row.id ? { ...candidate, read: true } : candidate));

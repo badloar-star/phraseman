@@ -12,7 +12,6 @@ import type { VideoPhrase } from '../../shared/video_phrases_contract';
 import { SaveToCardsButton } from '../SaveToCardsButton';
 import { normalizePackLanguage, type PackLanguage } from '../../app/flashcards/pack_languages';
 import { DebugLogger } from '../../app/debug-logger';
-import { hapticTap } from '../../hooks/use-haptics';
 import {
   activePhraseIndex,
   hasYoutubeSeekHandler,
@@ -28,6 +27,10 @@ type YoutubeVideoPhrasesProps = {
   onToggle?: () => void;
   testID?: string;
 };
+
+/** Тихие повторы загрузки фраз: 5 попыток, пауза 4 с × номер попытки. */
+const PHRASES_SILENT_RETRIES = 5;
+const PHRASES_RETRY_BASE_MS = 4000;
 
 export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sourceTitle, expanded, onToggle, testID }: YoutubeVideoPhrasesProps) {
   const { lang } = useLang();
@@ -61,6 +64,7 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
   useEffect(() => {
     if (!enabled) { setPhrases([]); setState('ready'); return undefined; }
     let active = true;
+    let retryTimer: ReturnType<typeof setTimeout> | null = null;
     setState('loading');
     const savedCards = alignSavedVideoFlashcardsWithChannel({ videoId, packLanguage: studyTarget, sourceTitle })
       .catch(() => 0)
@@ -84,9 +88,22 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
         new Error(`[YT-PHRASES] videoId=${videoId} target=${studyTarget} attempt=${retryTick} ms=${Date.now() - startedAt}: ${reason}`),
         'warning',
       );
-      if (active) setState('error');
+      if (!active) return;
+      // зачем (правило владельца 01.10, как в пейволе): текста «не удалось» нет. Держим
+      // заготовки и тихо повторяем с растущей паузой; кончились попытки — блок прячем.
+      if (retryTick < PHRASES_SILENT_RETRIES) {
+        const delayMs = PHRASES_RETRY_BASE_MS * (retryTick + 1);
+        console.warn(`[YT-PHRASES] тихий повтор videoId=${videoId} попытка=${retryTick + 1}/${PHRASES_SILENT_RETRIES} через ${delayMs}ms`);
+        retryTimer = setTimeout(() => setRetryTick((value) => value + 1), delayMs);
+        return;
+      }
+      console.warn(`[YT-PHRASES] попытки исчерпаны videoId=${videoId} — блок фраз скрыт`);
+      setState('error');
     });
-    return () => { active = false; };
+    return () => {
+      active = false;
+      if (retryTimer) clearTimeout(retryTimer);
+    };
   }, [enabled, retryTick, sourceTitle, studyTarget, videoId]);
 
   // Позиция приходит раз в секунду и только пока видео играет (канал плеера).
@@ -102,7 +119,7 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
   const onPhrasePress = useCallback((phrase: VideoPhrase, index: number) => {
     const start = phrase.startSec;
     if (typeof start === 'number' && hasYoutubeSeekHandler(videoId)) {
-      void hapticTap();
+      // зачем (правило владельца): хаптик только на управляющих кнопках — тап по плитке/строке без вибрации.
       // Optimistic UI: подсветка меняется на том же тапе, не дожидаясь плеера.
       setActiveIndex(index);
       const delivered = requestYoutubeSeek(videoId, start);
@@ -114,8 +131,8 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
   }, [videoId]);
 
   const copy = useMemo(() => lang === 'ru'
-    ? { title: 'Фразы из видео', error: 'Не удалось загрузить. Нажмите, чтобы повторить', phrase: 'Фраза', translation: 'Перевод', explanation: 'Подробно', save: 'Сохранить фразу', saved: 'Фраза сохранена', close: 'Закрыть' }
-    : { title: 'Phrases from this video', error: 'Could not load. Tap to try again', phrase: 'Phrase', translation: 'Translation', explanation: 'Explanation', save: 'Save phrase', saved: 'Phrase saved', close: 'Close' }, [lang]);
+    ? { title: 'Фразы из видео', phrase: 'Фраза', translation: 'Перевод', explanation: 'Подробно', save: 'Сохранить фразу', saved: 'Фраза сохранена', close: 'Закрыть' }
+    : { title: 'Phrases from this video', phrase: 'Phrase', translation: 'Translation', explanation: 'Explanation', save: 'Save phrase', saved: 'Phrase saved', close: 'Close' }, [lang]);
 
   const save = useCallback(async (phrase: VideoPhrase) => {
     if (savedIds.has(phrase.id) || savingIdsRef.current.has(phrase.id)) return;
@@ -143,15 +160,6 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
     }
   }, [savedIds, studyTarget, sourceTitle]);
 
-  const retry = () => {
-    // Защита от двойного тапа: пока идёт загрузка, повтор не нужен.
-    if (state === 'loading') return;
-    void hapticTap();
-    // Optimistic UI: экран отвечает на тот же тап, до ответа сети.
-    setState('loading');
-    setRetryTick((value) => value + 1);
-  };
-
   if (!enabled) return null;
   if (state === 'loading') {
     // Макет: четыре скелетона по 58dp вместо одинокого «…».
@@ -170,22 +178,8 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
       </View>
     );
   }
-  if (state === 'error') {
-    return (
-      <View testID={testID ? `${testID}-error` : 'video-phrases-error'} style={styles.block}>
-        <Pressable
-          testID={testID ? `${testID}-retry` : 'video-phrases-retry'}
-          accessibilityRole="button"
-          accessibilityLabel={copy.error}
-          onPress={retry}
-          style={({ pressed }) => [styles.retry, { backgroundColor: glass.opaqueCard, opacity: pressed ? 0.78 : 1 }]}
-        >
-          <Ionicons name="cloud-offline-outline" size={22} color={glass.secondary} />
-          <Text style={[styles.retryText, { color: glass.secondary }]}>{copy.error}</Text>
-        </Pressable>
-      </View>
-    );
-  }
+  // Попытки исчерпаны — блок молча прячем (причина уже в логе [YT-PHRASES]).
+  if (state === 'error') return null;
   if (!phrases.length) return null;
 
   const toggle = () => {
@@ -280,8 +274,6 @@ const styles = StyleSheet.create({
   phrase: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
   translation: { marginTop: 4, fontSize: 13, lineHeight: 18, fontWeight: '400' },
   skeleton: { height: 58, borderRadius: 18, marginTop: 8, opacity: 0.7 },
-  retry: { minHeight: 76, borderRadius: 18, paddingHorizontal: 18, paddingVertical: 14, alignItems: 'center', justifyContent: 'center', gap: 8 },
-  retryText: { fontSize: 16, lineHeight: 22, fontWeight: '400', textAlign: 'center' },
   sheetScroll: { flexShrink: 1 },
   sheetContent: { paddingTop: 12, paddingBottom: 8 },
   eyebrow: { fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase' },

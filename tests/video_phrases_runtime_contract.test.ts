@@ -38,7 +38,9 @@ describe('video phrases runtime contracts', () => {
     expect(card).toContain('return <>{card}{belowPlayer}</>;');
     // зачем (вкладка «Видео» по макету video.html, 8688eca0b): фразы под каждым полным
     // роликом; в компактном плейлисте — только под открытым, чтобы список не разбухал.
-    expect(videos).toContain('belowPlayer={!compact || video.id === activeVideoId ? <YoutubeVideoPhrases');
+    // зачем (PM-111, cd8b8c059): под открытым роликом ещё «Тренировать фразы ролика», поэтому фрагмент.
+    expect(videos).toContain('belowPlayer={!compact || video.id === activeVideoId ? <>');
+    expect(videos).toMatch(/belowPlayer=\{!compact \|\| video\.id === activeVideoId \? <>[\s\S]{0,1600}<YoutubeVideoPhrases/);
     expect(videos).toContain('videoId={video.id}');
     expect(videos).toContain('expanded={expandedPhraseVideoId === video.id}');
     expect(videos).toContain('onToggle={() => setExpandedPhraseVideoId((current) => current === video.id ? null : video.id)}');

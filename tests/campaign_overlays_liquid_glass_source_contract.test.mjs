@@ -42,10 +42,13 @@ test('video phrases: states and handlers preserved, phrase detail is a liquid-gl
   const s = files.videoPhrases;
   assert.match(s, /<HybridSheetShell[\s\S]*material="liquid-glass"/);
   assert.doesNotMatch(s, /<Modal\b/, 'plain RN Modal replaced by the shared shell');
-  for (const id of ['-loading', '-error', '-retry']) assert.ok(s.includes(id), `testID ${id}`);
-  assert.ok(s.includes("if (state === 'loading')") && s.includes("if (state === 'error')"));
+  // зачем (правило владельца 01.10): никаких «не удалось загрузить» — заготовки + тихий повтор,
+  // попытки кончились — блок прячется. Кнопки «повторить» и текста ошибки больше нет.
+  assert.ok(s.includes('-loading'), 'testID -loading');
+  for (const id of ['-error', '-retry']) assert.ok(!s.includes(`\${testID}${id}`) && !s.includes(`video-phrases${id}`), `no ${id} UI`);
+  assert.ok(s.includes("if (state === 'loading')") && s.includes("if (state === 'error') return null;"));
   assert.ok(s.includes('if (!phrases.length) return null;'), 'empty stays hidden (no empty state in mockup)');
-  assert.ok(s.includes('onPress={retry}') && s.includes('setRetryTick'), 'retry preserved');
+  assert.ok(s.includes('PHRASES_SILENT_RETRIES') && s.includes('setRetryTick'), 'silent retry');
   assert.ok(s.includes('setSavedIds((current) => new Set(current).add(phrase.id));'), 'optimistic save preserved');
   assert.ok(s.includes('savingIdsRef'), 'double-tap guard preserved');
   assert.ok(s.includes('onToggle') && s.includes('expanded ?? localExpanded'));

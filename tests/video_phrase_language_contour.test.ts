@@ -1,6 +1,4 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { readFileSync } from 'node:fs';
-import path from 'node:path';
 import {
   __resetFlashcardCacheForTests,
   alignSavedVideoFlashcardsWithChannel,
@@ -55,16 +53,5 @@ describe('video phrase language contour', () => {
         sourceTitle: 'Phraseman Deutsch',
       }),
     ]);
-  });
-
-  it('passes the active channel language and title from Home into video saving', () => {
-    const source = readFileSync(
-      path.join(__dirname, '..', 'components/home/HomeYoutubeFeatureCard.tsx'),
-      'utf8',
-    );
-
-    expect(source).toContain('const videoPackLanguage = normalizePackLanguage(snapshot.channel.languageTags[0]?.split(\'-\')[0]);');
-    expect(source).toContain('packLanguage={videoPackLanguage}');
-    expect(source).toContain('sourceTitle={snapshot.channel.displayName}');
   });
 });

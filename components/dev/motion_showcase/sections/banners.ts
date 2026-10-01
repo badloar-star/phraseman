@@ -5,7 +5,6 @@ import React from 'react';
 import type { ShowcaseSection } from '../types';
 import OfflineBanner from '../../../OfflineBanner';
 import PromoBanner from '../../../PromoBanner';
-import SaveProgressBanner from '../../../SaveProgressBanner';
 import RankChangeBanner from '../../../RankChangeBanner';
 import ReferralInviteBannerArt from '../../../ReferralInviteBannerArt';
 import { cs } from '../showcase_copy';
@@ -52,24 +51,6 @@ export const SECTION: ShowcaseSection = {
       detail: cs('banner_promo_detail'),
       kind: 'render',
       render: () => React.createElement(PromoBanner, { motionVariant: 'hybrid' }),
-    },
-    {
-      id: 'banner-save-progress',
-      title: cs('banner_save_progress_title'),
-      // зачем: shouldShow() читает реальные AsyncStorage/auth — условия
-      // (урок завершён, не привязан, не дисмиссено 7 дней) либо выполняются на
-      // текущем устройстве, либо нет. Ничего не мутирует при монтировании.
-      detail: cs('banner_save_progress_detail'),
-      kind: 'render',
-      render: () => React.createElement(SaveProgressBanner, { ownerActive: true, hasSavedLearningProgress: true }),
-    },
-    {
-      id: 'banner-save-progress-hybrid',
-      approval: 'pending',
-      title: cs('banner_save_progress_hybrid_title'),
-      detail: cs('banner_save_progress_detail'),
-      kind: 'render',
-      render: () => React.createElement(SaveProgressBanner, { ownerActive: true, hasSavedLearningProgress: true, motionVariant: 'hybrid' }),
     },
     {
       id: 'banner-rank-change',

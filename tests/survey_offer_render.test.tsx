@@ -105,9 +105,7 @@ jest.mock('../components/text-integrity/use_text_integrity_probe', () => ({
 let mockReduceMotionEnabled = true;
 jest.mock('../hooks/use_reduce_motion', () => ({ useReduceMotion: () => mockReduceMotionEnabled }));
 
-import SurveyTaskCard from '../components/SurveyTaskCard';
 import SurveyRewardPanel from '../components/survey/SurveyRewardPanel';
-import { SURVEY_HYBRID } from '../constants/motionHybrid';
 
 beforeEach(() => {
   mockReduceMotionEnabled = true;
@@ -116,102 +114,6 @@ beforeEach(() => {
 });
 
 const ROOT = path.resolve(__dirname, '..');
-const activeChallenge = {
-  surveyId: 'survey-pl',
-  title: 'Bardzo długa ankieta o codziennych sposobach uczenia się języków obcych',
-  description: 'Odpowiedz na pytania i pomóż ulepszyć aplikację bez skracania tego opisu.',
-  questionCount: 12,
-  rewardShards: 3,
-  phase: 'active' as const,
-  survey: { surveyId: 'survey-pl', title: 'Ankieta', subtitle: '', rewardShards: 3, questions: [] },
-};
-
-test('active standalone survey card renders the compact C2 task row and opens the challenge', async () => {
-  const onOpen = jest.fn();
-  const view = await render(<SurveyTaskCard challenge={activeChallenge} onOpen={onOpen} />);
-
-  expect(view.getByTestId('pressable-hybrid-proxy')).toBeTruthy();
-  expect(view.getByTestId('survey-offer-card').props.variant).toBe('card');
-  expect(view.getByTestId('survey-offer-title').props.children).toBe(activeChallenge.title);
-  expect(view.getByTestId('survey-offer-title').props.numberOfLines).toBe(2);
-  expect(StyleSheet.flatten(view.getByTestId('survey-offer-title').props.style)).toMatchObject({
-    lineHeight: 22,
-    minHeight: 44,
-  });
-  // зачем (2026-09-30): жемчуг удалён — в подписи карточки нет «+1 perła».
-  expect(view.getByTestId('survey-offer-card').props.accessibilityLabel).toBe(activeChallenge.title);
-  expect(view.queryByTestId('survey-offer-reward-label')).toBeNull();
-  expect(view.queryByTestId('survey-offer-reward-art')).toBeNull();
-  expect(view.queryByTestId('survey-offer-description')).toBeNull();
-  expect(view.queryByTestId('survey-offer-accent')).toBeNull();
-  expect(view.queryByTestId('survey-offer-art')).toBeNull();
-  expect(StyleSheet.flatten(view.getByTestId('survey-offer-icon-well').props.style)).toMatchObject({
-    width: SURVEY_HYBRID.taskIconSize,
-    height: SURVEY_HYBRID.taskIconSize,
-  });
-  expect(view.getByTestId('survey-offer-theme-art', { includeHiddenElements: true }).props).toMatchObject({
-    accessible: false,
-  });
-  expect(StyleSheet.flatten(view.getByTestId('survey-offer-theme-art').props.style)).toMatchObject({
-    width: SURVEY_HYBRID.taskIconSize,
-    height: SURVEY_HYBRID.taskIconSize,
-  });
-  expect(view.queryByTestId('survey-offer-reward-label')).toBeNull();
-  expect(view.queryByTestId('survey-offer-reward-art')).toBeNull();
-  expect(view.queryByTestId('ionicon-chatbubble-ellipses-outline')).toBeNull();
-  expect(view.queryByRole('progressbar')).toBeNull();
-  expect(view.getByRole('button', { name: activeChallenge.title }))
-    .toBe(view.getByTestId('survey-offer-card'));
-
-  fireEvent.press(view.getByTestId('survey-offer-card'));
-  expect(onOpen).toHaveBeenCalledWith(activeChallenge);
-});
-
-test('completed survey shows a claimed check and cannot be pressed', async () => {
-  const onOpen = jest.fn();
-  const view = await render(<SurveyTaskCard challenge={{ ...activeChallenge, phase: 'completed', survey: null }} onOpen={onOpen} />);
-  const card = view.getByTestId('survey-offer-card');
-
-  expect(view.queryByTestId('pressable-hybrid-proxy')).toBeNull();
-  expect(card.type).toBe('View');
-  expect(card.props.variant).toBeUndefined();
-  expect(card.props.onPress).toBeUndefined();
-  expect(card.props.accessibilityLabel).toBe(`${activeChallenge.title}. Ankieta ukończona`);
-  expect(card.props.accessibilityState).toEqual({ disabled: true });
-  expect(view.getByTestId('ionicon-checkmark-circle', { includeHiddenElements: true }).props).toEqual(expect.objectContaining({
-    accessible: false,
-    accessibilityElementsHidden: true,
-    importantForAccessibility: 'no',
-  }));
-  expect(view.queryByTestId('survey-offer-reward-label')).toBeNull();
-  expect(view.queryByTestId('survey-offer-reward-art')).toBeNull();
-  expect(view.getByTestId('ionicon-checkmark-circle', { includeHiddenElements: true }).props.color).toBe('#9cff00');
-  expect(view.queryByRole('button')).toBeNull();
-  fireEvent.press(card);
-  expect(onOpen).not.toHaveBeenCalled();
-});
-
-test('retryable survey offer stays a disabled non-pressable row without an active reward marker', async () => {
-  const onOpen = jest.fn();
-  const view = await render(
-    <SurveyTaskCard challenge={{ ...activeChallenge, phase: 'retryable-error' }} onOpen={onOpen} />,
-  );
-  const card = view.getByTestId('survey-offer-card');
-
-  expect(view.queryByTestId('pressable-hybrid-proxy')).toBeNull();
-  expect(card.type).toBe('View');
-  expect(card.props.variant).toBeUndefined();
-  expect(card.props.onPress).toBeUndefined();
-  expect(card.props.accessibilityLabel).toBe(activeChallenge.title);
-  expect(card.props.accessibilityState).toEqual({ disabled: true });
-  expect(view.queryByTestId('survey-offer-reward-label')).toBeNull();
-  expect(view.queryByTestId('survey-offer-reward-art')).toBeNull();
-  expect(view.queryByTestId('ionicon-checkmark-circle')).toBeNull();
-  expect(view.queryByRole('button')).toBeNull();
-  fireEvent.press(card);
-  expect(onOpen).not.toHaveBeenCalled();
-});
-
 // зачем (решение владельца 2026-09-30): жемчуг удалён — панель финала больше не показывает
 // ни ассет жемчужины, ни «+N perła»; только галочку «принято», заголовок и кнопки.
 test.each(['optimistic-reward', 'reconciled'] as const)(
@@ -286,20 +188,6 @@ test('RNTL config discovers exactly this new survey card suite', () => {
   const config = fs.readFileSync(path.join(ROOT, 'jest.rntl.config.cjs'), 'utf8');
   expect(config.match(/survey_offer_render\.test\.tsx/g)).toHaveLength(1);
   expect(config).not.toContain('survey_completion_marker_card_render.test.tsx');
-});
-
-test('survey task card no longer shows any pearl reward (pearls removed 2026-09-30)', () => {
-  const source = fs.readFileSync(path.join(ROOT, 'components', 'SurveyTaskCard.tsx'), 'utf8');
-  expect(source).not.toContain('SHARD_REWARDS');
-  expect(source).not.toContain('oskolok');
-});
-
-test('survey task leading mark uses the current theme supporting art', () => {
-  const source = fs.readFileSync(path.join(ROOT, 'components', 'SurveyTaskCard.tsx'), 'utf8');
-  expect(source).toContain('getHomeSupportingArt(themeMode).survey');
-  expect(source).toContain('SURVEY_HYBRID.taskIconSize');
-  expect(source).toContain('testID="survey-offer-theme-art"');
-  expect(source).not.toContain('name="clipboard-outline"');
 });
 
 test('survey reward actions use the shared hybrid press primitive without local press opacity or timing literals', () => {

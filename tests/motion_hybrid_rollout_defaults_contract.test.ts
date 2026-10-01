@@ -35,7 +35,6 @@ const HYBRID_DEFAULT_SURFACES = [
   'components/ReferralInviteBannerArt.tsx',
   'components/ReportUserModal.tsx',
   'components/ReviewPromptModal.tsx',
-  'components/SaveProgressBanner.tsx',
   'components/ThemedChoiceModal.tsx',
   'components/ThemedConfirmModal.tsx',
   'components/VipSurveyModal.tsx',

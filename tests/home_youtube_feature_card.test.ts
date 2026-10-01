@@ -1,5 +1,3 @@
-import { readFileSync } from 'fs';
-import path from 'path';
 import type { YoutubeCatalogScreenSnapshot } from '../app/youtube_catalog_client';
 import {
   HOME_YOUTUBE_REVALIDATE_TTL_MS,
@@ -59,40 +57,5 @@ describe('home YouTube feature card', () => {
     expect(isHomeYoutubeCatalogFresh(value, 1_000_000 + HOME_YOUTUBE_REVALIDATE_TTL_MS - 1)).toBe(true);
     expect(isHomeYoutubeCatalogFresh(value, 1_000_000 + HOME_YOUTUBE_REVALIDATE_TTL_MS)).toBe(false);
     expect(isHomeYoutubeCatalogFresh(null, 1_000_000)).toBe(false);
-  });
-
-  test('uses the atomic catalog and mounts one inline player only after a Home tap', () => {
-    const root = path.join(__dirname, '..');
-    const card = readFileSync(path.join(root, 'components/home/HomeYoutubeFeatureCard.tsx'), 'utf8');
-    const sharedCard = readFileSync(path.join(root, 'components/youtube/YoutubeVideoCard.tsx'), 'utf8');
-    const home = readFileSync(path.join(root, 'app/(tabs)/home.tsx'), 'utf8');
-
-    // зачем (01.10, удаление Главной V1): карточка монтировалась только в V1-разметке; Главная 2.0 показывает ленту видео.
-    // Файл компонента остаётся (кандидат на отдельную чистку), сам компонент сторожим как раньше.
-    expect(home).not.toContain('<HomeYoutubeFeatureCard');
-    expect(card).toContain('fetchYoutubeHomeFeatureCatalog');
-    expect(card).toContain('const manifest = await fetchYoutubeCatalogManifest();');
-    expect(card).not.toContain('warm?.manifest ?? await fetchYoutubeCatalogManifest()');
-    expect(card).toContain('peekYoutubeCatalogScreenSnapshot');
-    // Каталог YouTube общий для всех, поэтому карточка грузится и до опознания
-    // пользователя: гейта по renderScope здесь быть не должно (владелец:
-    // «должны отображаться в любом сценарии»).
-    expect(card).toContain('if (!ownerActive || !enabled) return;');
-    expect(card).not.toContain('if (!ownerActive || !enabled || !renderScope) return;');
-    expect(card).toContain('isVideoButtonEnabled');
-    expect(card).toContain('<YoutubeVideoCard');
-    expect(sharedCard).toContain('accessibilityRole="button"');
-    expect(card).toContain('YoutubeInlinePlayer');
-    expect(card).toContain('const [activeVideoId, setActiveVideoId]');
-    expect(card).toContain('setActiveVideoId(video.id)');
-    expect(card).toContain('ownerActive && activeVideoId === video.id');
-    expect(card).toContain('presentation="preview"');
-    expect(sharedCard).not.toContain('testID="lingman-video-watch"');
-    expect(sharedCard).not.toContain('testID="lingman-video-open-youtube"');
-    expect(sharedCard).not.toContain('onOpenYoutube');
-    expect(card).not.toContain("pathname: '/lingman_video_player'");
-    expect(card).not.toContain('WebView');
-    expect(card).not.toContain('setInterval');
-    expect(card).not.toContain('revalidateYoutubeChannelCatalog');
   });
 });

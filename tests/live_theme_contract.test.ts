@@ -24,7 +24,6 @@ const THEME_MAP_FILES = [
   "constants/screenBackground.ts",
   "constants/statsThemeChrome.ts",
   "constants/themedToastChrome.ts",
-  "constants/weekDotTheme.ts",
   "constants/seasonPassRewardGradients.ts",
 ] as const;
 

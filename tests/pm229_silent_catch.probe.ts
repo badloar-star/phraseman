@@ -201,7 +201,6 @@ const BASELINE: Record<string, number> = {
   'components/LangContext.tsx': 3,
   'components/PremiumContext.tsx': 23,
   'components/RegistrationPromptModal.tsx': 4,
-  'components/ReportReplyHomeBanner.tsx': 1,
   'components/ScreenGradient.tsx': 1,
   'components/SoftContextualUpsellCard.tsx': 1,
   'components/SpeakingPanel.tsx': 2,

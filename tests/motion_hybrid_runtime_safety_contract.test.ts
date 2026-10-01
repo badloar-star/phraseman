@@ -16,7 +16,6 @@ function walkHybridFiles(dir: string, out: string[] = []): string[] {
 const DIRECT_HYBRID_DRIVERS = [
   'components/OfflineBanner.tsx',
   'components/PromoBanner.tsx',
-  'components/SaveProgressBanner.tsx',
   'components/RankChangeBanner.tsx',
   'components/ReferralInviteBannerArt.tsx',
   'components/ActionToast.tsx',
@@ -33,7 +32,6 @@ const DIRECT_HYBRID_DRIVERS = [
 
 const HYBRID_TIMING_EASING_DRIVERS = [
   'components/PromoBanner.tsx',
-  'components/SaveProgressBanner.tsx',
   'components/ReferralInviteBannerArt.tsx',
   'components/VipSurveyModal.tsx',
 ] as const;

@@ -84,18 +84,16 @@ describe("retired Daily Tasks full-removal boundary", () => {
     const home = read("app/(tabs)/home.tsx");
     const layout = read("app/_layout.tsx");
     const functionsIndex = read("functions/src/index.ts");
-    const surveyCard = read("components/SurveyTaskCard.tsx");
 
     expect(exists("components/DailyPhraseCard.tsx")).toBe(true);
     expect(home).toContain("DailyPhraseCard");
     expect(functionsIndex).toContain("dailyPhraseSetSaved");
 
     expect(exists("app/survey_screen.tsx")).toBe(true);
-    expect(exists("components/SurveyTaskCard.tsx")).toBe(true);
+    expect(exists("hooks/use_home_survey_entry.ts")).toBe(true);
     expect(layout).toContain('name="survey_screen"');
     expect(functionsIndex).toContain("submitShardSurvey");
     expect(functionsIndex).toContain("getActiveShardSurvey");
-    expect(surveyCard).not.toContain("daily-tasks/DailyTaskCard");
 
     expect(exists("app/boons/boon_engine.ts")).toBe(false);
     expect(layout).not.toContain("<ComebackBoonHost />");

@@ -16,7 +16,6 @@ const INTENTIONAL_EMIT_ONLY_EVENTS = new Set([
 const INTENTIONAL_DIRECT_EVENT_LISTENERS = new Set([
   'auth_provider_linked @ app/(tabs)/settings.tsx',
   'auth_provider_linked @ app/account_details.tsx',
-  'auth_provider_linked @ components/SaveProgressBanner.tsx',
   'energy_reload @ components/EnergyContext.tsx',
   'intro_full_access_changed @ app/(tabs)/settings.tsx',
   'loyalty_gift_changed @ app/(tabs)/settings.tsx',
@@ -30,7 +29,6 @@ const INTENTIONAL_DIRECT_EVENT_LISTENERS = new Set([
   'vip_activated @ components/EnergyContext.tsx',
   'vip_deactivated @ components/EnergyContext.tsx',
   'xp_changed @ app/(tabs)/home.tsx',
-  'account_deleted @ components/SaveProgressBanner.tsx',
 ]);
 
 const INTENTIONAL_OVERLAY_KEYS_WITHOUT_LITERAL_OWNER = new Set([

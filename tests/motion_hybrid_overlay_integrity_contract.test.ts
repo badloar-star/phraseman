@@ -56,7 +56,6 @@ describe("motion hybrid overlay integrity", () => {
   test.each([
     "components/OfflineBanner.tsx",
     "components/PromoBanner.tsx",
-    "components/SaveProgressBanner.tsx",
     "components/RankChangeBanner.tsx",
     "components/InGameToast.tsx",
     "components/MedalToast.tsx",

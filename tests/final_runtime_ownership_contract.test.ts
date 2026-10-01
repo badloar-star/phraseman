@@ -5,14 +5,11 @@ const root = path.join(__dirname, '..');
 const read = (relativePath: string) => fs.readFileSync(path.join(root, relativePath), 'utf8');
 
 describe('final runtime ownership guards', () => {
-  test('Settings and save banner invalidate account work on sleep/unmount', () => {
+  test('Settings invalidates account work on sleep/unmount', () => {
     const settings = read('app/(tabs)/settings.tsx');
-    const banner = read('components/SaveProgressBanner.tsx');
     expect(settings).toContain('linkedAuthGenerationRef.current += 1;');
     expect(settings).toContain('linkedAuthInFlightRef.current = null;');
     expect(settings).toContain('return () => invalidateLinkedAuthWork();');
-    expect(banner).toContain('ownerActiveRef.current = false;');
-    expect(banner).toContain('checkGenerationRef.current += 1;');
   });
 
   test('removed flashcard autoplay deep links redirect', () => {

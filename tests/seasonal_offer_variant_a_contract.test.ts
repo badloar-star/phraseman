@@ -11,13 +11,7 @@ const ROOT = path.join(__dirname, '..');
 const read = (...parts: string[]) => fs.readFileSync(path.join(ROOT, ...parts), 'utf8');
 
 describe('seasonal offer variant A', () => {
-  it('keeps the Home header badge horizontal, lime, and accessible', () => {
-    const homeBadge = read('components', 'HomeDiscountBadge.tsx');
-    expect(homeBadge).toContain("'#D9FF61'");
-    expect(homeBadge).toContain("color=\"#12200A\"");
-    expect(homeBadge).toContain('accessibilityRole="button"');
-    expect(homeBadge).not.toMatch(/rotate\(/u);
-  });
+  // зачем (Q92, 01.10): бейдж скидки на шапке Главной (HomeDiscountBadge) удалён как сирота без импортов.
 
   // Уголок −N% и семь пейволов A–G удалены 2026-09-30 (D78). Промо-цену стора
   // единственный пейвол Plus показывает на карточке тарифа

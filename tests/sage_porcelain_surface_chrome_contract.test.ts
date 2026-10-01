@@ -3,7 +3,6 @@ import path from 'path';
 import { SETTINGS_SURFACES } from '../components/settings/settingsSurfaces';
 import { DAILY_PHRASE_CHROME, dailyPhraseChromeFor } from '../app/daily_phrase_chrome';
 import { themedToastChrome } from '../constants/themedToastChrome';
-import { themedWeekDot } from '../constants/weekDotTheme';
 import { statsPageField, statsSoftBg, statsThemeAccent } from '../constants/statsThemeChrome';
 import { getMedalToastThemeStyle } from '../components/medalToastThemeStyles';
 import { SAGE_PORCELAIN } from '../constants/theme';
@@ -27,7 +26,6 @@ describe('Sage Porcelain surface chrome contract', () => {
       // на Liquid Glass (была мёртвой, цвета берутся из liquidGlassTokens) — проверять её больше нечего.
       ['app/daily_phrase_chrome.ts', 'midnight'],
       ['constants/themedToastChrome.ts', 'midnight'],
-      ['constants/weekDotTheme.ts', 'midnight'],
       ['constants/statsThemeChrome.ts', 'midnight'],
       ['components/medalToastThemeStyles.ts', 'midnight'],
     ];
@@ -58,11 +56,7 @@ describe('Sage Porcelain surface chrome contract', () => {
     });
   });
 
-  it('resolves Sage week dots, stats, and medal rewards with approved semantic colors', () => {
-    expect(themedWeekDot('sagePorcelain', SAGE_PORCELAIN)).toMatchObject({
-      completeBg: '#2F6F4F', emptyBg: '#E1E5DC', todayBg: '#D9E9E1',
-      emptyBorder: '#CFD6CE', todayBorder: '#315F50', checkColor: '#FFFFFF',
-    });
+  it('resolves Sage stats and medal rewards with approved semantic colors', () => {
     expect(statsPageField('sagePorcelain')).toBe('#F0F1EC');
     expect(statsThemeAccent('sagePorcelain')).toBe('#315F50');
     expect(statsSoftBg('sagePorcelain', 'streak', 'strong')).toBe('#315F502E');

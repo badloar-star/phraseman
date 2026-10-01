@@ -29,10 +29,9 @@ describe('video phrases runtime contracts', () => {
     expect(source).not.toContain('<Pressable key={phrase.id}');
   });
 
-  it('renders a phrase entry below every catalog video and keeps the home entry scoped to the opened video', () => {
+  it('renders a phrase entry below every catalog video and keeps the entry scoped to the opened video', () => {
     const card = read('components/youtube/YoutubeVideoCard.tsx');
     const videos = read('app/lingman_videos.tsx');
-    const home = read('components/home/HomeYoutubeFeatureCard.tsx');
     expect(card).toContain('belowPlayer?: React.ReactNode');
     expect(card).toContain('{belowPlayer}');
     expect(card).toContain('return <>{card}{belowPlayer}</>;');
@@ -45,9 +44,6 @@ describe('video phrases runtime contracts', () => {
     expect(videos).toContain('expanded={expandedPhraseVideoId === video.id}');
     expect(videos).toContain('onToggle={() => setExpandedPhraseVideoId((current) => current === video.id ? null : video.id)}');
     expect(videos).not.toContain('belowPlayer={video.id === activeVideoId ? <YoutubeVideoPhrases');
-    expect(home).toContain("const videoPackLanguage = normalizePackLanguage(snapshot.channel.languageTags[0]?.split('-')[0]);");
-    expect(home).toContain('packLanguage={videoPackLanguage}');
-    expect(home).toContain('sourceTitle={snapshot.channel.displayName}');
   });
 
   it('uses one controlled accordion state for catalog phrase lists, including the premiere hero', () => {

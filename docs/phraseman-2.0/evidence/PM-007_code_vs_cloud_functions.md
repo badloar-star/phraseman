@@ -6,7 +6,7 @@
 
 ## Список 1 — объявлено в коде
 
-Всего: **436** (default 425, max 0, content 9, english-test 2). Кронов (schedule): **21**.
+Всего: **438** (default 427, max 0, content 9, english-test 2). Кронов (schedule): **21**.
 
 ### Кроны
 
@@ -101,7 +101,7 @@
 | default | `adminBackfillVideoPacks` | callable | functions/src/video_phrases.ts:511 |
 | default | `adminCancelGiftCertificateBatchOperation` | callable | functions/src/web_checkout.ts:2245 |
 | default | `adminCancelStripeSubscriptionRenewal` | callable | functions/src/web_checkout.ts:2804 |
-| default | `adminCardTtsRequeuePack` | callable | functions/src/card_tts_worker.ts:480 |
+| default | `adminCardTtsRequeuePack` | callable | functions/src/card_tts_worker.ts:491 |
 | default | `adminCleanupExpiredAppMessages` | callable | functions/src/admin_app_messages.ts:848 |
 | default | `adminCommunityPackApplyQaFixes` | callable | functions/src/admin_community_pack_qa.ts:546 |
 | default | `adminCommunityPackApplyQaFixesToPublished` | callable | functions/src/admin_community_pack_qa.ts:630 |
@@ -127,12 +127,12 @@
 | default | `adminDeleteShardSurvey` | callable | functions/src/shard_survey.ts:385 |
 | default | `adminDeleteUserIdea` | callable | functions/src/user_ideas.ts:476 |
 | default | `adminDraftIdeaDecision` | callable | functions/src/user_ideas.ts:763 |
-| default | `adminDraftReportReply` | callable | functions/src/report_replies.ts:544 |
+| default | `adminDraftReportReply` | callable | functions/src/report_replies.ts:613 |
 | default | `adminEditContentStageArtifact` | callable | functions/src/admin_content_stage_edits.ts:72 |
 | default | `adminEmailBroadcast` | callable | functions/src/admin_email.ts:493 |
 | default | `adminEmailContactsBackfill` | callable | functions/src/admin_email.ts:428 |
-| default | `adminExportReportDocuments` | callable | functions/src/admin_reports_center.ts:557 |
-| default | `adminExportUnresolvedReports` | callable | functions/src/admin_reports_center.ts:586 |
+| default | `adminExportReportDocuments` | callable | functions/src/admin_reports_center.ts:564 |
+| default | `adminExportUnresolvedReports` | callable | functions/src/admin_reports_center.ts:593 |
 | default | `adminGenerateDailyDigest` | callable | functions/src/admin_daily_digest.ts:1055 |
 | default | `adminGenerateDirectorDigestAudio` | callable | functions/src/admin_director_digest_audio.ts:120 |
 | default | `adminGetAdminConfigWorkspace` | callable | functions/src/admin_config_controls.ts:156 |
@@ -186,7 +186,7 @@
 | default | `adminListPromoCodes` | callable | functions/src/promo_codes.ts:614 |
 | default | `adminListQuests` | callable | functions/src/quests.ts:563 |
 | default | `adminListReferrals` | callable | functions/src/admin_referrals.ts:783 |
-| default | `adminListReportQueue` | callable | functions/src/admin_reports_center.ts:530 |
+| default | `adminListReportQueue` | callable | functions/src/admin_reports_center.ts:537 |
 | default | `adminListSafetyFlags` | callable | functions/src/admin_compliance.ts:226 |
 | default | `adminListShardRefunds` | callable | functions/src/admin_shard_refunds.ts:153 |
 | default | `adminListUserIdeas` | callable | functions/src/user_ideas.ts:403 |
@@ -218,7 +218,7 @@
 | default | `adminRepairAuthLink` | callable | functions/src/admin_auth_repair.ts:131 |
 | default | `adminRepairPendingReferralPurchase` | callable | functions/src/admin_referral_purchase_repair.ts:313 |
 | default | `adminReplaceSyntheticGiftCertificate` | callable | functions/src/web_checkout.ts:2500 |
-| default | `adminReplyToReport` | callable | functions/src/report_replies.ts:290 |
+| default | `adminReplyToReport` | callable | functions/src/report_replies.ts:356 |
 | default | `adminRequestUserMerge` | callable | functions/src/admin_user_operations.ts:345 |
 | default | `adminResetUserProgress` | callable | functions/src/admin_user_operations.ts:467 |
 | default | `adminResolveUserReport` | callable | functions/src/admin_user_operations.ts:294 |
@@ -285,9 +285,9 @@
 | default | `adminUpdateAppMessage` | callable | functions/src/admin_app_messages.ts:697 |
 | default | `adminUpdateGiftCertificatePersonalization` | callable | functions/src/web_checkout.ts:2457 |
 | default | `adminUpdateGiftCertificateRecipient` | callable | functions/src/web_checkout.ts:2414 |
-| default | `adminUpdateReportStatus` | callable | functions/src/admin_reports_center.ts:646 |
+| default | `adminUpdateReportStatus` | callable | functions/src/admin_reports_center.ts:653 |
 | default | `adminUpdateUserProfileField` | callable | functions/src/admin_user_operations.ts:234 |
-| default | `adminUserBriefs` | callable | functions/src/admin_user_briefs.ts:159 |
+| default | `adminUserBriefs` | callable | functions/src/admin_user_briefs.ts:160 |
 | default | `adminVerifyGlobalBroadcastPrivacyReadiness` | callable | functions/src/admin_global_broadcast.ts:766 |
 | default | `adminWarmInstanceGauge` | callable | functions/src/warm_instance_gauge.ts:205 |
 | default | `adminWarnUser` | callable | functions/src/admin_user_operations.ts:269 |
@@ -305,8 +305,8 @@
 | default | `authRequestCleanInstallRecoveryCode` | callable | functions/src/auth_recovery.ts:1255 |
 | default | `authRequestRecoveryCode` | callable | functions/src/auth_recovery.ts:480 |
 | default | `authStampAnonOwnership` | callable | functions/src/auth_identity.ts:2297 |
-| default | `cardTtsPackWorker` | trigger | functions/src/card_tts_worker.ts:452 |
-| default | `claimReportReward` | callable | functions/src/report_replies.ts:459 |
+| default | `cardTtsPackWorker` | trigger | functions/src/card_tts_worker.ts:463 |
+| default | `claimReportReward` | callable | functions/src/report_replies.ts:525 |
 | default | `cleanupExpiredAppMessagesCron` | schedule | functions/src/index.ts:442 |
 | default | `collectiblesClaimDrop` | callable | functions/src/collectibles_retired.ts:28 |
 | default | `communityAdminModeratePack` | callable | functions/src/community_packs.ts:943 |
@@ -333,7 +333,7 @@
 | default | `dialogueV2TextTurn` | callable | functions/src/dialogue_v2_turn_production_callable.ts:799 |
 | default | `emailUnsubscribe` | http | functions/src/email_unsubscribe.ts:211 |
 | default | `explainChoice` | callable | functions/src/explain_choice.ts:76 |
-| default | `explainMistake` | callable | functions/src/mistake_explain.ts:786 |
+| default | `explainMistake` | callable | functions/src/mistake_explain.ts:787 |
 | default | `explainPhrase` | callable | functions/src/explain_phrase.ts:109 |
 | default | `finalizeLearningV2AccessPurchase` | callable | functions/src/learning_v2_access_production_callable.ts:16 |
 | default | `finalizeLearningV2DelayedCandidate` | callable | functions/src/learning_v2_delayed_callable.ts:168 |
@@ -350,6 +350,7 @@
 | default | `getActiveShardSurvey` | callable | functions/src/shard_survey.ts:125 |
 | default | `getLearningV2AccountBinding` | callable | functions/src/learning_v2_wallet_reward_callable.ts:143 |
 | default | `getPublicUserIdea` | callable | functions/src/user_ideas.ts:363 |
+| default | `giftsToCoinsMigrationReport` | callable | functions/src/gifts_to_coins_report.ts:98 |
 | default | `globalBroadcastClaim` | callable | functions/src/global_broadcast_claim.ts:102 |
 | default | `globalBroadcastListActive` | callable | functions/src/global_broadcast_public.ts:75 |
 | default | `grantMistakeCorrectionReward` | callable | functions/src/mistake_practice_wallet_reward.ts:183 |
@@ -370,6 +371,7 @@
 | default | `jarvisSetPlanStatus` | callable | functions/src/jarvis/jarvis_plans_callables.ts:77 |
 | default | `jarvisTelegramApprovalWebhook` | http | functions/src/jarvis/approval_webhook.ts:174 |
 | default | `learningV2LocalizedCourseShardBackgroundWorker` | trigger | functions/src/content_factory/learning_v2_course_shard_background.ts:237 |
+| default | `levelSpinStarGrant` | callable | functions/src/level_spin_star_grant.ts:314 |
 | default | `likeUserIdea` | callable | functions/src/user_idea_likes.ts:45 |
 | default | `listPublicUserIdeas` | callable | functions/src/user_ideas.ts:321 |
 | default | `mistakeHubAdvice` | callable | functions/src/mistake_hub_advice.ts:164 |
@@ -477,12 +479,678 @@
 
 ## Список 2 — живые в облаке
 
-**NOT_RUN.** Читать прод этой сессии запрещено. Владелец получает список так:
+Всего в облаке: **516**.
 
-```bash
-firebase functions:list --project phraseman-ea0b3 --json > .tmp/pm007_cloud_functions.json
-node scripts/pm007_code_vs_cloud_functions.mjs --cloud .tmp/pm007_cloud_functions.json
-```
+| Функция |
+|---|
+| `accountClaimMine` |
+| `accountDeleteCredentialStatus` |
+| `accountDeleteEnqueue` |
+| `accountDeleteMine` |
+| `accountDeleteRestoreMine` |
+| `accountDeleteRetryCron` |
+| `accountDeleteStatusMine` |
+| `accountDeleteWorker` |
+| `accountMergeOutboxRetryCron` |
+| `accountMergeOutboxWorker` |
+| `activationEmailRetryCron` |
+| `adminActivateCourseRelease` |
+| `adminActivateQuest` |
+| `adminActivateTelegramPremiumOrder` |
+| `adminAlertDailyDigestsCron` |
+| `adminAlertDispatchOnCreate` |
+| `adminAlertOnAdminAuditCreated` |
+| `adminAlertOnAppMessageWritten` |
+| `adminAlertOnAuthFailureSpike` |
+| `adminAlertOnBanWrite` |
+| `adminAlertOnCancelReasonCreated` |
+| `adminAlertOnCancelSurvey` |
+| `adminAlertOnCommunityPackPurchaseWritten` |
+| `adminAlertOnCommunityPackReportCreated` |
+| `adminAlertOnCommunitySubmissionCreated` |
+| `adminAlertOnComplianceControlWritten` |
+| `adminAlertOnConfigWritten` |
+| `adminAlertOnContentReport` |
+| `adminAlertOnCriticalError` |
+| `adminAlertOnCronHeartbeat` |
+| `adminAlertOnExplanationReportCreated` |
+| `adminAlertOnFeedbackCreated` |
+| `adminAlertOnGiftCertificateCreated` |
+| `adminAlertOnJarvisPlanWritten` |
+| `adminAlertOnPromoRedemptionCreated` |
+| `adminAlertOnPushJobWritten` |
+| `adminAlertOnReferralAttributionWrite` |
+| `adminAlertOnRevenueCatReceipt` |
+| `adminAlertOnSupportEmailCreated` |
+| `adminAlertOnTelegramPremiumOrderWritten` |
+| `adminAlertOnUgcRefund` |
+| `adminAlertOnUserIdeaCreated` |
+| `adminAlertOnUserIdeaReport` |
+| `adminAlertOnUserReport` |
+| `adminAlertOnWebPremiumOrderWritten` |
+| `adminAlertOnWebsiteContactCreated` |
+| `adminAlertRecoveryCron` |
+| `adminApproveLearningV2CourseWave` |
+| `adminArchiveQuest` |
+| `adminArenaConfigGet` |
+| `adminArenaConfigSet` |
+| `adminArenaContentStatus` |
+| `adminArenaContentValidate` |
+| `adminAuditAccountDeleteCoverage` |
+| `adminCancelGiftCertificateBatchOperation` |
+| `adminCancelStripeSubscriptionRenewal` |
+| `adminCleanupExpiredAppMessages` |
+| `adminCommunityPackApplyQaFixes` |
+| `adminCommunityPackApplyQaFixesToPublished` |
+| `adminCommunityPackQaReview` |
+| `adminCommunityPackTranslateLocales` |
+| `adminConfirmV2OwnerEpisode` |
+| `adminControlContentStage` |
+| `adminCreateAppMessage` |
+| `adminCreateAssetJob` |
+| `adminCreateContentGenerationJob` |
+| `adminCreateContentStage` |
+| `adminCreateContentStageBulkPlan` |
+| `adminCreateGiftCertificateBatch` |
+| `adminCreatePlan` |
+| `adminCreateV2GenerationPlan` |
+| `adminDeactivateGlobalBroadcast` |
+| `adminDeactivateGlobalBroadcasts` |
+| `adminDeactivateVipSurveyCampaign` |
+| `adminDecideUserIdea` |
+| `adminDeleteAppMessage` |
+| `adminDeleteDuplicateUser` |
+| `adminDeleteGiftCertificate` |
+| `adminDeleteQuest` |
+| `adminDeleteShardSurvey` |
+| `adminDeleteUserIdea` |
+| `adminDraftIdeaDecision` |
+| `adminDraftReportReply` |
+| `adminEditContentStageArtifact` |
+| `adminEmailBroadcast` |
+| `adminEmailContactsBackfill` |
+| `adminEnglishTestAnalytics` |
+| `adminExportReportDocuments` |
+| `adminExportUnresolvedReports` |
+| `adminGenerateDailyDigest` |
+| `adminGenerateDirectorDigestAudio` |
+| `adminGetAdminConfigWorkspace` |
+| `adminGetAlertDiagnostics` |
+| `adminGetAnalyticsSnapshot` |
+| `adminGetAnalyticsTrends` |
+| `adminGetCoinExchangeCenter` |
+| `adminGetComplianceOverview` |
+| `adminGetContentFactoryJobDetail` |
+| `adminGetContentFactoryRolloutMetrics` |
+| `adminGetContentFactoryUnitPreview` |
+| `adminGetContentFactoryWorkspace` |
+| `adminGetContentStageCapabilities` |
+| `adminGetCosmeticAssetArchive` |
+| `adminGetDailyBriefing` |
+| `adminGetDiagnosticsOverview` |
+| `adminGetDirectorDigest` |
+| `adminGetFeedbackStats` |
+| `adminGetGiftCertificateBatchOperation` |
+| `adminGetGiftCertificateDownload` |
+| `adminGetHomeHintsCatalog` |
+| `adminGetLearningV2CourseWorkspaceProjection` |
+| `adminGetMaxVoiceOpsDashboard` |
+| `adminGetOnboardingFunnel` |
+| `adminGetPaywallAbWorkspace` |
+| `adminGetPaywallVariantStats` |
+| `adminGetPlan` |
+| `adminGetProductCharter` |
+| `adminGetReferralDashboard` |
+| `adminGetRemoteConfigWorkspace` |
+| `adminGetRevenueCatOverviewMetrics` |
+| `adminGetUserProfile` |
+| `adminGetV2OwnerGeneratorSetupCatalog` |
+| `adminGetV2OwnerGeneratorWorkspace` |
+| `adminGetVideoPhraseWorkspace` |
+| `adminGetVideoStudioWorkspace` |
+| `adminGetYoutubeCatalogWorkspace` |
+| `adminGrantAccess` |
+| `adminGrantReward` |
+| `adminGrantVoiceMinutes` |
+| `adminImportV2OwnerEpisodeStage` |
+| `adminInspectTelegramPromoCode` |
+| `adminLaunchVipSurveyCampaign` |
+| `adminListAppMessages` |
+| `adminListAssetJobs` |
+| `adminListAuditLog` |
+| `adminListContentFactoryJobs` |
+| `adminListContentStageDependencies` |
+| `adminListContentStages` |
+| `adminListFeedbackEntries` |
+| `adminListGiftCertificates` |
+| `adminListGlobalBroadcasts` |
+| `adminListMaxVoiceFeedback` |
+| `adminListMistakeExplanationCache` |
+| `adminListOpsLog` |
+| `adminListPlans` |
+| `adminListPromoCodes` |
+| `adminListQuests` |
+| `adminListReferrals` |
+| `adminListReportQueue` |
+| `adminListSafetyFlags` |
+| `adminListShardRefunds` |
+| `adminListUserIdeas` |
+| `adminMarkSafetyFlagsHandled` |
+| `adminMigrateLegacyAdminPremium` |
+| `adminMonthlyDecisionPack` |
+| `adminMoveLeagueUser` |
+| `adminOpenDailyDigest` |
+| `adminParseVideoPhraseDocument` |
+| `adminPrepareV2OwnerEpisodeDraft` |
+| `adminPreviewContentStage` |
+| `adminPreviewLearningV2CourseWave` |
+| `adminProductAnalytics` |
+| `adminPublishAlertsConfig` |
+| `adminPublishAuthoredLearningV2Course` |
+| `adminPublishGlobalBroadcast` |
+| `adminPublishHomeHints` |
+| `adminPublishNavLayout` |
+| `adminPublishPaywallAb` |
+| `adminPublishRemoteConfig` |
+| `adminPublishVideoPhrases` |
+| `adminPublishYoutubeCatalogConfig` |
+| `adminPushJobCreated` |
+| `adminPushJobsCron` |
+| `adminQueueAccountDeletion` |
+| `adminQueueV2GenerationPlan` |
+| `adminReferralHealth` |
+| `adminRefreshYoutubeCatalog` |
+| `adminRefundCommunityPackPurchase` |
+| `adminRejectLearningV2CourseWave` |
+| `adminRelinkProvider` |
+| `adminRepairAuthLink` |
+| `adminRepairPendingReferralPurchase` |
+| `adminReplaceSyntheticGiftCertificate` |
+| `adminReplyToReport` |
+| `adminRequestUserMerge` |
+| `adminResetLeaguePoints` |
+| `adminResetUserProgress` |
+| `adminResolveUserReport` |
+| `adminRestoreUserIdea` |
+| `adminResumePendingReferralPurchaseRepair` |
+| `adminReviewContentStage` |
+| `adminReviewCourseGeneration` |
+| `adminRevokeReferralAttribution` |
+| `adminRollbackCourseRelease` |
+| `adminRunAssetJob` |
+| `adminRunContentGenerationUnit` |
+| `adminRunContentStage` |
+| `adminRunV2E1Compilation` |
+| `adminSaveProductCharter` |
+| `adminSaveV2EpisodeDraft` |
+| `adminSaveV2SeasonDraft` |
+| `adminSaveVideoPhraseDraft` |
+| `adminScrubGlobalBroadcastMetadata` |
+| `adminSealCourseRelease` |
+| `adminSearchUsers` |
+| `adminSeedV2E1DemoSource` |
+| `adminSendPersonalAppMessage` |
+| `adminSendPreparedGiftCertificate` |
+| `adminSetAppMessageActive` |
+| `adminSetCoinExchangeRate` |
+| `adminSetCosmeticAssetSaleStatus` |
+| `adminSetIdeaSubmissionRestriction` |
+| `adminSetReferralRouletteEmergencyStop` |
+| `adminSetReferralRouletteEnabled` |
+| `adminSetShardBalance` |
+| `adminSetSpinWeights` |
+| `adminSetUserBan` |
+| `adminSetUserIdeaStatus` |
+| `adminSpinLogs` |
+| `adminSpinStats` |
+| `adminSpirePackBuild` |
+| `adminSpireTaskFlagAdd` |
+| `adminSpireTaskFlagList` |
+| `adminSpireTaskFlagRemove` |
+| `adminSubscriptionAnalytics` |
+| `adminSummarizeFeedback` |
+| `adminSupportArchiveMessages` |
+| `adminSupportCancelReply` |
+| `adminSupportCancelReplyBatch` |
+| `adminSupportConversation` |
+| `adminSupportDispatchReply` |
+| `adminSupportDispatchReplyBatch` |
+| `adminSupportGenerateReply` |
+| `adminSupportList` |
+| `adminSupportPrepareReply` |
+| `adminSupportPrepareReplyBatch` |
+| `adminSupportPull` |
+| `adminSupportResolveReplyDelivery` |
+| `adminSupportSaveAutomation` |
+| `adminSupportSaveDraft` |
+| `adminSupportSaveInstructions` |
+| `adminSupportSaveSignature` |
+| `adminSupportSendReply` |
+| `adminSupportSetStatus` |
+| `adminTestAlerts` |
+| `adminTranslateMessage` |
+| `adminUpdateAppMessage` |
+| `adminUpdateGiftCertificatePersonalization` |
+| `adminUpdateGiftCertificateRecipient` |
+| `adminUpdateReportStatus` |
+| `adminUpdateUserProfileField` |
+| `adminUserBriefs` |
+| `adminVerifyGlobalBroadcastPrivacyReadiness` |
+| `adminWarmInstanceGauge` |
+| `adminWarnUser` |
+| `adminWriteQuest` |
+| `adminWriteShardSurvey` |
+| `aiDialogBuyExtraReplies` |
+| `aiDialogSyncPurchase` |
+| `arenaExpansionHome` |
+| `arenaGhostAccept` |
+| `arenaGhostCreate` |
+| `arenaGhostDecline` |
+| `arenaGhostStatus` |
+| `arenaMatchLabGet` |
+| `arenaPartnerAccept` |
+| `arenaPartnerClaimSpotlight` |
+| `arenaPartnerInvite` |
+| `arenaPartnerNudge` |
+| `arenaPartnerPause` |
+| `arenaPartnerPreferences` |
+| `arenaPartnerRemove` |
+| `arenaRivalAccept` |
+| `arenaRivalLeave` |
+| `arenaRivalMute` |
+| `arenaRivalNext` |
+| `arenaRivalPropose` |
+| `arenaStarEquip` |
+| `arenaStarPurchase` |
+| `arenaStarStore` |
+| `arenaTodayStart` |
+| `arenaTodaySubmitAnswer` |
+| `arenaTodaySubmitSpeedAttempt` |
+| `arenaTodaySync` |
+| `arenaV2CleanupHourly` |
+| `arenaV2DevFriendBotCreate` |
+| `arenaV2FindMatch` |
+| `arenaV2Forfeit` |
+| `arenaV2FriendsBoard` |
+| `arenaV2Home` |
+| `arenaV2InviteAccept` |
+| `arenaV2InviteCancel` |
+| `arenaV2InviteCreate` |
+| `arenaV2InviteDecline` |
+| `arenaV2InviteReady` |
+| `arenaV2InviteStatus` |
+| `arenaV2MatchAccept` |
+| `arenaV2MatchDecline` |
+| `arenaV2MatchFinish` |
+| `arenaV2MatchPlan` |
+| `arenaV2MatchSettle` |
+| `arenaV2OnQueueWrite` |
+| `arenaV2QueueCancel` |
+| `arenaV2QuickBotFallback` |
+| `arenaV2RankedBotFallback` |
+| `arenaV2ReleaseStaleMatch` |
+| `arenaV2SeasonClaim` |
+| `arenaV2SubmitAnswer` |
+| `arenaV2SubmitSpeedAttempt` |
+| `arenaV2SyncMatch` |
+| `authCleanInstallRecoveryDeliveryWorker` |
+| `authCompleteRecoveryHandoff` |
+| `authConfirmCleanInstallRecoveryCode` |
+| `authConfirmRecoveryCode` |
+| `authEnsureStableLink` |
+| `authIssueRecoveryHandoffToken` |
+| `authMergeStableAccounts` |
+| `authRecoveryHint` |
+| `authRequestCleanInstallRecoveryCode` |
+| `authRequestRecoveryCode` |
+| `authStampAnonOwnership` |
+| `authorizeLearningV2CourseUnlock` |
+| `claimReportReward` |
+| `cleanupExpiredAppMessagesCron` |
+| `collectiblesClaimDrop` |
+| `communityAdminModeratePack` |
+| `communityAuthorRemovePack` |
+| `communityFetchPackCardsIfAccessible` |
+| `communityListSellerInbox` |
+| `communityMarkSellerInboxSeen` |
+| `communityModerateSubmission` |
+| `communityPurchasePack` |
+| `communityRedeemPackGiftVoucher` |
+| `communitySubmitPackForReview` |
+| `communitySyncPackRuneSale` |
+| `computeLeaderboardStatsCron` |
+| `cosmeticAssetCatalogGet` |
+| `dailyPhraseSetSaved` |
+| `devRunesGrant` |
+| `devShardsGrant` |
+| `emailUnsubscribe` |
+| `englishTestApi` |
+| `exchangeCoinsForStars` |
+| `explainChoice` |
+| `explainMistake` |
+| `explainPhrase` |
+| `finalizeLearningV2AccessPurchase` |
+| `finalizeLearningV2DelayedCandidate` |
+| `flashcardPackGiftGrantGlobalBroadcast` |
+| `flashcardPackGiftRedeem` |
+| `flashcardPackGiftSyncState` |
+| `friendClaimQuestReward` |
+| `friendConsumeChainShield` |
+| `friendEnsureMyCode` |
+| `friendGetActiveQuest` |
+| `friendLikeActivity` |
+| `friendLookupUser` |
+| `friendSendGift` |
+| `friendThankGift` |
+| `friendUnlikeActivity` |
+| `friendsClaimWeeklyChest` |
+| `friendsGetProfiles` |
+| `friendsNudge` |
+| `friendsTogetherClaimLevel` |
+| `getActiveShardSurvey` |
+| `getCoinExchangeHistory` |
+| `getCoinExchangeQuote` |
+| `getLearningV2AccountBinding` |
+| `getPublicUserIdea` |
+| `globalBroadcastClaim` |
+| `globalBroadcastListActive` |
+| `grantMistakeCorrectionReward` |
+| `introFullAccessClaim` |
+| `jarvisDailyBusinessHistoryCron` |
+| `jarvisDailyDepartmentsCron` |
+| `jarvisDeletePlan` |
+| `jarvisGetAllDecisions` |
+| `jarvisGetApprovalAudit` |
+| `jarvisGetBusinessTier` |
+| `jarvisGetCohortRetention` |
+| `jarvisGetGrowthSnapshot` |
+| `jarvisGetMoneySnapshot` |
+| `jarvisGetPlans` |
+| `jarvisGetQualitySnapshot` |
+| `jarvisProductKnowledgeReviewCron` |
+| `jarvisRunBusinessTierBackfill` |
+| `jarvisSetPlanStatus` |
+| `jarvisTelegramApprovalWebhook` |
+| `leaderboardUpdateDailyAnalytics` |
+| `leagueActivateGroupBoost` |
+| `leagueChestClaim` |
+| `leagueFinalizeCron` |
+| `leagueJoinOrUpdateGroup` |
+| `leagueResidentsTickCron` |
+| `leagueSyncMyBoost` |
+| `leagueUpdateMyMember` |
+| `learningV2ActivityAuxiliarySessionGetV1` |
+| `learningV2ActivityReleasedSessionGetV1` |
+| `learningV2CourseActiveCatalogGetV1` |
+| `learningV2CourseReleasedSessionGetV2` |
+| `learningV2CourseReleasedSessionGetV3` |
+| `learningV2LocalizedCourseShardBackgroundWorker` |
+| `levelGiftActivatePackGift` |
+| `levelGiftReserve` |
+| `levelRewardSpinAcknowledge` |
+| `levelRewardSpinClaim` |
+| `levelRewardSpinDelivery` |
+| `levelRewardSpinEnrollV1` |
+| `levelRewardSpinStatus` |
+| `levelSpinActivatePackGift` |
+| `levelSpinStarGrant` |
+| `likeUserIdea` |
+| `listPublicUserIdeas` |
+| `maxVoiceConfigAdmin` |
+| `mistakeHubAdvice` |
+| `mistakePracticeSyncEvents` |
+| `nameCheckAvailability` |
+| `nameGenerateAndReserve` |
+| `nameReleaseMine` |
+| `nameReserve` |
+| `notifyOnFriendAccepted` |
+| `notifyOnFriendRequestCreated` |
+| `notifyOnPackCommentCreated` |
+| `onAppMessagePollVoteWritten` |
+| `onAppMessageReactionWritten` |
+| `onAppMessageStateWritten` |
+| `openAiBudgetDashboard` |
+| `openAiDialogModelConfig` |
+| `openAiDialogQuotaConfig` |
+| `openAiJobsConfig` |
+| `paypalOrderCapture` |
+| `paypalOrderCreate` |
+| `practiceRuneGrant` |
+| `premiumDialogReview` |
+| `premiumDialogSend` |
+| `premiumDialogStream` |
+| `premiumDialogTranslate` |
+| `premiumExpiryCron` |
+| `premiumExpiryReminderCron` |
+| `profileCardUpgrade` |
+| `progressMigrateSnapshot` |
+| `progressSubmitEvent` |
+| `promoCodeBatchUpsert` |
+| `promoCodeDelete` |
+| `promoCodeRedeem` |
+| `promoCodeUpsert` |
+| `publicProfileProjectMine` |
+| `questClaimReward` |
+| `questGetActive` |
+| `questReportProgress` |
+| `reEngagePushCron` |
+| `recalcCoinExchangeRate` |
+| `recordAgeConsentSnapshot` |
+| `recordAiDialogConsent` |
+| `recordAiExplainConsent` |
+| `recordAiVoiceConsent` |
+| `recordOnboardingFunnelEvent` |
+| `recordVipSurveyReviewClick` |
+| `referralApply` |
+| `referralClaimSpin` |
+| `referralClaimVipReward` |
+| `referralDevGrantSpin` |
+| `referralEnsureMyCode` |
+| `referralListMyInvites` |
+| `referralSpin` |
+| `reportUserIdea` |
+| `resendKeyHealthCron` |
+| `resetWeeklyXpCron` |
+| `resolveLearningV2CourseUnlockReceipt` |
+| `resolveLearningV2WalletRewardReceipt` |
+| `revenueCatPremiumReconcileMine` |
+| `revenueCatShardsWebhook` |
+| `seasonBuyPass` |
+| `seasonClaimReward` |
+| `seasonRedeemConsumable` |
+| `seasonSendFriendShield` |
+| `shardsApplyDelta` |
+| `siteStatsTrack` |
+| `soc2ReadinessCollectorCron` |
+| `spirePackWeeklyCron` |
+| `statsInsightsGenerate` |
+| `stripeWebhook` |
+| `submitClientReport` |
+| `submitExplainReport` |
+| `submitFeedbackEntry` |
+| `submitLearningV2ActivityReleasedCompletionV1` |
+| `submitLearningV2CourseSessionCompletedV1` |
+| `submitLearningV2RequiredSessionCompletion` |
+| `submitMaxVoiceFeedback` |
+| `submitSettingsPollVote` |
+| `submitShardSurvey` |
+| `submitUserIdea` |
+| `submitVipSurvey` |
+| `submitWebsiteContact` |
+| `supportInboxOnNewMail` |
+| `supportOpsCron` |
+| `supportTelegramReplyJobOnCreate` |
+| `telegramPremiumActivationNotifier` |
+| `telegramPremiumWebhook` |
+| `tutorTextTopics` |
+| `tutorTextTurn` |
+| `unlikeUserIdea` |
+| `updateUserIdea` |
+| `userNotificationsCleanupCron` |
+| `usersWriteRouter` |
+| `videoWatchRunesClaim` |
+| `vipRevokeMine` |
+| `voiceMinuteWalletMine` |
+| `webCheckoutCreate` |
+| `webLeadCapture` |
+| `webLeadNudgeCron` |
+| `webOrderStatus` |
+| `webPrices` |
+| `weeklyReviewGenerate` |
+| `welcomeGiftClaim` |
+| `youtubeCatalogSyncCron` |
 
-После этого здесь появятся список облака и два расхождения: «в облаке, но нет в коде» (кандидаты на удаление при следующем деплое — Firebase спросит подтверждение) и «в коде, но нет в облаке» (не задеплоено).
+## Расхождения (НЕ удалены автоматически)
+
+### В облаке, но нет в коде: 112
+
+- `activationEmailRetryCron`
+- `adminGetCoinExchangeCenter`
+- `adminGetCosmeticAssetArchive`
+- `adminGetMaxVoiceOpsDashboard`
+- `adminListMaxVoiceFeedback`
+- `adminMoveLeagueUser`
+- `adminRefundCommunityPackPurchase`
+- `adminResetLeaguePoints`
+- `adminSetCoinExchangeRate`
+- `adminSetCosmeticAssetSaleStatus`
+- `adminSetShardBalance`
+- `aiDialogSyncPurchase`
+- `arenaExpansionHome`
+- `arenaGhostAccept`
+- `arenaGhostCreate`
+- `arenaGhostDecline`
+- `arenaGhostStatus`
+- `arenaMatchLabGet`
+- `arenaPartnerAccept`
+- `arenaPartnerClaimSpotlight`
+- `arenaPartnerInvite`
+- `arenaPartnerNudge`
+- `arenaPartnerPause`
+- `arenaPartnerPreferences`
+- `arenaPartnerRemove`
+- `arenaRivalAccept`
+- `arenaRivalLeave`
+- `arenaRivalMute`
+- `arenaRivalNext`
+- `arenaRivalPropose`
+- `arenaStarEquip`
+- `arenaStarPurchase`
+- `arenaStarStore`
+- `arenaTodayStart`
+- `arenaTodaySubmitAnswer`
+- `arenaTodaySubmitSpeedAttempt`
+- `arenaTodaySync`
+- `arenaV2CleanupHourly`
+- `arenaV2DevFriendBotCreate`
+- `arenaV2FindMatch`
+- `arenaV2Forfeit`
+- `arenaV2FriendsBoard`
+- `arenaV2Home`
+- `arenaV2InviteAccept`
+- `arenaV2InviteCancel`
+- `arenaV2InviteCreate`
+- `arenaV2InviteDecline`
+- `arenaV2InviteReady`
+- `arenaV2InviteStatus`
+- `arenaV2MatchAccept`
+- `arenaV2MatchDecline`
+- `arenaV2MatchFinish`
+- `arenaV2MatchPlan`
+- `arenaV2MatchSettle`
+- `arenaV2OnQueueWrite`
+- `arenaV2QueueCancel`
+- `arenaV2QuickBotFallback`
+- `arenaV2RankedBotFallback`
+- `arenaV2ReleaseStaleMatch`
+- `arenaV2SeasonClaim`
+- `arenaV2SubmitAnswer`
+- `arenaV2SubmitSpeedAttempt`
+- `arenaV2SyncMatch`
+- `authorizeLearningV2CourseUnlock`
+- `communityPurchasePack`
+- `computeLeaderboardStatsCron`
+- `cosmeticAssetCatalogGet`
+- `devRunesGrant`
+- `devShardsGrant`
+- `exchangeCoinsForStars`
+- `friendClaimQuestReward`
+- `friendConsumeChainShield`
+- `friendGetActiveQuest`
+- `friendSendGift`
+- `friendThankGift`
+- `friendsClaimWeeklyChest`
+- `getCoinExchangeHistory`
+- `getCoinExchangeQuote`
+- `leaderboardUpdateDailyAnalytics`
+- `leagueActivateGroupBoost`
+- `leagueChestClaim`
+- `leagueFinalizeCron`
+- `leagueJoinOrUpdateGroup`
+- `leagueResidentsTickCron`
+- `leagueSyncMyBoost`
+- `leagueUpdateMyMember`
+- `levelGiftActivatePackGift`
+- `levelGiftReserve`
+- `levelRewardSpinAcknowledge`
+- `levelRewardSpinClaim`
+- `levelRewardSpinDelivery`
+- `levelRewardSpinEnrollV1`
+- `levelRewardSpinStatus`
+- `levelSpinActivatePackGift`
+- `maxVoiceConfigAdmin`
+- `profileCardUpgrade`
+- `recalcCoinExchangeRate`
+- `referralDevGrantSpin`
+- `resendKeyHealthCron`
+- `resetWeeklyXpCron`
+- `resolveLearningV2CourseUnlockReceipt`
+- `seasonBuyPass`
+- `seasonClaimReward`
+- `seasonRedeemConsumable`
+- `seasonSendFriendShield`
+- `shardsApplyDelta`
+- `statsInsightsGenerate`
+- `submitMaxVoiceFeedback`
+- `tutorTextTopics`
+- `tutorTextTurn`
+- `weeklyReviewGenerate`
+- `welcomeGiftClaim`
+
+### В коде, но нет в облаке: 34
+
+- `accountsV2DeletionStatus` (default, callable)
+- `accountsV2SyncApply` (default, callable)
+- `adminAlignVideoPhraseTranscript` (default, callable)
+- `adminArenaPublicationActivate` (default, callable)
+- `adminArenaPublicationRollback` (default, callable)
+- `adminArenaPublicationStage` (default, callable)
+- `adminArenaPublicationStatus` (default, callable)
+- `adminBackfillVideoPacks` (default, callable)
+- `adminCardTtsRequeuePack` (default, callable)
+- `adminSpireConfigGet` (default, callable)
+- `adminSpireConfigSet` (default, callable)
+- `adminSpireTaskIncidentSetState` (default, callable)
+- `adminSpireTaskIncidentStates` (default, callable)
+- `adminSpireTaskReportList` (default, callable)
+- `cardTtsPackWorker` (default, trigger)
+- `customCardMilestoneNotify` (default, callable)
+- `dailyPollVote` (default, callable)
+- `dialogueV2Catalogue` (default, callable)
+- `dialogueV2FreeformPreparedBotVoiceResolve` (default, callable)
+- `dialogueV2FreeformSessionStart` (default, callable)
+- `dialogueV2FreeformSessionTurn` (default, callable)
+- `dialogueV2MemoryClear` (default, callable)
+- `dialogueV2MemoryResume` (default, callable)
+- `dialogueV2MemoryView` (default, callable)
+- `dialogueV2SessionComplete` (default, callable)
+- `dialogueV2SessionStart` (default, callable)
+- `dialogueV2TextTurn` (default, callable)
+- `giftsToCoinsMigrationReport` (default, callable)
+- `profileCardBioSetMine` (default, callable)
+- `spireFinalizeCron` (default, schedule)
+- `spireJoinRoom` (default, callable)
+- `spireReportSteps` (default, callable)
+- `spireZoneWarningCron` (default, schedule)
+- `webActivationReminderCron` (default, schedule)
 

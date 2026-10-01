@@ -9555,7 +9555,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -9564,14 +9564,18 @@
       {
         "id": "PM-184-A1",
         "text": "Базовая + одно улучшение либо полный отказ после введения рангов",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "01.10: улучшенная визитка «Про» за 10 000 монет уже реализована 30.09 по одобренному владельцем макету profile-card-pro.html — ace685121 (обычная и «Про», 6 стилей), c51386627 (бесплатно купившим старые уровни), b40b1161a (9 языков), 9d6aa9dca (модерация текста), 15e3eea72 (системный «Назад»). Цена PROFILE_CARD_PRO_PRICE_COINS = PROFILE_CARD_UPGRADE_PRICE_COINS (app/profile_card_pro_v1.ts:41), одно улучшение без 5 уровней и без новой валюты. D73 снят владельцем 01.10."
+        ]
       },
       {
         "id": "PM-184-A2",
         "text": "не создавать 5 уровней и новую валюту",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "01.10: улучшенная визитка «Про» за 10 000 монет уже реализована 30.09 по одобренному владельцем макету profile-card-pro.html — ace685121 (обычная и «Про», 6 стилей), c51386627 (бесплатно купившим старые уровни), b40b1161a (9 языков), 9d6aa9dca (модерация текста), 15e3eea72 (системный «Назад»). Цена PROFILE_CARD_PRO_PRICE_COINS = PROFILE_CARD_UPGRADE_PRICE_COINS (app/profile_card_pro_v1.ts:41), одно улучшение без 5 уровней и без новой валюты. D73 снят владельцем 01.10."
+        ]
       }
     ],
     "depends_on": [],
@@ -9583,10 +9587,15 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": ["Owner has not seen the proposed improved business-card variants; do not choose or implement a variant until it is shown explicitly."],
+    "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
+    "reviewer": "координатор (Fable) по поручению владельца 01.10",
+    "evidence": [
+      "01.10: улучшенная визитка «Про» за 10 000 монет уже реализована 30.09 по одобренному владельцем макету profile-card-pro.html — ace685121 (обычная и «Про», 6 стилей), c51386627 (бесплатно купившим старые уровни), b40b1161a (9 языков), 9d6aa9dca (модерация текста), 15e3eea72 (системный «Назад»). Цена PROFILE_CARD_PRO_PRICE_COINS = PROFILE_CARD_UPGRADE_PRICE_COINS (app/profile_card_pro_v1.ts:41), одно улучшение без 5 уровней и без новой валюты. D73 снят владельцем 01.10."
+    ],
+    "notes": [
+      "Owner has not seen the proposed improved business-card variants; do not choose or implement a variant until it is shown explicitly.",
+      "Анимация перехода на Pro не запускалась в эмуляторе из-за выключенных анимаций системы (0×), возвращено 1× — нужна перепроверка владельцем."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

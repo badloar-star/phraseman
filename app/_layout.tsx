@@ -2887,7 +2887,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       {/* Ранг игрока: вход с блока монет на Главной; повышение использует атомарную операцию PM-075. */}
       <Stack.Screen name="coin_rank" />
       <Stack.Screen name="achievements_screen" />
-      <Stack.Screen name="collectibles_screen" />
+      {/* D140 (владелец 2026-10-01): экран коллекций удалён вместе с разделом. */}
       <Stack.Screen name="level_exam" />
       {ENABLE_DEV_TOOLS && DEV_UTILITY_ROUTE_NAMES.map((name) => (
           <Stack.Screen key={name} name={name} />

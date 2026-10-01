@@ -11,7 +11,6 @@ import type { LearningLanguageTarget } from '../learning_language_contour';
 
 /** Callable v2 задеплоєні в us-central1 (як у admin getFunctions(..., 'us-central1')). */
 const FUNCTIONS_REGION = 'us-central1';
-const communityGiftRedeemInFlight = new Map<string, Promise<CommunityGiftRedeemResponse>>();
 
 export function isCommunityPacksCloudEnabled(): boolean {
   return CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
@@ -28,13 +27,12 @@ async function callFunction<TReq, TRes>(name: string, data: TReq): Promise<TRes>
     return res.data;
   } catch (error) {
     // зачем (аудит 2026-08-29): сообщество не писало отказы никуда — покупка
-    // пака могла молча падать. Денежные имена — critical (доезжают до
-    // app_errors), остальное — warning (локальный журнал + support-бандл).
-    const irreversible = name === 'communityRedeemPackGiftVoucher';
+    // пака могла молча падать. Пишем в локальный журнал + support-бандл.
+    // Единственное «денежное» имя (погашение подарочного набора) удалено по D140.
     DebugLogger.error(
       `community:${name}`,
       error instanceof Error ? error : new Error(String(error)),
-      irreversible ? 'critical' : 'warning',
+      'warning',
     );
     throw error;
   }
@@ -59,53 +57,9 @@ export async function callCommunityAuthorRemovePack(data: {
   return callFunction<typeof data, { ok: boolean }>('communityAuthorRemovePack', data);
 }
 
-export type CommunityGiftRedeemResponse = {
-  alreadyOwned?: boolean;
-  gifted?: boolean;
-  replayed?: boolean;
-  studyTarget?: LearningLanguageTarget;
-};
-
-export type FlashcardPackGiftRedeemResponse = CommunityGiftRedeemResponse & {
-  packId?: string;
-  packType?: 'official' | 'community';
-};
-
-export async function callFlashcardPackGiftRedeem(data: {
-  buyerStableId: string;
-  packId: string;
-  packType: 'official' | 'community';
-  studyTarget?: LearningLanguageTarget;
-  voucherId?: string;
-  voucherOccurrenceId?: string;
-}): Promise<FlashcardPackGiftRedeemResponse> {
-  const key = JSON.stringify(data);
-  const existing = communityGiftRedeemInFlight.get(key);
-  if (existing) return existing;
-  const request = callFunction<typeof data, FlashcardPackGiftRedeemResponse>('flashcardPackGiftRedeem', data)
-    .finally(() => communityGiftRedeemInFlight.delete(key));
-  communityGiftRedeemInFlight.set(key, request);
-  return request;
-}
-
-export type FlashcardPackGiftSyncStateResponse = {
-  vouchers: { voucherId?: string; occurrenceId?: string; expiresAt: number; source: string }[];
-  entitlements: { packId: string; packType: 'official' | 'community'; studyTarget: 'en' | 'fr' }[];
-};
-
-export async function callFlashcardPackGiftSyncState(data: { stableId: string }): Promise<FlashcardPackGiftSyncStateResponse> {
-  return callFunction<typeof data, FlashcardPackGiftSyncStateResponse>('flashcardPackGiftSyncState', data);
-}
-
-export async function callFlashcardPackGiftGrantGlobalBroadcast(data: {
-  stableId: string;
-  broadcastId: string;
-}): Promise<{ voucherId: string; expiresAt: number; replayed?: boolean }> {
-  return callFunction<typeof data, { voucherId: string; expiresAt: number; replayed?: boolean }>(
-    'flashcardPackGiftGrantGlobalBroadcast',
-    data,
-  );
-}
+// зачем: D140 (владелец 2026-10-01) — клиентские вызовы подарочных наборов
+// (flashcardPackGiftRedeem, flashcardPackGiftSyncState, flashcardPackGiftGrantGlobalBroadcast,
+// communityRedeemPackGiftVoucher) удалены вместе с серверными функциями.
 
 export type LevelSpinStarMaterializationAck = Readonly<{
   materialized: true;
@@ -143,14 +97,6 @@ export async function callCoinReconcileV1(data: {
   clientVisibleBalance: number;
 }): Promise<CoinReconcileV1Response> {
   return callFunction<typeof data, CoinReconcileV1Response>('coinReconcileV1', data);
-}
-
-export async function callCommunityRedeemPackGiftVoucher(data: {
-  buyerStableId: string;
-  packId: string;
-  studyTarget?: LearningLanguageTarget;
-}): Promise<CommunityGiftRedeemResponse> {
-  return callFlashcardPackGiftRedeem({ ...data, packType: 'community' });
 }
 
 export type CommunitySellerInboxEvent = {

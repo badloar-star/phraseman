@@ -79,6 +79,14 @@ jest.mock('../app/account_switch_quarantine', () => ({
   resumeRuntimeAccountSwitchQuarantine: () => mockResumeAccountSwitch(),
 }));
 
+// зачем (02.10, §78): провал отписки теперь пишется в DebugLogger (запрет немого catch).
+// Настоящий логгер заводит свой таймер сброса журнала — сторож «шлюз чистит свой таймер»
+// видел чужой таймер. Подменяем логгер и отдельно проверяем, что причина записана.
+const mockDebugLoggerError = jest.fn();
+jest.mock('../app/debug-logger', () => ({
+  DebugLogger: { error: (...args: unknown[]) => mockDebugLoggerError(...args), log: jest.fn(), warn: jest.fn() },
+}));
+
 // Compile the isolateModules target before the per-test timeout starts. The
 // repository-wide ts-jest transform can exceed that budget on a loaded host.
 require('../app/auth_recovery_boot_gate');
@@ -390,6 +398,8 @@ describe('auth recovery pre-cloud boot gate', () => {
     await expect(pending).resolves.toEqual({ result: 'proceed' });
     expect(mockUnsubscribe).toHaveBeenCalledTimes(1);
     expect(jest.getTimerCount()).toBe(0);
+    expect(mockDebugLoggerError).toHaveBeenCalledWith(
+      expect.stringMatching(/^auth_recovery_boot_gate:/), expect.any(Error), 'warning');
   });
 
   it('treats auth subscription setup failure as retryable fail-closed', async () => {

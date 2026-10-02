@@ -354,9 +354,9 @@ export default function FlashcardsBlitzSession() {
         refundBlitzEnergy,
         Date.now(),
         'access_lost',
-      ).catch(() => {});
+      ).catch((error: unknown) => { console.warn('[FC-BLITZ] abandonFlashcardTrainingPendingGrant: возврат энергии по отложенной выдаче не удался', error); });
     } else {
-      void refundActiveBlitzEnergy('access_lost').catch(() => {});
+      void refundActiveBlitzEnergy('access_lost').catch((error: unknown) => { console.warn('[FC-BLITZ] refundActiveBlitzEnergy: не удалось (продолжаем без неё)', error); });
     }
     setQuestion(null);
     setResult(null);
@@ -440,7 +440,7 @@ export default function FlashcardsBlitzSession() {
             : cur,
         );
       })
-      .catch(() => {});
+      .catch((error: unknown) => { console.warn('[FC-BLITZ] сохранение рекорда не удалось (продолжаем без неё)', error); });
   }, [clearRoundTimers, progress]);
 
   const pauseBlitzCountdown = useCallback(() => {
@@ -618,10 +618,10 @@ export default function FlashcardsBlitzSession() {
           refundBlitzEnergy,
           Date.now(),
           'entry_failed',
-        ).catch(() => {});
-        await discardFlashcardTrainingPendingGrant(pending.account, pending.record.fingerprint).catch(() => {});
+        ).catch((error: unknown) => { console.warn('[FC-BLITZ] abandonFlashcardTrainingPendingGrant: возврат энергии по отложенной выдаче не удался', error); });
+        await discardFlashcardTrainingPendingGrant(pending.account, pending.record.fingerprint).catch((error: unknown) => { console.warn('[FC-BLITZ] discardFlashcardTrainingPendingGrant: не удалось (продолжаем без неё)', error); });
       } else {
-        await refundActiveBlitzEnergy('quota_refused').catch(() => {});
+        await refundActiveBlitzEnergy('quota_refused').catch((error: unknown) => { console.warn('[FC-BLITZ] refundActiveBlitzEnergy: не удалось (продолжаем без неё)', error); });
       }
       console.warn('[FC-BLITZ] energy start/refund failed', String((error as Error)?.message ?? error));
       console.warn('[FC-TRAIN-ENTRY] blitz entry:catch', JSON.stringify({
@@ -859,7 +859,7 @@ export default function FlashcardsBlitzSession() {
               distractors: pool.filter((card) => card.id !== question.card.id).slice(0, 5).map((card) => card.en),
             },
             facet: { kind: 'meaning', expected: question.card.en },
-          }).catch(() => {});
+          }).catch((error: unknown) => { console.warn('[FC-BLITZ] запись попытки в цели аккаунта не удалась (продолжаем без неё)', error); });
         }
         playSfx('incorrect');
         fcHaptic('wrong');
@@ -921,7 +921,7 @@ export default function FlashcardsBlitzSession() {
         pending.account,
         pending.record.fingerprint,
         refundBlitzEnergy,
-      ).catch(() => {});
+      ).catch((error: unknown) => { console.warn('[FC-BLITZ] abandonFlashcardTrainingPendingGrant: не удалось (продолжаем без неё)', error); });
     }
     safeRouterBack(router, '/flashcards' as never);
   }, [refundBlitzEnergy, router]);

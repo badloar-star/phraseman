@@ -1229,7 +1229,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       pending.account,
       pending.fingerprint,
       refundSwipeEnergy,
-    ).catch(() => {});
+    ).catch((error: unknown) => { console.warn('[FC-SWIPE] abandonFlashcardTrainingPendingGrant: не удалось (продолжаем без неё)', error); });
   }, [refundSwipeEnergy]);
   /**
    * зачем: найденный черновик незавершённой тренировки. Держим НАГОТОВЕ, но не
@@ -1335,7 +1335,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     setPendingDraft(null);
     setSettling(false);
     setPhase('select');
-    void refundActiveSwipeEnergy('access_lost').catch(() => {});
+    void refundActiveSwipeEnergy('access_lost').catch((error: unknown) => { console.warn('[FC-SWIPE] refundActiveSwipeEnergy: не удалось (продолжаем без неё)', error); });
   }, [refundActiveSwipeEnergy, swipeAccessGranted]);
 
   const openMonthlyTrainingLimit = useCallback(() => {
@@ -2559,7 +2559,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       void setLastPreset('trainer', {
         deckIds: deckIdsForSwipeSources(selectedSources),
         size: requestedSessionSize === 0 ? FC_DEFAULT_SESSION_SIZE : requestedSessionSize,
-      }).catch(() => {});
+      }).catch((error: unknown) => { console.warn('[FC-SWIPE] setLastPreset: запоминание выбора наборов не удалось (продолжаем без неё)', error); });
       const playable = await markFlashcardTrainingPendingGrantPlayable(
         pendingAccount,
         pendingRecord.fingerprint,
@@ -2608,11 +2608,11 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         if (abandoned?.status === 'refunded' || abandoned?.status === 'refund_in_progress') {
           activeSwipeSpentOperationRef.current = null;
         } else {
-          await refundActiveSwipeEnergy('entry_failed').catch(() => {});
+          await refundActiveSwipeEnergy('entry_failed').catch((error: unknown) => { console.warn('[FC-SWIPE] refundActiveSwipeEnergy: не удалось (продолжаем без неё)', error); });
         }
-        await discardFlashcardTrainingPendingGrant(pending.account, pending.fingerprint).catch(() => {});
+        await discardFlashcardTrainingPendingGrant(pending.account, pending.fingerprint).catch((error: unknown) => { console.warn('[FC-SWIPE] discardFlashcardTrainingPendingGrant: не удалось (продолжаем без неё)', error); });
       } else {
-        await refundActiveSwipeEnergy('entry_failed').catch(() => {});
+        await refundActiveSwipeEnergy('entry_failed').catch((error: unknown) => { console.warn('[FC-SWIPE] refundActiveSwipeEnergy: не удалось (продолжаем без неё)', error); });
       }
       /**
        * зачем (приказ владельца 2026-09-14, дословно: «НЕ ЧИНИ, А УБЕРИ»,
@@ -2666,7 +2666,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
 
       const restored = restoreSessionDraft(draft, cards);
       if (!restored) {
-        await clearFlashcardsSwipeSessionDraft(studyTarget).catch(() => {});
+        await clearFlashcardsSwipeSessionDraft(studyTarget).catch((error: unknown) => { console.warn('[FC-SWIPE] clearFlashcardsSwipeSessionDraft: не удалось (продолжаем без неё)', error); });
         return;
       }
 
@@ -2887,9 +2887,9 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         if (seen === '1' && !devIntroReplay) return;
         swipeHintWasDevRef.current = devIntroReplay;
         setShowSwipeHint(true);
-        if (!devIntroReplay) void AsyncStorage.setItem(flashcardsSwipeHintSeenKey(studyTarget), '1').catch(() => {});
+        if (!devIntroReplay) void AsyncStorage.setItem(flashcardsSwipeHintSeenKey(studyTarget), '1').catch((error: unknown) => { console.warn('[FC-SWIPE] AsyncStorage.setItem: не удалось (продолжаем без неё)', error); });
       })
-      .catch(() => {});
+      .catch((error: unknown) => { console.warn('[FC-SWIPE] AsyncStorage.setItem: не удалось (продолжаем без неё)', error); });
     return () => { cancelled = true; };
   }, [currentPrompt, phase, studyTarget, swipeAccessGranted, swipeIntroActive, devIntroReplay]);
 
@@ -3097,7 +3097,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
               distractors: queue.filter((candidate) => candidate.card.id !== prompt.card.id).slice(0, 5).map((candidate) => candidate.card.en),
             },
             facet: { kind: 'meaning', expected: prompt.card.en },
-          }).catch(() => {});
+          }).catch((error: unknown) => { console.warn('[FC-SWIPE] запись попытки в цели аккаунта не удалась (продолжаем без неё)', error); });
         }
         if (attemptEffect === 'attempts_exhausted') {
           audio.stop();

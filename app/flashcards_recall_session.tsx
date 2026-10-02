@@ -223,7 +223,7 @@ export default function FlashcardsRecallSession() {
           pending.account,
           pending.record.fingerprint,
         );
-      })().catch(() => {});
+      })().catch((error: unknown) => { console.warn('[FC-RECALL] discardFlashcardTrainingPendingGrant: не удалось (продолжаем без неё)', error); });
     }
     safeRouterBack(router, '/flashcards' as never);
   }, [refundOne, router]);
@@ -426,11 +426,11 @@ export default function FlashcardsRecallSession() {
           refundOne,
           Date.now(),
           'entry_failed',
-        ).catch(() => {});
+        ).catch((error: unknown) => { console.warn('[FC-RECALL] abandonFlashcardTrainingPendingGrant: возврат энергии по отложенной выдаче не удался', error); });
         await discardFlashcardTrainingPendingGrant(
           pending.account,
           pending.record.fingerprint,
-        ).catch(() => {});
+        ).catch((error: unknown) => { console.warn('[FC-RECALL] discardFlashcardTrainingPendingGrant: не удалось (продолжаем без неё)', error); });
       }
       /**
        * зачем (приказ владельца 2026-09-14, дословно: «НЕ ЧИНИ, А УБЕРИ»,
@@ -519,7 +519,7 @@ export default function FlashcardsRecallSession() {
             sourceMeaning: card.translation,
           },
           facet: { kind: 'meaning', expected: card.en },
-        }).catch(() => {});
+        }).catch((error: unknown) => { console.warn('[FC-RECALL] captureCurrentAccountObjectiveAttempt: не удалось (продолжаем без неё)', error); });
       }
       fcHaptic('wrong');
       playSfx('incorrect');

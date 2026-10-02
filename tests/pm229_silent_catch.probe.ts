@@ -45,13 +45,12 @@ const BASELINE: Record<string, number> = {
   'app/flashcards/CollectionListView.tsx': 1,
   'app/flashcards/FlashcardsHubScreen.tsx': 4,
   'app/flashcards/PhraseCard.tsx': 1,
-  'app/flashcards_blitz_session.tsx': 12,
+  'app/flashcards_blitz_session.tsx': 4, // FINAL_PHASE п.7 2026-10-02: 12 → 4
   'app/flashcards_collection.tsx': 2,
   'app/flashcards_my_packs.tsx': 5,
   'app/flashcards_packs.tsx': 7,
-  'app/flashcards_recall_session.tsx': 4,
-  'app/flashcards_speaking_session.tsx': 10,
-  'app/flashcards_swipe.tsx': 23,
+  'app/flashcards_speaking_session.tsx': 4, // FINAL_PHASE п.7 2026-10-02: 10 → 4
+  'app/flashcards_swipe.tsx': 13, // FINAL_PHASE п.7 2026-10-02: 23 → 13
   'app/flashcards_training_setup.tsx': 1,
   'app/interactive_network_quiet.ts': 1,
   'app/learning-v2/lesson/[id].tsx': 4,

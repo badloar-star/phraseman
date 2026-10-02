@@ -193,7 +193,7 @@ function saveSpeakingPrefs(prefs: SpeakingPrefs): void {
     }
       return AsyncStorage.setItem(FC_SPEAKING_PREFS_KEY, JSON.stringify({ ...base, ...prefs }));
     })
-    .catch(() => {});
+    .catch((error: unknown) => { console.warn('[FC-SPEAKING] AsyncStorage.setItem: не удалось (продолжаем без неё)', error); });
 }
 
 // Fisher-Yates: единое перемешивание карточек.
@@ -290,7 +290,7 @@ export default function FlashcardsSpeakingSession() {
     const pending = refundSpeakEnergy(operationId, reason).then(() => {
       speakingEntryChargedRef.current = false;
       setSpeakingEnergyRevision((current) => current + 1);
-    }).catch(() => {});
+    }).catch((error: unknown) => { console.warn('[FC-SPEAKING] refundSpeakEnergy: возврат энергии не удался (продолжаем без неё)', error); });
     speakingRefundInFlightRef.current = pending;
     void pending.finally(() => {
       if (speakingRefundInFlightRef.current === pending) speakingRefundInFlightRef.current = null;
@@ -324,7 +324,7 @@ export default function FlashcardsSpeakingSession() {
           pending.account,
           pending.record.fingerprint,
         );
-      })().catch(() => {});
+      })().catch((error: unknown) => { console.warn('[FC-SPEAKING] discardFlashcardTrainingPendingGrant: не удалось (продолжаем без неё)', error); });
     }
     safeRouterBack(router, '/flashcards' as never);
   }, [refundSpeakingEntry, router]);
@@ -636,11 +636,11 @@ export default function FlashcardsSpeakingSession() {
           refundSpeakingEntry,
           Date.now(),
           'entry_failed',
-        ).catch(() => {});
+        ).catch((error: unknown) => { console.warn('[FC-SPEAKING] abandonFlashcardTrainingPendingGrant: возврат энергии по отложенной выдаче не удался', error); });
         await discardFlashcardTrainingPendingGrant(
           pending.account,
           pending.record.fingerprint,
-        ).catch(() => {});
+        ).catch((error: unknown) => { console.warn('[FC-SPEAKING] discardFlashcardTrainingPendingGrant: не удалось (продолжаем без неё)', error); });
       }
       if (!cancelled) {
         setQuotaSessionAuthorized(false);
@@ -935,7 +935,7 @@ export default function FlashcardsSpeakingSession() {
               sourceMeaning: failedCard.translation,
             },
             facet: { kind: 'pronunciation', expected: failedCard.en },
-          }).catch(() => {});
+          }).catch((error: unknown) => { console.warn('[FC-SPEAKING] captureCurrentAccountObjectiveAttempt: не удалось (продолжаем без неё)', error); });
         }
         fcHaptic('wrong');
         playSfx('incorrect');

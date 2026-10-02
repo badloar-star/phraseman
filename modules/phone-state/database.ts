@@ -57,7 +57,35 @@ function runsInExpoGo(options?: OpenPhoneStateDatabaseOptions): boolean {
  */
 export function isUnreadableDatabaseFailure(error: unknown): boolean {
   const text = error instanceof Error ? `${error.message} ${String(error.cause ?? '')}` : String(error);
-  return /file is not a database|code 26|SQLITE_NOTADB/i.test(text);
+  return /file is not a database|code 26|SQLITE_NOTADB|phone_state_cipher_key_mismatch/i.test(text);
+}
+
+const HMAC_PAGE_FAILURE_RE = /^HMAC verification failed for page (\d+)$/;
+
+/**
+ * Чужой ключ, а не порча: подпись (HMAC) не сошлась на КАЖДОЙ странице, включая первую.
+ *
+ * зачем (баг 02.10, «Дизайн», холодный старт: integrity rows=52, все «HMAC verification failed
+ * for page N», 1…52): SQLCipher 4.7 при неверном ключе не всегда отвечает NOTADB — заголовок
+ * читается, а проверка целостности валит каждую страницу. Это та же причина, что NOTADB (ключ
+ * от другой установки/сборки), — файл не прочитать никогда, лечение то же (пересоздание + данные
+ * из локального хранилища и облака). Частичные ошибки (не все страницы, или нет страницы 1) —
+ * настоящая порча: НЕ пересоздаём, чтобы не стереть то, что ещё читается.
+ */
+export function isWholeFileKeyMismatch(rows: readonly Readonly<{ cipher_integrity_check?: unknown }>[]): boolean {
+  if (rows.length === 0) return false;
+  const pages = new Set<number>();
+  for (const row of rows) {
+    const match = HMAC_PAGE_FAILURE_RE.exec(String(row?.cipher_integrity_check ?? '').trim());
+    if (!match) return false;
+    pages.add(Number(match[1]));
+  }
+  if (!pages.has(1)) return false;
+  // Страницы подряд 1…N без пропусков — значит, не сошлась ни одна страница файла.
+  for (let page = 1; page <= pages.size; page += 1) {
+    if (!pages.has(page)) return false;
+  }
+  return true;
 }
 
 /**
@@ -119,7 +147,9 @@ async function openEncrypted(
         first: integrityErrors.slice(0, 5).map((row) => String(row?.cipher_integrity_check ?? JSON.stringify(row)).slice(0, 200)),
         last: String(integrityErrors[integrityErrors.length - 1]?.cipher_integrity_check ?? '').slice(0, 200),
       }));
-      throw new Error('phone_state_cipher_integrity_failed');
+      const keyMismatch = isWholeFileKeyMismatch(integrityErrors);
+      console.warn(`[PHONE-STATE-DB] open:integrity_verdict keyMismatch=${keyMismatch} rows=${integrityErrors.length}`);
+      throw new Error(keyMismatch ? 'phone_state_cipher_key_mismatch' : 'phone_state_cipher_integrity_failed');
     }
     /**
      * Ранняя диагностика (инцидент 2026-09-13 19:32): прагмы выше дают ложный

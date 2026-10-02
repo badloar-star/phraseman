@@ -487,11 +487,13 @@ describe('phone-state SQLCipher database opener', () => {
     },
   );
 
-  test('an integrity error row closes once and throws the stable integrity error', async () => {
+  // зачем (02.10): HMAC на ВСЕХ страницах с первой = чужой ключ (пересоздание); частичная порча —
+  // по-прежнему стабильная ошибка целостности, без пересоздания (не стираем читаемое).
+  test('a partial integrity error row closes once and throws the stable integrity error', async () => {
     await seedStoredKey();
     const db = makeDatabase();
     db.getAllAsync.mockResolvedValueOnce([
-      { cipher_integrity_check: 'HMAC verification failed for page 1' },
+      { cipher_integrity_check: 'HMAC verification failed for page 3' },
     ]);
     (SQLite.openDatabaseAsync as jest.Mock).mockResolvedValueOnce(db);
 

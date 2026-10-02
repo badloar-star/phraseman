@@ -16,12 +16,15 @@ const PROTECTED_AST = '92056d4fc0df1c3a3aa793e27618f42b8fb49067abc3ac02c34b2cadb
 const HEADER_GLASS_BODY = '715db3b10a0abee044e76b8baed73f7ad5de81fb96a669ef0381f776fdf98019';
 const DEPENDENCY_HASHES = {
   // зачем: fb9d8d8e6 (PM-210, экономия старта) — прогрев пустого каталога стал честным no-op; хаб не затронут.
-  'app/flashcards/marketplace.ts': '0da53c2a89ef4886e4fc1b8e73870acd074326fac412d35f6dd160681d4666b5',
-  'app/community_packs/packAuthorNames.ts': '101a068d8ec4e6fe9bc1dfb430c6da9695458b59391d7bf18012932ad7e70c45',
-  // зачем: 7b64aa008 (PM-108) — свой набор приватный по умолчанию; хаб не затронут.
-  'app/community_packs/localAuthorPacks.ts': 'bb872d1e7f6d66aa19ae0ec5f00b7dfea980c92fb6375dd6564609d5ef4297e9',
+  // зачем: e7709a89a (PM-289, удалён дев-рынок за жемчуг) + edea8fec7 (PM-229, немые catch пишут причину); хаб не затронут.
+  'app/flashcards/marketplace.ts': 'c21bb336e4dc70f48c8ed3904a5bdc0b18d5513353dfd2be805ee316f3bad929',
+  // зачем: edea8fec7 (PM-229) — немые catch пишут причину; хаб не затронут.
+  'app/community_packs/packAuthorNames.ts': 'bffb83f1c016f53b750313528b11f23307e9e4d2c067daf42d0ac07241cde00f',
+  // зачем: 7b64aa008 (PM-108) — свой набор приватный по умолчанию; edea8fec7 (PM-229) — немые catch с причиной; хаб не затронут.
+  'app/community_packs/localAuthorPacks.ts': '0a5de56ef1c378c3d6e39a51b051a55834ad5bf2f42ba90ce602d6a4c0d8a504',
   // зачем: c98e4ad1e (D145) — шкала текста 16/13.
-  'app/community_packs/CommunityPackSocialBar.tsx': '168418af86b86df427874993eede6faf9f648a7ada4d6cafb518a84591b9aa76',
+  // зачем: f0b2153b4 (FINAL_PHASE п.7) — лайк откатывается при исключении; хаб не затронут.
+  'app/community_packs/CommunityPackSocialBar.tsx': '9bd2893c3b557b4d87ec4260820947b20a7bb1b7c455a4cf606d69e7c4106bf7',
   // зачем: a5cbccab3 (темы 2.0) — «золото» темы = акцент.
   'constants/liquidGlassThemePalette.ts': '28d6be604dc306d70938ea8e94cb534ff523daafce99808974ef2bd648cf8d49',
   'app/flashcards/packMarketplaceIcons.ts': '4d7d168a867514b096dc3a5541503db4759e68a2359020cb02cf695316f78b11',

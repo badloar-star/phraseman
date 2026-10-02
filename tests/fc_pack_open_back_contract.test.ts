@@ -49,9 +49,11 @@ describe('открытие набора идёт без промежуточно
     expect(guard.slice(ownedStart, ownedEnd)).not.toContain('stagedFromHub');
   });
 
-  it('режимы набора появляются только после подтверждения владения', () => {
-    expect(collection).toContain('const packTrainingAccessReady = !packDeeplink || (collectionDataReady && packOwnedByMe);');
-    expect(collection).toContain('packTrainingAccessReady && trainDeckId !== null');
+  // зачем: 6ce8e6b4e (снимок 1.6.16, 03.09) — кнопки «Слушать/Тренировать» ушли со страницы набора;
+  // тренировка стартует только из хаба/таббара, поэтому чужой набор по ссылке не даёт входа в режимы вовсе.
+  it('страница набора не открывает режимы тренировки (вход только из хаба)', () => {
+    expect(collection).not.toContain('trainDeckId');
+    expect(collection).not.toContain('showModeButtons');
   });
 
   it('оба экрана ждут cold staging и только потом делают push', () => {
@@ -91,7 +93,8 @@ describe('открытие набора идёт без промежуточно
 
   it('заглушка «пусто» не показывается, пока карточки набора в пути', () => {
     expect(collection).toContain('!!packDeeplink && !collectionDataReady && (filteredCards.length === 0 || !currentMarketPack);');
-    expect(collection).toContain('const isEmpty = !loading && !packCardsPending && filteredCards.length === 0;');
+    // зачем: efe19ae9d — список рисует `listCards` (с лимитом показа), пустота считается по нему же.
+    expect(collection).toContain('const isEmpty = !loading && !packCardsPending && listCards.length === 0;');
   });
 });
 
@@ -130,8 +133,9 @@ describe('«Мои наборы»: иконки и два раздела', () =>
   it('добавленные из сообщества и созданные мной — разные разделы, пустой не рисуется', () => {
     expect(myPacks).toContain('type MyPacksGroups = {');
     expect(myPacks).toContain('(isMine(pack) ? created : added).push(pack);');
-    expect(myPacks).toContain("renderSection('added', copy.added, groups.added)");
-    expect(myPacks).toContain("renderSection('created', copy.created, groups.created)");
+    // зачем: 13c9f3012 (PM-093..096) — разделы рисуются из отфильтрованных поиском групп.
+    expect(myPacks).toContain("renderSection('added', copy.added, visibleGroups.added)");
+    expect(myPacks).toContain("renderSection('created', copy.created, visibleGroups.created)");
     expect(myPacks).toContain('if (packs.length === 0) return null;');
   });
 

@@ -66,6 +66,25 @@ type SecureStoreModule = typeof import('expo-secure-store');
 type KnownGuardState = 'unknown' | 'none' | AccountDeleteTransitionPhase | 'malformed';
 let knownGuardState: KnownGuardState = 'unknown';
 let knownDeletedProviderUid: string | null = null;
+/**
+ * зачем ([COLD-START-IO], release, слабый профиль, 02.10): readAccountDeletePendingAuthRaw звали
+ * 72 раза за 15 с старта (auth_provider, cloud_sync, восстановление), каждый раз 1 AsyncStorage +
+ * 2 SecureStore — 216 нативных чтений одного флага по ~4 с, главный пожиратель очереди. Два слоя:
+ * (1) замка достоверно нет (knownGuardState 'none') → null без хранилища — ТО ЖЕ правило, на
+ * котором уже стоит assertAccountDeleteStableIdentityAvailable: замок появляется только через
+ * persist/remember, они состояние обновляют; (2) одновременные чтения склеиваются в одно.
+ * Любая запись (persist/зеркало/снятие/дочистка) повышает поколение — поздний ответ старого
+ * чтения не переиспользуется. Ошибки чтения не кэшируются.
+ */
+let guardReadGeneration = 0;
+let inFlightGuardRead: Readonly<{ generation: number; promise: Promise<string | null> }> | null = null;
+let guardFastNoneLogged = false;
+
+function invalidateGuardReadCache(reason: string): void {
+  guardReadGeneration += 1;
+  inFlightGuardRead = null;
+  console.log(`[ACCOUNT-DELETE-GUARD] read_cache:invalidated reason=${reason} generation=${guardReadGeneration}`);
+}
 
 export function cleanAccountDeleteLockId(raw: string | null | undefined): string | null {
   const value = typeof raw === 'string' ? raw.trim() : '';
@@ -452,6 +471,7 @@ export async function persistAccountDeletePendingAuthLock(
     return false;
   }
   rememberGuardState(lockRaw);
+  invalidateGuardReadCache('persist');
   await AsyncStorage.setItem(
     ACCOUNT_DELETE_PENDING_AUTH_KEY,
     JSON.stringify(mirrorLock(normalized)),
@@ -462,6 +482,9 @@ export async function persistAccountDeletePendingAuthLock(
 export async function restoreAccountDeletePendingAuthMirror(
   lock: AccountDeletePendingAuthLock,
 ): Promise<void> {
+  // Зеркало влияет на чтение, когда защищённых записей нет: «замка нет» больше не достоверно.
+  knownGuardState = 'unknown';
+  invalidateGuardReadCache('restore_mirror');
   await AsyncStorage.setItem(ACCOUNT_DELETE_PENDING_AUTH_KEY, JSON.stringify(mirrorLock(lock)));
 }
 
@@ -797,6 +820,7 @@ export function isAccountDeleteGuardNoLockSeenError(error: unknown): boolean {
 async function discardBrokenGuardRecords(secureStore: SecureStoreModule | null): Promise<void> {
   knownGuardState = 'none';
   knownDeletedProviderUid = null;
+  invalidateGuardReadCache('discard_broken');
   if (!secureStore) return;
   try {
     await Promise.all([
@@ -828,6 +852,30 @@ function reportBrokenGuard(kind: string, detail: string): void {
 }
 
 export async function readAccountDeletePendingAuthRaw(): Promise<string | null> {
+  if (knownGuardState === 'none') {
+    if (!guardFastNoneLogged) {
+      guardFastNoneLogged = true;
+      console.log('[ACCOUNT-DELETE-GUARD] read:fast_none — замка нет, хранилище не читаем (дальше без лога)');
+    }
+    return null;
+  }
+  const current = inFlightGuardRead;
+  if (current && current.generation === guardReadGeneration) return current.promise;
+  const generation = guardReadGeneration;
+  const promise = readAccountDeletePendingAuthRawFromStorage();
+  inFlightGuardRead = Object.freeze({ generation, promise });
+  const release = (): void => {
+    if (inFlightGuardRead?.promise === promise) inFlightGuardRead = null;
+  };
+  promise.then(release, (error: unknown) => {
+    release();
+    console.warn('[ACCOUNT-DELETE-GUARD] read:failed — не кэшируем, следующий вызов прочитает снова',
+      error instanceof Error ? error.message : String(error));
+  });
+  return promise;
+}
+
+async function readAccountDeletePendingAuthRawFromStorage(): Promise<string | null> {
   const secureStore = getSecureStore();
   // SecureStore may be unavailable in Expo Go/web, but the AsyncStorage v1
   // mirror is still evidence of an interrupted deletion.  Inspect it before
@@ -963,6 +1011,7 @@ async function clearAccountDeletePendingAuthLockSerialized(
   if (record !== null || anchor !== null) throw new Error('account_delete_guard_secure_clear_mismatch');
   knownGuardState = 'none';
   knownDeletedProviderUid = null;
+  invalidateGuardReadCache('clear');
 }
 
 export async function clearAccountDeletePendingAuthLock(): Promise<void> {
@@ -1016,6 +1065,7 @@ async function forceClearExpiredAccountDeleteLock(): Promise<void> {
     await AsyncStorage.removeItem(ACCOUNT_DELETE_PENDING_AUTH_KEY).catch(swallowError('account_delete_quarantine:pending_auth_remove'));
     knownGuardState = 'none';
     knownDeletedProviderUid = null;
+    invalidateGuardReadCache('expired_clear');
   } catch (e) {
     // зачем (запрет немого catch): не смогли снять — замок останется и
     // проверка снова придёт сюда; причина обязана быть видна.

@@ -236,8 +236,10 @@ const styles = StyleSheet.create({
   },
   ctaText: { fontSize: 16, lineHeight: 21, fontWeight: '700', textAlign: 'center' },
   ctaSmallHit: { alignSelf: 'center', width: 'auto' },
+  // зачем (эмулятор 02.10): обёртка PressableHybrid даёт содержимому width:100%, а у маленькой кнопки
+  // ширина «по содержимому» — Android раздувал плашку и прижимал «Ещё раз» вправо. Ширина — по тексту.
   ctaSmall: {
-    minHeight: 44, borderRadius: 22, paddingHorizontal: 18,
+    width: 'auto', minHeight: 44, borderRadius: 22, paddingHorizontal: 18,
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
   },
   ctaSmallText: { fontSize: 16, lineHeight: 21, fontWeight: '600', textAlign: 'center' },

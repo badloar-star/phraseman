@@ -22,6 +22,7 @@ import {
 import { DialogueGlassMoodFace, dialogueMoodLabel } from '../components/dialogs/glass/DialogueGlassSessionParts';
 import { LV2_BAD, LV2_GOOD } from '../components/learning-v2/LearningV2Glass';
 import type { DialogueV2CoachingMood } from './dialogue_v2_turn_coaching_client';
+import { dialogueV2UiCopy } from './dialogue_v2_ui_copy';
 import { triLang, type Lang } from '../constants/i18n';
 
 // зачем (владелец 2026-09-30, макет dialogs.html D1–D5 = practice.html «Завершение»): итог
@@ -154,6 +155,11 @@ export default function DialogueV2CompletionRoute() {
   }, []);
 
   const review = state.kind === 'ready' ? state.result.review : null;
+  // зачем (эмулятор 02.10): сервер присылает подписи целей на английском, а брифинг показывал их
+  // на языке интерфейса — на итоге цели вдруг становились «Start with a greeting». Берём тот же
+  // перевод, что у брифинга; нет перевода — подпись сервера.
+  const goalLabels = useMemo(() => dialogueV2UiCopy(lang, scenarioId)?.objectiveLabels ?? null, [lang, scenarioId]);
+  const goalLabel = (objectiveId: string, fallback: string) => goalLabels?.[objectiveId] ?? fallback;
   const goalsTotal = review?.objectiveResults.length ?? 0;
   const goalsMet = review?.objectiveResults.filter((objective) => objective.status === 'met').length ?? 0;
   // Разбор каждого хода (D112) — основной источник; без него — заметки итогового ревью.
@@ -228,7 +234,7 @@ export default function DialogueV2CompletionRoute() {
                       key={objective.objectiveId}
                       style={[styles.goalRow, index > 0 ? { borderTopWidth: 1, borderTopColor: glass.line } : null]}
                       accessible
-                      accessibilityLabel={objective.label}
+                      accessibilityLabel={goalLabel(objective.objectiveId, objective.label)}
                       accessibilityState={{ checked: met }}
                     >
                       <View style={[styles.goalBadge, { backgroundColor: met ? glass.cta : glass.opaqueControl }]}>
@@ -236,7 +242,7 @@ export default function DialogueV2CompletionRoute() {
                           <Text maxFontSizeMultiplier={1.2} style={[styles.goalIndex, { color: glass.secondary }]}>{index + 1}</Text>
                         )}
                       </View>
-                      <Text maxFontSizeMultiplier={1.3} style={[styles.goalText, { color: met ? glass.secondary : glass.text }]}>{objective.label}</Text>
+                      <Text maxFontSizeMultiplier={1.3} style={[styles.goalText, { color: met ? glass.secondary : glass.text }]}>{goalLabel(objective.objectiveId, objective.label)}</Text>
                     </View>
                   );
                 })}

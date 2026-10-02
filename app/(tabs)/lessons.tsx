@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useCallback,
 } from "react";
-import {
+import { Platform,
   View,
   Text,
   TouchableOpacity,
@@ -754,6 +754,9 @@ interface LessonCardProps {
   onLearningV2Press?: (lessonOrdinal: number) => void;
 }
 
+/** Тени карточек уроков: только iOS (см. зачем у стиля карточки). */
+const LESSON_CARD_SHADOWS_ENABLED = Platform.OS !== "android";
+
 const LessonCard = React.memo(function LessonCard({
   num,
   name,
@@ -856,6 +859,10 @@ const LessonCard = React.memo(function LessonCard({
           marginHorizontal: 14,
           borderRadius: cardRadius,
           transform: [{ scale: scaleAnim ?? 1 }],
+          // зачем (замер Q53 на слабом Android: «Обучение» p50 23 мс): тень с elevation под
+          // скруглённой обрезкой у КАЖДОЙ карточки — самая дорогая часть прокрутки, а на тёмном
+          // стекле 2.0 её почти не видно. На Android тени у карточек нет; iOS — как было.
+          ...(LESSON_CARD_SHADOWS_ENABLED ? {
           shadowColor: isGoldTheme ? "#000" : darkenHexCached(bg, 0.28),
           shadowOffset: {
             width: 0,
@@ -893,7 +900,7 @@ const LessonCard = React.memo(function LessonCard({
             : isOliveTheme
               ? oliveShadow(isCurrent ? 2 : 1)
               : {}),
-          ...{},
+          } : null),
         }}
       >
         <TouchableOpacity

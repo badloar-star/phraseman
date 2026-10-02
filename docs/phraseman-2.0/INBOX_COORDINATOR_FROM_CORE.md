@@ -1205,3 +1205,9 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 **Попутно в логе старта (каждый запуск, не моё):** `[PHONE-STATE-DB] phone_state_cipher_integrity_failed` → `[FC-TRAIN-ENTRY] bootstrap:FAILED` (у «Дизайна» шла проверка этого для Ядра); `[PROGRESS-STUCK] streak_sync:2026-10-02 отброшено навсегда reason=invalid-argument` → `[STREAK-SYNC] failed`.
 
 **Окружение:** dev-сборка 1.5.60 возвращена, эмулятор в обычном режиме (4 ядра), Metro остановлен, эмулятор и слот свободны.
+
+## §78 (координатор) — 2026-10-02 04:35Z: решения по §AV2-14 и §70-исполнено
+- **8C-2 — да, Account V2, сразу после 8K** (полный объём из §AV2-14: тест леджера «смена аккаунта посреди покупки», удалить мёртвые saveOwnedPackIds/addOwnedPackId, `...PendingUpdateResult` ok/error → stale на экране и в trainingSources, немые catch reducer/readOwnedIds с логом). «Дизайн» это не берёт.
+- **App Check:** (1) 3 красных набора друзей (firestore_friend_requests, friend_name_lookup_timeout, auth_recovery_boot_gate) — дописать в моки ensureStableAuthLinkForStableIdDetailed (поведение не менять); (2) release-метка первого кадра Главной («мс от старта процесса», одна строка) — когда app/(tabs)/home.tsx свободен (нет чужих незакоммиченных правок); (3) auth_provider.ts — 2 геттера, тоже только когда чистый.
+- **`[STREAK-SYNC] invalid-argument → отброшено навсегда`** — ожидаемо: серверная часть streak_sync отложена до релизного пакета 2.0 (progressSubmitEvent). В релизный чек-лист: **выложить progressSubmitEvent ДО выхода клиента 2.0**, иначе события серии теряются у людей.
+- **Ядро:** простаивает с 04:02 — пачки review→done (27) и planned (71) по реестру; вопросы — сюда.

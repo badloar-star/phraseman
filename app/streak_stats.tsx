@@ -939,6 +939,11 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
             tr: "Tüm zamanlar toplamı",
             pl: "Suma historyczna",
         })}
+        {/* зачем (Q112, координатор 02.10): сумма идёт по всем языкам аккаунта — подписываем, но только
+            если языков с прогрессом больше одного; иначе пометка только путает. */}
+        {Object.values(data.byTarget ?? {}).filter((c) => c.wordsLearned + c.phrasesLearned + c.flashcardsSaved > 0).length > 1
+            ? ` · ${triLang(lang, { ru: 'по всем языкам', uk: 'усіма мовами', es: 'todos los idiomas', en: 'all languages', 'pt-BR': 'todos os idiomas', vi: 'mọi ngôn ngữ', id: 'semua bahasa', tr: 'tüm diller', pl: 'wszystkie języki' })}`
+            : null}
       </Text>
       {lifetimeRows.filter((r) => !collapseZeros || r.numValue > 0).map((r, i) => metricRow(r.label, String(r.numValue), r.kind, r.numValue, i))}
       {zeroRows.length > 0 ? (zeroRowsExpanded ? (<>

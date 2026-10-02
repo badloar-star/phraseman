@@ -254,14 +254,18 @@ describe('mergeShards', () => {
   });
 });
 
-describe('Level Spin merge integration contract', () => {
-  it('marks both identities pending, schedules Spin migration, and clears only after union', () => {
+// зачем (8O, 2026-10-02): прежний контракт ждал слияние Level Spin при мерже
+// аккаунтов. PM-068 (2026-09-27) намеренно вывел Spin из обращения:
+// level_spin_merge.ts / level_reward_spins.ts физически удалены, задача
+// 'level_spins' больше не ставится в outbox. Теперь сторожим обратное — слияние
+// не планирует перенос Spin и не помечает аккаунты ожидающими его.
+describe('Level Spin merge retirement contract (PM-068)', () => {
+  it('does not schedule a Spin migration task nor mark identities Spin-pending', () => {
     const source = readFileSync(join(__dirname, 'auth_merge.ts'), 'utf8');
-    expect(source).toContain("tasks: ['historical_revenuecat_receipts', 'derived_identity_cleanup', 'level_spins', 'mistake_practice_events']");
-    expect(source).toContain('levelSpinMergePending: true');
-    expect(source).toContain('migrateLevelSpinAccountMerge');
-    expect(source).toContain('levelSpinMergePending: false');
-    expect(source).toContain('buildLevelSpinMergePlan');
+    expect(source).toContain("tasks: ['historical_revenuecat_receipts', 'derived_identity_cleanup', 'mistake_practice_events']");
+    expect(source).not.toContain("'level_spins'");
+    expect(source).not.toContain('levelSpinMergePending: true');
+    expect(source).not.toContain('buildLevelSpinMergePlan');
   });
 });
 
@@ -532,41 +536,25 @@ describe('mergeStableAccounts', () => {
     deliveries: { base: { state: 'unclaimed' } },
   });
 
-  it('durably unions Spin ledgers and clears merge markers only after the outbox task succeeds', async () => {
+  // зачем (8O, 2026-10-02): два прежних теста («durably unions Spin ledgers…» и
+  // «retains both merge markers… Spin results collide») требовали ПЕРЕНОСА Spin-
+  // журналов проигравшего победителю. PM-068 (2026-09-27) вывел Spin из обращения
+  // намеренно — переносить нечего и воскрешать нельзя. Вместо них один тест на
+  // полном пути слияния: исторические level_spin_* НЕ копируются победителю, слияние
+  // не ставит Spin-маркеры, а строки проигравшего лежат нетронутыми (их читает
+  // coin_reconcile_v1 как источник компенсации монетами — удалять их нельзя).
+  it('never copies historical level_spin_* rows into the winner and sets no Spin markers', async () => {
     const requestId = 'request0000000002';
     const { db, store } = makeDbStub({
-      account_merge_outbox: {
-        mergeSpin: {
-          winnerStableId: 'winner',
-          loserStableId: 'loser',
-          status: 'pending',
-          tasks: ['level_spins'],
-        },
-      },
       users: {
-        winner: {
-          levelSpinMergePending: true,
-          levelSpinServerState: { protocol: 'v1', levelBaseline: 2, balance: 1 },
-          progress: { level_reward_spin_balance: '1' },
-        },
-        loser: {
-          identityHidden: true,
-          canonicalStableId: 'winner',
-          levelSpinMergePending: true,
-          levelSpinServerState: { protocol: 'v1', levelBaseline: 3, balance: 2 },
-          progress: { level_reward_spin_balance: '2' },
-        },
+        winner: { firebaseAuthUid: 'auth-spin-retired', progress: { streak_count: '1' } },
+        loser: { firebaseAuthUid: 'auth-spin-retired', progress: { streak_count: '2' } },
       },
       'users/winner/level_spin_credits': {
         level_spin_v1_002: { level: 2, status: 'available', earnedAtMs: 20 },
       },
       'users/loser/level_spin_credits': {
-        level_spin_v1_002: {
-          level: 2,
-          status: 'consumed',
-          earnedAtMs: 10,
-          claimRequestId: requestId,
-        },
+        level_spin_v1_002: { level: 2, status: 'consumed', earnedAtMs: 10, claimRequestId: requestId },
         level_spin_v1_003: { level: 3, status: 'available', earnedAtMs: 30 },
       },
       'users/loser/level_spin_results': {
@@ -574,71 +562,22 @@ describe('mergeStableAccounts', () => {
       },
     });
 
-    await expect(processAccountMergeOutboxJob(db as any, 'mergeSpin', NOW)).resolves.toEqual({
-      status: 'completed',
-      updated: 3,
-    });
-    expect(store['users/winner/level_spin_credits']).toMatchObject({
-      level_spin_v1_002: { status: 'consumed', claimRequestId: requestId },
-      level_spin_v1_003: { status: 'available' },
-    });
-    expect(store['users/winner/level_spin_results']?.[requestId]).toMatchObject({
-      requestId,
-      creditId: 'level_spin_v1_002',
-      baseGiftId: 'xp_100',
-    });
-    expect(store['users/loser/level_spin_credits']).toEqual({});
-    expect(store['users/loser/level_spin_results']).toEqual({});
-    expect(store.users.winner).toMatchObject({
-      levelSpinMergePending: false,
-      levelSpinServerState: { protocol: 'v1', levelBaseline: 3, balance: 1, activeRequestId: null },
-      progress: { level_reward_spin_balance: '1' },
-    });
-    expect(store.users.loser).toMatchObject({ levelSpinMergePending: false });
-    expect(store.account_merge_outbox.mergeSpin).toMatchObject({
-      status: 'completed',
-      updatedDocs: 3,
-    });
-  });
+    await expect(mergeStableAccounts(db as any, 'auth-spin-retired', 'winner', 'loser', NOW))
+      .resolves.toMatchObject({ canonicalStableId: 'winner', mergedFromStableId: 'loser' });
 
-  it('retains both merge markers and a pending outbox when immutable Spin results collide', async () => {
-    const requestId = 'request0000000007';
-    const { db, store } = makeDbStub({
-      account_merge_outbox: {
-        mergeSpinCollision: {
-          winnerStableId: 'winner',
-          loserStableId: 'loser',
-          status: 'pending',
-          tasks: ['level_spins'],
-        },
-      },
-      users: {
-        winner: {
-          levelSpinMergePending: true,
-          levelSpinServerState: { protocol: 'v1', levelBaseline: 7, balance: 0 },
-        },
-        loser: {
-          identityHidden: true,
-          canonicalStableId: 'winner',
-          levelSpinMergePending: true,
-          levelSpinServerState: { protocol: 'v1', levelBaseline: 7, balance: 0 },
-        },
-      },
-      'users/winner/level_spin_results': {
-        [requestId]: levelSpinResult(requestId, 'level_spin_v1_007', 7, 'xp_100'),
-      },
-      'users/loser/level_spin_results': {
-        [requestId]: levelSpinResult(requestId, 'level_spin_v1_007', 7, 'xp_250'),
-      },
+    expect(store['users/winner/level_spin_credits']).toEqual({
+      level_spin_v1_002: { level: 2, status: 'available', earnedAtMs: 20 },
     });
-
-    await expect(processAccountMergeOutboxJob(db as any, 'mergeSpinCollision', NOW))
-      .rejects.toThrow('level_spin_result_collision');
-    expect(store.users.winner).toMatchObject({ levelSpinMergePending: true });
-    expect(store.users.loser).toMatchObject({ levelSpinMergePending: true });
-    expect(store.account_merge_outbox.mergeSpinCollision).toMatchObject({ status: 'pending' });
-    expect(store['users/winner/level_spin_results']?.[requestId]).toMatchObject({ baseGiftId: 'xp_100' });
-    expect(store['users/loser/level_spin_results']?.[requestId]).toMatchObject({ baseGiftId: 'xp_250' });
+    expect(store['users/winner/level_spin_results'] ?? {}).toEqual({});
+    expect(Object.keys(store['users/loser/level_spin_credits'] ?? {}).sort())
+      .toEqual(['level_spin_v1_002', 'level_spin_v1_003']);
+    expect(store['users/loser/level_spin_results']?.[requestId]).toMatchObject({ baseGiftId: 'xp_100' });
+    expect(store.users.winner?.levelSpinMergePending).toBeUndefined();
+    expect(store.users.loser?.levelSpinMergePending).toBeUndefined();
+    expect((store.users.winner?.progress as DocData).level_reward_spin_balance).toBeUndefined();
+    const outboxes = Object.values(store.account_merge_outbox ?? {});
+    expect(outboxes).toHaveLength(1);
+    expect(outboxes[0]?.tasks).not.toContain('level_spins');
   });
 
   it('owner-rematerializes the union of winner and loser mistake events before completing merge', async () => {
@@ -933,12 +872,15 @@ describe('mergeStableAccounts', () => {
     });
   });
 
+  // зачем (8O, 2026-10-02): раньше сторону-победителя задавал больший XP. PM-067
+  // (2026-09-27) убрал XP из выбора: канон — первый аргумент слияния (A). Оба
+  // направления (left→right и right→left) сохраняем, но задаём порядком вызова.
   it.each([
-    ['left', 'right', 10, 1],
-    ['right', 'left', 1, 10],
+    ['left', 'right'],
+    ['right', 'left'],
   ] as const)(
     'copies both immutable mistake histories before returning when %s wins over %s',
-    async (expectedWinner, expectedLoser, leftXp, rightXp) => {
+    async (expectedWinner, expectedLoser) => {
       const recordFor = (owner: string, eventId: string) => materializeMistakePracticeEventRecord({
         stableUid: owner,
         studyTarget: 'en',
@@ -954,13 +896,13 @@ describe('mergeStableAccounts', () => {
       })).digest('hex')}`;
       const { db, store } = makeDbStub({
         users: {
-          left: { firebaseAuthUid: 'auth-mistakes', progress: { user_total_xp: String(leftXp) } },
-          right: { firebaseAuthUid: 'auth-mistakes', progress: { user_total_xp: String(rightXp) } },
+          left: { firebaseAuthUid: 'auth-mistakes' },
+          right: { firebaseAuthUid: 'auth-mistakes' },
         },
         'users/left/progress_events': { [idFor('left', 'left-event')]: recordFor('left', 'left-event') as any },
         'users/right/progress_events': { [idFor('right', 'right-event')]: recordFor('right', 'right-event') as any },
       });
-      const result = await mergeStableAccounts(db as any, 'auth-mistakes', 'left', 'right', NOW);
+      const result = await mergeStableAccounts(db as any, 'auth-mistakes', expectedWinner, expectedLoser, NOW);
       expect(result.canonicalStableId).toBe(expectedWinner);
       expect(store[`users/${expectedWinner}/progress_events`][idFor(expectedWinner, 'left-event')])
         .toMatchObject({ ownerStableUid: expectedWinner });
@@ -972,12 +914,15 @@ describe('mergeStableAccounts', () => {
     },
   );
 
+  // зачем (8O, 2026-10-02): раньше сторону-победителя задавал больший XP. PM-067
+  // (2026-09-27) убрал XP из выбора: канон — первый аргумент слияния (A). Оба
+  // направления (left→right и right→left) сохраняем, но задаём порядком вызова.
   it.each([
-    ['left', 'right', 10, 1],
-    ['right', 'left', 1, 10],
+    ['left', 'right'],
+    ['right', 'left'],
   ] as const)(
     'publishes %s over %s only after a complete 51-event paged union',
-    async (expectedWinner, expectedLoser, leftXp, rightXp) => {
+    async (expectedWinner, expectedLoser) => {
       const idFor = (owner: string, eventId: string) => `mp_${createHash('sha256').update(canonicalJsonV1({
         ownerStableUid: owner, studyTarget: 'en', eventId,
       })).digest('hex')}`;
@@ -997,8 +942,8 @@ describe('mergeStableAccounts', () => {
       let storeRef: Store;
       const { db, store, queryLog } = makeDbStub({
         users: {
-          left: { firebaseAuthUid: 'auth-page', progress: { user_total_xp: String(leftXp) } },
-          right: { firebaseAuthUid: 'auth-page', progress: { user_total_xp: String(rightXp) } },
+          left: { firebaseAuthUid: 'auth-page' },
+          right: { firebaseAuthUid: 'auth-page' },
         },
         [`users/${expectedLoser}/progress_events`]: loserEvents,
       }, {
@@ -1012,7 +957,7 @@ describe('mergeStableAccounts', () => {
       });
       storeRef = store;
 
-      await expect(mergeStableAccounts(db as any, 'auth-page', 'left', 'right', NOW))
+      await expect(mergeStableAccounts(db as any, 'auth-page', expectedWinner, expectedLoser, NOW))
         .resolves.toMatchObject({ canonicalStableId: expectedWinner, mergedFromStableId: expectedLoser });
       expect(publicationSnapshots.length).toBeGreaterThanOrEqual(2);
       expect(publicationSnapshots.slice(0, 2)).toEqual([false, false]);
@@ -1027,12 +972,15 @@ describe('mergeStableAccounts', () => {
     },
   );
 
+  // зачем (8O, 2026-10-02): раньше сторону-победителя задавал больший XP. PM-067
+  // (2026-09-27) убрал XP из выбора: канон — первый аргумент слияния (A). Оба
+  // направления (left→right и right→left) сохраняем, но задаём порядком вызова.
   it.each([
-    ['left', 'right', 10, 1],
-    ['right', 'left', 1, 10],
+    ['left', 'right'],
+    ['right', 'left'],
   ] as const)(
     'does not publish or hide either identity when paged %s-over-%s mistake union times out',
-    async (expectedWinner, expectedLoser, leftXp, rightXp) => {
+    async (expectedWinner, expectedLoser) => {
       const eventFor = (owner: string, index: number) => ({
         eventId: `${owner}-event-${String(index).padStart(3, '0')}`,
         mistakeId: `mistake:v1:${'a'.repeat(64)}`,
@@ -1052,8 +1000,8 @@ describe('mergeStableAccounts', () => {
       let publicationObservedBeforeCopy = false;
       const { db, store } = makeDbStub({
         users: {
-          left: { firebaseAuthUid: 'auth-timeout', progress: { user_total_xp: String(leftXp) } },
-          right: { firebaseAuthUid: 'auth-timeout', progress: { user_total_xp: String(rightXp) } },
+          left: { firebaseAuthUid: 'auth-timeout' },
+          right: { firebaseAuthUid: 'auth-timeout' },
         },
         [`users/${expectedLoser}/progress_events`]: loserEvents,
       }, {
@@ -1068,7 +1016,7 @@ describe('mergeStableAccounts', () => {
         },
       });
 
-      await expect(mergeStableAccounts(db as any, 'auth-timeout', 'left', 'right', NOW))
+      await expect(mergeStableAccounts(db as any, 'auth-timeout', expectedWinner, expectedLoser, NOW))
         .rejects.toThrow('copy_timeout');
       expect(publicationObservedBeforeCopy).toBe(false);
       expect(store.auth_links['auth-timeout']).toBeUndefined();
@@ -1080,7 +1028,10 @@ describe('mergeStableAccounts', () => {
     },
   );
 
-  it('merges two stable ids into the higher-XP one and hides the loser', async () => {
+  // зачем (8O, 2026-10-02): прежде тест ждал «победитель = больше XP». PM-067
+  // (2026-09-27) намеренно убрал XP из выбора канона: побеждает первый аргумент (A).
+  // XP оставлен в данных нарочно — у A он МЕНЬШЕ, и A всё равно побеждает.
+  it('merges two stable ids into the first (A) one regardless of retired XP and hides the loser', async () => {
     const { db, store } = makeDbStub({
       users: {
         'stable-tablet': {
@@ -1098,24 +1049,27 @@ describe('mergeStableAccounts', () => {
 
     const res = await mergeStableAccounts(db as any, 'google-1', 'stable-phone', 'stable-tablet', NOW);
 
-    expect(res.canonicalStableId).toBe('stable-tablet'); // higher XP wins
-    expect(res.mergedFromStableId).toBe('stable-phone');
+    expect(res.canonicalStableId).toBe('stable-phone'); // A wins; lower XP does not matter
+    expect(res.mergedFromStableId).toBe('stable-tablet');
     expect(res.alreadyMerged).toBe(false);
 
-    const winner = store.users['stable-tablet']!;
-    expect((winner.progress as DocData).user_total_xp).toBe('6812');
+    const winner = store.users['stable-phone']!;
     expect((winner.progress as DocData).streak_count).toBe('9'); // best-of
-    expect(winner.shards).toBe(491); // immutable legacy opening remains untouched
-    expect(store['users/stable-tablet/external_economy_events']).toBeUndefined();
+    expect(winner.shards).toBe(1325); // immutable legacy opening remains untouched
+    expect(store['users/stable-phone/external_economy_events']).toBeUndefined();
     expect(winner.firebaseAuthUid).toBe('google-1');
 
-    const loser = store.users['stable-phone']!;
+    const loser = store.users['stable-tablet']!;
     expect(loser.identityHidden).toBe(true);
-    expect(loser.canonicalStableId).toBe('stable-tablet');
-    expect(store.auth_links['google-1']).toMatchObject({ stable_id: 'stable-tablet' });
+    expect(loser.canonicalStableId).toBe('stable-phone');
+    expect(store.auth_links['google-1']).toMatchObject({ stable_id: 'stable-phone' });
   });
 
-  it('chooses the winner and merge payload from transaction snapshots', async () => {
+  // зачем (8O, 2026-10-02): раньше правка B перед транзакцией делала B победителем
+  // через больший XP. По PM-067 победитель — A, поэтому сторожим главное: сливаемые
+  // ДАННЫЕ берутся из снимков внутри транзакции, а не из чтения до неё, и свежий XP
+  // проигравшего не переворачивает выбор канона.
+  it('takes the merge payload from transaction snapshots and keeps A canonical despite B XP drift', async () => {
     const { db, store } = makeDbStub({
       users: {
         'stable-a': {
@@ -1149,15 +1103,16 @@ describe('mergeStableAccounts', () => {
     );
 
     expect(result).toEqual({
-      canonicalStableId: 'stable-b',
-      mergedFromStableId: 'stable-a',
+      canonicalStableId: 'stable-a',
+      mergedFromStableId: 'stable-b',
       alreadyMerged: false,
     });
-    expect(store.users['stable-b']?.shards).toBe(999);
-    expect((store.users['stable-b']?.progress as DocData).streak_count).toBe('99');
-    expect(store.users['stable-a']).toMatchObject({
+    expect(store.users['stable-a']?.shards).toBe(10); // winner's own legacy opening untouched
+    // streak '99' exists only in the in-transaction snapshot of B → payload came from it.
+    expect((store.users['stable-a']?.progress as DocData).streak_count).toBe('99');
+    expect(store.users['stable-b']).toMatchObject({
       identityHidden: true,
-      canonicalStableId: 'stable-b',
+      canonicalStableId: 'stable-a',
     });
   });
 
@@ -1713,7 +1668,9 @@ describe('mergeStableAccounts', () => {
   it('absorbs an unowned anonymous LOSER that carries a fresh anon_merge_claim', async () => {
     // 2nd device played anonymously as anon-uid-2; it stamped anon_merge_claim
     // while still anonymous, then signed into the existing account (owned by
-    // google-11, higher XP). The anon progress must merge in, not orphan.
+    // google-11). The anon progress must merge in, not orphan.
+    // зачем (8O, 2026-10-02): по PM-067 канон — первый аргумент (A), XP не решает;
+    // поэтому владеемый аккаунт передаётся первым, анонимный — проигравшим.
     const { db, store } = makeDbStub({
       users: {
         'stable-mine': { firebaseAuthUid: 'google-11', progress: { user_total_xp: '5000' }, shards: 100 },
@@ -1726,9 +1683,9 @@ describe('mergeStableAccounts', () => {
       },
     });
 
-    const res = await mergeStableAccounts(db as any, 'google-11', 'stable-anon', 'stable-mine', NOW);
+    const res = await mergeStableAccounts(db as any, 'google-11', 'stable-mine', 'stable-anon', NOW);
 
-    expect(res.canonicalStableId).toBe('stable-mine'); // owned + higher XP wins
+    expect(res.canonicalStableId).toBe('stable-mine'); // owned A wins
     expect(res.mergedFromStableId).toBe('stable-anon');
     const winner = store.users['stable-mine']!;
     expect((winner.progress as DocData).streak_count).toBe('7'); // absorbed from anon

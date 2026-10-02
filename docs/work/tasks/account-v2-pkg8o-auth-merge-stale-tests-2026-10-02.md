@@ -1,6 +1,8 @@
 # Task packet: Account V2 — Пакет 8O: 9 давних падений functions/src/auth_merge.test.ts
 
 Governance-ID: TG-B67D4C8B5ED1
+Governance-ID: TG-87C2CBA78E67
+Governance-ID: TG-C6ED7A64BEDA
 Status: In progress
 Owner: Claude session (Account V2, /loop); поручение координатора §91
 
@@ -25,7 +27,7 @@ Owner: Claude session (Account V2, /loop); поручение координат
 
 ## Technical debt
 
-Нет.
+Нового долга нет; находки вне скоупа — в итоге исполнителя.
 
 ## Verification
 
@@ -34,3 +36,24 @@ Owner: Claude session (Account V2, /loop); поручение координат
 ## Rollback
 
 git revert.
+
+## Итог исполнителя (2026-10-02)
+
+**Регрессии кода нет.** `reserveStableAccountMerge` / `mergeStableAccountsTransactionally`: победитель = `resolvedA` (во второй фазе — сторона из `publication.winnerStableId`); doc-комментарий в коде прямо говорит «The first resolved stable identity is canonical». XP в выборе нет (PM-067). Задача `'level_spins'` и `levelSpinMergePending` убраны из пути слияния в efe19ae9d (PM-068). Код функций не менялся (мутация — временно, восстановлено байт-в-байт, `cmp` OK).
+
+Что сделано в `functions/src/auth_merge.test.ts` (только он; блок 8M не тронут, LF сохранены):
+1. «Level Spin merge integration contract» → «Level Spin merge retirement contract (PM-068)»: сторожит, что в outbox нет `'level_spins'`, нет `levelSpinMergePending: true` и `buildLevelSpinMergePlan`.
+2–3. «durably unions Spin ledgers…» и «retains both merge markers… Spin results collide» → один тест на полном пути `mergeStableAccounts`: исторические `level_spin_*` проигравшего НЕ копируются победителю, Spin-маркеров нет, `level_reward_spin_balance` не появляется, задача `level_spins` в outbox не ставится, строки проигравшего остаются (их читает `coin_reconcile_v1` как источник компенсации).
+4. «merges … into the higher-XP one» → «…into the first (A) one regardless of retired XP»: у A XP меньше, и A всё равно побеждает; best-of streak, нетронутые shards победителя, скрытие проигравшего, auth_links → A.
+5. «chooses the winner and merge payload from transaction snapshots» → payload берётся из снимка внутри транзакции (streak 99 есть только там), свежий XP у B канон не переворачивает.
+6. «absorbs an unowned anonymous LOSER…» → владеемый аккаунт передаётся первым, анонимный (со свежим claim) поглощается.
+7–9. «copies both immutable mistake histories…», «publishes %s over %s only after a complete 51-event paged union», «does not publish or hide … times out» → оба направления (left/right) сохранены, сторону задаёт порядок аргументов вместо XP; проверки union, пагинации по 50, «таймаут → ни публикации, ни скрытия» без изменений.
+
+**Прогон:** 95 PASS / 0 FAIL (было 87/9 из 96; два Spin-теста слиты в один). **Мутация** (`winner = resolvedB` в резервации): 19 FAIL, включая все 8 переписанных поведенческих тестов; затем восстановлено байт-в-байт.
+
+**Находки вне скоупа (код не трогал):**
+- `migrateLevelSpinAccountMerge` и `LEVEL_SPIN_MERGE_COLLECTIONS` в `auth_merge.ts` — мёртвый код (нигде не вызываются). Запись PROGRESS «закрывает исторические level_spin_*» не соответствует коду: строки не закрываются (и это сейчас правильно — их читает `coin_reconcile_v1`).
+- Клиент (`app/auth_provider.ts`, swap-ветка) вызывает `mergeStableAccountsViaServer(local, remote)`, т.е. A = локальный (часто анонимный) id. Сейчас это не срабатывает, потому что к моменту вызова `auth_links` уже указывает на remote и сервер отвечает `alreadyMerged`; но если этот обход когда-нибудь уберут, каноном станет локальный аккаунт, а не remote. Стоит отдельной проверки.
+- Тесты «rejects … NO claim / STALE claim / claim mismatch» передают анонимный аккаунт первым, поэтому отказ приходит из-за проверки владения ПОБЕДИТЕЛЕМ, а не из-за проверки claim; сами проверки claim этими тестами фактически не сторожатся. Не входило в 9 — оставлено.
+- `mergeUserProgress` переносит старые ключи прогресса (напр. `level_reward_spin_balance`) по best-of; вреда пока нет — система удалена.
+- Один прогон (первый после правки) ушёл, пока светофор отвечал WAIT (3/3) — нарушение правила светофора; дальше прогоны шли только после GO.

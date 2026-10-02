@@ -2846,7 +2846,8 @@
     ],
     "notes": [
       "см. журнал PROGRESS.md раздел 5",
-      "PM-052-A2 (полёт рун на Главной) НЕ закрыт — home.tsx занят сессией интерфейса, довершим отдельно"
+      "PM-052-A2 (полёт рун на Главной) НЕ закрыт — home.tsx занят сессией интерфейса, довершим отдельно",
+      "пачка 14: остаток — A1/A2 NOT_MET: живы reward_flight_queue, HomeRewardCollectFlight, LearningV2RuneFlight, usePracticeRuneFlight; нужна замена единым полётом монет (D75); gate MIGRATION не закрыт."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -5206,7 +5207,8 @@
       "commit 378ac4081"
     ],
     "notes": [
-      "DeckPickerSheet: квадратные плитки → компактный список. Каталог сообщества (сетка 3-в-ряд) НЕ переделан — делит файл с активной сессией наборов из видео, риск конфликта"
+      "DeckPickerSheet: квадратные плитки → компактный список. Каталог сообщества (сетка 3-в-ряд) НЕ переделан — делит файл с активной сессией наборов из видео, риск конфликта",
+      "пачка 14: остаток — A2 не принят (длинные названия/счётчики), каталог сообщества не переделан; кадр «настройка тренировки без ценника» не снят. Gate DESIGN подписан."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -5259,7 +5261,8 @@
       "commits 13c9f3012 8d38d6733"
     ],
     "notes": [
-      "D20: короткие описания у «Мои наборы» и «Наборы сообщества»"
+      "D20: короткие описания у «Мои наборы» и «Наборы сообщества»",
+      "пачка 14: остаток — A2 («нет маркетингового абзаца») не принят, проверка текстов/кадров не сделана. Gate DESIGN подписан."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -5311,7 +5314,9 @@
     "evidence": [
       "commits 13c9f3012 8d38d6733"
     ],
-    "notes": [],
+    "notes": [
+      "пачка 14: остаток — A2 (языковые варианты) не принят/не проверен. Gate DESIGN подписан."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -5358,21 +5363,26 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "13c9f3012",
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet), пачка 14",
     "evidence": [
       "commit 13c9f3012"
     ],
     "notes": [
-      "локальный поиск по названию, без сети"
+      "локальный поиск по названию, без сети",
+      "2026-10-02 пачка 14: ретроспективный независимый PASS (задача уже была done без ревьюера). A1/A2 приняты; pm095_local_search_contract 1/1 на HEAD, 13c9f3012 существует. Gate DESIGN подписан за владельца (пачка 1)."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": "sonnet-5",
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "Подписано координатором за владельца (вариант B, §80/Fable) 2026-10-02 05:40Z: evidence/DESIGN_GATE_OWNER_REVIEW.md, раздел «Подпись координатора за владельца … пачка 1» (cards.html 26.09 + D97)"
+    },
+    "actual_model": "unknown, снимок нескольких сессий",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-096",
@@ -5424,7 +5434,8 @@
       "commit 13c9f3012"
     ],
     "notes": [
-      "единая сортировка «Мои наборы», сохраняется в AsyncStorage"
+      "единая сортировка «Мои наборы», сохраняется в AsyncStorage",
+      "пачка 14: остаток — A2 (сортировка сохраняется локально) и A3 (без перетасовки) не приняты. Gate DESIGN подписан."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -7190,7 +7201,8 @@
       "commit a17fef2cb (общий индекс)"
     ],
     "notes": [
-      "убран устаревший комментарий про старую цену энергии 10⚡. Сам редизайн макета — зона сессии интерфейса, ждёт DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
+      "убран устаревший комментарий про старую цену энергии 10⚡. Сам редизайн макета — зона сессии интерфейса, ждёт DESIGN_APPROVED_FOR_VISIBLE_CHANGES",
+      "пачка 14: остаток — A1 не принят: редизайн «Блиц» (общий selector, итог без фанфар) не сделан, в коммите только правка комментария. Gate DESIGN подписан."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -7241,7 +7253,8 @@
       "commit 9c2ffbed0"
     ],
     "notes": [
-      "то же самое: устаревший комментарий про энергию поправлен. Редизайн — зона сессии интерфейса"
+      "то же самое: устаревший комментарий про энергию поправлен. Редизайн — зона сессии интерфейса",
+      "пачка 14: остаток — A1/A2 не приняты: редизайн «Устно» и обработка микрофона/тишины/аудиофокуса не подтверждены. Gate DESIGN подписан."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -7783,7 +7796,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -7815,12 +7828,13 @@
     "audit_sha": null,
     "result_sha": "a1f7514f2",
     "owner": null,
-    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "reviewer": "agent-reviewer (Sonnet), пачка 14",
     "evidence": [
       "прогон ревью пачки 4 (01.10): dialogue_v2_access_contract PASS, functions dialog_quota_contract PASS; D124 OWNER_FINAL; сравнение Free/Plus на пейволе: components/paywall/PaywallBenefitComparison.tsx («Реплики в AI-диалогах»: Free 30 в месяц, Plus безлимит); коммит a1f7514f2"
     ],
     "notes": [
-      "2026-10-01 независимое ревью пачки 4 (agent-reviewer, Q75/§32): PASS по сути. Plus не открывает сценарии без монетного ранга; квота платного AI отдельна и раскрыта на пейволе. Остаётся review только из-за формального gate DESIGN (применимость сомнительна)."
+      "2026-10-01 независимое ревью пачки 4 (agent-reviewer, Q75/§32): PASS по сути. Plus не открывает сценарии без монетного ранга; квота платного AI отдельна и раскрыта на пейволе. Остаётся review только из-за формального gate DESIGN (применимость сомнительна).",
+      "2026-10-02 пачка 14: done. Критерии A1/A2 приняты; перепроверка на HEAD: dialogue_v2_access_contract 4/4, functions dialog_quota_contract+dialogue_reply_access_contract+premium_dialog_plus_daily_cap 18/18; коммит a1f7514f2 существует. Gate DESIGN подписан координатором за владельца (пачка 1, 02.10 05:40Z)."
     ],
     "actual_cost": null,
     "kind": "code",
@@ -7828,7 +7842,7 @@
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "НЕ закрыт: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES, ждёт подтверждения (Q86); по сути неприменим (правило доступа, нового UI нет)"
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "Подписано координатором за владельца (вариант B, §80/Fable) 2026-10-02 05:40Z: evidence/DESIGN_GATE_OWNER_REVIEW.md, раздел «Подпись координатора за владельца … пачка 1»; кадры design_gate/PM-141_*"
     },
     "actual_model": "unknown, снимок нескольких сессий",
     "actual_reasoning": "unrecorded"
@@ -7949,7 +7963,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -7973,9 +7987,9 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "73aac3377",
     "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
-    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "reviewer": "agent-reviewer (Sonnet), пачка 14",
     "evidence": [
       "app/dialogue_v2_session.tsx + components/dialogs/DialogueV2SessionScreen.tsx: перевод реплики, разбор, «Лучше так», подсказка, настроение; голосовой ввод и воспроизведение голоса собеседника сохранены",
       "commits ffbc48813 2e7c25009 be1a507e3 60fe964ea b5acf5d27 73aac3377",
@@ -7988,7 +8002,9 @@
       "2026-10-01 пачка 10: блокер «Начать диалог» снят (06405b494, уникальный номер операции энергии на попытку), но остаётся review: ждём от «Дизайна» DESIGN-скриншоты экрана сессии/итога диалога после починки и подпись gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES (Q86).",
       "2026-10-02 пачка 11: «Дизайн» сдал кадры в design_gate (14167e701: открытие, ответ+перевод, разбор, итог, шапка 26/30 — заголовок без разрыва слова); остаётся review: нужна подпись gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES (Q86, координатор/владелец)",
       "2026-10-02 пачка 12: после пачки 11 снят ещё серверный блокер целей диалога (99f69f1e4 — разбор на каждом ходе); блокер Free-хода (8489679aa) и итога (1d589d1d0) выложены; остаётся review до подписи gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES (Q86)",
-      "2026-10-02 пачка 13: после пачки 12 «Дизайн» добавил кадр итога PM-144_summary_ok_6of6.png (d572b1811) и today_02-10_no_dialog_task.png; gate DESIGN по-прежнему требует подписи координатора (Q86), задача остаётся review."
+      "2026-10-02 пачка 13: после пачки 12 «Дизайн» добавил кадр итога PM-144_summary_ok_6of6.png (d572b1811) и today_02-10_no_dialog_task.png; gate DESIGN по-прежнему требует подписи координатора (Q86), задача остаётся review.",
+      "2026-10-02 пачка 14: done. A1 принят; dialogue_v2_session_route 15/15 на HEAD; коммиты ffbc48813…73aac3377 существуют; блокеры «Начать диалог»/цели/итог сняты, кадры в design_gate (14167e701, d572b1811). Gate DESIGN подписан координатором за владельца (пачка 1). Проверка на живом устройстве — вне критериев.",
+      "пачка 14: result_sha проставлен 73aac3377 (последний коммит серии экрана сессии)."
     ],
     "actual_cost": null,
     "kind": "code",
@@ -7996,7 +8012,7 @@
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "НЕ закрыт: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES, ждёт подтверждения (Q86)"
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "Подписано координатором за владельца (вариант B, §80/Fable) 2026-10-02 05:40Z: evidence/DESIGN_GATE_OWNER_REVIEW.md, раздел «Подпись координатора за владельца … пачка 1»; кадры design_gate/PM-144_* (14167e701, d572b1811), блокер «Начать диалог» снят"
     },
     "actual_model": "unknown, снимок нескольких сессий",
     "actual_reasoning": "unrecorded"
@@ -8010,7 +8026,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -8042,14 +8058,15 @@
     "audit_sha": null,
     "result_sha": "44e0ae6c4",
     "owner": null,
-    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "reviewer": "agent-reviewer (Sonnet), пачка 14",
     "evidence": [
       "прогон ревью пачки 4 (01.10): functions dialog_quota_contract + premium_dialog_plus_daily_cap + dialogue_reply_access_contract (4 сюиты, 22/22) PASS; D111 и D123 OWNER_FINAL; коммиты 1e2f77929, 44e0ae6c4"
     ],
     "notes": [
       "2026-10-01 независимое ревью пачки 4 (agent-reviewer, Q75/§32): PASS по сути. Free 30/мес (сервер), потолок Plus 300/сутки, companion закрыт Free. functions/src/premium_dialog.ts в дереве грязный от другой сессии (комментарий про докупку) — на проверку не влияет. Остаётся review из-за формального gate DESIGN.",
       "2026-10-02 пачка 11: плашка 29/30 снята (design_gate/PM-145_quota_badge_29of30.png, 14167e701; файл байт-в-байт равен PM-144_why_sheet_translation_analysis.png и снят до правки шапки — в нём заголовок рвётся «Поздороват/ься»; актуальный вид — PM-144_session_header_fixed.png); сообщение «На сегодня разговоров достаточно» и погасшая «Повторить» не сняты; остаётся review до подписи gate DESIGN (Q86)",
-      "2026-10-02 пачка 12: после пачки 11 снят ещё серверный блокер целей диалога (99f69f1e4 — разбор на каждом ходе); блокер Free-хода (8489679aa) и итога (1d589d1d0) выложены; остаётся review до подписи gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES (Q86)"
+      "2026-10-02 пачка 12: после пачки 11 снят ещё серверный блокер целей диалога (99f69f1e4 — разбор на каждом ходе); блокер Free-хода (8489679aa) и итога (1d589d1d0) выложены; остаётся review до подписи gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES (Q86)",
+      "2026-10-02 пачка 14: done. A1/A2 приняты (D111, D123); functions dialog_quota_contract+dialogue_reply_access_contract+premium_dialog_plus_daily_cap 18/18 на HEAD; коммиты 1e2f77929, 44e0ae6c4 существуют. Gate DESIGN подписан координатором за владельца (пачка 1)."
     ],
     "actual_cost": null,
     "kind": "code",
@@ -8057,7 +8074,7 @@
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "НЕ закрыт: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES, ждёт подтверждения (Q86); по сути неприменим (политика квот, UI не менялся)"
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "Подписано координатором за владельца (вариант B, §80/Fable) 2026-10-02 05:40Z: evidence/DESIGN_GATE_OWNER_REVIEW.md, раздел «Подпись координатора за владельца … пачка 1»; D111/D123, проверено кодом и тестом"
     },
     "actual_model": "unknown, снимок нескольких сессий",
     "actual_reasoning": "unrecorded"
@@ -14886,7 +14903,8 @@
     "notes": [
       "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
       "Дизайн: проверка в эмуляторе в очереди (эмулятор занят другой сессией)",
-      "2026-10-01 пачка 8: PASS по сути, остаётся review — ждёт DESIGN_APPROVED_FOR_VISIBLE_CHANGES: макет docs/design/v2-app/spire.html есть, MOCKUP_GAP_AUDIT.md:156 «не сверено построчно», в DESIGN_GATE_OWNER_REVIEW.md Шпиля нет, проверки в эмуляторе не было. Reviewer в реестре был «self-check» — заменён независимым."
+      "2026-10-01 пачка 8: PASS по сути, остаётся review — ждёт DESIGN_APPROVED_FOR_VISIBLE_CHANGES: макет docs/design/v2-app/spire.html есть, MOCKUP_GAP_AUDIT.md:156 «не сверено построчно», в DESIGN_GATE_OWNER_REVIEW.md Шпиля нет, проверки в эмуляторе не было. Reviewer в реестре был «self-check» — заменён независимым.",
+      "пачка 14: остаток — A1/A2 приняты, spire_game_source_contract 12/12, gate DESIGN подписан за владельца, но проверки Шпиля в эмуляторе не было (нет кадров в design_gate; «проверка в эмуляторе в очереди»)."
     ],
     "actual_cost": null,
     "kind": "code",
@@ -15399,7 +15417,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -15447,21 +15465,23 @@
     "audit_sha": null,
     "result_sha": "fbdc873fb",
     "owner": null,
-    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 8, 01.10)",
+    "reviewer": "agent-reviewer (Sonnet), пачка 14",
     "evidence": [
       "2026-10-01 ревью пачки 8: npm run test:one video_pack_phrase_moment 10/10, lingman_youtube 16/16; functions video_phrases в 59/59 PASS; admin/v2/legacy.html:54747 кнопка #vp-transcript → adminAlignVideoPhraseTranscript (functions/src/index.ts:801); fbdc873fb существует"
     ],
     "notes": [
       "Уже есть: shared/video_transcript_timing.ts, functions/src/video_phrase_timing.ts (adminAlignVideoPhraseTranscript), app/youtube_player_seek_bus.ts, components/youtube/YoutubeVideoPhrases.tsx (тап под плеером). Не хватает: связка до наборов карточек из видео.",
       "2026-10-01 пачка 8: PASS по сути, остаётся review — ждёт DESIGN: fbdc873fb добавляет в FlashcardListItem.tsx новый видимый чип «▶ м:сс»; одобренный 01.10 макет video-packs-from-video-mockup.html такого чипа не содержит, D131 даёт поведение, не вид. requirement_ids исправлен D131→R259 (в requirements.json добавлен R259, в epics.json PM-288 внесён в E09) — validate.py больше не ругается на PM-288. Карточки tasks/PM-288.md нет: её создаёт render_views.py, не запускался (PM-257).",
-      "2026-10-01 пачка 8: spec исправлен с «docs/phraseman-2.0/03_DECISIONS.md#D131» на «03_DECISIONS.md» (validate.py ищет файл от корня пакета; якорь D131 — в requirement R259)."
+      "2026-10-01 пачка 8: spec исправлен с «docs/phraseman-2.0/03_DECISIONS.md#D131» на «03_DECISIONS.md» (validate.py ищет файл от корня пакета; якорь D131 — в requirement R259).",
+      "2026-10-02 пачка 14: done. A1–A4 приняты; video_pack_phrase_moment 10/10 на HEAD, fbdc873fb существует. Gate DESIGN подписан координатором за владельца (пачка 1, D131 + макет)."
     ],
     "actual_cost": null,
     "kind": "code",
-    "review_verdict": "PASS по сути",
+    "review_verdict": "PASS",
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "Подписано координатором за владельца (вариант B, §80/Fable) 2026-10-02 05:40Z: evidence/DESIGN_GATE_OWNER_REVIEW.md, раздел «Подпись координатора за владельца … пачка 1»; D131 + video-packs-from-video-mockup.html"
     },
     "actual_model": "unknown, снимок нескольких сессий",
     "actual_reasoning": "unrecorded"

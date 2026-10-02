@@ -422,3 +422,25 @@ PM-288: requirement_ids D131 → R259 (добавлен в requirements.json; PM
 Остальные review: `git log --since="3 hours ago"` — снят один новый блокер: «Дизайн» добавил кадр итога PM-144_summary_ok_6of6.png (d572b1811); gate DESIGN (Q86) по-прежнему ждёт подписи — PM-144/145 остаются review (одна строка note добавлена в PM-144). Прочие (perf-правки lessons/video/stats) блокеры PM-052/086/039/044/092–097/129/130/134/141/197/279/288 (Дизайн/gate DESIGN), PM-034/066/286 (эмулятор), PM-048/073/074/205/287 (владелец/прод) не снимают.
 
 Оговорки: validate.py ошибок по PM-238/203/228/230 не даёт (см. отчёт). Все gates MIGRATION/DESIGN помечены N/A только с обоснованием, подпись координатора нужна. actual_model «unknown» (§34). Тесты шли под светофором.
+
+## Пачка 14 (agent-reviewer, Sonnet, 02.10)
+
+Итог: в done 5 задач — PM-141, PM-144, PM-145, PM-288 и PM-095 (ретро-PASS: была done без ревьюера). Остальные 8 остаются review: есть непринятые критерии или не снятый эмулятор. Gate DESIGN у всех подписан координатором за владельца (DESIGN_GATE_OWNER_REVIEW.md, пачка 1, 02.10 05:40Z); BASELINE/DOMAIN_AUDIT — GATES_COMMON.
+
+| Задача | Вердикт | Основание | Статус |
+|---|---|---|---|
+| PM-141 | PASS | A1/A2 приняты; dialogue_v2_access_contract 4/4, functions dialog_quota_contract + dialogue_reply_access_contract + premium_dialog_plus_daily_cap 18/18; a1f7514f2 существует | done |
+| PM-145 | PASS | A1/A2 приняты (D111, D123); те же 3 сюиты functions 18/18; 1e2f77929, 44e0ae6c4 существуют | done |
+| PM-144 | PASS | A1 принят; dialogue_v2_session_route 15/15; коммиты 73aac3377…ffbc48813 существуют; блокеры диалога сняты, кадры в design_gate; result_sha проставлен. Живое устройство — вне критериев | done |
+| PM-288 | PASS | A1–A4 приняты; video_pack_phrase_moment 10/10; fbdc873fb существует | done |
+| PM-095 | PASS (ретро) | A1/A2 приняты; pm095_local_search_contract 1/1; 13c9f3012 существует; заполнены reviewer/kind/gates | done |
+| PM-279 | PASS по сути, остаток | A1/A2 приняты, spire_game_source_contract 12/12; Шпиль в эмуляторе не проверялся (кадров нет) | review |
+| PM-052 | остаток | A1/A2 NOT_MET: живы reward_flight_queue, HomeRewardCollectFlight, LearningV2RuneFlight, usePracticeRuneFlight; нужен единый полёт монет (D75); gate MIGRATION не закрыт | review |
+| PM-092 | остаток | A2 не принят (длинные названия/счётчики); каталог сообщества не переделан; кадр «без ценника» не снят | review |
+| PM-093 | остаток | A2 («нет маркетингового абзаца») не принят | review |
+| PM-094 | остаток | A2 (языковые варианты) не принят | review |
+| PM-096 | остаток | A2 (сохранение сортировки) и A3 (без перетасовки) не приняты | review |
+| PM-129 | остаток | A1 не принят: редизайн «Блиц» не сделан (в коммите только комментарий) | review |
+| PM-130 | остаток | A1/A2 не приняты: редизайн «Устно», микрофон/тишина/аудиофокус не подтверждены | review |
+
+Оговорки: validate.py по задачам пачки ошибок не даёт. Тесты шли под светофором. actual_model «unknown» (§34).

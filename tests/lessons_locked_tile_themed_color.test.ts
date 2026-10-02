@@ -23,6 +23,16 @@ function lessonsSource(): string {
   return fs.readFileSync(path.join(__dirname, '..', 'app', '(tabs)', 'lessons.tsx'), 'utf8');
 }
 
+// §70 (2026-10-02): сверка без пробелов/переносов и с одинаковыми кавычками —
+// сторож следит за цветами, а не за тем, как форматтер разложил код.
+const compact = (s: string): string => s.replace(/\s+/g, '').replace(/'/g, '"');
+
+function cardBackgroundBlock(source: string): string {
+  const start = source.indexOf('{/* Card background */}');
+  expect(start).toBeGreaterThanOrEqual(0);
+  return compact(source.slice(start, start + 3200));
+}
+
 describe('locked (progress-gated, non-premium) lesson tiles: themed, darker, with a lock', () => {
   it('does not hardcode the neutral gray gradient for the locked tile anymore', () => {
     const source = lessonsSource();
@@ -30,18 +40,12 @@ describe('locked (progress-gated, non-premium) lesson tiles: themed, darker, wit
   });
 
   it('plain-locked tile uses a darkened theme color (darkenHex of bg)', () => {
-    const source = lessonsSource();
-    const start = source.indexOf('{/* Card background */}');
-    expect(start).toBeGreaterThanOrEqual(0);
-    const block = source.slice(start, start + 1600);
-    expect(block).toContain('[darkenHexCached(bg, 0.30), darkenHexCached(bg, 0.25), darkenHexCached(bg, 0.20)]');
+    const block = cardBackgroundBlock(lessonsSource());
+    expect(block).toContain('[darkenHexCached(bg,0.3),darkenHexCached(bg,0.25),darkenHexCached(bg,0.2),]');
   });
 
   it('gold keeps its dedicated locked treatment', () => {
-    const source = lessonsSource();
-    const start = source.indexOf('{/* Card background */}');
-    const block = source.slice(start, start + 1600);
-    expect(block).toContain('GOLD_GRADIENTS.mutedPanel');
+    expect(cardBackgroundBlock(lessonsSource())).toContain('GOLD_GRADIENTS.mutedPanel');
   });
 
   it('locked tile is DARKER than the unlocked tile (clear "not yet earned" read)', () => {
@@ -65,11 +69,12 @@ describe('locked (progress-gated, non-premium) lesson tiles: themed, darker, wit
     // (that equals the dark bg and disappears). It must be a light/white tone.
     // The lesson-tile lock line is the unique one that also references
     // lockedCardHasLightFill (the chapter-header lock does not).
-    const lockLine = source
-      .split('\n')
-      .find((l) => l.includes('name="lock-closed"') && l.includes('lockedCardHasLightFill'));
-    expect(lockLine).toBeDefined();
-    expect(lockLine).toContain("'rgba(255,255,255,0.55)'");
-    expect(lockLine).not.toContain('rgbaHex(lessonAccent, 0.46)');
+    const flat = compact(source);
+    const lockAt = flat.indexOf('name="lock-closed"size={14}');
+    expect(lockAt).toBeGreaterThan(-1);
+    const lockIcon = flat.slice(lockAt, flat.indexOf('/>', lockAt));
+    expect(lockIcon).toContain('lockedCardHasLightFill');
+    expect(lockIcon).toContain('"rgba(255,255,255,0.55)"');
+    expect(lockIcon).not.toContain('rgbaHex(lessonAccent,0.46)');
   });
 });

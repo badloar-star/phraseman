@@ -22,14 +22,18 @@ const read = (...parts: string[]): string => readFileSync(join(ROOT, ...parts), 
  * LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY плюс переписывание этого сторожа.
  *
  * Сработал сторож — возвращать правило, а не удалять проверку.
+ *
+ * Обновлено 2026-10-02 (§70, координатор Q114) по решениям владельца:
+ *  • 2026-09-19 — Learning V2 открыт для раннего релиза: константа = true
+ *    (незавершённость показывают значки ремонта на уроках, а не замок курса);
+ *  • 2026-09-21 — раздел называется «Обучение» во ВСЕХ сборках (не «Старые уроки»).
+ * Неизменным остаётся главное: ВХОД всегда открывает обычные уроки.
  */
 describe('lessons entry opens the legacy course while Learning V2 is unfinished', () => {
   const lessons = read('app', '(tabs)', 'lessons.tsx');
 
-  test('ручное открытие курса выражено одной константой и закрыто в релизе', () => {
-    expect(lessons).toContain(
-      'const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = ENABLE_DEV_TOOLS;',
-    );
+  test('ручное открытие курса выражено одной константой (открыт с 2026-09-19)', () => {
+    expect(lessons).toMatch(/^const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = (true|ENABLE_DEV_TOOLS);$/m);
   });
 
   test('ВХОД открывает старые уроки БЕЗУСЛОВНО — и в релизе, и в деве', () => {
@@ -52,12 +56,11 @@ describe('lessons entry opens the legacy course while Learning V2 is unfinished'
     );
   });
 
-  test('в релизе экран называется просто «Уроки», в деве — «Старые уроки»', () => {
-    expect(lessons).toContain(
-      'const legacyLessonsScreenTitle = LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY',
-    );
+  test('раздел называется «Обучение» во всех сборках (владелец 2026-09-21)', () => {
+    expect(lessons).toContain('const legacyLessonsScreenTitle = triLang(lang, {');
     expect(lessons).toContain('{legacyLessonsScreenTitle}');
-    expect(lessons).toContain('ru: "Уроки"');
+    expect(lessons).toContain('ru: "Обучение"');
+    expect(lessons).not.toContain('ru: "Старые уроки"');
   });
 
   test('единственный оставшийся переключатель на V2 закрыт дев-флагом', () => {

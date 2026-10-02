@@ -6,7 +6,9 @@
  *
  * Правило владельца дословно:
  *  • уроки 2 и 3 НЕ должны быть доступны по дефолту;
- *  • урок открывает ★2.5 на предыдущем ИЛИ 100 жемчужин;
+ *  • урок открывает 2★ на предыдущем (D121, 30.09: от 60% = LESSON_UNLOCK_SCORE;
+ *    до этого D71 — 2 из 5, ещё раньше 2.5) ИЛИ исторически купленный за жемчуг
+ *    урок (жемчуг убран D70, покупки прошлого сохраняются);
  *  • Plus снимает ПЕЙВОЛ, но НЕ замок прогресса;
  *  • у Plus сразу открыт первый урок каждого уровня (1/9/19/29).
  *
@@ -29,8 +31,9 @@ jest.mock('../app/remote_flags', () => ({
 }));
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { resolveLessonRuntimeGate } from '../app/lesson_premium_gate';
-import { lessonBestScoreKey } from '../app/target_storage_keys';
+import { legacyFreeLessonCapKey, lessonBestScoreKey } from '../app/target_storage_keys';
 import { purchasedLessonsKey } from '../app/lessons_pearl_unlock_storage';
+import { LESSON_UNLOCK_SCORE } from '../app/lesson_star_scale';
 
 beforeEach(async () => { await AsyncStorage.clear(); (globalThis as any).__PLUS__ = false; });
 
@@ -41,10 +44,14 @@ describe('СКВОЗНОЕ: что реально увидит человек', 
     expect(await resolveLessonRuntimeGate(3)).toBe('progress_required');
     expect(await resolveLessonRuntimeGate(4)).toBe('premium_required');
   });
-  it('FREE прошёл урок 1 на 2.5 → открылся урок 2, но не 3', async () => {
-    await AsyncStorage.setItem(lessonBestScoreKey(1), '2.5');
+  it('FREE прошёл урок 1 на 2★ (порог D121) → открылся урок 2, но не 3', async () => {
+    await AsyncStorage.setItem(lessonBestScoreKey(1), String(LESSON_UNLOCK_SCORE));
     expect(await resolveLessonRuntimeGate(2)).toBe('available');
     expect(await resolveLessonRuntimeGate(3)).toBe('progress_required');
+  });
+  it('FREE: ниже порога D121 (бывшие 2.5 из 5 = 50%) урок 2 остаётся закрытым', async () => {
+    await AsyncStorage.setItem(lessonBestScoreKey(1), '2.5');
+    expect(await resolveLessonRuntimeGate(2)).toBe('progress_required');
   });
   it('FREE прошёл 1 и 2 → открыт 3, но 4 требует Plus', async () => {
     await AsyncStorage.setItem(lessonBestScoreKey(1), '3');
@@ -57,9 +64,9 @@ describe('СКВОЗНОЕ: что реально увидит человек', 
     for (const id of [1, 9, 19, 29]) expect(await resolveLessonRuntimeGate(id)).toBe('available');
     for (const id of [2, 3, 10, 20, 30]) expect(await resolveLessonRuntimeGate(id)).toBe('progress_required');
   });
-  it('PLUS: бронза открывает ровно следующий', async () => {
+  it('PLUS: 2★ открывает ровно следующий', async () => {
     (globalThis as any).__PLUS__ = true;
-    await AsyncStorage.setItem(lessonBestScoreKey(9), '2.5');
+    await AsyncStorage.setItem(lessonBestScoreKey(9), String(LESSON_UNLOCK_SCORE));
     expect(await resolveLessonRuntimeGate(10)).toBe('available');
     expect(await resolveLessonRuntimeGate(11)).toBe('progress_required');
   });
@@ -68,6 +75,12 @@ describe('СКВОЗНОЕ: что реально увидит человек', 
     await AsyncStorage.setItem(purchasedLessonsKey(), JSON.stringify([15]));
     expect(await resolveLessonRuntimeGate(15)).toBe('available');
     expect(await resolveLessonRuntimeGate(16)).toBe('progress_required');
+  });
+  it('FREE со старым бесплатным потолком 5 (D122): уроки 4–5 открыты, 6 требует Plus', async () => {
+    await AsyncStorage.setItem(legacyFreeLessonCapKey(), '5');
+    expect(await resolveLessonRuntimeGate(4)).toBe('available');
+    expect(await resolveLessonRuntimeGate(5)).toBe('available');
+    expect(await resolveLessonRuntimeGate(6)).toBe('premium_required');
   });
   it('купленный урок переживает отмену Plus', async () => {
     await AsyncStorage.setItem(purchasedLessonsKey(), JSON.stringify([15]));

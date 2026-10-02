@@ -11,6 +11,7 @@ describe('legacy free lesson cap wiring', () => {
   const lessonMenuSource = readAppFile('lesson_menu.tsx');
   const lessonCompleteSource = readAppFile('lesson_complete.tsx');
   const levelExamSource = readAppFile('level_exam.tsx');
+  const lockSystemSource = readAppFile('lesson_lock_system.ts');
 
   test('hydrates and projects the cap through every lessons-tab entitlement decision', () => {
     expect(lessonsSource).toContain('const [legacyFreeLessonCap, setLegacyFreeLessonCap]');
@@ -21,27 +22,23 @@ describe('legacy free lesson cap wiring', () => {
     expect(lessonsSource).toContain('lessonPaywallContext(lessonNum, effectiveLegacyFreeLessonCap)');
   });
 
-  test('direct lesson routes read the target cap before premium and progress gates', () => {
-    const readCapAt = runtimeGateSource.indexOf('readLegacyFreeLessonCap(studyTarget)');
-    const premiumAt = runtimeGateSource.indexOf('getVerifiedPremiumStatus()', readCapAt);
-    expect(readCapAt).toBeGreaterThan(-1);
-    expect(runtimeGateSource).toContain(
-      'isLegacyLessonGrandfatheredOpen(lessonId, legacyFreeLessonCap)',
-    );
-    expect(premiumAt).toBeGreaterThan(readCapAt);
-    expect(runtimeGateSource).toContain(
-      'requiresPremiumForLesson(lessonId, legacyFreeLessonCap)',
-    );
+  // D122 (da298f561): потолок прежнего Free читается в одном месте —
+  // isLessonUnlockedByEarnedProgress (lesson_lock_system) из сохранённого ключа миграции.
+  test('the shared earned-progress gate opens grandfathered lessons from the persisted cap', () => {
+    expect(lockSystemSource).toContain('legacyFreeLessonCapKey(studyTarget)');
+    expect(lockSystemSource).toContain('isLegacyLessonGrandfatheredOpen(lessonId, legacyCap)');
   });
 
-  test('lesson menu and completion use the same immutable cap', () => {
-    expect(lessonMenuSource).toContain('readLegacyFreeLessonCap(studyTarget)');
-    expect(lessonMenuSource).toContain(
-      'isLegacyLessonGrandfatheredOpen(lessonId, legacyFreeLessonCap)',
-    );
-    expect(lessonMenuSource).toContain(
-      'requiresPremiumForLesson(lessonId, legacyFreeLessonCap)',
-    );
+  test('direct lesson routes and the lesson menu consult earned progress before premium', () => {
+    for (const source of [runtimeGateSource, lessonMenuSource]) {
+      const earnedAt = source.indexOf('isLessonUnlockedByEarnedProgress(lessonId, studyTarget)');
+      const premiumAt = source.indexOf('getVerifiedPremiumStatus()', earnedAt);
+      expect(earnedAt).toBeGreaterThan(-1);
+      expect(premiumAt).toBeGreaterThan(earnedAt);
+    }
+  });
+
+  test('lesson completion uses the same immutable cap', () => {
     expect(lessonCompleteSource).toContain('readLegacyFreeLessonCap(studyTarget)');
     expect(lessonCompleteSource).toContain(
       'requiresPremiumForLesson(next, legacyFreeLessonCap)',

@@ -12,7 +12,7 @@ import {
 import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useGlobalSearchParams } from 'expo-router';
-import { useAudio } from '../hooks/use-audio';
+import { inferExpoSpeechLanguage, useAudio } from '../hooks/use-audio';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
@@ -186,7 +186,9 @@ function DailyPhraseCard({
     // silently swallowing the play intent.
     const english = (phrase?.english ?? getTodayPhraseSyncForTarget(studyTarget, lang)?.english ?? '').trim();
     if (english) {
-      speak(english);
+      // зачем (PM-203): фраза дня для fr — французский текст в поле english; без языка
+      // озвучка выводила бы en-US и читала французский английским голосом.
+      speak(english, undefined, { language: inferExpoSpeechLanguage(english, studyTarget) });
       spokenDeepLinkRef.current = linkKey;
     }
   }, [dailyPhraseGateOpen, params.openPhrase, params.play, studyTarget, phrase, speak, dailyIntro.request, introActive, detailsVisible]);
@@ -645,7 +647,7 @@ function DailyPhraseCard({
                 hitSlop={6}
                 accessibilityRole="button"
                 accessibilityLabel={triLang(lang, { uk: 'Озвучити', ru: 'Озвучить', en: 'Play', es: 'Reproducir', 'pt-BR': 'Reproduzir', vi: 'Phát', id: 'Putar', tr: 'Seslendir', pl: 'Odtwórz' })}
-                onPress={() => { const en = phrase.english?.trim(); if (en) speak(en); }}
+                onPress={() => { const en = phrase.english?.trim(); if (en) speak(en, undefined, { language: inferExpoSpeechLanguage(en, studyTarget) }); }}
                 style={({ pressed }) => [styles.v2Round, { backgroundColor: v2.glassRaised, borderColor: v2.stroke }, pressed && styles.pressed]} // guard-ok: D43
               >
                 <Ionicons name="volume-medium-outline" size={18} color={v2.iconTint} />
@@ -857,7 +859,7 @@ function DailyPhraseCard({
                 )}
                 {(showQuestExplanation || !hasValidQuest) && (
                   <Pressable
-                    onPress={() => { const en = phrase.english?.trim(); if (en) speak(en); }}
+                    onPress={() => { const en = phrase.english?.trim(); if (en) speak(en, undefined, { language: inferExpoSpeechLanguage(en, studyTarget) }); }}
                     hitSlop={8}
                     accessibilityRole="button"
                     accessibilityLabel={triLang(lang, {

@@ -95,6 +95,27 @@ const claim = {
 };
 
 describe('Dialogue V2 authoritative terminal store', () => {
+  // зачем (баг 02.10, прод: итог диалога — session_invalid на claim): журнал ходов пишет
+  // groupState в документ сессии; итог обязан принимать и старую, и текущую форму.
+  test('claims a current session document that carries groupState', async () => {
+    const setup = runtime();
+    const key = `dialogue_v2_sessions/${SESSION_ID}`;
+    setup.db.documents.set(key, {
+      ...(setup.db.documents.get(key) as Record<string, unknown>),
+      groupState: { schemaVersion: 1, turnCount: 1, lastSpeakerId: 'mia', relevanceByPersonaId: { mia: 1 } },
+    });
+    const first = await claimDialogueV2SessionTerminal(setup.runtime, claim);
+    expect(first.kind).toBe('new');
+  });
+
+  test('still rejects an unknown extra field in the session document', async () => {
+    const setup = runtime();
+    const key = `dialogue_v2_sessions/${SESSION_ID}`;
+    setup.db.documents.set(key, { ...(setup.db.documents.get(key) as Record<string, unknown>), unexpected: true });
+    await expect(claimDialogueV2SessionTerminal(setup.runtime, claim))
+      .rejects.toEqual(new DialogueV2SessionTerminalError('session_invalid'));
+  });
+
   test('atomically claims the session before assessment and blocks concurrent claims', async () => {
     const setup = runtime();
     const first = await claimDialogueV2SessionTerminal(setup.runtime, claim);

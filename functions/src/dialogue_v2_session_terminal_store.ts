@@ -121,10 +121,17 @@ function decodedSession(value: unknown): Readonly<{
   receipts: unknown[];
 }> | null {
   const session = record(value);
-  if (!session || !exactKeys(session, [
+  // зачем (баг 02.10, прод-лог [DIALOGUE-V2-COMPLETE] stage=claim session_invalid): журнал ходов
+  // пишет в сессию состояние группы собеседников (groupState), а здесь ждали ровно старые
+  // 10 полей — каждая новая сессия браковалась, и итог диалога не открывался ни у кого.
+  // Принимаем обе формы, как dialogue_v2_session_firestore_repository; groupState итогу не нужен.
+  const legacyKeys = [
     'schemaVersion', 'sessionId', 'ownerBinding', 'studyTarget', 'scenarioId',
     'createdAt', 'expiresAt', 'revision', 'turns', 'receipts',
-  ])) return null;
+  ];
+  if (!session || (!exactKeys(session, legacyKeys) && !exactKeys(session, [...legacyKeys, 'groupState']))) {
+    return null;
+  }
   const createdAtMs = timestampMillis(session.createdAt);
   const expiresAtMs = timestampMillis(session.expiresAt);
   if (session.schemaVersion !== 1

@@ -8,6 +8,7 @@ import {
   withAccountTransitionLock,
 } from './account_generation';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const FALLBACK_NICKNAME_PREFIX = 'Phraseman';
 /** Метка «имя X уже успешно записано в серверный name_index». Ключ — само имя. */
@@ -49,7 +50,7 @@ async function reconcileNameIndex(name: string, oldName: string, justChanged: bo
   const target = name.trim();
   if (target.length < 2) return;
   try {
-    const alreadySynced = (await AsyncStorage.getItem(NAME_INDEX_SYNCED_KEY).catch(() => null))?.trim();
+    const alreadySynced = (await AsyncStorage.getItem(NAME_INDEX_SYNCED_KEY).catch(noteSwallowedAs('nickname_guard:promise_1', null)))?.trim();
     if (alreadySynced === target) return;
 
     const { reserveNameDetailed } = await import('./firestore_leaderboard');
@@ -61,7 +62,7 @@ async function reconcileNameIndex(name: string, oldName: string, justChanged: bo
     // 'ok' — наш слот; 'taken' — имя принадлежит живому владельцу (возможно, нам же на
     // другом устройстве), в индексе оно ЕСТЬ. В обоих случаях дальше ретраить незачем.
     if (status === 'ok' || status === 'taken') {
-      await AsyncStorage.setItem(NAME_INDEX_SYNCED_KEY, target).catch(() => {});
+      await AsyncStorage.setItem(NAME_INDEX_SYNCED_KEY, target).catch(noteSwallowedHandler('nickname_guard:promise_2'));
     }
     // 'error' / 'cooldown' — метку не ставим: повтор при следующем запуске.
   } catch (e) {
@@ -72,14 +73,14 @@ async function reconcileNameIndex(name: string, oldName: string, justChanged: bo
 
 export async function ensureLocalNickname(candidate?: string | null): Promise<string> {
   const trimmedCandidate = String(candidate ?? '').trim();
-  const stored = (await AsyncStorage.getItem('user_name').catch(() => null))?.trim() ?? '';
+  const stored = (await AsyncStorage.getItem('user_name').catch(noteSwallowedAs('nickname_guard:promise_3', null)))?.trim() ?? '';
   const finalName = trimmedCandidate || stored || createRandomNickname();
 
   const justChanged = finalName !== stored;
   if (justChanged) {
     await AsyncStorage.setItem('user_name', finalName);
     // Имя изменилось → прежняя метка синка недействительна.
-    await AsyncStorage.removeItem(NAME_INDEX_SYNCED_KEY).catch(() => {});
+    await AsyncStorage.removeItem(NAME_INDEX_SYNCED_KEY).catch(noteSwallowedHandler('nickname_guard:promise_4'));
   }
 
   // Пытаемся довести имя до серверного индекса при каждом запуске, пока не подтвердится.
@@ -95,8 +96,8 @@ export async function ensureLocalNickname(candidate?: string | null): Promise<st
  *   Уже подтверждённый ник не перегенерируется: повторный вызов вернёт его как есть.
  */
 export async function ensureUniqueGeneratedNickname(baseName?: string | null): Promise<string> {
-  const stored = (await AsyncStorage.getItem('user_name').catch(() => null))?.trim() ?? '';
-  const confirmed = (await AsyncStorage.getItem(GENERATED_NAME_CONFIRMED_KEY).catch(() => null))?.trim() ?? '';
+  const stored = (await AsyncStorage.getItem('user_name').catch(noteSwallowedAs('nickname_guard:promise_5', null)))?.trim() ?? '';
+  const confirmed = (await AsyncStorage.getItem(GENERATED_NAME_CONFIRMED_KEY).catch(noteSwallowedAs('nickname_guard:promise_6', null)))?.trim() ?? '';
   if (stored && confirmed === stored) return stored;
   const { generateAndReserveNickname } = await import('./firestore_leaderboard');
   const result = await generateAndReserveNickname(baseName);
@@ -151,7 +152,7 @@ export function cancelPendingGeneratedNicknameRetry(): void {
 export function resumePendingGeneratedNickname(): Promise<void> {
   if (pendingNicknameFlight) return pendingNicknameFlight;
   pendingNicknameFlight = (async () => {
-    const pending = await AsyncStorage.getItem(GENERATED_NICKNAME_PENDING_KEY).catch(() => null);
+    const pending = await AsyncStorage.getItem(GENERATED_NICKNAME_PENDING_KEY).catch(noteSwallowedAs('nickname_guard:promise_7', null));
     if (!pending) {
       cancelPendingGeneratedNicknameRetry();
       return;
@@ -179,12 +180,12 @@ export function resumePendingGeneratedNickname(): Promise<void> {
     }
     let applied = false;
     await withAccountTransitionLock(async () => {
-      const stillPending = await AsyncStorage.getItem(GENERATED_NICKNAME_PENDING_KEY).catch(() => null);
+      const stillPending = await AsyncStorage.getItem(GENERATED_NICKNAME_PENDING_KEY).catch(noteSwallowedAs('nickname_guard:promise_8', null));
       if (!stillPending || !isCurrentAccountGeneration(accountToken, resultStableId)) return;
       const activeStableId = peekStableId();
       if (resultStableId !== activeStableId) return;
 
-      const rawProfile = await AsyncStorage.getItem('user_profile').catch(() => null);
+      const rawProfile = await AsyncStorage.getItem('user_profile').catch(noteSwallowedAs('nickname_guard:promise_9', null));
       let profile: Record<string, unknown> = {};
       try { profile = rawProfile ? JSON.parse(rawProfile) as Record<string, unknown> : {}; } catch (e) {
       DebugLogger.error('nickname_guard:rawProfile', e instanceof Error ? e : new Error(String(e)), 'warning');

@@ -15,6 +15,7 @@ import type { CardItem } from "./flashcards/types";
 import type { LearningV2InterfaceLocale } from "../modules/learning-v2/content/generator_course_contract";
 import type { LearningV2CourseSessionWordEncounterPresentationV1 } from "../modules/learning-v2/runtime/course_session_word_encounter_presentation_v1";
 import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_registry";
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type LearningV2NewWordSaveOutcomeV1 =
   | "added"
@@ -102,7 +103,7 @@ export async function saveLearningV2NewWordEncounterToCardsV1(
     if (!isCurrentAccountGeneration(generation)) return "stale" as const;
     const card = materializeCard(input.encounter, input.interfaceLocale);
     let added = false;
-    const hasPremiumAccess = await getVerifiedPremiumAccessStatus().catch(() => false);
+    const hasPremiumAccess = await getVerifiedPremiumAccessStatus().catch(noteSwallowedAs('learning_v2_new_word_encounter_save_v1:promise_2', false));
     const cardLimit = hasPremiumAccess ? PLUS_CUSTOM_CARD_LIMIT : FREE_CUSTOM_CARD_LIMIT;
     await updateCustomCards((cards) => {
       if (
@@ -117,7 +118,7 @@ export async function saveLearningV2NewWordEncounterToCardsV1(
       return [...cards, card];
     }, encounterStudyTarget(input.encounter));
     return added ? ("added" as const) : ("duplicate" as const);
-  }).catch(() => "failed" as const);
+  }).catch(noteSwallowedAs('learning_v2_new_word_encounter_save_v1:promise_1', "failed" as const));
 }
 
 export async function removeLearningV2NewWordEncounterFromCardsV1(
@@ -141,5 +142,5 @@ export async function removeLearningV2NewWordEncounterFromCardsV1(
       return removed ? next : cards;
     }, encounterStudyTarget(input.encounter));
     return removed ? ("removed" as const) : ("absent" as const);
-  }).catch(() => "failed" as const);
+  }).catch(noteSwallowedAs('learning_v2_new_word_encounter_save_v1:promise_3', "failed" as const));
 }

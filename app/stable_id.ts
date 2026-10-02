@@ -24,6 +24,7 @@ import {
   assertAccountDeleteStableIdentityAvailable,
 } from './account_delete_quarantine';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowed, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const SECURE_KEY = 'phraseman_stable_uid';
 const ASYNC_KEY = 'phraseman_stable_uid_cache';
@@ -144,8 +145,8 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
           const legacy = await SecureStore.getItemAsync(SECURE_KEY);
           assertCurrentStableIdRead(epoch);
           if (legacy) {
-            await SecureStore.setItemAsync(SECURE_KEY, legacy, opts).catch(() => {});
-            await SecureStore.deleteItemAsync(SECURE_KEY).catch(() => {});
+            await SecureStore.setItemAsync(SECURE_KEY, legacy, opts).catch(noteSwallowedHandler('stable_id:promise_1'));
+            await SecureStore.deleteItemAsync(SECURE_KEY).catch(noteSwallowedHandler('stable_id:promise_2'));
             stored = legacy;
           }
         } catch (e) {
@@ -178,7 +179,7 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
       assertCurrentStableIdRead(epoch);
       cachedId = cached;
       if (SecureStore && opts) {
-        await SecureStore.setItemAsync(SECURE_KEY, cached, opts).catch(() => {});
+        await SecureStore.setItemAsync(SECURE_KEY, cached, opts).catch(noteSwallowedHandler('stable_id:promise_3'));
       }
       beginInitialAccountGeneration(cached);
       return cached;
@@ -202,7 +203,7 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
       DebugLogger.error('stable_id:newId', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
-  await AsyncStorage.setItem(ASYNC_KEY, newId).catch(() => {});
+  await AsyncStorage.setItem(ASYNC_KEY, newId).catch(noteSwallowedHandler('stable_id:promise_4'));
   assertCurrentStableIdRead(epoch);
 
   cachedId = newId;
@@ -220,7 +221,7 @@ let stableIdMutationInFlight: Promise<void> | null = null;
  * this to prove marker ownership before any destructive operation.
  */
 export async function readExistingStableId(): Promise<string | null> {
-  await stableIdMutationInFlight?.catch(() => {});
+  await stableIdMutationInFlight?.catch(noteSwallowedHandler('stable_id:promise_5'));
   if (cachedId) return cachedId;
   const epoch = stableIdOperationEpoch;
   const normalize = (value: unknown): string | null => {
@@ -237,7 +238,7 @@ export async function readExistingStableId(): Promise<string | null> {
         cachedId = current;
         return current;
       }
-    } catch { /* fall through to legacy/AsyncStorage read */ }
+    } catch (swallowedError) { /* fall through to legacy/AsyncStorage read */ noteSwallowed('stable_id:catch_1', swallowedError); }
     try {
       const legacy = normalize(await SecureStore.getItemAsync(SECURE_KEY));
       if (epoch !== stableIdOperationEpoch) return readExistingStableId();
@@ -245,7 +246,7 @@ export async function readExistingStableId(): Promise<string | null> {
         cachedId = legacy;
         return legacy;
       }
-    } catch { /* fall through to AsyncStorage read */ }
+    } catch (swallowedError) { /* fall through to AsyncStorage read */ noteSwallowed('stable_id:catch_2', swallowedError); }
   }
   try {
     const asyncValue = normalize(await AsyncStorage.getItem(ASYNC_KEY));
@@ -267,7 +268,7 @@ export function getStableId(): Promise<string> {
   stableIdLoadInFlight = pending;
   void pending.finally(() => {
     if (stableIdLoadInFlight === pending) stableIdLoadInFlight = null;
-  }).catch(() => {});
+  }).catch(noteSwallowedHandler('stable_id:promise_6'));
   return pending;
 }
 
@@ -320,14 +321,14 @@ export function setStableId(newId: string): Promise<void> {
   if (cachedId !== newId) invalidateAccountGeneration();
   const previous = stableIdMutationInFlight ?? Promise.resolve();
   const mutation = previous
-    .catch(() => {})
-    .then(() => loadToDrain?.catch(() => {}))
+    .catch(noteSwallowedHandler('stable_id:promise_7'))
+    .then(() => loadToDrain?.catch(noteSwallowedHandler('stable_id:promise_8')))
     .then(() => assertAccountDeleteStableIdentityAvailable(newId))
     .then(() => persistStableId(newId, epoch));
   stableIdMutationInFlight = mutation;
   void mutation.finally(() => {
     if (stableIdMutationInFlight === mutation) stableIdMutationInFlight = null;
-  }).catch(() => {});
+  }).catch(noteSwallowedHandler('stable_id:promise_9'));
   return mutation;
 }
 
@@ -381,15 +382,15 @@ export function clearStableId(): Promise<void> {
   invalidateAccountGeneration();
   const previous = stableIdMutationInFlight ?? Promise.resolve();
   const mutation = previous
-    .catch(() => {})
+    .catch(noteSwallowedHandler('stable_id:promise_10'))
     .then(async () => {
-      await loadToDrain?.catch(() => {});
+      await loadToDrain?.catch(noteSwallowedHandler('stable_id:promise_11'));
       await clearStableIdStorage();
     });
   stableIdMutationInFlight = mutation;
   void mutation.finally(() => {
     if (stableIdMutationInFlight === mutation) stableIdMutationInFlight = null;
-  }).catch(() => {});
+  }).catch(noteSwallowedHandler('stable_id:promise_12'));
   return mutation;
 }
 

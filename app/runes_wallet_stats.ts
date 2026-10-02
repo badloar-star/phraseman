@@ -31,6 +31,7 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { normalizeStarsView, starsWeekEarned } from './stars_view';
+import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type RuneSourceKey = 'arena' | 'learning' | 'friends' | 'spin' | 'exchange' | 'other';
 
@@ -130,7 +131,7 @@ export async function loadRunesServerStats(): Promise<RunesServerStats | null> {
     || !isCurrentAccountGeneration(requestToken, requestedStableId)) return null;
 
   if (!memoryStats || memoryStats.uid !== uid) {
-    const cachedRaw = await AsyncStorage.getItem(CACHE_KEY).catch(() => null);
+    const cachedRaw = await AsyncStorage.getItem(CACHE_KEY).catch(noteSwallowedAs('runes_wallet_stats:promise_1', null));
     if (!isCurrentAccountGeneration(requestToken, requestedStableId)) return null;
     const cached = parseCachedStats(cachedRaw, uid);
     if (cached) {
@@ -163,7 +164,7 @@ export async function loadRunesServerStats(): Promise<RunesServerStats | null> {
     });
     memoryStats = stats;
     memoryStatsToken = requestToken;
-    AsyncStorage.setItem(CACHE_KEY, JSON.stringify(stats)).catch(() => {});
+    AsyncStorage.setItem(CACHE_KEY, JSON.stringify(stats)).catch(noteSwallowedHandler('runes_wallet_stats:promise_2'));
     return stats;
   } catch {
     // Сеть недоступна — живём на последнем известном снимке ЭТОГО аккаунта;

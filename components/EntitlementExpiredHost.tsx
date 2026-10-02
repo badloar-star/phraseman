@@ -30,6 +30,7 @@ import HybridSheetShell from './modal_fx/HybridSheetShell';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { DebugLogger } from '../app/debug-logger';
+import { noteSwallowedHandler, noteSwallowedAs } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type Kind = 'premium' | 'vip';
 
@@ -138,12 +139,12 @@ function EntitlementExpiredHost() {
     const lastShownKey = accountEntitlementStorageKey(LAST_SHOWN_KEY[k], stableId);
     try {
       invalidatePremiumCache();
-      const hasAnyPlusAccess = await getVerifiedPremiumAccessStatus().catch(() => null);
+      const hasAnyPlusAccess = await getVerifiedPremiumAccessStatus().catch(noteSwallowedAs('EntitlementExpiredHost:promise_1', null));
       if (!entitlementAccountIsCurrent(expectedAccount) || hasAnyPlusAccess == null) return;
       if (hasAnyPlusAccess) {
         // A source can deactivate while another source still keeps Plus active
         // (for example: promo VIP active, real premium inactive on startup).
-        await AsyncStorage.removeItem(wasActiveKey).catch(() => {});
+        await AsyncStorage.removeItem(wasActiveKey).catch(noteSwallowedHandler('EntitlementExpiredHost:promise_2'));
         return;
       }
       const wasActive = await AsyncStorage.getItem(wasActiveKey);
@@ -180,7 +181,7 @@ function EntitlementExpiredHost() {
       const token = captureAccountGeneration();
       if (!entitlementAccountIsCurrent(token)) return;
       const key = accountEntitlementStorageKey(WAS_ACTIVE_KEY[k], token.stableId);
-      void AsyncStorage.setItem(key, '1').catch(() => {});
+      void AsyncStorage.setItem(key, '1').catch(noteSwallowedHandler('EntitlementExpiredHost:promise_3'));
     };
     const checkDeactivated = (k: Kind) => {
       const token = captureAccountGeneration();
@@ -258,14 +259,14 @@ function EntitlementExpiredHost() {
     const WARN_SHOWN_KEY = 'entitlement_trial_ending_shown';
     (async () => {
       try {
-        const rcExpiryRaw = await AsyncStorage.getItem('premium_rc_expiry_ms').catch(() => null);
+        const rcExpiryRaw = await AsyncStorage.getItem('premium_rc_expiry_ms').catch(noteSwallowedAs('EntitlementExpiredHost:promise_4', null));
         const rcExpiry = rcExpiryRaw ? Number(rcExpiryRaw) : 0;
         if (!Number.isFinite(rcExpiry) || rcExpiry <= 0) return;
         const remaining = rcExpiry - Date.now();
         if (remaining <= 0 || remaining > TWO_HOURS_MS) return;
-        const alreadyShown = await AsyncStorage.getItem(WARN_SHOWN_KEY).catch(() => null);
+        const alreadyShown = await AsyncStorage.getItem(WARN_SHOWN_KEY).catch(noteSwallowedAs('EntitlementExpiredHost:promise_5', null));
         if (alreadyShown === '1') return;
-        await AsyncStorage.setItem(WARN_SHOWN_KEY, '1').catch(() => {});
+        await AsyncStorage.setItem(WARN_SHOWN_KEY, '1').catch(noteSwallowedHandler('EntitlementExpiredHost:promise_6'));
         const msgRu = remaining < 30 * 60 * 1000
           ? 'Триал заканчивается менее чем через 30 мин ⏳'
           : 'Триал заканчивается менее чем через 2 ч ⏳';
@@ -286,7 +287,7 @@ function EntitlementExpiredHost() {
     const token = captureAccountGeneration();
     if (kind && entitlementAccountIsCurrent(token)) {
       const key = accountEntitlementStorageKey(LAST_SHOWN_KEY[kind], token.stableId);
-      void AsyncStorage.setItem(key, String(Date.now())).catch(() => {});
+      void AsyncStorage.setItem(key, String(Date.now())).catch(noteSwallowedHandler('EntitlementExpiredHost:promise_7'));
     }
     setKind(null);
   }, [kind]);

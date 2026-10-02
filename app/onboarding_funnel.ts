@@ -3,6 +3,7 @@ import * as Crypto from 'expo-crypto';
 import { Platform } from 'react-native';
 import { ensureAnonUser, getCurrentUid, waitForAnonAuth } from './cloud_sync';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const FUNCTIONS_REGION = 'us-central1';
 const ATTEMPT_KEY = 'onboarding_funnel_attempt_v1';
@@ -80,7 +81,7 @@ export function createOnboardingFunnelRecorder(dependencies: RecorderDependencie
   async function getAttemptId(): Promise<string> {
     if (attemptInFlight) return attemptInFlight;
     attemptInFlight = (async () => {
-      const saved = (await dependencies.storage.getItem(ATTEMPT_KEY).catch(() => null))?.trim() ?? '';
+      const saved = (await dependencies.storage.getItem(ATTEMPT_KEY).catch(noteSwallowedAs('onboarding_funnel:promise_1', null)))?.trim() ?? '';
       if (ATTEMPT_ID_RE.test(saved)) return saved;
       const created = dependencies.createAttemptId().trim();
       if (!ATTEMPT_ID_RE.test(created)) throw new Error('onboarding_funnel_attempt_unavailable');
@@ -91,7 +92,7 @@ export function createOnboardingFunnelRecorder(dependencies: RecorderDependencie
   }
 
   async function readStoredConsent(): Promise<FunnelConsentDecision | undefined> {
-    const raw = (await dependencies.storage.getItem(CONSENT_PENDING_KEY).catch(() => null))?.trim();
+    const raw = (await dependencies.storage.getItem(CONSENT_PENDING_KEY).catch(noteSwallowedAs('onboarding_funnel:promise_2', null)))?.trim();
     return raw === 'granted' || raw === 'denied' ? raw : undefined;
   }
 
@@ -103,7 +104,7 @@ export function createOnboardingFunnelRecorder(dependencies: RecorderDependencie
       try {
         const attemptId = await getAttemptId();
         const key = ackKey(event);
-        const acknowledgedAttempt = await dependencies.storage.getItem(key).catch(() => null);
+        const acknowledgedAttempt = await dependencies.storage.getItem(key).catch(noteSwallowedAs('onboarding_funnel:promise_3', null));
         if (acknowledgedAttempt === attemptId) {
           await dependencies.storage.setItem(pendingKey(event), '');
           return true;
@@ -136,16 +137,16 @@ export function createOnboardingFunnelRecorder(dependencies: RecorderDependencie
 
   async function readPendingCount(): Promise<number> {
     const values = await Promise.all([
-      dependencies.storage.getItem(START_PENDING_KEY).catch(() => null),
-      dependencies.storage.getItem(COMPLETE_PENDING_KEY).catch(() => null),
+      dependencies.storage.getItem(START_PENDING_KEY).catch(noteSwallowedAs('onboarding_funnel:promise_4', null)),
+      dependencies.storage.getItem(COMPLETE_PENDING_KEY).catch(noteSwallowedAs('onboarding_funnel:promise_5', null)),
     ]);
     return values.filter((value) => ATTEMPT_ID_RE.test(value?.trim() ?? '')).length;
   }
 
   async function resumePending(): Promise<{ attempted: number; pending: number }> {
     const [startPending, completionPending] = await Promise.all([
-      dependencies.storage.getItem(START_PENDING_KEY).catch(() => null),
-      dependencies.storage.getItem(COMPLETE_PENDING_KEY).catch(() => null),
+      dependencies.storage.getItem(START_PENDING_KEY).catch(noteSwallowedAs('onboarding_funnel:promise_6', null)),
+      dependencies.storage.getItem(COMPLETE_PENDING_KEY).catch(noteSwallowedAs('onboarding_funnel:promise_7', null)),
     ]);
     const hasStart = ATTEMPT_ID_RE.test(startPending?.trim() ?? '');
     const hasCompletion = ATTEMPT_ID_RE.test(completionPending?.trim() ?? '');

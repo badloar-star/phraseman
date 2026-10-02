@@ -6,6 +6,7 @@ import type { PendingPersonalOperation } from '../modules/phone-state/contracts'
 import type { PhoneStateStore } from '../modules/phone-state/store';
 import type { PreferenceReducerState } from '../modules/phone-state/domains/preferences';
 import { portableOwnerForKey } from '../modules/phone-state/domain_ownership';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type Runtime = Readonly<{ scope: PhoneStateScope; deviceId: string; store: PhoneStateStore }>;
 let runtime: Runtime | null = null;
@@ -34,7 +35,7 @@ export async function persistPortablePreference(key: string, value: string): Pro
       createdAtMs: Date.now(),
     });
     await active.store.commit(operation, { idempotencyKey: `preference:${Crypto.randomUUID()}` })
-      .catch(() => undefined);
+      .catch(noteSwallowedAs('phone_state_preference_bridge:promise_1', undefined));
   }
   await AsyncStorage.setItem(key, value);
 }

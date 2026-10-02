@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { syncToCloud } from './cloud_sync';
 import { userStatsKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 interface UserStats {
   lessonsStarted: number;
@@ -106,7 +107,7 @@ function bumpKey(rec: Record<string, number>, id: string): void {
 
 async function saveCommerce(s: UserStats): Promise<void> {
   await save(s);
-  syncToCloud().catch(() => {});
+  syncToCloud().catch(noteSwallowedHandler('user_stats:promise_1'));
 }
 
 export async function trackShardsShopOpen(): Promise<void> {

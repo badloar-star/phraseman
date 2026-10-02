@@ -13,6 +13,7 @@ import {
   type SupportDiagnosticEvent,
 } from './support_diagnostic_schema';
 import { swallowError } from './debug-logger';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const STORAGE_PREFIX = 'support_diagnostics_v1';
 export const SUPPORT_DIAGNOSTIC_TTL_MS = 24 * 60 * 60 * 1_000;
@@ -65,7 +66,7 @@ function trimLocal(events: SupportDiagnosticEvent[], nowMs: number): SupportDiag
 
 function withMutationLock(work: () => Promise<void>): Promise<void> {
   const run = mutationTail.then(work, work);
-  mutationTail = run.catch(() => undefined);
+  mutationTail = run.catch(noteSwallowedAs('support_diagnostics:promise_1', undefined));
   return run;
 }
 

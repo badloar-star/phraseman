@@ -18,6 +18,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const STORAGE_KEY = 'synthetic_activity_likes_v1';
 
@@ -44,10 +45,10 @@ function peek(): StoredLikes {
 
 function persist(next: StoredLikes): void {
   cache = next;
-  void AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(next)).catch(() => {
-    // Промах записи не откатываем — в памяти состояние уже верное, следующий
-    // лайк перезапишет файл целиком (тот же принцип, что у заявок в друзья).
-  });
+  // Промах записи не откатываем — в памяти состояние уже верное, следующий
+  // лайк перезапишет файл целиком (тот же принцип, что у заявок в друзья).
+  // PM-229: причина промаха пишется в журнал.
+  void AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(next)).catch(noteSwallowedHandler('synthetic_activity_likes:promise_1'));
 }
 
 /** Прогревает кэш заранее — вызывать при открытии карточки, до первого рендера. */

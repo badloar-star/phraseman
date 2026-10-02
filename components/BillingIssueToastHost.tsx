@@ -19,6 +19,7 @@ import { revenueCatBillingIssueAtMs } from '../app/premium_revenuecat_state';
 import { scheduleCoalescedForegroundTask } from '../app/app_resume_policy';
 import { soundDirector } from '../modules/audio/sound_director';
 import { DebugLogger } from '../app/debug-logger';
+import { noteSwallowedHandler, noteSwallowedAs } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const COOLDOWN_MS = 3 * 24 * 60 * 60 * 1000;
 const LAST_SHOWN_KEY = 'billing_issue_toast_last_shown';
@@ -44,19 +45,19 @@ export default function BillingIssueToastHost() {
     if (IS_EXPO_GO || runningRef.current) return;
     runningRef.current = true;
     try {
-      const info = await withNullableTimeout(Purchases.getCustomerInfo(), RC_TIMEOUT_MS).catch(() => null);
+      const info = await withNullableTimeout(Purchases.getCustomerInfo(), RC_TIMEOUT_MS).catch(noteSwallowedAs('BillingIssueToastHost:promise_1', null));
       if (!info) return;
 
       const issueAt = revenueCatBillingIssueAtMs(info);
       if (issueAt == null) {
         // Проблема решена — сбрасываем привязку, чтобы следующий инцидент показался.
-        await AsyncStorage.multiRemove([LAST_ISSUE_AT_KEY]).catch(() => {});
+        await AsyncStorage.multiRemove([LAST_ISSUE_AT_KEY]).catch(noteSwallowedHandler('BillingIssueToastHost:promise_2'));
         return;
       }
 
       const [lastShownRaw, lastIssueRaw] = await Promise.all([
-        AsyncStorage.getItem(LAST_SHOWN_KEY).catch(() => null),
-        AsyncStorage.getItem(LAST_ISSUE_AT_KEY).catch(() => null),
+        AsyncStorage.getItem(LAST_SHOWN_KEY).catch(noteSwallowedAs('BillingIssueToastHost:promise_3', null)),
+        AsyncStorage.getItem(LAST_ISSUE_AT_KEY).catch(noteSwallowedAs('BillingIssueToastHost:promise_4', null)),
       ]);
       const lastShown = lastShownRaw ? Number(lastShownRaw) : 0;
       const lastIssue = lastIssueRaw ? Number(lastIssueRaw) : 0;
@@ -68,7 +69,7 @@ export default function BillingIssueToastHost() {
       await AsyncStorage.multiSet([
         [LAST_SHOWN_KEY, String(Date.now())],
         [LAST_ISSUE_AT_KEY, String(issueAt)],
-      ]).catch(() => {});
+      ]).catch(noteSwallowedHandler('BillingIssueToastHost:promise_5'));
 
       // зачем: звук ровно один раз на показ плашки — эта ветка уже прошла кулдаун/
       // привязку к инциденту выше (sameIssue-проверка), поэтому дребезга при

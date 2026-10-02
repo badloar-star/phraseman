@@ -9,6 +9,7 @@
 // локальный AsyncStorage. Синхронизировать между устройствами нечего: на новом
 // устройстве человеку не вредно увидеть подсказку ещё раз.
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const STORAGE_KEY = 'saved_cards_first_run_v1';
 
@@ -62,13 +63,13 @@ function parse(raw: string | null): SavedCardsFirstRunState {
 }
 
 export async function readSavedCardsFirstRun(): Promise<SavedCardsFirstRunState> {
-  const raw = await AsyncStorage.getItem(STORAGE_KEY).catch(() => null);
+  const raw = await AsyncStorage.getItem(STORAGE_KEY).catch(noteSwallowedAs('saved_cards_first_run:promise_1', null));
   return parse(raw);
 }
 
 async function write(next: SavedCardsFirstRunState): Promise<void> {
   // Промах записи не должен ломать сохранение самой карточки — подсказка вторична.
-  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(next)).catch(() => {});
+  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(next)).catch(noteSwallowedHandler('saved_cards_first_run:promise_2'));
 }
 
 /**
@@ -132,5 +133,5 @@ export async function markHomeArrivalPlayed(
 
 /** Только для дев-инструментов и тестов: вернуть человека в состояние новичка. */
 export async function resetSavedCardsFirstRun(): Promise<void> {
-  await AsyncStorage.removeItem(STORAGE_KEY).catch(() => {});
+  await AsyncStorage.removeItem(STORAGE_KEY).catch(noteSwallowedHandler('saved_cards_first_run:promise_3'));
 }

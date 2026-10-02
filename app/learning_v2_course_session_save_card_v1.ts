@@ -16,6 +16,7 @@ import type {
   LearningV2CourseSessionSavablePhraseV1,
 } from "../modules/learning-v2/runtime/course_session_client_children_v1";
 import type { LearningV2InterfaceLocale } from "../modules/learning-v2/content/generator_course_contract";
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type LearningV2CourseSessionSaveCardOutcomeV1 =
   | "added"
@@ -69,7 +70,7 @@ export async function saveLearningV2CourseSessionPhraseToCardsV1(
       sourceId: `learning-v2:${input.save.targetLanguage}:${input.save.savablePhraseRef}`,
     });
     let added = false;
-    const hasPremiumAccess = await getVerifiedPremiumAccessStatus().catch(() => false);
+    const hasPremiumAccess = await getVerifiedPremiumAccessStatus().catch(noteSwallowedAs('learning_v2_course_session_save_card_v1:promise_2', false));
     const cardLimit = hasPremiumAccess ? PLUS_CUSTOM_CARD_LIMIT : FREE_CUSTOM_CARD_LIMIT;
     // зачем: карточка из урока обязана лечь в хранилище языка ЭТОГО курса —
     // иначе французский урок пишет в английскую библиотеку (2026-09-05).
@@ -89,5 +90,5 @@ export async function saveLearningV2CourseSessionPhraseToCardsV1(
       return [...cards, card];
     }, cardStudyTarget);
     return added ? ("added" as const) : ("duplicate" as const);
-  }).catch(() => "failed" as const);
+  }).catch(noteSwallowedAs('learning_v2_course_session_save_card_v1:promise_1', "failed" as const));
 }

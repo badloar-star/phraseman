@@ -9,6 +9,7 @@ import type { RuntimeStudyTarget } from './target_storage_keys';
 import { markNextNavigationAsReplace } from './navigation_back';
 import { openPremiumPaywall } from './paywall_navigation';
 import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type LessonRuntimeGate = 'available' | 'premium_required' | 'level_required' | 'progress_required';
 
@@ -26,7 +27,7 @@ export async function resolveLessonRuntimeGate(
     // The Free sample and exact pearl grants outrank subscription status.
     if (await isLessonUnlockedByEarnedProgress(lessonId, studyTarget)) return 'available';
 
-    const premium = await getVerifiedPremiumStatus().catch(() => false);
+    const premium = await getVerifiedPremiumStatus().catch(noteSwallowedAs('lesson_premium_gate:promise_1', false));
     if (!premium) {
       return requiresPremiumForLesson(lessonId) ? 'premium_required' : 'progress_required';
     }
@@ -84,7 +85,7 @@ export async function openLessonGateByRuntime(
   lessonId: number,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<void> {
-  const gate = await resolveLessonRuntimeGate(lessonId, studyTarget).catch(() => 'progress_required' as LessonRuntimeGate);
+  const gate = await resolveLessonRuntimeGate(lessonId, studyTarget).catch(noteSwallowedAs('lesson_premium_gate:promise_2', 'progress_required' as LessonRuntimeGate));
   if (gate === 'available') return;
   if (gate === 'premium_required') {
     openLessonPremiumPaywall(router, lessonId);

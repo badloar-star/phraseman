@@ -10,6 +10,7 @@ import { emitAppEvent } from './events';
 import { enqueueLevelSpinStarGrant } from './level_spin_star_grants';
 import { getCanonicalUserId } from './user_id_policy';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type ReportRewardSeverity = 'none' | 'minor' | 'serious' | 'critical' | 'legacy';
 export type ReportRewardTierSeverity = Exclude<ReportRewardSeverity, 'legacy'>;
@@ -282,7 +283,7 @@ export async function claimReportRewardBundle(
   const owner = token.stableId;
   if (!owner) throw new Error('report_reward_account_missing');
   assertCurrent(token, owner);
-  if (await getCanonicalUserId().catch(() => null) !== owner) throw new Error('report_reward_account_changed');
+  if (await getCanonicalUserId().catch(noteSwallowedAs('report_reward_bundle:promise_1', null)) !== owner) throw new Error('report_reward_account_changed');
   const existing = (await readPending(owner)).find((row) => row.messageId === cleanMessageId);
   if (existing && JSON.stringify(existing.rewardBundle) !== JSON.stringify(rewardBundle)) {
     throw new Error('report_reward_pending_conflict');

@@ -52,6 +52,7 @@ import {
 } from './level_spin_local_contract';
 import { DebugLogger } from './debug-logger';
 import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_runes';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const STAR_AMOUNTS = Object.freeze({
   stars_10: 10, stars_20: 20, stars_50: 50, stars_100: 100,
@@ -1211,7 +1212,7 @@ export async function recoverAndHydrateLevelSpinStarGrants(
   }
   publishProjection(token, projection);
   if (options.syncNow !== false) {
-    void syncPendingLevelSpinStarGrants(token).catch(() => {});
+    void syncPendingLevelSpinStarGrants(token).catch(noteSwallowedHandler('level_spin_star_grants:promise_1'));
     // зачем (D148, Q109): миграция «Подарки → монеты» удалена целиком — здесь её
     // запуск больше не нужен. Сверка кошелька ниже — единственный фоновый шаг.
     // зачем (Q-COIN b, координатор 01.10): разовая серверная сверка — после
@@ -2242,7 +2243,7 @@ export async function enqueueLevelSpinStarGrant(
   }, options.accountTransitionLockLease);
 
   publishProjection(input.token, committedProjection);
-  if (options.syncNow !== false) void syncPendingLevelSpinStarGrants(input.token).catch(() => {});
+  if (options.syncNow !== false) void syncPendingLevelSpinStarGrants(input.token).catch(noteSwallowedHandler('level_spin_star_grants:promise_2'));
 }
 
 /**

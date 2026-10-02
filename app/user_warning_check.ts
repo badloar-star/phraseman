@@ -3,6 +3,7 @@ import firestore from '@react-native-firebase/firestore';
 import { IS_EXPO_GO, CLOUD_SYNC_ENABLED } from './config';
 import { getStableId } from './stable_id';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const SEEN_KEY = 'seen_warning_ids';
 const WARN_FETCH_AT_KEY = 'user_warnings_last_fetch_at_v1';
@@ -52,7 +53,7 @@ export async function checkUserWarning(): Promise<UserWarning | null> {
     const snap = await db.collection('user_warnings').where('uid', '==', uid).get();
     const fetchedAt = Date.now();
     warningFetchCacheAt = fetchedAt;
-    await AsyncStorage.setItem(WARN_FETCH_AT_KEY, String(fetchedAt)).catch(() => {});
+    await AsyncStorage.setItem(WARN_FETCH_AT_KEY, String(fetchedAt)).catch(noteSwallowedHandler('user_warning_check:promise_1'));
     if (snap.empty) return null;
 
     for (const doc of snap.docs) {

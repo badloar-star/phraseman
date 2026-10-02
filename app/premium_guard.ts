@@ -20,6 +20,7 @@ import {
 import { readVipSnapshotForGeneration, writeVipSnapshotForAccount } from './premium_vip_storage';
 import { resolveTesterNoPremiumOverride } from './tester_premium_override';
 import { emitAppEvent } from './events';
+import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
 
@@ -196,7 +197,7 @@ export function __getPremiumAccountWorkIdleWaiterCountForTests(): number {
  */
 export async function forcePremiumActive(): Promise<boolean> {
   if (!FORCE_PREMIUM) return false;
-  const noPremium = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
+  const noPremium = await AsyncStorage.getItem('tester_no_premium').catch(noteSwallowedAs('premium_guard:promise_1', null));
   return !resolveTesterNoPremiumOverride(noPremium);
 }
 
@@ -207,7 +208,7 @@ export async function forcePremiumActive(): Promise<boolean> {
  */
 export async function isTesterNoLimitsActive(): Promise<boolean> {
   const pairs = await AsyncStorage.multiGet(['tester_no_premium', 'tester_no_limits'])
-    .catch(() => [] as [string, string | null][]);
+    .catch(noteSwallowedAs('premium_guard:promise_2', [] as [string, string | null][]));
   const noPremiumRaw = pairs.find(([key]) => key === 'tester_no_premium')?.[1];
   const noLimitsRaw = pairs.find(([key]) => key === 'tester_no_limits')?.[1];
   return !resolveTesterNoPremiumOverride(noPremiumRaw) && noLimitsRaw === 'true' && !IS_STORE_RELEASE;
@@ -246,11 +247,11 @@ function isLifetimeVipValues(values: Readonly<Record<string, string>> | null): b
  * Чистое чтение локального состояния, без сетевых запросов.
  */
 export async function isLifetimePlanLocal(): Promise<boolean> {
-  const plan = await AsyncStorage.getItem('premium_plan').catch(() => null);
+  const plan = await AsyncStorage.getItem('premium_plan').catch(noteSwallowedAs('premium_guard:promise_3', null));
   if (String(plan ?? '').trim().toLowerCase() === 'lifetime') return true;
   const generation = captureAccountGeneration();
   if (!accountGenerationIsCurrent(generation)) return false;
-  const vipValues = await readVipSnapshotForGeneration(generation).catch(() => null);
+  const vipValues = await readVipSnapshotForGeneration(generation).catch(noteSwallowedAs('premium_guard:promise_4', null));
   if (!accountGenerationIsCurrent(generation)) return false;
   return isLifetimeVipValues(vipValues);
 }
@@ -318,14 +319,14 @@ function refreshRealPremiumInBackground(
   let refresh!: Promise<void>;
   refresh = (async () => {
     try {
-      const rcAppUserIdBefore = await Purchases.getAppUserID().catch(() => '');
+      const rcAppUserIdBefore = await Purchases.getAppUserID().catch(noteSwallowedAs('premium_guard:promise_5', ''));
       if (!accountGenerationIsCurrent(generation) || rcAppUserIdBefore !== generation.stableId) return;
       const info = await Promise.race([
         Purchases.getCustomerInfo(),
         new Promise<null>(resolve => setTimeout(() => resolve(null), RC_TIMEOUT_MS)),
       ]);
       if (!info || !accountGenerationIsCurrent(generation)) return;
-      const rcAppUserIdAfter = await Purchases.getAppUserID().catch(() => '');
+      const rcAppUserIdAfter = await Purchases.getAppUserID().catch(noteSwallowedAs('premium_guard:promise_6', ''));
       if (!accountGenerationIsCurrent(generation) || rcAppUserIdAfter !== generation.stableId) return;
 
       const rcActive = revenueCatCustomerInfoHasPremiumAccess(info as any);
@@ -378,7 +379,7 @@ function refreshRealPremiumInBackground(
       if (snapshot.plan === 'lifetime' && !snapshot.legacyAdminGrant && !snapshot.adminExplicitRevoked) return;
       if (snapshot.rcExpiryMs > now || snapshot.expiryMs > now) return;
 
-      const currentLastSeenRaw = await AsyncStorage.getItem(RC_LAST_SEEN_KEY).catch(() => null);
+      const currentLastSeenRaw = await AsyncStorage.getItem(RC_LAST_SEEN_KEY).catch(noteSwallowedAs('premium_guard:promise_7', null));
       if (!accountGenerationIsCurrent(generation)) return;
       const currentLastSeen = Math.max(snapshot.lastSeenMs, parseInt(currentLastSeenRaw || '0', 10) || 0);
       if (currentLastSeen > 0 && now - currentLastSeen <= RC_STALE_GRACE_MS) return;
@@ -558,7 +559,7 @@ export async function getVerifiedVipStatus(options?: PremiumLeaseReadOptions): P
   // гасить и VIP, а не только real-премиум. Иначе админ-VIP-грант (или его
   // воскрешение из облака) возвращал доступ, и кнопка «Снять премиум» «не
   // работала». Проверяем ПЕРЕД кэшем, чтобы снятие срабатывало мгновенно.
-  const noPremiumVip = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
+  const noPremiumVip = await AsyncStorage.getItem('tester_no_premium').catch(noteSwallowedAs('premium_guard:promise_8', null));
   if (!accountGenerationIsCurrent(generation)) return false;
   if (resolveTesterNoPremiumOverride(noPremiumVip)) return finish(false);
 
@@ -588,7 +589,7 @@ export async function getVerifiedVipStatus(options?: PremiumLeaseReadOptions): P
   if (vipState.grantAt) {
     storagePairs.push(['vip_admin_grant_at', String(parsePremiumProgressMs(vipState.grantAt) || vipState.grantAt)]);
   }
-  await writeVipSnapshotForAccount(stableId, Object.fromEntries(storagePairs)).catch(() => {});
+  await writeVipSnapshotForAccount(stableId, Object.fromEntries(storagePairs)).catch(noteSwallowedHandler('premium_guard:promise_9'));
   if (!isCurrentAccountGeneration(generation, stableId)) return false;
   return finish(vipState.active);
 }
@@ -604,7 +605,7 @@ export async function getVerifiedPremiumAccessStatus(
   // real, а доступ оставался через VIP/intro (и cloud-refresh тянул его назад),
   // поэтому кнопка «Снять премиум» не снимала. Проверяем самым первым, до кэша
   // и до любого облачного обновления.
-  const noPremiumAccess = await AsyncStorage.getItem('tester_no_premium').catch(() => null);
+  const noPremiumAccess = await AsyncStorage.getItem('tester_no_premium').catch(noteSwallowedAs('premium_guard:promise_10', null));
   if (!accountGenerationIsCurrent(generation)) return false;
   if (resolveTesterNoPremiumOverride(noPremiumAccess)) return finish(false);
 
@@ -623,18 +624,18 @@ export async function getVerifiedPremiumAccessStatus(
   if (!accountGenerationIsCurrent(generation)) return false;
 
   const [realPremium, vip] = await Promise.all([
-    getVerifiedRealPremiumStatus(options).catch(() => false),
-    getVerifiedVipStatus(options).catch(() => false),
+    getVerifiedRealPremiumStatus(options).catch(noteSwallowedAs('premium_guard:promise_11', false)),
+    getVerifiedVipStatus(options).catch(noteSwallowedAs('premium_guard:promise_12', false)),
   ]);
   if (!accountGenerationIsCurrent(generation)) return false;
   if (realPremium || vip) return finish(true);
 
-  if (await isIntroFullAccessActive().catch(() => false)) {
+  if (await isIntroFullAccessActive().catch(noteSwallowedAs('premium_guard:promise_13', false))) {
     return accountGenerationIsCurrent(generation) ? finish(true) : false;
   }
   if (!accountGenerationIsCurrent(generation)) return false;
 
-  const loyaltyGift = await readGiftAccessFromCloud('loyalty').catch(() => null);
+  const loyaltyGift = await readGiftAccessFromCloud('loyalty').catch(noteSwallowedAs('premium_guard:promise_14', null));
   if (!accountGenerationIsCurrent(generation)) return false;
   if (loyaltyGift?.endsAtMs && loyaltyGift.endsAtMs > Date.now()) {
     return finish(true);
@@ -646,8 +647,8 @@ export async function getVerifiedPremiumAccessStatus(
   if (cloudRefreshed) {
     invalidatePremiumCache();
     const [realAfterCloud, vipAfterCloud] = await Promise.all([
-      getVerifiedRealPremiumStatus(options).catch(() => false),
-      getVerifiedVipStatus(options).catch(() => false),
+      getVerifiedRealPremiumStatus(options).catch(noteSwallowedAs('premium_guard:promise_15', false)),
+      getVerifiedVipStatus(options).catch(noteSwallowedAs('premium_guard:promise_16', false)),
     ]);
     return accountGenerationIsCurrent(generation) ? finish(realAfterCloud || vipAfterCloud) : false;
   }

@@ -60,6 +60,7 @@ import {
   type EnergyStateV2,
 } from '../app/energy_state_v2';
 import { energyVisualTransactions } from '../app/energy_visual_transactions';
+import { noteSwallowedHandler, noteSwallowedAs } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type EnergyNotificationModule = Pick<
   typeof import('../app/notifications'),
@@ -295,7 +296,7 @@ async function readUnlimited(): Promise<boolean> {
   const devAccountGeneration = captureAccountGeneration();
   const devStableId = devAccountGeneration.phase === 'active' ? devAccountGeneration.stableId : null;
   const devOverride = devStableId
-    ? await readDevLocalPlusOverride(devStableId).catch(() => 'inherit' as const)
+    ? await readDevLocalPlusOverride(devStableId).catch(noteSwallowedAs('EnergyContext:promise_1', 'inherit' as const))
     : 'inherit';
   if (devOverride === 'removed') {
     _lastUnlimitedReason = 'none:dev_override_removed';
@@ -1111,7 +1112,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     setEnergyReady(true);
     writePeekEnergy(fullEnergy, fullEnergy);
 
-    await cancelEnergyFullNotificationLazy().catch(() => {});
+    await cancelEnergyFullNotificationLazy().catch(noteSwallowedHandler('EnergyContext:promise_2'));
     return isCurrent();
   }, []);
 

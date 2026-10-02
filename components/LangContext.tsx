@@ -6,6 +6,7 @@ import { coerceInterfaceLang, getDeviceBootstrapLocale, isInterfaceLangEnabled, 
 import { emitDevStudyTargetChanged, resetDevStudyTargetForSpanishUi } from '../app/study_target_lang_dev';
 import { peekAppLang, writePeekAppLang } from '../app/app_snapshot_bootstrap';
 import { persistPortablePreference, readPortablePreference } from '../app/phone_state_preference_bridge';
+import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type { Lang };
 const RU = {
@@ -1213,7 +1214,7 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
         const storedLang = coerceInterfaceLang(v);
         if (!storedLang) {
           if (typeof v === 'string') {
-            persistPortablePreference('app_lang', 'ru').catch(() => {});
+            persistPortablePreference('app_lang', 'ru').catch(noteSwallowedHandler('LangContext:promise_2'));
             setLangState('ru');
           }
           return;
@@ -1223,7 +1224,7 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
           void resetDevStudyTargetForSpanishUi().then(emitDevStudyTargetChanged);
         }
       })
-      .catch(() => {})
+      .catch(noteSwallowedHandler('LangContext:promise_1'))
       .finally(() => {
         setLangHydrated(true);
       });
@@ -1231,7 +1232,7 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
 
   const setLang = useCallback(async (l: Lang) => {
     if (!isInterfaceLangEnabled(l)) {
-      persistPortablePreference('app_lang', 'ru').catch(() => {});
+      persistPortablePreference('app_lang', 'ru').catch(noteSwallowedHandler('LangContext:promise_3'));
       writePeekAppLang(null);
       setLangState('ru');
       return;

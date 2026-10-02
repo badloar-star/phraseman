@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type SettingsPollVoteState = {
   messageId: string;
@@ -89,7 +90,7 @@ export async function submitSettingsPollVoteOptimistically(
         status: 'synced',
         updatedAtMs: Date.now(),
       } : vote));
-    }).catch(() => {});
+    }).catch(noteSwallowedHandler('settings_poll_vote:promise_1'));
     return pending;
   })();
   voteSubmissionQueue.set(queueKey, operation);

@@ -13,6 +13,7 @@ import { DebugLogger } from './debug-logger';
 import { readCoinRank } from './coin_rank_state_v1';
 import { isValidCoinRank } from './coin_rank_table_v1';
 import { readProfileCardProForProjection } from './profile_card_pro_state_v1';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export const PUBLIC_PROFILE_SNAPSHOT_CACHE_KEY = 'public_profile_snapshot_v1';
 type PublicProfileReason = 'display_change' | 'entitlement_change';
@@ -183,7 +184,7 @@ async function syncPublicProfileSnapshotUnsafe(
   const aura = null;
   const lang = String(langRaw || 'ru').trim() || 'ru';
   const name = String(nameRaw || '').trim();
-  const lifetimeStats = await readLifetimeProfileStatsCache().catch(() => null);
+  const lifetimeStats = await readLifetimeProfileStatsCache().catch(noteSwallowedAs('public_profile_snapshot:promise_1', null));
   if (!isCurrent()) return;
   const cardStatsPayload = lifetimeStats
     ? {

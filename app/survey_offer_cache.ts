@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
 import type { SurveyOfferSnapshot } from './survey_offer_model';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type SurveyOfferScope = { stableId: string; dayKey: string; lang: Lang };
 type Entry = { snapshot: SurveyOfferSnapshot | null; writtenAtMs: number; requestId: number };
@@ -25,7 +26,7 @@ function prune(nowMs: number): void {
 
 function persist(): void {
   const entries = [...cache.entries()].slice(-MAX_ENTRIES);
-  void AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(entries)).catch(() => {});
+  void AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(entries)).catch(noteSwallowedHandler('survey_offer_cache:promise_1'));
 }
 
 /** Loads the last known survey decision before Home mounts, so 4/5 never flips visibly. */

@@ -16,6 +16,7 @@ import {
 import { readSavedDevCredential, signInWithDevEmailCredential } from './vip_survey_dev_auth';
 import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken } from './account_generation';
 import { writeVipSnapshotForAccount } from './premium_vip_storage';
+import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const FUNCTIONS_REGION = 'us-central1';
 let vipCallableAuthPromise: Promise<string> | null = null;
@@ -89,7 +90,7 @@ async function signInAnonymouslyForVipCallable(auth: any): Promise<string> {
   } catch (firstError) {
     const firstDetail = errorDetail(firstError);
     if (/keychain|auth\/keychain|anonymous/i.test(firstDetail)) {
-      await auth?.signOut?.().catch(() => undefined);
+      await auth?.signOut?.().catch(noteSwallowedAs('vip_survey:promise_1', undefined));
       resetAnonAuthCacheForSignOut();
       await new Promise((resolve) => setTimeout(resolve, 250));
       try {
@@ -125,7 +126,7 @@ async function ensureFirebaseAuthUidForVipCallableInner(): Promise<string> {
     }
     if (!user?.uid) throw new Error('missing_user');
     if (typeof user.getIdToken === 'function') {
-      await user.getIdToken(true).catch(() => undefined);
+      await user.getIdToken(true).catch(noteSwallowedAs('vip_survey:promise_2', undefined));
     }
     return String(user.uid);
   } catch (e) {
@@ -174,7 +175,7 @@ async function persistVipResult(
     reason: 'entitlement_change',
     isVip: active,
     isPremium: active,
-  }).catch(() => {});
+  }).catch(noteSwallowedHandler('vip_survey:promise_3'));
 }
 
 export async function submitVipSurveyFromApp(params: {
@@ -187,7 +188,7 @@ export async function submitVipSurveyFromApp(params: {
     throw new Error('cloud_unavailable');
   }
 
-  const hasPremiumAccess = await getVerifiedPremiumAccessStatus().catch(() => false);
+  const hasPremiumAccess = await getVerifiedPremiumAccessStatus().catch(noteSwallowedAs('vip_survey:promise_4', false));
   if (hasPremiumAccess) {
     throw new Error('vip_survey_free_tier_required');
   }
@@ -197,7 +198,7 @@ export async function submitVipSurveyFromApp(params: {
   if (!stableId) throw new Error('user_unavailable');
   const generation = captureAccountGeneration();
   if (!isCurrentAccountGeneration(generation, stableId)) throw new Error('stale_account_generation');
-  await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+  await ensureStableAuthLinkForStableId(stableId).catch(noteSwallowedAs('vip_survey:promise_5', false));
 
   const fn = callable<SubmitVipSurveyRequest, SubmitVipSurveyResponse>('submitVipSurvey');
   const payload: SubmitVipSurveyRequest = {
@@ -224,7 +225,7 @@ export async function recordVipSurveyReviewClickFromApp(params: {
   await ensureFirebaseAuthUidForVipCallable();
   const stableId = await ensureAnonUser();
   if (!stableId) return false;
-  await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+  await ensureStableAuthLinkForStableId(stableId).catch(noteSwallowedAs('vip_survey:promise_6', false));
 
   const fn = callable<RecordVipSurveyReviewClickRequest, RecordVipSurveyReviewClickResponse>('recordVipSurveyReviewClick');
   const result = (await fn({

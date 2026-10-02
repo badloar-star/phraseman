@@ -19,6 +19,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Ключ локального списка. Версия в имени — на случай смены формата. */
 const STORAGE_KEY = 'synthetic_friend_requests_v1';
@@ -70,10 +71,10 @@ export function rememberSyntheticFriendRequest(uid: string): void {
   const next = new Set(cache ?? []);
   next.add(uid);
   cache = next;
-  void AsyncStorage.setItem(STORAGE_KEY, JSON.stringify([...next])).catch(() => {
-    // Промах записи не откатываем: в памяти состояние уже верное, а следующая
-    // заявка перезапишет файл целиком. Хуже показать откат кнопки.
-  });
+  // Промах записи не откатываем: в памяти состояние уже верное, а следующая
+  // заявка перезапишет файл целиком. Хуже показать откат кнопки.
+  // PM-229: причина промаха пишется в журнал.
+  void AsyncStorage.setItem(STORAGE_KEY, JSON.stringify([...next])).catch(noteSwallowedHandler('synthetic_friend_requests:promise_1'));
 }
 
 /** Была ли «отправлена» заявка этому персонажу. */

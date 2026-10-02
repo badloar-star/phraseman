@@ -8,6 +8,7 @@ import {
   unlockedLessonsKey,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export const LEGACY_FREE_LESSON_MIN = 3;
 export const LEGACY_FREE_LESSON_MAX = 8;
@@ -117,7 +118,7 @@ async function readLegacyFreeLessonEvidence(
 export async function readLegacyFreeLessonCap(
   studyTarget?: RuntimeStudyTarget,
 ): Promise<number> {
-  const raw = await AsyncStorage.getItem(legacyFreeLessonCapKey(studyTarget)).catch(() => null);
+  const raw = await AsyncStorage.getItem(legacyFreeLessonCapKey(studyTarget)).catch(noteSwallowedAs('legacy_free_lesson_access:promise_1', null));
   return normalizeLegacyFreeLessonCap(raw) ?? LEGACY_FREE_LESSON_MIN;
 }
 

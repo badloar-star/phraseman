@@ -47,6 +47,7 @@ import {
   setAiExplainConsent,
   subscribeAiExplainConsent,
 } from './ai_explain_consent';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /**
  * Shared orchestration for the AI mistake breakdown (inline `AiMistakeCard`) and
@@ -490,7 +491,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
         if (isCurrentRequest()) mistakeInFlightTokenRef.current = null;
       };
       if (withHaptic) hapticTap();
-      const limitShown = await hasShownAiMistakeLimitNoticeToday().catch(() => false);
+      const limitShown = await hasShownAiMistakeLimitNoticeToday().catch(noteSwallowedAs('use_mistake_explain:promise_1', false));
       if (!isCurrentRequest()) {
         releaseInFlight();
         return;

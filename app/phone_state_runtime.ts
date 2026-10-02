@@ -73,6 +73,7 @@ import {
 } from './economy/client_shard_operation_ledger';
 import { configurePhoneStateBackgroundSyncBridge } from './phone_state_background_sync_bridge';
 import { configurePhoneStateProgressRegisterBridge } from './phone_state_progress_register_bridge';
+import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const DEVICE_ID_PATTERN = /^[A-Za-z0-9_-]{16,80}$/;
 let installed = false;
@@ -375,7 +376,7 @@ async function openRuntimeSession(
     };
     return Object.freeze(session);
   } catch (error) {
-    await database.closeAsync().catch(() => undefined);
+    await database.closeAsync().catch(noteSwallowedAs('phone_state_runtime:promise_1', undefined));
     throw error;
   }
 }
@@ -448,12 +449,12 @@ export function installPhoneStateProductionRuntime(): void {
       }, {
         storage: AsyncStorage,
         mirror: commitPhoneStateCustomizationSelection,
-      }).catch(() => {});
+      }).catch(noteSwallowedHandler('phone_state_runtime:promise_2'));
       void backfillClientShardPhoneStateOutbox({
         accountToken: session.context.runtimeToken,
       }).then(() => drainClientShardPhoneStateOutbox({
         accountToken: session.context.runtimeToken,
-      })).catch(() => {});
+      })).catch(noteSwallowedHandler('phone_state_runtime:promise_3'));
       configurePhoneStateLearningV2Bridge({
         scope,
         deviceId: session.deviceId,
@@ -538,7 +539,7 @@ export function installPhoneStateProductionRuntime(): void {
             await hydrateLevelSpinStarsAfterPhoneStatePull(
               session.context.runtimeToken,
               result,
-            ).catch(() => {});
+            ).catch(noteSwallowedHandler('phone_state_runtime:promise_4'));
           }
           return result;
         },

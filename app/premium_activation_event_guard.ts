@@ -6,6 +6,7 @@ import {
 } from './account_generation';
 import { getPremiumAccountTransitionEpoch } from './premium_guard';
 import { resolveTesterNoPremiumOverride } from './tester_premium_override';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type PremiumActivationEventGuard = {
   accountToken: AccountGenerationToken;
@@ -42,7 +43,7 @@ export async function readPremiumActivationDisposition(
 ): Promise<PremiumActivationDisposition> {
   if (!guard.isCurrent()) return 'stale';
   const entries = await AsyncStorage.multiGet(['tester_no_premium', 'tester_no_limits'])
-    .catch(() => [] as [string, string | null][]);
+    .catch(noteSwallowedAs('premium_activation_event_guard:promise_1', [] as [string, string | null][]));
   if (!guard.isCurrent()) return 'stale';
   const values = Object.fromEntries(entries);
   const noPremium = resolveTesterNoPremiumOverride(values.tester_no_premium, isStoreRelease);

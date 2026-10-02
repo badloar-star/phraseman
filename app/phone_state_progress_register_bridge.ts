@@ -6,6 +6,7 @@ import type { PendingPersonalOperation } from '../modules/phone-state/contracts'
 import { portableOwnerForKey } from '../modules/phone-state/domain_ownership';
 import { legacyInventory } from '../modules/phone-state/legacy_inventory';
 import type { PhoneStateStore } from '../modules/phone-state/store';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type Runtime = Readonly<{
   scope: PhoneStateScope;
@@ -50,7 +51,7 @@ export async function persistPortableProgressRegister(
     });
     const committed = await active.store.commit(operation, {
       idempotencyKey: `progress-register:${Crypto.randomUUID()}`,
-    }).then(() => true).catch(() => false);
+    }).then(() => true).catch(noteSwallowedAs('phone_state_progress_register_bridge:promise_1', false));
     if (committed) active.triggerSync();
   }
   if (value === null) await AsyncStorage.removeItem(key);

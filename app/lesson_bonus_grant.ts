@@ -17,6 +17,7 @@ import {
 } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const PENDING_KEY = 'lesson_bonus_pending_v1';
 const PENDING_MAX_ENTRIES = 32;
@@ -153,7 +154,7 @@ async function doGrantLessonFirstCompleteBonus(
     if (!isAccountOperationCurrent(accountToken)) return { status: 'failed' };
     if (already) {
       if (isAccountOperationCurrent(accountToken)) {
-        await clearPending(lessonId, studyTarget, accountToken).catch(() => {});
+        await clearPending(lessonId, studyTarget, accountToken).catch(noteSwallowedHandler('lesson_bonus_grant:promise_1'));
       }
       return { status: 'already_granted' };
     }
@@ -172,14 +173,14 @@ async function doGrantLessonFirstCompleteBonus(
       DebugLogger.warn('LESSON-BONUS', `mark skipped: account changed lesson=${lessonId} silent=${!!silent}`);
       return { status: 'failed' };
     }
-    await clearPending(lessonId, studyTarget, accountToken).catch(() => {});
+    await clearPending(lessonId, studyTarget, accountToken).catch(noteSwallowedHandler('lesson_bonus_grant:promise_2'));
     return { status: 'granted' };
   } catch (e) {
     logAppWarning('lesson_bonus:grant_failed', e, {
       tags: { lessonId, studyTarget: String(studyTarget ?? 'legacy'), silent: !!silent },
     });
     if (isAccountOperationCurrent(accountToken)) {
-      await markPending({ lessonId, studyTarget, lang, at: Date.now() }, accountToken).catch(() => {});
+      await markPending({ lessonId, studyTarget, lang, at: Date.now() }, accountToken).catch(noteSwallowedHandler('lesson_bonus_grant:promise_3'));
     }
     return { status: 'failed' };
   }

@@ -22,6 +22,7 @@ import {
   type LiquidGlassColorLevel,
   type LiquidGlassThemeId,
 } from '../constants/liquidGlassThemePalette';
+import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // ─── ШКАЛА ШРИФТОВ ──────────────────────────────────────────────────────────
 // Duolingo использует ~16px для основного текста, ~14px для вторичного
@@ -384,7 +385,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         void AsyncStorage.setItem('app_theme', LEGACY_GRAPHITE_THEME_MODE);
       }
       if (fontStr && fontStr in FONT_SCALE) setFontSizeState(fontStr as FontSize);
-    })().catch(() => { /* fail-soft: defaults are already Graphite + medium */ });
+    })().catch(noteSwallowedHandler('ThemeContext:promise_1')); // fail-soft: defaults are already Graphite + medium
     return () => {
       cancelled = true;
     };

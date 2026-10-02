@@ -15,6 +15,7 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const STORAGE_KEY = 'stats_daily_breakdown_v1';
 
@@ -191,7 +192,7 @@ export async function bumpStatsDaily(
     if (!committed) return;
     void import('./activity_365_analytics')
       .then(({ invalidateActivity365Cache }) => invalidateActivity365Cache())
-      .catch(() => {});
+      .catch(noteSwallowedHandler('stats_daily_breakdown:promise_1'));
   } catch (e) {
       // ignore
       DebugLogger.error('stats_daily_breakdown:committed', e instanceof Error ? e : new Error(String(e)), 'warning');

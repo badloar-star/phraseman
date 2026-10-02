@@ -12,6 +12,7 @@ import {
   type LearningV2ActivityReleasedSessionPackageHandleV1,
   type LearningV2ActivityReleasedSessionPackageSummaryV1,
 } from "../modules/learning-v2/runtime/activity_released_session_package_v1";
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export const LEARNING_V2_ACTIVITY_RELEASED_SESSION_CACHE_SCHEMA_V1 =
   "learning-v2-activity-released-session-cache.v1" as const;
@@ -271,7 +272,7 @@ async function readEnvelope(): Promise<CacheEnvelope> {
     return parseEnvelope(await AsyncStorage.getItem(STORAGE_KEY));
   } catch {
     peek.clear();
-    await AsyncStorage.removeItem(STORAGE_KEY).catch(() => undefined);
+    await AsyncStorage.removeItem(STORAGE_KEY).catch(noteSwallowedAs('learning_v2_activity_released_session_client_v1:promise_1', undefined));
     return parseEnvelope(null);
   }
 }
@@ -324,7 +325,7 @@ async function persistRow(row: CacheRow): Promise<void> {
         fail();
       await AsyncStorage.setItem(STORAGE_KEY, raw);
     })
-    .catch(() => undefined);
+    .catch(noteSwallowedAs('learning_v2_activity_released_session_client_v1:promise_2', undefined));
   return writeChain;
 }
 
@@ -508,7 +509,7 @@ export async function loadCurrentLearningV2ActivityReleasedSessionV1(
   // зачем ensureStableAuthLink (владелец, 2026-08-27, «сессии должны быть
   // доступны всегда, даже без привязки аккаунта») — см. подробный комментарий
   // в learning_v2_course_released_session_client_v3.ts, тот же класс бага.
-  await ensureStableAuthLink().catch(() => false);
+  await ensureStableAuthLink().catch(noteSwallowedAs('learning_v2_activity_released_session_client_v1:promise_3', false));
   const stableId = await ensureAnonUser();
   if (!stableId) fail();
   const accountScopeHash = deriveLocalOfflineProgressAccountScopeHash(stableId);
@@ -589,6 +590,6 @@ export async function clearLearningV2ActivityReleasedSessionCacheV1(): Promise<v
   currentPreloads.clear();
   writeChain = writeChain
     .then(() => AsyncStorage.removeItem(STORAGE_KEY))
-    .catch(() => undefined);
+    .catch(noteSwallowedAs('learning_v2_activity_released_session_client_v1:promise_4', undefined));
   await writeChain;
 }

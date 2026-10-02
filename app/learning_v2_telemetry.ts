@@ -1,4 +1,5 @@
 import type { LearningV2TelemetryDescriptor } from '../modules/learning-v2/telemetry';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /**
  * Транспорт телеметрии курса — точная копия паттерна Арены
@@ -12,5 +13,5 @@ export function trackLearningV2Telemetry(
 ): void {
   void import('./analytics')
     .then(({ trackEvent }) => trackEvent(descriptor.event as never, descriptor.params as never))
-    .catch(() => {});
+    .catch(noteSwallowedHandler('learning_v2_telemetry:promise_1'));
 }

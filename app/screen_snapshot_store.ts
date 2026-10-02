@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { isCurrentAccountGeneration, type AccountGenerationToken } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /**
  * Общий дисковый слой снапшотов экранов — «мгновенное открытие как в Duolingo».
@@ -154,7 +155,7 @@ export async function primeScreenSnapshotsFromStorage(nowMs = Date.now()): Promi
  */
 export function clearScreenSnapshots(): void {
   entries.clear();
-  void AsyncStorage.removeItem(STORAGE_KEY).catch(() => {});
+  void AsyncStorage.removeItem(STORAGE_KEY).catch(noteSwallowedHandler('screen_snapshot_store:promise_1'));
 }
 
 /**
@@ -182,7 +183,7 @@ function schedulePersist(): void {
       value: entry.value,
       writtenAtMs: entry.writtenAtMs,
     }));
-    void AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(payload)).catch(() => {});
+    void AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(payload)).catch(noteSwallowedHandler('screen_snapshot_store:promise_2'));
   });
 }
 

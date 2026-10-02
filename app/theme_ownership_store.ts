@@ -26,6 +26,7 @@ import {
   mergeThemeModeLists,
   parseThemeModeList as parseModes,
 } from './theme_ownership_merge';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export {
   GRANDFATHERED_THEMES_KEY,
@@ -56,7 +57,7 @@ const GRANDFATHER_MIGRATION_KEY_PREFIX = 'theme_grandfather_migrated_v2_';
 const LEGACY_DEVICE_MIGRATION_KEY = 'theme_grandfather_migrated_v1';
 
 async function grandfatherMigrationKey(): Promise<string> {
-  const stableId = await getCanonicalUserId().catch(() => null);
+  const stableId = await getCanonicalUserId().catch(noteSwallowedAs('theme_ownership_store:promise_1', null));
   // Без stable id (гость до первого входа) миграция откладывается до её появления —
   // тема ещё не может быть куплена/закреплена без аккаунта, терять нечего.
   return `${GRANDFATHER_MIGRATION_KEY_PREFIX}${stableId ?? 'anon'}`;

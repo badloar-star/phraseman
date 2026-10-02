@@ -17,6 +17,7 @@ import { actionToastTri, emitAppEvent } from '../app/events';
 import { checkStreakLossPending } from '../app/hall_of_fame_utils';
 import { scheduleCoalescedForegroundTask } from '../app/app_resume_policy';
 import { DebugLogger } from '../app/debug-logger';
+import { noteSwallowedHandler, noteSwallowedAs } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const EVENING_HOUR = 17;
 const SHOWN_KEY = 'streak_risk_toast_shown';
@@ -33,13 +34,13 @@ export default function StreakRiskToastHost() {
       if (now.getHours() < EVENING_HOUR) return;
 
       const today = now.toISOString().slice(0, 10);
-      const shown = await AsyncStorage.getItem(SHOWN_KEY).catch(() => null);
+      const shown = await AsyncStorage.getItem(SHOWN_KEY).catch(noteSwallowedAs('StreakRiskToastHost:promise_1', null));
       if (shown === today) return;
 
       const { willLose, streakBefore } = await checkStreakLossPending();
       if (!willLose || streakBefore <= 1) return;
 
-      await AsyncStorage.setItem(SHOWN_KEY, today).catch(() => {});
+      await AsyncStorage.setItem(SHOWN_KEY, today).catch(noteSwallowedHandler('StreakRiskToastHost:promise_2'));
 
       // зачем: у цепочки есть срок (полночь) и цена бездействия — это
       // предупреждение, а не нейтральное инфо, которым его раньше маскировали.

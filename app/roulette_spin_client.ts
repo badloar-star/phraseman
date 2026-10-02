@@ -19,6 +19,7 @@ import { isReferralCloudEnabled } from './referral_flags';
 import { isReferralRouletteEmergencyStopped } from './remote_flags';
 import { DebugLogger } from './debug-logger';
 import { mergeLevelSpinServerStars } from './level_spin_star_grants';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const REGION = 'us-central1';
 const SPIN_CREDITS_CACHE_KEY = 'referral_spin_credits_v1';
@@ -75,7 +76,7 @@ function rememberSpinCredits(stableId: string, rawValue: number): number {
 
 async function cacheSpinCredits(stableId: string, rawValue: number): Promise<number> {
   const value = rememberSpinCredits(stableId, rawValue);
-  await AsyncStorage.setItem(spinCreditsStorageKey(stableId), String(value)).catch(() => {});
+  await AsyncStorage.setItem(spinCreditsStorageKey(stableId), String(value)).catch(noteSwallowedHandler('roulette_spin_client:promise_1'));
   return value;
 }
 

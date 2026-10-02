@@ -67,6 +67,7 @@ import {
   LEARNING_V2_INTERFACE_LOCALES,
   type LearningV2InterfaceLocale,
 } from "../modules/learning-v2/content/generator_course_contract";
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export const LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V3 =
   "learning-v2-course-released-session-cache.v3" as const;
@@ -622,7 +623,7 @@ async function readEnvelope(): Promise<CacheEnvelope> {
     return parseEnvelope(await AsyncStorage.getItem(STORAGE_KEY));
   } catch {
     peek.clear();
-    await AsyncStorage.removeItem(STORAGE_KEY).catch(() => undefined);
+    await AsyncStorage.removeItem(STORAGE_KEY).catch(noteSwallowedAs('learning_v2_course_released_session_client_v3:promise_1', undefined));
     return emptyEnvelope();
   }
 }
@@ -661,7 +662,7 @@ async function persistRow(row: CacheRow): Promise<void> {
         }),
       );
     })
-    .catch(() => undefined);
+    .catch(noteSwallowedAs('learning_v2_course_released_session_client_v3:promise_2', undefined));
   return writeChain;
 }
 
@@ -1124,7 +1125,7 @@ export async function loadCurrentLearningV2CourseReleasedSessionV3(
   // это гонка: сервер честно отвечает stable_id_required, callable выше
   // заворачивает это в stable_identity_unavailable, и сессия не открывается
   // вообще ни для одного пользователя без привязанного провайдера.
-  await ensureStableAuthLink().catch(() => false);
+  await ensureStableAuthLink().catch(noteSwallowedAs('learning_v2_course_released_session_client_v3:promise_3', false));
   const stableId = await ensureAnonUser();
   if (!stableId) fail();
   const accountScopeHash = deriveLocalOfflineProgressAccountScopeHash(stableId);
@@ -1140,7 +1141,7 @@ export async function loadCurrentLearningV2CourseReleasedSessionV3(
       // не бесконечный ретрай, как и в Арене (arena_client.ts:147-160).
       if (!isLearningV2StableIdentityFailure(firstError)) throw firstError;
       const repaired = await repairStableAuthLinkAfterIdentityFailure().catch(
-        () => false,
+        noteSwallowedAs('learning_v2_course_released_session_client_v3:promise_4', false),
       );
       if (!repaired) throw firstError;
       response = await fetchNetwork({ ...locator, activeRootFingerprint: null });
@@ -1503,6 +1504,6 @@ export async function clearLearningV2CourseReleasedSessionCacheV3(): Promise<voi
   readyHandoffs.clear();
   writeChain = writeChain
     .then(() => AsyncStorage.removeItem(STORAGE_KEY))
-    .catch(() => undefined);
+    .catch(noteSwallowedAs('learning_v2_course_released_session_client_v3:promise_5', undefined));
   await writeChain;
 }

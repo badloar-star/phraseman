@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_STORE_RELEASE } from './config';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export const TESTER_NO_PREMIUM_STORAGE_KEY = 'tester_no_premium';
 
@@ -18,7 +19,7 @@ export function resolveTesterNoPremiumOverride(
   if (!storeRelease) return true;
 
   try {
-    void AsyncStorage.removeItem(TESTER_NO_PREMIUM_STORAGE_KEY).catch(() => {});
+    void AsyncStorage.removeItem(TESTER_NO_PREMIUM_STORAGE_KEY).catch(noteSwallowedHandler('tester_premium_override:promise_1'));
   } catch (e) {
       // An unavailable storage bridge must not turn a legacy QA flag into denial.
       DebugLogger.error('tester_premium_override:resolveTesterNoPremiumOverride', e instanceof Error ? e : new Error(String(e)), 'warning');

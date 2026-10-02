@@ -4,6 +4,7 @@ import {
   resolvePhoneStateAccountContext,
 } from './account_generation';
 import { retirePhoneStateLineageAfterDeletion } from '../modules/phone-state/account_secret';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type PhoneStateBootstrapSession = Readonly<{
   context: PhoneStateAccountContext;
@@ -117,7 +118,7 @@ export function configurePhoneStateBootstrapRuntime(
 ): void {
   const previous = configuredLifecycle;
   configuredLifecycle = dependencies ? createPhoneStateBootstrapLifecycle(dependencies) : null;
-  if (previous) void previous.closeActive().catch(() => {});
+  if (previous) void previous.closeActive().catch(noteSwallowedHandler('phone_state_bootstrap:promise_1'));
 }
 
 export async function bootstrapPhoneState(input: Readonly<{

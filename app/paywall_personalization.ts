@@ -17,6 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getForegroundUsageMs } from './foreground_usage_ms';
 import { DebugLogger } from './debug-logger';
 import { trackEvent } from './analytics';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // ── Storage keys (атомарные счётчики) ────────────────────────────────────────
 export const ENERGY_ZERO_COUNT_KEY = 'energy_zero_count_v1';
@@ -295,7 +296,7 @@ export function trackPaywallTagsShown(
     context,
     tag_keys: tags.map((t) => t.key).join(','),
     tag_count: tags.length,
-  }).catch(() => {});
+  }).catch(noteSwallowedHandler('paywall_personalization:promise_1'));
 }
 
 /* expo-router route shim */

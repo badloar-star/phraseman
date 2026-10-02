@@ -5,6 +5,7 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const VIP_SNAPSHOT_VERSION = 1 as const;
 const VIP_SNAPSHOT_PREFIX = 'premium_vip_snapshot_v1:';
@@ -140,7 +141,7 @@ export async function readVipSnapshotForAccount(
 ): Promise<VipStorageValues | null> {
   const stableId = normalizeStableId(stableIdValue);
   if (!stableId) return null;
-  const raw = await AsyncStorage.getItem(vipSnapshotStorageKey(stableId)).catch(() => null);
+  const raw = await AsyncStorage.getItem(vipSnapshotStorageKey(stableId)).catch(noteSwallowedAs('premium_vip_storage:promise_1', null));
   return parseSnapshot(raw, stableId);
 }
 
@@ -174,7 +175,7 @@ export async function migrateLegacyVipSnapshotOnce(
     vipSnapshotStorageKey(stableId),
     ...VIP_LEGACY_READ_KEYS,
   ];
-  const pairs = await AsyncStorage.multiGet(keys).catch(() => [] as Array<[string, string | null]>);
+  const pairs = await AsyncStorage.multiGet(keys).catch(noteSwallowedAs('premium_vip_storage:promise_2', [] as Array<[string, string | null]>));
   if (!isCurrentAccountGeneration(generation, stableId)) return false;
   const values = new Map(pairs);
   if (parseSnapshot(values.get(vipSnapshotStorageKey(stableId)) ?? null, stableId)) return false;

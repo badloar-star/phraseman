@@ -5,6 +5,7 @@ import {
   type LevelExamAttemptSnapshot,
 } from './level_exam_attempt_state';
 import type { LevelExamLevel } from './level_exam_types';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const storageQueues = new Map<string, Promise<void>>();
 
@@ -20,7 +21,7 @@ function ownerSegment(ownerStableUid: string): string {
 
 function serializeStorageOperation<T>(key: string, operation: () => Promise<T>): Promise<T> {
   const previous = storageQueues.get(key) ?? Promise.resolve();
-  const result = previous.catch(() => undefined).then(operation);
+  const result = previous.catch(noteSwallowedAs('level_exam_attempts:promise_1', undefined)).then(operation);
   const marker = result.then(() => undefined, () => undefined);
   storageQueues.set(key, marker);
   return result.finally(() => {

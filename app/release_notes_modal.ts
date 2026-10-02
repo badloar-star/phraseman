@@ -6,6 +6,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getAppReleaseBuildId } from './app_build_id';
 import { IS_EXPO_GO } from './config';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Включатель текущей одноразовой кампании «что нового». */
 export const RELEASE_NOTES_MODAL_ENABLED = true;
@@ -49,7 +50,7 @@ export async function shouldOfferReleaseNotesModal(): Promise<boolean> {
 }
 
 export async function dismissReleaseNotesModalPermanently(): Promise<void> {
-  await AsyncStorage.setItem(DISMISS_KEY, '1').catch(() => {});
+  await AsyncStorage.setItem(DISMISS_KEY, '1').catch(noteSwallowedHandler('release_notes_modal:promise_1'));
 }
 
 /* expo-router route shim */

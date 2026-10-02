@@ -34,6 +34,7 @@ import type {
 } from "../modules/learning-v2/runtime/activity_auxiliary_session_runtime_v1";
 import type { LearningV2ActivityAttemptIdentityV1 } from "../modules/learning-v2/runtime/activity_attempt_controller_v1";
 import type { LearningV2ActivityReportContextV1 } from "../modules/learning-v2/runtime/activity_learner_action_resource_v1";
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type LearningV2ActivityReportRequestV1 = Readonly<{
   requestId: number;
@@ -124,7 +125,7 @@ export function useLearningV2ActivityActionSessionV1(
           if (!isCurrentAccountGeneration(generation)) return "stale" as const;
           const nextCard = cardForLocale(card);
           let added = false;
-          const hasPremiumAccess = await getVerifiedPremiumAccessStatus().catch(() => false);
+          const hasPremiumAccess = await getVerifiedPremiumAccessStatus().catch(noteSwallowedAs('use_learning_v2_activity_action_session_v1:promise_2', false));
           const cardLimit = hasPremiumAccess ? PLUS_CUSTOM_CARD_LIMIT : FREE_CUSTOM_CARD_LIMIT;
           await updateCustomCards((cards) => {
             if (
@@ -140,7 +141,7 @@ export function useLearningV2ActivityActionSessionV1(
             return [...cards, nextCard];
           }, "en");
           return added ? ("added" as const) : ("duplicate" as const);
-        }).catch(() => "failed" as const);
+        }).catch(noteSwallowedAs('use_learning_v2_activity_action_session_v1:promise_1', "failed" as const));
       },
       voiceControl: async ({
         command,
@@ -163,10 +164,10 @@ export function useLearningV2ActivityActionSessionV1(
         }
         if (recordingRef.current?.isActive()) return "failed" as const;
         if (!isHoldRecordingSupported()) return "unavailable" as const;
-        const before = await getRecordingPermissionsAsync().catch(() => null);
+        const before = await getRecordingPermissionsAsync().catch(noteSwallowedAs('use_learning_v2_activity_action_session_v1:promise_3', null));
         if (before?.granted !== true) {
           const requested = await requestRecordingPermissionsAsync().catch(
-            () => null,
+            noteSwallowedAs('use_learning_v2_activity_action_session_v1:promise_4', null),
           );
           // A native prompt consumes the original press gesture. A fresh tap or
           // hold is required even when permission has just been granted.

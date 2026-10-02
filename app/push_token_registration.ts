@@ -21,6 +21,7 @@ import Constants from 'expo-constants';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Поле в users/{stableId}, куда пишется токен. Совпадает с тем, что читает cron. */
 export const PUSH_TOKEN_FIELD = 'expoPushToken';
@@ -110,7 +111,7 @@ export async function registerPushTokenForServerPush(lang: string): Promise<bool
 
     const stableId = await ensureAnonUser();
     if (!stableId) return false;
-    const linkOk = await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+    const linkOk = await ensureStableAuthLinkForStableId(stableId).catch(noteSwallowedAs('push_token_registration:promise_1', false));
     if (!linkOk) return false;
 
     const token = await getExpoPushTokenIfPermitted();
@@ -171,7 +172,7 @@ export async function updateServerPushPrefs(prefs: ServerPushPrefs): Promise<voi
 
     const stableId = await ensureAnonUser();
     if (!stableId) return;
-    const linkOk = await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+    const linkOk = await ensureStableAuthLinkForStableId(stableId).catch(noteSwallowedAs('push_token_registration:promise_2', false));
     if (!linkOk) return;
 
     const cacheKey = `${stableId}:${prefs.streak ? 1 : 0}${prefs.offers ? 1 : 0}`;
@@ -199,7 +200,7 @@ export async function clearPushTokenForServerPush(): Promise<void> {
     if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
     const stableId = await ensureAnonUser();
     if (!stableId) return;
-    const linkOk = await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+    const linkOk = await ensureStableAuthLinkForStableId(stableId).catch(noteSwallowedAs('push_token_registration:promise_3', false));
     if (!linkOk) return;
 
     // eslint-disable-next-line @typescript-eslint/no-require-imports

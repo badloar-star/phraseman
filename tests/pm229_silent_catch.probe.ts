@@ -24,7 +24,7 @@ const SKIP_DIRS = new Set(['node_modules', '__tests__', 'graphify-out', '__mocks
 // Ключ — файл, значение — сколько немых обработчиков разрешено (долг).
 // Только сокращать. Новые файлы сюда не добавлять — логируй причину.
 const BASELINE: Record<string, number> = {
-  'app/(tabs)/friends.tsx': 9,
+  'app/(tabs)/friends.tsx': 7, // FINAL_PHASE п.7 2026-10-02: 9 → 7 (заявка в друзья)
   'app/(tabs)/home.tsx': 4, // PM-289 2026-10-02: 5 → 4 (снято начисление жемчуга за серию)
   'app/(tabs)/lessons.tsx': 1,
   'app/(tabs)/settings.tsx': 1, // FINAL_PHASE п.7 2026-10-02: 4 → 1

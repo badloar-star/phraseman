@@ -1661,7 +1661,7 @@ export default function FriendsTabScreen() {
         lastLookupSourceRef.current = null;
         void import('../referral_bootstrap')
           .then(({ applyManualReferralCode }) => applyManualReferralCode(previousCodeInput))
-          .catch(() => {});
+          .catch((error: unknown) => { console.warn('[FRIEND-REQUEST] привязка реферального кода не удалась', error); });
       }
       if (result === 'sent') {
         setFoundUser(null);
@@ -1696,7 +1696,7 @@ export default function FriendsTabScreen() {
             tags: { targetUid: targetUser.uid },
           }),
         )
-        .catch(() => {});
+        .catch((error: unknown) => { console.warn('[FRIEND-REQUEST] запись add_request_ui_failed не удалась', error); });
       await trackActivity('friends:add_request_error', {
         feature: 'friends',
         screen: 'friends',

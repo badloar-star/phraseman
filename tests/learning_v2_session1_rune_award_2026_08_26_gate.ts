@@ -52,9 +52,10 @@ assert.ok(
   "the Learning V2 rune HUD must not fall back to a text symbol",
 );
 
-const flight = read("components/LearningV2RuneFlight.tsx");
+// зачем (PM-052, D75): полёт начисления — единый CoinRewardFlight (летит монета coin_rank_00).
+const flight = read("components/rewards/CoinRewardFlight.tsx");
 assert.ok(
-  flight.includes("HOME_RUNE_ICON_SOURCE") && flight.includes("<Animated.Image"),
+  flight.includes("COIN_ICON_SOURCE") && flight.includes("<Animated.Image"),
   "the award flight must animate the same real rune asset",
 );
 assert.ok(

@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 import { cancelAnimation, withTiming } from 'react-native-reanimated';
 import { soundDirector } from '../modules/audio/sound_director';
-import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
+import LearningV2RuneFlight from '../components/rewards/CoinRewardFlight'; // зачем (PM-052): реализация полёта перенесена в CoinRewardFlight
 
 jest.mock('react-native', () => {
   const React = require('react');

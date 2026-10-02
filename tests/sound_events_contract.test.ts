@@ -78,7 +78,7 @@ describe('semantic sound event catalog', () => {
     expect(SOUND_EVENTS['pm.learn.timer_expired']).toMatchObject({
       family: 'learning',
     });
-    expect(SOUND_EVENTS['pm.reward.rune_flight_start']).toMatchObject({
+    expect(SOUND_EVENTS['pm.coin.flight_start']).toMatchObject({
       mixWithVoice: true,
       allowConcurrent: true,
     });

@@ -123,10 +123,10 @@ describe('SoundDirector', () => {
     director.setVoiceActive(true);
 
     const runeFlight = { scope: 'rune-flight', rateLimit: { maxStarts: 4, windowMs: 1000 } };
-    expect(director.request('pm.reward.rune_flight_start', runeFlight).kind).toBe('play');
+    expect(director.request('pm.coin.flight_start', runeFlight).kind).toBe('play');
     expect(director.request('pm.reward.rune_flight_land', runeFlight).kind).toBe('play');
     expect(backend.plays.map((play) => play.eventId)).toEqual([
-      'pm.reward.rune_flight_start',
+      'pm.coin.flight_start',
       'pm.reward.rune_flight_land',
     ]);
     expect(backend.stopCount).toBe(0);
@@ -300,7 +300,7 @@ describe('ExpoSfxBackend', () => {
     }, 3);
 
     backend.play('pm.complete.star_2', 1, 0.42, true, jest.fn());
-    backend.play('pm.reward.rune_flight_start', 2, 0.22, true, jest.fn());
+    backend.play('pm.coin.flight_start', 2, 0.22, true, jest.fn());
 
     expect(made).toHaveLength(2);
     expect(made[0].calls).not.toContain('pause');

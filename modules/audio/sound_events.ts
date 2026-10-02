@@ -252,7 +252,8 @@ export const SOUND_EVENTS = Object.freeze({
   // Полёт руны к счётчику: старт — тихий (0.22), приземление слышнее (0.34).
   // Кулдаун 0 у полёта: руны стартуют пачкой по 1-3 штуки с шагом 90 мс,
   // любой кулдаун проглотил бы вторую и третью.
-  'pm.reward.rune_flight_start': event(require('../../assets/audio/sfx/v1/reward/pm_rune_flight_start_v1.m4a'), 0.22, 40, 0, 500, 'reward', { mixWithVoice: true, allowConcurrent: true }),
+  // зачем (D75, PM-052): полёт монет — звук отрыва переименован из pm.reward.rune_flight_start, файл прежний.
+  'pm.coin.flight_start': event(require('../../assets/audio/sfx/v1/reward/pm_rune_flight_start_v1.m4a'), 0.22, 40, 0, 500, 'reward', { mixWithVoice: true, allowConcurrent: true }),
   'pm.reward.rune_flight_land': event(require('../../assets/audio/sfx/v1/reward/pm_rune_flight_land_v1.m4a'), 0.34, 52, 0, 300, 'reward', { mixWithVoice: true, allowConcurrent: true }),
   // Тик перекрутки счётчика НЕ объявлен: в приложении цифра баланса меняется
   // мгновенно, без анимации счёта (проверено 2026-08-28 — в PracticeRuneCounter

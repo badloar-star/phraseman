@@ -250,6 +250,7 @@ import {
   omitAccountsV2LegacyDomains,
   resolveAccountsV2LegacySkip,
   ACCOUNTS_V2_LEGACY_HYDRATED_MARKER_KEY,
+  logAccountsV2LegacySyncKeys,
 } from './accounts_v2_legacy_sync_switch';
 import { CARD_DELETION_JOURNAL_KEY } from './flashcards/card_deletion_journal';
 import type { StudyTarget as FlashcardStudyTarget } from './study_target';
@@ -3071,6 +3072,8 @@ async function doSyncToCloud(): Promise<void> {
     } catch (e) {
       DebugLogger.error('cloud_sync:snapRaw', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
+    // зачем (Account V2, 8H): лог решений по V2-ключам (ушёл / пропущен, снимок есть / совпадает).
+    logAccountsV2LegacySyncKeys(storedData, data, previousSnapshot, cloudSyncSnapshotValueMatches);
     // ── Карточки: вне документа users/{stableId} ───────────────────────────────
     // зачем: progress.flashcards_v1 хранил весь список карточек одной JSON-строкой
     // и рос без предела. 2026-09-01 он раздул документы трёх самых активных
@@ -3788,11 +3791,16 @@ async function applyRestoreFromUserDoc(
       [flashcardsSavedKey('fr'), 'fr'],
     ] as Array<[string, FlashcardStudyTarget]>)) {
       // Документ главнее, только если он ещё содержит карточки (аккаунт не мигрирован).
-      if (cloudData[key] !== null && cloudData[key] !== undefined) continue;
+      if (cloudData[key] !== null && cloudData[key] !== undefined) {
+        // зачем (8H, диагностика): поле в документе затеняет страницы — страницы не читаются.
+        console.log(`[LEGACY-V2-SYNC] restore key=${key} source=doc_field doc_len=${String(cloudData[key]).length} pages=not_read`);
+        continue;
+      }
       // зачем (Пакет 7A): V2 ведёт карточки — страницы старого облака не читаем (лог уже в omit).
       if (legacyV2SkipOnRestore && isAccountsV2LegacyDomainKey(key)) continue;
       const fromPages = await readFlashcardPages(restoreUid, target);
       assertCurrent();
+      console.log(`[LEGACY-V2-SYNC] restore key=${key} source=${fromPages ? 'pages' : 'none'} pages_len=${fromPages ? fromPages.length : 0}`);
       if (fromPages) pairs.push([key, fromPages]);
     }
   } else {

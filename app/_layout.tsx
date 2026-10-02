@@ -17,6 +17,7 @@ export function bootMark(step: string, extra?: unknown): void {
 }
 import 'react-native-gesture-handler';
 import 'react-native-reanimated';
+import { maskDeepLinkForLog } from './deep_link_log_mask';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createTapLatencyCaptureHandler, createTapLatencyProfilerHandler, createTapLatencyTouchEndHandler } from './tap_latency_trace';
@@ -1352,7 +1353,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       if (__DEV__) {
         console.log(
           "[V2-PAGE] deeplink:url_event",
-          JSON.stringify({ url, target }),
+          // зачем (8H): значения параметров ссылки не печатаем (в них бывают пароли/токены).
+          JSON.stringify({ url: maskDeepLinkForLog(url), target: maskDeepLinkForLog(target) }),
         );
       }
       if (!target) return;
@@ -1398,12 +1400,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       const currentPath = pathnameRef.current?.replace(/\/$/, '') || '';
       if (targetPath && targetPath === currentPath) {
         if (__DEV__) {
-          console.log("[V2-PAGE] deeplink:skip_already_open", JSON.stringify({ target, currentPath }));
+          console.log("[V2-PAGE] deeplink:skip_already_open", JSON.stringify({ target: maskDeepLinkForLog(target), currentPath }));
         }
         return;
       }
       if (__DEV__) {
-        console.log("[V2-PAGE] deeplink:push", JSON.stringify({ target, currentPath }));
+        console.log("[V2-PAGE] deeplink:push", JSON.stringify({ target: maskDeepLinkForLog(target), currentPath }));
       }
       router.push(target as Href);
     }, WARM_DEEP_LINK_SELF_OPEN_WAIT_MS);

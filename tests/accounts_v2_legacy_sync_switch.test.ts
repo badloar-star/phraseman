@@ -308,3 +308,48 @@ describe('7A switch — писатели старого облака (струк
     expect(source).toContain("&& await resolveAccountsV2LegacySkip('restore', getAuthUserId());\n  assertCurrent();");
   });
 });
+
+// Пакет 8H — диагностика сценария I (E2E 2026-10-02): почему удалённая карточка «возвращается».
+describe('8H — логи старой синхронизации V2-ключей', () => {
+  test('restore: поле карточек в документе затеняет страницы (страницы не читаются) — лог source=doc_field', async () => {
+    await __cloudSyncTestHooks.applyRestoreFromUserDoc({
+      exists: true,
+      data: () => ({ progress: { streak_count: '3', user_name: 'Cloud Name', flashcards_v1: JSON.stringify([{ id: 'a1' }, { id: 'a2' }, { id: 'a3' }]) } }),
+    });
+    const lines = logSpy.mock.calls.map((call) => String(call[0]));
+    expect(lines).toContain('[LEGACY-V2-SYNC] restore key=flashcards_v1 source=doc_field doc_len=37 pages=not_read');
+    expect(mockReadPages).not.toHaveBeenCalledWith('stable-a', 'en');
+    expect(await AsyncStorage.getItem('flashcards_v1')).toContain('a1');
+  });
+
+  test('restore без поля в документе — страницы, лог source=pages', async () => {
+    await __cloudSyncTestHooks.applyRestoreFromUserDoc({ exists: true, data: () => ({ progress: { streak_count: '3', user_name: 'Cloud Name' } }) });
+    const lines = logSpy.mock.calls.map((call) => String(call[0]));
+    expect(lines.some((line) => line.startsWith('[LEGACY-V2-SYNC] restore key=flashcards_v1 source=pages pages_len='))).toBe(true);
+  });
+
+  test('doSyncToCloud зовёт лог V2-ключей до записи страниц и патча', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app', 'cloud_sync.ts'), 'utf8').split('\r\n').join('\n');
+    const body = source.slice(source.indexOf('async function doSyncToCloud('));
+    const logAt = body.indexOf('logAccountsV2LegacySyncKeys(storedData, data, previousSnapshot, cloudSyncSnapshotValueMatches);');
+    expect(logAt).toBeGreaterThan(0);
+    expect(logAt).toBeLessThan(body.indexOf('writeFlashcardPages('));
+  });
+
+  test('синхронизация: решение по каждому V2-ключу — ушёл/пропущен, снимок есть/совпадает (без значений)', () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { logAccountsV2LegacySyncKeys } = require('../app/accounts_v2_legacy_sync_switch') as typeof import('../app/accounts_v2_legacy_sync_switch');
+    logAccountsV2LegacySyncKeys(
+      { flashcards_v1: '[{"id":"a2"}]', custom_flashcards_v2: '[]', user_name: 'A' },
+      { user_name: 'A', custom_flashcards_v2: '[]' },
+      { flashcards_v1: '[{"id":"a1"}]', custom_flashcards_v2: '[]' },
+      (previous, value) => previous === value,
+    );
+    const lines = logSpy.mock.calls.map((call) => String(call[0]));
+    expect(lines).toEqual([
+      '[LEGACY-V2-SYNC] sync key=custom_flashcards_v2 decision=write local_len=2 snapshot=has equal=true',
+      '[LEGACY-V2-SYNC] sync key=flashcards_v1 decision=skip local_len=13 snapshot=has equal=false',
+    ]);
+    expect(lines.join(' ')).not.toContain('a2');
+  });
+});

@@ -185,5 +185,28 @@ export function omitAccountsV2LegacyDomains<T>(
   return out;
 }
 
+/**
+ * Пакет 8H (TG-5F6CFA464B29) — диагностика старой синхронизации V2-доменов (правило владельца
+ * «сперва логи»). E2E 2026-10-02, сценарий I: после выключения выключателя старое облако
+ * держало удалённую карточку. Лог на каждом решении по V2-ключу: ушёл ли ключ в запись,
+ * есть ли он в снимке последней синхронизации и совпадает ли со снимком. Без uid и значений —
+ * только имя ключа (имена ключей не персональные), длина значения и признаки.
+ */
+export function logAccountsV2LegacySyncKeys(
+  stored: Readonly<Record<string, string | null>>,
+  sent: Readonly<Record<string, unknown>>,
+  previousSnapshot: Readonly<Record<string, string | null>>,
+  matches: (previous: string | null | undefined, value: string) => boolean,
+): void {
+  for (const key of Object.keys(stored).sort()) {
+    if (!isAccountsV2LegacyDomainKey(key)) continue;
+    const value = stored[key];
+    if (value === null || value === undefined) continue;
+    const inSnapshot = Object.prototype.hasOwnProperty.call(previousSnapshot, key);
+    console.log(`[LEGACY-V2-SYNC] sync key=${key} decision=${Object.prototype.hasOwnProperty.call(sent, key) ? 'write' : 'skip'} `
+      + `local_len=${value.length} snapshot=${inSnapshot ? 'has' : 'none'} equal=${inSnapshot && matches(previousSnapshot[key], value)}`);
+  }
+}
+
 /* expo-router route shim: utility module discovered as a route */
 export default function __RouteShim() { return null; }

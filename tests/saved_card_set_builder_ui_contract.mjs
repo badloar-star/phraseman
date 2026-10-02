@@ -26,7 +26,10 @@ assert.match(editor, /PackLanguagePicker/);
 assert.match(editor, /const \[publishToCommunity,/);
 
 assert.match(listItem, /buildSourceLabel/);
-assert.match(listItem, /activeCat === 'saved' && isMarketplaceBundleCard/);
-assert.match(listItem, /source: item\.origin\?\.source \?\? \(activeCat === 'saved' && isMarketplaceBundleCard \? 'community' : item.source\)/);
-assert.match(listItem, /sourceId: item\.origin\?\.sourceId \?\? item.sourceId/);
+// зачем (владелец 22.09, 1896c797a): плашка «ИСТОЧНИК: …» на карточке убрана навсегда — карточка
+// подпись источника не рисует. Подпись жива в CollectionListView: по ней идёт поиск, с тем же
+// приоритетом origin → поля карточки.
+assert.doesNotMatch(listItem, /buildSourceLabel\(/);
+const collectionList = fs.readFileSync('app/flashcards/CollectionListView.tsx', 'utf8');
+assert.match(collectionList, /buildSourceLabel\(item\.origin \?\? \{ source: item\.source, sourceId: item\.sourceId, sourceTitle: item\.sourceTitle \}, lang\)/);
 assert.doesNotMatch(listItem, /\{item\.sourceId \? ` \$\{item\.sourceId\}` : ''\}/);

@@ -10,7 +10,8 @@ assert.match(server, /authorStableId/);
 assert.match(server, /listingStatus: LISTING_ADMIN_REMOVED/);
 assert.match(server, /syncFlashcardRegistryPackMutation/);
 assert.match(client, /communityAuthorRemovePack/);
-assert.match(mine, /ThemedConfirmModal/);
+// зачем: efe19ae9d (редизайн карточек 2.0) — подтверждение удаления стало своим стеклянным Modal вместо ThemedConfirmModal.
+assert.match(mine, /<Modal visible={!!deletePackTarget}/);
 assert.match(mine, /removeLocalAuthorPack/);
 assert.match(mine, /callCommunityAuthorRemovePack/);
 assert.match(mine, /deletePackTarget/);

@@ -67,8 +67,10 @@ test('the retired home cards cannot render or run their pulse; manual guide is t
   const home = read('app/(tabs)/home.tsx');
   assert.ok(home.includes('const shouldPulse = HOME_FEATURE_TIPS_ON_HOME &&'));
   assert.ok(home.includes('const homeFeatureTipCardVisible = HOME_FEATURE_TIPS_ON_HOME &&'));
-  // 30.09: отдельное условие показа несёт флаг само (снимок 0217c4a21 его снимал — возвращено).
-  assert.ok(home.includes('const showHomeFeatureTipCard = HOME_FEATURE_TIPS_ON_HOME &&'));
+  // зачем: 4169840e9 — раскладка Главной V1 удалена вместе с условием showHomeFeatureTipCard;
+  // в V2 карточки подсказок нет вовсе, её рендер вернуться не должен.
+  assert.ok(!home.includes('showHomeFeatureTipCard'));
+  assert.ok(!/<HomeFeatureTipCard\b/.test(home));
 });
 test('approved recovery copy explains causes and a way back without promises of future content', () => {
   for (const [file, copy] of [

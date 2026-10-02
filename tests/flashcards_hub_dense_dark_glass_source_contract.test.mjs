@@ -31,5 +31,6 @@ for (const route of [
 assert.match(source, /count=\{savedCount\}/, 'saved count must remain live');
 assert.match(source, /count=\{myPackCount\}/, 'my packs count must remain live');
 assert.match(source, /count=\{communityPackCount\}/, 'community count must remain live');
-assert.match(source, /count=\{null\}/, 'unavailable video count must stay honest');
+// зачем: 0ee956c9e — «Из видео» считает наборы по сохранённому каталогу; неизвестное число (null) не рисуется.
+assert.match(source, /count=\{videoPackCount\}/, 'video count must come from the saved catalog');
 assert.doesNotMatch(source, /borderWidth:/, 'full outlines must not return to Cards Hub chrome');

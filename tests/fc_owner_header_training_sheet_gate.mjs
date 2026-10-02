@@ -12,7 +12,8 @@ assert.match(header, /const VIEW_TOGGLE_ICON_SIZE = 18;/);
 // и храповик tests/layout_stability_contract.test.ts. Длинное название переносим
 // на вторую строку. Здесь фиксируем именно это, чтобы запрет не вернулся.
 assert.doesNotMatch(header.replace(/\/\*[\s\S]*?\*\//g, ''), /adjustsFontSizeToFit|minimumFontScale/);
-assert.match(header, /numberOfLines=\{2\}/);
+// зачем: 3b1850ac8 (целостность текста) — длинное название переносится целиком, без обрезки многоточием.
+assert.doesNotMatch(header, /numberOfLines=\{2\}/);
 assert.match(header, /maxWidth: screenW < 360 \? 44 : 86/);
 
 const entry = read('app/flashcards/training_entry.ts');
@@ -23,17 +24,21 @@ assert.doesNotMatch(sheet, /Как тренируемся\?/);
 assert.doesNotMatch(sheet, /Выберите режим, затем отметьте нужные наборы\./);
 assert.doesNotMatch(sheet, /mode: 'listening'|Слушать|Listening/);
 assert.match(sheet, /За 60 секунд находи верные переводы и вспоминай быстрее\./);
-assert.match(sheet, /Произноси фразы вслух и практикуй разговорную речь\. Можно остановиться и попробовать ещё раз\./);
+// зачем (владелец 01.10, по скрину; bb5d31820): описание «Устно» сокращено — строка про паузу убрана.
+assert.match(sheet, /Произноси фразы вслух и тренируй разговорную речь\./);
+assert.doesNotMatch(sheet, /Можно остановиться и попробовать ещё раз\./);
 assert.match(sheet, /Сверяй фразу с переводом и сразу проверяй память\./);
-assert.match(sheet, /Вводи английскую фразу целиком по памяти\./);
+// зачем: D129 — языков обучения несколько, «английскую» заменили на «на изучаемом языке».
+assert.match(sheet, /Вводи фразу на изучаемом языке целиком по памяти\./);
 assert.match(sheet, /mode: 'recall'/);
 assert.doesNotMatch(sheet, /Слушай фразы подряд и понимай их без подсказки\./);
-assert.match(sheet, /content: \{ paddingHorizontal: 0/);
-assert.match(sheet, /row: \{ minHeight: 88/);
+// зачем: bb5d31820 — окно переделано по скрину владельца; строка режима ниже (76), но выше минимума касания 44.
+assert.match(sheet, /row: \{ minHeight: 76/);
 assert.match(sheet, /<ScrollView/);
 assert.match(sheet, /accessibilityLabel=\{`\$\{row\.title\}.*?\$\{row\.description\}`\}/);
-assert.match(sheet, /onAppEvent\('remote_config_changed'/);
-assert.match(sheet, /\[lang, speakingEnabled\]/);
+// зачем: efe19ae9d (снимок 30.09) — удалённый флаг «Устно» снят из приложения целиком (isSpeakingEnabled нет нигде);
+// режим всегда в списке, и подписка на remote_config для него не нужна.
+assert.doesNotMatch(sheet, /isSpeakingEnabled/);
 assert.match(sheet, /AccessibilityInfo\.setAccessibilityFocus/);
 
 const setup = read('app/flashcards_training_setup.tsx');
@@ -44,26 +49,30 @@ assert.doesNotMatch(setup, /<EnergyCostBadge/);
 const setupStart = setup.slice(setup.indexOf('const startTraining'), setup.indexOf('const emptyLabel'));
 assert.doesNotMatch(setupStart, /await setLastPreset/);
 assert.match(setupStart, /router\.push/);
-assert.match(setup, /const \{ theme: t, f, statusBarLight \} = useTheme\(\);/);
+// зачем: D139 (шкала текста) — из темы берутся ещё размер и масштаб шрифта.
+assert.match(setup, /const \{ theme: t, f, statusBarLight[^}]*\} = useTheme\(\);/);
 assert.match(setup, /type LoadErrorKind = 'invalid' \| 'unavailable' \| 'load' \| null;/);
 assert.match(setup, /loadErrorKind === 'load'/);
 assert.match(setup, /accessibilityLiveRegion="polite"/);
-assert.match(setup, /accessibilityLabel=\{`\$\{deck\.title\}\. \$\{cardsCountLabel\(lang, deck\.count\)\}`\}/);
+// зачем: строки наборов вынесены в DeckSelectionTile — диктор по-прежнему слышит название и число карточек.
+assert.match(setup, /<DeckSelectionTile/);
+assert.match(read('app/flashcards/DeckSelectionTile.tsx'), /accessibilityLabel=\{`\$\{deck\.title\}\. \$\{countLabel\}`\}/);
 
 const hub = read('app/flashcards/FlashcardsHubScreen.tsx');
 assert.match(hub, /primeFlashcardsCollectionCache\(studyTarget\)/);
 assert.match(hub, /catalogLoadState/);
 assert.match(hub, /loading=\{catalogLoadState === 'loading'\}/);
 assert.match(hub, /onRetry=\{reloadCatalog\}/);
-assert.match(hub, /width: 48, height: 48/);
+// зачем: кнопка тренировки стала широкой (стиль 2.0) — фиксируем высоту касания, а не квадрат 48×48.
+assert.match(hub, /trainButton: \{ minHeight: 52/);
 assert.match(hub, /trainButtonRef/);
 assert.match(hub, /AccessibilityInfo\.setAccessibilityFocus/);
 
 const topPacks = read('app/flashcards/SavedTopCommunityPacks.tsx');
 assert.match(topPacks, /loading\?: boolean/);
 assert.match(topPacks, /onRetry\?: \(\) => void/);
-assert.match(topPacks, /onReflowNeeded=\{onLabelReflow\}/);
-assert.match(topPacks, /minHeight: 48/);
+// зачем: efe19ae9d — подборка переделана, подпись переносится без отдельного reflow; зоны касания ≥ 44.
+assert.match(topPacks, /seeAll: \{ minHeight: 44/);
 
 const layout = read('app/_layout.tsx');
 assert.doesNotMatch(layout, /flashcards_listening_session/);

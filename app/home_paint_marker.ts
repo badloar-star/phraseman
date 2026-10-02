@@ -7,8 +7,11 @@
  * строку после первого кадра; время считается по отметкам logcat от строки старта
  * процесса (ActivityManager «Start proc»), так что нативный код не нужен.
  *
- * Дёшево по построению: один requestAnimationFrame и один console.log за запуск,
- * без setState и без ре-рендера. performance.now() — для сверки, если доступен.
+ * Дёшево по построению: один requestAnimationFrame и один console.warn за запуск,
+ * без setState и без ре-рендера.
+ *
+ * Именно console.warn: babel.config.js в production вырезает console.log/info/debug
+ * (transform-remove-console, exclude warn/error) — первая версия метки в release молчала.
  */
 
 let homePaintLogged = false;
@@ -20,9 +23,8 @@ export function markHomeFirstPaint(): void {
     ? requestAnimationFrame
     : (cb: () => void) => setTimeout(cb, 0);
   schedule(() => {
-    const perf = (globalThis as { performance?: { now?: () => number } }).performance;
-    const sinceRuntimeMs = typeof perf?.now === 'function' ? Math.round(perf.now()) : -1;
-    console.log(`[HOME-PAINT] first_frame epochMs=${Date.now()} sinceRuntimeMs=${sinceRuntimeMs}`);
+    // performance.now() здесь не годится: на эмуляторе он рос от старта к старту (не от запуска процесса).
+    console.warn(`[HOME-PAINT] first_frame epochMs=${Date.now()}`);
   });
 }
 

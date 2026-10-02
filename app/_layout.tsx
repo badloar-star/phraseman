@@ -186,6 +186,7 @@ import { bootstrapPhoneState } from './phone_state_bootstrap';
 import { installPhoneStateProductionRuntime } from './phone_state_runtime';
 import { schedulePhoneStateDeferredIntegrityCheck } from './phone_state_runtime'; // зачем: §84 — фоновая проверка целостности
 import { coldStartMark } from './cold_start_trace'; // зачем: §80 — [COLD-START] от старта процесса
+import { installColdStartIoTrace } from './cold_start_io_trace'; // зачем: §89 — [COLD-START-IO]
 import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from './cloud_restore_coordinator';
 import { hasMeaningfulLocalAccountData } from './local_account_data';
 import { decideStartupCloudRecoveryPresentation } from './startup_cloud_recovery_presentation';
@@ -292,6 +293,9 @@ LogBox.ignoreLogs([
   'This method is deprecated (as well as all React Native Firebase namespaced API)',
 ]);
 
+// зачем (§89, Q119а): [COLD-START-IO] — кто забивает очередь AsyncStorage/SecureStore в первые 15 с
+// (одна строка итога console.warn, живёт и в release). Временное — убрать после выноса тяжёлого.
+installColdStartIoTrace();
 installPhoneStateProductionRuntime();
 
 const INSTANT_STACK_ANIMATION = { animation: 'none', animationDuration: 0 } as const;

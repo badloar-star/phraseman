@@ -2827,9 +2827,10 @@
       {
         "id": "PM-052-A1",
         "text": "Баланс обновляется без reward-flight очереди",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "2026-10-01 NOT_MET (Дизайн): по D75 полёт рун/наград и «новый день» заменяются ОДНИМ полётом монет. Сейчас живы app/reward_flight_queue.ts (сумматор в памяти, баланс не ждёт очередь — источник правды снапшот), components/home/HomeRewardCollectFlight.tsx, components/LearningV2RuneFlight.tsx, hooks/usePracticeRuneFlight.ts и вызовы в 15 экранах. Это анимация и Главная (home.tsx у сессии Дизайн)."
+          "2026-10-01 NOT_MET (Дизайн): по D75 полёт рун/наград и «новый день» заменяются ОДНИМ полётом монет. Сейчас живы app/reward_flight_queue.ts (сумматор в памяти, баланс не ждёт очередь — источник правды снапшот), components/home/HomeRewardCollectFlight.tsx, components/LearningV2RuneFlight.tsx, hooks/usePracticeRuneFlight.ts и вызовы в 15 экранах. Это анимация и Главная (home.tsx у сессии Дизайн).",
+          "9ecb23d94: удалены reward_flight_queue/particles, HomeRewardCollectFlight, use_home_reward_collect, подписка в _layout; баланс монет на Главной — напрямую из снимка; сторож home_render_scope_guard держит удаление. ba06b2e89: 11 экранов на CoinRewardFlight/useCoinRewardFlight (D75)"
         ]
       },
       {
@@ -2852,12 +2853,14 @@
     "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
     "evidence": [
-      "commit 2c81341eb"
+      "commit 2c81341eb",
+      "9ecb23d94: удалены reward_flight_queue/particles, HomeRewardCollectFlight, use_home_reward_collect, подписка в _layout; баланс монет на Главной — напрямую из снимка; сторож home_render_scope_guard держит удаление. ba06b2e89: 11 экранов на CoinRewardFlight/useCoinRewardFlight (D75)"
     ],
     "notes": [
       "см. журнал PROGRESS.md раздел 5",
       "PM-052-A2 (полёт рун на Главной) НЕ закрыт — home.tsx занят сессией интерфейса, довершим отдельно",
-      "пачка 14: остаток — A1/A2 NOT_MET: живы reward_flight_queue, HomeRewardCollectFlight, LearningV2RuneFlight, usePracticeRuneFlight; нужна замена единым полётом монет (D75); gate MIGRATION не закрыт."
+      "пачка 14: остаток — A1/A2 NOT_MET: живы reward_flight_queue, HomeRewardCollectFlight, LearningV2RuneFlight, usePracticeRuneFlight; нужна замена единым полётом монет (D75); gate MIGRATION не закрыт.",
+      "2026-10-02 Ядро: A1 MET. A2 остаток — lesson1.tsx и lesson_words.tsx (чужие незакоммиченные правки) ещё на старом хуке через переходник hooks/usePracticeRuneFlight.ts; перенос реализации и звук pm.coin.flight_start — «Дизайн»"
     ],
     "actual_cost": null,
     "kind": "unclassified",

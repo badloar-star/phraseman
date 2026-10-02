@@ -822,4 +822,30 @@ describe('8C-2: account switch during an official pack purchase', () => {
     expect(storage.shards_balance).toBe('7');
     expect(hasOwner1Data()).toBe(false);
   });
+
+  // Пакет 8L-3: дневной агрегат пишет локальный хвост фоном ПОСЛЕ отпуска замка.
+  // Смена аккаунта сразу после покупки не должна оставлять ключ прежнего владельца.
+  it('8L: an account switch right after a purchase leaves no economy tail key of the previous owner', async () => {
+    // Покупка берёт замок первой (ждём её первую запись), смена встаёт в очередь сразу за ней.
+    let signalWriteStarted!: () => void;
+    const writeStarted = new Promise<void>((resolve) => { signalWriteStarted = resolve; });
+    (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (pairs: readonly (readonly [string, string])[]) => {
+      signalWriteStarted();
+      pairs.forEach(([key, value]) => { storage[key] = value; });
+    });
+    (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
+      signalWriteStarted();
+      storage[key] = value;
+    });
+    const purchaseByOwner1 = commitClientShardOperation(packPurchase('pack:travel_basic:switch:0003'));
+    await writeStarted;
+    const transition = withAccountTransitionLock(async () => {
+      await switchToOwner2();
+    });
+    const [result] = await Promise.all([purchaseByOwner1, transition]);
+    expect(result).toMatchObject({ status: 'applied', balanceAfter: 15 });
+    for (let i = 0; i < 20; i += 1) await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(Object.keys(storage).filter((key) => key.startsWith('economy_daily_stats_tail_v1:owner-1'))).toEqual([]);
+  });
 });

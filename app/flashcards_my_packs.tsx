@@ -55,7 +55,7 @@ import { safeRouterBack } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
 import { soundDirector } from '../modules/audio/sound_director';
 import { loadCommunityOwnedPackIdsResult } from './community_packs/communityOwnedStorage';
-import { fetchCommunityPackMetaResult, loadAuthorCommunityPacksPendingUpdateResult, invalidateCommunityPackCatalog } from './community_packs/communityFirestore';
+import { fetchCommunityPackMetaResult, forgetAuthorPackLastKnown, loadAuthorCommunityPacksPendingUpdateResult, invalidateCommunityPackCatalog } from './community_packs/communityFirestore';
 import { isLocalAuthorPackId, loadLocalAuthorPacks, loadLocalAuthorPacksResult, localAuthorPackToMarketPack, removeLocalAuthorPack } from './community_packs/localAuthorPacks';
 import { withdrawLocalAuthorPack } from './community_packs/publishLocalPack';
 import { emitPackNotDownloadedToast, stageCommunityPackCardsWithSilentRetry } from './community_packs/stage_with_retry';
@@ -764,6 +764,7 @@ export default function FlashcardsMyPacksScreen() {
         });
         if (!authorStableId) throw new Error('author_id_missing');
         await callCommunityAuthorRemovePack({ authorStableId, packId: pack.id });
+        forgetAuthorPackLastKnown(pack.id); // зачем (8L): удалённый набор не возвращается из последнего известного
         for (const local of await loadLocalAuthorPacks()) {
           if (local.cloudPackId === pack.id) await removeLocalAuthorPack(local.id, local.studyTarget);
         }
@@ -975,7 +976,10 @@ export default function FlashcardsMyPacksScreen() {
         && isCurrentAccountGeneration(publishAccount)
         && canCommitAccountScopedResult(publishScope, accountScopeKey(captureAccountGeneration()))
       ) publishMyPacksCount(studyTarget, userId, groups.added.length + groups.created.length);
-    }).catch(() => {});
+    }).catch((error: unknown) => {
+      // зачем (8L): немой catch прятал отказ публикации счётчика — причина в лог, без uid.
+      console.warn(`[MY-PACKS] count_publish failed kind=${error instanceof Error ? error.name : typeof error}`);
+    });
     return () => { cancelled = true; };
   }, [accountGeneration, groups, loadStatus, studyTarget]);
 

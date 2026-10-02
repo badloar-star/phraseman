@@ -39,7 +39,8 @@ test('settings: те же обработчики — очистка кеша и 
   assert.ok(files.settings.includes('clearAppCaches()'));
   assert.equal((files.settings.match(/onPress: runForcedAccountSwitchWithoutSaving/g) ?? []).length, 3);
   // 30.09: +2 окна отказа смены аккаунта (OR-ACCOUNT-SWITCH-PRECOMMIT-REJECTED / RECOVERY-REQUIRED).
-  assert.equal((files.settings.match(/delayMs: 360/g) ?? []).length, 5);
+  // 02.10 (Account V2, 8L): +1 стеклянное подтверждение «Несохранённые карточки будут удалены».
+  assert.equal((files.settings.match(/delayMs: 360/g) ?? []).length, 6);
 });
 
 test('lingman: кнопка «Settings» по-прежнему открывает системные настройки уведомлений', () => {

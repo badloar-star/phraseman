@@ -799,7 +799,11 @@ async function buildCommunitySources(
       (p) => owned.has(p.id) || (!!stableId && !!p.authorStableId && p.authorStableId === stableId),
     );
     const pendingMine = stableId
-      ? await loadAuthorCommunityPacksPendingUpdate(stableId, studyTarget).catch(() => [] as FlashcardMarketPack[])
+      ? await loadAuthorCommunityPacksPendingUpdate(stableId, studyTarget).catch((error: unknown): FlashcardMarketPack[] => {
+        // зачем (8L): немой catch прятал отказ — причина в лог, без uid; поведение прежнее ([]).
+        console.warn(`[MY-PACKS] author_packs caller_failed screen=swipe kind=${error instanceof Error ? error.name : typeof error}`);
+        return [];
+      })
       : [];
     const visibleIds = new Set([...minePublished, ...pendingMine].map((p) => p.id));
     const missingOwned = [...owned].filter((id) => !visibleIds.has(id));

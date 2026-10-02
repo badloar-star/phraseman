@@ -343,7 +343,13 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
       const published = commPubRes.status === 'fulfilled' ? commPubRes.value : [];
       const sid = await getCanonicalUserId().catch(() => null);
       setHubAuthorStableId((prev) => (prev === sid ? prev : sid));
-      const pendingAuthor = sid ? await loadAuthorCommunityPacksPendingUpdate(sid, studyTarget).catch(() => []) : [];
+      const pendingAuthor = sid
+        ? await loadAuthorCommunityPacksPendingUpdate(sid, studyTarget).catch((error: unknown): FlashcardMarketPack[] => {
+          // зачем (8L): немой catch прятал отказ — причина в лог, без uid; поведение прежнее ([]).
+          console.warn(`[MY-PACKS] author_packs caller_failed screen=packs kind=${error instanceof Error ? error.name : typeof error}`);
+          return [];
+        })
+        : [];
       const missingMeta = commOwned.filter((id) => !published.some((p) => p.id === id));
       const extras = await Promise.all(missingMeta.map((id) => fetchCommunityPackMeta(id, studyTarget).catch(() => null)));
       const localMarket = mergeLocalAuthorPacks([...published, ...pendingAuthor], localAuthored, studyTarget);

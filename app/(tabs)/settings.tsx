@@ -45,6 +45,7 @@ import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { getStoredStudyTarget, type StudyTarget } from '../study_target';
 import { triLang } from '../../constants/i18n';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
+import { readAccountSwitchUnsavedCardsDecision } from '../account_switch_unsaved_cards';
 import { reserveNameDetailed, warmNameAvailabilityAuth } from '../firestore_leaderboard';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { useGlassAlert } from '../../hooks/use-glass-alert';
@@ -472,6 +473,9 @@ export default function SettingsMain() {
     if (__DEV__) console.log(`[ACC-MUT] switch_stage ${prev}→${next}`); // guard-ok: под __DEV__
     setSwitchAccountStageRaw(next);
   }, []);
+  // зачем (Account V2, 8L): защита от двойного тапа на время проверки невыгруженных карточек
+  // перед «Сменить без сохранения» (стадия в это время ещё 'idle').
+  const unsavedCardsCheckBusyRef = useRef(false);
 
   useEffect(() => {
     if (!settingsRuntimeActive || settingsReferralSurface.emergencyStop) return;
@@ -1584,8 +1588,15 @@ export default function SettingsMain() {
 
               <TouchableOpacity
                 activeOpacity={0.8}
-                onPress={async () => {
+                onPress={async function runAccountSwitchAttempt(): Promise<void> {
+                  // зачем (8L): «Сохранить и сменить» из подтверждения повторяет эту же попытку;
+                  // повторный вход во время идущей смены (двойной тап) игнорируем с причиной в логе.
+                  if (switchStageRef.current === 'wiping') {
+                    console.log('[ACC-MUT] settings:switch_attempt ignored reason=already_wiping');
+                    return;
+                  }
                   doHaptic();
+                  const attemptStartedAtMs = Date.now();
                   setSwitchAccountStage('wiping');
                   const res = await signOutAndWipeForAccountSwitch();
                   setSwitchAccountStage('idle');
@@ -1593,7 +1604,11 @@ export default function SettingsMain() {
                   // смены аккаунта. Аварийная копия (включая очередь осколков)
                   // пишется внутри signOutAndWipeForAccountSwitch — даже при
                   // зависшем списании/карантине данные остаются восстановимыми.
-                  const runForcedAccountSwitchWithoutSaving = async () => {
+                  const runForcedAccountSwitchWithoutSavingNow = async () => {
+                    if (switchStageRef.current === 'wiping') {
+                      console.log('[ACC-MUT] settings:forced_switch ignored reason=already_wiping');
+                      return;
+                    }
                     setSwitchAccountStage('wiping');
                     const forced = await signOutAndWipeForAccountSwitch({
                       allowWipeWithoutSync: true,
@@ -1629,6 +1644,58 @@ export default function SettingsMain() {
                     }
                     setLinkedAuth(null);
                     setAuthPromptVisible(true);
+                  };
+                  // зачем (Account V2, 8L, решение координатора §85): если карточки не выгружены
+                  // (замок 8J или отказ выгрузки страниц из-за замка/потолка), «Сменить без
+                  // сохранения» сотрёт их с телефона. Сначала спрашиваем: ещё раз сохранить
+                  // или сменить без сохранения. Окно — тот же стеклянный алерт экрана.
+                  const runForcedAccountSwitchWithoutSaving = async () => {
+                    if (unsavedCardsCheckBusyRef.current) {
+                      console.log('[ACC-MUT] settings:unsaved_cards_check ignored reason=busy');
+                      return;
+                    }
+                    unsavedCardsCheckBusyRef.current = true;
+                    let decision: Awaited<ReturnType<typeof readAccountSwitchUnsavedCardsDecision>>;
+                    try {
+                      decision = await readAccountSwitchUnsavedCardsDecision(attemptStartedAtMs);
+                    } finally {
+                      unsavedCardsCheckBusyRef.current = false;
+                    }
+                    if (decision.kind === 'confirm_unsaved_cards') {
+                      console.log(`[ACC-MUT] settings:unsaved_cards_confirm shown reason=${decision.reason}`);
+                      showGlassAlert(
+                        L(
+                          'Несохранённые карточки будут удалены с этого телефона',
+                          'Незбережені картки буде видалено з цього телефона',
+                          'Unsaved cards will be deleted from this phone',
+                          'Las tarjetas sin guardar se eliminarán de este teléfono',
+                          'Os cartões não salvos serão apagados deste telefone',
+                          'Các thẻ chưa lưu sẽ bị xóa khỏi điện thoại này',
+                          'Kartu yang belum disimpan akan dihapus dari ponsel ini',
+                          'Kaydedilmemiş kartlar bu telefondan silinecek',
+                          'Niezapisane fiszki zostaną usunięte z tego telefonu',
+                        ),
+                        '',
+                        [
+                          {
+                            text: L('Сохранить и сменить', 'Зберегти і змінити', 'Save and switch', 'Guardar y cambiar', 'Salvar e trocar', 'Lưu và đổi', 'Simpan dan ganti', 'Kaydet ve değiştir', 'Zapisz i zmień'),
+                            onPress: () => { void runAccountSwitchAttempt(); },
+                          },
+                          {
+                            text: L('Сменить без сохранения', 'Змінити без збереження', 'Switch without saving', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Kaydetmeden değiştir', 'Zmień bez zapisywania'),
+                            style: 'destructive',
+                            onPress: () => { void runForcedAccountSwitchWithoutSavingNow(); },
+                          },
+                          {
+                            text: L('Остаться здесь', 'Залишитися тут', 'Stay here', 'Quedarme aquí', 'Ficar aqui', 'Ở lại đây', 'Tetap di sini', 'Burada kal', 'Zostań tutaj'),
+                            style: 'cancel',
+                          },
+                        ],
+                        { delayMs: 360 }, // зачем: предыдущий алерт только что закрылся
+                      );
+                      return;
+                    }
+                    await runForcedAccountSwitchWithoutSavingNow();
                   };
                   if (!res.ok && res.reason === 'pending_shard_spend') {
                     showGlassAlert(

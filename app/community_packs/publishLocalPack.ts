@@ -13,7 +13,7 @@ import { getCanonicalUserId } from '../user_id_policy';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { callCommunitySubmitPackForReview, callCommunityAuthorRemovePack, isCommunityPacksCloudEnabled } from './functionsClient';
 import { loadLocalAuthorPacks, updateLocalPackPublication } from './localAuthorPacks';
-import { invalidateCommunityPackCatalog } from './communityFirestore';
+import { forgetAuthorPackLastKnown, invalidateCommunityPackCatalog } from './communityFirestore';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
 import type { PackLanguage } from '../flashcards/pack_languages';
 import {
@@ -258,6 +258,10 @@ export async function withdrawLocalAuthorPack(packId: string): Promise<void> {
   }
   if (!isCurrentAccountGeneration(token)) throw new Error('Account changed');
   await updateLocalPackPublication(packId, { cloudPackId: undefined, publicationState: 'private', publicationKey: `${local.id}_${Date.now()}`, isPublic: false });
+  // зачем (Account V2, 8L): отозванный набор не должен «воскреснуть» из последнего
+  // известного авторских наборов при следующем сбое чтения.
+  forgetAuthorPackLastKnown(local.cloudPackId);
+  forgetAuthorPackLastKnown(local.id);
   invalidateCommunityPackCatalog();
 }
 

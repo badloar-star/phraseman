@@ -14,6 +14,7 @@ import type { StudyTarget } from '../study_target';
 import { isPackLanguage, normalizePackCardTexts, normalizePackLanguage, PACK_LANGUAGE_CHOICES, type PackLanguage } from '../flashcards/pack_languages';
 import { DebugLogger } from '../debug-logger';
 import { cardVideoStartSecFromRaw } from '../flashcards/video_moment';
+import { captureAccountGeneration, subscribeAccountGeneration } from '../account_generation';
 
 function num(v: unknown, d = 0): number {
   const n = typeof v === 'number' ? v : Number(v);
@@ -370,6 +371,33 @@ export type AuthorCommunityPacksResult = {
 const AUTHOR_PACKS_LAST_KNOWN_LIMIT = 8;
 const authorPacksLastKnown = new Map<string, FlashcardMarketPack[]>();
 
+// зачем (Account V2, Пакет 8L): последнее известное живёт в памяти процесса. При смене
+// поколения аккаунта (вход в другой аккаунт, выход, сброс) оно целиком теряет смысл —
+// чистим, как и остальные кэши, привязанные к поколению. Ключ и так содержит автора,
+// но память о прошлом аккаунте не должна переживать переход.
+subscribeAccountGeneration((token) => {
+  if (authorPacksLastKnown.size === 0) return;
+  console.log(`[MY-PACKS] author_packs last_known_cleared reason=account_generation phase=${token.phase} entries=${authorPacksLastKnown.size}`);
+  authorPacksLastKnown.clear();
+});
+
+/**
+ * 8L: набор отозван/удалён автором — убрать его из последнего известного, иначе при
+ * следующем сбое чтения он «воскреснет» в «Моих наборах» и тренировке.
+ */
+export function forgetAuthorPackLastKnown(packId: string | null | undefined): void {
+  if (!packId) return;
+  let removed = 0;
+  for (const [key, packs] of authorPacksLastKnown) {
+    const next = packs.filter((pack) => pack.id !== packId);
+    if (next.length !== packs.length) {
+      removed += packs.length - next.length;
+      authorPacksLastKnown.set(key, next);
+    }
+  }
+  console.log(`[MY-PACKS] author_packs last_known_forget removed=${removed}`);
+}
+
 function rememberAuthorPacks(key: string, packs: FlashcardMarketPack[]): void {
   authorPacksLastKnown.delete(key);
   authorPacksLastKnown.set(key, packs);
@@ -390,6 +418,7 @@ export async function loadAuthorCommunityPacksPendingUpdateResult(
     return { status: 'ok', packs: [] };
   }
   const lastKnownKey = `${authorStableId}|${String(studyTarget ?? '')}`;
+  const readGeneration = captureAccountGeneration().generation;
   try {
     const snap = await firestore()
       .collection(COMMUNITY_PACKS_COLLECTION)
@@ -402,7 +431,9 @@ export async function loadAuthorCommunityPacksPendingUpdateResult(
       const m = mapCommunityPackDocToMarket(doc.id, doc.data() as Record<string, unknown>, { forCatalog: false, studyTarget });
       if (m) out.push(m);
     }
-    rememberAuthorPacks(lastKnownKey, out);
+    // зачем (8L): чтение, начатое до смены аккаунта, не наполняет очищенный кэш заново.
+    if (captureAccountGeneration().generation === readGeneration) rememberAuthorPacks(lastKnownKey, out);
+    else console.log('[MY-PACKS] author_packs last_known_skip reason=account_generation_changed');
     console.log(`[MY-PACKS] author_packs result=ok code=read docs=${snap.docs.length} count=${out.length}`);
     return { status: 'ok', packs: out };
   } catch (e) {

@@ -22,6 +22,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { DebugLogger } from '../debug-logger';
+import { isCurrentAccountGeneration, type AccountGenerationToken } from '../account_generation';
 
 type LikeOperation = Readonly<{
   ownerStableId: string;
@@ -73,8 +74,11 @@ async function writeTail(ownerStableId: string, tail: TailByOwner): Promise<void
  * Одна операция → инкременты дневного агрегата. Fire-and-forget: вызывающий
  * НЕ ждёт сеть, операция уже необратимо закоммичена локально.
  */
-export function reportEconomyOperationApplied(operation: LikeOperation): void {
-  void reportInner(operation).catch((e: unknown) => {
+export function reportEconomyOperationApplied(
+  operation: LikeOperation,
+  accountToken?: AccountGenerationToken,
+): void {
+  void reportInner(operation, accountToken).catch((e: unknown) => {
     // зачем: сам репортёр не имеет права уронить экономику, но и молчать не
     // смеет — иначе агрегат умрёт так же тихо, как умер его предшественник.
     DebugLogger.error(
@@ -85,7 +89,7 @@ export function reportEconomyOperationApplied(operation: LikeOperation): void {
   });
 }
 
-async function reportInner(operation: LikeOperation): Promise<void> {
+async function reportInner(operation: LikeOperation, accountToken?: AccountGenerationToken): Promise<void> {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return;
   const nowMs = Date.now();
 
@@ -103,10 +107,19 @@ async function reportInner(operation: LikeOperation): Promise<void> {
     || operation.delta !== (operation.direction === 'debit' ? -operation.amount : operation.amount)
     || operation.balanceAfter !== operation.balanceBefore + operation.delta
   ) ? 1 : 0;
-  await writeTail(operation.ownerStableId, {
-    revision: operation.revision,
-    balanceAfter: operation.balanceAfter,
-  });
+  // зачем (Account V2, Пакет 8L): отчёт идёт фоном ПОСЛЕ отпуска замка смены аккаунта.
+  // Если за это время аккаунт сменился, запись хвоста под ключом прежнего владельца
+  // пережила бы стирание его данных. Поколение проверяем прямо перед записью; сам
+  // обезличенный счётчик дня (без uid) при этом отправляется как раньше.
+  const tailOwnerCurrent = !accountToken || isCurrentAccountGeneration(accountToken, operation.ownerStableId);
+  if (tailOwnerCurrent) {
+    await writeTail(operation.ownerStableId, {
+      revision: operation.revision,
+      balanceAfter: operation.balanceAfter,
+    });
+  } else {
+    DebugLogger.warn('economy_daily_stats:tail_skipped', 'reason=stale_account_generation');
+  }
 
   // Ленивая загрузка firestore — модуль не должен тянуть Firebase в бандл
   // раньше времени (холодный старт: экономика стартует после первого кадра).

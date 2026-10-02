@@ -592,7 +592,7 @@ export async function commitClientShardOperation(
       // зачем (Джарвис 2026-08-29): client_economy_* мертвы навсегда, личный
       // журнал читать запрещено — диагностика экономики живёт на обезличенном
       // дневном агрегате. Отправка не ждётся и не может уронить операцию.
-      reportEconomyOperationApplied(result.operation);
+      reportEconomyOperationApplied(result.operation, accountToken);
     }
     if (
       (result.status === 'applied' || result.status === 'already-applied')

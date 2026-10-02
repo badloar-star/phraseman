@@ -170,6 +170,24 @@ export type ForceFlashcardUploadInput = Readonly<{
 
 const PAGES_TIMEOUT = Symbol('pages_timeout');
 
+export type ForceFlashcardFailureRecord = Readonly<{ reason: ForceFlashcardUploadFailure; atMs: number }>;
+
+// зачем (Account V2, Пакет 8L): forceSyncToCloud отдаёт наружу только true/false, а экран смены
+// аккаунта должен понять, что отказ был ИМЕННО из-за карточек (замок 8J / потолок страниц),
+// чтобы перед «Сменить без сохранения» предупредить, что эти карточки удалятся с телефона.
+// Храним только код причины и время — без uid и без содержимого.
+let lastForceFlashcardFailure: ForceFlashcardFailureRecord | null = null;
+
+/** Последний отказ выгрузки карточек при принудительной синхронизации (null — последняя прошла). */
+export function peekLastForceFlashcardFailure(): ForceFlashcardFailureRecord | null {
+  return lastForceFlashcardFailure;
+}
+
+function rememberForceFlashcardOutcome(outcome: ForceFlashcardUploadOutcome): ForceFlashcardUploadOutcome {
+  lastForceFlashcardFailure = outcome.ok ? null : { reason: outcome.reason, atMs: Date.now() };
+  return outcome;
+}
+
 /**
  * Выгрузка карточек для forceSyncToCloud: тот же путь, плюс два отказа.
  *
@@ -185,6 +203,10 @@ const PAGES_TIMEOUT = Symbol('pages_timeout');
  * переноса; список не пишется ни в страницы, ни в документ.
  */
 export async function runForceFlashcardUpload(input: ForceFlashcardUploadInput): Promise<ForceFlashcardUploadOutcome> {
+  return rememberForceFlashcardOutcome(await runForceFlashcardUploadInner(input));
+}
+
+async function runForceFlashcardUploadInner(input: ForceFlashcardUploadInput): Promise<ForceFlashcardUploadOutcome> {
   const started = Date.now();
   let timer: ReturnType<typeof setTimeout> | undefined;
   const upload = uploadFlashcardListsToPages({

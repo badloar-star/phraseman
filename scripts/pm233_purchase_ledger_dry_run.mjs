@@ -287,7 +287,9 @@ export const LEDGER = Object.freeze([
     question: null,
     risk: 'medium',
     riskNote: 'Открытые жемчугом уроки сохраняются отдельно (см. lessons_pearl_unlock).',
-    markers: ['collection:shard_log', 'collection:shards_earn_op_ledger_v1', 'collection:shard_spend_op_ledger_v1', 'local_key:client_shard_semantic_paid_v1'],
+    markers: ['collection:shard_log', 'collection:shard_spend_op_ledger_v1', 'local_key:client_shard_semantic_paid_v1'],
+    // зачем (PM-289 этап 2, 5ec5859ae): журнал начислений жемчуга удалён из клиента — возврат = регрессия.
+    removedMarkers: ['collection:shards_earn_op_ledger_v1'],
     countPlan: [cnt('collection users', ['shards', '>', 0], 'аккаунты с ненулевым серверным остатком')],
   },
   {

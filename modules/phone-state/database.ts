@@ -326,7 +326,10 @@ export async function openPhoneStateDatabase(
     throw new Error('phone_state_native_unavailable');
   }
 
+  // зачем: трасса §88 — сколько занимает получение ключа до open:in (временное).
+  const credentialsStartedAt = Date.now();
   const credentials = await materializePhoneStateCredentials(scope);
+  console.log(`[PHONE-STATE-DB] open:credentials ${Date.now() - credentialsStartedAt}мс`);
   if (!KEY_HEX_PATTERN.test(credentials.keyHex)) {
     throw new Error('phone_state_key_invalid');
   }

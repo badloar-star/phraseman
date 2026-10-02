@@ -326,7 +326,9 @@ async function openRuntimeSession(
   const endDb = coldStartStep('phone_state.db_open', 'phone_state_runtime');
   // зачем (§84, Q118): фоновая проверка нашла порчу на прошлом запуске → пересоздаём ДО открытия
   // (путь §75: данные вернут локальное хранилище и облако). Флаг снимаем только после успеха.
+  const flagStartedAt = Date.now();
   const integrityResetPending = await isIntegrityResetPending(AsyncStorage, scope);
+  console.log(`[PHONE-STATE-DB] deferred_integrity:flag_read_ms ${Date.now() - flagStartedAt}`); // зачем: трасса §88 (временное)
   let database = integrityResetPending
     ? await recreatePhoneStateDatabaseAfterUnreadable(scope)
     : await openPhoneStateDatabase(scope);

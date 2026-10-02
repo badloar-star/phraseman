@@ -75,10 +75,25 @@ export function bytesToHex(bytes: Uint8Array): string {
   return keyHex;
 }
 
+/**
+ * Временная трасса (координатор, надзор 06:11Z, 02.10): на слабом профиле между db_open:start и
+ * open:in терялось ~4 с. Кандидаты — хэш uid, чтение ключа из SecureStore/Keystore, создание ключа.
+ * Каждая строка: шаг, мс шага, мс от старта процесса. Убрать после диагноза.
+ */
+function keyTrace(step: string, startedAt: number, extra = ''): void {
+  const perf = (globalThis as { performance?: { now?: () => number } }).performance;
+  const proc = typeof perf?.now === 'function' ? Math.round(perf.now()) : -1;
+  console.log(`[PHONE-STATE-DB] key:${step} ${Date.now() - startedAt}мс proc=${proc}ms${extra ? ` ${extra}` : ''}`);
+}
+
 async function createCredentials(scope: PhoneStateScope): Promise<PhoneStateCredentials> {
+  const digestStartedAt = Date.now();
   const accountHash = await digestStableUid(scope.stableUid);
+  keyTrace('digest', digestStartedAt);
   const secureKey = `phone_state_key_v1_${accountHash}_${scope.accountGeneration}`;
+  const readStartedAt = Date.now();
   const storedKey = await SecureStore.getItemAsync(secureKey, secureOptions());
+  keyTrace('secure_store_read', readStartedAt, `found=${storedKey !== null}`);
 
   if (storedKey !== null) {
     if (!KEY_HEX_PATTERN.test(storedKey)) {
@@ -91,8 +106,10 @@ async function createCredentials(scope: PhoneStateScope): Promise<PhoneStateCred
     };
   }
 
+  const createStartedAt = Date.now();
   const keyHex = bytesToHex(await Crypto.getRandomBytesAsync(32));
   await SecureStore.setItemAsync(secureKey, keyHex, secureOptions());
+  keyTrace('created_and_stored', createStartedAt);
   return {
     databaseName: `phone-state-v1-${accountHash.slice(0, 32)}-${scope.accountGeneration}.db`,
     keyHex,
@@ -128,9 +145,11 @@ export async function materializePhoneStateLineage(stableUid: string): Promise<n
   if (existing) return existing;
 
   const pending = (async () => {
+    const lineageStartedAt = Date.now();
     const accountHash = await digestStableUid(normalized);
     const lineageKey = phoneStateLineageKey(accountHash);
     const raw = await SecureStore.getItemAsync(lineageKey, secureOptions());
+    keyTrace('lineage_read', lineageStartedAt, `found=${raw !== null}`);
     if (raw !== null) {
       const lineage = parseLineage(raw);
       if (lineage === null) throw new Error('phone_state_lineage_invalid');

@@ -55,7 +55,7 @@ import { safeRouterBack } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
 import { soundDirector } from '../modules/audio/sound_director';
 import { loadCommunityOwnedPackIdsResult } from './community_packs/communityOwnedStorage';
-import { fetchCommunityPackMetaResult, loadAuthorCommunityPacksPendingUpdate, invalidateCommunityPackCatalog } from './community_packs/communityFirestore';
+import { fetchCommunityPackMetaResult, loadAuthorCommunityPacksPendingUpdateResult, invalidateCommunityPackCatalog } from './community_packs/communityFirestore';
 import { isLocalAuthorPackId, loadLocalAuthorPacks, loadLocalAuthorPacksResult, localAuthorPackToMarketPack, removeLocalAuthorPack } from './community_packs/localAuthorPacks';
 import { withdrawLocalAuthorPack } from './community_packs/publishLocalPack';
 import { emitPackNotDownloadedToast, stageCommunityPackCardsWithSilentRetry } from './community_packs/stage_with_retry';
@@ -366,7 +366,21 @@ export default function FlashcardsMyPacksScreen() {
 
     /** Свои наборы с устройства: они мои по определению, ещё до сверки автора. */
     const authoredLocal = localAuthored.map(pack => localAuthorPackToMarketPack(pack, pack.studyTarget));
-    const authoredCloud = myStableId && cloudCommunityEnabled ? await loadAuthorCommunityPacksPendingUpdate(myStableId, studyTarget) : [];
+    // зачем (8C-2): ошибка чтения своих опубликованных наборов — не «их нет». Статус идёт в
+    // сверку: error → весь результат stale, экран сохраняет уже показанные наборы и тихо повторяет.
+    const authoredCloudResult = myStableId && cloudCommunityEnabled
+      ? await loadAuthorCommunityPacksPendingUpdateResult(myStableId, studyTarget)
+          .catch((e: unknown) => {
+            console.warn(`[MY-PACKS] author_packs result=error code=threw_${e instanceof Error ? e.name : typeof e}`);
+            return { status: 'error' as const, packs: [] as FlashcardMarketPack[] };
+          })
+      : { status: 'ok' as const, packs: [] as FlashcardMarketPack[] };
+    if (!isCurrentAccountGeneration(operationAccount)) {
+      console.log('[MY-PACKS] author_packs skip reason=account_changed');
+      return { groups: EMPTY_GROUPS, status: 'stale', accountScope: operationScope };
+    }
+    const authoredCloud = authoredCloudResult.packs;
+    const authoredCloudStatus: 'ready' | 'stale' = authoredCloudResult.status === 'ok' ? 'ready' : 'stale';
     const localCloudIds = new Set(localAuthored.map(pack => pack.cloudPackId).filter(Boolean));
     const authoredLocalIds = new Set(authoredLocal.map((p) => p.id));
 
@@ -432,6 +446,7 @@ export default function FlashcardsMyPacksScreen() {
         communityOwnedResult.status,
         identityResult.status,
         catalogResult.status,
+        authoredCloudStatus,
       ],
       ownedIds: [...new Set([...ownedIds, ...communityOwnedIds])],
       resolvedPackIds: [
@@ -442,7 +457,7 @@ export default function FlashcardsMyPacksScreen() {
     });
     // Лог решения: только числа (без uid и id наборов).
     console.log(`[MY-PACKS] resolve owned=${ownedIds.length} community=${communityOwnedIds.length} catalog=${catalog.length}`
-      + ` catalog_status=${catalogResult.status} fetched=${toFetch.length} found=${metas.length}`
+      + ` catalog_status=${catalogResult.status} author_status=${authoredCloudResult.status} fetched=${toFetch.length} found=${metas.length}`
       + ` missing_fetched=${fetchedMissing.length} missing_cached=${cachedMissing.length}`
       + ` missing_outside_catalog=${ownedOutsideCatalog.length} fetch_errors=${fetchErrors} status=${status}`);
     return {

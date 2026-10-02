@@ -2,7 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   fetchCommunityPackCards,
   fetchCommunityPackMeta,
-  loadAuthorCommunityPacksPendingUpdate,
+  loadAuthorCommunityPacksPendingUpdateResult,
   loadPublishedCommunityMarketPacks,
 } from '../community_packs/communityFirestore';
 import { loadCommunityOwnedPackIds } from '../community_packs/communityOwnedStorage';
@@ -387,9 +387,16 @@ export async function buildCommunitySources(
     const minePublished = published.filter(
       (p) => owned.has(p.id) || (!!stableId && !!p.authorStableId && p.authorStableId === stableId),
     );
-    const pendingMine = stableId
-      ? await loadAuthorCommunityPacksPendingUpdate(stableId, studyTarget).catch(noteSwallowedAs('trainingSources:promise_4', [] as FlashcardMarketPack[]))
-      : [];
+    // зачем (8C-2): ошибка чтения своих наборов — не «их нет». Result при error отдаёт
+    // последнее известное по этому автору; плюс опубликованные мной из каталога (minePublished).
+    const pendingMineResult = stableId
+      ? await loadAuthorCommunityPacksPendingUpdateResult(stableId, studyTarget)
+        .catch(noteSwallowedAs('trainingSources:promise_4', { status: 'error' as const, packs: [] as FlashcardMarketPack[] }))
+      : { status: 'ok' as const, packs: [] as FlashcardMarketPack[] };
+    if (pendingMineResult.status === 'error') {
+      console.warn(`[MY-PACKS] author_packs training_sources result=error kept=${pendingMineResult.packs.length} catalog_mine=${minePublished.length}`);
+    }
+    const pendingMine = pendingMineResult.packs;
     const visibleIds = new Set([...minePublished, ...pendingMine].map((p) => p.id));
     const missingOwned = [...owned].filter((id) => !visibleIds.has(id));
     const missingMeta = await Promise.all(missingOwned.map((id) => fetchCommunityPackMeta(id, studyTarget).catch(noteSwallowedAs('trainingSources:promise_5', null))));

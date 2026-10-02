@@ -3,6 +3,8 @@ import { createHash } from 'crypto';
 import {
   __resetAccountGenerationForTests,
   beginAccountGeneration,
+  invalidateAccountGeneration,
+  withAccountTransitionLock,
 } from '../app/account_generation';
 import {
   CLIENT_SHARD_GRANT_RECEIPT_PREFIX,
@@ -734,4 +736,90 @@ it('re-materializes a paid card pack whose local entitlement disappeared', async
   expect(retry.status).toBe('already-satisfied');
   expect(JSON.parse(storage[ownedKey] ?? '[]')).toContain('travel_basic');
   expect(storage.shards_balance).toBe(balanceBeforeRetry);
+});
+
+// Пакет 8C-2: смена аккаунта посреди покупки официального набора. Склад общий для
+// устройства (ключ владения без uid), поэтому чужая запись после смены = набор у
+// другого человека. Переход аккаунта симулируем как в приложении: под замком
+// перехода — invalidate → стирание локальных данных → новое поколение.
+describe('8C-2: account switch during an official pack purchase', () => {
+  const ownedKey = 'flashcards_owned_packs_v1';
+  const packPurchase = (operationId: string) => ({
+    expectedOwnerStableId: 'owner-1',
+    operationId,
+    direction: 'debit' as const,
+    amount: 5,
+    reason: 'card_pack',
+    grant: { kind: 'official_card_pack', subjectId: 'travel_basic', payload: { studyTarget: 'en' } },
+    localWrites: [] as const,
+    semanticResult: true,
+  });
+  const switchToOwner2 = async (): Promise<void> => {
+    invalidateAccountGeneration();
+    Object.keys(storage).forEach((key) => delete storage[key]);
+    storage.shards_balance = '7';
+    beginAccountGeneration('owner-2');
+  };
+  // зачем: проверяем леджер и владение. Обезличенный дневной агрегат (economy_daily_stats_tail_v1:*)
+  // пишется фоном после отпуска замка под своим ключом владельца — вне этого пакета.
+  const hasOwner1Data = (): boolean => Object.keys(storage).some((key) => key.startsWith('client_shard_') && key.includes('owner-1'));
+
+  it('a purchase queued behind an account transition never lands in the next account', async () => {
+    let releaseTransition!: () => void;
+    const transitionGate = new Promise<void>((resolve) => { releaseTransition = resolve; });
+    const transition = withAccountTransitionLock(async () => {
+      await transitionGate;
+      await switchToOwner2();
+    });
+
+    const purchaseByOwner1 = commitClientShardOperation(packPurchase('pack:travel_basic:switch:0001'));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    releaseTransition();
+    const [result] = await Promise.all([purchaseByOwner1, transition]);
+
+    expect(result).toEqual({ status: 'failed', reason: 'stale_account_generation' });
+    expect(storage[ownedKey]).toBeUndefined();
+    expect(storage.shards_balance).toBe('7');
+    expect(hasOwner1Data()).toBe(false);
+  });
+
+  it('a transition requested mid-purchase waits for it; the wipe then removes owner-1 data', async () => {
+    let releaseWrite!: () => void;
+    const writeGate = new Promise<void>((resolve) => { releaseWrite = resolve; });
+    let signalWriteStarted!: () => void;
+    const writeStarted = new Promise<void>((resolve) => { signalWriteStarted = resolve; });
+    let gated = false;
+    const gate = async (): Promise<void> => {
+      if (gated) return;
+      gated = true;
+      signalWriteStarted();
+      await writeGate;
+    };
+    (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
+      await gate();
+      storage[key] = value;
+    });
+    (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (pairs: readonly (readonly [string, string])[]) => {
+      await gate();
+      pairs.forEach(([key, value]) => { storage[key] = value; });
+    });
+
+    const purchaseByOwner1 = commitClientShardOperation(packPurchase('pack:travel_basic:switch:0002'));
+    await writeStarted;
+    let transitionRan = false;
+    const transition = withAccountTransitionLock(async () => {
+      transitionRan = true;
+      await switchToOwner2();
+    });
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(transitionRan).toBe(false);
+    releaseWrite();
+    const [result] = await Promise.all([purchaseByOwner1, transition]);
+
+    expect(result).toMatchObject({ status: 'applied', balanceAfter: 15 });
+    expect(transitionRan).toBe(true);
+    expect(storage[ownedKey]).toBeUndefined();
+    expect(storage.shards_balance).toBe('7');
+    expect(hasOwner1Data()).toBe(false);
+  });
 });

@@ -31,7 +31,9 @@ function objectValue(value: unknown): Record<string, unknown> {
 function jsonObject(raw: string | null): Record<string, unknown> {
   try {
     return objectValue(raw ? JSON.parse(raw) : {});
-  } catch {
+  } catch (error: unknown) {
+    // зачем (8C-2): немой catch запрещён — битый список владения виден в логе (без значений).
+    console.warn(`[ECONOMY] reducer owned_object_unparseable kind=${error instanceof Error ? error.name : typeof error}`);
     return {};
   }
 }
@@ -84,7 +86,11 @@ async function materializePortableClientShardGrant(
       try {
         const parsed: unknown = raw ? JSON.parse(raw) : [];
         owned = Array.isArray(parsed) ? parsed.filter((id): id is string => typeof id === 'string') : [];
-      } catch { owned = []; }
+      } catch (error: unknown) {
+        // зачем (8C-2): битый список наборов не отменяет оплаченную выдачу, но причина обязана быть видна.
+        console.warn(`[ECONOMY] reducer owned_packs_unparseable kind=${error instanceof Error ? error.name : typeof error}`);
+        owned = [];
+      }
       if (owned.includes(grant.subjectId)) return { status: 'already-satisfied', writes: [[paidKey, '1']] };
       return { status: 'materialized', writes: [
         [key, JSON.stringify([...new Set([...owned, grant.subjectId])])],

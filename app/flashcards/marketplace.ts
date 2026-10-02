@@ -294,7 +294,9 @@ async function readOwnedIds(key: string): Promise<OwnedPackIdsLoadResult> {
   try {
     const parsed = parseStrictArrayJson(await AsyncStorage.getItem(key), (value): value is string => typeof value === 'string');
     return { ids: parsed.items, status: parsed.status };
-  } catch {
+  } catch (error: unknown) {
+    // зачем (8C-2): немой catch прятал отказ чтения владения — причина в лог (без значений и uid).
+    console.warn(`[MY-PACKS] owned_ids read_failed kind=${error instanceof Error ? error.name : typeof error}`);
     return { ids: [], status: 'stale' };
   }
 }
@@ -314,7 +316,8 @@ export async function loadOwnedPackIdsResult(
   if (result.status === 'ready' && result.ids.length > 0 && ownedRead.ids.length === 0 && legacyRead.ids.length > 0) {
     try {
       await AsyncStorage.setItem(ownedKey, JSON.stringify(result.ids));
-    } catch {
+    } catch (error: unknown) {
+      console.warn(`[MY-PACKS] owned_ids legacy_migrate_failed kind=${error instanceof Error ? error.name : typeof error}`);
       result = { ...result, status: 'stale' };
     }
   }
@@ -348,21 +351,13 @@ export async function loadAccessiblePackIdsResult(
   return loadOwnedPackIdsResult(studyTarget, accountToken);
 }
 
-export async function saveOwnedPackIds(ids: string[], studyTarget?: RuntimeStudyTarget): Promise<void> {
-  primeOwnedPackIdsCache(ids, studyTarget);
-  await AsyncStorage.setItem(flashcardsOwnedPacksKey(studyTarget), JSON.stringify(ids));
-}
-
+// зачем (8C-2): saveOwnedPackIds/addOwnedPackId удалены — вызовов не было, а read→await→write
+// мимо поколения аккаунта мог записать набор в хранилище следующего аккаунта. Владение пишет
+// только леджер (commitClientShardOperation: поколение + withAccountTransitionLock).
 /** Refresh only the in-memory projection after an atomic economy commit. */
 export function primeOwnedPackIdsCache(ids: readonly string[], studyTarget?: RuntimeStudyTarget): void {
   const key = warmOwnedKey(studyTarget);
   if (key) warmOwnedPackIdsByTarget.set(key, [...new Set(ids)]);
-}
-
-export async function addOwnedPackId(id: string, studyTarget?: RuntimeStudyTarget): Promise<void> {
-  const cur = await loadOwnedPackIds(studyTarget);
-  if (cur.includes(id)) return;
-  await saveOwnedPackIds([...cur, id], studyTarget);
 }
 
 const parseNumber = (value: unknown, backup = 0): number => {

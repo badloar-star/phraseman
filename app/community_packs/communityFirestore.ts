@@ -357,12 +357,39 @@ export async function loadPublishedCommunityMarketPacks(
   }
 }
 
-/** Набори автора в очікуванні повторної модерації після редагування. */
-export async function loadAuthorCommunityPacksPendingUpdate(
+/**
+ * 8C-2: результат загрузки наборов автора. `error` — облако не ответило: это НЕ «у автора
+ * нет наборов». В `packs` при ошибке — последнее известное для этого автора и цели (или []).
+ */
+export type AuthorCommunityPacksResult = {
+  status: 'ok' | 'error';
+  packs: FlashcardMarketPack[];
+};
+
+/** 8C-2: последнее удачное чтение по (автор, цель); ключ содержит id автора, поэтому чужому аккаунту не достаётся. */
+const AUTHOR_PACKS_LAST_KNOWN_LIMIT = 8;
+const authorPacksLastKnown = new Map<string, FlashcardMarketPack[]>();
+
+function rememberAuthorPacks(key: string, packs: FlashcardMarketPack[]): void {
+  authorPacksLastKnown.delete(key);
+  authorPacksLastKnown.set(key, packs);
+  while (authorPacksLastKnown.size > AUTHOR_PACKS_LAST_KNOWN_LIMIT) {
+    const oldest = authorPacksLastKnown.keys().next().value as string | undefined;
+    if (oldest === undefined) break;
+    authorPacksLastKnown.delete(oldest);
+  }
+}
+
+/** Набори автора в очікуванні повторної модерації після редагування (з ознакою «помилка ≠ порожньо»). */
+export async function loadAuthorCommunityPacksPendingUpdateResult(
   authorStableId: string,
   studyTarget?: RuntimeStudyTarget,
-): Promise<FlashcardMarketPack[]> {
-  if (!authorStableId || IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return [];
+): Promise<AuthorCommunityPacksResult> {
+  if (!authorStableId || IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+    console.log(`[MY-PACKS] author_packs result=ok code=${!authorStableId ? 'no_author' : 'cloud_disabled'} count=0`);
+    return { status: 'ok', packs: [] };
+  }
+  const lastKnownKey = `${authorStableId}|${String(studyTarget ?? '')}`;
   try {
     const snap = await firestore()
       .collection(COMMUNITY_PACKS_COLLECTION)
@@ -375,11 +402,26 @@ export async function loadAuthorCommunityPacksPendingUpdate(
       const m = mapCommunityPackDocToMarket(doc.id, doc.data() as Record<string, unknown>, { forCatalog: false, studyTarget });
       if (m) out.push(m);
     }
-    return out;
+    rememberAuthorPacks(lastKnownKey, out);
+    console.log(`[MY-PACKS] author_packs result=ok code=read docs=${snap.docs.length} count=${out.length}`);
+    return { status: 'ok', packs: out };
   } catch (e) {
-    if (__DEV__) console.warn('[communityFirestore] loadAuthorCommunityPacksPendingUpdate failed', e);
-    return [];
+    // зачем (8C-2): раньше ошибка глоталась в `[]`, и «Мои наборы» / тренировка считали,
+    // что опубликованных наборов у автора нет. Теперь — явный error + последнее известное.
+    const lastKnown = authorPacksLastKnown.get(lastKnownKey);
+    const code = (e as { code?: unknown } | null)?.code;
+    console.warn(`[MY-PACKS] author_packs result=error code=${typeof code === 'string' ? code : (e instanceof Error ? e.name : typeof e)}`
+      + ` last_known=${lastKnown ? lastKnown.length : 'none'}`);
+    return { status: 'error', packs: lastKnown ?? [] };
   }
+}
+
+/** Набори автора в очікуванні повторної модерації після редагування. При помилці — останнє відоме (див. `...Result`). */
+export async function loadAuthorCommunityPacksPendingUpdate(
+  authorStableId: string,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<FlashcardMarketPack[]> {
+  return (await loadAuthorCommunityPacksPendingUpdateResult(authorStableId, studyTarget)).packs;
 }
 
 export type CommunityPackEditorSnapshot = {

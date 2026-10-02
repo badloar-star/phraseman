@@ -12721,7 +12721,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12761,18 +12761,19 @@
     "audit_sha": null,
     "result_sha": "abec9c00a",
     "owner": "Claude Opus 5.5 (сессия «Ядро»)",
-    "reviewer": null,
+    "reviewer": "координатор (сессия «Сессии с таймером и автоматизацией»), §81",
     "evidence": [
       "76de2317d: ai_operation_billing (onUsage в openAiChat), тест 5/5",
       "abec9c00a: ai_operation_billing — admin_director_digest_tts (inputChars) и admin_community_pack_translate (токены всех пачек, до транзакции); admin_community_pack_qa/admin_asset_studio — [AI-USAGE] skipped: manual tool (решение координатора §80); TTS турниров мёртв (снят с деплоя 2026-09-02) — модули удалены. Тесты functions 76/76"
     ],
     "notes": [
       "2026-10-01: A3 с оговоркой — без usage остались TTS дайджеста, admin_asset_studio, TTS турниров, admin QA/перевод community-пакетов; решение координатора",
-      "2026-10-02 Ядро: A3 закрыт по решению координатора §80; ревью — независимым ревьюером"
+      "2026-10-02 Ядро: A3 закрыт по решению координатора §80; ревью — независимым ревьюером",
+      "2026-10-02 §81 координатор: APPROVE PM-231-A3 — на проде tournament*-функций 0, проверка типов functions 0, Шпиль цел; выкладка в релизный пакет 2.0"
     ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
+    "review_verdict": "PASS",
     "gate_evidence": {},
     "actual_model": null,
     "actual_reasoning": null

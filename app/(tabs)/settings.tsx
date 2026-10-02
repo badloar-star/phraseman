@@ -370,7 +370,7 @@ export default function SettingsMain() {
         }
         return next;
       });
-    }).catch(() => {});
+    }).catch((error: unknown) => { console.warn('[SETTINGS] app_messages: подбор сообщений настроек не удался', error); });
     return () => { cancelled = true; };
   }, [hasPremiumAccess, settingsRuntimeActive]);
 
@@ -487,7 +487,7 @@ export default function SettingsMain() {
         setSettingsReferralStateKey(accountScopeKey(token));
         setSettingsReferralDrain(state.drain);
       })
-      .catch(() => {});
+      .catch((error: unknown) => { console.warn('[SETTINGS] referral: состояние рефералов не прочиталось (оставляем кэш)', error); });
     return () => { alive = false; };
   }, [
     focusTick,
@@ -533,7 +533,7 @@ export default function SettingsMain() {
         setVipPlan(String(vip?.vip_plan ?? '').trim().toLowerCase());
         setVipUntilMs(parseStoredExpiryMs(vip?.vip_until));
       })
-      .catch(() => {});
+      .catch((error: unknown) => { console.warn('[SETTINGS] vip: снимок VIP не прочитался', error); });
   }, []);
 
 

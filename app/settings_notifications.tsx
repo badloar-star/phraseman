@@ -399,13 +399,19 @@ export default function SettingsNotifications() {
                 accessibilityRole="button"
             onPress={async () => {
               hapticTap();
-              const res = await requestNotificationPermissionWithFallback({ openSettingsIfBlocked: true });
-              if (res.granted) {
-                setNeedsPermission(false);
-                await applyNotifPrefsSideEffects(prefsRef.current, lang as Lang, { studyTarget });
-                if (scheduleAnyEnabled(sRef.current)) {
-                  await scheduleNotifications(sRef.current, lang as Lang, 0, { requestPermission: false, studyTarget });
+              // зачем (FINAL_PHASE п.7): исключение из разрешения/планирования было необработанным отказом без следа.
+              try {
+                const res = await requestNotificationPermissionWithFallback({ openSettingsIfBlocked: true });
+                console.warn(`[NOTIF-PERMISSION] settings: granted=${res.granted}`);
+                if (res.granted) {
+                  setNeedsPermission(false);
+                  await applyNotifPrefsSideEffects(prefsRef.current, lang as Lang, { studyTarget });
+                  if (scheduleAnyEnabled(sRef.current)) {
+                    await scheduleNotifications(sRef.current, lang as Lang, 0, { requestPermission: false, studyTarget });
+                  }
                 }
+              } catch (error) {
+                console.warn('[NOTIF-PERMISSION] settings: запрос разрешения или планирование не удались', error);
               }
             }}
                 withHaptic={false}

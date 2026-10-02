@@ -42,6 +42,8 @@ jest.mock('react-native', () => ({
   },
   Text: 'Text',
   TouchableOpacity: 'TouchableOpacity',
+  // зачем: 17fbb3d32 — шапка тренировок по practice.html (PracticeChrome) собрана на Pressable.
+  Pressable: 'Pressable',
   View: 'View',
 }));
 jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
@@ -192,8 +194,9 @@ jest.mock('../app/flashcards/SessionResultScreen', () => ({
     return React.createElement('SessionResultScreen', { testID: 'fc-blitz-result' });
   },
 }));
-jest.mock('../app/revenue_quota_access', () => ({
-  consumeFlashcardTrainingQuota: (...args: unknown[]) => mockConsumeQuota(...args),
+// зачем: 17fbb3d32 (30.09) — «Блиц» списывает месячный лимит тренировок (30 в месяц), а не старую квоту.
+jest.mock('../app/monthly_training_sessions', () => ({
+  consumeMonthlyTrainingSession: (...args: unknown[]) => mockConsumeQuota(...args),
 }));
 jest.mock('../app/flashcard_training_pending_grant', () => ({
   resolveFlashcardTrainingPendingGrantAccount: async (runtimeToken: unknown) => ({ stableUid: 'test', lineage: 1, runtimeToken }),
@@ -295,8 +298,9 @@ test('unresolved performs no work; exhausted direct start refunds and redirects 
 
   expect(mockReplace).toHaveBeenCalledTimes(1);
   expect(mockReplace).toHaveBeenCalledWith({
-    pathname: '/premium_modal',
-    params: { context: 'flashcard_training', source: 'flashcards_blitz_direct' },
+    // зачем: 17fbb3d32 — при исчерпанном лимите ведём в настройку тренировки: там замок и окно Plus (D152).
+    pathname: '/flashcards_training_setup',
+    params: { mode: 'blitz' },
   });
   expect(mockLoadDeckRefs).toHaveBeenCalledTimes(1);
   expect(mockLoadDeckCards).toHaveBeenCalledTimes(1);

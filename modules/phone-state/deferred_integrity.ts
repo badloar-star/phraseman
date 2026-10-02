@@ -110,6 +110,50 @@ export async function isDeferredIntegrityDueNow(
   return deferredIntegrityDue(await readLastCheck(storage, scope), nowMs, appVersion);
 }
 
+/**
+ * Порча, всплывшая во время ОБЫЧНОЙ работы (координатор, 02.10, находка «Дизайна»): страницы в
+ * середине файла (10/20/30/40) на открытии не проверяются, а отложенная проверка до суток
+ * отвечает not_due — всё это время база жила бы с порчей. Любой SQLITE_CORRUPT / «HMAC
+ * verification failed» / «file is not a database» в работе сразу ставит тот же флаг пересоздания
+ * (дёшево, без новой проверки); сроки отложенной проверки не трогаем.
+ */
+export function isRuntimeCorruptionFailure(error: unknown): boolean {
+  const text = error instanceof Error ? `${error.message} ${String(error.cause ?? '')}` : String(error);
+  return /SQLITE_CORRUPT|code 11\b|database disk image is malformed|HMAC verification failed|file is not a database|SQLITE_NOTADB|code 26\b/i.test(text);
+}
+
+const runtimeCorruptionFlagged = new Set<string>();
+
+/** Поставить флаг пересоздания по ошибке работы. Один раз на аккаунт за процесс; никогда не бросает. */
+export async function flagRuntimeCorruption(
+  storage: DeferredIntegrityStorage,
+  scope: DeferredIntegrityScope,
+  error: unknown,
+  operation: string,
+): Promise<boolean> {
+  if (!isRuntimeCorruptionFailure(error)) return false;
+  const key = scopeKey(RESET_FLAG_KEY, scope);
+  if (runtimeCorruptionFlagged.has(key)) {
+    console.log(`${PREFIX}:runtime_corrupt_repeat op=${operation} — флаг уже стоит`);
+    return true;
+  }
+  runtimeCorruptionFlagged.add(key);
+  console.warn(`${PREFIX}:runtime_corrupt op=${operation} reason=${reasonOf(error)} — база будет пересоздана до открытия на следующем старте`);
+  try {
+    await storage.setItem(key, String(Date.now()));
+    console.warn(`${PREFIX}:flag_set (runtime)`);
+  } catch (writeError) {
+    runtimeCorruptionFlagged.delete(key);
+    console.warn(`${PREFIX}:flag_set_failed (runtime) — порча не будет вылечена автоматически`, reasonOf(writeError));
+  }
+  return true;
+}
+
+/** Только для тестов: сбросить память «флаг уже поставлен». */
+export function resetRuntimeCorruptionMemoryForTests(): void {
+  runtimeCorruptionFlagged.clear();
+}
+
 export type DeferredIntegrityOutcome = 'clean' | 'corrupt' | 'not_due' | 'failed';
 
 /** Полная проверка на уже открытом соединении. Никогда не бросает — итог и причина в логе. */

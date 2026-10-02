@@ -11,6 +11,7 @@ import {
   DEFERRED_INTEGRITY_BUSY_RETRY_MS,
   DEFERRED_INTEGRITY_DELAY_MS,
   clearIntegrityResetFlag,
+  flagRuntimeCorruption,
   isDeferredIntegrityDueNow,
   isIntegrityResetPending,
   runDeferredIntegrityCheck,
@@ -164,16 +165,23 @@ async function ensureDeviceId(database: RuntimeSession['database']): Promise<str
 
 function adaptExpoSqliteDatabase(
   database: Awaited<ReturnType<typeof openPhoneStateDatabase>>,
+  onFailure: (error: unknown, operation: string) => void = () => undefined,
 ): PhoneStateStoreDatabase {
   const transaction = (value: unknown): PhoneStateStoreTransaction => value as PhoneStateStoreTransaction;
+  // зачем (координатор, 02.10): все запросы хранилища идут через этот адаптер — здесь одна точка,
+  // где порча базы во время работы ставит флаг пересоздания. Ошибка пробрасывается как была.
+  const watched = <T,>(operation: string, run: () => Promise<T>): Promise<T> => run().catch((error: unknown) => {
+    onFailure(error, operation);
+    throw error;
+  });
   const adapted: PhoneStateStoreDatabase = {
     getFirstAsync: <T,>(sql: string, ...params: PhoneStateSqlValue[]) => (
-      database.getFirstAsync<T>(sql, ...params)
+      watched('getFirst', () => database.getFirstAsync<T>(sql, ...params))
     ),
     getAllAsync: <T,>(sql: string, ...params: PhoneStateSqlValue[]) => (
-      database.getAllAsync<T>(sql, ...params)
+      watched('getAll', () => database.getAllAsync<T>(sql, ...params))
     ),
-    runAsync: (sql: string, ...params: PhoneStateSqlValue[]) => database.runAsync(sql, ...params),
+    runAsync: (sql: string, ...params: PhoneStateSqlValue[]) => watched('run', () => database.runAsync(sql, ...params)),
     withExclusiveTransactionAsync: async <T,>(
       task: (tx: PhoneStateStoreTransaction) => Promise<T>,
     ): Promise<T> => {
@@ -182,10 +190,10 @@ function adaptExpoSqliteDatabase(
       // зачем (2026-09-14): НЕ database.withExclusiveTransactionAsync — expo-sqlite
       // открывает для неё новое соединение без PRAGMA key, и любая запись
       // хранилища падала с NOTADB. Транзакция на том же ключевом соединении.
-      await withKeyedExclusiveTransaction(database, async (tx) => {
+      await watched('transaction', () => withKeyedExclusiveTransaction(database, async (tx) => {
         result = await task(transaction(tx));
         settled = true;
-      });
+      }));
       if (!settled) throw new Error('phone_state_transaction_incomplete');
       return result;
     },
@@ -362,7 +370,10 @@ async function openRuntimeSession(
     }
     endMigrate();
     const deviceId = await ensureDeviceId(database);
-    const localDatabase = adaptExpoSqliteDatabase(database);
+    const localDatabase = adaptExpoSqliteDatabase(database, (error, operation) => {
+      void flagRuntimeCorruption(AsyncStorage, scope, error, operation)
+        .catch(noteSwallowedHandler('phone_state_runtime:runtime_corrupt'));
+    });
     const registry = createReducerRegistry([
       createPersonalProgressReducer(),
       createProgressRegistersReducer(),

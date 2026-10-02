@@ -12,6 +12,9 @@ import {
   DEFERRED_INTEGRITY_MIN_INTERVAL_MS,
   clearIntegrityResetFlag,
   deferredIntegrityDue,
+  flagRuntimeCorruption,
+  isRuntimeCorruptionFailure,
+  resetRuntimeCorruptionMemoryForTests,
   isIntegrityResetPending,
   runDeferredIntegrityCheck,
   type DeferredIntegrityStorage,
@@ -77,6 +80,32 @@ describe('PhoneState deferred integrity (§84)', () => {
     expect(deferredIntegrityDue({ atMs: 0, appVersion: '2.0.0' }, 60_000, '2.0.1').due).toBe(true);
     // Часы ушли назад — проверяем, а не молчим.
     expect(deferredIntegrityDue({ atMs: 10_000, appVersion: '2.0.0' }, 0, '2.0.0').due).toBe(true);
+  });
+
+  // Координатор 02.10 (находка «Дизайна»): порча страниц в середине файла на открытии не видна, а
+  // отложенная проверка до суток отвечает not_due — ошибка порчи в РАБОТЕ сразу ставит флаг.
+  test('порча во время работы ставит флаг один раз; обычные ошибки — нет', async () => {
+    resetRuntimeCorruptionMemoryForTests();
+    const storage = memoryStorage();
+    expect(await flagRuntimeCorruption(storage, SCOPE, new Error('UNIQUE constraint failed'), 'run')).toBe(false);
+    expect(await isIntegrityResetPending(storage, SCOPE)).toBe(false);
+
+    for (const message of [
+      'Error code 11: database disk image is malformed',
+      'HMAC verification failed for page 20',
+      'Error code 26: file is not a database',
+    ]) {
+      expect(isRuntimeCorruptionFailure(new Error(message))).toBe(true);
+    }
+    const setItem = jest.spyOn(storage, 'setItem');
+    expect(await flagRuntimeCorruption(storage, SCOPE, new Error('SQLITE_CORRUPT: page 30'), 'getAll')).toBe(true);
+    expect(await flagRuntimeCorruption(storage, SCOPE, new Error('SQLITE_CORRUPT: page 40'), 'getAll')).toBe(true);
+    expect(setItem).toHaveBeenCalledTimes(1);
+    expect(await isIntegrityResetPending(storage, SCOPE)).toBe(true);
+    expect(await isIntegrityResetPending(storage, OTHER)).toBe(false);
+    const runtime = fs.readFileSync(path.join(__dirname, '..', 'app', 'phone_state_runtime.ts'), 'utf8');
+    expect(runtime).toContain('void flagRuntimeCorruption(AsyncStorage, scope, error, operation)');
+    expect(runtime).toContain("watched('transaction',");
   });
 
   test('runtime: по флагу пересоздаёт ДО открытия и снимает флаг ПОСЛЕ; планировщик уважает занятость', () => {

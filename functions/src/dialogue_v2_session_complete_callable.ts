@@ -159,9 +159,13 @@ export function createDialogueV2SessionCompleteHandler(
     if (typeof authUid !== 'string') throw new HttpsError('unauthenticated', 'auth_required');
     const selection = exactSelection(request.data);
     if (!selection) throw new HttpsError('invalid-argument', 'dialogue_v2_completion_request_invalid');
+    // зачем (баг 02.10, «Дизайн»: итог диалога у Free — dialogue_v2_completion_unavailable,
+    // в прод-логе пусто): этап, на котором сломалось завершение, обязан попасть в лог.
+    let stage = 'claim';
     try {
       const claim = await dependencies.claimTerminal({ authUid, selection });
       let built: BuiltCompletion;
+      stage = `build:${claim.kind}`;
       try {
         built = await dependencies.buildCompletion({
           authUid,
@@ -186,12 +190,14 @@ export function createDialogueV2SessionCompleteHandler(
         });
       }
       if (claim.kind === 'new') {
+        stage = 'stage_assessment';
         await dependencies.stageAssessment({
           claim,
           assessmentRaw: built.assessmentRaw,
           releaseSnapshot: built.releaseSnapshot,
         });
       }
+      stage = 'prepare_memory';
       const preparedMemory = await dependencies.prepareMemory({
         authUid,
         studyTarget: selection.studyTarget,
@@ -199,6 +205,7 @@ export function createDialogueV2SessionCompleteHandler(
         completion: built.completion,
         releaseSnapshot: built.releaseSnapshot,
       });
+      stage = 'publish';
       await dependencies.publishCompletion({
         claim,
         selection,
@@ -214,6 +221,15 @@ export function createDialogueV2SessionCompleteHandler(
         replayed: false,
       });
     } catch (error) {
+      const failure = error as { name?: unknown; code?: unknown; message?: unknown } | null;
+      console.warn('[DIALOGUE-V2-COMPLETE] failed', JSON.stringify({
+        stage,
+        scenarioId: selection.scenarioId,
+        studyTarget: selection.studyTarget,
+        name: typeof failure?.name === 'string' ? failure.name : null,
+        code: typeof failure?.code === 'string' ? failure.code : null,
+        message: typeof failure?.message === 'string' ? failure.message.slice(0, 200) : String(error).slice(0, 200),
+      }));
       if (error instanceof HttpsError) throw error;
       if (error instanceof DialogueV2SessionTerminalError) {
         if (error.code === 'access_denied') {

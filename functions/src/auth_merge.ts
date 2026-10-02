@@ -33,6 +33,13 @@ import {
 } from './mistake_practice_event_sync';
 import { writeAccessProjection } from './access_projection';
 import { mergeVoiceMinuteWalletsInTransaction } from './voice_minutes';
+import {
+  confirmedFlashcardKeysToNull,
+  describeFlashcardField,
+  FLASHCARD_LIST_KEY_SPECS,
+  FLASHCARD_LIST_PROGRESS_KEYS,
+  mergeFlashcardListsIntoWinnerPages,
+} from './auth_merge_flashcard_lists';
 
 const USERS = 'users';
 
@@ -262,10 +269,19 @@ function copyKeys(from: ProgressMap, keys: readonly string[], into: ProgressMap)
  * @param loser  the side being merged in
  * @returns a NEW merged progress map (immutable — neither input mutated)
  */
+export type MergeUserProgressOptions = Readonly<{
+  /**
+   * Ключи списков карточек, чьё содержимое (обеих сторон) уже объединено в страницах
+   * победителя этим проходом слияния — их поле в документе обнуляется (null).
+   */
+  flashcardListKeysToNull?: ReadonlySet<string>;
+}>;
+
 export function mergeUserProgress(
   winner: ProgressMap | undefined,
   loser: ProgressMap | undefined,
   now: number = Date.now(),
+  options: MergeUserProgressOptions = {},
 ): ProgressMap {
   const w: ProgressMap = winner ? { ...winner } : {};
   const l: ProgressMap = loser ? { ...loser } : {};
@@ -276,6 +292,7 @@ export function mergeUserProgress(
   for (const key of allKeys) {
     if (PREMIUM_AND_VIP_KEYS.has(key)) continue; // handled as whole blocks below
     if ((REFERRAL_CLAIM_COUNTER_KEYS as readonly string[]).includes(key)) continue; // summed below
+    if (FLASHCARD_LIST_PROGRESS_KEYS.has(key)) continue; // списки карточек — ниже, не поле-за-полем
 
     const wv = w[key];
     const lv = l[key];
@@ -340,6 +357,36 @@ export function mergeUserProgress(
     const merged = mergeClaimCounters(w[key], l[key]);
     if (merged) out[key] = merged;
     else delete out[key];
+  }
+
+  // ── Списки сохранённых карточек (Account V2, Пакет 8M). ─────────────────────
+  // зачем: их правда — страницы users/{id}/flashcard_pages, поле документа = null.
+  // Прежняя ветка «у победителя пусто/'null' → берём проигравшего» клала СПИСОК
+  // проигравшего в документ победителя: restore брал эту затеняющую копию вместо
+  // страниц. Теперь список проигравшего в документ не попадает НИКОГДА: его карточки
+  // переносит в страницы шаг outbox (auth_merge_flashcard_lists.ts). Поле обнуляется,
+  // только если шаг подтвердил объединение; иначе у победителя остаётся его же значение.
+  const keysToNull = options.flashcardListKeysToNull ?? new Set<string>();
+  for (const spec of FLASHCARD_LIST_KEY_SPECS) {
+    const key = spec.key;
+    const winnerKind = describeFlashcardField(w, key);
+    const loserKind = describeFlashcardField(l, key);
+    if (winnerKind === 'absent' && loserKind === 'absent') {
+      delete out[key];
+      continue;
+    }
+    let decision: 'null' | 'keep_winner' | 'absent';
+    if (keysToNull.has(key)) {
+      out[key] = null;
+      decision = 'null';
+    } else if (winnerKind !== 'absent') {
+      out[key] = w[key];
+      decision = 'keep_winner';
+    } else {
+      delete out[key];
+      decision = 'absent';
+    }
+    console.log(`[AUTH-MERGE] flashcard_lists key=${key} winner=${winnerKind} loser=${loserKind} decision=${decision} pages_confirmed=${keysToNull.has(key)}`);
   }
 
   return out;
@@ -669,9 +716,11 @@ async function mergeStableAccountsTransactionally(
         throw new HttpsError('permission-denied', 'stable_id_mismatch');
       }
     }
+    let flashcardListsMergeRecord: unknown = null;
     if (publication) {
       const publicationSnap = await tx.get(publication.outboxRef);
       const publicationData = publicationSnap.data() ?? {};
+      flashcardListsMergeRecord = publicationData.flashcardListsMerge ?? null;
       if (!publicationSnap.exists || publicationData.leaseToken !== publication.leaseToken ||
         cleanStr(publicationData.winnerStableId) !== winner.stableId ||
         cleanStr(publicationData.loserStableId) !== loser.stableId ||
@@ -722,10 +771,18 @@ async function mergeStableAccountsTransactionally(
       throw new HttpsError('resource-exhausted', 'premium_lineage_limit');
     }
 
+    // зачем (8M): обнулять поле списка карточек можно, только если шаг outbox ЭТОГО прохода
+    // уже объединил карточки обеих сторон в страницах победителя и поле с тех пор не менялось.
+    const flashcardListKeysToNull = confirmedFlashcardKeysToNull(
+      flashcardListsMergeRecord,
+      publication?.leaseToken ?? null,
+      winner.data.progress as ProgressMap | undefined,
+    );
     const mergedProgress = mergeUserProgress(
       winner.data.progress as ProgressMap | undefined,
       loser.data.progress as ProgressMap | undefined,
       now,
+      { flashcardListKeysToNull },
     );
     const canonicalAggregate = canonicalLineages.size > 0
       ? aggregatePremiumLineages(
@@ -1187,6 +1244,18 @@ export async function processAccountMergeOutboxJob(
       updated += await migrateMistakePracticeEventsAccountMerge(
         db, claim.winner, claim.loser, ref, leaseToken, now,
       );
+      // зачем (8M): карточки проигравшего — в страницы победителя ДО публикации, чтобы
+      // публикация могла обнулить поле документа без потери. Слияние из-за карточек
+      // не падает: при сбое шаг только логирует, а публикация оставит поля как были.
+      await mergeFlashcardListsIntoWinnerPages(db, {
+        winner: claim.winner,
+        loser: claim.loser,
+        outboxRef: ref,
+        leaseToken,
+        now,
+      }).catch((error: unknown) => {
+        console.warn(`[AUTH-MERGE] flashcard_lists step=failed reason=${String((error as { message?: unknown })?.message ?? error).slice(0, 160)} fields=kept_as_is`);
+      });
       await mergeStableAccountsTransactionally(
         db,
         claim.authUid,

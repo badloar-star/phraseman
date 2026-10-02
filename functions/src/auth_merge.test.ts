@@ -2088,3 +2088,152 @@ describe('repointReferralOnMerge — перенос реферальных да�
     expect(store.referral_attributions.x).toBeDefined();
   });
 });
+
+// ── Account V2, Пакет 8M: списки карточек при слиянии (интеграция outbox → публикация) ──
+describe('8M: mergeStableAccounts — карточки проигравшего в страницах победителя, поле = null', () => {
+  beforeEach(() => {
+    jest.spyOn(Date, 'now').mockReturnValue(NOW);
+    jest.spyOn(console, 'log').mockImplementation(() => {});
+    jest.spyOn(console, 'warn').mockImplementation(() => {});
+  });
+  afterEach(() => jest.restoreAllMocks());
+
+  const EN = 'flashcards_v1';
+  const FR = 'flashcards_v2::fr::flashcards_v1';
+  const card = (id: string) => ({ id, en: `en-${id}`, ru: `ru-${id}` });
+  const list = (...ids: string[]) => JSON.stringify(ids.map(card));
+  const idsOf = (raw: unknown) => (JSON.parse(String(raw)) as Array<{ id: string }>).map((c) => c.id);
+  const page = (target: string, index: number, ids: string[]) => ({
+    target, index, count: ids.length, cards: list(...ids), updatedAt: 1,
+  });
+
+  it('winner null + страницы, loser список в поле → union в страницах, поле null, ответ прежней формы', async () => {
+    const loserEn = list('b', 'c');
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-w': { firebaseAuthUid: 'google-8m', progress: { user_total_xp: '10', [EN]: null } },
+        'stable-l': {
+          firebaseAuthUid: 'google-8m',
+          progress: { user_total_xp: '5', [EN]: loserEn, [FR]: list('f1') },
+        },
+      },
+      'users/stable-w/flashcard_pages': { en_0000: page('en', 0, ['a', 'b']) },
+    });
+
+    const res = await mergeStableAccounts(db as any, 'google-8m', 'stable-w', 'stable-l', NOW);
+
+    expect(res).toEqual({ canonicalStableId: 'stable-w', mergedFromStableId: 'stable-l', alreadyMerged: false });
+    const winnerProgress = store.users['stable-w']!.progress as DocData;
+    expect(winnerProgress[EN]).toBeNull();
+    expect(winnerProgress[FR]).toBeNull();
+    expect(winnerProgress.user_total_xp).toBe('10');
+    const pages = store['users/stable-w/flashcard_pages'];
+    expect(Object.keys(pages).sort()).toEqual(['en_0000', 'fr_0000']);
+    expect(idsOf(pages.en_0000!.cards)).toEqual(['a', 'b', 'c']);
+    expect(idsOf(pages.fr_0000!.cards)).toEqual(['f1']);
+    // Маска записи страницы: ровно формат клиентского writeFlashcardPages.
+    expect(Object.keys(pages.en_0000!).sort()).toEqual(['cards', 'count', 'index', 'target', 'updatedAt']);
+    expect(pages.en_0000).toMatchObject({ target: 'en', index: 0, count: 3, updatedAt: NOW });
+    // Данные проигравшего не тронуты (повтор/откат возможен).
+    expect((store.users['stable-l']!.progress as DocData)[EN]).toBe(loserEn);
+    expect(store['users/stable-l/flashcard_pages']).toBeUndefined();
+    // Отметка в outbox — только ожидаемые поля.
+    const outbox = Object.values(store.account_merge_outbox)[0]!;
+    expect(Object.keys(outbox.flashcardListsMerge as DocData).sort())
+      .toEqual(['leaseToken', 'mergedAt', 'targets', 'winnerFieldFingerprints']);
+    expect(outbox.status).toBe('completed');
+  });
+
+  it('winner absent + loser список → null; карточки проигравшего из его страниц', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-w': { firebaseAuthUid: 'google-8m2', progress: { user_total_xp: '10' } },
+        'stable-l': { firebaseAuthUid: 'google-8m2', progress: { [EN]: list('x') } },
+      },
+      'users/stable-l/flashcard_pages': { en_0000: page('en', 0, ['p1', 'x']) },
+    });
+    await mergeStableAccounts(db as any, 'google-8m2', 'stable-w', 'stable-l', NOW);
+    const winnerProgress = store.users['stable-w']!.progress as DocData;
+    expect(winnerProgress[EN]).toBeNull();
+    expect(FR in winnerProgress).toBe(false);
+    expect(idsOf(store['users/stable-w/flashcard_pages'].en_0000!.cards)).toEqual(['p1', 'x']);
+  });
+
+  it('шаг карточек упал (битая страница проигравшего) → слияние прошло, список проигравшего НЕ в документе', async () => {
+    const own = list('w1');
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-w': { firebaseAuthUid: 'google-8m3', progress: { [EN]: own } },
+        'stable-l': { firebaseAuthUid: 'google-8m3', progress: { [EN]: list('l1') } },
+      },
+      'users/stable-l/flashcard_pages': { en_0000: { target: 'en', index: 0, cards: '{broken' } },
+    });
+    const res = await mergeStableAccounts(db as any, 'google-8m3', 'stable-w', 'stable-l', NOW);
+    expect(res.alreadyMerged).toBe(false);
+    expect((store.users['stable-w']!.progress as DocData)[EN]).toBe(own);
+    expect(store['users/stable-w/flashcard_pages']).toBeUndefined();
+    expect(store.users['stable-l']!.identityHidden).toBe(true);
+  });
+
+  it('шаг карточек бросил (слишком много страниц) → слияние не падает, поля как были', async () => {
+    const tooMany = Object.fromEntries(Array.from({ length: 101 }, (_, i) => [
+      `en_${String(i).padStart(4, '0')}`, page('en', i, [`c${i}`]),
+    ]));
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-w': { firebaseAuthUid: 'google-8m4', progress: { [EN]: null } },
+        'stable-l': { firebaseAuthUid: 'google-8m4', progress: { [EN]: list('l1') } },
+      },
+      'users/stable-l/flashcard_pages': tooMany,
+    });
+    const res = await mergeStableAccounts(db as any, 'google-8m4', 'stable-w', 'stable-l', NOW);
+    expect(res.alreadyMerged).toBe(false);
+    expect((store.users['stable-w']!.progress as DocData)[EN]).toBeNull();
+    expect(store['users/stable-w/flashcard_pages']).toBeUndefined();
+  });
+
+  it('C-1: победитель flashcards_v1=null + древний flashcards с карточками → карточки в страницах и только тогда null', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-w': { firebaseAuthUid: 'google-c1a', progress: { [EN]: null, flashcards: list('old1', 'a') } },
+        'stable-l': { firebaseAuthUid: 'google-c1a', progress: {} },
+      },
+      'users/stable-w/flashcard_pages': { en_0000: page('en', 0, ['a']) },
+    });
+    await mergeStableAccounts(db as any, 'google-c1a', 'stable-w', 'stable-l', NOW);
+    expect(idsOf(store['users/stable-w/flashcard_pages'].en_0000!.cards)).toEqual(['a', 'old1']);
+    const winnerProgress = store.users['stable-w']!.progress as DocData;
+    expect(winnerProgress.flashcards).toBeNull();
+    expect(winnerProgress[EN]).toBeNull();
+  });
+
+  it('C-1: древний flashcards победителя не разобрался → не обнулён (единственная копия цела)', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-w': { firebaseAuthUid: 'google-c1b', progress: { [EN]: null, flashcards: '{broken' } },
+        'stable-l': { firebaseAuthUid: 'google-c1b', progress: { [EN]: list('x') } },
+      },
+    });
+    await mergeStableAccounts(db as any, 'google-c1b', 'stable-w', 'stable-l', NOW);
+    const winnerProgress = store.users['stable-w']!.progress as DocData;
+    expect(winnerProgress.flashcards).toBe('{broken');
+    expect(winnerProgress[EN]).toBeNull();
+    expect(idsOf(store['users/stable-w/flashcard_pages'].en_0000!.cards)).toEqual(['x']);
+  });
+
+  it('C-1: проигравший с древним flashcards → его карточки в страницах победителя, его документ не тронут', async () => {
+    const loserLegacy = list('l-old');
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-w': { firebaseAuthUid: 'google-c1c', progress: { [EN]: null } },
+        'stable-l': { firebaseAuthUid: 'google-c1c', progress: { [EN]: null, flashcards: loserLegacy } },
+      },
+      'users/stable-w/flashcard_pages': { en_0000: page('en', 0, ['w']) },
+    });
+    await mergeStableAccounts(db as any, 'google-c1c', 'stable-w', 'stable-l', NOW);
+    expect(idsOf(store['users/stable-w/flashcard_pages'].en_0000!.cards)).toEqual(['w', 'l-old']);
+    const winnerProgress = store.users['stable-w']!.progress as DocData;
+    expect(winnerProgress.flashcards).toBeNull();
+    expect((store.users['stable-l']!.progress as DocData).flashcards).toBe(loserLegacy);
+  });
+});

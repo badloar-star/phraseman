@@ -1,7 +1,7 @@
 # Task packet: §78 — friends test mocks, Home first-frame release marker, auth_provider getters
 
 Governance-ID: TG-C9BBE556639F
-Status: In progress
+Status: Done (1, 2) · (3) waiting — auth_provider.ts has another session's uncommitted edits
 Owner: Claude session «App Check» (82577f25), by coordinator §78 (2026-10-02)
 Related epic/enabler: PM-229 / startup performance (Q53 → §66/§67/§70)
 
@@ -52,3 +52,9 @@ production. Getter swap keeps the same Firebase instance; no auth/authorization 
 ## Rollback
 
 Revert the commits — tests and one log line (getters later); no data, no entitlements.
+
+## Result (2026-10-02)
+
+- (1) dd8e17b7e — friends suites 54/54 together with the core fix 27f4b6be2.
+- (2) 031d6ef70 + 3cd296873 — [HOME-PAINT] marker; release console.log is stripped, so console.warn. Baseline (release, 2 cores / 2 GB, 12 cold starts): median 1715 ms, p90 2155 ms, range 1353-2290 ms; exactly one marker per start. Exit condition of the Contain item met.
+- (3) not started — file still dirty.

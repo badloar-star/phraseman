@@ -15,6 +15,17 @@ import { formatViewCount } from '../video/formatViewCount';
 import { pluralWord } from '../../constants/plural';
 import { hapticTap } from '../../hooks/use-haptics';
 
+/**
+ * зачем (замер Q53, координатор 02.10: «Видео» +34 МБ нативной памяти после 10 прокруток):
+ * каталог отдаёт обложки maxres/sd (1280×720), а карточка ленты ~360 dp. Берём обложку под
+ * размер карточки: компактная строка — mqdefault (320×180), полная — hqdefault (480×360, есть у всех роликов, sd — не у всех).
+ */
+function feedThumbUrl(url: string, compact: boolean): string {
+  const match = /^(https:\/\/i\.ytimg\.com\/vi(?:_webp)?\/[^/]+\/)(maxresdefault|sddefault|hqdefault|mqdefault|hq720)(\.(?:jpg|webp))/.exec(url);
+  if (!match) return url;
+  return `${match[1]}${compact ? 'mqdefault' : 'hqdefault'}${match[3]}`;
+}
+
 export default function YoutubeVideoCard({ video, onWatch, highlighted = false, inlinePlayer, belowPlayer, compact = false, saved, saveCount, onToggleSave }: {
   video: YoutubeVideoSnapshot;
   onWatch: () => void;
@@ -55,7 +66,8 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
         {/* зачем (координатор Q39): мягкое раскрытие ролика — см. components/video/videoMotion.ts. */}
         {inlinePlayer ? <Animated.View entering={VIDEO_PLAYER_REVEAL} style={styles.thumb}>{inlinePlayer}</Animated.View> : (
           <>
-            <Image source={{ uri: video.thumbnailUrl }} style={styles.thumb} contentFit="cover" transition={120} cachePolicy="memory-disk" recyclingKey={video.id} />
+            {/* Лента: только диск — декодированные обложки ушедших карточек не держим в памяти. */}
+            <Image source={{ uri: feedThumbUrl(video.thumbnailUrl, compactLayout) }} style={styles.thumb} contentFit="cover" transition={120} cachePolicy="disk" recyclingKey={video.id} />
             <View style={styles.scrim} />
             {/* зачем: `.thumb .pl` макета — круглая «play» слева-снизу кадра; кадр целиком и есть кнопка «Смотреть». */}
             <VideoPlayBadge small={compactLayout} />

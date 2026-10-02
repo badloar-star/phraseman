@@ -263,6 +263,18 @@ const INTENTIONALLY_UNREAD_LOCAL_ECONOMY_RECEIPTS = [
   },
 ] as const;
 
+// зачем (02.10, координатор §82 / Q117): виды начисления, у которых писатель УДАЛЁН, а контракт
+// economy.ts оставлен только для старых записей. Правила Firestore их НЕ упоминают намеренно —
+// запись мёртвого вида была бы лишней поверхностью. Сторож держит: писателя в клиенте нет,
+// Джарвис вид не читает, правила вид не открывают.
+const RETIRED_HISTORY_ONLY_PHONE_STATE_ECONOMY_GRANTS = [
+  {
+    grantKind: 'dialog_extra_replies_rune_purchase',
+    contract: 'modules/phone-state/domains/economy.ts',
+    authority: 'retired writer (D111: extra dialog replies for runes removed); history only; intentionally unread by Jarvis',
+  },
+] as const;
+
 const INTENTIONALLY_UNREAD_PHONE_STATE_ECONOMY_GRANTS = [
   {
     grantKind: 'premium_freeze',
@@ -778,13 +790,42 @@ describe('Jarvis data contract — silence must never replace a broken source', 
     const authoritative = [...(authoritativeBlock?.[1] ?? '').matchAll(/'([^']+)'/g)]
       .map((match) => match[1])
       .sort();
-    const registered = INTENTIONALLY_UNREAD_PHONE_STATE_ECONOMY_GRANTS
+    const registered = [
+      ...INTENTIONALLY_UNREAD_PHONE_STATE_ECONOMY_GRANTS,
+      ...RETIRED_HISTORY_ONLY_PHONE_STATE_ECONOMY_GRANTS,
+    ]
       .map(({ grantKind }) => grantKind)
       .sort();
 
     expect(new Set(registered).size).toBe(registered.length);
     expect(registered).toEqual(authoritative);
   });
+  test.each(RETIRED_HISTORY_ONLY_PHONE_STATE_ECONOMY_GRANTS)(
+    'retired Phone State economy grant $grantKind has no writer, no rule and no Jarvis reader',
+    ({ grantKind, contract, authority }) => {
+      const contractSource = fs.readFileSync(path.join(root, contract), 'utf8');
+      const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
+      const jarvisReaders = fs.readdirSync(path.join(functionsSrc, 'jarvis'))
+        .filter((file) => file.endsWith('_firestore_fetcher.ts'))
+        .map((file) => fs.readFileSync(path.join(functionsSrc, 'jarvis', file), 'utf8'))
+        .join('\n');
+      const clientWriters: string[] = [];
+      const walk = (dir: string): void => {
+        for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+          const abs = path.join(dir, entry.name);
+          if (entry.isDirectory()) walk(abs);
+          else if (/\.(ts|tsx)$/.test(entry.name)
+            && fs.readFileSync(abs, 'utf8').includes(`kind: '${grantKind}'`)) clientWriters.push(abs);
+        }
+      };
+      walk(path.join(root, 'app'));
+      expect(contractSource).toContain(`'${grantKind}'`);
+      expect(clientWriters).toEqual([]);
+      expect(rules).not.toContain(grantKind);
+      expect(jarvisReaders).not.toContain(grantKind);
+      expect(authority).toContain('intentionally unread by Jarvis');
+    },
+  );
   test.each(INTENTIONALLY_UNREAD_PHONE_STATE_ECONOMY_GRANTS)(
     'Phone State economy grant $grantKind stays owner-only and intentionally unread by Jarvis',
     ({ grantKind, contract, writer, collection, authority }) => {

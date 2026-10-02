@@ -57,7 +57,11 @@ function runsInExpoGo(options?: OpenPhoneStateDatabaseOptions): boolean {
  */
 export function isUnreadableDatabaseFailure(error: unknown): boolean {
   const text = error instanceof Error ? `${error.message} ${String(error.cause ?? '')}` : String(error);
-  return /file is not a database|code 26|SQLITE_NOTADB|phone_state_cipher_key_mismatch/i.test(text);
+  // зачем (§75 координатора, блокер релиза): любая ошибка целостности SQLCipher — и чужой ключ
+  // (HMAC на всех страницах), и частичная порча — оставляла базу падать на КАЖДОМ запуске:
+  // тренировка карточек не готовилась, человек застревал навсегда. Данные PhoneState есть в
+  // локальном хранилище и облаке — безопаснее пересобрать базу, чем держать сломанную.
+  return /file is not a database|code 26|SQLITE_NOTADB|phone_state_cipher_key_mismatch|phone_state_cipher_integrity_failed/i.test(text);
 }
 
 const HMAC_PAGE_FAILURE_RE = /^HMAC verification failed for page (\d+)$/;

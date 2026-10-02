@@ -458,16 +458,18 @@ describe('phone-state SQLCipher database opener', () => {
   });
   /**
    * ОБРАТНАЯ СТОРОНА: пересоздание — это потеря локальных данных, поэтому оно
-   * допустимо ТОЛЬКО на подписи «файл не расшифровывается». Провал проверки
-   * целостности обязан падать наверх, а не приводить к тихому удалению базы.
+   * допустимо ТОЛЬКО на подписях «файл не расшифровывается / не проходит
+   * целостность» (с 02.10, §75 координатора, целостность тоже лечится
+   * пересозданием — иначе база падала на каждом запуске). Отказ движка (нет
+   * SQLCipher) обязан падать наверх, а не приводить к тихому удалению базы.
    */
   test('пересоздание НЕ срабатывает на других отказах — данные не удаляются', async () => {
     await seedStoredKey();
     const db = makeDatabase();
-    db.getAllAsync.mockResolvedValueOnce([{ cipher_integrity_check: 'row is corrupt' }]);
+    db.getFirstAsync.mockResolvedValueOnce(null);
     (SQLite.openDatabaseAsync as jest.Mock).mockResolvedValueOnce(db);
 
-    await expect(openPhoneStateDatabase(SCOPE)).rejects.toThrow('phone_state_cipher_integrity_failed');
+    await expect(openPhoneStateDatabase(SCOPE)).rejects.toThrow();
     expect(SQLite.deleteDatabaseAsync).not.toHaveBeenCalled();
   });
 
@@ -487,19 +489,27 @@ describe('phone-state SQLCipher database opener', () => {
     },
   );
 
-  // зачем (02.10): HMAC на ВСЕХ страницах с первой = чужой ключ (пересоздание); частичная порча —
-  // по-прежнему стабильная ошибка целостности, без пересоздания (не стираем читаемое).
-  test('a partial integrity error row closes once and throws the stable integrity error', async () => {
+  // зачем (02.10, §75 координатора — блокер релиза): база с ошибкой целостности (чужой ключ —
+  // HMAC на всех страницах, или частичная порча) больше не падает на каждом запуске: закрывается
+  // один раз, удаляется и пересоздаётся под текущим ключом (данные — из хранилища и облака).
+  test.each([
+    ['чужой ключ: HMAC на всех страницах', [1, 2, 3].map((page) => `HMAC verification failed for page ${page}`)],
+    ['частичная порча', ['HMAC verification failed for page 3']],
+  ])('%s — база закрывается один раз и пересоздаётся', async (_label, integrityRows) => {
     await seedStoredKey();
-    const db = makeDatabase();
-    db.getAllAsync.mockResolvedValueOnce([
-      { cipher_integrity_check: 'HMAC verification failed for page 3' },
-    ]);
-    (SQLite.openDatabaseAsync as jest.Mock).mockResolvedValueOnce(db);
+    const databaseName = `phone-state-v1-${sha256(SCOPE.stableUid).slice(0, 32)}-3.db`;
+    const broken = makeDatabase();
+    broken.getAllAsync.mockResolvedValueOnce(integrityRows.map((row) => ({ cipher_integrity_check: row })));
+    const healthy = makeDatabase();
+    (SQLite.openDatabaseAsync as jest.Mock)
+      .mockResolvedValueOnce(broken)
+      .mockResolvedValueOnce(healthy);
 
-    await expect(openPhoneStateDatabase(SCOPE))
-      .rejects.toThrow('phone_state_cipher_integrity_failed');
-    expect(db.closeAsync).toHaveBeenCalledTimes(1);
+    const result = await openPhoneStateDatabase(SCOPE);
+
+    expect(broken.closeAsync).toHaveBeenCalledTimes(1);
+    expect(SQLite.deleteDatabaseAsync).toHaveBeenCalledWith(databaseName);
+    expect(result).toBe(healthy);
   });
 
   test.each(['key', 'cipher version query', 'integrity query', 'configuration'] as const)(

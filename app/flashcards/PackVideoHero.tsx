@@ -18,7 +18,6 @@ import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../../constants/i18n';
-import { hapticTap } from '../../hooks/use-haptics';
 import { actionToastTri, emitAppEvent } from '../events';
 import { DebugLogger } from '../debug-logger';
 import { getLingmanYoutubeWatchUrl, getTrustedLingmanYoutubeUrl } from '../lingman_youtube';
@@ -66,7 +65,7 @@ export default function PackVideoHero({ pack, lang, t: _legacyTheme }: Props) {
   if (!videoId) return null;
 
   const onPress = async () => {
-    void hapticTap();
+    // зачем: вибрация только на управляющих кнопках, не на строках/плитках (правило владельца, FINAL_PHASE п.7).
     /** Проверка домена — существующая; значение приходит из документа Firestore. */
     const trusted = getTrustedLingmanYoutubeUrl(getLingmanYoutubeWatchUrl(videoId), videoId);
     if (!trusted) {

@@ -835,7 +835,7 @@ export default function FlashcardsCategoryHub({
         opening={openingPackId === pack.id}
         disabled={openingPackId !== null}
         onOpen={() => {
-          void hapticTap();
+          // зачем: вибрация только на управляющих кнопках, не на строках/плитках (правило владельца, FINAL_PHASE п.7).
           if (owned) {
             void openOwnedPack(pack);
           } else {

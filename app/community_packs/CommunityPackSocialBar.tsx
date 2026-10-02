@@ -219,7 +219,15 @@ export default function CommunityPackSocialBar({
     opSeqRef.current += 1;
     setSnapshot((prev) => toggleLikeOptimistic(prev));
     void (async () => {
-      const res = await toggleCommunityPackLike(pack.id);
+      let res: Awaited<ReturnType<typeof toggleCommunityPackLike>>;
+      try {
+        res = await toggleCommunityPackLike(pack.id);
+      } catch (error) {
+        // зачем (FINAL_PHASE п.7): исключение оставляло цифру перевёрнутой навсегда — откатываем тихо.
+        console.warn(`[PACK-LIKE] ${pack.id}: переключение не удалось — откат к liked=${!expectedLiked}`, error);
+        setSnapshot((prev) => (prev.liked === expectedLiked ? toggleLikeOptimistic(prev) : prev));
+        return;
+      }
       /**
        * Сверяемся с фактическим состоянием на устройстве: если параллельное нажатие
        * увело его в другую сторону, приводим цифру к правде, а не оставляем расхождение.

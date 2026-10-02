@@ -7,7 +7,6 @@ import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
-import { hapticTap } from '../hooks/use-haptics';
 import { coerceInterfaceLang, getVisibleInterfaceLanguageOptions, triLang, type Lang } from '../constants/i18n';
 import { IS_STORE_RELEASE } from './config';
 import { safeRouterBack } from './navigation_back';
@@ -62,7 +61,7 @@ export default function SettingsLanguage() {
                   disabled={!enabled}
                   onPress={() => {
                     if (!interfaceCode) return;
-                    hapticTap();
+                    // зачем: вибрация только на управляющих кнопках, не на строках/плитках (правило владельца, FINAL_PHASE п.7).
                     void setLang(interfaceCode);
                   }}
                   withHaptic={false}

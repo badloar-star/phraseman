@@ -191,7 +191,7 @@ export default function SettingsThemes() {
   /** Тап по теме = применить сразу (optimistic: state мгновенно, диск догоняет фоном) + ачивка. */
   const onRowPress = useCallback((mode: LiquidGlassThemeId) => {
     if (mode === appliedLiquidGlassThemeId) return;
-    hapticTap();
+    // зачем: вибрация только на управляющих кнопках, не на строках/плитках (правило владельца, FINAL_PHASE п.7).
     setLiquidGlassThemeId(mode);
     // зачем: ачивка — только за НАСТОЯЩУЮ смену темы.
     void (async () => {

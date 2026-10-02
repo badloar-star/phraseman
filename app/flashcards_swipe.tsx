@@ -3393,7 +3393,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
   });
 
   const toggleSource = useCallback((sourceId: string) => {
-    void hapticTap();
+    // зачем: вибрация только на управляющих кнопках, не на строках/плитках (правило владельца, FINAL_PHASE п.7).
     setSelectedIds((cur) => {
       const next = new Set(cur);
       if (next.has(sourceId)) next.delete(sourceId);

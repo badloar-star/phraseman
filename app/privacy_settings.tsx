@@ -9,7 +9,7 @@
  * документы — мелким шрифтом в подвале, удаление — голой серой строкой. Теперь
  * общий экран настроек показывает один ряд «Приватность и данные» → сюда.
  */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { Text, View, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
@@ -151,37 +151,51 @@ export default function PrivacySettings() {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
   // Отзыв/выдача согласия применяется сразу (тумблер — это и есть выбор): локально
-  // (источник правды + гейт сбора) и в облако (accountability/GDPR). Best-effort.
-  const toggleAnalytics = useCallback((val: boolean) => {
+  // (источник правды + гейт сбора) и в облако (accountability/GDPR). Облако — best-effort.
+  // зачем (FINAL_PHASE п.7, Optimistic UI): тумблер щёлкает мгновенно; если локальная
+  // запись не удалась — возвращаем прежнее положение, а поздний ответ старого тапа
+  // не затирает более свежий выбор (счётчик тапов на каждый тумблер).
+  const consentSeqRef = useRef<Record<string, number>>({});
+  const applyConsentToggle = useCallback((
+    key: 'analytics' | 'ai_explain' | 'ai_dialog',
+    val: boolean,
+    setOn: (v: boolean) => void,
+    save: (state: 'granted' | 'denied') => Promise<unknown>,
+    recordToCloud: () => Promise<unknown>,
+  ) => {
     void hapticTap();
-    setAnalyticsOn(val);
+    setOn(val);
+    const seq = (consentSeqRef.current[key] ?? 0) + 1;
+    consentSeqRef.current[key] = seq;
     void (async () => {
-      await setAnalyticsConsent(val ? 'granted' : 'denied');
-      void recordConsentToCloud();
+      try {
+        await save(val ? 'granted' : 'denied');
+      } catch (error) {
+        console.warn(`[PRIVACY-CONSENT] ${key}: локальная запись ${val} не удалась — откат`, error);
+        if (consentSeqRef.current[key] === seq) setOn(!val);
+        return;
+      }
+      recordToCloud().catch((error) => {
+        console.warn(`[PRIVACY-CONSENT] ${key}: запись в облако не удалась (локально сохранено)`, error);
+      });
     })();
   }, []);
+
+  const toggleAnalytics = useCallback((val: boolean) => {
+    applyConsentToggle('analytics', val, setAnalyticsOn, setAnalyticsConsent, recordConsentToCloud);
+  }, [applyConsentToggle]);
 
   // Тот же паттерн для согласия на AI-разбор ошибок в уроках (app/ai_explain_consent.ts):
   // тумблер — источник правды, gate в use_mistake_explain.ts читает его синхронно.
   const toggleAiExplain = useCallback((val: boolean) => {
-    void hapticTap();
-    setAiExplainOn(val);
-    void (async () => {
-      await setAiExplainConsent(val ? 'granted' : 'denied');
-      void recordAiExplainConsentToCloud();
-    })();
-  }, []);
+    applyConsentToggle('ai_explain', val, setAiExplainOn, setAiExplainConsent, recordAiExplainConsentToCloud);
+  }, [applyConsentToggle]);
 
   // Тот же паттерн для AI-диалогов (app/ai_dialog_consent.ts) — отдельный флаг,
   // т.к. это отдельная фича со своим согласием, не общий выключатель «всё AI».
   const toggleAiDialog = useCallback((val: boolean) => {
-    void hapticTap();
-    setAiDialogOn(val);
-    void (async () => {
-      await setAiDialogConsent(val ? 'granted' : 'denied');
-      void recordAiDialogConsentToCloud();
-    })();
-  }, []);
+    applyConsentToggle('ai_dialog', val, setAiDialogOn, setAiDialogConsent, recordAiDialogConsentToCloud);
+  }, [applyConsentToggle]);
 
   const analyticsLabel = L({ ru: 'Отправлять данные об использовании', uk: 'Надсилати дані про використання', es: 'Enviar datos de uso', 'pt-BR': 'Enviar dados de uso', vi: 'Gửi dữ liệu sử dụng', id: 'Kirim data penggunaan', tr: 'Kullanım verisi gönder', pl: 'Wysyłać dane o użytkowaniu' });
   const aiExplainLabel = L({ ru: 'AI-разбор ошибок в уроках', uk: 'ІІ-розбір помилок в уроках', es: 'Análisis de errores con IA', 'pt-BR': 'Análise de erros com IA', vi: 'Phân tích lỗi bằng AI', id: 'Analisis kesalahan AI', tr: 'Yapay zeka hata analizi', pl: 'Analiza błędów AI' });

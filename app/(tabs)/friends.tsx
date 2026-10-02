@@ -1706,7 +1706,16 @@ export default function FriendsTabScreen() {
     }
   }, [L, codeInput, foundUser, isAdding, showFeedback]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // зачем (FINAL_PHASE п.7): двойной тап по «Принять/Отклонить» до перерисовки строки
+  // отправлял два вызова на сервер — держим набор заявок «в пути».
+  const requestOpsInFlightRef = useRef<Set<string>>(new Set());
+
   const handleAcceptRequest = useCallback((request: FriendRequestEntry) => {
+    if (requestOpsInFlightRef.current.has(request.fromUid)) {
+      console.warn(`[FRIEND-REQUEST] accept ${request.fromUid}: уже в пути — повторный тап пропущен`);
+      return;
+    }
+    requestOpsInFlightRef.current.add(request.fromUid);
     hapticTap();
     const hadFriend = friends.some(friend => friend.uid === request.fromUid);
     const optimisticFriend: FriendEntry = {
@@ -1722,27 +1731,32 @@ export default function FriendsTabScreen() {
       soundDirector.request('pm.social.friend_added', { scope: 'friends' });
     }
     acceptFriendRequest(request.fromUid)
-      .then(() => {
-      })
-      .catch(() => {
+      .catch((error: unknown) => {
+        console.warn(`[FRIEND-REQUEST] accept ${request.fromUid}: не удалось — откат`, error);
         setRequests(prev => prev.some(item => item.fromUid === request.fromUid) ? prev : [request, ...prev]);
         if (!hadFriend) {
           setFriends(prev => prev.filter(friend => friend.uid !== request.fromUid));
         }
         showFeedback(L('Не получилось принять. Попробуй ещё раз', 'Не вдалося прийняти. Спробуй ще раз', 'Could not accept. Try again', 'No se pudo aceptar', 'Não deu para aceitar', 'Chưa chấp nhận được', 'Belum bisa diterima', 'Kabul edilemedi', 'Nie udało się zaakceptować'));
-      });
+      })
+      .finally(() => { requestOpsInFlightRef.current.delete(request.fromUid); });
   }, [L, friends, showFeedback]);
 
   const handleDeclineRequest = useCallback((request: FriendRequestEntry) => {
+    if (requestOpsInFlightRef.current.has(request.fromUid)) {
+      console.warn(`[FRIEND-REQUEST] decline ${request.fromUid}: уже в пути — повторный тап пропущен`);
+      return;
+    }
+    requestOpsInFlightRef.current.add(request.fromUid);
     hapticTap();
     setRequests(prev => prev.filter(item => item.fromUid !== request.fromUid));
     declineFriendRequest(request.fromUid)
-      .then(() => {
-      })
-      .catch(() => {
+      .catch((error: unknown) => {
+        console.warn(`[FRIEND-REQUEST] decline ${request.fromUid}: не удалось — откат`, error);
         setRequests(prev => prev.some(item => item.fromUid === request.fromUid) ? prev : [request, ...prev]);
         showFeedback(L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Something went wrong. Try again', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
-      });
+      })
+      .finally(() => { requestOpsInFlightRef.current.delete(request.fromUid); });
   }, [L, showFeedback]);
 
   // Список блокировок — из кэша сразу, с сервера не чаще раза в 6 ч (TTL внутри стора).

@@ -29,9 +29,9 @@ const ORIGINAL_LOCALE_SIGNATURES = [
   '696488438b01421e3446cefa632028eb4c3f2e275b72b76b93e4ae256a5fbb21',
 ];
 const ORIGINAL_HANDLER_SIGNATURES = {
-  toggleAnalytics: '18eb12e56acf43b0705e1ebc753f75cb4c6d53d4dc852c56ae750500b3ba3d01',
-  toggleAiExplain: '705aeb4dbd5213fdacd96c1f22838f873aa19c3307781b8c89bcfac47691ee41',
-  toggleAiDialog: '8bd1a00e0e6fa1975f41971ffdd0937cb758f87a4c97450b636b013505a90bb0',
+  toggleAnalytics: '70f22d2ab4eb3a0f4a8d0eda17061d20d20d96cc409e61a45ecf18c9840a1617',
+  toggleAiExplain: '24193d509fab9df246c546da117ec67a9a27147183d5d2408eb496c4d2a892d5',
+  toggleAiDialog: 'a47644583719aeabf4988e9acf1cae8b49ca319203198a490107218415ea750c',
 };
 
 const sha = value => crypto.createHash('sha256').update(value).digest('hex');
@@ -73,6 +73,9 @@ function handlerSignatures(candidate) {
 function createHarness(initial = { analytics: 'denied', explain: 'denied', dialog: 'denied' }, lang = 'ru', candidate = source) {
   const state = [];
   let cursor = 0;
+  let refCursor = 0;
+  const refs = [];
+  const failLocal = new Set();
   const order = [];
   const calls = { back: [], push: [] };
   const React = {
@@ -81,6 +84,11 @@ function createHarness(initial = { analytics: 'denied', explain: 'denied', dialo
       return typeof type === 'function' ? type(next) : { type, props: next };
     },
     useCallback: callback => callback,
+    useRef(initialValue) {
+      const index = refCursor++;
+      refs[index] ??= { current: initialValue };
+      return refs[index];
+    },
     useState(initialValue) {
       const index = cursor++;
       state[index] ??= typeof initialValue === 'function' ? initialValue() : initialValue;
@@ -91,7 +99,10 @@ function createHarness(initial = { analytics: 'denied', explain: 'denied', dialo
       }];
     },
   };
-  const localSetter = name => value => { order.push(`local:${name}:${value}`); return Promise.resolve(); };
+  const localSetter = name => value => {
+    order.push(`local:${name}:${value}`);
+    return failLocal.has(name) ? Promise.reject(new Error(`local ${name} failed`)) : Promise.resolve();
+  };
   const cloud = name => () => { order.push(`cloud:${name}`); return Promise.resolve(); };
   const router = { push: route => calls.push.push(route) };
   const modules = {
@@ -144,8 +155,8 @@ function createHarness(initial = { analytics: 'denied', explain: 'denied', dialo
     assert.ok(modules[name], `stub exists for ${name}`);
     return modules[name];
   } }, { filename: 'privacy_settings.tsx' });
-  const render = () => { cursor = 0; return module.exports.default(); };
-  return { calls, order, render };
+  const render = () => { cursor = 0; refCursor = 0; return module.exports.default(); };
+  return { calls, order, render, failLocal };
 }
 
 const visit = node => Array.isArray(node)
@@ -211,6 +222,23 @@ test('actual switches preserve independent state, local-before-cloud order, and 
     tree = harness.render();
     nodes = visit(tree);
     switches = nodes.filter(node => node.type === 'PressableHybrid' && node.props.accessibilityRole === 'switch');
+  }
+});
+
+// зачем (FINAL_PHASE п.7, Optimistic UI): сбой локальной записи возвращает тумблер, облако не трогаем.
+test('a failed local consent write rolls the switch back and skips the cloud record', async () => {
+  const harness = createHarness({ analytics: 'granted', explain: 'denied', dialog: 'granted' });
+  harness.failLocal.add('analytics');
+  const warn = console.warn;
+  console.warn = () => {};
+  try {
+    const switches = visit(harness.render()).filter(node => node.type === 'PressableHybrid' && node.props.accessibilityRole === 'switch');
+    harness.order.length = 0;
+    switches[0].props.onPress();
+    await new Promise(resolve => setImmediate(resolve));
+    assert.deepEqual(harness.order, ['haptic', 'state:0:false', 'local:analytics:denied', 'state:0:true']);
+  } finally {
+    console.warn = warn;
   }
 });
 

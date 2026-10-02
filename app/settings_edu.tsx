@@ -1,5 +1,4 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import * as Haptics from 'expo-haptics';
 import Slider from '@react-native-community/slider';
 import { useRouter, useFocusEffect } from 'expo-router';
 import React, { useCallback, useState } from 'react';
@@ -347,7 +346,7 @@ export default function SettingsEdu() {
             withHaptic={false}
             withSound={false}
             onPress={() => {
-            void Haptics.selectionAsync();
+            // зачем: вибрация только на управляющих кнопках, не на строках/плитках (правило владельца, FINAL_PHASE п.7).
             router.push('/flashcards_voice_picker' as any);
             }}
             variant="card"

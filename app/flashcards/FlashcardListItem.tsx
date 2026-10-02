@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '../../components/ThemeContext';
 import { FlowText } from '../../components/text-integrity/FlowText';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
-import { hapticLightImpact, hapticMediumImpact } from '../../hooks/use-haptics';
+import { hapticMediumImpact } from '../../hooks/use-haptics';
 import { DEV_CONTENT_UNLOCK } from '../config';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -458,7 +458,7 @@ function FlashcardListItemImpl({
 
   const toggleDetails = useCallback(() => {
     if (!hasDetails) return;
-    void hapticLightImpact();
+    // зачем: вибрация только на управляющих кнопках, не на строках/плитках (правило владельца, FINAL_PHASE п.7).
     if (!detailsExpanded) {
       if (detailsNatH > 0) {
         runOpenDetailsAnimation();
@@ -587,7 +587,7 @@ function FlashcardListItemImpl({
       console.warn(`[VIDEO-SEEK] тап по моменту ${item.id}: обработчика нет`);
       return;
     }
-    void hapticLightImpact();
+    // зачем: вибрация только на управляющих кнопках, не на строках/плитках (правило владельца, FINAL_PHASE п.7).
     onOpenVideoMoment(item);
   }, [item, onOpenVideoMoment]);
 

@@ -15,7 +15,6 @@ import { dailyPollPercents, pickDailyPollText, type DailyPollVote } from '../../
 import { DebugLogger } from '../../app/debug-logger';
 import { animateNextLayoutTransition } from '../../app/smooth_layout';
 import { triLang } from '../../constants/i18n';
-import { hapticTap } from '../../hooks/use-haptics';
 import { useLang } from '../LangContext';
 import PressableHybrid from '../PressableHybrid';
 import { FlowText } from '../text-integrity';
@@ -92,7 +91,7 @@ export default function DailyPollCard({ active }: Props) {
       return;
     }
     busyRef.current = true;
-    hapticTap();
+    // зачем: вибрация только на управляющих кнопках, не на строках/плитках (правило владельца, FINAL_PHASE п.7).
     setError(null);
     setPendingOptionId(optionId); // optimistic: выбор виден сразу
     const outcome = await submitDailyPollVote(snapshot, optionId);

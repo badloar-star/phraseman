@@ -2003,7 +2003,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "L0",
     "model": "gpt-6-luna",
     "reasoning": "low",
@@ -2012,14 +2012,18 @@
       {
         "id": "PM-039-A1",
         "text": "Оставшиеся значения имеют понятный смысл и доступные названия",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "пачка 15: на HEAD Главная V2 (home.tsx:2058-2199) — чипы серии и монет с accessibilityLabel «Серия: N дней», «Монеты: N»; неизвестный баланс = «—», не выдуман; подписи «Уровень»/«дней» убраны в 78f58650e; кадр PM-039_home_stats_header.png"
+        ]
       },
       {
         "id": "PM-039-A2",
         "text": "неизвестные показатели не заменены выдуманными",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "пачка 15: на HEAD Главная V2 (home.tsx:2058-2199) — чипы серии и монет с accessibilityLabel «Серия: N дней», «Монеты: N»; неизвестный баланс = «—», не выдуман; подписи «Уровень»/«дней» убраны в 78f58650e; кадр PM-039_home_stats_header.png"
+        ]
       }
     ],
     "depends_on": [],
@@ -2031,17 +2035,23 @@
     "audit_sha": null,
     "result_sha": "78f58650e",
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": "self-check оркестратора (не независимое ревью)",
+    "reviewer": "agent-reviewer (Sonnet), пачка 15",
     "evidence": [
-      "commit 78f58650e"
+      "commit 78f58650e",
+      "пачка 15: на HEAD Главная V2 (home.tsx:2058-2199) — чипы серии и монет с accessibilityLabel «Серия: N дней», «Монеты: N»; неизвестный баланс = «—», не выдуман; подписи «Уровень»/«дней» убраны в 78f58650e; кадр PM-039_home_stats_header.png"
     ],
     "notes": [
-      "typecheck: 0 ошибок в затронутых файлах"
+      "typecheck: 0 ошибок в затронутых файлах",
+      "пачка 15: PASS; DESIGN подписан координатором (пачка 2). Тест daily_journey_home_stats_contract удалён вместе с «Дневным путём» (D49) — проверка по коду HEAD и кадру"
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "Подписано координатором за владельца 2026-10-02 06:20Z: evidence/DESIGN_GATE_OWNER_REVIEW.md, раздел «Подпись координатора за владельца — пачка 2»; кадры design_gate/PM-039_home_stats_header.png"
+    },
     "actual_model": "sonnet-5",
     "actual_reasoning": "high"
   },
@@ -4861,13 +4871,14 @@
     "audit_sha": null,
     "result_sha": "ac9c8e31d",
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": "self-check оркестратора (не независимое ревью)",
+    "reviewer": "agent-reviewer (Sonnet), пачка 15",
     "evidence": [
       "commit ac9c8e31d"
     ],
     "notes": [
       "typecheck: 0 ошибок в затронутых файлах",
-      "app/learning-v2/lesson/[id].tsx: ценники убраны локально, НЕ закоммичено (чужие правки в файле)"
+      "app/learning-v2/lesson/[id].tsx: ценники убраны локально, НЕ закоммичено (чужие правки в файле)",
+      "пачка 15: остаток — A1 NOT_MET (Free/Plus, все режимы и локали на устройстве не проверены; кадр только Блиц), gate MIGRATION_AND_ROLLBACK не закрыт, DESIGN в gates не заявлен; pm086_energy_price_text.probe PASS (modes=16, locales=9)"
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -7443,12 +7454,13 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet), пачка 15",
     "evidence": [
       "commit f61e9f468"
     ],
     "notes": [
-      "4 экрана практики проверены, мусора почти нет (PM-086 уже вычистил). Убраны 2 мёртвых импорта в mistake_practice_session.tsx"
+      "4 экрана практики проверены, мусора почти нет (PM-086 уже вычистил). Убраны 2 мёртвых импорта в mistake_practice_session.tsx",
+      "пачка 15: остаток — A2 не принят: коммит f61e9f468 убрал лишь 2 мёртвых импорта, ни одного control; список «control → назначение» отсутствует; mistake_practice_screen_contract красный 7/8 (ожидает params.returnTo==='max_voice_review', MAX запломбирован, тест устарел)"
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -10842,7 +10854,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -10872,19 +10884,23 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "267d8a6ac",
     "owner": null,
-    "reviewer": "agent-reviewer (Sonnet 5.5) по поручению координатора, §32/§44 (пачка 6, 01.10)",
-    "evidence": [],
+    "reviewer": "agent-reviewer (Sonnet), пачка 15",
+    "evidence": [
+      "пачка 15: settings_root_liquid_glass_source_contract 10/10 (node --test); 267d8a6ac существует"
+    ],
     "notes": [
-      "2026-10-01 пачка 6: PASS по сути (settings_root_liquid_glass_source_contract 10/10, settings_notifications_liquid_glass 10/10). Остаётся review: видимый экран Настроек, перенос «1 в 1» по макету profile.html#PRF-01 — макета нет в docs/design/v2-app и одобрение владельца не найдено; нужна ссылка на макет/решение либо скриншоты (ждёт DESIGN)."
+      "2026-10-01 пачка 6: PASS по сути (settings_root_liquid_glass_source_contract 10/10, settings_notifications_liquid_glass 10/10). Остаётся review: видимый экран Настроек, перенос «1 в 1» по макету profile.html#PRF-01 — макета нет в docs/design/v2-app и одобрение владельца не найдено; нужна ссылка на макет/решение либо скриншоты (ждёт DESIGN).",
+      "пачка 15: DESIGN подписан координатором (пачка 2, кадры PM-197_settings_ru_1-5); A1/A2 приняты"
     ],
     "actual_cost": null,
     "kind": "code",
-    "review_verdict": "PASS по сути",
+    "review_verdict": "PASS",
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "Подписано координатором за владельца 2026-10-02 06:20Z: evidence/DESIGN_GATE_OWNER_REVIEW.md, раздел «Подпись координатора за владельца — пачка 2»; кадры design_gate/PM-197_settings_ru_1-5.png"
     },
     "actual_model": "unknown, снимок нескольких сессий",
     "actual_reasoning": "unrecorded"

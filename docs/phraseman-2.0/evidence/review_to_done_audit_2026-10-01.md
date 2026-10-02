@@ -444,3 +444,14 @@ PM-288: requirement_ids D131 → R259 (добавлен в requirements.json; PM
 | PM-130 | остаток | A1/A2 не приняты: редизайн «Устно», микрофон/тишина/аудиофокус не подтверждены | review |
 
 Оговорки: validate.py по задачам пачки ошибок не даёт. Тесты шли под светофором. actual_model «unknown» (§34).
+
+## Пачка 15 (agent-reviewer, Sonnet, 02.10)
+
+Итог: в done 2 задачи — PM-039 и PM-197. PM-086 и PM-134 остаются review. PM-044, PM-097, PM-145 не трогались (сомнение у владельца). Gate DESIGN подписан координатором за владельца (DESIGN_GATE_OWNER_REVIEW.md, пачка 2); BASELINE/DOMAIN — GATES_COMMON.
+
+| Задача | Вердикт | Основание | Статус |
+|---|---|---|---|
+| PM-197 | PASS | A1/A2 приняты; settings_root_liquid_glass_source_contract 10/10 (node --test); 267d8a6ac существует; кадры PM-197_settings_ru_1-5 | done |
+| PM-039 | PASS | A1/A2 приняты по коду HEAD: чипы серии/монет с accessibilityLabel, неизвестный баланс «—»; 78f58650e существует; тест daily_journey_home_stats_contract удалён вместе с «Дневным путём» (D49) | done |
+| PM-086 | остаток | A1 NOT_MET: Free/Plus, все режимы и локали на устройстве не проверены; MIGRATION не закрыт; pm086_energy_price_text.probe PASS | review |
+| PM-134 | остаток | A2 не принят: коммит убрал лишь 2 мёртвых импорта, ни одного control, списка «control → назначение» нет; mistake_practice_screen_contract красный 7/8 (устарел: ждёт max_voice_review, MAX запломбирован) | review |

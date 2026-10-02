@@ -10604,7 +10604,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10613,8 +10613,10 @@
       {
         "id": "PM-193-A1",
         "text": "Для каждой ошибки известны язык, контекст попытки и ожидаемый ответ",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "44972787b: все источники ошибок пишут через app/mistake_practice_capture.ts (captureObjectiveAttempt): язык studyTarget (:91,:114), контекст sourceKind/sourceId/lessonId/sourcePrompt/sourceMeaning (:115-134), ожидаемый ответ canonicalTarget+facet.expected (:127); 13 мест записи проверены; tests/mistake_journal_record_and_totals_contract 24/24 + mistake_study_target_languages_contract 6/6"
+        ]
       },
       {
         "id": "PM-193-A2",
@@ -10632,11 +10634,15 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "44972787b",
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "44972787b: все источники ошибок пишут через app/mistake_practice_capture.ts (captureObjectiveAttempt): язык studyTarget (:91,:114), контекст sourceKind/sourceId/lessonId/sourcePrompt/sourceMeaning (:115-134), ожидаемый ответ canonicalTarget+facet.expected (:127); 13 мест записи проверены; tests/mistake_journal_record_and_totals_contract 24/24 + mistake_study_target_languages_contract 6/6"
+    ],
+    "notes": [
+      "2026-10-02 Ядро: A1 MET по аудиту исполнителя (Sonnet); ответ ученика (given) пишет только Шпиль — критерий его не требует"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -10710,7 +10716,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10719,8 +10725,10 @@
       {
         "id": "PM-195-A1",
         "text": "Общая статистика сохраняется",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "44972787b: итоги строятся по всему журналу языка (mistake_practice_insights.ts buildMistakePracticeHubSnapshot), фильтры ready/all/corrected (mistakes_list.tsx:82-84) только выбирают показ, снимок без фильтра (:67), счётчики вкладок по полному списку (:127); тест «итоги не зависят от фильтра» в mistake_journal_record_and_totals_contract 24/24"
+        ]
       },
       {
         "id": "PM-195-A2",
@@ -10738,11 +10746,15 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "44972787b",
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "44972787b: итоги строятся по всему журналу языка (mistake_practice_insights.ts buildMistakePracticeHubSnapshot), фильтры ready/all/corrected (mistakes_list.tsx:82-84) только выбирают показ, снимок без фильтра (:67), счётчики вкладок по полному списку (:127); тест «итоги не зависят от фильтра» в mistake_journal_record_and_totals_contract 24/24"
+    ],
+    "notes": [
+      "2026-10-02 Ядро: A1 MET по аудиту исполнителя (Sonnet)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

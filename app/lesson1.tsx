@@ -135,8 +135,8 @@ import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './les
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
-import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
-import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
+import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight'; // зачем (PM-052, D75): полёт монет вместо рун
+import CoinRewardFlight from '../components/rewards/CoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
@@ -2006,7 +2006,7 @@ function LessonScreen() {
   // зачем (владелец, 2026-08-28): на самом Уроке полёта руны не было вообще —
   // подключён только на остальных шести экранах. Тот же паттерн measureInWindow,
   // что в lesson_words.tsx/lesson_irregular_verbs.tsx.
-  const runeFlight = usePracticeRuneFlight();
+  const runeFlight = useCoinRewardFlight();
   const [insufficientEnergy, setInsufficientEnergy] = useState(false);
   const [showEnergyModal, setShowEnergyModal] = useState(false);
   const [shouldShake, setShouldShake] = useState(false); // Trigger shake animation when energy is empty
@@ -3900,7 +3900,7 @@ function LessonScreen() {
         )}
         {/* ────────────────────────────── */}
         {runeFlight.flight && (
-          <LearningV2RuneFlight
+          <CoinRewardFlight
             key={runeFlight.flight.key}
             from={runeFlight.flight.from}
             to={runeFlight.flight.to}

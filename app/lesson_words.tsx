@@ -69,9 +69,9 @@ import { loadFrenchRemoteLessonWordBank } from './french_lesson_words_remote_run
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import AnimatedCountUpText from '../components/AnimatedCountUpText';
-import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
+import CoinRewardFlight from '../components/rewards/CoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
-import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
+import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight'; // зачем (PM-052, D75): полёт монет вместо рун
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
@@ -2798,8 +2798,8 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
   });
   // зачем (владелец, 2026-08-27): «анимация полёта точно такая же, как в
   // Learning V2» — тот же хук-обёртка вокруг механики measureInWindow +
-  // LearningV2RuneFlight, что и на уроке.
-  const runeFlight = usePracticeRuneFlight();
+  // CoinRewardFlight, что и на уроке.
+  const runeFlight = useCoinRewardFlight();
   const [userName,   setUserName]   = useState(userNameProp);
   const [hapticsOn,  setHapticsOn]  = useState(true);
   const [voiceOut,   setVoiceOut]   = useState(true);
@@ -3301,7 +3301,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
         />
       )}
       {runeFlight.flight && (
-        <LearningV2RuneFlight
+        <CoinRewardFlight
           key={runeFlight.flight.key}
           from={runeFlight.flight.from}
           to={runeFlight.flight.to}

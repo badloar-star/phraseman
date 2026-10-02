@@ -73,12 +73,8 @@ import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountG
 import { animateNextLayoutTransition } from '../smooth_layout';
 import { getAppSnapshot, patchAppSnapshot, resolveHydratedProfileName, subscribeAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../personal_progress_store';
-import { HOME_RUNE_ICON_SOURCE } from '../../components/home/HomeRuneBalance';
-// зачем (владелец, 2026-09-01): заработанные в любом месте руны и жемчужины при
-// возврате на Главную слетаются со всех сторон в свои счётчики. Материал копит
-// app/reward_flight_queue.ts, оркестрацию держит хук — home.tsx и так огромен.
-import HomeRewardCollectFlight from '../../components/home/HomeRewardCollectFlight';
-import { useHomeRewardCollect } from '../../components/home/use_home_reward_collect';
+// зачем (PM-052, D75, 02.10): сбор наград на Главной (очередь + частицы в счётчик) удалён —
+// монеты летят там, где заработаны (CoinRewardFlight), без копилки «на потом».
 import HomeV2Header from '../../components/home/v2/HomeV2Header';
 import HomeV2ContinueCard from '../../components/home/v2/HomeV2ContinueCard';
 import HomeV2FeatureTiles from '../../components/home/v2/HomeV2FeatureTiles';
@@ -1088,29 +1084,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => {
         if (homeRuntimeActive) reconcileHomeRunes();
     }, [focusTick, homeRuntimeActive, reconcileHomeRunes]);
-    // Сбор наград: частицы со всех сторон экрана в счётчики валют.
-    //
-    // Гейт homeRuntimeActive — тот же, что у остальных эффектов Главной: на
-    // премаунте таба анимация не запускается и первый кадр не делит поток.
-    const homeRewardCollectReduceMotion = useReduceMotion();
-    const rewardCollect = useHomeRewardCollect(
-        homeRuntimeActive,
-        homeRewardCollectReduceMotion,
-        // Балансы — точка отсчёта для докрутки числа: к моменту волны они уже
-        // новые, поэтому счётчик крутится от «минус прилетевшее» к текущему.
-        { runes: runesBalance },
-    );
-    // Иконки валют объявлены на ВЕРХНЕМ уровне компонента, а не внутри
-    // renderNewHome.
-    //
-    // зачем: их читает не только шапка, но и оверлей полёта частиц, который
-    // рендерится в главном return — за пределами renderNewHome. Когда они жили
-    // внутри той функции, экран падал «Property 'homeHeaderRuneIconSource'
-    // doesn't exist» на первом же кадре.
-    // Ассет руны для летящих частиц — ТОТ ЖЕ файл, что рисует HomeRuneBalance
-    // в шапке. Одна валюта обязана выглядеть одинаково: частица другой
-    // картинкой читалась бы как другая награда.
-    const homeHeaderRuneIconSource = HOME_RUNE_ICON_SOURCE;
     const homeCoinRankSource = isValidCoinRank(myCoinRank) ? coinRankRowForDisplay(myCoinRank).source : null;
 
     useEffect(() => {
@@ -2221,9 +2194,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     ) : (
                       <View style={{ width: 20, height: 20, borderRadius: 10, backgroundColor: t.bgSurface2 }} />
                     ),
-                    value: runesKnown ? String(rewardCollect.displayRunes(runesBalance)) : '—',
+                    value: runesKnown ? String(runesBalance) : '—',
                     label: homeV2CoinsLabel,
-                    accessibilityLabel: `${homeV2CoinsLabel}: ${runesKnown ? rewardCollect.displayRunes(runesBalance) : '—'}`,
+                    accessibilityLabel: `${homeV2CoinsLabel}: ${runesKnown ? runesBalance : '—'}`,
                     onPress: () => { nav.push('/coin_rank'); },
                   },
                 ]}
@@ -2348,23 +2321,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
       </View>
 
 
-      {/* Сбор наград: частицы валюты слетаются со всех сторон в свой счётчик.
-          Монтируется ТОЛЬКО на время волны — в покое на экране нет ни одного
-          лишнего узла и ни одной живой анимации (Performance Bible). */}
-      {rewardCollect.state.wave !== null && rewardCollect.state.target !== null ? (
-        <HomeRewardCollectFlight
-          // key по волне — ОБЯЗАТЕЛЕН: без него повторная волна переиспользует
-          // смонтированный оверлей, чьи эффекты полёта уже отработали.
-          // зачем (PM-289, D70): волна жемчуга удалена — летят только монеты (руны).
-          key={rewardCollect.state.waveId}
-          amount={rewardCollect.state.amount}
-          target={rewardCollect.state.target}
-          source={homeHeaderRuneIconSource}
-          playStartSound
-          impact={rewardCollect.runesImpact}
-          onDone={rewardCollect.onWaveDone}
-        />
-      ) : null}
 
       {/* зачем (PM-046, владелец): плашка «+1 СПИН» после повышения уровня
           удалена вместе с homeLevelUpSpinReceipt и её setTimeout — спин

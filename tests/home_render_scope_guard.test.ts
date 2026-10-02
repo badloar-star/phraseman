@@ -64,14 +64,10 @@ describe('Главная: области видимости renderNewHome', () =
     expect(leaked).toEqual([]);
   });
 
-  it('иконки валют для полёта частиц живут на верхнем уровне компонента', () => {
-    const { body } = readRenderNewHomeBody(source);
-
-    // Эту переменную читает оверлей HomeRewardCollectFlight, который
-    // рендерится вне renderNewHome. Её возврат внутрь функции — повторение
-    // инцидента 2026-09-01. Иконка жемчуга удалена вместе с валютой (PM-289, D70).
-    expect(body).not.toMatch(/^ {8}const homeHeaderRuneIconSource/m);
-    expect(source).toMatch(/^ {4}const homeHeaderRuneIconSource/m);
-    expect(source).not.toMatch(/homeHeaderShardIconSource/);
+  // зачем (PM-052, D75, 02.10): оверлей сбора наград удалён — монеты летят там, где заработаны.
+  // Сторож держит удаление: ни оверлея, ни очереди «на потом», ни иконки частиц на Главной.
+  it('на Главной нет сбора наград «на потом»', () => {
+    expect(source).not.toMatch(/HomeRewardCollectFlight|useHomeRewardCollect|reward_flight_queue/);
+    expect(source).not.toMatch(/homeHeaderRuneIconSource|homeHeaderShardIconSource/);
   });
 });

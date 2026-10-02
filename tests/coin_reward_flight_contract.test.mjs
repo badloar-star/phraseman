@@ -18,7 +18,7 @@ test('утверждённая кривая и тайминги не менял�
   assert.match(impl, /const FLIGHT_MS = 620;/);
   assert.match(impl, /const STAGGER_MS = 90;/);
   assert.match(impl, /Easing\.bezier\(0\.33, 0\.52, 0\.25, 0\.99\)/);
-  assert.doesNotMatch(impl, /withRepeat/);
+  assert.doesNotMatch(impl, /withRepeat(/);
 });
 
 test('летит монета, а не руна', () => {

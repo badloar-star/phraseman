@@ -394,6 +394,8 @@ const FIRST_CONTENT_READY_FALLBACK_MS = 400;
  * зачем (владелец, 2026-09-21): см. развёрнутый комментарий у самого fallback
  * ниже — это был единственный флаг гейта вообще без потолка. */
 const HOME_SCREEN_READY_FALLBACK_MS = 550;
+/** Потолок ожидания кадра Главной перед bootstrap phone-state (см. homePaintedForPhoneState). */
+const PHONE_STATE_BOOTSTRAP_FALLBACK_MS = 8_000;
 /** Жёсткий потолок: дольше этого стартовая цепочка не имеет права держать сплеш.
  * зачем (владелец, 2026-09-14): здоровый старт по замеру — ~2.1 с от загрузки
  * модуля до скрытия сплеша. Работа не отменяется — снимается только право
@@ -812,6 +814,13 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const [onboardingPaywallActive, setOnboardingPaywallActive] = useState(false);
   const [firstContentReady, setFirstContentReady] = useState(false);
   const [homeScreenReady, setHomeScreenReady] = useState(false);
+  // зачем (§80, трасса «Дизайна» 02.10): bootstrap phone-state (SQLCipher ~8 с на эмуляторе) стартовал
+  // по firstContentReady, а тот срабатывает запасным таймером 400 мс — ДО того, как доедет и
+  // вычислится чанк Главной. База и Главная делили JS-поток, и первый кадр Главной ждал конца
+  // bootstrap (HOME-PAINT через 1,6 с ПОСЛЕ bootstrap:ok). Теперь база открывается после
+  // НАСТОЯЩЕГО кадра Главной (событие, а не запасной таймер homeScreenReady 550 мс); если Главная
+  // не появится (онбординг, другой экран) — свой потолок PHONE_STATE_BOOTSTRAP_FALLBACK_MS.
+  const [homePaintedForPhoneState, setHomePaintedForPhoneState] = useState(false);
   const [introFullAccessModal, setIntroFullAccessModal] = useState<'welcome' | 'ended' | null>(null);
   const [pendingRoute, setPendingRoute] = useState<string | null>(null);
   const [pendingWarmDeepLink, setPendingWarmDeepLink] = useState<string | null>(null);
@@ -1131,11 +1140,29 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   }, []);
 
   useEffect(() => {
+    if (homePaintedForPhoneState) return;
+    const sub = onAppEvent('app_home_screen_ready', () => {
+      coldStartMark('phone_state.gate:home_painted', '_layout');
+      setHomePaintedForPhoneState(true);
+    });
+    return () => sub.remove();
+  }, [homePaintedForPhoneState]);
+
+  useEffect(() => {
+    if (homePaintedForPhoneState || !ready || !firstContentReady) return;
+    const timer = setTimeout(() => {
+      coldStartMark('phone_state.gate:fallback', '_layout', { afterMs: PHONE_STATE_BOOTSTRAP_FALLBACK_MS });
+      setHomePaintedForPhoneState(true);
+    }, PHONE_STATE_BOOTSTRAP_FALLBACK_MS);
+    return () => clearTimeout(timer);
+  }, [firstContentReady, homePaintedForPhoneState, ready]);
+
+  useEffect(() => {
     // зачем: именно этот эффект поднимает мост phone-state, а без моста квота
     // карточек читается как 'unavailable' и кнопки тренировки молча мертвы.
     // Оба ранних выхода и падение bootstrap были НЕМЫМИ — причину не увидеть.
-    if (!ready || !firstContentReady) {
-      console.log(`[FC-TRAIN-ENTRY] bootstrap:skip — ready=${ready}, firstContentReady=${firstContentReady}`);
+    if (!ready || !firstContentReady || !homePaintedForPhoneState) {
+      console.log(`[FC-TRAIN-ENTRY] bootstrap:skip — ready=${ready}, firstContentReady=${firstContentReady}, homePainted=${homePaintedForPhoneState}`);
       return;
     }
     if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) {
@@ -1180,7 +1207,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       cancelled = true;
       uninstallSync?.();
     };
-  }, [accountGeneration, firstContentReady, ready]);
+  }, [accountGeneration, firstContentReady, homePaintedForPhoneState, ready]);
 
   useEffect(() => {
     if (!ready || !firstContentReady || !appIsActive || effectiveShowOnboarding || isBanned) return;

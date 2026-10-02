@@ -19,6 +19,8 @@ let mockPendingRecord: Record<string, any> | null = null;
 
 jest.mock('react-native', () => ({
   ScrollView: 'ScrollView', Text: 'Text', TouchableOpacity: 'TouchableOpacity', View: 'View',
+  // зачем: 17fbb3d32 — шапка тренировок по practice.html (PracticeChrome) собрана на Pressable.
+  Pressable: 'Pressable',
   Platform: { OS: 'android', select: (values: Record<string, unknown>) => values.android ?? values.default },
   StyleSheet: {
     create: (styles: unknown) => styles,
@@ -31,12 +33,21 @@ jest.mock('expo-router', () => ({
 }));
 jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
 jest.mock('react-native-safe-area-context', () => ({ SafeAreaView: 'SafeAreaView' }));
+// зачем: экран «Устно» берёт отступы через useStableSafeAreaInsets (правило стабильной раскладки, Performance Bible).
+jest.mock('../app/stable_safe_area_metrics', () => ({
+  useStableSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }),
+}));
 jest.mock('@react-native-async-storage/async-storage', () => ({ getItem: jest.fn(async () => null), setItem: jest.fn(async () => undefined) }));
 jest.mock('expo-keep-awake', () => ({ useKeepAwake: jest.fn() }));
 jest.mock('../components/ThemeContext', () => ({
+  // зачем: D139 (шкала текста 16/13) и стекло 2.0 — экран берёт FONT_SCALE, fontSize, uiScale и тему стекла.
+  FONT_SCALE: { small: 1, medium: 1, large: 1.15 },
   useTheme: () => ({
     theme: { bgCard: '#111', bgSurface: '#222', textPrimary: '#fff', textMuted: '#aaa', textGhost: '#777', border: '#333', accent: '#0f0', correct: '#0f0', danger: '#f00' },
     f: { caption: 12, body: 16, bodyLg: 18, h1: 24, h2: 22 },
+    fontSize: 'medium',
+    uiScale: 1,
+    liquidGlassThemeId: 'graphite',
   }),
 }));
 jest.mock('../components/PremiumContext', () => ({ usePremium: () => ({ accessResolved: true }) }));
@@ -47,9 +58,9 @@ jest.mock('../components/EnergyContext', () => ({
 jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'en' }) }));
 jest.mock('../components/StudyTargetContext', () => ({ useStudyTarget: () => ({ studyTarget: 'en' }) }));
 jest.mock('../hooks/use-audio', () => ({ useAudio: () => ({ speak: mockSpeak, stop: mockStopSpeech }) }));
-jest.mock('../app/revenue_quota_access', () => ({
-  captureAccountGeneration: () => ({ generation: 1, stableId: 'account-a', phase: 'active' }),
-  consumeFlashcardTrainingQuota: (...args: unknown[]) => mockConsumeQuota(...args),
+// зачем: 17fbb3d32 (30.09) — «Устно» списывает месячный лимит тренировок (30 в месяц), а не старую квоту.
+jest.mock('../app/monthly_training_sessions', () => ({
+  consumeMonthlyTrainingSession: (...args: unknown[]) => mockConsumeQuota(...args),
 }));
 jest.mock('../app/flashcard_training_pending_grant', () => ({
   resolveFlashcardTrainingPendingGrantAccount: async (runtimeToken: unknown) => ({ stableUid: 'account-a', lineage: 1, runtimeToken }),
@@ -110,6 +121,8 @@ jest.mock('../app/account_generation', () => ({ captureAccountGeneration: () => 
 jest.mock('../app/flashcards/deck_sources', () => ({
   deckRefKey: () => 'saved', parseDeckParams: () => [{ kind: 'saved' }],
   loadDeckCardsMulti: jest.fn(async () => [{ id: 'one', en: 'hello', translation: 'привет' }]),
+  // зачем: D127 (2acba6874) — «Устно» отбрасывает карточки без языка озвучки; у тестовой карточки язык есть.
+  voicedDeckCards: (cards: unknown[]) => cards,
 }));
 jest.mock('../app/flashcards/mode_prefs', () => ({
   FC_DEFAULT_SESSION_SIZE: 10, isValidSessionSize: () => true, getLastPreset: jest.fn(async () => null), presetDeckIds: () => [],

@@ -1090,3 +1090,10 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 **💸 Нашлось попутно:** `readGiftAccessFromCloud` в dev-старте читал целиком документ `users/{uid}` **11 раз за минуту** (зовут `premium_guard.ts:637` loyalty и `intro_full_access.ts:63`). Предлагаю отдельной задачей: сначала лог вызывающих с префиксом, потом кэш в памяти на сессию + слияние одновременных запросов.
 
 **Окружение восстановлено:** dev-сборка 1.5.60 возвращена, эмулятор в обычном режиме (4 ядра), Metro остановлен, эмулятор и слот свободны.
+
+## §70 — 2026-10-02: РЕШЕНО КООРДИНАТОРОМ (§AV2-12, §69, §67-замер)
+- 8J (ошибка чтения страниц ≠ «страниц нет») и 8K (forceSyncToCloud не кладёт список в документ) — ДА, оба после 8I, Account V2.
+- PM-238 MIGRATION = N/A, PM-203 DESIGN = N/A — ПОДПИСАНО координатором (документ сделанного; невизуальная правка озвучки).
+- Q114: да — оба оставшихся устаревших сторожа V1 (lesson_access_rule_owner_2026_09_20, legacy_free_lesson_wiring_contract) — сессии App Check вместе с lessons_entry_opens_legacy_guard.
+- Сессии App Check дополнительно: (1) 💸 readGiftAccessFromCloud читает users/{uid} ~11 раз в минуту — СНАЧАЛА лог вызывающих [GIFT-ACCESS-READ], затем кэш в памяти на сессию + слияние одновременных запросов (одно чтение за вход); (2) когда освободятся cloud_sync.ts/auth_provider.ts — замена геттеров на rnfbInstance; (3) отдельный замер Главной (+0,7 с / +52 МБ между §66 и §67 — найти причину).
+- Владельцу (позже, в общий список): дословная команда для подсчёта карточек `node scripts/flashcards_doc_field_census.mjs --project=phraseman-ea0b3 --owner-command="…"`; пуш тега archive/arena-max-pre-removal-2026-09-30.

@@ -18,7 +18,7 @@ import {
   type AccountTransitionLockLease,
 } from './account_generation';
 import { readVipSnapshotForGeneration, writeVipSnapshotForAccount } from './premium_vip_storage';
-import { resolveTesterNoPremiumOverride } from './tester_premium_override';
+import { readTesterFlags, resolveTesterNoPremiumOverride } from './tester_premium_override';
 import { emitAppEvent } from './events';
 import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -197,7 +197,7 @@ export function __getPremiumAccountWorkIdleWaiterCountForTests(): number {
  */
 export async function forcePremiumActive(): Promise<boolean> {
   if (!FORCE_PREMIUM) return false;
-  const noPremium = await AsyncStorage.getItem('tester_no_premium').catch(noteSwallowedAs('premium_guard:promise_1', null));
+  const { noPremium } = await readTesterFlags(); // зачем: [COLD-START-IO] — одно чтение флагов на всех
   return !resolveTesterNoPremiumOverride(noPremium);
 }
 
@@ -207,10 +207,7 @@ export async function forcePremiumActive(): Promise<boolean> {
  * local tester flags entirely.
  */
 export async function isTesterNoLimitsActive(): Promise<boolean> {
-  const pairs = await AsyncStorage.multiGet(['tester_no_premium', 'tester_no_limits'])
-    .catch(noteSwallowedAs('premium_guard:promise_2', [] as [string, string | null][]));
-  const noPremiumRaw = pairs.find(([key]) => key === 'tester_no_premium')?.[1];
-  const noLimitsRaw = pairs.find(([key]) => key === 'tester_no_limits')?.[1];
+  const { noPremium: noPremiumRaw, noLimits: noLimitsRaw } = await readTesterFlags();
   return !resolveTesterNoPremiumOverride(noPremiumRaw) && noLimitsRaw === 'true' && !IS_STORE_RELEASE;
 }
 
@@ -559,7 +556,7 @@ export async function getVerifiedVipStatus(options?: PremiumLeaseReadOptions): P
   // гасить и VIP, а не только real-премиум. Иначе админ-VIP-грант (или его
   // воскрешение из облака) возвращал доступ, и кнопка «Снять премиум» «не
   // работала». Проверяем ПЕРЕД кэшем, чтобы снятие срабатывало мгновенно.
-  const noPremiumVip = await AsyncStorage.getItem('tester_no_premium').catch(noteSwallowedAs('premium_guard:promise_8', null));
+  const { noPremium: noPremiumVip } = await readTesterFlags();
   if (!accountGenerationIsCurrent(generation)) return false;
   if (resolveTesterNoPremiumOverride(noPremiumVip)) return finish(false);
 
@@ -605,7 +602,7 @@ export async function getVerifiedPremiumAccessStatus(
   // real, а доступ оставался через VIP/intro (и cloud-refresh тянул его назад),
   // поэтому кнопка «Снять премиум» не снимала. Проверяем самым первым, до кэша
   // и до любого облачного обновления.
-  const noPremiumAccess = await AsyncStorage.getItem('tester_no_premium').catch(noteSwallowedAs('premium_guard:promise_10', null));
+  const { noPremium: noPremiumAccess } = await readTesterFlags();
   if (!accountGenerationIsCurrent(generation)) return false;
   if (resolveTesterNoPremiumOverride(noPremiumAccess)) return finish(false);
 

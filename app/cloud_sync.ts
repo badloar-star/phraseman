@@ -268,6 +268,7 @@ import { CARD_DELETION_JOURNAL_KEY, readCardDeletionJournal } from './flashcards
 import type { StudyTarget as FlashcardStudyTarget } from './study_target';
 import { rnfbInstance } from './rnfb_modular';
 import { noteSwallowed } from './swallow_log';
+import { readTesterFlags } from './tester_premium_override'; // зачем: [COLD-START-IO] — одно чтение флагов тестера
 
 const FRENCH_SYNC_LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 1);
 const FRENCH_SYNC_EXAM_LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
@@ -3620,7 +3621,7 @@ async function applyRestoreFromUserDoc(
   // вернёт всё как было.
   const stripPremiumActive =
     !IS_STORE_RELEASE &&
-    (await AsyncStorage.getItem('tester_no_premium').catch((error: unknown) => { reportSwallowed('cloud_sync:applyRestoreFromUserDoc', error); return null; })) === 'true';
+    (await readTesterFlags()).noPremium === 'true'; // зачем: [COLD-START-IO] — одно чтение флагов на всех
   const STRIP_SKIP_RESTORE_KEYS = new Set<string>([
     'premium_active', 'premium_plan', 'premium_expiry',
     'premium_rc_product_id', 'premium_rc_period_type', 'premium_rc_store',

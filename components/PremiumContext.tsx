@@ -38,7 +38,7 @@ import {
   applyPremiumHydrationSignal,
   subscribePremiumHydrationSignals,
 } from '../app/premium_hydration_signals';
-import { resolveTesterNoPremiumOverride } from '../app/tester_premium_override';
+import { readTesterFlags, resolveTesterNoPremiumOverride } from '../app/tester_premium_override';
 import {
   projectDevLocalPlusOverride,
   readDevLocalPlusOverride,
@@ -299,12 +299,10 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     }
     // Тестер «Снять премиум» гасит и intro-доступ (3 дня) — иначе он
     // переживал бы снятие и hasPremiumAccess оставался true.
-    const testerEntries = await AsyncStorage.multiGet(['tester_no_premium', 'tester_no_limits'])
-      .catch(noteSwallowedAs('PremiumContext:promise_7', [] as [string, string | null][]));
+    const testerFlags = await readTesterFlags(); // зачем: [COLD-START-IO] — одно чтение флагов на всех
     if (!isReloadCurrent()) return;
-    const testerValues = Object.fromEntries(testerEntries);
-    const noPremiumTester = resolveTesterNoPremiumOverride(testerValues.tester_no_premium);
-    const noLimitsRaw = testerValues.tester_no_limits;
+    const noPremiumTester = resolveTesterNoPremiumOverride(testerFlags.noPremium);
+    const noLimitsRaw = testerFlags.noLimits;
     const testerNoLimits = !noPremiumTester && noLimitsRaw === 'true' && !IS_STORE_RELEASE;
     const introState = noPremiumTester
       ? { active: false, endsAt: null }

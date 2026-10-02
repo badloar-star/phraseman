@@ -24,7 +24,9 @@ describe('FORCE_PREMIUM tester override contract', () => {
     const fnStart = guardSrc.indexOf('export async function forcePremiumActive');
     const fnBody = guardSrc.slice(fnStart, guardSrc.indexOf('\n}', fnStart));
     expect(fnBody).toContain('FORCE_PREMIUM');
-    expect(fnBody).toContain('tester_no_premium');
+    // 02.10 ([COLD-START-IO]): флаг читается общей readTesterFlags() (одно чтение на всех), а не getItem.
+    expect(fnBody).toContain('readTesterFlags()');
+    expect(fnBody).toContain('resolveTesterNoPremiumOverride(noPremium)');
   });
 
   it('PremiumContext gates the FORCE_PREMIUM shortcut through forcePremiumActive', () => {

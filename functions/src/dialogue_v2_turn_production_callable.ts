@@ -50,6 +50,7 @@ import {
   executeDialogueV2MemoryRead,
   makeFirestoreDialogueV2MemoryRepository,
 } from './dialogue_v2_memory_writer';
+import { dialogueV2CoachingResponseFormat } from './dialogue_v2_turn_coaching';
 import {
   ALLOWED_DIALOG_MODELS,
   modelSupportsJsonObject,
@@ -433,8 +434,10 @@ export function createDialogueV2ProviderGenerator(
           max_tokens: coachingRequested ? coachingMaxTokens : PROVIDER_MAX_TOKENS,
           messages: providerMessages(request, runtime.nowMs?.() ?? Date.now()),
           temperature: 0.8,
+          // зачем (баг 02.10): ход с разбором — строгая схема с обязательным «coaching»,
+          // иначе модель на поздних ходах отвечает без него и цели диалога стоят.
           ...(modelSupportsJsonObject(configuration.model)
-            ? { response_format: { type: 'json_object' } }
+            ? { response_format: coachingRequested ? dialogueV2CoachingResponseFormat() : { type: 'json_object' } }
             : {}),
         }),
         signal: abortController.signal,

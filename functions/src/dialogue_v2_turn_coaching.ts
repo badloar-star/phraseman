@@ -78,6 +78,58 @@ export function isDialogueV2CoachingInterfaceLang(value: unknown): value is Dial
     && (DIALOGUE_V2_COACHING_INTERFACE_LANGS as readonly string[]).includes(value);
 }
 
+/**
+ * Строгая схема ответа модели для хода с разбором (response_format json_schema).
+ *
+ * зачем (баг 02.10, прод-лог: «provider omitted coaching block» на ходах 1–3 даже после
+ * инструкции 99f69f1e4): цели диалога и «к итогу» держатся на блоке разбора, а модель копировала
+ * укороченную историю. Координатор: не зависеть только от модели — схема делает «coaching»
+ * обязательным полем ответа на уровне API. Содержимое по-прежнему проверяет parseDialogueV2TurnCoaching.
+ */
+export function dialogueV2CoachingResponseFormat(): Readonly<Record<string, unknown>> {
+  const nullableString = { type: ['string', 'null'] };
+  return Object.freeze({
+    type: 'json_schema',
+    json_schema: {
+      name: 'dialogue_v2_coached_turn',
+      strict: true,
+      schema: {
+        type: 'object',
+        additionalProperties: false,
+        required: ['replies', 'coaching'],
+        properties: {
+          replies: {
+            type: 'array',
+            items: {
+              type: 'object',
+              additionalProperties: false,
+              required: ['personaId', 'text'],
+              properties: { personaId: { type: 'string' }, text: { type: 'string' } },
+            },
+          },
+          coaching: {
+            type: 'object',
+            additionalProperties: false,
+            required: [
+              'replyTranslations', 'replyExplanations', 'betterPhrasing', 'hint',
+              'mood', 'activeObjectiveId', 'dialogueEnded',
+            ],
+            properties: {
+              replyTranslations: { type: 'array', items: { type: 'string' } },
+              replyExplanations: { type: 'array', items: { type: 'string' } },
+              betterPhrasing: nullableString,
+              hint: nullableString,
+              mood: { type: 'string', enum: [...DIALOGUE_V2_COACHING_MOODS] },
+              activeObjectiveId: nullableString,
+              dialogueEnded: { type: 'boolean' },
+            },
+          },
+        },
+      },
+    },
+  });
+}
+
 /** Строки промпта, которые добавляются только в расширенном режиме. */
 export function dialogueV2CoachingPromptLines(interfaceLang: DialogueV2CoachingInterfaceLang): readonly string[] {
   const language = LANGUAGE_NAMES[interfaceLang];

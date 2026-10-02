@@ -32,3 +32,26 @@ describe('ход диалога V2: разбор обязателен на ка�
     expect(lines).toMatch(/every response you write MUST include the full "coaching" object/);
   });
 });
+
+// зачем (баг 02.10, прод-лог: модель пропускала «coaching» на ходах 1–3 и после инструкции):
+// ход с разбором запрашивает строгую схему, где «coaching» — обязательное поле ответа.
+import { dialogueV2CoachingResponseFormat } from './dialogue_v2_turn_coaching';
+
+describe('ход диалога V2: строгая схема ответа с обязательным разбором', () => {
+  it('схема требует replies и coaching со всеми семью полями', () => {
+    const format = dialogueV2CoachingResponseFormat() as {
+      type: string;
+      json_schema: { strict: boolean; schema: { required: string[]; properties: { coaching: { required: string[] } } } };
+    };
+    expect(format.type).toBe('json_schema');
+    expect(format.json_schema.strict).toBe(true);
+    expect(format.json_schema.schema.required).toEqual(['replies', 'coaching']);
+    expect(format.json_schema.schema.properties.coaching.required).toEqual([
+      'replyTranslations', 'replyExplanations', 'betterPhrasing', 'hint', 'mood', 'activeObjectiveId', 'dialogueEnded',
+    ]);
+  });
+
+  it('продовый генератор включает схему для хода с разбором', () => {
+    expect(production).toMatch(/response_format: coachingRequested \? dialogueV2CoachingResponseFormat\(\) : \{ type: 'json_object' \}/);
+  });
+});

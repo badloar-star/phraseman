@@ -415,9 +415,19 @@ export function createDialogueV2ProviderGenerator(
       Promise.race([operation, deadlineFailurePromise])
     );
     try {
+      const configuredModel = await beforeDeadline(runtime.resolveModel());
+      // зачем (Q113/§ координатора 02.10): ход с разбором держится на строгой схеме; модель без
+      // JSON-режима (4.1-nano) её не умеет, и цели диалога вставали бы. Засчитывать цель без
+      // модели — догадка, поэтому такие ходы ведёт основная модель диалогов (4o-mini, цена сопоставима).
+      const effectiveModel = coachingRequested && !modelSupportsJsonObject(configuredModel)
+        ? COACHED_TURN_FALLBACK_MODEL
+        : configuredModel;
+      if (effectiveModel !== configuredModel) {
+        console.warn('[DIALOGUE-V2-TURN] coached_model_fallback', JSON.stringify({ configured: configuredModel, used: effectiveModel }));
+      }
       const configuration = safeProviderConfiguration(
         runtime.resolveApiKey(),
-        await beforeDeadline(runtime.resolveModel()),
+        effectiveModel,
       );
       if (!configuration || abortController.signal.aborted) {
         throw new Error('provider_configuration_failure');
@@ -480,6 +490,7 @@ function releaseRepository(
   });
 }
 
+const COACHED_TURN_FALLBACK_MODEL = 'gpt-4o-mini';
 const FREE_EMPTY_STRUCTURED_MEMORY = Object.freeze({ sharedSummary: null, scenarioCheckpoint: null });
 
 function productionDependencies(

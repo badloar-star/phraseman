@@ -55,3 +55,20 @@ describe('ход диалога V2: строгая схема ответа с о
     expect(production).toMatch(/response_format: coachingRequested \? dialogueV2CoachingResponseFormat\(\) : \{ type: 'json_object' \}/);
   });
 });
+
+describe('ход диалога V2: модель без JSON-режима не ломает разбор', () => {
+  it('ход с разбором на 4.1-nano ведёт основная модель 4o-mini', () => {
+    expect(production).toMatch(/const COACHED_TURN_FALLBACK_MODEL = 'gpt-4o-mini';/);
+    expect(production).toMatch(/coachingRequested && !modelSupportsJsonObject\(configuredModel\)\s*\n\s*\? COACHED_TURN_FALLBACK_MODEL/);
+  });
+});
+
+// зачем (Q113 координатора): итог диалога обращается к человеку на «ты», без третьего лица.
+describe('итог диалога V2: обращение на «ты»', () => {
+  it('обе инструкции итога требуют второе лицо единственного числа', () => {
+    for (const file of ['dialogue_v2_session_completion_core.ts', 'dialogue_v2_completion_server.ts']) {
+      const source = readFileSync(join(__dirname, file), 'utf8');
+      expect(source).toMatch(/Address the learner directly in the second person singular, informal/);
+    }
+  });
+});

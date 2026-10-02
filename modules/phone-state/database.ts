@@ -110,6 +110,15 @@ async function openEncrypted(
     );
     console.log(`[PHONE-STATE-DB] open:step 4/5 integrity rows=${integrityErrors.length}`);
     if (integrityErrors.length > 0) {
+      // зачем (баг 02.10, «Дизайн»: integrity rows=52 и на холодном старте, recover пропускает —
+      // подпись не NOTADB): по одному числу строк нельзя понять, что это — порча страниц, чужой
+      // ключ/HMAC или служебные сообщения. Печатаем сами строки (только служебный текст SQLCipher
+      // о страницах, без пользовательских данных) — диагноз по фактам, не по догадке.
+      console.warn('[PHONE-STATE-DB] open:integrity_rows', JSON.stringify({
+        total: integrityErrors.length,
+        first: integrityErrors.slice(0, 5).map((row) => String(row?.cipher_integrity_check ?? JSON.stringify(row)).slice(0, 200)),
+        last: String(integrityErrors[integrityErrors.length - 1]?.cipher_integrity_check ?? '').slice(0, 200),
+      }));
       throw new Error('phone_state_cipher_integrity_failed');
     }
     /**

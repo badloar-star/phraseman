@@ -1,3 +1,4 @@
+import { coldStartStep } from './cold_start_trace'; // зачем: §80 — метки [COLD-START] шагов bootstrap
 import type { AccountGenerationToken, PhoneStateAccountContext } from './account_generation';
 import {
   isCurrentAccountGeneration,
@@ -51,17 +52,21 @@ export function createPhoneStateBootstrapLifecycle(
   };
 
   const bootstrap: PhoneStateBootstrapLifecycle['bootstrap'] = (input) => serialized(async () => {
+    const endIdentity = coldStartStep('phone_state.identity', 'phone_state_bootstrap');
     const authoritativeStableUid = (await dependencies.resolveAuthoritativeStableUid(
       input.localStableUid,
     )).trim();
+    endIdentity(authoritativeStableUid ? 'ok' : 'unresolved');
     if (!authoritativeStableUid) throw new Error('phone_state_identity_unresolved');
     if (!dependencies.isRuntimeTokenCurrent(input.runtimeToken, input.localStableUid)) {
       throw new Error('phone_state_generation_stale');
     }
+    const endContext = coldStartStep('phone_state.account_context', 'phone_state_bootstrap');
     const context = await dependencies.resolveAccountContext(
       authoritativeStableUid,
       input.runtimeToken,
     );
+    endContext();
     if (!dependencies.isRuntimeTokenCurrent(input.runtimeToken, input.localStableUid)) {
       throw new Error('phone_state_generation_stale');
     }
@@ -70,19 +75,24 @@ export function createPhoneStateBootstrapLifecycle(
       && active.context.stableUid === context.stableUid
       && active.context.lineage === context.lineage
     ) {
+      console.log('[COLD-START] phone_state.reuse_active src=phone_state_bootstrap');
       return active;
     }
     if (active) {
       await active.close();
       active = null;
     }
+    const endOpen = coldStartStep('phone_state.open_account', 'phone_state_bootstrap');
     const opened = await dependencies.openAccount(context);
+    endOpen();
     if (!dependencies.isRuntimeTokenCurrent(input.runtimeToken, input.localStableUid)) {
       await opened.close();
       throw new Error('phone_state_generation_stale');
     }
     try {
+      const endImport = coldStartStep('phone_state.import_legacy', 'phone_state_bootstrap');
       await dependencies.importLegacy(opened);
+      endImport();
       if (!dependencies.isRuntimeTokenCurrent(input.runtimeToken, input.localStableUid)) {
         throw new Error('phone_state_generation_stale');
       }
@@ -90,7 +100,9 @@ export function createPhoneStateBootstrapLifecycle(
       if (!dependencies.isRuntimeTokenCurrent(input.runtimeToken, input.localStableUid)) {
         throw new Error('phone_state_generation_stale');
       }
+      const endInstall = coldStartStep('phone_state.install_sync', 'phone_state_bootstrap');
       await dependencies.installDormantSync(opened);
+      endInstall();
       if (!dependencies.isRuntimeTokenCurrent(input.runtimeToken, input.localStableUid)) {
         throw new Error('phone_state_generation_stale');
       }

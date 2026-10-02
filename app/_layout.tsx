@@ -192,6 +192,7 @@ import { primeRemoteConfigCacheFromStorage } from './remote_config_client';
 import { ensurePhoneStateSyncLifecycleInstalled } from './phone_state_sync_lifecycle';
 import { bootstrapPhoneState } from './phone_state_bootstrap';
 import { installPhoneStateProductionRuntime } from './phone_state_runtime';
+import { coldStartMark } from './cold_start_trace'; // зачем: §80 — [COLD-START] от старта процесса
 import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from './cloud_restore_coordinator';
 import { hasMeaningfulLocalAccountData } from './local_account_data';
 import { decideStartupCloudRecoveryPresentation } from './startup_cloud_recovery_presentation';
@@ -1146,12 +1147,14 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     let uninstallSync: (() => void) | undefined;
     const bootstrapStartedAtMs = Date.now();
     console.log(`[FC-TRAIN-ENTRY] bootstrap:start stableId=${token.stableId} generation=${token.generation}`);
+    coldStartMark('fc_train_entry.bootstrap:start', '_layout', { generation: token.generation });
     // Identity repair has already published this active generation. Bootstrap
     // resolves the provider anchor again inside its serialized boundary before
     // opening/importing; failures remain background-only and never block UI.
     void bootstrapPhoneState({ stableUid: token.stableId!, runtimeToken: token })
       .then((started) => {
         console.log(`[FC-TRAIN-ENTRY] bootstrap:ok started=${started} за ${Date.now() - bootstrapStartedAtMs}мс (started=false → lifecycle не сконфигурирован)`);
+        coldStartMark('fc_train_entry.bootstrap:ok', '_layout', { started, totalMs: Date.now() - bootstrapStartedAtMs });
         return started;
       })
       .catch((error: unknown) => {

@@ -3,6 +3,7 @@ import firestore from '@react-native-firebase/firestore';
 import * as Crypto from 'expo-crypto';
 
 import { isUnreadableDatabaseFailure, openPhoneStateDatabase, recreatePhoneStateDatabaseAfterUnreadable } from '../modules/phone-state/database';
+import { coldStartStep } from './cold_start_trace'; // зачем: §80 — метки [COLD-START] шагов открытия
 import { withKeyedExclusiveTransaction } from '../modules/phone-state/keyed_exclusive_transaction';
 import { migratePhoneStateSchema } from '../modules/phone-state/schema';
 import { createReducerRegistry, type DomainReducer } from '../modules/phone-state/reducer_registry';
@@ -308,8 +309,11 @@ async function openRuntimeSession(
   context: RuntimeSession['context'],
 ): Promise<RuntimeSession> {
   const scope = { stableUid: context.stableUid, accountGeneration: context.lineage } as const;
+  const endDb = coldStartStep('phone_state.db_open', 'phone_state_runtime');
   let database = await openPhoneStateDatabase(scope);
+  endDb();
   try {
+    const endMigrate = coldStartStep('phone_state.schema_migrate', 'phone_state_runtime');
     try {
       await migratePhoneStateSchema(database);
     } catch (migrateError: unknown) {
@@ -331,6 +335,7 @@ async function openRuntimeSession(
       await migratePhoneStateSchema(database);
       console.warn('[PHONE-STATE-DB] migrate:NOTADB — миграция прошла на пересозданной базе');
     }
+    endMigrate();
     const deviceId = await ensureDeviceId(database);
     const localDatabase = adaptExpoSqliteDatabase(database);
     const registry = createReducerRegistry([
@@ -388,9 +393,15 @@ export function installPhoneStateProductionRuntime(): void {
     ...defaultPhoneStateBootstrapDependencies,
     openAccount: openRuntimeSession,
     importLegacy: async (baseSession) => {
+      const endCore = coldStartStep('phone_state.import_core_progress', 'phone_state_runtime');
       await importCoreProgressOnce(baseSession as RuntimeSession);
+      endCore();
+      const endRegisters = coldStartStep('phone_state.import_registers', 'phone_state_runtime');
       await importProgressRegistersOnce(baseSession as RuntimeSession);
+      endRegisters();
+      const endEconomy = coldStartStep('phone_state.import_economy', 'phone_state_runtime');
       await importLegacyEconomyOnce(baseSession as RuntimeSession);
+      endEconomy();
     },
     compareShadow: async () => undefined,
     installDormantSync: async (baseSession) => {

@@ -12,7 +12,7 @@
   `users/{uid}.stars` + phone-state star credits).
 - Показ: `app/runes_system.ts` (`peekRunes`, `subscribeRunesBalance`) — шапка Главной,
   Арена (`mergeLevelSpinServerStars`), магазин.
-- Все деньги 2.0 уже идут сюда: подарки → монеты (`gifts_to_coins_migration_v1.ts`,
+- Все деньги 2.0 уже идут сюда: подарки → монеты (`gifts_to_coins_migration_v1.ts` — УДАЛЕНО в Q109, D148;
   `enqueueLevelSpinStarGrant`, номиналы `stars_*`), жемчуг → монеты
   (`pearls_to_coins_migration_v1.ts`), Шпиль (`stars_ledger.ts`, PM-280), повышение ранга
   (`coin_rank_upgrade_v1.ts` → `prepareRuneSpend`). Таблица D53: `runes` → монеты 1:1.

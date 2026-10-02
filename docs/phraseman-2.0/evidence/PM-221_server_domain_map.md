@@ -2,7 +2,7 @@
 
 Сгенерировано `node scripts/pm221_server_domain_map.mjs` (детерминированно: без даты и без обращения к сети).
 
-Всего серверных точек (callable/http/schedule/trigger) из атласа: **496**. Имён с живым экспортом в `functions/src/index.ts`: 423.
+Всего серверных точек (callable/http/schedule/trigger) из атласа: **494**. Имён с живым экспортом в `functions/src/index.ts`: 421.
 
 ## Сводка по доменам
 
@@ -12,16 +12,16 @@
 | purchases/subscriptions | 67 | 67 | 0 | 0 | 0 | 0 |
 | account-delete | 11 | 11 | 0 | 0 | 0 | 0 |
 | support/reports | 46 | 46 | 0 | 0 | 0 | 0 |
-| content/video | 14 | 14 | 0 | 0 | 0 | 0 |
+| content/video | 13 | 13 | 0 | 0 | 0 | 0 |
 | notifications | 45 | 44 | 0 | 0 | 1 | 0 |
 | sync/progress | 5 | 5 | 0 | 0 | 0 | 0 |
 | admin | 48 | 48 | 0 | 0 | 0 | 0 |
 | ai/audio | 44 | 25 | 0 | 17 | 0 | 2 |
 | learning-v2 | 83 | 55 | 28 | 0 | 0 | 0 |
-| social/friends | 53 | 53 | 0 | 0 | 0 | 0 |
+| social/friends | 52 | 52 | 0 | 0 | 0 | 0 |
 | spire/arena | 58 | 22 | 0 | 36 | 0 | 0 |
 | retired-tombstone | 3 | 0 | 0 | 3 | 0 | 0 |
-| **Итого** | **496** | **409** | **28** | **56** | **1** | **2** |
+| **Итого** | **494** | **407** | **28** | **56** | **1** | **2** |
 
 ## Владельцы и коллекции доменов
 
@@ -33,7 +33,7 @@
 | purchases/subscriptions | Логика/сервер (покупки, монеты); цены и пакеты в сторах — владелец | `account_identity_owner_map`, `admin_alert_dedupe`, `admin_alert_events`, `admin_command_operations`, `admin_config`, `admin_duplicate_cleanup_jobs`, `admin_log`, `app_messages`, `auth_links`, `banned_users`, `community_pack_purchases`, `dialog_access`, `gift_certificate_deliveries`, `leaderboard`, `level_spin_results`, `paywall_funnel`, `promo_codes`, `public_profiles`, `remote_config`, `remote_config_history`, `revenuecat_premium_denials`, `revenuecat_premium_events`, `revenuecat_premium_lineages`, `revenuecat_reconcile_reservations`, `revenuecat_shard_refunds`, `shard_rewards`, `telegram_premium_bot`, `telegram_premium_bot_sessions`, `telegram_premium_dead_letter`, `telegram_premium_orders`, `user_messages`, `user_reports`, `user_warnings`, `users`, `users_dedup_archive`, `voice_minute_events` |
 | account-delete | Логика/сервер | `account_deletion_jobs`, `account_deletion_log`, `account_deletion_restores`, `account_identity_owner_map`, `account_merge_outbox`, `admin_command_operations`, `admin_duplicate_cleanup_jobs`, `admin_log`, `arena_club_events`, `arena_season_leaderboard`, `arena_sessions`, `arena_v2_match_private`, `arena_v2_matches`, `auth_links`, `banned_users`, `email_contacts`, `entries`, `friend_gift_daily_limits`, `friend_gift_history`, `friends`, `leaderboard`, `league_groups`, `public_profiles`, `user_reports`, `user_warnings`, `users`, `users_dedup_archive`, `website_contact_inbox` |
 | support/reports | Логика/сервер + админка legacy.html | `admin_alert_dedupe`, `admin_alert_events`, `admin_command_operations`, `admin_config`, `admin_duplicate_cleanup_jobs`, `admin_log`, `auth_links`, `banned_users`, `community_pack_purchases`, `jarvis_approval_tokens`, `leaderboard`, `public_profiles`, `spire_task_report_receipts`, `support_auto_reply_counters`, `support_auto_reply_reservations`, `support_reply_batches`, `support_reply_operations`, `user_reports`, `user_warnings`, `users`, `users_dedup_archive`, `website_contact_inbox` |
-| content/video | Логика/сервер + админка legacy.html | `channels`, `users`, `versions`, `videos`, `youtube_catalog_snapshots` |
+| content/video | Логика/сервер + админка legacy.html | `channels`, `versions`, `videos`, `youtube_catalog_snapshots` |
 | notifications | Логика/сервер | `admin_alert_dedupe`, `admin_alert_events`, `admin_command_operations`, `admin_config`, `admin_log`, `admin_push_jobs`, `app_messages`, `community_pack_purchases`, `community_packs`, `email_campaigns`, `flashcard_pack_gift_grants`, `global_broadcast_modals`, `home_hints`, `home_hints_history`, `poll_votes`, `reactions`, `reward_claims`, `user_messages`, `users` |
 | sync/progress | Логика/сервер (D66 local-first) | `account_deletion_auth_markers`, `accounts_v2`, `admin_log`, `events` |
 | admin | Логика/сервер + админка legacy.html; Jarvis — jarvis_data_contract_guard | `account_deletion_jobs`, `account_deletion_restores`, `admin_command_operations`, `admin_config`, `admin_duplicate_cleanup_jobs`, `admin_log`, `app_activity`, `app_errors`, `auth_links`, `banned_users`, `client_economy_opening`, `client_economy_operations`, `economy_daily_stats`, `error_reports`, `external_economy_events`, `leaderboard`, `leaderboard_stats`, `lesson_stats`, `max_voice_ops_daily`, `name_index`, `paywall_funnel`, `public_profiles`, `referral_attributions`, `remote_config`, `remote_config_history`, `revenuecat_premium_denials`, `revenuecat_premium_events`, `revenuecat_shard_transactions`, `shard_rewards`, `support_inbox`, `telegram_premium_dead_letter`, `user_reports`, `user_warnings`, `users`, `users_dedup_archive`, `voice_minute_events`, `website_contact_inbox` |
@@ -58,9 +58,9 @@
 | statsInsightsGenerate | callable | ai/audio | functions/src/stats_insights.ts | экспорта нет, вызова из клиента нет, решения в 03_DECISIONS нет: удалить код или подключить в 2.0 |
 | weeklyReviewGenerate | callable | ai/audio | functions/src/weekly_review.ts | экспорта нет, вызова из клиента нет, решения в 03_DECISIONS нет: удалить код или подключить в 2.0 |
 
-## В облаке, но нет в коде (сверка PM-007): 110
+## В облаке, но нет в коде (сверка PM-007): 111
 
-Статусы: retired-tombstone 96, needs-owner-decision 14. Полная выкладка `default` удалит ВСЕ эти функции — keep здесь значит «код надо вернуть в ветку до выкладки».
+Статусы: retired-tombstone 97, needs-owner-decision 14. Полная выкладка `default` удалит ВСЕ эти функции — keep здесь значит «код надо вернуть в ветку до выкладки».
 
 | Функция | Домен | Статус | Основание |
 |---|---|---|---|
@@ -172,6 +172,7 @@
 | submitMaxVoiceFeedback | ai/audio | retired-tombstone | MAX законсервирован (CLAUDE.md 2026-09-04) |
 | tutorTextTopics | ai/audio | retired-tombstone | D81: репетитор Макса и dev-выдачи удалить |
 | tutorTextTurn | ai/audio | retired-tombstone | D81: репетитор Макса и dev-выдачи удалить |
+| videoWatchRunesClaim | content/video | retired-tombstone | D78/PM-080 (Q109): руны за просмотр видео удалены, код снят; в облаке функция живёт для 1.6.24 до min_app_version >= 2.0 (DEPLOY_NOW Шаг 2) |
 | weeklyReviewGenerate | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
 | welcomeGiftClaim | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
 
@@ -189,14 +190,14 @@
 | authCompleteRecoveryHandoff | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_recovery.ts:1926 |
 | authConfirmCleanInstallRecoveryCode | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_recovery.ts:1477 |
 | authConfirmRecoveryCode | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_recovery.ts:866 |
-| authEnsureStableLink | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_identity.ts:2143 |
+| authEnsureStableLink | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_identity.ts:2157 |
 | authIssueRecoveryHandoffToken | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_recovery.ts:1801 |
 | authMergeStableAccounts | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_merge.ts:1546 |
 | authorizeLearningV2CourseUnlock | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | нет | functions/src/learning_v2_course_unlock.ts:375 |
-| authRecoveryHint | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_identity.ts:2227 |
+| authRecoveryHint | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_identity.ts:2241 |
 | authRequestCleanInstallRecoveryCode | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_recovery.ts:1256 |
 | authRequestRecoveryCode | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_recovery.ts:481 |
-| authStampAnonOwnership | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_identity.ts:2298 |
+| authStampAnonOwnership | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_identity.ts:2312 |
 | recordAgeConsentSnapshot | callable | auth | Фиксация возрастного согласия (приватность и вход) | keep | да | functions/src/record_age_consent_snapshot.ts:181 |
 | activationEmailRetryCron | schedule | purchases/subscriptions | Сторож почты активации: повтор писем и проверка ключа Resend (код перенесён в email_delivery_watchdog.ts 01.10, инцидент 21.09) | keep | да | functions/src/email_delivery_watchdog.ts:459 |
 | adminActivateTelegramPremiumOrder | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/telegram_premium_admin.ts:256 |
@@ -233,12 +234,12 @@
 | coinReconcileV1 | callable | purchases/subscriptions | Разовая серверная сверка кошелька монет по level_spin_results (Q-COIN (b), решение координатора 01.10) | keep | да | functions/src/coin_reconcile_v1.ts:313 |
 | createV2AccessPurchaseCallable | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | нет | functions/src/learning_v2_access_callable.ts:128 |
 | finalizeLearningV2AccessPurchase | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/learning_v2_access_production_callable.ts:16 |
-| giftsToCoinsMigrationReport | callable | purchases/subscriptions | Кошелёк монет: начисление и отчёт миграции подарков в монеты (D03, Q12/Q13) | keep | да | functions/src/gifts_to_coins_report.ts:98 |
+| giftsToCoinsMigrationReport | callable | purchases/subscriptions | Кошелёк монет: начисление и серверный админ-отчёт старой миграции подарков (клиент миграции удалён: D148, Q109) | keep | да | functions/src/gifts_to_coins_report.ts:98 |
 | introFullAccessClaim | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/gift_access.ts:67 |
-| levelSpinStarGrant | callable | purchases/subscriptions | Кошелёк монет: начисление и отчёт миграции подарков в монеты (D03, Q12/Q13) | keep | да | functions/src/level_spin_star_grant.ts:320 |
+| levelSpinStarGrant | callable | purchases/subscriptions | Кошелёк монет: начисление и серверный админ-отчёт старой миграции подарков (клиент миграции удалён: D148, Q109) | keep | да | functions/src/level_spin_star_grant.ts:320 |
 | paypalOrderCapture | http | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/web_checkout.ts:3312 |
 | paypalOrderCreate | http | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/web_checkout.ts:3229 |
-| premiumDialogReview | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/premium_dialog_review.ts:594 |
+| premiumDialogReview | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/premium_dialog_review.ts:595 |
 | premiumDialogSend | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/premium_dialog.ts:1046 |
 | premiumDialogStream | http | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/premium_dialog_stream.ts:181 |
 | premiumDialogTranslate | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/premium_dialog.ts:1598 |
@@ -326,15 +327,14 @@
 | adminBackfillVideoPacks | callable | content/video | Видео-фразы, наборы из видео и каталог YouTube | keep | да | functions/src/video_phrases.ts:573 |
 | adminGetVideoPhraseWorkspace | callable | content/video | Видео-фразы, наборы из видео и каталог YouTube | keep | да | functions/src/video_phrases.ts:421 |
 | adminGetVideoStudioWorkspace | callable | content/video | Видео-фразы, наборы из видео и каталог YouTube | keep | да | functions/src/video_phrases.ts:334 |
-| adminGetYoutubeCatalogWorkspace | callable | content/video | Видео-фразы, наборы из видео и каталог YouTube | keep | да | functions/src/youtube_catalog.ts:446 |
+| adminGetYoutubeCatalogWorkspace | callable | content/video | Видео-фразы, наборы из видео и каталог YouTube | keep | да | functions/src/youtube_catalog.ts:448 |
 | adminParseVideoPhraseDocument | callable | content/video | Видео-фразы, наборы из видео и каталог YouTube | keep | да | functions/src/video_phrases.ts:521 |
 | adminPublishVideoPhrases | callable | content/video | Видео-фразы, наборы из видео и каталог YouTube | keep | да | functions/src/video_phrases.ts:451 |
-| adminPublishYoutubeCatalogConfig | callable | content/video | Видео-фразы, наборы из видео и каталог YouTube | keep | да | functions/src/youtube_catalog.ts:471 |
-| adminRefreshYoutubeCatalog | callable | content/video | Видео-фразы, наборы из видео и каталог YouTube | keep | да | functions/src/youtube_catalog.ts:540 |
+| adminPublishYoutubeCatalogConfig | callable | content/video | Видео-фразы, наборы из видео и каталог YouTube | keep | да | functions/src/youtube_catalog.ts:473 |
+| adminRefreshYoutubeCatalog | callable | content/video | Видео-фразы, наборы из видео и каталог YouTube | keep | да | functions/src/youtube_catalog.ts:542 |
 | adminSaveVideoPhraseDraft | callable | content/video | Видео-фразы, наборы из видео и каталог YouTube | keep | да | functions/src/video_phrases.ts:429 |
 | refreshVideoSaveCounts | callable | content/video | Видео-фразы, наборы из видео и каталог YouTube | keep | да | functions/src/video_save_counts.ts:95 |
 | siteStatsTrack | http | content/video | Видео-фразы, наборы из видео и каталог YouTube | keep | да | functions/src/site_stats.ts:109 |
-| videoWatchRunesClaim | callable | content/video | Видео-фразы, наборы из видео и каталог YouTube | keep | да | functions/src/video_watch_runes.ts:188 |
 | youtubeCatalogSyncCron | schedule | content/video | Видео-фразы, наборы из видео и каталог YouTube | keep | да | functions/src/youtube_catalog.ts:434 |
 | adminAlertDailyDigestsCron | schedule | notifications | Уведомления, push, письма, объявления в приложении и алерты владельцу | keep | да | functions/src/admin_alert_digests.ts:51 |
 | adminAlertDispatchOnCreate | trigger | notifications | Уведомления, push, письма, объявления в приложении и алерты владельцу | keep | да | functions/src/admin_alert_dispatcher.ts:377 |
@@ -381,9 +381,9 @@
 | onAppMessageStateWritten | trigger | notifications | Уведомления, push, письма, объявления в приложении и алерты владельцу | keep | да | functions/src/app_messages.ts:153 |
 | reEngagePushCron | schedule | notifications | Уведомления, push, письма, объявления в приложении и алерты владельцу | keep | да | functions/src/index.ts:448 |
 | userNotificationsCleanupCron | schedule | notifications | Уведомления, push, письма, объявления в приложении и алерты владельцу | keep | да | functions/src/user_notifications.ts:174 |
-| accountsV2MigrateMine | callable | sync/progress | Accounts V2: перенос старых данных при первом входе (OD21) и чтение своей учётки на новой установке | keep | да | functions/src/accounts_v2_adapter/migrate_mine.ts:427 |
-| accountsV2PullMine | callable | sync/progress | Accounts V2: перенос старых данных при первом входе (OD21) и чтение своей учётки на новой установке | keep | да | functions/src/accounts_v2_adapter/pull_mine.ts:262 |
-| accountsV2SyncApply | callable | sync/progress | Accounts V2: синхронизация прогресса устройства с аккаунтом (D66: сервер = синхронизация) | keep | да | functions/src/accounts_v2_adapter/callable.ts:470 |
+| accountsV2MigrateMine | callable | sync/progress | Accounts V2: перенос старых данных при первом входе (OD21) и чтение своей учётки на новой установке | keep | да | functions/src/accounts_v2_adapter/migrate_mine.ts:435 |
+| accountsV2PullMine | callable | sync/progress | Accounts V2: перенос старых данных при первом входе (OD21) и чтение своей учётки на новой установке | keep | да | functions/src/accounts_v2_adapter/pull_mine.ts:269 |
+| accountsV2SyncApply | callable | sync/progress | Accounts V2: синхронизация прогресса устройства с аккаунтом (D66: сервер = синхронизация) | keep | да | functions/src/accounts_v2_adapter/callable.ts:477 |
 | soc2ReadinessCollectorCron | schedule | sync/progress | Связка записи профиля пользователя, квесты и регламентные сверки | keep | да | functions/src/soc2_readiness_collector.ts:240 |
 | usersWriteRouter | trigger | sync/progress | Связка записи профиля пользователя, квесты и регламентные сверки | keep | да | functions/src/users_write_router.ts:16 |
 | adminCardTtsRequeuePack | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/card_tts_worker.ts:491 |
@@ -446,14 +446,14 @@
 | cardTtsPackWorker | trigger | ai/audio | Озвучка карточек OpenAI TTS при одобрении набора (D128) | keep | да | functions/src/card_tts_worker.ts:463 |
 | dialogueV2Catalogue | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_catalogue_callable.ts:62 |
 | dialogueV2FreeformPreparedBotVoiceResolve | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_freeform_prepared_bot_voice_callable.ts:178 |
-| dialogueV2FreeformSessionStart | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_freeform_session_start_callable.ts:247 |
-| dialogueV2FreeformSessionTurn | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_freeform_session_turn_callable.ts:522 |
+| dialogueV2FreeformSessionStart | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_freeform_session_start_callable.ts:249 |
+| dialogueV2FreeformSessionTurn | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_freeform_session_turn_callable.ts:524 |
 | dialogueV2MemoryClear | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_memory_management_callable.ts:134 |
 | dialogueV2MemoryResume | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_memory_resume_callable.ts:84 |
 | dialogueV2MemoryView | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_memory_management_callable.ts:120 |
-| dialogueV2SessionComplete | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_session_complete_callable.ts:561 |
+| dialogueV2SessionComplete | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_session_complete_callable.ts:577 |
 | dialogueV2SessionStart | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_session_start_callable.ts:204 |
-| dialogueV2TextTurn | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_turn_production_callable.ts:830 |
+| dialogueV2TextTurn | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_turn_production_callable.ts:861 |
 | explainChoice | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/explain_choice.ts:76 |
 | explainMistake | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/mistake_explain.ts:787 |
 | explainPhrase | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/explain_phrase.ts:109 |
@@ -551,8 +551,8 @@
 | mistakeHubAdvice | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/mistake_hub_advice.ts:164 |
 | mistakePracticeSyncEvents | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/mistake_practice_event_sync.ts:204 |
 | practiceRuneGrant | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/practice_rune_grant.ts:302 |
-| progressMigrateSnapshot | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/progress_events.ts:965 |
-| progressSubmitEvent | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/progress_events.ts:770 |
+| progressMigrateSnapshot | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/progress_events.ts:1017 |
+| progressSubmitEvent | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/progress_events.ts:773 |
 | recordOnboardingFunnelEvent | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/onboarding_funnel.ts:299 |
 | resolveLearningV2CourseUnlockReceipt | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | dormant | нет | functions/src/learning_v2_course_unlock.ts:380 |
 | resolveLearningV2WalletRewardReceipt | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/learning_v2_wallet_reward_callable.ts:138 |
@@ -593,8 +593,7 @@
 | friendLikeActivity | callable | social/friends | Друзья, рефералы, идеи, публичный профиль, имена и сообщество наборов | keep | да | functions/src/friend_activity_likes.ts:198 |
 | friendLookupUser | callable | social/friends | Друзья, рефералы, идеи, публичный профиль, имена и сообщество наборов | keep | да | functions/src/friend_lookup.ts:172 |
 | friendsGetProfiles | callable | social/friends | Друзья, рефералы, идеи, публичный профиль, имена и сообщество наборов | keep | да | functions/src/friends_profiles.ts:365 |
-| friendsNudge | callable | social/friends | Друзья, рефералы, идеи, публичный профиль, имена и сообщество наборов | keep | да | functions/src/friends_together.ts:117 |
-| friendsTogetherClaimLevel | callable | social/friends | Друзья, рефералы, идеи, публичный профиль, имена и сообщество наборов | keep | да | functions/src/friends_together.ts:109 |
+| friendsNudge | callable | social/friends | Друзья, рефералы, идеи, публичный профиль, имена и сообщество наборов | keep | да | functions/src/friends_together.ts:109 |
 | friendUnblockUser | callable | social/friends | Друзья, рефералы, идеи, публичный профиль, имена и сообщество наборов | keep | да | functions/src/friend_block.ts:102 |
 | friendUnlikeActivity | callable | social/friends | Друзья, рефералы, идеи, публичный профиль, имена и сообщество наборов | keep | да | functions/src/friend_activity_likes.ts:470 |
 | getPublicUserIdea | callable | social/friends | Друзья, рефералы, идеи, публичный профиль, имена и сообщество наборов | keep | да | functions/src/user_ideas.ts:364 |

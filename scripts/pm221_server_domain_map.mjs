@@ -48,7 +48,7 @@ const RULES = [
   { n: /^(accountsV2MigrateMine|accountsV2PullMine)$/u, d: 'sync/progress', c: 'Accounts V2: перенос старых данных при первом входе (OD21) и чтение своей учётки на новой установке' },
   { n: /^cardTtsPackWorker$/u, d: 'ai/audio', c: 'Озвучка карточек OpenAI TTS при одобрении набора (D128)' },
   { n: /^dailyPollVote$/u, d: 'social/friends', c: 'Опрос дня на Главной (решение владельца 30.09)' },
-  { n: /^(levelSpinStarGrant|giftsToCoinsMigrationReport)$/u, d: 'purchases/subscriptions', c: 'Кошелёк монет: начисление и отчёт миграции подарков в монеты (D03, Q12/Q13)' },
+  { n: /^(levelSpinStarGrant|giftsToCoinsMigrationReport)$/u, d: 'purchases/subscriptions', c: 'Кошелёк монет: начисление и серверный админ-отчёт старой миграции подарков (клиент миграции удалён: D148, Q109)' },
   // зачем: E22 2026-10-01 — новые функции в коде обязаны иметь привязку, иначе проба PM-221 (храповик) падает.
   { n: /^coinReconcileV1$/u, d: 'purchases/subscriptions', c: 'Разовая серверная сверка кошелька монет по level_spin_results (Q-COIN (b), решение координатора 01.10)' },
   { n: /^(activationEmailRetryCron|resendKeyHealthCron)$/u, d: 'purchases/subscriptions', c: 'Сторож почты активации: повтор писем и проверка ключа Resend (код перенесён в email_delivery_watchdog.ts 01.10, инцидент 21.09)' },
@@ -200,9 +200,15 @@ const CLOUD_ONLY_RULES = [
   { n: /^(cosmeticAssetCatalogGet|adminGetCosmeticAssetArchive|adminSetCosmeticAssetSaleStatus)$/u, d: 'other', s: 'retired-tombstone', why: 'D102/D108: косметика удалена' },
   { n: /^(shardsApplyDelta|adminSetShardBalance|adminGetCoinExchangeCenter|adminSetCoinExchangeRate|exchangeCoinsForStars|getCoinExchange|recalcCoinExchangeRate)/u, d: 'purchases/subscriptions', s: 'retired-tombstone', why: 'D70/D78/D84: жемчуг и биржа удалены; клиентский вызов shardsApplyDelta — только досылка старой очереди, not-found снимается как постоянный отказ (PM-222 §6.1)' },
   { n: /^adminRefundCommunityPackPurchase$/u, d: 'purchases/subscriptions', s: 'retired-tombstone', why: 'D110: удалить' },
+  { n: /^videoWatchRunesClaim$/u, d: 'content/video', s: 'retired-tombstone', why: 'D78/PM-080 (Q109): руны за просмотр видео удалены, код снят; в облаке функция живёт для 1.6.24 до min_app_version >= 2.0 (DEPLOY_NOW Шаг 2)' },
   { n: /^aiDialogSyncPurchase$/u, d: 'purchases/subscriptions', s: 'retired-tombstone', why: 'D124: покупки диалогов за руны не учитываются; клиентский вызов мёртв (PM-222 §6.1)' },
   { n: /^(levelGift|levelRewardSpin|levelSpinActivatePackGift|friendSendGift|friendThankGift|welcomeGiftClaim)/u, d: 'social/friends', s: 'retired-tombstone', why: 'подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты)' },
 ];
+
+// зачем (Q109, 02.10): код этих функций УДАЛЁН уже ПОСЛЕ снимка PM-007, а в облаке они живут для
+// 1.6.24 до min_app_version >= 2.0. Снимок PM-007 только читаем — поэтому добавляем их сюда явно,
+// иначе карта «потеряла» бы функцию, а полная выкладка удалила бы её молча.
+const CODE_REMOVED_AFTER_PM007 = ['videoWatchRunesClaim'];
 
 export function readCloudOnly(root = process.cwd()) {
   let md = '';
@@ -220,7 +226,7 @@ export function readCloudOnly(root = process.cwd()) {
   const tail = md.slice(start).split('\n').slice(1);
   const end = tail.findIndex((l) => l.startsWith('### '));
   const names = (end < 0 ? tail : tail.slice(0, end)).flatMap((l) => [...l.matchAll(/`([A-Za-z0-9_]+)`/gu)].map((m) => m[1]));
-  return [...new Set(names)].sort().map((name) => {
+  return [...new Set([...names, ...CODE_REMOVED_AFTER_PM007])].sort().map((name) => {
     const rule = CLOUD_ONLY_RULES.find((r) => r.n.test(name));
     return rule
       ? { name, domain: rule.d, status: rule.s, reason: rule.why }

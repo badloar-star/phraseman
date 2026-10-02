@@ -67,7 +67,10 @@ describe('accounts_v2_migration dry-run — реальный состав кор
     for (const name of ['progressServerState', 'progressServerAuthoritative', 'progressServerCutoverAt', 'progressMigratedAt', 'mistakePracticeMergePending']) {
       expect(user).toHaveProperty(name);
     }
-    expect(Object.keys(user).length).toBeGreaterThanOrEqual(65);
+    // зачем (координатор §72, 2026-10-02): порог = факт переписи. С 8A (67) законно ушли
+    // videoWatchRuneCarryMsV1/videoWatchRuneSessionV1/videoWatchRunesDaily (Q109, D78/PM-080) и
+    // name/shards (писались только сидами турниров Арены, D74/D83; жемчуг D70/D78); пришло progressReseedAt (8I).
+    expect(Object.keys(user).length).toBeGreaterThanOrEqual(63);
     const result = run(user);
     expect(result.report.held).toEqual([]);
     expect(result.report.status).toBe('ready');

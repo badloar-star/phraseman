@@ -288,27 +288,32 @@ export function DialogueV2SessionScreen({
               <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: glass.text, fontSize: 20, lineHeight: 24, fontWeight: '700', letterSpacing: -0.2 }}>
                 {title}
               </Text>
-              <View
-                testID="dialogue-v2-session-mood"
-                style={{ flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 2 }}
-                accessible
-                accessibilityLabel={headerMood?.label ?? labels.subtitle}
-              >
-                {headerMood ? <DialogueGlassMoodFace mood={headerMood.mood} color={glass.secondary} /> : null}
-                <Text maxFontSizeMultiplier={1.3} style={{ flexShrink: 1, color: glass.secondary, fontSize: 16, lineHeight: 21 }}>
-                  {headerMood?.label ?? labels.subtitle}
-                </Text>
+              {/* зачем (эмулятор 02.10): энергия и плашка лимита стояли в строке заголовка и
+                  сжимали его до ~150 dp — «Поздоровать/ься» рвалось посреди слова. Теперь они
+                  во второй строке, рядом с настроением, а заголовок занимает всю ширину. */}
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 2 }}>
+                <View
+                  testID="dialogue-v2-session-mood"
+                  style={{ flexDirection: 'row', alignItems: 'center', gap: 7, flexShrink: 1, flexGrow: 1 }}
+                  accessible
+                  accessibilityLabel={headerMood?.label ?? labels.subtitle}
+                >
+                  {headerMood ? <DialogueGlassMoodFace mood={headerMood.mood} color={glass.secondary} /> : null}
+                  <Text maxFontSizeMultiplier={1.3} style={{ flexShrink: 1, color: glass.secondary, fontSize: 16, lineHeight: 21 }}>
+                    {headerMood?.label ?? labels.subtitle}
+                  </Text>
+                </View>
+                {showEnergy ? <EnergyBar glass /> : null}
+                {quotaPill ? (
+                  <DialogueGlassQuotaPill
+                    glass={glass}
+                    testID="dialogue-v2-session-quota"
+                    text={quotaPill.text}
+                    accessibilityLabel={quotaPill.accessibilityLabel}
+                  />
+                ) : null}
               </View>
             </View>
-            {showEnergy ? <EnergyBar glass /> : null}
-            {quotaPill ? (
-              <DialogueGlassQuotaPill
-                glass={glass}
-                testID="dialogue-v2-session-quota"
-                text={quotaPill.text}
-                accessibilityLabel={quotaPill.accessibilityLabel}
-              />
-            ) : null}
             <DialogueGlassSquareButton
               glass={glass}
               testID="dialogue-v2-session-more"

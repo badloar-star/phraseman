@@ -243,8 +243,10 @@ describe('Economy Constitution — client authority is a permanent source contra
     expect(phoneStateEconomy).toContain("'paid_level_spin_rune_purchase'");
     expect(phoneStateEconomy).toContain("value.runeDelta !== -300");
     expect(phoneStateEconomy).toContain('balanceAfter !== balanceBefore - 300');
-    expect(grants).toContain('preparePaidLevelSpinRunePurchase({');
-    expect(grants).toContain('[paidLevelSpinOutboxKey(owner), JSON.stringify(nextOutbox)]');
-    expect(grants).toContain('recoverAndHydrateLevelSpinStarGrants(token)');
+    // зачем (02.10, E24 №3 / PM-252): платный спин за руны удалён в 2.0 (подарки и спины сняты,
+    // D90/D148) — покупку больше никто не вызывает. Сторож теперь держит удаление: функция-остаток
+    // не должна снова получить вызов, а восстановление проекции по-прежнему зовётся при гидрации.
+    expect(grants.match(/preparePaidLevelSpinRunePurchase\(/g) ?? []).toHaveLength(1);
+    expect(grants).toContain('recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false })');
   });
 });

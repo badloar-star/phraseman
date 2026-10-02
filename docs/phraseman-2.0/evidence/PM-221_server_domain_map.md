@@ -2,7 +2,7 @@
 
 Сгенерировано `node scripts/pm221_server_domain_map.mjs` (детерминированно: без даты и без обращения к сети).
 
-Всего серверных точек (callable/http/schedule/trigger) из атласа: **494**. Имён с живым экспортом в `functions/src/index.ts`: 421.
+Всего серверных точек (callable/http/schedule/trigger) из атласа: **495**. Имён с живым экспортом в `functions/src/index.ts`: 422.
 
 ## Сводка по доменам
 
@@ -14,14 +14,14 @@
 | support/reports | 46 | 46 | 0 | 0 | 0 | 0 |
 | content/video | 13 | 13 | 0 | 0 | 0 | 0 |
 | notifications | 45 | 44 | 0 | 0 | 1 | 0 |
-| sync/progress | 5 | 5 | 0 | 0 | 0 | 0 |
+| sync/progress | 6 | 6 | 0 | 0 | 0 | 0 |
 | admin | 48 | 48 | 0 | 0 | 0 | 0 |
 | ai/audio | 44 | 25 | 0 | 17 | 0 | 2 |
 | learning-v2 | 83 | 55 | 28 | 0 | 0 | 0 |
 | social/friends | 52 | 52 | 0 | 0 | 0 | 0 |
 | spire/arena | 58 | 22 | 0 | 36 | 0 | 0 |
 | retired-tombstone | 3 | 0 | 0 | 3 | 0 | 0 |
-| **Итого** | **494** | **407** | **28** | **56** | **1** | **2** |
+| **Итого** | **495** | **408** | **28** | **56** | **1** | **2** |
 
 ## Владельцы и коллекции доменов
 
@@ -35,7 +35,7 @@
 | support/reports | Логика/сервер + админка legacy.html | `admin_alert_dedupe`, `admin_alert_events`, `admin_command_operations`, `admin_config`, `admin_duplicate_cleanup_jobs`, `admin_log`, `auth_links`, `banned_users`, `community_pack_purchases`, `jarvis_approval_tokens`, `leaderboard`, `public_profiles`, `spire_task_report_receipts`, `support_auto_reply_counters`, `support_auto_reply_reservations`, `support_reply_batches`, `support_reply_operations`, `user_reports`, `user_warnings`, `users`, `users_dedup_archive`, `website_contact_inbox` |
 | content/video | Логика/сервер + админка legacy.html | `channels`, `versions`, `videos`, `youtube_catalog_snapshots` |
 | notifications | Логика/сервер | `admin_alert_dedupe`, `admin_alert_events`, `admin_command_operations`, `admin_config`, `admin_log`, `admin_push_jobs`, `app_messages`, `community_pack_purchases`, `community_packs`, `email_campaigns`, `flashcard_pack_gift_grants`, `global_broadcast_modals`, `home_hints`, `home_hints_history`, `poll_votes`, `reactions`, `reward_claims`, `user_messages`, `users` |
-| sync/progress | Логика/сервер (D66 local-first) | `account_deletion_auth_markers`, `accounts_v2`, `admin_log`, `events` |
+| sync/progress | Логика/сервер (D66 local-first) | `account_deletion_auth_markers`, `accounts_v2`, `admin_log`, `events`, `users` |
 | admin | Логика/сервер + админка legacy.html; Jarvis — jarvis_data_contract_guard | `account_deletion_jobs`, `account_deletion_restores`, `admin_command_operations`, `admin_config`, `admin_duplicate_cleanup_jobs`, `admin_log`, `app_activity`, `app_errors`, `auth_links`, `banned_users`, `client_economy_opening`, `client_economy_operations`, `economy_daily_stats`, `error_reports`, `external_economy_events`, `leaderboard`, `leaderboard_stats`, `lesson_stats`, `max_voice_ops_daily`, `name_index`, `paywall_funnel`, `public_profiles`, `referral_attributions`, `remote_config`, `remote_config_history`, `revenuecat_premium_denials`, `revenuecat_premium_events`, `revenuecat_shard_transactions`, `shard_rewards`, `support_inbox`, `telegram_premium_dead_letter`, `user_reports`, `user_warnings`, `users`, `users_dedup_archive`, `voice_minute_events`, `website_contact_inbox` |
 | ai/audio | Логика/сервер; бюджет OpenAI — PM-224 | `admin_log`, `app_errors`, `config`, `max_voice_usage_recon` |
 | learning-v2 | Логика/сервер + фабрика курса | `account_deletion_tombstones`, `account_identity_owner_map`, `admin_command_operations`, `admin_log`, `app_messages`, `auth_links`, `community_packs`, `content_factory_artifact_orphans`, `content_factory_bulk_plans`, `content_factory_catalog`, `content_factory_catalog_releases`, `content_factory_config`, `content_factory_correction_events`, `content_factory_flashcard_ledgers`, `content_factory_flashcard_semantic_keys`, `content_factory_job_reviews`, `content_factory_job_units`, `content_factory_jobs`, `content_factory_learning_v2_session_shard_receipts`, `content_factory_lesson_ledgers`, `content_factory_question_ledgers`, `content_factory_release_history`, `content_factory_releases`, `content_factory_source_registry`, `content_factory_stages`, `content_v2_required_session_sets`, `fixed_poll_votes`, `lesson_stats`, `progress_daily_counters`, `progress_events`, `progress_migrations`, `star_operations`, `users`, `v2_activity_released_settlement_decisions`, `v2_required_session_completion_inbox`, `v2_required_session_course_awards`, `v2_required_session_performance_award_decisions`, `v2_required_session_performance_awards` |
@@ -136,8 +136,8 @@
 | friendClaimQuestReward | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
 | friendConsumeChainShield | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
 | friendGetActiveQuest | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
-| friendSendGift | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
-| friendThankGift | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
+| friendSendGift | social/friends | retired-tombstone | подарки и спины удалены без компенсации (D90; D148 — в монеты не переводятся) |
+| friendThankGift | social/friends | retired-tombstone | подарки и спины удалены без компенсации (D90; D148 — в монеты не переводятся) |
 | friendsClaimWeeklyChest | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
 | getCoinExchangeHistory | purchases/subscriptions | retired-tombstone | D70/D78/D84: жемчуг и биржа удалены; клиентский вызов shardsApplyDelta — только досылка старой очереди, not-found снимается как постоянный отказ (PM-222 §6.1) |
 | getCoinExchangeQuote | purchases/subscriptions | retired-tombstone | D70/D78/D84: жемчуг и биржа удалены; клиентский вызов shardsApplyDelta — только досылка старой очереди, not-found снимается как постоянный отказ (PM-222 §6.1) |
@@ -149,14 +149,14 @@
 | leagueResidentsTickCron | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
 | leagueSyncMyBoost | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
 | leagueUpdateMyMember | spire/arena | retired-tombstone | Арена/лиги/XP удалены (D02, D74, D78); снять после drain-окна (PM-222) |
-| levelGiftActivatePackGift | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
-| levelGiftReserve | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
-| levelRewardSpinAcknowledge | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
-| levelRewardSpinClaim | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
-| levelRewardSpinDelivery | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
-| levelRewardSpinEnrollV1 | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
-| levelRewardSpinStatus | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
-| levelSpinActivatePackGift | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
+| levelGiftActivatePackGift | social/friends | retired-tombstone | подарки и спины удалены без компенсации (D90; D148 — в монеты не переводятся) |
+| levelGiftReserve | social/friends | retired-tombstone | подарки и спины удалены без компенсации (D90; D148 — в монеты не переводятся) |
+| levelRewardSpinAcknowledge | social/friends | retired-tombstone | подарки и спины удалены без компенсации (D90; D148 — в монеты не переводятся) |
+| levelRewardSpinClaim | social/friends | retired-tombstone | подарки и спины удалены без компенсации (D90; D148 — в монеты не переводятся) |
+| levelRewardSpinDelivery | social/friends | retired-tombstone | подарки и спины удалены без компенсации (D90; D148 — в монеты не переводятся) |
+| levelRewardSpinEnrollV1 | social/friends | retired-tombstone | подарки и спины удалены без компенсации (D90; D148 — в монеты не переводятся) |
+| levelRewardSpinStatus | social/friends | retired-tombstone | подарки и спины удалены без компенсации (D90; D148 — в монеты не переводятся) |
+| levelSpinActivatePackGift | social/friends | retired-tombstone | подарки и спины удалены без компенсации (D90; D148 — в монеты не переводятся) |
 | maxVoiceConfigAdmin | ai/audio | retired-tombstone | MAX законсервирован (CLAUDE.md 2026-09-04) |
 | profileCardUpgrade | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
 | recalcCoinExchangeRate | purchases/subscriptions | retired-tombstone | D70/D78/D84: жемчуг и биржа удалены; клиентский вызов shardsApplyDelta — только досылка старой очереди, not-found снимается как постоянный отказ (PM-222 §6.1) |
@@ -174,7 +174,7 @@
 | tutorTextTurn | ai/audio | retired-tombstone | D81: репетитор Макса и dev-выдачи удалить |
 | videoWatchRunesClaim | content/video | retired-tombstone | D78/PM-080 (Q109): руны за просмотр видео удалены, код снят; в облаке функция живёт для 1.6.24 до min_app_version >= 2.0 (DEPLOY_NOW Шаг 2) |
 | weeklyReviewGenerate | other | needs-owner-decision | в облаке живёт, кода нет, решения в 03_DECISIONS нет — полная выкладка удалит |
-| welcomeGiftClaim | social/friends | retired-tombstone | подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты) |
+| welcomeGiftClaim | social/friends | retired-tombstone | подарки и спины удалены без компенсации (D90; D148 — в монеты не переводятся) |
 
 ## Полная таблица
 
@@ -244,7 +244,7 @@
 | premiumDialogStream | http | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/premium_dialog_stream.ts:181 |
 | premiumDialogTranslate | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/premium_dialog.ts:1598 |
 | premiumExpiryCron | schedule | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/premium_expiry_cron.ts:296 |
-| premiumExpiryReminderCron | schedule | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/index.ts:471 |
+| premiumExpiryReminderCron | schedule | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/index.ts:478 |
 | promoCodeBatchUpsert | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/promo_codes.ts:464 |
 | promoCodeDelete | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/promo_codes.ts:534 |
 | promoCodeRedeem | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/promo_codes.ts:182 |
@@ -293,7 +293,7 @@
 | adminReplyToReport | callable | support/reports | Жалобы и обратная связь пользователей, очередь разбора и ответы | keep | да | functions/src/report_replies.ts:357 |
 | adminResolveUserReport | callable | support/reports | Жалобы и обратная связь пользователей, очередь разбора и ответы | keep | да | functions/src/admin_user_operations.ts:294 |
 | adminSummarizeFeedback | callable | support/reports | Жалобы и обратная связь пользователей, очередь разбора и ответы | keep | да | functions/src/feedback_summary.ts:222 |
-| adminSummarizeFeedback | schedule | support/reports | Жалобы и обратная связь пользователей, очередь разбора и ответы | keep | да | functions/src/index.ts:426 |
+| adminSummarizeFeedback | schedule | support/reports | Жалобы и обратная связь пользователей, очередь разбора и ответы | keep | да | functions/src/index.ts:433 |
 | adminSupportArchiveMessages | callable | support/reports | Почта поддержки: чтение, ответы, автоматизация | keep | да | functions/src/support_inbox.ts:6394 |
 | adminSupportCancelReply | callable | support/reports | Почта поддержки: чтение, ответы, автоматизация | keep | да | functions/src/support_inbox.ts:5167 |
 | adminSupportCancelReplyBatch | callable | support/reports | Почта поддержки: чтение, ответы, автоматизация | keep | да | functions/src/support_inbox.ts:5822 |
@@ -321,7 +321,7 @@
 | submitFeedbackEntry | callable | support/reports | Жалобы и обратная связь пользователей, очередь разбора и ответы | keep | да | functions/src/feedback_entries.ts:157 |
 | submitWebsiteContact | http | support/reports | Жалобы и обратная связь пользователей, очередь разбора и ответы | keep | да | functions/src/website_contact.ts:156 |
 | supportInboxOnNewMail | trigger | support/reports | Почта поддержки: чтение, ответы, автоматизация | keep | да | functions/src/support_inbox.ts:6718 |
-| supportOpsCron | schedule | support/reports | Почта поддержки: чтение, ответы, автоматизация | keep | да | functions/src/index.ts:510 |
+| supportOpsCron | schedule | support/reports | Почта поддержки: чтение, ответы, автоматизация | keep | да | functions/src/index.ts:517 |
 | supportTelegramReplyJobOnCreate | trigger | support/reports | Почта поддержки: чтение, ответы, автоматизация | keep | да | functions/src/support_inbox.ts:4949 |
 | adminAlignVideoPhraseTranscript | callable | content/video | Видео-фразы, наборы из видео и каталог YouTube | keep | да | functions/src/video_phrase_timing.ts:75 |
 | adminBackfillVideoPacks | callable | content/video | Видео-фразы, наборы из видео и каталог YouTube | keep | да | functions/src/video_phrases.ts:573 |
@@ -379,11 +379,12 @@
 | onAppMessagePollVoteWritten | trigger | notifications | Уведомления, push, письма, объявления в приложении и алерты владельцу | keep | да | functions/src/app_messages.ts:178 |
 | onAppMessageReactionWritten | trigger | notifications | Уведомления, push, письма, объявления в приложении и алерты владельцу | keep | да | functions/src/app_messages.ts:119 |
 | onAppMessageStateWritten | trigger | notifications | Уведомления, push, письма, объявления в приложении и алерты владельцу | keep | да | functions/src/app_messages.ts:153 |
-| reEngagePushCron | schedule | notifications | Уведомления, push, письма, объявления в приложении и алерты владельцу | keep | да | functions/src/index.ts:448 |
+| reEngagePushCron | schedule | notifications | Уведомления, push, письма, объявления в приложении и алерты владельцу | keep | да | functions/src/index.ts:455 |
 | userNotificationsCleanupCron | schedule | notifications | Уведомления, push, письма, объявления в приложении и алерты владельцу | keep | да | functions/src/user_notifications.ts:174 |
 | accountsV2MigrateMine | callable | sync/progress | Accounts V2: перенос старых данных при первом входе (OD21) и чтение своей учётки на новой установке | keep | да | functions/src/accounts_v2_adapter/migrate_mine.ts:435 |
 | accountsV2PullMine | callable | sync/progress | Accounts V2: перенос старых данных при первом входе (OD21) и чтение своей учётки на новой установке | keep | да | functions/src/accounts_v2_adapter/pull_mine.ts:269 |
 | accountsV2SyncApply | callable | sync/progress | Accounts V2: синхронизация прогресса устройства с аккаунтом (D66: сервер = синхронизация) | keep | да | functions/src/accounts_v2_adapter/callable.ts:477 |
+| progressReseedMissing | callable | sync/progress | Accounts V2 (8I): однократная дозаливка progress, затёртого дефектом 8G (без перезаписи, раз в сутки) | keep | да | functions/src/progress_reseed_missing.ts:248 |
 | soc2ReadinessCollectorCron | schedule | sync/progress | Связка записи профиля пользователя, квесты и регламентные сверки | keep | да | functions/src/soc2_readiness_collector.ts:240 |
 | usersWriteRouter | trigger | sync/progress | Связка записи профиля пользователя, квесты и регламентные сверки | keep | да | functions/src/users_write_router.ts:16 |
 | adminCardTtsRequeuePack | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/card_tts_worker.ts:491 |
@@ -451,9 +452,9 @@
 | dialogueV2MemoryClear | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_memory_management_callable.ts:134 |
 | dialogueV2MemoryResume | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_memory_resume_callable.ts:84 |
 | dialogueV2MemoryView | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_memory_management_callable.ts:120 |
-| dialogueV2SessionComplete | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_session_complete_callable.ts:577 |
+| dialogueV2SessionComplete | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_session_complete_callable.ts:637 |
 | dialogueV2SessionStart | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_session_start_callable.ts:204 |
-| dialogueV2TextTurn | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_turn_production_callable.ts:861 |
+| dialogueV2TextTurn | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_turn_production_callable.ts:875 |
 | explainChoice | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/explain_choice.ts:76 |
 | explainMistake | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/mistake_explain.ts:787 |
 | explainPhrase | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/explain_phrase.ts:109 |

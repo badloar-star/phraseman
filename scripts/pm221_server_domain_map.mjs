@@ -46,6 +46,8 @@ const RULES = [
   { n: /^accountsV2SyncApply$/u, d: 'sync/progress', c: 'Accounts V2: синхронизация прогресса устройства с аккаунтом (D66: сервер = синхронизация)' },
   // зачем (Account V2, Пакет 6G, OD21): перенос при первом входе и гидрация новой установки.
   { n: /^(accountsV2MigrateMine|accountsV2PullMine)$/u, d: 'sync/progress', c: 'Accounts V2: перенос старых данных при первом входе (OD21) и чтение своей учётки на новой установке' },
+  // зачем (02.10, PM-252): 8I — дозаливка затёртого 8G progress, только отсутствующие ключи, раз в сутки.
+  { n: /^progressReseedMissing$/u, d: 'sync/progress', c: 'Accounts V2 (8I): однократная дозаливка progress, затёртого дефектом 8G (без перезаписи, раз в сутки)' },
   { n: /^cardTtsPackWorker$/u, d: 'ai/audio', c: 'Озвучка карточек OpenAI TTS при одобрении набора (D128)' },
   { n: /^dailyPollVote$/u, d: 'social/friends', c: 'Опрос дня на Главной (решение владельца 30.09)' },
   { n: /^(levelSpinStarGrant|giftsToCoinsMigrationReport)$/u, d: 'purchases/subscriptions', c: 'Кошелёк монет: начисление и серверный админ-отчёт старой миграции подарков (клиент миграции удалён: D148, Q109)' },
@@ -202,7 +204,7 @@ const CLOUD_ONLY_RULES = [
   { n: /^adminRefundCommunityPackPurchase$/u, d: 'purchases/subscriptions', s: 'retired-tombstone', why: 'D110: удалить' },
   { n: /^videoWatchRunesClaim$/u, d: 'content/video', s: 'retired-tombstone', why: 'D78/PM-080 (Q109): руны за просмотр видео удалены, код снят; в облаке функция живёт для 1.6.24 до min_app_version >= 2.0 (DEPLOY_NOW Шаг 2)' },
   { n: /^aiDialogSyncPurchase$/u, d: 'purchases/subscriptions', s: 'retired-tombstone', why: 'D124: покупки диалогов за руны не учитываются; клиентский вызов мёртв (PM-222 §6.1)' },
-  { n: /^(levelGift|levelRewardSpin|levelSpinActivatePackGift|friendSendGift|friendThankGift|welcomeGiftClaim)/u, d: 'social/friends', s: 'retired-tombstone', why: 'подарки и спины удалены (D90; Q12/Q13 — остаток переведён в монеты)' },
+  { n: /^(levelGift|levelRewardSpin|levelSpinActivatePackGift|friendSendGift|friendThankGift|welcomeGiftClaim)/u, d: 'social/friends', s: 'retired-tombstone', why: 'подарки и спины удалены без компенсации (D90; D148 — в монеты не переводятся)' },
 ];
 
 // зачем (Q109, 02.10): код этих функций УДАЛЁН уже ПОСЛЕ снимка PM-007, а в облаке они живут для

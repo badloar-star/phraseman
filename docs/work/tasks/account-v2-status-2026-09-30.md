@@ -295,3 +295,7 @@ compatibility.ts, backup_manifest.ts (+тесты), two_device_idempotency.test.
 - Общий путь выгрузки карточек `app/flashcards_cloud_upload.ts` для sync и force. forceSyncToCloud: страницы + `progress.<ключ>=null`, сбой страниц → документ как раньше; запертый ключ 8J → `false` (аварийная копия + отмена смены); потолок 35 с на страницы (без связи выход не висит). Самопочинка испорченного замка. Тесты 16/16, 22/22, 13/13, 12/12, 39/39, 9/9; мутации пойманы.
 - Остаток: серверное `auth_merge.mergeUserProgress` может принести `flashcards_v1` проигравшего в документ победителя (отдельный пакет); «Сменить без сохранения» стирает и при замке (прежний путь, данные в аварийной копии) — решение UX.
 - Дальше: 8C-2 (My Packs: ошибка ≠ пусто; тест покупки при смене аккаунта; мёртвые saveOwnedPackIds/addOwnedPackId).
+
+### 8C-2 — 2026-10-02, ревью APPROVE
+- `loadAuthorCommunityPacksPendingUpdateResult` ok/error; «Мои наборы» при ошибке → stale с сохранением показанного; trainingSources/хаб/свайп — последнее известное. Тесты покупки при смене аккаунта (леджер 31/31), мёртвые saveOwnedPackIds/addOwnedPackId удалены, запись авторских наборов уже под замком (сторож). 5/5, layout 15/15.
+- Остаток (мелкие): кэш авторских наборов не чистится при отзыве/удалении набора и выходе; немые `.catch(() => [])` в flashcards_packs.tsx:346 / flashcards_swipe.tsx:802; хвост дневной статистики экономики прежнего владельца после смены аккаунта (reportEconomyOperationApplied); `tests/my_packs_data_integrity_behavior.test.ts` написан на node:test — тест-раннер проекта его не исполняет.

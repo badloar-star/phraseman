@@ -15,12 +15,25 @@
  *   pages        — страницы записаны → поле документа null (sync — один раз по маркеру);
  *   doc_fallback — страницы не записались → список едет в документ как раньше.
  *
+ * 8N: перед заменой страниц локальный список объединяется с текущими страницами (тот же
+ * col.get() внутри writeFlashcardPages, без лишнего чтения), если облако менял кто-то другой;
+ * страницы прочитаны не с сервера → ключ ведёт себя как запертый (никуда не пишется).
+ *
  * Логи: префикс [LEGACY-V2-SYNC], без uid и без содержимого карточек (только длины).
  */
 import { cloudSyncSnapshotValueMatches, encodeCloudSyncSnapshotRecord } from './cloud_sync_snapshot_codec';
 import { DebugLogger } from './debug-logger';
-import { readFlashcardPagesWriteLocks } from './flashcard_pages_read_result';
-import { writeFlashcardPages } from './flashcards_cloud_pages';
+import {
+  DEFAULT_PRE_WRITE_STORE,
+  decideFlashcardPagesPreWrite,
+  defaultFlashcardLocalMerge,
+  finishFlashcardPagesPreWrite,
+  readFlashcardPagesWriteLocks,
+  type FlashcardLocalMerge,
+  type FlashcardPagesPreWriteDecision,
+  type FlashcardPagesPreWriteStore,
+} from './flashcard_pages_read_result';
+import { writeFlashcardPages, type FlashcardPagesPreWriteHook } from './flashcards_cloud_pages';
 import { buildFlashcardDocFieldMarkers, decideFlashcardDocField } from './flashcards_doc_field_clear';
 import type { StudyTarget } from './study_target';
 import { flashcardsSavedKey } from './target_storage_keys';
@@ -49,8 +62,16 @@ export type FlashcardCloudUploadPlan = Readonly<{
 }>;
 
 export type FlashcardCloudUploadDeps = Readonly<{
-  writePages: (stableId: string, target: StudyTarget, cardsJson: string) => Promise<number | null>;
+  writePages: (
+    stableId: string,
+    target: StudyTarget,
+    cardsJson: string,
+    preWrite?: FlashcardPagesPreWriteHook,
+  ) => Promise<number | null>;
   readLocks: (knownKeys: Iterable<string>) => Promise<ReadonlySet<string>>;
+  /** 8N, только для тестов: отпечатки/журнал и добавление в локальный список. */
+  preWriteStore?: FlashcardPagesPreWriteStore;
+  mergeLocal?: FlashcardLocalMerge;
 }>;
 
 const DEFAULT_DEPS: FlashcardCloudUploadDeps = {
@@ -91,7 +112,9 @@ export async function uploadFlashcardListsToPages(
   input: FlashcardCloudUploadInput,
 ): Promise<FlashcardCloudUploadPlan | null> {
   const { uid, data, mode, isCurrent } = input;
-  const deps = input.deps ?? DEFAULT_DEPS;
+  // зачем (8N): обёртка подставляет в writePages крючок «объединить с облаком» и хранит
+  // его решение по языку — вызов записи и проверки поколения в цикле остаются прежними.
+  const deps = withPagesPreWrite(input.deps ?? DEFAULT_DEPS, uid);
   const previousSnapshot = mode === 'force' ? EMPTY_SNAPSHOT : input.previousSnapshot;
   const keys = FLASHCARD_CLOUD_KEYS.map(([key]) => key);
   const offloaded = new Set<string>();
@@ -130,6 +153,27 @@ export async function uploadFlashcardListsToPages(
       console.log(`${LOG} ${mode}_flashcards aborted reason=stale_generation stage=write_pages key=${key}`);
       return null;
     }
+    const preWrite = deps.takePreWrite(target);
+    if (preWrite?.kind === 'skip') {
+      // зачем (8N, п.4): страницы прочитаны не с сервера — правды об облаке нет. Ключ ведёт
+      // себя как запертый 8J: ни страниц, ни поля документа, снимок значение не запоминает,
+      // перенос (force) отказывает. Следующий синк попробует снова.
+      offloaded.add(key);
+      lockedNow.add(key);
+      console.log(`${LOG} ${mode === 'force' ? 'force_sync ' : ''}pages_write_skipped key=${key} reason=pre_write_${preWrite.reason} local_len=${String(value).length}`);
+      if (mode === 'force') console.log(`${LOG} force_sync key=${key} decision=pages_unconfirmed result=refuse`);
+      continue;
+    }
+    await finishFlashcardPagesPreWrite({
+      owner: uid,
+      key,
+      target,
+      decision: preWrite,
+      pagesWritten,
+      mode,
+      store: deps.preWriteStore ?? DEFAULT_PRE_WRITE_STORE,
+      mergeLocal: deps.mergeLocal ?? defaultFlashcardLocalMerge,
+    });
     const decision = decideFlashcardDocField(previousSnapshot, key, pagesWritten !== null);
     if (decision !== 'keep_in_doc') {
       offloaded.add(key);
@@ -150,6 +194,46 @@ export async function uploadFlashcardListsToPages(
     }
   }
   return { keys, offloaded, clearDocField, sentToDoc, lockedNow };
+}
+
+/** 8N: зависимости выгрузки + решения крючка «объединить с облаком» по языку. */
+type PreWriteDeps = FlashcardCloudUploadDeps & Readonly<{
+  /** Решение крючка для языка (и сброс). null — крючок не вызывался (страницы не читались). */
+  takePreWrite: (target: StudyTarget) => FlashcardPagesPreWriteDecision | null;
+}>;
+
+/**
+ * Обернуть writePages: каждая запись получает крючок, который по тому же снимку страниц,
+ * что writeFlashcardPages читает ради хвоста, решает «объединить / писать как есть / не писать».
+ * Подменный writePages в тестах крючок может игнорировать — тогда решения нет (как до 8N).
+ */
+function withPagesPreWrite(base: FlashcardCloudUploadDeps, uid: string): PreWriteDeps {
+  const store = base.preWriteStore ?? DEFAULT_PRE_WRITE_STORE;
+  const decisions = new Map<StudyTarget, FlashcardPagesPreWriteDecision>();
+  const keyFor = (target: StudyTarget): string => FLASHCARD_CLOUD_KEYS.find(([, t]) => t === target)?.[0] ?? `target:${target}`;
+  return {
+    ...base,
+    writePages: (stableId, target, cardsJson) => {
+      decisions.delete(target);
+      return base.writePages(stableId, target, cardsJson, async (existing) => {
+        const decision = await decideFlashcardPagesPreWrite({
+          owner: uid,
+          key: keyFor(target),
+          target,
+          localJson: cardsJson,
+          existing,
+          store,
+        });
+        decisions.set(target, decision);
+        return decision.kind === 'write' ? decision.cardsJson : null;
+      });
+    },
+    takePreWrite: (target) => {
+      const decision = decisions.get(target) ?? null;
+      decisions.delete(target);
+      return decision;
+    },
+  };
 }
 
 export type ForceFlashcardUploadFailure = 'pages_timeout' | 'stale_generation' | 'pages_locked' | 'upload_error';

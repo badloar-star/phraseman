@@ -83,16 +83,32 @@ export function flashcardPageDocId(target: StudyTarget, index: number): string {
 }
 
 /**
+ * Account V2, Пакет 8N — решение перед записью страниц по УЖЕ прочитанному снимку подколлекции.
+ * Возвращает JSON-список, который надо записать вместо исходного, или null — не писать вовсе.
+ * Обязан не бросать (бросок = сбой записи; вызывающий тогда считает страницы не записанными).
+ */
+export type FlashcardPagesPreWriteHook = (existing: {
+  empty: boolean;
+  size?: number;
+  metadata?: { fromCache?: unknown } | null;
+  forEach: (cb: (doc: { id: string; data: () => Record<string, unknown> | undefined }) => void) => void;
+}) => Promise<string | null>;
+
+/**
  * Записать полный список карточек одного языка в подколлекцию.
  * Возвращает число записанных страниц, либо null если запись не выполнялась.
  *
  * Лишние страницы прошлой (более длинной) версии удаляются в том же батче —
  * иначе после удаления карточек «хвост» остался бы жить и вернулся при чтении.
+ *
+ * preWrite (8N): получает тот же снимок, что читается ради хвоста, — объединение локального
+ * списка с облаком не стоит ни одного дополнительного чтения Firestore.
  */
 export async function writeFlashcardPages(
   stableId: string,
   target: StudyTarget,
   cardsJson: string,
+  preWrite?: FlashcardPagesPreWriteHook,
 ): Promise<number | null> {
   const db = getFirestore();
   if (!db) return null;
@@ -115,12 +131,28 @@ export async function writeFlashcardPages(
   }
 
   const started = Date.now();
-  const pages = chunkCardsIntoPages(cards);
   const col = db.collection('users').doc(stableId).collection(FLASHCARD_PAGES_COLLECTION);
 
   try {
     // Что уже лежит в облаке — чтобы удалить страницы сверх нового количества.
     const existing = await col.get();
+    // зачем (8N): страницы — общие для всех устройств аккаунта и для серверного слияния 8M.
+    // Вызывающий решает по этому же снимку, что писать (объединение / отказ).
+    if (preWrite) {
+      const finalJson = await preWrite(existing);
+      if (finalJson === null) {
+        // Ранний выход: причина уже залогирована решающим ([FLASHCARD-PAGES] pre_write_merge).
+        DebugLogger.info(LOG, `write skipped target=${target} reason=pre_write_refused`);
+        return null;
+      }
+      const finalCards: unknown = JSON.parse(finalJson);
+      if (!Array.isArray(finalCards)) {
+        DebugLogger.warn(LOG, `write skipped target=${target} reason=pre_write_not_array`);
+        return null;
+      }
+      cards = finalCards;
+    }
+    const pages = chunkCardsIntoPages(cards);
     const stalePrefix = `${target}_`;
     const staleDocs: string[] = [];
     existing.forEach((doc: { id: string }) => {

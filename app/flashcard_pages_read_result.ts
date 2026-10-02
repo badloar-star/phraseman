@@ -26,6 +26,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { FLASHCARD_PAGES_COLLECTION } from './flashcards_cloud_pages';
+import { readCardDeletionJournal } from './flashcards/card_deletion_journal';
 import { rnfbInstance } from './rnfb_modular';
 import type { StudyTarget } from './study_target';
 
@@ -328,6 +329,312 @@ export async function unlockFlashcardPagesWrite(key: string, reason: string): Pr
 /** Только для тестов: сбросить запасную копию замка в памяти. */
 export function __resetFlashcardPagesWriteLockMemoryForTests(): void {
   memoryFallbackLocks.clear();
+}
+
+// ── Слияние перед записью страниц (8N) ─────────────────────────────────────────
+
+/**
+ * Account V2, Пакет 8N — объединить локальный список карточек с текущими страницами
+ * flashcard_pages ПЕРЕД их заменой.
+ *
+ * зачем: writeFlashcardPages заменяет страницы ключа целиком локальным списком. После
+ * серверного слияния 8M в страницах победителя лежат карточки проигравшего; любое
+ * устройство, у которого их нет локально (другое устройство; устройство входа, если
+ * restore пошёл sticky-веткой без чтения страниц), при первом же изменении списка
+ * стёрло бы их из облака. То же для любого второго устройства одного аккаунта:
+ * страницы были «последний записавший побеждает».
+ *
+ * Как решаем (без единого лишнего чтения Firestore):
+ *   - снимок страниц берётся из того же col.get(), который writeFlashcardPages и так
+ *     делает ради удаления хвоста;
+ *   - объединяем ТОЛЬКО когда облако изменил кто-то другой: в AsyncStorage хранится
+ *     отпечаток (длина + хеш) списка, который ЭТО устройство последним записало для
+ *     аккаунта. Совпал с облаком → в страницах ровно наша прошлая запись, объединять
+ *     нечего, и локальные удаления уходят в облако как раньше. Не совпал (сервер 8M,
+ *     другое устройство, первый запуск после обновления) → облако ∪ локальное − журнал
+ *     удалений 7D, а пришедшие из облака карточки кладутся и в локальный список.
+ *   - зачем отпечаток, а не identityMergedAt из документа: синк документ не читает
+ *     (отдельное чтение = +1 на каждый такт), а отпечаток ловит и слияние 8M, и второе
+ *     устройство, и sticky-restore — по уже прочитанным страницам, бесплатно.
+ *   - страницы прочитаны не с сервера (кэш/без метаданных/все битые) → НЕ пишем: правды
+ *     нет, запись затёрла бы хвост (как замок 8J).
+ *
+ * Технический долг (принят пакетом, «безопаснее потери»): удаление без журнала на ЭТОМ
+ * телефоне (сбой журнала) и удаление, сделанное на ДРУГОМ устройстве (его журнал живёт
+ * там), могут «воскреснуть», если это устройство объединит раньше, чем узнает об удалении.
+ * При включённом Account V2 такие карточки убирает гидрация надгробий 7D.
+ *
+ * Логи: префикс [FLASHCARD-PAGES], без uid и без содержимого карточек (только числа).
+ */
+
+/** Локальный ключ отпечатков. НЕ входит в SYNC_KEYS: принадлежит устройству. */
+export const FLASHCARD_PAGES_WRITE_FINGERPRINT_KEY = 'flashcard_pages_write_fingerprint_v1';
+
+export type FlashcardPagesPreWriteDecision =
+  | Readonly<{
+    kind: 'write';
+    cardsJson: string;
+    merged: boolean;
+    addedFromRemote: readonly unknown[];
+    /** Отпечаток того, что будет лежать в страницах после записи. */
+    fingerprint: string;
+  }>
+  | Readonly<{ kind: 'skip'; reason: string }>;
+
+export type FlashcardPagesPreWriteStore = Readonly<{
+  readFingerprint: (owner: string, key: string) => Promise<string | null>;
+  writeFingerprint: (owner: string, key: string, fingerprint: string) => Promise<boolean>;
+  readDeletedIds: (target: StudyTarget) => Promise<ReadonlySet<string>>;
+}>;
+
+/** Добавить карточки в локальный список (через очередь записи хука). Число добавленных; -1 — не вышло. */
+export type FlashcardLocalMerge = (target: StudyTarget, cards: readonly unknown[]) => Promise<number>;
+
+// ── Отпечаток ──────────────────────────────────────────────────────────────────
+
+/** Длина + FNV-1a 32 бит. Не криптография: только «то же ли это, что мы записали». */
+export function fingerprintCardsJson(json: string): string {
+  let hash = 0x811c9dc5;
+  for (let index = 0; index < json.length; index += 1) {
+    hash ^= json.charCodeAt(index);
+    hash = Math.imul(hash, 0x01000193) >>> 0;
+  }
+  return `${json.length}:${hash.toString(16)}`;
+}
+
+type FingerprintRecord = { owner: string; keys: Record<string, string> };
+
+function parseFingerprintRecord(raw: string | null): FingerprintRecord | null {
+  if (!raw) return null;
+  const parsed: unknown = JSON.parse(raw);
+  const owner = (parsed as { owner?: unknown } | null)?.owner;
+  const keys = (parsed as { keys?: unknown } | null)?.keys;
+  if (typeof owner !== 'string' || !keys || typeof keys !== 'object' || Array.isArray(keys)) return null;
+  const clean: Record<string, string> = {};
+  for (const [key, value] of Object.entries(keys as Record<string, unknown>)) {
+    if (typeof value === 'string') clean[key] = value;
+  }
+  return { owner, keys: clean };
+}
+
+async function readFingerprint(owner: string, key: string): Promise<string | null> {
+  try {
+    const record = parseFingerprintRecord(await AsyncStorage.getItem(FLASHCARD_PAGES_WRITE_FINGERPRINT_KEY));
+    // зачем: отпечаток чужого аккаунта ничего не говорит о наших страницах → как «нет отпечатка».
+    if (!record || record.owner !== owner) return null;
+    return record.keys[key] ?? null;
+  } catch (error) {
+    // Нет отпечатка → объединим (безопасная сторона), причину пишем.
+    console.warn(`${LOG} fingerprint read_failed key=${key} reason=${String(error).slice(0, 80)}`);
+    return null;
+  }
+}
+
+async function writeFingerprint(owner: string, key: string, fingerprint: string): Promise<boolean> {
+  try {
+    let record: FingerprintRecord | null = null;
+    try {
+      record = parseFingerprintRecord(await AsyncStorage.getItem(FLASHCARD_PAGES_WRITE_FINGERPRINT_KEY));
+    } catch (error) {
+      // Битое значение перезаписываем целиком (самопочинка), причину пишем.
+      console.warn(`${LOG} fingerprint value_unparsable key=${key} reason=${String(error).slice(0, 80)}`);
+    }
+    const keys = record && record.owner === owner ? { ...record.keys, [key]: fingerprint } : { [key]: fingerprint };
+    await AsyncStorage.setItem(FLASHCARD_PAGES_WRITE_FINGERPRINT_KEY, JSON.stringify({ owner, keys }));
+    return true;
+  } catch (error) {
+    // Отпечаток не сохранился → следующая запись просто объединит ещё раз (безопасно).
+    console.warn(`${LOG} fingerprint write_failed key=${key} reason=${String(error).slice(0, 80)}`);
+    return false;
+  }
+}
+
+/** id карточек, явно удалённых на этом телефоне (журнал 7D), для языка — как restore 8J. */
+async function readDeletedIds(target: StudyTarget): Promise<ReadonlySet<string>> {
+  const journal = await readCardDeletionJournal();
+  if (!journal) return new Set();
+  const prefix = `${target}:saved:`;
+  const ids = new Set<string>();
+  for (const entryKey of journal.keys()) {
+    if (entryKey.startsWith(prefix)) ids.add(entryKey.slice(prefix.length));
+  }
+  return ids;
+}
+
+export const DEFAULT_PRE_WRITE_STORE: FlashcardPagesPreWriteStore = {
+  readFingerprint,
+  writeFingerprint,
+  readDeletedIds,
+};
+
+/** Добавить облачные карточки в локальный список через хук (кэш + очередь записи, без спиннеров). */
+export const defaultFlashcardLocalMerge: FlashcardLocalMerge = async (target, cards) => {
+  // зачем require: хук тянет UI-зависимости; синк грузит его только когда есть что добавить.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const store = require('../hooks/use-flashcards') as typeof import('../hooks/use-flashcards');
+  return store.mergeSavedFlashcardsFromAccountsV2(target, cards as unknown as import('../hooks/use-flashcards').Flashcard[]);
+};
+
+// ── Снимок страниц одного языка ────────────────────────────────────────────────
+
+type PagesDoc = { id: string; data: () => Record<string, unknown> | undefined };
+
+/**
+ * col.get() читает ВСЮ подколлекцию (оба языка). Оставляем страницы языка так же, как
+ * сервер 8M (pageBelongsToTarget): поле target, а без поля — префикс id.
+ */
+export function filterPagesSnapshotForTarget(
+  existing: FlashcardPagesSnapshotLike,
+  target: StudyTarget,
+): FlashcardPagesSnapshotLike {
+  const docs: PagesDoc[] = [];
+  existing.forEach((doc) => {
+    const pageTarget = doc.data()?.target;
+    if (pageTarget === target || (pageTarget === undefined && doc.id.startsWith(`${target}_`))) docs.push(doc);
+  });
+  return {
+    empty: docs.length === 0,
+    size: docs.length,
+    metadata: existing.metadata,
+    forEach: (cb) => docs.forEach(cb),
+  };
+}
+
+function countCards(json: string): number {
+  try {
+    const parsed: unknown = JSON.parse(json);
+    return Array.isArray(parsed) ? parsed.length : -1;
+  } catch (error) {
+    console.warn(`${LOG} pre_write_merge count_unparsable reason=${String(error).slice(0, 80)}`);
+    return -1;
+  }
+}
+
+function normalizedJson(json: string): string {
+  return JSON.stringify(JSON.parse(json));
+}
+
+export type PreWriteInput = Readonly<{
+  owner: string;
+  key: string;
+  target: StudyTarget;
+  localJson: string;
+  existing: FlashcardPagesSnapshotLike;
+  store: FlashcardPagesPreWriteStore;
+}>;
+
+/**
+ * Решить, что писать в страницы ключа. Никогда не бросает: сбой → skip (не писать).
+ */
+export async function decideFlashcardPagesPreWrite(input: PreWriteInput): Promise<FlashcardPagesPreWriteDecision> {
+  const { owner, key, target, localJson, existing, store } = input;
+  try {
+    const local = countCards(localJson);
+    const read = classifyFlashcardPagesSnapshot(filterPagesSnapshotForTarget(existing, target));
+    if (read.status === 'error') {
+      console.log(`${LOG} pre_write_merge key=${key} local=${local} remote=unknown added_from_remote=0 dropped_by_journal=0 decision=skip_write reason=read_${read.code} from=${read.from}`);
+      return { kind: 'skip', reason: `read_${read.code}` };
+    }
+    const localNormalized = normalizedJson(localJson);
+    if (read.status === 'empty') {
+      console.log(`${LOG} pre_write_merge key=${key} local=${local} remote=0 added_from_remote=0 dropped_by_journal=0 decision=local reason=remote_empty`);
+      return { kind: 'write', cardsJson: localNormalized, merged: false, addedFromRemote: [], fingerprint: fingerprintCardsJson(localNormalized) };
+    }
+    const remoteFingerprint = fingerprintCardsJson(read.value);
+    const lastWritten = await store.readFingerprint(owner, key);
+    if (lastWritten === remoteFingerprint) {
+      // В облаке ровно наша прошлая запись: объединять нечего, локальные удаления уходят как раньше.
+      console.log(`${LOG} pre_write_merge key=${key} local=${local} remote=${read.cards} added_from_remote=0 dropped_by_journal=0 decision=local reason=remote_is_own_last_write`);
+      return { kind: 'write', cardsJson: localNormalized, merged: false, addedFromRemote: [], fingerprint: fingerprintCardsJson(localNormalized) };
+    }
+    const deletedIds = await store.readDeletedIds(target);
+    const merge = mergeLockedFlashcardsWithPages(localNormalized, read.value, deletedIds);
+    if (merge.localUnparsable) {
+      // Ранний выход: без локального списка объединение отдало бы одно облако — не пишем.
+      console.log(`${LOG} pre_write_merge key=${key} local=${local} remote=${read.cards} added_from_remote=0 dropped_by_journal=${merge.deletedSkipped} decision=skip_write reason=local_unparsable`);
+      return { kind: 'skip', reason: 'local_unparsable' };
+    }
+    const localIds = new Set((JSON.parse(localNormalized) as unknown[]).map(cardIdentity));
+    const addedFromRemote = (JSON.parse(merge.value) as unknown[]).filter((card) => !localIds.has(cardIdentity(card)));
+    // Ничего не пришло из облака → пишем локальное как есть (порядок списка не меняется).
+    const cardsJson = addedFromRemote.length > 0 ? merge.value : localNormalized;
+    console.log(`${LOG} pre_write_merge key=${key} local=${local} remote=${read.cards} added_from_remote=${addedFromRemote.length} dropped_by_journal=${merge.deletedSkipped} decision=${addedFromRemote.length > 0 ? 'merged' : 'local'} reason=${lastWritten === null ? 'no_own_fingerprint' : 'remote_changed_elsewhere'}`);
+    return {
+      kind: 'write',
+      cardsJson,
+      merged: addedFromRemote.length > 0,
+      addedFromRemote,
+      fingerprint: fingerprintCardsJson(cardsJson),
+    };
+  } catch (error) {
+    console.warn(`${LOG} pre_write_merge key=${key} decision=skip_write reason=decide_error error=${String(error).slice(0, 120)}`);
+    return { kind: 'skip', reason: 'decide_error' };
+  }
+}
+
+// ── После записи ───────────────────────────────────────────────────────────────
+
+export type PreWriteFinishInput = Readonly<{
+  owner: string;
+  key: string;
+  target: StudyTarget;
+  decision: FlashcardPagesPreWriteDecision | null;
+  pagesWritten: number | null;
+  /** force (перенос/выход): локальное вот-вот сотрут, а очередь хука ждёт смену аккаунта. */
+  mode: 'sync' | 'force';
+  store: FlashcardPagesPreWriteStore;
+  mergeLocal: FlashcardLocalMerge;
+}>;
+
+/**
+ * Страницы записаны → облачные карточки в локальный список, затем отпечаток.
+ *
+ * зачем порядок: отпечаток говорит «в облаке ровно наше». Если сохранить его, а локальное
+ * не дописалось, следующий синк счёл бы облако своим и записал бы локальный список без
+ * этих карточек — та самая потеря. Поэтому отпечаток — только после удачного локального шага.
+ */
+export async function finishFlashcardPagesPreWrite(input: PreWriteFinishInput): Promise<void> {
+  const { owner, key, target, decision, pagesWritten, mode, store, mergeLocal } = input;
+  if (!decision || decision.kind !== 'write') return;
+  if (pagesWritten === null) {
+    console.log(`${LOG} pre_write_merge_finish key=${key} result=pages_not_written fingerprint=not_saved`);
+    return;
+  }
+  if (mode === 'force') {
+    // Ранний выход: локальное при переносе не трогаем, отпечаток не сохраняем —
+    // следующий обычный синк этого аккаунта (если он будет) объединит заново.
+    console.log(`${LOG} pre_write_merge_finish key=${key} result=force_skip_local added_from_remote=${decision.addedFromRemote.length} fingerprint=not_saved`);
+    return;
+  }
+  if (decision.addedFromRemote.length > 0) {
+    const valid = decision.addedFromRemote.filter((card) => {
+      const shape = card as { id?: unknown; en?: unknown } | null;
+      return typeof shape?.id === 'string' && typeof shape.en === 'string';
+    });
+    let added = -1;
+    try {
+      added = valid.length > 0 ? await mergeLocal(target, valid) : 0;
+    } catch (error) {
+      console.warn(`${LOG} pre_write_merge_finish key=${key} result=local_merge_error error=${String(error).slice(0, 120)} fingerprint=not_saved`);
+      return;
+    }
+    if (added < 0) {
+      console.warn(`${LOG} pre_write_merge_finish key=${key} result=local_merge_failed fingerprint=not_saved`);
+      return;
+    }
+    console.log(`${LOG} pre_write_merge_finish key=${key} local_added=${added} remote_new=${decision.addedFromRemote.length} invalid_shape=${decision.addedFromRemote.length - valid.length}`);
+    // зачем (ревью 8N, C1): локально отброшенная карточка (дубль по фразе с другим id или
+    // неверная форма) осталась в страницах, но не в локальном списке. Сохрани мы отпечаток —
+    // следующий синк счёл бы облако «нашим» и записал локальный список без неё: тихая потеря
+    // перевода/контекста/прогресса. Без отпечатка следующий синк снова объединит — карточка живёт.
+    const droppedLocally = decision.addedFromRemote.length - added;
+    if (droppedLocally > 0) {
+      console.warn(`${LOG} pre_write_merge_finish key=${key} result=ok fingerprint=not_saved reason=local_dedup_dropped=${droppedLocally}`);
+      return;
+    }
+  }
+  const saved = await store.writeFingerprint(owner, key, decision.fingerprint);
+  console.log(`${LOG} pre_write_merge_finish key=${key} result=ok merged=${decision.merged} fingerprint=${saved ? 'saved' : 'not_saved'}`);
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

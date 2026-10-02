@@ -4,6 +4,15 @@ import * as Crypto from 'expo-crypto';
 
 import { isUnreadableDatabaseFailure, openPhoneStateDatabase, recreatePhoneStateDatabaseAfterUnreadable } from '../modules/phone-state/database';
 import { coldStartStep } from './cold_start_trace'; // зачем: §80 — метки [COLD-START] шагов открытия
+import Constants from 'expo-constants';
+import { getInstalledAppVersion } from './app_version';
+import {
+  DEFERRED_INTEGRITY_BUSY_RETRY_MS,
+  DEFERRED_INTEGRITY_DELAY_MS,
+  clearIntegrityResetFlag,
+  isIntegrityResetPending,
+  runDeferredIntegrityCheck,
+} from '../modules/phone-state/deferred_integrity';
 import { withKeyedExclusiveTransaction } from '../modules/phone-state/keyed_exclusive_transaction';
 import { migratePhoneStateSchema } from '../modules/phone-state/schema';
 import { createReducerRegistry, type DomainReducer } from '../modules/phone-state/reducer_registry';
@@ -78,6 +87,9 @@ import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зач
 
 const DEVICE_ID_PATTERN = /^[A-Za-z0-9_-]{16,80}$/;
 let installed = false;
+// зачем (§84): фоновая проверка целостности идёт по ТЕКУЩЕЙ открытой сессии; закрытие сессии
+// (смена аккаунта, удаление) обнуляет ссылку, и запланированная проверка тихо не стартует.
+let activeRuntimeSession: RuntimeSession | null = null;
 
 type RuntimeSession = PhoneStateBootstrapSession & Readonly<{
   database: Awaited<ReturnType<typeof openPhoneStateDatabase>>;
@@ -310,7 +322,16 @@ async function openRuntimeSession(
 ): Promise<RuntimeSession> {
   const scope = { stableUid: context.stableUid, accountGeneration: context.lineage } as const;
   const endDb = coldStartStep('phone_state.db_open', 'phone_state_runtime');
-  let database = await openPhoneStateDatabase(scope);
+  // зачем (§84, Q118): фоновая проверка нашла порчу на прошлом запуске → пересоздаём ДО открытия
+  // (путь §75: данные вернут локальное хранилище и облако). Флаг снимаем только после успеха.
+  const integrityResetPending = await isIntegrityResetPending(AsyncStorage, scope);
+  let database = integrityResetPending
+    ? await recreatePhoneStateDatabaseAfterUnreadable(scope)
+    : await openPhoneStateDatabase(scope);
+  if (integrityResetPending) {
+    console.warn('[PHONE-STATE-DB] deferred_integrity:reset_on_open — база пересоздана по флагу прошлого запуска');
+    await clearIntegrityResetFlag(AsyncStorage, scope);
+  }
   endDb();
   try {
     const endMigrate = coldStartStep('phone_state.schema_migrate', 'phone_state_runtime');
@@ -364,6 +385,7 @@ async function openRuntimeSession(
       close: async () => {
         if (closed) return;
         closed = true;
+        if (activeRuntimeSession === session) activeRuntimeSession = null;
         configurePhoneStateShadowRuntime(null);
         configurePhoneStatePreferenceBridge(null);
         configurePhoneStateCardsBridge(null);
@@ -379,11 +401,56 @@ async function openRuntimeSession(
         await database.closeAsync();
       },
     };
-    return Object.freeze(session);
+    const frozen = Object.freeze(session);
+    activeRuntimeSession = frozen;
+    return frozen;
   } catch (error) {
     await database.closeAsync().catch(noteSwallowedAs('phone_state_runtime:promise_1', undefined));
     throw error;
   }
+}
+
+/**
+ * Запланировать фоновую полную проверку целостности (§84, Q118).
+ * Через DEFERRED_INTEGRITY_DELAY_MS после вызова (зовётся после bootstrap, который сам ждёт кадра
+ * Главной → ≥30 с после него); пока человек в уроке/тренировке (isBusy) — откладывается на минуту.
+ * Возвращает отмену. Никогда не бросает: итог и причины — в логах deferred_integrity:*.
+ */
+export function schedulePhoneStateDeferredIntegrityCheck(
+  isBusy: () => string | null,
+  delayMs: number = DEFERRED_INTEGRITY_DELAY_MS,
+): () => void {
+  let cancelled = false;
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  const attempt = (): void => {
+    timer = null;
+    if (cancelled) return;
+    const session = activeRuntimeSession;
+    if (!session) {
+      console.log('[PHONE-STATE-DB] deferred_integrity:skip — нет открытой сессии');
+      return;
+    }
+    const busyRoute = isBusy();
+    if (busyRoute) {
+      console.log(`[PHONE-STATE-DB] deferred_integrity:busy route=${busyRoute} — повтор через ${DEFERRED_INTEGRITY_BUSY_RETRY_MS}мс`);
+      timer = setTimeout(attempt, DEFERRED_INTEGRITY_BUSY_RETRY_MS);
+      return;
+    }
+    void runDeferredIntegrityCheck({
+      database: session.database,
+      scope: { stableUid: session.context.stableUid, accountGeneration: session.context.lineage },
+      storage: AsyncStorage,
+      appVersion: getInstalledAppVersion(Constants),
+    }).then((outcome) => {
+      console.log(`[PHONE-STATE-DB] deferred_integrity:result ${outcome}`);
+    }).catch(noteSwallowedHandler('phone_state_runtime:deferred_integrity'));
+  };
+  console.log(`[PHONE-STATE-DB] deferred_integrity:scheduled через ${delayMs}мс`);
+  timer = setTimeout(attempt, delayMs);
+  return () => {
+    cancelled = true;
+    if (timer) clearTimeout(timer);
+  };
 }
 
 export function installPhoneStateProductionRuntime(): void {

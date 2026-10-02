@@ -181,24 +181,12 @@ async function openEncrypted(
     ) {
       throw new Error('phone_state_sqlcipher_unavailable');
     }
-    const integrityErrors = await database.getAllAsync<{ cipher_integrity_check: string }>(
-      'PRAGMA cipher_integrity_check',
-    );
-    console.log(`[PHONE-STATE-DB] open:step 4/5 integrity rows=${integrityErrors.length} ${timing('4')}`);
-    if (integrityErrors.length > 0) {
-      // зачем (баг 02.10, «Дизайн»: integrity rows=52 и на холодном старте, recover пропускает —
-      // подпись не NOTADB): по одному числу строк нельзя понять, что это — порча страниц, чужой
-      // ключ/HMAC или служебные сообщения. Печатаем сами строки (только служебный текст SQLCipher
-      // о страницах, без пользовательских данных) — диагноз по фактам, не по догадке.
-      console.warn('[PHONE-STATE-DB] open:integrity_rows', JSON.stringify({
-        total: integrityErrors.length,
-        first: integrityErrors.slice(0, 5).map((row) => String(row?.cipher_integrity_check ?? JSON.stringify(row)).slice(0, 200)),
-        last: String(integrityErrors[integrityErrors.length - 1]?.cipher_integrity_check ?? '').slice(0, 200),
-      }));
-      const keyMismatch = isWholeFileKeyMismatch(integrityErrors);
-      console.warn(`[PHONE-STATE-DB] open:integrity_verdict keyMismatch=${keyMismatch} rows=${integrityErrors.length}`);
-      throw new Error(keyMismatch ? 'phone_state_cipher_key_mismatch' : 'phone_state_cipher_integrity_failed');
-    }
+    // зачем (§84, Q118, 02.10): полная `PRAGMA cipher_integrity_check` читала КАЖДУЮ страницу —
+    // 2,4 с из 7,95 с холодного открытия (трасса «Дизайна»). Теперь она отложена в фон
+    // (deferred_integrity.ts: ≥30 с после кадра Главной, раз в сутки и при смене версии; порча →
+    // флаг → пересоздание до открытия на следующем старте). Чужой ключ здесь по-прежнему ловят
+    // чтение sqlite_master ниже (NOTADB) и проба записи через WAL.
+    console.log(`[PHONE-STATE-DB] open:step 4/5 полная проверка целостности отложена в фон ${timing('4')}`);
     /**
      * Ранняя диагностика (инцидент 2026-09-13 19:32): прагмы выше дают ложный
      * успех на файле под чужим ключом, а чтение sqlite_master вскрывает хотя бы

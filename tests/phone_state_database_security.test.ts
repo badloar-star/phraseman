@@ -325,7 +325,7 @@ describe('phone-state SQLCipher database opener', () => {
       `open:${databaseName}`,
       `exec:PRAGMA key = "x'${VALID_KEY}'"`,
       'get:PRAGMA cipher_version',
-      'all:PRAGMA cipher_integrity_check',
+      // §84 (Q118): полная проверка целостности на старте НЕ идёт — она в фоне (deferred_integrity).
       'get:SELECT count(*) AS tables FROM sqlite_master',
       'get:PRAGMA user_version',
       'exec:PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON; PRAGMA busy_timeout = 5000;',
@@ -489,30 +489,20 @@ describe('phone-state SQLCipher database opener', () => {
     },
   );
 
-  // зачем (02.10, §75 координатора — блокер релиза): база с ошибкой целостности (чужой ключ —
-  // HMAC на всех страницах, или частичная порча) больше не падает на каждом запуске: закрывается
-  // один раз, удаляется и пересоздаётся под текущим ключом (данные — из хранилища и облака).
-  test.each([
-    ['чужой ключ: HMAC на всех страницах', [1, 2, 3].map((page) => `HMAC verification failed for page ${page}`)],
-    ['частичная порча', ['HMAC verification failed for page 3']],
-  ])('%s — база закрывается один раз и пересоздаётся', async (_label, integrityRows) => {
+  // зачем (02.10, §84 / Q118): полная проверка целостности (2,4 с на эмуляторе) ушла с холодного
+  // старта в фон. Чужой ключ на старте по-прежнему ловит чтение sqlite_master (NOTADB → пересоздание,
+  // тест «нерасшифровываемый файл…» выше); порчу страниц — deferred_integrity (свой тест).
+  test('открытие не запускает полную cipher_integrity_check', async () => {
     await seedStoredKey();
-    const databaseName = `phone-state-v1-${sha256(SCOPE.stableUid).slice(0, 32)}-3.db`;
-    const broken = makeDatabase();
-    broken.getAllAsync.mockResolvedValueOnce(integrityRows.map((row) => ({ cipher_integrity_check: row })));
-    const healthy = makeDatabase();
-    (SQLite.openDatabaseAsync as jest.Mock)
-      .mockResolvedValueOnce(broken)
-      .mockResolvedValueOnce(healthy);
+    const db = makeDatabase();
+    (SQLite.openDatabaseAsync as jest.Mock).mockResolvedValueOnce(db);
 
-    const result = await openPhoneStateDatabase(SCOPE);
+    await openPhoneStateDatabase(SCOPE);
 
-    expect(broken.closeAsync).toHaveBeenCalledTimes(1);
-    expect(SQLite.deleteDatabaseAsync).toHaveBeenCalledWith(databaseName);
-    expect(result).toBe(healthy);
+    expect(db.getAllAsync).not.toHaveBeenCalledWith('PRAGMA cipher_integrity_check');
   });
 
-  test.each(['key', 'cipher version query', 'integrity query', 'configuration'] as const)(
+  test.each(['key', 'cipher version query', 'configuration'] as const)(
     '%s failure closes once and rethrows the original error',
     async (failurePoint) => {
       await seedStoredKey();
@@ -522,8 +512,6 @@ describe('phone-state SQLCipher database opener', () => {
         db.execAsync.mockRejectedValueOnce(original);
       } else if (failurePoint === 'cipher version query') {
         db.getFirstAsync.mockRejectedValueOnce(original);
-      } else if (failurePoint === 'integrity query') {
-        db.getAllAsync.mockRejectedValueOnce(original);
       } else {
         db.execAsync.mockResolvedValueOnce(undefined).mockRejectedValueOnce(original);
       }

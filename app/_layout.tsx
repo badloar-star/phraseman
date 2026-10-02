@@ -192,6 +192,7 @@ import { primeRemoteConfigCacheFromStorage } from './remote_config_client';
 import { ensurePhoneStateSyncLifecycleInstalled } from './phone_state_sync_lifecycle';
 import { bootstrapPhoneState } from './phone_state_bootstrap';
 import { installPhoneStateProductionRuntime } from './phone_state_runtime';
+import { schedulePhoneStateDeferredIntegrityCheck } from './phone_state_runtime'; // зачем: §84 — фоновая проверка целостности
 import { coldStartMark } from './cold_start_trace'; // зачем: §80 — [COLD-START] от старта процесса
 import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from './cloud_restore_coordinator';
 import { hasMeaningfulLocalAccountData } from './local_account_data';
@@ -396,6 +397,15 @@ const FIRST_CONTENT_READY_FALLBACK_MS = 400;
 const HOME_SCREEN_READY_FALLBACK_MS = 550;
 /** Потолок ожидания кадра Главной перед bootstrap phone-state (см. homePaintedForPhoneState). */
 const PHONE_STATE_BOOTSTRAP_FALLBACK_MS = 8_000;
+/**
+ * зачем (§84, Q118): фоновая проверка целостности базы не идёт во время урока/тренировки/экзамена —
+ * она держит соединение базы ~1–2 с. Возвращает маршрут-причину занятости (для лога) или null.
+ */
+const PHONE_STATE_BUSY_ROUTE_RE = /(lesson|session|exam|diagnostic|swipe|blitz|recall|speaking|spire|dialogue|quiz|practice|train)/i;
+function phoneStateBusyRoute(path: string | null | undefined): string | null {
+  const value = String(path ?? '');
+  return PHONE_STATE_BUSY_ROUTE_RE.test(value) ? value : null;
+}
 /** Жёсткий потолок: дольше этого стартовая цепочка не имеет права держать сплеш.
  * зачем (владелец, 2026-09-14): здоровый старт по замеру — ~2.1 с от загрузки
  * модуля до скрытия сплеша. Работа не отменяется — снимается только право
@@ -1172,6 +1182,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     const token = accountGeneration;
     let cancelled = false;
     let uninstallSync: (() => void) | undefined;
+    let cancelDeferredIntegrity: (() => void) | undefined;
     const bootstrapStartedAtMs = Date.now();
     console.log(`[FC-TRAIN-ENTRY] bootstrap:start stableId=${token.stableId} generation=${token.generation}`);
     coldStartMark('fc_train_entry.bootstrap:start', '_layout', { generation: token.generation });
@@ -1202,10 +1213,14 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         uninstallSync = ensurePhoneStateSyncLifecycleInstalled({
           stableUid: token.stableId!,
         });
+        cancelDeferredIntegrity = schedulePhoneStateDeferredIntegrityCheck(
+          () => phoneStateBusyRoute(pathnameRef.current),
+        );
       });
     return () => {
       cancelled = true;
       uninstallSync?.();
+      cancelDeferredIntegrity?.();
     };
   }, [accountGeneration, firstContentReady, homePaintedForPhoneState, ready]);
 

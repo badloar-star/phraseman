@@ -3952,6 +3952,78 @@ export async function restoreAndMigrateFromCloud(): Promise<boolean> {
   return attempt.applied;
 }
 
+/**
+ * Account V2, Пакет 8I — сброс клиентских ключей снимка синхронизации после затирания 8G.
+ *
+ * зачем: doSyncToCloud шлёт только разницу против cloud_last_sync_snapshot_v1. Снимок помнит,
+ * что карточки/библиотека «уже в облаке», хотя дефект 8G их стёр, — и они не уехали бы, пока
+ * человек сам их не изменит. Убираем из снимка только КЛИЕНТСКИЕ ключи, которых в облачном
+ * progress нет: следующий обычный синк переотправит ровно их. Серверные ключи не трогаем —
+ * клиент их не пишет (их вернёт progressReseedMissing).
+ */
+async function resetWipedClientKeysInLastSyncSnapshot(
+  cloudProgress: Readonly<Record<string, unknown>>,
+  isCurrent: () => boolean,
+): Promise<number | null> {
+  const raw = await AsyncStorage.getItem(LAST_SYNC_SNAPSHOT_KEY);
+  // зачем (ревью 8I): пока читали снимок, мог смениться аккаунт — тогда снимок уже чужой, не пишем.
+  if (!isCurrent()) {
+    console.log('[PROGRESS-RESEED] skip reason=stale_account_generation stage=snapshot_reset');
+    return null;
+  }
+  if (!raw) return 0;
+  const parsed: unknown = JSON.parse(raw);
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return 0;
+  const next: Record<string, unknown> = {};
+  let removed = 0;
+  for (const [key, value] of Object.entries(parsed as Record<string, unknown>)) {
+    if (!isServerOwnedProgressKey(key) && !Object.prototype.hasOwnProperty.call(cloudProgress, key)) {
+      removed += 1;
+      continue;
+    }
+    next[key] = value;
+  }
+  if (removed > 0) await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(next));
+  return removed;
+}
+
+/**
+ * Account V2, Пакет 8I — после restore: признак затирания 8G → один вызов дозаливки.
+ * Локальная часть (проверка + сброс снимка) ждётся, сетевой вызов — нет: restore и первый кадр
+ * не ждут сервер. Ошибки не роняют restore, причина — в логе [PROGRESS-RESEED] (без uid).
+ */
+async function maybeReseedWipedProgressAfterRestore(
+  root: Readonly<Record<string, unknown>>,
+  stableId: string,
+  isCurrent: () => boolean,
+): Promise<'skipped' | 'reseed_started'> {
+  if (root.progressServerAuthoritative !== true) {
+    console.log(`[PROGRESS-RESEED] skip reason=not_authoritative flag=${String(root.progressServerAuthoritative)}`);
+    return 'skipped';
+  }
+  if (phoneStateOwnsCoreProgress(stableId)) {
+    console.log('[PROGRESS-RESEED] skip reason=phone_state_owns_core');
+    return 'skipped';
+  }
+  const cloudProgress = root.progress && typeof root.progress === 'object' && !Array.isArray(root.progress)
+    ? root.progress as Record<string, unknown>
+    : {};
+  const progressEventsClient = await import('./progress_events_client');
+  const need = await progressEventsClient.detectProgressReseedNeed(stableId, cloudProgress);
+  if (!need) return 'skipped';
+  if (!isCurrent()) {
+    console.log('[PROGRESS-RESEED] skip reason=stale_account_generation');
+    return 'skipped';
+  }
+  const removed = await resetWipedClientKeysInLastSyncSnapshot(cloudProgress, isCurrent);
+  if (removed === null) return 'skipped';
+  console.log(`[PROGRESS-RESEED] client_snapshot_reset removed_keys=${removed}`);
+  void progressEventsClient.submitProgressReseed(stableId, need.snapshot).catch((error: unknown) => {
+    console.warn(`[PROGRESS-RESEED] submit_unexpected_error reason=${String(error).slice(0, 160)}`);
+  });
+  return 'reseed_started';
+}
+
 async function restoreAndMigrateFromCloudResult(
   syncMissingDocument: boolean,
   options: CloudRestoreOptions = {},
@@ -4007,6 +4079,14 @@ async function restoreAndMigrateFromCloudResult(
         : undefined, accountGeneration)
     ));
     if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
+    // зачем (Account V2, 8I): затёртый 8G облачный progress дозаливается один раз с телефона.
+    // Fail-soft: дозаливка никогда не роняет restore.
+    try {
+      await maybeReseedWipedProgressAfterRestore(doc.data() ?? {}, uid, isCurrent);
+    } catch (error) {
+      console.warn(`[PROGRESS-RESEED] restore_hook_failed reason=${String(error).slice(0, 160)}`);
+    }
+    if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
     for (const target of SYNC_STUDY_TARGETS) {
       await restoreMistakePracticeEvents({ accountScope: uid, studyTarget: target });
       if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
@@ -4049,6 +4129,7 @@ export async function restoreFromCloudDetailed(options: CloudRestoreOptions = {}
 }
 
 export const __cloudSyncTestHooks = {
+  maybeReseedWipedProgressAfterRestore,
   adoptAuthoritativeStableIdentity,
   classifyCloudAccessFailure,
   cloudRestoreFailureForStableLink,

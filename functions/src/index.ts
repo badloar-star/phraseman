@@ -278,6 +278,12 @@ const {
   progressSubmitEvent,
   progressMigrateSnapshot,
 } = require("./progress_events");
+// зачем (Account V2, Пакет 8I): дозаливка progress, затёртого дефектом 8G, — пишет только
+// отсутствующие в облаке ключи, раз в сутки на аккаунт. Выкладка — координатор.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const {
+  progressReseedMissing,
+} = require("./progress_reseed_missing");
 // Learning V2 uploads one immutable completion packet only after the local
 // session is over. The active lesson never calls this endpoint.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -387,6 +393,7 @@ exports.submitExplainReport = submitExplainReport;
 exports.vipRevokeMine = vipRevokeMine;
 exports.progressSubmitEvent = progressSubmitEvent;
 exports.progressMigrateSnapshot = progressMigrateSnapshot;
+exports.progressReseedMissing = progressReseedMissing;
 exports.submitLearningV2RequiredSessionCompletion =
   submitLearningV2RequiredSessionCompletion;
 exports.adminAlertOnUserReport = adminAlertOnUserReport;

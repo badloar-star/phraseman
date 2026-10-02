@@ -365,6 +365,8 @@ service cloud.firestore {
       );
     }
 
+    // progressReseedAt (Account V2, 8I) — отметка суточного лимита дозаливки progressReseedMissing:
+    // клиент, стерев её, обошёл бы лимит частоты.
     // Server progress shadow/cutover markers are never client-owned. Allowing an
     // owner to write them would let a modified client manufacture an authoritative
     // baseline and permanently inflate XP on the next progress event.
@@ -375,6 +377,7 @@ service cloud.firestore {
           'progressServerAuthoritative',
           'progressServerCutoverAt',
           'progressMigratedAt',
+          'progressReseedAt',
           'levelSpinServerState',
         ]);
     }
@@ -386,6 +389,7 @@ service cloud.firestore {
           'progressServerAuthoritative',
           'progressServerCutoverAt',
           'progressMigratedAt',
+          'progressReseedAt',
           'levelSpinServerState',
         ]);
     }

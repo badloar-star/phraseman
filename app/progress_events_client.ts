@@ -531,6 +531,129 @@ async function ensureProgressSnapshotMigratedWithBaseline(
   return true;
 }
 
+// ── Пакет 8I: дозаливка progress, затёртого дефектом 8G ─────────────────────
+// зачем (Account V2, решение координатора §67): до caf7b9889 progressMigrateSnapshot с пустым
+// снимком заменял облачный progress целиком. Серверные ключи уроков сами не возвращаются
+// (клиент их в облако не пишет), а живы только на телефоне. Признак затирания: облако с
+// серверным прогрессом (progressServerAuthoritative) без единого ключа уроков, а локально
+// они есть. Тогда — ОДИН вызов progressReseedMissing (сервер допишет только отсутствующее).
+const PROGRESS_RESEED_DONE_KEY = 'progress_reseed_missing_done_v1';
+// Зеркало серверного isSafeMigratableStructuralKey: только эти ключи миграция переносит.
+const PROGRESS_RESEED_LESSON_KEY_RE = /^(?:(?:lesson_progress_v2::fr::)?lesson\d+_cellIndex|lesson\d+_progress|lesson_progress_v2::fr::\d+)$/;
+const PROGRESS_RESEED_EMPTY_VALUES = new Set(['', '0', '[]', 'null', 'undefined']);
+// Повтор в рамках процесса запрещён: restore зовётся на каждом входе/возврате.
+const progressReseedAttempted = new Set<string>();
+
+export type ProgressReseedNeed = Readonly<{ snapshot: Record<string, string>; localLessonKeys: number }>;
+export type ProgressReseedOutcome =
+  | 'reseeded'
+  | 'not_wiped'
+  | 'nothing_missing'
+  | 'empty_snapshot'
+  | 'not_authoritative'
+  | 'user_missing'
+  | 'rate_limited'
+  | 'refused'
+  | 'failed';
+
+export function isProgressReseedLessonKey(key: string): boolean {
+  return PROGRESS_RESEED_LESSON_KEY_RE.test(key);
+}
+
+function countReseedLessonKeys(map: Readonly<Record<string, unknown>>, requireValue: boolean): number {
+  let count = 0;
+  for (const [key, value] of Object.entries(map)) {
+    if (!isProgressReseedLessonKey(key)) continue;
+    if (requireValue && PROGRESS_RESEED_EMPTY_VALUES.has(String(value ?? '').trim())) continue;
+    count += 1;
+  }
+  return count;
+}
+
+/** Нужна ли дозаливка этому аккаунту. Ничего не пишет в сеть; при «нужна» отмечает попытку процесса. */
+export async function detectProgressReseedNeed(
+  stableId: string,
+  cloudProgress: Readonly<Record<string, unknown>>,
+): Promise<ProgressReseedNeed | null> {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+    console.log(`[PROGRESS-RESEED] skip reason=cloud_disabled expo_go=${IS_EXPO_GO} cloud=${CLOUD_SYNC_ENABLED}`);
+    return null;
+  }
+  if (progressReseedAttempted.has(stableId)) {
+    console.log('[PROGRESS-RESEED] skip reason=already_attempted_this_process');
+    return null;
+  }
+  // Дёшево и первым: у подавляющего большинства в облаке уроки есть — локальное не читаем.
+  const cloudLessonKeys = countReseedLessonKeys(cloudProgress, false);
+  if (cloudLessonKeys > 0) {
+    console.log(`[PROGRESS-RESEED] skip reason=cloud_has_lessons cloud_lesson_keys=${cloudLessonKeys}`);
+    return null;
+  }
+  const done = await AsyncStorage.getItem(progressOwnerKey(PROGRESS_RESEED_DONE_KEY, stableId));
+  if (done) {
+    console.log(`[PROGRESS-RESEED] skip reason=already_done marker=${done.slice(0, 80)}`);
+    return null;
+  }
+  const snapshot = await readLocalProgressSnapshot();
+  const localLessonKeys = countReseedLessonKeys(snapshot, true);
+  if (localLessonKeys === 0) {
+    console.log(`[PROGRESS-RESEED] skip reason=no_local_lessons cloud_keys=${Object.keys(cloudProgress).length}`);
+    return null;
+  }
+  progressReseedAttempted.add(stableId);
+  console.log(`[PROGRESS-RESEED] decision=wipe_detected cloud_keys=${Object.keys(cloudProgress).length} `
+    + `cloud_lesson_keys=0 local_lesson_keys=${localLessonKeys} snapshot_keys=${Object.keys(snapshot).length}`);
+  return { snapshot, localLessonKeys };
+}
+
+function classifyProgressReseedError(error: unknown): Exclude<ProgressReseedOutcome, 'reseeded' | 'not_wiped' | 'nothing_missing' | 'empty_snapshot' | 'not_authoritative' | 'user_missing'> {
+  const e = error as { code?: unknown; message?: unknown } | null;
+  const diagnostic = `${String(e?.code ?? '')} ${String(e?.message ?? error ?? '')}`.toLowerCase();
+  if (diagnostic.includes('rate_limited') || diagnostic.includes('resource-exhausted')) return 'rate_limited';
+  // Постоянные отказы: повтор на следующем запуске дал бы тот же ответ и лишний вызов.
+  // not-found/unimplemented сюда НЕ входят: так отвечает ещё не выложенная функция — отметка
+  // закрыла бы дозаливку навсегда, если клиент 2.0 выйдет раньше функций.
+  // unauthenticated тоже не сюда (ревью 8I, C-2): это временное состояние входа, не отказ по сути.
+  if (['invalid-argument', 'permission-denied', 'failed-precondition']
+    .some((token) => diagnostic.includes(token))) return 'refused';
+  return 'failed';
+}
+
+/**
+ * Один вызов progressReseedMissing. Никогда не бросает: результат и причина — в логе.
+ * Отметка «сделано» ставится на любой ответ сервера (включая окончательный not_wiped — облако
+ * не затёрто) и на постоянный отказ; на сбой сети/входа — нет
+ * (повтор только со следующего запуска, в этом процессе — никогда).
+ */
+export async function submitProgressReseed(
+  stableId: string,
+  snapshot: Record<string, string>,
+): Promise<ProgressReseedOutcome> {
+  const startedAt = Date.now();
+  const markerKey = progressOwnerKey(PROGRESS_RESEED_DONE_KEY, stableId);
+  let outcome: ProgressReseedOutcome;
+  try {
+    const fn = callable<
+      { stableId: string; progress: Record<string, string> },
+      { ok: true; reseeded: boolean; reason: ProgressReseedOutcome; keys: string[] }
+    >('progressReseedMissing');
+    const response = await withTimeout(fn({ stableId, progress: snapshot }), CALLABLE_TIMEOUT_MS, 'progress_reseed_missing');
+    outcome = response?.data?.reason ?? 'failed';
+    console.log(`[PROGRESS-RESEED] result=${outcome} written_keys=${response?.data?.keys?.length ?? 0} ms=${Date.now() - startedAt}`);
+  } catch (error) {
+    outcome = classifyProgressReseedError(error);
+    console.warn(`[PROGRESS-RESEED] result=${outcome} reason=${progressErrorDiagnostic(error)} ms=${Date.now() - startedAt}`);
+  }
+  if (outcome !== 'failed') {
+    try {
+      await AsyncStorage.setItem(markerKey, JSON.stringify({ outcome, at: Date.now() }));
+    } catch (error) {
+      console.warn(`[PROGRESS-RESEED] marker_write_failed reason=${progressErrorDiagnostic(error)}`);
+    }
+  }
+  return outcome;
+}
+
 export async function mirrorProgressResultToLocal(result: ProgressEventResult): Promise<void> {
   const [[, localStreak], [, localLastActive], [, localStreakLast]] = await AsyncStorage.multiGet([
     'streak_count',
@@ -826,6 +949,7 @@ export const __progressEventsClientTestHooks = {
   progressResultKey,
   isPermanentProgressEventError,
   resetRuntimeState: () => {
+    progressReseedAttempted.clear();
     ownerQueueStates.clear();
     flushedProgressResults.clear();
     terminalProgressEvents.clear();

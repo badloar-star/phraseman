@@ -299,7 +299,9 @@ const ROOT_RULES: readonly InventoryRule[] = [
   rule('r.mistake_merge', 'root', { exact: ['mistakePracticeMergePending'] }, 'keep_in_place', 'kept_in_v2_store', ['OD20'],
     'Флаг слияния практики ошибок (не домен V2) — остаётся на месте, перенос не блокирует.'),
   rule('r.progress_markers', 'root', {
-    exact: ['progressServerState', 'progressServerAuthoritative', 'progressServerCutoverAt', 'progressMigratedAt'],
+    exact: ['progressServerState', 'progressServerAuthoritative', 'progressServerCutoverAt', 'progressMigratedAt',
+      // зачем (8I): отметка суточного лимита дозаливки progressReseedMissing — тот же класс маркеров.
+      'progressReseedAt'],
   // зачем (8A, решение координатора по E2E 2026-10-01): progressServerState пишется при КАЖДОМ
   // завершении урока (progress_events.ts) → «hold» остановил бы перенос почти у всех. Это маркеры
   // режима, данные уроков лежат в самом progress и читаются переносом как есть.

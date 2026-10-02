@@ -22,6 +22,7 @@
 import { IS_EXPO_GO, CLOUD_SYNC_ENABLED } from './config';
 import { DebugLogger } from './debug-logger';
 import type { StudyTarget } from './study_target';
+import { rnfbInstance } from './rnfb_modular';
 
 const LOG = '[FLASHCARDS-CLOUD]';
 
@@ -53,8 +54,9 @@ type CloudDb = {
 function getFirestore(): CloudDb {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   try {
+    // зачем (координатор §67): модульный getFirestore() — без «use getApp()» на вызов.
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    return require('@react-native-firebase/firestore').default();
+    return rnfbInstance(require('@react-native-firebase/firestore'), 'getFirestore');
   } catch (error) {
     // зачем: немой catch уже однажды скрыл эту аварию на месяцы — причина пишется всегда.
     DebugLogger.warn(LOG, `firestore module unavailable: ${String(error)}`);
@@ -168,12 +170,15 @@ export async function readFlashcardPages(
 
   const started = Date.now();
   try {
-    const snap = await db
-      .collection('users')
-      .doc(stableId)
-      .collection(FLASHCARD_PAGES_COLLECTION)
-      .where('target', '==', target)
-      .get();
+    // зачем (координатор §67): горячее чтение старта — модульные collection/query/where/getDocs.
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const fsMod = require('@react-native-firebase/firestore');
+    const snap = await fsMod.getDocs(
+      fsMod.query(
+        fsMod.collection(db, 'users', stableId, FLASHCARD_PAGES_COLLECTION),
+        fsMod.where('target', '==', target),
+      ),
+    );
 
     if (snap.empty) {
       DebugLogger.info(LOG, `read empty target=${target} ms=${Date.now() - started}`);

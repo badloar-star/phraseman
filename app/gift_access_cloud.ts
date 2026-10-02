@@ -22,6 +22,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getCanonicalUserId } from './user_id_policy';
 import { DebugLogger } from './debug-logger';
 import { withCallableTimeout } from './callable_timeout';
+import { rnfbInstance } from './rnfb_modular';
 
 const FUNCTIONS_REGION = 'us-central1';
 
@@ -54,8 +55,10 @@ export interface IntroFullAccessClaimResult {
 function lazyFirestore(): unknown {
   try {
     // Динамический require: на dev/Expo-Go модуль может отсутствовать.
+    // зачем (координатор §67): модульный getFirestore() вместо .default() — старый путь
+    // писал предупреждение «use getApp()» на КАЖДЫЙ вызов (гистограмма dev-старта).
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    return require('@react-native-firebase/firestore').default();
+    return rnfbInstance(require('@react-native-firebase/firestore'), 'getFirestore');
   } catch {
     return null;
   }
@@ -116,9 +119,14 @@ export async function readGiftAccessFromCloud(kind: GiftKind): Promise<GiftAcces
     if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
     const uid = await getCanonicalUserId().catch(() => null);
     if (!uid) return null;
-    const db = lazyFirestore() as { collection: (n: string) => { doc: (id: string) => { get: () => Promise<{ data?: () => unknown }> } } } | null;
+    const db = lazyFirestore();
     if (!db) return null;
-    const snap = await db.collection('users').doc(uid).get();
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { doc, getDoc } = require('@react-native-firebase/firestore') as {
+      doc: (parent: unknown, path: string, ...segments: string[]) => unknown;
+      getDoc: (ref: unknown) => Promise<{ data?: () => unknown }>;
+    };
+    const snap = await getDoc(doc(db, 'users', uid));
     const data = (snap?.data?.() ?? {}) as { progress?: Record<string, unknown> };
     const progress = data.progress ?? {};
     const { untilKey, grantedAtKey } = fieldNames(kind);

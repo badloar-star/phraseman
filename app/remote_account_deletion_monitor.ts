@@ -1,3 +1,4 @@
+import { rnfbInstance } from './rnfb_modular';
 type AuthUserLike = {
   uid: string;
   isAnonymous: boolean;
@@ -10,8 +11,9 @@ function authModuleFactory(): (() => any) | null {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const mod = require('@react-native-firebase/auth');
+    // зачем (координатор §67): модульный getAuth() — без «use getApp()» на вызов.
     const factory = mod?.default ?? mod;
-    return typeof factory === 'function' ? factory : null;
+    return typeof mod?.getAuth === 'function' || typeof factory === 'function' ? () => rnfbInstance(mod, 'getAuth') : null;
   } catch {
     return null;
   }
@@ -22,7 +24,7 @@ function firestoreModuleFactory(): (() => any) | null {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const mod = require('@react-native-firebase/firestore');
     const factory = mod?.default ?? mod;
-    return typeof factory === 'function' ? factory : null;
+    return typeof mod?.getFirestore === 'function' || typeof factory === 'function' ? () => rnfbInstance(mod, 'getFirestore') : null;
   } catch {
     return null;
   }

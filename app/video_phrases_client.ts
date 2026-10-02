@@ -1,4 +1,5 @@
 import { normalizeVideoPhraseList, type VideoPhrase } from '../shared/video_phrases_contract';
+import { rnfbInstance } from './rnfb_modular';
 
 export type VideoPhraseReader = { get(path: string): Promise<unknown | null> };
 
@@ -48,10 +49,11 @@ export function withVideoPhrasesTimeout<T>(work: Promise<T>, videoId: string, ti
 
 export async function fetchPublishedVideoPhrases(videoId: string): Promise<readonly VideoPhrase[]> {
   const firestoreModule = await import('@react-native-firebase/firestore');
-  const firestore = firestoreModule.default();
+  // зачем (координатор §67): модульный путь — без предупреждений устаревшего API на каждое чтение.
+  const firestore = rnfbInstance(firestoreModule, 'getFirestore');
   return withVideoPhrasesTimeout(fetchPublishedVideoPhrasesWithReader(videoId, {
     get: async (path) => {
-      const snapshot = await firestore.doc(path).get();
+      const snapshot = await firestoreModule.getDoc(firestoreModule.doc(firestore, path));
       return snapshot.exists ? snapshot.data() ?? null : null;
     },
   }), videoId);

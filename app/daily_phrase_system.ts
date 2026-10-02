@@ -30,6 +30,7 @@ import {
 } from './target_storage_keys';
 import type { CardItem } from './flashcards/types';
 import { DebugLogger } from './debug-logger';
+import { rnfbInstance } from './rnfb_modular';
 
 export type DailyPhraseQuizDistractor = {
   id: string;
@@ -330,7 +331,8 @@ function getFirestore(): any | null {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    return require('@react-native-firebase/firestore').default();
+    // зачем (координатор §67): модульный экземпляр — без «use getApp()» на вызов.
+    return rnfbInstance(require('@react-native-firebase/firestore'), 'getFirestore');
   } catch {
     return null;
   }
@@ -364,12 +366,17 @@ async function readRemoteTodayPhrase(date: string): Promise<DailyPhrase | null> 
   if (!db) return null;
   try {
     await ensureCloudAuth();
-    const snap = await db
-      .collection(DAILY_PHRASES_COLLECTION)
-      .where('scheduledDate', '==', date)
-      .orderBy('order', 'asc')
-      .limit(REMOTE_DAILY_PHRASE_QUERY_LIMIT)
-      .get();
+    // зачем (координатор §67): тот же запрос с теми же where/orderBy/limit, модульным API.
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const fsMod = require('@react-native-firebase/firestore');
+    const snap = await fsMod.getDocs(
+      fsMod.query(
+        fsMod.collection(db, DAILY_PHRASES_COLLECTION),
+        fsMod.where('scheduledDate', '==', date),
+        fsMod.orderBy('order', 'asc'),
+        fsMod.limit(REMOTE_DAILY_PHRASE_QUERY_LIMIT),
+      ),
+    );
     let phrase: DailyPhrase | null = null;
     snap.forEach((docSnap: { id: string; data: () => RemoteDailyPhraseDoc }) => {
       if (phrase) return;

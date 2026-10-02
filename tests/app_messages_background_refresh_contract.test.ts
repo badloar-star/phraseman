@@ -23,8 +23,10 @@ describe('app messages background refresh contract', () => {
       refreshBlock.indexOf('if (!options.force)'),
     );
     expect(refreshBlock).toContain('limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)');
-    expect(refreshBlock).toContain('.get()');
+    // Разовое чтение (не подписка): после перевода на модульный API (§67) — getDocs(…).
+    expect(refreshBlock).toMatch(/getDocs\(|\.get\(\)/);
     expect(refreshBlock).not.toContain('.onSnapshot(');
+    expect(refreshBlock).not.toContain('onSnapshot(');
   });
 
   it('keeps the unified notification center cache-only while the closed badge refreshes', () => {

@@ -15,6 +15,7 @@ import type { Lang } from '../constants/i18n';
 import { createDisposableAdoption } from './disposable_adoption';
 import { normalizeReportRewardBundle, type ReportRewardBundle } from './report_reward_bundle';
 import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
+import { rnfbInstance } from './rnfb_modular';
 
 export type AppMessageReaction = 'like' | 'dislike';
 export type AppMessageAudience = 'all' | 'free' | 'premium';
@@ -1389,7 +1390,9 @@ async function getFirestoreModule(): Promise<FirestoreFactory | null> {
   if (Platform.OS === 'web' || IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   try {
     const mod = await import('@react-native-firebase/firestore');
-    return mod.default as unknown as FirestoreFactory;
+    // зачем (координатор §67): модульный getFirestore() вместо mod.default — тот же
+    // экземпляр базы, но без предупреждения «use getApp()» на каждый вызов фабрики.
+    return (() => rnfbInstance(mod, 'getFirestore')) as unknown as FirestoreFactory;
   } catch {
     return null;
   }
@@ -1514,19 +1517,20 @@ export async function refreshAppMessagesSnapshotOnce(options: {
 
   try {
     const db = firestoreFactory();
+    // зачем (координатор §67): горячее чтение старта — модульные collection/query/orderBy/limit/getDocs
+    // (те же три запроса и те же лимиты, без предупреждений устаревшего API).
+    const fsMod = await import('@react-native-firebase/firestore');
+    const latest = (path: string[], field: string) =>
+      fsMod.getDocs(
+        fsMod.query(
+          fsMod.collection(db, path[0], ...path.slice(1)),
+          fsMod.orderBy(field, 'desc'),
+          fsMod.limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT),
+        ),
+      );
     const [messagesSnap, userMessagesSnap, statesSnap, localMessages, localStates] = await Promise.all([
-      db
-        .collection(APP_MESSAGES_COLLECTION)
-        .orderBy('createdAtMs', 'desc')
-        .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
-        .get(),
-      db
-        .collection('users')
-        .doc(uid)
-        .collection(USER_MESSAGES_COLLECTION)
-        .orderBy('createdAtMs', 'desc')
-        .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
-        .get()
+      latest([APP_MESSAGES_COLLECTION], 'createdAtMs'),
+      latest(['users', uid, USER_MESSAGES_COLLECTION], 'createdAtMs')
         // Подколлекции может не быть / rules ещё не задеплоены — глобальная лента важнее.
         .catch(() => ({ docs: [] })),
       // зачем (PM-210, экономия чтений): коллекция состояний растёт монотонно
@@ -1535,13 +1539,7 @@ export async function refreshAppMessagesSnapshotOnce(options: {
       // в subscribeUserAppMessages: состояния нужны только для сообщений из двух
       // лент выше (тоже по 80), а любая запись состояния ставит updatedAtMs, так
       // что только что тронутое сообщение всегда попадает в выборку.
-      db
-        .collection('users')
-        .doc(uid)
-        .collection(APP_MESSAGE_STATES_COLLECTION)
-        .orderBy('updatedAtMs', 'desc')
-        .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
-        .get(),
+      latest(['users', uid, APP_MESSAGE_STATES_COLLECTION], 'updatedAtMs'),
       readLocalPreviewMessages(uid),
       readLocalPreviewStates(uid),
     ]);

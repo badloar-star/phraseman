@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import firestore from '@react-native-firebase/firestore';
+import * as firestoreModule from '@react-native-firebase/firestore';
+import { rnfbInstance } from './rnfb_modular';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
 import { getCanonicalUserId } from './user_id_policy';
@@ -168,7 +169,8 @@ function onlyVisibleUserNotifications(list: readonly UserNotification[]): UserNo
 const getFirestore = () => {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   try {
-    return firestore();
+    // зачем (координатор §67): модульный экземпляр — без «use getApp()» на вызов.
+    return rnfbInstance(firestoreModule, 'getFirestore');
   } catch {
     return null;
   }

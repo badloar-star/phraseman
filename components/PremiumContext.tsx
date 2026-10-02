@@ -50,6 +50,7 @@ import {
   readPremiumActivationDisposition,
 } from '../app/premium_activation_event_guard';
 import { DebugLogger } from '../app/debug-logger';
+import { rnfbInstance } from '../app/rnfb_modular';
 
 interface PremiumContextValue {
   isPremium: boolean;
@@ -125,8 +126,9 @@ export function useFeatureAccess(feature: FeatureGate): boolean {
 function getFirestoreForPremiumListener(): unknown | null {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   try {
+    // зачем (координатор §67): модульный экземпляр — без «use getApp()» на вызов.
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    return require('@react-native-firebase/firestore').default();
+    return rnfbInstance(require('@react-native-firebase/firestore'), 'getFirestore');
   } catch {
     return null;
   }

@@ -104,7 +104,54 @@ export async function claimIntroFullAccessOnCloud(): Promise<IntroFullAccessClai
   ) {
     throw new Error('intro_full_access_claim_invalid');
   }
+  // Подарок только что выдан/подтверждён сервером — кэш чтения больше не правда.
+  invalidateGiftAccessCache('intro_claim');
   return { grantedAtMs, endsAtMs, alreadyGranted: data.alreadyGranted };
+}
+
+// зачем (координатор §70, трасса [GIFT-ACCESS-READ] 2026-10-02): на одном холодном старте
+// весь документ users/{uid} читался ~5 раз — три одновременных проверки доступа (кэш доступа
+// пустой, пока сеть не ответила) и ещё по одной после каждого сброса кэша Premium сигналами
+// гидратации. Подарок меняется редко, поэтому: одно чтение на вход + слияние одновременных
+// запросов. Ошибку не кэшируем (следующий вызов повторит), смена аккаунта = другой uid =
+// промах кэша. Срок 30 мин — чтобы выдача подарка из админки посреди сессии дошла без перезапуска.
+const GIFT_ACCESS_CACHE_TTL_MS = 30 * 60 * 1000;
+
+type GiftProgressSnapshot = Readonly<{ uid: string; progress: Record<string, unknown>; readAtMs: number }>;
+
+let giftProgressCache: GiftProgressSnapshot | null = null;
+let giftProgressInflight: { uid: string; promise: Promise<Record<string, unknown>> } | null = null;
+
+/** Сбросить кэш подарков (после выдачи/смены аккаунта). Следующее чтение пойдёт в сеть. */
+export function invalidateGiftAccessCache(reason: string): void {
+  if (giftProgressCache || giftProgressInflight) {
+    console.log(`[GIFT-ACCESS-READ] cache invalidated reason=${reason}`);
+  }
+  giftProgressCache = null;
+  giftProgressInflight = null;
+}
+
+function readGiftProgressFromNetwork(db: unknown, uid: string): Promise<Record<string, unknown>> {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { doc, getDoc } = require('@react-native-firebase/firestore') as {
+    doc: (parent: unknown, path: string, ...segments: string[]) => unknown;
+    getDoc: (ref: unknown) => Promise<{ data?: () => unknown }>;
+  };
+  const startedAt = Date.now();
+  const promise = getDoc(doc(db, 'users', uid)).then((snap) => {
+    const data = (snap?.data?.() ?? {}) as { progress?: Record<string, unknown> };
+    const progress = data.progress ?? {};
+    // Поздний ответ после смены аккаунта не должен лечь в кэш нового.
+    if (giftProgressInflight?.promise === promise) {
+      giftProgressCache = { uid, progress, readAtMs: Date.now() };
+    }
+    console.log(`[GIFT-ACCESS-READ] network users/${uid.slice(0, 6)} ms=${Date.now() - startedAt}`);
+    return progress;
+  }).finally(() => {
+    if (giftProgressInflight?.promise === promise) giftProgressInflight = null;
+  });
+  giftProgressInflight = { uid, promise };
+  return promise;
 }
 
 /**
@@ -114,28 +161,37 @@ export async function claimIntroFullAccessOnCloud(): Promise<IntroFullAccessClai
  *     ещё не истёк) — пользователь продолжит пользоваться оставшимся временем.
  *   - если read упал/offline → возвращаем null; новая intro-выдача всё равно
  *     требует успешный ответ callable и не создаётся локально.
+ * Один документ отвечает за оба вида подарка — кэш общий для 'intro' и 'loyalty'.
  */
 export async function readGiftAccessFromCloud(kind: GiftKind): Promise<GiftAccessCloudState | null> {
   try {
     if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
     const uid = await getCanonicalUserId().catch(noteSwallowedAs('gift_access_cloud:promise_1', null));
-    if (!uid) return null;
-    const db = lazyFirestore();
-    if (!db) return null;
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { doc, getDoc } = require('@react-native-firebase/firestore') as {
-      doc: (parent: unknown, path: string, ...segments: string[]) => unknown;
-      getDoc: (ref: unknown) => Promise<{ data?: () => unknown }>;
-    };
-    const snap = await getDoc(doc(db, 'users', uid));
-    const data = (snap?.data?.() ?? {}) as { progress?: Record<string, unknown> };
-    const progress = data.progress ?? {};
+    if (!uid) {
+      console.log(`[GIFT-ACCESS-READ] exit no_uid kind=${kind}`);
+      return null;
+    }
+    let progress: Record<string, unknown>;
+    const cached = giftProgressCache;
+    if (cached && cached.uid === uid && Date.now() - cached.readAtMs < GIFT_ACCESS_CACHE_TTL_MS) {
+      progress = cached.progress;
+    } else if (giftProgressInflight && giftProgressInflight.uid === uid) {
+      progress = await giftProgressInflight.promise;
+    } else {
+      const db = lazyFirestore();
+      if (!db) {
+        console.log(`[GIFT-ACCESS-READ] exit no_firestore kind=${kind}`);
+        return null;
+      }
+      progress = await readGiftProgressFromNetwork(db, uid);
+    }
     const { untilKey, grantedAtKey } = fieldNames(kind);
     return {
       grantedAtMs: parsePositiveNumber(progress[grantedAtKey]),
       endsAtMs: parsePositiveNumber(progress[untilKey]),
     };
   } catch (e) {
+    console.log(`[GIFT-ACCESS-READ] catch kind=${kind} reason=${String((e as Error)?.message ?? e)}`);
     DebugLogger.error('gift_access_cloud:read', e, 'warning');
     return null;
   }

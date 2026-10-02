@@ -21,6 +21,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getCanonicalUserId } from '../user_id_policy';
 import { triLang, type Lang } from '../../constants/i18n';
 import { DebugLogger } from '../debug-logger';
+import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // зачем v2 + короче TTL для косметики (владелец 17.09.2026: «аватарка не
 // показывается правильная, там эмодзи», второе мнение советника): v1 читал
@@ -177,7 +178,7 @@ export async function resolveCommunityAuthorProfile(
   const sid = String(authorStableId ?? '').trim();
   if (!sid) return EMPTY_PROFILE;
 
-  const own = await getCanonicalUserId().catch(() => null);
+  const own = await getCanonicalUserId().catch(noteSwallowedAs('packAuthorNames:promise_1', null));
   if (own && own === sid) {
     const mine = await loadOwnNickname();
     if (mine) return { ...EMPTY_PROFILE, name: mine };

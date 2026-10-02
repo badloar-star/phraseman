@@ -15,6 +15,7 @@ import {
   resolveBundledDialogueV2PreparedBotVoiceAsset,
   type DialogueV2PreparedBotVoiceAssetResolver,
 } from './dialogue_v2_prepared_bot_voice_asset_registry';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export {
   DIALOGUE_V2_PREPARED_BOT_VOICE_SELECTION_CONTRACT,
@@ -108,7 +109,7 @@ export async function resolveDialogueV2PreparedBotVoice(
     || entry.replyText !== input.response.text
     || entry.replyTextSha256 !== selection.replyTextSha256) return null;
 
-  const resolvedAsset = await input.resolveAsset(entry.assetKey).catch(() => null);
+  const resolvedAsset = await input.resolveAsset(entry.assetKey).catch(noteSwallowedAs('dialogue_v2_prepared_bot_voice_runtime:promise_1', null));
   if (!resolvedAsset || !resolvedAsset.localUri.startsWith('file://')
     || resolvedAsset.assetSha256 !== entry.assetSha256
     || resolvedAsset.assetBytes !== entry.assetBytes) return null;

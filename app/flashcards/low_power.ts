@@ -7,6 +7,7 @@
 import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from '../debug-logger';
+import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export const LOW_POWER_MEMORY_THRESHOLD_BYTES = 3 * 1024 * 1024 * 1024;
 
@@ -37,7 +38,7 @@ if (Platform.OS !== 'web') {
     .then((v) => {
       if (v === 'on' || v === 'off') cachedOverride = v;
     })
-    .catch(() => {});
+    .catch(noteSwallowedHandler('low_power:promise_1'));
 }
 
 /** Авто-детект по памяти устройства; значение кэшируется (память не меняется в рантайме). */

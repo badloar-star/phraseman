@@ -4,6 +4,7 @@ import {
   isCurrentAccountGeneration,
   type AccountGenerationToken,
 } from './account_generation';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const safeStableUid = (value: string): string =>
   value.trim().replace(/[^A-Za-z0-9_.-]/g, '_').slice(0, 180);
@@ -18,7 +19,7 @@ let legacyMigrationSerial: Promise<unknown> = Promise.resolve();
 
 const serializeLegacyMigration = async <T>(fn: () => Promise<T>): Promise<T> => {
   const next = legacyMigrationSerial.then(fn, fn);
-  legacyMigrationSerial = next.catch(() => undefined);
+  legacyMigrationSerial = next.catch(noteSwallowedAs('gift_account_storage:promise_1', undefined));
   return next;
 };
 

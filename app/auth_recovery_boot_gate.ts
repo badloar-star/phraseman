@@ -21,6 +21,7 @@ import {
 } from './auth_clean_install_recovery_adoption';
 import { AUTH_CLEAN_INSTALL_RECOVERY_KEY } from './auth_clean_install_recovery_journal';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const DEFAULT_AUTH_HYDRATION_TIMEOUT_MS = 8_000;
 const MAX_AUTH_HYDRATION_TIMEOUT_MS = 30_000;
@@ -296,7 +297,7 @@ export function runAuthRecoveryBootGate(
     bootGateAttempt = attempt;
     void attempt.finally(() => {
       if (bootGateAttempt === attempt) bootGateAttempt = null;
-    }).catch(() => {});
+    }).catch(noteSwallowedHandler('auth_recovery_boot_gate:promise_1'));
   }
   return bootGateAttempt;
 }

@@ -47,6 +47,7 @@ import {
 } from './packMarketplaceIcons';
 import type { FcDeckId, FcPresetMode } from './mode_prefs';
 import type { FlashcardContentLang } from './types';
+import { noteSwallowed } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type IconName = keyof typeof Ionicons.glyphMap;
 
@@ -554,7 +555,7 @@ export async function countAvailableFcCards(
   try {
     const refs = await loadAllFcDeckRefs(studyTarget);
     const lists = await Promise.all(
-      refs.map((ref) => loadDeckCards(ref, cl, studyTarget).catch(() => [])),
+      refs.map((ref) => loadDeckCards(ref, cl, studyTarget).catch((swallowedError: unknown) => { noteSwallowed('deck_options:promise_1', swallowedError); return []; })),
     );
     const ids = new Set<string>();
     for (const list of lists) for (const card of list) if (card?.id) ids.add(card.id);

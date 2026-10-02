@@ -19,6 +19,7 @@ import {
   normalizeProfileCardTheme,
 } from './profile_card_system';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 function isJestRuntime(): boolean {
   return typeof process !== 'undefined' && Boolean(process.env.JEST_WORKER_ID);
@@ -33,7 +34,7 @@ const LB_CACHE_TTL = 3 * 60 * 1000; // 3 минуты
 /** Прогрев кэша глобального топа при старте — экран «Зал славы» открывается без ожидания сети. */
 export function prefetchGlobalLeaderboard(): void {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO || isJestRuntime()) return;
-  void fetchGlobalLeaderboard().catch(() => {});
+  void fetchGlobalLeaderboard().catch(noteSwallowedHandler('firestore_leaderboard:promise_1'));
 }
 
 /** Сколько строк набрать из Firestore до остановки (запас под дедуп на клиенте). */
@@ -133,7 +134,7 @@ async function ensureNameCallableAuthReady(timeoutMs: number): Promise<string | 
   const stableId = await getCanonicalUserId();
   if (!stableId) return null;
   if (getAuthUserId()) return stableId;
-  void ensureAnonUser().catch(() => null);
+  void ensureAnonUser().catch(noteSwallowedAs('firestore_leaderboard:promise_2', null));
   const authReady = await waitForAnonAuth(timeoutMs);
   return authReady ? stableId : null;
 }
@@ -201,7 +202,7 @@ async function resolveNameReservationIdentity(): Promise<string | null> {
   if (cached) return cached;
   const stableId = await ensureNameCallableAuthReady(NAME_RESERVE_TIMEOUT_MS);
   if (!stableId) return null;
-  const linkedFromSharedCache = await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+  const linkedFromSharedCache = await ensureStableAuthLinkForStableId(stableId).catch(noteSwallowedAs('firestore_leaderboard:promise_3', false));
   const linked = linkedFromSharedCache || await ensureNameStableAuthLinkVerified(stableId);
   if (!linked) return null;
   rememberNameReservationIdentity(stableId);
@@ -216,7 +217,7 @@ async function ensureNameReservationIdentityReady(timeoutMs: number): Promise<st
       nameIdentityReadyPromise = null;
     });
   }
-  const stableId = await withTimeout(nameIdentityReadyPromise, timeoutMs, 'name_identity_ready').catch(() => null);
+  const stableId = await withTimeout(nameIdentityReadyPromise, timeoutMs, 'name_identity_ready').catch(noteSwallowedAs('firestore_leaderboard:promise_4', null));
   if (stableId) rememberNameReservationIdentity(stableId);
   return stableId;
 }
@@ -348,7 +349,7 @@ export async function reserveName(
 
 export function warmNameAvailabilityAuth(): void {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return;
-  void ensureNameReservationIdentityReady(NAME_RESERVE_TIMEOUT_MS).catch(() => null);
+  void ensureNameReservationIdentityReady(NAME_RESERVE_TIMEOUT_MS).catch(noteSwallowedAs('firestore_leaderboard:promise_5', null));
 }
 
 async function runNameAvailabilityCheck(name: string, readyStableId?: string): Promise<NameAvailabilityResult> {
@@ -507,7 +508,7 @@ export async function deleteMyLeaderboardEntry(): Promise<void> {
     const auth = require('@react-native-firebase/auth').default();
     const authUid = auth.currentUser?.uid ?? null;
     const docIds = Array.from(new Set([canonicalUid, authUid].filter(Boolean) as string[]));
-    await Promise.all(docIds.map((id) => db.collection(COL).doc(id).delete().catch(() => {})));
+    await Promise.all(docIds.map((id) => db.collection(COL).doc(id).delete().catch(noteSwallowedHandler('firestore_leaderboard:promise_6'))));
   } catch (e) {
       DebugLogger.error('firestore_leaderboard:docIds', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
@@ -539,7 +540,7 @@ export async function deleteMyNameReservation(): Promise<void> {
       DebugLogger.error('firestore_leaderboard:localName', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
 
-    await ensureStableAuthLinkForStableId(canonicalUid).catch(() => false);
+    await ensureStableAuthLinkForStableId(canonicalUid).catch(noteSwallowedAs('firestore_leaderboard:promise_7', false));
     const fn = callable<{ stableId?: string; names: string[] }, { ok: boolean; deleted: number }>('nameReleaseMine');
     await fn({ stableId: canonicalUid, names: Array.from(candidates) });
   } catch (e) {

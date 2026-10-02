@@ -21,6 +21,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type AnalyticsConsentState = 'granted' | 'denied' | 'unset';
 
@@ -53,7 +54,7 @@ function normalize(raw: string | null): AnalyticsConsentState {
 async function syncNativeCollection(enabled: boolean): Promise<void> {
   await import('./firebase')
     .then((m) => m.applyAnalyticsCollectionConsent(enabled))
-    .catch(() => {});
+    .catch(noteSwallowedHandler('analytics_consent:promise_1'));
 }
 
 /**

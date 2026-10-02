@@ -21,6 +21,7 @@ import {
   type ActiveDays,
 } from './together_days';
 import { DebugLogger } from '../debug-logger';
+import { noteSwallowedHandler, noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const SNAPSHOT_KEY = 'friends_together_snapshot_v1';
 const PAIRS_CACHE_KEY = 'friends_together_pairs_cache_v1';
@@ -117,7 +118,7 @@ export async function loadFriendPairsServerState(
   if (!myUid) return out;
   const pairsCacheKey = scopedKey(PAIRS_CACHE_KEY, myUid);
   const now = Date.now();
-  const cachedRaw = await AsyncStorage.getItem(pairsCacheKey).catch(() => null);
+  const cachedRaw = await AsyncStorage.getItem(pairsCacheKey).catch(noteSwallowedAs('together_store:promise_1', null));
   const cached = parsePairsCache(cachedRaw);
   const cacheIsFresh = !!cached && now - cached.fetchedAtMs < PAIRS_CACHE_TTL_MS;
 
@@ -162,7 +163,7 @@ export async function loadFriendPairsServerState(
       schemaVersion: PAIRS_CACHE_SCHEMA_VERSION,
       fetchedAtMs: now,
       pairs: fetchedPairs,
-    })).catch(() => {});
+    })).catch(noteSwallowedHandler('together_store:promise_2'));
   } catch (e) {
       // сеть недоступна — кэш уже применён выше, молча остаёмся на нём
       DebugLogger.error('together_store:load_pairs', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -248,7 +249,7 @@ export async function refreshFriendsTogether(
   _memorySnapshotUid = myUid;
 
   if (myUid) {
-    await AsyncStorage.setItem(scopedKey(SNAPSHOT_KEY, myUid), JSON.stringify(snapshot)).catch(() => {});
+    await AsyncStorage.setItem(scopedKey(SNAPSHOT_KEY, myUid), JSON.stringify(snapshot)).catch(noteSwallowedHandler('together_store:promise_3'));
   }
 
   return snapshot;

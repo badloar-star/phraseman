@@ -15,6 +15,7 @@ import {
 } from '../modules/learning-v2/runtime/course_active_catalog_v1';
 import { canonicalJsonV1 } from '../modules/learning-v2/policies/decision_registry';
 import { factoryNativeLearningV2CatalogSeedV1 } from '../modules/learning-v2/content/factory_native/factory_native_catalog_v1';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export const LEARNING_V2_ACTIVE_COURSE_CATALOG_CACHE_SCHEMA_V1 = 'learning-v2-active-course-catalog-cache.v1' as const;
 export const LEARNING_V2_ACTIVE_COURSE_CATALOG_CACHE_MAX_ENTRIES_V1 = 3;
@@ -175,7 +176,7 @@ function write(row: CacheRow): Promise<void> {
         }),
       );
     })
-    .catch(() => undefined);
+    .catch(noteSwallowedAs('learning_v2_active_course_catalog_client_v1:promise_1', undefined));
   return writeChain;
 }
 
@@ -234,7 +235,7 @@ export async function loadLearningV2ActiveCourseCatalogV1(rawLocator: LearningV2
   // зачем ensureStableAuthLink (владелец, 2026-08-27, «сессии должны быть
   // доступны всегда, даже без привязки аккаунта») — см. подробный комментарий
   // в learning_v2_course_released_session_client_v3.ts, тот же класс бага.
-  await ensureStableAuthLink().catch(() => false);
+  await ensureStableAuthLink().catch(noteSwallowedAs('learning_v2_active_course_catalog_client_v1:promise_2', false));
   const stableId = await ensureAnonUser();
   if (!stableId) fail();
   const accountScopeHash = deriveLocalOfflineProgressAccountScopeHash(stableId);

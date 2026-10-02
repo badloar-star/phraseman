@@ -14,6 +14,7 @@ import {
   writeGiftAccountValue,
 } from '../gift_account_storage';
 import { DebugLogger } from '../debug-logger';
+import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type PackGiftClaimBinding = {
   packId: string;
@@ -42,7 +43,7 @@ let writeQueue: Promise<unknown> = Promise.resolve();
 
 function serialize<T>(operation: () => Promise<T>): Promise<T> {
   const next = writeQueue.then(operation, operation);
-  writeQueue = next.catch(() => undefined);
+  writeQueue = next.catch(noteSwallowedAs('pack_trial_gift:promise_1', undefined));
   return next;
 }
 
@@ -96,7 +97,7 @@ function dedupeInventory(items: readonly PackTrialState[]): PackTrialState[] {
 }
 
 async function readRawInventory(token: AccountGenerationToken): Promise<PackTrialState[]> {
-  const raw = await readGiftAccountValue(PACK_GIFT_INVENTORY_KEY, token).catch(() => null);
+  const raw = await readGiftAccountValue(PACK_GIFT_INVENTORY_KEY, token).catch(noteSwallowedAs('pack_trial_gift:promise_2', null));
   if (!raw) return [];
   try {
     const parsed = JSON.parse(raw) as unknown;
@@ -238,7 +239,7 @@ export async function setPackGiftTrial48hOnce(
   const markerBaseKey = `${PACK_TRIAL_ONCE_KEY_PREFIX}${safeKey}`;
   return serialize(async () => {
     const items = await loadInventory(token);
-    const marker = await readGiftAccountValue(markerBaseKey, token).catch(() => null);
+    const marker = await readGiftAccountValue(markerBaseKey, token).catch(noteSwallowedAs('pack_trial_gift:promise_3', null));
     if (marker) {
       const markerId = marker === '1' ? '' : marker;
       const exact = items.find((item) => item.localVoucherId === markerId)

@@ -5,6 +5,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
 import { getAuthUserId, getCanonicalUserId } from './user_id_policy';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const FUNCTIONS_REGION = 'us-central1';
 
@@ -219,7 +220,7 @@ export async function fetchActivityLikeStates(limit = 500): Promise<FriendActivi
       .orderBy('createdAt', 'desc')
       .limit(safeLimit)
       .get()
-      .catch(() => null),
+      .catch(noteSwallowedAs('friend_activity_likes:promise_1', null)),
     fetchLegacyActivityLikeStates(myUid, db, safeLimit),
   ]);
   const byKey = new Map<string, FriendActivityLikeState>();

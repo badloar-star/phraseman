@@ -1,4 +1,5 @@
 import { setAudioModeAsync } from 'expo-audio';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type AudioMode = Parameters<typeof setAudioModeAsync>[0];
 
@@ -27,8 +28,8 @@ export function setManagedAudioMode(mode: AudioMode): Promise<void> {
     recordingActive = nextRecordingActive;
     modeListeners.forEach((listener) => listener());
   }
-  const transition = transitionTail.catch(() => undefined).then(() => setAudioModeAsync(mode));
-  transitionTail = transition.catch(() => undefined);
+  const transition = transitionTail.catch(noteSwallowedAs('audio_session_coordinator:promise_1', undefined)).then(() => setAudioModeAsync(mode));
+  transitionTail = transition.catch(noteSwallowedAs('audio_session_coordinator:promise_2', undefined));
   return transition;
 }
 

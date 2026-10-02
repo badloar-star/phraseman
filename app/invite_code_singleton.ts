@@ -14,6 +14,7 @@ import { generateReferralCode, getReferralCode } from './referral_system';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const CODE_TTL_MS = 5 * 60 * 1000;
 // Both the TTL cache and deduplicated request are generation-scoped. Different
@@ -57,7 +58,7 @@ function waitForRetry(flight: InviteCodeFlight, ms: number): Promise<boolean> {
 
 async function resolveCodeWithRetry(nameForFallback: string, flight: InviteCodeFlight): Promise<string> {
   // 1. Мгновенный путь: код уже на устройстве.
-  const existing = await getReferralCode().catch(() => null);
+  const existing = await getReferralCode().catch(noteSwallowedAs('invite_code_singleton:promise_1', null));
   if (flight.consumers.size === 0) return '';
   if (existing && existing.trim().length >= 4) return existing.trim().toUpperCase();
 

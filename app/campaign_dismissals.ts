@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const STORAGE_KEY = 'campaign_dismissals_v1';
 const MAX_STORED = 200;
@@ -51,7 +52,7 @@ async function writeMap(map: DismissalMap): Promise<void> {
   const entries = Object.entries(map)
     .sort((a, b) => b[1] - a[1])
     .slice(0, MAX_STORED);
-  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(Object.fromEntries(entries))).catch(() => {});
+  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(Object.fromEntries(entries))).catch(noteSwallowedHandler('campaign_dismissals:promise_1'));
 }
 
 export async function readDismissedCampaignKeys(): Promise<string[]> {

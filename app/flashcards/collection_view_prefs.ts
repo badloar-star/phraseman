@@ -4,6 +4,7 @@
  * (принцип 4 мастер-плана). Чтение толерантное: любой мусор → 'list'.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export const FC_COLLECTION_VIEW_KEY = 'fc_collection_view_v1';
 
@@ -29,7 +30,7 @@ export async function getCollectionViewMode(): Promise<FcCollectionViewMode> {
 
 export function setCollectionViewMode(mode: FcCollectionViewMode): void {
   viewModeMemory = mode;
-  AsyncStorage.setItem(FC_COLLECTION_VIEW_KEY, mode).catch(() => {});
+  AsyncStorage.setItem(FC_COLLECTION_VIEW_KEY, mode).catch(noteSwallowedHandler('collection_view_prefs:promise_1'));
 }
 
 /** Только для юнит-тестов. */

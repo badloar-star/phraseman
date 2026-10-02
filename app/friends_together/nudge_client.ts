@@ -12,6 +12,7 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getLocalDayKey } from '../local_date';
 import { prepareTogetherSender } from './sender_identity';
+import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const REGION = 'us-central1';
 const NUDGED_TODAY_KEY_PREFIX = 'friends_nudged_today_v1';
@@ -52,7 +53,7 @@ async function readNudgedToday(dayKey: string): Promise<NudgedTodayMap> {
 }
 
 async function writeNudgedToday(dayKey: string, map: NudgedTodayMap): Promise<void> {
-  await AsyncStorage.setItem(nudgedTodayKey(dayKey), JSON.stringify(map)).catch(() => {});
+  await AsyncStorage.setItem(nudgedTodayKey(dayKey), JSON.stringify(map)).catch(noteSwallowedHandler('nudge_client:promise_1'));
 }
 
 /** Синхронная проверка после prime — используем последний прочитанный snapshot в памяти. */

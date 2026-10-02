@@ -34,6 +34,7 @@ import {
   readUnifiedLevelSpinStars,
 } from './level_spin_star_grants';
 import { withStorageLock } from './storage_mutex';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Цена показа готовых ответов, когда бесплатные кончились. */
 export const DIALOG_HINT_PRICE_RUNES = 80;
@@ -92,7 +93,7 @@ export async function markDialogHintUsed(studyTarget: unknown): Promise<void> {
   const storageKey = dialogHintDailyStorageKey(studyTarget);
   if (!storageKey) return;
   await withStorageLock(async () => {
-    const existing = parseState(await AsyncStorage.getItem(storageKey).catch(() => null));
+    const existing = parseState(await AsyncStorage.getItem(storageKey).catch(noteSwallowedAs('ai_dialog_hint_economy:promise_1', null)));
     const today = todayKey();
     const base = existing && existing.date === today ? existing : { date: today, count: 0 };
     await AsyncStorage.setItem(storageKey, JSON.stringify({ date: today, count: base.count + 1 }))

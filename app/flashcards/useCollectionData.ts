@@ -86,6 +86,7 @@ import {
   loadPublishedCommunityMarketPacks,
 } from '../community_packs/communityFirestore';
 import { getCanonicalUserId } from '../user_id_policy';
+import { noteSwallowed, noteSwallowedHandler, noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // Module-level cache — survives re-renders; warm via `primeFlashcardsCollectionCache` (хаб / root)
 let _savedCardsCache: CardItem[] | null = null;
@@ -182,10 +183,10 @@ export function primeFlashcardsCollectionCache(studyTarget?: RuntimeStudyTarget)
   const token = captureAccountGeneration();
   const scope = collectionCacheScope(studyTarget);
   void Promise.all([
-    loadAllSavedFlashcards().catch((): Flashcard[] => []),
-    readCustomCards(studyTarget).catch(() => null),
-    loadAccessiblePackIds(studyTarget).catch((): string[] => []),
-    loadBuiltMarketplaceCardsCache(studyTarget).catch((): null => null),
+    loadAllSavedFlashcards().catch((swallowedError: unknown): Flashcard[] => { noteSwallowed('useCollectionData:promise_1', swallowedError); return []; }),
+    readCustomCards(studyTarget).catch(noteSwallowedAs('useCollectionData:promise_2', null)),
+    loadAccessiblePackIds(studyTarget).catch((swallowedError: unknown): string[] => { noteSwallowed('useCollectionData:promise_3', swallowedError); return []; }),
+    loadBuiltMarketplaceCardsCache(studyTarget).catch(noteSwallowedAs<null>('useCollectionData:promise_4', null)),
     /**
      * зачем (владелец, 2026-08-16, «все разделы должны быть уже загружены, когда
      * открываем карточки»): без каталога наборов экран «Мои наборы» стартовал
@@ -194,7 +195,7 @@ export function primeFlashcardsCollectionCache(studyTarget?: RuntimeStudyTarget)
      * открываться готовыми, а не досоздаваться по одному.
      * Результат кэшируется в модуле marketplace, повторных чтений не будет.
      */
-    loadMarketplacePacks(studyTarget).catch((): FlashcardMarketPack[] => []),
+    loadMarketplacePacks(studyTarget).catch((swallowedError: unknown): FlashcardMarketPack[] => { noteSwallowed('useCollectionData:promise_5', swallowedError); return []; }),
   ]).then(([saved, rawCustom]) => {
     if (!isCurrentAccountGeneration(token)) return;
     _collectionCacheScope = scope;
@@ -283,7 +284,7 @@ export function useCollectionData(opts: {
     if (storageStudyTarget(studyTarget) !== 'fr') return;
     prefetchFrenchRemoteFlashcards(lang);
     let cancelled = false;
-    ensureFrenchRemoteFlashcards(lang).catch(() => {});
+    ensureFrenchRemoteFlashcards(lang).catch(noteSwallowedHandler('useCollectionData:promise_6'));
     return () => {
       cancelled = true;
       void cancelled;
@@ -415,7 +416,7 @@ export function useCollectionData(opts: {
   const loadAll = useCallback(async () => {
     const accountToken = captureAccountGeneration();
     try {
-      const userSid = await getCanonicalUserId().catch(() => null);
+      const userSid = await getCanonicalUserId().catch(noteSwallowedAs('useCollectionData:promise_7', null));
       if (!isCurrentAccountGeneration(accountToken)) return;
       setAccessStableId(userSid);
       // Only show loading on first ever open (no cache yet)
@@ -427,8 +428,8 @@ export function useCollectionData(opts: {
           readFlashcardsProgress(studyTarget),
           AsyncStorage.getItem(flashcardsDeleteHintSeenKey(studyTarget)),
           loadAccessiblePackIds(studyTarget),
-          loadBuiltMarketplaceCardsCache(studyTarget, lang).catch((): null => null),
-          loadCommunityOwnedPackIds(studyTarget).catch((): string[] => []),
+          loadBuiltMarketplaceCardsCache(studyTarget, lang).catch(noteSwallowedAs<null>('useCollectionData:promise_8', null)),
+          loadCommunityOwnedPackIds(studyTarget).catch((swallowedError: unknown): string[] => { noteSwallowed('useCollectionData:promise_9', swallowedError); return []; }),
         ]);
       if (!isCurrentAccountGeneration(accountToken)) return;
       const custom: CardItem[] = Array.isArray(customParsed) ? (customParsed as CardItem[]) : [];
@@ -539,10 +540,10 @@ export function useCollectionData(opts: {
         const [ownedIds, marketPacks, communityOwnedIds, communityPublished, activePackIdRaw, localAuthored] = await Promise.all([
           loadAccessiblePackIds(studyTarget),
           loadMarketplacePacks(studyTarget),
-          loadCommunityOwnedPackIds(studyTarget).catch((): string[] => []),
-          loadPublishedCommunityMarketPacks(studyTarget).catch((): FlashcardMarketPack[] => []),
+          loadCommunityOwnedPackIds(studyTarget).catch((swallowedError: unknown): string[] => { noteSwallowed('useCollectionData:promise_10', swallowedError); return []; }),
+          loadPublishedCommunityMarketPacks(studyTarget).catch((swallowedError: unknown): FlashcardMarketPack[] => { noteSwallowed('useCollectionData:promise_11', swallowedError); return []; }),
           isDevMarketEnabled ? consumeDevActivePack(studyTarget) : Promise.resolve(null as string | null),
-          loadLocalAuthorPacks(studyTarget).catch(() => []),
+          loadLocalAuthorPacks(studyTarget).catch((swallowedError: unknown) => { noteSwallowed('useCollectionData:promise_12', swallowedError); return []; }),
         ]);
         /** Свои наборы с устройства: доступны сразу после «Сохранить», без ожидания модерации. */
         if (!isCurrentAccountGeneration(accountToken)) throw new Error('Account changed');
@@ -586,8 +587,8 @@ export function useCollectionData(opts: {
         const previewIdsToLoad =
           previewPackId && !communityIdsToLoad.includes(previewPackId) ? [previewPackId] : [];
         const [communityCardLists, previewCardLists] = await Promise.all([
-          Promise.all(communityIdsToLoad.map((id) => fetchCommunityPackCards(id, studyTarget).catch((): CardItem[] => []))),
-          Promise.all(previewIdsToLoad.map((id) => fetchCommunityPackCards(id, studyTarget).catch((): CardItem[] => []))),
+          Promise.all(communityIdsToLoad.map((id) => fetchCommunityPackCards(id, studyTarget).catch((swallowedError: unknown): CardItem[] => { noteSwallowed('useCollectionData:promise_13', swallowedError); return []; }))),
+          Promise.all(previewIdsToLoad.map((id) => fetchCommunityPackCards(id, studyTarget).catch((swallowedError: unknown): CardItem[] => { noteSwallowed('useCollectionData:promise_14', swallowedError); return []; }))),
         ]);
         const builtMarket = [...officialBuilt, ...communityCardLists.flat()];
         if (!isCurrentAccountGeneration(accountToken)) throw new Error('Account changed');
@@ -952,7 +953,7 @@ export function useCollectionDeletion(args: {
       if (!isCurrentAccountGeneration(accountToken)) return false;
       for (const item of [...items].reverse()) {
         if (!isCurrentAccountGeneration(accountToken)) return false;
-        if (item.savedSnapshot) await restoreFlashcard(item.savedSnapshot.card, item.savedSnapshot.index).catch(() => {});
+        if (item.savedSnapshot) await restoreFlashcard(item.savedSnapshot.card, item.savedSnapshot.index).catch(noteSwallowedHandler('useCollectionData:promise_15'));
       }
       const actual = await loadAllSavedFlashcards();
       if (!isCurrentAccountGeneration(accountToken)) return false;
@@ -1058,10 +1059,10 @@ export function useFlashcardViewTracking() {
           const seen = flashAchievementSeenRef.current;
           if (all.every((c) => seen.has(c.id))) {
             sessionDoneRef.current = true;
-            checkAchievements({ type: 'flashcards_session' }).catch(() => {});
+            checkAchievements({ type: 'flashcards_session' }).catch(noteSwallowedHandler('useCollectionData:promise_17'));
           }
         })
-        .catch(() => {});
+        .catch(noteSwallowedHandler('useCollectionData:promise_16'));
     }
   }, [studyTarget]);
 

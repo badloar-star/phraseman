@@ -15,6 +15,7 @@ import { withCallableTimeout } from './callable_timeout';
 import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken, type AccountTransitionLockLease, withAccountTransitionLock } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type GlobalBroadcastKind = 'general' | 'review_promo';
 export type GlobalBroadcastPremiumAudience = 'all' | 'free' | 'premium';
@@ -361,7 +362,7 @@ export async function fetchPendingGlobalBroadcastModal(
   studyTarget?: RuntimeStudyTarget,
 ): Promise<GlobalBroadcastModalPayload | null> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
-  const uid = await getCanonicalUserId().catch(() => null);
+  const uid = await getCanonicalUserId().catch(noteSwallowedAs('global_broadcast_modal:promise_1', null));
   if (!uid) return null;
   const accountToken = captureAccountGeneration();
   if (!isCurrentAccountGeneration(accountToken, uid)) return null;
@@ -386,18 +387,18 @@ export async function fetchPendingGlobalBroadcastModal(
     for (const doc of activeDocs) {
       const payload = normalizePayload(doc.id, doc.data);
       if (isRetiredLeagueSystemBroadcast(payload)) {
-        await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(() => {});
+        await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(noteSwallowedHandler('global_broadcast_modal:promise_2'));
       }
     }
 
     const payload = pickLatest(activeDocs);
     if (!payload) return null;
     if (isRetiredLeagueSystemBroadcast(payload)) {
-      await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(() => {});
+      await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(noteSwallowedHandler('global_broadcast_modal:promise_3'));
       return null;
     }
     if (payload.kind === 'review_promo') {
-      await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(() => {});
+      await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(noteSwallowedHandler('global_broadcast_modal:promise_4'));
       return null;
     }
 
@@ -429,7 +430,7 @@ export async function fetchPendingGlobalBroadcastModal(
         }
       }
       if (!isCurrentAccountGeneration(accountToken, uid)) return null;
-      await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(() => {});
+      await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(noteSwallowedHandler('global_broadcast_modal:promise_5'));
       return null;
     }
 
@@ -447,7 +448,7 @@ export function getReviewPromoUrl(payload: GlobalBroadcastModalPayload): string 
 export async function recordReviewPromoClick(payload: GlobalBroadcastModalPayload): Promise<void> {
   if (!payload?.id || payload.kind !== 'review_promo') return;
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
-  const uid = await getCanonicalUserId().catch(() => null);
+  const uid = await getCanonicalUserId().catch(noteSwallowedAs('global_broadcast_modal:promise_6', null));
   if (!uid) return;
 
   try {
@@ -470,7 +471,7 @@ export async function claimAndDismissGlobalBroadcastModal(
 ): Promise<void> {
   if (!payload?.id) return;
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) throw new Error('broadcast_claim_unavailable');
-  const uid = await getCanonicalUserId().catch(() => null);
+  const uid = await getCanonicalUserId().catch(noteSwallowedAs('global_broadcast_modal:promise_7', null));
   if (!uid) throw new Error('broadcast_identity_unavailable');
   const accountToken = captureAccountGeneration();
   if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('broadcast_identity_changed');

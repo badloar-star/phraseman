@@ -20,6 +20,7 @@ import {
   INTRO_FULL_ACCESS_STORAGE_KEYS,
   INTRO_FULL_ACCESS_WELCOME_SEEN_KEY,
 } from './intro_full_access_keys';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export {
   INTRO_FULL_ACCESS_DURATION_MS,
@@ -71,9 +72,9 @@ export async function startIntroFullAccessAfterOnboarding(
         [INTRO_FULL_ACCESS_ENDED_SEEN_KEY, 'false'],
       ]);
       void loadIntroNotificationModule().then((notifications) => {
-        notifications.scheduleIntroExpiringNotification(remainingEndsAt, lang).catch(() => {});
-        notifications.scheduleUpsellNotifications(remainingEndsAt, lang).catch(() => {});
-      }).catch(() => {});
+        notifications.scheduleIntroExpiringNotification(remainingEndsAt, lang).catch(noteSwallowedHandler('intro_full_access:promise_2'));
+        notifications.scheduleUpsellNotifications(remainingEndsAt, lang).catch(noteSwallowedHandler('intro_full_access:promise_3'));
+      }).catch(noteSwallowedHandler('intro_full_access:promise_1'));
     } else {
       // Подарок выдан и истёк — пишем только started_at чтобы запомнить факт выдачи.
       await AsyncStorage.setItem(INTRO_FULL_ACCESS_STARTED_AT_KEY, String(cloudState.grantedAtMs));
@@ -109,13 +110,13 @@ export async function startIntroFullAccessAfterOnboarding(
   // Сервер уже атомарно выдал или replay-нул grant; локально сохраняются только
   // точные серверные timestamps, затем восстанавливаются прежние уведомления.
   void loadIntroNotificationModule().then((notifications) => {
-    notifications.scheduleIntroExpiringNotification(grant.endsAtMs, lang).catch(() => {});
-    notifications.scheduleUpsellNotifications(grant.endsAtMs, lang).catch(() => {});
-  }).catch(() => {});
+    notifications.scheduleIntroExpiringNotification(grant.endsAtMs, lang).catch(noteSwallowedHandler('intro_full_access:promise_5'));
+    notifications.scheduleUpsellNotifications(grant.endsAtMs, lang).catch(noteSwallowedHandler('intro_full_access:promise_6'));
+  }).catch(noteSwallowedHandler('intro_full_access:promise_4'));
 
   // Воронка: старт 72-часового полного доступа — ключевой шаг между онбордингом и пейволом.
   if (!grant.alreadyGranted) {
-    void import('./analytics').then(({ trackEvent }) => trackEvent('intro_full_access_started', {})).catch(() => {});
+    void import('./analytics').then(({ trackEvent }) => trackEvent('intro_full_access_started', {})).catch(noteSwallowedHandler('intro_full_access:promise_7'));
   }
 }
 

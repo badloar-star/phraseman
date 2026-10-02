@@ -14,6 +14,7 @@ import {
 import { DebugLogger } from '../debug-logger';
 import { isPackLanguage, normalizePackLanguage, type PackLanguage } from '../flashcards/pack_languages';
 import { captureAccountGeneration, isCurrentAccountGeneration, withAccountTransitionLock } from '../account_generation';
+import { noteSwallowed, noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type CommunityPackCreateDraftRow = {
   id: string;
@@ -131,7 +132,7 @@ function draftsByLanguage(raw: string | null, studyTarget?: RuntimeStudyTarget):
     }
     const latest = parseDraft(raw);
     if (latest) drafts[normalizePackLanguage(latest.packLanguage ?? studyTarget)] = latest;
-  } catch { /* A malformed legacy draft must not prevent a new one. */ }
+  } catch (swallowedError) { /* A malformed legacy draft must not prevent a new one. */ noteSwallowed('communityPackDraftStorage:catch_1', swallowedError); }
   return drafts;
 }
 
@@ -142,7 +143,7 @@ function serializeDraftWrite(operation: () => Promise<void>): Promise<void> {
     if (!isCurrentAccountGeneration(token)) throw new Error('Account changed');
     await operation();
   }));
-  draftWrites = result.catch(() => undefined);
+  draftWrites = result.catch(noteSwallowedAs('communityPackDraftStorage:promise_1', undefined));
   return result;
 }
 

@@ -37,6 +37,7 @@ import { FC_SFX_TTS_GAP_MS } from '../../constants/flashcards_motion';
 import { claimSpokenAudio } from '../../modules/audio/audio_runtime_arbiter';
 import { getSoundSettingsSnapshot } from '../../modules/audio/sound_settings';
 import { DebugLogger } from '../debug-logger';
+import { noteSwallowed, noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // ── SFX ────────────────────────────────────────────────────────────────────────
 
@@ -113,8 +114,8 @@ function releasePool(): void {
   poolGeneration += 1;
   for (const entry of pool.values()) {
     for (const player of entry.players) {
-      try { player.pause(); } catch { /* already stopped */ }
-      try { player.release(); } catch { /* already released */ }
+      try { player.pause(); } catch (swallowedError) { /* already stopped */ noteSwallowed('SoundService:catch_1', swallowedError); }
+      try { player.release(); } catch (swallowedError) { /* already released */ noteSwallowed('SoundService:catch_2', swallowedError); }
     }
   }
   pool.clear();
@@ -130,7 +131,7 @@ AsyncStorage.getItem(SFX_ON_KEY)
   .then((v) => {
     if (cachedSfxOn == null) cachedSfxOn = v !== 'false';
   })
-  .catch(() => {});
+  .catch(noteSwallowedHandler('SoundService:promise_1'));
 
 export function isFcSfxEnabled(): boolean {
   return cachedSfxOn !== false; // null (ещё не загружено) = дефолт true
@@ -155,7 +156,7 @@ AsyncStorage.getItem(AUTOSPEAK_ON_KEY)
   .then((v) => {
     if (cachedAutoSpeakOn == null) cachedAutoSpeakOn = v !== 'false';
   })
-  .catch(() => {});
+  .catch(noteSwallowedHandler('SoundService:promise_2'));
 
 export function isFcAutoSpeakEnabled(): boolean {
   return cachedAutoSpeakOn !== false; // null (ещё не загружено) = дефолт true
@@ -183,7 +184,7 @@ export function playSfx(name: FcSfxName): void {
     const generation = poolGeneration;
     // seekTo(0) перед play — плеер из пула мог остановиться в конце файла
     void Promise.resolve(p.seekTo(0))
-      .catch(() => {})
+      .catch(noteSwallowedHandler('SoundService:promise_3'))
       .then(() => {
         if (generation !== poolGeneration || !isFcSfxEnabled() || !getSoundSettingsSnapshot().effectsEnabled) return;
         try {

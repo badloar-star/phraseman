@@ -50,6 +50,7 @@ import {
   readUnifiedLevelSpinStars,
 } from './level_spin_star_grants';
 import { withStorageLock, withStorageLockDeadline } from './storage_mutex';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const REGION = 'us-central1';
 
@@ -253,7 +254,7 @@ export async function buyDialogAccessLocally(
     }
     const balanceAfter = spend.balanceAfter;
 
-    const outbox = parseIds(await AsyncStorage.getItem(pendingKey).catch(() => null));
+    const outbox = parseIds(await AsyncStorage.getItem(pendingKey).catch(noteSwallowedAs('ai_dialog_ownership:promise_1', null)));
     console.log('[RUNES-BUY] step', '10 before_write'); // guard-ok
     // ОДНА запись: трата + владение + очередь синхронизации. Разорвись она
     // пополам — человек остался бы без рун и без диалога (или наоборот).
@@ -326,7 +327,7 @@ export async function syncDialogPurchases(
 
   const pendingKey = dialogOwnershipOutboxStorageKey(target, ownerStableId);
   if (!pendingKey) return;
-  const pending = [...parseIds(await AsyncStorage.getItem(pendingKey).catch(() => null))];
+  const pending = [...parseIds(await AsyncStorage.getItem(pendingKey).catch(noteSwallowedAs('ai_dialog_ownership:promise_2', null)))];
   if (pending.length === 0) return;
 
   const { DIALOG_SCENARIOS, scenarioPriceRunes } = await import('./ai_dialog_scenarios');
@@ -382,7 +383,7 @@ async function dropFromOutbox(
 ): Promise<void> {
   const storageKey = dialogOwnershipOutboxStorageKey(studyTarget, stableId);
   if (!storageKey) return;
-  const outbox = parseIds(await AsyncStorage.getItem(storageKey).catch(() => null));
+  const outbox = parseIds(await AsyncStorage.getItem(storageKey).catch(noteSwallowedAs('ai_dialog_ownership:promise_3', null)));
   let changed = false;
   for (const id of scenarioIds) if (outbox.delete(id)) changed = true;
   if (!changed) return;

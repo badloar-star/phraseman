@@ -7,6 +7,7 @@ import {
   loadLocalAuthorPacks,
   localAuthorPackCardItems,
 } from './localAuthorPacks';
+import { noteSwallowed } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 let stagedCommunityPackMarketCards: { key: string; cards: CardItem[] } | null = null;
 /** Метаданные нужны на том же первом кадре, что и карточки: без них тема пака мигает. */
@@ -94,7 +95,7 @@ export async function stageCommunityPackCardsForNavigation(
       if (stagedNavigationPack?.key === key) stagedCommunityPackMarketCards = { key, cards: next };
       return next;
     })
-    .catch((): CardItem[] => []);
+    .catch((swallowedError: unknown): CardItem[] => { noteSwallowed('staging:promise_1', swallowedError); return []; });
   pendingStagedFetch = { key, cards };
   const result = await cards;
   if (result.length === 0 && stagedNavigationPack?.key === key) {

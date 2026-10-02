@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { isPackLanguage, type PackLanguage } from '../flashcards/pack_languages';
 import { captureAccountGeneration, isCurrentAccountGeneration, withAccountTransitionLock, type AccountGenerationToken } from '../account_generation';
+import { noteSwallowedHandler, noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const STAGE_PREFIX = 'fc_saved_set_stage_v1:';
 let stageCounter = 0;
@@ -56,8 +57,8 @@ export async function consumeSavedCardSetStage(key: string): Promise<SavedCardSe
   const normalizedKey = String(key ?? '').trim();
   if (!normalizedKey || normalizedKey.includes('/') || normalizedKey.includes('..')) return null;
   const storageKey = stageKey(normalizedKey);
-  const raw = await AsyncStorage.getItem(storageKey).catch(() => null);
-  await AsyncStorage.removeItem(storageKey).catch(() => {});
+  const raw = await AsyncStorage.getItem(storageKey).catch(noteSwallowedAs('savedCardSetStaging:promise_1', null));
+  await AsyncStorage.removeItem(storageKey).catch(noteSwallowedHandler('savedCardSetStaging:promise_2'));
   if (!raw) return null;
   try {
     const parsed = JSON.parse(raw) as Partial<SavedCardSetStage>;

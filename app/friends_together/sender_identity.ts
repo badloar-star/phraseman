@@ -6,6 +6,7 @@
 // canonical stableId + гарантированный auth-link + отображаемое имя для пуша.
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ensureAnonUser, ensureStableAuthLinkForStableIdDetailed } from '../cloud_sync';
+import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export interface TogetherSenderIdentity {
   stableId: string;
@@ -24,11 +25,11 @@ export function shortDisplayName(raw: string | null | undefined): string {
 }
 
 export async function prepareTogetherSender(): Promise<TogetherSenderIdentity | null> {
-  const stableId = await ensureAnonUser().catch(() => null);
+  const stableId = await ensureAnonUser().catch(noteSwallowedAs('sender_identity:promise_1', null));
   if (!stableId) return null;
-  const link = await ensureStableAuthLinkForStableIdDetailed(stableId).catch(() => null);
+  const link = await ensureStableAuthLinkForStableIdDetailed(stableId).catch(noteSwallowedAs('sender_identity:promise_2', null));
   if (!link?.ok) return null;
   if (link.stableUid && link.stableUid !== stableId) return null;
-  const rawName = await AsyncStorage.getItem(USER_NAME_KEY).catch(() => null);
+  const rawName = await AsyncStorage.getItem(USER_NAME_KEY).catch(noteSwallowedAs('sender_identity:promise_3', null));
   return { stableId, displayName: shortDisplayName(rawName) };
 }

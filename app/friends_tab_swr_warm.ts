@@ -3,6 +3,7 @@ import { APP_SNAPSHOT_RESOURCE_LIMITS, limitArray, patchAppSnapshot } from './ap
 import type { FriendEntry, FriendRequestEntry } from './firestore_friend_requests';
 import { DebugLogger } from './debug-logger';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // зачем: PM-213 — кэш друзей (память + диск) раньше не принадлежал аккаунту: модульный
 // `primePromise` читал общий ключ один раз за процесс, `warm` и `_profilesCache` переживали
@@ -166,7 +167,7 @@ export function startFriendsTabSwrPrime(): Promise<void> {
           }
           _profilesCache = pruneFriendsProfileCache(parsedProfiles, now);
           if (Object.keys(_profilesCache).length !== Object.keys(parsedProfiles).length) {
-            void AsyncStorage.setItem(FRIEND_PROFILES_CACHE_KEY, JSON.stringify(_profilesCache)).catch(() => {});
+            void AsyncStorage.setItem(FRIEND_PROFILES_CACHE_KEY, JSON.stringify(_profilesCache)).catch(noteSwallowedHandler('friends_tab_swr_warm:promise_1'));
           }
           for (const [uid, entry] of Object.entries(_profilesCache)) profiles[uid] = entry.profile;
         }

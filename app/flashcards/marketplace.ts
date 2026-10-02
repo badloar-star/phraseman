@@ -24,6 +24,7 @@ import {
   mergeOwnedIdReads,
   parseStrictArrayJson,
 } from './myPacksDataIntegrity';
+import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 export type FlashcardPackCategory = 'business' | 'travel' | 'daily' | 'exam' | 'slang' | 'verbs';
 
 /**
@@ -191,14 +192,14 @@ export async function loadBuiltMarketplaceCardsCache(
 ): Promise<BuiltMarketplaceCardsCache | null> {
   const key = flashcardsMarketplaceBuiltCardsCacheKey(studyTarget);
   if (!marketplaceCardsAllowedForTarget(studyTarget, sourceLocale)) {
-    await AsyncStorage.removeItem(key).catch(() => {});
+    await AsyncStorage.removeItem(key).catch(noteSwallowedHandler('marketplace:promise_1'));
     return null;
   }
   try {
     const raw = await AsyncStorage.getItem(key);
     if (!raw) return null;
     if (marketplaceCacheUtf8Bytes(raw) > MARKETPLACE_BUILT_CARDS_CACHE_MAX_BYTES) {
-      await AsyncStorage.removeItem(key).catch(() => {});
+      await AsyncStorage.removeItem(key).catch(noteSwallowedHandler('marketplace:promise_2'));
       return null;
     }
     const p = JSON.parse(raw) as BuiltMarketplaceCardsCache;
@@ -218,7 +219,7 @@ export async function saveBuiltMarketplaceCardsCache(
 ): Promise<void> {
   const key = flashcardsMarketplaceBuiltCardsCacheKey(studyTarget);
   if (!marketplaceCardsAllowedForTarget(studyTarget, sourceLocale)) {
-    await AsyncStorage.removeItem(key).catch(() => {});
+    await AsyncStorage.removeItem(key).catch(noteSwallowedHandler('marketplace:promise_3'));
     return;
   }
   if (ownedIds.length === 0) {
@@ -240,7 +241,7 @@ export async function saveBuiltMarketplaceCardsCache(
   try {
     const raw = JSON.stringify(payload);
     if (marketplaceCacheUtf8Bytes(raw) > MARKETPLACE_BUILT_CARDS_CACHE_MAX_BYTES) {
-      await AsyncStorage.removeItem(key).catch(() => {});
+      await AsyncStorage.removeItem(key).catch(noteSwallowedHandler('marketplace:promise_4'));
       return;
     }
     await AsyncStorage.setItem(key, raw);

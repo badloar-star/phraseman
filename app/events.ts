@@ -2,6 +2,7 @@ import { DeviceEventEmitter } from 'react-native';
 import type { PlannedTriLangCopy } from '../constants/i18n';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import type { SoundEventId } from '../modules/audio/sound_events';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Анти-бурст для `action_toast` внутри ~400 мс (мульти-тап); дальше фильтрует ActionToast. */
 let _lastActionToastKey = '';
@@ -294,7 +295,7 @@ export function emitAppEvent<K extends keyof AppEventMap>(
           },
         }),
       )
-      .catch(() => {});
+      .catch(noteSwallowedHandler('events:promise_1'));
   }
 }
 

@@ -7,6 +7,7 @@ import { isAnalyticsConsentGranted } from './analytics_consent';
 import { getProductAnalyticsSessionId } from './product_analytics_session_context';
 import { shouldUseNativeFirebaseTelemetry } from './native_runtime_capability';
 import { rnfbInstance } from './rnfb_modular';
+import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // Firebase недоступен в Expo Go — только в production билде
 // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -40,7 +41,7 @@ export function logEvent(name: string, params?: Record<string, string | number>)
   getAnalytics()?.logEvent(name, {
     ...(params ?? {}),
     ...(productSessionId ? { product_session_id: productSessionId } : {}),
-  }).catch(() => {});
+  }).catch(noteSwallowedHandler('firebase:promise_1'));
 }
 
 /**
@@ -54,7 +55,7 @@ export function logEvent(name: string, params?: Record<string, string | number>)
  * Вызывается из analytics_consent.ts (гидрация + каждая смена выбора).
  */
 export async function applyAnalyticsCollectionConsent(enabled = isAnalyticsConsentGranted()): Promise<void> {
-  await getAnalytics()?.setAnalyticsCollectionEnabled(enabled).catch(() => {});
+  await getAnalytics()?.setAnalyticsCollectionEnabled(enabled).catch(noteSwallowedHandler('firebase:promise_2'));
 }
 
 function paywallSourceForContext(context: string): 'settings' | 'onboarding' | 'automatic' {
@@ -83,22 +84,22 @@ function trackRevenueActivity(
         },
       }),
     )
-    .catch(() => {});
+    .catch(noteSwallowedHandler('firebase:promise_3'));
 }
 
 export function setUserId(userId: string) {
   // Привязка аналитики к стабильному ID — только при согласии. Crashlytics ID
   // оставляем всегда: он нужен для атрибуции крэшей (строго необходимо).
   if (isAnalyticsConsentGranted()) {
-    getAnalytics()?.setUserId(userId).catch(() => {});
+    getAnalytics()?.setUserId(userId).catch(noteSwallowedHandler('firebase:promise_4'));
   }
-  getCrashlytics()?.setUserId(userId).catch(() => {});
+  getCrashlytics()?.setUserId(userId).catch(noteSwallowedHandler('firebase:promise_5'));
 }
 
 export function recordError(error: Error, context?: string) {
   const c = getCrashlytics();
   if (!c) return;
-  if (context) c.setAttribute('context', context).catch(() => {});
+  if (context) c.setAttribute('context', context).catch(noteSwallowedHandler('firebase:promise_6'));
   c.recordError(error);
 }
 
@@ -159,12 +160,12 @@ export function logPaywallCtaClick(context: string, plan: string) {
 export function logPaywallContinueFree(context: string) {
   logEvent('paywall_continue_free', { context, source: paywallSourceForContext(context) });
   // Унифицируем воронку: эти два закрытия раньше шли только в Firebase, теперь и в PostHog.
-  void import('./posthog_client').then(({ capturePostHog }) => capturePostHog('paywall_continue_free', { context })).catch(() => {});
+  void import('./posthog_client').then(({ capturePostHog }) => capturePostHog('paywall_continue_free', { context })).catch(noteSwallowedHandler('firebase:promise_7'));
 }
 
 export function logPaywallClose(context: string) {
   logEvent('paywall_close', { context, source: paywallSourceForContext(context) });
-  void import('./posthog_client').then(({ capturePostHog }) => capturePostHog('paywall_close', { context })).catch(() => {});
+  void import('./posthog_client').then(({ capturePostHog }) => capturePostHog('paywall_close', { context })).catch(noteSwallowedHandler('firebase:promise_8'));
 }
 
 export function logCoursePaywallAfterLesson3(lessonsDone: number) {
@@ -220,9 +221,9 @@ export function logCancelSurvey(reason: string, reasonText = '', context = 'mana
   logEvent('subscription_cancel_survey', { reason });
   void (async () => {
     const [userName, lang, plan] = await Promise.all([
-      AsyncStorage.getItem('user_name').catch(() => null),
-      AsyncStorage.getItem('app_lang').catch(() => null),
-      AsyncStorage.getItem('premium_plan').catch(() => null),
+      AsyncStorage.getItem('user_name').catch(noteSwallowedAs('firebase:promise_9', null)),
+      AsyncStorage.getItem('app_lang').catch(noteSwallowedAs('firebase:promise_10', null)),
+      AsyncStorage.getItem('premium_plan').catch(noteSwallowedAs('firebase:promise_11', null)),
     ]);
     await submitClientReport('subscription_cancel_survey', {
       reason: String(reason || 'unknown').slice(0, 80),
@@ -235,7 +236,7 @@ export function logCancelSurvey(reason: string, reasonText = '', context = 'mana
       osVersion: String(Platform.Version),
       appVersion: Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown',
       buildNumber: Constants.nativeBuildVersion ?? 'unknown',
-    }).catch(() => {});
+    }).catch(noteSwallowedHandler('firebase:promise_12'));
   })();
 }
 

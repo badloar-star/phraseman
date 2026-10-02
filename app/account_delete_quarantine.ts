@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger, swallowError } from './debug-logger';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export const ACCOUNT_DELETE_PENDING_AUTH_KEY = 'account_delete_pending_auth_v1';
 export const ACCOUNT_DELETE_PENDING_AUTH_SECURE_KEY = 'account_delete_pending_auth_v2';
@@ -484,7 +485,7 @@ const accountDeleteAdvanceFlights = new Map<string, Promise<AccountDeleteTransit
 
 function serializeAccountDeleteMutation<T>(operationId: string, work: () => Promise<T>): Promise<T> {
   const previous = accountDeleteMutationTails.get(operationId) ?? Promise.resolve();
-  const run = previous.catch(() => {}).then(work);
+  const run = previous.catch(noteSwallowedHandler('account_delete_quarantine:promise_1')).then(work);
   const tail = run.then(() => undefined, () => undefined);
   accountDeleteMutationTails.set(operationId, tail);
   void tail.finally(() => {

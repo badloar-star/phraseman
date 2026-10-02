@@ -20,6 +20,7 @@ import {
 } from './auth_recovery_secondary';
 import { ensureAnonUser } from './cloud_sync';
 import { getStableId } from './stable_id';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export const AUTH_CLEAN_INSTALL_REQUEST_INTENT_KEY = 'auth_clean_install_recovery_request_intent_v1';
 
@@ -327,7 +328,7 @@ export function createCleanInstallRecoveryFlow(
       return setState({ stage: 'ready', provider });
     } catch (error) {
       setState({ stage: 'failed', provider, reason: String((error as Error)?.message ?? error) });
-      await session?.cleanup().catch(() => {});
+      await session?.cleanup().catch(noteSwallowedHandler('auth_clean_install_recovery_flow:promise_1'));
       session = null;
       release();
       throw error;
@@ -573,13 +574,13 @@ export function createCleanInstallRecoveryFlow(
   });
 
   const dispose = async () => {
-    if (activeOperation) await activeOperation.catch(() => {});
-    await session?.cleanup().catch(() => {});
+    if (activeOperation) await activeOperation.catch(noteSwallowedHandler('auth_clean_install_recovery_flow:promise_2'));
+    await session?.cleanup().catch(noteSwallowedHandler('auth_clean_install_recovery_flow:promise_3'));
     session = null;
     release();
   };
   const cancel = async () => {
-    if (activeOperation) await activeOperation.catch(() => {});
+    if (activeOperation) await activeOperation.catch(noteSwallowedHandler('auth_clean_install_recovery_flow:promise_4'));
     if (state.stage === 'confirmed' || state.stage === 'adopting') {
       throw flowError('clean_recovery_confirmed_cannot_cancel');
     }

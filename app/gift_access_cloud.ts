@@ -23,6 +23,7 @@ import { getCanonicalUserId } from './user_id_policy';
 import { DebugLogger } from './debug-logger';
 import { withCallableTimeout } from './callable_timeout';
 import { rnfbInstance } from './rnfb_modular';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const FUNCTIONS_REGION = 'us-central1';
 
@@ -117,7 +118,7 @@ export async function claimIntroFullAccessOnCloud(): Promise<IntroFullAccessClai
 export async function readGiftAccessFromCloud(kind: GiftKind): Promise<GiftAccessCloudState | null> {
   try {
     if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
-    const uid = await getCanonicalUserId().catch(() => null);
+    const uid = await getCanonicalUserId().catch(noteSwallowedAs('gift_access_cloud:promise_1', null));
     if (!uid) return null;
     const db = lazyFirestore();
     if (!db) return null;

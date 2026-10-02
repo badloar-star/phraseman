@@ -19,6 +19,7 @@ import {
   type AgeBracket,
 } from './age_gate';
 import { getStableId } from './stable_id';
+import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const FUNCTIONS_REGION = 'us-central1';
 const PENDING_CONSENT_KEY = 'age_consent_cloud_pending_v1';
@@ -122,7 +123,7 @@ export function createAgeConsentCloudDelivery(dependencies: DeliveryDependencies
       if (response?.ok !== true) return false;
 
       const current = parsePendingSnapshot(
-        await dependencies.storage.getItem(PENDING_CONSENT_KEY).catch(() => null),
+        await dependencies.storage.getItem(PENDING_CONSENT_KEY).catch(noteSwallowedAs('age_consent_cloud:promise_1', null)),
       );
       if (current?.intentId === snapshot.intentId) {
         await dependencies.storage.setItem(PENDING_CONSENT_KEY, '');
@@ -152,7 +153,7 @@ export function createAgeConsentCloudDelivery(dependencies: DeliveryDependencies
     },
     resumePending: async (): Promise<boolean> => {
       const snapshot = parsePendingSnapshot(
-        await dependencies.storage.getItem(PENDING_CONSENT_KEY).catch(() => null),
+        await dependencies.storage.getItem(PENDING_CONSENT_KEY).catch(noteSwallowedAs('age_consent_cloud:promise_2', null)),
       );
       if (!snapshot) return false;
       return deliver(snapshot);
@@ -207,7 +208,7 @@ const defaultDelivery = createAgeConsentCloudDelivery({
   captureSnapshot: async () => ({
     ageBracket: getAgeBracketSnapshot(),
     analyticsConsent: getAnalyticsConsentState(),
-    legalAccepted: (await AsyncStorage.getItem(LEGAL_ACCEPTED_STORAGE_KEY).catch(() => null)) === '1',
+    legalAccepted: (await AsyncStorage.getItem(LEGAL_ACCEPTED_STORAGE_KEY).catch(noteSwallowedAs('age_consent_cloud:promise_3', null))) === '1',
     appVersion: boundedCohortText(getInstalledAppVersion(Constants)),
     build: currentBuild(),
     platform: currentPlatform(),
@@ -243,7 +244,7 @@ export async function restoreConsentStateFromCloud(): Promise<boolean> {
   try {
     const stableId = await getStableId();
     if (!stableId) return false;
-    await ensureStableAuthLink().catch(() => false);
+    await ensureStableAuthLink().catch(noteSwallowedAs('age_consent_cloud:promise_4', false));
 
     const snap = await db.collection('user_consents').doc(stableId).get();
     const data = (snap?.data?.() ?? null) as Record<string, unknown> | null;
@@ -263,7 +264,7 @@ export async function restoreConsentStateFromCloud(): Promise<boolean> {
     }
 
     if (data.legalAccepted === true) {
-      await AsyncStorage.setItem(LEGAL_ACCEPTED_STORAGE_KEY, '1').catch(() => {});
+      await AsyncStorage.setItem(LEGAL_ACCEPTED_STORAGE_KEY, '1').catch(noteSwallowedHandler('age_consent_cloud:promise_5'));
       restored = true;
     }
     return restored;

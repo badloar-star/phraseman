@@ -7,6 +7,7 @@ import {
 } from './daily_phrase_system';
 import { DebugLogger } from './debug-logger';
 import type { RuntimeStudyTarget } from './target_storage_keys';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type DailyPhraseQuestOption = {
   id: string;
@@ -244,7 +245,7 @@ export async function markDailyPhraseQuestAnswered(params: {
 
   const key = answerKey(phraseId, date, studyTarget);
   await AsyncStorage.setItem(key, '1');
-  void pruneDailyPhraseQuestMarkers([key]).catch(() => {});
+  void pruneDailyPhraseQuestMarkers([key]).catch(noteSwallowedHandler('daily_phrase_quest:promise_1'));
 }
 
 export async function hasDailyPhraseQuestAnswered(params: {

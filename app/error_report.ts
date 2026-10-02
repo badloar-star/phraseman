@@ -6,6 +6,7 @@ import { getCanonicalUserId } from './user_id_policy';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { submitClientReport } from './client_reports';
 import type { SupportDiagnosticBundle } from './support_diagnostic_schema';
+import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const THROTTLE_KEY = 'last_error_report_ts';
 const THROTTLE_MS = 60_000;
@@ -92,11 +93,11 @@ export async function collectMetadata(userName: string, lang: string) {
     AsyncStorage.getItem('install_date'),
     AsyncStorage.getItem('anon_id'),
     AsyncStorage.getItem('user_name'),
-    getCanonicalUserId().catch(() => null),
+    getCanonicalUserId().catch(noteSwallowedAs('error_report:promise_1', null)),
   ]);
 
   const streak = parseInt(streakRaw ?? '0') || 0;
-  const isPremium = await getVerifiedPremiumStatus().catch(() => false);
+  const isPremium = await getVerifiedPremiumStatus().catch(noteSwallowedAs('error_report:promise_2', false));
 
   let daysInApp = 0;
   if (installDateRaw) {
@@ -210,7 +211,7 @@ export const submitErrorReport = async (
   // not strand the UI in "sending" or invite a duplicate retry. Keep the
   // in-memory throttle authoritative for this process and persist best-effort.
   errorReportThrottleCacheTs = now;
-  await AsyncStorage.setItem(THROTTLE_KEY, String(now)).catch(() => {});
+  await AsyncStorage.setItem(THROTTLE_KEY, String(now)).catch(noteSwallowedHandler('error_report:promise_3'));
   return 'sent';
 };
 

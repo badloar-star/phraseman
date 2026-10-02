@@ -36,6 +36,7 @@ import {
 } from './soft_upsell_core';
 import type { GovernedProductAnalyticsEventName } from './product_analytics_event_catalog';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // ── Типы событий ──────────────────────────────────────────────────────────────
 // Воронка конверсии (новые, ранее не трекавшиеся) выделена отдельным блоком.
@@ -283,7 +284,7 @@ function parseEventQueue(raw: string | null): EventRecord[] {
 }
 
 async function readEventQueueFromStorage(): Promise<EventRecord[]> {
-  const raw = await AsyncStorage.getItem(STORAGE_KEY).catch(() => null);
+  const raw = await AsyncStorage.getItem(STORAGE_KEY).catch(noteSwallowedAs('analytics:promise_1', null));
   return parseEventQueue(raw);
 }
 

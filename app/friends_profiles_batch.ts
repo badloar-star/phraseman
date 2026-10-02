@@ -17,6 +17,7 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { isReferralCloudEnabled } from './referral_flags';
+import { noteSwallowed } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const REGION = 'us-central1';
 const BATCH_CACHE_TTL_MS = 5 * 60 * 1000;
@@ -161,7 +162,7 @@ export async function fetchFriendProfilesBatch(
       }
       await Promise.all(
         chunks.map(async (chunk) => {
-          const request = fetchBatch(chunk).catch((): Record<string, FriendProfileBatchRecord | null> => ({}));
+          const request = fetchBatch(chunk).catch((swallowedError: unknown): Record<string, FriendProfileBatchRecord | null> => { noteSwallowed('friends_profiles_batch:promise_1', swallowedError); return {}; });
           for (const uid of chunk) {
             const perUid = request.then((map) => {
               const profile = map[uid] ?? null;

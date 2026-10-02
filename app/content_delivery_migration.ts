@@ -5,6 +5,7 @@ import {
   lessonSessionKey,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export const APP_CONTENT_SCHEMA_VERSION = '2026-05-21-content-refresh-v1';
 
@@ -41,7 +42,7 @@ function contentRefreshKeys(): string[] {
  * unlocked lessons, words, purchases, VIP, shards, streaks and achievements stay intact.
  */
 export async function applyContentDeliveryMigration(): Promise<boolean> {
-  const current = await AsyncStorage.getItem(CONTENT_SCHEMA_STORAGE_KEY).catch(() => null);
+  const current = await AsyncStorage.getItem(CONTENT_SCHEMA_STORAGE_KEY).catch(noteSwallowedAs('content_delivery_migration:promise_1', null));
   if (current === APP_CONTENT_SCHEMA_VERSION) return false;
 
   await AsyncStorage.multiRemove(contentRefreshKeys());

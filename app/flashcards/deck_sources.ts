@@ -26,6 +26,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './types';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { splitDeckParam } from './deck_selection';
+import { noteSwallowed } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 export type MistakeSource = 'lesson' | 'quiz' | 'arena' | 'diagnostic' | 'exam' | 'custom' | 'pack';
 
 /** Карточка deck-сессии: EN + перевод локали показа + все переводы для recall-записи. */
@@ -226,7 +227,7 @@ async function loadPackDeckCards(
     const { loadLocalAuthorPacks, localAuthorPackCardItems } = await import(
       '../community_packs/localAuthorPacks'
     );
-    const local = (await loadLocalAuthorPacks().catch(() => [])).find((p) => p.id === packId);
+    const local = (await loadLocalAuthorPacks().catch((swallowedError: unknown) => { noteSwallowed('deck_sources:promise_1', swallowedError); return []; })).find((p) => p.id === packId);
     return local ? deckCardsFromCardItems(localAuthorPackCardItems(local), lang) : [];
   }
   // Динамический импорт: marketplace тянет бандлы паков — не грузим их для saved/custom.
@@ -351,14 +352,14 @@ export async function loadDeckCards(
   studyTarget?: RuntimeStudyTarget,
 ): Promise<DeckCard[]> {
   if (deck.kind === 'saved') {
-    const saved = await loadSelectedSavedContour(studyTarget).catch((): Flashcard[] => []);
+    const saved = await loadSelectedSavedContour(studyTarget).catch((swallowedError: unknown): Flashcard[] => { noteSwallowed('deck_sources:promise_2', swallowedError); return []; });
     return deckCardsFromSaved(saved, lang);
   }
   if (deck.kind === 'custom') {
-    const custom = await listCustomCards(studyTarget).catch((): CardItem[] => []);
+    const custom = await listCustomCards(studyTarget).catch((swallowedError: unknown): CardItem[] => { noteSwallowed('deck_sources:promise_3', swallowedError); return []; });
     return deckCardsFromCardItems(custom, lang);
   }
-  return loadPackDeckCards(deck.packId, lang, studyTarget).catch((): DeckCard[] => []);
+  return loadPackDeckCards(deck.packId, lang, studyTarget).catch((swallowedError: unknown): DeckCard[] => { noteSwallowed('deck_sources:promise_4', swallowedError); return []; });
 }
 
 /**
@@ -376,7 +377,7 @@ export async function loadDeckCardsMulti(
   if (decks.length === 0) return [];
   const lists = await Promise.all(
     decks.map(async (deck) => {
-      const cards = await loadDeckCards(deck, lang, opts.studyTarget).catch((): DeckCard[] => []);
+      const cards = await loadDeckCards(deck, lang, opts.studyTarget).catch((swallowedError: unknown): DeckCard[] => { noteSwallowed('deck_sources:promise_5', swallowedError); return []; });
       const source = mistakeSourceForDeck(deck);
       return cards.map((c) => (c.source === source ? c : { ...c, source }));
     }),

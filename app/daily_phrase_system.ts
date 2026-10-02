@@ -31,6 +31,7 @@ import {
 import type { CardItem } from './flashcards/types';
 import { DebugLogger } from './debug-logger';
 import { rnfbInstance } from './rnfb_modular';
+import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type DailyPhraseQuizDistractor = {
   id: string;
@@ -195,9 +196,9 @@ async function getTodayFrenchPhrase(sourceLocaleInput?: RuntimeSourceLocale): Pr
   const today = todayKey();
   const phraseKey = dailyPhraseKey('fr');
   const lastDateKey = dailyPhraseLastDateKey('fr');
-  const cachedDate = await AsyncStorage.getItem(lastDateKey).catch(() => null);
+  const cachedDate = await AsyncStorage.getItem(lastDateKey).catch(noteSwallowedAs('daily_phrase_system:promise_1', null));
   if (cachedDate === today) {
-    const cached = await AsyncStorage.getItem(phraseKey).catch(() => null);
+    const cached = await AsyncStorage.getItem(phraseKey).catch(noteSwallowedAs('daily_phrase_system:promise_2', null));
     if (cached) {
       try {
         const parsed = JSON.parse(cached) as DailyPhrase;
@@ -354,7 +355,7 @@ function callable<TReq, TRes>(name: string): ((data: TReq) => Promise<{ data: TR
 async function ensureCloudAuth(): Promise<void> {
   try {
     const mod = await import('./cloud_sync');
-    await mod.ensureAnonUser().catch(() => null);
+    await mod.ensureAnonUser().catch(noteSwallowedAs('daily_phrase_system:promise_3', null));
   } catch (e) {
       // best-effort
       DebugLogger.error('daily_phrase_system:mod', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -444,7 +445,7 @@ function rememberPeekPhrases(today: DailyPhrase): void {
       // каталог недоступен — сохраним хотя бы сегодняшнюю
       DebugLogger.error('daily_phrase_system:tomorrowDate', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
-  void AsyncStorage.setItem(DAILY_PHRASE_PEEK_KEY, JSON.stringify(map)).catch(() => {});
+  void AsyncStorage.setItem(DAILY_PHRASE_PEEK_KEY, JSON.stringify(map)).catch(noteSwallowedHandler('daily_phrase_system:promise_4'));
 }
 
 /** Sync phrase for first paint; matches idiomForDay() / cloud logic without I/O. */

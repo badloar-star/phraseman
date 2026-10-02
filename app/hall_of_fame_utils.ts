@@ -19,6 +19,7 @@ import {
 import type { Lang } from '../constants/i18n';
 import type { AccountGenerationToken } from './account_generation';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const notificationLangFromStorageValue = (value: string | null): Lang =>
   value === 'uk' ? 'uk' : value === 'es' ? 'es' : 'ru';
@@ -26,7 +27,7 @@ const notificationLangFromStorageValue = (value: string | null): Lang =>
 function sendStreakWarningLazy(streak: number, lang: Lang): void {
   void import('./notifications')
     .then(({ sendStreakWarning }) => sendStreakWarning(streak, lang))
-    .catch(() => {});
+    .catch(noteSwallowedHandler('hall_of_fame_utils:promise_1'));
 }
 
 // ── Leaderboard (накопительный за всё время) ─────────────────────────────────
@@ -254,7 +255,7 @@ export const updateStreakOnActivity = async (
         import('../modules/audio/sound_director')
           .then(({ soundDirector }) => { soundDirector.request('pm.streak.saved', { scope: 'streak' }); })
           .catch((error: unknown) => console.warn('[STREAK] update:freeze_sound_failed', String(error)));
-        await recordStreakWeekMarker(addDaysToDateKey(lastActive, 1), 'freeze').catch(() => {});
+        await recordStreakWeekMarker(addDaysToDateKey(lastActive, 1), 'freeze').catch(noteSwallowedHandler('hall_of_fame_utils:promise_2'));
         // streak не меняем — заморозка спасла. Расходник потрачен — юзер должен узнать
         // (аудит «немых мест» 2026-06-11, находка №6).
         emitAppEvent('action_toast', {
@@ -282,7 +283,7 @@ export const updateStreakOnActivity = async (
         const prevStreak = streak;
         console.warn(`[STREAK] update:branch=LOST lastActive=${String(lastActive)} today=${today} missedExactlyOneDay=${missedExactlyOneDay} freezeActive=${isStreakFreezeActiveToday(freeze, today)} ${prevStreak}->1`);
         logStreakLost(prevStreak);
-          AsyncStorage.getItem('app_lang').then(l => sendStreakWarningLazy(prevStreak, notificationLangFromStorageValue(l))).catch(() => {});
+          AsyncStorage.getItem('app_lang').then(l => sendStreakWarningLazy(prevStreak, notificationLangFromStorageValue(l))).catch(noteSwallowedHandler('hall_of_fame_utils:promise_3'));
         // зачем: D101 — восстановление серии за жемчуг удалено: серия просто сбрасывается.
         incrementStreakLostCount();
         streak = 1;
@@ -320,8 +321,8 @@ export const updateStreakOnActivity = async (
 
     // Достижения по цепочке (только при реальном изменении — не в firstLoads)
     if (!isSameLocalOrUtcDay(lastActive)) {
-      checkAchievements({ type: 'active_day', activeDate: today, previousActiveDate: lastActive }, accountToken).catch(() => {});
-      checkAchievements({ type: 'streak', streak }, accountToken).catch(() => {});
+      checkAchievements({ type: 'active_day', activeDate: today, previousActiveDate: lastActive }, accountToken).catch(noteSwallowedHandler('hall_of_fame_utils:promise_4'));
+      checkAchievements({ type: 'streak', streak }, accountToken).catch(noteSwallowedHandler('hall_of_fame_utils:promise_5'));
     }
 
     return streak;

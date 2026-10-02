@@ -25,6 +25,7 @@ import {
 } from '../flashcards_target_gate';
 import { readCustomCards } from './storage';
 import type { CardItem } from './types';
+import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type SourceKind = 'saved' | 'custom' | 'official' | 'community';
 
@@ -378,20 +379,20 @@ export async function buildCommunitySources(
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return [];
   try {
     const [ownedCommunityIds, published, stableId] = await Promise.all([
-      loadCommunityOwnedPackIds(studyTarget).catch(() => [] as string[]),
-      loadPublishedCommunityMarketPacks(studyTarget).catch(() => [] as FlashcardMarketPack[]),
-      getCanonicalUserId().catch(() => null as string | null),
+      loadCommunityOwnedPackIds(studyTarget).catch(noteSwallowedAs('trainingSources:promise_1', [] as string[])),
+      loadPublishedCommunityMarketPacks(studyTarget).catch(noteSwallowedAs('trainingSources:promise_2', [] as FlashcardMarketPack[])),
+      getCanonicalUserId().catch(noteSwallowedAs('trainingSources:promise_3', null as string | null)),
     ]);
     const owned = new Set([...ownedCommunityIds, ...inheritedOwnedPackIds]);
     const minePublished = published.filter(
       (p) => owned.has(p.id) || (!!stableId && !!p.authorStableId && p.authorStableId === stableId),
     );
     const pendingMine = stableId
-      ? await loadAuthorCommunityPacksPendingUpdate(stableId, studyTarget).catch(() => [] as FlashcardMarketPack[])
+      ? await loadAuthorCommunityPacksPendingUpdate(stableId, studyTarget).catch(noteSwallowedAs('trainingSources:promise_4', [] as FlashcardMarketPack[]))
       : [];
     const visibleIds = new Set([...minePublished, ...pendingMine].map((p) => p.id));
     const missingOwned = [...owned].filter((id) => !visibleIds.has(id));
-    const missingMeta = await Promise.all(missingOwned.map((id) => fetchCommunityPackMeta(id, studyTarget).catch(() => null)));
+    const missingMeta = await Promise.all(missingOwned.map((id) => fetchCommunityPackMeta(id, studyTarget).catch(noteSwallowedAs('trainingSources:promise_5', null))));
     const byId = new Map<string, FlashcardMarketPack>();
     for (const pack of [...minePublished, ...pendingMine, ...missingMeta]) {
       if (pack?.isCommunityUgc) byId.set(pack.id, pack);
@@ -430,10 +431,10 @@ export async function loadTrainingSources(input: {
   requestedFilter: string;
 }): Promise<TrainingSource[]> {
   const [savedRaw, customRaw, officialOwnedIds] = await Promise.all([
-    loadSelectedSavedContour(input.studyTarget).catch(() => [] as Flashcard[]),
-    readCustomCards(input.studyTarget).catch(() => [] as unknown[]),
+    loadSelectedSavedContour(input.studyTarget).catch(noteSwallowedAs('trainingSources:promise_6', [] as Flashcard[])),
+    readCustomCards(input.studyTarget).catch(noteSwallowedAs('trainingSources:promise_7', [] as unknown[])),
     input.officialPacksEnabled
-      ? loadAccessiblePackIds(input.studyTarget).catch(() => [] as string[])
+      ? loadAccessiblePackIds(input.studyTarget).catch(noteSwallowedAs('trainingSources:promise_8', [] as string[]))
       : Promise.resolve([] as string[]),
   ]);
   const next = buildCachedTrainingSources(
@@ -458,7 +459,7 @@ export async function buildTrainingCardsFromSources<TMemory = unknown>(
 ): Promise<TrainingCard<TMemory>[]> {
   const chunks = await Promise.all(
     sources.map(async (source) => {
-      const cards = source.cards ?? (await source.loadCards?.().catch(() => [] as CardItem[])) ?? [];
+      const cards = source.cards ?? (await source.loadCards?.().catch(noteSwallowedAs('trainingSources:promise_9', [] as CardItem[]))) ?? [];
       return cards
         .filter((card) => cleanString(card.en) && answerFor(card))
         .map((card) => {

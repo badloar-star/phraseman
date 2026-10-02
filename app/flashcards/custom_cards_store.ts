@@ -27,6 +27,7 @@ import {
   type CustomCardMilestoneOwner,
 } from './custom_card_milestone';
 import { forgetCardDeletions, recordCardDeletions } from './card_deletion_journal';
+import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export {
   CUSTOM_CARD_OWNER_ALERT_MILESTONE,
@@ -85,7 +86,7 @@ async function commit(
   // Encrypted local state commits first; AsyncStorage is a compatibility mirror.
   // If the new store is locally unavailable, the existing durable mirror keeps
   // the user's action and the next opening import retries silently.
-  await commitPhoneStateCustomCards(previous, cards).catch(() => undefined);
+  await commitPhoneStateCustomCards(previous, cards).catch(noteSwallowedAs('custom_cards_store:promise_1', undefined));
   await AsyncStorage.setItem(customFlashcardsKey(target), JSON.stringify(cards));
   cacheByTarget[target] = cards;
   // зачем (Account V2, 6F, dual-write): снимок своих карточек → операции V2. Фоном, за флагом.
@@ -93,7 +94,7 @@ async function commit(
   // Saving is already durable. Owner telemetry is deliberately detached and
   // fail-open: offline/auth/Telegram failures can never become a card error.
   if (cards.length >= CUSTOM_CARD_OWNER_ALERT_MILESTONE && cards.length >= previous.length) {
-    void observeCustomCardMilestone(cards.length, target, milestoneOwner).catch(() => undefined);
+    void observeCustomCardMilestone(cards.length, target, milestoneOwner).catch(noteSwallowedAs('custom_cards_store:promise_2', undefined));
   }
 }
 
@@ -131,7 +132,7 @@ export function listCustomCards(studyTarget?: RuntimeStudyTarget): Promise<CardI
     // older build: opening/reading the library schedules the same idempotent
     // account+language milestone without blocking the read.
     if (cards.length >= CUSTOM_CARD_OWNER_ALERT_MILESTONE) {
-      void observeCustomCardMilestone(cards.length, target, milestoneOwner).catch(() => undefined);
+      void observeCustomCardMilestone(cards.length, target, milestoneOwner).catch(noteSwallowedAs('custom_cards_store:promise_3', undefined));
     }
     return [...cards];
   });

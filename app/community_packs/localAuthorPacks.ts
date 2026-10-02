@@ -24,6 +24,7 @@ import { normalizePackLanguage, type PackLanguage } from '../flashcards/pack_lan
 import { captureAccountGeneration, isCurrentAccountGeneration, withAccountTransitionLock, type AccountGenerationToken } from '../account_generation';
 import { accountScopeKey } from '../account_scope_key';
 import { BoundedScopeCache, parseStrictArrayJson } from '../flashcards/myPacksDataIntegrity';
+import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export const LOCAL_AUTHOR_PACK_ID_PREFIX = 'local_pack_';
 export const FREE_AUTHOR_PACK_LIMIT = 3;
@@ -161,7 +162,7 @@ function serializePackWrite<T>(operation: () => Promise<T>): Promise<T> {
     if (!isCurrentAccountGeneration(token)) throw new Error('Account changed');
     return operation();
   }));
-  localPackWrites = result.catch(() => undefined);
+  localPackWrites = result.catch(noteSwallowedAs('localAuthorPacks:promise_1', undefined));
   return result;
 }
 

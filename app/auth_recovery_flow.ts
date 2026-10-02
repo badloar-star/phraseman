@@ -6,6 +6,7 @@ import {
   type SecondaryRecoveryProvider,
 } from './auth_recovery_secondary';
 import { getStableId } from './stable_id';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const MAX_CODE_LIFETIME_SEC = 86_400;
 const RESEND_COOLDOWN_MS = 60_000;
@@ -410,7 +411,7 @@ export function createAuthRecoveryFlow(
             throw flowError('auth_recovery_secondary_cleanup_failed', error);
           }
         }
-        if (pending) await pending.catch(() => {});
+        if (pending) await pending.catch(noteSwallowedHandler('auth_recovery_flow:promise_1'));
         if (session) await cleanupSecondary();
         setState({ stage: 'cancelled', ...(provider ? { provider } : {}) });
         releaseGlobal();

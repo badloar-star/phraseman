@@ -7,6 +7,7 @@ import {
   FRIEND_REQUESTS_SENT_MARKER_ID,
 } from '../shared/friend_requests_index_contract';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -85,7 +86,7 @@ function logFriendsHealth(
         tags,
       }),
     )
-    .catch(() => {});
+    .catch(noteSwallowedHandler('firestore_friend_requests:promise_1'));
 }
 
 function cleanFriendRequestDisplayName(value: unknown): string {
@@ -135,7 +136,7 @@ async function ensureFriendsStableAuthLink(
   // (failure/source) и состоянием identity — иначе следующий круг диагностики
   // снова слепой.
   if (!(await import('./config')).CLOUD_SYNC_ENABLED) return true;
-  const stableId = await ensureAnonUser().catch(() => null);
+  const stableId = await ensureAnonUser().catch(noteSwallowedAs('firestore_friend_requests:promise_2', null));
   if (!stableId) {
     logFriendsHealth('friends:auth_link_failed', new Error('anon_user_unavailable'), {
       action, failure: 'anon_user_unavailable', ...tags,
@@ -830,12 +831,12 @@ export async function cleanupStaleFriendData(): Promise<void> {
   if (friendCleanupInFlight) return;
   friendCleanupInFlight = true;
   try {
-    const lastRaw = await AsyncStorage.getItem(FRIEND_CLEANUP_LAST_RUN_KEY).catch(() => null);
+    const lastRaw = await AsyncStorage.getItem(FRIEND_CLEANUP_LAST_RUN_KEY).catch(noteSwallowedAs('firestore_friend_requests:promise_3', null));
     const sinceLast = Date.now() - Number(lastRaw ?? 0);
     // Отрицательное sinceLast = часы переведены назад → метка из «будущего», не верим ей.
     if (Number(lastRaw) > 0 && sinceLast >= 0 && sinceLast < FRIEND_CLEANUP_MIN_INTERVAL_MS) return;
     // Метку ставим ДО работы: даже неудачная попытка не должна повторяться каждый вход в таб.
-    await AsyncStorage.setItem(FRIEND_CLEANUP_LAST_RUN_KEY, String(Date.now())).catch(() => {});
+    await AsyncStorage.setItem(FRIEND_CLEANUP_LAST_RUN_KEY, String(Date.now())).catch(noteSwallowedHandler('firestore_friend_requests:promise_4'));
     const myUid = await ensureAnonUser();
     if (!myUid) return;
     const db = getFirestore();

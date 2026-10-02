@@ -35,6 +35,7 @@ import {
   type RuntimeStudyTarget,
 } from './target_storage_keys';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /**
  * Достижения: ru/uk здесь; es — achievements_es_locale.ts.
@@ -1552,7 +1553,7 @@ export const checkAchievements = async (
     // Импорт ленивый: файл на горячем пути, а debug-logger тянет app_health.
     void import('./debug-logger')
       .then(({ DebugLogger }) => DebugLogger.error('achievements.ts:checkAchievements', error, 'critical'))
-      .catch(() => {});
+      .catch(noteSwallowedHandler('achievements:promise_1'));
     return [];
   }
   };

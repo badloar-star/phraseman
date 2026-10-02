@@ -1356,3 +1356,4 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 ## §AV2-17 — 2026-10-02: ответ на §91
 - `functions/src/account_authority/` (неотслеживаемая, файлы от 06:53–07:44) и экспорты `account_authority/*` в `functions/src/index.ts` — **НЕ мои** (ни Account V2-сессия, ни мои исполнители их не создавали; моя последняя правка functions — 8M 5b4c1c781, index.ts не трогал). Судя по `docs/superpowers/plans/2026-10-01-account-authority-2-0.md` (в индексе, `A`), это сессия плана «account authority 2.0». Не коммичу и не трогаю.
 - 8N в работе (исполнитель). После 8N беру 9 давних падений `auth_merge.test.ts`: Spin (D147) — снять с `// зачем:`; выбор победителя / история ошибок — сначала проверю, регрессия ли (по git log тестов и кода), и чиню код, если регрессия.
+- **§91 итог (07:15Z):** ✅ authMergeStableAccounts, accountMergeOutboxWorker, accountMergeOutboxRetryCron — на проде (8M).

@@ -24,6 +24,8 @@ let stableAuthLinkImplementation: () => Promise<boolean>;
 let stableAuthLinkForStableIdCalls: number;
 let stableAuthLinkForStableIdImplementation: (stableId: string) => Promise<boolean>;
 let liveSnapshotListenerCalls: number;
+let oneShotReadCalls: number;
+let stableAuthLinkDetailedCalls: number;
 
 // Simulate a batch that collects operations and commits them atomically.
 const createFakeBatch = () => {
@@ -52,11 +54,15 @@ interface FakeRef {
 
 interface FakeCollectionRef {
   doc: (id: string) => FakeRef;
+  limit: (n: number) => { get: () => Promise<FakeSnapshot> };
+  get: () => Promise<FakeSnapshot>;
   where: (field: string, op: string, val: unknown) => FakeQueryRef;
   onSnapshot: (cb: (snap: FakeSnapshot) => void, errCb?: (e: Error) => void) => () => void;
 }
 
 interface FakeQueryRef {
+  limit: (n: number) => { get: () => Promise<FakeSnapshot> };
+  get: () => Promise<FakeSnapshot>;
   onSnapshot: (cb: (snap: FakeSnapshot) => void, errCb?: (e: Error) => void) => () => void;
 }
 
@@ -84,9 +90,28 @@ const buildFakeRef = (path: string): FakeRef => ({
   },
 });
 
+// зачем (§78): с 30.09 списки Друзей читаются один раз (.where/.limit/.get) с TTL, а не
+// живыми подписками — фейку нужен разовый get, который отдаёт те же документы.
+const readCollectionOnce = (colPath: string, filter?: { field: string; val: unknown }): FakeSnapshot => {
+  oneShotReadCalls += 1;
+  const docs: Array<{ id: string; data: () => Record<string, unknown> }> = [];
+  for (const [key, data] of mockDocs.entries()) {
+    if (!key.startsWith(colPath + '/')) continue;
+    const docId = key.slice(colPath.length + 1);
+    if (docId.includes('/')) continue;
+    if (filter && data[filter.field] !== filter.val) continue;
+    docs.push({ id: docId, data: () => data });
+  }
+  return { docs, metadata: { fromCache: false } };
+};
+
 const buildFakeCollection = (colPath: string): FakeCollectionRef => ({
   doc: (id: string) => buildFakeRef(`${colPath}/${id}`),
+  limit: () => ({ get: async () => readCollectionOnce(colPath) }),
+  get: async () => readCollectionOnce(colPath),
   where: (field: string, _op: string, val: unknown) => ({
+    limit: () => ({ get: async () => readCollectionOnce(colPath, { field, val }) }),
+    get: async () => readCollectionOnce(colPath, { field, val }),
     onSnapshot: (cb: (snap: FakeSnapshot) => void) => {
       liveSnapshotListenerCalls += 1;
       // Synchronously deliver matching docs.
@@ -141,6 +166,15 @@ jest.mock('../app/cloud_sync', () => ({
     stableAuthLinkForStableIdCalls += 1;
     return stableAuthLinkForStableIdImplementation(stableId);
   }),
+  // зачем (§78): ensureFriendsStableAuthLink зовёт подробную версию вместо ensureStableAuthLink —
+  // та же реализация (stableAuthLinkImplementation), свой счётчик.
+  ensureStableAuthLinkForStableIdDetailed: jest.fn(async (stableId: string) => {
+    stableAuthLinkDetailedCalls += 1;
+    const ok = (await stableAuthLinkImplementation()) === true;
+    return ok
+      ? { ok: true, requestedStableId: stableId, stableUid: stableId, authUid: stableId, source: 'cache' }
+      : { ok: false, requestedStableId: stableId, stableUid: null, authUid: null, source: 'unavailable', failure: 'identity_unavailable' };
+  }),
 }));
 jest.mock('@react-native-firebase/firestore', () => ({
   default: jest.fn(() => buildFakeDb()),
@@ -157,6 +191,8 @@ beforeEach(() => {
   stableAuthLinkForStableIdCalls = 0;
   stableAuthLinkForStableIdImplementation = async () => stableAuthLinkResult;
   liveSnapshotListenerCalls = 0;
+  oneShotReadCalls = 0;
+  stableAuthLinkDetailedCalls = 0;
   require('@react-native-async-storage/async-storage').__reset?.();
 
   jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
@@ -173,6 +209,15 @@ beforeEach(() => {
     ensureStableAuthLinkForStableId: jest.fn((stableId: string) => {
       stableAuthLinkForStableIdCalls += 1;
       return stableAuthLinkForStableIdImplementation(stableId);
+    }),
+    // зачем (§78): ensureFriendsStableAuthLink зовёт подробную версию вместо ensureStableAuthLink —
+    // та же реализация (stableAuthLinkImplementation), свой счётчик.
+    ensureStableAuthLinkForStableIdDetailed: jest.fn(async (stableId: string) => {
+      stableAuthLinkDetailedCalls += 1;
+      const ok = (await stableAuthLinkImplementation()) === true;
+      return ok
+        ? { ok: true, requestedStableId: stableId, stableUid: stableId, authUid: stableId, source: 'cache' }
+        : { ok: false, requestedStableId: stableId, stableUid: null, authUid: null, source: 'unavailable', failure: 'identity_unavailable' };
     }),
   }));
   jest.mock('@react-native-firebase/firestore', () => ({
@@ -231,7 +276,8 @@ test('R04b: sendFriendRequest links stable auth through callable, not direct use
   const result: SendRequestResult = await sendFriendRequest('target-uid-222');
 
   expect(result).toBe('sent');
-  expect(stableAuthLinkCalls).toBe(1);
+  // Привязка ровно одна (теперь через подробную версию — ensureFriendsStableAuthLink).
+  expect(stableAuthLinkCalls + stableAuthLinkDetailedCalls).toBe(1);
   expect(mockDocs.has('users/my-uid-111')).toBe(false);
 });
 
@@ -279,7 +325,7 @@ test('A04: acceptFriendRequest links stable auth through callable before batch w
   const { acceptFriendRequest } = require('../app/firestore_friend_requests');
   await acceptFriendRequest('from-uid-333');
 
-  expect(stableAuthLinkCalls).toBe(1);
+  expect(stableAuthLinkCalls + stableAuthLinkDetailedCalls).toBe(1);
   expect(mockDocs.has('users/my-uid-111')).toBe(false);
 });
 
@@ -455,7 +501,9 @@ test('S00b: successful preflight lets both subscriptions reuse the success cache
   for (let i = 0; i < 8; i += 1) await Promise.resolve();
 
   expect(stableAuthLinkForStableIdCalls).toBe(1);
-  expect(liveSnapshotListenerCalls).toBe(2);
+  // С 30.09 — разовые чтения вместо живых подписок (экономия Firestore): по одному на список.
+  expect(liveSnapshotListenerCalls).toBe(0);
+  expect(oneShotReadCalls).toBe(2);
   unsubFriends();
   unsubRequests();
 });

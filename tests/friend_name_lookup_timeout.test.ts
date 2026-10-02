@@ -16,6 +16,14 @@ jest.mock('../app/user_id_policy', () => ({
 jest.mock('../app/cloud_sync', () => ({
   ensureAnonUser: (...args: unknown[]) => mockEnsureAnonUser(...args),
   ensureStableAuthLinkForStableId: (...args: unknown[]) => mockEnsureStableAuthLinkForStableId(...args),
+  // зачем (§78): прод зовёт подробную версию (cloud_sync, 30.09) — тот же мок под ней, поведение прежнее.
+  ensureStableAuthLinkForStableIdDetailed: async (...args: unknown[]) => {
+    const ok = (await mockEnsureStableAuthLinkForStableId(...args)) === true;
+    const stableId = String(args[0] ?? '');
+    return ok
+      ? { ok: true, requestedStableId: stableId, stableUid: stableId, authUid: stableId, source: 'cache' }
+      : { ok: false, requestedStableId: stableId, stableUid: null, authUid: null, source: 'unavailable', failure: 'identity_unavailable' };
+  },
 }));
 
 jest.mock('@react-native-firebase/app', () => ({
@@ -53,13 +61,13 @@ test('lookupUserByNickname uses the fast name-index callable with a bounded time
 
   // Клиент прокидывает полный публичный профиль из ответа сервера (users.progress).
   // Мок отдаёт только uid/source/name, поэтому числовые/строковые поля профиля пустые.
+  // (§78: totalXp убран из LookupUserProfile снимком 2.0 от 30.09 — его больше нет в ответе.)
   await expect(lookupUserByNickname('  @Roma  ')).resolves.toEqual({
     uid: 'target-user',
     source: 'name_index',
     name: 'Roma',
     profile: {
       name: 'Roma',
-      totalXp: 0,
       level: 0,
       avatar: '',
       frame: '',
@@ -134,7 +142,7 @@ test('lookupUserByNickname accepts a cold response after the former 2.5 second c
     name: 'OlgaZ',
     profile: {
       name: 'OlgaZ',
-      totalXp: 2400,
+      // totalXp сервер ещё присылает, но клиент его больше не прокидывает (§78, снимок 2.0 30.09).
       level: 9,
       avatar: 'avatar_9',
       frame: 'frame_9',

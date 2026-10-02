@@ -169,8 +169,14 @@ describe('account deletion rebuilt flow contract', () => {
     }
   });
 
-  it('includes every durable auth merge and account deletion endpoint in deploy:safe', () => {
-    const deploySafe = functionsPackage.scripts?.['deploy:safe'] ?? '';
+  it('every durable auth merge and account deletion endpoint is exported and shipped by the functions deploy', () => {
+    // зачем (8R, 2026-10-02): скрипт deploy:safe удалён в снимке 30.09 (efe19ae9d, вместе с
+    // подарочными наборами D140). Функции теперь уходят основным `deploy` (`--only functions`,
+    // т. е. все экспорты index.ts). Цель сторожа прежняя — эти шесть функций обязаны выкладываться:
+    // проверяем экспорт и то, что основной deploy не сужен до списка без них.
+    const deploy = (functionsPackage.scripts as Record<string, string> | undefined)?.deploy ?? '';
+    const indexSource = fs.readFileSync(path.join(root, 'functions', 'src', 'index.ts'), 'utf8');
+    expect(deploy).toMatch(/firebase deploy --only functions$/);
     for (const functionName of [
       'accountMergeOutboxWorker',
       'accountMergeOutboxRetryCron',
@@ -179,7 +185,7 @@ describe('account deletion rebuilt flow contract', () => {
       'accountDeleteWorker',
       'accountDeleteRetryCron',
     ]) {
-      expect(deploySafe.match(new RegExp(`functions:${functionName}(?=,|\\\")`, 'g'))).toHaveLength(1);
+      expect(indexSource).toMatch(new RegExp(`^exports\\.${functionName}\\s*=`, 'm'));
     }
   });
 

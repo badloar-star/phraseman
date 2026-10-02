@@ -124,7 +124,10 @@ test('sign-out failure cannot clear stable identity or authenticate anonymously'
     status: 'pending_auth',
     phase: 'server_enqueued',
   });
-  expect(h.calls).toEqual(['provider_sign_out']);
+  // зачем (8R, 2026-10-02): возобновление с фазы ≠ prepared НАМЕРЕННО первым шагом повторно
+  // шлёт account_deleted (account_delete_quarantine.ts, идемпотентно для навигатора — маршрут
+  // удалённого аккаунта не застревает после краша). Остальная последовательность — та же.
+  expect(h.calls).toEqual(['emit:account_deleted', 'provider_sign_out']);
 });
 
 test('SecureStore clear failure cannot create a fresh stable identity', async () => {
@@ -136,7 +139,10 @@ test('SecureStore clear failure cannot create a fresh stable identity', async ()
     status: 'fatal_local_guard',
     phase: 'provider_signed_out',
   });
-  expect(h.calls).toEqual(['clear_old_stable']);
+  // зачем (8R, 2026-10-02): возобновление с фазы ≠ prepared НАМЕРЕННО первым шагом повторно
+  // шлёт account_deleted (account_delete_quarantine.ts, идемпотентно для навигатора — маршрут
+  // удалённого аккаунта не застревает после краша). Остальная последовательность — та же.
+  expect(h.calls).toEqual(['emit:account_deleted', 'clear_old_stable']);
 });
 
 test.each([
@@ -203,7 +209,11 @@ test('authoritative canonical stable id is durably adopted for the exact fresh a
     phase: 'ready',
     freshStableId: 'canonical-stable',
   });
+  // зачем (8R, 2026-10-02): возобновление с фазы ≠ prepared НАМЕРЕННО первым шагом повторно
+  // шлёт account_deleted (account_delete_quarantine.ts, идемпотентно для навигатора — маршрут
+  // удалённого аккаунта не застревает после краша). Остальная последовательность — та же.
   expect(h.calls).toEqual([
+    'emit:account_deleted',
     'authoritative_link',
     'persist:stable_link_verified',
     'adopt:canonical-stable',

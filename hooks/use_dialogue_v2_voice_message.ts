@@ -26,6 +26,7 @@ import {
   type SpokenAudioClaim,
 } from '../modules/audio/audio_runtime_arbiter';
 import { useRuntimeActive } from './use_runtime_active';
+import { noteSwallowed } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type DialogueV2VoiceStatus = 'idle' | 'starting' | 'recording';
 
@@ -66,9 +67,10 @@ function deleteLocalVoiceRecording(uri: string): void {
   try {
     const file = new File(uri);
     if (file.exists) file.delete();
-  } catch {
+  } catch (swallowedError) {
     // Best-effort cache hygiene: local cleanup must not block a text turn.
-  }
+    noteSwallowed('use_dialogue_v2_voice_message:catch_1', swallowedError);
+}
 }
 
 /**
@@ -152,8 +154,8 @@ export function useDialogueV2VoiceMessage({
     voiceMessageClaimRef.current = null;
     const player = voiceMessagePlayerRef.current;
     voiceMessagePlayerRef.current = null;
-    try { player?.pause(); } catch { /* native player is already stopped */ }
-    try { player?.release(); } catch { /* native player is already released */ }
+    try { player?.pause(); } catch (swallowedError) { /* native player is already stopped */ noteSwallowed('use_dialogue_v2_voice_message:catch_2', swallowedError); }
+    try { player?.release(); } catch (swallowedError) { /* native player is already released */ noteSwallowed('use_dialogue_v2_voice_message:catch_3', swallowedError); }
     if (mountedRef.current) setPlayingVoiceUri(null);
   }, []);
 
@@ -178,7 +180,7 @@ export function useDialogueV2VoiceMessage({
     voiceHoldActiveRef.current = false;
     voiceCaptureTokenRef.current += 1;
     cleanupVoiceListeners();
-    try { speechModule?.abort(); } catch { /* recognizer is already stopped */ }
+    try { speechModule?.abort(); } catch (swallowedError) { /* recognizer is already stopped */ noteSwallowed('use_dialogue_v2_voice_message:catch_4', swallowedError); }
     releaseVoiceRecording();
   }, [cleanupVoiceListeners, releaseVoiceRecording, speechModule]);
 
@@ -204,7 +206,7 @@ export function useDialogueV2VoiceMessage({
   const stop = useCallback(() => {
     voiceHoldActiveRef.current = false;
     voiceStartGenerationRef.current += 1;
-    try { speechModule?.stop(); } catch { /* recognizer did not start */ }
+    try { speechModule?.stop(); } catch (swallowedError) { /* recognizer did not start */ noteSwallowed('use_dialogue_v2_voice_message:catch_5', swallowedError); }
     releaseVoiceRecording();
   }, [releaseVoiceRecording, speechModule]);
 
@@ -322,7 +324,7 @@ export function useDialogueV2VoiceMessage({
       .filter(Boolean) as Removable[];
 
     const recordingClaim = claimRecordingAudio(() => {
-      try { speechModule.abort(); } catch { /* recognizer is already stopped */ }
+      try { speechModule.abort(); } catch (swallowedError) { /* recognizer is already stopped */ noteSwallowed('use_dialogue_v2_voice_message:catch_6', swallowedError); }
     }, 'dialogue-v2:voice-capture');
     voiceRecordingClaimRef.current = recordingClaim;
     const audioReady = await whenRecordingAudioReady(recordingClaim);
@@ -388,7 +390,7 @@ export function useDialogueV2VoiceMessage({
         return;
       }
       if (!claim.isCurrent() || playbackGeneration !== voiceMessagePlaybackGenerationRef.current) {
-        try { player.release(); } catch { /* player never became active */ }
+        try { player.release(); } catch (swallowedError) { /* player never became active */ noteSwallowed('use_dialogue_v2_voice_message:catch_7', swallowedError); }
         return;
       }
       voiceMessagePlayerRef.current = player;

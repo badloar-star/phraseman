@@ -1,6 +1,7 @@
 import type { AuthRecoveryFlowState } from '../app/auth_recovery_flow';
 import type { CleanInstallRecoveryFlowState } from '../app/auth_clean_install_recovery_flow';
 import { swallowError } from '../app/debug-logger';
+import { noteSwallowedAs } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type AuthRecoveryUiLocale = 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 export type AuthRecoveryEntryMode = 'google_instruction' | 'code_primary' | 'provider_choice';
@@ -384,7 +385,7 @@ export function createRecoveryDisposeBarrier() {
     isPending: () => pending !== null,
     begin(dispose: () => Promise<void>): Promise<void> {
       if (pending) return pending;
-      const task = Promise.resolve().then(dispose).catch(() => undefined);
+      const task = Promise.resolve().then(dispose).catch(noteSwallowedAs('auth_recovery_modal_model:promise_1', undefined));
       pending = task;
       void task.finally(() => {
         if (pending === task) pending = null;

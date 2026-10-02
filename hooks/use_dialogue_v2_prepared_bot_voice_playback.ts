@@ -7,6 +7,7 @@ import {
   type SpokenAudioClaim,
 } from '../modules/audio/audio_runtime_arbiter';
 import { useRuntimeActive } from './use_runtime_active';
+import { noteSwallowed } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type DialogueV2PreparedBotVoicePlaybackAsset = Readonly<{
   messageId: string;
@@ -58,8 +59,8 @@ export function useDialogueV2PreparedBotVoicePlayback({
     claimRef.current = null;
     const player = playerRef.current;
     playerRef.current = null;
-    try { player?.pause(); } catch { /* native player is already stopped */ }
-    try { player?.release(); } catch { /* native player is already released */ }
+    try { player?.pause(); } catch (swallowedError) { /* native player is already stopped */ noteSwallowed('use_dialogue_v2_prepared_bot_voice_playback:catch_1', swallowedError); }
+    try { player?.release(); } catch (swallowedError) { /* native player is already released */ noteSwallowed('use_dialogue_v2_prepared_bot_voice_playback:catch_2', swallowedError); }
     playingMessageIdRef.current = null;
     if (mountedRef.current) setPlayingMessageId(null);
   }, []);
@@ -95,7 +96,7 @@ export function useDialogueV2PreparedBotVoicePlayback({
         return;
       }
       if (!claim.isCurrent() || playbackGeneration !== playbackGenerationRef.current) {
-        try { player.release(); } catch { /* player never became active */ }
+        try { player.release(); } catch (swallowedError) { /* player never became active */ noteSwallowed('use_dialogue_v2_prepared_bot_voice_playback:catch_3', swallowedError); }
         return;
       }
       playerRef.current = player;

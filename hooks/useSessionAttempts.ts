@@ -17,6 +17,7 @@ import {
   type SessionAttemptsStateV1,
   type SessionAttemptVerdict,
 } from '../app/session_attempts/session_attempts_domain';
+import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type UseSessionAttemptsInput = Readonly<{
   token: AccountGenerationToken;
@@ -58,10 +59,9 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
 
   const persist = useCallback((next: SessionAttemptsStateV1): void => {
     if (input.persistenceEnabled === false) return;
-    void persistSessionAttemptsState(input.token, next).catch(() => {
-      // The active screen keeps its local reducer state. Remount recovery stays
-      // fail-closed and never invents a resource debit.
-    });
+    // The active screen keeps its local reducer state. Remount recovery stays
+    // fail-closed and never invents a resource debit. PM-229: the failure reason is logged.
+    void persistSessionAttemptsState(input.token, next).catch(noteSwallowedHandler('useSessionAttempts:promise_1'));
   }, [input.persistenceEnabled, input.token]);
 
   useEffect(() => {

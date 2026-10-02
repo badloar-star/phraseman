@@ -36,6 +36,7 @@ import {
   type SpireStepReport,
   type SpireWeekLocal,
 } from './report_queue';
+import { noteSwallowedAs } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type SpireKeyValueStore = {
   getItem(key: string): Promise<string | null>;
@@ -128,7 +129,7 @@ function withKeyLock<T>(key: string, run: () => Promise<T>): Promise<T> {
   const next = prev.then(run, run);
   // Хвост очереди замка не должен рваться на чужой ошибке; сама ошибка уходит
   // вызывающему через `next` и логируется там.
-  const tail = next.catch(() => undefined);
+  const tail = next.catch(noteSwallowedAs('report_store:promise_1', undefined));
   locks.set(key, tail);
   void tail.then(() => { if (locks.get(key) === tail) locks.delete(key); });
   return next;

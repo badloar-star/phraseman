@@ -16,6 +16,7 @@ import {
   readSoftUpsellState,
 } from '../app/soft_upsell_state';
 import { useOverlayOccupied } from '../components/OverlayArbiter';
+import { noteSwallowed, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type Input = {
   candidates: readonly SoftUpsellCandidate[];
@@ -147,7 +148,7 @@ export function useSoftUpsellOpportunity({
         studyTarget, overlayOccupied, schemaVersion: 1, triggerValue: decision.opportunity.value,
       });
     };
-    void run().catch(() => {});
+    void run().catch(noteSwallowedHandler('use_soft_upsell_opportunity:promise_1'));
     return () => { active = false; };
   }, [accountScope, candidateSignature, currentIdentityKey, hasPremiumAccess, overlayOccupied, stableCandidates, studyTarget]);
 
@@ -204,9 +205,10 @@ export function useSoftUpsellOpportunity({
         await trackSoftUpsellEvent('soft_upsell_dismiss', basePayload(item));
         dismissCompletedRef.current.add(item.milestoneId);
         if (pendingDismissRef.current?.item.milestoneId === item.milestoneId) pendingDismissRef.current = null;
-      } catch {
+      } catch (swallowedError) {
         // The card is already hidden. A later session may evaluate it again because no cooldown was persisted.
-      }
+        noteSwallowed('use_soft_upsell_opportunity:catch_1', swallowedError);
+}
     })();
     dismissInFlightRef.current.set(item.milestoneId, operation);
     try {

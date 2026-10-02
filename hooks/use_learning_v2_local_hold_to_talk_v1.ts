@@ -31,6 +31,7 @@ import {
   resolveLearningV2SystemHoldTerminalActionV1,
   resolveLearningV2SystemRestartStatusV1,
 } from "../modules/learning-v2/runtime/hold_capture_route_v1";
+import { noteSwallowed } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type LearningV2LocalHoldToTalkStatusV1 =
   | "idle"
@@ -112,9 +113,10 @@ export function useLearningV2LocalHoldToTalkV1(
   const recordingAudio = useManagedRecordingAudio(() => {
     try {
       speechModule?.abort();
-    } catch {
+    } catch (swallowedError) {
       // The native recognizer may already be gone.
-    }
+      noteSwallowed('use_learning_v2_local_hold_to_talk_v1:catch_1', swallowedError);
+}
   });
   const restoreLoudPlaybackMode = recordingAudio.release;
   const deliverFinalTranscript = useCallback(() => {
@@ -151,9 +153,10 @@ export function useLearningV2LocalHoldToTalkV1(
     cleanupListeners();
     try {
       speechModule?.abort();
-    } catch {
+    } catch (swallowedError) {
       // Capture is already closed.
-    }
+      noteSwallowed('use_learning_v2_local_hold_to_talk_v1:catch_2', swallowedError);
+}
     restoreLoudPlaybackMode();
     if (mountedRef.current) setStatus("idle");
   }, [
@@ -246,9 +249,10 @@ export function useLearningV2LocalHoldToTalkV1(
       if (!holdPressRef.current) {
         try {
           speechModule.stop();
-        } catch {
+        } catch (swallowedError) {
           // Capture is already closing.
-        }
+          noteSwallowed('use_learning_v2_local_hold_to_talk_v1:catch_3', swallowedError);
+}
         return;
       }
       systemHasListenedRef.current = true;
@@ -445,9 +449,10 @@ export function useLearningV2LocalHoldToTalkV1(
         timeout = setTimeout(() => {
           try {
             speechModule.abort();
-          } catch {
+          } catch (swallowedError) {
             // The file recognizer may already have settled.
-          }
+            noteSwallowed('use_learning_v2_local_hold_to_talk_v1:catch_4', swallowedError);
+}
           settle();
         }, 8_000);
         try {
@@ -592,9 +597,10 @@ export function useLearningV2LocalHoldToTalkV1(
     cleanupListeners();
     try {
       speechModule?.abort();
-    } catch {
+    } catch (swallowedError) {
       // Capture is already closed.
-    }
+      noteSwallowed('use_learning_v2_local_hold_to_talk_v1:catch_5', swallowedError);
+}
     restoreLoudPlaybackMode();
     if (mountedRef.current) setStatus("idle");
   }, [

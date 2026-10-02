@@ -28,6 +28,7 @@ import {
   readCommittedPracticeRuneSettlementEarnings,
   settlePracticeRuneEarningsToServer,
 } from '../app/practice_rune_settlement';
+import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /**
  * usePracticeRunes — единая точка подключения копилки рун к экрану сессии.
@@ -341,7 +342,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     void AsyncStorage.setItem(
       storageKey,
       serializePracticeRuneAccumulator(earnings, completionOrdinal),
-    ).catch(() => {});
+    ).catch(noteSwallowedHandler('usePracticeRunes:promise_1'));
   }, []);
 
   const onCorrectAnswer = useCallback((itemId: string, correctStreak?: number): number => {

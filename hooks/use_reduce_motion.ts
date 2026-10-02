@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { AccessibilityInfo } from "react-native";
+import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /**
  * Возвращает true, когда в системе включён режим «Уменьшение движения», и
@@ -24,7 +25,7 @@ export function useReduceMotionPreference(): boolean | null {
       .then((enabled) => {
         if (!cancelled) setReduceMotion(Boolean(enabled));
       })
-      .catch(() => {});
+      .catch(noteSwallowedHandler('use_reduce_motion:promise_1'));
 
     const sub = AccessibilityInfo.addEventListener(
       "reduceMotionChanged",

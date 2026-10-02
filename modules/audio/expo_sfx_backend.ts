@@ -1,5 +1,6 @@
 import { createAudioPlayer } from 'expo-audio';
 import type { SoundEventId } from './sound_events';
+import { noteSwallowed } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // зачем: `isLoaded`/`playing` нужны, чтобы понять, что нативный плеер реально
 // готов. На Android ExoPlayer после createAudioPlayer какое-то время находится
@@ -91,9 +92,10 @@ function sfxTrace(stage: string, payload: Record<string, unknown>): void {
   if (!SFX_LAT_TRACE) return;
   try {
     console.log(`[SFX-LAT] ${stage}`, payload);
-  } catch {
+  } catch (swallowedError) {
     // Диагностика не имеет права ломать воспроизведение.
-  }
+    noteSwallowed('expo_sfx_backend:catch_1', swallowedError);
+}
 }
 
 export class ExpoSfxBackend {
@@ -357,10 +359,11 @@ export class ExpoSfxBackend {
     for (const { eventId, source } of entries) {
       try {
         this.ensure(eventId, source);
-      } catch {
+      } catch (swallowedError) {
         // Прогрев — оптимизация: не готов нативный слой — просто пропускаем,
         // реальный play создаст плеер обычным путём.
-      }
+        noteSwallowed('expo_sfx_backend:catch_2', swallowedError);
+}
     }
     this.evictIdleEntries();
   }
@@ -448,9 +451,10 @@ export class ExpoSfxBackend {
   private releaseIdleNativePlayers(): void {
     for (const entry of [...this.cache]) {
       if (entry.activeToken !== null) continue;
-      try { entry.player.release(); } catch {
+      try { entry.player.release(); } catch (swallowedError) {
         // Best effort: the allocation retry below is still the useful action.
-      }
+        noteSwallowed('expo_sfx_backend:catch_3', swallowedError);
+}
       this.cache.delete(entry);
     }
   }

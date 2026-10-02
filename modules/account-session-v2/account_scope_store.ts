@@ -3,6 +3,7 @@ import {
   type AccountScope,
   type SessionFence,
 } from './account_session';
+import { noteSwallowed } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type ScopeJson =
   | null
@@ -258,9 +259,10 @@ function observeUnexpectedRevokeResult(
     try {
       Reflect.apply(Promise.prototype.then, value, [settle, settle]);
       return;
-    } catch {
+    } catch (swallowedError) {
       // A non-Promise thenable is adopted by an owned Promise below.
-    }
+      noteSwallowed('account_scope_store:catch_1', swallowedError);
+}
     try {
       const adopted = new Promise<unknown>((adopt) => adopt(value));
       void adopted.then(settle, settle);

@@ -22,6 +22,7 @@ import {
 } from '../app/flashcards/card_tts_audio';
 import { getVoicesOnce } from '../app/flashcards/tts_voices';
 import { getNetStatus } from '../app/net_status';
+import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export function preloadAudio() {}
 export function preloadSound(_text: string) {}
@@ -37,7 +38,7 @@ function stopPhraseAudioIfLoaded(): void {
   if (!phraseAudioPlayerModulePromise) return;
   void phraseAudioPlayerModulePromise
     .then(({ stopPhraseAudio }) => stopPhraseAudio())
-    .catch(() => {});
+    .catch(noteSwallowedHandler('use-audio:promise_1'));
 }
 
 export type SpeakOpts = {

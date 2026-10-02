@@ -2,6 +2,7 @@ import {
   parseLearningV2ActivityAuxiliaryClientDescriptorV1,
   type LearningV2ActivityAuxiliaryClientDescriptorV1,
 } from "./activity_auxiliary_client_descriptor_v1";
+import { noteSwallowedAs } from '../../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export interface LearningV2ActivityAuxiliaryClientCacheV1 {
   readonly get: (key: string) => Promise<string | null>;
@@ -124,7 +125,7 @@ export async function loadLearningV2ActivityAuxiliaryClientWithLkgV1(
   try {
     raw = await input.fetchCanonicalRaw();
   } catch (networkError) {
-    const cached = await input.cache.get(key).catch(() => null);
+    const cached = await input.cache.get(key).catch(noteSwallowedAs('activity_auxiliary_client_loader_v1:promise_1', null));
     if (cached === null) throw networkError;
     try {
       return Object.freeze({
@@ -142,7 +143,7 @@ export async function loadLearningV2ActivityAuxiliaryClientWithLkgV1(
   // fails canonical or release identity validation is a protocol error and
   // must never be hidden by an older cached descriptor.
   const descriptor = exactDescriptor(raw, expected);
-  await input.cache.set(key, raw).catch(() => undefined);
+  await input.cache.set(key, raw).catch(noteSwallowedAs('activity_auxiliary_client_loader_v1:promise_2', undefined));
   return Object.freeze({
     source: "network" as const,
     descriptor,

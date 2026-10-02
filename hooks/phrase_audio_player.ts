@@ -22,6 +22,7 @@ import {
 } from '../modules/audio/phrase_audio_timing';
 import { getPlayablePhraseAudioUrl } from '../modules/audio/phrase_audio_lookup';
 import { getNetStatus } from '../app/net_status';
+import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const CACHE_DIR_NAME = 'phrase-audio';
 
@@ -213,7 +214,7 @@ function maybeSweepPhraseAudioCache(protectedUri?: string): void {
   cacheSweepInFlight = true;
   lastCacheSweepAt = now;
   void sweepPhraseAudioCache(protectedUri)
-    .catch(() => {})
+    .catch(noteSwallowedHandler('phrase_audio_player:promise_1'))
     .finally(() => {
       cacheSweepInFlight = false;
     });

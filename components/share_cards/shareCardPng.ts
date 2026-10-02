@@ -3,6 +3,7 @@ import { Share } from 'react-native';
 import type { RefObject } from 'react';
 import Svg from 'react-native-svg';
 import { DebugLogger } from '../../app/debug-logger';
+import { noteSwallowedHandler } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 function stripDataUrl(b64: string) {
   const i = b64.indexOf(',');
@@ -44,7 +45,7 @@ export async function shareCardFromSvgRef(
   const { fileNamePrefix, textFallback, width = 1080, height = 1080 } = options;
   const el = svgRef.current;
   if (!el || typeof el.toDataURL !== 'function') {
-    await Share.share({ message: textFallback }).catch(() => {});
+    await Share.share({ message: textFallback }).catch(noteSwallowedHandler('shareCardPng:promise_1'));
     return;
   }
   let raw: string;
@@ -61,22 +62,22 @@ export async function shareCardFromSvgRef(
     });
     raw = stripDataUrl(data);
   } catch {
-    await Share.share({ message: textFallback }).catch(() => {});
+    await Share.share({ message: textFallback }).catch(noteSwallowedHandler('shareCardPng:promise_2'));
     return;
   }
   if (!cacheDirectory) {
-    await Share.share({ message: textFallback }).catch(() => {});
+    await Share.share({ message: textFallback }).catch(noteSwallowedHandler('shareCardPng:promise_3'));
     return;
   }
   const path = `${cacheDirectory}${fileNamePrefix}-${Date.now()}.png`;
   try {
     await writeAsStringAsync(path, raw, { encoding: EncodingType.Base64 });
   } catch {
-    await Share.share({ message: textFallback }).catch(() => {});
+    await Share.share({ message: textFallback }).catch(noteSwallowedHandler('shareCardPng:promise_4'));
     return;
   }
   const shared = await sharePngWithExpoSharing(path);
   if (!shared) {
-    await Share.share({ message: textFallback }).catch(() => {});
+    await Share.share({ message: textFallback }).catch(noteSwallowedHandler('shareCardPng:promise_5'));
   }
 }

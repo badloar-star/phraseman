@@ -17,6 +17,7 @@ import { captureAccountsV2OwnerUid, produceAccountsV2ChangeIfEnabled } from '../
 import { normalizePackLanguage, type PackLanguage } from '../app/flashcards/pack_languages';
 import { FREE_CUSTOM_CARD_LIMIT, PLUS_CUSTOM_CARD_LIMIT } from '../app/flashcards/custom_card_access';
 import { forgetCardDeletions, recordCardDeletions } from '../app/flashcards/card_deletion_journal';
+import { noteSwallowed, noteSwallowedAs } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export interface Flashcard {
   id: string;
@@ -133,7 +134,7 @@ function withWriteLock<T>(
   }
   const previous = existing?.tail ?? Promise.resolve();
   const result = previous.then(() => fn());
-  const tail = result.catch(() => undefined).finally(() => {
+  const tail = result.catch(noteSwallowedAs('use-flashcards:promise_1', undefined)).finally(() => {
     if (writeQueueByAccount.get(accountKey)?.tail === tail) writeQueueByAccount.delete(accountKey);
   });
   writeQueueByAccount.set(accountKey, { tail, accountToken: token });
@@ -696,8 +697,9 @@ export const clearAllFlashcards = async (studyTarget?: RuntimeStudyTarget): Prom
         if (!isAccountOperationCurrent(accountToken)) return;
         await AsyncStorage.removeItem(flashcardsSavedKey(target));
       });
-    } catch {
+    } catch (swallowedError) {
       // fail-soft
-    }
+      noteSwallowed('use-flashcards:catch_1', swallowedError);
+}
   }, undefined);
 };

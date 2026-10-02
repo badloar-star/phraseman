@@ -6,6 +6,7 @@ import {
   type SubmitClientReportOptions,
   type SubmitClientReportResult,
 } from '../../app/client_reports';
+import { noteSwallowedAs } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type SpireTaskReportSubmissionInput = Readonly<{
   stableUid: string;
@@ -93,7 +94,7 @@ async function readPendingUnlocked(stableUid: string, nowMs = Date.now()): Promi
     if (kept.length !== parsed.length) await writePendingUnlocked(stableUid, kept);
     return kept;
   } catch {
-    await AsyncStorage.removeItem(outboxKey(stableUid)).catch(() => undefined);
+    await AsyncStorage.removeItem(outboxKey(stableUid)).catch(noteSwallowedAs('task_report_client:promise_1', undefined));
     return [];
   }
 }
@@ -216,7 +217,7 @@ export function buildSpireTaskReportSubmission(input: SpireTaskReportSubmissionI
       // must not turn a transient delivery failure into a lost report.
       if (result?.ok === true) removeExactlyOnce();
       if (persisted && result?.ok === true) {
-        await removePendingSpireTaskReport(input.stableUid, reportKey).catch(() => undefined);
+        await removePendingSpireTaskReport(input.stableUid, reportKey).catch(noteSwallowedAs('task_report_client:promise_2', undefined));
       }
       return Object.freeze({
         serverConfirmed: result?.ok === true,

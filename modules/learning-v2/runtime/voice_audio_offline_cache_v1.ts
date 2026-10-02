@@ -7,6 +7,7 @@ import {
   type LearningV2NativeDecoderIdentityV1,
 } from "./voice_native_decoder_observer_v1";
 import { LEARNING_V2_PCM_SIGNAL_SOURCE_MAX_BYTES_V1 } from "./voice_pcm_signal_observer_v1";
+import { noteSwallowed } from '../../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export const LEARNING_V2_VOICE_AUDIO_OFFLINE_CACHE_SCHEMA_V1 =
   "learning-v2-voice-audio-offline-cache.v1" as const;
@@ -434,9 +435,10 @@ export async function resolvePreparedLearningV2VoiceAudioOfflineFileV1(
           cacheDisposition: "exact_cache_hit",
         });
       }
-    } catch {
+    } catch (swallowedError) {
       // Fall through to exact readback below.
-    }
+      noteSwallowed('voice_audio_offline_cache_v1:catch_1', swallowedError);
+}
     processVerifiedFileUris.delete(cacheKey);
   }
   if (!(await exactFileBytes(file, identity.contentHash, identity.byteSize)))

@@ -5,6 +5,7 @@ import {
   type SpokenAudioClaim,
   whenSpokenAudioReady,
 } from '../modules/audio/audio_runtime_arbiter';
+import { noteSwallowed } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /**
  * Gives an expo-audio hook player process-wide spoken-audio ownership.
@@ -23,13 +24,13 @@ export function useManagedSpokenAudioPlayer(
   const stop = useCallback(() => {
     claimRef.current?.release();
     claimRef.current = null;
-    try { player.pause(); } catch { /* hook player may already be released */ }
+    try { player.pause(); } catch (swallowedError) { /* hook player may already be released */ noteSwallowed('use_managed_spoken_audio_player:catch_1', swallowedError); }
   }, [player]);
 
   const playFromStart = useCallback(async (): Promise<boolean> => {
     let claim: SpokenAudioClaim | null = null;
     claim = claimSpokenAudio(() => {
-      try { player.pause(); } catch { /* hook player may already be released */ }
+      try { player.pause(); } catch (swallowedError) { /* hook player may already be released */ noteSwallowed('use_managed_spoken_audio_player:catch_2', swallowedError); }
       if (claimRef.current === claim) claimRef.current = null;
     }, 'managed-spoken-player');
     if (!claim) return false;

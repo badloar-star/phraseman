@@ -4,6 +4,7 @@
 // события в union и убрать приведение.
 
 import { trackEvent } from '../../app/analytics';
+import { noteSwallowedAs } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type AhaEventName =
   | 'onboarding_aha_started'
@@ -19,5 +20,5 @@ export function trackAhaEvent(
   name: AhaEventName,
   props: Record<string, unknown> = {},
 ): void {
-  void trackEvent(name as Parameters<typeof trackEvent>[0], props).catch(() => undefined);
+  void trackEvent(name as Parameters<typeof trackEvent>[0], props).catch(noteSwallowedAs('aha_events:promise_1', undefined));
 }

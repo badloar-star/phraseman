@@ -12,6 +12,7 @@ import type {
   TextIntegrityProbeSession,
 } from './text_integrity_probe';
 import type { Rect, TextProvenance, TextSemanticMode } from './types';
+import { noteSwallowedAs } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type DevDependencies = typeof import('./text_integrity_probe');
 // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -101,7 +102,7 @@ function useDevTextIntegrityProbe(input: UseTextIntegrityProbeInput): UseTextInt
         safeAreaViewport: dependencies.buildSafeAreaViewport(window, insets),
         ...(actionBounds ? { actionBounds } : {}),
       }, () => mountedRef.current && request.isLatest());
-    }).catch(() => undefined);
+    }).catch(noteSwallowedAs('use_text_integrity_probe:promise_1', undefined));
   }, [dependencies, insets, input, measure, window]);
 
   return { ref: textRef, onTextLayout };

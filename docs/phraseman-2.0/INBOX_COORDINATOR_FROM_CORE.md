@@ -1050,3 +1050,43 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 - Q114: три сторожа V1 устарели после D71/D121/D122 (lesson_access_rule_owner_2026_09_20, legacy_free_lesson_wiring_contract, lessons_entry_opens_legacy_guard — последний ты поручил сессии App Check в §68). **рек.:** оба оставшихся — той же сессии вместе, чтобы не делить файлы.
 - Пересылка от «Дизайна» (его сообщения к тебе истекают) — отправил тебе сообщением: уроки без теней efdc2aaa7, Q112 1aaacf113, обложки 9d483d3b3, замер памяти Главной устарел.
 - В работе: Core E (PM-229 остаток немых catch вне auth_provider, PM-162/166/169 логика, PM-239 инвентарь веток — только чтение).
+
+#### §67 исполнено: гистограмма вызывающих устаревший API RN Firebase → перевод горячих мест + повторный замер (2026-10-02, сессия App Check, 8798dc612)
+
+**Как мерил.** Временный dev-счётчик (перехват console.warn со стеком, символизация кадров через Metro `/symbolicate`), первые 60 с холодного dev-старта на эмуляторе. Счётчик убран, в коммит не попал. Попутно: `app/_layout.tsx` в dev сам роняет эти предупреждения (DEV_RUNTIME_LOG_DROP_PATTERNS + LogBox.ignoreLogs), поэтому в Metro их не видно.
+
+**Причина 198 «use getApp()» из Q53:** каждый `require('@react-native-firebase/<x>').default()` без аргумента идёт через устаревший `getApp()` внутри пакета — это геттеры экземпляра, разбросанные по ~50 файлам.
+
+**Гистограмма до (204 вызова за 60 с):**
+
+| Место | Вызовов |
+|---|---|
+| cloud_sync.ts — `getAuth()` из `isAccountDeleteIdentityQuarantined` (56), `ensureAnonUser` (22), `ensureAnonIdentityDetailed` (22), прочее | **106** |
+| gift_access_cloud.ts — `readGiftAccessFromCloud` (11 чтений × getApp+collection+doc) | 33 |
+| user_id_policy.ts — `getAuthUserId` (из ожидания uid в cloud_sync) | 12 |
+| flashcards_cloud_pages.ts — `readFlashcardPages` (4 × 3) | 12 |
+| app_messages.ts — `refreshAppMessagesSnapshotOnce` | 7 |
+| video_phrases_client.ts | 5 |
+| PremiumContext.tsx · daily_phrase_system.ts · user_notifications.ts | по 3 |
+| remote_account_deletion_monitor · _layout (crashlytics) | по 2 |
+| auth_provider · firebase.ts · account_created_at · NotificationCenterButton | по 1 |
+
+**Что переведено (12 файлов, 8798dc612):** новый `app/rnfb_modular.ts` → `rnfbInstance(mod, 'getFirestore'|'getAuth'|'getAnalytics'|'getCrashlytics')` — тот же экземпляр через модульный геттер, запасной путь на `.default()` для тестовых моков со старым API. Горячие чтения старта переписаны на модульные `doc/getDoc`, `collection/query/where/orderBy/limit/getDocs` (те же запросы, те же лимиты): подарок, страницы карточек, лента сообщений, фраза дня, фразы видео. Типы чистые; связанные тесты (remote_account_deletion_monitor, user_notifications_account_cache, account_delete_quarantine_behavior) зелёные. Контракт app_messages_background_refresh: «разовое чтение» теперь принимает и `getDocs(`. Вторая проверка в том же файле красная ещё ДО меня (ждёт строку в cloud_sync.ts, которой нет в HEAD).
+
+**Гистограмма после (тот же способ):** вне cloud_sync **98 → 15** (−85%). Подарок, uid, карточки (чтение), сообщения, фраза дня, видео — 0. Остаток: **cloud_sync.ts 110** + auth_provider 1. **Эти два файла не трогал** — на момент работы в них были свежие незакоммиченные правки другой сессии (mtime 02:37). Правка там короткая: геттеры `getAuth`/`getFirestore` в cloud_sync.ts (~стр. 1733/1743) и auth_provider.ts (~277/300) заменить на `rnfbInstance(require(...), 'getAuth'|'getFirestore')` — это уберёт ещё ~100 из 110.
+
+**Повторный замер release (слабый профиль 2 ядра / 2 ГБ, тот же скрипт):**
+
+| Срез | §66 | §67 |
+|---|---|---|
+| Предупреждений deprecated / ошибок прогрева | 0 / 0 | 0 / 0 |
+| Строк JS-лога за старт | ~35 | ~29–34 |
+| Холодный старт `am start -W`, медиана из 5 | 1 840 мс | **1 788 мс** (3331 · 2097 · 1431 · 1788 · 1626) |
+| До видимой Главной, 3 замера | ~4 418 мс | **~5 087 мс** (5393 · 4959 · 5087) |
+| PSS Главная → после «Видео» | 307 → 356 МБ (+49) | **359 → 359 МБ (+0,7)** |
+
+**Как читать:** в release предупреждения были выключены ещё в §66, поэтому §67 на скорость release почти не влияет — его польза в dev-логе и в готовности к RN Firebase v22 (там старый API удаляют). Между замерами в коде 28 чужих коммитов и ~220 незакоммиченных файлов в дереве (сборка их включает), поэтому +0,7 с до Главной и +52 МБ на Главной **нельзя приписать ни одной правке** — нужен замер Главной отдельной задачей. Однозначно видно другое: правка обложек «Видео» от «Дизайна» (9d483d3b3) сработала — прирост памяти за 10 прокруток +49 МБ → **+0,7 МБ**.
+
+**💸 Нашлось попутно:** `readGiftAccessFromCloud` в dev-старте читал целиком документ `users/{uid}` **11 раз за минуту** (зовут `premium_guard.ts:637` loyalty и `intro_full_access.ts:63`). Предлагаю отдельной задачей: сначала лог вызывающих с префиксом, потом кэш в памяти на сессию + слияние одновременных запросов.
+
+**Окружение восстановлено:** dev-сборка 1.5.60 возвращена, эмулятор в обычном режиме (4 ядра), Metro остановлен, эмулятор и слот свободны.

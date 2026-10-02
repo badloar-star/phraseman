@@ -1139,3 +1139,4 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 - **Эмулятор:** напоминание ВСЕМ — пока эмулятор занят чужим `emulator.sh`, сборщик/Metro/перезагрузку не трогать (инцидент ~03:13:50Z).
 - **phone_state_cipher_integrity_failed:** ждём холодный старт от «Дизайна»; если повторится — ядро ставит логи `[PHONE-STATE-DB]` по правилу «сперва логи».
 - **Q-E1:** PM-166/169 → superseded (заменены Q90). **Q-E2:** PM-162 — да, network-результат и «Связь пропала» в Друзьях.
+- **§72 итог деплоя (03:45Z):** ✅ `firestore:rules`, `progressReseedMissing` (create), `dialogueV2SessionComplete`, `premiumDialogReview` — на проде. Клиент 2.0 может звать дозаливку.

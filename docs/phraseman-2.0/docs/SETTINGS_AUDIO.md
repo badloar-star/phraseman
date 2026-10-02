@@ -16,3 +16,23 @@
 
 ## Проверки платформы до удаления старого аудио
 Официальная Expo Speech документация latest указывает: speak при текущем воспроизведении добавляет фразу в очередь, stop очищает её; pause/resume не доступны на Android; на физическом iOS устройстве silent mode может означать отсутствие звука. Поэтому тестировать смену карточки, stop, повторное нажатие, iOS silent mode и доступные голоса, а не только эмулятор. Это сведения W11, а не подтверждение версии SDK проекта: сначала сверить установленную версию и фактический audio-session контракт.
+
+## Карта звука и результат проверки (PM-203 / PM-207, ядро, 2026-10-02)
+D18/D128: основной путь озвучки — TTS; карточки озвучиваются клипом OpenAI своего языка, без подмены чужим голосом устройства. Озвучка V1/V2 и учебные клипы НЕ удаляются (скачивание аудио V2 уже снято PM-205).
+
+**Кто играет звук и под каким арбитром** (`modules/audio/audio_runtime_arbiter.ts`):
+- Речь устройства (`expo-speech`): единственный основной путь — `hooks/use-audio.ts` (`speak`, аренда `use-audio:system-tts`). Второй вызов `Speech.speak` — только фолбэк `app/flashcards/SoundService.ts` (аренда `flashcards:tts-fallback`, работает, когда экран не передал `useAudio().speak`). Прочие `Speech.*` в приложении — только `Speech.stop`.
+- Клипы речи: `hooks/phrase_audio_player.ts` (корпус фраз en и клипы карточек OpenAI), сессии Learning V2, диалоги (`use_managed_spoken_audio_player`, `use_dialogue_v2_*`), онбординг — все под `claimSpokenAudio`; сторож `tests/audio_player_arbiter_guard.test.ts` не пускает плеер без арбитра.
+- Видео: `components/youtube/YoutubeInlinePlayer.tsx` берёт слот `claimVideoAudio` (озвучка ставит ролик на паузу, ролик глушит озвучку и эффекты).
+- Микрофон: `claimRecordingAudio` (`speaking_hold_recorder`, `use_managed_recording_audio`, `use_voice_capture`); запись глушит речь, эффекты и видео.
+- Короткие эффекты: `SoundDirector`/`SoundArbiter` (ambient-слот); отдельного audio engine на экран нет.
+
+**PM-203-A1 (голос = локаль, отмена, ошибка, повтор):**
+- Локаль: язык берётся из `opts.language` либо `inferExpoSpeechLanguage(text, подсказка)`. Карточки: язык набора, нет клипа и нет голоса точного языка → «Голос недоступен» и `card_voice_unavailable`, а не чужой голос (D128).
+- Найденный и исправленный разрыв: озвучка фразы дня вызывала `speak(text)` без языка, поэтому французская фраза (target `fr`, D129) читалась голосом `en-US`. Исправлено: три вызова в `components/DailyPhraseCard.tsx` передают язык по target изучения (без визуальных изменений); тест `tests/daily_phrase_speech_locale_pm203.test.ts`.
+- Отмена: токен поколения `speechGenerationRef`, `stop()`, отзыв аренды при смене владельца, выключение голоса (`voicePlaybackPolicy`), фон (`stopAllAudioOwnersOnResume`), размонтирование.
+- Ошибка и повтор: `onError`/`finalError`, фолбэк клип → голос устройства, повтор без выбранного голоса, страховка завершения речи (`isSpeakingAsync`), `audio_never_permanently_silent_contract`.
+
+**PM-207:** A1 принят раньше (слот видео в арбитре). A2 (звонок, наушники, iOS silent mode, pause/resume на Android) проверяется ТОЛЬКО на физическом устройстве; в коде нет явной подписки на отключение наушников — маршрутом звука управляет ОС и `interruptionMode` (`app/audio_playback_mode.ts`). Не закрыто без устройства.
+
+Что осталось владельцу: прогон на физических iOS и Android — смена карточки, повторное нажатие, silent mode, звонок во время речи, отключение наушников, фон/возврат; список доступных голосов по каждой локали.

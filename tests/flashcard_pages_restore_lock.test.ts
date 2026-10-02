@@ -171,19 +171,29 @@ describe('8J — doSyncToCloud и restore (структура cloud_sync)', () =
   };
 
   test('синк: запертый ключ не пишет страниц и не уходит в документ', () => {
-    const body = bodyOf('doSyncToCloud');
-    const readLocksAt = body.indexOf('const flashcardPagesWriteLocks = await readFlashcardPagesWriteLocks(flashcardCloudKeys.keys());');
-    const lockedAt = body.indexOf('if (flashcardPagesWriteLocks.has(key)) {');
+    // 8K: цикл выгрузки карточек живёт в общем пути uploadFlashcardListsToPages
+    // (app/flashcards_cloud_upload.ts) — его зовут и doSyncToCloud, и forceSyncToCloud.
+    const helperSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_cloud_upload.ts'), 'utf8').split('\r\n').join('\n');
+    const start = helperSource.indexOf('export async function uploadFlashcardListsToPages(');
+    expect(start).toBeGreaterThan(0);
+    const body = helperSource.slice(start, helperSource.indexOf('\n}\n', start));
+    const unchangedAt = body.indexOf("if (mode === 'sync' && cloudSyncSnapshotValueMatches(previousSnapshot[key], value)) {");
+    const readLocksAt = body.indexOf('const locks = await deps.readLocks(keys);');
+    const lockedAt = body.indexOf('if (locks.has(key)) {');
     expect(readLocksAt).toBeGreaterThan(0);
     expect(lockedAt).toBeGreaterThan(readLocksAt);
-    expect(lockedAt).toBeLessThan(body.indexOf('if (cloudSyncSnapshotValueMatches(previousSnapshot[key], value)) {'));
-    expect(lockedAt).toBeLessThan(body.indexOf('const pagesWritten = await writeFlashcardPages('));
-    const branch = body.slice(lockedAt, body.indexOf('if (cloudSyncSnapshotValueMatches(previousSnapshot[key], value)) {'));
-    // offloaded → ключ выкинут и из патча документа; continue → до writeFlashcardPages не доходит
-    expect(branch).toContain('offloadedFlashcardKeys.add(key);');
-    expect(branch).toContain('flashcardKeysLockedNow.add(key);');
+    expect(lockedAt).toBeLessThan(unchangedAt);
+    expect(lockedAt).toBeLessThan(body.indexOf('const pagesWritten = await deps.writePages('));
+    const branch = body.slice(lockedAt, unchangedAt);
+    // offloaded → ключ выкинут и из патча документа; continue → до записи страниц не доходит
+    expect(branch).toContain('offloaded.add(key);');
+    expect(branch).toContain('lockedNow.add(key);');
     expect(branch).toContain('continue;');
-    expect(branch).not.toContain('flashcardDocFieldsToClear');
+    expect(branch).not.toContain('clearDocField');
+    // doSyncToCloud берёт множества из плана общего пути
+    const sync = bodyOf('doSyncToCloud');
+    expect(sync).toContain('const offloadedFlashcardKeys = flashcardUpload.offloaded;');
+    expect(sync).toContain('const flashcardKeysLockedNow = flashcardUpload.lockedNow;');
   });
 
   test('синк: снимок не запоминает значение запертого ключа как отправленное', () => {

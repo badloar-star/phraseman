@@ -102,7 +102,10 @@ describe('cloud_sync — карточки не возвращаются в до�
 
     // Сторож на регрессию: если кто-то уберёт вынос, карточки снова поедут в документ.
     expect(source).toContain('offloadedFlashcardKeys');
-    expect(source).toContain('writeFlashcardPages');
+    // 8K: страницы пишет общий путь обычного и принудительного синка.
+    expect(source).toContain('uploadFlashcardListsToPages');
+    const helper = fs.readFileSync(path.join(__dirname, '..', 'app', 'flashcards_cloud_upload.ts'), 'utf8');
+    expect(helper).toContain('writePages: writeFlashcardPages,');
     expect(source).toMatch(/if \(offloadedFlashcardKeys\.has\(key\)\) continue;/);
   });
 

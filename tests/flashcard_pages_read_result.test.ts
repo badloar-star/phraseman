@@ -160,6 +160,28 @@ describe('8J — замок записи страниц', () => {
     jest.spyOn(AsyncStorage, 'getItem').mockRejectedValueOnce(new Error('io'));
     expect([...await readFlashcardPagesWriteLocks(KEYS)].sort()).toEqual([...KEYS].sort());
   });
+
+  // 8K: испорченное значение замка раньше запирало все ключи НАВСЕГДА — lock/unlock падали
+  // на том же JSON.parse и не могли его перезаписать.
+  test('испорченный замок: чтение запирает всё до починки (в безопасную сторону)', async () => {
+    await AsyncStorage.setItem(FLASHCARD_PAGES_WRITE_LOCK_KEY, '{not json');
+    expect([...await readFlashcardPagesWriteLocks(KEYS)].sort()).toEqual([...KEYS].sort());
+  });
+
+  test('испорченный замок чинит unlock после подтверждённого чтения → пусто, лог lock_value_repaired', async () => {
+    await AsyncStorage.setItem(FLASHCARD_PAGES_WRITE_LOCK_KEY, '{not json');
+    await unlockFlashcardPagesWrite('flashcards_v1', 'read_ok');
+    expect(await AsyncStorage.getItem(FLASHCARD_PAGES_WRITE_LOCK_KEY)).toBeNull();
+    expect((await readFlashcardPagesWriteLocks(KEYS)).size).toBe(0);
+    expect(logs().some((entry) => entry.includes('write_lock lock_value_repaired key=flashcards_v1 via=unlock'))).toBe(true);
+  });
+
+  test('испорченный замок чинит lock → заперт только этот ключ', async () => {
+    await AsyncStorage.setItem(FLASHCARD_PAGES_WRITE_LOCK_KEY, '[[[');
+    await lockFlashcardPagesWrite('flashcards_v1', 'read_error_x');
+    expect([...await readFlashcardPagesWriteLocks(KEYS)]).toEqual(['flashcards_v1']);
+    expect(logs().some((entry) => entry.includes('write_lock lock_value_repaired key=flashcards_v1 via=lock'))).toBe(true);
+  });
 });
 
 describe('8J — слияние при снятии замка', () => {

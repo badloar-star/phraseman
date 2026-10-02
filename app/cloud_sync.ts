@@ -74,7 +74,6 @@ import { emitAppEvent } from './events';
 import { patchAppSnapshotFromAuthoritativeCloudProgress } from './app_snapshot_store';
 import {
   cloudSyncSnapshotValueMatches,
-  encodeCloudSyncSnapshotRecord,
   encodeCloudSyncSnapshotValue,
 } from './cloud_sync_snapshot_codec';
 import {
@@ -243,7 +242,6 @@ import {
   normalizeLegacyFreeLessonCap,
 } from './legacy_free_lesson_access';
 import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
-import { writeFlashcardPages } from './flashcards_cloud_pages';
 import {
   lockFlashcardPagesWrite,
   mergeLockedFlashcardsWithPages,
@@ -251,7 +249,13 @@ import {
   readFlashcardPagesWriteLocks,
   unlockFlashcardPagesWrite,
 } from './flashcard_pages_read_result';
-import { buildFlashcardDocFieldMarkers, decideFlashcardDocField } from './flashcards_doc_field_clear';
+import { buildFlashcardDocFieldMarkers } from './flashcards_doc_field_clear';
+import {
+  buildDocProgressWithoutFlashcardLists,
+  buildForceSyncSnapshot,
+  runForceFlashcardUpload,
+  uploadFlashcardListsToPages,
+} from './flashcards_cloud_upload';
 import {
   isAccountsV2LegacyDomainKey,
   isAccountsV2LegacySwitchFlagOn,
@@ -3099,59 +3103,26 @@ async function doSyncToCloud(): Promise<void> {
     // уезжает в подколлекцию flashcard_pages страницами, а из патча исключается.
     // Порядок важен: сначала успешная запись страниц, и только потом ключ
     // выбрасывается — иначе при отказе облака карточки исчезли бы из обоих мест.
-    const flashcardCloudKeys = new Map<string, FlashcardStudyTarget>([
-      ['flashcards_v1', 'en'],
-      [flashcardsSavedKey('fr'), 'fr'],
-    ]);
-    const offloadedFlashcardKeys = new Set<string>();
-    // зачем (Account V2, 8H-2, решение координатора §67 B): ключ, просто выкинутый
-    // из патча, оставлял в документе СТАРЫЙ список навсегда, а restore предпочитает
-    // поле документа страницам — удалённая карточка «возвращалась». Поэтому после
-    // УСПЕШНОЙ записи страниц поле в том же патче обнуляется — один раз (маркер в
-    // снимке), без повторного null на каждом синке. Ветку «список не менялся» не
-    // трогаем: страниц в этот такт не писали, и подтверждения, что они есть, нет.
-    const flashcardDocFieldsToClear = new Set<string>();
-    // Сбой страниц → список уезжает в документ, поле снова не null: маркер снимаем.
-    const flashcardDocFieldsSentToDoc = new Set<string>();
-    // зачем (8J): restore не смог прочитать страницы ключа → облачная правда неизвестна.
-    // Такой ключ не уходит НИКУДА: ни в страницы (writeFlashcardPages удалил бы хвост),
-    // ни в поле документа (restore предпочитает поле страницам — та же потеря). Замок
-    // снимает только следующий restore с удачным чтением страниц.
-    const flashcardPagesWriteLocks = await readFlashcardPagesWriteLocks(flashcardCloudKeys.keys());
-    if (!isSyncGenerationCurrent()) return;
-    const flashcardKeysLockedNow = new Set<string>();
-    for (const [key, target] of flashcardCloudKeys) {
-      const value = data[key];
-      if (value === null || value === undefined) continue;
-      if (flashcardPagesWriteLocks.has(key)) {
-        offloadedFlashcardKeys.add(key);
-        flashcardKeysLockedNow.add(key);
-        console.log(`[LEGACY-V2-SYNC] pages_write_skipped key=${key} reason=pages_unconfirmed local_len=${String(value).length}`);
-        continue;
-      }
-      // Страницы пишем только когда список реально изменился с прошлого синка —
-      // иначе каждый такт стоил бы N записей на ровном месте.
-      if (cloudSyncSnapshotValueMatches(previousSnapshot[key], value)) {
-        offloadedFlashcardKeys.add(key);
-        continue;
-      }
-      const pagesWritten = await writeFlashcardPages(uid, target, String(value));
-      if (!isSyncGenerationCurrent()) return;
-      const decision = decideFlashcardDocField(previousSnapshot, key, pagesWritten !== null);
-      if (decision !== 'keep_in_doc') {
-        offloadedFlashcardKeys.add(key);
-        if (decision === 'clear') flashcardDocFieldsToClear.add(key);
-        else console.log(`[LEGACY-V2-SYNC] doc_field_clear_skipped key=${key} reason=already_cleared`);
-      } else {
-        flashcardDocFieldsSentToDoc.add(key);
-        // Ранний выход: страницы не записались — ключ НЕ выбрасываем, пусть едет
-        // в документе как раньше. Причина уже залогирована в writeFlashcardPages.
-        DebugLogger.warn(
-          'cloud_sync:flashcards',
-          `offload failed key=${key} target=${target} — записываем в документ как раньше`,
-        );
-      }
-    }
+    // зачем (Account V2, 8K): выгрузка карточек (страницы 8H, обнуление поля 8H-2,
+    // замок 8J) вынесена в uploadFlashcardListsToPages — ТОТ ЖЕ путь зовёт
+    // forceSyncToCloud, иначе перенос при смене устройства снова клал список в документ.
+    // Порядок важен: сначала успешная запись страниц, и только потом ключ
+    // выбрасывается — иначе при отказе облака карточки исчезли бы из обоих мест.
+    const flashcardUpload = await uploadFlashcardListsToPages({
+      uid,
+      data,
+      previousSnapshot,
+      mode: 'sync',
+      isCurrent: isSyncGenerationCurrent,
+    });
+    if (!flashcardUpload) return;
+    const offloadedFlashcardKeys = flashcardUpload.offloaded;
+    // Страницы записаны в этот такт → поле документа обнуляется в ЭТОМ же патче (8H-2).
+    const flashcardDocFieldsToClear = flashcardUpload.clearDocField;
+    // Сбой страниц → список уехал в документ, поле снова не null: маркер снимаем.
+    const flashcardDocFieldsSentToDoc = flashcardUpload.sentToDoc;
+    // Заперт замком 8J → не уходил никуда; снимок не запоминает его значение.
+    const flashcardKeysLockedNow = flashcardUpload.lockedNow;
 
 
     for (const [key, value] of Object.entries(data)) {
@@ -3268,7 +3239,7 @@ async function doSyncToCloud(): Promise<void> {
     // null повторно; маркер переносится между синками и снимается при сбое страниц.
     Object.assign(snapshotData, buildFlashcardDocFieldMarkers(
       previousSnapshot,
-      flashcardCloudKeys.keys(),
+      flashcardUpload.keys,
       flashcardDocFieldsToClear,
       flashcardDocFieldsSentToDoc,
     ));
@@ -4432,6 +4403,34 @@ export async function forceSyncToCloud(): Promise<boolean> {
     // outbox V2 живёт в области uid и уйдёт сам. Неактивно → тот же объект.
     const forceData = omitAccountsV2LegacyDomains(data, 'write', isAccountsV2LegacySwitchFlagOn()
       && await resolveAccountsV2LegacySkip('write', getAuthUserId()));
+    if (!isForceGenerationCurrent()) {
+      console.log('[LEGACY-V2-SYNC] force_sync aborted reason=stale_generation stage=before_flashcards');
+      pendingSync = false;
+      return false;
+    }
+    // зачем (Account V2, 8K): прежде перенос клал progress.flashcards_v1 (и fr) ЦЕЛИКОМ в
+    // документ и заново создавал затеняющую копию (8H/8H-2) — restore на другом устройстве
+    // брал её вместо страниц. Теперь карточки идут ТЕМ ЖЕ путём, что в doSyncToCloud:
+    // страницы → поле документа null; сбой страниц → список в документ как раньше;
+    // запертый ключ (8J) — никуда.
+    // зачем (ревью 8K, C-1/C-2): выгрузка под тем же потолком, что запись документа
+    // (без связи RN Firebase держит commit бесконечно — выход/смена аккаунта зависли бы),
+    // а запертый ключ — отказ всего переноса: true означает «прогресс в облаке», после
+    // него локальное стирается, и карточки, добавленные под замком, пропали бы.
+    const flashcardOutcome = await runForceFlashcardUpload({
+      uid,
+      data: forceData,
+      isCurrent: isForceGenerationCurrent,
+      timeoutMs: FORCE_SYNC_FIRESTORE_WRITE_MS,
+    });
+    if (!flashcardOutcome.ok) {
+      // Ранний выход: документ не пишем; вызывающий сделает аварийную копию и отменит смену.
+      console.log(`[LEGACY-V2-SYNC] force_sync result=false reason=${flashcardOutcome.reason}`);
+      pendingSync = false;
+      return false;
+    }
+    const flashcardUpload = flashcardOutcome.plan;
+    const forceDocProgress = buildDocProgressWithoutFlashcardLists(forceData, flashcardUpload);
 
     const now = Date.now();
     const docRef = db.collection('users').doc(uid);
@@ -4460,7 +4459,7 @@ export async function forceSyncToCloud(): Promise<boolean> {
           last_active_at: now,
           ...(shouldSendCreatedAt ? { created_at: now } : {}),
         },
-        forceData,
+        forceDocProgress,
       ),
       FORCE_SYNC_FIRESTORE_WRITE_MS,
       'firestore_set',
@@ -4470,7 +4469,7 @@ export async function forceSyncToCloud(): Promise<boolean> {
     pendingSync = false;
     await AsyncStorage.setItem(
       LAST_SYNC_SNAPSHOT_KEY,
-      JSON.stringify(encodeCloudSyncSnapshotRecord(forceData)),
+      JSON.stringify(buildForceSyncSnapshot(forceData, flashcardUpload)),
     ).catch(swallowError('cloud_sync:forceSyncToCloud'));
     if (shouldSendCreatedAt) {
       await AsyncStorage.setItem(CREATED_AT_SYNC_KEY, '1').catch(swallowError('cloud_sync:forceSyncToCloud'));

@@ -244,6 +244,23 @@ function parseLockKeys(raw: string | null): string[] {
   return Array.isArray(keys) ? keys.filter((key): key is string => typeof key === 'string') : [];
 }
 
+/**
+ * Тот же разбор, но испорченное значение — не исключение, а null.
+ * зачем (8K, 🟡 ревью 8J): parseLockKeys бросает на битом JSON; read тогда запирает ВСЁ
+ * (так и надо — правды нет), но lock/unlock падали на том же разборе и не могли значение
+ * перезаписать — все ключи оставались запертыми навсегда. lock/unlock разбирают через эту
+ * функцию и на null перезаписывают замок корректным значением (самопочинка).
+ */
+function parseLockKeysOrCorrupt(raw: string | null): string[] | null {
+  try {
+    return parseLockKeys(raw);
+  } catch (error) {
+    // Без содержимого значения: только причина и длина.
+    console.warn(`${LOG} write_lock value_unparsable len=${raw?.length ?? 0} reason=${String(error).slice(0, 80)}`);
+    return null;
+  }
+}
+
 async function writeLockKeys(keys: readonly string[]): Promise<void> {
   if (keys.length === 0) await AsyncStorage.removeItem(FLASHCARD_PAGES_WRITE_LOCK_KEY);
   else await AsyncStorage.setItem(FLASHCARD_PAGES_WRITE_LOCK_KEY, JSON.stringify({ keys: [...keys] }));
@@ -266,8 +283,13 @@ export async function lockFlashcardPagesWrite(key: string, reason: string): Prom
   memoryFallbackLocks.add(key);
   try {
     const raw = await AsyncStorage.getItem(FLASHCARD_PAGES_WRITE_LOCK_KEY);
-    const keys = parseLockKeys(raw);
+    const parsed = parseLockKeysOrCorrupt(raw);
+    // зачем (8K): битое значение заменяем замком ТОЛЬКО этого ключа. Остальные ключи restore
+    // перечитывает в том же проходе (битый замок читается как «заперто всё») и сам запрёт
+    // или отопрёт каждый по факту чтения.
+    const keys = parsed ?? [];
     await writeLockKeys(keys.includes(key) ? keys : [...keys, key]);
+    if (parsed === null) console.warn(`${LOG} write_lock lock_value_repaired key=${key} via=lock reason=${reason} kept=1`);
     // Запись удалась — запасная копия не нужна (иначе unlock в том же процессе её бы не снял).
     memoryFallbackLocks.delete(key);
     console.log(`${LOG} write_lock set key=${key} reason=${reason}`);
@@ -281,7 +303,16 @@ export async function unlockFlashcardPagesWrite(key: string, reason: string): Pr
   const hadMemory = memoryFallbackLocks.delete(key);
   try {
     const raw = await AsyncStorage.getItem(FLASHCARD_PAGES_WRITE_LOCK_KEY);
-    const keys = parseLockKeys(raw);
+    const parsed = parseLockKeysOrCorrupt(raw);
+    if (parsed === null) {
+      // зачем (8K): unlock зовётся только после подтверждённого чтения (или поля документа).
+      // Если в этом же проходе другой ключ не прочитался, lock уже перезаписал значение
+      // корректным — сюда мы попадаем, только когда запирать некого. Значит, пустой набор.
+      await writeLockKeys([]);
+      console.warn(`${LOG} write_lock lock_value_repaired key=${key} via=unlock reason=${reason} kept=0`);
+      return;
+    }
+    const keys = parsed;
     if (!keys.includes(key)) {
       if (hadMemory) console.log(`${LOG} write_lock cleared key=${key} reason=${reason} memory_only=true`);
       return;

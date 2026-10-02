@@ -299,7 +299,8 @@ describe('7A switch — писатели старого облака (струк
     const decideAt = text.indexOf("isAccountsV2LegacySwitchFlagOn()\n      && await resolveAccountsV2LegacySkip('write', getAuthUserId())");
     expect(decideAt).toBeGreaterThan(0);
     expect(decideAt).toBeLessThan(text.indexOf('const pairs = await AsyncStorage.multiGet(getRuntimeSyncKeys());\n    if (!isSyncGenerationCurrent()) return;'));
-    expect(omitAt).toBeLessThan(text.indexOf('writeFlashcardPages('));
+    // 8K: страницы карточек пишет общий путь uploadFlashcardListsToPages (app/flashcards_cloud_upload.ts).
+    expect(omitAt).toBeLessThan(text.indexOf('await uploadFlashcardListsToPages({'));
     expect(omitAt).toBeLessThan(text.indexOf('progressPatch[key] = value'));
     expect(omitAt).toBeLessThan(text.indexOf('LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(snapshotData)'));
   });
@@ -307,8 +308,10 @@ describe('7A switch — писатели старого облака (струк
   test('forceSyncToCloud: пишет и запоминает forceData (тот же объект при выключателе false)', () => {
     const text = body('forceSyncToCloud');
     expect(text).toMatch(/omitAccountsV2LegacyDomains\(data, 'write', isAccountsV2LegacySwitchFlagOn\(\)\s*&& await resolveAccountsV2LegacySkip\('write', getAuthUserId\(\)\)\)/);
-    expect(text).toMatch(/\},\s*forceData,\s*\),/);
-    expect(text).toContain('encodeCloudSyncSnapshotRecord(forceData)');
+    // 8K: документ получает forceData без списков карточек (они ушли в страницы), снимок — по плану.
+    expect(text).toContain('buildDocProgressWithoutFlashcardLists(forceData, flashcardUpload)');
+    expect(text).toMatch(/\},\s*forceDocProgress,\s*\),/);
+    expect(text).toContain('buildForceSyncSnapshot(forceData, flashcardUpload)');
   });
 
   test('cloud_sync зовёт выключатель ровно в трёх местах (запись, перенос, restore), всегда за синхронным флагом', () => {
@@ -408,7 +411,7 @@ describe('8H — логи старой синхронизации V2-ключе�
     const body = source.slice(source.indexOf('async function doSyncToCloud('));
     const logAt = body.indexOf('logAccountsV2LegacySyncKeys(storedData, data, previousSnapshot, cloudSyncSnapshotValueMatches);');
     expect(logAt).toBeGreaterThan(0);
-    expect(logAt).toBeLessThan(body.indexOf('writeFlashcardPages('));
+    expect(logAt).toBeLessThan(body.indexOf('await uploadFlashcardListsToPages({'));
   });
 
   test('синхронизация: решение по каждому V2-ключу — ушёл/пропущен, снимок есть/совпадает (без значений)', () => {

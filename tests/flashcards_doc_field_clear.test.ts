@@ -63,24 +63,31 @@ describe('8H-2 — встройка в doSyncToCloud (структура cloud_s
   const start = source.indexOf('async function doSyncToCloud(');
   const body = source.slice(start, source.indexOf('\n}\n', start));
 
+  // 8K: цикл выгрузки карточек вынесен в общий путь (app/flashcards_cloud_upload.ts).
+  const helperSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_cloud_upload.ts'), 'utf8').split('\r\n').join('\n');
+  const helperStart = helperSource.indexOf('export async function uploadFlashcardListsToPages(');
+  const helper = helperSource.slice(helperStart, helperSource.indexOf('\n}\n', helperStart));
+
   test('решение берётся по результату записи страниц', () => {
-    const writeAt = body.indexOf('const pagesWritten = await writeFlashcardPages(uid, target, String(value));');
-    const decideAt = body.indexOf('decideFlashcardDocField(previousSnapshot, key, pagesWritten !== null)');
+    expect(helperStart).toBeGreaterThan(0);
+    const writeAt = helper.indexOf('const pagesWritten = await deps.writePages(uid, target, String(value));');
+    const decideAt = helper.indexOf('decideFlashcardDocField(previousSnapshot, key, pagesWritten !== null)');
     expect(writeAt).toBeGreaterThan(0);
     expect(decideAt).toBeGreaterThan(writeAt);
   });
 
   test('null кладётся в патч ДО записи документа и только для очищаемых ключей', () => {
     const nullAt = body.indexOf('for (const key of flashcardDocFieldsToClear) progressPatch[key] = null;');
-    expect(nullAt).toBeGreaterThan(body.indexOf('writeFlashcardPages('));
+    expect(nullAt).toBeGreaterThan(body.indexOf('await uploadFlashcardListsToPages({'));
     expect(nullAt).toBeLessThan(body.indexOf('const hasProgressPatch = Object.keys(progressPatch).length > 0;'));
     expect(nullAt).toBeLessThan(body.indexOf('await writeUserDocWithNestedProgress(docRef, rootPatch, progressPatch);'));
     // Ветка «список не менялся с прошлого синка» поле НЕ трогает: страниц в этот такт не писали.
-    const unchangedBranch = body.slice(
-      body.indexOf('if (cloudSyncSnapshotValueMatches(previousSnapshot[key], value)) {'),
-      body.indexOf('const pagesWritten = await writeFlashcardPages('),
+    const unchangedBranch = helper.slice(
+      helper.indexOf("if (mode === 'sync' && cloudSyncSnapshotValueMatches(previousSnapshot[key], value)) {"),
+      helper.indexOf('const pagesWritten = await deps.writePages('),
     );
-    expect(unchangedBranch).not.toContain('flashcardDocFieldsToClear');
+    expect(unchangedBranch.length).toBeGreaterThan(0);
+    expect(unchangedBranch).not.toContain('clearDocField');
   });
 
   test('маркер пишется в снимок только после успешной записи документа', () => {
@@ -95,12 +102,13 @@ describe('8H-2 — встройка в doSyncToCloud (структура cloud_s
   });
 
   test('сбой страниц снимает маркер (список уехал в документ)', () => {
-    const failBranch = body.slice(
-      body.indexOf("if (decision !== 'keep_in_doc') {"),
-      body.indexOf('offload failed key=${key}'),
+    const failBranch = helper.slice(
+      helper.indexOf("if (decision !== 'keep_in_doc') {"),
+      helper.indexOf('offload failed key=${key}'),
     );
-    expect(failBranch).toContain('} else {\n        flashcardDocFieldsSentToDoc.add(key);');
+    expect(failBranch).toContain('} else {\n      sentToDoc.add(key);');
     // успешная ветка выкидывает список из патча, сбойная — нет
-    expect(failBranch.indexOf('offloadedFlashcardKeys.add(key);')).toBeLessThan(failBranch.indexOf('} else {'));
+    expect(failBranch.indexOf('offloaded.add(key);')).toBeLessThan(failBranch.indexOf('} else {'));
+    expect(body).toContain('const flashcardDocFieldsSentToDoc = flashcardUpload.sentToDoc;');
   });
 });

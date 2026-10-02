@@ -10,6 +10,19 @@ const KEY_HEX_PATTERN = /^[a-f0-9]{64}$/;
 const inFlightCredentials = new Map<string, Promise<PhoneStateCredentials>>();
 const inFlightLineages = new Map<string, Promise<number>>();
 const inFlightLineageRetirements = new Map<string, Promise<number>>();
+/**
+ * зачем (трасса «Дизайна», слабый профиль, 02.10): SHA-256 одного и того же uid считался дважды
+ * подряд (lineage, затем ключ) — 1,2–2,5 с каждый раз в очереди нативных модулей на старте.
+ * Отпечаток uid — не секрет (он и так в имени файла базы), кэшируем в памяти процесса.
+ */
+const digestCache = new Map<string, Promise<string>>();
+/**
+ * зачем (та же трасса): ключ читается из SecureStore/Keystore 1–1,5 с; прогрев параллельно с
+ * чтением флага целостности + короткое удержание в памяти (30 с) дают открытию уже прочитанный
+ * ключ вместо второго похода в Keystore. Удаление аккаунта сбрасывает запись немедленно.
+ */
+const RESOLVED_CREDENTIALS_TTL_MS = 30_000;
+const resolvedCredentials = new Map<string, Readonly<{ value: PhoneStateCredentials; expiresAt: number }>>();
 
 export type PhoneStateScope = Readonly<{
   stableUid: string;
@@ -52,7 +65,25 @@ function phoneStateLineageKey(accountHash: string): string {
   return `${PHONE_STATE_LINEAGE_KEY_PREFIX}${accountHash}`;
 }
 
+/** Только для тестов: сбросить кэши процесса (отпечатки uid и прочитанные ключи). */
+export function resetPhoneStateSecretCachesForTests(): void {
+  digestCache.clear();
+  resolvedCredentials.clear();
+}
+
 export async function digestStableUid(stableUid: string): Promise<string> {
+  const cached = digestCache.get(stableUid);
+  if (cached) return cached;
+  const pending = computeDigest(stableUid);
+  digestCache.set(stableUid, pending);
+  pending.catch((error: unknown) => {
+    digestCache.delete(stableUid);
+    console.warn('[PHONE-STATE-DB] key:digest_failed — кэш сброшен', error instanceof Error ? error.message : String(error));
+  });
+  return pending;
+}
+
+async function computeDigest(stableUid: string): Promise<string> {
   const digest = await Crypto.digestStringAsync(
     Crypto.CryptoDigestAlgorithm.SHA256,
     stableUid,
@@ -122,6 +153,12 @@ export async function materializePhoneStateCredentials(
 ): Promise<PhoneStateCredentials> {
   assertValidScope(scope);
   const scopeKey = JSON.stringify([scope.stableUid, scope.accountGeneration]);
+  const resolved = resolvedCredentials.get(scopeKey);
+  if (resolved && resolved.expiresAt > Date.now()) {
+    console.log('[PHONE-STATE-DB] key:credentials_from_memory');
+    return resolved.value;
+  }
+  resolvedCredentials.delete(scopeKey);
   const existing = inFlightCredentials.get(scopeKey);
   if (existing) {
     return existing;
@@ -129,6 +166,9 @@ export async function materializePhoneStateCredentials(
 
   const pending = createCredentials(scope);
   inFlightCredentials.set(scopeKey, pending);
+  void pending.then((value) => {
+    resolvedCredentials.set(scopeKey, Object.freeze({ value, expiresAt: Date.now() + RESOLVED_CREDENTIALS_TTL_MS }));
+  }, () => undefined /* причину пишет вызывающий: этот then только кладёт успех в память */);
   const clearPending = (): void => {
     if (inFlightCredentials.get(scopeKey) === pending) {
       inFlightCredentials.delete(scopeKey);
@@ -192,6 +232,7 @@ export async function retirePhoneStateLineageAfterDeletion(stableUid: string): P
       secureOptions(),
     );
     inFlightCredentials.delete(JSON.stringify([normalized, current]));
+    resolvedCredentials.delete(JSON.stringify([normalized, current]));
     inFlightLineages.delete(normalized);
     return next;
   })();

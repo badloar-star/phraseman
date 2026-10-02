@@ -4,6 +4,7 @@ import * as Crypto from 'expo-crypto';
 
 import { isUnreadableDatabaseFailure, openPhoneStateDatabase, recreatePhoneStateDatabaseAfterUnreadable } from '../modules/phone-state/database';
 import { openPhoneStateIntegrityConnection } from '../modules/phone-state/database'; // зачем: §84 — проверка на отдельном соединении
+import { materializePhoneStateCredentials } from '../modules/phone-state/account_secret';
 import { coldStartStep } from './cold_start_trace'; // зачем: §80 — метки [COLD-START] шагов открытия
 import Constants from 'expo-constants';
 import { getInstalledAppVersion } from './app_version';
@@ -335,7 +336,16 @@ async function openRuntimeSession(
   // зачем (§84, Q118): фоновая проверка нашла порчу на прошлом запуске → пересоздаём ДО открытия
   // (путь §75: данные вернут локальное хранилище и облако). Флаг снимаем только после успеха.
   const flagStartedAt = Date.now();
+  // зачем (трасса «Дизайна», слабый профиль): флаг (2,3–3,5 с) и ключ из Keystore (1–1,5 с)
+  // читались строго по очереди. Ключ прогреваем ПАРАЛЛЕЛЬНО с флагом — открытие возьмёт его из
+  // памяти (account_secret, 30 с). Сбой прогрева не мешает: открытие прочитает ключ само.
+  const credentialsWarm = materializePhoneStateCredentials(scope).catch((error: unknown) => {
+    console.warn('[PHONE-STATE-DB] key:warm_failed — открытие прочитает ключ само',
+      error instanceof Error ? error.message : String(error));
+    return null;
+  });
   const integrityResetPending = await isIntegrityResetPending(AsyncStorage, scope);
+  await credentialsWarm;
   console.log(`[PHONE-STATE-DB] deferred_integrity:flag_read_ms ${Date.now() - flagStartedAt}`); // зачем: трасса §88 (временное)
   let database = integrityResetPending
     ? await recreatePhoneStateDatabaseAfterUnreadable(scope)

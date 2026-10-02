@@ -9,6 +9,7 @@ import * as SQLite from 'expo-sqlite';
 import * as AccountSecret from '../modules/phone-state/account_secret';
 import {
   materializePhoneStateCredentials,
+  resetPhoneStateSecretCachesForTests,
   type PhoneStateScope,
 } from '../modules/phone-state/account_secret';
 import { openPhoneStateDatabase, recreatePhoneStateDatabaseAfterUnreadable } from '../modules/phone-state/database';
@@ -64,6 +65,7 @@ beforeEach(() => {
   jest.restoreAllMocks();
   (SecureStore as typeof SecureStore & { __reset(): void }).__reset();
   (Crypto as typeof Crypto & { __reset(): void }).__reset();
+  resetPhoneStateSecretCachesForTests(); // зачем: кэши отпечатка/ключа (02.10) живут в модуле — между тестами чистим
   (SQLite.openDatabaseAsync as jest.Mock).mockReset();
   // Без сброса счётчик утекал бы между тестами и сторож «пересоздание НЕ
   // срабатывает на других отказах» врал бы зелёным.
@@ -73,6 +75,18 @@ beforeEach(() => {
 });
 
 describe('phone-state account credentials', () => {
+  // зачем (02.10, трасса «Дизайна» на слабом профиле): отпечаток uid считался дважды (1,2–2,5 с),
+  // ключ читался из Keystore второй раз. Кэш отпечатка — на процесс, ключ — 30 с в памяти.
+  test('отпечаток uid считается один раз, повторный ключ — из памяти', async () => {
+    const first = await materializePhoneStateCredentials(SCOPE);
+    const digestCalls = (Crypto.digestStringAsync as jest.Mock).mock.calls.length;
+    const readCalls = (SecureStore.getItemAsync as jest.Mock).mock.calls.length;
+    const second = await materializePhoneStateCredentials(SCOPE);
+    expect(second).toEqual(first);
+    expect((Crypto.digestStringAsync as jest.Mock).mock.calls.length).toBe(digestCalls);
+    expect((SecureStore.getItemAsync as jest.Mock).mock.calls.length).toBe(readCalls);
+  });
+
   test('uses only native SecureStore key characters while preserving account and generation isolation', async () => {
     const accountA3 = await materializePhoneStateCredentials(SCOPE);
     const accountB3 = await materializePhoneStateCredentials({

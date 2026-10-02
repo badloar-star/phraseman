@@ -191,6 +191,8 @@ export function omitAccountsV2LegacyDomains<T>(
  * держало удалённую карточку. Лог на каждом решении по V2-ключу: ушёл ли ключ в запись,
  * есть ли он в снимке последней синхронизации и совпадает ли со снимком. Без uid и значений —
  * только имя ключа (имена ключей не персональные), длина значения и признаки.
+ * зачем (8H-2, ревью): decision=kept вместо прежнего write — ключ лишь НЕ вырезан
+ * выключателем; уйдёт ли он в документ, решают дальше снимок и фильтры правил.
  */
 export function logAccountsV2LegacySyncKeys(
   stored: Readonly<Record<string, string | null>>,
@@ -203,7 +205,7 @@ export function logAccountsV2LegacySyncKeys(
     const value = stored[key];
     if (value === null || value === undefined) continue;
     const inSnapshot = Object.prototype.hasOwnProperty.call(previousSnapshot, key);
-    console.log(`[LEGACY-V2-SYNC] sync key=${key} decision=${Object.prototype.hasOwnProperty.call(sent, key) ? 'write' : 'skip'} `
+    console.log(`[LEGACY-V2-SYNC] sync key=${key} decision=${Object.prototype.hasOwnProperty.call(sent, key) ? 'kept' : 'skip'} `
       + `local_len=${value.length} snapshot=${inSnapshot ? 'has' : 'none'} equal=${inSnapshot && matches(previousSnapshot[key], value)}`);
   }
 }

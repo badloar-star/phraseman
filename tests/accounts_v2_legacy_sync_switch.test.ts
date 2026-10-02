@@ -275,7 +275,9 @@ describe('7A r2 — метка гидрации принадлежит акка�
 });
 
 describe('7A switch — писатели старого облака (структура cloud_sync)', () => {
-  const source = fs.readFileSync(path.join(ROOT, 'app', 'cloud_sync.ts'), 'utf8');
+  // зачем (8H-2): рабочая копия cloud_sync.ts в CRLF — без нормализации поиск многострочных
+  // фрагментов с переводом строки промахивался, и два теста были красными независимо от кода.
+  const source = fs.readFileSync(path.join(ROOT, 'app', 'cloud_sync.ts'), 'utf8').split('\r\n').join('\n');
   const body = (name: string): string => {
     const start = source.indexOf(`async function ${name}(`);
     expect(start).toBeGreaterThan(0);
@@ -322,6 +324,72 @@ describe('8H — логи старой синхронизации V2-ключе�
     expect(await AsyncStorage.getItem('flashcards_v1')).toContain('a1');
   });
 
+  // Пакет 8H-2: после очистки поле в документе = null → restore обязан читать страницы.
+  test('restore после очистки (progress.flashcards_v1 = null) — страницы, лог source=pages', async () => {
+    await __cloudSyncTestHooks.applyRestoreFromUserDoc({
+      exists: true,
+      data: () => ({ progress: { streak_count: '3', user_name: 'Cloud Name', flashcards_v1: null } }),
+    });
+    const lines = logSpy.mock.calls.map((call) => String(call[0]));
+    expect(mockReadPages).toHaveBeenCalledWith('stable-a', 'en');
+    expect(lines.some((line) => line.startsWith('[LEGACY-V2-SYNC] restore key=flashcards_v1 source=pages pages_len='))).toBe(true);
+    expect(lines.some((line) => line.includes('source=doc_field'))).toBe(false);
+    expect(await AsyncStorage.getItem('flashcards_v1')).toContain('cloud-en');
+  });
+
+  // Пакет 8H-2, ревью I-1: древнее progress.flashcards не должно перебивать страницы после обнуления.
+  test('restore: flashcards_v1 = null + древнее flashcards + страницы → локально значение из страниц', async () => {
+    await __cloudSyncTestHooks.applyRestoreFromUserDoc({
+      exists: true,
+      data: () => ({ progress: { streak_count: '3', flashcards_v1: null, flashcards: JSON.stringify([{ id: 'ancient' }]) } }),
+    });
+    const stored = await AsyncStorage.getItem('flashcards_v1');
+    expect(stored).toContain('cloud-en');
+    expect(stored).not.toContain('ancient');
+    const lines = logSpy.mock.calls.map((call) => String(call[0]));
+    expect(lines).toContain('[LEGACY-V2-SYNC] restore legacy_flashcards ignored doc_field=null pages=pages');
+  });
+
+  test('restore: flashcards_v1 = null, страниц нет, есть древнее flashcards → древнее НЕ берётся', async () => {
+    const defaultImpl = mockReadPages.getMockImplementation();
+    mockReadPages.mockImplementation(async () => null as unknown as string);
+    try {
+      await __cloudSyncTestHooks.applyRestoreFromUserDoc({
+        exists: true,
+        data: () => ({ progress: { streak_count: '3', flashcards_v1: null, flashcards: JSON.stringify([{ id: 'ancient' }]) } }),
+      });
+    } finally {
+      mockReadPages.mockImplementation(defaultImpl!);
+    }
+    expect(await AsyncStorage.getItem('flashcards_v1')).toBeNull();
+  });
+
+  test('restore: нет flashcards_v1, нет страниц, есть древнее flashcards → берётся flashcards (прежнее поведение)', async () => {
+    const defaultImpl = mockReadPages.getMockImplementation();
+    mockReadPages.mockImplementation(async () => null as unknown as string);
+    try {
+      await __cloudSyncTestHooks.applyRestoreFromUserDoc({
+        exists: true,
+        data: () => ({ progress: { streak_count: '3', flashcards: JSON.stringify([{ id: 'ancient' }]) } }),
+      });
+    } finally {
+      mockReadPages.mockImplementation(defaultImpl!);
+    }
+    expect(await AsyncStorage.getItem('flashcards_v1')).toContain('ancient');
+    const lines = logSpy.mock.calls.map((call) => String(call[0]));
+    expect(lines.some((line) => line.startsWith('[LEGACY-V2-SYNC] restore key=flashcards_v1 source=legacy_flashcards legacy_len='))).toBe(true);
+  });
+
+  test('restore: нет flashcards_v1, страницы есть, есть древнее flashcards → страницы', async () => {
+    await __cloudSyncTestHooks.applyRestoreFromUserDoc({
+      exists: true,
+      data: () => ({ progress: { streak_count: '3', flashcards: JSON.stringify([{ id: 'ancient' }]) } }),
+    });
+    const stored = await AsyncStorage.getItem('flashcards_v1');
+    expect(stored).toContain('cloud-en');
+    expect(stored).not.toContain('ancient');
+  });
+
   test('restore без поля в документе — страницы, лог source=pages', async () => {
     await __cloudSyncTestHooks.applyRestoreFromUserDoc({ exists: true, data: () => ({ progress: { streak_count: '3', user_name: 'Cloud Name' } }) });
     const lines = logSpy.mock.calls.map((call) => String(call[0]));
@@ -347,7 +415,7 @@ describe('8H — логи старой синхронизации V2-ключе�
     );
     const lines = logSpy.mock.calls.map((call) => String(call[0]));
     expect(lines).toEqual([
-      '[LEGACY-V2-SYNC] sync key=custom_flashcards_v2 decision=write local_len=2 snapshot=has equal=true',
+      '[LEGACY-V2-SYNC] sync key=custom_flashcards_v2 decision=kept local_len=2 snapshot=has equal=true',
       '[LEGACY-V2-SYNC] sync key=flashcards_v1 decision=skip local_len=13 snapshot=has equal=false',
     ]);
     expect(lines.join(' ')).not.toContain('a2');

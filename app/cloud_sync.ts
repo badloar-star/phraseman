@@ -244,6 +244,7 @@ import {
 } from './legacy_free_lesson_access';
 import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 import { readFlashcardPages, writeFlashcardPages } from './flashcards_cloud_pages';
+import { buildFlashcardDocFieldMarkers, decideFlashcardDocField } from './flashcards_doc_field_clear';
 import {
   isAccountsV2LegacyDomainKey,
   isAccountsV2LegacySwitchFlagOn,
@@ -3088,6 +3089,15 @@ async function doSyncToCloud(): Promise<void> {
       [flashcardsSavedKey('fr'), 'fr'],
     ]);
     const offloadedFlashcardKeys = new Set<string>();
+    // зачем (Account V2, 8H-2, решение координатора §67 B): ключ, просто выкинутый
+    // из патча, оставлял в документе СТАРЫЙ список навсегда, а restore предпочитает
+    // поле документа страницам — удалённая карточка «возвращалась». Поэтому после
+    // УСПЕШНОЙ записи страниц поле в том же патче обнуляется — один раз (маркер в
+    // снимке), без повторного null на каждом синке. Ветку «список не менялся» не
+    // трогаем: страниц в этот такт не писали, и подтверждения, что они есть, нет.
+    const flashcardDocFieldsToClear = new Set<string>();
+    // Сбой страниц → список уезжает в документ, поле снова не null: маркер снимаем.
+    const flashcardDocFieldsSentToDoc = new Set<string>();
     for (const [key, target] of flashcardCloudKeys) {
       const value = data[key];
       if (value === null || value === undefined) continue;
@@ -3099,9 +3109,13 @@ async function doSyncToCloud(): Promise<void> {
       }
       const pagesWritten = await writeFlashcardPages(uid, target, String(value));
       if (!isSyncGenerationCurrent()) return;
-      if (pagesWritten !== null) {
+      const decision = decideFlashcardDocField(previousSnapshot, key, pagesWritten !== null);
+      if (decision !== 'keep_in_doc') {
         offloadedFlashcardKeys.add(key);
+        if (decision === 'clear') flashcardDocFieldsToClear.add(key);
+        else console.log(`[LEGACY-V2-SYNC] doc_field_clear_skipped key=${key} reason=already_cleared`);
       } else {
+        flashcardDocFieldsSentToDoc.add(key);
         // Ранний выход: страницы не записались — ключ НЕ выбрасываем, пусть едет
         // в документе как раньше. Причина уже залогирована в writeFlashcardPages.
         DebugLogger.warn(
@@ -3138,6 +3152,9 @@ async function doSyncToCloud(): Promise<void> {
       if (findRulesBlockedKeys([key]).length > 0) continue;
       if (!cloudSyncSnapshotValueMatches(previousSnapshot[key], value)) progressPatch[key] = value;
     }
+    // зачем (8H-2): страницы только что записаны → устаревшая копия в документе
+    // обнуляется в ЭТОМ же патче (точечный update по FieldPath трогает только её).
+    for (const key of flashcardDocFieldsToClear) progressPatch[key] = null;
 
     // Set created_at without per-sync read to reduce Firestore read costs.
     // We keep a local marker and send created_at only once per install/session migration.
@@ -3219,6 +3236,15 @@ async function doSyncToCloud(): Promise<void> {
         snapshotData[key] = encodeCloudSyncSnapshotValue(value);
       }
     }
+    // зачем (8H-2): документ принял null → помним это в снимке, чтобы не слать
+    // null повторно; маркер переносится между синками и снимается при сбое страниц.
+    Object.assign(snapshotData, buildFlashcardDocFieldMarkers(
+      previousSnapshot,
+      flashcardCloudKeys.keys(),
+      flashcardDocFieldsToClear,
+      flashcardDocFieldsSentToDoc,
+    ));
+    for (const key of flashcardDocFieldsToClear) console.log(`[LEGACY-V2-SYNC] doc_field_cleared key=${key}`);
     if (!isSyncGenerationCurrent()) return;
     await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(snapshotData)).catch(swallowError('cloud_sync:doSyncToCloud'));
     if (!isSyncGenerationCurrent()) return;
@@ -3785,6 +3811,9 @@ async function applyRestoreFromUserDoc(
     return null;
   });
   assertCurrent();
+  // зачем (8H-2, ревью I-1): что дали страницы по каждому ключу — нужно древнему полю
+  // progress.flashcards ниже, чтобы оно не перебило страницы после обнуления поля документа.
+  const flashcardPagesRestoreSource = new Map<string, 'pages' | 'none'>();
   if (restoreUid) {
     for (const [key, target] of ([
       ['flashcards_v1', 'en'],
@@ -3801,12 +3830,27 @@ async function applyRestoreFromUserDoc(
       const fromPages = await readFlashcardPages(restoreUid, target);
       assertCurrent();
       console.log(`[LEGACY-V2-SYNC] restore key=${key} source=${fromPages ? 'pages' : 'none'} pages_len=${fromPages ? fromPages.length : 0}`);
+      flashcardPagesRestoreSource.set(key, fromPages ? 'pages' : 'none');
       if (fromPages) pairs.push([key, fromPages]);
     }
   } else {
     DebugLogger.warn('cloud_sync:flashcards', 'restore: нет canonical uid — страницы карточек пропущены');
   }
-  if (!cloudData['flashcards_v1'] && cloudData['flashcards']) pairs.push(['flashcards_v1', String(cloudData['flashcards'])]);
+  // зачем (8H-2, ревью I-1): прежнее условие `!cloudData['flashcards_v1']` срабатывало и на
+  // обнулённом поле (null): древний список вставал в pairs ПОСЛЕ страниц, побеждал в multiSet,
+  // а следующий синк переписывал им настоящие страницы — потеря карточек. Древнее поле берём,
+  // только если ключа flashcards_v1 в документе нет вовсе И страницы прочитаны и пусты.
+  // Древний двойник есть только у английского ключа (fr-ключ без legacy-поля).
+  if (cloudData['flashcards']) {
+    const enPagesSource = flashcardPagesRestoreSource.get('flashcards_v1') ?? 'not_read';
+    if (cloudData['flashcards_v1'] === undefined && enPagesSource === 'none') {
+      console.log(`[LEGACY-V2-SYNC] restore key=flashcards_v1 source=legacy_flashcards legacy_len=${String(cloudData['flashcards']).length}`);
+      pairs.push(['flashcards_v1', String(cloudData['flashcards'])]);
+    } else {
+      // Ранний выход ветки: древнее поле проигнорировано — печатаем, ЧТО решило.
+      console.log(`[LEGACY-V2-SYNC] restore legacy_flashcards ignored doc_field=${cloudData['flashcards_v1'] === undefined ? 'absent' : cloudData['flashcards_v1'] === null ? 'null' : 'present'} pages=${enPagesSource}`);
+    }
+  }
   if (cloudData['lang']) pairs.push(['app_lang', cloudData['lang']]);
   if (cloudData['user_avatar_frame']) pairs.push(['user_frame', cloudData['user_avatar_frame']]);
   for (const key of dailyLessonHelperKeysForToday()) {

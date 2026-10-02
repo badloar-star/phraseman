@@ -1212,17 +1212,8 @@ export async function recoverAndHydrateLevelSpinStarGrants(
   publishProjection(token, projection);
   if (options.syncNow !== false) {
     void syncPendingLevelSpinStarGrants(token).catch(() => {});
-    // зачем (D51/D53, Q12 2026-10-01): разовая молчаливая миграция «Подарки и
-    // спины → монеты» зачисляет в ЭТОТ кошелёк, поэтому стартует только после
-    // его восстановления на старте (единственный вызов с syncNow — корневой
-    // layout после первого кадра). _layout.tsx не трогаем: его ведёт сессия
-    // интерфейса. Модуль ленивый, сам ждёт ~15 с + runAfterInteractions и
-    // подписан на смену аккаунта; повторный старт — no-op.
-    void import('./gifts_to_coins_migration_v1')
-      .then(({ startGiftsToCoinsMigrationScheduler }) => { startGiftsToCoinsMigrationScheduler(); })
-      .catch((error: unknown) => {
-        console.warn(`[GIFTS-TO-COINS] catch step=scheduler_import error=${String(error)}`);
-      });
+    // зачем (D148, Q109): миграция «Подарки → монеты» удалена целиком — здесь её
+    // запуск больше не нужен. Сверка кошелька ниже — единственный фоновый шаг.
     // зачем (Q-COIN b, координатор 01.10): разовая серверная сверка — после
     // восстановления кошелька, тем же единственным стартовым вызовом. Модуль
     // ленивый; сам решает, нужна ли сверка (разница «только на телефоне» или

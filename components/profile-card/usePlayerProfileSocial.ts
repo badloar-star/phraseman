@@ -207,7 +207,7 @@ export function usePlayerProfileSocial(
           ru: 'Заявка уже отправлена', uk: 'Заявку вже надіслано', es: 'Solicitud ya enviada', en: 'Request already sent',
           'pt-BR': 'Solicitação já enviada', vi: 'Lời mời đã được gửi', id: 'Permintaan sudah dikirim', tr: 'İstek zaten gönderildi', pl: 'Zaproszenie już wysłane',
         }), 'info');
-      } else if (result === 'self' || result === 'not_found' || result === 'error') {
+      } else if (result === 'self' || result === 'not_found' || result === 'error' || result === 'network') {
         setFriendRequestSentUids((previous) => {
           const next = new Set(previous);
           next.delete(targetUid);
@@ -219,7 +219,14 @@ export function usePlayerProfileSocial(
                 ru: 'Это твой профиль', uk: 'Це твій профіль', es: 'Es tu perfil', en: 'This is your profile', 'pt-BR': 'Este é seu perfil',
                 vi: 'Đây là hồ sơ của bạn', id: 'Ini profilmu', tr: 'Bu senin profilin', pl: 'To twój profil',
               })
-            : requestFailedText,
+            : result === 'network'
+              // зачем (PM-162): при сбое сети — «Связь пропала», а не общее «не удалось».
+              ? triLang(L, {
+                  ru: 'Связь пропала. Попробуй ещё раз', uk: 'Зв’язок зник. Спробуй ще раз', es: 'Se perdió la conexión. Inténtalo de nuevo',
+                  en: 'Connection lost. Try again', 'pt-BR': 'A conexão caiu. Tente novamente', vi: 'Mất kết nối. Hãy thử lại',
+                  id: 'Koneksi terputus. Coba lagi', tr: 'Bağlantı kesildi. Tekrar dene', pl: 'Brak połączenia. Spróbuj ponownie',
+                })
+              : requestFailedText,
           result === 'self' ? 'info' : 'error',
         );
       }

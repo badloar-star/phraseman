@@ -1648,7 +1648,7 @@ export default function FriendsTabScreen() {
       await trackActivity('friends:add_request_result', {
         feature: 'friends',
         screen: 'friends',
-        result: result === 'sent' ? 'success' : result === 'error' ? 'error' : 'blocked',
+        result: result === 'sent' ? 'success' : result === 'error' || result === 'network' ? 'error' : 'blocked',
         tags: { targetUid: targetUser.uid, requestResult: result },
       });
       // зачем: «один код» — друг найден по реферальному коду, значит этот же ввод
@@ -1676,6 +1676,11 @@ export default function FriendsTabScreen() {
       } else if (result === 'self') {
         setFoundUser(null);
         showFeedback(randomSelfFriendCodeMessage(L));
+      } else if (result === 'network') {
+        // зачем (PM-162): при сбое сети честная причина вместо общего «что-то пошло не так».
+        setFoundUser(targetUser);
+        setCodeInput(previousCodeInput);
+        showFeedback(L('Связь пропала. Попробуй ещё раз', 'Зв’язок зник. Спробуй ще раз', 'Connection lost. Try again', 'Se perdió la conexión. Inténtalo de nuevo', 'A conexão caiu. Tente novamente', 'Mất kết nối. Hãy thử lại', 'Koneksi terputus. Coba lagi', 'Bağlantı kesildi. Tekrar dene', 'Brak połączenia. Spróbuj ponownie'));
       } else {
         setFoundUser(targetUser);
         setCodeInput(previousCodeInput);

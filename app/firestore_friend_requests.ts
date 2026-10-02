@@ -17,6 +17,8 @@ export type SendRequestResult =
   | 'already_friends'
   | 'self'
   | 'not_found'
+  // зачем (PM-162, Q-E2 координатора): сбой сети — не «что-то пошло не так», а «связь пропала».
+  | 'network'
   | 'error';
 
 export interface FriendEntry {
@@ -441,14 +443,24 @@ export async function sendFriendRequest(toUid: string): Promise<SendRequestResul
 
     return 'sent';
   } catch (e) {
-    console.warn('[sendFriendRequest] error', String(e));
+    const offline = isFriendRequestNetworkError(e);
+    console.warn('[sendFriendRequest] error', JSON.stringify({ offline, message: String(e).slice(0, 160) }));
     logFriendsHealth('friends:send_request_failed', e, {
       action: 'send_friend_request',
       myUid,
       targetUid: toUid,
     });
-    return 'error';
+    return offline ? 'network' : 'error';
   }
+}
+
+/** Сетевой сбой Firestore/Functions: нет связи, таймаут, сервис недоступен. */
+export function isFriendRequestNetworkError(error: unknown): boolean {
+  const value = error as { code?: unknown; message?: unknown } | null;
+  const code = String(value?.code ?? '').toLowerCase();
+  const message = String(value?.message ?? error ?? '').toLowerCase();
+  return /unavailable|deadline-exceeded|network/.test(code)
+    || /network|offline|timed? ?out|failed to get document because the client is offline/.test(message);
 }
 
 // ── acceptFriendRequest ────────────────────────────────────────────────────

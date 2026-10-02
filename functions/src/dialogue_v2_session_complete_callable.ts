@@ -453,11 +453,39 @@ export function createDialogueV2CompletionAssessmentGenerator(
   };
 }
 
+// зачем (ускорение итога 02.10, прод-лог stageMs: claim 3,7 с, build 6,9 с, prepare_memory 2,5 с):
+// шаг памяти заново искал аккаунт и проверял Plus. Аккаунт известен с шага claim, а проверку Plus
+// запускаем там же — она идёт параллельно с ожиданием модели. Живёт 90 с на один итог; сбой
+// ранней проверки не мешает — шаг памяти проверит Plus сам, как раньше.
+const COMPLETION_IDENTITY_TTL_MS = 90_000;
+type CompletionIdentity = Readonly<{ stableAccountId: string; premium: Promise<boolean>; expiresAtMs: number }>;
+const completionIdentityByAuthUid = new Map<string, CompletionIdentity>();
+
+function rememberCompletionIdentity(db: FirebaseFirestore.Firestore, authUid: string, stableAccountId: string): void {
+  const nowMs = Date.now();
+  for (const [key, value] of completionIdentityByAuthUid) {
+    if (value.expiresAtMs <= nowMs) completionIdentityByAuthUid.delete(key);
+  }
+  const premium = resolvePremiumAccess(db, stableAccountId, nowMs, authUid);
+  premium.catch((error: unknown) => {
+    console.warn('[DIALOGUE-V2-COMPLETE] early_premium_failed', String(error).slice(0, 200));
+  });
+  completionIdentityByAuthUid.set(authUid, Object.freeze({
+    stableAccountId, premium, expiresAtMs: nowMs + COMPLETION_IDENTITY_TTL_MS,
+  }));
+}
+
+function recalledCompletionIdentity(authUid: string): CompletionIdentity | null {
+  const value = completionIdentityByAuthUid.get(authUid);
+  return value && value.expiresAtMs > Date.now() ? value : null;
+}
+
 function productionDependencies(): HandlerDependencies {
   return Object.freeze({
     claimTerminal: async ({ authUid, selection }) => {
       const db = admin.firestore();
       const stableAccountId = await resolveStableUidForAuth(db, authUid);
+      rememberCompletionIdentity(db, authUid, stableAccountId);
       const claimToken = `d2c_${randomBytes(24).toString('base64url')}`;
       const terminalClaim = Object.freeze({
         sessionId: selection.sessionId,
@@ -533,8 +561,20 @@ function productionDependencies(): HandlerDependencies {
         authUid, studyTarget, scenarioId, completion, releaseSnapshot,
       }, {
         identifierSecret: DIALOGUE_V2_MEMORY_ID_SECRET.value(),
-        resolveStableAccountId: (uid) => resolveStableUidForAuth(db, uid),
-        resolvePremiumAccess: (stableId, uid) => resolvePremiumAccess(db, stableId, Date.now(), uid),
+        resolveStableAccountId: async (uid) => (
+          recalledCompletionIdentity(uid)?.stableAccountId ?? resolveStableUidForAuth(db, uid)
+        ),
+        resolvePremiumAccess: async (stableId, uid) => {
+          const remembered = recalledCompletionIdentity(uid);
+          if (remembered && remembered.stableAccountId === stableId) {
+            try {
+              return await remembered.premium;
+            } catch (error) {
+              console.warn('[DIALOGUE-V2-COMPLETE] early_premium_retry', String(error).slice(0, 200));
+            }
+          }
+          return resolvePremiumAccess(db, stableId, Date.now(), uid);
+        },
         resolveApprovedLanguagePack: async () => null,
       });
       return Object.freeze({

@@ -8960,7 +8960,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "2026-10-02: A1 NOT_MET — проверка на устройстве; для «Дизайна»: при сбое сети sendFriendRequest отдаёт общий error («Что-то пошло не так») — нужен результат network и текст «Связь пропала» (Q-E2)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -9164,7 +9166,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "2026-10-02: не делалось — противоречит Q90 (опрос строкой в «Сегодня», 50ce185dc); вопрос координатору Q-E1: закрыть как заменённые Q90 (рек.)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -9331,7 +9335,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "2026-10-02: не делалось — противоречит Q90 (опрос строкой в «Сегодня», 50ce185dc); вопрос координатору Q-E1: закрыть как заменённые Q90 (рек.)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -12631,10 +12637,12 @@
     "owner": null,
     "reviewer": null,
     "evidence": [
-      "f5447d10c, ceb79a649: functions pm229_server_silent_catch 7/7; клиентских немых catch 813→784"
+      "f5447d10c, ceb79a649: functions pm229_server_silent_catch 7/7; клиентских немых catch 813→784",
+      "0ee7a1372, edea8fec7, 1c6ba0f4e, 1cae1c87f: app/swallow_log.ts (поведение прежнее, причина в журнал), замена в 121 файле; проба pm229 PASS silentCatch 784→368; tests/swallow_log 5/5; выборка Ядра: premium_guard 29/29, premium_context_vip 11/11, app_resume_policy 10/10, cloud_sync_identity_anchor 5/5, perf_freeze 12/12, layout_stability 15/15, today_tasks_counting 17/17"
     ],
     "notes": [
-      "2026-10-01: A1 NOT_MET (частично): остаток auth_provider.ts 26, account_switch_quarantine 3 (правит другая сессия), shards_system 14, support_report.tsx (Дизайн)"
+      "2026-10-01: A1 NOT_MET (частично): остаток auth_provider.ts 26, account_switch_quarantine 3 (правит другая сессия), shards_system 14, support_report.tsx (Дизайн)",
+      "2026-10-02: A1 NOT_MET — остаток: auth_provider.ts (26), account_switch_quarantine.ts (3) — другая сессия; экраны и _layout — Дизайн; app_snapshot_bootstrap (5), statsCache (3) — грязные"
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -13220,7 +13228,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -13229,10 +13237,11 @@
       {
         "id": "PM-239-A1",
         "text": "Для каждой ветки есть SHA, unique commits, ahead/behind, PR/worktree owner",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
           "2026-09-30 node scripts/pm239_branch_inventory.mjs (read-only): 288 local + 54 remote branches with SHA, ahead (unique commits vs HEAD), behind, last commit date and worktree path; 225 refs have unique commits, 116 do not. Output: docs/phraseman-2.0/evidence/PM-239_branch_inventory.md.",
-          "OPEN GAP: PR association and a real worktree/branch owner are not in git and were not established (needs GitHub API / owner input); 8 of 20 worktrees are detached HEAD and carry no branch name. Criterion stays false until PR/owner mapping exists."
+          "OPEN GAP: PR association and a real worktree/branch owner are not in git and were not established (needs GitHub API / owner input); 8 of 20 worktrees are detached HEAD and carry no branch name. Criterion stays false until PR/owner mapping exists.",
+          "705720819: evidence/PM-239_branches_inventory_2026-10-02.md — 291 локальная + 54 remote ветки, 22 worktree, 228 refs с уникальными коммитами, 34 PR; по каждой ветке SHA, ahead/behind, PR, путь worktree; только чтение"
         ]
       },
       {
@@ -13252,9 +13261,11 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet (исполнитель сессии «Ядро»)",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "705720819: evidence/PM-239_branches_inventory_2026-10-02.md — 291 локальная + 54 remote ветки, 22 worktree, 228 refs с уникальными коммитами, 34 PR; по каждой ветке SHA, ahead/behind, PR, путь worktree; только чтение"
+    ],
     "notes": [],
     "actual_cost": null,
     "kind": "unclassified",

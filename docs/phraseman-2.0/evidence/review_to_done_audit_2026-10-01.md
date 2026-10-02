@@ -407,3 +407,18 @@ PM-288: requirement_ids D131 → R259 (добавлен в requirements.json; PM
 Остальные review: `git log --since="4 hours ago"` — после пачки 11 выложены диалоговые фиксы 8489679aa (Free-ход), 1d589d1d0 (итог), 99f69f1e4 (цели диалога). PM-144/PM-145 остаются review: нужна подпись gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES (Q86), кадры «Дизайна» уже в design_gate; замечания по PM-145 (дубль кадра 29/30, «На сегодня разговоров достаточно», «Повторить») не сняты. Остальные ждут: «Дизайн»/gate DESIGN — PM-039, 044, 092, 093, 094, 096, 097, 129, 130, 134, 141, 197, 279, 288; эмулятор — PM-034, 066, 286; владелец/прод — PM-048, 073, 074, 205, 287; PM-052, PM-086 — зона «Дизайна»/чужие правки.
 
 Оговорки: validate.py по PM-080/144/145 ошибок не даёт; общий passed=false из-за чужих PM-283/284/285. actual_model «unknown», actual_reasoning «unrecorded» (§34). PROGRESS.md грязный от другой сессии — строку-итог не добавлял.
+
+## Пачка 13 (agent-reviewer, Sonnet, 02.10)
+
+Итог: в done 4 задачи — PM-238, PM-203, PM-228, PM-230 (автор — исполнитель сессии «Ядро», закрывает независимый ревьюер). Остальные review — блокеры не сняты.
+
+| Задача | Вердикт | Основание | Статус |
+|---|---|---|---|
+| PM-238 | PASS | Раздел «Консервация Арены и Макса» на HEAD (MIGRATIONS.md L21, 6bedc1f17). Тег `archive/arena-max-pre-removal-2026-09-30` существует локально → 1e2f77929 (push тега — владельцу). Сторожа: max_section_sealed_contract 4/4; пробы d83_arena_client_deleted и d74_arena_server_retired PASS (`npx tsx`; в jest их нет — «No tests found»), d74: 8 экспортов пула, 17 удалённых модулей. Ничего не восстанавливалось. Gates: BASELINE/DOMAIN_AUDIT — GATES_COMMON и раздел; MIGRATION — N/A по обоснованию ревьюера (задача описывает уже сделанное, сама ничего не удаляет/не мигрирует; откат — тег), подпись координатора нужна | done |
+| PM-203 | PASS | 18082c06d: в DailyPhraseCard.tsx три вызова `speak` получают `{language: inferExpoSpeechLanguage(english, studyTarget)}`, разметка/стили не менялись. Тесты на HEAD: daily_phrase_speech_locale_pm203 2/2, audio_player_arbiter_guard 3/3, audio_runtime_arbiter 9/9, use_audio_contract 16/16, sound_events_contract 5/5. Gates: BASELINE/DOMAIN_AUDIT — GATES_COMMON + SETTINGS_AUDIO; DESIGN — N/A по обоснованию (правка невизуальная), подпись координатора нужна | done |
+| PM-228 | PASS | A1 принят координатором (Q105, §62 L853); факт в коде: `LOG_TTL_DAYS=90` (log_ttl.ts:10), `expireAt` в client_reports.ts, TTL-политики app_errors/app_activity в firestore.indexes.json L1222–1231. A2: pm228_debug_logger_bounded 4/4, debug_logger_storage_contract 3/3, app_health_throttle_cache 1/1. Деплой индексов на проде не проверялся (по словам координатора выложен) | done |
+| PM-230 | PASS | A1 — D66 (OWNER_FINAL) + Q105. A2: pm230_firestore_rules_least_privilege 6/6, functions pm230_admin_callable_guard 4/4 (`--runInBand --watchman=false`); evidence PM-230_rules_and_admin_rights_audit.md есть. Аудит статический, эмулятор правил NOT_RUN; ужесточение user_warnings (Q103) — после эмулятора, вне критериев | done |
+
+Остальные review: `git log --since="3 hours ago"` — снят один новый блокер: «Дизайн» добавил кадр итога PM-144_summary_ok_6of6.png (d572b1811); gate DESIGN (Q86) по-прежнему ждёт подписи — PM-144/145 остаются review (одна строка note добавлена в PM-144). Прочие (perf-правки lessons/video/stats) блокеры PM-052/086/039/044/092–097/129/130/134/141/197/279/288 (Дизайн/gate DESIGN), PM-034/066/286 (эмулятор), PM-048/073/074/205/287 (владелец/прод) не снимают.
+
+Оговорки: validate.py ошибок по PM-238/203/228/230 не даёт (см. отчёт). Все gates MIGRATION/DESIGN помечены N/A только с обоснованием, подпись координатора нужна. actual_model «unknown» (§34). Тесты шли под светофором.

@@ -7983,7 +7983,8 @@
       "2026-10-01 независимое ревью пачки 4 (agent-reviewer, Q75/§32): PASS по сути (source-level; на эмуляторе/устройстве не проверялось). UI-задача: gate DESIGN применим, остаётся review.",
       "2026-10-01 пачка 10: блокер «Начать диалог» снят (06405b494, уникальный номер операции энергии на попытку), но остаётся review: ждём от «Дизайна» DESIGN-скриншоты экрана сессии/итога диалога после починки и подпись gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES (Q86).",
       "2026-10-02 пачка 11: «Дизайн» сдал кадры в design_gate (14167e701: открытие, ответ+перевод, разбор, итог, шапка 26/30 — заголовок без разрыва слова); остаётся review: нужна подпись gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES (Q86, координатор/владелец)",
-      "2026-10-02 пачка 12: после пачки 11 снят ещё серверный блокер целей диалога (99f69f1e4 — разбор на каждом ходе); блокер Free-хода (8489679aa) и итога (1d589d1d0) выложены; остаётся review до подписи gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES (Q86)"
+      "2026-10-02 пачка 12: после пачки 11 снят ещё серверный блокер целей диалога (99f69f1e4 — разбор на каждом ходе); блокер Free-хода (8489679aa) и итога (1d589d1d0) выложены; остаётся review до подписи gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES (Q86)",
+      "2026-10-02 пачка 13: после пачки 12 «Дизайн» добавил кадр итога PM-144_summary_ok_6of6.png (d572b1811) и today_02-10_no_dialog_task.png; gate DESIGN по-прежнему требует подписи координатора (Q86), задача остаётся review."
     ],
     "actual_cost": null,
     "kind": "code",
@@ -11155,7 +11156,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -11187,16 +11188,22 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Sonnet (исполнитель сессии «Ядро»)",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet), пачка 13",
     "evidence": [
       "18082c06d: озвучка фразы дня передаёт язык изучения (fr читалась голосом en-US), тест daily_phrase_speech_locale_pm203 2/2; один основной путь hooks/use-audio.ts, SoundService — запасной; audio_player_arbiter_guard 3/3, audio_runtime_arbiter 9/9, use_audio_contract 16/16, audio_never_permanently_silent_contract 22/22, sound_events_contract 5/5; typecheck 0"
     ],
-    "notes": [],
+    "notes": [
+      "2026-10-02 пачка 13 (agent-reviewer, Sonnet): PASS. Diff 18082c06d проверен: только import и аргумент speak(...,{language}); сторожа арбитра звука зелёные на HEAD. audio_never_permanently_silent_contract 22/22 не перепрогонялся (в evidence автора)."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "docs/SETTINGS_AUDIO.md + 18082c06d: в components/DailyPhraseCard.tsx три вызова speak получают language через inferExpoSpeechLanguage(english, studyTarget); тесты на HEAD: daily_phrase_speech_locale_pm203 2/2, audio_player_arbiter_guard 3/3, audio_runtime_arbiter 9/9, use_audio_contract 16/16, sound_events_contract 5/5",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "N/A по обоснованию ревьюера пачки 13 (подпись координатора нужна): правка DailyPhraseCard.tsx невизуальная — меняется только параметр языка озвучки, разметка/стили/тексты не тронуты (git show 18082c06d)"
+    },
+    "actual_model": "unknown",
     "actual_reasoning": null
   },
   {
@@ -12535,7 +12542,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12567,16 +12574,21 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Sonnet (исполнитель сессии «Ядро»)",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet), пачка 13",
     "evidence": [
       "Q105 координатора (§62): срок хранения 90 дней в коде (log_ttl.ts, client_reports.ts:415/:432), TTL-политики в firestore.indexes.json — индексы с TTL выложены координатором"
     ],
-    "notes": [],
+    "notes": [
+      "2026-10-02 пачка 13 (agent-reviewer, Sonnet): PASS. A1 принят по Q105 (старый текст NOT_MET в evidence — состояние до Q105, не актуален); A2: замер 5000 вызовов = 60.7 мс воспроизводится тестом. Деплой индексов с TTL — по словам координатора выложен; на проде не проверялось."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "docs/BACKEND.md + Q105 (§62, INBOX_COORDINATOR_FROM_CORE.md L853): A1 принят координатором. Факт на HEAD: LOG_TTL_DAYS=90 (functions/src/log_ttl.ts:10), expireAt в client_reports.ts, TTL-политики app_errors/app_activity.expireAt в firestore.indexes.json (L1222-1231); тесты pm228_debug_logger_bounded 4/4, debug_logger_storage_contract 3/3, app_health_throttle_cache 1/1"
+    },
+    "actual_model": "unknown",
     "actual_reasoning": null
   },
   {
@@ -12640,7 +12652,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12672,20 +12684,24 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Sonnet (исполнитель сессии «Ядро»)",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet), пачка 13",
     "evidence": [
       "9082014f7: tests/pm230_firestore_rules_least_privilege 6/6, functions pm230_admin_callable_guard 4/4, evidence/PM-230_rules_and_admin_rights_audit.md (статически, эмулятор правил NOT_RUN)",
       "Q105 координатора (§62): A1 заменён D66 (монеты и ранг авторитетны на клиенте)"
     ],
     "notes": [
       "2026-10-01: A1 по словам исполнителя заменён D66 — нужно подтверждение координатора",
-      "2026-10-02: Q103 — ужесточение user_warnings (только владелец/админ) — после прогона правил на эмуляторе, выкладка rules с релизом"
+      "2026-10-02: Q103 — ужесточение user_warnings (только владелец/админ) — после прогона правил на эмуляторе, выкладка rules с релизом",
+      "2026-10-02 пачка 13 (agent-reviewer, Sonnet): PASS. Q105 снимает вопрос по A1. Ужесточение user_warnings (Q103) — после прогона на эмуляторе, выкладка rules с релизом — вне критериев; прод не трогался."
     ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "docs/BACKEND.md + evidence/PM-230_rules_and_admin_rights_audit.md; A1 заменён D66 (03_DECISIONS.md L37, OWNER_FINAL) и принят Q105 (§62 L853); на HEAD pm230_firestore_rules_least_privilege 6/6, functions pm230_admin_callable_guard 4/4 (статически; эмулятор правил NOT_RUN)"
+    },
+    "actual_model": "unknown",
     "actual_reasoning": null
   },
   {
@@ -13144,7 +13160,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -13176,18 +13192,23 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Sonnet (исполнитель сессии «Ядро»)",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet), пачка 13",
     "evidence": [
       "6bedc1f17: раздел «Консервация Арены и Макса» в docs/phraseman-2.0/docs/MIGRATIONS.md; сторожа max_section_sealed_contract 4/4, d83_arena_client_deleted PASS, d74_arena_server_retired PASS; путь возврата — локальный тег archive/arena-max-pre-removal-2026-09-30 → 1e2f77929"
     ],
     "notes": [
-      "2026-10-02: тег не отправлен на сервер — push тега владельцу; ничего не восстанавливалось"
+      "2026-10-02: тег не отправлен на сервер — push тега владельцу; ничего не восстанавливалось",
+      "2026-10-02 пачка 13 (agent-reviewer, Sonnet): PASS. На HEAD: раздел MIGRATIONS.md L21; тег -> 1e2f77929 (локальный, push тега — владельцу); max_section_sealed 4/4; пробы d83/d74 PASS (npx tsx). Ничего не восстанавливалось."
     ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "docs/MIGRATIONS.md «Консервация Арены и Макса» (6bedc1f17) сверен на HEAD: тег archive/arena-max-pre-removal-2026-09-30 -> 1e2f77929 существует локально; сторожа max_section_sealed_contract 4/4, d83_arena_client_deleted PASS, d74_arena_server_retired PASS (8 экспортов пула, 17 удалённых модулей)",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE": "N/A по обоснованию ревьюера пачки 13 (подпись координатора нужна): задача только описывает уже сделанное (D10/D74/D78/D81/D83), сама ничего не удаляет и не мигрирует; путь отката — тег 1e2f77929, git restore по команде владельца"
+    },
+    "actual_model": "unknown",
     "actual_reasoning": null
   },
   {

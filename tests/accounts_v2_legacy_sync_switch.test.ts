@@ -41,9 +41,16 @@ jest.mock('../app/user_id_policy', () => ({
   getAuthUserId: jest.fn(() => 'auth-a'),
   getCanonicalUserId: jest.fn(async () => 'stable-a'),
 }));
-jest.mock('../app/flashcards_cloud_pages', () => ({
-  ...jest.requireActual('../app/flashcards_cloud_pages'),
-  readFlashcardPages: (uid: string, target: string) => mockReadPages(uid, target),
+// зачем (8J): restore читает страницы через трёхзначный readFlashcardPagesResult;
+// прежний контракт мока (строка = страницы, null = подтверждённо пусто) сохранён.
+jest.mock('../app/flashcard_pages_read_result', () => ({
+  ...jest.requireActual('../app/flashcard_pages_read_result'),
+  readFlashcardPagesResult: async (uid: string, target: string) => {
+    const value = await mockReadPages(uid, target);
+    return value
+      ? { status: 'ok', value, pages: 1, cards: 1, from: 'server' }
+      : { status: 'empty', from: 'server' };
+  },
 }));
 
 // eslint-disable-next-line import/first

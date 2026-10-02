@@ -243,7 +243,14 @@ import {
   normalizeLegacyFreeLessonCap,
 } from './legacy_free_lesson_access';
 import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
-import { readFlashcardPages, writeFlashcardPages } from './flashcards_cloud_pages';
+import { writeFlashcardPages } from './flashcards_cloud_pages';
+import {
+  lockFlashcardPagesWrite,
+  mergeLockedFlashcardsWithPages,
+  readFlashcardPagesResult,
+  readFlashcardPagesWriteLocks,
+  unlockFlashcardPagesWrite,
+} from './flashcard_pages_read_result';
 import { buildFlashcardDocFieldMarkers, decideFlashcardDocField } from './flashcards_doc_field_clear';
 import {
   isAccountsV2LegacyDomainKey,
@@ -253,7 +260,7 @@ import {
   ACCOUNTS_V2_LEGACY_HYDRATED_MARKER_KEY,
   logAccountsV2LegacySyncKeys,
 } from './accounts_v2_legacy_sync_switch';
-import { CARD_DELETION_JOURNAL_KEY } from './flashcards/card_deletion_journal';
+import { CARD_DELETION_JOURNAL_KEY, readCardDeletionJournal } from './flashcards/card_deletion_journal';
 import type { StudyTarget as FlashcardStudyTarget } from './study_target';
 import { rnfbInstance } from './rnfb_modular';
 import { noteSwallowed } from './swallow_log';
@@ -3106,9 +3113,22 @@ async function doSyncToCloud(): Promise<void> {
     const flashcardDocFieldsToClear = new Set<string>();
     // Сбой страниц → список уезжает в документ, поле снова не null: маркер снимаем.
     const flashcardDocFieldsSentToDoc = new Set<string>();
+    // зачем (8J): restore не смог прочитать страницы ключа → облачная правда неизвестна.
+    // Такой ключ не уходит НИКУДА: ни в страницы (writeFlashcardPages удалил бы хвост),
+    // ни в поле документа (restore предпочитает поле страницам — та же потеря). Замок
+    // снимает только следующий restore с удачным чтением страниц.
+    const flashcardPagesWriteLocks = await readFlashcardPagesWriteLocks(flashcardCloudKeys.keys());
+    if (!isSyncGenerationCurrent()) return;
+    const flashcardKeysLockedNow = new Set<string>();
     for (const [key, target] of flashcardCloudKeys) {
       const value = data[key];
       if (value === null || value === undefined) continue;
+      if (flashcardPagesWriteLocks.has(key)) {
+        offloadedFlashcardKeys.add(key);
+        flashcardKeysLockedNow.add(key);
+        console.log(`[LEGACY-V2-SYNC] pages_write_skipped key=${key} reason=pages_unconfirmed local_len=${String(value).length}`);
+        continue;
+      }
       // Страницы пишем только когда список реально изменился с прошлого синка —
       // иначе каждый такт стоил бы N записей на ровном месте.
       if (cloudSyncSnapshotValueMatches(previousSnapshot[key], value)) {
@@ -3253,6 +3273,13 @@ async function doSyncToCloud(): Promise<void> {
       flashcardDocFieldsSentToDoc,
     ));
     for (const key of flashcardDocFieldsToClear) console.log(`[LEGACY-V2-SYNC] doc_field_cleared key=${key}`);
+    // зачем (8J): запертый ключ в облако не уходил — снимок не должен «запомнить» его
+    // локальное значение как отправленное, иначе после снятия замка синк счёл бы его
+    // совпавшим и страницы так и не дописал бы.
+    for (const key of flashcardKeysLockedNow) {
+      if (previousSnapshot[key] === undefined) delete snapshotData[key];
+      else snapshotData[key] = previousSnapshot[key];
+    }
     if (!isSyncGenerationCurrent()) return;
     await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(snapshotData)).catch(swallowError('cloud_sync:doSyncToCloud'));
     if (!isSyncGenerationCurrent()) return;
@@ -3368,6 +3395,128 @@ async function doSyncToCloud(): Promise<void> {
 }
 
 // ── Восстановить прогресс из документа users/{uid} (без повторного get) ─────
+type FlashcardPagesRestoreOutcome = {
+  pairs: [string, string][];
+  source: Map<string, 'pages' | 'none' | 'error'>;
+  unlockKeys: Map<string, string>;
+};
+
+const FLASHCARD_PAGES_RESTORE_KEYS: ReadonlyArray<readonly [string, FlashcardStudyTarget]> = [
+  ['flashcards_v1', 'en'],
+  [flashcardsSavedKey('fr'), 'fr'],
+];
+
+/** 8J: id карточек, явно удалённых человеком на этом телефоне (журнал 7D), для языка. */
+async function readSavedCardDeletionIds(target: FlashcardStudyTarget): Promise<ReadonlySet<string>> {
+  const journal = await readCardDeletionJournal();
+  if (!journal) return new Set();
+  const prefix = `${target}:saved:`;
+  const ids = new Set<string>();
+  for (const entryKey of journal.keys()) {
+    if (entryKey.startsWith(prefix)) ids.add(entryKey.slice(prefix.length));
+  }
+  return ids;
+}
+
+/**
+ * Account V2, Пакет 8J — карточки из подколлекции flashcard_pages для restore.
+ * onlyKey=null — все ключи (основной путь restore); иначе только отобранные (sticky-ветка
+ * перечитывает лишь запертые ключи — без лишних чтений Firestore у остальных).
+ *
+ * зачем: у мигрированных аккаунтов поля progress.flashcards_v1 в документе больше нет
+ * (см. writeFlashcardPages), и общий цикл restore его не увидит — без этого чтения человек
+ * на новом устройстве остался бы без карточек. Документ остаётся источником для ещё не
+ * мигрированных аккаунтов. Ключ, запертый ДО этого restore (lockedBefore), при удачном
+ * чтении не заменяется страницами, а объединяется с локальным: под замком локальное было
+ * единственной правдой о новых карточках. Замок здесь НЕ снимается: его снимает вызывающий
+ * ПОСЛЕ записи pairs (unlockFlashcardPagesAfterRestore) — иначе синк между снятием и
+ * записью отправил бы в страницы ещё старое локальное значение.
+ */
+async function restoreFlashcardPagesForKeys(
+  cloudData: Record<string, string | null>,
+  legacyV2SkipOnRestore: boolean,
+  assertCurrent: () => void,
+  lockedBefore: ReadonlySet<string>,
+  onlyKey: ((key: string) => boolean) | null,
+): Promise<FlashcardPagesRestoreOutcome> {
+  const outcome: FlashcardPagesRestoreOutcome = { pairs: [], source: new Map(), unlockKeys: new Map() };
+  const restoreUid = await getCanonicalUserId().catch((error) => {
+    DebugLogger.warn('cloud_sync:flashcards', `restore: uid недоступен (${String(error)})`);
+    return null;
+  });
+  assertCurrent();
+  if (!restoreUid) {
+    DebugLogger.warn('cloud_sync:flashcards', 'restore: нет canonical uid — страницы карточек пропущены');
+    return outcome;
+  }
+  for (const [key, target] of FLASHCARD_PAGES_RESTORE_KEYS) {
+    if (onlyKey && !onlyKey(key)) continue;
+    // Документ главнее, только если он ещё содержит карточки (аккаунт не мигрирован).
+    if (cloudData[key] !== null && cloudData[key] !== undefined) {
+      // зачем (8H, диагностика): поле в документе затеняет страницы — страницы не читаются.
+      console.log(`[LEGACY-V2-SYNC] restore key=${key} source=doc_field doc_len=${String(cloudData[key]).length} pages=not_read`);
+      // зачем (8J): источник — поле документа (подтверждённое облако), замок снимается.
+      // Если ключ был заперт, объединяем поле с локальным: sticky-ветка поле в локальное
+      // не кладёт, а синк потом обнулил бы поле — карточки документа пропали бы.
+      if (lockedBefore.has(key)) {
+        const merge = mergeLockedFlashcardsWithPages(
+          await AsyncStorage.getItem(key),
+          String(cloudData[key]),
+          await readSavedCardDeletionIds(target),
+        );
+        assertCurrent();
+        console.log(`[LEGACY-V2-SYNC] restore key=${key} source=doc_field_merged_local cloud=${merge.cloud} local_only=${merge.localOnly} deleted_skipped=${merge.deletedSkipped} local_unparsable=${merge.localUnparsable}`);
+        outcome.pairs.push([key, merge.value]);
+      }
+      outcome.unlockKeys.set(key, 'doc_field');
+      continue;
+    }
+    // зачем (Пакет 7A): V2 ведёт карточки — страницы старого облака не читаем (лог уже в omit).
+    if (legacyV2SkipOnRestore && isAccountsV2LegacyDomainKey(key)) continue;
+    // зачем (8J): трёхзначный результат — «страниц нет» (сервер подтвердил) ≠ «не прочитали».
+    const pagesRead = await readFlashcardPagesResult(restoreUid, target);
+    assertCurrent();
+    if (pagesRead.status === 'error') {
+      // зачем (8J): правды о страницах нет — локальное НЕ трогаем, древнее поле НЕ берём
+      // (источник 'error'), и запираем запись страниц этого ключа до удачного чтения:
+      // иначе первая же новая карточка перезаписала бы страницы списком из одной карточки.
+      console.log(`[LEGACY-V2-SYNC] restore key=${key} source=pages_error code=${pagesRead.code} from=${pagesRead.from} local=untouched`);
+      outcome.source.set(key, 'error');
+      await lockFlashcardPagesWrite(key, `read_error_${pagesRead.code}`);
+      assertCurrent();
+      continue;
+    }
+    let fromPages = pagesRead.status === 'ok' ? pagesRead.value : null;
+    if (fromPages && lockedBefore.has(key)) {
+      // зачем (8J): ключ был заперт — карточки, добавленные под замком, живут только локально.
+      const merge = mergeLockedFlashcardsWithPages(
+        await AsyncStorage.getItem(key),
+        fromPages,
+        await readSavedCardDeletionIds(target),
+      );
+      assertCurrent();
+      console.log(`[LEGACY-V2-SYNC] restore key=${key} source=pages_merged_local cloud=${merge.cloud} local_only=${merge.localOnly} deleted_skipped=${merge.deletedSkipped} local_unparsable=${merge.localUnparsable}`);
+      fromPages = merge.value;
+    }
+    console.log(`[LEGACY-V2-SYNC] restore key=${key} source=${fromPages ? 'pages' : 'none'} pages_len=${fromPages ? fromPages.length : 0}`);
+    outcome.source.set(key, fromPages ? 'pages' : 'none');
+    outcome.unlockKeys.set(key, `read_${pagesRead.status}`);
+    if (fromPages) outcome.pairs.push([key, fromPages]);
+  }
+  return outcome;
+}
+
+/** 8J: снять замок записи страниц — только ПОСЛЕ того, как pairs restore записаны локально. */
+async function unlockFlashcardPagesAfterRestore(
+  unlockKeys: ReadonlyMap<string, string>,
+  assertCurrent: () => void,
+): Promise<void> {
+  for (const [key, reason] of unlockKeys) {
+    await unlockFlashcardPagesWrite(key, reason);
+    assertCurrent();
+  }
+}
+
 async function applyRestoreFromUserDoc(
   doc: { exists: boolean; data: () => Record<string, unknown> | undefined },
   isCurrent: () => boolean = () => true,
@@ -3728,6 +3877,18 @@ async function applyRestoreFromUserDoc(
     }
     const authoritativeGiftPerks = await buildGiftEntitlementStickyPairs(cloudData);
     stickyPairs.push(...authoritativeGiftPerks.pairs);
+    // зачем (8J): sticky-ветка (local ≥ cloud — обычный случай активного человека) страниц
+    // не читает. Без этого замок, поставленный сбоем чтения, жил бы почти вечно и карточки
+    // не уходили бы в облако. Перечитываем ТОЛЬКО запертые ключи: у остальных ни одного
+    // лишнего чтения Firestore.
+    const stickyFlashcardLocks = await readFlashcardPagesWriteLocks(FLASHCARD_PAGES_RESTORE_KEYS.map(([key]) => key));
+    assertCurrent();
+    const stickyFlashcardPages = stickyFlashcardLocks.size > 0
+      ? await restoreFlashcardPagesForKeys(
+        cloudData, legacyV2SkipOnRestore, assertCurrent, stickyFlashcardLocks, (key) => stickyFlashcardLocks.has(key),
+      )
+      : null;
+    if (stickyFlashcardPages) stickyPairs.push(...stickyFlashcardPages.pairs);
     let appliedStickyState = false;
     if (stickyPairs.length > 0) {
       assertCurrent();
@@ -3735,6 +3896,7 @@ async function applyRestoreFromUserDoc(
       assertCurrent();
       appliedStickyState = true;
     }
+    if (stickyFlashcardPages) await unlockFlashcardPagesAfterRestore(stickyFlashcardPages.unlockKeys, assertCurrent);
     if (authoritativeGiftPerks.removeKeys.length > 0) {
       assertCurrent();
       await AsyncStorage.multiRemove(authoritativeGiftPerks.removeKeys);
@@ -3814,36 +3976,23 @@ async function applyRestoreFromUserDoc(
   // больше нет (см. writeFlashcardPages), и общий цикл restore его не увидит —
   // без этого чтения человек на новом устройстве остался бы без карточек.
   // Документ остаётся источником для ещё не мигрированных аккаунтов.
-  const restoreUid = await getCanonicalUserId().catch((error) => {
-    DebugLogger.warn('cloud_sync:flashcards', `restore: uid недоступен (${String(error)})`);
-    return null;
-  });
+  // зачем (8J): чтение страниц вынесено в restoreFlashcardPagesForKeys — тот же путь нужен
+  // sticky-ветке выше, чтобы снять замок и у активного человека (local ≥ cloud).
+  const flashcardPagesLocksBefore = await readFlashcardPagesWriteLocks(FLASHCARD_PAGES_RESTORE_KEYS.map(([key]) => key));
   assertCurrent();
+  const flashcardPagesRestore = await restoreFlashcardPagesForKeys(
+    cloudData, legacyV2SkipOnRestore, assertCurrent, flashcardPagesLocksBefore, null,
+  );
+  // зачем (8J): объединённое значение заменяет поле документа, уже лежащее в pairs из общего
+  // цикла, — без дубля ключа в multiSet (порядок применения дублей не гарантирован).
+  const flashcardRestoredKeys = new Set(flashcardPagesRestore.pairs.map(([key]) => key));
+  for (let index = pairs.length - 1; index >= 0; index -= 1) {
+    if (flashcardRestoredKeys.has(pairs[index][0])) pairs.splice(index, 1);
+  }
+  pairs.push(...flashcardPagesRestore.pairs);
   // зачем (8H-2, ревью I-1): что дали страницы по каждому ключу — нужно древнему полю
   // progress.flashcards ниже, чтобы оно не перебило страницы после обнуления поля документа.
-  const flashcardPagesRestoreSource = new Map<string, 'pages' | 'none'>();
-  if (restoreUid) {
-    for (const [key, target] of ([
-      ['flashcards_v1', 'en'],
-      [flashcardsSavedKey('fr'), 'fr'],
-    ] as Array<[string, FlashcardStudyTarget]>)) {
-      // Документ главнее, только если он ещё содержит карточки (аккаунт не мигрирован).
-      if (cloudData[key] !== null && cloudData[key] !== undefined) {
-        // зачем (8H, диагностика): поле в документе затеняет страницы — страницы не читаются.
-        console.log(`[LEGACY-V2-SYNC] restore key=${key} source=doc_field doc_len=${String(cloudData[key]).length} pages=not_read`);
-        continue;
-      }
-      // зачем (Пакет 7A): V2 ведёт карточки — страницы старого облака не читаем (лог уже в omit).
-      if (legacyV2SkipOnRestore && isAccountsV2LegacyDomainKey(key)) continue;
-      const fromPages = await readFlashcardPages(restoreUid, target);
-      assertCurrent();
-      console.log(`[LEGACY-V2-SYNC] restore key=${key} source=${fromPages ? 'pages' : 'none'} pages_len=${fromPages ? fromPages.length : 0}`);
-      flashcardPagesRestoreSource.set(key, fromPages ? 'pages' : 'none');
-      if (fromPages) pairs.push([key, fromPages]);
-    }
-  } else {
-    DebugLogger.warn('cloud_sync:flashcards', 'restore: нет canonical uid — страницы карточек пропущены');
-  }
+  const flashcardPagesRestoreSource = flashcardPagesRestore.source;
   // зачем (8H-2, ревью I-1): прежнее условие `!cloudData['flashcards_v1']` срабатывало и на
   // обнулённом поле (null): древний список вставал в pairs ПОСЛЕ страниц, побеждал в multiSet,
   // а следующий синк переписывал им настоящие страницы — потеря карточек. Древнее поле берём,
@@ -3873,6 +4022,9 @@ async function applyRestoreFromUserDoc(
     assertCurrent();
     if (cloudHasVipEntitlementState) invalidatePremiumCache();
   }
+  // зачем (8J): чтение подтвердило облако (или источник — поле документа), локальное уже
+  // записано выше — запись страниц этого ключа снова разрешена.
+  await unlockFlashcardPagesAfterRestore(flashcardPagesRestore.unlockKeys, assertCurrent);
   if (cloudVipActive !== null && !stripPremiumActive) {
     assertCurrent();
     if (vipGeneration && vipOwnerStableId) {

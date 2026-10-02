@@ -26,16 +26,15 @@ assert.ok(
 // зачем (Q109): серверной награды за видео больше нет вовсе (функция удалена, D78/PM-080).
 assert.ok(!fs.existsSync(path.join(process.cwd(), 'functions/src/video_watch_runes.ts')), 'server video-watch rune claim returned');
 
-const refill = read('app/energy_shard_refill.ts');
-assert.ok(refill.includes('operationId?: string'), 'refill cannot receive a stable operation id');
-assert.ok(refill.includes('operationId,'), 'refill does not bind the debit and visual event to one id');
+// зачем (D70/D103, жемчуг удалён; файл снят 30.09 в efe19ae9d): пополнение энергии за жемчуг не должно вернуться.
+assert.ok(!fs.existsSync(path.join(process.cwd(), 'app/energy_shard_refill.ts')), 'retired pearl energy refill returned');
 const noEnergy = read('components/NoEnergyModal.tsx');
 // зачем (решение A1, 2026-09-30): кнопка покупки энергии за жемчуг убрана из окна —
 // окно больше не должно списывать жемчуг вообще.
 assert.ok(!noEnergy.includes('refillEnergyWithShards'), 'NoEnergy modal must not spend pearls after pearl UI retirement');
 
-const season = read('app/season_reward_apply.ts');
-assert.ok(season.includes('JSON.stringify({ ...bonus, amount: bonus.capacity })'), 'season battery does not fill active bonus capacity');
+// зачем: сезонный пропуск снят (файл удалён 30.09 в efe19ae9d) — его награды не должны вернуться.
+assert.ok(!fs.existsSync(path.join(process.cwd(), 'app/season_reward_apply.ts')), 'retired season reward apply returned');
 const energySystem = read('app/energy_system.ts');
 assert.ok(energySystem.includes('JSON.stringify({ ...bonus, amount: bonus.capacity })'), 'full-energy reset does not fill active bonus capacity');
 

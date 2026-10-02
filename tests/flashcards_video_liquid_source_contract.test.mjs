@@ -8,7 +8,7 @@ const screen = readFileSync(join(root, 'app/flashcards_video_packs.tsx'), 'utf8'
 const row = readFileSync(join(root, 'app/flashcards/VideoPackRow.tsx'), 'utf8');
 
 test('Video packs preserves real catalog, staging, sort, language and social actions', () => {
-  for (const token of ['loadVideoPhraseSetPacks({ forceRemote })', 'isVideoPhraseSetPackId(pack.id)', 'filterVideoPacks(catalog)', 'applyCommunityPacksFilter(packs, query, sort, packLanguage)', 'stageCommunityPackCardsForNavigation(pack.id, studyTarget, pack)', "preview: '1', from: 'video'", 'CommunityPackSocialBar', 'getTrustedLingmanYoutubeUrl']) {
+  for (const token of ['loadVideoPhraseSetPacks({ forceRemote })', 'isVideoPhraseSetPackId(pack.id)', 'filterVideoPacks(catalog)', 'applyCommunityPacksFilter(packs, query, sort, packLanguage)', 'stageCommunityPackCardsWithSilentRetry(pack.id, studyTarget, pack', "preview: '1', from: 'video'", 'CommunityPackSocialBar', 'getTrustedLingmanYoutubeUrl']) {
     assert.ok((screen + row).includes(token), `missing live behavior: ${token}`);
   }
 });

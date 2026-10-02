@@ -12,7 +12,7 @@ const THEME_IDS = [
   'graphite', 'polar', 'slate', 'ink', 'lavender', 'iris', 'rose',
   'terracotta', 'taupe', 'olive', 'sage', 'eucalyptus', 'marine',
 ];
-const PROTECTED_AST = '92db73a8934c603855540f4463f931d38bed73d30bad259e0e8ddc0963e99c9b';
+const PROTECTED_AST = '92056d4fc0df1c3a3aa793e27618f42b8fb49067abc3ac02c34b2cadbc72992d';
 const HEADER_GLASS_BODY = '715db3b10a0abee044e76b8baed73f7ad5de81fb96a669ef0381f776fdf98019';
 const DEPENDENCY_HASHES = {
   // зачем: fb9d8d8e6 (PM-210, экономия старта) — прогрев пустого каталога стал честным no-op; хаб не затронут.

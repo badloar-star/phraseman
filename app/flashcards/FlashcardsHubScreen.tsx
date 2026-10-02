@@ -31,13 +31,12 @@ import { useScreen } from '../../hooks/use-screen';
 import { useFlashcardTrainingQuotaPreview } from '../../hooks/useFlashcardTrainingQuotaPreview';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
-import { actionToastTri, emitAppEvent } from '../events';
 import { markNextNavigationAsReplace, safeRouterBack } from '../navigation_back';
 import { loadCommunityOwnedPackIds } from '../community_packs/communityOwnedStorage';
 import { loadPublishedCommunityMarketPacks } from '../community_packs/communityFirestore';
 import { isLocalAuthorPackId, loadLocalAuthorPacks } from '../community_packs/localAuthorPacks';
 import { getCanonicalUserId } from '../user_id_policy';
-import { stageCommunityPackCardsForNavigation } from '../community_packs/staging';
+import { emitPackNotDownloadedToast, stageCommunityPackCardsWithSilentRetry } from '../community_packs/stage_with_retry';
 import {
   loadMarketplacePacks,
   peekWarmMarketplacePacks,
@@ -514,16 +513,12 @@ export default function FlashcardsHubScreen() {
     openingPackRef.current = pack.id;
     setOpeningPackId(pack.id);
     void (async () => {
-      const cards = await stageCommunityPackCardsForNavigation(pack.id, studyTarget, pack);
+      const cards = await stageCommunityPackCardsWithSilentRetry(pack.id, studyTarget, pack, { isStillWanted: () => openingPackRef.current === pack.id, tag: 'hub' });
       if (openingPackRef.current !== pack.id) return;
       openingPackRef.current = null;
       setOpeningPackId(null);
       if (cards.length === 0) {
-        emitAppEvent('action_toast', actionToastTri('error', {
-          ru: 'Не удалось загрузить набор. Проверьте интернет и попробуйте ещё раз.',
-          uk: 'Не вдалося завантажити набір. Перевірте інтернет і спробуйте ще раз.',
-          es: 'No se pudo cargar el pack. Comprueba internet e inténtalo de nuevo.',
-        }));
+        emitPackNotDownloadedToast();
         return;
       }
       router.push({

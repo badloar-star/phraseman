@@ -59,8 +59,8 @@ import { isLowPowerEffective } from './low_power';
 
 import { stageOwnedPackCardsForNavigation } from './useCollectionData';
 import { hasMeaningfulCommunityPackCreateDraft } from '../community_packs/communityPackDraftStorage';
-import { actionToastTri, emitAppEvent, onAppEvent } from '../events';
-import { stageCommunityPackCardsForNavigation } from '../community_packs/staging';
+import { onAppEvent } from '../events';
+import { emitPackNotDownloadedToast, stageCommunityPackCardsWithSilentRetry } from '../community_packs/stage_with_retry';
 import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 import { topLikedPackIds } from '../community_packs/packSocial';
 import {
@@ -561,7 +561,7 @@ export default function FlashcardsCategoryHub({
     setUgcReportHintPackId(null);
     setOpeningPackId(pack.id);
     if (pack.isCommunityUgc) {
-      const cards = await stageCommunityPackCardsForNavigation(pack.id, studyTarget, pack);
+      const cards = await stageCommunityPackCardsWithSilentRetry(pack.id, studyTarget, pack, { isStillWanted: () => openingPackRef.current === pack.id, tag: 'category-hub' });
       if (
         openingRequestGenerationRef.current !== requestToken
         || openingPackRef.current !== pack.id
@@ -569,16 +569,7 @@ export default function FlashcardsCategoryHub({
       if (cards.length === 0) {
         openingPackRef.current = null;
         setOpeningPackId(null);
-        emitAppEvent('action_toast', actionToastTri('error', {
-          ru: 'Не удалось загрузить набор. Проверьте интернет и попробуйте ещё раз.',
-          uk: 'Не вдалося завантажити набір. Перевірте інтернет і спробуйте ще раз.',
-          es: 'No se pudo cargar el pack. Comprueba internet e inténtalo de nuevo.',
-          'pt-BR': 'Não foi possível carregar o pacote. Verifique a internet e tente novamente.',
-          vi: 'Không thể tải bộ thẻ. Hãy kiểm tra mạng và thử lại.',
-          id: 'Paket tidak dapat dimuat. Periksa internet lalu coba lagi.',
-          tr: 'Paket yüklenemedi. İnternetini kontrol edip tekrar dene.',
-          pl: 'Nie udało się wczytać zestawu. Sprawdź internet i spróbuj ponownie.',
-        }));
+        emitPackNotDownloadedToast();
         return;
       }
     } else {
@@ -601,7 +592,7 @@ export default function FlashcardsCategoryHub({
       openingPackRef.current = pack.id;
       setUgcReportHintPackId(null);
       setOpeningPackId(pack.id);
-      const cards = await stageCommunityPackCardsForNavigation(pack.id, studyTarget, pack);
+      const cards = await stageCommunityPackCardsWithSilentRetry(pack.id, studyTarget, pack, { isStillWanted: () => openingPackRef.current === pack.id, tag: 'category-hub' });
       if (
         openingRequestGenerationRef.current !== requestToken
         || openingPackRef.current !== pack.id
@@ -609,16 +600,7 @@ export default function FlashcardsCategoryHub({
       if (cards.length === 0) {
         openingPackRef.current = null;
         setOpeningPackId(null);
-        emitAppEvent('action_toast', actionToastTri('error', {
-          ru: 'Не удалось загрузить набор. Проверьте интернет и попробуйте ещё раз.',
-          uk: 'Не вдалося завантажити набір. Перевірте інтернет і спробуйте ще раз.',
-          es: 'No se pudo cargar el pack. Comprueba internet e inténtalo de nuevo.',
-          'pt-BR': 'Não foi possível carregar o pacote. Verifique a internet e tente novamente.',
-          vi: 'Không thể tải bộ thẻ. Hãy kiểm tra mạng và thử lại.',
-          id: 'Paket tidak dapat dimuat. Periksa internet lalu coba lagi.',
-          tr: 'Paket yüklenemedi. İnternetini kontrol edip tekrar dene.',
-          pl: 'Nie udało się wczytać zestawu. Sprawdź internet i spróbuj ponownie.',
-        }));
+        emitPackNotDownloadedToast();
         return;
       }
       router.push({

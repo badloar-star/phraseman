@@ -58,7 +58,7 @@ import { loadCommunityOwnedPackIdsResult } from './community_packs/communityOwne
 import { fetchCommunityPackMetaResult, loadAuthorCommunityPacksPendingUpdate, invalidateCommunityPackCatalog } from './community_packs/communityFirestore';
 import { isLocalAuthorPackId, loadLocalAuthorPacks, loadLocalAuthorPacksResult, localAuthorPackToMarketPack, removeLocalAuthorPack } from './community_packs/localAuthorPacks';
 import { withdrawLocalAuthorPack } from './community_packs/publishLocalPack';
-import { stageCommunityPackCardsForNavigation } from './community_packs/staging';
+import { emitPackNotDownloadedToast, stageCommunityPackCardsWithSilentRetry } from './community_packs/stage_with_retry';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import {
   loadAccessiblePackIdsResult,
@@ -525,7 +525,7 @@ export default function FlashcardsMyPacksScreen() {
       openingPackRef.current = pack.id;
       setOpeningPackId(pack.id);
       if (pack.isCommunityUgc) {
-        const cards = await stageCommunityPackCardsForNavigation(pack.id, studyTarget, pack);
+        const cards = await stageCommunityPackCardsWithSilentRetry(pack.id, studyTarget, pack, { isStillWanted: () => openingPackRef.current === pack.id, tag: 'my-packs' });
         if (
           openingRequestGenerationRef.current !== requestToken
           || openingPackRef.current !== pack.id
@@ -533,16 +533,7 @@ export default function FlashcardsMyPacksScreen() {
         if (cards.length === 0) {
           openingPackRef.current = null;
           setOpeningPackId(null);
-          emitAppEvent('action_toast', actionToastTri('error', {
-            ru: 'Не удалось загрузить набор. Проверьте интернет и попробуйте ещё раз.',
-            uk: 'Не вдалося завантажити набір. Перевірте інтернет і спробуйте ще раз.',
-            es: 'No se pudo cargar el pack. Comprueba internet e inténtalo de nuevo.',
-            'pt-BR': 'Não foi possível carregar o pacote. Verifique a internet e tente novamente.',
-            vi: 'Không thể tải bộ thẻ. Hãy kiểm tra mạng và thử lại.',
-            id: 'Paket tidak dapat dimuat. Periksa internet lalu coba lagi.',
-            tr: 'Paket yüklenemedi. İnternetini kontrol edip tekrar dene.',
-            pl: 'Nie udało się wczytać zestawu. Sprawdź internet i spróbuj ponownie.',
-          }));
+          emitPackNotDownloadedToast();
           return;
         }
       } else {

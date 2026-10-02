@@ -59,7 +59,7 @@ describe('открытие набора идёт без промежуточно
     const myPacks = read('flashcards_my_packs.tsx');
 
     for (const source of [hub, myPacks]) {
-      const awaited = source.indexOf('await stageCommunityPackCardsForNavigation(pack.id, studyTarget, pack)');
+      const awaited = source.indexOf('await stageCommunityPackCardsWithSilentRetry(pack.id, studyTarget, pack');
       const pushed = source.indexOf("pathname: '/flashcards_collection'", awaited);
       expect(awaited).toBeGreaterThan(-1);
       expect(pushed).toBeGreaterThan(awaited);

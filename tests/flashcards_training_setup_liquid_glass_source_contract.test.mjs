@@ -29,7 +29,8 @@ const PROTECTED_RUNTIME = {
   count: 22,
   // зачем (владелец 01.10): без экрана ошибки — loadDecks не стирает показанные наборы при сбое, плюс тихий повтор (+1 useEffect).
   // зачем (30.09): D127 — «Устно» прячет наборы «без языка» (hideDecksWithoutVoice, 2acba6874); квота и старт не менялись.
-  hash: '2f3a31eff46b709952179cf34f96636dc9a5577326bece3f40f2e8e1689e6ca3',
+  // зачем (координатор 02.10, вариант В): открытие набора — тихие повторы + мягкая подсказка через stage_with_retry.
+  hash: 'bdd5b192ab33f3b25abc7acd57161fc71fbed5b2d46a1b7cd2783b0a009a9859',
 };
 
 const parse = (path, source) => ts.createSourceFile(path, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
@@ -254,7 +255,7 @@ function createRouteHarness({
     },
     './flashcards/SavedTopCommunityPacks': { pickTopCommunityPacks: packs => packs.slice(0, 3) },
     './community_packs/communityFirestore': { loadPublishedCommunityMarketPacks: async () => suggestedPacks, peekPublishedCommunityMarketPacks: () => suggestedPacks },
-    './community_packs/staging': { stageCommunityPackCardsForNavigation: async () => [] },
+    './community_packs/stage_with_retry': { stageCommunityPackCardsWithSilentRetry: async () => [], emitPackNotDownloadedToast: () => {} },
     './flashcards/marketplace': { packTitleForInterface: pack => pack.title },
     './config': { CLOUD_SYNC_ENABLED: false, IS_EXPO_GO: false },
     './events': { actionToastTri: () => ({}), emitAppEvent: () => {} },

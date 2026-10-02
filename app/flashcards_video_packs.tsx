@@ -45,7 +45,6 @@ import { pluralWord } from '../constants/plural';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { actionToastTri, emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
 import { DebugLogger } from './debug-logger';
 // зачем (владелец 01.10): «Из видео» берёт ГОТОВЫЕ наборы фраз роликов
@@ -57,7 +56,7 @@ import {
   videoChannelIdOf,
   videoIdFromPackId,
 } from './video_phrase_set_packs';
-import { stageCommunityPackCardsForNavigation } from './community_packs/staging';
+import { emitPackNotDownloadedToast, stageCommunityPackCardsWithSilentRetry } from './community_packs/stage_with_retry';
 import {
   applyCommunityPacksFilter,
   communitySortIonicon,
@@ -90,7 +89,8 @@ const LOG = '[VIDEO-PACK]';
  * офлайн-кэш, поэтому этот потолок — последний предохранитель от «висит
  * навсегда», а не способ обрывать нормальную загрузку.
  */
-const OPEN_PACK_TIMEOUT_MS = 6000;
+// зачем: внутри идут тихие повторы (до 3 попыток), потолку нужен запас.
+const OPEN_PACK_TIMEOUT_MS = 12000;
 
 export type VideoCatalogLoadState = 'loading' | 'ready' | 'error';
 
@@ -239,11 +239,6 @@ export default function FlashcardsVideoPacksScreen() {
       ru: 'Показать все', uk: 'Показати всі', en: 'Show all', es: 'Mostrar todos',
       'pt-BR': 'Mostrar todos', vi: 'Hiện tất cả', id: 'Tampilkan semua', tr: 'Tümünü göster', pl: 'Pokaż wszystkie',
     }),
-    openFailed: {
-      ru: 'Не удалось загрузить набор. Проверьте интернет и попробуйте ещё раз.',
-      uk: 'Не вдалося завантажити набір. Перевірте інтернет і спробуйте ще раз.',
-      es: 'No se pudo cargar el pack. Comprueba internet e inténtalo de nuevo.',
-    },
   }), [lang]);
 
   /**
@@ -356,14 +351,14 @@ export default function FlashcardsVideoPacksScreen() {
          * уже вёл себя замок без предохранителя в Диалогах.
          */
         const cards = await withOpenTimeout(
-          stageCommunityPackCardsForNavigation(pack.id, studyTarget, pack),
+          stageCommunityPackCardsWithSilentRetry(pack.id, studyTarget, pack, { isStillWanted: () => openingRef.current === pack.id, tag: 'video-packs' }),
         );
         if (openingRef.current !== pack.id) return;
         openingRef.current = null;
         setOpeningPackId(null);
         if (cards.length === 0) {
           DebugLogger.warn(LOG, `набор "${pack.id}" не открыт: staging вернул 0 карточек`);
-          emitAppEvent('action_toast', actionToastTri('error', copy.openFailed));
+          emitPackNotDownloadedToast();
           return;
         }
         /** `preview: '1'` — открыть БЕЗ добавления себе (решение владельца: тренировка без добавления). */
@@ -375,10 +370,10 @@ export default function FlashcardsVideoPacksScreen() {
         openingRef.current = null;
         setOpeningPackId(null);
         DebugLogger.error(`${LOG}:openPack:${pack.id}`, error, 'warning');
-        emitAppEvent('action_toast', actionToastTri('error', copy.openFailed));
+        emitPackNotDownloadedToast();
       }
     })();
-  }, [copy.openFailed, router, studyTarget]);
+  }, [router, studyTarget]);
 
   const renderRow = useCallback(({ item }: { item: FlashcardMarketPack }) => (
     <VideoPackRow

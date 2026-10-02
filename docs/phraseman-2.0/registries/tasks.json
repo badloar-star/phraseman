@@ -12535,7 +12535,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12544,9 +12544,10 @@
       {
         "id": "PM-228-A1",
         "text": "Лимиты размера/очереди/retry, дедуп и purge",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "NOT_MET (координатор/владелец: срок хранения app_errors/app_activity + TTL-политика Firestore, деплой индексов): клиент сделан 2026-10-01 0d6609bd2 — журнал app/debug-logger.ts 160 записей, поля ≤200/1000/2000 знаков, TTL 7 дней, дедуп (теперь и до подгрузки), одна запись на диск за 5 с, без retry; app_health — троттлинг 10/30 мин, sampleRate; сервер app_errors ≤20/ч на человека. Тесты: pm228_debug_logger_bounded 4/4, debug_logger_storage_contract 3/3, app_health 2 файла — 10/10 PASS. Нет серверного purge: app_errors/app_activity растут без TTL."
+          "NOT_MET (координатор/владелец: срок хранения app_errors/app_activity + TTL-политика Firestore, деплой индексов): клиент сделан 2026-10-01 0d6609bd2 — журнал app/debug-logger.ts 160 записей, поля ≤200/1000/2000 знаков, TTL 7 дней, дедуп (теперь и до подгрузки), одна запись на диск за 5 с, без retry; app_health — троттлинг 10/30 мин, sampleRate; сервер app_errors ≤20/ч на человека. Тесты: pm228_debug_logger_bounded 4/4, debug_logger_storage_contract 3/3, app_health 2 файла — 10/10 PASS. Нет серверного purge: app_errors/app_activity растут без TTL.",
+          "Q105 координатора (§62): срок хранения 90 дней в коде (log_ttl.ts, client_reports.ts:415/:432), TTL-политики в firestore.indexes.json — индексы с TTL выложены координатором"
         ]
       },
       {
@@ -12565,9 +12566,11 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet (исполнитель сессии «Ядро»)",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "Q105 координатора (§62): срок хранения 90 дней в коде (log_ttl.ts, client_reports.ts:415/:432), TTL-политики в firestore.indexes.json — индексы с TTL выложены координатором"
+    ],
     "notes": [],
     "actual_cost": null,
     "kind": "unclassified",
@@ -12637,7 +12640,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12646,9 +12649,10 @@
       {
         "id": "PM-230-A1",
         "text": "Изменения валюты/ранга/агрегата не доверяют клиенту",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "SUPERSEDED по D66 (РЕШЕНО КООРДИНАТОРОМ 01.10, Q7): монеты и ранг local-first, клиент авторитетен"
+          "SUPERSEDED по D66 (РЕШЕНО КООРДИНАТОРОМ 01.10, Q7): монеты и ранг local-first, клиент авторитетен",
+          "Q105 координатора (§62): A1 заменён D66 (монеты и ранг авторитетны на клиенте)"
         ]
       },
       {
@@ -12667,13 +12671,15 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet (исполнитель сессии «Ядро»)",
     "reviewer": null,
     "evidence": [
-      "9082014f7: tests/pm230_firestore_rules_least_privilege 6/6, functions pm230_admin_callable_guard 4/4, evidence/PM-230_rules_and_admin_rights_audit.md (статически, эмулятор правил NOT_RUN)"
+      "9082014f7: tests/pm230_firestore_rules_least_privilege 6/6, functions pm230_admin_callable_guard 4/4, evidence/PM-230_rules_and_admin_rights_audit.md (статически, эмулятор правил NOT_RUN)",
+      "Q105 координатора (§62): A1 заменён D66 (монеты и ранг авторитетны на клиенте)"
     ],
     "notes": [
-      "2026-10-01: A1 по словам исполнителя заменён D66 — нужно подтверждение координатора"
+      "2026-10-01: A1 по словам исполнителя заменён D66 — нужно подтверждение координатора",
+      "2026-10-02: Q103 — ужесточение user_warnings (только владелец/админ) — после прогона правил на эмуляторе, выкладка rules с релизом"
     ],
     "actual_cost": null,
     "kind": "unclassified",

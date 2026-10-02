@@ -26,6 +26,14 @@ type Props = {
   onClose: () => void;
   onDismissed: () => void;
   onSelect: (mode: CardsTrainingMode) => void;
+  /**
+   * зачем (координатор §90, 02.10): ранний тап «Тренироваться» открывает окно СРАЗУ, пока квота
+   * ещё читается ('waiting' — на слабом устройстве несколько секунд очереди AsyncStorage).
+   * 'waiting' — режимы приглушены, строка «Готовим тренировку…»; 'failed' — потолок вышел,
+   * «Не получилось подготовить тренировку» + «Повторить». null — обычное окно.
+   */
+  preparing?: 'waiting' | 'failed' | null;
+  onRetry?: () => void;
 };
 
 type ModeRow = {
@@ -41,6 +49,8 @@ export default function FlashcardsTrainingModeSheet({
   onClose,
   onDismissed,
   onSelect,
+  preparing = null,
+  onRetry,
 }: Props) {
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
@@ -170,13 +180,29 @@ export default function FlashcardsTrainingModeSheet({
     es: 'Practicar con tarjetas', 'pt-BR': 'Treinar com cartões', vi: 'Luyện tập với thẻ',
     id: 'Latihan dengan kartu', tr: 'Kartlarla çalış', pl: 'Ćwicz z kartami',
   });
-  const subtitle = triLang(lang, {
+  const chooseSubtitle = triLang(lang, {
     ru: 'Выбери формат тренировки', uk: 'Обери формат тренування',
     en: 'Choose how to practise', es: 'Elige el formato de práctica',
     'pt-BR': 'Escolha o formato do treino', vi: 'Chọn hình thức luyện tập',
     id: 'Pilih format latihan', tr: 'Çalışma biçimini seç',
     pl: 'Wybierz formę ćwiczeń',
   });
+  const preparingSubtitle = triLang(lang, {
+    ru: 'Готовим тренировку…', uk: 'Готуємо тренування…', en: 'Getting your practice ready…',
+    es: 'Preparando tu práctica…', 'pt-BR': 'Preparando seu treino…', vi: 'Đang chuẩn bị bài luyện tập…',
+    id: 'Menyiapkan latihan…', tr: 'Çalışma hazırlanıyor…', pl: 'Przygotowujemy ćwiczenia…',
+  });
+  const failedSubtitle = triLang(lang, {
+    ru: 'Не получилось подготовить тренировку', uk: 'Не вдалося підготувати тренування',
+    en: "Couldn't get your practice ready", es: 'No pudimos preparar tu práctica',
+    'pt-BR': 'Não foi possível preparar seu treino', vi: 'Không thể chuẩn bị bài luyện tập',
+    id: 'Latihan belum bisa disiapkan', tr: 'Çalışma hazırlanamadı', pl: 'Nie udało się przygotować ćwiczeń',
+  });
+  const retryLabel = triLang(lang, {
+    ru: 'Повторить', uk: 'Повторити', en: 'Try again', es: 'Reintentar', 'pt-BR': 'Tentar de novo',
+    vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
+  });
+  const subtitle = preparing === 'waiting' ? preparingSubtitle : preparing === 'failed' ? failedSubtitle : chooseSubtitle;
 
   return (
     <Modal visible={visible} transparent animationType="slide" statusBarTranslucent onRequestClose={onClose} onDismiss={finishDismiss}>
@@ -194,7 +220,25 @@ export default function FlashcardsTrainingModeSheet({
           <View style={styles.headRow}>
             <View style={styles.headCopy}>
               <Text accessibilityRole="header" style={[styles.heading, { color: g.text }]}>{heading}</Text>
-              <Text style={[styles.headingSubtitle, { color: g.secondary }]}>{subtitle}</Text>
+              <Text
+                testID="fc-training-mode-subtitle"
+                accessibilityLiveRegion={preparing ? 'polite' : 'none'}
+                style={[styles.headingSubtitle, { color: g.secondary }]}
+              >
+                {subtitle}
+              </Text>
+              {preparing === 'failed' && onRetry ? (
+                <Pressable
+                  testID="fc-training-mode-retry"
+                  accessibilityRole="button"
+                  accessibilityLabel={retryLabel}
+                  hitSlop={8}
+                  onPress={onRetry}
+                  style={({ pressed }) => [styles.retry, { opacity: pressed ? 0.7 : 1 }]}
+                >
+                  <Text style={[styles.headingSubtitle, styles.retryText, { color: g.text }]}>{retryLabel}</Text>
+                </Pressable>
+              ) : null}
             </View>
             <Pressable testID="fc-training-mode-cancel" accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} hitSlop={6} onPress={onClose} style={({ pressed }) => [styles.close, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.8 : 1 }]}>
               <Ionicons name="close" size={22} color={g.text} />
@@ -203,7 +247,7 @@ export default function FlashcardsTrainingModeSheet({
           <ScrollView style={styles.scroll} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} nestedScrollEnabled>
             <View style={styles.list}>
               {rows.map((row, rowIndex) => {
-                const disabled = row.mode === 'speaking' && !speakingEnabled;
+                const disabled = (row.mode === 'speaking' && !speakingEnabled) || preparing !== null;
                 return (
                   <Pressable
                     ref={rowIndex === 0 ? firstRowRef : undefined}
@@ -253,5 +297,7 @@ const styles = StyleSheet.create({
   icon: { width: 48, height: 48, borderRadius: 14, borderWidth: StyleSheet.hairlineWidth, alignItems: 'center', justifyContent: 'center' }, // guard-ok: D43
   copy: { flex: 1, minWidth: 0 },
   rowTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  retry: { alignSelf: 'flex-start', marginTop: 4 },
+  retryText: { marginTop: 0, fontWeight: '700' },
   description: { fontSize: 13, lineHeight: 18, marginTop: 3 },
 });

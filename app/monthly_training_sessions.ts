@@ -126,7 +126,9 @@ function normalizeStored(value: string | null, period: string): StoredMonthlySes
     const starts = [...new Set(parsed.starts.filter((item): item is string => typeof item === 'string' && item.trim().length > 0))]
       .slice(0, MONTHLY_TRAINING_SESSION_LIMIT);
     return Object.freeze({ version: 1, period, starts: Object.freeze(starts) });
-  } catch {
+  } catch (error) {
+    // зачем: запрет немого catch — битая запись счётчика сбрасывается, но причина видна.
+    console.warn('[FC-TRAIN-ENTRY] monthly_sessions:corrupt_record — считаем с нуля', error instanceof Error ? error.message : String(error));
     return Object.freeze({ version: 1, period, starts: [] });
   }
 }
@@ -161,8 +163,9 @@ export function createMonthlyTrainingSessionAccess(deps: Dependencies) {
         if (!deps.isCurrentAccount(input.token)) return result('stale_account');
         if (input.hasPremiumAccess === true) return result('allowed', stored.starts.length, window, 'idempotent');
         return result(stored.starts.length >= MONTHLY_TRAINING_SESSION_LIMIT ? 'exhausted' : 'allowed', stored.starts.length, window);
-      } catch {
+      } catch (error) {
         // Local persistence must never turn this free feature into a remote gate.
+        console.warn('[FC-TRAIN-ENTRY] monthly_sessions:preview_failed — пускаем (local_storage)', error instanceof Error ? error.message : String(error));
         return result('allowed', 0, undefined, 'local_storage');
       }
     },
@@ -190,7 +193,9 @@ export function createMonthlyTrainingSessionAccess(deps: Dependencies) {
           await deps.storage.setItem(key, JSON.stringify(next));
           if (!deps.isCurrentAccount(input.token)) return result('stale_account');
           return result('allowed', next.starts.length, window);
-        } catch {
+        } catch (error) {
+          // зачем: запрет немого catch — счётчик не записался, тренировку всё равно пускаем.
+          console.warn('[FC-TRAIN-ENTRY] monthly_sessions:consume_failed — пускаем (local_storage)', error instanceof Error ? error.message : String(error));
           return result('allowed', 0, undefined, 'local_storage');
         }
       });

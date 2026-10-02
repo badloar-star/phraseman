@@ -227,6 +227,9 @@ function LibraryRow({ testID, icon, savedArt = false, title, subtitle, count, co
   );
 }
 
+/** Потолок ожидания квоты после раннего тапа (§90). */
+const EARLY_TAP_CEILING_MS = 15_000;
+
 export default function FlashcardsHubScreen() {
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
@@ -292,6 +295,10 @@ export default function FlashcardsHubScreen() {
    */
   const hubWarmRef = useRef<{ key: string; atMs: number }>({ key: '', atMs: 0 });
   const [modeSheetVisible, setModeSheetVisible] = useState(false);
+  // зачем (координатор §90, 02.10): ранний тап, пока квота читается ('waiting' — на слабом устройстве
+  // несколько секунд очереди AsyncStorage), открывает окно режимов СРАЗУ; режимы ждут и оживают сами.
+  const [earlyTap, setEarlyTap] = useState<'waiting' | 'failed' | null>(null);
+  const earlyTapStartedAtRef = useRef<number | null>(null);
   const pendingModeRef = useRef<CardsTrainingMode | null>(null);
   const trainButtonRef = useRef<View>(null);
 
@@ -568,7 +575,45 @@ export default function FlashcardsHubScreen() {
     router.replace({ pathname: '/premium_modal', params: { context, source } } as never);
   }, [router]);
 
+  // Ранний тап: квота ответила → режимы оживают сами (никакого автоперехода — поздний ответ после
+  // закрытия окна ничего не делает); потолок 15 с → сообщение + «Повторить»; лимит исчерпан → обычная
+  // ветка покупки.
+  useEffect(() => {
+    if (earlyTap === null) return undefined;
+    if (trainingLocked || trainingEntryReady) {
+      const waitedMs = earlyTapStartedAtRef.current === null ? -1 : Date.now() - earlyTapStartedAtRef.current;
+      console.log(`[FC-TRAIN-ENTRY] early_tap:resolved status="${quotaPreview.status}" waitedMs=${waitedMs}`);
+      earlyTapStartedAtRef.current = null;
+      setEarlyTap(null);
+      return undefined;
+    }
+    if (earlyTap !== 'waiting') return undefined;
+    const timer = setTimeout(() => {
+      console.warn(`[FC-TRAIN-ENTRY] early_tap:timeout за ${EARLY_TAP_CEILING_MS}мс — статус квоты="${quotaPreview.status}"`);
+      setEarlyTap('failed');
+    }, EARLY_TAP_CEILING_MS);
+    return () => clearTimeout(timer);
+  }, [earlyTap, quotaPreview.status, trainingEntryReady, trainingLocked]);
+
+  const retryEarlyTap = useCallback(() => {
+    void hapticTap();
+    console.log('[FC-TRAIN-ENTRY] early_tap:retry');
+    earlyTapStartedAtRef.current = Date.now();
+    setEarlyTap('waiting');
+  }, []);
+
+  const closeModeSheet = useCallback(() => {
+    if (earlyTap !== null) console.log(`[FC-TRAIN-ENTRY] early_tap:closed state=${earlyTap}`);
+    earlyTapStartedAtRef.current = null;
+    setEarlyTap(null);
+    setModeSheetVisible(false);
+  }, [earlyTap]);
+
   const chooseMode = useCallback((mode: CardsTrainingMode) => {
+    if (earlyTap !== null) {
+      console.log(`[FC-TRAIN-ENTRY] early_tap:choose_ignored mode=${mode} state=${earlyTap}`);
+      return;
+    }
     if (trainingLocked) {
       openTrainingPaywall('flashcard_training', 'flashcards_hub_training_mode');
       return;
@@ -576,7 +621,7 @@ export default function FlashcardsHubScreen() {
     if (!trainingEntryReady) return;
     pendingModeRef.current = mode;
     setModeSheetVisible(false);
-  }, [openTrainingPaywall, trainingEntryReady, trainingLocked]);
+  }, [earlyTap, openTrainingPaywall, trainingEntryReady, trainingLocked]);
 
   const finishModeSheetDismissal = useCallback(() => {
     const mode = pendingModeRef.current;
@@ -700,9 +745,7 @@ export default function FlashcardsHubScreen() {
               ref={trainButtonRef}
               testID="fc-cards-hub-train"
               accessibilityRole="button"
-              accessibilityState={{ disabled: !trainingLocked && !trainingEntryReady }}
               accessibilityLabel={trainAccessibilityLabel}
-              disabled={!trainingLocked && !trainingEntryReady}
               onPress={() => {
                 void hapticTap();
                 console.log('[FC-TRAIN-ENTRY] tap:train', JSON.stringify({
@@ -716,13 +759,22 @@ export default function FlashcardsHubScreen() {
                 // зачем: этот выход был НЕМЫМ — на статусе waiting/unavailable/stale_account
                 // тап не делал ничего и не оставлял следа. Причина обязана попасть в лог.
                 if (!trainingEntryReady) {
-                  console.warn(`[FC-TRAIN-ENTRY] tap:train → МЁРТВЫЙ ТАП, статус квоты="${quotaPreview.status}" (нужен "allowed")`);
+                  // зачем (§90): кнопка больше не бывает «мёртвой» — окно открывается сразу и ждёт квоту.
+                  if (modeSheetVisible) {
+                    console.log('[FC-TRAIN-ENTRY] early_tap:double_tap_ignored');
+                    return;
+                  }
+                  console.log(`[FC-TRAIN-ENTRY] early_tap:waiting статус квоты="${quotaPreview.status}"`);
+                  pendingModeRef.current = null;
+                  earlyTapStartedAtRef.current = Date.now();
+                  setEarlyTap('waiting');
+                  setModeSheetVisible(true);
                   return;
                 }
                 pendingModeRef.current = null;
                 setModeSheetVisible(true);
               }}
-              style={({ pressed }) => [styles.trainButton, { backgroundColor: g.accent }, pressed && styles.pressed, (!trainingLocked && !trainingEntryReady) && styles.trainDisabled]}
+              style={({ pressed }) => [styles.trainButton, { backgroundColor: g.accent }, pressed && styles.pressed]}
             >
               <View style={styles.trainButtonContent}>
                 <Text style={[styles.trainText, { color: g.accentInk }]}>{copy.train}</Text>
@@ -743,9 +795,11 @@ export default function FlashcardsHubScreen() {
         <FlashcardsTrainingModeSheet
           visible={modeSheetVisible}
           lang={lang}
-          onClose={() => setModeSheetVisible(false)}
+          onClose={closeModeSheet}
           onDismissed={finishModeSheetDismissal}
           onSelect={chooseMode}
+          preparing={earlyTap}
+          onRetry={retryEarlyTap}
         />
       </View>
     </View>

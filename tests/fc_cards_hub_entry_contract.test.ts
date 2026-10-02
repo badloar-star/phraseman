@@ -92,7 +92,9 @@ describe('approved Cards hub entry', () => {
     expect(hub).toContain('MonthlyTrainingSessionIndicator');
     // D152 (координатор 01.10, «ни одной неработающей кнопки»): при исчерпании кнопка
     // НЕ гаснет — тап ведёт в покупку; замок показывает лимит; двойной тап защёлкнут.
-    expect(hub).toContain('disabled={!trainingLocked && !trainingEntryReady}');
+    // §90 (02.10): кнопка не отключается и на ожидании квоты — ранний тап открывает окно и ждёт.
+    expect(hub).not.toContain('disabled={!trainingLocked && !trainingEntryReady}');
+    expect(hub).toContain("setEarlyTap('waiting');");
     expect(hub).not.toContain('disabled={trainingLocked || !trainingEntryReady}');
     expect(hub).toContain("openTrainingPaywall('flashcard_training', 'flashcards_hub_train')");
     expect(hub).toContain("pathname: '/premium_modal', params: { context, source }");

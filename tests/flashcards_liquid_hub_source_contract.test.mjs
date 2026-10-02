@@ -12,12 +12,14 @@ const THEME_IDS = [
   'graphite', 'polar', 'slate', 'ink', 'lavender', 'iris', 'rose',
   'terracotta', 'taupe', 'olive', 'sage', 'eucalyptus', 'marine',
 ];
-const PROTECTED_AST = '92056d4fc0df1c3a3aa793e27618f42b8fb49067abc3ac02c34b2cadbc72992d';
+// зачем (§90, 02.10): chooseMode игнорирует выбор, пока идёт ранний тап (окно ждёт квоту) — законный сдвиг.
+const PROTECTED_AST = '4d2fb94d5accf27a36084435487d0445fd2a1be7eb851e8e3a30ec827fb1aeb8';
 const HEADER_GLASS_BODY = '715db3b10a0abee044e76b8baed73f7ad5de81fb96a669ef0381f776fdf98019';
 const DEPENDENCY_HASHES = {
   // зачем: fb9d8d8e6 (PM-210, экономия старта) — прогрев пустого каталога стал честным no-op; хаб не затронут.
   // зачем: e7709a89a (PM-289, удалён дев-рынок за жемчуг) + edea8fec7 (PM-229, немые catch пишут причину); хаб не затронут.
-  'app/flashcards/marketplace.ts': 'c21bb336e4dc70f48c8ed3904a5bdc0b18d5513353dfd2be805ee316f3bad929',
+  // + 817a18fa8 (Account V2 8C-2: удалены мёртвые saveOwnedPackIds/addOwnedPackId, немые catch с логом); хаб не затронут.
+  'app/flashcards/marketplace.ts': '213d9c691c1e4a4587d7bace672361f05c6e96dc44b092593df5ddbba971598a',
   // зачем: edea8fec7 (PM-229) — немые catch пишут причину; хаб не затронут.
   'app/community_packs/packAuthorNames.ts': 'bffb83f1c016f53b750313528b11f23307e9e4d2c067daf42d0ac07241cde00f',
   // зачем: 7b64aa008 (PM-108) — свой набор приватный по умолчанию; edea8fec7 (PM-229) — немые catch с причиной; хаб не затронут.
@@ -269,7 +271,9 @@ test('existing create-pack and quota paywall routes remain reachable from the Hu
   assert.match(source, /testID="fc-cards-hub-create-pack"/);
   assert.match(source, /buildFcCreateRoute\('pack'\)/);
   assert.match(source, /openTrainingPaywall\('flashcard_training', 'flashcards_hub_train'\)/);
-  assert.match(source, /disabled=\{!trainingLocked && !trainingEntryReady\}/);
+  // §90 (02.10): кнопка не отключается и на ожидании квоты — ранний тап открывает окно и ждёт.
+  assert.doesNotMatch(source, /disabled=\{!trainingLocked && !trainingEntryReady\}/);
+  assert.match(source, /setEarlyTap\('waiting'\)/);
 });
 
 test.todo('owner must resolve whether Hub search is global or opens a destination-specific search before adding a live header action');

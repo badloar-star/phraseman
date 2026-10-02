@@ -114,6 +114,45 @@ function describeError(error: unknown): string {
   });
 }
 
+/**
+ * Временная трасса скорости открытия (02.10, «Дизайн»: 8–11 с на холодном старте даже на
+ * свежей базе, тёплое переоткрытие — 1 с; тренировка карточек ждёт 17,7 с).
+ *
+ * зачем: по одним отметкам шагов нельзя понять, ЧТО медленно — сама база (нативный поток
+ * SQLCipher) или занятый JS-поток, который поздно забирает готовые ответы. Каждая строка шага
+ * несёт: +мс от open:in, мс шага, мс от старта процесса (performance.now) и худшую задержку
+ * таймера (сверх 50 мс) за шаг (jsLagMax). Шаг 3 с при jsLagMax≈3 с — виноват JS-поток; при jsLagMax≈0 —
+ * нативная сторона. Убрать после диагноза (логи catch и ранних выходов — оставить).
+ */
+function createOpenTimingTrace(): (label: string) => string {
+  const now = (): number => Date.now();
+  const startedAt = now();
+  let previousAt = startedAt;
+  let lagMax = 0;
+  let stopped = false;
+  // Тик раз в 50 мс (не 0 — сама проба не должна грузить старт) и жёсткий потолок 60 с:
+  // если открытие оборвётся мимо open:ok/catch, проба всё равно остановится.
+  const PROBE_MS = 50;
+  const probe = (): void => {
+    if (stopped || now() - startedAt > 60_000) return;
+    const scheduledAt = now();
+    setTimeout(() => {
+      lagMax = Math.max(lagMax, now() - scheduledAt - PROBE_MS);
+      probe();
+    }, PROBE_MS);
+  };
+  probe();
+  return (label: string): string => {
+    const at = now();
+    const processMs = typeof globalThis.performance?.now === 'function' ? Math.round(globalThis.performance.now()) : -1;
+    const line = `+${at - startedAt}ms step=${at - previousAt}ms proc=${processMs}ms jsLagMax=${lagMax}ms`;
+    previousAt = at;
+    lagMax = 0;
+    if (label === 'end') stopped = true;
+    return line;
+  };
+}
+
 async function openEncrypted(
   databaseName: string,
   keyHex: string,
@@ -121,16 +160,21 @@ async function openEncrypted(
   // зачем: пошаговая трассировка [PHONE-STATE-DB] — после одного перезапуска
   // она обязана назвать шаг, на котором база отказывает. Отсутствие даже
   // строки open:in — само по себе диагноз: устройство исполняет старый бандл.
-  console.log(`[PHONE-STATE-DB] open:in "${databaseName}"`);
-  const database = await SQLite.openDatabaseAsync(databaseName);
-  console.log('[PHONE-STATE-DB] open:step 1/5 файл открыт');
+  const timing = createOpenTimingTrace();
+  console.log(`[PHONE-STATE-DB] open:in "${databaseName}" ${timing('in')}`);
+  const database = await SQLite.openDatabaseAsync(databaseName).catch((error: unknown) => {
+    // зачем: ранний выход до try обязан назвать причину и остановить пробу таймера.
+    console.warn('[PHONE-STATE-DB] open:file_failed', describeError(error), timing('end'));
+    throw error;
+  });
+  console.log(`[PHONE-STATE-DB] open:step 1/5 файл открыт ${timing('1')}`);
   try {
     await database.execAsync(`PRAGMA key = "x'${keyHex}'"`);
-    console.log('[PHONE-STATE-DB] open:step 2/5 ключ применён');
+    console.log(`[PHONE-STATE-DB] open:step 2/5 ключ применён ${timing('2')}`);
     const cipherVersion = await database.getFirstAsync<{ cipher_version: string }>(
       'PRAGMA cipher_version',
     );
-    console.log(`[PHONE-STATE-DB] open:step 3/5 cipher_version=${JSON.stringify(cipherVersion)}`);
+    console.log(`[PHONE-STATE-DB] open:step 3/5 cipher_version=${JSON.stringify(cipherVersion)} ${timing('3')}`);
     if (
       typeof cipherVersion?.cipher_version !== 'string'
       || cipherVersion.cipher_version.trim().length === 0
@@ -140,7 +184,7 @@ async function openEncrypted(
     const integrityErrors = await database.getAllAsync<{ cipher_integrity_check: string }>(
       'PRAGMA cipher_integrity_check',
     );
-    console.log(`[PHONE-STATE-DB] open:step 4/5 integrity rows=${integrityErrors.length}`);
+    console.log(`[PHONE-STATE-DB] open:step 4/5 integrity rows=${integrityErrors.length} ${timing('4')}`);
     if (integrityErrors.length > 0) {
       // зачем (баг 02.10, «Дизайн»: integrity rows=52 и на холодном старте, recover пропускает —
       // подпись не NOTADB): по одному числу строк нельзя понять, что это — порча страниц, чужой
@@ -167,16 +211,16 @@ async function openEncrypted(
       'SELECT count(*) AS tables FROM sqlite_master',
     );
     const userVersion = await database.getFirstAsync('PRAGMA user_version');
-    console.log(`[PHONE-STATE-DB] open:step 5/5 страница данных расшифрована, sqlite_master tables=${schemaProbe?.tables ?? 'null'}, user_version=${JSON.stringify(userVersion)}`);
+    console.log(`[PHONE-STATE-DB] open:step 5/5 страница данных расшифрована, sqlite_master tables=${schemaProbe?.tables ?? 'null'}, user_version=${JSON.stringify(userVersion)} ${timing('5')}`);
     await database.execAsync(DATABASE_CONFIGURATION);
     // Проба записи — ПОСЛЕ WAL и остальной настройки: только так она проходит
     // тем же путём, что и первая настоящая запись миграции (см. OPEN_WRITE_PROBE).
     await database.execAsync(OPEN_WRITE_PROBE);
-    console.log('[PHONE-STATE-DB] open:step 6/6 проба записи прошла через WAL — база пригодна');
-    console.log('[PHONE-STATE-DB] open:ok');
+    console.log(`[PHONE-STATE-DB] open:step 6/6 проба записи прошла через WAL — база пригодна ${timing('6')}`);
+    console.log(`[PHONE-STATE-DB] open:ok ${timing('end')}`);
     return database;
   } catch (error) {
-    console.warn('[PHONE-STATE-DB] open:catch', describeError(error));
+    console.warn('[PHONE-STATE-DB] open:catch', describeError(error), timing('end'));
     try {
       await database.closeAsync();
     } catch (e) {

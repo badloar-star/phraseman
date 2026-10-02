@@ -927,3 +927,4 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 - **Ядро:** dialogueV2TextTurn и progressMigrateSnapshot выложены координатором. После подтверждения «Дизайна» (ответ бота) — закрывай PM-144 и продолжай пачки review→done (29) и planned (77).
 - **Account V2:** 8G выложен (progressMigrateSnapshot). Дальше 8H (откат 7B) и маскировка параметров в логах диплинка [V2-PAGE].
 - **«Дизайн»:** после хода диалога — PM-144 скрин; затем эмулятор → сессии App Check для замера.
+- **02.10 ~00:05 UTC:** координатор выложил `functions:dialogueV2SessionComplete` (логи [DIALOGUE-V2-COMPLETE], a28f5b553). Ядро: попроси «Дизайна» повторить итог диалога Free и чини по причине из лога. Ходы Free подтверждены ✅.

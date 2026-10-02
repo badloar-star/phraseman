@@ -4452,7 +4452,7 @@
     ],
     "basis": "PROPOSAL",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -4461,20 +4461,26 @@
       {
         "id": "PM-080-A1",
         "text": "Список наград утверждён",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "318589878: таблица 10 источников монет в docs/ECONOMY.md (Q9 координатора 01.10); снят серверный приём ключей g2c1_/g2cdj_ (D148 — до 30 000 монет за отменённую механику); проба tests/pm080_coin_sources_allowlist.probe.ts PASS; functions level_spin_star_grant 19/19; клиенты награды за видео удалены; «Привет другу» без журнала монет"
+        ]
       },
       {
         "id": "PM-080-A2",
         "text": "не добавлены новые бонусы/фарм-циклы",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "318589878: таблица 10 источников монет в docs/ECONOMY.md (Q9 координатора 01.10); снят серверный приём ключей g2c1_/g2cdj_ (D148 — до 30 000 монет за отменённую механику); проба tests/pm080_coin_sources_allowlist.probe.ts PASS; functions level_spin_star_grant 19/19; клиенты награды за видео удалены; «Привет другу» без журнала монет"
+        ]
       },
       {
         "id": "PM-080-A3",
         "text": "видео и привет другу не дают монет без отдельного решения",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "318589878: таблица 10 источников монет в docs/ECONOMY.md (Q9 координатора 01.10); снят серверный приём ключей g2c1_/g2cdj_ (D148 — до 30 000 монет за отменённую механику); проба tests/pm080_coin_sources_allowlist.probe.ts PASS; functions level_spin_star_grant 19/19; клиенты награды за видео удалены; «Привет другу» без журнала монет"
+        ]
       }
     ],
     "depends_on": [],
@@ -4486,10 +4492,14 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet (исполнитель сессии «Ядро»)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "318589878: таблица 10 источников монет в docs/ECONOMY.md (Q9 координатора 01.10); снят серверный приём ключей g2c1_/g2cdj_ (D148 — до 30 000 монет за отменённую механику); проба tests/pm080_coin_sources_allowlist.probe.ts PASS; functions level_spin_star_grant 19/19; клиенты награды за видео удалены; «Привет другу» без журнала монет"
+    ],
+    "notes": [
+      "2026-10-02: осталось снять клиентскую миграцию подарков за флагом и серверный videoWatchRunesClaim (вопрос координатору §64); серверная правка levelSpinStarGrant — выкладка пакетом релиза 2.0"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -6778,8 +6788,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "f21997ff5: «За всё время» считает все 5 языков курса + byTarget (сумма = итог); lifetime_profile_stats_by_target 4/4"
+    ],
+    "notes": [
+      "2026-10-02: A3 NOT_MET — подпись «по всем языкам» на карточке — зона «Дизайн»"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -11859,8 +11873,10 @@
       {
         "id": "PM-216-A2",
         "text": "размер репозитория не выдан за размер приложения",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "d50506b3f: отчёт PM-009 перегенерирован (исходники 107.08 МБ, архив EAS 15.22 МБ, бандл ≤13.86 МБ), node --test 4/4; инструмент scripts/pm216_release_size_report.mjs"
+        ]
       }
     ],
     "depends_on": [],
@@ -11872,8 +11888,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "d50506b3f: отчёт PM-009 перегенерирован (исходники 107.08 МБ, архив EAS 15.22 МБ, бандл ≤13.86 МБ), node --test 4/4; инструмент scripts/pm216_release_size_report.mjs"
+    ],
+    "notes": [
+      "2026-10-02: A1 NOT_MET — нужна релизная сборка и обмер скриптом (владелец); удаление 95 файлов 1.37 МБ — отдельной задачей после решения «Дизайна» по темам Главной"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -12067,8 +12087,13 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": ["Owner decision 2026-09-27: персональные планы давно должны быть удалены из релизного контура; не восстанавливать их в новом релизе."],
+    "evidence": [
+      "7a4b26cde: матрица config/performance-gates.json (5 сценариев, 21 сторож, 12 метрик, пороги null без baseline), проба PASS; 4 устаревших сторожа приведены к коду"
+    ],
+    "notes": [
+      "Owner decision 2026-09-27: персональные планы давно должны быть удалены из релизного контура; не восстанавливать их в новом релизе.",
+      "2026-10-02: A1/A2 NOT_MET — baseline на слабом Android и iPhone (владелец, одна релизная сборка вместе с PM-216)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

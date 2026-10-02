@@ -4,7 +4,7 @@
 
 Колонки: **исходники** — все байты файлов в `assets/`; **в архиве EAS** — не исключено `.easignore`; **в бандле** — есть статический `require()` из клиентского кода или ссылка из `app.json` (верхняя граница: достижимость модуля-потребителя не проверяется); **в архиве, но не в бандле** — грузится в сборочный архив, но Metro его не тянет (кандидаты на чистку). Настоящий diff `.aab/.ipa` требует EAS-сборки и здесь не делается.
 
-Итого: файлов **3877**, исходники **109.10 МБ**, в архиве EAS **17.24 МБ**, в бандле **15.87 МБ** (512 файлов), в архиве, но не в бандле **1.38 МБ**.
+Итого: файлов **3873**, исходники **107.08 МБ**, в архиве EAS **15.22 МБ**, в бандле **13.86 МБ** (501 файлов), в архиве, но не в бандле **1.37 МБ**.
 
 ## По каталогам
 
@@ -13,13 +13,11 @@
 | `assets/audio/learning-v2` | 3270 | 91.29 | 0.00 | 0.00 | 0.00 | нет |
 | `assets/audio/learning-v2-bootstrap-v1` | 140 | 3.62 | 3.62 | 3.62 | 0.00 | 1: app/learning_v2_bootstrap_audio_assets_v1.generated.ts |
 | `assets/audio/onboarding_aha` | 18 | 2.27 | 2.27 | 2.27 | 0.00 | 1: components/onboarding_aha/aha_assets.ts |
-| `assets/images/home_menu` | 110 | 1.69 | 1.69 | 1.26 | 0.43 | 1: app/home_menu_icons.ts |
-| `assets/audio/sfx` | 79 | 1.35 | 1.35 | 1.21 | 0.14 | 2: modules/audio/celebrationBackgroundPlayer.ts, modules/audio/sound_events.ts |
-| `assets/images/home_last_lesson` | 10 | 1.23 | 1.23 | 1.18 | 0.05 | 1: app/home_last_lesson_assets.ts |
-| `assets/images/v2` | 6 | 0.92 | 0.92 | 0.73 | 0.20 | 3: app/(tabs)/home.tsx, app/flashcards/FlashcardsHubScreen.tsx, components/DailyPhraseCard.tsx |
+| `assets/images/home_menu` | 110 | 1.69 | 1.69 | 1.27 | 0.43 | 2: app/(tabs)/home.tsx, app/home_menu_icons.ts |
+| `assets/audio/sfx` | 76 | 1.29 | 1.29 | 1.15 | 0.14 | 2: modules/audio/celebrationBackgroundPlayer.ts, modules/audio/sound_events.ts |
 | `assets/images/ios-icon.png` | 1 | 0.64 | 0.64 | 0.64 | 0.00 | 1: app.json |
 | `assets/images/levels` | 71 | 0.62 | 0.62 | 0.61 | 0.01 | 10: app/(tabs)/lessons.tsx, app/achievements_screen.tsx, app/home_menu_icons.ts, … |
-| `assets/images/coins` | 20 | 0.48 | 0.48 | 0.48 | 0.00 | 1: app/coin_rank_table_v1.ts |
+| `assets/images/coins` | 20 | 0.48 | 0.48 | 0.48 | 0.00 | 5: app/coin_rank_table_v1.ts, app/theme_ui_assets.ts, components/PracticeRuneCounter.tsx, … |
 | `assets/╨É╨á╨ò╨¥╨É - Copy.txt` | 1 | 0.45 | 0.00 | 0.00 | 0.00 | нет |
 | `assets/images/android-icon-foreground.png` | 1 | 0.39 | 0.39 | 0.39 | 0.00 | 1: app.json |
 | `assets/fonts/Inter-Black.ttf` | 1 | 0.33 | 0.33 | 0.33 | 0.00 | 2: app.json, app/typography_dev_fonts.ts |
@@ -28,14 +26,16 @@
 | `assets/fonts/Inter-Regular.ttf` | 1 | 0.33 | 0.33 | 0.33 | 0.00 | 2: app.json, app/typography_dev_fonts.ts |
 | `assets/images/streak_icons` | 20 | 0.32 | 0.32 | 0.32 | 0.00 | 1: constants/streakIconAssets.ts |
 | `assets/images/icon.png` | 1 | 0.28 | 0.28 | 0.28 | 0.00 | 1: app.json |
-| `assets/images/level-spin-rewards` | 12 | 0.28 | 0.28 | 0.21 | 0.07 | 7: app/lesson_irregular_verbs.tsx, app/lesson_words.tsx, app/theme_ui_assets.ts, … |
+| `assets/images/level-spin-rewards` | 12 | 0.28 | 0.28 | 0.00 | 0.28 | нет |
 | `assets/images/league` | 9 | 0.24 | 0.24 | 0.00 | 0.24 | нет |
-| `assets/images/home_mistakes` | 9 | 0.21 | 0.21 | 0.21 | 0.00 | 1: app/home_mistakes_assets.ts |
+| `assets/images/home_mistakes` | 9 | 0.21 | 0.21 | 0.21 | 0.00 | 2: app/(tabs)/home.tsx, app/home_mistakes_assets.ts |
 | `assets/images/achievements` | 3 | 0.15 | 0.15 | 0.15 | 0.00 | 1: constants/achievementImageAssets.ts |
 | `assets/images/splash-icon.png` | 1 | 0.12 | 0.12 | 0.12 | 0.00 | 1: app.json |
+| `assets/images/v2` | 6 | 0.12 | 0.12 | 0.12 | 0.00 | 3: app/(tabs)/home.tsx, app/flashcards/FlashcardsHubScreen.tsx, components/DailyPhraseCard.tsx |
 | `assets/images/currency` | 9 | 0.11 | 0.11 | 0.11 | 0.00 | 1: app/coin_icons.ts |
 | `assets/audio/personal-plans-runtime` | 5 | 0.11 | 0.00 | 0.00 | 0.00 | нет |
 | `assets/images/learning_v2_map` | 4 | 0.10 | 0.10 | 0.10 | 0.00 | 1: app/learning-v2/lesson/[id].tsx |
+| `assets/images/home_last_lesson` | 10 | 0.10 | 0.10 | 0.05 | 0.05 | 1: app/home_last_lesson_assets.ts |
 | `assets/images/home_supporting_art` | 18 | 0.10 | 0.10 | 0.10 | 0.00 | 1: app/home_supporting_art.ts |
 | `assets/roulette/card-6m.webp` | 1 | 0.07 | 0.07 | 0.07 | 0.00 | 1: app/roulette_prizes.ts |
 | `assets/sounds/fc` | 13 | 0.07 | 0.07 | 0.07 | 0.00 | 1: app/flashcards/SoundService.ts |
@@ -55,7 +55,6 @@
 | `assets/audio/correct.mp3` | 1 | 0.03 | 0.03 | 0.00 | 0.03 | нет |
 | `assets/images/streak_overlays` | 1 | 0.02 | 0.02 | 0.02 | 0.00 | 1: app/theme_ui_assets.ts |
 | `assets/images/android-icon-monochrome.png` | 1 | 0.02 | 0.02 | 0.02 | 0.00 | 1: app.json |
-| `assets/images/daily_journey` | 1 | 0.02 | 0.02 | 0.00 | 0.02 | нет |
 | `assets/paywall_preview_v2.html` | 1 | 0.01 | 0.00 | 0.00 | 0.00 | нет |
 | `assets/images/language_flags` | 5 | 0.01 | 0.01 | 0.01 | 0.00 | 6: app/(tabs)/settings.tsx, app/flashcards/PackLanguagePicker.tsx, app/flashcards_my_packs.tsx, … |
 | `assets/audio/message_received.mp3` | 1 | 0.01 | 0.01 | 0.00 | 0.01 | нет |
@@ -77,7 +76,6 @@
 
 | Файл | КБ | В архиве EAS | В бандле | Путь импортирования (потребители) |
 |---|---:|---|---|---|
-| `assets/images/home_last_lesson/home-last-lesson-notepad.png` | 1208 | да | да | app/home_last_lesson_assets.ts:7 |
 | `assets/audio/learning-v2/factory-production-v1/manifest.json` | 1150 | нет (.easignore: assets/audio/learning-v2/) | нет | нет |
 | `assets/images/ios-icon.png` | 652 | да | да | app.json |
 | `assets/╨É╨á╨ò╨¥╨É - Copy.txt` | 458 | нет (.easignore: assets/*Copy.txt) | нет | нет |
@@ -93,12 +91,7 @@
 | `assets/audio/onboarding_aha/ambient_travel.mp3` | 329 | да | да | components/onboarding_aha/aha_assets.ts:28 |
 | `assets/audio/onboarding_aha/ambient_work.mp3` | 329 | да | да | components/onboarding_aha/aha_assets.ts:29 |
 | `assets/images/icon.png` | 290 | да | да | app.json<br>app.json |
-| `assets/images/v2/book_stack.png` | 225 | да | да | app/(tabs)/home.tsx:3564 |
-| `assets/images/v2/notecard_stack.png` | 205 | да | да | app/(tabs)/home.tsx:3578 |
-| `assets/images/v2/spiral_notepad.png` | 201 | да | нет | нет |
-| `assets/images/v2/mug_quote.png` | 166 | да | да | components/DailyPhraseCard.tsx:624 |
-| `assets/audio/sfx/v1/celebration/cel_background_bed_v1.m4a` | 143 | да | да | modules/audio/celebrationBackgroundPlayer.ts:28<br>modules/audio/sound_events.ts:155 |
-| `assets/images/v2/chat_bubbles.png` | 142 | да | да | app/(tabs)/home.tsx:3571 |
+| `assets/audio/sfx/v1/celebration/cel_background_bed_v1.m4a` | 143 | да | да | modules/audio/celebrationBackgroundPlayer.ts:28<br>modules/audio/sound_events.ts:154 |
 | `assets/images/splash-icon.png` | 121 | да | да | app.json |
 | `assets/roulette/card-6m.webp` | 74 | да | да | app/roulette_prizes.ts:61 |
 | `assets/audio/learning-v2/factory-production-v1/0355888a539cc7a0511020bf-ash.mp3` | 64 | нет (.easignore: assets/audio/learning-v2/) | нет | нет |
@@ -117,14 +110,19 @@
 | `assets/audio/learning-v2/factory-production-v1/f79eeffac63e839867f9c42b-onyx.mp3` | 63 | нет (.easignore: assets/audio/learning-v2/) | нет | нет |
 | `assets/audio/learning-v2/factory-production-v1/0090727026564798ff9e5a7c-onyx.mp3` | 63 | нет (.easignore: assets/audio/learning-v2/) | нет | нет |
 | `assets/audio/learning-v2/factory-production-v1/235ae2c129254828c5239b45-onyx.mp3` | 63 | нет (.easignore: assets/audio/learning-v2/) | нет | нет |
+| `assets/audio/learning-v2/factory-production-v1/2722ae644dc0037b559e70c0-coral.mp3` | 63 | нет (.easignore: assets/audio/learning-v2/) | нет | нет |
+| `assets/audio/learning-v2/factory-production-v1/574c26324b6d40d17812a168-onyx.mp3` | 63 | нет (.easignore: assets/audio/learning-v2/) | нет | нет |
+| `assets/audio/learning-v2/factory-production-v1/81537398faaedb704066c607-onyx.mp3` | 63 | нет (.easignore: assets/audio/learning-v2/) | нет | нет |
+| `assets/audio/learning-v2/factory-production-v1/81fa0e88941b3c997d4dc490-nova.mp3` | 63 | нет (.easignore: assets/audio/learning-v2/) | нет | нет |
+| `assets/audio/learning-v2/factory-production-v1/940cf0564a3209f2d1ead5d1-ash.mp3` | 63 | нет (.easignore: assets/audio/learning-v2/) | нет | нет |
+| `assets/audio/learning-v2/factory-production-v1/a2d47509968d07d398db0b76-nova.mp3` | 63 | нет (.easignore: assets/audio/learning-v2/) | нет | нет |
 
-## Кандидаты на удаление: в архиве, потребителей нет (88 файлов, 1.38 МБ)
+## Кандидаты на удаление: в архиве, потребителей нет (95 файлов, 1.37 МБ)
 
 Для каждого кандидата проверено: ни одного `require()` в клиентском коде и ни одной ссылки в `app.json`. Перед удалением дополнительно: `git grep -n "<имя файла>"` (динамические пути и скрипты контента), владелец ассетов (D69: новые ассеты Главной и 20 монет рангов не трогать). Скрипт ничего не удаляет.
 
 | Файл | КБ |
 |---|---:|
-| `assets/images/v2/spiral_notepad.png` | 201 |
 | `assets/audio/ob_correct.mp3` | 62 |
 | `assets/audio/ob_purchase_success.mp3` | 56 |
 | `assets/images/level-spin-rewards/cosmetic_theme.webp` | 46 |
@@ -136,24 +134,33 @@
 | `assets/images/league/weekly-goal/volt.webp` | 29 |
 | `assets/audio/correct.mp3` | 29 |
 | `assets/images/level-spin-rewards/cosmetic_avatar_aura.webp` | 28 |
+| `assets/images/level-spin-rewards/stars_500.webp` | 27 |
+| `assets/images/level-spin-rewards/pearls_20.webp` | 26 |
 | `assets/images/league/weekly-goal/midnight.webp` | 26 |
 | `assets/images/league/weekly-goal/olive.webp` | 26 |
 | `assets/images/league/weekly-goal/indigo.webp` | 26 |
+| `assets/images/level-spin-rewards/stars_1000.webp` | 26 |
+| `assets/images/level-spin-rewards/stars_250.webp` | 24 |
 | `assets/images/league/weekly-goal/sagePorcelain.webp` | 24 |
 | `assets/images/league/weekly-goal/gold.webp` | 23 |
+| `assets/images/level-spin-rewards/stars_10.webp` | 22 |
 | `assets/images/league/weekly-goal/dark.webp` | 22 |
 | `assets/images/home_menu/max/sagePorcelain/shell.webp` | 21 |
+| `assets/images/level-spin-rewards/pearls_100.webp` | 21 |
 | `assets/images/home_menu/max/aurora/shell.webp` | 21 |
+| `assets/images/level-spin-rewards/pearls_250.webp` | 21 |
 | `assets/images/home_menu/home-gold-league.webp` | 21 |
 | `assets/audio/sfx/v1/social/pm_social_gift_received_v1.m4a` | 19 |
 | `assets/images/home_menu/home-gold-cards.webp` | 19 |
 | `assets/images/home_menu/max/dark/shell.webp` | 18 |
 | `assets/images/home_menu/max/gold/shell.webp` | 18 |
-| `assets/images/daily_journey/home_gift_button.webp` | 17 |
 | `assets/images/home_menu/max/olive/shell.webp` | 17 |
 | `assets/images/home_menu/max/ember/shell.webp` | 17 |
+| `assets/images/level-spin-rewards/stars_100.webp` | 17 |
+| `assets/images/level-spin-rewards/pearls_50.webp` | 16 |
 | `assets/audio/sfx/v1/celebration/cel_streak_shield_v1.m4a` | 16 |
 | `assets/images/home_menu/max/indigo/shell.webp` | 16 |
+| `assets/images/level-spin-rewards/pearls_10.webp` | 16 |
 | `assets/audio/sfx/v1/max/pm_max_review_open_v1.m4a` | 16 |
 | `assets/images/home_menu/home-gold-lessons.webp` | 16 |
 | `assets/images/home_menu/max/aurora/field.webp` | 16 |
@@ -181,7 +188,6 @@
 | `assets/images/home_menu/indigo/home-indigo-league.webp` | 7 |
 | `assets/images/home_last_lesson/home-last-lesson-midnight.webp` | 6 |
 | `assets/images/home_last_lesson/home-last-lesson-sagePorcelain.webp` | 6 |
-| `assets/images/home_menu/home-forest-league.webp` | 6 |
 | `assets/images/home_last_lesson/home-last-lesson-aurora.webp` | 6 |
 | `assets/images/home_menu/midnight/home-midnight-league.webp` | 6 |
 | `assets/images/home_last_lesson/home-last-lesson-indigo.webp` | 6 |

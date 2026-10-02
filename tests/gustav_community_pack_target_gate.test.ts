@@ -15,6 +15,7 @@ import {
   type CommunityPackCreateDraftV1,
 } from '../app/community_packs/communityPackDraftStorage';
 import { communityPackCreateDraftKey } from '../app/target_storage_keys';
+import { __resetAccountGenerationForTests, beginAccountGeneration } from '../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('@react-native-firebase/firestore', () => jest.fn());
@@ -45,7 +46,6 @@ function validDraft(title: string): Omit<CommunityPackCreateDraftV1, 'v'> {
     title,
     description: 'Draft description',
     themeIdx: 0,
-    cardBackIdx: 0,
     rows: [],
     addCardFormOpen: false,
     draftEn: '',
@@ -59,12 +59,19 @@ function validDraft(title: string): Omit<CommunityPackCreateDraftV1, 'v'> {
 beforeEach(() => {
   storage.__reset?.();
   jest.clearAllMocks();
+  // зачем: запись черновика идёт под замком поколения аккаунта (serializeDraftWrite) —
+  // без активного аккаунта она честно отклоняется «Account changed», как при смене аккаунта.
+  __resetAccountGenerationForTests();
+  beginAccountGeneration('gustav-test-account');
 });
 
 describe('Gustav community pack target gate', () => {
-  it('keeps new UGC payloads tagged as English and blocks French until source approval', () => {
+  // зачем: D129 (владелец 30.09) — карточки доступны для всех языков обучения, включая французский;
+  // ворота наборов сообщества для fr открыты (app/flashcards_target_gate.ts), отказ остался только для
+  // неизвестного языка набора.
+  it('keeps new UGC payloads tagged by study target and accepts French community packs (D129)', () => {
     expect(validateCommunityPackPayload(validPayload('en'))).toBeNull();
-    expect(validateCommunityPackPayload(validPayload('fr'))).toBe('study_target_gate');
+    expect(validateCommunityPackPayload(validPayload('fr'))).toBeNull();
     expect(buildCommunityPackPayloadForCloud(validPayload())).toMatchObject({ studyTarget: 'en' });
     expect(buildCommunityPackPayloadForCloud(validPayload('en'))).toMatchObject({ studyTarget: 'en' });
   });
@@ -161,12 +168,14 @@ describe('Gustav community pack target gate', () => {
     const alertsSource = fs.readFileSync(path.join(ROOT, 'app', 'community_packs', 'communityModerationAlerts.ts'), 'utf8');
     const reportModalSource = fs.readFileSync(path.join(ROOT, 'components', 'ReportPackModal.tsx'), 'utf8');
     const userReportSource = fs.readFileSync(path.join(ROOT, 'app', 'user_report.ts'), 'utf8');
-    const adminSource = fs.readFileSync(path.join(ROOT, 'admin', 'legacy.html'), 'utf8');
+    // зачем: efe19ae9d — замороженная копия admin/legacy.html удалена, рабочая админка одна: admin/v2/legacy.html.
+    const adminSource = fs.readFileSync(path.join(ROOT, 'admin', 'v2', 'legacy.html'), 'utf8');
 
     expect(createSource).toContain('const { studyTarget } = useStudyTarget()');
     expect(createSource).toContain('flashcardsCommunityPacksAvailableForTarget(studyTarget)');
-    expect(createSource).toContain('loadCommunityPackCreateDraft(studyTarget, lang)');
-    expect(createSource).toContain('clearCommunityPackCreateDraft(studyTarget, lang)');
+    // зачем: черновики разложены по языку набора — третий аргумент packLanguage, target и lang по-прежнему первые.
+    expect(createSource).toContain('loadCommunityPackCreateDraft(studyTarget, lang, ');
+    expect(createSource).toContain('clearCommunityPackCreateDraft(studyTarget, lang, ');
     expect(createSource).toContain('plannedCommunitySourceLocale(lang)');
     expect(createSource).toContain('communityPackRowWithSourceLocale(row, en, ru, es, note, plannedDraftLocale, translation)');
     expect(createSource).toContain('}, studyTarget, lang)');
@@ -183,7 +192,8 @@ describe('Gustav community pack target gate', () => {
     expect(firestoreSource).toContain('studyTarget !== storageStudyTarget(opts?.studyTarget)');
     expect(stagingSource).toContain('fetchCommunityPackCards(packId, studyTarget)');
 
-    expect(hubSource).toContain('loadPublishedCommunityMarketPacks(studyTarget)');
+    // зачем: каталог принимает опции ({ forceRemote }) вторым аргументом; studyTarget по-прежнему первый.
+    expect(hubSource).toContain('loadPublishedCommunityMarketPacks(studyTarget, ');
     expect(hubSource).toContain('loadAuthorCommunityPacksPendingUpdate(sid, studyTarget)');
     expect(hubSource).toContain('fetchCommunityPackMeta(id, studyTarget)');
     expect(categoryHubSource).toContain('stageCommunityPackCardsWithSilentRetry(pack.id, studyTarget, pack');
@@ -205,7 +215,8 @@ describe('Gustav community pack target gate', () => {
     expect(functionsSource).toContain('requireMatchingPackStudyTarget(requestedStudyTarget, pack)');
     expect(functionsSource).toContain("throw new HttpsError('failed-precondition', 'Pack study target mismatch')");
     expect(functionsSource).toContain('studyTarget,');
-    expect(functionsClientSource).toContain("studyTarget?: 'en' | 'fr'");
+    // зачем: D129/D130 — языков обучения больше двух, тип расширен до LearningLanguageTarget.
+    expect(functionsClientSource).toContain('studyTarget?: LearningLanguageTarget;');
     // D140: погашение подарочного набора (единственный study-target вызов здесь) удалено.
     expect(purchaseSource).not.toContain('callFlashcardPackGiftRedeem');
     expect(firestoreSource).toContain('studyTarget: storageStudyTarget(studyTarget)');

@@ -6975,7 +6975,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -7004,11 +7004,15 @@
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
     ],
     "audit_sha": null,
-    "result_sha": null,
-    "owner": null,
+    "result_sha": "7b4631e7e",
+    "owner": "исполнитель (7b4631e7e, D128); перевод в review — Claude Opus 5.5 (Ядро)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "7b4631e7e (D128): hooks/use-audio.ts — клип нужного языка, голос устройства только при точном совпадении, иначе тост «Голос недоступен» (раз в 15 с); use_audio_contract 16/16, fc_tts_voices 18/18"
+    ],
+    "notes": [
+      "2026-10-02 Ядро: оба критерия приняты ранее, задача висела в planned — переведена в review для независимого ревью"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

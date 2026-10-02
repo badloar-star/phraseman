@@ -309,7 +309,9 @@ const INTENTIONALLY_UNREAD_PHONE_STATE_ECONOMY_GRANTS = [
   {
     grantKind: 'paid_level_spin_rune_purchase',
     contract: 'modules/phone-state/domains/economy.ts',
-    writer: 'app/local_level_spins.ts',
+    // зачем (02.10): платный спин удалён в 2.0 (local_level_spins.ts снят 30.09, efe19ae9d) —
+    // историческую запись принимает мост Phone State, как у customization_rune_purchase.
+    writer: 'app/phone_state_economy_bridge.ts',
     collection: 'personal_sync_segments',
     authority: 'client-authoritative exact rune debit plus immutable spin result in an owner-only opaque Phone State segment; intentionally unread by Jarvis',
   },
@@ -511,7 +513,8 @@ const ISOLATED_COLLECTION_CONTRACTS = [
   },
   {
     collection: 'tournamentTasks',
-    writer: 'functions/src/admin_tournament_tasks.ts and functions/src/admin_arena_publication.ts',
+    // admin_tournament_tasks.ts удалён 02.10 (PM-231-A3) — пишет только публикация пула.
+    writer: 'functions/src/admin_arena_publication.ts',
     authority: 'server-owned sealed Arena task pool; intentionally unread by Jarvis',
     fields: ['studyTarget', 'publicationFingerprint', 'arenaPublication'],
   },

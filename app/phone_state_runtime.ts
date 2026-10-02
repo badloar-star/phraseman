@@ -3,6 +3,7 @@ import firestore from '@react-native-firebase/firestore';
 import * as Crypto from 'expo-crypto';
 
 import { isUnreadableDatabaseFailure, openPhoneStateDatabase, recreatePhoneStateDatabaseAfterUnreadable } from '../modules/phone-state/database';
+import { openPhoneStateIntegrityConnection } from '../modules/phone-state/database'; // зачем: §84 — проверка на отдельном соединении
 import { coldStartStep } from './cold_start_trace'; // зачем: §80 — метки [COLD-START] шагов открытия
 import Constants from 'expo-constants';
 import { getInstalledAppVersion } from './app_version';
@@ -10,6 +11,7 @@ import {
   DEFERRED_INTEGRITY_BUSY_RETRY_MS,
   DEFERRED_INTEGRITY_DELAY_MS,
   clearIntegrityResetFlag,
+  isDeferredIntegrityDueNow,
   isIntegrityResetPending,
   runDeferredIntegrityCheck,
 } from '../modules/phone-state/deferred_integrity';
@@ -411,6 +413,49 @@ async function openRuntimeSession(
 }
 
 /**
+ * Проверка на ОТДЕЛЬНОМ соединении только для чтения (координатор, 02.10): основное соединение
+ * выполняет запросы по очереди, и проверка на нём задержала бы чтения приложения. Пока идёт
+ * проверка, на основном соединении меряем пробный запрос — лог покажет, мешает ли она приложению.
+ */
+async function runDeferredIntegrityOnSeparateConnection(session: RuntimeSession): Promise<string> {
+  const scope = { stableUid: session.context.stableUid, accountGeneration: session.context.lineage };
+  const appVersion = getInstalledAppVersion(Constants);
+  const due = await isDeferredIntegrityDueNow(AsyncStorage, scope, appVersion);
+  if (!due.due) {
+    console.log(`[PHONE-STATE-DB] deferred_integrity:not_due reason=${due.reason} — соединение не открываем`);
+    return 'not_due';
+  }
+  const openStartedAt = Date.now();
+  let connection: Awaited<ReturnType<typeof openPhoneStateIntegrityConnection>>;
+  try {
+    connection = await openPhoneStateIntegrityConnection(scope);
+  } catch (error) {
+    console.warn(`[PHONE-STATE-DB] deferred_integrity:connection_open_failed за ${Date.now() - openStartedAt}мс`,
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+    return 'failed';
+  }
+  console.log(`[PHONE-STATE-DB] deferred_integrity:connection_open ${Date.now() - openStartedAt}мс`);
+  const probeStartedAt = Date.now();
+  const mainProbe = session.database.getFirstAsync('SELECT 1').then(
+    () => Date.now() - probeStartedAt,
+    (error: unknown) => {
+      console.warn('[PHONE-STATE-DB] deferred_integrity:main_probe_failed',
+        error instanceof Error ? error.message : String(error));
+      return -1;
+    },
+  );
+  try {
+    return await runDeferredIntegrityCheck({ database: connection, scope, storage: AsyncStorage, appVersion });
+  } finally {
+    console.log(`[PHONE-STATE-DB] deferred_integrity:main_probe ${await mainProbe}мс (задержка запроса приложения во время проверки)`);
+    await connection.closeAsync().catch((error: unknown) => {
+      console.warn('[PHONE-STATE-DB] deferred_integrity:connection_close_failed',
+        error instanceof Error ? error.message : String(error));
+    });
+  }
+}
+
+/**
  * Запланировать фоновую полную проверку целостности (§84, Q118).
  * Через DEFERRED_INTEGRITY_DELAY_MS после вызова (зовётся после bootstrap, который сам ждёт кадра
  * Главной → ≥30 с после него); пока человек в уроке/тренировке (isBusy) — откладывается на минуту.
@@ -436,14 +481,11 @@ export function schedulePhoneStateDeferredIntegrityCheck(
       timer = setTimeout(attempt, DEFERRED_INTEGRITY_BUSY_RETRY_MS);
       return;
     }
-    void runDeferredIntegrityCheck({
-      database: session.database,
-      scope: { stableUid: session.context.stableUid, accountGeneration: session.context.lineage },
-      storage: AsyncStorage,
-      appVersion: getInstalledAppVersion(Constants),
-    }).then((outcome) => {
-      console.log(`[PHONE-STATE-DB] deferred_integrity:result ${outcome}`);
-    }).catch(noteSwallowedHandler('phone_state_runtime:deferred_integrity'));
+    void runDeferredIntegrityOnSeparateConnection(session)
+      .then((outcome) => {
+        console.log(`[PHONE-STATE-DB] deferred_integrity:result ${outcome}`);
+      })
+      .catch(noteSwallowedHandler('phone_state_runtime:deferred_integrity'));
   };
   console.log(`[PHONE-STATE-DB] deferred_integrity:scheduled через ${delayMs}мс`);
   timer = setTimeout(attempt, delayMs);

@@ -288,6 +288,36 @@ export async function recreatePhoneStateDatabaseAfterUnreadable(
   return recreateWithCredentials(credentials);
 }
 
+/**
+ * Отдельное соединение ТОЛЬКО ДЛЯ ЧТЕНИЯ — под фоновую полную проверку целостности (§84).
+ *
+ * зачем (координатор, 02.10): expo-sqlite выполняет запросы ОДНОГО соединения по очереди, и
+ * проверка на основном соединении (2,4 с на эмуляторе, на слабом Android дольше) задержала бы
+ * все чтения приложения (открытие карточек, наборы). Отдельное соединение — читатель WAL, он не
+ * мешает писателю. `useNewConnection` обязателен: без него expo-sqlite вернёт ЗАКЭШИРОВАННОЕ
+ * основное соединение с тем же именем. Вызывающий обязан закрыть соединение после проверки.
+ */
+export async function openPhoneStateIntegrityConnection(
+  scope: PhoneStateScope,
+  options?: OpenPhoneStateDatabaseOptions,
+): Promise<SQLite.SQLiteDatabase> {
+  if (runsInExpoGo(options)) throw new Error('phone_state_native_unavailable');
+  const credentials = await materializePhoneStateCredentials(scope);
+  if (!KEY_HEX_PATTERN.test(credentials.keyHex)) throw new Error('phone_state_key_invalid');
+  const database = await SQLite.openDatabaseAsync(credentials.databaseName, { useNewConnection: true });
+  try {
+    await database.execAsync(`PRAGMA key = "x'${credentials.keyHex}'"`);
+    await database.execAsync('PRAGMA query_only = ON; PRAGMA busy_timeout = 5000;');
+    return database;
+  } catch (error) {
+    console.warn('[PHONE-STATE-DB] deferred_integrity:connection_setup_failed', describeError(error));
+    await database.closeAsync().catch((closeError: unknown) => {
+      console.warn('[PHONE-STATE-DB] deferred_integrity:connection_close_failed', describeError(closeError));
+    });
+    throw error;
+  }
+}
+
 export async function openPhoneStateDatabase(
   scope: PhoneStateScope,
   options?: OpenPhoneStateDatabaseOptions,

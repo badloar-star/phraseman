@@ -88,6 +88,14 @@ describe('PhoneState deferred integrity (§84)', () => {
     expect(recreate).toBeGreaterThan(pending);
     expect(clear).toBeGreaterThan(recreate);
     expect(runtime).toContain('deferred_integrity:busy route=');
+    // Координатор 02.10: проверка — на ОТДЕЛЬНОМ соединении только для чтения, иначе очередь
+    // основного соединения держала бы чтения приложения; соединение закрывается после проверки.
+    expect(runtime).toContain('connection = await openPhoneStateIntegrityConnection(scope);');
+    expect(runtime).toContain('await connection.closeAsync()');
+    expect(runtime).not.toContain('database: session.database,');
+    const database = fs.readFileSync(path.join(__dirname, '..', 'modules', 'phone-state', 'database.ts'), 'utf8');
+    expect(database).toContain('{ useNewConnection: true }');
+    expect(database).toContain('PRAGMA query_only = ON;');
     const layout = fs.readFileSync(path.join(__dirname, '..', 'app', '_layout.tsx'), 'utf8');
     expect(layout).toContain('schedulePhoneStateDeferredIntegrityCheck(');
     expect(layout).toContain('cancelDeferredIntegrity?.();');

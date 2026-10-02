@@ -100,6 +100,16 @@ async function readLastCheck(storage: DeferredIntegrityStorage, scope: DeferredI
   }
 }
 
+/** Пора ли проверять — ДО открытия отдельного соединения, чтобы не открывать его зря. */
+export async function isDeferredIntegrityDueNow(
+  storage: DeferredIntegrityStorage,
+  scope: DeferredIntegrityScope,
+  appVersion: string,
+  nowMs: number = Date.now(),
+): Promise<Readonly<{ due: boolean; reason: string }>> {
+  return deferredIntegrityDue(await readLastCheck(storage, scope), nowMs, appVersion);
+}
+
 export type DeferredIntegrityOutcome = 'clean' | 'corrupt' | 'not_due' | 'failed';
 
 /** Полная проверка на уже открытом соединении. Никогда не бросает — итог и причина в логе. */

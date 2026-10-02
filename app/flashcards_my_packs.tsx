@@ -269,6 +269,17 @@ export default function FlashcardsMyPacksScreen() {
   const [openingPackId, setOpeningPackId] = useState<string | null>(null);
   const [deletePackTarget, setDeletePackTarget] = useState<FlashcardMarketPack | null>(null);
   const [deletePackBusy, setDeletePackBusy] = useState(false);
+  // зачем (FINAL_PHASE п.7, Optimistic UI): удаление убирает набор из списка сразу; пока сервер
+  // не ответил, фоновая перезагрузка «Моих наборов» не должна вернуть его обратно.
+  const pendingDeletePackIdsRef = useRef<Set<string>>(new Set());
+  const withoutPendingDeletes = useCallback((value: MyPacksGroups): MyPacksGroups => {
+    const pending = pendingDeletePackIdsRef.current;
+    if (pending.size === 0) return value;
+    return {
+      added: value.added.filter((item) => !pending.has(item.id)),
+      created: value.created.filter((item) => !pending.has(item.id)),
+    };
+  }, []);
   const openingPackRef = useRef<string | null>(null);
   const openingRequestGenerationRef = useRef(0);
   useEffect(() => {
@@ -458,14 +469,15 @@ export default function FlashcardsMyPacksScreen() {
         }
         console.log(`[MY-PACKS] commit status=${next.status} added=${next.groups.added.length} created=${next.groups.created.length}`);
         if (next.status === 'stale') {
-          setGroups((prev) => prev.added.length + prev.created.length > 0 ? prev : next.groups);
+          setGroups((prev) => prev.added.length + prev.created.length > 0 ? prev : withoutPendingDeletes(next.groups));
           setLoadStatus('stale');
           return;
         }
+        const nextGroups = withoutPendingDeletes(next.groups);
         setGroups((prev) =>
-          sameGroup(prev.added, next.groups.added) && sameGroup(prev.created, next.groups.created)
+          sameGroup(prev.added, nextGroups.added) && sameGroup(prev.created, nextGroups.created)
             ? prev
-            : next.groups,
+            : nextGroups,
         );
         setLoadStatus('ready');
       }).catch((error) => {
@@ -706,14 +718,35 @@ export default function FlashcardsMyPacksScreen() {
 
   const deletePack = useCallback(async () => {
     const pack = deletePackTarget;
-    if (!pack || deletePackBusy) return;
+    if (!pack || deletePackBusy || pendingDeletePackIdsRef.current.has(pack.id)) {
+      console.warn('[MY-PACKS] удаление пропущено', { packId: pack?.id ?? null, busy: deletePackBusy });
+      return;
+    }
+    // зачем (FINAL_PHASE п.7, Optimistic UI): набор исчезает из списка и окно закрывается сразу,
+    // сервер догоняет фоном; при ошибке набор возвращается на прежнее место.
+    let removedFrom: { group: 'added' | 'created'; index: number } | null = null;
+    pendingDeletePackIdsRef.current.add(pack.id);
     setDeletePackBusy(true);
+    setGroups((prev) => {
+      const addedIdx = prev.added.findIndex((item) => item.id === pack.id);
+      const createdIdx = prev.created.findIndex((item) => item.id === pack.id);
+      removedFrom = addedIdx >= 0 ? { group: 'added', index: addedIdx } : createdIdx >= 0 ? { group: 'created', index: createdIdx } : null;
+      return {
+        added: prev.added.filter((item) => item.id !== pack.id),
+        created: prev.created.filter((item) => item.id !== pack.id),
+      };
+    });
+    setDeletePackTarget(null);
+    DebugLogger.info('[MY-PACKS]', `удаление набора ${pack.id}: убран из списка сразу, local=${isLocalAuthorPackId(pack.id)}`);
     try {
       if (isLocalAuthorPackId(pack.id)) {
         await withdrawLocalAuthorPack(pack.id);
         await removeLocalAuthorPack(pack.id, studyTarget);
       } else {
-        const authorStableId = await getCanonicalUserId().catch(() => null);
+        const authorStableId = await getCanonicalUserId().catch((error: unknown) => {
+          console.warn('[MY-PACKS] getCanonicalUserId не ответил при удалении', error);
+          return null;
+        });
         if (!authorStableId) throw new Error('author_id_missing');
         await callCommunityAuthorRemovePack({ authorStableId, packId: pack.id });
         for (const local of await loadLocalAuthorPacks()) {
@@ -721,22 +754,28 @@ export default function FlashcardsMyPacksScreen() {
         }
       }
       invalidateCommunityPackCatalog();
-      setGroups((prev) => ({
-        added: prev.added.filter((item) => item.id !== pack.id),
-        created: prev.created.filter((item) => item.id !== pack.id),
-      }));
-      setDeletePackTarget(null);
+      DebugLogger.info('[MY-PACKS]', `удаление набора ${pack.id}: сервер подтвердил`);
       emitAppEvent('action_toast', actionToastTri('success', {
         ru: 'Набор удалён.', uk: 'Набір видалено.', en: 'Pack deleted.', es: 'Pack eliminado.',
         'pt-BR': 'Pacote excluído.', vi: 'Đã xóa bộ thẻ.', id: 'Paket dihapus.', tr: 'Paket silindi.', pl: 'Zestaw usunięty.',
       }));
     } catch (error) {
+      const at = removedFrom as { group: 'added' | 'created'; index: number } | null;
+      DebugLogger.warn('[MY-PACKS]', `удаление набора ${pack.id} не удалось — откат в ${at?.group ?? 'нет позиции'}: ${String(error)}`);
+      if (at) {
+        setGroups((prev) => {
+          if (prev.added.some((item) => item.id === pack.id) || prev.created.some((item) => item.id === pack.id)) return prev;
+          const list = [...prev[at.group]];
+          list.splice(Math.min(at.index, list.length), 0, pack);
+          return { ...prev, [at.group]: list };
+        });
+      }
       emitAppEvent('action_toast', actionToastTri('error', {
         ru: 'Не удалось удалить набор.', uk: 'Не вдалося видалити набір.', en: 'Could not delete the pack.', es: 'No se pudo eliminar el pack.',
         'pt-BR': 'Não foi possível excluir o pacote.', vi: 'Không thể xóa bộ thẻ.', id: 'Paket tidak dapat dihapus.', tr: 'Paket silinemedi.', pl: 'Nie udało się usunąć zestawu.',
       }));
-      DebugLogger.warn('[MY-PACKS]', `удаление набора не удалось: ${String(error)}`);
     } finally {
+      pendingDeletePackIdsRef.current.delete(pack.id);
       setDeletePackBusy(false);
     }
   }, [deletePackBusy, deletePackTarget, studyTarget]);

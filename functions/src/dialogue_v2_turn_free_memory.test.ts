@@ -69,6 +69,8 @@ describe('итог диалога V2: обращение на «ты»', () => {
     for (const file of ['dialogue_v2_session_completion_core.ts', 'dialogue_v2_completion_server.ts']) {
       const source = readFileSync(join(__dirname, file), 'utf8');
       expect(source).toMatch(/Address the learner directly in the second person singular, informal/);
+      // зачем («Дизайн» 02.10: итог писал «начал/представился»): пол ученика неизвестен — нейтральные формы.
+      expect(source).toMatch(/Their gender is unknown: never use gender-marked forms/);
     }
   });
 });

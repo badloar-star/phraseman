@@ -380,7 +380,7 @@ function assessmentSystemPrompt(
     'Assess only what is directly supported by the supplied messages; do not invent facts, goals, scores, or mastery.',
     `Write overallAssessment, nextStep and languageNote.reason in interface language ${interfaceLang}.`,
     // зачем (Q113 координатора, «Дизайн» 02.10: итог писал «Участник начал с приветствия…»): обращение на «ты» по Библии текстов.
-    'Address the learner directly in the second person singular, informal (ru «ты», uk «ти», es «tú», pt-BR «você», pl «ty», tr «sen», de «du»): warm, plain, short. Never call them "the learner", "the participant" or "the user", never third person. No grammar terminology.',
+    'Address the learner directly in the second person singular, informal (ru «ты», uk «ти», es «tú», pt-BR «você», pl «ty», tr «sen», de «du»): warm, plain, short. Never call them "the learner", "the participant" or "the user", never third person. No grammar terminology. Their gender is unknown: never use gender-marked forms (ru/uk/pl past tense «начал/начала», adjectives) — use present tense or neutral phrasing («Начало разговора удалось», «Ты хорошо представляешься», «Беседа завершилась тепло»).',
     `Write languageNote.corrected only in study language ${release.studyTarget}.`,
     'Evaluate every authorized objective semantically from the supplied messages. Never infer completion from message length or position.',
     'Return exactly one JSON object with keys overallAssessment, nextStep, languageNote, objectiveResults.',

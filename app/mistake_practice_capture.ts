@@ -54,7 +54,36 @@ export interface CaptureDependencies {
 const stableId = (prefix: string, body: unknown): string =>
   `${prefix}:v1:${sha256Utf8(canonicalJsonV1(body))}`;
 
+/**
+ * зачем (02.10, аудит PM-193): 13 экранов зовут запись ошибки с `.catch(() => {})` — сбой записи
+ * (хранилище, личность аккаунта) пропадал без следа, и «Мои ошибки» молча теряли попытку.
+ * Причину пишем здесь, в одном месте для всех источников, и пробрасываем дальше без изменений
+ * (поведение вызывающих прежнее). Только факты попытки, без текста фраз.
+ */
+function logCaptureFailure(
+  attempt: Pick<ObjectiveMistakeAttempt, 'studyTarget' | 'content'>,
+  error: unknown,
+): void {
+  console.warn('[MISTAKE-CAPTURE] failed', JSON.stringify({
+    studyTarget: attempt.studyTarget,
+    sourceKind: attempt.content?.sourceKind ?? null,
+    reason: error instanceof Error ? `${error.name}: ${error.message}`.slice(0, 200) : String(error).slice(0, 200),
+  }));
+}
+
 export async function captureObjectiveAttempt(
+  attempt: ObjectiveMistakeAttempt,
+  dependencies: CaptureDependencies = {},
+): Promise<CaptureResult> {
+  try {
+    return await captureObjectiveAttemptUnlogged(attempt, dependencies);
+  } catch (error) {
+    logCaptureFailure(attempt, error);
+    throw error;
+  }
+}
+
+async function captureObjectiveAttemptUnlogged(
   attempt: ObjectiveMistakeAttempt,
   dependencies: CaptureDependencies = {},
 ): Promise<CaptureResult> {
@@ -161,6 +190,12 @@ export async function captureCurrentAccountObjectiveAttempt(
   attempt: Omit<ObjectiveMistakeAttempt, 'accountScope'>,
   dependencies: CaptureDependencies = {},
 ): Promise<CaptureResult> {
-  const accountScope = await getStableId();
+  let accountScope: Awaited<ReturnType<typeof getStableId>>;
+  try {
+    accountScope = await getStableId();
+  } catch (error) {
+    logCaptureFailure(attempt, error);
+    throw error;
+  }
   return captureObjectiveAttempt({ ...attempt, accountScope }, dependencies);
 }

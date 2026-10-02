@@ -179,26 +179,8 @@ export {
 export { adminGetRevenueCatOverviewMetrics } from '../functions/src/admin_revenuecat_overview';
 export { adminListShardRefunds } from '../functions/src/admin_shard_refunds';
 export { adminSubscriptionAnalytics } from '../functions/src/admin_subscription_analytics';
-export {
-  adminGenerateTournamentAi,
-  adminRegenerateTournamentTask,
-  adminBulkTournamentFolder,
-} from '../functions/src/admin_tournament_full';
-export {
-  adminGenerateTournamentTasksAi,
-  adminListTournamentTasks,
-  adminMutateTournamentTasks,
-  adminEditTournamentTask,
-  adminFillTournamentPool,
-  adminGetTournamentModeMix,
-  adminSetTournamentModeMix,
-  adminGenerateTournamentAudioTasksAi,
-  adminTournamentPoolStats,
-  adminGetTournamentSchedule,
-  adminSetTournamentSchedule,
-  adminSetTournamentCurated,
-  adminGetTournamentCurated,
-} from '../functions/src/admin_tournament_tasks';
+// ⛔ Турнирные админ-функции (admin_tournament_full / admin_tournament_tasks) удалены 02.10
+// (PM-231-A3, координатор §80/§81): сняты с деплоя 2026-09-02, на проде их 0.
 export { adminTranslateMessage } from '../functions/src/admin_translate';
 export { adminUserBriefs } from '../functions/src/admin_user_briefs';
 export {

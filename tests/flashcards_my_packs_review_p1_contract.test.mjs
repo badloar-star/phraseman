@@ -20,7 +20,9 @@ test('My presentation does not add another failure fallback and clears count on 
   assert.doesNotMatch(loadMine, /loadAccessiblePackIds\(studyTarget\)\.catch\(\(\) => \[\]/);
   assert.doesNotMatch(loadMine, /loadLocalAuthorPacks\(studyTarget\)\.catch\(\(\) => \[\]/);
   assert.doesNotMatch(loadMine, /loadCommunityOwnedPackIds\(studyTarget\)\.catch\(\(\) => \[\]/);
-  assert.match(mine, /clearMyPacksCount\(studyTarget/);
+  // зачем (координатор §77; правило владельца 01.10): при сбое показываем последнее известное число и тихо
+  // повторяем — счётчик «Моих наборов» не стирается (my_packs_storage_status требует отсутствия clearMyPacksCount).
+  assert.doesNotMatch(mine, /clearMyPacksCount/);
   // зачем (владелец 01.10): экрана ошибки и кнопки повтора нет — тихие повторы.
   assert.doesNotMatch(mine, /fc-my-packs-error|fc-my-packs-retry/);
   assert.match(mine, /\[FC-DECKS\] my packs: тихий повтор/);

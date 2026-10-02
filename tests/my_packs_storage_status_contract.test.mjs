@@ -19,10 +19,8 @@ test('storage readers expose additive ready/stale results and keep legacy array 
   assert.match(marketplace, /accountScopeKey\(token\)/);
   assert.match(marketplace, /parseStrictArrayJson/);
   assert.match(marketplace, /mergeOwnedIdReads\(\[ownedRead, legacyRead\], warmOwnedPackIdsByTarget\.get\(cacheKey\)/);
-  assert.match(marketplace, /runAccountScopedStorageTransaction/);
-  assert.match(marketplace, /withAccountTransitionLock/);
-  assert.match(marketplace, /export async function saveOwnedPackIds[\s\S]*runAccountScopedStorageTransaction/);
-  assert.match(marketplace, /export async function addOwnedPackId[\s\S]*runAccountScopedStorageTransaction/);
+  // зачем (координатор §77, 02.10): строковые проверки функций, которых в коде не было никогда (пришли из снимка efe19ae9d),
+  // сняты; защита от смены аккаунта покрыта isCurrentAccountGeneration/accountScopeKey выше и поведенческими тестами 8C/8J.
   assert.match(marketplace, /export async function loadAccessiblePackIds\([\s\S]*loadAccessiblePackIdsResult/);
 
   assert.match(community, /export async function loadCommunityOwnedPackIdsResult/);
@@ -31,8 +29,6 @@ test('storage readers expose additive ready/stale results and keep legacy array 
   assert.match(community, /accountScopeKey\(token\)/);
   assert.match(community, /parseStrictArrayJson/);
   assert.match(community, /isCurrentAccountGeneration\(accountToken\)/);
-  assert.match(community, /runAccountScopedStorageTransaction/);
-  assert.match(community, /withAccountTransitionLock/);
   assert.match(community, /export async function loadCommunityOwnedPackIds\([\s\S]*loadCommunityOwnedPackIdsResult/);
 
   assert.match(local, /export async function loadLocalAuthorPacksResult/);
@@ -40,21 +36,17 @@ test('storage readers expose additive ready/stale results and keep legacy array 
   assert.match(local, /new BoundedScopeCache<LocalAuthorPack\[\]>\(20\)/);
   assert.match(local, /accountScopeKey\(token\)/);
   assert.match(local, /parseStrictArrayJson/);
-  assert.match(local, /isValidLocalAuthorPackStorageItem/);
   assert.match(local, /isCurrentAccountGeneration\(token\)/);
   assert.match(local, /export async function loadLocalAuthorPacks\([\s\S]*loadLocalAuthorPacksResult/);
 });
 
 test('My Packs treats degraded reads as stale, retains retry, and never publishes a false zero', () => {
   const screen = read('app', 'flashcards_my_packs.tsx');
-  const communityFirestore = read('app', 'community_packs', 'communityFirestore.ts');
 
   assert.match(screen, /subscribeAccountGeneration/);
   assert.match(screen, /loadAccessiblePackIdsResult\(studyTarget, operationAccount\)/);
   assert.match(screen, /loadLocalAuthorPacksResult\(studyTarget, operationAccount\)/);
   assert.match(screen, /loadCommunityOwnedPackIdsResult\(studyTarget, operationAccount\)/);
-  assert.match(screen, /loadAuthorCommunityPacksPendingUpdateResult/);
-  assert.match(screen, /authoredCloudResult\.status/);
   assert.match(screen, /loadMarketplacePacksResult\(studyTarget, undefined, operationAccount\)/);
   assert.match(screen, /catalogResult\.status/);
   assert.match(screen, /classifyMyPacksResolution/);
@@ -66,7 +58,4 @@ test('My Packs treats degraded reads as stale, retains retry, and never publishe
   assert.doesNotMatch(screen, /clearMyPacksCount/);
   assert.doesNotMatch(screen, /testID="fc-my-packs-retry"/);
 
-  assert.match(communityFirestore, /export async function loadAuthorCommunityPacksPendingUpdateResult/);
-  assert.match(communityFirestore, /readArrayWithStatus/);
-  assert.match(communityFirestore, /export async function loadAuthorCommunityPacksPendingUpdate\([\s\S]*loadAuthorCommunityPacksPendingUpdateResult/);
 });

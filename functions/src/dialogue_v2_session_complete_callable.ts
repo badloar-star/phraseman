@@ -162,10 +162,20 @@ export function createDialogueV2SessionCompleteHandler(
     // зачем (баг 02.10, «Дизайн»: итог диалога у Free — dialogue_v2_completion_unavailable,
     // в прод-логе пусто): этап, на котором сломалось завершение, обязан попасть в лог.
     let stage = 'claim';
+    // зачем (баг 02.10: итог шёл 30,4 с и падал по тайм-ауту функции): время каждого этапа в лог.
+    const startedAtMs = Date.now();
+    let stageStartedAtMs = startedAtMs;
+    const stageMs: Record<string, number> = {};
+    const enterStage = (next: string): string => {
+      const now = Date.now();
+      stageMs[stage] = now - stageStartedAtMs;
+      stageStartedAtMs = now;
+      return next;
+    };
     try {
       const claim = await dependencies.claimTerminal({ authUid, selection });
       let built: BuiltCompletion;
-      stage = `build:${claim.kind}`;
+      stage = enterStage(`build:${claim.kind}`);
       try {
         built = await dependencies.buildCompletion({
           authUid,
@@ -190,14 +200,14 @@ export function createDialogueV2SessionCompleteHandler(
         });
       }
       if (claim.kind === 'new') {
-        stage = 'stage_assessment';
+        stage = enterStage('stage_assessment');
         await dependencies.stageAssessment({
           claim,
           assessmentRaw: built.assessmentRaw,
           releaseSnapshot: built.releaseSnapshot,
         });
       }
-      stage = 'prepare_memory';
+      stage = enterStage('prepare_memory');
       const preparedMemory = await dependencies.prepareMemory({
         authUid,
         studyTarget: selection.studyTarget,
@@ -205,7 +215,7 @@ export function createDialogueV2SessionCompleteHandler(
         completion: built.completion,
         releaseSnapshot: built.releaseSnapshot,
       });
-      stage = 'publish';
+      stage = enterStage('publish');
       await dependencies.publishCompletion({
         claim,
         selection,
@@ -214,6 +224,10 @@ export function createDialogueV2SessionCompleteHandler(
         memoryReceipt: preparedMemory.memoryReceipt,
         prepared: preparedMemory.prepared,
       });
+      stageMs[stage] = Date.now() - stageStartedAtMs;
+      console.log('[DIALOGUE-V2-COMPLETE] ok', JSON.stringify({
+        scenarioId: selection.scenarioId, totalMs: Date.now() - startedAtMs, stageMs,
+      }));
       return Object.freeze({
         ok: true,
         v2Completion: built.completion,
@@ -222,8 +236,11 @@ export function createDialogueV2SessionCompleteHandler(
       });
     } catch (error) {
       const failure = error as { name?: unknown; code?: unknown; message?: unknown } | null;
+      stageMs[stage] = Date.now() - stageStartedAtMs;
       console.warn('[DIALOGUE-V2-COMPLETE] failed', JSON.stringify({
         stage,
+        totalMs: Date.now() - startedAtMs,
+        stageMs,
         scenarioId: selection.scenarioId,
         studyTarget: selection.studyTarget,
         name: typeof failure?.name === 'string' ? failure.name : null,
@@ -567,7 +584,10 @@ function productionDependencies(): HandlerDependencies {
 export const DIALOGUE_V2_SESSION_COMPLETE_OPTIONS = Object.freeze({
   region: REGION,
   enforceAppCheck: ENFORCE_APP_CHECK_OPENAI,
-  timeoutSeconds: 30,
+  // зачем (баг 02.10, прод: «maximum request timeout» на 30 с): обрыв функции посреди итога
+  // оставлял блокировку итога, и «Повторить» получало completion_in_progress. Запас до 60 с;
+  // ожидание модели по-прежнему ограничено PROVIDER_DEADLINE_MS.
+  timeoutSeconds: 60,
   memory: '512MiB' as const,
   minInstances: 0,
   maxInstances: 20,

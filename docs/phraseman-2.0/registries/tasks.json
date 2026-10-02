@@ -7960,7 +7960,8 @@
     "notes": [
       "Дизайн: экран сессии и итога диалога по макету dialogs.html; проверка в эмуляторе в очереди (эмулятор занят другой сессией)",
       "2026-10-01 независимое ревью пачки 4 (agent-reviewer, Q75/§32): PASS по сути (source-level; на эмуляторе/устройстве не проверялось). UI-задача: gate DESIGN применим, остаётся review.",
-      "2026-10-01 пачка 10: блокер «Начать диалог» снят (06405b494, уникальный номер операции энергии на попытку), но остаётся review: ждём от «Дизайна» DESIGN-скриншоты экрана сессии/итога диалога после починки и подпись gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES (Q86)."
+      "2026-10-01 пачка 10: блокер «Начать диалог» снят (06405b494, уникальный номер операции энергии на попытку), но остаётся review: ждём от «Дизайна» DESIGN-скриншоты экрана сессии/итога диалога после починки и подпись gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES (Q86).",
+      "2026-10-02 пачка 11: «Дизайн» сдал кадры в design_gate (14167e701: открытие, ответ+перевод, разбор, итог, шапка 26/30 — заголовок без разрыва слова); остаётся review: нужна подпись gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES (Q86, координатор/владелец)"
     ],
     "actual_cost": null,
     "kind": "code",
@@ -8019,7 +8020,8 @@
       "прогон ревью пачки 4 (01.10): functions dialog_quota_contract + premium_dialog_plus_daily_cap + dialogue_reply_access_contract (4 сюиты, 22/22) PASS; D111 и D123 OWNER_FINAL; коммиты 1e2f77929, 44e0ae6c4"
     ],
     "notes": [
-      "2026-10-01 независимое ревью пачки 4 (agent-reviewer, Q75/§32): PASS по сути. Free 30/мес (сервер), потолок Plus 300/сутки, companion закрыт Free. functions/src/premium_dialog.ts в дереве грязный от другой сессии (комментарий про докупку) — на проверку не влияет. Остаётся review из-за формального gate DESIGN."
+      "2026-10-01 независимое ревью пачки 4 (agent-reviewer, Q75/§32): PASS по сути. Free 30/мес (сервер), потолок Plus 300/сутки, companion закрыт Free. functions/src/premium_dialog.ts в дереве грязный от другой сессии (комментарий про докупку) — на проверку не влияет. Остаётся review из-за формального gate DESIGN.",
+      "2026-10-02 пачка 11: плашка 29/30 снята (design_gate/PM-145_quota_badge_29of30.png, 14167e701; файл байт-в-байт равен PM-144_why_sheet_translation_analysis.png и снят до правки шапки — в нём заголовок рвётся «Поздороват/ься»; актуальный вид — PM-144_session_header_fixed.png); сообщение «На сегодня разговоров достаточно» и погасшая «Повторить» не сняты; остаётся review до подписи gate DESIGN (Q86)"
     ],
     "actual_cost": null,
     "kind": "code",
@@ -11556,7 +11558,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -11585,22 +11587,27 @@
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "31f6e03ac63d84415be98c1c0a437a2b54d9ddc0",
     "owner": "Claude Sonnet (исполнитель сессии «Ядро»)",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet), пачка 11",
     "evidence": [
-      "31f6e03ac: прогрев друзей вне бюджета первого кадра (app_snapshot_bootstrap после публикации снапшота); поколение аккаунта до гидрации (beginInitialAccountGeneration); perf_freeze 12/12, layout_stability 15/15"
+      "31f6e03ac: прогрев друзей вне бюджета первого кадра (app_snapshot_bootstrap после публикации снапшота); поколение аккаунта до гидрации (beginInitialAccountGeneration); perf_freeze 12/12, layout_stability 15/15",
+      "ревью 02.10 на HEAD: 31f6e03ac — app/app_snapshot_bootstrap.ts: прогрев друзей вызывается после публикации снапшота (void primeFriendsSnapshot()), из Promise.all первого кадра убран; потребители friends.tsx, spire_friends_client.ts, _layout.tsx ждут тот же once-промис startFriendsTabSwrPrime; тесты: perf_freeze_contract 12/12, layout_stability_contract 15/15, friends_tab_swr_warm_account_scope 3/3"
     ],
     "notes": [
       "2026-10-01: выигрыш по времени не измерен на устройстве",
-      "2026-10-01: все критерии приняты — к независимому ревью"
+      "2026-10-01: все критерии приняты — к независимому ревью",
+      "2026-10-02 пачка 11 (agent-reviewer, Sonnet): PASS по коду и тестам; выигрыш по времени на устройстве не измерен (остаётся за PM-215-A3). Уточнение: beginInitialAccountGeneration — существующий код (stable_id.ts:128, cloud_sync.ts), коммит 31f6e03ac его не менял. Gate DESIGN не в списке задачи: видимых изменений нет."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32); карта E21 — docs/RUNTIME.md «Карта и сделанное по коду» (PM-211/213/214/215) + evidence/PM-210_background_jobs.md; callers проверены ревьюером (friends.tsx, spire_friends_client.ts, _layout.tsx)"
+    },
+    "actual_model": "unknown",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-212",
@@ -11668,7 +11675,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -11697,21 +11704,26 @@
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "8728b5c4f6adfda0e490b46309c7b2b3ce8a1e8f",
     "owner": "Claude Sonnet (исполнитель сессии «Ядро»)",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet), пачка 11",
     "evidence": [
-      "766ce1bf5, 8728b5c4f: кэш друзей по аккаунту (friends_tab_swr_warm_account_scope 3/3), прогрев арта достижений под арендой тишины сети и стоп в фоне (achievement_art_prefetch_runtime 4/4); outbox/cloud_sync/отчёты не отменяются по blur"
+      "766ce1bf5, 8728b5c4f: кэш друзей по аккаунту (friends_tab_swr_warm_account_scope 3/3), прогрев арта достижений под арендой тишины сети и стоп в фоне (achievement_art_prefetch_runtime 4/4); outbox/cloud_sync/отчёты не отменяются по blur",
+      "ревью 02.10 на HEAD: 766ce1bf5 (resetFriendsTabSwrWarmForAccountSwitch из cloud_sync, поздний диск-ответ отбрасывается по ownerToken/resetEpoch, лог [FRIENDS-WARM]) и 8728b5c4f (achievement_art_prefetch: AppState!=active → stopAndForgetQueue, аренда withBackgroundNetworkLease, лог [RUNTIME-PREFETCH]); тесты на HEAD: friends_tab_swr_warm_account_scope 3/3, achievement_art_prefetch_runtime 4/4, app_resume_policy 10/10, interactive_network_quiet 10/10, perf_freeze_contract 12/12, layout_stability_contract 15/15"
     ],
     "notes": [
-      "2026-10-01: все критерии приняты — к независимому ревью"
+      "2026-10-01: все критерии приняты — к независимому ревью",
+      "2026-10-02 пачка 11 (agent-reviewer, Sonnet): PASS. A2: отмена касается только необязательных прогревов (друзья, арт достижений); outbox/cloud_sync/отчёты по blur не отменяются (RUNTIME.md). Gate DESIGN не в списке задачи: видимых изменений нет."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32); карта E21 — docs/RUNTIME.md «Карта и сделанное по коду» + evidence/PM-210_background_jobs.md (обновлён в 8728b5c4f)"
+    },
+    "actual_model": "unknown",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-214",
@@ -12819,7 +12831,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12849,21 +12861,27 @@
       "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "bbc9323e2993ab5d19284a6a41b2fddd68ceb845",
     "owner": "Claude Sonnet (исполнитель сессии «Ядро»)",
-    "reviewer": null,
+    "reviewer": "agent-reviewer (Sonnet), пачка 11",
     "evidence": [
-      "bbc9323e2: evidence/PM-234_paid_cosmetics_boosts_rules.md (исправлено противоречие D148: альтернативы «монеты за подарки» нет; grandfathering D122); app/gifts_to_coins_table_v1.ts:33 PEARL_COINS=0; D70/D84/D103/D136–D140/D148"
+      "bbc9323e2: evidence/PM-234_paid_cosmetics_boosts_rules.md (исправлено противоречие D148: альтернативы «монеты за подарки» нет; grandfathering D122); app/gifts_to_coins_table_v1.ts:33 PEARL_COINS=0; D70/D84/D103/D136–D140/D148",
+      "ревью 02.10 на HEAD: evidence/PM-234_paid_cosmetics_boosts_rules.md сверен с 03_DECISIONS.md — D15 SUPERSEDED→D70, D70, D84, D103, D122, D136–D140, D148 существуют, OWNER_FINAL и говорят то, что в таблице; D58/D45/D53 — PROGRESS.md L45/L28/L36; app/gifts_to_coins_table_v1.ts:33 PEARL_COINS=0; remote_flags.ts:253 gifts_to_coins_enabled:false; tests/gifts_to_coins_disabled_owner_2026_10_01.test.ts 1/1"
     ],
     "notes": [
-      "2026-10-01: все критерии приняты — к независимому ревью"
+      "2026-10-01: все критерии приняты — к независимому ревью",
+      "2026-10-02 пачка 11 (agent-reviewer, Sonnet): PASS. Замечание вне критериев: node scripts/pm233_purchase_ledger_dry_run.mjs --check на HEAD красный (stale=1: collection:shards_earn_op_ledger_v1) — реестр PM-233 отстал после PM-289 этап 2 (5ec5859ae/3c1630800); нужно обновить реестр (ядро). Gate DESIGN не применим: документ правил."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "kind": "documentation",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32); карта покупок — evidence/PM-233_purchase_ledger.md (39 продуктов)",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE": "N/A (по аналогии с Q96/PM-233, решение координатора 01.10; предложено ревьюером пачки 11, подпись координатора — в INBOX): PM-234 — документ правил, сводит принятые решения и сам ничего не удаляет и не мигрирует; разрушающие шаги, на которые он ссылается, закрыты пакетом GATES_MIGRATION_2026-10-01.md (M1 подарки/спины D148, M2 бусты/XP) и M5 (Account V2); прод — только владелец"
+    },
+    "actual_model": "unknown",
+    "actual_reasoning": "unrecorded"
   },
   {
     "id": "PM-235",

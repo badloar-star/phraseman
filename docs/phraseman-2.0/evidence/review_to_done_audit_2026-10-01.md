@@ -377,3 +377,19 @@ PM-288: requirement_ids D131 → R259 (добавлен в requirements.json; PM
 - Ждут владельца/прод/релиз: PM-048, PM-073, PM-074, PM-205, PM-287; PM-052 и PM-086 — зона «Дизайна»/чужие правки в файлах.
 
 Оговорки: validate.py по PM-253/PM-144 ошибок не даёт; общий passed=false из-за PM-285 (gate без evidence, чужая сессия). PROGRESS.md грязный от другой сессии — строку-итог не добавлял. actual_model «unknown», actual_reasoning «unrecorded» (§34).
+
+## Пачка 11 (agent-reviewer, Sonnet, 02.10)
+
+Итог: в done 3 задачи (PM-211, PM-213, PM-234; автор — исполнитель сессии «Ядро», закрывает независимый ревьюер). Остальные 26 review — блокеры не сняты.
+
+| Задача | Вердикт | Основание | Статус |
+|---|---|---|---|
+| PM-211 | PASS | 31f6e03ac на HEAD: прогрев друзей вызывается после публикации снапшота (`void primeFriendsSnapshot()`), из `Promise.all` первого кадра убран; потребители `friends.tsx`, `spire_friends_client.ts`, `_layout.tsx` ждут тот же once-промис. Тесты: perf_freeze_contract 12/12, layout_stability_contract 15/15, friends_tab_swr_warm_account_scope 3/3. Уточнение: `beginInitialAccountGeneration` из evidence — существующий код (stable_id.ts, cloud_sync.ts), коммит его не менял. Выигрыш по времени на устройстве не измерен. Gates: BASELINE и DOMAIN_AUDIT — GATES_COMMON + карта E21 (RUNTIME.md «Карта и сделанное»); DESIGN не в списке задачи, видимых изменений нет; миграций нет | done |
+| PM-213 | PASS | 766ce1bf5 (сброс кэша друзей при смене аккаунта, поздний ответ диска отбрасывается по владельцу/эпохе) и 8728b5c4f (прогрев арта: аренда тишины сети, стоп вне `active`). Тесты: account_scope 3/3, achievement_art_prefetch_runtime 4/4, app_resume_policy 10/10, interactive_network_quiet 10/10, perf_freeze 12/12, layout_stability 15/15. Обязательные записи (outbox, cloud_sync, отчёты) по blur не отменяются. Gates как у PM-211; миграций нет | done |
+| PM-234 | PASS | Документ сверен с 03_DECISIONS.md: D15 SUPERSEDED→D70, D70, D84, D103, D122, D136–D140, D148 существуют (OWNER_FINAL) и говорят то, что в таблице; D58/D45/D53 лежат в PROGRESS.md (L45/L28/L36), OD7 — в ledger PM-233/account-v2-status. `PEARL_COINS=0` (gifts_to_coins_table_v1.ts:33), `gifts_to_coins_enabled:false`, сторож 1/1. MIGRATION gate: N/A по аналогии с Q96 (документ правил, сам ничего не меняет; разрушающие шаги закрыты M1/M2/M5) — предложено ревьюером, подпись координатора нужна | done |
+
+Замечание вне критериев (для ядра): `node scripts/pm233_purchase_ledger_dry_run.mjs --check` на HEAD красный — `stale=1: collection:shards_earn_op_ledger_v1`; реестр PM-233 отстал после PM-289 этап 2 (5ec5859ae, 3c1630800). Реестр надо обновить.
+
+Остальные review (PM-034, 039, 044, 048, 052, 066, 073, 074, 086, 092–097, 129, 130, 134, 141, 144, 145, 197, 205, 279, 286, 287, 288): `git log --since="3 hours ago"` — снят один блокер: «Дизайн» сдал кадры PM-144/PM-145 (14167e701). Остаются review: нужна подпись gate DESIGN (Q86). Замечание по PM-145: `PM-145_quota_badge_29of30.png` байт-в-байт равен `PM-144_why_sheet_translation_analysis.png` и снят до правки шапки (заголовок рвётся посреди слова); сообщение «На сегодня разговоров достаточно» и погасшая «Повторить» не сняты. Остальные ждут: «Дизайн»/gate DESIGN — PM-039, 044, 092, 093, 094, 096, 097, 129, 130, 134, 141, 197, 279, 288; эмулятор — PM-034, 066, 286; владелец/прод — PM-048, 073, 074, 205, 287; PM-052, PM-086 — зона «Дизайна»/чужие правки.
+
+Оговорки: validate.py по PM-211/213/234/144/145 ошибок не даёт; общий passed=false из-за чужих PM-283/284/285. PROGRESS.md грязный от другой сессии — строку-итог не добавлял. actual_model «unknown», actual_reasoning «unrecorded» (§34).

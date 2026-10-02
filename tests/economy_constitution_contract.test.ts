@@ -207,9 +207,9 @@ describe('Economy Constitution — client authority is a permanent source contra
       'customization_selection_outbox_v1:',
       'customization_selection_quarantine_v1:',
     ]) expect(cloudSync).toContain(`'${prefix}'`);
-    // D49: «Дневной путь» удалён, но сырой журнал его подарков читает миграция
-    // Q12 — ключи живут в её модуле и по-прежнему account-local.
-    const legacyDailyPathKeys = read('app/gifts_to_coins_legacy_daily_path_v1.ts');
+    // D49/D148, Q109: «Дневной путь» и миграция Q12 удалены; их ключи остались
+    // только в списке «снятых» и по-прежнему стираются вместе с аккаунтом.
+    const legacyDailyPathKeys = read('app/retired_account_local_keys.ts');
     for (const prefix of [
       'daily_journey_gift_occurrence_v1:',
       'daily_journey_gift_prepared_v1:',
@@ -219,8 +219,9 @@ describe('Economy Constitution — client authority is a permanent source contra
       'daily_journey_freeze_prepared_v1:',
       'daily_journey_freeze_projection_v1:',
       'daily_journey_protected_day_prepared_v1:',
+      'gifts_to_coins_v1:',
     ]) expect(legacyDailyPathKeys).toContain(`'${prefix}'`);
-    expect(cloudSync).toContain('...LEGACY_DAILY_PATH_ACCOUNT_LOCAL_PREFIXES');
+    expect(cloudSync).toContain('...RETIRED_GIFTS_TO_COINS_ACCOUNT_LOCAL_PREFIXES');
     expect(cloudSync).toContain('isLearningV2AccountLocalKey(key)');
     expect(cloudSync).toContain("if (finalResidue.length > 0) throw new Error('account_wipe_incomplete')");
   });

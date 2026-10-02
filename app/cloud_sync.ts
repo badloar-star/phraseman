@@ -10,7 +10,10 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS } from './retired_account_local_keys';
+import {
+  RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS,
+  RETIRED_GIFTS_TO_COINS_ACCOUNT_LOCAL_PREFIXES,
+} from './retired_account_local_keys';
 import { beginSettingsStorageMutation } from '../lib/startup_settings_read_scope';
 import { IS_EXPO_GO, CLOUD_SYNC_ENABLED, IS_STORE_RELEASE } from './config';
 import { getUtcDayKey } from './local_date';
@@ -95,7 +98,6 @@ import { LEVEL_UP_ACCOUNT_LOCAL_KEYS } from './level_up_storage_keys';
 import {
   CUSTOMIZATION_ACCOUNT_LOCAL_KEYS,
 } from '../constants/customization_storage_keys';
-import { LEGACY_DAILY_PATH_ACCOUNT_LOCAL_PREFIXES } from './gifts_to_coins_legacy_daily_path_v1';
 import {
   clearCustomizationAccountLocalState,
   customizationAccountLocalKeysFrom,
@@ -657,10 +659,10 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'customization_selection_head_v1:',
   'customization_selection_outbox_v1:',
   'customization_selection_quarantine_v1:',
-  // зачем (D49): «Дневной путь» удалён, но сырой журнал его подарков и щитов
-  // читает миграция «Подарки → монеты» (Q12) — он по-прежнему путешествует и
-  // стирается вместе с аккаунтом, пока миграция не дойдёт до done.
-  ...LEGACY_DAILY_PATH_ACCOUNT_LOCAL_PREFIXES,
+  // зачем (D49/D148, Q109): «Дневной путь» и миграция «Подарки → монеты» удалены
+  // вместе с кодом, но на устройствах с 1.x их журналы лежат — стираем вместе с
+  // аккаунтом (подчистка старых устройств), чтобы новый вошедший не унаследовал чужое.
+  ...RETIRED_GIFTS_TO_COINS_ACCOUNT_LOCAL_PREFIXES,
   'external_economy_result_v1:',
   'external_economy_event_applied_v1:',
   // зачем (PM-210, экономия чтений): курсор «до сюда события применены» — данные

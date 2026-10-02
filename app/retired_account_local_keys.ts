@@ -49,3 +49,30 @@ export const RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS = [
   'personal_plan_task_progress_v1',
   'personal_plan_xp_ledger_v1',
 ] as const;
+
+/**
+ * Префиксы ключей удалённой миграции «Подарки и спины → монеты» и удалённого
+ * «Дневного пути» (владелец 01.10: D148 — подарки в монеты НЕ переводятся;
+ * D78/D49 — механики удалены целиком; Q109 — код миграции снесён).
+ *
+ * зачем оставлено: на устройствах, обновившихся с 1.x, эти ключи лежат
+ * (журнал подарков и щитов серии, квитанции показа, журнал миграции). Код,
+ * который их читал, удалён, но следующий вошедший аккаунт не должен
+ * унаследовать чужой журнал — стираем вместе с аккаунтом (cloud_sync).
+ */
+export const RETIRED_GIFTS_TO_COINS_ACCOUNT_LOCAL_PREFIXES = [
+  // Журнал миграции: WAL, квитанции Plus-дней, журнал потолка спинов.
+  'gifts_to_coins_v1:',
+  // Прежние constants/daily_journey_gift_storage_keys.ts (имена менять нельзя).
+  'daily_journey_gift_occurrence_v1:',
+  'daily_journey_gift_prepared_v1:',
+  'daily_journey_gift_projection_v1:',
+  'daily_journey_gift_claim_receipt_v1:',
+  'daily_journey_production_presented_v1:',
+  'daily_journey_production_intent_v1:',
+  // Прежний constants/daily_journey_freeze_storage_keys.ts.
+  'daily_journey_freeze_operation_v1:',
+  'daily_journey_freeze_prepared_v1:',
+  'daily_journey_freeze_projection_v1:',
+  'daily_journey_protected_day_prepared_v1:',
+] as const;

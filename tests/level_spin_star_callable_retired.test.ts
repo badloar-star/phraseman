@@ -28,10 +28,11 @@ test('spin logic stays deleted: no server spin modules, no spin source in the wa
   const sourcePatterns = policy.match(/const SOURCE_PATTERNS[\s\S]*?\] as const\);/)?.[0] ?? '';
   expect(sourcePatterns).toContain('report_reward_');
   expect(sourcePatterns).toContain('dailyjourney_');
-  expect(sourcePatterns).toContain('g2c1_');
-  expect(sourcePatterns).toContain('g2cdj_');
+  // зачем (D148, PM-080 318589878, Q109): g2c1_/g2cdj_ сняты — миграции подарков в монеты нет ни на клиенте, ни на сервере.
+  expect(sourcePatterns).not.toContain('g2c1_');
+  expect(sourcePatterns).not.toContain('g2cdj_');
   const prefixes = [...sourcePatterns.matchAll(/\[\/\^([a-z0-9_]+?)_\[/g)].map((m) => m[1]);
-  expect(prefixes).toEqual(['report_reward', 'dailyjourney', 'g2c1', 'g2cdj']);
+  expect(prefixes).toEqual(['report_reward', 'dailyjourney']);
   for (const prefix of prefixes) expect(prefix).not.toMatch(/spin|quest|video|level/i);
 });
 

@@ -13,7 +13,6 @@ const COMPAT_ONLY = new Set([
   'functions/src/global_broadcast_claim.ts', // старый rewardType → 'none'
   // зачем (01.10, миграция подарков в монеты Q12): ниже — только чтение/стирание старого, не новый источник XP.
   'app/retired_account_local_keys.ts', // тот же список старых ключей, вынесен из cloud_sync (440447f59/bd53e2409)
-  'app/gifts_to_coins_table_v1.ts', // таблица перевода старых XP-подарков в монеты
   'functions/src/accounts_v2_migration/inventory.ts', // опись старых полей для переноса аккаунта
 ]);
 

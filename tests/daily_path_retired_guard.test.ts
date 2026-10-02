@@ -4,9 +4,9 @@
  * окно открылось на старте на iPhone). Замена — блок «Сегодня» без окон.
  *
  * Сработал — НЕ возвращай фичу и не ослабляй проверку: убери вернувшийся код.
- * Единственное разрешённое наследие — app/gifts_to_coins_legacy_daily_path_v1.ts:
- * только ЧТЕНИЕ сырого журнала подарков ради компенсации Q12 (g2cdj_/g2c1_),
- * без UI. Монеты «Сегодня» идут через dailyjourney_ — это имя источника
+ * Наследия нет: модуль чтения журнала подарков (компенсация Q12) удалён вместе
+ * с миграцией «Подарки → монеты» (D148, Q109); остались только имена ключей в
+ * app/retired_account_local_keys.ts — их стирают при смене аккаунта. Монеты «Сегодня» идут через dailyjourney_ — это имя источника
  * кошелька, а не модуль «Дневного пути».
  */
 import fs from 'node:fs';
@@ -60,10 +60,8 @@ describe('D49: «Дневной путь» удалён и не монтируе
     }
   });
 
-  it('наследие для Q12 — только чтение, без UI', () => {
-    const legacy = fs.readFileSync(path.join(ROOT, 'app', 'gifts_to_coins_legacy_daily_path_v1.ts'), 'utf8');
-    expect(legacy).not.toMatch(/from 'react-native'|<Modal|useOverlayVisible/);
-    expect(legacy).toContain('[DAILY-PATH-RETIRED]');
+  it('модуль наследия для Q12 удалён (D148, Q109)', () => {
+    expect(fs.existsSync(path.join(ROOT, 'app', 'gifts_to_coins_legacy_daily_path_v1.ts'))).toBe(false);
   });
 
   it('оверлей-ключей «Дневного пути» больше нет', () => {

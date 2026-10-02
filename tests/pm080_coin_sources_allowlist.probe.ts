@@ -74,7 +74,6 @@ const APPROVED_ENQUEUE_CALLERS = new Set([
   'app/level_spin_star_grants.ts', // определение
   'app/report_reward_bundle.ts', // D109
   'modules/today-tasks/today_tasks_store.ts', // D49 «Сегодня»
-  'app/gifts_to_coins_migration_v1.ts', // за флагом gifts_to_coins_enabled=false (D148); сервер g2c* отклоняет
 ]);
 const walk = (dir: string, out: string[] = []): string[] => {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -109,7 +108,8 @@ need(!/prepareStarOperations|commitStarOperations|operationReason/.test(code('fu
   'friends_together.ts: сервер «Вместе» пишет в журнал монет');
 
 // 5) отменённые механики
-need(/gifts_to_coins_enabled:\s*false,/.test(read('app/remote_flags.ts')), 'gifts_to_coins_enabled больше не false (D148)');
+need(!/gifts_to_coins_enabled/.test(read('app/remote_flags.ts')) && !fs.readdirSync('app').some((n) => n.startsWith('gifts_to_coins_')),
+  'вернулась миграция «подарки → монеты» (D148, Q109: удалена целиком)');
 need(fs.existsSync('tests/super_sunday_retired_d147.test.ts'), 'пропал сторож D147 «Супер-воскресенье»');
 need(!fs.existsSync('app/video_watch_runes_client.ts') && !fs.existsSync('hooks/use_video_watch_energy_boost.ts'),
   'вернулись клиенты награды за видео');

@@ -117,10 +117,6 @@ export type RemoteBoolKey =
   // владелец («Пульт») после проверки на 3 аккаунтах (OD24); действует только
   // вместе с accounts_v2_client_enabled и открытой областью V2.
   | 'accounts_v2_legacy_sync_disabled'
-  // D51/D53, Q12 (2026-10-01): рубильник миграции «Подарки и спины → монеты».
-  // Дефолт TRUE = kill-switch: false в remote_config/app.bools останавливает
-  // НОВЫЕ прогоны; уже прошедшие не трогает, зачисленное не забирается.
-  | 'gifts_to_coins_enabled'
   // Приветственный подарок «3 дня полного доступа» для НОВЫХ юзеров (72ч intro).
   // Дефолт TRUE = kill-switch: новые получают подарок и приветственный модал как
   // сейчас. Админ ставит false в «Пульте» → НОВЫЕ юзеры больше не получают ни
@@ -247,10 +243,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   accounts_v2_client_enabled: false,
   // Account V2 (Пакет 7A): старая синхронизация V2-доменов включена, пока владелец не решит.
   accounts_v2_legacy_sync_disabled: false,
-  // зачем (владелец 01.10, ответ в сессии ядра): старые спины и подарки удаляются БЕЗ
-  // компенсации — как записано 27.09 (D51/D53 отменены). Перевод в монеты (Q12) выключен:
-  // по умолчанию false, чтобы версия 2.0 не выдала монеты. Включать — только новым решением владельца.
-  gifts_to_coins_enabled: false,
   // Рулетка+рефералка: дефолт true (kill-switch). Ключ лежит в numbers
   // (boolean), подхват — спец-веткой в applyRemoteConfigSnapshot ниже.
   // Отдельный hard stop. Отсутствие ключа безопасно сохраняет рабочее состояние.
@@ -462,7 +454,6 @@ export function applyRemoteConfigSnapshot(snapshot: {
     'promo_banner_enabled', 'promo_codes_enabled', 'discount_offer_banner_enabled',
     'lifetime_button_enabled', 'paywall_reviews_enabled', 'accounts_v2_client_enabled',
     'accounts_v2_legacy_sync_disabled',
-    'gifts_to_coins_enabled',
     'gate_lessons_premium', 'gate_speaking_premium', 'gate_ai_dialog_premium', 'gate_stats_premium',
     'gate_flashcards_premium', 'gate_themes_premium', 'gate_avatar_auras_premium', 'gate_mastery_premium',
     'gate_energy_premium', 'gate_arena_premium', 'gate_mistake_practice_premium', 'gate_extra_languages_premium',

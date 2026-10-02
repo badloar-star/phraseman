@@ -29,8 +29,7 @@ const REMOTE_CONFIG_FETCHED_AT_KEY = 'remote_config_fetched_at_v1';
 // пропускаем. Почему 6 ч: живого опроса нет (снят PM-212), поэтому открытое
 // приложение и так видит «Пульт» только после перезапуска; TTL ограничивает лишь
 // частые перезапуски. Худший случай для рубильников (`phone_state_emergency_stop`,
-// `force_update_enabled` + `min_app_version`, `accounts_v2_client_enabled`,
-// `gifts_to_coins_enabled`): кто уже запускал приложение в последние 6 ч, получит
+// `force_update_enabled` + `min_app_version`, `accounts_v2_client_enabled`): кто уже запускал приложение в последние 6 ч, получит
 // их не позже чем через 6 ч. Нужна мгновенность — `refreshRemoteConfigNow()`.
 export const REMOTE_CONFIG_NETWORK_TTL_MS = 6 * 60 * 60 * 1000;
 const REMOTE_CONFIG_MAX_CACHE_BYTES = 64 * 1024;

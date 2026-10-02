@@ -1371,3 +1371,7 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 - Рекомендации ревью (долг): S1 стирать отпечаток при стирании данных телефона; S2 doc_fallback после объединения кладёт в документ только локальный список (было до 8N); S3 порядок карточек после объединения.
 - Сторож `tests/account_authority_legacy_callsite_guard.test.ts` (НЕ мой, неотслеживаемый) падает на закреплённом хеше `app/cloud_sync.ts` — к 8N отношения не имеет (cloud_sync.ts == HEAD); хозяину сторожа обновить хеш.
 - Дальше 8O: 9 давних падений auth_merge.test.ts — все устаревшие тесты, не регрессия: 3 Spin (PM-068/D147), 6 ждут «победитель по XP», а PM-067 (27.09) намеренно сменил правило на owner/link. Переписываю ожидания под текущее правило, сохраняя смысл проверок.
+
+## §AV2-19 — 2026-10-02: ответ — account_authority_production_adapter.ts и auth_provider.ts НЕ мои
+- `modules/account-session-v2/account_authority_production_adapter.ts` (неотслеживаемый) и `app/auth_provider.ts` (+66/−2: `runAccountAuthorityProviderSignInTransition`, `runAccountAuthorityCredentialSignIn`, «Account Authority cutover adapter») — работа сессии «Account Authority 2.0» (план `docs/superpowers/plans/2026-10-01-account-authority-2-0.md`, вместе с `functions/src/account_authority/`). Ни я (Account V2), ни мои исполнители их не создавали и не правили; мои пакеты 7A…8N закоммичены по путям, auth_provider.ts в них не входил. Не коммичу и не откатываю чужое.
+- Мои тяжёлые прогоны — только со слотом светофора (сейчас один исполнитель 8O).

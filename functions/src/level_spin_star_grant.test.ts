@@ -119,11 +119,11 @@ test('requires auth before anything else', async () => {
     .rejects.toMatchObject({ code: 'unauthenticated', message: 'auth_required' });
 });
 
-test('white list: report, daily journey and gift compensation are the only sources', () => {
+test('white list: report and daily journey are the only sources (D148: g2c* compensation retired)', () => {
   expect(classifyCoinWalletSource('report_reward_msg0000000001').source).toBe('report_reward');
   expect(classifyCoinWalletSource(`dailyjourney_${HASH32}_1`).source).toBe('daily_journey');
-  expect(classifyCoinWalletSource(`g2c1_${HASH32}_3`)).toEqual({ source: 'gifts_compensation', subSource: 'migration' });
-  expect(classifyCoinWalletSource(`g2cdj_${HASH32}_2`)).toEqual({ source: 'gifts_compensation', subSource: 'journey_spin' });
+  expect(() => classifyCoinWalletSource(`g2c1_${HASH32}_3`)).toThrow('coin_wallet_source_not_allowed');
+  expect(() => classifyCoinWalletSource(`g2cdj_${HASH32}_2`)).toThrow('coin_wallet_source_not_allowed');
 });
 
 test.each([
@@ -196,7 +196,6 @@ test.each([
   ['report marked as gameplay', { promotionEligibility: 'gameplay' as const }],
   ['journey on the premium lane', { requestId: `dailyjourney_${HASH32}_1`, lane: 'premium' as const, giftId: 'stars_100' as const, promotionEligibility: 'gameplay' as const }],
   ['journey with a non-denomination gift', { requestId: `dailyjourney_${HASH32}_1`, giftId: 'stars_2000' as const, promotionEligibility: 'gameplay' as const }],
-  ['compensation marked as gameplay', { requestId: `g2c1_${HASH32}_1`, giftId: 'stars_100' as const, promotionEligibility: 'gameplay' as const }],
 ])('shape outside the source table is rejected: %s', async (_name, over) => {
   const world = makeDb();
   await expect(credit(world, composite(over))).rejects.toMatchObject({ code: 'invalid-argument' });
@@ -214,27 +213,13 @@ test('daily journey: a UTC day is capped at 2000, the next day opens again', asy
   expect(nextDay.starsBalance).toBe(2_010);
 });
 
-test('compensation: per-operation 2000, lifetime 30000, journey-spin share 2600', () => {
-  const migration = classifyCoinWalletSource(`g2c1_${HASH32}_1`);
-  const spin = classifyCoinWalletSource(`g2cdj_${HASH32}_1`);
-  const op = (requestId: string, amount: number) => ({ requestId, lane: 'base' as const, giftId: 'x', amount });
-  const nearFull = { ...EMPTY_COIN_WALLET_LIMITS, compensationCoins: COIN_WALLET_LIMITS.compensationLifetime - 100 };
-  expect(() => applyCoinWalletLimits(nearFull, op(`g2c1_${HASH32}_1`, 200), migration, MONDAY, 0))
-    .toThrow('coin_wallet_lifetime_limit_reached');
-  const spinFull = { ...EMPTY_COIN_WALLET_LIMITS, journeySpinCompensationCoins: 2_600, compensationCoins: 2_600 };
-  expect(() => applyCoinWalletLimits(spinFull, op(`g2cdj_${HASH32}_1`, 10), spin, MONDAY, 0))
-    .toThrow('coin_wallet_lifetime_limit_reached');
-  const migrated = applyCoinWalletLimits(spinFull, op(`g2c1_${HASH32}_1`, 2_000), migration, MONDAY, 0);
-  expect(migrated).toMatchObject({ compensationCoins: 4_600, journeySpinCompensationCoins: 2_600 });
-  expect(spinFull.compensationCoins).toBe(2_600);
-});
-
-test('compensation credit is written to the ledger like every other source', async () => {
+test('gift compensation (g2c*) is rejected by the server: the migration was cancelled by D148', async () => {
   const world = makeDb();
-  const ack = await credit(world, composite({ requestId: `g2c1_${HASH32}_1`, giftId: 'stars_2000' }));
-  expect(ack.starsBalance).toBe(2_000);
-  const user = world.docs.get('users/account-a') as Record<string, any>;
-  expect(user.coinWalletLimitsV1.compensationCoins).toBe(2_000);
+  for (const requestId of [`g2c1_${HASH32}_1`, `g2cdj_${HASH32}_1`]) {
+    await expect(credit(world, composite({ requestId, giftId: 'stars_2000' })))
+      .rejects.toMatchObject({ code: 'permission-denied', message: 'coin_wallet_source_not_allowed' });
+  }
+  expect(world.reads()).toBe(0);
 });
 
 test('missing owner document and foreign owner are rejected', async () => {

@@ -16,13 +16,16 @@ import { HttpsError } from 'firebase-functions/v2/https';
  *     зачем: префикс унаследован от удалённого «Дневного пути» и НЕ переименован —
  *     совместимость с уже выданными ключами и задеплоенным белым списком;
  *     переименование источника — только отдельным решением владельца;
- *   - `g2c1_<hash32>_<n>`                — миграция «Подарки → монеты» (Q12, D51/D53);
- *   - `g2cdj_<hash32>_<n>`               — компенсация спина «Дневного пути» (Q12, D53).
- * Всё остальное (спины уровня, задания `quest_*`, что угодно ещё) — отказ.
+ * Всё остальное (спины уровня, задания `quest_*`, компенсация подарков `g2c1_`/`g2cdj_`,
+ * что угодно ещё) — отказ.
+ *
+ * зачем (PM-080, D148, владелец 01.10): компенсация «подарки → монеты» отменена — старые
+ * подарки и спины удаляются без перевода. Источники `g2c1_`/`g2cdj_` и их лимиты сняты:
+ * без них выдуманный клиентом ключ не мог бы напечатать до 30 000 монет за жизнь.
  */
 
-export type CoinWalletSource = 'report_reward' | 'daily_journey' | 'gifts_compensation';
-export type CoinWalletSubSource = 'report' | 'journey_runes' | 'migration' | 'journey_spin';
+export type CoinWalletSource = 'report_reward' | 'daily_journey';
+export type CoinWalletSubSource = 'report' | 'journey_runes';
 
 export type CoinWalletOperationShape = Readonly<{
   requestId: string;
@@ -40,8 +43,6 @@ export type CoinWalletClassification = Readonly<{
 const SOURCE_PATTERNS: readonly (readonly [RegExp, CoinWalletClassification])[] = Object.freeze([
   [/^report_reward_[A-Za-z0-9_-]{1,66}$/, Object.freeze({ source: 'report_reward', subSource: 'report' })],
   [/^dailyjourney_[A-Za-z0-9]{32}_\d{1,3}$/, Object.freeze({ source: 'daily_journey', subSource: 'journey_runes' })],
-  [/^g2c1_[A-Za-z0-9]{32}_\d{1,4}$/, Object.freeze({ source: 'gifts_compensation', subSource: 'migration' })],
-  [/^g2cdj_[A-Za-z0-9]{32}_\d{1,3}$/, Object.freeze({ source: 'gifts_compensation', subSource: 'journey_spin' })],
 ] as const);
 
 /**
@@ -73,21 +74,6 @@ export const COIN_WALLET_LIMITS = Object.freeze({
   journeyMaxPerOperation: 2_000,
   /** Один день пути в сутки: не больше самой крупной награды дня с удвоением. */
   journeyMaxPerDay: 2_000,
-  /** Q12: компенсация бьётся на номиналы, крупнейший — stars_2000. */
-  compensationMaxPerOperation: 2_000,
-  /**
-   * D53: потолок бесплатных спинов 20 × 130 монет = 2600 на человека
-   * (FREE_SPIN_CAP × FREE_SPIN_COINS, app/gifts_to_coins_table_v1.ts).
-   */
-  journeySpinCompensationLifetime: 2_600,
-  /**
-   * D53, вся компенсация за жизнь: 20 спинов × 130 (2600) + платные спины
-   * (≈20 × 300 = 6000) + полный набор косметики (тема 2000 + 2 ауры 3000 +
-   * 2 аватара 1800) + ~10 постоянных пакетов × 800 (8000) + прочая мелочь ≈
-   * 24–25 тыс. Округлено вверх до 30 000, чтобы не резать реальные запасы,
-   * но закрыть бесконечную «печать» монет выдуманными g2c1_-ключами.
-   */
-  compensationLifetime: 30_000,
 });
 
 /** Счётчики лимитов — поле users/{uid}.coinWalletLimitsV1 (клиенту запрещено правилами). */
@@ -97,8 +83,6 @@ export type CoinWalletLimitsState = Readonly<{
   reportDayCoins: number;
   journeyDayKey: string;
   journeyDayCoins: number;
-  compensationCoins: number;
-  journeySpinCompensationCoins: number;
 }>;
 
 export const COIN_WALLET_LIMITS_FIELD = 'coinWalletLimitsV1' as const;
@@ -109,8 +93,6 @@ export const EMPTY_COIN_WALLET_LIMITS: CoinWalletLimitsState = Object.freeze({
   reportDayCoins: 0,
   journeyDayKey: '',
   journeyDayCoins: 0,
-  compensationCoins: 0,
-  journeySpinCompensationCoins: 0,
 });
 
 function nonNegativeInt(value: unknown): number {
@@ -127,8 +109,6 @@ export function normalizeCoinWalletLimits(raw: unknown): CoinWalletLimitsState {
     reportDayCoins: nonNegativeInt(value.reportDayCoins),
     journeyDayKey: typeof value.journeyDayKey === 'string' ? value.journeyDayKey : '',
     journeyDayCoins: nonNegativeInt(value.journeyDayCoins),
-    compensationCoins: nonNegativeInt(value.compensationCoins),
-    journeySpinCompensationCoins: nonNegativeInt(value.journeySpinCompensationCoins),
   });
 }
 
@@ -155,7 +135,7 @@ export function classifyCoinWalletSource(requestId: string): CoinWalletClassific
   }
   return reject('permission-denied', 'coin_wallet_source_not_allowed', {
     requestIdPrefix: requestId.slice(0, 16),
-    note: 'not report_reward_/dailyjourney_/g2c1_/g2cdj_ (spins, quests and others are retired)',
+    note: 'not report_reward_/dailyjourney_ (spins, quests, gift compensation g2c* and others are retired, D148)',
   });
 }
 
@@ -184,15 +164,6 @@ function assertJourneyShape(operation: CoinWalletOperationShape, fields: Record<
   }
 }
 
-function assertCompensationShape(operation: CoinWalletOperationShape, fields: Record<string, unknown>): void {
-  if (operation.promotionEligibility !== 'excluded_compensation') {
-    reject('invalid-argument', 'coin_wallet_source_shape_invalid', { ...fields, why: 'compensation_requires_excluded_compensation' });
-  }
-  if (operation.amount > COIN_WALLET_LIMITS.compensationMaxPerOperation) {
-    reject('invalid-argument', 'coin_wallet_amount_over_limit', { ...fields, limit: COIN_WALLET_LIMITS.compensationMaxPerOperation });
-  }
-}
-
 /**
  * Статическая проверка одной операции против таблицы источника (без чтений).
  * Бросает `invalid-argument` с кодом причины; ничего не пишет.
@@ -213,10 +184,8 @@ export function assertCoinWalletOperationShape(
     assertReportShape(operation, fields);
   } else if (operation.lane !== 'base') {
     reject('invalid-argument', 'coin_wallet_source_shape_invalid', { ...fields, why: 'only_report_uses_premium_lane' });
-  } else if (classification.source === 'daily_journey') {
-    assertJourneyShape(operation, fields);
   } else {
-    assertCompensationShape(operation, fields);
+    assertJourneyShape(operation, fields);
   }
   log('shape_ok', fields);
 }
@@ -263,23 +232,6 @@ export function applyCoinWalletLimits(
     log('limits_ok', { ...fields, used, after: used + operation.amount });
     return Object.freeze({ ...state, journeyDayKey: dayKey, journeyDayCoins: used + operation.amount });
   }
-  const total = state.compensationCoins + operation.amount;
-  if (total > COIN_WALLET_LIMITS.compensationLifetime) {
-    reject('resource-exhausted', 'coin_wallet_lifetime_limit_reached', {
-      ...fields, used: state.compensationCoins, limit: COIN_WALLET_LIMITS.compensationLifetime,
-    });
-  }
-  const spinUsed = state.journeySpinCompensationCoins;
-  const isJourneySpin = classification.subSource === 'journey_spin';
-  if (isJourneySpin && spinUsed + operation.amount > COIN_WALLET_LIMITS.journeySpinCompensationLifetime) {
-    reject('resource-exhausted', 'coin_wallet_lifetime_limit_reached', {
-      ...fields, used: spinUsed, limit: COIN_WALLET_LIMITS.journeySpinCompensationLifetime,
-    });
-  }
-  log('limits_ok', { ...fields, used: state.compensationCoins, after: total, spinUsed });
-  return Object.freeze({
-    ...state,
-    compensationCoins: total,
-    journeySpinCompensationCoins: isJourneySpin ? spinUsed + operation.amount : spinUsed,
-  });
+  // зачем: сюда доходит только daily_journey и report_reward (обработан выше); третьего источника нет.
+  return reject('permission-denied', 'coin_wallet_source_not_allowed', { ...fields, note: 'no limits table for source' });
 }

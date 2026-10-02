@@ -48,10 +48,12 @@ describe('friend_requests_sent reverse index contract', () => {
     const fallbackBranches = server.match(
       /: await db\.collection\('users'\)\.listDocuments\(\)/g,
     ) ?? [];
-    expect(fallbackBranches).toHaveLength(2);
-    // И симметрично — узкий путь по peer-uid в тех же двух местах.
+    // зачем (02.10): третья ветка — чистка friend_hello_cooldowns при удалении (8e7c60769),
+    // тот же гибрид «узко по peer-uid / аварийно всё». Было 2 (sent-index и подарки).
+    expect(fallbackBranches).toHaveLength(3);
+    // И симметрично — узкий путь по peer-uid в тех же трёх местах.
     const narrowBranches = server.match(/\? peerUids\.map\(/g) ?? [];
-    expect(narrowBranches).toHaveLength(2);
+    expect(narrowBranches).toHaveLength(3);
   });
 
   test('peer-ы добираются из истории подарков, а не только из друзей', () => {

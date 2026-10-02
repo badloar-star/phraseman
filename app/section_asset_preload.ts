@@ -54,8 +54,15 @@ async function warmSectionSources(sources: readonly ImageSourcePropType[]): Prom
       DebugLogger.error('section_asset_preload:resolved', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   }
+  // зачем (координатор §66, замер Q53 2026-10-02): в release встроенные картинки уже
+  // лежат ресурсами APK, и Asset.loadAsync пытался их «скачать» по пустому адресу —
+  // «ExpoAsset … Unable to download asset from url:» на КАЖДОМ старте, прогрев не
+  // работал. Скачивание нужно только в dev (ассеты отдаёт Metro по сети); в release
+  // остаётся прогрев декодера expo-image.
   await Promise.all([
-    Asset.loadAsync(unique as never).catch((error: unknown) => { reportSwallowed('section_asset_preload:warmSectionSources', error); return []; }),
+    __DEV__
+      ? Asset.loadAsync(unique as never).catch((error: unknown) => { reportSwallowed('section_asset_preload:warmSectionSources', error); return []; })
+      : Promise.resolve([]),
     expoUris.length > 0
       ? ExpoImage.prefetch(expoUris, { cachePolicy: 'memory-disk' }).catch((error: unknown) => { reportSwallowed('section_asset_preload:warmSectionSources', error); return false; })
       : Promise.resolve(false),

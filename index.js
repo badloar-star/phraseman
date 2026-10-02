@@ -1,3 +1,6 @@
+// Release: тишина предупреждений RN Firebase о namespaced API (Q53: 241 шт. в окне старта).
+// Первым — флаг читается в момент вызова, раньше любых обращений к Firebase.
+import './app/rnfb_release_quiet';
 // Глобально защищаем AsyncStorage.multiSet/multiMerge от null/undefined в парах
 // (Android SQLite иначе падает на старте: "bind value at index N is null").
 // Этот импорт стоит ПЕРВЫМ и самоустанавливает обёртку при загрузке модуля,

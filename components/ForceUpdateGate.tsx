@@ -180,13 +180,27 @@ function readLegacyForceState(lang: string, userId: string | null): GateState | 
   };
 }
 
+// зачем (координатор §66, замер Q53 2026-10-02): окно проверяется дважды за старт —
+// на кэше конфига при монтировании и после свежего remote_config
+// (remote_config_changed). Второй проход нужен (иначе новое значение из «Пульта» не
+// сработает до следующего запуска), а вот одинаковая строка лога с теми же
+// значениями — лишний мост в нативный лог в окне старта. Лог раннего выхода
+// печатаем, только когда решение или его входы изменились.
+let lastManualSkipLog = '';
+function warnManualSkipOnce(reason: string, details: Record<string, unknown>): void {
+  const signature = `${reason}|${JSON.stringify(details)}`;
+  if (signature === lastManualSkipLog) return;
+  lastManualSkipLog = signature;
+  console.warn(`[MANUAL-UPDATE] skip: ${reason}`, details);
+}
+
 async function readManualState(lang: string, userId: string | null): Promise<GateState | null> {
   // зачем: единый префикс [MANUAL-UPDATE] — владелец одним grep видит, почему
   // включённое в «Пульте» окно не показалось. Каждый ранний выход печатает
   // ЗНАЧЕНИЕ, которое его решило, а не голое true/false.
   const storeUrl = storeUrlForPlatform();
   if (!storeUrl) {
-    console.warn('[MANUAL-UPDATE] skip: no store url', {
+    warnManualSkipOnce('no store url', {
       platform: Platform.OS,
       remoteIos: getStoreUrlIos(),
       remoteAndroid: getStoreUrlAndroid(),
@@ -213,7 +227,7 @@ async function readManualState(lang: string, userId: string | null): Promise<Gat
     seenCampaignIds: alreadySeen ? [campaignId] : [],
   });
   if (!shouldShow) {
-    console.warn('[MANUAL-UPDATE] skip: gate says no', {
+    warnManualSkipOnce('gate says no', {
       enabled,
       campaignId,
       mode,
@@ -226,6 +240,7 @@ async function readManualState(lang: string, userId: string | null): Promise<Gat
     });
     return null;
   }
+  lastManualSkipLog = '';
   console.log('[MANUAL-UPDATE] showing modal', {
     campaignId, mode, platformFilter, platform: Platform.OS, targetBuild, currentBuild, storeUrl,
   });

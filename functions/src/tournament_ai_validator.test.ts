@@ -1,5 +1,3 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import {
   buildTournamentAdversarialValidatorPrompt,
   parseTournamentValidatorReply,
@@ -143,13 +141,12 @@ describe('tournament AI validator reply', () => {
     }), situation)).toMatchObject({ ok: false, reason: 'ambiguity' });
   });
 
-  it('uses an independent adversarial pass before the retired generator may accept a task', () => {
+  // зачем (02.10, §80 / PM-231-A3): генератор турниров (admin_tournament_full) удалён вместе с
+  // TTS турниров — функции сняты с деплоя 2026-09-02. Проверяем сам промпт состязательной проверки.
+  it('builds an independent adversarial validator prompt', () => {
     const prompt = buildTournamentAdversarialValidatorPrompt(oddity);
-    const generator = fs.readFileSync(path.join(__dirname, 'admin_tournament_full.ts'), 'utf8');
 
     expect(prompt).toContain('Try to disprove');
     expect(prompt).toContain('every option independently');
-    expect(generator).toContain('judgeTournamentTaskPair');
-    expect(generator).not.toContain('const verdict = await judgeTournamentTask({');
   });
 });

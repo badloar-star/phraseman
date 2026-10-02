@@ -25,7 +25,6 @@ const BASELINE: Record<string, number> = {
   'admin_asset_studio.ts': 1,
   'admin_director_digest_audio.ts': 1,
   'admin_push_jobs.ts': 2,
-  'admin_tournament_tasks.ts': 1,
   'admin_user_profile.ts': 2,
   'app_messages.ts': 1,
   'auth_merge.ts': 1,
@@ -60,7 +59,6 @@ const BASELINE: Record<string, number> = {
   'report_replies.ts': 1,
   'revenuecat_reconcile.ts': 1,
   'stats_insights.ts': 1,
-  'tournament_audio.ts': 1,
   'weekly_review.ts': 5,
 };
 

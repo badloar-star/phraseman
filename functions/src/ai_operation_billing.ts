@@ -23,6 +23,8 @@ export interface AiOperationUsage {
   model?: string;
   promptTokens?: number;
   completionTokens?: number;
+  /** Озвучка (TTS) платится по символам, а не по токенам — пишем их отдельно. */
+  inputChars?: number;
 }
 
 function tokens(value: unknown): number {
@@ -39,12 +41,15 @@ export function buildAiOperationBillingRow(
 ): Record<string, unknown> {
   const promptTokens = tokens(usage.promptTokens);
   const completionTokens = tokens(usage.completionTokens);
+  const inputChars = tokens(usage.inputChars);
   return {
     operation: String(operation || 'unknown').trim().slice(0, MAX_OPERATION_CHARS) || 'unknown',
     model: String(usage.model || 'gpt-4o-mini').trim().slice(0, MAX_MODEL_CHARS),
     promptTokens,
     completionTokens,
     totalTokens: promptTokens + completionTokens,
+    // зачем: поле только у TTS — строки чат-моделей остаются прежней формы.
+    ...(inputChars > 0 ? { inputChars } : {}),
     uid: String(uid || '').slice(0, 128),
     createdAtMs: nowMs,
     expireAt: logExpireAt(nowMs), // 90 дней, общий срок журналов (log_ttl.ts)

@@ -183,6 +183,9 @@ async function generateImage(apiKey: string, job: ReturnType<typeof normalizeAss
     await response.text().catch(() => '');
     throw new Error(`image_api_${response.status}`);
   }
+  // зачем (PM-231-A3, решение координатора §80): ручной инструмент владельца; лимит картинок
+  // ведёт admin_runtime_usage (reserveImageBudget), в общий учёт не пишем — пропуск явный.
+  console.log('[AI-USAGE] skipped: manual tool admin_asset_studio');
   const json = await response.json() as { data?: Array<{ b64_json?: string }> };
   const b64 = json.data?.[0]?.b64_json;
   if (!b64) throw new Error('image_api_no_b64');

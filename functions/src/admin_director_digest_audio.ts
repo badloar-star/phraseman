@@ -2,6 +2,7 @@ import { defineSecret } from 'firebase-functions/params';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { hasClaimedPermission } from './admin/permissions';
 import { ENFORCE_APP_CHECK } from './callable_options';
+import { recordAiOperationUsage, type AiOperationUsage } from './ai_operation_billing';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -32,6 +33,8 @@ export interface DirectorDigestAudioClip {
 
 export interface DirectorDigestAudioDependencies {
   readonly generateSpeech: (input: DirectorDigestSpeechInput) => Promise<DirectorDigestAudioClip>;
+  /** PM-231-A3: учёт расхода озвучки по operation; без него (тесты) учёт пропускается. */
+  readonly recordUsage?: (operation: string, usage: AiOperationUsage, uid: string) => Promise<boolean>;
 }
 
 export interface DirectorDigestAudioResponse {
@@ -98,7 +101,10 @@ async function requestSpeech(input: DirectorDigestSpeechInput): Promise<Director
   return Object.freeze({ mimeType: 'audio/mpeg', base64: Buffer.from(await response.arrayBuffer()).toString('base64') });
 }
 
-const DEFAULT_DEPENDENCIES: DirectorDigestAudioDependencies = Object.freeze({ generateSpeech: requestSpeech });
+const DEFAULT_DEPENDENCIES: DirectorDigestAudioDependencies = Object.freeze({
+  generateSpeech: requestSpeech,
+  recordUsage: recordAiOperationUsage,
+});
 
 export async function getDirectorDigestAudioResponse(
   data: unknown,
@@ -114,6 +120,14 @@ export async function getDirectorDigestAudioResponse(
       voice: TTS_VOICE,
       instructions: TTS_INSTRUCTIONS,
     })));
+  // зачем (PM-231-A3, координатор §80): озвучка дайджеста платит OpenAI, но в дашборде расходов
+  // её не было. Одна строка на вызов (символы — единица оплаты TTS); запись не ждём и не роняем ответ.
+  const inputChars = chunks.reduce((sum, chunk) => sum + chunk.length, 0);
+  if (dependencies.recordUsage) {
+    void dependencies.recordUsage('admin_director_digest_tts', { model: TTS_MODEL, inputChars }, String(auth?.uid ?? ''));
+  } else {
+    console.log('[AI-USAGE] skipped: recordUsage not configured (admin_director_digest_tts)');
+  }
   return Object.freeze({ schemaVersion: 1, model: TTS_MODEL, voice: TTS_VOICE, clips: Object.freeze(clips) });
 }
 

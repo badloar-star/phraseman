@@ -60,4 +60,12 @@ describe('ai_operation_billing', () => {
     expect(row.costUsd).toBeCloseTo(0.15 + 0.6, 6);
     expect(row.totalTokens).toBe(2_000_000);
   });
+
+  // PM-231-A3 (§80): TTS платится по символам — поле только у озвучки, чат-строки прежней формы.
+  it('TTS-строка несёт inputChars, чат-строка — без него', () => {
+    const tts = buildAiOperationBillingRow('admin_director_digest_tts', { model: 'gpt-4o-mini-tts', inputChars: 1234 }, 1_000);
+    expect(tts).toMatchObject({ inputChars: 1234, totalTokens: 0 });
+    const chat = buildAiOperationBillingRow('admin_translate', { promptTokens: 5 }, 1_000);
+    expect(chat).not.toHaveProperty('inputChars');
+  });
 });

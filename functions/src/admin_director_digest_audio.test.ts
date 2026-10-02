@@ -60,4 +60,24 @@ describe('admin director digest audio', () => {
       .rejects.toMatchObject({ code: 'invalid-argument' });
     expect(generateSpeech).not.toHaveBeenCalled();
   });
+
+  // PM-231-A3 (§80): озвучка дайджеста пишет расход по operation — символы, модель, uid.
+  it('records TTS usage once per briefing with input characters', async () => {
+    const recordUsage = jest.fn(async () => true);
+    const text = 'Первый вывод. '.repeat(10);
+    await getDirectorDigestAudioResponse({ text }, auth, deps({ recordUsage }));
+    expect(recordUsage).toHaveBeenCalledTimes(1);
+    expect(recordUsage).toHaveBeenCalledWith(
+      'admin_director_digest_tts',
+      expect.objectContaining({ inputChars: text.trim().length }),
+      'owner-1',
+    );
+  });
+
+  it('does not record usage when input is rejected before TTS', async () => {
+    const recordUsage = jest.fn(async () => true);
+    await expect(getDirectorDigestAudioResponse({ text: '   ' }, auth, deps({ recordUsage })))
+      .rejects.toMatchObject({ code: 'invalid-argument' });
+    expect(recordUsage).not.toHaveBeenCalled();
+  });
 });

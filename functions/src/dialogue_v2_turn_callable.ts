@@ -663,6 +663,8 @@ export async function executeDialogueV2TextTurn(
     console.warn('[DIALOGUE-V2] turn:coaching → provider omitted coaching block', {
       scenarioId: input.scenarioId,
       replyCount: replies.length,
+      // номер хода в сессии — видно, с какого хода модель перестаёт присылать разбор
+      sessionTurnCount: groupState.turnCount,
     });
   } else {
     const parsedCoaching = parseDialogueV2TurnCoaching(envelope.rawCoaching, {

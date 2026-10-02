@@ -85,6 +85,10 @@ export function dialogueV2CoachingPromptLines(interfaceLang: DialogueV2CoachingI
     'When every objective is complete, the persona may close the scene politely in character.',
     'Return one compact JSON object: {"replies":[{"personaId":"authorized_id","text":"study-language reply"}],"coaching":{...}}.',
     'Return exactly one reply per selectedSpeakerId, in the same order. "replies" items have no other fields.',
+    // зачем (баг 02.10, прод-лог: «provider omitted coaching block» в 6 из 7 ходов, цели диалога
+    // застряли на 3 из 6): прошлые ответы в истории сохранены только как {"replies":…}, и модель
+    // копировала укороченный формат. Явно говорим, что «coaching» обязателен на КАЖДОМ ходе.
+    'Earlier assistant messages in this conversation are stored shortened to {"replies":…} only. That is storage, not the format: every response you write MUST include the full "coaching" object.',
     `"coaching" is learner help written in ${language} unless stated otherwise, with exactly these fields:`,
     `- "replyTranslations": array with one faithful ${language} translation of each reply, same order.`,
     `- "replyExplanations": array with one short ${language} note (max 2 sentences) per reply explaining why it is phrased that way: the useful phrase or pattern in it. No grammar terminology.`,

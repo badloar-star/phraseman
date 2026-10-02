@@ -21,3 +21,14 @@ describe('ход диалога V2 у Free: память не требуется
     expect(production).toMatch(/const FREE_EMPTY_STRUCTURED_MEMORY = Object\.freeze\(\{ sharedSummary: null, scenarioCheckpoint: null \}\);/);
   });
 });
+
+// зачем (баг 02.10, прод: модель перестаёт присылать «coaching» со 2-го хода — цели диалога стоят):
+// история хранит прошлые ответы как {"replies":…}; инструкция обязана требовать разбор на каждом ходе.
+import { dialogueV2CoachingPromptLines } from './dialogue_v2_turn_coaching';
+
+describe('ход диалога V2: разбор обязателен на каждом ходе', () => {
+  it('инструкция предупреждает, что укороченная история — не формат ответа', () => {
+    const lines = dialogueV2CoachingPromptLines('ru').join('\n');
+    expect(lines).toMatch(/every response you write MUST include the full "coaching" object/);
+  });
+});

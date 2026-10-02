@@ -5,7 +5,7 @@ import Animated, { Easing, useAnimatedStyle, useSharedValue, withDelay, withTimi
 import { lv2Alpha, lv2CardStyle, lv2NodePaint, useLv2Glass } from "./LearningV2Glass";
 import PressableHybrid from "../PressableHybrid";
 import LearningV2MapNode from "../LearningV2MapNode";
-import LearningV2RuneFlight, { type LearningV2RuneFlightPoint } from "../LearningV2RuneFlight";
+import CoinRewardFlight, { type CoinRewardFlightPoint } from "../rewards/CoinRewardFlight";
 import { triLang, type Lang } from "../../constants/i18n";
 import {
   buildLearningV2CourseAccordionMapFromPreparedProgressV1,
@@ -111,13 +111,13 @@ export default function LearningV2ChaptersCourse(props: Props) {
   const [introReveal] = useState(() => !props.reducedMotion);
   const [coinFlight, setCoinFlight] = useState<Readonly<{
     key: number;
-    from: LearningV2RuneFlightPoint;
-    to: LearningV2RuneFlightPoint;
+    from: CoinRewardFlightPoint;
+    to: CoinRewardFlightPoint;
   }> | null>(null);
   const flightSeqRef = useRef(0);
   const headerAccessoryRef = useRef<View>(null);
   const { coinTargetRef, onSessionCompleted, reducedMotion } = props;
-  const handleNodeCompleted = useCallback((from: LearningV2RuneFlightPoint) => {
+  const handleNodeCompleted = useCallback((from: CoinRewardFlightPoint) => {
     onSessionCompleted?.(from);
     if (reducedMotion) return;
     const target = coinTargetRef?.current ?? headerAccessoryRef.current;
@@ -272,7 +272,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
       <PressableHybrid variant="card" testID="learning-v2-all-lessons" accessibilityLabel={triLang(props.lang, { ru: "Все уроки", en: "All lessons", uk: "Усі уроки", es: "Todas las lecciones", "pt-BR": "Todas as lições", vi: "Tất cả bài học", id: "Semua pelajaran", tr: "Tüm dersler", pl: "Wszystkie lekcje" })} onPress={() => setAllLessonsOpen(true)} style={[styles.allLessons, { backgroundColor: g.opaqueControl }]} contentStyle={styles.allLessonsContent}><Ionicons name="list-outline" size={20} color={g.text} /><Text style={[styles.allLessonsText, { color: g.text }]}>{triLang(props.lang, { ru: "Все уроки", en: "All lessons", uk: "Усі уроки", es: "Todas las lecciones", "pt-BR": "Todas as lições", vi: "Tất cả bài học", id: "Semua pelajaran", tr: "Tüm dersler", pl: "Wszystkie lekcje" })}</Text></PressableHybrid>
     </ScrollView>
     {coinFlight ? (
-      <LearningV2RuneFlight
+      <CoinRewardFlight
         key={coinFlight.key}
         from={coinFlight.from}
         to={coinFlight.to}

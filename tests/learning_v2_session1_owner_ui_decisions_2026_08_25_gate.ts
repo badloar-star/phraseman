@@ -162,7 +162,7 @@ assert.ok(
   "every answer family must receive a stable shuffled option order",
 );
 assert.ok(
-  player.includes("LearningV2RuneFlight") &&
+  player.includes("CoinRewardFlight") &&
     player.includes('testID="learning-v2-session-runes"'),
   "the session must show its rune score in the top-right HUD and animate earned runes into it",
 );

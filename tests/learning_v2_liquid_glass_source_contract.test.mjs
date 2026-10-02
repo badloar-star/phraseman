@@ -104,7 +104,7 @@ test("боевая карта «Главы»: раскрытие карты и �
   assert.match(map, /<LearningV2MapNode/u);
   assert.match(map, /onCompletedTransition=\{handleNodeCompleted\}/u);
   // Монеты летят с узла в чип баланса (три монеты, как в макете).
-  assert.match(map, /<LearningV2RuneFlight/u);
+  assert.match(map, /<CoinRewardFlight/u);
   assert.match(map, /const NODE_FLIGHT_COINS = 3/u);
   // Раскрытие: 6 px подъём, 150 мс, каскад; только один раз за жизнь экрана и не при reduceMotion.
   assert.match(map, /function Lv2Reveal/u);

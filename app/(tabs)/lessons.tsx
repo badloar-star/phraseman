@@ -114,7 +114,7 @@ import { useRuntimeActive } from "../../hooks/use_runtime_active";
 import { useMyCoinRankBinding } from "../../hooks/use_my_coin_rank";
 import LearningV2InlineNodeReveal from "../../components/LearningV2InlineNodeReveal";
 import LearningV2MapNode from "../../components/LearningV2MapNode";
-import type { LearningV2RuneFlightPoint } from "../../components/LearningV2RuneFlight";
+import type { CoinRewardFlightPoint } from "../../components/rewards/CoinRewardFlight";
 import RuneBalanceChip from "../../components/RuneBalanceChip";
 import { soundDirector } from "../../modules/audio/sound_director";
 import {
@@ -1479,7 +1479,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
     sessionOrdinal: number,
     state: LearningV2AccordionSessionStateV1,
   ) => void;
-  onSessionCompleted?: (point: LearningV2RuneFlightPoint) => void;
+  onSessionCompleted?: (point: CoinRewardFlightPoint) => void;
 }>) {
   if (row.kind === "chapter") {
     return (

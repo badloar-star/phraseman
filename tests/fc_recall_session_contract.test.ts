@@ -16,7 +16,7 @@ describe('full-phrase recall session contract', () => {
     expect(source).toContain('useSessionAttemptAutoReset');
     expect(source).toContain('hydrated: attempts.hydrated');
     expect(source).toContain('PracticeRuneCounter');
-    expect(source).toContain('LearningV2RuneFlight');
+    expect(source).toContain('CoinRewardFlight');
     expect(source).toContain('SessionResultScreen');
     expect(source).toContain('TextInput');
     expect(source).toContain('NoEnergyModal');
@@ -34,8 +34,8 @@ describe('full-phrase recall session contract', () => {
   test('result screen animates both counts and the rune settlement flight', () => {
     const source = read('app', 'flashcards', 'SessionResultScreen.tsx');
     expect(source).toContain('AnimatedCountUpText');
-    expect(source).toContain('usePracticeRuneFlight');
-    expect(source).toContain('LearningV2RuneFlight');
+    expect(source).toContain('useCoinRewardFlight');
+    expect(source).toContain('CoinRewardFlight');
     expect(source).not.toContain('listeningStats');
     expect(source).not.toContain('карточек прослушано');
     expect(source).not.toContain('Отличная работа');

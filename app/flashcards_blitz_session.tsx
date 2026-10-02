@@ -32,9 +32,9 @@ import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
-import { LearningV2RuneFlight } from '../components/LearningV2RuneFlight';
+import { CoinRewardFlight } from '../components/rewards/CoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
-import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
+import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -211,7 +211,7 @@ export default function FlashcardsBlitzSession() {
     devFakeStartRunes: devRunesFake?.runes,
     enabled: blitzAccessGranted,
   });
-  const runeFlight = usePracticeRuneFlight();
+  const runeFlight = useCoinRewardFlight();
   // «Руны засчитываются, когда игрок дошёл до экрана празднования» — здесь
   // это появление result (раунд завершён по таймеру/жизням).
   useEffect(() => {
@@ -1459,7 +1459,7 @@ RU: ${question.card.translation}`}
       </SafeAreaView>
       <NoEnergyModal visible={energyGate === 'denied'} onClose={leave} activity="flashcards" />
       {runeFlight.flight && (
-        <LearningV2RuneFlight
+        <CoinRewardFlight
           key={runeFlight.flight.key}
           from={runeFlight.flight.from}
           to={runeFlight.flight.to}

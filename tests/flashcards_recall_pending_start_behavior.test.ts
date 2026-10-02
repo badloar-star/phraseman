@@ -102,7 +102,7 @@ jest.mock('../hooks/useSessionAttemptAutoReset', () => ({ useSessionAttemptAutoR
 jest.mock('../hooks/usePracticeRunes', () => ({ usePracticeRunes: () => ({ hydrating: false, runes: 0, settle: jest.fn(), forfeitPendingRunes: jest.fn(), onCorrectAnswer: jest.fn() }) }));
 // зачем (координатор §47): экран вешает ref карточки на originRef — без него мок падал
 // TypeError внутри React и всплывал «немым» AggregateError (причина skip с 14.09).
-jest.mock('../hooks/usePracticeRuneFlight', () => ({ usePracticeRuneFlight: () => ({ flight: null, originRef: { current: null }, counterRef: { current: null }, bump: jest.fn(), fly: jest.fn(), clearFlight: jest.fn() }) }));
+jest.mock('../hooks/useCoinRewardFlight', () => ({ useCoinRewardFlight: () => ({ flight: null, originRef: { current: null }, counterRef: { current: null }, bump: jest.fn(), fly: jest.fn(), clearFlight: jest.fn() }) }));
 jest.mock('../app/mistake_practice_capture', () => ({ captureCurrentAccountObjectiveAttempt: jest.fn() }));
 jest.mock('../app/navigation_back', () => ({ markNextNavigationAsReplace: jest.fn(), safeRouterBack: jest.fn() }));
 jest.mock('../app/flashcards/SoundService', () => ({ fcHaptic: jest.fn(), playSfx: jest.fn() }));
@@ -113,7 +113,7 @@ jest.mock('../components/ReportErrorButton', () => 'ReportErrorButton');
 jest.mock('../components/SkeletonShimmer', () => 'SkeletonBlock');
 jest.mock('../components/session_attempts/SessionAttemptsHud', () => 'SessionAttemptsHud');
 jest.mock('../components/PracticeRuneCounter', () => ({ PracticeRuneCounter: 'PracticeRuneCounter' }));
-jest.mock('../components/LearningV2RuneFlight', () => ({ LearningV2RuneFlight: 'LearningV2RuneFlight' }));
+jest.mock('../components/rewards/CoinRewardFlight', () => ({ CoinRewardFlight: 'CoinRewardFlight' }));
 jest.mock('../app/flashcards/SessionResultScreen', () => ({ SessionResultScreen: 'SessionResultScreen' }));
 
 import FlashcardsRecallSession from '../app/flashcards_recall_session';
@@ -129,7 +129,7 @@ beforeEach(() => {
 afterEach(async () => { await cleanup(); });
 
 // зачем (координатор §47, 2026-10-01): кейс был test.skip с 14.09 — «непрозрачный
-// AggregateError». Развёрнутая ошибка: мок usePracticeRuneFlight без originRef
+// AggregateError». Развёрнутая ошибка: мок useCoinRewardFlight без originRef
 // (TypeError в ref карточки). Плюс квота переехала в monthly_training_sessions и
 // ESM expo-linear-gradient не грузился. Моки приведены — кейс снова исполняется.
 test('pending allowed Recall consume survives unmount and same-intent remount without a second quota count', async () => {

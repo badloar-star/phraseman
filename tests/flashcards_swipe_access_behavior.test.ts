@@ -124,7 +124,7 @@ jest.mock('../components/NoEnergyModal', () => 'NoEnergyModal');
 jest.mock('../components/ReportErrorButton', () => 'ReportErrorButton');
 jest.mock('../components/session_attempts/SessionAttemptsHud', () => 'SessionAttemptsHud');
 jest.mock('../components/PracticeRuneCounter', () => ({ PracticeRuneCounter: 'PracticeRuneCounter' }));
-jest.mock('../components/LearningV2RuneFlight', () => ({ LearningV2RuneFlight: 'LearningV2RuneFlight' }));
+jest.mock('../components/rewards/CoinRewardFlight', () => ({ CoinRewardFlight: 'CoinRewardFlight' }));
 jest.mock('../components/text-integrity/FlowText', () => ({
   FlowText: function MockFlowText(props: Record<string, unknown>) {
     return React.createElement('Text', props, props.children as React.ReactNode);
@@ -146,8 +146,8 @@ jest.mock('../hooks/usePracticeRunes', () => ({
     return { hydrating: false, runes: 0, settle: jest.fn(), forfeitPendingRunes: jest.fn(), onCorrectAnswer: jest.fn() };
   },
 }));
-jest.mock('../hooks/usePracticeRuneFlight', () => ({
-  usePracticeRuneFlight: () => ({ flight: null, counterRef: { current: null }, originRef: { current: null }, fly: jest.fn(), clearFlight: jest.fn() }),
+jest.mock('../hooks/useCoinRewardFlight', () => ({
+  useCoinRewardFlight: () => ({ flight: null, counterRef: { current: null }, originRef: { current: null }, fly: jest.fn(), clearFlight: jest.fn() }),
 }));
 jest.mock('../hooks/useSessionAttempts', () => ({
   useSessionAttempts: (input: unknown) => {

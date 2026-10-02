@@ -31,8 +31,8 @@ import { useScreen } from '../../hooks/use-screen';
 import { shouldPromptFeedback, markFeedbackPrompted } from '../feedback_prompt_throttle';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { fcHaptic, playSfx } from './SoundService';
-import { LearningV2RuneFlight } from '../../components/LearningV2RuneFlight';
-import { usePracticeRuneFlight } from '../../hooks/usePracticeRuneFlight';
+import { CoinRewardFlight } from '../../components/rewards/CoinRewardFlight';
+import { useCoinRewardFlight } from '../../hooks/useCoinRewardFlight';
 
 // ── Экран результата ──────────────────────────────────────────────────────────
 
@@ -59,7 +59,7 @@ function shouldStackResultStats(availableWidth: number, nativeFontScale: number,
 function ResultRuneAward({ amount, testID }: Readonly<{ amount: number; testID: string }>) {
   const { theme: t, themeMode, fontSize, uiScale } = useTheme();
   const { lang } = useLang();
-  const runeFlight = usePracticeRuneFlight();
+  const runeFlight = useCoinRewardFlight();
   const [originReady, setOriginReady] = useState(false);
   const [targetReady, setTargetReady] = useState(false);
   const playedRef = useRef(false);
@@ -111,7 +111,7 @@ function ResultRuneAward({ amount, testID }: Readonly<{ amount: number; testID: 
         style={styles.rewardFlightOrigin}
       />
       {runeFlight.flight ? (
-        <LearningV2RuneFlight
+        <CoinRewardFlight
           key={runeFlight.flight.key}
           from={runeFlight.flight.from}
           to={runeFlight.flight.to}

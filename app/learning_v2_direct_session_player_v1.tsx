@@ -45,9 +45,9 @@ import HorizonSessionResult, {
 import type { HorizonMistakeReviewItem } from '../components/learning-v2/horizons/HorizonMistakeReview';
 import { WALLET_SUBUNITS_PER_STAR } from '../modules/learning-v2/contracts/wallet';
 import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_runes';
-import LearningV2RuneFlight, {
-  type LearningV2RuneFlightPoint,
-} from "../components/LearningV2RuneFlight";
+import CoinRewardFlight, {
+  type CoinRewardFlightPoint,
+} from "../components/rewards/CoinRewardFlight";
 import { HOME_RUNE_ICON_SOURCE } from "../components/home/homeRuneAsset";
 import EnergyBar from "../components/EnergyBar";
 import ReportErrorButton from "../components/ReportErrorButton";
@@ -585,8 +585,8 @@ export default function LearningV2DirectSessionPlayerV1() {
   const [runeFlight, setRuneFlight] = useState<Readonly<{
     key: number;
     count: 1 | 2 | 3 | 4 | 6;
-    from: LearningV2RuneFlightPoint;
-    to: LearningV2RuneFlightPoint;
+    from: CoinRewardFlightPoint;
+    to: CoinRewardFlightPoint;
   }> | null>(null);
   const runeCounterRef = useRef<View>(null);
   const runeFlightSequenceRef = useRef(0);
@@ -2585,7 +2585,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     </Animated.View>
   );
   const runeFlightOverlay = runeFlight ? (
-    <LearningV2RuneFlight
+    <CoinRewardFlight
       key={runeFlight.key}
       from={runeFlight.from}
       to={runeFlight.to}

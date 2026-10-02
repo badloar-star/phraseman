@@ -67,9 +67,9 @@ import { checkAchievements } from './achievements';
 import { getMistakePracticeAchievementSnapshot } from './mistake_practice_insights';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
-import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
+import CoinRewardFlight from '../components/rewards/CoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
-import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
+import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
@@ -380,7 +380,7 @@ function MistakePracticeSessionScreen() {
     enabled: session !== null,
     devFakeStartRunes: devRunesFake?.runes,
   });
-  const runeFlight = usePracticeRuneFlight();
+  const runeFlight = useCoinRewardFlight();
   useEffect(() => {
     // зачем (аудит 2026-08-28): earningsRef ещё null до конца гидратации —
     // settle() тогда тихо выходит и копилка не зачитывается никогда (DEV-хаб
@@ -1198,7 +1198,7 @@ OK: ${entry.exercise.correctAnswer}`}
         testIDPrefix="mistake-practice-hide"
       />
       {runeFlight.flight && (
-        <LearningV2RuneFlight
+        <CoinRewardFlight
           key={runeFlight.flight.key}
           from={runeFlight.flight.from}
           to={runeFlight.flight.to}

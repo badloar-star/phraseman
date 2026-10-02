@@ -171,7 +171,7 @@ function hashProtectedRuntimeElements() {
     'SpeakingPanel',
     'SpeakHoldButton',
     'NoEnergyModal',
-    'LearningV2RuneFlight',
+    'CoinRewardFlight',
   ]);
   const nodes = [];
   const visit = (node) => {

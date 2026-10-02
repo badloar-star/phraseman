@@ -73,7 +73,7 @@ export interface FirstPurchaseSealCelebrationProps {
 /**
  * Хореография из макета, вариант «Печать». Числа не круглые «на глаз», а
  * взятые из действующей системы: 620 мс и кривая (.33,.52,.25,.99) — те же,
- * что у полёта рун (components/LearningV2RuneFlight).
+ * что у полёта рун (components/rewards/CoinRewardFlight).
  */
 const DROP_MS = 620;
 const DROP_DELAY_MS = 120;

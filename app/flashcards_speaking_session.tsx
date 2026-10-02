@@ -96,9 +96,9 @@ import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_captur
 import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
-import { LearningV2RuneFlight } from '../components/LearningV2RuneFlight';
+import { CoinRewardFlight } from '../components/rewards/CoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
-import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
+import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
@@ -361,7 +361,7 @@ export default function FlashcardsSpeakingSession() {
     completionOrdinal: 1,
     devFakeStartRunes: devRunesFake?.runes,
   });
-  const runeFlight = usePracticeRuneFlight();
+  const runeFlight = useCoinRewardFlight();
   useEffect(() => {
     // зачем (аудит 2026-08-28): earningsRef ещё null до конца гидратации —
     // settle() тогда тихо выходит и копилка не зачитывается никогда (DEV-хаб
@@ -1654,7 +1654,7 @@ RU: ${card.translation}`}
       {deckPickerSheet}
       <NoEnergyModal visible={noEnergyOpen} onClose={leave} activity="flashcards" />
       {runeFlight.flight && (
-        <LearningV2RuneFlight
+        <CoinRewardFlight
           key={runeFlight.flight.key}
           from={runeFlight.flight.from}
           to={runeFlight.flight.to}

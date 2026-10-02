@@ -56,9 +56,9 @@ import {
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import AnimatedCountUpText from '../components/AnimatedCountUpText';
-import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
+import CoinRewardFlight from '../components/rewards/CoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
-import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
+import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
@@ -333,7 +333,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
     // экран со случайным стартовым счётчиком. Параметр читает родитель.
     devFakeStartRunes,
   });
-  const runeFlight = usePracticeRuneFlight();
+  const runeFlight = useCoinRewardFlight();
   // зачем (владелец, 2026-08-27): DEV-хаб открывает СРАЗУ экран завершения.
   const [allDone, setAllDone] = useState(devJumpToFinale || verbs.length === 0);
   const settlementPromiseRef = useRef<Promise<void> | null>(null);
@@ -949,7 +949,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
         onDone={() => setLearnedBurst(null)}
       />
       {runeFlight.flight && (
-        <LearningV2RuneFlight
+        <CoinRewardFlight
           key={runeFlight.flight.key}
           from={runeFlight.flight.from}
           to={runeFlight.flight.to}

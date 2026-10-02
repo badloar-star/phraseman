@@ -34,9 +34,9 @@ import NoEnergyModal from '../components/NoEnergyModal';
 import EnergyBar from '../components/EnergyBar';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
-import { LearningV2RuneFlight } from '../components/LearningV2RuneFlight';
+import { CoinRewardFlight } from '../components/rewards/CoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
-import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
+import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { SessionResultScreen } from './flashcards/SessionResultScreen';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -1376,7 +1376,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     devFakeStartRunes: devRunesFake?.runes,
     enabled: swipeAccessGranted,
   });
-  const runeFlight = usePracticeRuneFlight();
+  const runeFlight = useCoinRewardFlight();
 
   const text = useMemo(
     () => ({
@@ -3813,7 +3813,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         ) : null}
         {attempts.state.phase !== 'active' ? <View pointerEvents="auto" style={styles.attemptsInputBlocker} /> : null}
         {runeFlight.flight ? (
-          <LearningV2RuneFlight key={runeFlight.flight.key} from={runeFlight.flight.from} to={runeFlight.flight.to} count={runeFlight.flight.count} onDone={runeFlight.clearFlight} />
+          <CoinRewardFlight key={runeFlight.flight.key} from={runeFlight.flight.from} to={runeFlight.flight.to} count={runeFlight.flight.count} onDone={runeFlight.clearFlight} />
         ) : null}
       </View>
     );
@@ -4174,7 +4174,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           <View pointerEvents="auto" style={styles.attemptsInputBlocker} />
         ) : null}
         {runeFlight.flight && (
-          <LearningV2RuneFlight
+          <CoinRewardFlight
             key={runeFlight.flight.key}
             from={runeFlight.flight.from}
             to={runeFlight.flight.to}

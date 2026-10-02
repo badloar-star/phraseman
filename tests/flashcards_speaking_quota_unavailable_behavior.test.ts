@@ -121,7 +121,7 @@ jest.mock('../hooks/useSessionAttempts', () => ({ useSessionAttempts: () => ({
 }) }));
 jest.mock('../hooks/useSessionAttemptAutoReset', () => ({ useSessionAttemptAutoReset: jest.fn() }));
 jest.mock('../hooks/usePracticeRunes', () => ({ usePracticeRunes: () => ({ hydrating: false, runes: 0, settle: jest.fn(), startNewCompletion: jest.fn(), forfeitPendingRunes: jest.fn() }) }));
-jest.mock('../hooks/usePracticeRuneFlight', () => ({ usePracticeRuneFlight: () => ({ counterRef: { current: null }, flight: null, fly: jest.fn(), clearFlight: jest.fn() }) }));
+jest.mock('../hooks/useCoinRewardFlight', () => ({ useCoinRewardFlight: () => ({ counterRef: { current: null }, flight: null, fly: jest.fn(), clearFlight: jest.fn() }) }));
 jest.mock('../app/dev_practice_runes_seed', () => ({ readDevPracticeRunesFakeState: () => null }));
 jest.mock('../app/feedback_attempt_identity', () => ({ makeFeedbackAttemptId: () => mockAttemptIdFactory() }));
 jest.mock('../app/analytics', () => ({ trackEvent: jest.fn() }));
@@ -139,7 +139,7 @@ jest.mock('../components/SpeakingInlineSlot', () => 'SpeakingInlineSlot');
 jest.mock('../components/SpeakingInlineResultStars', () => 'SpeakingInlineResultStars');
 jest.mock('../components/session_attempts/SessionAttemptsHud', () => 'SessionAttemptsHud');
 jest.mock('../components/PracticeRuneCounter', () => ({ PracticeRuneCounter: 'PracticeRuneCounter' }));
-jest.mock('../components/LearningV2RuneFlight', () => ({ LearningV2RuneFlight: 'LearningV2RuneFlight' }));
+jest.mock('../components/rewards/CoinRewardFlight', () => ({ CoinRewardFlight: 'CoinRewardFlight' }));
 jest.mock('../app/flashcards/SpeakingTaskHint', () => () => null);
 jest.mock('../app/flashcards/PhraseCard', () => ({ __esModule: true, default: 'PhraseCard', useFcReduceMotion: () => true }));
 jest.mock('../app/flashcards/DeckPickerSheet', () => 'DeckPickerSheet');

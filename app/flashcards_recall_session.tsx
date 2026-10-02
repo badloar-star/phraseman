@@ -18,7 +18,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import { useLang } from '../components/LangContext';
-import { LearningV2RuneFlight } from '../components/LearningV2RuneFlight';
+import { CoinRewardFlight } from '../components/rewards/CoinRewardFlight';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -33,7 +33,7 @@ import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { PracticeBackButton, PracticeHeaderTitle, PracticeRoundIconButton } from '../components/practice/PracticeChrome';
 import { PracticeCta, PracticeProgressRow, PracticeStatePanel } from '../components/practice/PracticeStates';
-import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
+import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
@@ -177,7 +177,7 @@ export default function FlashcardsRecallSession() {
   const answerLockedRef = useRef(false);
   const promptRef = useRef<View>(null);
   const firstPromptPresentedRef = useRef(false);
-  const runeFlight = usePracticeRuneFlight();
+  const runeFlight = useCoinRewardFlight();
   const recallMountedRef = useRef(true);
   const recallExplicitlyAbandonedRef = useRef(false);
   const recallPendingGrantRef = useRef<{
@@ -1048,7 +1048,7 @@ export default function FlashcardsRecallSession() {
           </ScrollView>
         </ContentWrap>
         {runeFlight.flight ? (
-          <LearningV2RuneFlight
+          <CoinRewardFlight
             key={runeFlight.flight.key}
             from={runeFlight.flight.from}
             to={runeFlight.flight.to}

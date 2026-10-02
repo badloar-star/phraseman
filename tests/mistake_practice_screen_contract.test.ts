@@ -57,9 +57,10 @@ describe('mistake practice session screen', () => {
     expect(screen).toContain('focusMistakeId?: string');
     expect(screen).toContain('returnTo?: string');
     expect(screen).toContain('focusMistakeId: focusedMistakeId');
-    expect(screen).toContain("params.returnTo === 'max_voice_review'");
-    expect(screen).toContain("pathname: '/max_voice_review'");
-    expect(screen).toContain('params.maxReviewSessionId');
+    // зачем (02.10): раздел MAX запломбирован владельцем (2026-09-04), возврат в /max_voice_review
+    // снят 30.09 (efe19ae9d). Сторож держит пломбу — экран не ведёт в закрытый раздел.
+    expect(screen).not.toContain("pathname: '/max_voice_review'");
+    expect(screen).not.toContain("params.returnTo === 'max_voice_review'");
     expect(screen).toContain("const persistSession = entrySource === 'cards'");
     expect(screen).toContain('prepareMistakePracticeSession');
     expect(runtime).toContain('input.persistSession');

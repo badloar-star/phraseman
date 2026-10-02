@@ -71,6 +71,7 @@ export async function startIntroFullAccessAfterOnboarding(
         [INTRO_FULL_ACCESS_WELCOME_SEEN_KEY, 'true'], // уже видел приветствие в прошлой установке
         [INTRO_FULL_ACCESS_ENDED_SEEN_KEY, 'false'],
       ]);
+      bumpIntroReadGeneration();
       void loadIntroNotificationModule().then((notifications) => {
         notifications.scheduleIntroExpiringNotification(remainingEndsAt, lang).catch(noteSwallowedHandler('intro_full_access:promise_2'));
         notifications.scheduleUpsellNotifications(remainingEndsAt, lang).catch(noteSwallowedHandler('intro_full_access:promise_3'));
@@ -78,6 +79,7 @@ export async function startIntroFullAccessAfterOnboarding(
     } else {
       // Подарок выдан и истёк — пишем только started_at чтобы запомнить факт выдачи.
       await AsyncStorage.setItem(INTRO_FULL_ACCESS_STARTED_AT_KEY, String(cloudState.grantedAtMs));
+      bumpIntroReadGeneration();
     }
     return;
   }
@@ -97,6 +99,7 @@ export async function startIntroFullAccessAfterOnboarding(
       [INTRO_FULL_ACCESS_WELCOME_SEEN_KEY, 'true'],
       [INTRO_FULL_ACCESS_ENDED_SEEN_KEY, 'true'],
     ]);
+    bumpIntroReadGeneration();
     return;
   }
 
@@ -106,6 +109,7 @@ export async function startIntroFullAccessAfterOnboarding(
     [INTRO_FULL_ACCESS_WELCOME_SEEN_KEY, grant.alreadyGranted ? 'true' : 'false'],
     [INTRO_FULL_ACCESS_ENDED_SEEN_KEY, 'false'],
   ]);
+  bumpIntroReadGeneration();
 
   // Сервер уже атомарно выдал или replay-нул grant; локально сохраняются только
   // точные серверные timestamps, затем восстанавливаются прежние уведомления.
@@ -120,8 +124,39 @@ export async function startIntroFullAccessAfterOnboarding(
   }
 }
 
+/**
+ * зачем ([COLD-START-IO], release, слабый профиль, 02.10): состояние intro читали 11 раз за 15 с старта
+ * (PremiumContext, Главная, гейты) — каждое multiGet ждало очередь до 3,2 с. Одновременные чтения
+ * склеиваются в одно; сырые пары общие, а «сейчас» считает каждый вызов сам. Любая запись в этом
+ * модуле повышает поколение — следующие чтения идут заново, старый ответ не переиспользуется.
+ * Кэша дольше одного запроса нет.
+ */
+let introReadGeneration = 0;
+let inFlightIntroRead: Readonly<{ generation: number; promise: Promise<readonly (readonly [string, string | null])[]> }> | null = null;
+
+function bumpIntroReadGeneration(): void {
+  introReadGeneration += 1;
+  inFlightIntroRead = null;
+}
+
+function readIntroPairs(): Promise<readonly (readonly [string, string | null])[]> {
+  const current = inFlightIntroRead;
+  if (current && current.generation === introReadGeneration) return current.promise;
+  const generation = introReadGeneration;
+  const promise = AsyncStorage.multiGet([...INTRO_FULL_ACCESS_STORAGE_KEYS]);
+  inFlightIntroRead = Object.freeze({ generation, promise });
+  const release = (): void => {
+    if (inFlightIntroRead?.promise === promise) inFlightIntroRead = null;
+  };
+  promise.then(release, (error: unknown) => {
+    release();
+    DebugLogger.error('intro_full_access:read_failed', error instanceof Error ? error : new Error(String(error)), 'warning');
+  });
+  return promise;
+}
+
 export async function getIntroFullAccessState(nowMs: number = Date.now()): Promise<IntroFullAccessState> {
-  const pairs = await AsyncStorage.multiGet([...INTRO_FULL_ACCESS_STORAGE_KEYS]);
+  const pairs = await readIntroPairs();
   const get = (key: string) => pairs.find(([k]) => k === key)?.[1] ?? null;
   const startedAt = parsePositiveMs(get(INTRO_FULL_ACCESS_STARTED_AT_KEY));
   const endsAt = parsePositiveMs(get(INTRO_FULL_ACCESS_ENDS_AT_KEY));
@@ -161,8 +196,10 @@ export async function shouldShowIntroFullAccessWelcome(nowMs: number = Date.now(
 
 export async function markIntroFullAccessWelcomeSeen(): Promise<void> {
   await AsyncStorage.setItem(INTRO_FULL_ACCESS_WELCOME_SEEN_KEY, 'true');
+  bumpIntroReadGeneration();
 }
 
 export async function markIntroFullAccessEndedSeen(): Promise<void> {
   await AsyncStorage.setItem(INTRO_FULL_ACCESS_ENDED_SEEN_KEY, 'true');
+  bumpIntroReadGeneration();
 }

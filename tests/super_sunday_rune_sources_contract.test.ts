@@ -64,32 +64,9 @@ describe('Super Sunday live earn source wiring', () => {
 
   });
 
-  it('doubles video wallet grants without turning video into league earnings', () => {
-    const video = read('functions/src/video_watch_runes.ts');
-    const ledger = read('functions/src/stars_ledger.ts');
-
-    expect(video).toContain("from '../../modules/economy/super_sunday_runes'");
-    expect(video).toContain('resolveVideoWatchRuneAward(duration.completeMinutes, grantedToday, now)');
-    expect(video).toContain('delta: award.walletGranted');
-    expect(video).toContain('ruleVersion: 4');
-    expect(video).toContain('meta: { requestId, sessionId, observedMinutes: duration.completeMinutes');
-    expect(video).toContain('granted: grantedToday + appliedBase');
-    expect(ledger).toContain("video_watch: 'grant'");
-  });
-
-  it('resolves immutable video replay before checking current Premium access', () => {
-    const video = read('functions/src/video_watch_runes.ts');
-    const ownershipCheck = video.indexOf('if (!userMatchesAuth(stableUid, data, request.auth!.uid))');
-    const priorReceiptRead = video.indexOf("const priorReceiptSnap = action === 'claim'");
-    const replayBranch = video.indexOf('if (priorReceiptSnap?.exists)');
-    const premiumCheck = video.indexOf('const premiumOk = await resolvePremiumAccess(');
-
-    expect(ownershipCheck).toBeGreaterThan(-1);
-    expect(priorReceiptRead).toBeGreaterThan(ownershipCheck);
-    expect(replayBranch).toBeGreaterThan(priorReceiptRead);
-    expect(replayBranch).toBeLessThan(premiumCheck);
-    expect(video.slice(replayBranch, premiumCheck)).toContain("reason: 'already_applied'");
-    expect(video.slice(replayBranch, premiumCheck)).toContain("throw new HttpsError('failed-precondition', 'op_conflict')");
+  it('server video-watch rune claim is deleted (D78/PM-080, Q109)', () => {
+    expect(fs.existsSync(path.resolve(__dirname, '..', 'functions', 'src', 'video_watch_runes.ts'))).toBe(false);
+    expect(read('functions/src/index.ts')).not.toMatch(/export \{ videoWatchRunesClaim \}/);
   });
 
   it('has no client video-watch rune source left (Q9)', () => {

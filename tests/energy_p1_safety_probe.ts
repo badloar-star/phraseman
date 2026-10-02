@@ -23,11 +23,8 @@ assert.ok(
   'video player must not mint energy or runes for watching',
 );
 
-const serverRunes = read('functions/src/video_watch_runes.ts');
-for (const marker of ['action === \'progress\'', 'progressSeq', 'maxCreditedPositionMs', 'session.verifiedMs']) {
-  assert.ok(serverRunes.includes(marker), `server verified-progress marker missing: ${marker}`);
-}
-assert.ok(!serverRunes.includes('observedVideoWatchDuration(session.startedAt, now'), 'claim still credits idle wall time');
+// зачем (Q109): серверной награды за видео больше нет вовсе (функция удалена, D78/PM-080).
+assert.ok(!fs.existsSync(path.join(process.cwd(), 'functions/src/video_watch_runes.ts')), 'server video-watch rune claim returned');
 
 const refill = read('app/energy_shard_refill.ts');
 assert.ok(refill.includes('operationId?: string'), 'refill cannot receive a stable operation id');

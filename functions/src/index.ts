@@ -1051,9 +1051,9 @@ export { adminActivateTelegramPremiumOrder, adminInspectTelegramPromoCode } from
 
 // Authenticated, server-authoritative one-time onboarding access grant.
 export { introFullAccessClaim } from "./gift_access";
-// Руны за просмотр видео для Plus/Pro: 3 базовые руны за полную минуту,
-// одним вызовом в конце просмотра, потолок 600 в сутки.
-export { videoWatchRunesClaim } from "./video_watch_runes";
+// зачем (D78/PM-080, Q109): videoWatchRunesClaim (руны за просмотр видео) удалена вместе
+// с кодом. В облаке функция доживает до min_app_version >= 2.0 (её зовёт 1.6.24) —
+// см. DEPLOY_NOW.md, Шаг 2. Полная выкладка предложит её удалить — до релиза отвечать «нет».
 // зачем: D139 (владелец 2026-10-01) — докупка «+10 реплик за 300 монет»
 // (aiDialogBuyExtraReplies) удалена; месячная квота D111 остаётся. Деплой удалит
 // функцию (Firebase спросит подтверждение).

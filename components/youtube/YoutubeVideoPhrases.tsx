@@ -18,6 +18,7 @@ import {
   requestYoutubeSeek,
   subscribeYoutubePosition,
 } from '../../app/youtube_player_seek_bus';
+import { noteSwallowedAs } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type YoutubeVideoPhrasesProps = {
   videoId: string;
@@ -67,7 +68,7 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
     let retryTimer: ReturnType<typeof setTimeout> | null = null;
     setState('loading');
     const savedCards = alignSavedVideoFlashcardsWithChannel({ videoId, packLanguage: studyTarget, sourceTitle })
-      .catch(() => 0)
+      .catch(noteSwallowedAs('YoutubeVideoPhrases:useEffect.alignSavedVideoFlashcardsWithChannel', 0))
       .then(() => loadFlashcards(studyTarget));
     const startedAt = Date.now();
     void Promise.all([fetchPublishedVideoPhrases(videoId), savedCards]).then(([next, cards]) => {

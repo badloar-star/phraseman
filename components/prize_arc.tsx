@@ -48,6 +48,7 @@ import {
   ROULETTE_PRIZES,
   TAPE_CYCLE,
 } from '../app/roulette_prizes';
+import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // ── Геометрия ────────────────────────────────────────────────────────────────
 const CARD_W = 150;
@@ -144,7 +145,7 @@ const PrizeArc = forwardRef<PrizeArcHandle, PrizeArcProps>(function PrizeArc(
   // expo-image грузит require()-ассеты сам с кэшем; прелоад остаётся тёплым
   // фоном, чтобы спин не ловил догрузку.
   useEffect(() => {
-    void preloadRoulettePrizeImages().catch(() => {});
+    void preloadRoulettePrizeImages().catch(noteSwallowedHandler('prize_arc:useEffect.preloadRoulettePrizeImages'));
   }, []);
 
   // Вход: дуга выкатывается снизу с лёгким довором (как полукруг у Kimi).

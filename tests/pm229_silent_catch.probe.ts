@@ -30,17 +30,11 @@ const BASELINE: Record<string, number> = {
   'app/(tabs)/settings.tsx': 1, // FINAL_PHASE п.7 2026-10-02: 4 → 1
   'app/_layout.tsx': 112, // PM-229 2026-10-02: 115 → 112
   'app/account_switch_quarantine.ts': 3,
-  'app/achievements_screen.tsx': 1,
   'app/app_snapshot_bootstrap.ts': 5, // Q5: чтение Avatar DNA на старте удалено
   'app/auth_provider.ts': 26,
-  'app/coin_rank.tsx': 1,
-  'app/community_pack_create.tsx': 1,
   'app/community_packs/CommunityPackSocialBar.tsx': 2,
-  'app/community_packs/PackCommentsSheet.tsx': 1,
   'app/debug-logger.ts': 2, // PM-228 2026-10-01: 7 → 2 (остались .catch(() => undefined) в цепочке очереди — намеренный разрыв цепочки)
-  'app/flashcards/CollectionListView.tsx': 1,
   'app/flashcards/FlashcardsHubScreen.tsx': 4,
-  'app/flashcards/PhraseCard.tsx': 1,
   'app/flashcards_blitz_session.tsx': 4, // FINAL_PHASE п.7 2026-10-02: 12 → 4
   'app/flashcards_collection.tsx': 2,
   'app/flashcards_my_packs.tsx': 4, // FINAL_PHASE п.7 2026-10-02: 5 → 4 (удаление набора)
@@ -49,23 +43,9 @@ const BASELINE: Record<string, number> = {
   'app/flashcards_swipe.tsx': 13, // FINAL_PHASE п.7 2026-10-02: 23 → 13
   'app/flashcards_training_setup.tsx': 1,
   'app/interactive_network_quiet.ts': 1,
-  'app/learning-v2/lesson/[id].tsx': 4,
-  'app/learning-v2/session/[id].tsx': 3,
   'app/learning_v2_direct_session_player_v1.tsx': 1,
   'app/lesson_irregular_verbs.tsx': 1, // PM-233 D140: 2 → 1 (снят дроп коллекции)
   'app/statsCache.ts': 3,
-  'app/streak_stats.tsx': 4, // D49 2026-10-01: 7 → 4 (удалена кнопка «Подарки»)
-  'components/AiLimitUpsellCard.tsx': 1,
-  'components/DailyPhraseCard.tsx': 6,
-  'components/DialogsTabContent.tsx': 1,
-  'components/ErrorBoundary.tsx': 1,
-  'components/ForceUpdateGate.tsx': 1,
-  'components/ScreenGradient.tsx': 1,
-  'components/dev/DevHubSheet.tsx': 1,
-  'components/level-exam/LevelExamIntro.tsx': 1,
-  'components/prize_arc.tsx': 1,
-  'components/theory/TheoryLessonView.tsx': 1,
-  'components/youtube/YoutubeVideoPhrases.tsx': 1,
   'modules/phone-state/keyed_exclusive_transaction.ts': 1,
   'modules/account-session-v2/account_detach_latch.ts': 1, // E22 2026-10-01: намеренный разрыв цепочки очереди (tail = next.catch(...))
 };

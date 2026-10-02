@@ -121,6 +121,7 @@ import {
   type LearningV2ActivityReleasedSessionRuntimeHandleV1,
 } from "../../../modules/learning-v2/runtime/activity_released_session_package_v1";
 import { DebugLogger } from '../../debug-logger';
+import { noteSwallowedAs, noteSwallowedHandler } from '../../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const SESSION_IDS = ["understand", "use", "master"].flatMap((zone) =>
   [1, 2, 3, 4].map((index) => `lesson-1-${zone}-${index}`),
@@ -550,7 +551,7 @@ function LearningV2LegacySessionScreen() {
     }
     networkIntentRef.current = intent;
     // This wait is evidence/fencing only. It never gates local lesson controls.
-    void waitForLearningV2SessionNetworkIntent(intent).catch(() => undefined);
+    void waitForLearningV2SessionNetworkIntent(intent).catch(noteSwallowedAs('learning_v2_session_id:useLayoutEffect.waitForLearningV2SessionNetworkIntent', undefined));
     return () => {
       if (networkIntentRef.current !== intent) return;
       networkIntentRef.current = null;
@@ -606,7 +607,7 @@ function LearningV2LegacySessionScreen() {
           awarded: { shards: 0 },
         },
       );
-    }).catch(() => undefined);
+    }).catch(noteSwallowedAs('learning_v2_session_id:useEffect.withAccountTransitionLock', undefined));
   }, [ordinal, session, sessionId]);
   // зачем: владелец — кнопка «Пропустить теорию» в модалке карты. Три вопроса
   // интро — это канонические слоты 1-3 из 12, а конверт завершения требует
@@ -1026,7 +1027,7 @@ function LearningV2LegacySessionScreen() {
             kind: isBuilder ? "word_order" : mode === "listen_choose" ? "listening" : "form",
             expected: correctAnswer,
           },
-        }).catch(() => {});
+        }).catch(noteSwallowedHandler('learning_v2_session_id:choose.captureCurrentAccountObjectiveAttempt'));
       }
       const errorOrdinal = attempts;
       const releasedFeedback =

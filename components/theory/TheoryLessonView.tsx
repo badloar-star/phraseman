@@ -29,6 +29,7 @@ import {
   theoryOverallProgressPct,
   type TheoryDrillProgressState,
 } from '../../app/theory_progress';
+import { noteSwallowedHandler } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /**
  * TheoryLessonView — рендер-движок раздела «Теория» в стиле «дорогой минимализм».
@@ -322,7 +323,7 @@ export default function TheoryLessonView({
     AsyncStorage.setItem(
       progressStorageKey,
       serializeTheorySeenProgress(seenSet, sections.length, openSet, drillProgress, drillIds.length),
-    ).catch(() => {});
+    ).catch(noteSwallowedHandler('TheoryLessonView:useEffect.setItem'));
   }, [
     progressStorageKey,
     seenKey,

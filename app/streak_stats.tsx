@@ -64,6 +64,7 @@ import { safeRouterBack } from './navigation_back';
 import { visiblePercentile } from './stats_percentile_display';
 import { resolveTesterNoPremiumOverride } from './tester_premium_override';
 import { noAndroidOutline } from '../constants/androidGlow';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 const CHART_H = 110;
 const DAYS_SHOW = 14;
 // зачем (results.html «Серия и статистика»): акцент карточек — тон стекла активной темы (t.accent = токен cta),
@@ -1449,12 +1450,12 @@ function WeekAnalyticsCard({
         let cancelled = false;
         void AsyncStorage.getItem(STATS_CHART_SCRUB_HINT_KEY).then((value) => {
             if (!cancelled && value !== '1') setScrubHintSeen(false);
-        }).catch(() => {});
+        }).catch(noteSwallowedHandler('streak_stats:useEffect.getItem'));
         return () => { cancelled = true; };
     }, []);
     const dismissScrubHint = useCallback(() => {
         setScrubHintSeen((seen) => {
-            if (!seen) void AsyncStorage.setItem(STATS_CHART_SCRUB_HINT_KEY, '1').catch(() => {});
+            if (!seen) void AsyncStorage.setItem(STATS_CHART_SCRUB_HINT_KEY, '1').catch(noteSwallowedHandler('streak_stats:useCallback.setItem'));
             return true;
         });
     }, []);
@@ -1850,9 +1851,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             if (!cancelled)
                 setPrimaryMetric(normalized);
         })
-            .catch(() => {
-            // Keep the safe default when the preference cannot be read.
-        });
+            .catch(noteSwallowedHandler('streak_stats:useEffect.getItem_2'));
         return () => { cancelled = true; };
     }, [studyTarget]);
     const selectPrimaryMetric = useCallback((nextMetric: StatsPrimaryMetric) => {
@@ -1860,9 +1859,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         // в этой сессии стартует сразу с этой вкладкой, без ожидания AsyncStorage.
         primaryMetricPeek = nextMetric;
         setPrimaryMetric(nextMetric);
-        void AsyncStorage.setItem(statsPrimaryMetricKey(studyTarget), nextMetric).catch(() => {
-            // The selection still works for this visit when persistence is unavailable.
-        });
+        void AsyncStorage.setItem(statsPrimaryMetricKey(studyTarget), nextMetric).catch(noteSwallowedHandler('streak_stats:useCallback.setItem_2'));
     }, [studyTarget]);
     const scrollRef = useRef<any>(null);
     const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();

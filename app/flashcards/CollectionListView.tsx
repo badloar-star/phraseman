@@ -44,6 +44,7 @@ import { CardItem, CategoryId, resolveFlashcardBackText, type FlashcardContentLa
 import { DebugLogger } from '../debug-logger';
 import { buildSourceLabel } from './source_labels';
 import { remainingCardsToMinimum } from './saved_card_selection';
+import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Монотонний фліп (timing замість spring) + різке opacity — без «моргання» біля 0.5. */
 const FLASHCARD_FLIP_DURATION_MS = 280;
@@ -325,7 +326,7 @@ export default function CollectionListView({
     if (deleteHintPulseLoop.current) deleteHintPulseLoop.current.stop();
     Animated.timing(deleteHintAnim, { toValue: 0, duration: 250, useNativeDriver: true }).start(() => {
       onSetShowDeleteHint(false);
-      AsyncStorage.setItem('flashcard_delete_hint_seen', '1').catch(() => {});
+      AsyncStorage.setItem('flashcard_delete_hint_seen', '1').catch(noteSwallowedHandler('CollectionListView:useCallback.setItem'));
     });
   }, [deleteHintAnim, onSetShowDeleteHint]);
 

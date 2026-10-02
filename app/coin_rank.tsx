@@ -33,6 +33,7 @@ import {
   isCoinRankUpgradeEligible,
 } from '../hooks/coin_rank_upgrade_guard';
 import { useCoinRankUpgrade } from '../hooks/use_coin_rank_upgrade';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type AccountToken = ReturnType<typeof captureAccountGeneration>;
 
@@ -78,10 +79,7 @@ function useCoinBalance(): CoinBalanceProjection {
         if (ownerRef.current !== owner || !isCurrentAccountGeneration(token, owner)) return;
         if (!forcedBlockRef.current) setBalance(read.wallet.balance);
       })
-      .catch(() => {
-        // Keep the last known projection. Unknown remains null; a failed read
-        // must never manufacture a spendable zero or enable the CTA.
-      });
+      .catch(noteSwallowedHandler('coin_rank:useCallback.getRunesBalanceRead'));
   }, []);
 
   const forceBalanceReconcile = useCallback(async (): Promise<'durable' | 'unavailable'> => {

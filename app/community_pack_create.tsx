@@ -81,6 +81,7 @@ import { buildSourceLabel } from './flashcards/source_labels';
 import {
 } from './flashcards/marketplace';
 import { consumeSavedCardSetStage } from './community_packs/savedCardSetStaging';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type Row = {
   id: string;
@@ -851,7 +852,7 @@ export default function CommunityPackCreateScreen() {
     void (async () => {
       setBusy(true);
       try {
-        const authorStableId = await getCanonicalUserId().catch(() => null);
+        const authorStableId = await getCanonicalUserId().catch(noteSwallowedAs('community_pack_create:useCallback.getCanonicalUserId', null));
         const cloudEdit = isEditMode && !isLocalAuthorPackId(editPackId);
         const localId = savedPackIdRef.current ?? (isEditMode ? (cloudEdit ? `local_pack_${editPackId}` : editPackId) : undefined);
         const previous = localId ? (await loadLocalAuthorPacks()).find(pack => pack.id === localId) : undefined;

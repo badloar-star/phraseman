@@ -52,6 +52,7 @@ import {
 import type { PremiumContext } from '../../app/premium_context';
 import { setDevFeatureIntroReplay, useDevFeatureIntroReplay } from '../../app/feature_intro_dev_replay';
 import { DEV_PAYWALL_CONTEXTS } from './paywallDevContexts';
+import { noteSwallowedHandler } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type DevHubSheetProps = Readonly<{
   visible: boolean;
@@ -388,7 +389,7 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       'onboarding_done',
       'onboarding_step',
       'onboarding_flow_version_v1',
-    ]).catch(() => {});
+    ]).catch(noteSwallowedHandler('DevHubSheet:useCallback.multiRemove'));
     requestClose(false, () => emitAppEvent('dev_onboarding_restart'));
   }, [requestClose]);
 

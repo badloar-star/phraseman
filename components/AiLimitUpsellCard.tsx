@@ -17,6 +17,7 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
 import { useTheme } from './ThemeContext';
 import TonalSurface from './TonalSurface';
+import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type AiLimitUpsellCardProps = {
   lang: Lang;
@@ -49,7 +50,7 @@ export default function AiLimitUpsellCard({
       .then((enabled) => {
         if (mounted) setReduceMotion(Boolean(enabled));
       })
-      .catch(() => {});
+      .catch(noteSwallowedHandler('AiLimitUpsellCard:useEffect.isReduceMotionEnabled'));
     const sub = AccessibilityInfo.addEventListener('reduceMotionChanged', setReduceMotion);
     return () => {
       mounted = false;

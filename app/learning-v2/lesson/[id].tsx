@@ -1,3 +1,4 @@
+import { noteSwallowedAs, noteSwallowedHandler } from '../../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Crypto from "expo-crypto";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -821,7 +822,7 @@ export default function LearningV2LessonMap() {
   }, []);
   useEffect(() => {
     if (!isMapFocused) return;
-    void hydrateCurrentLearningV2WalletBalance().catch(() => {});
+    void hydrateCurrentLearningV2WalletBalance().catch(noteSwallowedHandler('learning_v2_lesson_id:useEffect.hydrateCurrentLearningV2WalletBalance'));
   }, [isMapFocused]);
   useEffect(() => {
     const next = walletBalance?.walletStateFingerprint ?? null;
@@ -849,12 +850,12 @@ export default function LearningV2LessonMap() {
       studyTarget,
       learnerSourceLocale: lang,
       sessionOrdinal,
-    }).catch(() => undefined);
+    }).catch(noteSwallowedAs('learning_v2_lesson_id:useEffect.preloadCurrentLearningV2ActivityReleasedSessionV1', undefined));
     // зачем (D47/PM-205, владелец): скачивания озвучки V2 здесь нет — ни
     // прогрева звука сессии, ни фоновой закачки целого урока (цепочка
     // удалена целиком). Текст занятия (строка выше) — не про звук, остаётся.
     // Звук даёт стартовый пакет в сборке + TTS телефона в плеере.
-    void prepareCourseSession(sessionOrdinal).promise.catch(() => undefined);
+    void prepareCourseSession(sessionOrdinal).promise.catch(noteSwallowedAs('learning_v2_lesson_id:useEffect.promise', undefined));
   }, [auxiliaryScope, isMapFocused, lang, lessonOrdinal, model, prepareCourseSession, studyTarget]);
   useEffect(() => {
     if (lessonOrdinal !== 1) return;
@@ -995,7 +996,7 @@ export default function LearningV2LessonMap() {
     // Auxiliary descriptor transport is deliberately NOT started here: the
     // current runnable node was already preloaded by the idle map effect above.
     prepareLearningV2SessionNetworkIntent(node.id);
-    void prepareCourseSession(node.order).promise.catch(() => undefined);
+    void prepareCourseSession(node.order).promise.catch(noteSwallowedAs('learning_v2_lesson_id:selectNode.promise', undefined));
     setSelected(node);
   };
   const selectCourseNode = (node: LockedSessionRoadNode) => {

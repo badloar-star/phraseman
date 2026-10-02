@@ -49,6 +49,7 @@ import { STORE_URL, ENABLE_DEV_TOOLS } from './config';
 import { buildAchievementShareMessage } from './achievement_share';
 import { achievementShelfInitialId } from './achievement_shelf_model';
 import type { RuntimeStudyTarget } from './target_storage_keys';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const GRID_GAP = 10;
 const GRID_SIDE_PADDING = 36;
@@ -749,7 +750,7 @@ function AchievementModal({
               }}
               onPress={async () => {
                 const msg = buildAchievementShareMessage(lang, name, STORE_URL);
-                const result = await Share.share({ message: msg }).catch(() => null);
+                const result = await Share.share({ message: msg }).catch(noteSwallowedAs('achievements_screen:AchievementModal.share', null));
                 if (result?.action === 'sharedAction') {
                   void checkAchievements({ type: 'achievement_shared', studyTarget });
                 }

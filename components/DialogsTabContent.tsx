@@ -62,6 +62,7 @@ import { DialogueV2CatalogueContainer } from './dialogs/DialogueV2CatalogueConta
 import { prestartDialogueV2TextSession } from '../app/dialogue_v2_turn_client';
 import { useDialogueV2Warmup } from '../hooks/use_dialogue_v2_warmup';
 import { useV2Palette } from './v2/useV2Palette';
+import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 // зачем (v2, 2026-08-23): владелец задал эталон — раздел «Статистика»: всё
 // крупное, никаких мелких плиток/подписей. Полки карточек 128px заменены
 // стопкой полноширинных карточек-миров с разворотом (паттерн стрик-карты).
@@ -215,7 +216,7 @@ function DialogsTabContentBody({
       .then((snap) => {
         if (!cancelled) setUnlockedLessons(snap.persistedUnlocked);
       })
-      .catch(() => {});
+      .catch(noteSwallowedHandler('DialogsTabContent:useEffect.loadLessonsTabStateFromStorage'));
     return () => {
       cancelled = true;
     };

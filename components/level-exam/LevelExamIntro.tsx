@@ -13,6 +13,7 @@ import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { PracticeCta } from '../practice/PracticeStates';
 import { ExamFooter, ExamHeader, ExamHero, ExamKvCard, ExamVerdict } from './ExamGlassParts';
 import { AnimatedEnergyNumber } from '../energy/AnimatedEnergyNumber';
+import { noteSwallowedAs } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type Props = {
   lang: Lang;
@@ -85,7 +86,7 @@ export default function LevelExamIntro({
       // A rejected or synchronously thrown start is an expected UI outcome;
       // the owner screen reports the concrete error and this component only
       // owns releasing its press guard.
-      .catch(() => undefined)
+      .catch(noteSwallowedAs('LevelExamIntro:useCallback.resolve', undefined))
       .finally(() => {
         launchGuardRef.current = false;
         if (mountedRef.current) setLaunching(false);

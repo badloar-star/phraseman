@@ -23,6 +23,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from '../app/debug-logger';
 import { stableInitialWindowMetrics } from '../app/stable_safe_area_metrics';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 interface State {
   hasError: boolean;
@@ -140,7 +141,7 @@ export default class ErrorBoundary extends React.Component<Props, State> {
       if (v && Object.prototype.hasOwnProperty.call(TEXTS, v)) {
         this.setState({ lang: v as ErrorBoundaryLang });
       }
-    }).catch(() => {});
+    }).catch(noteSwallowedHandler('ErrorBoundary:componentDidMount.getItem'));
     this.appStateSub = AppState.addEventListener('change', (state) => {
       if (state === 'active' && this.state.hasError) {
         this.setState({ hasError: false, error: null, errorInfo: null });

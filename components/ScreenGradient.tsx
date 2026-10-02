@@ -17,6 +17,7 @@ import type { AppArtBackdropName } from './appArtBackdropRegistry';
 import type { ThemeMode } from '../constants/theme';
 
 import V2Backdrop from './v2/V2Backdrop';
+import { noteSwallowedAs } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const V2_BACKDROP_ENABLED = true;
 const GradientActiveCtx = React.createContext(false);
@@ -423,7 +424,7 @@ function useReduceMotionEnabled() {
       .then(value => {
         if (mounted) setReduceMotion(Boolean(value));
       })
-      .catch(() => undefined);
+      .catch(noteSwallowedAs('ScreenGradient:useEffect.isReduceMotionEnabled', undefined));
     const subscription = AccessibilityInfo.addEventListener('reduceMotionChanged', setReduceMotion);
     return () => {
       mounted = false;

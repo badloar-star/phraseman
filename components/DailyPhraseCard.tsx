@@ -57,6 +57,7 @@ import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { V2, V2_TYPE } from '../constants/v2Style';
 import { useV2Palette } from './v2/useV2Palette';
 import { V2GlassSheen, V2IconTile, useV2GlassStyle } from './v2/V2Glass';
+import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // Chrome (per-theme palette) now lives in app/daily_phrase_chrome.ts so the
 // home/lock-screen widget can render the identical look. See that file.
@@ -156,7 +157,7 @@ function DailyPhraseCard({
     setPhrase(getTodayPhraseSyncForTarget(studyTarget, lang));
     void getTodayPhraseForTarget(studyTarget, lang).then(p => {
       if (!cancelled && p) setPhrase(p);
-    }).catch(() => {});
+    }).catch(noteSwallowedHandler('DailyPhraseCard:useEffect.getTodayPhraseForTarget'));
     return () => { cancelled = true; };
   }, [dailyPhraseGateOpen, lang, studyTarget]);
 
@@ -244,7 +245,7 @@ function DailyPhraseCard({
           if (!finished) homePulseScale.setValue(1);
         });
       })
-      .catch(() => {});
+      .catch(noteSwallowedHandler('DailyPhraseCard:useEffect.claimDailyPhrasePulseForDay'));
 
     return () => {
       cancelled = true;
@@ -323,7 +324,7 @@ function DailyPhraseCard({
         explanationAnim.setValue(1);
         successAnim.setValue(0);
       })
-      .catch(() => {});
+      .catch(noteSwallowedHandler('DailyPhraseCard:useEffect.hasDailyPhraseQuestAnswered'));
 
     return () => { cancelled = true; };
   }, [
@@ -561,7 +562,7 @@ function DailyPhraseCard({
     const date = phrase.date || phrase.scheduledDate || new Date().toISOString().split('T')[0]!;
     const questKey = `${studyTarget === 'en' ? '' : `${studyTarget}:`}${date}:${phraseId}`;
     const alreadyAnswered = answeredQuestKeysRef.has(questKey)
-      || await hasDailyPhraseQuestAnswered({ phraseId, date, studyTarget }).catch(() => false);
+      || await hasDailyPhraseQuestAnswered({ phraseId, date, studyTarget }).catch(noteSwallowedAs('DailyPhraseCard:openDetails.hasDailyPhraseQuestAnswered', false));
 
     if (alreadyAnswered) {
       setQuestAnswered(true);
@@ -573,7 +574,7 @@ function DailyPhraseCard({
     }
 
     await dailyIntro.request();
-    checkAchievements({ type: 'daily_phrase', action: 'read', studyTarget }).catch(() => {});
+    checkAchievements({ type: 'daily_phrase', action: 'read', studyTarget }).catch(noteSwallowedHandler('DailyPhraseCard:openDetails.checkAchievements'));
   };
 
   const closeDetails = () => {
@@ -607,7 +608,7 @@ function DailyPhraseCard({
     setQuestAnswered(true);
     setQuestPreviouslyAnswered(false);
     revealQuestExplanation();
-    markDailyPhraseQuestAnswered({ phraseId, date, studyTarget }).catch(() => {});
+    markDailyPhraseQuestAnswered({ phraseId, date, studyTarget }).catch(noteSwallowedHandler('DailyPhraseCard:handleQuestOptionPress.markDailyPhraseQuestAnswered'));
 
     const correct = isDailyPhraseQuestAnswerCorrect(questOptions, optionId);
     if (!correct) {

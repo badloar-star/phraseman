@@ -53,6 +53,7 @@ import { DebugLogger } from '../app/debug-logger';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import ResponsiveModalScrollView from './ResponsiveModalScrollView';
 import { LinearGradient } from './SafeLinearGradient';
+import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type GateMode = 'force' | 'optional';
 const blockAndroidBack = () => undefined;
@@ -268,7 +269,7 @@ export default function ForceUpdateGate() {
 
   useEffect(() => {
     let dead = false;
-    void getStableId().then((id) => { if (!dead) setUserId(id || null); }).catch(() => {});
+    void getStableId().then((id) => { if (!dead) setUserId(id || null); }).catch(noteSwallowedHandler('ForceUpdateGate:useEffect.getStableId'));
     return () => { dead = true; };
   }, []);
 

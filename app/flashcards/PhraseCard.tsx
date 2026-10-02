@@ -59,6 +59,7 @@ import { fcHaptic, playSfx } from './SoundService';
 import WordStrengthDots from './WordStrengthDots';
 import type { FlashcardContentLang } from './types';
 import type { WordStrength } from './word_strength';
+import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // ── Общие хуки деградации ─────────────────────────────────────────────────────
 
@@ -69,7 +70,7 @@ export function useFcReduceMotion(): boolean {
     let mounted = true;
     AccessibilityInfo.isReduceMotionEnabled()
       .then((v) => { if (mounted) setReduceMotion(v); })
-      .catch(() => {});
+      .catch(noteSwallowedHandler('PhraseCard:useEffect.isReduceMotionEnabled'));
     const sub = AccessibilityInfo.addEventListener('reduceMotionChanged', setReduceMotion);
     return () => {
       mounted = false;

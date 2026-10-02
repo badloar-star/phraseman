@@ -59,6 +59,7 @@ import {
   togglePackCommentReaction,
 } from './packCommentsFirestore';
 import { registerCommunityPackAddRemote } from './packSocialFirestore';
+import { noteSwallowed } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type Props = {
   visible: boolean;
@@ -309,7 +310,8 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
     requestAnimationFrame(() => {
       try {
         listRef.current?.scrollToIndex({ index, animated: true, viewPosition: 0.3 });
-      } catch {
+      } catch (swallowedError) {
+        noteSwallowed('PackCommentsSheet:useEffect.catch', swallowedError);
         // короткая лента — прокручивать некуда, подсветка всё равно видна
       }
     });

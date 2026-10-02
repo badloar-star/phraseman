@@ -122,6 +122,7 @@ import {
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
 import { ENABLE_DEV_TOOLS } from '../config';
+import { markHomeFirstPaint } from '../home_paint_marker';
 const { height: SCREEN_H } = Dimensions.get('window');
 /** Значок действия в шапке (спин, подарок) — соразмерен соседям хедера. */
 /**
@@ -453,6 +454,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const homeViewportHeightRef = useRef(0);
     const homeScrollYRef = useRef(0);
     const [dailyPhraseCardVisible, setDailyPhraseCardVisible] = useState(false);
+    // зачем (§78): одна release-строка [HOME-PAINT] после первого кадра — точный замер Главной
+    // вместо опроса uiautomator (±1 с). Один раз за запуск, без setState.
+    useEffect(() => { markHomeFirstPaint(); }, []);
     const dailyPhraseCardVisibleRef = useRef(false);
     // зачем (аудит скорости 2026-08-22): раньше пересчитывался на КАЖДОМ кадре
     // скролла (scrollEventThrottle=16 ≈ 60/с) — сам расчёт дешёвый, но лишняя

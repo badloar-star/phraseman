@@ -84,6 +84,7 @@ import {
   type RuntimeStudyTarget,
 } from './target_storage_keys';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type LessonMenuCache = {
   score: number;
@@ -519,7 +520,7 @@ function LessonMenu() {
       // Кэш обновляем сразу вместе с диском: следующий вход в урок решит судьбу
       // подсказки синхронно, на первом кадре, без сдвига плиток.
       rememberPrepHintSeen(true);
-      void AsyncStorage.setItem(LESSON_MENU_PREP_HINT_SEEN_KEY, '1').catch(() => {});
+      void AsyncStorage.setItem(LESSON_MENU_PREP_HINT_SEEN_KEY, '1').catch(noteSwallowedHandler('lesson_menu:useEffect.setItem'));
     }, 1200);
     return () => clearTimeout(timer);
   }, [canShowLessonPrepHint, isLessonLocked, lessonPrepHintVisible, lockStateLoaded]);
@@ -764,7 +765,7 @@ function LessonMenu() {
       setSoonOpen('frenchLesson');
       return;
     }
-    void primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
+    void primeLessonScreenFromStorage(lessonId, studyTarget).catch(noteSwallowedHandler('lesson_menu:useCallback.primeLessonScreenFromStorage'));
     router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu', ...planLessonParams } });
   }, [frenchLessonSourceGated, lessonId, lessonLaunchBlocked, router, studyTarget]);
 
@@ -774,7 +775,7 @@ function LessonMenu() {
       setSoonOpen('frenchLesson');
       return;
     }
-    void primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
+    void primeLessonScreenFromStorage(lessonId, studyTarget).catch(noteSwallowedHandler('lesson_menu:useCallback.primeLessonScreenFromStorage_2'));
     // push (не replace): meню урока должно остаться в стеке, чтобы «назад» из lesson1
     // возвращал на lesson_menu, а не проваливался на список уроков (tabs/lessons).
     router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu', ...planLessonParams } });
@@ -788,7 +789,7 @@ function LessonMenu() {
       setSoonOpen('frenchLesson');
       return;
     }
-    void primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
+    void primeLessonScreenFromStorage(lessonId, studyTarget).catch(noteSwallowedHandler('lesson_menu:useCallback.primeLessonScreenFromStorage_3'));
     router.push({
       pathname: '/lesson1',
       params: { id: lessonId, from: 'lesson_menu', replayIntro: '1', replayIntroAt: String(Date.now()) },

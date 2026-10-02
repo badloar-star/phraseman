@@ -87,6 +87,7 @@ import PressableHybrid from './PressableHybrid';
 import { LUM } from '../constants/motionHybrid';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useKeyboardBottomInset } from './keyboardAvoidance';
+import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // зачем: владелец 2026-08-22 — было 45 с: почти минута на занятой кнопке без
 // обратной связи и без выхода. После ускорения входа (тёплый authEnsureStableLink,
@@ -390,7 +391,7 @@ function RegistrationPromptModal({
         const n = v ? parseInt(v, 10) : 0;
         setStreakDays(Number.isFinite(n) ? n : 0);
       })
-      .catch(() => {});
+      .catch(noteSwallowedHandler('RegistrationPromptModal:useEffect.getItem'));
     logEvent('auth_prompt_view', { context });
 
     // Вход: подложка + лист выезжает снизу + каскад элементов (60мс стаггер).
@@ -415,7 +416,7 @@ function RegistrationPromptModal({
     }
     let active = true;
     void (async () => {
-      const stableId = await getStableId().catch(() => null);
+      const stableId = await getStableId().catch(noteSwallowedAs('RegistrationPromptModal:useEffect.getStableId', null));
       if (!stableId) return;
       const hint = await fetchAuthRecoveryHint(stableId);
       if (active && hint?.linked) setRecoveryHint(hint);
@@ -1215,7 +1216,7 @@ function RegistrationPromptModal({
         // starts a new storage write or UI/event continuation.
         if (!isAttemptCurrent(attemptToken)) return;
         setSignInSlow(false);
-        await AsyncStorage.setItem(AUTH_PROMPT_SHOWN_KEY, '1').catch(() => {});
+        await AsyncStorage.setItem(AUTH_PROMPT_SHOWN_KEY, '1').catch(noteSwallowedHandler('RegistrationPromptModal:useCallback.setItem'));
         if (!isAttemptCurrent(attemptToken)) return;
         emitAppEvent('auth_provider_linked');
         onSignedIn?.(result);
@@ -1305,7 +1306,7 @@ function RegistrationPromptModal({
       return;
     }
     if (context !== 'startup_recovery') {
-      await AsyncStorage.setItem(AUTH_PROMPT_SHOWN_KEY, '1').catch(() => {});
+      await AsyncStorage.setItem(AUTH_PROMPT_SHOWN_KEY, '1').catch(noteSwallowedHandler('RegistrationPromptModal:useCallback.setItem_2'));
     }
     onClose();
   }, [attemptLifecycle, clearSlowTimer, context, disposeCleanRecoveryFlow, disposeRecoveryFlow, loadingProvider, onClose, recoveryDismissAllowed, signInSlow]);

@@ -36,6 +36,7 @@ import {
   vocabularyContentAvailableForTarget,
 } from './vocabulary_target_gate';
 import { safeRouterBack } from './navigation_back';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 
 type PrepositionProgress = {
@@ -180,12 +181,12 @@ function PrepositionDrillScreen() {
         setItemIdx(0);
         setCorrectCount(0);
       }
-    }).catch(() => {}).finally(() => setProgressReadyForKey(progressKey));
+    }).catch(noteSwallowedHandler('preposition_drill:useEffect.getItem')).finally(() => setProgressReadyForKey(progressKey));
   }, [pack, progressKey]);
 
   const saveProgress = (nextAnswered: string[], nextWrong: string[]) => {
     const payload: PrepositionProgress = { answeredIds: nextAnswered, wrongIds: nextWrong };
-    AsyncStorage.setItem(progressKey, JSON.stringify(payload)).catch(() => {});
+    AsyncStorage.setItem(progressKey, JSON.stringify(payload)).catch(noteSwallowedHandler('preposition_drill:saveProgress.setItem'));
   };
 
   // зачем: D140 (владелец 2026-10-01) — коллекции («Сокровищница») удалены целиком:

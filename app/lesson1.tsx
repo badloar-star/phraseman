@@ -82,6 +82,7 @@ import { getLessonData, getLessonEncouragementScreens, getLessonIntroScreens } f
 import { isInteractiveTheoryLesson } from './theory_topic_accents';
 import type { LessonPhrase } from './lesson_data_types';
 import { answerDisplayLineWithCanonicalPunctuation, phraseAnswerAlternatives, phraseAnswerDisplayLine, phraseCanonicalAnswer, phraseHasStudyTargetContent, phrasePrimarySurface, phraseWordRowsForStudyTarget, ttsLocaleForStudyTarget } from './phrase_target_utils';
+import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // Enabled by default with the same emergency build-time rollback as the shared
 // navigation helper. Native dismissTo releases the abandoned lesson stack.
@@ -367,7 +368,7 @@ function LessonPressable({
 function syncLessonIntroShownFlagNow(): void {
   void import('./cloud_sync')
     .then((m) => m.syncToCloud({ forceNow: true }))
-    .catch(() => {});
+    .catch(noteSwallowedHandler('lesson1:syncLessonIntroShownFlagNow.call'));
 }
 
 interface Settings {
@@ -798,12 +799,12 @@ const LessonContent = React.memo(function LessonContent({
         // проверки держим ключ в памяти: повторный AsyncStorage bridge-call на
         // каждом слове создавал очередь и через несколько фраз тормозил UI.
         if (grammarHintSeenCacheRef.current.has(seenKey)) continue;
-        const seen = await AsyncStorage.getItem(seenKey).catch(() => null);
+        const seen = await AsyncStorage.getItem(seenKey).catch(noteSwallowedAs('lesson1:useCallback.getItem', null));
         if (generation !== grammarHintGenerationRef.current) return;
         if (seen) grammarHintSeenCacheRef.current.add(seenKey);
         if (seen) continue;
         grammarHintSeenCacheRef.current.add(seenKey);
-        void AsyncStorage.setItem(seenKey, '1').catch(() => {});
+        void AsyncStorage.setItem(seenKey, '1').catch(noteSwallowedHandler('lesson1:useCallback.setItem'));
       }
       const text = grammarHintLine(lang, hint, studyTarget);
       const fadeOut = Animated.timing(grammarHintAnim, { toValue: 0, duration: 100, useNativeDriver: true });
@@ -2093,7 +2094,7 @@ function LessonScreen() {
       [ERROR_REPLAY_QUEUE_KEY, JSON.stringify(q)],
       [ERROR_REPLAY_SINCE_KEY, String(s)],
       [ERROR_REPLAY_OVERRIDE_KEY, o === null ? 'null' : String(o)],
-    ]).catch(() => {});
+    ]).catch(noteSwallowedHandler('lesson1:useCallback.multiSet'));
   }, [ERROR_REPLAY_QUEUE_KEY, ERROR_REPLAY_OVERRIDE_KEY, ERROR_REPLAY_SINCE_KEY]);
   const [replaySolvedCorrectly, setReplaySolvedCorrectly] = useState(false); // ошибка только что исправлена — стрелка зеленеет
 
@@ -2203,7 +2204,7 @@ function LessonScreen() {
         .then(n => {
           userNameRef.current = n;
         })
-        .catch(() => {});
+        .catch(noteSwallowedHandler('lesson1:useEffect.getItem'));
     });
     return () => {
       task.cancel();
@@ -2238,7 +2239,7 @@ function LessonScreen() {
         if (cancelled) return;
         const shouldShowIntro = !introShownRaw;
         if (shouldShowIntro) {
-          void AsyncStorage.setItem(introKey, 'true').catch(() => {});
+          void AsyncStorage.setItem(introKey, 'true').catch(noteSwallowedHandler('lesson1:useEffect.setItem'));
           syncLessonIntroShownFlagNow();
         }
         setShowIntroScreens(shouldShowIntro);
@@ -2464,7 +2465,7 @@ function LessonScreen() {
     setShouldShake(true);
     setTimeout(() => setShouldShake(false), 800);
     logEnergyLimitHit('lesson');
-    trackEnergyHit().catch(() => {});
+    trackEnergyHit().catch(noteSwallowedHandler('lesson1:useCallback.trackEnergyHit'));
     setShowNoEnergyModal(true);
   }, [setShouldShake, setShowNoEnergyModal]);
   /**
@@ -2498,7 +2499,7 @@ function LessonScreen() {
       };
       void import('./lesson_menu')
         .then((m) => m.prefetchLessonMenuCache(lessonId, studyTargetRef.current))
-        .catch(() => {});
+        .catch(noteSwallowedHandler('lesson1:useCallback.call'));
       popToMenu();
       return;
     }
@@ -2525,13 +2526,13 @@ function LessonScreen() {
     if (markLessonAttemptTerminal(attempt, 'abandon')) {
       logLessonAbandoned(lessonId, cellIndex, effectiveTotal, attempt.id, lessonAttemptElapsedMs(attempt));
     }
-    trackLessonAbandoned().catch(() => {});
+    trackLessonAbandoned().catch(noteSwallowedHandler('lesson1:useCallback.trackLessonAbandoned'));
     navigateUpFromLessonScreen();
   }, [beginLessonExit, lessonId, cellIndex, effectiveTotal, navigateUpFromLessonScreen]);
 
   const handleIntroDone = useCallback(async () => {
     if (replayIntro) consumedReplayIntroTokenRef.current = replayIntroToken || 'manual';
-    await AsyncStorage.setItem(lessonIntroShownKey(lessonId, studyTargetRef.current), 'true').catch(() => {});
+    await AsyncStorage.setItem(lessonIntroShownKey(lessonId, studyTargetRef.current), 'true').catch(noteSwallowedHandler('lesson1:useCallback.setItem_2'));
     syncLessonIntroShownFlagNow();
     setShowIntroScreens(false);
   }, [lessonId, replayIntro, replayIntroToken]);
@@ -2612,7 +2613,7 @@ function LessonScreen() {
       if (markLessonAttemptStarted(attempt)) {
         logLessonStart(lessonId, effectiveTotal, attempt.id);
       }
-      trackLessonStart().catch(() => {});
+      trackLessonStart().catch(noteSwallowedHandler('lesson1:loadData.trackLessonStart'));
       if (!hasPlayableLessonRows) {
         phraseOrderRef.current = [];
         errorQueueRef.current = [];
@@ -2642,7 +2643,7 @@ function LessonScreen() {
       const introKey = lessonIntroShownKey(lessonId, studyTargetRef.current);
       const introShownRaw = await AsyncStorage.getItem(introKey);
       if (!introShownRaw && getLessonIntroScreens(lessonId, studyTargetRef.current).length > 0) {
-        await AsyncStorage.setItem(introKey, 'true').catch(() => {});
+        await AsyncStorage.setItem(introKey, 'true').catch(noteSwallowedHandler('lesson1:loadData.setItem'));
         syncLessonIntroShownFlagNow();
         setShowIntroScreens(true);
         setLessonHydrated(true); // снимаем спиннер — рендерим интро поверх
@@ -2667,7 +2668,7 @@ function LessonScreen() {
       const serverAttemptId = routeServerAttemptId || serverAttemptRaw || makeLessonServerAttemptId();
       serverAttemptIdRef.current = serverAttemptId;
       if (serverAttemptRaw !== serverAttemptId) {
-        AsyncStorage.setItem(SERVER_ATTEMPT_KEY, serverAttemptId).catch(() => {});
+        AsyncStorage.setItem(SERVER_ATTEMPT_KEY, serverAttemptId).catch(noteSwallowedHandler('lesson1:loadData.setItem_2'));
       }
 
       let restoredProgress = new Array(effectiveTotal).fill('empty');
@@ -2687,7 +2688,7 @@ function LessonScreen() {
           ERROR_REPLAY_QUEUE_KEY,
           ERROR_REPLAY_SINCE_KEY,
           ERROR_REPLAY_OVERRIDE_KEY,
-        ]).catch(() => {});
+        ]).catch(noteSwallowedHandler('lesson1:loadData.multiRemove'));
       } else {
         let restoredErrQueue: number[] = [];
         if (errQRaw) {
@@ -2771,10 +2772,10 @@ function LessonScreen() {
             if (isValidLessonPhraseOrder(parsed, n)) {
               restoredOrder = parsed;
             } else {
-              AsyncStorage.removeItem(ORDER_KEY).catch(() => {});
+              AsyncStorage.removeItem(ORDER_KEY).catch(noteSwallowedHandler('lesson1:loadData.removeItem'));
             }
           } catch {
-            AsyncStorage.removeItem(ORDER_KEY).catch(() => {});
+            AsyncStorage.removeItem(ORDER_KEY).catch(noteSwallowedHandler('lesson1:loadData.removeItem_2'));
           }
         }
         if (restoredOrder) {
@@ -2782,11 +2783,11 @@ function LessonScreen() {
         } else {
           phraseOrderRef.current = shuffleLessonPhraseOrder(n);
           // Сохраняем новый порядок сразу
-          AsyncStorage.setItem(ORDER_KEY, JSON.stringify(phraseOrderRef.current)).catch(() => {});
+          AsyncStorage.setItem(ORDER_KEY, JSON.stringify(phraseOrderRef.current)).catch(noteSwallowedHandler('lesson1:loadData.setItem_3'));
         }
       } else if (LESSON_DATA.length > 0 && !hasUsableLessonPhraseOrder(phraseOrderRef.current, LESSON_DATA.length)) {
         phraseOrderRef.current = shuffleLessonPhraseOrder(LESSON_DATA.length);
-        AsyncStorage.setItem(ORDER_KEY, JSON.stringify(phraseOrderRef.current)).catch(() => {});
+        AsyncStorage.setItem(ORDER_KEY, JSON.stringify(phraseOrderRef.current)).catch(noteSwallowedHandler('lesson1:loadData.setItem_4'));
       }
 
       setCellIndex(startCell);
@@ -2880,7 +2881,7 @@ function LessonScreen() {
       result: isRight ? 'success' : 'blocked',
       tags: { lessonId, cellIndex, isRight, replay: overridePhraseCell !== null },
     });
-    trackAnswer(isRight).catch(() => {});
+    trackAnswer(isRight).catch(noteSwallowedHandler('lesson1:useCallback.trackAnswer'));
     const np = [...progress];
 
     // КЛЮЧЕВАЯ ЛОГИКА:
@@ -2998,7 +2999,7 @@ function LessonScreen() {
                   expected: tokenRow?.correct ?? tokenRow?.text ?? errWord,
                 },
               }))
-              .catch(() => {});
+              .catch(noteSwallowedHandler('lesson1:useCallback.getStableId'));
           }
         }
       }
@@ -3011,7 +3012,7 @@ function LessonScreen() {
       // Проверка combo читает/пишет состояние всех достижений. Она нужна только
       // на реальных порогах, а не после каждого правильного ответа.
       if (COMBO_ACHIEVEMENT_THRESHOLDS.has(correctStreakRef.current)) {
-        checkAchievements({ type: 'combo', count: correctStreakRef.current, studyTarget: st }).catch(() => {});
+        checkAchievements({ type: 'combo', count: correctStreakRef.current, studyTarget: st }).catch(noteSwallowedHandler('lesson1:useCallback.checkAchievements'));
       }
     } else {
       correctStreakRef.current = 0;
@@ -3076,8 +3077,8 @@ function LessonScreen() {
     }
 
     const nextCell = (cellIndex + 1) % effectiveTotal;
-    void AsyncStorage.setItem(LESSON_KEY, JSON.stringify(np)).catch(() => {});
-    void AsyncStorage.setItem(CELL_KEY, String(nextCell)).catch(() => {});
+    void AsyncStorage.setItem(LESSON_KEY, JSON.stringify(np)).catch(noteSwallowedHandler('lesson1:useCallback.setItem_3'));
+    void AsyncStorage.setItem(CELL_KEY, String(nextCell)).catch(noteSwallowedHandler('lesson1:useCallback.setItem_4'));
     touchLessonScreenPrimed(lessonStorageId, { cell: nextCell, order: phraseOrderRef.current, progress: np, override: overridePhraseCell }, studyTargetRef.current);
 
     const pendingCycleEndReplay = nextCell === 0 && errorQueueRef.current.length > 0;
@@ -3099,7 +3100,7 @@ function LessonScreen() {
         ?? makeLessonServerAttemptId();
       const nextAttemptId = makeLessonServerAttemptId();
       serverAttemptIdRef.current = nextAttemptId;
-      AsyncStorage.setItem(SERVER_ATTEMPT_KEY, nextAttemptId).catch(() => {});
+      AsyncStorage.setItem(SERVER_ATTEMPT_KEY, nextAttemptId).catch(noteSwallowedHandler('lesson1:useCallback.setItem_5'));
       void trackFeatureStart('lesson', 'complete', { lessonId, effectiveTotal }, 'lesson1');
       sessionAnswerCount.current = 0; // сброс для следующего повтора
       isReplayRef.current = true;
@@ -3110,7 +3111,7 @@ function LessonScreen() {
       const runLessonCompletionNavigation = async () => {
         const resetShuffleForNextPass = () => {
           phraseOrderRef.current = [];
-          AsyncStorage.removeItem(ORDER_KEY).catch(() => {});
+          AsyncStorage.removeItem(ORDER_KEY).catch(noteSwallowedHandler('lesson1:resetShuffleForNextPass.removeItem'));
           errorQueueRef.current = [];
           questionsSinceErrorRef.current = 0;
           setPassAnsweredCells(new Set()); // [REVIEW] новый проход — обнуляем «пройдено за проход»
@@ -3118,7 +3119,7 @@ function LessonScreen() {
             ERROR_REPLAY_QUEUE_KEY,
             ERROR_REPLAY_SINCE_KEY,
             ERROR_REPLAY_OVERRIDE_KEY,
-          ]).catch(() => {});
+          ]).catch(noteSwallowedHandler('lesson1:resetShuffleForNextPass.multiRemove'));
         };
         // Получаем финальную оценку урока перед переходом на lesson_complete
         const correct = np.filter(x => x === 'correct' || x === 'replay_correct').length;
@@ -3168,7 +3169,7 @@ function LessonScreen() {
         const hasPremiumAccess = noLimits || await getVerifiedPremiumAccessStatus({
           bypassCache: true,
           allowCloudRefresh: false,
-        }).catch(() => false);
+        }).catch(noteSwallowedAs('lesson1:runLessonCompletionNavigation.getVerifiedPremiumAccessStatus', false));
         const didUnlock = await tryUnlockNextLesson(
           lessonId,
           finalScore,
@@ -3178,7 +3179,7 @@ function LessonScreen() {
         if (didUnlock && lessonId === 1) {
           void import('./cloud_sync')
             .then((m) => m.syncToCloud({ forceNow: true }))
-            .catch(() => {});
+            .catch(noteSwallowedHandler('lesson1:runLessonCompletionNavigation.call'));
           // зачем (§57 координатора): подтяжка жемчуга через 2 с после урока 1 снята — жемчуг удалён (D70/D103).
         }
 
@@ -3586,7 +3587,7 @@ function LessonScreen() {
     if (lastOpenedSyncedRef.current) return;
     lastOpenedSyncedRef.current = true;
     const homeScore = (correctCount / 50 * 5).toFixed(1);
-    void AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId)).catch(() => {});
+    void AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId)).catch(noteSwallowedHandler('lesson1:useEffect.setItem_2'));
     patchHomeScreenHydration({
       lastLessonId: lessonId,
       lastLessonProgress: correctCount,
@@ -3693,7 +3694,7 @@ function LessonScreen() {
     const newCount = fiftyFiftyUsedToday + 1;
     setFiftyFiftyUsedToday(newCount);
     const todayKey = fiftyFiftyUsageKey(new Date().toISOString().slice(0, 10), studyTargetRef.current);
-    AsyncStorage.setItem(todayKey, String(newCount)).catch(() => {});
+    AsyncStorage.setItem(todayKey, String(newCount)).catch(noteSwallowedHandler('lesson1:useCallback.setItem_6'));
   }, [fiftyFiftyUsedToday, bonusHints, phrase]);
 
   const frenchLessonRemotePending = frenchRemoteLessonRequired && (remoteFrenchLessonLoadState === 'idle' || remoteFrenchLessonLoadState === 'loading');

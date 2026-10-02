@@ -72,6 +72,7 @@ import { lessonProgressKey, storageStudyTarget } from './target_storage_keys';
 import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
 import { loadFrenchRemoteFinalExamQuestions } from './french_exam_remote_runtime';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const TOTAL_EXAM_SECONDS = 60 * 60; // 60 minutes total
 // зачем (PM-086/D06): экзамен, как любое начатое занятие, стоит 1 энергию. Сумма в confirmSpendAmount не используется —
@@ -742,10 +743,10 @@ export default function ExamScreen() {
               kind: question.q.includes('___') ? 'missing_token' : 'form',
               expected,
             },
-          }).catch(() => {});
+          }).catch(noteSwallowedHandler('exam:submitExam.captureCurrentAccountObjectiveAttempt'));
         });
       }
-    checkAchievements({ type: 'exam', pct: p, studyTarget }).catch(() => {});
+    checkAchievements({ type: 'exam', pct: p, studyTarget }).catch(noteSwallowedHandler('exam:submitExam.checkAchievements'));
     let storedName = '';
     try {
       const raw = await AsyncStorage.getItem('user_name');
@@ -837,7 +838,7 @@ export default function ExamScreen() {
 
   const shareExamResult = async () => {
     const msg = buildExamShareMessage(bundleLang(lang), score, questions.length, pct, STORE_URL);
-    await Share.share({ message: msg }).catch(() => {});
+    await Share.share({ message: msg }).catch(noteSwallowedHandler('exam:shareExamResult.share'));
   };
 
   const score = choices.filter((c,i) => c !== null && c === questions[i]?.correct).length;

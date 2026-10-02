@@ -20,6 +20,7 @@ import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { VideoGlassSheen, VideoPlayBadge } from '../video/VideoGlassKit';
+import { noteSwallowedHandler } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export const PREMIERE_INTRO_DURATION_MS = 1100;
 const SEEN_STORAGE_KEY = 'youtube_premiere_intro_seen_v1';
@@ -101,11 +102,11 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded
       const seen = prunePremiereIntroSeen(readSeenMap(raw), now);
       if (!shouldPlayPremiereIntro(seen, video.id, now)) return;
       const next = markPremiereIntroSeen(seen, video.id, now);
-      void AsyncStorage.setItem(SEEN_STORAGE_KEY, JSON.stringify(next)).catch(() => {});
+      void AsyncStorage.setItem(SEEN_STORAGE_KEY, JSON.stringify(next)).catch(noteSwallowedHandler('YoutubePremiereHero:useEffect.setItem'));
       if (reducedMotion) return;
       setPlayIntro(true);
       timer = setTimeout(() => setPlayIntro(false), PREMIERE_INTRO_DURATION_MS);
-    }).catch(() => {});
+    }).catch(noteSwallowedHandler('YoutubePremiereHero:useEffect.getItem'));
     return () => {
       cancelled = true;
       if (timer) clearTimeout(timer);

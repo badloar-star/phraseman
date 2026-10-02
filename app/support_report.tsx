@@ -17,6 +17,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import type { SupportDiagnosticBundle } from './support_diagnostic_schema';
 import { captureSupportDiagnosticBundle } from './support_diagnostics';
 import { sendSupportReportInBackground } from './support_report_outbox';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type SubmitState = 'idle' | 'sent';
 
@@ -48,7 +49,7 @@ export default function SupportReportScreen() {
     let mounted = true;
     void captureSupportDiagnosticBundle().then((bundle) => {
       if (mounted) setDiagnosticsPreview(bundle);
-    }).catch(() => undefined);
+    }).catch(noteSwallowedHandler('support_report:useEffect.captureSupportDiagnosticBundle'));
     return () => { mounted = false; };
   }, []);
 
@@ -67,9 +68,7 @@ export default function SupportReportScreen() {
       dataText: 'In-app support request',
       comment,
       ...(diagnosticsPreview ? { diagnostics: diagnosticsPreview } : {}),
-    }, lang).catch(() => {
-      // The confirmation stays immediate. Queue/bootstrap retry owns delivery.
-    });
+    }, lang).catch(noteSwallowedHandler('support_report:useCallback.sendSupportReportInBackground'));
   }, [canSend, description, diagnosticsPreview, lang]);
 
   return (

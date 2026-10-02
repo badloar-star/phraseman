@@ -85,6 +85,7 @@ import {
 } from './target_storage_keys';
 import { DebugLogger } from './debug-logger';
 import { recordTodayTaskActivity } from '../modules/today-tasks/today_tasks_store';
+import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const MEDAL_IMAGES_COMPLETE: Record<string, any> = {
   bronze: require('../assets/images/levels/bronza.webp'),
@@ -156,7 +157,7 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
       // Помечаем показ СРАЗУ при появлении окна — так лимит показов и 30-дневный
       // кулдаун учитываются при любом способе закрытия (кнопка, тап по фону, системно),
       // а не только при нажатии "нет".
-      markReviewPrompted().catch(() => {});
+      markReviewPrompted().catch(noteSwallowedHandler('lesson_complete:useEffect.markReviewPrompted'));
       Animated.timing(fadeAnim, { toValue: 1, duration: 200, useNativeDriver: true }).start();
     }
   }, [context, fadeAnim, lang, visible]);
@@ -455,7 +456,7 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
             }}
             onPress={async () => {
               hapticTap();
-              await Share.share({ message: shareMessage() }).catch(() => {});
+              await Share.share({ message: shareMessage() }).catch(noteSwallowedHandler('lesson_complete:AchievementNotifModal.share'));
             }}
           >
             <Ionicons name="share-outline" size={18} color={glass.text} accessibilityElementsHidden />
@@ -580,8 +581,8 @@ export default function LessonComplete() {
       getVerifiedPremiumAccessStatus({
         bypassCache: true,
         allowCloudRefresh: false,
-      }).catch(() => false),
-      readLegacyFreeLessonCap(studyTarget).catch(() => undefined),
+      }).catch(noteSwallowedAs('lesson_complete:useEffect.getVerifiedPremiumAccessStatus', false)),
+      readLegacyFreeLessonCap(studyTarget).catch(noteSwallowedAs('lesson_complete:useEffect.readLegacyFreeLessonCap', undefined)),
     ]).then(([premium, legacyFreeLessonCap]) => {
       if (cancelled) return;
       setCompletionRequiresPremium(!premium && requiresPremiumForLesson(lessonId + 1, legacyFreeLessonCap));
@@ -819,7 +820,7 @@ export default function LessonComplete() {
       DebugLogger.error('lesson_complete:wrong', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
       }
-      checkAchievements({ type: 'lesson_complete', lessonCount, wasPerfect, perfectCount, lessonId, studyTarget }).catch(() => {});
+      checkAchievements({ type: 'lesson_complete', lessonCount, wasPerfect, perfectCount, lessonId, studyTarget }).catch(noteSwallowedHandler('lesson_complete:useCallback.checkAchievements'));
       const activeDays = wasPerfect ? await getReviewActiveDays() : 0;
       const eligible = wasPerfect && await canShowReview({
         trigger: 'perfect_lesson',
@@ -845,7 +846,7 @@ export default function LessonComplete() {
           const d1Streak = parseInt(streakRaw || '0') || 0;
           const langRaw = await AsyncStorage.getItem('app_lang');
           const d1Lang: Lang = langRaw === 'uk' ? 'uk' : langRaw === 'es' ? 'es' : 'ru';
-          scheduleD1PersonalizedReminder(d1Phrases, d1Streak, d1Lang).catch(() => {});
+          scheduleD1PersonalizedReminder(d1Phrases, d1Streak, d1Lang).catch(noteSwallowedHandler('lesson_complete:useCallback.scheduleD1PersonalizedReminder'));
         } catch (e) {
       DebugLogger.error('lesson_complete:langRaw', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
@@ -982,14 +983,14 @@ export default function LessonComplete() {
             cellIndex: p.length,
             attemptId: completionAttemptId,
           },
-        }).catch(() => {});
-        void syncToCloud({ forceNow: true }).catch(() => {});
+        }).catch(noteSwallowedHandler('lesson_complete:useEffect.submitProgressEvent'));
+        void syncToCloud({ forceNow: true }).catch(noteSwallowedHandler('lesson_complete:useEffect.syncToCloud'));
         setMedalTier(newTier);
         const medalUpgraded = isNewBest && newTier !== prevTier && newTier !== 'none';
         setMedalImproved(medalUpgraded);
         setResultsReady(true);
         if (correct >= 45 && p.filter(x => x === 'wrong').length === 0 && newPassCount > 0) {
-          checkAchievements({ type: 'lesson_perfect_pass', lessonId, passCount: newPassCount, studyTarget }).catch(() => {});
+          checkAchievements({ type: 'lesson_perfect_pass', lessonId, passCount: newPassCount, studyTarget }).catch(noteSwallowedHandler('lesson_complete:useEffect.checkAchievements'));
         }
 
         // Build notification queue
@@ -999,7 +1000,7 @@ export default function LessonComplete() {
           ? await getVerifiedPremiumAccessStatus({
               bypassCache: true,
               allowCloudRefresh: false,
-            }).catch(() => false)
+            }).catch(noteSwallowedAs('lesson_complete:useEffect.getVerifiedPremiumAccessStatus_2', false))
           : false;
         if (shouldAnnounceNextLessonUnlock(
           lessonId,
@@ -1030,7 +1031,7 @@ export default function LessonComplete() {
 
         // Gem achievements
         const gems = await checkGemAchievements(lessonId, studyTarget);
-        gems.forEach(g => checkAchievements({ type: 'gem', level: g.level, gem: g.gem, studyTarget }).catch(() => {}));
+        gems.forEach(g => checkAchievements({ type: 'gem', level: g.level, gem: g.gem, studyTarget }).catch(noteSwallowedHandler('lesson_complete:useEffect.checkAchievements_2')));
       } catch {
         const info = await loadMedalInfo(lessonId, studyTarget);
         setLessonScore(info.bestScore || 0);
@@ -1061,7 +1062,7 @@ export default function LessonComplete() {
         const linked = await getLinkedAuthInfo();
         if (linked) {
           // Уже залогинен (через онбординг или из Settings) — помечаем чтобы больше не дёргать
-          AsyncStorage.setItem(AUTH_PROMPT_SHOWN_KEY, '1').catch(() => {});
+          AsyncStorage.setItem(AUTH_PROMPT_SHOWN_KEY, '1').catch(noteSwallowedHandler('lesson_complete:useEffect.setItem'));
           return;
         }
         if (!cancelled) setShowAuthPrompt(true);
@@ -1083,7 +1084,7 @@ export default function LessonComplete() {
       nextOpeningRef.current = true;
       void (async () => {
         try {
-          const premium = await getVerifiedPremiumStatus().catch(() => false);
+          const premium = await getVerifiedPremiumStatus().catch(noteSwallowedAs('lesson_complete:goNext.getVerifiedPremiumStatus', false));
           const legacyFreeLessonCap = await readLegacyFreeLessonCap(studyTarget);
           if (requiresPremiumForLesson(next, legacyFreeLessonCap) && !premium) {
             // Экран результата остаётся единственным: для закрытого урока сразу открываем
@@ -1100,7 +1101,7 @@ export default function LessonComplete() {
             } as any);
             return;
           }
-          void prefetchLessonMenuCache(next, studyTarget).catch(() => {});
+          void prefetchLessonMenuCache(next, studyTarget).catch(noteSwallowedHandler('lesson_complete:goNext.prefetchLessonMenuCache'));
           markNextNavigationAsReplace();
           router.replace({ pathname: '/lessons_list', params: { id: next } });
         } finally {
@@ -1134,8 +1135,8 @@ export default function LessonComplete() {
     void AsyncStorage.setItem(
       lessonSessionKey(lessonId, 'serverAttemptId', studyTarget),
       repeatAttemptId,
-    ).catch(() => {});
-    void primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
+    ).catch(noteSwallowedHandler('lesson_complete:useCallback.setItem'));
+    void primeLessonScreenFromStorage(lessonId, studyTarget).catch(noteSwallowedHandler('lesson_complete:useCallback.primeLessonScreenFromStorage'));
     try {
       markNextNavigationAsReplace();
       router.replace({ pathname: '/lesson1', params: { id: lessonId, serverAttemptId: repeatAttemptId } });
@@ -1600,7 +1601,7 @@ export default function LessonComplete() {
                 lessonScore,
                 STORE_URL
               );
-              await Share.share({ message: msg }).catch(() => {});
+              await Share.share({ message: msg }).catch(noteSwallowedHandler('lesson_complete:LessonComplete.share'));
             }}
           >
             <Ionicons name="share-outline" size={18} color={t.textSecond} />

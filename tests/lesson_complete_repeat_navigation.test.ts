@@ -8,10 +8,12 @@ describe('lesson_complete repeat navigation', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_complete.tsx'), 'utf8');
     const handlerStart = source.indexOf('const handleRepeatLesson = useCallback');
     const handlerEnd = source.indexOf('const goBackFromComplete', handlerStart + 1);
-    const handler = source.slice(handlerStart, handlerEnd > handlerStart ? handlerEnd : handlerStart + 900);
+    // Окно 1600: PM-229 удлинил строку подготовки (тег причины в журнале), 900 обрезало router.replace.
+    const handler = source.slice(handlerStart, handlerEnd > handlerStart ? handlerEnd : handlerStart + 1600);
 
     expect(handlerStart).toBeGreaterThanOrEqual(0);
-    expect(handler).toContain('void primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});');
+    // Подготовка экрана — без ожидания (PM-229: обработчик ошибки теперь пишет причину в журнал).
+    expect(handler).toMatch(/void primeLessonScreenFromStorage\(lessonId, studyTarget\)\.catch\(/);
     expect(handler).toContain("router.replace({ pathname: '/lesson1', params: { id: lessonId, serverAttemptId: repeatAttemptId } });");
     expect(handler.indexOf('markNextNavigationAsReplace()')).toBeLessThan(handler.indexOf('router.replace'));
     expect(handler).not.toContain('await primeLessonScreenFromStorage');

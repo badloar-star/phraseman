@@ -14,6 +14,13 @@ jest.mock('react-native', () => ({
   },
 }));
 jest.mock('expo-linear-gradient', () => ({ LinearGradient: 'LinearGradient' }));
+// PM-229: карточка пишет причину проглоченной ошибки через swallow_log — журнал тянет конфиг
+// с Platform.OS, которого в урезанном моке react-native нет; подменяем, как остальных соседей.
+jest.mock('../app/swallow_log', () => ({
+  noteSwallowed: () => undefined,
+  noteSwallowedHandler: () => () => undefined,
+  noteSwallowedAs: (_tag: string, fallback: unknown) => () => fallback,
+}));
 jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Ionicons' }));
 jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
 jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({ theme: { bgCard: '#fff', bgSurface: '#eee', cardGradient: ['#fff', '#ddd'], border: '#ddd', textPrimary: '#111', textMuted: '#555', accent: '#b7ff00', correctText: '#07110A' }, f: { body: 16, caption: 13, label: 15 }, isFlat: false }) }));

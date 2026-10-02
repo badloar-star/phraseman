@@ -29,6 +29,7 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // з�
 import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken } from './account_generation';
 import { writeVipSnapshotForAccount } from './premium_vip_storage';
 import { ensureAnonUser } from './cloud_sync';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type Feedback = { kind: 'ok' | 'error'; text: string };
 
@@ -165,7 +166,7 @@ async function persistRedeemedPromoAccess(params: {
     vip_admin_grant_at: grantAt,
   });
   if (!isCurrentAccountGeneration(params.generation, stableId)) throw new Error('stale_account_generation');
-  await AsyncStorage.setItem('promo_vip_last_code', params.code).catch(() => {});
+  await AsyncStorage.setItem('promo_vip_last_code', params.code).catch(noteSwallowedHandler('promo_code_entry:persistRedeemedPromoAccess.setItem'));
   return grantAt;
 }
 

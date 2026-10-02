@@ -125,6 +125,7 @@ import { buildDialogueVoiceAttachment, describeDialogueVoiceMessage, type Dialog
 import { claimSpokenAudio, whenSpokenAudioReady, type SpokenAudioClaim } from '../modules/audio/audio_runtime_arbiter';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+import { noteSwallowed, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 /**
  * Сколько обменов считаем нормальной длиной сцены.
  *
@@ -231,7 +232,8 @@ function deleteDialogueVoiceRecording(uri: string): void {
   try {
     const file = new File(uri);
     if (file.exists) file.delete();
-  } catch {
+  } catch (swallowedError) {
+    noteSwallowed('ai_dialog_session:deleteDialogueVoiceRecording.catch', swallowedError);
     // Cache cleanup is best-effort; never let a stale recording break a chat.
   }
 }
@@ -914,8 +916,8 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     voiceMessageClaimRef.current = null;
     const player = voiceMessagePlayerRef.current;
     voiceMessagePlayerRef.current = null;
-    try { player?.pause(); } catch { /* native player was already released */ }
-    try { player?.release(); } catch { /* native player was already released */ }
+    try { player?.pause(); } catch (swallowedError) { noteSwallowed('ai_dialog_session:useCallback.catch', swallowedError); /* native player was already released */ }
+    try { player?.release(); } catch (swallowedError) { noteSwallowed('ai_dialog_session:useCallback.catch_2', swallowedError); /* native player was already released */ }
     if (voiceInputMountedRef.current) setPlayingVoiceMessageUri(null);
   }, []);
   const playVoiceMessage = useCallback((uri: string) => {
@@ -947,7 +949,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
         return;
       }
       if (!claim.isCurrent() || playbackGeneration !== voiceMessagePlaybackGenerationRef.current) {
-        try { player.release(); } catch { /* already released */ }
+        try { player.release(); } catch (swallowedError) { noteSwallowed('ai_dialog_session:useCallback.catch_3', swallowedError); /* already released */ }
         return;
       }
       voiceMessagePlayerRef.current = player;
@@ -3367,7 +3369,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                       accessibilityRole="button"
                       onPress={() => {
                         hapticTap();
-                        Linking.openSettings().catch(() => {});
+                        Linking.openSettings().catch(noteSwallowedHandler('ai_dialog_session:AiDialogSession.openSettings'));
                       }}
                       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                     >

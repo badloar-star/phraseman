@@ -56,6 +56,7 @@ import LevelExamQuestionFrame from './LevelExamQuestionFrame';
 import LevelExamResult, { type LevelExamRewardState } from './LevelExamResult';
 import PhraseBuilderQuestion from './PhraseBuilderQuestion';
 import SpeedMatchQuestion from './SpeedMatchQuestion';
+import { noteSwallowedAs, noteSwallowedHandler } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // Numeric energy: экзамен стоит одно занятие (1 ⚡) за один старт.
 // зачем (PM-082, BIBLE «−1 за начавшееся учебное занятие»): экзамен — такое же
@@ -179,7 +180,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     const finishing = markLevelExamFinishing(sourceAttempt, reason);
     attemptRef.current = finishing;
     setAttempt(finishing);
-    await persistActiveLevelExamAttempt(finishing).catch(() => {});
+    await persistActiveLevelExamAttempt(finishing).catch(noteSwallowedHandler('LevelExamV2:useCallback.persistActiveLevelExamAttempt'));
     const scored = scoreLevelExam(sourceBlueprint, finishing.answers, reason);
     setResult(scored);
     setPhase('result');
@@ -231,8 +232,8 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
       void trackFeatureError('level_exam', 'complete', error, { level, finishReason: reason }, 'level_exam_v2');
     } finally {
       const completed = completeLevelExamAttempt(finishing, Date.now());
-      await persistActiveLevelExamAttempt(completed).catch(() => {});
-      await clearActiveLevelExamAttempt(ownerStableUid, level, 'en').catch(() => {});
+      await persistActiveLevelExamAttempt(completed).catch(noteSwallowedHandler('LevelExamV2:useCallback.persistActiveLevelExamAttempt_2'));
+      await clearActiveLevelExamAttempt(ownerStableUid, level, 'en').catch(noteSwallowedHandler('LevelExamV2:useCallback.clearActiveLevelExamAttempt'));
     }
   }, [lang, level, ownerStableUid]);
 
@@ -243,7 +244,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     }
     let cancelled = false;
     void (async () => {
-      const owner = await getCanonicalUserId().catch(() => null);
+      const owner = await getCanonicalUserId().catch(noteSwallowedAs('LevelExamV2:useEffect.getCanonicalUserId', null));
       if (cancelled) return;
       setOwnerStableUid(owner);
       setIdentityUnavailable(!owner);
@@ -271,7 +272,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         return;
       }
       if (decision.kind === 'resume') {
-        await persistActiveLevelExamAttempt(decision.attempt).catch(() => {});
+        await persistActiveLevelExamAttempt(decision.attempt).catch(noteSwallowedHandler('LevelExamV2:useEffect.persistActiveLevelExamAttempt'));
       }
       const restoredBlueprint = buildLevelExamBlueprint({ level, studyTarget: 'en', sourceLocale: examSourceLocale, seed: decision.attempt.seed });
       blueprintRef.current = restoredBlueprint;

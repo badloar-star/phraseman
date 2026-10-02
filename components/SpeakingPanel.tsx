@@ -102,6 +102,7 @@ import {
   requestSpeechPermissionForHold,
   type HoldPermissionResult,
 } from '../app/speech_recognition_module';
+import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /**
  * Трассировка захвата речи по правилу владельца «сперва логи, потом починка»
@@ -2003,7 +2004,7 @@ export function SpeakingPanel({
       .then((perm) => {
         if (alive && perm?.granted === true) holdMicGrantedRef.current = true;
       })
-      .catch(() => {});
+      .catch(noteSwallowedHandler('SpeakingPanel:useEffect.getPermissionsAsync'));
     return () => {
       alive = false;
     };
@@ -2054,9 +2055,7 @@ export function SpeakingPanel({
 
   const openAppSettings = useCallback(() => {
     hapticTap();
-    Linking.openSettings().catch(() => {
-      /* no-op: some platforms/contexts can't open settings */
-    });
+    Linking.openSettings().catch(noteSwallowedHandler('SpeakingPanel:useCallback.openSettings'));
   }, []);
 
   // «Послушай себя»: воспроизводим сохранённую запись попытки (wav в кэше).

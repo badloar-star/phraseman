@@ -78,6 +78,7 @@ import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset'
 import { captureAccountGeneration } from './account_generation';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const lessonWordsProgressCache = new Map<string, Record<string, number>>();
 
@@ -2926,7 +2927,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
           distractors: card.options,
         },
         facet: { kind: 'meaning', expected: card.word.en },
-      }).catch(() => {});
+      }).catch(noteSwallowedHandler('lesson_words:useCallback.captureCurrentAccountObjectiveAttempt'));
     }
   }, [lessonId, qIdx, studyTarget]);
 
@@ -3606,7 +3607,7 @@ function LessonWords() {
         const counts = parseLessonWordCounts(v, lessonId);
         lessonWordsProgressCache.set(storageKey, counts);
         if (v && JSON.stringify(counts) !== v) {
-          AsyncStorage.setItem(storageKey, JSON.stringify(counts)).catch(() => {});
+          AsyncStorage.setItem(storageKey, JSON.stringify(counts)).catch(noteSwallowedHandler('lesson_words:useEffect.setItem'));
         }
         setLearnedCounts(counts);
       })

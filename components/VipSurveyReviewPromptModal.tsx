@@ -16,6 +16,7 @@ import DuoPressable from './DuoPressable';
 import PressableHybrid from './PressableHybrid';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM } from '../constants/motionHybrid';
+import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type Props = {
   visible: boolean;
@@ -44,7 +45,7 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
         if (!cancelled) onClose();
         return;
       }
-      await markReviewPrompted().catch(() => {});
+      await markReviewPrompted().catch(noteSwallowedHandler('VipSurveyReviewPromptModal:useEffect.markReviewPrompted'));
     })();
     return () => { cancelled = true; };
   }, [visible, onClose]);
@@ -56,12 +57,12 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
 
   const openReview = async () => {
     hapticTap();
-    void recordVipSurveyReviewClickFromApp({ storeOpened: false }).catch(() => false);
+    void recordVipSurveyReviewClickFromApp({ storeOpened: false }).catch(noteSwallowedAs('VipSurveyReviewPromptModal:openReview.recordVipSurveyReviewClickFromApp', false));
     const storeOpened = await openStoreReviewPage();
     if (storeOpened) {
-      void recordVipSurveyReviewClickFromApp({ storeOpened: true }).catch(() => false);
+      void recordVipSurveyReviewClickFromApp({ storeOpened: true }).catch(noteSwallowedAs('VipSurveyReviewPromptModal:openReview.recordVipSurveyReviewClickFromApp_2', false));
       // Ушёл писать отзыв → помечаем как оценившего, чтобы другие rate-окна не всплывали.
-      void markReviewRated().catch(() => {});
+      void markReviewRated().catch(noteSwallowedHandler('VipSurveyReviewPromptModal:openReview.markReviewRated'));
     }
     onClose();
   };

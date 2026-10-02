@@ -57,6 +57,7 @@ import {
   ExamFooter, ExamHeader, ExamHero, ExamKvCard, ExamOption, ExamQuietButton, ExamStatRow,
   ExamTrack, examCardStyle, type ExamOptionState,
 } from '../components/level-exam/ExamGlassParts';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 
 /** Энергия за ПОПЫТКУ зачёта уровня (списывается авансом на старте, не за ошибку). */
@@ -862,7 +863,7 @@ export default function LevelExam() {
             kind: q.q.includes('___') ? 'missing_token' : 'form',
             expected,
           },
-        }).catch(() => {});
+        }).catch(noteSwallowedHandler('level_exam:handlePick.captureCurrentAccountObjectiveAttempt'));
       }
     }
     setChoices(prev => { const n = [...prev]; n[idx] = ci; return n; });
@@ -914,8 +915,8 @@ export default function LevelExam() {
       // Gem achievements for exam
       const gemMap: Record<number, 'ruby' | 'emerald' | 'diamond'> = { 2: 'ruby', 3: 'emerald', 4: 'diamond' };
       const gem = gemMap[newPassCount];
-      if (gem) checkAchievements({ type: 'gem', level: lvl, gem, studyTarget }).catch(() => {});
-      checkAchievements({ type: 'exam', pct, studyTarget }).catch(() => {});
+      if (gem) checkAchievements({ type: 'gem', level: lvl, gem, studyTarget }).catch(noteSwallowedHandler('level_exam:finishExam.checkAchievements'));
+      checkAchievements({ type: 'exam', pct, studyTarget }).catch(noteSwallowedHandler('level_exam:finishExam.checkAchievements_2'));
       void trackFeatureSuccess('level_exam', 'complete', { level: lvl, correct, total, pct, passed }, 'level_exam');
     } catch (e) {
       void trackFeatureError('level_exam', 'complete', e, { level: lvl, correct, total, pct, passed }, 'level_exam');

@@ -27,6 +27,7 @@ import type { RuntimeStudyTarget } from '../app/target_storage_keys';
 import { DebugLogger } from '../app/debug-logger';
 import { normalizePackLanguage, type PackLanguage } from '../app/flashcards/pack_languages';
 import { FREE_SAVED_CARD_LIMIT } from '../app/flashcards/free_limit';
+import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 interface Props {
   en: string;
@@ -147,7 +148,7 @@ function AddToFlashcard({
     try {
       const result = fn();
       if (result && typeof result === 'object' && 'catch' in result) {
-        (result as Promise<unknown>).catch(() => {});
+        (result as Promise<unknown>).catch(noteSwallowedHandler('AddToFlashcard:safeAsyncSideEffect.result'));
       }
     } catch (e) {
       // Saving/removing the flashcard is the primary action; rewards and analytics are best-effort.

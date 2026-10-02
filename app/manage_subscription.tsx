@@ -72,6 +72,7 @@ import {
   type SaveOfferProgress,
 } from './manage_subscription_save_offer';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type ManageSubscriptionCopy = {
   ru: string;
@@ -441,7 +442,7 @@ export default function ManageSubscription() {
         // ни пользователю, ни в логи. Причина терялась навсегда, разобрать было нечем.
         void import('./debug-logger')
           .then(({ DebugLogger }) => DebugLogger.error('manage_subscription.tsx:changePlan', err, 'critical'))
-          .catch(() => {});
+          .catch(noteSwallowedHandler('manage_subscription:useCallback.call'));
         emitAppEvent('action_toast', {
           type: 'error',
           messageRu: 'Смена плана не прошла. Деньги не списаны — попробуй ещё раз.',
@@ -542,7 +543,7 @@ export default function ManageSubscription() {
       // Причина сбоя денежного пути обязана переживать перезапуск.
       void import('./debug-logger')
         .then(({ DebugLogger }) => DebugLogger.error('manage_subscription.tsx:restore', err, 'critical'))
-        .catch(() => {});
+        .catch(noteSwallowedHandler('manage_subscription:useCallback.call_2'));
       emitAppEvent('action_toast', {
         type: 'error',
         messageRu: 'Не удалось проверить покупки. Проверь связь и попробуй ещё раз.',
@@ -599,7 +600,7 @@ export default function ManageSubscription() {
       .catch((err: unknown) => {
         void import('./debug-logger')
           .then(({ DebugLogger }) => DebugLogger.error('manage_subscription.tsx:openStoreCancel', err, 'critical'))
-          .catch(() => {});
+          .catch(noteSwallowedHandler('manage_subscription:useCallback.call_3'));
         emitAppEvent('action_toast', {
           type: 'error',
           messageRu: 'Не удалось открыть магазин. Отмени подписку в настройках телефона.',

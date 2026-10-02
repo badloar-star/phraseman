@@ -57,6 +57,7 @@ import { aiDialogContentAvailableForTarget, aiDialogTargetGateCopy } from './ai_
 import { dialogueLanguageMeta, resolveDialogueStudyTarget } from './dialogue_language_registry';
 import AiDialogConsentGate from './ai_dialog_consent_gate';
 import { getVerifiedPremiumAccessStatus } from './premium_guard';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const DEFAULT_CEFR = 'A2';
 const LOCAL_COMPANION_GREETING = 'Let\'s practice in English! What did you do today?';
@@ -255,7 +256,7 @@ function AiCompanionSession() {
           generation,
           bypassCache: true,
           allowCloudRefresh: false,
-        }).catch(() => false);
+        }).catch(noteSwallowedAs('ai_companion_session:useCallback.getVerifiedPremiumAccessStatus', false));
         if (!stillHasPlus) {
           openCompanionPlusPaywall();
           return;

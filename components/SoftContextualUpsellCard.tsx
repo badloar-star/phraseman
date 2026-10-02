@@ -6,6 +6,7 @@ import type { SoftUpsellOpportunity } from '../app/soft_upsell_core';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import TonalSurface from './TonalSurface';
 import { useTheme } from './ThemeContext';
+import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type Props = {
   title: string;
@@ -35,7 +36,7 @@ export default function SoftContextualUpsellCard({
     if (reportedRef.current || impressionInFlightRef.current || width <= 0 || height <= 0) return;
     const operation = Promise.resolve(onImpression())
       .then(() => { reportedRef.current = true; })
-      .catch(() => undefined)
+      .catch(noteSwallowedHandler('SoftContextualUpsellCard:useCallback.resolve'))
       .finally(() => { impressionInFlightRef.current = null; });
     impressionInFlightRef.current = operation;
   }, [onImpression]);

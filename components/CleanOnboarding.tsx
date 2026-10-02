@@ -113,6 +113,7 @@ import {
 } from '../app/auth_provider';
 import { fetchAccountDeleteStatus, restoreDeletedAccount } from '../app/account_delete_restore_client';
 import { reportSwallowed, swallowError } from '../app/debug-logger';
+import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const WELCOME_LOGO_SOURCE = require('../assets/images/flow_clean_202607/logo_cutout.webp');
 // Иконка приложения — плитка слева в карточке пуша макета телефона (Bevel, кадры 7/10).
@@ -493,7 +494,7 @@ function trackOnboardingActivity(action: string, tags?: OnboardingAnalyticsTags)
       tags,
       writeToFirestore: action === 'onboarding_source_select',
     }))
-    .catch(() => {});
+    .catch(noteSwallowedHandler('CleanOnboarding:trackOnboardingActivity.call'));
 }
 
 function trackOnboarding(action: AnalyticsEvent, tags?: OnboardingAnalyticsTags) {
@@ -547,7 +548,7 @@ function trackOnboardingExit(step: OnboardingStepId) {
       tags: { step },
       writeToFirestore: true,
     }))
-    .catch(() => {});
+    .catch(noteSwallowedHandler('CleanOnboarding:trackOnboardingExit.call'));
 }
 
 function Background() {
@@ -2421,7 +2422,7 @@ function CleanOnboarding({
     await AsyncStorage.multiSet([
       [FLOW_VERSION_KEY, CLEAN_ONBOARDING_FLOW_VERSION],
       [STEP_KEY, next],
-    ]).catch(() => {});
+    ]).catch(noteSwallowedHandler('CleanOnboarding:useCallback.multiSet'));
   }, []);
 
   const go = useCallback((requested: CleanOnboardingStep) => {
@@ -2461,7 +2462,7 @@ function CleanOnboarding({
         tags: { step },
         writeToFirestore: true,
       }))
-      .catch(() => {});
+      .catch(noteSwallowedHandler('CleanOnboarding:useCallback.call'));
     go(MANDATORY_ONBOARDING_STEP);
   }, [enabledOrder, go, step]);
 
@@ -2622,8 +2623,8 @@ function CleanOnboarding({
       await AsyncStorage.multiSet([
         [DONE_KEY, '1'],
         [FLOW_VERSION_KEY, CLEAN_ONBOARDING_FLOW_VERSION],
-      ]).catch(() => {});
-      await AsyncStorage.removeItem(STEP_KEY).catch(() => {});
+      ]).catch(noteSwallowedHandler('CleanOnboarding:useCallback.multiSet_2'));
+      await AsyncStorage.removeItem(STEP_KEY).catch(noteSwallowedHandler('CleanOnboarding:useCallback.removeItem'));
       onDone();
     } catch (error) {
       const detail = error instanceof Error ? error.message : String(error);
@@ -2695,8 +2696,8 @@ function CleanOnboarding({
       await AsyncStorage.multiSet([
         [DONE_KEY, '1'],
         [FLOW_VERSION_KEY, CLEAN_ONBOARDING_FLOW_VERSION],
-      ]).catch(() => {});
-      await AsyncStorage.removeItem(STEP_KEY).catch(() => {});
+      ]).catch(noteSwallowedHandler('CleanOnboarding:useCallback.multiSet_3'));
+      await AsyncStorage.removeItem(STEP_KEY).catch(noteSwallowedHandler('CleanOnboarding:useCallback.removeItem_2'));
       onDone();
     } catch (error) {
       const detail = error instanceof Error ? error.message : String(error);
@@ -2712,10 +2713,10 @@ function CleanOnboarding({
     await AsyncStorage.multiSet([
       [ONBOARDING_REQUESTED_STUDY_TARGET_KEY, 'en'],
       ['study_target_v1', 'en'],
-    ]).catch(() => {});
-    await setStoredStudyTarget('en', lang).catch(() => 'en');
+    ]).catch(noteSwallowedHandler('CleanOnboarding:useCallback.multiSet_4'));
+    await setStoredStudyTarget('en', lang).catch(noteSwallowedAs('CleanOnboarding:useCallback.setStoredStudyTarget', 'en'));
     if (ENABLE_DEV_STUDY_TARGET_LANG) {
-      await setDevStudyTargetLang('en', lang).catch(() => {});
+      await setDevStudyTargetLang('en', lang).catch(noteSwallowedHandler('CleanOnboarding:useCallback.setDevStudyTargetLang'));
       emitDevStudyTargetChanged();
     }
   }, [lang]);
@@ -2763,14 +2764,14 @@ function CleanOnboarding({
     void AsyncStorage.multiSet([
       [DISCOVERY_SOURCE_KEY, next],
       ['onboarding_source', next],
-    ]).catch(() => {});
+    ]).catch(noteSwallowedHandler('CleanOnboarding:useCallback.multiSet_5'));
     trackOnboarding('onboarding_source_select', { source: next });
     // Макет Bevel: выбор не переводит дальше — дальше ведёт кнопка «Продолжить».
   }, []);
 
   const chooseLevel = useCallback((next: LevelChoice) => {
     setLevel(next);
-    void AsyncStorage.setItem(PLAN_LEVEL_KEY, next).catch(() => {});
+    void AsyncStorage.setItem(PLAN_LEVEL_KEY, next).catch(noteSwallowedHandler('CleanOnboarding:useCallback.setItem'));
     trackOnboarding('onboarding_plan_level_select', { level: next });
   }, []);
 
@@ -2786,14 +2787,14 @@ function CleanOnboarding({
         () => ({ granted: false, blocked: false, openedSettings: false }),
       );
       if (granted) {
-        await setOnboardingNotificationChoice('allow').catch(() => {});
+        await setOnboardingNotificationChoice('allow').catch(noteSwallowedHandler('CleanOnboarding:useCallback.setOnboardingNotificationChoice'));
         setNotificationChoice('allow');
-        await scheduleDailyReminder(20, 0, lang, { requestPermission: false, studyTarget }).catch(() => {});
+        await scheduleDailyReminder(20, 0, lang, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('CleanOnboarding:useCallback.scheduleDailyReminder'));
         go('name');
         return;
       }
       if (blocked) {
-        await setOnboardingNotificationChoice('blocked').catch(() => {});
+        await setOnboardingNotificationChoice('blocked').catch(noteSwallowedHandler('CleanOnboarding:useCallback.setOnboardingNotificationChoice_2'));
         setNotificationChoice('blocked');
         Alert.alert(
           'Напоминание не включилось',
@@ -2803,7 +2804,7 @@ function CleanOnboarding({
             {
               text: 'Открыть настройки',
               onPress: () => {
-                Linking.openSettings().catch(() => {});
+                Linking.openSettings().catch(noteSwallowedHandler('CleanOnboarding:onPress.openSettings'));
                 go('name');
               },
             },
@@ -2813,7 +2814,7 @@ function CleanOnboarding({
       }
       // Даже обычный отказ в системном диалоге — уже сделанный выбор. Не просим
       // разрешение второй раз через несколько экранов в этой же сессии.
-      await setOnboardingNotificationChoice('skip').catch(() => {});
+      await setOnboardingNotificationChoice('skip').catch(noteSwallowedHandler('CleanOnboarding:useCallback.setOnboardingNotificationChoice_3'));
       setNotificationChoice('skip');
       go('name');
     } finally {
@@ -2822,14 +2823,14 @@ function CleanOnboarding({
   }, [continueAfterNotificationDialog, go, lang, notificationBusy, studyTarget]);
 
   const skipPracticeNotification = useCallback(async () => {
-    await setOnboardingNotificationChoice('skip').catch(() => {});
+    await setOnboardingNotificationChoice('skip').catch(noteSwallowedHandler('CleanOnboarding:useCallback.setOnboardingNotificationChoice_4'));
     setNotificationChoice('skip');
     go('name');
   }, [go]);
 
   const choosePaywallPlan = useCallback((next: PaywallPlan) => {
     selectBillingPlan(next);
-    void AsyncStorage.setItem(PLAN_BILLING_KEY, next).catch(() => {});
+    void AsyncStorage.setItem(PLAN_BILLING_KEY, next).catch(noteSwallowedHandler('CleanOnboarding:useCallback.setItem_2'));
     trackOnboarding('onboarding_plan_billing_select', { plan: next });
   }, [selectBillingPlan]);
 
@@ -3026,9 +3027,9 @@ function CleanOnboarding({
       // рождения. Раньше здесь синтезировался фиктивный год (текущий − 16) и уезжал в
       // Firestore как персональные данные — бесполезный (у всех одинаковый) и лишний
       // по GDPR ст. 5(1)(c). Пишем ровно тот факт, который пользователь подтвердил.
-      await confirmAdultAgeAttestation().catch(() => null);
+      await confirmAdultAgeAttestation().catch(noteSwallowedAs('CleanOnboarding:useCallback.confirmAdultAgeAttestation', null));
       if (analyticsAllowed) {
-        await setAnalyticsConsent('granted').catch(() => null);
+        await setAnalyticsConsent('granted').catch(noteSwallowedAs('CleanOnboarding:useCallback.setAnalyticsConsent', null));
         if (source) {
           trackOnboarding('onboarding_source_select', {
             source,
@@ -3043,9 +3044,9 @@ function CleanOnboarding({
           target: studyTarget,
         });
       } else {
-        await setAnalyticsConsent('denied').catch(() => null);
+        await setAnalyticsConsent('denied').catch(noteSwallowedAs('CleanOnboarding:useCallback.setAnalyticsConsent_2', null));
       }
-      void recordConsentToCloud().catch(() => null);
+      void recordConsentToCloud().catch(noteSwallowedAs('CleanOnboarding:useCallback.recordConsentToCloud', null));
     } finally {
       finishingRef.current = false;
     }
@@ -3081,7 +3082,7 @@ function CleanOnboarding({
       // после покупки компонент может быть смонтирован заново (startAtNameStep),
       // и state уже пуст. Имя переменной — намеренно то же, что у state
       // (сторож onboarding_funnel_aggregate ищет литерал вызова).
-      const storedHelp = await AsyncStorage.getItem(ANALYTICS_HELP_KEY).catch(() => null);
+      const storedHelp = await AsyncStorage.getItem(ANALYTICS_HELP_KEY).catch(noteSwallowedAs('CleanOnboarding:useCallback.getItem', null));
       const analyticsAllowed = storedHelp === '1';
       await AsyncStorage.multiSet([
         [DONE_KEY, '1'],
@@ -3105,9 +3106,9 @@ function CleanOnboarding({
       // завершается без бонусной выдачи.
       onDone();
       void resumePendingGeneratedNickname();
-      void AsyncStorage.multiRemove([STEP_KEY]).catch(() => {});
+      void AsyncStorage.multiRemove([STEP_KEY]).catch(noteSwallowedHandler('CleanOnboarding:useCallback.multiRemove'));
       if (notificationChoice === 'allow') {
-        void scheduleDailyReminder(20, 0, lang, { requestPermission: false, studyTarget }).catch(() => {});
+        void scheduleDailyReminder(20, 0, lang, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('CleanOnboarding:useCallback.scheduleDailyReminder_2'));
       }
     } catch {
       // Запись не удалась — даём выходу повториться, а не запираем пейвол навсегда.

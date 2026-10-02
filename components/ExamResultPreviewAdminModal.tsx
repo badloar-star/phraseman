@@ -25,6 +25,7 @@ import { buildExamShareMessage, buildCertificateShareMessage } from '../app/exam
 import { STORE_URL } from '../app/config';
 import type { LingmanCertificate } from '../app/exam_certificate';
 import { bundleLang, triLang } from '../constants/i18n';
+import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type Props = {
   visible: boolean;
@@ -163,7 +164,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
       cert.pct,
       STORE_URL,
     );
-    await Share.share({ message: msg }).catch(() => {});
+    await Share.share({ message: msg }).catch(noteSwallowedHandler('ExamResultPreviewAdminModal:handleShareExam.share'));
   };
 
   const handleShareCert = async () => {

@@ -59,6 +59,7 @@ import {
   ExamFooter, ExamHeader, ExamKvCard, ExamOption, ExamPill, ExamQuietButton, ExamStatRow,
   ExamTile, ExamTrack, ExamVerdict, GlassTimerRing, examCardStyle, type ExamOptionState,
 } from '../components/level-exam/ExamGlassParts';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const TIMER_SEC = 30;
 
@@ -1057,7 +1058,7 @@ export default function DiagnosticTest() {
               : 'form',
         expected: correctAnswer,
       },
-    }).catch(() => {});
+    }).catch(noteSwallowedHandler('diagnostic_test:captureDiagnosticWrong.captureCurrentAccountObjectiveAttempt'));
   };
 
   const clearAutoAdvanceTimer = () => {
@@ -1324,7 +1325,7 @@ export default function DiagnosticTest() {
       };
       void AsyncStorage.setItem(diagnosticLastKey(studyTarget), JSON.stringify(lastPayload));
       setPrev(lastPayload);
-      checkAchievements({ type: 'diagnosis', studyTarget }).catch(() => {});
+      checkAchievements({ type: 'diagnosis', studyTarget }).catch(noteSwallowedHandler('diagnostic_test:advance.checkAchievements'));
       void trackFeatureSuccess('diagnostic', 'complete', {
         score: newScore,
         total: questions.length,

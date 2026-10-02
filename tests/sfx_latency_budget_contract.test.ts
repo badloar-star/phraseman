@@ -46,7 +46,10 @@ describe('SFX: бюджет задержки первого звука', () => {
     const match = backend.match(/const DEFAULT_CACHE_SIZE = (\d+);/);
     const size = Number(match![1]);
     const sourceCount = (events.match(/require\('/g) ?? []).length;
-    expect(sourceCount).toBeGreaterThan(100);
+    // зачем (PM-220): каталог сократился с 141 до ~68 событий после удаления Арены/MAX/XP — порог
+    // «кэш меньше каталога» остаётся смысловым (16 < 68), а не привязан к старому числу 100.
+    expect(sourceCount).toBeGreaterThan(size);
+    expect(sourceCount).toBeGreaterThan(40);
     expect(size).toBeLessThan(sourceCount);
   });
 
@@ -62,9 +65,11 @@ describe('SFX: бюджет задержки первого звука', () => {
     // Раньше их не было вовсе, хотя они звучат в конце каждого урока.
     for (const eventId of [
       'pm.reward.chest_open',
-      'pm.complete.xp_counter_start',
-      'pm.complete.xp_counter_tick',
-      'pm.complete.xp_counter_complete',
+      // зачем (D02): счётчик опыта удалён вместе с XP; конец урока теперь — микро-завершение,
+      // награда и сохранённая серия.
+      'pm.complete.micro',
+      'pm.reward.small',
+      'pm.streak.saved',
     ]) {
       expect({ eventId, present: layout.includes(`'${eventId}'`) })
         .toEqual({ eventId, present: true });
@@ -75,7 +80,7 @@ describe('SFX: бюджет задержки первого звука', () => {
     // Опечатка в id сделала бы прогрев молча бесполезным.
     const prewarmed = [...layout.matchAll(/prewarm\(\[([\s\S]*?)\]\)/g)]
       .flatMap((block) => [...block[1].matchAll(/'(pm\.[a-z0-9_.]+)'/g)].map((m) => m[1]));
-    expect(prewarmed.length).toBeGreaterThanOrEqual(10);
+    expect(prewarmed.length).toBeGreaterThanOrEqual(7);
     const missing = prewarmed.filter((id) => !events.includes(`'${id}'`));
     expect(missing).toEqual([]);
   });

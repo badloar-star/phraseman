@@ -11,7 +11,9 @@ describe('root layout startup navigation contract', () => {
     expect(source).not.toMatch(/if\s*\(isBanned\)\s*\{\s*return\s*\(/);
     expect(source).toContain('const startupSplashVisible = !fontsReady || !ready');
     expect(source).toContain('|| (!effectiveShowOnboarding && !isBanned && (!firstContentReady || !homeScreenReady))');
-    expect(source).toContain('setTimeout(() => setFirstContentReady(true), FIRST_CONTENT_READY_FALLBACK_MS)');
+    // зачем (PM-220): форма таймера изменилась (колбэк с bootMark), но правило то же — у флага
+    // firstContentReady есть потолок FIRST_CONTENT_READY_FALLBACK_MS, который его выставляет.
+    expect(source).toMatch(/setTimeout\(\(\) => \{[^}]*setFirstContentReady\(true\);\s*\}, FIRST_CONTENT_READY_FALLBACK_MS\)/);
     expect(source.indexOf('<Stack')).toBeGreaterThan(-1);
     expect(source.indexOf('<Stack')).toBeLessThan(
       source.indexOf('<StartupSplashHold visible={startupSplashVisible}'),
@@ -62,14 +64,17 @@ describe('root layout startup navigation contract', () => {
   it('defers the language welcome deep-link gate until after the root mount settles', () => {
     expect(languageWelcomeSource).toContain('useRootNavigationState');
 
-    const gateStart = languageWelcomeSource.indexOf('// Эффект-гейт');
-    expect(gateStart).toBeGreaterThan(-1);
-    const gateBlock = languageWelcomeSource.slice(gateStart, gateStart + 1400);
+    // зачем (PM-220): якорь — сам гейт, а не слово в комментарии, которое переписывают.
+    const gateStart = languageWelcomeSource.indexOf('if (!rootNavReady) return;') - 200;
+    expect(languageWelcomeSource.indexOf('if (!rootNavReady) return;')).toBeGreaterThan(-1);
+    const gateBlock = languageWelcomeSource.slice(Math.max(0, gateStart), Math.max(0, gateStart) + 1600);
     expect(gateBlock).toContain('if (!rootNavReady) return;');
     expect(gateBlock).toContain('scheduleAfterRootNavigationReady(() => {');
-    // markNextNavigationAsReplace живёт ВНУТРИ отложенного колбэка — метка не должна
-    // «протухать» до реального replace (см. navigation_back.ts).
-    expect(gateBlock.indexOf('scheduleAfterRootNavigationReady(() => {'))
-      .toBeLessThan(gateBlock.indexOf('markNextNavigationAsReplace()'));
+    // зачем (PM-220): пейвола в этом гейте больше нет (D115/владелец 30.09), поэтому метки
+    // markNextNavigationAsReplace тоже нет. Правило осталось: переход назад выполняется ТОЛЬКО
+    // внутри отложенного колбэка, а не сразу в эффекте.
+    expect(gateBlock).not.toContain('markNextNavigationAsReplace');
+    const scheduledAt = gateBlock.indexOf('scheduleAfterRootNavigationReady(() => {');
+    expect(gateBlock.indexOf('if (!cancelled) goBackSafely();')).toBeGreaterThan(scheduledAt);
   });
 });

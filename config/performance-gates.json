@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "task": "PM-220",
+  "why": "Регрессионные ворота производительности: каждый сценарий (старт, возврат из фона, навигация, скролл, тренировка) имеет исходниковый сторож в CI и метрику для замера на устройстве. Числовые пороги НЕ придуманы: пока нет baseline слабого телефона (config/perf-device-baseline.json), threshold = null, а проба tests/pm220_performance_gates.probe.ts запрещает любые числа без baseline. Неизвестное — null, не 0.",
+  "baselineFile": "config/perf-device-baseline.json",
+  "deviceRequirements": {
+    "minDevices": 2,
+    "mustInclude": ["low_end_android", "iphone"],
+    "minRunsPerMetric": 5,
+    "statistics": ["p50", "p95"],
+    "build": "release",
+    "forbiddenAsSoleEvidence": ["average_fps", "dev_metro", "emulator_only", "flagship_only"]
+  },
+  "scenarios": {
+    "start": {
+      "title": "Холодный и тёплый старт до первого действия",
+      "staticGuards": [
+        "tests/startup_home_lazy_contract.test.ts",
+        "tests/root_layout_startup_navigation_contract.test.ts",
+        "tests/home_startup_stability.test.ts",
+        "tests/startup_image_preload_contract.test.ts",
+        "tests/startup_audio_lazy_contract.test.ts",
+        "tests/pm212_module_side_effects.probe.ts"
+      ],
+      "metrics": [
+        { "id": "cold_start_to_first_action_ms", "unit": "ms", "threshold": null },
+        { "id": "warm_start_to_first_action_ms", "unit": "ms", "threshold": null },
+        { "id": "peak_memory_mb_after_start", "unit": "MB", "threshold": null }
+      ]
+    },
+    "resume": {
+      "title": "Возврат из фона",
+      "staticGuards": [
+        "tests/app_resume_policy.test.ts",
+        "tests/foreground_resume_root_contract.test.ts",
+        "tests/pm210_background_jobs_registry.probe.ts"
+      ],
+      "metrics": [
+        { "id": "resume_to_first_touch_ms", "unit": "ms", "threshold": null },
+        { "id": "pending_jobs_after_resume", "unit": "count", "threshold": null }
+      ]
+    },
+    "navigation": {
+      "title": "Переходы между экранами и вкладками",
+      "staticGuards": [
+        "tests/perf_freeze_contract.test.ts",
+        "tests/navigation_back.test.ts",
+        "tests/paywall_navigation_smooth_contract.test.ts"
+      ],
+      "metrics": [
+        { "id": "tap_to_feedback_ms", "unit": "ms", "threshold": null },
+        { "id": "screen_transition_dropped_frames_pct", "unit": "%", "threshold": null }
+      ]
+    },
+    "scroll": {
+      "title": "Скролл длинных списков и карты Learning V2",
+      "staticGuards": [
+        "tests/layout_stability_contract.test.ts",
+        "tests/learning_v2_continuous_map_perf_contract.test.ts",
+        "tests/learning_v2_map_row_memo_contract.test.ts",
+        "tests/animated_event_scrollview_contract.test.ts"
+      ],
+      "metrics": [
+        { "id": "scroll_dropped_frames_pct_p95", "unit": "%", "threshold": null },
+        { "id": "scroll_js_thread_busy_pct", "unit": "%", "threshold": null }
+      ]
+    },
+    "training": {
+      "title": "Тренировка и занятие (ответ, награда, звук)",
+      "staticGuards": [
+        "tests/fc_training_entry.test.ts",
+        "tests/learning_v2_motion_performance_contract.test.ts",
+        "tests/lesson_runtime_animation_contract.test.ts",
+        "tests/home_render_scope_guard.test.ts",
+        "tests/sfx_latency_budget_contract.test.ts"
+      ],
+      "metrics": [
+        { "id": "answer_tap_to_feedback_ms", "unit": "ms", "threshold": null },
+        { "id": "session_complete_to_reward_visible_ms", "unit": "ms", "threshold": null },
+        { "id": "sfx_first_play_latency_ms", "unit": "ms", "threshold": null }
+      ]
+    }
+  }
+}

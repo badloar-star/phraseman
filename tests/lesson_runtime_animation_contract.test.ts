@@ -18,7 +18,8 @@ describe('lesson runtime animation ownership', () => {
     expect(read('app/lesson_intro_screens.tsx')).toContain('if (!lessonIntroRuntimeActive || allRevealed)');
     expect(read('app/lesson_intro_screens.tsx')).toContain('if (!lessonIntroRuntimeActive || !ctaReady)');
     expect(read('app/lesson_complete.tsx')).toContain('if (!lessonCompleteRuntimeActive || !seqDone)');
-    expect(read('app/pack_opening.tsx')).toContain('if (!active || flipped)');
+    // зачем (PM-220, PM-033): к остановке по активности добавилась остановка по «Уменьшить движение» — условие строже прежнего.
+    expect(read('app/pack_opening.tsx')).toContain('if (!active || flipped || reducedMotionLoop)');
     expect(read('app/pack_opening.tsx')).toContain('active={packOpeningRuntimeActive}');
   });
 });

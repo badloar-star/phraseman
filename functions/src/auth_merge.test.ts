@@ -1694,19 +1694,23 @@ describe('mergeStableAccounts', () => {
   });
 
   it('rejects absorbing an unowned account with NO claim', async () => {
-    const { db } = makeDbStub({
+    const { db, store } = makeDbStub({
       users: {
         'stable-mine': { firebaseAuthUid: 'google-12', progress: { user_total_xp: '5000' } },
         'stable-anon': { firebaseAuthUid: 'anon-x', progress: { user_total_xp: '300' } }, // no claim
       },
     });
+    // зачем (8P, 2026-10-02): владеемый аккаунт первым (по PM-067 первый = победитель), чтобы
+    // отказ шёл именно с проверки anon_merge_claim, а не с проверки владения победителем —
+    // иначе ослабленная проверка заявки (ворота от захвата чужого аккаунта) прошла бы тесты молча.
     await expect(
-      mergeStableAccounts(db as any, 'google-12', 'stable-anon', 'stable-mine', NOW),
-    ).rejects.toMatchObject({ code: 'permission-denied' });
+      mergeStableAccounts(db as any, 'google-12', 'stable-mine', 'stable-anon', NOW),
+    ).rejects.toMatchObject({ code: 'permission-denied', message: 'stable_id_mismatch' });
+    expect(store.users['stable-anon']!.identityHidden).toBeUndefined();
   });
 
   it('rejects a STALE anon_merge_claim (older than the TTL)', async () => {
-    const { db } = makeDbStub({
+    const { db, store } = makeDbStub({
       users: {
         'stable-mine': { firebaseAuthUid: 'google-13', progress: { user_total_xp: '5000' } },
         'stable-anon': {
@@ -1716,16 +1720,20 @@ describe('mergeStableAccounts', () => {
         },
       },
     });
+    // зачем (8P, 2026-10-02): владеемый аккаунт первым (по PM-067 первый = победитель), чтобы
+    // отказ шёл именно с проверки anon_merge_claim, а не с проверки владения победителем —
+    // иначе ослабленная проверка заявки (ворота от захвата чужого аккаунта) прошла бы тесты молча.
     await expect(
-      mergeStableAccounts(db as any, 'google-13', 'stable-anon', 'stable-mine', NOW),
-    ).rejects.toMatchObject({ code: 'permission-denied' });
+      mergeStableAccounts(db as any, 'google-13', 'stable-mine', 'stable-anon', NOW),
+    ).rejects.toMatchObject({ code: 'permission-denied', message: 'stable_id_mismatch' });
+    expect(store.users['stable-anon']!.identityHidden).toBeUndefined();
   });
 
   it('rejects a claim whose authUid does NOT match the loser doc owner', async () => {
     // An attacker who learned a stable_id could try to forge a claim, but the
     // claim.authUid must equal the loser doc's firebaseAuthUid (the anon uid that
     // truly held it). A mismatch is rejected.
-    const { db } = makeDbStub({
+    const { db, store } = makeDbStub({
       users: {
         'stable-mine': { firebaseAuthUid: 'google-14', progress: { user_total_xp: '5000' } },
         'stable-anon': {
@@ -1735,9 +1743,13 @@ describe('mergeStableAccounts', () => {
         },
       },
     });
+    // зачем (8P, 2026-10-02): владеемый аккаунт первым (по PM-067 первый = победитель), чтобы
+    // отказ шёл именно с проверки anon_merge_claim, а не с проверки владения победителем —
+    // иначе ослабленная проверка заявки (ворота от захвата чужого аккаунта) прошла бы тесты молча.
     await expect(
-      mergeStableAccounts(db as any, 'google-14', 'stable-anon', 'stable-mine', NOW),
-    ).rejects.toMatchObject({ code: 'permission-denied' });
+      mergeStableAccounts(db as any, 'google-14', 'stable-mine', 'stable-anon', NOW),
+    ).rejects.toMatchObject({ code: 'permission-denied', message: 'stable_id_mismatch' });
+    expect(store.users['stable-anon']!.identityHidden).toBeUndefined();
   });
 
   it('still rejects when the unowned side would WIN even with a claim (never overwrite owned)', async () => {

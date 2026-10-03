@@ -10,6 +10,14 @@ jest.mock('../components/ContentWrap', () => ({ children }: any) => children);
 jest.mock('../components/DuoPressable', () => ({ children }: any) => children);
 // зачем: итог слов теперь общий экран 2.0 (тянет expo-image); тест — про банк слов, итог не нужен.
 jest.mock('../components/completion/V2DoneScreen', () => () => null);
+// зачем: экран слов теперь тянет UI-обвязку 2.0 (reanimated, монеты, счётчик); тест про банк слов, ей достаточно заглушек.
+jest.mock('../components/practice/PracticeStates', () => ({ PracticeCta: () => null, PracticeProgressRow: () => null, PracticeQuestionCard: () => null }));
+jest.mock('../components/session_attempts/SessionAttemptsHud', () => () => null);
+jest.mock('../components/PracticeRuneCounter', () => () => null);
+jest.mock('../components/AnimatedCountUpText', () => () => null);
+jest.mock('../components/rewards/CoinRewardFlight', () => () => null);
+jest.mock('../hooks/useCoinRewardFlight', () => ({ useCoinRewardFlight: jest.fn() }));
+jest.mock('../hooks/usePracticeRunes', () => ({ usePracticeRunes: jest.fn() }));
 jest.mock('../components/practice/PracticeChrome', () => ({ PracticeBackButton: () => null, PracticeHeaderTitle: () => null }));
 jest.mock('../components/LangContext', () => ({
   useLang: () => ({ lang: 'ru', s: { words: {} } }),

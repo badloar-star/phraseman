@@ -12,7 +12,9 @@ describe('numeric energy v2 contract', () => {
     expect(contract).toContain('ENERGY_SCHEMA_VERSION = 2');
     expect(contract).toContain('ENERGY_BASE_CAPACITY = 5');
     expect(contract).toContain('ENERGY_SESSION_COST = 1');
-    expect(contract).toContain('ENERGY_ACTIVE_CAPACITY_LIMIT = ENERGY_PERMANENT_CAPACITY_LIMIT + ENERGY_BONUS_CAPACITY_LIMIT');
+    // D07/PM-081: бонусов к потолку нет — активный потолок равен постоянному, бонус 0.
+    expect(contract).toContain('ENERGY_BONUS_CAPACITY_LIMIT = 0');
+    expect(contract).toContain('ENERGY_ACTIVE_CAPACITY_LIMIT = ENERGY_PERMANENT_CAPACITY_LIMIT');
     // PM-083 (BIBLE «+1 за 10 минут»): прежние 6 минут отменены.
     expect(contract).toContain('ENERGY_PASSIVE_UNIT_MS = 10 * 60 * 1000');
     expect(contract).toContain('ENERGY_VIDEO_UNIT_MS = 36 * 1000');
@@ -23,16 +25,22 @@ describe('numeric energy v2 contract', () => {
     expect(contract).toContain('arena_match: ENERGY_SESSION_COST');
     expect(contract).not.toMatch(/:s*(10|20|25),/);
     expect(contract).toContain('video: 0');
-    expect(contract).toContain('max_call: 0');
+    // MAX удалён (D81): ключа активности max_call в таблице цен больше нет.
+    expect(contract).not.toContain('max_call');
   });
 
-  it('remote defaults resolve to 5 energy and one unit every ten minutes', () => {
+  // зачем: D66 (local-first) — энергия решается на устройстве; удалённые флаги
+  // numeric_energy_v2/max_energy/energy_recovery_interval_ms из remote_flags убраны.
+  // Запас 5 и восстановление 10 минут живут только в energy_contract.ts (проверено выше),
+  // сторож не даёт им вернуться в удалённый конфиг.
+  it('energy capacity and recovery are local constants, not remote flags', () => {
     const flags = read('app/remote_flags.ts');
-    expect(flags).toContain('numeric_energy_v2: true');
-    expect(flags).toContain('max_energy: 5,');
-    expect(flags).toContain('max_energy: { min: 5, max: 5 }');
-    expect(flags).toContain('energy_recovery_interval_ms: 10 * 60 * 1000');
-    expect(flags).toContain('energy_recovery_interval_ms: { min: 10 * 60 * 1000, max: 10 * 60 * 1000 }');
+    expect(flags).not.toContain('numeric_energy_v2');
+    expect(flags).not.toContain('max_energy');
+    expect(flags).not.toContain('energy_recovery_interval_ms');
+    const contract = read('app/energy_contract.ts');
+    expect(contract).toContain('maxEnergy: ENERGY_BASE_CAPACITY');
+    expect(contract).toContain('recoveryIntervalMs: ENERGY_PASSIVE_UNIT_MS');
   });
 
   it('all paid starts use the single durable activity-first context entry point', () => {
@@ -155,16 +163,16 @@ describe('numeric energy v2 contract', () => {
     }
   });
 
-  it('keeps MAX free and mistakes inside an activity free', () => {
-    const max = read('app/max_call_prestart.tsx');
-    expect(max).not.toContain('EnergyCostBadge');
-    expect(max).not.toContain('confirmSpendOne');
+  // зачем: D81 — клиентский MAX удалён целиком, раздел законсервирован (пломбы сторожит
+  // max_section_sealed_contract). «MAX бесплатен» теперь = экрана нет + цена в таблице 0.
+  it('keeps MAX sealed and free, and mistakes inside an activity free', () => {
+    expect(fs.existsSync(path.join(process.cwd(), 'app/max_call_prestart.tsx'))).toBe(false);
+    expect(read('app/energy_contract.ts')).not.toContain('max_call');
     for (const file of [
       'app/lesson1.tsx',
       'app/lesson_words.tsx',
       'app/lesson_irregular_verbs.tsx',
       'app/preposition_drill.tsx',
-      'app/personal_plan_exercise.tsx',
     ]) expect(read(file)).not.toContain('spendEnergyOnMistake');
   });
 
@@ -183,8 +191,8 @@ describe('numeric energy v2 contract', () => {
   it('covers recall and direct Learning V2 retry paid-entry callsites', () => {
     const recall = read('app/flashcards_recall_session.tsx');
     expect(recall).toContain("useEnergySessionIntent(");
-    expect(recall).toContain("'flashcards'");
-    expect(recall).toContain('await confirmSpendOne(energyIntent)');
+    expect(recall).toContain("'flashcards_recall'");
+    expect(recall).toContain('confirmSpendOne(restored.energyIntent)');
     expect(recall).toContain('activity="flashcards"');
 
     const directV2 = read('app/learning_v2_direct_session_player_v1.tsx');

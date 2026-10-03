@@ -56,7 +56,10 @@ describe('lesson words training queue guard', () => {
 
   it('uses the same scoped vocabulary progress key as the lesson menu', () => {
     expect(source).toContain('lessonWordsKey(lessonId, studyTarget)');
-    expect(source).toContain('lessonWordsShardsGrantedKey(lessonId, studyTarget)');
+    // зачем: осколки/жемчуг удалены (PM-289, D70/D78) — отдельного ключа выдачи осколков нет;
+    // остаётся один ключ прогресса словаря, общий с меню урока (lesson_menu.tsx).
+    expect(source).not.toContain('lessonWordsShardsGrantedKey');
+    expect(fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_menu.tsx'), 'utf8')).toContain('lessonWordsKey(id, studyTarget)');
     expect(source).toContain('AsyncStorage.getItem(storageKey)');
     expect(source).toContain('AsyncStorage.setItem(storageKey, JSON.stringify(newCounts))');
     expect(source).not.toContain("storageKey + '_words'");

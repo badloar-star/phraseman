@@ -22,8 +22,11 @@ describe('admin premium delivery contract', () => {
     const forceSyncStart = cloudSync.indexOf('export async function forceSyncToCloud');
     const forceSyncBody = cloudSync.slice(forceSyncStart, cloudSync.indexOf('// ── Очистка локального прогресса', forceSyncStart));
 
-    expect(forceSyncBody).toContain('const firebaseAuthUidRow = getAuthUserId();');
-    expect(forceSyncBody).toContain('firebaseAuthUid: firebaseAuthUidRow');
+    // зачем: firebaseAuthUid стал server-owned (firestore.rules serverOwnedUserIdentityFields),
+    // клиент его больше не пишет — иначе расхождение со старым значением роняет весь set.
+    // Сторож теперь запрещает клиентскую запись поля, а не требует её.
+    expect(forceSyncBody).toContain('firebaseAuthUid — server-owned');
+    expect(forceSyncBody).not.toMatch(/firebaseAuthUid\s*:/);
   });
 
   it('starts the live admin VIP listener only after stable auth linking and retries dead listeners', () => {
@@ -52,15 +55,18 @@ describe('admin premium delivery contract', () => {
 
   it('does not redirect a direct AI-dialog entry before entitlement resolution finishes', () => {
     const dialogSession = fs.readFileSync(path.join(process.cwd(), 'app', 'ai_dialog_session.tsx'), 'utf8');
-    const redirectStart = dialogSession.indexOf("source: 'ai_dialog_direct_entry'");
-    const redirectEffect = dialogSession.slice(Math.max(0, redirectStart - 260), redirectStart + 260);
+    // зачем (владелец 2026-09-14, «Стена Free»): прямой вход без доступа больше не
+    // редиректит на пейвол — вместо этого эффект квоты ждёт accessResolved и открывает
+    // экран со стеной. Сторож: редиректа нет, а ожидание резолва доступа сохранено.
+    const redirectEffect = dialogSession;
 
     expect(premiumContext).toContain('accessResolved: boolean;');
     expect(premiumContext).toContain('const [accessResolved, setAccessResolved] = useState(false);');
     expect(premiumContext).toContain('setAccessResolved(true);');
     expect(dialogSession).toContain('const { hasPremiumAccess, accessResolved } = usePremium();');
-    expect(redirectEffect).toContain('if (!accessResolved || !aiDialogGateOpen || dialogAccess) return;');
-    expect(redirectEffect).toContain('[accessResolved, aiDialogGateOpen, dialogAccess, router]');
+    expect(redirectEffect).not.toContain("source: 'ai_dialog_direct_entry'");
+    expect(redirectEffect).toContain('if (!accessResolved || !dialogueRuntimeOpen) return;');
+    expect(redirectEffect).toContain('[accessResolved, accountStableId, dialogueRuntimeOpen, hasPremiumAccess, router, scenario.id, studyTarget]');
   });
 
   it('restarts the VIP listener after provider login or stable-id merge', () => {

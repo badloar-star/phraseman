@@ -77,6 +77,19 @@ export const COIN_RECONCILE_V1_LIMITS = Object.freeze({
    * Спины с монетами появились 2026-08-24 — сейчас всё внутри окна.
    */
   receiptSafetyMarginMs: 5 * 24 * 60 * 60 * 1_000,
+  /**
+   * 8S: аккаунтов, слитых в этот stableUid (включая цепочки), учитываем не
+   * больше. Больше — аномалия: ничего не поднимаем, over_cap_review, решение
+   * вручную (частичный учёт навсегда закрыл бы остальных одноразовой записью).
+   */
+  maxMergedAccounts: 8,
+  /** 8S: глубина цепочки «A скрыт в B, B скрыт в победителе». */
+  maxMergeDepth: 3,
+  /**
+   * 8S: потолок чтений расписок (дорожки × книги семьи). Выше — review, а не
+   * гигантская транзакция.
+   */
+  maxReceiptReads: 2_000,
 });
 
 export type CoinReconcileStatus = 'raised' | 'nothing_to_raise' | 'over_cap_review';
@@ -89,7 +102,24 @@ export type CoinReconcileV1Record = Readonly<{
   /** Сумма, найденная при over_cap_review (для ручного решения); иначе = raisedBy. */
   foundTotal: number;
   atMs: number;
+  /**
+   * 8S: сколько скрытых слиянием аккаунтов учтено. Есть у записей, сделанных
+   * после 8S; отсутствие = запись до 8S (их считает read-only скрипт
+   * scripts/coin_reconcile_merged_losers_count.mjs). Клиенту не отдаётся.
+   */
+  mergedLoserCount?: number;
+  /** 8S: почему over_cap_review, если причина не в сумме. */
+  reviewReason?: CoinReconcileReviewReason;
 }>;
+
+export type CoinReconcileReviewReason =
+  | 'merged_accounts_overflow'
+  | 'merge_depth_overflow'
+  | 'receipt_budget'
+  // Ревью 8S (03.10): см. runCoinReconcileV1 / collectMergedLoserIds.
+  | 'caller_hidden'
+  | 'merge_link_query_saturated'
+  | 'results_truncated';
 
 export type CoinReconcileV1Response = Readonly<{
   status: CoinReconcileStatus | 'replayed';
@@ -210,6 +240,86 @@ export function parseCoinReconcileRecord(raw: unknown): CoinReconcileV1Record | 
   });
 }
 
+export type MergedLoserScan = Readonly<{
+  loserIds: readonly string[];
+  overflow: CoinReconcileReviewReason | null;
+  queries: number;
+}>;
+
+/**
+ * 8S: аккаунты, слитые в stableUid (и цепочки «A скрыт в B, B скрыт в победителе»).
+ *
+ * Источник связи — users/{loser}: identityHidden=true + canonicalStableId=<родитель>.
+ * Их ставит auth_merge.ts в транзакции скрытия; по firestore.rules оба поля
+ * только серверные (serverOwnedUserIdentityFields), подделать клиентом нельзя.
+ * Запрос — равенство по одному полю (автоиндекс) с limit, как в
+ * account_delete.ts и premium_status.ts; без проигравших — 1 чтение.
+ * Те же поля ставит аудируемая админ-операция дубля (admin_user_operations.ts,
+ * queue_duplicate_alias_cleanup) — это тоже «аккаунт того же человека».
+ * Почему не account_merge_outbox / account_identity_owner_map: их пишет только
+ * auth_merge.ts (админ-скрытие — нет), owner_map не ведёт цепочки, а users-док
+ * со скрытием есть у ВСЕХ скрытых. Новый маркер у победителя не нужен.
+ */
+export async function collectMergedLoserIds(
+  tx: admin.firestore.Transaction,
+  db: admin.firestore.Firestore,
+  stableUid: string,
+  log: (line: string) => void = () => {},
+): Promise<MergedLoserScan> {
+  const { maxMergedAccounts, maxMergeDepth } = COIN_RECONCILE_V1_LIMITS;
+  const seen = new Set<string>([stableUid]);
+  const loserIds: string[] = [];
+  let frontier: string[] = [stableUid];
+  let queries = 0;
+  for (let depth = 1; frontier.length > 0; depth += 1) {
+    const parents = frontier;
+    const snaps = await Promise.all(parents.map((parent) => tx.get(
+      // guard-ok: обход в ширину по уровням цепочки (≤ maxMergeDepth уровней, запросы уровня — параллельно), каждый — where+limit
+      db.collection('users').where('canonicalStableId', '==', parent).limit(maxMergedAccounts + 1),
+    )));
+    queries += parents.length;
+    const next: string[] = [];
+    for (let index = 0; index < snaps.length; index += 1) {
+      const parent = parents[index];
+      for (const doc of snaps[index].docs) {
+        const data = (doc.data() ?? {}) as Record<string, unknown>;
+        const canonical = typeof data.canonicalStableId === 'string' ? data.canonicalStableId.trim() : '';
+        if (seen.has(doc.id)) {
+          log(`merge_link skip id=${doc.id.slice(0, 8)} reason=already_seen depth=${depth}`);
+          continue;
+        }
+        if (data.identityHidden !== true) {
+          log(`merge_link skip id=${doc.id.slice(0, 8)} reason=not_hidden identityHidden=${String(data.identityHidden)} depth=${depth}`);
+          continue;
+        }
+        if (canonical !== parent) {
+          log(`merge_link skip id=${doc.id.slice(0, 8)} reason=canonical_mismatch depth=${depth}`);
+          continue;
+        }
+        if (depth > maxMergeDepth) {
+          return Object.freeze({ loserIds: Object.freeze(loserIds), overflow: 'merge_depth_overflow', queries });
+        }
+        seen.add(doc.id);
+        loserIds.push(doc.id);
+        next.push(doc.id);
+        if (loserIds.length > maxMergedAccounts) {
+          return Object.freeze({ loserIds: Object.freeze(loserIds), overflow: 'merged_accounts_overflow', queries });
+        }
+      }
+    }
+    // зачем (код-ревью 8S, 03.10): в выдачу limit(N+1) попадают и «шумные» строки (видимые аккаунты,
+    // сам родитель) — они съедают лимит, и настоящий слитый аккаунт мог тихо потеряться. Полная выдача (после точного подсчёта выше) =
+    // нельзя доказать, что видели всех → ручной разбор, а не частичный учёт.
+    const saturatedIndex = snaps.findIndex((snap) => snap.size >= maxMergedAccounts + 1);
+    if (saturatedIndex >= 0) {
+      log(`merge_link saturated parent=${parents[saturatedIndex].slice(0, 8)} size=${snaps[saturatedIndex].size} depth=${depth}`);
+      return Object.freeze({ loserIds: Object.freeze(loserIds), overflow: 'merge_link_query_saturated', queries });
+    }
+    frontier = next;
+  }
+  return Object.freeze({ loserIds: Object.freeze(loserIds), overflow: null, queries });
+}
+
 export type CoinReconcileInput = Readonly<{
   authUid: string;
   stableUid: string;
@@ -224,8 +334,7 @@ export async function runCoinReconcileV1(
 ): Promise<CoinReconcileV1Response> {
   const { authUid, stableUid, nowMs } = input;
   const userRef = db.collection('users').doc(stableUid);
-  const resultsQuery = userRef.collection('level_spin_results').limit(COIN_RECONCILE_V1_LIMITS.maxResultsScanned);
-  const receipts = userRef.collection(STAR_OPERATIONS_COLLECTION);
+  const log = (line: string): void => console.log(`${LOG} ${line}`);
   return db.runTransaction(async (tx) => {
     beginStarLedgerTransactionAttempt(tx);
     const userSnap = await tx.get(userRef);
@@ -246,19 +355,89 @@ export async function runCoinReconcileV1(
         starsSeq: starsNow.seq,
       });
     }
-    const resultsSnap = await tx.get(resultsQuery);
-    const lanes = deliveredSpinStarLanes(
-      resultsSnap.docs.map((doc) => ({ id: doc.id, data: doc.data() as Record<string, unknown> | undefined })),
-      nowMs,
-      (line) => console.log(`${LOG} ${line}`),
-    );
-    // Одним getAll за раз (один круг до базы), не чтение в цикле.
-    const receiptSnaps = lanes.length > 0
-      ? await tx.getAll(...lanes.map((lane) => receipts.doc(lane.operationId)))
-      : [];
-    const missing = lanes.filter((_lane, index) => !receiptSnaps[index]?.exists);
-    const decision = decideCoinReconcile(missing);
-    console.log(`${LOG} scan uid=${stableUid.slice(0, 8)} results=${resultsSnap.size} coinLanes=${lanes.length} materialized=${lanes.length - missing.length} missing=${missing.length} foundTotal=${decision.foundTotal} status=${decision.status} serverBalance=${starsNow.balance} clientVisibleBalance=${input.clientVisibleBalance ?? 'none'}`);
+    // зачем: 8S — при слиянии level_spin_* проигравшего не копируются (PM-067),
+    // и его Spin-призы терялись для сверки. Семья = этот stableUid + скрытые
+    // слиянием в него аккаунты; их строки и книги только ЧИТАЕМ.
+    // зачем (ревью безопасности 8S, MEDIUM-1, 03.10): скрытый аккаунт, сверяющий САМ себя (старое
+    // устройство со своим входом), смотрит только «вниз» по семье и не видит расписок победителя, в
+    // которого слит, — его Spin-призы засчитались бы второй раз. Скрытый аккаунт не сверяется: закрыть
+    // на ручной разбор без начислений (призы уже учитывает сверка победителя).
+    const callerHidden = userSnap.data()?.identityHidden === true;
+    if (callerHidden) {
+      console.warn(`${LOG} review reason=caller_hidden uid=${stableUid.slice(0, 8)} canonical=${String(userSnap.data()?.canonicalStableId ?? '').slice(0, 8)}`);
+    }
+    const family = callerHidden
+      ? Object.freeze({ loserIds: Object.freeze([] as string[]), overflow: 'caller_hidden' as const, queries: 0 })
+      : await collectMergedLoserIds(tx, db, stableUid, log);
+    const sources = [stableUid, ...family.loserIds];
+    const loserIds8 = family.loserIds.map((id) => id.slice(0, 8)).join(',') || 'none';
+    const lanes: SpinStarLane[] = [];
+    let missing: SpinStarLane[] = [];
+    let resultsScanned = 0;
+    let reviewReason: CoinReconcileReviewReason | null = family.overflow;
+    if (reviewReason && reviewReason !== 'caller_hidden') {
+      console.warn(`${LOG} review reason=${reviewReason} uid=${stableUid.slice(0, 8)} losersSeen=${family.loserIds.length} maxMergedAccounts=${COIN_RECONCILE_V1_LIMITS.maxMergedAccounts} maxMergeDepth=${COIN_RECONCILE_V1_LIMITS.maxMergeDepth}`);
+    } else if (reviewReason === null) {
+      // Источники — параллельно (один круг до базы), каждый с limit.
+      const resultSnaps = await Promise.all(sources.map((source) => tx.get(
+        db.collection('users').doc(source).collection('level_spin_results').limit(COIN_RECONCILE_V1_LIMITS.maxResultsScanned),
+      )));
+      const seenOps = new Set<string>();
+      // зачем (ревью безопасности 8S, LOW-3, 03.10): выдача ровно на пределе = данные обрезаны, а запись
+      // одноразовая — частичный учёт закрыл бы остаток навсегда. Обрезано → ручной разбор.
+      const truncatedIndex = resultSnaps.findIndex((snap) => snap.size >= COIN_RECONCILE_V1_LIMITS.maxResultsScanned);
+      if (truncatedIndex >= 0) {
+        reviewReason = 'results_truncated';
+        console.warn(`${LOG} review reason=results_truncated uid=${stableUid.slice(0, 8)} source=${truncatedIndex} size=${resultSnaps[truncatedIndex].size} max=${COIN_RECONCILE_V1_LIMITS.maxResultsScanned}`);
+      }
+      resultSnaps.forEach((snap, index) => {
+        resultsScanned += snap.size;
+        const sourceLanes = deliveredSpinStarLanes(
+          snap.docs.map((doc) => ({ id: doc.id, data: doc.data() as Record<string, unknown> | undefined })),
+          nowMs,
+          log,
+        );
+        for (const lane of sourceLanes) {
+          if (seenOps.has(lane.operationId)) {
+            log(`skip lane=${lane.operationId.slice(0, 24)} reason=duplicate_across_sources source=${index}`);
+            continue;
+          }
+          seenOps.add(lane.operationId);
+          lanes.push(lane);
+        }
+      });
+      // Дорожка «проведена», если расписка под её opId есть в книге ЛЮБОГО
+      // аккаунта семьи: на самом проигравшем (старый levelSpinStarGrant) или там,
+      // куда её уже провела сверка. Без проигравших — ровно прежние чтения.
+      const receiptReads = lanes.length * sources.length;
+      if (reviewReason !== null) {
+        log(`receipts skipped reason=${reviewReason}`);
+      } else if (receiptReads > COIN_RECONCILE_V1_LIMITS.maxReceiptReads) {
+        reviewReason = 'receipt_budget';
+        console.warn(`${LOG} review reason=receipt_budget uid=${stableUid.slice(0, 8)} lanes=${lanes.length} sources=${sources.length} receiptReads=${receiptReads} max=${COIN_RECONCILE_V1_LIMITS.maxReceiptReads}`);
+      } else if (lanes.length > 0) {
+        // Одним getAll за раз (один круг до базы), не чтение в цикле.
+        const receiptSnaps = await tx.getAll(...lanes.flatMap((lane) => sources.map((source) => (
+          db.collection('users').doc(source).collection(STAR_OPERATIONS_COLLECTION).doc(lane.operationId)
+        ))));
+        missing = lanes.filter((_lane, index) => !receiptSnaps
+          .slice(index * sources.length, (index + 1) * sources.length)
+          .some((snap) => snap?.exists));
+      }
+    }
+    const decision = reviewReason
+      ? Object.freeze({
+        status: 'over_cap_review' as const,
+        lanes: [] as readonly SpinStarLane[],
+        foundTotal: lanes.reduce((total, lane) => total + lane.amount, 0),
+      })
+      : decideCoinReconcile(missing);
+    console.log(`${LOG} sources=${sources.length} loser_ids=${loserIds8} lanes=${lanes.length} missing=${missing.length} linkQueries=${family.queries} reviewReason=${reviewReason ?? 'none'} uid=${stableUid.slice(0, 8)}`);
+    console.log(`${LOG} scan uid=${stableUid.slice(0, 8)} results=${resultsScanned} coinLanes=${lanes.length} materialized=${lanes.length - missing.length} missing=${missing.length} foundTotal=${decision.foundTotal} status=${decision.status} serverBalance=${starsNow.balance} clientVisibleBalance=${input.clientVisibleBalance ?? 'none'}`);
+    const recordExtras = Object.freeze({
+      mergedLoserCount: family.loserIds.length,
+      ...(reviewReason ? { reviewReason } : {}),
+    });
 
     let starsAfter = starsNow;
     let raisedBy = 0;
@@ -284,7 +463,7 @@ export async function runCoinReconcileV1(
       const record: CoinReconcileV1Record = Object.freeze({
         schemaVersion: 1, status: 'raised', raisedBy,
         operationIds: Object.freeze(decision.lanes.map((lane) => lane.operationId)),
-        foundTotal: decision.foundTotal, atMs: nowMs,
+        foundTotal: decision.foundTotal, atMs: nowMs, ...recordExtras,
       });
       const result = commitStarOperations(tx, prepared, { [COIN_RECONCILE_V1_FIELD]: record });
       starsAfter = { ...starsNow, balance: result.balance, earnedTotal: result.earnedTotal, seq: result.seq };
@@ -292,7 +471,7 @@ export async function runCoinReconcileV1(
     } else {
       const record: CoinReconcileV1Record = Object.freeze({
         schemaVersion: 1, status: decision.status, raisedBy: 0, operationIds: Object.freeze([]),
-        foundTotal: decision.foundTotal, atMs: nowMs,
+        foundTotal: decision.foundTotal, atMs: nowMs, ...recordExtras,
       });
       tx.set(userRef, { [COIN_RECONCILE_V1_FIELD]: record }, { merge: true }); // guard-ok: запись внутри транзакции, её фиксирует runTransaction
       console.log(`${LOG} closed uid=${stableUid.slice(0, 8)} status=${decision.status} foundTotal=${decision.foundTotal}`);

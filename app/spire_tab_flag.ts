@@ -14,8 +14,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { onAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
+import { readRemoteConfigCacheRaw } from './remote_config_client'; // зачем: [COLD-START-IO] — одно чтение кэша на всех
 
-const REMOTE_CONFIG_CACHE_KEY = 'remote_config_cache_v1';
 const SPIRE_TAB_FLAG_KEY = 'spire_tab_enabled';
 const SPIRE_TAB_DEV_KEY = 'spire_tab_dev_override_v1';
 const LOG = '[SPIRE]';
@@ -32,7 +32,7 @@ function notify(): void {
 
 async function readCacheOnce(): Promise<void> {
   try {
-    const raw = await AsyncStorage.getItem(REMOTE_CONFIG_CACHE_KEY);
+    const raw = await readRemoteConfigCacheRaw();
     if (raw) {
       const parsed = JSON.parse(raw) as { bools?: Record<string, unknown> };
       _remoteEnabled = parsed?.bools?.[SPIRE_TAB_FLAG_KEY] === true;

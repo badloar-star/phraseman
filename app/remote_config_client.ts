@@ -142,6 +142,39 @@ function sanitizeRaw(raw: unknown): RawConfig {
   });
 }
 
+/**
+ * Общий читатель remote_config_cache_v1 с зеркалом в памяти.
+ *
+ * зачем ([COLD-START-IO], store-release, слабый профиль, 02.10): кэш читали 6 раз за первые 15 с —
+ * этот модуль, флаг вкладки Шпиля и конфиг «Вместе», каждый своим getItem в очередь AsyncStorage.
+ * Пишет кэш ТОЛЬКО applyAndCache (проверено grep), ключ не привязан к аккаунту → одно чтение с диска,
+ * запись обновляет зеркало сразу; поколение не даёт позднему ответу первого чтения затереть свежую
+ * запись. Сбой чтения не кэшируется.
+ */
+let remoteConfigCacheMemory: Readonly<{ loaded: boolean; raw: string | null }> = { loaded: false, raw: null };
+let remoteConfigCacheRead: Promise<string | null> | null = null;
+let remoteConfigCacheGeneration = 0;
+
+export function readRemoteConfigCacheRaw(): Promise<string | null> {
+  if (remoteConfigCacheMemory.loaded) return Promise.resolve(remoteConfigCacheMemory.raw);
+  if (remoteConfigCacheRead) return remoteConfigCacheRead;
+  const generation = remoteConfigCacheGeneration;
+  const pending = AsyncStorage.getItem(REMOTE_CONFIG_CACHE_KEY).then((raw) => {
+    if (generation === remoteConfigCacheGeneration) remoteConfigCacheMemory = { loaded: true, raw };
+    return raw;
+  }).finally(() => {
+    if (remoteConfigCacheRead === pending) remoteConfigCacheRead = null;
+  });
+  remoteConfigCacheRead = pending;
+  return pending;
+}
+
+function rememberRemoteConfigCacheRaw(raw: string): void {
+  remoteConfigCacheGeneration += 1;
+  remoteConfigCacheRead = null;
+  remoteConfigCacheMemory = { loaded: true, raw };
+}
+
 function applyAndCache(raw: RawConfig | undefined, fetchedAtMs: number = Date.now()): void {
   const clean = sanitizeRaw(raw);
   const encoded = JSON.stringify(clean);
@@ -153,6 +186,7 @@ function applyAndCache(raw: RawConfig | undefined, fetchedAtMs: number = Date.no
   emitAppEvent('remote_config_changed');
   // зачем: метка свежести пишется ВМЕСТЕ с кэшем — кэш без метки снова гнал бы
   // сеть, а метка без кэша выдавала бы дефолты за «свежие».
+  rememberRemoteConfigCacheRaw(encoded);
   void AsyncStorage.multiSet([
     [REMOTE_CONFIG_CACHE_KEY, encoded],
     [REMOTE_CONFIG_FETCHED_AT_KEY, String(fetchedAtMs)],
@@ -194,7 +228,7 @@ export async function primeRemoteConfigCacheFromStorage(): Promise<void> {
 /** То же, но сообщает, применился ли кэш (нужно решению «идти ли в сеть»). */
 async function applyRemoteConfigCacheFromStorage(): Promise<boolean> {
   try {
-    const raw = await AsyncStorage.getItem(REMOTE_CONFIG_CACHE_KEY);
+    const raw = await readRemoteConfigCacheRaw();
     if (!raw) {
       DebugLogger.info('[STARTUP-READS]', 'remote_config: no local cache');
       return false;

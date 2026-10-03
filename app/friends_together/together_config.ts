@@ -13,12 +13,11 @@
  * 'remote_config_changed', так что выключение из админки (когда там заведут
  * ключ friends_together_enabled) подхватится живьём, без перезапуска.
  */
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { onAppEvent } from '../events';
 import { DebugLogger } from '../debug-logger';
+import { readRemoteConfigCacheRaw } from '../remote_config_client'; // зачем: [COLD-START-IO] — одно чтение кэша на всех
 
-const REMOTE_CONFIG_CACHE_KEY = 'remote_config_cache_v1';
 
 /** Пороги уровней дружбы (дней вместе), индекс = level-1. Дублирует together_days.LEVEL_THRESHOLDS
  * тем же массивом чисел — держим здесь копию под конфиг ради читаемого единого места настроек. */
@@ -77,7 +76,7 @@ let _primePromise: Promise<void> | null = null;
 
 async function readCacheOnce(): Promise<void> {
   try {
-    const raw = await AsyncStorage.getItem(REMOTE_CONFIG_CACHE_KEY);
+    const raw = await readRemoteConfigCacheRaw();
     if (!raw) { _hydrated = true; return; }
     const parsed = JSON.parse(raw) as { bools?: Record<string, unknown>; numbers?: Record<string, unknown> };
     _cachedEnabled = parsed?.bools?.[FRIENDS_TOGETHER_FLAG_KEY] === true;

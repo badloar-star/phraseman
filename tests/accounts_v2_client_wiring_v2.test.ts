@@ -37,7 +37,14 @@ describe('accounts v2 client wiring v2', () => {
     log = jest.spyOn(console, 'log').mockImplementation(() => undefined);
     warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
   });
-  afterEach(() => { log.mockRestore(); warn.mockRestore(); jest.dontMock('../modules/account-session-v2/accounts_v2_client_runtime'); });
+  afterEach(() => {
+    jest.useRealTimers();
+    log.mockRestore();
+    warn.mockRestore();
+    jest.dontMock('../modules/account-session-v2/accounts_v2_client_runtime');
+    jest.dontMock('react-native');
+    jest.dontMock('@react-native-firebase/auth');
+  });
 
   test('flag defaults OFF and only remote_config can turn it on', () => {
     const flags = require('../app/remote_flags') as typeof import('../app/remote_flags');
@@ -81,6 +88,134 @@ describe('accounts v2 client wiring v2', () => {
     flags.applyRemoteConfigSnapshot({ bools: {} });
     gate.syncAccountsV2ClientAuth(null);
     expect(runtime.syncAccountsV2ClientAuthUid).toHaveBeenLastCalledWith(null, gate.isAccountsV2ClientEnabled);
+  });
+
+  test('authority startup resume coalesces repeated UID/foreground emissions while one resume is in flight', async () => {
+    let release!: () => void;
+    const pending = new Promise<void>((resolve) => { release = resolve; });
+    const client = {
+      resumeAccountAuthorityProviderSession: jest.fn()
+        .mockImplementationOnce(() => pending)
+        .mockResolvedValue(undefined),
+    };
+    const gate = require('../app/accounts_v2_client_flag') as typeof import('../app/accounts_v2_client_flag');
+
+    gate.resumeAccountAuthorityProviderSessionIfIdle(client);
+    gate.resumeAccountAuthorityProviderSessionIfIdle(client);
+    gate.resumeAccountAuthorityProviderSessionIfIdle(client);
+    expect(client.resumeAccountAuthorityProviderSession).toHaveBeenCalledTimes(1);
+
+    release();
+    await pending;
+    await Promise.resolve();
+    // Coalescing retains one trailing read so a UID change emitted during the
+    // first currentIdentity call cannot be lost when no later event fires.
+    expect(client.resumeAccountAuthorityProviderSession).toHaveBeenCalledTimes(2);
+  });
+
+  test.each([
+    ['ios', true],
+    ['android', false],
+  ] as const)('%s provider transition bypasses V2 when enabled=%s', async (platform, enabled) => {
+    const runtimeFactory = jest.fn(() => ({ runAccountsV2ProviderSignInTransition: jest.fn() }));
+    jest.doMock('react-native', () => ({ Platform: { OS: platform } }));
+    jest.doMock('../modules/account-session-v2/accounts_v2_client_runtime', runtimeFactory);
+    const flags = require('../app/remote_flags') as typeof import('../app/remote_flags');
+    flags.applyRemoteConfigSnapshot({ bools: enabled ? { accounts_v2_client_enabled: true } : {} });
+    const gate = require('../app/accounts_v2_client_flag') as typeof import('../app/accounts_v2_client_flag');
+    const authenticate = jest.fn(async () => ({ result: 'linked_existing' as const }));
+
+    await expect(gate.runAccountsV2ProviderSignInTransition(authenticate)).resolves.toEqual({ result: 'linked_existing' });
+    expect(authenticate).toHaveBeenCalledTimes(1);
+    expect(runtimeFactory).not.toHaveBeenCalled();
+  });
+
+  test('Android flag ON routes provider transition through the runtime coordinator', async () => {
+    const runtime = {
+      runAccountsV2ProviderSignInTransition: jest.fn(async (authenticate: () => Promise<unknown>) => authenticate()),
+    };
+    jest.doMock('react-native', () => ({ Platform: { OS: 'android' } }));
+    jest.doMock('../modules/account-session-v2/accounts_v2_client_runtime', () => runtime);
+    const flags = require('../app/remote_flags') as typeof import('../app/remote_flags');
+    flags.applyRemoteConfigSnapshot({ bools: { accounts_v2_client_enabled: true } });
+    const gate = require('../app/accounts_v2_client_flag') as typeof import('../app/accounts_v2_client_flag');
+    const authenticate = jest.fn(async () => ({ result: 'linked_existing' as const }));
+
+    await expect(gate.runAccountsV2ProviderSignInTransition(authenticate)).resolves.toEqual({ result: 'linked_existing' });
+    expect(runtime.runAccountsV2ProviderSignInTransition).toHaveBeenCalledWith(
+      authenticate,
+      gate.isAccountsV2ClientEnabled,
+    );
+  });
+
+  test('iOS proof capability routes provider transition through the runtime coordinator', async () => {
+    const runtime = {
+      runAccountsV2ProviderSignInTransition: jest.fn(async (authenticate: () => Promise<unknown>) => authenticate()),
+    };
+    jest.doMock('react-native', () => ({ Platform: { OS: 'ios' } }));
+    jest.doMock('../modules/account-session-v2/native/account_native_expo_environment', () => ({
+      isAccountV2NativePlatformSupported: () => true,
+    }));
+    jest.doMock('../modules/account-session-v2/accounts_v2_client_runtime', () => runtime);
+    const flags = require('../app/remote_flags') as typeof import('../app/remote_flags');
+    flags.applyRemoteConfigSnapshot({ bools: { accounts_v2_client_enabled: true } });
+    const gate = require('../app/accounts_v2_client_flag') as typeof import('../app/accounts_v2_client_flag');
+    const authenticate = jest.fn(async () => ({ result: 'linked_existing' as const }));
+
+    await expect(gate.runAccountsV2ProviderSignInTransition(authenticate)).resolves.toEqual({ result: 'linked_existing' });
+    expect(runtime.runAccountsV2ProviderSignInTransition).toHaveBeenCalledWith(
+      authenticate,
+      gate.isAccountsV2ClientEnabled,
+    );
+  });
+
+  test('iOS flag OFF does not load the native capability gate', async () => {
+    const environmentFactory = jest.fn(() => ({ isAccountV2NativePlatformSupported: () => true }));
+    jest.doMock('react-native', () => ({ Platform: { OS: 'ios' } }));
+    jest.doMock('../modules/account-session-v2/native/account_native_expo_environment', environmentFactory);
+    const flags = require('../app/remote_flags') as typeof import('../app/remote_flags');
+    flags.applyRemoteConfigSnapshot({ bools: {} });
+    const gate = require('../app/accounts_v2_client_flag') as typeof import('../app/accounts_v2_client_flag');
+    const authenticate = jest.fn(async () => ({ result: 'linked_existing' as const }));
+
+    await expect(gate.runAccountsV2ProviderSignInTransition(authenticate)).resolves.toEqual({ result: 'linked_existing' });
+    expect(environmentFactory).not.toHaveBeenCalled();
+  });
+
+  test('V2 producer is queued immediately so an account switch cannot overtake a card write', async () => {
+    jest.useFakeTimers();
+    try {
+      const runtime = {
+        produceAccountsV2Change: jest.fn(async () => undefined),
+      };
+      jest.doMock('../modules/account-session-v2/accounts_v2_client_runtime', () => runtime);
+      const flags = require('../app/remote_flags') as typeof import('../app/remote_flags');
+      flags.applyRemoteConfigSnapshot({ bools: { accounts_v2_client_enabled: true } });
+      const gate = require('../app/accounts_v2_client_flag') as typeof import('../app/accounts_v2_client_flag');
+
+      gate.produceAccountsV2ChangeIfEnabled('uid-a', () => ({
+        kind: 'card_snapshot', target: 'en', list: 'saved', cards: [],
+      }));
+
+      await Promise.resolve();
+      expect(runtime.produceAccountsV2Change).toHaveBeenCalledTimes(1);
+      // The gate must hand the mutation to the runtime queue in this turn;
+      // a timer would allow an auth transition to overtake it.
+      expect(jest.getTimerCount()).toBe(0);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  test('anonymous Firebase identities are never captured as Account V2 owners', () => {
+    jest.doMock('@react-native-firebase/auth', () => ({
+      default: () => ({ currentUser: { uid: 'anon-uid', isAnonymous: true } }),
+    }));
+    const flags = require('../app/remote_flags') as typeof import('../app/remote_flags');
+    flags.applyRemoteConfigSnapshot({ bools: { accounts_v2_client_enabled: true } });
+    const gate = require('../app/accounts_v2_client_flag') as typeof import('../app/accounts_v2_client_flag');
+
+    expect(gate.captureAccountsV2OwnerUid()).toBeNull();
   });
 
   test('runtime deletion: detach latch + a server-valid key land in SecureStore; failures never throw', async () => {
@@ -177,4 +312,39 @@ describe('accounts v2 client wiring v2', () => {
       expect(read(file)).not.toMatch(/^import[^;]*account-session-v2/m);
     }
   });
+
+  test('auth provider delegates provider mutations through the Account Authority cutover seam', () => {
+    const source = read('app/auth_provider.ts');
+    const signIn = functionBody(source, 'export async function signInWithProvider(');
+    const signOut = functionBody(source, 'export async function signOutCurrentProvider(');
+    const recoveryMismatch = functionBody(source, 'async function rejectRecoveryProviderMismatch(');
+    expect(signIn).toContain('runAccountAuthorityProviderSignInTransition(');
+    expect(signOut).toContain('runAccountAuthorityProviderSignOutTransition(');
+    expect(signIn).not.toContain('syncAccountsV2ClientAuth(');
+    expect(signOut).not.toContain('syncAccountsV2ClientAuth(null)');
+    // Recovery can run from inside the queued sign-in callback. Re-entering the
+    // public coordinator there would deadlock on its own FIFO slot.
+    expect(recoveryMismatch).toContain('await performCurrentProviderSignOut();');
+    expect(recoveryMismatch).not.toContain('await signOutCurrentProvider();');
+
+    const gate = read('app/accounts_v2_client_flag.ts');
+    expect(gate).toContain("Platform.OS === 'android'");
+    expect(gate).toContain('isAccountV2NativePlatformSupported()');
+    expect(gate).toContain('client.runAccountsV2ProviderSignInTransition(');
+    expect(gate).toContain('client.runAccountsV2ProviderSignOutTransition(');
+
+    const runtime = read('modules/account-session-v2/accounts_v2_client_runtime.ts');
+    const currentUid = functionBody(runtime, 'function currentAuthUid(');
+    expect(currentUid).toContain('user?.isAnonymous !== false');
+    expect(currentUid).toContain('return null');
+  });
+
+  test('account-switch quarantine recovery delegates cold-boot sign-out to the same authority seam', () => {
+    const source = read('app/account_switch_quarantine.ts');
+    const body = functionBody(source, 'export function resumeRuntimeAccountSwitchQuarantine()');
+    const signOut = functionBody(body, 'signOut: async () =>');
+    expect(signOut).toContain('await accountsV2.runAccountsV2ProviderSignOutTransition(');
+    expect(signOut).toContain('if (auth?.currentUser) await auth.signOut();');
+  });
+
 });

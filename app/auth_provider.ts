@@ -60,6 +60,8 @@ import {
   clearStoredAccountsV2DeletionCredentialIfEnabled,
   clearStoredAccountsV2DeletionCredentialAfterAckIfEnabled,
   readStoredAccountsV2DeletionCredentialIfEnabled,
+  runAccountAuthorityProviderSignInTransition,
+  runAccountAuthorityProviderSignOutTransition,
 } from './accounts_v2_client_flag';
 import {
   ACCOUNT_DELETE_PENDING_AUTH_TTL_MS,
@@ -1801,7 +1803,10 @@ async function rejectRecoveryProviderMismatch(
   // The selected provider did not prove ownership of the persisted stable id.
   // Return to anonymous auth while preserving both stable_id and AsyncStorage.
   try {
-    await signOutCurrentProvider();
+    // This recovery branch runs inside the queued provider sign-in callback.
+    // Calling the public coordinator again would wait behind the transition
+    // that is currently awaiting this recovery result (self-deadlock).
+    await performCurrentProviderSignOut();
   } catch {
     logAuthEvent('auth_recovery_provider_mismatch_signout_failed', { provider, reason });
     return { result: 'error', error: 'recovery_signout_failed' };
@@ -1834,6 +1839,58 @@ export async function acquireAuthRecoveryNativeCredential(
   } finally {
     reservation.operationSettled = true;
     releaseProviderCredentialModeReservationIfSettled(reservation);
+  }
+}
+
+/**
+ * Account Authority cutover adapter: acquire one Google/Apple credential and
+ * apply it to Firebase Auth. It intentionally has no Firestore, stable identity,
+ * local-data, migration, or scope decisions; the authority lease decides the
+ * accountId/sessionId after this callback returns.
+ */
+async function runAccountAuthorityCredentialSignIn(provider: AuthProviderId): Promise<SignInResult> {
+  if (!CLOUD_SYNC_ENABLED) return { result: 'error', error: 'cloud_sync_disabled' };
+  const auth = getAuth();
+  if (!auth) return { result: 'error', error: 'firebase_unavailable' };
+
+  let nativeCredential: NativeAuthCredential | { cancelled: true };
+  try {
+    nativeCredential = provider === 'google'
+      ? await runGoogleNativeSignIn()
+      : Platform.OS === 'android'
+        ? await runAppleAndroidOAuthSignIn()
+        : await runAppleNativeSignIn();
+  } catch (error: any) {
+    const code = error?.code ? String(error.code) : '';
+    const message = error?.message ? String(error.message) : 'unknown';
+    return { result: 'error', error: `native_${code ? `${code}:` : ''}${message}`.slice(0, 120) };
+  }
+  if ('cancelled' in nativeCredential) return { result: 'cancelled' };
+
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const authModule = require('@react-native-firebase/auth');
+    const credential = provider === 'google'
+      ? authModule.default.GoogleAuthProvider.credential(nativeCredential.idToken)
+      : authModule.default.AppleAuthProvider.credential(
+        nativeCredential.idToken,
+        nativeCredential.appleNonce,
+      );
+    const signedIn = await auth.signInWithCredential(credential);
+    const user = signedIn?.user ?? auth.currentUser;
+    const uid = String(user?.uid ?? '').trim();
+    if (!uid || user?.isAnonymous !== false) {
+      return { result: 'error', error: 'firebase_authenticated_uid_missing' };
+    }
+    return {
+      result: 'linked_existing',
+      email: nativeCredential.email ?? user?.email ?? null,
+      displayName: nativeCredential.displayName ?? user?.displayName ?? null,
+    };
+  } catch (error: any) {
+    const code = error?.code ? String(error.code) : '';
+    const message = error?.message ? String(error.message) : 'unknown';
+    return { result: 'error', error: `firebase_${code ? `${code}:` : ''}${message}`.slice(0, 120) };
   }
 }
 
@@ -1892,7 +1949,10 @@ export async function signInWithProvider(
   }
   const reservation = createProviderCredentialModeReservation('signin', provider);
   providerCredentialModeReservation = reservation;
-  const task = runSignInWithProvider(provider, options);
+  const task = runAccountAuthorityProviderSignInTransition(
+    () => runAccountAuthorityCredentialSignIn(provider),
+    () => runSignInWithProvider(provider, options),
+  );
   providerSignInInFlight = {
     provider,
     task,
@@ -3797,6 +3857,10 @@ export async function consumeRemoteAccountDeletionNotice(): Promise<boolean> {
  * когда нужен ТОЛЬКО Firebase signOut без очистки прогресса.
  */
 export async function signOutCurrentProvider(): Promise<void> {
+  return runAccountAuthorityProviderSignOutTransition(performCurrentProviderSignOut);
+}
+
+async function performCurrentProviderSignOut(): Promise<void> {
   if (__DEV__) console.log('[auth_provider] signOutCurrentProvider: start');
   // Сбрасываем PostHog-идентичность, чтобы события следующего юзера не приписались прошлому
   // (no-op, если PostHog выключен).

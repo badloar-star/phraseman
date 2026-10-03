@@ -17,12 +17,35 @@ import {
   type AccountsV2ClientController,
   type AccountsV2HydrationClientPorts,
 } from './account_v2_client_session';
+import {
+  createAccountsV2AuthTransitionCoordinator,
+  type AccountsV2AuthTransitionCoordinator,
+  type AccountsV2AuthTransitionState,
+  type AccountsV2ProviderSignInResult,
+  type AccountsV2SessionUidResult,
+} from './account_v2_auth_transition';
 import type { HydrationApplyResult, HydrationSnapshot } from './account_v2_hydration';
+import { withAccountsV2ClientVersion } from './account_v2_client_version';
 import {
   clearAccountsV2LegacyHydratedMarker,
   readAccountsV2LegacyHydratedUid,
   writeAccountsV2LegacyHydratedMarker,
 } from './accounts_v2_legacy_marker';
+import {
+  createAccountAuthorityRuntime,
+  type AccountAuthorityProviderPort,
+  type AccountAuthorityRuntime,
+} from '../account-authority-v2/account_authority_runtime';
+import {
+  parseFirebaseAuthUid,
+  parseOperationId,
+  type OperationId,
+} from '../account-authority-v2/account_authority_ids';
+import {
+  createAccountAuthorityProductionBootstrapRegistry,
+  type AccountAuthorityProductionBootstrap,
+} from '../account-authority-v2/account_authority_bootstrap_contract';
+import { createAccountAuthorityProductionBootstrapIfPossible } from './account_authority_production_adapter';
 
 /*
  * Account V2, Пакет 6B (TG-F76EA3701B55) — боевые порты клиента V2.
@@ -49,7 +72,60 @@ type CryptoModule = Readonly<{
 }>;
 
 let controller: AccountsV2ClientController | null = null;
+let authTransition: AccountsV2AuthTransitionCoordinator | null = null;
 let enabledGate: () => boolean = () => false;
+
+/**
+ * Account Authority 2.0 cannot invent any ownership value on the client. The
+ * production bootstrap must provide a durable local-store port plus the server
+ * lease port before the global cutover can be enabled. Task 5 deliberately
+ * leaves that cutover off; a missing bootstrap therefore fails closed.
+ */
+export type AccountAuthorityClientBootstrap = Readonly<{
+  deviceId: AccountAuthorityProductionBootstrap['deviceId'];
+  lease: AccountAuthorityProductionBootstrap['lease'];
+  localStore: AccountAuthorityProductionBootstrap['localStore'];
+  /** Real Firebase/provider sign-out used by UI sign-out and fail-closed cleanup. */
+  providerSignOut: () => Promise<void>;
+}>;
+
+type PendingProviderSignIn = {
+  authenticate: () => Promise<AccountsV2ProviderSignInResult>;
+  outcome: AccountsV2ProviderSignInResult | null;
+  providerFailure: Error | null;
+};
+
+const accountAuthorityBootstrap = createAccountAuthorityProductionBootstrapRegistry();
+let accountAuthorityRuntime: AccountAuthorityRuntime | null = null;
+const pendingAuthoritySignIns = new Map<string, PendingProviderSignIn>();
+let productionBootstrapInstall: Promise<boolean> | null = null;
+
+/** One-time production composition hook. Rebinding a live authority is forbidden. */
+export function installAccountAuthorityClientBootstrap(bootstrap: AccountAuthorityClientBootstrap): void {
+  accountAuthorityBootstrap.install(bootstrap);
+}
+
+/**
+ * Installs the real native composition once. Unsupported platforms and native
+ * capability failures publish no bootstrap; a successful binding remains
+ * immutable through the registry above.
+ */
+export function installAccountAuthorityProductionBootstrapIfPossible(): Promise<boolean> {
+  if (productionBootstrapInstall !== null) return productionBootstrapInstall;
+  productionBootstrapInstall = Promise.resolve()
+    .then(() => createAccountAuthorityProductionBootstrapIfPossible())
+    .then((bootstrap) => {
+      if (bootstrap === null) return false;
+      accountAuthorityBootstrap.install(bootstrap);
+      console.log(`${LOG} authority production_bootstrap_installed`);
+      return true;
+    })
+    .catch((error: unknown) => {
+      console.warn(`${LOG} authority production_bootstrap_failed kind=${kindOf(error)}`);
+      return false;
+    });
+  return productionBootstrapInstall;
+}
 
 function kindOf(value: unknown): string {
   return value instanceof Error ? value.name : typeof value;
@@ -81,12 +157,115 @@ function currentAuthUid(): string | null {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const auth = require('@react-native-firebase/auth').default();
-    const uid = String(auth?.currentUser?.uid ?? '').trim();
+    const user = auth?.currentUser;
+    // Guest Firebase identities never own Account V2 account scopes. In
+    // particular, provider cancellation must not reopen the anonymous uid as
+    // `account:<uid>` after the old provider scope has been closed.
+    if (user?.isAnonymous !== false) return null;
+    const uid = String(user.uid ?? '').trim();
     return uid.length > 0 ? uid : null;
   } catch (error) {
     console.warn(`${LOG} runtime auth_unavailable kind=${kindOf(error)}`);
     return null;
   }
+}
+
+function newAccountAuthorityOperationId(kind: 'sign_in' | 'sign_out' | 'startup_resume'): OperationId {
+  return parseOperationId(`client_${kind}_${crypto().randomUUID()}`);
+}
+
+const ACCOUNT_AUTHORITY_PROVIDER_PORT: AccountAuthorityProviderPort = Object.freeze({
+  authenticate: async ({ operationId }: Readonly<{ operationId: OperationId }>) => {
+    const pending = pendingAuthoritySignIns.get(operationId.value);
+    if (pending === undefined) throw new Error('account_authority_provider_callback_missing');
+    const identityBefore = currentAuthUid();
+    let outcome: AccountsV2ProviderSignInResult;
+    try {
+      outcome = await pending.authenticate();
+    } catch (error) {
+      const identityAfter = currentAuthUid();
+      return Object.freeze({
+        type: 'failed' as const,
+        error,
+        identityPreserved: identityBefore !== null && identityAfter === identityBefore,
+      });
+    }
+    pending.outcome = outcome;
+    if (outcome.result === 'cancelled') {
+      return Object.freeze({ type: 'cancelled' as const });
+    }
+    if (outcome.result === 'error') {
+      const identityAfter = currentAuthUid();
+      const providerFailure = new Error(`account_authority_provider_error:${outcome.error ?? 'unknown'}`);
+      pending.providerFailure = providerFailure;
+      return Object.freeze({
+        type: 'failed' as const,
+        error: providerFailure,
+        identityPreserved: identityBefore !== null && identityAfter === identityBefore,
+      });
+    }
+    const uid = currentAuthUid();
+    if (uid === null) throw new Error('account_authority_authenticated_uid_missing');
+    return Object.freeze({ type: 'authenticated' as const, firebaseAuthUid: parseFirebaseAuthUid(uid) });
+  },
+  currentIdentity: async () => {
+    const uid = currentAuthUid();
+    return uid === null ? null : parseFirebaseAuthUid(uid);
+  },
+  signOut: async () => {
+    const bootstrap = accountAuthorityBootstrap.requireInstalled();
+    await bootstrap.providerSignOut();
+  },
+});
+
+function getAccountAuthorityRuntime(): AccountAuthorityRuntime {
+  if (accountAuthorityRuntime !== null) return accountAuthorityRuntime;
+  const bootstrap = accountAuthorityBootstrap.requireInstalled();
+  accountAuthorityRuntime = createAccountAuthorityRuntime({
+    deviceId: bootstrap.deviceId,
+    provider: ACCOUNT_AUTHORITY_PROVIDER_PORT,
+    lease: bootstrap.lease,
+    localStore: bootstrap.localStore,
+  });
+  return accountAuthorityRuntime;
+}
+
+/**
+ * Provider authentication enters the one Account Authority FIFO. The callback
+ * may acquire Google/Apple/Firebase credentials, but only the server lease port
+ * can return the accountId/sessionId used to open a local scope.
+ */
+export async function runAccountAuthorityProviderSignInTransition<
+  T extends AccountsV2ProviderSignInResult,
+>(authenticate: () => Promise<T>): Promise<T> {
+  const operationId = newAccountAuthorityOperationId('sign_in');
+  const pending: PendingProviderSignIn = { authenticate, outcome: null, providerFailure: null };
+  pendingAuthoritySignIns.set(operationId.value, pending);
+  try {
+    await getAccountAuthorityRuntime().signIn(operationId);
+    if (pending.outcome === null) throw new Error('account_authority_provider_outcome_missing');
+    return pending.outcome as T;
+  } catch (error) {
+    if (pending.outcome?.result === 'error' && error === pending.providerFailure) {
+      return pending.outcome as T;
+    }
+    throw error;
+  } finally {
+    pendingAuthoritySignIns.delete(operationId.value);
+  }
+}
+
+/** Account switch/sign-out closes the authority scope before provider sign-out. */
+export async function runAccountAuthorityProviderSignOutTransition(
+): Promise<void> {
+  const operationId = newAccountAuthorityOperationId('sign_out');
+  await getAccountAuthorityRuntime().signOut(operationId);
+}
+
+/** Startup provider reauthentication/resume uses currentIdentity inside the authority. */
+export async function resumeAccountAuthorityProviderSession(): Promise<void> {
+  const operationId = newAccountAuthorityOperationId('startup_resume');
+  await getAccountAuthorityRuntime().resume(operationId);
 }
 
 async function callSync(batch: AccountSyncWireBatch): Promise<unknown> {
@@ -123,9 +302,10 @@ async function applyHydrationLocally(snapshot: HydrationSnapshot, isCurrent: () 
 }
 
 const HYDRATION_PORTS: AccountsV2HydrationClientPorts = Object.freeze({
-  callMigrate: () => callableOf('accountsV2MigrateMine', MIGRATE_CALLABLE_TIMEOUT_MS)({}),
+  // зачем (8F, PM-235 T2): версия сборки — сервер ниже minClientVersion отвечает client_too_old.
+  callMigrate: () => callableOf('accountsV2MigrateMine', MIGRATE_CALLABLE_TIMEOUT_MS)(withAccountsV2ClientVersion({})),
   callPull: (request: Readonly<{ cursor: string | null; limit: number }>) =>
-    callableOf('accountsV2PullMine', SYNC_CALLABLE_TIMEOUT_MS)({ cursor: request.cursor, limit: request.limit }),
+    callableOf('accountsV2PullMine', SYNC_CALLABLE_TIMEOUT_MS)(withAccountsV2ClientVersion({ cursor: request.cursor, limit: request.limit })),
   applyLocal: applyHydrationLocally,
   // зачем (7A, ремонт №1): метка для выключателя старой синхронизации (accounts_v2_legacy_marker.ts).
   markHydrated: (uid: string) => writeAccountsV2LegacyHydratedMarker(uid, Date.now()),
@@ -172,9 +352,61 @@ function getController(isEnabled: () => boolean): AccountsV2ClientController {
   return controller;
 }
 
-/** uid Firebase сменился (вход, выход, смена аккаунта). Никогда не бросает. */
-export function syncAccountsV2ClientAuthUid(uid: string | null, isEnabled: () => boolean): void {
-  getController(isEnabled).setAuthUid(uid).catch((error: unknown) => {
+function getAuthTransition(isEnabled: () => boolean): AccountsV2AuthTransitionCoordinator {
+  enabledGate = isEnabled;
+  if (authTransition !== null) return authTransition;
+  authTransition = createAccountsV2AuthTransitionCoordinator({
+    currentAuthUid,
+    isEnabled,
+    setSessionUid: async (uid): Promise<AccountsV2SessionUidResult> => {
+      const target = getController(isEnabled);
+      await target.setAuthUid(uid);
+      const status = target.status();
+      if (uid === null) {
+        return status.uid === null
+          ? Object.freeze({ outcome: 'closed', uid: null })
+          : Object.freeze({ outcome: 'not_opened', uid: status.uid, reason: 'scope_close_not_confirmed' });
+      }
+      if (status.uid !== uid) {
+        return Object.freeze({ outcome: 'not_opened', uid: status.uid, reason: 'scope_not_opened' });
+      }
+      return Object.freeze({ outcome: 'opened', uid, hydrationScheduled: status.hydrationArmed });
+    },
+    onStateChange: (state) => {
+      console.log(`${LOG} auth_transition phase=${state.phase} hasUid=${state.uid !== null} hasError=${state.error !== null}`);
+    },
+  });
+  return authTransition;
+}
+
+/** Awaited provider sign-in authority used only by the Android flag gate. */
+export function runAccountsV2ProviderSignInTransition<T extends AccountsV2ProviderSignInResult>(
+  authenticate: () => Promise<T>,
+  isEnabled: () => boolean,
+): Promise<T> {
+  return getAuthTransition(isEnabled).runProviderSignIn(authenticate);
+}
+
+/** Awaited provider sign-out authority used only by the Android flag gate. */
+export function runAccountsV2ProviderSignOutTransition(
+  authenticate: () => Promise<void>,
+  isEnabled: () => boolean,
+): Promise<void> {
+  return getAuthTransition(isEnabled).runProviderSignOut(authenticate);
+}
+
+export function accountsV2AuthTransitionStatus(): AccountsV2AuthTransitionState {
+  return authTransition?.status() ?? Object.freeze({ phase: 'idle', uid: null, error: null });
+}
+
+/**
+ * Firebase сообщил об изменении auth-состояния. Переданный uid принадлежит
+ * UI/Spire-сигналу и намеренно не является authority для области Account V2:
+ * например, анонимная Firebase-сессия имеет uid, но не владеет account scope.
+ * Единственный источник scope uid — текущая linked provider identity.
+ */
+export function syncAccountsV2ClientAuthUid(_observedUid: string | null, isEnabled: () => boolean): void {
+  getAuthTransition(isEnabled).observeAuthUid(currentAuthUid()).catch((error: unknown) => {
     console.warn(`${LOG} runtime set_auth_failed kind=${kindOf(error)}`);
   });
 }

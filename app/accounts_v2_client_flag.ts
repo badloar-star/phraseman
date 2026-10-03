@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { getRemoteBool } from './remote_flags';
 
 /*
@@ -15,6 +16,19 @@ import { getRemoteBool } from './remote_flags';
 type AccountsV2ClientRuntime = typeof import('../modules/account-session-v2/accounts_v2_client_runtime');
 
 let loaded: AccountsV2ClientRuntime | null = null;
+let accountAuthorityResumeInFlight: Promise<void> | null = null;
+let accountAuthorityResumeQueued = false;
+let accountAuthorityResumeLatestClient:
+  Pick<AccountsV2ClientRuntime, 'resumeAccountAuthorityProviderSession'> | null = null;
+let accountAuthorityBootstrapInstall: Promise<boolean> | null = null;
+
+// Owner gate: wiring may land before the durable client bootstrap, callable
+// exports, and migration proof. Never make this remotely activatable.
+const ACCOUNT_AUTHORITY_V2_GLOBAL_CUTOVER_ENABLED = false;
+
+export function isAccountAuthorityV2CutoverEnabled(): boolean {
+  return ACCOUNT_AUTHORITY_V2_GLOBAL_CUTOVER_ENABLED;
+}
 
 /** Клиентский флаг Account V2 (remote_config «Пульта»), по умолчанию выключен. */
 export function isAccountsV2ClientEnabled(): boolean {
@@ -35,12 +49,81 @@ export function loadAccountsV2ClientIfEnabled(): AccountsV2ClientRuntime | null 
   return loaded;
 }
 
+function loadAccountsV2ClientForAuthorityCutover(): AccountsV2ClientRuntime | null {
+  if (loaded !== null) return loaded;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    loaded = require('../modules/account-session-v2/accounts_v2_client_runtime') as AccountsV2ClientRuntime;
+  } catch (error) {
+    console.warn(`[ACCOUNT-AUTHORITY] client load_failed kind=${error instanceof Error ? error.name : typeof error}`);
+    loaded = null;
+  }
+  return loaded;
+}
+
+/**
+ * Real startup composition. It is safe to call repeatedly, publishes nothing
+ * on an unsupported native platform, and never changes the rollout gate.
+ */
+export function installAccountAuthorityProductionBootstrapIfPossible(): Promise<boolean> {
+  if (accountAuthorityBootstrapInstall !== null) return accountAuthorityBootstrapInstall;
+  // Do not touch native storage, SecureStore, or Firebase while both rollout
+  // gates are off. The authority composition is only needed for the explicit
+  // V2 migration gate or the owner-authorized global cutover.
+  if (!isAccountAuthorityV2CutoverEnabled() && !isAccountsV2ClientEnabled()) {
+    return Promise.resolve(false);
+  }
+  if (!isAccountsV2ProviderTransitionSupported()) return Promise.resolve(false);
+  const client = loadAccountsV2ClientForAuthorityCutover();
+  if (client === null) return Promise.resolve(false);
+  accountAuthorityBootstrapInstall = client.installAccountAuthorityProductionBootstrapIfPossible();
+  return accountAuthorityBootstrapInstall;
+}
+
+export function resumeAccountAuthorityProviderSessionIfIdle(
+  client: Pick<AccountsV2ClientRuntime, 'resumeAccountAuthorityProviderSession'>,
+): void {
+  if (accountAuthorityResumeInFlight !== null) {
+    accountAuthorityResumeQueued = true;
+    accountAuthorityResumeLatestClient = client;
+    return;
+  }
+  const task = client.resumeAccountAuthorityProviderSession();
+  accountAuthorityResumeInFlight = task;
+  const settled = (): void => {
+    if (accountAuthorityResumeInFlight !== task) return;
+    accountAuthorityResumeInFlight = null;
+    if (!accountAuthorityResumeQueued) return;
+    accountAuthorityResumeQueued = false;
+    const latestClient = accountAuthorityResumeLatestClient;
+    accountAuthorityResumeLatestClient = null;
+    if (latestClient !== null) resumeAccountAuthorityProviderSessionIfIdle(latestClient);
+  };
+  void task.then(settled, settled);
+}
+
 /**
  * uid Firebase сменился. Флаг выключен и клиент не грузился — ничего (ни
  * require, ни чтений). Клиент уже загружен — сообщаем всегда: при выключенном
  * флаге он сам остановится и закроет область.
  */
 export function syncAccountsV2ClientAuth(uid: string | null): void {
+  const bootstrapInstall = installAccountAuthorityProductionBootstrapIfPossible();
+  if (isAccountAuthorityV2CutoverEnabled()) {
+    void bootstrapInstall.then((installed) => {
+      const client = installed ? loadAccountsV2ClientForAuthorityCutover() : null;
+      if (client === null) {
+        console.warn('[ACCOUNT-AUTHORITY] startup_resume blocked reason=bootstrap_unavailable');
+        return;
+      }
+      resumeAccountAuthorityProviderSessionIfIdle({
+        resumeAccountAuthorityProviderSession: async () => client.resumeAccountAuthorityProviderSession().catch((error: unknown) => {
+          console.warn(`[ACCOUNT-AUTHORITY] startup_resume failed kind=${error instanceof Error ? error.name : typeof error}`);
+        }),
+      });
+    });
+    return;
+  }
   const client = loadAccountsV2ClientIfEnabled();
   if (client === null) {
     if (__DEV__) console.log('[ACCOUNT-V2] auth_sync skip reason=flag_off');
@@ -48,6 +131,81 @@ export function syncAccountsV2ClientAuth(uid: string | null): void {
   }
   client.syncAccountsV2ClientAuthUid(uid, isAccountsV2ClientEnabled);
 }
+
+/**
+ * Provider transitions may use Account V2 only where the native scope has been
+ * proven: Android, or the explicitly opt-in iOS proof build. The capability
+ * check is lazy so ordinary iOS/web startup keeps the legacy path untouched.
+ */
+function isAccountsV2ProviderTransitionSupported(): boolean {
+  if (Platform.OS === 'android') return true;
+  if (Platform.OS !== 'ios') return false;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const environment = require('../modules/account-session-v2/native/account_native_expo_environment') as
+      typeof import('../modules/account-session-v2/native/account_native_expo_environment');
+    return environment.isAccountV2NativePlatformSupported();
+  } catch (error) {
+    console.warn(`[ACCOUNT-V2] provider_transition capability_failed kind=${error instanceof Error ? error.name : typeof error}`);
+    return false;
+  }
+}
+
+function runLegacyAccountsV2ProviderSignInTransition<T extends Readonly<{ result: string; error?: string }>>(
+  authenticate: () => Promise<T>,
+): Promise<T> {
+  if (!isAccountsV2ClientEnabled() || !isAccountsV2ProviderTransitionSupported()) return authenticate();
+  const client = loadAccountsV2ClientIfEnabled();
+  if (client === null) return authenticate();
+  return client.runAccountsV2ProviderSignInTransition(authenticate, isAccountsV2ClientEnabled);
+}
+
+/** Capability + flag-gated provider sign-out through the same awaited authority. */
+function runLegacyAccountsV2ProviderSignOutTransition(
+  authenticate: () => Promise<void>,
+): Promise<void> {
+  if (!isAccountsV2ClientEnabled() || !isAccountsV2ProviderTransitionSupported()) return authenticate();
+  const client = loadAccountsV2ClientIfEnabled();
+  if (client === null) return authenticate();
+  return client.runAccountsV2ProviderSignOutTransition(authenticate, isAccountsV2ClientEnabled);
+}
+
+/**
+ * New provider entrypoint. Until the owner cutover gate changes in source, the
+ * existing Account V2 transition remains an explicit migration adapter.
+ */
+export function runAccountAuthorityProviderSignInTransition<
+  T extends Readonly<{ result: string; error?: string }>,
+>(
+  authorityAuthenticate: () => Promise<T>,
+  legacyAuthenticate: () => Promise<T> = authorityAuthenticate,
+): Promise<T> {
+  if (!isAccountAuthorityV2CutoverEnabled()) {
+    return runLegacyAccountsV2ProviderSignInTransition(legacyAuthenticate);
+  }
+  return installAccountAuthorityProductionBootstrapIfPossible().then((installed) => {
+    const client = installed ? loadAccountsV2ClientForAuthorityCutover() : null;
+    if (client === null) throw new Error('account_authority_bootstrap_unavailable');
+    return client.runAccountAuthorityProviderSignInTransition(authorityAuthenticate);
+  });
+}
+
+export function runAccountAuthorityProviderSignOutTransition(
+  authenticate: () => Promise<void>,
+): Promise<void> {
+  if (!isAccountAuthorityV2CutoverEnabled()) {
+    return runLegacyAccountsV2ProviderSignOutTransition(authenticate);
+  }
+  return installAccountAuthorityProductionBootstrapIfPossible().then((installed) => {
+    const client = installed ? loadAccountsV2ClientForAuthorityCutover() : null;
+    if (client === null) throw new Error('account_authority_bootstrap_unavailable');
+    return client.runAccountAuthorityProviderSignOutTransition();
+  });
+}
+
+/** Compatibility exports route every caller through the cutover seam. */
+export const runAccountsV2ProviderSignInTransition = runAccountAuthorityProviderSignInTransition;
+export const runAccountsV2ProviderSignOutTransition = runAccountAuthorityProviderSignOutTransition;
 
 /**
  * Подтверждённое удаление: СИНХРОННО отсоединяет V2 (до сети) и готовит ключ.
@@ -123,7 +281,10 @@ export function captureAccountsV2OwnerUid(): string | null {
   if (!isAccountsV2ClientEnabled()) return null;
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const uid = String(require('@react-native-firebase/auth').default()?.currentUser?.uid ?? '').trim();
+    const user = require('@react-native-firebase/auth').default()?.currentUser as
+      { uid?: unknown; isAnonymous?: unknown } | null | undefined;
+    if (user?.isAnonymous !== false) return null;
+    const uid = String(user.uid ?? '').trim();
     return uid.length > 0 ? uid : null;
   } catch (error) {
     console.warn(`[ACCOUNT-V2] produce owner_unavailable kind=${error instanceof Error ? error.name : typeof error}`);
@@ -134,8 +295,9 @@ export function captureAccountsV2OwnerUid(): string | null {
 /**
  * Account V2, Пакет 6F (dual-write): изменение урока / карточек / свайпов /
  * библиотеки → операции V2. Флаг выключен — НИЧЕГО (ни require, ни чтений,
- * ни таймеров). Включён — работа уходит из текущего кадра (setTimeout 0):
- * экран уже обновлён старым путём, V2 догоняет фоном. Никогда не бросает.
+ * ни таймеров). Включён — изменение сразу передаётся в сериализованную очередь
+ * runtime; сама отправка в сеть остаётся фоновой. Это сохраняет порядок
+ * относительно A→B перехода и не блокирует экран. Никогда не бросает.
  * ownerUid — из captureAccountsV2OwnerUid() в момент записи (ремонт №1, P2).
  */
 export function produceAccountsV2ChangeIfEnabled(ownerUid: string | null, build: () => AccountsV2ChangeInput): void {
@@ -144,21 +306,25 @@ export function produceAccountsV2ChangeIfEnabled(ownerUid: string | null, build:
     console.warn('[ACCOUNT-V2] produce skip reason=no_owner');
     return;
   }
-  setTimeout(() => {
-    const client = loadAccountsV2ClientIfEnabled();
-    if (client === null) {
-      console.log('[ACCOUNT-V2] produce skip reason=client_unavailable');
-      return;
-    }
-    let change: AccountsV2ChangeInput;
-    try {
-      change = build();
-    } catch (error) {
-      console.warn(`[ACCOUNT-V2] produce build_failed kind=${error instanceof Error ? error.name : typeof error}`);
-      return;
-    }
-    void client.produceAccountsV2Change(change, ownerUid, isAccountsV2ClientEnabled);
-  }, 0);
+  const client = loadAccountsV2ClientIfEnabled();
+  if (client === null) {
+    console.log('[ACCOUNT-V2] produce skip reason=client_unavailable');
+    return;
+  }
+  let change: AccountsV2ChangeInput;
+  try {
+    change = build();
+  } catch (error) {
+    console.warn(`[ACCOUNT-V2] produce build_failed kind=${error instanceof Error ? error.name : typeof error}`);
+    return;
+  }
+  // The runtime controller serializes producer work with auth transitions.
+  // Enter that queue now; a timer here could let A→B close the scope before
+  // A's card mutation is even handed to Account V2.
+  void client.produceAccountsV2Change(change, ownerUid, isAccountsV2ClientEnabled)
+    .catch((error: unknown) => {
+      console.warn(`[ACCOUNT-V2] produce failed kind=${error instanceof Error ? error.name : typeof error}`);
+    });
 }
 
 /**

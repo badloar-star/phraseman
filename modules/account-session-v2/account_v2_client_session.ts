@@ -103,6 +103,7 @@ export type AccountsV2ClientStatus = Readonly<{
   sending: boolean;
   serverDisabled: boolean;
   timerArmed: boolean;
+  hydrationArmed: boolean;
 }>;
 
 export type AccountsV2ClientController = Readonly<{
@@ -674,6 +675,7 @@ export function createAccountsV2ClientController(ports: AccountsV2ClientPorts): 
       sending: session?.sending ?? false,
       serverDisabled,
       timerArmed: session !== null && session.timer !== null,
+      hydrationArmed: session !== null && session.hydrationTimer !== null,
     }),
   });
 }

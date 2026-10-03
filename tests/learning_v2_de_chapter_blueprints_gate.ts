@@ -3606,6 +3606,681 @@ function validateL14SemanticContract(raw: R, plan: Boundary): void {
   }
 }
 
+const L15_ALLOWED = [
+  "de_gc_controlled_partizip_ii_v1",
+  "de_gc_perfekt_haben_classes_v1",
+  "de_gc_finite_haben_present_v1",
+  "de_gc_separable_verb_bracket_v1",
+  "de_gc_temporal_preposition_governed_case_v1",
+  "de_gc_nicht_position_focus_v1",
+  "de_gc_doch_response_contrast_v1",
+] as const;
+const L15_FINAL = [
+  L15_ALLOWED[0],
+  L15_ALLOWED[1],
+  L15_ALLOWED[5],
+  L15_ALLOWED[6],
+] as const;
+const L15_PROHIBITED = [
+  "de_gc_perfekt_sein_classes_v1",
+  "de_gc_spoken_preterite_island_v1",
+] as const;
+const L15_NO_EXPANSION =
+  "The lesson permits only verified Partizip II forms stored as lexical wholes and finite haben plus one controlled participle in the Perfekt bracket for verified haben-selecting lexical classes. Existing separable brackets, temporal Akkusativ, bounded nicht focus and doch response contrast remain retrieval support only. The newly grounded lexical temporal adverbs zuerst and dann do not introduce connector-topology grammar. No universal participle-formation rule, productive ge- or suffix guessing, unverified participle, sein auxiliary class, movement-equals-sein heuristic, spoken or narrative Präteritum, subordinate-clause word order, connector-topology expansion, passive, modal perfect, new case frame, new preposition relation or future grammar is allowed.";
+const L15_MODELS = [
+  [
+    "Erledigt. Ich habe den Einkauf erledigt.",
+    "Ich habe den Einkauf erledigt.",
+  ],
+  ["Ich habe die Rechnung bezahlt.", "Ich habe die Rechnung bezahlt."],
+  [
+    "Ich habe den Termin für den Vormittag bestätigt.",
+    "Ich habe den Termin für den Vormittag bestätigt.",
+  ],
+  [
+    "Zuerst habe ich das Formular abgegeben. Dann habe ich die Rechnung bezahlt.",
+    "Zuerst habe ich das Formular abgegeben. Dann habe ich die Rechnung bezahlt.",
+  ],
+  [
+    "Haben Sie das Fahrrad repariert? Ja, ich habe das Fahrrad repariert.",
+    "Haben Sie das Fahrrad repariert? Ja, ich habe das Fahrrad repariert.",
+  ],
+  [
+    "Das ist falsch. [1] Ich habe bezahlt die Rechnung. → Ich habe die Rechnung bezahlt. [2] Ich habe das Formular abgeben. → Ich habe das Formular abgegeben. Ich habe den Fehler korrigiert.",
+    "Das ist falsch. [1] Ich habe bezahlt die Rechnung. → Ich habe die Rechnung bezahlt. [2] Ich habe das Formular abgeben. → Ich habe das Formular abgegeben. Ich habe den Fehler korrigiert.",
+  ],
+  [
+    "Du hast das Medikament nicht abgeholt. Doch, ich habe das Medikament abgeholt. Ich habe die Quittung nicht abgegeben.",
+    "Du hast das Medikament nicht abgeholt. Doch, ich habe das Medikament abgeholt. Ich habe die Quittung nicht abgegeben.",
+  ],
+] as const;
+const L15_SITUATIONS = [
+  [
+    {
+      setting: "shared-flat-evening-errand-update",
+      participants: "resident-and-flatmate",
+      goal: "recognize-erledigt-as-the-complete-verified-participle-in-a-shared-flat-shopping-update",
+      contextSignature: "shared-flat-shopping-participle-introduction",
+    },
+    {
+      setting: "family-household-shopping-handover",
+      participants: "family-member-and-relative",
+      goal: "independently-recognize-erledigt-and-report-the-completed-household-shopping-errand",
+      contextSignature: "household-shopping-participle-check",
+    },
+  ],
+  [
+    {
+      setting: "utility-payment-counter",
+      participants: "customer-and-payment-clerk",
+      goal: "place-habe-left-and-bezahlt-right-around-the-explicit-rechnung-object",
+      contextSignature: "rechnung-perfekt-bracket-guidance",
+    },
+    {
+      setting: "housing-office-payment-desk",
+      participants: "tenant-and-payment-agent",
+      goal: "independently-place-finite-haben-and-bezahlt-around-die-rechnung",
+      contextSignature: "housing-rechnung-bracket-check",
+    },
+  ],
+  [
+    {
+      setting: "appointment-service-phone-call",
+      participants: "customer-and-service-agent",
+      goal: "report-that-the-morning-appointment-was-confirmed",
+      contextSignature: "termin-confirmation-completed-action",
+    },
+    {
+      setting: "clinic-appointment-line",
+      participants: "patient-and-receptionist",
+      goal: "independently-report-the-confirmed-morning-appointment",
+      contextSignature: "clinic-termin-confirmation-check",
+    },
+  ],
+  [
+    {
+      setting: "municipal-service-errand-update",
+      participants: "resident-and-housemate",
+      goal: "sequence-form-submission-before-bill-payment-with-newly-grounded-zuerst-and-dann",
+      contextSignature: "formular-rechnung-temporal-adverb-sequence",
+    },
+    {
+      setting: "community-centre-admin-desk",
+      participants: "volunteer-and-coordinator",
+      goal: "independently-sequence-the-completed-form-and-payment-errands-with-zuerst-and-dann",
+      contextSignature: "community-admin-temporal-adverb-sequence-check",
+    },
+  ],
+  [
+    {
+      setting: "bicycle-repair-pickup-call",
+      participants: "customer-and-workshop-clerk",
+      goal: "ask-and-answer-whether-the-specified-bicycle-was-repaired",
+      contextSignature: "fahrrad-repair-completion-exchange",
+    },
+    {
+      setting: "neighbourhood-repair-workshop",
+      participants: "bicycle-owner-and-mechanic",
+      goal: "independently-ask-and-answer-about-the-completed-bicycle-repair",
+      contextSignature: "workshop-fahrrad-repair-check",
+    },
+  ],
+  [
+    {
+      setting: "service-report-quality-check",
+      participants: "trainee-and-service-supervisor",
+      goal: "repair-one-bracket-order-error-and-one-unverified-infinitive-for-participle-error",
+      contextSignature: "perfekt-dual-error-repair",
+    },
+    {
+      setting: "volunteer-office-report-review",
+      participants: "volunteer-and-coordinator",
+      goal: "independently-repair-both-the-bracket-and-controlled-participle-errors",
+      contextSignature: "volunteer-report-dual-repair-check",
+    },
+  ],
+  [
+    {
+      setting: "pharmacy-errand-update",
+      participants: "customer-and-housemate",
+      goal: "correct-the-negative-assumption-about-the-collected-medication-and-state-that-the-receipt-remains-unsubmitted",
+      contextSignature: "medikament-quittung-changed-errand-transfer",
+    },
+    {
+      setting: "after-hours-family-errand-call",
+      participants: "family-member-and-relative",
+      goal: "independently-report-the-collected-medication-and-the-still-unsubmitted-receipt",
+      contextSignature: "family-medication-receipt-final-transfer",
+    },
+  ],
+] as const;
+const L15_LEVELS = [
+  [5, 2],
+  [5, 2],
+  [4, 1],
+  [4, 1],
+  [3, 1],
+  [3, 1],
+  [2, 0],
+] as const;
+const L15_ANCHORS = [
+  "introduction",
+  "guided",
+  "retrieval",
+  "production",
+  null,
+  "transfer",
+  "delayed",
+].map((stage, index) =>
+  stage
+    ? [
+        {
+          constructId: index === 6 ? L15_ALLOWED[5] : L15_ALLOWED[0],
+          stage,
+          packetId: `de_l15_c${String(index + 1).padStart(2, "0")}_s${String(index * 8 + 1).padStart(2, "0")}`,
+        },
+        {
+          constructId: index === 6 ? L15_ALLOWED[6] : L15_ALLOWED[1],
+          stage,
+          packetId: `de_l15_c${String(index + 1).padStart(2, "0")}_s${String(index * 8 + 2).padStart(2, "0")}`,
+        },
+      ]
+    : [],
+);
+const L15_EVIDENCE = [3, 11, 19, 27, 35, 43]
+  .map((start, index) => [
+    `de_l15_c${String(index + 1).padStart(2, "0")}_s${String(start).padStart(2, "0")}`,
+    `de_l15_c${String(index + 1).padStart(2, "0")}_s${String(start + 1).padStart(2, "0")}`,
+  ])
+  .concat([
+    [
+      "de_l15_c07_s51",
+      "de_l15_c07_s52",
+      "de_l15_c07_s53",
+      "de_l15_c07_s54",
+      "de_l15_c07_s55",
+      "de_l15_c07_s56",
+    ],
+  ]);
+const L15_RECALL = [
+  [["de_l14_c06", "de_l14_c07"], ["de_l15_c02"]],
+  [["de_l14_c07", "de_l15_c01"], ["de_l15_c03"]],
+  [["de_l15_c01", "de_l15_c02"], ["de_l15_c04"]],
+  [["de_l15_c02", "de_l15_c03"], ["de_l15_c05"]],
+  [["de_l15_c03", "de_l15_c04"], ["de_l15_c06"]],
+  [["de_l15_c04", "de_l15_c05"], ["de_l15_c07"]],
+  [["de_l15_c05", "de_l15_c06"], ["de_l16_c01"]],
+] as const;
+const L15_OUTCOMES = [
+  "recognise a verified participle as a complete lexical form",
+  "place finite haben and a controlled participle in the bracket",
+  "report one completed everyday action",
+  "sequence two completed errands with newly grounded temporal adverbs zuerst and dann",
+  "ask and answer about a completed service action",
+  "repair auxiliary-bracket or controlled-participle errors",
+  "transfer completed-event reporting to an unfamiliar errand chain",
+] as const;
+const L15_LEXICAL = [
+  [
+    {
+      id: "de_lex_plan_l15_c01_erledigen_v1",
+      semanticIdentity: "erledigen|complete a specified everyday task",
+      lemmaOrExpression: "erledigen",
+      partOfSpeech: "verb",
+      lexicalKind: "VERB_LEXEME",
+      nounPackage: null,
+      verbPackage: {
+        infinitive: "erledigen",
+        valencyFrame:
+          "transitive task-completion frame selecting one explicit accusative task",
+        separability: "inseparable",
+        perfectAuxiliary: "haben",
+      },
+      utilityRole: "action",
+      situationFacet: "goal",
+      facetValue: L15_SITUATIONS[0][1].goal,
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+      senseGloss: "complete a specified everyday task",
+      communicativeUse:
+        "use Ich habe den Einkauf erledigt. to retrieve erledigt as a verified lexical whole and report the completed household shopping errand",
+    },
+    {
+      id: "de_lex_plan_l15_c01_einkauf_v1",
+      semanticIdentity: "einkauf|shopping errand treated as one completed task",
+      lemmaOrExpression: "Einkauf",
+      partOfSpeech: "noun",
+      lexicalKind: "NOUN_LEXEME",
+      nounPackage: { article: "der", singular: "Einkauf", plural: "Einkäufe" },
+      nounPackageIdentity: "der|einkauf|einkaufe",
+      verbPackage: null,
+      utilityRole: "scene_grounding",
+      situationFacet: "setting",
+      facetValue: L15_SITUATIONS[0][1].setting,
+      necessityClass: "SCENE_UNGROUNDED",
+      senseGloss: "shopping errand treated as one completed task",
+      communicativeUse:
+        "ground the explicit household shopping errand in Ich habe den Einkauf erledigt. during the family household handover",
+    },
+  ],
+  [
+    {
+      id: "de_lex_plan_l15_c02_bezahlen_v1",
+      semanticIdentity: "bezahlen|pay one specified bill",
+      lemmaOrExpression: "bezahlen",
+      partOfSpeech: "verb",
+      lexicalKind: "VERB_LEXEME",
+      nounPackage: null,
+      verbPackage: {
+        infinitive: "bezahlen",
+        valencyFrame: "payment frame selecting one explicit accusative bill",
+        separability: "inseparable",
+        perfectAuxiliary: "haben",
+      },
+      utilityRole: "action",
+      situationFacet: "goal",
+      facetValue: L15_SITUATIONS[1][1].goal,
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+      senseGloss: "pay one specified bill",
+      communicativeUse: L15_MODELS[1][1],
+    },
+    {
+      id: "de_lex_plan_l15_c02_rechnung_v1",
+      semanticIdentity: "rechnung|bill requiring payment",
+      lemmaOrExpression: "Rechnung",
+      partOfSpeech: "noun",
+      lexicalKind: "NOUN_LEXEME",
+      nounPackage: {
+        article: "die",
+        singular: "Rechnung",
+        plural: "Rechnungen",
+      },
+      nounPackageIdentity: "die|rechnung|rechnungen",
+      verbPackage: null,
+      utilityRole: "scene_grounding",
+      situationFacet: "setting",
+      facetValue: L15_SITUATIONS[1][1].setting,
+      necessityClass: "SCENE_UNGROUNDED",
+      senseGloss: "bill requiring payment",
+      communicativeUse: L15_MODELS[1][1],
+    },
+  ],
+  [
+    {
+      id: "de_lex_plan_l15_c03_bestatigen_v1",
+      semanticIdentity: "bestatigen|confirm one specified appointment",
+      lemmaOrExpression: "bestätigen",
+      partOfSpeech: "verb",
+      lexicalKind: "VERB_LEXEME",
+      nounPackage: null,
+      verbPackage: {
+        infinitive: "bestätigen",
+        valencyFrame:
+          "confirmation frame selecting one explicit accusative appointment",
+        separability: "inseparable",
+        perfectAuxiliary: "haben",
+      },
+      utilityRole: "action",
+      situationFacet: "goal",
+      facetValue: L15_SITUATIONS[2][1].goal,
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+      senseGloss: "confirm one specified appointment",
+      communicativeUse: L15_MODELS[2][1],
+    },
+  ],
+  [
+    {
+      id: "de_lex_plan_l15_c04_abgeben_v1",
+      semanticIdentity: "abgeben|submit one specified document",
+      lemmaOrExpression: "abgeben",
+      partOfSpeech: "verb",
+      lexicalKind: "VERB_LEXEME",
+      nounPackage: null,
+      verbPackage: {
+        infinitive: "abgeben",
+        valencyFrame:
+          "submission frame selecting one explicit accusative document",
+        separability: "separable",
+        perfectAuxiliary: "haben",
+      },
+      utilityRole: "action",
+      situationFacet: "goal",
+      facetValue: L15_SITUATIONS[3][1].goal,
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+      senseGloss: "submit one specified document",
+      communicativeUse: "Zuerst habe ich das Formular abgegeben.",
+    },
+    {
+      id: "de_lex_plan_l15_c04_formular_v1",
+      semanticIdentity: "formular|form submitted as one administrative errand",
+      lemmaOrExpression: "Formular",
+      partOfSpeech: "noun",
+      lexicalKind: "NOUN_LEXEME",
+      nounPackage: {
+        article: "das",
+        singular: "Formular",
+        plural: "Formulare",
+      },
+      nounPackageIdentity: "das|formular|formulare",
+      verbPackage: null,
+      utilityRole: "scene_grounding",
+      situationFacet: "setting",
+      facetValue: L15_SITUATIONS[3][1].setting,
+      necessityClass: "SCENE_UNGROUNDED",
+      senseGloss: "form submitted as one administrative errand",
+      communicativeUse: "Zuerst habe ich das Formular abgegeben.",
+    },
+    {
+      id: "de_lex_plan_l15_c04_zuerst_v1",
+      semanticIdentity:
+        "zuerst|marks the first completed action in a stated sequence",
+      lemmaOrExpression: "zuerst",
+      partOfSpeech: "adverb",
+      lexicalKind: "ADVERB_LEXEME",
+      nounPackage: null,
+      verbPackage: null,
+      utilityRole: "temporal_spatial",
+      situationFacet: "goal",
+      facetValue: L15_SITUATIONS[3][1].goal,
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+      senseGloss: "marks the first completed action in a stated sequence",
+      communicativeUse:
+        "use the newly grounded temporal adverb zuerst to mark the completed form submission as first",
+    },
+    {
+      id: "de_lex_plan_l15_c04_dann_v1",
+      semanticIdentity:
+        "dann|marks the next completed action in a stated sequence",
+      lemmaOrExpression: "dann",
+      partOfSpeech: "adverb",
+      lexicalKind: "ADVERB_LEXEME",
+      nounPackage: null,
+      verbPackage: null,
+      utilityRole: "temporal_spatial",
+      situationFacet: "goal",
+      facetValue: L15_SITUATIONS[3][1].goal,
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+      senseGloss: "marks the next completed action in a stated sequence",
+      communicativeUse:
+        "use the newly grounded temporal adverb dann to mark the completed bill payment as next",
+    },
+  ],
+  [
+    {
+      id: "de_lex_plan_l15_c05_reparieren_v1",
+      semanticIdentity: "reparieren|repair one specified item",
+      lemmaOrExpression: "reparieren",
+      partOfSpeech: "verb",
+      lexicalKind: "VERB_LEXEME",
+      nounPackage: null,
+      verbPackage: {
+        infinitive: "reparieren",
+        valencyFrame: "repair frame selecting one explicit accusative item",
+        separability: "inseparable",
+        perfectAuxiliary: "haben",
+      },
+      utilityRole: "action",
+      situationFacet: "goal",
+      facetValue: L15_SITUATIONS[4][1].goal,
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+      senseGloss: "repair one specified item",
+      communicativeUse: L15_MODELS[4][1],
+    },
+    {
+      id: "de_lex_plan_l15_c05_fahrrad_v1",
+      semanticIdentity: "fahrrad|bicycle presented for a specified repair",
+      lemmaOrExpression: "Fahrrad",
+      partOfSpeech: "noun",
+      lexicalKind: "NOUN_LEXEME",
+      nounPackage: { article: "das", singular: "Fahrrad", plural: "Fahrräder" },
+      nounPackageIdentity: "das|fahrrad|fahrrader",
+      verbPackage: null,
+      utilityRole: "scene_grounding",
+      situationFacet: "setting",
+      facetValue: L15_SITUATIONS[4][1].setting,
+      necessityClass: "SCENE_UNGROUNDED",
+      senseGloss: "bicycle presented for a specified repair",
+      communicativeUse: L15_MODELS[4][1],
+    },
+  ],
+  [
+    {
+      id: "de_lex_plan_l15_c06_fehler_v1",
+      semanticIdentity: "fehler|error identified in the completed-event report",
+      lemmaOrExpression: "Fehler",
+      partOfSpeech: "noun",
+      lexicalKind: "NOUN_LEXEME",
+      nounPackage: { article: "der", singular: "Fehler", plural: "Fehler" },
+      nounPackageIdentity: "der|fehler|fehler",
+      verbPackage: null,
+      utilityRole: "repair",
+      situationFacet: "goal",
+      facetValue: L15_SITUATIONS[5][1].goal,
+      necessityClass: "REPAIR_UNAVAILABLE",
+      senseGloss: "error identified in the completed-event report",
+      communicativeUse: "Ich habe den Fehler korrigiert.",
+    },
+    {
+      id: "de_lex_plan_l15_c06_korrigieren_v1",
+      semanticIdentity: "korrigieren|correct one specified error",
+      lemmaOrExpression: "korrigieren",
+      partOfSpeech: "verb",
+      lexicalKind: "VERB_LEXEME",
+      nounPackage: null,
+      verbPackage: {
+        infinitive: "korrigieren",
+        valencyFrame:
+          "correction frame selecting one explicit accusative error",
+        separability: "inseparable",
+        perfectAuxiliary: "haben",
+      },
+      utilityRole: "repair",
+      situationFacet: "goal",
+      facetValue: L15_SITUATIONS[5][1].goal,
+      necessityClass: "REPAIR_UNAVAILABLE",
+      senseGloss: "correct one specified error",
+      communicativeUse: "Ich habe den Fehler korrigiert.",
+    },
+  ],
+  [
+    {
+      id: "de_lex_plan_l15_c07_medikament_v1",
+      semanticIdentity: "medikament|medicine collected as one specified errand",
+      lemmaOrExpression: "Medikament",
+      partOfSpeech: "noun",
+      lexicalKind: "NOUN_LEXEME",
+      nounPackage: {
+        article: "das",
+        singular: "Medikament",
+        plural: "Medikamente",
+      },
+      nounPackageIdentity: "das|medikament|medikamente",
+      verbPackage: null,
+      utilityRole: "scene_grounding",
+      situationFacet: "setting",
+      facetValue: L15_SITUATIONS[6][1].setting,
+      necessityClass: "SCENE_UNGROUNDED",
+      senseGloss: "medicine collected as one specified errand",
+      communicativeUse:
+        "Du hast das Medikament nicht abgeholt. Doch, ich habe das Medikament abgeholt.",
+    },
+    {
+      id: "de_lex_plan_l15_c07_quittung_v1",
+      semanticIdentity: "quittung|receipt that remains unsubmitted",
+      lemmaOrExpression: "Quittung",
+      partOfSpeech: "noun",
+      lexicalKind: "NOUN_LEXEME",
+      nounPackage: {
+        article: "die",
+        singular: "Quittung",
+        plural: "Quittungen",
+      },
+      nounPackageIdentity: "die|quittung|quittungen",
+      verbPackage: null,
+      utilityRole: "transfer",
+      situationFacet: "goal",
+      facetValue: L15_SITUATIONS[6][1].goal,
+      necessityClass: "TRANSFER_UNAVAILABLE",
+      senseGloss: "receipt that remains unsubmitted",
+      communicativeUse: "Ich habe die Quittung nicht abgegeben.",
+    },
+  ],
+] as const;
+function l15ExpectedSense(index: number, spec: R): unknown {
+  const ch = String(index + 1).padStart(2, "0"),
+    packet = `de_l15_c${ch}_s${String((index + 1) * 8).padStart(2, "0")}`,
+    integrated = index === 6 ? L15_FINAL : L15_ALLOWED;
+  const { utilityRole, situationFacet, facetValue, necessityClass, ...sense } =
+    spec;
+  return {
+    ...sense,
+    lemmaStatus: "FIRST_MEANING",
+    contrastsWithSenseId: null,
+    contrastEvidence: null,
+    chapterOutcomeId: `de_l15_ch${ch}`,
+    utilityProof: {
+      chapterOutcomeId: `de_l15_ch${ch}`,
+      checkpointPacketId: packet,
+      integratedConstructIds: integrated,
+      utilityRole,
+      situationFacet,
+      facetValue,
+      necessityClass,
+      plannedUsePacketIds: [packet],
+    },
+  };
+}
+function validateL15SemanticContract(raw: R, plan: Boundary): void {
+  const l15 = (raw.lessons as R[]).find((x) => x.lessonId === "de_l15");
+  if (!l15) throw new Error("l15_semantic_contract_invalid:sets");
+  const chapters = l15.chapters as R[],
+    boundary = l15.grammarBoundary as R;
+  if (boundary.noExpansion !== L15_NO_EXPANSION)
+    throw new Error("l15_semantic_contract_invalid:no_expansion");
+  if (
+    JSON.stringify(plan.introducedConstructIds) !==
+      JSON.stringify(L15_ALLOWED.slice(0, 2)) ||
+    JSON.stringify(plan.extendedConstructIds) !==
+      JSON.stringify(L15_ALLOWED.slice(2, 4)) ||
+    JSON.stringify(plan.reviewedConstructIds) !==
+      JSON.stringify(L15_ALLOWED.slice(4)) ||
+    JSON.stringify(plan.prohibitedConstructIds) !==
+      JSON.stringify(L15_PROHIBITED) ||
+    JSON.stringify(boundary.allowedConstructIds) !==
+      JSON.stringify(L15_ALLOWED) ||
+    JSON.stringify(boundary.prohibitedConstructIds) !==
+      JSON.stringify(L15_PROHIBITED) ||
+    JSON.stringify((plan.session56Final as R).requiredConstructIds) !==
+      JSON.stringify(L15_FINAL) ||
+    chapters.length !== 7
+  )
+    throw new Error("l15_semantic_contract_invalid:sets");
+  const incoming = [51, 52, 53, 54, 55, 56, 55].map((n) => `de_l15_c07_s${n}`),
+    l14 = (raw.lessons as R[]).find((x) => x.lessonId === "de_l14") as R;
+  if (
+    !l14 ||
+    JSON.stringify(
+      (l14.chapters as R[]).map(
+        (c) => ((c.recallSchedule as R).futureDelayedProbe as R).packetId,
+      ),
+    ) !== JSON.stringify(incoming)
+  )
+    throw new Error("l14_l15_inverse_provenance_invalid");
+  const c05 = chapters[4].supportFading as R,
+    c06 = chapters[5].supportFading as R,
+    c07 = chapters[6].supportFading as R;
+  if (c05.entry !== L15_MODELS[4][0] || /Hast du/u.test(String(c05.entry)))
+    throw new Error("l15_semantic_contract_invalid:c05_service_exchange");
+  if (
+    c06.entry !== L15_MODELS[5][0] ||
+    (String(c06.entry).match(/→/gu) ?? []).length !== 2
+  )
+    throw new Error("l15_semantic_contract_invalid:c06_repair_items");
+  if (
+    c07.entry !== L15_MODELS[6][0] ||
+    !String(c07.entry).includes("Doch,") ||
+    !String(c07.entry).includes("nicht abgegeben")
+  )
+    throw new Error("l15_semantic_contract_invalid:c07_final_transfer");
+  const surface = JSON.stringify(l15)
+    .replaceAll(L15_NO_EXPANSION, "")
+    .replaceAll(L15_MODELS[5][0], "")
+    .replaceAll(L15_MODELS[6][0], "");
+  if (
+    /Perfekt mit sein|movement-equals-sein|Präteritum|universal participle|guess(?:ed|ing)? participle|subordinate-clause|connector-topology expansion|passive|modal perfect|future grammar/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l15_future_grammar_leak");
+  const ids = new Set<string>(),
+    semantics = new Set<string>();
+  chapters.forEach((chapter, index) => {
+    const cp = chapter.checkpoint as R,
+      recall = chapter.recallSchedule as R,
+      support = chapter.supportFading as R,
+      allowed = index === 6 ? L15_FINAL : L15_ALLOWED;
+    if (
+      JSON.stringify(chapter.allowedConstructIds) !== JSON.stringify(allowed) ||
+      JSON.stringify(cp.integratedConstructIds) !== JSON.stringify(allowed) ||
+      JSON.stringify(chapter.prohibitedConstructIds) !==
+        JSON.stringify(L15_PROHIBITED)
+    )
+      throw new Error("l15_semantic_contract_invalid:sets");
+    if (chapter.lessonOutcome !== L15_OUTCOMES[index] && index === 3)
+      throw new Error("l15_c04_sequence_lexical_contract_invalid");
+    if (
+      JSON.stringify(chapter.lifecycleAnchors) !==
+      JSON.stringify(L15_ANCHORS[index])
+    )
+      throw new Error("l15_semantic_contract_invalid:anchors");
+    if (
+      JSON.stringify([chapter.situation, cp.newSituation]) !==
+      JSON.stringify(L15_SITUATIONS[index])
+    )
+      throw new Error("l15_semantic_contract_invalid:situations");
+    if (
+      support.entryLevel !== L15_LEVELS[index][0] ||
+      support.exitLevel !== L15_LEVELS[index][1] ||
+      support.entry !== L15_MODELS[index][0] ||
+      support.exit !== L15_MODELS[index][1] ||
+      support.independentEvidenceByPacketId !==
+        `de_l15_c${String(index + 1).padStart(2, "0")}_s${String((index + 1) * 8).padStart(2, "0")}`
+    )
+      throw new Error("l15_semantic_contract_invalid:support_fading");
+    if (
+      JSON.stringify(chapter.chapterEvidencePacketIds) !==
+      JSON.stringify(L15_EVIDENCE[index])
+    )
+      throw new Error("l15_semantic_contract_invalid:evidence");
+    if (
+      JSON.stringify([
+        recall.retrievesFromChapterIds,
+        recall.targetsFutureChapterIds,
+      ]) !== JSON.stringify(L15_RECALL[index]) ||
+      (recall.futureDelayedProbe as R).packetId !==
+        `de_l16_c07_s${[51, 52, 53, 54, 55, 56, 55][index]}`
+    )
+      throw new Error("l15_recall_contract_invalid");
+    const senses = cp.plannedNewLexicalSenses as R[];
+    senses.forEach((s) => {
+      if (ids.has(String(s.id)) || semantics.has(String(s.semanticIdentity)))
+        throw new Error("l15_lexical_ownership_invalid");
+      ids.add(String(s.id));
+      semantics.add(String(s.semanticIdentity));
+    });
+    if (
+      JSON.stringify(senses) !==
+      JSON.stringify(
+        L15_LEXICAL[index].map((s) => l15ExpectedSense(index, s as R)),
+      )
+    )
+      throw new Error(
+        index === 3
+          ? "l15_c04_sequence_lexical_contract_invalid"
+          : "l15_semantic_contract_invalid:lexical_packages",
+      );
+  });
+}
+
 function validate(raw: unknown): {
   lessons: number;
   chapters: number;
@@ -3671,6 +4346,12 @@ function validate(raw: unknown): {
     validateL13SemanticContract(raw, l13Plan);
   const l14Plan = source.get("de_l14");
   if (l14Plan) validateL14SemanticContract(raw, l14Plan);
+  const l15Plan = source.get("de_l15");
+  if (
+    l15Plan &&
+    (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l15")
+  )
+    validateL15SemanticContract(raw, l15Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -3750,11 +4431,13 @@ function validate(raw: unknown): {
         throw new Error(`stale_or_mismatched_outcome:${cv.id}`);
       strings(cv.packetIds, "packetIds");
       if (cv.packetIds.length !== 8)
-        throw new Error(`packet_count_invalid:${cv.id}`);
+        throw new Error(
+          `packet_identity_invalid:${cv.id}:${cv.packetIds.length}`,
+        );
       cv.packetIds.forEach((id, pi) => {
-        pp(id, "packetId");
         if (id !== pid(ln, cn, (cn - 1) * 8 + pi + 1) || packetIds.has(id))
           throw new Error(`packet_identity_invalid:${cv.id}:${id}`);
+        pp(id, "packetId");
         packetIds.add(id);
       });
       strings(cv.allowedConstructIds, "chapter.allowed");
@@ -3897,6 +4580,11 @@ function validate(raw: unknown): {
               sv.id === "de_lex_plan_l14_c07_ferienwohnung_v1" &&
               sv.semanticIdentity ===
                 "ferienwohnung|self-contained holiday accommodation offered for booking"
+            ) &&
+            !(
+              sv.id === "de_lex_plan_l15_c06_fehler_v1" &&
+              sv.semanticIdentity ===
+                "fehler|error identified in the completed-event report"
             )) ||
           sv.chapterOutcomeId !== cv.lessonOutcomeId ||
           LEXICAL_KIND_BY_POS[sv.partOfSpeech as string] !== sv.lexicalKind
@@ -4303,11 +4991,43 @@ function expectL14PlanExact(mut: (plan: R) => void, message: string): void {
   assert.ok(thrown instanceof Error, `expected_error:${message}`);
   assert.equal(thrown.message, message);
 }
+function expectL15Exact(mut: (raw: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: Boundary[] };
+  const plan = lessonRegistry.lessons.find(
+    (lesson) => lesson.id === "de_l15",
+  ) as Boundary;
+  mut(raw);
+  let thrown: unknown;
+  try {
+    validateL15SemanticContract(raw, plan);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+function expectL15PlanExact(mut: (plan: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: R[] };
+  const plan = clone(
+    lessonRegistry.lessons.find((lesson) => lesson.id === "de_l15") as R,
+  );
+  mut(plan);
+  let thrown: unknown;
+  try {
+    validateL15SemanticContract(raw, plan as Boundary);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
 function fixtures(): void {
   const first = (raw: R) => ((raw.lessons as R[])[0].chapters as R[])[0];
   expect((raw) => {
     (first(raw).packetIds as unknown[]).pop();
-  }, /packet_count_invalid/u);
+  }, /packet_identity_invalid/u);
   expect((raw) => {
     (first(raw).allowedConstructIds as string[]).push(
       "de_gc_finite_present_agreement_v1",
@@ -6209,6 +6929,111 @@ function fixtures(): void {
     );
   }
 
+  const l15 = (raw: R): R =>
+    (raw.lessons as R[]).find((lesson) => lesson.lessonId === "de_l15") as R;
+  expectL15PlanExact((plan) => {
+    (plan.introducedConstructIds as string[]).reverse();
+  }, "l15_semantic_contract_invalid:sets");
+  expectL15Exact((raw) => {
+    (l15(raw).grammarBoundary as R).noExpansion =
+      "Allow productive participle guessing and connector-topology expansion.";
+  }, "l15_semantic_contract_invalid:no_expansion");
+  expectL15Exact((raw) => {
+    const c1 = (l15(raw).chapters as R[])[0];
+    ((c1.lifecycleAnchors as R[])[0] as R).packetId = "de_l15_c01_s03";
+  }, "l15_semantic_contract_invalid:anchors");
+  expectL15Exact((raw) => {
+    const c2 = (l15(raw).chapters as R[])[1];
+    (c2.situation as R).goal = "generic-payment-goal";
+  }, "l15_semantic_contract_invalid:situations");
+  expectL15Exact((raw) => {
+    const c1 = (l15(raw).chapters as R[])[0];
+    (c1.supportFading as R).entryLevel = 4;
+  }, "l15_semantic_contract_invalid:support_fading");
+  expectL15Exact((raw) => {
+    const c3 = (l15(raw).chapters as R[])[2];
+    c3.chapterEvidencePacketIds = ["de_l15_c03_s20", "de_l15_c03_s19"];
+  }, "l15_semantic_contract_invalid:evidence");
+  expectL15Exact((raw) => {
+    const c4 = (l15(raw).chapters as R[])[3];
+    (c4.recallSchedule as R).retrievesFromChapterIds = ["de_l15_c03"];
+  }, "l15_recall_contract_invalid");
+  expectL15Exact((raw) => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    (
+      ((l14.chapters as R[])[0].recallSchedule as R).futureDelayedProbe as R
+    ).packetId = "de_l15_c07_s56";
+  }, "l14_l15_inverse_provenance_invalid");
+  expectL15Exact((raw) => {
+    const c1 = (l15(raw).chapters as R[])[0];
+    const sense = ((c1.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    (sense.verbPackage as R).valencyFrame = "generic task frame";
+  }, "l15_semantic_contract_invalid:lexical_packages");
+  expectL15Exact((raw) => {
+    const chapters = l15(raw).chapters as R[];
+    const c1 = (
+      (chapters[0].checkpoint as R).plannedNewLexicalSenses as R[]
+    )[0];
+    const c2 = (
+      (chapters[1].checkpoint as R).plannedNewLexicalSenses as R[]
+    )[0];
+    c2.id = c1.id;
+    c2.semanticIdentity = c1.semanticIdentity;
+  }, "l15_lexical_ownership_invalid");
+  expectL15Exact((raw) => {
+    const c4 = (l15(raw).chapters as R[])[3];
+    c4.lessonOutcome = "sequence two completed errands with known connectors";
+  }, "l15_c04_sequence_lexical_contract_invalid");
+  expectL15Exact((raw) => {
+    const c5 = (l15(raw).chapters as R[])[4];
+    (c5.supportFading as R).entry =
+      "Hast du das Fahrrad repariert? Ja, ich habe das Fahrrad repariert.";
+  }, "l15_semantic_contract_invalid:c05_service_exchange");
+  expectL15Exact((raw) => {
+    const c6 = (l15(raw).chapters as R[])[5];
+    (c6.supportFading as R).entry =
+      "Das ist falsch. [1] Ich habe bezahlt die Rechnung. → Ich habe die Rechnung bezahlt.";
+  }, "l15_semantic_contract_invalid:c06_repair_items");
+  expectL15Exact((raw) => {
+    const c7 = (l15(raw).chapters as R[])[6];
+    (c7.supportFading as R).entry =
+      "Ich habe das Medikament abgeholt. Ich habe die Quittung abgegeben.";
+  }, "l15_semantic_contract_invalid:c07_final_transfer");
+  expectL15Exact((raw) => {
+    l15(raw).futureLeakProbe = "Teach Perfekt mit sein and future grammar.";
+  }, "l15_future_grammar_leak");
+  expect((raw) => {
+    ((l15(raw).chapters as R[])[0].packetIds as string[]).pop();
+  }, /packet_identity_invalid/u);
+  expect((raw) => {
+    const packetIds = (l15(raw).chapters as R[])[0].packetIds as string[];
+    packetIds[0] = "de_l15_c02_s09";
+  }, /packet_identity_invalid/u);
+  expect((raw) => {
+    ((l15(raw).chapters as R[])[0].packetIds as string[]).push(
+      "de_l15_c01_s09",
+    );
+  }, /packet_identity_invalid/u);
+  expect((raw) => {
+    const packetIds = (l15(raw).chapters as R[])[0].packetIds as string[];
+    [packetIds[0], packetIds[1]] = [packetIds[1], packetIds[0]];
+  }, /packet_identity_invalid/u);
+  expect((raw) => {
+    ((l15(raw).chapters as R[])[0].packetIds as string[])[0] = "de_l15_c01_s57";
+  }, /packet_identity_invalid/u);
+  const l15ScopeMutation = clone(json(FILE)) as R;
+  (l15ScopeMutation.lessons as R[]).push({ lessonId: "de_l16" });
+  assert.throws(() => {
+    if (
+      (l15ScopeMutation.lessons as R[]).some(
+        (lesson) => lesson.lessonId === "de_l16",
+      )
+    )
+      throw new Error("scope_violation_l15_only");
+  }, /scope_violation_l15_only/u);
+
   const l2Boundary: Boundary = {
     id: "de_l02",
     chapterOutcomes: [],
@@ -6295,7 +7120,7 @@ if (selected.lesson) {
     result.chapters !== 224
   )
     throw new Error(
-      `full_registry_incomplete_or_not_complete:${result.buildStatus};${result.lessons}/32 lessons; ${result.chapters}/224 chapters`,
+      `full_registry_incomplete_or_not_complete:${result.buildStatus};${result.lessons}/32 lessons;${result.chapters}/224 chapters`,
     );
   process.stdout.write(
     "LEARNING V2 GERMAN CHAPTER BLUEPRINTS GATE: PASS (32 lessons; 224 chapters; 1792 packet IDs)\n",

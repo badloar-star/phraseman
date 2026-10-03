@@ -12694,6 +12694,1167 @@
           }
         }
       ]
+    },
+    {
+      "lessonId": "de_l15",
+      "lessonOrdinal": 15,
+      "grammarBoundary": {
+        "allowedConstructIds": [
+          "de_gc_controlled_partizip_ii_v1",
+          "de_gc_perfekt_haben_classes_v1",
+          "de_gc_finite_haben_present_v1",
+          "de_gc_separable_verb_bracket_v1",
+          "de_gc_temporal_preposition_governed_case_v1",
+          "de_gc_nicht_position_focus_v1",
+          "de_gc_doch_response_contrast_v1"
+        ],
+        "prohibitedConstructIds": [
+          "de_gc_perfekt_sein_classes_v1",
+          "de_gc_spoken_preterite_island_v1"
+        ],
+        "noExpansion": "The lesson permits only verified Partizip II forms stored as lexical wholes and finite haben plus one controlled participle in the Perfekt bracket for verified haben-selecting lexical classes. Existing separable brackets, temporal Akkusativ, bounded nicht focus and doch response contrast remain retrieval support only. The newly grounded lexical temporal adverbs zuerst and dann do not introduce connector-topology grammar. No universal participle-formation rule, productive ge- or suffix guessing, unverified participle, sein auxiliary class, movement-equals-sein heuristic, spoken or narrative Präteritum, subordinate-clause word order, connector-topology expansion, passive, modal perfect, new case frame, new preposition relation or future grammar is allowed."
+      },
+      "chapters": [
+        {
+          "id": "de_l15_c01",
+          "ordinal": 1,
+          "lessonOutcomeId": "de_l15_ch01",
+          "lessonOutcome": "recognise a verified participle as a complete lexical form",
+          "packetIds": [
+            "de_l15_c01_s01",
+            "de_l15_c01_s02",
+            "de_l15_c01_s03",
+            "de_l15_c01_s04",
+            "de_l15_c01_s05",
+            "de_l15_c01_s06",
+            "de_l15_c01_s07",
+            "de_l15_c01_s08"
+          ],
+          "allowedConstructIds": [
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_finite_haben_present_v1",
+            "de_gc_separable_verb_bracket_v1",
+            "de_gc_temporal_preposition_governed_case_v1",
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1"
+          ],
+          "situation": {
+            "setting": "shared-flat-evening-errand-update",
+            "participants": "resident-and-flatmate",
+            "goal": "recognize-erledigt-as-the-complete-verified-participle-in-a-shared-flat-shopping-update",
+            "contextSignature": "shared-flat-shopping-participle-introduction"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Erledigt. Ich habe den Einkauf erledigt.",
+            "exit": "Ich habe den Einkauf erledigt.",
+            "independentEvidenceByPacketId": "de_l15_c01_s08"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_controlled_partizip_ii_v1",
+              "stage": "introduction",
+              "packetId": "de_l15_c01_s01"
+            },
+            {
+              "constructId": "de_gc_perfekt_haben_classes_v1",
+              "stage": "introduction",
+              "packetId": "de_l15_c01_s02"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l15_c01_s03", "de_l15_c01_s04"],
+          "checkpoint": {
+            "packetId": "de_l15_c01_s08",
+            "integratedConstructIds": [
+              "de_gc_controlled_partizip_ii_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_finite_haben_present_v1",
+              "de_gc_separable_verb_bracket_v1",
+              "de_gc_temporal_preposition_governed_case_v1",
+              "de_gc_nicht_position_focus_v1",
+              "de_gc_doch_response_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l15_c01_erledigen_v1",
+                "semanticIdentity": "erledigen|complete a specified everyday task",
+                "lemmaOrExpression": "erledigen",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "erledigen",
+                  "valencyFrame": "transitive task-completion frame selecting one explicit accusative task",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "complete a specified everyday task",
+                "communicativeUse": "use Ich habe den Einkauf erledigt. to retrieve erledigt as a verified lexical whole and report the completed household shopping errand",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l15_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l15_ch01",
+                  "checkpointPacketId": "de_l15_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_finite_haben_present_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-recognize-erledigt-and-report-the-completed-household-shopping-errand",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l15_c01_s08"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l15_c01_einkauf_v1",
+                "semanticIdentity": "einkauf|shopping errand treated as one completed task",
+                "lemmaOrExpression": "Einkauf",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Einkauf",
+                  "plural": "Einkäufe"
+                },
+                "nounPackageIdentity": "der|einkauf|einkaufe",
+                "verbPackage": null,
+                "senseGloss": "shopping errand treated as one completed task",
+                "communicativeUse": "ground the explicit household shopping errand in Ich habe den Einkauf erledigt. during the family household handover",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l15_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l15_ch01",
+                  "checkpointPacketId": "de_l15_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_finite_haben_present_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "family-household-shopping-handover",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l15_c01_s08"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "family-household-shopping-handover",
+              "participants": "family-member-and-relative",
+              "goal": "independently-recognize-erledigt-and-report-the-completed-household-shopping-errand",
+              "contextSignature": "household-shopping-participle-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l14_c06", "de_l14_c07"],
+            "targetsFutureChapterIds": ["de_l15_c02"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l16_c07_s51"
+            }
+          }
+        },
+        {
+          "id": "de_l15_c02",
+          "ordinal": 2,
+          "lessonOutcomeId": "de_l15_ch02",
+          "lessonOutcome": "place finite haben and a controlled participle in the bracket",
+          "packetIds": [
+            "de_l15_c02_s09",
+            "de_l15_c02_s10",
+            "de_l15_c02_s11",
+            "de_l15_c02_s12",
+            "de_l15_c02_s13",
+            "de_l15_c02_s14",
+            "de_l15_c02_s15",
+            "de_l15_c02_s16"
+          ],
+          "allowedConstructIds": [
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_finite_haben_present_v1",
+            "de_gc_separable_verb_bracket_v1",
+            "de_gc_temporal_preposition_governed_case_v1",
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1"
+          ],
+          "situation": {
+            "setting": "utility-payment-counter",
+            "participants": "customer-and-payment-clerk",
+            "goal": "place-habe-left-and-bezahlt-right-around-the-explicit-rechnung-object",
+            "contextSignature": "rechnung-perfekt-bracket-guidance"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Ich habe die Rechnung bezahlt.",
+            "exit": "Ich habe die Rechnung bezahlt.",
+            "independentEvidenceByPacketId": "de_l15_c02_s16"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_controlled_partizip_ii_v1",
+              "stage": "guided",
+              "packetId": "de_l15_c02_s09"
+            },
+            {
+              "constructId": "de_gc_perfekt_haben_classes_v1",
+              "stage": "guided",
+              "packetId": "de_l15_c02_s10"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l15_c02_s11", "de_l15_c02_s12"],
+          "checkpoint": {
+            "packetId": "de_l15_c02_s16",
+            "integratedConstructIds": [
+              "de_gc_controlled_partizip_ii_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_finite_haben_present_v1",
+              "de_gc_separable_verb_bracket_v1",
+              "de_gc_temporal_preposition_governed_case_v1",
+              "de_gc_nicht_position_focus_v1",
+              "de_gc_doch_response_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l15_c02_bezahlen_v1",
+                "semanticIdentity": "bezahlen|pay one specified bill",
+                "lemmaOrExpression": "bezahlen",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "bezahlen",
+                  "valencyFrame": "payment frame selecting one explicit accusative bill",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "pay one specified bill",
+                "communicativeUse": "Ich habe die Rechnung bezahlt.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l15_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l15_ch02",
+                  "checkpointPacketId": "de_l15_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_finite_haben_present_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-place-finite-haben-and-bezahlt-around-die-rechnung",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l15_c02_s16"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l15_c02_rechnung_v1",
+                "semanticIdentity": "rechnung|bill requiring payment",
+                "lemmaOrExpression": "Rechnung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Rechnung",
+                  "plural": "Rechnungen"
+                },
+                "nounPackageIdentity": "die|rechnung|rechnungen",
+                "verbPackage": null,
+                "senseGloss": "bill requiring payment",
+                "communicativeUse": "Ich habe die Rechnung bezahlt.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l15_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l15_ch02",
+                  "checkpointPacketId": "de_l15_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_finite_haben_present_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "housing-office-payment-desk",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l15_c02_s16"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "housing-office-payment-desk",
+              "participants": "tenant-and-payment-agent",
+              "goal": "independently-place-finite-haben-and-bezahlt-around-die-rechnung",
+              "contextSignature": "housing-rechnung-bracket-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l14_c07", "de_l15_c01"],
+            "targetsFutureChapterIds": ["de_l15_c03"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l16_c07_s52"
+            }
+          }
+        },
+        {
+          "id": "de_l15_c03",
+          "ordinal": 3,
+          "lessonOutcomeId": "de_l15_ch03",
+          "lessonOutcome": "report one completed everyday action",
+          "packetIds": [
+            "de_l15_c03_s17",
+            "de_l15_c03_s18",
+            "de_l15_c03_s19",
+            "de_l15_c03_s20",
+            "de_l15_c03_s21",
+            "de_l15_c03_s22",
+            "de_l15_c03_s23",
+            "de_l15_c03_s24"
+          ],
+          "allowedConstructIds": [
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_finite_haben_present_v1",
+            "de_gc_separable_verb_bracket_v1",
+            "de_gc_temporal_preposition_governed_case_v1",
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1"
+          ],
+          "situation": {
+            "setting": "appointment-service-phone-call",
+            "participants": "customer-and-service-agent",
+            "goal": "report-that-the-morning-appointment-was-confirmed",
+            "contextSignature": "termin-confirmation-completed-action"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Ich habe den Termin für den Vormittag bestätigt.",
+            "exit": "Ich habe den Termin für den Vormittag bestätigt.",
+            "independentEvidenceByPacketId": "de_l15_c03_s24"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_controlled_partizip_ii_v1",
+              "stage": "retrieval",
+              "packetId": "de_l15_c03_s17"
+            },
+            {
+              "constructId": "de_gc_perfekt_haben_classes_v1",
+              "stage": "retrieval",
+              "packetId": "de_l15_c03_s18"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l15_c03_s19", "de_l15_c03_s20"],
+          "checkpoint": {
+            "packetId": "de_l15_c03_s24",
+            "integratedConstructIds": [
+              "de_gc_controlled_partizip_ii_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_finite_haben_present_v1",
+              "de_gc_separable_verb_bracket_v1",
+              "de_gc_temporal_preposition_governed_case_v1",
+              "de_gc_nicht_position_focus_v1",
+              "de_gc_doch_response_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l15_c03_bestatigen_v1",
+                "semanticIdentity": "bestatigen|confirm one specified appointment",
+                "lemmaOrExpression": "bestätigen",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "bestätigen",
+                  "valencyFrame": "confirmation frame selecting one explicit accusative appointment",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "confirm one specified appointment",
+                "communicativeUse": "Ich habe den Termin für den Vormittag bestätigt.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l15_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l15_ch03",
+                  "checkpointPacketId": "de_l15_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_finite_haben_present_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-report-the-confirmed-morning-appointment",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l15_c03_s24"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "clinic-appointment-line",
+              "participants": "patient-and-receptionist",
+              "goal": "independently-report-the-confirmed-morning-appointment",
+              "contextSignature": "clinic-termin-confirmation-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l15_c01", "de_l15_c02"],
+            "targetsFutureChapterIds": ["de_l15_c04"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l16_c07_s53"
+            }
+          }
+        },
+        {
+          "id": "de_l15_c04",
+          "ordinal": 4,
+          "lessonOutcomeId": "de_l15_ch04",
+          "lessonOutcome": "sequence two completed errands with newly grounded temporal adverbs zuerst and dann",
+          "packetIds": [
+            "de_l15_c04_s25",
+            "de_l15_c04_s26",
+            "de_l15_c04_s27",
+            "de_l15_c04_s28",
+            "de_l15_c04_s29",
+            "de_l15_c04_s30",
+            "de_l15_c04_s31",
+            "de_l15_c04_s32"
+          ],
+          "allowedConstructIds": [
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_finite_haben_present_v1",
+            "de_gc_separable_verb_bracket_v1",
+            "de_gc_temporal_preposition_governed_case_v1",
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1"
+          ],
+          "situation": {
+            "setting": "municipal-service-errand-update",
+            "participants": "resident-and-housemate",
+            "goal": "sequence-form-submission-before-bill-payment-with-newly-grounded-zuerst-and-dann",
+            "contextSignature": "formular-rechnung-temporal-adverb-sequence"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Zuerst habe ich das Formular abgegeben. Dann habe ich die Rechnung bezahlt.",
+            "exit": "Zuerst habe ich das Formular abgegeben. Dann habe ich die Rechnung bezahlt.",
+            "independentEvidenceByPacketId": "de_l15_c04_s32"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_controlled_partizip_ii_v1",
+              "stage": "production",
+              "packetId": "de_l15_c04_s25"
+            },
+            {
+              "constructId": "de_gc_perfekt_haben_classes_v1",
+              "stage": "production",
+              "packetId": "de_l15_c04_s26"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l15_c04_s27", "de_l15_c04_s28"],
+          "checkpoint": {
+            "packetId": "de_l15_c04_s32",
+            "integratedConstructIds": [
+              "de_gc_controlled_partizip_ii_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_finite_haben_present_v1",
+              "de_gc_separable_verb_bracket_v1",
+              "de_gc_temporal_preposition_governed_case_v1",
+              "de_gc_nicht_position_focus_v1",
+              "de_gc_doch_response_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l15_c04_abgeben_v1",
+                "semanticIdentity": "abgeben|submit one specified document",
+                "lemmaOrExpression": "abgeben",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "abgeben",
+                  "valencyFrame": "submission frame selecting one explicit accusative document",
+                  "separability": "separable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "submit one specified document",
+                "communicativeUse": "Zuerst habe ich das Formular abgegeben.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l15_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l15_ch04",
+                  "checkpointPacketId": "de_l15_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_finite_haben_present_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-sequence-the-completed-form-and-payment-errands-with-zuerst-and-dann",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l15_c04_s32"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l15_c04_formular_v1",
+                "semanticIdentity": "formular|form submitted as one administrative errand",
+                "lemmaOrExpression": "Formular",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Formular",
+                  "plural": "Formulare"
+                },
+                "nounPackageIdentity": "das|formular|formulare",
+                "verbPackage": null,
+                "senseGloss": "form submitted as one administrative errand",
+                "communicativeUse": "Zuerst habe ich das Formular abgegeben.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l15_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l15_ch04",
+                  "checkpointPacketId": "de_l15_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_finite_haben_present_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "community-centre-admin-desk",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l15_c04_s32"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l15_c04_zuerst_v1",
+                "semanticIdentity": "zuerst|marks the first completed action in a stated sequence",
+                "lemmaOrExpression": "zuerst",
+                "partOfSpeech": "adverb",
+                "lexicalKind": "ADVERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "senseGloss": "marks the first completed action in a stated sequence",
+                "communicativeUse": "use the newly grounded temporal adverb zuerst to mark the completed form submission as first",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l15_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l15_ch04",
+                  "checkpointPacketId": "de_l15_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_finite_haben_present_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "temporal_spatial",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-sequence-the-completed-form-and-payment-errands-with-zuerst-and-dann",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l15_c04_s32"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l15_c04_dann_v1",
+                "semanticIdentity": "dann|marks the next completed action in a stated sequence",
+                "lemmaOrExpression": "dann",
+                "partOfSpeech": "adverb",
+                "lexicalKind": "ADVERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "senseGloss": "marks the next completed action in a stated sequence",
+                "communicativeUse": "use the newly grounded temporal adverb dann to mark the completed bill payment as next",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l15_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l15_ch04",
+                  "checkpointPacketId": "de_l15_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_finite_haben_present_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "temporal_spatial",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-sequence-the-completed-form-and-payment-errands-with-zuerst-and-dann",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l15_c04_s32"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "community-centre-admin-desk",
+              "participants": "volunteer-and-coordinator",
+              "goal": "independently-sequence-the-completed-form-and-payment-errands-with-zuerst-and-dann",
+              "contextSignature": "community-admin-temporal-adverb-sequence-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l15_c02", "de_l15_c03"],
+            "targetsFutureChapterIds": ["de_l15_c05"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l16_c07_s54"
+            }
+          }
+        },
+        {
+          "id": "de_l15_c05",
+          "ordinal": 5,
+          "lessonOutcomeId": "de_l15_ch05",
+          "lessonOutcome": "ask and answer about a completed service action",
+          "packetIds": [
+            "de_l15_c05_s33",
+            "de_l15_c05_s34",
+            "de_l15_c05_s35",
+            "de_l15_c05_s36",
+            "de_l15_c05_s37",
+            "de_l15_c05_s38",
+            "de_l15_c05_s39",
+            "de_l15_c05_s40"
+          ],
+          "allowedConstructIds": [
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_finite_haben_present_v1",
+            "de_gc_separable_verb_bracket_v1",
+            "de_gc_temporal_preposition_governed_case_v1",
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1"
+          ],
+          "situation": {
+            "setting": "bicycle-repair-pickup-call",
+            "participants": "customer-and-workshop-clerk",
+            "goal": "ask-and-answer-whether-the-specified-bicycle-was-repaired",
+            "contextSignature": "fahrrad-repair-completion-exchange"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Haben Sie das Fahrrad repariert? Ja, ich habe das Fahrrad repariert.",
+            "exit": "Haben Sie das Fahrrad repariert? Ja, ich habe das Fahrrad repariert.",
+            "independentEvidenceByPacketId": "de_l15_c05_s40"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l15_c05_s35", "de_l15_c05_s36"],
+          "checkpoint": {
+            "packetId": "de_l15_c05_s40",
+            "integratedConstructIds": [
+              "de_gc_controlled_partizip_ii_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_finite_haben_present_v1",
+              "de_gc_separable_verb_bracket_v1",
+              "de_gc_temporal_preposition_governed_case_v1",
+              "de_gc_nicht_position_focus_v1",
+              "de_gc_doch_response_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l15_c05_reparieren_v1",
+                "semanticIdentity": "reparieren|repair one specified item",
+                "lemmaOrExpression": "reparieren",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "reparieren",
+                  "valencyFrame": "repair frame selecting one explicit accusative item",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "repair one specified item",
+                "communicativeUse": "Haben Sie das Fahrrad repariert? Ja, ich habe das Fahrrad repariert.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l15_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l15_ch05",
+                  "checkpointPacketId": "de_l15_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_finite_haben_present_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-ask-and-answer-about-the-completed-bicycle-repair",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l15_c05_s40"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l15_c05_fahrrad_v1",
+                "semanticIdentity": "fahrrad|bicycle presented for a specified repair",
+                "lemmaOrExpression": "Fahrrad",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Fahrrad",
+                  "plural": "Fahrräder"
+                },
+                "nounPackageIdentity": "das|fahrrad|fahrrader",
+                "verbPackage": null,
+                "senseGloss": "bicycle presented for a specified repair",
+                "communicativeUse": "Haben Sie das Fahrrad repariert? Ja, ich habe das Fahrrad repariert.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l15_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l15_ch05",
+                  "checkpointPacketId": "de_l15_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_finite_haben_present_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "neighbourhood-repair-workshop",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l15_c05_s40"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "neighbourhood-repair-workshop",
+              "participants": "bicycle-owner-and-mechanic",
+              "goal": "independently-ask-and-answer-about-the-completed-bicycle-repair",
+              "contextSignature": "workshop-fahrrad-repair-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l15_c03", "de_l15_c04"],
+            "targetsFutureChapterIds": ["de_l15_c06"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l16_c07_s55"
+            }
+          }
+        },
+        {
+          "id": "de_l15_c06",
+          "ordinal": 6,
+          "lessonOutcomeId": "de_l15_ch06",
+          "lessonOutcome": "repair auxiliary-bracket or controlled-participle errors",
+          "packetIds": [
+            "de_l15_c06_s41",
+            "de_l15_c06_s42",
+            "de_l15_c06_s43",
+            "de_l15_c06_s44",
+            "de_l15_c06_s45",
+            "de_l15_c06_s46",
+            "de_l15_c06_s47",
+            "de_l15_c06_s48"
+          ],
+          "allowedConstructIds": [
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_finite_haben_present_v1",
+            "de_gc_separable_verb_bracket_v1",
+            "de_gc_temporal_preposition_governed_case_v1",
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1"
+          ],
+          "situation": {
+            "setting": "service-report-quality-check",
+            "participants": "trainee-and-service-supervisor",
+            "goal": "repair-one-bracket-order-error-and-one-unverified-infinitive-for-participle-error",
+            "contextSignature": "perfekt-dual-error-repair"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Das ist falsch. [1] Ich habe bezahlt die Rechnung. → Ich habe die Rechnung bezahlt. [2] Ich habe das Formular abgeben. → Ich habe das Formular abgegeben. Ich habe den Fehler korrigiert.",
+            "exit": "Das ist falsch. [1] Ich habe bezahlt die Rechnung. → Ich habe die Rechnung bezahlt. [2] Ich habe das Formular abgeben. → Ich habe das Formular abgegeben. Ich habe den Fehler korrigiert.",
+            "independentEvidenceByPacketId": "de_l15_c06_s48"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_controlled_partizip_ii_v1",
+              "stage": "transfer",
+              "packetId": "de_l15_c06_s41"
+            },
+            {
+              "constructId": "de_gc_perfekt_haben_classes_v1",
+              "stage": "transfer",
+              "packetId": "de_l15_c06_s42"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l15_c06_s43", "de_l15_c06_s44"],
+          "checkpoint": {
+            "packetId": "de_l15_c06_s48",
+            "integratedConstructIds": [
+              "de_gc_controlled_partizip_ii_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_finite_haben_present_v1",
+              "de_gc_separable_verb_bracket_v1",
+              "de_gc_temporal_preposition_governed_case_v1",
+              "de_gc_nicht_position_focus_v1",
+              "de_gc_doch_response_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l15_c06_fehler_v1",
+                "semanticIdentity": "fehler|error identified in the completed-event report",
+                "lemmaOrExpression": "Fehler",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Fehler",
+                  "plural": "Fehler"
+                },
+                "nounPackageIdentity": "der|fehler|fehler",
+                "verbPackage": null,
+                "senseGloss": "error identified in the completed-event report",
+                "communicativeUse": "Ich habe den Fehler korrigiert.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l15_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l15_ch06",
+                  "checkpointPacketId": "de_l15_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_finite_haben_present_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-repair-both-the-bracket-and-controlled-participle-errors",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l15_c06_s48"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l15_c06_korrigieren_v1",
+                "semanticIdentity": "korrigieren|correct one specified error",
+                "lemmaOrExpression": "korrigieren",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "korrigieren",
+                  "valencyFrame": "correction frame selecting one explicit accusative error",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "correct one specified error",
+                "communicativeUse": "Ich habe den Fehler korrigiert.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l15_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l15_ch06",
+                  "checkpointPacketId": "de_l15_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_finite_haben_present_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-repair-both-the-bracket-and-controlled-participle-errors",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l15_c06_s48"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "volunteer-office-report-review",
+              "participants": "volunteer-and-coordinator",
+              "goal": "independently-repair-both-the-bracket-and-controlled-participle-errors",
+              "contextSignature": "volunteer-report-dual-repair-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l15_c04", "de_l15_c05"],
+            "targetsFutureChapterIds": ["de_l15_c07"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l16_c07_s56"
+            }
+          }
+        },
+        {
+          "id": "de_l15_c07",
+          "ordinal": 7,
+          "lessonOutcomeId": "de_l15_ch07",
+          "lessonOutcome": "transfer completed-event reporting to an unfamiliar errand chain",
+          "packetIds": [
+            "de_l15_c07_s49",
+            "de_l15_c07_s50",
+            "de_l15_c07_s51",
+            "de_l15_c07_s52",
+            "de_l15_c07_s53",
+            "de_l15_c07_s54",
+            "de_l15_c07_s55",
+            "de_l15_c07_s56"
+          ],
+          "allowedConstructIds": [
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1"
+          ],
+          "situation": {
+            "setting": "pharmacy-errand-update",
+            "participants": "customer-and-housemate",
+            "goal": "correct-the-negative-assumption-about-the-collected-medication-and-state-that-the-receipt-remains-unsubmitted",
+            "contextSignature": "medikament-quittung-changed-errand-transfer"
+          },
+          "supportFading": {
+            "entryLevel": 2,
+            "exitLevel": 0,
+            "entry": "Du hast das Medikament nicht abgeholt. Doch, ich habe das Medikament abgeholt. Ich habe die Quittung nicht abgegeben.",
+            "exit": "Du hast das Medikament nicht abgeholt. Doch, ich habe das Medikament abgeholt. Ich habe die Quittung nicht abgegeben.",
+            "independentEvidenceByPacketId": "de_l15_c07_s56"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_nicht_position_focus_v1",
+              "stage": "delayed",
+              "packetId": "de_l15_c07_s49"
+            },
+            {
+              "constructId": "de_gc_doch_response_contrast_v1",
+              "stage": "delayed",
+              "packetId": "de_l15_c07_s50"
+            }
+          ],
+          "chapterEvidencePacketIds": [
+            "de_l15_c07_s51",
+            "de_l15_c07_s52",
+            "de_l15_c07_s53",
+            "de_l15_c07_s54",
+            "de_l15_c07_s55",
+            "de_l15_c07_s56"
+          ],
+          "checkpoint": {
+            "packetId": "de_l15_c07_s56",
+            "integratedConstructIds": [
+              "de_gc_controlled_partizip_ii_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_nicht_position_focus_v1",
+              "de_gc_doch_response_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l15_c07_medikament_v1",
+                "semanticIdentity": "medikament|medicine collected as one specified errand",
+                "lemmaOrExpression": "Medikament",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Medikament",
+                  "plural": "Medikamente"
+                },
+                "nounPackageIdentity": "das|medikament|medikamente",
+                "verbPackage": null,
+                "senseGloss": "medicine collected as one specified errand",
+                "communicativeUse": "Du hast das Medikament nicht abgeholt. Doch, ich habe das Medikament abgeholt.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l15_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l15_ch07",
+                  "checkpointPacketId": "de_l15_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "after-hours-family-errand-call",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l15_c07_s56"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l15_c07_quittung_v1",
+                "semanticIdentity": "quittung|receipt that remains unsubmitted",
+                "lemmaOrExpression": "Quittung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Quittung",
+                  "plural": "Quittungen"
+                },
+                "nounPackageIdentity": "die|quittung|quittungen",
+                "verbPackage": null,
+                "senseGloss": "receipt that remains unsubmitted",
+                "communicativeUse": "Ich habe die Quittung nicht abgegeben.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l15_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l15_ch07",
+                  "checkpointPacketId": "de_l15_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1"
+                  ],
+                  "utilityRole": "transfer",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-report-the-collected-medication-and-the-still-unsubmitted-receipt",
+                  "necessityClass": "TRANSFER_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l15_c07_s56"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "after-hours-family-errand-call",
+              "participants": "family-member-and-relative",
+              "goal": "independently-report-the-collected-medication-and-the-still-unsubmitted-receipt",
+              "contextSignature": "family-medication-receipt-final-transfer"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l15_c05", "de_l15_c06"],
+            "targetsFutureChapterIds": ["de_l16_c01"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l16_c07_s55"
+            }
+          }
+        }
+      ]
     }
   ]
 }

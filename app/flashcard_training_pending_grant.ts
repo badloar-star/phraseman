@@ -640,17 +640,22 @@ export async function prepareFlashcardTrainingPendingGrant(
   const operationParts = input.energyOperationId.split(':');
   const energyKind = input.energyKind?.trim() || operationParts[1]?.trim() || '';
   const energySubjectId = input.energySubjectId?.trim() || normalizedScope?.deckKeys.join(',') || '';
-  if (
-    !normalizedScope
-    || !validManifest(input.manifest, normalizedScope.mode)
-    || !ID_RE.test(input.attemptId)
-    || !ID_RE.test(input.receiptId)
-    || !ID_RE.test(input.energyOperationId)
-    || !TOKEN_RE.test(input.energyEpoch)
-    || !TOKEN_RE.test(energyKind)
-    || !TOKEN_RE.test(energySubjectId)
-    || !validFiniteTime(nowMs)
-  ) return { status: 'unavailable', reason: 'invalid_input' };
+  // зачем (баг «Блиц» 03.10): invalid_input без поля не объясняет ничего — «Дизайн» видел только
+  // prepare:done invalid_input. Печатаем, КАКАЯ проверка не прошла (значения — без данных карточек).
+  const invalidField = !normalizedScope ? 'scope'
+    : !validManifest(input.manifest, normalizedScope.mode) ? `manifest(keys=${Object.keys(input.manifest?.payload ?? {}).sort().join('|')})`
+      : !ID_RE.test(input.attemptId) ? 'attemptId'
+        : !ID_RE.test(input.receiptId) ? 'receiptId'
+          : !ID_RE.test(input.energyOperationId) ? 'energyOperationId'
+            : !TOKEN_RE.test(input.energyEpoch) ? 'energyEpoch'
+              : !TOKEN_RE.test(energyKind) ? 'energyKind'
+                : !TOKEN_RE.test(energySubjectId) ? 'energySubjectId'
+                  : !validFiniteTime(nowMs) ? 'nowMs'
+                    : null;
+  if (invalidField) {
+    console.warn('[FC-PENDING-GRANT] prepare:invalid_input', JSON.stringify({ mode: input.scope?.mode ?? null, field: invalidField }));
+    return { status: 'unavailable', reason: 'invalid_input' };
+  }
   const fingerprint = scopeFingerprint(normalizedScope);
   const result = await mutateJournal(input.account, async (journal) => {
     const existing = journal.records.find((record) => record.fingerprint === fingerprint);

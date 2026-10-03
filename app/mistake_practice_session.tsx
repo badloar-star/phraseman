@@ -1,10 +1,11 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import SkeletonBlock from '../components/SkeletonShimmer';
+import { LOAD_GATE_TOTAL_MS } from './load_gate_config';
 import { useAudioPlayer } from 'expo-audio';
 import { useManagedSpokenAudioPlayer } from '../hooks/use_managed_spoken_audio_player';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  ActivityIndicator,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -107,6 +108,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     prepareFailed: 'Не удалось подготовить тренировку. Попробуй ещё раз.', noEnergy: 'Не хватает энергии для продолжения.',
     speechUncertain: 'Не удалось уверенно распознать речь. Попробуй ещё раз — энергия не потрачена.',
     speechRetry: 'Попробуй ещё раз — энергия не потрачена.', sessionEnded: 'Сессия закончена', back: 'Вернуться',
+    unavailable: 'Сейчас недоступно', tryAgain: 'Попробовать снова',
     sessionComplete: 'Сессия завершена', done: 'Готово', close: 'Закрыть', hideError: 'Скрыть ошибку',
     buildPhrase: 'Собери фразу', answerPlaceholder: 'Напиши ответ', holdToSpeak: 'Удерживай, чтобы говорить',
     holdAndSpeak: 'Удерживай и говори', correct: 'Верно', needsFix: 'Нужно поправить',
@@ -126,6 +128,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     prepareFailed: 'Не вдалося підготувати тренування. Спробуй ще раз.', noEnergy: 'Недостатньо енергії для продовження.',
     speechUncertain: 'Не вдалося впевнено розпізнати мовлення. Спробуй ще раз — енергію не витрачено.',
     speechRetry: 'Спробуй ще раз — енергію не витрачено.', sessionEnded: 'Сесію завершено', back: 'Повернутися',
+    unavailable: 'Зараз недоступно', tryAgain: 'Спробувати ще',
     sessionComplete: 'Сесію завершено', done: 'Готово', close: 'Закрити', hideError: 'Сховати помилку',
     buildPhrase: 'Склади фразу', answerPlaceholder: 'Напиши відповідь', holdToSpeak: 'Утримуй, щоб говорити',
     holdAndSpeak: 'Утримуй і говори', correct: 'Правильно', needsFix: 'Потрібно виправити',
@@ -145,6 +148,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     prepareFailed: 'Could not prepare the practice. Try again.', noEnergy: 'Not enough energy to continue.',
     speechUncertain: 'Could not reliably recognize your speech. Try again — no energy was spent.',
     speechRetry: 'Try again — no energy was spent.', sessionEnded: 'Session ended', back: 'Back',
+    unavailable: 'Not available right now', tryAgain: 'Try again',
     sessionComplete: 'Session complete', done: 'Done', close: 'Close', hideError: 'Hide mistake',
     buildPhrase: 'Build the phrase', answerPlaceholder: 'Write your answer', holdToSpeak: 'Hold to speak',
     holdAndSpeak: 'Hold and speak', correct: 'Correct', needsFix: 'Needs fixing',
@@ -164,6 +168,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     prepareFailed: 'No se pudo preparar la práctica. Inténtalo de nuevo.', noEnergy: 'No tienes energía suficiente para continuar.',
     speechUncertain: 'No se pudo reconocer el habla con seguridad. Inténtalo de nuevo; no se gastó energía.',
     speechRetry: 'Inténtalo de nuevo; no se gastó energía.', sessionEnded: 'La sesión terminó', back: 'Volver',
+    unavailable: 'No disponible ahora', tryAgain: 'Intentar de nuevo',
     sessionComplete: 'Sesión completada', done: 'Listo', close: 'Cerrar', hideError: 'Ocultar error',
     buildPhrase: 'Construye la frase', answerPlaceholder: 'Escribe la respuesta', holdToSpeak: 'Mantén pulsado para hablar',
     holdAndSpeak: 'Mantén pulsado y habla', correct: 'Correcto', needsFix: 'Hay que corregirlo',
@@ -183,6 +188,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     prepareFailed: 'Não foi possível preparar o treino. Tente novamente.', noEnergy: 'Energia insuficiente para continuar.',
     speechUncertain: 'Não foi possível reconhecer a fala com segurança. Tente novamente — a energia não foi gasta.',
     speechRetry: 'Tente novamente — a energia não foi gasta.', sessionEnded: 'Sessão encerrada', back: 'Voltar',
+    unavailable: 'Indisponível agora', tryAgain: 'Tentar de novo',
     sessionComplete: 'Sessão concluída', done: 'Pronto', close: 'Fechar', hideError: 'Ocultar erro',
     buildPhrase: 'Monte a frase', answerPlaceholder: 'Escreva a resposta', holdToSpeak: 'Segure para falar',
     holdAndSpeak: 'Segure e fale', correct: 'Correto', needsFix: 'Precisa corrigir',
@@ -202,6 +208,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     prepareFailed: 'Không thể chuẩn bị buổi luyện tập. Hãy thử lại.', noEnergy: 'Không đủ năng lượng để tiếp tục.',
     speechUncertain: 'Không thể nhận diện giọng nói một cách chắc chắn. Hãy thử lại — năng lượng chưa bị trừ.',
     speechRetry: 'Hãy thử lại — năng lượng chưa bị trừ.', sessionEnded: 'Buổi học đã kết thúc', back: 'Quay lại',
+    unavailable: 'Hiện chưa khả dụng', tryAgain: 'Thử lại',
     sessionComplete: 'Đã hoàn thành buổi học', done: 'Xong', close: 'Đóng', hideError: 'Ẩn lỗi',
     buildPhrase: 'Ghép câu', answerPlaceholder: 'Viết câu trả lời', holdToSpeak: 'Giữ để nói',
     holdAndSpeak: 'Giữ và nói', correct: 'Đúng', needsFix: 'Cần sửa lại',
@@ -221,6 +228,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     prepareFailed: 'Gagal menyiapkan latihan. Coba lagi.', noEnergy: 'Energi tidak cukup untuk melanjutkan.',
     speechUncertain: 'Tidak dapat mengenali ucapan dengan yakin. Coba lagi — energi tidak terpakai.',
     speechRetry: 'Coba lagi — energi tidak terpakai.', sessionEnded: 'Sesi berakhir', back: 'Kembali',
+    unavailable: 'Belum tersedia sekarang', tryAgain: 'Coba lagi',
     sessionComplete: 'Sesi selesai', done: 'Selesai', close: 'Tutup', hideError: 'Sembunyikan kesalahan',
     buildPhrase: 'Susun kalimat', answerPlaceholder: 'Tulis jawaban', holdToSpeak: 'Tahan untuk berbicara',
     holdAndSpeak: 'Tahan dan bicara', correct: 'Benar', needsFix: 'Perlu diperbaiki',
@@ -240,6 +248,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     prepareFailed: 'Pratik hazırlanamadı. Tekrar dene.', noEnergy: 'Devam etmek için yeterli enerji yok.',
     speechUncertain: 'Konuşma güvenilir şekilde tanınamadı. Tekrar dene — enerji harcanmadı.',
     speechRetry: 'Tekrar dene — enerji harcanmadı.', sessionEnded: 'Oturum sona erdi', back: 'Geri dön',
+    unavailable: 'Şu anda kullanılamıyor', tryAgain: 'Tekrar dene',
     sessionComplete: 'Oturum tamamlandı', done: 'Tamam', close: 'Kapat', hideError: 'Hatayı gizle',
     buildPhrase: 'Cümleyi oluştur', answerPlaceholder: 'Cevabı yaz', holdToSpeak: 'Konuşmak için basılı tut',
     holdAndSpeak: 'Basılı tut ve konuş', correct: 'Doğru', needsFix: 'Düzeltilmesi gerekiyor',
@@ -259,6 +268,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     prepareFailed: 'Nie udało się przygotować treningu. Spróbuj ponownie.', noEnergy: 'Za mało energii, aby kontynuować.',
     speechUncertain: 'Nie udało się pewnie rozpoznać mowy. Spróbuj ponownie — energia nie została zużyta.',
     speechRetry: 'Spróbuj ponownie — energia nie została zużyta.', sessionEnded: 'Sesja zakończona', back: 'Wróć',
+    unavailable: 'Teraz niedostępne', tryAgain: 'Spróbuj ponownie',
     sessionComplete: 'Sesja zakończona', done: 'Gotowe', close: 'Zamknij', hideError: 'Ukryj błąd',
     buildPhrase: 'Ułóż zdanie', answerPlaceholder: 'Wpisz odpowiedź', holdToSpeak: 'Przytrzymaj, aby mówić',
     holdAndSpeak: 'Przytrzymaj i mów', correct: 'Poprawnie', needsFix: 'Trzeba poprawić',
@@ -306,6 +316,28 @@ function ListeningPlayback({ audioRef, color, foreground, accessibilityLabel }: 
     >
       <Ionicons name="volume-high" size={24} color={foreground} />
     </Pressable>
+  );
+}
+
+// зачем (D158 / PM-214, 04.10): первый кадр загрузки = геометрия задания (шапка, вопрос, варианты),
+// а не спиннер на весь экран — правило владельца «нет спиннера на весь экран» и Performance Bible.
+function MistakePracticeLoadingSkeleton() {
+  return (
+    <View accessibilityRole="progressbar" testID="mistake-practice-loading" style={{ flex: 1 }}>
+      <View style={styles.header}>
+        <SkeletonBlock width={44} height={44} borderRadius={22} />
+        <View style={{ flex: 1 }}><SkeletonBlock width="100%" height={8} borderRadius={4} /></View>
+        <SkeletonBlock width={44} height={44} borderRadius={22} />
+      </View>
+      <View style={[styles.content, { gap: 14 }]}>
+        <SkeletonBlock width="86%" height={26} borderRadius={8} />
+        <SkeletonBlock width="58%" height={18} borderRadius={6} />
+        <View style={{ height: 12 }} />
+        <SkeletonBlock width="100%" height={56} borderRadius={16} />
+        <SkeletonBlock width="100%" height={56} borderRadius={16} />
+        <SkeletonBlock width="100%" height={56} borderRadius={16} />
+      </View>
+    </View>
   );
 }
 
@@ -358,11 +390,17 @@ function MistakePracticeSessionScreen() {
   // зачем: ref — чтобы эффект подготовки сессии не пересоздавался из-за confirmSpendOne
   // и не готовил сессию заново (это лишние чтения журнала ошибок).
   const confirmSpendOneRef = useRef(confirmSpendOne);
+  // зачем (D158): потолок 12 с покрывает только подготовку. Окно подтверждения энергии — выбор человека,
+  // его не обрываем; а подготовку, брошенную по потолку, поздний ответ уже не оживляет (энергия не списана).
+  const prepareStageRef = useRef<'preparing' | 'abandoned' | 'confirming'>('preparing');
   useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
   const [accountScope, setAccountScope] = useState<string | null>(null);
   const [session, setSession] = useState<MistakePracticeSession | null>(null);
   const [pendingSession, setPendingSession] = useState<MistakePracticeSession | null>(null);
   const [loading, setLoading] = useState(true);
+  // зачем (D158): «Сейчас недоступно» + тихая «Попробовать снова» вместо вечного спиннера/красной ошибки.
+  const [loadRevision, setLoadRevision] = useState(0);
+  const [loadRetriable, setLoadRetriable] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [input, setInput] = useState('');
   const [builderTokenIndexes, setBuilderTokenIndexes] = useState<number[]>([]);
@@ -469,6 +507,7 @@ function MistakePracticeSessionScreen() {
       return;
     }
     let cancelled = false;
+    prepareStageRef.current = 'preparing';
     void (async () => {
       const scope = await getStableId();
       void flushPendingMistakeCorrectionRewards({ accountScope: scope, studyTarget });
@@ -480,6 +519,11 @@ function MistakePracticeSessionScreen() {
         lessonId: params.lessonId,
         focusMistakeId: focusedMistakeId,
       });
+      if (!cancelled && prepareStageRef.current === 'abandoned') {
+        console.warn('[MISTAKES-GATE] session:prepare:late_after_ceiling → ignored', JSON.stringify({ resumed: prepared.resumed })); // guard-ok
+        return;
+      }
+      if (!cancelled) prepareStageRef.current = 'confirming';
       if (!cancelled) {
         // зачем (владелец 2026-09-14): короткие наборы (1-4 ошибки) без энергии,
         // от 5 - как раньше 10 ⚡ один раз при старте.
@@ -509,9 +553,22 @@ function MistakePracticeSessionScreen() {
       }
     })().catch((error: unknown) => {
       if (cancelled) return;
+      if (prepareStageRef.current === 'abandoned') {
+        console.warn('[MISTAKES-GATE] session:prepare:late_error_after_ceiling → ignored', error instanceof Error ? error.message : String(error)); // guard-ok
+        return;
+      }
       const code = error instanceof Error ? error.message : '';
       console.warn('[MISTAKES-GATE] session:prepare:catch', JSON.stringify({ code, entrySource, requestedLength })); // guard-ok: лог в catch обязателен
-      if (code === 'stale_account_generation') return;
+      if (code === 'stale_account_generation') {
+        // зачем (PM-214): раньше немой return оставлял спиннер навсегда. Аккаунт сменился — спокойно
+        // «Сейчас недоступно» с «Попробовать снова» (повтор возьмёт новый аккаунт).
+        console.warn('[MISTAKES-GATE] session:prepare:stale_account → unavailable', JSON.stringify({ entrySource })); // guard-ok
+        setLoadRetriable(true);
+        setLoadError(copy.unavailable);
+        setLoading(false);
+        return;
+      }
+      setLoadRetriable(code !== 'mistake_practice_focus_unavailable' && code !== 'mistake_practice_no_ready_mistakes');
       setLoadError(
         code === 'mistake_practice_focus_unavailable'
           ? copy.noLongerDue
@@ -524,7 +581,32 @@ function MistakePracticeSessionScreen() {
     return () => {
       cancelled = true;
     };
-  }, [acknowledgeSessionStart, copy, entrySource, focusedMistakeId, hasPremiumAccess, mistakeEnergyIntent, params.lessonId, persistSession, requestedLength, router, studyTarget]);
+  }, [acknowledgeSessionStart, copy, entrySource, focusedMistakeId, hasPremiumAccess, loadRevision, mistakeEnergyIntent, params.lessonId, persistSession, requestedLength, router, studyTarget]);
+
+  // зачем (D158): подготовка, не ответившая ни успехом, ни ошибкой, не держит экран вечно.
+  useEffect(() => {
+    if (!loading) return undefined;
+    const timer = setTimeout(() => {
+      if (prepareStageRef.current !== 'preparing') {
+        console.warn('[MISTAKES-GATE] session:prepare:ceiling skipped', JSON.stringify({ stage: prepareStageRef.current })); // guard-ok
+        return;
+      }
+      prepareStageRef.current = 'abandoned';
+      console.warn('[MISTAKES-GATE] session:prepare:ceiling → unavailable', JSON.stringify({ ceilingMs: LOAD_GATE_TOTAL_MS, loadRevision })); // guard-ok
+      setLoadRetriable(true);
+      setLoadError(copy.unavailable);
+      setLoading(false);
+    }, LOAD_GATE_TOTAL_MS);
+    return () => clearTimeout(timer);
+  }, [copy, loadRevision, loading]);
+
+  const retryPrepare = useCallback(() => {
+    console.warn('[MISTAKES-GATE] session:prepare:retry', JSON.stringify({ loadRevision })); // guard-ok
+    setLoadError(null);
+    setLoadRetriable(false);
+    setLoading(true);
+    setLoadRevision((value) => value + 1);
+  }, [loadRevision]);
 
   const entry = session?.queue[session.cursor] ?? null;
   const builderDisplayOrder = useMemo(
@@ -933,16 +1015,25 @@ function MistakePracticeSessionScreen() {
   }, [accountScope, hiddenUndo, persistSession, studyTarget]);
 
   if (loading) {
-    return <MistakePracticeScreenFrame centered><ActivityIndicator color={g.cta} /></MistakePracticeScreenFrame>;
+    return <MistakePracticeScreenFrame><MistakePracticeLoadingSkeleton /></MistakePracticeScreenFrame>;
   }
 
   if (loadError || !session || (!entry && !complete)) {
     return (
       <MistakePracticeScreenFrame centered>
-        <Ionicons name="alert-circle-outline" size={48} color={g.bad} />
-        <Text style={[styles.errorTitle, { color: g.text, fontSize: f.h3 }]}>{loadError ?? copy.sessionEnded}</Text>
-        <Pressable style={[styles.primaryButton, { backgroundColor: g.accent }]} onPress={leavePractice}>
-          <Text style={{ color: g.accentInk, fontSize: f.body, fontWeight: '700' }}>{copy.back}</Text>
+        {/* зачем (D158): спокойно — без красного значка ошибки; повтор только там, где он имеет смысл. */}
+        <Text accessibilityRole="header" style={[styles.errorTitle, { color: g.text, fontSize: f.h3 }]}>{loadError ?? copy.sessionEnded}</Text>
+        {loadError && loadRetriable ? (
+          <Pressable accessibilityRole="button" testID="mistake-practice-try-again" style={[styles.primaryButton, { backgroundColor: g.accent }]} onPress={retryPrepare}>
+            <Text style={{ color: g.accentInk, fontSize: f.body, fontWeight: '700' }}>{copy.tryAgain}</Text>
+          </Pressable>
+        ) : null}
+        <Pressable
+          accessibilityRole="button"
+          style={loadError && loadRetriable ? [styles.primaryButton, { backgroundColor: g.opaqueCard }] : [styles.primaryButton, { backgroundColor: g.accent }]}
+          onPress={leavePractice}
+        >
+          <Text style={{ color: loadError && loadRetriable ? g.text : g.accentInk, fontSize: f.body, fontWeight: '700' }}>{copy.back}</Text>
         </Pressable>
       </MistakePracticeScreenFrame>
     );

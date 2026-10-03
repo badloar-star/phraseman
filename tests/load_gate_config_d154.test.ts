@@ -33,3 +33,17 @@ test('«Вспомни» uses the shared gate and ends in a calm «Сейчас 
   // Старый «5 по 20 с, затем вечный скелетон» не возвращается.
   expect(src).not.toMatch(/silentRecallRetryRef\.current >= 5/);
 });
+
+test('mistake practice: skeleton instead of a full-screen spinner, calm unavailable, ceiling never cuts the energy prompt', () => {
+  const src = read('app/mistake_practice_session.tsx');
+  expect(src).toContain("from './load_gate_config'");
+  expect(src).toContain('<MistakePracticeLoadingSkeleton />');
+  expect(src).not.toMatch(/<ActivityIndicator/);
+  expect(src).not.toContain('alert-circle-outline');
+  expect(src).toContain('testID="mistake-practice-try-again"');
+  // Смена аккаунта больше не оставляет экран в вечной загрузке.
+  expect(src).not.toMatch(/stale_account_generation'\)\s*return;/);
+  // Потолок трогает только стадию подготовки; окно подтверждения энергии — нет.
+  expect(src).toContain("if (prepareStageRef.current !== 'preparing')");
+  expect(src).toContain("prepareStageRef.current === 'abandoned'");
+});

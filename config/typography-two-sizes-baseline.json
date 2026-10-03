@@ -1,10 +1,9 @@
 {
-  "total": 28,
+  "total": 27,
   "files": {
     "app/ai_dialog_session.tsx": 1,
     "app/learning-v2/lesson/[id].tsx": 10,
     "app/lesson_irregular_verbs.tsx": 10,
-    "app/streak_stats.tsx": 6,
-    "components/lessons/LessonsListGlassKit.tsx": 1
+    "app/streak_stats.tsx": 6
   }
 }

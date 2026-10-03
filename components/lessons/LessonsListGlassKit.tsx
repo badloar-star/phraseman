@@ -155,7 +155,7 @@ export const LessonsListLevelHeader = React.memo(function LessonsListLevelHeader
           style={{
             marginLeft: 'auto',
             color: glass.secondary,
-            fontSize: 15,
+            fontSize: 13, // зачем: шкала D145 (16/13) — счётчик раздела
             fontWeight: '600',
             fontVariant: ['tabular-nums'],
           }}

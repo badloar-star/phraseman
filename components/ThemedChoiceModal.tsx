@@ -4,7 +4,7 @@ import React, { memo } from 'react';
 import { LinearGradient } from './SafeLinearGradient';
 import { Image, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View, type ImageSourcePropType } from 'react-native';
 import { useTheme } from './ThemeContext';
-import { hapticTap } from '../hooks/use-haptics';
+import { hapticTap, hapticWarning } from '../hooks/use-haptics';
 import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM } from '../constants/motionHybrid';
@@ -14,7 +14,12 @@ import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 export type ThemedChoice = {
   label: string;
   onPress: () => void;
-  variant?: 'primary' | 'secondary';
+  /**
+   * зачем 'destructive' (Ядро, INBOX: «Сменить без сохранения» выглядела обычной кнопкой):
+   * необратимое действие красится тем же мягким красным, что и в ThemedConfirmModal
+   * (t.wrongBg / t.wrong), без стрелки «дальше» и с предупреждающей вибрацией.
+   */
+  variant?: 'primary' | 'secondary' | 'destructive';
   /**
    * Значок валюты слева от подписи (владелец 2026-09-18: «цена и ассет
    * жемчужин на кнопке обязательно»).
@@ -44,7 +49,7 @@ function ThemedChoiceModal({
   onRequestClose,
   motionVariant = 'hybrid',
 }: Props) {
-  const { liquidGlassThemeId, f } = useTheme();
+  const { theme: t, liquidGlassThemeId, f } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const reduceMotion = useReduceMotion();
@@ -88,7 +93,10 @@ function ThemedChoiceModal({
         <CascadeItem delay={isHybrid ? LUM.ladder[2] + 192 : 0} reduceMotion={!isHybrid || reduceMotion}>
           <View style={styles.choices}>
             {choices.map((c, index) => {
-              const primary = c.variant !== 'secondary';
+              const destructive = c.variant === 'destructive';
+              const primary = c.variant !== 'secondary' && !destructive;
+              const background = destructive ? t.wrongBg : primary ? glass.opaqueControl : glass.selected;
+              const foreground = destructive ? t.wrong : primary ? glass.text : glass.secondary;
               return (
                 <TouchableOpacity
                   key={index}
@@ -96,14 +104,15 @@ function ThemedChoiceModal({
                   accessibilityLabel={c.label}
                   activeOpacity={0.78}
                   onPress={() => {
-                    hapticTap();
+                    if (destructive) hapticWarning();
+                    else hapticTap();
                     // Choice owns its close/navigation behavior; calling the
                     // sheet close handler here would invoke a callback twice.
                     c.onPress();
                   }}
                   style={[
                     styles.choice,
-                    { backgroundColor: primary ? glass.opaqueControl : glass.selected },
+                    { backgroundColor: background },
                   ]}
                 >
                   {c.icon ? (
@@ -116,7 +125,7 @@ function ThemedChoiceModal({
                       importantForAccessibility="no"
                     />
                   ) : null}
-                  <Text style={[styles.choiceLabel, { color: primary ? glass.text : glass.secondary, fontSize: f.body }]}>
+                  <Text style={[styles.choiceLabel, { color: foreground, fontSize: f.body }]}>
                     {c.label}
                   </Text>
                   {primary ? <Ionicons name="chevron-forward" size={18} color={glass.secondary} accessibilityElementsHidden importantForAccessibility="no" /> : null}

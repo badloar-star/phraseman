@@ -6,7 +6,7 @@
 // (title, message?, buttons?) — тексты, кнопки и обработчики переносятся 1:1, меняется только вид:
 //   • 0–1 кнопка  → ThemedChoiceModal с одной кнопкой (как инфо-окно «OK»);
 //   • 2 кнопки    → ThemedConfirmModal (отмена + действие; style:'destructive' → мягкий красный тон);
-//   • 3+ кнопок   → ThemedChoiceModal со списком.
+//   • 3+ кнопок   → ThemedChoiceModal со списком (style:'destructive' → тот же мягкий красный тон).
 // Экземпляр рендерится самим экраном через `node` (не глобальная очередь), поэтому
 // обработчики остаются в замыкании экрана — так же, как были у Alert.alert.
 // ════════════════════════════════════════════════════════════════════════════
@@ -90,7 +90,8 @@ export function useGlassAlert(defaultOkLabel = 'OK'): { showGlassAlert: ShowGlas
         message={spec?.message ?? ''}
         choices={buttons.map((b, i) => ({
           label: b.text,
-          variant: b.style === 'cancel' ? 'secondary' as const : 'primary' as const,
+          // зачем: style:'destructive' теперь доходит и до списка (3+ кнопок) — раньше терялся.
+          variant: b.style === 'cancel' ? 'secondary' as const : b.style === 'destructive' ? 'destructive' as const : 'primary' as const,
           onPress: () => settle(b, `choice_${i}`),
         }))}
         onRequestClose={() => {

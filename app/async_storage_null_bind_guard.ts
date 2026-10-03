@@ -83,36 +83,72 @@ export function resetAsyncStorageKeyListSingleFlightForTests(): void {
   keysInFlight = null;
 }
 
-function noteMutationStart(): void {
+// зачем (§122, read-through снапшот): подписчики видят КАЖДУЮ запись через AsyncStorage (старт и финиш, с ключами), чтобы
+// память снапшота не могла пережить запись мимо него. keys === 'all' — очистка всего хранилища.
+export type StorageMutationEvent = Readonly<{ phase: 'start' | 'end'; keys: readonly string[] | 'all' }>;
+const mutationListeners = new Set<(event: StorageMutationEvent) => void>();
+
+export function subscribeStorageMutations(listener: (event: StorageMutationEvent) => void): () => void {
+  mutationListeners.add(listener);
+  return () => { mutationListeners.delete(listener); };
+}
+
+function emitMutation(event: StorageMutationEvent): void {
+  for (const listener of mutationListeners) {
+    try {
+      listener(event);
+    } catch (error) {
+      console.warn('[SNAPSHOT-RT] подписчик записи упал', error instanceof Error ? error.message : String(error));
+    }
+  }
+}
+
+function mutationKeys(name: string, args: unknown[]): readonly string[] | 'all' {
+  const first = args[0];
+  if (name === 'clear') return 'all';
+  if (name === 'setItem' || name === 'removeItem' || name === 'mergeItem') {
+    return typeof first === 'string' ? [first] : [];
+  }
+  if (!Array.isArray(first)) return [];
+  if (name === 'multiRemove') return first.filter((key): key is string => typeof key === 'string');
+  return first
+    .map((pair) => (Array.isArray(pair) ? pair[0] : undefined))
+    .filter((key): key is string => typeof key === 'string');
+}
+
+function noteMutationStart(keys: readonly string[] | 'all'): void {
   mutationEpoch += 1;
   mutationsInFlight += 1;
   keysInFlight = null;
+  emitMutation({ phase: 'start', keys });
 }
 
-function noteMutationEnd(): void {
+function noteMutationEnd(keys: readonly string[] | 'all'): void {
   mutationEpoch += 1;
   mutationsInFlight = Math.max(0, mutationsInFlight - 1);
   keysInFlight = null;
+  emitMutation({ phase: 'end', keys });
 }
 
 /** Оборачивает мутатор: эпоха меняется на старте и на финише (успех или ошибка), кэш ключей сбрасывается. */
-function trackMutation<A extends unknown[]>(original: (...args: A) => unknown): (this: unknown, ...args: A) => unknown {
+function trackMutation<A extends unknown[]>(name: string, original: (...args: A) => unknown): (this: unknown, ...args: A) => unknown {
   return function tracked(this: unknown, ...args: A): unknown {
-    noteMutationStart();
+    const keys = mutationKeys(name, args);
+    noteMutationStart(keys);
     let result: unknown;
     try {
       result = original.apply(this, args);
     } catch (error) {
-      noteMutationEnd();
+      noteMutationEnd(keys);
       throw error;
     }
     if (result && typeof (result as Promise<unknown>).then === 'function') {
       return (result as Promise<unknown>).then(
-        (value) => { noteMutationEnd(); return value; },
-        (error: unknown) => { noteMutationEnd(); throw error; },
+        (value) => { noteMutationEnd(keys); return value; },
+        (error: unknown) => { noteMutationEnd(keys); throw error; },
       );
     }
-    noteMutationEnd();
+    noteMutationEnd(keys);
     return result;
   };
 }
@@ -177,7 +213,7 @@ export function installAsyncStorageNullBindGuard(): void {
   }
   for (const name of ['setItem', 'removeItem', 'mergeItem', 'clear', 'multiSet', 'multiRemove', 'multiMerge']) {
     const fn = keyStore[name];
-    if (typeof fn === 'function') keyStore[name] = trackMutation(fn as (...a: unknown[]) => unknown);
+    if (typeof fn === 'function') keyStore[name] = trackMutation(name, fn as (...a: unknown[]) => unknown);
   }
 
   const wrapKeys = (name: 'multiGet' | 'multiRemove') => {
@@ -229,7 +265,7 @@ export function installAsyncStorageNullBindGuard(): void {
       (NativeModules as any)['RNC_AsyncSQLiteDBStorage'] ||
       (NativeModules as any)['RNCAsyncStorage'];
     for (const nativeName of ['setItem', 'removeItem', 'mergeItem', 'clear']) {
-      if (native && typeof native[nativeName] === 'function') native[nativeName] = trackMutation(native[nativeName].bind(native));
+      if (native && typeof native[nativeName] === 'function') native[nativeName] = trackMutation(nativeName, native[nativeName].bind(native));
     }
     if (native && typeof native.multiSet === 'function') {
       const originalNative = native.multiSet.bind(native);

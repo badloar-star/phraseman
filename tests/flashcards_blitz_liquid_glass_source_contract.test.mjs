@@ -24,15 +24,18 @@ assert.match(source, /import \{ liquidGlassTokens \} from '\.\.\/constants\/liqu
 assert.match(source, /const \{ theme: t, f, liquidGlassThemeId \} = useTheme\(\);/);
 assert.match(source, /function BlitzGlassSurface\(/);
 assert.match(source, /pointerEvents="none"[\s\S]*LinearGradient[\s\S]*StyleSheet\.absoluteFill/);
-assert.match(source, /ANSWER_OK_SURFACE = '#185C3A'/);
-assert.match(source, /ANSWER_BAD_SURFACE = '#702B35'/);
-assert.match(activeGame, /state === 'correct'\) \{ bg = ANSWER_OK_SURFACE; tc = ANSWER_STATE_TEXT; \}/);
-assert.match(activeGame, /state === 'wrong'\) \{ bg = ANSWER_BAD_SURFACE; tc = ANSWER_STATE_TEXT; \}/);
+// зачем (PM-129, practice.html .opt.ok/.opt.no): ответ = цветная обводка 1px + подкраска 12 % поверх
+// стекла (исключение 2.0 от 24.09); текст остаётся основным, контраст = контраст обычного варианта.
+assert.match(source, /ANSWER_OK_SURFACE = 'rgba\(111,208,140,0\.12\)'/);
+assert.match(source, /ANSWER_BAD_SURFACE = 'rgba\(224,80,80,0\.12\)'/);
+assert.match(activeGame, /const tint = state === 'correct' \? ANSWER_OK_SURFACE : state === 'wrong' \? ANSWER_BAD_SURFACE : null;/);
+assert.match(activeGame, /backgroundColor: blitzGlass\.card, borderColor: edge/);
+assert.match(activeGame, /color: t\.textPrimary, fontSize: f\.body/);
 assert.match(activeGame, /<BlitzGlassSurface chrome=\{blitzGlass\} sheen=\{state === 'idle'\} \/>/);
 assert.doesNotMatch(source.slice(source.indexOf('glassSurface:'), source.indexOf('questionText:')), /borderWidth/);
-assert.doesNotMatch(activeGame, /borderColor/);
-assert.ok(contrast('#FFFFFF', '#185C3A') >= 4.5, 'correct answer text must meet 4.5:1 on its dark semantic fill');
-assert.ok(contrast('#FFFFFF', '#702B35') >= 4.5, 'wrong answer text must meet 4.5:1 on its dark semantic fill');
+assert.match(source.slice(source.indexOf('optionBtn:'), source.indexOf('optionText:')), /borderWidth: 1,/);
+assert.ok(contrast('#6FD08C', '#0B0B0D') >= 4.5, 'correct mark must stay legible on the dark sheet');
+assert.ok(contrast('#E05050', '#0B0B0D') >= 4.5, 'wrong mark must stay legible on the dark sheet');
 assert.match(activeGame, /<BlitzGlassSurface chrome=\{blitzGlass\} \/>/);
 assert.match(activeGame, /onPress=\{\(\) => pick\(i\)\}/);
 assert.match(activeGame, /disabled=\{locked\}/);

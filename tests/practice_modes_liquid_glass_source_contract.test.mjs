@@ -26,10 +26,15 @@ for (const [name, source] of Object.entries(modes)) {
   assert.match(source, /components\/practice\/PracticeChrome/, `${name} uses the shared practice chrome`);
   assert.match(source, /<PracticeBackButton/, `${name} uses the round back button`);
 }
-for (const name of ['blitz', 'recall', 'speaking']) {
+// зачем (PM-129, координатор 03.10): у Блица кнопки выбора наборов в шапке больше нет — наборы
+// выбираются на экране настройки (D152), а на её месте стоит плашка монет из practice.html.
+for (const name of ['recall', 'speaking']) {
   assert.match(modes[name], /<PracticeRoundIconButton/, `${name} deck picker button is round`);
+}
+for (const name of ['blitz', 'recall', 'speaking']) {
   assert.match(modes[name], /<PracticeHeaderTitle/, `${name} title uses 20/700`);
 }
+assert.doesNotMatch(modes.blitz, /testID="fc-blitz-pick-decks"/);
 assert.match(modes.blitz, /<PracticeTimerPill/);
 assert.match(modes.blitz, /<PracticeAnswerMark kind=\{state\}/);
 assert.match(modes.blitz, /testID="fc-blitz-timer"/);

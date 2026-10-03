@@ -57,7 +57,7 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { PracticeAnswerMark, PracticeBackButton, PracticeHeaderTitle, PracticeRoundIconButton, PracticeTimerPill } from '../components/practice/PracticeChrome';
+import { PracticeAnswerMark, PracticeBackButton, PracticeHeaderTitle, PracticeTimerPill } from '../components/practice/PracticeChrome';
 import { PracticeStatePanel } from '../components/practice/PracticeStates';
 import { flashcardContentLang } from './spanish_content_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -109,10 +109,17 @@ import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — не�
 const ACCENT = '#FF8A3D';
 const OK = '#40C080';
 const BAD = '#E05050';
-/** Opaque semantic fills preserve answer contrast without relying on a border. */
-const ANSWER_OK_SURFACE = '#185C3A';
-const ANSWER_BAD_SURFACE = '#702B35';
-const ANSWER_STATE_TEXT = '#FFFFFF';
+/**
+ * зачем (PM-129, practice.html `.opt.ok/.opt.no`): ответ отмечается тонкой цветной обводкой и
+ * подкраской 12 % поверх тёмного стекла (исключение 2.0 владельца 24.09 разрешает 1px), текст
+ * остаётся основным белым — контраст тот же, что у обычного варианта.
+ */
+const ANSWER_OK_SURFACE = 'rgba(111,208,140,0.12)';
+const ANSWER_BAD_SURFACE = 'rgba(224,80,80,0.12)';
+const ANSWER_OK_EDGE = '#6FD08C';
+const ANSWER_BAD_EDGE = BAD;
+/** Заполнение полосы времени — светлое, как `.trk > i` макета; в последние секунды краснеет. */
+const TIMER_FILL = '#E9E9EB';
 /** Последние секунды — таймер краснеет, добавляя азарта. */
 const DANGER_SEC = 10;
 
@@ -1229,17 +1236,18 @@ export default function FlashcardsBlitzSession() {
               </PracticeHeaderTitle>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                 <SessionAttemptsHud remaining={3} locale={lang} testID="fc-blitz-attempts-loading" />
-                <PracticeRoundIconButton glass={blitzGlass} color={blitzGlass.secondary} icon="albums-outline" disabled />
+                {/* зачем: заготовка ровно под плашку монет (52×36) — шапка не прыгает при старте. */}
+                <SkeletonBlock width={52} height={36} borderRadius={18} />
               </View>
             </View>
 
-            <View style={[styles.timerTrack, { backgroundColor: `${ACCENT}22` }]} />
+            <View style={[styles.timerTrack, { backgroundColor: blitzGlass.glassEdge }]} />
 
             <View style={styles.scoreRow}>
               <View style={{ minWidth: 90 }}>
-                <SkeletonBlock width={44} height={f.h2} />
+                <SkeletonBlock width={32} height={18} />
               </View>
-              <SkeletonBlock width={62} height={f.h2} />
+              <SkeletonBlock width={62} height={38} borderRadius={19} />
               <View style={{ minWidth: 90 }} />
             </View>
 
@@ -1388,21 +1396,10 @@ export default function FlashcardsBlitzSession() {
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
-          {/* Руны за раунд (владелец, 2026-08-27): отдельная строка над
-              основной шапкой — та и так плотная (попытки + выбор наборов),
-              добавление сюда же сжало бы существующие элементы. */}
-          <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginBottom: 6 }}>
-            <View ref={runeFlight.counterRef} collapsable={false}>
-              <PracticeRuneCounter
-                runes={practiceRunes.runes}
-                lang={lang}
-                backgroundColor={t.bgCard}
-                color={t.textPrimary}
-                testID="fc-blitz-practice-runes"
-              />
-            </View>
-          </View>
-          {/* Header: назад · «Блиц · набор» · жизни-сердечки */}
+          {/* Header: назад · «Блиц · набор» · сердца · монеты — как шапка practice.html.
+              зачем (PM-129): монеты раньше висели отдельной строкой НАД шапкой; кнопка выбора
+              наборов ушла — наборы выбираются на экране настройки тренировки (D152), шапка
+              освободилась, и плашка монет встала на своё место из макета. */}
           <View style={styles.headerRow}>
             <PracticeBackButton glass={blitzGlass} color={t.textPrimary} onPress={leave} testID="fc-blitz-back" accessibilityLabel={backLabel} />
             <PracticeHeaderTitle glass={blitzGlass} title={blitzTitle}>
@@ -1416,15 +1413,15 @@ export default function FlashcardsBlitzSession() {
                 locale={lang}
                 testID="fc-blitz-attempts"
               />
-              {/* §6: выбор и отметка наборов — мультивыбор, как в тренировке и слушании */}
-              <PracticeRoundIconButton
-                glass={blitzGlass}
-                color={blitzGlass.secondary}
-                icon="albums-outline"
-                testID="fc-blitz-pick-decks"
-                accessibilityLabel={pickDecksLabel}
-                onPress={openDeckPicker}
-              />
+              <View ref={runeFlight.counterRef} collapsable={false}>
+                <PracticeRuneCounter
+                  runes={practiceRunes.runes}
+                  lang={lang}
+                  backgroundColor={blitzGlass.opaqueControl}
+                  color={t.textPrimary}
+                  testID="fc-blitz-practice-runes"
+                />
+              </View>
               {/* зачем: блиц показывает английскую фразу и переводы-дистракторы,
                   то есть контент, в котором бывает ошибка, — а пожаловаться было
                   негде (в свайпе флаг есть, здесь его забыли). Флаг только когда
@@ -1444,11 +1441,11 @@ RU: ${question.card.translation}`}
           </View>
 
           {/* Таймер-полоса: Reanimated scaleX от 1 к 0, origin слева (принцип 3) */}
-          <View style={[styles.timerTrack, { backgroundColor: `${ACCENT}22` }]}>
+          <View style={[styles.timerTrack, { backgroundColor: blitzGlass.glassEdge }]}>
             <Reanimated.View
               style={[
                 styles.timerFill,
-                { backgroundColor: danger ? BAD : ACCENT, transformOrigin: 'left' },
+                { backgroundColor: danger ? BAD : TIMER_FILL, transformOrigin: 'left' },
                 timerBarStyle,
               ]}
             />
@@ -1460,7 +1457,9 @@ RU: ${question.card.translation}`}
               <Reanimated.View style={scoreStyle}>
                 <Text
                   testID="fc-blitz-score"
-                  style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', fontVariant: ['tabular-nums'] }}
+                  // зачем (PM-129): в макете под полосой мелкие подписи (`.prog`, 15/600, вторичный
+                  // тон), а не крупная цифра — счёт остаётся, но перестаёт спорить с вопросом.
+                  style={{ color: blitzGlass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] }}
                 >
                   {blitz.score}
                 </Text>
@@ -1512,12 +1511,11 @@ RU: ${question.card.translation}`}
             <View style={{ gap: 10 }}>
               {(question?.options ?? []).map((opt, i) => {
                 const state = btnStates[i];
-                // зачем: без рамки состояние держится ТОЛЬКО заливкой, поэтому
-                // ответ подсвечиваем плотнее (33 вместо 22) — читается так же ясно.
-                let bg = blitzGlass.card;
-                let tc = t.textPrimary;
-                if (state === 'correct') { bg = ANSWER_OK_SURFACE; tc = ANSWER_STATE_TEXT; }
-                if (state === 'wrong') { bg = ANSWER_BAD_SURFACE; tc = ANSWER_STATE_TEXT; }
+                // зачем (PM-129, `.opt` / `.opt.ok` / `.opt.no` макета): у варианта тонкая
+                // полупрозрачная обводка; ответ — цветная обводка + подкраска 12 % ПОВЕРХ стекла
+                // (основа карточки остаётся), текст основной, значок ✓/✕ — цветом состояния.
+                const tint = state === 'correct' ? ANSWER_OK_SURFACE : state === 'wrong' ? ANSWER_BAD_SURFACE : null;
+                const edge = state === 'correct' ? ANSWER_OK_EDGE : state === 'wrong' ? ANSWER_BAD_EDGE : blitzGlass.glassEdge;
                 return (
                   <TouchableOpacity
                     key={`${qIdxRef.current}_${i}`}
@@ -1527,14 +1525,15 @@ RU: ${question.card.translation}`}
                     onPress={() => pick(i)}
                     disabled={locked}
                     activeOpacity={0.75}
-                    style={[styles.optionBtn, styles.glassSurface, { backgroundColor: bg }]}
+                    style={[styles.optionBtn, styles.glassSurface, { backgroundColor: blitzGlass.card, borderColor: edge }]} // guard-ok: исключение 2.0 — 1px полупрозрачная обводка .opt
                   >
                     <BlitzGlassSurface chrome={blitzGlass} sheen={state === 'idle'} />
-                    <Text  style={[styles.optionText, { color: tc, fontSize: f.body }]}>
+                    {tint ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: tint }]} /> : null}
+                    <Text  style={[styles.optionText, { color: t.textPrimary, fontSize: f.body }]}>
                       {opt}
                     </Text>
                     {state === 'correct' || state === 'wrong' ? (
-                      <PracticeAnswerMark kind={state} color={ANSWER_STATE_TEXT} />
+                      <PracticeAnswerMark kind={state} color={state === 'correct' ? ANSWER_OK_EDGE : ANSWER_BAD_EDGE} />
                     ) : null}
                   </TouchableOpacity>
                 );
@@ -1582,10 +1581,8 @@ const styles = StyleSheet.create({
   },
   gainFloat: { position: 'absolute', top: -4, left: 2 },
   /**
-   * зачем (правило владельца «НИКОГДА контейнеры с обводкой»): блок вопроса,
-   * кнопки ответов и бейдж комбо раньше были обведены рамкой. Состояние
-   * «верно/неверно» и так читается заливкой (`${OK}22` / `${BAD}22`) и цветом
-   * текста — рамка ничего не добавляла. Разделяем тоном, как в коллекции.
+   * зачем: блок вопроса и бейдж комбо разделяются тоном, без рамки. Варианты ответа (PM-129)
+   * несут тонкую 1px обводку `.opt` из practice.html — исключение 2.0 владельца (24.09).
    */
   comboBadge: {
     flexDirection: 'row',
@@ -1609,6 +1606,7 @@ const styles = StyleSheet.create({
   questionText: { fontWeight: '800', textAlign: 'center' },
   optionBtn: {
     borderRadius: 14,
+    borderWidth: 1, // guard-ok: исключение 2.0 (24.09) — тонкая полупрозрачная обводка `.opt` макета practice.html
     minHeight: 58,
     paddingVertical: 12,
     paddingHorizontal: 40,

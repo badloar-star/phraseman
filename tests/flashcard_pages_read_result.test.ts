@@ -27,6 +27,7 @@ import {
   FLASHCARD_PAGES_WRITE_LOCK_KEY,
   lockFlashcardPagesWrite,
   mergeLockedFlashcardsWithPages,
+  orderMergedLikeLocal,
   readFlashcardPagesResult,
   readFlashcardPagesWriteLocks,
   unlockFlashcardPagesWrite,
@@ -204,5 +205,44 @@ describe('8J — слияние при снятии замка', () => {
     const merge = mergeLockedFlashcardsWithPages('{broken', JSON.stringify([{ id: 'a' }]), new Set());
     expect(merge).toMatchObject({ localUnparsable: true, localOnly: 0 });
     expect(JSON.parse(merge.value)).toEqual([{ id: 'a' }]);
+  });
+});
+
+// зачем (долг ревью 8N, S3; TG-622DD6E4BD75): порядок после объединения — как в локальном списке,
+// пришедшие только из облака — в конце; состав и версии не меняются.
+describe('orderMergedLikeLocal — порядок объединённого списка', () => {
+  const ids = (json: string): string[] => (JSON.parse(json) as Array<{ id: string }>).map((card) => card.id);
+
+  it('локальный порядок сохраняется, карточки из облака — в конце в порядке облака', () => {
+    const merged = JSON.stringify([{ id: 'x' }, { id: 'a' }, { id: 'y' }, { id: 'b' }, { id: 'd' }]);
+    expect(ids(orderMergedLikeLocal(JSON.stringify([{ id: 'b' }, { id: 'a' }, { id: 'd' }]), merged))).toEqual(['b', 'a', 'd', 'x', 'y']);
+  });
+
+  it('для общих id берётся версия из объединения, а не из локального списка', () => {
+    const out = JSON.parse(orderMergedLikeLocal(
+      JSON.stringify([{ id: 'a', en: 'local' }]),
+      JSON.stringify([{ id: 'a', en: 'merged' }, { id: 'z' }]),
+    )) as Array<{ id: string; en?: string }>;
+    expect(out).toEqual([{ id: 'a', en: 'merged' }, { id: 'z' }]);
+  });
+
+  it('локальная карточка, отброшенная объединением (журнал удалений), не возвращается', () => {
+    expect(ids(orderMergedLikeLocal(
+      JSON.stringify([{ id: 'a' }, { id: 'gone' }, { id: 'b' }]),
+      JSON.stringify([{ id: 'a' }, { id: 'b' }, { id: 'n' }]),
+    ))).toEqual(['a', 'b', 'n']);
+  });
+
+  it('карточки без id различаются по содержимому', () => {
+    expect(orderMergedLikeLocal(
+      JSON.stringify([{ en: 'two' }, { en: 'one' }]),
+      JSON.stringify([{ en: 'one' }, { en: 'two' }, { en: 'three' }]),
+    )).toBe(JSON.stringify([{ en: 'two' }, { en: 'one' }, { en: 'three' }]));
+  });
+
+  it('битый JSON или не массив → объединение возвращается как есть (данные целы)', () => {
+    const merged = JSON.stringify([{ id: 'a' }]);
+    expect(orderMergedLikeLocal('{broken', merged)).toBe(merged);
+    expect(orderMergedLikeLocal(JSON.stringify({ id: 'a' }), merged)).toBe(merged);
   });
 });

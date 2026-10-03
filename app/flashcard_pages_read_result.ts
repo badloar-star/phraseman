@@ -514,6 +514,39 @@ function normalizedJson(json: string): string {
   return JSON.stringify(JSON.parse(json));
 }
 
+/**
+ * Порядок объединённого списка: как в ЛОКАЛЬНОМ списке, карточки, пришедшие только из облака, — в конце.
+ * Чистая функция — ради тестов.
+ *
+ * зачем (долг ревью 8N, S3; TG-622DD6E4BD75): `mergeLockedFlashcardsWithPages` отдаёт «облако, потом
+ * локальные», а локальный список после дозаписи (`mergeSavedFlashcardsFromAccountsV2`) выглядит как
+ * «локальные, потом пришедшие». Если писать в страницы первый порядок, страницы и телефон расходятся
+ * по порядку, и каждое объединение переставляет карточки. Состав карточек и версии при совпадении
+ * id (берётся версия из объединения) не меняются — только порядок. Не удаётся разобрать — возвращаем
+ * объединение как есть (порядок хуже, но данные целы).
+ */
+export function orderMergedLikeLocal(localJson: string, mergedJson: string): string {
+  try {
+    const local: unknown = JSON.parse(localJson);
+    const merged: unknown = JSON.parse(mergedJson);
+    if (!Array.isArray(local) || !Array.isArray(merged)) return mergedJson;
+    const mergedByIdentity = new Map<string, unknown>();
+    for (const card of merged) {
+      const identity = cardIdentity(card);
+      if (!mergedByIdentity.has(identity)) mergedByIdentity.set(identity, card);
+    }
+    const localIdentities = new Set(local.map(cardIdentity));
+    // Локальные карточки, которых в объединении нет (отброшены журналом удалений), не возвращаются.
+    const inLocalOrder = local.filter((card) => mergedByIdentity.has(cardIdentity(card)))
+      .map((card) => mergedByIdentity.get(cardIdentity(card)));
+    const fromRemoteOnly = merged.filter((card) => !localIdentities.has(cardIdentity(card)));
+    return JSON.stringify([...inLocalOrder, ...fromRemoteOnly]);
+  } catch (error) {
+    console.warn(`${LOG} order_merge unparsable reason=${String(error).slice(0, 80)}`);
+    return mergedJson;
+  }
+}
+
 export type PreWriteInput = Readonly<{
   owner: string;
   key: string;
@@ -557,7 +590,8 @@ export async function decideFlashcardPagesPreWrite(input: PreWriteInput): Promis
     const localIds = new Set((JSON.parse(localNormalized) as unknown[]).map(cardIdentity));
     const addedFromRemote = (JSON.parse(merge.value) as unknown[]).filter((card) => !localIds.has(cardIdentity(card)));
     // Ничего не пришло из облака → пишем локальное как есть (порядок списка не меняется).
-    const cardsJson = addedFromRemote.length > 0 ? merge.value : localNormalized;
+    // S3: порядок как в локальном списке, пришедшие из облака — в конце (см. orderMergedLikeLocal).
+    const cardsJson = addedFromRemote.length > 0 ? orderMergedLikeLocal(localNormalized, merge.value) : localNormalized;
     console.log(`${LOG} pre_write_merge key=${key} local=${local} remote=${read.cards} added_from_remote=${addedFromRemote.length} dropped_by_journal=${merge.deletedSkipped} decision=${addedFromRemote.length > 0 ? 'merged' : 'local'} reason=${lastWritten === null ? 'no_own_fingerprint' : 'remote_changed_elsewhere'}`);
     return {
       kind: 'write',

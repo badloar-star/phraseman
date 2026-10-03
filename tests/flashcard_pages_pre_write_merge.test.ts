@@ -157,6 +157,20 @@ describe('8N — объединение с текущими страницами
     expect(lines().filter((line) => line.includes('[FLASHCARD-PAGES]')).some((line) => line.includes('stable-a'))).toBe(false);
   });
 
+  // зачем (долг ревью 8N, S3; TG-622DD6E4BD75): после объединения порядок списка не должен «прыгать».
+  // Раньше страницы получали порядок «облако, потом локальные» — у локального списка после дозаписи
+  // порядок другой («локальные, потом пришедшие из облака»), и два списка расходились навсегда.
+  // Теперь страницы и локальный список после синка идентичны по порядку.
+  test('порядок после объединения: как в локальном списке, пришедшие из облака — в конце', async () => {
+    setRemote('en', [card('x'), card('a'), card('y')]);
+
+    await sync([card('b'), card('a'), card('d')]);
+
+    expect(remoteIds()).toEqual(['b', 'a', 'd', 'x', 'y']);
+    expect(await localIds()).toEqual(['b', 'a', 'd', 'x', 'y']);
+    expect((await loadFlashcards('en')).map((c) => c.id)).toEqual(['b', 'a', 'd', 'x', 'y']);
+  });
+
   test('карточка удалена здесь (журнал 7D) → из страниц не возвращается', async () => {
     setRemote('en', [card('c1'), card('gone')]);
     await recordCardDeletions('en', 'saved', ['gone']);

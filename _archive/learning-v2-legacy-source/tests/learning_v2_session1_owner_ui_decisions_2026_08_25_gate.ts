@@ -1,14 +1,17 @@
+// зачем (координатор §98, 2026-10-03): гейт сторожил СТАРЫЙ источник content/source — боевой урок 1
+// собирается из factory_native/generated_release/en/l01/s01. С 03.09 сетка пар (4 слова) и колонки
+// (3 id, одно вне сетки) разошлись; старая система уходит в архив, гейт уехал вместе с ней. Не запускается.
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-import { EPISODE_01_SESSION_01_MODE_NATIVE_PRACTICE_V1 } from "../modules/learning-v2/content/source/episode_01_session_01_mode_native_v1";
-import { EPISODE_01_SESSION_01_VOCABULARY_V1 } from "../modules/learning-v2/content/source/episode_01_session_01_vocabulary_v1";
-import { buildLearningV2AuthoringDevicePreviewV1 } from "../modules/learning-v2/preview/authoring_device_preview_v1";
-import { evaluateLearningV2CourseSessionInteractionV1 } from "../modules/learning-v2/runtime/course_session_evaluator_capsule_child_v1";
-import { stableShuffleLearningV2OptionsV1 } from "../modules/learning-v2/runtime/stable_option_shuffle_v1";
+import { EPISODE_01_SESSION_01_MODE_NATIVE_PRACTICE_V1 } from "../../../modules/learning-v2/content/source/episode_01_session_01_mode_native_v1";
+import { EPISODE_01_SESSION_01_VOCABULARY_V1 } from "../../../modules/learning-v2/content/source/episode_01_session_01_vocabulary_v1";
+import { buildLearningV2AuthoringDevicePreviewV1 } from "../../../modules/learning-v2/preview/authoring_device_preview_v1";
+import { evaluateLearningV2CourseSessionInteractionV1 } from "../../../modules/learning-v2/runtime/course_session_evaluator_capsule_child_v1";
+import { stableShuffleLearningV2OptionsV1 } from "../../../modules/learning-v2/runtime/stable_option_shuffle_v1";
 
-const root = resolve(__dirname, "..");
+const root = resolve(__dirname, "../../..");
 const read = (path: string): string => readFileSync(resolve(root, path), "utf8");
 
 const activeFamilies = new Set(

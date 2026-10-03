@@ -34,6 +34,11 @@ import {
 import { writeAccessProjection } from './access_projection';
 import { mergeVoiceMinuteWalletsInTransaction } from './voice_minutes';
 import {
+  commitAccountMergeStarsTransfer,
+  prepareAccountMergeStarsTransfer,
+} from './auth_merge_stars_transfer';
+import { beginStarLedgerTransactionAttempt } from './stars_ledger';
+import {
   confirmedFlashcardKeysToNull,
   describeFlashcardField,
   FLASHCARD_LIST_KEY_SPECS,
@@ -432,6 +437,8 @@ type TransactionResolvedIdentity = {
   stableId: string;
   data: Record<string, unknown>;
   ref: admin.firestore.DocumentReference;
+  /** Снимок этой транзакции — журналу монет нужен именно он (8T), без второго чтения. */
+  snap?: admin.firestore.DocumentSnapshot;
 };
 
 type TransactionMergeOutcome = MergeResult & {
@@ -602,6 +609,7 @@ async function mergeStableAccountsTransactionally(
     if (transactionAttempt > 1) {
       throw new HttpsError('failed-precondition', 'stable_identity_changed');
     }
+    beginStarLedgerTransactionAttempt(tx);
 
     const userCache = new Map<string, Promise<TransactionResolvedIdentity>>();
     const readStable = (stableId: string): Promise<TransactionResolvedIdentity> => {
@@ -629,6 +637,7 @@ async function mergeStableAccountsTransactionally(
           stableId,
           data: (userSnap.data() ?? {}) as Record<string, unknown>,
           ref,
+          snap: userSnap,
         };
       })();
       userCache.set(stableId, pending);
@@ -798,12 +807,31 @@ async function mergeStableAccountsTransactionally(
         && revenueCatProjectionStrength(mergedProgress) >= revenueCatProjectionStrength(canonicalAggregate.progressPatch))
       ? canonicalAggregate.progressPatch
       : mergedProgress;
+    // зачем (8T, координатор 03.10): монеты проигравшего раньше оставались на скрытом
+    // аккаунте. Переносим их в ЭТОЙ транзакции (атомарно со скрытием); prepare только
+    // читает расписки, поэтому стоит до первой записи (кошелёк минут ниже уже пишет).
+    const mergeOutboxId = accountMergeOutboxId(winner.stableId, loser.stableId);
+    if (!winner.snap || !loser.snap) {
+      throw new HttpsError('internal', 'account_merge_snapshot_missing');
+    }
+    const starsTransferPrepared = await prepareAccountMergeStarsTransfer(tx, db, {
+      winnerStableId: winner.stableId,
+      loserStableId: loser.stableId,
+      winnerSnap: winner.snap,
+      loserSnap: loser.snap,
+      outboxId: mergeOutboxId,
+      authUid,
+      nowMs: now,
+    });
     await mergeVoiceMinuteWalletsInTransaction(tx, db, {
       winnerStableId: winner.stableId,
       loserStableId: loser.stableId,
-      mergeOperationId: accountMergeOutboxId(winner.stableId, loser.stableId),
+      mergeOperationId: mergeOutboxId,
       occurredAtMs: now,
     });
+    // Журнал пишет stars + расписки обеих сторон ДО обычных записей слияния: их
+    // updatedAt (now) ложится последним, поле stars они не трогают.
+    const starsTransfer = commitAccountMergeStarsTransfer(tx, starsTransferPrepared);
     const winnerUpdate: Record<string, unknown> = {
       progress: reconciledMergedProgress,
       mistakePracticeMergePending: publication ? false : true,
@@ -840,6 +868,8 @@ async function mergeStableAccountsTransactionally(
       loserStableId: loser.stableId,
       ...(publication ? { publicationStatus: 'published' } : { status: 'pending' }),
       tasks: ['historical_revenuecat_receipts', 'derived_identity_cleanup', 'mistake_practice_events'],
+      // 8T: след переноса монет — для ручного разбора пропуска/остатка выше потолка.
+      starsTransfer,
       createdAt: now,
       updatedAt: now,
     }, { merge: true });

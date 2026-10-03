@@ -151,7 +151,14 @@ export type StarOpReason =
   // зачем: D104 (владелец, 2026-09-30) — награда в рассылке (global broadcast)
   // выдаётся монетами вместо жемчуга. Grant, НЕ earn: подарок команды не оплачен
   // учёбой и не должен двигать очки лиги.
-  | 'global_broadcast';
+  | 'global_broadcast'
+  // зачем: 8T (координатор 03.10) — при серверном слиянии аккаунтов баланс
+  // проигравшего переходит победителю парой операций с одним opId
+  // (functions/src/auth_merge_stars_transfer.ts). Знак дельты привязан к классу,
+  // поэтому причин две: дебет проигравшего — spend (монеты ушли с аккаунта),
+  // кредит победителя — grant, НЕ earn: перенос не заработан заново и не должен
+  // двигать earnedTotal, неделю и сезон победителя.
+  | 'account_merge_out' | 'account_merge_in';
 
 export type StarOpClass = 'earn' | 'grant' | 'spend';
 
@@ -185,6 +192,8 @@ export const STAR_OP_CLASS: Readonly<Record<StarOpReason, StarOpClass>> = Object
   spire_week_reward: 'grant',
   referral_spin: 'grant',
   global_broadcast: 'grant',
+  account_merge_out: 'spend',
+  account_merge_in: 'grant',
 });
 
 /**
@@ -244,6 +253,10 @@ export const STAR_OP_SOURCE: Readonly<Record<StarOpReason, RuneSourceKey>> = Obj
   referral_spin: 'spin',
   // Подарок из рассылки (D104) — «другое»: своей строки на экране «Руны» нет.
   global_broadcast: 'other',
+  // Перенос при слиянии (8T) — «другое»: своей строки на экране нет, а приток
+  // обязан попасть в сумму разреза (иначе bySource разойдётся с grantedTotal).
+  account_merge_in: 'other',
+  account_merge_out: 'other',
 });
 
 export type StarOpMeta = Record<string, string | number | boolean>;

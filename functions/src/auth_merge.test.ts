@@ -2206,3 +2206,75 @@ describe('8M: mergeStableAccounts — карточки проигравшего 
     expect((store.users['stable-l']!.progress as DocData).flashcards).toBe(loserLegacy);
   });
 });
+
+// ── 8T: монеты проигравшего переходят победителю в транзакции слияния ─────────
+
+describe('mergeStableAccounts — перенос монет (8T)', () => {
+  beforeEach(() => {
+    jest.spyOn(Date, 'now').mockReturnValue(NOW);
+    jest.spyOn(console, 'log').mockImplementation(() => {});
+    jest.spyOn(console, 'warn').mockImplementation(() => {});
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+  afterEach(() => jest.restoreAllMocks());
+
+  const consistentStars = (balance: number, extra: DocData = {}): DocData => ({
+    schemaVersion: 'stars.v1', balance, earnedTotal: balance, grantedTotal: 0, spentTotal: 0,
+    weekKey: '', weekEarned: 0, prevWeekKey: '', prevWeekEarned: 0, seasonId: '', seasonEarned: 0,
+    bySource: {}, seq: balance > 0 ? 1 : 0, lastOpId: '', updatedAtMs: 0, ...extra,
+  });
+
+  it('12345 монет проигравшего атомарно уходят победителю тремя частями; проигравший скрыт с нулём', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        winner: { firebaseAuthUid: 'auth-stars', progress: {}, stars: consistentStars(100) },
+        loser: { firebaseAuthUid: 'auth-stars', progress: {}, stars: consistentStars(12345) },
+      },
+    });
+    await expect(mergeStableAccounts(db as any, 'auth-stars', 'winner', 'loser', NOW))
+      .resolves.toMatchObject({ canonicalStableId: 'winner', mergedFromStableId: 'loser' });
+
+    const winnerStars = store.users.winner?.stars as DocData;
+    const loserStars = store.users.loser?.stars as DocData;
+    expect(winnerStars).toMatchObject({ balance: 12445, earnedTotal: 100, grantedTotal: 12345 });
+    expect(loserStars).toMatchObject({ balance: 0, spentTotal: 12345 });
+    expect(store.users.loser?.identityHidden).toBe(true);
+    expect(Object.values(store['users/winner/star_operations'] ?? {}).map((r) => r?.delta))
+      .toEqual([5000, 5000, 2345]);
+    expect(Object.values(store['users/loser/star_operations'] ?? {}).map((r) => r?.delta))
+      .toEqual([-5000, -5000, -2345]);
+    const outbox = Object.values(store.account_merge_outbox ?? {})[0];
+    expect(outbox?.starsTransfer).toMatchObject({ status: 'transferred', amount: 12345, chunks: 3, remainder: 0 });
+  });
+
+  it('повторный вызов слияния (уже слито) не удваивает монеты', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        winner: { firebaseAuthUid: 'auth-stars', progress: {}, stars: consistentStars(0) },
+        loser: { firebaseAuthUid: 'auth-stars', progress: {}, stars: consistentStars(1234) },
+      },
+    });
+    await mergeStableAccounts(db as any, 'auth-stars', 'winner', 'loser', NOW);
+    await expect(mergeStableAccounts(db as any, 'auth-stars', 'winner', 'loser', NOW))
+      .resolves.toMatchObject({ canonicalStableId: 'winner', alreadyMerged: true });
+    expect((store.users.winner?.stars as DocData).balance).toBe(1234);
+    expect((store.users.loser?.stars as DocData).balance).toBe(0);
+    expect(Object.keys(store['users/winner/star_operations'] ?? {})).toHaveLength(1);
+  });
+
+  it('у проигравшего 0 монет — слияние не трогает журнал ни на одной стороне', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        winner: { firebaseAuthUid: 'auth-stars', progress: {}, stars: consistentStars(50) },
+        loser: { firebaseAuthUid: 'auth-stars', progress: {} },
+      },
+    });
+    await mergeStableAccounts(db as any, 'auth-stars', 'winner', 'loser', NOW);
+    expect(store.users.winner?.stars).toEqual(consistentStars(50));
+    expect(store.users.loser?.stars).toBeUndefined();
+    expect(store['users/winner/star_operations']).toBeUndefined();
+    expect(store['users/loser/star_operations']).toBeUndefined();
+    const outbox = Object.values(store.account_merge_outbox ?? {})[0];
+    expect(outbox?.starsTransfer).toMatchObject({ status: 'nothing_to_transfer', amount: 0 });
+  });
+});

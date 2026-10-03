@@ -33,7 +33,7 @@ describe('lazyContent', () => {
     expect(load).toHaveBeenCalledTimes(1);
     const lines = warn.mock.calls.map((c) => String(c[0])).filter((l) => l.startsWith('[CONTENT-LAZY]'));
     expect(lines).toHaveLength(1);
-    expect(lines[0]).toMatch(/^\[CONTENT-LAZY\] loaded key=test_key_once ms=\d+ sinceJsStartMs=\d+$/);
+    expect(lines[0]).toMatch(/^\[CONTENT-LAZY\] loaded key=test_key_once ms=\d+ epochMs=\d+$/);
     expect(loadedContentKeys()).toContain('test_key_once');
   });
 

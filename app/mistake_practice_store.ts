@@ -52,6 +52,12 @@ const locks = new Map<string, Promise<void>>();
 // записи, никогда не получит чтение, начатое до неё. Склейка только для хранилища по умолчанию (тестовые подмены — как раньше).
 const inflightLoads = new Map<string, Promise<MistakeEventJournal>>();
 const readStats = { started: 0, shared: 0 };
+// Счётчик записей по журналу ошибок: кэши производных данных (счётчики Главной) сверяют его и сбрасываются на любой записи.
+let journalWriteEpoch = 0;
+/** Номер «поколения» журнала: растёт на каждой записи через это хранилище. */
+export function mistakeJournalWriteEpoch(): number {
+  return journalWriteEpoch;
+}
 /** Только для тестов и диагностики: сколько чтений начато и сколько склеено. */
 export function mistakeJournalReadStats(): Readonly<{ started: number; shared: number }> {
   return { started: readStats.started, shared: readStats.shared };
@@ -357,6 +363,7 @@ export async function mergeMistakeEvents(
     });
     return Object.freeze({ appendedCount, journal });
     } finally {
+      journalWriteEpoch += 1;
       inflightLoads.delete(key);
     }
   }));

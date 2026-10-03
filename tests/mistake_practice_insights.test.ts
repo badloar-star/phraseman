@@ -24,6 +24,8 @@ jest.mock('../app/stable_id', () => ({
 }));
 jest.mock('../app/mistake_practice_store', () => ({
   loadMistakeEventJournal: (input: unknown) => mockLoadJournal(input),
+  // зачем (03.10, кэш счётчиков Главной): insights сверяет номер записи журнала
+  mistakeJournalWriteEpoch: () => 0,
 }));
 jest.mock('../app/mistake_practice_content_reconciliation', () => ({
   reconcileMutableMistakeContent: (input: { journal: MistakeEventJournal }) => mockReconcile(input),

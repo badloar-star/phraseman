@@ -10,11 +10,10 @@
  * Поведение не меняется: загрузчик синхронный, результат запоминается; потребитель получает те же данные,
  * просто не при импорте, а при первом вызове. Каждая загрузка пишет ОДНУ строку [CONTENT-LAZY] (console.warn —
  * release вырезает log/info/debug, warn остаётся; так же устроены [HOME-PAINT] и [COLD-START-IO]):
- *   [CONTENT-LAZY] loaded key=<ключ> ms=<время выполнения> sinceJsStartMs=<сколько прошло от старта JS>
+ *   [CONTENT-LAZY] loaded key=<ключ> ms=<время выполнения> epochMs=<время начала, сравнимо с epochMs в [HOME-PAINT]>
  * Сбой тоже не молчит: [CONTENT-LAZY] failed key=… reason=… и исключение летит дальше, как раньше при импорте.
  */
 
-const JS_START_MS = Date.now();
 const loadedKeys = new Set<string>();
 
 function reasonOf(error: unknown): string {
@@ -39,7 +38,7 @@ export function lazyContent<T>(key: string, load: () => T): () => T {
     }
     loaded = true;
     loadedKeys.add(key);
-    console.warn(`[CONTENT-LAZY] loaded key=${key} ms=${Date.now() - startedAt} sinceJsStartMs=${startedAt - JS_START_MS}`);
+    console.warn(`[CONTENT-LAZY] loaded key=${key} ms=${Date.now() - startedAt} epochMs=${startedAt}`);
     return value as T;
   };
 }

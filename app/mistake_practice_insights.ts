@@ -6,7 +6,7 @@ import {
 } from './account_generation';
 import { reconcileMutableMistakeContent } from './mistake_practice_content_reconciliation';
 import type { MistakeEventJournal } from './mistake_practice_cloud_merge';
-import { loadMistakeEventJournal } from './mistake_practice_store';
+import { loadMistakeEventJournal, mistakeJournalWriteEpoch } from './mistake_practice_store';
 import { getStableId } from './stable_id';
 
 const assertCurrentAccount = (
@@ -63,9 +63,21 @@ export interface MistakePracticeHomeCounts {
  * сейчас», а пульс тем быстрее, чем их больше - нужна именно сумма активных,
  * а не только готовых сегодня.
  */
-export async function getMistakePracticeHomeCounts(
+// зачем ([COLD-START-IO], store-release, слабый профиль, 03.10): Главная и «задачи на сегодня» запрашивали эти счётчики
+// 12–21 раз за первые 15 с — каждый вызов читал журнал ошибок с диска ради одного и того же числа. Результат теперь
+// запоминается на короткий срок (HOME_COUNTS_TTL_MS) и сбрасывается: сменой аккаунта/поколения, ЛЮБОЙ записью в журнал
+// через хранилище (mistakeJournalWriteEpoch) и отказом чтения. Вызов с явным nowMs (тесты, расчёт «на момент») кэш обходит.
+const HOME_COUNTS_TTL_MS = 10_000;
+const homeCountsCache = new Map<string, Readonly<{ at: number; epoch: number; value: Promise<MistakePracticeHomeCounts> }>>();
+
+/** Только для тестов. */
+export function resetMistakePracticeHomeCountsCacheForTests(): void {
+  homeCountsCache.clear();
+}
+
+async function computeMistakePracticeHomeCounts(
   studyTarget: MistakeStudyTarget,
-  nowMs = Date.now(),
+  nowMs: number,
 ): Promise<MistakePracticeHomeCounts> {
   const journal = await loadCurrentMistakeJournal(studyTarget, true);
   const items = [...projectMistakes(journal.events).items.values()];
@@ -74,6 +86,26 @@ export async function getMistakePracticeHomeCounts(
     active: active.length,
     ready: active.filter((item) => item.dueAtMs <= nowMs).length,
   });
+}
+
+export function getMistakePracticeHomeCounts(
+  studyTarget: MistakeStudyTarget,
+  nowMs?: number,
+): Promise<MistakePracticeHomeCounts> {
+  if (nowMs !== undefined) return computeMistakePracticeHomeCounts(studyTarget, nowMs);
+  const token = captureAccountGeneration();
+  const key = `${studyTarget}:${token.phase}:${token.generation}:${token.stableId ?? ''}`;
+  const epoch = mistakeJournalWriteEpoch();
+  const cached = homeCountsCache.get(key);
+  if (cached && cached.epoch === epoch && Date.now() - cached.at < HOME_COUNTS_TTL_MS) return cached.value;
+  const value = computeMistakePracticeHomeCounts(studyTarget, Date.now());
+  const entry = Object.freeze({ at: Date.now(), epoch, value });
+  homeCountsCache.set(key, entry);
+  const drop = (): void => {
+    if (homeCountsCache.get(key) === entry) homeCountsCache.delete(key);
+  };
+  value.then(undefined, drop);
+  return value;
 }
 
 export interface MistakePracticeInsightItem {

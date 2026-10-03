@@ -4,6 +4,7 @@ Governance-ID: TG-B6CFE068FEC1
 Governance-ID: TG-F7E46AD27665
 Governance-ID: TG-E81DBFF895E6
 Governance-ID: TG-370D814C9C10
+Governance-ID: TG-660F45C494B1
 Status: In progress — S2a (сервер); D-AA1…4 подтверждены координатором §116
 Owner: Claude session (Account Authority 2.0)
 
@@ -254,3 +255,11 @@ git revert; серверную часть откатывает координа�
 - Отказ `anchor_removed` срабатывает и при легитимной отвязке провайдера (если такая появится): вход в новую систему закрыт до появления нового якоря.
 - Проверка аккаунта на каждом входе стоит +3 чтения (11–12 вместо 8–9).
 - Удаление до S4 отвечает `internal` («не подключено»), а не `failed-precondition`.
+
+## S2a раунд 4 — LOW из security-ревью раунда 3 (APPROVE), 2026-10-04 — «ничего на потом»
+
+Серверная часть закоммичена (06baa1f91). Закрываем 4 LOW:
+- **L-R3-1:** при неизменном якоре всё равно проверять сам якорь: `verifyStableAccount(anchorLink)` и сравнивать результат с `stored.accountId` (чтений столько же); владение канонического C перепроверяется на каждом входе. Тест: владелец C сменился, auth_links вызывающего прежний → не остаётся на C.
+- **L-R3-2:** тест «удаление с другого устройства того же uid (своя привязка, аренду держит другое устройство) → отказ»; мутация `deviceId` из активной аренды вместо привязки (`delete_contract.ts:~660`) обязана упасть.
+- **L-R3-3:** при `release_rejected` у `active` старого аккаунта (напр. `receipt_capacity_exhausted`) — принудительно снять `activeLease` этого uid без квитанции (лог `principal_rebound lease forced reason=…`), чтобы забитый журнал не держал аренду; плюс оценить и, если дёшево, добавить троттлинг входов на аккаунт против забивания журнала квитанций (записать решение). Тесты.
+- **L-R3-4:** удалить мёртвый код `createFirebaseInstallationBindingIdentityPort` (`installation_binding_callable.ts:~437`) и `AccountAuthorityCallableIdentityPort` (`callable_boundary.ts:~106`), если grep по functions/src и клиенту подтверждает 0 использований.

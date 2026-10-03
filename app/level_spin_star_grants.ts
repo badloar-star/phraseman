@@ -1164,7 +1164,14 @@ async function recoverProjection(
     if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
     await AsyncStorage.multiSet(writes);
     if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
-    await AsyncStorage.setItem(levelSpinStarPreparedKey(ownerStableId), '[]');
+    // зачем ([COLD-START-IO], store-release, слабый профиль, 02.10): очистка подготовленных операций
+    // писалась на КАЖДОМ восстановлении, даже когда список и так пуст — 5 записей за старт, до 4,2 с
+    // в очереди AsyncStorage. Пишем только если было что очищать (запись есть и она не «[]»).
+    if (preparedRaw !== null && preparedRaw !== '[]') {
+      await AsyncStorage.setItem(levelSpinStarPreparedKey(ownerStableId), '[]');
+    } else {
+      console.log(`[LEVEL-SPIN-STAR] recover:prepared_clear_skipped — список уже пуст (raw=${preparedRaw === null ? 'null' : '[]'})`);
+    }
     return projection;
     }, storageLockLease);
   }, accountTransitionLockLease);

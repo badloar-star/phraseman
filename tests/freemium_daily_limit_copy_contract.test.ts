@@ -3,6 +3,7 @@ import path from 'node:path';
 
 import { CONTEXT_BENEFITS, getHeroPlannedCopy, getPaywallCopy } from '../app/paywall_copy';
 import { REVENUE_DAILY_LIMITS } from '../app/revenue_daily_limits';
+import { MONTHLY_TRAINING_SESSION_LIMIT } from '../app/monthly_training_sessions';
 import type { Lang } from '../constants/i18n';
 
 const root = path.resolve(__dirname, '..');
@@ -38,22 +39,24 @@ const RETIRED_PERSONAL_PLAN_SALES_COPY = [
 ];
 
 describe('дневные лимиты обычного аккаунта — правда в текстах пейвола', () => {
+  // зачем (владелец 22.09, 114baf437 + D152 01.10): тексты переписаны по-человечески — «с подпиской»
+  // вместо «Plus», заголовки без «лимит исчерпан» (экран открывается и без упора в лимит). Тренировки
+  // карточек у бесплатного аккаунта считаются МЕСЯЦЕМ (30, D152), устные попытки — днём (3).
   test.each([
     // dialog_limit — МЕСЯЧНЫЙ лимит (D111), сторожится ai_dialog_paywall_truth_contract.
-    ['speaking', REVENUE_DAILY_LIMITS.speaking_attempts],
-    ['ai_voice_input', REVENUE_DAILY_LIMITS.speaking_attempts],
-    ['flashcard_training', REVENUE_DAILY_LIMITS.flashcard_training_starts],
-  ] as const)('%s говорит про дневной лимит с числом %d во всех 9 локалях', (context, limit) => {
+    ['speaking', REVENUE_DAILY_LIMITS.speaking_attempts, 'в день'],
+    ['ai_voice_input', REVENUE_DAILY_LIMITS.speaking_attempts, 'в день'],
+    ['flashcard_training', MONTHLY_TRAINING_SESSION_LIMIT, 'в месяц'],
+  ] as const)('%s называет реальный лимит (%d) во всех 9 локалях', (context, limit, periodRu) => {
     const copy = getPaywallCopy(context);
     const planned = getHeroPlannedCopy(context, 0);
     const subtitles = [copy.subtitleRu, copy.subtitleUk, copy.subtitleEs, ...PLANNED_LANGS.map((lang) => planned.subtitle[lang] ?? '')];
     for (const subtitle of subtitles) {
       expect(subtitle).toContain(String(limit));
-      expect(subtitle.toLowerCase()).toContain('plus');
     }
-    expect(copy.titleRu.toLowerCase()).toContain('дневной лимит');
-    expect(copy.titleUk.toLowerCase()).toContain('денний ліміт');
-    expect((planned.title.en ?? '').toLowerCase()).toContain('daily');
+    expect(copy.subtitleRu).toContain(periodRu);
+    // Текст не утверждает, что что-то уже «исчерпано»: экран открывается и до упора в лимит.
+    expect(copy.titleRu.toLowerCase()).not.toContain('исчерпан');
     // Старое ложное обещание «только в Plus» ушло.
     expect(copy.titleRu).not.toMatch(/— в Plus$/);
     expect(copy.subtitleRu).not.toContain('входят в Plus');
@@ -61,8 +64,10 @@ describe('дневные лимиты обычного аккаунта — пр
   });
 
   test('числа лимитов в тексте совпадают с гейтами (один источник)', () => {
-    expect(read('app/revenue_quota_access.ts')).toContain(`FLASHCARD_TRAINING_DAILY_LIMIT = ${REVENUE_DAILY_LIMITS.flashcard_training_starts}`);
-    expect(read('functions/src/openai_dialog_model_config.ts')).toContain(`DIALOG_FREE_DAILY_REPLIES_DEFAULT = ${REVENUE_DAILY_LIMITS.ai_dialog_replies}`);
+    // зачем (D152): лимит тренировок — месячный счётчик monthly_training_sessions; текст берёт число оттуда.
+    expect(read('app/paywall_copy.ts')).toContain("import { MONTHLY_TRAINING_SESSION_LIMIT } from './monthly_training_sessions';");
+    // зачем (D111): лимит ответов в диалогах — месячный; сервер держит его в DIALOG_FREE_MONTHLY_REPLIES_DEFAULT.
+    expect(read('functions/src/openai_dialog_model_config.ts')).toContain(`DIALOG_FREE_MONTHLY_REPLIES_DEFAULT = ${REVENUE_DAILY_LIMITS.ai_dialog_replies}`);
     expect(read('app/paywall_copy.ts')).toContain("from './revenue_daily_limits'");
   });
 });

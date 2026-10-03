@@ -12,11 +12,14 @@ import { MAIN_COURSE_PLUS_TITLE, MAIN_COURSE_PLUS_DESCRIPTION, MAIN_COURSE_PLUS_
 import { triLang, type Lang } from '../constants/i18n';
 import { PREMIUM_CONTEXT_SET, type PremiumContext } from './premium_context';
 import { REVENUE_DAILY_LIMITS, REVENUE_MONTHLY_LIMITS } from './revenue_daily_limits';
+import { MONTHLY_TRAINING_SESSION_LIMIT } from './monthly_training_sessions';
 
 // зачем (владелец, 2026-09-13): дневные лимиты обычного аккаунта настоящие —
 // пейвол обязан говорить «лимит на сегодня исчерпан», а не «только в Plus».
 // Числа берутся из одного источника, чтобы текст не разошёлся с гейтом.
-const DAILY_TRAINING = REVENUE_DAILY_LIMITS.flashcard_training_starts;
+// зачем (D152, 01.10): тренировки у бесплатного аккаунта считаются МЕСЯЦЕМ (30), а не днём —
+// текст окна Plus обещал «3 в день» и расходился с реальным счётчиком. Число — из того же источника.
+const MONTHLY_TRAINING = MONTHLY_TRAINING_SESSION_LIMIT;
 const DAILY_SPEAKING = REVENUE_DAILY_LIMITS.speaking_attempts;
 // зачем (D111, 2026-09-30): Free-лимит Диалогов — 30 ответов в МЕСЯЦ, не в день.
 const MONTHLY_DIALOG = REVENUE_MONTHLY_LIMITS.ai_dialog_replies;
@@ -388,9 +391,9 @@ PAYWALL_COPY.flashcard_training = {
   titleRu: 'Тренируйся сколько хочется',
   titleUk: 'Тренуйся скільки хочеться',
   titleEs: 'Entrena todo lo que quieras',
-  subtitleRu: `Бесплатно — ${DAILY_TRAINING} тренировки в день на все режимы. С подпиской счётчика нет, а слабые фразы возвращаются чаще, пока не закрепятся. Вместе с этим открывается весь курс, разговоры вслух и статистика.`,
-  subtitleUk: `Безкоштовно — ${DAILY_TRAINING} тренування на день на всі режими. Із передплатою лічильника немає, а слабкі фрази повертаються частіше, доки не закріпляться. Разом із цим відкривається увесь курс, розмови вголос і статистика.`,
-  subtitleEs: `Gratis son ${DAILY_TRAINING} entrenamientos al día en todos los modos. Con la suscripción no hay contador y las frases flojas vuelven más seguido hasta fijarse. Junto con esto se abre el curso completo, la práctica oral y las estadísticas.`,
+  subtitleRu: `Бесплатно — ${MONTHLY_TRAINING} тренировок в месяц на все режимы. С подпиской счётчика нет, а слабые фразы возвращаются чаще, пока не закрепятся. Вместе с этим открывается весь курс, разговоры вслух и статистика.`,
+  subtitleUk: `Безкоштовно — ${MONTHLY_TRAINING} тренувань на місяць на всі режими. Із передплатою лічильника немає, а слабкі фрази повертаються частіше, доки не закріпляться. Разом із цим відкривається увесь курс, розмови вголос і статистика.`,
+  subtitleEs: `Gratis son ${MONTHLY_TRAINING} entrenamientos al mes en todos los modos. Con la suscripción no hay contador y las frases flojas vuelven más seguido hasta fijarse. Junto con esto se abre el curso completo, la práctica oral y las estadísticas.`,
 };
 
 PAYWALL_COPY.ai_explain = {
@@ -752,12 +755,12 @@ PAYWALL_PLANNED_COPY.flashcard_training = {
     pl: 'Trenuj, ile chcesz',
   },
   subtitle: {
-    en: `${DAILY_TRAINING} trainings a day across all modes for free. With a subscription there is no counter, and weak phrases come back more often until they stick. The whole course, speaking practice and statistics open up with it.`,
-    'pt-BR': `Grátis são ${DAILY_TRAINING} treinos por dia em todos os modos. Com a assinatura não há contador, e as frases fracas voltam com mais frequência até fixarem. Junto com isso abrem o curso inteiro, a prática de fala e as estatísticas.`,
-    vi: `Miễn phí là ${DAILY_TRAINING} lượt luyện mỗi ngày cho mọi chế độ. Với gói đăng ký không còn bộ đếm, và những cụm từ còn yếu quay lại thường xuyên hơn cho tới khi nhớ chắc. Cùng lúc đó mở ra trọn khóa học, luyện nói và thống kê.`,
-    id: `Gratis ${DAILY_TRAINING} latihan per hari untuk semua mode. Dengan langganan tidak ada penghitung, dan frasa yang lemah kembali lebih sering sampai melekat. Bersamaan dengan itu terbuka seluruh kursus, latihan bicara, dan statistik.`,
-    tr: `Ücretsizde tüm modlar için günde ${DAILY_TRAINING} antrenman var. Abonelikte sayaç yok ve zayıf ifadeler oturana dek daha sık geri gelir. Bununla birlikte kursun tamamı, konuşma pratiği ve istatistikler açılır.`,
-    pl: `Za darmo ${DAILY_TRAINING} treningi dziennie we wszystkich trybach. W subskrypcji nie ma licznika, a słabe zwroty wracają częściej, aż się utrwalą. Razem z tym otwiera się cały kurs, mówienie na głos i statystyki.`,
+    en: `${MONTHLY_TRAINING} trainings a month across all modes for free. With a subscription there is no counter, and weak phrases come back more often until they stick. The whole course, speaking practice and statistics open up with it.`,
+    'pt-BR': `Grátis são ${MONTHLY_TRAINING} treinos por mês em todos os modos. Com a assinatura não há contador, e as frases fracas voltam com mais frequência até fixarem. Junto com isso abrem o curso inteiro, a prática de fala e as estatísticas.`,
+    vi: `Miễn phí là ${MONTHLY_TRAINING} lượt luyện mỗi tháng cho mọi chế độ. Với gói đăng ký không còn bộ đếm, và những cụm từ còn yếu quay lại thường xuyên hơn cho tới khi nhớ chắc. Cùng lúc đó mở ra trọn khóa học, luyện nói và thống kê.`,
+    id: `Gratis ${MONTHLY_TRAINING} latihan per bulan untuk semua mode. Dengan langganan tidak ada penghitung, dan frasa yang lemah kembali lebih sering sampai melekat. Bersamaan dengan itu terbuka seluruh kursus, latihan bicara, dan statistik.`,
+    tr: `Ücretsizde tüm modlar için ayda ${MONTHLY_TRAINING} antrenman var. Abonelikte sayaç yok ve zayıf ifadeler oturana dek daha sık geri gelir. Bununla birlikte kursun tamamı, konuşma pratiği ve istatistikler açılır.`,
+    pl: `Za darmo ${MONTHLY_TRAINING} treningów miesięcznie we wszystkich trybach. W subskrypcji nie ma licznika, a słabe zwroty wracają częściej, aż się utrwalą. Razem z tym otwiera się cały kurs, mówienie na głos i statystyki.`,
   },
 };
 
@@ -963,6 +966,9 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
   club: [
     { ru: 'Дополнительные возможности сообщества', uk: 'Додаткові можливості спільноти', es: 'Más funciones de comunidad', 'pt-BR': 'Mais recursos da comunidade', vi: 'Thêm tính năng cộng đồng', id: 'Fitur komunitas tambahan', tr: 'Ek topluluk özellikleri', pl: 'Dodatkowe funkcje społeczności' },
     { ru: 'Больше способов заниматься регулярно', uk: 'Більше способів займатися регулярно', es: 'Más formas de practicar con regularidad', 'pt-BR': 'Mais formas de praticar com regularidade', vi: 'Nhiều cách học đều đặn hơn', id: 'Lebih banyak cara untuk belajar rutin', tr: 'Düzenli pratik için daha fazla yol', pl: 'Więcej sposobów na regularną naukę' },
+    // зачем (контракт «≥3 пунктов», экран Plus показывает три; владелец 22.09 — из текста видно,
+    // что подписка открывает всё приложение, а не одну функцию): третий пункт у «club» пропал.
+    { ru: 'Весь курс, разговоры вслух и статистика', uk: 'Увесь курс, розмови вголос і статистика', es: 'Todo el curso, hablar en voz alta y estadísticas', 'pt-BR': 'O curso inteiro, fala em voz alta e estatísticas', vi: 'Trọn khóa học, luyện nói thành tiếng và thống kê', id: 'Seluruh kursus, bicara lantang, dan statistik', tr: 'Kursun tamamı, sesli konuşma ve istatistikler', pl: 'Cały kurs, mówienie na głos i statystyki' },
   ],
   generic: [
     // зачем (владелец, 2026-09-22): «Плюс-опции сразу после активации» — фраза

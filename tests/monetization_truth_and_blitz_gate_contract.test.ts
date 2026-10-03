@@ -10,17 +10,20 @@ const MAIN_COURSE_CONTEXTS = [
   'notification_upsell',
 ] as const;
 
+// зачем (владелец 22.09, 114baf437): пункты названы действиями человека — «Безлимитная энергия» стала
+// «Занятия без ожидания энергии» и переехала третьей; смысл сторожа прежний: энергия вместо снятого плана.
 const UNLIMITED_ENERGY_COPY = {
-  ru: 'Безлимитная энергия',
-  uk: 'Безлімітна енергія',
-  en: 'Unlimited energy',
-  es: 'Energía ilimitada',
-  'pt-BR': 'Energia ilimitada',
-  vi: 'Năng lượng không giới hạn',
-  id: 'Energi tanpa batas',
-  tr: 'Sınırsız enerji',
-  pl: 'Nielimitowana energia',
+  ru: 'Занятия без ожидания энергии',
+  uk: 'Заняття без очікування енергії',
+  en: 'Study without waiting for energy',
+  es: 'Estudia sin esperar energía',
+  'pt-BR': 'Estude sem esperar energia',
+  vi: 'Học mà không cần chờ năng lượng',
+  id: 'Belajar tanpa menunggu energi',
+  tr: 'Enerji beklemeden çalışma',
+  pl: 'Nauka bez czekania na energię',
 } as const;
+const ENERGY_BENEFIT_INDEX = 2;
 
 const RETIRED_PERSONAL_PLAN_COPY = {
   ru: 'Личный план занятий',
@@ -36,7 +39,7 @@ const RETIRED_PERSONAL_PLAN_COPY = {
 
 describe('monetization truth and direct-route access contracts', () => {
   test('main Plus sales copy advertises unlimited energy instead of retired Personal Plan', () => {
-    expect(MAIN_COURSE_PLUS_BENEFITS[1]).toEqual(UNLIMITED_ENERGY_COPY);
+    expect(MAIN_COURSE_PLUS_BENEFITS[ENERGY_BENEFIT_INDEX]).toEqual(UNLIMITED_ENERGY_COPY);
 
     for (const context of MAIN_COURSE_CONTEXTS) {
       const benefits = CONTEXT_BENEFITS[context];
@@ -44,7 +47,7 @@ describe('monetization truth and direct-route access contracts', () => {
       const localizedBenefits = benefits as Record<Lang, string>[];
 
       for (const locale of Object.keys(UNLIMITED_ENERGY_COPY) as (keyof typeof UNLIMITED_ENERGY_COPY)[]) {
-        expect(localizedBenefits[1]?.[locale]).toBe(UNLIMITED_ENERGY_COPY[locale]);
+        expect(localizedBenefits[ENERGY_BENEFIT_INDEX]?.[locale]).toBe(UNLIMITED_ENERGY_COPY[locale]);
         expect(localizedBenefits.map((benefit) => benefit[locale])).not.toContain(RETIRED_PERSONAL_PLAN_COPY[locale]);
       }
     }

@@ -62,16 +62,17 @@ describe('paywall_copy — контракт покрытия premium-конте�
   it('course_after_lesson3 explains the three-lesson Free limit and ordered Plus access', () => {
     const copy = getPaywallCopy('course_after_lesson3');
 
-    // Owner 2026-09-20: Free stops after lesson 3. Plus continues the course,
-    // with section starters immediately available and the rest in sequence.
-    expect(copy.titleRu).toBe('Больше возможностей с Plus');
+    // зачем (владелец 2026-09-22, 114baf437): текст не утверждает ничего о прошлом человека и не
+    // называет уровни A1/A2/B1/B2 (начинающий их не знает); из текста видно, что Plus открывает всё
+    // приложение, а не один курс. Прежняя формулировка от 20.09 заменена владельцем.
+    expect(copy.titleRu).toBe('Продолжим курс?');
     expect(copy.subtitleRu).toBe(
-      'Первые три урока доступны бесплатно. С Plus первые уроки A1, A2, B1 и B2 доступны сразу, остальные открываются по порядку.',
+      'Впереди ещё двадцать девять уроков — от простых фраз до свободного разговора. А вместе с ними открывается и всё остальное: разговоры вслух, тренировки без счётчика, своя коллекция фраз и статистика.',
     );
     expect(CONTEXT_BENEFITS.course_after_lesson3?.map((benefit) => benefit.ru)).toEqual([
-      'Разговорная практика',
-      'Безлимитная энергия',
-      'Подробная статистика',
+      'Весь курс целиком',
+      'Разговорная практика вслух',
+      'Занятия без ожидания энергии',
     ]);
     expect(CONTEXT_BENEFITS_PLANNED.course_after_lesson3).toEqual(CONTEXT_BENEFITS.course_after_lesson3);
     expect(CONTEXT_BENEFITS.lesson_b1).toEqual(CONTEXT_BENEFITS.course_after_lesson3);
@@ -83,6 +84,8 @@ describe('paywall_copy — контракт покрытия premium-конте�
     ].join(' ');
     expect(russianCopy).not.toContain('текущ');
     expect(russianCopy).not.toContain('экзамен');
+    expect(russianCopy).not.toMatch(/\b(A1|A2|B1|B2)\b/);
+    expect(russianCopy).not.toMatch(/закончил|позади|исчерпан/);
   });
 
   it('новые paywall-контексты нормализуются в себя, а не в старый экран', () => {

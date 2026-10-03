@@ -107,16 +107,19 @@ const safeLessonCompleteEventPart = (value: unknown, max = 60): string =>
 
 type LessonSoftUpsellCopy = { title: string; body: string; ctaLabel: string; dismissLabel: string; dismissAccessibilityLabel: string; dismissAccessibilityHint: string; ctaAccessibilityLabel: string; ctaAccessibilityHint: string };
 
+// зачем (владелец 2026-09-22, правило 114baf437): текст не рассказывает, что человек «уже получил»
+// бесплатно, и не называет уровни A1/A2/B1/B2 (начинающий их не знает); из него видно, что Plus
+// открывает всё приложение. Общий текст курса («впереди 29 уроков») сюда не подходит — это после 1-го урока.
 const MAIN_COURSE_ACCESS_BODY: Record<Lang, string> = {
-  ru: 'Первые три урока доступны бесплатно. С Plus первые уроки A1, A2, B1 и B2 доступны сразу, остальные открываются по порядку.',
-  uk: 'Перші три уроки доступні безкоштовно. З Plus перші уроки A1, A2, B1 і B2 доступні одразу, решта відкривається по черзі.',
-  en: 'The first three lessons are free. With Plus, the first A1, A2, B1, and B2 lessons are available immediately; the rest unlock in order.',
-  es: 'Las tres primeras lecciones son gratis. Con Plus, la primera lección de A1, A2, B1 y B2 está disponible de inmediato; las demás se abren en orden.',
-  'pt-BR': 'As três primeiras lições são grátis. Com o Plus, a primeira lição de A1, A2, B1 e B2 fica disponível de imediato; as demais abrem em ordem.',
-  vi: 'Ba bài học đầu tiên được miễn phí. Với Plus, bài đầu của A1, A2, B1 và B2 có sẵn ngay; các bài còn lại mở theo thứ tự.',
-  id: 'Tiga pelajaran pertama gratis. Dengan Plus, pelajaran pertama A1, A2, B1, dan B2 langsung tersedia; sisanya terbuka berurutan.',
-  tr: 'İlk üç ders ücretsizdir. Plus ile A1, A2, B1 ve B2’nin ilk dersleri hemen açılır; diğerleri sırayla açılır.',
-  pl: 'Pierwsze trzy lekcje są bezpłatne. Z Plus pierwsze lekcje A1, A2, B1 i B2 są dostępne od razu, a pozostałe odblokowują się po kolei.',
+  ru: 'Дальше курс ведёт от простых фраз до свободного разговора. С Plus открывается весь курс, а с ним и всё остальное: разговоры вслух, тренировки без счётчика и статистика.',
+  uk: 'Далі курс веде від простих фраз до вільної розмови. З Plus відкривається увесь курс, а з ним і все інше: розмови вголос, тренування без лічильника і статистика.',
+  en: 'Next, the course takes you from simple phrases to free conversation. Plus opens the whole course, and everything else with it: speaking out loud, training without a counter and statistics.',
+  es: 'Después, el curso te lleva de las frases simples a la conversación libre. Con Plus se abre el curso completo y, con él, todo lo demás: hablar en voz alta, entrenamientos sin contador y estadísticas.',
+  'pt-BR': 'Daqui em diante, o curso vai das frases simples à conversa livre. Com o Plus abre o curso inteiro e, junto com ele, todo o resto: falar em voz alta, treinos sem contador e estatísticas.',
+  vi: 'Tiếp theo, khóa học đưa bạn từ câu đơn giản đến trò chuyện tự nhiên. Với Plus, cả khóa học mở ra, cùng mọi thứ khác: nói thành tiếng, luyện tập không giới hạn lượt và thống kê.',
+  id: 'Selanjutnya, kursus membawamu dari frasa sederhana sampai percakapan bebas. Dengan Plus seluruh kursus terbuka, bersama semua yang lain: bicara lantang, latihan tanpa penghitung, dan statistik.',
+  tr: 'Bundan sonra kurs seni basit ifadelerden serbest konuşmaya götürür. Plus ile kursun tamamı açılır, onunla birlikte gerisi de: sesli konuşma, sayaçsız antrenman ve istatistikler.',
+  pl: 'Dalej kurs prowadzi od prostych zwrotów do swobodnej rozmowy. Z Plus otwiera się cały kurs, a z nim cała reszta: mówienie na głos, treningi bez licznika i statystyki.',
 };
 
 const LESSON_SOFT_UPSELL_COPY = {

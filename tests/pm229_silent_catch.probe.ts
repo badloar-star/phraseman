@@ -24,27 +24,11 @@ const SKIP_DIRS = new Set(['node_modules', '__tests__', 'graphify-out', '__mocks
 // Ключ — файл, значение — сколько немых обработчиков разрешено (долг).
 // Только сокращать. Новые файлы сюда не добавлять — логируй причину.
 const BASELINE: Record<string, number> = {
-  'app/(tabs)/friends.tsx': 7, // FINAL_PHASE п.7 2026-10-02: 9 → 7 (заявка в друзья)
-  'app/(tabs)/home.tsx': 4, // PM-289 2026-10-02: 5 → 4 (снято начисление жемчуга за серию)
-  'app/(tabs)/lessons.tsx': 1,
-  'app/(tabs)/settings.tsx': 1, // FINAL_PHASE п.7 2026-10-02: 4 → 1
-  'app/_layout.tsx': 112, // PM-229 2026-10-02: 115 → 112
   'app/account_switch_quarantine.ts': 3,
   'app/app_snapshot_bootstrap.ts': 5, // Q5: чтение Avatar DNA на старте удалено
   'app/auth_provider.ts': 26,
-  'app/community_packs/CommunityPackSocialBar.tsx': 2,
   'app/debug-logger.ts': 2, // PM-228 2026-10-01: 7 → 2 (остались .catch(() => undefined) в цепочке очереди — намеренный разрыв цепочки)
-  'app/flashcards/FlashcardsHubScreen.tsx': 4,
-  'app/flashcards_blitz_session.tsx': 4, // FINAL_PHASE п.7 2026-10-02: 12 → 4
-  'app/flashcards_collection.tsx': 2,
-  'app/flashcards_my_packs.tsx': 4, // FINAL_PHASE п.7 2026-10-02: 5 → 4 (удаление набора)
-  'app/flashcards_packs.tsx': 7,
-  'app/flashcards_speaking_session.tsx': 4, // FINAL_PHASE п.7 2026-10-02: 10 → 4
-  'app/flashcards_swipe.tsx': 13, // FINAL_PHASE п.7 2026-10-02: 23 → 13
-  'app/flashcards_training_setup.tsx': 1,
   'app/interactive_network_quiet.ts': 1,
-  'app/learning_v2_direct_session_player_v1.tsx': 1,
-  'app/lesson_irregular_verbs.tsx': 1, // PM-233 D140: 2 → 1 (снят дроп коллекции)
   'app/statsCache.ts': 3,
   'modules/phone-state/keyed_exclusive_transaction.ts': 1,
   'modules/account-session-v2/account_detach_latch.ts': 1, // E22 2026-10-01: намеренный разрыв цепочки очереди (tail = next.catch(...))

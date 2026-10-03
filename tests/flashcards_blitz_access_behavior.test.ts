@@ -34,6 +34,13 @@ const mockCards = [
   { id: '4', en: 'four', translation: 'четыре' },
 ];
 
+// PM-229: экран пишет причину проглоченной ошибки через swallow_log — журнал тянет конфиг
+// с Platform.OS, которого в урезанном моке react-native нет; подменяем, как остальных соседей.
+jest.mock('../app/swallow_log', () => ({
+  noteSwallowed: () => undefined,
+  noteSwallowedHandler: () => () => undefined,
+  noteSwallowedAs: (_tag: string, fallback: unknown) => () => fallback,
+}));
 jest.mock('react-native', () => ({
   ScrollView: 'ScrollView',
   StyleSheet: {

@@ -13,6 +13,7 @@ import Reanimated, {
   withRepeat,
   withTiming,
 } from 'react-native-reanimated';
+import { noteSwallowedAs, noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // FlashList с поддержкой Reanimated-обработчика скролла (onScroll-worklet на UI-потоке).
 const AnimatedFlashList = Reanimated.createAnimatedComponent(FlashList as any) as any;
@@ -1113,7 +1114,7 @@ export default function FriendsTabScreen() {
     hapticTap();
     try {
       const name = myProfile?.name ?? '';
-      const share = await buildCloudReferralInviteShare({ lang, userName: name }).catch(() => null);
+      const share = await buildCloudReferralInviteShare({ lang, userName: name }).catch(noteSwallowedAs('friends:useCallback.buildCloudReferralInviteShare', null));
       if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
       if (share?.message) {
         await Share.share({ message: share.message });
@@ -1302,7 +1303,7 @@ export default function FriendsTabScreen() {
         setReferralCodeAccountKey(accountScopeKey(requestToken));
         setReferralCode(prev => prev ?? rc.trim().toUpperCase());
       }
-    }).catch(() => { /* нет кеша — сетевой ретрай ниже добьёт первую генерацию */ });
+    }).catch(noteSwallowedHandler('friends:useEffect.getReferralCode'));
     return () => { cancelled = true; };
   }, [referralAccountKey, referralMarketingVisible]);
 
@@ -1370,7 +1371,7 @@ export default function FriendsTabScreen() {
         swrHadFriendsRef.current = w.friends.length > 0;
         setFriends(w.friends);
         if (w.friends.length > 0) {
-          void checkAchievements({ type: 'friend_added', totalFriends: w.friends.length }).catch(() => {});
+          void checkAchievements({ type: 'friend_added', totalFriends: w.friends.length }).catch(noteSwallowedHandler('friends:useEffect.checkAchievements'));
         }
         setRequests(w.requests);
         const fromWarmProf = (w.profiles as Record<string, FriendProfile>) ?? {};
@@ -1398,7 +1399,7 @@ export default function FriendsTabScreen() {
         if (data.length === 0 && fromCache && swrHadFriendsRef.current) return;
         setFriends(data);
         if (data.length > 0) {
-          void checkAchievements({ type: 'friend_added', totalFriends: data.length }).catch(() => {});
+          void checkAchievements({ type: 'friend_added', totalFriends: data.length }).catch(noteSwallowedHandler('friends:useEffect.checkAchievements_2'));
         }
       }, (error) => {
         if (cancelled) return;
@@ -1609,7 +1610,7 @@ export default function FriendsTabScreen() {
             tags: { queryLength: codeInput.length, transient: isTransient, errorCode: errCode },
           }),
         )
-        .catch(() => {});
+        .catch(noteSwallowedHandler('friends:useCallback.call'));
       await trackActivity('friends:search_error', {
         feature: 'friends',
         screen: 'friends',
@@ -1852,7 +1853,7 @@ export default function FriendsTabScreen() {
           states.filter(state => state.eventId === PROFILE_LIKE_EVENT_ID).map(state => state.targetUid),
         ));
       })
-      .catch(() => { /* сеть/бэкенд — сердца остаются пустыми, тап всё равно работает */ });
+      .catch(noteSwallowedHandler('friends:useEffect.fetchActivityLikeStates'));
     return () => { cancelled = true; };
   }, [hasFriends]);
   // Карточка игрока тоже умеет ставить/снимать этот лайк — держим строку в согласии.
@@ -1888,7 +1889,7 @@ export default function FriendsTabScreen() {
       .catch(async () => {
         // Откат к правде сервера, а не просто к прежнему значению: поздний ответ не должен
         // затереть более свежий тап из карточки игрока.
-        const fresh = await fetchActivityLikeState(uid).catch(() => null);
+        const fresh = await fetchActivityLikeState(uid).catch(noteSwallowedAs('friends:useCallback.fetchActivityLikeState', null));
         const likedOnServer = !!fresh;
         setHighFivedUids(prev => {
           if (prev.has(uid) === likedOnServer) return prev;

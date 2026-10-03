@@ -194,6 +194,7 @@ import {
 } from "./learning_v2_unlocked_lesson_words_v1";
 import { DebugLogger } from './debug-logger';
 import { recordTodayTaskActivity } from '../modules/today-tasks/today_tasks_store';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import type { LearningV2FactoryNativeNewWordEncounterV1 } from "../modules/learning-v2/content/factory_native/factory_native_course_v1";
 import { factoryNativeLearningV2AvailabilityV1 } from "../modules/learning-v2/content/factory_native/factory_native_catalog_v1";
 import { sanitizeLearningV2LearnerPromptV1 } from "../modules/learning-v2/content/learner_prompt_hygiene_v1";
@@ -1802,7 +1803,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                     : "form",
             expected: canonicalTarget,
           },
-        }).catch(() => {});
+        }).catch(noteSwallowedHandler('learning_v2_direct_session_player_v1:useCallback.captureCurrentAccountObjectiveAttempt'));
       }
       setWrongCount((value) => value + 1);
       setLastWrongResponseId(

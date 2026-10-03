@@ -18,7 +18,8 @@ describe('settings promo-code startup stability', () => {
 
     expect(remoteConfig).toContain('export async function primeRemoteConfigCacheFromStorage(): Promise<void>');
     expect(rootLayout).toContain("import { primeRemoteConfigCacheFromStorage } from './remote_config_client';");
-    expect(rootLayout).toContain('primeRemoteConfigCacheFromStorage().catch(() => {})');
+    // зачем: PM-229 — немой обработчик теперь пишет причину в журнал; значение по умолчанию прежнее
+    expect(rootLayout).toMatch(/primeRemoteConfigCacheFromStorage\(\)\.catch\((\(\) => \{\}|noteSwallowedHandler\('[^']+'\))\)/);
   });
 
   it('promo code row never depends on remote config, network, or a local flag state', () => {

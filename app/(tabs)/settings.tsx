@@ -83,6 +83,7 @@ import {
   voiceOutLabel,
   voiceOutSub,
 } from '../feedback/feedback_i18n';
+import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Картинка инвайт-баннера настроек (wire first, generate second — правило asset-хайджины). */
 
@@ -573,8 +574,7 @@ export default function SettingsMain() {
         setVipUntilMs(parseStoredExpiryMs(vip?.vip_until));
         if (pairs[2][1] !== null) setHapticTap(pairs[2][1] !== 'false');
       })
-      .catch(() => {
-      });
+      .catch(noteSwallowedHandler('settings:useEffect.all'));
     refreshSupplementalAccessState();
     return () => { cancelled = true; };
   }, [settingsRuntimeActive, refreshSupplementalAccessState]); // warm once, refresh when opening Settings

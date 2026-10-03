@@ -2,6 +2,7 @@
 
 Governance-ID: TG-ED4ED322842C
 Governance-ID: TG-F68BA44319F6 (continuation after the session restart: batch 2+, auth_provider getters)
+Governance-ID: TG-E68735FD42E3 (batch 3: _layout + 15 screens; guards that pinned the old silent text)
 Status: In progress
 Owner: Claude session «App Check» (82577f25), by coordinator (2026-10-02, after §78)
 Related epic/enabler: PM-229 (A1 «no silent error suppression»)

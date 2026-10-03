@@ -130,6 +130,7 @@ import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset'
 
 import { noAndroidOutline } from '../constants/androidGlow';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // зачем: запись черновика сессии не чаще раза в это время (см. эффект сохранения черновика).
 const DRAFT_SAVE_DELAY_MS = 1500;
@@ -790,9 +791,9 @@ async function buildCommunitySources(
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return [];
   try {
     const [ownedCommunityIds, published, stableId] = await Promise.all([
-      loadCommunityOwnedPackIds(studyTarget).catch(() => [] as string[]),
-      loadPublishedCommunityMarketPacks(studyTarget).catch(() => [] as FlashcardMarketPack[]),
-      getCanonicalUserId().catch(() => null as string | null),
+      loadCommunityOwnedPackIds(studyTarget).catch(noteSwallowedAs('flashcards_swipe:buildCommunitySources.loadCommunityOwnedPackIds', [])),
+      loadPublishedCommunityMarketPacks(studyTarget).catch(noteSwallowedAs('flashcards_swipe:buildCommunitySources.loadPublishedCommunityMarketPacks', [])),
+      getCanonicalUserId().catch(noteSwallowedAs('flashcards_swipe:buildCommunitySources.getCanonicalUserId', null)),
     ]);
     const owned = new Set([...ownedCommunityIds, ...inheritedOwnedPackIds]);
     const minePublished = published.filter(
@@ -807,7 +808,7 @@ async function buildCommunitySources(
       : [];
     const visibleIds = new Set([...minePublished, ...pendingMine].map((p) => p.id));
     const missingOwned = [...owned].filter((id) => !visibleIds.has(id));
-    const missingMeta = await Promise.all(missingOwned.map((id) => fetchCommunityPackMeta(id, studyTarget).catch(() => null)));
+    const missingMeta = await Promise.all(missingOwned.map((id) => fetchCommunityPackMeta(id, studyTarget).catch(noteSwallowedAs('flashcards_swipe:buildCommunitySources.fetchCommunityPackMeta', null))));
     const byId = new Map<string, FlashcardMarketPack>();
     for (const pack of [...minePublished, ...pendingMine, ...missingMeta]) {
       if (pack?.isCommunityUgc) byId.set(pack.id, pack);
@@ -2044,9 +2045,9 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     let keepSkeleton = false;
     try {
       const [savedRaw, customRaw, officialOwnedIds] = await Promise.all([
-        loadSelectedSavedContour(studyTarget).catch(() => [] as Flashcard[]),
-        readCustomCards(studyTarget).catch(() => [] as unknown[]),
-        officialPacksEnabled ? loadAccessiblePackIds(studyTarget).catch(() => [] as string[]) : Promise.resolve([] as string[]),
+        loadSelectedSavedContour(studyTarget).catch(noteSwallowedAs('flashcards_swipe:useCallback.loadSelectedSavedContour', [])),
+        readCustomCards(studyTarget).catch(noteSwallowedAs('flashcards_swipe:useCallback.readCustomCards', [])),
+        officialPacksEnabled ? loadAccessiblePackIds(studyTarget).catch(noteSwallowedAs('flashcards_swipe:useCallback.loadAccessiblePackIds', [])) : Promise.resolve([] as string[]),
       ]);
       if (!accessIsCurrent()) return;
       const next: TrainingSource[] = [];
@@ -2173,7 +2174,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     if (!swipeAccessGranted) return;
     let cancelled = false;
     void (async () => {
-      const memory = await loadSwipeMemory(studyTarget).catch(() => ({} as SwipeMemory));
+      const memory = await loadSwipeMemory(studyTarget).catch(noteSwallowedAs('flashcards_swipe:useEffect.loadSwipeMemory', {}));
       const now = Date.now();
       const localCards: TrainingCard[] = [];
       for (const source of selectedSources) {
@@ -2263,7 +2264,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     async (pickedSources: TrainingSource[], memory: SwipeMemory): Promise<SessionBuild> => {
       const chunks = await Promise.all(
         pickedSources.map(async (source) => {
-          const cards = source.cards ?? (await source.loadCards?.().catch(() => [] as CardItem[])) ?? [];
+          const cards = source.cards ?? (await source.loadCards?.().catch(noteSwallowedAs('flashcards_swipe:useCallback.loadCards', []))) ?? [];
           return cards
             .filter((card) => s(card.en) && answerFor(card))
             .map((card) => ({
@@ -2608,7 +2609,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           refundSwipeEnergy,
           Date.now(),
           'entry_failed',
-        ).catch(() => null);
+        ).catch(noteSwallowedAs('flashcards_swipe:useCallback.abandonFlashcardTrainingPendingGrant', null));
         if (abandoned?.status === 'refunded' || abandoned?.status === 'refund_in_progress') {
           activeSwipeSpentOperationRef.current = null;
         } else {
@@ -2661,10 +2662,10 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     let cancelled = false;
     draftRestoreAttemptedRef.current = true;
     void (async () => {
-      const draft = await loadFlashcardsSwipeSessionDraft(sessionDraftScope, Date.now(), studyTarget).catch(() => null);
+      const draft = await loadFlashcardsSwipeSessionDraft(sessionDraftScope, Date.now(), studyTarget).catch(noteSwallowedAs('flashcards_swipe:useEffect.loadFlashcardsSwipeSessionDraft', null));
       if (!draft || cancelled) return;
 
-      const memory = await loadSwipeMemory(studyTarget).catch(() => ({} as SwipeMemory));
+      const memory = await loadSwipeMemory(studyTarget).catch(noteSwallowedAs('flashcards_swipe:useEffect.loadSwipeMemory_2', {}));
       const { cards, info } = await buildSessionCards(selectedSources, memory);
       if (cancelled) return;
 

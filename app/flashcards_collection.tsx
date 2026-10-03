@@ -126,6 +126,7 @@ import {
   toggleSelectedCardId,
 } from './flashcards/saved_card_selection';
 import { stageSavedCardSet } from './community_packs/savedCardSetStaging';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** E11 (§3.2): debounce строки поиска. */
 const FC_SEARCH_DEBOUNCE_MS = 200;
@@ -456,7 +457,7 @@ export default function FlashcardsScreen() {
     setSelectionMode(false);
     setSavedActionsOpen(false);
     setPackLanguage(next);
-    void setStoredPackLanguage(next).catch(() => {});
+    void setStoredPackLanguage(next).catch(noteSwallowedHandler('flashcards_collection:useCallback.setStoredPackLanguage'));
   }, [packLanguage]);
 
   const toggleSavedCardSelection = useCallback((cardId: string) => {
@@ -677,7 +678,7 @@ export default function FlashcardsScreen() {
   persistProgressRef.current = (index: number) => {
     if (loading) return;
     // Изоляция целей обучения: позиция сохраняется в хранилище текущей цели.
-    writeFlashcardsProgress({ cat: activeCat, idx: index }, studyTarget).catch(() => {});
+    writeFlashcardsProgress({ cat: activeCat, idx: index }, studyTarget).catch(noteSwallowedHandler('flashcards_collection:FlashcardsScreen.writeFlashcardsProgress'));
   };
   useEffect(() => {
     const packFilter =

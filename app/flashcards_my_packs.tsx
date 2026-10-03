@@ -97,6 +97,7 @@ import {
   MissingPackCache,
   MY_PACKS_MISSING_TTL_MS,
 } from './flashcards/myPacksDataIntegrity';
+import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const COLS = 3;
 const GAP = 10;
@@ -155,12 +156,12 @@ function isMyPacksSort(value: unknown): value is MyPacksSort {
 }
 
 async function getStoredMyPacksSort(): Promise<MyPacksSort> {
-  const raw = await AsyncStorage.getItem(MY_PACKS_SORT_KEY).catch(() => null);
+  const raw = await AsyncStorage.getItem(MY_PACKS_SORT_KEY).catch(noteSwallowedAs('flashcards_my_packs:getStoredMyPacksSort.getItem', null));
   return isMyPacksSort(raw) ? raw : 'updated';
 }
 
 async function setStoredMyPacksSort(sort: MyPacksSort): Promise<void> {
-  await AsyncStorage.setItem(MY_PACKS_SORT_KEY, sort).catch(() => {});
+  await AsyncStorage.setItem(MY_PACKS_SORT_KEY, sort).catch(noteSwallowedHandler('flashcards_my_packs:setStoredMyPacksSort.setItem'));
 }
 
 /** Сортировка стабильна: Array.prototype.sort в Hermes/JSC стабилен (ES2019),
@@ -319,7 +320,7 @@ export default function FlashcardsMyPacksScreen() {
 
   const handlePackLanguageChange = useCallback((next: PackLanguage) => {
     setPackLanguage(next);
-    void setStoredPackLanguage(next).catch(() => {});
+    void setStoredPackLanguage(next).catch(noteSwallowedHandler('flashcards_my_packs:useCallback.setStoredPackLanguage'));
   }, []);
 
   const tileW = Math.floor((Math.min(width, 640) - H_PAD * 2 - GAP * (COLS - 1)) / COLS);

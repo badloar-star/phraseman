@@ -23,11 +23,12 @@ describe('intro full access layout orchestration', () => {
 
   it('suppresses intro gift modals for users who already have real Premium or VIP', () => {
     expect(source).toContain('hasVerifiedRealPremiumOrVip');
-    expect(source).toContain('getVerifiedRealPremiumStatus().catch(() => false)');
-    expect(source).toContain('getVerifiedVipStatus().catch(() => false)');
+    // зачем: PM-229 — немой обработчик теперь пишет причину в журнал; значение по умолчанию прежнее
+    expect(source).toMatch(/getVerifiedRealPremiumStatus\(\)\.catch\((\(\) => false|noteSwallowedAs\('[^']+', false\))\)/);
+    expect(source).toMatch(/getVerifiedVipStatus\(\)\.catch\((\(\) => false|noteSwallowedAs\('[^']+', false\))\)/);
     expect(source).toContain('const hasPaidOrVipAfterOnboarding = await hasVerifiedRealPremiumOrVip()');
     expect(source).toContain('!hasPaidOrVipAfterOnboarding && await shouldShowIntroFullAccessWelcome()');
-    expect(source).toContain('await markIntroFullAccessEndedSeen().catch(() => {})');
+    expect(source).toMatch(/await markIntroFullAccessEndedSeen\(\)\.catch\((\(\) => \{\}|noteSwallowedHandler\('[^']+'\))\)/);
   });
 
   it('routes the expiration CTA to the existing paywall context', () => {

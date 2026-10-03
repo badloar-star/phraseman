@@ -56,6 +56,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useFlashcardTrainingQuotaPreview } from '../hooks/useFlashcardTrainingQuotaPreview';
 import { safeRouterBack } from './navigation_back';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type LoadState = 'loading' | 'ready' | 'error';
 type LoadErrorKind = 'invalid' | 'unavailable' | 'load' | null;
@@ -264,7 +265,7 @@ export default function FlashcardsTrainingSetupScreen() {
     try {
       const [loaded, preset] = await Promise.all([
         loadFcDeckOptions(presetMode, lang, studyTarget),
-        getLastPreset(presetMode).catch(() => null),
+        getLastPreset(presetMode).catch(noteSwallowedAs('flashcards_training_setup:useCallback.getLastPreset', null)),
       ]);
       const eligible = hideDecksWithoutVoice(loaded, presetMode).filter((deck) => deck.count > 0);
       const eligibleIds = new Set(eligible.map((deck) => deck.deckId));

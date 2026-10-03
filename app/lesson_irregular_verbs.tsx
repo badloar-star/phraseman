@@ -65,6 +65,7 @@ import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset'
 import { captureAccountGeneration } from './account_generation';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
+import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export { IRREGULAR_VERB_COUNT_BY_LESSON, LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
 
@@ -536,7 +537,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
             distractors: activeOptions,
           },
           facet: { kind: 'form', expected: correct },
-        }).catch(() => {});
+        }).catch(noteSwallowedHandler('lesson_irregular_verbs:useCallback.captureCurrentAccountObjectiveAttempt'));
       }
 
       // зачем: владелец 2026-08-23 — энергия НЕ тратится за ошибки. Единственная

@@ -27,7 +27,8 @@ describe('home startup stability', () => {
     const home = read('app/(tabs)/home.tsx');
 
     expect(cache).toContain('primeSurveyOfferCacheFromStorage');
-    expect(rootLayout).toContain('primeSurveyOfferCacheFromStorage().catch(() => {})');
+    // зачем: PM-229 — немой обработчик теперь пишет причину в журнал; значение по умолчанию прежнее
+    expect(rootLayout).toMatch(/primeSurveyOfferCacheFromStorage\(\)\.catch\((\(\) => \{\}|noteSwallowedHandler\('[^']+'\))\)/);
     // Q90 (01.10): опрос — строка в «Сегодня», загрузка вынесена в хук с кэшем 6 ч.
     const hook = read('hooks/use_home_survey_entry.ts');
     const entry = read('app/home_survey_entry.ts');

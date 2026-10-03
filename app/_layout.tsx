@@ -1,4 +1,5 @@
 import { isForcedOnboardingForQaRuntime } from './onboarding_runtime_gate';
+import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // зачем (владелец, 2026-09-14): трассировка холодного старта ОСТАЁТСЯ, но
 // только в деве. Именно она дала диагноз дважды — 2026-08-31 («вход стал идти
@@ -186,8 +187,8 @@ import { bootstrapPhoneState } from './phone_state_bootstrap';
 import { installPhoneStateProductionRuntime } from './phone_state_runtime';
 import { schedulePhoneStateDeferredIntegrityCheck } from './phone_state_runtime'; // зачем: §84 — фоновая проверка целостности
 import { coldStartMark } from './cold_start_trace'; // зачем: §80 — [COLD-START] от старта процесса
-import { installColdStartIoTrace } from './cold_start_io_trace'; // зачем: §89 — [COLD-START-IO]
 import { runAfterHomeFirstFrame } from './first_frame_deferred_warmups'; // зачем: PM-211 — необязательное после первого кадра Главной
+import { installColdStartIoTrace } from './cold_start_io_trace'; // зачем: §89 — [COLD-START-IO]
 import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from './cloud_restore_coordinator';
 import { hasMeaningfulLocalAccountData } from './local_account_data';
 import { decideStartupCloudRecoveryPresentation } from './startup_cloud_recovery_presentation';
@@ -361,7 +362,7 @@ if (typeof globalThis !== 'undefined') {
 
 /** Список друзей с диска в память до открытия вкладки — чтобы первый кадр вкладки мог сразу показать строки. */
 // Нативный сплэш из app.json — скрываем только когда AppContent сообщает ready (см. hideAsync в useEffect).
-void SplashScreen.preventAutoHideAsync().catch(() => {});
+void SplashScreen.preventAutoHideAsync().catch(noteSwallowedHandler('_layout:module.preventAutoHideAsync'));
 
 const DefaultText = Text as typeof Text & { defaultProps?: Record<string, unknown> };
 DefaultText.defaultProps = {
@@ -497,7 +498,7 @@ function StartupSplashHold({ visible, canHideNativeSplash = true }: { visible: b
   // кадром JS покажет текст системным начертанием и потом подменит его на Inter.
   useEffect(() => {
     if (!visible || !canHideNativeSplash) return;
-    const id = requestAnimationFrame(() => { void SplashScreen.hideAsync().catch(() => {}); });
+    const id = requestAnimationFrame(() => { void SplashScreen.hideAsync().catch(noteSwallowedHandler('_layout:useEffect.hideAsync')); });
     return () => cancelAnimationFrame(id);
   }, [visible, canHideNativeSplash]);
 
@@ -666,26 +667,26 @@ const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
           const notifSnap = notifications.getNotifSettingsSnapshot();
           const hasPerDay = Object.values(notifSnap.schedule).some(d => d.enabled);
           if (hasPerDay) {
-            notifications.scheduleNotifications(notifSnap, lang, 0, { requestPermission: false, studyTarget }).catch(() => {});
+            notifications.scheduleNotifications(notifSnap, lang, 0, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleNotifications'));
           } else {
             const hour = parseInt((await AsyncStorage.getItem('notification_hour')) || '19');
             const minute = parseInt((await AsyncStorage.getItem('notification_minute')) || '0');
-            notifications.scheduleDailyReminder(hour, minute, lang, { requestPermission: false, studyTarget }).catch(() => {});
+            notifications.scheduleDailyReminder(hour, minute, lang, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleDailyReminder'));
           }
-          notifications.scheduleStreakWarningIfNeeded(lang, { requestPermission: false }).catch(() => {});
-          notifications.schedulePhraseOfDayNotification(lang, { requestPermission: false, studyTarget }).catch(() => {});
-          notifications.scheduleWeeklyRecapNotification(lang, { requestPermission: false }).catch(() => {});
-          notifications.scheduleMonthlyRecapNotification(lang, { requestPermission: false, studyTarget }).catch(() => {});
+          notifications.scheduleStreakWarningIfNeeded(lang, { requestPermission: false }).catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleStreakWarningIfNeeded'));
+          notifications.schedulePhraseOfDayNotification(lang, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('_layout:runSessionChecks.schedulePhraseOfDayNotification'));
+          notifications.scheduleWeeklyRecapNotification(lang, { requestPermission: false }).catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleWeeklyRecapNotification'));
+          notifications.scheduleMonthlyRecapNotification(lang, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleMonthlyRecapNotification'));
 
           // Серверные пуши: регистрируем Expo push token в облаке, чтобы cron мог
           // достучаться до пропавшего юзера. Best-effort, в фоне.
           void import('./push_token_registration')
             .then(({ registerPushTokenForServerPush }) => registerPushTokenForServerPush(lang))
-            .catch(() => {});
+            .catch(noteSwallowedHandler('_layout:runSessionChecks.call'));
           // «Вместе»: раз в запуск синхронизируем в облако тумблер «Друзья» + часовой пояс.
-          notifications.syncFriendsPushPrefIfChanged().catch(() => {});
+          notifications.syncFriendsPushPrefIfChanged().catch(noteSwallowedHandler('_layout:runSessionChecks.syncFriendsPushPrefIfChanged'));
         })
-        .catch(() => {});
+        .catch(noteSwallowedHandler('_layout:runSessionChecks.loadNotificationsModule'));
     }
 
   } catch (e) {
@@ -745,9 +746,9 @@ function GlobalLevelUpRewards() {
       void withAccountTransitionLock(async () => {
         if (!isLevelUpAccountTokenCurrent(accountToken)) return;
         try {
-          const prem = await getVerifiedPremiumStatus().catch(() => false);
+          const prem = await getVerifiedPremiumStatus().catch(noteSwallowedAs('_layout:useEffect.getVerifiedPremiumStatus', false));
           if (!isLevelUpAccountTokenCurrent(accountToken)) return;
-          const introState = await getIntroFullAccessState().catch(() => null);
+          const introState = await getIntroFullAccessState().catch(noteSwallowedAs('_layout:useEffect.getIntroFullAccessState', null));
           if (!isLevelUpAccountTokenCurrent(accountToken)) return;
           if (introState?.expiredUnseen === true) return;
           const [{ canShowAfterWinUpsell, markAfterWinUpsellShown }, { trackEvent }] = await Promise.all([
@@ -760,7 +761,7 @@ function GlobalLevelUpRewards() {
           globalRouter.push({ pathname: '/premium_modal', params: { context: 'level_up', source: 'afterwin_levelup' } } as Href);
           await markAfterWinUpsellShown(Date.now());
           await trackEvent('afterwin_upsell_shown', { source: 'level_up' });
-          void import('./firebase').then(({ logAfterWinUpsellShown }) => logAfterWinUpsellShown('level_up')).catch(() => {});
+          void import('./firebase').then(({ logAfterWinUpsellShown }) => logAfterWinUpsellShown('level_up')).catch(noteSwallowedHandler('_layout:useEffect.call'));
         } catch (e) {
           // guard-ok: молчаливый отказ апселла = потерянная выручка без следа.
           DebugLogger.error('_layout:levelUpUpsell', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -779,7 +780,7 @@ function GlobalLevelUpRewards() {
     const task = InteractionManager.runAfterInteractions(() => {
       void import('./section_asset_preload')
         .then((m) => m.preloadSectionAssets(themeMode))
-        .catch(() => {});
+        .catch(noteSwallowedHandler('_layout:useEffect.call_2'));
     });
     return () => task.cancel();
   }, [themeMode]);
@@ -836,7 +837,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const [updateModalHiddenForStore, setUpdateModalHiddenForStore] = useState(false);
   const awaitingStoreReturnRef = useRef(false);
   useEffect(() => {
-    void cleanupRetiredMistakePracticeStorage().catch(() => {});
+    void cleanupRetiredMistakePracticeStorage().catch(noteSwallowedHandler('_layout:useEffect.cleanupRetiredMistakePracticeStorage'));
   }, []);
   // зачем (D47, владелец): прогрев озвучки V2 (координатор + фоновая задача
   // expo-background-task) удалён целиком — это и был источник «всё тормозит
@@ -855,7 +856,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     const task = InteractionManager.runAfterInteractions(() => {
       void import('./learning_v2_completion_background_scheduler').then((scheduler) => {
         if (!cancelled) scheduler.ensureLearningV2CompletionBackgroundSchedulerInstalled();
-      }).catch(() => {});
+      }).catch(noteSwallowedHandler('_layout:useEffect.call_3'));
     });
     return () => {
       cancelled = true;
@@ -1075,7 +1076,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     const stableId = accountGeneration.stableId;
     void import('./feedback_outbox')
       .then(({ purgeExpiredFeedbackOutbox }) => purgeExpiredFeedbackOutbox(stableId))
-      .catch(() => { /* best-effort privacy cleanup retries on the next account generation */ });
+      .catch(noteSwallowedHandler('_layout:useEffect.call_4'));
   }, [accountGeneration.phase, accountGeneration.stableId]);
 
   useEffect(() => {
@@ -1083,7 +1084,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     const stableId = accountGeneration.stableId;
     void import('./support_report_outbox')
       .then(({ resumePendingSupportReports }) => resumePendingSupportReports(stableId))
-      .catch(() => { /* durable row retries on the next boot or foreground */ });
+      .catch(noteSwallowedHandler('_layout:useEffect.call_5'));
   }, [accountGeneration.phase, accountGeneration.stableId, appIsActive]);
 
   useEffect(() => {
@@ -1125,7 +1126,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         if (!canDrainSpireTaskReportOutbox(readiness)) return undefined;
         return retryPendingSpireTaskReports(readiness.stableUid);
       })
-      .catch(() => { /* durable Spire report retries on auth-ready startup or next foreground */ });
+      .catch(noteSwallowedHandler('_layout:useEffect.call_6'));
   }, [accountGeneration.phase, accountGeneration.stableId, appIsActive, spireAuthenticatedUid]);
 
   useEffect(() => {
@@ -1194,7 +1195,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           .then(({ recoverAndHydrateLevelSpinStarGrants }) => (
             recoverAndHydrateLevelSpinStarGrants(token)
           ))
-          .catch(() => undefined);
+          .catch(noteSwallowedAs('_layout:useEffect.call_7', undefined));
         if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
         // The lifecycle additionally requires a matching hydrated runtime and
         // explicit rollout capability. Default remains off.
@@ -1223,7 +1224,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         setPersonalAdminMessage(pickNextLoginPersonalMessage(snapshot));
         setAppMessageModalQueue(listPendingAppMessageModals(snapshot, hasPremiumAccess));
       })
-      .catch(() => {});
+      .catch(noteSwallowedHandler('_layout:useEffect.refreshAppMessagesSnapshotOnce'));
     return () => { cancelled = true; };
   }, [accountGeneration, appIsActive, effectiveShowOnboarding, firstContentReady, hasPremiumAccess, isBanned, ready]);
 
@@ -1267,14 +1268,14 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     const ownerUid = accountGeneration.stableId;
     setPersonalAdminMessage((current) => current?.id === messageId ? null : current);
     if (!ownerUid || !isCurrentAccountGeneration(accountGeneration, ownerUid)) return;
-    await acknowledgePersonalAdminMessageModal(messageId, ownerUid).catch(() => {});
+    await acknowledgePersonalAdminMessageModal(messageId, ownerUid).catch(noteSwallowedHandler('_layout:useCallback.acknowledgePersonalAdminMessageModal'));
   }, [accountGeneration]);
 
   const closeAppMessageModal = useCallback(async (messageId: string) => {
     const ownerUid = accountGeneration.stableId;
     setAppMessageModalQueue((current) => current.filter((message) => message.id !== messageId));
     if (!ownerUid || !isCurrentAccountGeneration(accountGeneration, ownerUid)) return;
-    await acknowledgeAppMessageModal(messageId, ownerUid).catch(() => {});
+    await acknowledgeAppMessageModal(messageId, ownerUid).catch(noteSwallowedHandler('_layout:useCallback.acknowledgeAppMessageModal'));
   }, [accountGeneration]);
 
   // Глобальная аудио-сессия на старте: озвучка должна играть ДАЖЕ при включённом
@@ -1304,7 +1305,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
   useEffect(() => {
     void setManagedAudioMode(UI_SFX_AUDIO_MODE)
-      .catch(() => { /* не критично: воспроизведение возможно и с дефолтным режимом */ });
+      .catch(noteSwallowedHandler('_layout:useEffect.setManagedAudioMode'));
     // зачем прогрев (аудит §R8, 2026-08-30): expo-audio не буферизует до
     // play(), и самый первый запуск каждого звука платил латентность создания
     // нативного плеера. Греем самые частые события сильно ПОСЛЕ старта
@@ -1609,7 +1610,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       await AsyncStorage.multiSet([
         [BAN_CACHE_KEY, banned ? '1' : '0'],
         [BAN_CACHE_AT_KEY, String(Date.now())],
-      ]).catch(() => {});
+      ]).catch(noteSwallowedHandler('_layout:useCallback.multiSet'));
     } catch (e) {
       // fail-soft: if check fails, do not block app
       DebugLogger.error('_layout:banned', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -1666,7 +1667,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
   const closeReleaseNotesModal = useCallback(async () => {
     if (releaseNotesVariant === 'v2') {
-      await dismissReleaseNotesV2ModalPermanently().catch(() => {});
+      await dismissReleaseNotesV2ModalPermanently().catch(noteSwallowedHandler('_layout:useCallback.dismissReleaseNotesV2ModalPermanently'));
     } else {
       await dismissReleaseNotesModalPermanently();
     }
@@ -1712,7 +1713,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           if (now - lastBackgroundSyncAt < 60_000) return;
           if (AppState.currentState === 'background' || AppState.currentState === 'inactive') {
             lastBackgroundSyncAt = now;
-            syncToCloud().catch(() => {});
+            syncToCloud().catch(noteSwallowedHandler('_layout:useEffect.syncToCloud'));
           }
         }, 1_800);
       }
@@ -1779,7 +1780,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         achievementFlushQueuedRef.current = false;
         const pending = await getPendingNotifications();
         if (pending && pending.length > 0) {
-          await markAchievementsNotified(pending.map(a => a.id)).catch(() => {});
+          await markAchievementsNotified(pending.map(a => a.id)).catch(noteSwallowedHandler('_layout:useCallback.markAchievementsNotified'));
         }
       } while (achievementFlushQueuedRef.current);
     } finally {
@@ -1802,7 +1803,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         });
         lifetime.adopt(() => subscription.remove());
       })
-      .catch(() => {});
+      .catch(noteSwallowedHandler('_layout:useEffect.call_8'));
     return () => { lifetime.dispose(); };
   }, []);
 
@@ -1837,8 +1838,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     let contentDeliveryMigrationPromise: Promise<void> | null = null;
     const restoreCloudForBoot = async () => {
       await ensureAnonUser();
-      void resumePendingOnboardingFunnel().catch(() => {});
-      void resumePendingAgeConsent().catch(() => {});
+      void resumePendingOnboardingFunnel().catch(noteSwallowedHandler('_layout:restoreCloudForBoot.resumePendingOnboardingFunnel'));
+      void resumePendingAgeConsent().catch(noteSwallowedHandler('_layout:restoreCloudForBoot.resumePendingAgeConsent'));
       const result = await restoreFromCloudWithRecoveryDetails(coldExamBestPctRestoreOptions);
       bootRestoreFailureReason = result.failureReason;
       // Тихий deferred link: дожимаем отложенную привязку в фоне. Успех →
@@ -1846,16 +1847,16 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // Никакого UI: юзер не должен знать, что что-то догонялось.
       void processPendingAuthLink()
         .then((pendingResult) => (
-          pendingResult === 'completed' ? restoreFromCloudDetailed().catch(() => 'failed' as const) : undefined
+          pendingResult === 'completed' ? restoreFromCloudDetailed().catch(noteSwallowedAs('_layout:restoreCloudForBoot.restoreFromCloudDetailed', 'failed')) : undefined
         ))
-        .catch(() => {});
+        .catch(noteSwallowedHandler('_layout:restoreCloudForBoot.processPendingAuthLink'));
       return result.status;
     };
     const runContentDeliveryMigration = (after?: Promise<unknown> | null): Promise<void> => {
       if (!contentDeliveryMigrationPromise) {
         contentDeliveryMigrationPromise = (async () => {
-          if (after) await after.catch(() => {});
-          await applyContentDeliveryMigration().catch(() => {});
+          if (after) await after.catch(noteSwallowedHandler('_layout:runContentDeliveryMigration.after'));
+          await applyContentDeliveryMigration().catch(noteSwallowedHandler('_layout:runContentDeliveryMigration.applyContentDeliveryMigration'));
         })();
       }
       return contentDeliveryMigrationPromise;
@@ -1871,13 +1872,13 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           // must not keep a persistent server connection alive in the client.
       void import('./remote_config_client')
         .then((m) => {
-          void m.loadRemoteConfig().catch(() => {});
+          void m.loadRemoteConfig().catch(noteSwallowedHandler('_layout:runHeavyInit.loadRemoteConfig'));
         })
-        .catch(() => {});
+        .catch(noteSwallowedHandler('_layout:runHeavyInit.call'));
       // Идентификация PostHog для воронки (no-op без ключа/пакета, безопасна при любой сборке).
       void (async () => {
         try {
-          const uid = await getCanonicalUserId().catch(() => null);
+          const uid = await getCanonicalUserId().catch(noteSwallowedAs('_layout:runHeavyInit.getCanonicalUserId', null));
           if (uid) {
             const { identifyPostHog } = await import('./posthog_client');
             identifyPostHog(uid);
@@ -1887,10 +1888,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       DebugLogger.error('_layout:uid', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
       })();
-      void startFriendsTabSwrPrime().catch(() => {});
+      void startFriendsTabSwrPrime().catch(noteSwallowedHandler('_layout:runHeavyInit.startFriendsTabSwrPrime'));
       const startShopWarm = async () => {
         if (!IS_EXPO_GO) void initRevenueCat();
-        void prefetchMarketplacePacks().catch(() => {});
+        void prefetchMarketplacePacks().catch(noteSwallowedHandler('_layout:startShopWarm.prefetchMarketplacePacks'));
       };
       if (onboardingPathRef.current) {
         InteractionManager.runAfterInteractions(() => {
@@ -1904,20 +1905,20 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         InteractionManager.runAfterInteractions(() => {
           void runContentDeliveryMigration(cloudHydratePromise)
             .then(() => primeAllLessonsFromStorageOnAppLaunch(studyTarget))
-            .catch(() => {});
+            .catch(noteSwallowedHandler('_layout:runHeavyInit.runContentDeliveryMigration'));
         });
       }
 
       if (!IS_EXPO_GO) {
         import('@react-native-firebase/crashlytics')
           .then(m => m.default().setCrashlyticsCollectionEnabled(true))
-          .catch(() => {});
+          .catch(noteSwallowedHandler('_layout:runHeavyInit.call_2'));
       }
 
       await AsyncStorage.multiSet([
         ['device_platform', Platform.OS],
         ['app_version', getInstalledAppVersion(Constants)],
-      ]).catch(() => {});
+      ]).catch(noteSwallowedHandler('_layout:runHeavyInit.multiSet'));
 
       // Дожидаемся (или дублируем при отсутствии) гидратации из облака,
       // и ТОЛЬКО потом запускаем sync/leaderboard/etc. Иначе syncToCloud мог бы
@@ -1948,7 +1949,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           .then((streak) => bootStep(`after_updateStreak streak=${streak}`));
         await runContentDeliveryMigration().catch((error: unknown) => console.warn('[STREAK] boot:content_migration_failed', String(error)));
         bootStep('content_migration');
-        const onboardingDoneAfterHydrate = await AsyncStorage.getItem('onboarding_done').catch(() => null);
+        const onboardingDoneAfterHydrate = await AsyncStorage.getItem('onboarding_done').catch(noteSwallowedAs('_layout:runHeavyInit.getItem', null));
         if (onboardingDoneAfterHydrate === '1') {
           void resumePendingGeneratedNickname();
         }
@@ -1956,7 +1957,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         // перестал уважать persistedUnlocked: подтягиваем lesson{N-1}_best_score
         // до 2.5 для уроков, которые в облаке уже значатся как открытые.
         // См. repairLessonUnlocksAfterRestore() и lesson_unlock_repair_v1 флаг.
-        repairLessonUnlocksAfterRestore().catch(() => {});
+        repairLessonUnlocksAfterRestore().catch(noteSwallowedHandler('_layout:runHeavyInit.repairLessonUnlocksAfterRestore'));
         // зачем (FINAL_PHASE п.4, §55 координатора): шаги жемчуга (осколков) убраны из
         // холодного старта — загрузка из облака (~6 с, чтения Firestore), дотягивание
         // оплаченных пакетов и событие баланса. Жемчуг удалён (D70/D84/D103: остаток и
@@ -1966,12 +1967,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         // зачем: PM-210 — шаг миграции недельных очков лиги (пустая заглушка после
         // удаления лиг в 2.0) убран из пост-загрузочной цепочки: фоновой работы нет.
         await streakBoot.catch((error: unknown) => console.warn('[STREAK] boot:updateStreak_failed', String(error)));
-        await runSessionChecks(studyTarget).catch(() => {});
-        await flushPendingProgressEvents().catch(() => {});
+        await runSessionChecks(studyTarget).catch(noteSwallowedHandler('_layout:runHeavyInit.runSessionChecks'));
+        await flushPendingProgressEvents().catch(noteSwallowedHandler('_layout:runHeavyInit.flushPendingProgressEvents'));
         // Хвост C: не пушим в облако, если restore НЕ удался И локально нет осмысленного
         // прогресса — иначе пустые дефолты затрут реальный облачный аккаунт (переустановка).
         if (bootRestoreOutcome.shouldSync) {
-          await syncToCloud().catch(() => {});
+          await syncToCloud().catch(noteSwallowedHandler('_layout:runHeavyInit.syncToCloud'));
         } else if (bootRestoreOutcome.status === 'failed') {
           if (__DEV__) {
             console.warn('[_layout] boot syncToCloud skipped — restore failed and no local progress (protect cloud from blank overwrite)');
@@ -2014,10 +2015,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
             });
           }
         }
-        await ensureStableAuthLink().catch(() => false);
+        await ensureStableAuthLink().catch(noteSwallowedAs('_layout:runHeavyInit.ensureStableAuthLink', false));
         Promise.all([
-          getVerifiedRealPremiumStatus().catch(() => false),
-          getVerifiedVipStatus().catch(() => false),
+          getVerifiedRealPremiumStatus().catch(noteSwallowedAs('_layout:runHeavyInit.getVerifiedRealPremiumStatus', false)),
+          getVerifiedVipStatus().catch(noteSwallowedAs('_layout:runHeavyInit.getVerifiedVipStatus', false)),
         ]).then(([isPrem, isVip]) => {
           emitAppEvent(isPrem ? 'premium_activated' : 'premium_deactivated');
           emitAppEvent(isVip ? 'vip_activated' : 'vip_deactivated');
@@ -2029,11 +2030,11 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
             reason: 'entitlement_change',
             isPremium: isPrem,
             isVip,
-          }).catch(() => {});
-        }).catch(() => {});
+          }).catch(noteSwallowedHandler('_layout:runHeavyInit.syncPublicProfileSnapshot'));
+        }).catch(noteSwallowedHandler('_layout:runHeavyInit.all'));
         void import('./community_packs/communityModerationAlerts')
           .then((m) => m.flushCommunityModerationAlertsFromInbox())
-          .catch(() => {});
+          .catch(noteSwallowedHandler('_layout:runHeavyInit.call_3'));
         // зачем: PM-171 — раздел «Идеи» скрыт, runtime-прогрев уведомлений о решениях
         // по идеям (flushIdeaDecisionModals, Firestore-чтение idea_inbox на каждом
         // старте приложения) убран вместе с ним; app/idea_decision_modals.ts удалён.
@@ -2043,23 +2044,23 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         // iOS-путь атрибуции рефералов был мёртвым кодом.
         void import('./referral_clipboard')
           .then((m) => m.checkClipboardForReferralOnce())
-          .catch(() => {})
+          .catch(noteSwallowedHandler('_layout:runHeavyInit.call_5'))
           .then(() => import('./referral_bootstrap'))
           .then((m) => m.tryApplyPendingReferral())
-          .catch(() => {});
-      }).catch(() => {});
+          .catch(noteSwallowedHandler('_layout:runHeavyInit.call_4'));
+      }).catch(noteSwallowedHandler('_layout:runHeavyInit.hydrate'));
 
       AsyncStorage.getItem('install_date').then(val => {
         if (!val) {
           const installMs = Date.now();
-          AsyncStorage.setItem('install_date', String(installMs)).catch(() => {});
+          AsyncStorage.setItem('install_date', String(installMs)).catch(noteSwallowedHandler('_layout:runHeavyInit.setItem'));
         }
-      }).catch(() => {});
+      }).catch(noteSwallowedHandler('_layout:runHeavyInit.getItem_2'));
 
-      incrementSessionCount().catch(() => {});
+      incrementSessionCount().catch(noteSwallowedHandler('_layout:runHeavyInit.incrementSessionCount'));
       InteractionManager.runAfterInteractions(() => {
         setTimeout(() => {
-          preloadDeferredNonPrimaryImages().catch(() => {});
+          preloadDeferredNonPrimaryImages().catch(noteSwallowedHandler('_layout:runHeavyInit.preloadDeferredNonPrimaryImages'));
         }, 2500);
       });
       // зачем: арт достижений живёт в Storage (−5.5 МБ из бандла) — прогреваем
@@ -2070,13 +2071,13 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         prefetchAchievementArtInBackground();
       });
       InteractionManager.runAfterInteractions(() => {
-        void import('./flashcards_swipe').catch(() => {});
+        void import('./flashcards_swipe').catch(noteSwallowedHandler('_layout:runHeavyInit.call_6'));
         import('./flashcards/useCollectionData')
           .then((m) => m.primeFlashcardsCollectionCache())
-          .catch(() => {});
+          .catch(noteSwallowedHandler('_layout:runHeavyInit.call_7'));
       });
-      checkForUpdate().then(u => { if (u) setUpdateInfo(u); }).catch(() => {});
-      prefetchEasUpdateAfterStartup().catch(() => {});
+      checkForUpdate().then(u => { if (u) setUpdateInfo(u); }).catch(noteSwallowedHandler('_layout:runHeavyInit.checkForUpdate'));
+      prefetchEasUpdateAfterStartup().catch(noteSwallowedHandler('_layout:runHeavyInit.prefetchEasUpdateAfterStartup'));
     };
 
     const requestHeavyInit = () => {
@@ -2211,7 +2212,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // чтобы первый кадр не ждал дополнительный дисковый round-trip.
       const startupIdentityKeys = forceOnboardingForQA ? [] : ['onboarding_done'];
       const startupIdentityPairsPromise: Promise<readonly [string, string | null][]> =
-        AsyncStorage.multiGet(startupIdentityKeys).catch(() => []);
+        AsyncStorage.multiGet(startupIdentityKeys).catch(noteSwallowedAs('_layout:bootstrap.multiGet', []));
 
       // Start cloud hydration early, but do not hold the first app frame on network.
       // зачем: прежде восстановление из облака ждало прогрев App Check до 1,2 с;
@@ -2238,38 +2239,38 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         && isCurrentAccountGeneration(startupSettingsGeneration));
       closeStartupSettingsReadScope = () => startupSettingsReadScope.close();
       const startupLocalHydration = Promise.all([
-        primeAppSnapshotFromStorage(studyTarget, startupSettingsReadScope).catch(() => {}),
-        primeSurveyOfferCacheFromStorage().catch(() => {}),
+        primeAppSnapshotFromStorage(studyTarget, startupSettingsReadScope).catch(noteSwallowedHandler('_layout:bootstrap.primeAppSnapshotFromStorage')),
+        primeSurveyOfferCacheFromStorage().catch(noteSwallowedHandler('_layout:bootstrap.primeSurveyOfferCacheFromStorage')),
         // зачем: общий снапшот остальных экранов (стрик, рефералы, топ помощников,
         // аналитика, план, разбор, подписка, видео, сезон). Владелец потребовал, чтобы
         // НИ ОДИН экран не показывал скелетон. Это ОДНО чтение диска на все экраны
         // сразу — в той же параллельной пачке, поэтому запуск не удлиняется.
-        primeScreenSnapshotsFromStorage().catch(() => {}),
+        primeScreenSnapshotsFromStorage().catch(noteSwallowedHandler('_layout:bootstrap.primeScreenSnapshotsFromStorage')),
         // зачем (ускорение сплэша): сегодняшняя «фраза дня» из peek-кэша — чтобы
         // первый кадр Главной НЕ поднимал каталог идиом (610 КБ JS) синхронно.
-        hydrateDailyPhrasePeekFromStorage().catch(() => {}),
-        hydrateYoutubeChannelPreference().catch(() => {}),
+        hydrateDailyPhrasePeekFromStorage().catch(noteSwallowedHandler('_layout:bootstrap.hydrateDailyPhrasePeekFromStorage')),
+        hydrateYoutubeChannelPreference().catch(noteSwallowedHandler('_layout:bootstrap.hydrateYoutubeChannelPreference')),
         // зачем: кэш статистики УЖЕ лежал на диске, но поднимался только внутри
         // streak_stats.loadAll() — то есть после первого кадра, поэтому экран стрика
         // успевал показать скелетон на весь экран. Поднимаем здесь: к моменту тапа
         // данные в памяти, statsReady=true с первого кадра. Лишних чтений нет —
         // экран всё равно звал эту же функцию, просто позже.
-        hydrateStatsCacheFromStorage().catch(() => {}),
-        primeRemoteConfigCacheFromStorage().catch(() => {}),
-        hydrateUserSettingsFromStorage(startupSettingsReadScope).catch(() => {}),
-        hydrateHapticsTapFromStorage().catch(() => {}),
+        hydrateStatsCacheFromStorage().catch(noteSwallowedHandler('_layout:bootstrap.hydrateStatsCacheFromStorage')),
+        primeRemoteConfigCacheFromStorage().catch(noteSwallowedHandler('_layout:bootstrap.primeRemoteConfigCacheFromStorage')),
+        hydrateUserSettingsFromStorage(startupSettingsReadScope).catch(noteSwallowedHandler('_layout:bootstrap.hydrateUserSettingsFromStorage')),
+        hydrateHapticsTapFromStorage().catch(noteSwallowedHandler('_layout:bootstrap.hydrateHapticsTapFromStorage')),
         // Уведомления гидрируются при входе в их раздел/пост-стартовой проверке.
         // Не поднимаем весь notifications.ts на splash: это не нужно для первого кадра.
         // Согласие на аналитику — гидрируем ДО первого события, чтобы гейт
         // (firebase.ts logEvent / posthog capture) работал с первого кадра.
-        hydrateAnalyticsConsentFromStorage().catch(() => {}),
+        hydrateAnalyticsConsentFromStorage().catch(noteSwallowedHandler('_layout:bootstrap.hydrateAnalyticsConsentFromStorage')),
         // Согласие на AI-разбор ошибок — гидрируем ДО первого урока, чтобы
         // use_mistake_explain.ts не мигал с idle → gate на первом кадре.
-        hydrateAiExplainConsentFromStorage().catch(() => {}),
+        hydrateAiExplainConsentFromStorage().catch(noteSwallowedHandler('_layout:bootstrap.hydrateAiExplainConsentFromStorage')),
         // Согласие на AI-диалоги — гидрируем ДО первого входа в диалог.
-        hydrateAiDialogConsentFromStorage().catch(() => {}),
+        hydrateAiDialogConsentFromStorage().catch(noteSwallowedHandler('_layout:bootstrap.hydrateAiDialogConsentFromStorage')),
         // Возрастная группа — для безопасного режима (фичи-гейты) с первого кадра.
-        hydrateAgeGateFromStorage().catch(() => {}),
+        hydrateAgeGateFromStorage().catch(noteSwallowedHandler('_layout:bootstrap.hydrateAgeGateFromStorage')),
       ]);
       // The 350ms race does not cancel hydration. Retain the scope until the
       // original work actually settles; never defer either settings reader.
@@ -2281,9 +2282,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       await Promise.race([
         startupLocalHydration,
         new Promise<void>((resolve) => setTimeout(resolve, 350)),
-      ]).catch(() => {});
+      ]).catch(noteSwallowedHandler('_layout:bootstrap.race'));
       bootMark('startupLocalHydration RACE DONE');
-      void startupLocalHydration.catch(() => {});
+      void startupLocalHydration.catch(noteSwallowedHandler('_layout:bootstrap.startupLocalHydration'));
       // зачем (Q106, координатор §62): достижения shards_100…10000 («Монетная заначка») по
       // названию про монеты, а считались по удалённому жемчугу. Теперь — баланс монет (руны,
       // локальная проекция, без Firestore). Номера достижений прежние.
@@ -2315,7 +2316,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
                 if (refM?.[1]) {
                   void import('./referral_bootstrap')
                     .then((m) => m.captureReferralCodeIfNew(refM[1].trim().toUpperCase(), 'play_install'))
-                    .catch(() => {});
+                    .catch(noteSwallowedHandler('_layout:bootstrap.call'));
                 }
               }
             });
@@ -2339,8 +2340,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       }
 
       const iconFontsReady = preloadVectorIconFonts();
-      void iconFontsReady.catch(() => {});
-      void preloadPrimaryTabImages().catch(() => {});
+      void iconFontsReady.catch(noteSwallowedHandler('_layout:bootstrap.iconFontsReady'));
+      void preloadPrimaryTabImages().catch(noteSwallowedHandler('_layout:bootstrap.preloadPrimaryTabImages'));
       // Немой catch запрещён: если посев озвучки падает или висит, занятия
       // молча остаются без звука, и узнать об этом неоткуда (владелец 21.09 —
       // прогрев занятия 2 не давал ни готовности, ни ошибки).
@@ -2359,7 +2360,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         InteractionManager.runAfterInteractions(() => {
           void runContentDeliveryMigration(cloudHydratePromise)
             .then(() => primeAllLessonsFromStorageOnAppLaunch(studyTarget))
-            .catch(() => {});
+            .catch(noteSwallowedHandler('_layout:bootstrap.runContentDeliveryMigration'));
         });
       }
       } finally {
@@ -2497,7 +2498,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       const [status, enabled, lastShownRaw] = await Promise.all([
         loadNotificationsModule()
           .then(({ isNotificationPermissionGranted }) => isNotificationPermissionGranted())
-          .catch(() => false),
+          .catch(noteSwallowedAs('_layout:useEffect.loadNotificationsModule', false)),
         AsyncStorage.getItem('notifications_enabled'),
         AsyncStorage.getItem('notif_permission_nudge_last_day'),
       ]);
@@ -2506,7 +2507,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       if (lastShownRaw === todayKey) return;
       setNotifNudgeMissedDays(missedDays);
       setNotifNudgeVisible(true);
-      await AsyncStorage.setItem('notif_permission_nudge_last_day', todayKey).catch(() => {});
+      await AsyncStorage.setItem('notif_permission_nudge_last_day', todayKey).catch(noteSwallowedHandler('_layout:useEffect.setItem'));
     });
     return () => sub.remove();
   }, []);
@@ -2519,8 +2520,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const hasVerifiedRealPremiumOrVip = useCallback(async () => {
     if (hasPremiumAccess) return true;
     const [realPremium, vip] = await Promise.all([
-      getVerifiedRealPremiumStatus().catch(() => false),
-      getVerifiedVipStatus().catch(() => false),
+      getVerifiedRealPremiumStatus().catch(noteSwallowedAs('_layout:useCallback.getVerifiedRealPremiumStatus', false)),
+      getVerifiedVipStatus().catch(noteSwallowedAs('_layout:useCallback.getVerifiedVipStatus', false)),
     ]);
     return realPremium || vip;
   }, [hasPremiumAccess]);
@@ -2529,20 +2530,20 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     const variant = introFullAccessModal;
     if (!variant) return;
     if (variant === 'welcome') {
-      await markIntroFullAccessWelcomeSeen().catch(() => {});
+      await markIntroFullAccessWelcomeSeen().catch(noteSwallowedHandler('_layout:useCallback.markIntroFullAccessWelcomeSeen'));
       setIntroFullAccessModal(null);
       return;
     }
 
-    await markIntroFullAccessEndedSeen().catch(() => {});
+    await markIntroFullAccessEndedSeen().catch(noteSwallowedHandler('_layout:useCallback.markIntroFullAccessEndedSeen'));
     setIntroFullAccessModal(null);
     if (action === 'primary') {
       // Воронка: пользователь решил продолжить в полном доступе — ведём на пейвол.
-      void import('./analytics').then(({ trackEvent }) => trackEvent('intro_ended_cta', {})).catch(() => {});
-      void import('./firebase').then(({ logIntroEndedCta }) => logIntroEndedCta()).catch(() => {});
+      void import('./analytics').then(({ trackEvent }) => trackEvent('intro_ended_cta', {})).catch(noteSwallowedHandler('_layout:useCallback.call'));
+      void import('./firebase').then(({ logIntroEndedCta }) => logIntroEndedCta()).catch(noteSwallowedHandler('_layout:useCallback.call_2'));
       // Прокидываем личные данные, чтобы пейвол показал персональную строку
       // («уже твоё: серия N · …»). Без них пейвол даёт корректный gain-фоллбэк.
-      const streakCount = parseInt((await AsyncStorage.getItem('streak_count').catch(() => null)) || '0', 10) || 0;
+      const streakCount = parseInt((await AsyncStorage.getItem('streak_count').catch(noteSwallowedAs('_layout:useCallback.getItem', null))) || '0', 10) || 0;
       // replace на пейвол = всегда mark, иначе источник остаётся в стеке «назад» → петля.
       markNextNavigationAsReplace();
       router.replace({
@@ -2551,24 +2552,24 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       } as any);
     } else {
       // Воронка: закрыл модалку конца интро без перехода на пейвол.
-      void import('./analytics').then(({ trackEvent }) => trackEvent('intro_ended_dismiss', {})).catch(() => {});
-      void import('./firebase').then(({ logIntroEndedDismiss }) => logIntroEndedDismiss()).catch(() => {});
+      void import('./analytics').then(({ trackEvent }) => trackEvent('intro_ended_dismiss', {})).catch(noteSwallowedHandler('_layout:useCallback.call_3'));
+      void import('./firebase').then(({ logIntroEndedDismiss }) => logIntroEndedDismiss()).catch(noteSwallowedHandler('_layout:useCallback.call_4'));
     }
   }, [introFullAccessModal, router]);
 
   const checkIntroFullAccessEndedModal = useCallback(async () => {
     if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
-    const state = await getIntroFullAccessState().catch(() => null);
+    const state = await getIntroFullAccessState().catch(noteSwallowedAs('_layout:useCallback.getIntroFullAccessState', null));
     if (!state?.expiredUnseen) return;
     if (await hasVerifiedRealPremiumOrVip()) {
-      await markIntroFullAccessEndedSeen().catch(() => {});
+      await markIntroFullAccessEndedSeen().catch(noteSwallowedHandler('_layout:useCallback.markIntroFullAccessEndedSeen_2'));
       return;
     }
     if (state?.expiredUnseen) {
       setIntroFullAccessModal('ended');
       // Воронка: показана модалка «72 часа закончились» — главный момент конверсии.
-      void import('./analytics').then(({ trackEvent }) => trackEvent('intro_ended_shown', {})).catch(() => {});
-      void import('./firebase').then(({ logIntroEndedShown }) => logIntroEndedShown()).catch(() => {});
+      void import('./analytics').then(({ trackEvent }) => trackEvent('intro_ended_shown', {})).catch(noteSwallowedHandler('_layout:useCallback.call_5'));
+      void import('./firebase').then(({ logIntroEndedShown }) => logIntroEndedShown()).catch(noteSwallowedHandler('_layout:useCallback.call_6'));
     }
   }, [effectiveShowOnboarding, firstContentReady, hasVerifiedRealPremiumOrVip, isBanned, ready]);
 
@@ -2601,7 +2602,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       const isPremium = await hasVerifiedRealPremiumOrVip();
       const nowMs = Date.now();
       // intro ещё не закрыт → его модалка важнее, winback пропускаем (активность всё равно фиксируем)
-      const introState = await getIntroFullAccessState().catch(() => null);
+      const introState = await getIntroFullAccessState().catch(noteSwallowedAs('_layout:useCallback.getIntroFullAccessState_2', null));
       const introPending = introState?.expiredUnseen === true;
 
       const show = !introPending && (await shouldShowWinback({ isPremium, nowMs }));
@@ -2609,8 +2610,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         // Сначала навигация, потом отметка — если push упадёт, не «сжигаем» окно winback.
         globalRouter.push({ pathname: '/premium_modal', params: { context: 'winback', source: 'winback' } } as Href);
         await markWinbackShown(nowMs);
-        await import('./analytics').then(({ trackEvent }) => trackEvent('winback_shown', {})).catch(() => {});
-        void import('./firebase').then(({ logWinbackShown }) => logWinbackShown()).catch(() => {});
+        await import('./analytics').then(({ trackEvent }) => trackEvent('winback_shown', {})).catch(noteSwallowedHandler('_layout:useCallback.call_7'));
+        void import('./firebase').then(({ logWinbackShown }) => logWinbackShown()).catch(noteSwallowedHandler('_layout:useCallback.call_8'));
       }
       // фиксируем активность ПОСЛЕ оценки
       await recordLastActive(nowMs);
@@ -2664,9 +2665,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     // зачем: тёплое приветствие строго один раз за жизнь аккаунта — не
     // используем отдельный гард, чтобы приветствие не повторялось в той же установке.
     void (async () => {
-      const alreadyWelcomed = await AsyncStorage.getItem('pm_app_welcome_played_v1').catch(() => null);
+      const alreadyWelcomed = await AsyncStorage.getItem('pm_app_welcome_played_v1').catch(noteSwallowedAs('_layout:useCallback.getItem_2', null));
       if (alreadyWelcomed === '1') return;
-      await AsyncStorage.setItem('pm_app_welcome_played_v1', '1').catch(() => {});
+      await AsyncStorage.setItem('pm_app_welcome_played_v1', '1').catch(noteSwallowedHandler('_layout:useCallback.setItem'));
       soundDirector.request('pm.app.welcome', { scope: 'onboarding-welcome' });
     })();
     // Не показываем тутор энергии на «Главной» одновременно с этим листом (ждём «Позже» или возврат с урока)
@@ -2676,22 +2677,22 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     // закрытия онбординга завершилась до появления системного диалога.
     void (async () => {
       const notificationChoice = await readOnboardingNotificationChoice();
-      const already = await isNotificationPermissionGranted().catch(() => false);
+      const already = await isNotificationPermissionGranted().catch(noteSwallowedAs('_layout:useCallback.isNotificationPermissionGranted', false));
       if (!already && shouldPromptForOnboardingNotifications(notificationChoice)) {
         await new Promise<void>((r) => setTimeout(r, 600));
-        await requestNotificationPermissionWithFallback().catch(() => {});
+        await requestNotificationPermissionWithFallback().catch(noteSwallowedHandler('_layout:useCallback.requestNotificationPermissionWithFallback'));
       }
     })();
     // Entitlement и подарок — полезная, но необязательная пост-обработка. Она не
     // имеет права держать корневой оверлей или навигацию.
     void (async () => {
-      const hasPaidOrVipAfterOnboarding = await hasVerifiedRealPremiumOrVip().catch(() => true);
+      const hasPaidOrVipAfterOnboarding = await hasVerifiedRealPremiumOrVip().catch(noteSwallowedAs('_layout:useCallback.hasVerifiedRealPremiumOrVip', true));
       if (!hasPaidOrVipAfterOnboarding) {
-        await startIntroFullAccessAfterOnboarding(Date.now(), lang).catch(() => false);
+        await startIntroFullAccessAfterOnboarding(Date.now(), lang).catch(noteSwallowedAs('_layout:useCallback.startIntroFullAccessAfterOnboarding', false));
         emitAppEvent('intro_full_access_changed');
       }
       const showIntroGift = !hasPaidOrVipAfterOnboarding
-        && await shouldShowIntroFullAccessWelcome().catch(() => false);
+        && await shouldShowIntroFullAccessWelcome().catch(noteSwallowedAs('_layout:useCallback.shouldShowIntroFullAccessWelcome', false));
       if (showIntroGift) {
         // pm.app.welcome (2.3s) должен закончиться до открытия модалки.
         setTimeout(() => setIntroFullAccessModal('welcome'), 1800);
@@ -3041,7 +3042,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       cancelLabel={lang === 'es' ? 'Más tarde' : lang === 'uk' ? 'Пізніше' : 'Позже'}
       onCancel={() => setNotifNudgeVisible(false)}
       onConfirm={async () => {
-        const notifications = await loadNotificationsModule().catch(() => null);
+        const notifications = await loadNotificationsModule().catch(noteSwallowedAs('_layout:AppContent.loadNotificationsModule', null));
         if (!notifications) {
           setNotifNudgeVisible(false);
           return;

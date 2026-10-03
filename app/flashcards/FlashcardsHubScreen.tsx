@@ -55,6 +55,7 @@ import { applyCommunityPacksFilter, filterVideoPacks } from '../community_packs/
 import { peekStoredPackLanguage } from './pack_language_preferences';
 import { defaultPackLanguageForStudyTarget } from './pack_languages';
 import { buildFcCreateRoute } from './tabbar_state';
+import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type LibraryRowProps = {
   testID: string;
@@ -475,16 +476,16 @@ export default function FlashcardsHubScreen() {
       setOpeningPackId(null);
       void (async () => {
         const [official, published, owned, authored] = await Promise.all([
-          loadMarketplacePacks(studyTarget).catch(() => [] as FlashcardMarketPack[]),
+          loadMarketplacePacks(studyTarget).catch(noteSwallowedAs('FlashcardsHubScreen:useCallback.loadMarketplacePacks', [])),
           cloudCommunityEnabled
             // Кнопка «Повторить» (revision > 0) — жест человека, идём мимо кэша.
             ? loadPublishedCommunityMarketPacks(studyTarget, { forceRemote: catalogLoadRevision > 0 })
-                .catch(() => [] as FlashcardMarketPack[])
+                .catch(noteSwallowedAs('FlashcardsHubScreen:useCallback.loadPublishedCommunityMarketPacks', []))
             : Promise.resolve([] as FlashcardMarketPack[]),
           cloudCommunityEnabled
-            ? loadCommunityOwnedPackIds(studyTarget).catch(() => [] as string[])
+            ? loadCommunityOwnedPackIds(studyTarget).catch(noteSwallowedAs('FlashcardsHubScreen:useCallback.loadCommunityOwnedPackIds', []))
             : Promise.resolve([] as string[]),
-          loadLocalAuthorPacks(studyTarget).catch(() => []),
+          loadLocalAuthorPacks(studyTarget).catch(noteSwallowedAs('FlashcardsHubScreen:useCallback.loadLocalAuthorPacks', [])),
         ]);
         if (cancelled) {
           // Ранний выход обязан объясняться: экран потерял фокус до ответа.

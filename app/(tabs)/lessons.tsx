@@ -266,6 +266,7 @@ import {
   factoryNativeLearningV2NewWordCountV1,
 } from "../../modules/learning-v2/content/factory_native/factory_native_catalog_v1";
 import { DebugLogger } from '../debug-logger';
+import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import {
   normalizeLearningV2FounderNicknameV1,
   readLearningV2FounderPassReceiptV1,
@@ -2218,9 +2219,7 @@ function useLegacyCoinBalanceBinding(enabled: boolean): LegacyCoinBalanceBinding
         accountGeneration: token.generation,
         balance: read.wallet.balance,
       }));
-    }).catch(() => {
-      // Fail closed: an unavailable durable wallet remains a neutral placeholder.
-    });
+    }).catch(noteSwallowedHandler('lessons:useEffect.getRunesBalanceRead'));
 
     const unsubscribeSnapshot = subscribeAppSnapshot(() => {
       if (!alive

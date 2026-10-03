@@ -21,7 +21,8 @@ describe('app snapshot bootstrap contract', () => {
 
     expect(source).toContain("import { primeAppSnapshotFromStorage } from './app_snapshot_bootstrap';");
     expect(source).toContain('const startupLocalHydration = Promise.all([');
-    expect(source).toContain('primeAppSnapshotFromStorage(studyTarget, startupSettingsReadScope).catch(() => {})');
+    // зачем: PM-229 — немой обработчик теперь пишет причину в журнал; значение по умолчанию прежнее
+    expect(source).toMatch(/primeAppSnapshotFromStorage\(studyTarget, startupSettingsReadScope\)\.catch\((\(\) => \{\}|noteSwallowedHandler\('[^']+'\))\)/);
   });
 
   it('publishes existing warm caches into the shared snapshot instead of adding listeners', () => {

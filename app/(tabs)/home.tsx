@@ -119,6 +119,7 @@ import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
 import { ENABLE_DEV_TOOLS } from '../config';
 import { markHomeFirstPaint } from '../home_paint_marker';
+import { noteSwallowedAs, noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 const { height: SCREEN_H } = Dimensions.get('window');
 /** Значок действия в шапке (спин, подарок) — соразмерен соседям хедера. */
 /**
@@ -1206,7 +1207,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     return;
                 }
                 setWeekMarkers(markers);
-            }).catch(() => {});
+            }).catch(noteSwallowedHandler('home:refreshWeekMarkers.readCurrentStreakWeekMarkers'));
         };
         const freezeUpdatedSub = onAppEvent('streak_freeze_updated', refreshWeekMarkers);
         // зачем: владелец — «зашёл в урок, а карточка "Продолжить урок" на Главной ещё
@@ -1574,7 +1575,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             step('avatar');
             const [specialTitleStoragePairs, achievementStates] = await Promise.all([
                 AsyncStorage.multiGet([HELPFUL_REPORTS_CONFIRMED_KEY]),
-                loadAchievementStates().catch(() => []),
+                loadAchievementStates().catch(noteSwallowedAs('home:loadData.loadAchievementStates', [])),
             ]);
             const specialTitleStorage = new Map(specialTitleStoragePairs);
             const helpfulReportsRaw = specialTitleStorage.get(HELPFUL_REPORTS_CONFIRMED_KEY) ?? null;
@@ -1722,7 +1723,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 markHomeStatsReady();
             // зачем (D107): карточка «Почини цепочку» удалена — серию спасает только заморозка Plus.
             // Месячный Plus-лимит заморозок остаётся без старого bootstrap бонусов.
-            void applyMonthlyPremiumFreezeAllowance().catch(() => {});
+            void applyMonthlyPremiumFreezeAllowance().catch(noteSwallowedHandler('home:loadData.applyMonthlyPremiumFreezeAllowance'));
             // [STREAK PAYWALL / FREEZE] Проверяем угрозу цепочке для всех пользователей.
             // Для не-премиум — показываем paywall (один раз в день).
             // Для премиум — показываем кнопку заморозки.
@@ -1860,7 +1861,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             void readCurrentStreakWeekMarkers().then((markers) => {
                 if (homeRuntimeActiveRef.current) setWeekMarkers(markers);
                 else streakMarkersDirtyRef.current = true;
-            }).catch(() => {});
+            }).catch(noteSwallowedHandler('home:useEffect.readCurrentStreakWeekMarkers'));
         }
     }, [focusTick, homeRuntimeActive]);
     /** Индексы табов: 0 home, 1 lessons, 2 friends, 3 settings —

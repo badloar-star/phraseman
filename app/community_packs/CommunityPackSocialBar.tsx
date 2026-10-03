@@ -36,6 +36,7 @@ import {
   shouldShowCommentsCount,
 } from './packComments';
 import { isCommunityPackLikedLocally } from './packSocialStorage';
+import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type CommunityPackSocialVariant = 'row' | 'tile' | 'screen';
 
@@ -116,9 +117,9 @@ export default function CommunityPackSocialBar({
        * можно лайкнуть, — на экране набора. Плиткам каталога это лишние 2 чтения
        * Firestore КАЖДАЯ: их снимок обновляет событие `community_pack_like_changed`.
        */
-      const userId = isTile ? null : await getCanonicalUserId().catch(() => null);
+      const userId = isTile ? null : await getCanonicalUserId().catch(noteSwallowedAs('CommunityPackSocialBar:useEffect.getCanonicalUserId', null));
       const [liked, state] = await Promise.all([
-        isCommunityPackLikedLocally(pack.id).catch(() => false),
+        isCommunityPackLikedLocally(pack.id).catch(noteSwallowedAs('CommunityPackSocialBar:useEffect.isCommunityPackLikedLocally', false)),
         fetchCommunityPackSocialState(pack.id, userId).catch(() => ({
           counts: { likesCount: 0, addedCount: 0 },
           membership: null,

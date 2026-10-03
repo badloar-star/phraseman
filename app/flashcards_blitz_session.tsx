@@ -103,6 +103,7 @@ import {
 } from './flashcard_training_pending_grant';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Акцент блица (words #4A9EFF / phrases #40C080 / arena #E05050). */
 const ACCENT = '#FF8A3D';
@@ -394,11 +395,11 @@ export default function FlashcardsBlitzSession() {
         { kind: 'custom' },
       ]);
       const refs: DeckRef[] = deckRefs.length > 0 ? deckRefs : allRefs;
-      let cards = await loadDeckCardsMulti(refs, contentLang, { studyTarget }).catch((): DeckCard[] => []);
+      let cards = await loadDeckCardsMulti(refs, contentLang, { studyTarget }).catch(noteSwallowedAs('flashcards_blitz_session:useEffect.loadDeckCardsMulti', []));
       // Сохранённый пресет мог указывать на набор, который удалили/не скачали —
       // не показываем тупик, а честно добираем пул из всех доступных источников.
       if (!canStartBlitz(cards.length) && deckRefs.length > 0) {
-        const wide = await loadDeckCardsMulti(allRefs, contentLang, { studyTarget }).catch((): DeckCard[] => []);
+        const wide = await loadDeckCardsMulti(allRefs, contentLang, { studyTarget }).catch(noteSwallowedAs('flashcards_blitz_session:useEffect.loadDeckCardsMulti_2', []));
         if (wide.length > cards.length) cards = wide;
       }
       if (cancelled) return;
@@ -947,8 +948,8 @@ export default function FlashcardsBlitzSession() {
     let cancelled = false;
     void (async () => {
       const [decks, preset] = await Promise.all([
-        loadFcDeckOptions('blitz', lang, studyTarget).catch(() => [] as DeckSheetOption[]),
-        getLastPreset('blitz').catch(() => null),
+        loadFcDeckOptions('blitz', lang, studyTarget).catch(noteSwallowedAs('flashcards_blitz_session:useEffect.loadFcDeckOptions', [])),
+        getLastPreset('blitz').catch(noteSwallowedAs('flashcards_blitz_session:useEffect.getLastPreset', null)),
       ]);
       if (cancelled) return;
       setDeckOptions(decks);

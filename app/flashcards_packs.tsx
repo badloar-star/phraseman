@@ -77,6 +77,7 @@ import {
   type PackLanguage,
 } from './flashcards/pack_languages';
 import { getStoredPackLanguage, setStoredPackLanguage, subscribePackLanguage } from './flashcards/pack_language_preferences';
+import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type FlashcardsPacksScreenProps = {
   /** 'embedded' — раздел «Наборы» во вкладке «Сообщество» (2.0, D39): без «назад», док над таббаром. */
@@ -157,7 +158,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
 
   const handlePackLanguageChange = useCallback((next: PackLanguage) => {
     setPackLanguage(next);
-    void setStoredPackLanguage(next).catch(() => {});
+    void setStoredPackLanguage(next).catch(noteSwallowedHandler('flashcards_packs:useCallback.setStoredPackLanguage'));
   }, []);
 
   /**
@@ -173,7 +174,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
   const [reduceMotion, setReduceMotion] = useState(false);
   useEffect(() => {
     if (Platform.OS === 'web') return;
-    AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion).catch(() => {});
+    AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion).catch(noteSwallowedHandler('flashcards_packs:useEffect.isReduceMotionEnabled'));
     const sub = AccessibilityInfo.addEventListener('reduceMotionChanged', setReduceMotion);
     return () => sub.remove();
   }, []);
@@ -296,10 +297,10 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
     }
 
     /** Свои наборы с устройства («Сохранить» в редакторе) — всегда доступны автору. */
-    const localAuthored = await loadLocalAuthorPacks(studyTarget).catch(() => []);
+    const localAuthored = await loadLocalAuthorPacks(studyTarget).catch(noteSwallowedAs('flashcards_packs:useCallback.loadLocalAuthorPacks', []));
     let commOwned: string[] = [];
     if (cloudCommunityEnabled) {
-      commOwned = await loadCommunityOwnedPackIds(studyTarget).catch(() => [] as string[]);
+      commOwned = await loadCommunityOwnedPackIds(studyTarget).catch(noteSwallowedAs('flashcards_packs:useCallback.loadCommunityOwnedPackIds', []));
     }
     {
       const ownedWithLocal = [...commOwned, ...localAuthored.map((p) => p.id)];
@@ -341,7 +342,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
 
     if (cloudCommunityEnabled) {
       const published = commPubRes.status === 'fulfilled' ? commPubRes.value : [];
-      const sid = await getCanonicalUserId().catch(() => null);
+      const sid = await getCanonicalUserId().catch(noteSwallowedAs('flashcards_packs:useCallback.getCanonicalUserId', null));
       setHubAuthorStableId((prev) => (prev === sid ? prev : sid));
       const pendingAuthor = sid
         ? await loadAuthorCommunityPacksPendingUpdate(sid, studyTarget).catch((error: unknown): FlashcardMarketPack[] => {
@@ -351,7 +352,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
         })
         : [];
       const missingMeta = commOwned.filter((id) => !published.some((p) => p.id === id));
-      const extras = await Promise.all(missingMeta.map((id) => fetchCommunityPackMeta(id, studyTarget).catch(() => null)));
+      const extras = await Promise.all(missingMeta.map((id) => fetchCommunityPackMeta(id, studyTarget).catch(noteSwallowedAs('flashcards_packs:useCallback.fetchCommunityPackMeta', null))));
       const localMarket = mergeLocalAuthorPacks([...published, ...pendingAuthor], localAuthored, studyTarget);
       const merged = [...published, ...pendingAuthor, ...(extras.filter(Boolean) as FlashcardMarketPack[]), ...localMarket];
       const seen = new Set<string>();

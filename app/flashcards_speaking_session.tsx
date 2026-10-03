@@ -118,6 +118,7 @@ import {
 import { consumeMonthlyTrainingSession } from './monthly_training_sessions';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { DebugLogger } from './debug-logger';
+import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Акцент режима (words #4A9EFF / phrases #40C080 / blitz #FF8A3D). */
 const ACCENT = '#22B8A8';
@@ -427,8 +428,8 @@ export default function FlashcardsSpeakingSession() {
       }
       if (cancelled) return;
       const [loadedPool, rawPrefs] = await Promise.all([
-        loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true, studyTarget }).catch((): DeckCard[] => []),
-        AsyncStorage.getItem(FC_SPEAKING_PREFS_KEY).catch(() => null),
+        loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true, studyTarget }).catch(noteSwallowedAs('flashcards_speaking_session:useEffect.loadDeckCardsMulti', [])),
+        AsyncStorage.getItem(FC_SPEAKING_PREFS_KEY).catch(noteSwallowedAs('flashcards_speaking_session:useEffect.getItem', null)),
       ]);
       if (cancelled) return;
       const prefs = parseSpeakingPrefs(rawPrefs);
@@ -1065,8 +1066,8 @@ export default function FlashcardsSpeakingSession() {
     let cancelled = false;
     void (async () => {
       const [decks, preset] = await Promise.all([
-        loadFcDeckOptions('speaking', lang, studyTarget).catch(() => [] as DeckSheetOption[]),
-        getLastPreset('speaking').catch(() => null),
+        loadFcDeckOptions('speaking', lang, studyTarget).catch(noteSwallowedAs('flashcards_speaking_session:useEffect.loadFcDeckOptions', [])),
+        getLastPreset('speaking').catch(noteSwallowedAs('flashcards_speaking_session:useEffect.getLastPreset', null)),
       ]);
       if (cancelled) return;
       setDeckOptions(decks);

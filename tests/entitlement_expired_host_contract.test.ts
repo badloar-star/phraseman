@@ -51,7 +51,8 @@ describe('EntitlementExpiredHost contract', () => {
     expect(hostSrc).toContain('SHOW_COOLDOWN_MS');
     expect(hostSrc).toContain('hasAnyPlusAccess');
     expect(hostSrc).toContain('accountEntitlementStorageKey');
-    expect(hostSrc).toContain('await AsyncStorage.removeItem(wasActiveKey).catch(() => {})');
+    // зачем: PM-229 — немой обработчик теперь пишет причину в журнал; значение по умолчанию прежнее
+    expect(hostSrc).toMatch(/await AsyncStorage\.removeItem\(wasActiveKey\)\.catch\((\(\) => \{\}|noteSwallowedHandler\('[^']+'\))\)/);
     // Второй кандидат не перетирает первого в одной сессии.
     expect(hostSrc).toContain('prev ?? k');
   });

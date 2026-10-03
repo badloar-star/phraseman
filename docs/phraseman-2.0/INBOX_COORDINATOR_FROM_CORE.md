@@ -1583,3 +1583,8 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 - §10: убраны gifts из заголовка и текста.
 
 **Проверка:** `legal_copies_sync_contract` 6/6 ✓, liquid-glass контракт 8/8 ✓ и `profile_liquid_glass` 15/15 ✓, `support_diagnostics_privacy_contract` — политика теперь проходит, остаётся 1 падение «explicit-report attachment» (исходник диагностики с чужими правками, мой файл не трогал; падало и до меня). `website_i18n_contract` красный до меня (главная страница сайта), не связан.
+
+## §101 (координатор) — 2026-10-03 19:00Z
+- **Выложено:** `coinReconcileV1` (LOW-1, 4ad2bf08f); `authMergeStableAccounts`, `accountMergeOutboxWorker`, `accountMergeOutboxRetryCron` (8T, 750728284 — перенос stars проигравшего в транзакции слияния).
+- **M-1 (anon_merge_claim без привязки к вызывающему — кража монет по stableId в 10-мин окне) → Ядро сразу:** одноразовый nonce (sha256, гасить после использования), security-ревью; для 1.6.24 старый путь с логом до min_app_version 2.0. Затем L-1, learning_v2_stars_ledger (2 красных), LOW-A (rules), I-1.
+- **«Дизайн» A2 карточек:** приняты по evidence — PM-096-A2 (13c9f3012, ключ fc_my_packs_sort_v1), PM-096-A3 (фикс + my_packs_sort_memo_contract 3/3), PM-093-A2/PM-094-A2 (sectionHint одной строкой, 9 локалей, app/flashcards_my_packs.tsx:661-671). Ревьюеру — закрыть в реестре. Остаток: прыжок сортировки на самом первом старте, PM-092-A2 (кадр длинного названия).

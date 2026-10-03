@@ -40,6 +40,7 @@ import { buildMistakeExplanationBlocks } from '../app/explanation_presentation';
 import TonalSurface from './TonalSurface';
 import AiBadge from './AiBadge';
 import MistakeEli5ModalHybrid from './MistakeEli5ModalHybrid';
+import { aiExplainLaterNote, aiExplainRefreshLabel } from '../app/mistake_explain_fallback';
 import { glassFill } from './GlassSurface';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
@@ -52,6 +53,9 @@ interface Props {
   state: MistakeEli5State;
   text: string | null;
   onRetry: () => void;
+  /** зачем: D158 - text это локальный шаблон (ИИ не ответил): под ним «Разбор ИИ появится позже» + «Обновить». */
+  fallback?: boolean;
+  onRefresh?: () => void;
   /**
    * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
    * сцена M2 «Шторка (bottom sheet)») живёт РЯДОМ со старой версией под флагом.
@@ -62,14 +66,14 @@ interface Props {
 
 const SHEET_HIDDEN = 320; // стартовая позиция листа под экраном (выезд/уезд)
 
-function MistakeEli5Modal({ visible, onClose, lang, state, text, motionVariant = 'classic' }: Props) {
+function MistakeEli5Modal({ visible, onClose, lang, state, text, fallback, onRefresh, motionVariant = 'classic' }: Props) {
   if (motionVariant === 'hybrid') {
-    return <MistakeEli5ModalHybrid visible={visible} onClose={onClose} lang={lang} state={state} text={text} />;
+    return <MistakeEli5ModalHybrid visible={visible} onClose={onClose} lang={lang} state={state} text={text} fallback={fallback} onRefresh={onRefresh} />;
   }
-  return <MistakeEli5ModalClassic visible={visible} onClose={onClose} lang={lang} state={state} text={text} />;
+  return <MistakeEli5ModalClassic visible={visible} onClose={onClose} lang={lang} state={state} text={text} fallback={fallback} onRefresh={onRefresh} />;
 }
 
-function MistakeEli5ModalClassic({ visible, onClose, lang, state, text }: Omit<Props, 'onRetry' | 'motionVariant'>) {
+function MistakeEli5ModalClassic({ visible, onClose, lang, state, text, fallback, onRefresh }: Omit<Props, 'onRetry' | 'motionVariant'>) {
   const { theme: t, f, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
@@ -266,6 +270,23 @@ function MistakeEli5ModalClassic({ visible, onClose, lang, state, text }: Omit<P
                 {readyBlocks.map((block, idx) => (
                   <LearningSemanticBlock key={`${block.tone}-${idx}`} block={block} />
                 ))}
+                {fallback && onRefresh ? (
+                  <View style={styles.fallbackRow}>
+                    <Text testID="eli5-fallback-note" style={{ color: t.textSecond, fontSize: f.label, flexShrink: 1 }}>
+                      {aiExplainLaterNote(lang)}
+                    </Text>
+                    <Pressable
+                      testID="eli5-refresh-button"
+                      accessibilityRole="button"
+                      onPress={onRefresh}
+                      style={({ pressed }) => [styles.refreshButton, { backgroundColor: glass.selected }, pressed && styles.pressed]}
+                    >
+                      <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900' }}>
+                        {aiExplainRefreshLabel(lang)}
+                      </Text>
+                    </Pressable>
+                  </View>
+                ) : null}
               </View>
             )}
           </ScrollView>
@@ -353,6 +374,21 @@ const styles = StyleSheet.create({
   },
   semanticBlocks: {
     gap: 8,
+  },
+  fallbackRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 10,
+    marginTop: 4,
+  },
+  refreshButton: {
+    alignItems: 'center',
+    borderRadius: 8,
+    justifyContent: 'center',
+    minHeight: 34,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
   },
   skeleton: {
     gap: 12,

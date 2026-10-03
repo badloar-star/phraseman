@@ -29,6 +29,7 @@ import { buildMistakeExplanationBlocks } from '../app/explanation_presentation';
 import HybridSheetShell from './modal_fx/HybridSheetShell';
 import { useTheme } from './ThemeContext';
 import AiBadge from './AiBadge';
+import { aiExplainLaterNote, aiExplainRefreshLabel } from '../app/mistake_explain_fallback';
 import type { MistakeEli5State } from './MistakeEli5Modal';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 
@@ -38,6 +39,9 @@ interface Props {
   lang: Lang;
   state: MistakeEli5State;
   text: string | null;
+  /** зачем: D158 - text это локальный шаблон (ИИ не ответил): «Разбор ИИ появится позже» + «Обновить». */
+  fallback?: boolean;
+  onRefresh?: () => void;
 }
 
 function CascadeItem({ index, style, children }: { index: number; style?: object; children: React.ReactNode }) {
@@ -68,7 +72,7 @@ function CascadeItem({ index, style, children }: { index: number; style?: object
   return <Animated.View style={[style, animStyle]}>{children}</Animated.View>;
 }
 
-function MistakeEli5ModalHybrid({ visible, onClose, lang, state, text }: Props) {
+function MistakeEli5ModalHybrid({ visible, onClose, lang, state, text, fallback, onRefresh }: Props) {
   const { theme: t, f } = useTheme();
   const { height: viewportHeight } = useWindowDimensions();
 
@@ -130,6 +134,23 @@ function MistakeEli5ModalHybrid({ visible, onClose, lang, state, text }: Props) 
               {readyBlocks.map((block, idx) => (
                 <LearningSemanticBlock key={`${block.tone}-${idx}`} block={block} />
               ))}
+              {fallback && onRefresh ? (
+                <View style={styles.fallbackRow}>
+                  <Text testID="eli5-fallback-note" style={{ color: t.textSecond, fontSize: f.label, flexShrink: 1 }}>
+                    {aiExplainLaterNote(lang)}
+                  </Text>
+                  <Pressable
+                    testID="eli5-refresh-button"
+                    accessibilityRole="button"
+                    onPress={onRefresh}
+                    style={({ pressed }) => [styles.refreshButton, { backgroundColor: t.bgSurface2 }, pressed && styles.pressed]}
+                  >
+                    <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900' }}>
+                      {aiExplainRefreshLabel(lang)}
+                    </Text>
+                  </Pressable>
+                </View>
+              ) : null}
             </View>
           )}
         </ScrollView>
@@ -173,6 +194,21 @@ const styles = StyleSheet.create({
   },
   bodyScrollContent: {
     paddingBottom: 12,
+  },
+  fallbackRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 10,
+    marginTop: 4,
+  },
+  refreshButton: {
+    alignItems: 'center',
+    borderRadius: 8,
+    justifyContent: 'center',
+    minHeight: 34,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
   },
   semanticBlocks: {
     gap: 8,

@@ -1272,6 +1272,8 @@ const LessonContent = React.memo(function LessonContent({
                     explanation={aiMistakeText}
                     remaining={aiMistakeRemaining}
                     waitLine={mistakeExplain.aiMistakeWaitLine}
+                    fallback={mistakeExplain.aiMistakeFallback}
+                    onRefresh={mistakeExplain.refreshMistakeExplain}
                     onExplain={explainCurrentMistake}
                     onOpenSimple={openEli5Modal}
                     targetAnswer={aiMistakeTargetLine}
@@ -1798,6 +1800,8 @@ const LessonContent = React.memo(function LessonContent({
           state={eli5State}
           text={eli5Text}
           onRetry={mistakeExplain.eli5.onRetry}
+          fallback={mistakeExplain.eli5.fallback}
+          onRefresh={mistakeExplain.eli5.onRefresh}
         />
 
         <AiExplainConsentModal

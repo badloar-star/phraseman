@@ -574,7 +574,8 @@ function MistakePracticeSessionScreen() {
     userAnswer: feedback?.userAnswer ?? '',
     targetAnswer: feedback?.answer ?? '',
   });
-  const liveExplanation = mistakeExplain.aiMistakeState === 'ready' ? mistakeExplain.aiMistakeText : null;
+  // зачем: D158 - локальный шаблон (ИИ не ответил) здесь не подменяет разбор: у экрана есть свой feedback.explanation.
+  const liveExplanation = mistakeExplain.aiMistakeState === 'ready' && !mistakeExplain.aiMistakeFallback ? mistakeExplain.aiMistakeText : null;
 
   // Прогрев объяснений всей очереди, пока человек отвечает на первое задание.
   useEffect(() => {
@@ -1180,6 +1181,8 @@ OK: ${entry.exercise.correctAnswer}`}
         state={mistakeExplain.eli5.state}
         text={mistakeExplain.eli5.text}
         onRetry={mistakeExplain.eli5.onRetry}
+        fallback={mistakeExplain.eli5.fallback}
+        onRefresh={mistakeExplain.eli5.onRefresh}
       />
       <AiExplainConsentModal
         visible={mistakeExplain.consentGate.visible}

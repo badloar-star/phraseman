@@ -42,6 +42,16 @@ jest.mock('../app/ai_mistake_explain_limit_session', () => ({
   hasShownAiMistakeLimitNoticeToday: jest.fn(async () => false),
   markAiMistakeLimitNoticeShownToday: () => markLimitShown(),
   peekAiMistakeLimitNoticeShownToday: jest.fn(() => false),
+  // зачем: хук читает экономику разбора (остаток/баланс/цена) - без этих экспортов мок был устаревшим и ВСЕ тесты файла падали.
+  getAiMistakeExplainsLeftToday: jest.fn(async () => 3),
+  markAiMistakeExplainUsed: jest.fn(async () => undefined),
+  buyMistakeExplainLocally: jest.fn(async () => ({ ok: false, reason: 'test' })),
+  FREE_AI_MISTAKE_EXPLAINS_PER_DAY_DEFAULT: 3,
+  MISTAKE_EXPLAIN_PRICE_RUNES: 120,
+}));
+
+jest.mock('../app/level_spin_star_grants', () => ({
+  readUnifiedLevelSpinStars: jest.fn(async () => ({ balance: 0, earnedTotal: 0 })),
 }));
 
 // зачем (B6, 2026-09-30): хук читает Plus из PremiumContext; тяжёлый провайдер в тесте не нужен.
@@ -237,53 +247,148 @@ describe('useMistakeExplain bundled ELI5 state', () => {
     expect(hook.result.current.aiMistakeText).toBe('Recovered internal explanation');
   });
 
-  it('keeps retrying unclassified failures at the capped delay until ready', async () => {
+  // зачем: D158 - ИИ-объяснение: ровно 2 автоповтора с паузой 2 с (1 + 2 = 3 вызова), затем мгновенный
+  // локальный шаблон; «Обновить» = ровно одна попытка; закрытая шторка повторов не делает.
+  it('D158: three failures make exactly three calls, then an instant local template (no endless skeleton)', async () => {
     jest.useFakeTimers();
-    for (let attempt = 0; attempt < 7; attempt += 1) {
-      callExplainMistakeMock.mockRejectedValueOnce({
-        code: 'functions/internal',
-        message: `unexpected failure ${attempt + 1}`,
-      });
-    }
-    callExplainMistakeMock.mockResolvedValueOnce(fullResponse('Recovered after capped retries'));
+    callExplainMistakeMock.mockRejectedValue({ code: 'functions/internal', message: 'unexpected failure' });
 
     const hook = await renderHook(() => useMistakeExplain(baseInput()));
     await act(async () => { await Promise.resolve(); });
+    expect(callExplainMistakeMock).toHaveBeenCalledTimes(1);
+    expect(hook.result.current.aiMistakeState).toBe('loading');
 
-    const retryDelays = [2_000, 4_000, 8_000, 16_000, 30_000, 30_000, 30_000];
-    for (const [index, delayMs] of retryDelays.entries()) {
-      expect(hook.result.current.aiMistakeState).toBe('loading');
-      expect(callExplainMistakeMock).toHaveBeenCalledTimes(index + 1);
-      await act(async () => { await jest.advanceTimersByTimeAsync(delayMs); });
-    }
+    await act(async () => { await jest.advanceTimersByTimeAsync(1_999); });
+    expect(callExplainMistakeMock).toHaveBeenCalledTimes(1);
+    await act(async () => { await jest.advanceTimersByTimeAsync(1); });
+    expect(callExplainMistakeMock).toHaveBeenCalledTimes(2);
+    expect(hook.result.current.aiMistakeState).toBe('loading');
 
-    expect(callExplainMistakeMock).toHaveBeenCalledTimes(8);
+    await act(async () => { await jest.advanceTimersByTimeAsync(2_000); });
+    expect(callExplainMistakeMock).toHaveBeenCalledTimes(3);
+
+    // Исчерпано: мгновенно шаблон, не скелетон.
     expect(hook.result.current.aiMistakeState).toBe('ready');
-    expect(hook.result.current.aiMistakeText).toBe('Recovered after capped retries');
+    expect(hook.result.current.aiMistakeFallback).toBe(true);
+    expect(hook.result.current.aiMistakeText).toBeTruthy();
+
+    // Дальше никаких автоповторов.
+    await act(async () => { await jest.advanceTimersByTimeAsync(120_000); });
+    expect(callExplainMistakeMock).toHaveBeenCalledTimes(3);
   });
 
-  it('keeps a dismissed ELI5 request retrying without reopening the modal', async () => {
+  it('D158: a template does not consume a free daily explanation', async () => {
+    jest.useFakeTimers();
+    callExplainMistakeMock.mockRejectedValue({ code: 'functions/internal', message: 'unexpected failure' });
+    const { markAiMistakeExplainUsed } = jest.requireMock('../app/ai_mistake_explain_limit_session');
+    const hook = await renderHook(() => useMistakeExplain(baseInput()));
+    await act(async () => { await Promise.resolve(); });
+    await act(async () => { await jest.advanceTimersByTimeAsync(10_000); });
+    expect(hook.result.current.aiMistakeFallback).toBe(true);
+    expect(markAiMistakeExplainUsed).not.toHaveBeenCalled();
+  });
+
+  it('D158: success on the second attempt shows the AI text, not the template', async () => {
+    jest.useFakeTimers();
+    callExplainMistakeMock
+      .mockRejectedValueOnce({ code: 'functions/internal', message: 'unexpected failure' })
+      .mockResolvedValueOnce(fullResponse('AI on second try'));
+
+    const hook = await renderHook(() => useMistakeExplain(baseInput()));
+    await act(async () => { await Promise.resolve(); });
+    await act(async () => { await jest.advanceTimersByTimeAsync(2_000); });
+
+    expect(callExplainMistakeMock).toHaveBeenCalledTimes(2);
+    expect(hook.result.current.aiMistakeState).toBe('ready');
+    expect(hook.result.current.aiMistakeFallback).toBe(false);
+    expect(hook.result.current.aiMistakeText).toBe('AI on second try');
+  });
+
+  it('D158: manual refresh makes exactly one call; a failure returns to the template without a new retry cycle', async () => {
+    jest.useFakeTimers();
+    callExplainMistakeMock.mockRejectedValue({ code: 'functions/internal', message: 'unexpected failure' });
+
+    const hook = await renderHook(() => useMistakeExplain(baseInput()));
+    await act(async () => { await Promise.resolve(); });
+    await act(async () => { await jest.advanceTimersByTimeAsync(10_000); });
+    expect(callExplainMistakeMock).toHaveBeenCalledTimes(3);
+    expect(hook.result.current.aiMistakeFallback).toBe(true);
+
+    await act(async () => { hook.result.current.refreshMistakeExplain(); });
+    await act(async () => { await Promise.resolve(); });
+    expect(callExplainMistakeMock).toHaveBeenCalledTimes(4);
+    await act(async () => { await jest.advanceTimersByTimeAsync(120_000); });
+    expect(callExplainMistakeMock).toHaveBeenCalledTimes(4);
+    expect(hook.result.current.aiMistakeState).toBe('ready');
+    expect(hook.result.current.aiMistakeFallback).toBe(true);
+  });
+
+  it('D158: manual refresh that succeeds replaces the template with the AI text', async () => {
+    jest.useFakeTimers();
+    callExplainMistakeMock
+      .mockRejectedValueOnce({ code: 'functions/internal', message: 'f1' })
+      .mockRejectedValueOnce({ code: 'functions/internal', message: 'f2' })
+      .mockRejectedValueOnce({ code: 'functions/internal', message: 'f3' })
+      .mockResolvedValueOnce(fullResponse('AI after refresh'));
+
+    const hook = await renderHook(() => useMistakeExplain(baseInput()));
+    await act(async () => { await Promise.resolve(); });
+    await act(async () => { await jest.advanceTimersByTimeAsync(10_000); });
+    expect(hook.result.current.aiMistakeFallback).toBe(true);
+
+    await act(async () => { hook.result.current.refreshMistakeExplain(); });
+    await act(async () => { await Promise.resolve(); });
+    expect(callExplainMistakeMock).toHaveBeenCalledTimes(4);
+    expect(hook.result.current.aiMistakeFallback).toBe(false);
+    expect(hook.result.current.aiMistakeText).toBe('AI after refresh');
+  });
+
+  it('D158: ELI5 with the sheet open - three calls, template, then one refresh call', async () => {
+    jest.useFakeTimers();
+    callExplainMistakeMock.mockResolvedValueOnce(fullResponse('Full explanation'));
+    callExplainMistakeMock.mockRejectedValue({ code: 'functions/internal', message: 'unexpected ELI5 failure' });
+
+    const hook = await renderHook(() => useMistakeExplain(baseInput()));
+    await act(async () => { await Promise.resolve(); });
+    expect(callExplainMistakeMock).toHaveBeenCalledTimes(1);
+
+    await act(async () => { hook.result.current.eli5.onOpen(); });
+    await act(async () => { await jest.advanceTimersByTimeAsync(10_000); });
+    expect(callExplainMistakeMock).toHaveBeenCalledTimes(4); // 1 разбор + 3 ELI5 (1 + 2 повтора)
+    expect(hook.result.current.eli5.state).toBe('ready');
+    expect(hook.result.current.eli5.fallback).toBe(true);
+    expect(hook.result.current.eli5.text).toBeTruthy();
+
+    await act(async () => { await jest.advanceTimersByTimeAsync(120_000); });
+    expect(callExplainMistakeMock).toHaveBeenCalledTimes(4);
+
+    await act(async () => { hook.result.current.eli5.onRefresh(); });
+    await act(async () => { await jest.advanceTimersByTimeAsync(120_000); });
+    expect(callExplainMistakeMock).toHaveBeenCalledTimes(5);
+    expect(hook.result.current.eli5.fallback).toBe(true);
+  });
+
+  it('D158: a closed ELI5 sheet makes no retries and does not reopen', async () => {
     jest.useFakeTimers();
     callExplainMistakeMock
       .mockResolvedValueOnce(fullResponse('Full explanation'))
       .mockRejectedValueOnce({ code: 'functions/internal', message: 'unexpected ELI5 failure' })
-      .mockResolvedValueOnce(fullResponse('Recovered simple explanation', 'eli5'));
+      .mockResolvedValueOnce(fullResponse('Must never be requested', 'eli5'));
 
     const hook = await renderHook(() => useMistakeExplain(baseInput()));
     await act(async () => { await Promise.resolve(); });
     expect(hook.result.current.aiMistakeState).toBe('ready');
 
     await act(async () => { hook.result.current.eli5.onOpen(); });
-    expect(hook.result.current.eli5.open).toBe(true);
     await act(async () => { hook.result.current.eli5.onClose(); });
     expect(hook.result.current.eli5.open).toBe(false);
 
-    await act(async () => { await jest.advanceTimersByTimeAsync(2_000); });
+    await act(async () => { await jest.advanceTimersByTimeAsync(120_000); });
 
-    expect(callExplainMistakeMock).toHaveBeenCalledTimes(3);
+    expect(callExplainMistakeMock).toHaveBeenCalledTimes(2);
     expect(hook.result.current.eli5.open).toBe(false);
-    expect(hook.result.current.eli5.state).toBe('ready');
-    expect(hook.result.current.eli5.text).toBe('Recovered simple explanation');
+    expect(hook.result.current.eli5.fallback).toBe(false);
+    expect(hook.result.current.eli5.state).not.toBe('loading');
   });
 
   it('cancels an old retry when the phrase key changes', async () => {

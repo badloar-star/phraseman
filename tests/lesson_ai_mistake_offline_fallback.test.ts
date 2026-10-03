@@ -39,7 +39,8 @@ describe('lesson AI mistake background recovery', () => {
     expect(cardSource).not.toContain("state === 'error'");
   });
 
-  it('keeps a failed simple explanation in the skeleton while retrying automatically', () => {
+  // зачем: D158 - скелетон держится только пока идут 2 автоповтора; затем локальный шаблон (ready + fallback), не вечное ожидание.
+  it('keeps a failed simple explanation in the skeleton only while the capped auto-retries run, then shows the local template', () => {
     const eli5Start = hookSource.indexOf('const openEli5 = useCallback');
     const catchStart = hookSource.indexOf('} catch', eli5Start);
     const catchEnd = hookSource.indexOf('} finally {', catchStart);
@@ -51,7 +52,9 @@ describe('lesson AI mistake background recovery', () => {
     expect(eli5FailureBlock).toContain("setEli5State('loading')");
     expect(eli5FailureBlock).toContain('scheduleEli5Retry');
     expect(eli5FailureBlock).not.toContain("setEli5State('error')");
-    expect(eli5FailureBlock).not.toContain("setEli5State('ready')");
+    expect(eli5FailureBlock).toContain('AI_EXPLAIN_AUTO_RETRIES');
+    expect(eli5FailureBlock).toContain('buildFallbackText()');
+    expect(eli5FailureBlock).toContain('setEli5Fallback(true)');
     expect(eli5FailureBlock).not.toContain('aiErrorToast');
     expect(eli5FailureBlock).toContain('isMistakeExplainOfflineError(error)');
     expect(eli5FailureBlock).toContain("getNetStatus() !== 'online'");

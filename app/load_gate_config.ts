@@ -13,6 +13,14 @@ export const LOAD_GATE_ATTEMPTS = 3;
 /** Пауза ПЕРЕД повтором № i (индекс 0 — первый повтор после первой неудачи). */
 export const LOAD_GATE_BACKOFF_MS: readonly number[] = Object.freeze([1_000, 3_000, 8_000]);
 
+/**
+ * зачем: D158 — ИИ-объяснение ошибки (шторка/карточка) раньше повторялось без потолка (пауза до 30 с,
+ * пока открыто) — это платные вызовы ИИ. Теперь ровно 2 автоповтора с паузой 2 с, затем локальный
+ * шаблон + ручная «Обновить» (ещё одна попытка, без нового цикла автоповторов).
+ */
+export const AI_EXPLAIN_AUTO_RETRIES = 2;
+export const AI_EXPLAIN_RETRY_PAUSE_MS = 2000;
+
 /** Пауза перед следующим повтором после `failedAttempts` неудач подряд; null — повторы исчерпаны. */
 export function loadGateBackoffMs(failedAttempts: number): number | null {
   if (!Number.isFinite(failedAttempts) || failedAttempts < 1 || failedAttempts > LOAD_GATE_ATTEMPTS) return null;

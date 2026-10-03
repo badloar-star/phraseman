@@ -11,6 +11,7 @@ import LearningSemanticBlock from './LearningSemanticBlock';
 import { buildMistakeExplanationBlocks } from '../app/explanation_presentation';
 import AiBadge from './AiBadge';
 import { FlowText } from './text-integrity/FlowText';
+import { aiExplainLaterNote, aiExplainRefreshLabel } from '../app/mistake_explain_fallback';
 
 export type AiMistakeCardState = 'hidden' | 'idle' | 'loading' | 'ready' | 'limit';
 
@@ -29,6 +30,12 @@ type AiMistakeCardProps = {
    */
   waitLine?: string;
   /**
+   * зачем: D158 - в explanation лежит локальный шаблон (ИИ не ответил после автоповторов).
+   * Под текстом - неброское «Разбор ИИ появится позже» и одна ручная «Обновить» (onRefresh).
+   */
+  fallback?: boolean;
+  onRefresh?: () => void;
+  /**
    * Правильный (целевой) ответ и неправильный ответ юзера. Нужны кнопке «Непонятно объяснили»,
    * чтобы жалоба попала в ТУ ЖЕ кэш-запись разбора (mistake_explanations per-(target,userAnswer,lang)).
    * Если не переданы — кнопка репорта не показывается (старые вызовы остаются как были).
@@ -46,6 +53,8 @@ export default function AiMistakeCard({
   targetAnswer,
   userAnswer,
   waitLine,
+  fallback = false,
+  onRefresh,
 }: AiMistakeCardProps) {
   const { theme: t, f } = useTheme();
   const isBusy = state === 'loading';
@@ -154,7 +163,25 @@ export default function AiMistakeCard({
 
       {/* «Непонятно объяснили» — только на ГОТОВОМ разборе и если есть оба ответа (нужны для хэша).
           Жалоба летит в админку и удаляется из кэша mistake_explanations кнопкой там. */}
-      {isReadyExplanation && targetAnswer && userAnswer ? (
+      {isReadyExplanation && fallback && onRefresh ? (
+        <View style={styles.fallbackRow}>
+          <Text testID="ai-mistake-fallback-note" style={{ color: t.textSecond, fontSize: f.label, flexShrink: 1 }}>
+            {aiExplainLaterNote(lang)}
+          </Text>
+          <Pressable
+            testID="ai-mistake-refresh-button"
+            accessibilityRole="button"
+            onPress={onRefresh}
+            style={({ pressed }) => [styles.simpleButton, { borderColor: t.border, backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.78 }]}
+          >
+            <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900' }}>
+              {aiExplainRefreshLabel(lang)}
+            </Text>
+          </Pressable>
+        </View>
+      ) : null}
+
+      {isReadyExplanation && !fallback && targetAnswer && userAnswer ? (
         <View style={styles.reportRow}>
           <ExplainReportButton
             kind="mistake"
@@ -165,7 +192,7 @@ export default function AiMistakeCard({
         </View>
       ) : null}
 
-      {isReadyExplanation && onOpenSimple ? (
+      {isReadyExplanation && !fallback && onOpenSimple ? (
         <Pressable
           testID="ai-mistake-simple-button"
           accessibilityRole="button"
@@ -258,6 +285,12 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     gap: 8,
     width: '100%',
+  },
+  fallbackRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 10,
   },
   reportRow: {
     alignItems: 'flex-start',

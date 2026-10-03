@@ -7,6 +7,8 @@ import {
   repointReferralOnMerge,
 } from './auth_merge';
 import { createHash } from 'crypto';
+import * as authIdentityModule from './auth_identity';
+import { hashAnonMergeNonce, readAnonMergeClaim } from './auth_identity';
 import { accountDeletePermanentDenialId } from './account_delete_job';
 import { readFileSync } from 'fs';
 import { join } from 'path';
@@ -1683,7 +1685,10 @@ describe('mergeStableAccounts', () => {
       },
     });
 
-    const res = await mergeStableAccounts(db as any, 'google-11', 'stable-mine', 'stable-anon', NOW);
+    // зачем (M-1 HIGH-1): legacy-метка открывается провайдерскому вызывающему, вошедшему после метки.
+    const res = await mergeStableAccounts(
+      db as any, 'google-11', 'stable-mine', 'stable-anon', NOW, null, { provider: 'google.com', authTimeMs: NOW },
+    );
 
     expect(res.canonicalStableId).toBe('stable-mine'); // owned A wins
     expect(res.mergedFromStableId).toBe('stable-anon');
@@ -1750,6 +1755,216 @@ describe('mergeStableAccounts', () => {
       mergeStableAccounts(db as any, 'google-14', 'stable-mine', 'stable-anon', NOW),
     ).rejects.toMatchObject({ code: 'permission-denied', message: 'stable_id_mismatch' });
     expect(store.users['stable-anon']!.identityHidden).toBeUndefined();
+  });
+
+  // ── M-1: одноразовый nonce привязывает метку к вызывающему ──
+  describe('M-1 anon_merge_claim nonce', () => {
+    const NONCE = 'right-nonce-value-0123456789';
+    const nonceUsers = (claimExtra: DocData | null) => ({
+      'stable-mine': { firebaseAuthUid: 'google-m1', progress: { user_total_xp: '5000' } },
+      'stable-anon': {
+        firebaseAuthUid: 'anon-m1',
+        ...(claimExtra ? { anon_merge_claim: { authUid: 'anon-m1', at: NOW - 1000, ...claimExtra } } : {}),
+        progress: { user_total_xp: '300', streak_count: '7' },
+      },
+    });
+    const hashed = { nonceHash: hashAnonMergeNonce(NONCE) };
+    const GOOGLE_AFTER = { provider: 'google.com', authTimeMs: NOW };
+
+    it('right nonce -> merge goes through and the claim is erased', async () => {
+      const { db, store } = makeDbStub({ users: nonceUsers(hashed) });
+      const res = await mergeStableAccounts(db as any, 'google-m1', 'stable-mine', 'stable-anon', NOW, NONCE);
+      expect(res.mergedFromStableId).toBe('stable-anon');
+      expect(store.users['stable-anon']!.identityHidden).toBe(true);
+      // заглушка хранит FieldValue.delete() как {} — проверяем смыслом: валидной метки больше нет
+      expect(readAnonMergeClaim(store.users['stable-anon'] as DocData, NOW)).toBeNull();
+      expect(readAnonMergeClaim(store.users['stable-mine'] as DocData, NOW)).toBeNull();
+      // nonce (открытый текст) нигде не оказался в хранилище, в outbox лежит только хэш
+      expect(JSON.stringify(store)).not.toContain(NONCE);
+      const outbox = Object.values(store.account_merge_outbox ?? {}) as DocData[];
+      expect(outbox.some((doc) => doc.anonClaimNonceHash === hashed.nonceHash)).toBe(true);
+    });
+
+    it('claim carries nonceHash but the caller sends NO nonce -> denied, claim kept', async () => {
+      const { db, store } = makeDbStub({ users: nonceUsers(hashed) });
+      await expect(
+        mergeStableAccounts(db as any, 'google-m1', 'stable-mine', 'stable-anon', NOW),
+      ).rejects.toMatchObject({ code: 'permission-denied', message: 'stable_id_mismatch' });
+      expect(store.users['stable-anon']!.identityHidden).toBeUndefined();
+      expect((store.users['stable-anon']!.anon_merge_claim as DocData).at).toBe(NOW - 1000); // не продлена
+    });
+
+    it('wrong nonce -> denied, claim kept', async () => {
+      const { db, store } = makeDbStub({ users: nonceUsers(hashed) });
+      await expect(
+        mergeStableAccounts(db as any, 'google-m1', 'stable-mine', 'stable-anon', NOW, 'attacker-guess'),
+      ).rejects.toMatchObject({ code: 'permission-denied', message: 'stable_id_mismatch' });
+      expect(store.users['stable-anon']!.identityHidden).toBeUndefined();
+      expect(store.users['stable-anon']!.anon_merge_claim).toEqual(
+        { authUid: 'anon-m1', at: NOW - 1000, nonceHash: hashed.nonceHash },
+      );
+    });
+
+    it('legacy claim (no nonceHash) still merges while the switch is on', async () => {
+      const { db, store } = makeDbStub({ users: nonceUsers({}) });
+      const res = await mergeStableAccounts(db as any, 'google-m1', 'stable-mine', 'stable-anon', NOW, null, GOOGLE_AFTER);
+      expect(res.mergedFromStableId).toBe('stable-anon');
+      expect(store.users['stable-anon']!.identityHidden).toBe(true);
+    });
+
+    it('legacy claim: ANONYMOUS caller denied (merge door)', async () => {
+      const { db, store } = makeDbStub({ users: nonceUsers({}) });
+      await expect(mergeStableAccounts(
+        db as any, 'google-m1', 'stable-mine', 'stable-anon', NOW, null, { provider: 'anonymous', authTimeMs: NOW },
+      )).rejects.toMatchObject({ code: 'permission-denied', message: 'stable_id_mismatch' });
+      await expect(mergeStableAccounts(db as any, 'google-m1', 'stable-mine', 'stable-anon', NOW))
+        .rejects.toMatchObject({ code: 'permission-denied' });
+      expect(store.users['stable-anon']!.identityHidden).toBeUndefined();
+    });
+
+    it('legacy claim: google signed in BEFORE the claim denied, AFTER passes (merge door)', async () => {
+      const before = makeDbStub({ users: nonceUsers({}) });
+      await expect(mergeStableAccounts(
+        before.db as any, 'google-m1', 'stable-mine', 'stable-anon', NOW, null,
+        { provider: 'google.com', authTimeMs: NOW - 1000 - 6000 },
+      )).rejects.toMatchObject({ code: 'permission-denied' });
+      expect(before.store.users['stable-anon']!.identityHidden).toBeUndefined();
+      const after = makeDbStub({ users: nonceUsers({}) });
+      await expect(mergeStableAccounts(
+        after.db as any, 'google-m1', 'stable-mine', 'stable-anon', NOW, null,
+        { provider: 'apple.com', authTimeMs: NOW - 1000 },
+      )).resolves.toMatchObject({ mergedFromStableId: 'stable-anon' });
+    });
+
+    it('nonce branch ignores caller provider / auth_time', async () => {
+      const { db } = makeDbStub({ users: nonceUsers(hashed) });
+      await expect(mergeStableAccounts(
+        db as any, 'google-m1', 'stable-mine', 'stable-anon', NOW, NONCE, { provider: 'anonymous', authTimeMs: 1 },
+      )).resolves.toMatchObject({ mergedFromStableId: 'stable-anon' });
+    });
+
+    it('loser that already has a linked provider cannot be absorbed by a claim (loser_has_provider)', async () => {
+      const users = nonceUsers(hashed) as Record<string, DocData>;
+      users['stable-anon'] = { ...users['stable-anon'], linkedAuth: { provider: 'google', providerUid: 'someone-else' } };
+      const { db, store } = makeDbStub({ users });
+      await expect(mergeStableAccounts(db as any, 'google-m1', 'stable-mine', 'stable-anon', NOW, NONCE))
+        .rejects.toMatchObject({ code: 'permission-denied', message: 'stable_id_mismatch' });
+      expect(store.users['stable-anon']!.identityHidden).toBeUndefined();
+    });
+
+    it('legacy claim is DENIED once ANON_MERGE_CLAIM_LEGACY_PATH_ENABLED is false', async () => {
+      const spy = jest.replaceProperty(authIdentityModule, 'ANON_MERGE_CLAIM_LEGACY_PATH_ENABLED', false);
+      try {
+        const { db, store } = makeDbStub({ users: nonceUsers({}) });
+        await expect(
+          mergeStableAccounts(db as any, 'google-m1', 'stable-mine', 'stable-anon', NOW, null, GOOGLE_AFTER),
+        ).rejects.toMatchObject({ code: 'permission-denied', message: 'stable_id_mismatch' });
+        expect(store.users['stable-anon']!.identityHidden).toBeUndefined();
+      } finally {
+        spy.restore();
+      }
+    });
+
+    // зачем (M-1, мутация M3): публикацию гонит триггер/cron без клиента — она обязана убедиться,
+    // что метка проигравшего несёт ТОТ ЖЕ хэш, что прошёл проверку при резервировании.
+    // Резервирование уже поставило флаги ожидания на обе стороны — как в проде.
+    const pendingUsers = (claimExtra: DocData) => Object.fromEntries(
+      Object.entries(nonceUsers(claimExtra)).map(([id, doc]) => [id, { ...doc, mistakePracticeMergePending: true }]),
+    );
+    const reservedOutbox = (anonClaimNonceHash: string, anonClaimAt?: number) => ({
+      account_merge_outbox: {
+        m1pub: {
+          winnerStableId: 'stable-mine', loserStableId: 'stable-anon', authUid: 'google-m1',
+          anonClaimNonceHash, ...(anonClaimAt ? { anonClaimAt } : {}), publicationStatus: 'reserved', status: 'pending',
+          tasks: ['historical_revenuecat_receipts', 'derived_identity_cleanup', 'mistake_practice_events'],
+          createdAt: NOW, updatedAt: NOW,
+        },
+      },
+    });
+
+    it('publication: claim hash matches the reserved one -> merge is published', async () => {
+      const { db, store } = makeDbStub({ users: pendingUsers(hashed), ...reservedOutbox(hashed.nonceHash) } as any);
+      await processAccountMergeOutboxJob(db as any, 'm1pub', NOW).catch(() => undefined);
+      expect(store.users['stable-anon']!.identityHidden).toBe(true);
+    });
+
+    it('publication: claim was swapped after reservation (other hash) -> NOT published', async () => {
+      const swapped = { nonceHash: hashAnonMergeNonce('attacker-own-nonce') };
+      const { db, store } = makeDbStub({ users: pendingUsers(swapped), ...reservedOutbox(hashed.nonceHash) } as any);
+      await processAccountMergeOutboxJob(db as any, 'm1pub', NOW).catch(() => undefined);
+      expect(store.users['stable-anon']!.identityHidden).toBeUndefined();
+    });
+
+    // зачем (M-1 MEDIUM-1): окончательный отказ по метке на публикации не должен оставлять задачу
+    // pending навсегда — иначе человека не пускает assertStableAccountMergeNotPending.
+    const expectCancelled = (store: any, reason: string) => {
+      expect(store.account_merge_outbox.m1pub).toMatchObject({ status: 'cancelled_claim_invalid', cancelReason: reason, leaseUntilMs: 0 });
+      expect(store.users['stable-mine'].mistakePracticeMergePending).toBe(false);
+      expect(store.users['stable-anon'].mistakePracticeMergePending).toBe(false);
+      expect(store.users['stable-anon'].identityHidden).toBeUndefined();
+    };
+
+    it('publication: swapped hash -> outbox cancelled, flags cleared, loser NOT hidden; re-run is a no-op', async () => {
+      const swapped = { nonceHash: hashAnonMergeNonce('attacker-own-nonce') };
+      const { db, store } = makeDbStub({ users: pendingUsers(swapped), ...reservedOutbox(hashed.nonceHash) } as any);
+      await expect(processAccountMergeOutboxJob(db as any, 'm1pub', NOW)).rejects.toMatchObject({ code: 'permission-denied' });
+      expectCancelled(store, 'claim_hash_changed');
+      await expect(processAccountMergeOutboxJob(db as any, 'm1pub', NOW + 1)).resolves.toMatchObject({ status: 'cancelled' });
+      expectCancelled(store, 'claim_hash_changed');
+    });
+
+    it('publication: stale claim -> outbox cancelled, flags cleared', async () => {
+      const users = pendingUsers(hashed) as Record<string, DocData>;
+      users['stable-anon'] = { ...users['stable-anon'], anon_merge_claim: { authUid: 'anon-m1', at: NOW - 60 * 60 * 1000, ...hashed } };
+      const { db, store } = makeDbStub({ users, ...reservedOutbox(hashed.nonceHash) } as any);
+      await expect(processAccountMergeOutboxJob(db as any, 'm1pub', NOW)).rejects.toMatchObject({ code: 'permission-denied' });
+      expectCancelled(store, 'claim_stale_or_invalid');
+    });
+
+    // зачем (доводка Ядра): триггер/cron может дойти до публикации позже 10-мин окна — законное
+    // слияние, проверенное при резервировании, не должно отменяться по сроку; сверяется ТА ЖЕ метка.
+    it('publication: late publication (1h) of the SAME reserved claim -> published, not cancelled', async () => {
+      const { db, store } = makeDbStub({ users: pendingUsers(hashed), ...reservedOutbox(hashed.nonceHash, NOW - 1000) } as any);
+      await processAccountMergeOutboxJob(db as any, 'm1pub', NOW + 60 * 60 * 1000).catch(() => undefined);
+      expect(store.users['stable-anon']!.identityHidden).toBe(true);
+    });
+
+    it('publication: re-stamped claim (other at) after reservation -> cancelled claim_changed', async () => {
+      const { db, store } = makeDbStub({ users: pendingUsers(hashed), ...reservedOutbox(hashed.nonceHash, NOW - 5000) } as any);
+      await expect(processAccountMergeOutboxJob(db as any, 'm1pub', NOW)).rejects.toMatchObject({ code: 'permission-denied' });
+      expectCancelled(store, 'claim_changed');
+    });
+
+    it('reservation records anonClaimAt of the verified claim in the outbox', async () => {
+      const { db, store } = makeDbStub({ users: nonceUsers(hashed) });
+      await mergeStableAccounts(db as any, 'google-m1', 'stable-mine', 'stable-anon', NOW, NONCE);
+      const outbox = Object.values(store.account_merge_outbox ?? {}) as DocData[];
+      expect(outbox.some((doc) => doc.anonClaimAt === NOW - 1000)).toBe(true);
+    });
+
+    it('publication: legacy switch off -> outbox cancelled, flags cleared', async () => {
+      const spy = jest.replaceProperty(authIdentityModule, 'ANON_MERGE_CLAIM_LEGACY_PATH_ENABLED', false);
+      try {
+        const { db, store } = makeDbStub({ users: pendingUsers({}), ...reservedOutbox('') } as any);
+        await expect(processAccountMergeOutboxJob(db as any, 'm1pub', NOW)).rejects.toMatchObject({ code: 'permission-denied' });
+        expectCancelled(store, 'legacy_disabled');
+      } finally { spy.restore(); }
+    });
+
+    it('publication of a legacy reservation skips the caller checks (they ran at reservation)', async () => {
+      const { db, store } = makeDbStub({ users: pendingUsers({}), ...reservedOutbox('') } as any);
+      await processAccountMergeOutboxJob(db as any, 'm1pub', NOW).catch(() => undefined);
+      expect(store.users['stable-anon']!.identityHidden).toBe(true);
+    });
+
+    it('replay after a successful merge -> denied (claim is gone, loser is hidden)', async () => {
+      const { db } = makeDbStub({ users: nonceUsers(hashed) });
+      await mergeStableAccounts(db as any, 'google-m1', 'stable-mine', 'stable-anon', NOW, NONCE);
+      // другой вошедший аккаунт пробует поглотить тот же аккаунт со старым nonce
+      await expect(
+        mergeStableAccounts(db as any, 'attacker-uid', 'stable-anon', 'stable-anon', NOW + 1, NONCE),
+      ).rejects.toMatchObject({ code: 'permission-denied' });
+    });
   });
 
   it('still rejects when the unowned side would WIN even with a claim (never overwrite owned)', async () => {

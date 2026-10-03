@@ -1,5 +1,13 @@
+import * as authIdentityModule from './auth_identity';
 import { accountIdIndexDocId } from './account_id';
 import {
+  ANON_MERGE_CLAIM_LEGACY_PATH_ENABLED,
+  hashAnonMergeNonce,
+  logDeviceHeaderPresence,
+  parseAnonMergeNonce,
+  readAnonMergeClaim,
+  stampAnonOwnershipForAuth,
+  verifyAnonMergeClaimNonce,
   cleanupLegacyAuthIdentityDuplicates,
   ensureAuthLinkDoc,
   ensureStableLinkForAuth,
@@ -26,6 +34,159 @@ describe('anonymous ownership stamp provider boundary', () => {
     );
   });
 });
+
+describe('M-1: anon_merge_claim nonce (stamp + verifier)', () => {
+  const NOW = 1_777_000_000_000;
+  const GOOGLE_AFTER = { provider: 'google.com', authTimeMs: NOW + 1000 };
+  const stampDb = () => makeDbStub({
+    users: { 'stable-anon': { firebaseAuthUid: 'anon-uid-1', updatedAt: 1 } },
+  });
+
+  test('legacy switch is on by default (turn off after min_app_version 2.0)', () => {
+    expect(ANON_MERGE_CLAIM_LEGACY_PATH_ENABLED).toBe(true);
+  });
+
+  test('stamp WITHOUT the flag keeps the old shape: no nonceHash, no mergeNonce in the reply', async () => {
+    const { db, store } = stampDb();
+    const res = await stampAnonOwnershipForAuth(db as any, 'anon-uid-1', 'stable-anon', NOW);
+    expect(res).toEqual({ ok: true, stableUid: 'stable-anon' });
+    expect(store.users['stable-anon']!.anon_merge_claim).toEqual({ authUid: 'anon-uid-1', at: NOW });
+  });
+
+  test('stamp WITH nonceRequested stores only the sha256 and returns the nonce', async () => {
+    const { db, store } = stampDb();
+    const res = await stampAnonOwnershipForAuth(db as any, 'anon-uid-1', 'stable-anon', NOW, true);
+    expect(res.ok).toBe(true);
+    expect(typeof res.mergeNonce).toBe('string');
+    expect(res.mergeNonce!.length).toBeGreaterThanOrEqual(43); // 32 bytes base64url
+    const claim = store.users['stable-anon']!.anon_merge_claim as Record<string, unknown>;
+    expect(claim.nonceHash).toBe(hashAnonMergeNonce(res.mergeNonce!));
+    expect(claim.nonceHash).not.toBe(res.mergeNonce);
+    expect(JSON.stringify(store)).not.toContain(res.mergeNonce!);
+  });
+
+  test('two stamps issue different nonces', async () => {
+    const { db } = stampDb();
+    const a = await stampAnonOwnershipForAuth(db as any, 'anon-uid-1', 'stable-anon', NOW, true);
+    const b = await stampAnonOwnershipForAuth(db as any, 'anon-uid-1', 'stable-anon', NOW + 1, true);
+    expect(a.mergeNonce).not.toBe(b.mergeNonce);
+  });
+
+  test('re-stamp WITHOUT the flag uses mergeFields so an old nonceHash cannot survive', async () => {
+    const { db, sets } = stampDb();
+    await stampAnonOwnershipForAuth(db as any, 'anon-uid-1', 'stable-anon', NOW, true);
+    await stampAnonOwnershipForAuth(db as any, 'anon-uid-1', 'stable-anon', NOW + 1);
+    expect(sets.at(-1)!.options).toEqual({ mergeFields: ['anon_merge_claim', 'updatedAt'] });
+  });
+
+  test('readAnonMergeClaim exposes nonceHash (or null for a legacy claim)', () => {
+    expect(readAnonMergeClaim({ anon_merge_claim: { authUid: 'a', at: NOW, nonceHash: 'abc' } }, NOW))
+      .toEqual({ authUid: 'a', nonceHash: 'abc', at: NOW });
+    expect(readAnonMergeClaim({ anon_merge_claim: { authUid: 'a', at: NOW } }, NOW))
+      .toEqual({ authUid: 'a', nonceHash: null, at: NOW });
+  });
+
+  test('verifier: right nonce ok, wrong nonce / missing nonce denied, legacy by switch', () => {
+    const hash = hashAnonMergeNonce('good-nonce');
+    expect(verifyAnonMergeClaimNonce({ authUid: 'a', nonceHash: hash }, 'good-nonce'))
+      .toEqual({ ok: true, mode: 'nonce', nonceHash: hash });
+    expect(verifyAnonMergeClaimNonce({ authUid: 'a', nonceHash: hash }, 'bad-nonce'))
+      .toEqual({ ok: false, reason: 'nonce_mismatch' });
+    expect(verifyAnonMergeClaimNonce({ authUid: 'a', nonceHash: hash }, null))
+      .toEqual({ ok: false, reason: 'nonce_required' });
+    // метка с хэшем никогда не понижается до legacy, даже при включённом выключателе
+    expect(verifyAnonMergeClaimNonce({ authUid: 'a', nonceHash: hash }, null, GOOGLE_AFTER, true).ok).toBe(false);
+    expect(verifyAnonMergeClaimNonce({ authUid: 'a', nonceHash: null, at: NOW }, null, GOOGLE_AFTER, true))
+      .toEqual({ ok: true, mode: 'legacy', nonceHash: null });
+    expect(verifyAnonMergeClaimNonce({ authUid: 'a', nonceHash: null, at: NOW }, null, GOOGLE_AFTER, false))
+      .toEqual({ ok: false, reason: 'legacy_disabled' });
+  });
+
+  test('legacy claim: anonymous caller denied, google signed in BEFORE the claim denied, AFTER ok', () => {
+    const legacy = { authUid: 'a', nonceHash: null, at: NOW };
+    expect(verifyAnonMergeClaimNonce(legacy, null, { provider: 'anonymous', authTimeMs: NOW + 1000 }, true))
+      .toEqual({ ok: false, reason: 'legacy_anonymous_caller' });
+    expect(verifyAnonMergeClaimNonce(legacy, null, null, true))
+      .toEqual({ ok: false, reason: 'legacy_anonymous_caller' });
+    expect(verifyAnonMergeClaimNonce(legacy, null, { provider: 'google.com', authTimeMs: NOW - 6000 }, true))
+      .toEqual({ ok: false, reason: 'legacy_signed_in_before_claim' });
+    expect(verifyAnonMergeClaimNonce(legacy, null, { provider: 'google.com', authTimeMs: null }, true))
+      .toEqual({ ok: false, reason: 'legacy_signed_in_before_claim' });
+    expect(verifyAnonMergeClaimNonce(legacy, null, { provider: 'google.com', authTimeMs: NOW - 5000 }, true).ok).toBe(true);
+    expect(verifyAnonMergeClaimNonce(legacy, null, { provider: 'apple.com', authTimeMs: NOW + 1 }, true).ok).toBe(true);
+  });
+
+  test('nonce branch does not depend on caller provider / auth_time', () => {
+    const hash = hashAnonMergeNonce('n1');
+    expect(verifyAnonMergeClaimNonce({ authUid: 'a', nonceHash: hash, at: NOW }, 'n1', null, true).ok).toBe(true);
+    expect(verifyAnonMergeClaimNonce(
+      { authUid: 'a', nonceHash: hash, at: NOW }, 'n1', { provider: 'anonymous', authTimeMs: NOW - 99999 }, true,
+    ).ok).toBe(true);
+  });
+
+  test('publication (skipLegacyCallerChecks) keeps only the legacy switch', () => {
+    const skip = { provider: null, authTimeMs: null, skipLegacyCallerChecks: true };
+    expect(verifyAnonMergeClaimNonce({ authUid: 'a', nonceHash: null, at: NOW }, null, skip, true).ok).toBe(true);
+    expect(verifyAnonMergeClaimNonce({ authUid: 'a', nonceHash: null, at: NOW }, null, skip, false))
+      .toEqual({ ok: false, reason: 'legacy_disabled' });
+  });
+
+  test('legacy_path / nonce_ok logs carry authAgeMs and never the nonce', () => {
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const log = jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    verifyAnonMergeClaimNonce({ authUid: 'abcdefghij', nonceHash: null, at: NOW }, null, { provider: 'google.com', authTimeMs: NOW + 1234 }, true);
+    verifyAnonMergeClaimNonce({ authUid: 'abcdefghij', nonceHash: hashAnonMergeNonce('zz'), at: NOW }, 'zz', { provider: 'google.com', authTimeMs: NOW + 77 }, true);
+    const warned = warn.mock.calls.map((c) => c.join(' ')).join('\n');
+    const logged = log.mock.calls.map((c) => c.join(' ')).join('\n');
+    warn.mockRestore(); log.mockRestore();
+    expect(warned).toContain('legacy_path uid=abcdefgh door=unknown provider=google.com authAgeMs=1234');
+    expect(logged).toContain('nonce_ok uid=abcdefgh authAgeMs=77');
+  });
+
+  test('stamp on a STRANGER stableId (anonymous has no auth_link, doc belongs to another uid) -> permission-denied, no claim written', async () => {
+    const { db, store, sets } = makeDbStub({
+      users: { 'stable-victim': { firebaseAuthUid: 'victim-uid', updatedAt: 1 } },
+    });
+    await expect(
+      stampAnonOwnershipForAuth(db as any, 'attacker-anon', 'stable-victim', NOW, true),
+    ).rejects.toMatchObject({ code: 'permission-denied' });
+    expect((store.users['stable-victim'] as Record<string, unknown>).anon_merge_claim).toBeUndefined();
+    expect(sets.filter((entry) => entry.path === 'users/stable-victim')).toEqual([]);
+  });
+
+  test('device header presence log prints booleans only, never header values', () => {
+    const log = jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    logDeviceHeaderPresence('fn', { 'firebase-instance-id-token': 'SECRET-IID', 'x-firebase-gmpid': '' });
+    const out = log.mock.calls.map((c) => c.join(' ')).join('\n');
+    log.mockRestore();
+    expect(out).toContain('hasInstanceIdHeader=true');
+    expect(out).toContain('hasGmpIdHeader=false');
+    expect(out).not.toContain('SECRET-IID');
+  });
+
+  test('the nonce never reaches the logs', () => {
+    const spies = [jest.spyOn(console, 'log'), jest.spyOn(console, 'warn')].map((spy) => spy.mockImplementation(() => undefined));
+    const hash = hashAnonMergeNonce('SECRET-NONCE-VALUE');
+    verifyAnonMergeClaimNonce({ authUid: 'anon-uid-12345', nonceHash: hash }, 'SECRET-NONCE-VALUE');
+    verifyAnonMergeClaimNonce({ authUid: 'anon-uid-12345', nonceHash: hash }, 'SECRET-NONCE-WRONG');
+    const logged = spies.flatMap((spy) => spy.mock.calls).map((call) => call.join(' ')).join('\n');
+    spies.forEach((spy) => spy.mockRestore());
+    expect(logged).toContain('[ANON-MERGE-CLAIM]');
+    expect(logged).not.toContain('SECRET-NONCE');
+  });
+
+  test('parseAnonMergeNonce validates: absent ok, string <=128 ok, otherwise invalid-argument', () => {
+    expect(parseAnonMergeNonce(undefined)).toBeNull();
+    expect(parseAnonMergeNonce('x'.repeat(128))).toBe('x'.repeat(128));
+    for (const bad of ['x'.repeat(129), '', 42, {}, ['a']]) {
+      expect(() => parseAnonMergeNonce(bad)).toThrow(expect.objectContaining({ code: 'invalid-argument' }));
+    }
+  });
+});
+
+// зачем (M-1 HIGH-1): законный legacy-вызывающий — провайдерский и вошёл ПОСЛЕ постановки метки
+// (метки в этих тестах стоят на 1_777_000_000_000).
+const LEGACY_GOOGLE_CALLER = { provider: 'google.com', authTimeMs: 1_777_000_001_000 };
 
 type DbStubOptions = {
   beforeTransactionStart?: (store: Store) => void;
@@ -919,6 +1080,7 @@ describe('resolveStableUidForAuth', () => {
 
     await expect(resolveStableUidForAuth(db as any, newAuthUid, stableId, {
       allowProviderRelink: true,
+      anonMergeCaller: LEGACY_GOOGLE_CALLER,
     })).rejects.toMatchObject({
       code: 'permission-denied',
       message: 'stable_id_mismatch',
@@ -949,6 +1111,7 @@ describe('resolveStableUidForAuth', () => {
 
     await expect(resolveStableUidForAuth(db as any, newAuthUid, stableId, {
       allowProviderRelink: true,
+      anonMergeCaller: LEGACY_GOOGLE_CALLER,
     })).rejects.toMatchObject({
       code: 'permission-denied',
       message: 'stable_id_mismatch',
@@ -981,6 +1144,7 @@ describe('resolveStableUidForAuth', () => {
 
     await expect(resolveStableUidForAuth(db as any, newAuthUid, stableId, {
       allowProviderRelink: true,
+      anonMergeCaller: LEGACY_GOOGLE_CALLER,
     })).rejects.toMatchObject({
       code: 'permission-denied',
       message: 'stable_id_mismatch',
@@ -1136,12 +1300,137 @@ describe('resolveStableUidForAuth', () => {
 
     const stableUid = await resolveStableUidForAuth(db as any, 'google-auth-1', 'stable-1', {
       allowProviderRelink: true,
+      anonMergeCaller: LEGACY_GOOGLE_CALLER,
     });
 
     expect(stableUid).toBe('stable-1');
     expect(store.users['stable-1']).toMatchObject({
       firebaseAuthUid: 'google-auth-1',
       updatedAt: 1_777_000_000_000,
+    });
+  });
+
+  describe('M-1 anon_relink door: nonce / legacy caller / one-shot claim / audit', () => {
+    const RELINK_NONCE = 'relink-nonce-0123456789';
+    const claimedStore = (claimExtra: Record<string, unknown>) => ({
+      users: {
+        'stable-1': {
+          firebaseAuthUid: 'old-anon-auth',
+          anon_merge_claim: { authUid: 'old-anon-auth', at: 1_777_000_000_000, ...claimExtra },
+          updatedAt: 111,
+        },
+      },
+    });
+    const hashedExtra = { nonceHash: hashAnonMergeNonce(RELINK_NONCE) };
+    const relink = (db: unknown, authUid: string, extra: Record<string, unknown>) =>
+      resolveStableUidForAuth(db as any, authUid, 'stable-1', { allowProviderRelink: true, ...extra });
+
+    it('hashed claim: a foreign Google WITHOUT nonce is denied and nothing is written', async () => {
+      const { db, store, sets } = makeDbStub(claimedStore(hashedExtra));
+      await expect(relink(db, 'attacker-google', { anonMergeCaller: LEGACY_GOOGLE_CALLER }))
+        .rejects.toMatchObject({ code: 'permission-denied', message: 'stable_id_mismatch' });
+      expect(store.users['stable-1']!.firebaseAuthUid).toBe('old-anon-auth');
+      expect(sets).toEqual([]);
+    });
+
+    it('hashed claim: wrong nonce denied, right nonce passes (and does not need caller fields)', async () => {
+      const wrong = makeDbStub(claimedStore(hashedExtra));
+      await expect(relink(wrong.db, 'g-1', { anonMergeNonce: 'guess', anonMergeCaller: LEGACY_GOOGLE_CALLER }))
+        .rejects.toMatchObject({ code: 'permission-denied' });
+      const right = makeDbStub(claimedStore(hashedExtra));
+      await expect(relink(right.db, 'g-1', { anonMergeNonce: RELINK_NONCE })).resolves.toBe('stable-1');
+      expect(right.store.users['stable-1']!.firebaseAuthUid).toBe('g-1');
+    });
+
+    it('legacy claim: anonymous caller denied; google signed in BEFORE the claim denied; AFTER passes', async () => {
+      const anon = makeDbStub(claimedStore({}));
+      await expect(relink(anon.db, 'new-anon', {
+        allowProviderRelink: false, allowAnonRelink: true,
+        anonMergeCaller: { provider: 'anonymous', authTimeMs: 1_777_000_001_000 },
+      })).rejects.toMatchObject({ code: 'permission-denied' });
+      const before = makeDbStub(claimedStore({}));
+      await expect(relink(before.db, 'g-1', { anonMergeCaller: { provider: 'google.com', authTimeMs: 1_777_000_000_000 - 60_000 } }))
+        .rejects.toMatchObject({ code: 'permission-denied' });
+      expect(before.store.users['stable-1']!.firebaseAuthUid).toBe('old-anon-auth');
+      const after = makeDbStub(claimedStore({}));
+      await expect(relink(after.db, 'g-1', { anonMergeCaller: LEGACY_GOOGLE_CALLER })).resolves.toBe('stable-1');
+    });
+
+    it('legacy claim without any caller info is denied (fields are mandatory)', async () => {
+      const { db } = makeDbStub(claimedStore({}));
+      await expect(relink(db, 'g-1', {})).rejects.toMatchObject({ code: 'permission-denied' });
+    });
+
+    it('legacy claim: denied when the legacy switch is off', async () => {
+      const spy = jest.replaceProperty(authIdentityModule, 'ANON_MERGE_CLAIM_LEGACY_PATH_ENABLED', false);
+      try {
+        const { db } = makeDbStub(claimedStore({}));
+        await expect(relink(db, 'g-1', { anonMergeCaller: LEGACY_GOOGLE_CALLER }))
+          .rejects.toMatchObject({ code: 'permission-denied' });
+      } finally { spy.restore(); }
+    });
+
+    it('swapping the nonceHash between assert and the transaction is denied', async () => {
+      const { db, store, sets } = makeDbStub(claimedStore(hashedExtra), {
+        beforeTransactionStart: (currentStore) => {
+          const user = currentStore.users['stable-1'] as Record<string, any>;
+          user.anon_merge_claim = { ...user.anon_merge_claim, nonceHash: hashAnonMergeNonce('attacker-own') };
+        },
+      });
+      await expect(relink(db, 'g-1', { anonMergeNonce: RELINK_NONCE }))
+        .rejects.toMatchObject({ code: 'permission-denied', message: 'stable_id_mismatch' });
+      expect(store.users['stable-1']!.firebaseAuthUid).toBe('old-anon-auth');
+      expect(sets).toEqual([]);
+    });
+
+    it('successful relink erases the claim, writes an audit row, and a second relink is denied', async () => {
+      const { db, store } = makeDbStub(claimedStore(hashedExtra));
+      await expect(relink(db, 'g-1', { anonMergeNonce: RELINK_NONCE })).resolves.toBe('stable-1');
+      expect(readAnonMergeClaim(store.users['stable-1'], 1_777_000_000_000)).toBeNull();
+      const audit = Object.values((store as any).anon_relink_audit ?? {}) as Record<string, unknown>[];
+      expect(audit).toHaveLength(1);
+      expect(audit[0]).toMatchObject({
+        stableId: 'stable-1', previousAuthUid: 'old-anon-auth', newAuthUid: 'g-1',
+        claimAt: 1_777_000_000_000, mode: 'nonce',
+      });
+      expect((audit[0].expiresAt as { toMillis(): number }).toMillis()).toBe((audit[0].at as number) + 30 * 24 * 60 * 60 * 1000);
+      expect(JSON.stringify(audit)).not.toContain(RELINK_NONCE);
+      // повтор тем же и другим провайдером — метки уже нет
+      await expect(relink(db, 'attacker-2', { anonMergeNonce: RELINK_NONCE, anonMergeCaller: LEGACY_GOOGLE_CALLER }))
+        .rejects.toMatchObject({ code: 'permission-denied' });
+      await expect(relink(db, 'attacker-3', {
+        allowProviderRelink: false, allowAnonRelink: true,
+        anonMergeNonce: RELINK_NONCE, anonMergeCaller: { provider: 'anonymous', authTimeMs: 1_777_000_001_000 },
+      })).rejects.toMatchObject({ code: 'permission-denied' });
+      expect(store.users['stable-1']!.firebaseAuthUid).toBe('g-1');
+    });
+
+    it('legacy relink is audited as mode=legacy', async () => {
+      const { db, store } = makeDbStub(claimedStore({}));
+      await relink(db, 'g-1', { anonMergeCaller: LEGACY_GOOGLE_CALLER });
+      const audit = Object.values((store as any).anon_relink_audit ?? {}) as Record<string, unknown>[];
+      expect(audit[0]).toMatchObject({ mode: 'legacy' });
+    });
+
+    it('ensureStableLinkForAuth (the real door): legacy google relink is audited with provider=google, claim gone', async () => {
+      const { db, store } = makeDbStub(claimedStore({}));
+      await ensureStableLinkForAuth(db as any, 'g-1', 'stable-1', 'google.com', undefined, null, 1_777_000_001_000);
+      const audit = Object.values((store as any).anon_relink_audit ?? {}) as Record<string, unknown>[];
+      expect(audit).toHaveLength(1);
+      expect(audit[0]).toMatchObject({ provider: 'google', mode: 'legacy', newAuthUid: 'g-1' });
+      expect(readAnonMergeClaim(store.users['stable-1'], 1_777_000_000_000)).toBeNull();
+    });
+
+    it('ensureStableLinkForAuth: hashed claim needs the nonce; legacy anonymous caller is denied', async () => {
+      const a = makeDbStub(claimedStore(hashedExtra));
+      await expect(ensureStableLinkForAuth(a.db as any, 'g-1', 'stable-1', 'google.com', undefined, null, 1_777_000_001_000))
+        .rejects.toMatchObject({ code: 'permission-denied' });
+      const b = makeDbStub(claimedStore(hashedExtra));
+      await expect(ensureStableLinkForAuth(b.db as any, 'g-1', 'stable-1', 'google.com', undefined, RELINK_NONCE, null))
+        .resolves.toMatchObject({ stableUid: 'stable-1' });
+      const c = makeDbStub(claimedStore({}));
+      await expect(ensureStableLinkForAuth(c.db as any, 'new-anon', 'stable-1', 'anonymous', undefined, null, 1_777_000_001_000))
+        .rejects.toMatchObject({ code: 'permission-denied' });
     });
   });
 
@@ -2092,7 +2381,7 @@ describe('ensureStableLinkForAuth', () => {
       displayName: 'User Name',
       lastSignInAt: 1_777_000_001_234,
       devicePlatform: 'android',
-    });
+    }, null, LEGACY_GOOGLE_CALLER.authTimeMs);
 
     expect(result).toEqual({
       ok: true,

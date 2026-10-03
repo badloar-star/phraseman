@@ -1,6 +1,7 @@
 # Task packet: learning_v2_stars_ledger — 2 красных теста (устаревший фейк расписки)
 
 Governance-ID: TG-179ECC6AD225
+Governance-ID: TG-3EB6CB827EB4
 Status: Done — 18/18
 Owner: Ядро; поручение координатора 03.10
 
@@ -10,11 +11,14 @@ Owner: Ядро; поручение координатора 03.10
 ## Scope
 functions/src/learning_v2_stars_ledger.test.ts. Код журнала не меняется.
 
-## Architecture / Security and privacy
-Без изменений поведения сервера. Проверка opId-подмены остаётся.
+## Architecture
+Только тестовый фейк: расписка «уже проведённой» операции = реальная расписка первого прохода.
+
+## Security and privacy
+Поведение сервера не меняется; проверка подмены opId (isSameOperationReceipt) остаётся.
 
 ## Technical debt
-Нет.
+Принято: нет нового долга; фейк журнала в других тестах не трогали.
 
 ## Verification
 Файл 18/18; мутация: подменить delta в расписке → тест ловит op_conflict (существующие тесты stars_ledger).

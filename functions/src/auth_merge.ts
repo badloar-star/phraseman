@@ -18,7 +18,13 @@ import {
 import {
   cleanupLegacyAuthIdentityDuplicates,
   describeAppCheckHeader,
+  type AnonMergeCaller,
+  parseAnonMergeNonce,
+  ANON_MERGE_CLAIM_TTL_MS,
   readAnonMergeClaim,
+  authTimeMsFromToken,
+  logDeviceHeaderPresence,
+  verifyAnonMergeClaimNonce,
 } from './auth_identity';
 import {
   aggregatePremiumLineages,
@@ -466,12 +472,59 @@ function accountMergeOutboxId(winnerStableId: string, loserStableId: string): st
   return `merge_${createHash('sha256').update(`${winnerStableId}\0${loserStableId}`).digest('hex')}`;
 }
 
+// зачем (M-1): базовые проверки метки анонимного проигравшего (есть, свежая, authUid совпал
+// с владельцем документа) + логи по веткам. Проверка nonce — отдельным шагом, потому что на
+// резервировании nonce приходит от клиента, а на публикации (её гонят и триггер, и cron без
+// клиента) сверяется с хэшем, подтверждённым при резервировании.
+// зачем (M-1 MEDIUM-1): отказ по метке на ПУБЛИКАЦИИ окончателен (метка протухла/сменилась/legacy
+// выключен) — повторять нечего. Помечаем ошибку причиной, чтобы processAccountMergeOutboxJob
+// отменил задачу, а не держал её pending вечно (иначе assertStableAccountMergeNotPending не пускает человека).
+function anonClaimInvalid(reason: string): HttpsError {
+  const error = new HttpsError('permission-denied', 'stable_id_mismatch');
+  (error as unknown as { anonClaimInvalidReason: string }).anonClaimInvalidReason = reason;
+  return error;
+}
+
+function anonClaimInvalidReasonOf(error: unknown): string | null {
+  const reason = (error as { anonClaimInvalidReason?: unknown } | null)?.anonClaimInvalidReason;
+  return typeof reason === 'string' ? reason : null;
+}
+
+function requireAnonLoserClaim(
+  loserData: Record<string, unknown>,
+  now: number,
+  permanentOnFailure = false,
+  ttlMs?: number,
+): { authUid: string; nonceHash: string | null; at: number } {
+  const claim = readAnonMergeClaim(loserData, now, ttlMs);
+  const loserAuthUid = cleanStr(loserData.firebaseAuthUid);
+  // зачем (M-1, решение координатора): аккаунт с привязанным провайдером метка поглощать не может —
+  // метка доказывает владение только чисто анонимным аккаунтом.
+  const loserLinkedAuth = loserData.linkedAuth as { providerUid?: unknown } | undefined;
+  if (cleanStr(loserLinkedAuth?.providerUid)) {
+    console.warn(`[ANON-MERGE-CLAIM] loser_has_provider loser_owner=${loserAuthUid.slice(0, 8)}`);
+    if (permanentOnFailure) throw anonClaimInvalid('loser_has_provider');
+    throw new HttpsError('permission-denied', 'stable_id_mismatch');
+  }
+  if (!claim || !loserAuthUid || claim.authUid !== loserAuthUid) {
+    const reason = !loserData.anon_merge_claim
+      ? 'claim_missing'
+      : (!claim ? 'claim_stale_or_invalid' : 'claim_uid_mismatch');
+    console.warn(`[ANON-MERGE-CLAIM] ${reason} loser_owner=${loserAuthUid.slice(0, 8)}`);
+    if (permanentOnFailure) throw anonClaimInvalid(reason);
+    throw new HttpsError('permission-denied', 'stable_id_mismatch');
+  }
+  return claim;
+}
+
 async function reserveStableAccountMerge(
   db: admin.firestore.Firestore,
   authUid: string,
   rawA: string,
   rawB: string,
   now: number,
+  anonMergeNonce: string | null = null,
+  anonMergeCaller: AnonMergeCaller | null = null,
 ): Promise<TransactionMergeOutcome> {
   const authLinkRef = db.collection(AUTH_LINKS_COL).doc(authUid);
   const authMarkerRef = db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid);
@@ -553,12 +606,18 @@ async function reserveStableAccountMerge(
     if (!userDataOwnedByAuth(winner.data, authUid)) {
       throw new HttpsError('permission-denied', 'stable_id_mismatch');
     }
+    // зачем (M-1): хэш nonce, подтверждённый тут, уходит в outbox, чтобы публикация (триггер/cron,
+    // без клиента) могла убедиться, что метка та же, что прошла проверку; сам nonce не сохраняется.
+    let verifiedClaimNonceHash: string | null = null;
+    let verifiedClaimAt: number | null = null;
     if (!userDataOwnedByAuth(loser.data, authUid)) {
-      const claim = readAnonMergeClaim(loser.data, now);
-      const loserAuthUid = cleanStr(loser.data.firebaseAuthUid);
-      if (!claim || !loserAuthUid || claim.authUid !== loserAuthUid) {
-        throw new HttpsError('permission-denied', 'stable_id_mismatch');
-      }
+      const claim = requireAnonLoserClaim(loser.data, now);
+      const verdict = verifyAnonMergeClaimNonce(
+        claim, anonMergeNonce, anonMergeCaller ? { ...anonMergeCaller, door: 'merge' } : anonMergeCaller,
+      );
+      if (!verdict.ok) throw new HttpsError('permission-denied', 'stable_id_mismatch');
+      verifiedClaimNonceHash = verdict.nonceHash;
+      verifiedClaimAt = claim.at;
     }
     const outboxRef = db.collection(ACCOUNT_MERGE_OUTBOX)
       .doc(accountMergeOutboxId(winner.stableId, loser.stableId));
@@ -577,6 +636,11 @@ async function reserveStableAccountMerge(
       winnerStableId: winner.stableId,
       loserStableId: loser.stableId,
       authUid,
+      // зачем (security-ревью №2): set+merge после отменённой попытки оставил бы старые хэш/at/причину —
+      // повтор той же пары снова отменился бы. Пишем явно или стираем.
+      anonClaimNonceHash: verifiedClaimNonceHash ?? admin.firestore.FieldValue.delete(),
+      anonClaimAt: verifiedClaimAt ?? admin.firestore.FieldValue.delete(),
+      cancelReason: admin.firestore.FieldValue.delete(),
       publicationStatus: 'reserved',
       status: 'pending',
       tasks: ['historical_revenuecat_receipts', 'derived_identity_cleanup', 'mistake_practice_events'],
@@ -718,13 +782,12 @@ async function mergeStableAccountsTransactionally(
     if (!userDataOwnedByAuth(winner.data, authUid)) {
       throw new HttpsError('permission-denied', 'stable_id_mismatch');
     }
-    if (!userDataOwnedByAuth(loser.data, authUid)) {
-      const claim = readAnonMergeClaim(loser.data, now);
-      const loserAuthUid = cleanStr(loser.data.firebaseAuthUid);
-      if (!claim || !loserAuthUid || claim.authUid !== loserAuthUid) {
-        throw new HttpsError('permission-denied', 'stable_id_mismatch');
-      }
-    }
+    const unownedLoserClaim = userDataOwnedByAuth(loser.data, authUid)
+      ? null
+      // зачем (M-1, доводка Ядра): на публикации свежесть метки уже доказана резервированием
+      // (клиентский вызов в окне). Триггер/cron могут дойти позже 10 мин — тогда законное слияние
+      // отменилось бы. Поэтому здесь срок не проверяем, а сверяем ТУ ЖЕ метку (at + хэш) ниже.
+      : requireAnonLoserClaim(loser.data, now, Boolean(publication), publication ? Number.POSITIVE_INFINITY : undefined);
     let flashcardListsMergeRecord: unknown = null;
     if (publication) {
       const publicationSnap = await tx.get(publication.outboxRef);
@@ -738,6 +801,39 @@ async function mergeStableAccountsTransactionally(
         !publicationData.mistakePracticeEventsCopiedAt) {
         throw new HttpsError('failed-precondition', 'account_merge_publication_not_ready');
       }
+      // зачем (M-1): публикацию гонит и серверный триггер без клиента, поэтому nonce тут не
+      // приходит — метка обязана нести ТОТ ЖЕ хэш, что подтвердили при резервировании
+      // (и «метка без хэша» не должна подменить метку с хэшем, и наоборот).
+      if (unownedLoserClaim) {
+        const reservedAt = Number(publicationData.anonClaimAt);
+        if (Number.isFinite(reservedAt) && reservedAt > 0) {
+          if (unownedLoserClaim.at !== reservedAt) {
+            console.warn('[ANON-MERGE-CLAIM] publication_claim_changed reason=at_differs');
+            throw anonClaimInvalid('claim_changed');
+          }
+        } else if (now - unownedLoserClaim.at > ANON_MERGE_CLAIM_TTL_MS) {
+          // Задача зарезервирована до этой выкладки (без anonClaimAt) — прежнее правило свежести.
+          console.warn('[ANON-MERGE-CLAIM] publication_claim_stale reason=no_reserved_at');
+          throw anonClaimInvalid('claim_stale_or_invalid');
+        }
+        const reservedHash = typeof publicationData.anonClaimNonceHash === 'string' ? publicationData.anonClaimNonceHash.trim() : '';
+        if (reservedHash !== (unownedLoserClaim.nonceHash ?? '')) {
+          console.warn('[ANON-MERGE-CLAIM] nonce_mismatch publication_claim_changed');
+          throw anonClaimInvalid('claim_hash_changed');
+        }
+        if (reservedHash) {
+          console.log(`[ANON-MERGE-CLAIM] nonce_ok publication uid=${unownedLoserClaim.authUid.slice(0, 8)}`);
+        } else {
+          // зачем: провайдер и время входа вызывающего проверены при резервировании (клиентский вызов);
+          // здесь, без запроса, остаются только выключатель legacy-пути и равенство хэшей.
+          const verdict = verifyAnonMergeClaimNonce(
+            unownedLoserClaim, null, { provider: null, authTimeMs: null, skipLegacyCallerChecks: true },
+          );
+          if (!verdict.ok) throw anonClaimInvalid(verdict.reason);
+        }
+      }
+    } else if (unownedLoserClaim && !verifyAnonMergeClaimNonce(unownedLoserClaim, null).ok) {
+      throw new HttpsError('permission-denied', 'stable_id_mismatch');
     }
 
     const loserLineageQuery = db.collection('revenuecat_premium_lineages')
@@ -945,11 +1041,13 @@ export async function mergeStableAccounts(
   stableIdA: string,
   stableIdB: string,
   now: number = Date.now(),
+  anonMergeNonce: string | null = null,
+  anonMergeCaller: AnonMergeCaller | null = null,
 ): Promise<MergeResult> {
   const a = cleanStr(stableIdA);
   const b = cleanStr(stableIdB);
   if (!a || !b) throw new HttpsError('invalid-argument', 'stable_ids_required');
-  const reservation = await reserveStableAccountMerge(db, authUid, a, b, now);
+  const reservation = await reserveStableAccountMerge(db, authUid, a, b, now, anonMergeNonce, anonMergeCaller);
   if (reservation.alreadyMerged || !reservation.mergedFromStableId) {
     return {
       canonicalStableId: reservation.canonicalStableId,
@@ -1137,6 +1235,9 @@ export async function processAccountMergeOutboxJob(
       authUid: '',
       publicationStatus: 'published',
     };
+    if (data.status === 'cancelled_claim_invalid') {
+      return { cancelled: true as const, winner: '', loser: '', tasks: [] as string[] };
+    }
     if (data.status === 'running' && Number(data.leaseUntilMs ?? 0) > now) {
       throw new Error('account_merge_outbox_lease_active');
     }
@@ -1302,6 +1403,29 @@ export async function processAccountMergeOutboxJob(
     });
     return { status: 'completed', updated };
   } catch (error) {
+    const invalidClaimReason = anonClaimInvalidReasonOf(error);
+    if (invalidClaimReason) {
+      // зачем (M-1 MEDIUM-1): метка окончательно не годится — отменяем задачу и снимаем флаги ожидания,
+      // иначе человек навсегда заперт в assertStableAccountMergeNotPending. Ничего не откатываем:
+      // скопированное до публикации скопировано под правом, проверенным при резервировании.
+      const winnerRef = db.collection(USERS).doc(claim.winner);
+      const loserRef = db.collection(USERS).doc(claim.loser);
+      await db.runTransaction(async (tx) => {
+        const [snap, winnerSnap, loserSnap] = await Promise.all([tx.get(ref), tx.get(winnerRef), tx.get(loserRef)]);
+        if (!snap.exists || snap.data()?.leaseToken !== leaseToken) return;
+        tx.set(ref, {
+          status: 'cancelled_claim_invalid',
+          cancelReason: invalidClaimReason,
+          leaseToken: admin.firestore.FieldValue.delete(),
+          leaseUntilMs: 0,
+          updatedAt: Date.now(),
+        }, { merge: true });
+        if (winnerSnap.exists) tx.update(winnerRef, { mistakePracticeMergePending: false, updatedAt: Date.now() });
+        if (loserSnap.exists) tx.update(loserRef, { mistakePracticeMergePending: false, updatedAt: Date.now() });
+      });
+      console.warn(`[ANON-MERGE-CLAIM] outbox_cancelled reason=${invalidClaimReason} outbox=${outboxId}`);
+      throw error;
+    }
     await db.runTransaction(async (tx) => {
       const snap = await tx.get(ref);
       if (!snap.exists || snap.data()?.status !== 'running' || snap.data()?.leaseToken !== leaseToken) return;
@@ -1312,7 +1436,10 @@ export async function processAccountMergeOutboxJob(
         leaseUntilMs: 0,
         updatedAt: Date.now(),
       }, { merge: true });
-    }).catch(() => undefined);
+    }).catch((requeueError: unknown) => {
+      // зачем (LOW-3): немой catch скрывал, что задача не вернулась в pending.
+      console.warn(`[AUTH-MERGE] outbox_requeue_failed outbox=${outboxId} reason=${String((requeueError as { message?: unknown })?.message ?? requeueError).slice(0, 160)}`);
+    });
     throw error;
   }
 }
@@ -1569,6 +1696,17 @@ export const authMergeStableAccounts = onCall(HOT_CALLABLE_OPTIONS, async (reque
   if (!stableIdA || !stableIdB) {
     throw new HttpsError('invalid-argument', 'stable_ids_required');
   }
-  const result = await mergeStableAccounts(db, authUid, stableIdA, stableIdB);
+  // зачем (M-1): необязательный одноразовый nonce из authStampAnonOwnership (клиент 2.0+).
+  const anonMergeNonce = parseAnonMergeNonce(request.data?.anonMergeNonce);
+  // зачем (M-1 HIGH-1): legacy-метка (клиент 1.6.24) открывается только провайдерскому вызывающему,
+  // вошедшему ПОСЛЕ постановки метки — для этого нужны провайдер и auth_time из токена.
+  logDeviceHeaderPresence('authMergeStableAccounts', request.rawRequest?.headers);
+  const anonMergeCaller: AnonMergeCaller = {
+    provider: String(request.auth.token?.firebase?.sign_in_provider ?? '').trim() || null,
+    authTimeMs: authTimeMsFromToken(request.auth.token),
+  };
+  const result = await mergeStableAccounts(
+    db, authUid, stableIdA, stableIdB, Date.now(), anonMergeNonce, anonMergeCaller,
+  );
   return { ok: true, ...result };
 });

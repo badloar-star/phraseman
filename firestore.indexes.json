@@ -1211,6 +1211,12 @@
   ],
   "fieldOverrides": [
     {
+      "collectionGroup": "anon_relink_audit",
+      "fieldPath": "expiresAt",
+      "ttl": true,
+      "indexes": []
+    },
+    {
       "collectionGroup": "video_favorites",
       "fieldPath": "videoId",
       "indexes": [

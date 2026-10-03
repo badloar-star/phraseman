@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { createHash, randomBytes, timingSafeEqual } from 'crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { upsertEmailContact } from './email_contacts';
@@ -26,6 +27,9 @@ import { swallowed } from './swallowed_error';
 
 const USERS = 'users';
 const AUTH_LINKS = 'auth_links';
+// зачем (M-1): серверный аудит перепривязок по метке — для отката; клиентам закрыт (rules правит координатор).
+const ANON_RELINK_AUDIT = 'anon_relink_audit';
+const ANON_RELINK_AUDIT_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 const LEADERBOARD = 'leaderboard';
 const LEAGUE_GROUPS = 'league_groups';
 const CLEANUP_CANDIDATES = 'identity_cleanup_candidates';
@@ -49,6 +53,10 @@ type ResolveStableUidForAuthOptions = {
   requireKnownIdentity?: boolean;
   allowProviderRelink?: boolean;
   allowAnonRelink?: boolean;
+  // зачем (M-1 HIGH-1): nonce метки anon_merge_claim — вторая дверь (anon_relink) открывается
+  // только при его предъявлении, как и слияние в auth_merge.
+  anonMergeNonce?: string | null;
+  anonMergeCaller?: AnonMergeCaller | null;
   repairLinks?: boolean;
 };
 
@@ -513,6 +521,7 @@ type StableOwnerProof = {
   linkedAuthUid: string;
   anonClaimAuthUid: string;
   anonClaimAt: number | null;
+  anonClaimNonceHash: string;
   authLinkExists: boolean;
   authLinkStableId: string;
   existingOwnerIds: readonly string[];
@@ -522,12 +531,19 @@ type StableOwnerProof = {
 function readAnonClaimFingerprint(userData: FirebaseFirestore.DocumentData): {
   authUid: string;
   at: number | null;
+  nonceHash: string;
 } {
   const claim = userData.anon_merge_claim;
-  if (!claim || typeof claim !== 'object') return { authUid: '', at: null };
+  if (!claim || typeof claim !== 'object') return { authUid: '', at: null, nonceHash: '' };
   const authUid = normalizeStableId((claim as { authUid?: unknown }).authUid);
   const atValue = Number((claim as { at?: unknown }).at);
-  return { authUid, at: Number.isFinite(atValue) ? atValue : null };
+  const rawHash = (claim as { nonceHash?: unknown }).nonceHash;
+  return {
+    authUid,
+    at: Number.isFinite(atValue) ? atValue : null,
+    // зачем: подмена хэша между assert и транзакцией должна ломать сверку отпечатка.
+    nonceHash: typeof rawHash === 'string' ? rawHash : '',
+  };
 }
 
 function stableOwnerProofFromSnapshots(
@@ -546,6 +562,7 @@ function stableOwnerProofFromSnapshots(
     ),
     anonClaimAuthUid: claim.authUid,
     anonClaimAt: claim.at,
+    anonClaimNonceHash: claim.nonceHash,
     authLinkExists: linkSnap.exists,
     authLinkStableId: normalizeStableId(linkSnap.data()?.stable_id),
     existingOwnerIds: [...existingOwnerIds].sort(),
@@ -560,6 +577,8 @@ async function assertStableOwner(
   options?: {
     allowProviderRelink?: boolean;
     allowAnonRelink?: boolean;
+    anonMergeNonce?: string | null;
+    anonMergeCaller?: AnonMergeCaller | null;
     allowedAuthLinkStableIds?: readonly string[];
   },
   reads: StableIdentityReadAccess = databaseIdentityReads(),
@@ -609,11 +628,26 @@ async function assertStableOwner(
   // остаётся в Keychain/AsyncStorage. Разрешаем перепривязать анонимный uid к тому
   // же stable_id, если: (а) аккаунт не имеет provider-привязки (чисто анонимный),
   // (б) новый uid ещё не занят другим stable_id, (в) явно запрошен allowAnonRelink.
+  // зачем (M-1 HIGH-1): свежая метка с хэшем nonce — это ещё и «предъяви nonce»; иначе любой
+  // вошедший (свежий Google / анонимный allowAnonRelink) получал аккаунт жертвы без слияния.
+  let anonRelinkNonceDenied: string | null = null;
   if (
     !canonicalLinkConflicts &&
     (options?.allowAnonRelink === true || options?.allowProviderRelink === true) &&
     hasFreshPreviousOwnerProof &&
-    !linkedAuthUid
+    !linkedAuthUid &&
+    anonClaim
+  ) {
+    const relinkCaller = options?.anonMergeCaller ? { ...options.anonMergeCaller, door: 'relink' as const } : undefined;
+    const verdict = verifyAnonMergeClaimNonce(anonClaim, options?.anonMergeNonce, relinkCaller);
+    if (!verdict.ok) anonRelinkNonceDenied = verdict.reason;
+  }
+  if (
+    !canonicalLinkConflicts &&
+    (options?.allowAnonRelink === true || options?.allowProviderRelink === true) &&
+    hasFreshPreviousOwnerProof &&
+    !linkedAuthUid &&
+    anonRelinkNonceDenied === null
   ) {
     const existingByAuth = await readIdentityOrThrow(
       reads.getQuery(db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(1)),
@@ -637,6 +671,7 @@ async function assertStableOwner(
     linkedAuthUid: linkedAuthUid || null,
     allowProviderRelink: options?.allowProviderRelink === true,
     allowAnonRelink: options?.allowAnonRelink === true,
+    anonRelinkNonceDenied,
   }));
   throw new HttpsError('permission-denied', 'stable_id_mismatch');
 }
@@ -798,6 +833,7 @@ async function repairIdentityDocumentsAtomically(
           currentProof.linkedAuthUid === expectedProof.linkedAuthUid &&
           currentProof.anonClaimAuthUid === expectedProof.anonClaimAuthUid &&
           currentProof.anonClaimAt === expectedProof.anonClaimAt &&
+          currentProof.anonClaimNonceHash === expectedProof.anonClaimNonceHash &&
           currentProof.authLinkExists === expectedProof.authLinkExists &&
           currentProof.authLinkStableId === expectedProof.authLinkStableId;
         if (
@@ -844,6 +880,23 @@ async function repairIdentityDocumentsAtomically(
             lastSignInAt: options.metadata?.lastSignInAt ?? now,
             devicePlatform: options.metadata?.devicePlatform ?? 'web',
           };
+        }
+        // зачем (M-1, решение координатора): перепривязка по метке одноразовая — метка гасится в
+        // той же транзакции, а для отката пишется серверный аудит (30 дней).
+        if (expectedProof?.authorization === 'anon_relink' && userAuthUidChanged) {
+          userPatch.anon_merge_claim = admin.firestore.FieldValue.delete();
+          transaction.set(db.collection(ANON_RELINK_AUDIT).doc(), {
+            stableId,
+            previousAuthUid: currentUserAuthUid,
+            newAuthUid: authUid,
+            provider: options.provider ?? 'anonymous',
+            claimAt: currentProof.anonClaimAt,
+            at: now,
+            mode: expectedProof.anonClaimNonceHash ? 'nonce' : 'legacy',
+            // зачем (security-ревью №2): TTL Firestore работает только по Timestamp (политика в firestore.indexes.json).
+            expiresAt: admin.firestore.Timestamp.fromMillis(now + ANON_RELINK_AUDIT_TTL_MS),
+          });
+          console.warn(`[ANON-MERGE-CLAIM] anon_relink_done stable=${stableId.slice(0, 8)} mode=${expectedProof.anonClaimNonceHash ? 'nonce' : 'legacy'}`);
         }
         transaction.set(userRef, userPatch, { merge: true });
       }
@@ -979,11 +1032,15 @@ async function ensureStableIdentityPair(
   selection: StableIdentitySelection,
   provider: AuthProvider | null,
   metadata?: AuthLinkMetadata,
+  anonMergeNonce: string | null = null,
+  anonMergeCaller: AnonMergeCaller | null = null,
 ): Promise<void> {
   await assertStableAccountMergeNotPending(db, selection.sourceStableIds);
   const ownerProof = await assertStableOwner(db, authUid, selection.stableUid, {
     allowProviderRelink: Boolean(provider),
     allowAnonRelink: !provider,
+    anonMergeNonce,
+    anonMergeCaller,
     allowedAuthLinkStableIds: selection.sourceStableIds,
   });
   const repair = await repairIdentityDocumentsAtomically(db, authUid, selection.stableUid, {
@@ -1973,6 +2030,8 @@ export async function ensureStableLinkForAuth(
   requestedStableId: unknown,
   signInProvider: string,
   metadata?: AuthLinkMetadata,
+  anonMergeNonce: string | null = null,
+  callerAuthTimeMs: number | null = null,
 ): Promise<{ ok: true; stableUid: string; authUid: string; identityReady: true }> {
   const stableId = normalizeStableId(requestedStableId);
   const provider: AuthProvider | null =
@@ -1981,6 +2040,7 @@ export async function ensureStableLinkForAuth(
       : signInProvider === 'apple.com'
         ? 'apple'
         : null;
+  const anonMergeCaller: AnonMergeCaller = { provider: signInProvider, authTimeMs: callerAuthTimeMs };
   const allowProviderRelink = Boolean(provider);
   const allowAnonRelink = !allowProviderRelink;
 
@@ -2052,12 +2112,14 @@ export async function ensureStableLinkForAuth(
     } else if (linkedStableId && linkedStableId !== stableId) {
       const linkedStableUid = await resolveStableUidForAuth(db, authUid, linkedStableId, {
         allowProviderRelink: true,
+        anonMergeNonce,
+        anonMergeCaller,
         repairLinks: false,
       });
       await ensureStableIdentityPair(db, authUid, {
         stableUid: linkedStableUid,
         sourceStableIds: [linkedStableId, linkedStableUid],
-      }, provider, metadata);
+      }, provider, metadata, anonMergeNonce, anonMergeCaller);
       return { ok: true, stableUid: linkedStableUid, authUid, identityReady: true };
     }
     if (!linkedStableId) {
@@ -2065,12 +2127,14 @@ export async function ensureStableLinkForAuth(
       if (existingUserSelection && existingUserSelection.stableUid !== stableId) {
         const stableUid = await resolveStableUidForAuth(db, authUid, existingUserSelection.stableUid, {
           allowProviderRelink: true,
+          anonMergeNonce,
+          anonMergeCaller,
           repairLinks: false,
         });
         await ensureStableIdentityPair(db, authUid, {
           stableUid,
           sourceStableIds: [...existingUserSelection.sourceStableIds, stableUid],
-        }, provider, metadata);
+        }, provider, metadata, anonMergeNonce, anonMergeCaller);
         return { ok: true, stableUid, authUid, identityReady: true };
       }
     }
@@ -2082,12 +2146,14 @@ export async function ensureStableLinkForAuth(
       const stableUid = await resolveStableUidForAuth(db, authUid, existingAnchor.selection.stableUid, {
         allowProviderRelink,
         allowAnonRelink,
+        anonMergeNonce,
+        anonMergeCaller,
         repairLinks: false,
       });
       await ensureStableIdentityPair(db, authUid, {
         stableUid,
         sourceStableIds: [...existingAnchor.selection.sourceStableIds, stableUid],
-      }, provider, metadata);
+      }, provider, metadata, anonMergeNonce, anonMergeCaller);
       return { ok: true, stableUid, authUid, identityReady: true };
     }
 
@@ -2096,12 +2162,14 @@ export async function ensureStableLinkForAuth(
       const stableUid = await resolveStableUidForAuth(db, authUid, existingUserSelection.stableUid, {
         allowProviderRelink,
         allowAnonRelink,
+        anonMergeNonce,
+        anonMergeCaller,
         repairLinks: false,
       });
       await ensureStableIdentityPair(db, authUid, {
         stableUid,
         sourceStableIds: [...existingUserSelection.sourceStableIds, stableUid],
-      }, provider, metadata);
+      }, provider, metadata, anonMergeNonce, anonMergeCaller);
       return { ok: true, stableUid, authUid, identityReady: true };
     }
 
@@ -2136,13 +2204,13 @@ export async function ensureStableLinkForAuth(
         await ensureStableIdentityPair(db, authUid, {
           stableUid: bootstrap.stableUid,
           sourceStableIds: [bootstrap.stableUid],
-        }, provider, metadata);
+        }, provider, metadata, anonMergeNonce, anonMergeCaller);
       }
       return { ok: true, stableUid: bootstrap.stableUid, authUid, identityReady: true };
     }
   }
 
-  const relinkOptions = { allowProviderRelink, allowAnonRelink };
+  const relinkOptions = { allowProviderRelink, allowAnonRelink, anonMergeNonce, anonMergeCaller };
   const stableUid = await resolveStableUidForAuth(db, authUid, stableId, {
     ...relinkOptions,
     repairLinks: false,
@@ -2150,7 +2218,7 @@ export async function ensureStableLinkForAuth(
   await ensureStableIdentityPair(db, authUid, {
     stableUid,
     sourceStableIds: [...new Set([stableId, stableUid].filter(Boolean))],
-  }, provider, metadata);
+  }, provider, metadata, anonMergeNonce, anonMergeCaller);
   return { ok: true, stableUid, authUid, identityReady: true };
 }
 
@@ -2190,7 +2258,13 @@ export const authEnsureStableLink = onCall({
   const authUid = request.auth.uid;
   const signInProvider = String(request.auth.token?.firebase?.sign_in_provider ?? '').trim();
   const metadata = normalizeAuthLinkMetadata(request.data?.linkMetadata);
-  return ensureStableLinkForAuth(db, authUid, request.data?.stableId, signInProvider, metadata);
+  // зачем (M-1 HIGH-1): необязательный nonce из authStampAnonOwnership (клиент 2.0+).
+  const anonMergeNonce = parseAnonMergeNonce(request.data?.anonMergeNonce);
+  logDeviceHeaderPresence('authEnsureStableLink', request.rawRequest?.headers);
+  return ensureStableLinkForAuth(
+    db, authUid, request.data?.stableId, signInProvider, metadata, anonMergeNonce,
+    authTimeMsFromToken(request.auth.token),
+  );
 });
 
 // ── Recovery hint: каким аккаунтом входить (маскированный email) ─────────────
@@ -2268,18 +2342,160 @@ export const authRecoveryHint = onCall({
 // чужой аккаунт поглотить нельзя. Метка пишется только владельцем дока.
 export const ANON_MERGE_CLAIM_TTL_MS = 10 * 60 * 1000;
 
+// зачем (M-1, координатор 03.10): метка {authUid, at} доказывала лишь «анонимный владелец
+// её поставил», но не привязывала слияние к вызывающему: знающий stableId жертвы мог в
+// 10-минутное окно поглотить её аккаунт. Теперь stamp по запросу выдаёт клиенту одноразовый
+// nonce, а на документе лежит только sha256. Старый клиент (1.6.24) nonce не просит —
+// его метка без nonceHash идёт прежним путём, пока включён выключатель ниже.
+// Выключить (false) после min_app_version 2.0: тогда метка без nonceHash слияние не открывает.
+export const ANON_MERGE_CLAIM_LEGACY_PATH_ENABLED: boolean = true;
+export const ANON_MERGE_NONCE_MAX_LENGTH = 128;
+
+export function hashAnonMergeNonce(nonce: string): string {
+  return createHash('sha256').update(nonce, 'utf8').digest('hex');
+}
+
+export function generateAnonMergeNonce(): string {
+  return randomBytes(32).toString('base64url');
+}
+
 export function readAnonMergeClaim(
   userData: FirebaseFirestore.DocumentData | undefined,
   now: number,
   ttlMs: number = ANON_MERGE_CLAIM_TTL_MS,
-): { authUid: string } | null {
+): { authUid: string; nonceHash: string | null; at: number } | null {
   const claim = (userData ?? {}).anon_merge_claim;
   if (!claim || typeof claim !== 'object') return null;
   const authUid = String((claim as { authUid?: unknown }).authUid ?? '').trim();
   const at = Number((claim as { at?: unknown }).at);
   if (!authUid || !Number.isFinite(at) || at <= 0) return null;
   if (now - at > ttlMs) return null; // stale → not a valid proof
-  return { authUid };
+  const rawHash = (claim as { nonceHash?: unknown }).nonceHash;
+  const nonceHash = typeof rawHash === 'string' && rawHash.length > 0 ? rawHash : null;
+  return { authUid, nonceHash, at };
+}
+
+export type AnonMergeNonceVerdict =
+  | { ok: true; mode: 'nonce' | 'legacy'; nonceHash: string | null }
+  | {
+    ok: false;
+    reason:
+      | 'nonce_required'
+      | 'nonce_mismatch'
+      | 'legacy_disabled'
+      | 'legacy_anonymous_caller'
+      | 'legacy_signed_in_before_claim';
+  };
+
+/** Кто вызывает: провайдер входа и момент входа (auth_time×1000). Нужен только legacy-ветке. */
+export type AnonMergeCaller = {
+  provider: string | null;
+  authTimeMs: number | null;
+  skipLegacyCallerChecks?: boolean;
+  // зачем (security-ревью №2): какая дверь — по логу legacy_path решим, нужна ли relink-дверь для legacy.
+  door?: 'merge' | 'relink';
+};
+
+/** Допуск часов между auth_time вызывающего и меткой. */
+export const ANON_MERGE_LEGACY_AUTH_SKEW_MS = 5000;
+
+/**
+ * Только измерение (решение координатора): есть ли у вызова заголовки устройства — чтобы понять,
+ * можно ли потом сверять «то же устройство». Значения заголовков НЕ логируются.
+ */
+export function logDeviceHeaderPresence(
+  fn: string,
+  headers: Record<string, unknown> | undefined,
+): void {
+  const has = (name: string): boolean => {
+    const value = headers?.[name];
+    return Array.isArray(value) ? value.length > 0 : String(value ?? '').length > 0;
+  };
+  console.log(
+    `[ANON-MERGE-CLAIM] device_headers fn=${fn} hasInstanceIdHeader=${has('firebase-instance-id-token')}` +
+    ` hasGmpIdHeader=${has('x-firebase-gmpid')}`,
+  );
+}
+
+/** auth_time (секунды) из токена вызывающего → миллисекунды, либо null. */
+export function authTimeMsFromToken(token: { auth_time?: unknown } | undefined): number | null {
+  const seconds = Number(token?.auth_time);
+  return Number.isFinite(seconds) && seconds > 0 ? seconds * 1000 : null;
+}
+
+function shortUid(uid: string): string {
+  return uid.slice(0, 8);
+}
+
+/**
+ * Единая проверка nonce для метки anon_merge_claim. Вызывается в каждом месте, где метка
+ * открывает слияние. nonce НЕ логируется. Метка с nonceHash никогда не понижается до legacy.
+ */
+export function verifyAnonMergeClaimNonce(
+  claim: { authUid: string; nonceHash: string | null; at?: number },
+  presentedNonce: string | null | undefined,
+  caller?: AnonMergeCaller | null,
+  legacyEnabled: boolean = ANON_MERGE_CLAIM_LEGACY_PATH_ENABLED,
+): AnonMergeNonceVerdict {
+  const uid = shortUid(claim.authUid);
+  if (claim.nonceHash) {
+    if (!presentedNonce) {
+      console.warn(`[ANON-MERGE-CLAIM] nonce_required uid=${uid}`);
+      return { ok: false, reason: 'nonce_required' };
+    }
+    const presented = Buffer.from(hashAnonMergeNonce(presentedNonce), 'utf8');
+    const stored = Buffer.from(claim.nonceHash, 'utf8');
+    if (presented.length !== stored.length || !timingSafeEqual(presented, stored)) {
+      console.warn(`[ANON-MERGE-CLAIM] nonce_mismatch uid=${uid} stored=${claim.nonceHash.slice(0, 6)}`);
+      return { ok: false, reason: 'nonce_mismatch' };
+    }
+    const nonceAgeMs = typeof caller?.authTimeMs === 'number' && typeof claim.at === 'number'
+      ? caller.authTimeMs - claim.at
+      : 'unknown';
+    console.log(`[ANON-MERGE-CLAIM] nonce_ok uid=${uid} authAgeMs=${nonceAgeMs}`);
+    return { ok: true, mode: 'nonce', nonceHash: claim.nonceHash };
+  }
+  if (!legacyEnabled) {
+    console.warn(`[ANON-MERGE-CLAIM] legacy_disabled uid=${uid}`);
+    return { ok: false, reason: 'legacy_disabled' };
+  }
+  // зачем (M-1 HIGH-1, решение координатора): клиент 1.6.24 nonce не шлёт, но законный вызывающий
+  // в его пути ВСЕГДА провайдерский (google/apple) и вошёл ПОСЛЕ постановки метки. Анонимный
+  // вызывающий или давно открытая сессия атакующего — отказ. На публикации (триггер/cron,
+  // без запроса) эти проверки уже прошли при резервировании — там их пропускаем.
+  if (!caller?.skipLegacyCallerChecks) {
+    const provider = String(caller?.provider ?? '').trim();
+    if (provider !== 'google.com' && provider !== 'apple.com') {
+      console.warn(`[ANON-MERGE-CLAIM] legacy_anonymous_caller uid=${uid} provider=${provider || 'none'}`);
+      return { ok: false, reason: 'legacy_anonymous_caller' };
+    }
+    const authTimeMs = caller?.authTimeMs;
+    const claimAt = claim.at;
+    if (
+      typeof authTimeMs !== 'number' || !Number.isFinite(authTimeMs) ||
+      typeof claimAt !== 'number' || !Number.isFinite(claimAt) ||
+      authTimeMs < claimAt - ANON_MERGE_LEGACY_AUTH_SKEW_MS
+    ) {
+      console.warn(
+        `[ANON-MERGE-CLAIM] legacy_signed_in_before_claim uid=${uid} provider=${provider}` +
+        ` authAgeMs=${typeof authTimeMs === 'number' && typeof claimAt === 'number' ? authTimeMs - claimAt : 'unknown'}`,
+      );
+      return { ok: false, reason: 'legacy_signed_in_before_claim' };
+    }
+    console.warn(`[ANON-MERGE-CLAIM] legacy_path uid=${uid} door=${caller?.door ?? 'unknown'} provider=${provider} authAgeMs=${authTimeMs - claimAt}`);
+    return { ok: true, mode: 'legacy', nonceHash: null };
+  }
+  console.warn(`[ANON-MERGE-CLAIM] legacy_path uid=${uid} publication=1`);
+  return { ok: true, mode: 'legacy', nonceHash: null };
+}
+
+/** Валидация необязательного nonce из запроса merge: строка ≤ 128 или отсутствует. */
+export function parseAnonMergeNonce(value: unknown): string | null {
+  if (value === undefined || value === null) return null;
+  if (typeof value !== 'string' || value.length === 0 || value.length > ANON_MERGE_NONCE_MAX_LENGTH) {
+    throw new HttpsError('invalid-argument', 'anon_merge_nonce_invalid');
+  }
+  return value;
 }
 
 export async function stampAnonOwnershipForAuth(
@@ -2287,7 +2503,8 @@ export async function stampAnonOwnershipForAuth(
   authUid: string,
   requestedStableId: unknown,
   now: number = Date.now(),
-): Promise<{ ok: true; stableUid: string }> {
+  nonceRequested: boolean = false,
+): Promise<{ ok: true; stableUid: string; mergeNonce?: string }> {
   const stableId = normalizeStableId(requestedStableId);
   if (!stableId || stableId.length > 160) {
     throw new HttpsError('invalid-argument', 'stable_id_required');
@@ -2296,11 +2513,19 @@ export async function stampAnonOwnershipForAuth(
     requireKnownIdentity: true,
     repairLinks: false,
   });
+  // зачем (M-1): nonce существует только в ответе клиенту; в документ идёт один sha256.
+  // Без флага — прежняя метка без nonceHash и прежняя форма ответа (клиент 1.6.24).
+  // mergeFields заменяет поле метки ЦЕЛИКОМ (set+merge:true слил бы вложенные карты и оставил
+  // бы старый nonceHash после повторного stamp без флага).
+  const mergeNonce = nonceRequested ? generateAnonMergeNonce() : null;
+  const claim: Record<string, unknown> = { authUid, at: now };
+  if (mergeNonce) claim.nonceHash = hashAnonMergeNonce(mergeNonce);
   await db.collection(USERS).doc(stableUid).set(
-    { anon_merge_claim: { authUid, at: now }, updatedAt: now },
-    { merge: true },
+    { anon_merge_claim: claim, updatedAt: now },
+    { mergeFields: ['anon_merge_claim', 'updatedAt'] },
   );
-  return { ok: true, stableUid };
+  console.log(`[ANON-MERGE-CLAIM] stamped uid=${shortUid(authUid)} nonce=${mergeNonce ? 'issued' : 'none'}`);
+  return mergeNonce ? { ok: true, stableUid, mergeNonce } : { ok: true, stableUid };
 }
 
 export function requireAnonymousOwnershipStampProvider(signInProvider: unknown): void {
@@ -2325,10 +2550,13 @@ export const authStampAnonOwnership = onCall(HOT_CALLABLE_OPTIONS, async (reques
       header: describeAppCheckHeader(request.rawRequest.headers['x-firebase-appcheck']),
     }));
   }
+  logDeviceHeaderPresence('authStampAnonOwnership', request.rawRequest?.headers);
   const db = admin.firestore();
   const authUid = request.auth.uid;
   try {
-    return await stampAnonOwnershipForAuth(db, authUid, request.data?.stableId);
+    return await stampAnonOwnershipForAuth(
+      db, authUid, request.data?.stableId, Date.now(), request.data?.nonceRequested === true,
+    );
   } catch (error) {
     if ((error as { code?: unknown })?.code === 'permission-denied') {
       console.warn(JSON.stringify({

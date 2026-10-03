@@ -39,6 +39,22 @@ export function coldStartIoKeyPattern(key: unknown): string {
 
 type AnyFn = (...args: unknown[]) => unknown;
 
+/**
+ * зачем (PM-215, замер «Дизайна» 03.10: AS.getAllKeys n=15 и пустые multiGet n=10 за один старт):
+ * шаблон ключа у этих вызовов ничего не говорит («*», «[0]»), а мест в коде два десятка. Для них
+ * пишем ИСТОЧНИК — первые кадры стека вне этого файла (dev — имена функций, release — адреса,
+ * которые сопоставляются по source map той же сборки). Только в окне старта и только для них.
+ */
+export function coldStartIoCallerTag(stack: string | undefined): string {
+  const frames = String(stack ?? '')
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line.startsWith('at ') && !/cold_start_io_trace|wrappedIo|Promise|tryCallOne|tryCallTwo|doResolve/.test(line));
+  return frames.slice(0, 2)
+    .map((frame) => frame.replace(/^at\s+/, '').replace(/\s*\(.*?([^/\\()\s]+:\d+:\d+)\)$/, ' @$1').slice(0, 70))
+    .join(' < ') || 'unknown';
+}
+
 export function installColdStartIoTrace(
   targets: Readonly<{ asyncStorage?: Record<string, unknown>; secureStore?: Record<string, unknown> }> = {},
   windowMs: number = WINDOW_MS,
@@ -52,6 +68,7 @@ export function installColdStartIoTrace(
   let inflight = 0;
   let maxInflight = 0;
   let calls = 0;
+  const callers = new Map<string, number>();
 
   const wrap = (owner: Record<string, unknown> | undefined, method: string, api: string,
     keyOf: (args: unknown[]) => string): boolean => {
@@ -61,6 +78,10 @@ export function installColdStartIoTrace(
     const wrapped = function wrappedIo(this: unknown, ...args: unknown[]): unknown {
       if (Date.now() - startedAt > windowMs) return (original as AnyFn).apply(this, args);
       const name = `${api}:${keyOf(args)}`;
+      if (name === 'AS.getAllKeys:*' || name.startsWith('AS.multiGet:[0]')) {
+        const tag = `${api}<${coldStartIoCallerTag(new Error().stack)}`;
+        callers.set(tag, (callers.get(tag) ?? 0) + 1);
+      }
       const callStartedAt = Date.now();
       calls += 1;
       inflight += 1;
@@ -129,7 +150,9 @@ export function installColdStartIoTrace(
     // зачем (PM-215 шаг 0, §115): рядом с обращениями к хранилищу — метрики глобального замка
     // (глубина очереди, ожидание, удержание). Поле в конце строки: разбор ворот PM-220 не меняется.
     const lock = getStorageLockMetrics();
-    console.warn(`[COLD-START-IO] summary windowMs=${windowMs} startedEpochMs=${startedAt} calls=${calls} groups=${groups.size} maxInflight=${maxInflight} patched=${JSON.stringify(patched)} top=${JSON.stringify(top)} lock=${JSON.stringify(lock)}`);
+    const callerTop = [...callers.entries()].sort((a, b) => b[1] - a[1]).slice(0, TOP)
+      .map(([tag, n]) => `${tag} n=${n}`);
+    console.warn(`[COLD-START-IO] summary windowMs=${windowMs} startedEpochMs=${startedAt} calls=${calls} groups=${groups.size} maxInflight=${maxInflight} patched=${JSON.stringify(patched)} top=${JSON.stringify(top)} lock=${JSON.stringify(lock)} callers=${JSON.stringify(callerTop)}`);
   }, windowMs);
 }
 

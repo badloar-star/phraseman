@@ -24,3 +24,8 @@ tests/storage_mutex_metrics.test.ts (FIFO прежний, метрики счи�
 
 ## Rollback
 git revert (только наблюдение).
+
+## Замер «Дизайна» (03.10 ~22:50, store, Pixel_8 2 ядра/2 ГБ, 3 холодных старта) и вывод
+- lock: maxQueueDepth 0, maxWaitMs 0, slowWaits 0, deadlineTimeouts 0 во всех трёх; maxHoldMs 2547/233/384 → очереди на замке нет, шаг 4 (дедлайн/приоритет замка) НЕ нужен; разово 2,5 с удержания на первом старте — кандидат для разбора.
+- calls 404/533/532 — выше потолка PM-220 (520): AS.getAllKeys n=15, пустые AS.multiGet:[0] n=10, required-session-completion-scheduler n=10, stable_auth_link_cache 14–16, premium_active 7–14, mistake_practice 15.
+- Добавлено (логи, по правилу «сперва логи»): итог [COLD-START-IO] получает `callers=[…]` — источник (2 кадра стека вне трассировки) для AS.getAllKeys и пустых multiGet; coldStartIoCallerTag + tests/cold_start_io_callers.test.ts 3/3.

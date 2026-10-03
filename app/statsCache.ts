@@ -130,7 +130,9 @@ export function rememberStatsCache(next: Partial<StatsPreloadData>): StatsPreloa
     updatedAt: Date.now(),
   });
   _cache = normalized;
-  AsyncStorage.setItem(STATS_PRELOAD_CACHE_KEY, JSON.stringify(normalized)).catch(() => {});
+  AsyncStorage.setItem(STATS_PRELOAD_CACHE_KEY, JSON.stringify(normalized)).catch((error: unknown) => {
+    console.warn('[STATS-CACHE] persist failed', String((error as Error)?.message ?? error).slice(0, 160));
+  });
   return normalized;
 }
 
@@ -143,7 +145,9 @@ export async function hydrateStatsCacheFromStorage(): Promise<void> {
       const parsed = normalizeStatsCache(JSON.parse(raw));
       if (parsed.loaded) _cache = parsed;
     })
-    .catch(() => {})
+    .catch((error: unknown) => {
+      console.warn('[STATS-CACHE] hydrate failed', String((error as Error)?.message ?? error).slice(0, 160));
+    })
     .finally(() => {
       _hydratePromise = null;
     });

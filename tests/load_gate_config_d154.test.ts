@@ -47,3 +47,14 @@ test('mistake practice: skeleton instead of a full-screen spinner, calm unavaila
   expect(src).toContain("if (prepareStageRef.current !== 'preparing')");
   expect(src).toContain("prepareStageRef.current === 'abandoned'");
 });
+
+test('stats screen: no eternal skeleton — ceiling and failure end in calm «Сейчас недоступно» with retry', () => {
+  const src = read('app/streak_stats.tsx');
+  expect(src).toContain("from './load_gate_config'");
+  expect(src).toContain('testID="stats-unavailable"');
+  expect(src).toContain('testID="stats-try-again"');
+  expect(src).toContain("'[STATS-GATE] skeleton:ceiling → unavailable'");
+  expect(src).toContain("'[STATS-GATE] loadAll:failed'");
+  // Немые catch в кэше статистики не возвращаются.
+  expect(read('app/statsCache.ts')).not.toMatch(/\.catch\(\(\) => \{\}\)/);
+});

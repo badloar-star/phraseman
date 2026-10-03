@@ -40,6 +40,7 @@ import { loadLifetimeProfileStats, type LifetimeProfileStats } from './lifetime_
 import { devRandomizeLifetimePathDailyMetrics, loadLifetimeTotalsChartDays, loadWeeklyLearnedCounts, type LifetimeTotalsChartKind, type LifetimeChartDay, type DevLifetimePathRandomSums, } from './stats_daily_breakdown';
 import { ALL_ACHIEVEMENTS, achievementNameForLang, loadAchievementStates } from './achievements';
 import SkeletonBlock from '../components/SkeletonShimmer';
+import { LOAD_GATE_TOTAL_MS } from './load_gate_config';
 import AchievementArt from '../components/AchievementArt';
 import { ACHIEVEMENT_ICON } from '../constants/achievementIcons';
 import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
@@ -1749,6 +1750,9 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     // Initialise from pre-loaded cache so the screen shows real data immediately
     const _sc = getStatsCache(studyTarget);
     const [statsReady, setStatsReady] = useState(_sc.loaded);
+    // зачем (D158 / PM-214, 04.10): без кэша и с отказом сборки экран навсегда стоял на каркасе.
+    // После потолка — спокойное «Сейчас недоступно» + «Попробовать снова»; повтор и при возврате на экран.
+    const [statsUnavailable, setStatsUnavailable] = useState(false);
     const [days, setDays] = useState<DayData[]>(() => labelCachedDayRows(_sc.days, wdays));
     const [allDays, setAllDays] = useState<DayData[]>(() => labelCachedDayRows(_sc.allDays, wdays));
     const [allTimeDays, setAllTimeDays] = useState<TimeDayData[]>(() => labelCachedTimeDayRows(_sc.allTimeDays, wdays));
@@ -1924,7 +1928,8 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             if (!cancelled && series)
                 setLifetimeChartDays(series);
         })
-            .catch(() => {
+            .catch((error: unknown) => {
+            console.warn('[STATS-GATE] lifetimeChart:failed', JSON.stringify({ kind: expandedLifetimeKind, error: String((error as Error)?.message ?? error).slice(0, 160) }));
             if (!cancelled)
                 setLifetimeChartDays([]);
         })
@@ -1944,6 +1949,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     }, [expandedLifetimeKind, lifetimeChartDays, devLifetimeAllCharts]);
     const applyStatsSnapshot = React.useCallback((snapshot: StatsPreloadData) => {
         setStatsReady(true);
+        setStatsUnavailable(false);
         setDays(labelCachedDayRows(snapshot.days, wdays));
         setAllDays(labelCachedDayRows(snapshot.allDays, wdays));
         setAllTimeDays(labelCachedTimeDayRows(snapshot.allTimeDays, wdays));
@@ -1958,18 +1964,35 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     }, [wdays]);
     const loadAll = React.useCallback(async () => {
         debugStatsRoute('loadAll:start');
-        await hydrateStatsCacheFromStorage();
-        const cachedSnapshot = getStatsCache(studyTarget);
-        debugStatsRoute('loadAll:cache', { loaded: cachedSnapshot.loaded });
-        if (cachedSnapshot.loaded)
-            applyStatsSnapshot(cachedSnapshot);
-        const snapshot = await refreshStatsCache(studyTarget);
-        debugStatsRoute('loadAll:refreshStatsCache', { ok: !!snapshot });
-        if (snapshot)
-            applyStatsSnapshot(snapshot);
+        // зачем (PM-214): loadAll зовут через `void` — исключение здесь было бы необработанным отказом,
+        // а экран без данных оставался бы на каркасе без единой строки в журнале.
+        try {
+            await hydrateStatsCacheFromStorage();
+            const cachedSnapshot = getStatsCache(studyTarget);
+            debugStatsRoute('loadAll:cache', { loaded: cachedSnapshot.loaded });
+            if (cachedSnapshot.loaded)
+                applyStatsSnapshot(cachedSnapshot);
+            const snapshot = await refreshStatsCache(studyTarget);
+            debugStatsRoute('loadAll:refreshStatsCache', { ok: !!snapshot });
+            if (snapshot)
+                applyStatsSnapshot(snapshot);
+            else if (!cachedSnapshot.loaded) {
+                console.warn('[STATS-GATE] loadAll:no_snapshot → unavailable', JSON.stringify({ studyTarget }));
+                setStatsUnavailable(true);
+            }
+        }
+        catch (error) {
+            console.warn('[STATS-GATE] loadAll:failed', JSON.stringify({ studyTarget, error: String((error as Error)?.message ?? error).slice(0, 160) }));
+            if (!getStatsCache(studyTarget).loaded)
+                setStatsUnavailable(true);
+            return;
+        }
         loadWeeklyLearnedCounts(studyTarget)
             .then((counts) => setWeekLearned(counts))
-            .catch(() => setWeekLearned(null));
+            .catch((error: unknown) => {
+            console.warn('[STATS-GATE] weeklyLearned:failed', String((error as Error)?.message ?? error).slice(0, 160));
+            setWeekLearned(null);
+        });
         // Синк аналитики + перцентиль (не блокирует рендер — запускаем после основной загрузки)
         void syncDailyAnalyticsIfNeeded();
         loadPercentileData().then(({ myTime7ms: t7, percentiles: p }) => {
@@ -1995,6 +2018,21 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         if (!statsRuntimeActive || !statsRefreshDirtyRef.current) return;
         requestStatsRefresh();
     }, [requestStatsRefresh, statsRuntimeActive]);
+    // зачем (D158): потолок ожидания каркаса — сборка, не ответившая ни данными, ни ошибкой.
+    useEffect(() => {
+        if (statsReady || statsUnavailable || !statsRuntimeActive) return undefined;
+        const timer = setTimeout(() => {
+            console.warn('[STATS-GATE] skeleton:ceiling → unavailable', JSON.stringify({ ceilingMs: LOAD_GATE_TOTAL_MS, studyTarget }));
+            setStatsUnavailable(true);
+        }, LOAD_GATE_TOTAL_MS);
+        return () => clearTimeout(timer);
+    }, [statsReady, statsUnavailable, statsRuntimeActive, studyTarget]);
+    const retryStatsLoad = React.useCallback(() => {
+        console.warn('[STATS-GATE] retry:tap');
+        hapticTap();
+        setStatsUnavailable(false);
+        void loadAll();
+    }, [loadAll]);
     const randomizeLifetimeChartsForDev = React.useCallback(async () => {
         if (!ENABLE_DEV_TOOLS)
             return;
@@ -2195,7 +2233,18 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                   «впрыгивал» целиком, когда loadAll() догружался. Держим геометрию
                   загруженного экрана скелетоном (шапка героя, legacy reward-карта, недельный
                   график, ряд достижений), как в рабочем состоянии экрана. */}
-              {!statsReady ? (
+              {!statsReady && statsUnavailable ? (
+                <View testID="stats-unavailable" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: 24, alignItems: 'center', justifyContent: 'center', gap: 16, zIndex: 1 }}>
+                  <Text accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '700', textAlign: 'center' }}>
+                    {triLang(lang, { ru: 'Сейчас недоступно', uk: 'Зараз недоступно', es: 'No disponible ahora', en: 'Not available right now', 'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne' })}
+                  </Text>
+                  <Pressable testID="stats-try-again" accessibilityRole="button" onPress={retryStatsLoad} style={({ pressed }) => [{ minHeight: 48, paddingHorizontal: 22, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.85 }]}>
+                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                      {triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще', es: 'Intentar de nuevo', en: 'Try again', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
+                    </Text>
+                  </Pressable>
+                </View>
+              ) : !statsReady ? (
                 <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: 16, gap: 12 }}>
                   <SkeletonBlock width="100%" height={200} borderRadius={22} />
                   <SkeletonBlock width="100%" height={168} borderRadius={22} />

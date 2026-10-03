@@ -82,4 +82,74 @@ describe('async storage null bind guard', () => {
     expect(getSpy).toHaveBeenCalled();
   });
 
+
+  // зачем ([COLD-START-IO], 03.10): getAllKeys — single-flight. Одновременные вызовы делят один нативный вызов; результат
+  // не хранится после завершения (денежные журналы: устаревший список ключей недопустим); запись отцепляет от общего вызова.
+  describe('getAllKeys single-flight', () => {
+    function spyKeys(AsyncStorage: { getAllKeys: unknown }) {
+      const original = AsyncStorage.getAllKeys as () => Promise<string[]>;
+      const spy = jest.fn(() => original.call(AsyncStorage));
+      return spy;
+    }
+    function loadWithSpy() {
+      const AsyncStorage = require('@react-native-async-storage/async-storage').default;
+      AsyncStorage.__reset?.();
+      const spy = spyKeys(AsyncStorage);
+      AsyncStorage.getAllKeys = spy;
+      require('../app/async_storage_null_bind_guard');
+      return { AsyncStorage, spy };
+    }
+    // фоновые записи самого приложения (журнал здоровья) меняют эпоху — даём им осесть и смотрим только на свои ключи
+    async function settle() {
+      await new Promise((resolve) => setTimeout(resolve, 60));
+    }
+    function mine(keys: string[]) {
+      return keys.filter((key) => !key.startsWith('app_health')).sort();
+    }
+
+    it('concurrent calls share one native call and get independent copies', async () => {
+      const { AsyncStorage, spy } = loadWithSpy();
+      await AsyncStorage.setItem('a', '1');
+      await settle();
+      spy.mockClear();
+      const [x, y] = await Promise.all([AsyncStorage.getAllKeys(), AsyncStorage.getAllKeys()]);
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(mine(x)).toEqual(['a']);
+      expect(x).not.toBe(y);
+    });
+
+    it('sequential calls always hit the native layer (no stored result)', async () => {
+      const { AsyncStorage, spy } = loadWithSpy();
+      await AsyncStorage.setItem('a', '1');
+      await settle();
+      spy.mockClear();
+      await AsyncStorage.getAllKeys();
+      await AsyncStorage.getAllKeys();
+      expect(spy).toHaveBeenCalledTimes(2);
+    });
+
+    it('a write between calls is visible; a write started during a read detaches later callers', async () => {
+      const { AsyncStorage, spy } = loadWithSpy();
+      await AsyncStorage.setItem('a', '1');
+      await settle();
+      spy.mockClear();
+      const first = AsyncStorage.getAllKeys();
+      const write = AsyncStorage.setItem('b', '2');
+      const second = AsyncStorage.getAllKeys();
+      await write;
+      await first;
+      expect(spy).toHaveBeenCalledTimes(2);
+      expect(mine(await second)).toEqual(['a', 'b']);
+      expect(mine(await AsyncStorage.getAllKeys())).toEqual(['a', 'b']);
+    });
+
+    it('a failed native call is rethrown and does not poison the next call', async () => {
+      const { AsyncStorage, spy } = loadWithSpy();
+      jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+      spy.mockImplementationOnce(() => Promise.reject(new Error('boom')));
+      await expect(AsyncStorage.getAllKeys()).rejects.toThrow('boom');
+      expect(mine(await AsyncStorage.getAllKeys())).toEqual([]);
+    });
+  });
+
 });

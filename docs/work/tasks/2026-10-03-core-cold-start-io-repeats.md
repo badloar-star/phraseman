@@ -34,3 +34,7 @@ Device measurement before/after (calls, groups, maxInflight, first frame) with t
 ## Rollback
 
 git revert per fix.
+
+## Дополнение 03.10 (getAllKeys single-flight)
+Governance-ID: TG-5C1025510971
+Outcome: одновременные getAllKeys склеиваются в один нативный вызов; результат не хранится (ревью Ядра: денежные журналы). Scope: app/async_storage_null_bind_guard.ts + тест. Rollback: git revert коммита.

@@ -67,6 +67,56 @@ function sanitizeKeys(keys: ReadonlyArray<Key>): string[] {
 
 let installed = false;
 
+// зачем ([COLD-START-IO], store-release 03.10, callers=): getAllKeys шёл ~14 раз за холодный старт (денежные журналы рун и
+// энергии). Долгоживущий кэш списка ключей ЗАПРЕЩЁН (ревью Ядра: ключи пишут десятки модулей, устаревший список = пропущенная
+// операция = потеря или двойное начисление). Поэтому только single-flight: вызовы, пришедшие, пока нативный getAllKeys ещё
+// летит, получают его результат; результат живёт до завершения вызова и дальше НЕ хранится — последовательный вызов всегда
+// идёт в нативный слой. Любая запись (JS-API и нативные мутаторы), начавшаяся или закончившаяся с момента старта вызова,
+// отцепляет его от новых подписчиков: присоединиться можно только к чтению, под которым записей не было.
+let mutationEpoch = 0;
+let mutationsInFlight = 0;
+let keysInFlight: { epoch: number; promise: Promise<readonly string[]> } | null = null;
+
+export function resetAsyncStorageKeyListSingleFlightForTests(): void {
+  mutationEpoch = 0;
+  mutationsInFlight = 0;
+  keysInFlight = null;
+}
+
+function noteMutationStart(): void {
+  mutationEpoch += 1;
+  mutationsInFlight += 1;
+  keysInFlight = null;
+}
+
+function noteMutationEnd(): void {
+  mutationEpoch += 1;
+  mutationsInFlight = Math.max(0, mutationsInFlight - 1);
+  keysInFlight = null;
+}
+
+/** Оборачивает мутатор: эпоха меняется на старте и на финише (успех или ошибка), кэш ключей сбрасывается. */
+function trackMutation<A extends unknown[]>(original: (...args: A) => unknown): (this: unknown, ...args: A) => unknown {
+  return function tracked(this: unknown, ...args: A): unknown {
+    noteMutationStart();
+    let result: unknown;
+    try {
+      result = original.apply(this, args);
+    } catch (error) {
+      noteMutationEnd();
+      throw error;
+    }
+    if (result && typeof (result as Promise<unknown>).then === 'function') {
+      return (result as Promise<unknown>).then(
+        (value) => { noteMutationEnd(); return value; },
+        (error: unknown) => { noteMutationEnd(); throw error; },
+      );
+    }
+    noteMutationEnd();
+    return result;
+  };
+}
+
 export function installAsyncStorageNullBindGuard(): void {
   if (installed) return;
   installed = true;
@@ -101,6 +151,34 @@ export function installAsyncStorageNullBindGuard(): void {
 
   wrap('multiSet');
   wrap('multiMerge');
+
+  // getAllKeys: single-flight, см. комментарий выше. Мутаторы оборачиваются ПОСЛЕ санитайзеров, чтобы эпоха считалась на внешнем слое.
+  const keyStore = AsyncStorage as unknown as Record<string, unknown>;
+  const originalGetAllKeys = keyStore.getAllKeys;
+  if (typeof originalGetAllKeys === 'function') {
+    keyStore.getAllKeys = function cachedGetAllKeys(this: unknown, cb?: unknown) {
+      if (typeof cb === 'function') return (originalGetAllKeys as (c?: unknown) => unknown).call(this, cb);
+      if (keysInFlight && keysInFlight.epoch === mutationEpoch && mutationsInFlight === 0) {
+        return keysInFlight.promise.then((keys) => keys.slice());
+      }
+      const epoch = mutationEpoch;
+      const promise = (originalGetAllKeys as () => Promise<readonly string[]>).call(this).then((keys) => {
+        const stable: readonly string[] = Array.isArray(keys) ? keys.slice() : keys;
+        if (keysInFlight && keysInFlight.promise === promise) keysInFlight = null;
+        return stable;
+      }, (error: unknown) => {
+        if (keysInFlight && keysInFlight.promise === promise) keysInFlight = null;
+        console.warn('[COLD-START-IO] getAllKeys single-flight: нативный вызов упал', error instanceof Error ? error.message : String(error));
+        throw error;
+      });
+      if (mutationsInFlight === 0) keysInFlight = { epoch, promise };
+      return promise.then((keys) => (Array.isArray(keys) ? keys.slice() : keys));
+    };
+  }
+  for (const name of ['setItem', 'removeItem', 'mergeItem', 'clear', 'multiSet', 'multiRemove', 'multiMerge']) {
+    const fn = keyStore[name];
+    if (typeof fn === 'function') keyStore[name] = trackMutation(fn as (...a: unknown[]) => unknown);
+  }
 
   const wrapKeys = (name: 'multiGet' | 'multiRemove') => {
     const original = store[name];
@@ -150,6 +228,9 @@ export function installAsyncStorageNullBindGuard(): void {
       (NativeModules as any)['PlatformLocalStorage'] ||
       (NativeModules as any)['RNC_AsyncSQLiteDBStorage'] ||
       (NativeModules as any)['RNCAsyncStorage'];
+    for (const nativeName of ['setItem', 'removeItem', 'mergeItem', 'clear']) {
+      if (native && typeof native[nativeName] === 'function') native[nativeName] = trackMutation(native[nativeName].bind(native));
+    }
     if (native && typeof native.multiSet === 'function') {
       const originalNative = native.multiSet.bind(native);
       native.multiSet = function patchedNativeMultiSet(pairs: ReadonlyArray<Pair>, cb?: unknown) {

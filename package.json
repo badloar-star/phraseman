@@ -347,6 +347,7 @@
     "testMatch": [
       "<rootDir>/tests/**/*.test.ts",
       "<rootDir>/tests/max_tutor_live_components.test.tsx",
+      "<rootDir>/tests/coin_reward_flight_lifecycle.test.tsx",
       "<rootDir>/tests/max_memory_settings.test.tsx",
       "<rootDir>/tests/privacy_settings_tutor_memory.test.tsx",
       "<rootDir>/tests/ai_dialog_energy_target_remount.test.tsx",

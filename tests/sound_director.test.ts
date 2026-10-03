@@ -1,4 +1,6 @@
 jest.mock('expo-audio', () => ({ createAudioPlayer: jest.fn() }));
+// зачем: e96eb6d1a — директор пишет [SFX-DROP] только при __DEV__; в этой среде jest глобала нет.
+(globalThis as { __DEV__?: boolean }).__DEV__ = false;
 
 import { ExpoSfxBackend, type SfxPlayerLike } from '@/modules/audio/expo_sfx_backend';
 import { SoundArbiter } from '@/modules/audio/sound_arbiter';
@@ -132,11 +134,12 @@ describe('SoundDirector', () => {
     expect(backend.stopCount).toBe(0);
   });
 
+  // зачем: звук счётчика опыта (pm.complete.xp_counter_tick) удалён вместе с XP (efe19ae9d); проверяем на живом звуке того же семейства «completion».
   test('cancels only an active completion sound and frees the arbiter slot', () => {
     const backend = new FakeBackend();
     const director = new SoundDirector(backend, new SoundArbiter(new FakeClock()));
 
-    director.request('pm.complete.xp_counter_tick');
+    director.request('pm.complete.session');
     expect(director.stopActiveCompletion()).toBe(true);
     expect(backend.stopCount).toBe(1);
     expect(director.request('pm.system.info')).toMatchObject({ kind: 'play', preempt: false });
@@ -169,13 +172,13 @@ describe('SoundDirector', () => {
   test('cancels only the active completion sound in its own scope', () => {
     const backend = new FakeBackend();
     const director = new SoundDirector(backend, new SoundArbiter(new FakeClock()));
-    director.request('pm.complete.xp_counter_tick', { scope: 'foreign-results' });
+    director.request('pm.complete.session', { scope: 'foreign-results' });
     expect(director.stopActiveCompletion('results-sequence')).toBe(false);
     expect(backend.stopCount).toBe(0);
 
     const resultsBackend = new FakeBackend();
     const resultsDirector = new SoundDirector(resultsBackend, new SoundArbiter(new FakeClock()));
-    resultsDirector.request('pm.complete.xp_counter_tick', { scope: 'results-sequence' });
+    resultsDirector.request('pm.complete.session', { scope: 'results-sequence' });
     expect(resultsDirector.stopActiveCompletion('results-sequence')).toBe(true);
     expect(resultsBackend.stopCount).toBe(1);
   });

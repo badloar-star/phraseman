@@ -19,6 +19,8 @@ jest.mock('react-native-reanimated', () => {
     __esModule: true, default: { View: 'Animated.View', Image: 'Animated.Image' },
     Easing: { bezier: () => 0 },
     useSharedValue: (initial: number) => React.useRef({ value: initial }).current,
+    // зачем: полёт монет уважает «уменьшить движение» (координатор 02.10); здесь проверяем обычный полёт.
+    useReducedMotion: () => false,
     useAnimatedStyle: (factory: () => unknown) => factory(),
     withDelay: (_delay: number, value: unknown) => value,
     withTiming: jest.fn(() => 1), cancelAnimation: jest.fn(),

@@ -52,4 +52,20 @@ describe('[COLD-START-IO]', () => {
     expect(secureStore.getItemAsync).toBe(getItemAsync);
     warn.mockRestore();
   });
+
+  // зачем (03.10): пустой multiGet короткозамкнут в охране AsyncStorage и до нативного модуля не доходит — в «calls» его нет.
+  test('пустой multiGet не считается обращением к хранилищу, непустой — считается', async () => {
+    const multiGet = jest.fn(async (keys: string[]) => keys.map((k) => [k, null]));
+    const asyncStorage: Record<string, unknown> = { multiGet };
+    const secureStore: Record<string, unknown> = {};
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    installColdStartIoTrace({ asyncStorage, secureStore }, 1_000);
+    await (asyncStorage.multiGet as (k: string[]) => Promise<unknown>)([]);
+    await (asyncStorage.multiGet as (k: string[]) => Promise<unknown>)(['a']);
+    jest.advanceTimersByTime(1_000);
+    const line = warn.mock.calls.map((c) => String(c[0])).find((l) => l.startsWith('[COLD-START-IO] summary')) ?? '';
+    expect(line).toContain('calls=1');
+    warn.mockRestore();
+  });
+
 });

@@ -78,6 +78,9 @@ export function installColdStartIoTrace(
     const wrapped = function wrappedIo(this: unknown, ...args: unknown[]): unknown {
       if (Date.now() - startedAt > windowMs) return (original as AnyFn).apply(this, args);
       const name = `${api}:${keyOf(args)}`;
+      // зачем (03.10): пустой multiGet короткозамкнут в async_storage_null_bind_guard и до нативного модуля не доходит — это не
+      // обращение к хранилищу, в «calls» ему не место (иначе ворота PM-220 считали бы то, чего уже нет).
+      if (name.startsWith('AS.multiGet:[0]')) return (original as AnyFn).apply(this, args);
       if (name === 'AS.getAllKeys:*' || name.startsWith('AS.multiGet:[0]')) {
         const tag = `${api}<${coldStartIoCallerTag(new Error().stack)}`;
         callers.set(tag, (callers.get(tag) ?? 0) + 1);

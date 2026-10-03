@@ -119,7 +119,17 @@ export function installAsyncStorageNullBindGuard(): void {
           console.warn('[asyncstorage-null-bind] call stack:', new Error(`${name} null-bind source`).stack);
         }
       }
-      return (original as (k: ReadonlyArray<Key>, c?: unknown) => Promise<unknown>).call(this, sanitizeKeys(list), cb);
+      const safeKeys = sanitizeKeys(list);
+      // зачем ([COLD-START-IO], store-release, слабый профиль, 03.10): на холодном старте приходило ~10 пустых multiGet — каждый
+      // шёл через мост в SQLite ради ответа «ничего». Пустой список ключей → результат заранее известен: [] (как у самого
+      // AsyncStorage: колбэк, если есть, получает (null, [])). Обращения к нативу нет, поведение для вызывающих то же.
+      if (safeKeys.length === 0) {
+        // multiGet отвечает [] (колбэк — (null, [])); multiRemove — undefined (колбэк — (null)), как настоящий AsyncStorage
+        const empty = name === 'multiGet' ? [] : undefined;
+        if (typeof cb === 'function') (cb as (error: unknown, result?: unknown) => void)(null, empty);
+        return Promise.resolve(empty);
+      }
+      return (original as (k: ReadonlyArray<Key>, c?: unknown) => Promise<unknown>).call(this, safeKeys, cb);
     } as typeof original;
   };
 

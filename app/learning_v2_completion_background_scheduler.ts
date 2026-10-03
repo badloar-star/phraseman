@@ -31,6 +31,12 @@ const MAX_BACKGROUND_SYNC_FLIGHTS = 8;
 const MAX_CONTINUATION_WAKES = 4;
 const CONTINUATION_DELAY_MS = 5_000;
 const RETRY_DELAYS_MS = [10_000, 30_000, 60_000, 120_000, 300_000] as const;
+// зачем ([COLD-START-IO], store-release, слабый профиль, 03.10): на холодном старте планировщик просыпался 3–5 раз подряд
+// (запуск, смена состояния приложения, сеть) и КАЖДЫЙ раз проходил полный протокол — чтение курсора, запись курсора,
+// обход трёх очередей (с полным getAllKeys у спула), стирание курсора, хотя после первого «очередь пуста» делать нечего.
+// Холостой запуск, который случился в пределах QUIET_AFTER_DRAIN_MS после исчерпавшего очередь и без новых поводов
+// (вход/выход с экрана занятия, явное уведомление о сети, смена аккаунта), пропускается. Любой повод снимает паузу.
+const QUIET_AFTER_DRAIN_MS = 60_000;
 
 type ScheduledTask = Readonly<{ cancel(): void }>;
 type SchedulerRuntime = Readonly<{
@@ -82,6 +88,10 @@ export const createLearningV2CompletionBackgroundScheduler = (
   let generation = 0;
   let accountEpoch = 0;
   let observedAccountScopeHash: string | null = null;
+  // Когда последний раз очередь была исчерпана, в какой «эпохе» аккаунта, и появился ли с тех пор повод для новой работы.
+  let lastDrainedAtMs: number | null = null;
+  let lastDrainedAccountEpoch = -1;
+  let dirtySinceDrain = false;
 
   const canRunNow = (): boolean => surfaces.size === 0;
   const cancelRetryTimer = () => {
@@ -224,6 +234,13 @@ export const createLearningV2CompletionBackgroundScheduler = (
     const runAccountEpoch = accountEpoch;
     const flightKey = `${scopeHash}:${runAccountEpoch}`;
     if (inFlights.has(flightKey)) return;
+    if (
+      lastDrainedAtMs !== null &&
+      !dirtySinceDrain &&
+      lastDrainedAccountEpoch === runAccountEpoch &&
+      runtime.now() - lastDrainedAtMs < QUIET_AFTER_DRAIN_MS
+    )
+      return;
     if (inFlights.size >= MAX_BACKGROUND_SYNC_FLIGHTS) {
       scheduleRetryAt(scopeHash, runtime.now() + RETRY_DELAYS_MS[0]);
       return;
@@ -295,6 +312,11 @@ export const createLearningV2CompletionBackgroundScheduler = (
       continuationWakes = 0;
       if (cursor) await runtime.clearCursor(scopeHash, cursor.revision);
       cancelRetryTimer();
+      if (runGeneration === generation && runAccountEpoch === accountEpoch) {
+        lastDrainedAtMs = runtime.now();
+        lastDrainedAccountEpoch = runAccountEpoch;
+        dirtySinceDrain = false;
+      }
     })()
       .catch(async () => {
         if (
@@ -364,6 +386,7 @@ export const createLearningV2CompletionBackgroundScheduler = (
         observedAccountScopeHash = nextScopeHash;
         generation += 1;
         accountEpoch += 1;
+        dirtySinceDrain = true;
         continuationWakes = 0;
         bypassBackoffPending = false;
         cancelRetryTimer();
@@ -387,6 +410,7 @@ export const createLearningV2CompletionBackgroundScheduler = (
     }
     const surface = Object.freeze({});
     surfaces.add(surface);
+    dirtySinceDrain = true;
     generation += 1;
     scheduled?.task.cancel();
     scheduled = null;
@@ -396,12 +420,14 @@ export const createLearningV2CompletionBackgroundScheduler = (
       if (released) return;
       released = true;
       surfaces.delete(surface);
+      dirtySinceDrain = true;
       generation += 1;
       if (surfaces.size === 0) requestWake();
     };
   };
 
   const notifyConnectivityAvailable = () => {
+    dirtySinceDrain = true;
     continuationWakes = 0;
     generation += 1;
     requestWake(true);
@@ -427,6 +453,9 @@ export const createLearningV2CompletionBackgroundScheduler = (
     installed = false;
     observedAccountScopeHash = null;
     surfaces.clear();
+    lastDrainedAtMs = null;
+    lastDrainedAccountEpoch = -1;
+    dirtySinceDrain = false;
     continuationWakes = 0;
     wakesPendingAfterFlight.clear();
     bypassBackoffPending = false;

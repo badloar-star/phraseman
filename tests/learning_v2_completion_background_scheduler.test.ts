@@ -469,3 +469,80 @@ test('wake requested during real in-flight work is replayed after settlement', a
   await settle();
   expect(runtime.pendingTasks()).toHaveLength(1);
 });
+
+// зачем ([COLD-START-IO], 03.10): холостые повторные «полёты» после опустошения очереди пропускаются на QUIET_AFTER_DRAIN_MS,
+// но любой повод (экран занятия, явная сеть, смена аккаунта) и истечение паузы возвращают обычную работу.
+describe('quiet window after the queue was drained', () => {
+  const drainOnce = async () => {
+    const runtime = createRuntime([
+      { processed: 0, disposition: 'drained' },
+      { processed: 0, disposition: 'drained' },
+      { processed: 0, disposition: 'drained' },
+    ]);
+    runtime.scheduler.install();
+    runtime.runNext();
+    await settle();
+    expect(runtime.flush).toHaveBeenCalledTimes(1);
+    return runtime;
+  };
+
+  test('opportunistic wakes (app state, net edge) inside the window do not run the protocol again', async () => {
+    const runtime = await drainOnce();
+    runtime.emitApp('background');
+    runtime.emitApp('active');
+    runtime.emitNet(true);
+    while (runtime.pendingTasks().length > 0) runtime.runNext();
+    await settle();
+    expect(runtime.flush).toHaveBeenCalledTimes(1);
+  });
+
+  test('after the window expires the next wake runs', async () => {
+    const runtime = await drainOnce();
+    runtime.setNow(1_000 + 61_000);
+    runtime.emitApp('background');
+    runtime.runNext();
+    await settle();
+    expect(runtime.flush).toHaveBeenCalledTimes(2);
+  });
+
+  test('leaving a lesson surface lifts the pause (a new completion may be waiting)', async () => {
+    const runtime = await drainOnce();
+    const release = runtime.scheduler.enterInteractiveSurface();
+    release();
+    runtime.runNext();
+    await settle();
+    expect(runtime.flush).toHaveBeenCalledTimes(2);
+  });
+
+  test('explicit connectivity notification lifts the pause', async () => {
+    const runtime = await drainOnce();
+    runtime.scheduler.notifyConnectivityAvailable();
+    runtime.runNext();
+    await settle();
+    expect(runtime.flush).toHaveBeenCalledTimes(2);
+  });
+
+  test('an account change lifts the pause', async () => {
+    const runtime = await drainOnce();
+    runtime.emitAccount();
+    runtime.runNext();
+    await settle();
+    expect(runtime.flush).toHaveBeenCalledTimes(2);
+  });
+
+  test('a flight that did not drain (retryable failure) never starts the quiet window', async () => {
+    const runtime = createRuntime([
+      { processed: 0, disposition: 'retryable_failure' },
+      { processed: 0, disposition: 'drained' },
+    ]);
+    runtime.scheduler.install();
+    runtime.runNext();
+    await settle();
+    runtime.emitApp('background');
+    runtime.setNow(1_000 + 20_000);
+    runtime.emitNet(true);
+    runtime.runNext();
+    await settle();
+    expect(runtime.flush).toHaveBeenCalledTimes(2);
+  });
+});

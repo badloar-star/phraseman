@@ -50,9 +50,12 @@ describe('async storage null bind guard', () => {
       multiRemove: originalRemove,
     };
 
+    // зачем (03.10): охрана тянет debug-logger → константы приложения, которым нужен Platform из react-native; без него тест падал
+    // на Platform.OS ещё до своих проверок (красный был и на чистом HEAD — сторож, который не доходил до проверки).
     jest.doMock('react-native', () => ({
       NativeModules: { RNCAsyncStorage: native },
       TurboModuleRegistry: { get: jest.fn(() => null) },
+      Platform: { OS: 'android', select: (spec: Record<string, unknown>) => spec.android ?? spec.default },
     }));
 
     require('../app/async_storage_null_bind_guard');
@@ -63,4 +66,20 @@ describe('async storage null bind guard', () => {
     expect(originalGet).toHaveBeenCalledWith(['ok', 'second'], undefined);
     expect(originalRemove).toHaveBeenCalledWith(['ok', 'second'], undefined);
   });
+
+  // зачем ([COLD-START-IO], 03.10): пустой multiGet/multiRemove (на старте ~10 штук) в нативный модуль не идёт.
+  it('empty or fully invalid key lists never reach the native module and answer [] like AsyncStorage', async () => {
+    // предыдущий тест подменяет react-native через doMock — здесь нужен настоящий (иначе константы приложения падают на Platform.OS)
+    jest.unmock('react-native');
+    const AsyncStorage = loadGuardedAsyncStorage();
+    const getSpy = jest.spyOn(require('@react-native-async-storage/async-storage').default, 'multiGet');
+    await expect(AsyncStorage.multiGet([])).resolves.toEqual([]);
+    await expect(AsyncStorage.multiGet([null, undefined, ''] as unknown as string[])).resolves.toEqual([]);
+    const cb = jest.fn();
+    await AsyncStorage.multiGet([], cb);
+    expect(cb).toHaveBeenCalledWith(null, []);
+    await expect(AsyncStorage.multiRemove([])).resolves.toBeUndefined();
+    expect(getSpy).toHaveBeenCalled();
+  });
+
 });

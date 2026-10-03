@@ -165,7 +165,8 @@ export default function AiMistakeCard({
           Жалоба летит в админку и удаляется из кэша mistake_explanations кнопкой там. */}
       {isReadyExplanation && fallback && onRefresh ? (
         <View style={styles.fallbackRow}>
-          <Text testID="ai-mistake-fallback-note" style={{ color: t.textSecond, fontSize: f.label, flexShrink: 1 }}>
+          {/* зачем (D158): неброская заметка — приглушённый тон, не цвет кнопок (t.textSecond = cta в стекле) */}
+          <Text testID="ai-mistake-fallback-note" style={{ color: t.textMuted, fontSize: f.label, flexShrink: 1 }}>
             {aiExplainLaterNote(lang)}
           </Text>
           <Pressable
@@ -174,7 +175,7 @@ export default function AiMistakeCard({
             onPress={onRefresh}
             style={({ pressed }) => [styles.simpleButton, { borderColor: t.border, backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.78 }]}
           >
-            <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900' }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '700' }}>
               {aiExplainRefreshLabel(lang)}
             </Text>
           </Pressable>

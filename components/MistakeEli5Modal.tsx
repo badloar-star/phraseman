@@ -272,7 +272,8 @@ function MistakeEli5ModalClassic({ visible, onClose, lang, state, text, fallback
                 ))}
                 {fallback && onRefresh ? (
                   <View style={styles.fallbackRow}>
-                    <Text testID="eli5-fallback-note" style={{ color: t.textSecond, fontSize: f.label, flexShrink: 1 }}>
+                    {/* зачем (D158): неброская заметка — приглушённый тон, не цвет кнопок (t.textSecond = cta в стекле) */}
+                    <Text testID="eli5-fallback-note" style={{ color: t.textMuted, fontSize: f.label, flexShrink: 1 }}>
                       {aiExplainLaterNote(lang)}
                     </Text>
                     <Pressable
@@ -281,7 +282,7 @@ function MistakeEli5ModalClassic({ visible, onClose, lang, state, text, fallback
                       onPress={onRefresh}
                       style={({ pressed }) => [styles.refreshButton, { backgroundColor: glass.selected }, pressed && styles.pressed]}
                     >
-                      <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900' }}>
+                      <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '700' }}>
                         {aiExplainRefreshLabel(lang)}
                       </Text>
                     </Pressable>

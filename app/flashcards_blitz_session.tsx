@@ -245,6 +245,12 @@ export default function FlashcardsBlitzSession() {
   const [energyGate, setEnergyGate] = useState<'checking' | 'ok' | 'denied'>('checking');
   const [quotaUnavailable, setQuotaUnavailable] = useState(false);
   const blitzChargedRoundRef = useRef<number | null>(null);
+  // зачем (баг «Блиц висит на каркасе», 03.10): актуальность стартового запуска — по токену, а не по
+  // флагу cleanup. Смена любой зависимости эффекта в полёте (доступ, премиум, токен аккаунта, безлимит)
+  // ставила cancelled=true, латч не пускал перезапуск — запуск молча выходил, energyGate навсегда 'checking'.
+  const blitzStartRunRef = useRef<object | null>(null);
+  const blitzGateStepRef = useRef('idle');
+  const blitzGateLastSkipRef = useRef('');
   const blitzSpentOperationRef = useRef<string | null>(null);
   const blitzMountedRef = useRef(true);
   const blitzExplicitlyAbandonedRef = useRef(false);
@@ -402,7 +408,11 @@ export default function FlashcardsBlitzSession() {
         const wide = await loadDeckCardsMulti(allRefs, contentLang, { studyTarget }).catch(noteSwallowedAs('flashcards_blitz_session:useEffect.loadDeckCardsMulti_2', []));
         if (wide.length > cards.length) cards = wide;
       }
-      if (cancelled) return;
+      if (cancelled) {
+        console.log('[FC-BLITZ-GATE] pool:cancelled', JSON.stringify({ cards: cards.length }));
+        return;
+      }
+      console.log('[FC-BLITZ-GATE] pool:loaded', JSON.stringify({ cards: cards.length, refs: refs.length }));
       setPool(cards);
       setLoading(false);
     })();
@@ -480,16 +490,40 @@ export default function FlashcardsBlitzSession() {
   // лимитов». Каждое такое переключение перезапускало эффект и снимало ещё
   // единицу. Латч помнит, за какой roundId уже заплачено.
   useEffect(() => {
-    if (!blitzAccessGranted || loading || !canStartBlitz(pool.length)) return;
+    if (!blitzAccessGranted || loading || !canStartBlitz(pool.length)) {
+      const skip = `access=${blitzAccessGranted} loading=${loading} pool=${pool.length} round=${roundId}`;
+      if (blitzGateLastSkipRef.current !== skip) {
+        blitzGateLastSkipRef.current = skip;
+        console.log(`[FC-BLITZ-GATE] start:wait ${skip}`);
+      }
+      return;
+    }
     if (blitzChargedRoundRef.current === roundId) return;
 
     blitzChargedRoundRef.current = roundId;
     setEnergyGate('checking');
     setQuotaUnavailable(false);
     const accessEpoch = blitzAccessEpochRef.current;
+    const runToken = {};
+    blitzStartRunRef.current = runToken;
+    const startedAt = Date.now();
+    const gateLog = (step: string, extra: Record<string, unknown> = {}) => {
+      blitzGateStepRef.current = step;
+      console.log(`[FC-BLITZ-GATE] ${step}`, JSON.stringify({ round: roundId, ms: Date.now() - startedAt, ...extra }));
+    };
+    // Устарел, только если начался другой запуск, экран размонтирован или вход брошен явно.
+    const isStaleRun = () => blitzStartRunRef.current !== runToken
+      || !blitzMountedRef.current
+      || blitzExplicitlyAbandonedRef.current;
     let cancelled = false;
+    gateLog('start:begin', {
+      pool: pool.length, unlimited: blitzEnergyUnlimited, premium: hasPremiumAccess,
+      accountPhase: accountToken.phase, stable: String(accountToken.stableId ?? '').slice(0, 8),
+    });
     void (async () => {
+      gateLog('account:await');
       const pendingAccount = await resolveFlashcardTrainingPendingGrantAccount(accountToken);
+      gateLog('account:done', { found: Boolean(pendingAccount) });
       if (!pendingAccount) throw new Error('pending_grant_account_unavailable');
       const roundQueue = shuffleArr(pool);
       const initialQuestion = buildBlitzQuestion(roundQueue[0]!, pool);
@@ -501,6 +535,7 @@ export default function FlashcardsBlitzSession() {
         sessionSize: Number.MAX_SAFE_INTEGER,
         preset: 'blitz',
       };
+      gateLog('prepare:await');
       const prepared = await prepareFlashcardTrainingPendingGrant({
         account: pendingAccount,
         scope: pendingScope,
@@ -514,16 +549,20 @@ export default function FlashcardsBlitzSession() {
         energyOperationId: blitzEnergyIntent.operationId,
         energyEpoch: blitzEnergyIntent.grant.attemptId,
       });
+      gateLog('prepare:done', { status: prepared.status, reason: 'reason' in prepared ? String(prepared.reason) : null });
       if (prepared.status !== 'prepared' && prepared.status !== 'reused') {
         // зачем: без reason аудит по логу невозможен — «unavailable» ничего не объясняет.
         throw new Error(`pending_grant_${prepared.status}:${'reason' in prepared ? String(prepared.reason) : 'n/a'}`);
       }
       let pendingRecord = prepared.record;
       blitzPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
+      gateLog('reconcile:await');
       const reconciled = await reconcileFlashcardTrainingPendingGrant(pendingAccount, pendingScope);
+      gateLog('reconcile:done', { status: reconciled.status });
+      // зачем (баг 03.10): 'missing' сразу после prepare раньше давал немой return — экран навсегда на
+      // каркасе. Любой исход обязан выводить из 'checking': уводим в catch → существующий fail-open.
       if (reconciled.status === 'found') pendingRecord = reconciled.record;
-      else if (reconciled.status !== 'missing') throw new Error(`pending_grant_reconcile_${reconciled.status}`);
-      else return;
+      else throw new Error(`pending_grant_reconcile_${reconciled.status}`);
       blitzPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
       const restored = pendingRecord.manifest.payload as unknown as {
         pool: DeckCard[];
@@ -536,34 +575,44 @@ export default function FlashcardsBlitzSession() {
       }
 
       let energyCharged = pendingRecord.energyState === 'charged';
+      gateLog('energy:await', { charged: energyCharged, unlimited: blitzEnergyUnlimited });
       const result = energyCharged || blitzEnergyUnlimited
         ? 'unlimited'
         : await confirmBlitzEnergy(restored.energyIntent);
+      gateLog('energy:done', { result });
       if (result === 'spent') {
         energyCharged = true;
         blitzSpentOperationRef.current = pendingRecord.energyOperationId;
         const marked = await markFlashcardTrainingEnergyCharged(pendingAccount, pendingRecord.fingerprint);
         if ('record' in marked) pendingRecord = marked.record;
       }
+      cancelled = isStaleRun();
       const isCurrentAccess = !cancelled
         && blitzAccessGrantedRef.current
         && blitzAccessEpochRef.current === accessEpoch;
       if (!isCurrentAccess) {
         // Plain effect cleanup preserves the durable start. Explicit navigation
         // uses abandonFlashcardTrainingPendingGrant from `leave` below.
+        gateLog('exit:not_current', {
+          stale: cancelled, access: blitzAccessGrantedRef.current,
+          epochChanged: blitzAccessEpochRef.current !== accessEpoch,
+        });
         return;
       }
       if (result === 'cancelled') {
+        gateLog('exit:energy_cancelled');
         await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
         safeRouterBack(router, '/flashcards' as never);
         return;
       }
       if (result === 'insufficient') {
+        gateLog('exit:energy_insufficient');
         await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
         setEnergyGate('denied');
         return;
       }
       if (pendingRecord.phase === 'prepared') {
+        gateLog('quota:await');
         const quotaResult = await consumeMonthlyTrainingSession({
           token: accountToken,
           accessResolved,
@@ -571,6 +620,7 @@ export default function FlashcardsBlitzSession() {
           receiptId: pendingRecord.receiptId,
           mode: 'blitz',
         });
+        gateLog('quota:done', { status: quotaResult.status });
         if (quotaResult.status === 'allowed') {
           const marked = await markFlashcardTrainingQuotaCommitted(
             pendingAccount,
@@ -590,6 +640,8 @@ export default function FlashcardsBlitzSession() {
           await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
           blitzSpentOperationRef.current = null;
           blitzPendingGrantRef.current = null;
+          cancelled = isStaleRun();
+          gateLog('exit:quota_refused', { status: quotaResult.status, stale: cancelled });
           if (!cancelled && quotaResult.status === 'exhausted') {
           markNextNavigationAsReplace();
           router.replace({ pathname: '/flashcards_training_setup', params: {
@@ -601,7 +653,11 @@ export default function FlashcardsBlitzSession() {
         return;
       }
       }
-      if (cancelled || !blitzMountedRef.current || blitzExplicitlyAbandonedRef.current) return;
+      cancelled = isStaleRun();
+      if (cancelled || !blitzMountedRef.current || blitzExplicitlyAbandonedRef.current) {
+        gateLog('exit:stale_before_ok', { mounted: blitzMountedRef.current, abandoned: blitzExplicitlyAbandonedRef.current });
+        return;
+      }
       blitzPlayableManifestRef.current = {
         pool: restored.pool,
         roundQueue: restored.roundQueue,
@@ -609,8 +665,11 @@ export default function FlashcardsBlitzSession() {
       };
       blitzPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
       setPool(restored.pool);
+      gateLog('ok', { pool: restored.pool.length });
       setEnergyGate('ok');
     })().catch(async (error) => {
+      cancelled = isStaleRun();
+      gateLog('catch', { stale: cancelled, error: error instanceof Error ? error.message : String(error) });
       const pending = blitzPendingGrantRef.current;
       if (pending) {
         await abandonFlashcardTrainingPendingGrant(
@@ -655,13 +714,40 @@ export default function FlashcardsBlitzSession() {
         blitzSpentOperationRef.current = null;
         console.warn('[FC-TRAIN-ENTRY] blitz entry:fail-open — грант недоступен, раунд стартует локально без чека и без списания энергии', JSON.stringify({ reason: message, poolSize: pool.length }));
         setPool(pool);
+        gateLog('ok:fail_open', { reason: message });
         setEnergyGate('ok');
         return;
       }
+      gateLog('exit:unavailable', { reason: message });
       setQuotaUnavailable(true);
     });
-    return () => { cancelled = true; };
+    // зачем (баг 03.10): cleanup больше НЕ отменяет запуск — латч всё равно не дал бы перезапуску пройти,
+    // и экран остался бы на каркасе. Устаревание определяет isStaleRun (новый запуск / размонтирование / уход).
+    return undefined;
   }, [accessResolved, hasPremiumAccess, accountToken, blitzAccessGranted, blitzEnergyIntent, feedbackAttemptId, loading, pool, roundId, blitzEnergyUnlimited, confirmBlitzEnergy, contentLang, deckRefs, refundActiveBlitzEnergy, refundBlitzEnergy, router, studyTarget]);
+
+  // зачем (баг «Блиц висит на каркасе», 03.10): любой исход обязан выводить с каркаса. Если через 20 с
+  // экран всё ещё на каркасе — полный снимок в лог (чтобы по одному grep было видно, ЧТО держит), и если
+  // держит стартовая проверка (не ожидание ответа человека в окне энергии) — экран «Попробовать снова».
+  const BLITZ_GATE_WATCHDOG_MS = 20_000;
+  useEffect(() => {
+    const onSkeleton = !blitzAccessGranted || loading || energyGate === 'checking';
+    if (!onSkeleton || quotaUnavailable) return undefined;
+    const timer = setTimeout(() => {
+      const step = blitzGateStepRef.current;
+      const snapshot = {
+        access: blitzAccessGranted, loading, energyGate, pool: pool.length, round: roundId, step,
+        latch: blitzChargedRoundRef.current, hasRun: Boolean(blitzStartRunRef.current),
+        mounted: blitzMountedRef.current, abandoned: blitzExplicitlyAbandonedRef.current,
+      };
+      console.warn('[FC-BLITZ-GATE] watchdog:stuck_on_skeleton', JSON.stringify(snapshot));
+      if (energyGate === 'checking' && blitzAccessGranted && !loading && step !== 'energy:await') {
+        console.warn('[FC-BLITZ-GATE] watchdog:show_retry', JSON.stringify({ step }));
+        setQuotaUnavailable(true);
+      }
+    }, BLITZ_GATE_WATCHDOG_MS);
+    return () => clearTimeout(timer);
+  }, [blitzAccessGranted, energyGate, loading, pool.length, quotaUnavailable, roundId]);
 
   const retryQuotaStart = useCallback(() => {
     blitzChargedRoundRef.current = null;

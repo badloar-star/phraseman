@@ -39,7 +39,8 @@ describe('вход в тренировку карточек: отказ гран
     expect(read('app', 'flashcards_recall_session.tsx')).toMatch(/recallLocalStart && recallMountedRef\.current && !recallExplicitlyAbandonedRef\.current/);
     expect(read('app', 'flashcards_swipe.tsx')).toMatch(/swipeLocalStart && swipeMountedRef\.current && !swipeExplicitlyAbandonedRef\.current/);
     expect(read('app', 'flashcards_speaking_session.tsx')).toMatch(/speakingLocalStart && speakingMountedRef\.current && !speakingExplicitlyAbandonedRef\.current/);
-    expect(read('app', 'flashcards_blitz_session.tsx')).toMatch(/cancelled \|\| !blitzMountedRef\.current \|\| blitzExplicitlyAbandonedRef\.current\) return;[\s\S]{0,900}entry:fail-open/);
+    // зачем (03.10): окно 900→1500 — между проверкой и fail-open вырос комментарий-решение владельца (PM-229); смысл проверки прежний.
+    expect(read('app', 'flashcards_blitz_session.tsx')).toMatch(/cancelled \|\| !blitzMountedRef\.current \|\| blitzExplicitlyAbandonedRef\.current\) return;[\s\S]{0,1500}entry:fail-open/);
   });
 });
 

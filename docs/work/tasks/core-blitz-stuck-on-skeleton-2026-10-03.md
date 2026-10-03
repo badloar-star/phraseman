@@ -1,6 +1,7 @@
 # Task packet: «Блиц» висит на каркасе 2+ мин после «Начать», в журнале тишина
 
 Governance-ID: TG-A585CE50E896
+Governance-ID: TG-8ABFE3E6BA4F
 Status: Done (блиц); соседние экраны — отдельно
 Owner: Ядро; поручение координатора 03.10 (🔴), воспроизведение «Дизайна» (dev, эмулятор, Family 20 карточек)
 
@@ -37,3 +38,11 @@ git revert.
 - Сторож `flashcards_entry_fail_open_contract`: окно 900→1500 (между проверкой и fail-open вырос комментарий PM-229; падал и на HEAD).
 - Тесты: fc_blitz 12/12, blitz_access_behavior 5/5, entry_catch_logs 6/6, feedback_attempt_wiring 3/3, fail_open_contract 6/7 (падает свайп — файл другой сессии). Падали и до правки: flashcard_training_quota_contract (ждёт импорт consumeFlashcardTrainingQuota, его нет и в HEAD), energy_start_confirmation_contract (читает удалённый app/max_call_prestart.tsx). Тайпчек по файлу — 0.
 - Тот же немой `else return;` после reconcile 'missing': app/flashcards_speaking_session.tsx:490, app/flashcards_swipe.tsx:2416, app/flashcards_recall_session.tsx:321 (+ в свайпе `return () => { cancelled = true; }` :2898) — передано координатору.
+
+## «Устно», свайп, красные сторожа (Ядро, 03.10, по команде координатора)
+- «Устно» (app/flashcards_speaking_session.tsx): reconcile 'missing' → throw → fail-open; `[FC-SPEAKING-GATE]` на каждом шаге/выходе/catch; сторож 20 с на загрузке → снимок + «Попробовать снова» (кроме ожидания в окне энергии). Латча там нет — эффект при смене зависимостей перезапускается целиком, поэтому ловушки «отменён и не перезапущен» нет.
+- Свайп (app/flashcards_swipe.tsx): старт по тапу (не эффект) с finally, вечного каркаса нет, но 'missing' давал немой no-op тапа → throw (fail-open тренажёра / понятная ошибка «Верно/Неверно»); лог немого выхода access_not_current. Строка :2898 — эффект подсказки, не старт.
+- energy_start_confirmation_contract: убраны ссылки на app/max_call_prestart.tsx (удалён в снимке 2.0 efe19ae9d) → 5/5.
+- flashcard_training_quota_contract: законный сдвиг — consumeFlashcardTrainingQuota → consumeMonthlyTrainingSession, отказ в else после `=== 'allowed'`, старт «Вспомни» resetRound(restored.round, true) → 4 теста-проводки зелёные. ОСТАЮТСЯ красными (и на HEAD) 4 проверки, требующие отдельного разбора, т.к. касаются денег/энергии: Hub `disabled={trainingLocked || !trainingEntryReady}`; createChargedOperationGuard в Recall/Speaking (защита от двойного возврата энергии — сейчас модуль app/revenue_quota_energy_guard.ts, экраны его не используют); паттерн очистки ref перед refund в свайпе/блице; FREE_FLASHCARD_LIMIT = 20 (теперь алиас FREE_CUSTOM_CARD_LIMIT).
+- flashcards_entry_fail_open_contract: падает «свайп: при pending_grant_* раунд стартует локально» — и на HEAD (не мой).
+- Тесты: speaking_logic 11/11, speaking_quota_unavailable 2/2, swipe_access 4/4, swipe_locale 2/2, recall 3/3+1/1, blitz 5/5; тайпчек файлов 0.

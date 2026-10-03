@@ -3,22 +3,29 @@ import path from 'path';
 
 const read = (relative: string): string => fs.readFileSync(path.join(process.cwd(), relative), 'utf8');
 
+// зачем (03.10, законный сдвиг): квоту тренировок теперь списывает consumeMonthlyTrainingSession
+// (app/monthly_training_sessions.ts) вместо удалённой consumeFlashcardTrainingQuota; отказ уходит в
+// ветку else после `=== 'allowed'`; обычный старт «Вспомни» — resetRound(restored.round, true).
+// Смысл сторожа прежний: квота списывается только перед успешным стартом сессии.
+const QUOTA_CONSUMER = 'consumeMonthlyTrainingSession';
+
 describe('Revenue VNext flashcard training quota wiring', () => {
   const direct = [
     ['app/flashcards_swipe.tsx', "mode: 'swipe'", 'setPhase(\'play\')'],
     ['app/flashcards_blitz_session.tsx', "mode: 'blitz'", 'setEnergyGate(\'ok\')'],
-    ['app/flashcards_recall_session.tsx', "mode: 'recall'", 'resetRound(cards)'],
+    ['app/flashcards_recall_session.tsx', "mode: 'recall'", 'resetRound(restored.round, true)'],
     ['app/flashcards_speaking_session.tsx', "mode: 'speaking'", 'setSession(initialSpeakingState(cards))'],
   ] as const;
 
   test.each(direct)('%s consumes only at the successful session boundary', (file, mode, grantMarker) => {
     const source = read(file);
-    expect(source).toContain("import { consumeFlashcardTrainingQuota");
+    expect(source).toMatch(new RegExp(`import \\{[^}]*\\b${QUOTA_CONSUMER}\\b`));
     expect(source).toContain(mode);
     expect(source).toContain("quotaResult.status === 'exhausted'");
-    expect(source).toContain("quotaResult.status !== 'allowed'");
+    expect(source).toContain("quotaResult.status === 'allowed'");
     expect(source).toContain("'quota_refused'");
-    expect(source.indexOf('consumeFlashcardTrainingQuota')).toBeLessThan(source.lastIndexOf(grantMarker));
+    expect(source.indexOf(`await ${QUOTA_CONSUMER}(`)).toBeGreaterThan(-1);
+    expect(source.indexOf(`await ${QUOTA_CONSUMER}(`)).toBeLessThan(source.lastIndexOf(grantMarker));
   });
 
   test('retry/resume identities are stable while a new Blitz round gets a new receipt', () => {
@@ -30,7 +37,7 @@ describe('Revenue VNext flashcard training quota wiring', () => {
     expect(blitz).toContain('receiptId: `blitz:${feedbackAttemptId}:${roundId}`');
     expect(recall).toContain('receiptId: `recall:${attemptSessionId}`');
     expect(speaking).toContain('receiptId: `speaking:${attemptSessionId}`');
-    expect(swipe.indexOf('const resumePendingDraft')).toBeLessThan(swipe.lastIndexOf('consumeFlashcardTrainingQuota'));
+    expect(swipe.indexOf('const resumePendingDraft')).toBeLessThan(swipe.lastIndexOf(QUOTA_CONSUMER));
   });
 
   test.each([
@@ -39,7 +46,7 @@ describe('Revenue VNext flashcard training quota wiring', () => {
   ])('%s previews quota and never consumes it', (file) => {
     const source = read(file);
     expect(source).toContain('useFlashcardTrainingQuotaPreview');
-    expect(source).not.toContain('consumeFlashcardTrainingQuota');
+    expect(source).not.toContain(QUOTA_CONSUMER);
   });
 
   test('monthly quota exhaustion disables Hub entry without reviving a purchase gate', () => {

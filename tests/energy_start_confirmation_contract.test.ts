@@ -62,7 +62,7 @@ describe('старт платной активности: без окна под
       'app/lesson_words.tsx',
       'app/lesson1.tsx',
       'app/level_exam.tsx',
-      'app/max_call_prestart.tsx',
+      // зачем (03.10): app/max_call_prestart.tsx удалён в снимке 2.0 (efe19ae9d, раздел MAX законсервирован) — точки входа больше нет.
       'app/mistake_practice_session.tsx',
       'app/personal_plan_exercise.tsx',
       'app/preposition_drill.tsx',
@@ -100,7 +100,7 @@ describe('старт платной активности: без окна под
     const tapPaidScreens: { file: string; latch: string }[] = [
       { file: 'app/flashcards_swipe.tsx', latch: 'startChargeInFlightRef' },
       { file: 'app/diagnostic_test.tsx', latch: 'diagnosticChargeInFlightRef' },
-      { file: 'app/max_call_prestart.tsx', latch: 'startInFlightRef' },
+      // зачем (03.10): max_call_prestart.tsx удалён в снимке 2.0 (efe19ae9d) — латча проверять негде.
     ];
 
     for (const { file, latch } of tapPaidScreens) {

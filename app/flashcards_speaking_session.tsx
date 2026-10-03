@@ -285,6 +285,8 @@ export default function FlashcardsSpeakingSession() {
   );
   const [noEnergyOpen, setNoEnergyOpen] = useState(false);
   const speakingEntryChargedRef = useRef(false);
+  // зачем (баг «Блиц висит на каркасе», 03.10 — тот же класс здесь): шаг старта для сторожа и логов.
+  const speakingGateStepRef = useRef('idle');
   const speakingRefundInFlightRef = useRef<Promise<void> | null>(null);
   const refundSpeakingEntry = useCallback((operationId: string, reason: string): Promise<void> => {
     if (speakingRefundInFlightRef.current) return speakingRefundInFlightRef.current;
@@ -420,18 +422,26 @@ export default function FlashcardsSpeakingSession() {
     setQuotaSessionAuthorized(false);
     speakingExplicitlyAbandonedRef.current = false;
     let cancelled = false;
+    const startedAt = Date.now();
+    const gateLog = (step: string, extra: Record<string, unknown> = {}) => {
+      speakingGateStepRef.current = step;
+      console.log(`[FC-SPEAKING-GATE] ${step}`, JSON.stringify({ ms: Date.now() - startedAt, ...extra }));
+    };
+    gateLog('start:begin', { deckKey, sessionSize, accountPhase: accountToken.phase, stable: String(accountToken.stableId ?? '').slice(0, 8) });
     /** Локальный старт на случай отказа гранта — см. fail-open в catch ниже. */
     let speakingLocalStart: (() => void) | null = null;
     void (async () => {
       if (speakingRefundInFlightRef.current) {
+        gateLog('refund:await');
         await speakingRefundInFlightRef.current;
       }
-      if (cancelled) return;
+      if (cancelled) { gateLog('exit:cancelled_before_load'); return; }
       const [loadedPool, rawPrefs] = await Promise.all([
         loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true, studyTarget }).catch(noteSwallowedAs('flashcards_speaking_session:useEffect.loadDeckCardsMulti', [])),
         AsyncStorage.getItem(FC_SPEAKING_PREFS_KEY).catch(noteSwallowedAs('flashcards_speaking_session:useEffect.getItem', null)),
       ]);
-      if (cancelled) return;
+      if (cancelled) { gateLog('exit:cancelled_after_load', { pool: loadedPool.length }); return; }
+      gateLog('load:done', { pool: loadedPool.length });
       const prefs = parseSpeakingPrefs(rawPrefs);
       // зачем (D127): наборы «без языка» не озвучиваются — в «Устно» им не место.
       const cards = shuffleArr(voicedDeckCards(loadedPool)).slice(0, sessionSize);
@@ -450,12 +460,15 @@ export default function FlashcardsSpeakingSession() {
         setLoading(false);
       };
       if (cards.length === 0) {
+        gateLog('exit:no_voiced_cards', { pool: loadedPool.length });
         setQuotaSessionAuthorized(false);
         setSession(initialSpeakingState([]));
         setLoading(false);
         return;
       }
+      gateLog('account:await');
       const pendingAccount = await resolveFlashcardTrainingPendingGrantAccount(accountToken);
+      gateLog('account:done', { found: Boolean(pendingAccount) });
       if (!pendingAccount) throw new Error('pending_grant_account_unavailable');
       const pendingScope = {
         mode: 'speaking' as const,
@@ -478,16 +491,20 @@ export default function FlashcardsSpeakingSession() {
         energyOperationId: speakingEnergyIntent.operationId,
         energyEpoch: speakingEnergyIntent.grant.attemptId,
       });
+      gateLog('prepare:done', { status: prepared.status });
       if (prepared.status !== 'prepared' && prepared.status !== 'reused') {
         // зачем: без reason аудит по логу невозможен — «unavailable» ничего не объясняет.
         throw new Error(`pending_grant_${prepared.status}:${'reason' in prepared ? String(prepared.reason) : 'n/a'}`);
       }
       let pendingRecord = prepared.record;
       speakingPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
+      gateLog('reconcile:await');
       const reconciled = await reconcileFlashcardTrainingPendingGrant(pendingAccount, pendingScope);
+      gateLog('reconcile:done', { status: reconciled.status });
+      // зачем (баг 03.10): 'missing' сразу после prepare давал немой return — вечная загрузка.
+      // Уводим в catch → существующий fail-open (локальный старт).
       if (reconciled.status === 'found') pendingRecord = reconciled.record;
-      else if (reconciled.status !== 'missing') throw new Error(`pending_grant_reconcile_${reconciled.status}`);
-      else return;
+      else throw new Error(`pending_grant_reconcile_${reconciled.status}`);
       speakingPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
       const restored = pendingRecord.manifest.payload as unknown as {
         cards: DeckCard[];
@@ -499,7 +516,9 @@ export default function FlashcardsSpeakingSession() {
       }
 
       let energyCharged = pendingRecord.energyState === 'charged';
+      gateLog('energy:await', { charged: energyCharged });
       const energyResult = energyCharged ? 'unlimited' : await confirmSpeakEnergy(restored.energyIntent);
+      gateLog('energy:done', { result: energyResult });
       if (energyResult === 'spent') {
         energyCharged = true;
         speakingEntryChargedRef.current = true;
@@ -510,14 +529,19 @@ export default function FlashcardsSpeakingSession() {
         if ('record' in marked) pendingRecord = marked.record;
       }
       speakingPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
-      if (cancelled || speakingExplicitlyAbandonedRef.current) return;
+      if (cancelled || speakingExplicitlyAbandonedRef.current) {
+        gateLog('exit:cancelled_after_energy', { cancelled, abandoned: speakingExplicitlyAbandonedRef.current });
+        return;
+      }
       if (energyResult === 'cancelled') {
+        gateLog('exit:energy_cancelled');
         await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
         speakingPendingGrantRef.current = null;
         safeRouterBack(router, '/flashcards' as never);
         return;
       }
       if (energyResult === 'insufficient') {
+        gateLog('exit:energy_insufficient');
         await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
         speakingPendingGrantRef.current = null;
         setNoEnergyOpen(true);
@@ -526,6 +550,7 @@ export default function FlashcardsSpeakingSession() {
       }
 
       if (pendingRecord.phase === 'prepared') {
+        gateLog('quota:await');
         const quotaResult = await consumeMonthlyTrainingSession({
           token: accountToken,
           accessResolved,
@@ -533,6 +558,7 @@ export default function FlashcardsSpeakingSession() {
           receiptId: pendingRecord.receiptId,
           mode: 'speaking',
         });
+        gateLog('quota:done', { status: quotaResult.status });
         if (quotaResult.status === 'allowed') {
           const marked = await markFlashcardTrainingQuotaCommitted(
             pendingAccount,
@@ -567,7 +593,11 @@ export default function FlashcardsSpeakingSession() {
           return;
         }
       }
-      if (cancelled || !speakingMountedRef.current || speakingExplicitlyAbandonedRef.current) return;
+      if (cancelled || !speakingMountedRef.current || speakingExplicitlyAbandonedRef.current) {
+        gateLog('exit:stale_before_ok', { cancelled, mounted: speakingMountedRef.current, abandoned: speakingExplicitlyAbandonedRef.current });
+        return;
+      }
+      gateLog('ok', { cards: restored.cards.length });
       finishedRef.current = false;
       quotaUnavailableRef.current = false;
       setQuotaUnavailable(false);
@@ -609,7 +639,7 @@ export default function FlashcardsSpeakingSession() {
         deckKey,
         sessionSize,
       }));
-      if (cancelled) return;
+      if (cancelled) { gateLog('catch:cancelled'); return; }
       /**
        * зачем (приказ владельца 2026-09-14, дословно: «НЕ ЧИНИ, А УБЕРИ»,
        * «убрать все проверки из раздела карточки»): слой отложенного гранта
@@ -1084,6 +1114,24 @@ export default function FlashcardsSpeakingSession() {
     setDeckPickerOpen(true);
   }, [stopSpeechAndCancelPendingAdvance]);
   const closeDeckPicker = useCallback(() => setDeckPickerOpen(false), []);
+
+  // зачем (баг «Блиц висит на каркасе», 03.10): любой исход обязан выводить с загрузки. 20 с на загрузке —
+  // снимок в лог; если держит не ожидание ответа человека в окне энергии — экран «Попробовать снова».
+  const SPEAKING_GATE_WATCHDOG_MS = 20_000;
+  useEffect(() => {
+    if (!loading || quotaUnavailable) return undefined;
+    const timer = setTimeout(() => {
+      const step = speakingGateStepRef.current;
+      console.warn('[FC-SPEAKING-GATE] watchdog:stuck_on_loading', JSON.stringify({ step, accessResolved, deckKey }));
+      if (accessResolved && step !== 'energy:await') {
+        console.warn('[FC-SPEAKING-GATE] watchdog:show_retry', JSON.stringify({ step }));
+        quotaUnavailableRef.current = true;
+        setQuotaUnavailable(true);
+        setLoading(false);
+      }
+    }, SPEAKING_GATE_WATCHDOG_MS);
+    return () => clearTimeout(timer);
+  }, [accessResolved, deckKey, loading, quotaUnavailable]);
 
   const retryQuotaStart = useCallback(() => {
     quotaUnavailableRef.current = false;

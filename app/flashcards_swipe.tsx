@@ -2337,6 +2337,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       memoryRef.current = memory;
       const { cards, info } = await buildSessionCards(selectedSources, memory);
       if (!accessIsCurrent()) {
+        // зачем (баг «Блиц висит на каркасе», 03.10): немой выход по тапу «Начать» — причина в лог.
+        console.warn('[FC-SWIPE-GATE] exit:access_not_current', JSON.stringify({ cards: cards.length }));
         return;
       }
       if (cards.length === 0) {
@@ -2411,9 +2413,11 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       pendingRecord = prepared.record;
       activeSwipePendingGrantRef.current = { account: pendingAccount, fingerprint: pendingRecord.fingerprint };
       const reconciled = await reconcileFlashcardTrainingPendingGrant(pendingAccount, pendingScope);
+      console.log('[FC-SWIPE-GATE] reconcile:done', JSON.stringify({ status: reconciled.status }));
+      // зачем (баг 03.10, тот же класс, что в Блице): 'missing' сразу после prepare давал немой return —
+      // тап «Начать» ничего не делал. Уводим в catch → fail-open (тренажёр) или понятная ошибка (Верно/Неверно).
       if (reconciled.status === 'found') pendingRecord = reconciled.record;
-      else if (reconciled.status !== 'missing') throw new Error(`pending_grant_reconcile_${reconciled.status}`);
-      else return;
+      else throw new Error(`pending_grant_reconcile_${reconciled.status}`);
 
       const restoredPayload = pendingRecord.manifest.payload as unknown as {
         orderedCardIds: string[];

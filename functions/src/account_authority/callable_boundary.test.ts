@@ -28,16 +28,21 @@ import {
   handleAccountLeaseAcquireCallable,
   handleAccountLeaseReleaseCallable,
   type AccountAuthorityCallableBoundaryPorts,
+  type AccountAuthorityCallableIdentityPort,
   type AccountAuthorityCallableIdentityResolution,
   type AccountAuthorityCallableRequest,
 } from './callable_boundary';
+import { accountAuthorityUidFingerprint } from './account_authority_policy';
 
 const ACCOUNT_A = asAccountId('account-a');
 const FIREBASE_A = asFirebaseAuthUid('firebase-a');
+// Раунд 2, M1: аренда хранит субъект — хеш uid, одинаковый для входа, выхода и удаления.
+const LEASE_SUBJECT_A = asFirebaseAuthUid(accountAuthorityUidFingerprint(FIREBASE_A));
 const PROVIDER_A = asProviderSubject('provider-a');
 const TENANT_A = asTenantId('tenant-a');
 const DEVICE_A = asDeviceId('device-a');
-const SESSION_A = asSessionId('session-a');
+// зачем (S2a, пункт 5): клиентский sessionId принимается только как session-<uuid v4>.
+const SESSION_A = asSessionId('session-0a0a0a0a-0a0a-4a0a-8a0a-0a0a0a0a0a0a');
 const PRINCIPAL_A: ResolvedAccountPrincipal = Object.freeze({
   accountId: ACCOUNT_A,
   providerSubject: PROVIDER_A,
@@ -46,7 +51,7 @@ const PRINCIPAL_A: ResolvedAccountPrincipal = Object.freeze({
 const CALLABLE_REQUEST = Object.freeze({
   auth: Object.freeze({
     uid: FIREBASE_A,
-    token: Object.freeze({ auth_time: 1_000, provider_id: 'google.com' }),
+    token: Object.freeze({ auth_time: 1_000, firebase: Object.freeze({ sign_in_provider: 'google.com' }) }),
   }),
   app: Object.freeze({
     appId: '1:123:ios:trusted-app',
@@ -68,7 +73,7 @@ function activeLeaseState(): AccountLeaseState {
     principal: Object.freeze({
       ...PRINCIPAL_A,
       tenantId: TENANT_A,
-      firebaseAuthUid: FIREBASE_A,
+      firebaseAuthUid: LEASE_SUBJECT_A,
       authEpoch: 1_000,
     }),
     deviceId: DEVICE_A,
@@ -155,16 +160,74 @@ function boundaryHarness(options: Readonly<{
     return outcome.result;
   });
   let claim = 0;
+  // Модель проверки привязки (раньше — порт identities границы; S2a раунд 3: внутри bound).
+  const identities: AccountAuthorityCallableIdentityPort = { resolve };
+  // зачем (S2a, пункт 3): вход идёт через единую транзакцию. Модель: проверка
+  // привязки (resolve) и переход аренды в одном вызове адаптера.
+  const transactAcquire = jest.fn(async (
+    request: Parameters<AccountAuthorityCallableBoundaryPorts['lease']['bound']['transactAcquire']>[0],
+    transition: Parameters<AccountAuthorityCallableBoundaryPorts['lease']['bound']['transactAcquire']>[1],
+  ) => {
+    const bound = await identities.resolve(request.source, request.bindingToken);
+    return leaseTransact(
+      { accountId: ACCOUNT_A, tenantId: bound.tenantId },
+      request.retirementSessionIds,
+      ({ state, retiredSessions }: { state: AccountLeaseState; retiredSessions: AccountRetiredSessionLookup }) => transition({
+        principal: Object.freeze({ ...PRINCIPAL_A, tenantId: bound.tenantId }),
+        deviceId: bound.deviceId,
+        authEpoch: bound.authEpoch,
+        state,
+        retiredSessions,
+      }),
+    );
+  });
+  // Раунд 2, L5: выход — та же модель единой транзакции (привязка + аренда).
+  const transactRelease: AccountAuthorityCallableBoundaryPorts['lease']['bound']['transactRelease'] = async (
+    request,
+    transition,
+  ) => {
+    const bound = await identities.resolve(request.source, request.bindingToken);
+    return leaseTransact(
+      { accountId: ACCOUNT_A, tenantId: bound.tenantId },
+      [request.sessionId],
+      ({ state, retiredSessions }: { state: AccountLeaseState; retiredSessions: AccountRetiredSessionLookup }) => transition({
+        accountId: ACCOUNT_A,
+        tenantId: bound.tenantId,
+        deviceId: bound.deviceId,
+        state,
+        retiredSessions,
+      }),
+    );
+  };
+  // Раунд 3, L-R2-4: подготовка удаления — та же модель единой транзакции.
+  const transactPrepare: AccountAuthorityCallableBoundaryPorts['deletion']['bound']['transactPrepare'] = async (
+    request,
+    transition,
+  ) => {
+    const bound = await identities.resolve(request.source, request.bindingToken);
+    return deletionTransactions.transact(
+      { accountId: ACCOUNT_A, tenantId: bound.tenantId },
+      [],
+      (context) => transition({
+        ...context,
+        principal: Object.freeze({ ...PRINCIPAL_A, tenantId: bound.tenantId }),
+        deviceId: bound.deviceId,
+        authEpoch: bound.authEpoch,
+      }),
+    );
+  };
   const ports: AccountAuthorityCallableBoundaryPorts = {
-    identities: { resolve },
     lease: {
-      principals: { resolvePrincipal: jest.fn(async () => PRINCIPAL_A) },
       sessions: { issueSessionId: jest.fn(async () => asSessionId('server-session-a')) },
       clock: { nowMs: () => 1_000 },
       transactions: { transact: leaseTransact },
+      bound: {
+        transactAcquire: transactAcquire as AccountAuthorityCallableBoundaryPorts['lease']['bound']['transactAcquire'],
+        transactRelease,
+      },
     },
     deletion: {
-      principals: { resolvePrincipal: jest.fn(async () => PRINCIPAL_A) },
+      bound: { transactPrepare },
       clock: { nowMs: () => 1_000 },
       claims: { issueClaimId: () => asClaimId(`claim-${++claim}`) },
       transactions: deletionTransactions,
@@ -175,6 +238,7 @@ function boundaryHarness(options: Readonly<{
     ports,
     resolve,
     leaseTransact,
+    transactAcquire,
     readLease: () => leaseState,
     deletionTransactions,
     releaseProviderIdentity,
@@ -300,7 +364,7 @@ describe('Account Authority callable boundary', () => {
     const spoof = await caught(handleAccountDeleteBeginCallable(rejected.ports, deleteRequest({
       operationId: 'delete-operation-a',
       expectedRevision: 1,
-      sessionId: 'session-a',
+      sessionId: SESSION_A,
     })));
     expect({ code: spoof.code, message: spoof.message }).toEqual({
       code: 'invalid-argument',
@@ -312,6 +376,7 @@ describe('Account Authority callable boundary', () => {
     const result = await handleAccountDeleteBeginCallable(test.ports, deleteRequest({
       operationId: 'delete-operation-a',
       expectedRevision: 1,
+      bindingToken: 'binding-token-a',
     }));
 
     expect(result).toMatchObject({
@@ -344,13 +409,14 @@ describe('Account Authority callable boundary', () => {
       code: 'internal',
       message: 'account_authority_unavailable',
     });
-    expect(test.leaseTransact).not.toHaveBeenCalled();
+    // S2a: проверка идёт внутри единой транзакции; переход отклонён, состояние не тронуто.
+    expect(test.readLease()).toMatchObject({ revision: 0, activeLease: null });
   });
 
   test('redacts pure-contract and unexpected adapter errors without exposing identifiers or raw messages', async () => {
     const stale = boundaryHarness();
     const staleError = await caught(handleAccountDeleteBeginCallable(stale.ports, deleteRequest({
-      operationId: 'delete-operation-a', expectedRevision: 0,
+      operationId: 'delete-operation-a', expectedRevision: 0, bindingToken: 'binding-token-a',
     })));
     expect({ code: staleError.code, message: staleError.message }).toEqual({
       code: 'failed-precondition',
@@ -497,7 +563,8 @@ describe('Account Authority callable boundary', () => {
         authEpoch: 1_000,
         activeSessionId: SESSION_A,
       }),
-      requestedSessionId: asSessionId('session-spoofed'),
+      // Формат верный (S2a, пункт 5), но это не активная сессия.
+      requestedSessionId: asSessionId('session-0b0b0b0b-0b0b-4b0b-8b0b-0b0b0b0b0b0b'),
       retiredSessionIds: Object.freeze([]),
     })],
     ['revoked session', Object.freeze({
@@ -556,7 +623,7 @@ describe('Account Authority callable boundary logging (S1)', () => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const logger = require('firebase-functions/logger') as typeof import('firebase-functions/logger');
   const IDENTIFIERS = [
-    'account-a', 'firebase-a', 'provider-a', 'tenant-a', 'device-a', 'session-a',
+    'account-a', 'firebase-a', 'provider-a', 'tenant-a', 'device-a', 'session-a', '0a0a0a0a',
     'binding-token-a', 'operation-a', 'secret path',
   ];
   let info: jest.SpyInstance;
@@ -701,7 +768,7 @@ describe('Account Authority callable boundary logging (S1)', () => {
   test('a contract rejection is one warn line carrying the lease code', async () => {
     const stale = boundaryHarness();
     const failure = await caught(handleAccountDeleteBeginCallable(stale.ports, deleteRequest({
-      operationId: 'delete-operation-a', expectedRevision: 0,
+      operationId: 'delete-operation-a', expectedRevision: 0, bindingToken: 'binding-token-a',
     })));
     expect(failure.code).toBe('failed-precondition');
     expect(failureLines()).toHaveLength(1);

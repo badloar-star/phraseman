@@ -1,7 +1,7 @@
 import { createHash } from 'crypto';
 import { readFileSync } from 'fs';
 import path from 'path';
-import type { Firestore } from 'firebase-admin/firestore';
+import type { Firestore, Timestamp } from 'firebase-admin/firestore';
 import type {
   InstallationBindingPorts,
   InstallationBindingRecord,
@@ -16,9 +16,12 @@ import {
   type InstallationBindingCallableDependencies,
 } from './installation_binding_callable';
 import { readAccountAuthorityFailureDetail } from './account_authority_log';
+import { ACCOUNT_AUTHORITY_RECORD_TTL_MS } from './account_authority_policy';
 
 const ROOT = path.resolve(__dirname, '../..');
 const INSTALLATION_ID = '550e8400-e29b-41d4-a716-446655440000';
+// S2a, пункт 1: привязка требует неанонимного вида входа в проверенном токене.
+const GOOGLE_TOKEN = Object.freeze({ firebase: Object.freeze({ sign_in_provider: 'google.com' }) });
 
 function memoryPorts(overrides: Partial<InstallationBindingPorts> = {}): InstallationBindingPorts {
   const records = new Map<string, InstallationBindingRecord>();
@@ -81,7 +84,7 @@ describe('installation binding Firebase callable adapter', () => {
     await expect(handleInstallationBindingCallable(
       enabledDependencies(ports),
       {
-        auth: { uid: 'trusted-firebase-auth' },
+        auth: { uid: 'trusted-firebase-auth', token: GOOGLE_TOKEN },
         data: { installationId: INSTALLATION_ID, firebaseAuthUid: 'spoofed-client-auth' },
       },
     )).rejects.toMatchObject({
@@ -92,7 +95,7 @@ describe('installation binding Firebase callable adapter', () => {
 
     await expect(handleInstallationBindingCallable(
       enabledDependencies(ports),
-      { auth: { uid: 'trusted-firebase-auth' }, data: { installationId: INSTALLATION_ID } },
+      { auth: { uid: 'trusted-firebase-auth', token: GOOGLE_TOKEN }, data: { installationId: INSTALLATION_ID } },
     )).resolves.toEqual({
       bindingToken: 'server-binding-token',
       deviceBindingId: 'server-device-binding-id',
@@ -109,7 +112,7 @@ describe('installation binding Firebase callable adapter', () => {
 
     await expect(handleInstallationBindingCallable(
       enabledDependencies(memoryPorts({ store })),
-      { auth: { uid: 'trusted-firebase-auth' }, data: { installationId: INSTALLATION_ID } },
+      { auth: { uid: 'trusted-firebase-auth', token: GOOGLE_TOKEN }, data: { installationId: INSTALLATION_ID } },
     )).rejects.toMatchObject({
       code: 'internal',
       message: 'account_authority_installation_binding_unavailable',
@@ -128,36 +131,44 @@ describe('installation binding Firebase callable adapter', () => {
       revokedAtMs: null,
     };
     const next: InstallationBindingRecord = { ...current, bindingTokenHash: 'new-token-hash', rotatedAtMs: 2_000 };
-    const documentRef = Object.freeze({ path: 'binding/document' });
+    const quotaKey = 'a'.repeat(64);
     const set = jest.fn();
     const remove = jest.fn();
     const transaction = {
-      get: jest.fn(async () => ({ exists: true, data: () => ({ ...current }) })),
+      get: jest.fn(async (ref: { path: string }) => (
+        ref.path.startsWith('account_authority_installation_bindings_v1/')
+          ? { exists: true, data: () => ({ ...current }) }
+          : { exists: false, data: () => undefined }
+      )),
       set,
       delete: remove,
     };
     const runTransaction = jest.fn(async (work: (value: typeof transaction) => Promise<unknown>) => work(transaction));
-    const doc = jest.fn(() => documentRef);
-    const collection = jest.fn(() => ({ doc }));
+    const collection = jest.fn((name: string) => ({ doc: (id: string) => Object.freeze({ path: `${name}/${id}` }) }));
     const db = { collection, runTransaction } as unknown as Firestore;
     const store = createFirestoreInstallationBindingStore(db);
-    const transition = jest.fn((record: InstallationBindingRecord | null) => {
+    const transition = jest.fn((record: InstallationBindingRecord | null, quota: unknown) => {
       expect(record).toEqual(current);
+      expect(quota).toBeNull();
       return {
         record: next,
         response: { bindingToken: 'opaque-token', deviceBindingId: 'device-binding-id' },
+        quota: { bindings: { ['b'.repeat(64)]: 2_000 }, recentCallsAtMs: [2_000] },
+        evictedBindingKey: null,
       };
     });
 
-    await expect(store.transact('binding-key', transition)).resolves.toEqual({
+    await expect(store.transact('binding-key', transition, { quotaKey })).resolves.toEqual({
       bindingToken: 'opaque-token',
       deviceBindingId: 'device-binding-id',
     });
-    expect(collection).toHaveBeenCalledWith('account_authority_installation_bindings_v1');
-    expect(doc).toHaveBeenCalledWith('binding-key');
     expect(runTransaction).toHaveBeenCalledTimes(1);
-    expect(transaction.get).toHaveBeenCalledWith(documentRef);
-    expect(set.mock.calls[0]).toEqual([documentRef, next]);
+    expect(transaction.get.mock.calls.map(([ref]) => ref.path)).toEqual([
+      'account_authority_installation_bindings_v1/binding-key',
+      `account_authority_installation_binding_quota_v1/${quotaKey}`,
+    ]);
+    expect(set.mock.calls[0][0]).toEqual({ path: 'account_authority_installation_bindings_v1/binding-key' });
+    // S2a (D-AA4): к полям контракта добавлен только срок жизни expireAt.
     expect(Object.keys(set.mock.calls[0][1])).toEqual([
       'schemaVersion',
       'authUidHash',
@@ -167,13 +178,23 @@ describe('installation binding Firebase callable adapter', () => {
       'createdAtMs',
       'rotatedAtMs',
       'revokedAtMs',
+      'expireAt',
     ]);
+    expect(set.mock.calls[0][1]).toMatchObject(next);
+    expect((set.mock.calls[0][1].expireAt as Timestamp).toMillis()).toBe(2_000 + ACCOUNT_AUTHORITY_RECORD_TTL_MS);
     expect(set.mock.calls[1][1]).toEqual({
       schemaVersion: 'account-authority-installation-binding-index.v1',
       bindingKey: 'binding-key',
       bindingTokenHash: 'new-token-hash',
       authUidHash: 'auth-hash',
       rotatedAtMs: 2_000,
+      expireAt: set.mock.calls[0][1].expireAt,
+    });
+    expect(set.mock.calls[2][0]).toEqual({ path: `account_authority_installation_binding_quota_v1/${quotaKey}` });
+    expect(set.mock.calls[2][1]).toMatchObject({
+      schemaVersion: 'account-authority-installation-binding-quota.v1',
+      bindings: { ['b'.repeat(64)]: 2_000 },
+      recentCallsAtMs: [2_000],
     });
     expect(remove).toHaveBeenCalledTimes(1);
   });
@@ -329,7 +350,8 @@ describe('installation binding Firebase callable adapter', () => {
       app: null,
     }, bindingToken)).rejects.toMatchObject({
       code: 'failed-precondition',
-      message: 'account_authority_request_rejected',
+      // S2a, пункт 4: окончательный отказ «привязка не ваша/отозвана».
+      message: 'account_authority_binding_mismatch',
     });
   });
 
@@ -415,7 +437,8 @@ describe('installation binding Firebase callable adapter', () => {
       app: null,
     }, 'unknown-binding-token')).rejects.toMatchObject({
       code: 'failed-precondition',
-      message: 'account_authority_request_rejected',
+      // S2a, пункт 4: окончательный отказ «привязки нет».
+      message: 'account_authority_binding_missing',
     });
     expect(transaction.get).toHaveBeenCalledTimes(1);
   });

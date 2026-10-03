@@ -43,7 +43,8 @@ export type AccountAuthorityServerLogValue = string | number | boolean | null;
 export type AccountAuthorityServerLogFields = Readonly<Record<string, AccountAuthorityServerLogValue>>;
 
 const ALLOWED_STRING_KEYS: ReadonlySet<string> = new Set([
-  'activeSession', 'causeCode', 'causeKind', 'code', 'deleteCode', 'kind', 'leaseCode',
+  // 'from' (S2a раунд 2): вид прежнего источника принципала при перепривязке.
+  'activeSession', 'causeCode', 'causeKind', 'code', 'deleteCode', 'from', 'kind', 'leaseCode',
   'mappedTo', 'operation', 'reason', 'revision', 'stage', 'status', 'type',
 ]);
 const ERROR_NAME_KEYS: ReadonlySet<string> = new Set(['kind', 'causeKind']);

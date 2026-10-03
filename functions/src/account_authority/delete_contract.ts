@@ -16,6 +16,7 @@ import {
   type FirebaseAuthUid,
   type OperationId,
   type ProviderSubject,
+  type ResolvedAccountPrincipal,
   type ResolvedLeasePrincipal,
   type ServerClaimIdPort,
   type ServerClockPort,
@@ -606,6 +607,67 @@ export async function beginAuthenticatedAccountDeletion<RequestContext>(
   if (prepared.status !== 'identity_release_pending') return prepared;
   return (await runIdentityReleaseAttempt(ports, {
     ...identity,
+    jobId: prepared.jobId,
+  })).job;
+}
+
+/**
+ * Что адаптер отдаёт подготовке удаления внутри ЕДИНОЙ транзакции (S2a раунд 3,
+ * L-R2-4): привязка установки уже проверена, принципал прочитан (не создан),
+ * состояния аренды и удаления прочитаны в той же транзакции.
+ */
+export type AccountDeleteBoundPrepareContext = Readonly<AccountDeleteTransactionContext & {
+  principal: Readonly<ResolvedAccountPrincipal & { tenantId: TenantId }>;
+  deviceId: DeviceId;
+  authEpoch: number;
+}>;
+
+export interface AccountDeleteBoundPreparePort {
+  /**
+   * Одна транзакция: привязка → принципал (только чтение) → аренда и удаление →
+   * переход → атомарные записи (аренда, удаление, расписания, отметки сессий).
+   */
+  transactPrepare(
+    transition: (context: AccountDeleteBoundPrepareContext) => AccountDeleteTransition<AccountDeleteJob>,
+  ): Promise<AccountDeleteJob>;
+}
+
+/**
+ * S2a раунд 3, L-R2-4: начало удаления без окна между проверкой привязки и
+ * подготовкой. Сессия удаления — активная сессия аренды из того же чтения;
+ * субъект аренды (хеш uid) приходит от границы (раунд 2, M1). Освобождение
+ * личности у провайдера — как раньше, отдельными транзакциями после подготовки.
+ */
+export async function beginBoundAccountDeletion(
+  ports: Pick<AccountDeleteHandlerPorts<unknown>, 'clock' | 'claims' | 'transactions' | 'identity'> & Readonly<{
+    bound: AccountDeleteBoundPreparePort;
+  }>,
+  request: Readonly<{ operationId: string; expectedRevision: number; leaseSubject: FirebaseAuthUid }>,
+): Promise<AccountDeleteJob> {
+  const serverNowMs = ports.clock.nowMs();
+  const operationId = asOperationId(request.operationId);
+  const prepared = await ports.bound.transactPrepare((context) => {
+    const sessionId = context.leaseState.activeLease?.sessionId;
+    if (sessionId === undefined) throw deleteError('no_active_session');
+    return prepareAccountDeletion(context, {
+      principal: Object.freeze({
+        accountId: context.principal.accountId,
+        providerSubject: context.principal.providerSubject,
+        tenantId: context.principal.tenantId,
+        firebaseAuthUid: request.leaseSubject,
+        authEpoch: context.authEpoch,
+      }),
+      deviceId: context.deviceId,
+      sessionId,
+      operationId,
+      expectedRevision: request.expectedRevision,
+      serverNowMs,
+    });
+  });
+  if (prepared.status !== 'identity_release_pending') return prepared;
+  return (await runIdentityReleaseAttempt(ports, {
+    accountId: prepared.accountId,
+    tenantId: prepared.tenantId,
     jobId: prepared.jobId,
   })).job;
 }

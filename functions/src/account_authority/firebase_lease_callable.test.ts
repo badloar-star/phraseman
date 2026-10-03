@@ -69,7 +69,8 @@ function activeFirestoreFixture(bindingToken = 'binding-token-a') {
   const tenantId = asTenantId('phraseman-primary');
   const firebaseAuthUid = asFirebaseAuthUid('firebase-a');
   const deviceId = asDeviceId('device-a');
-  const sessionId = asSessionId('session-a');
+  // S2a, пункт 5: sessionId в форме, которую выдаёт сервер.
+  const sessionId = asSessionId('session-0a0a0a0a-0a0a-4a0a-8a0a-0a0a0a0a0a0a');
   const providerSubject = asProviderSubject('provider-a');
   const state = startOrRenewAccountLease(createEmptyAccountLeaseState(accountId, tenantId), {
     principal: { accountId, tenantId, firebaseAuthUid, providerSubject, authEpoch: 1_000 },
@@ -82,7 +83,8 @@ function activeFirestoreFixture(bindingToken = 'binding-token-a') {
   const bindingTokenHash = sha256(`account-authority-binding-token.v1\u0000${bindingToken}`);
   const authUidHash = sha256(`account-authority-auth-uid.v1\u0000${firebaseAuthUid}`);
   const bindingKey = 'b'.repeat(64);
-  const principalId = sha256(JSON.stringify([tenantId, firebaseAuthUid]));
+  // Раунд 2, M1: ключ принципала — от субъекта аренды (хеша uid).
+  const principalId = sha256(JSON.stringify([tenantId, `uidh-${authUidHash}`]));
   return {
     accountId,
     firebaseAuthUid,
@@ -123,17 +125,7 @@ function activeFirestoreFixture(bindingToken = 'binding-token-a') {
 
 function unusedPorts(): AccountAuthorityCallableBoundaryPorts {
   return {
-    identities: {
-      resolve: async () => {
-        throw new Error('must_not_resolve');
-      },
-    },
     lease: {
-      principals: {
-        resolvePrincipal: async () => {
-          throw new Error('must_not_resolve');
-        },
-      },
       sessions: {
         issueSessionId: async () => {
           throw new Error('must_not_issue');
@@ -145,14 +137,22 @@ function unusedPorts(): AccountAuthorityCallableBoundaryPorts {
           throw new Error('must_not_transact');
         },
       },
-    },
-    deletion: {
-      principals: {
-        resolvePrincipal: async () => {
-          throw new Error('must_not_resolve');
+      bound: {
+        transactAcquire: async () => {
+          throw new Error('must_not_transact');
+        },
+        transactRelease: async () => {
+          throw new Error('must_not_transact');
         },
       },
+    },
+    deletion: {
       clock: { nowMs: () => 1 },
+      bound: {
+        transactPrepare: async () => {
+          throw new Error('must_not_transact');
+        },
+      },
       claims: {
         issueClaimId: () => {
           throw new Error('must_not_issue');
@@ -216,7 +216,7 @@ describe('Account Authority Firebase lease callable wiring', () => {
       trustedInstallationBindingAvailable: false,
     } satisfies FirebaseAccountAuthorityLeaseDependencies;
     const request = {
-      auth: { uid: 'firebase-a', token: { auth_time: 100 } },
+      auth: { uid: 'firebase-a', token: { auth_time: 100, firebase: { sign_in_provider: 'google.com' } } },
       app: null,
       data: { operationId: 'operation-a', expectedRevision: 0, bindingToken: 'binding-token-a' },
     } as const;
@@ -290,7 +290,8 @@ describe('Account Authority Firebase lease callable wiring', () => {
     expect(source).not.toContain('ports: createFirebaseLeasePorts(admin.firestore())');
     expect(source).toContain('rolloutEnabled: false');
     expect(source).toContain('trustedInstallationBindingAvailable: false');
-    expect(source).toContain('createFirebaseInstallationBindingIdentityPort(db)');
+    // S2a: вход, выход и удаление проверяют привязку внутри своей единой транзакции.
+    expect(source).toContain('verifyInstallationBindingInTransaction(');
   });
 
   test('keeps release default-off and lazy until both authority gates pass', async () => {
@@ -328,7 +329,10 @@ describe('Account Authority Firebase lease callable wiring', () => {
     const test = activeFirestoreFixture();
     const ports = createFirebaseLeasePorts(test.fixture.db);
     const request = {
-      auth: { uid: test.firebaseAuthUid, token: { auth_time: 99, stable_id: 'ignored' } },
+      auth: {
+        uid: test.firebaseAuthUid,
+        token: { auth_time: 99, stable_id: 'ignored', firebase: { sign_in_provider: 'google.com' } },
+      },
       app: null,
       data: {
         operationId: 'release-operation-a',
@@ -387,7 +391,7 @@ describe('Account Authority Firebase lease callable wiring', () => {
         rolloutEnabled: true,
         trustedInstallationBindingAvailable: true,
       }, {
-        auth: { uid: test.firebaseAuthUid, token: { auth_time: 99 } },
+        auth: { uid: test.firebaseAuthUid, token: { auth_time: 99, firebase: { sign_in_provider: 'google.com' } } },
         app: null,
         data: {
           operationId: 'release-operation-a',
@@ -407,7 +411,7 @@ describe('Account Authority Firebase lease callable wiring', () => {
         mappedTo: 'internal',
       });
       const logs = JSON.stringify([info.mock.calls, warn.mock.calls, error.mock.calls]);
-      for (const identifier of ['account-a', 'firebase-a', 'session-a', 'device-a', 'provider-a', 'binding-token-a', 'corrupt']) {
+      for (const identifier of ['account-a', 'firebase-a', 'session-a', '0a0a0a0a', 'device-a', 'provider-a', 'binding-token-a', 'corrupt']) {
         expect(logs).not.toContain(identifier);
       }
     } finally {

@@ -9,9 +9,14 @@ import {
   startOrRenewAccountLease,
   verifiedAuthContext,
   type AccountId,
+  type AccountLeaseReleaseResult,
+  type AccountLeaseState,
+  type AccountLeaseTransition,
   type AccountPrincipalResolverPort,
+  type AccountRetiredSessionLookup,
   type DeviceId,
   type FirebaseAuthUid,
+  type ResolvedAccountPrincipal,
   type ServerClockPort,
   type ServerSessionIdPort,
   type SessionId,
@@ -19,12 +24,19 @@ import {
   type VerifiedAuthContext,
 } from './lease_contract';
 import {
-  acquireAuthenticatedAccountLease,
   type AccountLeaseHandlerPorts,
   type AccountLeaseTransactionPort,
 } from './lease_handlers';
 import {
-  beginAuthenticatedAccountDeletion,
+  accountAuthorityUidFingerprint,
+  classifySignInProvider,
+  isStrictAccountSessionId,
+} from './account_authority_policy';
+import {
+  beginBoundAccountDeletion,
+  type AccountDeleteBoundPrepareContext,
+  type AccountDeleteJob,
+  type AccountDeleteTransition,
   type AccountDeleteHandlerPorts,
   type AccountDeleteTransactionPort,
   type AccountDeleteStatus,
@@ -38,6 +50,7 @@ import {
   attachAccountAuthorityFailureDetail,
   isTransientAccountAuthorityStorageError,
   logAccountAuthorityFailureOnce,
+  readAccountAuthorityFailureDetail,
 } from './account_authority_log';
 
 export type AccountAuthorityCallableErrorCode =
@@ -47,6 +60,9 @@ export type AccountAuthorityCallableErrorCode =
   // зачем (AA S0): временный сбой хранилища (contention, deadline, сеть) обязан
   // отличаться от «отклонено». Клиент повторяет unavailable, а отказ — нет.
   | 'unavailable'
+  // зачем (AA S2a, пункт 1): анонимному входу аренда не положена — это отказ
+  // по правам, а не «не вошёл», поэтому отдельный код.
+  | 'permission-denied'
   | 'internal';
 
 /** Public, deliberately detail-free error contract for a future Firebase adapter. */
@@ -94,23 +110,100 @@ export interface AccountAuthorityCallableIdentityPort {
   ): Promise<AccountAuthorityCallableIdentityResolution>;
 }
 
+/**
+ * Что адаптер отдаёт переходу аренды внутри ЕДИНОЙ транзакции (AA S2a,
+ * пункт 3). Субъект аренды (хеш uid) адаптер НЕ задаёт: его строит граница
+ * одной функцией для входа, выхода и удаления (раунд 2, M1).
+ */
+export type AccountAuthorityBoundLeaseContext = Readonly<{
+  principal: Readonly<ResolvedAccountPrincipal & { tenantId: TenantId }>;
+  deviceId: DeviceId;
+  authEpoch: number;
+  state: AccountLeaseState;
+  retiredSessions: AccountRetiredSessionLookup;
+}>;
+
+export type AccountAuthorityBoundLeaseRequest = Readonly<{
+  source: AccountAuthorityCallableIdentitySource;
+  bindingToken: string;
+  retirementSessionIds: readonly SessionId[];
+  serverNowMs: number;
+}>;
+
+export type AccountAuthorityBoundReleaseRequest = Readonly<{
+  source: AccountAuthorityCallableIdentitySource;
+  bindingToken: string;
+  sessionId: SessionId;
+  serverNowMs: number;
+}>;
+
+export type AccountAuthorityBoundReleaseContext = Readonly<{
+  accountId: AccountId;
+  tenantId: TenantId;
+  deviceId: DeviceId;
+  state: AccountLeaseState;
+  retiredSessions: AccountRetiredSessionLookup;
+}>;
+
+export interface AccountAuthorityBoundLeaseTransactionPort {
+  /**
+   * Одна транзакция на вход: проверка привязки установки → принципал (с D-AA1)
+   * → состояние аренды → отметки отозванных сессий → переход → записи.
+   * Отказ привязки — AccountAuthorityCallableError; сбой хранилища — как есть.
+   */
+  transactAcquire<T>(
+    request: AccountAuthorityBoundLeaseRequest,
+    transition: (context: AccountAuthorityBoundLeaseContext) => AccountLeaseTransition<T>,
+  ): Promise<T>;
+
+  /**
+   * Раунд 2, L5: выход — тоже одна транзакция (привязка → принципал → аренда).
+   * Выход НИКОГДА не создаёт принципал: нет принципала — null («нечего
+   * освобождать»), ничего не пишется.
+   */
+  transactRelease(
+    request: AccountAuthorityBoundReleaseRequest,
+    transition: (context: AccountAuthorityBoundReleaseContext) => AccountLeaseTransition<AccountLeaseReleaseResult>,
+  ): Promise<AccountLeaseReleaseResult | null>;
+}
+
 type LeaseBoundaryPorts = Readonly<{
-  principals: AccountPrincipalResolverPort;
   sessions: ServerSessionIdPort;
   clock: ServerClockPort;
   transactions: AccountLeaseTransactionPort;
+  // зачем (AA S2a, пункт 3): вход идёт только через единую транзакцию.
+  bound: AccountAuthorityBoundLeaseTransactionPort;
 }>;
 
+export type AccountAuthorityBoundDeleteRequest = Readonly<{
+  source: AccountAuthorityCallableIdentitySource;
+  bindingToken: string;
+}>;
+
+export interface AccountAuthorityBoundDeletePort {
+  /**
+   * S2a раунд 3, L-R2-4: подготовка удаления — одна транзакция (привязка →
+   * принципал без создания → аренда и удаление → переход → записи), как вход
+   * и выход. Хранение состояния удаления в Firestore — шов S4.
+   */
+  transactPrepare(
+    request: AccountAuthorityBoundDeleteRequest,
+    transition: (context: AccountDeleteBoundPrepareContext) => AccountDeleteTransition<AccountDeleteJob>,
+  ): Promise<AccountDeleteJob>;
+}
+
 type DeleteBoundaryPorts = Readonly<{
-  principals: AccountPrincipalResolverPort;
   clock: ServerClockPort;
   claims: AccountDeleteHandlerPorts<AccountAuthorityCallableRequest>['claims'];
   transactions: AccountDeleteTransactionPort;
   identity: ProviderIdentityReleasePort;
+  bound: AccountAuthorityBoundDeletePort;
 }>;
 
+// зачем (S2a раунд 3): прежний двухшаговый путь удаления (резолвер личности,
+// затем отдельные транзакции) и неиспользуемые резолверы принципала удалены —
+// все три операции идут через единые транзакции порта `bound`.
 export type AccountAuthorityCallableBoundaryPorts = Readonly<{
-  identities: AccountAuthorityCallableIdentityPort;
   lease: LeaseBoundaryPorts;
   deletion: DeleteBoundaryPorts;
 }>;
@@ -143,6 +236,7 @@ export type AccountAuthorityDeleteCallableResponse = Readonly<{
 type ParsedOperationRequest = Readonly<{
   operationId: string;
   expectedRevision: number;
+  bindingToken: string;
 }>;
 
 type ParsedLeaseRequest = Readonly<{
@@ -257,17 +351,33 @@ function parseOperationRequest(data: unknown): ParsedOperationRequest {
   if (!isRecord(data)) {
     throw invalidRequest('not_object');
   }
+  // зачем (раунд 2, M1): удаление проверяет привязку установки так же, как
+  // вход и выход; прежний путь с bindingToken = null отклонялся всегда.
   const keys = Object.keys(data).sort();
-  if (keys.length !== 2 || keys[0] !== 'expectedRevision' || keys[1] !== 'operationId') {
+  if (
+    keys.length !== 3
+    || keys[0] !== 'bindingToken'
+    || keys[1] !== 'expectedRevision'
+    || keys[2] !== 'operationId'
+  ) {
     throw invalidRequest('keys_mismatch');
   }
   if (!Number.isSafeInteger(data.expectedRevision) || (data.expectedRevision as number) < 0) {
     throw invalidRequest('expected_revision_invalid');
   }
+  if (
+    typeof data.bindingToken !== 'string'
+    || data.bindingToken.length < 1
+    || data.bindingToken.length > 512
+    || data.bindingToken.trim() !== data.bindingToken
+  ) {
+    throw invalidRequest('shape_invalid');
+  }
   try {
     return Object.freeze({
       operationId: asOperationId(data.operationId),
       expectedRevision: data.expectedRevision as number,
+      bindingToken: data.bindingToken,
     });
   } catch (error) {
     throw invalidRequest('operation_id_invalid', error);
@@ -326,6 +436,11 @@ function parseReleaseRequest(data: unknown): ParsedReleaseRequest {
   ) {
     throw invalidRequest('shape_invalid');
   }
+  // зачем (AA S2a, пункт 5): sessionId выдаёт только сервер, и только в форме
+  // session-<uuid v4>. Любая иная строка — подделка или порча; отказ до Firestore.
+  if (!isStrictAccountSessionId(data.sessionId)) {
+    throw invalidRequest('session_id_invalid');
+  }
   try {
     return Object.freeze({
       operationId: asOperationId(data.operationId),
@@ -346,6 +461,20 @@ function parseIdentitySource(request: AccountAuthorityCallableRequest): AccountA
       'account_authority_auth_required',
       'auth',
       request.auth == null ? 'no_auth' : 'no_token',
+    );
+  }
+  // зачем (AA S2a, пункт 1): анонимному входу не положены ни аренда, ни
+  // удаление аккаунта AA. Нет вида входа в проверенном токене — тоже отказ
+  // (fail closed). Отказ до любого обращения к резолверу и Firestore.
+  const provider = classifySignInProvider(authToken);
+  if (provider !== 'allowed') {
+    throw rejectedAt(
+      'permission-denied',
+      provider === 'anonymous'
+        ? 'account_authority_anonymous_rejected'
+        : 'account_authority_sign_in_provider_rejected',
+      'auth',
+      provider,
     );
   }
   let firebaseAuthUid: FirebaseAuthUid;
@@ -369,54 +498,54 @@ function parseIdentitySource(request: AccountAuthorityCallableRequest): AccountA
   return Object.freeze({ firebaseAuthUid, authToken, app });
 }
 
-async function resolveIdentity(
-  port: AccountAuthorityCallableIdentityPort,
-  source: AccountAuthorityCallableIdentitySource,
-  bindingToken: string | null,
-): Promise<Readonly<{
-  auth: VerifiedAuthContext;
-  activeSessionId: SessionId | null;
-}>> {
-  try {
-    const resolved = await port.resolve(source, bindingToken);
-    const auth = verifiedAuthContext({
-      tenantId: asTenantId(resolved.tenantId),
-      firebaseAuthUid: source.firebaseAuthUid,
-      deviceId: asDeviceId(resolved.deviceId),
-      authEpoch: resolved.authEpoch,
-    });
-    const activeSessionId = resolved.activeSessionId === undefined
-      ? null
-      : asSessionId(resolved.activeSessionId);
-    return Object.freeze({ auth, activeSessionId });
-  } catch (error) {
-    // Отказ резолвера уже несёт свои подробности; дописываем только этап.
-    if (error instanceof AccountAuthorityCallableError) {
-      throw attachAccountAuthorityFailureDetail(error, { stage: 'identity' });
-    }
-    // Битые данные от доверенного резолвера (в т.ч. AccountLeaseError
-    // invalid_input) — это сбой сервера, а не плохой ввод клиента: internal.
-    throw mapUnknownAccountAuthorityFailure(error, 'identity', 'resolve');
-  }
+/**
+ * зачем (раунд 2, M1): субъект аренды — хеш uid — строится ЗДЕСЬ, одной
+ * функцией для входа, выхода и удаления. Раньше вход хранил хеш, а удаление
+ * сравнивало сырой uid → identity_mismatch.
+ */
+function leaseSubjectOf(source: AccountAuthorityCallableIdentitySource): FirebaseAuthUid {
+  return asFirebaseAuthUid(accountAuthorityUidFingerprint(source.firebaseAuthUid));
 }
 
-async function acquireWithServerRevision(
+
+/**
+ * зачем (AA S2a, пункт 3): вход — одна транзакция. Привязка установки,
+ * принципал и аренда читаются и пишутся атомарно, поэтому отзыв привязки
+ * «между шагами» невозможен: Firestore повторит транзакцию и повтор увидит
+ * отзыв. Прежние две транзакции (привязка, затем аренда) и лишние чтения
+ * принципала/аккаунта убраны: минус 3 транзакции и минус 2 чтения на вход.
+ *
+ * `expectedRevision === null` — первый вход: ревизия берётся из серверного
+ * состояния (или из квитанции той же операции при повторе после потери ответа).
+ */
+async function acquireInBoundTransaction(
   ports: LeaseBoundaryPorts,
-  auth: VerifiedAuthContext,
-  request: Readonly<{ operationId: string }>,
+  source: AccountAuthorityCallableIdentitySource,
+  request: ParsedLeaseRequest,
 ) {
-  const principal = await ports.principals.resolvePrincipal(auth);
   const sessionId = await ports.sessions.issueSessionId();
   const operationId = asOperationId(request.operationId);
   const serverNowMs = ports.clock.nowMs();
-  return ports.transactions.transact(
-    { accountId: principal.accountId, tenantId: auth.tenantId },
-    Object.freeze([sessionId]),
-    ({ state, retiredSessions }) => {
-      const prior = state.receiptLedger.entries.find(
-        (receipt) => receipt.operationId === operationId,
-      );
-      return startOrRenewAccountLease(state, {
+  return ports.bound.transactAcquire({
+    source,
+    bindingToken: request.bindingToken,
+    retirementSessionIds: Object.freeze([sessionId]),
+    serverNowMs,
+  }, ({ principal, deviceId, authEpoch, state, retiredSessions }) => {
+    // Данные адаптера проверяются так же строго, как раньше данные резолвера:
+    // порча → AccountLeaseError(invalid_input) → internal (ревью M1).
+    const auth = verifiedAuthContext({
+      tenantId: asTenantId(principal.tenantId),
+      firebaseAuthUid: leaseSubjectOf(source),
+      deviceId: asDeviceId(deviceId),
+      authEpoch,
+    });
+    const prior = state.receiptLedger.entries.find((receipt) => receipt.operationId === operationId);
+    let expectedRevision: number;
+    if (request.expectedRevision !== null) expectedRevision = request.expectedRevision;
+    else if (prior?.kind === 'acquire') expectedRevision = prior.expectedRevision;
+    else expectedRevision = state.revision;
+    return startOrRenewAccountLease(state, {
       principal: Object.freeze({
         accountId: principal.accountId,
         providerSubject: principal.providerSubject,
@@ -427,29 +556,18 @@ async function acquireWithServerRevision(
       deviceId: auth.deviceId,
       sessionId,
       operationId,
-      // Explicit null bootstrap is resolved from the serialized server state.
-      // Existing accounts therefore never receive a client-invented revision 0.
-      expectedRevision: prior?.kind === 'acquire'
-        ? prior.expectedRevision
-        : state.revision,
+      expectedRevision,
       serverNowMs,
-      }, retiredSessions);
-    },
-  );
-}
-
-function fixedAuthPort(
-  context: VerifiedAuthContext,
-): AccountLeaseHandlerPorts<AccountAuthorityCallableRequest>['auth'] {
-  return Object.freeze({
-    async requireAuthenticated() {
-      return context;
-    },
+    }, retiredSessions);
   });
 }
 
+
 function mapContractError(error: unknown, operation: BoundaryOperation): AccountAuthorityCallableError {
   if (error instanceof AccountAuthorityCallableError) {
+    // зачем (S2a): отказ привязки/принципала из единой транзакции уже несёт свой
+    // этап (binding/principal) — не затираем его общим «contract».
+    if (readAccountAuthorityFailureDetail(error).stage !== undefined) return error;
     return attachAccountAuthorityFailureDetail(error, { stage: 'contract' });
   }
   if (error instanceof AccountLeaseError) {
@@ -500,21 +618,13 @@ async function runLeaseAcquire(
 ): Promise<AccountAuthorityLeaseCallableResponse> {
   const data = parseLeaseRequest(request.data);
   const source = parseIdentitySource(request);
-  const identity = await resolveIdentity(ports.identities, source, data.bindingToken);
   accountAuthorityLogInfo('callable branch', {
     operation: 'lease_acquire',
     revision: data.expectedRevision === null ? 'server_bootstrap' : 'client_expected',
+    stage: 'bound_transaction',
   });
   try {
-    const result = data.expectedRevision === null
-      ? await acquireWithServerRevision(ports.lease, identity.auth, data)
-      : await acquireAuthenticatedAccountLease({
-        ...ports.lease,
-        auth: fixedAuthPort(identity.auth),
-      }, request, {
-        operationId: data.operationId,
-        expectedRevision: data.expectedRevision,
-      });
+    const result = await acquireInBoundTransaction(ports.lease, source, data);
     accountAuthorityLogInfo('callable done', {
       operation: 'lease_acquire',
       type: result.type,
@@ -556,31 +666,42 @@ async function runLeaseRelease(
 ): Promise<AccountAuthorityLeaseReleaseCallableResponse> {
   const data = parseReleaseRequest(request.data);
   const source = parseIdentitySource(request);
-  const identity = await resolveIdentity(ports.identities, source, data.bindingToken);
-  if (identity.activeSessionId !== null && identity.activeSessionId !== data.sessionId) {
-    throw rejectedAt('failed-precondition', 'account_authority_request_rejected', 'session', 'session_not_active');
-  }
-  accountAuthorityLogInfo('callable branch', {
-    operation: 'lease_release',
-    activeSession: identity.activeSessionId === null ? 'none' : 'matches',
-  });
+  accountAuthorityLogInfo('callable branch', { operation: 'lease_release', stage: 'bound_transaction' });
   try {
-    const principal = await ports.lease.principals.resolvePrincipal(identity.auth);
     const operationId = asOperationId(data.operationId);
     const serverNowMs = ports.lease.clock.nowMs();
-    const result = await ports.lease.transactions.transact(
-      { accountId: principal.accountId, tenantId: identity.auth.tenantId },
-      Object.freeze([data.sessionId]),
-      ({ state, retiredSessions }) => releaseActiveAccountLease(state, {
-        accountId: principal.accountId,
-        tenantId: identity.auth.tenantId,
-        deviceId: identity.auth.deviceId,
-        sessionId: data.sessionId,
-        operationId,
-        expectedRevision: data.expectedRevision,
-        serverNowMs,
-      }, retiredSessions),
-    );
+    // зачем (раунд 2, L5): одна транзакция — привязка, принципал, аренда.
+    // Несовпадение сессии с активной ловит контракт (stale_lease → отказ).
+    const result = await ports.lease.bound.transactRelease({
+      source,
+      bindingToken: data.bindingToken,
+      sessionId: data.sessionId,
+      serverNowMs,
+    }, ({ accountId, tenantId, deviceId, state, retiredSessions }) => releaseActiveAccountLease(state, {
+      accountId,
+      tenantId: asTenantId(tenantId),
+      deviceId: asDeviceId(deviceId),
+      sessionId: data.sessionId,
+      operationId,
+      expectedRevision: data.expectedRevision,
+      serverNowMs,
+    }, retiredSessions));
+    if (result === null) {
+      // Ранний выход: у uid нет принципала — выпускать нечего; ничего не записано.
+      accountAuthorityLogInfo('callable done', {
+        operation: 'lease_release',
+        type: 'released',
+        status: 'no_principal',
+        idempotent: true,
+        durationMs: accountAuthorityServerElapsedMs(startedAt),
+      });
+      return Object.freeze({
+        schemaVersion: 'account-authority-lease-release.v1' as const,
+        type: 'released' as const,
+        revision: 0,
+        idempotent: true,
+      });
+    }
     accountAuthorityLogInfo('callable done', {
       operation: 'lease_release',
       type: result.type,
@@ -618,18 +739,23 @@ async function runDeleteBegin(
 ): Promise<AccountAuthorityDeleteCallableResponse> {
   const data = parseOperationRequest(request.data);
   const source = parseIdentitySource(request);
-  const identity = await resolveIdentity(ports.identities, source, null);
-  if (identity.activeSessionId === null) {
-    throw rejectedAt('failed-precondition', 'account_authority_request_rejected', 'session', 'no_active_session');
-  }
+  accountAuthorityLogInfo('callable branch', { operation: 'delete_begin', stage: 'bound_transaction' });
   try {
-    const result = await beginAuthenticatedAccountDeletion({
-      ...ports.deletion,
-      auth: fixedAuthPort(identity.auth),
-    }, request, {
+    const result = await beginBoundAccountDeletion({
+      clock: ports.deletion.clock,
+      claims: ports.deletion.claims,
+      transactions: ports.deletion.transactions,
+      identity: ports.deletion.identity,
+      bound: {
+        transactPrepare: (transition) => ports.deletion.bound.transactPrepare(
+          { source, bindingToken: data.bindingToken },
+          transition,
+        ),
+      },
+    }, {
       operationId: data.operationId,
       expectedRevision: data.expectedRevision,
-      sessionId: identity.activeSessionId,
+      leaseSubject: leaseSubjectOf(source),
     });
     accountAuthorityLogInfo('callable done', {
       operation: 'delete_begin',

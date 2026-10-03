@@ -1,7 +1,7 @@
 # Task packet: FINAL_PHASE п.8–9 — audit of leftovers of removed 2.0 features (XP, gifts, spins/runes, pearls, old avatars, fanfares, season pass, arena)
 
 Governance-ID: TG-8A2D25725DBA
-Status: In progress
+Status: Done (audit + 3 safe deletion batches); the large items are listed in the report as separate tasks / owner decisions
 Owner: Claude session «App Check» (82577f25), by coordinator (2026-10-03)
 Related epic/enabler: PhraseMan 2.0 simplification program (D-decisions), FINAL_PHASE п.8–9
 
@@ -36,3 +36,9 @@ Typecheck clean; ratchet probes (pm229, perf freeze, mass-deletion guard) green;
 ## Rollback
 
 Revert the commit(s): pure deletions of unused client code, no data or entitlement impact.
+
+## Result (2026-10-03)
+
+- Report: docs/phraseman-2.0/INBOX_COORDINATOR_FROM_CORE.md, section «FINAL_PHASE п.8–9 — аудит остатков удалённых функций 2.0».
+- Deleted (client-only, dead, clean files, no live importers): 14d724030 (A, -813), 081a8b6cf (B, -997), 3ab7fe95e (C, -124). Typecheck clean; red suites identical on HEAD versions (no regressions).
+- Not deleted (need a decision or a dedicated task): level_gift_system.ts (1689), prepare*Purchase in level_spin_star_grants.ts, shop*, session_attempts recovery, premium_celebration aura scene, constants/avatars.ts frames, voice_minutes, explain; legal texts still mention Arena/duels/gifts/boosts.

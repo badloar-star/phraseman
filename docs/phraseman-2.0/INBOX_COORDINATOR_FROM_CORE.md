@@ -1535,3 +1535,9 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 - Перенос `stars` проигравшего при будущих слияниях — да, отдельный пакет Ядра с ревью+security после хвоста PM-211; на проде сейчас застрявших монет 0 (286 скрытых, баланс 0).
 - session1 gate (`learning_v2_session1_owner_ui_decisions_2026_08_25_gate.ts`) — в архив со старой системой content/source: боевой урок 1 собирается из factory_native/generated_release.
 - Ассеты локальной store-сборки: протухший манифест expo-updates (`:app:createReleaseUpdatesResources --rerun`). EAS собирает с нуля → в FINAL: владельцу проверить 1.6.24 на телефоне (монета, аватар, плитки Главной).
+
+## §99 (координатор) — 2026-10-03 18:30Z: аудит остатков (App Check, fb991f803)
+- Принято: −1 934 строки (14d724030, 081a8b6cf, 3ab7fe95e).
+- 🔴 **Политика/условия** (legal/*.json, admin/oauth-privacy.html) упоминают Арену/звёзды/подарки/бусты/предметы аватара → App Check готовит правку всех локалей + legal:sync + хеши; список «было→стало» владельцу. Публикация — только по слову владельца (в FINAL, список владельцу).
+- «Ядро журнала»: GiftDef → отдельный тип, тесты воспроизведения старых записей, затем удалить level_gift_system.ts и мёртвые prepare*Purchase (клиент).
+- Оставить: shop*.tsx (владелец 24.08, проверить недостижимость в store), «Аура» Plus, constants/avatars.ts (до освобождения cloud_sync); session_attempts — только при доказанной мёртвости.

@@ -10,6 +10,8 @@ import {
   releaseActiveAccountLease,
   startOrRenewAccountLease,
   verifiedAuthContext,
+  ACCOUNT_LEASE_DEFAULT_RECEIPT_MAX_ENTRIES,
+  ACCOUNT_LEASE_DEFAULT_RECEIPT_RETENTION_MS,
   type AccountLeaseState,
   type AccountRetiredSessionLookup,
   type ResolvedAccountPrincipal,
@@ -204,7 +206,10 @@ describe('Account Authority authenticated lease handler', () => {
     });
 
     expect(renewed.lease.sessionId).toBe(first.lease.sessionId);
-    expect(retried).toEqual({ ...renewed, idempotent: true });
+    // S2a раунд 5: продление без квитанции; повтор после потерянного ответа —
+    // ещё одно продление с тем же результатом, без отказа.
+    expect(retried).toEqual(renewed);
+    expect(harness.store.read().receiptLedger.entries).toHaveLength(1);
   });
 
   test('revoked device cannot reacquire with stale revision or auth epoch', async () => {
@@ -285,21 +290,129 @@ describe('persistent lifecycle, tenant, and keyed retirement contract', () => {
   });
 });
 
-describe('bounded lease receipt ledger', () => {
-  test('refuses overflow and permits reuse only after declared expiry', () => {
+/*
+ * S2a раунд 5 (HIGH, блокер cutover): журнал квитанций аренды.
+ * Продление — без квитанции; переполнение — вытеснение старейших (FIFO), а не
+ * отказ входа; срок хранения 60 минут, ёмкость 64.
+ */
+describe('bounded lease receipt ledger (S2a round 5)', () => {
+  const DEVICE_B = asDeviceId('device-b');
+
+  test('defaults: 60 minutes retention, 64 entries', () => {
+    expect(ACCOUNT_LEASE_DEFAULT_RECEIPT_RETENTION_MS).toBe(60 * 60_000);
+    expect(ACCOUNT_LEASE_DEFAULT_RECEIPT_MAX_ENTRIES).toBe(64);
+    expect(emptyState().receiptLedger).toMatchObject({ maxEntries: 64, retentionMs: 60 * 60_000 });
+  });
+
+  test('a same-device renewal writes no receipt; a lost-response retry renews again with the same session', () => {
+    const retirement = retirementFake();
+    const acquired = startOrRenewAccountLease(emptyState(), command(), retirement.lookup);
+    const renew = command({ operationId: asOperationId('operation-renew'), expectedRevision: 1, serverNowMs: 2_000 });
+    const renewed = startOrRenewAccountLease(acquired.state, renew, retirement.lookup);
+    expect(renewed.result).toMatchObject({ type: 'renewed', idempotent: false });
+    expect(renewed.state.receiptLedger.entries).toHaveLength(1);
+    expect(renewed.state.revision).toBe(1);
+    const retried = startOrRenewAccountLease(renewed.state, renew, retirement.lookup);
+    expect(retried.result.lease.sessionId).toBe(renewed.result.lease.sessionId);
+    expect(retried.state.receiptLedger.entries).toHaveLength(1);
+  });
+
+  test('a renewal retry after another device took the lease is refused by expectedRevision', () => {
+    const retirement = retirementFake();
+    const acquired = startOrRenewAccountLease(emptyState(), command(), retirement.lookup);
+    const other = startOrRenewAccountLease(acquired.state, command({
+      principal: { ...command().principal, authEpoch: 2_000 },
+      deviceId: DEVICE_B,
+      sessionId: asSessionId('session-b'),
+      operationId: asOperationId('operation-b'),
+      expectedRevision: 1,
+      serverNowMs: 2_000,
+    }), retirement.lookup);
+    other.retirements.forEach(({ sessionId }) => retirement.retired.add(sessionId));
+    expect(() => startOrRenewAccountLease(other.state, command({
+      operationId: asOperationId('operation-renew'), expectedRevision: 1, serverNowMs: 3_000,
+    }), retirement.lookup)).toThrow(expect.objectContaining({ code: 'revision_mismatch' }));
+  });
+
+  test('overflow evicts the oldest live receipts (FIFO) instead of refusing the acquire', () => {
+    const retirement = retirementFake();
+    const initial = emptyState({ maxEntries: 2, retentionMs: 1_000_000 });
+    const first = startOrRenewAccountLease(initial, command({ serverNowMs: 1 }), retirement.lookup);
+    const released = releaseActiveAccountLease(first.state, {
+      accountId: ACCOUNT_A, tenantId: TENANT_A, deviceId: DEVICE_A, sessionId: asSessionId('session-a'),
+      operationId: asOperationId('release-a'), expectedRevision: 1, serverNowMs: 2,
+    }, retirement.lookup);
+    released.retirements.forEach(({ sessionId }) => retirement.retired.add(sessionId));
+    const third = startOrRenewAccountLease(released.state, command({
+      principal: { ...command().principal, authEpoch: 2_000 },
+      sessionId: asSessionId('session-c'),
+      operationId: asOperationId('operation-c'),
+      expectedRevision: 2,
+      serverNowMs: 3,
+    }), retirement.lookup);
+    expect(third.state.receiptLedger.entries.map((entry) => entry.operationId)).toEqual(['release-a', 'operation-c']);
+    expect(third.evictedReceipts).toBe(1);
+    // Повтор вытесненной операции защищён ревизией: квитанции нет, ревизия ушла вперёд.
+    expect(() => startOrRenewAccountLease(third.state, command({ serverNowMs: 4 }), retirement.lookup))
+      .toThrow(expect.objectContaining({ code: 'revision_mismatch' }));
+  });
+
+  test('receipts still expire after their retention', () => {
     const retirement = retirementFake();
     const initial = emptyState({ maxEntries: 2, retentionMs: 100 });
     const first = startOrRenewAccountLease(initial, command({ serverNowMs: 1 }), retirement.lookup);
-    const second = startOrRenewAccountLease(first.state, command({
-      operationId: asOperationId('operation-b'), expectedRevision: 1, serverNowMs: 2,
+    const renewed = startOrRenewAccountLease(first.state, command({
+      operationId: asOperationId('operation-b'), expectedRevision: 1, serverNowMs: 102,
     }), retirement.lookup);
-    expect(() => startOrRenewAccountLease(second.state, command({
-      operationId: asOperationId('operation-c'), expectedRevision: 1, serverNowMs: 50,
-    }), retirement.lookup)).toThrow(expect.objectContaining({ code: 'receipt_capacity_exhausted' }));
+    expect(renewed.state.receiptLedger.entries).toHaveLength(0);
+  });
 
-    const afterExpiry = startOrRenewAccountLease(second.state, command({
-      operationId: asOperationId('operation-c'), expectedRevision: 1, serverNowMs: 102,
-    }), retirement.lookup);
-    expect(afterExpiry.state.receiptLedger.entries).toHaveLength(1);
+  // Сторож: 2 устройства, 200 входов/продлений/выходов за сутки, из них 120 —
+  // плотной пачкой за первый час (больше ёмкости журнала). Ни одного отказа.
+  test('sentinel: two devices, 200 acquires/renewals/releases in 24h, zero refusals', () => {
+    const retired = new Set<string>();
+    const lookup: AccountRetiredSessionLookup = { isRetired: (sessionId) => retired.has(sessionId) };
+    let state = emptyState();
+    const devices = [DEVICE_A, DEVICE_B];
+    const epochs = new Map<string, number>();
+    const refusals: string[] = [];
+    let session = 0;
+    let renewals = 0;
+    for (let step = 0; step < 200; step += 1) {
+      const nowMs = step < 120 ? 10_000 + step * 25_000 : 10_000 + 3_600_000 + (step - 120) * 1_000_000;
+      const device = devices[Math.floor(step / 5) % 2] as typeof DEVICE_A;
+      const active = state.activeLease;
+      try {
+        if (active !== null && active.deviceId === device && step % 6 === 0) {
+          const released = releaseActiveAccountLease(state, {
+            accountId: ACCOUNT_A, tenantId: TENANT_A, deviceId: device, sessionId: active.sessionId,
+            operationId: asOperationId(`release-${step}`), expectedRevision: state.revision, serverNowMs: nowMs,
+          }, lookup);
+          released.retirements.forEach(({ sessionId }) => retired.add(sessionId));
+          state = released.state;
+        } else {
+          const holds = active !== null && active.deviceId === device;
+          // Новый вход другого устройства идёт со свежей ротацией привязки (эпоха = сейчас).
+          if (!holds) epochs.set(device, nowMs);
+          if (holds) renewals += 1;
+          const outcome = startOrRenewAccountLease(state, command({
+            principal: { ...command().principal, authEpoch: epochs.get(device) ?? nowMs },
+            deviceId: device,
+            sessionId: asSessionId(`session-${session += 1}`),
+            operationId: asOperationId(`operation-${step}`),
+            expectedRevision: state.revision,
+            serverNowMs: nowMs,
+          }), lookup);
+          outcome.retirements.forEach(({ sessionId }) => retired.add(sessionId));
+          state = outcome.state;
+        }
+      } catch (error) {
+        refusals.push(`${step}:${(error as { code?: string }).code ?? 'unknown'}`);
+      }
+      expect(state.receiptLedger.entries.length).toBeLessThanOrEqual(64);
+    }
+    expect(refusals).toEqual([]);
+    expect(renewals).toBeGreaterThan(0);
   });
 });
+

@@ -1047,7 +1047,7 @@ describe('S2a round 4 L-R3-2: delete from another device of the same uid', () =>
 });
 
 describe('S2a round 4 L-R3-3: a full receipt journal does not keep the old lease', () => {
-  test('release_rejected on an active old account force-clears this uid lease without a receipt', async () => {
+  test('release_rejected (stale_lease) on an active old account force-clears this uid lease without a receipt', async () => {
     const fixture = linkedFixture({ [`users/${STABLE_B}`]: { firebaseAuthUid: RAW_UID } });
     const { bindingToken } = await bind(fixture);
     await handleFirebaseAccountAuthorityLeaseAcquire(enabledLease(fixture.db), acquireRequest(bindingToken));
@@ -1056,10 +1056,13 @@ describe('S2a round 4 L-R3-3: a full receipt journal does not keep the old lease
       receiptLedger: Record<string, unknown> & { entries: unknown[] };
       activeLease: { sessionId: string };
     };
-    // Журнал квитанций забит: ёмкость равна числу живых квитанций.
-    fixture.externalSet(`account_authority_accounts_v1/${STABLE_A}`, {
-      ...old, receiptLedger: { ...old.receiptLedger, maxEntries: old.receiptLedger.entries.length },
-    });
+    // Раунд 5: переполнение журнала больше не отказ (вытеснение). Страховка
+    // L-R3-3 проверяется на другом отказе контракта выхода: активная сессия
+    // старого аккаунта уже отмечена как отозванная (stale_lease).
+    fixture.externalSet(
+      `account_authority_accounts_v1/${STABLE_A}/retired_sessions/${old.activeLease.sessionId}`,
+      { schemaVersion: 'account-authority-retired-session.v1' },
+    );
     fixture.externalSet('auth_links/RawFirebaseUidA1234567890', { stable_id: STABLE_B });
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const logger = require('firebase-functions/logger') as typeof import('firebase-functions/logger');
@@ -1077,7 +1080,7 @@ describe('S2a round 4 L-R3-3: a full receipt journal does not keep the old lease
     expect(after.receiptLedger.entries).toHaveLength(old.receiptLedger.entries.length);
     expect(fixture.documents.has(`account_authority_accounts_v1/${STABLE_A}/retired_sessions/${old.activeLease.sessionId}`)).toBe(true);
     expect(lines.some((line) => line[0] === '[ACCOUNT-AUTHORITY] principal_rebound lease forced'
-      && (line[1] as { reason?: unknown }).reason === 'receipt_capacity_exhausted')).toBe(true);
+      && (line[1] as { reason?: unknown }).reason === 'stale_lease')).toBe(true);
     expect(JSON.stringify(lines)).not.toContain(RAW_UID);
   });
 });
@@ -1093,5 +1096,41 @@ describe('S2a round 4 L-R3-4: the two-step identity resolver stays removed', () 
       expect({ file, port: /createFirebaseInstallationBindingIdentityPort|AccountAuthorityCallableIdentityPort/.test(source) })
         .toEqual({ file, port: false });
     }
+  });
+});
+
+describe('S2a round 5: the lease receipt journal never refuses an active user', () => {
+  test('a renewal through the Firebase adapter adds no receipt and evictions are logged', async () => {
+    const fixture = linkedFixture();
+    const { bindingToken } = await bind(fixture);
+    await handleFirebaseAccountAuthorityLeaseAcquire(enabledLease(fixture.db), acquireRequest(bindingToken));
+    for (let index = 0; index < 5; index += 1) {
+      await expect(handleFirebaseAccountAuthorityLeaseAcquire(
+        enabledLease(fixture.db), acquireRequest(bindingToken, RAW_UID, GOOGLE_TOKEN, `operation-renew-${index}`),
+      )).resolves.toMatchObject({ type: 'renewed', revision: 1 });
+    }
+    const account = accountDoc(fixture, STABLE_A) as { receiptLedger: { entries: unknown[]; retentionMs: number } };
+    expect(account.receiptLedger.entries).toHaveLength(1);
+    expect(account.receiptLedger.retentionMs).toBe(60 * 60_000);
+
+    // Забитый журнал (ёмкость = живым квитанциям): вход другого устройства не отказ, а вытеснение + лог.
+    const second = await bind(fixture, RAW_UID, installationId(4), Date.now() + 1);
+    const stored = accountDoc(fixture, STABLE_A) as Record<string, unknown> & { receiptLedger: Record<string, unknown> & { entries: unknown[] } };
+    fixture.externalSet(`account_authority_accounts_v1/${STABLE_A}`, {
+      ...stored, receiptLedger: { ...stored.receiptLedger, maxEntries: stored.receiptLedger.entries.length },
+    });
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const logger = require('firebase-functions/logger') as typeof import('firebase-functions/logger');
+    const lines: unknown[][] = [];
+    const warn = jest.spyOn(logger, 'warn').mockImplementation((...args: unknown[]) => { lines.push(args); });
+    try {
+      await expect(handleFirebaseAccountAuthorityLeaseAcquire(
+        enabledLease(fixture.db), acquireRequest(second.bindingToken, RAW_UID, GOOGLE_TOKEN, 'operation-device-2'),
+      )).resolves.toMatchObject({ type: 'acquired', revision: 2 });
+    } finally {
+      warn.mockRestore();
+    }
+    expect(lines.some((line) => line[0] === '[ACCOUNT-AUTHORITY] lease receipts evicted'
+      && (line[1] as { evicted?: unknown }).evicted === 1)).toBe(true);
   });
 });

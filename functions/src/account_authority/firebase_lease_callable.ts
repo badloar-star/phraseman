@@ -288,10 +288,18 @@ function writeLeaseTransition(
   transaction: Transaction,
   accountRef: FirebaseFirestore.DocumentReference,
   identity: Readonly<{ accountId: AccountId; tenantId: TenantId }>,
-  result: Readonly<{ state: AccountLeaseState; retirements: readonly Readonly<{ sessionId: SessionId }>[] }>,
+  result: Readonly<{
+    state: AccountLeaseState;
+    retirements: readonly Readonly<{ sessionId: SessionId }>[];
+    evictedReceipts?: number;
+  }>,
   nowMs: number,
 ): void {
   transaction.set(accountRef, storedLeaseState(result.state, nowMs));
+  // S2a раунд 5: вытеснение квитанций — штатно, но видно в логе (частота входов).
+  if ((result.evictedReceipts ?? 0) > 0) {
+    accountAuthorityLogWarn('lease receipts evicted', { stage: 'receipts', evicted: result.evictedReceipts ?? 0 });
+  }
   for (const operation of result.retirements) {
     transaction.create(accountRef.collection(RETIRED_SESSIONS_COLLECTION).doc(operation.sessionId), {
       schemaVersion: 'account-authority-retired-session.v1',

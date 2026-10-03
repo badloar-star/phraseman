@@ -253,10 +253,19 @@ export type AccountLeaseTransition<T> = Readonly<{
   result: T;
   /** Adapter must apply keyed retirements atomically with state. */
   retirements: readonly AccountSessionRetirementOperation[];
+  /**
+   * S2a раунд 5: сколько живых квитанций вытеснено ради новой (FIFO). Адаптер
+   * пишет это в лог; 0 или нет поля — вытеснения не было.
+   */
+  evictedReceipts?: number;
 }>;
 
 export const ACCOUNT_LEASE_DEFAULT_RECEIPT_MAX_ENTRIES = 64;
-export const ACCOUNT_LEASE_DEFAULT_RECEIPT_RETENTION_MS = 24 * 60 * 60_000;
+// зачем (S2a раунд 5, блокер cutover): квитанция нужна только чтобы повтор
+// после потерянного ответа получил тот же результат. Повтор приходит в
+// пределах минут, поэтому 60 минут хватает; 24 часа забивали журнал активного
+// пользователя и отказывали ему во входе.
+export const ACCOUNT_LEASE_DEFAULT_RECEIPT_RETENTION_MS = 60 * 60_000;
 
 export function createEmptyAccountLeaseState(
   accountId: AccountId,
@@ -294,18 +303,35 @@ function findReceipt(
   return receipts.find((receipt) => receipt.operationId === operationId);
 }
 
+type AppendedLedger = Readonly<{ ledger: AccountLeaseReceiptLedger; evicted: number }>;
+
+/**
+ * S2a раунд 5: журнал полон → вытесняются самые старые живые квитанции (FIFO:
+ * записи добавляются по времени), а не отказ входа. Повтор вытесненной
+ * операции защищён ревизией: квитанции нет, и операция проверяется заново
+ * против expectedRevision (revision_mismatch / stale_lease).
+ */
 function appendReceipt(
   state: AccountLeaseState,
   live: readonly AccountLeaseOperationReceipt[],
   receipt: AccountLeaseOperationReceipt,
-): AccountLeaseReceiptLedger {
-  if (live.length >= state.receiptLedger.maxEntries) {
-    throw new AccountLeaseError('receipt_capacity_exhausted');
-  }
+): AppendedLedger {
+  const room = Math.max(0, state.receiptLedger.maxEntries - 1);
+  const kept = live.length > room ? live.slice(live.length - room) : live;
   return Object.freeze({
-    ...state.receiptLedger,
-    entries: Object.freeze([...live, Object.freeze(receipt)]),
+    ledger: Object.freeze({
+      ...state.receiptLedger,
+      entries: Object.freeze([...kept, Object.freeze(receipt)]),
+    }),
+    evicted: live.length - kept.length,
   });
+}
+
+function prunedLedger(
+  state: AccountLeaseState,
+  live: readonly AccountLeaseOperationReceipt[],
+): AccountLeaseReceiptLedger {
+  return Object.freeze({ ...state.receiptLedger, entries: Object.freeze([...live]) });
 }
 
 function acquireReceiptMatches(receipt: AcquireReceipt, command: AccountLeaseAcquireCommand): boolean {
@@ -437,28 +463,41 @@ export function startOrRenewAccountLease(
     result = Object.freeze({ type: 'acquired', lease, revokedLease, idempotent: false });
   }
 
-  const receipt: AcquireReceipt = {
-    kind: 'acquire',
-    operationId: command.operationId,
-    accountId: command.principal.accountId,
-    tenantId: command.principal.tenantId,
-    firebaseAuthUid: command.principal.firebaseAuthUid,
-    providerSubject: command.principal.providerSubject,
-    authEpoch: command.principal.authEpoch,
-    deviceId: command.deviceId,
-    expectedRevision,
-    expiresAtMs: safeDeadline(nowMs, state.receiptLedger.retentionMs),
-    result,
-  };
+  // зачем (S2a раунд 5): обычное продление (то же устройство, та же сессия,
+  // ревизия не растёт) квитанцию НЕ пишет. Его повтор после потерянного ответа
+  // — просто ещё одно продление с тем же результатом. Квитанции только у
+  // операций, меняющих ревизию (acquired, release).
+  let receiptLedger: AccountLeaseReceiptLedger;
+  let evictedReceipts = 0;
+  if (result.type === 'renewed') {
+    receiptLedger = prunedLedger(state, live);
+  } else {
+    const receipt: AcquireReceipt = {
+      kind: 'acquire',
+      operationId: command.operationId,
+      accountId: command.principal.accountId,
+      tenantId: command.principal.tenantId,
+      firebaseAuthUid: command.principal.firebaseAuthUid,
+      providerSubject: command.principal.providerSubject,
+      authEpoch: command.principal.authEpoch,
+      deviceId: command.deviceId,
+      expectedRevision,
+      expiresAtMs: safeDeadline(nowMs, state.receiptLedger.retentionMs),
+      result,
+    };
+    const appended = appendReceipt(state, live, receipt);
+    receiptLedger = appended.ledger;
+    evictedReceipts = appended.evicted;
+  }
   const nextState = Object.freeze({
     ...state,
     revision,
     activeLease: result.lease,
     latestAuthEpoch: Math.max(state.latestAuthEpoch ?? 0, command.principal.authEpoch),
-    receiptLedger: appendReceipt(state, live, receipt),
+    receiptLedger,
     lastServerNowMs: nowMs,
   });
-  return Object.freeze({ state: nextState, result, retirements });
+  return Object.freeze({ state: nextState, result, retirements, evictedReceipts });
 }
 
 export function releaseActiveAccountLease(
@@ -498,12 +537,18 @@ export function releaseActiveAccountLease(
     expiresAtMs: safeDeadline(nowMs, state.receiptLedger.retentionMs),
     result,
   };
+  const appended = appendReceipt(state, live, receipt);
   const nextState = Object.freeze({
     ...state,
     revision,
     activeLease: null,
-    receiptLedger: appendReceipt(state, live, receipt),
+    receiptLedger: appended.ledger,
     lastServerNowMs: nowMs,
   });
-  return Object.freeze({ state: nextState, result, retirements: retirement(active.sessionId) });
+  return Object.freeze({
+    state: nextState,
+    result,
+    retirements: retirement(active.sessionId),
+    evictedReceipts: appended.evicted,
+  });
 }

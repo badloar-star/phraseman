@@ -36,7 +36,10 @@ export async function prefetchEasUpdateAfterStartup(
 
     const fetched = await withTimeout(Updates.fetchUpdateAsync(), UPDATE_FETCH_TIMEOUT_MS);
     return fetched?.isNew === true || fetched?.isRollBackToEmbedded === true;
-  } catch {
+  } catch (error) {
+    // зачем (PM-215 preflight, 03.10): немой catch прятал отказ проверки обновления (сеть, тайм-аут,
+    // модуль). Поведение прежнее (false), причина — в журнал.
+    console.warn('[EAS-UPDATE-PREFETCH] check/fetch failed', String((error as Error)?.message ?? error).slice(0, 160));
     return false;
   }
 }

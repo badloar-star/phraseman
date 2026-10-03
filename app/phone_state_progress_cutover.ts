@@ -60,7 +60,10 @@ export async function trySubmitProgressThroughPhoneState(
       return projection;
     }
     return api.read();
-  } catch {
+  } catch (error) {
+    // зачем (PM-215 preflight, 03.10): немой catch молча переключал прогресс на сетевую ветку —
+    // причина отказа phone-state обязана быть в журнале. Поведение прежнее (null → сетевая ветка).
+    console.warn('[PROGRESS-CUTOVER] phone_state submit failed — fallback to network path', String((error as Error)?.message ?? error).slice(0, 160));
     return null;
   }
 }

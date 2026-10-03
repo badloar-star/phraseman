@@ -1003,14 +1003,30 @@ export async function reconcileFlashcardTrainingPendingGrant(
   scope: FlashcardTrainingPendingGrantScope,
   nowMs = Date.now(),
 ): Promise<FlashcardTrainingPendingGrantReadResult> {
+  // зачем ([FC-PENDING-GRANT], 03.10): «Блиц» висел на каркасе без единой строки в журнале —
+  // сверка возвращала ответ, по которому экран молча выходил. Печатаем каждое ветвление.
+  const trace = (step: string, data: Record<string, unknown>): void => {
+    console.log(`[FC-PENDING-GRANT] reconcile:${step}`, JSON.stringify({ mode: scope.mode, deckKeys: scope.deckKeys, ...data }));
+  };
   const initial = await readFlashcardTrainingPendingGrant(account, scope);
-  if (initial.status !== 'found') return initial;
+  if (initial.status !== 'found') {
+    trace('initial_not_found', { status: initial.status });
+    return initial;
+  }
+  trace('initial_found', { phase: initial.record.phase, energyState: initial.record.energyState, receiptId: initial.record.receiptId });
 
   const [quotaRead, energyRead] = await Promise.all([
-    readFlashcardTrainingQuotaReceipts(account.stableUid).catch(() => ({ status: 'unavailable' as const })),
+    readFlashcardTrainingQuotaReceipts(account.stableUid).catch((error: unknown) => {
+      trace('quota_read_failed', { error: String(error) });
+      return { status: 'unavailable' as const };
+    }),
     readEnergySessionStartStatus(initial.record.energyOperationId, account.runtimeToken)
-      .catch(() => ({ status: 'unavailable' as const, reason: 'read_failed' })),
+      .catch((error: unknown) => {
+        trace('energy_read_failed', { error: String(error) });
+        return { status: 'unavailable' as const, reason: 'read_failed' };
+      }),
   ]);
+  trace('reads', { quota: quotaRead.status, energy: energyRead.status });
   if (energyRead.status === 'unavailable') {
     return { status: 'unavailable', reason: 'energy_state_unavailable' };
   }
@@ -1020,6 +1036,7 @@ export async function reconcileFlashcardTrainingPendingGrant(
       return { status: 'unavailable', reason: 'energy_state_conflict' };
     }
     const removal = await removeRecord(account, initial.record);
+    trace('energy_acknowledged_removed', { removal: removal.status });
     return removal.status === 'removed' || removal.status === 'missing'
       ? { status: 'missing' }
       : { status: 'unavailable', reason: 'energy_state_conflict' };
@@ -1046,7 +1063,9 @@ export async function reconcileFlashcardTrainingPendingGrant(
       await markFlashcardTrainingQuotaCommitted(account, initial.record.fingerprint, nowMs, receipt.resetAt);
     }
   }
-  return readFlashcardTrainingPendingGrant(account, scope);
+  const final = await readFlashcardTrainingPendingGrant(account, scope);
+  trace('final', { status: final.status, phase: final.status === 'found' ? final.record.phase : null });
+  return final;
 }
 
 export async function abandonFlashcardTrainingPendingGrant(

@@ -350,14 +350,16 @@ export default function CommunityPackSocialBar({
         <Ionicons
           name="chatbubble-outline"
           size={iconSize}
-          color={isTile ? (onOpenComments ? t.accent : t.textMuted) : (onOpenComments ? g.text : g.secondary)}
+          color={isTile ? g.secondary : (onOpenComments ? g.text : g.secondary)}
         />
         {shouldShowCommentsCount(commentsCount) ? (
           <Text
             style={{
-              color: isTile ? (onOpenComments ? t.accent : t.textSecond) : (onOpenComments ? g.text : g.secondary),
+              // зачем (PM-092, cards.html `.ptile .mt`): на плитке счётчики — тихая служебная строка
+              // 12px вторичным тоном; прежний t.textSecond в стеклянной теме давал почти белый жирный.
+              color: isTile ? g.secondary : (onOpenComments ? g.text : g.secondary),
               fontSize,
-              fontWeight: '700',
+              fontWeight: isTile ? '500' : '700',
             }}
           >
             {formatCommentsCount(commentsCount, lang)}
@@ -409,18 +411,20 @@ export default function CommunityPackSocialBar({
     // зачем gap 8, а не 10: замер макета показал, что три счётчика на плитке
     // шириной в треть экрана не помещаются при прежнем промежутке.
     return (
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+      // зачем (PM-092, cards.html `.ptile .mt`): строка прижата влево вместе с названием и автором,
+      // 12px вторичным тоном и обычным весом — счётчики не спорят с названием набора.
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', gap: 8 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
           <Ionicons
             name={snapshot.liked ? 'heart' : 'heart-outline'}
             size={12}
-            color={snapshot.liked ? t.accent : t.textMuted}
+            color={snapshot.liked ? g.text : g.secondary}
           />
-          <Text style={{ color: t.textSecond, fontSize: 13, fontWeight: '700' }}>{snapshot.likesCount}</Text>
+          <Text style={{ color: g.secondary, fontSize: 12, lineHeight: 16, fontWeight: '500' }}>{snapshot.likesCount}</Text>{/* guard-ok: счётчик, не подпись */}
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
-          <Ionicons name="people-outline" size={12} color={t.textMuted} />
-          <Text style={{ color: t.textSecond, fontSize: 13, fontWeight: '700' }}>{snapshot.addedCount}</Text>
+          <Ionicons name="people-outline" size={12} color={g.secondary} />
+          <Text style={{ color: g.secondary, fontSize: 12, lineHeight: 16, fontWeight: '500' }}>{snapshot.addedCount}</Text>{/* guard-ok: счётчик, не подпись */}
         </View>
         {renderCommentsCount(12, 10, 3)}
       </View>

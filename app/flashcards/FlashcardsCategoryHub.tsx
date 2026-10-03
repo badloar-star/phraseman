@@ -235,6 +235,31 @@ type CommunityPackTileProps = {
  * ник автора, лайки и счётчик добавлений. Открывается и БЕЗ добавления —
  * в режиме просмотра.
  */
+/** PM-092: плашки поверх обложки и подписи плитки — размеры `.ptile` из cards.html. */
+const tileStyles = StyleSheet.create({
+  badge: {
+    position: 'absolute',
+    height: 22,
+    borderRadius: 11,
+    paddingHorizontal: 7,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(12,12,13,0.82)',
+  },
+  badgeText: { fontSize: 12, lineHeight: 16, fontWeight: '700' },
+  ownBadge: {
+    position: 'absolute',
+    right: 7,
+    top: 7,
+    width: 22,
+    height: 22,
+    borderRadius: 11,
+    backgroundColor: '#F2F1F6',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+
 function CommunityPackTileBase({
   pack, lang, t, g, width, owned, isTop, reduceMotion, showEdit, labelSize, icon, onOpen, onLongPress, onEdit, opening, disabled,
 }: CommunityPackTileProps) {
@@ -244,7 +269,9 @@ function CommunityPackTileBase({
   const title = packTitleForInterface(pack, lang) || packHubCodeName(pack);
 
   return (
-    <View style={{ width, alignItems: 'center', paddingBottom: 4, position: 'relative' }}>
+    // зачем (PM-092, cards.html `.ptile`): подписи плитки выровнены влево, как в макете, — сетка
+    // читается колонками, а не «облаком» по центру.
+    <View style={{ width, alignItems: 'flex-start', paddingBottom: 4, position: 'relative' }}>
       <HubTileShell
         testID={`flashcards-pack-card-${pack.id}`}
         a11y={`${title}, ${authorName}, ${pack.cardCount} ${triLang(lang, { ru: 'карточек', uk: 'карток', en: 'cards', es: 'tarjetas' })}`}
@@ -260,8 +287,9 @@ function CommunityPackTileBase({
               width,
               height: width,
               borderRadius: TILE_RADIUS,
-              borderWidth: isTop ? 1.5 : 1,
-              borderColor: isTop ? `${t.accent}88` : owned ? t.accent : g.glassEdge,
+              // зачем: одна тонкая обводка `.cv` для всех плиток; «топ» и «уже у тебя» видны по плашкам.
+              borderWidth: 1, // guard-ok: исключение 2.0 (24.09) — 1px полупрозрачная обводка обложки
+              borderColor: g.glassEdge, // guard-ok: исключение 2.0 — 1px обводка .cv
               backgroundColor: g.card,
               alignItems: 'center',
               justifyContent: 'center',
@@ -281,46 +309,29 @@ function CommunityPackTileBase({
           {pack.cardCount > 0 ? (
             <View
               pointerEvents="none"
-              style={{
-                position: 'absolute', right: 5, bottom: 5,
-                borderRadius: 9, paddingHorizontal: 6, paddingVertical: 1,
-                backgroundColor: g.sheet, borderWidth: 1, borderColor: g.glassEdge,
-              }}
+              style={[tileStyles.badge, { right: 7, bottom: 7, minWidth: 28, justifyContent: 'center' }]}
             >
-              <Text style={{ fontSize: 13, fontWeight: '700', color: g.secondary }}>{pack.cardCount}</Text>
+              <Text style={[tileStyles.badgeText, { color: g.text }]}>{pack.cardCount}</Text>
             </View>
           ) : null}
           {isTop ? (
-            <View
-              pointerEvents="none"
-              style={{
-                position: 'absolute', left: 5, top: 5,
-                borderRadius: 999, padding: 3,
-                backgroundColor: `${t.accent}22`, borderWidth: 1, borderColor: `${t.accent}66`,
-              }}
-            >
-              <Ionicons name="trending-up-outline" size={10} color={t.accent} />
+            // зачем (cards.html `.top`): «Топ» словом на тёмной плашке — значок тренда без подписи не читался.
+            <View pointerEvents="none" style={[tileStyles.badge, { left: 7, top: 7, gap: 4 }]}>
+              <Ionicons name="trending-up-outline" size={13} color={g.text} />
+              <Text style={[tileStyles.badgeText, { fontSize: 11, color: g.text }]}>
+                {triLang(lang, { ru: 'Топ', uk: 'Топ', en: 'Top', es: 'Top', 'pt-BR': 'Top', vi: 'Top', id: 'Top', tr: 'Top', pl: 'Top' })}
+              </Text>
             </View>
           ) : null}
           {owned ? (
-            <View
-              pointerEvents="none"
-              style={{
-                position: 'absolute', right: 5, top: 5,
-                borderRadius: 999, padding: 3,
-                backgroundColor: `${t.accent}22`, borderWidth: 1, borderColor: `${t.accent}66`,
-              }}
-            >
-              <Ionicons name="checkmark" size={10} color={t.accent} />
+            // зачем (cards.html `.own`): «уже у тебя» — светлый кружок с тёмной галочкой, заметен на любой обложке.
+            <View pointerEvents="none" style={tileStyles.ownBadge}>
+              <Ionicons name="checkmark" size={14} color="#0B0C0E" />
             </View>
           ) : null}
           <View
             pointerEvents="none"
-            style={{
-              position: 'absolute', left: 5, bottom: 5,
-              borderRadius: 9, paddingHorizontal: 4, paddingVertical: 2,
-              backgroundColor: g.sheet, borderWidth: 1, borderColor: g.glassEdge,
-            }}
+            style={[tileStyles.badge, { left: 7, bottom: 7, paddingHorizontal: 5 }]}
           >
             {/* зачем (D127): «Без языка» — нейтральный значок + подпись вместо флага. */}
             {normalizePackLanguage(pack.packLanguage ?? pack.studyTarget) === NO_PACK_LANGUAGE ? (
@@ -356,7 +367,7 @@ function CommunityPackTileBase({
         provenance="user"
         style={{
           marginTop: 7, fontSize: labelSize + 1, fontWeight: '700',
-          color: g.text, textAlign: 'center', lineHeight: labelSize + 4,
+          color: g.text, textAlign: 'left', lineHeight: labelSize + 4,
         }}
       >
         {title}
@@ -370,7 +381,7 @@ function CommunityPackTileBase({
       <FlowText
         testID={`flashcards-pack-author-${pack.id}`}
         provenance="user"
-        style={{ marginTop: 2, fontSize: Math.max(8, labelSize - 1), fontWeight: '600', color: g.secondary, textAlign: 'center' }}
+        style={{ marginTop: 2, fontSize: Math.max(8, labelSize - 1), fontWeight: '500', color: g.secondary, textAlign: 'left' }}
       >
         {packPriceRunes > 0 ? `${authorName} · ᚱ ${packPriceRunes.toLocaleString('ru-RU').replace(/ /g, ' ')}` : authorName}
       </FlowText>
@@ -958,19 +969,23 @@ export default function FlashcardsCategoryHub({
                 marginBottom: 12,
                 paddingVertical: 12,
                 paddingHorizontal: 14,
-                borderRadius: 14,
-                borderWidth: 1.5,
-                borderColor: g.glassEdge,
+                borderRadius: 16,
+                // зачем (PM-092, cards.html «Продолжить создание набора»): строка-карточка как в
+                // макете — значок в плитке слева, текст 16/600 слева, стрелка справа; 1px обводка.
+                borderWidth: 1, // guard-ok: исключение 2.0 (24.09) — тонкая полупрозрачная обводка
+                borderColor: g.glassEdge, // guard-ok: исключение 2.0
                 backgroundColor: g.card,
                 flexDirection: 'row',
                 alignItems: 'center',
-                justifyContent: 'center',
-                gap: 8,
+                gap: 14,
+                overflow: 'hidden',
               }}
             >
               <CatalogTileGlass g={g} />
-              <Ionicons name="document-text-outline" size={20} color={t.accent} />
-              <Text style={{ color: isGradientSurface ? t.textPrimary : t.accent, fontWeight: '700', fontSize: 13 }}>
+              <View style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: g.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
+                <Ionicons name="create-outline" size={20} color={g.text} />
+              </View>
+              <Text style={{ flex: 1, color: g.text, fontWeight: '600', fontSize: 16, lineHeight: 21 }}>
                 {triLang(lang, {
                   ru: 'Продолжить создание набора',
                   uk: 'Продовжити створення набору',
@@ -983,6 +998,7 @@ export default function FlashcardsCategoryHub({
                   pl: 'Kontynuuj tworzenie zestawu',
                 })}
               </Text>
+              <Ionicons name="chevron-forward" size={18} color={g.secondary} accessibilityElementsHidden importantForAccessibility="no" />
             </TouchableOpacity>
           ) : null}
           {visibleCommunityPacks.length === 0 ? (

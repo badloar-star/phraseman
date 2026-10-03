@@ -1430,3 +1430,4 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 - Решение: владелец работы — **Account V2**. Сверить с планом docs/superpowers/plans/2026-10-01-account-authority-2-0.md, починить TS2739/немой catch в account_authority_production_adapter.ts, коммитить по частям с обязательным ревью (вход/безопасность), обновить сторож legacy_callsite_guard.
 - После освобождения auth_provider.ts/cloud_sync.ts: 8Q (Account V2), отложенные патчи Ядра (stable_auth_link_cache, premium_guard multiGet), 2 геттера App Check, остаток PM-229 (42).
 - Правило §93 «не трогать» снимается только для Account V2.
+- **§95 доп. (17:50Z):** по владельцу — Account Authority 2.0 огромная работа → Account V2 занят ТОЛЬКО ею (этапы по плану, подагенты параллельно, статус по этапам в INBOX). Его хвосты (красные тесты удаления аккаунта, долги 8N S1/S3) → App Check; 8Q — после Authority.

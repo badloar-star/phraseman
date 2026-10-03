@@ -246,7 +246,7 @@ const tileStyles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(12,12,13,0.82)',
   },
-  badgeText: { fontSize: 12, lineHeight: 16, fontWeight: '700' },
+  badgeText: { fontSize: 13, lineHeight: 17, fontWeight: '700' }, // зачем: шкала D145 — только 16/13
   ownBadge: {
     position: 'absolute',
     right: 7,
@@ -318,7 +318,7 @@ function CommunityPackTileBase({
             // зачем (cards.html `.top`): «Топ» словом на тёмной плашке — значок тренда без подписи не читался.
             <View pointerEvents="none" style={[tileStyles.badge, { left: 7, top: 7, gap: 4 }]}>
               <Ionicons name="trending-up-outline" size={13} color={g.text} />
-              <Text style={[tileStyles.badgeText, { fontSize: 11, color: g.text }]}>
+              <Text style={[tileStyles.badgeText, { color: g.text }]}>
                 {triLang(lang, { ru: 'Топ', uk: 'Топ', en: 'Top', es: 'Top', 'pt-BR': 'Top', vi: 'Top', id: 'Top', tr: 'Top', pl: 'Top' })}
               </Text>
             </View>

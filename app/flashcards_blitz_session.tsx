@@ -1477,9 +1477,9 @@ RU: ${question.card.translation}`}
               <Reanimated.View style={scoreStyle}>
                 <Text
                   testID="fc-blitz-score"
-                  // зачем (PM-129): в макете под полосой мелкие подписи (`.prog`, 15/600, вторичный
+                  // зачем (PM-129, шкала D145): под полосой мелкая подпись (13/600, вторичный
                   // тон), а не крупная цифра — счёт остаётся, но перестаёт спорить с вопросом.
-                  style={{ color: blitzGlass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] }}
+                  style={{ color: blitzGlass.secondary, fontSize: 13, lineHeight: 17, fontWeight: '600', fontVariant: ['tabular-nums'] }}
                 >
                   {blitz.score}
                 </Text>

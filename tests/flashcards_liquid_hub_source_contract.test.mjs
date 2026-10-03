@@ -28,8 +28,8 @@ const DEPENDENCY_HASHES = {
   'app/community_packs/localAuthorPacks.ts': '0a5de56ef1c378c3d6e39a51b051a55834ad5bf2f42ba90ce602d6a4c0d8a504',
   // зачем: c98e4ad1e (D145) — шкала текста 16/13.
   // зачем: f0b2153b4 (FINAL_PHASE п.7) — лайк откатывается при исключении; хаб не затронут.
-  // зачем (PM-092, e76118033): счётчики плитки — 12px вторичным тоном слева, по cards.html `.ptile .mt`.
-  'app/community_packs/CommunityPackSocialBar.tsx': '61917f0978bc0e3cd7611355c26dd315a22aca073bd4ea2e04f0915660cf2697',
+  // зачем (PM-092, e76118033 + шкала D145): счётчики плитки — 13px вторичным тоном слева.
+  'app/community_packs/CommunityPackSocialBar.tsx': 'eeba3524c7f88774ac34829e7a28843b8b01ac01a2df7fa64032aee7309ec42b',
   // зачем: a5cbccab3 (темы 2.0) — «золото» темы = акцент.
   'constants/liquidGlassThemePalette.ts': '28d6be604dc306d70938ea8e94cb534ff523daafce99808974ef2bd648cf8d49',
   'app/flashcards/packMarketplaceIcons.ts': '4d7d168a867514b096dc3a5541503db4759e68a2359020cb02cf695316f78b11',

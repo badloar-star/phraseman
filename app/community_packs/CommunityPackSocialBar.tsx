@@ -412,7 +412,7 @@ export default function CommunityPackSocialBar({
     // шириной в треть экрана не помещаются при прежнем промежутке.
     return (
       // зачем (PM-092, cards.html `.ptile .mt`): строка прижата влево вместе с названием и автором,
-      // 12px вторичным тоном и обычным весом — счётчики не спорят с названием набора.
+      // 13px (шкала D145) вторичным тоном и обычным весом — счётчики не спорят с названием набора.
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', gap: 8 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
           <Ionicons
@@ -420,11 +420,11 @@ export default function CommunityPackSocialBar({
             size={12}
             color={snapshot.liked ? g.text : g.secondary}
           />
-          <Text style={{ color: g.secondary, fontSize: 12, lineHeight: 16, fontWeight: '500' }}>{snapshot.likesCount}</Text>{/* guard-ok: счётчик, не подпись */}
+          <Text style={{ color: g.secondary, fontSize: 13, lineHeight: 17, fontWeight: '500' }}>{snapshot.likesCount}</Text>{/* guard-ok: счётчик, не подпись */}
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
           <Ionicons name="people-outline" size={12} color={g.secondary} />
-          <Text style={{ color: g.secondary, fontSize: 12, lineHeight: 16, fontWeight: '500' }}>{snapshot.addedCount}</Text>{/* guard-ok: счётчик, не подпись */}
+          <Text style={{ color: g.secondary, fontSize: 13, lineHeight: 17, fontWeight: '500' }}>{snapshot.addedCount}</Text>{/* guard-ok: счётчик, не подпись */}
         </View>
         {renderCommentsCount(12, 10, 3)}
       </View>

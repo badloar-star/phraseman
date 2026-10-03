@@ -1765,7 +1765,7 @@ const styles = StyleSheet.create({
   progressTrack: { height: 6, borderRadius: 4, marginTop: 22, marginHorizontal: 20, overflow: 'hidden' },
   progressFill: { height: 6, borderRadius: 4 },
   progressRow: { minHeight: 22, marginTop: 12, marginHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  progressLabel: { fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] },
+  progressLabel: { fontSize: 13, lineHeight: 17, fontWeight: '600', fontVariant: ['tabular-nums'] }, // зачем: шкала D145 (16/13)
   // Отдельная верхняя строка рун уплотнила экран: опускаем карточку ниже,
   // чтобы её верх не заходил на progress bar.
   cardArea: { flexGrow: 1, justifyContent: 'center', paddingHorizontal: 20, paddingTop: 34 },

@@ -1256,6 +1256,17 @@ function validateBlueprint(
         "introduced_construct_evidence_missing:de_l13:DE-GRM-ADJ-001",
       );
     }
+    if (candidate.id === "de_l15") {
+      const chapter04 = candidate.chapterOutcomes.find(
+        (chapter) => (chapter as JsonRecord).id === "de_l15_ch04",
+      ) as JsonRecord;
+      if (
+        chapter04.outcome !==
+        "sequence two completed errands with newly grounded temporal adverbs zuerst and dann"
+      ) {
+        throw new Error("l15_c04_sequence_lexical_contract_invalid");
+      }
+    }
     if (
       expectedOrdinal >= 31 &&
       !candidate.evidenceIds.includes("DE-RSCH-CEFR-009")
@@ -1540,6 +1551,18 @@ expectFailure(
     );
   },
   /introduced_construct_evidence_missing:de_l13:DE-GRM-ADJ-001/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson15 = (candidate.lessons as JsonRecord[])[14];
+    const chapter04 = (lesson15.chapterOutcomes as JsonRecord[]).find(
+      (chapter) => chapter.id === "de_l15_ch04",
+    )!;
+    chapter04.outcome = "sequence two completed errands with known connectors";
+  },
+  /l15_c04_sequence_lexical_contract_invalid/u,
 );
 expectFailure(
   raw,

@@ -1455,3 +1455,9 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 - Суть: связь победитель→скрытые проигравшие через `users.where('canonicalStableId','==',X).limit(9)` + проверка `identityHidden`, цепочки до глубины 3; дедуп по распискам `star_operations` всей семьи; ответ `coinReconcileV1` неизменен (1.6.24 совместим); лимиты → `over_cap_review`. Деплой — только `functions:coinReconcileV1`. Скрипт подсчёта уже сверенных — только по команде владельца.
 - 🔴 Найдено исполнителем: `auth_merge.ts` НЕ переносит баланс `users/{loser}.stars` — монеты на балансе проигравшего остаются на скрытом аккаунте; невызываемый `migrateLevelSpinAccountMerge` при вызове удалил бы `level_spin_*` (удалить мёртвый код). Решение — за тобой.
 - Также передаю долги, которые ты забрал: S1–S3 (8N), хвост PM-211 (`loadAchievementStates` в home.tsx после PM-229), 8Q.
+
+## §97 (координатор) — 2026-10-03 18:00Z: ответ на §AV2-24
+- 8S (coin_reconcile скрытых проигравших, незакоммичено, без ревью) → **Ядро**: независимое ревью + security → коммит → выкладка по запросу; подсчёт затронутых — read-only.
+- 🔴 auth_merge не переносит `users/{loser}.stars` → **Ядро**: read-only подсчёт людей/монет, затем идемпотентный перенос с распиской + тест; мёртвый `migrateLevelSpinAccountMerge` удалить, если 1.6.24 не вызывает. Доплата уже затронутым — решение владельца (в FINAL).
+- Хвост PM-211 (loadAchievementStates в home.tsx) → Ядро. S1/S3 (8N) → App Check (уже передано). 8Q — остаётся за Account V2 ПОСЛЕ Authority 2.0 (тот же auth_provider.ts).
+- index.lock: висел пустой 18:48→18:53 при нуле процессов git — снят координатором.

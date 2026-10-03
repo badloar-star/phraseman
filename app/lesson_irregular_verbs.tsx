@@ -670,7 +670,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
         coinsGained={practiceRunes.runes}
         errors={runErrorsRef.current}
         feedbackSlot={continuationFailed ? (
-          <Text accessibilityLiveRegion="polite" style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, textAlign: 'center' }}>
+          <Text accessibilityLiveRegion="polite" style={{ color: glass.secondary, fontSize: 13, lineHeight: 17, textAlign: 'center' }}>
             {triLang(lang, {
               ru: 'Не удалось сохранить награду. Нажмите ещё раз.', uk: 'Не вдалося зберегти нагороду. Натисніть ще раз.',
               en: 'Could not save the reward. Tap again.', es: 'No se pudo guardar la recompensa. Pulsa de nuevo.',
@@ -713,7 +713,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
         <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
           <Ionicons name="alert-circle-outline" size={26} color={glass.text} />
         </View>
-        <Text style={{ color: glass.text, fontSize: 17, lineHeight: 23, fontWeight: '600', textAlign: 'center', marginTop: 18 }}>
+        <Text style={{ color: glass.text, fontSize: 16, lineHeight: 22, fontWeight: '600', textAlign: 'center', marginTop: 18 }}>
           {triLang(lang, {
             ru: 'Что-то пошло не так. Вернись к уроку или открой вкладку «Словарь» и снова нажми «Начать тренировку».',
             uk: 'Щось пішло не так. Повернись до уроку або відкрий вкладку «Словник» і знову натисни «Почати тренування».',
@@ -757,7 +757,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
 
         {/* Progress counter */}
         <View style={{ marginBottom: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
-          <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] }}>
+          <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 17, fontWeight: '600', fontVariant: ['tabular-nums'] }}>
             {triLang(lang, {
               ru: `${learnedCnt} / ${portionVerbs.length} выучено`,
               uk: `${learnedCnt} / ${portionVerbs.length} вивчено`,
@@ -825,7 +825,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
                         <Text style={{ color: glass.text, fontSize: 24, lineHeight: 30, fontWeight: '700' }}>{cf.value}</Text>
                       </View>
                     )}
-                    <Text style={{ color: glass.mutedText, fontSize: 12, lineHeight: 16, fontWeight: '600', marginTop: 6, letterSpacing: 0.5 }}>
+                    <Text style={{ color: glass.mutedText, fontSize: 13, lineHeight: 17, fontWeight: '600', marginTop: 6, letterSpacing: 0.5 }}>
                       {tenseByKey[cf.key]}
                     </Text>
                   </View>
@@ -883,7 +883,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
                       <Ionicons name={state === 'correct' ? 'checkmark' : 'close'} size={18} color={color} />
                     </View>
                   )}
-                  <Text style={{ color, fontSize: 17, lineHeight: 22, fontWeight: '600', textAlign: 'center' }} maxFontSizeMultiplier={1.2}>
+                  <Text style={{ color, fontSize: 16, lineHeight: 21, fontWeight: '600', textAlign: 'center' }} maxFontSizeMultiplier={1.2}>
                     {word}
                   </Text>
                 </Pressable>
@@ -987,7 +987,7 @@ function IrregVerbsScrollTable({ glass, lang, allVerbs, globalCounts, lessonId }
   const thumbTranslate = canScroll
     ? scrollX.interpolate({ inputRange: [0, TABLE_W - cardW], outputRange: [0, trackW - thumbW], extrapolate: 'clamp' })
     : new Animated.Value(0);
-  const headStyle = { color: glass.mutedText, fontSize: 12, lineHeight: 16, fontWeight: '700' as const, letterSpacing: 1, textTransform: 'uppercase' as const };
+  const headStyle = { color: glass.mutedText, fontSize: 13, lineHeight: 17, fontWeight: '700' as const, letterSpacing: 1, textTransform: 'uppercase' as const };
 
   return (
     <View onLayout={e => setContainerW(e.nativeEvent.layout.width)} style={{ position:'relative' }}>
@@ -1045,7 +1045,7 @@ function IrregVerbsScrollTable({ glass, lang, allVerbs, globalCounts, lessonId }
                   <Text style={{ color: formColor, fontSize: 16, lineHeight: 21 }}>{verb.pp}</Text>
                 </TouchableOpacity>
                 <View style={{ width: COL.tr }}>
-                  <Text style={{ color: glass.secondary, fontSize: 14, lineHeight: 19 }}>{irregularVerbTranslation(verb, lang)}</Text>
+                  <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 17 }}>{irregularVerbTranslation(verb, lang)}</Text>
                 </View>
                 <View style={{ width: COL.save, alignItems: 'center', justifyContent: 'center' }}>
                   <AddToFlashcard
@@ -1110,7 +1110,7 @@ function DictTab({ allVerbs, globalCounts, lang, lessonId, onStartLearn }: {
         <View style={{ flex: 1, height: 6, borderRadius: 3, overflow: 'hidden', backgroundColor: glass.opaqueControl }}>
           <View style={{ width: '100%', height: '100%', borderRadius: 3, backgroundColor: glass.accent, transformOrigin: 'left', transform: [{ scaleX: allVerbs.length > 0 ? learnedTotal / allVerbs.length : 0 }] }} />
         </View>
-        <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] }}>
+        <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 17, fontWeight: '600', fontVariant: ['tabular-nums'] }}>
           {`${learnedTotal} / ${allVerbs.length} ${triLang(lang, { ru: 'выучено', en: 'learned', uk: 'вивчено', es: 'aprendidos', 'pt-BR': 'aprendidos', vi: 'đã học', id: 'dipelajari', tr: 'öğrenildi', pl: 'opanowano' })}`}
         </Text>
       </View>
@@ -1139,7 +1139,7 @@ function FrenchIrregularVerbsUnavailable({ lang, onBack }: { lang: Lang; onBack:
       <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center', marginTop: 18 }}>
         {copy.title}
       </Text>
-      <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 21, textAlign: 'center', marginTop: 8 }}>
+      <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 8 }}>
         {copy.body}
       </Text>
       <PracticeCta
@@ -1341,7 +1341,7 @@ function LessonIrregularVerbs() {
                     if (key === 'dict') setPracticeAll(false);
                   }}
                 >
-                  <Text style={{ color: isActive ? glass.text : glass.secondary, fontSize: 15, fontWeight: '600' }}>{label}</Text>
+                  <Text style={{ color: isActive ? glass.text : glass.secondary, fontSize: 13, fontWeight: '600' }}>{label}</Text>
                 </Pressable>
               );
             })}

@@ -237,16 +237,17 @@ describe('Economy Constitution — client authority is a permanent source contra
     expect(client).toContain('ack.requestFingerprint !== operation.requestFingerprint');
     expect(client).toContain("schemaVersion: 'client-level-spin-star-projection.v3'");
     expect(client).toContain("schemaVersion: 'client-session-attempt-recovery-rune-operation.v1'");
-    expect(client).toContain("schemaVersion: 'client-paid-level-spin-rune-operation.v1'");
+    // зачем (§99): запись операции платного спина больше не живёт в клиенте — читатель старых записей остался в economy.
+    expect(phoneStateEconomy).toContain("'client-paid-level-spin-rune-operation.v1'");
     expect(client).not.toMatch(/export\s+(?:async\s+)?function\s+spendRunes/);
     expect(client).not.toMatch(/stars:\s*ack\.starsBalance/);
     expect(phoneStateEconomy).toContain("'paid_level_spin_rune_purchase'");
     expect(phoneStateEconomy).toContain("value.runeDelta !== -300");
     expect(phoneStateEconomy).toContain('balanceAfter !== balanceBefore - 300');
-    // зачем (02.10, E24 №3 / PM-252): платный спин за руны удалён в 2.0 (подарки и спины сняты,
-    // D90/D148) — покупку больше никто не вызывает. Сторож теперь держит удаление: функция-остаток
-    // не должна снова получить вызов, а восстановление проекции по-прежнему зовётся при гидрации.
-    expect(grants.match(/preparePaidLevelSpinRunePurchase\(/g) ?? []).toHaveLength(1);
+    // зачем (02.10, E24 №3 / PM-252; §99 03.10): платный спин за руны удалён в 2.0 (подарки и спины сняты,
+    // D90/D148), сами функции prepare*RunePurchase удалены целиком. Сторож держит удаление: ни одна из них
+    // не должна вернуться, а восстановление проекции по-прежнему зовётся при гидрации.
+    expect(grants).not.toMatch(/prepare(?:PaidLevelSpin|Customization|DialogExtraReplies)RunePurchase/);
     expect(grants).toContain('recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false })');
   });
 });

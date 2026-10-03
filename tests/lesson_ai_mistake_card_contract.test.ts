@@ -16,9 +16,14 @@ describe('lesson AI mistake card integration', () => {
     expect(combined).toContain('callExplainMistake');
   });
 
-  it('breakdown is free for everyone (no daily-cap gating left in the lesson)', () => {
-    expect(combined).not.toContain('getAiMistakeExplainsLeftToday');
-    expect(combined).not.toContain('markAiMistakeExplainUsed');
+  // зачем (04.10): правило «разбор бесплатен для всех» (07.11) заменено решением владельца 17.09
+  // (макет runes/MAKET.html, экран 5): 120 монет, 3 бесплатных в день, ОДИН общий счётчик для всех
+  // поверхностей — его сторожит tests/runes_mistake_explain_contract.test.ts. Здесь держим другое:
+  // сам экран урока лимитом не управляет, он живёт только в общем хуке.
+  it('the lesson screen itself does no daily-cap gating — the shared hook owns it', () => {
+    expect(source).not.toContain('getAiMistakeExplainsLeftToday');
+    expect(source).not.toContain('markAiMistakeExplainUsed');
+    expect(hookSource).toContain('getAiMistakeExplainsLeftToday');
   });
 
   it('sends every mismatched word pair so the AI explains the WHOLE error', () => {

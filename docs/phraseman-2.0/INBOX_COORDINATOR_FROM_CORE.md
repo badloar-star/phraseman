@@ -1406,3 +1406,21 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 - **PM-211** cb373f9b9 (ревью APPROVE): тяжёлая инициализация и проверка достижений по монетам ждут первый кадр Главной (`runAfterHomeFirstFrame`, потолок 2,5 с), логи `[FIRST-FRAME]`, сторож 11/11. В `_layout.tsx` закоммичены только 5 хунков PM-211 (через временный индекс), хунки PM-229 не тронуты. Предложение: после PM-229 распараллелить `loadAchievementStates()` в `home.tsx:1578`.
 - ⚠ **`.git/index.lock` висит с 18:16:18** (основной индекс). Коммиты других сессий идут через свои временные индексы, но `git status`/обычный `git commit` в основном индексе невозможны. В основном индексе после моего коммита через временный индекс числятся staged-удалёнными `app/first_frame_deferred_warmups.ts` и `tests/pm211_first_frame_deferred_warmups.test.ts` (в HEAD они есть, на диске есть) — **любой `git commit` без путей через основной индекс удалит их**. Как только лок снимут, выполню `git restore --staged` по этим путям. Снимать чужой лок сам не стал — проверь, чей процесс (2 git.exe живы).
 - Дальше: 8S — coin_reconcile учитывает level_spin_results скрытых при слиянии (по §94), затем S1–S3.
+
+#### PM-229 исполнено сессией App Check (2026-10-02/03, паспорт docs/work/tasks/2026-10-02-core-79-pm229-silent-catches-screens.md): ратчет 241 → 42
+
+Четыре пачки по тем же правилам (AST-кодмод по правилам самой пробы; значение по умолчанию и поток управления прежние; тег `<файл>:<функция>.<операция>`; `[id].tsx` получили теги `learning_v2_lesson_id` / `learning_v2_session_id`):
+
+| Коммит | Что | Обработчиков |
+|---|---|---|
+| db985607f | 22 экрана (lesson1 30, CleanOnboarding 27, lesson_complete 17, …) | 121 |
+| 70b6e126e | 20 экранов (DailyPhraseCard, learning-v2 lesson/session, streak_stats, …) | 29 |
+| 62c7b2fc4 | **_layout.tsx (112)** + 15 экранов (flashcards_*, friends, home, settings, …) + 3 «залежавшиеся» записи ратчета | 165 |
+| 474a4581e | interactive_network_quiet (console.warn с source — цикл импортов с журналом) | 1 |
+
+**Сторожа, которые держали старый немой текст (теперь принимают оба вида, `// зачем: PM-229`):** entitlement_expired_host_contract, intro_full_access_layout_contract (3 проверки), app_snapshot_bootstrap_contract, home_startup_stability, settings_promo_startup_stability; lesson_complete_repeat_navigation, soft_contextual_upsell_card_contract, flashcards_blitz_access_behavior (подмена swallow_log — урезанный мок react-native без Platform). Каждая пачка: типы + все наборы, упоминающие тронутые файлы (124 и 394 набора порциями по 20, `--maxWorkers=2`), красные перепроверены на HEAD-версиях файлов — регрессий нет, кроме перечисленных и уже починенных.
+
+**Остаток 42 — ни один не безопасен для этой сессии:** auth_provider 26, app_snapshot_bootstrap 5, account_switch_quarantine 3, statsCache 3 (чужие незакоммиченные правки); account_authority_production_adapter 1 (новый НЕОТСЛЕЖИВАЕМЫЙ файл Account V2 — **проба краснеет на нём, и там же ошибка типов TS2739**: в хранилище аренды не хватает readLease/bindLease/writeLease); debug-logger 2, keyed_exclusive_transaction 1, account_detach_latch 1 — задокументированные намеренные разрывы цепочек. Закроется, когда владельцы закоммитят свои файлы (auth_provider.ts лежит с 03.10 +66 строк; я там же жду 2 геттера rnfbInstance).
+
+**Урок процесса (две аварии за сутки):** (1) «все тесты, где в тексте есть имя файла» для `[id].tsx` дал регулярку «i или d» и 1708 наборов → fork-ошибки, процесс сессии падал; теперь отбор без регулярок, порции по 20, 2 воркера, `--watchman=false`, метка SWAP_IN_PROGRESS на подмену HEAD-версий (после обрыва мои файлы восстанавливаются). (2) Сравнение с HEAD для `_layout.tsx` нельзя делать подменой файла — файл общий и в нём шла работа PM-211; сверял кодмодом по HEAD-версии во временной папке: результат побайтно совпал с рабочим файлом, кроме строки PM-211.
+Попутно: в `.git` лежит пустой `index.lock` (03.10 18:16, не мой) — мешал финальному `git reset` после коммита; коммиты при этом проходят (частный индекс).

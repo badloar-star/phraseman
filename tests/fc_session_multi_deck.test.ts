@@ -67,8 +67,13 @@ describe('блиц: несколько наборов (§6)', () => {
     expect(BLITZ).toMatch(/loadDeckCardsMulti\(allRefs, contentLang, \{ studyTarget \}\)/);
   });
 
-  it('экрана с текстом «нужно N карточек» больше нет', () => {
-    expect(BLITZ).not.toMatch(/потрібно|нужно минимум|necesita al menos/i);
+  // зачем (cards.html «Мало карточек для блица», e2d1ca674): прежний тупик «нужно N карточек» убран,
+  // но когда даже после добора из ВСЕХ источников карточек меньше 4, показывается служебное
+  // состояние макета — с кнопкой выбора наборов, т.е. не тупик. Цифра не подставляется переменной.
+  it('мало карточек — служебное состояние макета с выбором наборов, а не тупик', () => {
+    expect(BLITZ).toMatch(/testID="fc-blitz-too-few"/);
+    expect(BLITZ).toMatch(/onPress: openDeckPicker,[\s\S]{0,80}testID: 'fc-blitz-pick-decks-empty'/);
+    expect(BLITZ).not.toMatch(/нужно минимум/i);
     expect(BLITZ).not.toMatch(/BLITZ_MIN_CARDS\}/);
   });
 });

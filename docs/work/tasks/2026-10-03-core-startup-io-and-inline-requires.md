@@ -1,7 +1,8 @@
 # Task packet: cold-start storage reads (mistake_practice) and inlineRequires in the bundler config
 
 Governance-ID: TG-71A0DE8CE00D
-Status: In progress
+Governance-ID: TG-BC23443EA4DE
+Status: Done
 Owner: Claude session «App Check» (82577f25), by coordinator (2026-10-03)
 Related epic/enabler: PM-216 / PM-220, E21 performance; Performance Bible (instant first frame, constant background)
 

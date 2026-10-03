@@ -9,5 +9,11 @@ import './app/async_storage_null_bind_guard';
 // Account V2, Пакет 6D: dev-only подключение к Firebase Emulator Suite —
 // только при __DEV__ И EXPO_PUBLIC_FIREBASE_EMULATOR_HOST; до любого обращения к Firebase.
 import './app/firebase_emulator_dev_boot';
+// зачем (inlineRequires, 2026-10-03): эти модули делают работу ПРИ ИМПОРТЕ, и она обязана начаться на старте, а не при
+// первом обращении: прогрев пиков энергии и рун ради первого кадра Главной (решение владельца 2026-08-24, PM-212 ALLOW)
+// и регистрация сетевых проб в паузе занятия. Голый import inlineRequires не откладывает.
+import './app/energy_peek_cache';
+import './app/runes_system';
+import './app/net_status';
 
 import 'expo-router/entry';

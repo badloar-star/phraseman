@@ -28,6 +28,25 @@ const config = getDefaultConfig(__dirname);
 // мёртвый sock вернётся: PHRASEMAN_NO_WATCHMAN=1 в окружении.
 config.resolver.useWatchman = process.env.PHRASEMAN_NO_WATCHMAN !== '1';
 
+// зачем (PM-216 / [HOME-PAINT], координатор 2026-10-03; владелец: «так чтобы все летало»): по умолчанию Expo задаёт
+// inlineRequires: false, и ВСЕ статические import исполняются сразу при загрузке модуля. При sync-маршрутах
+// expo-router это значит «при запуске выполняется всё приложение». inlineRequires: true переносит require каждой
+// связки в место её первого использования — модуль исполняется, когда он реально понадобился. asyncRoutes НЕ включаем
+// (для натива он экспериментален). Побочные эффекты при импорте, которые обязаны сработать на старте
+// (защита AsyncStorage, прогрев пиков рун/энергии, регистрация сети), закреплены голыми import в index.js —
+// голые import transformer не трогает. Аварийный выключатель без отката коммита: PHRASEMAN_NO_INLINE_REQUIRES=1
+// (так же сравнивают «до/после» на одной сборке).
+const inlineRequiresEnabled = process.env.PHRASEMAN_NO_INLINE_REQUIRES !== '1';
+config.transformer = {
+  ...config.transformer,
+  getTransformOptions: async () => ({
+    transform: {
+      experimentalImportSupport: true,
+      inlineRequires: inlineRequiresEnabled,
+    },
+  }),
+};
+
 const existingBlockList = config.resolver.blockList;
 const blockList = Array.isArray(existingBlockList)
   ? existingBlockList

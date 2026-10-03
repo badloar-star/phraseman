@@ -6138,6 +6138,1057 @@ function validateL17SemanticContract(raw: R, plan: Boundary): void {
   });
 }
 
+const L18_CONTRACT = {
+  lessonId: "de_l18",
+  lessonOrdinal: 18,
+  grammarBoundary: {
+    allowedConstructIds: [
+      "de_gc_connector_topology_contrast_v1",
+      "de_gc_lexical_reflexive_v1",
+      "de_gc_introduced_verbletzt_clause_v1",
+      "de_gc_accusative_personal_pronouns_v1",
+      "de_gc_present_future_reference_v1",
+    ],
+    prohibitedConstructIds: [
+      "de_gc_formal_sie_sich_v1",
+      "de_gc_reciprocal_reference_v1",
+    ],
+    noExpansion:
+      "The lesson permits exactly one V2-linking discourse marker, deshalb, contrasted with the already introduced weil clause whose complete verb complex, including the finite verb, is final. It permits exactly one lexical reflexive frame, sich vorbereiten, with the bounded informal mappings ich → mich and du → dich. The citation form sich in sich vorbereiten names the lexical frame and does not license formal Sie → sich, a third-person or plural reflexive paradigm, reciprocal meaning, optional free reflexive substitution or a new case system. Präsens future reference remains available only with an explicit future-time expression. No denn, darum, deswegen, obwohl, wenn, dass or other connector or introducer; no formal Sie reflexive mapping, third-person sich target, wir → uns, ihr → euch, plural sie → sich, einander, reciprocal interpretation, free reflexive paradigm, alternative subordinate topology, relative clause, indirect question, new case or preposition relation, passive, infinitive cluster or L19 grammar is allowed.",
+  },
+  chapters: [
+    {
+      id: "de_l18_c01",
+      ordinal: 1,
+      lessonOutcomeId: "de_l18_ch01",
+      lessonOutcome:
+        "distinguish a V2-linking connector from a Verbletzt introducer",
+      packetIds: [
+        "de_l18_c01_s01",
+        "de_l18_c01_s02",
+        "de_l18_c01_s03",
+        "de_l18_c01_s04",
+        "de_l18_c01_s05",
+        "de_l18_c01_s06",
+        "de_l18_c01_s07",
+        "de_l18_c01_s08",
+      ],
+      allowedConstructIds: [
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_lexical_reflexive_v1",
+        "de_gc_introduced_verbletzt_clause_v1",
+        "de_gc_accusative_personal_pronouns_v1",
+        "de_gc_present_future_reference_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+      ],
+      situation: {
+        setting: "shared-flat-appointment-preparation-message",
+        participants: "resident-and-flatmate",
+        goal: "distinguish-deshalb-plus-v2-from-weil-plus-final-verb-and-recognize-ich-mich-in-the-reflexive-frame",
+        contextSignature: "appointment-connector-reflexive-introduction",
+      },
+      supportFading: {
+        entryLevel: 5,
+        exitLevel: 2,
+        entry:
+          "Der Termin ist morgen. Deshalb bereite ich mich heute vor. Ich bereite mich heute vor, weil der Termin morgen ist.",
+        exit: "Der Termin ist morgen. Deshalb bereite ich mich heute vor. Ich bereite mich heute vor, weil der Termin morgen ist.",
+        independentEvidenceByPacketId: "de_l18_c01_s08",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_connector_topology_contrast_v1",
+          stage: "introduction",
+          packetId: "de_l18_c01_s01",
+        },
+        {
+          constructId: "de_gc_lexical_reflexive_v1",
+          stage: "introduction",
+          packetId: "de_l18_c01_s02",
+        },
+      ],
+      chapterEvidencePacketIds: ["de_l18_c01_s03", "de_l18_c01_s04"],
+      checkpoint: {
+        packetId: "de_l18_c01_s08",
+        integratedConstructIds: [
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_lexical_reflexive_v1",
+          "de_gc_introduced_verbletzt_clause_v1",
+          "de_gc_accusative_personal_pronouns_v1",
+          "de_gc_present_future_reference_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l18_c01_deshalb_v1",
+            semanticIdentity:
+              "deshalb|link the stated reason to a following v2 clause",
+            lemmaOrExpression: "deshalb",
+            partOfSpeech: "discourse_marker",
+            lexicalKind: "DISCOURSE_MARKER",
+            nounPackage: null,
+            verbPackage: null,
+            senseGloss: "link the stated reason to a following V2 clause",
+            communicativeUse:
+              "Der Termin ist morgen. Deshalb bereite ich mich heute vor.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l18_ch01",
+            utilityProof: {
+              chapterOutcomeId: "de_l18_ch01",
+              checkpointPacketId: "de_l18_c01_s08",
+              integratedConstructIds: [
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_lexical_reflexive_v1",
+                "de_gc_introduced_verbletzt_clause_v1",
+                "de_gc_accusative_personal_pronouns_v1",
+                "de_gc_present_future_reference_v1",
+              ],
+              utilityRole: "discourse",
+              situationFacet: "goal",
+              facetValue:
+                "independently-distinguish-the-two-connector-topologies-and-identify-ich-mich-in-sich-vorbereiten",
+              necessityClass: "OUTCOME_UNACHIEVABLE",
+              plannedUsePacketIds: ["de_l18_c01_s08"],
+            },
+          },
+          {
+            id: "de_lex_plan_l18_c01_sich_vorbereiten_v1",
+            semanticIdentity:
+              "sich vorbereiten|prepare for a specified appointment in one lexical reflexive frame",
+            lemmaOrExpression: "sich vorbereiten",
+            partOfSpeech: "verb",
+            lexicalKind: "VERB_LEXEME",
+            nounPackage: null,
+            verbPackage: {
+              infinitive: "sich vorbereiten",
+              valencyFrame:
+                "lexically reflexive accusative frame selecting mich for ich and dich for du in the bounded preparation routine",
+              separability: "separable",
+              perfectAuxiliary: "haben",
+            },
+            senseGloss:
+              "prepare for a specified appointment in one lexical reflexive frame",
+            communicativeUse:
+              "Ich bereite mich heute vor. Du bereitest dich heute vor.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l18_ch01",
+            utilityProof: {
+              chapterOutcomeId: "de_l18_ch01",
+              checkpointPacketId: "de_l18_c01_s08",
+              integratedConstructIds: [
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_lexical_reflexive_v1",
+                "de_gc_introduced_verbletzt_clause_v1",
+                "de_gc_accusative_personal_pronouns_v1",
+                "de_gc_present_future_reference_v1",
+              ],
+              utilityRole: "action",
+              situationFacet: "goal",
+              facetValue:
+                "independently-distinguish-the-two-connector-topologies-and-identify-ich-mich-in-sich-vorbereiten",
+              necessityClass: "OUTCOME_UNACHIEVABLE",
+              plannedUsePacketIds: ["de_l18_c01_s08"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "neighbourhood-course-appointment-chat",
+          participants: "course-participant-and-friend",
+          goal: "independently-distinguish-the-two-connector-topologies-and-identify-ich-mich-in-sich-vorbereiten",
+          contextSignature:
+            "course-appointment-connector-reflexive-recognition-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l17_c06", "de_l17_c07"],
+        targetsFutureChapterIds: ["de_l18_c02"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l19_c07_s51",
+        },
+      },
+    },
+    {
+      id: "de_l18_c02",
+      ordinal: 2,
+      lessonOutcomeId: "de_l18_ch02",
+      lessonOutcome: "choose clause topology from connector behaviour",
+      packetIds: [
+        "de_l18_c02_s09",
+        "de_l18_c02_s10",
+        "de_l18_c02_s11",
+        "de_l18_c02_s12",
+        "de_l18_c02_s13",
+        "de_l18_c02_s14",
+        "de_l18_c02_s15",
+        "de_l18_c02_s16",
+      ],
+      allowedConstructIds: [
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_lexical_reflexive_v1",
+        "de_gc_introduced_verbletzt_clause_v1",
+        "de_gc_accusative_personal_pronouns_v1",
+        "de_gc_present_future_reference_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+      ],
+      situation: {
+        setting: "community-workshop-schedule-choice",
+        participants: "volunteer-and-peer",
+        goal: "choose-deshalb-v2-or-weil-final-verb-for-the-stated-schedule-relation",
+        contextSignature: "workshop-connector-topology-guidance",
+      },
+      supportFading: {
+        entryLevel: 5,
+        exitLevel: 2,
+        entry:
+          "Die Besprechung ist morgen. Deshalb bereite ich mich heute vor. Ich bereite mich heute vor, weil die Besprechung morgen ist.",
+        exit: "Die Besprechung ist morgen. Deshalb bereite ich mich heute vor. Ich bereite mich heute vor, weil die Besprechung morgen ist.",
+        independentEvidenceByPacketId: "de_l18_c02_s16",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_connector_topology_contrast_v1",
+          stage: "guided",
+          packetId: "de_l18_c02_s09",
+        },
+        {
+          constructId: "de_gc_lexical_reflexive_v1",
+          stage: "guided",
+          packetId: "de_l18_c02_s10",
+        },
+      ],
+      chapterEvidencePacketIds: ["de_l18_c02_s11", "de_l18_c02_s12"],
+      checkpoint: {
+        packetId: "de_l18_c02_s16",
+        integratedConstructIds: [
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_lexical_reflexive_v1",
+          "de_gc_introduced_verbletzt_clause_v1",
+          "de_gc_accusative_personal_pronouns_v1",
+          "de_gc_present_future_reference_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l18_c02_besprechung_v1",
+            semanticIdentity:
+              "besprechung|scheduled discussion treated as the appointment being prepared for",
+            lemmaOrExpression: "Besprechung",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "die",
+              singular: "Besprechung",
+              plural: "Besprechungen",
+            },
+            nounPackageIdentity: "die|besprechung|besprechungen",
+            verbPackage: null,
+            senseGloss:
+              "scheduled discussion treated as the appointment being prepared for",
+            communicativeUse:
+              "Die Besprechung ist morgen. Deshalb bereite ich mich heute vor. Ich bereite mich heute vor, weil die Besprechung morgen ist.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l18_ch02",
+            utilityProof: {
+              chapterOutcomeId: "de_l18_ch02",
+              checkpointPacketId: "de_l18_c02_s16",
+              integratedConstructIds: [
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_lexical_reflexive_v1",
+                "de_gc_introduced_verbletzt_clause_v1",
+                "de_gc_accusative_personal_pronouns_v1",
+                "de_gc_present_future_reference_v1",
+              ],
+              utilityRole: "scene_grounding",
+              situationFacet: "setting",
+              facetValue: "study-group-meeting-plan",
+              necessityClass: "SCENE_UNGROUNDED",
+              plannedUsePacketIds: ["de_l18_c02_s16"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "study-group-meeting-plan",
+          participants: "student-and-study-partner",
+          goal: "independently-choose-deshalb-v2-or-weil-final-verb-for-the-meeting-plan",
+          contextSignature: "study-meeting-connector-choice-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l17_c07", "de_l18_c01"],
+        targetsFutureChapterIds: ["de_l18_c03"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l19_c07_s52",
+        },
+      },
+    },
+    {
+      id: "de_l18_c03",
+      ordinal: 3,
+      lessonOutcomeId: "de_l18_ch03",
+      lessonOutcome: "recognise a lexically required reflexive frame",
+      packetIds: [
+        "de_l18_c03_s17",
+        "de_l18_c03_s18",
+        "de_l18_c03_s19",
+        "de_l18_c03_s20",
+        "de_l18_c03_s21",
+        "de_l18_c03_s22",
+        "de_l18_c03_s23",
+        "de_l18_c03_s24",
+      ],
+      allowedConstructIds: [
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_lexical_reflexive_v1",
+        "de_gc_introduced_verbletzt_clause_v1",
+        "de_gc_accusative_personal_pronouns_v1",
+        "de_gc_present_future_reference_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+      ],
+      situation: {
+        setting: "document-preparation-reminder",
+        participants: "resident-and-friend",
+        goal: "recognize-vorbereiten-as-lexically-reflexive-and-match-ich-to-mich-and-du-to-dich",
+        contextSignature: "preparation-frame-reflexive-retrieval",
+      },
+      supportFading: {
+        entryLevel: 4,
+        exitLevel: 1,
+        entry:
+          "Ich habe die Unterlagen. Ich bereite mich heute vor. Du bereitest dich heute vor.",
+        exit: "Ich habe die Unterlagen. Ich bereite mich heute vor. Du bereitest dich heute vor.",
+        independentEvidenceByPacketId: "de_l18_c03_s24",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_connector_topology_contrast_v1",
+          stage: "retrieval",
+          packetId: "de_l18_c03_s17",
+        },
+        {
+          constructId: "de_gc_lexical_reflexive_v1",
+          stage: "retrieval",
+          packetId: "de_l18_c03_s18",
+        },
+      ],
+      chapterEvidencePacketIds: ["de_l18_c03_s19", "de_l18_c03_s20"],
+      checkpoint: {
+        packetId: "de_l18_c03_s24",
+        integratedConstructIds: [
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_lexical_reflexive_v1",
+          "de_gc_introduced_verbletzt_clause_v1",
+          "de_gc_accusative_personal_pronouns_v1",
+          "de_gc_present_future_reference_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l18_c03_unterlage_v1",
+            semanticIdentity:
+              "unterlage|document used in preparation for the stated appointment",
+            lemmaOrExpression: "Unterlage",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "die",
+              singular: "Unterlage",
+              plural: "Unterlagen",
+            },
+            nounPackageIdentity: "die|unterlage|unterlagen",
+            verbPackage: null,
+            senseGloss:
+              "document used in preparation for the stated appointment",
+            communicativeUse:
+              "Ich habe die Unterlagen. Ich bereite mich heute vor. Du bereitest dich heute vor.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l18_ch03",
+            utilityProof: {
+              chapterOutcomeId: "de_l18_ch03",
+              checkpointPacketId: "de_l18_c03_s24",
+              integratedConstructIds: [
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_lexical_reflexive_v1",
+                "de_gc_introduced_verbletzt_clause_v1",
+                "de_gc_accusative_personal_pronouns_v1",
+                "de_gc_present_future_reference_v1",
+              ],
+              utilityRole: "scene_grounding",
+              situationFacet: "setting",
+              facetValue: "club-registration-preparation-chat",
+              necessityClass: "SCENE_UNGROUNDED",
+              plannedUsePacketIds: ["de_l18_c03_s24"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "club-registration-preparation-chat",
+          participants: "club-member-and-peer",
+          goal: "independently-recognize-the-lexical-reflexive-frame-and-both-informal-person-mappings",
+          contextSignature: "club-registration-reflexive-recognition-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l18_c01", "de_l18_c02"],
+        targetsFutureChapterIds: ["de_l18_c04"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l19_c07_s53",
+        },
+      },
+    },
+    {
+      id: "de_l18_c04",
+      ordinal: 4,
+      lessonOutcomeId: "de_l18_ch04",
+      lessonOutcome:
+        "use the person-compatible reflexive form in a familiar routine",
+      packetIds: [
+        "de_l18_c04_s25",
+        "de_l18_c04_s26",
+        "de_l18_c04_s27",
+        "de_l18_c04_s28",
+        "de_l18_c04_s29",
+        "de_l18_c04_s30",
+        "de_l18_c04_s31",
+        "de_l18_c04_s32",
+      ],
+      allowedConstructIds: [
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_lexical_reflexive_v1",
+        "de_gc_introduced_verbletzt_clause_v1",
+        "de_gc_accusative_personal_pronouns_v1",
+        "de_gc_present_future_reference_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+      ],
+      situation: {
+        setting: "shared-calendar-preparation-routine",
+        participants: "flatmate-and-flatmate",
+        goal: "use-ich-mich-and-du-dich-in-the-known-sich-vorbereiten-frame",
+        contextSignature: "calendar-reflexive-person-production",
+      },
+      supportFading: {
+        entryLevel: 4,
+        exitLevel: 1,
+        entry:
+          "Ich habe die Checkliste. Ich bereite mich heute vor. Du bereitest dich morgen vor.",
+        exit: "Ich habe die Checkliste. Ich bereite mich heute vor. Du bereitest dich morgen vor.",
+        independentEvidenceByPacketId: "de_l18_c04_s32",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_connector_topology_contrast_v1",
+          stage: "production",
+          packetId: "de_l18_c04_s25",
+        },
+        {
+          constructId: "de_gc_lexical_reflexive_v1",
+          stage: "production",
+          packetId: "de_l18_c04_s26",
+        },
+      ],
+      chapterEvidencePacketIds: ["de_l18_c04_s27", "de_l18_c04_s28"],
+      checkpoint: {
+        packetId: "de_l18_c04_s32",
+        integratedConstructIds: [
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_lexical_reflexive_v1",
+          "de_gc_introduced_verbletzt_clause_v1",
+          "de_gc_accusative_personal_pronouns_v1",
+          "de_gc_present_future_reference_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l18_c04_checkliste_v1",
+            semanticIdentity:
+              "checkliste|list used to organise appointment preparation",
+            lemmaOrExpression: "Checkliste",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "die",
+              singular: "Checkliste",
+              plural: "Checklisten",
+            },
+            nounPackageIdentity: "die|checkliste|checklisten",
+            verbPackage: null,
+            senseGloss: "list used to organise appointment preparation",
+            communicativeUse:
+              "Ich habe die Checkliste. Ich bereite mich heute vor. Du bereitest dich morgen vor.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l18_ch04",
+            utilityProof: {
+              chapterOutcomeId: "de_l18_ch04",
+              checkpointPacketId: "de_l18_c04_s32",
+              integratedConstructIds: [
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_lexical_reflexive_v1",
+                "de_gc_introduced_verbletzt_clause_v1",
+                "de_gc_accusative_personal_pronouns_v1",
+                "de_gc_present_future_reference_v1",
+              ],
+              utilityRole: "scene_grounding",
+              situationFacet: "setting",
+              facetValue: "language-course-preparation-plan",
+              necessityClass: "SCENE_UNGROUNDED",
+              plannedUsePacketIds: ["de_l18_c04_s32"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "language-course-preparation-plan",
+          participants: "course-partner-and-course-partner",
+          goal: "independently-use-the-correct-informal-reflexive-form-for-ich-and-du",
+          contextSignature: "course-preparation-person-compatible-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l18_c02", "de_l18_c03"],
+        targetsFutureChapterIds: ["de_l18_c05"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l19_c07_s54",
+        },
+      },
+    },
+    {
+      id: "de_l18_c05",
+      ordinal: 5,
+      lessonOutcomeId: "de_l18_ch05",
+      lessonOutcome:
+        "explain a self-organisation choice with a known connector",
+      packetIds: [
+        "de_l18_c05_s33",
+        "de_l18_c05_s34",
+        "de_l18_c05_s35",
+        "de_l18_c05_s36",
+        "de_l18_c05_s37",
+        "de_l18_c05_s38",
+        "de_l18_c05_s39",
+        "de_l18_c05_s40",
+      ],
+      allowedConstructIds: [
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_lexical_reflexive_v1",
+        "de_gc_introduced_verbletzt_clause_v1",
+        "de_gc_accusative_personal_pronouns_v1",
+        "de_gc_present_future_reference_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+      ],
+      situation: {
+        setting: "early-appointment-preparation-choice",
+        participants: "resident-and-friend",
+        goal: "explain-the-early-appointment-preparation-choice-with-deshalb-and-correct-v2",
+        contextSignature: "early-appointment-deshalb-integration",
+      },
+      supportFading: {
+        entryLevel: 3,
+        exitLevel: 1,
+        entry: "Der Termin ist früh. Deshalb bereite ich mich heute vor.",
+        exit: "Der Termin ist früh. Deshalb bereite ich mich heute vor.",
+        independentEvidenceByPacketId: "de_l18_c05_s40",
+      },
+      lifecycleAnchors: [],
+      chapterEvidencePacketIds: ["de_l18_c05_s35", "de_l18_c05_s36"],
+      checkpoint: {
+        packetId: "de_l18_c05_s40",
+        integratedConstructIds: [
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_lexical_reflexive_v1",
+          "de_gc_introduced_verbletzt_clause_v1",
+          "de_gc_accusative_personal_pronouns_v1",
+          "de_gc_present_future_reference_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l18_c05_fruh_v1",
+            semanticIdentity: "fruh|at an early time in the day",
+            lemmaOrExpression: "früh",
+            partOfSpeech: "adverb",
+            lexicalKind: "ADVERB_LEXEME",
+            nounPackage: null,
+            verbPackage: null,
+            senseGloss: "at an early time in the day",
+            communicativeUse:
+              "Der Termin ist früh. Deshalb bereite ich mich heute vor.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l18_ch05",
+            utilityProof: {
+              chapterOutcomeId: "de_l18_ch05",
+              checkpointPacketId: "de_l18_c05_s40",
+              integratedConstructIds: [
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_lexical_reflexive_v1",
+                "de_gc_introduced_verbletzt_clause_v1",
+                "de_gc_accusative_personal_pronouns_v1",
+                "de_gc_present_future_reference_v1",
+              ],
+              utilityRole: "quality",
+              situationFacet: "goal",
+              facetValue:
+                "independently-explain-the-preparation-choice-with-deshalb-and-v2",
+              necessityClass: "OUTCOME_UNACHIEVABLE",
+              plannedUsePacketIds: ["de_l18_c05_s40"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "morning-community-meeting-plan",
+          participants: "volunteer-and-peer",
+          goal: "independently-explain-the-preparation-choice-with-deshalb-and-v2",
+          contextSignature: "community-meeting-reason-choice-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l18_c03", "de_l18_c04"],
+        targetsFutureChapterIds: ["de_l18_c06"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l19_c07_s55",
+        },
+      },
+    },
+    {
+      id: "de_l18_c06",
+      ordinal: 6,
+      lessonOutcomeId: "de_l18_ch06",
+      lessonOutcome: "repair connector topology or lexical reflexive choice",
+      packetIds: [
+        "de_l18_c06_s41",
+        "de_l18_c06_s42",
+        "de_l18_c06_s43",
+        "de_l18_c06_s44",
+        "de_l18_c06_s45",
+        "de_l18_c06_s46",
+        "de_l18_c06_s47",
+        "de_l18_c06_s48",
+      ],
+      allowedConstructIds: [
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_lexical_reflexive_v1",
+        "de_gc_introduced_verbletzt_clause_v1",
+        "de_gc_accusative_personal_pronouns_v1",
+        "de_gc_present_future_reference_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+      ],
+      situation: {
+        setting: "appointment-message-quality-check",
+        participants: "resident-and-language-support-advisor",
+        goal: "repair-one-deshalb-v2-error-and-one-ich-sich-reflexive-error",
+        contextSignature: "connector-and-reflexive-dual-repair",
+      },
+      supportFading: {
+        entryLevel: 3,
+        exitLevel: 1,
+        entry:
+          "[1] Der Termin ist morgen. Deshalb ich bereite mich heute vor. → Der Termin ist morgen. Deshalb bereite ich mich heute vor. [2] Ich bereite sich heute vor. → Ich bereite mich heute vor. Ich korrigiere den Terminplan.",
+        exit: "[1] Der Termin ist morgen. Deshalb ich bereite mich heute vor. → Der Termin ist morgen. Deshalb bereite ich mich heute vor. [2] Ich bereite sich heute vor. → Ich bereite mich heute vor. Ich korrigiere den Terminplan.",
+        independentEvidenceByPacketId: "de_l18_c06_s48",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_connector_topology_contrast_v1",
+          stage: "transfer",
+          packetId: "de_l18_c06_s41",
+        },
+        {
+          constructId: "de_gc_lexical_reflexive_v1",
+          stage: "transfer",
+          packetId: "de_l18_c06_s42",
+        },
+      ],
+      chapterEvidencePacketIds: ["de_l18_c06_s43", "de_l18_c06_s44"],
+      checkpoint: {
+        packetId: "de_l18_c06_s48",
+        integratedConstructIds: [
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_lexical_reflexive_v1",
+          "de_gc_introduced_verbletzt_clause_v1",
+          "de_gc_accusative_personal_pronouns_v1",
+          "de_gc_present_future_reference_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l18_c06_terminplan_v1",
+            semanticIdentity:
+              "terminplan|appointment plan whose connector and reflexive wording is under repair",
+            lemmaOrExpression: "Terminplan",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "der",
+              singular: "Terminplan",
+              plural: "Terminpläne",
+            },
+            nounPackageIdentity: "der|terminplan|terminplane",
+            verbPackage: null,
+            senseGloss:
+              "appointment plan whose connector and reflexive wording is under repair",
+            communicativeUse: "Ich korrigiere den Terminplan.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l18_ch06",
+            utilityProof: {
+              chapterOutcomeId: "de_l18_ch06",
+              checkpointPacketId: "de_l18_c06_s48",
+              integratedConstructIds: [
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_lexical_reflexive_v1",
+                "de_gc_introduced_verbletzt_clause_v1",
+                "de_gc_accusative_personal_pronouns_v1",
+                "de_gc_present_future_reference_v1",
+              ],
+              utilityRole: "repair",
+              situationFacet: "goal",
+              facetValue:
+                "independently-repair-the-deshalb-v2-order-and-the-ich-mich-reflexive-choice",
+              necessityClass: "REPAIR_UNAVAILABLE",
+              plannedUsePacketIds: ["de_l18_c06_s48"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "peer-schedule-message-review",
+          participants: "learner-and-peer-reviewer",
+          goal: "independently-repair-the-deshalb-v2-order-and-the-ich-mich-reflexive-choice",
+          contextSignature: "peer-appointment-dual-repair-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l18_c04", "de_l18_c05"],
+        targetsFutureChapterIds: ["de_l18_c07"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l19_c07_s56",
+        },
+      },
+    },
+    {
+      id: "de_l18_c07",
+      ordinal: 7,
+      lessonOutcomeId: "de_l18_ch07",
+      lessonOutcome:
+        "transfer reasoning and self-organisation to a changed appointment",
+      packetIds: [
+        "de_l18_c07_s49",
+        "de_l18_c07_s50",
+        "de_l18_c07_s51",
+        "de_l18_c07_s52",
+        "de_l18_c07_s53",
+        "de_l18_c07_s54",
+        "de_l18_c07_s55",
+        "de_l18_c07_s56",
+      ],
+      allowedConstructIds: [
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_lexical_reflexive_v1",
+        "de_gc_present_future_reference_v1",
+        "de_gc_introduced_verbletzt_clause_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+      ],
+      situation: {
+        setting: "changed-consultation-appointment-plan",
+        participants: "resident-and-friend",
+        goal: "transfer-future-appointment-connector-contrast-and-ich-mich-preparation-to-a-changed-consultation",
+        contextSignature: "consultation-appointment-final-transfer",
+      },
+      supportFading: {
+        entryLevel: 2,
+        exitLevel: 0,
+        entry:
+          "Morgen ist der Beratungstermin. Deshalb bereite ich mich heute vor. Ich bereite mich heute vor, weil der Beratungstermin morgen ist.",
+        exit: "Morgen ist der Beratungstermin. Deshalb bereite ich mich heute vor. Ich bereite mich heute vor, weil der Beratungstermin morgen ist.",
+        independentEvidenceByPacketId: "de_l18_c07_s56",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_present_future_reference_v1",
+          stage: "delayed",
+          packetId: "de_l18_c07_s49",
+        },
+        {
+          constructId: "de_gc_introduced_verbletzt_clause_v1",
+          stage: "delayed",
+          packetId: "de_l18_c07_s50",
+        },
+      ],
+      chapterEvidencePacketIds: [
+        "de_l18_c07_s51",
+        "de_l18_c07_s52",
+        "de_l18_c07_s53",
+        "de_l18_c07_s54",
+        "de_l18_c07_s55",
+        "de_l18_c07_s56",
+      ],
+      checkpoint: {
+        packetId: "de_l18_c07_s56",
+        integratedConstructIds: [
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_lexical_reflexive_v1",
+          "de_gc_present_future_reference_v1",
+          "de_gc_introduced_verbletzt_clause_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l18_c07_beratungstermin_v1",
+            semanticIdentity:
+              "beratungstermin|consultation appointment used for the changed preparation plan",
+            lemmaOrExpression: "Beratungstermin",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "der",
+              singular: "Beratungstermin",
+              plural: "Beratungstermine",
+            },
+            nounPackageIdentity: "der|beratungstermin|beratungstermine",
+            verbPackage: null,
+            senseGloss:
+              "consultation appointment used for the changed preparation plan",
+            communicativeUse:
+              "Morgen ist der Beratungstermin. Deshalb bereite ich mich heute vor. Ich bereite mich heute vor, weil der Beratungstermin morgen ist.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l18_ch07",
+            utilityProof: {
+              chapterOutcomeId: "de_l18_ch07",
+              checkpointPacketId: "de_l18_c07_s56",
+              integratedConstructIds: [
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_lexical_reflexive_v1",
+                "de_gc_present_future_reference_v1",
+                "de_gc_introduced_verbletzt_clause_v1",
+              ],
+              utilityRole: "transfer",
+              situationFacet: "goal",
+              facetValue:
+                "independently-transfer-future-reference-deshalb-v2-weil-final-verb-and-ich-mich-preparation",
+              necessityClass: "TRANSFER_UNAVAILABLE",
+              plannedUsePacketIds: ["de_l18_c07_s56"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "neighbourhood-advice-appointment-call",
+          participants: "resident-and-neighbour",
+          goal: "independently-transfer-future-reference-deshalb-v2-weil-final-verb-and-ich-mich-preparation",
+          contextSignature: "neighbourhood-advice-changed-appointment-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l18_c05", "de_l18_c06"],
+        targetsFutureChapterIds: ["de_l19_c01"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l19_c07_s55",
+        },
+      },
+    },
+  ],
+} as const;
+function validateL18SemanticContract(raw: R, plan: Boundary): void {
+  const l18 = (raw.lessons as R[]).find(
+    (lesson) => lesson.lessonId === "de_l18",
+  );
+  if (!l18) throw new Error("l18_semantic_contract_invalid:sets");
+  const expected = L18_CONTRACT as unknown as R,
+    chapters = l18.chapters as R[],
+    expectedChapters = expected.chapters as R[],
+    boundary = l18.grammarBoundary as R,
+    expectedBoundary = expected.grammarBoundary as R;
+  if (boundary.noExpansion !== expectedBoundary.noExpansion)
+    throw new Error("l18_semantic_contract_invalid:no_expansion");
+  if (
+    JSON.stringify(plan.introducedConstructIds) !==
+      JSON.stringify(
+        (expectedBoundary.allowedConstructIds as string[]).slice(0, 2),
+      ) ||
+    JSON.stringify(plan.extendedConstructIds) !==
+      JSON.stringify(
+        (expectedBoundary.allowedConstructIds as string[]).slice(2, 4),
+      ) ||
+    JSON.stringify(plan.reviewedConstructIds) !==
+      JSON.stringify(
+        (expectedBoundary.allowedConstructIds as string[]).slice(4),
+      ) ||
+    JSON.stringify(plan.prohibitedConstructIds) !==
+      JSON.stringify(expectedBoundary.prohibitedConstructIds) ||
+    JSON.stringify(boundary.allowedConstructIds) !==
+      JSON.stringify(expectedBoundary.allowedConstructIds) ||
+    JSON.stringify(boundary.prohibitedConstructIds) !==
+      JSON.stringify(expectedBoundary.prohibitedConstructIds) ||
+    JSON.stringify((plan.session56Final as R).requiredConstructIds) !==
+      JSON.stringify(
+        (expectedChapters[6].checkpoint as R).integratedConstructIds,
+      ) ||
+    chapters.length !== 7
+  )
+    throw new Error("l18_semantic_contract_invalid:sets");
+  const incoming = [51, 52, 53, 54, 55, 56, 55].map((n) => `de_l18_c07_s${n}`),
+    l17 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l17",
+    ) as R;
+  if (
+    !l17 ||
+    JSON.stringify(
+      (l17.chapters as R[]).map(
+        (chapter) =>
+          ((chapter.recallSchedule as R).futureDelayedProbe as R).packetId,
+      ),
+    ) !== JSON.stringify(incoming)
+  )
+    throw new Error("l17_l18_inverse_provenance_invalid");
+  const c06 = chapters[5].supportFading as R,
+    c07 = chapters[6].supportFading as R,
+    expectedC06 = expectedChapters[5].supportFading as R,
+    expectedC07 = expectedChapters[6].supportFading as R;
+  if (
+    c06.entry !== expectedC06.entry ||
+    c06.exit !== expectedC06.exit ||
+    (String(c06.entry).match(/→/gu) ?? []).length !== 2
+  )
+    throw new Error("l18_c06_repair_items");
+  if (c07.entry !== expectedC07.entry || c07.exit !== expectedC07.exit)
+    throw new Error("l18_c07_final_transfer");
+  const surface = JSON.stringify(l18)
+    .replaceAll(String(expectedBoundary.noExpansion), "")
+    .replaceAll(String(expectedC06.entry), "")
+    .replaceAll("de_gc_reciprocal_reference_v1", "");
+  if (/Sie (?:bereiten|bereitet) sich|formal Sie.{0,30}sich/iu.test(surface))
+    throw new Error("l18_formal_sie_sich_leak");
+  if (
+    /\bwir\b.{0,20}\buns\b|\bihr\b.{0,20}\beuch\b|\bsie\b.{0,20}\bsich\b|einander|reciprocal|free reflexive|optional reflexive/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l18_reciprocal_or_free_reflexive_leak");
+  if (
+    /\bdenn\b|\bdarum\b|\bdeswegen\b|\bobwohl\b|\bwenn\b|\bdass\b|additional introducer|alternative connector|L19 grammar/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l18_connector_expansion_leak");
+  const topologySurface = chapters
+    .map((chapter) => String((chapter.supportFading as R).entry))
+    .join(" ");
+  if (
+    !topologySurface.includes("Deshalb bereite ich mich heute vor.") ||
+    !topologySurface.includes("weil der Termin morgen ist") ||
+    /Deshalb ich bereite/iu.test(
+      topologySurface.replaceAll(String(expectedC06.entry), ""),
+    )
+  )
+    throw new Error("l18_connector_topology_contract_invalid");
+  if (
+    !topologySurface.includes("Ich bereite mich heute vor.") ||
+    !topologySurface.includes("Du bereitest dich heute vor.") ||
+    /Ich bereite dich|Du bereitest mich/iu.test(surface)
+  )
+    throw new Error("l18_lexical_reflexive_contract_invalid");
+  const ids = new Set<string>(),
+    semantics = new Set<string>();
+  chapters.forEach((chapter, index) => {
+    const expectedChapter = expectedChapters[index],
+      cp = chapter.checkpoint as R,
+      expectedCp = expectedChapter.checkpoint as R,
+      recall = chapter.recallSchedule as R,
+      expectedRecall = expectedChapter.recallSchedule as R,
+      support = chapter.supportFading as R,
+      expectedSupport = expectedChapter.supportFading as R;
+    if (
+      chapter.lessonOutcome !== expectedChapter.lessonOutcome ||
+      JSON.stringify(chapter.allowedConstructIds) !==
+        JSON.stringify(expectedChapter.allowedConstructIds) ||
+      JSON.stringify(cp.integratedConstructIds) !==
+        JSON.stringify(expectedCp.integratedConstructIds) ||
+      JSON.stringify(chapter.prohibitedConstructIds) !==
+        JSON.stringify(expectedChapter.prohibitedConstructIds)
+    )
+      throw new Error("l18_semantic_contract_invalid:sets");
+    if (
+      JSON.stringify(chapter.lifecycleAnchors) !==
+      JSON.stringify(expectedChapter.lifecycleAnchors)
+    )
+      throw new Error("l18_semantic_contract_invalid:anchors");
+    if (
+      JSON.stringify([chapter.situation, cp.newSituation]) !==
+      JSON.stringify([expectedChapter.situation, expectedCp.newSituation])
+    )
+      throw new Error("l18_semantic_contract_invalid:situations");
+    if (JSON.stringify(support) !== JSON.stringify(expectedSupport))
+      throw new Error("l18_semantic_contract_invalid:support_fading");
+    if (
+      JSON.stringify(chapter.chapterEvidencePacketIds) !==
+      JSON.stringify(expectedChapter.chapterEvidencePacketIds)
+    )
+      throw new Error("l18_semantic_contract_invalid:evidence");
+    if (JSON.stringify(recall) !== JSON.stringify(expectedRecall))
+      throw new Error("l18_recall_contract_invalid");
+    const senses = cp.plannedNewLexicalSenses as R[];
+    senses.forEach((sense) => {
+      if (
+        ids.has(String(sense.id)) ||
+        semantics.has(String(sense.semanticIdentity))
+      )
+        throw new Error("l18_semantic_contract_invalid:lexical_packages");
+      ids.add(String(sense.id));
+      semantics.add(String(sense.semanticIdentity));
+    });
+    if (
+      JSON.stringify(senses) !==
+      JSON.stringify(expectedCp.plannedNewLexicalSenses)
+    )
+      throw new Error("l18_semantic_contract_invalid:lexical_packages");
+  });
+}
+
 function validate(raw: unknown): {
   lessons: number;
   chapters: number;
@@ -6221,6 +7272,12 @@ function validate(raw: unknown): {
     (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l17")
   )
     validateL17SemanticContract(raw, l17Plan);
+  const l18Plan = source.get("de_l18");
+  if (
+    l18Plan &&
+    (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l18")
+  )
+    validateL18SemanticContract(raw, l18Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -6955,6 +8012,38 @@ function expectL17PlanExact(mut: (plan: R) => void, message: string): void {
   let thrown: unknown;
   try {
     validateL17SemanticContract(raw, plan as Boundary);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+function expectL18Exact(mut: (raw: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: Boundary[] };
+  const plan = lessonRegistry.lessons.find(
+    (lesson) => lesson.id === "de_l18",
+  ) as Boundary;
+  mut(raw);
+  let thrown: unknown;
+  try {
+    validateL18SemanticContract(raw, plan);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+function expectL18PlanExact(mut: (plan: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: R[] };
+  const plan = clone(
+    lessonRegistry.lessons.find((lesson) => lesson.id === "de_l18") as R,
+  );
+  mut(plan);
+  let thrown: unknown;
+  try {
+    validateL18SemanticContract(raw, plan as Boundary);
   } catch (error) {
     thrown = error;
   }
@@ -9160,6 +10249,7 @@ function fixtures(): void {
     [packetIds[0], packetIds[1]] = [packetIds[1], packetIds[0]];
   }, /packet_identity_invalid/u);
   const prematureL17 = clone(json(FILE)) as R;
+  prematureL17.lessons = (prematureL17.lessons as R[]).slice(0, 17);
   assert.throws(() => {
     const result = validate(prematureL17);
     if (
@@ -9181,6 +10271,103 @@ function fixtures(): void {
     )
       throw new Error("scope_violation_l17_only");
   }, /scope_violation_l17_only/u);
+
+  const l18 = (raw: R) =>
+    (raw.lessons as R[]).find((lesson) => lesson.lessonId === "de_l18") as R;
+  expectL18PlanExact((plan) => {
+    (plan.introducedConstructIds as string[]).reverse();
+  }, "l18_semantic_contract_invalid:sets");
+  expectL18Exact((raw) => {
+    (l18(raw).grammarBoundary as R).noExpansion =
+      "Teach a free reflexive paradigm and alternative connectors.";
+  }, "l18_semantic_contract_invalid:no_expansion");
+  expectL18Exact((raw) => {
+    (l18(raw).chapters as R[])[0].lifecycleAnchors = [];
+  }, "l18_semantic_contract_invalid:anchors");
+  expectL18Exact((raw) => {
+    ((l18(raw).chapters as R[])[1].checkpoint as R).newSituation = (
+      L18_CONTRACT.chapters[0].checkpoint as unknown as R
+    ).newSituation;
+  }, "l18_semantic_contract_invalid:situations");
+  expectL18Exact((raw) => {
+    ((l18(raw).chapters as R[])[0].supportFading as R).exit =
+      "Der Termin ist morgen.";
+  }, "l18_semantic_contract_invalid:support_fading");
+  expectL18Exact((raw) => {
+    ((l18(raw).chapters as R[])[2].chapterEvidencePacketIds as string[]).pop();
+  }, "l18_semantic_contract_invalid:evidence");
+  expectL18Exact((raw) => {
+    (
+      (l18(raw).chapters as R[])[3].recallSchedule as R
+    ).targetsFutureChapterIds = ["de_l18_c07"];
+  }, "l18_recall_contract_invalid");
+  expectL18Exact((raw) => {
+    const l17 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l17",
+    ) as R;
+    (
+      ((l17.chapters as R[])[0].recallSchedule as R).futureDelayedProbe as R
+    ).packetId = "de_l18_c07_s52";
+  }, "l17_l18_inverse_provenance_invalid");
+  expectL18Exact((raw) => {
+    const sense = (
+      ((l18(raw).chapters as R[])[0].checkpoint as R)
+        .plannedNewLexicalSenses as R[]
+    )[1];
+    (sense.verbPackage as R).valencyFrame = "generic preparation frame";
+  }, "l18_semantic_contract_invalid:lexical_packages");
+  expectL18Exact((raw) => {
+    ((l18(raw).chapters as R[])[0].supportFading as R).entry =
+      "Der Termin ist morgen. Deshalb ich bereite mich heute vor.";
+  }, "l18_connector_topology_contract_invalid");
+  expectL18Exact((raw) => {
+    l18(raw).lexicalReflexiveProbe =
+      "Ich bereite dich heute vor. Du bereitest mich heute vor.";
+  }, "l18_lexical_reflexive_contract_invalid");
+  expectL18Exact((raw) => {
+    l18(raw).formalReflexiveProbe = "Sie bereiten sich heute vor.";
+  }, "l18_formal_sie_sich_leak");
+  expectL18Exact((raw) => {
+    l18(raw).reciprocalProbe = "Wir bereiten uns einander vor.";
+  }, "l18_reciprocal_or_free_reflexive_leak");
+  expectL18Exact((raw) => {
+    l18(raw).connectorExpansionProbe =
+      "Teach denn, darum, deswegen, obwohl, wenn, dass and L19 grammar.";
+  }, "l18_connector_expansion_leak");
+  expectL18Exact((raw) => {
+    ((l18(raw).chapters as R[])[5].supportFading as R).entry =
+      "Ich bereite sich heute vor. → Ich bereite mich heute vor.";
+  }, "l18_c06_repair_items");
+  expectL18Exact((raw) => {
+    ((l18(raw).chapters as R[])[6].supportFading as R).entry =
+      "Morgen ist der Beratungstermin. Deshalb bereite ich mich heute vor.";
+  }, "l18_c07_final_transfer");
+  expect((raw) => {
+    const packetIds = (l18(raw).chapters as R[])[0].packetIds as string[];
+    [packetIds[0], packetIds[1]] = [packetIds[1], packetIds[0]];
+  }, /packet_identity_invalid/u);
+  const prematureL18 = clone(json(FILE)) as R;
+  assert.throws(() => {
+    const result = validate(prematureL18);
+    if (
+      result.buildStatus !== "COMPLETE_TASK5" ||
+      result.lessons !== 32 ||
+      result.chapters !== 224
+    )
+      throw new Error(
+        `full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;${result.lessons}/32 lessons;${result.chapters}/224 chapters`,
+      );
+  }, /full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;18\/32 lessons;126\/224 chapters/u);
+  const l18ScopeMutation = clone(json(FILE)) as R;
+  (l18ScopeMutation.lessons as R[]).push({ lessonId: "de_l19" });
+  assert.throws(() => {
+    if (
+      (l18ScopeMutation.lessons as R[]).some(
+        (lesson) => lesson.lessonId === "de_l19",
+      )
+    )
+      throw new Error("scope_violation_l18_only");
+  }, /scope_violation_l18_only/u);
 
   const l2Boundary: Boundary = {
     id: "de_l02",

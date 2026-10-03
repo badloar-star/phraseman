@@ -20781,3 +20781,83 @@ S49/S50, repeat recenter 28/28 and fresh exact-spec plus semantic/adversarial
 reviews before L12. Task 6, exact packets, blueprint fingerprint/owner map,
 learner-facing RU+UK authoring, release and the German session mockup remain
 HOLD.
+
+### 2026-10-03 — German Learning V2 Task 5 progress: L11 closed
+
+Task 5 is now 11/32 lessons: `de_l01` through `de_l11`, 77/224 chapters and
+616/1792 exact packet identities. A fresh PREAUTHOR guardian was bound to HEAD
+`03965dee98b4a6e785db54de1963fccda56f6970`; its message-only receipt SHA-256
+was `74EABE90B44827094C0C4D4E3FCA85EE5707FC56C1CB6A5670FCF74AB9533F73`.
+One writer materialized only the seven L11 chapters and exact
+`de_l11_c01_s01..de_l11_c07_s56` identities. No previous judge verdict was
+reused after a repair.
+
+L11 introduces static proximity through `bei + Dativ` and a bounded dative
+personal-pronoun reference chain inside the established `helfen` frame. The
+productive model is always adjacent and unambiguous: `Ich helfe dem Besucher.
+Ich helfe ihm.` The lesson does not teach an isolated pronoun table,
+movement-equals-Akkusativ, `in/an/auf/neben`, Wechselpräposition tables or a
+two-object Dat+Akk frame. L10 temporal and recipient constructs are delayed at
+L11 C07 S49/S50. Exact L10→L11 and L11→L12 inverse provenance retains the
+dual S55 source. The final C07 subset is ordered exactly as static location,
+dative pronoun, temporal preposition and dative recipient.
+
+Independent review rejected several candidates before closure. The exact-spec
+judge first proved that C07 construct order, chapter evidence arrays and
+lexical planned-use arrays were fail-open. The gate now owns their exact order
+and membership and includes hostile mutation fixtures. The semantic judge then
+rejected marked productive `bei dem`, an attachment-heavy C07 final and a
+false `Lageplan` utility proof. Neutral models now use `beim`; C07 requires
+`Für den Vormittag ist die Servicestelle beim Eingang.` followed by the exact
+adjacent `helfen` chain; and C06 genuinely repairs `Der Lageplan ist bei den
+Infostand.` to `Der Lageplan ist beim Infostand.` before restoring the missing
+antecedent immediately before `ihm`.
+
+Final review also caught a mismatch against the guardian proof and a
+lesson-level fail-open surface. C01 now uses the exact approved `Die Garderobe
+ist beim Ausgang.` on every proof surface, while C07 intentionally retains
+`beim Eingang`. L11 `grammarBoundary.noExpansion` is now exact and a hostile
+replacement that permits movement, Akkusativ or `in/an/auf/neben` fails
+closed. Dedicated fixtures also reject the old C01 location, uncontracted
+required models, the old C06 `Toilette` repair, a missing antecedent, the old
+C07 wording and prohibited two-object transfer.
+
+Fresh final exact-spec review PASSed with P0/P1/P2 = 0. A separate fresh
+German semantic/adversarial red-team also PASSed with P0/P1/P2 = 0. It
+confirmed that C01/C03/C05/C06/C07 use target-native contractions, C05
+distinguishes preposition-governed location from the verb-selected recipient,
+C06 repair is truthful, C07 independently proves all four required operations,
+and all seven lexical owners are useful rather than filler. Exact word-first
+placement remains correctly deferred to Tasks 6/7.
+
+Fresh deterministic evidence on the final bytes: L10 PASS 7/56; L11 PASS
+7/56; prefix 11 PASS 77 chapters / 616 packet IDs; Task 2 schema PASS; Task 3
+grammar graph PASS (48 constructs / 89 edges / 18 branches); Task 4 lesson
+boundaries PASS (32 lessons / 224 outcomes / 32 finals / 48 constructs); owner
+decisions PASS; research authority PASS (52 claims); recenter PASS 28/28;
+focused Prettier and `git diff --check` PASS. The unscoped Task 5 sentinel
+intentionally remains RED with exact
+`INCREMENTAL_TASK5;11/32 lessons; 77/224 chapters`.
+
+Final hashes: chapter blueprint
+`F0A20E439BE9DD2C010B0E3797F2F516777DDAD208660DB3E73D7E39CA276A37`;
+chapter gate
+`31369035A21E8CA91CCF5692B07EF371AA59EB12944303031F6CE885C96AF20D`;
+Task 4 lesson blueprint
+`79B7686911040987C3AE0FAD416D72960BB823E7CC21F76F4B604063094737DE`;
+German requirement manifest
+`FBB14A88961D1A72D665A044F7E31E318132FD16122540430935EE0A9E24F5BC`.
+No English, Daily Phrase, learner-facing German session, release or mockup file
+was edited by the L11 slice; no deploy or publish occurred.
+
+Next exact task: obtain a new content-addressed PREAUTHOR guardian for
+`de_l12`, reread the current Codex/factory instructions, then materialize only
+its seven chapters and exact `de_l12_c01_s01..de_l12_c07_s56` identities.
+L12 introduces one verified two-object recipient/item contrast and one bounded
+Wechselpreposition relation contrast; it must not select case by word order or
+teach an undifferentiated two-case preposition table. Preserve the exact Task 4
+boundary and ordered S56 subset, own L11 delayed location/pronoun anchors at
+L12 C07 S49/S50, and repeat recenter 28/28 plus fresh exact-spec and
+semantic/adversarial reviews before L13. Task 6, exact learner packets, full
+blueprint fingerprint/owner map, learner-facing RU+UK authoring, release and
+the German session mockup remain HOLD.

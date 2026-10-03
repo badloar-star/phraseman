@@ -1142,6 +1142,728 @@ function validateL10SemanticContract(raw: R, plan: Boundary): void {
     throw new Error("l10_semantic_contract_invalid:c07_transfer_or_provenance");
 }
 
+const L11_LOCATION = "de_gc_dative_location_frames_v1";
+const L11_DATIVE_PRONOUN = "de_gc_dative_personal_pronouns_v1";
+const L11_RECIPIENT = "de_gc_dative_recipient_frames_v1";
+const L11_REFERENCE = "de_gc_pronoun_reference_chain_v1";
+const L11_LOCAL = "de_gc_local_preposition_governed_case_v1";
+const L11_TEMPORAL = "de_gc_temporal_preposition_governed_case_v1";
+const L11_INTRODUCED = [L11_LOCATION, L11_DATIVE_PRONOUN] as const;
+const L11_EXTENDED = [L11_RECIPIENT, L11_REFERENCE] as const;
+const L11_REVIEWED = [L11_LOCAL, L11_TEMPORAL] as const;
+const L11_PROHIBITED = [
+  "de_gc_two_object_case_contrast_v1",
+  "de_gc_wechselpreposition_relation_contrast_v1",
+] as const;
+const L11_ALLOWED = [
+  ...L11_INTRODUCED,
+  ...L11_EXTENDED,
+  ...L11_REVIEWED,
+] as const;
+const L11_FINAL_REQUIRED = [
+  L11_LOCATION,
+  L11_DATIVE_PRONOUN,
+  L11_TEMPORAL,
+  L11_RECIPIENT,
+] as const;
+const L11_HELP_VALENCY =
+  "helper-action frame selecting one explicit dative noun phrase and no accusative transferred entity";
+const L11_PRONOUN_CHAIN = "Ich helfe dem Besucher. Ich helfe ihm.";
+const L11_C01_GUARDIAN_LOCATION_MODEL = "Die Garderobe ist beim Ausgang.";
+const L11_C06_WRONG_LOCATION_MODEL = "Der Lageplan ist bei den Infostand.";
+const L11_C06_CORRECT_LOCATION_MODEL = "Der Lageplan ist beim Infostand.";
+const L11_C07_FINAL_LOCATION_TIME_MODEL =
+  "Für den Vormittag ist die Servicestelle beim Eingang.";
+const L11_NO_EXPANSION =
+  "Keep only the exact static-proximity relation bei plus Dativ and the adjacent Ich helfe dem Besucher. Ich helfe ihm. chain inside the established helfen frame; do not expand beyond the approved lesson and final construct sets.";
+const L11_LEXICAL_IDS_BY_CHAPTER = [
+  ["de_lex_plan_l11_c01_garderobe_v1", "de_lex_plan_l11_c01_besucher_v1"],
+  ["de_lex_plan_l11_c02_infostand_v1"],
+  ["de_lex_plan_l11_c03_toilette_v1"],
+  ["de_lex_plan_l11_c04_treffpunkt_v1"],
+  ["de_lex_plan_l11_c05_sanitaetsraum_v1"],
+  ["de_lex_plan_l11_c06_lageplan_v1"],
+  ["de_lex_plan_l11_c07_servicestelle_v1"],
+] as const;
+const L11_SUPPORT_LEVELS = [
+  [5, 2],
+  [5, 2],
+  [4, 1],
+  [4, 1],
+  [3, 1],
+  [3, 1],
+  [2, 0],
+] as const;
+const L11_EVIDENCE_BY_CHAPTER = [
+  ["de_l11_c01_s03", "de_l11_c01_s04"],
+  ["de_l11_c02_s11", "de_l11_c02_s12"],
+  ["de_l11_c03_s19", "de_l11_c03_s20"],
+  ["de_l11_c04_s27", "de_l11_c04_s28"],
+  ["de_l11_c05_s35", "de_l11_c05_s36"],
+  ["de_l11_c06_s43", "de_l11_c06_s44"],
+  [
+    "de_l11_c07_s51",
+    "de_l11_c07_s52",
+    "de_l11_c07_s53",
+    "de_l11_c07_s54",
+    "de_l11_c07_s55",
+    "de_l11_c07_s56",
+  ],
+] as const;
+const L11_RECALL_CONTRACTS = [
+  [["de_l10_c06", "de_l10_c07"], ["de_l11_c02"]],
+  [["de_l11_c01"], ["de_l11_c03"]],
+  [["de_l11_c01", "de_l11_c02"], ["de_l11_c04"]],
+  [["de_l11_c02", "de_l11_c03"], ["de_l11_c05"]],
+  [["de_l11_c03", "de_l11_c04"], ["de_l11_c06"]],
+  [["de_l11_c04", "de_l11_c05"], ["de_l11_c07"]],
+  [["de_l11_c05", "de_l11_c06"], ["de_l12_c01"]],
+] as const;
+const L11_TO_L12_DELAYED_PACKETS = [51, 52, 53, 54, 55, 56, 55].map(
+  (session, index) =>
+    `de_l11_c${String(index + 1).padStart(2, "0")}->de_l12_c07_s${session}`,
+);
+
+type L11ClosedChapterContract = {
+  id: string;
+  situation: R;
+  supportEntry: string;
+  supportExit: string;
+  newSituation: R;
+  lexical: readonly {
+    id: string;
+    semanticIdentity: string;
+    lemmaOrExpression: string;
+    senseGloss: string;
+    communicativeUse: string;
+    utilityRole: string;
+    situationFacet: string;
+    facetValue: string;
+    necessityClass: string;
+  }[];
+};
+
+const L11_CLOSED_CHAPTER_CONTRACTS: readonly L11ClosedChapterContract[] = [
+  {
+    id: "de_l11_c01",
+    situation: {
+      setting: "event-venue-exit-orientation",
+      participants: "venue-guide-and-new-visitor",
+      goal: "retrieve-the-static-proximity-of-the-garderobe-at-the-ausgang-and-establish-one-dative-participant-reference-chain",
+      contextSignature: "event-exit-bei-dative-pronoun-introduction",
+    },
+    supportEntry: `venue map and role cards showing ${L11_C01_GUARDIAN_LOCATION_MODEL} and the adjacent chain ${L11_PRONOUN_CHAIN}, with beim, dem Besucher, and ihm colour-marked`,
+    supportExit:
+      "locate die Garderobe through beim Ausgang and replace the adjacent dative antecedent dem Besucher only with ihm inside the established helfen frame",
+    newSituation: {
+      setting: "community-fair-exit-help-point",
+      participants: "fair-guide-and-arriving-visitor",
+      goal: "retrieve-beim-ausgang-for-the-garderobe-and-preserve-the-adjacent-besucher-to-ihm-chain",
+      contextSignature: "community-fair-static-location-reference-check",
+    },
+    lexical: [
+      {
+        id: "de_lex_plan_l11_c01_garderobe_v1",
+        semanticIdentity:
+          "garderobe|staffed cloakroom facility near a venue exit",
+        lemmaOrExpression: "Garderobe",
+        senseGloss: "staffed cloakroom facility near a venue exit",
+        communicativeUse: `use ${L11_C01_GUARDIAN_LOCATION_MODEL} to realise the one named stable-proximity relation bei plus Dativ`,
+        utilityRole: "temporal_spatial",
+        situationFacet: "goal",
+        facetValue:
+          "retrieve-beim-ausgang-for-the-garderobe-and-preserve-the-adjacent-besucher-to-ihm-chain",
+        necessityClass: "OUTCOME_UNACHIEVABLE",
+      },
+      {
+        id: "de_lex_plan_l11_c01_besucher_v1",
+        semanticIdentity: "besucher|visitor receiving help at a public venue",
+        lemmaOrExpression: "Besucher",
+        senseGloss: "visitor receiving help at a public venue",
+        communicativeUse: `establish the explicit dative antecedent in ${L11_PRONOUN_CHAIN}`,
+        utilityRole: "participant_reference",
+        situationFacet: "participants",
+        facetValue: "fair-guide-and-arriving-visitor",
+        necessityClass: "PARTICIPANT_UNIDENTIFIABLE",
+      },
+    ],
+  },
+  {
+    id: "de_l11_c02",
+    situation: {
+      setting: "festival-information-zone",
+      participants: "information-guide-and-returning-visitor",
+      goal: "guide-the-static-infostand-location-and-substitute-ihm-only-after-the-known-dative-visitor",
+      contextSignature: "infostand-bei-location-dative-pronoun-guided",
+    },
+    supportEntry: `whole models Der Infostand ist bei der Garderobe. and ${L11_PRONOUN_CHAIN}, with the location complement, antecedent, and pronoun roles marked`,
+    supportExit:
+      "identify bei der Garderobe as static proximity and ihm as the adjacent reference to dem Besucher inside the established helfen frame",
+    newSituation: {
+      setting: "conference-information-corner",
+      participants: "conference-guide-and-lost-visitor",
+      goal: "guide-the-infostand-location-and-maintain-the-visitor-reference-with-ihm",
+      contextSignature: "conference-infostand-guided-reference-check",
+    },
+    lexical: [
+      {
+        id: "de_lex_plan_l11_c02_infostand_v1",
+        semanticIdentity:
+          "infostand|staffed information stand inside a public event venue",
+        lemmaOrExpression: "Infostand",
+        senseGloss: "staffed information stand inside a public event venue",
+        communicativeUse: `ground the changed information scene while Der Infostand ist bei der Garderobe. and ${L11_PRONOUN_CHAIN} preserve the verified frames`,
+        utilityRole: "scene_grounding",
+        situationFacet: "setting",
+        facetValue: "conference-information-corner",
+        necessityClass: "SCENE_UNGROUNDED",
+      },
+    ],
+  },
+  {
+    id: "de_l11_c03",
+    situation: {
+      setting: "exhibition-facility-map",
+      participants: "floor-guide-and-visitor-group",
+      goal: "locate-the-toilette-by-static-proximity-and-retrieve-the-adjacent-dative-reference-chain",
+      contextSignature: "toilette-static-location-pronoun-retrieval",
+    },
+    supportEntry: `partial venue map plus Die Toilette ist beim Infostand. and ${L11_PRONOUN_CHAIN}, without case labels`,
+    supportExit:
+      "independently locate die Toilette with beim Infostand and preserve dem Besucher to ihm across the adjacent helfen utterances",
+    newSituation: {
+      setting: "book-fair-facility-map",
+      participants: "book-fair-guide-and-one-visitor",
+      goal: "locate-the-toilette-near-the-infostand-and-retrieve-the-known-dative-pronoun-chain",
+      contextSignature: "book-fair-toilette-retrieval-check",
+    },
+    lexical: [
+      {
+        id: "de_lex_plan_l11_c03_toilette_v1",
+        semanticIdentity:
+          "toilette|public toilet facility identified on a venue map",
+        lemmaOrExpression: "Toilette",
+        senseGloss: "public toilet facility identified on a venue map",
+        communicativeUse:
+          "use Die Toilette ist beim Infostand. to retrieve the exact stable-proximity relation in a changed venue map",
+        utilityRole: "temporal_spatial",
+        situationFacet: "goal",
+        facetValue:
+          "locate-the-toilette-near-the-infostand-and-retrieve-the-known-dative-pronoun-chain",
+        necessityClass: "OUTCOME_UNACHIEVABLE",
+      },
+    ],
+  },
+  {
+    id: "de_l11_c04",
+    situation: {
+      setting: "volunteer-meeting-point-desk",
+      participants: "volunteer-coordinator-and-venue-visitor",
+      goal: "relay-the-treffpunkt-location-and-who-receives-help-without-losing-dative-reference",
+      contextSignature: "treffpunkt-location-recipient-production",
+    },
+    supportEntry: `small desk map with Der Treffpunkt ist bei der Toilette. and ${L11_PRONOUN_CHAIN}; only the two referents remain highlighted`,
+    supportExit:
+      "produce the Treffpunkt location and the exact adjacent dem Besucher to ihm chain independently inside the established helfen frame",
+    newSituation: {
+      setting: "museum-volunteer-meeting-point",
+      participants: "museum-coordinator-and-arriving-visitor",
+      goal: "relay-the-changed-treffpunkt-location-and-preserve-the-help-recipient-reference",
+      contextSignature: "museum-treffpunkt-reference-production-check",
+    },
+    lexical: [
+      {
+        id: "de_lex_plan_l11_c04_treffpunkt_v1",
+        semanticIdentity:
+          "treffpunkt|designated meeting point inside a public venue",
+        lemmaOrExpression: "Treffpunkt",
+        senseGloss: "designated meeting point inside a public venue",
+        communicativeUse: `ground a real relay in which Der Treffpunkt ist bei der Toilette. and ${L11_PRONOUN_CHAIN} identify both place and help recipient`,
+        utilityRole: "scene_grounding",
+        situationFacet: "setting",
+        facetValue: "museum-volunteer-meeting-point",
+        necessityClass: "SCENE_UNGROUNDED",
+      },
+    ],
+  },
+  {
+    id: "de_l11_c05",
+    situation: {
+      setting: "community-event-first-aid-orientation",
+      participants: "venue-host-and-help-volunteer",
+      goal: "distinguish-the-bei-location-complement-from-the-helfen-recipient-and-its-pronoun-reference",
+      contextSignature: "sanitaetsraum-location-recipient-function-contrast",
+    },
+    supportEntry: `contrast card: Der Sanitätsraum ist beim Treffpunkt. marks a location relation; ${L11_PRONOUN_CHAIN} marks a verb-selected recipient and its adjacent reference`,
+    supportExit:
+      "distinguish beim Treffpunkt as the static-location complement from dem Besucher and ihm as the recipient chain selected by helfen",
+    newSituation: {
+      setting: "sports-hall-first-aid-point",
+      participants: "hall-host-and-visitor-supporter",
+      goal: "contrast-the-sanitaetsraum-location-with-the-known-help-recipient-chain",
+      contextSignature: "sports-hall-dative-function-contrast-check",
+    },
+    lexical: [
+      {
+        id: "de_lex_plan_l11_c05_sanitaetsraum_v1",
+        semanticIdentity: "sanitatsraum|first aid room at a public event venue",
+        lemmaOrExpression: "Sanitätsraum",
+        senseGloss: "first-aid room at a public event venue",
+        communicativeUse: `contrast Der Sanitätsraum ist beim Treffpunkt. as static location with ${L11_PRONOUN_CHAIN} as recipient reference`,
+        utilityRole: "mediation",
+        situationFacet: "goal",
+        facetValue:
+          "contrast-the-sanitaetsraum-location-with-the-known-help-recipient-chain",
+        necessityClass: "OUTCOME_UNACHIEVABLE",
+      },
+    ],
+  },
+  {
+    id: "de_l11_c06",
+    situation: {
+      setting: "venue-map-correction-desk",
+      participants: "map-editor-and-information-volunteer",
+      goal: "repair-the-lageplan-static-location-form-and-restore-the-explicit-adjacent-antecedent-before-ihm",
+      contextSignature: "lageplan-governed-case-reference-repair",
+    },
+    supportEntry: `repair card with incorrect ${L11_C06_WRONG_LOCATION_MODEL} and unsupported Ich helfe ihm.; require ${L11_C06_CORRECT_LOCATION_MODEL} and the adjacent chain ${L11_PRONOUN_CHAIN}`,
+    supportExit: `repair the marked location from “${L11_C06_WRONG_LOCATION_MODEL}” to “${L11_C06_CORRECT_LOCATION_MODEL}”; then restore Ich helfe dem Besucher. immediately before Ich helfe ihm.`,
+    newSituation: {
+      setting: "town-hall-event-map-update",
+      participants: "map-coordinator-and-service-volunteer",
+      goal: "repair-the-lageplan-location-case-and-restore-the-explicit-visitor-antecedent-before-ihm",
+      contextSignature: "town-hall-lageplan-repair-check",
+    },
+    lexical: [
+      {
+        id: "de_lex_plan_l11_c06_lageplan_v1",
+        semanticIdentity:
+          "lageplan|venue map used to verify facilities and help points",
+        lemmaOrExpression: "Lageplan",
+        senseGloss: "venue map used to verify facilities and help points",
+        communicativeUse: `ground the repair in which the location model “${L11_C06_CORRECT_LOCATION_MODEL}” is restored and Ich helfe dem Besucher. is placed immediately before Ich helfe ihm.`,
+        utilityRole: "repair",
+        situationFacet: "goal",
+        facetValue:
+          "repair-the-lageplan-location-case-and-restore-the-explicit-visitor-antecedent-before-ihm",
+        necessityClass: "REPAIR_UNAVAILABLE",
+      },
+    ],
+  },
+  {
+    id: "de_l11_c07",
+    situation: {
+      setting: "public-library-service-orientation-change",
+      participants: "library-guide-and-new-visitor",
+      goal: "transfer-static-location-time-recipient-and-dative-reference-to-a-different-public-venue",
+      contextSignature: "library-servicestelle-changed-venue-final-transfer",
+    },
+    supportEntry: `minimal changed-venue card with ${L11_C07_FINAL_LOCATION_TIME_MODEL} and the adjacent chain ${L11_PRONOUN_CHAIN}`,
+    supportExit: `independently produce ${L11_C07_FINAL_LOCATION_TIME_MODEL} and the exact adjacent chain ${L11_PRONOUN_CHAIN}`,
+    newSituation: {
+      setting: "civic-centre-service-orientation",
+      participants: "civic-centre-guide-and-arriving-visitor",
+      goal: "independently-guide-the-servicestelle-location-and-relay-time-recipient-and-pronoun-reference",
+      contextSignature: "civic-centre-location-reference-final",
+    },
+    lexical: [
+      {
+        id: "de_lex_plan_l11_c07_servicestelle_v1",
+        semanticIdentity:
+          "servicestelle|staffed service point in a public venue",
+        lemmaOrExpression: "Servicestelle",
+        senseGloss: "staffed service point in a public venue",
+        communicativeUse: `at the changed civic-centre venue, independently use ${L11_C07_FINAL_LOCATION_TIME_MODEL} and ${L11_PRONOUN_CHAIN} to prove location, time, recipient, and dative reference`,
+        utilityRole: "transfer",
+        situationFacet: "goal",
+        facetValue:
+          "independently-guide-the-servicestelle-location-and-relay-time-recipient-and-pronoun-reference",
+        necessityClass: "TRANSFER_UNAVAILABLE",
+      },
+    ],
+  },
+] as const;
+
+function l11ChapterSurfaceText(chapter: R): string {
+  const checkpoint = chapter.checkpoint as R;
+  return JSON.stringify({
+    situation: chapter.situation,
+    supportFading: chapter.supportFading,
+    newSituation: checkpoint.newSituation,
+    plannedNewLexicalSenses: checkpoint.plannedNewLexicalSenses,
+  });
+}
+
+function validateL11LexicalPrerequisites(chapters: R[]): void {
+  const prerequisites = [
+    ["Garderobe", "de_l11_c01", /\bGarderob(?:e|en)\b/iu],
+    ["Besucher", "de_l11_c01", /\bBesucher(?:s|n)?\b/iu],
+    ["Infostand", "de_l11_c02", /\bInfost(?:and|ände|änden)\b/iu],
+    ["Toilette", "de_l11_c03", /\bToilett(?:e|en)\b/iu],
+    ["Treffpunkt", "de_l11_c04", /\bTreffpunkt(?:e|en|s)?\b/iu],
+    ["Sanitätsraum", "de_l11_c05", /\bSanitätsr(?:aum|äume|äumen)\b/iu],
+    ["Lageplan", "de_l11_c06", /\bLagepl(?:an|äne|änen)\b/iu],
+    ["Servicestelle", "de_l11_c07", /\bServicestell(?:e|en)\b/iu],
+  ] as const;
+  for (const [lemma, owner, pattern] of prerequisites) {
+    const owners = chapters.filter((chapter) =>
+      (((chapter.checkpoint as R).plannedNewLexicalSenses as R[]) ?? []).some(
+        (sense) =>
+          normalized(String(sense.lemmaOrExpression)) === normalized(lemma),
+      ),
+    );
+    const ownerIndex = chapters.findIndex((chapter) => chapter.id === owner);
+    if (ownerIndex < 0 || owners.length !== 1 || owners[0].id !== owner)
+      throw new Error(`l11_lexical_prerequisite_invalid:${owner}:${lemma}`);
+    const firstSurfaceIndex = chapters.findIndex((chapter) =>
+      pattern.test(l11ChapterSurfaceText(chapter)),
+    );
+    if (firstSurfaceIndex < 0 || firstSurfaceIndex < ownerIndex)
+      throw new Error(
+        `l11_lexical_prerequisite_invalid:${firstSurfaceIndex < 0 ? owner : String(chapters[firstSurfaceIndex].id)}:${lemma}`,
+      );
+  }
+}
+
+function validateL11SemanticContract(raw: R, plan: Boundary): void {
+  const l11 = (raw.lessons as R[]).find(
+    (lesson) => lesson.lessonId === "de_l11",
+  );
+  if (!l11) throw new Error("l11_semantic_contract_invalid:missing");
+  const chapters = l11.chapters as R[];
+  if ((l11.grammarBoundary as R).noExpansion !== L11_NO_EXPANSION)
+    throw new Error("l11_semantic_contract_invalid:no_expansion");
+  validateL11LexicalPrerequisites(chapters);
+  if (
+    !sameStringSet(plan.introducedConstructIds, L11_INTRODUCED) ||
+    !sameStringSet(plan.extendedConstructIds, L11_EXTENDED) ||
+    !sameStringSet(plan.reviewedConstructIds, L11_REVIEWED) ||
+    !sameStringSet(plan.prohibitedConstructIds, L11_PROHIBITED) ||
+    !sameStringSet(
+      plan.session56Final.requiredConstructIds,
+      L11_FINAL_REQUIRED,
+    ) ||
+    chapters.length !== 7
+  )
+    throw new Error("l11_semantic_contract_invalid:sets");
+
+  const expectedAnchors = [
+    `${L11_LOCATION}|introduction|de_l11_c01_s01`,
+    `${L11_DATIVE_PRONOUN}|introduction|de_l11_c01_s02`,
+    `${L11_LOCATION}|guided|de_l11_c02_s09`,
+    `${L11_DATIVE_PRONOUN}|guided|de_l11_c02_s10`,
+    `${L11_LOCATION}|retrieval|de_l11_c03_s17`,
+    `${L11_DATIVE_PRONOUN}|retrieval|de_l11_c03_s18`,
+    `${L11_LOCATION}|production|de_l11_c04_s25`,
+    `${L11_DATIVE_PRONOUN}|production|de_l11_c04_s26`,
+    `${L11_LOCATION}|transfer|de_l11_c06_s41`,
+    `${L11_DATIVE_PRONOUN}|transfer|de_l11_c06_s42`,
+    `${L11_TEMPORAL}|delayed|de_l11_c07_s49`,
+    `${L11_RECIPIENT}|delayed|de_l11_c07_s50`,
+  ];
+  const actualAnchors = chapters.flatMap((chapter) =>
+    ((chapter.lifecycleAnchors as R[]) ?? []).map(
+      (anchor) =>
+        `${String(anchor.constructId)}|${String(anchor.stage)}|${String(anchor.packetId)}`,
+    ),
+  );
+  if (!sameStringSet(actualAnchors, expectedAnchors))
+    throw new Error("l11_semantic_contract_invalid:anchors");
+
+  const l10 = (raw.lessons as R[]).find(
+    (lesson) => lesson.lessonId === "de_l10",
+  ) as R;
+  const l10Chapters = l10.chapters as R[];
+  const incoming = l10Chapters.map(
+    (chapter, index) =>
+      `de_l10_c${String(index + 1).padStart(2, "0")}->${String(((chapter.recallSchedule as R).futureDelayedProbe as R).packetId)}`,
+  );
+  const expectedIncoming = [51, 52, 53, 54, 55, 56, 55].map(
+    (session, index) =>
+      `de_l10_c${String(index + 1).padStart(2, "0")}->de_l11_c07_s${session}`,
+  );
+  const c7Evidence = chapters[6].chapterEvidencePacketIds as string[];
+  const exactC7Evidence = [51, 52, 53, 54, 55, 56].map(
+    (session) => `de_l11_c07_s${session}`,
+  );
+  const incomingInverse = new Map<string, string[]>();
+  for (let index = 0; index < l10Chapters.length; index += 1) {
+    const packetId = String(
+      ((l10Chapters[index].recallSchedule as R).futureDelayedProbe as R)
+        .packetId,
+    );
+    const sources = incomingInverse.get(packetId) ?? [];
+    sources.push(`de_l10_c${String(index + 1).padStart(2, "0")}`);
+    incomingInverse.set(packetId, sources);
+  }
+  const expectedIncomingInverse = new Map<string, string[]>([
+    ["de_l11_c07_s51", ["de_l10_c01"]],
+    ["de_l11_c07_s52", ["de_l10_c02"]],
+    ["de_l11_c07_s53", ["de_l10_c03"]],
+    ["de_l11_c07_s54", ["de_l10_c04"]],
+    ["de_l11_c07_s55", ["de_l10_c05", "de_l10_c07"]],
+    ["de_l11_c07_s56", ["de_l10_c06"]],
+  ]);
+  if (
+    JSON.stringify(incoming) !== JSON.stringify(expectedIncoming) ||
+    JSON.stringify(c7Evidence) !== JSON.stringify(exactC7Evidence) ||
+    JSON.stringify([...incomingInverse]) !==
+      JSON.stringify([...expectedIncomingInverse])
+  )
+    throw new Error("l10_l11_inverse_provenance_invalid");
+
+  const outgoing = chapters.map(
+    (chapter, index) =>
+      `de_l11_c${String(index + 1).padStart(2, "0")}->${String(((chapter.recallSchedule as R).futureDelayedProbe as R).packetId)}`,
+  );
+  const outgoingInverse = new Map<string, string[]>();
+  for (let index = 0; index < chapters.length; index += 1) {
+    const packetId = String(
+      ((chapters[index].recallSchedule as R).futureDelayedProbe as R).packetId,
+    );
+    const sources = outgoingInverse.get(packetId) ?? [];
+    sources.push(`de_l11_c${String(index + 1).padStart(2, "0")}`);
+    outgoingInverse.set(packetId, sources);
+  }
+  const expectedOutgoingInverse = new Map<string, string[]>([
+    ["de_l12_c07_s51", ["de_l11_c01"]],
+    ["de_l12_c07_s52", ["de_l11_c02"]],
+    ["de_l12_c07_s53", ["de_l11_c03"]],
+    ["de_l12_c07_s54", ["de_l11_c04"]],
+    ["de_l12_c07_s55", ["de_l11_c05", "de_l11_c07"]],
+    ["de_l12_c07_s56", ["de_l11_c06"]],
+  ]);
+  if (
+    JSON.stringify(outgoing) !== JSON.stringify(L11_TO_L12_DELAYED_PACKETS) ||
+    JSON.stringify([...outgoingInverse]) !==
+      JSON.stringify([...expectedOutgoingInverse])
+  )
+    throw new Error("l11_l12_inverse_provenance_invalid");
+
+  const allText = chapters.map(l11ChapterSurfaceText).join("\n");
+  if (
+    /\b(?:in|an|auf|neben)\s+(?:dem|der|den|die|das|einem|einer|einen)\b/iu.test(
+      allText,
+    ) ||
+    /\b(?:Wechselpräposition|movement|motion|destination)\b/iu.test(allText)
+  )
+    throw new Error("l11_semantic_contract_invalid:dative_location_bei");
+
+  const l10Help = (
+    ((l10Chapters[0].checkpoint as R).plannedNewLexicalSenses as R[]) ?? []
+  ).find((sense) => sense.id === "de_lex_plan_l10_c01_helfen_v1") as R;
+  if (
+    (l10Help.verbPackage as R | null)?.valencyFrame !== L11_HELP_VALENCY ||
+    /\bihn\b/iu.test(allText) ||
+    /\b(?:pronoun table|isolated pronoun|geb(?:e|en|t|st)|bring(?:e|en|t|st))\b/iu.test(
+      allText,
+    ) ||
+    chapters.some(
+      (chapter) =>
+        l11ChapterSurfaceText(chapter).includes("Ich helfe ihm.") &&
+        !l11ChapterSurfaceText(chapter).includes(L11_PRONOUN_CHAIN),
+    )
+  )
+    throw new Error("l11_semantic_contract_invalid:dative_pronoun_antecedent");
+
+  if (
+    (chapters[4].supportFading as R).entry !==
+      L11_CLOSED_CHAPTER_CONTRACTS[4].supportEntry ||
+    (chapters[4].supportFading as R).exit !==
+      L11_CLOSED_CHAPTER_CONTRACTS[4].supportExit
+  )
+    throw new Error("l11_semantic_contract_invalid:c05_function_contrast");
+  if (
+    (chapters[5].situation as R).goal !==
+      L11_CLOSED_CHAPTER_CONTRACTS[5].situation.goal ||
+    String((chapters[5].situation as R).goal).includes(
+      "without-an-explicit-adjacent-antecedent",
+    )
+  )
+    throw new Error("l11_semantic_contract_invalid:c06_antecedent_contract");
+  if (
+    (chapters[5].supportFading as R).entry !==
+      L11_CLOSED_CHAPTER_CONTRACTS[5].supportEntry ||
+    (chapters[5].supportFading as R).exit !==
+      L11_CLOSED_CHAPTER_CONTRACTS[5].supportExit
+  )
+    throw new Error("l11_semantic_contract_invalid:c06_repair");
+  if (
+    JSON.stringify(chapters[6].allowedConstructIds) !==
+      JSON.stringify(L11_FINAL_REQUIRED) ||
+    JSON.stringify((chapters[6].checkpoint as R).integratedConstructIds) !==
+      JSON.stringify(L11_FINAL_REQUIRED) ||
+    (chapters[6].supportFading as R).exit !==
+      L11_CLOSED_CHAPTER_CONTRACTS[6].supportExit ||
+    ((chapters[6].checkpoint as R).plannedNewLexicalSenses as R[])[0]
+      .communicativeUse !==
+      L11_CLOSED_CHAPTER_CONTRACTS[6].lexical[0].communicativeUse
+  )
+    throw new Error("l11_semantic_contract_invalid:c07_transfer_or_provenance");
+  const requiredNeutralContractionText = [0, 2, 4]
+    .map((index) => l11ChapterSurfaceText(chapters[index]))
+    .join("\n");
+  if (/\bbei dem\b/iu.test(requiredNeutralContractionText))
+    throw new Error("l11_semantic_contract_invalid:neutral_bei_contraction");
+  const c1Garderobe = (
+    ((chapters[0].checkpoint as R).plannedNewLexicalSenses as R[]) ?? []
+  ).find((sense) => sense.id === "de_lex_plan_l11_c01_garderobe_v1") as R;
+  if (
+    !String((chapters[0].supportFading as R).entry).includes(
+      L11_C01_GUARDIAN_LOCATION_MODEL,
+    ) ||
+    !String((chapters[0].supportFading as R).exit).includes("beim Ausgang") ||
+    !String(c1Garderobe?.communicativeUse).includes(
+      L11_C01_GUARDIAN_LOCATION_MODEL,
+    )
+  )
+    throw new Error("l11_semantic_contract_invalid:c01_guardian_proof");
+
+  for (let index = 0; index < chapters.length; index += 1) {
+    const chapter = chapters[index];
+    const checkpoint = chapter.checkpoint as R;
+    const expected = L11_CLOSED_CHAPTER_CONTRACTS[index];
+    const senses = checkpoint.plannedNewLexicalSenses as R[];
+    const expectedConstructs = index === 6 ? L11_FINAL_REQUIRED : L11_ALLOWED;
+    const [expectedEntryLevel, expectedExitLevel] = L11_SUPPORT_LEVELS[index];
+    if (
+      !sameStringSet(
+        chapter.allowedConstructIds as string[],
+        expectedConstructs,
+      ) ||
+      !sameStringSet(
+        checkpoint.integratedConstructIds as string[],
+        expectedConstructs,
+      ) ||
+      JSON.stringify(senses.map((sense) => sense.id)) !==
+        JSON.stringify(L11_LEXICAL_IDS_BY_CHAPTER[index]) ||
+      senses.some((sense) => sense.lexicalKind === "FIXED_EXPRESSION")
+    )
+      throw new Error("l11_semantic_contract_invalid:chapter_contract");
+    if (
+      JSON.stringify(chapter.chapterEvidencePacketIds) !==
+      JSON.stringify(L11_EVIDENCE_BY_CHAPTER[index])
+    )
+      throw new Error(
+        `l11_semantic_contract_invalid:chapter_evidence:${expected.id}`,
+      );
+    for (const sense of senses) {
+      const plannedUsePacketIds = (sense.utilityProof as R).plannedUsePacketIds;
+      if (
+        JSON.stringify(plannedUsePacketIds) !==
+        JSON.stringify([String(checkpoint.packetId)])
+      )
+        throw new Error(
+          `l11_semantic_contract_invalid:planned_use_packets:${String(sense.id)}`,
+        );
+    }
+    if (
+      (chapter.supportFading as R).entryLevel !== expectedEntryLevel ||
+      (chapter.supportFading as R).exitLevel !== expectedExitLevel
+    )
+      throw new Error(
+        `l11_semantic_contract_invalid:closed_chapter:${expected.id}`,
+      );
+    const actual: L11ClosedChapterContract = {
+      id: String(chapter.id),
+      situation: chapter.situation as R,
+      supportEntry: String((chapter.supportFading as R).entry),
+      supportExit: String((chapter.supportFading as R).exit),
+      newSituation: checkpoint.newSituation as R,
+      lexical: senses.map((sense) => {
+        const utility = sense.utilityProof as R;
+        return {
+          id: String(sense.id),
+          semanticIdentity: String(sense.semanticIdentity),
+          lemmaOrExpression: String(sense.lemmaOrExpression),
+          senseGloss: String(sense.senseGloss),
+          communicativeUse: String(sense.communicativeUse),
+          utilityRole: String(utility.utilityRole),
+          situationFacet: String(utility.situationFacet),
+          facetValue: String(utility.facetValue),
+          necessityClass: String(utility.necessityClass),
+        };
+      }),
+    };
+    if (JSON.stringify(actual) !== JSON.stringify(expected))
+      throw new Error(
+        `l11_semantic_contract_invalid:closed_chapter:${expected.id}`,
+      );
+    const recall = chapter.recallSchedule as R;
+    const [expectedFrom, expectedTo] = L11_RECALL_CONTRACTS[index];
+    if (
+      JSON.stringify(recall.retrievesFromChapterIds) !==
+        JSON.stringify(expectedFrom) ||
+      JSON.stringify(recall.targetsFutureChapterIds) !==
+        JSON.stringify(expectedTo)
+    )
+      throw new Error(`l11_recall_contract_invalid:${expected.id}`);
+  }
+
+  const expectedNouns = new Map<string, readonly string[]>([
+    [
+      "de_lex_plan_l11_c01_garderobe_v1",
+      ["die", "Garderobe", "Garderoben", "die|garderobe|garderoben"],
+    ],
+    [
+      "de_lex_plan_l11_c01_besucher_v1",
+      ["der", "Besucher", "Besucher", "der|besucher|besucher"],
+    ],
+    [
+      "de_lex_plan_l11_c02_infostand_v1",
+      ["der", "Infostand", "Infostände", "der|infostand|infostande"],
+    ],
+    [
+      "de_lex_plan_l11_c03_toilette_v1",
+      ["die", "Toilette", "Toiletten", "die|toilette|toiletten"],
+    ],
+    [
+      "de_lex_plan_l11_c04_treffpunkt_v1",
+      ["der", "Treffpunkt", "Treffpunkte", "der|treffpunkt|treffpunkte"],
+    ],
+    [
+      "de_lex_plan_l11_c05_sanitaetsraum_v1",
+      [
+        "der",
+        "Sanitätsraum",
+        "Sanitätsräume",
+        "der|sanitatsraum|sanitatsraume",
+      ],
+    ],
+    [
+      "de_lex_plan_l11_c06_lageplan_v1",
+      ["der", "Lageplan", "Lagepläne", "der|lageplan|lageplane"],
+    ],
+    [
+      "de_lex_plan_l11_c07_servicestelle_v1",
+      [
+        "die",
+        "Servicestelle",
+        "Servicestellen",
+        "die|servicestelle|servicestellen",
+      ],
+    ],
+  ]);
+  const senses = chapters.flatMap(
+    (chapter) =>
+      ((chapter.checkpoint as R).plannedNewLexicalSenses as R[]) ?? [],
+  );
+  for (const [senseId, expected] of expectedNouns) {
+    const sense = senses.find((candidate) => candidate.id === senseId) as R;
+    const noun = sense.nounPackage as R | null;
+    if (
+      sense.lexicalKind !== "NOUN_LEXEME" ||
+      sense.lemmaOrExpression !== expected[1] ||
+      noun?.article !== expected[0] ||
+      noun?.singular !== expected[1] ||
+      noun?.plural !== expected[2] ||
+      sense.nounPackageIdentity !== expected[3] ||
+      sense.verbPackage !== null
+    )
+      throw new Error("l11_semantic_contract_invalid:lexical_packages");
+  }
+}
+
 function validate(raw: unknown): {
   lessons: number;
   chapters: number;
@@ -1187,6 +1909,12 @@ function validate(raw: unknown): {
   if (l9Plan) validateL09SemanticContract(raw, l9Plan);
   const l10Plan = source.get("de_l10");
   if (l10Plan) validateL10SemanticContract(raw, l10Plan);
+  const l11Plan = source.get("de_l11");
+  if (
+    l11Plan &&
+    (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l11")
+  )
+    validateL11SemanticContract(raw, l11Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -1680,6 +2408,38 @@ function expectL10PlanExact(mut: (plan: R) => void, message: string): void {
   let thrown: unknown;
   try {
     validateL10SemanticContract(raw, plan as Boundary);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+function expectL11Exact(mut: (raw: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: Boundary[] };
+  const plan = lessonRegistry.lessons.find(
+    (lesson) => lesson.id === "de_l11",
+  ) as Boundary;
+  mut(raw);
+  let thrown: unknown;
+  try {
+    validateL11SemanticContract(raw, plan);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+function expectL11PlanExact(mut: (plan: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: R[] };
+  const plan = clone(
+    lessonRegistry.lessons.find((lesson) => lesson.id === "de_l11") as R,
+  );
+  mut(plan);
+  let thrown: unknown;
+  try {
+    validateL11SemanticContract(raw, plan as Boundary);
   } catch (error) {
     thrown = error;
   }
@@ -2285,6 +3045,291 @@ function fixtures(): void {
     const c7 = (l10.chapters as R[])[6];
     (c7.chapterEvidencePacketIds as string[]).splice(0, 1);
   }, "l09_l10_inverse_provenance_invalid");
+
+  expectL11Exact((raw) => {
+    raw.lessons = (raw.lessons as R[]).filter(
+      (lesson) => lesson.lessonId !== "de_l11",
+    );
+  }, "l11_semantic_contract_invalid:missing");
+  expectL11PlanExact((plan) => {
+    plan.introducedConstructIds = [L11_LOCATION];
+  }, "l11_semantic_contract_invalid:sets");
+  expectL11PlanExact((plan) => {
+    (plan.session56Final as R).requiredConstructIds = [
+      L11_LOCATION,
+      L11_DATIVE_PRONOUN,
+      L11_TEMPORAL,
+    ];
+  }, "l11_semantic_contract_invalid:sets");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c1 = (l11.chapters as R[])[0];
+    ((c1.lifecycleAnchors as R[])[0] as R).packetId = "de_l11_c01_s03";
+  }, "l11_semantic_contract_invalid:anchors");
+  expectL11Exact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c7 = (l10.chapters as R[])[6];
+    ((c7.recallSchedule as R).futureDelayedProbe as R).packetId =
+      "de_l11_c07_s56";
+  }, "l10_l11_inverse_provenance_invalid");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c7 = (l11.chapters as R[])[6];
+    (c7.chapterEvidencePacketIds as string[]).splice(0, 1);
+  }, "l10_l11_inverse_provenance_invalid");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c7 = (l11.chapters as R[])[6];
+    ((c7.recallSchedule as R).futureDelayedProbe as R).packetId =
+      "de_l12_c07_s56";
+  }, "l11_l12_inverse_provenance_invalid");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c1 = (l11.chapters as R[])[0];
+    (c1.situation as R).setting = "renamed-event-venue";
+  }, "l11_semantic_contract_invalid:closed_chapter:de_l11_c01");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c2 = (l11.chapters as R[])[1];
+    (c2.recallSchedule as R).targetsFutureChapterIds = ["de_l11_c04"];
+  }, "l11_recall_contract_invalid:de_l11_c02");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const chapters = l11.chapters as R[];
+    const garderobe = (
+      (chapters[0].checkpoint as R).plannedNewLexicalSenses as R[]
+    ).splice(0, 1)[0];
+    ((chapters[1].checkpoint as R).plannedNewLexicalSenses as R[]).push(
+      garderobe,
+    );
+  }, "l11_lexical_prerequisite_invalid:de_l11_c01:Garderobe");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c1 = (l11.chapters as R[])[0];
+    (c1.supportFading as R).entry = `${String(
+      (c1.supportFading as R).entry,
+    )} Infostand`;
+  }, "l11_lexical_prerequisite_invalid:de_l11_c01:Infostand");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c3 = (l11.chapters as R[])[2];
+    const toilette = ((c3.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    (toilette.nounPackage as R).article = "das";
+  }, "l11_semantic_contract_invalid:lexical_packages");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c2 = (l11.chapters as R[])[1];
+    (c2.supportFading as R).entry = `${String(
+      (c2.supportFading as R).entry,
+    )} Der Infostand ist in der Halle.`;
+  }, "l11_semantic_contract_invalid:dative_location_bei");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c3 = (l11.chapters as R[])[2];
+    (c3.supportFading as R).exit = `${String(
+      (c3.supportFading as R).exit,
+    )} movement means Akkusativ`;
+  }, "l11_semantic_contract_invalid:dative_location_bei");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c2 = (l11.chapters as R[])[1];
+    (c2.supportFading as R).entry = String(
+      (c2.supportFading as R).entry,
+    ).replace(L11_PRONOUN_CHAIN, "Ich helfe dem Besucher. Ich helfe ihn.");
+  }, "l11_semantic_contract_invalid:dative_pronoun_antecedent");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c4 = (l11.chapters as R[])[3];
+    (c4.supportFading as R).exit = `${String(
+      (c4.supportFading as R).exit,
+    )} pronoun table`;
+  }, "l11_semantic_contract_invalid:dative_pronoun_antecedent");
+  expectL11Exact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const help = (
+      ((l10.chapters as R[])[0].checkpoint as R).plannedNewLexicalSenses as R[]
+    ).find((sense) => sense.id === "de_lex_plan_l10_c01_helfen_v1") as R;
+    (help.verbPackage as R).valencyFrame =
+      "two-object dative-plus-accusative transfer frame";
+  }, "l11_semantic_contract_invalid:dative_pronoun_antecedent");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c4 = (l11.chapters as R[])[3];
+    (c4.supportFading as R).entry = `${String(
+      (c4.supportFading as R).entry,
+    )} Ich gebe dem Besucher den Plan.`;
+  }, "l11_semantic_contract_invalid:dative_pronoun_antecedent");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c5 = (l11.chapters as R[])[4];
+    (c5.supportFading as R).exit = "both are simply dative";
+  }, "l11_semantic_contract_invalid:c05_function_contrast");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c6 = (l11.chapters as R[])[5];
+    (c6.supportFading as R).entry =
+      "choose any dative-looking form and keep Ich helfe dem Besucher. Ich helfe ihm.";
+  }, "l11_semantic_contract_invalid:c06_repair");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c7 = (l11.chapters as R[])[6];
+    (c7.supportFading as R).exit =
+      "name the venue and mention that somebody helps";
+  }, "l11_semantic_contract_invalid:c07_transfer_or_provenance");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c1 = (l11.chapters as R[])[0];
+    const extra = clone(
+      ((c1.checkpoint as R).plannedNewLexicalSenses as R[])[0],
+    ) as R;
+    extra.id = "de_lex_plan_l11_c01_halle_v1";
+    extra.semanticIdentity = "halle|undeclared venue hall";
+    extra.lemmaOrExpression = "Halle";
+    extra.senseGloss = "undeclared venue hall";
+    (extra.nounPackage as R).article = "die";
+    (extra.nounPackage as R).singular = "Halle";
+    (extra.nounPackage as R).plural = "Hallen";
+    extra.nounPackageIdentity = "die|halle|hallen";
+    ((c1.checkpoint as R).plannedNewLexicalSenses as R[]).push(extra);
+  }, "l11_semantic_contract_invalid:chapter_contract");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c2 = (l11.chapters as R[])[1];
+    const infostand = ((c2.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    infostand.lexicalKind = "FIXED_EXPRESSION";
+    infostand.partOfSpeech = "fixed_expression";
+  }, "l11_semantic_contract_invalid:chapter_contract");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c1 = (l11.chapters as R[])[0];
+    ((c1.checkpoint as R).plannedNewLexicalSenses as R[]).reverse();
+  }, "l11_semantic_contract_invalid:chapter_contract");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c7 = (l11.chapters as R[])[6];
+    (c7.allowedConstructIds as string[]).reverse();
+    ((c7.checkpoint as R).integratedConstructIds as string[]).reverse();
+  }, "l11_semantic_contract_invalid:c07_transfer_or_provenance");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c1 = (l11.chapters as R[])[0];
+    c1.chapterEvidencePacketIds = ["de_l11_c01_s05"];
+  }, "l11_semantic_contract_invalid:chapter_evidence:de_l11_c01");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c1 = (l11.chapters as R[])[0];
+    const sense = ((c1.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    ((sense.utilityProof as R).plannedUsePacketIds as string[]).unshift(
+      "de_l11_c01_s07",
+    );
+  }, "l11_semantic_contract_invalid:planned_use_packets:de_lex_plan_l11_c01_garderobe_v1");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c7 = (l11.chapters as R[])[6];
+    (c7.supportFading as R).entry =
+      "minimal changed-venue card with Die Servicestelle ist für den Vormittag bei dem Eingang. and the adjacent chain Ich helfe dem Besucher. Ich helfe ihm.";
+    (c7.supportFading as R).exit =
+      "independently produce Die Servicestelle ist für den Vormittag bei dem Eingang. and the exact adjacent chain Ich helfe dem Besucher. Ich helfe ihm.";
+    const sense = ((c7.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    sense.communicativeUse =
+      "at the changed civic-centre venue, independently use Die Servicestelle ist für den Vormittag bei dem Eingang. and Ich helfe dem Besucher. Ich helfe ihm. to prove location, time, recipient, and dative reference";
+  }, "l11_semantic_contract_invalid:c07_transfer_or_provenance");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c1 = (l11.chapters as R[])[0];
+    (c1.supportFading as R).entry =
+      "venue map and role cards showing Die Garderobe ist beim Eingang. and the adjacent chain Ich helfe dem Besucher. Ich helfe ihm., with beim, dem Besucher, and ihm colour-marked";
+  }, "l11_semantic_contract_invalid:c01_guardian_proof");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c1 = (l11.chapters as R[])[0];
+    (c1.supportFading as R).entry =
+      "venue map and role cards showing Die Garderobe ist bei dem Ausgang. and the adjacent chain Ich helfe dem Besucher. Ich helfe ihm., with bei, dem Besucher, and ihm colour-marked";
+  }, "l11_semantic_contract_invalid:neutral_bei_contraction");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    (l11.grammarBoundary as R).noExpansion =
+      "Allow movement means Akkusativ and use in/an/auf/neben.";
+  }, "l11_semantic_contract_invalid:no_expansion");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c6 = (l11.chapters as R[])[5];
+    (c6.supportFading as R).entry =
+      "repair card with incorrect Die Toilette ist bei den Infostand. and unsupported Ich helfe ihm.; require Die Toilette ist bei dem Infostand. and the adjacent chain Ich helfe dem Besucher. Ich helfe ihm.";
+  }, "l11_semantic_contract_invalid:c06_repair");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c6 = (l11.chapters as R[])[5];
+    (c6.situation as R).goal =
+      "repair-one-bei-dative-form-and-one-dative-pronoun-without-an-explicit-adjacent-antecedent";
+  }, "l11_semantic_contract_invalid:c06_antecedent_contract");
+  expectL11Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c1 = (l11.chapters as R[])[0];
+    (c1.supportFading as R).entryLevel = 4;
+  }, "l11_semantic_contract_invalid:closed_chapter:de_l11_c01");
 
   const l2Boundary: Boundary = {
     id: "de_l02",

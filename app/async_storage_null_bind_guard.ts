@@ -18,6 +18,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeModules, TurboModuleRegistry } from 'react-native';
 import { DebugLogger } from './debug-logger';
+import { emitStorageMutation, markStorageMutationTrackingActive } from './storage_mutation_bus';
 
 type Pair = readonly [unknown, unknown];
 type Key = unknown;
@@ -83,25 +84,9 @@ export function resetAsyncStorageKeyListSingleFlightForTests(): void {
   keysInFlight = null;
 }
 
-// зачем (§122, read-through снапшот): подписчики видят КАЖДУЮ запись через AsyncStorage (старт и финиш, с ключами), чтобы
-// память снапшота не могла пережить запись мимо него. keys === 'all' — очистка всего хранилища.
-export type StorageMutationEvent = Readonly<{ phase: 'start' | 'end'; keys: readonly string[] | 'all' }>;
-const mutationListeners = new Set<(event: StorageMutationEvent) => void>();
-
-export function subscribeStorageMutations(listener: (event: StorageMutationEvent) => void): () => void {
-  mutationListeners.add(listener);
-  return () => { mutationListeners.delete(listener); };
-}
-
-function emitMutation(event: StorageMutationEvent): void {
-  for (const listener of mutationListeners) {
-    try {
-      listener(event);
-    } catch (error) {
-      console.warn('[SNAPSHOT-RT] подписчик записи упал', error instanceof Error ? error.message : String(error));
-    }
-  }
-}
+// зачем (§122): события записи уходят в шину storage_mutation_bus — на неё подписан снапшот (см. комментарий там).
+export { subscribeStorageMutations } from './storage_mutation_bus';
+export type { StorageMutationEvent } from './storage_mutation_bus';
 
 function mutationKeys(name: string, args: unknown[]): readonly string[] | 'all' {
   const first = args[0];
@@ -120,14 +105,14 @@ function noteMutationStart(keys: readonly string[] | 'all'): void {
   mutationEpoch += 1;
   mutationsInFlight += 1;
   keysInFlight = null;
-  emitMutation({ phase: 'start', keys });
+  emitStorageMutation({ phase: 'start', keys });
 }
 
 function noteMutationEnd(keys: readonly string[] | 'all'): void {
   mutationEpoch += 1;
   mutationsInFlight = Math.max(0, mutationsInFlight - 1);
   keysInFlight = null;
-  emitMutation({ phase: 'end', keys });
+  emitStorageMutation({ phase: 'end', keys });
 }
 
 /** Оборачивает мутатор: эпоха меняется на старте и на финише (успех или ошибка), кэш ключей сбрасывается. */
@@ -215,6 +200,8 @@ export function installAsyncStorageNullBindGuard(): void {
     const fn = keyStore[name];
     if (typeof fn === 'function') keyStore[name] = trackMutation(name, fn as (...a: unknown[]) => unknown);
   }
+  // слежение за записями поставлено: теперь снапшот вправе держать значения в памяти
+  markStorageMutationTrackingActive();
 
   const wrapKeys = (name: 'multiGet' | 'multiRemove') => {
     const original = store[name];

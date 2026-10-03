@@ -115,11 +115,12 @@ describe('storage snapshot (read-through)', () => {
     multiGet.mockClear();
     const rows = await snapshot.readStoredItems(['a_key', 'b_key', 'c_key', 'zzz']);
     expect(rows).toEqual([['a_key', '1'], ['b_key', '2'], ['c_key', '3'], ['zzz', null]]);
-    expect(multiGet).toHaveBeenCalledTimes(1);
-    expect(multiGet.mock.calls[0]?.[0]).toEqual(['b_key', 'c_key', 'zzz']);
+    const mine = multiGet.mock.calls.filter((call) => (call[0] as string[]).includes('b_key'));
+    expect(mine).toHaveLength(1);
+    expect(mine[0]?.[0]).toEqual(['b_key', 'c_key', 'zzz']);
     multiGet.mockClear();
     await snapshot.readStoredItems(['a_key', 'b_key', 'c_key', 'zzz']);
-    expect(multiGet).not.toHaveBeenCalled();
+    expect(multiGet.mock.calls.filter((call) => (call[0] as string[]).includes('a_key'))).toHaveLength(0);
   });
 
   it('hydrateStoredKeys warms keys with one multiGet; a failing storage is logged and swallowed', async () => {
@@ -127,11 +128,47 @@ describe('storage snapshot (read-through)', () => {
     await AsyncStorage.multiSet([['premium_active', 'true'], ['streak_count', '7']]);
     multiGet.mockClear();
     await snapshot.hydrateStoredKeys(['premium_active', 'streak_count', 'user_frame']);
-    expect(multiGet).toHaveBeenCalledTimes(1);
+    expect(multiGet.mock.calls.filter((call) => (call[0] as string[]).includes('premium_active'))).toHaveLength(1);
     getItem.mockClear();
     await expect(snapshot.readStoredItem('streak_count')).resolves.toBe('7');
     expect(getItem).not.toHaveBeenCalled();
     multiGet.mockRejectedValueOnce(new Error('sqlite busy'));
     await expect(snapshot.hydrateStoredKeys(['never_read_key'])).resolves.toBeUndefined();
   });
+
+  it('parallel readStoredItems calls over the same keys share one multiGet', async () => {
+    const { AsyncStorage, snapshot, multiGet } = load();
+    await AsyncStorage.multiSet([['p_one', '1'], ['p_two', '2']]);
+    multiGet.mockClear();
+    const results = await Promise.all(Array.from({ length: 6 }, () => snapshot.readStoredItems(['p_one', 'p_two'])));
+    for (const rows of results) expect(rows).toEqual([['p_one', '1'], ['p_two', '2']]);
+    expect(multiGet.mock.calls.filter((call) => (call[0] as string[]).includes('p_one'))).toHaveLength(1);
+  });
+
+  it('a multi-key batch that failed is rethrown and the next call retries storage', async () => {
+    const { AsyncStorage, snapshot, multiGet } = load();
+    await AsyncStorage.setItem('q_one', '1');
+    multiGet.mockRejectedValueOnce(new Error('sqlite busy'));
+    await expect(snapshot.readStoredItems(['q_one'])).rejects.toThrow('sqlite busy');
+    await expect(snapshot.readStoredItems(['q_one'])).resolves.toEqual([['q_one', '1']]);
+  });
+
+
+  it('without write tracking (guard not installed) the snapshot is a transparent pass-through', async () => {
+    jest.resetModules();
+    jest.restoreAllMocks();
+    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const AsyncStorage = require('@react-native-async-storage/async-storage').default;
+    AsyncStorage.__reset?.();
+    const snapshot = require('../app/storage_snapshot') as typeof import('../app/storage_snapshot');
+    const getItem = jest.spyOn(AsyncStorage, 'getItem');
+    await AsyncStorage.setItem('raw_key', '1');
+    await snapshot.readStoredItem('raw_key');
+    await snapshot.readStoredItem('raw_key');
+    expect(getItem.mock.calls.filter((call) => call[0] === 'raw_key')).toHaveLength(2);
+    expect(snapshot.peekStoredItem('raw_key')).toBeUndefined();
+    await snapshot.writeStoredItem('raw_key', '2');
+    await expect(AsyncStorage.getItem('raw_key')).resolves.toBe('2');
+  });
+
 });

@@ -11,6 +11,7 @@
 //
 // Кэш в памяти + подписчики — чтобы аватар обновился в тот же кадр, что и списание
 // (optimistic: сети в повышении нет вовсе, телефон авторитетен, как у всех рунных трат).
+import { readStoredItem } from './storage_snapshot';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { COIN_RANK_MIN, isValidCoinRank } from './coin_rank_table_v1';
@@ -122,9 +123,10 @@ export function subscribeCoinRank(listener: (ownerStableId: string, rank: number
  * Прочитать ранг с диска (для показа). Битая запись → null + лог: показ откатится
  * на прежний аватар, а не выдумает ранг 0.
  */
+// зачем (§122, PM-220): ранг читается на старте несколькими потребителями (5 раз за запуск) — через снапшот: хранилище один раз.
 export async function readCoinRank(ownerStableId: string): Promise<number | null> {
   try {
-    const state = parseCoinRankState(await AsyncStorage.getItem(coinRankStateKey(ownerStableId)), ownerStableId);
+    const state = parseCoinRankState(await readStoredItem(coinRankStateKey(ownerStableId)), ownerStableId);
     cache.set(ownerStableId, state.rank); // guard-ok: Map в памяти процесса, не Firestore
     return state.rank;
   } catch (error) {

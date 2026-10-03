@@ -1,3 +1,4 @@
+import { readStoredItems } from './storage_snapshot';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 type IntroNotificationModule = Pick<
   typeof import('./notifications'),
@@ -143,7 +144,9 @@ function readIntroPairs(): Promise<readonly (readonly [string, string | null])[]
   const current = inFlightIntroRead;
   if (current && current.generation === introReadGeneration) return current.promise;
   const generation = introReadGeneration;
-  const promise = AsyncStorage.multiGet([...INTRO_FULL_ACCESS_STORAGE_KEYS]);
+  // зачем (§122, PM-220): сырые пары читаются через снапшот — хранилище трогаем один раз, дальше память; любая запись по этим
+  // ключам (в том числе чужая, мимо модуля) выбрасывает их из снапшота. Склейка параллельных вызовов выше остаётся.
+  const promise = readStoredItems(INTRO_FULL_ACCESS_STORAGE_KEYS);
   inFlightIntroRead = Object.freeze({ generation, promise });
   const release = (): void => {
     if (inFlightIntroRead?.promise === promise) inFlightIntroRead = null;

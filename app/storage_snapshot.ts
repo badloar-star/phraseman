@@ -17,7 +17,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { subscribeStorageMutations, type StorageMutationEvent } from './async_storage_null_bind_guard';
+import { isMutationTrackingActive, subscribeStorageMutations, type StorageMutationEvent } from './storage_mutation_bus';
 
 /** Ключи, которые НИКОГДА не живут в памяти снапшота (деньги: руны, монеты, энергия, шарды операций). */
 export const SNAPSHOT_DENY_PATTERNS: readonly RegExp[] = Object.freeze([
@@ -105,6 +105,8 @@ export function peekStoredItem(key: string): string | null | undefined {
 }
 
 export function readStoredItem(key: string): Promise<string | null> {
+  // слежение за записями не поставлено (тесты, ранний импорт) — снапшот прозрачен: память без подписки на записи была бы небезопасна
+  if (!isMutationTrackingActive()) return AsyncStorage.getItem(key);
   ensureSubscribed();
   if (isSnapshotDeniedKey(key)) {
     stats.bypass += 1;
@@ -144,26 +146,51 @@ export function readStoredItem(key: string): Promise<string | null> {
   return promise;
 }
 
-/** multiGet с ответом из памяти; недостающие ключи читаются ОДНИМ multiGet. Порядок и форма — как у AsyncStorage. */
+/**
+ * multiGet с ответом из памяти; недостающие ключи читаются ОДНИМ multiGet, а параллельные вызовы с теми же ключами
+ * присоединяются к уже летящему чтению (single-flight по ключу, как у readStoredItem). Порядок и форма — как у AsyncStorage.
+ */
 export async function readStoredItems(keys: readonly string[]): Promise<ReadonlyArray<readonly [string, string | null]>> {
+  if (!isMutationTrackingActive()) return AsyncStorage.multiGet([...keys]);
   ensureSubscribed();
   const result = new Map<string, string | null>();
+  const joined: Array<Promise<void>> = [];
   const missing: string[] = [];
   for (const key of keys) {
+    if (result.has(key) || missing.includes(key)) continue;
     const peeked = peekStoredItem(key);
     if (peeked !== undefined) {
       stats.hits += 1;
       result.set(key, peeked);
-    } else if (!missing.includes(key)) {
-      missing.push(key);
+      continue;
     }
+    const shared = isSnapshotDeniedKey(key) ? undefined : readsInFlight.get(key);
+    if (shared && shared.epoch === epochOf(key)) {
+      joined.push(shared.promise.then((value) => { result.set(key, value); }));
+      continue;
+    }
+    missing.push(key);
   }
   if (missing.length > 0) {
     const epochs = new Map(missing.map((key) => [key, epochOf(key)] as const));
     const cacheable = new Map(missing.map((key) => [key, canCache(key)] as const));
+    const batch = AsyncStorage.multiGet(missing);
+    for (const key of missing) {
+      if (isSnapshotDeniedKey(key) || !cacheable.get(key)) continue;
+      const promise: Promise<string | null> = batch.then((rows) => {
+        const row = rows.find(([rowKey]) => rowKey === key);
+        return row ? row[1] : null;
+      });
+      readsInFlight.set(key, { epoch: epochs.get(key) ?? 0, promise });
+      promise.then(() => {
+        if (readsInFlight.get(key)?.promise === promise) readsInFlight.delete(key);
+      }, () => {
+        if (readsInFlight.get(key)?.promise === promise) readsInFlight.delete(key);
+      });
+    }
     let rows: ReadonlyArray<readonly [string, string | null]>;
     try {
-      rows = await AsyncStorage.multiGet(missing);
+      rows = await batch;
     } catch (error) {
       stats.errors += 1;
       warn(`readMany:catch keys=${missing.length}`, errorText(error));
@@ -178,6 +205,7 @@ export async function readStoredItems(keys: readonly string[]): Promise<Readonly
       }
     }
   }
+  await Promise.all(joined);
   return keys.map((key) => [key, result.get(key) ?? null] as const);
 }
 
@@ -194,13 +222,13 @@ export async function hydrateStoredKeys(keys: readonly string[]): Promise<void> 
 }
 
 async function writeThrough(key: string, value: string | null): Promise<void> {
-  ensureSubscribed();
-  if (isSnapshotDeniedKey(key)) {
+  if (!isMutationTrackingActive() || isSnapshotDeniedKey(key)) {
     stats.bypass += 1;
     if (value === null) await AsyncStorage.removeItem(key);
     else await AsyncStorage.setItem(key, value);
     return;
   }
+  ensureSubscribed();
   stats.writes += 1;
   // сначала память (мгновенный отклик), потом хранилище; при ошибке — откат: ожидаемое значение снимается, чтение пойдёт в хранилище
   const previous = pendingWrites.get(key);

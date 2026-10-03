@@ -1,3 +1,4 @@
+import { readStoredItems } from './storage_snapshot';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Purchases from 'react-native-purchases';
 import { FORCE_PREMIUM, IS_EXPO_GO, IS_STORE_RELEASE } from './config';
@@ -439,7 +440,9 @@ export async function getVerifiedRealPremiumStatus(
     return _cachedRealResult;
   }
 
-  const pairs = await AsyncStorage.multiGet([
+  // зачем (§122, PM-220): премиум-ключи читаются через снапшот (на старте 11 одинаковых multiGet); любая запись в них —
+  // через AsyncStorage — выбрасывает ключ из снапшота, так что устаревшее значение доступа не отдаётся.
+  const pairs = await readStoredItems([
     'premium_active',
     'premium_plan',
     'premium_expiry',

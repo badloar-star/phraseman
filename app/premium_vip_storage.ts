@@ -1,3 +1,4 @@
+import { readStoredItem } from './storage_snapshot';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   isCurrentAccountGeneration,
@@ -157,7 +158,9 @@ const inFlightVipReads = new Map<string, Promise<string | null>>();
 function readVipSnapshotRawCoalesced(key: string): Promise<string | null> {
   const existing = inFlightVipReads.get(key);
   if (existing) return existing;
-  const pending = AsyncStorage.getItem(key)
+  // зачем (§122, PM-220): чтение идёт через снапшот — хранилище один раз, дальше память. Стирание ключа общей чисткой аккаунта
+  // (cloud_sync) и любая запись этого модуля проходят через AsyncStorage и выбрасывают ключ из снапшота.
+  const pending = readStoredItem(key)
     .catch(noteSwallowedAs('premium_vip_storage:promise_1', null))
     .finally(() => {
       if (inFlightVipReads.get(key) === pending) inFlightVipReads.delete(key);

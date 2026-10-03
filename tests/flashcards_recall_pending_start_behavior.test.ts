@@ -88,6 +88,14 @@ jest.mock('../app/flashcard_training_pending_grant', () => ({
   abandonFlashcardTrainingPendingGrant: async () => ({ status: 'nothing_to_refund' }),
   discardFlashcardTrainingPendingGrant: async () => ({ status: 'removed' }),
 }));
+// зачем (03.10, компактный manifest): экран теперь строит интент под запись через
+// resolveEnergyIntentForRecord → реальный реестр энергии тянет firebase/config (Platform.OS в моке RN).
+// Реестр здесь не нужен: интент записи совпадает с текущим (первая ветка помощника).
+jest.mock('../app/energy_session_operation_ledger', () => ({
+  createEnergySessionIntent: (kind: string, subjectId: string, attemptId: string) => ({
+    operationId: `energy:${kind}:${attemptId}`, grant: { kind, subjectId, attemptId },
+  }),
+}));
 jest.mock('../app/flashcards/deck_sources', () => ({
   deckRefKey: () => 'saved', parseDeckParams: () => [{ kind: 'saved' }],
   loadDeckCardsMulti: jest.fn(async () => [{ id: 'one', en: 'hello', translation: 'привет' }]),

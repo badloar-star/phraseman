@@ -38,6 +38,8 @@ import { useKeepAwake } from 'expo-keep-awake';
 import { FONT_SCALE, useTheme } from '../components/ThemeContext';
 import { usePremium } from '../components/PremiumContext';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
+import { buildManifestCardIndex, manifestSeed, restoreManifestCards, toManifestIds } from './flashcards/training_manifest_ids';
+import { attemptRevisionCandidates, resolveEnergyIntentForRecord } from './flashcards/training_energy_intent';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -290,12 +292,18 @@ export default function FlashcardsSpeakingSession() {
   const speakingRefundInFlightRef = useRef<Promise<void> | null>(null);
   const refundSpeakingEntry = useCallback((operationId: string, reason: string): Promise<void> => {
     if (speakingRefundInFlightRef.current) return speakingRefundInFlightRef.current;
+    // зачем (ревью Opus, LOW 4): ошибка возврата ПРОБРАСЫВАЕТСЯ в abandon — он вернёт запись в 'charged'
+    // (refund_failed), а не пометит 'refunded' при невозвращённой энергии. Лог обязателен.
     const pending = refundSpeakEnergy(operationId, reason).then(() => {
       speakingEntryChargedRef.current = false;
       setSpeakingEnergyRevision((current) => current + 1);
-    }).catch((error: unknown) => { console.warn('[FC-SPEAKING] refundSpeakEnergy: возврат энергии не удался (продолжаем без неё)', error); });
+    }).catch((error: unknown) => {
+      console.warn('[FC-SPEAKING] refundSpeakEnergy: возврат энергии не удался — ошибка уходит в abandon', error);
+      throw error;
+    });
     speakingRefundInFlightRef.current = pending;
-    void pending.finally(() => {
+    // зачем: await стартового эффекта на этот промис не должен ронять вход, а производная цепочка — быть unhandled.
+    void pending.catch(() => undefined).finally(() => {
       if (speakingRefundInFlightRef.current === pending) speakingRefundInFlightRef.current = null;
     });
     return pending;
@@ -433,7 +441,7 @@ export default function FlashcardsSpeakingSession() {
     void (async () => {
       if (speakingRefundInFlightRef.current) {
         gateLog('refund:await');
-        await speakingRefundInFlightRef.current;
+        await speakingRefundInFlightRef.current.catch((refundError: unknown) => { console.warn('[FC-SPEAKING] refund:await — прежний возврат не удался (продолжаем)', refundError); });
       }
       if (cancelled) { gateLog('exit:cancelled_before_load'); return; }
       const [loadedPool, rawPrefs] = await Promise.all([
@@ -444,7 +452,8 @@ export default function FlashcardsSpeakingSession() {
       gateLog('load:done', { pool: loadedPool.length });
       const prefs = parseSpeakingPrefs(rawPrefs);
       // зачем (D127): наборы «без языка» не озвучиваются — в «Устно» им не место.
-      const cards = shuffleArr(voicedDeckCards(loadedPool)).slice(0, sessionSize);
+      const voicedPool = voicedDeckCards(loadedPool);
+      const cards = shuffleArr(voicedPool).slice(0, sessionSize);
       speakingLocalStart = () => {
         finishedRef.current = false;
         quotaUnavailableRef.current = false;
@@ -484,7 +493,8 @@ export default function FlashcardsSpeakingSession() {
         manifest: {
           schemaVersion: 'flashcard-training-manifest.v1',
           mode: 'speaking',
-          payload: JSON.parse(JSON.stringify({ cards, prefs, energyIntent: speakingEnergyIntent })),
+          // зачем (дыра в экономике 03.10): компактный manifest — отпечатки id + задача; без текстов и energyIntent.
+          payload: { orderedCardIds: toManifestIds(cards), seed: manifestSeed(attemptSessionId), task: prefs.task },
         },
         attemptId: attemptSessionId,
         receiptId: `speaking:${attemptSessionId}`,
@@ -506,18 +516,31 @@ export default function FlashcardsSpeakingSession() {
       if (reconciled.status === 'found') pendingRecord = reconciled.record;
       else throw new Error(`pending_grant_reconcile_${reconciled.status}`);
       speakingPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
-      const restored = pendingRecord.manifest.payload as unknown as {
-        cards: DeckCard[];
-        prefs: SpeakingPrefs;
-        energyIntent: typeof speakingEnergyIntent;
-      };
-      if (!Array.isArray(restored.cards) || restored.cards.length === 0 || !restored.prefs) {
-        throw new Error('pending_grant_manifest_invalid');
-      }
+      // зачем: восстановление — из ВСЕГО озвучиваемого пула (запись могла быть reused от прежней попытки
+      // с другим срезом sessionSize); коллизия отпечатков / нехватка карточек → pending_grant_* → fail-open.
+      const cardIndex = buildManifestCardIndex(voicedPool);
+      const restoredCards = restoreManifestCards<DeckCard>(
+        (pendingRecord.manifest.payload as { orderedCardIds?: unknown }).orderedCardIds,
+        cardIndex,
+      );
+      // зачем: задача — из manifest (то, что оплачено), прочие prefs — текущие.
+      const manifestTask = (pendingRecord.manifest.payload as { task?: unknown }).task;
+      const restoredPrefs: SpeakingPrefs = manifestTask === 'recall' || manifestTask === 'repeat'
+        ? { ...prefs, task: manifestTask }
+        : prefs;
+      // зачем: интент берём ТОЛЬКО под запись журнала (reused/ротация), иначе двойное списание или потерянный возврат.
+      const recordIntent = resolveEnergyIntentForRecord({
+        record: pendingRecord,
+        currentIntent: speakingEnergyIntent,
+        screenKind: 'flashcards_speaking',
+        screenSubjectId: deckKey || 'saved',
+        attemptIdsFromRecordAttempt: (attempt) => attemptRevisionCandidates(attempt, speakingEnergyRevision),
+        mode: 'speaking',
+      });
 
       let energyCharged = pendingRecord.energyState === 'charged';
       gateLog('energy:await', { charged: energyCharged });
-      const energyResult = energyCharged ? 'unlimited' : await confirmSpeakEnergy(restored.energyIntent);
+      const energyResult = energyCharged ? 'unlimited' : await confirmSpeakEnergy(recordIntent);
       gateLog('energy:done', { result: energyResult });
       if (energyResult === 'spent') {
         energyCharged = true;
@@ -597,18 +620,18 @@ export default function FlashcardsSpeakingSession() {
         gateLog('exit:stale_before_ok', { cancelled, mounted: speakingMountedRef.current, abandoned: speakingExplicitlyAbandonedRef.current });
         return;
       }
-      gateLog('ok', { cards: restored.cards.length });
+      gateLog('ok', { cards: restoredCards.length });
       finishedRef.current = false;
       quotaUnavailableRef.current = false;
       setQuotaUnavailable(false);
       clearAdvanceTimer();
-      setTask(restored.prefs.task);
+      setTask(restoredPrefs.task);
       setFlipped(false);
       setHoldActive(false);
       setStuck(false);
       setResult(null);
       setQuotaSessionAuthorized(true);
-      setSession(initialSpeakingState(restored.cards));
+      setSession(initialSpeakingState(restoredCards));
       setLoading(false);
       await markFlashcardTrainingPendingGrantPlayable(
         pendingAccount,
@@ -649,6 +672,25 @@ export default function FlashcardsSpeakingSession() {
        */
       const message = error instanceof Error ? error.message : String(error);
       if (/^pending_grant/.test(message) && speakingLocalStart && speakingMountedRef.current && !speakingExplicitlyAbandonedRef.current) {
+        // зачем (ревью Opus, HIGH 03.10): запись журнала, подхваченная этим входом, обязана быть снята ДО
+        // локального старта — иначе следующий вход с теми же настройками получает reused-запись и идёт
+        // бесплатно (до конца месяца), а энергия первой попытки не возвращается. Порядок как в «Вспомни»/Блице.
+        const stale = speakingPendingGrantRef.current;
+        if (stale) {
+          await abandonFlashcardTrainingPendingGrant(
+            stale.account,
+            stale.record.fingerprint,
+            refundSpeakingEntry,
+            Date.now(),
+            'entry_failed',
+          ).catch((abandonError: unknown) => { console.warn('[FC-SPEAKING] fail-open: abandonFlashcardTrainingPendingGrant не удался', abandonError); });
+          await discardFlashcardTrainingPendingGrant(
+            stale.account,
+            stale.record.fingerprint,
+          ).catch((discardError: unknown) => { console.warn('[FC-SPEAKING] fail-open: discardFlashcardTrainingPendingGrant не удался', discardError); });
+          // зачем: возврат энергии меняет ревизию интента и перезапускает эффект — этот запуск уже не актуален.
+          if (cancelled) { gateLog('catch:cancelled_after_failopen_cleanup'); return; }
+        }
         speakingPendingGrantRef.current = null;
         speakingEntryChargedRef.current = false;
         console.warn('[FC-TRAIN-ENTRY] speaking entry:fail-open — грант недоступен, раунд стартует локально без чека и без списания энергии', JSON.stringify({ reason: message }));

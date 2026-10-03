@@ -29,6 +29,8 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
+import { buildManifestCardIndex, cardManifestId, manifestSeed, restoreManifestCards, toManifestIds } from './flashcards/training_manifest_ids';
+import { attemptRevisionCandidates, resolveEnergyIntentForRecord } from './flashcards/training_energy_intent';
 import NoEnergyModal from '../components/NoEnergyModal';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
@@ -533,7 +535,8 @@ export default function FlashcardsBlitzSession() {
       gateLog('account:done', { found: Boolean(pendingAccount) });
       if (!pendingAccount) throw new Error('pending_grant_account_unavailable');
       const roundQueue = shuffleArr(pool);
-      const initialQuestion = buildBlitzQuestion(roundQueue[0]!, pool);
+      // зачем: коллизия отпечатков → pending_grant_manifest_id_collision → существующий fail-open с логом.
+      const cardIndex = buildManifestCardIndex(pool);
       const pendingScope = {
         mode: 'blitz' as const,
         studyTarget,
@@ -549,7 +552,14 @@ export default function FlashcardsBlitzSession() {
         manifest: {
           schemaVersion: 'flashcard-training-manifest.v1',
           mode: 'blitz',
-          payload: JSON.parse(JSON.stringify({ pool, roundQueue, initialQuestion, energyIntent: blitzEnergyIntent })),
+          // зачем (дыра в экономике 03.10): компактный manifest — отпечатки id (пул и очередь раунда),
+          // без текстов карточек и без energyIntent; иначе invalid_input → fail-open → энергия бесплатно.
+          payload: {
+            // зачем (ревью Opus, LOW 3): очередь раунда — тот же пул в другом порядке; один список вместо двух.
+            orderedCardIds: toManifestIds(roundQueue),
+            seed: manifestSeed(`${feedbackAttemptId}:${roundId}`),
+            initialCardId: cardManifestId(roundQueue[0]!.id),
+          },
         },
         attemptId: `${feedbackAttemptId}:${roundId}`,
         receiptId: `blitz:${feedbackAttemptId}:${roundId}`,
@@ -571,21 +581,31 @@ export default function FlashcardsBlitzSession() {
       if (reconciled.status === 'found') pendingRecord = reconciled.record;
       else throw new Error(`pending_grant_reconcile_${reconciled.status}`);
       blitzPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
-      const restored = pendingRecord.manifest.payload as unknown as {
-        pool: DeckCard[];
-        roundQueue: DeckCard[];
-        initialQuestion: BlitzQuestion;
-        energyIntent: typeof blitzEnergyIntent;
+      const manifestPayload = pendingRecord.manifest.payload as { orderedCardIds?: unknown };
+      // зачем: пул для отвлекающих вариантов восстанавливается из той же очереди раунда.
+      const restoredRoundQueue = restoreManifestCards<DeckCard>(manifestPayload.orderedCardIds, cardIndex);
+      const restoredPool = restoredRoundQueue;
+      // зачем: первый вопрос собираем заново из восстановленных карточек (отвлекающие варианты — из пула).
+      const restored = {
+        pool: restoredPool,
+        roundQueue: restoredRoundQueue,
+        initialQuestion: buildBlitzQuestion(restoredRoundQueue[0]!, restoredPool),
       };
-      if (!Array.isArray(restored.pool) || !Array.isArray(restored.roundQueue) || !restored.initialQuestion) {
-        throw new Error('pending_grant_manifest_invalid');
-      }
+      // зачем: интент берём ТОЛЬКО под запись журнала (reused/ротация), иначе двойное списание или потерянный возврат.
+      const recordIntent = resolveEnergyIntentForRecord({
+        record: pendingRecord,
+        currentIntent: blitzEnergyIntent,
+        screenKind: 'flashcards_blitz',
+        screenSubjectId: deckParamStr ?? 'saved',
+        attemptIdsFromRecordAttempt: (attempt) => attemptRevisionCandidates(attempt, quotaRetryRevision),
+        mode: 'blitz',
+      });
 
       let energyCharged = pendingRecord.energyState === 'charged';
       gateLog('energy:await', { charged: energyCharged, unlimited: blitzEnergyUnlimited });
       const result = energyCharged || blitzEnergyUnlimited
         ? 'unlimited'
-        : await confirmBlitzEnergy(restored.energyIntent);
+        : await confirmBlitzEnergy(recordIntent);
       gateLog('energy:done', { result });
       if (result === 'spent') {
         energyCharged = true;
@@ -731,7 +751,7 @@ export default function FlashcardsBlitzSession() {
     // зачем (баг 03.10): cleanup больше НЕ отменяет запуск — латч всё равно не дал бы перезапуску пройти,
     // и экран остался бы на каркасе. Устаревание определяет isStaleRun (новый запуск / размонтирование / уход).
     return undefined;
-  }, [accessResolved, hasPremiumAccess, accountToken, blitzAccessGranted, blitzEnergyIntent, feedbackAttemptId, loading, pool, roundId, blitzEnergyUnlimited, confirmBlitzEnergy, contentLang, deckRefs, refundActiveBlitzEnergy, refundBlitzEnergy, router, studyTarget]);
+  }, [accessResolved, hasPremiumAccess, accountToken, blitzAccessGranted, blitzEnergyIntent, feedbackAttemptId, loading, pool, roundId, blitzEnergyUnlimited, confirmBlitzEnergy, contentLang, deckParamStr, deckRefs, refundActiveBlitzEnergy, refundBlitzEnergy, router, studyTarget]);
 
   // зачем (баг «Блиц висит на каркасе», 03.10): любой исход обязан выводить с каркаса. Если через 20 с
   // экран всё ещё на каркасе — полный снимок в лог (чтобы по одному grep было видно, ЧТО держит), и если

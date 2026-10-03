@@ -17,6 +17,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import ContentWrap from '../components/ContentWrap';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
+import { buildManifestCardIndex, manifestSeed, restoreManifestCards, toManifestIds } from './flashcards/training_manifest_ids';
+import { resolveEnergyIntentForRecord } from './flashcards/training_energy_intent';
 import { useLang } from '../components/LangContext';
 import { CoinRewardFlight } from '../components/rewards/CoinRewardFlight';
 import NoEnergyModal from '../components/NoEnergyModal';
@@ -274,11 +276,11 @@ export default function FlashcardsRecallSession() {
     /** Локальный старт на случай отказа гранта — см. fail-open в catch ниже. */
     let recallLocalStart: (() => void) | null = null;
     void (async () => {
-      let cards = await loadDeckCardsMulti(deckRefs, contentLang, {
+      const loadedCards = await loadDeckCardsMulti(deckRefs, contentLang, {
         shuffle: true,
         studyTarget,
       });
-      cards = cards.slice(0, sessionSize);
+      const cards = loadedCards.slice(0, sessionSize);
       if (cancelled) return;
       if (cards.length === 0) {
         setLoading(false);
@@ -286,6 +288,9 @@ export default function FlashcardsRecallSession() {
       }
       const round = shuffle(cards);
       recallLocalStart = () => { resetRound(round, true); setLoading(false); };
+      // зачем: восстановление идёт из ВСЕГО загруженного пула (запись могла быть reused от прежней попытки
+      // с другим срезом sessionSize); коллизия отпечатков → pending_grant_manifest_id_collision → fail-open.
+      const cardIndex = buildManifestCardIndex(loadedCards);
       const pendingAccount = await resolveFlashcardTrainingPendingGrantAccount(accountToken);
       if (!pendingAccount) throw new Error('pending_grant_account_unavailable');
       const pendingScope = {
@@ -302,7 +307,8 @@ export default function FlashcardsRecallSession() {
         manifest: {
           schemaVersion: 'flashcard-training-manifest.v1',
           mode: 'recall',
-          payload: JSON.parse(JSON.stringify({ round, energyIntent })),
+          // зачем (дыра в экономике 03.10): компактный manifest — отпечатки id, без текстов и без energyIntent.
+          payload: { orderedCardIds: toManifestIds(round), seed: manifestSeed(attemptSessionId) },
         },
         attemptId: attemptSessionId,
         receiptId: `recall:${attemptSessionId}`,
@@ -322,16 +328,21 @@ export default function FlashcardsRecallSession() {
       if (reconciled.status === 'found') pendingRecord = reconciled.record;
       else throw new Error(`pending_grant_reconcile_${reconciled.status}`);
       recallPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
-      const restored = pendingRecord.manifest.payload as unknown as {
-        round: DeckCard[];
-        energyIntent: typeof energyIntent;
-      };
-      if (!Array.isArray(restored.round) || restored.round.length === 0) {
-        throw new Error('pending_grant_manifest_invalid');
-      }
+      const restoredRound = restoreManifestCards<DeckCard>(
+        (pendingRecord.manifest.payload as { orderedCardIds?: unknown }).orderedCardIds,
+        cardIndex,
+      );
+      // зачем: интент берём ТОЛЬКО под запись журнала (reused/ротация), иначе двойное списание или потерянный возврат.
+      const recordIntent = resolveEnergyIntentForRecord({
+        record: pendingRecord,
+        currentIntent: energyIntent,
+        screenKind: 'flashcards_recall',
+        screenSubjectId: deckKey || 'saved',
+        mode: 'recall',
+      });
 
       let energyCharged = pendingRecord.energyState === 'charged';
-      const energyResult = energyCharged ? 'unlimited' : await confirmSpendOne(restored.energyIntent);
+      const energyResult = energyCharged ? 'unlimited' : await confirmSpendOne(recordIntent);
       if (energyResult === 'spent') {
         energyCharged = true;
         const marked = await markFlashcardTrainingEnergyCharged(
@@ -398,7 +409,7 @@ export default function FlashcardsRecallSession() {
       }
 
       if (cancelled || !recallMountedRef.current || recallExplicitlyAbandonedRef.current) return;
-      resetRound(restored.round, true);
+      resetRound(restoredRound, true);
       setLoading(false);
       await markFlashcardTrainingPendingGrantPlayable(
         pendingAccount,

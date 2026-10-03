@@ -45,10 +45,10 @@ describe('full-phrase recall session contract', () => {
   test('durably authorizes the exact Recall manifest before making the session playable', () => {
     const source = read('app', 'flashcards_recall_session.tsx');
     const prepared = source.indexOf('prepareFlashcardTrainingPendingGrant({');
-    const energy = source.indexOf('confirmSpendOne(restored.energyIntent)');
+    const energy = source.indexOf('confirmSpendOne(recordIntent)');
     // зачем: 17fbb3d32 (30.09) — «Вспомни» списывает месячный лимит тренировок; порядок шагов прежний.
     const quota = source.indexOf('consumeMonthlyTrainingSession({');
-    const playable = source.indexOf('resetRound(restored.round, true)');
+    const playable = source.indexOf('resetRound(restoredRound, true)');
     const markedPlayable = source.indexOf('markFlashcardTrainingPendingGrantPlayable(');
     const acknowledged = source.indexOf('acknowledgeAndClearFlashcardTrainingPendingGrant(');
 
@@ -59,7 +59,10 @@ describe('full-phrase recall session contract', () => {
     expect(markedPlayable).toBeGreaterThan(playable);
     expect(acknowledged).toBeGreaterThan(markedPlayable);
     expect(source).toContain("mode: 'recall' as const");
-    expect(source).toContain('payload: JSON.parse(JSON.stringify({ round, energyIntent }))');
+    // зачем (дыра в экономике 03.10): manifest компактный (отпечатки id), energyIntent в нём не хранится —
+    // иначе валидатор журнала отвергает payload (invalid_input) и экран уходит в бесплатный fail-open.
+    expect(source).toContain('payload: { orderedCardIds: toManifestIds(round), seed: manifestSeed(attemptSessionId) }');
+    expect(source).not.toContain('JSON.parse(JSON.stringify({ round');
     expect(source).toContain('receiptId: pendingRecord.receiptId');
     expect(source).toContain('if (cancelled || recallExplicitlyAbandonedRef.current) return;');
     expect(source).toContain('return () => {\n      cancelled = true;\n    };');

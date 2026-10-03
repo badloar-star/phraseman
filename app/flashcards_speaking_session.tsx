@@ -53,7 +53,7 @@ import SpeakingInlineResultStars from '../components/SpeakingInlineResultStars';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { PracticeBackButton, PracticeHeaderTitle, PracticeRoundIconButton } from '../components/practice/PracticeChrome';
+import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
 import { PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useAudio } from '../hooks/use-audio';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
@@ -124,6 +124,8 @@ import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — не�
 
 /** Акцент режима (words #4A9EFF / phrases #40C080 / blitz #FF8A3D). */
 const ACCENT = '#22B8A8';
+/** Заливка полосы прогресса — светлая, как `.trk > i` в practice.html (PM-130). */
+const PROGRESS_FILL = '#E9E9EB';
 const CARD_MIN_H = 200;
 const SPEAKING_CARD_PRESENTATION = Object.freeze({
   borderRadius: 16,
@@ -1318,22 +1320,8 @@ export default function FlashcardsSpeakingSession() {
   // ── Рендер ─────────────────────────────────────────────────────────────────
   const header = (interactive: boolean) => (
     <>
-      {/* Руны за сессию (владелец, 2026-08-27): шапка ниже — самая плотная из
-          семи экранов (попытки + прогресс + выбор наборов), поэтому руны
-          вынесены отдельной строкой сверху, а не втиснуты в тот же ряд. */}
-      {interactive ? (
-        <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginBottom: 6 }}>
-          <View ref={runeFlight.counterRef} collapsable={false}>
-            <PracticeRuneCounter
-              runes={practiceRunes.runes}
-              lang={lang}
-              backgroundColor={t.bgCard}
-              color={t.textPrimary}
-              testID="fc-speak-practice-runes"
-            />
-          </View>
-        </View>
-      ) : null}
+      {/* зачем (PM-130, как Блиц PM-129): монеты — плашкой в шапке после сердец; кнопка выбора
+          наборов ушла (наборы выбираются на экране настройки, D152), и место в ряду освободилось. */}
     <View style={styles.headerRow}>
       <PracticeBackButton
         glass={speakingGlass}
@@ -1357,15 +1345,20 @@ export default function FlashcardsSpeakingSession() {
           locale={lang}
           testID="fc-speak-session-attempts"
         />
-        <PracticeRoundIconButton
-          glass={speakingGlass}
-          color={speakingGlass.secondary}
-          icon="albums-outline"
-          testID="fc-speak-pick-decks"
-          accessibilityLabel={labels.pickDecks}
-          onPress={openDeckPicker}
-          disabled={!interactive}
-        />
+        {interactive ? (
+          <View ref={runeFlight.counterRef} collapsable={false}>
+            <PracticeRuneCounter
+              runes={practiceRunes.runes}
+              lang={lang}
+              backgroundColor={speakingGlass.opaqueControl}
+              color={t.textPrimary}
+              testID="fc-speak-practice-runes"
+            />
+          </View>
+        ) : (
+          // зачем: заготовка ровно под плашку монет (52×36) — шапка не прыгает при старте.
+          <SkeletonBlock width={52} height={36} borderRadius={18} />
+        )}
         {/* зачем: говорение сверяет речь с эталонной фразой card.en — если эталон
             неверен, «попасть» в него нельзя в принципе, и человек застревает.
             Флаг только в живом состоянии: в скелетоне карточки ещё нет. */}
@@ -1532,7 +1525,9 @@ RU: ${card.translation}`}
             <View
               style={[
                 styles.progressFill,
-                { backgroundColor: ACCENT, width: `${(progress.position / progress.total) * 100}%` },
+                // зачем (PM-130, practice.html `.trk > i`): заливка светлая, как у Блица, — цвет режима
+                // не спорит с карточкой и микрофоном.
+                { backgroundColor: PROGRESS_FILL, width: `${(progress.position / progress.total) * 100}%` },
               ]}
             />
           </View>
@@ -1634,10 +1629,12 @@ RU: ${card.translation}`}
                       accessibilityLabel={labels.retry}
                       hitSlop={{ top: 6, bottom: 6, left: 4, right: 4 }}
                       onPress={onRetry}
-                      style={[styles.resultBtn, { backgroundColor: `${ACCENT}22` }]}
+                      // зачем (PM-130, practice.html `.aux`): «Ещё раз» — нейтральная кнопка, цветом режима
+                      // не красится; главный цвет остаётся за микрофоном.
+                      style={[styles.resultBtn, { backgroundColor: speakingGlass.opaqueControl }]}
                     >
-                      <Ionicons name="refresh" size={16} color={ACCENT} />
-                      <Text style={{ color: ACCENT, fontSize: f.caption, fontWeight: '800' }}>{labels.retry}</Text>
+                      <Ionicons name="refresh" size={16} color={speakingGlass.text} />
+                      <Text style={{ color: speakingGlass.text, fontSize: f.caption, fontWeight: '800' }}>{labels.retry}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                       testID="fc-speak-next"
@@ -1768,7 +1765,7 @@ const styles = StyleSheet.create({
   progressTrack: { height: 6, borderRadius: 4, marginTop: 22, marginHorizontal: 20, overflow: 'hidden' },
   progressFill: { height: 6, borderRadius: 4 },
   progressRow: { minHeight: 22, marginTop: 12, marginHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  progressLabel: { fontSize: 16, lineHeight: 21, fontWeight: '700', fontVariant: ['tabular-nums'] },
+  progressLabel: { fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] },
   // Отдельная верхняя строка рун уплотнила экран: опускаем карточку ниже,
   // чтобы её верх не заходил на progress bar.
   cardArea: { flexGrow: 1, justifyContent: 'center', paddingHorizontal: 20, paddingTop: 34 },

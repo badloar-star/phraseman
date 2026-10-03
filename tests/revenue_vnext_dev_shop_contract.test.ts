@@ -26,3 +26,12 @@ test('DEV preview CTA performs no affordability, wallet, or random-reward decisi
   expect(source).toContain('showNotice(triLang(lang, COPY.previewOnlyNotice))');
 });
 
+// зачем (§99, 03.10): /shop — обычный маршрут, диплинк открывал бы предпросмотр и в store-сборке.
+// Дверь обязана закрываться теми же флагами, что и вход из DEV-центра, и стоять ВЫШЕ хуков экрана.
+test('shop route is closed outside dev builds (deep link cannot reach it in a store release)', () => {
+  expect(source).toContain("import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';");
+  expect(source).toContain('if (!ENABLE_DEV_TOOLS || IS_STORE_RELEASE) return <Redirect href="/(tabs)/home" />;');
+  const gate = source.indexOf('export default function ShopScreen()');
+  expect(gate).toBeGreaterThan(source.indexOf('function ShopScreenImpl()'));
+  expect(source.slice(gate)).not.toMatch(/use[A-Z]\w+\(/);
+});

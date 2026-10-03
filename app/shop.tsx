@@ -1,5 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useRouter } from 'expo-router';
+import { Redirect, useRouter } from 'expo-router';
+import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
 import { safeRouterBack } from './navigation_back';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -208,7 +209,7 @@ function ShopTile({ item, onPress }: TileProps) {
   );
 }
 
-export default function ShopScreen() {
+function ShopScreenImpl() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
@@ -645,3 +646,17 @@ const styles = StyleSheet.create({
   ctaLabel: { fontWeight: '900' },
   sheetBalance: { textAlign: 'center', fontWeight: '700', marginTop: 12 },
 });
+
+/**
+ * Дверь в магазин.
+ *
+ * зачем (§99 «проверь недостижимость shop*.tsx в store-сборке», 03.10): маршрут /shop — обычный Stack.Screen
+ * (не в DEV_UTILITY_ROUTE_NAMES), поэтому ссылка вида phraseman://shop открывала бы этот ПРЕДПРОСМОТР
+ * (покупка не выполняется, но экран недоделанный и лишний) и в магазинной сборке. Единственный законный
+ * вход — пункт DEV-центра, а он живёт на тех же флагах. Хуки реального экрана ниже не вызываются, пока
+ * дверь закрыта, поэтому проверка стоит в обёртке, а не внутри ShopScreenImpl.
+ */
+export default function ShopScreen() {
+  if (!ENABLE_DEV_TOOLS || IS_STORE_RELEASE) return <Redirect href="/(tabs)/home" />;
+  return <ShopScreenImpl />;
+}

@@ -1,7 +1,7 @@
 # Task packet: ledger core — extract GiftDef, delete level_gift_system (client), dead prepare*Purchase
 
 Governance-ID: TG-CE545553B608
-Status: In progress
+Status: Done
 Owner: Claude session «App Check» (82577f25), by coordinator §99 (2026-10-03)
 Related epic/enabler: PhraseMan 2.0 removal of gifts/spins (D09), PM-229 follow-up leftovers of removed features
 

@@ -3,6 +3,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   AccessibilityInfo,
+  AppState,
   findNodeHandle,
   Pressable,
   ScrollView,
@@ -75,6 +76,7 @@ import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_captur
 import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
+import { LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
 
 const MAX_INPUT_LENGTH = 220;
 const FEEDBACK_OK_SURFACE = '#185C3A';
@@ -250,22 +252,59 @@ export default function FlashcardsRecallSession() {
     setRemainingQueueCount(round.length);
   }, []);
 
-  // зачем (владелец 01.10): без кнопки «Повторить» — при ошибке загрузки молча перезапрашиваем
-  // карточки (до 5 раз по 20 с), пока на экране скелетон.
+  // зачем (владелец 01.10 + D154 §117): при ошибке загрузки молча перезапрашиваем карточки —
+  // 3 тихих повтора с паузами ~1/3/8 с (app/load_gate_config.ts), а не вечный скелетон: после потолка
+  // экран говорит спокойное «Сейчас недоступно» с тихой «Попробовать снова»; при возврате в
+  // приложение повтор идёт сам.
   const silentRecallRetryRef = useRef(0);
+  const [loadExhausted, setLoadExhausted] = useState(false);
   useEffect(() => {
     if (!loadError) return undefined;
-    if (silentRecallRetryRef.current >= 5) {
-      console.warn('[FC-RECALL] тихие повторы исчерпаны', { attempts: silentRecallRetryRef.current });
+    const backoffMs = loadGateBackoffMs(silentRecallRetryRef.current + 1);
+    if (backoffMs === null) {
+      console.warn('[FC-RECALL] тихие повторы исчерпаны → «Сейчас недоступно»', { attempts: silentRecallRetryRef.current });
+      setLoadExhausted(true);
       return undefined;
     }
     const timer = setTimeout(() => {
       silentRecallRetryRef.current += 1;
-      console.warn('[FC-RECALL] тихий повтор загрузки карточек', { attempt: silentRecallRetryRef.current });
+      console.warn('[FC-RECALL] тихий повтор загрузки карточек', { attempt: silentRecallRetryRef.current, backoffMs });
       setLoadRevision((value) => value + 1);
-    }, 20_000);
+    }, backoffMs);
     return () => clearTimeout(timer);
-  }, [loadError]);
+  }, [loadError, loadRevision]);
+
+  const retryRecallLoad = useCallback((source: 'tap' | 'foreground') => {
+    console.warn('[FC-RECALL] повтор загрузки после «Сейчас недоступно»', { source });
+    silentRecallRetryRef.current = 0;
+    setLoadExhausted(false);
+    setLoadError(false);
+    setLoadRevision((value) => value + 1);
+  }, []);
+
+  // D154: автоповтор при возврате в приложение (фокус), если загрузка исчерпала повторы.
+  useEffect(() => {
+    if (!loadExhausted) return undefined;
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') retryRecallLoad('foreground');
+    });
+    return () => sub.remove();
+  }, [loadExhausted, retryRecallLoad]);
+
+  // D154 (баг «Блица», тот же класс): загрузка, которая не ответила ни успехом, ни ошибкой, не держит
+  // скелетон вечно — через потолок уходит в тот же цикл тихих повторов.
+  useEffect(() => {
+    if (!loading || loadError || loadExhausted) return undefined;
+    const timer = setTimeout(() => {
+      console.warn('[FC-RECALL] watchdog: загрузка не ответила за потолок → цикл тихих повторов', { loadRevision, ceilingMs: LOAD_GATE_TOTAL_MS });
+      setLoadError(true);
+    }, LOAD_GATE_TOTAL_MS);
+    return () => clearTimeout(timer);
+  }, [loading, loadError, loadExhausted, loadRevision]);
+
+  useEffect(() => {
+    if (activeCard) silentRecallRetryRef.current = 0;
+  }, [activeCard]);
 
   useEffect(() => {
     if (!accessResolved) return undefined;
@@ -705,6 +744,16 @@ export default function FlashcardsRecallSession() {
       'pt-BR': 'Escolher pacotes', vi: 'Chọn bộ thẻ', id: 'Pilih paket',
       tr: 'Paket seç', pl: 'Wybierz zestawy',
     }),
+    // D154: спокойно, без паники и без «ошибки».
+    unavailable: triLang(lang, {
+      ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now',
+      es: 'No disponible ahora', 'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng',
+      id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne',
+    }),
+    tryAgain: triLang(lang, {
+      ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo',
+      'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
+    }),
   }), [lang]);
 
   const renderHeader = (interactive: boolean) => (
@@ -785,8 +834,35 @@ export default function FlashcardsRecallSession() {
     );
   }
 
-  // зачем (владелец 01.10): при ошибке загрузки экрана «Не удалось загрузить» нет — тот же скелетон,
-  // а useEffect выше молча перезапрашивает карточки.
+  // зачем (D154 §117): после потолка тихих повторов — спокойное «Сейчас недоступно» с тихой
+  // «Попробовать снова» вместо вечного скелетона; значок нейтральный (тот же, что у пустого набора).
+  if (!activeCard && loadExhausted) {
+    return (
+      <ScreenGradient>
+        <SafeAreaView style={styles.safe}>
+          <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
+          <ContentWrap>
+            {renderHeader(true)}
+            <PracticeStatePanel
+              glass={recallGlass}
+              testID="fc-recall-unavailable"
+              icon="layers-outline"
+              message={copy.unavailable}
+              action={{
+                label: copy.tryAgain,
+                icon: 'refresh-outline',
+                onPress: () => retryRecallLoad('tap'),
+                testID: 'fc-recall-try-again',
+              }}
+            />
+          </ContentWrap>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
+
+  // зачем (владелец 01.10): пока идут тихие повторы — тот же скелетон, а useEffect выше молча
+  // перезапрашивает карточки (D154: с потолком).
   if (loading || (!activeCard && loadError)) {
     return (
       <ScreenGradient>

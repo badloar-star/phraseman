@@ -32,11 +32,12 @@ const CLOSE_LABELS = ['Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fe
 const THEME_IDS = ['graphite', 'polar', 'slate', 'ink', 'lavender', 'iris', 'rose', 'terracotta', 'taupe', 'olive', 'sage', 'eucalyptus', 'marine'];
 
 const LEGAL_FILES = [
+  // зачем (03.10, §99): политика/условия под реальную 2.0 по заранее данному «да» владельца — убраны Арена-матчи/дуэли, клубы, подарки, бусты, аватар-предметы, Shards, голосовой репетитор; добавлена память AI-диалогов — хеши сдвинуты осознанно.
   // зачем (30.09): политика обновлена по «да» владельца (визитка Про, опрос дня, Шпиль, D128 озвучка) — хеши сдвинуты осознанно.
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'ba251cd69acb80145b6041dc585c86fbca6b33d1916a724f9c2a181033aadc28'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '6c1d3cbae4e08262d14a416963180ff6b506e3732850082695388064a45ac6c9'],
-  ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', '0800a1132761b91756da591c07fb15d1989456d22ad048ae9e2759c71990e9c4'],
-  ['legal/terms_of_use_en_ios.json', 'app/legal/terms_of_use_en_ios.json', 'f081fe90fdd3248e677266c9e7970c7a8985249a55c9412658c608b38a4dfe02'],
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'bb6b759b7a294cf20f7bce16b1bfdf69df01143b1ac2b728ff88b60709a4e644'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '5c680014ec51d88401d6e16fc4c8228becd8c7c8a1277279146d611d56599260'],
+  ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', '41074944d0d737fc9fa2cf670e172df0c2e56fdc4dd51a9666b40a3678c046b9'],
+  ['legal/terms_of_use_en_ios.json', 'app/legal/terms_of_use_en_ios.json', '936e2e7b62c86cd0b551de5a69ab045bc83b73e631e19e727957d821e3e813cd'],
 ];
 
 const sha256 = value => crypto.createHash('sha256').update(value).digest('hex');

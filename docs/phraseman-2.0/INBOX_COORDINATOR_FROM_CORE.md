@@ -1555,3 +1555,31 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 - S3 (da579b086) принят; тесты удаления аккаунта уже зелёные (831c6cf08).
 - S1 (стирать FLASHCARD_PAGES_WRITE_FINGERPRINT_KEY в accountLocalDataKeysForToday, app/cloud_sync.ts) → **Account V2** вместе с Authority 2.0 (готовая правка в INBOX 00e8c32db).
 - Конфликт версий карточки при объединении: **побеждает карточка с более поздней отметкой изменения; при равенстве — локальная** → Account V2, тест на «правка между синками не откатывается».
+
+#### Политика и условия под реальную 2.0 (сессия App Check, 2026-10-03, паспорт docs/work/tasks/2026-10-03-core-legal-texts-2-0.md; по §99 «одобряю тексты политики уже»)
+
+Правили только каноны `legal/*.json` (4 английских файла: privacy/terms × Android/iOS) → `npm run legal:sync` пересобрал копии (`app/legal/*.json`, `privacy.html`, `terms.html`, `admin/oauth-privacy.html`, `admin/v2/oauth-privacy.html`, `knowly-www/legal/{privacy,terms,data-deletion}/index.html`). Дата «Last updated»: 30 сентября → **3 октября 2026**. Хеши в `tests/legal_document_liquid_glass_source_contract.test.mjs` сдвинуты осознанно (с `// зачем`).
+
+**Куда выкладывать (firebase.json):** таргет **`knowlywww`** (папка `knowly-www`: /legal/privacy/, /legal/terms/, /legal/data-deletion/ — это публичные ссылки приложения и сторов) и таргет **`admin`** (`admin/v2/oauth-privacy.html`). Корневые `privacy.html`/`terms.html` пересобраны тоже, но своего hosting-таргета не имеют. Я НИЧЕГО не выкладывал.
+
+**Было → стало (privacy):**
+- Раздел-вставка «voice tutor voice privacy summary» (звонки голосового репетитора, транскрипт, заметки) → **удалён**; абзацы про «AI voice lessons and calls» (раздел AI) и «real-time AI voice lessons» (раздел TTS/голос) → удалены (D81).
+- Вместо абзаца про заметки репетитора → **память AI-диалогов**: краткая структурная сводка на язык изучения + точки возобновления по сценарию, сырой транскрипт не хранится, не виден другим, удаляется в приложении (очистка памяти языка) и вместе с аккаунтом.
+- Облачная синхронизация: «Shards, Runes, Energy… Arena and tournament progress» → «coin and Energy balances…, Spire progress, … AI dialogue memory».
+- Публичные данные: убраны «club markers», «gifts», «club participants», абзац «Arena matches and friend duels» (D10); в Together убраны «shared weekly friends chest» и «gift-availability» (остались nudge); историческая оговорка теперь перечисляет «Arena matches and friend duels, tournaments, clubs, friend gifts».
+- Раздел 7: «Friends, gifts, referrals…» → «Friends, referrals…»; убраны «gifts sent/received, gift history»; «Shards ledger» → «coin ledger».
+- Раздел 9: «…and Shards» → «…and coins»; убраны «Shards purchases»; Shards-абзац → абзац про монеты (зарабатываются, тратятся на Community Packs).
+- Паки сообщества: «Shards or Runes» → «coins».
+- AI: убраны «weekly reviews, stats insights», «Arena match» в карточке оценки, «reviews, insights, real-time voice lessons» в списке провайдеров.
+- «How we use» / «legal bases»: «Shards», «clubs», «gifts» → «coins»/убраны.
+- **Добавлено** (закрывает падавший гард `support_diagnostics_privacy_contract`): абзац про ограниченную техническую историю действий, уходящую только при явной отправке обращения в поддержку (когда флаг включён).
+
+**Было → стало (terms):**
+- §3, §6, §9, §18, §20, §21: «Shards» → «coins».
+- §4: заголовок без «clubs»; текст без «tournaments, Arena matches and duels, gifts, aura, frame, Arena star rank»; абзац «Arena is a competitive feature» → «retired features…».
+- §5: «spending Shards» → «spending coins».
+- §7: убраны «Shards packs» и абзац про минуты голосовых уроков (voice tutor).
+- §8: «Shards and virtual items» → «Coins and virtual items»; убраны Runes, arena stars, gifts, boosts, themes, avatar items.
+- §10: убраны gifts из заголовка и текста.
+
+**Проверка:** `legal_copies_sync_contract` 6/6 ✓, liquid-glass контракт 8/8 ✓ и `profile_liquid_glass` 15/15 ✓, `support_diagnostics_privacy_contract` — политика теперь проходит, остаётся 1 падение «explicit-report attachment» (исходник диагностики с чужими правками, мой файл не трогал; падало и до меня). `website_i18n_contract` красный до меня (главная страница сайта), не связан.

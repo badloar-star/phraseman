@@ -3,7 +3,7 @@
 Governance-ID: TG-DBB73599072D
 Governance-ID: TG-866AE88CC658
 Governance-ID: TG-9BE2F9210F0D
-Status: In progress
+Status: Done
 Owner: Claude session «App Check» (82577f25), by coordinator (2026-10-03)
 Related epic/enabler: startup safety (inlineRequires rollback), test infrastructure hygiene (a dead guard is worse than no guard)
 

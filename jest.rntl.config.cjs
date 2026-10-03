@@ -5,6 +5,8 @@ module.exports = {
   roots: ['<rootDir>/tests', '<rootDir>/components', '<rootDir>/app'],
   // зачем (координатор §47, 2026-10-01): наборы клиентского MAX сняты вместе с ним (D81);
   // два из них уже были удалены, но оставались в списке.
+  // зачем (03.10): запись про удалённый tests/learning_v2_rune_flight_lifecycle.test.tsx убрана — раннер искал несуществующий файл,
+  // а tests/text_integrity_primitives.test.tsx (сторож «каждая запись существует») из-за этого был красным.
   testMatch: [
     '<rootDir>/tests/session_attempts_recovery_modal.test.tsx',
     '<rootDir>/tests/text_integrity_primitives.test.tsx',
@@ -32,7 +34,6 @@ module.exports = {
     '<rootDir>/tests/learning_v2_horizons_native.test.tsx',
     '<rootDir>/tests/learning_v2_new_word_encounter_overlay.test.tsx',
     '<rootDir>/tests/learning_v2_practice_viewport.test.tsx',
-    '<rootDir>/tests/learning_v2_rune_flight_lifecycle.test.tsx',
     '<rootDir>/tests/lesson_session_attempts_integration.test.tsx',
     '<rootDir>/tests/lesson_words_attempts_integration.test.tsx',
     '<rootDir>/tests/mistake_practice_attempts_integration.test.tsx',

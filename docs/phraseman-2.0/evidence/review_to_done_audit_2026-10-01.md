@@ -455,3 +455,14 @@ PM-288: requirement_ids D131 → R259 (добавлен в requirements.json; PM
 | PM-039 | PASS | A1/A2 приняты по коду HEAD: чипы серии/монет с accessibilityLabel, неизвестный баланс «—»; 78f58650e существует; тест daily_journey_home_stats_contract удалён вместе с «Дневным путём» (D49) | done |
 | PM-086 | остаток | A1 NOT_MET: Free/Plus, все режимы и локали на устройстве не проверены; MIGRATION не закрыт; pm086_energy_price_text.probe PASS | review |
 | PM-134 | остаток | A2 не принят: коммит убрал лишь 2 мёртвых импорта, ни одного control, списка «control → назначение» нет; mistake_practice_screen_contract красный 7/8 (устарел: ждёт max_voice_review, MAX запломбирован) | review |
+
+## Пачка 16 (agent-reviewer, Sonnet, 03.10)
+
+Итог: в done 1 задача — PM-125. PM-052, PM-193, PM-195 остаются review. Общие gates BASELINE/DOMAIN — GATES_COMMON. Тесты шли под светофором.
+
+| Задача | Вердикт | Основание | Статус |
+|---|---|---|---|
+| PM-125 | PASS | A1/A2 приняты; use_audio_contract 16/16; 7b4631e7e существует; тост «Голос недоступен» (раз в 15 с) в app/flashcards/card_tts_audio.ts; DESIGN-gate у задачи нет | done |
+| PM-052 | остаток | код PASS: reward_flight_queue, HomeRewardCollectFlight, usePracticeRuneFlight и компонент LearningV2RuneFlight удалены (в grep остались лишь measure-хелпер и комментарий), полёт монет — components/rewards/CoinRewardFlight.tsx, звук pm.coin.flight_start; coin_reward_flight_contract 4/4, home_render_scope_guard 2/2. Gate MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE не подписан (в GATES_MIGRATION нет раздела по PM-052) | review |
+| PM-193 | остаток | A1/A2 приняты, mistake_journal_record_and_totals_contract 24/24, 44972787b и 7afa8eb8b существуют; нужна подпись DESIGN (задачи нет в DESIGN_GATE_OWNER_REVIEW.md) | review |
+| PM-195 | остаток | A1/A2 приняты, тот же тест 24/24; нужна подпись DESIGN | review |

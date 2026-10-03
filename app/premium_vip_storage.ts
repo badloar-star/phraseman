@@ -113,6 +113,7 @@ export async function writeVipSnapshotForAccount(
   const stableId = normalizeStableId(stableIdValue);
   if (!stableId) throw new Error('vip_snapshot_owner_required');
   const values = normalizeVipValues(valuesValue);
+  inFlightVipReads.clear();
   await AsyncStorage.multiSet(prepareVipSnapshotWritesForAccount(stableId, values));
 }
 
@@ -130,6 +131,7 @@ export async function writeVipSnapshotForGeneration(
   const values = normalizeVipValues(valuesValue);
   return withAccountTransitionLock(async () => {
     if (!isCurrentAccountGeneration(generation, stableId)) return false;
+    inFlightVipReads.clear();
     await AsyncStorage.multiSet(prepareVipSnapshotWritesForAccount(stableId, values));
     return isCurrentAccountGeneration(generation, stableId);
   });
@@ -141,8 +143,27 @@ export async function readVipSnapshotForAccount(
 ): Promise<VipStorageValues | null> {
   const stableId = normalizeStableId(stableIdValue);
   if (!stableId) return null;
-  const raw = await AsyncStorage.getItem(vipSnapshotStorageKey(stableId)).catch(noteSwallowedAs('premium_vip_storage:promise_1', null));
+  const raw = await readVipSnapshotRawCoalesced(vipSnapshotStorageKey(stableId));
   return parseSnapshot(raw, stableId);
+}
+
+/**
+ * зачем ([COLD-START-IO], release, слабый профиль, 02.10): снимок VIP читали 10 раз за первые 15 с.
+ * Ключ стирает и общая чистка аккаунта (cloud_sync), поэтому значение НЕ держим — только склеиваем
+ * одновременные чтения одного ключа; записи этого модуля сбрасывают склейку.
+ */
+const inFlightVipReads = new Map<string, Promise<string | null>>();
+
+function readVipSnapshotRawCoalesced(key: string): Promise<string | null> {
+  const existing = inFlightVipReads.get(key);
+  if (existing) return existing;
+  const pending = AsyncStorage.getItem(key)
+    .catch(noteSwallowedAs('premium_vip_storage:promise_1', null))
+    .finally(() => {
+      if (inFlightVipReads.get(key) === pending) inFlightVipReads.delete(key);
+    });
+  inFlightVipReads.set(key, pending);
+  return pending;
 }
 
 /** Account-generation guarded trusted read; stale native completions fail closed. */
@@ -209,6 +230,7 @@ export async function migrateLegacyVipSnapshotOnce(
       ? String(parsePremiumProgressMs(legacyState.grantAt) || legacyState.grantAt)
       : '',
   });
+  inFlightVipReads.clear();
   await AsyncStorage.multiSet(prepareVipSnapshotWritesForAccount(stableId, normalized));
   return isCurrentAccountGeneration(generation, stableId);
 }

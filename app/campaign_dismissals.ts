@@ -30,10 +30,38 @@ export function campaignDismissalKey(scope: string, campaignId: string, fallback
   return `${cleanScope}:legacy:${hashString(fallbackFingerprint || 'default')}`;
 }
 
+/**
+ * зачем ([COLD-START-IO], release, слабый профиль, 02.10): campaign_dismissals_v1 читали 10 раз за
+ * первые 15 с — каждое чтение ждало очередь AsyncStorage. Ключ пишет ТОЛЬКО этот модуль (проверено
+ * grep), поэтому карта живёт в памяти процесса: одно чтение с диска, запись обновляет память сразу.
+ * Одновременные первые чтения склеиваются. Сбой чтения не кэшируется (повтор при следующем вызове).
+ */
+let memoryMap: DismissalMap | null = null;
+let inFlightRead: Promise<DismissalMap> | null = null;
+// Запись во время первого чтения: поздний ответ диска не должен затереть свежую карту в памяти.
+let writeGeneration = 0;
+
 async function readMap(): Promise<DismissalMap> {
+  if (memoryMap) return { ...memoryMap };
+  if (!inFlightRead) {
+    inFlightRead = readMapFromStorage().finally(() => {
+      inFlightRead = null;
+    });
+  }
+  return { ...(await inFlightRead) };
+}
+
+async function readMapFromStorage(): Promise<DismissalMap> {
+  const generation = writeGeneration;
+  const remember = (map: DismissalMap): void => {
+    if (generation === writeGeneration) memoryMap = map;
+  };
   try {
     const raw = await AsyncStorage.getItem(STORAGE_KEY);
-    if (!raw) return {};
+    if (!raw) {
+      remember({});
+      return memoryMap ?? {};
+    }
     const parsed = JSON.parse(raw);
     if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return {};
     const out: DismissalMap = {};
@@ -42,8 +70,11 @@ async function readMap(): Promise<DismissalMap> {
         out[key] = value;
       }
     }
-    return out;
-  } catch {
+    remember(out);
+    return memoryMap ?? out;
+  } catch (error) {
+    // зачем: запрет немого catch — не прочиталось/битое: считаем «ничего не скрыто», память не заполняем.
+    console.warn('[CAMPAIGN-DISMISSALS] read_failed', error instanceof Error ? error.message : String(error));
     return {};
   }
 }
@@ -52,6 +83,8 @@ async function writeMap(map: DismissalMap): Promise<void> {
   const entries = Object.entries(map)
     .sort((a, b) => b[1] - a[1])
     .slice(0, MAX_STORED);
+  writeGeneration += 1;
+  memoryMap = Object.fromEntries(entries);
   await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(Object.fromEntries(entries))).catch(noteSwallowedHandler('campaign_dismissals:promise_1'));
 }
 

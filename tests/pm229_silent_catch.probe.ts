@@ -28,7 +28,6 @@ const BASELINE: Record<string, number> = {
   'app/app_snapshot_bootstrap.ts': 5, // Q5: чтение Avatar DNA на старте удалено
   'app/auth_provider.ts': 26,
   'app/debug-logger.ts': 2, // PM-228 2026-10-01: 7 → 2 (остались .catch(() => undefined) в цепочке очереди — намеренный разрыв цепочки)
-  'app/interactive_network_quiet.ts': 1,
   'app/statsCache.ts': 3,
   'modules/phone-state/keyed_exclusive_transaction.ts': 1,
   'modules/account-session-v2/account_detach_latch.ts': 1, // E22 2026-10-01: намеренный разрыв цепочки очереди (tail = next.catch(...))

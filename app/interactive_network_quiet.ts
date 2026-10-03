@@ -148,9 +148,12 @@ export const releaseInteractiveNetworkQuiet = (
     epoch += 1;
     phase = 'open';
     quiescence = Promise.resolve();
-    for (const participant of participants.values()) {
-      try { participant.resume(); } catch {
+    for (const [source, participant] of participants.entries()) {
+      try { participant.resume(); } catch (error) {
         // resume retries belong to the producer
+        // зачем (PM-229): причина пишется, но не через swallow_log — модуль стоит в цикле импортов
+        // с журналом (debug-logger → … → interactive_network_quiet), поэтому только console.warn.
+        console.warn(`[PM-229] interactive_network_quiet:resume source=${source}`, error instanceof Error ? error.message : String(error)); // guard-ok: журнал недоступен из-за цикла импортов
       }
     }
   });

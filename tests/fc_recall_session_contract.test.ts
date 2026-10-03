@@ -46,7 +46,8 @@ describe('full-phrase recall session contract', () => {
     const source = read('app', 'flashcards_recall_session.tsx');
     const prepared = source.indexOf('prepareFlashcardTrainingPendingGrant({');
     const energy = source.indexOf('confirmSpendOne(restored.energyIntent)');
-    const quota = source.indexOf('consumeFlashcardTrainingQuota({');
+    // зачем: 17fbb3d32 (30.09) — «Вспомни» списывает месячный лимит тренировок; порядок шагов прежний.
+    const quota = source.indexOf('consumeMonthlyTrainingSession({');
     const playable = source.indexOf('resetRound(restored.round, true)');
     const markedPlayable = source.indexOf('markFlashcardTrainingPendingGrantPlayable(');
     const acknowledged = source.indexOf('acknowledgeAndClearFlashcardTrainingPendingGrant(');

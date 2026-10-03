@@ -35,8 +35,11 @@ config.resolver.useWatchman = process.env.PHRASEMAN_NO_WATCHMAN !== '1';
 // (для натива он экспериментален). Побочные эффекты при импорте, которые обязаны сработать на старте
 // (защита AsyncStorage, прогрев пиков рун/энергии, регистрация сети), закреплены голыми import в index.js —
 // голые import transformer не трогает. Аварийный выключатель без отката коммита: PHRASEMAN_NO_INLINE_REQUIRES=1
-// (так же сравнивают «до/после» на одной сборке).
-const inlineRequiresEnabled = process.env.PHRASEMAN_NO_INLINE_REQUIRES !== '1';
+// (так же сравнивают «до/после» на одной сборке). Теперь инвертировано: включение — PHRASEMAN_INLINE_REQUIRES=1.
+// ПО УМОЛЧАНИЮ ВЫКЛЮЧЕНО (решение координатора 2026-10-03): в двух запусках подряд с включённым флагом наблюдался нативный
+// сбой Fabric `addViewAt: failed to insert view` (2 из 44 против 0 из 12 без флага), причина не установлена. Включается явно:
+// PHRASEMAN_INLINE_REQUIRES=1 (A/B «Дизайна» на слабом профиле, ≥20 запусков на плечо, со счётом FATAL). Ранние import в index.js остаются.
+const inlineRequiresEnabled = process.env.PHRASEMAN_INLINE_REQUIRES === '1';
 config.transformer = {
   ...config.transformer,
   getTransformOptions: async () => ({

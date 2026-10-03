@@ -4,32 +4,32 @@
   "why": "Бюджеты регрессионных ворот: размер release-бандла, первый кадр Главной, обращения к хранилищу на холодном старте. Запуск: node scripts/pm220_perf_gates.mjs bundle|homepaint|coldio (см. docs/phraseman-2.0/docs/RUNTIME.md).",
   "provenance": "Q111 (координатор, 2026-10-02): baseline — локальный замер release-сборки на профиле 2 ядра / 2 ГБ; iPhone и слабый физический Android в этот замер не входят. Это ВОРОТА ОТ РЕГРЕССИИ относительно измеренного, а не заявка о хорошей скорости.",
   "bundle": {
-    "measuredAt": "2026-10-03 (после inlineRequires: true)",
-    "measuredFrom": "рабочее дерево 03.10 22:00, бандл-экспорт обеих платформ, hermes bytecode, inlineRequires включён",
+    "measuredAt": "2026-10-03 (inlineRequires выключен по умолчанию)",
+    "measuredFrom": "рабочее дерево 03.10 22:00, бандл-экспорт обеих платформ, hermes bytecode, inlineRequires ВЫКЛ (с PHRASEMAN_INLINE_REQUIRES=1 JS +1,5 %, android 37 296 928 Б — потребует отдельного бюджета)",
     "headroomPct": {
       "js": 2,
       "assets": 5
     },
-    "note": "Пересчитано 03.10: inlineRequires +1,5 % JS (36,74 -> 37,30 МБ android) и 2 новые картинки Дизайна (ассеты 97 -> 98 шт., 1,94 -> 2,66 МБ). Прежний бюджет: android JS 37 181 844 Б. Ассеты — то, что перечислено в metadata.json экспорта; аудио/шрифты считает pm009_asset_bundle_inventory. Бюджет поднимают осознанно, с причиной в коммите.",
+    "note": "Пересчитано 03.10: 2 новые картинки Дизайна (ассеты 97 -> 99 шт., 1,94 -> 2,66 МБ) и работа сессий за день. Ассеты — то, что перечислено в metadata.json экспорта; аудио/шрифты считает pm009_asset_bundle_inventory. Бюджет поднимают осознанно, с причиной в коммите.",
     "platforms": {
       "android": {
-        "measuredBundleBytes": 37296928,
-        "measuredBundleGzipBytes": 14184347,
-        "measuredAssetCount": 98,
+        "measuredBundleBytes": 36739203,
+        "measuredBundleGzipBytes": 14013221,
+        "measuredAssetCount": 99,
         "measuredAssetBytes": 2663180,
-        "maxBundleBytes": 38042867,
-        "maxBundleGzipBytes": 14468034,
-        "maxAssetCount": 101,
+        "maxBundleBytes": 37473988,
+        "maxBundleGzipBytes": 14293486,
+        "maxAssetCount": 102,
         "maxAssetBytes": 2796339
       },
       "ios": {
-        "measuredBundleBytes": 37300435,
-        "measuredBundleGzipBytes": 14183624,
-        "measuredAssetCount": 98,
+        "measuredBundleBytes": 36732684,
+        "measuredBundleGzipBytes": 14009090,
+        "measuredAssetCount": 99,
         "measuredAssetBytes": 2663180,
-        "maxBundleBytes": 38046444,
-        "maxBundleGzipBytes": 14467297,
-        "maxAssetCount": 101,
+        "maxBundleBytes": 37467338,
+        "maxBundleGzipBytes": 14289272,
+        "maxAssetCount": 102,
         "maxAssetBytes": 2796339
       }
     }

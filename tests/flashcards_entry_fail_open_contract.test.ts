@@ -24,7 +24,15 @@ describe('вход в тренировку карточек: отказ гран
     const source = read(...segments);
     // Ветка fail-open существует и срабатывает именно на ошибках гранта.
     expect(source).toContain('entry:fail-open');
-    expect(source).toMatch(/\/\^pending_grant\/\.test\(message\)/);
+    // зачем (03.10, законный сдвиг): свайп вынес решение в правило canUseLegacySwipeGrantFailOpen
+    // (app/flashcards/training_entry_policy.ts) — то же /^pending_grant/ + исключения «Верно/Неверно»
+    // и защищённых расчётов. Для свайпа проверяем вызов правила и само правило.
+    if (segments[segments.length - 1] === 'flashcards_swipe.tsx') {
+      expect(source).toMatch(/canUseLegacySwipeGrantFailOpen\(message, isTrueFalseSession\)/);
+      expect(read('app', 'flashcards', 'training_entry_policy.ts')).toMatch(/\/\^pending_grant\/\.test\(errorMessage\)/);
+    } else {
+      expect(source).toMatch(/\/\^pending_grant\/\.test\(message\)/);
+    }
     // Причина отказа гранта попадает в ошибку — иначе аудит по логу слеп.
     expect(source).toContain("throw new Error(`pending_grant_${prepared.status}:${'reason' in prepared ? String(prepared.reason) : 'n/a'}`);");
   });

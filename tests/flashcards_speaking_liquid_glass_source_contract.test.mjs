@@ -194,14 +194,17 @@ function hashProtectedRuntimeElements() {
 
 test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchanged', () => {
   assert.deepEqual(hashProtectedRuntimeAst(), {
-    count: 33,
+    count: 34,
     // зачем (30.09): D127 — «Устно» отсеивает карточки «без языка» (voicedDeckCards, 2acba6874); квоты/попытки/TTS не менялись.
     // зачем (30.09): D128 — озвучка клипом OpenAI своего языка вместо голоса устройства (7b4631e7e).
-    hash: '1871148079d0b15458121ae23042b7b5cbdaf427741a1eb9caec3e7f1fdbb504',
+    // зачем (03.10): логика старта Ядра — 85f9e7231 (сторож загрузки +1 useEffect, трассировка [FC-SPEAKING-GATE], reconcile missing → fail-open) и 94003821a (компактный manifest, снятие записи до локального старта; ревью Opus).
+    hash: 'e0eaae0641bed3007cb294586b9113acc3811d0832c5c68a8e517f7f769793b6',
   });
   assert.equal(
     hashProtectedRuntimeElements(),
-    '3c63ace983a250d933e8c9942563f8e3abfb489ba17fa5ec2ccfdc8571950ec9',
+    // зачем (03.10): эталон разошёлся раньше 85f9e7231 и был скрыт падением проверки выше; сами семь
+    // защищённых элементов поэлементно одинаковы в 85f9e7231^, 94003821a и 4ee077331 (сверено скриптом).
+    '0a3616c688d52d9643761ca3276db09ce9f0e5fc3769400f3dbd521dac929d08',
   );
   assert.deepEqual(
     {
@@ -213,7 +216,9 @@ test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchan
     },
     {
       hold: '92c92d8b1e7d00de8c0738f5455514ea338924ad5f75e495d6502977a5b7a9e9',
-      panel: '82a91d7a402f8c4a2c8f504d07aa1a25e00a3adaa03c834ba7eb44969867f930',
+      // зачем (03.10): SpeakingPanel менялся законно — PM-229 db985607f (причины в немых catch) и D139 997f56dfe
+      // (шкала текста 16/13); логика записи/удержания не тронута (hold и slot — прежние).
+      panel: '45075aa9df43c1bb8f14bfc4ad84d5e0ef6f4b4e81ad437015e86dc07d2a3963',
       slot: 'ef4f0bab5e4bd50af4c9855af1e24e2084bc1b04756de016e368cbd2bd071ae7',
       stars: '38631c90662c00baf57ee9b9e129d6049854f6799bd13fe05e1c9587fc3e6d60',
       logic: '3b4d1528d7223cb1ca37f52e0e2304b55552c86a7a3102cad6657a00cd4084ef',

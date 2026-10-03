@@ -110,13 +110,13 @@ describe('RevenueCat identity bootstrap', () => {
     expect(purchases.setAttributes).not.toHaveBeenCalled();
   });
 
-  it.each(['monthly', 'yearly', 'lifetime'] as const)(
-    'does not let a stale max_monthly cache override currently inferred %s access',
-    async (inferredPlan) => {
-      const { revenueCat } = await loadSubject();
-      expect(revenueCat.resolveRevenueCatStorePlan('max_monthly', inferredPlan)).toBe(inferredPlan);
-    },
-  );
+  // зачем (2.0, MAX запломбирован/удалён): тип плана 'max_monthly' больше не существует — прежний тест про «протухший кэш MAX»
+  // проверял несуществующее. Остаётся только правило: сохранённый план главнее выведенного.
+  it('keeps an existing store plan over the inferred one', async () => {
+    const { revenueCat } = await loadSubject();
+    expect(revenueCat.resolveRevenueCatStorePlan('yearly', 'monthly')).toBe('yearly');
+    expect(revenueCat.resolveRevenueCatStorePlan(null, 'lifetime')).toBe('lifetime');
+  });
 
   it('switches A to B with direct logIn and verifies B before attributes or CustomerInfo persistence', async () => {
     const { revenueCat, purchases, premiumState } = await loadSubject('stable-B');
@@ -191,7 +191,9 @@ describe('RevenueCat identity bootstrap', () => {
     expect(premiumState.persistStorePremiumLocally).not.toHaveBeenCalled();
   });
 
-  it('startup and the shared listener prefer MAX when premium and max are both active', async () => {
+  // зачем (2.0): MAX запломбирован — квитанция остаётся видимой по id товара, но доступа не даёт. При старте и в общем
+  // слушателе вместе с активным premium сохраняется ТОЛЬКО Premium (раньше выигрывал MAX).
+  it('startup and the shared listener persist Premium and ignore a retired MAX entitlement', async () => {
     const { revenueCat, purchases, premiumState } = await loadSubject();
     const dualInfo = {
       entitlements: { active: {
@@ -217,10 +219,10 @@ describe('RevenueCat identity bootstrap', () => {
     await revenueCat.initRevenueCat();
 
     expect(premiumState.persistStorePremiumLocally).toHaveBeenCalledWith(
-      'max_monthly',
+      'monthly',
       expect.objectContaining({
-        productId: 'phraseman_max_monthly_v1:monthly-base',
-        expiryMs: 9_000,
+        productId: 'phraseman_premium_monthly_399',
+        expiryMs: 1_000,
       }),
       expect.any(Function),
       false,
@@ -240,8 +242,8 @@ describe('RevenueCat identity bootstrap', () => {
     await listenerPersistence;
 
     expect(premiumState.persistStorePremiumLocally).toHaveBeenCalledWith(
-      'max_monthly',
-      expect.objectContaining({ productId: 'phraseman_max_monthly_v1:monthly-base' }),
+      'monthly',
+      expect.objectContaining({ productId: 'phraseman_premium_monthly_399' }),
       expect.any(Function),
       false,
       true,

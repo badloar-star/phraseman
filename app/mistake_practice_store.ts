@@ -45,6 +45,23 @@ interface JournalScope {
 }
 
 const locks = new Map<string, Promise<void>>();
+// зачем ([COLD-START-IO], store-release, слабый профиль, 03.10): на холодном старте журнал ошибок читали ~24 раза подряд
+// (Главная, статистика, слова, инсайты…) — каждый раз корень + страницы + куски. Одновременные чтения одного ключа
+// склеиваются в одно: идущее чтение раздают тем, кто пришёл, пока оно не закончилось. Журнал неизменяем (freeze), делить
+// результат безопасно. Любая запись по этому ключу сбрасывает склейку ДО и ПОСЛЕ, поэтому читатель, пришедший после
+// записи, никогда не получит чтение, начатое до неё. Склейка только для хранилища по умолчанию (тестовые подмены — как раньше).
+const inflightLoads = new Map<string, Promise<MistakeEventJournal>>();
+const readStats = { started: 0, shared: 0 };
+/** Только для тестов и диагностики: сколько чтений начато и сколько склеено. */
+export function mistakeJournalReadStats(): Readonly<{ started: number; shared: number }> {
+  return { started: readStats.started, shared: readStats.shared };
+}
+/** Только для тестов. */
+export function resetMistakeJournalReadStatsForTests(): void {
+  readStats.started = 0;
+  readStats.shared = 0;
+  inflightLoads.clear();
+}
 const MANIFEST_PAGE_CHUNKS = 64;
 
 async function sweepUnreachableMistakePracticeGraph(input: Readonly<{
@@ -194,7 +211,7 @@ async function persistMistakeEventJournal(input: Readonly<{
   });
 }
 
-export async function loadMistakeEventJournal(
+async function loadMistakeEventJournalFresh(
   input: JournalScope,
 ): Promise<MistakeEventJournal> {
   const accountScope = normalizedScope(input.accountScope);
@@ -257,6 +274,26 @@ export async function loadMistakeEventJournal(
   return mergePhoneStateJournal(parsed);
 }
 
+export function loadMistakeEventJournal(
+  input: JournalScope,
+): Promise<MistakeEventJournal> {
+  if (input.storage) return loadMistakeEventJournalFresh(input);
+  const key = mistakePracticeEventsKey(normalizedScope(input.accountScope), input.studyTarget);
+  const running = inflightLoads.get(key);
+  if (running) {
+    readStats.shared += 1;
+    return running;
+  }
+  readStats.started += 1;
+  const started = loadMistakeEventJournalFresh(input);
+  inflightLoads.set(key, started);
+  const clear = (): void => {
+    if (inflightLoads.get(key) === started) inflightLoads.delete(key);
+  };
+  started.then(clear, clear);
+  return started;
+}
+
 export async function appendMistakeEvent(
   input: JournalScope & { readonly event: MistakeEvent },
 ): Promise<Readonly<{ appended: boolean; journal: MistakeEventJournal }>> {
@@ -281,8 +318,11 @@ export async function mergeMistakeEvents(
     ) throw new Error('stale_account_generation');
   };
   return withAccountTransitionLock(() => withJournalLock(key, async () => {
+    inflightLoads.delete(key);
+    try {
     assertCurrentOwner();
-    const current = await loadMistakeEventJournal({
+    // зачем: под замком записи читаем СВЕЖЕЕ состояние, не склеенное с чужим чтением
+    const current = await loadMistakeEventJournalFresh({
       accountScope,
       studyTarget: input.studyTarget,
       storage,
@@ -316,5 +356,8 @@ export async function mergeMistakeEvents(
       assertCurrentOwner,
     });
     return Object.freeze({ appendedCount, journal });
+    } finally {
+      inflightLoads.delete(key);
+    }
   }));
 }

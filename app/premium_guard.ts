@@ -422,8 +422,24 @@ export async function getVerifiedRealPremiumStatus(
   const generation = options?.generation ?? captureAccountGeneration();
   if (!accountGenerationIsCurrent(generation)) return false;
   const finish = (result: boolean) => cacheReal(result, generation);
+  // Тестер «Снять премиум» в dev/preview должен срезать только dev-default premium,
+  // но не VIP-доступ, который считается отдельно.
+  // зачем: [COLD-START-IO] — флаг тестера общим readTesterFlags (store: без хранилища), кэш ДО multiGet:
+  // при попадании значения хранилища и раньше не использовались, а 7 ключей читались на каждый вызов.
+  const { noPremium } = await readTesterFlags();
+  if (!accountGenerationIsCurrent(generation)) return false;
+  if (resolveTesterNoPremiumOverride(noPremium)) return finish(false);
+  // Return cached result if still fresh
+  if (
+    !options?.bypassCache
+    && _cachedRealResult !== null
+    && _realCacheGeneration === generation.generation
+    && Date.now() - _realCacheTime < CACHE_TTL_MS
+  ) {
+    return _cachedRealResult;
+  }
+
   const pairs = await AsyncStorage.multiGet([
-    'tester_no_premium',
     'premium_active',
     'premium_plan',
     'premium_expiry',
@@ -432,7 +448,6 @@ export async function getVerifiedRealPremiumStatus(
     'admin_premium_override',
   ]);
   if (!accountGenerationIsCurrent(generation)) return false;
-  const noPremium = pairs.find(p => p[0] === 'tester_no_premium')?.[1];
   const active   = pairs.find(p => p[0] === 'premium_active')?.[1];
   const plan     = pairs.find(p => p[0] === 'premium_plan')?.[1];
   const expiry   = parseInt(pairs.find(p => p[0] === 'premium_expiry')?.[1] || '0');
@@ -450,19 +465,6 @@ export async function getVerifiedRealPremiumStatus(
     normalizedPlan === 'admin_grant';
   const adminExplicitRevoked =
     adminOverride === 'false' && (!plan || plan === 'null' || plan === '');
-
-  // Тестер «Снять премиум» в dev/preview должен срезать только dev-default premium,
-  // но не VIP-доступ, который считается отдельно.
-  if (resolveTesterNoPremiumOverride(noPremium)) return finish(false);
-  // Return cached result if still fresh
-  if (
-    !options?.bypassCache
-    && _cachedRealResult !== null
-    && _realCacheGeneration === generation.generation
-    && Date.now() - _realCacheTime < CACHE_TTL_MS
-  ) {
-    return _cachedRealResult;
-  }
 
   const now = Date.now();
   const rcExpiryActive = rcExpiry > now;

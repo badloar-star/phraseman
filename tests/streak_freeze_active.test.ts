@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { readStreakFreezeActive } from '../hooks/use-streak-freeze-active';
+// зачем (2026-10-03): хук use-streak-freeze-active удалён как мёртвый (нет вызовов); проверки — на самой функции модуля.
+import { readStreakFreezeActive } from '../app/streak_freeze';
 
 describe('streak freeze active state', () => {
   beforeEach(async () => {

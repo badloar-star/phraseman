@@ -7,8 +7,7 @@
  * остался в репозитории, поэтому будущая сессия может «доделать» его в экран —
  * этот тест ломает такую попытку и отсылает к решению владельца.
  *
- * Дополнительно охраняет Firebase-экономию runes_wallet_stats.ts: один doc-get
- * с кэшем 6 часов, без обходов коллекций и фоновых таймеров.
+ * (Блок про Firebase-экономию runes_wallet_stats.ts снят вместе с удалённым модулем, 2026-10-03.)
  */
 
 import { readFileSync } from 'fs';
@@ -67,19 +66,5 @@ describe('раздел «Руны» — без товаров и магазин�
   });
 });
 
-describe('runes_wallet_stats — Firebase-экономия', () => {
-  const stats = read('app/runes_wallet_stats.ts');
-
-  it('кэш 6 часов, чтение только одного документа users/{uid}', () => {
-    expect(stats.includes('6 * 60 * 60 * 1000')).toBe(true);
-    expect(stats.includes(".collection('users').doc(")).toBe(true);
-    // Никаких обходов коллекций из клиентского модуля статистики.
-    expect(stats.includes('.where(')).toBe(false);
-    expect(stats.includes('.limit(')).toBe(false);
-  });
-
-  it('нет фоновых таймеров — рефреш только при входе на экран', () => {
-    expect(stats.includes('setInterval')).toBe(false);
-    expect(stats.includes('setTimeout')).toBe(false);
-  });
-});
+// зачем (TG-8A2D25725DBA, 2026-10-03): блок «runes_wallet_stats — Firebase-экономия» охранял app/runes_wallet_stats.ts —
+// модуль удалён как мёртвый (экран кошелька его не использовал, нет ни одного вызова).

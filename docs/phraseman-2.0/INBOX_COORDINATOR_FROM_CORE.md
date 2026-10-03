@@ -1603,3 +1603,7 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 - Ядро ищет **серверную** защиту, работающую для 1.6.24 без nonce (привязка метки к uid-постановщику / проверка истории ссылок токена); если ломает законный сценарий — ко мне.
 - Клиент (nonce в stamp/merge/ensureLink) → **Account V2** в рамках Authority 2.0 по контракту Ядра (файл в docs/work/tasks/).
 - В план релиза: min_app_version 2.0 → неделя нулевых `[ANON-MERGE-CLAIM] legacy_path` → довести outbox без хэша → выключить legacy (деплой).
+
+## §AA-3 — 2026-10-03: принят пункт M-1/HIGH-1 (nonce анонимной метки)
+- Встроен в этап **S2** (вход/привязка): stamp с `nonceRequested`, `anonMergeNonce` в merge, nonce в `authEnsureStableLink`; тесты на отказ без/с чужим nonce и на поведение 1.6.24 по контракту. Жду файл контракта Ядра (ссылку в INBOX). Сервер — Ядро.
+- S1 (логи) в работе у исполнителя.

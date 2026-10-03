@@ -93,6 +93,7 @@ function transferOnce(world: ReturnType<typeof makeWorld>, opts: {
   abortBeforeCommit?: boolean;
   winnerSnap?: any;
   loserSnap?: any;
+  nowMs?: number;
 } = {}) {
   return world.runTx(async (tx) => {
     const prepared = await prepareAccountMergeStarsTransfer(tx, {} as any, {
@@ -102,7 +103,7 @@ function transferOnce(world: ReturnType<typeof makeWorld>, opts: {
       loserSnap: opts.loserSnap ?? world.snap('users/loser'),
       outboxId: OUTBOX,
       authUid: 'auth-1',
-      nowMs: NOW,
+      nowMs: opts.nowMs ?? NOW,
     });
     // Победитель/проигравший получают свои обычные записи слияния ПОСЛЕ журнала.
     const record = commitAccountMergeStarsTransfer(tx, prepared);
@@ -268,6 +269,28 @@ describe('prepare/commit переноса монет при слиянии', () 
     expect(record).toMatchObject({ status: 'skipped', reason: 'loser_prepare_failed' });
     expect(world.counters.writes).toBe(0);
     expect(normalizeStars(world.store['users/loser'].stars).balance).toBe(900);
+  });
+
+  it('I-1: повтор на устаревших снимках с ДРУГИМ now — op_conflict у обеих сторон → warn «повтор, безопасно», не error', async () => {
+    const world = makeWorld({
+      'users/winner': { stars: starsOf({ balance: 10, grantedTotal: 10 }) },
+      'users/loser': { stars: starsOf({ balance: 1234, earnedTotal: 1234 }) },
+    });
+    const staleWinner = { ...world.snap('users/winner'), data: () => ({ stars: starsOf({ balance: 10, grantedTotal: 10 }) }) };
+    const staleLoser = { ...world.snap('users/loser'), data: () => ({ stars: starsOf({ balance: 1234, earnedTotal: 1234 }) }) };
+    await transferOnce(world);
+    const writesAfterFirst = world.counters.writes;
+    const errorSpy = console.error as jest.Mock;
+    const warnSpy = console.warn as jest.Mock;
+    errorSpy.mockClear();
+    warnSpy.mockClear();
+
+    const { record } = await transferOnce(world, { winnerSnap: staleWinner, loserSnap: staleLoser, nowMs: NOW + 60_000 });
+    expect(record).toMatchObject({ status: 'skipped', reason: 'outcome_mismatch' });
+    expect(world.counters.writes).toBe(writesAfterFirst);
+    expect(errorSpy).not.toHaveBeenCalled();
+    expect(warnSpy.mock.calls.some((c) => String(c[0]).includes('replay_op_conflict'))).toBe(true);
+    expect(normalizeStars(world.store['users/winner'].stars).balance).toBe(1244);
   });
 
   it('чужая расписка под тем же opId у победителя (op_conflict) — пропуск целиком, без половинчатого дебета', async () => {

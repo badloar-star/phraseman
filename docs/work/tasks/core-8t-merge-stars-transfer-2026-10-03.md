@@ -101,3 +101,6 @@ Out of scope:
   - L-1: монеты на дублях, скрытых `cleanupLegacyAuthIdentityDuplicates` (auth_identity.ts:~1258) и admin_user_operations.ts:393, и поздние начисления на скрытый uid — не переносятся; нужен учёт «скрытый с stars.balance>0» или досылка `.late.<seq>`.
   - L-2: остаток >500k — только `starsTransfer.remainder` в outbox, нужен сигнал/процесс.
   - I-1: повтор слияния с другим `now` даёт `op_conflict` → skipped с console.error (безопасно, но выглядит как сбой в логе).
+
+## I-1 закрыт (Ядро, 03.10, после выкладки)
+Повтор слияния с другим now (op_conflict на всех частях обеих сторон) → `console.warn ... replay_op_conflict (повтор, безопасно)` вместо error; прочие неувязки остаются error. Тест +1 (13/13), мутация «убрать ветку» → тест падает.

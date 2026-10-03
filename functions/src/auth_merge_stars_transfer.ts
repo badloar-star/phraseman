@@ -205,6 +205,15 @@ export async function prepareAccountMergeStarsTransfer(
 
   const describe = (outcomes: readonly StarOpOutcome[]) => outcomes
     .map((o) => `${o.status}${o.errorCode ? `:${o.errorCode}` : ''}`).join(',');
+  // зачем (I-1, координатор 03.10): повтор слияния той же пары с другим now даёт op_conflict на ВСЕХ
+  // частях обеих сторон (earnedAtMs в расписке другой) — это повтор, ничего не пишется, монеты целы.
+  // Не тревожный error, а warn с причиной; любая иная неувязка остаётся error.
+  const allConflict = (outcomes: readonly StarOpOutcome[]) => outcomes.length > 0
+    && outcomes.every((o) => o.status === 'rejected' && o.errorCode === 'op_conflict');
+  if (allConflict(loser.outcomes) && allConflict(winner.outcomes)) {
+    console.warn(`${LOG} skip ${tag} reason=outcome_mismatch replay_op_conflict (повтор, безопасно) chunks=${plan.chunks.length}`);
+    return skipped('outcome_mismatch', amount, plan.chunks.length, plan.remainder, input.nowMs);
+  }
   if (!outcomesPaired(loser.outcomes, winner.outcomes)) {
     console.error(`${LOG} skip ${tag} reason=outcome_mismatch loser=[${describe(loser.outcomes)}] winner=[${describe(winner.outcomes)}]`);
     return skipped('outcome_mismatch', amount, plan.chunks.length, plan.remainder, input.nowMs);

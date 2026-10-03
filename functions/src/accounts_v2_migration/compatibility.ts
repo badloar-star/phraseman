@@ -59,6 +59,8 @@ export type MigrationCutoverDecision = Readonly<{
   cutoverAllowed: boolean;
   purgeAllowed: boolean;
   rollbackAllowed: boolean;
+  /** State/request failures; excludes reasons that merely explain an unavailable phase transition. */
+  blockingReasons: readonly string[];
   reasons: readonly string[];
 }>;
 
@@ -68,6 +70,10 @@ function addReason(reasons: string[], reason: string): void {
 
 function stateReasons(state: MigrationCutoverState): string[] {
   const reasons: string[] = [];
+  const phase: unknown = state.phase;
+  const phaseSupported = phase === 'legacy' || phase === 'dual_write'
+    || phase === 'v2_cutover' || phase === 'purged';
+  if (!phaseSupported) addReason(reasons, 'unsupported_phase');
   if (state.schemaVersion !== ACCOUNT_V2_MIGRATION_SCHEMA_VERSION) addReason(reasons, 'unsupported_schema_version');
   if (state.migrationStatus !== 'ready') addReason(reasons, 'migration_not_ready');
   if (state.applyAllowed !== true) addReason(reasons, 'apply_forbidden');
@@ -78,6 +84,20 @@ function stateReasons(state: MigrationCutoverState): string[] {
   }
   if (state.hydration !== 'verified') addReason(reasons, 'hydration_missing');
   if (state.backupVerified !== true) addReason(reasons, 'backup_unverified');
+  const phaseRequiresLegacySyncDisabled = state.phase === 'v2_cutover' || state.phase === 'purged';
+  if (state.legacySyncDisabled !== phaseRequiresLegacySyncDisabled) {
+    addReason(reasons, 'legacy_sync_flag_phase_mismatch');
+  }
+  const phaseRequiresPurgeCompleted = state.phase === 'purged';
+  if (state.purgeCompleted !== phaseRequiresPurgeCompleted) {
+    addReason(reasons, 'purge_completion_phase_mismatch');
+  }
+  if (state.phase === 'purged' && state.rollbackWindowOpen === true) {
+    addReason(reasons, 'rollback_window_open_after_purge');
+  }
+  if (typeof state.rollbackWindowOpen !== 'boolean') {
+    addReason(reasons, 'invalid_rollback_window_flag');
+  }
   return reasons;
 }
 
@@ -91,25 +111,52 @@ export function evaluateMigrationCutover(
   request?: MigrationClientRequest,
 ): MigrationCutoverDecision {
   const reasons = stateReasons(state);
-  const valid = !reasons.includes('unsupported_schema_version') && !reasons.includes('invalid_pending_domain_count');
+  const blockingReasons = [...reasons];
+  const valid = !reasons.some((reason) => [
+    'unsupported_schema_version',
+    'unsupported_phase',
+    'invalid_pending_domain_count',
+    'legacy_sync_flag_phase_mismatch',
+    'purge_completion_phase_mismatch',
+    'rollback_window_open_after_purge',
+    'invalid_rollback_window_flag',
+  ].includes(reason));
+  const addBlockingReason = (reason: string): void => {
+    addReason(reasons, reason);
+    addReason(blockingReasons, reason);
+  };
 
-  let clientAllowed = true;
+  // Structurally invalid migration state cannot authorize any client, even if
+  // the request discriminants themselves are otherwise recognized.
+  let clientAllowed = valid;
   if (request) {
-    if (request.protocolVersion === 1) {
+    const protocolVersion: unknown = request.protocolVersion;
+    const operation: unknown = request.operation;
+    const operationSupported = operation === 'read' || operation === 'write';
+    if (!operationSupported) {
+      clientAllowed = false;
+      addBlockingReason('unsupported_operation');
+    }
+    if (protocolVersion !== 1 && protocolVersion !== 2) {
+      // Runtime input is untrusted even though TypeScript callers see 1 | 2.
+      // Unknown/missing versions must never fall through as a current client.
+      clientAllowed = false;
+      addBlockingReason('unsupported_protocol_version');
+    } else if (operationSupported && protocolVersion === 1) {
       if (state.phase === 'purged' || state.purgeCompleted) {
         clientAllowed = false;
-        addReason(reasons, 'legacy_read_blocked_after_purge');
-      } else if (request.operation === 'write' && (state.phase === 'v2_cutover' || state.legacySyncDisabled)) {
+        addBlockingReason('legacy_read_blocked_after_purge');
+      } else if (operation === 'write' && (state.phase === 'v2_cutover' || state.legacySyncDisabled)) {
         clientAllowed = false;
-        addReason(reasons, 'legacy_write_blocked_after_cutover');
+        addBlockingReason('legacy_write_blocked_after_cutover');
       }
-    } else if (request.protocolVersion === 2) {
+    } else if (operationSupported) {
       if (state.phase === 'legacy') {
         clientAllowed = false;
-        addReason(reasons, 'v2_not_available_before_dual_write');
+        addBlockingReason('v2_not_available_before_dual_write');
       } else if (state.hydration !== 'verified') {
         clientAllowed = false;
-        addReason(reasons, 'v2_access_requires_hydration');
+        addBlockingReason('v2_access_requires_hydration');
       }
     }
   }
@@ -122,30 +169,38 @@ export function evaluateMigrationCutover(
     && state.backupVerified === true;
 
   let cutoverAllowed = false;
-  if (baseGatesPass && state.phase === 'dual_write' && state.rollbackWindowOpen) {
+  if (baseGatesPass && state.phase === 'dual_write' && state.rollbackWindowOpen === true) {
     cutoverAllowed = true;
   } else if (state.phase !== 'dual_write') {
     addReason(reasons, 'cutover_requires_dual_write');
-  } else if (!state.rollbackWindowOpen) {
+  } else if (state.rollbackWindowOpen === false) {
     addReason(reasons, 'rollback_window_closed');
   }
 
   let purgeAllowed = false;
   if (baseGatesPass && state.phase === 'v2_cutover' && state.legacySyncDisabled
-    && !state.purgeCompleted && !state.rollbackWindowOpen) {
+    && !state.purgeCompleted && state.rollbackWindowOpen === false) {
     purgeAllowed = true;
   } else {
     if (state.phase !== 'v2_cutover') addReason(reasons, 'purge_requires_v2_cutover');
     if (!state.legacySyncDisabled) addReason(reasons, 'legacy_sync_must_be_disabled');
-    if (state.rollbackWindowOpen) addReason(reasons, 'rollback_window_open');
+    if (state.rollbackWindowOpen === true) addReason(reasons, 'rollback_window_open');
   }
 
   const rollbackAllowed = valid && !state.purgeCompleted && state.phase !== 'purged'
-    && state.backupVerified === true && state.rollbackWindowOpen;
+    && state.backupVerified === true && state.rollbackWindowOpen === true;
   if (!rollbackAllowed && (state.purgeCompleted || state.phase === 'purged')) {
     addReason(reasons, 'rollback_forbidden_after_purge');
   }
 
-  return { valid, clientAllowed, cutoverAllowed, purgeAllowed, rollbackAllowed, reasons };
+  return {
+    valid,
+    clientAllowed,
+    cutoverAllowed,
+    purgeAllowed,
+    rollbackAllowed,
+    blockingReasons: Object.freeze(blockingReasons),
+    reasons: Object.freeze(reasons),
+  };
 }
 

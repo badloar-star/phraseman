@@ -91,4 +91,86 @@ describe('accounts_v2_migration compatibility/cutover contract', () => {
     expect(evaluateMigrationCutover(state, request({ protocolVersion: 1, operation: 'read' })).clientAllowed).toBe(false);
     expect(evaluateMigrationCutover(state, request({ protocolVersion: 2, operation: 'read' })).clientAllowed).toBe(true);
   });
+
+  it.each([
+    ['unknown', 3],
+    ['null', null],
+    ['missing', undefined],
+  ])('rejects a runtime request with %s protocolVersion', (_name, protocolVersion) => {
+    const unsafe = { protocolVersion, operation: 'write' } as unknown as MigrationClientRequest;
+    const result = evaluateMigrationCutover(
+      baseState({ phase: 'v2_cutover', legacySyncDisabled: true }),
+      unsafe,
+    );
+
+    expect(result.clientAllowed).toBe(false);
+    expect(result.blockingReasons).toContain('unsupported_protocol_version');
+  });
+
+  it.each([
+    ['unknown', 'unknown'],
+    ['missing', undefined],
+  ])('rejects a runtime state with %s phase', (_name, phase) => {
+    const unsafe = { ...baseState(), phase } as unknown as MigrationCutoverState;
+    const result = evaluateMigrationCutover(unsafe, request({ operation: 'write' }));
+
+    expect(result.valid).toBe(false);
+    expect(result.clientAllowed).toBe(false);
+    expect(result.blockingReasons).toContain('unsupported_phase');
+    expect(result.cutoverAllowed).toBe(false);
+    expect(result.purgeAllowed).toBe(false);
+  });
+
+  it.each([
+    ['unknown', 'mutate'],
+    ['missing', undefined],
+  ])('rejects a runtime request with %s operation', (_name, operation) => {
+    const unsafe = { protocolVersion: 2, operation } as unknown as MigrationClientRequest;
+    const result = evaluateMigrationCutover(baseState(), unsafe);
+
+    expect(result.clientAllowed).toBe(false);
+    expect(result.blockingReasons).toContain('unsupported_operation');
+  });
+
+  it.each([
+    ['dual-write string', { phase: 'dual_write' as const, rollbackWindowOpen: 'closed' }],
+    ['dual-write missing', { phase: 'dual_write' as const, rollbackWindowOpen: undefined }],
+    [
+      'cutover missing',
+      { phase: 'v2_cutover' as const, legacySyncDisabled: true, rollbackWindowOpen: undefined },
+    ],
+  ])('rejects an invalid rollback-window flag: %s', (_name, overrides) => {
+    const unsafe = { ...baseState(), ...overrides } as unknown as MigrationCutoverState;
+    const result = evaluateMigrationCutover(unsafe, request({ operation: 'write' }));
+
+    expect(result.valid).toBe(false);
+    expect(result.clientAllowed).toBe(false);
+    expect(result.cutoverAllowed).toBe(false);
+    expect(result.purgeAllowed).toBe(false);
+    expect(result.rollbackAllowed).toBe(false);
+    expect(result.blockingReasons).toContain('invalid_rollback_window_flag');
+    for (const value of [result.valid, result.clientAllowed, result.cutoverAllowed, result.purgeAllowed, result.rollbackAllowed]) {
+      expect(typeof value).toBe('boolean');
+    }
+  });
+
+  it.each([
+    [
+      'dual-write with completed purge',
+      { phase: 'dual_write' as const, purgeCompleted: true },
+      'purge_completion_phase_mismatch',
+    ],
+    [
+      'cutover with legacy sync enabled',
+      { phase: 'v2_cutover' as const, legacySyncDisabled: false },
+      'legacy_sync_flag_phase_mismatch',
+    ],
+  ])('invalidates contradictory phase state: %s', (_name, overrides, reason) => {
+    const result = evaluateMigrationCutover(baseState(overrides));
+
+    expect(result.valid).toBe(false);
+    expect(result.blockingReasons).toContain(reason);
+    expect(result.cutoverAllowed).toBe(false);
+    expect(result.purgeAllowed).toBe(false);
+  });
 });

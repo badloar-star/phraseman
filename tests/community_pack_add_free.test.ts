@@ -138,15 +138,15 @@ describe('в потоке наборов нет ЖЕМЧУГА и XP', () => {
     expect(read('app/community_packs/communityFirestore.ts')).toMatch(/priceShards: 0,/);
   });
 
-  // Автор ставит цену ползунком (владелец выбрал дизайн 3 ради свободы: три
-  // готовых пресета не дали бы поставить, например, 1 500).
-  test('автор выбирает цену ползунком в границах 0…5 000', () => {
+  // зачем (владелец 2026-09-21, d7d6b7e89: «убери чтобы никто не смог сделать набор платным»):
+  // решение 17.09 «цена ползунком» отменено — на экране создания цены нет, в payload жёсткий ноль.
+  // Границы цены в marketplace.ts и серверная часть оставлены намеренно (возврат — обратным коммитом).
+  test('автор не может сделать набор платным: блока цены нет, в payload ноль', () => {
     const market = read('app/flashcards/marketplace.ts');
     expect(market).toMatch(/COMMUNITY_PACK_PRICE_MIN_RUNES = 0/);
     expect(market).toMatch(/COMMUNITY_PACK_PRICE_MAX_RUNES = 5000/);
     const create = read('app/community_pack_create.tsx');
-    expect(create).toMatch(/testID="ugc-pack-price-slider"/);
-    // Приватный набор ценой не обладает: его никто, кроме автора, не увидит.
-    expect(create).toMatch(/priceRunes: publishToCommunity \? priceRunes : 0/);
+    expect(create).not.toMatch(/testID="ugc-pack-price-slider"/);
+    expect(create).toMatch(/priceRunes: 0,/);
   });
 });

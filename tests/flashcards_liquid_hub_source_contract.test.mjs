@@ -13,7 +13,9 @@ const THEME_IDS = [
   'terracotta', 'taupe', 'olive', 'sage', 'eucalyptus', 'marine',
 ];
 // зачем (§90, 02.10): chooseMode игнорирует выбор, пока идёт ранний тап (окно ждёт квоту) — законный сдвиг.
-const PROTECTED_AST = '4d2fb94d5accf27a36084435487d0445fd2a1be7eb851e8e3a30ec827fb1aeb8';
+// зачем (PM-229, 62c7b2fc4, 03.10): в reloadCatalog четыре немых .catch(() => []) заменены на
+// noteSwallowedAs(…, []) — значение по умолчанию прежнее, причина пишется в журнал. Законный сдвиг.
+const PROTECTED_AST = '8c89ae17994bf4d1ddbd9865b0dcafbd7ebac641b5e51a5bce2f0d5b37604300';
 const HEADER_GLASS_BODY = '715db3b10a0abee044e76b8baed73f7ad5de81fb96a669ef0381f776fdf98019';
 const DEPENDENCY_HASHES = {
   // зачем: fb9d8d8e6 (PM-210, экономия старта) — прогрев пустого каталога стал честным no-op; хаб не затронут.
@@ -26,7 +28,8 @@ const DEPENDENCY_HASHES = {
   'app/community_packs/localAuthorPacks.ts': '0a5de56ef1c378c3d6e39a51b051a55834ad5bf2f42ba90ce602d6a4c0d8a504',
   // зачем: c98e4ad1e (D145) — шкала текста 16/13.
   // зачем: f0b2153b4 (FINAL_PHASE п.7) — лайк откатывается при исключении; хаб не затронут.
-  'app/community_packs/CommunityPackSocialBar.tsx': '9bd2893c3b557b4d87ec4260820947b20a7bb1b7c455a4cf606d69e7c4106bf7',
+  // зачем (PM-092, e76118033): счётчики плитки — 12px вторичным тоном слева, по cards.html `.ptile .mt`.
+  'app/community_packs/CommunityPackSocialBar.tsx': '61917f0978bc0e3cd7611355c26dd315a22aca073bd4ea2e04f0915660cf2697',
   // зачем: a5cbccab3 (темы 2.0) — «золото» темы = акцент.
   'constants/liquidGlassThemePalette.ts': '28d6be604dc306d70938ea8e94cb534ff523daafce99808974ef2bd648cf8d49',
   'app/flashcards/packMarketplaceIcons.ts': '4d7d168a867514b096dc3a5541503db4759e68a2359020cb02cf695316f78b11',

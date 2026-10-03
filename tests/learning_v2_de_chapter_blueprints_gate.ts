@@ -7189,6 +7189,1055 @@ function validateL18SemanticContract(raw: R, plan: Boundary): void {
   });
 }
 
+const L19_CONTRACT = {
+  lessonId: "de_l19",
+  lessonOrdinal: 19,
+  grammarBoundary: {
+    allowedConstructIds: [
+      "de_gc_formal_sie_sich_v1",
+      "de_gc_reciprocal_reference_v1",
+      "de_gc_lexical_reflexive_v1",
+      "de_gc_personal_reference_v1",
+      "de_gc_pronoun_reference_chain_v1",
+      "de_gc_connector_topology_contrast_v1",
+    ],
+    prohibitedConstructIds: [
+      "de_gc_infinitive_verb_cluster_v1",
+      "de_gc_relative_clause_gender_case_v1",
+    ],
+    noExpansion:
+      "Permit only formal subject Sie mapping to lowercase sich inside the verified lexical frame sich vorbereiten; reciprocal wir→uns, ihr→euch, and plural sie/Sie→sich in controlled helfen contexts; the separate explicit einander contrast; and review of known deshalb+V2 versus weil+finite-verb-final topology. Do not license capitalised Sie-shaped objects, capitalised Sich, universal sich for plural subjects, an unrestricted reflexive paradigm, ordinary third-person reflexive teaching, automatic equivalence of sich and einander, additional reciprocal markers, additional lexical reflexive verbs, formal Ihnen/Ihr paradigms, a universal workplace register default, new connectors or introducers, new case or preposition relations, alternative subordinate topology, relative clauses, indirect questions, passive, infinitive clusters, modal perfect, L20+ grammar, or any Task6 lexical adjudication.",
+  },
+  chapters: [
+    {
+      id: "de_l19_c01",
+      ordinal: 1,
+      lessonOutcomeId: "de_l19_ch01",
+      lessonOutcome: "map formal Sie to sich in a verified reflexive frame",
+      packetIds: [
+        "de_l19_c01_s01",
+        "de_l19_c01_s02",
+        "de_l19_c01_s03",
+        "de_l19_c01_s04",
+        "de_l19_c01_s05",
+        "de_l19_c01_s06",
+        "de_l19_c01_s07",
+        "de_l19_c01_s08",
+      ],
+      allowedConstructIds: [
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+        "de_gc_lexical_reflexive_v1",
+        "de_gc_personal_reference_v1",
+        "de_gc_pronoun_reference_chain_v1",
+        "de_gc_connector_topology_contrast_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_relative_clause_gender_case_v1",
+      ],
+      situation: {
+        setting: "formal-consultation-preparation-call",
+        participants: "resident-and-formal-advisor",
+        goal: "map-formal-Sie-to-sich-in-the-known-sich-vorbereiten-frame",
+        contextSignature: "formal-consultation-reflexive-introduction",
+      },
+      supportFading: {
+        entryLevel: 5,
+        exitLevel: 2,
+        entry:
+          "Die Sprechstunde ist morgen. Frau Keller, Sie bereiten sich heute vor.",
+        exit: "Die Sprechstunde ist morgen. Frau Keller, Sie bereiten sich heute vor.",
+        independentEvidenceByPacketId: "de_l19_c01_s08",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_formal_sie_sich_v1",
+          stage: "introduction",
+          packetId: "de_l19_c01_s01",
+        },
+        {
+          constructId: "de_gc_reciprocal_reference_v1",
+          stage: "introduction",
+          packetId: "de_l19_c01_s02",
+        },
+      ],
+      chapterEvidencePacketIds: ["de_l19_c01_s03", "de_l19_c01_s04"],
+      checkpoint: {
+        packetId: "de_l19_c01_s08",
+        integratedConstructIds: [
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+          "de_gc_lexical_reflexive_v1",
+          "de_gc_personal_reference_v1",
+          "de_gc_pronoun_reference_chain_v1",
+          "de_gc_connector_topology_contrast_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l19_c01_sprechstunde_v1",
+            semanticIdentity:
+              "sprechstunde|scheduled consultation used for formal appointment preparation",
+            lemmaOrExpression: "Sprechstunde",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "die",
+              singular: "Sprechstunde",
+              plural: "Sprechstunden",
+            },
+            nounPackageIdentity: "die|sprechstunde|sprechstunden",
+            verbPackage: null,
+            senseGloss:
+              "scheduled consultation used for formal appointment preparation",
+            communicativeUse:
+              "Die Sprechstunde ist morgen. Frau Keller, Sie bereiten sich heute vor.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l19_ch01",
+            utilityProof: {
+              chapterOutcomeId: "de_l19_ch01",
+              checkpointPacketId: "de_l19_c01_s08",
+              integratedConstructIds: [
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+                "de_gc_lexical_reflexive_v1",
+                "de_gc_personal_reference_v1",
+                "de_gc_pronoun_reference_chain_v1",
+                "de_gc_connector_topology_contrast_v1",
+              ],
+              utilityRole: "scene_grounding",
+              situationFacet: "setting",
+              facetValue: "municipal-advice-appointment-preparation",
+              necessityClass: "SCENE_UNGROUNDED",
+              plannedUsePacketIds: ["de_l19_c01_s08"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "municipal-advice-appointment-preparation",
+          participants: "resident-and-formal-advisor",
+          goal: "independently-map-formal-Sie-to-sich-in-the-known-reflexive-frame",
+          contextSignature: "municipal-advice-formal-reflexive-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l18_c06", "de_l18_c07"],
+        targetsFutureChapterIds: ["de_l19_c02"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l20_c07_s51",
+        },
+      },
+    },
+    {
+      id: "de_l19_c02",
+      ordinal: 2,
+      lessonOutcomeId: "de_l19_ch02",
+      lessonOutcome: "retain formal-address capitalization in writing",
+      packetIds: [
+        "de_l19_c02_s09",
+        "de_l19_c02_s10",
+        "de_l19_c02_s11",
+        "de_l19_c02_s12",
+        "de_l19_c02_s13",
+        "de_l19_c02_s14",
+        "de_l19_c02_s15",
+        "de_l19_c02_s16",
+      ],
+      allowedConstructIds: [
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+        "de_gc_lexical_reflexive_v1",
+        "de_gc_personal_reference_v1",
+        "de_gc_pronoun_reference_chain_v1",
+        "de_gc_connector_topology_contrast_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_relative_clause_gender_case_v1",
+      ],
+      situation: {
+        setting: "formal-appointment-written-confirmation",
+        participants: "resident-and-formal-contact",
+        goal: "retain-capital-Sie-while-using-lowercase-sich-in-writing",
+        contextSignature: "formal-address-capitalization-guidance",
+      },
+      supportFading: {
+        entryLevel: 5,
+        exitLevel: 2,
+        entry:
+          "Die Anrede ist formell: Frau Keller, Sie bereiten sich heute vor.",
+        exit: "Die Anrede ist formell: Frau Keller, Sie bereiten sich heute vor.",
+        independentEvidenceByPacketId: "de_l19_c02_s16",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_formal_sie_sich_v1",
+          stage: "guided",
+          packetId: "de_l19_c02_s09",
+        },
+        {
+          constructId: "de_gc_reciprocal_reference_v1",
+          stage: "guided",
+          packetId: "de_l19_c02_s10",
+        },
+      ],
+      chapterEvidencePacketIds: ["de_l19_c02_s11", "de_l19_c02_s12"],
+      checkpoint: {
+        packetId: "de_l19_c02_s16",
+        integratedConstructIds: [
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+          "de_gc_lexical_reflexive_v1",
+          "de_gc_personal_reference_v1",
+          "de_gc_pronoun_reference_chain_v1",
+          "de_gc_connector_topology_contrast_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l19_c02_anrede_v1",
+            semanticIdentity:
+              "anrede|written form of address used in a formal appointment message",
+            lemmaOrExpression: "Anrede",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "die",
+              singular: "Anrede",
+              plural: "Anreden",
+            },
+            nounPackageIdentity: "die|anrede|anreden",
+            verbPackage: null,
+            senseGloss:
+              "written form of address used in a formal appointment message",
+            communicativeUse:
+              "Die Anrede ist formell: Frau Keller, Sie bereiten sich heute vor.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l19_ch02",
+            utilityProof: {
+              chapterOutcomeId: "de_l19_ch02",
+              checkpointPacketId: "de_l19_c02_s16",
+              integratedConstructIds: [
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+                "de_gc_lexical_reflexive_v1",
+                "de_gc_personal_reference_v1",
+                "de_gc_pronoun_reference_chain_v1",
+                "de_gc_connector_topology_contrast_v1",
+              ],
+              utilityRole: "scene_grounding",
+              situationFacet: "setting",
+              facetValue: "written-community-appointment-message",
+              necessityClass: "SCENE_UNGROUNDED",
+              plannedUsePacketIds: ["de_l19_c02_s16"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "written-community-appointment-message",
+          participants: "resident-and-formal-contact",
+          goal: "independently-retain-capital-Sie-and-lowercase-sich",
+          contextSignature: "written-formal-address-capitalization-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l18_c07", "de_l19_c01"],
+        targetsFutureChapterIds: ["de_l19_c03"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l20_c07_s52",
+        },
+      },
+    },
+    {
+      id: "de_l19_c03",
+      ordinal: 3,
+      lessonOutcomeId: "de_l19_ch03",
+      lessonOutcome: "select uns euch or sich from a plural subject",
+      packetIds: [
+        "de_l19_c03_s17",
+        "de_l19_c03_s18",
+        "de_l19_c03_s19",
+        "de_l19_c03_s20",
+        "de_l19_c03_s21",
+        "de_l19_c03_s22",
+        "de_l19_c03_s23",
+        "de_l19_c03_s24",
+      ],
+      allowedConstructIds: [
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+        "de_gc_lexical_reflexive_v1",
+        "de_gc_personal_reference_v1",
+        "de_gc_pronoun_reference_chain_v1",
+        "de_gc_connector_topology_contrast_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_relative_clause_gender_case_v1",
+      ],
+      situation: {
+        setting: "volunteer-team-task-allocation",
+        participants: "three-person-volunteer-team",
+        goal: "select-uns-euch-or-sich-from-the-stated-plural-subject",
+        contextSignature: "plural-subject-reciprocal-retrieval",
+      },
+      supportFading: {
+        entryLevel: 4,
+        exitLevel: 1,
+        entry:
+          "Die Teamaufgabe ist gemeinsam. Wir helfen uns. Ihr helft euch. Die Helfer helfen sich.",
+        exit: "Die Teamaufgabe ist gemeinsam. Wir helfen uns. Ihr helft euch. Die Helfer helfen sich.",
+        independentEvidenceByPacketId: "de_l19_c03_s24",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_formal_sie_sich_v1",
+          stage: "retrieval",
+          packetId: "de_l19_c03_s17",
+        },
+        {
+          constructId: "de_gc_reciprocal_reference_v1",
+          stage: "retrieval",
+          packetId: "de_l19_c03_s18",
+        },
+      ],
+      chapterEvidencePacketIds: ["de_l19_c03_s19", "de_l19_c03_s20"],
+      checkpoint: {
+        packetId: "de_l19_c03_s24",
+        integratedConstructIds: [
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+          "de_gc_lexical_reflexive_v1",
+          "de_gc_personal_reference_v1",
+          "de_gc_pronoun_reference_chain_v1",
+          "de_gc_connector_topology_contrast_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l19_c03_teamaufgabe_v1",
+            semanticIdentity:
+              "teamaufgabe|shared task whose plural participants help one another",
+            lemmaOrExpression: "Teamaufgabe",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "die",
+              singular: "Teamaufgabe",
+              plural: "Teamaufgaben",
+            },
+            nounPackageIdentity: "die|teamaufgabe|teamaufgaben",
+            verbPackage: null,
+            senseGloss:
+              "shared task whose plural participants help one another",
+            communicativeUse:
+              "Die Teamaufgabe ist gemeinsam. Wir helfen uns. Ihr helft euch. Die Helfer helfen sich.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l19_ch03",
+            utilityProof: {
+              chapterOutcomeId: "de_l19_ch03",
+              checkpointPacketId: "de_l19_c03_s24",
+              integratedConstructIds: [
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+                "de_gc_lexical_reflexive_v1",
+                "de_gc_personal_reference_v1",
+                "de_gc_pronoun_reference_chain_v1",
+                "de_gc_connector_topology_contrast_v1",
+              ],
+              utilityRole: "scene_grounding",
+              situationFacet: "setting",
+              facetValue: "neighbourhood-team-task-plan",
+              necessityClass: "SCENE_UNGROUNDED",
+              plannedUsePacketIds: ["de_l19_c03_s24"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "neighbourhood-team-task-plan",
+          participants: "volunteer-team-members",
+          goal: "independently-select-uns-euch-or-sich-from-the-plural-subject",
+          contextSignature: "neighbourhood-task-person-compatible-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l19_c01", "de_l19_c02"],
+        targetsFutureChapterIds: ["de_l19_c04"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l20_c07_s53",
+        },
+      },
+    },
+    {
+      id: "de_l19_c04",
+      ordinal: 4,
+      lessonOutcomeId: "de_l19_ch04",
+      lessonOutcome: "distinguish reflexive and reciprocal interpretation",
+      packetIds: [
+        "de_l19_c04_s25",
+        "de_l19_c04_s26",
+        "de_l19_c04_s27",
+        "de_l19_c04_s28",
+        "de_l19_c04_s29",
+        "de_l19_c04_s30",
+        "de_l19_c04_s31",
+        "de_l19_c04_s32",
+      ],
+      allowedConstructIds: [
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+        "de_gc_lexical_reflexive_v1",
+        "de_gc_personal_reference_v1",
+        "de_gc_pronoun_reference_chain_v1",
+        "de_gc_connector_topology_contrast_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_relative_clause_gender_case_v1",
+      ],
+      situation: {
+        setting: "formal-contact-and-helper-pair-contrast",
+        participants: "formal-contact-and-volunteer-team",
+        goal: "distinguish-reflexive-preparation-from-reciprocal-help-and-the-einander-contrast",
+        contextSignature: "reflexive-reciprocal-production-contrast",
+      },
+      supportFading: {
+        entryLevel: 4,
+        exitLevel: 1,
+        entry:
+          "Der Unterschied ist klar: Frau Keller, Sie bereiten sich vor. Die Helfer helfen sich. Die Helfer helfen einander.",
+        exit: "Der Unterschied ist klar: Frau Keller, Sie bereiten sich vor. Die Helfer helfen sich. Die Helfer helfen einander.",
+        independentEvidenceByPacketId: "de_l19_c04_s32",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_formal_sie_sich_v1",
+          stage: "production",
+          packetId: "de_l19_c04_s25",
+        },
+        {
+          constructId: "de_gc_reciprocal_reference_v1",
+          stage: "production",
+          packetId: "de_l19_c04_s26",
+        },
+      ],
+      chapterEvidencePacketIds: ["de_l19_c04_s27", "de_l19_c04_s28"],
+      checkpoint: {
+        packetId: "de_l19_c04_s32",
+        integratedConstructIds: [
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+          "de_gc_lexical_reflexive_v1",
+          "de_gc_personal_reference_v1",
+          "de_gc_pronoun_reference_chain_v1",
+          "de_gc_connector_topology_contrast_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l19_c04_unterschied_v1",
+            semanticIdentity:
+              "unterschied|difference used to contrast reflexive and reciprocal interpretations",
+            lemmaOrExpression: "Unterschied",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "der",
+              singular: "Unterschied",
+              plural: "Unterschiede",
+            },
+            nounPackageIdentity: "der|unterschied|unterschiede",
+            verbPackage: null,
+            senseGloss:
+              "difference used to contrast reflexive and reciprocal interpretations",
+            communicativeUse:
+              "Der Unterschied ist klar: Frau Keller, Sie bereiten sich vor. Die Helfer helfen sich. Die Helfer helfen einander.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l19_ch04",
+            utilityProof: {
+              chapterOutcomeId: "de_l19_ch04",
+              checkpointPacketId: "de_l19_c04_s32",
+              integratedConstructIds: [
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+                "de_gc_lexical_reflexive_v1",
+                "de_gc_personal_reference_v1",
+                "de_gc_pronoun_reference_chain_v1",
+                "de_gc_connector_topology_contrast_v1",
+              ],
+              utilityRole: "mediation",
+              situationFacet: "goal",
+              facetValue:
+                "independently-distinguish-reflexive-and-reciprocal-interpretation-with-einander-explicit",
+              necessityClass: "OUTCOME_UNACHIEVABLE",
+              plannedUsePacketIds: ["de_l19_c04_s32"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "advice-and-helper-contrast-card",
+          participants: "formal-advisor-and-helper-group",
+          goal: "independently-distinguish-reflexive-and-reciprocal-interpretation-with-einander-explicit",
+          contextSignature: "formal-reciprocal-interpretation-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l19_c02", "de_l19_c03"],
+        targetsFutureChapterIds: ["de_l19_c05"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l20_c07_s54",
+        },
+      },
+    },
+    {
+      id: "de_l19_c05",
+      ordinal: 5,
+      lessonOutcomeId: "de_l19_ch05",
+      lessonOutcome: "coordinate mutual tasks in a mixed-register scene",
+      packetIds: [
+        "de_l19_c05_s33",
+        "de_l19_c05_s34",
+        "de_l19_c05_s35",
+        "de_l19_c05_s36",
+        "de_l19_c05_s37",
+        "de_l19_c05_s38",
+        "de_l19_c05_s39",
+        "de_l19_c05_s40",
+      ],
+      allowedConstructIds: [
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+        "de_gc_lexical_reflexive_v1",
+        "de_gc_personal_reference_v1",
+        "de_gc_pronoun_reference_chain_v1",
+        "de_gc_connector_topology_contrast_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_relative_clause_gender_case_v1",
+      ],
+      situation: {
+        setting: "mixed-register-volunteer-coordination",
+        participants: "formal-coordinator-and-volunteer-team",
+        goal: "coordinate-formal-preparation-and-mutual-help-with-known-connector-topologies",
+        contextSignature: "mixed-register-team-integration",
+      },
+      supportFading: {
+        entryLevel: 3,
+        exitLevel: 1,
+        entry:
+          "Die Abstimmung ist morgen. Deshalb bereiten Sie sich heute vor. Wir helfen uns, weil die Abstimmung morgen ist.",
+        exit: "Die Abstimmung ist morgen. Deshalb bereiten Sie sich heute vor. Wir helfen uns, weil die Abstimmung morgen ist.",
+        independentEvidenceByPacketId: "de_l19_c05_s40",
+      },
+      lifecycleAnchors: [],
+      chapterEvidencePacketIds: ["de_l19_c05_s35", "de_l19_c05_s36"],
+      checkpoint: {
+        packetId: "de_l19_c05_s40",
+        integratedConstructIds: [
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+          "de_gc_lexical_reflexive_v1",
+          "de_gc_personal_reference_v1",
+          "de_gc_pronoun_reference_chain_v1",
+          "de_gc_connector_topology_contrast_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l19_c05_abstimmung_v1",
+            semanticIdentity:
+              "abstimmung|coordination meeting for the mixed-register volunteer plan",
+            lemmaOrExpression: "Abstimmung",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "die",
+              singular: "Abstimmung",
+              plural: "Abstimmungen",
+            },
+            nounPackageIdentity: "die|abstimmung|abstimmungen",
+            verbPackage: null,
+            senseGloss:
+              "coordination meeting for the mixed-register volunteer plan",
+            communicativeUse:
+              "Die Abstimmung ist morgen. Deshalb bereiten Sie sich heute vor. Wir helfen uns, weil die Abstimmung morgen ist.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l19_ch05",
+            utilityProof: {
+              chapterOutcomeId: "de_l19_ch05",
+              checkpointPacketId: "de_l19_c05_s40",
+              integratedConstructIds: [
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+                "de_gc_lexical_reflexive_v1",
+                "de_gc_personal_reference_v1",
+                "de_gc_pronoun_reference_chain_v1",
+                "de_gc_connector_topology_contrast_v1",
+              ],
+              utilityRole: "scene_grounding",
+              situationFacet: "setting",
+              facetValue: "community-event-coordination-call",
+              necessityClass: "SCENE_UNGROUNDED",
+              plannedUsePacketIds: ["de_l19_c05_s40"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "community-event-coordination-call",
+          participants: "formal-coordinator-and-volunteer-team",
+          goal: "independently-coordinate-formal-preparation-and-mutual-help-with-deshalb-and-weil",
+          contextSignature: "community-event-mixed-register-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l19_c03", "de_l19_c04"],
+        targetsFutureChapterIds: ["de_l19_c06"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l20_c07_s55",
+        },
+      },
+    },
+    {
+      id: "de_l19_c06",
+      ordinal: 6,
+      lessonOutcomeId: "de_l19_ch06",
+      lessonOutcome: "repair formal-address or reciprocal-form errors",
+      packetIds: [
+        "de_l19_c06_s41",
+        "de_l19_c06_s42",
+        "de_l19_c06_s43",
+        "de_l19_c06_s44",
+        "de_l19_c06_s45",
+        "de_l19_c06_s46",
+        "de_l19_c06_s47",
+        "de_l19_c06_s48",
+      ],
+      allowedConstructIds: [
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+        "de_gc_lexical_reflexive_v1",
+        "de_gc_personal_reference_v1",
+        "de_gc_pronoun_reference_chain_v1",
+        "de_gc_connector_topology_contrast_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_relative_clause_gender_case_v1",
+      ],
+      situation: {
+        setting: "formal-team-message-quality-check",
+        participants: "learner-and-language-support-reviewer",
+        goal: "repair-one-formal-Sie-capitalization-error-and-one-reciprocal-person-form-error",
+        contextSignature: "formal-and-reciprocal-dual-repair",
+      },
+      supportFading: {
+        entryLevel: 3,
+        exitLevel: 1,
+        entry:
+          "[1] Frau Brandt, morgen bereiten sie sich vor. → Frau Brandt, morgen bereiten Sie sich vor. [2] Wir helfen sich. → Wir helfen uns. Ich korrigiere die Formulierung.",
+        exit: "[1] Frau Brandt, morgen bereiten sie sich vor. → Frau Brandt, morgen bereiten Sie sich vor. [2] Wir helfen sich. → Wir helfen uns. Ich korrigiere die Formulierung.",
+        independentEvidenceByPacketId: "de_l19_c06_s48",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_formal_sie_sich_v1",
+          stage: "transfer",
+          packetId: "de_l19_c06_s41",
+        },
+        {
+          constructId: "de_gc_reciprocal_reference_v1",
+          stage: "transfer",
+          packetId: "de_l19_c06_s42",
+        },
+      ],
+      chapterEvidencePacketIds: ["de_l19_c06_s43", "de_l19_c06_s44"],
+      checkpoint: {
+        packetId: "de_l19_c06_s48",
+        integratedConstructIds: [
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+          "de_gc_lexical_reflexive_v1",
+          "de_gc_personal_reference_v1",
+          "de_gc_pronoun_reference_chain_v1",
+          "de_gc_connector_topology_contrast_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l19_c06_formulierung_v1",
+            semanticIdentity:
+              "formulierung|wording whose formal-address and reciprocal forms are under repair",
+            lemmaOrExpression: "Formulierung",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "die",
+              singular: "Formulierung",
+              plural: "Formulierungen",
+            },
+            nounPackageIdentity: "die|formulierung|formulierungen",
+            verbPackage: null,
+            senseGloss:
+              "wording whose formal-address and reciprocal forms are under repair",
+            communicativeUse:
+              "[1] Frau Brandt, morgen bereiten sie sich vor. → Frau Brandt, morgen bereiten Sie sich vor. [2] Wir helfen sich. → Wir helfen uns. Ich korrigiere die Formulierung.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l19_ch06",
+            utilityProof: {
+              chapterOutcomeId: "de_l19_ch06",
+              checkpointPacketId: "de_l19_c06_s48",
+              integratedConstructIds: [
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+                "de_gc_lexical_reflexive_v1",
+                "de_gc_personal_reference_v1",
+                "de_gc_pronoun_reference_chain_v1",
+                "de_gc_connector_topology_contrast_v1",
+              ],
+              utilityRole: "repair",
+              situationFacet: "goal",
+              facetValue: "independently-repair-capital-Sie-and-wir-uns",
+              necessityClass: "REPAIR_UNAVAILABLE",
+              plannedUsePacketIds: ["de_l19_c06_s48"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "peer-review-of-formal-team-note",
+          participants: "learner-and-peer-reviewer",
+          goal: "independently-repair-capital-Sie-and-wir-uns",
+          contextSignature: "formal-team-dual-repair-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l19_c04", "de_l19_c05"],
+        targetsFutureChapterIds: ["de_l19_c07"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l20_c07_s56",
+        },
+      },
+    },
+    {
+      id: "de_l19_c07",
+      ordinal: 7,
+      lessonOutcomeId: "de_l19_ch07",
+      lessonOutcome:
+        "transfer formal and reciprocal reference to a new team arrangement",
+      packetIds: [
+        "de_l19_c07_s49",
+        "de_l19_c07_s50",
+        "de_l19_c07_s51",
+        "de_l19_c07_s52",
+        "de_l19_c07_s53",
+        "de_l19_c07_s54",
+        "de_l19_c07_s55",
+        "de_l19_c07_s56",
+      ],
+      allowedConstructIds: [
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_lexical_reflexive_v1",
+      ],
+      prohibitedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_relative_clause_gender_case_v1",
+      ],
+      situation: {
+        setting: "changed-community-cover-arrangement",
+        participants: "formal-contact-and-several-volunteers",
+        goal: "transfer-formal-Sie-sich-reciprocal-uns-and-both-connector-topologies",
+        contextSignature: "new-team-arrangement-final-transfer",
+      },
+      supportFading: {
+        entryLevel: 2,
+        exitLevel: 0,
+        entry:
+          "Die Vertretung ist morgen. Deshalb bereiten Sie sich heute vor. Wir helfen uns, weil die Vertretung morgen ist.",
+        exit: "Die Vertretung ist morgen. Deshalb bereiten Sie sich heute vor. Wir helfen uns, weil die Vertretung morgen ist.",
+        independentEvidenceByPacketId: "de_l19_c07_s56",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_connector_topology_contrast_v1",
+          stage: "delayed",
+          packetId: "de_l19_c07_s49",
+        },
+        {
+          constructId: "de_gc_lexical_reflexive_v1",
+          stage: "delayed",
+          packetId: "de_l19_c07_s50",
+        },
+      ],
+      chapterEvidencePacketIds: [
+        "de_l19_c07_s51",
+        "de_l19_c07_s52",
+        "de_l19_c07_s53",
+        "de_l19_c07_s54",
+        "de_l19_c07_s55",
+        "de_l19_c07_s56",
+      ],
+      checkpoint: {
+        packetId: "de_l19_c07_s56",
+        integratedConstructIds: [
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_lexical_reflexive_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l19_c07_vertretung_v1",
+            semanticIdentity:
+              "vertretung|cover duty used for the changed team arrangement",
+            lemmaOrExpression: "Vertretung",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "die",
+              singular: "Vertretung",
+              plural: "Vertretungen",
+            },
+            nounPackageIdentity: "die|vertretung|vertretungen",
+            verbPackage: null,
+            senseGloss: "cover duty used for the changed team arrangement",
+            communicativeUse:
+              "Die Vertretung ist morgen. Deshalb bereiten Sie sich heute vor. Wir helfen uns, weil die Vertretung morgen ist.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l19_ch07",
+            utilityProof: {
+              chapterOutcomeId: "de_l19_ch07",
+              checkpointPacketId: "de_l19_c07_s56",
+              integratedConstructIds: [
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_lexical_reflexive_v1",
+              ],
+              utilityRole: "transfer",
+              situationFacet: "goal",
+              facetValue:
+                "independently-transfer-formal-and-reciprocal-reference-to-a-new-team-arrangement",
+              necessityClass: "TRANSFER_UNAVAILABLE",
+              plannedUsePacketIds: ["de_l19_c07_s56"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "neighbourhood-cover-duty-call",
+          participants: "formal-contact-and-several-volunteers",
+          goal: "independently-transfer-formal-and-reciprocal-reference-to-a-new-team-arrangement",
+          contextSignature: "cover-duty-changed-context-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l19_c05", "de_l19_c06"],
+        targetsFutureChapterIds: ["de_l20_c01"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l20_c07_s55",
+        },
+      },
+    },
+  ],
+} as const;
+
+function validateL19SemanticContract(raw: R, plan: Boundary): void {
+  const l19 = (raw.lessons as R[]).find(
+    (lesson) => lesson.lessonId === "de_l19",
+  );
+  if (!l19) throw new Error("l19_semantic_contract_invalid:identity");
+  const expected = L19_CONTRACT as unknown as R,
+    chapters = l19.chapters as R[],
+    expectedChapters = expected.chapters as R[],
+    boundary = l19.grammarBoundary as R,
+    expectedBoundary = expected.grammarBoundary as R;
+  if (l19.lessonOrdinal !== expected.lessonOrdinal || chapters.length !== 7)
+    throw new Error("l19_semantic_contract_invalid:identity");
+  if (boundary.noExpansion !== expectedBoundary.noExpansion)
+    throw new Error("l19_semantic_contract_invalid:no_expansion");
+  if (
+    JSON.stringify(plan.introducedConstructIds) !==
+      JSON.stringify(
+        (expectedBoundary.allowedConstructIds as string[]).slice(0, 2),
+      ) ||
+    JSON.stringify(plan.extendedConstructIds) !==
+      JSON.stringify(
+        (expectedBoundary.allowedConstructIds as string[]).slice(2, 4),
+      ) ||
+    JSON.stringify(plan.reviewedConstructIds) !==
+      JSON.stringify(
+        (expectedBoundary.allowedConstructIds as string[]).slice(4),
+      ) ||
+    JSON.stringify(plan.prohibitedConstructIds) !==
+      JSON.stringify(expectedBoundary.prohibitedConstructIds) ||
+    JSON.stringify(boundary.allowedConstructIds) !==
+      JSON.stringify(expectedBoundary.allowedConstructIds) ||
+    JSON.stringify(boundary.prohibitedConstructIds) !==
+      JSON.stringify(expectedBoundary.prohibitedConstructIds) ||
+    JSON.stringify((plan.session56Final as R).requiredConstructIds) !==
+      JSON.stringify(
+        (expectedChapters[6].checkpoint as R).integratedConstructIds,
+      )
+  )
+    throw new Error("l19_semantic_contract_invalid:sets");
+  const incoming = [51, 52, 53, 54, 55, 56, 55].map((n) => `de_l19_c07_s${n}`),
+    l18 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l18",
+    ) as R;
+  if (
+    !l18 ||
+    JSON.stringify(
+      (l18.chapters as R[]).map(
+        (chapter) =>
+          ((chapter.recallSchedule as R).futureDelayedProbe as R).packetId,
+      ),
+    ) !== JSON.stringify(incoming)
+  )
+    throw new Error("l18_l19_inverse_provenance_invalid");
+  const c06 = chapters[5].supportFading as R,
+    c07 = chapters[6].supportFading as R,
+    expectedC06 = expectedChapters[5].supportFading as R,
+    expectedC07 = expectedChapters[6].supportFading as R;
+  if (
+    c06.entry !== expectedC06.entry ||
+    c06.exit !== expectedC06.exit ||
+    (String(c06.entry).match(/→/gu) ?? []).length !== 2
+  )
+    throw new Error("l19_c06_repair_items");
+  if (c07.entry !== expectedC07.entry || c07.exit !== expectedC07.exit)
+    throw new Error("l19_c07_final_transfer");
+  const ids = new Set<string>(),
+    semantics = new Set<string>(),
+    signatures = new Set<string>();
+  chapters.forEach((chapter, index) => {
+    const expectedChapter = expectedChapters[index],
+      cp = chapter.checkpoint as R,
+      expectedCp = expectedChapter.checkpoint as R;
+    if (
+      chapter.id !== expectedChapter.id ||
+      chapter.ordinal !== expectedChapter.ordinal ||
+      chapter.lessonOutcomeId !== expectedChapter.lessonOutcomeId ||
+      chapter.lessonOutcome !== expectedChapter.lessonOutcome ||
+      JSON.stringify(chapter.packetIds) !==
+        JSON.stringify(expectedChapter.packetIds)
+    )
+      throw new Error("l19_semantic_contract_invalid:identity");
+    if (
+      JSON.stringify(chapter.allowedConstructIds) !==
+        JSON.stringify(expectedChapter.allowedConstructIds) ||
+      JSON.stringify(chapter.prohibitedConstructIds) !==
+        JSON.stringify(expectedChapter.prohibitedConstructIds) ||
+      JSON.stringify(cp.integratedConstructIds) !==
+        JSON.stringify(expectedCp.integratedConstructIds)
+    )
+      throw new Error("l19_semantic_contract_invalid:sets");
+    if (
+      JSON.stringify(chapter.lifecycleAnchors) !==
+      JSON.stringify(expectedChapter.lifecycleAnchors)
+    )
+      throw new Error("l19_semantic_contract_invalid:anchors");
+    if (
+      JSON.stringify([chapter.situation, cp.newSituation]) !==
+      JSON.stringify([expectedChapter.situation, expectedCp.newSituation])
+    )
+      throw new Error("l19_semantic_contract_invalid:situations");
+    for (const sit of [chapter.situation as R, cp.newSituation as R]) {
+      const signature = String(sit.contextSignature);
+      if (signatures.has(signature))
+        throw new Error("l19_semantic_contract_invalid:situations");
+      signatures.add(signature);
+    }
+    if (
+      JSON.stringify(chapter.supportFading) !==
+      JSON.stringify(expectedChapter.supportFading)
+    )
+      throw new Error("l19_semantic_contract_invalid:support_fading");
+    if (
+      JSON.stringify(chapter.chapterEvidencePacketIds) !==
+      JSON.stringify(expectedChapter.chapterEvidencePacketIds)
+    )
+      throw new Error("l19_semantic_contract_invalid:evidence");
+    if (
+      JSON.stringify(chapter.recallSchedule) !==
+      JSON.stringify(expectedChapter.recallSchedule)
+    )
+      throw new Error("l19_recall_contract_invalid");
+    const senses = cp.plannedNewLexicalSenses as R[];
+    if (
+      senses.length < 1 ||
+      senses.length > 5 ||
+      JSON.stringify(senses) !==
+        JSON.stringify(expectedCp.plannedNewLexicalSenses)
+    )
+      throw new Error("l19_semantic_contract_invalid:lexical_packages");
+    for (const sense of senses) {
+      if (
+        ids.has(String(sense.id)) ||
+        semantics.has(String(sense.semanticIdentity)) ||
+        sense.partOfSpeech === "pronoun" ||
+        sense.lemmaOrExpression === "einander"
+      )
+        throw new Error("l19_semantic_contract_invalid:lexical_packages");
+      ids.add(String(sense.id));
+      semantics.add(String(sense.semanticIdentity));
+    }
+  });
+  const surface = JSON.stringify(l19)
+    .replaceAll(String(expectedBoundary.noExpansion), "")
+    .replaceAll(String(expectedC06.entry), "");
+  if (
+    /\bSich\b|Sie (?:bereiten|bereitet) Sie|\bwir\b.{0,20}\bsich\b|\bihr\b.{0,20}\bsich\b/u.test(
+      surface,
+    )
+  )
+    throw new Error("l19_person_mapping_invalid");
+  if (
+    /automatic equivalence|interchangeable|einander ersetzen|zusammen|gegenseitig|sich selbst/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l19_reciprocal_contrast_invalid");
+  if (
+    /\bdenn\b|\bdarum\b|\bdeswegen\b|\bobwohl\b|\bwenn\b|\bdass\b|relative clause|indirect question|passive|modal perfect|L20 grammar/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l19_no_expansion_leak");
+  if (JSON.stringify(l19) !== JSON.stringify(expected))
+    throw new Error("l19_semantic_contract_invalid:exact");
+}
+
 function validate(raw: unknown): {
   lessons: number;
   chapters: number;
@@ -7278,6 +8327,12 @@ function validate(raw: unknown): {
     (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l18")
   )
     validateL18SemanticContract(raw, l18Plan);
+  const l19Plan = source.get("de_l19");
+  if (
+    l19Plan &&
+    (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l19")
+  )
+    validateL19SemanticContract(raw, l19Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -7516,6 +8571,16 @@ function validate(raw: unknown): {
               sv.id === "de_lex_plan_l17_c01_morgen_v1" &&
               sv.semanticIdentity ===
                 "morgen|on the day after today as an explicit future-time expression"
+            ) &&
+            !(
+              sv.id === "de_lex_plan_l19_c05_abstimmung_v1" &&
+              sv.semanticIdentity ===
+                "abstimmung|coordination meeting for the mixed-register volunteer plan"
+            ) &&
+            !(
+              sv.id === "de_lex_plan_l19_c06_formulierung_v1" &&
+              sv.semanticIdentity ===
+                "formulierung|wording whose formal-address and reciprocal forms are under repair"
             )) ||
           sv.chapterOutcomeId !== cv.lessonOutcomeId ||
           LEXICAL_KIND_BY_POS[sv.partOfSpeech as string] !== sv.lexicalKind
@@ -8050,6 +9115,40 @@ function expectL18PlanExact(mut: (plan: R) => void, message: string): void {
   assert.ok(thrown instanceof Error, `expected_error:${message}`);
   assert.equal(thrown.message, message);
 }
+
+function expectL19Exact(mut: (raw: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: Boundary[] };
+  const plan = lessonRegistry.lessons.find(
+    (lesson) => lesson.id === "de_l19",
+  ) as Boundary;
+  mut(raw);
+  let thrown: unknown;
+  try {
+    validateL19SemanticContract(raw, plan);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+function expectL19PlanExact(mut: (plan: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: R[] };
+  const plan = clone(
+    lessonRegistry.lessons.find((lesson) => lesson.id === "de_l19") as R,
+  );
+  mut(plan);
+  let thrown: unknown;
+  try {
+    validateL19SemanticContract(raw, plan as Boundary);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+
 function fixtures(): void {
   const first = (raw: R) => ((raw.lessons as R[])[0].chapters as R[])[0];
   expect((raw) => {
@@ -10347,6 +11446,7 @@ function fixtures(): void {
     [packetIds[0], packetIds[1]] = [packetIds[1], packetIds[0]];
   }, /packet_identity_invalid/u);
   const prematureL18 = clone(json(FILE)) as R;
+  prematureL18.lessons = (prematureL18.lessons as R[]).slice(0, 18);
   assert.throws(() => {
     const result = validate(prematureL18);
     if (
@@ -10368,6 +11468,114 @@ function fixtures(): void {
     )
       throw new Error("scope_violation_l18_only");
   }, /scope_violation_l18_only/u);
+
+  const l19 = (raw: R) =>
+    (raw.lessons as R[]).find((lesson) => lesson.lessonId === "de_l19") as R;
+  expectL19PlanExact((plan) => {
+    (plan.introducedConstructIds as string[]).reverse();
+  }, "l19_semantic_contract_invalid:sets");
+  expectL19Exact((raw) => {
+    l19(raw).lessonOrdinal = 20;
+  }, "l19_semantic_contract_invalid:identity");
+  expectL19Exact((raw) => {
+    (l19(raw).chapters as R[])[0].lessonOutcome =
+      "teach a free reflexive paradigm";
+  }, "l19_semantic_contract_invalid:identity");
+  expectL19Exact((raw) => {
+    (l19(raw).grammarBoundary as R).noExpansion =
+      "Teach a free reflexive and reciprocal paradigm.";
+  }, "l19_semantic_contract_invalid:no_expansion");
+  expectL19Exact((raw) => {
+    (l19(raw).chapters as R[])[6].lifecycleAnchors = [];
+  }, "l19_semantic_contract_invalid:anchors");
+  expectL19Exact((raw) => {
+    ((l19(raw).chapters as R[])[0].checkpoint as R).integratedConstructIds = [];
+  }, "l19_semantic_contract_invalid:sets");
+  expectL19Exact((raw) => {
+    ((l19(raw).chapters as R[])[1].supportFading as R).entry =
+      "Frau Keller, Sie bereiten Sich heute vor.";
+  }, "l19_semantic_contract_invalid:support_fading");
+  expectL19Exact((raw) => {
+    ((l19(raw).chapters as R[])[2].supportFading as R).entry =
+      "Wir helfen sich. Ihr helft sich.";
+  }, "l19_semantic_contract_invalid:support_fading");
+  expectL19Exact((raw) => {
+    l19(raw).lowercaseSieProbe = "Lowercase sie is universally ungrammatical.";
+  }, "l19_semantic_contract_invalid:exact");
+  expectL19Exact((raw) => {
+    l19(raw).reciprocalEquivalenceProbe =
+      "sich and einander are interchangeable.";
+  }, "l19_reciprocal_contrast_invalid");
+  expectL19Exact((raw) => {
+    l19(raw).expansionProbe =
+      "Teach denn, passive, relative clause and L20 grammar.";
+  }, "l19_no_expansion_leak");
+  expectL19Exact((raw) => {
+    ((l19(raw).chapters as R[])[5].supportFading as R).entry =
+      "Wir helfen sich. → Wir helfen uns.";
+  }, "l19_c06_repair_items");
+  expectL19Exact((raw) => {
+    const l18 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l18",
+    ) as R;
+    (
+      ((l18.chapters as R[])[6].recallSchedule as R).futureDelayedProbe as R
+    ).packetId = "de_l19_c07_s56";
+  }, "l18_l19_inverse_provenance_invalid");
+  expectL19Exact((raw) => {
+    ((l19(raw).chapters as R[])[4].supportFading as R).exitLevel = 0;
+  }, "l19_semantic_contract_invalid:support_fading");
+  expectL19Exact((raw) => {
+    const chapters = l19(raw).chapters as R[];
+    ((chapters[1].checkpoint as R).newSituation as R).contextSignature = (
+      (chapters[0].checkpoint as R).newSituation as R
+    ).contextSignature;
+  }, "l19_semantic_contract_invalid:situations");
+  expectL19Exact((raw) => {
+    const sense = (
+      ((l19(raw).chapters as R[])[3].checkpoint as R)
+        .plannedNewLexicalSenses as R[]
+    )[0];
+    sense.partOfSpeech = "pronoun";
+    sense.lemmaOrExpression = "einander";
+  }, "l19_semantic_contract_invalid:lexical_packages");
+  expectL19Exact((raw) => {
+    (
+      ((l19(raw).chapters as R[])[0].checkpoint as R)
+        .plannedNewLexicalSenses as R[]
+    )[0].lemmaStatus = "TASK6_ADJUDICATED";
+  }, "l19_semantic_contract_invalid:lexical_packages");
+  expectL19Exact((raw) => {
+    ((l19(raw).chapters as R[])[3].chapterEvidencePacketIds as string[]).pop();
+  }, "l19_semantic_contract_invalid:evidence");
+  expectL19Exact((raw) => {
+    l19(raw).interactionCompliance =
+      "The unsplit support text already satisfies DE-INTERACTION-001.";
+  }, "l19_semantic_contract_invalid:exact");
+  expectL19Exact((raw) => {
+    l19(raw).englishContourEdit = "Copy the English lesson.";
+  }, "l19_semantic_contract_invalid:exact");
+  expectL19Exact((raw) => {
+    ((l19(raw).chapters as R[])[6].supportFading as R).entry =
+      "Die Vertretung ist morgen.";
+  }, "l19_c07_final_transfer");
+  expectL19Exact((raw) => {
+    const packetIds = (l19(raw).chapters as R[])[0].packetIds as string[];
+    [packetIds[0], packetIds[1]] = [packetIds[1], packetIds[0]];
+  }, "l19_semantic_contract_invalid:identity");
+  const prematureL19 = clone(json(FILE)) as R;
+  prematureL19.lessons = (prematureL19.lessons as R[]).slice(0, 19);
+  assert.throws(() => {
+    const result = validate(prematureL19);
+    if (
+      result.buildStatus !== "COMPLETE_TASK5" ||
+      result.lessons !== 32 ||
+      result.chapters !== 224
+    )
+      throw new Error(
+        `full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;${result.lessons}/32 lessons;${result.chapters}/224 chapters`,
+      );
+  }, /full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;19\/32 lessons;133\/224 chapters/u);
 
   const l2Boundary: Boundary = {
     id: "de_l02",

@@ -230,7 +230,12 @@ export async function refreshStatsCache(studyTarget?: RuntimeStudyTarget): Promi
   _preloadInFlight = true;
   _refreshPromise = buildFreshStatsSnapshot(studyTarget)
     .then((fresh) => rememberStatsCache(fresh))
-    .catch(() => (_cache.loaded ? _cache : null))
+    .catch((error: unknown) => {
+      // зачем (PM-214 preflight, D158): немой catch прятал отказ сборки статистики — экран ждал
+      // statsReady без единой строки в журнале. Поведение прежнее: старый кэш или null.
+      console.warn('[STATS-CACHE] refresh failed', JSON.stringify({ hadCache: _cache.loaded, error: String((error as Error)?.message ?? error).slice(0, 160) }));
+      return _cache.loaded ? _cache : null;
+    })
     .finally(() => {
       _preloadInFlight = false;
       _refreshPromise = null;

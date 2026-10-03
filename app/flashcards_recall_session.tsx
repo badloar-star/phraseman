@@ -252,7 +252,7 @@ export default function FlashcardsRecallSession() {
     setRemainingQueueCount(round.length);
   }, []);
 
-  // зачем (владелец 01.10 + D154 §117): при ошибке загрузки молча перезапрашиваем карточки —
+  // зачем (владелец 01.10 + D158 §117): при ошибке загрузки молча перезапрашиваем карточки —
   // 3 тихих повтора с паузами ~1/3/8 с (app/load_gate_config.ts), а не вечный скелетон: после потолка
   // экран говорит спокойное «Сейчас недоступно» с тихой «Попробовать снова»; при возврате в
   // приложение повтор идёт сам.
@@ -282,7 +282,7 @@ export default function FlashcardsRecallSession() {
     setLoadRevision((value) => value + 1);
   }, []);
 
-  // D154: автоповтор при возврате в приложение (фокус), если загрузка исчерпала повторы.
+  // D158: автоповтор при возврате в приложение (фокус), если загрузка исчерпала повторы.
   useEffect(() => {
     if (!loadExhausted) return undefined;
     const sub = AppState.addEventListener('change', (state) => {
@@ -291,7 +291,7 @@ export default function FlashcardsRecallSession() {
     return () => sub.remove();
   }, [loadExhausted, retryRecallLoad]);
 
-  // D154 (баг «Блица», тот же класс): загрузка, которая не ответила ни успехом, ни ошибкой, не держит
+  // D158 (баг «Блица», тот же класс): загрузка, которая не ответила ни успехом, ни ошибкой, не держит
   // скелетон вечно — через потолок уходит в тот же цикл тихих повторов.
   useEffect(() => {
     if (!loading || loadError || loadExhausted) return undefined;
@@ -744,7 +744,7 @@ export default function FlashcardsRecallSession() {
       'pt-BR': 'Escolher pacotes', vi: 'Chọn bộ thẻ', id: 'Pilih paket',
       tr: 'Paket seç', pl: 'Wybierz zestawy',
     }),
-    // D154: спокойно, без паники и без «ошибки».
+    // D158: спокойно, без паники и без «ошибки».
     unavailable: triLang(lang, {
       ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now',
       es: 'No disponible ahora', 'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng',
@@ -834,7 +834,7 @@ export default function FlashcardsRecallSession() {
     );
   }
 
-  // зачем (D154 §117): после потолка тихих повторов — спокойное «Сейчас недоступно» с тихой
+  // зачем (D158 §117): после потолка тихих повторов — спокойное «Сейчас недоступно» с тихой
   // «Попробовать снова» вместо вечного скелетона; значок нейтральный (тот же, что у пустого набора).
   if (!activeCard && loadExhausted) {
     return (
@@ -862,7 +862,7 @@ export default function FlashcardsRecallSession() {
   }
 
   // зачем (владелец 01.10): пока идут тихие повторы — тот же скелетон, а useEffect выше молча
-  // перезапрашивает карточки (D154: с потолком).
+  // перезапрашивает карточки (D158: с потолком).
   if (loading || (!activeCard && loadError)) {
     return (
       <ScreenGradient>

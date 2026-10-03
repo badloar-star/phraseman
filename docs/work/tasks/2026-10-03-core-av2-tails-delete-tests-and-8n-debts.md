@@ -1,7 +1,7 @@
 # Task packet: Account V2 tails — account-deletion tests after f5a01076d, review debts 8N S1/S3
 
 Governance-ID: TG-622DD6E4BD75
-Status: In progress
+Status: Done: (1) already fixed by Account V2, (2) S3 done, S1 handed back (needs cloud_sync.ts)
 Owner: Claude session «App Check» (82577f25), by coordinator (2026-10-03)
 Related epic/enabler: Account Authority 2.0 (§AV2-18), PM account deletion
 
@@ -35,3 +35,9 @@ The two suites green or the regression fixed; wipe registry test proves the new 
 ## Rollback
 
 Revert the commits — test expectations and one key in the wipe list; no entitlement or data-format impact.
+
+## Result (2026-10-03)
+
+- (1) post_delete_fresh_identity_integration + account_delete_flow_contract: green 37/37 at HEAD (fixed earlier by 831c6cf08).
+- S3: da579b086 — orderMergedLikeLocal; tests 41/41 and 109/109.
+- S1: not done — the wipe inventory is in app/cloud_sync.ts (Account V2 zone, dirty); exact patch is in the INBOX.

@@ -155,12 +155,20 @@ function isMyPacksSort(value: unknown): value is MyPacksSort {
   return value === 'updated' || value === 'name';
 }
 
+// зачем (PM-096-A3): без памяти процесса каждый заход рисовал список «по дате», а через
+// чтение диска перетасовывал его «по имени» на глазах. После первого чтения выбор живёт
+// здесь, и повторный заход сразу рисует сохранённый порядок.
+let myPacksSortMemo: MyPacksSort | null = null;
+
 async function getStoredMyPacksSort(): Promise<MyPacksSort> {
   const raw = await AsyncStorage.getItem(MY_PACKS_SORT_KEY).catch(noteSwallowedAs('flashcards_my_packs:getStoredMyPacksSort.getItem', null));
-  return isMyPacksSort(raw) ? raw : 'updated';
+  const sort = isMyPacksSort(raw) ? raw : 'updated';
+  myPacksSortMemo = sort;
+  return sort;
 }
 
 async function setStoredMyPacksSort(sort: MyPacksSort): Promise<void> {
+  myPacksSortMemo = sort;
   await AsyncStorage.setItem(MY_PACKS_SORT_KEY, sort).catch(noteSwallowedHandler('flashcards_my_packs:setStoredMyPacksSort.setItem'));
 }
 
@@ -296,8 +304,9 @@ export default function FlashcardsMyPacksScreen() {
   }, []);
   // PM-095/PM-096: поиск и сортировка — чисто локальные, без новых Firestore-чтений.
   const [myPacksQuery, setMyPacksQuery] = useState('');
-  const [myPacksSort, setMyPacksSort] = useState<MyPacksSort>('updated');
+  const [myPacksSort, setMyPacksSort] = useState<MyPacksSort>(() => myPacksSortMemo ?? 'updated');
   useEffect(() => {
+    if (myPacksSortMemo !== null) return; // уже прочитано в этом процессе — первый кадр верный
     let cancelled = false;
     void getStoredMyPacksSort().then((stored) => { if (!cancelled) setMyPacksSort(stored); });
     return () => { cancelled = true; };

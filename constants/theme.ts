@@ -469,11 +469,6 @@ export const getLeague = (points: number) => {
   return leagues.find(l => points >= l.min) || STRINGS.leagues[0];
 };
 
-export const getNextLeague = (points: number) => {
-  const idx = STRINGS.leagues.findIndex(l => l.name === getLeague(points).name);
-  return STRINGS.leagues[idx + 1] || null;
-};
-
 /**
  * Numeric Energy V2 has one universal base capacity at every level.
  */

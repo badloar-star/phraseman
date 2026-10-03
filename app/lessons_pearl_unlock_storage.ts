@@ -63,12 +63,5 @@ export async function readPurchasedLessons(
   }
 }
 
-export async function isLessonPurchasedWithPearls(
-  lessonId: number,
-  studyTarget?: RuntimeStudyTarget,
-): Promise<boolean> {
-  return (await readPurchasedLessons(studyTarget)).includes(lessonId);
-}
-
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

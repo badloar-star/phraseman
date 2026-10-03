@@ -887,7 +887,6 @@ export const isAiDialogPremiumGated = () => getRemoteBool('gate_ai_dialog_premiu
 export const isStatsPremiumGated = () => getRemoteBool('gate_stats_premium');
 export const isFlashcardsPremiumGated = () => getRemoteBool('gate_flashcards_premium');
 export const isThemesPremiumGated = () => getRemoteBool('gate_themes_premium');
-export const isAvatarAurasPremiumGated = () => getRemoteBool('gate_avatar_auras_premium');
 export const isMasteryPremiumGated = () => getRemoteBool('gate_mastery_premium');
 export const isEnergyPremiumGated = () => getRemoteBool('gate_energy_premium');
 

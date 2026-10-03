@@ -57,19 +57,6 @@ export const REVENUE_DAY_PASS_EXTRA = Object.freeze({
   speaking_attempts: 3,
 } as const);
 
-// зачем: D70/D78 — покупка дневного пропуска за жемчуг (quota_day_pass.ts) и его цена
-// удалены. Уже купленные пропуска читает revenue_daily_quota.ts по ключу периода.
-/**
- * @deprecated D70/D78: мёртвая константа, НЕ использовать. Оставлена только потому,
- * что удаление quota_day_pass.ts ещё не закоммичено, а закоммиченный HEAD его
- * импортирует (коммит D111 не должен ломать сборку HEAD). Удалить вместе с
- * коммитом удаления app/quota_day_pass.ts.
- */
-export const REVENUE_DAY_PASS_PRICE_PEARLS = Object.freeze({
-  flashcard_training_starts: 15,
-  speaking_attempts: 20,
-} as const);
-
 export type RevenueDayPassKind = keyof typeof REVENUE_DAY_PASS_EXTRA;
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

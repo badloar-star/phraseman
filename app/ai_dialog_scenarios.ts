@@ -83,19 +83,6 @@ export interface DialogScenario {
 export const DIALOG_PRICE_RUNES = 5000;
 export const DIALOG_PRICE_RUNES_HARD = 10000;
 
-/**
- * Цена сценария для показа и списания. Бесплатный — 0.
- *
- * Единственный источник цены: и плитка каталога, и афиша покупки обязаны
- * спрашивать ЕЁ, иначе в списке будет одна цена, а спишется другая — тот же
- * класс бага, что уже закрыт инвариантом «плитка и тап спрашивают одну
- * функцию доступа».
- */
-export function scenarioPriceRunes(scenario: Pick<DialogScenario, 'priceRunes'>): number {
-  const price = Number(scenario.priceRunes ?? 0);
-  return Number.isFinite(price) && price > 0 ? price : 0;
-}
-
 export interface DialogScenarioGroup {
   category: DialogScenarioCategory;
   labelRu: string;

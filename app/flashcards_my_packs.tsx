@@ -304,13 +304,9 @@ export default function FlashcardsMyPacksScreen() {
   }, []);
   // PM-095/PM-096: поиск и сортировка — чисто локальные, без новых Firestore-чтений.
   const [myPacksQuery, setMyPacksQuery] = useState('');
+  // зачем (PM-096-A3, координатор 03.10): сортировку читает загрузчик фокуса ВМЕСТЕ с наборами
+  // и применяет одним обновлением — список никогда не появляется в чужом порядке.
   const [myPacksSort, setMyPacksSort] = useState<MyPacksSort>(() => myPacksSortMemo ?? 'updated');
-  useEffect(() => {
-    if (myPacksSortMemo !== null) return; // уже прочитано в этом процессе — первый кадр верный
-    let cancelled = false;
-    void getStoredMyPacksSort().then((stored) => { if (!cancelled) setMyPacksSort(stored); });
-    return () => { cancelled = true; };
-  }, []);
   const handleMyPacksSortChange = useCallback((next: MyPacksSort) => {
     setMyPacksSort(next);
     void setStoredMyPacksSort(next);
@@ -485,8 +481,10 @@ export default function FlashcardsMyPacksScreen() {
       openingPackRef.current = null;
       setOpeningPackId(null);
       setLoadStatus('loading');
-      void loadMine().then((next) => {
+      const sortRead: Promise<MyPacksSort> = myPacksSortMemo !== null ? Promise.resolve(myPacksSortMemo) : getStoredMyPacksSort();
+      void Promise.all([loadMine(), sortRead]).then(([next, storedSort]) => {
         if (cancelled) { console.log('[MY-PACKS] commit skip reason=cancelled'); return; }
+        setMyPacksSort(storedSort);
         const currentScope = accountScopeKey(captureAccountGeneration());
         if (!canCommitAccountScopedResult(next.accountScope, currentScope)) {
           console.log('[MY-PACKS] commit skip reason=account_scope_changed');

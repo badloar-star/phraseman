@@ -9,7 +9,7 @@
 
 import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
 import { Directory, File, Paths } from 'expo-file-system';
-import { normalizePhraseAudioKey } from '../app/phrase_audio_url_map.generated';
+import { normalizePhraseAudioKey } from '../app/phrase_audio_key';
 import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import {
   claimSpokenAudio,

@@ -1,9 +1,14 @@
-import {
-  getPhraseAudioUrl,
-  normalizePhraseAudioKey,
-  PHRASE_AUDIO_URL_MAP,
-} from '../../app/phrase_audio_url_map.generated';
+import { lazyContent } from '../../app/content_lazy';
+import { normalizePhraseAudioKey } from '../../app/phrase_audio_key';
 import { normalizeLessonAssemblyAnswer } from '../../constants/contractions';
+
+type PhraseAudioUrlMapModule = typeof import('../../app/phrase_audio_url_map.generated');
+// зачем (PM-216, [CONTENT-LAZY]): карта «фраза → mp3» (310 КБ, 4971 запись, строится при импорте) нужна только при
+// воспроизведении фразы; раньше её тянул любой импорт плеера при старте.
+const phraseAudioUrlMap = lazyContent('phrase_audio_url_map', () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  return require('../../app/phrase_audio_url_map.generated') as PhraseAudioUrlMapModule;
+});
 
 let spokenAliases: ReadonlyMap<string, string | null> | null = null;
 
@@ -14,7 +19,7 @@ export function phraseAudioSpokenKey(text: string): string {
 function getSpokenAliases(): ReadonlyMap<string, string | null> {
   if (spokenAliases) return spokenAliases;
   const aliases = new Map<string, string | null>();
-  for (const [text, url] of Object.entries(PHRASE_AUDIO_URL_MAP)) {
+  for (const [text, url] of Object.entries(phraseAudioUrlMap().PHRASE_AUDIO_URL_MAP)) {
     const spokenKey = phraseAudioSpokenKey(text);
     const existing = aliases.get(spokenKey);
     if (existing === undefined) aliases.set(spokenKey, url);
@@ -30,7 +35,7 @@ function getSpokenAliases(): ReadonlyMap<string, string | null> {
  * spoken form maps to one unambiguous URL across the entire corpus.
  */
 export function getPlayablePhraseAudioUrl(text: string): string | undefined {
-  const exact = getPhraseAudioUrl(text);
+  const exact = phraseAudioUrlMap().getPhraseAudioUrl(text);
   if (exact) return exact;
   return getSpokenAliases().get(phraseAudioSpokenKey(text)) ?? undefined;
 }

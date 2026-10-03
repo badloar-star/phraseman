@@ -6,7 +6,7 @@ import {
   learningV2FactoryRemoteAudioFileForTranscriptVoiceV1,
   learningV2FactoryRemoteAudioFilesForContentHashesV1,
 } from "./learning_v2_factory_production_audio_v1";
-import { LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1 } from "./learning_v2_factory_lesson_audio_index_v1.generated";
+import { lazyContent } from "./content_lazy";
 import { getStableId } from "./stable_id";
 import { learningV2Lesson1RemoteAudioFilesV1 } from "./learning_v2_lesson1_audio_assets";
 import { resolveLearningV2BootstrapAudioOfflineFileV1 } from "./learning_v2_bootstrap_audio_seed_v1";
@@ -18,6 +18,16 @@ import {
   resolveLearningV2VoiceAudioOfflineCacheMaterialV1,
   resolvePreparedLearningV2VoiceAudioOfflineFileV1,
 } from "../modules/learning-v2/runtime/voice_audio_offline_cache_v1";
+
+type FactoryLessonAudioIndexModuleV1 = typeof import("./learning_v2_factory_lesson_audio_index_v1.generated");
+type FactoryLessonAudioIndexV1 = FactoryLessonAudioIndexModuleV1["LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1"];
+// зачем (PM-216, [CONTENT-LAZY]): 515 КБ индекса «урок → озвучка» нужны только при работе с озвучкой занятия;
+// раньше выполнялись при импорте экрана плеера на старте.
+const factoryLessonAudioIndex = lazyContent("learning_v2_factory_lesson_audio_index", () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  return (require("./learning_v2_factory_lesson_audio_index_v1.generated") as FactoryLessonAudioIndexModuleV1)
+    .LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1;
+});
 
 export const LEARNING_V2_LESSON_AUDIO_PACK_SCHEMA_V1 =
   "learning-v2-lesson-audio-pack.v1" as const;
@@ -92,8 +102,8 @@ function filesForLesson(
 ): Readonly<{ files: readonly LearningV2CourseSessionAudioFileV1[]; sessionCount: number }> {
   const byHash = new Map<string, LearningV2CourseSessionAudioFileV1>();
   if (targetLanguage === "en") {
-    const indexed = LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1[
-      lessonOrdinal as keyof typeof LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1
+    const indexed = factoryLessonAudioIndex()[
+      lessonOrdinal as keyof FactoryLessonAudioIndexV1
     ];
     if (!indexed) return Object.freeze({ files: Object.freeze([]), sessionCount: 0 });
     for (const file of learningV2FactoryRemoteAudioFilesForContentHashesV1(indexed.contentHashes))
@@ -123,8 +133,8 @@ function filesForSession(
   targetLanguage: "en" | "es",
 ): readonly LearningV2CourseSessionAudioFileV1[] {
   if (targetLanguage === "en") {
-    const lesson = LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1[
-      lessonOrdinal as keyof typeof LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1
+    const lesson = factoryLessonAudioIndex()[
+      lessonOrdinal as keyof FactoryLessonAudioIndexV1
     ];
     if (!lesson) return Object.freeze([]);
     const session = lesson.sessions[sessionOrdinal as keyof typeof lesson.sessions];
@@ -208,7 +218,7 @@ export function isLearningV2LessonAudioPackPublishedV1(input: {
 }): boolean {
   if (input.targetLanguage === "en") {
     return Object.prototype.hasOwnProperty.call(
-      LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1,
+      factoryLessonAudioIndex(),
       input.lessonOrdinal,
     );
   }
@@ -220,7 +230,7 @@ export function learningV2PublishedAudioLessonOrdinalsV1(
 ): readonly number[] {
   if (targetLanguage === "es") return Object.freeze([1]);
   return Object.freeze(
-    Object.keys(LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1)
+    Object.keys(factoryLessonAudioIndex())
       .map(Number)
       .filter((ordinal) => Number.isSafeInteger(ordinal) && ordinal >= 1 && ordinal <= 32)
       .sort((left, right) => left - right),
@@ -233,8 +243,8 @@ export function isLearningV2SessionAudioPublishedV1(input: {
   readonly sessionOrdinal: number;
 }): boolean {
   if (input.targetLanguage === "en") {
-    const indexed = LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1[
-      input.lessonOrdinal as keyof typeof LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1
+    const indexed = factoryLessonAudioIndex()[
+      input.lessonOrdinal as keyof FactoryLessonAudioIndexV1
     ];
     return indexed?.sessionOrdinals.some((ordinal) => ordinal === input.sessionOrdinal) ?? false;
   }

@@ -1,4 +1,4 @@
-import { FACTORY_PRODUCTION_AUDIO_ENTRIES_V1 } from "./learning_v2_factory_production_audio_entries_v1.generated";
+import { lazyContent } from "./content_lazy";
 import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_registry";
 import {
   materializeLearningV2CourseSessionAudioChildV1,
@@ -12,20 +12,30 @@ const VOICES = Object.freeze(["ash", "onyx", "nova", "coral"] as const);
 const FACTORY_AUDIO_PACK_COORDINATE_V1 = hashCanonicalBody({
   schemaVersion: "learning-v2-factory-production-audio-pack.v1",
 });
-const entryByCoordinate = new Map(
-  FACTORY_PRODUCTION_AUDIO_ENTRIES_V1.map((entry) => [`${entry.transcript}\u0000${entry.voiceId}`, entry]),
-);
-type FactoryProductionAudioEntryV1 = (typeof FACTORY_PRODUCTION_AUDIO_ENTRIES_V1)[number];
-const entryByContentHash = new Map<string, FactoryProductionAudioEntryV1>(
-  FACTORY_PRODUCTION_AUDIO_ENTRIES_V1.map((entry) => [entry.contentHash, entry]),
-);
+type FactoryProductionAudioEntriesModuleV1 = typeof import("./learning_v2_factory_production_audio_entries_v1.generated");
+type FactoryProductionAudioEntryV1 = FactoryProductionAudioEntriesModuleV1["FACTORY_PRODUCTION_AUDIO_ENTRIES_V1"][number];
+// зачем (PM-216, [CONTENT-LAZY]): 568 КБ записей озвучки и две карты по ним раньше строились при ИМПОРТЕ модуля,
+// а импортируют его экраны, которые expo-router поднимает при старте (sync-режим). Теперь — при первом обращении
+// к озвучке занятия; данные и результат те же, потребители не менялись.
+const factoryAudioTables = lazyContent("learning_v2_factory_production_audio", () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { FACTORY_PRODUCTION_AUDIO_ENTRIES_V1 } = require("./learning_v2_factory_production_audio_entries_v1.generated") as FactoryProductionAudioEntriesModuleV1;
+  return {
+    entryByCoordinate: new Map<string, FactoryProductionAudioEntryV1>(
+      FACTORY_PRODUCTION_AUDIO_ENTRIES_V1.map((entry) => [`${entry.transcript}\u0000${entry.voiceId}`, entry] as const),
+    ),
+    entryByContentHash: new Map<string, FactoryProductionAudioEntryV1>(
+      FACTORY_PRODUCTION_AUDIO_ENTRIES_V1.map((entry) => [entry.contentHash, entry] as const),
+    ),
+  };
+});
 
 function fileInput(
   _courseSessionId: string,
   transcript: string,
   voiceId: LearningV2CourseSessionAudioVoiceIdV1,
 ): LearningV2CourseSessionAudioFileInputV1 {
-  const entry = entryByCoordinate.get(`${transcript}\u0000${voiceId}`);
+  const entry = factoryAudioTables().entryByCoordinate.get(`${transcript}\u0000${voiceId}`);
   if (!entry) throw new Error("learning_v2_factory_production_audio_missing");
   return Object.freeze({
     voiceId,
@@ -47,7 +57,7 @@ export function learningV2FactoryRemoteAudioFilesForContentHashesV1(
   contentHashes: readonly string[],
 ): readonly LearningV2CourseSessionAudioFileV1[] {
   return Object.freeze(contentHashes.map((contentHash) => {
-    const entry = entryByContentHash.get(contentHash);
+    const entry = factoryAudioTables().entryByContentHash.get(contentHash);
     if (!entry) throw new Error("learning_v2_factory_production_audio_missing");
     const input = fileInput("factory-pack", entry.transcript, entry.voiceId);
     return Object.freeze({

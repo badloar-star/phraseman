@@ -6,7 +6,10 @@
   "bundle": {
     "measuredAt": "2026-10-03",
     "measuredFrom": "git archive HEAD (после 8917963d6), бандл-экспорт обеих платформ, hermes bytecode",
-    "headroomPct": { "js": 2, "assets": 5 },
+    "headroomPct": {
+      "js": 2,
+      "assets": 5
+    },
     "note": "Ассеты — то, что перечислено в metadata.json экспорта (97 webp); аудио/шрифты считает pm009_asset_bundle_inventory. Бюджет поднимают осознанно, с причиной в коммите.",
     "platforms": {
       "android": {
@@ -35,7 +38,15 @@
     "package": "app.phraseman",
     "profile": "эмулятор 2 ядра / 2 ГБ, release x86_64, холодный старт",
     "metric": "мс от Start proc до [HOME-PAINT] first_frame (logcat -v epoch)",
-    "baseline": { "n": 12, "medianMs": 1715, "p90Ms": 2155, "minMs": 1353, "maxMs": 2290, "measuredAt": "2026-10-02", "tool": "measure_home_paint (§78)" },
+    "baseline": {
+      "n": 12,
+      "medianMs": 1715,
+      "p90Ms": 2155,
+      "minMs": 1353,
+      "maxMs": 2290,
+      "measuredAt": "2026-10-02",
+      "tool": "measure_home_paint (§78)"
+    },
     "minRuns": 5,
     "maxMedianMs": 2150,
     "maxP90Ms": 2700,
@@ -44,7 +55,42 @@
   "coldStartIo": {
     "windowMs": 15000,
     "requireAllPatched": true,
-    "ceiling": { "calls": 665, "maxInflight": 47 },
-    "note": "ПОТОЛОК = значения ДО исправлений §93 (release, слабый профиль, 02.10 07:30Z: calls=665 groups=188 maxInflight=47). После первого повторного замера потолок надо СНИЗИТЬ до нового измеренного +25% — иначе ворота пропустят откат к худшему между «до» и «после»."
+    "ceiling": {
+      "calls": 520,
+      "maxInflight": 58
+    },
+    "note": "ПОТОЛОК пересчитан 03.10 по замеру «Дизайна» (store-release, слабый профиль): медиана calls 409 (370–420), maxInflight 39–46; потолок = медиана +25% по calls (520) и +25% к максимуму по maxInflight (58). Прежний потолок 665/47 был значением ДО исправлений §93. Утренние сборки показывали 330 и 395 — рост к вечеру: главный кандидат на снижение — mistake_practice (24 чтения за старт). Снижать потолок после каждого ощутимого улучшения.",
+    "baseline": {
+      "profile": "магазинная сборка (EXPO_PUBLIC_STORE_RELEASE=1), эмулятор Pixel_8 -cores 2 -memory 2048, холодный старт через monkey, окно 15 с",
+      "measuredAt": "2026-10-03 ~21:00, HEAD после 9a9519fe3 (сессия Дизайн)",
+      "runs": [
+        {
+          "calls": 370,
+          "groups": 190,
+          "maxInflight": 39,
+          "homePaintMs": 2958
+        },
+        {
+          "calls": 409,
+          "groups": 187,
+          "maxInflight": 46,
+          "homePaintMs": 1027
+        },
+        {
+          "calls": 420,
+          "groups": 193,
+          "maxInflight": 39,
+          "homePaintMs": 660
+        }
+      ],
+      "medianCalls": 409,
+      "topRepeats": [
+        "AS.get:mistake_practice_v#::en::owner n=9/24/24 (лидер, кандидат на снижение)",
+        "AS.get:stable_auth_link_cache_v# n=12/14",
+        "AS.multiGet premium_active n=7-9",
+        "level_spin_star_projection n=6-7",
+        "SS.get:phone_state_lineage max 6.5 с"
+      ]
+    }
   }
 }

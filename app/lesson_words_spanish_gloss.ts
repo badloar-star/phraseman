@@ -1,7 +1,14 @@
 import type { Lang } from '../constants/i18n';
 import { LESSON_WORD_ES_BY_EN } from './lesson_words_es_by_en';
 import { LESSON_WORD_ES } from './lesson_words_es_map';
-import { getLessonWordSourceLocaleGloss } from './lesson_words_source_locales';
+import { lazyContent } from './content_lazy';
+
+// зачем (PM-216, [CONTENT-LAZY]): 160 КБ глосс для языков интерфейса вне ru/uk/es нужны только при показе подсказки
+// на этих языках; раньше выполнялись при импорте экрана словаря на старте.
+const sourceLocaleGlosses = lazyContent('lesson_words_source_locales', () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  return require('./lesson_words_source_locales') as typeof import('./lesson_words_source_locales');
+});
 
 /** Часть речи словаря (`lesson_words`) — для эвристики мн. числа в скобках. */
 export type LessonWordGlossPos =
@@ -134,7 +141,7 @@ export function lessonWordRecognitionPrompt(word: LessonWordGlossInput, lang: La
   if (lang !== 'ru' && lang !== 'uk' && lang !== 'es') {
     const plannedPrompt = (word as Record<string, unknown>)[lang as string];
     if (typeof plannedPrompt === 'string' && plannedPrompt.trim()) return plannedPrompt;
-    const centralPrompt = getLessonWordSourceLocaleGloss(word.en, lang as never, word.pos);
+    const centralPrompt = sourceLocaleGlosses().getLessonWordSourceLocaleGloss(word.en, lang as never, word.pos);
     if (centralPrompt) return centralPrompt;
   }
 

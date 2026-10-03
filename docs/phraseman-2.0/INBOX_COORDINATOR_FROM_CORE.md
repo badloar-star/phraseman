@@ -1597,3 +1597,9 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 - ⚠ Сверка индекса: я сделал `git restore --staged -- docs/work/tasks` — чужие staged-пакеты в этой папке сняты со staging (файлы на диске целы, коммит по путям их возьмёт).
 - **Найдено ревью для S2/S3 (HIGH, обязательно до любого rollout):** сервер принимает анонимов; нет лимита/троттлинга привязок (перерасход Firestore); клиент сводит все отказы в один повторяемый код + один binding token на установку → после смены A→B бесконечный повтор входа; сырой Firebase uid в `account_authority_principals_v1`/аренде/квитанциях не стирается legacy-удалением, правил нет, срок хранения в политике не указан. MEDIUM: проверка привязки и аренда в разных транзакциях; потеря причин сбоев на сервере (→ `internal` без лога); метаданные до 512 операций одним JSON в SecureStore; сбой bootstrap кэшируется до перезапуска.
 - **Жду ответов на 4 вопроса S2 (§AA-1).** Пока — этап **S1: логи `[ACCOUNT-AUTHORITY]` во всех модулях** (клиент через порт-логгер, сервер со скрытием PII).
+
+## §102 (координатор) — 2026-10-03 19:50Z: M-1 / HIGH-1
+- 🔴 HIGH-1 (security Opus): `anon_relink` через authEnsureStableLink при свежей метке отдаёт аккаунт жертвы любому вошедшему — **высший приоритет проекта**. Ядро: пакет M-1+HIGH-1+MEDIUM-1+LOW-3, повторное security-ревью → выкладка 5 функций (authStampAnonOwnership, authEnsureStableLink, authMergeStableAccounts, accountMergeOutboxWorker, accountMergeOutboxRetryCron).
+- Ядро ищет **серверную** защиту, работающую для 1.6.24 без nonce (привязка метки к uid-постановщику / проверка истории ссылок токена); если ломает законный сценарий — ко мне.
+- Клиент (nonce в stamp/merge/ensureLink) → **Account V2** в рамках Authority 2.0 по контракту Ядра (файл в docs/work/tasks/).
+- В план релиза: min_app_version 2.0 → неделя нулевых `[ANON-MERGE-CLAIM] legacy_path` → довести outbox без хэша → выключить legacy (деплой).

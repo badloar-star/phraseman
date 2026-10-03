@@ -1664,3 +1664,12 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 **Проверка:** все `tests/admin_*` — набор падающих ДО и ПОСЛЕ идентичен (28 красных наборов, все существовали до меня; новых нет, исправленных нет); `.mjs`-охраны админки зелёные; синтаксис встроенных скриптов `legacy.html` до/после одинаков. Красные 28 — отдельный долг (охраны на устаревшие тексты админки), список по запросу.
 **Замечание по процессу:** `.git/index.lock` снова возникает без живого git-процесса; снимаю вручную только при пустом `Get-Process git`.
 - **§106 (коорд., 20:45Z):** L-1 (11cf4f911) ВЫЛОЖЕН (4 функции). 🔴 Баг «Блица» (висит на каркасе после «Начать», немой return при status==='missing' в flashcards_blitz_session.tsx ~525) → Ядро, логи [FC-PENDING-GRANT] от «Дизайна»; проверить «Устно»/свайп. Шум app_check_header_shape (~200 ERROR/15 мин) → App Check. App Check коммитит PM-229 в blitz_session.tsx.
+
+## §107 (координатор) — 2026-10-03 21:00Z: выкладки и раздача planned
+- Выложено: hosting:admin (из снимка HEAD, без чужих правок legacy.html; очистка п.8 3b7154a10 + oauth-privacy 2.0); authEnsureStableLink/authStampAnonOwnership/authMergeStableAccounts (8917963d6 — снят шум app_check_header_shape).
+- **Раздача 67 planned:**
+  - App Check: ревизия реестра (уже сделанные → review с evidence), PM-216 (бандл), PM-220 (performance gates).
+  - Ядро (после бага «Блица»): PM-214, PM-215, PM-221, PM-222, PM-224, PM-252, PM-254, PM-012, PM-117, PM-121, PM-126, PM-127, PM-146, PM-156, PM-157, PM-161.
+  - «Дизайн» (после ThemedChoiceModal/«Устно»/каталога/Шпиля): PM-026–029, PM-033, PM-042, PM-103–106, PM-114, PM-118, PM-128, PM-131–133, PM-137, PM-138, PM-182, PM-188–190, PM-208, PM-245, PM-246, PM-247.
+  - Владелец/релиз: PM-001, PM-240–244 (ветки), PM-250 (стор), PM-255, PM-256, PM-257, PM-153.
+- Владельцу в FINAL: стирать ли историю покупок осколков в админке.

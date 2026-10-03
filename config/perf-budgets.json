@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "task": "PM-220",
+  "why": "Бюджеты регрессионных ворот: размер release-бандла, первый кадр Главной, обращения к хранилищу на холодном старте. Запуск: node scripts/pm220_perf_gates.mjs bundle|homepaint|coldio (см. docs/phraseman-2.0/docs/RUNTIME.md).",
+  "provenance": "Q111 (координатор, 2026-10-02): baseline — локальный замер release-сборки на профиле 2 ядра / 2 ГБ; iPhone и слабый физический Android в этот замер не входят. Это ВОРОТА ОТ РЕГРЕССИИ относительно измеренного, а не заявка о хорошей скорости.",
+  "bundle": {
+    "measuredAt": "2026-10-03",
+    "measuredFrom": "git archive HEAD (после 8917963d6), бандл-экспорт обеих платформ, hermes bytecode",
+    "headroomPct": { "js": 2, "assets": 5 },
+    "note": "Ассеты — то, что перечислено в metadata.json экспорта (97 webp); аудио/шрифты считает pm009_asset_bundle_inventory. Бюджет поднимают осознанно, с причиной в коммите.",
+    "platforms": {
+      "android": {
+        "measuredBundleBytes": 36452788,
+        "measuredBundleGzipBytes": 13938812,
+        "measuredAssetCount": 97,
+        "measuredAssetBytes": 1940652,
+        "maxBundleBytes": 37181844,
+        "maxBundleGzipBytes": 14217589,
+        "maxAssetCount": 100,
+        "maxAssetBytes": 2037685
+      },
+      "ios": {
+        "measuredBundleBytes": 36441805,
+        "measuredBundleGzipBytes": 13936638,
+        "measuredAssetCount": 97,
+        "measuredAssetBytes": 1940652,
+        "maxBundleBytes": 37170642,
+        "maxBundleGzipBytes": 14215371,
+        "maxAssetCount": 100,
+        "maxAssetBytes": 2037685
+      }
+    }
+  },
+  "homePaint": {
+    "package": "app.phraseman",
+    "profile": "эмулятор 2 ядра / 2 ГБ, release x86_64, холодный старт",
+    "metric": "мс от Start proc до [HOME-PAINT] first_frame (logcat -v epoch)",
+    "baseline": { "n": 12, "medianMs": 1715, "p90Ms": 2155, "minMs": 1353, "maxMs": 2290, "measuredAt": "2026-10-02", "tool": "measure_home_paint (§78)" },
+    "minRuns": 5,
+    "maxMedianMs": 2150,
+    "maxP90Ms": 2700,
+    "headroom": "медиана и p90 — +25% к базовой линии: разброс одной сборки был 1,35–2,29 с"
+  },
+  "coldStartIo": {
+    "windowMs": 15000,
+    "requireAllPatched": true,
+    "ceiling": { "calls": 665, "maxInflight": 47 },
+    "note": "ПОТОЛОК = значения ДО исправлений §93 (release, слабый профиль, 02.10 07:30Z: calls=665 groups=188 maxInflight=47). После первого повторного замера потолок надо СНИЗИТЬ до нового измеренного +25% — иначе ворота пропустят откат к худшему между «до» и «после»."
+  }
+}

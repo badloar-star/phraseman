@@ -500,19 +500,77 @@ const L10_ALLOWED = [
   ...L10_EXTENDED,
   ...L10_REVIEWED,
 ] as const;
-const L10_LEXICAL_IDS = [
-  "de_lex_plan_l10_c01_vormittag_v1",
-  "de_lex_plan_l10_c02_helfen_v1",
-  "de_lex_plan_l10_c03_schicht_v1",
-  "de_lex_plan_l10_c04_uebergabe_v1",
-  "de_lex_plan_l10_c05_rollwagen_v1",
-  "de_lex_plan_l10_c06_einsatzplan_v1",
-  "de_lex_plan_l10_c07_flur_v1",
+const L10_LEXICAL_IDS_BY_CHAPTER = [
+  ["de_lex_plan_l10_c01_vormittag_v1", "de_lex_plan_l10_c01_helfen_v1"],
+  ["de_lex_plan_l10_c02_werkbank_v1"],
+  ["de_lex_plan_l10_c03_schicht_v1"],
+  ["de_lex_plan_l10_c04_uebergabe_v1"],
+  ["de_lex_plan_l10_c05_rollwagen_v1"],
+  ["de_lex_plan_l10_c06_einsatzplan_v1"],
+  ["de_lex_plan_l10_c07_flur_v1"],
 ] as const;
 const L10_HELP_VALENCY =
   "helper-action frame selecting one explicit dative noun phrase and no accusative transferred entity";
 const L10_C07_SUPPORT_EXIT =
   "independently coordinate für den Vormittag, Ich helfe dem Kollegen., and Der Rollwagen kann durch den Flur fahren., preserving the bounded interval, explicit dative noun phrase, route-feasibility modal bracket, and directional durch-plus-Akkusativ path";
+function l10ChapterSurfaceText(chapter: R): string {
+  const checkpoint = chapter.checkpoint as R;
+  return JSON.stringify({
+    situation: chapter.situation,
+    supportFading: chapter.supportFading,
+    newSituation: checkpoint.newSituation,
+    plannedNewLexicalSenses: checkpoint.plannedNewLexicalSenses,
+  });
+}
+
+function validateL10LexicalPrerequisites(chapters: R[]): void {
+  const prerequisites = [
+    {
+      lemma: "Vormittag",
+      ownerChapterId: "de_l10_c01",
+      surfacePattern: /\bVormittag(?:e|en|s)?\b/iu,
+    },
+    {
+      lemma: "helfen",
+      ownerChapterId: "de_l10_c01",
+      surfacePattern: /\bhelf(?:e|en|t|st)\b/iu,
+    },
+    {
+      lemma: "Werkbank",
+      ownerChapterId: "de_l10_c02",
+      surfacePattern: /\bWerkb(?:ank|änke|änken)\b/iu,
+    },
+  ] as const;
+
+  for (const prerequisite of prerequisites) {
+    const plannedOwners = chapters.filter((chapter) =>
+      (((chapter.checkpoint as R).plannedNewLexicalSenses as R[]) ?? []).some(
+        (sense) =>
+          normalized(String(sense.lemmaOrExpression)) ===
+          normalized(prerequisite.lemma),
+      ),
+    );
+    const expectedOwnerIndex = chapters.findIndex(
+      (chapter) => chapter.id === prerequisite.ownerChapterId,
+    );
+    if (
+      expectedOwnerIndex < 0 ||
+      plannedOwners.length !== 1 ||
+      plannedOwners[0].id !== prerequisite.ownerChapterId
+    )
+      throw new Error(
+        `l10_lexical_prerequisite_invalid:${prerequisite.ownerChapterId}:${prerequisite.lemma}`,
+      );
+
+    const firstSurfaceIndex = chapters.findIndex((chapter) =>
+      prerequisite.surfacePattern.test(l10ChapterSurfaceText(chapter)),
+    );
+    if (firstSurfaceIndex < 0 || firstSurfaceIndex < expectedOwnerIndex)
+      throw new Error(
+        `l10_lexical_prerequisite_invalid:${firstSurfaceIndex < 0 ? prerequisite.ownerChapterId : String(chapters[firstSurfaceIndex].id)}:${prerequisite.lemma}`,
+      );
+  }
+}
 
 type L10ClosedChapterContract = {
   id: string;
@@ -520,7 +578,7 @@ type L10ClosedChapterContract = {
   supportEntry: string;
   supportExit: string;
   newSituation: R;
-  lexical: {
+  lexical: readonly {
     id: string;
     semanticIdentity: string;
     lemmaOrExpression: string;
@@ -530,77 +588,93 @@ type L10ClosedChapterContract = {
     situationFacet: string;
     facetValue: string;
     necessityClass: string;
-  };
+  }[];
 };
 
 const L10_CLOSED_CHAPTER_CONTRACTS: readonly L10ClosedChapterContract[] = [
   {
     id: "de_l10_c01",
     situation: {
-      setting: "workshop-morning-board",
+      setting: "workshop-morning-help-rota",
       participants: "shift-coordinator-and-new-colleague",
-      goal: "recognise-fuer-den-vormittag-as-one-bounded-work-interval-and-an-explicit-recipient-frame",
-      contextSignature: "workshop-morning-temporal-recipient-introduction",
+      goal: "retrieve-fuer-den-vormittag-as-one-bounded-work-interval-while-recognising-helfen-as-selecting-an-explicit-dative-recipient",
+      contextSignature: "workshop-morning-help-temporal-recipient-introduction",
     },
     supportEntry:
-      "colour-marked für den Vormittag and Ich helfe dem Kollegen. with the time span and recipient roles shown",
+      "colour-marked für den Vormittag and Ich helfe dem Kollegen. with the bounded morning interval, helper, and explicit recipient roles shown",
     supportExit:
-      "identify the complete bounded interval and explicit recipient noun phrase without case labels",
+      "identify den Vormittag as the interval governed by für and dem Kollegen as the explicit recipient selected by helfen without case labels",
     newSituation: {
-      setting: "service-desk-morning-rota",
+      setting: "service-desk-morning-help-rota",
       participants: "rota-coordinator-and-service-colleague",
-      goal: "select-fuer-den-vormittag-for-one-bounded-work-interval-on-a-changed-shift-board",
-      contextSignature: "service-desk-bounded-morning-checkpoint",
+      goal: "retrieve-fuer-den-vormittag-as-one-bounded-work-interval-on-a-changed-rota",
+      contextSignature: "service-desk-bounded-morning-help-checkpoint",
     },
-    lexical: {
-      id: "de_lex_plan_l10_c01_vormittag_v1",
-      semanticIdentity:
-        "vormittag|morning period before midday used as a bounded work interval",
-      lemmaOrExpression: "Vormittag",
-      senseGloss:
-        "morning period before midday used as a bounded work interval",
-      communicativeUse:
-        "realise the exact bounded temporal relation as für den Vormittag, with für governing the accusative form den Vormittag",
-      utilityRole: "temporal_spatial",
-      situationFacet: "goal",
-      facetValue:
-        "select-fuer-den-vormittag-for-one-bounded-work-interval-on-a-changed-shift-board",
-      necessityClass: "OUTCOME_UNACHIEVABLE",
-    },
+    lexical: [
+      {
+        id: "de_lex_plan_l10_c01_vormittag_v1",
+        semanticIdentity:
+          "vormittag|morning period before midday used as a bounded work interval",
+        lemmaOrExpression: "Vormittag",
+        senseGloss:
+          "morning period before midday used as a bounded work interval",
+        communicativeUse:
+          "realise the exact bounded temporal relation as für den Vormittag, with für governing the accusative form den Vormittag",
+        utilityRole: "temporal_spatial",
+        situationFacet: "goal",
+        facetValue:
+          "retrieve-fuer-den-vormittag-as-one-bounded-work-interval-on-a-changed-rota",
+        necessityClass: "OUTCOME_UNACHIEVABLE",
+      },
+      {
+        id: "de_lex_plan_l10_c01_helfen_v1",
+        semanticIdentity:
+          "helfen|support a named colleague through a frame selecting an explicit dative noun phrase",
+        lemmaOrExpression: "helfen",
+        senseGloss:
+          "support a named colleague through a frame selecting an explicit dative noun phrase",
+        communicativeUse:
+          "use Ich helfe dem Kollegen. so helfen selects one explicit dative noun phrase and no accusative transferred entity in the morning help rota",
+        utilityRole: "action",
+        situationFacet: "setting",
+        facetValue: "service-desk-morning-help-rota",
+        necessityClass: "SCENE_UNGROUNDED",
+      },
+    ],
   },
   {
     id: "de_l10_c02",
     situation: {
       setting: "tool-checkout-counter",
       participants: "technician-and-named-colleague",
-      goal: "recognise-helfen-as-selecting-one-explicit-dative-recipient-noun-phrase",
-      contextSignature: "tool-counter-helfen-recipient-guided",
+      goal: "recognise-dem-kollegen-as-the-explicit-recipient-selected-by-established-helfen-in-a-workbench-support-scene",
+      contextSignature: "tool-counter-established-helfen-recipient-guided",
     },
     supportEntry:
-      "whole model Ich helfe dem Kollegen. with the helper and recipient roles marked",
+      "whole model Ich helfe dem Kollegen. with the established helper and explicit recipient roles marked; Werkbank only grounds the repair-and-assembly scene",
     supportExit:
-      "identify dem Kollegen as the explicit recipient selected by helfen",
+      "identify dem Kollegen as the explicit recipient selected by established helfen while Werkbank only grounds the scene",
     newSituation: {
-      setting: "assembly-bench-support-card",
+      setting: "assembly-workbench-support-card",
       participants: "assembler-and-assigned-colleague",
-      goal: "choose-helfen-with-an-explicit-dative-colleague-on-a-changed-work-bench",
-      contextSignature: "assembly-bench-dative-recipient-check",
+      goal: "identify-dem-kollegen-as-the-explicit-recipient-selected-by-established-helfen-in-a-changed-workbench-support-scene",
+      contextSignature: "assembly-workbench-explicit-recipient-check",
     },
-    lexical: {
-      id: "de_lex_plan_l10_c02_helfen_v1",
-      semanticIdentity:
-        "helfen|support a named colleague through a frame selecting an explicit dative noun phrase",
-      lemmaOrExpression: "helfen",
-      senseGloss:
-        "support a named colleague through a frame selecting an explicit dative noun phrase",
-      communicativeUse:
-        "use Ich helfe dem Kollegen. so helfen selects one explicit dative noun phrase and no accusative transferred entity",
-      utilityRole: "action",
-      situationFacet: "goal",
-      facetValue:
-        "choose-helfen-with-an-explicit-dative-colleague-on-a-changed-work-bench",
-      necessityClass: "OUTCOME_UNACHIEVABLE",
-    },
+    lexical: [
+      {
+        id: "de_lex_plan_l10_c02_werkbank_v1",
+        semanticIdentity:
+          "werkbank|sturdy work table used for repair and assembly",
+        lemmaOrExpression: "Werkbank",
+        senseGloss: "sturdy work table used for repair and assembly",
+        communicativeUse:
+          "ground the changed repair-and-assembly scene while Ich helfe dem Kollegen. preserves established helfen selecting dem Kollegen as its explicit recipient",
+        utilityRole: "scene_grounding",
+        situationFacet: "setting",
+        facetValue: "assembly-workbench-support-card",
+        necessityClass: "SCENE_UNGROUNDED",
+      },
+    ],
   },
   {
     id: "de_l10_c03",
@@ -620,19 +694,22 @@ const L10_CLOSED_CHAPTER_CONTRACTS: readonly L10ClosedChapterContract[] = [
       goal: "state-the-bounded-morning-window-for-a-changed-service-shift",
       contextSignature: "support-shift-bounded-window-check",
     },
-    lexical: {
-      id: "de_lex_plan_l10_c03_schicht_v1",
-      semanticIdentity: "schicht|scheduled period of work assigned to a worker",
-      lemmaOrExpression: "Schicht",
-      senseGloss: "scheduled period of work assigned to a worker",
-      communicativeUse:
-        "name the work shift whose bounded morning window is stated with für den Vormittag",
-      utilityRole: "scene_grounding",
-      situationFacet: "goal",
-      facetValue:
-        "state-the-bounded-morning-window-for-a-changed-service-shift",
-      necessityClass: "SCENE_UNGROUNDED",
-    },
+    lexical: [
+      {
+        id: "de_lex_plan_l10_c03_schicht_v1",
+        semanticIdentity:
+          "schicht|scheduled period of work assigned to a worker",
+        lemmaOrExpression: "Schicht",
+        senseGloss: "scheduled period of work assigned to a worker",
+        communicativeUse:
+          "name the work shift whose bounded morning window is stated with für den Vormittag",
+        utilityRole: "scene_grounding",
+        situationFacet: "goal",
+        facetValue:
+          "state-the-bounded-morning-window-for-a-changed-service-shift",
+        necessityClass: "SCENE_UNGROUNDED",
+      },
+    ],
   },
   {
     id: "de_l10_c04",
@@ -651,19 +728,22 @@ const L10_CLOSED_CHAPTER_CONTRACTS: readonly L10ClosedChapterContract[] = [
       goal: "identify-a-different-colleague-as-the-recipient-of-help-during-a-service-handover",
       contextSignature: "service-handover-explicit-recipient-check",
     },
-    lexical: {
-      id: "de_lex_plan_l10_c04_uebergabe_v1",
-      semanticIdentity:
-        "ubergabe|workplace handover in which responsibility is made explicit",
-      lemmaOrExpression: "Übergabe",
-      senseGloss: "workplace handover in which responsibility is made explicit",
-      communicativeUse:
-        "ground the handover while Ich helfe dem Kollegen. explicitly identifies the colleague through the verb-selected dative noun phrase",
-      utilityRole: "scene_grounding",
-      situationFacet: "setting",
-      facetValue: "service-team-handover-table",
-      necessityClass: "SCENE_UNGROUNDED",
-    },
+    lexical: [
+      {
+        id: "de_lex_plan_l10_c04_uebergabe_v1",
+        semanticIdentity:
+          "ubergabe|workplace handover in which responsibility is made explicit",
+        lemmaOrExpression: "Übergabe",
+        senseGloss:
+          "workplace handover in which responsibility is made explicit",
+        communicativeUse:
+          "ground the handover while Ich helfe dem Kollegen. explicitly identifies the colleague through the verb-selected dative noun phrase",
+        utilityRole: "scene_grounding",
+        situationFacet: "setting",
+        facetValue: "service-team-handover-table",
+        necessityClass: "SCENE_UNGROUNDED",
+      },
+    ],
   },
   {
     id: "de_l10_c05",
@@ -683,20 +763,22 @@ const L10_CLOSED_CHAPTER_CONTRACTS: readonly L10ClosedChapterContract[] = [
       goal: "coordinate-time-recipient-and-the-new-rollwagen-on-the-established-directional-path-through-the-exit",
       contextSignature: "loading-bay-time-recipient-rollwagen-path-check",
     },
-    lexical: {
-      id: "de_lex_plan_l10_c05_rollwagen_v1",
-      semanticIdentity:
-        "rollwagen|wheeled cart used to move workplace equipment",
-      lemmaOrExpression: "Rollwagen",
-      senseGloss: "wheeled cart used to move workplace equipment",
-      communicativeUse:
-        "supply the explicit equipment subject in Der Rollwagen kann durch den Ausgang fahren., combining route feasibility with the established directional path without a human-subject ambiguity",
-      utilityRole: "action",
-      situationFacet: "goal",
-      facetValue:
-        "coordinate-time-recipient-and-the-new-rollwagen-on-the-established-directional-path-through-the-exit",
-      necessityClass: "OUTCOME_UNACHIEVABLE",
-    },
+    lexical: [
+      {
+        id: "de_lex_plan_l10_c05_rollwagen_v1",
+        semanticIdentity:
+          "rollwagen|wheeled cart used to move workplace equipment",
+        lemmaOrExpression: "Rollwagen",
+        senseGloss: "wheeled cart used to move workplace equipment",
+        communicativeUse:
+          "supply the explicit equipment subject in Der Rollwagen kann durch den Ausgang fahren., combining route feasibility with the established directional path without a human-subject ambiguity",
+        utilityRole: "action",
+        situationFacet: "goal",
+        facetValue:
+          "coordinate-time-recipient-and-the-new-rollwagen-on-the-established-directional-path-through-the-exit",
+        necessityClass: "OUTCOME_UNACHIEVABLE",
+      },
+    ],
   },
   {
     id: "de_l10_c06",
@@ -716,20 +798,22 @@ const L10_CLOSED_CHAPTER_CONTRACTS: readonly L10ClosedChapterContract[] = [
       goal: "repair-the-bounded-window-and-explicit-recipient-on-a-changed-assignment-plan",
       contextSignature: "event-staff-duration-recipient-repair-check",
     },
-    lexical: {
-      id: "de_lex_plan_l10_c06_einsatzplan_v1",
-      semanticIdentity:
-        "einsatzplan|work assignment plan listing people and time windows",
-      lemmaOrExpression: "Einsatzplan",
-      senseGloss: "work assignment plan listing people and time windows",
-      communicativeUse:
-        "ground a real repair in which the plan must show für den Vormittag and Ich helfe dem Kollegen. with the correct roles",
-      utilityRole: "repair",
-      situationFacet: "goal",
-      facetValue:
-        "repair-the-bounded-window-and-explicit-recipient-on-a-changed-assignment-plan",
-      necessityClass: "REPAIR_UNAVAILABLE",
-    },
+    lexical: [
+      {
+        id: "de_lex_plan_l10_c06_einsatzplan_v1",
+        semanticIdentity:
+          "einsatzplan|work assignment plan listing people and time windows",
+        lemmaOrExpression: "Einsatzplan",
+        senseGloss: "work assignment plan listing people and time windows",
+        communicativeUse:
+          "ground a real repair in which the plan must show für den Vormittag and Ich helfe dem Kollegen. with the correct roles",
+        utilityRole: "repair",
+        situationFacet: "goal",
+        facetValue:
+          "repair-the-bounded-window-and-explicit-recipient-on-a-changed-assignment-plan",
+        necessityClass: "REPAIR_UNAVAILABLE",
+      },
+    ],
   },
   {
     id: "de_l10_c07",
@@ -748,19 +832,21 @@ const L10_CLOSED_CHAPTER_CONTRACTS: readonly L10ClosedChapterContract[] = [
       goal: "independently-coordinate-changed-time-recipient-and-equipment-on-the-new-directional-path-through-the-corridor",
       contextSignature: "repair-cafe-changed-time-recipient-corridor-final",
     },
-    lexical: {
-      id: "de_lex_plan_l10_c07_flur_v1",
-      semanticIdentity: "flur|corridor used as a directional equipment path",
-      lemmaOrExpression: "Flur",
-      senseGloss: "corridor used as a directional equipment path",
-      communicativeUse:
-        "at the changed repair-cafe handover, independently use für den Vormittag for one bounded work interval, Ich helfe dem Kollegen. for an explicit dative recipient with no accusative transferred entity, and Der Rollwagen kann durch den Flur fahren. for route feasibility and the directional path durch den Flur",
-      utilityRole: "transfer",
-      situationFacet: "goal",
-      facetValue:
-        "independently-coordinate-changed-time-recipient-and-equipment-on-the-new-directional-path-through-the-corridor",
-      necessityClass: "TRANSFER_UNAVAILABLE",
-    },
+    lexical: [
+      {
+        id: "de_lex_plan_l10_c07_flur_v1",
+        semanticIdentity: "flur|corridor used as a directional equipment path",
+        lemmaOrExpression: "Flur",
+        senseGloss: "corridor used as a directional equipment path",
+        communicativeUse:
+          "at the changed repair-cafe handover, independently use für den Vormittag for one bounded work interval, Ich helfe dem Kollegen. for an explicit dative recipient with no accusative transferred entity, and Der Rollwagen kann durch den Flur fahren. for route feasibility and the directional path durch den Flur",
+        utilityRole: "transfer",
+        situationFacet: "goal",
+        facetValue:
+          "independently-coordinate-changed-time-recipient-and-equipment-on-the-new-directional-path-through-the-corridor",
+        necessityClass: "TRANSFER_UNAVAILABLE",
+      },
+    ],
   },
 ] as const;
 
@@ -789,6 +875,7 @@ function validateL10SemanticContract(raw: R, plan: Boundary): void {
   );
   if (!l10) throw new Error("l10_semantic_contract_invalid:missing");
   const chapters = l10.chapters as R[];
+  validateL10LexicalPrerequisites(chapters);
   if (
     !sameStringSet(plan.introducedConstructIds, L10_INTRODUCED) ||
     !sameStringSet(plan.extendedConstructIds, L10_EXTENDED) ||
@@ -911,25 +998,46 @@ function validateL10SemanticContract(raw: R, plan: Boundary): void {
         (chapter.checkpoint as R).integratedConstructIds as string[],
         expectedConstructs,
       ) ||
-      senses.length !== 1 ||
-      senses[0].id !== L10_LEXICAL_IDS[index] ||
-      senses[0].lexicalKind === "FIXED_EXPRESSION"
+      JSON.stringify(senses.map((sense) => sense.id)) !==
+        JSON.stringify(L10_LEXICAL_IDS_BY_CHAPTER[index]) ||
+      senses.some((sense) => sense.lexicalKind === "FIXED_EXPRESSION")
     )
       throw new Error("l10_semantic_contract_invalid:chapter_contract");
   }
 
-  const expectedNouns = new Map<number, readonly string[]>([
-    [0, ["der", "Vormittag", "Vormittage", "der|vormittag|vormittage"]],
-    [2, ["die", "Schicht", "Schichten", "die|schicht|schichten"]],
-    [3, ["die", "Übergabe", "Übergaben", "die|ubergabe|ubergaben"]],
-    [4, ["der", "Rollwagen", "Rollwagen", "der|rollwagen|rollwagen"]],
-    [5, ["der", "Einsatzplan", "Einsatzpläne", "der|einsatzplan|einsatzplane"]],
-    [6, ["der", "Flur", "Flure", "der|flur|flure"]],
+  const expectedNouns = new Map<string, readonly string[]>([
+    [
+      "de_lex_plan_l10_c01_vormittag_v1",
+      ["der", "Vormittag", "Vormittage", "der|vormittag|vormittage"],
+    ],
+    [
+      "de_lex_plan_l10_c02_werkbank_v1",
+      ["die", "Werkbank", "Werkbänke", "die|werkbank|werkbanke"],
+    ],
+    [
+      "de_lex_plan_l10_c03_schicht_v1",
+      ["die", "Schicht", "Schichten", "die|schicht|schichten"],
+    ],
+    [
+      "de_lex_plan_l10_c04_uebergabe_v1",
+      ["die", "Übergabe", "Übergaben", "die|ubergabe|ubergaben"],
+    ],
+    [
+      "de_lex_plan_l10_c05_rollwagen_v1",
+      ["der", "Rollwagen", "Rollwagen", "der|rollwagen|rollwagen"],
+    ],
+    [
+      "de_lex_plan_l10_c06_einsatzplan_v1",
+      ["der", "Einsatzplan", "Einsatzpläne", "der|einsatzplan|einsatzplane"],
+    ],
+    ["de_lex_plan_l10_c07_flur_v1", ["der", "Flur", "Flure", "der|flur|flure"]],
   ]);
-  for (const [index, expected] of expectedNouns) {
-    const sense = (
-      (chapters[index].checkpoint as R).plannedNewLexicalSenses as R[]
-    )[0];
+  const l10Senses = chapters.flatMap(
+    (chapter) =>
+      ((chapter.checkpoint as R).plannedNewLexicalSenses as R[]) ?? [],
+  );
+  for (const [senseId, expected] of expectedNouns) {
+    const sense = l10Senses.find((candidate) => candidate.id === senseId) as R;
     const noun = sense.nounPackage as R | null;
     if (
       sense.lexicalKind !== "NOUN_LEXEME" ||
@@ -946,8 +1054,7 @@ function validateL10SemanticContract(raw: R, plan: Boundary): void {
   for (let index = 0; index < chapters.length; index += 1) {
     const chapter = chapters[index];
     const checkpoint = chapter.checkpoint as R;
-    const sense = (checkpoint.plannedNewLexicalSenses as R[])[0];
-    const utility = sense.utilityProof as R;
+    const senses = checkpoint.plannedNewLexicalSenses as R[];
     const expected = L10_CLOSED_CHAPTER_CONTRACTS[index];
     const actual: L10ClosedChapterContract = {
       id: String(chapter.id),
@@ -955,17 +1062,20 @@ function validateL10SemanticContract(raw: R, plan: Boundary): void {
       supportEntry: String((chapter.supportFading as R).entry),
       supportExit: String((chapter.supportFading as R).exit),
       newSituation: checkpoint.newSituation as R,
-      lexical: {
-        id: String(sense.id),
-        semanticIdentity: String(sense.semanticIdentity),
-        lemmaOrExpression: String(sense.lemmaOrExpression),
-        senseGloss: String(sense.senseGloss),
-        communicativeUse: String(sense.communicativeUse),
-        utilityRole: String(utility.utilityRole),
-        situationFacet: String(utility.situationFacet),
-        facetValue: String(utility.facetValue),
-        necessityClass: String(utility.necessityClass),
-      },
+      lexical: senses.map((sense) => {
+        const utility = sense.utilityProof as R;
+        return {
+          id: String(sense.id),
+          semanticIdentity: String(sense.semanticIdentity),
+          lemmaOrExpression: String(sense.lemmaOrExpression),
+          senseGloss: String(sense.senseGloss),
+          communicativeUse: String(sense.communicativeUse),
+          utilityRole: String(utility.utilityRole),
+          situationFacet: String(utility.situationFacet),
+          facetValue: String(utility.facetValue),
+          necessityClass: String(utility.necessityClass),
+        };
+      }),
     };
     if (JSON.stringify(actual) !== JSON.stringify(expected))
       throw new Error(
@@ -983,23 +1093,27 @@ function validateL10SemanticContract(raw: R, plan: Boundary): void {
       throw new Error(`l10_recall_contract_invalid:${expected.id}`);
   }
 
-  const c1Sense = (((chapters[0].checkpoint as R)
-    .plannedNewLexicalSenses as R[]) ?? [])[0];
+  const c1Senses =
+    ((chapters[0].checkpoint as R).plannedNewLexicalSenses as R[]) ?? [];
+  const c1Vormittag = c1Senses.find(
+    (sense) => sense.id === "de_lex_plan_l10_c01_vormittag_v1",
+  ) as R;
   if (
-    c1Sense.lemmaOrExpression !== "Vormittag" ||
-    (c1Sense.nounPackage as R | null)?.article !== "der" ||
-    !String(c1Sense.communicativeUse).includes("für den Vormittag") ||
+    c1Vormittag.lemmaOrExpression !== "Vormittag" ||
+    (c1Vormittag.nounPackage as R | null)?.article !== "der" ||
+    !String(c1Vormittag.communicativeUse).includes("für den Vormittag") ||
     !String((chapters[0].supportFading as R).entry).includes(
       "für den Vormittag",
     ) ||
-    String(c1Sense.lemmaOrExpression).includes("für")
+    String(c1Vormittag.lemmaOrExpression).includes("für")
   )
     throw new Error(
       "l10_semantic_contract_invalid:temporal_bounded_accusative",
     );
 
-  const help = (((chapters[1].checkpoint as R)
-    .plannedNewLexicalSenses as R[]) ?? [])[0];
+  const help = c1Senses.find(
+    (sense) => sense.id === "de_lex_plan_l10_c01_helfen_v1",
+  ) as R;
   const helpPackage = help.verbPackage as R | null;
   if (
     help.lemmaOrExpression !== "helfen" ||
@@ -1023,7 +1137,7 @@ function validateL10SemanticContract(raw: R, plan: Boundary): void {
     ) ||
     (c7.supportFading as R).exit !== L10_C07_SUPPORT_EXIT ||
     c7Sense.communicativeUse !==
-      L10_CLOSED_CHAPTER_CONTRACTS[6].lexical.communicativeUse
+      L10_CLOSED_CHAPTER_CONTRACTS[6].lexical[0].communicativeUse
   )
     throw new Error("l10_semantic_contract_invalid:c07_transfer_or_provenance");
 }
@@ -1941,13 +2055,15 @@ function fixtures(): void {
     sense.lexicalKind = "FIXED_EXPRESSION";
     sense.partOfSpeech = "fixed_expression";
     sense.lemmaOrExpression = "für den Vormittag";
-  }, "l10_semantic_contract_invalid:chapter_contract");
+  }, "l10_lexical_prerequisite_invalid:de_l10_c01:Vormittag");
   expectExact((raw) => {
     const l10 = (raw.lessons as R[]).find(
       (lesson) => lesson.lessonId === "de_l10",
     ) as R;
-    const c2 = (l10.chapters as R[])[1];
-    const help = ((c2.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    const c1 = (l10.chapters as R[])[0];
+    const help = ((c1.checkpoint as R).plannedNewLexicalSenses as R[]).find(
+      (sense) => sense.id === "de_lex_plan_l10_c01_helfen_v1",
+    ) as R;
     (help.verbPackage as R).valencyFrame =
       "ditransitive transferred-entity frame";
   }, "l10_semantic_contract_invalid:helfen_dative_np");
@@ -1955,10 +2071,129 @@ function fixtures(): void {
     const l10 = (raw.lessons as R[]).find(
       (lesson) => lesson.lessonId === "de_l10",
     ) as R;
-    const c2 = (l10.chapters as R[])[1];
-    const help = ((c2.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    const c1 = (l10.chapters as R[])[0];
+    const help = ((c1.checkpoint as R).plannedNewLexicalSenses as R[]).find(
+      (sense) => sense.id === "de_lex_plan_l10_c01_helfen_v1",
+    ) as R;
     (help.verbPackage as R).separability = "separable";
   }, "l10_semantic_contract_invalid:helfen_dative_np");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const chapters = l10.chapters as R[];
+    const c1Senses = (chapters[0].checkpoint as R)
+      .plannedNewLexicalSenses as R[];
+    const helfenIndex = c1Senses.findIndex(
+      (sense) => sense.id === "de_lex_plan_l10_c01_helfen_v1",
+    );
+    const helfen = c1Senses.splice(helfenIndex, 1)[0];
+    ((chapters[1].checkpoint as R).plannedNewLexicalSenses as R[]).push(helfen);
+  }, "l10_lexical_prerequisite_invalid:de_l10_c01:helfen");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c1 = (l10.chapters as R[])[0];
+    (c1.checkpoint as R).plannedNewLexicalSenses = (
+      (c1.checkpoint as R).plannedNewLexicalSenses as R[]
+    ).filter((sense) => sense.id !== "de_lex_plan_l10_c01_helfen_v1");
+  }, "l10_lexical_prerequisite_invalid:de_l10_c01:helfen");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const chapters = l10.chapters as R[];
+    const c1Senses = (chapters[0].checkpoint as R)
+      .plannedNewLexicalSenses as R[];
+    const vormittag = c1Senses.splice(0, 1)[0];
+    ((chapters[1].checkpoint as R).plannedNewLexicalSenses as R[]).push(
+      vormittag,
+    );
+  }, "l10_lexical_prerequisite_invalid:de_l10_c01:Vormittag");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c1 = (l10.chapters as R[])[0];
+    (c1.checkpoint as R).plannedNewLexicalSenses = (
+      (c1.checkpoint as R).plannedNewLexicalSenses as R[]
+    ).filter((sense) => sense.id !== "de_lex_plan_l10_c01_vormittag_v1");
+  }, "l10_lexical_prerequisite_invalid:de_l10_c01:Vormittag");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const chapters = l10.chapters as R[];
+    const werkbank = (
+      (chapters[1].checkpoint as R).plannedNewLexicalSenses as R[]
+    ).splice(0, 1)[0];
+    ((chapters[2].checkpoint as R).plannedNewLexicalSenses as R[]).push(
+      werkbank,
+    );
+  }, "l10_lexical_prerequisite_invalid:de_l10_c02:Werkbank");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c2 = (l10.chapters as R[])[1];
+    (c2.checkpoint as R).plannedNewLexicalSenses = [];
+  }, "l10_lexical_prerequisite_invalid:de_l10_c02:Werkbank");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c1 = (l10.chapters as R[])[0];
+    (c1.supportFading as R).entry = `${String(
+      (c1.supportFading as R).entry,
+    )} Werkbank`;
+  }, "l10_lexical_prerequisite_invalid:de_l10_c01:Werkbank");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c1 = (l10.chapters as R[])[0];
+    const helfen = ((c1.checkpoint as R).plannedNewLexicalSenses as R[]).find(
+      (sense) => sense.id === "de_lex_plan_l10_c01_helfen_v1",
+    ) as R;
+    (helfen.utilityProof as R).necessityClass = "OUTCOME_UNACHIEVABLE";
+  }, "l10_semantic_contract_invalid:closed_chapter:de_l10_c01");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c2 = (l10.chapters as R[])[1];
+    const werkbank = ((c2.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    (werkbank.utilityProof as R).necessityClass = "OUTCOME_UNACHIEVABLE";
+  }, "l10_semantic_contract_invalid:closed_chapter:de_l10_c02");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c1 = (l10.chapters as R[])[0];
+    (c1.supportFading as R).entry = String(
+      (c1.supportFading as R).entry,
+    ).replace("für den Vormittag", "für den Dienst");
+  }, "l10_semantic_contract_invalid:closed_chapter:de_l10_c01");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c1 = (l10.chapters as R[])[0];
+    const extra = clone(
+      ((c1.checkpoint as R).plannedNewLexicalSenses as R[])[0],
+    ) as R;
+    extra.id = "de_lex_plan_l10_c01_morgen_v1";
+    extra.semanticIdentity =
+      "morgen|morning period used as an undeclared extra";
+    extra.lemmaOrExpression = "Morgen";
+    extra.senseGloss = "morning period used as an undeclared extra";
+    (extra.nounPackage as R).article = "der";
+    (extra.nounPackage as R).singular = "Morgen";
+    (extra.nounPackage as R).plural = "Morgen";
+    extra.nounPackageIdentity = "der|morgen|morgen";
+    ((c1.checkpoint as R).plannedNewLexicalSenses as R[]).push(extra);
+  }, "l10_semantic_contract_invalid:chapter_contract");
   expectExact((raw) => {
     const l10 = (raw.lessons as R[]).find(
       (lesson) => lesson.lessonId === "de_l10",
@@ -1991,15 +2226,6 @@ function fixtures(): void {
     const c2 = (l10.chapters as R[])[1];
     (c2.recallSchedule as R).targetsFutureChapterIds = ["de_l10_c04"];
   }, "l10_recall_contract_invalid:de_l10_c02");
-  expectExact((raw) => {
-    const l10 = (raw.lessons as R[]).find(
-      (lesson) => lesson.lessonId === "de_l10",
-    ) as R;
-    const c1 = (l10.chapters as R[])[0];
-    (c1.supportFading as R).entry = String(
-      (c1.supportFading as R).entry,
-    ).replace("für den Vormittag", "am Vormittag");
-  }, "l10_semantic_contract_invalid:closed_chapter:de_l10_c01");
   expectExact((raw) => {
     const l10 = (raw.lessons as R[]).find(
       (lesson) => lesson.lessonId === "de_l10",

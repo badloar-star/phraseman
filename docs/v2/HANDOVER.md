@@ -20700,3 +20700,84 @@ open C01→C02 `helfen` dependency with one writer and RED/GREEN evidence, then
 run fresh semantic and exact-spec judges from scratch. Only two final PASS
 verdicts may close L10 and authorize the HANDOVER closure entry. L11, Task 6,
 all learner-facing RU+UK authoring, release and German mockup remain HOLD.
+
+### 2026-10-03 — German Learning V2 resumed; Task 5 progress: L10 closed
+
+The owner explicitly resumed this session. The paused worktree was reconciled
+against current disk bytes and the shared snapshot commit before any edit. The
+accepted baseline remained L1–L9; the saved L10 candidate and gate hashes
+matched the pause record exactly. A fresh guardian, one critical writer, fresh
+exact-spec reviewers and a fresh semantic/adversarial reviewer were used; no
+pre-pause receipt or interrupted verdict was reused.
+
+Task 5 is now 10/32 lessons: `de_l01` through `de_l10`, 70/224 chapters and
+560/1792 exact packet identities. L10 introduces the bounded temporal relation
+`für + Akkusativ` and an explicit dative-recipient frame while preserving the
+lesson boundary: no dative pronouns, static-location Dativ,
+Wechselpräpositionen, two-object Dat+Akk transfer, extra modal meaning or fake
+fixed expression is permitted. L9 delayed modal/local anchors are owned at L10
+C07 S49/S50; exact L9→L10 and L10→L11 inverse provenance retains the dual S55
+sources.
+
+The paused candidate was not accepted mechanically. Fresh review proved that
+C01 used `helfen` before its planned lexical introduction in C02. An initial
+repair using prior `Dienst` failed semantic review because `für den Dienst`
+expresses purpose/assignment rather than the required bounded duration, and
+because `helfen`/`Vormittag` utility proofs were attached to the opposite Task
+4 outcomes. The final prerequisite-safe design keeps Task 3/4/schema unchanged:
+
+- C01 plans exact ordered senses `Vormittag`, then `helfen`; `für den
+  Vormittag` is outcome-essential for the temporal outcome, while `helfen` is
+  honest scene grounding and is available before the S02 dative introduction.
+- C02 reuses established `helfen` for the dative-recipient outcome and plans
+  `die Werkbank / Werkbänke` only as useful scene grounding. The blueprint does
+  not use `an der Werkbank`, so it does not leak static-location Dativ.
+- C03–C07, all lifecycle anchors, recall maps and the exact four-construct S56
+  final subset remain unchanged.
+
+The gate now owns exact lexical-ID arrays rather than a false one-sense-per-
+chapter assumption, exact prerequisite owners for `Vormittag`, `helfen` and
+`Werkbank`, closed multi-sense C01/C02 contracts and noun-package validation by
+sense ID. RED fixtures reject moving/removing any owned sense, premature
+`Werkbank`, false outcome-essential utility claims, `für den Dienst`, a third
+undeclared C01 sense, reordered/duplicated arrays, noun-package corruption,
+static `an der Werkbank` and substring-preserving contract damage. The earlier
+temporary L4 `Dienst` dependency and its guard were removed because final L10
+does not use `Dienst`.
+
+Fresh final exact-spec review PASSed with P0/P1/P2 = 0 after adversarial replay
+of all required mutations. Fresh final German semantic/adversarial review also
+PASSed with P0/P1/P2 = 0: `für den Vormittag`, `helfen +` explicit Dativ,
+`Werkbank`, support fading, `Rollwagen`/`Flur` and the changed-context final are
+target-native and truthful. The only deferred obligation is exact word-first
+placement of `helfen` before first scored S02 use; Task 5 owns it in C01, while
+Tasks 6/7 must enforce the precise packet ordering.
+
+Fresh deterministic evidence on the final bytes: L9 PASS 7/56; L10 PASS 7/56;
+prefix 10 PASS 70 chapters / 560 packet IDs; Task 2 schema PASS; Task 3 grammar
+graph PASS (48 constructs / 89 edges / 18 branches); Task 4 lesson boundaries
+PASS (32 lessons / 224 outcomes / 32 finals / 48 constructs); owner decisions
+PASS; research authority PASS (52 claims); recenter PASS 28/28; focused
+Prettier and `git diff --check` PASS. The unscoped Task 5 sentinel intentionally
+remains RED with exact
+`INCREMENTAL_TASK5;10/32 lessons;70/224 chapters`.
+
+Final hashes: chapter blueprint
+`A25718AAD21D8C04B6432663D91122DFD8824BFA15EFDA83DD4B29B7A1FAF3AF`;
+chapter gate
+`32B503A2FD66E9834BE88FAF3104C4732BBE4E95801AEAD01DD0D0C94ACEC4A4`;
+Task 4 lesson blueprint
+`79B7686911040987C3AE0FAD416D72960BB823E7CC21F76F4B604063094737DE`;
+German requirement manifest
+`FBB14A88961D1A72D665A044F7E31E318132FD16122540430935EE0A9E24F5BC`.
+No English, Daily Phrase, learner-facing German session, release or mockup file
+was edited by the resumed L10 slice; no deploy or publish occurred.
+
+Next exact task: obtain a fresh content-addressed guardian for `de_l11` against
+the current hashes, then materialize only its seven chapters and exact
+`de_l11_c01_s01..de_l11_c07_s56` identities with RED/GREEN evidence. Preserve
+the exact Task 4 boundary and S56 subset, own L10 delayed anchors at L11 C07
+S49/S50, repeat recenter 28/28 and fresh exact-spec plus semantic/adversarial
+reviews before L12. Task 6, exact packets, blueprint fingerprint/owner map,
+learner-facing RU+UK authoring, release and the German session mockup remain
+HOLD.

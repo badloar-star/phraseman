@@ -7992,16 +7992,16 @@
             "de_gc_dative_personal_pronouns_v1"
           ],
           "situation": {
-            "setting": "workshop-morning-board",
+            "setting": "workshop-morning-help-rota",
             "participants": "shift-coordinator-and-new-colleague",
-            "goal": "recognise-fuer-den-vormittag-as-one-bounded-work-interval-and-an-explicit-recipient-frame",
-            "contextSignature": "workshop-morning-temporal-recipient-introduction"
+            "goal": "retrieve-fuer-den-vormittag-as-one-bounded-work-interval-while-recognising-helfen-as-selecting-an-explicit-dative-recipient",
+            "contextSignature": "workshop-morning-help-temporal-recipient-introduction"
           },
           "supportFading": {
             "entryLevel": 5,
             "exitLevel": 2,
-            "entry": "colour-marked für den Vormittag and Ich helfe dem Kollegen. with the time span and recipient roles shown",
-            "exit": "identify the complete bounded interval and explicit recipient noun phrase without case labels",
+            "entry": "colour-marked für den Vormittag and Ich helfe dem Kollegen. with the bounded morning interval, helper, and explicit recipient roles shown",
+            "exit": "identify den Vormittag as the interval governed by für and dem Kollegen as the explicit recipient selected by helfen without case labels",
             "independentEvidenceByPacketId": "de_l10_c01_s08"
           },
           "lifecycleAnchors": [
@@ -8058,20 +8058,57 @@
                   ],
                   "utilityRole": "temporal_spatial",
                   "situationFacet": "goal",
-                  "facetValue": "select-fuer-den-vormittag-for-one-bounded-work-interval-on-a-changed-shift-board",
+                  "facetValue": "retrieve-fuer-den-vormittag-as-one-bounded-work-interval-on-a-changed-rota",
                   "necessityClass": "OUTCOME_UNACHIEVABLE",
                   "plannedUsePacketIds": ["de_l10_c01_s08"]
                 },
                 "senseGloss": "morning period before midday used as a bounded work interval",
                 "communicativeUse": "realise the exact bounded temporal relation as für den Vormittag, with für governing the accusative form den Vormittag"
+              },
+              {
+                "id": "de_lex_plan_l10_c01_helfen_v1",
+                "semanticIdentity": "helfen|support a named colleague through a frame selecting an explicit dative noun phrase",
+                "lemmaOrExpression": "helfen",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "helfen",
+                  "valencyFrame": "helper-action frame selecting one explicit dative noun phrase and no accusative transferred entity",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l10_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l10_ch01",
+                  "checkpointPacketId": "de_l10_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_w_element_v2_v1",
+                    "de_gc_local_preposition_governed_case_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "setting",
+                  "facetValue": "service-desk-morning-help-rota",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l10_c01_s08"]
+                },
+                "senseGloss": "support a named colleague through a frame selecting an explicit dative noun phrase",
+                "communicativeUse": "use Ich helfe dem Kollegen. so helfen selects one explicit dative noun phrase and no accusative transferred entity in the morning help rota"
               }
             ],
             "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
             "newSituation": {
-              "setting": "service-desk-morning-rota",
+              "setting": "service-desk-morning-help-rota",
               "participants": "rota-coordinator-and-service-colleague",
-              "goal": "select-fuer-den-vormittag-for-one-bounded-work-interval-on-a-changed-shift-board",
-              "contextSignature": "service-desk-bounded-morning-checkpoint"
+              "goal": "retrieve-fuer-den-vormittag-as-one-bounded-work-interval-on-a-changed-rota",
+              "contextSignature": "service-desk-bounded-morning-help-checkpoint"
             }
           },
           "recallSchedule": {
@@ -8114,14 +8151,14 @@
           "situation": {
             "setting": "tool-checkout-counter",
             "participants": "technician-and-named-colleague",
-            "goal": "recognise-helfen-as-selecting-one-explicit-dative-recipient-noun-phrase",
-            "contextSignature": "tool-counter-helfen-recipient-guided"
+            "goal": "recognise-dem-kollegen-as-the-explicit-recipient-selected-by-established-helfen-in-a-workbench-support-scene",
+            "contextSignature": "tool-counter-established-helfen-recipient-guided"
           },
           "supportFading": {
             "entryLevel": 5,
             "exitLevel": 2,
-            "entry": "whole model Ich helfe dem Kollegen. with the helper and recipient roles marked",
-            "exit": "identify dem Kollegen as the explicit recipient selected by helfen",
+            "entry": "whole model Ich helfe dem Kollegen. with the established helper and explicit recipient roles marked; Werkbank only grounds the repair-and-assembly scene",
+            "exit": "identify dem Kollegen as the explicit recipient selected by established helfen while Werkbank only grounds the scene",
             "independentEvidenceByPacketId": "de_l10_c02_s16"
           },
           "lifecycleAnchors": [
@@ -8149,18 +8186,18 @@
             ],
             "plannedNewLexicalSenses": [
               {
-                "id": "de_lex_plan_l10_c02_helfen_v1",
-                "semanticIdentity": "helfen|support a named colleague through a frame selecting an explicit dative noun phrase",
-                "lemmaOrExpression": "helfen",
-                "partOfSpeech": "verb",
-                "lexicalKind": "VERB_LEXEME",
-                "nounPackage": null,
-                "verbPackage": {
-                  "infinitive": "helfen",
-                  "valencyFrame": "helper-action frame selecting one explicit dative noun phrase and no accusative transferred entity",
-                  "separability": "inseparable",
-                  "perfectAuxiliary": "haben"
+                "id": "de_lex_plan_l10_c02_werkbank_v1",
+                "semanticIdentity": "werkbank|sturdy work table used for repair and assembly",
+                "lemmaOrExpression": "Werkbank",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Werkbank",
+                  "plural": "Werkbänke"
                 },
+                "nounPackageIdentity": "die|werkbank|werkbanke",
+                "verbPackage": null,
                 "lemmaStatus": "FIRST_MEANING",
                 "contrastsWithSenseId": null,
                 "contrastEvidence": null,
@@ -8176,22 +8213,22 @@
                     "de_gc_w_element_v2_v1",
                     "de_gc_local_preposition_governed_case_v1"
                   ],
-                  "utilityRole": "action",
-                  "situationFacet": "goal",
-                  "facetValue": "choose-helfen-with-an-explicit-dative-colleague-on-a-changed-work-bench",
-                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "assembly-workbench-support-card",
+                  "necessityClass": "SCENE_UNGROUNDED",
                   "plannedUsePacketIds": ["de_l10_c02_s16"]
                 },
-                "senseGloss": "support a named colleague through a frame selecting an explicit dative noun phrase",
-                "communicativeUse": "use Ich helfe dem Kollegen. so helfen selects one explicit dative noun phrase and no accusative transferred entity"
+                "senseGloss": "sturdy work table used for repair and assembly",
+                "communicativeUse": "ground the changed repair-and-assembly scene while Ich helfe dem Kollegen. preserves established helfen selecting dem Kollegen as its explicit recipient"
               }
             ],
             "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
             "newSituation": {
-              "setting": "assembly-bench-support-card",
+              "setting": "assembly-workbench-support-card",
               "participants": "assembler-and-assigned-colleague",
-              "goal": "choose-helfen-with-an-explicit-dative-colleague-on-a-changed-work-bench",
-              "contextSignature": "assembly-bench-dative-recipient-check"
+              "goal": "identify-dem-kollegen-as-the-explicit-recipient-selected-by-established-helfen-in-a-changed-workbench-support-scene",
+              "contextSignature": "assembly-workbench-explicit-recipient-check"
             }
           },
           "recallSchedule": {

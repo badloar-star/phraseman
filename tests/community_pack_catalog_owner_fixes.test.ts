@@ -155,7 +155,8 @@ describe('экран набора: раскладка и действия', () =
   });
 
   it('на экране набора нет поиска по карточкам, в «Сохранённых» — есть', () => {
-    expect(collection).toContain('showSearch={!packDeeplink && !(isEmpty && !searchActive)}');
+    // зачем: снимок 2.0 (efe19ae9d, 30.09) — в «Сохранённых» поиск виден даже при пустом списке; на экране набора (deeplink) его нет.
+    expect(collection).toContain("showSearch={!packDeeplink && (activeCat === 'saved' || !(isEmpty && !searchActive))}");
     expect(header).toContain('testID="fc-search-input"');
   });
 
@@ -261,7 +262,8 @@ describe('шапка каталога сообщества (замечания �
   it('активный фильтр выделен визуально и в accessibilityState', () => {
     for (const sort of ['new', 'popular']) {
       expect(screen).toContain(`accessibilityState={{ selected: communitySort === '${sort}' }}`);
-      expect(screen).toContain(`communitySort === '${sort}' ? { backgroundColor: t.bgSurface } : null`);
+      // зачем: снимок 2.0 (efe19ae9d) — выделение активного фильтра в палитре стекла g.selected.
+      expect(screen).toContain(`communitySort === '${sort}' ? { backgroundColor: g.selected } : null`);
       expect(screen).toContain(`setCommunitySort('${sort}')`);
     }
   });

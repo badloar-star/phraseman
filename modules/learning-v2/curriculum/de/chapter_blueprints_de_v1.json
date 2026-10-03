@@ -13855,6 +13855,1137 @@
           }
         }
       ]
+    },
+    {
+      "lessonId": "de_l16",
+      "lessonOrdinal": 16,
+      "grammarBoundary": {
+        "allowedConstructIds": [
+          "de_gc_perfekt_sein_classes_v1",
+          "de_gc_spoken_preterite_island_v1",
+          "de_gc_finite_sein_present_v1",
+          "de_gc_perfekt_haben_classes_v1",
+          "de_gc_modal_finite_bare_infinitive_v1",
+          "de_gc_controlled_partizip_ii_v1"
+        ],
+        "prohibitedConstructIds": [
+          "de_gc_present_future_reference_v1",
+          "de_gc_introduced_verbletzt_clause_v1"
+        ],
+        "noExpansion": "The lesson permits only verified sein-selecting lexical classes with finite sein plus one controlled participle, together with the bounded spoken Präteritum forms war, hatte and musste in the exact stored frames. Known haben-class Perfekt remains contrast and retrieval support. Auxiliary choice is lexical-class evidence, never a movement shortcut. The register contrast is a usage tendency and does not make broader Präteritum universally ungrammatical. No productive sein-class guessing, broad Präteritum paradigm, narrative tense system, modal Perfekt or Ersatzinfinitiv, future reference, introduced subordinate clause, connector topology, passive, new case frame, new preposition relation or L17 grammar is allowed."
+      },
+      "chapters": [
+        {
+          "id": "de_l16_c01",
+          "ordinal": 1,
+          "lessonOutcomeId": "de_l16_ch01",
+          "lessonOutcome": "recognise verified sein-class completed-event frames",
+          "packetIds": [
+            "de_l16_c01_s01",
+            "de_l16_c01_s02",
+            "de_l16_c01_s03",
+            "de_l16_c01_s04",
+            "de_l16_c01_s05",
+            "de_l16_c01_s06",
+            "de_l16_c01_s07",
+            "de_l16_c01_s08"
+          ],
+          "allowedConstructIds": [
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_finite_sein_present_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_modal_finite_bare_infinitive_v1",
+            "de_gc_controlled_partizip_ii_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_present_future_reference_v1",
+            "de_gc_introduced_verbletzt_clause_v1"
+          ],
+          "situation": {
+            "setting": "late-evening-station-arrival-update",
+            "participants": "traveller-and-family-member",
+            "goal": "recognize-angekommen-as-a-verified-sein-class-participle-and-war-as-one-bounded-past-state",
+            "contextSignature": "station-arrival-sein-perfekt-introduction"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Angekommen. Ich bin am Bahnhof angekommen. Der Bahnhof war offen.",
+            "exit": "Angekommen. Ich bin am Bahnhof angekommen. Der Bahnhof war offen.",
+            "independentEvidenceByPacketId": "de_l16_c01_s08"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_perfekt_sein_classes_v1",
+              "stage": "introduction",
+              "packetId": "de_l16_c01_s01"
+            },
+            {
+              "constructId": "de_gc_spoken_preterite_island_v1",
+              "stage": "introduction",
+              "packetId": "de_l16_c01_s02"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l16_c01_s03", "de_l16_c01_s04"],
+          "checkpoint": {
+            "packetId": "de_l16_c01_s08",
+            "integratedConstructIds": [
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_finite_sein_present_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_modal_finite_bare_infinitive_v1",
+              "de_gc_controlled_partizip_ii_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l16_c01_ankommen_v1",
+                "semanticIdentity": "ankommen|arrive at one stated destination in a verified sein class",
+                "lemmaOrExpression": "ankommen",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "ankommen",
+                  "valencyFrame": "intransitive arrival frame with one explicit destination-location complement",
+                  "separability": "separable",
+                  "perfectAuxiliary": "sein"
+                },
+                "senseGloss": "arrive at one stated destination in a verified sein class",
+                "communicativeUse": "use Ich bin am Bahnhof angekommen. to report the verified sein-class station arrival",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l16_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l16_ch01",
+                  "checkpointPacketId": "de_l16_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_controlled_partizip_ii_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-recognize-the-sein-class-arrival-frame-and-the-bounded-war-state",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l16_c01_s08"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l16_c01_bahnhof_v1",
+                "semanticIdentity": "bahnhof|railway station as the stated arrival point",
+                "lemmaOrExpression": "Bahnhof",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Bahnhof",
+                  "plural": "Bahnhöfe"
+                },
+                "nounPackageIdentity": "der|bahnhof|bahnhofe",
+                "verbPackage": null,
+                "senseGloss": "railway station as the stated arrival point",
+                "communicativeUse": "ground the stated arrival point in Ich bin am Bahnhof angekommen.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l16_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l16_ch01",
+                  "checkpointPacketId": "de_l16_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_controlled_partizip_ii_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "regional-station-information-desk",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l16_c01_s08"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "regional-station-information-desk",
+              "participants": "traveller-and-information-agent",
+              "goal": "independently-recognize-the-sein-class-arrival-frame-and-the-bounded-war-state",
+              "contextSignature": "regional-station-arrival-recognition-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l15_c06", "de_l15_c07"],
+            "targetsFutureChapterIds": ["de_l16_c02"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l17_c07_s51"
+            }
+          }
+        },
+        {
+          "id": "de_l16_c02",
+          "ordinal": 2,
+          "lessonOutcomeId": "de_l16_ch02",
+          "lessonOutcome": "contrast verified haben and sein lexical classes",
+          "packetIds": [
+            "de_l16_c02_s09",
+            "de_l16_c02_s10",
+            "de_l16_c02_s11",
+            "de_l16_c02_s12",
+            "de_l16_c02_s13",
+            "de_l16_c02_s14",
+            "de_l16_c02_s15",
+            "de_l16_c02_s16"
+          ],
+          "allowedConstructIds": [
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_finite_sein_present_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_modal_finite_bare_infinitive_v1",
+            "de_gc_controlled_partizip_ii_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_present_future_reference_v1",
+            "de_gc_introduced_verbletzt_clause_v1"
+          ],
+          "situation": {
+            "setting": "hotel-arrival-and-bill-update",
+            "participants": "traveller-and-hotel-receptionist",
+            "goal": "distinguish-known-haben-class-payment-from-sein-class-arrival-and-bounded-war-state",
+            "contextSignature": "hotel-payment-arrival-auxiliary-contrast"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Ich habe die Rechnung bezahlt. Ich bin im Hotel angekommen. Das Zimmer war frei.",
+            "exit": "Ich habe die Rechnung bezahlt. Ich bin im Hotel angekommen. Das Zimmer war frei.",
+            "independentEvidenceByPacketId": "de_l16_c02_s16"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_perfekt_sein_classes_v1",
+              "stage": "guided",
+              "packetId": "de_l16_c02_s09"
+            },
+            {
+              "constructId": "de_gc_spoken_preterite_island_v1",
+              "stage": "guided",
+              "packetId": "de_l16_c02_s10"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l16_c02_s11", "de_l16_c02_s12"],
+          "checkpoint": {
+            "packetId": "de_l16_c02_s16",
+            "integratedConstructIds": [
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_finite_sein_present_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_modal_finite_bare_infinitive_v1",
+              "de_gc_controlled_partizip_ii_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l16_c02_hotel_v1",
+                "semanticIdentity": "hotel|lodging establishment as the completed arrival point",
+                "lemmaOrExpression": "Hotel",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Hotel",
+                  "plural": "Hotels"
+                },
+                "nounPackageIdentity": "das|hotel|hotels",
+                "verbPackage": null,
+                "senseGloss": "lodging establishment as the completed arrival point",
+                "communicativeUse": "Ich habe die Rechnung bezahlt. Ich bin im Hotel angekommen. Das Zimmer war frei.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l16_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l16_ch02",
+                  "checkpointPacketId": "de_l16_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_controlled_partizip_ii_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "guesthouse-arrival-service-desk",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l16_c02_s16"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "guesthouse-arrival-service-desk",
+              "participants": "guest-and-guesthouse-host",
+              "goal": "independently-contrast-the-haben-class-payment-with-the-sein-class-arrival-and-war-state",
+              "contextSignature": "guesthouse-auxiliary-class-contrast-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l15_c07", "de_l16_c01"],
+            "targetsFutureChapterIds": ["de_l16_c03"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l17_c07_s52"
+            }
+          }
+        },
+        {
+          "id": "de_l16_c03",
+          "ordinal": 3,
+          "lessonOutcomeId": "de_l16_ch03",
+          "lessonOutcome": "report a completed arrival or change with sein",
+          "packetIds": [
+            "de_l16_c03_s17",
+            "de_l16_c03_s18",
+            "de_l16_c03_s19",
+            "de_l16_c03_s20",
+            "de_l16_c03_s21",
+            "de_l16_c03_s22",
+            "de_l16_c03_s23",
+            "de_l16_c03_s24"
+          ],
+          "allowedConstructIds": [
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_finite_sein_present_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_modal_finite_bare_infinitive_v1",
+            "de_gc_controlled_partizip_ii_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_present_future_reference_v1",
+            "de_gc_introduced_verbletzt_clause_v1"
+          ],
+          "situation": {
+            "setting": "missed-train-platform-report",
+            "participants": "traveller-and-station-agent",
+            "goal": "report-that-the-train-departed-with-sein-and-the-traveller-was-at-the-platform",
+            "contextSignature": "departed-train-and-war-state-retrieval"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Der Zug ist abgefahren. Ich war am Gleis.",
+            "exit": "Der Zug ist abgefahren. Ich war am Gleis.",
+            "independentEvidenceByPacketId": "de_l16_c03_s24"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_perfekt_sein_classes_v1",
+              "stage": "retrieval",
+              "packetId": "de_l16_c03_s17"
+            },
+            {
+              "constructId": "de_gc_spoken_preterite_island_v1",
+              "stage": "retrieval",
+              "packetId": "de_l16_c03_s18"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l16_c03_s19", "de_l16_c03_s20"],
+          "checkpoint": {
+            "packetId": "de_l16_c03_s24",
+            "integratedConstructIds": [
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_finite_sein_present_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_modal_finite_bare_infinitive_v1",
+              "de_gc_controlled_partizip_ii_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l16_c03_abfahren_v1",
+                "semanticIdentity": "abfahren|depart from a stated rail context in a verified sein class",
+                "lemmaOrExpression": "abfahren",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "abfahren",
+                  "valencyFrame": "intransitive departure frame with an optional explicit origin or time complement",
+                  "separability": "separable",
+                  "perfectAuxiliary": "sein"
+                },
+                "senseGloss": "depart from a stated rail context in a verified sein class",
+                "communicativeUse": "Der Zug ist abgefahren. Ich war am Gleis.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l16_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l16_ch03",
+                  "checkpointPacketId": "de_l16_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_controlled_partizip_ii_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-report-the-completed-train-departure-and-the-past-platform-state",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l16_c03_s24"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l16_c03_zug_v1",
+                "semanticIdentity": "zug|train whose departure disrupts the journey",
+                "lemmaOrExpression": "Zug",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Zug",
+                  "plural": "Züge"
+                },
+                "nounPackageIdentity": "der|zug|zuge",
+                "verbPackage": null,
+                "senseGloss": "train whose departure disrupts the journey",
+                "communicativeUse": "Der Zug ist abgefahren. Ich war am Gleis.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l16_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l16_ch03",
+                  "checkpointPacketId": "de_l16_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_controlled_partizip_ii_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "regional-rail-platform-help-point",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l16_c03_s24"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "regional-rail-platform-help-point",
+              "participants": "passenger-and-platform-agent",
+              "goal": "independently-report-the-completed-train-departure-and-the-past-platform-state",
+              "contextSignature": "regional-platform-departure-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l16_c01", "de_l16_c02"],
+            "targetsFutureChapterIds": ["de_l16_c04"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l17_c07_s53"
+            }
+          }
+        },
+        {
+          "id": "de_l16_c04",
+          "ordinal": 4,
+          "lessonOutcomeId": "de_l16_ch04",
+          "lessonOutcome": "use war or hatte for a common past state",
+          "packetIds": [
+            "de_l16_c04_s25",
+            "de_l16_c04_s26",
+            "de_l16_c04_s27",
+            "de_l16_c04_s28",
+            "de_l16_c04_s29",
+            "de_l16_c04_s30",
+            "de_l16_c04_s31",
+            "de_l16_c04_s32"
+          ],
+          "allowedConstructIds": [
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_finite_sein_present_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_modal_finite_bare_infinitive_v1",
+            "de_gc_controlled_partizip_ii_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_present_future_reference_v1",
+            "de_gc_introduced_verbletzt_clause_v1"
+          ],
+          "situation": {
+            "setting": "disrupted-journey-phone-report",
+            "participants": "traveller-and-family-member",
+            "goal": "combine-a-completed-station-arrival-with-bounded-war-and-hatte-states",
+            "contextSignature": "arrival-war-hatte-production"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Ich bin am Bahnhof angekommen. Der Zug war voll. Ich hatte ein Problem.",
+            "exit": "Ich bin am Bahnhof angekommen. Der Zug war voll. Ich hatte ein Problem.",
+            "independentEvidenceByPacketId": "de_l16_c04_s32"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_perfekt_sein_classes_v1",
+              "stage": "production",
+              "packetId": "de_l16_c04_s25"
+            },
+            {
+              "constructId": "de_gc_spoken_preterite_island_v1",
+              "stage": "production",
+              "packetId": "de_l16_c04_s26"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l16_c04_s27", "de_l16_c04_s28"],
+          "checkpoint": {
+            "packetId": "de_l16_c04_s32",
+            "integratedConstructIds": [
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_finite_sein_present_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_modal_finite_bare_infinitive_v1",
+              "de_gc_controlled_partizip_ii_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l16_c04_voll_v1",
+                "semanticIdentity": "voll|full with no available capacity in the stated train",
+                "lemmaOrExpression": "voll",
+                "partOfSpeech": "adjective",
+                "lexicalKind": "ADJECTIVE_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "senseGloss": "full with no available capacity in the stated train",
+                "communicativeUse": "Der Zug war voll.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l16_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l16_ch04",
+                  "checkpointPacketId": "de_l16_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_controlled_partizip_ii_v1"
+                  ],
+                  "utilityRole": "quality",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-report-arrival-and-common-past-states-without-broad-preterite",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l16_c04_s32"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l16_c04_problem_v1",
+                "semanticIdentity": "problem|difficulty affecting the disrupted journey",
+                "lemmaOrExpression": "Problem",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Problem",
+                  "plural": "Probleme"
+                },
+                "nounPackageIdentity": "das|problem|probleme",
+                "verbPackage": null,
+                "senseGloss": "difficulty affecting the disrupted journey",
+                "communicativeUse": "Ich hatte ein Problem.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l16_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l16_ch04",
+                  "checkpointPacketId": "de_l16_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_controlled_partizip_ii_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "rail-customer-service-call",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l16_c04_s32"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "rail-customer-service-call",
+              "participants": "traveller-and-service-agent",
+              "goal": "independently-report-arrival-and-common-past-states-without-broad-preterite",
+              "contextSignature": "rail-service-arrival-state-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l16_c02", "de_l16_c03"],
+            "targetsFutureChapterIds": ["de_l16_c05"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l17_c07_s54"
+            }
+          }
+        },
+        {
+          "id": "de_l16_c05",
+          "ordinal": 5,
+          "lessonOutcomeId": "de_l16_ch05",
+          "lessonOutcome": "use one selected modal Präteritum frame in a spoken account",
+          "packetIds": [
+            "de_l16_c05_s33",
+            "de_l16_c05_s34",
+            "de_l16_c05_s35",
+            "de_l16_c05_s36",
+            "de_l16_c05_s37",
+            "de_l16_c05_s38",
+            "de_l16_c05_s39",
+            "de_l16_c05_s40"
+          ],
+          "allowedConstructIds": [
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_finite_sein_present_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_modal_finite_bare_infinitive_v1",
+            "de_gc_controlled_partizip_ii_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_present_future_reference_v1",
+            "de_gc_introduced_verbletzt_clause_v1"
+          ],
+          "situation": {
+            "setting": "station-delay-explanation",
+            "participants": "traveller-and-station-agent",
+            "goal": "express-unavoidable-past-waiting-with-one-selected-musste-frame",
+            "contextSignature": "musste-warten-spoken-journey-frame"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Ich musste am Bahnhof warten.",
+            "exit": "Ich musste am Bahnhof warten.",
+            "independentEvidenceByPacketId": "de_l16_c05_s40"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l16_c05_s35", "de_l16_c05_s36"],
+          "checkpoint": {
+            "packetId": "de_l16_c05_s40",
+            "integratedConstructIds": [
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_finite_sein_present_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_modal_finite_bare_infinitive_v1",
+              "de_gc_controlled_partizip_ii_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l16_c05_mussen_v1",
+                "semanticIdentity": "mussen|express unavoidable necessity in one spoken past journey frame",
+                "lemmaOrExpression": "müssen",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "müssen",
+                  "valencyFrame": "finite selected modal Präteritum necessity frame plus a bare infinitive right bracket",
+                  "separability": "not_applicable",
+                  "perfectAuxiliary": "not_applicable"
+                },
+                "senseGloss": "express unavoidable necessity in one spoken past journey frame",
+                "communicativeUse": "Ich musste am Bahnhof warten.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l16_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l16_ch05",
+                  "checkpointPacketId": "de_l16_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_controlled_partizip_ii_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-explain-unavoidable-past-waiting-with-musste-and-warten",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l16_c05_s40"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l16_c05_warten_v1",
+                "semanticIdentity": "warten|wait at a stated place during a journey disruption",
+                "lemmaOrExpression": "warten",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "warten",
+                  "valencyFrame": "intransitive waiting frame with an optional explicit location complement",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "wait at a stated place during a journey disruption",
+                "communicativeUse": "Ich musste am Bahnhof warten.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l16_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l16_ch05",
+                  "checkpointPacketId": "de_l16_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_controlled_partizip_ii_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-explain-unavoidable-past-waiting-with-musste-and-warten",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l16_c05_s40"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "coach-terminal-delay-desk",
+              "participants": "coach-passenger-and-service-clerk",
+              "goal": "independently-explain-unavoidable-past-waiting-with-musste-and-warten",
+              "contextSignature": "coach-delay-modal-preterite-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l16_c03", "de_l16_c04"],
+            "targetsFutureChapterIds": ["de_l16_c06"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l17_c07_s55"
+            }
+          }
+        },
+        {
+          "id": "de_l16_c06",
+          "ordinal": 6,
+          "lessonOutcomeId": "de_l16_ch06",
+          "lessonOutcome": "repair an auxiliary-class or past-register overgeneralisation",
+          "packetIds": [
+            "de_l16_c06_s41",
+            "de_l16_c06_s42",
+            "de_l16_c06_s43",
+            "de_l16_c06_s44",
+            "de_l16_c06_s45",
+            "de_l16_c06_s46",
+            "de_l16_c06_s47",
+            "de_l16_c06_s48"
+          ],
+          "allowedConstructIds": [
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_finite_sein_present_v1",
+            "de_gc_perfekt_haben_classes_v1",
+            "de_gc_modal_finite_bare_infinitive_v1",
+            "de_gc_controlled_partizip_ii_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_present_future_reference_v1",
+            "de_gc_introduced_verbletzt_clause_v1"
+          ],
+          "situation": {
+            "setting": "travel-report-quality-check",
+            "participants": "trainee-and-travel-service-supervisor",
+            "goal": "repair-one-false-haben-for-sein-auxiliary-and-one-spoken-register-overgeneralisation",
+            "contextSignature": "auxiliary-class-and-register-dual-repair"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "[1] Ich habe am Bahnhof angekommen. → Ich bin am Bahnhof angekommen. [2] Ich machte eine Pause. → Ich habe eine Pause gemacht.",
+            "exit": "[1] Ich habe am Bahnhof angekommen. → Ich bin am Bahnhof angekommen. [2] Ich machte eine Pause. → Ich habe eine Pause gemacht.",
+            "independentEvidenceByPacketId": "de_l16_c06_s48"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_perfekt_sein_classes_v1",
+              "stage": "transfer",
+              "packetId": "de_l16_c06_s41"
+            },
+            {
+              "constructId": "de_gc_spoken_preterite_island_v1",
+              "stage": "transfer",
+              "packetId": "de_l16_c06_s42"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l16_c06_s43", "de_l16_c06_s44"],
+          "checkpoint": {
+            "packetId": "de_l16_c06_s48",
+            "integratedConstructIds": [
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_finite_sein_present_v1",
+              "de_gc_perfekt_haben_classes_v1",
+              "de_gc_modal_finite_bare_infinitive_v1",
+              "de_gc_controlled_partizip_ii_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l16_c06_machen_v1",
+                "semanticIdentity": "machen|carry out one specified everyday activity",
+                "lemmaOrExpression": "machen",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "machen",
+                  "valencyFrame": "transitive activity frame selecting one explicit accusative activity noun",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "carry out one specified everyday activity",
+                "communicativeUse": "Ich machte eine Pause. → Ich habe eine Pause gemacht.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l16_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l16_ch06",
+                  "checkpointPacketId": "de_l16_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_controlled_partizip_ii_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-repair-both-the-auxiliary-class-and-register-errors",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l16_c06_s48"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l16_c06_pause_v1",
+                "semanticIdentity": "pause|short break during a journey",
+                "lemmaOrExpression": "Pause",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Pause",
+                  "plural": "Pausen"
+                },
+                "nounPackageIdentity": "die|pause|pausen",
+                "verbPackage": null,
+                "senseGloss": "short break during a journey",
+                "communicativeUse": "Ich machte eine Pause. → Ich habe eine Pause gemacht.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l16_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l16_ch06",
+                  "checkpointPacketId": "de_l16_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_perfekt_haben_classes_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_controlled_partizip_ii_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-repair-both-the-auxiliary-class-and-register-errors",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l16_c06_s48"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "travel-help-line-spoken-report-review",
+              "participants": "traveller-and-service-support-advisor",
+              "goal": "independently-repair-both-the-auxiliary-class-and-register-errors",
+              "contextSignature": "spoken-journey-report-dual-repair-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l16_c04", "de_l16_c05"],
+            "targetsFutureChapterIds": ["de_l16_c07"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l17_c07_s56"
+            }
+          }
+        },
+        {
+          "id": "de_l16_c07",
+          "ordinal": 7,
+          "lessonOutcomeId": "de_l16_ch07",
+          "lessonOutcome": "transfer arrival and past-state reporting to a changed journey",
+          "packetIds": [
+            "de_l16_c07_s49",
+            "de_l16_c07_s50",
+            "de_l16_c07_s51",
+            "de_l16_c07_s52",
+            "de_l16_c07_s53",
+            "de_l16_c07_s54",
+            "de_l16_c07_s55",
+            "de_l16_c07_s56"
+          ],
+          "allowedConstructIds": [
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1",
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_present_future_reference_v1",
+            "de_gc_introduced_verbletzt_clause_v1"
+          ],
+          "situation": {
+            "setting": "airport-rail-connection-complaint",
+            "participants": "traveller-and-airport-mobility-agent",
+            "goal": "recount-airport-arrival-missing-train-unavoidable-taxi-and-paid-bill",
+            "contextSignature": "airport-arrival-past-state-changed-transfer"
+          },
+          "supportFading": {
+            "entryLevel": 2,
+            "exitLevel": 0,
+            "entry": "Ich bin am Flughafen angekommen. Der Zug war weg. Ich musste ein Taxi nehmen. Ich habe die Rechnung bezahlt.",
+            "exit": "Ich bin am Flughafen angekommen. Der Zug war weg. Ich musste ein Taxi nehmen. Ich habe die Rechnung bezahlt.",
+            "independentEvidenceByPacketId": "de_l16_c07_s56"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_controlled_partizip_ii_v1",
+              "stage": "delayed",
+              "packetId": "de_l16_c07_s49"
+            },
+            {
+              "constructId": "de_gc_perfekt_haben_classes_v1",
+              "stage": "delayed",
+              "packetId": "de_l16_c07_s50"
+            }
+          ],
+          "chapterEvidencePacketIds": [
+            "de_l16_c07_s51",
+            "de_l16_c07_s52",
+            "de_l16_c07_s53",
+            "de_l16_c07_s54",
+            "de_l16_c07_s55",
+            "de_l16_c07_s56"
+          ],
+          "checkpoint": {
+            "packetId": "de_l16_c07_s56",
+            "integratedConstructIds": [
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_spoken_preterite_island_v1",
+              "de_gc_controlled_partizip_ii_v1",
+              "de_gc_perfekt_haben_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l16_c07_flughafen_v1",
+                "semanticIdentity": "flughafen|airport as the changed arrival point",
+                "lemmaOrExpression": "Flughafen",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Flughafen",
+                  "plural": "Flughäfen"
+                },
+                "nounPackageIdentity": "der|flughafen|flughafen",
+                "verbPackage": null,
+                "senseGloss": "airport as the changed arrival point",
+                "communicativeUse": "Ich bin am Flughafen angekommen.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l16_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l16_ch07",
+                  "checkpointPacketId": "de_l16_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "regional-airport-ground-transport-desk",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l16_c07_s56"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l16_c07_weg_v1",
+                "semanticIdentity": "weg|no longer present at the expected departure point",
+                "lemmaOrExpression": "weg",
+                "partOfSpeech": "adverb",
+                "lexicalKind": "ADVERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "senseGloss": "no longer present at the expected departure point",
+                "communicativeUse": "Der Zug war weg.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l16_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l16_ch07",
+                  "checkpointPacketId": "de_l16_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1"
+                  ],
+                  "utilityRole": "quality",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-recount-the-airport-arrival-past-state-unavoidable-taxi-and-paid-expense",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l16_c07_s56"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l16_c07_taxi_v1",
+                "semanticIdentity": "taxi|hired car used after the missed connection",
+                "lemmaOrExpression": "Taxi",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Taxi",
+                  "plural": "Taxis"
+                },
+                "nounPackageIdentity": "das|taxi|taxis",
+                "verbPackage": null,
+                "senseGloss": "hired car used after the missed connection",
+                "communicativeUse": "Ich musste ein Taxi nehmen.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l16_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l16_ch07",
+                  "checkpointPacketId": "de_l16_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "regional-airport-ground-transport-desk",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l16_c07_s56"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l16_c07_nehmen_v1",
+                "semanticIdentity": "nehmen|take one specified transport option",
+                "lemmaOrExpression": "nehmen",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "nehmen",
+                  "valencyFrame": "transitive transport-choice frame selecting one explicit accusative transport option",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "take one specified transport option",
+                "communicativeUse": "Ich musste ein Taxi nehmen.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l16_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l16_ch07",
+                  "checkpointPacketId": "de_l16_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1",
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1"
+                  ],
+                  "utilityRole": "transfer",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-recount-the-airport-arrival-past-state-unavoidable-taxi-and-paid-expense",
+                  "necessityClass": "TRANSFER_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l16_c07_s56"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "regional-airport-ground-transport-desk",
+              "participants": "traveller-and-ground-transport-agent",
+              "goal": "independently-recount-the-airport-arrival-past-state-unavoidable-taxi-and-paid-expense",
+              "contextSignature": "regional-airport-final-transfer"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l16_c05", "de_l16_c06"],
+            "targetsFutureChapterIds": ["de_l17_c01"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l17_c07_s55"
+            }
+          }
+        }
+      ]
     }
   ]
 }

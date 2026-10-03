@@ -4281,6 +4281,672 @@ function validateL15SemanticContract(raw: R, plan: Boundary): void {
   });
 }
 
+const L16_ALLOWED = [
+  "de_gc_perfekt_sein_classes_v1",
+  "de_gc_spoken_preterite_island_v1",
+  "de_gc_finite_sein_present_v1",
+  "de_gc_perfekt_haben_classes_v1",
+  "de_gc_modal_finite_bare_infinitive_v1",
+  "de_gc_controlled_partizip_ii_v1",
+] as const;
+const L16_FINAL = [
+  L16_ALLOWED[0],
+  L16_ALLOWED[1],
+  L16_ALLOWED[5],
+  L16_ALLOWED[3],
+] as const;
+const L16_PROHIBITED = [
+  "de_gc_present_future_reference_v1",
+  "de_gc_introduced_verbletzt_clause_v1",
+] as const;
+const L16_NO_EXPANSION =
+  "The lesson permits only verified sein-selecting lexical classes with finite sein plus one controlled participle, together with the bounded spoken Präteritum forms war, hatte and musste in the exact stored frames. Known haben-class Perfekt remains contrast and retrieval support. Auxiliary choice is lexical-class evidence, never a movement shortcut. The register contrast is a usage tendency and does not make broader Präteritum universally ungrammatical. No productive sein-class guessing, broad Präteritum paradigm, narrative tense system, modal Perfekt or Ersatzinfinitiv, future reference, introduced subordinate clause, connector topology, passive, new case frame, new preposition relation or L17 grammar is allowed.";
+const L16_MODELS = [
+  "Angekommen. Ich bin am Bahnhof angekommen. Der Bahnhof war offen.",
+  "Ich habe die Rechnung bezahlt. Ich bin im Hotel angekommen. Das Zimmer war frei.",
+  "Der Zug ist abgefahren. Ich war am Gleis.",
+  "Ich bin am Bahnhof angekommen. Der Zug war voll. Ich hatte ein Problem.",
+  "Ich musste am Bahnhof warten.",
+  "[1] Ich habe am Bahnhof angekommen. → Ich bin am Bahnhof angekommen. [2] Ich machte eine Pause. → Ich habe eine Pause gemacht.",
+  "Ich bin am Flughafen angekommen. Der Zug war weg. Ich musste ein Taxi nehmen. Ich habe die Rechnung bezahlt.",
+] as const;
+const L16_SITUATIONS = [
+  [
+    {
+      setting: "late-evening-station-arrival-update",
+      participants: "traveller-and-family-member",
+      goal: "recognize-angekommen-as-a-verified-sein-class-participle-and-war-as-one-bounded-past-state",
+      contextSignature: "station-arrival-sein-perfekt-introduction",
+    },
+    {
+      setting: "regional-station-information-desk",
+      participants: "traveller-and-information-agent",
+      goal: "independently-recognize-the-sein-class-arrival-frame-and-the-bounded-war-state",
+      contextSignature: "regional-station-arrival-recognition-check",
+    },
+  ],
+  [
+    {
+      setting: "hotel-arrival-and-bill-update",
+      participants: "traveller-and-hotel-receptionist",
+      goal: "distinguish-known-haben-class-payment-from-sein-class-arrival-and-bounded-war-state",
+      contextSignature: "hotel-payment-arrival-auxiliary-contrast",
+    },
+    {
+      setting: "guesthouse-arrival-service-desk",
+      participants: "guest-and-guesthouse-host",
+      goal: "independently-contrast-the-haben-class-payment-with-the-sein-class-arrival-and-war-state",
+      contextSignature: "guesthouse-auxiliary-class-contrast-check",
+    },
+  ],
+  [
+    {
+      setting: "missed-train-platform-report",
+      participants: "traveller-and-station-agent",
+      goal: "report-that-the-train-departed-with-sein-and-the-traveller-was-at-the-platform",
+      contextSignature: "departed-train-and-war-state-retrieval",
+    },
+    {
+      setting: "regional-rail-platform-help-point",
+      participants: "passenger-and-platform-agent",
+      goal: "independently-report-the-completed-train-departure-and-the-past-platform-state",
+      contextSignature: "regional-platform-departure-check",
+    },
+  ],
+  [
+    {
+      setting: "disrupted-journey-phone-report",
+      participants: "traveller-and-family-member",
+      goal: "combine-a-completed-station-arrival-with-bounded-war-and-hatte-states",
+      contextSignature: "arrival-war-hatte-production",
+    },
+    {
+      setting: "rail-customer-service-call",
+      participants: "traveller-and-service-agent",
+      goal: "independently-report-arrival-and-common-past-states-without-broad-preterite",
+      contextSignature: "rail-service-arrival-state-check",
+    },
+  ],
+  [
+    {
+      setting: "station-delay-explanation",
+      participants: "traveller-and-station-agent",
+      goal: "express-unavoidable-past-waiting-with-one-selected-musste-frame",
+      contextSignature: "musste-warten-spoken-journey-frame",
+    },
+    {
+      setting: "coach-terminal-delay-desk",
+      participants: "coach-passenger-and-service-clerk",
+      goal: "independently-explain-unavoidable-past-waiting-with-musste-and-warten",
+      contextSignature: "coach-delay-modal-preterite-check",
+    },
+  ],
+  [
+    {
+      setting: "travel-report-quality-check",
+      participants: "trainee-and-travel-service-supervisor",
+      goal: "repair-one-false-haben-for-sein-auxiliary-and-one-spoken-register-overgeneralisation",
+      contextSignature: "auxiliary-class-and-register-dual-repair",
+    },
+    {
+      setting: "travel-help-line-spoken-report-review",
+      participants: "traveller-and-service-support-advisor",
+      goal: "independently-repair-both-the-auxiliary-class-and-register-errors",
+      contextSignature: "spoken-journey-report-dual-repair-check",
+    },
+  ],
+  [
+    {
+      setting: "airport-rail-connection-complaint",
+      participants: "traveller-and-airport-mobility-agent",
+      goal: "recount-airport-arrival-missing-train-unavoidable-taxi-and-paid-bill",
+      contextSignature: "airport-arrival-past-state-changed-transfer",
+    },
+    {
+      setting: "regional-airport-ground-transport-desk",
+      participants: "traveller-and-ground-transport-agent",
+      goal: "independently-recount-the-airport-arrival-past-state-unavoidable-taxi-and-paid-expense",
+      contextSignature: "regional-airport-final-transfer",
+    },
+  ],
+] as const;
+const L16_LEVELS = [
+  [5, 2],
+  [5, 2],
+  [4, 1],
+  [4, 1],
+  [3, 1],
+  [3, 1],
+  [2, 0],
+] as const;
+const L16_ANCHORS = [
+  "introduction",
+  "guided",
+  "retrieval",
+  "production",
+  null,
+  "transfer",
+  "delayed",
+].map((stage, index) =>
+  stage
+    ? [
+        {
+          constructId: index === 6 ? L16_ALLOWED[5] : L16_ALLOWED[0],
+          stage,
+          packetId: `de_l16_c${String(index + 1).padStart(2, "0")}_s${String(index * 8 + 1).padStart(2, "0")}`,
+        },
+        {
+          constructId: index === 6 ? L16_ALLOWED[3] : L16_ALLOWED[1],
+          stage,
+          packetId: `de_l16_c${String(index + 1).padStart(2, "0")}_s${String(index * 8 + 2).padStart(2, "0")}`,
+        },
+      ]
+    : [],
+);
+const L16_EVIDENCE = [3, 11, 19, 27, 35, 43]
+  .map((start, index) => [
+    `de_l16_c${String(index + 1).padStart(2, "0")}_s${String(start).padStart(2, "0")}`,
+    `de_l16_c${String(index + 1).padStart(2, "0")}_s${String(start + 1).padStart(2, "0")}`,
+  ])
+  .concat([
+    [
+      "de_l16_c07_s51",
+      "de_l16_c07_s52",
+      "de_l16_c07_s53",
+      "de_l16_c07_s54",
+      "de_l16_c07_s55",
+      "de_l16_c07_s56",
+    ],
+  ]);
+const L16_RECALL = [
+  [["de_l15_c06", "de_l15_c07"], ["de_l16_c02"]],
+  [["de_l15_c07", "de_l16_c01"], ["de_l16_c03"]],
+  [["de_l16_c01", "de_l16_c02"], ["de_l16_c04"]],
+  [["de_l16_c02", "de_l16_c03"], ["de_l16_c05"]],
+  [["de_l16_c03", "de_l16_c04"], ["de_l16_c06"]],
+  [["de_l16_c04", "de_l16_c05"], ["de_l16_c07"]],
+  [["de_l16_c05", "de_l16_c06"], ["de_l17_c01"]],
+] as const;
+const L16_OUTCOMES = [
+  "recognise verified sein-class completed-event frames",
+  "contrast verified haben and sein lexical classes",
+  "report a completed arrival or change with sein",
+  "use war or hatte for a common past state",
+  "use one selected modal Präteritum frame in a spoken account",
+  "repair an auxiliary-class or past-register overgeneralisation",
+  "transfer arrival and past-state reporting to a changed journey",
+] as const;
+const L16_LEXICAL = [
+  [
+    {
+      id: "de_lex_plan_l16_c01_ankommen_v1",
+      semanticIdentity:
+        "ankommen|arrive at one stated destination in a verified sein class",
+      lemmaOrExpression: "ankommen",
+      partOfSpeech: "verb",
+      lexicalKind: "VERB_LEXEME",
+      nounPackage: null,
+      verbPackage: {
+        infinitive: "ankommen",
+        valencyFrame:
+          "intransitive arrival frame with one explicit destination-location complement",
+        separability: "separable",
+        perfectAuxiliary: "sein",
+      },
+      senseGloss: "arrive at one stated destination in a verified sein class",
+      communicativeUse:
+        "use Ich bin am Bahnhof angekommen. to report the verified sein-class station arrival",
+      utilityRole: "action",
+      situationFacet: "goal",
+      facetValue: L16_SITUATIONS[0][1].goal,
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+    },
+    {
+      id: "de_lex_plan_l16_c01_bahnhof_v1",
+      semanticIdentity: "bahnhof|railway station as the stated arrival point",
+      lemmaOrExpression: "Bahnhof",
+      partOfSpeech: "noun",
+      lexicalKind: "NOUN_LEXEME",
+      nounPackage: {
+        article: "der",
+        singular: "Bahnhof",
+        plural: "Bahnhöfe",
+      },
+      nounPackageIdentity: "der|bahnhof|bahnhofe",
+      verbPackage: null,
+      senseGloss: "railway station as the stated arrival point",
+      communicativeUse:
+        "ground the stated arrival point in Ich bin am Bahnhof angekommen.",
+      utilityRole: "scene_grounding",
+      situationFacet: "setting",
+      facetValue: L16_SITUATIONS[0][1].setting,
+      necessityClass: "SCENE_UNGROUNDED",
+    },
+  ],
+  [
+    {
+      id: "de_lex_plan_l16_c02_hotel_v1",
+      semanticIdentity:
+        "hotel|lodging establishment as the completed arrival point",
+      lemmaOrExpression: "Hotel",
+      partOfSpeech: "noun",
+      lexicalKind: "NOUN_LEXEME",
+      nounPackage: { article: "das", singular: "Hotel", plural: "Hotels" },
+      nounPackageIdentity: "das|hotel|hotels",
+      verbPackage: null,
+      senseGloss: "lodging establishment as the completed arrival point",
+      communicativeUse: L16_MODELS[1],
+      utilityRole: "scene_grounding",
+      situationFacet: "setting",
+      facetValue: L16_SITUATIONS[1][1].setting,
+      necessityClass: "SCENE_UNGROUNDED",
+    },
+  ],
+  [
+    {
+      id: "de_lex_plan_l16_c03_abfahren_v1",
+      semanticIdentity:
+        "abfahren|depart from a stated rail context in a verified sein class",
+      lemmaOrExpression: "abfahren",
+      partOfSpeech: "verb",
+      lexicalKind: "VERB_LEXEME",
+      nounPackage: null,
+      verbPackage: {
+        infinitive: "abfahren",
+        valencyFrame:
+          "intransitive departure frame with an optional explicit origin or time complement",
+        separability: "separable",
+        perfectAuxiliary: "sein",
+      },
+      senseGloss: "depart from a stated rail context in a verified sein class",
+      communicativeUse: L16_MODELS[2],
+      utilityRole: "action",
+      situationFacet: "goal",
+      facetValue: L16_SITUATIONS[2][1].goal,
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+    },
+    {
+      id: "de_lex_plan_l16_c03_zug_v1",
+      semanticIdentity: "zug|train whose departure disrupts the journey",
+      lemmaOrExpression: "Zug",
+      partOfSpeech: "noun",
+      lexicalKind: "NOUN_LEXEME",
+      nounPackage: { article: "der", singular: "Zug", plural: "Züge" },
+      nounPackageIdentity: "der|zug|zuge",
+      verbPackage: null,
+      senseGloss: "train whose departure disrupts the journey",
+      communicativeUse: L16_MODELS[2],
+      utilityRole: "scene_grounding",
+      situationFacet: "setting",
+      facetValue: L16_SITUATIONS[2][1].setting,
+      necessityClass: "SCENE_UNGROUNDED",
+    },
+  ],
+  [
+    {
+      id: "de_lex_plan_l16_c04_voll_v1",
+      semanticIdentity:
+        "voll|full with no available capacity in the stated train",
+      lemmaOrExpression: "voll",
+      partOfSpeech: "adjective",
+      lexicalKind: "ADJECTIVE_LEXEME",
+      nounPackage: null,
+      verbPackage: null,
+      senseGloss: "full with no available capacity in the stated train",
+      communicativeUse: "Der Zug war voll.",
+      utilityRole: "quality",
+      situationFacet: "goal",
+      facetValue: L16_SITUATIONS[3][1].goal,
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+    },
+    {
+      id: "de_lex_plan_l16_c04_problem_v1",
+      semanticIdentity: "problem|difficulty affecting the disrupted journey",
+      lemmaOrExpression: "Problem",
+      partOfSpeech: "noun",
+      lexicalKind: "NOUN_LEXEME",
+      nounPackage: {
+        article: "das",
+        singular: "Problem",
+        plural: "Probleme",
+      },
+      nounPackageIdentity: "das|problem|probleme",
+      verbPackage: null,
+      senseGloss: "difficulty affecting the disrupted journey",
+      communicativeUse: "Ich hatte ein Problem.",
+      utilityRole: "scene_grounding",
+      situationFacet: "setting",
+      facetValue: L16_SITUATIONS[3][1].setting,
+      necessityClass: "SCENE_UNGROUNDED",
+    },
+  ],
+  [
+    {
+      id: "de_lex_plan_l16_c05_mussen_v1",
+      semanticIdentity:
+        "mussen|express unavoidable necessity in one spoken past journey frame",
+      lemmaOrExpression: "müssen",
+      partOfSpeech: "verb",
+      lexicalKind: "VERB_LEXEME",
+      nounPackage: null,
+      verbPackage: {
+        infinitive: "müssen",
+        valencyFrame:
+          "finite selected modal Präteritum necessity frame plus a bare infinitive right bracket",
+        separability: "not_applicable",
+        perfectAuxiliary: "not_applicable",
+      },
+      senseGloss:
+        "express unavoidable necessity in one spoken past journey frame",
+      communicativeUse: L16_MODELS[4],
+      utilityRole: "action",
+      situationFacet: "goal",
+      facetValue: L16_SITUATIONS[4][1].goal,
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+    },
+    {
+      id: "de_lex_plan_l16_c05_warten_v1",
+      semanticIdentity:
+        "warten|wait at a stated place during a journey disruption",
+      lemmaOrExpression: "warten",
+      partOfSpeech: "verb",
+      lexicalKind: "VERB_LEXEME",
+      nounPackage: null,
+      verbPackage: {
+        infinitive: "warten",
+        valencyFrame:
+          "intransitive waiting frame with an optional explicit location complement",
+        separability: "inseparable",
+        perfectAuxiliary: "haben",
+      },
+      senseGloss: "wait at a stated place during a journey disruption",
+      communicativeUse: L16_MODELS[4],
+      utilityRole: "action",
+      situationFacet: "goal",
+      facetValue: L16_SITUATIONS[4][1].goal,
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+    },
+  ],
+  [
+    {
+      id: "de_lex_plan_l16_c06_machen_v1",
+      semanticIdentity: "machen|carry out one specified everyday activity",
+      lemmaOrExpression: "machen",
+      partOfSpeech: "verb",
+      lexicalKind: "VERB_LEXEME",
+      nounPackage: null,
+      verbPackage: {
+        infinitive: "machen",
+        valencyFrame:
+          "transitive activity frame selecting one explicit accusative activity noun",
+        separability: "inseparable",
+        perfectAuxiliary: "haben",
+      },
+      senseGloss: "carry out one specified everyday activity",
+      communicativeUse: "Ich machte eine Pause. → Ich habe eine Pause gemacht.",
+      utilityRole: "repair",
+      situationFacet: "goal",
+      facetValue: L16_SITUATIONS[5][1].goal,
+      necessityClass: "REPAIR_UNAVAILABLE",
+    },
+    {
+      id: "de_lex_plan_l16_c06_pause_v1",
+      semanticIdentity: "pause|short break during a journey",
+      lemmaOrExpression: "Pause",
+      partOfSpeech: "noun",
+      lexicalKind: "NOUN_LEXEME",
+      nounPackage: { article: "die", singular: "Pause", plural: "Pausen" },
+      nounPackageIdentity: "die|pause|pausen",
+      verbPackage: null,
+      senseGloss: "short break during a journey",
+      communicativeUse: "Ich machte eine Pause. → Ich habe eine Pause gemacht.",
+      utilityRole: "repair",
+      situationFacet: "goal",
+      facetValue: L16_SITUATIONS[5][1].goal,
+      necessityClass: "REPAIR_UNAVAILABLE",
+    },
+  ],
+  [
+    {
+      id: "de_lex_plan_l16_c07_flughafen_v1",
+      semanticIdentity: "flughafen|airport as the changed arrival point",
+      lemmaOrExpression: "Flughafen",
+      partOfSpeech: "noun",
+      lexicalKind: "NOUN_LEXEME",
+      nounPackage: {
+        article: "der",
+        singular: "Flughafen",
+        plural: "Flughäfen",
+      },
+      nounPackageIdentity: "der|flughafen|flughafen",
+      verbPackage: null,
+      senseGloss: "airport as the changed arrival point",
+      communicativeUse: "Ich bin am Flughafen angekommen.",
+      utilityRole: "scene_grounding",
+      situationFacet: "setting",
+      facetValue: L16_SITUATIONS[6][1].setting,
+      necessityClass: "SCENE_UNGROUNDED",
+    },
+    {
+      id: "de_lex_plan_l16_c07_weg_v1",
+      semanticIdentity: "weg|no longer present at the expected departure point",
+      lemmaOrExpression: "weg",
+      partOfSpeech: "adverb",
+      lexicalKind: "ADVERB_LEXEME",
+      nounPackage: null,
+      verbPackage: null,
+      senseGloss: "no longer present at the expected departure point",
+      communicativeUse: "Der Zug war weg.",
+      utilityRole: "quality",
+      situationFacet: "goal",
+      facetValue: L16_SITUATIONS[6][1].goal,
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+    },
+    {
+      id: "de_lex_plan_l16_c07_taxi_v1",
+      semanticIdentity: "taxi|hired car used after the missed connection",
+      lemmaOrExpression: "Taxi",
+      partOfSpeech: "noun",
+      lexicalKind: "NOUN_LEXEME",
+      nounPackage: { article: "das", singular: "Taxi", plural: "Taxis" },
+      nounPackageIdentity: "das|taxi|taxis",
+      verbPackage: null,
+      senseGloss: "hired car used after the missed connection",
+      communicativeUse: "Ich musste ein Taxi nehmen.",
+      utilityRole: "scene_grounding",
+      situationFacet: "setting",
+      facetValue: L16_SITUATIONS[6][1].setting,
+      necessityClass: "SCENE_UNGROUNDED",
+    },
+    {
+      id: "de_lex_plan_l16_c07_nehmen_v1",
+      semanticIdentity: "nehmen|take one specified transport option",
+      lemmaOrExpression: "nehmen",
+      partOfSpeech: "verb",
+      lexicalKind: "VERB_LEXEME",
+      nounPackage: null,
+      verbPackage: {
+        infinitive: "nehmen",
+        valencyFrame:
+          "transitive transport-choice frame selecting one explicit accusative transport option",
+        separability: "inseparable",
+        perfectAuxiliary: "haben",
+      },
+      senseGloss: "take one specified transport option",
+      communicativeUse: "Ich musste ein Taxi nehmen.",
+      utilityRole: "transfer",
+      situationFacet: "goal",
+      facetValue: L16_SITUATIONS[6][1].goal,
+      necessityClass: "TRANSFER_UNAVAILABLE",
+    },
+  ],
+] as const;
+function l16ExpectedSense(index: number, spec: R): unknown {
+  const ch = String(index + 1).padStart(2, "0"),
+    packet = `de_l16_c${ch}_s${String((index + 1) * 8).padStart(2, "0")}`,
+    integrated = index === 6 ? L16_FINAL : L16_ALLOWED;
+  const { utilityRole, situationFacet, facetValue, necessityClass, ...sense } =
+    spec;
+  return {
+    ...sense,
+    lemmaStatus: "FIRST_MEANING",
+    contrastsWithSenseId: null,
+    contrastEvidence: null,
+    chapterOutcomeId: `de_l16_ch${ch}`,
+    utilityProof: {
+      chapterOutcomeId: `de_l16_ch${ch}`,
+      checkpointPacketId: packet,
+      integratedConstructIds: integrated,
+      utilityRole,
+      situationFacet,
+      facetValue,
+      necessityClass,
+      plannedUsePacketIds: [packet],
+    },
+  };
+}
+function validateL16SemanticContract(raw: R, plan: Boundary): void {
+  const l16 = (raw.lessons as R[]).find((x) => x.lessonId === "de_l16");
+  if (!l16) throw new Error("l16_semantic_contract_invalid:sets");
+  const chapters = l16.chapters as R[],
+    boundary = l16.grammarBoundary as R;
+  if (boundary.noExpansion !== L16_NO_EXPANSION)
+    throw new Error("l16_semantic_contract_invalid:no_expansion");
+  if (
+    JSON.stringify(plan.introducedConstructIds) !==
+      JSON.stringify(L16_ALLOWED.slice(0, 2)) ||
+    JSON.stringify(plan.extendedConstructIds) !==
+      JSON.stringify(L16_ALLOWED.slice(2, 5)) ||
+    JSON.stringify(plan.reviewedConstructIds) !==
+      JSON.stringify(L16_ALLOWED.slice(5)) ||
+    JSON.stringify(plan.prohibitedConstructIds) !==
+      JSON.stringify(L16_PROHIBITED) ||
+    JSON.stringify(boundary.allowedConstructIds) !==
+      JSON.stringify(L16_ALLOWED) ||
+    JSON.stringify(boundary.prohibitedConstructIds) !==
+      JSON.stringify(L16_PROHIBITED) ||
+    JSON.stringify((plan.session56Final as R).requiredConstructIds) !==
+      JSON.stringify(L16_FINAL) ||
+    chapters.length !== 7
+  )
+    throw new Error("l16_semantic_contract_invalid:sets");
+  const incoming = [51, 52, 53, 54, 55, 56, 55].map((n) => `de_l16_c07_s${n}`),
+    l15 = (raw.lessons as R[]).find((x) => x.lessonId === "de_l15") as R;
+  if (
+    !l15 ||
+    JSON.stringify(
+      (l15.chapters as R[]).map(
+        (c) => ((c.recallSchedule as R).futureDelayedProbe as R).packetId,
+      ),
+    ) !== JSON.stringify(incoming)
+  )
+    throw new Error("l15_l16_inverse_provenance_invalid");
+  const c05 = chapters[4].supportFading as R,
+    c06 = chapters[5].supportFading as R,
+    c07 = chapters[6].supportFading as R;
+  if (c05.entry !== L16_MODELS[4] || c05.exit !== L16_MODELS[4])
+    throw new Error("l16_c05_modal_preterite_contract_invalid");
+  if (
+    c06.entry !== L16_MODELS[5] ||
+    c06.exit !== L16_MODELS[5] ||
+    (String(c06.entry).match(/→/gu) ?? []).length !== 2
+  )
+    throw new Error("l16_c06_repair_items");
+  if (c07.entry !== L16_MODELS[6] || c07.exit !== L16_MODELS[6])
+    throw new Error("l16_c07_final_transfer");
+  const auxiliarySurface = `${chapters[0].supportFading.entry} ${chapters[2].supportFading.entry}`;
+  if (
+    !auxiliarySurface.includes("bin am Bahnhof angekommen") ||
+    !auxiliarySurface.includes("Zug ist abgefahren") ||
+    /movement equals sein|all movement verbs/iu.test(JSON.stringify(l16))
+  )
+    throw new Error("l16_auxiliary_class_contract_invalid");
+  if (
+    !String(chapters[3].supportFading.entry).includes("war voll") ||
+    !String(chapters[3].supportFading.entry).includes("hatte ein Problem") ||
+    !String(chapters[5].supportFading.entry).includes(
+      "Ich machte eine Pause. → Ich habe eine Pause gemacht.",
+    )
+  )
+    throw new Error("l16_preterite_island_contract_invalid");
+  const surface = JSON.stringify(l16)
+    .replaceAll(L16_NO_EXPANSION, "")
+    .replaceAll(L16_MODELS[5], "");
+  if (
+    /productive sein-class guessing|broad Präteritum paradigm|narrative tense system|modal Perfekt|Ersatzinfinitiv|future reference|introduced subordinate clause|connector topology|passive|L17 grammar/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l16_future_grammar_leak");
+  const ids = new Set<string>(),
+    semantics = new Set<string>();
+  chapters.forEach((chapter, index) => {
+    const cp = chapter.checkpoint as R,
+      recall = chapter.recallSchedule as R,
+      support = chapter.supportFading as R,
+      allowed = index === 6 ? L16_FINAL : L16_ALLOWED;
+    if (
+      JSON.stringify(chapter.allowedConstructIds) !== JSON.stringify(allowed) ||
+      JSON.stringify(cp.integratedConstructIds) !== JSON.stringify(allowed) ||
+      JSON.stringify(chapter.prohibitedConstructIds) !==
+        JSON.stringify(L16_PROHIBITED)
+    )
+      throw new Error("l16_semantic_contract_invalid:sets");
+    if (
+      JSON.stringify(chapter.lifecycleAnchors) !==
+      JSON.stringify(L16_ANCHORS[index])
+    )
+      throw new Error("l16_semantic_contract_invalid:anchors");
+    if (
+      JSON.stringify([chapter.situation, cp.newSituation]) !==
+      JSON.stringify(L16_SITUATIONS[index])
+    )
+      throw new Error("l16_semantic_contract_invalid:situations");
+    if (
+      support.entryLevel !== L16_LEVELS[index][0] ||
+      support.exitLevel !== L16_LEVELS[index][1] ||
+      support.entry !== L16_MODELS[index] ||
+      support.exit !== L16_MODELS[index] ||
+      support.independentEvidenceByPacketId !==
+        `de_l16_c${String(index + 1).padStart(2, "0")}_s${String((index + 1) * 8).padStart(2, "0")}`
+    )
+      throw new Error("l16_semantic_contract_invalid:support_fading");
+    if (
+      JSON.stringify(chapter.chapterEvidencePacketIds) !==
+      JSON.stringify(L16_EVIDENCE[index])
+    )
+      throw new Error("l16_semantic_contract_invalid:evidence");
+    if (
+      JSON.stringify([
+        recall.retrievesFromChapterIds,
+        recall.targetsFutureChapterIds,
+      ]) !== JSON.stringify(L16_RECALL[index]) ||
+      (recall.futureDelayedProbe as R).packetId !==
+        `de_l17_c07_s${[51, 52, 53, 54, 55, 56, 55][index]}`
+    )
+      throw new Error("l16_recall_contract_invalid");
+    const senses = cp.plannedNewLexicalSenses as R[];
+    senses.forEach((sense) => {
+      if (
+        ids.has(String(sense.id)) ||
+        semantics.has(String(sense.semanticIdentity))
+      )
+        throw new Error("l16_lexical_ownership_invalid");
+      ids.add(String(sense.id));
+      semantics.add(String(sense.semanticIdentity));
+    });
+    if (
+      JSON.stringify(senses) !==
+      JSON.stringify(
+        L16_LEXICAL[index].map((sense) => l16ExpectedSense(index, sense as R)),
+      )
+    )
+      throw new Error("l16_semantic_contract_invalid:lexical_packages");
+    if (chapter.lessonOutcome !== L16_OUTCOMES[index])
+      throw new Error("l16_semantic_contract_invalid:sets");
+  });
+}
+
 function validate(raw: unknown): {
   lessons: number;
   chapters: number;
@@ -4352,6 +5018,12 @@ function validate(raw: unknown): {
     (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l15")
   )
     validateL15SemanticContract(raw, l15Plan);
+  const l16Plan = source.get("de_l16");
+  if (
+    l16Plan &&
+    (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l16")
+  )
+    validateL16SemanticContract(raw, l16Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -5017,6 +5689,38 @@ function expectL15PlanExact(mut: (plan: R) => void, message: string): void {
   let thrown: unknown;
   try {
     validateL15SemanticContract(raw, plan as Boundary);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+function expectL16Exact(mut: (raw: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: Boundary[] };
+  const plan = lessonRegistry.lessons.find(
+    (lesson) => lesson.id === "de_l16",
+  ) as Boundary;
+  mut(raw);
+  let thrown: unknown;
+  try {
+    validateL16SemanticContract(raw, plan);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+function expectL16PlanExact(mut: (plan: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: R[] };
+  const plan = clone(
+    lessonRegistry.lessons.find((lesson) => lesson.id === "de_l16") as R,
+  );
+  mut(plan);
+  let thrown: unknown;
+  try {
+    validateL16SemanticContract(raw, plan as Boundary);
   } catch (error) {
     thrown = error;
   }
@@ -7033,6 +7737,114 @@ function fixtures(): void {
     )
       throw new Error("scope_violation_l15_only");
   }, /scope_violation_l15_only/u);
+
+  const l16 = (raw: R) =>
+    (raw.lessons as R[]).find((lesson) => lesson.lessonId === "de_l16") as R;
+  expectL16PlanExact((plan) => {
+    (plan.introducedConstructIds as string[]).reverse();
+  }, "l16_semantic_contract_invalid:sets");
+  expectL16Exact((raw) => {
+    (l16(raw).grammarBoundary as R).noExpansion =
+      "Teach all movement verbs with sein.";
+  }, "l16_semantic_contract_invalid:no_expansion");
+  expectL16Exact((raw) => {
+    (l16(raw).chapters as R[])[0].lifecycleAnchors = [];
+  }, "l16_semantic_contract_invalid:anchors");
+  expectL16Exact((raw) => {
+    ((l16(raw).chapters as R[])[1].checkpoint as R).newSituation =
+      L16_SITUATIONS[0][1];
+  }, "l16_semantic_contract_invalid:situations");
+  expectL16Exact((raw) => {
+    const situation = ((l16(raw).chapters as R[])[5].checkpoint as R)
+      .newSituation as R;
+    situation.setting = "journey-complaint-draft-review";
+    situation.contextSignature = "journey-complaint-dual-repair-check";
+  }, "l16_semantic_contract_invalid:situations");
+  expectL16Exact((raw) => {
+    ((l16(raw).chapters as R[])[0].supportFading as R).exit =
+      "Ich bin angekommen.";
+  }, "l16_semantic_contract_invalid:support_fading");
+  expectL16Exact((raw) => {
+    ((l16(raw).chapters as R[])[2].chapterEvidencePacketIds as string[]).pop();
+  }, "l16_semantic_contract_invalid:evidence");
+  expectL16Exact((raw) => {
+    (
+      (l16(raw).chapters as R[])[3].recallSchedule as R
+    ).targetsFutureChapterIds = ["de_l16_c07"];
+  }, "l16_recall_contract_invalid");
+  expectL16Exact((raw) => {
+    const l15 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l15",
+    ) as R;
+    (
+      ((l15.chapters as R[])[0].recallSchedule as R).futureDelayedProbe as R
+    ).packetId = "de_l16_c07_s52";
+  }, "l15_l16_inverse_provenance_invalid");
+  expectL16Exact((raw) => {
+    const sense = (
+      ((l16(raw).chapters as R[])[0].checkpoint as R)
+        .plannedNewLexicalSenses as R[]
+    )[0];
+    (sense.verbPackage as R).perfectAuxiliary = "haben";
+  }, "l16_semantic_contract_invalid:lexical_packages");
+  expectL16Exact((raw) => {
+    const chapters = l16(raw).chapters as R[],
+      first = ((chapters[0].checkpoint as R).plannedNewLexicalSenses as R[])[0],
+      second = (
+        (chapters[1].checkpoint as R).plannedNewLexicalSenses as R[]
+      )[0];
+    second.id = first.id;
+    second.semanticIdentity = first.semanticIdentity;
+  }, "l16_lexical_ownership_invalid");
+  expectL16Exact((raw) => {
+    ((l16(raw).chapters as R[])[0].supportFading as R).entry =
+      "Ich habe am Bahnhof angekommen. Der Bahnhof war offen.";
+  }, "l16_auxiliary_class_contract_invalid");
+  expectL16Exact((raw) => {
+    ((l16(raw).chapters as R[])[3].supportFading as R).entry =
+      "Ich bin am Bahnhof angekommen. Der Zug war voll.";
+  }, "l16_preterite_island_contract_invalid");
+  expectL16Exact((raw) => {
+    ((l16(raw).chapters as R[])[4].supportFading as R).entry =
+      "Ich sollte am Bahnhof warten.";
+  }, "l16_c05_modal_preterite_contract_invalid");
+  expectL16Exact((raw) => {
+    ((l16(raw).chapters as R[])[5].supportFading as R).entry =
+      "Ich machte eine Pause. → Ich habe eine Pause gemacht.";
+  }, "l16_c06_repair_items");
+  expectL16Exact((raw) => {
+    ((l16(raw).chapters as R[])[6].supportFading as R).entry =
+      "Ich bin am Flughafen angekommen. Der Zug war weg.";
+  }, "l16_c07_final_transfer");
+  expectL16Exact((raw) => {
+    l16(raw).futureLeakProbe = "Teach future reference and L17 grammar.";
+  }, "l16_future_grammar_leak");
+  expect((raw) => {
+    const packetIds = (l16(raw).chapters as R[])[0].packetIds as string[];
+    [packetIds[0], packetIds[1]] = [packetIds[1], packetIds[0]];
+  }, /packet_identity_invalid/u);
+  const prematureL16 = clone(json(FILE)) as R;
+  assert.throws(() => {
+    const result = validate(prematureL16);
+    if (
+      result.buildStatus !== "COMPLETE_TASK5" ||
+      result.lessons !== 32 ||
+      result.chapters !== 224
+    )
+      throw new Error(
+        `full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;${result.lessons}/32 lessons;${result.chapters}/224 chapters`,
+      );
+  }, /full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;16\/32 lessons;112\/224 chapters/u);
+  const l16ScopeMutation = clone(json(FILE)) as R;
+  (l16ScopeMutation.lessons as R[]).push({ lessonId: "de_l17" });
+  assert.throws(() => {
+    if (
+      (l16ScopeMutation.lessons as R[]).some(
+        (lesson) => lesson.lessonId === "de_l17",
+      )
+    )
+      throw new Error("scope_violation_l16_only");
+  }, /scope_violation_l16_only/u);
 
   const l2Boundary: Boundary = {
     id: "de_l02",

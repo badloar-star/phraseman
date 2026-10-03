@@ -1064,6 +1064,28 @@ describe('Jarvis data contract — silence must never replace a broken source', 
   });
 });
 
+// зачем (8S-LOW1, 03.10): coin_reconcile_receipts/{opId} — служебная серверная метка «Spin-дорожка
+// уже проведена сверкой монет» (coin_reconcile_v1.ts), чтобы приз не засчитался дважды после
+// перепривязки скрытого аккаунта. Это не бизнес-метрика: Джарвис её намеренно НЕ читает, клиенту
+// она закрыта корневым catch-all deny в firestore.rules.
+describe('coin reconcile global receipts Jarvis impact', () => {
+  test('keeps the server-only reconcile mark intentionally unread by Jarvis and closed to clients', () => {
+    const writer = fs.readFileSync(path.join(functionsSrc, 'coin_reconcile_v1.ts'), 'utf8');
+    expect(writer).toContain("COIN_RECONCILE_RECEIPTS_COLLECTION = 'coin_reconcile_receipts'");
+
+    const jarvisDir = path.join(functionsSrc, 'jarvis');
+    const readers = fs.readdirSync(jarvisDir)
+      .filter((file) => file.endsWith('.ts') && !file.includes('.test.'))
+      .map((file) => fs.readFileSync(path.join(jarvisDir, file), 'utf8'))
+      .join('\n');
+    expect(readers).not.toContain('coin_reconcile_receipts');
+
+    const rules = fs.readFileSync(path.join(functionsSrc, '..', '..', 'firestore.rules'), 'utf8');
+    expect(rules).not.toMatch(/match \/coin_reconcile_receipts\/\{[^}]+\}\s*\{[^}]*allow (read|write|create|update|get|list)[^;]*if (?!false)/u);
+    expect(rules).toMatch(/match \/\{document=\*\*\} \{\s*allow read, write: if false;\s*\}\s*\}\s*\}\s*$/u);
+  });
+});
+
 describe('retired level reward spin Jarvis impact', () => {
   test('keeps retired level-spin writer modules out of the Functions source tree', () => {
     expect(fs.existsSync(path.join(functionsSrc, 'level_reward_spins.ts'))).toBe(false);

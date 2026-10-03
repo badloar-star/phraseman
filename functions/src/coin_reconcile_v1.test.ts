@@ -26,6 +26,8 @@ function makeDb(seed: Record<string, Record<string, unknown>> = {}, opts: { igno
   if (!docs.has(`users/${UID}`)) docs.set(`users/${UID}`, {});
   let commits = 0;
   const queries: string[] = [];
+  // 8S-LOW1: пути каждого вызова getAll — сторож «метки читаются одним getAll вместе с расписками».
+  const getAlls: string[][] = [];
   const ref = (path: string): any => ({
     id: path.split('/').pop(),
     path,
@@ -63,7 +65,10 @@ function makeDb(seed: Record<string, Record<string, unknown>> = {}, opts: { igno
           }
           return snap(target);
         },
-        getAll: async (...refs: any[]) => refs.map((r) => snap(r)),
+        getAll: async (...refs: any[]) => {
+          getAlls.push(refs.map((r) => r.path));
+          return refs.map((r) => snap(r));
+        },
         set: (r: any, data: Record<string, unknown>, opts?: { merge?: boolean }) => {
           pending.push(() => docs.set(r.path, opts?.merge ? { ...(docs.get(r.path) ?? {}), ...data } : data));
         },
@@ -80,7 +85,7 @@ function makeDb(seed: Record<string, Record<string, unknown>> = {}, opts: { igno
       return result;
     },
   };
-  return { db, docs, commits: () => commits, queries };
+  return { db, docs, commits: () => commits, queries, getAlls };
 }
 
 const run = (world: ReturnType<typeof makeDb>, clientVisibleBalance: number | null = null, nowMs = NOW) => (
@@ -430,4 +435,101 @@ test('8S review: results exactly at the scan limit (truncated) → review, nothi
   expect(await run(world)).toMatchObject({ status: 'over_cap_review', raisedBy: 0 });
   expect((world.docs.get(`users/${UID}`) as Record<string, any>)[COIN_RECONCILE_V1_FIELD])
     .toMatchObject({ reviewReason: 'results_truncated' });
+});
+
+// ── Пакет 8S-LOW1 (координатор 03.10): общая метка coin_reconcile_receipts/{opId} ──
+// Скрытый A может быть перепривязан от победителя B к победителю C (auth_identity.ts,
+// cleanupSiblingStableIdentityDuplicates). Расписка сверки B лежит в книге B, которую сверка C
+// не видит, — без общей метки по opId те же призы A засчитались бы второй раз.
+
+const runAs = (world: ReturnType<typeof makeDb>, stableUid: string) => (
+  runCoinReconcileV1(world.db, { authUid: `auth-${stableUid}`, stableUid, nowMs: NOW, clientVisibleBalance: null })
+);
+const GLOBAL = 'coin_reconcile_receipts';
+
+test('8S-LOW1: B reconciled A, then A is re-linked to C → C does not raise the same prizes again', async () => {
+  const world = makeDb({
+    'users/account-winner-b': {},
+    'users/account-winner-c': {},
+    'users/account-hidden-a': hiddenInto('account-winner-b'),
+    'users/account-hidden-a/level_spin_results/requestRELINKAAAAA01': spinResult('requestRELINKAAAAA01', {
+      base: { state: 'delivered', selectedGiftId: 'stars_500' },
+      premium: { state: 'delivered', selectedGiftId: 'stars_100' },
+    }),
+  });
+  expect(await runAs(world, 'account-winner-b')).toMatchObject({ status: 'raised', raisedBy: 600 });
+  // Перепривязка A к другому победителю (книга B сверке C не видна).
+  world.docs.set('users/account-hidden-a', hiddenInto('account-winner-c'));
+  expect(await runAs(world, 'account-winner-c')).toMatchObject({ status: 'nothing_to_raise', raisedBy: 0, starsBalance: 0 });
+  expect(world.docs.has('users/account-winner-c/star_operations/level_spin:requestRELINKAAAAA01.base')).toBe(false);
+  expect((world.docs.get('users/account-winner-c') as Record<string, any>)[COIN_RECONCILE_V1_FIELD])
+    .toMatchObject({ status: 'nothing_to_raise', mergedLoserCount: 1 });
+  const lines = (console.log as jest.Mock).mock.calls.map((call) => String(call[0]));
+  expect(lines.some((line) => line.includes('reason=global_receipt'))).toBe(true);
+  expect(lines.join('\n')).not.toContain('account-winner-c');
+});
+
+test('8S-LOW1: a raise writes a global mark per lane in the same transaction', async () => {
+  const world = makeDb({
+    [`users/${UID}/level_spin_results/requestMARKAAAAAAAA01`]: spinResult('requestMARKAAAAAAAA01', {
+      base: { state: 'delivered', selectedGiftId: 'stars_250' },
+    }),
+  });
+  expect(await run(world)).toMatchObject({ status: 'raised', raisedBy: 250 });
+  expect(world.commits()).toBe(1);
+  expect(world.docs.get(`${GLOBAL}/level_spin:requestMARKAAAAAAAA01.base`)).toMatchObject({
+    opId: 'level_spin:requestMARKAAAAAAAA01.base', stableUid: UID, amount: 250, sourceKind: 'coin_reconcile_v1',
+  });
+});
+
+test('8S-LOW1: an existing mark is respected and never re-created; a repeat writes no new marks', async () => {
+  const world = makeDb({
+    [`users/${UID}/level_spin_results/requestMARKBBBBBBBB01`]: spinResult('requestMARKBBBBBBBB01', {
+      base: { state: 'delivered', selectedGiftId: 'stars_1000' },
+      premium: { state: 'delivered', selectedGiftId: 'stars_20' },
+    }),
+    // base уже провёл другой победитель (его книга не в семье).
+    [`${GLOBAL}/level_spin:requestMARKBBBBBBBB01.base`]: { opId: 'level_spin:requestMARKBBBBBBBB01.base', stableUid: 'someone-else' },
+  });
+  expect(await run(world)).toMatchObject({ status: 'raised', raisedBy: 20, operationIds: ['level_spin:requestMARKBBBBBBBB01.premium'] });
+  expect(world.docs.get(`${GLOBAL}/level_spin:requestMARKBBBBBBBB01.base`)).toMatchObject({ stableUid: 'someone-else' });
+  const marksAfterFirst = [...world.docs.keys()].filter((key) => key.startsWith(`${GLOBAL}/`)).sort();
+  expect(marksAfterFirst).toHaveLength(2);
+  const commitsAfterFirst = world.commits();
+  expect(await run(world)).toMatchObject({ status: 'replayed', raisedBy: 20 });
+  expect(world.commits()).toBe(commitsAfterFirst);
+  expect([...world.docs.keys()].filter((key) => key.startsWith(`${GLOBAL}/`)).sort()).toEqual(marksAfterFirst);
+});
+
+test('8S-LOW1: marks are read in the same single getAll as family receipts (no reads in a loop)', async () => {
+  const world = makeDb({
+    [`users/${LOSER}`]: hiddenInto(UID),
+    [`users/${LOSER}/level_spin_results/requestMARKCCCCCCCC01`]: spinResult('requestMARKCCCCCCCC01', {
+      base: { state: 'delivered', selectedGiftId: 'stars_10' }, premium: { state: 'delivered', selectedGiftId: 'stars_10' },
+    }),
+  });
+  await run(world);
+  const receiptCalls = world.getAlls.filter((paths) => paths.some((p) => p.startsWith(`${GLOBAL}/`)));
+  expect(receiptCalls).toHaveLength(1);
+  // 2 дорожки × (2 книги семьи + 1 метка) = 6 ссылок одним вызовом.
+  expect(receiptCalls[0]).toHaveLength(6);
+  expect(receiptCalls[0].filter((p) => p.includes('/star_operations/'))).toHaveLength(4);
+});
+
+test('8S-LOW1: the receipt budget counts the extra mark read per lane', async () => {
+  // 999 дорожек × 2 источника = 1998 ≤ 2000 (прежний счёт прошёл бы), × 3 с меткой = 2997 > 2000.
+  const seed: Record<string, Record<string, unknown>> = {
+    [`users/${LOSER}`]: hiddenInto(UID),
+    [`users/${LOSER}/level_spin_results/requestLOSERBUDG0001`]: spinResult('requestLOSERBUDG0001', { base: { state: 'delivered', selectedGiftId: 'stars_10' } }),
+  };
+  for (let i = 0; i < COIN_RECONCILE_V1_LIMITS.maxResultsScanned - 1; i += 1) {
+    const id = `requestBUDGETLW${String(i).padStart(6, '0')}`;
+    seed[`users/${UID}/level_spin_results/${id}`] = spinResult(id, {
+      base: { state: 'delivered', selectedGiftId: 'stars_10' }, premium: { state: 'delivered', selectedGiftId: 'stars_10' },
+    });
+  }
+  const world = makeDb(seed);
+  expect(await run(world)).toMatchObject({ status: 'over_cap_review', raisedBy: 0 });
+  expect((world.docs.get(`users/${UID}`) as Record<string, any>)[COIN_RECONCILE_V1_FIELD])
+    .toMatchObject({ reviewReason: 'receipt_budget' });
 });

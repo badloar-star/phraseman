@@ -46,6 +46,15 @@ const LOG = '[COIN-RECONCILE]';
 
 export const COIN_RECONCILE_V1_FIELD = 'coinReconcileV1' as const;
 export const COIN_RECONCILE_V1_SOURCE_KIND = 'coin_reconcile_v1' as const;
+/**
+ * 8S-LOW1 (координатор 03.10): общая метка «дорожка проведена сверкой» по opId, ВНЕ книги
+ * конкретного аккаунта. Зачем: скрытый аккаунт A может быть перепривязан от победителя B к
+ * победителю C (auth_identity.ts, cleanupSiblingStableIdentityDuplicates перезаписывает
+ * canonicalStableId). Расписка сверки B лежит в книге B, которую сверка C не видит, — без
+ * общей метки те же призы засчитались бы второй раз. opId = level_spin:<requestId>.<lane>
+ * глобально уникален. Коллекция только серверная (корневой catch-all deny в firestore.rules).
+ */
+export const COIN_RECONCILE_RECEIPTS_COLLECTION = 'coin_reconcile_receipts' as const;
 
 /**
  * Номиналы монет в спинах уровня (зеркало прежнего каталога спинов и
@@ -86,8 +95,8 @@ export const COIN_RECONCILE_V1_LIMITS = Object.freeze({
   /** 8S: глубина цепочки «A скрыт в B, B скрыт в победителе». */
   maxMergeDepth: 3,
   /**
-   * 8S: потолок чтений расписок (дорожки × книги семьи). Выше — review, а не
-   * гигантская транзакция.
+   * 8S: потолок чтений расписок (дорожки × (книги семьи + 1 общая метка, 8S-LOW1)).
+   * Выше — review, а не гигантская транзакция.
    */
   maxReceiptReads: 2_000,
 });
@@ -408,21 +417,33 @@ export async function runCoinReconcileV1(
       });
       // Дорожка «проведена», если расписка под её opId есть в книге ЛЮБОГО
       // аккаунта семьи: на самом проигравшем (старый levelSpinStarGrant) или там,
-      // куда её уже провела сверка. Без проигравших — ровно прежние чтения.
-      const receiptReads = lanes.length * sources.length;
+      // куда её уже провела сверка, — ИЛИ есть общая метка coin_reconcile_receipts/{opId}
+      // (8S-LOW1: её провёл другой победитель, от которого аккаунт потом перепривязали).
+      const refsPerLane = sources.length + 1;
+      const receiptReads = lanes.length * refsPerLane;
       if (reviewReason !== null) {
         log(`receipts skipped reason=${reviewReason}`);
       } else if (receiptReads > COIN_RECONCILE_V1_LIMITS.maxReceiptReads) {
         reviewReason = 'receipt_budget';
         console.warn(`${LOG} review reason=receipt_budget uid=${stableUid.slice(0, 8)} lanes=${lanes.length} sources=${sources.length} receiptReads=${receiptReads} max=${COIN_RECONCILE_V1_LIMITS.maxReceiptReads}`);
       } else if (lanes.length > 0) {
-        // Одним getAll за раз (один круг до базы), не чтение в цикле.
-        const receiptSnaps = await tx.getAll(...lanes.flatMap((lane) => sources.map((source) => (
-          db.collection('users').doc(source).collection(STAR_OPERATIONS_COLLECTION).doc(lane.operationId)
-        ))));
-        missing = lanes.filter((_lane, index) => !receiptSnaps
-          .slice(index * sources.length, (index + 1) * sources.length)
-          .some((snap) => snap?.exists));
+        // Одним getAll за раз (один круг до базы), не чтение в цикле: книги семьи + общая метка.
+        const receiptSnaps = await tx.getAll(...lanes.flatMap((lane) => [
+          ...sources.map((source) => (
+            db.collection('users').doc(source).collection(STAR_OPERATIONS_COLLECTION).doc(lane.operationId)
+          )),
+          db.collection(COIN_RECONCILE_RECEIPTS_COLLECTION).doc(lane.operationId),
+        ]));
+        missing = lanes.filter((lane, index) => {
+          const laneSnaps = receiptSnaps.slice(index * refsPerLane, (index + 1) * refsPerLane);
+          if (laneSnaps.slice(0, sources.length).some((snap) => snap?.exists)) return false;
+          if (laneSnaps[sources.length]?.exists) {
+            const markedBy = String(laneSnaps[sources.length]?.data()?.stableUid ?? '').slice(0, 8) || 'unknown';
+            log(`skip lane=${lane.operationId.slice(0, 24)} reason=global_receipt markedBy=${markedBy} uid=${stableUid.slice(0, 8)}`);
+            return false;
+          }
+          return true;
+        });
       }
     }
     const decision = reviewReason
@@ -466,6 +487,20 @@ export async function runCoinReconcileV1(
         foundTotal: decision.foundTotal, atMs: nowMs, ...recordExtras,
       });
       const result = commitStarOperations(tx, prepared, { [COIN_RECONCILE_V1_FIELD]: record });
+      // зачем (8S-LOW1): общая метка по opId в той же транзакции — сверка любого другого победителя
+      // (после перепривязки скрытого аккаунта) увидит, что дорожка уже проведена. В missing попали
+      // только дорожки БЕЗ метки (прочитано выше), так что create не конфликтует; гонка двух сверок
+      // = конфликт транзакции и повтор, а не двойное начисление.
+      for (const lane of decision.lanes) {
+        tx.create(db.collection(COIN_RECONCILE_RECEIPTS_COLLECTION).doc(lane.operationId), { // guard-ok: запись внутри транзакции, её фиксирует runTransaction
+          opId: lane.operationId,
+          stableUid,
+          amount: lane.amount,
+          sourceKind: COIN_RECONCILE_V1_SOURCE_KIND,
+          atMs: nowMs,
+        });
+      }
+      log(`global_receipts created=${decision.lanes.length} uid=${stableUid.slice(0, 8)}`);
       starsAfter = { ...starsNow, balance: result.balance, earnedTotal: result.earnedTotal, seq: result.seq };
       console.log(`${LOG} raised uid=${stableUid.slice(0, 8)} raisedBy=${raisedBy} ops=${decision.lanes.length} balanceBefore=${starsNow.balance} balanceAfter=${result.balance} seq=${result.seq}`);
     } else {

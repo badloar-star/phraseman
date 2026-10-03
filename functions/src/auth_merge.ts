@@ -17,7 +17,6 @@ import {
 } from './account_delete_job';
 import {
   cleanupLegacyAuthIdentityDuplicates,
-  describeAppCheckHeader,
   type AnonMergeCaller,
   parseAnonMergeNonce,
   ANON_MERGE_CLAIM_TTL_MS,
@@ -1681,14 +1680,6 @@ export const authMergeStableAccounts = onCall(HOT_CALLABLE_OPTIONS, async (reque
   // (auth_identity.ts). Только boot контейнера, без Firestore и без данных.
   if (request.data?.warmup === true) return { ok: true, warm: true };
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
-  if (!request.app) {
-    // App Check warm-up (H9): observe attestation token presence before enforcing.
-    console.warn(JSON.stringify({
-      event: 'app_check_header_shape',
-      function: 'authMergeStableAccounts',
-      header: describeAppCheckHeader(request.rawRequest.headers['x-firebase-appcheck']),
-    }));
-  }
   const db = admin.firestore();
   const authUid = request.auth.uid;
   const stableIdA = cleanStr(request.data?.stableIdA);

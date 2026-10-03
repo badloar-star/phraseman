@@ -35,3 +35,7 @@ All tests/admin_* contract tests before/after on the same tree; node parse of th
 ## Rollback
 
 git revert the commits; nothing deployed by this task.
+
+## Addendum (2026-10-03, coordinator): App Check header diagnostic noise
+
+functions/src/auth_identity.ts (authEnsureStableLink, authStampAnonOwnership) and auth_merge.ts (authMergeStableAccounts) logged `app_check_header_shape` on every call where `request.app` is empty. App Check is sealed forever and the client no longer sends tokens, so that is every call (~200/15 min in prod — log cost and noise). The three warn blocks and the then-dead `describeAppCheckHeader`/`readHeaderValue` helpers are removed. No behaviour change (diagnostic only; no enforcement existed in these callables). Functions type check clean; auth_identity/auth_merge/auth_identity_transaction suites 281/281 green. Needs a functions deploy (coordinator).

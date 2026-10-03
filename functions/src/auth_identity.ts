@@ -244,31 +244,6 @@ async function assertSelectionDeletionNotPending(
   }
 }
 
-function readHeaderValue(value: unknown): string {
-  if (Array.isArray(value)) return String(value[0] ?? '');
-  return typeof value === 'string' ? value : '';
-}
-
-export function describeAppCheckHeader(value: unknown): Record<string, unknown> {
-  const token = readHeaderValue(value).trim();
-  const dotCount = token ? token.split('.').length - 1 : 0;
-  let kind = 'missing';
-  if (token) {
-    const lower = token.toLowerCase();
-    if (lower === 'null' || lower === 'undefined') kind = lower;
-    else if (lower.startsWith('bearer ')) kind = 'bearer_prefixed';
-    else if (dotCount === 2 && token.length > 80) kind = 'jwt_like';
-    else if (token.length < 80) kind = 'short_non_jwt';
-    else kind = 'long_non_jwt';
-  }
-  return {
-    kind,
-    present: token.length > 0,
-    length: token.length,
-    dotCount,
-  };
-}
-
 function normalizeStableId(value: unknown): string {
   return String(value ?? '').trim();
 }
@@ -2362,13 +2337,8 @@ export const authEnsureStableLink = onCall({
   // выбирает аккаунт в окне Google. Firestore не трогаем, данных не отдаём.
   if (request.data?.warmup === true) return { ok: true, warm: true };
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
-  if (!request.app) {
-    console.warn(JSON.stringify({
-      event: 'app_check_header_shape',
-      function: 'authEnsureStableLink',
-      header: describeAppCheckHeader(request.rawRequest.headers['x-firebase-appcheck']),
-    }));
-  }
+  // зачем (App Check запломбирован навсегда, клиентский App Check удалён): request.app теперь ВСЕГДА пуст, и прежняя
+  // диагностика формы заголовка писала warn на каждый вызов (~200/15 мин на проде — шум и деньги за логи). Убрана.
   const db = admin.firestore();
   const authUid = request.auth.uid;
   const signInProvider = String(request.auth.token?.firebase?.sign_in_provider ?? '').trim();
@@ -2658,13 +2628,6 @@ export const authStampAnonOwnership = onCall(HOT_CALLABLE_OPTIONS, async (reques
   requireAnonymousOwnershipStampProvider(
     request.auth.token?.firebase?.sign_in_provider,
   );
-  if (!request.app) {
-    console.warn(JSON.stringify({
-      event: 'app_check_header_shape',
-      function: 'authStampAnonOwnership',
-      header: describeAppCheckHeader(request.rawRequest.headers['x-firebase-appcheck']),
-    }));
-  }
   logDeviceHeaderPresence('authStampAnonOwnership', request.rawRequest?.headers);
   const db = admin.firestore();
   const authUid = request.auth.uid;

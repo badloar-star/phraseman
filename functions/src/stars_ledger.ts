@@ -645,6 +645,11 @@ export async function prepareStarOperations(
     }
 
     const balanceBefore = after.balance;
+    // зачем (L-1, измерение): поздние начисления на уже скрытый (слитый) аккаунт застревают на
+    // нём навсегда. Только лог, поведение журнала не меняем; чинить будем по фактам логов.
+    if (op.delta > 0 && userSnap.data()?.identityHidden === true) {
+      console.warn(`[STARS-LEDGER] credit_to_hidden_account uid=${stableUid.slice(0, 8)} reason=${op.reason} delta=${op.delta}`);
+    }
     after.balance += op.delta;
     if (cls === 'earn') {
       after.earnedTotal += op.delta;

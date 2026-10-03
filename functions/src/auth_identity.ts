@@ -24,6 +24,12 @@ import {
   writeFirstAuthLinkGrowthAggregate,
 } from './growth_daily_aggregate';
 import { swallowed } from './swallowed_error';
+import {
+  commitAccountMergeStarsTransfer,
+  prepareAccountMergeStarsTransfer,
+  type PreparedAccountMergeStarsTransfer,
+} from './auth_merge_stars_transfer';
+import { beginStarLedgerTransactionAttempt, normalizeStars } from './stars_ledger';
 
 const USERS = 'users';
 const AUTH_LINKS = 'auth_links';
@@ -1270,6 +1276,79 @@ async function hideNameIndexForDuplicateUid(
   return hidden;
 }
 
+const DEDUP_STARS_LOG = '[ACCOUNT-DEDUP-STARS]';
+
+/**
+ * зачем (L-1, координатор 03.10): монеты дубля при скрытии переезжают на stableId тем же
+ * механизмом 8T. Якорь opId — детерминированный `dedup_<sha256(stable\u0000duplicate)>`
+ * (70 символов + `.N` ≤ 96 — проходит OP_ID_RE журнала), повтор чистки не удваивает.
+ */
+export function dedupStarsSourceId(stableId: string, duplicateUid: string): string {
+  return `dedup_${createHash('sha256').update(`${stableId}\u0000${duplicateUid}`).digest('hex')}`;
+}
+
+/** Только чтения (prepare). Любая неувязка → null: перенос пропущен, скрытие дубля идёт как раньше. */
+async function prepareDuplicateStarsTransfer(
+  tx: admin.firestore.Transaction,
+  db: admin.firestore.Firestore,
+  stableId: string,
+  authUid: string,
+  duplicateSnap: admin.firestore.DocumentSnapshot,
+  stableUserRef: admin.firestore.DocumentReference,
+): Promise<DuplicateStarsPreparation> {
+  const tag = `stable=${stableId.slice(0, 8)} duplicate=${duplicateSnap.id.slice(0, 8)}`;
+  const duplicateData = duplicateSnap.data() || {};
+  const balance = normalizeStars(duplicateData.stars).balance;
+  const skip = (reason: string): DuplicateStarsPreparation => ({ prepared: null, skipReason: reason, balance });
+  // Ноль монет — ни одного лишнего чтения (ни документа стабильного, ни расписок).
+  if (balance <= 0) return { prepared: null, skipReason: null, balance };
+  if (duplicateData.identityHidden === true && duplicateData.canonicalStableId !== stableId) {
+    console.warn(`${DEDUP_STARS_LOG} skip ${tag} reason=hidden_under_other_canonical balance=${balance}`);
+    return skip('hidden_under_other_canonical');
+  }
+  try {
+    const stableSnap = await tx.get(stableUserRef);
+    if (!stableSnap.exists) {
+      console.warn(`${DEDUP_STARS_LOG} skip ${tag} reason=stable_user_missing balance=${balance}`);
+      return skip('stable_user_missing');
+    }
+    // зачем (ревью L-1, LOW-2): в скрытый аккаунт монеты переносить нельзя — там они застрянут.
+    if (stableSnap.data()?.identityHidden === true) {
+      console.warn(`${DEDUP_STARS_LOG} skip ${tag} reason=stable_hidden balance=${balance}`);
+      return skip('stable_hidden');
+    }
+    const prepared = await prepareAccountMergeStarsTransfer(tx, db, {
+      winnerStableId: stableId,
+      loserStableId: duplicateSnap.id,
+      winnerSnap: stableSnap,
+      loserSnap: duplicateSnap,
+      outboxId: dedupStarsSourceId(stableId, duplicateSnap.id),
+      authUid,
+      nowMs: Date.now(),
+    });
+    console.log(`${DEDUP_STARS_LOG} prepared ${tag} balance=${balance} status=${prepared.record.status} reason=${prepared.record.reason ?? '-'} chunks=${prepared.record.chunks} remainder=${prepared.record.remainder}`);
+    const status = prepared.record.status as string;
+    const transferredFully = status === 'transferred' && !(prepared.record.remainder > 0);
+    return {
+      prepared,
+      skipReason: transferredFully || status === 'already_applied' || status === 'nothing_to_transfer'
+        ? null
+        : `${status}:${prepared.record.reason ?? (prepared.record.remainder > 0 ? 'remainder' : '-')}`,
+      balance,
+    };
+  } catch (error) {
+    console.error(`${DEDUP_STARS_LOG} skip ${tag} reason=prepare_threw balance=${balance} message=${String((error as { message?: unknown })?.message ?? error).slice(0, 120)}`);
+    return skip('prepare_threw');
+  }
+}
+
+type DuplicateStarsPreparation = {
+  prepared: PreparedAccountMergeStarsTransfer | null;
+  /** Не null — монеты (или их часть) остались на дубле; нужен ручной разбор. */
+  skipReason: string | null;
+  balance: number;
+};
+
 async function cleanupSiblingStableIdentityDuplicates(
   db: admin.firestore.Firestore,
   stableId: string,
@@ -1292,13 +1371,38 @@ async function cleanupSiblingStableIdentityDuplicates(
     const siblingData = sibling.data() || {};
     if (siblingData.identityHidden === true && siblingData.canonicalStableId === stableId) continue;
 
+    const stableUserRef = db.collection(USERS).doc(stableId);
     const stableLbRef = db.collection(LEADERBOARD).doc(stableId);
     const duplicateLbRef = db.collection(LEADERBOARD).doc(duplicateUid);
+    let starsSkip: { reason: string; balance: number } | null = null;
+    let ownerChanged = false;
     await db.runTransaction(async (tx) => {
-      const [stableLbSnap, duplicateLbSnap] = await Promise.all([
+      starsSkip = null;
+      ownerChanged = false;
+      // зачем (L-1): журнал разрешает один prepare на uid за попытку; Admin SDK повторяет колбэк
+      // с тем же tx — сбрасываем защиту в начале каждой попытки.
+      beginStarLedgerTransactionAttempt(tx);
+      const [stableLbSnap, duplicateLbSnap, duplicateUserSnap] = await Promise.all([
         tx.get(stableLbRef),
         tx.get(duplicateLbRef),
+        tx.get(sibling.ref),
       ]);
+      // зачем (ревью L-1, MEDIUM-1): список дублей получен запросом ВНЕ транзакции. Если дубль успели
+      // перепривязать к другому входу (relink/merge), его монеты и скрытие — уже не наше дело.
+      const currentOwner = String(duplicateUserSnap.data()?.firebaseAuthUid ?? '');
+      if (!duplicateUserSnap.exists || currentOwner !== authUid) {
+        console.warn(`${DEDUP_STARS_LOG} skip stable=${stableId.slice(0, 8)} duplicate=${duplicateUid.slice(0, 8)} reason=auth_uid_changed exists=${duplicateUserSnap.exists}`);
+        ownerChanged = true;
+        return;
+      }
+      // Все чтения (включая расписки журнала) — до первой записи транзакции.
+      const starsPreparation = await prepareDuplicateStarsTransfer(
+        tx, db, stableId, authUid, duplicateUserSnap, stableUserRef,
+      );
+      const starsPrepared = starsPreparation.prepared;
+      if (starsPreparation.skipReason) {
+        starsSkip = { reason: starsPreparation.skipReason, balance: starsPreparation.balance };
+      }
       if (duplicateLbSnap.exists) {
         const merge = legacyLeaderboardMerge(stableLbSnap.data() || {}, duplicateLbSnap.data() || {}, authUid);
         tx.set(stableLbRef, merge, { merge: true });
@@ -1312,6 +1416,8 @@ async function cleanupSiblingStableIdentityDuplicates(
         out.leaderboardMerged += 1;
         out.leaderboardHidden += 1;
       }
+      // Журнал пишет stars+расписки (merge) ДО скрытия: поле stars скрытие не трогает.
+      if (starsPrepared) commitAccountMergeStarsTransfer(tx, starsPrepared);
       tx.set(sibling.ref, {
         identityHidden: true,
         canonicalStableId: stableId,
@@ -1320,6 +1426,15 @@ async function cleanupSiblingStableIdentityDuplicates(
       }, { merge: true });
       out.usersHidden += 1;
     });
+    if (ownerChanged) continue;
+    // зачем (ревью L-1, LOW-3): дубль скрыт, а монеты (часть) остались на нём — следующие чистки
+    // его пропускают, поэтому оставляем кандидата на ручной разбор, а не только строку лога.
+    const skipped = starsSkip as { reason: string; balance: number } | null;
+    if (skipped) {
+      await recordIdentityCleanupCandidate(db, stableId, authUid, 'dedup_stars_skipped', {
+        duplicateUid, balance: skipped.balance, skipReason: skipped.reason,
+      }).catch(swallowed('auth_identity:record_dedup_stars_skipped', undefined));
+    }
 
     out.nameIndexHidden += await hideNameIndexForDuplicateUid(db, duplicateUid, stableId).catch(swallowed('auth_identity:hide_name_index_for_duplicate_uid', 0));
     const leagueStats = await cleanupDuplicateLeagueMembers(db, stableId, duplicateUid);

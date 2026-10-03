@@ -10,6 +10,7 @@ import {
   verifyAnonMergeClaimNonce,
   cleanupLegacyAuthIdentityDuplicates,
   ensureAuthLinkDoc,
+  dedupStarsSourceId,
   ensureStableLinkForAuth,
   linkStableAuthUid,
   requireAnonymousOwnershipStampProvider,
@@ -206,6 +207,11 @@ function makeDbStub(initial: Store = {}, options: DbStubOptions = {}) {
     account_deletion_permanent_denials: { ...(initial.account_deletion_permanent_denials ?? {}) },
     jarvis_growth_daily: { ...(initial.jarvis_growth_daily ?? {}) },
   };
+  // зачем (L-1): вложенные коллекции (users/{id}/star_operations) и любые иные коллекции теста.
+  for (const [collectionName, docs] of Object.entries(initial)) {
+    if (!(collectionName in store)) store[collectionName] = { ...docs };
+  }
+  const docReads: string[] = [];
   const sets: { path: string; data: DocData; options: unknown }[] = [];
   const transactionCommits: string[][] = [];
   const readCounts = new Map<string, number>();
@@ -218,28 +224,34 @@ function makeDbStub(initial: Store = {}, options: DbStubOptions = {}) {
     }
   };
 
-  const snapFor = (id: string, data: DocData | undefined) => ({
+  const snapFor = (id: string, data: DocData | undefined, ref?: unknown) => ({
     id,
     exists: !!data,
     data: () => data,
+    ref,
   });
 
-  const collection = (name: string) => ({
-      doc: (id: string) => ({
+  const collection = (name: string): any => ({
+      doc: (id: string): any => {
+        const docRef: any = {
         kind: 'doc',
         path: `${name}/${id}`,
         collectionName: name,
         id,
+        collection: (child: string) => collection(`${name}/${id}/${child}`),
         get: async () => {
+          docReads.push(`${name}/${id}`);
           maybeThrowReadFault(`${name}/${id}`);
-          return snapFor(id, store[name]?.[id]);
+          return snapFor(id, store[name]?.[id], docRef);
         },
         set: async (data: DocData, options: unknown) => {
           sets.push({ path: `${name}/${id}`, data, options });
           store[name] = store[name] ?? {};
           store[name][id] = { ...(store[name][id] ?? {}), ...data };
         },
-      }),
+        };
+        return docRef;
+      },
       where: (field: unknown, op: string, value: unknown) => ({
         limit: () => ({
           kind: 'query',
@@ -357,7 +369,7 @@ function makeDbStub(initial: Store = {}, options: DbStubOptions = {}) {
     },
   };
 
-  return { db, store, sets, transactionCommits };
+  return { db, store, sets, transactionCommits, docReads };
 }
 
 async function captureOutcome(promise: Promise<unknown>): Promise<{
@@ -2766,5 +2778,154 @@ describe('карта имён подчинена живой привязке (а
     });
 
     await expect(resolveStableUidForAuth(db as any, 'anon-auth')).resolves.toBe('owned-stable');
+  });
+});
+
+// зачем (L-1, координатор 03.10): скрытие дубля того же firebaseAuthUid обязано унести монеты на stableId.
+describe('cleanupLegacyAuthIdentityDuplicates: stars of a hidden duplicate move to the stable id', () => {
+  const stableId = 'stable-main-0001';
+  const dupId = 'dup-one-0000002';
+  const authUid = 'dedup-auth';
+  const dupOpPrefix = `account_merge:${dedupStarsSourceId(stableId, dupId)}`;
+
+  const starsDoc = (balance: number) => ({
+    schemaVersion: 'stars.v1', balance, earnedTotal: balance, grantedTotal: 0, spentTotal: 0,
+    weekKey: '', weekEarned: 0, prevWeekKey: '', prevWeekEarned: 0,
+    seasonId: '', seasonEarned: 0, bySource: {}, seq: balance > 0 ? 1 : 0, lastOpId: '', updatedAtMs: 0,
+  });
+  const world = (dupBalance: number | null, options: DbStubOptions = {}) => makeDbStub({
+    users: {
+      [stableId]: { firebaseAuthUid: authUid },
+      [dupId]: { firebaseAuthUid: authUid, ...(dupBalance === null ? {} : { stars: starsDoc(dupBalance) }) },
+    },
+    auth_links: { [authUid]: { stable_id: stableId } },
+    leaderboard: { [stableId]: { firebaseAuthUid: authUid, points: 5 } },
+  }, options);
+  const starsOf = (store: Record<string, Record<string, DocData | undefined>>, id: string) =>
+    (store.users[id]?.stars ?? {}) as Record<string, number>;
+  const receiptIds = (store: Record<string, Record<string, DocData | undefined>>, id: string) =>
+    Object.keys(store[`users/${id}/star_operations`] ?? {}).sort();
+
+  let spies: jest.SpyInstance[] = [];
+  beforeEach(() => {
+    spies = [jest.spyOn(console, 'log'), jest.spyOn(console, 'warn'), jest.spyOn(console, 'error')]
+      .map((spy) => spy.mockImplementation(() => undefined));
+  });
+  afterEach(() => spies.forEach((spy) => spy.mockRestore()));
+  const logs = () => spies.flatMap((spy) => spy.mock.calls).map((call) => call.join(' ')).join('\n');
+
+  it('the opId anchor fits the ledger OP_ID_RE for every allowed chunk index', () => {
+    const opId = `${dupOpPrefix}.99`;
+    expect(opId).toMatch(/^[a-z0-9_]{1,32}:[A-Za-z0-9_.-]{1,96}$/);
+    expect(dedupStarsSourceId(stableId, dupId)).not.toBe(dedupStarsSourceId(dupId, stableId));
+  });
+
+  it('moves a balance of 1234 as a grant to the stable id and zeroes the duplicate', async () => {
+    const { db, store } = world(1234);
+    const stats = await cleanupLegacyAuthIdentityDuplicates(db as any, stableId, authUid);
+    expect(stats.usersHidden).toBe(1);
+    expect(starsOf(store, dupId).balance).toBe(0);
+    expect(starsOf(store, dupId).spentTotal).toBe(1234);
+    expect(starsOf(store, stableId).balance).toBe(1234);
+    expect(starsOf(store, stableId).grantedTotal).toBe(1234);
+    expect(starsOf(store, stableId).earnedTotal).toBe(0);
+    expect(store.users[dupId]?.identityHidden).toBe(true);
+    expect(store.users[dupId]?.canonicalStableId).toBe(stableId);
+    expect(receiptIds(store, stableId)).toEqual([`${dupOpPrefix}.0`]);
+    expect(receiptIds(store, dupId)).toEqual([`${dupOpPrefix}.0`]);
+    expect(logs()).toContain('[ACCOUNT-DEDUP-STARS] prepared stable=stable-m duplicate=dup-one-');
+  });
+
+  it('splits 12345 into three chunks of at most 5000', async () => {
+    const { db, store } = world(12345);
+    await cleanupLegacyAuthIdentityDuplicates(db as any, stableId, authUid);
+    expect(receiptIds(store, stableId)).toHaveLength(3);
+    expect(starsOf(store, stableId).balance).toBe(12345);
+    expect(starsOf(store, dupId).balance).toBe(0);
+  });
+
+  it('a repeated cleanup does not double the transfer (even if the duplicate is un-hidden with its old balance)', async () => {
+    const { db, store } = world(1234);
+    await cleanupLegacyAuthIdentityDuplicates(db as any, stableId, authUid);
+    await cleanupLegacyAuthIdentityDuplicates(db as any, stableId, authUid);
+    expect(starsOf(store, stableId).balance).toBe(1234);
+    // Жёсткий повтор: монеты и метка «не скрыт» возвращены, расписки остались.
+    store.users[dupId] = { firebaseAuthUid: authUid, stars: starsDoc(1234) };
+    await cleanupLegacyAuthIdentityDuplicates(db as any, stableId, authUid);
+    expect(starsOf(store, stableId).balance).toBe(1234);
+    expect(receiptIds(store, stableId)).toHaveLength(1);
+    expect(store.users[dupId]?.identityHidden).toBe(true);
+  });
+
+  it('a ledger failure skips the transfer but the duplicate is still hidden', async () => {
+    const { db, store } = world(1234, {
+      readFaultAt: { [`users/${dupId}/star_operations/${dupOpPrefix}.0`]: 1 },
+    });
+    const stats = await cleanupLegacyAuthIdentityDuplicates(db as any, stableId, authUid);
+    expect(stats.usersHidden).toBe(1);
+    expect(store.users[dupId]?.identityHidden).toBe(true);
+    expect(starsOf(store, dupId).balance).toBe(1234);
+    expect(starsOf(store, stableId).balance ?? 0).toBe(0);
+    expect(receiptIds(store, stableId)).toEqual([]);
+    expect(logs()).toContain('[ACCOUNT-DEDUP-STARS]');
+    expect(logs()).toContain('loser_prepare_failed');
+  });
+
+  // зачем (ревью L-1, MEDIUM-1): список дублей берётся запросом ВНЕ транзакции — если дубль успели
+  // перепривязать к другому входу, ни монеты, ни скрытие не трогаем.
+  it('duplicate re-linked to another auth between query and transaction -> no transfer, not hidden', async () => {
+    const { db, store } = world(1234, {
+      beforeTransactionStart: (s) => {
+        const dup = s.users[dupId];
+        if (dup) s.users[dupId] = { ...dup, firebaseAuthUid: 'someone-else' };
+      },
+    });
+    await cleanupLegacyAuthIdentityDuplicates(db as any, stableId, authUid);
+    expect(logs()).toContain('reason=auth_uid_changed');
+    expect(starsOf(store, dupId).balance).toBe(1234);
+    expect(store.users[stableId]?.stars).toBeUndefined();
+    expect(store.users[dupId]?.identityHidden).toBeUndefined();
+  });
+
+  it('stable account is hidden -> coins stay, candidate recorded for manual review', async () => {
+    const { db, store } = world(1234);
+    store.users[stableId] = { ...store.users[stableId], identityHidden: true };
+    await cleanupLegacyAuthIdentityDuplicates(db as any, stableId, authUid).catch(() => undefined);
+    if (logs().includes('reason=stable_hidden')) {
+      expect(starsOf(store, dupId).balance).toBe(1234);
+      const candidates = Object.values(store.identity_cleanup_candidates ?? {}) as DocData[];
+      expect(candidates.some((c) => c.reason === 'dedup_stars_skipped')).toBe(true);
+    } else {
+      // Чистка вообще не дошла до дубля (скрытый stable отсекается раньше) — монеты целы.
+      expect(starsOf(store, dupId).balance).toBe(1234);
+    }
+  });
+
+  it('a skipped transfer with coins left on the duplicate records a manual-review candidate', async () => {
+    const { db, store } = world(1234, {
+      readFaultAt: { [`users/${dupId}/star_operations/${dupOpPrefix}.0`]: 1 },
+    });
+    await cleanupLegacyAuthIdentityDuplicates(db as any, stableId, authUid);
+    const candidates = Object.values(store.identity_cleanup_candidates ?? {}) as DocData[];
+    const hit = candidates.find((c) => c.reason === 'dedup_stars_skipped');
+    expect(hit).toBeDefined();
+    expect((hit!.context as DocData)).toMatchObject({ duplicateUid: dupId, balance: 1234 });
+  });
+
+  it('a full transfer records NO manual-review candidate', async () => {
+    const { db, store } = world(1234);
+    await cleanupLegacyAuthIdentityDuplicates(db as any, stableId, authUid);
+    const candidates = Object.values(store.identity_cleanup_candidates ?? {}) as DocData[];
+    expect(candidates.some((c) => c.reason === 'dedup_stars_skipped')).toBe(false);
+  });
+
+  it.each([['no stars field', null], ['zero balance', 0]])('%s: zero receipt reads and zero star writes', async (_n, balance) => {
+    const { db, store, docReads } = world(balance);
+    const stats = await cleanupLegacyAuthIdentityDuplicates(db as any, stableId, authUid);
+    expect(stats.usersHidden).toBe(1);
+    expect(docReads.filter((path) => path.includes('star_operations'))).toEqual([]);
+    expect(receiptIds(store, stableId)).toEqual([]);
+    expect(store.users[stableId]?.stars).toBeUndefined();
+    expect(store.users[dupId]?.identityHidden).toBe(true);
   });
 });

@@ -433,4 +433,38 @@ describe('единый журнал звёзд', () => {
     expect(stars.bySource.other).toBe(7);
     expect(stars.bySource.learning).toBeUndefined();
   });
+
+  // зачем (L-1, измерение): начисление на скрытый аккаунт — только лог, поведение не меняется.
+  it('warns on a credit to an identityHidden account and still applies it', async () => {
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    try {
+      const world = makeWorld(undefined);
+      world.userSnap.data = () => ({ identityHidden: true });
+      const prepared = await prepareStarOperations(
+        world.tx, {} as any, 'abcdefghijkl', world.userSnap, [op({ delta: 24 })], ctx(),
+      );
+      const result = commitStarOperations(world.tx, prepared);
+      expect(result.balance).toBe(24);
+      expect(warn).toHaveBeenCalledWith('[STARS-LEDGER] credit_to_hidden_account uid=abcdefgh reason=arena_match delta=24');
+    } finally {
+      warn.mockRestore();
+    }
+  });
+
+  it('does not warn for a visible account or for a spend from a hidden one', async () => {
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    try {
+      await run(undefined, [op()]);
+      const world = makeWorld(settled(100));
+      world.userSnap.data = () => ({ identityHidden: true, stars: settled(100) });
+      await prepareStarOperations(
+        world.tx, {} as any, 'u1', world.userSnap,
+        [op({ opId: 'account_merge_out:x.0', delta: -10, reason: 'account_merge_out', sourceKind: 'account_merge', sourceId: 'x' })],
+        ctx(),
+      );
+      expect(warn.mock.calls.filter((c) => String(c[0]).includes('credit_to_hidden_account'))).toEqual([]);
+    } finally {
+      warn.mockRestore();
+    }
+  });
 });

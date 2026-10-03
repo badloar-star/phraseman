@@ -45,11 +45,13 @@ import {
   useExplainRequest,
   resolveExplainDisplay,
   loadingLineForLang,
+  explainLaterLineForLang,
   asLang,
   splitExplainParagraphs,
   splitExplainSegments,
   type ExplainRequestStatus,
 } from '../app/explain_phrase_request';
+import { aiExplainRefreshLabel } from '../app/mistake_explain_fallback';
 import ExplainReportButton from './ExplainReportButton';
 import { useStudyTarget } from './StudyTargetContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -294,7 +296,19 @@ function ExplainSheetClassic({ visible, onClose, phraseEn, phraseMeaning, lang, 
             contentContainerStyle={styles.bodyScrollContent}
             showsVerticalScrollIndicator={false}
           >
-            {display.showSkeleton ? (
+            {display.degraded ? (
+            <View style={styles.skeleton} testID="explain-later">
+              <Text style={[styles.bodyText, { color: glass.secondary, fontSize: f.body }]}>{explainLaterLineForLang(effLang)}</Text>
+              <Pressable
+                testID="explain-refresh"
+                onPress={state.retry}
+                accessibilityRole="button"
+                style={({ pressed }) => [styles.retryBtn, { backgroundColor: glass.opaqueControl }, pressed && { opacity: 0.78 }]}
+              >
+                <Text style={[styles.retryLabel, { color: glass.text, fontSize: f.body }]}>{aiExplainRefreshLabel(asLang(effLang))}</Text>
+              </Pressable>
+            </View>
+          ) : display.showSkeleton ? (
               <View style={styles.skeleton}>
                 <Text style={[styles.skeletonText, { color: glass.secondary, fontSize: f.body }]}>
                   {loadingLineForLang(effLang)}
@@ -329,7 +343,7 @@ function ExplainSheetClassic({ visible, onClose, phraseEn, phraseMeaning, lang, 
           {/* Футер: «Непонятно объяснили» */}
           {!display.showSkeleton ? (
           <View style={[styles.footer, { borderTopColor: glass.line }]}>
-            <ExplainReportButton phraseEn={phraseEn} lang={effLang} />
+            {!display.degraded ? <ExplainReportButton phraseEn={phraseEn} lang={effLang} /> : null}
             <Pressable
               onPress={dismissSheet}
               accessibilityRole="button"

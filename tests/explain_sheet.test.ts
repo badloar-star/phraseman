@@ -159,6 +159,15 @@ describe('useExplainRequest: resolveExplainDisplay (чистая логика т
     expect(resolveExplainDisplay({ ...baseState, status: 'pending', text: 'fb' }, 'ru').degraded).toBe(false);
     expect(resolveExplainDisplay({ ...baseState, status: 'error', error: true }, 'ru').degraded).toBe(false);
   });
+
+  it('D158: after the auto-retries give up — calm «later» + manual refresh, never server/fallback text', () => {
+    const out = resolveExplainDisplay({ ...baseState, status: 'pending', text: 'fb', gaveUp: true }, 'ru', 'быть в ударе');
+    expect(out).toEqual({ showSkeleton: false, text: '', degraded: true });
+    const hook = read(path.join(APP_DIR, 'explain_phrase_request.ts'));
+    expect(hook).toContain('attempt > AI_EXPLAIN_AUTO_RETRIES');
+    expect(hook).toContain('const delayMs = AI_EXPLAIN_RETRY_PAUSE_MS;');
+    expect(hook).not.toContain('60_000');
+  });
 });
 
 describe('splitExplainSegments — подсветка английского в объяснении', () => {
@@ -295,9 +304,11 @@ describe('ExplainSheet: рендер тела и слайд-ап в доме', (
     expect(src).toContain('bodyEn');
   });
 
-  it('does not expose a manual error/retry branch', () => {
-    expect(src).not.toContain('display.degraded');
-    expect(src).not.toContain('state.retry()');
+  // D158 (владелец 03.10): вечный каркас запрещён — после автоповторов одна тихая «Обновить».
+  it('shows a calm refresh branch only when the auto-retries gave up (D158)', () => {
+    expect(src).toContain('display.degraded ?');
+    expect(src).toContain('onPress={state.retry}');
+    expect(src).toContain('explainLaterLineForLang');
   });
 
   it('does not turn backend exhaustion into visible explanation content', () => {

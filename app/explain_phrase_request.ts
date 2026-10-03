@@ -22,6 +22,7 @@ import {
 } from './explain_phrase_client';
 import { triLang, type Lang } from '../constants/i18n';
 import { SOURCE_LOCALES } from './source_locales';
+import { AI_EXPLAIN_AUTO_RETRIES, AI_EXPLAIN_RETRY_PAUSE_MS } from './load_gate_config';
 
 /**
  * Сузить произвольную строку языка до Lang для triLang (контракт клиента — string,
@@ -47,6 +48,11 @@ export interface ExplainRequestState {
   fromCache: boolean;
   /** true, если сетевой вызов упал (сервер ничего не вернул). */
   error: boolean;
+  /**
+   * D158: автоповторы исчерпаны (2 по 2 с), текста нет. Шторка вместо вечного каркаса
+   * показывает неброское «Объяснение появится позже» и одну ручную «Обновить».
+   */
+  gaveUp?: boolean;
 }
 
 const INITIAL_STATE: ExplainRequestState = {
@@ -117,6 +123,9 @@ export function resolveExplainDisplay(
   if (!state.loading && !state.error && state.status === 'ok' && state.text.trim()) {
     return { showSkeleton: false, text: state.text, degraded: false };
   }
+  // зачем (D158 / PM-214, 04.10): «тихо» ≠ «бесконечно». После исчерпанных автоповторов —
+  // спокойная строка и «Обновить» вместо вечного каркаса. Текст сервера/перевод не показываем.
+  if (state.gaveUp) return { showSkeleton: false, text: '', degraded: true };
   // Rejected validation, an occupied generation lock, quota/budget pause and
   // transport failures are implementation states, not learner-facing content.
   return { showSkeleton: true, text: '', degraded: false };
@@ -176,6 +185,21 @@ export function loadingLineForLang(lang: string): string {
   });
 }
 
+/** D158: неброская строка, когда объяснение пока не пришло (автоповторы исчерпаны). */
+export function explainLaterLineForLang(lang: string): string {
+  return triLang(asLang(lang), {
+    ru: 'Объяснение появится позже',
+    uk: 'Пояснення з’явиться пізніше',
+    en: 'The explanation will appear later',
+    es: 'La explicación llegará más tarde',
+    'pt-BR': 'A explicação aparece mais tarde',
+    vi: 'Lời giải thích sẽ có sau',
+    id: 'Penjelasan akan muncul nanti',
+    tr: 'Açıklama sonra gelecek',
+    pl: 'Wyjaśnienie pojawi się później',
+  });
+}
+
 /** Состояние запроса + ручной повтор (кнопка «Попробовать ещё раз» на degraded-пути). */
 export interface ExplainRequestHandle extends ExplainRequestState {
   retry: () => void;
@@ -208,17 +232,22 @@ export function useExplainRequest(
   }, []);
 
   const scheduleExplainRetry = useCallback((status: ExplainRequestStatus) => {
-    if (!enabled || !mountedRef.current || activeRequestKeyRef.current !== key) return;
+    if (!enabled || !mountedRef.current || activeRequestKeyRef.current !== key) {
+      console.warn('[EXPLAIN-PHRASE] retry:skip', JSON.stringify({ enabled, mounted: mountedRef.current, keyMatches: activeRequestKeyRef.current === key }));
+      return;
+    }
     if (retryTimerRef.current) clearTimeout(retryTimerRef.current);
     const attempt = retryAttemptRef.current + 1;
+    // зачем (D158 / PM-214): раньше повторы шли бесконечно (pending — каждые 1,5–5 с) под вечным
+    // каркасом: и человек ждал без конца, и платные вызовы функции шли, пока шторка открыта.
+    if (attempt > AI_EXPLAIN_AUTO_RETRIES) {
+      console.warn('[EXPLAIN-PHRASE] retry:gave_up', JSON.stringify({ status, attempts: retryAttemptRef.current }));
+      setState({ ...INITIAL_STATE, loading: false, status, gaveUp: true });
+      return;
+    }
     retryAttemptRef.current = attempt;
-    const delayMs = status === 'pending'
-      ? Math.min(5_000, 1_000 + attempt * 500)
-      : status === 'rejected'
-        ? 30_000
-        : status === 'exhausted'
-          ? 60_000
-          : Math.min(30_000, 1_000 * (2 ** Math.min(attempt, 5)));
+    const delayMs = AI_EXPLAIN_RETRY_PAUSE_MS;
+    console.warn('[EXPLAIN-PHRASE] retry:scheduled', JSON.stringify({ status, attempt, delayMs }));
     retryTimerRef.current = setTimeout(() => {
       retryTimerRef.current = null;
       if (mountedRef.current && activeRequestKeyRef.current === key) runRef.current(true);
@@ -257,7 +286,8 @@ export function useExplainRequest(
       }
       setState({ ...INITIAL_STATE, status: res.status });
       scheduleExplainRetry(res.status);
-    } catch {
+    } catch (error: unknown) {
+      console.warn('[EXPLAIN-PHRASE] call:failed', String((error as Error)?.message ?? error).slice(0, 160));
       if (!mountedRef.current || activeRequestKeyRef.current !== key || runIdRef.current !== runId) return;
       setState({ ...INITIAL_STATE, status: 'pending' });
       scheduleExplainRetry('error');
@@ -285,7 +315,9 @@ export function useExplainRequest(
   }, [enabled, run]);
 
   const retry = useCallback(() => {
-    retryAttemptRef.current = 0;
+    // D158: ручная «Обновить» — ровно одна новая попытка, без нового цикла автоповторов.
+    console.warn('[EXPLAIN-PHRASE] retry:manual');
+    retryAttemptRef.current = AI_EXPLAIN_AUTO_RETRIES;
     if (retryTimerRef.current) clearTimeout(retryTimerRef.current);
     void run(true);
   }, [run]);

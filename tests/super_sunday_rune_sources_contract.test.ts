@@ -20,7 +20,6 @@ describe('Super Sunday live earn source wiring', () => {
     const practiceClient = read('app/practice_rune_settlement.ts');
     const practiceServer = read('functions/src/practice_rune_grant.ts');
     const learningPlayer = read('app/learning_v2_direct_session_player_v1.tsx');
-    const levelGift = read('app/level_gift_system.ts');
     const reportCompensation = read('app/report_reward_bundle.ts');
 
     expect(learningComposite).toContain(
@@ -48,7 +47,6 @@ describe('Super Sunday live earn source wiring', () => {
     // D49: «Дневной путь» удалён целиком — его шлюза больше нет.
     // D140: «Задания» (quests_client) удалены целиком — их шлюза тоже нет.
     // D147: «Супер-воскресенье» снято; подарки уровня больше не начисляют монеты с удвоением.
-    expect(levelGift).not.toContain('applySuperSundayRuneMultiplier');
     expect(reportCompensation).toContain(
       "promotionEligibility: 'excluded_compensation'",
     );

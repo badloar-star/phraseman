@@ -53,16 +53,10 @@ describe('bonus energy runtime contract', () => {
   });
 
   test('temporary bonus never inflates persisted base energy or the permanent maximum', () => {
-    const giftSource = read('app/level_gift_system.ts');
+    // зачем (§99, 03.10): обработчик подарков энергии жил в app/level_gift_system.ts — файл удалён (D09),
+    // осталась охрана самого хранилища энергии.
     const energySource = read('app/energy_system.ts');
-    const occurrenceHandler = giftSource.slice(
-      giftSource.indexOf('const applyEnergyBonusForOccurrence'),
-      giftSource.indexOf('const applyEnergyFullForOccurrence'),
-    );
 
-    expect(occurrenceHandler).not.toContain("AsyncStorage.setItem('energy_state'");
-    expect(occurrenceHandler).not.toContain('energyBase + n');
-    expect(giftSource).not.toContain('addEnergy(n)');
     expect(energySource).not.toContain('readBonusEnergyExtra');
   });
 

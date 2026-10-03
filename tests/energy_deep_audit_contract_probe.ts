@@ -37,27 +37,7 @@ assert.ok(home.includes('showEnergyTooltip'), 'shared home energy popover trigge
 assert.ok(home.includes('energyTooltip.visible'), 'home energy popover state is missing');
 assert.ok(home.includes('<EnergyIcon'), 'shared energy glyph was removed from home');
 
-const gifts = read('app/level_gift_system.ts');
-for (const stale of [
-  'суммируется до 300', 'складається до 300', 'se acumula hasta 300',
-  'acumula até 300', 'cộng dồn tối đa 300', 'menumpuk hingga 300',
-  '300’e kadar birikir', 'kumuluje się do 300',
-]) {
-  assert.ok(!gifts.includes(stale), `obsolete absolute energy cap remains: ${stale}`);
-}
-for (const expected of [
-  'the bonus limit stacks up to +200',
-  'бонусный лимит суммируется до +200',
-  'бонусний ліміт складається до +200',
-  'el límite extra se acumula hasta +200',
-  'o limite extra acumula até +200',
-  'giới hạn thưởng cộng dồn tối đa +200',
-  'batas bonus menumpuk hingga +200',
-  'bonus limiti +200’e kadar birikir',
-  'dodatkowy limit kumuluje się do +200',
-]) {
-  assert.ok(gifts.includes(expected), `additive +200 gift copy missing: ${expected}`);
-}
+// зачем (§99, 03.10): проверки текста подарков энергии (+200 / «до 300») снесены вместе с app/level_gift_system.ts (D09).
 
 // зачем (PM-086, владелец 2026-09-24): components/EnergyCostBadge.tsx удалён
 // целиком — ценники энергии убраны со всех кнопок, проверки его формата

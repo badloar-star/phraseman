@@ -44,6 +44,4 @@ test('push copy has at most one emoji, only at the start of a line', () => {
   assert.deepEqual(bad, []);
 });
 
-test('the epic gift label has no sparkle', () => {
-  assert.doesNotMatch(read('app/level_gift_system.ts'), /['`]✨ /u);
-});
+// зачем (§99, 03.10): проверка «у подарка нет ✨» снята — app/level_gift_system.ts удалён целиком (D09).

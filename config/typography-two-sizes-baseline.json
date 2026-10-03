@@ -1,19 +1,10 @@
 {
-  "total": 42,
+  "total": 28,
   "files": {
     "app/ai_dialog_session.tsx": 1,
-    "app/dev-account-v2-ios-proof.tsx": 1,
     "app/learning-v2/lesson/[id].tsx": 10,
-    "app/learning_v2_modes_showcase_run/[family].tsx": 1,
     "app/lesson_irregular_verbs.tsx": 10,
     "app/streak_stats.tsx": 6,
-    "app/v2_kit_preview.tsx": 1,
-    "app/_learning_v2_authoring_preview.tsx": 2,
-    "app/_phone_state_sqlcipher_smoke.tsx": 1,
-    "components/friends_together/DevBotsSheet.tsx": 2,
-    "components/learning-v2-lab/LearningV2ModesLab.tsx": 4,
-    "components/learning-v2-lab/ModeDemoPlayer.tsx": 1,
-    "components/lessons/LessonsListGlassKit.tsx": 1,
-    "components/tabbar/TabBarHybridPreview.tsx": 1
+    "components/lessons/LessonsListGlassKit.tsx": 1
   }
 }

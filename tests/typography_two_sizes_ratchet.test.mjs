@@ -12,7 +12,10 @@ const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const BASELINE = join(ROOT, 'config', 'typography-two-sizes-baseline.json');
 const DIRS = ['app', 'components', 'modules', 'constants'];
 // Исключения D145: онбординг не трогаем (решение владельца), дев-экраны не видит пользователь.
-const SKIP = [/(^|\/)dev\//, /onboarding/i, /CleanOnboarding/, /\.test\./, /_dev_/, /dev_hub/i, /motion_showcase/];
+const SKIP = [/(^|\/)dev\//, /onboarding/i, /CleanOnboarding/, /\.test\./, /_dev_/, /dev_hub/i, /motion_showcase/,
+  // зачем (координатор 03.10, PM-026): витрины и лаборатории DEV Hub пользователь не видит —
+  // их размеры не входят в шкалу D145 (dev-account, showcase, kit/authoring preview, smoke, lab, гибрид-таббар).
+  /(^|\/)dev-/, /modes_showcase/, /_preview\.tsx$/, /_smoke\.tsx$/, /learning-v2-lab\//, /DevBotsSheet/, /TabBarHybridPreview/];
 const ALLOWED = new Set([13, 16]);
 
 function walk(dir, out) {

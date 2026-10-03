@@ -367,6 +367,80 @@ describe('Account Authority Firebase lease callable wiring', () => {
     });
   });
 
+  // зачем (ревью M1 + L4): испорченная запись аренды в Firestore — сбой сервера:
+  // internal и ровно одна error-строка на всю цепочку (адаптер + граница), без
+  // идентификаторов.
+  test('corrupted Firestore lease data is internal with exactly one error line', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const logger = require('firebase-functions/logger') as typeof import('firebase-functions/logger');
+    const info = jest.spyOn(logger, 'info').mockImplementation(() => undefined);
+    const warn = jest.spyOn(logger, 'warn').mockImplementation(() => undefined);
+    const error = jest.spyOn(logger, 'error').mockImplementation(() => undefined);
+    try {
+      const test = activeFirestoreFixture();
+      const accountPath = `account_authority_accounts_v1/${test.accountId}`;
+      const stored = test.fixture.documents.get(accountPath) as Record<string, unknown>;
+      const activeLease = stored.activeLease as Record<string, unknown>;
+      test.fixture.documents.set(accountPath, { ...stored, activeLease: { ...activeLease, deviceId: '../corrupt' } });
+      await expect(handleFirebaseAccountAuthorityLeaseRelease({
+        ports: createFirebaseLeasePorts(test.fixture.db),
+        rolloutEnabled: true,
+        trustedInstallationBindingAvailable: true,
+      }, {
+        auth: { uid: test.firebaseAuthUid, token: { auth_time: 99 } },
+        app: null,
+        data: {
+          operationId: 'release-operation-a',
+          expectedRevision: 1,
+          sessionId: test.sessionId,
+          bindingToken: 'binding-token-a',
+        },
+      })).rejects.toMatchObject({ code: 'internal', message: 'account_authority_unavailable' });
+      expect(warn).not.toHaveBeenCalled();
+      expect(error).toHaveBeenCalledTimes(1);
+      expect(error.mock.calls[0]?.[0]).toBe('[ACCOUNT-AUTHORITY] callable failed');
+      expect(error.mock.calls[0]?.[1]).toMatchObject({
+        operation: 'lease_release',
+        code: 'internal',
+        causeKind: 'AccountLeaseError',
+        causeCode: 'invalid_input',
+        mappedTo: 'internal',
+      });
+      const logs = JSON.stringify([info.mock.calls, warn.mock.calls, error.mock.calls]);
+      for (const identifier of ['account-a', 'firebase-a', 'session-a', 'device-a', 'provider-a', 'binding-token-a', 'corrupt']) {
+        expect(logs).not.toContain(identifier);
+      }
+    } finally {
+      info.mockRestore();
+      warn.mockRestore();
+      error.mockRestore();
+    }
+  });
+
+  test('a closed gate is one warn line from the adapter and nothing else', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const logger = require('firebase-functions/logger') as typeof import('firebase-functions/logger');
+    const info = jest.spyOn(logger, 'info').mockImplementation(() => undefined);
+    const warn = jest.spyOn(logger, 'warn').mockImplementation(() => undefined);
+    const error = jest.spyOn(logger, 'error').mockImplementation(() => undefined);
+    try {
+      await expect(handleFirebaseAccountAuthorityLeaseAcquire(
+        { ports: unusedPorts() },
+        { auth: null, app: null, data: {} },
+      )).rejects.toMatchObject({ code: 'failed-precondition', message: 'account_authority_disabled' });
+      expect(info).not.toHaveBeenCalled();
+      expect(error).not.toHaveBeenCalled();
+      expect(warn).toHaveBeenCalledTimes(1);
+      expect(warn).toHaveBeenCalledWith('[ACCOUNT-AUTHORITY] lease_callable failed', expect.objectContaining({
+        operation: 'lease_acquire', code: 'failed-precondition', stage: 'gate', reason: 'rollout_disabled',
+      }));
+    } finally {
+      info.mockRestore();
+      warn.mockRestore();
+      error.mockRestore();
+    }
+  });
+
   test('defines a separately gated release callable without enabling either gate or exporting it', () => {
     const index = readFileSync(path.join(ROOT, 'src/index.ts'), 'utf8');
     const source = readFileSync(path.join(ROOT, 'src/account_authority/firebase_lease_callable.ts'), 'utf8');

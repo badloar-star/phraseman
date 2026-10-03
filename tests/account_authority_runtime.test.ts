@@ -29,6 +29,29 @@ import {
   type AccountAuthorityProviderPort,
   type ProviderAuthenticationResult,
 } from '../modules/account-authority-v2/account_authority_runtime';
+import type {
+  AccountAuthorityLogFields,
+  AccountAuthorityLogger,
+} from '../modules/account-authority-v2/account_authority_logger';
+
+// зачем (AA S1): каждый прогон рантайма пишет логи в этот порт; после КАЖДОГО
+// теста проверяем, что ни один идентификатор (uid, accountId, sessionId,
+// deviceId, operationId) не попал в лог. Это поведенческая половина сторожа.
+const recordedLogs: Array<Readonly<{ level: 'info' | 'warn'; event: string; fields?: AccountAuthorityLogFields }>> = [];
+const recordingLogger: AccountAuthorityLogger = {
+  info: (event, fields) => { recordedLogs.push({ level: 'info', event, fields }); },
+  warn: (event, fields) => { recordedLogs.push({ level: 'warn', event, fields }); },
+};
+const LOG_FORBIDDEN_IDENTIFIERS = [
+  'firebase-a', 'firebase-b', 'account-a', 'account-b', 'session-a', 'session-b', 'device-01',
+  'sign-in', 'sign-out', 'delete-', 'revoke-', 'resume-',
+];
+
+afterEach(() => {
+  const serialized = JSON.stringify(recordedLogs);
+  recordedLogs.length = 0;
+  for (const identifier of LOG_FORBIDDEN_IDENTIFIERS) expect(serialized).not.toContain(identifier);
+});
 
 const deviceId = parseDeviceId('device-01');
 const accountA = parseAccountId('account-a');
@@ -222,7 +245,7 @@ class RecordingLocalStore implements AccountAuthorityLocalStorePort {
 
 type Lease = Readonly<{ accountId: AccountId; sessionId: SessionId }>;
 
-function createHarness(input?: Readonly<{ localStore?: RecordingLocalStore }>) {
+function createHarness(input?: Readonly<{ localStore?: RecordingLocalStore; logger?: AccountAuthorityLogger }>) {
   const events: string[] = input?.localStore?.events ?? [];
   const authentications: ProviderAuthenticationResult[] = [];
   const leases = new Map<string, Lease>([
@@ -259,7 +282,9 @@ function createHarness(input?: Readonly<{ localStore?: RecordingLocalStore }>) {
     }),
   };
   const localStore = input?.localStore ?? new RecordingLocalStore(events);
-  const runtime = createAccountAuthorityRuntime({ deviceId, provider, lease, localStore });
+  const runtime = createAccountAuthorityRuntime({
+    deviceId, provider, lease, localStore, logger: input?.logger ?? recordingLogger,
+  });
 
   return {
     events,
@@ -1425,5 +1450,63 @@ describe('Account Authority 2.0 FIFO runtime', () => {
 
     expect(harness.runtime.getState()).toMatchObject({ phase: 'authenticated', accountId: accountB });
     expect(harness.events).toEqual([]);
+  });
+});
+
+describe('Account Authority runtime logging (S1)', () => {
+  test('logs the driver transition, provider result, operation lifecycle and fail-closed reason', async () => {
+    const harness = createHarness();
+    harness.authentications.push(authenticated(uidA));
+    await harness.runtime.signIn(operation('sign-in-log-a'));
+    harness.authentications.push(Object.freeze({
+      type: 'failed', error: new Error('account_authority_provider_error:boom'), identityPreserved: false,
+    }));
+    await expect(harness.runtime.signIn(operation('sign-in-log-b'))).rejects.toThrow();
+
+    const events = recordedLogs.map((entry) => entry.event);
+    expect(events).toEqual(expect.arrayContaining([
+      'operation enqueued',
+      'operation started',
+      'sign_in provider_result',
+      'state transition',
+      'lease established',
+      'operation done',
+      'authentication fail_closed',
+      'operation failed',
+    ]));
+    const transition = recordedLogs.find((entry) => entry.event === 'state transition'
+      && entry.fields?.to === 'authenticated');
+    expect(transition?.fields).toMatchObject({ from: 'authenticating', to: 'authenticated' });
+    const failed = recordedLogs.find((entry) => entry.event === 'authentication fail_closed');
+    // Текст «...:boom» не код — в лог уходит other, а не сырое сообщение.
+    expect(failed?.fields).toMatchObject({ errorKind: 'Error', code: 'other' });
+  });
+});
+
+describe('Account Authority runtime with a broken logger (S1, ревью L3)', () => {
+  test('a throwing logger never breaks commitState or the operation queue', async () => {
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    try {
+      const harness = createHarness({
+        logger: {
+          info: () => { throw new Error('log sink down'); },
+          warn: () => { throw new Error('log sink down'); },
+        },
+      });
+      harness.authentications.push(authenticated(uidA));
+      await expect(harness.runtime.signIn(operation('sign-in-broken-log'))).resolves.toMatchObject({
+        type: 'authenticated',
+      });
+      expect(harness.runtime.getState()).toMatchObject({ phase: 'authenticated', accountId: accountA });
+      await expect(harness.runtime.signOut(operation('sign-out-broken-log'))).resolves.toMatchObject({
+        type: 'signed_out',
+      });
+      expect(harness.runtime.getState().phase).toBe('signed_out');
+      const lines = warn.mock.calls.map((call) => String(call[0]));
+      expect(lines.length).toBeGreaterThan(0);
+      expect(lines.every((line) => line.startsWith('[ACCOUNT-AUTHORITY] logger_failed'))).toBe(true);
+    } finally {
+      warn.mockRestore();
+    }
   });
 });

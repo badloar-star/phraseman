@@ -547,3 +547,165 @@ describe('Account Authority callable boundary', () => {
     expect(test.leaseTransact).not.toHaveBeenCalled();
   });
 });
+
+// зачем (AA S1, «сперва логи»): каждый вызов пишет вход, ветку, итог и
+// длительность. Неизвестный сбой больше не уходит в internal без следа. Одна
+// ошибка даёт ровно одну итоговую строку (ревью L4). В логи не попадает ни один
+// идентификатор: uid, accountId, sessionId, токен привязки, tenant, device.
+describe('Account Authority callable boundary logging (S1)', () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const logger = require('firebase-functions/logger') as typeof import('firebase-functions/logger');
+  const IDENTIFIERS = [
+    'account-a', 'firebase-a', 'provider-a', 'tenant-a', 'device-a', 'session-a',
+    'binding-token-a', 'operation-a', 'secret path',
+  ];
+  let info: jest.SpyInstance;
+  let warn: jest.SpyInstance;
+  let error: jest.SpyInstance;
+
+  beforeEach(() => {
+    info = jest.spyOn(logger, 'info').mockImplementation(() => undefined);
+    warn = jest.spyOn(logger, 'warn').mockImplementation(() => undefined);
+    error = jest.spyOn(logger, 'error').mockImplementation(() => undefined);
+  });
+  afterEach(() => {
+    info.mockRestore();
+    warn.mockRestore();
+    error.mockRestore();
+  });
+
+  function allLogs(): string {
+    return JSON.stringify([info.mock.calls, warn.mock.calls, error.mock.calls]);
+  }
+
+  function expectNoIdentifiers(): void {
+    const logs = allLogs();
+    for (const identifier of IDENTIFIERS) expect(logs).not.toContain(identifier);
+  }
+
+  function failureLines(): unknown[][] {
+    return [...warn.mock.calls, ...error.mock.calls];
+  }
+
+  test('logs start, branch and done of a successful acquire without identifiers', async () => {
+    const test = boundaryHarness();
+    await handleAccountLeaseAcquireCallable(test.ports, leaseRequest({
+      operationId: 'operation-a', expectedRevision: 0, bindingToken: 'binding-token-a',
+    }));
+    const events = info.mock.calls.map((call) => call[0]);
+    expect(events).toEqual([
+      '[ACCOUNT-AUTHORITY] callable start',
+      '[ACCOUNT-AUTHORITY] callable branch',
+      '[ACCOUNT-AUTHORITY] callable done',
+    ]);
+    const done = info.mock.calls.find((call) => call[0] === '[ACCOUNT-AUTHORITY] callable done');
+    expect(done?.[1]).toMatchObject({ operation: 'lease_acquire', type: 'acquired' });
+    expect(typeof done?.[1].durationMs).toBe('number');
+    expect(failureLines()).toHaveLength(0);
+    expectNoIdentifiers();
+  });
+
+  test('an unknown adapter failure is one error line with its kind and is still internal', async () => {
+    const raw = boundaryHarness({
+      throwFromLeaseTransaction: new Error('secret path users/account-a provider-a'),
+    });
+    const failure = await caught(handleAccountLeaseAcquireCallable(raw.ports, leaseRequest({
+      operationId: 'operation-a', expectedRevision: 0, bindingToken: 'binding-token-a',
+    })));
+    expect(failure.code).toBe('internal');
+    expect(warn).not.toHaveBeenCalled();
+    expect(error).toHaveBeenCalledTimes(1);
+    expect(error).toHaveBeenCalledWith('[ACCOUNT-AUTHORITY] callable failed', expect.objectContaining({
+      operation: 'lease_acquire',
+      code: 'internal',
+      stage: 'contract',
+      causeKind: 'Error',
+      causeCode: 'none',
+      mappedTo: 'internal',
+    }));
+    expectNoIdentifiers();
+  });
+
+  test('a transient storage failure becomes the retryable unavailable code in one warn line', async () => {
+    const transient = boundaryHarness({
+      throwFromLeaseTransaction: Object.assign(new Error('10 ABORTED: contention on account-a'), { code: 10 }),
+    });
+    const failure = await caught(handleAccountLeaseAcquireCallable(transient.ports, leaseRequest({
+      operationId: 'operation-a', expectedRevision: 0, bindingToken: 'binding-token-a',
+    })));
+    expect({ code: failure.code, message: failure.message }).toEqual({
+      code: 'unavailable',
+      message: 'account_authority_unavailable',
+    });
+    expect(error).not.toHaveBeenCalled();
+    expect(warn).toHaveBeenCalledTimes(1);
+    expect(warn).toHaveBeenCalledWith('[ACCOUNT-AUTHORITY] callable failed', expect.objectContaining({
+      code: 'unavailable', causeCode: '10', mappedTo: 'unavailable',
+    }));
+    expectNoIdentifiers();
+  });
+
+  // зачем (ревью M1): invalid_input внутри контракта — это испорченные данные
+  // Firestore, а не ошибка клиента. Ответ internal и error-строка, не invalid-argument.
+  test('AccountLeaseError invalid_input inside the contract is a server fault: internal + one error line', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { AccountLeaseError } = require('./lease_contract') as typeof import('./lease_contract');
+    const test = boundaryHarness({ throwFromLeaseTransaction: new AccountLeaseError('invalid_input') });
+    const failure = await caught(handleAccountLeaseAcquireCallable(test.ports, leaseRequest({
+      operationId: 'operation-a', expectedRevision: 0, bindingToken: 'binding-token-a',
+    })));
+    expect({ code: failure.code, message: failure.message }).toEqual({
+      code: 'internal',
+      message: 'account_authority_unavailable',
+    });
+    expect(warn).not.toHaveBeenCalled();
+    expect(error).toHaveBeenCalledTimes(1);
+    expect(error).toHaveBeenCalledWith('[ACCOUNT-AUTHORITY] callable failed', expect.objectContaining({
+      stage: 'contract', causeKind: 'AccountLeaseError', causeCode: 'invalid_input', mappedTo: 'internal',
+    }));
+    expectNoIdentifiers();
+  });
+
+  test('bad client input is still invalid-argument, logged once with only the branch', async () => {
+    const test = boundaryHarness();
+    const failure = await caught(handleAccountLeaseAcquireCallable(test.ports, leaseRequest({
+      operationId: 'operation-a', expectedRevision: 0, bindingToken: ' binding-token-a',
+    })));
+    expect(failure.code).toBe('invalid-argument');
+    expect(error).not.toHaveBeenCalled();
+    expect(warn).toHaveBeenCalledTimes(1);
+    expect(warn).toHaveBeenCalledWith('[ACCOUNT-AUTHORITY] callable failed', expect.objectContaining({
+      operation: 'lease_acquire', code: 'invalid-argument', stage: 'parse', reason: 'shape_invalid',
+    }));
+    expect(test.leaseTransact).not.toHaveBeenCalled();
+    expectNoIdentifiers();
+  });
+
+  // зачем (ревью R1): под kind/causeKind смешанный регистр — только из списка
+  // известных классов; буквенный uid не проходит, строчные коды проходят.
+  test('kind and causeKind accept only known error class names', () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const log = require('./account_authority_log') as typeof import('./account_authority_log');
+    const letterUid = 'QwErTyUiOpAsDfGhJkLzXcVbNmQw';
+    expect(log.redactAccountAuthorityLogFields({ kind: letterUid, causeKind: letterUid }))
+      .toEqual({ kind: 'redacted', causeKind: 'redacted' });
+    expect(log.redactAccountAuthorityLogFields({ kind: 'HttpsError', causeKind: 'AccountLeaseError' }))
+      .toEqual({ kind: 'HttpsError', causeKind: 'AccountLeaseError' });
+    expect(log.redactAccountAuthorityLogFields({ kind: 'sign_in' })).toEqual({ kind: 'sign_in' });
+    const odd = new Error('x');
+    odd.name = letterUid;
+    expect(log.accountAuthorityServerErrorKind(odd)).toBe('Error');
+    expect(log.accountAuthorityServerCauseFields(odd)).toMatchObject({ causeKind: 'Error' });
+  });
+
+  test('a contract rejection is one warn line carrying the lease code', async () => {
+    const stale = boundaryHarness();
+    const failure = await caught(handleAccountDeleteBeginCallable(stale.ports, deleteRequest({
+      operationId: 'delete-operation-a', expectedRevision: 0,
+    })));
+    expect(failure.code).toBe('failed-precondition');
+    expect(failureLines()).toHaveLength(1);
+    expect(warn.mock.calls[0]?.[1]).toMatchObject({ operation: 'delete_begin', code: 'failed-precondition' });
+    expectNoIdentifiers();
+  });
+});

@@ -27,6 +27,14 @@ import {
   initialAccountAuthorityState,
   reduceAccountAuthorityState,
 } from './account_authority_reducer';
+import {
+  accountAuthorityElapsedMs,
+  accountAuthorityErrorCode,
+  accountAuthorityErrorKind,
+  safeAccountAuthorityLogger,
+  type AccountAuthorityLogFields,
+  type AccountAuthorityLogger,
+} from './account_authority_logger';
 
 export type ProviderAuthenticationResult =
   | Readonly<{ type: 'authenticated'; firebaseAuthUid: FirebaseAuthUid }>
@@ -173,6 +181,16 @@ function sameReservedOwner(
   return sameScope(left, right);
 }
 
+// Поля ошибки (вид и безопасный код) плюс явные дополнительные поля. Слияние
+// здесь, а не разворотом в аргументах лога: сторож запрещает `...x` в логах.
+function errorFields(error: unknown, extra: AccountAuthorityLogFields = {}): AccountAuthorityLogFields {
+  return Object.freeze({
+    ...extra,
+    errorKind: accountAuthorityErrorKind(error),
+    code: accountAuthorityErrorCode(error),
+  });
+}
+
 async function settleCleanupTasks(tasks: readonly (() => void | Promise<void>)[]): Promise<void> {
   const results = await Promise.allSettled(tasks.map((task) => Promise.resolve().then(task)));
   const failure = results.find((result) => result.status === 'rejected');
@@ -180,6 +198,7 @@ async function settleCleanupTasks(tasks: readonly (() => void | Promise<void>)[]
 }
 
 async function settleRemoteCleanupAfterLocalClose(
+  log: AccountAuthorityLogger,
   closeLocal: () => void | Promise<void>,
   remoteTasks: readonly (() => void | Promise<void>)[],
 ): Promise<void> {
@@ -187,16 +206,28 @@ async function settleRemoteCleanupAfterLocalClose(
   try {
     await closeLocal();
   } catch (error) {
+    // зачем (AA S1): локальное закрытие области упало — сеть всё равно чистим,
+    // а причина видна в логе ещё до того, как ошибку пробросит наружу.
+    log.warn('cleanup local_close_failed', errorFields(error));
     localFailure = error;
   }
   let remoteFailure: unknown;
   try {
     await settleCleanupTasks(remoteTasks);
   } catch (error) {
+    log.warn('cleanup remote_failed', errorFields(error));
     remoteFailure = error;
   }
   if (localFailure !== undefined) throw localFailure;
   if (remoteFailure !== undefined) throw remoteFailure;
+}
+
+function resultTypeOf(value: unknown): string {
+  if (value === undefined) return 'none';
+  if (typeof value === 'object' && value !== null && typeof (value as { type?: unknown }).type === 'string') {
+    return (value as { type: string }).type;
+  }
+  return typeof value;
 }
 
 class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
@@ -213,22 +244,32 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
   private readonly pendingSignOuts = new Map<string, PendingLocalTransition>();
   private readonly pendingDeletes = new Map<string, PendingLocalTransition & { owner: OwnedSession }>();
   private readonly pendingRevocations = new Map<string, PendingRevocation>();
+  private readonly log: AccountAuthorityLogger;
 
   constructor(input: Readonly<{
     deviceId: DeviceId;
     provider: AccountAuthorityProviderPort;
     lease: AccountAuthorityLeasePort;
     localStore: AccountAuthorityLocalStorePort;
+    logger?: AccountAuthorityLogger;
   }>) {
     this.deviceId = input.deviceId;
     this.provider = input.provider;
     this.lease = input.lease;
     this.localStore = input.localStore;
+    this.log = safeAccountAuthorityLogger(input.logger);
     const initialState = initialAccountAuthorityState(input.deviceId);
     this.state = freezeAccountAuthorityState({
       ...initialState,
       generation: this.localStore.getAuthorityGeneration(),
     });
+    this.log.info('runtime created', { phase: this.state.phase, generation: this.state.generation.value });
+  }
+
+  /** зачем (AA S1): ранний отказ до очереди — с причиной в логе, не немой reject. */
+  private rejectLogged<T>(event: string, error: unknown): Promise<T> {
+    this.log.warn(event, errorFields(error));
+    return Promise.reject(error);
   }
 
   getState(): AccountAuthorityState {
@@ -243,12 +284,19 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
       try {
         providerResult = await this.provider.authenticate({ operationId });
       } catch (error) {
+        this.log.warn('sign_in provider_threw', errorFields(error));
         return this.failClosedAuthentication({ error, operationId, previousOwner });
       }
+      this.log.info('sign_in provider_result', {
+        type: providerResult.type,
+        hadPreviousOwner: previousOwner !== null,
+        identityPreserved: providerResult.type === 'failed' ? providerResult.identityPreserved : null,
+      });
       if (providerResult.type === 'cancelled') return this.cancelAuthentication(operationId);
       if (providerResult.type === 'failed') {
         if (providerResult.identityPreserved) {
           this.restoreAuthenticationAfterProviderFailure(operationId);
+          this.log.warn('sign_in provider_failed_identity_preserved', errorFields(providerResult.error));
           throw providerResult.error;
         }
         return this.failClosedAuthentication({
@@ -269,8 +317,10 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
       try {
         firebaseAuthUid = await this.provider.currentIdentity();
       } catch (error) {
+        this.log.warn('resume current_identity_threw', errorFields(error));
         return this.failClosedAuthentication({ error, operationId, previousOwner });
       }
+      this.log.info('resume current_identity', { present: firebaseAuthUid !== null });
       if (firebaseAuthUid === null) return this.cancelAuthentication(operationId);
       return this.establishLease(firebaseAuthUid, operationId);
     });
@@ -282,15 +332,27 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
     try {
       permanent = this.localStore.getDestructiveOperation(operationId);
     } catch (error) {
-      return Promise.reject(error);
+      return this.rejectLogged('sign_out read_destructive_failed', error);
     }
+    this.log.info('sign_out requested', {
+      phase: this.state.phase,
+      reserved: reserved !== undefined,
+      permanentStage: permanent?.kind === 'sign_out' ? permanent.stage : 'none',
+      hasReceipt: permanent?.receipt !== undefined && permanent?.receipt !== null,
+    });
     if (permanent?.kind === 'sign_out' && !permanent.receipt && permanent.stage === 'deferred_owner') {
       if (permanent.owner !== null) {
-        return Promise.reject(new Error('account_authority_destructive_retry_requires_recovery'));
+        return this.rejectLogged(
+          'sign_out deferred_owner_retry_rejected',
+          new Error('account_authority_destructive_retry_requires_recovery'),
+        );
       }
       const rehydratedOwner = this.state.phase === 'authenticated' ? ownedSession(this.state) : null;
       if (rehydratedOwner === null) {
-        return Promise.reject(new Error('account_authority_destructive_retry_requires_rehydration'));
+        return this.rejectLogged(
+          'sign_out deferred_owner_retry_rejected',
+          new Error('account_authority_destructive_retry_requires_rehydration'),
+        );
       }
       try {
         this.localStore.bindDeferredDestructiveOperation(
@@ -301,8 +363,9 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
           rehydratedOwner.generation,
         );
         permanent = this.localStore.getDestructiveOperation(operationId);
+        this.log.info('sign_out deferred_owner_bound', { generation: rehydratedOwner.generation.value });
       } catch (error) {
-        return Promise.reject(error);
+        return this.rejectLogged('sign_out deferred_owner_bind_failed', error);
       }
     }
     const visibleOwner = this.state.phase === 'authenticating' ? null : ownedSession(this.state);
@@ -368,7 +431,7 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
           phase: 'signed_out', deviceId: this.deviceId, generation: pending.result.generation,
         }));
       }
-      await settleRemoteCleanupAfterLocalClose(
+      await settleRemoteCleanupAfterLocalClose(this.log,
         () => this.closeOwnedScope(pending.owner),
         [
         () => (
@@ -439,8 +502,13 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
     try {
       permanent = this.localStore.getDestructiveOperation(operationId);
     } catch (error) {
-      return Promise.reject(error);
+      return this.rejectLogged('delete read_destructive_failed', error);
     }
+    this.log.info('delete requested', {
+      phase: this.state.phase,
+      reserved: reserved !== undefined,
+      permanentStage: permanent?.kind === 'delete' ? permanent.stage : 'none',
+    });
     const visibleOwner = ownedSession(this.state);
     const reservationOwner = reserved?.owner
       ?? (permanent?.kind === 'delete' ? destructiveRecordOwner(permanent) : visibleOwner);
@@ -469,7 +537,7 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
           phase: 'signed_out', deviceId: this.deviceId, generation: pending.result.generation,
         }));
       }
-      await settleRemoteCleanupAfterLocalClose(
+      await settleRemoteCleanupAfterLocalClose(this.log,
         () => this.closeOwnedScope(pending.owner),
         [
         () => (
@@ -539,8 +607,14 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
     try {
       permanent = this.localStore.getDestructiveOperation(notification.operationId);
     } catch (error) {
-      return Promise.reject(error);
+      return this.rejectLogged('revoke read_destructive_failed', error);
     }
+    this.log.info('revoke notified', {
+      phase: this.state.phase,
+      reserved: reserved !== undefined,
+      expectedGeneration: notification.expectedGeneration.value,
+      permanentStage: permanent?.kind === 'revoke' ? permanent.stage : 'none',
+    });
     const visibleOwner = ownedSession(this.state);
     const reservationOwner = reserved?.owner
       ?? (permanent?.kind === 'revoke' ? destructiveRecordOwner(permanent) : visibleOwner);
@@ -559,8 +633,12 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
           revokedSessionId: notification.revokedSessionId,
           expectedGeneration: notification.expectedGeneration,
         });
-        if (!reduction.result) return undefined;
+        if (!reduction.result) {
+          this.log.info('revoke ignored', { reason: 'reducer_no_result', phase: this.state.phase });
+          return undefined;
+        }
         if (!owner || reduction.result.type !== 'device_taken_over') {
+          this.log.warn('revoke owner_missing', { hasOwner: owner !== null, resultType: reduction.result.type });
           throw new Error('account_authority_revocation_owner_missing');
         }
         this.commitState(reduction.state);
@@ -581,7 +659,7 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
           generation: pending.result.generation,
         }));
       }
-      await settleRemoteCleanupAfterLocalClose(
+      await settleRemoteCleanupAfterLocalClose(this.log,
         () => this.closeOwnedScope(pending.owner),
         [
         () => (
@@ -649,11 +727,23 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
     });
   }
 
+  // зачем (AA S1): reducer чистый и не логирует — переход пишет его драйвер
+  // здесь, в единственной точке фиксации состояния (фаза и поколение, без id).
   private commitState(state: AccountAuthorityState): void {
+    const from = this.state;
     const durableGeneration = this.localStore.advanceAuthorityGeneration(state.generation);
     this.state = durableGeneration.value === state.generation.value
       ? state
       : freezeAccountAuthorityState({ ...state, generation: durableGeneration });
+    if (from.phase !== this.state.phase || from.generation.value !== this.state.generation.value) {
+      this.log.info('state transition', {
+        from: from.phase,
+        to: this.state.phase,
+        fromGeneration: from.generation.value,
+        toGeneration: this.state.generation.value,
+        durableAhead: durableGeneration.value !== state.generation.value,
+      });
+    }
   }
 
   private beginAuthentication(operationId: OperationId): void {
@@ -667,7 +757,11 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
       type: 'provider_cancelled', attemptId: operationId,
     });
     this.commitState(reduction.state);
-    if (!reduction.result) throw new Error('account_authority_cancellation_result_missing');
+    if (!reduction.result) {
+      this.log.warn('authentication cancel_result_missing', { phase: this.state.phase });
+      throw new Error('account_authority_cancellation_result_missing');
+    }
+    this.log.info('authentication cancelled', { resultType: reduction.result.type });
     return reduction.result;
   }
 
@@ -682,7 +776,10 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
     firebaseAuthUid: FirebaseAuthUid,
     operationId: OperationId,
   ): Promise<AccountAuthorityResult> {
-    if (this.state.phase !== 'authenticating') throw new Error('account_authority_attempt_not_active');
+    if (this.state.phase !== 'authenticating') {
+      this.log.warn('lease establish_rejected', { reason: 'attempt_not_active', phase: this.state.phase });
+      throw new Error('account_authority_attempt_not_active');
+    }
     const expectedGeneration = this.state.generation;
     const previousOwner = ownedSession(this.state);
     let authorityLease: AccountAuthorityLease;
@@ -693,6 +790,7 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
         operationId,
       });
     } catch (error) {
+      this.log.warn('lease establish_acquire_failed', errorFields(error));
       return this.failClosedAuthentication({ error, operationId, previousOwner });
     }
     const reduction = reduceAccountAuthorityState(this.state, {
@@ -702,6 +800,7 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
       expectedAttemptId: operationId,
     });
     if (!reduction.result || reduction.result.type !== 'authenticated') {
+      this.log.warn('lease establish_result_missing', { resultType: reduction.result?.type ?? 'none' });
       throw new Error('account_authority_authentication_result_missing');
     }
     const targetScope: AccountAuthorityLocalScope = Object.freeze({
@@ -711,6 +810,10 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
     try {
       const durableGeneration = this.localStore.advanceAuthorityGeneration(targetScope.generation);
       if (durableGeneration.value > targetScope.generation.value) {
+        this.log.warn('lease establish_generation_regression', {
+          durable: durableGeneration.value,
+          target: targetScope.generation.value,
+        });
         throw new Error('account_authority_generation_regression');
       }
       const openScope = this.localStore.getOpenScope();
@@ -719,8 +822,19 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
         && sameOwner(openScope, targetScope)
         && openScope.generation.value > targetScope.generation.value
       ) {
+        this.log.warn('lease establish_open_scope_ahead', {
+          open: openScope.generation.value,
+          target: targetScope.generation.value,
+        });
         throw new Error('account_authority_generation_regression');
       }
+      const scopeAction = openScope === null
+        ? 'open'
+        : sameScope(openScope, targetScope) ? 'keep' : 'switch';
+      this.log.info('lease establish_scope', {
+        action: scopeAction,
+        previousOwner: previousOwner === null ? 'none' : sameOwner(previousOwner, targetScope) ? 'same' : 'other',
+      });
       if (openScope === null) {
         await this.localStore.openScope(targetScope);
       } else if (!sameScope(openScope, targetScope)) {
@@ -729,6 +843,7 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
       }
       this.commitState(reduction.state);
       if (previousOwner !== null && !sameOwner(previousOwner, targetScope)) {
+        this.log.info('lease establish_release_previous');
         await this.lease.release({
           accountId: previousOwner.accountId,
           sessionId: previousOwner.sessionId,
@@ -737,6 +852,7 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
         });
       }
     } catch (error) {
+      this.log.warn('lease establish_local_failed', errorFields(error));
       return this.failClosedAuthentication({
         error,
         operationId,
@@ -744,6 +860,7 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
         acquiredOwner: targetScope,
       });
     }
+    this.log.info('lease established', { generation: reduction.result.generation.value });
     return reduction.result;
   }
 
@@ -753,11 +870,16 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
     previousOwner: OwnedSession | null;
     acquiredOwner?: OwnedSession;
   }>): Promise<never> {
+    this.log.warn('authentication fail_closed', errorFields(input.error, {
+      hadPreviousOwner: input.previousOwner !== null,
+      hadAcquiredOwner: input.acquiredOwner !== undefined,
+    }));
     const signedOutState = reduceAccountAuthorityState(this.state, { type: 'signed_out' }).state;
     let persistenceFailure: unknown;
     try {
       this.commitState(signedOutState);
     } catch (error) {
+      this.log.warn('authentication fail_closed_persist_failed', errorFields(error));
       persistenceFailure = error;
       this.state = signedOutState;
     }
@@ -784,11 +906,12 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
     }
     let cleanupFailure: unknown;
     try {
-      await settleRemoteCleanupAfterLocalClose(
+      await settleRemoteCleanupAfterLocalClose(this.log,
         () => this.closeFailedAuthenticationScope(input.previousOwner, input.acquiredOwner),
         cleanupTasks,
       );
     } catch (error) {
+      this.log.warn('authentication fail_closed_cleanup_failed', errorFields(error));
       cleanupFailure = error;
     }
     if (persistenceFailure !== undefined) throw persistenceFailure;
@@ -805,6 +928,7 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
       if (partiallyOpenScope !== null) await this.localStore.closeScope(partiallyOpenScope);
       return;
     } catch (inspectionError) {
+      this.log.warn('authentication failed_scope_inspection_failed', errorFields(inspectionError));
       const possibleOwners = [acquiredOwner, previousOwner].filter(
         (owner): owner is OwnedSession => owner !== undefined && owner !== null,
       );
@@ -823,6 +947,7 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
     try {
       openScope = this.localStore.getOpenScope();
     } catch (error) {
+      this.log.warn('scope close_inspection_failed', errorFields(error, { hasOwner: owner !== null }));
       if (owner !== null) await this.localStore.closeScope(owner);
       throw error;
     }
@@ -851,27 +976,40 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
       reservedKind = this.localStore.getOperationKind(operationId);
       destructiveRecord = this.localStore.getDestructiveOperation(operationId);
       if (reservedKind && reservedKind !== kind) {
-        return Promise.reject(new Error('account_authority_operation_id_reused'));
+        return this.rejectLogged(
+          `operation ${kind}_rejected_reserved_kind_mismatch`,
+          new Error('account_authority_operation_id_reused'),
+        );
       }
     } catch (error) {
-      return Promise.reject(error);
+      return this.rejectLogged(`operation ${kind}_read_reservation_failed`, error);
     }
     const active = this.activeOperations.get(key);
     const completed = this.completedOperations.get(key);
     const recorded = active ?? completed;
     if (recorded && recorded.kind !== kind) {
-      return Promise.reject(new Error('account_authority_operation_id_reused'));
+      return this.rejectLogged(
+        `operation ${kind}_rejected_recorded_kind_mismatch`,
+        new Error('account_authority_operation_id_reused'),
+      );
     }
     if (destructive) {
       const destructiveKind = kind as DestructiveOperationKind;
       if (destructiveRecord?.receipt) {
         if (destructiveRecord.kind !== destructiveKind) {
-          return Promise.reject(new Error('account_authority_operation_id_reused'));
+          return this.rejectLogged(
+            `operation ${kind}_rejected_receipt_kind_mismatch`,
+            new Error('account_authority_operation_id_reused'),
+          );
         }
+        this.log.info('operation replayed_receipt', { kind, resultType: destructiveRecord.receipt.type });
         return Promise.resolve(destructiveRecord.receipt as T);
       }
       if (reservedKind !== null && destructiveRecord === null) {
-        return Promise.reject(new Error('account_authority_destructive_retry_requires_recovery'));
+        return this.rejectLogged(
+          `operation ${kind}_rejected_missing_destructive_record`,
+          new Error('account_authority_destructive_retry_requires_recovery'),
+        );
       }
       if (destructiveRecord && (
         destructiveRecord.kind !== destructiveKind
@@ -879,20 +1017,33 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
         || !sameReservedOwner(destructiveRecordOwner(destructiveRecord), destructive.owner)
         || destructiveRecord.expectedGeneration.value !== destructive.expectedGeneration.value
       )) {
-        return Promise.reject(new Error('account_authority_operation_id_reused'));
+        return this.rejectLogged(
+          `operation ${kind}_rejected_destructive_record_mismatch`,
+          new Error('account_authority_operation_id_reused'),
+        );
       }
       if (destructiveRecord && this.state.phase === 'booting') {
-        return Promise.reject(new Error('account_authority_destructive_retry_requires_rehydration'));
+        return this.rejectLogged(
+          `operation ${kind}_rejected_booting`,
+          new Error('account_authority_destructive_retry_requires_rehydration'),
+        );
       }
     }
-    if (active) return active.promise as Promise<T>;
+    if (active) {
+      this.log.info('operation joined_active', { kind });
+      return active.promise as Promise<T>;
+    }
     if (completed) {
+      this.log.info('operation replayed_completed', { kind });
       this.completedOperations.delete(key);
       this.completedOperations.set(key, completed);
       return completed.promise as Promise<T>;
     }
     if (destructive && this.destructiveAdmissions.size >= MAX_PENDING_DESTRUCTIVE_OPERATIONS) {
-      return Promise.reject(new Error('account_authority_destructive_queue_full'));
+      return this.rejectLogged(
+        `operation ${kind}_rejected_queue_full`,
+        new Error('account_authority_destructive_queue_full'),
+      );
     }
     try {
       this.localStore.reserveOperation(
@@ -908,16 +1059,24 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
           : undefined,
       );
     } catch (error) {
-      return Promise.reject(error);
+      return this.rejectLogged(`operation ${kind}_reserve_failed`, error);
     }
     try {
       prepare?.();
     } catch (error) {
       destructive?.onSettled?.();
-      return Promise.reject(error);
+      return this.rejectLogged(`operation ${kind}_prepare_failed`, error);
     }
     if (destructive) this.destructiveAdmissions.add(key);
+    const queuedAt = Date.now();
+    this.log.info('operation enqueued', {
+      kind,
+      destructive: destructive !== undefined,
+      queueDepth: this.queue.length,
+      phase: this.state.phase,
+    });
     const operation = this.enqueue(async () => {
+      this.log.info('operation started', { kind, phase: this.state.phase, waitedMs: accountAuthorityElapsedMs(queuedAt) });
       const value = await task();
       if (destructive && value !== undefined) {
         const reservation = this.localStore.getDestructiveOperation(operationId);
@@ -936,7 +1095,13 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
     const record = Object.freeze({ kind, promise: operation });
     this.activeOperations.set(key, record);
     void operation.then(
-      () => {
+      (value) => {
+        this.log.info('operation done', {
+          kind,
+          resultType: resultTypeOf(value),
+          phase: this.state.phase,
+          durationMs: accountAuthorityElapsedMs(queuedAt),
+        });
         if (this.activeOperations.get(key)?.promise !== operation) return;
         this.activeOperations.delete(key);
         if (destructive) {
@@ -952,7 +1117,12 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
           }
         }
       },
-      () => {
+      (error: unknown) => {
+        this.log.warn('operation failed', errorFields(error, {
+          kind,
+          phase: this.state.phase,
+          durationMs: accountAuthorityElapsedMs(queuedAt),
+        }));
         if (this.activeOperations.get(key)?.promise === operation) {
           this.activeOperations.delete(key);
           if (destructive) {
@@ -989,6 +1159,7 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
     try {
       runningOperation = item.run();
     } catch (error) {
+      this.log.warn('queue task_threw_synchronously', errorFields(error));
       item.reject(error);
       this.running = false;
       this.startNext();
@@ -1001,6 +1172,9 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
         this.startNext();
       },
       (error: unknown) => {
+        // зачем (AA S1): итог операции пишет runOperation ('operation failed');
+        // здесь — короткая отметка, что очередь освобождена после отказа.
+        this.log.info('queue task_rejected', errorFields(error, { queueDepth: this.queue.length }));
         this.running = false;
         item.reject(error);
         this.startNext();
@@ -1014,6 +1188,7 @@ export function createAccountAuthorityRuntime(input: Readonly<{
   provider: AccountAuthorityProviderPort;
   lease: AccountAuthorityLeasePort;
   localStore: AccountAuthorityLocalStorePort;
+  logger?: AccountAuthorityLogger;
 }>): AccountAuthorityRuntime {
   return new FifoAccountAuthorityRuntime(input);
 }

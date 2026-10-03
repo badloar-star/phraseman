@@ -33,6 +33,12 @@ import {
   type AccountAuthorityLeaseRevisionStore,
 } from '../account-authority-v2/account_authority_lease_transport';
 import type { AccountAuthorityLeasePort } from '../account-authority-v2/account_authority_runtime';
+import {
+  accountAuthorityErrorCode,
+  accountAuthorityErrorKind,
+  safeAccountAuthorityLogger,
+  type AccountAuthorityLogger,
+} from '../account-authority-v2/account_authority_logger';
 import type { SessionFence } from './account_session';
 import {
   createAccountScopeStore,
@@ -51,7 +57,6 @@ const LOCAL_METADATA_SCHEMA = 'account-authority-local-metadata.v1';
 const SCOPE_METADATA_KEY = 'account_authority.scope.v1';
 const REVISION_SCHEMA = 'account-authority-lease-revision.v1';
 const LEASE_OWNER_REVISION_SCHEMA = 'account-authority-lease-owner-revision.v1';
-const LOG = '[ACCOUNT-AUTHORITY]';
 const MAX_DURABLE_OPERATIONS = 512;
 const UUID_V4 = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 const SHA256_HEX = /^[0-9a-f]{64}$/;
@@ -98,23 +103,32 @@ export type AccountAuthorityProductionAdapterDependencies = Readonly<{
     installationBinding: AccountAuthorityInstallationBindingPort,
   ): AccountAuthorityLeasePort;
   providerSignOut(): Promise<void>;
+  /** Порт-логгер AA S1; по умолчанию console с префиксом [ACCOUNT-AUTHORITY]. */
+  logger?: AccountAuthorityLogger;
 }>;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
-// зачем (AA S0, правило «немой catch запрещён»): в лог идёт только вид ошибки и
-// безопасный код (свой account_authority_* или код адаптера), но не текст чужой
-// ошибки — в нём может оказаться uid или путь.
-function failureKind(error: unknown): string {
-  return error instanceof Error ? error.name : typeof error;
+// зачем (AA S0/S1, правило «немой catch запрещён»): в лог идёт только вид ошибки
+// и безопасный код (свой account_authority_* или код адаптера), но не текст
+// чужой ошибки — в нём может оказаться uid или путь.
+function failureFields(
+  error: unknown,
+  extra: Readonly<Record<string, string>> = {},
+): Readonly<Record<string, string>> {
+  return Object.freeze({ ...extra, kind: accountAuthorityErrorKind(error), code: accountAuthorityErrorCode(error) });
 }
 
-function failureCode(error: unknown): string {
-  if (isRecord(error) && typeof error.code === 'string' && /^[\w/-]{1,96}$/.test(error.code)) return error.code;
-  if (error instanceof Error && /^account_authority_[a-z0-9_]{1,80}$/.test(error.message)) return error.message;
-  return 'other';
+// Разбор сохранённых данных: любая поломка → свой код, вид исходной — в лог.
+function parseOrThrow<T>(log: AccountAuthorityLogger, event: string, failureCode: string, parse: () => T): T {
+  try {
+    return parse();
+  } catch (error) {
+    log.warn(event, failureFields(error, { mappedTo: failureCode }));
+    throw new Error(failureCode);
+  }
 }
 
 function exactKeys(value: Record<string, unknown>, keys: readonly string[]): boolean {
@@ -174,9 +188,12 @@ function receiptToDurable(receipt: AccountAuthorityResult): DurableReceipt {
   }
 }
 
-function receiptFromDurable(value: unknown): AccountAuthorityResult {
-  if (!isRecord(value) || typeof value.type !== 'string') throw new Error('account_authority_local_metadata_invalid');
-  try {
+function receiptFromDurable(value: unknown, log: AccountAuthorityLogger): AccountAuthorityResult {
+  if (!isRecord(value) || typeof value.type !== 'string') {
+    log.warn('local_store receipt_invalid', { reason: 'not_typed_record' });
+    throw new Error('account_authority_local_metadata_invalid');
+  }
+  return parseOrThrow(log, 'local_store receipt_invalid', 'account_authority_local_metadata_invalid', () => {
     switch (value.type) {
       case 'authenticated':
         if (!safeInteger(value.generation)) throw new Error('invalid');
@@ -214,9 +231,7 @@ function receiptFromDurable(value: unknown): AccountAuthorityResult {
       default:
         throw new Error('invalid');
     }
-  } catch {
-    throw new Error('account_authority_local_metadata_invalid');
-  }
+  });
 }
 
 function parseDurableOwner(value: unknown): DurableOwner | null {
@@ -229,7 +244,11 @@ function parseDurableOwner(value: unknown): DurableOwner | null {
   return Object.freeze({ accountId, sessionId });
 }
 
-function parseDurableDestructive(value: unknown, operationKindValue: AccountAuthorityOperationKind): DurableDestructive | null {
+function parseDurableDestructive(
+  value: unknown,
+  operationKindValue: AccountAuthorityOperationKind,
+  log: AccountAuthorityLogger,
+): DurableDestructive | null {
   if (value === null) return null;
   if (
     !isRecord(value)
@@ -242,7 +261,7 @@ function parseDurableDestructive(value: unknown, operationKindValue: AccountAuth
     || !safeInteger(value.expectedGeneration)
     || !destructiveStage(value.stage)
   ) throw new Error('account_authority_local_metadata_invalid');
-  const receipt = value.receipt === null ? null : receiptToDurable(receiptFromDurable(value.receipt));
+  const receipt = value.receipt === null ? null : receiptToDurable(receiptFromDurable(value.receipt, log));
   return Object.freeze({
     kind: value.kind,
     fingerprint: value.fingerprint,
@@ -253,14 +272,17 @@ function parseDurableDestructive(value: unknown, operationKindValue: AccountAuth
   });
 }
 
-function parseMetadata(raw: string | null): DurableMetadata {
-  if (raw === null) return Object.freeze({ generation: 0, operations: Object.freeze([]) });
-  let value: unknown;
-  try {
-    value = JSON.parse(raw);
-  } catch {
-    throw new Error('account_authority_local_metadata_invalid');
+function parseMetadata(raw: string | null, log: AccountAuthorityLogger): DurableMetadata {
+  if (raw === null) {
+    log.info('local_store metadata_genesis');
+    return Object.freeze({ generation: 0, operations: Object.freeze([]) });
   }
+  const value: unknown = parseOrThrow(
+    log,
+    'local_store metadata_json_invalid',
+    'account_authority_local_metadata_invalid',
+    () => JSON.parse(raw) as unknown,
+  );
   if (
     !isRecord(value)
     || !exactKeys(value, ['schemaVersion', 'generation', 'operations'])
@@ -268,7 +290,10 @@ function parseMetadata(raw: string | null): DurableMetadata {
     || !safeInteger(value.generation)
     || !Array.isArray(value.operations)
     || value.operations.length > MAX_DURABLE_OPERATIONS
-  ) throw new Error('account_authority_local_metadata_invalid');
+  ) {
+    log.warn('local_store metadata_invalid', { reason: 'envelope' });
+    throw new Error('account_authority_local_metadata_invalid');
+  }
   const seen = new Set<string>();
   const operations = value.operations.map((entry): DurableOperation => {
     if (
@@ -279,12 +304,13 @@ function parseMetadata(raw: string | null): DurableMetadata {
     const operationId = parseOperationId(entry.operationId).value;
     if (seen.has(operationId)) throw new Error('account_authority_local_metadata_invalid');
     seen.add(operationId);
-    const destructive = parseDurableDestructive(entry.destructive, entry.kind);
+    const destructive = parseDurableDestructive(entry.destructive, entry.kind, log);
     if (destructive === null && destructiveKind(entry.kind)) {
       throw new Error('account_authority_local_metadata_invalid');
     }
     return Object.freeze({ operationId, kind: entry.kind, destructive });
   });
+  log.info('local_store metadata_loaded', { generation: value.generation, operations: operations.length });
   return Object.freeze({ generation: value.generation, operations: Object.freeze(operations) });
 }
 
@@ -328,8 +354,11 @@ function durableDestructive(
   });
 }
 
-function destructiveRecord(value: DurableDestructive): AccountAuthorityDestructiveOperationRecord {
-  const receipt = value.receipt === null ? undefined : receiptFromDurable(value.receipt);
+function destructiveRecord(
+  value: DurableDestructive,
+  log: AccountAuthorityLogger,
+): AccountAuthorityDestructiveOperationRecord {
+  const receipt = value.receipt === null ? undefined : receiptFromDurable(value.receipt, log);
   return Object.freeze({
     kind: value.kind,
     fingerprint: value.fingerprint,
@@ -355,14 +384,17 @@ function makeFence(scope: AccountAuthorityLocalScope): SessionFence {
 function createDurableLocalStore(input: Readonly<{
   secureStore: AccountAuthoritySecureStorePort;
   storageAdapter: ScopeStorageAdapter;
+  log: AccountAuthorityLogger;
 }>): AccountAuthorityLocalStorePort {
+  const log = input.log;
   const options = secureOptions(input.secureStore);
   const raw = input.secureStore.getItem(LOCAL_METADATA_KEY, options);
-  let metadata = parseMetadata(raw);
+  let metadata = parseMetadata(raw, log);
   if (raw === null) {
     const genesis = metadataJson(metadata);
     input.secureStore.setItem(LOCAL_METADATA_KEY, genesis, options);
     if (input.secureStore.getItem(LOCAL_METADATA_KEY, options) !== genesis) {
+      log.warn('local_store genesis_verify_failed', { code: 'account_authority_local_metadata_unavailable' });
       throw new Error('account_authority_local_metadata_unavailable');
     }
   }
@@ -374,6 +406,7 @@ function createDurableLocalStore(input: Readonly<{
     const encoded = metadataJson(next);
     input.secureStore.setItem(LOCAL_METADATA_KEY, encoded, options);
     if (input.secureStore.getItem(LOCAL_METADATA_KEY, options) !== encoded) {
+      log.warn('local_store persist_verify_failed', { code: 'account_authority_local_metadata_unavailable' });
       throw new Error('account_authority_local_metadata_unavailable');
     }
     metadata = next;
@@ -426,7 +459,7 @@ function createDurableLocalStore(input: Readonly<{
     getOperationKind: (operationId) => metadata.operations[operationIndex(parseOperationId(operationId).value)]?.kind ?? null,
     getDestructiveOperation: (operationId) => {
       const operation = metadata.operations[operationIndex(parseOperationId(operationId).value)];
-      return operation?.destructive ? destructiveRecord(operation.destructive) : null;
+      return operation?.destructive ? destructiveRecord(operation.destructive, log) : null;
     },
     reserveOperation: (operationId, kind, destructive) => {
       const id = parseOperationId(operationId).value;
@@ -450,6 +483,7 @@ function createDurableLocalStore(input: Readonly<{
         return;
       }
       if (metadata.operations.length >= MAX_DURABLE_OPERATIONS) {
+        log.warn('local_store reserve_rejected', { reason: 'store_full', limit: MAX_DURABLE_OPERATIONS });
         throw new Error('account_authority_operation_store_full');
       }
       persist(Object.freeze({
@@ -502,9 +536,18 @@ function createDurableLocalStore(input: Readonly<{
         sessionId: parseSessionId(scope.sessionId),
         generation: accountAuthorityGeneration(scope.generation.value),
       });
-      if (target.generation.value !== metadata.generation) throw new Error('account_authority_generation_regression');
+      if (target.generation.value !== metadata.generation) {
+        log.warn('local_store open_scope_rejected', {
+          reason: 'generation_mismatch', target: target.generation.value, durable: metadata.generation,
+        });
+        throw new Error('account_authority_generation_regression');
+      }
       if (openScope !== null) {
-        if (sameScope(openScope, target)) return;
+        if (sameScope(openScope, target)) {
+          log.info('local_store open_scope_already_open');
+          return;
+        }
+        log.warn('local_store open_scope_rejected', { reason: 'scope_busy' });
         throw new Error('account_authority_scope_busy');
       }
       const accountScope = Object.freeze({
@@ -539,30 +582,36 @@ function createDurableLocalStore(input: Readonly<{
           });
         });
       } catch (error) {
-        console.warn(`${LOG} local_store open_scope_metadata_failed kind=${failureKind(error)} code=${failureCode(error)}`);
+        log.warn('local_store open_scope_metadata_failed', failureFields(error));
         try {
           await scopeStore.close(fence);
         } catch (closeError) {
           // зачем (AA S0): раньше сбой компенсирующего закрытия глушился немым
           // .catch(() => undefined). Наружу по-прежнему уходит исходная ошибка
           // открытия (её видит runtime), но причина незакрытого scope теперь в логе.
-          console.warn(`${LOG} local_store open_scope_compensation_close_failed kind=${failureKind(closeError)} code=${failureCode(closeError)}`);
+          log.warn('local_store open_scope_compensation_close_failed', failureFields(closeError));
         }
         throw error;
       }
       openScope = target;
       openHandle = handle;
+      log.info('local_store scope_opened', { generation: target.generation.value });
     },
     closeScope: async (scope) => {
-      if (openScope === null || !sameScope(openScope, scope)) throw new Error('account_authority_scope_stale');
+      if (openScope === null || !sameScope(openScope, scope)) {
+        log.warn('local_store close_scope_rejected', { reason: openScope === null ? 'none_open' : 'stale' });
+        throw new Error('account_authority_scope_stale');
+      }
       const target = openScope;
       await scopeStore.close(makeFence(target));
       openScope = null;
       openHandle = null;
+      log.info('local_store scope_closed', { generation: target.generation.value });
     },
     clearAccountData: (_accountId: AccountId) => {
       // The core port is synchronous, while the proven native eraser is async.
       // Publishing a successful local delete here would violate delete-local-first.
+      log.warn('local_store clear_account_data_not_wired', { code: 'account_authority_local_delete_not_wired' });
       throw new Error('account_authority_local_delete_not_wired');
     },
     commitPreservedWrite: async (write) => {
@@ -626,11 +675,14 @@ async function leaseOwnerKey(
 export function createAccountAuthoritySecureRevisionStore(input: Readonly<{
   secureStore: AccountAuthoritySecureStorePort;
   digestSha256(value: string): Promise<string>;
+  logger?: AccountAuthorityLogger;
 }>): AccountAuthorityLeaseRevisionStore {
+  const log = safeAccountAuthorityLogger(input.logger);
   const options = secureOptions(input.secureStore);
   const writeVerified = async (key: string, encoded: string): Promise<void> => {
     await input.secureStore.setItemAsync(key, encoded, options);
     if (await input.secureStore.getItemAsync(key, options) !== encoded) {
+      log.warn('revision_store write_verify_failed', { code: 'account_authority_lease_revision_unavailable' });
       throw new Error('account_authority_lease_revision_unavailable');
     }
   };
@@ -643,8 +695,11 @@ export function createAccountAuthoritySecureRevisionStore(input: Readonly<{
   const readLeaseRecord = async (owner: LeaseOwner): Promise<LeaseOwnerRecord | null> => {
     const { key, ownerHash } = await leaseOwnerKey(owner, input.digestSha256);
     const raw = await input.secureStore.getItemAsync(key, options);
-    if (raw === null) return null;
-    try {
+    if (raw === null) {
+      log.info('revision_store lease_record_missing');
+      return null;
+    }
+    return parseOrThrow(log, 'revision_store lease_record_invalid', 'account_authority_lease_revision_unavailable', () => {
       const value: unknown = JSON.parse(raw);
       if (
         !isRecord(value)
@@ -656,9 +711,7 @@ export function createAccountAuthoritySecureRevisionStore(input: Readonly<{
         || !safeInteger(value.revision)
       ) throw new Error('invalid');
       return Object.freeze({ ownerHash, uidHash: value.uidHash, revision: value.revision });
-    } catch {
-      throw new Error('account_authority_lease_revision_unavailable');
-    }
+    });
   };
   const writeLeaseRecord = async (
     owner: LeaseOwner,
@@ -677,8 +730,11 @@ export function createAccountAuthoritySecureRevisionStore(input: Readonly<{
     read: async (firebaseAuthUid) => {
       const { key, uidHash } = await revisionKey(firebaseAuthUid, input.digestSha256);
       const raw = await input.secureStore.getItemAsync(key, options);
-      if (raw === null) return null;
-      try {
+      if (raw === null) {
+        log.info('revision_store uid_revision_missing');
+        return null;
+      }
+      return parseOrThrow(log, 'revision_store uid_revision_invalid', 'account_authority_lease_revision_unavailable', () => {
         const value: unknown = JSON.parse(raw);
         if (
           !isRecord(value)
@@ -688,9 +744,7 @@ export function createAccountAuthoritySecureRevisionStore(input: Readonly<{
           || !safeInteger(value.revision)
         ) throw new Error('invalid');
         return value.revision;
-      } catch {
-        throw new Error('account_authority_lease_revision_unavailable');
-      }
+      });
     },
     write: async (firebaseAuthUid, revision) => {
       if (!safeInteger(revision)) throw new Error('account_authority_lease_revision_unavailable');
@@ -712,7 +766,10 @@ export function createAccountAuthoritySecureRevisionStore(input: Readonly<{
     writeLease: async (owner, revision) => {
       if (!safeInteger(revision)) throw new Error('account_authority_lease_revision_unavailable');
       const record = await readLeaseRecord(owner);
-      if (record === null) throw new Error('account_authority_lease_revision_unavailable');
+      if (record === null) {
+        log.warn('revision_store write_lease_rejected', { reason: 'lease_record_missing' });
+        throw new Error('account_authority_lease_revision_unavailable');
+      }
       await writeUidRevision(record.uidHash, revision);
       await writeLeaseRecord(owner, record.uidHash, revision);
     },
@@ -722,7 +779,9 @@ export function createAccountAuthoritySecureRevisionStore(input: Readonly<{
 
 export function createAccountAuthoritySecureInstallationBindingCredentialStore(input: Readonly<{
   secureStore: AccountAuthoritySecureStorePort;
+  logger?: AccountAuthorityLogger;
 }>): AccountAuthorityInstallationBindingCredentialStore {
+  const log = safeAccountAuthorityLogger(input.logger);
   const options = secureOptions(input.secureStore);
   const parseCredentials = (bindingToken: unknown, deviceBindingId: unknown) => {
     if (
@@ -730,15 +789,16 @@ export function createAccountAuthoritySecureInstallationBindingCredentialStore(i
       || bindingToken.length < 1
       || bindingToken.length > 512
       || bindingToken.trim() !== bindingToken
-    ) throw new Error('account_authority_installation_binding_unavailable');
-    try {
-      return Object.freeze({
-        bindingToken,
-        deviceBindingId: parseDeviceId(deviceBindingId).value,
-      });
-    } catch {
+    ) {
+      log.warn('binding_credentials invalid', { reason: bindingToken === null ? 'token_missing' : 'token_malformed' });
       throw new Error('account_authority_installation_binding_unavailable');
     }
+    return parseOrThrow(
+      log,
+      'binding_credentials device_binding_id_invalid',
+      'account_authority_installation_binding_unavailable',
+      () => Object.freeze({ bindingToken, deviceBindingId: parseDeviceId(deviceBindingId).value }),
+    );
   };
   const credentialStore: AccountAuthorityInstallationBindingCredentialStore = {
     read: async () => {
@@ -760,58 +820,82 @@ export function createAccountAuthoritySecureInstallationBindingCredentialStore(i
       if (
         storedToken !== parsed.bindingToken
         || storedDeviceBindingId !== parsed.deviceBindingId
-      ) throw new Error('account_authority_installation_binding_unavailable');
+      ) {
+        log.warn('binding_credentials write_verify_failed', { code: 'account_authority_installation_binding_unavailable' });
+        throw new Error('account_authority_installation_binding_unavailable');
+      }
     },
   };
   return Object.freeze(credentialStore);
 }
 
-async function installationDeviceId(input: AccountAuthorityProductionAdapterDependencies) {
+async function installationDeviceId(
+  input: AccountAuthorityProductionAdapterDependencies,
+  log: AccountAuthorityLogger,
+) {
   const options = secureOptions(input.secureStore);
   const existing = await input.secureStore.getItemAsync(INSTALLATION_ID_KEY, options);
   if (existing !== null) {
-    if (!UUID_V4.test(existing)) throw new Error('account_authority_installation_id_invalid');
+    if (!UUID_V4.test(existing)) {
+      log.warn('bootstrap installation_id_invalid', { source: 'secure_store' });
+      throw new Error('account_authority_installation_id_invalid');
+    }
+    log.info('bootstrap installation_id', { source: 'secure_store' });
     return parseDeviceId(existing);
   }
   const generated = await input.randomInstallationId();
-  if (!UUID_V4.test(generated)) throw new Error('account_authority_installation_id_invalid');
+  if (!UUID_V4.test(generated)) {
+    log.warn('bootstrap installation_id_invalid', { source: 'generated' });
+    throw new Error('account_authority_installation_id_invalid');
+  }
   await input.secureStore.setItemAsync(INSTALLATION_ID_KEY, generated, options);
   if (await input.secureStore.getItemAsync(INSTALLATION_ID_KEY, options) !== generated) {
+    log.warn('bootstrap installation_id_verify_failed', { code: 'account_authority_installation_id_unavailable' });
     throw new Error('account_authority_installation_id_unavailable');
   }
+  log.info('bootstrap installation_id', { source: 'generated' });
   return parseDeviceId(generated);
 }
 
 export async function createAccountAuthorityProductionBootstrap(
   dependencies: AccountAuthorityProductionAdapterDependencies,
 ): Promise<AccountAuthorityProductionBootstrap | null> {
+  const log = safeAccountAuthorityLogger(dependencies.logger);
   const storageAdapter = dependencies.createStorageAdapter();
-  if (storageAdapter === null) return null;
+  if (storageAdapter === null) {
+    log.info('bootstrap skipped', { reason: 'storage_adapter_unavailable' });
+    return null;
+  }
   if (
     typeof dependencies.secureStore.getItem !== 'function'
     || typeof dependencies.secureStore.setItem !== 'function'
   ) {
     // Generation and operation reservations are synchronous in the core port;
     // accepting an async-only store would acknowledge non-durable fences.
+    log.warn('bootstrap rejected', { reason: 'secure_store_sync_unavailable' });
     throw new Error('account_authority_secure_store_sync_unavailable');
   }
-  const deviceId = await installationDeviceId(dependencies);
+  const deviceId = await installationDeviceId(dependencies, log);
   const revisionStore = createAccountAuthoritySecureRevisionStore({
     secureStore: dependencies.secureStore,
     digestSha256: dependencies.digestSha256,
+    logger: log,
   });
   const installationBinding = dependencies.createInstallationBinding({
     installationId: deviceId.value,
     credentials: createAccountAuthoritySecureInstallationBindingCredentialStore({
       secureStore: dependencies.secureStore,
+      logger: log,
     }),
   });
-  return Object.freeze({
+  const bootstrap = Object.freeze({
     deviceId,
     lease: dependencies.createLease(revisionStore, installationBinding),
-    localStore: createDurableLocalStore({ secureStore: dependencies.secureStore, storageAdapter }),
+    localStore: createDurableLocalStore({ secureStore: dependencies.secureStore, storageAdapter, log }),
     providerSignOut: dependencies.providerSignOut,
   });
+  log.info('bootstrap composed');
+  return bootstrap;
 }
 
 function productionDependencies(): AccountAuthorityProductionAdapterDependencies {

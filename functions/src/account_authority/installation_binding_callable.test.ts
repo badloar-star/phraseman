@@ -15,6 +15,7 @@ import {
   handleInstallationBindingCallable,
   type InstallationBindingCallableDependencies,
 } from './installation_binding_callable';
+import { readAccountAuthorityFailureDetail } from './account_authority_log';
 
 const ROOT = path.resolve(__dirname, '../..');
 const INSTALLATION_ID = '550e8400-e29b-41d4-a716-446655440000';
@@ -333,7 +334,9 @@ describe('installation binding Firebase callable adapter', () => {
   });
 
   // зачем (AA S0): временный сбой Firestore раньше превращался в «отклонено».
-  test('maps a transient Firestore failure to the retryable unavailable code and logs only its safe code', async () => {
+  // зачем (ревью L4): резолвер — промежуточный слой. Он не пишет свою строку, а
+  // прикрепляет причину к ошибке; итоговую строку пишет граница вызова.
+  test('maps a transient Firestore failure to the retryable unavailable code and attaches only its safe code', async () => {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const logger = require('firebase-functions/logger') as typeof import('firebase-functions/logger');
     const warn = jest.spyOn(logger, 'warn').mockImplementation(() => undefined);
@@ -346,26 +349,31 @@ describe('installation binding Firebase callable adapter', () => {
       },
     } as unknown as Firestore;
     try {
-      await expect(createFirebaseInstallationBindingIdentityPort(db).resolve({
+      const failure = await createFirebaseInstallationBindingIdentityPort(db).resolve({
         firebaseAuthUid: 'firebase-auth-a' as never,
         authToken: {},
         app: null,
-      }, 'some-binding-token')).rejects.toMatchObject({
+      }, 'some-binding-token').catch((error: unknown) => error);
+      expect(failure).toMatchObject({
         code: 'unavailable',
         message: 'account_authority_installation_binding_unavailable',
       });
-      expect(warn).toHaveBeenCalledWith('[ACCOUNT-AUTHORITY] installation_binding resolve_unavailable', {
-        kind: 'Error',
-        code: '10',
+      const detail = readAccountAuthorityFailureDetail(failure);
+      expect(detail).toEqual({
+        stage: 'binding',
+        reason: 'storage_unavailable',
+        causeKind: 'Error',
+        causeCode: '10',
       });
-      expect(JSON.stringify(warn.mock.calls)).not.toContain('firebase-auth-a');
-      expect(JSON.stringify(warn.mock.calls)).not.toContain('some-binding-token');
+      expect(warn).not.toHaveBeenCalled();
+      expect(JSON.stringify(detail)).not.toContain('firebase-auth-a');
+      expect(JSON.stringify(detail)).not.toContain('some-binding-token');
     } finally {
       warn.mockRestore();
     }
   });
 
-  test('logs the rejection branch without identifiers', async () => {
+  test('attaches the rejection branch without identifiers', async () => {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const logger = require('firebase-functions/logger') as typeof import('firebase-functions/logger');
     const warn = jest.spyOn(logger, 'warn').mockImplementation(() => undefined);
@@ -377,14 +385,14 @@ describe('installation binding Firebase callable adapter', () => {
       runTransaction: async (work: (value: typeof transaction) => Promise<unknown>) => work(transaction),
     } as unknown as Firestore;
     try {
-      await expect(createFirebaseInstallationBindingIdentityPort(db).resolve({
+      const failure = await createFirebaseInstallationBindingIdentityPort(db).resolve({
         firebaseAuthUid: 'firebase-auth-a' as never,
         authToken: {},
         app: null,
-      }, 'unknown-binding-token')).rejects.toMatchObject({ code: 'failed-precondition' });
-      expect(warn).toHaveBeenCalledWith('[ACCOUNT-AUTHORITY] installation_binding resolve_rejected', {
-        reason: 'token_unknown',
-      });
+      }, 'unknown-binding-token').catch((error: unknown) => error);
+      expect(failure).toMatchObject({ code: 'failed-precondition' });
+      expect(readAccountAuthorityFailureDetail(failure)).toEqual({ stage: 'binding', reason: 'token_unknown' });
+      expect(warn).not.toHaveBeenCalled();
     } finally {
       warn.mockRestore();
     }

@@ -46,6 +46,13 @@ import {
   type AccountAuthorityProductionBootstrap,
 } from '../account-authority-v2/account_authority_bootstrap_contract';
 import { createAccountAuthorityProductionBootstrapIfPossible } from './account_authority_production_adapter';
+import {
+  accountAuthorityElapsedMs,
+  accountAuthorityErrorCode,
+  accountAuthorityErrorKind,
+  accountAuthoritySafeCode,
+  safeAccountAuthorityLogger,
+} from '../account-authority-v2/account_authority_logger';
 
 /*
  * Account V2, Пакет 6B (TG-F76EA3701B55) — боевые порты клиента V2.
@@ -63,6 +70,9 @@ import { createAccountAuthorityProductionBootstrapIfPossible } from './account_a
  */
 
 const LOG = '[ACCOUNT-V2]';
+// зачем (AA S1): проводка Account Authority пишет под своим префиксом
+// [ACCOUNT-AUTHORITY] через порт-логгер; V2-сообщения остаются под [ACCOUNT-V2].
+const AUTHORITY_LOG = safeAccountAuthorityLogger(undefined);
 const SYNC_CALLABLE_TIMEOUT_MS = 30_000;
 
 type SecureStoreModule = AccountsV2SecureStorePort;
@@ -184,17 +194,28 @@ const ACCOUNT_AUTHORITY_PROVIDER_PORT: AccountAuthorityProviderPort = Object.fre
       outcome = await pending.authenticate();
     } catch (error) {
       const identityAfter = currentAuthUid();
+      const identityPreserved = identityBefore !== null && identityAfter === identityBefore;
+      AUTHORITY_LOG.warn('provider authenticate_threw', {
+        kind: accountAuthorityErrorKind(error),
+        code: accountAuthorityErrorCode(error),
+        identityPreserved,
+      });
       return Object.freeze({
         type: 'failed' as const,
         error,
-        identityPreserved: identityBefore !== null && identityAfter === identityBefore,
+        identityPreserved,
       });
     }
     pending.outcome = outcome;
+    AUTHORITY_LOG.info('provider authenticate_result', {
+      result: outcome.result,
+      hadIdentityBefore: identityBefore !== null,
+    });
     if (outcome.result === 'cancelled') {
       return Object.freeze({ type: 'cancelled' as const });
     }
     if (outcome.result === 'error') {
+      AUTHORITY_LOG.warn('provider authenticate_error', { code: accountAuthoritySafeCode(outcome.error) });
       const identityAfter = currentAuthUid();
       const providerFailure = new Error(`account_authority_provider_error:${outcome.error ?? 'unknown'}`);
       pending.providerFailure = providerFailure;
@@ -205,7 +226,10 @@ const ACCOUNT_AUTHORITY_PROVIDER_PORT: AccountAuthorityProviderPort = Object.fre
       });
     }
     const uid = currentAuthUid();
-    if (uid === null) throw new Error('account_authority_authenticated_uid_missing');
+    if (uid === null) {
+      AUTHORITY_LOG.warn('provider authenticated_uid_missing');
+      throw new Error('account_authority_authenticated_uid_missing');
+    }
     return Object.freeze({ type: 'authenticated' as const, firebaseAuthUid: parseFirebaseAuthUid(uid) });
   },
   currentIdentity: async () => {
@@ -226,6 +250,7 @@ function getAccountAuthorityRuntime(): AccountAuthorityRuntime {
     provider: ACCOUNT_AUTHORITY_PROVIDER_PORT,
     lease: bootstrap.lease,
     localStore: bootstrap.localStore,
+    logger: AUTHORITY_LOG,
   });
   return accountAuthorityRuntime;
 }
@@ -241,12 +266,30 @@ export async function runAccountAuthorityProviderSignInTransition<
   const operationId = newAccountAuthorityOperationId('sign_in');
   const pending: PendingProviderSignIn = { authenticate, outcome: null, providerFailure: null };
   pendingAuthoritySignIns.set(operationId.value, pending);
+  const startedAt = Date.now();
+  AUTHORITY_LOG.info('wiring sign_in_start');
   try {
     await getAccountAuthorityRuntime().signIn(operationId);
-    if (pending.outcome === null) throw new Error('account_authority_provider_outcome_missing');
+    if (pending.outcome === null) {
+      AUTHORITY_LOG.warn('wiring sign_in_outcome_missing');
+      throw new Error('account_authority_provider_outcome_missing');
+    }
+    AUTHORITY_LOG.info('wiring sign_in_done', {
+      result: pending.outcome.result,
+      durationMs: accountAuthorityElapsedMs(startedAt),
+    });
     return pending.outcome as T;
   } catch (error) {
-    if (pending.outcome?.result === 'error' && error === pending.providerFailure) {
+    const providerError = pending.outcome?.result === 'error' && error === pending.providerFailure;
+    // зачем (AA S1): ошибка провайдера отдаётся вызывающему как обычный результат
+    // (прежнее поведение), остальное пробрасывается — обе ветки видны в логе.
+    AUTHORITY_LOG.warn('wiring sign_in_failed', {
+      kind: accountAuthorityErrorKind(error),
+      code: accountAuthorityErrorCode(error),
+      branch: providerError ? 'provider_error_returned' : 'rethrown',
+      durationMs: accountAuthorityElapsedMs(startedAt),
+    });
+    if (providerError) {
       return pending.outcome as T;
     }
     throw error;
@@ -373,7 +416,9 @@ function getAuthTransition(isEnabled: () => boolean): AccountsV2AuthTransitionCo
       return Object.freeze({ outcome: 'opened', uid, hydrationScheduled: status.hydrationArmed });
     },
     onStateChange: (state) => {
-      console.log(`${LOG} auth_transition phase=${state.phase} hasUid=${state.uid !== null} hasError=${state.error !== null}`);
+      // зачем (AA S1, п.4): вместо голого hasError=true/false — сам безопасный код
+      // ошибки (none, если её нет). Сырой текст, похожий не на код, → other.
+      console.log(`${LOG} auth_transition phase=${state.phase} hasUid=${state.uid !== null} error=${accountAuthoritySafeCode(state.error)}`);
     },
   });
   return authTransition;

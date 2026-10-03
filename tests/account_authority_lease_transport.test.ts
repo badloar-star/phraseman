@@ -501,22 +501,26 @@ describe('Account Authority Firebase lease transport', () => {
     const invoke = jest.fn(async () => {
       throw Object.assign(new Error('raw-secret-token firebase-client-a'), { code: 'functions/unavailable' });
     });
+    // зачем (AA S1): логгер теперь порт — проверяем его записи напрямую, а
+    // формат строки console (с durationMs) — в тесте порта-логгера.
+    const logger = { info: jest.fn(), warn: jest.fn() };
     const port = createAccountAuthorityFirebaseInstallationBindingPort({
       invoke,
       installationId: '550e8400-e29b-41d4-a716-446655440000',
       credentials: memoryBindingCredentials(),
+      logger,
     });
-    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-    try {
-      await expect(port.obtain(parseFirebaseAuthUid('firebase-client-a')))
-        .rejects.toThrow('account_authority_installation_binding_unavailable');
-      const lines = warn.mock.calls.map((call) => String(call[0]));
-      expect(lines).toEqual([
-        '[ACCOUNT-AUTHORITY] installation_binding obtain_failed kind=Error code=functions/unavailable',
-      ]);
-    } finally {
-      warn.mockRestore();
-    }
+    await expect(port.obtain(parseFirebaseAuthUid('firebase-client-a')))
+      .rejects.toThrow('account_authority_installation_binding_unavailable');
+    expect(logger.warn).toHaveBeenCalledTimes(1);
+    expect(logger.warn).toHaveBeenCalledWith('installation_binding obtain_failed', expect.objectContaining({
+      kind: 'Error',
+      code: 'unavailable',
+    }));
+    const everything = JSON.stringify([logger.info.mock.calls, logger.warn.mock.calls]);
+    expect(everything).not.toContain('raw-secret-token');
+    expect(everything).not.toContain('firebase-client-a');
+    expect(everything).not.toContain('550e8400');
   });
 
   test('fails closed before lease acquisition when binding bootstrap is unavailable', async () => {

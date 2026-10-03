@@ -1,4 +1,5 @@
 import { createHash } from 'crypto';
+import { accountAuthorityLogWarn, accountAuthorityServerErrorFields } from './account_authority_log';
 import {
   asOperationId,
   asSessionId,
@@ -547,7 +548,10 @@ export async function runIdentityReleaseAttempt<RequestContext>(
       ...providerIdentity,
       idempotencyKey: claimed.claim.idempotencyKey,
     });
-  } catch {
+  } catch (error) {
+    // зачем (AA S1): сбой освобождения личности у провайдера раньше глушился
+    // без следа; повтор/терминал решает транзакция ниже, вид сбоя — в логе.
+    accountAuthorityLogWarn('delete identity_release_failed', accountAuthorityServerErrorFields(error));
     const failureNowMs = ports.clock.nowMs();
     const job = await ports.transactions.transact(
       identity,
@@ -815,7 +819,8 @@ export async function runBoundedDeletePurge<RequestContext>(
       maxItems,
       idempotencyKey: claimed.claim.idempotencyKey,
     });
-  } catch {
+  } catch (error) {
+    accountAuthorityLogWarn('delete purge_failed', accountAuthorityServerErrorFields(error));
     const failureNowMs = ports.clock.nowMs();
     const cleared = await ports.transactions.transact(
       identity,
@@ -833,6 +838,7 @@ export async function runBoundedDeletePurge<RequestContext>(
   try {
     validatePurgeResult(claimed.job, maxItems, result);
   } catch (error) {
+    accountAuthorityLogWarn('delete purge_result_invalid', accountAuthorityServerErrorFields(error));
     const cleared = await ports.transactions.transact(
       identity,
       Object.freeze([]),

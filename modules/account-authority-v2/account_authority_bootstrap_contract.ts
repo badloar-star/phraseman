@@ -8,6 +8,12 @@ import {
 } from './account_authority_ids';
 import type { AccountAuthorityLocalStorePort } from './account_authority_local_store';
 import type { AccountAuthorityLeasePort } from './account_authority_runtime';
+import {
+  accountAuthorityErrorCode,
+  accountAuthorityErrorKind,
+  safeAccountAuthorityLogger,
+  type AccountAuthorityLogger,
+} from './account_authority_logger';
 
 /** Complete production composition required before Account Authority can run. */
 export type AccountAuthorityProductionBootstrap = Readonly<{
@@ -65,8 +71,11 @@ function hasMethods(value: unknown, methods: readonly string[]): boolean {
   return isRecord(value) && methods.every((method) => typeof value[method] === 'function');
 }
 
-function normalizeLease(value: unknown): AccountAuthorityLeasePort {
-  if (!hasMethods(value, LEASE_METHODS)) throw new Error('account_authority_bootstrap_invalid');
+function normalizeLease(value: unknown, log: AccountAuthorityLogger): AccountAuthorityLeasePort {
+  if (!hasMethods(value, LEASE_METHODS)) {
+    log.warn('bootstrap install_rejected', { reason: 'lease_methods_missing' });
+    throw new Error('account_authority_bootstrap_invalid');
+  }
   const port = value as unknown as AccountAuthorityLeasePort;
   const normalized: AccountAuthorityLeasePort = {
     acquire: async (request) => {
@@ -82,8 +91,12 @@ function normalizeLease(value: unknown): AccountAuthorityLeasePort {
           accountId: parseAccountId(response.accountId),
           sessionId: parseSessionId(response.sessionId),
         });
-      } catch {
+      } catch (error) {
         // Keep malformed server payloads fail-closed without reflecting IDs or credentials.
+        log.warn('bootstrap lease_response_invalid', {
+          kind: accountAuthorityErrorKind(error),
+          code: accountAuthorityErrorCode(error),
+        });
         throw new Error('account_authority_lease_invalid');
       }
     },
@@ -103,8 +116,11 @@ function normalizeLease(value: unknown): AccountAuthorityLeasePort {
   return Object.freeze(normalized);
 }
 
-function normalizeLocalStore(value: unknown): AccountAuthorityLocalStorePort {
-  if (!hasMethods(value, LOCAL_STORE_METHODS)) throw new Error('account_authority_bootstrap_invalid');
+function normalizeLocalStore(value: unknown, log: AccountAuthorityLogger): AccountAuthorityLocalStorePort {
+  if (!hasMethods(value, LOCAL_STORE_METHODS)) {
+    log.warn('bootstrap install_rejected', { reason: 'local_store_methods_missing' });
+    throw new Error('account_authority_bootstrap_invalid');
+  }
   const port = value as unknown as AccountAuthorityLocalStorePort;
   const normalized: AccountAuthorityLocalStorePort = {
     getAuthorityGeneration: () => port.getAuthorityGeneration(),
@@ -142,25 +158,33 @@ function normalizeLocalStore(value: unknown): AccountAuthorityLocalStorePort {
   return Object.freeze(normalized);
 }
 
-function normalizeBootstrap(value: unknown): AccountAuthorityProductionBootstrap {
+function normalizeBootstrap(value: unknown, log: AccountAuthorityLogger): AccountAuthorityProductionBootstrap {
   if (!isRecord(value) || !hasExactBootstrapKeys(value)) {
+    log.warn('bootstrap install_rejected', { reason: isRecord(value) ? 'keys_mismatch' : 'not_object' });
     throw new Error('account_authority_bootstrap_invalid');
   }
   if (typeof value.providerSignOut !== 'function') {
+    log.warn('bootstrap install_rejected', { reason: 'provider_sign_out_missing' });
     throw new Error('account_authority_bootstrap_invalid');
   }
 
   let deviceId: DeviceId;
   try {
     deviceId = parseDeviceId(value.deviceId);
-  } catch {
+  } catch (error) {
+    // зачем (AA S1): значение deviceId в лог не идёт — только вид отказа разбора.
+    log.warn('bootstrap install_rejected', {
+      reason: 'device_id_invalid',
+      kind: accountAuthorityErrorKind(error),
+      code: accountAuthorityErrorCode(error),
+    });
     throw new Error('account_authority_bootstrap_invalid');
   }
   const providerSignOut = value.providerSignOut as () => Promise<void>;
   return Object.freeze({
     deviceId,
-    lease: normalizeLease(value.lease),
-    localStore: normalizeLocalStore(value.localStore),
+    lease: normalizeLease(value.lease, log),
+    localStore: normalizeLocalStore(value.localStore, log),
     providerSignOut: () => providerSignOut(),
   });
 }
@@ -170,15 +194,24 @@ function normalizeBootstrap(value: unknown): AccountAuthorityProductionBootstrap
  * successful install can never be rebound to different authority ports.
  */
 export function createAccountAuthorityProductionBootstrapRegistry(
+  injectedLogger?: AccountAuthorityLogger,
 ): AccountAuthorityProductionBootstrapRegistry {
+  const logger = safeAccountAuthorityLogger(injectedLogger);
   let installed: AccountAuthorityProductionBootstrap | null = null;
   return Object.freeze({
     install: (bootstrap: unknown): void => {
-      if (installed !== null) throw new Error('account_authority_bootstrap_already_installed');
-      installed = normalizeBootstrap(bootstrap);
+      if (installed !== null) {
+        logger.warn('bootstrap install_rejected', { reason: 'already_installed' });
+        throw new Error('account_authority_bootstrap_already_installed');
+      }
+      installed = normalizeBootstrap(bootstrap, logger);
+      logger.info('bootstrap installed');
     },
     requireInstalled: (): AccountAuthorityProductionBootstrap => {
-      if (installed === null) throw new Error('account_authority_bootstrap_missing');
+      if (installed === null) {
+        logger.warn('bootstrap require_missing', { code: 'account_authority_bootstrap_missing' });
+        throw new Error('account_authority_bootstrap_missing');
+      }
       return installed;
     },
   });

@@ -1,13 +1,20 @@
 import { createHash, randomUUID } from 'crypto';
 import * as admin from 'firebase-admin';
-import * as logger from 'firebase-functions/logger';
 import type { Firestore } from 'firebase-admin/firestore';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from '../callable_options';
 import {
   AccountAuthorityCallableError,
+  mapUnknownAccountAuthorityFailure,
   type AccountAuthorityCallableIdentityPort,
 } from './callable_boundary';
+import {
+  accountAuthorityLogInfo,
+  accountAuthorityServerCauseFields,
+  accountAuthorityServerElapsedMs,
+  attachAccountAuthorityFailureDetail,
+  logAccountAuthorityFailureOnce,
+} from './account_authority_log';
 import { asDeviceId, asTenantId } from './lease_contract';
 import {
   createInstallationBinding,
@@ -186,8 +193,6 @@ function parseInstallationBindingIndex(value: unknown): InstallationBindingIndex
   });
 }
 
-const LOG = '[ACCOUNT-AUTHORITY]';
-
 type BindingRejectReason =
   | 'token_malformed'
   | 'token_unknown'
@@ -202,35 +207,29 @@ function bindingRejected(): AccountAuthorityCallableError {
   );
 }
 
-// зачем (AA S0, «сперва логи»): каждая ветка отказа пишет свою причину, чтобы
-// по логу отличать подделанный/устаревший токен от отозванной привязки. Ни uid,
-// ни токена, ни их хешей в лог не уходит — только код ветки.
-function rejectBinding(reason: BindingRejectReason): AccountAuthorityCallableError {
-  logger.warn(`${LOG} installation_binding resolve_rejected`, { reason });
-  return bindingRejected();
-}
-
-function safeErrorCode(error: unknown): string {
-  const code = isRecord(error) ? error.code : undefined;
-  if (typeof code === 'number' && Number.isSafeInteger(code)) return String(code);
-  if (typeof code === 'string' && /^[\w/-]{1,96}$/.test(code)) return code;
-  return 'none';
+// зачем (AA S0/S1, «сперва логи», ревью L4): каждая ветка отказа несёт свою
+// причину, чтобы по логу отличать подделанный или устаревший токен от
+// отозванной привязки. Резолвер — промежуточный слой: он не пишет отдельную
+// строку, а прикрепляет причину к ошибке, и итоговая строка вызова выводит её.
+// Ни uid, ни токена, ни их хешей — только код ветки.
+function rejectBinding(reason: BindingRejectReason, cause?: unknown): AccountAuthorityCallableError {
+  const rejected = attachAccountAuthorityFailureDetail(bindingRejected(), { stage: 'binding', reason });
+  return cause === undefined
+    ? rejected
+    : attachAccountAuthorityFailureDetail(rejected, accountAuthorityServerCauseFields(cause));
 }
 
 /**
  * зачем (AA S0): раньше любой сбой Firestore внутри resolve (contention,
- * DEADLINE_EXCEEDED, UNAVAILABLE) превращался в «отклонено» — клиент видел отзыв
- * привязки там, где надо было просто повторить. Теперь это отдельный
- * повторяемый код `unavailable`, а причина видна в логе.
+ * DEADLINE_EXCEEDED, UNAVAILABLE) превращался в «отклонено», и клиент видел
+ * отзыв привязки там, где надо было просто повторить. Теперь это отдельный
+ * повторяемый код `unavailable`. Вид и код причины прикреплены к ошибке.
  */
 function bindingUnavailable(error: unknown): AccountAuthorityCallableError {
-  logger.warn(`${LOG} installation_binding resolve_unavailable`, {
-    kind: error instanceof Error ? error.name : typeof error,
-    code: safeErrorCode(error),
-  });
-  return new AccountAuthorityCallableError(
-    'unavailable',
-    'account_authority_installation_binding_unavailable',
+  return attachAccountAuthorityFailureDetail(
+    new AccountAuthorityCallableError('unavailable', 'account_authority_installation_binding_unavailable'),
+    { stage: 'binding', reason: 'storage_unavailable' },
+    accountAuthorityServerCauseFields(error),
   );
 }
 
@@ -276,7 +275,10 @@ export function createFirebaseInstallationBindingIdentityPort(
           });
         });
       } catch (error) {
-        if (error instanceof AccountAuthorityCallableError) throw error;
+        // Отказ уже несёт свою причину (rejectBinding); остальное — сбой хранилища.
+        if (error instanceof AccountAuthorityCallableError) {
+          throw attachAccountAuthorityFailureDetail(error, { stage: 'binding' });
+        }
         throw bindingUnavailable(error);
       }
     },
@@ -288,8 +290,8 @@ export function createFirebaseInstallationBindingIdentityPort(
 function parseStoredOrReject<T>(parse: () => T): T {
   try {
     return parse();
-  } catch {
-    throw rejectBinding('record_invalid');
+  } catch (error) {
+    throw rejectBinding('record_invalid', error);
   }
 }
 
@@ -314,36 +316,63 @@ function resolvePorts(dependencies: InstallationBindingCallableDependencies): In
   return dependencies.getPorts();
 }
 
-function mapCallableError(error: unknown): HttpsError {
-  if (error instanceof HttpsError) return error;
-  if (error instanceof InstallationBindingError) {
-    return new HttpsError(error.code, error.message);
+// зачем (AA S1, ревью L4): итог вызова — одна строка с кодом, длительностью и
+// подробностями. Неизвестный сбой: временный (contention/deadline) →
+// повторяемый unavailable, иначе internal (уровень error). Публичный текст
+// прежний, без деталей.
+function mapCallableError(error: unknown, startedAt: number): HttpsError {
+  let mapped: HttpsError;
+  let related: readonly unknown[] = [error];
+  if (error instanceof HttpsError) {
+    mapped = error;
+  } else if (error instanceof InstallationBindingError) {
+    mapped = attachAccountAuthorityFailureDetail(
+      new HttpsError(error.code, error.message),
+      { stage: 'contract' },
+    );
+  } else {
+    const unknownMapped = mapUnknownAccountAuthorityFailure(error, 'installation_binding_create', 'adapter');
+    related = [error, unknownMapped];
+    mapped = new HttpsError(unknownMapped.code, 'account_authority_installation_binding_unavailable');
   }
-  return new HttpsError('internal', 'account_authority_installation_binding_unavailable');
+  logAccountAuthorityFailureOnce('installation_binding create_failed', {
+    code: mapped.code,
+    durationMs: accountAuthorityServerElapsedMs(startedAt),
+  }, [...related, mapped]);
+  return mapped;
 }
 
 export async function handleInstallationBindingCallable(
   dependencies: InstallationBindingCallableDependencies,
   request: InstallationBindingCallableRequest,
 ): Promise<InstallationBindingResponse> {
+  const startedAt = Date.now();
+  accountAuthorityLogInfo('installation_binding create_start');
   try {
     if (dependencies.rolloutEnabled !== true) {
-      throw new HttpsError(
-        'failed-precondition',
-        'account_authority_installation_binding_disabled',
+      throw attachAccountAuthorityFailureDetail(
+        new HttpsError('failed-precondition', 'account_authority_installation_binding_disabled'),
+        { stage: 'gate', reason: 'rollout_disabled' },
       );
     }
     const firebaseAuthUid = request.auth?.uid;
     if (typeof firebaseAuthUid !== 'string' || firebaseAuthUid.length === 0) {
-      throw new HttpsError('unauthenticated', 'account_authority_auth_required');
+      throw attachAccountAuthorityFailureDetail(
+        new HttpsError('unauthenticated', 'account_authority_auth_required'),
+        { stage: 'auth', reason: 'no_uid' },
+      );
     }
-    return await createInstallationBinding(
+    const response = await createInstallationBinding(
       resolvePorts(dependencies),
       firebaseAuthUid,
       request.data,
     );
+    accountAuthorityLogInfo('installation_binding create_done', {
+      durationMs: accountAuthorityServerElapsedMs(startedAt),
+    });
+    return response;
   } catch (error) {
-    throw mapCallableError(error);
+    throw mapCallableError(error, startedAt);
   }
 }
 

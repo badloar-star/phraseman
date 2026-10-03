@@ -5,7 +5,13 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from '../callable_options';
 import { createFirebaseInstallationBindingIdentityPort } from './installation_binding_callable';
 import {
+  accountAuthorityServerElapsedMs,
+  attachAccountAuthorityFailureDetail,
+  logAccountAuthorityFailureOnce,
+} from './account_authority_log';
+import {
   AccountAuthorityCallableError,
+  mapUnknownAccountAuthorityFailure,
   handleAccountLeaseAcquireCallable,
   handleAccountLeaseReleaseCallable,
   type AccountAuthorityCallableBoundaryPorts,
@@ -334,12 +340,35 @@ export function createFirebaseLeasePorts(db: Firestore): AccountAuthorityCallabl
   });
 }
 
-function mapCallableError(error: unknown): HttpsError {
-  if (error instanceof HttpsError) return error;
-  if (error instanceof AccountAuthorityCallableError) {
-    return new HttpsError(error.code, error.message);
+// зачем (AA S1, ревью L4): одна ошибка — одна итоговая строка. Если граница
+// callable уже записала свою итоговую строку, адаптер второй не пишет. Сбои
+// самого адаптера (ворота, getPorts) пишутся здесь, тоже одной строкой со
+// всеми подробностями. Неизвестный сбой: временный → unavailable, иначе internal.
+function mapCallableError(error: unknown, operation: string, startedAt: number): HttpsError {
+  let mapped: HttpsError;
+  let related: readonly unknown[] = [error];
+  if (error instanceof HttpsError) {
+    mapped = error;
+  } else if (error instanceof AccountAuthorityCallableError) {
+    mapped = new HttpsError(error.code, error.message);
+  } else {
+    const unknownMapped = mapUnknownAccountAuthorityFailure(error, operation, 'adapter');
+    related = [error, unknownMapped];
+    mapped = new HttpsError(unknownMapped.code, unknownMapped.message);
   }
-  return new HttpsError('internal', 'account_authority_unavailable');
+  logAccountAuthorityFailureOnce('lease_callable failed', {
+    operation,
+    code: mapped.code,
+    durationMs: accountAuthorityServerElapsedMs(startedAt),
+  }, [...related, mapped]);
+  return mapped;
+}
+
+function rejectGate(reason: 'rollout_disabled' | 'binding_unavailable'): HttpsError {
+  const gate = reason === 'rollout_disabled'
+    ? new HttpsError('failed-precondition', 'account_authority_disabled')
+    : new HttpsError('failed-precondition', 'account_authority_installation_binding_unavailable');
+  return attachAccountAuthorityFailureDetail(gate, { stage: 'gate', reason });
 }
 
 function resolveCallablePorts(
@@ -353,19 +382,15 @@ export async function handleFirebaseAccountAuthorityLeaseAcquire(
   dependencies: FirebaseAccountAuthorityLeaseDependencies,
   request: AccountAuthorityCallableRequest,
 ): Promise<AccountAuthorityLeaseCallableResponse> {
+  const startedAt = Date.now();
   try {
-    if (dependencies.rolloutEnabled !== true) {
-      throw new HttpsError('failed-precondition', 'account_authority_disabled');
-    }
+    if (dependencies.rolloutEnabled !== true) throw rejectGate('rollout_disabled');
     if (dependencies.trustedInstallationBindingAvailable !== true) {
-      throw new HttpsError(
-        'failed-precondition',
-        'account_authority_installation_binding_unavailable',
-      );
+      throw rejectGate('binding_unavailable');
     }
     return await handleAccountLeaseAcquireCallable(resolveCallablePorts(dependencies), request);
   } catch (error) {
-    throw mapCallableError(error);
+    throw mapCallableError(error, 'lease_acquire', startedAt);
   }
 }
 
@@ -373,19 +398,15 @@ export async function handleFirebaseAccountAuthorityLeaseRelease(
   dependencies: FirebaseAccountAuthorityLeaseDependencies,
   request: AccountAuthorityCallableRequest,
 ): Promise<AccountAuthorityLeaseReleaseCallableResponse> {
+  const startedAt = Date.now();
   try {
-    if (dependencies.rolloutEnabled !== true) {
-      throw new HttpsError('failed-precondition', 'account_authority_disabled');
-    }
+    if (dependencies.rolloutEnabled !== true) throw rejectGate('rollout_disabled');
     if (dependencies.trustedInstallationBindingAvailable !== true) {
-      throw new HttpsError(
-        'failed-precondition',
-        'account_authority_installation_binding_unavailable',
-      );
+      throw rejectGate('binding_unavailable');
     }
     return await handleAccountLeaseReleaseCallable(resolveCallablePorts(dependencies), request);
   } catch (error) {
-    throw mapCallableError(error);
+    throw mapCallableError(error, 'lease_release', startedAt);
   }
 }
 

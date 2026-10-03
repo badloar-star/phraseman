@@ -4,7 +4,7 @@ import type {
   LocalMirrorOverride,
 } from '../modules/account-session-v2/account_v2_hydration';
 import { canonicalJson, normalizeCardFieldsForSync } from '../modules/account-session-v2/account_sync_producer_plan';
-import { ACCOUNTS_V2_DELETION_CLOCK_MARGIN_MS } from './accounts_v2_hydration_deletions';
+import { cardEditTime, compareCardEditTimes } from './card_edit_time';
 import { isStudyTarget, type StudyTarget } from './study_target';
 
 /*
@@ -25,7 +25,7 @@ import { isStudyTarget, type StudyTarget } from './study_target';
  *     зеркало засевается локальной копией. Ничего не теряется: локальная версия у
  *     человека, серверная — на сервере; следующая правка любой стороны уйдёт обычным путём.
  * Время правки (часы устройств): max(updatedAt (7E), addedAt) — только содержимое
- * карточки. SRS (свайпы) сюда не входит: у SRS своё правило по updatedAtMs, и свайп —
+ * карточки (S1c: общее правило с объединением страниц — app/card_edit_time.ts). SRS (свайпы) сюда не входит: у SRS своё правило по updatedAtMs, и свайп —
  * не правка текста. Запас по часам — тот же, что для удалений (7E): часы разных устройств.
  * Сравнение версий — в нормализации 8B (производные поля приложения не конфликт).
  * Только карточки, чьё зеркало засеяла ЭТА гидрация (производитель не вёл их раньше).
@@ -39,15 +39,6 @@ type Counts = Record<string, number>;
 type List = 'saved' | 'custom';
 export type ConflictDecision = 'same' | 'apply_server' | 'send_local' | 'keep_local';
 export type ConflictVerdict = Readonly<{ decision: ConflictDecision; reason: string }>;
-
-function time(value: unknown): number | null {
-  return typeof value === 'number' && Number.isSafeInteger(value) && value > 0 ? value : null;
-}
-
-function contentTime(fields: Readonly<Record<string, unknown>>): number | null {
-  const known = [time(fields.updatedAt), time(fields.addedAt)].filter((value): value is number => value !== null);
-  return known.length === 0 ? null : Math.max(...known);
-}
 
 /** Поля карточки для сравнения версий: без SRS, в нормализации 8B. */
 export function comparableCardFields(target: string, list: List, card: Readonly<Record<string, unknown>>): Record<string, unknown> {
@@ -65,11 +56,12 @@ export function decideCardConflict(
   const serverFields = comparableCardFields(target, list, server);
   const localFields = comparableCardFields(target, list, local);
   if (canonicalJson(serverFields) === canonicalJson(localFields)) return { decision: 'same', reason: 'equal' };
-  const serverTime = contentTime(serverFields);
-  const localTime = contentTime(localFields);
-  if (serverTime === null || localTime === null) return { decision: 'keep_local', reason: 'time_unknown' };
-  if (serverTime - localTime >= ACCOUNTS_V2_DELETION_CLOCK_MARGIN_MS) return { decision: 'apply_server', reason: 'server_newer' };
-  if (localTime - serverTime >= ACCOUNTS_V2_DELETION_CLOCK_MARGIN_MS) return { decision: 'send_local', reason: 'local_newer' };
+  // зачем (S1c): время правки и запас по часам — общее правило app/card_edit_time.ts (его же
+  // использует объединение страниц S1b); поведение 8E прежнее байт-в-байт.
+  const order = compareCardEditTimes(cardEditTime(localFields), cardEditTime(serverFields));
+  if (order === 'time_unknown') return { decision: 'keep_local', reason: 'time_unknown' };
+  if (order === 'remote_newer') return { decision: 'apply_server', reason: 'server_newer' };
+  if (order === 'local_newer') return { decision: 'send_local', reason: 'local_newer' };
   return { decision: 'keep_local', reason: 'within_clock_margin' };
 }
 

@@ -3436,11 +3436,16 @@ async function restoreFlashcardPagesForKeys(
       // Если ключ был заперт, объединяем поле с локальным: sticky-ветка поле в локальное
       // не кладёт, а синк потом обнулил бы поле — карточки документа пропали бы.
       if (lockedBefore.has(key)) {
+        // зачем (S1c R2): сюда попадают только ключи, запертые после сбоя чтения, т.е. АКТИВНОЕ
+        // устройство с непустым локальным списком (правки под замком — единственная правда).
+        // Режим 'active' (§100): без времени / в пределах запаса остаётся локальная; 'restore'
+        // откатил бы свежую правку человека к облачной.
         const merge = mergeLockedFlashcardsWithPages(
           await AsyncStorage.getItem(key),
           String(cloudData[key]),
           await readSavedCardDeletionIds(target),
           key,
+          { mode: 'active', target },
         );
         assertCurrent();
         console.log(`[LEGACY-V2-SYNC] restore key=${key} source=doc_field_merged_local cloud=${merge.cloud} local_only=${merge.localOnly} deleted_skipped=${merge.deletedSkipped} local_unparsable=${merge.localUnparsable}`);
@@ -3467,11 +3472,13 @@ async function restoreFlashcardPagesForKeys(
     let fromPages = pagesRead.status === 'ok' ? pagesRead.value : null;
     if (fromPages && lockedBefore.has(key)) {
       // зачем (8J): ключ был заперт — карточки, добавленные под замком, живут только локально.
+      // зачем (S1c R2): ключ был заперт на этом (активном) устройстве — правило §100, см. выше.
       const merge = mergeLockedFlashcardsWithPages(
         await AsyncStorage.getItem(key),
         fromPages,
         await readSavedCardDeletionIds(target),
         key,
+        { mode: 'active', target },
       );
       assertCurrent();
       console.log(`[LEGACY-V2-SYNC] restore key=${key} source=pages_merged_local cloud=${merge.cloud} local_only=${merge.localOnly} deleted_skipped=${merge.deletedSkipped} local_unparsable=${merge.localUnparsable}`);

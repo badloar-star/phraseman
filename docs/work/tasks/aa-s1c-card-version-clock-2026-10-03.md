@@ -1,6 +1,10 @@
 # Task packet: Account Authority 2.0 — этап S1c: единое время правки карточки и запас по часам (хвосты ревью S1b)
 
 Governance-ID: TG-B76DEBF29EDF
+Governance-ID: TG-109FCC3D9C51
+Governance-ID: TG-71C2DF0045EB
+Governance-ID: TG-8EDA5C74AB7A
+Governance-ID: TG-F7E46AD27665
 Status: Planned
 Owner: Claude session (Account Authority 2.0)
 
@@ -37,3 +41,52 @@ RED→GREEN: запас по часам (облако новее на < запа
 ## Rollback
 
 git revert коммита S1c.
+
+## Дополнение — решение координатора §116 (2026-10-03), входит в S1c
+
+4. **Режим объединения: активное устройство vs restore.** Правило §100 «при равенстве/без отметки/в пределах запаса — локальная» действует ТОЛЬКО для слияния на активном устройстве (перед записью 8N, `decideFlashcardPagesPreWrite`). В **restore** (8J: новое устройство / восстановление из облака, локальный список пустой или только что созданный) без отметки времени (и в пределах запаса) побеждает **облачная**; локальная — только если её время правки новее облачного на ≥ запаса. Реализация: параметр режима у `mergeLockedFlashcardsWithPages` со значением по умолчанию `restore` (вызовы restore в `app/cloud_sync.ts` не трогаем — они получают режим по умолчанию); путь 8N внутри `app/flashcard_pages_read_result.ts` явно передаёт `active`. Режим — в сводной строке лога (`mode=restore|active`).
+5. Тест-якорь координатора: **«restore: облако без updatedAt побеждает свежую локальную»** + обратный (restore: локальная новее на ≥ запаса → локальная) + 8N без отметки → локальная (не сломано).
+
+## Итог исполнителя (2026-10-03)
+
+**Сделано (не закоммичено, в индекс не добавлено):**
+- `app/card_edit_time.ts` (новый): `CARD_EDIT_CLOCK_MARGIN_MS` (= `ACCOUNTS_V2_DELETION_CLOCK_MARGIN_MS`, 1 час), `cardTimestamp` (целое безопасное > 0), `cardEditTime` (max(updatedAt, addedAt)), `compareCardEditTimes(local, remote)` → `local_newer | remote_newer | within_clock_margin | time_unknown`. Чистые функции, без логов и сети.
+- `app/accounts_v2_hydration_conflicts.ts` (8E): локальные `time`/`contentTime` и прямое сравнение с запасом заменены вызовом общего правила; решения и причины прежние (тест 8E `tests/account_v2_stale_local_8e.test.ts` не правился — 9/9 зелёные).
+- `app/flashcard_pages_read_result.ts` (S1b → S1c): `validUpdatedAt` удалена; `pickCardVersion(local, remote, mode = 'active')` идёт через общее правило; причина — `local_newer | remote_newer | within_clock_margin | time_unknown` (`no_updated_at`/`tie`/`newer` ушли вместе с построчным логом). Новый тип `CardMergeMode = 'active' | 'restore'`. `mergeLockedFlashcardsWithPages(..., logKey, options = {})`: `options.mode` по умолчанию `restore` (§116), `options.target` — только для нормализации сравнения. Построчный `merge_conflict` заменён одной строкой на ключ: `[FLASHCARD-PAGES] merge_conflicts key=… mode=… local_newer=N remote_newer=N within_margin=N time_unknown=N` (только при сумме > 0, без id/текста). Ложный конфликт (порядок полей / нормализация 8B / только SRS) в сводку не идёт (`sameCardContent` через `comparableCardFields` + `canonicalJson`); выбор версии от этого не зависит. Путь 8N (`decideFlashcardPagesPreWrite`, `defaultFlashcardLocalReplace`) явно передаёт `active`. `app/cloud_sync.ts` и `app/local_account_data.ts` не тронуты.
+
+**Тесты (по одному, через test:one со слотом):** card_edit_time 18/18; flashcard_pages_read_result 40/40; flashcard_pages_pre_write_merge 20/20; flashcard_pages_fingerprint_wipe 2/2; account_v2_stale_local_8e 9/9 (без правки); flashcard_pages_restore_lock 13/13; flashcards_force_sync_pages 16/16. RED до кода: card_edit_time — модуля нет; read_result — сьют не собирался; pre_write_merge — 4 упали.
+
+**Осознанно изменённые тесты S1b:**
+- `tests/flashcard_pages_read_result.test.ts`, блок S1b: теперь явно режим `active` (правило §100) и запас 1 час вместо разницы 10 мс; «равные отметки → tie» → `within_margin`; «без updatedAt → no_updated_at» → `time_unknown`; логи — сводная строка. До S1c эти тесты звали функцию без режима — то есть путём, который теперь получает restore; там «без отметки / равенство → локальная» сменилось на «→ облачная» (§116): новый блок «S1c — конфликт версий при restore» с якорями координатора (облако без updatedAt побеждает свежую локальную; локальная новее на ≥ запаса → локальная; в пределах запаса → облачная; облако новее → облачная).
+- `tests/flashcard_pages_pre_write_merge.test.ts`: T+10 → T+H; «равные отметки» → «облако новее меньше чем на запас → локальная»; гонка замены T+20/T+10 → T+2H/T+H; логи — сводная строка `mode=active`. Якорь «8N без отметки → локальная» — существующий тест «карточки без updatedAt → локальная версия в страницах».
+
+**Мутации (6, все убиты, файлы восстановлены байт-в-байт, cmp):** `>=`→`>` у запаса; restore → всегда локальная; ложный конфликт всегда в сводке; `isSafeInteger`→`isFinite`; 8N передаёт `restore`; 8E с перепутанными сторонами.
+
+**Тайпчек:** `npm run typecheck` — 0 ошибок.
+
+**Вопросы координатору:**
+1. Время «из будущего» (п. 2): 8E его НЕ отсекает, поэтому общее правило тоже не отсекает (8E не менялся). Устройство с часами, убежавшими вперёд больше чем на час, по-прежнему побеждает и в 8E, и в S1b, пока его отметки «в будущем». Нужно ли правило «время > now + запас = неизвестно» для обоих? Это меняет 8E — нужно решение.
+2. restore 8J: облачная версия без отметки теперь побеждает локальную (§116, сделано). `remoteWonCards` в restore cloud_sync не использует (берёт `merge.value` целиком) — корректно, отмечаю.
+3. Сводка из restore (cloud_sync.ts не передаёт `target`) нормализует без языка: ложные конфликты по `packLanguage` возможны только в счётчиках лога, на выбор версии не влияют.
+
+## Раунд 2 — по ревью (REQUEST_CHANGES), 2026-10-03
+
+Ревью показало: `mergeLockedFlashcardsWithPages` в `app/cloud_sync.ts` (restore 8J, sticky-ветка ~3902–3911, вызовы ~3482/3513) работает ТОЛЬКО для ключей, запертых после сбоя чтения, т.е. на АКТИВНОМ устройстве с непустым локальным списком (правки под замком — «единственная правда»). Посылка §116 «локальный список пустой/только что созданный» в этих вызовах не выполняется никогда (при пустом локальном конфликтов по id нет; настоящий restore на новом устройстве без замка заменяет локальное страницами целиком — облако и так побеждает). Режим restore по умолчанию там откатывал бы свежую правку человека. Решение (безопасная для данных сторона, координатор уведомлён):
+
+R1. `mode` — ОБЯЗАТЕЛЬНЫЙ параметр и у `pickCardVersion`, и у `mergeLockedFlashcardsWithPages` (никаких разных значений по умолчанию).
+R2. Оба вызова в `app/cloud_sync.ts` передают `{ mode: 'active', target }` (если target доступен рядом без новых чтений; иначе только mode) + комментарий `// зачем:` с причиной выше. Трогать ТОЛЬКО эти два вызова; в файле чужие незакоммиченные хунки — их не менять.
+R3. Режим `restore` остаётся как чистое правило (тесты-якоря §116 на уровне функции сохраняются) для слияния с действительно пустым/новым локальным списком.
+R4. Тест гонки замены в пределах запаса: облако новее исходной локальной на ≥ запаса, свежая правка fresh = remote + 1 мин → локальная НЕ заменена, отпечаток НЕ сохранён (мутация 'active'→'restore' в `defaultFlashcardLocalReplace` обязана упасть).
+R5. Сквозной тест в `tests/flashcard_pages_restore_lock.test.ts`: запертый ключ, локальная правка под замком (облачная версия без updatedAt или в пределах запаса) → после sticky-restore остаётся локальная правка.
+
+## Итог исполнителя — раунд 2 (2026-10-03)
+
+- **R1:** `mode` обязателен: `pickCardVersion(local, remote, mode)` и `mergeLockedFlashcardsWithPages(localRaw, pagesRaw, deletedIds, logKey, { mode, target? })`. Значений по умолчанию больше нет: `logKey` тоже обязателен, `options` обязателен.
+- **R2:** в `app/cloud_sync.ts` изменены ТОЛЬКО два вызова (поле документа при запертом ключе и sticky/основной путь страниц): добавлено `{ mode: 'active', target }`, где `target` берётся из цикла без новых чтений, плюс комментарии `// зачем:`. Итого +7 строк, чужие хунки не тронуты (копия файла до правки в `.tmp_aa_s1c_backup/r2/`, diff — ровно эти 7 строк).
+- **R3:** режим `restore` остался чистым правилом; блок тестов §116 в read_result теперь явно передаёт `{ mode: 'restore' }`. Остальные вызовы в тестах (8J-слияние, журнал удалений, card_edit_time) явно передают `'active'`.
+- **R4:** новый тест в pre_write_merge: облако T+H, свежая правка T+H+1 мин → локальная не заменена, отпечаток не сохранён, `local_replace_skipped=1`.
+- **R5:** два сквозных теста в `tests/flashcard_pages_restore_lock.test.ts`: (а) sticky: облачная версия без updatedAt и версия в пределах запаса → после restore остаются локальные правки, сводка `mode=active … within_margin=1 time_unknown=1`; (б) поле документа при запертом ключе, облако без updatedAt → остаётся локальная.
+- **Тесты:** card_edit_time 18/18, read_result 40/40, pre_write_merge 21/21, fingerprint_wipe 2/2, 8E 9/9 (без правки), restore_lock 15/15, force_sync_pages 16/16.
+- **Мутации (6, все упали, восстановлено cmp):** `'active'→'restore'` в `defaultFlashcardLocalReplace` (1 падение); то же в вызове cloud_sync через поле документа (1); то же в вызове cloud_sync через страницы (1); то же на пути 8N (4); restore → всегда локальная (2); `>=`→`>` у запаса (1).
+- **Тайпчек:** 0 ошибок.
+- **Вопрос из раунда 1 остаётся открытым:** время «из будущего» (меняет 8E — нужно решение). Раздел «Итог исполнителя (раунд 1)» выше в части «restore по умолчанию» устарел: по умолчанию режима больше нет, а запертые ключи restore работают как `active`.

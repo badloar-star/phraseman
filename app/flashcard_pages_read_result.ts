@@ -24,6 +24,9 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { canonicalJson } from '../modules/account-session-v2/account_sync_producer_plan';
+import { comparableCardFields } from './accounts_v2_hydration_conflicts';
+import { cardEditTime, compareCardEditTimes, type CardEditTimeOrder } from './card_edit_time';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { FLASHCARD_PAGES_COLLECTION } from './flashcards_cloud_pages';
 import { readCardDeletionJournal } from './flashcards/card_deletion_journal';
@@ -173,31 +176,50 @@ export type LockedFlashcardsMerge = Readonly<{
   remoteWonCards: readonly unknown[];
 }>;
 
+/**
+ * S1c (§116): режим объединения. `active` — активное устройство перед записью (8N): правило §100,
+ * без времени / в пределах запаса остаётся локальная. `restore` — восстановление из облака (8J):
+ * облако и есть правда, без времени / в пределах запаса побеждает облачная.
+ *
+ * Сейчас `restore` в рабочем коде НЕ вызывается (S1c R2): запертые ключи restore 8J в cloud_sync.ts —
+ * активное устройство, им нужен `active`. Подключать `restore` только к слиянию с действительно
+ * пустым/новым локальным списком (новое устройство); правило держат тесты-якоря §116.
+ */
+export type CardMergeMode = 'active' | 'restore';
+
 export type CardVersionWinner = Readonly<{
   winner: 'local' | 'remote';
-  reason: 'newer' | 'tie' | 'no_updated_at';
+  reason: CardEditTimeOrder;
 }>;
 
-function validUpdatedAt(card: unknown): number | null {
-  const value = (card as { updatedAt?: unknown } | null)?.updatedAt;
-  return typeof value === 'number' && Number.isFinite(value) && value > 0 ? value : null;
-}
-
 /**
- * S1b — чья версия одной и той же карточки (тот же id) остаётся при объединении.
+ * S1b/S1c — чья версия одной и той же карточки (тот же id) остаётся при объединении.
  * Чистая функция — ради тестов.
  *
  * зачем (§100 координатора): раньше при совпадении id всегда побеждало облако, и правка,
- * сделанная на телефоне между синками, откатывалась к облачной. Правило: побеждает более
- * поздняя отметка изменения (updatedAt, её ставит 7E); при равенстве или если отметки нет
- * хотя бы у одной стороны — локальная (то, что человек видит сейчас на экране).
+ * сделанная на телефоне между синками, откатывалась к облачной.
+ * зачем (S1c): время правки и запас по часам — ОДНО правило с 8E (app/card_edit_time.ts):
+ * max(updatedAt, addedAt), новее — только на ≥ запаса (1 час). Раньше S1b сравнивал голый
+ * updatedAt точно, и разница в миллисекунду между часами двух устройств решала спор.
+ * Новее на ≥ запаса — та сторона и побеждает (в любом режиме). Иначе (в пределах запаса /
+ * времени нет хоть у одной стороны): `active` → локальная, `restore` → облачная (§116).
  */
-export function pickCardVersion(local: unknown, remote: unknown): CardVersionWinner {
-  const localAt = validUpdatedAt(local);
-  const remoteAt = validUpdatedAt(remote);
-  if (localAt === null || remoteAt === null) return { winner: 'local', reason: 'no_updated_at' };
-  if (localAt === remoteAt) return { winner: 'local', reason: 'tie' };
-  return localAt > remoteAt ? { winner: 'local', reason: 'newer' } : { winner: 'remote', reason: 'newer' };
+export function pickCardVersion(local: unknown, remote: unknown, mode: CardMergeMode): CardVersionWinner {
+  const reason = compareCardEditTimes(cardEditTime(local), cardEditTime(remote));
+  if (reason === 'local_newer') return { winner: 'local', reason };
+  if (reason === 'remote_newer') return { winner: 'remote', reason };
+  return { winner: mode === 'restore' ? 'remote' : 'local', reason };
+}
+
+/**
+ * S1c: тот же ли текст карточки (сравнение 8E: без SRS, нормализация 8B, порядок полей не важен).
+ * Только для сводки конфликтов в логах — выбор версии от этого не зависит.
+ */
+function sameCardContent(local: unknown, remote: unknown, target: string | undefined): boolean {
+  if (local === null || typeof local !== 'object' || remote === null || typeof remote !== 'object') return false;
+  const language = target ?? '';
+  return canonicalJson(comparableCardFields(language, 'saved', local as Record<string, unknown>))
+    === canonicalJson(comparableCardFields(language, 'saved', remote as Record<string, unknown>));
 }
 
 function cardIdentity(card: unknown): string {
@@ -229,16 +251,26 @@ function parseCardArray(raw: string | null): unknown[] | null {
  * удалений 7D, deletedIds = id), не возвращается. Удаление под замком без журнала даст
  * «воскрешение» — это безопаснее потери. Локальное не читается → берём страницы как раньше.
  *
- * S1b: одна карточка (тот же id) есть и там, и там в разных версиях → версия по pickCardVersion
- * (новее updatedAt; равенство/нет отметки → локальная). Лог merge_conflict без id и содержимого.
- * `logKey` — ключ списка в хранилище (flashcards_v1 …), только для логов.
+ * S1b/S1c: одна карточка (тот же id) есть и там, и там в разных версиях → версия по pickCardVersion
+ * (общее с 8E время правки и запас по часам; режим ОБЯЗАТЕЛЕН: `active` — активное устройство,
+ * включая запертые ключи restore в cloud_sync.ts и путь 8N; `restore` — только слияние с
+ * действительно пустым/новым локальным списком, §116). Победитель — карточка целиком.
+ * Лог — ОДНА сводная строка на ключ (merge_conflicts …): только количества, без id и содержимого.
+ * «Ложный» конфликт (тот же текст, другой порядок полей / нормализация 8B / только SRS) в сводку
+ * не попадает — сравнение как в 8E (comparableCardFields); на выбор версии это не влияет.
+ * `logKey` — ключ списка в хранилище (flashcards_v1 …), только для логов; `target` — язык списка,
+ * только для нормализации при сравнении (без него — нормализация без языка, сводка осторожнее).
  */
 export function mergeLockedFlashcardsWithPages(
   localRaw: string | null,
   pagesRaw: string,
   deletedIds: ReadonlySet<string>,
-  logKey = 'unknown',
+  logKey: string,
+  options: Readonly<{ mode: CardMergeMode; target?: string }>,
 ): LockedFlashcardsMerge {
+  // зачем (S1c R2): режим обязателен — значение по умолчанию 'restore' молча откатывало правки
+  // под замком на активном устройстве (вызовы cloud_sync.ts); ошибиться выбором нельзя.
+  const mode = options.mode;
   const cloudCards = parseCardArray(pagesRaw) ?? [];
   const localCards = parseCardArray(localRaw);
   if (localCards === null) {
@@ -258,11 +290,13 @@ export function mergeLockedFlashcardsWithPages(
   }
   let localWon = 0;
   const remoteWonCards: unknown[] = [];
+  const conflicts: Record<CardEditTimeOrder, number> = { local_newer: 0, remote_newer: 0, within_clock_margin: 0, time_unknown: 0 };
   const keptCloud = cloudCards.filter((card) => !isDeleted(card)).map((cloudCard) => {
     const localCard = localByIdentity.get(cardIdentity(cloudCard));
     if (localCard === undefined || JSON.stringify(localCard) === JSON.stringify(cloudCard)) return cloudCard;
-    const pick = pickCardVersion(localCard, cloudCard);
-    console.log(`${LOG} merge_conflict key=${logKey} winner=${pick.winner} reason=${pick.reason}`);
+    const pick = pickCardVersion(localCard, cloudCard, mode);
+    // зачем (S1c): в сводку — только настоящие расхождения текста (как 8E), не порядок полей.
+    if (!sameCardContent(localCard, cloudCard, options.target)) conflicts[pick.reason] += 1;
     if (pick.winner === 'local') {
       localWon += 1;
       return localCard;
@@ -270,6 +304,9 @@ export function mergeLockedFlashcardsWithPages(
     remoteWonCards.push(cloudCard);
     return cloudCard;
   });
+  if (conflicts.local_newer + conflicts.remote_newer + conflicts.within_clock_margin + conflicts.time_unknown > 0) {
+    console.log(`${LOG} merge_conflicts key=${logKey} mode=${mode} local_newer=${conflicts.local_newer} remote_newer=${conflicts.remote_newer} within_margin=${conflicts.within_clock_margin} time_unknown=${conflicts.time_unknown}`);
+  }
   const seen = new Set(keptCloud.map(cardIdentity));
   const localOnly = localCards.filter((card) => !seen.has(cardIdentity(card)) && !isDeleted(card));
   return {
@@ -558,7 +595,7 @@ export const defaultFlashcardLocalReplace: FlashcardLocalReplace = async (target
     if (remote === undefined) return null;
     // зачем: между решением и записью человек мог изменить карточку — свежая правка новее облака
     // остаётся (гонка), а финал не сохранит отпечаток, и следующий синк объединит заново.
-    return pickCardVersion(fresh, remote).winner === 'remote'
+    return pickCardVersion(fresh, remote, 'active').winner === 'remote'
       ? remote as import('../hooks/use-flashcards').Flashcard
       : null;
   });
@@ -670,7 +707,9 @@ export async function decideFlashcardPagesPreWrite(input: PreWriteInput): Promis
       return { kind: 'write', cardsJson: localNormalized, merged: false, addedFromRemote: [], replacedFromRemote: [], fingerprint: fingerprintCardsJson(localNormalized) };
     }
     const deletedIds = await store.readDeletedIds(target);
-    const merge = mergeLockedFlashcardsWithPages(localNormalized, read.value, deletedIds, key);
+    const merge = mergeLockedFlashcardsWithPages(localNormalized, read.value, deletedIds, key, { mode: 'active', target });
+    // зачем (S1c, §116): перед записью на активном устройстве — правило §100 (без времени / в пределах
+    // запаса остаётся локальная); restore в cloud_sync.ts зовёт без режима и получает 'restore'.
     if (merge.localUnparsable) {
       // Ранний выход: без локального списка объединение отдало бы одно облако — не пишем.
       console.log(`${LOG} pre_write_merge key=${key} local=${local} remote=${read.cards} added_from_remote=0 dropped_by_journal=${merge.deletedSkipped} decision=skip_write reason=local_unparsable`);

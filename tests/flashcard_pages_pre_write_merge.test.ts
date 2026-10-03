@@ -308,11 +308,13 @@ describe('8N — объединение с текущими страницами
   });
 });
 
-// зачем (S1b, §100 координатора): «правка между синками не откатывается». Одна и та же карточка
-// изменена локально и лежит в облаке другой версией (сервер 8M, второе устройство). Побеждает более
-// поздняя отметка изменения (updatedAt); равенство или отсутствие → локальная. Раньше всегда облако.
-describe('S1b — версия одной карточки при объединении перед записью', () => {
+// зачем (S1b, §100 координатора; S1c — одно правило с 8E): «правка между синками не откатывается».
+// Одна и та же карточка изменена локально и лежит в облаке другой версией (сервер 8M, второе
+// устройство). Побеждает более позднее время правки, но только с запасом по часам (1 час, как 8E);
+// в пределах запаса или без времени → локальная. Раньше всегда облако.
+describe('S1b/S1c — версия одной карточки при объединении перед записью', () => {
   const T = 1_800_000_000_000;
+  const H = 60 * 60 * 1000;
   const v = (id: string, ru: string, updatedAt?: number) => ({ ...card(id), ru, ...(updatedAt === undefined ? {} : { updatedAt }) });
   function remoteCard(id: string): Record<string, unknown> | undefined {
     return mockRemote.pages
@@ -326,14 +328,14 @@ describe('S1b — версия одной карточки при объедин
 
   test('локальная правка новее облака → в страницах и локально новая версия, и после второго синка тоже', async () => {
     setRemote('en', [v('a', 'старое', T), card('b')]);
-    await AsyncStorage.setItem(EN, JSON.stringify([v('a', 'новое', T + 10)]));
+    await AsyncStorage.setItem(EN, JSON.stringify([v('a', 'новое', T + H)]));
 
-    await sync([v('a', 'новое', T + 10)]);
+    await sync([v('a', 'новое', T + H)]);
 
     expect(remoteCard('a')?.ru).toBe('новое');
     expect((await localCard('a'))?.ru).toBe('новое');
     expect(remoteIds().sort()).toEqual(['a', 'b']);
-    expect(lines()).toContain('[FLASHCARD-PAGES] merge_conflict key=flashcards_v1 winner=local reason=newer');
+    expect(lines()).toContain('[FLASHCARD-PAGES] merge_conflicts key=flashcards_v1 mode=active local_newer=1 remote_newer=0 within_margin=0 time_unknown=0');
 
     const raw = await AsyncStorage.getItem(EN);
     await sync(JSON.parse(raw!) as Card[]);
@@ -342,7 +344,7 @@ describe('S1b — версия одной карточки при объедин
   });
 
   test('облачная версия новее → в страницах и локально облачная; следующий синк её не откатывает', async () => {
-    setRemote('en', [v('a', 'облако-новое', T + 10)]);
+    setRemote('en', [v('a', 'облако-новое', T + H)]);
     await AsyncStorage.setItem(EN, JSON.stringify([v('a', 'старое', T)]));
     expect((await loadFlashcards('en'))[0]?.ru).toBe('старое');
 
@@ -351,7 +353,7 @@ describe('S1b — версия одной карточки при объедин
     expect(remoteCard('a')?.ru).toBe('облако-новое');
     expect((await localCard('a'))?.ru).toBe('облако-новое');
     expect((await loadFlashcards('en'))[0]?.ru).toBe('облако-новое');
-    expect(lines()).toContain('[FLASHCARD-PAGES] merge_conflict key=flashcards_v1 winner=remote reason=newer');
+    expect(lines()).toContain('[FLASHCARD-PAGES] merge_conflicts key=flashcards_v1 mode=active local_newer=0 remote_newer=1 within_margin=0 time_unknown=0');
     expect(lines().some((line) => line.includes('pre_write_merge_finish key=flashcards_v1') && line.includes('local_replaced=1'))).toBe(true);
 
     const raw = await AsyncStorage.getItem(EN);
@@ -359,12 +361,12 @@ describe('S1b — версия одной карточки при объедин
     expect(remoteCard('a')?.ru).toBe('облако-новое');
   });
 
-  test('равные отметки → локальная версия в страницах', async () => {
-    setRemote('en', [v('a', 'облако', T)]);
+  test('облако новее меньше чем на запас по часам → локальная версия в страницах', async () => {
+    setRemote('en', [v('a', 'облако', T + H - 1)]);
     await sync([v('a', 'моё', T)]);
     expect(remoteCard('a')?.ru).toBe('моё');
     expect((await localCard('a'))?.ru).toBe('моё');
-    expect(lines()).toContain('[FLASHCARD-PAGES] merge_conflict key=flashcards_v1 winner=local reason=tie');
+    expect(lines()).toContain('[FLASHCARD-PAGES] merge_conflicts key=flashcards_v1 mode=active local_newer=0 remote_newer=0 within_margin=1 time_unknown=0');
   });
 
   test('карточки без updatedAt → локальная версия в страницах', async () => {
@@ -372,12 +374,13 @@ describe('S1b — версия одной карточки при объедин
     await sync([v('a', 'моё')]);
     expect(remoteCard('a')?.ru).toBe('моё');
     expect((await localCard('a'))?.ru).toBe('моё');
-    expect(lines()).toContain('[FLASHCARD-PAGES] merge_conflict key=flashcards_v1 winner=local reason=no_updated_at');
+    expect(lines()).toContain('[FLASHCARD-PAGES] merge_conflicts key=flashcards_v1 mode=active local_newer=0 remote_newer=0 within_margin=0 time_unknown=1');
   });
 });
 
 describe('S1b — замена локальной версии облачной: сбой и гонка', () => {
   const T = 1_800_000_000_000;
+  const H = 60 * 60 * 1000;
   const decision = (remote: unknown[]) => ({
     kind: 'write' as const, cardsJson: '[]', merged: true, addedFromRemote: [], replacedFromRemote: remote, fingerprint: 'fp',
   });
@@ -392,9 +395,24 @@ describe('S1b — замена локальной версии облачной:
   });
 
   test('человек успел изменить карточку новее облака → локальную не заменяем, отпечаток не сохраняем', async () => {
-    await AsyncStorage.setItem(EN, JSON.stringify([{ ...card('a'), ru: 'свежая правка', updatedAt: T + 20 }]));
+    await AsyncStorage.setItem(EN, JSON.stringify([{ ...card('a'), ru: 'свежая правка', updatedAt: T + 2 * H }]));
     await finishFlashcardPagesPreWrite({
-      owner: 'stable-a', key: EN, target: 'en', decision: decision([{ ...card('a'), ru: 'облако', updatedAt: T + 10 }]), pagesWritten: 1, mode: 'sync',
+      owner: 'stable-a', key: EN, target: 'en', decision: decision([{ ...card('a'), ru: 'облако', updatedAt: T + H }]), pagesWritten: 1, mode: 'sync',
+      store, mergeLocal: async () => 0,
+    });
+    expect((await loadFlashcards('en'))[0]?.ru).toBe('свежая правка');
+    expect(await AsyncStorage.getItem(FLASHCARD_PAGES_WRITE_FINGERPRINT_KEY)).toBeNull();
+    expect(lines()).toContain('[FLASHCARD-PAGES] pre_write_merge_finish key=flashcards_v1 result=ok fingerprint=not_saved reason=local_replace_skipped=1');
+  });
+
+  // зачем (S1c R4): облако было новее ИСХОДНОЙ локальной на ≥ запаса (решение «заменить»), но человек
+  // успел поправить карточку — свежая правка всего на минуту новее облака (в пределах запаса). На
+  // активном устройстве это правило §100: остаётся локальная; в режиме 'restore' её бы затёрло облаком.
+  test('свежая правка в пределах запаса от облака → локальную не заменяем, отпечаток не сохраняем', async () => {
+    const remote = { ...card('a'), ru: 'облако', updatedAt: T + H };
+    await AsyncStorage.setItem(EN, JSON.stringify([{ ...card('a'), ru: 'свежая правка', updatedAt: T + H + 60_000 }]));
+    await finishFlashcardPagesPreWrite({
+      owner: 'stable-a', key: EN, target: 'en', decision: decision([remote]), pagesWritten: 1, mode: 'sync',
       store, mergeLocal: async () => 0,
     });
     expect((await loadFlashcards('en'))[0]?.ru).toBe('свежая правка');

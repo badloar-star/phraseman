@@ -153,6 +153,38 @@ describe('8J — снятие замка не теряет карточки, д�
     expect(await AsyncStorage.getItem(EN)).not.toContain('local-old');
   });
 
+  // зачем (S1c R2/R5): запертый ключ = АКТИВНОЕ устройство, правка под замком — единственная правда.
+  // Облачная версия той же карточки без updatedAt (или в пределах запаса по часам) не должна
+  // откатить правку человека: оба вызова слияния в cloud_sync.ts передают режим 'active'.
+  test('sticky-ветка: правка под замком переживает restore при облачной версии без updatedAt', async () => {
+    const T = 1_800_000_000_000;
+    mockRead.mockResolvedValue(failed);
+    await restore({ [EN]: null });
+    await AsyncStorage.setItem(EN, JSON.stringify([
+      { id: 'card-1', en: 'mine', updatedAt: T },
+      { id: 'card-2', en: 'mine too', updatedAt: T + 60_000 },
+    ]));
+    mockRead.mockImplementation(async (_uid, target) => (target === 'en'
+      ? ok(JSON.stringify([{ id: 'card-1', en: 'cloud' }, { id: 'card-2', en: 'cloud', updatedAt: T }]))
+      : empty));
+    await restore({ [EN]: null });
+    const stored = JSON.parse(String(await AsyncStorage.getItem(EN))) as Array<{ id: string; en: string }>;
+    expect(stored.map((card) => card.en)).toEqual(['mine', 'mine too']);
+    expect(await locks()).toEqual([]);
+    expect(lines()).toContain('[FLASHCARD-PAGES] merge_conflicts key=flashcards_v1 mode=active local_newer=0 remote_newer=0 within_margin=1 time_unknown=1');
+  });
+
+  test('поле документа при запертом ключе: правка под замком переживает restore (облако без updatedAt)', async () => {
+    mockRead.mockResolvedValue(failed);
+    await restore({ [EN]: null });
+    await AsyncStorage.setItem(EN, JSON.stringify([{ id: 'card-1', en: 'mine', updatedAt: 1_800_000_000_000 }]));
+    mockRead.mockResolvedValue(empty);
+    await restore({ [EN]: JSON.stringify([{ id: 'card-1', en: 'cloud' }]) });
+    const stored = JSON.parse(String(await AsyncStorage.getItem(EN))) as Array<{ id: string; en: string }>;
+    expect(stored.map((card) => card.en)).toEqual(['mine']);
+    expect(lines()).toContain('[FLASHCARD-PAGES] merge_conflicts key=flashcards_v1 mode=active local_newer=0 remote_newer=0 within_margin=0 time_unknown=1');
+  });
+
   test('sticky-ветка без замков не читает страницы вовсе', async () => {
     mockRead.mockResolvedValue(empty);
     await restore({ [EN]: null });

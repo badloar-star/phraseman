@@ -14986,6 +14986,1002 @@
           }
         }
       ]
+    },
+    {
+      "lessonId": "de_l17",
+      "lessonOrdinal": 17,
+      "grammarBoundary": {
+        "allowedConstructIds": [
+          "de_gc_present_future_reference_v1",
+          "de_gc_introduced_verbletzt_clause_v1",
+          "de_gc_finite_present_agreement_v1",
+          "de_gc_statement_v2_v1",
+          "de_gc_separable_verb_bracket_v1",
+          "de_gc_temporal_preposition_governed_case_v1",
+          "de_gc_perfekt_sein_classes_v1",
+          "de_gc_spoken_preterite_island_v1"
+        ],
+        "prohibitedConstructIds": [
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_lexical_reflexive_v1"
+        ],
+        "noExpansion": "The lesson permits Präsens future reference only when an explicit future temporal expression such as morgen makes the time reference clear, and permits only one prototypical introduced weil clause with the complete verb complex, including the finite verb, in final position. Known V2, finite-present agreement and verified separable brackets provide contrast and retrieval support; completed-event and bounded past-state forms appear only in the final changed-context transfer. Werden plus infinitive is a grammatical later contrast and may appear only as the rejected overgeneralized C06 source; it is not the required or universal future marker here. The non-target weil-plus-V2 C06 source is repaired to the prototypical Verbletzt target without claiming that every attested non-final variant is universally ungrammatical. No connector-topology contrast, alternative introducers, unintroduced subordinate V1 or V2 target, subordinate left finite bracket, lexical reflexive frame, relative clause, indirect question, broad Futur I system, new case frame, new preposition relation, passive or L18 grammar is allowed."
+      },
+      "chapters": [
+        {
+          "id": "de_l17_c01",
+          "ordinal": 1,
+          "lessonOutcomeId": "de_l17_ch01",
+          "lessonOutcome": "recognise future reference from present tense and explicit time context",
+          "packetIds": [
+            "de_l17_c01_s01",
+            "de_l17_c01_s02",
+            "de_l17_c01_s03",
+            "de_l17_c01_s04",
+            "de_l17_c01_s05",
+            "de_l17_c01_s06",
+            "de_l17_c01_s07",
+            "de_l17_c01_s08"
+          ],
+          "allowedConstructIds": [
+            "de_gc_present_future_reference_v1",
+            "de_gc_introduced_verbletzt_clause_v1",
+            "de_gc_finite_present_agreement_v1",
+            "de_gc_statement_v2_v1",
+            "de_gc_separable_verb_bracket_v1",
+            "de_gc_temporal_preposition_governed_case_v1",
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_lexical_reflexive_v1"
+          ],
+          "situation": {
+            "setting": "city-museum-plan-message",
+            "participants": "traveller-and-local-contact",
+            "goal": "recognize-morgen-plus-present-as-future-and-weil-plus-final-ist-as-one-bounded-reason",
+            "contextSignature": "museum-future-reason-introduction"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Morgen. Morgen besuche ich das Museum, weil es offen ist.",
+            "exit": "Morgen besuche ich das Museum, weil es offen ist.",
+            "independentEvidenceByPacketId": "de_l17_c01_s08"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_present_future_reference_v1",
+              "stage": "introduction",
+              "packetId": "de_l17_c01_s01"
+            },
+            {
+              "constructId": "de_gc_introduced_verbletzt_clause_v1",
+              "stage": "introduction",
+              "packetId": "de_l17_c01_s02"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l17_c01_s03", "de_l17_c01_s04"],
+          "checkpoint": {
+            "packetId": "de_l17_c01_s08",
+            "integratedConstructIds": [
+              "de_gc_present_future_reference_v1",
+              "de_gc_introduced_verbletzt_clause_v1",
+              "de_gc_finite_present_agreement_v1",
+              "de_gc_statement_v2_v1",
+              "de_gc_separable_verb_bracket_v1",
+              "de_gc_temporal_preposition_governed_case_v1",
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_spoken_preterite_island_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l17_c01_morgen_v1",
+                "semanticIdentity": "morgen|on the day after today as an explicit future-time expression",
+                "lemmaOrExpression": "morgen",
+                "partOfSpeech": "adverb",
+                "lexicalKind": "ADVERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "senseGloss": "on the day after today as an explicit future-time expression",
+                "communicativeUse": "use Morgen besuche ich das Museum. to make the present-tense visit explicitly future",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l17_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l17_ch01",
+                  "checkpointPacketId": "de_l17_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_introduced_verbletzt_clause_v1",
+                    "de_gc_finite_present_agreement_v1",
+                    "de_gc_statement_v2_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1"
+                  ],
+                  "utilityRole": "temporal_spatial",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-recognize-morgen-plus-present-as-future-and-weil-plus-final-ist-as-a-bounded-reason",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l17_c01_s08"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l17_c01_besuchen_v1",
+                "semanticIdentity": "besuchen|visit one specified person or public place",
+                "lemmaOrExpression": "besuchen",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "besuchen",
+                  "valencyFrame": "transitive visit frame selecting one explicit accusative person or public place",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "visit one specified person or public place",
+                "communicativeUse": "Morgen besuche ich das Museum, weil es offen ist.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l17_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l17_ch01",
+                  "checkpointPacketId": "de_l17_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_introduced_verbletzt_clause_v1",
+                    "de_gc_finite_present_agreement_v1",
+                    "de_gc_statement_v2_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-recognize-morgen-plus-present-as-future-and-weil-plus-final-ist-as-a-bounded-reason",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l17_c01_s08"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "community-museum-visit-call",
+              "participants": "visitor-and-information-agent",
+              "goal": "independently-recognize-morgen-plus-present-as-future-and-weil-plus-final-ist-as-a-bounded-reason",
+              "contextSignature": "community-museum-future-recognition-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l16_c06", "de_l16_c07"],
+            "targetsFutureChapterIds": ["de_l17_c02"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l18_c07_s51"
+            }
+          }
+        },
+        {
+          "id": "de_l17_c02",
+          "ordinal": 2,
+          "lessonOutcomeId": "de_l17_ch02",
+          "lessonOutcome": "produce a bounded future plan without werden",
+          "packetIds": [
+            "de_l17_c02_s09",
+            "de_l17_c02_s10",
+            "de_l17_c02_s11",
+            "de_l17_c02_s12",
+            "de_l17_c02_s13",
+            "de_l17_c02_s14",
+            "de_l17_c02_s15",
+            "de_l17_c02_s16"
+          ],
+          "allowedConstructIds": [
+            "de_gc_present_future_reference_v1",
+            "de_gc_introduced_verbletzt_clause_v1",
+            "de_gc_finite_present_agreement_v1",
+            "de_gc_statement_v2_v1",
+            "de_gc_separable_verb_bracket_v1",
+            "de_gc_temporal_preposition_governed_case_v1",
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_lexical_reflexive_v1"
+          ],
+          "situation": {
+            "setting": "tourist-information-guided-tour-booking",
+            "participants": "traveller-and-tourist-information-agent",
+            "goal": "book-a-guided-tour-for-tomorrow-with-present-tense-and-no-required-werden",
+            "contextSignature": "guided-tour-present-future-guidance"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Morgen buche ich die Stadtführung.",
+            "exit": "Morgen buche ich die Stadtführung.",
+            "independentEvidenceByPacketId": "de_l17_c02_s16"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_present_future_reference_v1",
+              "stage": "guided",
+              "packetId": "de_l17_c02_s09"
+            },
+            {
+              "constructId": "de_gc_introduced_verbletzt_clause_v1",
+              "stage": "guided",
+              "packetId": "de_l17_c02_s10"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l17_c02_s11", "de_l17_c02_s12"],
+          "checkpoint": {
+            "packetId": "de_l17_c02_s16",
+            "integratedConstructIds": [
+              "de_gc_present_future_reference_v1",
+              "de_gc_introduced_verbletzt_clause_v1",
+              "de_gc_finite_present_agreement_v1",
+              "de_gc_statement_v2_v1",
+              "de_gc_separable_verb_bracket_v1",
+              "de_gc_temporal_preposition_governed_case_v1",
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_spoken_preterite_island_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l17_c02_stadtfuhrung_v1",
+                "semanticIdentity": "stadtfuhrung|guided tour through a specified town or site",
+                "lemmaOrExpression": "Stadtführung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Stadtführung",
+                  "plural": "Stadtführungen"
+                },
+                "nounPackageIdentity": "die|stadtfuhrung|stadtfuhrungen",
+                "verbPackage": null,
+                "senseGloss": "guided tour through a specified town or site",
+                "communicativeUse": "Morgen buche ich die Stadtführung.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l17_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l17_ch02",
+                  "checkpointPacketId": "de_l17_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_introduced_verbletzt_clause_v1",
+                    "de_gc_finite_present_agreement_v1",
+                    "de_gc_statement_v2_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "hotel-activity-desk-tour-plan",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l17_c02_s16"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "hotel-activity-desk-tour-plan",
+              "participants": "guest-and-hotel-activity-clerk",
+              "goal": "independently-produce-the-guided-tour-plan-with-morgen-and-present-without-required-werden",
+              "contextSignature": "hotel-guided-tour-future-plan-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l16_c07", "de_l17_c01"],
+            "targetsFutureChapterIds": ["de_l17_c03"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l18_c07_s52"
+            }
+          }
+        },
+        {
+          "id": "de_l17_c03",
+          "ordinal": 3,
+          "lessonOutcomeId": "de_l17_ch03",
+          "lessonOutcome": "recognise the whole verb complex in the right bracket of an introduced clause",
+          "packetIds": [
+            "de_l17_c03_s17",
+            "de_l17_c03_s18",
+            "de_l17_c03_s19",
+            "de_l17_c03_s20",
+            "de_l17_c03_s21",
+            "de_l17_c03_s22",
+            "de_l17_c03_s23",
+            "de_l17_c03_s24"
+          ],
+          "allowedConstructIds": [
+            "de_gc_present_future_reference_v1",
+            "de_gc_introduced_verbletzt_clause_v1",
+            "de_gc_finite_present_agreement_v1",
+            "de_gc_statement_v2_v1",
+            "de_gc_separable_verb_bracket_v1",
+            "de_gc_temporal_preposition_governed_case_v1",
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_lexical_reflexive_v1"
+          ],
+          "situation": {
+            "setting": "guided-tour-schedule-confirmation",
+            "participants": "visitor-and-tour-guide",
+            "goal": "recognize-stattfindet-as-the-whole-final-verb-after-the-weil-clause-material",
+            "contextSignature": "weil-stattfinden-right-bracket-retrieval"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Ich buche heute die Stadtführung, weil sie morgen stattfindet.",
+            "exit": "Ich buche heute die Stadtführung, weil sie morgen stattfindet.",
+            "independentEvidenceByPacketId": "de_l17_c03_s24"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_present_future_reference_v1",
+              "stage": "retrieval",
+              "packetId": "de_l17_c03_s17"
+            },
+            {
+              "constructId": "de_gc_introduced_verbletzt_clause_v1",
+              "stage": "retrieval",
+              "packetId": "de_l17_c03_s18"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l17_c03_s19", "de_l17_c03_s20"],
+          "checkpoint": {
+            "packetId": "de_l17_c03_s24",
+            "integratedConstructIds": [
+              "de_gc_present_future_reference_v1",
+              "de_gc_introduced_verbletzt_clause_v1",
+              "de_gc_finite_present_agreement_v1",
+              "de_gc_statement_v2_v1",
+              "de_gc_separable_verb_bracket_v1",
+              "de_gc_temporal_preposition_governed_case_v1",
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_spoken_preterite_island_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l17_c03_stattfinden_v1",
+                "semanticIdentity": "stattfinden|take place at the stated future time",
+                "lemmaOrExpression": "stattfinden",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "stattfinden",
+                  "valencyFrame": "intransitive scheduled-event frame selecting one explicit event subject",
+                  "separability": "separable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "take place at the stated future time",
+                "communicativeUse": "Ich buche heute die Stadtführung, weil sie morgen stattfindet.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l17_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l17_ch03",
+                  "checkpointPacketId": "de_l17_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_introduced_verbletzt_clause_v1",
+                    "de_gc_finite_present_agreement_v1",
+                    "de_gc_statement_v2_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-recognize-stattfindet-as-the-whole-final-verb-of-the-introduced-weil-clause",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l17_c03_s24"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "regional-tour-office-schedule-check",
+              "participants": "visitor-and-tour-office-agent",
+              "goal": "independently-recognize-stattfindet-as-the-whole-final-verb-of-the-introduced-weil-clause",
+              "contextSignature": "regional-tour-weil-final-verb-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l17_c01", "de_l17_c02"],
+            "targetsFutureChapterIds": ["de_l17_c04"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l18_c07_s53"
+            }
+          }
+        },
+        {
+          "id": "de_l17_c04",
+          "ordinal": 4,
+          "lessonOutcomeId": "de_l17_ch04",
+          "lessonOutcome": "give one reason with prototypical Verbletzt topology",
+          "packetIds": [
+            "de_l17_c04_s25",
+            "de_l17_c04_s26",
+            "de_l17_c04_s27",
+            "de_l17_c04_s28",
+            "de_l17_c04_s29",
+            "de_l17_c04_s30",
+            "de_l17_c04_s31",
+            "de_l17_c04_s32"
+          ],
+          "allowedConstructIds": [
+            "de_gc_present_future_reference_v1",
+            "de_gc_introduced_verbletzt_clause_v1",
+            "de_gc_finite_present_agreement_v1",
+            "de_gc_statement_v2_v1",
+            "de_gc_separable_verb_bracket_v1",
+            "de_gc_temporal_preposition_governed_case_v1",
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_lexical_reflexive_v1"
+          ],
+          "situation": {
+            "setting": "family-birthday-visit-plan",
+            "participants": "traveller-and-family-member",
+            "goal": "give-the-birthday-reason-with-weil-and-the-finite-verb-hat-final",
+            "contextSignature": "birthday-visit-verbletzt-production"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Morgen besuche ich Tante Anna, weil sie Geburtstag hat.",
+            "exit": "Morgen besuche ich Tante Anna, weil sie Geburtstag hat.",
+            "independentEvidenceByPacketId": "de_l17_c04_s32"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_present_future_reference_v1",
+              "stage": "production",
+              "packetId": "de_l17_c04_s25"
+            },
+            {
+              "constructId": "de_gc_introduced_verbletzt_clause_v1",
+              "stage": "production",
+              "packetId": "de_l17_c04_s26"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l17_c04_s27", "de_l17_c04_s28"],
+          "checkpoint": {
+            "packetId": "de_l17_c04_s32",
+            "integratedConstructIds": [
+              "de_gc_present_future_reference_v1",
+              "de_gc_introduced_verbletzt_clause_v1",
+              "de_gc_finite_present_agreement_v1",
+              "de_gc_statement_v2_v1",
+              "de_gc_separable_verb_bracket_v1",
+              "de_gc_temporal_preposition_governed_case_v1",
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_spoken_preterite_island_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l17_c04_tante_v1",
+                "semanticIdentity": "tante|aunt identified as the person being visited",
+                "lemmaOrExpression": "Tante",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Tante",
+                  "plural": "Tanten"
+                },
+                "nounPackageIdentity": "die|tante|tanten",
+                "verbPackage": null,
+                "senseGloss": "aunt identified as the person being visited",
+                "communicativeUse": "Morgen besuche ich Tante Anna, weil sie Geburtstag hat.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l17_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l17_ch04",
+                  "checkpointPacketId": "de_l17_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_introduced_verbletzt_clause_v1",
+                    "de_gc_finite_present_agreement_v1",
+                    "de_gc_statement_v2_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1"
+                  ],
+                  "utilityRole": "participant_reference",
+                  "situationFacet": "participants",
+                  "facetValue": "family-member-and-relative",
+                  "necessityClass": "PARTICIPANT_UNIDENTIFIABLE",
+                  "plannedUsePacketIds": ["de_l17_c04_s32"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l17_c04_geburtstag_v1",
+                "semanticIdentity": "geburtstag|birthday that supplies the stated reason for a visit",
+                "lemmaOrExpression": "Geburtstag",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Geburtstag",
+                  "plural": "Geburtstage"
+                },
+                "nounPackageIdentity": "der|geburtstag|geburtstage",
+                "verbPackage": null,
+                "senseGloss": "birthday that supplies the stated reason for a visit",
+                "communicativeUse": "Morgen besuche ich Tante Anna, weil sie Geburtstag hat.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l17_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l17_ch04",
+                  "checkpointPacketId": "de_l17_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_introduced_verbletzt_clause_v1",
+                    "de_gc_finite_present_agreement_v1",
+                    "de_gc_statement_v2_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-give-the-birthday-reason-with-weil-and-final-hat",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l17_c04_s32"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "relative-birthday-visit-call",
+              "participants": "family-member-and-relative",
+              "goal": "independently-give-the-birthday-reason-with-weil-and-final-hat",
+              "contextSignature": "family-birthday-reason-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l17_c02", "de_l17_c03"],
+            "targetsFutureChapterIds": ["de_l17_c05"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l18_c07_s54"
+            }
+          }
+        },
+        {
+          "id": "de_l17_c05",
+          "ordinal": 5,
+          "lessonOutcomeId": "de_l17_ch05",
+          "lessonOutcome": "connect a future plan and reason",
+          "packetIds": [
+            "de_l17_c05_s33",
+            "de_l17_c05_s34",
+            "de_l17_c05_s35",
+            "de_l17_c05_s36",
+            "de_l17_c05_s37",
+            "de_l17_c05_s38",
+            "de_l17_c05_s39",
+            "de_l17_c05_s40"
+          ],
+          "allowedConstructIds": [
+            "de_gc_present_future_reference_v1",
+            "de_gc_introduced_verbletzt_clause_v1",
+            "de_gc_finite_present_agreement_v1",
+            "de_gc_statement_v2_v1",
+            "de_gc_separable_verb_bracket_v1",
+            "de_gc_temporal_preposition_governed_case_v1",
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_lexical_reflexive_v1"
+          ],
+          "situation": {
+            "setting": "guided-tour-meeting-time-call",
+            "participants": "visitor-and-tour-guide",
+            "goal": "connect-a-punctual-tomorrow-arrival-plan-with-the-guided-tour-start-reason",
+            "contextSignature": "future-arrival-weil-reason-integration"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Morgen komme ich pünktlich an, weil die Stadtführung beginnt.",
+            "exit": "Morgen komme ich pünktlich an, weil die Stadtführung beginnt.",
+            "independentEvidenceByPacketId": "de_l17_c05_s40"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l17_c05_s35", "de_l17_c05_s36"],
+          "checkpoint": {
+            "packetId": "de_l17_c05_s40",
+            "integratedConstructIds": [
+              "de_gc_present_future_reference_v1",
+              "de_gc_introduced_verbletzt_clause_v1",
+              "de_gc_finite_present_agreement_v1",
+              "de_gc_statement_v2_v1",
+              "de_gc_separable_verb_bracket_v1",
+              "de_gc_temporal_preposition_governed_case_v1",
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_spoken_preterite_island_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l17_c05_punktlich_v1",
+                "semanticIdentity": "punktlich|at the agreed time without delay",
+                "lemmaOrExpression": "pünktlich",
+                "partOfSpeech": "adverb",
+                "lexicalKind": "ADVERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "senseGloss": "at the agreed time without delay",
+                "communicativeUse": "Morgen komme ich pünktlich an, weil die Stadtführung beginnt.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l17_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l17_ch05",
+                  "checkpointPacketId": "de_l17_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_introduced_verbletzt_clause_v1",
+                    "de_gc_finite_present_agreement_v1",
+                    "de_gc_statement_v2_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1"
+                  ],
+                  "utilityRole": "quality",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-connect-the-tomorrow-arrival-plan-and-guided-tour-reason",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l17_c05_s40"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l17_c05_beginnen_v1",
+                "semanticIdentity": "beginnen|start as a scheduled event",
+                "lemmaOrExpression": "beginnen",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "beginnen",
+                  "valencyFrame": "intransitive event-start frame selecting one explicit event subject",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "start as a scheduled event",
+                "communicativeUse": "Morgen komme ich pünktlich an, weil die Stadtführung beginnt.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l17_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l17_ch05",
+                  "checkpointPacketId": "de_l17_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_introduced_verbletzt_clause_v1",
+                    "de_gc_finite_present_agreement_v1",
+                    "de_gc_statement_v2_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-connect-the-tomorrow-arrival-plan-and-guided-tour-reason",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l17_c05_s40"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "city-walking-tour-meeting-point",
+              "participants": "traveller-and-tour-coordinator",
+              "goal": "independently-connect-the-tomorrow-arrival-plan-and-guided-tour-reason",
+              "contextSignature": "walking-tour-plan-reason-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l17_c03", "de_l17_c04"],
+            "targetsFutureChapterIds": ["de_l17_c06"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l18_c07_s55"
+            }
+          }
+        },
+        {
+          "id": "de_l17_c06",
+          "ordinal": 6,
+          "lessonOutcomeId": "de_l17_ch06",
+          "lessonOutcome": "repair future-marker or subordinate-topology overgeneralisation",
+          "packetIds": [
+            "de_l17_c06_s41",
+            "de_l17_c06_s42",
+            "de_l17_c06_s43",
+            "de_l17_c06_s44",
+            "de_l17_c06_s45",
+            "de_l17_c06_s46",
+            "de_l17_c06_s47",
+            "de_l17_c06_s48"
+          ],
+          "allowedConstructIds": [
+            "de_gc_present_future_reference_v1",
+            "de_gc_introduced_verbletzt_clause_v1",
+            "de_gc_finite_present_agreement_v1",
+            "de_gc_statement_v2_v1",
+            "de_gc_separable_verb_bracket_v1",
+            "de_gc_temporal_preposition_governed_case_v1",
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_lexical_reflexive_v1"
+          ],
+          "situation": {
+            "setting": "visit-plan-message-quality-check",
+            "participants": "traveller-and-language-support-advisor",
+            "goal": "repair-one-unnecessary-werden-default-and-one-non-target-weil-v2-order",
+            "contextSignature": "future-marker-and-weil-topology-dual-repair"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "[1] Ich werde morgen Tante Anna besuchen. → Ich besuche morgen Tante Anna. [2] Ich besuche Tante Anna, weil sie hat Geburtstag. → Ich besuche Tante Anna, weil sie Geburtstag hat. Ich korrigiere den Reiseplan.",
+            "exit": "[1] Ich werde morgen Tante Anna besuchen. → Ich besuche morgen Tante Anna. [2] Ich besuche Tante Anna, weil sie hat Geburtstag. → Ich besuche Tante Anna, weil sie Geburtstag hat. Ich korrigiere den Reiseplan.",
+            "independentEvidenceByPacketId": "de_l17_c06_s48"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_present_future_reference_v1",
+              "stage": "transfer",
+              "packetId": "de_l17_c06_s41"
+            },
+            {
+              "constructId": "de_gc_introduced_verbletzt_clause_v1",
+              "stage": "transfer",
+              "packetId": "de_l17_c06_s42"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l17_c06_s43", "de_l17_c06_s44"],
+          "checkpoint": {
+            "packetId": "de_l17_c06_s48",
+            "integratedConstructIds": [
+              "de_gc_present_future_reference_v1",
+              "de_gc_introduced_verbletzt_clause_v1",
+              "de_gc_finite_present_agreement_v1",
+              "de_gc_statement_v2_v1",
+              "de_gc_separable_verb_bracket_v1",
+              "de_gc_temporal_preposition_governed_case_v1",
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_spoken_preterite_island_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l17_c06_reiseplan_v1",
+                "semanticIdentity": "reiseplan|travel plan whose future and reason wording is under repair",
+                "lemmaOrExpression": "Reiseplan",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Reiseplan",
+                  "plural": "Reisepläne"
+                },
+                "nounPackageIdentity": "der|reiseplan|reiseplane",
+                "verbPackage": null,
+                "senseGloss": "travel plan whose future and reason wording is under repair",
+                "communicativeUse": "Ich korrigiere den Reiseplan.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l17_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l17_ch06",
+                  "checkpointPacketId": "de_l17_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_introduced_verbletzt_clause_v1",
+                    "de_gc_finite_present_agreement_v1",
+                    "de_gc_statement_v2_v1",
+                    "de_gc_separable_verb_bracket_v1",
+                    "de_gc_temporal_preposition_governed_case_v1",
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-repair-the-unnecessary-werden-default-and-the-non-target-weil-v2-order",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l17_c06_s48"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "travel-help-line-plan-message-review",
+              "participants": "traveller-and-service-support-advisor",
+              "goal": "independently-repair-the-unnecessary-werden-default-and-the-non-target-weil-v2-order",
+              "contextSignature": "spoken-visit-plan-dual-repair-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l17_c04", "de_l17_c05"],
+            "targetsFutureChapterIds": ["de_l17_c07"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l18_c07_s56"
+            }
+          }
+        },
+        {
+          "id": "de_l17_c07",
+          "ordinal": 7,
+          "lessonOutcomeId": "de_l17_ch07",
+          "lessonOutcome": "transfer planning and reason-giving to a new familiar trip",
+          "packetIds": [
+            "de_l17_c07_s49",
+            "de_l17_c07_s50",
+            "de_l17_c07_s51",
+            "de_l17_c07_s52",
+            "de_l17_c07_s53",
+            "de_l17_c07_s54",
+            "de_l17_c07_s55",
+            "de_l17_c07_s56"
+          ],
+          "allowedConstructIds": [
+            "de_gc_present_future_reference_v1",
+            "de_gc_introduced_verbletzt_clause_v1",
+            "de_gc_perfekt_sein_classes_v1",
+            "de_gc_spoken_preterite_island_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_lexical_reflexive_v1"
+          ],
+          "situation": {
+            "setting": "changed-city-exhibition-plan-update",
+            "participants": "traveller-and-local-host",
+            "goal": "recount-arrival-and-past-hotel-state-then-agree-a-tomorrow-exhibition-plan-with-one-reason",
+            "contextSignature": "exhibition-trip-future-reason-transfer"
+          },
+          "supportFading": {
+            "entryLevel": 2,
+            "exitLevel": 0,
+            "entry": "Ich bin im Hotel angekommen. Das Zimmer war ruhig. Morgen besuche ich die Ausstellung, weil sie offen ist.",
+            "exit": "Ich bin im Hotel angekommen. Das Zimmer war ruhig. Morgen besuche ich die Ausstellung, weil sie offen ist.",
+            "independentEvidenceByPacketId": "de_l17_c07_s56"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_perfekt_sein_classes_v1",
+              "stage": "delayed",
+              "packetId": "de_l17_c07_s49"
+            },
+            {
+              "constructId": "de_gc_spoken_preterite_island_v1",
+              "stage": "delayed",
+              "packetId": "de_l17_c07_s50"
+            }
+          ],
+          "chapterEvidencePacketIds": [
+            "de_l17_c07_s51",
+            "de_l17_c07_s52",
+            "de_l17_c07_s53",
+            "de_l17_c07_s54",
+            "de_l17_c07_s55",
+            "de_l17_c07_s56"
+          ],
+          "checkpoint": {
+            "packetId": "de_l17_c07_s56",
+            "integratedConstructIds": [
+              "de_gc_present_future_reference_v1",
+              "de_gc_introduced_verbletzt_clause_v1",
+              "de_gc_perfekt_sein_classes_v1",
+              "de_gc_spoken_preterite_island_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l17_c07_ausstellung_v1",
+                "semanticIdentity": "ausstellung|exhibition chosen as the changed visit destination",
+                "lemmaOrExpression": "Ausstellung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Ausstellung",
+                  "plural": "Ausstellungen"
+                },
+                "nounPackageIdentity": "die|ausstellung|ausstellungen",
+                "verbPackage": null,
+                "senseGloss": "exhibition chosen as the changed visit destination",
+                "communicativeUse": "Morgen besuche ich die Ausstellung, weil sie offen ist.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l17_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l17_ch07",
+                  "checkpointPacketId": "de_l17_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_introduced_verbletzt_clause_v1",
+                    "de_gc_perfekt_sein_classes_v1",
+                    "de_gc_spoken_preterite_island_v1"
+                  ],
+                  "utilityRole": "transfer",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-transfer-arrival-past-state-future-plan-and-final-verb-reason-to-the-exhibition-trip",
+                  "necessityClass": "TRANSFER_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l17_c07_s56"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "regional-city-visitor-centre-plan-call",
+              "participants": "traveller-and-visitor-centre-agent",
+              "goal": "independently-transfer-arrival-past-state-future-plan-and-final-verb-reason-to-the-exhibition-trip",
+              "contextSignature": "regional-exhibition-trip-final-transfer"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l17_c05", "de_l17_c06"],
+            "targetsFutureChapterIds": ["de_l18_c01"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l18_c07_s55"
+            }
+          }
+        }
+      ]
     }
   ]
 }

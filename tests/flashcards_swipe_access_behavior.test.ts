@@ -57,6 +57,10 @@ jest.mock('react-native', () => {
     timing: immediateAnimation,
   },
   BackHandler: { addEventListener: jest.fn(() => ({ remove: jest.fn() })) },
+  // зачем: экран сбрасывает память свайпа на диск при уходе в фон (AppState 'change').
+  AppState: { currentState: 'active', addEventListener: jest.fn(() => ({ remove: jest.fn() })) },
+  // зачем: 17fbb3d32 — шапка тренировки по practice.html (PracticeChrome) собрана на Pressable.
+  Pressable: 'Pressable',
   Easing: { cubic: 'cubic', in: (value: unknown) => value, out: (value: unknown) => value },
   PanResponder: { create: jest.fn(() => ({ panHandlers: {} })) },
   Platform: { OS: 'ios', select: (values: Record<string, unknown>) => values.ios ?? values.default },
@@ -82,9 +86,9 @@ jest.mock('../components/PremiumContext', () => ({
   usePremium: () => ({ accessResolved: mockAccessResolved }),
   useFeatureAccess: () => mockFlashcardsAccess,
 }));
-jest.mock('../components/personal_plan_sunset_guard', () => ({
-  withOptionalPersonalPlanSunsetGuard: (Component: unknown) => Component,
-}));
+// зачем: personal_plan_sunset_guard удалён вместе с «Личным планом» (efe19ae9d), экран его больше не оборачивает.
+// зачем: 17fbb3d32 — в шапке тренировки по practice.html стоит индикатор энергии (EnergyBar на Reanimated).
+jest.mock('../components/EnergyBar', () => 'EnergyBar');
 jest.mock('../components/EnergyContext', () => ({
   useEnergy: () => ({
     confirmSpendOne: mockConfirmEnergy,
@@ -201,8 +205,9 @@ jest.mock('../app/feedback_attempt_identity', () => ({ makeFeedbackAttemptId: ()
 jest.mock('../app/dev_practice_runes_seed', () => ({ readDevPracticeRunesFakeState: () => null }));
 jest.mock('../app/flashcards/word_strength', () => ({ loadWordStrengthMap: jest.fn(async () => ({})) }));
 jest.mock('../app/flashcards/SessionResultScreen', () => ({ SessionResultScreen: 'SessionResultScreen' }));
-jest.mock('../app/revenue_quota_access', () => ({
-  consumeFlashcardTrainingQuota: (...args: unknown[]) => mockConsumeQuota(...args),
+// зачем: 17fbb3d32 (30.09) — тренировка списывает месячный лимит (30 в месяц), а не старую квоту.
+jest.mock('../app/monthly_training_sessions', () => ({
+  consumeMonthlyTrainingSession: (...args: unknown[]) => mockConsumeQuota(...args),
 }));
 jest.mock('../app/flashcard_training_pending_grant', () => ({
   resolveFlashcardTrainingPendingGrantAccount: async (runtimeToken: unknown) => ({
@@ -231,6 +236,14 @@ jest.mock('../app/flashcard_training_pending_grant', () => ({
   markFlashcardTrainingEnergyCharged: async () => {
     mockPendingRecord = { ...mockPendingRecord, energyState: 'charged' };
     return { status: 'charged', record: mockPendingRecord };
+  },
+  // зачем: старт тренировки «захватывается» в журнале (claimId), чтобы повторный вход не списал квоту дважды.
+  claimFlashcardTrainingPendingGrantStart: async (_account: unknown, _fingerprint: string, receiptId: string, claimId: string) => {
+    if (!mockPendingRecord) return { status: 'missing' };
+    if (mockPendingRecord.receiptId !== receiptId) return { status: 'conflict' };
+    if (mockPendingRecord.startInProgress) return { status: 'reused', record: mockPendingRecord };
+    mockPendingRecord = { ...mockPendingRecord, startInProgress: { claimId } };
+    return { status: 'claimed', record: mockPendingRecord };
   },
   markFlashcardTrainingQuotaCommitted: async () => {
     mockPendingRecord = { ...mockPendingRecord, phase: 'quota_committed' };
@@ -305,8 +318,9 @@ test('unresolved does no work; an exhausted free start refunds energy and redire
 
   expect(mockReplace).toHaveBeenCalledTimes(1);
   expect(mockReplace).toHaveBeenCalledWith({
-    pathname: '/premium_modal',
-    params: { context: 'flashcard_training', source: 'flashcards_training_start' },
+    // зачем: 17fbb3d32 — при исчерпанном лимите ведём в настройку тренировки: там замок и окно Plus (D152).
+    pathname: '/flashcards_training_setup',
+    params: { mode: 'truefalse' },
   });
   expect(mockLoadSaved).toHaveBeenCalledTimes(1);
   expect(mockConfirmEnergy).toHaveBeenCalledTimes(1);

@@ -1248,6 +1248,15 @@ function validateBlueprint(
       }
     }
     if (
+      candidate.id === "de_l13" &&
+      JSON.stringify(candidate.evidenceIds) !==
+        JSON.stringify(["DE-GRM-ADJ-001", "DE-GRM-NP-001", "DE-GRM-CASE-001"])
+    ) {
+      throw new Error(
+        "introduced_construct_evidence_missing:de_l13:DE-GRM-ADJ-001",
+      );
+    }
+    if (
       expectedOrdinal >= 31 &&
       !candidate.evidenceIds.includes("DE-RSCH-CEFR-009")
     ) {
@@ -1520,6 +1529,17 @@ expectFailure(
     );
   },
   /introduced_construct_evidence_missing:de_l02:DE-GRM-PRON-001/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson13 = (candidate.lessons as JsonRecord[])[12];
+    lesson13.evidenceIds = (lesson13.evidenceIds as string[]).filter(
+      (id) => id !== "DE-GRM-ADJ-001",
+    );
+  },
+  /introduced_construct_evidence_missing:de_l13:DE-GRM-ADJ-001/u,
 );
 expectFailure(
   raw,

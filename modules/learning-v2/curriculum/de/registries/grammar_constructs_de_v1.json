@@ -12,25 +12,13 @@
     ],
     "prerequisiteIds": [],
     "firstIntroductionPacketId": "de_l01_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l01_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l01_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l01_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l01_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l02_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l01_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l01_c03_s17"],
+    "productionTargetPacketIds": ["de_l01_c04_s25"],
+    "transferTargetPacketIds": ["de_l01_c06_s41"],
+    "delayedTargetPacketIds": ["de_l02_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-RSCH-CEFR-003"
-    ]
+    "evidenceIds": ["DE-RSCH-CEFR-003"]
   },
   {
     "id": "de_gc_personal_reference_v1",
@@ -43,29 +31,15 @@
     "exclusions": [
       "accusative and dative pronoun forms before their governed case frames"
     ],
-    "prerequisiteIds": [
-      "de_gc_pre_a1_formulaic_chunks_v1"
-    ],
+    "prerequisiteIds": ["de_gc_pre_a1_formulaic_chunks_v1"],
     "firstIntroductionPacketId": "de_l01_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l01_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l01_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l01_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l01_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l02_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l01_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l01_c03_s18"],
+    "productionTargetPacketIds": ["de_l01_c04_s26"],
+    "transferTargetPacketIds": ["de_l01_c06_s42"],
+    "delayedTargetPacketIds": ["de_l02_c07_s50"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-PRON-001"
-    ]
+    "evidenceIds": ["DE-GRM-PRON-001"]
   },
   {
     "id": "de_gc_finite_present_agreement_v1",
@@ -80,30 +54,15 @@
       "finite present agreement is a pedagogical inference supported by subject-person evidence, not a direct source claim",
       "its placement is a blueprint inference, not a source-assigned CEFR sequence"
     ],
-    "prerequisiteIds": [
-      "de_gc_personal_reference_v1"
-    ],
+    "prerequisiteIds": ["de_gc_personal_reference_v1"],
     "firstIntroductionPacketId": "de_l02_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l02_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l02_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l02_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l02_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l03_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l02_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l02_c03_s17"],
+    "productionTargetPacketIds": ["de_l02_c04_s25"],
+    "transferTargetPacketIds": ["de_l02_c06_s41"],
+    "delayedTargetPacketIds": ["de_l03_c07_s49"],
     "evidenceStatus": "PEDAGOGICAL_INFERENCE",
-    "evidenceIds": [
-      "DE-GRM-SYNTAX-001",
-      "DE-GRM-PRON-001"
-    ]
+    "evidenceIds": ["DE-GRM-SYNTAX-001", "DE-GRM-PRON-001"]
   },
   {
     "id": "de_gc_noun_article_singular_plural_v1",
@@ -113,34 +72,16 @@
       "receptive": true,
       "productive": true
     },
-    "exclusions": [
-      "universal gender or plural prediction from spelling"
-    ],
-    "prerequisiteIds": [
-      "de_gc_pre_a1_formulaic_chunks_v1"
-    ],
+    "exclusions": ["universal gender or plural prediction from spelling"],
+    "prerequisiteIds": ["de_gc_pre_a1_formulaic_chunks_v1"],
     "firstIntroductionPacketId": "de_l02_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l02_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l02_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l02_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l02_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l03_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l02_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l02_c03_s18"],
+    "productionTargetPacketIds": ["de_l02_c04_s26"],
+    "transferTargetPacketIds": ["de_l02_c06_s42"],
+    "delayedTargetPacketIds": ["de_l03_c07_s50"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-NP-001",
-      "DE-GRM-GENDER-001",
-      "DE-GRM-PLURAL-001"
-    ]
+    "evidenceIds": ["DE-GRM-NP-001", "DE-GRM-GENDER-001", "DE-GRM-PLURAL-001"]
   },
   {
     "id": "de_gc_finite_haben_present_v1",
@@ -155,30 +96,15 @@
       "finite haben staging is a pedagogical inference supported by present-agreement and Perfekt evidence, not a direct source claim",
       "its placement is a blueprint inference, not a source-assigned CEFR sequence"
     ],
-    "prerequisiteIds": [
-      "de_gc_finite_present_agreement_v1"
-    ],
+    "prerequisiteIds": ["de_gc_finite_present_agreement_v1"],
     "firstIntroductionPacketId": "de_l03_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l03_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l03_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l03_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l03_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l04_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l03_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l03_c03_s17"],
+    "productionTargetPacketIds": ["de_l03_c04_s25"],
+    "transferTargetPacketIds": ["de_l03_c06_s41"],
+    "delayedTargetPacketIds": ["de_l04_c07_s49"],
     "evidenceStatus": "PEDAGOGICAL_INFERENCE",
-    "evidenceIds": [
-      "DE-GRM-SYNTAX-001",
-      "DE-GRM-PERFEKT-001"
-    ]
+    "evidenceIds": ["DE-GRM-SYNTAX-001", "DE-GRM-PERFEKT-001"]
   },
   {
     "id": "de_gc_finite_sein_present_v1",
@@ -193,30 +119,15 @@
       "finite sein staging is a pedagogical inference supported by present-agreement and Perfekt evidence, not a direct source claim",
       "its placement is a blueprint inference, not a source-assigned CEFR sequence"
     ],
-    "prerequisiteIds": [
-      "de_gc_finite_present_agreement_v1"
-    ],
+    "prerequisiteIds": ["de_gc_finite_present_agreement_v1"],
     "firstIntroductionPacketId": "de_l03_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l03_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l03_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l03_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l03_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l04_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l03_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l03_c03_s18"],
+    "productionTargetPacketIds": ["de_l03_c04_s26"],
+    "transferTargetPacketIds": ["de_l03_c06_s42"],
+    "delayedTargetPacketIds": ["de_l04_c07_s50"],
     "evidenceStatus": "PEDAGOGICAL_INFERENCE",
-    "evidenceIds": [
-      "DE-GRM-SYNTAX-001",
-      "DE-GRM-PERFEKT-001"
-    ]
+    "evidenceIds": ["DE-GRM-SYNTAX-001", "DE-GRM-PERFEKT-001"]
   },
   {
     "id": "de_gc_nominative_subject_v1",
@@ -226,32 +137,16 @@
       "receptive": true,
       "productive": true
     },
-    "exclusions": [
-      "treating nominative as a fixed first-position ending"
-    ],
-    "prerequisiteIds": [
-      "de_gc_noun_article_singular_plural_v1"
-    ],
+    "exclusions": ["treating nominative as a fixed first-position ending"],
+    "prerequisiteIds": ["de_gc_noun_article_singular_plural_v1"],
     "firstIntroductionPacketId": "de_l04_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l04_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l04_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l04_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l04_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l05_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l04_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l04_c03_s17"],
+    "productionTargetPacketIds": ["de_l04_c04_s25"],
+    "transferTargetPacketIds": ["de_l04_c06_s41"],
+    "delayedTargetPacketIds": ["de_l05_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-CASE-001"
-    ]
+    "evidenceIds": ["DE-GRM-CASE-001"]
   },
   {
     "id": "de_gc_statement_v2_v1",
@@ -269,26 +164,13 @@
       "de_gc_nominative_subject_v1"
     ],
     "firstIntroductionPacketId": "de_l04_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l04_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l04_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l04_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l04_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l05_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l04_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l04_c03_s18"],
+    "productionTargetPacketIds": ["de_l04_c04_s26"],
+    "transferTargetPacketIds": ["de_l04_c06_s42"],
+    "delayedTargetPacketIds": ["de_l05_c07_s50"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-SYNTAX-001",
-      "DE-GRM-SYNTAX-002"
-    ]
+    "evidenceIds": ["DE-GRM-SYNTAX-001", "DE-GRM-SYNTAX-002"]
   },
   {
     "id": "de_gc_yes_no_verberst_v1",
@@ -298,32 +180,16 @@
       "receptive": true,
       "productive": true
     },
-    "exclusions": [
-      "W-element questions and introduced subordinate clauses"
-    ],
-    "prerequisiteIds": [
-      "de_gc_statement_v2_v1"
-    ],
+    "exclusions": ["W-element questions and introduced subordinate clauses"],
+    "prerequisiteIds": ["de_gc_statement_v2_v1"],
     "firstIntroductionPacketId": "de_l05_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l05_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l05_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l05_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l05_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l06_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l05_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l05_c03_s17"],
+    "productionTargetPacketIds": ["de_l05_c04_s25"],
+    "transferTargetPacketIds": ["de_l05_c06_s41"],
+    "delayedTargetPacketIds": ["de_l06_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-SYNTAX-002"
-    ]
+    "evidenceIds": ["DE-GRM-SYNTAX-002"]
   },
   {
     "id": "de_gc_w_element_v2_v1",
@@ -336,29 +202,15 @@
     "exclusions": [
       "the false rule that every German question begins with a verb"
     ],
-    "prerequisiteIds": [
-      "de_gc_statement_v2_v1"
-    ],
+    "prerequisiteIds": ["de_gc_statement_v2_v1"],
     "firstIntroductionPacketId": "de_l05_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l05_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l05_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l05_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l05_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l06_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l05_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l05_c03_s18"],
+    "productionTargetPacketIds": ["de_l05_c04_s26"],
+    "transferTargetPacketIds": ["de_l05_c06_s42"],
+    "delayedTargetPacketIds": ["de_l06_c07_s50"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-SYNTAX-002"
-    ]
+    "evidenceIds": ["DE-GRM-SYNTAX-002"]
   },
   {
     "id": "de_gc_nein_nicht_contrast_v1",
@@ -368,32 +220,16 @@
       "receptive": true,
       "productive": true
     },
-    "exclusions": [
-      "nominal kein- and later contrastive doch responses"
-    ],
-    "prerequisiteIds": [
-      "de_gc_statement_v2_v1"
-    ],
+    "exclusions": ["nominal kein- and later contrastive doch responses"],
+    "prerequisiteIds": ["de_gc_statement_v2_v1"],
     "firstIntroductionPacketId": "de_l06_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l06_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l06_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l06_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l06_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l07_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l06_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l06_c03_s17"],
+    "productionTargetPacketIds": ["de_l06_c04_s25"],
+    "transferTargetPacketIds": ["de_l06_c06_s41"],
+    "delayedTargetPacketIds": ["de_l07_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-NEG-001"
-    ]
+    "evidenceIds": ["DE-GRM-NEG-001"]
   },
   {
     "id": "de_gc_kein_nominal_negation_v1",
@@ -403,34 +239,20 @@
       "receptive": true,
       "productive": true
     },
-    "exclusions": [
-      "using kein- as a universal replacement for nicht"
-    ],
+    "exclusions": ["using kein- as a universal replacement for nicht"],
     "prerequisiteIds": [
       "de_gc_nein_nicht_contrast_v1",
       "de_gc_noun_article_singular_plural_v1",
       "de_gc_nominative_subject_v1"
     ],
     "firstIntroductionPacketId": "de_l06_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l06_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l06_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l06_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l06_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l07_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l06_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l06_c03_s18"],
+    "productionTargetPacketIds": ["de_l06_c04_s26"],
+    "transferTargetPacketIds": ["de_l06_c06_s42"],
+    "delayedTargetPacketIds": ["de_l07_c07_s50"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-NEG-001"
-    ]
+    "evidenceIds": ["DE-GRM-NEG-001"]
   },
   {
     "id": "de_gc_pronoun_reference_chain_v1",
@@ -440,34 +262,20 @@
       "receptive": true,
       "productive": true
     },
-    "exclusions": [
-      "case forms not licensed by an established valency frame"
-    ],
+    "exclusions": ["case forms not licensed by an established valency frame"],
     "prerequisiteIds": [
       "de_gc_personal_reference_v1",
       "de_gc_noun_article_singular_plural_v1",
       "de_gc_statement_v2_v1"
     ],
     "firstIntroductionPacketId": "de_l07_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l07_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l07_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l07_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l07_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l08_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l07_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l07_c03_s17"],
+    "productionTargetPacketIds": ["de_l07_c04_s25"],
+    "transferTargetPacketIds": ["de_l07_c06_s41"],
+    "delayedTargetPacketIds": ["de_l08_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-PRON-001"
-    ]
+    "evidenceIds": ["DE-GRM-PRON-001"]
   },
   {
     "id": "de_gc_frequent_accusative_frames_v1",
@@ -477,33 +285,16 @@
       "receptive": true,
       "productive": true
     },
-    "exclusions": [
-      "case guessing from linear position alone"
-    ],
-    "prerequisiteIds": [
-      "de_gc_nominative_subject_v1",
-      "de_gc_statement_v2_v1"
-    ],
+    "exclusions": ["case guessing from linear position alone"],
+    "prerequisiteIds": ["de_gc_nominative_subject_v1", "de_gc_statement_v2_v1"],
     "firstIntroductionPacketId": "de_l07_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l07_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l07_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l07_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l07_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l08_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l07_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l07_c03_s18"],
+    "productionTargetPacketIds": ["de_l07_c04_s26"],
+    "transferTargetPacketIds": ["de_l07_c06_s42"],
+    "delayedTargetPacketIds": ["de_l08_c07_s50"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-CASE-001"
-    ]
+    "evidenceIds": ["DE-GRM-CASE-001"]
   },
   {
     "id": "de_gc_accusative_personal_pronouns_v1",
@@ -521,26 +312,13 @@
       "de_gc_frequent_accusative_frames_v1"
     ],
     "firstIntroductionPacketId": "de_l08_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l08_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l08_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l08_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l08_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l09_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l08_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l08_c03_s17"],
+    "productionTargetPacketIds": ["de_l08_c04_s25"],
+    "transferTargetPacketIds": ["de_l08_c06_s41"],
+    "delayedTargetPacketIds": ["de_l09_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-PRON-001",
-      "DE-GRM-CASE-001"
-    ]
+    "evidenceIds": ["DE-GRM-PRON-001", "DE-GRM-CASE-001"]
   },
   {
     "id": "de_gc_separable_verb_bracket_v1",
@@ -550,32 +328,16 @@
       "receptive": true,
       "productive": true
     },
-    "exclusions": [
-      "treating all prefixed verbs as separable"
-    ],
-    "prerequisiteIds": [
-      "de_gc_statement_v2_v1"
-    ],
+    "exclusions": ["treating all prefixed verbs as separable"],
+    "prerequisiteIds": ["de_gc_statement_v2_v1"],
     "firstIntroductionPacketId": "de_l08_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l08_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l08_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l08_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l08_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l09_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l08_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l08_c03_s18"],
+    "productionTargetPacketIds": ["de_l08_c04_s26"],
+    "transferTargetPacketIds": ["de_l08_c06_s42"],
+    "delayedTargetPacketIds": ["de_l09_c07_s50"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-SYNTAX-004"
-    ]
+    "evidenceIds": ["DE-GRM-SYNTAX-004"]
   },
   {
     "id": "de_gc_modal_finite_bare_infinitive_v1",
@@ -585,32 +347,16 @@
       "receptive": true,
       "productive": true
     },
-    "exclusions": [
-      "introducing all modal meanings or modal Perfekt at once"
-    ],
-    "prerequisiteIds": [
-      "de_gc_statement_v2_v1"
-    ],
+    "exclusions": ["introducing all modal meanings or modal Perfekt at once"],
+    "prerequisiteIds": ["de_gc_statement_v2_v1"],
     "firstIntroductionPacketId": "de_l09_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l09_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l09_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l09_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l09_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l10_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l09_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l09_c03_s17"],
+    "productionTargetPacketIds": ["de_l09_c04_s25"],
+    "transferTargetPacketIds": ["de_l09_c06_s41"],
+    "delayedTargetPacketIds": ["de_l10_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-MODAL-001"
-    ]
+    "evidenceIds": ["DE-GRM-MODAL-001"]
   },
   {
     "id": "de_gc_local_preposition_governed_case_v1",
@@ -624,30 +370,15 @@
       "Dativ location frames and Wechselpräpositionen",
       "teaching the preposition as a case-free translation or extending the case to another relation"
     ],
-    "prerequisiteIds": [
-      "de_gc_frequent_accusative_frames_v1"
-    ],
+    "prerequisiteIds": ["de_gc_frequent_accusative_frames_v1"],
     "firstIntroductionPacketId": "de_l09_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l09_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l09_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l09_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l09_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l10_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l09_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l09_c03_s18"],
+    "productionTargetPacketIds": ["de_l09_c04_s26"],
+    "transferTargetPacketIds": ["de_l09_c06_s42"],
+    "delayedTargetPacketIds": ["de_l10_c07_s50"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-ADP-001",
-      "DE-GRM-CASE-001"
-    ]
+    "evidenceIds": ["DE-GRM-ADP-001", "DE-GRM-CASE-001"]
   },
   {
     "id": "de_gc_temporal_preposition_governed_case_v1",
@@ -661,29 +392,15 @@
       "other temporal prepositions with a different governed case",
       "future-reference claims and exhaustive preposition tables"
     ],
-    "prerequisiteIds": [
-      "de_gc_frequent_accusative_frames_v1"
-    ],
+    "prerequisiteIds": ["de_gc_frequent_accusative_frames_v1"],
     "firstIntroductionPacketId": "de_l10_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l10_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l10_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l10_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l10_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l11_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l10_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l10_c03_s17"],
+    "productionTargetPacketIds": ["de_l10_c04_s25"],
+    "transferTargetPacketIds": ["de_l10_c06_s41"],
+    "delayedTargetPacketIds": ["de_l11_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-ADP-001"
-    ]
+    "evidenceIds": ["DE-GRM-ADP-001"]
   },
   {
     "id": "de_gc_dative_recipient_frames_v1",
@@ -693,32 +410,16 @@
       "receptive": true,
       "productive": true
     },
-    "exclusions": [
-      "assuming that every animate object is dative"
-    ],
-    "prerequisiteIds": [
-      "de_gc_frequent_accusative_frames_v1"
-    ],
+    "exclusions": ["assuming that every animate object is dative"],
+    "prerequisiteIds": ["de_gc_frequent_accusative_frames_v1"],
     "firstIntroductionPacketId": "de_l10_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l10_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l10_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l10_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l10_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l11_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l10_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l10_c03_s18"],
+    "productionTargetPacketIds": ["de_l10_c04_s26"],
+    "transferTargetPacketIds": ["de_l10_c06_s42"],
+    "delayedTargetPacketIds": ["de_l11_c07_s50"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-CASE-001"
-    ]
+    "evidenceIds": ["DE-GRM-CASE-001"]
   },
   {
     "id": "de_gc_dative_location_frames_v1",
@@ -732,30 +433,15 @@
       "Akkusativ path or destination relations and Wechselpräpositionen",
       "generalising Dativ to every spatial relation"
     ],
-    "prerequisiteIds": [
-      "de_gc_dative_recipient_frames_v1"
-    ],
+    "prerequisiteIds": ["de_gc_dative_recipient_frames_v1"],
     "firstIntroductionPacketId": "de_l11_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l11_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l11_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l11_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l11_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l12_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l11_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l11_c03_s17"],
+    "productionTargetPacketIds": ["de_l11_c04_s25"],
+    "transferTargetPacketIds": ["de_l11_c06_s41"],
+    "delayedTargetPacketIds": ["de_l12_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-CASE-001",
-      "DE-GRM-ADP-001"
-    ]
+    "evidenceIds": ["DE-GRM-CASE-001", "DE-GRM-ADP-001"]
   },
   {
     "id": "de_gc_dative_personal_pronouns_v1",
@@ -773,26 +459,13 @@
       "de_gc_dative_recipient_frames_v1"
     ],
     "firstIntroductionPacketId": "de_l11_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l11_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l11_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l11_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l11_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l12_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l11_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l11_c03_s18"],
+    "productionTargetPacketIds": ["de_l11_c04_s26"],
+    "transferTargetPacketIds": ["de_l11_c06_s42"],
+    "delayedTargetPacketIds": ["de_l12_c07_s50"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-PRON-001",
-      "DE-GRM-CASE-001"
-    ]
+    "evidenceIds": ["DE-GRM-PRON-001", "DE-GRM-CASE-001"]
   },
   {
     "id": "de_gc_two_object_case_contrast_v1",
@@ -802,33 +475,19 @@
       "receptive": true,
       "productive": true
     },
-    "exclusions": [
-      "a universal recipient-before-object word-order rule"
-    ],
+    "exclusions": ["a universal recipient-before-object word-order rule"],
     "prerequisiteIds": [
       "de_gc_frequent_accusative_frames_v1",
       "de_gc_dative_recipient_frames_v1"
     ],
     "firstIntroductionPacketId": "de_l12_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l12_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l12_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l12_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l12_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l13_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l12_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l12_c03_s17"],
+    "productionTargetPacketIds": ["de_l12_c04_s25"],
+    "transferTargetPacketIds": ["de_l12_c06_s41"],
+    "delayedTargetPacketIds": ["de_l13_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-CASE-001"
-    ]
+    "evidenceIds": ["DE-GRM-CASE-001"]
   },
   {
     "id": "de_gc_wechselpreposition_relation_contrast_v1",
@@ -846,26 +505,13 @@
       "de_gc_dative_location_frames_v1"
     ],
     "firstIntroductionPacketId": "de_l12_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l12_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l12_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l12_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l12_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l13_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l12_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l12_c03_s18"],
+    "productionTargetPacketIds": ["de_l12_c04_s26"],
+    "transferTargetPacketIds": ["de_l12_c06_s42"],
+    "delayedTargetPacketIds": ["de_l13_c07_s50"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-ADP-001",
-      "DE-GRM-CASE-001"
-    ]
+    "evidenceIds": ["DE-GRM-ADP-001", "DE-GRM-CASE-001"]
   },
   {
     "id": "de_gc_predicative_adjective_v1",
@@ -877,7 +523,7 @@
     },
     "exclusions": [
       "attributive adjective endings",
-      "predicative staging is a pedagogical inference supported by later nominal-group contrast, not a direct source claim",
+      "the uninflected predicative form is a direct morphology fact; predicative-before-attributive staging is a pedagogical inference, not a source-assigned sequence",
       "its placement is a blueprint inference, not a source-assigned CEFR sequence"
     ],
     "prerequisiteIds": [
@@ -885,25 +531,13 @@
       "de_gc_noun_article_singular_plural_v1"
     ],
     "firstIntroductionPacketId": "de_l13_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l13_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l13_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l13_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l13_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l14_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l13_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l13_c03_s17"],
+    "productionTargetPacketIds": ["de_l13_c04_s25"],
+    "transferTargetPacketIds": ["de_l13_c06_s41"],
+    "delayedTargetPacketIds": ["de_l14_c07_s49"],
     "evidenceStatus": "PEDAGOGICAL_INFERENCE",
-    "evidenceIds": [
-      "DE-GRM-NP-001"
-    ]
+    "evidenceIds": ["DE-GRM-ADJ-001", "DE-GRM-NP-001"]
   },
   {
     "id": "de_gc_staged_nominal_group_agreement_v1",
@@ -913,9 +547,7 @@
       "receptive": true,
       "productive": true
     },
-    "exclusions": [
-      "a single exhaustive strong-weak-mixed ending table"
-    ],
+    "exclusions": ["a single exhaustive strong-weak-mixed ending table"],
     "prerequisiteIds": [
       "de_gc_predicative_adjective_v1",
       "de_gc_noun_article_singular_plural_v1",
@@ -923,25 +555,13 @@
       "de_gc_dative_recipient_frames_v1"
     ],
     "firstIntroductionPacketId": "de_l13_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l13_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l13_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l13_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l13_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l14_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l13_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l13_c03_s18"],
+    "productionTargetPacketIds": ["de_l13_c04_s26"],
+    "transferTargetPacketIds": ["de_l13_c06_s42"],
+    "delayedTargetPacketIds": ["de_l14_c07_s50"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-NP-001"
-    ]
+    "evidenceIds": ["DE-GRM-NP-001"]
   },
   {
     "id": "de_gc_nicht_position_focus_v1",
@@ -955,29 +575,15 @@
       "a single universal nicht position independent of focus and clause structure",
       "nominal kein- and response-particle doch"
     ],
-    "prerequisiteIds": [
-      "de_gc_nein_nicht_contrast_v1"
-    ],
+    "prerequisiteIds": ["de_gc_nein_nicht_contrast_v1"],
     "firstIntroductionPacketId": "de_l14_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l14_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l14_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l14_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l14_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l15_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l14_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l14_c03_s17"],
+    "productionTargetPacketIds": ["de_l14_c04_s25"],
+    "transferTargetPacketIds": ["de_l14_c06_s41"],
+    "delayedTargetPacketIds": ["de_l15_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-NEG-001"
-    ]
+    "evidenceIds": ["DE-GRM-NEG-001"]
   },
   {
     "id": "de_gc_doch_response_contrast_v1",
@@ -987,33 +593,19 @@
       "receptive": true,
       "productive": true
     },
-    "exclusions": [
-      "using doch as a generic yes token"
-    ],
+    "exclusions": ["using doch as a generic yes token"],
     "prerequisiteIds": [
       "de_gc_nicht_position_focus_v1",
       "de_gc_yes_no_verberst_v1"
     ],
     "firstIntroductionPacketId": "de_l14_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l14_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l14_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l14_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l14_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l15_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l14_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l14_c03_s18"],
+    "productionTargetPacketIds": ["de_l14_c04_s26"],
+    "transferTargetPacketIds": ["de_l14_c06_s42"],
+    "delayedTargetPacketIds": ["de_l15_c07_s50"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-NEG-001"
-    ]
+    "evidenceIds": ["DE-GRM-NEG-001"]
   },
   {
     "id": "de_gc_controlled_partizip_ii_v1",
@@ -1027,29 +619,15 @@
       "unverified participle generation and auxiliary selection",
       "using the isolated participle as proof of tense or voice control"
     ],
-    "prerequisiteIds": [
-      "de_gc_separable_verb_bracket_v1"
-    ],
+    "prerequisiteIds": ["de_gc_separable_verb_bracket_v1"],
     "firstIntroductionPacketId": "de_l15_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l15_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l15_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l15_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l15_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l16_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l15_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l15_c03_s17"],
+    "productionTargetPacketIds": ["de_l15_c04_s25"],
+    "transferTargetPacketIds": ["de_l15_c06_s41"],
+    "delayedTargetPacketIds": ["de_l16_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-PERFEKT-001"
-    ]
+    "evidenceIds": ["DE-GRM-PERFEKT-001"]
   },
   {
     "id": "de_gc_perfekt_haben_classes_v1",
@@ -1059,34 +637,20 @@
       "receptive": true,
       "productive": true
     },
-    "exclusions": [
-      "a universal auxiliary rule based only on movement"
-    ],
+    "exclusions": ["a universal auxiliary rule based only on movement"],
     "prerequisiteIds": [
       "de_gc_finite_haben_present_v1",
       "de_gc_controlled_partizip_ii_v1",
       "de_gc_separable_verb_bracket_v1"
     ],
     "firstIntroductionPacketId": "de_l15_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l15_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l15_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l15_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l15_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l16_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l15_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l15_c03_s18"],
+    "productionTargetPacketIds": ["de_l15_c04_s26"],
+    "transferTargetPacketIds": ["de_l15_c06_s42"],
+    "delayedTargetPacketIds": ["de_l16_c07_s50"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-PERFEKT-001"
-    ]
+    "evidenceIds": ["DE-GRM-PERFEKT-001"]
   },
   {
     "id": "de_gc_perfekt_sein_classes_v1",
@@ -1096,34 +660,20 @@
       "receptive": true,
       "productive": true
     },
-    "exclusions": [
-      "assigning sein to every verb describing travel or motion"
-    ],
+    "exclusions": ["assigning sein to every verb describing travel or motion"],
     "prerequisiteIds": [
       "de_gc_finite_sein_present_v1",
       "de_gc_controlled_partizip_ii_v1",
       "de_gc_perfekt_haben_classes_v1"
     ],
     "firstIntroductionPacketId": "de_l16_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l16_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l16_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l16_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l16_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l17_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l16_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l16_c03_s17"],
+    "productionTargetPacketIds": ["de_l16_c04_s25"],
+    "transferTargetPacketIds": ["de_l16_c06_s41"],
+    "delayedTargetPacketIds": ["de_l17_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-PERFEKT-001"
-    ]
+    "evidenceIds": ["DE-GRM-PERFEKT-001"]
   },
   {
     "id": "de_gc_spoken_preterite_island_v1",
@@ -1142,25 +692,13 @@
       "de_gc_modal_finite_bare_infinitive_v1"
     ],
     "firstIntroductionPacketId": "de_l16_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l16_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l16_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l16_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l16_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l17_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l16_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l16_c03_s18"],
+    "productionTargetPacketIds": ["de_l16_c04_s26"],
+    "transferTargetPacketIds": ["de_l16_c06_s42"],
+    "delayedTargetPacketIds": ["de_l17_c07_s50"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-PAST-001"
-    ]
+    "evidenceIds": ["DE-GRM-PAST-001"]
   },
   {
     "id": "de_gc_present_future_reference_v1",
@@ -1173,29 +711,15 @@
     "exclusions": [
       "claiming that future reference requires werden plus infinitive"
     ],
-    "prerequisiteIds": [
-      "de_gc_finite_present_agreement_v1"
-    ],
+    "prerequisiteIds": ["de_gc_finite_present_agreement_v1"],
     "firstIntroductionPacketId": "de_l17_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l17_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l17_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l17_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l17_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l18_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l17_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l17_c03_s17"],
+    "productionTargetPacketIds": ["de_l17_c04_s25"],
+    "transferTargetPacketIds": ["de_l17_c06_s41"],
+    "delayedTargetPacketIds": ["de_l18_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-FUTURE-001"
-    ]
+    "evidenceIds": ["DE-GRM-FUTURE-001"]
   },
   {
     "id": "de_gc_introduced_verbletzt_clause_v1",
@@ -1213,26 +737,13 @@
       "de_gc_separable_verb_bracket_v1"
     ],
     "firstIntroductionPacketId": "de_l17_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l17_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l17_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l17_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l17_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l18_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l17_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l17_c03_s18"],
+    "productionTargetPacketIds": ["de_l17_c04_s26"],
+    "transferTargetPacketIds": ["de_l17_c06_s42"],
+    "delayedTargetPacketIds": ["de_l18_c07_s50"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-SYNTAX-001",
-      "DE-GRM-SYNTAX-003"
-    ]
+    "evidenceIds": ["DE-GRM-SYNTAX-001", "DE-GRM-SYNTAX-003"]
   },
   {
     "id": "de_gc_connector_topology_contrast_v1",
@@ -1250,26 +761,13 @@
       "de_gc_statement_v2_v1"
     ],
     "firstIntroductionPacketId": "de_l18_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l18_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l18_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l18_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l18_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l19_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l18_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l18_c03_s17"],
+    "productionTargetPacketIds": ["de_l18_c04_s25"],
+    "transferTargetPacketIds": ["de_l18_c06_s41"],
+    "delayedTargetPacketIds": ["de_l19_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-SYNTAX-002",
-      "DE-GRM-SYNTAX-003"
-    ]
+    "evidenceIds": ["DE-GRM-SYNTAX-002", "DE-GRM-SYNTAX-003"]
   },
   {
     "id": "de_gc_lexical_reflexive_v1",
@@ -1282,29 +780,15 @@
     "exclusions": [
       "reciprocal meaning and a fictitious unique reflexive form for every person"
     ],
-    "prerequisiteIds": [
-      "de_gc_accusative_personal_pronouns_v1"
-    ],
+    "prerequisiteIds": ["de_gc_accusative_personal_pronouns_v1"],
     "firstIntroductionPacketId": "de_l18_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l18_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l18_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l18_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l18_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l19_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l18_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l18_c03_s18"],
+    "productionTargetPacketIds": ["de_l18_c04_s26"],
+    "transferTargetPacketIds": ["de_l18_c06_s42"],
+    "delayedTargetPacketIds": ["de_l19_c07_s50"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-REFL-001"
-    ]
+    "evidenceIds": ["DE-GRM-REFL-001"]
   },
   {
     "id": "de_gc_formal_sie_sich_v1",
@@ -1322,25 +806,13 @@
       "de_gc_pronoun_reference_chain_v1"
     ],
     "firstIntroductionPacketId": "de_l19_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l19_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l19_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l19_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l19_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l20_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l19_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l19_c03_s17"],
+    "productionTargetPacketIds": ["de_l19_c04_s25"],
+    "transferTargetPacketIds": ["de_l19_c06_s41"],
+    "delayedTargetPacketIds": ["de_l20_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-REFL-001"
-    ]
+    "evidenceIds": ["DE-GRM-REFL-001"]
   },
   {
     "id": "de_gc_reciprocal_reference_v1",
@@ -1362,25 +834,13 @@
       "de_gc_formal_sie_sich_v1"
     ],
     "firstIntroductionPacketId": "de_l19_c01_s02",
-    "guidedTargetPacketIds": [
-      "de_l19_c02_s10"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l19_c03_s18"
-    ],
-    "productionTargetPacketIds": [
-      "de_l19_c04_s26"
-    ],
-    "transferTargetPacketIds": [
-      "de_l19_c06_s42"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l20_c07_s50"
-    ],
+    "guidedTargetPacketIds": ["de_l19_c02_s10"],
+    "retrievalTargetPacketIds": ["de_l19_c03_s18"],
+    "productionTargetPacketIds": ["de_l19_c04_s26"],
+    "transferTargetPacketIds": ["de_l19_c06_s42"],
+    "delayedTargetPacketIds": ["de_l20_c07_s50"],
     "evidenceStatus": "PEDAGOGICAL_INFERENCE",
-    "evidenceIds": [
-      "DE-GRM-REFL-001"
-    ]
+    "evidenceIds": ["DE-GRM-REFL-001"]
   },
   {
     "id": "de_gc_infinitive_verb_cluster_v1",
@@ -1395,30 +855,15 @@
       "infinitive-cluster staging is a pedagogical inference supported by modal and modal-Perfekt evidence, not a direct source claim",
       "its placement is a blueprint inference, not a source-assigned CEFR sequence"
     ],
-    "prerequisiteIds": [
-      "de_gc_modal_finite_bare_infinitive_v1"
-    ],
+    "prerequisiteIds": ["de_gc_modal_finite_bare_infinitive_v1"],
     "firstIntroductionPacketId": "de_l20_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l20_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l20_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l20_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l20_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l21_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l20_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l20_c03_s17"],
+    "productionTargetPacketIds": ["de_l20_c04_s25"],
+    "transferTargetPacketIds": ["de_l20_c06_s41"],
+    "delayedTargetPacketIds": ["de_l21_c07_s49"],
     "evidenceStatus": "PEDAGOGICAL_INFERENCE",
-    "evidenceIds": [
-      "DE-GRM-MODAL-001",
-      "DE-GRM-MODALPERF-001"
-    ]
+    "evidenceIds": ["DE-GRM-MODAL-001", "DE-GRM-MODALPERF-001"]
   },
   {
     "id": "de_gc_relative_clause_gender_case_v1",
@@ -1428,9 +873,7 @@
       "receptive": true,
       "productive": true
     },
-    "exclusions": [
-      "copying antecedent case onto the relative form"
-    ],
+    "exclusions": ["copying antecedent case onto the relative form"],
     "prerequisiteIds": [
       "de_gc_introduced_verbletzt_clause_v1",
       "de_gc_noun_article_singular_plural_v1",
@@ -1438,25 +881,13 @@
       "de_gc_dative_recipient_frames_v1"
     ],
     "firstIntroductionPacketId": "de_l22_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l22_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l22_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l22_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l22_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l23_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l22_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l22_c03_s17"],
+    "productionTargetPacketIds": ["de_l22_c04_s25"],
+    "transferTargetPacketIds": ["de_l22_c06_s41"],
+    "delayedTargetPacketIds": ["de_l23_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-REL-001"
-    ]
+    "evidenceIds": ["DE-GRM-REL-001"]
   },
   {
     "id": "de_gc_event_passive_v1",
@@ -1466,33 +897,19 @@
       "receptive": true,
       "productive": true
     },
-    "exclusions": [
-      "state passive and recipient passive"
-    ],
+    "exclusions": ["state passive and recipient passive"],
     "prerequisiteIds": [
       "de_gc_controlled_partizip_ii_v1",
       "de_gc_separable_verb_bracket_v1"
     ],
     "firstIntroductionPacketId": "de_l24_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l24_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l24_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l24_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l24_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l25_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l24_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l24_c03_s17"],
+    "productionTargetPacketIds": ["de_l24_c04_s25"],
+    "transferTargetPacketIds": ["de_l24_c06_s41"],
+    "delayedTargetPacketIds": ["de_l25_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-PASS-001"
-    ]
+    "evidenceIds": ["DE-GRM-PASS-001"]
   },
   {
     "id": "de_gc_state_passive_v1",
@@ -1502,33 +919,19 @@
       "receptive": true,
       "productive": true
     },
-    "exclusions": [
-      "collapsing Zustandspassiv into event passive"
-    ],
+    "exclusions": ["collapsing Zustandspassiv into event passive"],
     "prerequisiteIds": [
       "de_gc_event_passive_v1",
       "de_gc_finite_sein_present_v1"
     ],
     "firstIntroductionPacketId": "de_l25_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l25_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l25_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l25_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l25_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l26_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l25_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l25_c03_s17"],
+    "productionTargetPacketIds": ["de_l25_c04_s25"],
+    "transferTargetPacketIds": ["de_l25_c06_s41"],
+    "delayedTargetPacketIds": ["de_l26_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-PASS-001"
-    ]
+    "evidenceIds": ["DE-GRM-PASS-001"]
   },
   {
     "id": "de_gc_werden_infinitive_meanings_v1",
@@ -1546,25 +949,13 @@
       "de_gc_modal_finite_bare_infinitive_v1"
     ],
     "firstIntroductionPacketId": "de_l26_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l26_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l26_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l26_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l26_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l27_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l26_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l26_c03_s17"],
+    "productionTargetPacketIds": ["de_l26_c04_s25"],
+    "transferTargetPacketIds": ["de_l26_c06_s41"],
+    "delayedTargetPacketIds": ["de_l27_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-FUTURE-002"
-    ]
+    "evidenceIds": ["DE-GRM-FUTURE-002"]
   },
   {
     "id": "de_gc_broader_narrative_preterite_v1",
@@ -1580,29 +971,15 @@
       "broader narrative Präteritum staging is a pedagogical inference supported by past-register evidence, not a direct source claim",
       "its placement is a blueprint inference, not a source-assigned CEFR sequence"
     ],
-    "prerequisiteIds": [
-      "de_gc_spoken_preterite_island_v1"
-    ],
+    "prerequisiteIds": ["de_gc_spoken_preterite_island_v1"],
     "firstIntroductionPacketId": "de_l28_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l28_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l28_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l28_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l28_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l29_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l28_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l28_c03_s17"],
+    "productionTargetPacketIds": ["de_l28_c04_s25"],
+    "transferTargetPacketIds": ["de_l28_c06_s41"],
+    "delayedTargetPacketIds": ["de_l29_c07_s49"],
     "evidenceStatus": "PEDAGOGICAL_INFERENCE",
-    "evidenceIds": [
-      "DE-GRM-PAST-001"
-    ]
+    "evidenceIds": ["DE-GRM-PAST-001"]
   },
   {
     "id": "de_gc_limited_functional_genitive_v1",
@@ -1623,26 +1000,13 @@
       "de_gc_two_object_case_contrast_v1"
     ],
     "firstIntroductionPacketId": "de_l29_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l29_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l29_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l29_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l29_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l30_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l29_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l29_c03_s17"],
+    "productionTargetPacketIds": ["de_l29_c04_s25"],
+    "transferTargetPacketIds": ["de_l29_c06_s41"],
+    "delayedTargetPacketIds": ["de_l30_c07_s49"],
     "evidenceStatus": "PEDAGOGICAL_INFERENCE",
-    "evidenceIds": [
-      "DE-GRM-CASE-001",
-      "DE-GRM-NP-001"
-    ]
+    "evidenceIds": ["DE-GRM-CASE-001", "DE-GRM-NP-001"]
   },
   {
     "id": "de_gc_limited_modal_perfekt_v1",
@@ -1661,25 +1025,13 @@
       "de_gc_infinitive_verb_cluster_v1"
     ],
     "firstIntroductionPacketId": "de_l30_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l30_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l30_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l30_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l30_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l31_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l30_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l30_c03_s17"],
+    "productionTargetPacketIds": ["de_l30_c04_s25"],
+    "transferTargetPacketIds": ["de_l30_c06_s41"],
+    "delayedTargetPacketIds": ["de_l31_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
-    "evidenceIds": [
-      "DE-GRM-MODALPERF-001"
-    ]
+    "evidenceIds": ["DE-GRM-MODALPERF-001"]
   },
   {
     "id": "de_gc_register_repair_mediation_v1",
@@ -1697,21 +1049,11 @@
       "de_gc_doch_response_contrast_v1"
     ],
     "firstIntroductionPacketId": "de_l31_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l31_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l31_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l31_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l31_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l32_c07_s49"
-    ],
+    "guidedTargetPacketIds": ["de_l31_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l31_c03_s17"],
+    "productionTargetPacketIds": ["de_l31_c04_s25"],
+    "transferTargetPacketIds": ["de_l31_c06_s41"],
+    "delayedTargetPacketIds": ["de_l32_c07_s49"],
     "evidenceStatus": "DIRECT_SOURCE",
     "evidenceIds": [
       "DE-RSCH-CEFR-002",
@@ -1741,21 +1083,11 @@
       "de_gc_register_repair_mediation_v1"
     ],
     "firstIntroductionPacketId": "de_l32_c01_s01",
-    "guidedTargetPacketIds": [
-      "de_l32_c02_s09"
-    ],
-    "retrievalTargetPacketIds": [
-      "de_l32_c03_s17"
-    ],
-    "productionTargetPacketIds": [
-      "de_l32_c04_s25"
-    ],
-    "transferTargetPacketIds": [
-      "de_l32_c06_s41"
-    ],
-    "delayedTargetPacketIds": [
-      "de_l32_c07_s51"
-    ],
+    "guidedTargetPacketIds": ["de_l32_c02_s09"],
+    "retrievalTargetPacketIds": ["de_l32_c03_s17"],
+    "productionTargetPacketIds": ["de_l32_c04_s25"],
+    "transferTargetPacketIds": ["de_l32_c06_s41"],
+    "delayedTargetPacketIds": ["de_l32_c07_s51"],
     "evidenceStatus": "DIRECT_SOURCE",
     "evidenceIds": [
       "DE-RSCH-CEFR-002",

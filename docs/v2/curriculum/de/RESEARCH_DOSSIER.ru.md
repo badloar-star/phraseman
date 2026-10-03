@@ -87,6 +87,12 @@ Plural; голая форма не считается полноценной к�
 Artikel, adjective и noun образуют согласованную Nominalgruppe, а артикль часто
 несёт видимую флексию (`DE-GRM-NP-001`). Поэтому:
 
+IDS отдельно фиксирует, что adjective в предикативном употреблении не получает
+флексии (`DE-GRM-ADJ-001`). Несклоняемая форма в `Der Koffer ist praktisch.` —
+прямой морфологический факт. Решение сначала закрепить её, а затем вводить
+staged attributive agreement остаётся явным педагогическим inference, а не
+приписывается источнику как готовая последовательность курса.
+
 - сначала learner различает и извлекает article+noun chunks;
 - затем форма артикля несёт знакомую case/number/gender information;
 - attributive adjective morphology вводится после соответствующей article/case
@@ -113,7 +119,7 @@ sessions. Новая форма не прячется внутри lexical/voice
 - Präteritum сначала для высокочастотных `sein`, `haben` и Modalverben в тех
   регистрах, где оно реально нужно, а не как массовая таблица всех глаголов;
 - future reference сначала через Präsens + temporal expression; `werden +
-  Infinitiv` вводится как отдельная meaning/form operation и не объявляется
+Infinitiv` вводится как отдельная meaning/form operation и не объявляется
   обязательным способом говорить о будущем.
 
 Evidence binding: `DE-GRM-MODAL-001`, `002`, `DE-GRM-PERFEKT-001`,

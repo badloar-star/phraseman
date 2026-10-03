@@ -20953,3 +20953,82 @@ and Wechsel-relation anchors at L13 C07 S49/S50, and repeat recenter 28/28 plus
 fresh exact-spec and semantic/adversarial reviews before L14. Task 6, exact
 learner packets, full blueprint fingerprint/owner map, learner-facing RU+UK
 authoring, release and the German session mockup remain HOLD.
+
+### 2026-10-03 — German Learning V2 Task 5 progress: L13 closed
+
+Task 5 is now 13/32 lessons: `de_l01` through `de_l13`, 91/224 chapters and
+728/1792 exact packet identities. L13 was closed only after fresh
+content-addressed guardian/recenter work, one writer and two independent final
+reviews. All earlier and superseded receipts, including guardian receipt
+`1FCC3FF6DB8F1A8E52DE3C36D6128ADE286AF973705B9B7506FA84F966EE9451`
+and the pre-format/stale-hash receipt chain, were not reused after byte
+changes. The final guardian SHA-256 is
+`63E775D050C0A6D566D232B0CD8230B6FE62F42E5D150EFF0247D6CAF6B7AEE1`.
+The active independent linguistic receipt SHA-256 is
+`1A90B91B5653BE3261FB4008938AC87A32651234974F446E76086E091353F1DA`.
+Recenter correctly entered HOLD after formatting changed content identities
+and returned PASS only after fresh linguistic review and final manifest
+rebinding.
+
+The native German owner rule now requires exactly one German phrase and one
+corresponding target per learner-facing interaction. `DE-INTERACTION-001`
+fails closed across PRE_AUTHOR, POST_AUTHOR and RELEASE_PROJECTION: multi-line
+exchanges are split losslessly into separate interactions with their own IDs,
+evaluation, audio and feedback; RU and UK retain identical count/order;
+context gaps expose one natural German fragment; assessed target/audio/voice
+cannot join phrases with separators; and dictation target equals the exact
+reference transcript. No English grammar, examples, scenes, receipts or
+release content may be imported into the German contour.
+
+L13 adds IDS Mannheim grammis evidence `DE-GRM-ADJ-001` for the direct
+morphology fact that predicative German adjectives are uninflected. The
+curriculum sequence remains a bounded pedagogical inference: predicative form
+precedes staged attributive agreement only inside already established
+gender-case-number frames. No full strong/weak/mixed paradigm or unstaged
+forms were admitted. The Task 4 amendment is evidence-only: L13 now cites the
+adjective, nominal-group and case sources without changing its outcome,
+boundary or ordered final subset.
+
+C06 keeps two neutral, separate repairs: `Der Koffer ist praktische. → Der
+Koffer ist praktisch.` and `Ich kaufe den praktisch Koffer. → Ich kaufe den
+praktischen Koffer.` C07 is a true two-room comparison: `Der Gruppenraum A ist
+ruhig. Der Gruppenraum B ist geräumig. Die Gruppe ist groß.` The large-group
+criterion makes room B the justified choice, after which the crate is brought
+`in den geräumigen Gruppenraum B` and is `im geräumigen Gruppenraum B`.
+`Gruppe` and `groß` have exact German lexical ownership and utility evidence.
+
+Fresh final exact-spec review and a separate semantic/adversarial review both
+PASSed on the final bytes with P0/P1/P2 = 0. Deterministic evidence: research
+authority PASS 53 claims; grammar graph PASS 48 constructs / 89 edges / 18
+branches; Task 4 PASS 32 lessons / 224 outcomes / 32 finals / 48 constructs;
+L13 PASS 7 chapters / 56 packet IDs; prefix 13 PASS 91 chapters / 728 packet
+IDs; recenter PASS 30/30; interaction contract PASS 19/19; Prettier PASS
+15/15; scoped ESLint and `git diff --check` PASS. The unscoped/default Task 5
+gate remains in its expected HOLD state at 13/32 lessons and 91/224 chapters.
+
+Final hashes: German requirement manifest
+`435F0609E6FBFE82A80BBAE865108A5E82AEB0893411C78391FCF31E6B2E1700`;
+linguistic receipt
+`1A90B91B5653BE3261FB4008938AC87A32651234974F446E76086E091353F1DA`;
+chapter blueprint
+`CD68BD95319B8B50EFBBCC29E020694223BB7ADA601A17C248B95446BAB49803`;
+chapter gate
+`CE7EF0C45190E3F9C45C0696D728A93609AF8EC0837BBC43064AED0F8B08EBB8`;
+Task 4 lesson blueprint
+`06CBF2585CC1C7E104038109A04C60B4EFD484D5EB5C83FEBC7A9EBA44BFA275`;
+Task 4 lesson gate
+`2A028E5ECF3221EFE5E937D9015B6610F7866AC20E6CF33B9CFA85BC14CF8E83`;
+owner decisions
+`EFF5412A13531052AA56C1E40F4058F35DA405297B418CA8FCBB7B44BC19F615`;
+research authority
+`0CF28BE0B30FE66735CBDD609DE10BCDA88193290C129006E7A6E393749873FB`.
+No German learner, session, release or mockup file was edited by the L13
+slice; no deploy or publish occurred.
+
+Task 6/7, exact learner packets, RU+UK learner-facing authoring, audio, release
+and the German mockup remain HOLD. Next exact task: obtain a fresh
+content-addressed guardian for `de_l14`, reread the current Codex/factory
+instructions and materialize one lesson only: its seven chapters and exact
+`de_l14_c01_s01..de_l14_c07_s56` identities. Do not start L15 or any
+learner-facing work before fresh exact-spec and semantic/adversarial reviews
+close L14.

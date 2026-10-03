@@ -1,10 +1,7 @@
 {
   "schemaVersion": "learning-v2-de-requirements.v1",
   "targetLanguage": "de",
-  "interfaceLocales": [
-    "ru",
-    "uk"
-  ],
+  "interfaceLocales": ["ru", "uk"],
   "sourceDocuments": [
     {
       "sourcePath": "DesktopCodex/00_ПРОЧТИ_ПЕРВЫМ.txt",
@@ -40,27 +37,27 @@
     },
     {
       "sourcePath": "repo/docs/v2/curriculum/de/RESEARCH_DOSSIER.ru.md",
-      "sha256": "08e9c1060c25d9a8150ab8b61a89fd59aadcd1cd56a72c1d0735ecde358199fe"
+      "sha256": "55c8cc16bdedcb1e8e3b61bfbd9fb82d61c74a21119f4adc3caa7efd99c76318"
     },
     {
       "sourcePath": "repo/docs/v2/curriculum/de/SOURCE_EVIDENCE_LEDGER.md",
-      "sha256": "9994d6fca90c1071b686b952b00535173a4994da55639b56b1090fea51caaf23"
+      "sha256": "38a878346f1bb410cba6f11311563669b29e91ad63e5eda6f548f21c4c6ce10a"
     },
     {
       "sourcePath": "repo/docs/v2/curriculum/de/OWNER_DECISIONS.md",
-      "sha256": "a3c07e539a6048e3e760b3bd2d5b29afd693896df8ec35cc0f2a36f68d198006"
+      "sha256": "eff5412a13531052aa56c1e40f4058f35da405297b418ca8fcbb7b44bc19f615"
     },
     {
       "sourcePath": "repo/modules/learning-v2/curriculum/de/research_authority_de_v1.ts",
-      "sha256": "d69598cb94f7d6bda49105de8becf917fb327d731cbb0d179199380ff417a483"
+      "sha256": "0cf28be0b30fe66735cbdd609de10bcda88193290c129006e7a6e393749873fb"
     },
     {
       "sourcePath": "repo/modules/learning-v2/curriculum/de/research_evidence_bindings_de_v1.ts",
       "sha256": "8366f2440f2ae338c7f4f4b55a7686e28a5b19e2cf9fd59f88600329cfc587f7"
     },
     {
-      "sourcePath": "repo/docs/v2/curriculum/de/LINGUISTIC_REVIEW_RECEIPT_2026-09-19.md",
-      "sha256": "54fd783fc6f73fd29556462a3ff80c0a9496eadc56b5bf1bcd855353a715cd9c"
+      "sourcePath": "repo/docs/v2/curriculum/de/LINGUISTIC_REVIEW_RECEIPT_2026-10-03.md",
+      "sha256": "1a90b91b5653be3261fb4008938ac87a32651234974f446e76086e091353f1da"
     },
     {
       "sourcePath": "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md",
@@ -92,7 +89,7 @@
     },
     {
       "sourcePath": "factory/КОНСТИТУЦИЯ.md",
-      "sha256": "701349d4ceab2703df8744fa19345be8955f86ba0992bd08b73f3dbc6658ed41"
+      "sha256": "da702a4fd1f551b96222163913f82f0ff509a0251c3900ba38b17dd8c5b43c70"
     },
     {
       "sourcePath": "factory/МЕТОД_РАБОТЫ.md",
@@ -152,7 +149,7 @@
     },
     {
       "sourcePath": "factory/pipeline/prompts/author.md",
-      "sha256": "8998a60c9aa5002a6a457a506b471fe989bf7c3ed9f85b70939238ceeea45be5"
+      "sha256": "ade7e4f0ac1754bb23e5a2e2e30a3c62bd23c8f0867e344744e31d69430c28c8"
     },
     {
       "sourcePath": "factory/pipeline/prompts/editor.md",
@@ -164,55 +161,55 @@
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_learner.md",
-      "sha256": "bee631985208f37560c2b3d94658f5371377b2c1ae16cfce0a82c27a4afc3fbc"
+      "sha256": "2b7dcf047f9dc41173b450ff074877fcff874aaa497efdf15ad867f81accf5a6"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_nonsense.md",
-      "sha256": "0be04f0780daa6bad6d4e6ac183c1f3f3ef42fe28c8dbac19d59bcf7ac6268b0"
+      "sha256": "5f9f7c467a4db4fbf68b758955054e92f49218b9cdd8ed852ebaddbfcbb0ff2d"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_pedagogy.md",
-      "sha256": "b079d90b9ec1a586b194793ebc023825309e0702b03c4f970016515f86c9a88d"
+      "sha256": "4c224c5fc3941c34d03a34d79d97047042371e3e04dbf17b7ed698d5581339cf"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_progression.md",
-      "sha256": "198d2ddaa1b44f4674795cec4ce941e2e915475599e3adcf8a479ce7257959b3"
+      "sha256": "5d32fe1975a0961fe91f21b45fed0af26171dc371e87f9ffabdfedc71f72f610"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_reader.md",
-      "sha256": "124e634d12b2ec19c03c5883cb22396ad3f25b8af3fdc8bbaab70d9de60a5617"
+      "sha256": "dced5acf848ffccf6ddb66c73e7ad58efc7759ea3f8173ca807e1956529d294c"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_taste.md",
-      "sha256": "d055f1c53cc4809b41fe385bcb27b55d25a0b1e3cef18701af2f6b3da80a6dcf"
+      "sha256": "66742ff8c52a31c4bf685d84cc43517bd4bf3446b03973912938b0065023cf73"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_locale.md",
-      "sha256": "2a300d1375f07b135e7d2820922ba5e5c759cd3ab512b3be7be70774bf821b69"
+      "sha256": "6687c15a0c1988c4cd4993eb938d26aa8b7d8cd9d3b6847250fccd762596b266"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_locale_batch.md",
-      "sha256": "c25dd7937bf16c0ca4fb0bef99c11b1dd5e28a6356925243628f9391cfe02fe7"
+      "sha256": "3cb97b2486041031ac78ccb7b72e71bde3a61c6de059287994a9aa4e173b63a7"
     },
     {
       "sourcePath": "factory/pipeline/prompts/localize.md",
-      "sha256": "91262d9feed21d65155d91379dc044e75f43932bf3ca2d188623e0b925f76f6d"
+      "sha256": "30adefc3e786fa951a4a19317636eeecf0397cc3e1ccff7bba72365022e55450"
     },
     {
       "sourcePath": "factory/pipeline/prompts/localize_batch.md",
-      "sha256": "48a1e5b6a57be5837280e00b194cfaa02b9b92e8b08a5fb5c192b2f093389cac"
+      "sha256": "705b9eca1703b4fd6b586bd84f7879c0fa278c67729d18138471204277254fd4"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_recenter_pre.md",
-      "sha256": "6a9cad7247cb2f0cd33fdee4d18b04862258c24379bd5cf111fca501cfb863bc"
+      "sha256": "f94b95a44dfca3c1435af5dd58bf3654bdd51cb2dd1c13024d993e8a03d3d9f2"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_recenter_post.md",
-      "sha256": "73e9a775738a610666c116ef751dc7fcbace75cbc4c2550b68e784ca1d6be5aa"
+      "sha256": "f7a0bebc78cf43bebff224d9bf0ee5229d621290604ffb485051627c062d4a6e"
     },
     {
       "sourcePath": "factory/pipeline/prompts/judge_recenter_release.md",
-      "sha256": "cdb394b6a9c1b55d8d7bbabbde0facb0c4a9f40dff4f9f3bb2320f669cfe9206"
+      "sha256": "86182810fb7818c8e8401a5bef732abd2807c5534020fc9d73f7be0942b3b4d3"
     }
   ],
   "requirements": [
@@ -297,6 +294,16 @@
       "family": "work_method"
     },
     {
+      "id": "DE-INTERACTION-001",
+      "sourcePath": "repo/docs/v2/curriculum/de/OWNER_DECISIONS.md",
+      "sourceSection": "## Применимое общее решение владельца 2026-10-03 — одна немецкая фраза на одно взаимодействие",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR", "RELEASE_PROJECTION"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Каждая немецкая learner-facing interaction проверяет ровно одну фразу целевого языка и один соответствующий target; context_gap_grammar имеет ровно один видимый ___ с одним естественным немецким fragment, assessed target/audio/voice не содержит ;, ； или |, correctText непуст и конкретен, а dictation target точно равен referenceAudio.transcript. Последовательность нескольких реплик сохраняется без потерь как отдельные interaction с собственными ID, evaluator/ответом, аудио и feedback; RU и UK сохраняют одинаковые число и порядок.",
+      "family": "interaction_granularity"
+    },
+    {
       "id": "DE-RESEARCH-004",
       "sourcePath": "repo/modules/learning-v2/curriculum/de/research_authority_de_v1.ts",
       "sourceSection": "export const GERMAN_RESEARCH_AUTHORITY_V1",
@@ -308,7 +315,7 @@
     },
     {
       "id": "DE-RESEARCH-005",
-      "sourcePath": "repo/docs/v2/curriculum/de/LINGUISTIC_REVIEW_RECEIPT_2026-09-19.md",
+      "sourcePath": "repo/docs/v2/curriculum/de/LINGUISTIC_REVIEW_RECEIPT_2026-10-03.md",
       "sourceSection": "**Verdict:** `PASS`",
       "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
       "applicability": "always",

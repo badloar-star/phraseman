@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
@@ -2641,6 +2642,314 @@ function validateL12SemanticContract(raw: R, plan: Boundary): void {
   }
 }
 
+const L13_ALLOWED = [
+  "de_gc_predicative_adjective_v1",
+  "de_gc_staged_nominal_group_agreement_v1",
+  "de_gc_noun_article_singular_plural_v1",
+  "de_gc_frequent_accusative_frames_v1",
+  "de_gc_dative_recipient_frames_v1",
+  "de_gc_finite_sein_present_v1",
+  "de_gc_two_object_case_contrast_v1",
+  "de_gc_wechselpreposition_relation_contrast_v1",
+] as const;
+const L13_FINAL_REQUIRED = [
+  L13_ALLOWED[0],
+  L13_ALLOWED[1],
+  L13_ALLOWED[6],
+  L13_ALLOWED[7],
+] as const;
+const L13_PROHIBITED = [
+  "de_gc_nicht_position_focus_v1",
+  "de_gc_doch_response_contrast_v1",
+] as const;
+const L13_NO_EXPANSION =
+  "The lesson permits only uninflected predicative adjectives and definite-article attributive adjective agreement inside already established nominative, accusative, dative-recipient, and bounded in-relation frames. Each form must be justified by its known frame and visible article-adjective-noun cues. No full strong-weak-mixed paradigm, bare or indefinite-article paradigm expansion, genitive or other unestablished case-number-gender forms, comparative or superlative morphology, nicht-focus, doch, future grammar, or adjective form outside the closed chapter models is allowed.";
+const L13_C06_REPAIR_ITEMS = [
+  "Der Koffer ist praktische. → Der Koffer ist praktisch.",
+  "Ich kaufe den praktisch Koffer. → Ich kaufe den praktischen Koffer.",
+] as const;
+const L13_C06_REPAIR_RENDERING = L13_C06_REPAIR_ITEMS.map(
+  (item, index) => `[${index + 1}] ${item}`,
+).join(" ");
+const L13_C07_MODEL =
+  "Der Gruppenraum A ist ruhig. Der Gruppenraum B ist geräumig. Die Gruppe ist groß. Der geräumige Gruppenraum B ist geeignet. Ich gebe dem Helfer die Kiste. Ich bringe die Kiste in den geräumigen Gruppenraum B. Die Kiste ist im geräumigen Gruppenraum B.";
+const L13_C07_PRIMARY_SITUATION = {
+  setting: "community-center-two-room-reassignment",
+  participants: "course-coordinator-and-setup-helper",
+  goal: "compare-gruppenraum-a-and-b-after-the-coordinator-states-a-large-group-and-justify-room-b",
+  contextSignature: "gruppenraum-two-option-choice-final-transfer",
+} as const;
+const L13_C07_NEW_SITUATION = {
+  setting: "adult-education-two-room-reassignment",
+  participants: "adult-education-group-and-course-coordinator",
+  goal: "independently-compare-gruppenraum-a-and-b-against-the-large-group-criterion-and-justify-room-b",
+  contextSignature: "adult-education-two-gruppenraum-choice-final",
+} as const;
+const L13_HASHES = [
+  [
+    "5290cc68dbecf2efdb68caa9311d33e4b94845942d4e4a7bc59ce0dfcf32cfe7",
+    "9da4c9ceed4731b150d3373892a78f0eb8590a435b82e926c1b92aea87c4bbda",
+    "7575237dc22b08b9d20aeffbc16b8931df8f3367c09bb56594b50318484c5186",
+    "296f13cf59192d3f1eec4dff4f5e62421a74e960448d5d3c2b5d63f7152aa3ac",
+    "c00882c576f29ef36178083213d14eefd1359fa4d3bef68d42fc6a37463ec69d",
+    "b7281308d6670ec49564b4e1d1ff3548a8c590565617888e9d7be1c360a29bbe",
+  ],
+  [
+    "a681172554eae3ea2f3c89e92c9bb4376ea893d9ad071ad8a3a2e2883c989cba",
+    "f2b2d7077b7426120e160fd387a26f40e0784144a3364064643227f09c7776cc",
+    "8b48728a84f533a11220ab6adbdf38e8c84261ce1944c7beb233c9445f77ec18",
+    "a22a2daad267f59ba937a961f2c6f24f58ad0ac599fac10d854ef92a42546a07",
+    "e050c6bea05d998856c584d790d4f86fe13debc823ace080b485abeda0d6643a",
+    "d682f1623871d57af301239dddc3476d9c8e88953932f288de85ce660358b20c",
+  ],
+  [
+    "ac527898f36576072c1f410000511057a9862abc55c3034589aeb172eb959392",
+    "da7d8890b9d35f55b1f9172d76bc6a9cd2efce1970d8b8a994f70868fb2833e6",
+    "b0412d3c12db89181a17b0ed0fb1c3bd623a0579f34bb58df3b357d281e4fc65",
+    "6c1739cdfb727651cee4f776d832c673204441d0bf2d87f0330800a61e4b097d",
+    "e2e52b48114b93106987d76e68aea9ec09eb53e7ae1825927a2869e7d2e7f0e5",
+    "eb16e76d823d4cead1a74b437f4e1359cb77c67059ff99b7011fb36becd98b3c",
+  ],
+  [
+    "c0bd1b0b89c2d088f56c230b170548942025c8f8a5d7c9d2e02766639d3c65aa",
+    "b11d43ed85512828aa76c5d17c51b8d43464974ff0303123ad88fc9cf5dd156f",
+    "4ee8a5d93e0817fd5a0dd61781e7600c226beb5d987e3a1f5f4cf33024436209",
+    "fe68286a74205b10a305f9b1a0d2887a46337a46d5256f191639acee5e3ca05d",
+    "6c997c9e606455b5dde353739ed92965f7d26050111964d3c66770ec9a47280b",
+    "947e7dea9f5e19b590dc5d74b6cc2e37661d69309c69513a92395ce5b8d88fd0",
+  ],
+  [
+    "8c6a80a624a69e3dc40a79c0af3a950dae62d20e95568b716353aa41eec02963",
+    "32e58cc3bb7c776a7917ee0b5b5a6329806fd0b144a6da8dd553af3650d1cba6",
+    "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "894122b399c69cefdd3b04455e34c34cc5a92fd05b5dce5c6a52c54bf65010e9",
+    "7b0a282a48549ccb22b635fad57ae62e035060ec8557ca9032f5d086213ec704",
+    "c015f932010659a1013a16802eae9607812f6c7c94a80cfe46acdbf675b287d1",
+  ],
+  [
+    "e158149ed1b0b54bf34457d85d791b7fb3b4efb8e65897389ad6c86a1fa40e64",
+    "acf1fd7db4ebf2148cd4297a1614083565dbf1b9856a11c4be12a8daf0b23a11",
+    "d634eddccac1b58258d3b553442a33817f61650cf9a77d5b97a12a58fc8cb983",
+    "c49ee9a8c4cde8b55e373727444e714bcfe91d71f98db78ba246a4aa4541c08c",
+    "d82b4081e6697b217a21fe08938b39882c14c92a0ef1876c51179b1c871fd758",
+    "9404af57e4f4fdf1ba383ee22e3f251d5edccfd34e7b814f3d2190d7d20ad598",
+  ],
+  [
+    "91245adddc65d45ad83030c28fa2298bdda9f3d358a6870657f704db7324580d",
+    "262cb8a927e0a2d104e427feadaf4aa7c816a269d35e0e42b4619c1469fca0e4",
+    "ded7c70208815bf0f65b7d3ca427a0bf2205b21d37e6125a504431343e75054a",
+    "5e567335aa7e9bd2a7698d2f9b12baa9c16535e6648991b91be08872f5ec20dd",
+    "f87c78e2c11681ebba03618af240ad8454b90340c49c13d97b455899b7afc887",
+    "e51b53b713afb438f8c9939e89d74eb0bfdf4e121fff1e378085900bb77332e9",
+  ],
+] as const;
+const L13_MODELS = [
+  "Das Zimmer ist ruhig. Das ruhige Zimmer ist frei.",
+  "Der Koffer ist leicht. Der leichte Koffer ist dort.",
+  "Die Wohnung ist hell. Die helle Wohnung ist frei.",
+  "Der Koffer ist stabil. Ich kaufe den stabilen Koffer.",
+  "Der Helfer ist erfahren. Ich gebe dem erfahrenen Helfer die Mappe.",
+  L13_C06_REPAIR_RENDERING,
+  L13_C07_MODEL,
+] as const;
+function l13Hash(value: unknown): string {
+  return createHash("sha256").update(JSON.stringify(value)).digest("hex");
+}
+function validateL13SemanticContract(raw: R, plan: Boundary): void {
+  const l13 = (raw.lessons as R[]).find(
+    (lesson) => lesson.lessonId === "de_l13",
+  );
+  if (!l13) throw new Error("l13_semantic_contract_invalid:missing");
+  const chapters = l13.chapters as R[],
+    boundary = l13.grammarBoundary as R;
+  if (boundary.noExpansion !== L13_NO_EXPANSION)
+    throw new Error("l13_semantic_contract_invalid:no_expansion");
+  if (
+    JSON.stringify(plan.introducedConstructIds) !==
+      JSON.stringify(L13_ALLOWED.slice(0, 2)) ||
+    JSON.stringify(plan.extendedConstructIds) !==
+      JSON.stringify(L13_ALLOWED.slice(2, 5)) ||
+    JSON.stringify(plan.reviewedConstructIds) !==
+      JSON.stringify(L13_ALLOWED.slice(5)) ||
+    JSON.stringify(plan.prohibitedConstructIds) !==
+      JSON.stringify(L13_PROHIBITED) ||
+    JSON.stringify(boundary.allowedConstructIds) !==
+      JSON.stringify(L13_ALLOWED) ||
+    JSON.stringify(boundary.prohibitedConstructIds) !==
+      JSON.stringify(L13_PROHIBITED) ||
+    JSON.stringify((plan.session56Final as R).requiredConstructIds) !==
+      JSON.stringify(L13_FINAL_REQUIRED) ||
+    chapters.length !== 7
+  )
+    throw new Error("l13_semantic_contract_invalid:sets");
+  const c06 = chapters[5],
+    c07 = chapters[6],
+    c06Support = c06.supportFading as R,
+    c07Support = c07.supportFading as R,
+    c07Checkpoint = c07.checkpoint as R,
+    c07Senses = c07Checkpoint.plannedNewLexicalSenses as R[];
+  if (
+    c06Support.entry !== L13_C06_REPAIR_RENDERING ||
+    c06Support.exit !== L13_C06_REPAIR_RENDERING ||
+    /(?:;|；|\|)|\band\b/iu.test(
+      `${String(c06Support.entry)} ${String(c06Support.exit)}`,
+    )
+  ) {
+    throw new Error("l13_semantic_contract_invalid:c06_repair_items");
+  }
+  const c07SenseById = new Map(
+    c07Senses.map((sense) => [String(sense.id), sense]),
+  );
+  const gruppenraum = c07SenseById.get("de_lex_plan_l13_c07_gruppenraum_v1"),
+    geraumig = c07SenseById.get("de_lex_plan_l13_c07_geraumig_v1"),
+    gruppe = c07SenseById.get("de_lex_plan_l13_c07_gruppe_v1"),
+    gross = c07SenseById.get("de_lex_plan_l13_c07_gross_v1");
+  const c07OwnerProjection = (sense: R | undefined): unknown =>
+    sense && {
+      id: sense.id,
+      semanticIdentity: sense.semanticIdentity,
+      lemmaOrExpression: sense.lemmaOrExpression,
+      partOfSpeech: sense.partOfSpeech,
+      lexicalKind: sense.lexicalKind,
+      nounPackage: sense.nounPackage,
+      nounPackageIdentity: sense.nounPackageIdentity,
+      verbPackage: sense.verbPackage,
+      utilityRole: (sense.utilityProof as R).utilityRole,
+      situationFacet: (sense.utilityProof as R).situationFacet,
+      facetValue: (sense.utilityProof as R).facetValue,
+      necessityClass: (sense.utilityProof as R).necessityClass,
+      plannedUsePacketIds: (sense.utilityProof as R).plannedUsePacketIds,
+      communicativeUse: sense.communicativeUse,
+    };
+  if (
+    JSON.stringify(c07.situation) !==
+      JSON.stringify(L13_C07_PRIMARY_SITUATION) ||
+    JSON.stringify(c07Checkpoint.newSituation) !==
+      JSON.stringify(L13_C07_NEW_SITUATION) ||
+    c07Support.entry !== L13_C07_MODEL ||
+    c07Support.exit !== L13_C07_MODEL ||
+    c07Senses.length !== 4 ||
+    (gruppenraum?.utilityProof as R | undefined)?.facetValue !==
+      L13_C07_NEW_SITUATION.setting ||
+    (geraumig?.utilityProof as R | undefined)?.facetValue !==
+      L13_C07_NEW_SITUATION.goal ||
+    JSON.stringify(c07OwnerProjection(gruppe)) !==
+      JSON.stringify({
+        id: "de_lex_plan_l13_c07_gruppe_v1",
+        semanticIdentity:
+          "gruppe|people participating together in the stated course",
+        lemmaOrExpression: "Gruppe",
+        partOfSpeech: "noun",
+        lexicalKind: "NOUN_LEXEME",
+        nounPackage: { article: "die", singular: "Gruppe", plural: "Gruppen" },
+        nounPackageIdentity: "die|gruppe|gruppen",
+        verbPackage: null,
+        utilityRole: "participant_reference",
+        situationFacet: "participants",
+        facetValue: L13_C07_NEW_SITUATION.participants,
+        necessityClass: "PARTICIPANT_UNIDENTIFIABLE",
+        plannedUsePacketIds: ["de_l13_c07_s56"],
+        communicativeUse:
+          "state Die Gruppe ist groß. as the coordinator's bounded selection criterion",
+      }) ||
+    JSON.stringify(c07OwnerProjection(gross)) !==
+      JSON.stringify({
+        id: "de_lex_plan_l13_c07_gross_v1",
+        semanticIdentity: "groß|large in participant count",
+        lemmaOrExpression: "groß",
+        partOfSpeech: "adjective",
+        lexicalKind: "ADJECTIVE_LEXEME",
+        nounPackage: null,
+        nounPackageIdentity: undefined,
+        verbPackage: null,
+        utilityRole: "quality",
+        situationFacet: "goal",
+        facetValue: L13_C07_NEW_SITUATION.goal,
+        necessityClass: "OUTCOME_UNACHIEVABLE",
+        plannedUsePacketIds: ["de_l13_c07_s56"],
+        communicativeUse:
+          "use Die Gruppe ist groß. with uninflected groß to state the criterion that makes geräumig relevant",
+      })
+  ) {
+    throw new Error("l13_semantic_contract_invalid:c07_final_transfer");
+  }
+  const probes = [51, 52, 53, 54, 55, 56, 55].map(
+    (session) => `de_l14_c07_s${session}`,
+  );
+  const incoming = [51, 52, 53, 54, 55, 56, 55].map(
+    (session) => `de_l13_c07_s${session}`,
+  );
+  const l12 = (raw.lessons as R[]).find(
+    (lesson) => lesson.lessonId === "de_l12",
+  ) as R;
+  if (
+    JSON.stringify(
+      (l12.chapters as R[]).map(
+        (chapter) =>
+          ((chapter.recallSchedule as R).futureDelayedProbe as R).packetId,
+      ),
+    ) !== JSON.stringify(incoming)
+  )
+    throw new Error("l12_l13_inverse_provenance_invalid");
+  if (
+    JSON.stringify(
+      chapters.map(
+        (chapter) =>
+          ((chapter.recallSchedule as R).futureDelayedProbe as R).packetId,
+      ),
+    ) !== JSON.stringify(probes)
+  )
+    throw new Error("l13_l14_inverse_provenance_invalid");
+  for (let i = 0; i < 7; i += 1) {
+    const chapter = chapters[i],
+      checkpoint = chapter.checkpoint as R,
+      hashes = L13_HASHES[i],
+      allowed = i === 6 ? L13_FINAL_REQUIRED : L13_ALLOWED;
+    if (
+      JSON.stringify(chapter.allowedConstructIds) !== JSON.stringify(allowed) ||
+      JSON.stringify(checkpoint.integratedConstructIds) !==
+        JSON.stringify(allowed) ||
+      JSON.stringify(chapter.prohibitedConstructIds) !==
+        JSON.stringify(L13_PROHIBITED)
+    )
+      throw new Error("l13_semantic_contract_invalid:sets");
+    if (l13Hash(chapter.lifecycleAnchors) !== hashes[2])
+      throw new Error("l13_semantic_contract_invalid:anchors");
+    if (l13Hash([chapter.situation, checkpoint.newSituation]) !== hashes[1])
+      throw new Error("l13_semantic_contract_invalid:situations");
+    if (l13Hash(chapter.chapterEvidencePacketIds) !== hashes[3])
+      throw new Error("l13_semantic_contract_invalid:evidence");
+    if (
+      l13Hash([
+        (chapter.recallSchedule as R).retrievesFromChapterIds,
+        (chapter.recallSchedule as R).targetsFutureChapterIds,
+      ]) !== hashes[5]
+    )
+      throw new Error(
+        `l13_recall_contract_invalid:de_l13_c${String(i + 1).padStart(2, "0")}`,
+      );
+    const surface = l11ChapterSurfaceText(chapter);
+    if (!surface.includes(L13_MODELS[i]))
+      throw new Error("l13_semantic_contract_invalid:models");
+    const boundedSurface = surface
+      .replaceAll(L13_MODELS[i], "")
+      .replace("without an ending table", "");
+    if (
+      /\b(?:ein|eine|einen|einem|einer)\s+\p{L}+|\b(?:bare adjective|Genitiv|plural adjective|strong-weak-mixed|comparative|superlative|nicht-focus|doch|future grammar|ending table)\b/iu.test(
+        boundedSurface,
+      ) ||
+      /ist (?:ruhige|leichte|helle|stabile|erfahrene|praktische|geräumige)\b|\b(?:das ruhig Zimmer|der leicht Koffer|die hell Wohnung|den (?:stabil|stabile) Koffer|dem (?:erfahren|erfahrene) Helfer|den (?:praktisch|praktische) Koffer|der geräumig Gruppenraum|in den geräumig Gruppenraum|im geräumig Gruppenraum)\b/iu.test(
+        boundedSurface,
+      )
+    )
+      throw new Error("l13_semantic_contract_invalid:bounded_agreement");
+    if (l13Hash(chapter.supportFading) !== hashes[0])
+      throw new Error("l13_semantic_contract_invalid:support_fading");
+    if (l13Hash(checkpoint.plannedNewLexicalSenses) !== hashes[4])
+      throw new Error("l13_semantic_contract_invalid:lexical_packages");
+  }
+}
+
 function validate(raw: unknown): {
   lessons: number;
   chapters: number;
@@ -2698,6 +3007,12 @@ function validate(raw: unknown): {
     (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l12")
   )
     validateL12SemanticContract(raw, l12Plan);
+  const l13Plan = source.get("de_l13");
+  if (
+    l13Plan &&
+    (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l13")
+  )
+    validateL13SemanticContract(raw, l13Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -3255,6 +3570,38 @@ function expectL12PlanExact(mut: (plan: R) => void, message: string): void {
   let thrown: unknown;
   try {
     validateL12SemanticContract(raw, plan as Boundary);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+function expectL13Exact(mut: (raw: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: Boundary[] };
+  const plan = lessonRegistry.lessons.find(
+    (lesson) => lesson.id === "de_l13",
+  ) as Boundary;
+  mut(raw);
+  let thrown: unknown;
+  try {
+    validateL13SemanticContract(raw, plan);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+function expectL13PlanExact(mut: (plan: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: R[] };
+  const plan = clone(
+    lessonRegistry.lessons.find((lesson) => lesson.id === "de_l13") as R,
+  );
+  mut(plan);
+  let thrown: unknown;
+  try {
+    validateL13SemanticContract(raw, plan as Boundary);
   } catch (error) {
     thrown = error;
   }
@@ -4446,6 +4793,173 @@ function fixtures(): void {
       "de_gc_predicative_adjective_v1",
     );
   }, "l12_semantic_contract_invalid:chapter_contract");
+
+  expectL13Exact((raw) => {
+    raw.lessons = (raw.lessons as R[]).filter(
+      (lesson) => lesson.lessonId !== "de_l13",
+    );
+  }, "l13_semantic_contract_invalid:missing");
+  expectL13Exact((raw) => {
+    const l13 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l13",
+    ) as R;
+    (l13.grammarBoundary as R).noExpansion =
+      "Teach the full adjective paradigm and infer endings from shortcuts.";
+  }, "l13_semantic_contract_invalid:no_expansion");
+  expectL13Exact((raw) => {
+    const l13 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l13",
+    ) as R;
+    ((l13.grammarBoundary as R).allowedConstructIds as string[]).reverse();
+  }, "l13_semantic_contract_invalid:sets");
+  expectL13PlanExact((plan) => {
+    (plan.introducedConstructIds as string[]).reverse();
+  }, "l13_semantic_contract_invalid:sets");
+  expectL13PlanExact((plan) => {
+    (plan.extendedConstructIds as string[]).reverse();
+  }, "l13_semantic_contract_invalid:sets");
+  expectL13PlanExact((plan) => {
+    (plan.reviewedConstructIds as string[]).reverse();
+  }, "l13_semantic_contract_invalid:sets");
+  expectL13PlanExact((plan) => {
+    (plan.prohibitedConstructIds as string[]).reverse();
+  }, "l13_semantic_contract_invalid:sets");
+  expectL13PlanExact((plan) => {
+    ((plan.session56Final as R).requiredConstructIds as string[]).reverse();
+  }, "l13_semantic_contract_invalid:sets");
+  expectL13Exact((raw) => {
+    const l13 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l13",
+    ) as R;
+    const c7 = (l13.chapters as R[])[6];
+    (c7.allowedConstructIds as string[]).reverse();
+    ((c7.checkpoint as R).integratedConstructIds as string[]).reverse();
+  }, "l13_semantic_contract_invalid:sets");
+  expectL13Exact((raw) => {
+    const l13 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l13",
+    ) as R;
+    const c1 = (l13.chapters as R[])[0];
+    ((c1.lifecycleAnchors as R[])[0] as R).packetId = "de_l13_c01_s03";
+  }, "l13_semantic_contract_invalid:anchors");
+  expectL13Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c1 = (l12.chapters as R[])[0];
+    ((c1.recallSchedule as R).futureDelayedProbe as R).packetId =
+      "de_l13_c07_s56";
+  }, "l12_l13_inverse_provenance_invalid");
+  expectL13Exact((raw) => {
+    const l13 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l13",
+    ) as R;
+    const c7 = (l13.chapters as R[])[6];
+    ((c7.recallSchedule as R).futureDelayedProbe as R).packetId =
+      "de_l14_c07_s56";
+  }, "l13_l14_inverse_provenance_invalid");
+  expectL13Exact((raw) => {
+    const l13 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l13",
+    ) as R;
+    const c3 = (l13.chapters as R[])[2];
+    (c3.recallSchedule as R).retrievesFromChapterIds = ["de_l13_c02"];
+  }, "l13_recall_contract_invalid:de_l13_c03");
+  expectL13Exact((raw) => {
+    const l13 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l13",
+    ) as R;
+    const c1 = (l13.chapters as R[])[0];
+    (c1.supportFading as R).entryLevel = 4;
+  }, "l13_semantic_contract_invalid:support_fading");
+  expectL13Exact((raw) => {
+    const l13 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l13",
+    ) as R;
+    const c2 = (l13.chapters as R[])[1];
+    (c2.situation as R).setting = "generic-shop";
+  }, "l13_semantic_contract_invalid:situations");
+  expectL13Exact((raw) => {
+    const l13 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l13",
+    ) as R;
+    const c1 = (l13.chapters as R[])[0];
+    c1.chapterEvidencePacketIds = ["de_l13_c01_s05"];
+  }, "l13_semantic_contract_invalid:evidence");
+  expectL13Exact((raw) => {
+    const l13 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l13",
+    ) as R;
+    const c1 = (l13.chapters as R[])[0];
+    const sense = ((c1.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    ((sense.utilityProof as R).plannedUsePacketIds as string[]).unshift(
+      "de_l13_c01_s07",
+    );
+  }, "l13_semantic_contract_invalid:lexical_packages");
+  expectL13Exact((raw) => {
+    const l13 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l13",
+    ) as R;
+    const c3 = (l13.chapters as R[])[2];
+    const sense = ((c3.checkpoint as R).plannedNewLexicalSenses as R[])[1];
+    sense.semanticIdentity = "hell|generic positive quality";
+  }, "l13_semantic_contract_invalid:lexical_packages");
+  expectL13Exact((raw) => {
+    const l13 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l13",
+    ) as R;
+    const c4 = (l13.chapters as R[])[3];
+    const senses = (c4.checkpoint as R).plannedNewLexicalSenses as R[];
+    senses.push(clone(senses[0]));
+  }, "l13_semantic_contract_invalid:lexical_packages");
+  expectL13Exact((raw) => {
+    const l13 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l13",
+    ) as R;
+    const c6 = (l13.chapters as R[])[5];
+    (c6.supportFading as R).entry =
+      `${L13_C06_REPAIR_ITEMS[0]} and ${L13_C06_REPAIR_ITEMS[1]}`;
+  }, "l13_semantic_contract_invalid:c06_repair_items");
+  expectL13Exact((raw) => {
+    const l13 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l13",
+    ) as R;
+    const c7 = (l13.chapters as R[])[6];
+    const senses = (c7.checkpoint as R).plannedNewLexicalSenses as R[];
+    const gruppe = senses.find(
+      (sense) => sense.id === "de_lex_plan_l13_c07_gruppe_v1",
+    )!;
+    (gruppe.utilityProof as R).facetValue = "generic-participants";
+  }, "l13_semantic_contract_invalid:c07_final_transfer");
+
+  const appendL13BoundedMutation = (raw: R, textToAppend: string): void => {
+    const l13 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l13",
+    ) as R;
+    const c1 = (l13.chapters as R[])[0];
+    const sense = ((c1.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    sense.communicativeUse = `${String(sense.communicativeUse)} ${textToAppend}`;
+  };
+  for (const mutation of [
+    "Das Zimmer ist ruhige.",
+    "das ruhig Zimmer",
+    "den stabile Koffer",
+    "dem erfahrene Helfer",
+    "bare adjective paradigm",
+    "ein ruhiges Zimmer",
+    "Genitiv adjective forms",
+    "plural adjective forms",
+    "comparative and superlative forms",
+    "strong-weak-mixed ending table",
+    "nicht-focus",
+    "doch",
+    "future grammar",
+  ]) {
+    expectL13Exact(
+      (raw) => appendL13BoundedMutation(raw, mutation),
+      "l13_semantic_contract_invalid:bounded_agreement",
+    );
+  }
 
   const l2Boundary: Boundary = {
     id: "de_l02",

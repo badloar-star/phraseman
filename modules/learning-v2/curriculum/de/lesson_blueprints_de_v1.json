@@ -1514,7 +1514,7 @@
         "changedContextRequired": true
       },
       "accessibilityAlternative": "present agreement cues textually and structurally, not through audio or colour alone",
-      "evidenceIds": ["DE-GRM-NP-001", "DE-GRM-CASE-001"],
+      "evidenceIds": ["DE-GRM-ADJ-001", "DE-GRM-NP-001", "DE-GRM-CASE-001"],
       "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
     },
     {

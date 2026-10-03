@@ -18,24 +18,45 @@ function validateLedgerEvidenceStatusCells(
   const rowsByClaimId = new Map<string, readonly string[]>();
   for (const line of ledgerText.split(/\r?\n/u)) {
     if (!line.startsWith("| `DE-")) continue;
-    const cells = line.split("|").slice(1, -1).map((cell) => cell.trim());
+    const cells = line
+      .split("|")
+      .slice(1, -1)
+      .map((cell) => cell.trim());
     assert.equal(cells.length, 4, `ledger_cell_count:${line}`);
-    const id = /^`(DE-(?:RSCH|GRM|ORTH|LEX|PHON|REG)-[A-Z]+-\d{3})`$/u.exec(cells[0])?.[1];
+    const id = /^`(DE-(?:RSCH|GRM|ORTH|LEX|PHON|REG)-[A-Z]+-\d{3})`$/u.exec(
+      cells[0],
+    )?.[1];
     assert.ok(id, `ledger_claim_id_cell_invalid:${cells[0]}`);
     assert.ok(!rowsByClaimId.has(id), `duplicate_ledger_claim_id:${id}`);
     rowsByClaimId.set(id, cells);
   }
-  assert.equal(rowsByClaimId.size, claims.length, "ledger_must_have_exactly_one_row_per_typed_claim");
-  for (const claim of claims) assert.ok(rowsByClaimId.has(claim.id), `missing_ledger_claim_row:${claim.id}`);
+  assert.equal(
+    rowsByClaimId.size,
+    claims.length,
+    "ledger_must_have_exactly_one_row_per_typed_claim",
+  );
+  for (const claim of claims)
+    assert.ok(
+      rowsByClaimId.has(claim.id),
+      `missing_ledger_claim_row:${claim.id}`,
+    );
 
-  const statusToken = /`(DIRECT_SOURCE|DIRECT_L2_RU|DIRECT_L2_UK|DIRECT_SYSTEM|CONTRASTIVE_RISK)`/gu;
+  const statusToken =
+    /`(DIRECT_SOURCE|DIRECT_L2_RU|DIRECT_L2_UK|DIRECT_SYSTEM|CONTRASTIVE_RISK)`/gu;
   for (const binding of bindings) {
     if (!binding.id.startsWith("DE-PHON-")) continue;
     const evidenceCell = rowsByClaimId.get(binding.id)?.[2];
     assert.ok(evidenceCell, `missing_pronunciation_ledger_row:${binding.id}`);
     const leadingStatus = /^`([^`]+)`/u.exec(evidenceCell)?.[1];
-    const statusTokens = Array.from(evidenceCell.matchAll(statusToken), (match) => match[1]);
-    if (leadingStatus !== binding.status || statusTokens.length !== 1 || statusTokens[0] !== binding.status) {
+    const statusTokens = Array.from(
+      evidenceCell.matchAll(statusToken),
+      (match) => match[1],
+    );
+    if (
+      leadingStatus !== binding.status ||
+      statusTokens.length !== 1 ||
+      statusTokens[0] !== binding.status
+    ) {
       throw new Error(`ledger_evidence_status_token_invalid:${binding.id}`);
     }
   }
@@ -61,49 +82,103 @@ validateGermanResearchEvidenceBindingsDeV1(
   GERMAN_RESEARCH_AUTHORITY_V1 as readonly GermanResearchClaim[],
   researchEvidenceBindings,
 );
-validateLedgerEvidenceStatusCells(ledger, GERMAN_RESEARCH_AUTHORITY_V1, researchEvidenceBindings);
+validateLedgerEvidenceStatusCells(
+  ledger,
+  GERMAN_RESEARCH_AUTHORITY_V1,
+  researchEvidenceBindings,
+);
 assert.throws(
-  () => validateLedgerEvidenceStatusCells(
-    ledger.replace("`CONTRASTIVE_RISK`: нет contrastive", "`CONTRASTIVE_RISK` `DIRECT_L2_UK`: нет contrastive"),
-    GERMAN_RESEARCH_AUTHORITY_V1,
-    researchEvidenceBindings,
-  ),
+  () =>
+    validateLedgerEvidenceStatusCells(
+      ledger.replace(
+        "`CONTRASTIVE_RISK`: нет contrastive",
+        "`CONTRASTIVE_RISK` `DIRECT_L2_UK`: нет contrastive",
+      ),
+      GERMAN_RESEARCH_AUTHORITY_V1,
+      researchEvidenceBindings,
+    ),
   /ledger_evidence_status_token_invalid:DE-PHON-UK-002/u,
 );
 
 assert.throws(
-  () => validateGermanResearchEvidenceBindingsDeV1(
-    GERMAN_RESEARCH_AUTHORITY_V1 as readonly GermanResearchClaim[],
-    [...researchEvidenceBindings, {
-      id: "DE-GRM-UNKNOWN-999",
-      status: "DIRECT_SOURCE",
-      limitation: "NO_OWNER_DECISION_OR_BLUEPRINT_SEQUENCE",
-    }],
-  ),
+  () =>
+    validateGermanResearchEvidenceBindingsDeV1(
+      GERMAN_RESEARCH_AUTHORITY_V1 as readonly GermanResearchClaim[],
+      [
+        ...researchEvidenceBindings,
+        {
+          id: "DE-GRM-UNKNOWN-999",
+          status: "DIRECT_SOURCE",
+          limitation: "NO_OWNER_DECISION_OR_BLUEPRINT_SEQUENCE",
+        },
+      ],
+    ),
   /unknown_evidence_id:DE-GRM-UNKNOWN-999/u,
 );
 assert.throws(
-  () => validateGermanResearchEvidenceBindingsDeV1(
-    GERMAN_RESEARCH_AUTHORITY_V1 as readonly GermanResearchClaim[],
-    researchEvidenceBindings.map((binding, index) => index === 0
-      ? { ...binding, limitation: "" }
-      : binding),
-  ),
+  () =>
+    validateGermanResearchEvidenceBindingsDeV1(
+      GERMAN_RESEARCH_AUTHORITY_V1 as readonly GermanResearchClaim[],
+      researchEvidenceBindings.map((binding, index) =>
+        index === 0 ? { ...binding, limitation: "" } : binding,
+      ),
+    ),
   /missing_evidence_limitation:DE-RSCH-CEFR-001/u,
 );
 assert.throws(
-  () => validateGermanResearchEvidenceBindingsDeV1(
-    GERMAN_RESEARCH_AUTHORITY_V1 as readonly GermanResearchClaim[],
-    researchEvidenceBindings.map((binding) => binding.id === "DE-PHON-UK-002"
-      ? { ...binding, status: "DIRECT_L2_UK" }
-      : binding),
-  ),
+  () =>
+    validateGermanResearchEvidenceBindingsDeV1(
+      GERMAN_RESEARCH_AUTHORITY_V1 as readonly GermanResearchClaim[],
+      researchEvidenceBindings.map((binding) =>
+        binding.id === "DE-PHON-UK-002"
+          ? { ...binding, status: "DIRECT_L2_UK" }
+          : binding,
+      ),
+    ),
   /inconsistent_evidence_status:DE-PHON-UK-002/u,
 );
 
+assert.equal(
+  GERMAN_RESEARCH_AUTHORITY_V1.length,
+  53,
+  "German research authority must contain the exact reviewed 53-claim set",
+);
+
+const predicativeAdjectiveClaim = GERMAN_RESEARCH_AUTHORITY_V1.find(
+  (claim) => claim.id === "DE-GRM-ADJ-001",
+);
+assert.deepEqual(predicativeAdjectiveClaim, {
+  id: "DE-GRM-ADJ-001",
+  sourceUrl: "https://grammis.ids-mannheim.de/systematische-grammatik/2264",
+  authority: "IDS Mannheim grammis",
+  accessedOn: "2026-10-03",
+  claim: "In German, adjectives used predicatively are not inflected.",
+  curriculumImplication:
+    "Treat the uninflected predicative form as a direct morphology fact while keeping its placement before staged attributive agreement explicitly pedagogical.",
+});
+assert.match(
+  dossier,
+  /DE-GRM-ADJ-001/u,
+  "dossier must bind the direct predicative-adjective fact",
+);
+const predicativeAdjectiveLedgerLine = ledger
+  .split(/\r?\n/u)
+  .find((line) => line.includes("`DE-GRM-ADJ-001`"));
 assert.ok(
-  GERMAN_RESEARCH_AUTHORITY_V1.length >= 20,
-  "German research authority must contain at least 20 independently reviewable claims",
+  predicativeAdjectiveLedgerLine,
+  "ledger must carry the direct predicative-adjective evidence row",
+);
+assert.deepEqual(
+  predicativeAdjectiveLedgerLine
+    .split("|")
+    .slice(1, -1)
+    .map((cell) => cell.trim()),
+  [
+    "`DE-GRM-ADJ-001`",
+    "IDS Mannheim, [Prädikative Verwendung des Adjektivs](https://grammis.ids-mannheim.de/systematische-grammatik/2264)",
+    "Прилагательное в предикативном употреблении не склоняется.",
+    "Несклоняемая предикативная форма — прямой морфологический факт; её место перед staged attributive agreement остаётся педагогическим решением.",
+  ],
 );
 
 const ids = new Set<string>();
@@ -112,16 +187,30 @@ for (const claim of GERMAN_RESEARCH_AUTHORITY_V1 as readonly GermanResearchClaim
   assert.match(claim.id, /^DE-(RSCH|GRM|ORTH|LEX|PHON|REG)-[A-Z]+-\d{3}$/u);
   assert.ok(!ids.has(claim.id), `duplicate research claim id: ${claim.id}`);
   ids.add(claim.id);
-  assert.match(claim.sourceUrl, /^https:\/\//u, `missing authoritative URL: ${claim.id}`);
+  assert.match(
+    claim.sourceUrl,
+    /^https:\/\//u,
+    `missing authoritative URL: ${claim.id}`,
+  );
   urls.add(claim.sourceUrl);
-  assert.ok(claim.authority.trim().length >= 3, `missing authority: ${claim.id}`);
-  assert.equal(claim.accessedOn, "2026-09-19", `wrong access date: ${claim.id}`);
+  assert.ok(
+    claim.authority.trim().length >= 3,
+    `missing authority: ${claim.id}`,
+  );
+  assert.equal(
+    claim.accessedOn,
+    claim.id === "DE-GRM-ADJ-001" ? "2026-10-03" : "2026-09-19",
+    `wrong access date: ${claim.id}`,
+  );
   assert.ok(claim.claim.trim().length >= 25, `claim too vague: ${claim.id}`);
   assert.ok(
     claim.curriculumImplication.trim().length >= 25,
     `curriculum implication too vague: ${claim.id}`,
   );
-  assert.ok(ledger.includes(`\`${claim.id}\``), `claim absent from Markdown ledger: ${claim.id}`);
+  assert.ok(
+    ledger.includes(`\`${claim.id}\``),
+    `claim absent from Markdown ledger: ${claim.id}`,
+  );
 }
 
 assert.ok(urls.size >= 10, "research must not collapse to one or two pages");
@@ -131,7 +220,11 @@ for (const requiredAuthority of [
   "IDS Mannheim",
   "Rat für deutsche Rechtschreibung",
   "DeReWo",
-]) assert.ok(ledger.includes(requiredAuthority), `missing authority: ${requiredAuthority}`);
+])
+  assert.ok(
+    ledger.includes(requiredAuthority),
+    `missing authority: ${requiredAuthority}`,
+  );
 
 for (const requiredDecision of [
   "Satzklammer",
@@ -161,10 +254,13 @@ for (const requiredDecision of [
   "Австри",
   "Швейцар",
   "functional B1",
-]) assert.ok(
-  dossier.toLocaleLowerCase("ru").includes(requiredDecision.toLocaleLowerCase("ru")),
-  `unsupported or missing course decision: ${requiredDecision}`,
-);
+])
+  assert.ok(
+    dossier
+      .toLocaleLowerCase("ru")
+      .includes(requiredDecision.toLocaleLowerCase("ru")),
+    `unsupported or missing course decision: ${requiredDecision}`,
+  );
 
 assert.match(ownerDecisions, /PENDING/u);
 assert.doesNotMatch(ownerDecisions, /^status:\s*(?:OWNER_)?APPROVED\s*$/imu);

@@ -10739,6 +10739,1038 @@
           }
         }
       ]
+    },
+    {
+      "lessonId": "de_l13",
+      "lessonOrdinal": 13,
+      "grammarBoundary": {
+        "allowedConstructIds": [
+          "de_gc_predicative_adjective_v1",
+          "de_gc_staged_nominal_group_agreement_v1",
+          "de_gc_noun_article_singular_plural_v1",
+          "de_gc_frequent_accusative_frames_v1",
+          "de_gc_dative_recipient_frames_v1",
+          "de_gc_finite_sein_present_v1",
+          "de_gc_two_object_case_contrast_v1",
+          "de_gc_wechselpreposition_relation_contrast_v1"
+        ],
+        "prohibitedConstructIds": [
+          "de_gc_nicht_position_focus_v1",
+          "de_gc_doch_response_contrast_v1"
+        ],
+        "noExpansion": "The lesson permits only uninflected predicative adjectives and definite-article attributive adjective agreement inside already established nominative, accusative, dative-recipient, and bounded in-relation frames. Each form must be justified by its known frame and visible article-adjective-noun cues. No full strong-weak-mixed paradigm, bare or indefinite-article paradigm expansion, genitive or other unestablished case-number-gender forms, comparative or superlative morphology, nicht-focus, doch, future grammar, or adjective form outside the closed chapter models is allowed."
+      },
+      "chapters": [
+        {
+          "id": "de_l13_c01",
+          "ordinal": 1,
+          "lessonOutcomeId": "de_l13_ch01",
+          "lessonOutcome": "describe a property in a familiar predicative frame",
+          "packetIds": [
+            "de_l13_c01_s01",
+            "de_l13_c01_s02",
+            "de_l13_c01_s03",
+            "de_l13_c01_s04",
+            "de_l13_c01_s05",
+            "de_l13_c01_s06",
+            "de_l13_c01_s07",
+            "de_l13_c01_s08"
+          ],
+          "allowedConstructIds": [
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1",
+            "de_gc_noun_article_singular_plural_v1",
+            "de_gc_frequent_accusative_frames_v1",
+            "de_gc_dative_recipient_frames_v1",
+            "de_gc_finite_sein_present_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_wechselpreposition_relation_contrast_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "situation": {
+            "setting": "hotel-room-comparison",
+            "participants": "hotel-receptionist-and-guest",
+            "goal": "contrast-uninflected-ruhig-with-definite-article-nominative-ruhige-zimmer",
+            "contextSignature": "hotel-room-predicative-attributive-introduction"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "hotel-room comparison card with Das Zimmer ist ruhig. Das ruhige Zimmer ist frei.; ruhig stays uninflected after ist, while das + ruhige + Zimmer is one closed nominative cue",
+            "exit": "use Das Zimmer ist ruhig. Das ruhige Zimmer ist frei. to contrast uninflected predicative ruhig with the closed definite-article attributive form ruhige",
+            "independentEvidenceByPacketId": "de_l13_c01_s08"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_predicative_adjective_v1",
+              "stage": "introduction",
+              "packetId": "de_l13_c01_s01"
+            },
+            {
+              "constructId": "de_gc_staged_nominal_group_agreement_v1",
+              "stage": "introduction",
+              "packetId": "de_l13_c01_s02"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l13_c01_s03", "de_l13_c01_s04"],
+          "checkpoint": {
+            "packetId": "de_l13_c01_s08",
+            "integratedConstructIds": [
+              "de_gc_predicative_adjective_v1",
+              "de_gc_staged_nominal_group_agreement_v1",
+              "de_gc_noun_article_singular_plural_v1",
+              "de_gc_frequent_accusative_frames_v1",
+              "de_gc_dative_recipient_frames_v1",
+              "de_gc_finite_sein_present_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_wechselpreposition_relation_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l13_c01_ruhig_v1",
+                "semanticIdentity": "ruhig|quiet without disruptive noise",
+                "lemmaOrExpression": "ruhig",
+                "partOfSpeech": "adjective",
+                "lexicalKind": "ADJECTIVE_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l13_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l13_ch01",
+                  "checkpointPacketId": "de_l13_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_noun_article_singular_plural_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1"
+                  ],
+                  "utilityRole": "quality",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-contrast-ruhig-with-das-ruhige-zimmer-on-a-new-shortlist",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l13_c01_s08"]
+                },
+                "senseGloss": "quiet without disruptive noise",
+                "communicativeUse": "use the exact ruhig and ruhige Zimmer contrast in the closed hotel-room models"
+              },
+              {
+                "id": "de_lex_plan_l13_c01_zimmer_v1",
+                "semanticIdentity": "zimmer|room offered as an accommodation option",
+                "lemmaOrExpression": "Zimmer",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Zimmer",
+                  "plural": "Zimmer"
+                },
+                "nounPackageIdentity": "das|zimmer|zimmer",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l13_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l13_ch01",
+                  "checkpointPacketId": "de_l13_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_noun_article_singular_plural_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "guesthouse-room-shortlist",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l13_c01_s08"]
+                },
+                "senseGloss": "room offered as an accommodation option",
+                "communicativeUse": "ground the comparison in das Zimmer and its exact noun package"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "guesthouse-room-shortlist",
+              "participants": "guesthouse-host-and-guest",
+              "goal": "independently-contrast-ruhig-with-das-ruhige-zimmer-on-a-new-shortlist",
+              "contextSignature": "guesthouse-ruhig-zimmer-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l12_c06", "de_l12_c07"],
+            "targetsFutureChapterIds": ["de_l13_c02"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l14_c07_s51"
+            }
+          }
+        },
+        {
+          "id": "de_l13_c02",
+          "ordinal": 2,
+          "lessonOutcomeId": "de_l13_ch02",
+          "lessonOutcome": "notice agreement cues across article adjective and noun",
+          "packetIds": [
+            "de_l13_c02_s09",
+            "de_l13_c02_s10",
+            "de_l13_c02_s11",
+            "de_l13_c02_s12",
+            "de_l13_c02_s13",
+            "de_l13_c02_s14",
+            "de_l13_c02_s15",
+            "de_l13_c02_s16"
+          ],
+          "allowedConstructIds": [
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1",
+            "de_gc_noun_article_singular_plural_v1",
+            "de_gc_frequent_accusative_frames_v1",
+            "de_gc_dative_recipient_frames_v1",
+            "de_gc_finite_sein_present_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_wechselpreposition_relation_contrast_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "situation": {
+            "setting": "travel-shop-luggage-display",
+            "participants": "travel-shop-adviser-and-customer",
+            "goal": "read-der-leichte-koffer-as-one-visible-nominative-cue-after-predicative-leicht",
+            "contextSignature": "koffer-whole-cue-guided-comparison"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "travel-shop card with Der Koffer ist leicht. Der leichte Koffer ist dort.; read der + leichte + Koffer as one visible whole cue without an ending table",
+            "exit": "identify leicht as uninflected after ist and produce the whole closed cue Der leichte Koffer ist dort.",
+            "independentEvidenceByPacketId": "de_l13_c02_s16"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_predicative_adjective_v1",
+              "stage": "guided",
+              "packetId": "de_l13_c02_s09"
+            },
+            {
+              "constructId": "de_gc_staged_nominal_group_agreement_v1",
+              "stage": "guided",
+              "packetId": "de_l13_c02_s10"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l13_c02_s11", "de_l13_c02_s12"],
+          "checkpoint": {
+            "packetId": "de_l13_c02_s16",
+            "integratedConstructIds": [
+              "de_gc_predicative_adjective_v1",
+              "de_gc_staged_nominal_group_agreement_v1",
+              "de_gc_noun_article_singular_plural_v1",
+              "de_gc_frequent_accusative_frames_v1",
+              "de_gc_dative_recipient_frames_v1",
+              "de_gc_finite_sein_present_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_wechselpreposition_relation_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l13_c02_leicht_v1",
+                "semanticIdentity": "leicht|low in weight and easy to carry",
+                "lemmaOrExpression": "leicht",
+                "partOfSpeech": "adjective",
+                "lexicalKind": "ADJECTIVE_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l13_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l13_ch02",
+                  "checkpointPacketId": "de_l13_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_noun_article_singular_plural_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1"
+                  ],
+                  "utilityRole": "quality",
+                  "situationFacet": "goal",
+                  "facetValue": "identify-the-whole-der-leichte-koffer-cue-without-an-ending-table",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l13_c02_s16"]
+                },
+                "senseGloss": "low in weight and easy to carry",
+                "communicativeUse": "use the exact leicht and der leichte Koffer contrast as one whole cue"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "station-luggage-display",
+              "participants": "station-shop-adviser-and-traveller",
+              "goal": "identify-the-whole-der-leichte-koffer-cue-without-an-ending-table",
+              "contextSignature": "station-koffer-guided-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l13_c01"],
+            "targetsFutureChapterIds": ["de_l13_c03"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l14_c07_s52"
+            }
+          }
+        },
+        {
+          "id": "de_l13_c03",
+          "ordinal": 3,
+          "lessonOutcomeId": "de_l13_ch03",
+          "lessonOutcome": "expand one nominative noun package with a property",
+          "packetIds": [
+            "de_l13_c03_s17",
+            "de_l13_c03_s18",
+            "de_l13_c03_s19",
+            "de_l13_c03_s20",
+            "de_l13_c03_s21",
+            "de_l13_c03_s22",
+            "de_l13_c03_s23",
+            "de_l13_c03_s24"
+          ],
+          "allowedConstructIds": [
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1",
+            "de_gc_noun_article_singular_plural_v1",
+            "de_gc_frequent_accusative_frames_v1",
+            "de_gc_dative_recipient_frames_v1",
+            "de_gc_finite_sein_present_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_wechselpreposition_relation_contrast_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "situation": {
+            "setting": "rental-flat-viewing",
+            "participants": "letting-agent-and-prospective-tenant",
+            "goal": "produce-wohnung-and-helle-wohnung-in-the-established-nominative-frame",
+            "contextSignature": "wohnung-nominative-agreement-retrieval"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "rental-flat card with Die Wohnung ist hell. Die helle Wohnung ist frei.; the known die Wohnung package keeps the closed nominative cue visible",
+            "exit": "produce Die Wohnung ist hell. Die helle Wohnung ist frei. in the established nominative frame",
+            "independentEvidenceByPacketId": "de_l13_c03_s24"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_predicative_adjective_v1",
+              "stage": "retrieval",
+              "packetId": "de_l13_c03_s17"
+            },
+            {
+              "constructId": "de_gc_staged_nominal_group_agreement_v1",
+              "stage": "retrieval",
+              "packetId": "de_l13_c03_s18"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l13_c03_s19", "de_l13_c03_s20"],
+          "checkpoint": {
+            "packetId": "de_l13_c03_s24",
+            "integratedConstructIds": [
+              "de_gc_predicative_adjective_v1",
+              "de_gc_staged_nominal_group_agreement_v1",
+              "de_gc_noun_article_singular_plural_v1",
+              "de_gc_frequent_accusative_frames_v1",
+              "de_gc_dative_recipient_frames_v1",
+              "de_gc_finite_sein_present_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_wechselpreposition_relation_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l13_c03_wohnung_v1",
+                "semanticIdentity": "wohnung|flat considered as a housing option",
+                "lemmaOrExpression": "Wohnung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Wohnung",
+                  "plural": "Wohnungen"
+                },
+                "nounPackageIdentity": "die|wohnung|wohnungen",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l13_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l13_ch03",
+                  "checkpointPacketId": "de_l13_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_noun_article_singular_plural_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "university-housing-shortlist",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l13_c03_s24"]
+                },
+                "senseGloss": "flat considered as a housing option",
+                "communicativeUse": "ground the housing comparison in die Wohnung and its exact noun package"
+              },
+              {
+                "id": "de_lex_plan_l13_c03_hell_v1",
+                "semanticIdentity": "hell|bright with ample light",
+                "lemmaOrExpression": "hell",
+                "partOfSpeech": "adjective",
+                "lexicalKind": "ADJECTIVE_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l13_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l13_ch03",
+                  "checkpointPacketId": "de_l13_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_noun_article_singular_plural_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1"
+                  ],
+                  "utilityRole": "quality",
+                  "situationFacet": "goal",
+                  "facetValue": "produce-die-helle-wohnung-from-the-known-nominative-package",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l13_c03_s24"]
+                },
+                "senseGloss": "bright with ample light",
+                "communicativeUse": "use the exact hell and die helle Wohnung contrast"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "university-housing-shortlist",
+              "participants": "housing-adviser-and-student",
+              "goal": "produce-die-helle-wohnung-from-the-known-nominative-package",
+              "contextSignature": "university-housing-wohnung-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l13_c01", "de_l13_c02"],
+            "targetsFutureChapterIds": ["de_l13_c04"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l14_c07_s53"
+            }
+          }
+        },
+        {
+          "id": "de_l13_c04",
+          "ordinal": 4,
+          "lessonOutcomeId": "de_l13_ch04",
+          "lessonOutcome": "expand one familiar accusative noun package",
+          "packetIds": [
+            "de_l13_c04_s25",
+            "de_l13_c04_s26",
+            "de_l13_c04_s27",
+            "de_l13_c04_s28",
+            "de_l13_c04_s29",
+            "de_l13_c04_s30",
+            "de_l13_c04_s31",
+            "de_l13_c04_s32"
+          ],
+          "allowedConstructIds": [
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1",
+            "de_gc_noun_article_singular_plural_v1",
+            "de_gc_frequent_accusative_frames_v1",
+            "de_gc_dative_recipient_frames_v1",
+            "de_gc_finite_sein_present_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_wechselpreposition_relation_contrast_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "situation": {
+            "setting": "luggage-shop-purchase",
+            "participants": "shop-assistant-and-traveller",
+            "goal": "keep-stabil-uninflected-predicatively-and-use-den-stabilen-koffer-in-the-known-accusative-frame",
+            "contextSignature": "koffer-accusative-agreement-production"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "luggage-shop card with Der Koffer ist stabil. Ich kaufe den stabilen Koffer.; the known accusative frame licenses den + stabilen + Koffer",
+            "exit": "produce the uninflected predicative stabil and the closed accusative model Ich kaufe den stabilen Koffer.",
+            "independentEvidenceByPacketId": "de_l13_c04_s32"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_predicative_adjective_v1",
+              "stage": "production",
+              "packetId": "de_l13_c04_s25"
+            },
+            {
+              "constructId": "de_gc_staged_nominal_group_agreement_v1",
+              "stage": "production",
+              "packetId": "de_l13_c04_s26"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l13_c04_s27", "de_l13_c04_s28"],
+          "checkpoint": {
+            "packetId": "de_l13_c04_s32",
+            "integratedConstructIds": [
+              "de_gc_predicative_adjective_v1",
+              "de_gc_staged_nominal_group_agreement_v1",
+              "de_gc_noun_article_singular_plural_v1",
+              "de_gc_frequent_accusative_frames_v1",
+              "de_gc_dative_recipient_frames_v1",
+              "de_gc_finite_sein_present_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_wechselpreposition_relation_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l13_c04_stabil_v1",
+                "semanticIdentity": "stabil|strong and not likely to bend or break",
+                "lemmaOrExpression": "stabil",
+                "partOfSpeech": "adjective",
+                "lexicalKind": "ADJECTIVE_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l13_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l13_ch04",
+                  "checkpointPacketId": "de_l13_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_noun_article_singular_plural_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1"
+                  ],
+                  "utilityRole": "quality",
+                  "situationFacet": "goal",
+                  "facetValue": "choose-den-stabilen-koffer-inside-the-known-accusative-frame",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l13_c04_s32"]
+                },
+                "senseGloss": "strong and not likely to bend or break",
+                "communicativeUse": "use the exact stabil and den stabilen Koffer contrast inside the known accusative frame"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "outdoor-shop-luggage-choice",
+              "participants": "outdoor-shop-adviser-and-customer",
+              "goal": "choose-den-stabilen-koffer-inside-the-known-accusative-frame",
+              "contextSignature": "outdoor-shop-stabilen-koffer-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l13_c02", "de_l13_c03"],
+            "targetsFutureChapterIds": ["de_l13_c05"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l14_c07_s54"
+            }
+          }
+        },
+        {
+          "id": "de_l13_c05",
+          "ordinal": 5,
+          "lessonOutcomeId": "de_l13_ch05",
+          "lessonOutcome": "use a bounded dative noun-group description",
+          "packetIds": [
+            "de_l13_c05_s33",
+            "de_l13_c05_s34",
+            "de_l13_c05_s35",
+            "de_l13_c05_s36",
+            "de_l13_c05_s37",
+            "de_l13_c05_s38",
+            "de_l13_c05_s39",
+            "de_l13_c05_s40"
+          ],
+          "allowedConstructIds": [
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1",
+            "de_gc_noun_article_singular_plural_v1",
+            "de_gc_frequent_accusative_frames_v1",
+            "de_gc_dative_recipient_frames_v1",
+            "de_gc_finite_sein_present_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_wechselpreposition_relation_contrast_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "situation": {
+            "setting": "volunteer-assignment-desk",
+            "participants": "event-coordinator-and-volunteer",
+            "goal": "select-dem-erfahrenen-helfer-through-the-verified-recipient-frame-not-animacy-or-order",
+            "contextSignature": "helfer-dative-recipient-agreement-combination"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "volunteer-assignment card with Der Helfer ist erfahren. Ich gebe dem erfahrenen Helfer die Mappe.; recipient valency licenses dem + erfahrenen + Helfer, never animacy or word order",
+            "exit": "use the verified geben frame to produce dem erfahrenen Helfer as recipient without guessing from animacy or order",
+            "independentEvidenceByPacketId": "de_l13_c05_s40"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l13_c05_s35", "de_l13_c05_s36"],
+          "checkpoint": {
+            "packetId": "de_l13_c05_s40",
+            "integratedConstructIds": [
+              "de_gc_predicative_adjective_v1",
+              "de_gc_staged_nominal_group_agreement_v1",
+              "de_gc_noun_article_singular_plural_v1",
+              "de_gc_frequent_accusative_frames_v1",
+              "de_gc_dative_recipient_frames_v1",
+              "de_gc_finite_sein_present_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_wechselpreposition_relation_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l13_c05_erfahren_v1",
+                "semanticIdentity": "erfahren|experienced in the relevant task",
+                "lemmaOrExpression": "erfahren",
+                "partOfSpeech": "adjective",
+                "lexicalKind": "ADJECTIVE_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l13_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l13_ch05",
+                  "checkpointPacketId": "de_l13_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_noun_article_singular_plural_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1"
+                  ],
+                  "utilityRole": "quality",
+                  "situationFacet": "goal",
+                  "facetValue": "assign-the-item-to-dem-erfahrenen-helfer-by-recipient-valency",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l13_c05_s40"]
+                },
+                "senseGloss": "experienced in the relevant task",
+                "communicativeUse": "use the exact erfahren and dem erfahrenen Helfer contrast with recipient case licensed by geben"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "museum-event-volunteer-assignment",
+              "participants": "museum-coordinator-and-volunteer",
+              "goal": "assign-the-item-to-dem-erfahrenen-helfer-by-recipient-valency",
+              "contextSignature": "museum-event-erfahrenen-helfer-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l13_c03", "de_l13_c04"],
+            "targetsFutureChapterIds": ["de_l13_c06"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l14_c07_s55"
+            }
+          }
+        },
+        {
+          "id": "de_l13_c06",
+          "ordinal": 6,
+          "lessonOutcomeId": "de_l13_ch06",
+          "lessonOutcome": "repair predicative versus attributive morphology",
+          "packetIds": [
+            "de_l13_c06_s41",
+            "de_l13_c06_s42",
+            "de_l13_c06_s43",
+            "de_l13_c06_s44",
+            "de_l13_c06_s45",
+            "de_l13_c06_s46",
+            "de_l13_c06_s47",
+            "de_l13_c06_s48"
+          ],
+          "allowedConstructIds": [
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1",
+            "de_gc_noun_article_singular_plural_v1",
+            "de_gc_frequent_accusative_frames_v1",
+            "de_gc_dative_recipient_frames_v1",
+            "de_gc_finite_sein_present_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_wechselpreposition_relation_contrast_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "situation": {
+            "setting": "product-copy-correction",
+            "participants": "consumer-adviser-and-copy-editor",
+            "goal": "repair-predicative-praktisch-and-definite-accusative-praktischen-without-expanding-the-paradigm",
+            "contextSignature": "praktisch-bounded-agreement-repair"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "[1] Der Koffer ist praktische. → Der Koffer ist praktisch. [2] Ich kaufe den praktisch Koffer. → Ich kaufe den praktischen Koffer.",
+            "exit": "[1] Der Koffer ist praktische. → Der Koffer ist praktisch. [2] Ich kaufe den praktisch Koffer. → Ich kaufe den praktischen Koffer.",
+            "independentEvidenceByPacketId": "de_l13_c06_s48"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_predicative_adjective_v1",
+              "stage": "transfer",
+              "packetId": "de_l13_c06_s41"
+            },
+            {
+              "constructId": "de_gc_staged_nominal_group_agreement_v1",
+              "stage": "transfer",
+              "packetId": "de_l13_c06_s42"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l13_c06_s43", "de_l13_c06_s44"],
+          "checkpoint": {
+            "packetId": "de_l13_c06_s48",
+            "integratedConstructIds": [
+              "de_gc_predicative_adjective_v1",
+              "de_gc_staged_nominal_group_agreement_v1",
+              "de_gc_noun_article_singular_plural_v1",
+              "de_gc_frequent_accusative_frames_v1",
+              "de_gc_dative_recipient_frames_v1",
+              "de_gc_finite_sein_present_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_wechselpreposition_relation_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l13_c06_praktisch_v1",
+                "semanticIdentity": "praktisch|useful and convenient for the stated purpose",
+                "lemmaOrExpression": "praktisch",
+                "partOfSpeech": "adjective",
+                "lexicalKind": "ADJECTIVE_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l13_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l13_ch06",
+                  "checkpointPacketId": "de_l13_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_noun_article_singular_plural_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_finite_sein_present_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "repair-the-praktisch-predicative-and-praktischen-accusative-forms",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l13_c06_s48"]
+                },
+                "senseGloss": "useful and convenient for the stated purpose",
+                "communicativeUse": "[1] Der Koffer ist praktische. → Der Koffer ist praktisch. [2] Ich kaufe den praktisch Koffer. → Ich kaufe den praktischen Koffer."
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "consumer-advice-product-review",
+              "participants": "consumer-adviser-and-review-editor",
+              "goal": "repair-the-praktisch-predicative-and-praktischen-accusative-forms",
+              "contextSignature": "consumer-advice-praktisch-repair-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l13_c04", "de_l13_c05"],
+            "targetsFutureChapterIds": ["de_l13_c07"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l14_c07_s56"
+            }
+          }
+        },
+        {
+          "id": "de_l13_c07",
+          "ordinal": 7,
+          "lessonOutcomeId": "de_l13_ch07",
+          "lessonOutcome": "transfer staged property descriptions to a new comparison task",
+          "packetIds": [
+            "de_l13_c07_s49",
+            "de_l13_c07_s50",
+            "de_l13_c07_s51",
+            "de_l13_c07_s52",
+            "de_l13_c07_s53",
+            "de_l13_c07_s54",
+            "de_l13_c07_s55",
+            "de_l13_c07_s56"
+          ],
+          "allowedConstructIds": [
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1",
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_wechselpreposition_relation_contrast_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1"
+          ],
+          "situation": {
+            "setting": "community-center-two-room-reassignment",
+            "participants": "course-coordinator-and-setup-helper",
+            "goal": "compare-gruppenraum-a-and-b-after-the-coordinator-states-a-large-group-and-justify-room-b",
+            "contextSignature": "gruppenraum-two-option-choice-final-transfer"
+          },
+          "supportFading": {
+            "entryLevel": 2,
+            "exitLevel": 0,
+            "entry": "Der Gruppenraum A ist ruhig. Der Gruppenraum B ist geräumig. Die Gruppe ist groß. Der geräumige Gruppenraum B ist geeignet. Ich gebe dem Helfer die Kiste. Ich bringe die Kiste in den geräumigen Gruppenraum B. Die Kiste ist im geräumigen Gruppenraum B.",
+            "exit": "Der Gruppenraum A ist ruhig. Der Gruppenraum B ist geräumig. Die Gruppe ist groß. Der geräumige Gruppenraum B ist geeignet. Ich gebe dem Helfer die Kiste. Ich bringe die Kiste in den geräumigen Gruppenraum B. Die Kiste ist im geräumigen Gruppenraum B.",
+            "independentEvidenceByPacketId": "de_l13_c07_s56"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_two_object_case_contrast_v1",
+              "stage": "delayed",
+              "packetId": "de_l13_c07_s49"
+            },
+            {
+              "constructId": "de_gc_wechselpreposition_relation_contrast_v1",
+              "stage": "delayed",
+              "packetId": "de_l13_c07_s50"
+            }
+          ],
+          "chapterEvidencePacketIds": [
+            "de_l13_c07_s51",
+            "de_l13_c07_s52",
+            "de_l13_c07_s53",
+            "de_l13_c07_s54",
+            "de_l13_c07_s55",
+            "de_l13_c07_s56"
+          ],
+          "checkpoint": {
+            "packetId": "de_l13_c07_s56",
+            "integratedConstructIds": [
+              "de_gc_predicative_adjective_v1",
+              "de_gc_staged_nominal_group_agreement_v1",
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_wechselpreposition_relation_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l13_c07_gruppenraum_v1",
+                "semanticIdentity": "gruppenraum|room intended for a group activity",
+                "lemmaOrExpression": "Gruppenraum",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Gruppenraum",
+                  "plural": "Gruppenräume"
+                },
+                "nounPackageIdentity": "der|gruppenraum|gruppenraume",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l13_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l13_ch07",
+                  "checkpointPacketId": "de_l13_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "adult-education-two-room-reassignment",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l13_c07_s56"]
+                },
+                "senseGloss": "room intended for a group activity",
+                "communicativeUse": "ground the changed scene in der Gruppenraum and its exact noun package"
+              },
+              {
+                "id": "de_lex_plan_l13_c07_geraumig_v1",
+                "semanticIdentity": "geraumig|spacious with enough room for the planned group",
+                "lemmaOrExpression": "geräumig",
+                "partOfSpeech": "adjective",
+                "lexicalKind": "ADJECTIVE_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l13_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l13_ch07",
+                  "checkpointPacketId": "de_l13_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1"
+                  ],
+                  "utilityRole": "transfer",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-compare-gruppenraum-a-and-b-against-the-large-group-criterion-and-justify-room-b",
+                  "necessityClass": "TRANSFER_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l13_c07_s56"]
+                },
+                "senseGloss": "spacious with enough room for the planned group",
+                "communicativeUse": "transfer geräumig only through the exact two-room Gruppenraum comparison and closed Gruppenraum B models"
+              },
+              {
+                "id": "de_lex_plan_l13_c07_gruppe_v1",
+                "semanticIdentity": "gruppe|people participating together in the stated course",
+                "lemmaOrExpression": "Gruppe",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Gruppe",
+                  "plural": "Gruppen"
+                },
+                "nounPackageIdentity": "die|gruppe|gruppen",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l13_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l13_ch07",
+                  "checkpointPacketId": "de_l13_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1"
+                  ],
+                  "utilityRole": "participant_reference",
+                  "situationFacet": "participants",
+                  "facetValue": "adult-education-group-and-course-coordinator",
+                  "necessityClass": "PARTICIPANT_UNIDENTIFIABLE",
+                  "plannedUsePacketIds": ["de_l13_c07_s56"]
+                },
+                "senseGloss": "people participating together in the stated course",
+                "communicativeUse": "state Die Gruppe ist groß. as the coordinator's bounded selection criterion"
+              },
+              {
+                "id": "de_lex_plan_l13_c07_gross_v1",
+                "semanticIdentity": "groß|large in participant count",
+                "lemmaOrExpression": "groß",
+                "partOfSpeech": "adjective",
+                "lexicalKind": "ADJECTIVE_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l13_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l13_ch07",
+                  "checkpointPacketId": "de_l13_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1",
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1"
+                  ],
+                  "utilityRole": "quality",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-compare-gruppenraum-a-and-b-against-the-large-group-criterion-and-justify-room-b",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l13_c07_s56"]
+                },
+                "senseGloss": "large in participant count",
+                "communicativeUse": "use Die Gruppe ist groß. with uninflected groß to state the criterion that makes geräumig relevant"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "adult-education-two-room-reassignment",
+              "participants": "adult-education-group-and-course-coordinator",
+              "goal": "independently-compare-gruppenraum-a-and-b-against-the-large-group-criterion-and-justify-room-b",
+              "contextSignature": "adult-education-two-gruppenraum-choice-final"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l13_c05", "de_l13_c06"],
+            "targetsFutureChapterIds": ["de_l14_c01"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l14_c07_s55"
+            }
+          }
+        }
+      ]
     }
   ]
 }

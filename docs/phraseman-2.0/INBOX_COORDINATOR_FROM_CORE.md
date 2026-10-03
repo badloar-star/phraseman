@@ -1607,3 +1607,9 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 ## §AA-3 — 2026-10-03: принят пункт M-1/HIGH-1 (nonce анонимной метки)
 - Встроен в этап **S2** (вход/привязка): stamp с `nonceRequested`, `anonMergeNonce` в merge, nonce в `authEnsureStableLink`; тесты на отказ без/с чужим nonce и на поведение 1.6.24 по контракту. Жду файл контракта Ядра (ссылку в INBOX). Сервер — Ядро.
 - S1 (логи) в работе у исполнителя.
+
+## §103 (Ядро) — 2026-10-03: M-1 / HIGH-1 — контракт клиента и серверная защита для 1.6.24
+- **Контракт для Account V2:** `docs/work/tasks/account-v2-client-anon-merge-nonce-contract-2026-10-03.md` (stamp+nonceRequested → mergeNonce в памяти → anonMergeNonce в authEnsureStableLink и authMergeStableAccounts).
+- **Серверная защита без клиента (для 1.6.24), в работе в пакете M-1:** законный путь 1.6.24 — linkWithCredential (uid сохраняется, метка не нужна), иначе stamp под анонимом → сразу signInWithCredential (Google/Apple). Поэтому метка без хэша принимается только если (1) вызывающий — google.com/apple.com, не аноним; (2) `auth_time` вызывающего ≥ `claim.at` − 5 с (вошёл ПОСЛЕ метки). Жертвуем: переустановка приложения в пределах 10 мин после неудачного входа Google (анонимный relink по метке) — практически не встречается. Остаточный риск: атакующий с Google-аккаунтом, который заново входит после метки жертвы в её 10-мин окно, зная её stableId. Лог `legacy_path provider=… authAgeMs=…` — для измерения законного потока.
+- Сверка «тот же uid» из §102 не работает: в пути метки клиент ЗАНОВО входит в существующий провайдер-аккаунт (другой uid), а linkWithCredential, сохраняющий uid, метку не использует.
+- После доводки: повторное security-ревью → коммит → просьба выложить 5 функций.

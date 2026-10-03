@@ -30,6 +30,9 @@ const APPROVED_REASONS: Readonly<Record<string, readonly [Status, string]>> = {
   admin_grant: ['active', 'D86: ручная выдача из админки'],
   community_pack_sale: ['active', 'D85: выплата автору набора монетами'],
   level_spin_grant: ['active', 'серверный кошелёк (Q13): жалоба D109 и «Сегодня» D49 по префиксу ключа'],
+  // зачем: 8T (750728284, координатор 03.10) — перенос баланса проигравшего победителю при слиянии/чистке дублей;
+  // парный дебет account_merge_out, сумма по системе 0 — не новый источник монет.
+  account_merge_in: ['active', '8T: перенос баланса при слиянии аккаунтов (не источник, пара с account_merge_out)'],
   // историческое: писателей в коде нет, причина остаётся в типе для чтения старых журналов
   arena_match: ['retired_history', 'Арена удалена (D54/D74/D83)'],
   arena_mastery: ['retired_history', 'Арена удалена'],
@@ -42,7 +45,8 @@ const APPROVED_REASONS: Readonly<Record<string, readonly [Status, string]>> = {
   welcome_gift: ['retired_history', 'писателя в коде нет'],
   video_watch: ['retired_history', 'PM-080-A3/Q9: видео монет не даёт; серверный claim снимается после релиза'],
 };
-const SPEND = new Set(['spend_shop', 'admin_revoke', 'learning_v2_unlock', 'dialog_extra_replies', 'dialog_unlock']);
+// зачем: 8T — account_merge_out списывает перенесённый баланс у скрытого проигравшего.
+const SPEND = new Set(['spend_shop', 'admin_revoke', 'learning_v2_unlock', 'dialog_extra_replies', 'dialog_unlock', 'account_merge_out']);
 
 // 1) положительные причины журнала
 const classRows = [...code('functions/src/stars_ledger.ts').matchAll(/^\s*([a-z0-9_]+):\s*'(earn|grant|spend)'/gm)]

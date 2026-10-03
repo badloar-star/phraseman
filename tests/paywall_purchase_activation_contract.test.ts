@@ -26,7 +26,9 @@ describe('new paywalls activate Premium locally after RevenueCat success', () =>
     const purchaseBody = sharedHook.slice(purchaseStart, restoreStart);
 
     expect(purchaseBody).toContain('() => Purchases.purchasePackage(pkg)');
-    expect(purchaseBody).toContain('const { customerInfo } = purchaseResult.value;');
+    // зачем (D158-уточнение): `let`, а не `const` — после покупки customerInfo перечитывается (песочница Apple
+    // отстаёт), поэтому присваивание законно; суть сторожа — брать customerInfo из результата покупки.
+    expect(purchaseBody).toContain('let { customerInfo } = purchaseResult.value;');
     expect(purchaseBody).toContain('revenueCatPremiumMetadata(customerInfo, pkg.product.identifier)');
     expect(purchaseBody).toContain('customerInfoConfirmsProductAccess(customerInfo, pkg.product.identifier)');
     expect(purchaseBody).not.toContain('Object.keys(customerInfo?.entitlements?.active ?? {}).length > 0');

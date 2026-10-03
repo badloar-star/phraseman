@@ -230,6 +230,19 @@ export const PaywallPlusPlansSkeleton = memo(function PaywallPlusPlansSkeleton({
   );
 });
 
+// ── цены недоступны после потолка загрузки: те же размеры, что у скелета, без красного и без иконки ──
+// зачем (D158): вечный скелетон убран; на месте цен — спокойное «Сейчас недоступно», кнопка покупки жива.
+export const PaywallPlusPlansUnavailable = memo(function PaywallPlusPlansUnavailable({ lang, g }: { lang: Lang; g: GlassTokens }) {
+  return (
+    <View testID="paywall-plans-unavailable">
+      <View style={[S.skeleton, S.unavailableBox, { height: 132, backgroundColor: g.opaqueCard }]}>
+        <Text style={[S.planSmall, { color: g.secondary }]}>{pick(lang, COPY.unavailable)}</Text>
+      </View>
+      <View style={[S.skeleton, S.planGap, { height: 74, backgroundColor: g.opaqueCard }]} />
+    </View>
+  );
+});
+
 // ── тело: «Что входит», «Free и Plus», ссылки ──────────────────────────────
 export const PaywallPlusDetails = memo(function PaywallPlusDetails({ lang, g, restoring, restoreDisabled, onRestore }: {
   lang: Lang; g: GlassTokens; restoring: boolean; restoreDisabled: boolean; onRestore: () => void;
@@ -278,30 +291,34 @@ export function paywallPlusCtaCopy(lang: Lang, args: {
   };
 }
 
-export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, label, fine, purchasing, disabled, bottomInset, onPress }: {
-  lang: Lang; g: GlassTokens; state: PaywallPlusState; label: string; fine: string;
+export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, label, fine, notice, purchasing, disabled, bottomInset, onPress }: {
+  lang: Lang; g: GlassTokens; state: PaywallPlusState; label: string; fine: string; notice: boolean;
   purchasing: boolean; disabled: boolean; bottomInset: number; onPress: () => void;
 }) {
   const ready = state === 'ready';
-  const ctaDisabled = !ready || disabled;
+  // зачем (D158): кнопка покупки ВСЕГДА активна, кроме самой покупки/восстановления (disabled от экрана).
+  // Нет цен — тап сам загрузит offerings и купит. Подпись под кнопкой — тихая: либо «Попробуй через минуту»
+  // после сбоя тапа, либо мелкий текст тарифа; строка резервируется, чтобы геометрия не прыгала.
+  const ctaDisabled = disabled;
+  const fineText = notice ? pick(lang, COPY.tryInMinute) : ready ? fine : '\u00A0';
   return (
     <View style={[S.dock, { paddingBottom: Math.max(bottomInset, 16) }]}>
       <LinearGradient pointerEvents="none" colors={['transparent', g.bg]} locations={[0, 0.22]} style={StyleSheet.absoluteFill} />
       <V2Pressable
         testID="paywall-cta"
-        accessibilityLabel={ready ? label : pick(lang, COPY.wait)}
+        accessibilityLabel={label}
         accessibilityState={{ disabled: ctaDisabled, busy: purchasing }}
         disabled={ctaDisabled}
         onPress={onPress}
         withHaptic={false}
         scaleTo={0.97}
-        style={[S.cta, { backgroundColor: g.accent }, !ready && S.ctaWaiting]}
+        style={[S.cta, { backgroundColor: g.accent }]}
       >
         {purchasing
           ? <ActivityIndicator color={g.ctaInk} />
-          : <Text style={[S.ctaText, { color: g.accentInk }]}>{ready ? label : pick(lang, COPY.wait)}</Text>}
+          : <Text style={[S.ctaText, { color: g.accentInk }]}>{label}</Text>}
       </V2Pressable>
-      {ready ? <Text style={[S.fine, { color: g.mutedText }]}>{fine}</Text> : null}
+      <Text testID="paywall-fine" style={[S.fine, { color: g.mutedText }]}>{fineText}</Text>
     </View>
   );
 });
@@ -355,6 +372,7 @@ const S = StyleSheet.create({
   trialIcon: { width: 30, height: 30, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
   trialText: { flex: 1, fontSize: 19, lineHeight: 24, fontWeight: '800', letterSpacing: -0.2 },
   skeleton: { borderRadius: 22 },
+  unavailableBox: { alignItems: 'center', justifyContent: 'center' },
   errorRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 14, paddingLeft: 16, paddingRight: 14 },
   iconTile: { width: 40, height: 40, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   errorCopy: { flex: 1, minWidth: 0 },

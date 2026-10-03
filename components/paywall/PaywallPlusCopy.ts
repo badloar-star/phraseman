@@ -168,6 +168,10 @@ export const COPY = {
     'Odnawia się co miesiąc · Anuluj w każdej chwili',
   ),
   wait: LP('Подождите…', 'Зачекайте…', 'Please wait…', 'Espera…', 'Aguarde…', 'Vui lòng chờ…', 'Mohon tunggu…', 'Lütfen bekle…', 'Chwileczkę…'),
+  // зачем (D158): тихие строки без красного и без иконки ошибки — цены недоступны, кнопка всё равно жива.
+  unavailable: LP('Сейчас недоступно', 'Зараз недоступно', 'Not available right now', 'No disponible ahora', 'Indisponível agora', 'Hiện chưa khả dụng', 'Sedang tidak tersedia', 'Şu an kullanılamıyor', 'Chwilowo niedostępne'),
+  tryInMinute: LP('Попробуй через минуту', 'Спробуй за хвилину', 'Try again in a minute', 'Inténtalo en un minuto', 'Tente de novo em um minuto', 'Hãy thử lại sau một phút', 'Coba lagi dalam semenit', 'Bir dakika sonra tekrar dene', 'Spróbuj za minutę'),
+  getPlus: LP('Оформить Plus', 'Оформити Plus', 'Get Plus', 'Obtener Plus', 'Assinar o Plus', 'Đăng ký Plus', 'Dapatkan Plus', "Plus'a geç", 'Wykup Plus'),
   pricesFailed: LP('Цены не загрузились', 'Ціни не завантажилися', "Prices didn't load", 'No se cargaron los precios', 'Os preços não carregaram', 'Không tải được giá', 'Harga gagal dimuat', 'Fiyatlar yüklenmedi', 'Nie udało się wczytać cen'),
   checkInternet: LP('Проверь интернет', 'Перевір інтернет', 'Check your connection', 'Revisa tu conexión', 'Verifique sua conexão', 'Kiểm tra kết nối mạng', 'Periksa koneksi internet', 'İnternet bağlantını kontrol et', 'Sprawdź internet'),
   retry: LP('Ещё раз', 'Ще раз', 'Retry', 'Reintentar', 'Tentar de novo', 'Thử lại', 'Coba lagi', 'Tekrar dene', 'Ponów'),

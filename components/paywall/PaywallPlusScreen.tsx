@@ -26,11 +26,12 @@ import { animateNextLayoutTransition } from '../../app/smooth_layout';
 import { DebugLogger } from '../../app/debug-logger';
 import { usePaywallScreenStackOptions } from './paywallShared';
 import {
-  PaywallPlusDetails, PaywallPlusDock, PaywallPlusHeader, PaywallPlusPlans, PaywallPlusPlansSkeleton,
+  PaywallPlusDetails, PaywallPlusDock, PaywallPlusHeader, PaywallPlusPlans, PaywallPlusPlansSkeleton, PaywallPlusPlansUnavailable,
    PaywallPlusScroll, PaywallPlusTrialTimeline, paywallPlusCtaCopy,
   type PaywallPlusState,
 } from './PaywallPlus';
 import PaywallTrialReminderPrompt from './PaywallTrialReminderPrompt';
+import { COPY, pick } from './PaywallPlusCopy';
 
 /** Метка единственного пейвола в аналитике и воронке. */
 export const PAYWALL_PLUS_VARIANT = 'PLUS' as const;
@@ -60,6 +61,8 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const p = usePaywallPurchase({
     variant: PAYWALL_PLUS_VARIANT, context: ctx, source, lang, forceTrialUI, resumeLessonId, impression,
     disableExitOffer: true,
+    // зачем (D158): Plus-окно — кнопка всегда активна, цены из кэша, потолок загрузки.
+    resilientCheckout: true,
   });
 
   useEffect(() => {
@@ -67,12 +70,17 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
     logPaywallFunnel('shown', { variant: PAYWALL_PLUS_VARIANT, context: ctx });
   }, [ctx, entryAnalytics, impression, source]);
 
-  const state: PaywallPlusState = p.offeringsFailed ? 'error' : p.loading ? 'loading' : 'ready';
+  // зачем (D158): есть цены (живые или из кэша) — рисуем их; иначе скелетон ТОЛЬКО пока идёт загрузка
+  // (она ограничена потолком), а после потолка — спокойное «Сейчас недоступно». Вечного скелетона нет.
+  const hasPrices = !!(p.yearlyPrice || p.monthlyPrice);
+  const state: PaywallPlusState = hasPrices ? 'ready' : (!p.offeringsSettled || p.loading) ? 'loading' : 'error';
+  // Пробный — только из магазина: цены из кэша его не несут (yearlyTrialDays берётся из пакета).
   const pricesReady = state === 'ready' && !!p.yearlyPrice;
   const priceRetryRef = useRef(0);
   const reloadOfferingsRef = useRef(p.reloadOfferings);
   reloadOfferingsRef.current = p.reloadOfferings;
   useEffect(() => {
+    if (state === 'ready') priceRetryRef.current = 0; // зачем (D158): счётчик обнуляется при успехе
     if (state !== 'error') return undefined;
     if (priceRetryRef.current >= 5) {
       DebugLogger.warn('[PAYWALL-PLUS]', `цены не пришли, тихие повторы исчерпаны (${priceRetryRef.current})`);
@@ -91,9 +99,9 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const showTimeline = !!yearlyTrialDays && p.selected === 'yearly';
 
   useEffect(() => {
-    DebugLogger.info('[PAYWALL-PLUS]', `состояние=${state} план=${p.selected} год=${p.yearlyPrice || '—'} месяц=${p.monthlyPrice || '—'} `
-      + `пробныйГода=${yearlyTrialDays ?? 'нет'} лента=${showTimeline} ctx=${ctx} source=${source}`);
-  }, [ctx, p.monthlyPrice, p.selected, p.yearlyPrice, showTimeline, source, state, yearlyTrialDays]);
+    DebugLogger.info('[PAYWALL]', `окно Plus: состояние=${state} цены=${p.pricesFromCache ? 'кэш' : hasPrices ? 'магазин' : 'нет'} план=${p.selected} год=${p.yearlyPrice || '—'} месяц=${p.monthlyPrice || '—'} `
+      + `пробныйГода=${yearlyTrialDays ?? 'нет'} лента=${showTimeline} подпись=${p.tapNotice ? 'попробуй-позже' : 'нет'} ctx=${ctx} source=${source}`);
+  }, [ctx, hasPrices, p.monthlyPrice, p.pricesFromCache, p.selected, p.tapNotice, p.yearlyPrice, showTimeline, source, state, yearlyTrialDays]);
 
   // Мгновенный выбор тарифа; лента пробного появляется/уходит плавно, без скачка.
   const { selected, selectPlan: selectPlanInHook } = p;
@@ -103,7 +111,10 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
     selectPlanInHook(plan);
   }, [selectPlanInHook, selected]);
 
-  const checkoutInFlight = p.purchasing || p.restoring;
+  // зачем (D158, L1): закрытие и «назад» блокируем только когда оплата/восстановление реально идут;
+  // пока на тапе грузятся offerings (оплата не начата), окно закрывается. Кнопка при этом занята (purchasing).
+  const checkoutInFlight = p.payStarted || p.restoring;
+  const ctaBusy = p.purchasing || p.restoring;
   const prompt = p.trialReminderPrompt;
   const baseOptions = usePaywallScreenStackOptions(false);
   const screenOptions = useMemo(() => (checkoutInFlight || prompt
@@ -124,6 +135,8 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   // зачем: въезд листа из макета (pw-in) здесь НЕ повторяем — Performance Bible и
   // paywall_navigation_smooth_contract требуют готовый контент в первом кадре модала.
 
+  // зачем (D158): подпись кнопки с ценой — только если цена ВЫБРАННОГО плана реально есть; иначе нейтральное «Оформить Plus».
+  const labelReady = state === 'ready' && (p.selected === 'monthly' ? !!p.monthlyPrice : !!p.yearlyPrice);
   const yearlyPromo = pricesReady ? p.storePromo.yearly : null;
   const monthlyPromo = pricesReady ? p.storePromo.monthly : null;
   const cta = paywallPlusCtaCopy(lang, {
@@ -146,11 +159,12 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
             {showTimeline && yearlyTrialDays
               ? <PaywallPlusTrialTimeline lang={lang} g={g} trialDays={yearlyTrialDays} yearlyPrice={yearlyPromo?.promoPriceString || p.yearlyPrice} />
               : null}
-            {/* зачем (владелец 01.10): цены не пришли — те же заготовки, что при загрузке, без текста об ошибке;
-                кнопка покупки неактивна (док), повтор — тихо в фоне. */}
-            {state === 'loading' || state === 'error' ? <PaywallPlusPlansSkeleton g={g} /> : null}
+            {/* зачем (D158): скелетон — только пока идёт загрузка (потолок 12 с); после потолка — спокойное
+                «Сейчас недоступно» на месте цен. Кнопка покупки активна в обоих случаях, повтор — тихо в фоне. */}
+            {state === 'loading' ? <PaywallPlusPlansSkeleton g={g} /> : null}
+            {state === 'error' ? <PaywallPlusPlansUnavailable lang={lang} g={g} /> : null}
             {state === 'ready' ? (
-              <PaywallPlusPlans lang={lang} g={g} selected={p.selected} onSelect={selectPlan} disabled={checkoutInFlight}
+              <PaywallPlusPlans lang={lang} g={g} selected={p.selected} onSelect={selectPlan} disabled={ctaBusy}
                 yearlyPrice={p.yearlyPrice} yearlyPerMonth={p.yearlyPerMonth} monthlyPrice={p.monthlyPrice}
                 yearlyTrialDays={yearlyTrialDays} monthlyTrialDays={monthlyTrialDays}
                 yearlyPromo={yearlyPromo} monthlyPromo={monthlyPromo} />
@@ -158,8 +172,8 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
             <PaywallPlusDetails lang={lang} g={g} restoring={p.restoring}
               restoreDisabled={checkoutInFlight || state === 'loading'} onRestore={() => { void p.handleRestore(); }} />
           </PaywallPlusScroll>
-          <PaywallPlusDock lang={lang} g={g} state={state} label={cta.label} fine={cta.fine}
-            purchasing={p.purchasing} disabled={p.ctaDisabled} bottomInset={insets.bottom}
+          <PaywallPlusDock lang={lang} g={g} state={state} label={labelReady ? cta.label : pick(lang, COPY.getPlus)} fine={cta.fine}
+            notice={p.tapNotice} purchasing={p.purchasing} disabled={ctaBusy} bottomInset={insets.bottom}
             onPress={() => { void p.handlePurchase(); }} />
         </View>
       )}

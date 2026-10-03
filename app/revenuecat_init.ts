@@ -182,7 +182,39 @@ function isRevenueCatAnonymousId(raw: unknown): boolean {
   return id.startsWith('$RCAnonymousID:') || id.startsWith('$RCA');
 }
 
-export async function syncRevenueCatIdentity(callerIsCurrent?: () => boolean): Promise<boolean> {
+// зачем (D158, M4): Plus-окно бросает по тайм-ауту ожидание init/sync, но сам вызов живёт дальше. Без
+// дедупликации каждый новый тап/повтор запускал бы ещё один Purchases.logIn параллельно брошенному.
+// Параллельные вызовы ОДНОГО аккаунта делят один промис; другой аккаунт (смена поколения) — отдельный.
+let identitySyncInFlight: { key: string; promise: Promise<boolean> } | null = null;
+
+export function syncRevenueCatIdentity(callerIsCurrent?: () => boolean): Promise<boolean> {
+  const token = captureAccountGeneration();
+  const key = `${token.generation}|${token.stableId ?? ''}|${token.phase}`;
+  if (identitySyncInFlight && identitySyncInFlight.key === key) {
+    DebugLogger.info('[RC-IDENTITY]', 'syncRevenueCatIdentity: параллельный вызов присоединён к идущему');
+    return awaitSharedIdentitySync(identitySyncInFlight.promise, callerIsCurrent);
+  }
+  // зачем (D158, M-B): в ОБЩИЙ промис callerIsCurrent НЕ передаём — иначе устаревшая проверка первого
+  // вызывающего (например reload премиума по эпохам) дала бы ложный false оплате Plus. Внутри — только
+  // проверка поколения аккаунта; своё callerIsCurrent каждый проверяет сам после await.
+  const promise = syncRevenueCatIdentityOnce(undefined).finally(() => {
+    if (identitySyncInFlight?.promise === promise) identitySyncInFlight = null;
+  });
+  identitySyncInFlight = { key, promise };
+  return awaitSharedIdentitySync(promise, callerIsCurrent);
+}
+
+async function awaitSharedIdentitySync(shared: Promise<boolean>, callerIsCurrent?: () => boolean): Promise<boolean> {
+  const ok = await shared;
+  if (!ok) return false;
+  if (callerIsCurrent && !callerIsCurrent()) {
+    DebugLogger.info('[RC-IDENTITY]', 'syncRevenueCatIdentity: вызывающий уже не актуален — false только ему');
+    return false;
+  }
+  return true;
+}
+
+async function syncRevenueCatIdentityOnce(callerIsCurrent?: () => boolean): Promise<boolean> {
   const syncAccount = captureAccountGeneration();
   const isCurrent = () => (
     (callerIsCurrent?.() ?? true) && isCurrentAccountGeneration(syncAccount)

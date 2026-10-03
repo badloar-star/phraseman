@@ -31,11 +31,10 @@ type FakeWorld = {
   writes: { sets: any[]; creates: any[] };
 };
 
-// зачем (03.10): журнал сверяет расписку с операцией целиком (isSameOperationReceipt — защита от
-// подмены opId), поэтому «уже проведённая» расписка в фейке — настоящая, из первого прохода, а не { seq }.
-function makeWorld(stars?: Partial<StarsState>, existingReceipts: Readonly<Record<string, unknown>> = {}): FakeWorld {
+function makeWorld(stars?: Partial<StarsState>, existingReceiptIds: string[] = []): FakeWorld {
   const reads = { count: 0 };
   const writes: FakeWorld['writes'] = { sets: [], creates: [] };
+  const receipts = new Set(existingReceiptIds);
   const userRef: any = {
     id: 'u1',
     path: 'users/u1',
@@ -43,11 +42,7 @@ function makeWorld(stars?: Partial<StarsState>, existingReceipts: Readonly<Recor
   };
   const userSnap: any = { ref: userRef, data: () => (stars ? { stars } : {}) };
   const tx: any = {
-    get: async (ref: any) => {
-      reads.count += 1;
-      const receipt = existingReceipts[ref.id];
-      return { exists: receipt !== undefined, data: () => receipt };
-    },
+    get: async (ref: any) => { reads.count += 1; return { exists: receipts.has(ref.id), data: () => ({ seq: 7 }) }; },
     set: (ref: any, data: any) => writes.sets.push({ ref, data }),
     create: (ref: any, data: any) => writes.creates.push({ ref, data }),
   };
@@ -101,16 +96,7 @@ async function run(
   c: StarLedgerCtx = ctx(),
   existing: string[] = [],
 ) {
-  // Расписки «уже проведённых» операций — из реального первого прохода тех же операций.
-  const existingReceipts: Record<string, unknown> = {};
-  if (existing.length > 0) {
-    const first = makeWorld(stars);
-    commitStarOperations(first.tx, await prepareStarOperations(first.tx, {} as any, 'u1', first.userSnap, ops, c));
-    for (const { ref, data } of first.writes.creates) {
-      if (existing.includes(ref.id)) existingReceipts[ref.id] = data;
-    }
-  }
-  const world = makeWorld(stars, existingReceipts);
+  const world = makeWorld(stars, existing);
   const prepared = await prepareStarOperations(world.tx, {} as any, 'u1', world.userSnap, ops, c);
   const result = commitStarOperations(world.tx, prepared);
   return { result, world };

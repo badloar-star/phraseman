@@ -316,9 +316,11 @@ export default function FlashcardsRecallSession() {
       let pendingRecord = prepared.record;
       recallPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
       const reconciled = await reconcileFlashcardTrainingPendingGrant(pendingAccount, pendingScope);
+      console.log('[FC-RECALL-GATE] reconcile:done', JSON.stringify({ status: reconciled.status }));
+      // зачем (баг «Блиц висит на каркасе», 03.10 — тот же дефект здесь): 'missing' сразу после prepare
+      // давал немой return и вечный каркас. Уводим в catch → существующий fail-open (локальный старт).
       if (reconciled.status === 'found') pendingRecord = reconciled.record;
-      else if (reconciled.status !== 'missing') throw new Error(`pending_grant_reconcile_${reconciled.status}`);
-      else return;
+      else throw new Error(`pending_grant_reconcile_${reconciled.status}`);
       recallPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
       const restored = pendingRecord.manifest.payload as unknown as {
         round: DeckCard[];

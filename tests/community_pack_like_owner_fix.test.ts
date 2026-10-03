@@ -33,6 +33,7 @@ import {
   toggleCommunityPackLike,
 } from '../app/community_packs/communityPackActions';
 import { loadCommunityOwnedPackIds } from '../app/community_packs/communityOwnedStorage';
+import { __resetAccountGenerationForTests, beginAccountGeneration } from '../app/account_generation';
 import { loadLikedCommunityPackIds } from '../app/community_packs/packSocialStorage';
 import { mergeServerCounts, type PackSocialSnapshot } from '../app/community_packs/packSocial';
 import { setCommunityPackLikeRemote } from '../app/community_packs/packSocialFirestore';
@@ -65,6 +66,10 @@ const ugcPack = (over: Partial<FlashcardMarketPack> = {}): FlashcardMarketPack =
 
 beforeEach(() => {
   asyncStorageMock.__reset();
+  // зачем (03.10, законный сдвиг 728ccc825 — Account V2 6G): владение наборами читается в рамках
+  // поколения аккаунта; без начатого аккаунта чтение честно отдаёт {ids: [], status: 'stale'}.
+  __resetAccountGenerationForTests();
+  beginAccountGeneration('stable-user-1');
   likeRemote.mockClear();
   likeRemote.mockImplementation(async () => ({ changed: true, delta: 1 }));
 });

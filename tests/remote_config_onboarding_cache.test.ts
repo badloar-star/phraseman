@@ -9,33 +9,24 @@ describe('onboarding remote config offline cache', () => {
     await AsyncStorage.clear();
   });
 
-  it('applies the last valid cached onboarding route before network access', async () => {
-    // зачем: с меткой каталога список читается буквально — тест сторожит именно
-    // кэш, а не default-on логику новых шагов (она проверяется в onboarding_flow.test).
+  // зачем (03.10): в 2.0 сервер больше не управляет маршрутом онбординга — applyRemoteConfigSnapshot
+  // пропускает только синхронизацию, обновления, видео, промо/оплату и премиум («All other product
+  // decisions stay local even if legacy keys are still present», снимок efe19ae9d). Сторож держит это
+  // правило: сохранённый старым документом список (с меткой каталога или без) маршрут не меняет.
+  it('ignores a cached server onboarding list with the catalog mark (route is a local decision)', async () => {
     await AsyncStorage.setItem('remote_config_cache_v1', JSON.stringify({
       texts: { onboarding_enabled_steps_v1: JSON.stringify(['welcome', 'name', ONBOARDING_STEPS_CATALOG_MARK]) },
     }));
     await loadRemoteConfig();
-    expect(getEnabledOnboardingSteps()).toEqual(['welcome', 'name']);
+    expect(getEnabledOnboardingSteps()).toEqual(ONBOARDING_STEP_CATALOG.map(({ id }) => id));
   });
 
-  it('keeps post-release screens on for a legacy cached list without the catalog mark', async () => {
-    // зачем: старый сохранённый список (до появления новых экранов) не должен
-    // молча выключать их на проде — иначе после релиза у всех пропали бы
-    // сейф, график, «помоги улучшить» и напоминание о пробном.
+  it('ignores a legacy cached server onboarding list without the catalog mark', async () => {
     await AsyncStorage.setItem('remote_config_cache_v1', JSON.stringify({
       texts: { onboarding_enabled_steps_v1: '["welcome","name"]' },
     }));
     await loadRemoteConfig();
-    const enabled = getEnabledOnboardingSteps();
-    expect(enabled).toContain('privacy');
-    expect(enabled).toContain('promise');
-    expect(enabled).toContain('improve');
-    expect(enabled).toContain('trialReminder');
-    expect(enabled).toContain('niceToMeet');
-    expect(enabled).toContain('letsBuild');
-    expect(enabled).not.toContain('source');
-    expect(enabled).not.toContain('onboardingPaywall');
+    expect(getEnabledOnboardingSteps()).toEqual(ONBOARDING_STEP_CATALOG.map(({ id }) => id));
   });
 
   it('falls back to the full route for a damaged cached onboarding value', async () => {

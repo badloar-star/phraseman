@@ -11771,6 +11771,929 @@
           }
         }
       ]
+    },
+    {
+      "lessonId": "de_l14",
+      "lessonOrdinal": 14,
+      "grammarBoundary": {
+        "allowedConstructIds": [
+          "de_gc_nicht_position_focus_v1",
+          "de_gc_doch_response_contrast_v1",
+          "de_gc_nein_nicht_contrast_v1",
+          "de_gc_yes_no_verberst_v1",
+          "de_gc_kein_nominal_negation_v1",
+          "de_gc_predicative_adjective_v1",
+          "de_gc_staged_nominal_group_agreement_v1"
+        ],
+        "prohibitedConstructIds": [
+          "de_gc_controlled_partizip_ii_v1",
+          "de_gc_perfekt_haben_classes_v1"
+        ],
+        "noExpansion": "The lesson permits only bounded nicht placement against one explicit familiar focus and doch only as a response contradicting an explicit negative proposition inside known clause and question frames. Property descriptions remain inside the established predicative and definite-article agreement models. No free information-structure theory, generic substitution between ja and doch, doch as a modal particle or connective, universal nicht position, new case frame, Partizip II, Perfekt, subordinate clause, comparative or superlative, or future grammar is allowed."
+      },
+      "chapters": [
+        {
+          "id": "de_l14_c01",
+          "ordinal": 1,
+          "lessonOutcomeId": "de_l14_ch01",
+          "lessonOutcome": "recognise the selected focus of nicht in a known clause",
+          "packetIds": [
+            "de_l14_c01_s01",
+            "de_l14_c01_s02",
+            "de_l14_c01_s03",
+            "de_l14_c01_s04",
+            "de_l14_c01_s05",
+            "de_l14_c01_s06",
+            "de_l14_c01_s07",
+            "de_l14_c01_s08"
+          ],
+          "allowedConstructIds": [
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1",
+            "de_gc_nein_nicht_contrast_v1",
+            "de_gc_yes_no_verberst_v1",
+            "de_gc_kein_nominal_negation_v1",
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1"
+          ],
+          "situation": {
+            "setting": "hotel-booking-phone",
+            "participants": "guest-and-reservation-agent",
+            "goal": "recognize-that-nicht-selects-the-quiet-room-option-and-doch-reverses-the-explicit-negative-availability-statement",
+            "contextSignature": "hotel-room-focus-doch-introduction"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Ich buche nicht das ruhige Zimmer. Ich buche das helle Zimmer. Das helle Zimmer ist nicht frei. Doch, das helle Zimmer ist frei.",
+            "exit": "Ich buche nicht das ruhige Zimmer. Ich buche das helle Zimmer. Das helle Zimmer ist nicht frei. Doch, das helle Zimmer ist frei.",
+            "independentEvidenceByPacketId": "de_l14_c01_s08"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_nicht_position_focus_v1",
+              "stage": "introduction",
+              "packetId": "de_l14_c01_s01"
+            },
+            {
+              "constructId": "de_gc_doch_response_contrast_v1",
+              "stage": "introduction",
+              "packetId": "de_l14_c01_s02"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l14_c01_s03", "de_l14_c01_s04"],
+          "checkpoint": {
+            "packetId": "de_l14_c01_s08",
+            "integratedConstructIds": [
+              "de_gc_nicht_position_focus_v1",
+              "de_gc_doch_response_contrast_v1",
+              "de_gc_nein_nicht_contrast_v1",
+              "de_gc_yes_no_verberst_v1",
+              "de_gc_kein_nominal_negation_v1",
+              "de_gc_predicative_adjective_v1",
+              "de_gc_staged_nominal_group_agreement_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l14_c01_buchen_v1",
+                "semanticIdentity": "buchen|reserve one specified accommodation option",
+                "lemmaOrExpression": "buchen",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "buchen",
+                  "valencyFrame": "booking frame selecting one explicit accusative accommodation option",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "reserve one specified accommodation option",
+                "communicativeUse": "Ich buche nicht das ruhige Zimmer. Ich buche das helle Zimmer. Das helle Zimmer ist nicht frei. Doch, das helle Zimmer ist frei.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l14_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l14_ch01",
+                  "checkpointPacketId": "de_l14_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1",
+                    "de_gc_nein_nicht_contrast_v1",
+                    "de_gc_yes_no_verberst_v1",
+                    "de_gc_kein_nominal_negation_v1",
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "identify-the-rejected-room-option-and-the-negative-assumption-reversed-by-doch",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l14_c01_s08"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "guesthouse-booking-desk",
+              "participants": "guest-and-guesthouse-host",
+              "goal": "identify-the-rejected-room-option-and-the-negative-assumption-reversed-by-doch",
+              "contextSignature": "guesthouse-room-focus-recognition-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l13_c06", "de_l13_c07"],
+            "targetsFutureChapterIds": ["de_l14_c02"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l15_c07_s51"
+            }
+          }
+        },
+        {
+          "id": "de_l14_c02",
+          "ordinal": 2,
+          "lessonOutcomeId": "de_l14_ch02",
+          "lessonOutcome": "place nicht for one bounded contrast",
+          "packetIds": [
+            "de_l14_c02_s09",
+            "de_l14_c02_s10",
+            "de_l14_c02_s11",
+            "de_l14_c02_s12",
+            "de_l14_c02_s13",
+            "de_l14_c02_s14",
+            "de_l14_c02_s15",
+            "de_l14_c02_s16"
+          ],
+          "allowedConstructIds": [
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1",
+            "de_gc_nein_nicht_contrast_v1",
+            "de_gc_yes_no_verberst_v1",
+            "de_gc_kein_nominal_negation_v1",
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1"
+          ],
+          "situation": {
+            "setting": "conference-hotel-room-selection",
+            "participants": "conference-attendee-and-booking-clerk",
+            "goal": "place-nicht-before-the-explicitly-rejected-doppelzimmer-option",
+            "contextSignature": "doppelzimmer-bounded-nicht-placement"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Ich buche nicht das Doppelzimmer. Ich buche das ruhige Zimmer.",
+            "exit": "Ich buche nicht das Doppelzimmer. Ich buche das ruhige Zimmer.",
+            "independentEvidenceByPacketId": "de_l14_c02_s16"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_nicht_position_focus_v1",
+              "stage": "guided",
+              "packetId": "de_l14_c02_s09"
+            },
+            {
+              "constructId": "de_gc_doch_response_contrast_v1",
+              "stage": "guided",
+              "packetId": "de_l14_c02_s10"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l14_c02_s11", "de_l14_c02_s12"],
+          "checkpoint": {
+            "packetId": "de_l14_c02_s16",
+            "integratedConstructIds": [
+              "de_gc_nicht_position_focus_v1",
+              "de_gc_doch_response_contrast_v1",
+              "de_gc_nein_nicht_contrast_v1",
+              "de_gc_yes_no_verberst_v1",
+              "de_gc_kein_nominal_negation_v1",
+              "de_gc_predicative_adjective_v1",
+              "de_gc_staged_nominal_group_agreement_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l14_c02_doppelzimmer_v1",
+                "semanticIdentity": "doppelzimmer|hotel room intended for two occupants",
+                "lemmaOrExpression": "Doppelzimmer",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Doppelzimmer",
+                  "plural": "Doppelzimmer"
+                },
+                "nounPackageIdentity": "das|doppelzimmer|doppelzimmer",
+                "verbPackage": null,
+                "senseGloss": "hotel room intended for two occupants",
+                "communicativeUse": "Ich buche nicht das Doppelzimmer. Ich buche das ruhige Zimmer.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l14_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l14_ch02",
+                  "checkpointPacketId": "de_l14_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1",
+                    "de_gc_nein_nicht_contrast_v1",
+                    "de_gc_yes_no_verberst_v1",
+                    "de_gc_kein_nominal_negation_v1",
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "training-centre-accommodation-booking",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l14_c02_s16"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "training-centre-accommodation-booking",
+              "participants": "course-participant-and-reservation-clerk",
+              "goal": "independently-reject-the-doppelzimmer-and-select-the-familiar-ruhige-zimmer",
+              "contextSignature": "training-centre-doppelzimmer-focus-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l13_c07", "de_l14_c01"],
+            "targetsFutureChapterIds": ["de_l14_c03"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l15_c07_s52"
+            }
+          }
+        },
+        {
+          "id": "de_l14_c03",
+          "ordinal": 3,
+          "lessonOutcomeId": "de_l14_ch03",
+          "lessonOutcome": "recognise a negative proposition that licenses doch",
+          "packetIds": [
+            "de_l14_c03_s17",
+            "de_l14_c03_s18",
+            "de_l14_c03_s19",
+            "de_l14_c03_s20",
+            "de_l14_c03_s21",
+            "de_l14_c03_s22",
+            "de_l14_c03_s23",
+            "de_l14_c03_s24"
+          ],
+          "allowedConstructIds": [
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1",
+            "de_gc_nein_nicht_contrast_v1",
+            "de_gc_yes_no_verberst_v1",
+            "de_gc_kein_nominal_negation_v1",
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1"
+          ],
+          "situation": {
+            "setting": "hotel-breakfast-inclusion-check",
+            "participants": "guest-and-front-desk-agent",
+            "goal": "recognize-the-negative-breakfast-inclusion-proposition-that-licenses-doch",
+            "contextSignature": "breakfast-negative-proposition-recognition"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Ist das Frühstück nicht inklusive? Doch, das Frühstück ist inklusive.",
+            "exit": "Ist das Frühstück nicht inklusive? Doch, das Frühstück ist inklusive.",
+            "independentEvidenceByPacketId": "de_l14_c03_s24"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_nicht_position_focus_v1",
+              "stage": "retrieval",
+              "packetId": "de_l14_c03_s17"
+            },
+            {
+              "constructId": "de_gc_doch_response_contrast_v1",
+              "stage": "retrieval",
+              "packetId": "de_l14_c03_s18"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l14_c03_s19", "de_l14_c03_s20"],
+          "checkpoint": {
+            "packetId": "de_l14_c03_s24",
+            "integratedConstructIds": [
+              "de_gc_nicht_position_focus_v1",
+              "de_gc_doch_response_contrast_v1",
+              "de_gc_nein_nicht_contrast_v1",
+              "de_gc_yes_no_verberst_v1",
+              "de_gc_kein_nominal_negation_v1",
+              "de_gc_predicative_adjective_v1",
+              "de_gc_staged_nominal_group_agreement_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l14_c03_fruehstueck_v1",
+                "semanticIdentity": "fruhstuck|morning meal included or excluded in an accommodation booking",
+                "lemmaOrExpression": "Frühstück",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Frühstück",
+                  "plural": "Frühstücke"
+                },
+                "nounPackageIdentity": "das|fruhstuck|fruhstucke",
+                "verbPackage": null,
+                "senseGloss": "morning meal included or excluded in an accommodation booking",
+                "communicativeUse": "Ist das Frühstück nicht inklusive? Doch, das Frühstück ist inklusive.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l14_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l14_ch03",
+                  "checkpointPacketId": "de_l14_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1",
+                    "de_gc_nein_nicht_contrast_v1",
+                    "de_gc_yes_no_verberst_v1",
+                    "de_gc_kein_nominal_negation_v1",
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "guesthouse-breakfast-booking-check",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l14_c03_s24"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l14_c03_inklusive_v1",
+                "semanticIdentity": "inklusive|included in the stated booking price or package",
+                "lemmaOrExpression": "inklusive",
+                "partOfSpeech": "adjective",
+                "lexicalKind": "ADJECTIVE_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "senseGloss": "included in the stated booking price or package",
+                "communicativeUse": "Ist das Frühstück nicht inklusive? Doch, das Frühstück ist inklusive.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l14_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l14_ch03",
+                  "checkpointPacketId": "de_l14_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1",
+                    "de_gc_nein_nicht_contrast_v1",
+                    "de_gc_yes_no_verberst_v1",
+                    "de_gc_kein_nominal_negation_v1",
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1"
+                  ],
+                  "utilityRole": "quality",
+                  "situationFacet": "goal",
+                  "facetValue": "identify-the-negative-breakfast-assumption-and-match-the-doch-response",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l14_c03_s24"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "guesthouse-breakfast-booking-check",
+              "participants": "guest-and-guesthouse-host",
+              "goal": "identify-the-negative-breakfast-assumption-and-match-the-doch-response",
+              "contextSignature": "guesthouse-breakfast-doch-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l14_c01", "de_l14_c02"],
+            "targetsFutureChapterIds": ["de_l14_c04"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l15_c07_s53"
+            }
+          }
+        },
+        {
+          "id": "de_l14_c04",
+          "ordinal": 4,
+          "lessonOutcomeId": "de_l14_ch04",
+          "lessonOutcome": "contradict a negative assumption with doch",
+          "packetIds": [
+            "de_l14_c04_s25",
+            "de_l14_c04_s26",
+            "de_l14_c04_s27",
+            "de_l14_c04_s28",
+            "de_l14_c04_s29",
+            "de_l14_c04_s30",
+            "de_l14_c04_s31",
+            "de_l14_c04_s32"
+          ],
+          "allowedConstructIds": [
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1",
+            "de_gc_nein_nicht_contrast_v1",
+            "de_gc_yes_no_verberst_v1",
+            "de_gc_kein_nominal_negation_v1",
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1"
+          ],
+          "situation": {
+            "setting": "hotel-parking-availability-call",
+            "participants": "guest-and-reservation-agent",
+            "goal": "contradict-negative-parking-availability-assumption-with-doch",
+            "contextSignature": "hotel-parking-doch-production"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Ist der Parkplatz nicht frei? Doch, der Parkplatz ist frei.",
+            "exit": "Ist der Parkplatz nicht frei? Doch, der Parkplatz ist frei.",
+            "independentEvidenceByPacketId": "de_l14_c04_s32"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_nicht_position_focus_v1",
+              "stage": "production",
+              "packetId": "de_l14_c04_s25"
+            },
+            {
+              "constructId": "de_gc_doch_response_contrast_v1",
+              "stage": "production",
+              "packetId": "de_l14_c04_s26"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l14_c04_s27", "de_l14_c04_s28"],
+          "checkpoint": {
+            "packetId": "de_l14_c04_s32",
+            "integratedConstructIds": [
+              "de_gc_nicht_position_focus_v1",
+              "de_gc_doch_response_contrast_v1",
+              "de_gc_nein_nicht_contrast_v1",
+              "de_gc_yes_no_verberst_v1",
+              "de_gc_kein_nominal_negation_v1",
+              "de_gc_predicative_adjective_v1",
+              "de_gc_staged_nominal_group_agreement_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l14_c04_parkplatz_v1",
+                "semanticIdentity": "parkplatz|designated place for parking one vehicle",
+                "lemmaOrExpression": "Parkplatz",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Parkplatz",
+                  "plural": "Parkplätze"
+                },
+                "nounPackageIdentity": "der|parkplatz|parkplatze",
+                "verbPackage": null,
+                "senseGloss": "designated place for parking one vehicle",
+                "communicativeUse": "Ist der Parkplatz nicht frei? Doch, der Parkplatz ist frei.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l14_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l14_ch04",
+                  "checkpointPacketId": "de_l14_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1",
+                    "de_gc_nein_nicht_contrast_v1",
+                    "de_gc_yes_no_verberst_v1",
+                    "de_gc_kein_nominal_negation_v1",
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "conference-hotel-parking-desk",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l14_c04_s32"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "conference-hotel-parking-desk",
+              "participants": "conference-attendee-and-booking-clerk",
+              "goal": "independently-answer-the-negative-parkplatz-availability-question-with-doch-and-a-positive-clause",
+              "contextSignature": "conference-parking-doch-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l14_c02", "de_l14_c03"],
+            "targetsFutureChapterIds": ["de_l14_c05"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l15_c07_s54"
+            }
+          }
+        },
+        {
+          "id": "de_l14_c05",
+          "ordinal": 5,
+          "lessonOutcomeId": "de_l14_ch05",
+          "lessonOutcome": "clarify the corrected detail in a service exchange",
+          "packetIds": [
+            "de_l14_c05_s33",
+            "de_l14_c05_s34",
+            "de_l14_c05_s35",
+            "de_l14_c05_s36",
+            "de_l14_c05_s37",
+            "de_l14_c05_s38",
+            "de_l14_c05_s39",
+            "de_l14_c05_s40"
+          ],
+          "allowedConstructIds": [
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1",
+            "de_gc_nein_nicht_contrast_v1",
+            "de_gc_yes_no_verberst_v1",
+            "de_gc_kein_nominal_negation_v1",
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1"
+          ],
+          "situation": {
+            "setting": "hotel-room-rate-correction",
+            "participants": "guest-and-rate-agent",
+            "goal": "clarify-the-chosen-room-quality-and-correct-the-rejected-option-and-negative-availability-assumption",
+            "contextSignature": "hotel-gunstig-focus-doch-integration"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Das Zimmer ist günstig. Ich buche nicht das ruhige Zimmer. Ich buche das günstige Zimmer. Ist das günstige Zimmer nicht frei? Doch, das günstige Zimmer ist frei.",
+            "exit": "Das Zimmer ist günstig. Ich buche nicht das ruhige Zimmer. Ich buche das günstige Zimmer. Ist das günstige Zimmer nicht frei? Doch, das günstige Zimmer ist frei.",
+            "independentEvidenceByPacketId": "de_l14_c05_s40"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l14_c05_s35", "de_l14_c05_s36"],
+          "checkpoint": {
+            "packetId": "de_l14_c05_s40",
+            "integratedConstructIds": [
+              "de_gc_nicht_position_focus_v1",
+              "de_gc_doch_response_contrast_v1",
+              "de_gc_nein_nicht_contrast_v1",
+              "de_gc_yes_no_verberst_v1",
+              "de_gc_kein_nominal_negation_v1",
+              "de_gc_predicative_adjective_v1",
+              "de_gc_staged_nominal_group_agreement_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l14_c05_gunstig_v1",
+                "semanticIdentity": "gunstig|reasonably priced for the stated booking",
+                "lemmaOrExpression": "günstig",
+                "partOfSpeech": "adjective",
+                "lexicalKind": "ADJECTIVE_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "senseGloss": "reasonably priced for the stated booking",
+                "communicativeUse": "Das Zimmer ist günstig. Ich buche nicht das ruhige Zimmer. Ich buche das günstige Zimmer. Ist das günstige Zimmer nicht frei? Doch, das günstige Zimmer ist frei.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l14_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l14_ch05",
+                  "checkpointPacketId": "de_l14_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1",
+                    "de_gc_nein_nicht_contrast_v1",
+                    "de_gc_yes_no_verberst_v1",
+                    "de_gc_kein_nominal_negation_v1",
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1"
+                  ],
+                  "utilityRole": "quality",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-state-gunstig-select-das-gunstige-zimmer-and-reverse-the-negative-availability-assumption",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l14_c05_s40"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "family-run-hotel-rate-desk",
+              "participants": "guest-and-hotel-host",
+              "goal": "independently-state-gunstig-select-das-gunstige-zimmer-and-reverse-the-negative-availability-assumption",
+              "contextSignature": "family-hotel-gunstig-correction-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l14_c03", "de_l14_c04"],
+            "targetsFutureChapterIds": ["de_l14_c06"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l15_c07_s55"
+            }
+          }
+        },
+        {
+          "id": "de_l14_c06",
+          "ordinal": 6,
+          "lessonOutcomeId": "de_l14_ch06",
+          "lessonOutcome": "repair scope or response-particle confusion",
+          "packetIds": [
+            "de_l14_c06_s41",
+            "de_l14_c06_s42",
+            "de_l14_c06_s43",
+            "de_l14_c06_s44",
+            "de_l14_c06_s45",
+            "de_l14_c06_s46",
+            "de_l14_c06_s47",
+            "de_l14_c06_s48"
+          ],
+          "allowedConstructIds": [
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1",
+            "de_gc_nein_nicht_contrast_v1",
+            "de_gc_yes_no_verberst_v1",
+            "de_gc_kein_nominal_negation_v1",
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1"
+          ],
+          "situation": {
+            "setting": "booking-confirmation-correction-desk",
+            "participants": "guest-and-booking-editor",
+            "goal": "repair-explicit-object-focus-nicht-placement-and-nein-doch-response-confusion",
+            "contextSignature": "booking-focus-particle-repair"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Das ist falsch. [1] Ich nicht buche das ruhige Zimmer. → Ich buche nicht das ruhige Zimmer. [2] Ist das Zimmer nicht frei? Nein, das Zimmer ist frei. → Ist das Zimmer nicht frei? Doch, das Zimmer ist frei.",
+            "exit": "Das ist falsch. [1] Ich nicht buche das ruhige Zimmer. → Ich buche nicht das ruhige Zimmer. [2] Ist das Zimmer nicht frei? Nein, das Zimmer ist frei. → Ist das Zimmer nicht frei? Doch, das Zimmer ist frei.",
+            "independentEvidenceByPacketId": "de_l14_c06_s48"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_nicht_position_focus_v1",
+              "stage": "transfer",
+              "packetId": "de_l14_c06_s41"
+            },
+            {
+              "constructId": "de_gc_doch_response_contrast_v1",
+              "stage": "transfer",
+              "packetId": "de_l14_c06_s42"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l14_c06_s43", "de_l14_c06_s44"],
+          "checkpoint": {
+            "packetId": "de_l14_c06_s48",
+            "integratedConstructIds": [
+              "de_gc_nicht_position_focus_v1",
+              "de_gc_doch_response_contrast_v1",
+              "de_gc_nein_nicht_contrast_v1",
+              "de_gc_yes_no_verberst_v1",
+              "de_gc_kein_nominal_negation_v1",
+              "de_gc_predicative_adjective_v1",
+              "de_gc_staged_nominal_group_agreement_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l14_c06_falsch_v1",
+                "semanticIdentity": "falsch|incorrect in the booking detail under repair",
+                "lemmaOrExpression": "falsch",
+                "partOfSpeech": "adjective",
+                "lexicalKind": "ADJECTIVE_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "senseGloss": "incorrect in the booking detail under repair",
+                "communicativeUse": "Das ist falsch. [1] Ich nicht buche das ruhige Zimmer. → Ich buche nicht das ruhige Zimmer. [2] Ist das Zimmer nicht frei? Nein, das Zimmer ist frei. → Ist das Zimmer nicht frei? Doch, das Zimmer ist frei.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l14_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l14_ch06",
+                  "checkpointPacketId": "de_l14_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1",
+                    "de_gc_nein_nicht_contrast_v1",
+                    "de_gc_yes_no_verberst_v1",
+                    "de_gc_kein_nominal_negation_v1",
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "repair-both-focus-and-response-errors-without-new-grammar",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l14_c06_s48"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "hostel-booking-quality-check",
+              "participants": "guest-and-hostel-clerk",
+              "goal": "repair-both-focus-and-response-errors-without-new-grammar",
+              "contextSignature": "hostel-booking-dual-repair-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l14_c04", "de_l14_c05"],
+            "targetsFutureChapterIds": ["de_l14_c07"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l15_c07_s56"
+            }
+          }
+        },
+        {
+          "id": "de_l14_c07",
+          "ordinal": 7,
+          "lessonOutcomeId": "de_l14_ch07",
+          "lessonOutcome": "transfer correction and confirmation to a new booking problem",
+          "packetIds": [
+            "de_l14_c07_s49",
+            "de_l14_c07_s50",
+            "de_l14_c07_s51",
+            "de_l14_c07_s52",
+            "de_l14_c07_s53",
+            "de_l14_c07_s54",
+            "de_l14_c07_s55",
+            "de_l14_c07_s56"
+          ],
+          "allowedConstructIds": [
+            "de_gc_nicht_position_focus_v1",
+            "de_gc_doch_response_contrast_v1",
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1"
+          ],
+          "situation": {
+            "setting": "holiday-apartment-booking-call",
+            "participants": "traveller-and-tourism-office-agent",
+            "goal": "identify-the-wrong-quiet-apartment-assumption-and-confirm-the-central-apartment",
+            "contextSignature": "holiday-apartment-focus-doch-final-transfer"
+          },
+          "supportFading": {
+            "entryLevel": 2,
+            "exitLevel": 0,
+            "entry": "Die Ferienwohnung ist zentral. Ich buche nicht die ruhige Ferienwohnung. Ich buche die zentrale Ferienwohnung. Ist die zentrale Ferienwohnung nicht frei? Doch, die zentrale Ferienwohnung ist frei.",
+            "exit": "Die Ferienwohnung ist zentral. Ich buche nicht die ruhige Ferienwohnung. Ich buche die zentrale Ferienwohnung. Ist die zentrale Ferienwohnung nicht frei? Doch, die zentrale Ferienwohnung ist frei.",
+            "independentEvidenceByPacketId": "de_l14_c07_s56"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_predicative_adjective_v1",
+              "stage": "delayed",
+              "packetId": "de_l14_c07_s49"
+            },
+            {
+              "constructId": "de_gc_staged_nominal_group_agreement_v1",
+              "stage": "delayed",
+              "packetId": "de_l14_c07_s50"
+            }
+          ],
+          "chapterEvidencePacketIds": [
+            "de_l14_c07_s51",
+            "de_l14_c07_s52",
+            "de_l14_c07_s53",
+            "de_l14_c07_s54",
+            "de_l14_c07_s55",
+            "de_l14_c07_s56"
+          ],
+          "checkpoint": {
+            "packetId": "de_l14_c07_s56",
+            "integratedConstructIds": [
+              "de_gc_nicht_position_focus_v1",
+              "de_gc_doch_response_contrast_v1",
+              "de_gc_predicative_adjective_v1",
+              "de_gc_staged_nominal_group_agreement_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l14_c07_ferienwohnung_v1",
+                "semanticIdentity": "ferienwohnung|self-contained holiday accommodation offered for booking",
+                "lemmaOrExpression": "Ferienwohnung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Ferienwohnung",
+                  "plural": "Ferienwohnungen"
+                },
+                "nounPackageIdentity": "die|ferienwohnung|ferienwohnungen",
+                "verbPackage": null,
+                "senseGloss": "self-contained holiday accommodation offered for booking",
+                "communicativeUse": "Die Ferienwohnung ist zentral. Ich buche nicht die ruhige Ferienwohnung. Ich buche die zentrale Ferienwohnung. Ist die zentrale Ferienwohnung nicht frei? Doch, die zentrale Ferienwohnung ist frei.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l14_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l14_ch07",
+                  "checkpointPacketId": "de_l14_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1",
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "regional-tourism-office-apartment-rebooking",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l14_c07_s56"]
+                }
+              },
+              {
+                "id": "de_lex_plan_l14_c07_zentral_v1",
+                "semanticIdentity": "zentral|located near the centre for the stated stay",
+                "lemmaOrExpression": "zentral",
+                "partOfSpeech": "adjective",
+                "lexicalKind": "ADJECTIVE_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "senseGloss": "located near the centre for the stated stay",
+                "communicativeUse": "Die Ferienwohnung ist zentral. Ich buche nicht die ruhige Ferienwohnung. Ich buche die zentrale Ferienwohnung. Ist die zentrale Ferienwohnung nicht frei? Doch, die zentrale Ferienwohnung ist frei.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l14_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l14_ch07",
+                  "checkpointPacketId": "de_l14_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_nicht_position_focus_v1",
+                    "de_gc_doch_response_contrast_v1",
+                    "de_gc_predicative_adjective_v1",
+                    "de_gc_staged_nominal_group_agreement_v1"
+                  ],
+                  "utilityRole": "transfer",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-correct-the-assumed-apartment-choice-and-confirm-the-central-option-is-free",
+                  "necessityClass": "TRANSFER_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l14_c07_s56"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "regional-tourism-office-apartment-rebooking",
+              "participants": "visitor-and-regional-booking-agent",
+              "goal": "independently-correct-the-assumed-apartment-choice-and-confirm-the-central-option-is-free",
+              "contextSignature": "regional-apartment-correction-final"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l14_c05", "de_l14_c06"],
+            "targetsFutureChapterIds": ["de_l15_c01"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l15_c07_s55"
+            }
+          }
+        }
+      ]
     }
   ]
 }

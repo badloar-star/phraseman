@@ -21032,3 +21032,56 @@ instructions and materialize one lesson only: its seven chapters and exact
 `de_l14_c01_s01..de_l14_c07_s56` identities. Do not start L15 or any
 learner-facing work before fresh exact-spec and semantic/adversarial reviews
 close L14.
+
+### 2026-10-03 — German Learning V2 Task 5 progress: L14 closed
+
+Task 5 is now 14/32 lessons: `de_l01` through `de_l14`, 98/224 chapters and
+784/1792 exact packet identities. L14 began from preauthor guardian receipt
+`3EA6F3E3ECABC5E9705D334308B640D4F3A982066566975DB5D3948A47CCE59A`
+and exact contract
+`57305A7D083DE3286827BA594915A8EC89D188095EEB6B1A2AB47235FFE9CE78`.
+Guardian HOLDs `B84DFD…` and `CF6606…` rejected wording and lexical-ID drift;
+the exact contract was restored, including authoritative
+`de_lex_plan_l14_c05_gunstig_v1`. The final guardian SHA-256 is
+`94BD7784C0CFF703C49314F09AC390B11A586265D788170F24E686981C0D146D`.
+
+L14 keeps `nicht` bounded to one explicit familiar focus and permits `doch`
+only as a response contradicting an explicit negative proposition inside
+known clause and question frames. Property descriptions remain inside the
+established predicative and definite-article agreement models; the lesson
+does not admit free information-structure theory, generic `ja`/`doch`
+substitution, modal or connective `doch`, a universal `nicht` position, new
+case frames, Partizip II, Perfekt, subordinate clauses, comparison or future
+grammar.
+
+C06 repairs exactly two errors in a booking confirmation: `Ich nicht buche
+das ruhige Zimmer. → Ich buche nicht das ruhige Zimmer.` and `Ist das Zimmer
+nicht frei? Nein, das Zimmer ist frei. → Ist das Zimmer nicht frei? Doch, das
+Zimmer ist frei.` C07 transfers the bounded contrast to a Ferienwohnung
+choice: the quiet apartment is rejected, the central apartment is selected,
+and `Doch, die zentrale Ferienwohnung ist frei.` reverses the explicit
+negative availability assumption.
+
+Fresh final exact-spec and semantic/adversarial reviews both PASSed on the
+final bytes with P0/P1/P2 = 0. Deterministic evidence: research authority
+PASS 53 claims; grammar graph PASS 48 constructs / 89 edges / 18 branches;
+Task 4 PASS 32 lessons / 224 outcomes / 32 finals / 48 constructs; L14 PASS 7
+chapters / 56 packet IDs; prefix 14 PASS 98 chapters / 784 packet IDs;
+recenter PASS 30/30; Prettier PASS 2/2; scoped ESLint and both working-tree
+and staged-equivalent `git diff --check` PASS. The unscoped/default Task 5
+gate remains in its expected HOLD state at 14/32 lessons and 98/224 chapters.
+
+Final chapter blueprint SHA-256 is
+`97FBA02668C1E98A5219C1332E8A97FF5CB5049F784FBF08A2BE04D2372800D3`;
+final chapter gate SHA-256 is
+`266BDCAF8D036F56DC52012B9616ED8F4929CBEBE18B7EACD59016BD7F9418E5`.
+No German learner, session, release or mockup file was edited by the L14
+slice; no deploy or publish occurred.
+
+Task 6/7, exact learner packets, RU+UK learner-facing authoring, audio, release
+and the German mockup remain HOLD. Next exact task: obtain a fresh
+content-addressed guardian for `de_l15`, reread the current Codex/factory
+instructions and materialize one lesson only: its seven chapters and exact
+`de_l15_c01_s01..de_l15_c07_s56` identities. Do not start L16 or any
+learner-facing work before fresh exact-spec and semantic/adversarial reviews
+close L15.

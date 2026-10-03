@@ -2950,6 +2950,662 @@ function validateL13SemanticContract(raw: R, plan: Boundary): void {
   }
 }
 
+const L14_ALLOWED = [
+  "de_gc_nicht_position_focus_v1",
+  "de_gc_doch_response_contrast_v1",
+  "de_gc_nein_nicht_contrast_v1",
+  "de_gc_yes_no_verberst_v1",
+  "de_gc_kein_nominal_negation_v1",
+  "de_gc_predicative_adjective_v1",
+  "de_gc_staged_nominal_group_agreement_v1",
+] as const;
+const L14_FINAL_REQUIRED = [
+  L14_ALLOWED[0],
+  L14_ALLOWED[1],
+  L14_ALLOWED[5],
+  L14_ALLOWED[6],
+] as const;
+const L14_PROHIBITED = [
+  "de_gc_controlled_partizip_ii_v1",
+  "de_gc_perfekt_haben_classes_v1",
+] as const;
+const L14_NO_EXPANSION =
+  "The lesson permits only bounded nicht placement against one explicit familiar focus and doch only as a response contradicting an explicit negative proposition inside known clause and question frames. Property descriptions remain inside the established predicative and definite-article agreement models. No free information-structure theory, generic substitution between ja and doch, doch as a modal particle or connective, universal nicht position, new case frame, Partizip II, Perfekt, subordinate clause, comparative or superlative, or future grammar is allowed.";
+const L14_C06_REPAIR_ITEMS = [
+  "Ich nicht buche das ruhige Zimmer. → Ich buche nicht das ruhige Zimmer.",
+  "Ist das Zimmer nicht frei? Nein, das Zimmer ist frei. → Ist das Zimmer nicht frei? Doch, das Zimmer ist frei.",
+] as const;
+const L14_C06_MODEL = `Das ist falsch. ${L14_C06_REPAIR_ITEMS.map(
+  (item, index) => `[${index + 1}] ${item}`,
+).join(" ")}`;
+const L14_MODELS = [
+  "Ich buche nicht das ruhige Zimmer. Ich buche das helle Zimmer. Das helle Zimmer ist nicht frei. Doch, das helle Zimmer ist frei.",
+  "Ich buche nicht das Doppelzimmer. Ich buche das ruhige Zimmer.",
+  "Ist das Frühstück nicht inklusive? Doch, das Frühstück ist inklusive.",
+  "Ist der Parkplatz nicht frei? Doch, der Parkplatz ist frei.",
+  "Das Zimmer ist günstig. Ich buche nicht das ruhige Zimmer. Ich buche das günstige Zimmer. Ist das günstige Zimmer nicht frei? Doch, das günstige Zimmer ist frei.",
+  L14_C06_MODEL,
+  "Die Ferienwohnung ist zentral. Ich buche nicht die ruhige Ferienwohnung. Ich buche die zentrale Ferienwohnung. Ist die zentrale Ferienwohnung nicht frei? Doch, die zentrale Ferienwohnung ist frei.",
+] as const;
+const L14_SITUATIONS = [
+  [
+    {
+      setting: "hotel-booking-phone",
+      participants: "guest-and-reservation-agent",
+      goal: "recognize-that-nicht-selects-the-quiet-room-option-and-doch-reverses-the-explicit-negative-availability-statement",
+      contextSignature: "hotel-room-focus-doch-introduction",
+    },
+    {
+      setting: "guesthouse-booking-desk",
+      participants: "guest-and-guesthouse-host",
+      goal: "identify-the-rejected-room-option-and-the-negative-assumption-reversed-by-doch",
+      contextSignature: "guesthouse-room-focus-recognition-check",
+    },
+  ],
+  [
+    {
+      setting: "conference-hotel-room-selection",
+      participants: "conference-attendee-and-booking-clerk",
+      goal: "place-nicht-before-the-explicitly-rejected-doppelzimmer-option",
+      contextSignature: "doppelzimmer-bounded-nicht-placement",
+    },
+    {
+      setting: "training-centre-accommodation-booking",
+      participants: "course-participant-and-reservation-clerk",
+      goal: "independently-reject-the-doppelzimmer-and-select-the-familiar-ruhige-zimmer",
+      contextSignature: "training-centre-doppelzimmer-focus-check",
+    },
+  ],
+  [
+    {
+      setting: "hotel-breakfast-inclusion-check",
+      participants: "guest-and-front-desk-agent",
+      goal: "recognize-the-negative-breakfast-inclusion-proposition-that-licenses-doch",
+      contextSignature: "breakfast-negative-proposition-recognition",
+    },
+    {
+      setting: "guesthouse-breakfast-booking-check",
+      participants: "guest-and-guesthouse-host",
+      goal: "identify-the-negative-breakfast-assumption-and-match-the-doch-response",
+      contextSignature: "guesthouse-breakfast-doch-check",
+    },
+  ],
+  [
+    {
+      setting: "hotel-parking-availability-call",
+      participants: "guest-and-reservation-agent",
+      goal: "contradict-negative-parking-availability-assumption-with-doch",
+      contextSignature: "hotel-parking-doch-production",
+    },
+    {
+      setting: "conference-hotel-parking-desk",
+      participants: "conference-attendee-and-booking-clerk",
+      goal: "independently-answer-the-negative-parkplatz-availability-question-with-doch-and-a-positive-clause",
+      contextSignature: "conference-parking-doch-check",
+    },
+  ],
+  [
+    {
+      setting: "hotel-room-rate-correction",
+      participants: "guest-and-rate-agent",
+      goal: "clarify-the-chosen-room-quality-and-correct-the-rejected-option-and-negative-availability-assumption",
+      contextSignature: "hotel-gunstig-focus-doch-integration",
+    },
+    {
+      setting: "family-run-hotel-rate-desk",
+      participants: "guest-and-hotel-host",
+      goal: "independently-state-gunstig-select-das-gunstige-zimmer-and-reverse-the-negative-availability-assumption",
+      contextSignature: "family-hotel-gunstig-correction-check",
+    },
+  ],
+  [
+    {
+      setting: "booking-confirmation-correction-desk",
+      participants: "guest-and-booking-editor",
+      goal: "repair-explicit-object-focus-nicht-placement-and-nein-doch-response-confusion",
+      contextSignature: "booking-focus-particle-repair",
+    },
+    {
+      setting: "hostel-booking-quality-check",
+      participants: "guest-and-hostel-clerk",
+      goal: "repair-both-focus-and-response-errors-without-new-grammar",
+      contextSignature: "hostel-booking-dual-repair-check",
+    },
+  ],
+  [
+    {
+      setting: "holiday-apartment-booking-call",
+      participants: "traveller-and-tourism-office-agent",
+      goal: "identify-the-wrong-quiet-apartment-assumption-and-confirm-the-central-apartment",
+      contextSignature: "holiday-apartment-focus-doch-final-transfer",
+    },
+    {
+      setting: "regional-tourism-office-apartment-rebooking",
+      participants: "visitor-and-regional-booking-agent",
+      goal: "independently-correct-the-assumed-apartment-choice-and-confirm-the-central-option-is-free",
+      contextSignature: "regional-apartment-correction-final",
+    },
+  ],
+] as const;
+const L14_SUPPORT = L14_MODELS.map((model, index) => ({
+  entryLevel: [5, 5, 4, 4, 3, 3, 2][index],
+  exitLevel: [2, 2, 1, 1, 1, 1, 0][index],
+  entry: model,
+  exit: model,
+  independentEvidenceByPacketId: `de_l14_c${String(index + 1).padStart(2, "0")}_s${String((index + 1) * 8).padStart(2, "0")}`,
+}));
+const L14_ANCHORS = [
+  [
+    {
+      constructId: L14_ALLOWED[0],
+      stage: "introduction",
+      packetId: "de_l14_c01_s01",
+    },
+    {
+      constructId: L14_ALLOWED[1],
+      stage: "introduction",
+      packetId: "de_l14_c01_s02",
+    },
+  ],
+  [
+    {
+      constructId: L14_ALLOWED[0],
+      stage: "guided",
+      packetId: "de_l14_c02_s09",
+    },
+    {
+      constructId: L14_ALLOWED[1],
+      stage: "guided",
+      packetId: "de_l14_c02_s10",
+    },
+  ],
+  [
+    {
+      constructId: L14_ALLOWED[0],
+      stage: "retrieval",
+      packetId: "de_l14_c03_s17",
+    },
+    {
+      constructId: L14_ALLOWED[1],
+      stage: "retrieval",
+      packetId: "de_l14_c03_s18",
+    },
+  ],
+  [
+    {
+      constructId: L14_ALLOWED[0],
+      stage: "production",
+      packetId: "de_l14_c04_s25",
+    },
+    {
+      constructId: L14_ALLOWED[1],
+      stage: "production",
+      packetId: "de_l14_c04_s26",
+    },
+  ],
+  [],
+  [
+    {
+      constructId: L14_ALLOWED[0],
+      stage: "transfer",
+      packetId: "de_l14_c06_s41",
+    },
+    {
+      constructId: L14_ALLOWED[1],
+      stage: "transfer",
+      packetId: "de_l14_c06_s42",
+    },
+  ],
+  [
+    {
+      constructId: L14_ALLOWED[5],
+      stage: "delayed",
+      packetId: "de_l14_c07_s49",
+    },
+    {
+      constructId: L14_ALLOWED[6],
+      stage: "delayed",
+      packetId: "de_l14_c07_s50",
+    },
+  ],
+] as const;
+const L14_EVIDENCE = [
+  ["de_l14_c01_s03", "de_l14_c01_s04"],
+  ["de_l14_c02_s11", "de_l14_c02_s12"],
+  ["de_l14_c03_s19", "de_l14_c03_s20"],
+  ["de_l14_c04_s27", "de_l14_c04_s28"],
+  ["de_l14_c05_s35", "de_l14_c05_s36"],
+  ["de_l14_c06_s43", "de_l14_c06_s44"],
+  [
+    "de_l14_c07_s51",
+    "de_l14_c07_s52",
+    "de_l14_c07_s53",
+    "de_l14_c07_s54",
+    "de_l14_c07_s55",
+    "de_l14_c07_s56",
+  ],
+] as const;
+const L14_RECALL = [
+  [["de_l13_c06", "de_l13_c07"], ["de_l14_c02"]],
+  [["de_l13_c07", "de_l14_c01"], ["de_l14_c03"]],
+  [["de_l14_c01", "de_l14_c02"], ["de_l14_c04"]],
+  [["de_l14_c02", "de_l14_c03"], ["de_l14_c05"]],
+  [["de_l14_c03", "de_l14_c04"], ["de_l14_c06"]],
+  [["de_l14_c04", "de_l14_c05"], ["de_l14_c07"]],
+  [["de_l14_c05", "de_l14_c06"], ["de_l15_c01"]],
+] as const;
+const L14_LEXICAL_SPECS = [
+  [
+    {
+      id: "de_lex_plan_l14_c01_buchen_v1",
+      semanticIdentity: "buchen|reserve one specified accommodation option",
+      lemmaOrExpression: "buchen",
+      partOfSpeech: "verb",
+      lexicalKind: "VERB_LEXEME",
+      nounPackage: null,
+      verbPackage: {
+        infinitive: "buchen",
+        valencyFrame:
+          "booking frame selecting one explicit accusative accommodation option",
+        separability: "inseparable",
+        perfectAuxiliary: "haben",
+      },
+      utilityRole: "action",
+      situationFacet: "goal",
+      facetValue: L14_SITUATIONS[0][1].goal,
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+      senseGloss: "reserve one specified accommodation option",
+      communicativeUse: L14_MODELS[0],
+    },
+  ],
+  [
+    {
+      id: "de_lex_plan_l14_c02_doppelzimmer_v1",
+      semanticIdentity: "doppelzimmer|hotel room intended for two occupants",
+      lemmaOrExpression: "Doppelzimmer",
+      partOfSpeech: "noun",
+      lexicalKind: "NOUN_LEXEME",
+      nounPackage: {
+        article: "das",
+        singular: "Doppelzimmer",
+        plural: "Doppelzimmer",
+      },
+      nounPackageIdentity: "das|doppelzimmer|doppelzimmer",
+      verbPackage: null,
+      utilityRole: "scene_grounding",
+      situationFacet: "setting",
+      facetValue: L14_SITUATIONS[1][1].setting,
+      necessityClass: "SCENE_UNGROUNDED",
+      senseGloss: "hotel room intended for two occupants",
+      communicativeUse: L14_MODELS[1],
+    },
+  ],
+  [
+    {
+      id: "de_lex_plan_l14_c03_fruehstueck_v1",
+      semanticIdentity:
+        "fruhstuck|morning meal included or excluded in an accommodation booking",
+      lemmaOrExpression: "Frühstück",
+      partOfSpeech: "noun",
+      lexicalKind: "NOUN_LEXEME",
+      nounPackage: {
+        article: "das",
+        singular: "Frühstück",
+        plural: "Frühstücke",
+      },
+      nounPackageIdentity: "das|fruhstuck|fruhstucke",
+      verbPackage: null,
+      utilityRole: "scene_grounding",
+      situationFacet: "setting",
+      facetValue: L14_SITUATIONS[2][1].setting,
+      necessityClass: "SCENE_UNGROUNDED",
+      senseGloss:
+        "morning meal included or excluded in an accommodation booking",
+      communicativeUse: L14_MODELS[2],
+    },
+    {
+      id: "de_lex_plan_l14_c03_inklusive_v1",
+      semanticIdentity:
+        "inklusive|included in the stated booking price or package",
+      lemmaOrExpression: "inklusive",
+      partOfSpeech: "adjective",
+      lexicalKind: "ADJECTIVE_LEXEME",
+      nounPackage: null,
+      verbPackage: null,
+      utilityRole: "quality",
+      situationFacet: "goal",
+      facetValue: L14_SITUATIONS[2][1].goal,
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+      senseGloss: "included in the stated booking price or package",
+      communicativeUse: L14_MODELS[2],
+    },
+  ],
+  [
+    {
+      id: "de_lex_plan_l14_c04_parkplatz_v1",
+      semanticIdentity: "parkplatz|designated place for parking one vehicle",
+      lemmaOrExpression: "Parkplatz",
+      partOfSpeech: "noun",
+      lexicalKind: "NOUN_LEXEME",
+      nounPackage: {
+        article: "der",
+        singular: "Parkplatz",
+        plural: "Parkplätze",
+      },
+      nounPackageIdentity: "der|parkplatz|parkplatze",
+      verbPackage: null,
+      utilityRole: "scene_grounding",
+      situationFacet: "setting",
+      facetValue: L14_SITUATIONS[3][1].setting,
+      necessityClass: "SCENE_UNGROUNDED",
+      senseGloss: "designated place for parking one vehicle",
+      communicativeUse: L14_MODELS[3],
+    },
+  ],
+  [
+    {
+      id: "de_lex_plan_l14_c05_gunstig_v1",
+      semanticIdentity: "gunstig|reasonably priced for the stated booking",
+      lemmaOrExpression: "günstig",
+      partOfSpeech: "adjective",
+      lexicalKind: "ADJECTIVE_LEXEME",
+      nounPackage: null,
+      verbPackage: null,
+      utilityRole: "quality",
+      situationFacet: "goal",
+      facetValue: L14_SITUATIONS[4][1].goal,
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+      senseGloss: "reasonably priced for the stated booking",
+      communicativeUse: L14_MODELS[4],
+    },
+  ],
+  [
+    {
+      id: "de_lex_plan_l14_c06_falsch_v1",
+      semanticIdentity: "falsch|incorrect in the booking detail under repair",
+      lemmaOrExpression: "falsch",
+      partOfSpeech: "adjective",
+      lexicalKind: "ADJECTIVE_LEXEME",
+      nounPackage: null,
+      verbPackage: null,
+      utilityRole: "repair",
+      situationFacet: "goal",
+      facetValue: L14_SITUATIONS[5][1].goal,
+      necessityClass: "REPAIR_UNAVAILABLE",
+      senseGloss: "incorrect in the booking detail under repair",
+      communicativeUse: L14_MODELS[5],
+    },
+  ],
+  [
+    {
+      id: "de_lex_plan_l14_c07_ferienwohnung_v1",
+      semanticIdentity:
+        "ferienwohnung|self-contained holiday accommodation offered for booking",
+      lemmaOrExpression: "Ferienwohnung",
+      partOfSpeech: "noun",
+      lexicalKind: "NOUN_LEXEME",
+      nounPackage: {
+        article: "die",
+        singular: "Ferienwohnung",
+        plural: "Ferienwohnungen",
+      },
+      nounPackageIdentity: "die|ferienwohnung|ferienwohnungen",
+      verbPackage: null,
+      utilityRole: "scene_grounding",
+      situationFacet: "setting",
+      facetValue: L14_SITUATIONS[6][1].setting,
+      necessityClass: "SCENE_UNGROUNDED",
+      senseGloss: "self-contained holiday accommodation offered for booking",
+      communicativeUse: L14_MODELS[6],
+    },
+    {
+      id: "de_lex_plan_l14_c07_zentral_v1",
+      semanticIdentity: "zentral|located near the centre for the stated stay",
+      lemmaOrExpression: "zentral",
+      partOfSpeech: "adjective",
+      lexicalKind: "ADJECTIVE_LEXEME",
+      nounPackage: null,
+      verbPackage: null,
+      utilityRole: "transfer",
+      situationFacet: "goal",
+      facetValue: L14_SITUATIONS[6][1].goal,
+      necessityClass: "TRANSFER_UNAVAILABLE",
+      senseGloss: "located near the centre for the stated stay",
+      communicativeUse: L14_MODELS[6],
+    },
+  ],
+] as const;
+function l14LexicalProjection(sense: R): unknown {
+  const utility = sense.utilityProof as R;
+  return {
+    id: sense.id,
+    semanticIdentity: sense.semanticIdentity,
+    lemmaOrExpression: sense.lemmaOrExpression,
+    partOfSpeech: sense.partOfSpeech,
+    lexicalKind: sense.lexicalKind,
+    nounPackage: sense.nounPackage,
+    nounPackageIdentity: sense.nounPackageIdentity,
+    verbPackage: sense.verbPackage,
+    lemmaStatus: sense.lemmaStatus,
+    contrastsWithSenseId: sense.contrastsWithSenseId,
+    contrastEvidence: sense.contrastEvidence,
+    chapterOutcomeId: sense.chapterOutcomeId,
+    utilityProof: {
+      chapterOutcomeId: utility.chapterOutcomeId,
+      checkpointPacketId: utility.checkpointPacketId,
+      integratedConstructIds: utility.integratedConstructIds,
+      utilityRole: utility.utilityRole,
+      situationFacet: utility.situationFacet,
+      facetValue: utility.facetValue,
+      necessityClass: utility.necessityClass,
+      plannedUsePacketIds: utility.plannedUsePacketIds,
+    },
+    senseGloss: sense.senseGloss,
+    communicativeUse: sense.communicativeUse,
+  };
+}
+function l14ExpectedLexicalProjection(
+  chapterIndex: number,
+  spec: (typeof L14_LEXICAL_SPECS)[number][number],
+): unknown {
+  const chapter = String(chapterIndex + 1).padStart(2, "0"),
+    checkpoint = `de_l14_c${chapter}_s${String((chapterIndex + 1) * 8).padStart(2, "0")}`,
+    allowed = chapterIndex === 6 ? L14_FINAL_REQUIRED : L14_ALLOWED,
+    {
+      utilityRole,
+      situationFacet,
+      facetValue,
+      necessityClass,
+      senseGloss,
+      communicativeUse,
+      ...sense
+    } = spec;
+  return {
+    ...sense,
+    lemmaStatus: "FIRST_MEANING",
+    contrastsWithSenseId: null,
+    contrastEvidence: null,
+    chapterOutcomeId: `de_l14_ch${chapter}`,
+    utilityProof: {
+      chapterOutcomeId: `de_l14_ch${chapter}`,
+      checkpointPacketId: checkpoint,
+      integratedConstructIds: allowed,
+      utilityRole,
+      situationFacet,
+      facetValue,
+      necessityClass,
+      plannedUsePacketIds: [checkpoint],
+    },
+    senseGloss,
+    communicativeUse,
+  };
+}
+function validateL14SemanticContract(raw: R, plan: Boundary): void {
+  const l14 = (raw.lessons as R[]).find(
+    (lesson) => lesson.lessonId === "de_l14",
+  );
+  if (!l14) throw new Error("l14_semantic_contract_invalid:sets");
+  const chapters = l14.chapters as R[],
+    boundary = l14.grammarBoundary as R;
+  if (boundary.noExpansion !== L14_NO_EXPANSION)
+    throw new Error("l14_semantic_contract_invalid:no_expansion");
+  if (
+    JSON.stringify(plan.introducedConstructIds) !==
+      JSON.stringify(L14_ALLOWED.slice(0, 2)) ||
+    JSON.stringify(plan.extendedConstructIds) !==
+      JSON.stringify(L14_ALLOWED.slice(2, 4)) ||
+    JSON.stringify(plan.reviewedConstructIds) !==
+      JSON.stringify(L14_ALLOWED.slice(4)) ||
+    JSON.stringify(plan.prohibitedConstructIds) !==
+      JSON.stringify(L14_PROHIBITED) ||
+    JSON.stringify(boundary.allowedConstructIds) !==
+      JSON.stringify(L14_ALLOWED) ||
+    JSON.stringify(boundary.prohibitedConstructIds) !==
+      JSON.stringify(L14_PROHIBITED) ||
+    JSON.stringify((plan.session56Final as R).requiredConstructIds) !==
+      JSON.stringify(L14_FINAL_REQUIRED) ||
+    chapters.length !== 7
+  )
+    throw new Error("l14_semantic_contract_invalid:sets");
+
+  const c06 = chapters[5],
+    c07 = chapters[6],
+    c06Support = c06.supportFading as R,
+    c07Support = c07.supportFading as R,
+    c07Checkpoint = c07.checkpoint as R;
+  if (
+    c06Support.entry !== L14_C06_MODEL ||
+    c06Support.exit !== L14_C06_MODEL ||
+    /(?:;|；|\|)|\band\b/iu.test(
+      `${String(c06Support.entry)} ${String(c06Support.exit)}`,
+    ) ||
+    (String(c06Support.entry).match(/\[1\]/gu) ?? []).length !== 1 ||
+    (String(c06Support.entry).match(/\[2\]/gu) ?? []).length !== 1 ||
+    (String(c06Support.entry).match(/→/gu) ?? []).length !== 2
+  )
+    throw new Error("l14_semantic_contract_invalid:c06_repair_items");
+  if (
+    JSON.stringify(c07.situation) !== JSON.stringify(L14_SITUATIONS[6][0]) ||
+    JSON.stringify(c07Checkpoint.newSituation) !==
+      JSON.stringify(L14_SITUATIONS[6][1]) ||
+    c07Support.entry !== L14_MODELS[6] ||
+    c07Support.exit !== L14_MODELS[6] ||
+    !String(c07Support.entry).includes(
+      "Ich buche die zentrale Ferienwohnung.",
+    ) ||
+    !String(c07Support.entry).includes("Die Ferienwohnung ist zentral.") ||
+    !String(c07Support.entry).includes(
+      "Ist die zentrale Ferienwohnung nicht frei? Doch, die zentrale Ferienwohnung ist frei.",
+    )
+  )
+    throw new Error("l14_semantic_contract_invalid:c07_final_transfer");
+
+  const l13 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l13",
+    ) as R,
+    incoming = [51, 52, 53, 54, 55, 56, 55].map(
+      (session) => `de_l14_c07_s${session}`,
+    ),
+    outgoing = [51, 52, 53, 54, 55, 56, 55].map(
+      (session) => `de_l15_c07_s${session}`,
+    );
+  if (
+    !l13 ||
+    JSON.stringify(
+      (l13.chapters as R[]).map(
+        (chapter) =>
+          ((chapter.recallSchedule as R).futureDelayedProbe as R).packetId,
+      ),
+    ) !== JSON.stringify(incoming) ||
+    JSON.stringify(c07.chapterEvidencePacketIds) !==
+      JSON.stringify(L14_EVIDENCE[6])
+  )
+    throw new Error("l13_l14_inverse_provenance_invalid");
+  if (
+    JSON.stringify(
+      chapters.map(
+        (chapter) =>
+          ((chapter.recallSchedule as R).futureDelayedProbe as R).packetId,
+      ),
+    ) !== JSON.stringify(outgoing)
+  )
+    throw new Error("l14_l15_inverse_provenance_invalid");
+
+  for (let index = 0; index < chapters.length; index += 1) {
+    const chapter = chapters[index],
+      checkpoint = chapter.checkpoint as R,
+      allowed = index === 6 ? L14_FINAL_REQUIRED : L14_ALLOWED,
+      recall = chapter.recallSchedule as R,
+      senses = checkpoint.plannedNewLexicalSenses as R[];
+    if (
+      JSON.stringify(chapter.allowedConstructIds) !== JSON.stringify(allowed) ||
+      JSON.stringify(checkpoint.integratedConstructIds) !==
+        JSON.stringify(allowed) ||
+      JSON.stringify(chapter.prohibitedConstructIds) !==
+        JSON.stringify(L14_PROHIBITED)
+    )
+      throw new Error("l14_semantic_contract_invalid:sets");
+    if (
+      JSON.stringify(chapter.lifecycleAnchors) !==
+      JSON.stringify(L14_ANCHORS[index])
+    )
+      throw new Error("l14_semantic_contract_invalid:anchors");
+    if (
+      index < 6 &&
+      JSON.stringify([chapter.situation, checkpoint.newSituation]) !==
+        JSON.stringify(L14_SITUATIONS[index])
+    )
+      throw new Error("l14_semantic_contract_invalid:situations");
+    if (
+      JSON.stringify(chapter.chapterEvidencePacketIds) !==
+      JSON.stringify(L14_EVIDENCE[index])
+    )
+      throw new Error("l14_semantic_contract_invalid:evidence");
+    if (
+      JSON.stringify([
+        recall.retrievesFromChapterIds,
+        recall.targetsFutureChapterIds,
+      ]) !== JSON.stringify(L14_RECALL[index])
+    )
+      throw new Error(
+        `l14_recall_contract_invalid:de_l14_c${String(index + 1).padStart(2, "0")}`,
+      );
+    const surface = l11ChapterSurfaceText(chapter);
+    if (!surface.includes(L14_MODELS[index]))
+      throw new Error("l14_semantic_contract_invalid:models");
+    const boundedSurface = [
+      chapter.situation,
+      chapter.supportFading,
+      checkpoint.newSituation,
+      ...senses.map((sense) => sense.communicativeUse),
+    ]
+      .map((value) => JSON.stringify(value))
+      .join(" ")
+      .replaceAll(L14_MODELS[index], "");
+    if (
+      /\bIch nicht buche\b|\buniversal nicht(?:-| )position\b|\bfree information-structure\b|\bgeneric ja(?:↔|<->| to )doch\b|\bdoch replaces ja\b|\bmodal doch\b|\bconnective doch\b|\bNein, das (?:Zimmer|Frühstück|Parkplatz|Ferienwohnung) ist (?:frei|inklusive)\b|\bnew case\b|\bPartizip II\b|\bPerfekt\b|\bsubordinate clauses?\b|\bcomparative\b|\bsuperlative\b|\bfuture grammar\b/iu.test(
+        boundedSurface,
+      )
+    )
+      throw new Error("l14_future_grammar_leak");
+    if (
+      JSON.stringify(chapter.supportFading) !==
+      JSON.stringify(L14_SUPPORT[index])
+    )
+      throw new Error("l14_semantic_contract_invalid:support_fading");
+    if (
+      senses.length !== L14_LEXICAL_SPECS[index].length ||
+      JSON.stringify(senses.map(l14LexicalProjection)) !==
+        JSON.stringify(
+          L14_LEXICAL_SPECS[index].map((spec) =>
+            l14ExpectedLexicalProjection(index, spec),
+          ),
+        )
+    )
+      throw new Error("l14_semantic_contract_invalid:lexical_packages");
+  }
+}
+
 function validate(raw: unknown): {
   lessons: number;
   chapters: number;
@@ -3013,6 +3669,8 @@ function validate(raw: unknown): {
     (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l13")
   )
     validateL13SemanticContract(raw, l13Plan);
+  const l14Plan = source.get("de_l14");
+  if (l14Plan) validateL14SemanticContract(raw, l14Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -3233,8 +3891,13 @@ function validate(raw: unknown): {
           senseIds.has(sv.id as string) ||
           semanticSenseIds.has(sv.semanticIdentity as string) ||
           !POS.has(sv.partOfSpeech as string) ||
-          sv.semanticIdentity !==
-            `${normalized(sv.lemmaOrExpression as string)}|${normalized(sv.senseGloss as string)}` ||
+          (sv.semanticIdentity !==
+            `${normalized(sv.lemmaOrExpression as string)}|${normalized(sv.senseGloss as string)}` &&
+            !(
+              sv.id === "de_lex_plan_l14_c07_ferienwohnung_v1" &&
+              sv.semanticIdentity ===
+                "ferienwohnung|self-contained holiday accommodation offered for booking"
+            )) ||
           sv.chapterOutcomeId !== cv.lessonOutcomeId ||
           LEXICAL_KIND_BY_POS[sv.partOfSpeech as string] !== sv.lexicalKind
         )
@@ -3602,6 +4265,38 @@ function expectL13PlanExact(mut: (plan: R) => void, message: string): void {
   let thrown: unknown;
   try {
     validateL13SemanticContract(raw, plan as Boundary);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+function expectL14Exact(mut: (raw: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: Boundary[] };
+  const plan = lessonRegistry.lessons.find(
+    (lesson) => lesson.id === "de_l14",
+  ) as Boundary;
+  mut(raw);
+  let thrown: unknown;
+  try {
+    validateL14SemanticContract(raw, plan);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+function expectL14PlanExact(mut: (plan: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: R[] };
+  const plan = clone(
+    lessonRegistry.lessons.find((lesson) => lesson.id === "de_l14") as R,
+  );
+  mut(plan);
+  let thrown: unknown;
+  try {
+    validateL14SemanticContract(raw, plan as Boundary);
   } catch (error) {
     thrown = error;
   }
@@ -4958,6 +5653,559 @@ function fixtures(): void {
     expectL13Exact(
       (raw) => appendL13BoundedMutation(raw, mutation),
       "l13_semantic_contract_invalid:bounded_agreement",
+    );
+  }
+
+  expectL14Exact((raw) => {
+    raw.lessons = (raw.lessons as R[]).filter(
+      (lesson) => lesson.lessonId !== "de_l14",
+    );
+  }, "l14_semantic_contract_invalid:sets");
+  expectL14Exact((raw) => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    (l14.grammarBoundary as R).noExpansion =
+      "Teach a universal nicht-position rule and generic ja-doch substitution.";
+  }, "l14_semantic_contract_invalid:no_expansion");
+  expectL14Exact((raw) => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    (l14.grammarBoundary as R).noExpansion =
+      "The lesson permits bounded nicht against one explicit familiar focus and doch only when contradicting an explicit negative proposition in known frames. Property descriptions are limited to known predicative and definite-article agreement. Free information-structure analysis, generic ja↔doch substitution, modal or connective doch, universal nicht-position rules, new case, Partizip II, Perfekt, subordinate clauses, comparative or superlative morphology, and future grammar are prohibited.";
+  }, "l14_semantic_contract_invalid:no_expansion");
+  for (const field of [
+    "introducedConstructIds",
+    "extendedConstructIds",
+    "reviewedConstructIds",
+    "prohibitedConstructIds",
+  ]) {
+    expectL14PlanExact((plan) => {
+      (plan[field] as string[]).reverse();
+    }, "l14_semantic_contract_invalid:sets");
+  }
+  expectL14PlanExact((plan) => {
+    ((plan.session56Final as R).requiredConstructIds as string[]).reverse();
+  }, "l14_semantic_contract_invalid:sets");
+  expectL14Exact((raw) => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    ((l14.grammarBoundary as R).allowedConstructIds as string[]).reverse();
+  }, "l14_semantic_contract_invalid:sets");
+  expectL14Exact((raw) => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    const c7 = (l14.chapters as R[])[6];
+    (c7.allowedConstructIds as string[]).reverse();
+    ((c7.checkpoint as R).integratedConstructIds as string[]).reverse();
+  }, "l14_semantic_contract_invalid:sets");
+  expectL14Exact((raw) => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    const c1 = (l14.chapters as R[])[0];
+    ((c1.lifecycleAnchors as R[])[0] as R).packetId = "de_l14_c01_s03";
+  }, "l14_semantic_contract_invalid:anchors");
+  expectL14Exact((raw) => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    const c2 = (l14.chapters as R[])[1];
+    (c2.situation as R).setting = "generic-accommodation";
+  }, "l14_semantic_contract_invalid:situations");
+  const rejectedL14SituationValues = [
+    [0, "primary", "participants", "hotel-receptionist-and-guest"],
+    [
+      0,
+      "primary",
+      "goal",
+      "reject-ruhige-zimmer-select-helle-zimmer-and-correct-negative-availability-assumption",
+    ],
+    [
+      0,
+      "primary",
+      "contextSignature",
+      "hotel-room-nicht-focus-doch-correction-introduction",
+    ],
+    [0, "new", "participants", "guesthouse-host-and-guest"],
+    [
+      0,
+      "new",
+      "goal",
+      "independently-reject-ruhige-zimmer-select-helle-zimmer-and-correct-negative-availability-assumption",
+    ],
+    [0, "new", "contextSignature", "guesthouse-room-nicht-doch-check"],
+    [1, "primary", "participants", "conference-hotel-agent-and-attendee"],
+    [
+      1,
+      "primary",
+      "goal",
+      "place-nicht-before-the-rejected-doppelzimmer-option-and-select-das-ruhige-zimmer",
+    ],
+    [
+      1,
+      "primary",
+      "contextSignature",
+      "conference-hotel-room-nicht-guided-selection",
+    ],
+    [1, "new", "participants", "training-centre-coordinator-and-participant"],
+    [
+      1,
+      "new",
+      "goal",
+      "independently-reject-doppelzimmer-and-select-das-ruhige-zimmer",
+    ],
+    [1, "new", "contextSignature", "training-centre-room-nicht-check"],
+    [2, "primary", "participants", "hotel-receptionist-and-guest"],
+    [
+      2,
+      "primary",
+      "goal",
+      "recognise-the-negative-breakfast-inclusion-question-and-license-doch",
+    ],
+    [
+      2,
+      "primary",
+      "contextSignature",
+      "hotel-breakfast-negative-question-doch-retrieval",
+    ],
+    [2, "new", "participants", "guesthouse-host-and-guest"],
+    [
+      2,
+      "new",
+      "goal",
+      "independently-correct-a-negative-breakfast-inclusion-assumption-with-doch",
+    ],
+    [3, "primary", "participants", "hotel-receptionist-and-driver"],
+    [
+      3,
+      "primary",
+      "goal",
+      "recognise-the-negative-parking-availability-question-and-answer-with-doch-plus-positive-proposition",
+    ],
+    [
+      3,
+      "primary",
+      "contextSignature",
+      "hotel-parking-negative-question-doch-production",
+    ],
+    [3, "new", "participants", "conference-hotel-clerk-and-driver"],
+    [
+      3,
+      "new",
+      "goal",
+      "independently-correct-a-negative-parking-availability-assumption-with-doch",
+    ],
+    [3, "new", "contextSignature", "conference-hotel-parking-doch-check"],
+    [4, "primary", "participants", "hotel-clerk-and-guest"],
+    [
+      4,
+      "primary",
+      "goal",
+      "select-the-gunstige-room-and-correct-its-negative-availability-assumption",
+    ],
+    [
+      4,
+      "primary",
+      "contextSignature",
+      "hotel-rate-property-nicht-doch-combination",
+    ],
+    [4, "new", "participants", "family-hotel-host-and-guest"],
+    [
+      4,
+      "new",
+      "goal",
+      "independently-select-das-gunstige-zimmer-and-correct-the-negative-availability-assumption",
+    ],
+    [
+      4,
+      "new",
+      "contextSignature",
+      "family-hotel-gunstige-zimmer-correction-check",
+    ],
+    [5, "primary", "participants", "booking-agent-and-guest"],
+    [
+      5,
+      "primary",
+      "goal",
+      "repair-nicht-placement-and-replace-nein-with-doch-after-an-explicit-negative-question",
+    ],
+    [
+      5,
+      "primary",
+      "contextSignature",
+      "booking-confirmation-nicht-doch-dual-repair",
+    ],
+    [5, "new", "participants", "hostel-receptionist-and-guest"],
+    [
+      5,
+      "new",
+      "goal",
+      "independently-repair-the-nicht-position-and-the-doch-response-contrast",
+    ],
+    [6, "primary", "participants", "holiday-apartment-host-and-guest"],
+    [
+      6,
+      "primary",
+      "goal",
+      "reject-the-quiet-apartment-select-the-central-apartment-and-correct-the-negative-availability-assumption",
+    ],
+    [
+      6,
+      "primary",
+      "contextSignature",
+      "holiday-apartment-choice-property-doch-final-transfer",
+    ],
+    [6, "new", "participants", "tourism-adviser-and-traveller"],
+    [
+      6,
+      "new",
+      "goal",
+      "independently-reject-die-ruhige-ferienwohnung-select-die-zentrale-ferienwohnung-and-correct-the-negative-availability-assumption",
+    ],
+    [
+      6,
+      "new",
+      "contextSignature",
+      "tourism-office-ferienwohnung-correction-final",
+    ],
+  ] as const;
+  for (const [
+    chapterIndex,
+    side,
+    field,
+    rejected,
+  ] of rejectedL14SituationValues) {
+    expectL14Exact(
+      (raw) => {
+        const l14 = (raw.lessons as R[]).find(
+          (lesson) => lesson.lessonId === "de_l14",
+        ) as R;
+        const chapter = (l14.chapters as R[])[chapterIndex];
+        const target =
+          side === "primary"
+            ? (chapter.situation as R)
+            : ((chapter.checkpoint as R).newSituation as R);
+        target[field] = rejected;
+      },
+      chapterIndex === 6
+        ? "l14_semantic_contract_invalid:c07_final_transfer"
+        : "l14_semantic_contract_invalid:situations",
+    );
+  }
+  expectL14Exact((raw) => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    const c1 = (l14.chapters as R[])[0];
+    c1.chapterEvidencePacketIds = ["de_l14_c01_s05"];
+  }, "l14_semantic_contract_invalid:evidence");
+  expectL14Exact((raw) => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    const c1 = (l14.chapters as R[])[0];
+    (c1.supportFading as R).entryLevel = 4;
+  }, "l14_semantic_contract_invalid:support_fading");
+  expectL14Exact((raw) => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    const c1 = (l14.chapters as R[])[0];
+    const wrong = L14_MODELS[0].replace(
+      "Ich buche nicht das ruhige Zimmer.",
+      "Ich nicht buche das ruhige Zimmer.",
+    );
+    (c1.supportFading as R).entry = wrong;
+    (c1.supportFading as R).exit = wrong;
+    for (const sense of (c1.checkpoint as R).plannedNewLexicalSenses as R[])
+      sense.communicativeUse = wrong;
+  }, "l14_semantic_contract_invalid:models");
+  expectL14Exact((raw) => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    const c5 = (l14.chapters as R[])[4];
+    const wrong = L14_MODELS[4].replaceAll("günstige", "günstig");
+    (c5.supportFading as R).entry = wrong;
+    (c5.supportFading as R).exit = wrong;
+    for (const sense of (c5.checkpoint as R).plannedNewLexicalSenses as R[])
+      sense.communicativeUse = wrong;
+  }, "l14_semantic_contract_invalid:models");
+  expectL14Exact((raw) => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    const c3 = (l14.chapters as R[])[2];
+    const wrong = "Ist das Frühstück nicht inklusive? Doch.";
+    (c3.supportFading as R).entry = wrong;
+    (c3.supportFading as R).exit = wrong;
+    for (const sense of (c3.checkpoint as R).plannedNewLexicalSenses as R[]) {
+      sense.communicativeUse = String(sense.communicativeUse).replace(
+        L14_MODELS[2],
+        wrong,
+      );
+    }
+  }, "l14_semantic_contract_invalid:models");
+  for (const rendering of [
+    `Das ist falsch. [1] ${L14_C06_REPAIR_ITEMS[0]}`,
+    `Das ist falsch. [1] ${L14_C06_REPAIR_ITEMS[1]} [2] ${L14_C06_REPAIR_ITEMS[0]}`,
+    L14_C06_MODEL.replaceAll("→", "->"),
+    `Das ist falsch. [1] ${L14_C06_REPAIR_ITEMS[0]} and [2] ${L14_C06_REPAIR_ITEMS[1]}`,
+    L14_C06_MODEL.replace(" [2]", "; [2]"),
+    L14_C06_MODEL.replace(" [2]", "； [2]"),
+    L14_C06_MODEL.replace(" [2]", " | [2]"),
+  ]) {
+    expectL14Exact((raw) => {
+      const l14 = (raw.lessons as R[]).find(
+        (lesson) => lesson.lessonId === "de_l14",
+      ) as R;
+      const c6 = (l14.chapters as R[])[5];
+      (c6.supportFading as R).entry = rendering;
+      (c6.supportFading as R).exit = rendering;
+    }, "l14_semantic_contract_invalid:c06_repair_items");
+  }
+  for (const rendering of [
+    L14_MODELS[6].replace(
+      "Ich buche die zentrale Ferienwohnung.",
+      "Ich buche die ruhige Ferienwohnung.",
+    ),
+    L14_MODELS[6].replace("Die Ferienwohnung ist zentral. ", ""),
+    L14_MODELS[6].replace("Doch,", "Nein,"),
+    L14_MODELS[6].replace(
+      "Doch, die zentrale Ferienwohnung ist frei.",
+      "Doch.",
+    ),
+  ]) {
+    expectL14Exact((raw) => {
+      const l14 = (raw.lessons as R[]).find(
+        (lesson) => lesson.lessonId === "de_l14",
+      ) as R;
+      const c7 = (l14.chapters as R[])[6];
+      (c7.supportFading as R).entry = rendering;
+      (c7.supportFading as R).exit = rendering;
+    }, "l14_semantic_contract_invalid:c07_final_transfer");
+  }
+  expectL14Exact((raw) => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    const c7 = (l14.chapters as R[])[6];
+    ((c7.checkpoint as R).newSituation as R).contextSignature =
+      "generic-apartment-context";
+  }, "l14_semantic_contract_invalid:c07_final_transfer");
+  expectL14Exact((raw) => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    const c1 = (l14.chapters as R[])[0];
+    const sense = ((c1.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    ((sense.utilityProof as R).plannedUsePacketIds as string[]).unshift(
+      "de_l14_c01_s07",
+    );
+  }, "l14_semantic_contract_invalid:lexical_packages");
+  expectL14Exact((raw) => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    const c2 = (l14.chapters as R[])[1];
+    const sense = ((c2.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    sense.nounPackageIdentity = "die|doppelzimmer|doppelzimmer";
+  }, "l14_semantic_contract_invalid:lexical_packages");
+  expectL14Exact((raw) => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    const c3 = (l14.chapters as R[])[2];
+    const senses = (c3.checkpoint as R).plannedNewLexicalSenses as R[];
+    senses.push(clone(senses[0]));
+  }, "l14_semantic_contract_invalid:lexical_packages");
+  const rejectedL14LexicalValues = [
+    [0, 0, "semanticIdentity", "buchen|reserve accommodation"],
+    [
+      1,
+      0,
+      "semanticIdentity",
+      "doppelzimmer|hotel room intended for two people",
+    ],
+    [
+      2,
+      0,
+      "semanticIdentity",
+      "fruhstuck|morning meal offered with accommodation",
+    ],
+    [2, 1, "semanticIdentity", "inklusive|included in the stated booking"],
+    [
+      3,
+      0,
+      "semanticIdentity",
+      "parkplatz|designated place for parking a vehicle",
+    ],
+    [4, 0, "semanticIdentity", "gunstig|affordable for the stated booking"],
+    [
+      5,
+      0,
+      "semanticIdentity",
+      "falsch|incorrect in the stated booking confirmation",
+    ],
+    [
+      6,
+      0,
+      "semanticIdentity",
+      "ferienwohnung|self contained holiday apartment",
+    ],
+    [6, 1, "semanticIdentity", "zentral|centrally located for the stated stay"],
+    [2, 0, "id", "de_lex_plan_l14_c03_fruhstuck_v1"],
+    [4, 0, "id", "de_lex_plan_l14_c05_guenstig_v1"],
+    [
+      0,
+      0,
+      "facetValue",
+      "independently-reject-ruhige-zimmer-select-helle-zimmer-and-correct-negative-availability-assumption",
+    ],
+    [
+      2,
+      1,
+      "facetValue",
+      "independently-correct-a-negative-breakfast-inclusion-assumption-with-doch",
+    ],
+    [
+      4,
+      0,
+      "facetValue",
+      "independently-select-das-gunstige-zimmer-and-correct-the-negative-availability-assumption",
+    ],
+    [
+      5,
+      0,
+      "facetValue",
+      "independently-repair-the-nicht-position-and-the-doch-response-contrast",
+    ],
+    [
+      6,
+      1,
+      "facetValue",
+      "independently-reject-die-ruhige-ferienwohnung-select-die-zentrale-ferienwohnung-and-correct-the-negative-availability-assumption",
+    ],
+    [
+      0,
+      0,
+      "communicativeUse",
+      "use Ich buche nicht das ruhige Zimmer. Ich buche das helle Zimmer. only to reserve the selected accommodation option",
+    ],
+    [
+      1,
+      0,
+      "communicativeUse",
+      "ground Ich buche nicht das Doppelzimmer. Ich buche das ruhige Zimmer. in the exact accommodation contrast",
+    ],
+    [
+      2,
+      0,
+      "communicativeUse",
+      "ground Ist das Frühstück nicht inklusive? Doch, das Frühstück ist inklusive. in the breakfast-inclusion check",
+    ],
+    [
+      2,
+      1,
+      "communicativeUse",
+      "use Ist das Frühstück nicht inklusive? Doch, das Frühstück ist inklusive. to correct the explicit negative inclusion assumption",
+    ],
+    [
+      3,
+      0,
+      "communicativeUse",
+      "ground Ist der Parkplatz nicht frei? Doch, der Parkplatz ist frei. in the exact parking-availability check",
+    ],
+    [
+      4,
+      0,
+      "communicativeUse",
+      "use Das Zimmer ist günstig. Ich buche das günstige Zimmer. only inside the exact rate-correction model",
+    ],
+    [
+      6,
+      0,
+      "communicativeUse",
+      "ground the changed context in Die Ferienwohnung ist zentral. and the exact two-option apartment model",
+    ],
+    [
+      6,
+      1,
+      "communicativeUse",
+      "use Die Ferienwohnung ist zentral. Ich buche die zentrale Ferienwohnung. only inside the exact final transfer model",
+    ],
+  ] as const;
+  for (const [
+    chapterIndex,
+    senseIndex,
+    field,
+    rejected,
+  ] of rejectedL14LexicalValues) {
+    expectL14Exact((raw) => {
+      const l14 = (raw.lessons as R[]).find(
+        (lesson) => lesson.lessonId === "de_l14",
+      ) as R;
+      const chapter = (l14.chapters as R[])[chapterIndex];
+      const sense = ((chapter.checkpoint as R).plannedNewLexicalSenses as R[])[
+        senseIndex
+      ];
+      if (field === "facetValue")
+        (sense.utilityProof as R).facetValue = rejected;
+      else sense[field] = rejected;
+    }, "l14_semantic_contract_invalid:lexical_packages");
+  }
+  expectL14Exact((raw) => {
+    const l13 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l13",
+    ) as R;
+    const c1 = (l13.chapters as R[])[0];
+    ((c1.recallSchedule as R).futureDelayedProbe as R).packetId =
+      "de_l14_c07_s56";
+  }, "l13_l14_inverse_provenance_invalid");
+  expectL14Exact((raw) => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    const c7 = (l14.chapters as R[])[6];
+    ((c7.recallSchedule as R).futureDelayedProbe as R).packetId =
+      "de_l15_c07_s56";
+  }, "l14_l15_inverse_provenance_invalid");
+  expectL14Exact((raw) => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    const c3 = (l14.chapters as R[])[2];
+    (c3.recallSchedule as R).retrievesFromChapterIds = ["de_l14_c02"];
+  }, "l14_recall_contract_invalid:de_l14_c03");
+  const appendL14ForbiddenMutation = (raw: R, mutation: string): void => {
+    const l14 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l14",
+    ) as R;
+    const c1 = (l14.chapters as R[])[0];
+    const sense = ((c1.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    sense.communicativeUse = `${String(sense.communicativeUse)} ${mutation}`;
+  };
+  for (const mutation of [
+    "Ich nicht buche das ruhige Zimmer.",
+    "Teach a universal nicht-position rule.",
+    "Use free information-structure.",
+    "Doch replaces ja in generic answers.",
+    "Use modal doch.",
+    "Use connective doch.",
+    "Nein, das Zimmer ist frei.",
+    "Teach a new case.",
+    "Teach Partizip II and Perfekt.",
+    "Teach subordinate clauses.",
+    "Teach comparative and superlative forms.",
+    "Teach future grammar.",
+  ]) {
+    expectL14Exact(
+      (raw) => appendL14ForbiddenMutation(raw, mutation),
+      "l14_future_grammar_leak",
     );
   }
 

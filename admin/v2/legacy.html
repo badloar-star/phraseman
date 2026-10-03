@@ -4598,8 +4598,7 @@ body[data-admin-skin="onboarding"] #uid-lookup {
       body[data-admin-skin="onboarding"] #push-panel-uid,
       body[data-admin-skin="onboarding"] #push-panel-segment,
       body[data-admin-skin="onboarding"] #push-panel-reactivate,
-      body[data-admin-skin="onboarding"] #push-panel-scheduled,
-      #league-chest-archive > div {
+      body[data-admin-skin="onboarding"] #push-panel-scheduled {
         grid-template-columns: 1fr !important;
       }
       .dp-form-section.full { grid-column: auto !important; }
@@ -7666,20 +7665,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         tr: '🗓️ Günün ifadeleri',
         pl: '🗓️ Frazy dnia',
       },
-      '🏅 Ligas': {
-        'pt-BR': '🏅 Ligas',
-        vi: '🏅 Giải đấu',
-        id: '🏅 Liga',
-        tr: '🏅 Ligler',
-        pl: '🏅 Ligi',
-      },
-      '💬 Chat de ligas': {
-        'pt-BR': '💬 Chat das ligas',
-        vi: '💬 Chat giải đấu',
-        id: '💬 Chat liga',
-        tr: '💬 Lig sohbeti',
-        pl: '💬 Czat lig',
-      },
       '🚪 Salas': {
         'pt-BR': '🚪 Salas',
         vi: '🚪 Phòng',
@@ -7736,20 +7721,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         tr: 'Tema: koyu',
         pl: 'Motyw: ciemny',
       },
-      '💎 Fragmentos medios': {
-        'pt-BR': '💎 Fragmentos médios',
-        vi: '💎 Mảnh trung bình',
-        id: '💎 Shard rata-rata',
-        tr: '💎 Ortalama parçalar',
-        pl: '💎 Średnie odłamki',
-      },
-      'Chats de ligas': {
-        'pt-BR': 'Chats das ligas',
-        vi: 'Chat giải đấu',
-        id: 'Chat liga',
-        tr: 'Lig sohbetleri',
-        pl: 'Czaty lig',
-      },
       'Moderación de mensajes, reportes, salas por semana, archivo y restricciones de usuarios.': {
         'pt-BR': 'Moderação de mensagens, denúncias, salas por semana, arquivo e restrições de usuários.',
         vi: 'Kiểm duyệt tin nhắn, báo cáo, phòng theo tuần, lưu trữ và hạn chế người dùng.',
@@ -7798,13 +7769,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         id: 'Ruang',
         tr: 'Odalar',
         pl: 'Pokoje',
-      },
-      'grupos de liga': {
-        'pt-BR': 'grupos de liga',
-        vi: 'nhóm giải đấu',
-        id: 'grup liga',
-        tr: 'lig grupları',
-        pl: 'grupy lig',
       },
       Mensajes: {
         'pt-BR': 'Mensagens',
@@ -7917,13 +7881,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         id: 'Penulis',
         tr: 'Yazar',
         pl: 'Autor',
-      },
-      'Liga / semana': {
-        'pt-BR': 'Liga / semana',
-        vi: 'Giải đấu / tuần',
-        id: 'Liga / minggu',
-        tr: 'Lig / hafta',
-        pl: 'Liga / tydzień',
       },
       Mensaje: {
         'pt-BR': 'Mensagem',
@@ -8534,34 +8491,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         tr: 'Kullanıcı uygulamadaysa hemen, değilse bir sonraki açılışta tüm kullanıcılara gösterilir. Kapatıldıktan sonra o kullanıcıya tekrar gösterilmez.',
         pl: 'Pokazuje się wszystkim użytkownikom od razu, jeśli są w aplikacji, albo przy następnym uruchomieniu. Po zamknięciu nie pojawia się ponownie u tego użytkownika.',
       },
-      '🛡️ Escudo de racha por 1 día': {
-        'pt-BR': '🛡️ Escudo de sequência por 1 dia',
-        vi: '🛡️ Khiên chuỗi trong 1 ngày',
-        id: '🛡️ Pelindung rangkaian selama 1 hari',
-        tr: '🛡️ 1 günlük seri kalkanı',
-        pl: '🛡️ Tarcza serii na 1 dzień',
-      },
-      '🛡️ Escudo de racha por 3 días': {
-        'pt-BR': '🛡️ Escudo de sequência por 3 dias',
-        vi: '🛡️ Khiên chuỗi trong 3 ngày',
-        id: '🛡️ Pelindung rangkaian selama 3 hari',
-        tr: '🛡️ 3 günlük seri kalkanı',
-        pl: '🛡️ Tarcza serii na 3 dni',
-      },
-      '👥 Boost de liga gratis': {
-        'pt-BR': '👥 Boost de liga grátis',
-        vi: '👥 Boost giải đấu miễn phí',
-        id: '👥 Boost liga gratis',
-        tr: '👥 Ücretsiz lig boost’u',
-        pl: '👥 Darmowy boost ligi',
-      },
-      '🎟️ +5 partidas de ranking hoy': {
-        'pt-BR': '🎟️ +5 partidas ranqueadas hoje',
-        vi: '🎟️ +5 trận xếp hạng hôm nay',
-        id: '🎟️ +5 pertandingan peringkat hari ini',
-        tr: '🎟️ Bugün +5 sıralama maçı',
-        pl: '🎟️ +5 meczów rankingowych dziś',
-      },
       '🎲 Descuento de apuesta 25%': {
         'pt-BR': '🎲 Desconto de aposta de 25%',
         vi: '🎲 Giảm 25% cược',
@@ -8582,13 +8511,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         id: '🎁 Tanpa hadiah (hanya pesan)',
         tr: '🎁 Hediye yok (yalnızca mesaj)',
         pl: '🎁 Bez prezentu (tylko wiadomość)',
-      },
-      "Se usa para el tipo de recompensa 'Fragmentos'": {
-        'pt-BR': "Usado para o tipo de recompensa 'Fragmentos'",
-        vi: "Dùng cho loại phần thưởng 'Mảnh'",
-        id: "Digunakan untuk jenis hadiah 'Shard'",
-        tr: "'Parçalar' ödül türü için kullanılır",
-        pl: "Używane dla typu nagrody 'Odłamki'",
       },
       'Título RU': {
         'pt-BR': 'Título RU',
@@ -9465,20 +9387,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         tr: '«Refund»',
         pl: '«Refund»',
       },
-      'users.shards': {
-        'pt-BR': 'users.shards',
-        vi: 'users.shards',
-        id: 'users.shards',
-        tr: 'users.shards',
-        pl: 'users.shards',
-      },
-      shard_log: {
-        'pt-BR': 'shard_log',
-        vi: 'shard_log',
-        id: 'shard_log',
-        tr: 'shard_log',
-        pl: 'shard_log',
-      },
       'status=refunded': {
         'pt-BR': 'status=refunded',
         vi: 'status=refunded',
@@ -10032,13 +9940,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         tr: 'için mini gruplar (en fazla 20 kişi):',
         pl: 'minigrupy (do 20 osób) według',
       },
-      leagueId: {
-        'pt-BR': 'leagueId',
-        vi: 'leagueId',
-        id: 'leagueId',
-        tr: 'leagueId',
-        pl: 'leagueId',
-      },
       'El número en la insignia indica cuántos': {
         'pt-BR': 'O número no selo indica quantos',
         vi: 'Số trên huy hiệu cho biết có bao nhiêu',
@@ -10053,13 +9954,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         tr: 'grup',
         pl: 'grup',
       },
-      '(documentos) de esa liga hay en el periodo elegido. Haz clic en un grupo para ver la lista de miembros.': {
-        'pt-BR': '(documentos) dessa liga existem no período escolhido. Clique em um grupo para ver a lista de membros.',
-        vi: '(tài liệu) của giải đó trong giai đoạn đã chọn. Nhấp vào một nhóm để xem danh sách thành viên.',
-        id: '(dokumen) liga tersebut pada periode yang dipilih. Klik grup untuk melihat daftar anggota.',
-        tr: '(belge) o ligde seçilen dönemde bulunur. Üye listesini görmek için bir gruba tıklayın.',
-        pl: '(dokumentów) tej ligi istnieje w wybranym okresie. Kliknij grupę, aby zobaczyć listę członków.',
-      },
       '⏳ Abre la pestaña: cargando.': {
         'pt-BR': '⏳ Abra a aba: carregando.',
         vi: '⏳ Mở tab: đang tải.',
@@ -10067,40 +9961,12 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         tr: '⏳ Sekmeyi açın: yükleniyor.',
         pl: '⏳ Otwórz kartę: wczytywanie.',
       },
-      'Elige una liga a la izquierda.': {
-        'pt-BR': 'Escolha uma liga à esquerda.',
-        vi: 'Chọn một giải ở bên trái.',
-        id: 'Pilih liga di sebelah kiri.',
-        tr: 'Soldan bir lig seçin.',
-        pl: 'Wybierz ligę po lewej.',
-      },
-      'Archivo de coronas y bonus de liga': {
-        'pt-BR': 'Arquivo de coroas e bônus de liga',
-        vi: 'Lưu trữ vương miện và thưởng giải đấu',
-        id: 'Arsip mahkota dan bonus liga',
-        tr: 'Taç ve lig bonusu arşivi',
-        pl: 'Archiwum koron i bonusów ligi',
-      },
-      'Quién recibió la corona semanal y qué equipos completaron el objetivo de bonus de liga.': {
-        'pt-BR': 'Quem recebeu a coroa semanal e quais equipes concluíram o objetivo de bônus de liga.',
-        vi: 'Ai đã nhận vương miện hằng tuần và đội nào đã hoàn thành mục tiêu thưởng giải đấu.',
-        id: 'Siapa yang menerima mahkota mingguan dan tim mana yang menyelesaikan target bonus liga.',
-        tr: 'Haftalık tacı kimin aldığı ve hangi takımların lig bonusu hedefini tamamladığı.',
-        pl: 'Kto otrzymał tygodniową koronę i które zespoły ukończyły cel bonusu ligi.',
-      },
       '↻ Archivo': {
         'pt-BR': '↻ Arquivo',
         vi: '↻ Lưu trữ',
         id: '↻ Arsip',
         tr: '↻ Arşiv',
         pl: '↻ Archiwum',
-      },
-      'Abre la pestaña de ligas: el archivo se cargará automáticamente.': {
-        'pt-BR': 'Abra a aba de ligas: o arquivo será carregado automaticamente.',
-        vi: 'Mở tab giải đấu: kho lưu trữ sẽ tự động tải.',
-        id: 'Buka tab liga: arsip akan dimuat otomatis.',
-        tr: 'Ligler sekmesini açın: arşiv otomatik yüklenecek.',
-        pl: 'Otwórz kartę lig: archiwum wczyta się automatycznie.',
       },
       '🔍 Nombre, UID, rango...': {
         'pt-BR': '🔍 Nome, UID, ranking...',
@@ -11172,13 +11038,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         id: 'persentase',
         tr: 'yüzde',
         pl: 'procent',
-      },
-      '💎 Fragmentos totales': {
-        'pt-BR': '💎 Fragmentos totais',
-        vi: '💎 Tổng mảnh',
-        id: '💎 Total fragmen',
-        tr: '💎 Toplam parçalar',
-        pl: '💎 Fragmenty łącznie',
       },
       'media por usuario': {
         'pt-BR': 'média por usuário',
@@ -14548,8 +14407,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         <button class="feedback-chip" data-feedback-kind="learning_v2" aria-pressed="false" onclick="setFeedbackKind('learning_v2')">Learning V2</button>
         <button class="feedback-chip" data-feedback-kind="vocab" aria-pressed="false" onclick="setFeedbackKind('vocab')">Словарь</button>
         <button class="feedback-chip" data-feedback-kind="dialogue" aria-pressed="false" onclick="setFeedbackKind('dialogue')">Диалоги</button>
-        <button class="feedback-chip" data-feedback-kind="arena_blitz" aria-pressed="false" onclick="setFeedbackKind('arena_blitz')">Арена: блиц</button>
-        <button class="feedback-chip" data-feedback-kind="arena_rating" aria-pressed="false" onclick="setFeedbackKind('arena_rating')">Арена: рейтинг</button>
       </div>
     </div>
     <div class="feedback-control-row">
@@ -28037,7 +27894,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     { id: 'less_interesting', label: 'Когда становится менее интересно', options: { too_easy: 'Слишком легко', too_hard: 'Слишком сложно', unclear_mistakes: 'Непонятны ошибки', too_much_text: 'Много текста', no_progress: 'Не вижу прогресс', never: 'Не бывает' } },
     { id: 'first_time_confusing', label: 'Что непонятно с первого раза', options: { what_next: 'Что делать дальше', lessons: 'Уроки', flashcards: 'Карточки', mistakes: 'Ошибки', all_clear: 'Всё понятно' } },
     { id: 'expected_missing', label: 'Что ожидали увидеть, но не нашли', options: { more_explanations: 'Больше объяснений', more_examples: 'Больше примеров', more_topics: 'Больше тем', more_practice: 'Больше практики', more_stats: 'Больше статистики', learning_plan: 'План обучения', found_all: 'Всё нашёл(ла)' } },
-    { id: 'overloaded_screen', label: 'Какой экран перегружен', options: { home: 'Главная', lessons: 'Уроки', flashcards: 'Карточки', leagues: 'Лиги', profile: 'Профиль', none: 'Нет такого' } },
+    { id: 'overloaded_screen', label: 'Какой экран перегружен', options: { home: 'Главная', lessons: 'Уроки', flashcards: 'Карточки', profile: 'Профиль', none: 'Нет такого' } },
     { id: 'one_thing_week', label: 'Что улучшить на этой неделе', textOnly: true, options: { comment: 'Комментарий' } },
     { id: 'feature_request', label: 'Какую функцию добавить', textOnly: true, options: { comment: 'Комментарий' } },
     { id: 'friend_recommendation', label: 'Что рассказали бы другу о приложении', textOnly: true, options: { comment: 'Комментарий' } },
@@ -31770,7 +31627,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
 
   const FEEDBACK_SECTION_LABELS = {
     max_call: '📞 Звонок MAX', lesson: '📘 Урок', learning_v2: '🛠 Learning V2', vocab: '🗂 Словарь',
-    dialogue: '💬 Диалог', arena_blitz: '⚡ Арена: блиц', arena_rating: '🏆 Арена: рейтинг',
+    dialogue: '💬 Диалог',
   };
 
   async function renderFeedbackFeed(generation) {
@@ -37533,7 +37390,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   const CTX_RU = {
     no_energy: 'Кончилась энергия', course_after_lesson3: 'Дальше по курсу', lesson_b1: 'Уроки B1',
     flashcard_limit: 'Лимит карточек', flashcard_training: 'Тренировка карточек', flashcard_autoplay: 'Автовоспроизведение карточек',
-    streak: 'Серия', theme: 'Темы оформления', club: 'Клуб', dialog_limit: 'Лимит диалогов', dialog_locked_level: 'Диалог — уровень заблокирован',
+    streak: 'Серия', theme: 'Темы оформления', dialog_limit: 'Лимит диалогов', dialog_locked_level: 'Диалог — уровень заблокирован',
     dialog_analysis: 'Разбор диалога', ai_voice_input: 'Голосовой ввод в диалоге', speaking: 'Говорение',
     diagnosis_training: 'Персональная тренировка', mastery: 'Мастерство', stats: 'Статистика', heatmap: 'Карта активности',
     patterns: 'Паттерны ошибок', percentiles: 'Перцентили', intro_ended: 'Конец пробного доступа',
@@ -54757,7 +54614,7 @@ window.PMStrictRemediation=Object.freeze({version:'2026-08-18',exactEye:true,man
   'use strict';
   const byId=(id)=>document.getElementById(id);
   const state={catalog:[],selected:new Map(),requestId:'',idempotencyKey:''};
-  const categoryLabels={results:'Статистика',lessons:'Уроки',dialogues:'Диалоги',flashcards:'Карточки',energy:'Энергия',video:'Видео',plus:'Plus',league:'Лига',referrals:'Рефералы',arena:'Арена',settings:'Настройки',streak:'Серия',daily:'Главная',learning:'Обучение',home:'Главная'};
+  const categoryLabels={results:'Статистика',lessons:'Уроки',dialogues:'Диалоги',flashcards:'Карточки',energy:'Энергия',video:'Видео',plus:'Plus',referrals:'Рефералы',settings:'Настройки',streak:'Серия',daily:'Главная',learning:'Обучение',home:'Главная'};
   const status=(message,type)=>{const node=byId('home-hints-status');if(node){node.textContent=message||'';node.dataset.type=type||'info'}};
   const selectedCount=()=>state.selected.size;
   const visibleItems=()=>{const query=String(byId('home-hints-search')?.value||'').trim().toLowerCase();const category=String(byId('home-hints-category')?.value||'all');return state.catalog.filter((item)=>{if(category!=='all'&&item.category!==category)return false;return !query||`${item.topic||''} ${item.category||''} ${(item.variantsRu||[]).join(' ')}`.toLowerCase().includes(query)})};

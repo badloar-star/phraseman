@@ -389,10 +389,9 @@
     function candidateLiveScore(docSnap) {
       const data = docSnap.data() || {};
       const p = readProgress(data);
-      const xp = Number(p.user_total_xp || data.user_total_xp || 0) || 0;
       const lastActive = premiumMsLocal(p.last_active_at || data.last_active_at || data.updatedAt);
-      // last_active_at доминирует (мс), XP — вторичный сигнал.
-      return lastActive + Math.min(xp, 1_000_000);
+      // зачем: XP удалён в 2.0 (D02) — «живость» профиля определяет только последняя активность (мс).
+      return lastActive;
     }
 
     function premiumMsLocal(v) {
@@ -408,13 +407,12 @@
     function candidateMeta(docSnap) {
       const data = docSnap.data() || {};
       const p = readProgress(data);
-      const xp = Number(p.user_total_xp || data.user_total_xp || 0) || 0;
       const platform = String(p.device_platform || data.device_platform || p.platform || '').trim() || '—';
       const version = String(p.app_version || data.app_version || '').trim() || '—';
       const vipActive = String(p.vip_active || '').trim() === 'true' && String(p.vip_admin_override || '').trim() !== 'false';
       const lastActiveMs = premiumMsLocal(p.last_active_at || data.last_active_at || data.updatedAt);
       const lastActive = lastActiveMs > 0 ? new Date(lastActiveMs).toLocaleString('ru-RU') : '—';
-      return { id: docSnap.id, level: levelFromXp(xp), xp, platform, version, vipActive, lastActive };
+      return { id: docSnap.id, platform, version, vipActive, lastActive };
     }
 
     // Сохранена для обратной совместимости (refreshOpenTesterDetailFromRows и др.):
@@ -422,11 +420,6 @@
     async function findUserByNickname(nickname) {
       const matches = await findUserMatches(nickname);
       return matches[0] || null;
-    }
-
-    function levelFromXp(xp) {
-      const safe = Math.max(0, Number(xp) || 0);
-      return Math.floor(Math.sqrt(safe / 100)) + 1;
     }
 
     function activationMonthsForPlan(plan) {
@@ -466,7 +459,6 @@
       const data = userDoc.data() || {};
       const progress = readProgress(data);
       const name = userNameFromDoc(userDoc);
-      const xp = Number(progress.user_total_xp || data.user_total_xp || 0) || 0;
       const activeUntil = progress.vip_until ? new Date(parseInt(String(progress.vip_until), 10) || 0).toLocaleString('ru-RU') : '-';
       const meta = candidateMeta(userDoc);
       const period = normalizePeriod(tester);
@@ -483,7 +475,6 @@
           <h3>Профиль</h3>
           <div class="drow"><span class="k">Ник</span><span class="v">${escapeHtml(name)}</span></div>
           <div class="drow"><span class="k">UID</span><span class="v">${escapeHtml(userDoc.id)}</span></div>
-          <div class="drow"><span class="k">Уровень</span><span class="v">${levelFromXp(xp)} · ${meta.xp} XP</span></div>
           <div class="drow"><span class="k">Платформа</span><span class="v">${escapeHtml(meta.platform)} · v${escapeHtml(meta.version)}</span></div>
           <div class="drow"><span class="k">Активность</span><span class="v">${escapeHtml(meta.lastActive)}</span></div>
           <div class="drow"><span class="k">Текущий срок</span><span class="v">${escapeHtml(activeUntil)}</span></div>
@@ -597,7 +588,7 @@
         const top = i === 0 ? '<span class="pill" style="background:#2a3550;color:#cfe0ff">самый активный</span>' : '';
         return `
           <div class="dsec" style="cursor:pointer;border:1px solid #2a3142;border-radius:10px;padding:10px;margin-bottom:8px" data-pick-uid="${escapeHtml(m.id)}">
-            <div class="drow"><span class="k">Профиль</span><span class="v">Lvl ${m.level} · ${m.xp} XP ${top} ${vipBadge}</span></div>
+            <div class="drow"><span class="k">Профиль</span><span class="v">${top} ${vipBadge}</span></div>
             <div class="drow"><span class="k">Платформа</span><span class="v">${escapeHtml(m.platform)} · v${escapeHtml(m.version)}</span></div>
             <div class="drow"><span class="k">Активность</span><span class="v">${escapeHtml(m.lastActive)}</span></div>
             <div class="drow"><span class="k">UID</span><span class="v" style="font-size:11px;opacity:.7">${escapeHtml(m.id)}</span></div>

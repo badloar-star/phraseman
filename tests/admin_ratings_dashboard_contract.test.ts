@@ -11,9 +11,14 @@ describe('admin ratings dashboard', () => {
     expect(html).toContain('<h2 class="pm-v4-section-title">Оценки</h2>');
   });
 
-  it('offers seven one-click sources and three comment modes', () => {
-    for (const kind of ['max_call', 'lesson', 'learning_v2', 'vocab', 'dialogue', 'arena_blitz', 'arena_rating']) {
+  // зачем (FINAL_PHASE п.8, 03.10): Арена удалена в 2.0 (D10) — фильтры «Арена: блиц/рейтинг» убраны из админки;
+  // источников осталось пять. Серверные обработчики не тронуты (1.6.24).
+  it('offers five one-click sources (no Arena) and three comment modes', () => {
+    for (const kind of ['max_call', 'lesson', 'learning_v2', 'vocab', 'dialogue']) {
       expect(html).toContain(`data-feedback-kind="${kind}"`);
+    }
+    for (const kind of ['arena_blitz', 'arena_rating']) {
+      expect(html).not.toContain(`data-feedback-kind="${kind}"`);
     }
     for (const mode of ['all', 'with', 'without']) {
       expect(html).toContain(`data-feedback-comments="${mode}"`);

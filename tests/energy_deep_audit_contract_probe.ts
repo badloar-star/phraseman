@@ -32,10 +32,9 @@ assert.ok(
   'resetEnergyToMax does not keep its write inside the shared storage mutex',
 );
 
-const home = read('app/(tabs)/home.tsx');
-assert.ok(home.includes('showEnergyTooltip'), 'shared home energy popover trigger is missing');
-assert.ok(home.includes('energyTooltip.visible'), 'home energy popover state is missing');
-assert.ok(home.includes('<EnergyIcon'), 'shared energy glyph was removed from home');
+// зачем (разбор красного 03.10): энергию с Главной 2.0 убрал владелец (01.10) — подсказка, её состояние и значок
+// на Главной больше не должны существовать; это охраняет home_v2_no_energy_no_share_owner_2026_10_01.test.ts.
+// Прежние три проверки «они на месте» были устаревшей противоположностью и снесены.
 
 // зачем (§99, 03.10): проверки текста подарков энергии (+200 / «до 300») снесены вместе с app/level_gift_system.ts (D09).
 

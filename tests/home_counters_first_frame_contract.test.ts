@@ -37,10 +37,11 @@ describe('home counters: real numbers on the first frame', () => {
 
     // Пока шло чтение, спин мог начислить руны и опубликовать их в снапшот.
     // Берём большее: занизить баланс на глазах у игрока хуже, чем на миг отстать.
-    expect(bootstrap).toContain('stars: Math.max(bootRunes?.balance ?? 0, current.progress?.stars ?? 0)');
-    expect(bootstrap).toContain(
-      'starsEarnedTotal: Math.max(bootRunes?.earnedTotal ?? 0, current.progress?.starsEarnedTotal ?? 0)',
-    );
+    // зачем (разбор красного 03.10; эмулятор 01.10, [HOME-COINS]): неизвестные монеты теперь undefined, а не 0,
+    // поэтому присваивание стало условным («оба неизвестны → undefined, иначе Math.max»). Суть охраны прежняя —
+    // диск НИКОГДА не снижает более свежий баланс из снимка, — потому проверяем сам Math.max, а не форму присваивания.
+    expect(bootstrap).toContain('Math.max(bootRunes?.balance ?? 0, current.progress?.stars ?? 0)');
+    expect(bootstrap).toContain('Math.max(bootRunes?.earnedTotal ?? 0, current.progress?.starsEarnedTotal ?? 0)');
   });
 
   it('does not read the removed pearl balance on startup (PM-289, D70)', () => {

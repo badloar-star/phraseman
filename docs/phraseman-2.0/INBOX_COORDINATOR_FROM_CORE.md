@@ -1633,3 +1633,33 @@ Evidence: docs/phraseman-2.0/evidence/PM-235_migration_version_compat.md (§6). 
 7. **Проверка:** полная проверка типов — 0 ошибок; тесты по рунам/спинам/экономике (16 наборов, 135 проверок) зелёные, кроме двух красных не из этой работы: `home_counters_first_frame_contract` («never lets a disk read lower a fresher runes balance» — ждёт `stars: Math.max(bootRunes…` в `app_snapshot_*`) и проба `pm080_coin_sources_allowlist` (новые источники `account_merge_in/out` — у Account V2); `energy_deep_audit_contract_probe` падает на утверждении про энергию на Главной (убрана владельцем 01.10) ещё до моей правки.
 8. **Не делал (ждёт):** `constants/avatars.ts` — после освобождения `cloud_sync`.
 9. **Процесс:** `.git/index.lock` трижды оставался нулевым без живого git-процесса (5–8 минут) — снимал вручную (`rm`), когда `Get-Process git` был пуст; новые файлы в общем индексе иначе видны как «staged deletion» и чужой `git commit` их удалит. В очереди у чужих сессий остаются записи `AD` (удалены в дереве, но в индексе есть): `app/ai_dialog_ownership.ts`, `app/avatar_showcase_copy.ts`, `components/GiftOpenEffects.tsx` и др. — это не мои файлы.
+- **§105 (коорд., 20:20Z):** HIGH-1/M-1 (301df32e6) + I-1 ВЫЛОЖЕНЫ: authStampAnonOwnership, authEnsureStableLink, authMergeStableAccounts, accountMergeOutboxWorker, accountMergeOutboxRetryCron + firestore:indexes (TTL anon_relink_audit). Security №2 PASS. Остаток для 1.6.24 — до min_app_version 2.0. Read-only срез логов через сутки разрешён. LOW-A — когда освободится firestore.rules.
+
+#### Админка: убрано всё, что удалила 2.0 (FINAL_PHASE п.8) + две красные охраны (сессия App Check, 2026-10-03, паспорт docs/work/tasks/2026-10-03-core-admin-remove-2-0-deleted-features.md)
+
+Опубликованная админка — `admin/v2` (firebase.json, таргет `admin`). Серверное не трогал. **Выкладка hosting:admin — твоя.**
+
+**Красные охраны (разобраны):**
+- `home_counters_first_frame_contract` — законный сдвиг, не регрессия: после правки «монеты — undefined, пока кошелёк не прочитан» (HOME-COINS, эмулятор 01.10) присваивание стало условным; суть охраны («диск не снижает более свежий баланс») цела, поэтому тест теперь проверяет сам `Math.max(...)`, а не форму присваивания. Подходит и к версии в HEAD, и к рабочей копии `app_snapshot_bootstrap.ts` (в ней чужая несохранённая правка — её не трогал).
+- `energy_deep_audit_contract_probe` — законный сдвиг: проба требовала подсказку/значок энергии на Главной, а их убрал владелец (01.10); три утверждения «на месте» сняты с `// зачем`, остальная проба зелёная.
+- `pm080_coin_sources_allowlist` (account_merge_in/out) — не трогал, у 8T Ядра.
+
+**Удалено в `admin/v2/legacy.html`** (только мои правки; в файле лежат чужие несохранённые правки Spire-контента — коммит собран из HEAD + мои замены, их правки остались в рабочем дереве нетронутыми):
+- 20 мёртвых записей словаря переводов (ключ про снятую фичу и нигде на странице не встречается): лиги («🏅 Ligas», «Chat de ligas», «Chats de ligas», «grupos de liga», «Liga / semana», «(documentos) de esa liga…», «Elige una liga…», «Archivo de coronas y bonus de liga», «Quién recibió la corona semanal…», «Abre la pestaña de ligas…», `leagueId`), щит серии (1 и 3 дня), «Boost de liga gratis», «+5 partidas de ranking hoy», осколки («Fragmentos medios», «Fragmentos totales», «Se usa para el tipo de recompensa 'Fragmentos'», `users.shards`, `shard_log`).
+- CSS-селектор `#league-chest-archive`.
+- Фильтры отзывов «Арена: блиц» и «Арена: рейтинг» (и подписи в ленте).
+- Пункт «Лиги» в списке вариантов опроса «какой экран перегружен»; подпись «Клуб» в метках пейвола; метки `league`/`arena` в категориях уведомлений.
+**Удалено в других файлах:** `admin/v2/tournament_pool.html` (страница «Пул заданий турниров» — сирота, ссылку на неё админка уже не обрабатывала); XP/«уровень от XP» в `admin/v2/testers.html` и `admin/testers.html` (сортировка «живости» теперь только по последней активности, строка профиля без Lvl/XP); метки мёртвых экранов/событий в `admin/v2/scripts/components/analytics-language.js` (магазин осколков ×4 события, Клуб, Лига, «Отправлен подарок другу»). Тест `admin_ratings_dashboard_contract` приведён к пяти источникам отзывов.
+
+**Оставлено — и почему:**
+- Вкладка «Подарочные сертификаты» (`gift-certificates`) — веб-коммерция (коды активации Plus на сайте), не подарки уровня; жива.
+- «Контент Spire» (`arena-content`, фабрика пакетов Арены) — обслуживает Шпиль; жив (по нему как раз чужие правки в файле).
+- Тумблер уведомления `arenaRating` («Оценка Arena») — зеркалит серверный список id (`admin_telegram_owner_alerts_contract` держит паритет); убрать можно только вместе с серверным обработчиком (1.6.24). Это задача для серверной стороны.
+- «Покупки осколков», `revenuecat_shard_transactions`, «Осколки» в деталях покупки UGC, `edit_shards` в журнале аудита, «Центр возвратов… осколков RevenueCat» — история РЕАЛЬНЫХ денег/возвратов и записей аудита: без неё нельзя разобрать прошлый спор. Решение владельца нужно, если и это стирать.
+- «Prize pearls» в CSV рефералов и «Выпало: N жемчужин» — старые записи рулетки в истории; рулетка вернулась (D99), строки со старым призом читаются как раньше.
+- Словарь `Primero completa los enlaces…` и `Fuente: community_pack_purchases…` — совпали со словом «shards», но это комьюнити-паки/промо, не снятые фичи.
+- Кэш готовых ответов поддержки (≈150 строк про лиги/турниры) — это уже отправленные тексты, данные, не интерфейс.
+- Оставшиеся упоминания слов «сезонный/season» — это сезонная скидка (`discount_offer_banner`) и id `seasonId: 'learning-v2'`, не сезонный пропуск.
+
+**Проверка:** все `tests/admin_*` — набор падающих ДО и ПОСЛЕ идентичен (28 красных наборов, все существовали до меня; новых нет, исправленных нет); `.mjs`-охраны админки зелёные; синтаксис встроенных скриптов `legacy.html` до/после одинаков. Красные 28 — отдельный долг (охраны на устаревшие тексты админки), список по запросу.
+**Замечание по процессу:** `.git/index.lock` снова возникает без живого git-процесса; снимаю вручную только при пустом `Get-Process git`.

@@ -187,6 +187,7 @@ import { installPhoneStateProductionRuntime } from './phone_state_runtime';
 import { schedulePhoneStateDeferredIntegrityCheck } from './phone_state_runtime'; // зачем: §84 — фоновая проверка целостности
 import { coldStartMark } from './cold_start_trace'; // зачем: §80 — [COLD-START] от старта процесса
 import { installColdStartIoTrace } from './cold_start_io_trace'; // зачем: §89 — [COLD-START-IO]
+import { runAfterHomeFirstFrame } from './first_frame_deferred_warmups'; // зачем: PM-211 — необязательное после первого кадра Главной
 import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from './cloud_restore_coordinator';
 import { hasMeaningfulLocalAccountData } from './local_account_data';
 import { decideStartupCloudRecoveryPresentation } from './startup_cloud_recovery_presentation';
@@ -1564,12 +1565,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady || heavyInitStartedRef.current) return;
     heavyInitStartedRef.current = true;
     let timer: ReturnType<typeof setTimeout> | null = null;
-    const task = InteractionManager.runAfterInteractions(() => {
+    // зачем: PM-211 — firstContentReady может прийти запасным таймером (400 мс) раньше,
+    // чем доедет чанк Главной; тогда прогрев друзей/магазина/аналитики делил поток с её
+    // первым кадром. Теперь ждём кадр Главной (или потолок 2,5 с), затем взаимодействия.
+    const cancelDeferred = runAfterHomeFirstFrame('heavy_init', () => {
       timer = setTimeout(() => runHeavyInitRef.current?.(), 250);
     });
     return () => {
       if (timer) clearTimeout(timer);
-      task.cancel?.();
+      cancelDeferred();
     };
   }, [effectiveShowOnboarding, firstContentReady, isBanned, ready]);
 
@@ -2283,10 +2287,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // зачем (Q106, координатор §62): достижения shards_100…10000 («Монетная заначка») по
       // названию про монеты, а считались по удалённому жемчугу. Теперь — баланс монет (руны,
       // локальная проекция, без Firestore). Номера достижений прежние.
-      void getStableId()
+      // зачем: PM-211 — проверка достижений не нужна первому кадру; раньше она стартовала
+      // здесь, до setReady, и делила JS-поток и диск с ещё не нарисованной Главной.
+      runAfterHomeFirstFrame('achievements_coins_boot_check', () => getStableId()
         .then(() => getRunesBalanceRead())
         .then((read) => checkAchievements({ type: 'shards', balance: read.wallet.balance }))
-        .catch((error: unknown) => console.warn('[ACHIEVEMENTS] coins_boot_check_failed', String(error)));
+        .catch((error: unknown) => console.warn('[ACHIEVEMENTS] coins_boot_check_failed', String(error))));
 
       let shouldPrimeLessonsAfterReveal = false;
       try {

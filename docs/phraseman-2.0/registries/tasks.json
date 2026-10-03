@@ -11957,15 +11957,17 @@
       "BASELINE_SHA_APPROVED",
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
     ],
-    "audit_sha": null,
+    "audit_sha": "c5eb80f70",
     "result_sha": null,
-    "owner": null,
+    "owner": "Ядро (Claude)",
     "reviewer": null,
     "evidence": [
       "99cc78b2f: дедлайн 10 с на задачу foreground-очереди (app_resume_policy 10/10, «moves on after deadline»); prefetch не пишет в AsyncStorage и уступает занятию"
     ],
     "notes": [
-      "2026-10-01: A3 NOT_MET — замер p50/p95 на релизном билде слабого телефона; дедлайн 10 с не измерен"
+      "2026-10-01: A3 NOT_MET — замер p50/p95 на релизном билде слабого телефона; дедлайн 10 с не измерен",
+      "Gates: общий пакет docs/phraseman-2.0/GATES_COMMON_2026-10-01.md закрыт координатором по Q76; карточка влияния — docs/work/tasks/core-pm215-preflight-2026-10-03.md (77c4f5aed), принята §115.",
+      "§115: шаг 0 (метрики) — да; приоритет записи — счётчик «запись в полёте»; A3 — эмулятор слабого профиля, физический телефон — владельцу в FINAL; дедлайн storage_mutex — после замера, владелец (D153)."
     ],
     "actual_cost": null,
     "kind": "unclassified",

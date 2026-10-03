@@ -166,7 +166,39 @@ export type LockedFlashcardsMerge = Readonly<{
   localOnly: number;
   deletedSkipped: number;
   localUnparsable: boolean;
+  /** S1b: общие id с разными версиями, где осталась локальная / победила облачная. */
+  localWon: number;
+  remoteWon: number;
+  /** S1b: облачные версии, победившие локальные (их надо положить и в локальный список). */
+  remoteWonCards: readonly unknown[];
 }>;
+
+export type CardVersionWinner = Readonly<{
+  winner: 'local' | 'remote';
+  reason: 'newer' | 'tie' | 'no_updated_at';
+}>;
+
+function validUpdatedAt(card: unknown): number | null {
+  const value = (card as { updatedAt?: unknown } | null)?.updatedAt;
+  return typeof value === 'number' && Number.isFinite(value) && value > 0 ? value : null;
+}
+
+/**
+ * S1b — чья версия одной и той же карточки (тот же id) остаётся при объединении.
+ * Чистая функция — ради тестов.
+ *
+ * зачем (§100 координатора): раньше при совпадении id всегда побеждало облако, и правка,
+ * сделанная на телефоне между синками, откатывалась к облачной. Правило: побеждает более
+ * поздняя отметка изменения (updatedAt, её ставит 7E); при равенстве или если отметки нет
+ * хотя бы у одной стороны — локальная (то, что человек видит сейчас на экране).
+ */
+export function pickCardVersion(local: unknown, remote: unknown): CardVersionWinner {
+  const localAt = validUpdatedAt(local);
+  const remoteAt = validUpdatedAt(remote);
+  if (localAt === null || remoteAt === null) return { winner: 'local', reason: 'no_updated_at' };
+  if (localAt === remoteAt) return { winner: 'local', reason: 'tie' };
+  return localAt > remoteAt ? { winner: 'local', reason: 'newer' } : { winner: 'remote', reason: 'newer' };
+}
 
 function cardIdentity(card: unknown): string {
   const id = (card as { id?: unknown } | null)?.id;
@@ -196,22 +228,48 @@ function parseCardArray(raw: string | null): unknown[] | null {
  * нет (по id). Облачная карточка, которую человек явно удалил на этом телефоне (журнал
  * удалений 7D, deletedIds = id), не возвращается. Удаление под замком без журнала даст
  * «воскрешение» — это безопаснее потери. Локальное не читается → берём страницы как раньше.
+ *
+ * S1b: одна карточка (тот же id) есть и там, и там в разных версиях → версия по pickCardVersion
+ * (новее updatedAt; равенство/нет отметки → локальная). Лог merge_conflict без id и содержимого.
+ * `logKey` — ключ списка в хранилище (flashcards_v1 …), только для логов.
  */
 export function mergeLockedFlashcardsWithPages(
   localRaw: string | null,
   pagesRaw: string,
   deletedIds: ReadonlySet<string>,
+  logKey = 'unknown',
 ): LockedFlashcardsMerge {
   const cloudCards = parseCardArray(pagesRaw) ?? [];
   const localCards = parseCardArray(localRaw);
   if (localCards === null) {
-    return { value: pagesRaw, cloud: cloudCards.length, localOnly: 0, deletedSkipped: 0, localUnparsable: true };
+    return {
+      value: pagesRaw, cloud: cloudCards.length, localOnly: 0, deletedSkipped: 0, localUnparsable: true,
+      localWon: 0, remoteWon: 0, remoteWonCards: [],
+    };
   }
   const isDeleted = (card: unknown): boolean => {
     const id = (card as { id?: unknown } | null)?.id;
     return typeof id === 'string' && deletedIds.has(id);
   };
-  const keptCloud = cloudCards.filter((card) => !isDeleted(card));
+  const localByIdentity = new Map<string, unknown>();
+  for (const card of localCards) {
+    const identity = cardIdentity(card);
+    if (!localByIdentity.has(identity)) localByIdentity.set(identity, card);
+  }
+  let localWon = 0;
+  const remoteWonCards: unknown[] = [];
+  const keptCloud = cloudCards.filter((card) => !isDeleted(card)).map((cloudCard) => {
+    const localCard = localByIdentity.get(cardIdentity(cloudCard));
+    if (localCard === undefined || JSON.stringify(localCard) === JSON.stringify(cloudCard)) return cloudCard;
+    const pick = pickCardVersion(localCard, cloudCard);
+    console.log(`${LOG} merge_conflict key=${logKey} winner=${pick.winner} reason=${pick.reason}`);
+    if (pick.winner === 'local') {
+      localWon += 1;
+      return localCard;
+    }
+    remoteWonCards.push(cloudCard);
+    return cloudCard;
+  });
   const seen = new Set(keptCloud.map(cardIdentity));
   const localOnly = localCards.filter((card) => !seen.has(cardIdentity(card)) && !isDeleted(card));
   return {
@@ -220,6 +278,9 @@ export function mergeLockedFlashcardsWithPages(
     localOnly: localOnly.length,
     deletedSkipped: cloudCards.length - keptCloud.length,
     localUnparsable: false,
+    localWon,
+    remoteWon: remoteWonCards.length,
+    remoteWonCards,
   };
 }
 
@@ -376,6 +437,8 @@ export type FlashcardPagesPreWriteDecision =
     cardsJson: string;
     merged: boolean;
     addedFromRemote: readonly unknown[];
+    /** S1b: облачные версии общих карточек, победившие локальные (новее updatedAt). */
+    replacedFromRemote: readonly unknown[];
     /** Отпечаток того, что будет лежать в страницах после записи. */
     fingerprint: string;
   }>
@@ -389,6 +452,12 @@ export type FlashcardPagesPreWriteStore = Readonly<{
 
 /** Добавить карточки в локальный список (через очередь записи хука). Число добавленных; -1 — не вышло. */
 export type FlashcardLocalMerge = (target: StudyTarget, cards: readonly unknown[]) => Promise<number>;
+
+/**
+ * S1b: заменить локальные версии карточек облачными (через очередь записи хука). Число заменённых;
+ * -1 — не вышло. Заменяет только если СВЕЖАЯ локальная карточка всё ещё проигрывает облачной.
+ */
+export type FlashcardLocalReplace = (target: StudyTarget, cards: readonly unknown[]) => Promise<number>;
 
 // ── Отпечаток ──────────────────────────────────────────────────────────────────
 
@@ -473,6 +542,26 @@ export const defaultFlashcardLocalMerge: FlashcardLocalMerge = async (target, ca
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const store = require('../hooks/use-flashcards') as typeof import('../hooks/use-flashcards');
   return store.mergeSavedFlashcardsFromAccountsV2(target, cards as unknown as import('../hooks/use-flashcards').Flashcard[]);
+};
+
+/** S1b: облачная версия победила — кладём её и в локальный список (кэш + очередь записи хука). */
+export const defaultFlashcardLocalReplace: FlashcardLocalReplace = async (target, cards) => {
+  const byId = new Map<string, unknown>();
+  for (const card of cards) {
+    const id = (card as { id?: unknown } | null)?.id;
+    if (typeof id === 'string') byId.set(id, card);
+  }
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const store = require('../hooks/use-flashcards') as typeof import('../hooks/use-flashcards');
+  return store.replaceSavedFlashcardsFromAccountsV2(target, (fresh) => {
+    const remote = byId.get(fresh.id);
+    if (remote === undefined) return null;
+    // зачем: между решением и записью человек мог изменить карточку — свежая правка новее облака
+    // остаётся (гонка), а финал не сохранит отпечаток, и следующий синк объединит заново.
+    return pickCardVersion(fresh, remote).winner === 'remote'
+      ? remote as import('../hooks/use-flashcards').Flashcard
+      : null;
+  });
 };
 
 // ── Снимок страниц одного языка ────────────────────────────────────────────────
@@ -571,17 +660,17 @@ export async function decideFlashcardPagesPreWrite(input: PreWriteInput): Promis
     const localNormalized = normalizedJson(localJson);
     if (read.status === 'empty') {
       console.log(`${LOG} pre_write_merge key=${key} local=${local} remote=0 added_from_remote=0 dropped_by_journal=0 decision=local reason=remote_empty`);
-      return { kind: 'write', cardsJson: localNormalized, merged: false, addedFromRemote: [], fingerprint: fingerprintCardsJson(localNormalized) };
+      return { kind: 'write', cardsJson: localNormalized, merged: false, addedFromRemote: [], replacedFromRemote: [], fingerprint: fingerprintCardsJson(localNormalized) };
     }
     const remoteFingerprint = fingerprintCardsJson(read.value);
     const lastWritten = await store.readFingerprint(owner, key);
     if (lastWritten === remoteFingerprint) {
       // В облаке ровно наша прошлая запись: объединять нечего, локальные удаления уходят как раньше.
       console.log(`${LOG} pre_write_merge key=${key} local=${local} remote=${read.cards} added_from_remote=0 dropped_by_journal=0 decision=local reason=remote_is_own_last_write`);
-      return { kind: 'write', cardsJson: localNormalized, merged: false, addedFromRemote: [], fingerprint: fingerprintCardsJson(localNormalized) };
+      return { kind: 'write', cardsJson: localNormalized, merged: false, addedFromRemote: [], replacedFromRemote: [], fingerprint: fingerprintCardsJson(localNormalized) };
     }
     const deletedIds = await store.readDeletedIds(target);
-    const merge = mergeLockedFlashcardsWithPages(localNormalized, read.value, deletedIds);
+    const merge = mergeLockedFlashcardsWithPages(localNormalized, read.value, deletedIds, key);
     if (merge.localUnparsable) {
       // Ранний выход: без локального списка объединение отдало бы одно облако — не пишем.
       console.log(`${LOG} pre_write_merge key=${key} local=${local} remote=${read.cards} added_from_remote=0 dropped_by_journal=${merge.deletedSkipped} decision=skip_write reason=local_unparsable`);
@@ -591,13 +680,20 @@ export async function decideFlashcardPagesPreWrite(input: PreWriteInput): Promis
     const addedFromRemote = (JSON.parse(merge.value) as unknown[]).filter((card) => !localIds.has(cardIdentity(card)));
     // Ничего не пришло из облака → пишем локальное как есть (порядок списка не меняется).
     // S3: порядок как в локальном списке, пришедшие из облака — в конце (см. orderMergedLikeLocal).
-    const cardsJson = addedFromRemote.length > 0 ? orderMergedLikeLocal(localNormalized, merge.value) : localNormalized;
-    console.log(`${LOG} pre_write_merge key=${key} local=${local} remote=${read.cards} added_from_remote=${addedFromRemote.length} dropped_by_journal=${merge.deletedSkipped} decision=${addedFromRemote.length > 0 ? 'merged' : 'local'} reason=${lastWritten === null ? 'no_own_fingerprint' : 'remote_changed_elsewhere'}`);
+    // S1b: облачная версия общей карточки победила (новее updatedAt) → тоже пишем объединение;
+    // где победила локальная, в объединении уже локальная версия.
+    const mergedAny = addedFromRemote.length > 0 || merge.remoteWon > 0;
+    const cardsJson = mergedAny ? orderMergedLikeLocal(localNormalized, merge.value) : localNormalized;
+    console.log(`${LOG} pre_write_merge key=${key} local=${local} remote=${read.cards} added_from_remote=${addedFromRemote.length} dropped_by_journal=${merge.deletedSkipped} decision=${mergedAny ? 'merged' : 'local'} reason=${lastWritten === null ? 'no_own_fingerprint' : 'remote_changed_elsewhere'}`);
+    if (merge.localWon > 0 || merge.remoteWon > 0) {
+      console.log(`${LOG} pre_write_merge_versions key=${key} local_won=${merge.localWon} remote_won=${merge.remoteWon}`);
+    }
     return {
       kind: 'write',
       cardsJson,
-      merged: addedFromRemote.length > 0,
+      merged: mergedAny,
       addedFromRemote,
+      replacedFromRemote: merge.remoteWonCards,
       fingerprint: fingerprintCardsJson(cardsJson),
     };
   } catch (error) {
@@ -618,6 +714,8 @@ export type PreWriteFinishInput = Readonly<{
   mode: 'sync' | 'force';
   store: FlashcardPagesPreWriteStore;
   mergeLocal: FlashcardLocalMerge;
+  /** S1b: замена локальных версий облачными; по умолчанию — через хук. */
+  replaceLocal?: FlashcardLocalReplace;
 }>;
 
 /**
@@ -664,6 +762,30 @@ export async function finishFlashcardPagesPreWrite(input: PreWriteFinishInput): 
     const droppedLocally = decision.addedFromRemote.length - added;
     if (droppedLocally > 0) {
       console.warn(`${LOG} pre_write_merge_finish key=${key} result=ok fingerprint=not_saved reason=local_dedup_dropped=${droppedLocally}`);
+      return;
+    }
+  }
+  if (decision.replacedFromRemote.length > 0) {
+    // S1b: облачная версия общей карточки победила — без этого шага следующий синк счёл бы
+    // облако «своим» (отпечаток) и записал бы локальную старую версию поверх: откат облачной правки.
+    const replaceLocal = input.replaceLocal ?? defaultFlashcardLocalReplace;
+    let replaced = -1;
+    try {
+      replaced = await replaceLocal(target, decision.replacedFromRemote);
+    } catch (error) {
+      console.warn(`${LOG} pre_write_merge_finish key=${key} result=local_replace_error error=${String(error).slice(0, 120)} fingerprint=not_saved`);
+      return;
+    }
+    if (replaced < 0) {
+      console.warn(`${LOG} pre_write_merge_finish key=${key} result=local_replace_failed fingerprint=not_saved`);
+      return;
+    }
+    console.log(`${LOG} pre_write_merge_finish key=${key} local_replaced=${replaced} remote_newer=${decision.replacedFromRemote.length}`);
+    const skipped = decision.replacedFromRemote.length - replaced;
+    if (skipped > 0) {
+      // Человек успел изменить карточку (новее облака) или её уже нет: локальное не трогаем,
+      // отпечаток не сохраняем — следующий синк объединит заново и решит по свежим версиям.
+      console.warn(`${LOG} pre_write_merge_finish key=${key} result=ok fingerprint=not_saved reason=local_replace_skipped=${skipped}`);
       return;
     }
   }

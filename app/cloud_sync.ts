@@ -243,6 +243,7 @@ import {
 } from './legacy_free_lesson_access';
 import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 import {
+  FLASHCARD_PAGES_WRITE_FINGERPRINT_KEY,
   lockFlashcardPagesWrite,
   mergeLockedFlashcardsWithPages,
   readFlashcardPagesResult,
@@ -808,6 +809,10 @@ export function accountLocalDataKeysForToday(todayKey: string = getUtcDayKey()):
     // зачем (Account V2, 7D): журнал удалений карточек принадлежит аккаунту — стирается
     // вместе с его карточками при выходе/смене/удалении; в старое облако не уходит.
     CARD_DELETION_JOURNAL_KEY,
+    // зачем (Account Authority 2.0, S1b, §100): отпечаток записи страниц карточек (8N) хранит
+    // stableId владельца и отпечатки его списков — это след аккаунта, стирается вместе с ним.
+    // Без отпечатка повторный вход объединяет со страницами (безопасная сторона), не затирает их.
+    FLASHCARD_PAGES_WRITE_FINGERPRINT_KEY,
     'cloud_migration_v1',
     // Кэши лидербордов (содержат предыдущего юзера)
     'global_lb_cache',
@@ -3435,6 +3440,7 @@ async function restoreFlashcardPagesForKeys(
           await AsyncStorage.getItem(key),
           String(cloudData[key]),
           await readSavedCardDeletionIds(target),
+          key,
         );
         assertCurrent();
         console.log(`[LEGACY-V2-SYNC] restore key=${key} source=doc_field_merged_local cloud=${merge.cloud} local_only=${merge.localOnly} deleted_skipped=${merge.deletedSkipped} local_unparsable=${merge.localUnparsable}`);
@@ -3465,6 +3471,7 @@ async function restoreFlashcardPagesForKeys(
         await AsyncStorage.getItem(key),
         fromPages,
         await readSavedCardDeletionIds(target),
+        key,
       );
       assertCurrent();
       console.log(`[LEGACY-V2-SYNC] restore key=${key} source=pages_merged_local cloud=${merge.cloud} local_only=${merge.localOnly} deleted_skipped=${merge.deletedSkipped} local_unparsable=${merge.localUnparsable}`);

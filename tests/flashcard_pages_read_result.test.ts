@@ -246,3 +246,59 @@ describe('orderMergedLikeLocal — порядок объединённого с�
     expect(orderMergedLikeLocal(JSON.stringify({ id: 'a' }), merged)).toBe(merged);
   });
 });
+
+// зачем (S1b, §100 координатора): одна карточка изменена и локально, и в облаке — побеждает
+// более поздняя отметка изменения (updatedAt, 7E); равенство или отсутствие отметки → локальная.
+// Раньше при совпадении id всегда побеждало облако: правка между синками откатывалась.
+describe('S1b — конфликт версий одной карточки при объединении', () => {
+  const T = 1_800_000_000_000;
+  const merge = (local: unknown[], cloud: unknown[]) => mergeLockedFlashcardsWithPages(
+    JSON.stringify(local), JSON.stringify(cloud), new Set(), 'flashcards_v1',
+  );
+
+  test('локальная новее → в объединении локальная версия; лог winner=local reason=newer', () => {
+    const out = merge([{ id: 'a', ru: 'новое', updatedAt: T + 10 }], [{ id: 'a', ru: 'старое', updatedAt: T }, { id: 'b' }]);
+    expect(JSON.parse(out.value)).toEqual([{ id: 'a', ru: 'новое', updatedAt: T + 10 }, { id: 'b' }]);
+    expect(out).toMatchObject({ localWon: 1, remoteWon: 0 });
+    expect(logs()).toContain('[FLASHCARD-PAGES] merge_conflict key=flashcards_v1 winner=local reason=newer');
+  });
+
+  test('облачная новее → облачная версия; лог winner=remote reason=newer', () => {
+    const out = merge([{ id: 'a', ru: 'старое', updatedAt: T }], [{ id: 'a', ru: 'новое', updatedAt: T + 10 }]);
+    expect(JSON.parse(out.value)).toEqual([{ id: 'a', ru: 'новое', updatedAt: T + 10 }]);
+    expect(out).toMatchObject({ localWon: 0, remoteWon: 1 });
+    expect(out.remoteWonCards).toEqual([{ id: 'a', ru: 'новое', updatedAt: T + 10 }]);
+    expect(logs()).toContain('[FLASHCARD-PAGES] merge_conflict key=flashcards_v1 winner=remote reason=newer');
+  });
+
+  test('равные отметки → локальная; лог reason=tie', () => {
+    const out = merge([{ id: 'a', ru: 'моё', updatedAt: T }], [{ id: 'a', ru: 'облако', updatedAt: T }]);
+    expect(JSON.parse(out.value)).toEqual([{ id: 'a', ru: 'моё', updatedAt: T }]);
+    expect(logs()).toContain('[FLASHCARD-PAGES] merge_conflict key=flashcards_v1 winner=local reason=tie');
+  });
+
+  test('без updatedAt (у одной или обеих) → локальная; лог reason=no_updated_at', () => {
+    expect(JSON.parse(merge([{ id: 'a', ru: 'моё' }], [{ id: 'a', ru: 'облако' }]).value)).toEqual([{ id: 'a', ru: 'моё' }]);
+    expect(JSON.parse(merge([{ id: 'a', ru: 'моё' }], [{ id: 'a', ru: 'облако', updatedAt: T }]).value)).toEqual([{ id: 'a', ru: 'моё' }]);
+    expect(JSON.parse(merge([{ id: 'a', ru: 'моё', updatedAt: 'x' }], [{ id: 'a', ru: 'облако', updatedAt: T }]).value))
+      .toEqual([{ id: 'a', ru: 'моё', updatedAt: 'x' }]);
+    expect(logs().filter((line) => line.includes('merge_conflict'))).toEqual(Array(3).fill(
+      '[FLASHCARD-PAGES] merge_conflict key=flashcards_v1 winner=local reason=no_updated_at',
+    ));
+  });
+
+  test('одинаковые версии — не конфликт, лога нет; логи без содержимого и id карточек', () => {
+    const out = merge([{ id: 'a', ru: 'x' }], [{ id: 'a', ru: 'x' }]);
+    expect(out).toMatchObject({ localWon: 0, remoteWon: 0 });
+    expect(logs().some((line) => line.includes('merge_conflict'))).toBe(false);
+    merge([{ id: 'secret-id', ru: 'тайна', updatedAt: T + 1 }], [{ id: 'secret-id', ru: 'другое', updatedAt: T }]);
+    expect(logs().some((line) => line.includes('secret-id') || line.includes('тайна'))).toBe(false);
+  });
+
+  test('удалённая журналом карточка не участвует в конфликте и не возвращается', () => {
+    const out = mergeLockedFlashcardsWithPages(
+      JSON.stringify([{ id: 'gone', updatedAt: T + 10 }]), JSON.stringify([{ id: 'gone', updatedAt: T }]), new Set(['gone']), 'k',
+    );
+    expect(JSON.parse(out.value)).toEqual([]);
+  });
+});

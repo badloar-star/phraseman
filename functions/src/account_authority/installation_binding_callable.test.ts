@@ -9,7 +9,7 @@ import type {
 } from './installation_binding_contract';
 import { createInstallationBinding } from './installation_binding_contract';
 import {
-  createFirebaseInstallationBindingIdentityPort,
+  verifyInstallationBindingInTransaction,
   createFirebaseInstallationBindingPorts,
   createFirestoreInstallationBindingStore,
   handleInstallationBindingCallable,
@@ -19,6 +19,14 @@ import { readAccountAuthorityFailureDetail } from './account_authority_log';
 import { ACCOUNT_AUTHORITY_RECORD_TTL_MS } from './account_authority_policy';
 
 const ROOT = path.resolve(__dirname, '../..');
+
+// S2a раунд 4 (L-R3-4): отдельный порт-резолвер удалён; проверка привязки живёт
+// только внутри единых транзакций входа/выхода/удаления — тестируем её там же.
+function verifyIn(db: Firestore, firebaseAuthUid: string, bindingToken: string) {
+  return db.runTransaction((transaction) => verifyInstallationBindingInTransaction(
+    db, transaction as never, firebaseAuthUid, bindingToken, 3_000,
+  ));
+}
 const INSTALLATION_ID = '550e8400-e29b-41d4-a716-446655440000';
 // S2a, пункт 1: привязка требует неанонимного вида входа в проверенном токене.
 const GOOGLE_TOKEN = Object.freeze({ firebase: Object.freeze({ sign_in_provider: 'google.com' }) });
@@ -288,13 +296,7 @@ describe('installation binding Firebase callable adapter', () => {
       }),
       runTransaction: async (work: (value: typeof transaction) => Promise<unknown>) => work(transaction),
     } as unknown as Firestore;
-    const port = createFirebaseInstallationBindingIdentityPort(db);
-
-    await expect(port.resolve({
-      firebaseAuthUid: 'firebase-auth-a' as never,
-      authToken: { auth_time: 1234 },
-      app: null,
-    }, bindingToken)).resolves.toEqual({
+    await expect(verifyIn(db, 'firebase-auth-a', bindingToken)).resolves.toMatchObject({
       tenantId: 'phraseman-primary',
       deviceId: 'server-device-binding-a',
       authEpoch: 2_000,
@@ -344,24 +346,17 @@ describe('installation binding Firebase callable adapter', () => {
       runTransaction: async (work: (value: typeof transaction) => Promise<unknown>) => work(transaction),
     } as unknown as Firestore;
 
-    await expect(createFirebaseInstallationBindingIdentityPort(db).resolve({
-      firebaseAuthUid: 'firebase-auth-a' as never,
-      authToken: { auth_time: 1234 },
-      app: null,
-    }, bindingToken)).rejects.toMatchObject({
+    await expect(verifyIn(db, 'firebase-auth-a', bindingToken)).rejects.toMatchObject({
       code: 'failed-precondition',
       // S2a, пункт 4: окончательный отказ «привязка не ваша/отозвана».
       message: 'account_authority_binding_mismatch',
     });
   });
 
-  // зачем (AA S0): временный сбой Firestore раньше превращался в «отклонено».
-  // зачем (ревью L4): резолвер — промежуточный слой. Он не пишет свою строку, а
-  // прикрепляет причину к ошибке; итоговую строку пишет граница вызова.
-  test('maps a transient Firestore failure to the retryable unavailable code and attaches only its safe code', async () => {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const logger = require('firebase-functions/logger') as typeof import('firebase-functions/logger');
-    const warn = jest.spyOn(logger, 'warn').mockImplementation(() => undefined);
+  // зачем (AA S0 → S2a раунд 4): временный сбой Firestore — не «отклонено».
+  // Проверка привязки пропускает его как есть; граница переводит его в
+  // повторяемый unavailable (см. s2a_identity_security: storage contention).
+  test('leaves a transient Firestore failure unwrapped instead of turning it into a rejection', async () => {
     const db = {
       collection: (name: string) => ({
         doc: (id: string) => Object.freeze({ path: `${name}/${id}` }),
@@ -370,29 +365,9 @@ describe('installation binding Firebase callable adapter', () => {
         throw Object.assign(new Error('10 ABORTED: contention on firebase-auth-a'), { code: 10 });
       },
     } as unknown as Firestore;
-    try {
-      const failure = await createFirebaseInstallationBindingIdentityPort(db).resolve({
-        firebaseAuthUid: 'firebase-auth-a' as never,
-        authToken: {},
-        app: null,
-      }, 'some-binding-token').catch((error: unknown) => error);
-      expect(failure).toMatchObject({
-        code: 'unavailable',
-        message: 'account_authority_installation_binding_unavailable',
-      });
-      const detail = readAccountAuthorityFailureDetail(failure);
-      expect(detail).toEqual({
-        stage: 'binding',
-        reason: 'storage_unavailable',
-        causeKind: 'Error',
-        causeCode: '10',
-      });
-      expect(warn).not.toHaveBeenCalled();
-      expect(JSON.stringify(detail)).not.toContain('firebase-auth-a');
-      expect(JSON.stringify(detail)).not.toContain('some-binding-token');
-    } finally {
-      warn.mockRestore();
-    }
+    const failure = await verifyIn(db, 'firebase-auth-a', 'some-binding-token').catch((error: unknown) => error);
+    expect(failure).toMatchObject({ code: 10 });
+    expect(readAccountAuthorityFailureDetail(failure)).toEqual({});
   });
 
   test('attaches the rejection branch without identifiers', async () => {
@@ -407,11 +382,7 @@ describe('installation binding Firebase callable adapter', () => {
       runTransaction: async (work: (value: typeof transaction) => Promise<unknown>) => work(transaction),
     } as unknown as Firestore;
     try {
-      const failure = await createFirebaseInstallationBindingIdentityPort(db).resolve({
-        firebaseAuthUid: 'firebase-auth-a' as never,
-        authToken: {},
-        app: null,
-      }, 'unknown-binding-token').catch((error: unknown) => error);
+      const failure = await verifyIn(db, 'firebase-auth-a', 'unknown-binding-token').catch((error: unknown) => error);
       expect(failure).toMatchObject({ code: 'failed-precondition' });
       expect(readAccountAuthorityFailureDetail(failure)).toEqual({ stage: 'binding', reason: 'token_unknown' });
       expect(warn).not.toHaveBeenCalled();
@@ -431,11 +402,7 @@ describe('installation binding Firebase callable adapter', () => {
       runTransaction: async (work: (value: typeof transaction) => Promise<unknown>) => work(transaction),
     } as unknown as Firestore;
 
-    await expect(createFirebaseInstallationBindingIdentityPort(db).resolve({
-      firebaseAuthUid: 'firebase-auth-a' as never,
-      authToken: {},
-      app: null,
-    }, 'unknown-binding-token')).rejects.toMatchObject({
+    await expect(verifyIn(db, 'firebase-auth-a', 'unknown-binding-token')).rejects.toMatchObject({
       code: 'failed-precondition',
       // S2a, пункт 4: окончательный отказ «привязки нет».
       message: 'account_authority_binding_missing',

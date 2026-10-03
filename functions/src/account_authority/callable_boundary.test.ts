@@ -28,8 +28,7 @@ import {
   handleAccountLeaseAcquireCallable,
   handleAccountLeaseReleaseCallable,
   type AccountAuthorityCallableBoundaryPorts,
-  type AccountAuthorityCallableIdentityPort,
-  type AccountAuthorityCallableIdentityResolution,
+  type AccountAuthorityCallableIdentitySource,
   type AccountAuthorityCallableRequest,
 } from './callable_boundary';
 import { accountAuthorityUidFingerprint } from './account_authority_policy';
@@ -117,6 +116,18 @@ function deleteStore(initialLease = activeLeaseState()): AccountDeleteTransactio
     },
   };
 }
+
+// S2a раунд 4 (L-R3-4): резолвер личности больше не порт границы — это
+// модель проверки привязки внутри единых транзакций адаптера (только в тесте).
+type AccountAuthorityCallableIdentityResolution = Readonly<{
+  tenantId: typeof TENANT_A;
+  deviceId: typeof DEVICE_A;
+  authEpoch: number;
+  activeSessionId?: SessionId;
+}>;
+type AccountAuthorityCallableIdentityPort = Readonly<{
+  resolve(source: AccountAuthorityCallableIdentitySource, bindingToken: string | null): Promise<AccountAuthorityCallableIdentityResolution>;
+}>;
 
 function boundaryHarness(options: Readonly<{
   identity?: AccountAuthorityCallableIdentityResolution;

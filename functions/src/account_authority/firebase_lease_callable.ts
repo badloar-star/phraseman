@@ -40,6 +40,7 @@ import {
   type AccountAuthorityLeaseReleaseCallableResponse,
 } from './callable_boundary';
 import {
+  AccountLeaseError,
   asAccountId,
   asDeviceId,
   asFirebaseAuthUid,
@@ -378,12 +379,34 @@ async function prepareReboundLeaseRelease(
       serverNowMs: nowMs,
     }, retiredSessions);
   } catch (error) {
-    accountAuthorityLogWarn('principal_rebound lease skipped', {
-      stage: 'principal', reason: 'release_rejected',
-      causeKind: accountAuthorityServerErrorKind(error),
-      causeCode: accountAuthorityServerErrorCode(error),
+    if (!(error instanceof AccountLeaseError)) {
+      accountAuthorityLogWarn('principal_rebound lease skipped', {
+        stage: 'principal', reason: 'release_rejected',
+        causeKind: accountAuthorityServerErrorKind(error),
+        causeCode: accountAuthorityServerErrorCode(error),
+      });
+      return null;
+    }
+    // зачем (раунд 4, L-R3-3): отказ контракта выхода (например, забитый журнал
+    // квитанций — receipt_capacity_exhausted) не должен оставлять аренду этого
+    // uid на старом аккаунте. Снимаем её принудительно, без квитанции: новая
+    // ревизия, отметка сессии (если её ещё нет), аренды нет.
+    const retirements = retiredSessions.isRetired(active.sessionId)
+      ? Object.freeze([])
+      : Object.freeze([Object.freeze({ type: 'retire_session' as const, sessionId: active.sessionId })]);
+    const forced: AccountLeaseState = Object.freeze({
+      ...state,
+      activeLease: null,
+      revision: state.revision + 1,
+      lastServerNowMs: nowMs,
     });
-    return null;
+    accountAuthorityLogWarn('principal_rebound lease forced', { stage: 'principal', reason: error.code });
+    return (target: Transaction) => {
+      writeLeaseTransition(
+        target, accountRef, { accountId: input.accountId, tenantId: input.tenantId },
+        { state: forced, retirements }, nowMs,
+      );
+    };
   }
   accountAuthorityLogInfo('principal_rebound lease', { stage: 'principal', status: 'released' });
   return (target: Transaction) => {

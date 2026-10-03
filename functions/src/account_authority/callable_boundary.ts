@@ -91,24 +91,6 @@ export type AccountAuthorityCallableIdentitySource = Readonly<{
   app: Readonly<{ appId: string; token: UnknownRecord }> | null;
 }>;
 
-/**
- * Returned only by a server adapter that resolves device/session binding from
- * trusted Firebase callable metadata or durable server state. Request data is
- * intentionally absent from AccountAuthorityCallableIdentitySource.
- */
-export type AccountAuthorityCallableIdentityResolution = Readonly<{
-  tenantId: TenantId;
-  deviceId: DeviceId;
-  authEpoch: number;
-  activeSessionId?: SessionId;
-}>;
-
-export interface AccountAuthorityCallableIdentityPort {
-  resolve(
-    source: AccountAuthorityCallableIdentitySource,
-    bindingToken: string | null,
-  ): Promise<AccountAuthorityCallableIdentityResolution>;
-}
 
 /**
  * Что адаптер отдаёт переходу аренды внутри ЕДИНОЙ транзакции (AA S2a,

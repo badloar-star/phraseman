@@ -6,7 +6,6 @@ import { HOT_CALLABLE_OPTIONS } from '../callable_options';
 import {
   AccountAuthorityCallableError,
   mapUnknownAccountAuthorityFailure,
-  type AccountAuthorityCallableIdentityPort,
 } from './callable_boundary';
 import {
   accountAuthorityLogInfo,
@@ -340,19 +339,6 @@ function rejectBinding(reason: BindingRejectReason, cause?: unknown): AccountAut
     : attachAccountAuthorityFailureDetail(rejected, accountAuthorityServerCauseFields(cause));
 }
 
-/**
- * зачем (AA S0): раньше любой сбой Firestore внутри resolve (contention,
- * DEADLINE_EXCEEDED, UNAVAILABLE) превращался в «отклонено», и клиент видел
- * отзыв привязки там, где надо было просто повторить. Теперь это отдельный
- * повторяемый код `unavailable`. Вид и код причины прикреплены к ошибке.
- */
-function bindingUnavailable(error: unknown): AccountAuthorityCallableError {
-  return attachAccountAuthorityFailureDetail(
-    new AccountAuthorityCallableError('unavailable', 'account_authority_installation_binding_unavailable'),
-    { stage: 'binding', reason: 'storage_unavailable' },
-    accountAuthorityServerCauseFields(error),
-  );
-}
 
 export type VerifiedInstallationBinding = Readonly<{
   tenantId: TenantId;
@@ -432,33 +418,6 @@ export async function verifyInstallationBindingInTransaction(
     authEpoch: binding.rotatedAtMs,
     refreshExpireAt,
   });
-}
-
-export function createFirebaseInstallationBindingIdentityPort(
-  db: Firestore,
-): AccountAuthorityCallableIdentityPort {
-  const port: AccountAuthorityCallableIdentityPort = {
-    resolve: async (source, bindingToken) => {
-      try {
-        // Только чтение: продление срока делает аренда (вход), а не выход.
-        const verified = await db.runTransaction((transaction) => verifyInstallationBindingInTransaction(
-          db, transaction, source.firebaseAuthUid, bindingToken, Date.now(),
-        ));
-        return Object.freeze({
-          tenantId: verified.tenantId,
-          deviceId: verified.deviceId,
-          authEpoch: verified.authEpoch,
-        });
-      } catch (error) {
-        // Отказ уже несёт свою причину (rejectBinding); остальное — сбой хранилища.
-        if (error instanceof AccountAuthorityCallableError) {
-          throw attachAccountAuthorityFailureDetail(error, { stage: 'binding' });
-        }
-        throw bindingUnavailable(error);
-      }
-    },
-  };
-  return Object.freeze(port);
 }
 
 // Повреждённая запись не лечится повтором: это отказ, а не временный сбой.

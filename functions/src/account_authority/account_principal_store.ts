@@ -271,13 +271,11 @@ export async function resolvePrincipalForAcquire(
     return Object.freeze({ principal, reboundFrom: null, write: null });
   }
   const anchorUnchanged = anchorLink === stored.anchorLink;
-  // Раунд 3 (M-R2-1, L-R2-1): у привязанного к stableId принципала на КАЖДОМ
-  // входе проверяется сам аккаунт — надгробие/удаление и канонизация (скрытый
-  // дубль → канонический, если он принадлежит этому uid). Якорь сменился —
-  // проверяется новый якорь (H1).
-  const anchored = await verifyStableAccount(
-    db, transaction, input.rawUid, anchorUnchanged ? stored.accountId : anchorLink, input.nowMs,
-  );
+  // Раунд 3 (M-R2-1, L-R2-1) и раунд 4 (L-R3-1): на КАЖДОМ входе проверяется
+  // сам якорь — надгробие/удаление, канонизация (скрытый дубль → канонический)
+  // и владение каноническим. Результат сравнивается с accountId принципала:
+  // не совпал — перепривязка, проверка не прошла — отказ.
+  const anchored = await verifyStableAccount(db, transaction, input.rawUid, anchorLink, input.nowMs);
   const createdAtMs = stored.createdAtMs ?? input.nowMs;
   if (anchored === stored.accountId) {
     if (anchorUnchanged) {

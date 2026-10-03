@@ -1003,3 +1003,95 @@ describe('S2a round 3 L-R2-4: delete_begin proves the binding in the same transa
     expect(accountDoc(fixture, STABLE_A)).toMatchObject({ lifecycle: { status: 'active' } });
   });
 });
+
+/*
+ * Раунд 4 (LOW из ревью раунда 3): L-R3-1, L-R3-2, L-R3-3.
+ */
+describe('S2a round 4 L-R3-1: the anchor itself is re-verified on every acquire', () => {
+  test('when the canonical account changes owner, a principal reached through a hidden duplicate does not stay on it', async () => {
+    const fixture = linkedFixture({
+      [`users/${STABLE_A}`]: { firebaseAuthUid: RAW_UID, identityHidden: true, canonicalStableId: STABLE_B },
+      [`users/${STABLE_B}`]: { firebaseAuthUid: RAW_UID },
+    });
+    const { bindingToken } = await bind(fixture);
+    await expect(handleFirebaseAccountAuthorityLeaseAcquire(enabledLease(fixture.db), acquireRequest(bindingToken)))
+      .resolves.toMatchObject({ accountId: STABLE_B });
+    // Владелец канонического сменился; якорь вызывающего прежний (STABLE_A).
+    fixture.externalSet(`users/${STABLE_B}`, { firebaseAuthUid: OTHER_UID });
+    const writesBefore = fixture.committedWrites.length;
+    await expect(handleFirebaseAccountAuthorityLeaseAcquire(
+      enabledLease(fixture.db), acquireRequest(bindingToken, RAW_UID, GOOGLE_TOKEN, 'operation-b'),
+    )).rejects.toMatchObject({ message: 'account_authority_identity_unresolved' });
+    expect(fixture.committedWrites.length).toBe(writesBefore);
+  });
+});
+
+describe('S2a round 4 L-R3-2: delete from another device of the same uid', () => {
+  test('a second installation of the same uid cannot delete while another device holds the lease', async () => {
+    const fixture = linkedFixture();
+    const first = await bind(fixture, RAW_UID, INSTALLATION_ID, Date.now() - 5_000);
+    const second = await bind(fixture, RAW_UID, installationId(3), Date.now());
+    const deleteStates = memoryDeleteStateStore(fixture);
+    const ports = createFirebaseLeasePorts(fixture.db, { deleteStateStore: deleteStates.port });
+    await handleFirebaseAccountAuthorityLeaseAcquire(
+      { ports, rolloutEnabled: true, trustedInstallationBindingAvailable: true }, acquireRequest(first.bindingToken),
+    );
+    await expect(handleAccountDeleteBeginCallable(withMemoryDeletionSideEffects(ports), {
+      auth: { uid: RAW_UID, token: GOOGLE_TOKEN },
+      app: null,
+      data: { operationId: 'delete-operation-a', expectedRevision: 1, bindingToken: second.bindingToken },
+    })).rejects.toMatchObject({ code: 'failed-precondition' });
+    expect(accountDoc(fixture, STABLE_A)).toMatchObject({ lifecycle: { status: 'active' }, revision: 1 });
+    expect(deleteStates.states.size).toBe(0);
+  });
+});
+
+describe('S2a round 4 L-R3-3: a full receipt journal does not keep the old lease', () => {
+  test('release_rejected on an active old account force-clears this uid lease without a receipt', async () => {
+    const fixture = linkedFixture({ [`users/${STABLE_B}`]: { firebaseAuthUid: RAW_UID } });
+    const { bindingToken } = await bind(fixture);
+    await handleFirebaseAccountAuthorityLeaseAcquire(enabledLease(fixture.db), acquireRequest(bindingToken));
+    const old = accountDoc(fixture, STABLE_A) as Record<string, unknown> & {
+      revision: number;
+      receiptLedger: Record<string, unknown> & { entries: unknown[] };
+      activeLease: { sessionId: string };
+    };
+    // Журнал квитанций забит: ёмкость равна числу живых квитанций.
+    fixture.externalSet(`account_authority_accounts_v1/${STABLE_A}`, {
+      ...old, receiptLedger: { ...old.receiptLedger, maxEntries: old.receiptLedger.entries.length },
+    });
+    fixture.externalSet('auth_links/RawFirebaseUidA1234567890', { stable_id: STABLE_B });
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const logger = require('firebase-functions/logger') as typeof import('firebase-functions/logger');
+    const lines: unknown[][] = [];
+    const warn = jest.spyOn(logger, 'warn').mockImplementation((...args: unknown[]) => { lines.push(args); });
+    try {
+      await expect(handleFirebaseAccountAuthorityLeaseAcquire(
+        enabledLease(fixture.db), acquireRequest(bindingToken, RAW_UID, GOOGLE_TOKEN, 'operation-b'),
+      )).resolves.toMatchObject({ accountId: STABLE_B });
+    } finally {
+      warn.mockRestore();
+    }
+    const after = accountDoc(fixture, STABLE_A) as typeof old;
+    expect(after).toMatchObject({ activeLease: null, revision: old.revision + 1 });
+    expect(after.receiptLedger.entries).toHaveLength(old.receiptLedger.entries.length);
+    expect(fixture.documents.has(`account_authority_accounts_v1/${STABLE_A}/retired_sessions/${old.activeLease.sessionId}`)).toBe(true);
+    expect(lines.some((line) => line[0] === '[ACCOUNT-AUTHORITY] principal_rebound lease forced'
+      && (line[1] as { reason?: unknown }).reason === 'receipt_capacity_exhausted')).toBe(true);
+    expect(JSON.stringify(lines)).not.toContain(RAW_UID);
+  });
+});
+
+describe('S2a round 4 L-R3-4: the two-step identity resolver stays removed', () => {
+  test('neither the binding identity port nor the callable identity port comes back', () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { readFileSync } = require('fs') as typeof import('fs');
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { join } = require('path') as typeof import('path');
+    for (const file of ['installation_binding_callable.ts', 'callable_boundary.ts', 'firebase_lease_callable.ts']) {
+      const source = readFileSync(join(__dirname, file), 'utf8');
+      expect({ file, port: /createFirebaseInstallationBindingIdentityPort|AccountAuthorityCallableIdentityPort/.test(source) })
+        .toEqual({ file, port: false });
+    }
+  });
+});

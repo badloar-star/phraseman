@@ -1289,7 +1289,7 @@
       "id": "de_l12",
       "ordinal": 12,
       "cefrBand": "A2",
-      "title": "Geben, bringen, hinstellen",
+      "title": "Wer bekommt was – und wohin?",
       "scenario": "handing over supplies and placing them correctly for a community event",
       "scenarioDomain": "community",
       "canDoTerritory": "distinguish dative recipient from accusative transferred item and contrast bounded change-of-location with stable location",
@@ -1363,7 +1363,6 @@
       ],
       "lexicalDomains": ["supplies", "handover", "placement", "event setup"],
       "plannedPronunciationTargetIds": [
-        "de_pron_plan_clause_bracket_rhythm_v1",
         "de_pron_plan_case_marker_perception_v1"
       ],
       "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",

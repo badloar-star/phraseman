@@ -1864,6 +1864,783 @@ function validateL11SemanticContract(raw: R, plan: Boundary): void {
   }
 }
 
+const L12_TWO_OBJECT = "de_gc_two_object_case_contrast_v1";
+const L12_WECHSEL = "de_gc_wechselpreposition_relation_contrast_v1";
+const L12_ACCUSATIVE = "de_gc_frequent_accusative_frames_v1";
+const L12_RECIPIENT = "de_gc_dative_recipient_frames_v1";
+const L12_LOCATION = "de_gc_dative_location_frames_v1";
+const L12_LOCAL = "de_gc_local_preposition_governed_case_v1";
+const L12_DATIVE_PRONOUN = "de_gc_dative_personal_pronouns_v1";
+const L12_INTRODUCED = [L12_TWO_OBJECT, L12_WECHSEL] as const;
+const L12_EXTENDED = [L12_ACCUSATIVE, L12_RECIPIENT, L12_LOCATION] as const;
+const L12_REVIEWED = [L12_LOCAL, L12_DATIVE_PRONOUN] as const;
+const L12_PROHIBITED = [
+  "de_gc_predicative_adjective_v1",
+  "de_gc_staged_nominal_group_agreement_v1",
+] as const;
+const L12_ALLOWED = [
+  ...L12_INTRODUCED,
+  ...L12_EXTENDED,
+  ...L12_REVIEWED,
+] as const;
+const L12_FINAL_REQUIRED = [
+  L12_TWO_OBJECT,
+  L12_WECHSEL,
+  L12_LOCATION,
+  L12_DATIVE_PRONOUN,
+] as const;
+const L12_NO_EXPANSION =
+  "The lesson permits geben only in one verified dative-recipient plus accusative-item frame, bringen only with one explicit accusative item and one bounded in-plus-accusative destination, and in as the sole Wechsel relation: bounded destination in plus Akkusativ versus stable location in plus Dativ. Case follows verified valency or relation, never word order or a movement heuristic. No other Wechselpreposition, table, hinstellen or separable-verb expansion, adjective work, isolated case or pronoun table, or future grammar is allowed.";
+const L12_GEBEN_MODEL = "Ich gebe dem Helfer die Kiste.";
+const L12_BRINGEN_PAIR =
+  "Ich bringe die Kiste ins Regal. Die Kiste ist im Regal.";
+const L12_C05_ITEM_FIRST = "Das Materialpaket gebe ich dem Helfer.";
+const L12_C06_BAD_RECIPIENT = "Ich gebe den Helfer die Kiste.";
+const L12_C06_GOOD_RECIPIENT = L12_GEBEN_MODEL;
+const L12_C06_BAD_DESTINATION = "Ich bringe die Kiste im Regal.";
+const L12_C06_GOOD_RELATION = L12_BRINGEN_PAIR;
+const L12_C07_GIVE_CHAIN =
+  "Ich gebe dem Helfer die Losbox. Ich gebe ihm die Losbox.";
+const L12_C07_RELATION_PAIR =
+  "Ich bringe die Losbox in den Eingangsbereich. Die Losbox ist im Eingangsbereich.";
+const L12_LEXICAL_IDS_BY_CHAPTER = [
+  [
+    "de_lex_plan_l12_c01_geben_v1",
+    "de_lex_plan_l12_c01_bringen_v1",
+    "de_lex_plan_l12_c01_helfer_v1",
+    "de_lex_plan_l12_c01_kiste_v1",
+  ],
+  ["de_lex_plan_l12_c02_tasche_v1"],
+  ["de_lex_plan_l12_c03_karton_v1"],
+  ["de_lex_plan_l12_c04_spendenbox_v1"],
+  ["de_lex_plan_l12_c05_materialpaket_v1"],
+  ["de_lex_plan_l12_c06_aufbauplan_v1"],
+  ["de_lex_plan_l12_c07_losbox_v1", "de_lex_plan_l12_c07_eingangsbereich_v1"],
+] as const;
+const L12_SUPPORT_LEVELS = [
+  [5, 2],
+  [5, 2],
+  [4, 1],
+  [4, 1],
+  [3, 1],
+  [3, 1],
+  [2, 0],
+] as const;
+const L12_EVIDENCE_BY_CHAPTER = [
+  ["de_l12_c01_s03", "de_l12_c01_s04"],
+  ["de_l12_c02_s11", "de_l12_c02_s12"],
+  ["de_l12_c03_s19", "de_l12_c03_s20"],
+  ["de_l12_c04_s27", "de_l12_c04_s28"],
+  ["de_l12_c05_s35", "de_l12_c05_s36"],
+  ["de_l12_c06_s43", "de_l12_c06_s44"],
+  [
+    "de_l12_c07_s51",
+    "de_l12_c07_s52",
+    "de_l12_c07_s53",
+    "de_l12_c07_s54",
+    "de_l12_c07_s55",
+    "de_l12_c07_s56",
+  ],
+] as const;
+const L12_RECALL_CONTRACTS = [
+  [["de_l11_c06", "de_l11_c07"], ["de_l12_c02"]],
+  [["de_l12_c01"], ["de_l12_c03"]],
+  [["de_l12_c01", "de_l12_c02"], ["de_l12_c04"]],
+  [["de_l12_c02", "de_l12_c03"], ["de_l12_c05"]],
+  [["de_l12_c03", "de_l12_c04"], ["de_l12_c06"]],
+  [["de_l12_c04", "de_l12_c05"], ["de_l12_c07"]],
+  [["de_l12_c05", "de_l12_c06"], ["de_l13_c01"]],
+] as const;
+const L12_TO_L13_DELAYED_PACKETS = [51, 52, 53, 54, 55, 56, 55].map(
+  (session, index) =>
+    `de_l12_c${String(index + 1).padStart(2, "0")}->de_l13_c07_s${session}`,
+);
+const L12_SITUATIONS = [
+  [
+    "community-event-supply-handover",
+    "event-coordinator-and-supply-helper",
+    "identify-recipient-item-roles-and-contrast-bounded-in-placement-with-stable-in-location",
+    "supply-handover-in-relation-introduction",
+  ],
+  [
+    "donation-counter-supply-route",
+    "donation-coordinator-and-setup-helper",
+    "contrast-tasche-destination-ins-regal-with-resulting-stable-location-im-regal",
+    "tasche-two-role-in-relation-guided",
+  ],
+  [
+    "registration-supply-desk",
+    "registration-lead-and-event-helper",
+    "produce-karton-recipient-and-item-roles-before-retrieving-its-destination-state",
+    "karton-two-object-relation-retrieval",
+  ],
+  [
+    "charity-stall-placement",
+    "stall-coordinator-and-setup-helper",
+    "place-the-spendenbox-into-the-regal-and-report-its-stable-location",
+    "spendenbox-in-relation-production",
+  ],
+  [
+    "community-stage-material-setup",
+    "stage-coordinator-and-setup-helper",
+    "coordinate-item-first-materialpaket-handover-and-bounded-in-placement",
+    "materialpaket-role-order-and-placement-combination",
+  ],
+  [
+    "event-layout-correction-desk",
+    "layout-editor-and-setup-volunteer",
+    "repair-recipient-item-marking-or-bounded-versus-stable-in-relation",
+    "aufbauplan-role-relation-repair",
+  ],
+  [
+    "sports-club-raffle-layout-change",
+    "raffle-coordinator-and-relief-helper",
+    "transfer-recipient-item-reference-and-in-relation-to-a-different-entry-layout",
+    "raffle-changed-layout-final-transfer",
+  ],
+] as const;
+const L12_NEW_SITUATIONS = [
+  [
+    "neighborhood-fair-supply-table",
+    "fair-coordinator-and-setup-helper",
+    "independently-assign-kiste-recipient-and-verify-its-bounded-destination-and-stable-location",
+    "neighborhood-fair-two-role-in-relation-check",
+  ],
+  [
+    "school-fair-donation-counter",
+    "school-fair-coordinator-and-volunteer",
+    "guide-the-tasche-handover-and-in-relation-contrast",
+    "school-fair-tasche-guided-check",
+  ],
+  [
+    "neighborhood-workshop-registration",
+    "workshop-coordinator-and-material-helper",
+    "produce-the-karton-handover-and-verify-its-placement",
+    "workshop-karton-production-check",
+  ],
+  [
+    "library-fundraiser-setup",
+    "fundraiser-coordinator-and-volunteer",
+    "place-and-locate-the-spendenbox-after-a-clear-handover",
+    "fundraiser-spendenbox-placement-check",
+  ],
+  [
+    "youth-club-stage-setup",
+    "club-coordinator-and-stage-volunteer",
+    "coordinate-the-materialpaket-handover-and-placement-without-word-order-guessing",
+    "youth-club-materialpaket-combination-check",
+  ],
+  [
+    "town-festival-layout-review",
+    "festival-coordinator-and-plan-reviewer",
+    "repair-the-aufbauplan-role-marking-and-in-relation-without-movement-heuristic",
+    "town-festival-aufbauplan-repair-check",
+  ],
+  [
+    "civic-open-day-raffle-entrance",
+    "open-day-coordinator-and-raffle-helper",
+    "independently-transfer-losbox-recipient-reference-and-placement-to-the-new-eingangsbereich",
+    "open-day-losbox-eingangsbereich-final",
+  ],
+] as const;
+const L12_SUPPORTS = [
+  [
+    `role cards and a shelf diagram showing ${L12_GEBEN_MODEL} plus ${L12_BRINGEN_PAIR}; recipient, item, destination, and stable location are marked by function`,
+    "identify dem Helfer as recipient and die Kiste as transferred item, then distinguish ins Regal as bounded destination from im Regal as stable location",
+  ],
+  [
+    "whole models Ich gebe dem Helfer die Tasche. Ich bringe die Tasche ins Regal. Die Tasche ist im Regal., with recipient, item, destination, and stable-location roles labelled",
+    "guide the Tasche handover and distinguish ins Regal from im Regal by the taught relation",
+  ],
+  [
+    "partial role prompts for Ich gebe dem Helfer den Karton. Ich bringe den Karton ins Regal. Der Karton ist im Regal., without word-order or movement shortcuts",
+    "produce the Karton handover and retrieve bounded destination ins Regal versus stable location im Regal",
+  ],
+  [
+    "minimal scene prompts for Ich gebe dem Helfer die Spendenbox. Ich bringe die Spendenbox ins Regal. Die Spendenbox ist im Regal.",
+    "independently place die Spendenbox ins Regal and report its stable location im Regal after the verified handover",
+  ],
+  [
+    `contrast card requiring the exact item-first proof ${L12_C05_ITEM_FIRST} plus Ich bringe das Materialpaket ins Regal. Das Materialpaket ist im Regal.`,
+    "coordinate the item-first Materialpaket handover and placement while selecting case from valency and relation, never word order",
+  ],
+  [
+    `Aufbauplan repair card with ${L12_C06_BAD_RECIPIENT} -> ${L12_C06_GOOD_RECIPIENT} and ${L12_C06_BAD_DESTINATION} -> ${L12_C06_GOOD_RELATION}`,
+    "use the Aufbauplan to repair both exact errors: recipient marking in the geben frame and bounded destination versus stable location in the in relation",
+  ],
+  [
+    `minimal changed-layout card with ${L12_C07_GIVE_CHAIN} plus ${L12_C07_RELATION_PAIR}`,
+    `independently produce ${L12_C07_GIVE_CHAIN} and ${L12_C07_RELATION_PAIR}`,
+  ],
+] as const;
+const L12_LEXICAL_EXPECTED = [
+  [
+    [
+      "de_lex_plan_l12_c01_geben_v1",
+      "geben",
+      "geben|transfer an item to a named recipient in one verified two object frame",
+      "transfer an item to a named recipient in one verified two-object frame",
+      "action",
+      "goal",
+      "OUTCOME_UNACHIEVABLE",
+    ],
+    [
+      "de_lex_plan_l12_c01_bringen_v1",
+      "bringen",
+      "bringen|carry one explicit item to one bounded destination",
+      "carry one explicit item to one bounded destination",
+      "temporal_spatial",
+      "goal",
+      "OUTCOME_UNACHIEVABLE",
+    ],
+    [
+      "de_lex_plan_l12_c01_helfer_v1",
+      "Helfer",
+      "helfer|helper receiving an event supply item",
+      "helper receiving an event-supply item",
+      "participant_reference",
+      "participants",
+      "PARTICIPANT_UNIDENTIFIABLE",
+    ],
+    [
+      "de_lex_plan_l12_c01_kiste_v1",
+      "Kiste",
+      "kiste|crate transferred and placed during event setup",
+      "crate transferred and placed during event setup",
+      "mediation",
+      "goal",
+      "OUTCOME_UNACHIEVABLE",
+    ],
+  ],
+  [
+    [
+      "de_lex_plan_l12_c02_tasche_v1",
+      "Tasche",
+      "tasche|bag handed over and placed on a shelf",
+      "bag handed over and placed on a shelf",
+      "temporal_spatial",
+      "goal",
+      "OUTCOME_UNACHIEVABLE",
+    ],
+  ],
+  [
+    [
+      "de_lex_plan_l12_c03_karton_v1",
+      "Karton",
+      "karton|carton handed over and placed during registration setup",
+      "carton handed over and placed during registration setup",
+      "action",
+      "goal",
+      "OUTCOME_UNACHIEVABLE",
+    ],
+  ],
+  [
+    [
+      "de_lex_plan_l12_c04_spendenbox_v1",
+      "Spendenbox",
+      "spendenbox|donation box handed over and placed for a fundraiser",
+      "donation box handed over and placed for a fundraiser",
+      "temporal_spatial",
+      "goal",
+      "OUTCOME_UNACHIEVABLE",
+    ],
+  ],
+  [
+    [
+      "de_lex_plan_l12_c05_materialpaket_v1",
+      "Materialpaket",
+      "materialpaket|materials package handed over and placed for stage setup",
+      "materials package handed over and placed for stage setup",
+      "mediation",
+      "goal",
+      "OUTCOME_UNACHIEVABLE",
+    ],
+  ],
+  [
+    [
+      "de_lex_plan_l12_c06_aufbauplan_v1",
+      "Aufbauplan",
+      "aufbauplan|event setup plan used to identify and repair role and placement errors",
+      "event setup plan used to identify and repair role and placement errors",
+      "repair",
+      "goal",
+      "REPAIR_UNAVAILABLE",
+    ],
+  ],
+  [
+    [
+      "de_lex_plan_l12_c07_losbox_v1",
+      "Losbox",
+      "losbox|raffle box transferred and placed in a changed venue layout",
+      "raffle box transferred and placed in a changed venue layout",
+      "transfer",
+      "goal",
+      "TRANSFER_UNAVAILABLE",
+    ],
+    [
+      "de_lex_plan_l12_c07_eingangsbereich_v1",
+      "Eingangsbereich",
+      "eingangsbereich|entrance area used as the changed bounded destination and stable location",
+      "entrance area used as the changed bounded destination and stable location",
+      "temporal_spatial",
+      "setting",
+      "SCENE_UNGROUNDED",
+    ],
+  ],
+] as const;
+const L12_COMMUNICATIVE_USE = [
+  [
+    "use Ich gebe dem Helfer die Kiste. to prove recipient and transferred-item roles through verified valency and case",
+    "use Ich bringe die Kiste ins Regal. Die Kiste ist im Regal. to contrast bounded destination with stable location",
+    "identify dem Helfer as the named dative recipient in Ich gebe dem Helfer die Kiste.",
+    "track die Kiste as the explicit accusative item through handover, bounded destination, and stable location",
+  ],
+  [
+    "use die Tasche across Ich gebe dem Helfer die Tasche. Ich bringe die Tasche ins Regal. Die Tasche ist im Regal.",
+  ],
+  [
+    "use den Karton as the transferred item and Der Karton as the same item in its stable location",
+  ],
+  [
+    "use die Spendenbox in the verified handover and ins Regal versus im Regal placement contrast",
+  ],
+  [
+    "use Das Materialpaket gebe ich dem Helfer. to prove that case roles do not follow word order, then place it ins Regal and locate it im Regal",
+  ],
+  [
+    "ground the exact repair in the Aufbauplan: den Helfer to dem Helfer and im Regal to ins Regal before the stable-location statement",
+  ],
+  [
+    "use Ich gebe dem Helfer die Losbox. Ich gebe ihm die Losbox. and the two exact Eingangsbereich placement statements for final transfer",
+    "ground the changed scene in den Eingangsbereich as destination and im Eingangsbereich as stable location",
+  ],
+] as const;
+
+function l12Tuple(values: readonly string[]): R {
+  return {
+    setting: values[0],
+    participants: values[1],
+    goal: values[2],
+    contextSignature: values[3],
+  };
+}
+
+function validateL12LexicalPrerequisites(chapters: R[]): void {
+  const prerequisites = [
+    ["geben", "de_l12_c01", /\bgeb(?:e|en|t|st)\b/iu],
+    ["bringen", "de_l12_c01", /\bbring(?:e|en|t|st)\b/iu],
+    ["Helfer", "de_l12_c01", /\bHelfer(?:s|n)?\b/iu],
+    ["Kiste", "de_l12_c01", /\bKist(?:e|en)\b/iu],
+    ["Tasche", "de_l12_c02", /\bTasch(?:e|en)\b/iu],
+    ["Karton", "de_l12_c03", /\bKarton(?:s|e|en)?\b/iu],
+    ["Spendenbox", "de_l12_c04", /\bSpendenbox(?:en)?\b/iu],
+    ["Materialpaket", "de_l12_c05", /\bMaterialpaket(?:e|en|s)?\b/iu],
+    ["Aufbauplan", "de_l12_c06", /\bAufbaupl(?:an|äne|änen)\b/iu],
+    ["Losbox", "de_l12_c07", /\bLosbox(?:en)?\b/iu],
+    ["Eingangsbereich", "de_l12_c07", /\bEingangsbereich(?:e|en|s)?\b/iu],
+  ] as const;
+  for (const [lemma, owner, pattern] of prerequisites) {
+    const owners = chapters.filter((chapter) =>
+      (((chapter.checkpoint as R).plannedNewLexicalSenses as R[]) ?? []).some(
+        (sense) =>
+          normalized(String(sense.lemmaOrExpression)) === normalized(lemma),
+      ),
+    );
+    const ownerIndex = chapters.findIndex((chapter) => chapter.id === owner);
+    if (ownerIndex < 0 || owners.length !== 1 || owners[0].id !== owner)
+      throw new Error(`l12_lexical_prerequisite_invalid:${owner}:${lemma}`);
+    const firstSurfaceIndex = chapters.findIndex((chapter) =>
+      pattern.test(l11ChapterSurfaceText(chapter)),
+    );
+    if (firstSurfaceIndex < 0 || firstSurfaceIndex < ownerIndex)
+      throw new Error(
+        `l12_lexical_prerequisite_invalid:${firstSurfaceIndex < 0 ? owner : String(chapters[firstSurfaceIndex].id)}:${lemma}`,
+      );
+  }
+}
+
+function validateL12SemanticContract(raw: R, plan: Boundary): void {
+  const l12 = (raw.lessons as R[]).find(
+    (lesson) => lesson.lessonId === "de_l12",
+  );
+  if (!l12) throw new Error("l12_semantic_contract_invalid:missing");
+  const chapters = l12.chapters as R[];
+  const boundary = l12.grammarBoundary as R;
+  if (boundary.noExpansion !== L12_NO_EXPANSION)
+    throw new Error("l12_semantic_contract_invalid:no_expansion");
+  if (
+    JSON.stringify(plan.introducedConstructIds) !==
+      JSON.stringify(L12_INTRODUCED) ||
+    JSON.stringify(plan.extendedConstructIds) !==
+      JSON.stringify(L12_EXTENDED) ||
+    JSON.stringify(plan.reviewedConstructIds) !==
+      JSON.stringify(L12_REVIEWED) ||
+    JSON.stringify(plan.prohibitedConstructIds) !==
+      JSON.stringify(L12_PROHIBITED) ||
+    JSON.stringify(plan.session56Final.requiredConstructIds) !==
+      JSON.stringify(L12_FINAL_REQUIRED) ||
+    JSON.stringify(boundary.allowedConstructIds) !==
+      JSON.stringify(L12_ALLOWED) ||
+    JSON.stringify(boundary.prohibitedConstructIds) !==
+      JSON.stringify(L12_PROHIBITED) ||
+    chapters.length !== 7
+  )
+    throw new Error("l12_semantic_contract_invalid:sets");
+
+  const expectedAnchors = [
+    `${L12_TWO_OBJECT}|introduction|de_l12_c01_s01`,
+    `${L12_WECHSEL}|introduction|de_l12_c01_s02`,
+    `${L12_TWO_OBJECT}|guided|de_l12_c02_s09`,
+    `${L12_WECHSEL}|guided|de_l12_c02_s10`,
+    `${L12_TWO_OBJECT}|retrieval|de_l12_c03_s17`,
+    `${L12_WECHSEL}|retrieval|de_l12_c03_s18`,
+    `${L12_TWO_OBJECT}|production|de_l12_c04_s25`,
+    `${L12_WECHSEL}|production|de_l12_c04_s26`,
+    `${L12_TWO_OBJECT}|transfer|de_l12_c06_s41`,
+    `${L12_WECHSEL}|transfer|de_l12_c06_s42`,
+    `${L12_LOCATION}|delayed|de_l12_c07_s49`,
+    `${L12_DATIVE_PRONOUN}|delayed|de_l12_c07_s50`,
+  ];
+  const actualAnchors = chapters.flatMap((chapter) =>
+    ((chapter.lifecycleAnchors as R[]) ?? []).map(
+      (anchor) =>
+        `${String(anchor.constructId)}|${String(anchor.stage)}|${String(anchor.packetId)}`,
+    ),
+  );
+  if (JSON.stringify(actualAnchors) !== JSON.stringify(expectedAnchors))
+    throw new Error("l12_semantic_contract_invalid:anchors");
+
+  const l11 = (raw.lessons as R[]).find(
+    (lesson) => lesson.lessonId === "de_l11",
+  ) as R;
+  const l11Chapters = l11.chapters as R[];
+  const incoming = l11Chapters.map(
+    (chapter, index) =>
+      `de_l11_c${String(index + 1).padStart(2, "0")}->${String(((chapter.recallSchedule as R).futureDelayedProbe as R).packetId)}`,
+  );
+  const expectedIncoming = [51, 52, 53, 54, 55, 56, 55].map(
+    (session, index) =>
+      `de_l11_c${String(index + 1).padStart(2, "0")}->de_l12_c07_s${session}`,
+  );
+  const inverse = new Map<string, string[]>();
+  l11Chapters.forEach((chapter, index) => {
+    const packetId = String(
+      ((chapter.recallSchedule as R).futureDelayedProbe as R).packetId,
+    );
+    inverse.set(packetId, [
+      ...(inverse.get(packetId) ?? []),
+      `de_l11_c${String(index + 1).padStart(2, "0")}`,
+    ]);
+  });
+  const expectedInverse = new Map<string, string[]>([
+    ["de_l12_c07_s51", ["de_l11_c01"]],
+    ["de_l12_c07_s52", ["de_l11_c02"]],
+    ["de_l12_c07_s53", ["de_l11_c03"]],
+    ["de_l12_c07_s54", ["de_l11_c04"]],
+    ["de_l12_c07_s55", ["de_l11_c05", "de_l11_c07"]],
+    ["de_l12_c07_s56", ["de_l11_c06"]],
+  ]);
+  if (
+    JSON.stringify(incoming) !== JSON.stringify(expectedIncoming) ||
+    JSON.stringify(chapters[6].chapterEvidencePacketIds) !==
+      JSON.stringify(L12_EVIDENCE_BY_CHAPTER[6]) ||
+    JSON.stringify([...inverse]) !== JSON.stringify([...expectedInverse])
+  )
+    throw new Error("l11_l12_inverse_provenance_invalid");
+
+  const outgoing = chapters.map(
+    (chapter, index) =>
+      `de_l12_c${String(index + 1).padStart(2, "0")}->${String(((chapter.recallSchedule as R).futureDelayedProbe as R).packetId)}`,
+  );
+  const outgoingInverse = new Map<string, string[]>();
+  chapters.forEach((chapter, index) => {
+    const packetId = String(
+      ((chapter.recallSchedule as R).futureDelayedProbe as R).packetId,
+    );
+    outgoingInverse.set(packetId, [
+      ...(outgoingInverse.get(packetId) ?? []),
+      `de_l12_c${String(index + 1).padStart(2, "0")}`,
+    ]);
+  });
+  const expectedOutgoingInverse = new Map<string, string[]>([
+    ["de_l13_c07_s51", ["de_l12_c01"]],
+    ["de_l13_c07_s52", ["de_l12_c02"]],
+    ["de_l13_c07_s53", ["de_l12_c03"]],
+    ["de_l13_c07_s54", ["de_l12_c04"]],
+    ["de_l13_c07_s55", ["de_l12_c05", "de_l12_c07"]],
+    ["de_l13_c07_s56", ["de_l12_c06"]],
+  ]);
+  if (
+    JSON.stringify(outgoing) !== JSON.stringify(L12_TO_L13_DELAYED_PACKETS) ||
+    JSON.stringify([...outgoingInverse]) !==
+      JSON.stringify([...expectedOutgoingInverse])
+  )
+    throw new Error("l12_l13_inverse_provenance_invalid");
+
+  for (let index = 0; index < chapters.length; index += 1) {
+    const recall = chapters[index].recallSchedule as R;
+    const [from, to] = L12_RECALL_CONTRACTS[index];
+    if (
+      JSON.stringify(recall.retrievesFromChapterIds) !== JSON.stringify(from) ||
+      JSON.stringify(recall.targetsFutureChapterIds) !== JSON.stringify(to)
+    )
+      throw new Error(
+        `l12_recall_contract_invalid:de_l12_c${String(index + 1).padStart(2, "0")}`,
+      );
+  }
+  validateL12LexicalPrerequisites(chapters);
+  if (
+    chapters.some((chapter) =>
+      (((chapter.checkpoint as R).plannedNewLexicalSenses as R[]) ?? []).some(
+        (sense) => sense.lexicalKind === "FIXED_EXPRESSION",
+      ),
+    )
+  )
+    throw new Error("l12_semantic_contract_invalid:chapter_contract");
+
+  const allSenses = chapters.flatMap(
+    (chapter) =>
+      ((chapter.checkpoint as R).plannedNewLexicalSenses as R[]) ?? [],
+  );
+  const expectedNouns = new Map<string, readonly string[]>([
+    [
+      "de_lex_plan_l12_c01_helfer_v1",
+      ["der", "Helfer", "Helfer", "der|helfer|helfer"],
+    ],
+    [
+      "de_lex_plan_l12_c01_kiste_v1",
+      ["die", "Kiste", "Kisten", "die|kiste|kisten"],
+    ],
+    [
+      "de_lex_plan_l12_c02_tasche_v1",
+      ["die", "Tasche", "Taschen", "die|tasche|taschen"],
+    ],
+    [
+      "de_lex_plan_l12_c03_karton_v1",
+      ["der", "Karton", "Kartons", "der|karton|kartons"],
+    ],
+    [
+      "de_lex_plan_l12_c04_spendenbox_v1",
+      ["die", "Spendenbox", "Spendenboxen", "die|spendenbox|spendenboxen"],
+    ],
+    [
+      "de_lex_plan_l12_c05_materialpaket_v1",
+      [
+        "das",
+        "Materialpaket",
+        "Materialpakete",
+        "das|materialpaket|materialpakete",
+      ],
+    ],
+    [
+      "de_lex_plan_l12_c06_aufbauplan_v1",
+      ["der", "Aufbauplan", "Aufbaupläne", "der|aufbauplan|aufbauplane"],
+    ],
+    [
+      "de_lex_plan_l12_c07_losbox_v1",
+      ["die", "Losbox", "Losboxen", "die|losbox|losboxen"],
+    ],
+    [
+      "de_lex_plan_l12_c07_eingangsbereich_v1",
+      [
+        "der",
+        "Eingangsbereich",
+        "Eingangsbereiche",
+        "der|eingangsbereich|eingangsbereiche",
+      ],
+    ],
+  ]);
+  for (const [id, expected] of expectedNouns) {
+    const sense = allSenses.find((candidate) => candidate.id === id) as R;
+    const noun = sense?.nounPackage as R | null;
+    if (
+      !sense ||
+      sense.lexicalKind !== "NOUN_LEXEME" ||
+      sense.lemmaOrExpression !== expected[1] ||
+      noun?.article !== expected[0] ||
+      noun?.singular !== expected[1] ||
+      noun?.plural !== expected[2] ||
+      sense.nounPackageIdentity !== expected[3] ||
+      sense.verbPackage !== null
+    )
+      throw new Error("l12_semantic_contract_invalid:lexical_packages");
+  }
+  const expectedVerbs = new Map<string, readonly string[]>([
+    [
+      "de_lex_plan_l12_c01_geben_v1",
+      [
+        "geben",
+        "geben|transfer an item to a named recipient in one verified two object frame",
+        "transfer an item to a named recipient in one verified two-object frame",
+        "transfer frame selecting one explicit dative recipient and one explicit accusative transferred entity",
+      ],
+    ],
+    [
+      "de_lex_plan_l12_c01_bringen_v1",
+      [
+        "bringen",
+        "bringen|carry one explicit item to one bounded destination",
+        "carry one explicit item to one bounded destination",
+        "directed-placement frame selecting one explicit accusative item and one bounded in-plus-accusative destination",
+      ],
+    ],
+  ]);
+  for (const [id, expected] of expectedVerbs) {
+    const sense = allSenses.find((candidate) => candidate.id === id) as R;
+    const verb = sense?.verbPackage as R | null;
+    if (
+      !sense ||
+      sense.lexicalKind !== "VERB_LEXEME" ||
+      sense.lemmaOrExpression !== expected[0] ||
+      sense.semanticIdentity !== expected[1] ||
+      sense.senseGloss !== expected[2] ||
+      sense.nounPackage !== null ||
+      verb?.infinitive !== expected[0] ||
+      verb?.valencyFrame !== expected[3] ||
+      verb?.separability !== "inseparable" ||
+      verb?.perfectAuxiliary !== "haben"
+    )
+      throw new Error("l12_semantic_contract_invalid:lexical_packages");
+  }
+
+  const allText = chapters.map(l11ChapterSurfaceText).join("\n");
+  if (
+    /\bhinstellen\b|\b(?:case|pronoun|wechselpreposition) table\b|\bmovement means\b|\bBewegung\b[^.]*\bAkkusativ\b|\bfuture grammar\b|\badjective work\b/iu.test(
+      allText,
+    )
+  )
+    throw new Error("l12_semantic_contract_invalid:wechsel_relation");
+  if (
+    /\b(?:an|auf|hinter|neben|über|unter|vor|zwischen)\s+(?:den|die|das|dem|der|einen|einem|einer)\b/iu.test(
+      allText,
+    )
+  )
+    throw new Error("l12_semantic_contract_invalid:wechsel_relation");
+  if (
+    !String((chapters[0].supportFading as R).entry).includes(L12_GEBEN_MODEL) ||
+    !String((chapters[0].supportFading as R).entry).includes(L12_BRINGEN_PAIR)
+  )
+    throw new Error("l12_semantic_contract_invalid:two_object_roles");
+  const exactRelationPairs = [
+    L12_BRINGEN_PAIR,
+    "Ich bringe die Tasche ins Regal. Die Tasche ist im Regal.",
+    "Ich bringe den Karton ins Regal. Der Karton ist im Regal.",
+    "Ich bringe die Spendenbox ins Regal. Die Spendenbox ist im Regal.",
+    "Ich bringe das Materialpaket ins Regal. Das Materialpaket ist im Regal.",
+  ];
+  if (
+    exactRelationPairs.some(
+      (pair, index) =>
+        !String((chapters[index].supportFading as R).entry).includes(pair),
+    )
+  )
+    throw new Error("l12_semantic_contract_invalid:wechsel_relation");
+  if (
+    !String((chapters[4].supportFading as R).entry).includes(
+      L12_C05_ITEM_FIRST,
+    ) ||
+    !String((chapters[4].supportFading as R).exit).includes("never word order")
+  )
+    throw new Error("l12_semantic_contract_invalid:c05_word_order_proof");
+  if (
+    !String((chapters[5].supportFading as R).entry).includes(
+      `${L12_C06_BAD_RECIPIENT} -> ${L12_C06_GOOD_RECIPIENT}`,
+    ) ||
+    !String((chapters[5].supportFading as R).entry).includes(
+      `${L12_C06_BAD_DESTINATION} -> ${L12_C06_GOOD_RELATION}`,
+    ) ||
+    !l11ChapterSurfaceText(chapters[5]).includes("Aufbauplan")
+  )
+    throw new Error("l12_semantic_contract_invalid:c06_repair");
+  if (
+    JSON.stringify(chapters[6].allowedConstructIds) !==
+      JSON.stringify(L12_FINAL_REQUIRED) ||
+    JSON.stringify((chapters[6].checkpoint as R).integratedConstructIds) !==
+      JSON.stringify(L12_FINAL_REQUIRED) ||
+    !String((chapters[6].supportFading as R).exit).includes(
+      L12_C07_GIVE_CHAIN,
+    ) ||
+    !String((chapters[6].supportFading as R).exit).includes(
+      L12_C07_RELATION_PAIR,
+    )
+  )
+    throw new Error("l12_semantic_contract_invalid:c07_transfer_or_provenance");
+
+  for (let index = 0; index < chapters.length; index += 1) {
+    const chapter = chapters[index];
+    const checkpoint = chapter.checkpoint as R;
+    const senses = checkpoint.plannedNewLexicalSenses as R[];
+    const expectedConstructs = index === 6 ? L12_FINAL_REQUIRED : L12_ALLOWED;
+    const [entryLevel, exitLevel] = L12_SUPPORT_LEVELS[index];
+    if (
+      JSON.stringify(chapter.allowedConstructIds) !==
+        JSON.stringify(expectedConstructs) ||
+      JSON.stringify(checkpoint.integratedConstructIds) !==
+        JSON.stringify(expectedConstructs) ||
+      JSON.stringify(chapter.prohibitedConstructIds) !==
+        JSON.stringify(L12_PROHIBITED) ||
+      JSON.stringify(chapter.situation) !==
+        JSON.stringify(l12Tuple(L12_SITUATIONS[index])) ||
+      JSON.stringify(checkpoint.newSituation) !==
+        JSON.stringify(l12Tuple(L12_NEW_SITUATIONS[index])) ||
+      (chapter.supportFading as R).entryLevel !== entryLevel ||
+      (chapter.supportFading as R).exitLevel !== exitLevel ||
+      (chapter.supportFading as R).entry !== L12_SUPPORTS[index][0] ||
+      (chapter.supportFading as R).exit !== L12_SUPPORTS[index][1] ||
+      JSON.stringify(senses.map((sense) => sense.id)) !==
+        JSON.stringify(L12_LEXICAL_IDS_BY_CHAPTER[index]) ||
+      senses.some(
+        (sense) =>
+          sense.lexicalKind === "FIXED_EXPRESSION" ||
+          sense.lemmaStatus !== "FIRST_MEANING",
+      )
+    )
+      throw new Error("l12_semantic_contract_invalid:chapter_contract");
+    if (
+      JSON.stringify(chapter.chapterEvidencePacketIds) !==
+      JSON.stringify(L12_EVIDENCE_BY_CHAPTER[index])
+    )
+      throw new Error(
+        `l12_semantic_contract_invalid:chapter_evidence:de_l12_c${String(index + 1).padStart(2, "0")}`,
+      );
+    const expectedLexical = L12_LEXICAL_EXPECTED[index];
+    for (let senseIndex = 0; senseIndex < senses.length; senseIndex += 1) {
+      const sense = senses[senseIndex];
+      const expected = expectedLexical[senseIndex];
+      const utility = sense.utilityProof as R;
+      const facetIndex =
+        expected[5] === "setting" ? 0 : expected[5] === "participants" ? 1 : 2;
+      if (
+        sense.id !== expected[0] ||
+        sense.lemmaOrExpression !== expected[1] ||
+        sense.semanticIdentity !== expected[2] ||
+        sense.senseGloss !== expected[3] ||
+        sense.communicativeUse !== L12_COMMUNICATIVE_USE[index][senseIndex] ||
+        sense.chapterOutcomeId !==
+          `de_l12_ch${String(index + 1).padStart(2, "0")}` ||
+        sense.contrastsWithSenseId !== null ||
+        sense.contrastEvidence !== null ||
+        utility.utilityRole !== expected[4] ||
+        utility.situationFacet !== expected[5] ||
+        utility.facetValue !== L12_NEW_SITUATIONS[index][facetIndex] ||
+        utility.necessityClass !== expected[6] ||
+        utility.chapterOutcomeId !== sense.chapterOutcomeId ||
+        utility.checkpointPacketId !== checkpoint.packetId ||
+        JSON.stringify(utility.integratedConstructIds) !==
+          JSON.stringify(expectedConstructs)
+      )
+        throw new Error("l12_semantic_contract_invalid:lexical_packages");
+      if (
+        JSON.stringify(utility.plannedUsePacketIds) !==
+        JSON.stringify([String(checkpoint.packetId)])
+      )
+        throw new Error(
+          `l12_semantic_contract_invalid:planned_use_packets:${String(sense.id)}`,
+        );
+    }
+  }
+}
+
 function validate(raw: unknown): {
   lessons: number;
   chapters: number;
@@ -1915,6 +2692,12 @@ function validate(raw: unknown): {
     (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l11")
   )
     validateL11SemanticContract(raw, l11Plan);
+  const l12Plan = source.get("de_l12");
+  if (
+    l12Plan &&
+    (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l12")
+  )
+    validateL12SemanticContract(raw, l12Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -2440,6 +3223,38 @@ function expectL11PlanExact(mut: (plan: R) => void, message: string): void {
   let thrown: unknown;
   try {
     validateL11SemanticContract(raw, plan as Boundary);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+function expectL12Exact(mut: (raw: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: Boundary[] };
+  const plan = lessonRegistry.lessons.find(
+    (lesson) => lesson.id === "de_l12",
+  ) as Boundary;
+  mut(raw);
+  let thrown: unknown;
+  try {
+    validateL12SemanticContract(raw, plan);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+function expectL12PlanExact(mut: (plan: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: R[] };
+  const plan = clone(
+    lessonRegistry.lessons.find((lesson) => lesson.id === "de_l12") as R,
+  );
+  mut(plan);
+  let thrown: unknown;
+  try {
+    validateL12SemanticContract(raw, plan as Boundary);
   } catch (error) {
     thrown = error;
   }
@@ -3330,6 +4145,307 @@ function fixtures(): void {
     const c1 = (l11.chapters as R[])[0];
     (c1.supportFading as R).entryLevel = 4;
   }, "l11_semantic_contract_invalid:closed_chapter:de_l11_c01");
+
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    (l12.grammarBoundary as R).noExpansion =
+      "Use all Wechselpräpositionen and choose Akkusativ whenever there is movement.";
+  }, "l12_semantic_contract_invalid:no_expansion");
+  expectL12Exact((raw) => {
+    raw.lessons = (raw.lessons as R[]).filter(
+      (lesson) => lesson.lessonId !== "de_l12",
+    );
+  }, "l12_semantic_contract_invalid:missing");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    ((l12.grammarBoundary as R).allowedConstructIds as string[]).reverse();
+  }, "l12_semantic_contract_invalid:sets");
+  expectL12PlanExact((plan) => {
+    (plan.introducedConstructIds as string[]).reverse();
+  }, "l12_semantic_contract_invalid:sets");
+  expectL12PlanExact((plan) => {
+    (plan.extendedConstructIds as string[]).pop();
+  }, "l12_semantic_contract_invalid:sets");
+  expectL12PlanExact((plan) => {
+    (plan.reviewedConstructIds as string[]).reverse();
+  }, "l12_semantic_contract_invalid:sets");
+  expectL12PlanExact((plan) => {
+    (plan.prohibitedConstructIds as string[]).reverse();
+  }, "l12_semantic_contract_invalid:sets");
+  expectL12PlanExact((plan) => {
+    ((plan.session56Final as R).requiredConstructIds as string[]).reverse();
+  }, "l12_semantic_contract_invalid:sets");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c1 = (l12.chapters as R[])[0];
+    ((c1.lifecycleAnchors as R[])[0] as R).packetId = "de_l12_c01_s03";
+  }, "l12_semantic_contract_invalid:anchors");
+  expectL12Exact((raw) => {
+    const l11 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l11",
+    ) as R;
+    const c7 = (l11.chapters as R[])[6];
+    ((c7.recallSchedule as R).futureDelayedProbe as R).packetId =
+      "de_l12_c07_s56";
+  }, "l11_l12_inverse_provenance_invalid");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c7 = (l12.chapters as R[])[6];
+    ((c7.recallSchedule as R).futureDelayedProbe as R).packetId =
+      "de_l13_c07_s56";
+  }, "l12_l13_inverse_provenance_invalid");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c2 = (l12.chapters as R[])[1];
+    (c2.recallSchedule as R).targetsFutureChapterIds = ["de_l12_c04"];
+  }, "l12_recall_contract_invalid:de_l12_c02");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const chapters = l12.chapters as R[];
+    const tasche = (
+      (chapters[1].checkpoint as R).plannedNewLexicalSenses as R[]
+    ).splice(0, 1)[0];
+    ((chapters[2].checkpoint as R).plannedNewLexicalSenses as R[]).push(tasche);
+  }, "l12_lexical_prerequisite_invalid:de_l12_c02:Tasche");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c1 = (l12.chapters as R[])[0];
+    (c1.supportFading as R).entry = `${String(
+      (c1.supportFading as R).entry,
+    )} Spendenbox`;
+  }, "l12_lexical_prerequisite_invalid:de_l12_c01:Spendenbox");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c3 = (l12.chapters as R[])[2];
+    const karton = ((c3.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    (karton.nounPackage as R).article = "das";
+  }, "l12_semantic_contract_invalid:lexical_packages");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c1 = (l12.chapters as R[])[0];
+    (c1.supportFading as R).entry = String(
+      (c1.supportFading as R).entry,
+    ).replace(
+      "Ich gebe dem Helfer die Kiste.",
+      "Ich gebe den Helfer die Kiste.",
+    );
+  }, "l12_semantic_contract_invalid:two_object_roles");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c2 = (l12.chapters as R[])[1];
+    (c2.supportFading as R).entry = String(
+      (c2.supportFading as R).entry,
+    ).replace("die Tasche ins Regal", "die Tasche im Regal");
+  }, "l12_semantic_contract_invalid:wechsel_relation");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c3 = (l12.chapters as R[])[2];
+    (c3.supportFading as R).exit = `${String(
+      (c3.supportFading as R).exit,
+    )} Bewegung bedeutet immer Akkusativ.`;
+  }, "l12_semantic_contract_invalid:wechsel_relation");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c4 = (l12.chapters as R[])[3];
+    (c4.supportFading as R).entry = `${String(
+      (c4.supportFading as R).entry,
+    )} Ich bringe die Spendenbox auf den Tisch.`;
+  }, "l12_semantic_contract_invalid:wechsel_relation");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c4 = (l12.chapters as R[])[3];
+    (c4.supportFading as R).exit = `${String(
+      (c4.supportFading as R).exit,
+    )} hinstellen`;
+  }, "l12_semantic_contract_invalid:wechsel_relation");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c2 = (l12.chapters as R[])[1];
+    (c2.supportFading as R).exit = `${String(
+      (c2.supportFading as R).exit,
+    )} Wechselpreposition table`;
+  }, "l12_semantic_contract_invalid:wechsel_relation");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c5 = (l12.chapters as R[])[4];
+    (c5.supportFading as R).entry = String(
+      (c5.supportFading as R).entry,
+    ).replace(L12_C05_ITEM_FIRST, "Ich gebe dem Helfer das Materialpaket.");
+  }, "l12_semantic_contract_invalid:c05_word_order_proof");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c6 = (l12.chapters as R[])[5];
+    (c6.supportFading as R).entry = String(
+      (c6.supportFading as R).entry,
+    ).replace(L12_C06_GOOD_RECIPIENT, L12_C06_BAD_RECIPIENT);
+  }, "l12_semantic_contract_invalid:c06_repair");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c7 = (l12.chapters as R[])[6];
+    (c7.supportFading as R).exit = String((c7.supportFading as R).exit).replace(
+      "Ich gebe ihm die Losbox.",
+      "Ich gebe ihn die Losbox.",
+    );
+  }, "l12_semantic_contract_invalid:c07_transfer_or_provenance");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c7 = (l12.chapters as R[])[6];
+    (c7.allowedConstructIds as string[]).reverse();
+    ((c7.checkpoint as R).integratedConstructIds as string[]).reverse();
+  }, "l12_semantic_contract_invalid:c07_transfer_or_provenance");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c1 = (l12.chapters as R[])[0];
+    c1.chapterEvidencePacketIds = ["de_l12_c01_s05"];
+  }, "l12_semantic_contract_invalid:chapter_evidence:de_l12_c01");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c7 = (l12.chapters as R[])[6];
+    (c7.chapterEvidencePacketIds as string[]).splice(4, 1);
+  }, "l11_l12_inverse_provenance_invalid");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c1 = (l12.chapters as R[])[0];
+    const sense = ((c1.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    ((sense.utilityProof as R).plannedUsePacketIds as string[]).unshift(
+      "de_l12_c01_s07",
+    );
+  }, "l12_semantic_contract_invalid:planned_use_packets:de_lex_plan_l12_c01_geben_v1");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c2 = (l12.chapters as R[])[1];
+    (c2.situation as R).setting = "renamed-donation-counter";
+  }, "l12_semantic_contract_invalid:chapter_contract");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c1 = (l12.chapters as R[])[0];
+    ((c1.checkpoint as R).plannedNewLexicalSenses as R[]).reverse();
+  }, "l12_semantic_contract_invalid:chapter_contract");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c1 = (l12.chapters as R[])[0];
+    const geben = ((c1.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    geben.semanticIdentity =
+      "geben|transfer an item to a named recipient in one verified two-object frame";
+  }, "l12_semantic_contract_invalid:lexical_packages");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c1 = (l12.chapters as R[])[0];
+    const geben = ((c1.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    (geben.verbPackage as R).valencyFrame =
+      "explicit dative recipient plus explicit accusative transferred entity";
+  }, "l12_semantic_contract_invalid:lexical_packages");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c1 = (l12.chapters as R[])[0];
+    const bringen = ((c1.checkpoint as R).plannedNewLexicalSenses as R[])[1];
+    (bringen.verbPackage as R).valencyFrame =
+      "explicit accusative item plus bounded in plus accusative destination";
+  }, "l12_semantic_contract_invalid:lexical_packages");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c1 = (l12.chapters as R[])[0];
+    const geben = ((c1.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    (geben.verbPackage as R).valencyFrame =
+      "recipient and item selected by word order";
+  }, "l12_semantic_contract_invalid:lexical_packages");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c6 = (l12.chapters as R[])[5];
+    const sense = ((c6.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    (sense.utilityProof as R).facetValue = "generic-repair";
+  }, "l12_semantic_contract_invalid:lexical_packages");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c7 = (l12.chapters as R[])[6];
+    const losbox = ((c7.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    losbox.communicativeUse = "generic raffle vocabulary";
+  }, "l12_semantic_contract_invalid:lexical_packages");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c1 = (l12.chapters as R[])[0];
+    const geben = ((c1.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    ((geben.utilityProof as R).integratedConstructIds as string[]).reverse();
+  }, "l12_semantic_contract_invalid:lexical_packages");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c2 = (l12.chapters as R[])[1];
+    const tasche = ((c2.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    tasche.lexicalKind = "FIXED_EXPRESSION";
+    tasche.partOfSpeech = "fixed_expression";
+  }, "l12_semantic_contract_invalid:chapter_contract");
+  expectL12Exact((raw) => {
+    const l12 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l12",
+    ) as R;
+    const c4 = (l12.chapters as R[])[3];
+    (c4.allowedConstructIds as string[]).push("de_gc_predicative_adjective_v1");
+    ((c4.checkpoint as R).integratedConstructIds as string[]).push(
+      "de_gc_predicative_adjective_v1",
+    );
+  }, "l12_semantic_contract_invalid:chapter_contract");
 
   const l2Boundary: Boundary = {
     id: "de_l02",

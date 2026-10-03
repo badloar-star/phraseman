@@ -20861,3 +20861,95 @@ L12 C07 S49/S50, and repeat recenter 28/28 plus fresh exact-spec and
 semantic/adversarial reviews before L13. Task 6, exact learner packets, full
 blueprint fingerprint/owner map, learner-facing RU+UK authoring, release and
 the German session mockup remain HOLD.
+
+### 2026-10-03 — German Learning V2 Task 5 progress: L12 closed
+
+Task 5 is now 12/32 lessons: `de_l01` through `de_l12`, 84/224 chapters and
+672/1792 exact packet identities. L12 was authored one lesson only under fresh
+content-addressed PREAUTHOR guardians, one writer, exact-spec review and a
+separate German semantic/adversarial red-team. Several candidate receipts were
+superseded as judges found conflicts; only final guardian/recenter receipt V6,
+SHA-256 `6231B881F86349F2E26F9F91B3198F5B75826369DE9C597C2F28C2869432AC78`,
+is authoritative for the accepted bytes.
+
+L12 introduces one verified two-object contrast and one bounded
+Wechselpreposition relation contrast. The productive spine distinguishes the
+dative recipient from the accusative transferred item in `Ich gebe dem Helfer
+die Kiste.` and contrasts the bounded destination `Ich bringe die Kiste ins
+Regal.` with the stable result `Die Kiste ist im Regal.` Case selection is
+owned by verified valency/relation, never by word order or a general
+movement-equals-Akkusativ heuristic. C05 proves this with item-first `Das
+Materialpaket gebe ich dem Helfer.` C06 repairs both recipient marking and
+`im`/`ins`; C07 transfers the adjacent `dem Helfer` to `ihm` reference and the
+placement contrast to a new `Eingangsbereich` layout.
+
+Review exposed and repaired an older Task 4 contradiction. The previous L12
+title `Geben, bringen, hinstellen` promised a lexical separable verb that had
+no L12 lexical owner, active construct, recall responsibility or final-set
+role, while the chapter boundary correctly prohibited it. Independent
+advisor and red-team adjudication selected Decision B: preserve the closed
+grammar boundary and remove the stale thematic promise. The exact title is
+now `Wer bekommt was – und wohin?`; pronunciation planning is exactly
+`de_pron_plan_case_marker_perception_v1`. The Task 4 gate rejects the old
+title, missing/replaced/extra pronunciation targets, and a bracket-rhythm
+target without an active bracket construct. No `hinstellen` lexical sense or
+separable lifecycle was admitted.
+
+Exact review also forced three lexical-contract repairs. `geben` keeps the
+human-readable gloss with `two-object`, while its machine identity correctly
+uses the schema-normalized `two object`; its exact valency is `transfer frame
+selecting one explicit dative recipient and one explicit accusative
+transferred entity`. `bringen` uses `directed-placement frame selecting one
+explicit accusative item and one bounded in-plus-accusative destination`.
+Hostile fixtures reject raw-hyphen machine identity, both shortened valencies,
+word-order case guessing, `ins`/`im` collapse, other Wechselprepositions,
+tables, future grammar and all prior C05/C06/C07/provenance/evidence/planned-
+use drifts.
+
+The Task 4 gate had pre-existing formatter debt and the new exact review
+required the mandatory full-file Prettier gate to be green. A mechanical
+Prettier-only pass reformatted that German gate; fresh exact review proved the
+result byte-identical to formatting the previously reviewed semantic version.
+No validator, fixture meaning, error code or curriculum contract changed in
+that pass.
+
+Fresh final exact-spec review bound to V6 PASSed with P0/P1/P2 = 0 after 19
+external hostile mutations. A different fresh German semantic/adversarial
+red-team on the same hashes PASSed with P0/P1/P2 = 0 after confirming native
+recipient/item roles, `ins` versus `im`, item-first production, dual repair,
+adjacent anaphora, non-filler lexical utility, support fading, changed-context
+transfer and absence of `hinstellen`, adjective or future-grammar leakage.
+
+Fresh deterministic evidence on the final bytes: L11 PASS 7/56; L12 PASS
+7/56; prefix 12 PASS 84 chapters / 672 packet IDs; Task 2 schema PASS; Task 3
+grammar graph PASS (48 constructs / 89 edges / 18 branches); Task 4 lesson
+boundaries PASS (32 lessons / 224 outcomes / 32 finals / 48 constructs); owner
+decisions PASS; research authority PASS (52 claims); recenter PASS 28/28;
+Prettier, ESLint and `git diff --check` PASS. The unscoped Task 5 sentinel
+intentionally remains RED with exact
+`INCREMENTAL_TASK5;12/32 lessons; 84/224 chapters`.
+
+Final hashes: Task 4 lesson blueprint
+`FCF26B09BCD9D6B464F7D8A96B1669758634DF9A61903807C836A6AEF0DE874F`;
+formatted Task 4 lesson gate
+`F6DC7A2F7034E49B26634D42526EDDDD72492529B19C80A556D5A7D0174CC180`;
+Task 5 chapter blueprint
+`7778FBB3B17FA095A679D161A21553FF4E443C4B82A52F99811E98086EE3172C`;
+Task 5 chapter gate
+`E9B489140E0E9881A1EBF042512D50155B48B2A7515C77829CF4FD1EA99CC391`;
+German requirement manifest remains
+`FBB14A88961D1A72D665A044F7E31E318132FD16122540430935EE0A9E24F5BC`.
+No English, Daily Phrase, learner-facing German session, release or mockup file
+was edited by the L12 slice; no deploy or publish occurred.
+
+Next exact task: obtain a new content-addressed PREAUTHOR guardian for
+`de_l13`, reread the current Codex/factory instructions, then materialize only
+its seven chapters and exact `de_l13_c01_s01..de_l13_c07_s56` identities. L13
+introduces uninflected predicative adjectives and staged attributive agreement
+only inside already established gender-case-number frames; it must not expand
+to a full strong/weak/mixed paradigm or forms outside those frames. Preserve
+the exact Task 4 boundary and ordered S56 subset, own L12 delayed two-object
+and Wechsel-relation anchors at L13 C07 S49/S50, and repeat recenter 28/28 plus
+fresh exact-spec and semantic/adversarial reviews before L14. Task 6, exact
+learner packets, full blueprint fingerprint/owner map, learner-facing RU+UK
+authoring, release and the German session mockup remain HOLD.

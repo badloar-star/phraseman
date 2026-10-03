@@ -9720,6 +9720,1025 @@
           }
         }
       ]
+    },
+    {
+      "lessonId": "de_l12",
+      "lessonOrdinal": 12,
+      "grammarBoundary": {
+        "allowedConstructIds": [
+          "de_gc_two_object_case_contrast_v1",
+          "de_gc_wechselpreposition_relation_contrast_v1",
+          "de_gc_frequent_accusative_frames_v1",
+          "de_gc_dative_recipient_frames_v1",
+          "de_gc_dative_location_frames_v1",
+          "de_gc_local_preposition_governed_case_v1",
+          "de_gc_dative_personal_pronouns_v1"
+        ],
+        "prohibitedConstructIds": [
+          "de_gc_predicative_adjective_v1",
+          "de_gc_staged_nominal_group_agreement_v1"
+        ],
+        "noExpansion": "The lesson permits geben only in one verified dative-recipient plus accusative-item frame, bringen only with one explicit accusative item and one bounded in-plus-accusative destination, and in as the sole Wechsel relation: bounded destination in plus Akkusativ versus stable location in plus Dativ. Case follows verified valency or relation, never word order or a movement heuristic. No other Wechselpreposition, table, hinstellen or separable-verb expansion, adjective work, isolated case or pronoun table, or future grammar is allowed."
+      },
+      "chapters": [
+        {
+          "id": "de_l12_c01",
+          "ordinal": 1,
+          "lessonOutcomeId": "de_l12_ch01",
+          "lessonOutcome": "identify recipient and transferred-item roles in one frame",
+          "packetIds": [
+            "de_l12_c01_s01",
+            "de_l12_c01_s02",
+            "de_l12_c01_s03",
+            "de_l12_c01_s04",
+            "de_l12_c01_s05",
+            "de_l12_c01_s06",
+            "de_l12_c01_s07",
+            "de_l12_c01_s08"
+          ],
+          "allowedConstructIds": [
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_wechselpreposition_relation_contrast_v1",
+            "de_gc_frequent_accusative_frames_v1",
+            "de_gc_dative_recipient_frames_v1",
+            "de_gc_dative_location_frames_v1",
+            "de_gc_local_preposition_governed_case_v1",
+            "de_gc_dative_personal_pronouns_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "situation": {
+            "setting": "community-event-supply-handover",
+            "participants": "event-coordinator-and-supply-helper",
+            "goal": "identify-recipient-item-roles-and-contrast-bounded-in-placement-with-stable-in-location",
+            "contextSignature": "supply-handover-in-relation-introduction"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "role cards and a shelf diagram showing Ich gebe dem Helfer die Kiste. plus Ich bringe die Kiste ins Regal. Die Kiste ist im Regal.; recipient, item, destination, and stable location are marked by function",
+            "exit": "identify dem Helfer as recipient and die Kiste as transferred item, then distinguish ins Regal as bounded destination from im Regal as stable location",
+            "independentEvidenceByPacketId": "de_l12_c01_s08"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_two_object_case_contrast_v1",
+              "stage": "introduction",
+              "packetId": "de_l12_c01_s01"
+            },
+            {
+              "constructId": "de_gc_wechselpreposition_relation_contrast_v1",
+              "stage": "introduction",
+              "packetId": "de_l12_c01_s02"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l12_c01_s03", "de_l12_c01_s04"],
+          "checkpoint": {
+            "packetId": "de_l12_c01_s08",
+            "integratedConstructIds": [
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_wechselpreposition_relation_contrast_v1",
+              "de_gc_frequent_accusative_frames_v1",
+              "de_gc_dative_recipient_frames_v1",
+              "de_gc_dative_location_frames_v1",
+              "de_gc_local_preposition_governed_case_v1",
+              "de_gc_dative_personal_pronouns_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l12_c01_geben_v1",
+                "semanticIdentity": "geben|transfer an item to a named recipient in one verified two object frame",
+                "lemmaOrExpression": "geben",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "geben",
+                  "valencyFrame": "transfer frame selecting one explicit dative recipient and one explicit accusative transferred entity",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l12_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l12_ch01",
+                  "checkpointPacketId": "de_l12_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_dative_location_frames_v1",
+                    "de_gc_local_preposition_governed_case_v1",
+                    "de_gc_dative_personal_pronouns_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-assign-kiste-recipient-and-verify-its-bounded-destination-and-stable-location",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l12_c01_s08"]
+                },
+                "senseGloss": "transfer an item to a named recipient in one verified two-object frame",
+                "communicativeUse": "use Ich gebe dem Helfer die Kiste. to prove recipient and transferred-item roles through verified valency and case"
+              },
+              {
+                "id": "de_lex_plan_l12_c01_bringen_v1",
+                "semanticIdentity": "bringen|carry one explicit item to one bounded destination",
+                "lemmaOrExpression": "bringen",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "bringen",
+                  "valencyFrame": "directed-placement frame selecting one explicit accusative item and one bounded in-plus-accusative destination",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l12_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l12_ch01",
+                  "checkpointPacketId": "de_l12_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_dative_location_frames_v1",
+                    "de_gc_local_preposition_governed_case_v1",
+                    "de_gc_dative_personal_pronouns_v1"
+                  ],
+                  "utilityRole": "temporal_spatial",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-assign-kiste-recipient-and-verify-its-bounded-destination-and-stable-location",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l12_c01_s08"]
+                },
+                "senseGloss": "carry one explicit item to one bounded destination",
+                "communicativeUse": "use Ich bringe die Kiste ins Regal. Die Kiste ist im Regal. to contrast bounded destination with stable location"
+              },
+              {
+                "id": "de_lex_plan_l12_c01_helfer_v1",
+                "semanticIdentity": "helfer|helper receiving an event supply item",
+                "lemmaOrExpression": "Helfer",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Helfer",
+                  "plural": "Helfer"
+                },
+                "nounPackageIdentity": "der|helfer|helfer",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l12_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l12_ch01",
+                  "checkpointPacketId": "de_l12_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_dative_location_frames_v1",
+                    "de_gc_local_preposition_governed_case_v1",
+                    "de_gc_dative_personal_pronouns_v1"
+                  ],
+                  "utilityRole": "participant_reference",
+                  "situationFacet": "participants",
+                  "facetValue": "fair-coordinator-and-setup-helper",
+                  "necessityClass": "PARTICIPANT_UNIDENTIFIABLE",
+                  "plannedUsePacketIds": ["de_l12_c01_s08"]
+                },
+                "senseGloss": "helper receiving an event-supply item",
+                "communicativeUse": "identify dem Helfer as the named dative recipient in Ich gebe dem Helfer die Kiste."
+              },
+              {
+                "id": "de_lex_plan_l12_c01_kiste_v1",
+                "semanticIdentity": "kiste|crate transferred and placed during event setup",
+                "lemmaOrExpression": "Kiste",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Kiste",
+                  "plural": "Kisten"
+                },
+                "nounPackageIdentity": "die|kiste|kisten",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l12_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l12_ch01",
+                  "checkpointPacketId": "de_l12_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_dative_location_frames_v1",
+                    "de_gc_local_preposition_governed_case_v1",
+                    "de_gc_dative_personal_pronouns_v1"
+                  ],
+                  "utilityRole": "mediation",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-assign-kiste-recipient-and-verify-its-bounded-destination-and-stable-location",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l12_c01_s08"]
+                },
+                "senseGloss": "crate transferred and placed during event setup",
+                "communicativeUse": "track die Kiste as the explicit accusative item through handover, bounded destination, and stable location"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "neighborhood-fair-supply-table",
+              "participants": "fair-coordinator-and-setup-helper",
+              "goal": "independently-assign-kiste-recipient-and-verify-its-bounded-destination-and-stable-location",
+              "contextSignature": "neighborhood-fair-two-role-in-relation-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l11_c06", "de_l11_c07"],
+            "targetsFutureChapterIds": ["de_l12_c02"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l13_c07_s51"
+            }
+          }
+        },
+        {
+          "id": "de_l12_c02",
+          "ordinal": 2,
+          "lessonOutcomeId": "de_l12_ch02",
+          "lessonOutcome": "contrast a bounded change-of-location with stable location",
+          "packetIds": [
+            "de_l12_c02_s09",
+            "de_l12_c02_s10",
+            "de_l12_c02_s11",
+            "de_l12_c02_s12",
+            "de_l12_c02_s13",
+            "de_l12_c02_s14",
+            "de_l12_c02_s15",
+            "de_l12_c02_s16"
+          ],
+          "allowedConstructIds": [
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_wechselpreposition_relation_contrast_v1",
+            "de_gc_frequent_accusative_frames_v1",
+            "de_gc_dative_recipient_frames_v1",
+            "de_gc_dative_location_frames_v1",
+            "de_gc_local_preposition_governed_case_v1",
+            "de_gc_dative_personal_pronouns_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "situation": {
+            "setting": "donation-counter-supply-route",
+            "participants": "donation-coordinator-and-setup-helper",
+            "goal": "contrast-tasche-destination-ins-regal-with-resulting-stable-location-im-regal",
+            "contextSignature": "tasche-two-role-in-relation-guided"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "whole models Ich gebe dem Helfer die Tasche. Ich bringe die Tasche ins Regal. Die Tasche ist im Regal., with recipient, item, destination, and stable-location roles labelled",
+            "exit": "guide the Tasche handover and distinguish ins Regal from im Regal by the taught relation",
+            "independentEvidenceByPacketId": "de_l12_c02_s16"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_two_object_case_contrast_v1",
+              "stage": "guided",
+              "packetId": "de_l12_c02_s09"
+            },
+            {
+              "constructId": "de_gc_wechselpreposition_relation_contrast_v1",
+              "stage": "guided",
+              "packetId": "de_l12_c02_s10"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l12_c02_s11", "de_l12_c02_s12"],
+          "checkpoint": {
+            "packetId": "de_l12_c02_s16",
+            "integratedConstructIds": [
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_wechselpreposition_relation_contrast_v1",
+              "de_gc_frequent_accusative_frames_v1",
+              "de_gc_dative_recipient_frames_v1",
+              "de_gc_dative_location_frames_v1",
+              "de_gc_local_preposition_governed_case_v1",
+              "de_gc_dative_personal_pronouns_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l12_c02_tasche_v1",
+                "semanticIdentity": "tasche|bag handed over and placed on a shelf",
+                "lemmaOrExpression": "Tasche",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Tasche",
+                  "plural": "Taschen"
+                },
+                "nounPackageIdentity": "die|tasche|taschen",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l12_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l12_ch02",
+                  "checkpointPacketId": "de_l12_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_dative_location_frames_v1",
+                    "de_gc_local_preposition_governed_case_v1",
+                    "de_gc_dative_personal_pronouns_v1"
+                  ],
+                  "utilityRole": "temporal_spatial",
+                  "situationFacet": "goal",
+                  "facetValue": "guide-the-tasche-handover-and-in-relation-contrast",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l12_c02_s16"]
+                },
+                "senseGloss": "bag handed over and placed on a shelf",
+                "communicativeUse": "use die Tasche across Ich gebe dem Helfer die Tasche. Ich bringe die Tasche ins Regal. Die Tasche ist im Regal."
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "school-fair-donation-counter",
+              "participants": "school-fair-coordinator-and-volunteer",
+              "goal": "guide-the-tasche-handover-and-in-relation-contrast",
+              "contextSignature": "school-fair-tasche-guided-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l12_c01"],
+            "targetsFutureChapterIds": ["de_l12_c03"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l13_c07_s52"
+            }
+          }
+        },
+        {
+          "id": "de_l12_c03",
+          "ordinal": 3,
+          "lessonOutcomeId": "de_l12_ch03",
+          "lessonOutcome": "produce a verified two-object handover",
+          "packetIds": [
+            "de_l12_c03_s17",
+            "de_l12_c03_s18",
+            "de_l12_c03_s19",
+            "de_l12_c03_s20",
+            "de_l12_c03_s21",
+            "de_l12_c03_s22",
+            "de_l12_c03_s23",
+            "de_l12_c03_s24"
+          ],
+          "allowedConstructIds": [
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_wechselpreposition_relation_contrast_v1",
+            "de_gc_frequent_accusative_frames_v1",
+            "de_gc_dative_recipient_frames_v1",
+            "de_gc_dative_location_frames_v1",
+            "de_gc_local_preposition_governed_case_v1",
+            "de_gc_dative_personal_pronouns_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "situation": {
+            "setting": "registration-supply-desk",
+            "participants": "registration-lead-and-event-helper",
+            "goal": "produce-karton-recipient-and-item-roles-before-retrieving-its-destination-state",
+            "contextSignature": "karton-two-object-relation-retrieval"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "partial role prompts for Ich gebe dem Helfer den Karton. Ich bringe den Karton ins Regal. Der Karton ist im Regal., without word-order or movement shortcuts",
+            "exit": "produce the Karton handover and retrieve bounded destination ins Regal versus stable location im Regal",
+            "independentEvidenceByPacketId": "de_l12_c03_s24"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_two_object_case_contrast_v1",
+              "stage": "retrieval",
+              "packetId": "de_l12_c03_s17"
+            },
+            {
+              "constructId": "de_gc_wechselpreposition_relation_contrast_v1",
+              "stage": "retrieval",
+              "packetId": "de_l12_c03_s18"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l12_c03_s19", "de_l12_c03_s20"],
+          "checkpoint": {
+            "packetId": "de_l12_c03_s24",
+            "integratedConstructIds": [
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_wechselpreposition_relation_contrast_v1",
+              "de_gc_frequent_accusative_frames_v1",
+              "de_gc_dative_recipient_frames_v1",
+              "de_gc_dative_location_frames_v1",
+              "de_gc_local_preposition_governed_case_v1",
+              "de_gc_dative_personal_pronouns_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l12_c03_karton_v1",
+                "semanticIdentity": "karton|carton handed over and placed during registration setup",
+                "lemmaOrExpression": "Karton",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Karton",
+                  "plural": "Kartons"
+                },
+                "nounPackageIdentity": "der|karton|kartons",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l12_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l12_ch03",
+                  "checkpointPacketId": "de_l12_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_dative_location_frames_v1",
+                    "de_gc_local_preposition_governed_case_v1",
+                    "de_gc_dative_personal_pronouns_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "produce-the-karton-handover-and-verify-its-placement",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l12_c03_s24"]
+                },
+                "senseGloss": "carton handed over and placed during registration setup",
+                "communicativeUse": "use den Karton as the transferred item and Der Karton as the same item in its stable location"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "neighborhood-workshop-registration",
+              "participants": "workshop-coordinator-and-material-helper",
+              "goal": "produce-the-karton-handover-and-verify-its-placement",
+              "contextSignature": "workshop-karton-production-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l12_c01", "de_l12_c02"],
+            "targetsFutureChapterIds": ["de_l12_c04"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l13_c07_s53"
+            }
+          }
+        },
+        {
+          "id": "de_l12_c04",
+          "ordinal": 4,
+          "lessonOutcomeId": "de_l12_ch04",
+          "lessonOutcome": "place an item using the taught relation and case",
+          "packetIds": [
+            "de_l12_c04_s25",
+            "de_l12_c04_s26",
+            "de_l12_c04_s27",
+            "de_l12_c04_s28",
+            "de_l12_c04_s29",
+            "de_l12_c04_s30",
+            "de_l12_c04_s31",
+            "de_l12_c04_s32"
+          ],
+          "allowedConstructIds": [
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_wechselpreposition_relation_contrast_v1",
+            "de_gc_frequent_accusative_frames_v1",
+            "de_gc_dative_recipient_frames_v1",
+            "de_gc_dative_location_frames_v1",
+            "de_gc_local_preposition_governed_case_v1",
+            "de_gc_dative_personal_pronouns_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "situation": {
+            "setting": "charity-stall-placement",
+            "participants": "stall-coordinator-and-setup-helper",
+            "goal": "place-the-spendenbox-into-the-regal-and-report-its-stable-location",
+            "contextSignature": "spendenbox-in-relation-production"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "minimal scene prompts for Ich gebe dem Helfer die Spendenbox. Ich bringe die Spendenbox ins Regal. Die Spendenbox ist im Regal.",
+            "exit": "independently place die Spendenbox ins Regal and report its stable location im Regal after the verified handover",
+            "independentEvidenceByPacketId": "de_l12_c04_s32"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_two_object_case_contrast_v1",
+              "stage": "production",
+              "packetId": "de_l12_c04_s25"
+            },
+            {
+              "constructId": "de_gc_wechselpreposition_relation_contrast_v1",
+              "stage": "production",
+              "packetId": "de_l12_c04_s26"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l12_c04_s27", "de_l12_c04_s28"],
+          "checkpoint": {
+            "packetId": "de_l12_c04_s32",
+            "integratedConstructIds": [
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_wechselpreposition_relation_contrast_v1",
+              "de_gc_frequent_accusative_frames_v1",
+              "de_gc_dative_recipient_frames_v1",
+              "de_gc_dative_location_frames_v1",
+              "de_gc_local_preposition_governed_case_v1",
+              "de_gc_dative_personal_pronouns_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l12_c04_spendenbox_v1",
+                "semanticIdentity": "spendenbox|donation box handed over and placed for a fundraiser",
+                "lemmaOrExpression": "Spendenbox",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Spendenbox",
+                  "plural": "Spendenboxen"
+                },
+                "nounPackageIdentity": "die|spendenbox|spendenboxen",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l12_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l12_ch04",
+                  "checkpointPacketId": "de_l12_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_dative_location_frames_v1",
+                    "de_gc_local_preposition_governed_case_v1",
+                    "de_gc_dative_personal_pronouns_v1"
+                  ],
+                  "utilityRole": "temporal_spatial",
+                  "situationFacet": "goal",
+                  "facetValue": "place-and-locate-the-spendenbox-after-a-clear-handover",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l12_c04_s32"]
+                },
+                "senseGloss": "donation box handed over and placed for a fundraiser",
+                "communicativeUse": "use die Spendenbox in the verified handover and ins Regal versus im Regal placement contrast"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "library-fundraiser-setup",
+              "participants": "fundraiser-coordinator-and-volunteer",
+              "goal": "place-and-locate-the-spendenbox-after-a-clear-handover",
+              "contextSignature": "fundraiser-spendenbox-placement-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l12_c02", "de_l12_c03"],
+            "targetsFutureChapterIds": ["de_l12_c05"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l13_c07_s54"
+            }
+          }
+        },
+        {
+          "id": "de_l12_c05",
+          "ordinal": 5,
+          "lessonOutcomeId": "de_l12_ch05",
+          "lessonOutcome": "coordinate handover and placement in one task",
+          "packetIds": [
+            "de_l12_c05_s33",
+            "de_l12_c05_s34",
+            "de_l12_c05_s35",
+            "de_l12_c05_s36",
+            "de_l12_c05_s37",
+            "de_l12_c05_s38",
+            "de_l12_c05_s39",
+            "de_l12_c05_s40"
+          ],
+          "allowedConstructIds": [
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_wechselpreposition_relation_contrast_v1",
+            "de_gc_frequent_accusative_frames_v1",
+            "de_gc_dative_recipient_frames_v1",
+            "de_gc_dative_location_frames_v1",
+            "de_gc_local_preposition_governed_case_v1",
+            "de_gc_dative_personal_pronouns_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "situation": {
+            "setting": "community-stage-material-setup",
+            "participants": "stage-coordinator-and-setup-helper",
+            "goal": "coordinate-item-first-materialpaket-handover-and-bounded-in-placement",
+            "contextSignature": "materialpaket-role-order-and-placement-combination"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "contrast card requiring the exact item-first proof Das Materialpaket gebe ich dem Helfer. plus Ich bringe das Materialpaket ins Regal. Das Materialpaket ist im Regal.",
+            "exit": "coordinate the item-first Materialpaket handover and placement while selecting case from valency and relation, never word order",
+            "independentEvidenceByPacketId": "de_l12_c05_s40"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l12_c05_s35", "de_l12_c05_s36"],
+          "checkpoint": {
+            "packetId": "de_l12_c05_s40",
+            "integratedConstructIds": [
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_wechselpreposition_relation_contrast_v1",
+              "de_gc_frequent_accusative_frames_v1",
+              "de_gc_dative_recipient_frames_v1",
+              "de_gc_dative_location_frames_v1",
+              "de_gc_local_preposition_governed_case_v1",
+              "de_gc_dative_personal_pronouns_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l12_c05_materialpaket_v1",
+                "semanticIdentity": "materialpaket|materials package handed over and placed for stage setup",
+                "lemmaOrExpression": "Materialpaket",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Materialpaket",
+                  "plural": "Materialpakete"
+                },
+                "nounPackageIdentity": "das|materialpaket|materialpakete",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l12_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l12_ch05",
+                  "checkpointPacketId": "de_l12_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_dative_location_frames_v1",
+                    "de_gc_local_preposition_governed_case_v1",
+                    "de_gc_dative_personal_pronouns_v1"
+                  ],
+                  "utilityRole": "mediation",
+                  "situationFacet": "goal",
+                  "facetValue": "coordinate-the-materialpaket-handover-and-placement-without-word-order-guessing",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l12_c05_s40"]
+                },
+                "senseGloss": "materials package handed over and placed for stage setup",
+                "communicativeUse": "use Das Materialpaket gebe ich dem Helfer. to prove that case roles do not follow word order, then place it ins Regal and locate it im Regal"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "youth-club-stage-setup",
+              "participants": "club-coordinator-and-stage-volunteer",
+              "goal": "coordinate-the-materialpaket-handover-and-placement-without-word-order-guessing",
+              "contextSignature": "youth-club-materialpaket-combination-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l12_c03", "de_l12_c04"],
+            "targetsFutureChapterIds": ["de_l12_c06"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l13_c07_s55"
+            }
+          }
+        },
+        {
+          "id": "de_l12_c06",
+          "ordinal": 6,
+          "lessonOutcomeId": "de_l12_ch06",
+          "lessonOutcome": "repair role reversal or relation-case confusion",
+          "packetIds": [
+            "de_l12_c06_s41",
+            "de_l12_c06_s42",
+            "de_l12_c06_s43",
+            "de_l12_c06_s44",
+            "de_l12_c06_s45",
+            "de_l12_c06_s46",
+            "de_l12_c06_s47",
+            "de_l12_c06_s48"
+          ],
+          "allowedConstructIds": [
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_wechselpreposition_relation_contrast_v1",
+            "de_gc_frequent_accusative_frames_v1",
+            "de_gc_dative_recipient_frames_v1",
+            "de_gc_dative_location_frames_v1",
+            "de_gc_local_preposition_governed_case_v1",
+            "de_gc_dative_personal_pronouns_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "situation": {
+            "setting": "event-layout-correction-desk",
+            "participants": "layout-editor-and-setup-volunteer",
+            "goal": "repair-recipient-item-marking-or-bounded-versus-stable-in-relation",
+            "contextSignature": "aufbauplan-role-relation-repair"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Aufbauplan repair card with Ich gebe den Helfer die Kiste. -> Ich gebe dem Helfer die Kiste. and Ich bringe die Kiste im Regal. -> Ich bringe die Kiste ins Regal. Die Kiste ist im Regal.",
+            "exit": "use the Aufbauplan to repair both exact errors: recipient marking in the geben frame and bounded destination versus stable location in the in relation",
+            "independentEvidenceByPacketId": "de_l12_c06_s48"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_two_object_case_contrast_v1",
+              "stage": "transfer",
+              "packetId": "de_l12_c06_s41"
+            },
+            {
+              "constructId": "de_gc_wechselpreposition_relation_contrast_v1",
+              "stage": "transfer",
+              "packetId": "de_l12_c06_s42"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l12_c06_s43", "de_l12_c06_s44"],
+          "checkpoint": {
+            "packetId": "de_l12_c06_s48",
+            "integratedConstructIds": [
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_wechselpreposition_relation_contrast_v1",
+              "de_gc_frequent_accusative_frames_v1",
+              "de_gc_dative_recipient_frames_v1",
+              "de_gc_dative_location_frames_v1",
+              "de_gc_local_preposition_governed_case_v1",
+              "de_gc_dative_personal_pronouns_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l12_c06_aufbauplan_v1",
+                "semanticIdentity": "aufbauplan|event setup plan used to identify and repair role and placement errors",
+                "lemmaOrExpression": "Aufbauplan",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Aufbauplan",
+                  "plural": "Aufbaupläne"
+                },
+                "nounPackageIdentity": "der|aufbauplan|aufbauplane",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l12_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l12_ch06",
+                  "checkpointPacketId": "de_l12_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_dative_location_frames_v1",
+                    "de_gc_local_preposition_governed_case_v1",
+                    "de_gc_dative_personal_pronouns_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "repair-the-aufbauplan-role-marking-and-in-relation-without-movement-heuristic",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l12_c06_s48"]
+                },
+                "senseGloss": "event setup plan used to identify and repair role and placement errors",
+                "communicativeUse": "ground the exact repair in the Aufbauplan: den Helfer to dem Helfer and im Regal to ins Regal before the stable-location statement"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "town-festival-layout-review",
+              "participants": "festival-coordinator-and-plan-reviewer",
+              "goal": "repair-the-aufbauplan-role-marking-and-in-relation-without-movement-heuristic",
+              "contextSignature": "town-festival-aufbauplan-repair-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l12_c04", "de_l12_c05"],
+            "targetsFutureChapterIds": ["de_l12_c07"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l13_c07_s56"
+            }
+          }
+        },
+        {
+          "id": "de_l12_c07",
+          "ordinal": 7,
+          "lessonOutcomeId": "de_l12_ch07",
+          "lessonOutcome": "transfer handover and placement to a new event layout",
+          "packetIds": [
+            "de_l12_c07_s49",
+            "de_l12_c07_s50",
+            "de_l12_c07_s51",
+            "de_l12_c07_s52",
+            "de_l12_c07_s53",
+            "de_l12_c07_s54",
+            "de_l12_c07_s55",
+            "de_l12_c07_s56"
+          ],
+          "allowedConstructIds": [
+            "de_gc_two_object_case_contrast_v1",
+            "de_gc_wechselpreposition_relation_contrast_v1",
+            "de_gc_dative_location_frames_v1",
+            "de_gc_dative_personal_pronouns_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_predicative_adjective_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "situation": {
+            "setting": "sports-club-raffle-layout-change",
+            "participants": "raffle-coordinator-and-relief-helper",
+            "goal": "transfer-recipient-item-reference-and-in-relation-to-a-different-entry-layout",
+            "contextSignature": "raffle-changed-layout-final-transfer"
+          },
+          "supportFading": {
+            "entryLevel": 2,
+            "exitLevel": 0,
+            "entry": "minimal changed-layout card with Ich gebe dem Helfer die Losbox. Ich gebe ihm die Losbox. plus Ich bringe die Losbox in den Eingangsbereich. Die Losbox ist im Eingangsbereich.",
+            "exit": "independently produce Ich gebe dem Helfer die Losbox. Ich gebe ihm die Losbox. and Ich bringe die Losbox in den Eingangsbereich. Die Losbox ist im Eingangsbereich.",
+            "independentEvidenceByPacketId": "de_l12_c07_s56"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_dative_location_frames_v1",
+              "stage": "delayed",
+              "packetId": "de_l12_c07_s49"
+            },
+            {
+              "constructId": "de_gc_dative_personal_pronouns_v1",
+              "stage": "delayed",
+              "packetId": "de_l12_c07_s50"
+            }
+          ],
+          "chapterEvidencePacketIds": [
+            "de_l12_c07_s51",
+            "de_l12_c07_s52",
+            "de_l12_c07_s53",
+            "de_l12_c07_s54",
+            "de_l12_c07_s55",
+            "de_l12_c07_s56"
+          ],
+          "checkpoint": {
+            "packetId": "de_l12_c07_s56",
+            "integratedConstructIds": [
+              "de_gc_two_object_case_contrast_v1",
+              "de_gc_wechselpreposition_relation_contrast_v1",
+              "de_gc_dative_location_frames_v1",
+              "de_gc_dative_personal_pronouns_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l12_c07_losbox_v1",
+                "semanticIdentity": "losbox|raffle box transferred and placed in a changed venue layout",
+                "lemmaOrExpression": "Losbox",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Losbox",
+                  "plural": "Losboxen"
+                },
+                "nounPackageIdentity": "die|losbox|losboxen",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l12_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l12_ch07",
+                  "checkpointPacketId": "de_l12_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1",
+                    "de_gc_dative_location_frames_v1",
+                    "de_gc_dative_personal_pronouns_v1"
+                  ],
+                  "utilityRole": "transfer",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-transfer-losbox-recipient-reference-and-placement-to-the-new-eingangsbereich",
+                  "necessityClass": "TRANSFER_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l12_c07_s56"]
+                },
+                "senseGloss": "raffle box transferred and placed in a changed venue layout",
+                "communicativeUse": "use Ich gebe dem Helfer die Losbox. Ich gebe ihm die Losbox. and the two exact Eingangsbereich placement statements for final transfer"
+              },
+              {
+                "id": "de_lex_plan_l12_c07_eingangsbereich_v1",
+                "semanticIdentity": "eingangsbereich|entrance area used as the changed bounded destination and stable location",
+                "lemmaOrExpression": "Eingangsbereich",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Eingangsbereich",
+                  "plural": "Eingangsbereiche"
+                },
+                "nounPackageIdentity": "der|eingangsbereich|eingangsbereiche",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l12_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l12_ch07",
+                  "checkpointPacketId": "de_l12_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_two_object_case_contrast_v1",
+                    "de_gc_wechselpreposition_relation_contrast_v1",
+                    "de_gc_dative_location_frames_v1",
+                    "de_gc_dative_personal_pronouns_v1"
+                  ],
+                  "utilityRole": "temporal_spatial",
+                  "situationFacet": "setting",
+                  "facetValue": "civic-open-day-raffle-entrance",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l12_c07_s56"]
+                },
+                "senseGloss": "entrance area used as the changed bounded destination and stable location",
+                "communicativeUse": "ground the changed scene in den Eingangsbereich as destination and im Eingangsbereich as stable location"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "civic-open-day-raffle-entrance",
+              "participants": "open-day-coordinator-and-raffle-helper",
+              "goal": "independently-transfer-losbox-recipient-reference-and-placement-to-the-new-eingangsbereich",
+              "contextSignature": "open-day-losbox-eingangsbereich-final"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l12_c05", "de_l12_c06"],
+            "targetsFutureChapterIds": ["de_l13_c01"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l13_c07_s55"
+            }
+          }
+        }
+      ]
     }
   ]
 }

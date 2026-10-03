@@ -1,4 +1,4 @@
-import type { GiftDef } from './level_gift_system';
+import type { GiftDef } from './level_gift_types';
 import { isLocalSpinReceiptCreditId } from './level_spin_credit_ids';
 import { LEVEL_SPIN_REWARD_CATALOG } from './level_spin_reward_catalog';
 import {

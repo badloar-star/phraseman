@@ -3176,7 +3176,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
           testID="lesson-words-session-attempts"
         />
         <View style={{ flexDirection:'row', alignItems:'center', gap:8 }}>
-          <Text style={{ color:glass.secondary, fontSize:15, lineHeight:20, fontWeight:'600', fontVariant:['tabular-nums'] }}>
+          <Text style={{ color:glass.secondary, fontSize:13, lineHeight:17, fontWeight:'600', fontVariant:['tabular-nums'] }}>
             {`${round.label} · ${trainingStepLabel}`}
           </Text>
           <View ref={runeFlight.counterRef} collapsable={false}>
@@ -3279,7 +3279,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
                 </View>
               )}
               <Text
-                style={{ width:'100%', minWidth:0, flexShrink:1, color: tc, fontSize:17, lineHeight:22, fontWeight:'600', textAlign:'center' }}
+                style={{ width:'100%', minWidth:0, flexShrink:1, color: tc, fontSize:16, lineHeight:21, fontWeight:'600', textAlign:'center' }}
                 maxFontSizeMultiplier={1.2}
               >
                 {opt}
@@ -3396,14 +3396,14 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
             <View style={{ flex: 1, height: 6, borderRadius: 3, overflow: 'hidden', backgroundColor: glass.opaqueControl }}>
               <View style={{ width: '100%', height: '100%', borderRadius: 3, backgroundColor: glass.accent, transformOrigin: 'left', transform: [{ scaleX: words.length > 0 ? learnedTotal / words.length : 0 }] }} />
             </View>
-            <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] }}>
+            <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 17, fontWeight: '600', fontVariant: ['tabular-nums'] }}>
               {`${learnedTotal} / ${words.length} ${pickTriLang(lang, { ru: 'выучено', en: 'learned', uk: 'вивчено', es: 'aprendidas', 'pt-BR': 'aprendidas', vi: 'đã học', id: 'dipelajari', tr: 'öğrenildi', pl: 'poznane' })}`}
             </Text>
           </View>
         }
         renderSectionHeader={({ section }) => (
           <View style={{ paddingHorizontal: hPad + 2, paddingTop: 22, paddingBottom: 10 }}>
-            <Text style={{ color: glass.secondary, fontSize: 12, lineHeight: 16, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 3 }}>
+            <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 17, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 3 }}>
               {section.title}
             </Text>
           </View>
@@ -3440,10 +3440,10 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
               >
                 <Ionicons name={done ? 'checkmark-circle' : 'ellipsis-horizontal-circle-outline'} size={20} color={done ? t.correct : glass.secondary} />
                 <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text maxFontSizeMultiplier={1.35} style={{ color: done ? glass.secondary : glass.text, fontSize: 17, lineHeight: 22, fontWeight: '600' }}>
+                  <Text maxFontSizeMultiplier={1.35} style={{ color: done ? glass.secondary : glass.text, fontSize: 16, lineHeight: 21, fontWeight: '600' }}>
                     {item.en}
                   </Text>
-                  <Text maxFontSizeMultiplier={1.35} style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, marginTop: 1 }}>
+                  <Text maxFontSizeMultiplier={1.35} style={{ color: glass.secondary, fontSize: 13, lineHeight: 17, marginTop: 1 }}>
                     {tr}
                   </Text>
                 </View>
@@ -3471,7 +3471,7 @@ function FrenchVocabularyUnavailable({ lang, onBack }: { lang: Lang; onBack: () 
       <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center', marginTop: 18 }}>
         {copy.title}
       </Text>
-      <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 21, textAlign: 'center', marginTop: 8 }}>
+      <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 8 }}>
         {copy.body}
       </Text>
       <PracticeCta
@@ -3702,7 +3702,7 @@ function LessonWords() {
                 setUserTab(key);
               }}
             >
-              <Text style={{ color:isActive?glass.text:glass.secondary, fontSize:15, fontWeight:'600' }}>{label}</Text>
+              <Text style={{ color:isActive?glass.text:glass.secondary, fontSize:13, fontWeight:'600' }}>{label}</Text>
             </Pressable>
           );
         })}

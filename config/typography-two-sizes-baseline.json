@@ -1,14 +1,11 @@
 {
-  "total": 60,
+  "total": 42,
   "files": {
     "app/ai_dialog_session.tsx": 1,
     "app/dev-account-v2-ios-proof.tsx": 1,
     "app/learning-v2/lesson/[id].tsx": 10,
     "app/learning_v2_modes_showcase_run/[family].tsx": 1,
-    "app/lesson_complete.tsx": 6,
     "app/lesson_irregular_verbs.tsx": 10,
-    "app/lesson_words.tsx": 8,
-    "app/preposition_drill.tsx": 4,
     "app/streak_stats.tsx": 6,
     "app/v2_kit_preview.tsx": 1,
     "app/_learning_v2_authoring_preview.tsx": 2,

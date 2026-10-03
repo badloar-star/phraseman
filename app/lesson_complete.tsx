@@ -1409,7 +1409,7 @@ export default function LessonComplete() {
           <Text style={{ color: t.textPrimary, fontSize: 30, fontWeight: '700', marginBottom: 10, textAlign: 'center' }}>
             {c.title}
           </Text>
-          <Text style={{ color: t.textSecond, fontSize: 17, marginBottom: 16, textAlign: 'center' }}>
+          <Text style={{ color: t.textSecond, fontSize: 16, marginBottom: 16, textAlign: 'center' }}>
             {c.subtitle(lessonId)}
           </Text>
 
@@ -1432,7 +1432,7 @@ export default function LessonComplete() {
                 accessibilityElementsHidden
                 importantForAccessibility="no"
               />
-              <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '700' }}>
+              <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '700' }}>
                 +{practiceRunes.runes}
               </Text>
             </View>
@@ -1447,7 +1447,7 @@ export default function LessonComplete() {
             overflow: 'hidden',
           }}>
             <Ionicons name="cafe-outline" size={24} color={t.textSecond} />
-            <Text style={{ color: t.textMuted, fontSize: 15, lineHeight: 22, flex: 1 }}>
+            <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 22, flex: 1 }}>
               {c.rest}
             </Text>
           </View>
@@ -1485,7 +1485,7 @@ export default function LessonComplete() {
               }}
               onPress={goNext}
             >
-              <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '700' }}>
+              <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '700' }}>
                 {c.nextLesson} {lessonId + 1} →
               </Text>
             </DuoPressable>
@@ -1531,7 +1531,7 @@ export default function LessonComplete() {
                 <Text style={{ color: t.gold, fontSize: f.caption, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 4 }}>
                   {triLang(lang, { ru: 'Следующий урок закрыт', en: 'Next lesson is locked', uk: 'Наступний урок закрито', es: 'La siguiente lección está bloqueada', 'pt-BR': 'Próxima lição bloqueada', vi: 'Bài tiếp theo đã bị khóa', id: 'Pelajaran berikutnya terkunci', tr: 'Sonraki ders kilitli', pl: 'Następna lekcja jest zablokowana' })}
                 </Text>
-                <Text style={{ color: t.correctText, fontSize: 17, fontWeight: '800', textAlign: 'center', marginBottom: 2 }}>
+                <Text style={{ color: t.correctText, fontSize: 16, fontWeight: '800', textAlign: 'center', marginBottom: 2 }}>
                   {triLang(lang, { ru: 'Открыть Plus — продолжить →', en: 'Open Plus — continue →', uk: 'Відкрити Plus — продовжити →', es: 'Abrir Plus — continuar →', 'pt-BR': 'Abrir Plus — continuar →', vi: 'Mở Plus — tiếp tục →', id: 'Buka Plus — lanjutkan →', tr: 'Plus aç — devam et →', pl: 'Otwórz Plus — kontynuuj →' })}
                 </Text>
               </TouchableOpacity>
@@ -1605,7 +1605,7 @@ export default function LessonComplete() {
             }}
           >
             <Ionicons name="share-outline" size={18} color={t.textSecond} />
-            <Text style={{ color: t.textSecond, fontSize: 15 }}>
+            <Text style={{ color: t.textSecond, fontSize: 13 }}>
               {c.shareResult}
             </Text>
           </TouchableOpacity>

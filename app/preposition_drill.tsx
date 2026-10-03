@@ -57,7 +57,7 @@ function FrenchPrepositionDrillUnavailable({ lang, onBack }: { lang: Lang; onBac
       <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center', marginTop: 18 }}>
         {copy.title}
       </Text>
-      <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 21, textAlign: 'center', marginTop: 8 }}>
+      <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 8 }}>
         {copy.body}
       </Text>
       <PracticeCta
@@ -406,7 +406,7 @@ function PrepositionDrillScreen() {
                 <View style={{ flex: 1, height: 6, borderRadius: 3, overflow: 'hidden', backgroundColor: glass.opaqueControl }}>
                   <View style={{ width: '100%', height: '100%', borderRadius: 3, backgroundColor: glass.accent, transformOrigin: 'left', transform: [{ scaleX: total > 0 ? (itemIdx + 1) / total : 0 }] }} />
                 </View>
-                <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] }}>
+                <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 17, fontWeight: '600', fontVariant: ['tabular-nums'] }}>
                   {triLang(lang, {
                     uk: 'Завдання',
                     ru: 'Вызов',
@@ -475,7 +475,7 @@ function PrepositionDrillScreen() {
                           <Ionicons name={showCorrect ? 'checkmark' : 'close'} size={18} color={tone} />
                         </View>
                       )}
-                      <Text style={{ color: tone, fontSize: 17, lineHeight: 22, fontWeight: '600' }} maxFontSizeMultiplier={1.2}>{opt}</Text>
+                      <Text style={{ color: tone, fontSize: 16, lineHeight: 21, fontWeight: '600' }} maxFontSizeMultiplier={1.2}>{opt}</Text>
                     </Pressable>
                   </View>
                 );
@@ -518,7 +518,7 @@ function PrepositionDrillScreen() {
                     borderWidth: StyleSheet.hairlineWidth, // guard-ok
                     borderColor: glass.line,
                   }}>
-                    <Text style={{ color: glass.text, fontSize: 15, lineHeight: 21 }}>
+                    <Text style={{ color: glass.text, fontSize: 16, lineHeight: 22 }}>
                       {triLang(lang, {
                         uk: item.explainUK,
                         ru: item.explainRU,

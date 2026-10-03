@@ -14,6 +14,7 @@
  * Временное: убрать после выноса тяжёлого с окна старта.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getStorageLockMetrics } from './storage_mutex';
 
 const WINDOW_MS = 15_000;
 const TOP = 10;
@@ -125,7 +126,10 @@ export function installColdStartIoTrace(
       .sort((a, b) => b[1].totalMs - a[1].totalMs)
       .slice(0, TOP)
       .map(([name, g]) => `${name} n=${g.count} total=${g.totalMs}ms max=${g.maxMs}ms${g.failed ? ` failed=${g.failed}` : ''}`);
-    console.warn(`[COLD-START-IO] summary windowMs=${windowMs} startedEpochMs=${startedAt} calls=${calls} groups=${groups.size} maxInflight=${maxInflight} patched=${JSON.stringify(patched)} top=${JSON.stringify(top)}`);
+    // зачем (PM-215 шаг 0, §115): рядом с обращениями к хранилищу — метрики глобального замка
+    // (глубина очереди, ожидание, удержание). Поле в конце строки: разбор ворот PM-220 не меняется.
+    const lock = getStorageLockMetrics();
+    console.warn(`[COLD-START-IO] summary windowMs=${windowMs} startedEpochMs=${startedAt} calls=${calls} groups=${groups.size} maxInflight=${maxInflight} patched=${JSON.stringify(patched)} top=${JSON.stringify(top)} lock=${JSON.stringify(lock)}`);
   }, windowMs);
 }
 

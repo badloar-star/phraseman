@@ -2,6 +2,56 @@ let _locked = false;
 const _queue: (() => void)[] = [];
 
 /**
+ * [STORAGE-LOCK] — метрики очереди замка (PM-215 шаг 0, координатор §115).
+ *
+ * зачем: замок — один FIFO на ~20 модулей; главный кандидат на «тап ждёт чужую фоновую работу»
+ * (head-of-line). Прежде чем менять порядок или ставить дедлайны, меряем: глубину очереди,
+ * ожидание, удержание. Только числа в памяти; поведение замка не меняется.
+ */
+export type StorageLockMetrics = Readonly<{
+  acquisitions: number;
+  maxQueueDepth: number;
+  maxWaitMs: number;
+  slowWaits: number;
+  maxHoldMs: number;
+  deadlineTimeouts: number;
+}>;
+const SLOW_WAIT_MS = 1_000;
+const SLOW_WAIT_LOG_CAP = 20;
+let metrics = { acquisitions: 0, maxQueueDepth: 0, maxWaitMs: 0, slowWaits: 0, maxHoldMs: 0, deadlineTimeouts: 0 };
+
+function noteWait(waitMs: number, depthAtEnqueue: number): void {
+  metrics.acquisitions += 1;
+  if (waitMs > metrics.maxWaitMs) metrics.maxWaitMs = waitMs;
+  if (waitMs >= SLOW_WAIT_MS) {
+    metrics.slowWaits += 1;
+    if (metrics.slowWaits <= SLOW_WAIT_LOG_CAP) {
+      console.warn(`[STORAGE-LOCK] slow_wait wait=${waitMs}ms depthAtEnqueue=${depthAtEnqueue} slowWaits=${metrics.slowWaits}`);
+    }
+  }
+}
+
+function noteEnqueue(): number {
+  const depth = _queue.length + 1;
+  if (depth > metrics.maxQueueDepth) metrics.maxQueueDepth = depth;
+  return depth;
+}
+
+function noteHold(holdMs: number): void {
+  if (holdMs > metrics.maxHoldMs) metrics.maxHoldMs = holdMs;
+}
+
+/** Снимок метрик замка (для итоговой строки [COLD-START-IO] и замеров PM-215). */
+export function getStorageLockMetrics(): StorageLockMetrics {
+  return Object.freeze({ ...metrics });
+}
+
+/** Только для тестов. */
+export function resetStorageLockMetricsForTests(): void {
+  metrics = { acquisitions: 0, maxQueueDepth: 0, maxWaitMs: 0, slowWaits: 0, maxHoldMs: 0, deadlineTimeouts: 0 };
+}
+
+/**
  * Аренда взятого замка. Непрозрачный объект: снаружи с ним ничего сделать
  * нельзя, кроме как передать вложенному вызову.
  */
@@ -16,8 +66,12 @@ let activeStorageLockLeases = new WeakSet<object>();
 
 export function acquireStorageLock(): Promise<void> {
   return new Promise(resolve => {
-    if (!_locked) { _locked = true; resolve(); }
-    else _queue.push(resolve);
+    if (!_locked) { _locked = true; noteWait(0, 0); resolve(); }
+    else {
+      const enqueuedAt = Date.now();
+      const depth = noteEnqueue();
+      _queue.push(() => { noteWait(Date.now() - enqueuedAt, depth); resolve(); });
+    }
   });
 }
 
@@ -56,8 +110,10 @@ export async function withStorageLock<T>(
   await acquireStorageLock();
   const lease = Object.freeze({}) as unknown as StorageLockLease;
   activeStorageLockLeases.add(lease);
+  const heldAt = Date.now();
   try { return await fn(lease); }
   finally {
+    noteHold(Date.now() - heldAt);
     activeStorageLockLeases.delete(lease);
     releaseStorageLock();
   }
@@ -96,9 +152,12 @@ export async function withStorageLockDeadline<T>(
 ): Promise<StorageLockDeadlineResult<T>> {
   if (!_locked) {
     _locked = true;
+    noteWait(0, 0);
   } else {
     let resolveWait!: () => void;
     const waiter = new Promise<void>((resolve) => { resolveWait = resolve; });
+    const enqueuedAt = Date.now();
+    const depth = noteEnqueue();
     _queue.push(resolveWait);
     let timer: ReturnType<typeof setTimeout> | null = null;
     const acquired = await Promise.race([
@@ -108,7 +167,10 @@ export async function withStorageLockDeadline<T>(
       }),
     ]);
     if (timer) clearTimeout(timer);
+    if (acquired) noteWait(Date.now() - enqueuedAt, depth);
     if (!acquired) {
+      metrics.deadlineTimeouts += 1;
+      console.warn(`[STORAGE-LOCK] deadline_timeout timeoutMs=${timeoutMs} depthAtEnqueue=${depth}`);
       // Снимаем СВОЙ слот из очереди, чтобы прошлое ожидание не съело
       // будущий release впустую (иначе замок завис бы уже ПО-НАСТОЯЩЕМУ).
       const i = _queue.indexOf(resolveWait);
@@ -124,8 +186,10 @@ export async function withStorageLockDeadline<T>(
   }
   const lease = Object.freeze({}) as unknown as StorageLockLease;
   activeStorageLockLeases.add(lease);
+  const heldAt = Date.now();
   try { return { completed: true, value: await fn(lease) }; }
   finally {
+    noteHold(Date.now() - heldAt);
     activeStorageLockLeases.delete(lease);
     releaseStorageLock();
   }

@@ -652,7 +652,7 @@ export async function prepareFlashcardTrainingPendingGrant(
                 : !TOKEN_RE.test(energySubjectId) ? 'energySubjectId'
                   : !validFiniteTime(nowMs) ? 'nowMs'
                     : null;
-  if (invalidField) {
+  if (invalidField || !normalizedScope) {
     console.warn('[FC-PENDING-GRANT] prepare:invalid_input', JSON.stringify({ mode: input.scope?.mode ?? null, field: invalidField }));
     return { status: 'unavailable', reason: 'invalid_input' };
   }

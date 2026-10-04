@@ -2741,7 +2741,7 @@ export const LESSON_11_PHRASES: LessonPhrase[] = [
     spanish: 'Arreglé un problema hace dos horas.',
     words: [
       { text: 'Arreglé', correct: 'Arreglé', distractors: ['Arreglo', 'Arreglas', 'Arreglar', 'Arregla', 'Arreglamos'], category: 'lexico_oracion' },
-      { text: 'un', correct: 'un', distractors: ['una', 'el', 'la', 'unos', 'los'], category: 'articulo' },
+      { text: 'un', correct: 'un', distractors: ['una', 'unas', 'la', 'unos', 'los'], category: 'articulo' },
       { text: 'problema', correct: 'problema', distractors: ['error', 'fallo', 'asunto', 'conflicto', 'tema'], category: 'lexico_oracion' },
       { text: 'hace', correct: 'hace', distractors: ['desde', 'para', 'en', 'por', 'antes'], category: 'lexico_temporal' },
       { text: 'dos', correct: 'dos', distractors: ['tres', 'cuatro', 'cinco', 'diez', 'una'], category: 'lexico_oracion' },
@@ -2751,7 +2751,7 @@ export const LESSON_11_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['me', 'my', 'hi', 'eye', 'he'] },
       { text: 'fixed', correct: 'fixed', distractors: ['fix', 'fixes', 'fixing', 'mixed', 'nixed'] },
-      { text: 'a', correct: 'a', distractors: ['an', 'these', 'some', 'any', 'many'] },
+      { text: 'a', correct: 'a', distractors: ['an', 'these', 'those', 'much', 'many'] },
       { text: 'problem', correct: 'problem', distractors: ['error', 'bug', 'issue', 'conflict', 'topic'] },
       { text: 'two', correct: 'two', distractors: ['three', 'four', 'five', 'ten', 'one'] },
       { text: 'hours', correct: 'hours', distractors: ['minutes', 'days', 'weeks', 'months', 'years'] },

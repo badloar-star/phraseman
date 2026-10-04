@@ -20,7 +20,7 @@ Promise.race between the existing fetch and a timer; the original fetch keeps ru
 
 ## Security and privacy
 
-None.
+No new data is read or stored: the sheet still reads the same comment feed under the same account checks, and only the waiting behaviour changes.
 
 ## Technical debt
 

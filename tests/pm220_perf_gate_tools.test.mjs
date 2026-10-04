@@ -6,11 +6,15 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {
+  evaluateAmStartSeries,
   evaluateBundle,
   evaluateColdStartIo,
+  evaluateFrames,
   evaluateHomePaint,
   loadBudgets,
+  parseAmStartTotalMs,
   parseColdStartIo,
+  parseGfxinfoFrames,
   parseHomePaintMs,
   percentile,
 } from '../scripts/pm220_perf_gates.mjs';
@@ -20,7 +24,7 @@ const read = (p) => fs.readFileSync(p, 'utf8');
 
 const PATCHED = '{"asyncGetItem":true,"asyncSetItem":true,"asyncRemoveItem":true,"asyncMergeItem":true,"asyncMultiGet":true,"asyncMultiSet":true,"asyncMultiRemove":true,"asyncGetAllKeys":true,"secureGet":true,"secureSet":true,"secureDelete":true}';
 const ioLine = (over = {}) => {
-  const v = { windowMs: 15000, calls: 300, groups: 90, maxInflight: 20, patched: PATCHED, ...over };
+  const v = { windowMs: 15000, calls: 140, groups: 90, maxInflight: 20, patched: PATCHED, ...over };
   return `10-03 12:00:00.000 I ReactNativeJS: [COLD-START-IO] summary windowMs=${v.windowMs} startedEpochMs=1791057747441 calls=${v.calls} groups=${v.groups} maxInflight=${v.maxInflight} patched=${v.patched} top=["AS.get:x n=1 total=5ms max=5ms"]`;
 };
 
@@ -85,7 +89,7 @@ test('homepaint: медиана/p90 в бюджете проходят, регр
 
 test('coldio: разбор реальной строки, потолок, неполная трассировка и отсутствие строки', () => {
   const parsed = parseColdStartIo(`${ioLine()}\n`);
-  assert.equal(parsed.calls, 300);
+  assert.equal(parsed.calls, 140);
   assert.equal(parsed.maxInflight, 20);
   assert.equal(parsed.patched.secureGet, true);
   assert.equal(evaluateColdStartIo(parsed, budgets.coldStartIo).ok, true);
@@ -116,4 +120,54 @@ test('точки измерения на месте: метки пишутся �
   assert.match(read('babel.config.js'), /transform-remove-console', \{ exclude: \['warn', 'error'\] \}/);
   assert.match(read('app/_layout.tsx'), /^installColdStartIoTrace\(\);/m);
   assert.match(read('app/(tabs)/home.tsx'), /useEffect\(\(\) => \{ markHomeFirstPaint\(\); \}, \[\]\)/);
+});
+
+// PM-220 A2 (04.10): бюджеты холодного/тёплого старта, повторного входа и плавности кадров — из замера слабого профиля (INBOX §141).
+const amLog = (values) => values.map((v) => `Status: ok\nTotalTime: ${v}\nWaitTime: ${v + 2}\nComplete`).join('\n');
+
+test('amstart: базовые замеры проходят, регрессия и нехватка запусков ловятся', () => {
+  for (const key of ['coldStartAmW', 'warmStart', 'reenter']) {
+    const base = budgets[key].baseline;
+    const ok = evaluateAmStartSeries(parseAmStartTotalMs(amLog(base.values)), budgets[key]);
+    assert.equal(ok.ok, true, `${key}: базовая линия обязана проходить свой бюджет: ${ok.problems.join('; ')}`);
+    assert.ok(budgets[key].maxMedianMs > base.medianMs, `${key}: потолок медианы ниже базовой линии`);
+  }
+  const slow = evaluateAmStartSeries([4000, 4100, 3900, 4200, 4050], budgets.coldStartAmW);
+  assert.equal(slow.ok, false);
+  assert.match(slow.problems.join('\n'), /медиана/);
+  const few = evaluateAmStartSeries([900, 950], budgets.coldStartAmW);
+  assert.equal(few.ok, false);
+  assert.match(few.problems.join('\n'), /мало для вывода/);
+  assert.deepEqual(parseAmStartTotalMs('нет данных'), []);
+});
+
+const gfx = (over = {}) => {
+  const v = { frames: 266, janky: 16, pct: '6.02', p50: 17, p90: 24, p95: 28, p99: 32, ...over };
+  return [
+    `Total frames rendered: ${v.frames}`,
+    `Janky frames: ${v.janky} (${v.pct}%)`,
+    `50th percentile: ${v.p50}ms`,
+    `90th percentile: ${v.p90}ms`,
+    `95th percentile: ${v.p95}ms`,
+    `99th percentile: ${v.p99}ms`,
+  ].join('\n');
+};
+
+test('frames: базовая плавность проходит, медленные кадры, мало кадров и пустой вывод — нет', () => {
+  const parsed = parseGfxinfoFrames(gfx());
+  assert.deepEqual(parsed, { frames: 266, jankyPct: 6.02, p50: 17, p90: 24, p95: 28, p99: 32 });
+  assert.equal(evaluateFrames(parsed, budgets.frames).ok, true);
+  const slow = evaluateFrames(parseGfxinfoFrames(gfx({ p95: 80, p99: 120, pct: '40.0' })), budgets.frames);
+  assert.equal(slow.ok, false);
+  assert.match(slow.problems.join('\n'), /p95 кадра 80/);
+  assert.match(slow.problems.join('\n'), /janky 40/);
+  assert.equal(evaluateFrames(parseGfxinfoFrames(gfx({ frames: 20 })), budgets.frames).ok, false);
+  assert.equal(evaluateFrames(parseGfxinfoFrames('пусто'), budgets.frames).ok, false);
+});
+
+test('coldio: потолок обращений согласован с замером после снимка хранилища', () => {
+  const worstBaseline = Math.max(...budgets.coldStartIo.baseline.runs.map((r) => r.calls));
+  assert.ok(budgets.coldStartIo.ceiling.calls >= worstBaseline, 'потолок ниже худшего замера');
+  assert.ok(budgets.coldStartIo.ceiling.calls <= worstBaseline * 1.6, 'потолок слишком свободный — ворота не поймают возврат к старым цифрам');
+  assert.equal(evaluateColdStartIo(parseColdStartIo(ioLine({ calls: 409 })), budgets.coldStartIo).ok, false, 'старые 409 обращений обязаны ловиться');
 });

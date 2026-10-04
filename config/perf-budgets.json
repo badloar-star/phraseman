@@ -56,11 +56,34 @@
     "windowMs": 15000,
     "requireAllPatched": true,
     "ceiling": {
-      "calls": 520,
+      "calls": 240,
       "maxInflight": 58
     },
-    "note": "ПОТОЛОК пересчитан 03.10 по замеру «Дизайна» (store-release, слабый профиль): медиана calls 409 (370–420), maxInflight 39–46; потолок = медиана +25% по calls (520) и +25% к максимуму по maxInflight (58). Прежний потолок 665/47 был значением ДО исправлений §93. Утренние сборки показывали 330 и 395 — рост к вечеру: главный кандидат на снижение — mistake_practice (24 чтения за старт). Снижать потолок после каждого ощутимого улучшения.",
+    "note": "ПОТОЛОК пересчитан 04.10: после общего снимка хранилища (§122), единого чтения кэша уведомлений и отложенной сверки гранта обращений на холодном старте 122–159 (3 запуска, окно 55 с, store-release, слабый профиль), раньше 370–420. Потолок 240 = худший замер +50 %: возврат к прежним 400+ обращений теперь ловится (прежний потолок 520 пропустил бы его). maxInflight 29–43, потолок 58 оставлен. Прежняя базовая линия — в baselineBeforeStorageSnapshot.",
     "baseline": {
+      "profile": "магазинная сборка (EXPO_PUBLIC_STORE_RELEASE=1), эмулятор Pixel_8 -cores 2 -memory 2048, окно 15 с, ожидание вывода 55 с",
+      "measuredAt": "2026-10-04, HEAD 6c5c6e220 (сессия App Check, fin7)",
+      "runs": [
+        {
+          "calls": 144,
+          "groups": 112,
+          "maxInflight": 43
+        },
+        {
+          "calls": 122,
+          "groups": 98,
+          "maxInflight": 39
+        },
+        {
+          "calls": 159,
+          "groups": 132,
+          "maxInflight": 29
+        }
+      ],
+      "medianCalls": 144,
+      "source": "docs/phraseman-2.0/INBOX_COORDINATOR_FROM_CORE.md §137, evidence/PM-010_weak_device_baseline_2026-10-04.md"
+    },
+    "baselineBeforeStorageSnapshot": {
       "profile": "магазинная сборка (EXPO_PUBLIC_STORE_RELEASE=1), эмулятор Pixel_8 -cores 2 -memory 2048, холодный старт через monkey, окно 15 с",
       "measuredAt": "2026-10-03 ~21:00, HEAD после 9a9519fe3 (сессия Дизайн)",
       "runs": [
@@ -92,5 +115,90 @@
         "SS.get:phone_state_lineage max 6.5 с"
       ]
     }
+  },
+  "coldStartAmW": {
+    "profile": "эмулятор Pixel_8 -cores 2 -memory 2048, Android 15, store-release fin7, холодный AVD, процесс убит перед запуском",
+    "metric": "`adb shell am start -W` TotalTime, мс",
+    "baseline": {
+      "n": 6,
+      "values": [
+        1602,
+        1348,
+        1121,
+        1161,
+        1022,
+        1112
+      ],
+      "medianMs": 1121,
+      "p90Ms": 1348,
+      "measuredAt": "2026-10-04",
+      "source": "evidence/PM-010_weak_device_baseline_2026-10-04.md"
+    },
+    "minRuns": 5,
+    "maxMedianMs": 1700,
+    "maxP90Ms": 2200,
+    "headroom": "медиана и p90 ≈ +50 % к базовой линии (6 запусков, разброс 1,0–1,6 с)"
+  },
+  "warmStart": {
+    "profile": "тот же, процесс жив, приложение в фоне (HOME → запуск)",
+    "metric": "`adb shell am start -W` TotalTime, мс",
+    "baseline": {
+      "n": 6,
+      "values": [
+        93,
+        78,
+        159,
+        88,
+        592,
+        97
+      ],
+      "medianMs": 93,
+      "p90Ms": 159,
+      "measuredAt": "2026-10-04",
+      "source": "evidence/PM-010_weak_device_baseline_2026-10-04.md"
+    },
+    "minRuns": 5,
+    "maxMedianMs": 300,
+    "maxP90Ms": 800,
+    "headroom": "значения малы и шумны (один выброс 592 мс): потолки с запасом ×3 по медиане, ×5 по p90"
+  },
+  "reenter": {
+    "profile": "тот же, возврат из фона после 20 с (процесс жив)",
+    "metric": "`adb shell am start -W` TotalTime, мс",
+    "baseline": {
+      "n": 3,
+      "values": [
+        150,
+        119,
+        140
+      ],
+      "medianMs": 140,
+      "p90Ms": 150,
+      "measuredAt": "2026-10-04",
+      "source": "evidence/PM-010_weak_device_baseline_2026-10-04.md"
+    },
+    "minRuns": 3,
+    "maxMedianMs": 400,
+    "maxP90Ms": 600,
+    "headroom": "×3 по медиане: серия короткая, ворота ловят порядок величины"
+  },
+  "frames": {
+    "profile": "тот же, 16 прокруток Главной (8 пар свайпов), `dumpsys gfxinfo app.phraseman` после reset",
+    "metric": "перцентили времени кадра и доля janky",
+    "baseline": {
+      "frames": 266,
+      "jankyPct": 6.02,
+      "p50Ms": 17,
+      "p90Ms": 24,
+      "p95Ms": 28,
+      "p99Ms": 32,
+      "measuredAt": "2026-10-04",
+      "source": "evidence/PM-010_weak_device_baseline_2026-10-04.md"
+    },
+    "minFrames": 150,
+    "maxP95Ms": 40,
+    "maxP99Ms": 50,
+    "maxJankyPct": 12,
+    "headroom": "p95 +40 %, p99 +55 %, janky ×2 к базовой линии (эмулятор; прямая задержка тапа не измерена)"
   }
 }

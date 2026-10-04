@@ -2,6 +2,8 @@
 //   bundle <каталог бандл-экспорта>   — размер JS (hermes) и ассетов по платформам против бюджета
 //   homepaint <logcat.log ...>        — «Start proc → [HOME-PAINT] first_frame», по файлу на запуск
 //   coldio <logcat.log>               — строка [COLD-START-IO] summary (число обращений к хранилищу)
+//   amstart <ключ> <файл>             — серия `am start -W` (coldStartAmW / warmStart / reenter): TotalTime против бюджета
+//   frames <gfxinfo.txt>              — dumpsys gfxinfo: p95/p99 кадра и доля janky против бюджета
 // Выход 0 — в бюджете, 1 — регрессия, 2 — нет данных/ошибка вызова (молча «ОК» не бывает).
 // зачем (владелец: «так чтобы все летало»; координатор, Q111): бюджеты — от локального замера release-сборки
 // на профиле 2 ядра / 2 ГБ, а не «от балды». Чем ограничено: config/perf-budgets.json, поле provenance.
@@ -117,6 +119,56 @@ export function evaluateColdStartIo(parsed, budget) {
   return { ok: problems.length === 0, problems };
 }
 
+/** Из вывода `adb shell am start -W` (по запуску на файл или несколько запусков в одном): значения «TotalTime: N» в мс. */
+export function parseAmStartTotalMs(text) {
+  const out = [];
+  for (const m of String(text).matchAll(/TotalTime:\s*(\d+)/g)) out.push(Number(m[1]));
+  return out;
+}
+
+/**
+ * Бюджет серии запусков `am start -W` (холодный, тёплый, повторный вход): минимум запусков, медиана и p90 не хуже бюджета.
+ * зачем (PM-220 A2): ворота «возврат из фона» и «тёплый старт» раньше были только исходниковыми сторожами с threshold=null.
+ */
+export function evaluateAmStartSeries(values, budget) {
+  const problems = [];
+  const sorted = [...values].sort((a, b) => a - b);
+  if (sorted.length < budget.minRuns) problems.push(`запусков ${sorted.length} < ${budget.minRuns}: мало для вывода`);
+  const median = percentile(sorted, 0.5);
+  const p90 = percentile(sorted, 0.9);
+  if (median !== null && median > budget.maxMedianMs) problems.push(`медиана ${median} мс > ${budget.maxMedianMs} мс`);
+  if (p90 !== null && budget.maxP90Ms !== undefined && p90 > budget.maxP90Ms) problems.push(`p90 ${p90} мс > ${budget.maxP90Ms} мс`);
+  return { ok: problems.length === 0, problems, median, p90, values: sorted };
+}
+
+/** Из `adb shell dumpsys gfxinfo <pkg>`: число кадров, доля «janky» и перцентили времени кадра (мс). */
+export function parseGfxinfoFrames(text) {
+  const num = (re) => {
+    const m = re.exec(String(text));
+    return m ? Number(m[1]) : null;
+  };
+  const jankyMatch = /Janky frames:\s*\d+\s*\(([\d.]+)%\)/.exec(String(text));
+  return {
+    frames: num(/Total frames rendered:\s*(\d+)/),
+    jankyPct: jankyMatch ? Number(jankyMatch[1]) : null,
+    p50: num(/50th percentile:\s*(\d+)ms/),
+    p90: num(/90th percentile:\s*(\d+)ms/),
+    p95: num(/95th percentile:\s*(\d+)ms/),
+    p99: num(/99th percentile:\s*(\d+)ms/),
+  };
+}
+
+/** Бюджет плавности прокрутки: достаточно кадров для вывода, p95 и p99 кадра и доля janky не хуже бюджета. */
+export function evaluateFrames(parsed, budget) {
+  const problems = [];
+  if (!parsed || parsed.frames === null) return { ok: false, problems: ['нет данных gfxinfo (Total frames rendered)'] };
+  if (parsed.frames < budget.minFrames) problems.push(`кадров ${parsed.frames} < ${budget.minFrames}: мало для вывода`);
+  if (parsed.p95 === null || parsed.p95 > budget.maxP95Ms) problems.push(`p95 кадра ${parsed.p95} мс > ${budget.maxP95Ms} мс`);
+  if (parsed.p99 === null || parsed.p99 > budget.maxP99Ms) problems.push(`p99 кадра ${parsed.p99} мс > ${budget.maxP99Ms} мс`);
+  if (parsed.jankyPct === null || parsed.jankyPct > budget.maxJankyPct) problems.push(`janky ${parsed.jankyPct}% > ${budget.maxJankyPct}%`);
+  return { ok: problems.length === 0, problems };
+}
+
 function report(title, result) {
   console.log(`${LOG} ${title}: ${result.ok ? 'OK' : 'РЕГРЕССИЯ'}`);
   for (const p of result.problems) console.log(`${LOG}   - ${p}`);
@@ -145,7 +197,21 @@ export function main(argv) {
     report('холодный старт: обращения к хранилищу', result);
     return result.ok ? 0 : 1;
   }
-  console.error(`${LOG} usage: pm220_perf_gates.mjs bundle <каталог> | homepaint <logcat...> | coldio <logcat>`);
+  if (cmd === 'amstart' && args.length === 2 && budgets[args[0]]) {
+    const values = parseAmStartTotalMs(fs.readFileSync(args[1], 'utf8'));
+    const result = evaluateAmStartSeries(values, budgets[args[0]]);
+    console.log(`${LOG}   ${args[0]}: запусков=${values.length} значения=${result.values.join(' ')} median=${result.median} p90=${result.p90}`);
+    report(`am start -W (${args[0]})`, result);
+    return result.ok ? 0 : 1;
+  }
+  if (cmd === 'frames' && args[0]) {
+    const parsed = parseGfxinfoFrames(fs.readFileSync(args[0], 'utf8'));
+    console.log(`${LOG}   кадров=${parsed.frames} janky=${parsed.jankyPct}% p50=${parsed.p50} p90=${parsed.p90} p95=${parsed.p95} p99=${parsed.p99}`);
+    const result = evaluateFrames(parsed, budgets.frames);
+    report('плавность кадров (gfxinfo)', result);
+    return result.ok ? 0 : 1;
+  }
+  console.error(`${LOG} usage: pm220_perf_gates.mjs bundle <каталог> | homepaint <logcat...> | coldio <logcat> | amstart <coldStartAmW|warmStart|reenter> <файл с TotalTime> | frames <gfxinfo.txt>`);
   return 2;
 }
 

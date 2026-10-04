@@ -85,7 +85,10 @@ export function createAccountDetachLatch(store: AccountsV2SecureStorePort): Acco
   let tail: Promise<unknown> = Promise.resolve();
   const serial = <T>(work: () => Promise<T>): Promise<T> => {
     const next = tail.then(work, work);
-    tail = next.catch(() => undefined);
+    // зачем (PM-229): отказ работы дойдёт до её вызывающего через next; хвост очереди намеренно его глотает, но причину пишем.
+    tail = next.catch((error: unknown) => {
+      console.warn(`${LOG} serial_work_failed reason=${error instanceof Error ? error.message : String(error)}`);
+    });
     return next;
   };
 

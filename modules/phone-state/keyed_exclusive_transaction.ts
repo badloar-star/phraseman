@@ -38,7 +38,10 @@ export async function withKeyedExclusiveTransaction<TConnection extends KeyedTra
   // Очередь копит ТОЛЬКО факт «занято»: отказ предыдущей транзакции не должен
   // ронять следующую, поэтому её результат намеренно не пробрасывается.
   queues.set(database, previous.then(() => gate, () => gate));
-  await previous.catch(() => undefined);
+  // зачем (PM-229): отказ предыдущей транзакции уже дошёл до ЕЁ вызывающего; здесь он намеренно не пробрасывается, но причину пишем.
+  await previous.catch((error: unknown) => {
+    console.warn(`[KEYED-TX] previous_transaction_failed reason=${error instanceof Error ? error.message : String(error)} — следующая продолжает`);
+  });
 
   try {
     await database.execAsync('BEGIN IMMEDIATE;');

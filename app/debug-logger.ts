@@ -127,7 +127,8 @@ function scheduleFlush(): void {
   if (flushTimer) clearTimeout(flushTimer);
   flushTimer = setTimeout(() => {
     debugLogWriteQueue = debugLogWriteQueue
-      .catch(() => undefined)
+      // зачем (PM-229): разрыв цепочки намеренный — отказ ПРЕДЫДУЩЕЙ записи не должен ронять следующую; причину пишем (только dev: сам логгер, без рекурсии).
+      .catch((err) => { if (isDevRuntime) console.warn('[debug-logger] предыдущая запись очереди отказала, цепочка продолжается:', err); })
       .then(() => flushDebugLogs())
       .catch((err) => {
         if (isDevRuntime) console.error('Failed to log:', err);
@@ -177,7 +178,8 @@ function persistDebugLog(rawEntry: DebugLogEntry): void {
   if (loadScheduled) return;
   loadScheduled = true;
   debugLogWriteQueue = debugLogWriteQueue
-    .catch(() => undefined)
+    // зачем (PM-229): то же — намеренный разрыв цепочки, причина отказа предыдущей записи пишется (dev).
+    .catch((err) => { if (isDevRuntime) console.warn('[debug-logger] предыдущая запись очереди отказала перед подгрузкой журнала:', err); })
     .then(async () => {
       let merged = await ensureMemoryLogs();
       for (const pending of pendingBeforeLoad) {

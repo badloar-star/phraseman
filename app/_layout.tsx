@@ -2424,14 +2424,20 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // Немой catch запрещён: если посев озвучки падает или висит, занятия
       // молча остаются без звука, и узнать об этом неоткуда (владелец 21.09 —
       // прогрев занятия 2 не давал ни готовности, ни ошибки).
-      const endAudioSeedStep = coldStartStep('pre_ready.v2_audio_seed', '_layout');
-      void seedLearningV2BootstrapAudioCacheV1().catch((error) => {
-        if (__DEV__) {
-          console.log('[V2-AUDIO-SEED] failed', JSON.stringify({ reason: String(error) }));
-        }
-        DebugLogger.warn('[V2-AUDIO-SEED]', `bootstrap seed failed: ${String(error)}`);
-        return 'failed' as const;
-      }).then((outcome) => endAudioSeedStep(outcome === 'failed' ? 'failed' : 'ok'));
+      // зачем (координатор 04.10, холодный старт п.2; замер «до»): посев озвучки грузит все 27 ассетов и
+      // готовит их байты в 4 потока — 8,1/12,6/8,1 с на JS-потоке ровно поверх первого кадра Главной (корень
+      // молчал 4,3 с после setReady). Занятию посев заранее не нужен — оно готовит свою озвучку само по
+      // запросу, — поэтому посев идёт после первого кадра Главной.
+      runAfterHomeFirstFrame('v2_audio_seed', () => {
+        const endAudioSeedStep = coldStartStep('after_home.v2_audio_seed', '_layout');
+        return seedLearningV2BootstrapAudioCacheV1().catch((error) => {
+          if (__DEV__) {
+            console.log('[V2-AUDIO-SEED] failed', JSON.stringify({ reason: String(error) }));
+          }
+          DebugLogger.warn('[V2-AUDIO-SEED]', `bootstrap seed failed: ${String(error)}`);
+          return 'failed' as const;
+        }).then((outcome) => endAudioSeedStep(outcome === 'failed' ? 'failed' : 'ok'));
+      });
 
       if (safetyTimer) clearTimeout(safetyTimer);
       bootMark('setReady(true) — bootstrap COMPLETE');

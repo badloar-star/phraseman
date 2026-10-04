@@ -31,6 +31,8 @@ import {
 export const ACCOUNT_AUTHORITY_LEASE_ACQUIRE_CALLABLE = 'accountAuthorityLeaseAcquire';
 export const ACCOUNT_AUTHORITY_LEASE_RELEASE_CALLABLE = 'accountAuthorityLeaseRelease';
 export const ACCOUNT_AUTHORITY_INSTALLATION_BINDING_CALLABLE = 'accountAuthorityInstallationBindingCreate';
+/** S4a: начало удаления аккаунта (сервер: firebase_lease_callable.ts, rollout выключен). */
+export const ACCOUNT_AUTHORITY_DELETE_BEGIN_CALLABLE = 'accountAuthorityDeleteBegin';
 const FUNCTIONS_REGION = 'us-central1';
 const CALLABLE_TIMEOUT_MS = 30_000;
 
@@ -219,6 +221,33 @@ function parseReleaseResponse(value: unknown, expectedRevision: number): number 
     || data.revision !== expectedRevision + 1
   ) throw new Error('account_authority_lease_invalid');
   return data.revision as number;
+}
+
+const DELETE_STATUSES: ReadonlySet<string> = new Set([
+  'identity_release_pending', 'identity_release_failed', 'purge_queued', 'purge_failed', 'purged', 'expired',
+]);
+
+/**
+ * S4a: ответ начала удаления — закрытая форма (как у входа/выхода). Наружу
+ * идёт только статус задачи: jobId и время клиенту не нужны и в лог не идут.
+ */
+function parseDeleteBeginResponse(value: unknown): string {
+  const data = unwrapCallableData(value);
+  if (!isRecord(data)) throw new Error('account_authority_lease_invalid');
+  const keys = Object.keys(data).sort();
+  const expectedKeys = ['createdAtMs', 'jobId', 'schemaVersion', 'status', 'updatedAtMs'].sort();
+  if (
+    keys.length !== expectedKeys.length
+    || keys.some((key, index) => key !== expectedKeys[index])
+    || data.schemaVersion !== 'account-authority-delete.v1'
+    || typeof data.jobId !== 'string'
+    || data.jobId.length < 1
+    || typeof data.status !== 'string'
+    || !DELETE_STATUSES.has(data.status)
+    || !Number.isSafeInteger(data.createdAtMs)
+    || !Number.isSafeInteger(data.updatedAtMs)
+  ) throw new Error('account_authority_lease_invalid');
+  return data.status;
 }
 
 function parseInstallationBindingCredentials(
@@ -607,13 +636,82 @@ export function createAccountAuthorityFirebaseLeasePort(input: Readonly<{
       }
     }
   };
+  /*
+   * S4a: начало удаления на сервере. Сервер в одной транзакции снимает аренду,
+   * ставит надгробие и задачу удаления, затем удаляет учётку Auth. Повтор с
+   * тем же или новым operationId идемпотентен: сервер отдаёт уже созданную
+   * задачу (в том числе после потерянного ответа). Сюда приходит уже ПОСЛЕ
+   * локального удаления (local-first): ни один исход не меняет локальное
+   * состояние — им распоряжается исходящая очередь адаптера.
+   */
+  const deleteAccount: AccountAuthorityLeasePort['deleteAccount'] = async (request) => {
+    const startedAt = Date.now();
+    const owner = Object.freeze({ accountId: request.accountId, sessionId: request.sessionId });
+    const expectedRevision = await input.revisionStore.readLease(owner);
+    log.info('[AA-S4] lease delete_start', { expectedRevision: expectedRevision === null ? 'none' : 'stored' });
+    if (
+      expectedRevision === null
+      || !Number.isSafeInteger(expectedRevision)
+      || expectedRevision < 0
+      || expectedRevision >= Number.MAX_SAFE_INTEGER
+    ) {
+      log.warn('[AA-S4] lease delete_revision_unavailable', { reason: expectedRevision === null ? 'missing' : 'invalid' });
+      throw new Error('account_authority_lease_revision_unavailable');
+    }
+    for (let attempt = 1; ; attempt += 1) {
+      try {
+        const binding = await input.installationBinding.readPersistedForLease(owner);
+        if (binding === null) {
+          log.warn('[AA-S4] lease delete_binding_missing', { attempt });
+          throw new Error('account_authority_installation_binding_unavailable');
+        }
+        log.info('[AA-S4] lease delete_call', { attempt });
+        const response = await input.invoke(ACCOUNT_AUTHORITY_DELETE_BEGIN_CALLABLE, Object.freeze({
+          operationId: request.operationId.value,
+          expectedRevision,
+          bindingToken: binding.bindingToken,
+        }));
+        const status = parseDeleteBeginResponse(response);
+        try {
+          // Сервер снял аренду этой попыткой (или первой) — ревизия +1, как у выхода.
+          await input.revisionStore.writeLease(owner, expectedRevision + 1);
+        } catch (writeError) {
+          log.warn('[AA-S4] lease delete_revision_write_failed', {
+            kind: accountAuthorityErrorKind(writeError),
+            code: accountAuthorityErrorCode(writeError),
+          });
+        }
+        log.info('[AA-S4] lease delete_ok', { result: status, attempt, durationMs: accountAuthorityElapsedMs(startedAt) });
+        return;
+      } catch (error) {
+        const failure = classifyAccountAuthorityFailure(error);
+        log.warn('[AA-S4] lease delete_failed', {
+          kind: accountAuthorityErrorKind(error),
+          code: accountAuthorityErrorCode(error),
+          branch: failure.kind,
+          reason: failureReason(failure),
+          attempt,
+          durationMs: accountAuthorityElapsedMs(startedAt),
+        });
+        if (failure.kind === 'retryable' && attempt < maxAttempts) {
+          await backoff('[AA-S4] lease delete_retry_scheduled', attempt, failure.reason);
+          continue;
+        }
+        const mapped = mapFailure(error, failure);
+        log.warn('[AA-S4] lease delete_gave_up', {
+          branch: failure.kind,
+          reason: failureReason(failure),
+          mappedTo: accountAuthorityErrorCode(mapped),
+          attempt,
+        });
+        throw mapped;
+      }
+    }
+  };
   const port: AccountAuthorityLeasePort = {
     acquire,
     release,
-    deleteAccount: async () => {
-      log.warn('lease delete_not_wired', { code: 'account_authority_delete_not_wired' });
-      throw new Error('account_authority_delete_not_wired');
-    },
+    deleteAccount,
   };
   return Object.freeze(port);
 }

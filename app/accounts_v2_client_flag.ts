@@ -203,6 +203,48 @@ export function runAccountAuthorityProviderSignOutTransition(
   });
 }
 
+/**
+ * AA S4a: удаление аккаунта через Account Authority. Ворота — тот же
+ * cutover (константа false, владелец): при выключенных воротах возвращает
+ * null БЕЗ require/чтений/сети, и поток удаления идёт ровно как раньше.
+ * Включены — локальное удаление AA (надгробие + фоновое стирание + надёжная
+ * очередь серверного удаления); промис завершается после локальной части.
+ */
+export function beginAccountAuthorityDeletionIfEnabled(): Promise<Readonly<{ operationId: string }>> | null {
+  if (!isAccountAuthorityV2CutoverEnabled()) {
+    if (__DEV__) console.log('[AA-S4] delete skip reason=cutover_off');
+    return null;
+  }
+  console.log('[AA-S4] delete start reason=cutover_on');
+  return installAccountAuthorityProductionBootstrapIfPossible().then((installed) => {
+    const client = installed ? loadAccountsV2ClientForAuthorityCutover() : null;
+    if (client === null) {
+      console.warn('[AA-S4] delete blocked reason=bootstrap_unavailable');
+      throw new Error('account_authority_bootstrap_unavailable');
+    }
+    return client.runAccountAuthorityDeleteTransition();
+  });
+}
+
+/**
+ * AA S4a раунд 3 (H-B1): старое удаление принято сервером (замок server_enqueued)
+ * — его задача чистит и данные AA (стадия account_authority_purge), это
+ * доказательство для очереди серверного удаления AA. Ворота выключены — ничего.
+ */
+export function resolveAccountAuthorityDeletionByLegacyIfEnabled(operationId: string): void {
+  if (!isAccountAuthorityV2CutoverEnabled()) {
+    if (__DEV__) console.log('[AA-S4] delete_legacy_proof skip reason=cutover_off');
+    return;
+  }
+  const client = loadAccountsV2ClientForAuthorityCutover();
+  if (client === null) {
+    console.warn('[AA-S4] delete_legacy_proof blocked reason=client_unavailable');
+    return;
+  }
+  const resolved = client.resolveAccountAuthorityRemoteDeleteByLegacyDeletion(operationId);
+  console.log(`[AA-S4] delete_legacy_proof resolved=${resolved}`);
+}
+
 /** Compatibility exports route every caller through the cutover seam. */
 export const runAccountsV2ProviderSignInTransition = runAccountAuthorityProviderSignInTransition;
 export const runAccountsV2ProviderSignOutTransition = runAccountAuthorityProviderSignOutTransition;

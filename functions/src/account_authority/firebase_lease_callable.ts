@@ -11,8 +11,16 @@ import {
   createEmptyDeleteContractState,
   type AccountDeleteContractState,
   type AccountDeleteExpirySchedule,
+  type AccountDeleteHandlerPorts,
+  type AccountDeletePurgePort,
   type ProviderIdentityReleasePort,
 } from './delete_contract';
+import {
+  createFirebaseProviderIdentityReleasePort,
+  createFirestoreAccountDeleteStateStore,
+  firestorePendingAuthUidReader,
+} from './account_delete_store';
+import { createFirestoreAccountDeletePurgePort } from './account_authority_purge';
 import {
   accountAuthorityLogInfo,
   accountAuthorityLogWarn,
@@ -34,10 +42,12 @@ import {
 import {
   AccountAuthorityCallableError,
   mapUnknownAccountAuthorityFailure,
+  handleAccountDeleteBeginCallable,
   handleAccountLeaseAcquireCallable,
   handleAccountLeaseReleaseCallable,
   type AccountAuthorityCallableBoundaryPorts,
   type AccountAuthorityCallableRequest,
+  type AccountAuthorityDeleteCallableResponse,
   type AccountAuthorityLeaseCallableResponse,
   type AccountAuthorityLeaseReleaseCallableResponse,
 } from './callable_boundary';
@@ -73,8 +83,8 @@ type UnknownRecord = Record<string, unknown>;
 /** Подмена часов и генератора id — только для тестов. */
 /**
  * S2a раунд 3, L-R2-4: шов хранения состояния удаления. Сама Firestore-схема
- * удаления (job, расписания истечения) — этап S4; до него адаптер отказывает
- * в удалении как «не подключено». Тесты подставляют хранилище в памяти.
+ * удаления — account_delete_store.ts (S3); с S4a подключена по умолчанию.
+ * Тесты могут подставить хранилище в памяти.
  */
 export interface AccountDeleteStateStorePort {
   read(
@@ -99,19 +109,55 @@ export interface AccountDeleteStateStorePort {
   ): void;
 }
 
-const DELETE_STATE_STORE_NOT_WIRED: AccountDeleteStateStorePort = Object.freeze({
-  read: async () => { throw new Error('account_authority_deletion_store_not_wired'); },
-  write: () => { throw new Error('account_authority_deletion_store_not_wired'); },
-});
-
-/** Подмена часов, генератора id и шва S4 — только для тестов. */
+/** Подмена часов, генератора id и портов удаления — только для тестов. */
 export type FirebaseLeasePortsOverrides = Readonly<{
   nowMs?: () => number;
   newAccountId?: () => string;
   deleteStateStore?: AccountDeleteStateStorePort;
-  /** S3 раунд 2: освобождение личности у провайдера (до S4 по умолчанию не подключено). */
+  /** S3 раунд 2: освобождение личности у провайдера (S4a: по умолчанию Firebase Auth). */
   providerIdentityRelease?: ProviderIdentityReleasePort;
+  /** S4a: удаление учётки Auth (по умолчанию admin.auth().deleteUser) — подмена в тестах. */
+  deleteAuthUser?: (rawUid: string) => Promise<void>;
+  /** S4a: порт purge для фонового обработчика (по умолчанию Firestore). */
+  purge?: AccountDeletePurgePort;
 }>;
+
+// зачем (S4a): учётка Auth удаляется Admin SDK; admin.auth() берётся лениво —
+// только когда освобождение реально запускается (тесты подменяют deleteAuthUser).
+function defaultDeleteAuthUser(rawUid: string): Promise<void> {
+  return admin.auth().deleteUser(rawUid);
+}
+
+/*
+ * S4a, пункт 1: порты удаления из S3 подключены по умолчанию (раньше —
+ * «не подключено»). Подмены из тестов сохраняются. Сами callable по-прежнему
+ * закрыты воротами rolloutEnabled:false и не экспортированы из index.ts.
+ */
+function defaultDeleteStateStore(db: Firestore, overrides: FirebaseLeasePortsOverrides): AccountDeleteStateStorePort {
+  if (overrides.deleteStateStore !== undefined) {
+    accountAuthorityLogInfo('[AA-S4] delete_ports wiring', { stage: 'wiring', type: 'state_store', reason: 'override' });
+    return overrides.deleteStateStore;
+  }
+  accountAuthorityLogInfo('[AA-S4] delete_ports wiring', { stage: 'wiring', type: 'state_store', reason: 'firestore' });
+  return createFirestoreAccountDeleteStateStore(db);
+}
+
+function defaultProviderIdentityRelease(
+  db: Firestore,
+  overrides: FirebaseLeasePortsOverrides,
+): ProviderIdentityReleasePort {
+  if (overrides.providerIdentityRelease !== undefined) {
+    accountAuthorityLogInfo('[AA-S4] delete_ports wiring', { stage: 'wiring', type: 'identity_release', reason: 'override' });
+    return overrides.providerIdentityRelease;
+  }
+  accountAuthorityLogInfo('[AA-S4] delete_ports wiring', {
+    stage: 'wiring', type: 'identity_release', reason: overrides.deleteAuthUser === undefined ? 'firebase_auth' : 'auth_override',
+  });
+  return createFirebaseProviderIdentityReleasePort({
+    readPendingAuthUid: firestorePendingAuthUidReader(db),
+    deleteAuthUser: overrides.deleteAuthUser ?? defaultDeleteAuthUser,
+  });
+}
 
 type FirebaseAccountAuthorityLeaseGateDependencies = Readonly<{
   rolloutEnabled?: boolean;
@@ -451,7 +497,7 @@ export function createFirebaseLeasePorts(
 ): AccountAuthorityCallableBoundaryPorts {
   const nowMs = overrides.nowMs ?? (() => Date.now());
   const newAccountId = overrides.newAccountId ?? (() => `acct-${randomUUID()}`);
-  const deleteStateStore = overrides.deleteStateStore ?? DELETE_STATE_STORE_NOT_WIRED;
+  const deleteStateStore = defaultDeleteStateStore(db, overrides);
 
   const transactions: AccountAuthorityCallableBoundaryPorts['lease']['transactions'] = {
     transact: async (identity, retirementSessionIds, transition) => {
@@ -628,7 +674,7 @@ export function createFirebaseLeasePorts(
   };
 
   // Шаги освобождения личности после подготовки: аренда — Firestore, состояние
-  // удаления — шов S4 (до S4 — «не подключено»).
+  // удаления — хранилище S3 (по умолчанию с S4a).
   const deletionTransactions: AccountAuthorityCallableBoundaryPorts['deletion']['transactions'] = {
     transact: async (identity, retirementSessionIds, transition) => {
       const accountRef = db.collection(ACCOUNTS_COLLECTION).doc(identity.accountId);
@@ -661,15 +707,41 @@ export function createFirebaseLeasePorts(
     },
     deletion: {
       clock: { nowMs },
-      // зачем (S3 раунд 2): claim — случайный серверный id; удаление всё равно
-      // закрыто, пока не подключены хранилище и освобождение личности (S4).
+      // зачем (S3 раунд 2): claim — случайный серверный id.
       claims: { issueClaimId: () => asClaimId(`claim-${randomUUID()}`) },
       transactions: deletionTransactions,
       bound: deletionBound,
-      identity: overrides.providerIdentityRelease ?? {
-        releaseProviderIdentity: async () => { throw new Error('account_authority_delete_not_wired'); },
-      },
+      identity: defaultProviderIdentityRelease(db, overrides),
     },
+  });
+}
+
+/** S4a: порты фонового обработчика удаления (повтор Auth, purge, истечение). */
+export type FirebaseAccountDeleteWorkerPorts = Readonly<
+  Pick<AccountDeleteHandlerPorts<unknown>, 'clock' | 'claims' | 'transactions' | 'identity'> & {
+    purge: AccountDeletePurgePort;
+  }
+>;
+
+/**
+ * S4a, пункт 2: те же транзакции и порты, что у callable (одна схема
+ * хранения), плюс purge. Используется только обработчиком
+ * `account_delete_worker.ts`; расписание/экспорт — S10, по команде.
+ */
+export function createFirebaseAccountDeleteWorkerPorts(
+  db: Firestore,
+  overrides: FirebaseLeasePortsOverrides = {},
+): FirebaseAccountDeleteWorkerPorts {
+  const deletion = createFirebaseLeasePorts(db, overrides).deletion;
+  accountAuthorityLogInfo('[AA-S4] delete_ports wiring', {
+    stage: 'wiring', type: 'purge', reason: overrides.purge === undefined ? 'firestore' : 'override',
+  });
+  return Object.freeze({
+    clock: deletion.clock,
+    claims: deletion.claims,
+    transactions: deletion.transactions,
+    identity: deletion.identity,
+    purge: overrides.purge ?? createFirestoreAccountDeletePurgePort(db),
   });
 }
 
@@ -746,6 +818,27 @@ export async function handleFirebaseAccountAuthorityLeaseRelease(
   }
 }
 
+/**
+ * S4a: начало удаления аккаунта (клиентский транспорт `deleteAccount`).
+ * Те же ворота, что у входа/выхода: при rolloutEnabled:false — отказ
+ * `account_authority_disabled` до любых чтений. НЕ экспортируется из index.ts.
+ */
+export async function handleFirebaseAccountAuthorityDeleteBegin(
+  dependencies: FirebaseAccountAuthorityLeaseDependencies,
+  request: AccountAuthorityCallableRequest,
+): Promise<AccountAuthorityDeleteCallableResponse> {
+  const startedAt = Date.now();
+  try {
+    if (dependencies.rolloutEnabled !== true) throw rejectGate('rollout_disabled');
+    if (dependencies.trustedInstallationBindingAvailable !== true) {
+      throw rejectGate('binding_unavailable');
+    }
+    return await handleAccountDeleteBeginCallable(resolveCallablePorts(dependencies), request);
+  } catch (error) {
+    throw mapCallableError(error, 'delete_begin', startedAt);
+  }
+}
+
 export const accountAuthorityLeaseAcquire = onCall(HOT_CALLABLE_OPTIONS, (request) => (
   handleFirebaseAccountAuthorityLeaseAcquire(
     {
@@ -763,6 +856,21 @@ export const accountAuthorityLeaseAcquire = onCall(HOT_CALLABLE_OPTIONS, (reques
 
 export const accountAuthorityLeaseRelease = onCall(HOT_CALLABLE_OPTIONS, (request) => (
   handleFirebaseAccountAuthorityLeaseRelease(
+    {
+      getPorts: () => createFirebaseLeasePorts(admin.firestore()),
+      rolloutEnabled: false,
+      trustedInstallationBindingAvailable: false,
+    },
+    {
+      auth: request.auth ?? null,
+      app: request.app ?? null,
+      data: request.data,
+    },
+  )
+));
+
+export const accountAuthorityDeleteBegin = onCall(HOT_CALLABLE_OPTIONS, (request) => (
+  handleFirebaseAccountAuthorityDeleteBegin(
     {
       getPorts: () => createFirebaseLeasePorts(admin.firestore()),
       rolloutEnabled: false,

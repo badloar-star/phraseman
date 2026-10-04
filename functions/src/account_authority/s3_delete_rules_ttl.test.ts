@@ -433,10 +433,14 @@ describe('S3 пункт 1: состояние удаления в Firestore', ()
     expect(fake.stats.queryLimits).toEqual([10]);
   });
 
-  test('без подключённого хранилища адаптер по-прежнему отказывает (rollout выключен)', () => {
+  // зачем (S4a): хранилище подключено по умолчанию; rollout по-прежнему выключен
+  // у всех трёх callable (вход, выход, начало удаления).
+  test('S4a: хранилище подключено по умолчанию, rollout выключен у всех callable', () => {
     const source = readFileSync(path.join(__dirname, 'firebase_lease_callable.ts'), 'utf8');
-    expect(source).toContain('overrides.deleteStateStore ?? DELETE_STATE_STORE_NOT_WIRED');
-    expect(source.match(/rolloutEnabled: false/g)?.length).toBe(2);
+    expect(source).not.toContain('DELETE_STATE_STORE_NOT_WIRED');
+    expect(source).toContain('return createFirestoreAccountDeleteStateStore(db);');
+    expect(source.match(/rolloutEnabled: false/g)?.length).toBe(3);
+    expect(source).not.toMatch(/rolloutEnabled: true/);
   });
 });
 

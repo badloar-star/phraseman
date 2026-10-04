@@ -1,5 +1,5 @@
 import { createHash } from 'crypto';
-import { accountAuthorityLogWarn, accountAuthorityServerErrorFields } from './account_authority_log';
+import { accountAuthorityLogInfo, accountAuthorityLogWarn, accountAuthorityServerErrorFields } from './account_authority_log';
 import {
   asOperationId,
   asSessionId,
@@ -648,7 +648,23 @@ export async function beginBoundAccountDeletion(
   const operationId = asOperationId(request.operationId);
   const prepared = await ports.bound.transactPrepare((context) => {
     const sessionId = context.leaseState.activeLease?.sessionId;
-    if (sessionId === undefined) throw deleteError('no_active_session');
+    if (sessionId === undefined) {
+      // зачем (S4a): повтор delete_begin (потерянный ответ, перезапуск клиента)
+      // приходит, когда первая попытка уже сняла аренду. Задача удаления этого
+      // аккаунта уже есть — отдаём её (идемпотентно, как prepareAccountDeletion),
+      // а не failed-precondition: иначе клиент принял бы готовое удаление за отказ.
+      const existing = context.deleteState.job;
+      if (existing === null) {
+        accountAuthorityLogWarn('[AA-S4] delete_begin rejected', { reason: 'no_active_session' });
+        throw deleteError('no_active_session');
+      }
+      assertContextIdentity(context, context.principal.accountId, context.principal.tenantId);
+      const nowMs = assertMonotonicClock(context.deleteState, serverNowMs);
+      const retained = expireTerminalJob(existing, nowMs);
+      accountAuthorityLogInfo('[AA-S4] delete_begin replay', { status: retained.status, expired: retained !== existing });
+      if (retained === existing) return transition(context, existing);
+      return transition(stateWithJob(context, retained, nowMs), retained);
+    }
     return prepareAccountDeletion(context, {
       principal: Object.freeze({
         accountId: context.principal.accountId,

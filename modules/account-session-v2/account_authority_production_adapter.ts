@@ -40,6 +40,11 @@ import {
   type AccountAuthorityLogger,
 } from '../account-authority-v2/account_authority_logger';
 import type { SessionFence } from './account_session';
+import { createDurableSlotList } from '../account-authority-v2/account_authority_durable_slots';
+import {
+  createLocalFirstDeleteLease,
+  type InterruptedDelete,
+} from '../account-authority-v2/account_authority_remote_delete_queue';
 import {
   createAccountScopeStore,
   type AccountScopeHandle,
@@ -61,6 +66,13 @@ const SCOPE_METADATA_KEY = 'account_authority.scope.v1';
 const REVISION_SCHEMA = 'account-authority-lease-revision.v1';
 const LEASE_OWNER_REVISION_SCHEMA = 'account-authority-lease-owner-revision.v1';
 const MAX_DURABLE_OPERATIONS = 512;
+// зачем (AA S4a): надгробия локального удаления и исходящая очередь серверного
+// удаления — отдельные ключи SecureStore с синхронной записью: переживают
+// убийство процесса между нажатием «Удалить» и концом фоновой работы.
+// Раунд 3 (M-B2): по одной записи на ключ + индекс (предел SecureStore 2048 Б).
+export const LOCAL_ERASE_QUEUE_PREFIX = 'phraseman.account_authority.local_erase.v2';
+const LOCAL_ERASE_QUEUE_SCHEMA = 'account-authority-local-erase.v2';
+export const MAX_LOCAL_ERASE_QUEUE = 32;
 const UUID_V4 = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 const SHA256_HEX = /^[0-9a-f]{64}$/;
 
@@ -94,6 +106,12 @@ type DurableMetadata = Readonly<{
 }>;
 
 export type AccountAuthorityProductionAdapterDependencies = Readonly<{
+  /** S4a раунд 3: тревога, переживающая перезапуск (DebugLogger critical); только коды. */
+  reportCritical?: (event: string, code: string) => void;
+  /** S4a раунд 3: сколько удаление ждёт первую отправку на сервер (тесты — меньше). */
+  remoteDeleteFirstSendDeadlineMs?: number;
+  /** S4a раунд 4: часы очереди серверного удаления (тесты подменяют). */
+  remoteDeleteNowMs?: () => number;
   secureStore: AccountAuthoritySecureStorePort;
   createStorageAdapter(): ScopeStorageAdapter | null;
   randomInstallationId(): Promise<string>;
@@ -385,11 +403,19 @@ function makeFence(scope: AccountAuthorityLocalScope): SessionFence {
   });
 }
 
+
+type DurableLocalStore = Readonly<{
+  port: AccountAuthorityLocalStorePort;
+  /** S4a: удаления, локально применённые, но без квитанции (процесс убит до конца). */
+  interruptedDeletes(): readonly InterruptedDelete[];
+}>;
+
 function createDurableLocalStore(input: Readonly<{
   secureStore: AccountAuthoritySecureStorePort;
   storageAdapter: ScopeStorageAdapter;
   log: AccountAuthorityLogger;
-}>): AccountAuthorityLocalStorePort {
+  reportCritical?: (event: string, code: string) => void;
+}>): DurableLocalStore {
   const log = input.log;
   const options = secureOptions(input.secureStore);
   const raw = input.secureStore.getItem(LOCAL_METADATA_KEY, options);
@@ -405,6 +431,90 @@ function createDurableLocalStore(input: Readonly<{
   const scopeStore = createAccountScopeStore(input.storageAdapter);
   let openScope: AccountAuthorityLocalScope | null = null;
   let openHandle: AccountScopeHandle | null = null;
+
+  /*
+   * AA S4a: удаление аккаунта local-first.
+   * clearAccountData — СИНХРОННО ставит надгробие (accountId в очередь стирания,
+   * запись SecureStore с проверкой чтением). С этого момента область аккаунта
+   * нельзя открыть (openScope отказывает) — поздний ответ сервера/входа не
+   * «воскресит» данные (last-write-guard). Само стирание — асинхронное и
+   * идемпотентное (eraseClosedAccountScope: already_absent = успех), ждёт
+   * закрытия области, повторяется при закрытии и при каждом старте процесса.
+   */
+  const eraseSlots = createDurableSlotList<string>({
+    secureStore: input.secureStore,
+    options,
+    log,
+    prefix: LOCAL_ERASE_QUEUE_PREFIX,
+    schema: LOCAL_ERASE_QUEUE_SCHEMA,
+    max: MAX_LOCAL_ERASE_QUEUE,
+    label: 'local_erase',
+    invalidCode: 'account_authority_local_erase_queue_invalid',
+    fullCode: 'account_authority_local_erase_queue_full',
+    unavailableCode: 'account_authority_local_erase_unavailable',
+    parse: (value) => parseAccountId(value).value,
+    keyOf: (value) => value,
+    reportCritical: input.reportCritical,
+  });
+  let eraseQueue: readonly string[] = eraseSlots.values();
+  let eraseInFlight: Promise<void> | null = null;
+  let eraseRequested = false;
+  const eraseOne = async (account: string): Promise<void> => {
+    if (openScope !== null && openScope.accountId.value === account) {
+      log.info('[AA-S4] local_erase deferred', { reason: 'scope_open' });
+      return;
+    }
+    let outcome: string;
+    try {
+      const evidence = await scopeStore.eraseClosedAccountScope(Object.freeze({
+        kind: 'account' as const,
+        uid: account,
+        scopeKey: `account:${account}` as const,
+      }));
+      outcome = evidence.outcome;
+    } catch (error) {
+      log.warn('[AA-S4] local_erase failed_kept', failureFields(error));
+      return;
+    }
+    try {
+      eraseSlots.remove(account);
+      eraseQueue = eraseSlots.values();
+    } catch (error) {
+      // Стёрто, но надгробие не снялось — следующий проход повторит (already_absent).
+      log.warn('[AA-S4] local_erase tombstone_clear_failed', failureFields(error));
+      return;
+    }
+    log.info('[AA-S4] local_erase done', { result: outcome, left: eraseQueue.length });
+  };
+  const drainLocalErasures = (trigger: 'clear' | 'close' | 'startup'): void => {
+    if (eraseQueue.length === 0) {
+      log.info('[AA-S4] local_erase idle', { source: trigger });
+      return;
+    }
+    if (eraseInFlight !== null) {
+      eraseRequested = true;
+      log.info('[AA-S4] local_erase joined', { source: trigger });
+      return;
+    }
+    log.info('[AA-S4] local_erase start', { source: trigger, pending: eraseQueue.length });
+    const run = (async () => {
+      for (const account of [...eraseQueue]) await eraseOne(account);
+    })();
+    eraseInFlight = run;
+    void run.then(
+      () => {
+        eraseInFlight = null;
+        if (eraseRequested) {
+          eraseRequested = false;
+          drainLocalErasures('clear');
+        }
+      },
+      (error: unknown) => {
+        eraseInFlight = null;
+        log.warn('[AA-S4] local_erase run_failed', failureFields(error));
+      },
+    );
+  };
 
   const persist = (next: DurableMetadata): void => {
     const encoded = metadataJson(next);
@@ -546,6 +656,13 @@ function createDurableLocalStore(input: Readonly<{
         });
         throw new Error('account_authority_generation_regression');
       }
+      // зачем (AA S4a): надгробие — данные удалённого аккаунта не открываются,
+      // пока стиратель их не дочистил (поздний ответ не воскрешает аккаунт).
+      if (eraseQueue.includes(target.accountId.value)) {
+        log.warn('[AA-S4] local_store open_scope_rejected', { reason: 'account_tombstoned' });
+        drainLocalErasures('close');
+        throw new Error('account_authority_account_tombstoned');
+      }
       if (openScope !== null) {
         if (sameScope(openScope, target)) {
           log.info('local_store open_scope_already_open');
@@ -611,12 +728,29 @@ function createDurableLocalStore(input: Readonly<{
       openScope = null;
       openHandle = null;
       log.info('local_store scope_closed', { generation: target.generation.value });
+      // S4a: закрыли область удалённого аккаунта — стиратель может дочистить.
+      if (eraseQueue.includes(target.accountId.value)) drainLocalErasures('close');
     },
-    clearAccountData: (_accountId: AccountId) => {
-      // The core port is synchronous, while the proven native eraser is async.
-      // Publishing a successful local delete here would violate delete-local-first.
-      log.warn('local_store clear_account_data_not_wired', { code: 'account_authority_local_delete_not_wired' });
-      throw new Error('account_authority_local_delete_not_wired');
+    clearAccountData: (accountId: AccountId) => {
+      // зачем (AA S4a): порт синхронный — синхронно только надгробие (надёжная
+      // запись), а нативное стирание (асинхронное) догоняет фоном. UI сразу
+      // видит «удалено»: runtime коммитит local_deleted, область не откроется.
+      const account = parseAccountId(accountId.value).value;
+      if (eraseQueue.includes(account)) {
+        log.info('[AA-S4] local_erase tombstone', { result: 'already_present', pending: eraseQueue.length });
+      } else {
+        if (eraseQueue.length >= MAX_LOCAL_ERASE_QUEUE) {
+          log.warn('[AA-S4] local_erase tombstone_rejected', { reason: 'queue_full', limit: MAX_LOCAL_ERASE_QUEUE });
+          throw new Error('account_authority_local_erase_queue_full');
+        }
+        eraseSlots.add(account);
+        eraseQueue = eraseSlots.values();
+        log.info('[AA-S4] local_erase tombstone', { result: 'written', pending: eraseQueue.length });
+      }
+      // Стирание — после текущего такта: runtime ещё закроет область этим же действием.
+      Promise.resolve().then(() => drainLocalErasures('clear'), (error: unknown) => {
+        log.warn('[AA-S4] local_erase schedule_failed', failureFields(error));
+      });
     },
     commitPreservedWrite: async (write) => {
       const handle = assertWriteFence(write);
@@ -642,7 +776,19 @@ function createDurableLocalStore(input: Readonly<{
       });
     },
   };
-  return Object.freeze(port);
+  // S4a: процесс убили посреди стирания — дочищаем на старте (область закрыта).
+  if (eraseQueue.length > 0) drainLocalErasures('startup');
+  const interruptedDeletes = (): readonly InterruptedDelete[] => Object.freeze(metadata.operations
+    .filter((entry) => entry.kind === 'delete'
+      && entry.destructive !== null
+      && entry.destructive.stage === 'local_applied'
+      && entry.destructive.receipt === null
+      && entry.destructive.owner !== null)
+    .map((entry) => Object.freeze({
+      operationId: entry.operationId,
+      owner: entry.destructive?.owner as DurableOwner,
+    })));
+  return Object.freeze({ port: Object.freeze(port), interruptedDeletes });
 }
 
 async function revisionKey(
@@ -1028,10 +1174,26 @@ export async function createAccountAuthorityProductionBootstrap(
       logger: log,
     }),
   });
+  const durableLocalStore = createDurableLocalStore({
+    secureStore: dependencies.secureStore, storageAdapter, log, reportCritical: dependencies.reportCritical,
+  });
+  // зачем (AA S4a): серверное удаление — через надёжную очередь (local-first).
+  const lease = createLocalFirstDeleteLease({
+    inner: dependencies.createLease(revisionStore, installationBinding),
+    installationBinding,
+    secureStore: dependencies.secureStore,
+    secureOptions: secureOptions(dependencies.secureStore),
+    deviceId,
+    interrupted: durableLocalStore.interruptedDeletes(),
+    log,
+    reportCritical: dependencies.reportCritical,
+    firstSendDeadlineMs: dependencies.remoteDeleteFirstSendDeadlineMs,
+    nowMs: dependencies.remoteDeleteNowMs,
+  });
   const bootstrap = Object.freeze({
     deviceId,
-    lease: dependencies.createLease(revisionStore, installationBinding),
-    localStore: createDurableLocalStore({ secureStore: dependencies.secureStore, storageAdapter, log }),
+    lease,
+    localStore: durableLocalStore.port,
     providerSignOut: dependencies.providerSignOut,
   });
   log.info('bootstrap composed');
@@ -1065,6 +1227,12 @@ function productionDependencies(): AccountAuthorityProductionAdapterDependencies
       // eslint-disable-next-line @typescript-eslint/no-require-imports
       const auth = require('@react-native-firebase/auth').default();
       await auth.signOut();
+    },
+    // S4a раунд 3: «удаление не завершено» — в журнал, который переживает перезапуск.
+    reportCritical: (event: string, code: string) => {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const { DebugLogger } = require('../../app/debug-logger') as typeof import('../../app/debug-logger');
+      DebugLogger.error(event, new Error(code), 'critical');
     },
   });
 }

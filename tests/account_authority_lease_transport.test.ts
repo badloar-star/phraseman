@@ -354,7 +354,7 @@ describe('Account Authority Firebase lease transport', () => {
     };
 
     await expect(port.release(request)).rejects.toThrow('account_authority_lease_revision_unavailable');
-    await expect(port.deleteAccount(request)).rejects.toThrow('account_authority_delete_not_wired');
+    await expect(port.deleteAccount(request)).rejects.toThrow('account_authority_lease_revision_unavailable');
     expect(invoke).not.toHaveBeenCalled();
   });
 

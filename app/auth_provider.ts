@@ -77,7 +77,9 @@ import {
 } from './cloud_sync';
 import type { AccountDeleteEnqueueOperation } from './account_delete_enqueue';
 import {
+  beginAccountAuthorityDeletionIfEnabled,
   beginAccountsV2DeletionIfEnabled,
+  resolveAccountAuthorityDeletionByLegacyIfEnabled,
   clearStoredAccountsV2DeletionCredentialIfEnabled,
   clearStoredAccountsV2DeletionCredentialAfterAckIfEnabled,
   readStoredAccountsV2DeletionCredentialIfEnabled,
@@ -3783,6 +3785,14 @@ export type DeleteAccountHandoff =
  * фазы: это счётчик в памяти, и удержание его на время сети блокировало бы
  * повторные попытки удаления.
  */
+/**
+ * AA S4a раунд 4 (L-1): операции старого удаления, дошедшие до фазы
+ * server_enqueued в этом процессе (заполняет finishAccountDeletion, читает и
+ * очищает completion в beginAccountDeletion). Только в памяти — нужна лишь в
+ * пределах одного удаления.
+ */
+const legacyDeletionServerEnqueuedOperations = new Set<string>();
+
 export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
   beginLocalAccountDeletionAttempt();
   let releaseTransitionReservation: () => void;
@@ -3856,11 +3866,37 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
     return { ok: false, reason: 'pending_guard_persist_failed' };
   }
 
+  // зачем (AA S4a): под воротами cutover Account Authority (выключены владельцем)
+  // — локальное удаление AA: надгробие сразу, стирание и серверная задача фоном.
+  // Ворота выключены → null без require и сети: поток ниже ровно как раньше.
+  const authorityDeletion = beginAccountAuthorityDeletionIfEnabled();
+  if (authorityDeletion !== null) {
+    void authorityDeletion.then(
+      () => console.log('[AA-S4] delete:aa_local_done'),
+      (e: unknown) => {
+        const detail = String((e as any)?.message ?? e).slice(0, 120);
+        console.warn(`[AA-S4] delete:aa_failed reason=${detail}`);
+        DebugLogger.error('aa_s4:delete_failed', new Error(detail), 'critical');
+      },
+    );
+  }
+
   const pendingOperationId = prepared.pendingDeleteLock?.operationId ?? null;
   const backgroundStartedAt = Date.now();
   const completion = (async () => {
     try {
       const result = await finishAccountDeletion(prepared);
+      // зачем (AA S4a раунд 3, H-B1 / раунд 4, L-1): сервер принял старое удаление
+      // (фаза server_enqueued этого замка) — его задача чистит и данные AA;
+      // запрос AA, застрявший без входа, больше не нужен.
+      const legacyServerEnqueued = pendingOperationId !== null
+        && legacyDeletionServerEnqueuedOperations.delete(pendingOperationId);
+      if (legacyServerEnqueued && authorityDeletion !== null) {
+        void authorityDeletion.then(
+          ({ operationId }) => resolveAccountAuthorityDeletionByLegacyIfEnabled(operationId),
+          (e: unknown) => console.warn(`[AA-S4] delete:legacy_proof_skipped reason=${String((e as any)?.message ?? e).slice(0, 80)}`),
+        );
+      }
       // зачем (владелец, 2026-09-13): ИМЕННО ЗДЕСЬ терялось удаление аккаунта.
       // UI показывает «удалено» сразу после локальной фазы, а исход серверной
       // приходил только в logAuthEvent → logEvent, который молчит без согласия
@@ -4142,6 +4178,9 @@ async function finishAccountDeletion(
         return { ok: false, reason: 'pending_guard_persist_failed' };
       }
       localExitLock = advanced.lock;
+      // зачем (AA S4a раунд 4, L-1): доказательство для очереди удаления AA —
+      // именно фаза server_enqueued этого замка (анонимная ветка сюда не попадает).
+      legacyDeletionServerEnqueuedOperations.add(pendingDeleteLock.operationId);
       // зачем (Пакет 6C, хвост 6B P3): сервер принял постановку — ключ V2 замка снимаем.
       clearStoredAccountsV2DeletionCredentialIfEnabled(pendingDeleteLock.operationId);
     } else {

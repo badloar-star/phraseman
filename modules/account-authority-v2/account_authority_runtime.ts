@@ -537,18 +537,28 @@ class FifoAccountAuthorityRuntime implements AccountAuthorityRuntime {
           phase: 'signed_out', deviceId: this.deviceId, generation: pending.result.generation,
         }));
       }
+      // зачем (AA S4a раунд 3, H-B1): серверное удаление требует, чтобы человек
+      // ещё был вошедшим — сначала запрос удаления (очередь ждёт его первую
+      // отправку с потолком), и только ПОТОМ выход из провайдера. Раньше оба шли
+      // параллельно и запрос почти всегда уходил уже без входа.
       await settleRemoteCleanupAfterLocalClose(this.log,
         () => this.closeOwnedScope(pending.owner),
         [
-        () => (
-          ownedSession(this.state) === null
-          && this.state.generation.value === pending.result.generation.value
-            ? this.provider.signOut({ operationId })
-            : undefined
-        ),
-        () => this.lease.deleteAccount({
-          ...pending.owner, deviceId: this.deviceId, operationId,
-        }),
+        async () => {
+          try {
+            await this.lease.deleteAccount({
+              ...pending.owner, deviceId: this.deviceId, operationId,
+            });
+          } finally {
+            if (
+              ownedSession(this.state) === null
+              && this.state.generation.value === pending.result.generation.value
+            ) {
+              this.log.info('[AA-S4] delete provider_sign_out', { reason: 'after_remote_delete' });
+              await this.provider.signOut({ operationId });
+            }
+          }
+        },
         ],
       );
       return pending.result;

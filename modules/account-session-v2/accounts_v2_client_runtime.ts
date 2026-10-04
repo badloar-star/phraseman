@@ -47,6 +47,11 @@ import {
 } from '../account-authority-v2/account_authority_bootstrap_contract';
 import { createAccountAuthorityProductionBootstrapIfPossible } from './account_authority_production_adapter';
 import {
+  accountAuthorityRemoteDeleteQueueState,
+  resolveAccountAuthorityRemoteDeleteByLegacy,
+  type RemoteDeleteQueueState,
+} from '../account-authority-v2/account_authority_remote_delete_queue';
+import {
   accountAuthorityElapsedMs,
   accountAuthorityErrorCode,
   accountAuthorityErrorKind,
@@ -180,7 +185,7 @@ function currentAuthUid(): string | null {
   }
 }
 
-function newAccountAuthorityOperationId(kind: 'sign_in' | 'sign_out' | 'startup_resume'): OperationId {
+function newAccountAuthorityOperationId(kind: 'sign_in' | 'sign_out' | 'startup_resume' | 'delete'): OperationId {
   return parseOperationId(`client_${kind}_${crypto().randomUUID()}`);
 }
 
@@ -303,6 +308,68 @@ export async function runAccountAuthorityProviderSignOutTransition(
 ): Promise<void> {
   const operationId = newAccountAuthorityOperationId('sign_out');
   await getAccountAuthorityRuntime().signOut(operationId);
+}
+
+export type AccountAuthorityDeleteOutcome = Readonly<{ result: 'local_deleted'; operationId: string }>;
+
+let accountAuthorityDeleteInFlight: Promise<AccountAuthorityDeleteOutcome> | null = null;
+
+/**
+ * AA S4a: удаление аккаунта через Account Authority (только под воротами
+ * cutover в app/accounts_v2_client_flag.ts — сейчас выключены).
+ *
+ * Local-first: runtime синхронно ставит надгробие (данные аккаунта больше не
+ * откроются), коммитит local_deleted и закрывает область; стирание и серверное
+ * удаление идут фоном через надёжные очереди адаптера и переживают перезапуск.
+ * Защита от двойного тапа: второй вызов во время первого получает тот же промис
+ * (одна операция, один operationId).
+ */
+export function runAccountAuthorityDeleteTransition(): Promise<AccountAuthorityDeleteOutcome> {
+  if (accountAuthorityDeleteInFlight !== null) {
+    AUTHORITY_LOG.info('[AA-S4] wiring delete_joined', { reason: 'in_flight' });
+    return accountAuthorityDeleteInFlight;
+  }
+  const startedAt = Date.now();
+  AUTHORITY_LOG.info('[AA-S4] wiring delete_start');
+  const task = (async (): Promise<AccountAuthorityDeleteOutcome> => {
+    const operationId = newAccountAuthorityOperationId('delete');
+    const result = await getAccountAuthorityRuntime().deleteAccount(operationId);
+    if (result.type !== 'local_deleted') {
+      AUTHORITY_LOG.warn('[AA-S4] wiring delete_unexpected_result', { resultType: result.type });
+      throw new Error('account_authority_delete_result_unexpected');
+    }
+    AUTHORITY_LOG.info('[AA-S4] wiring delete_done', { resultType: result.type, durationMs: accountAuthorityElapsedMs(startedAt) });
+    // operationId нужен старому потоку: его подтверждение сервера снимает запись очереди (раунд 3).
+    return Object.freeze({ result: 'local_deleted' as const, operationId: operationId.value });
+  })();
+  accountAuthorityDeleteInFlight = task;
+  const settled = (): void => {
+    if (accountAuthorityDeleteInFlight === task) accountAuthorityDeleteInFlight = null;
+  };
+  void task.then(settled, (error: unknown) => {
+    AUTHORITY_LOG.warn('[AA-S4] wiring delete_failed', {
+      kind: accountAuthorityErrorKind(error),
+      code: accountAuthorityErrorCode(error),
+      durationMs: accountAuthorityElapsedMs(startedAt),
+    });
+    settled();
+  });
+  return task;
+}
+
+/**
+ * AA S4a раунд 3 (H-B1): сервер принял старое удаление этого аккаунта (его
+ * задача чистит и данные AA) — доказательство для очереди серверного удаления.
+ */
+export function resolveAccountAuthorityRemoteDeleteByLegacyDeletion(operationId: string): boolean {
+  const resolved = resolveAccountAuthorityRemoteDeleteByLegacy(operationId);
+  AUTHORITY_LOG.info('[AA-S4] wiring delete_legacy_proof', { result: resolved ? 'resolved' : 'not_queued' });
+  return resolved;
+}
+
+/** AA S4a раунд 3: состояние очереди серверного удаления для будущего экрана (только числа). */
+export function accountAuthorityRemoteDeleteState(): RemoteDeleteQueueState | null {
+  return accountAuthorityRemoteDeleteQueueState();
 }
 
 /** Startup provider reauthentication/resume uses currentIdentity inside the authority. */

@@ -991,16 +991,25 @@ describe('S2a round 3 L-R2-4: delete_begin proves the binding in the same transa
     expect(deleteStates.states.get(STABLE_A)?.job).toMatchObject({ accountId: STABLE_A });
   });
 
-  test('without the S4 delete-state store the adapter refuses deletion as not wired', async () => {
+  // зачем (S4a): до S4 адаптер отказывал «не подключено»; теперь порты S3
+  // подключены по умолчанию — подготовка пишет задачу удаления в Firestore.
+  // Освобождение Auth здесь падает (фейк без чтения вне транзакции) → задача
+  // ждёт фонового повтора, а не теряется.
+  test('S4a: by default the adapter wires the S3 delete-state store (job persisted, release retried later)', async () => {
     const fixture = linkedFixture();
     const { bindingToken } = await bind(fixture);
     await handleFirebaseAccountAuthorityLeaseAcquire(enabledLease(fixture.db), acquireRequest(bindingToken));
-    await expect(handleAccountDeleteBeginCallable(createFirebaseLeasePorts(fixture.db), {
+    const deleteAuthUser = jest.fn(async () => undefined);
+    await expect(handleAccountDeleteBeginCallable(createFirebaseLeasePorts(fixture.db, { deleteAuthUser }), {
       auth: { uid: RAW_UID, token: GOOGLE_TOKEN },
       app: null,
       data: { operationId: 'delete-operation-a', expectedRevision: 1, bindingToken },
-    })).rejects.toMatchObject({ code: 'internal', message: 'account_authority_unavailable' });
-    expect(accountDoc(fixture, STABLE_A)).toMatchObject({ lifecycle: { status: 'active' } });
+    })).resolves.toMatchObject({ status: 'identity_release_pending' });
+    expect(accountDoc(fixture, STABLE_A)).toMatchObject({ lifecycle: { status: 'deleting' } });
+    expect(fixture.documents.get(`account_authority_delete_jobs_v1/${STABLE_A}`)).toMatchObject({
+      job: { status: 'identity_release_pending' },
+    });
+    expect(deleteAuthUser).not.toHaveBeenCalled();
   });
 });
 

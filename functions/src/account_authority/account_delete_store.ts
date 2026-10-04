@@ -1,8 +1,10 @@
 import { FieldValue, type Firestore, type Transaction } from 'firebase-admin/firestore';
 import {
+  accountAuthorityLogError,
   accountAuthorityLogInfo,
   accountAuthorityLogWarn,
-  accountAuthorityServerErrorFields,
+  accountAuthorityServerErrorCode,
+  accountAuthorityServerErrorKind,
 } from './account_authority_log';
 import { AA_DELETE_JOBS_COLLECTION } from './account_authority_collections';
 import { accountAuthorityUidFingerprint } from './account_authority_policy';
@@ -160,6 +162,42 @@ function expirySweepAtMs(
   return job.receiptExpiresAtMs;
 }
 
+/**
+ * S4a: когда задаче нужен фоновый шаг (повтор освобождения Auth или проход
+ * purge). зачем: незавершённая задача (`identity_release_pending`,
+ * `purge_queued`) не имеет срока квитанции, и без отдельного поля фоновый
+ * обработчик нашёл бы её только выкачиванием коллекции. Одно числовое поле —
+ * один запрос `where <= now` + `limit` на автоматическом индексе.
+ * Занятая задача (живой claim) становится «должной» по истечении claim.
+ */
+export function accountDeletePendingWorkAtMs(state: AccountDeleteContractState): number | null {
+  const job = state.job;
+  if (job === null) return null;
+  if (job.status === 'identity_release_pending') {
+    if (job.identityReleaseClaim !== null) return job.identityReleaseClaim.leaseExpiresAtMs;
+    // S4a раунд 2 (LOW-1): после сбоя освобождения Auth — нарастающая пауза.
+    return job.updatedAtMs + accountDeleteIdentityRetryDelayMs(job.identityReleaseFailuresCompleted);
+  }
+  if (job.status === 'purge_queued') return job.purgeClaim?.leaseExpiresAtMs ?? job.updatedAtMs;
+  return null;
+}
+
+/** S4a раунд 2 (LOW-1): база и потолок паузы между повторами освобождения Auth. */
+export const ACCOUNT_DELETE_IDENTITY_RETRY_BASE_MS = 60_000;
+export const ACCOUNT_DELETE_IDENTITY_RETRY_MAX_MS = 30 * 60_000;
+
+/**
+ * зачем (S4a раунд 2, LOW-1): без паузы задача после сбоя Auth сразу снова
+ * «должна» — фоновый проход дёргал бы провайдера подряд и сжёг бы 4 попытки
+ * контракта за секунды. Первая попытка (сбоев 0) — сразу; дальше 1, 2, 4 мин…
+ * не больше 30 мин. Число попыток контракта (4) не меняется.
+ */
+export function accountDeleteIdentityRetryDelayMs(failuresCompleted: number): number {
+  if (!Number.isSafeInteger(failuresCompleted) || failuresCompleted < 1) return 0;
+  const exponent = Math.min(failuresCompleted - 1, 20);
+  return Math.min(ACCOUNT_DELETE_IDENTITY_RETRY_BASE_MS * 2 ** exponent, ACCOUNT_DELETE_IDENTITY_RETRY_MAX_MS);
+}
+
 /** Полный закрытый список ключей job в документе (раунд 3, L-3). */
 export const ACCOUNT_DELETE_JOB_KEYS: readonly (keyof AccountDeleteJob)[] = Object.freeze([
   'jobId', 'accountId', 'tenantId', 'firstOperationId', 'deviceId', 'sessionId', 'status',
@@ -197,6 +235,8 @@ export function storedAccountDeleteState(
       recentPurgeCursors: [...job.recentPurgeCursors],
     },
     expirySweepAtMs: expirySweepAtMs(state, schedules),
+    // S4a: срок фонового шага (null — шагов нет); см. accountDeletePendingWorkAtMs.
+    pendingWorkAtMs: accountDeletePendingWorkAtMs(state),
   };
 }
 
@@ -225,6 +265,9 @@ export function createFirestoreAccountDeleteStateStore(db: Firestore): AccountDe
   // зачем: сырой uid переносится от чтения/подготовки к записи ВНУТРИ одной
   // транзакции; повтор транзакции Firestore получает новый объект — новая карта.
   const pendingUids = new WeakMap<Transaction, Map<string, readonly string[]>>();
+  // S4a раунд 2 (M-S4a-1): снятая с очереди задача («требует внимания») не
+  // возвращается в очередь записью контракта — до разбора человеком.
+  const quarantined = new WeakMap<Transaction, Set<string>>();
   const remember = (transaction: Transaction, accountId: AccountId, rawUid: string): void => {
     const map = pendingUids.get(transaction) ?? new Map<string, readonly string[]>();
     map.set(accountId, [...(map.get(accountId) ?? []), rawUid]);
@@ -240,6 +283,12 @@ export function createFirestoreAccountDeleteStateStore(db: Firestore): AccountDe
       const data = snapshot.data();
       const stored = isRecord(data) ? data[ACCOUNT_DELETE_PENDING_AUTH_UID_FIELD] : undefined;
       if (typeof stored === 'string' && stored.length > 0) remember(transaction, identity.accountId, stored);
+      if (isRecord(data) && typeof data[ACCOUNT_DELETE_WORK_QUARANTINED_AT_FIELD] === 'number') {
+        const set = quarantined.get(transaction) ?? new Set<string>();
+        set.add(identity.accountId);
+        quarantined.set(transaction, set);
+        accountAuthorityLogWarn('[AA-S4] delete_state read', { stage: 'delete_state', reason: 'work_quarantined' });
+      }
       const state = parseAccountDeleteState(data, identity);
       accountAuthorityLogInfo('delete_state read', {
         stage: 'delete_state', status: state.job?.status ?? 'no_job', pendingAuthUid: typeof stored === 'string',
@@ -266,8 +315,12 @@ export function createFirestoreAccountDeleteStateStore(db: Firestore): AccountDe
       // ключ пишется каждый раз (иначе старый ключ пережил бы запись).
       // storedAccountDeleteState отказывает при ключе вне ACCOUNT_DELETE_JOB_KEYS,
       // сторож в s3_delete_rules_ttl.test.ts сверяет список с типом и разбором.
+      const isQuarantined = quarantined.get(transaction)?.has(identity.accountId) === true;
+      const record = storedAccountDeleteState(state, schedules);
       transaction.set(ref(identity.accountId), {
-        ...storedAccountDeleteState(state, schedules),
+        ...record,
+        // S4a раунд 2: задача «требует внимания» — в очередь фонового шага не возвращается.
+        pendingWorkAtMs: isQuarantined ? null : record.pendingWorkAtMs,
         [ACCOUNT_DELETE_PENDING_AUTH_UID_FIELD]: rawUid ?? FieldValue.delete(),
       }, { merge: true });
       accountAuthorityLogInfo('delete_state write', {
@@ -304,11 +357,227 @@ export async function listDueAccountDeleteExpirySweeps(
       due.push(Object.freeze({ accountId: asAccountId(data.accountId), tenantId: asTenantId(data.tenantId), jobId: job.jobId }));
     } catch (error) {
       accountAuthorityLogWarn('delete_state sweep skipped', {
-        stage: 'delete_state', reason: 'identity_invalid', ...accountAuthorityServerErrorFields(error),
+        stage: 'delete_state', reason: 'identity_invalid', causeKind: accountAuthorityServerErrorKind(error), causeCode: accountAuthorityServerErrorCode(error),
       });
     }
   }
   accountAuthorityLogInfo('delete_state sweep listed', { stage: 'delete_state', due: due.length });
+  return Object.freeze(due);
+}
+
+export type AccountDeletePendingWork = Readonly<{
+  accountId: AccountId;
+  tenantId: TenantId;
+  jobId: string;
+  status: 'identity_release_pending' | 'purge_queued';
+  /** S4a раунд 2: сбои фонового шага подряд (служебное поле вне job). */
+  workFailures: number;
+  /** S4a раунд 3 (M-A1): срок шага, увиденный при выборке (сверка перед записью сбоя). */
+  observedPendingWorkAtMs: number;
+}>;
+
+/** S4a раунд 3 (M-A1): что видела выборка — запись сбоя сверяет это в транзакции. */
+export type AccountDeleteWorkObservation = Readonly<{
+  jobId: unknown;
+  status: unknown;
+  pendingWorkAtMs: unknown;
+}>;
+
+/*
+ * S4a раунд 2 (M-S4a-1): служебные поля фонового шага — ВНЕ job (закрытая
+ * форма job и её сторож не затронуты). Пишутся точечным merge только этих
+ * полей, без разбора job: задача, чей документ не разбирается, всё равно
+ * отодвигается и после ACCOUNT_DELETE_WORK_MAX_FAILURES снимается с очереди.
+ */
+export const ACCOUNT_DELETE_WORK_FAILURES_FIELD = 'workFailures';
+export const ACCOUNT_DELETE_WORK_LAST_FAILURE_CODE_FIELD = 'workLastFailureCode';
+export const ACCOUNT_DELETE_WORK_QUARANTINED_AT_FIELD = 'workQuarantinedAtMs';
+export const ACCOUNT_DELETE_WORK_MAX_FAILURES = 8;
+export const ACCOUNT_DELETE_WORK_RETRY_BASE_MS = 60_000;
+export const ACCOUNT_DELETE_WORK_RETRY_MAX_MS = 6 * 60 * 60_000;
+
+/** Пауза после n-го сбоя подряд: 1, 2, 4 … мин, не больше 6 ч. */
+export function accountDeleteWorkRetryDelayMs(failures: number): number {
+  const exponent = Math.min(Math.max(failures - 1, 0), 20);
+  return Math.min(ACCOUNT_DELETE_WORK_RETRY_BASE_MS * 2 ** exponent, ACCOUNT_DELETE_WORK_RETRY_MAX_MS);
+}
+
+function workFailuresOf(data: unknown): number {
+  const value = isRecord(data) ? data[ACCOUNT_DELETE_WORK_FAILURES_FIELD] : undefined;
+  return Number.isSafeInteger(value) && (value as number) >= 0 ? value as number : 0;
+}
+
+/** Код сбоя для служебного поля: только безопасный машинный код. */
+function safeFailureCode(code: string): string {
+  return /^[a-z0-9_.:-]{1,80}$/.test(code) ? code : 'other';
+}
+
+function observationOf(data: unknown): AccountDeleteWorkObservation {
+  const job = isRecord(data) && isRecord(data.job) ? data.job : null;
+  return Object.freeze({
+    jobId: job?.jobId,
+    status: job?.status,
+    pendingWorkAtMs: isRecord(data) ? data.pendingWorkAtMs : undefined,
+  });
+}
+
+function sameObservation(left: AccountDeleteWorkObservation, right: AccountDeleteWorkObservation): boolean {
+  return left.jobId === right.jobId && left.status === right.status && left.pendingWorkAtMs === right.pendingWorkAtMs;
+}
+
+export type AccountDeleteWorkFailureOutcome = Readonly<{
+  outcome: 'backoff' | 'quarantined' | 'stale';
+  failures: number;
+  nextAtMs: number | null;
+}>;
+
+/**
+ * Сбой фонового шага задачи: счётчик +1 и пауза; на ACCOUNT_DELETE_WORK_MAX_FAILURES
+ * — снятие с очереди (pendingWorkAtMs=null, workQuarantinedAtMs) и заметная
+ * строка лога (error) для владельца. Документ находится по id (= accountId).
+ *
+ * зачем (S4a раунд 3, M-A1): между выборкой и записью сбоя контракт мог
+ * продвинуть задачу (например, purge завершился). Поэтому запись — в
+ * транзакции и только если jobId, статус и pendingWorkAtMs те же, что видела
+ * выборка; иначе «состояние ушло вперёд» и ничего не пишется (задача не
+ * воскресает в очереди и не снимается ложно).
+ */
+export async function recordAccountDeleteWorkFailure(
+  db: Firestore,
+  docId: string,
+  observed: AccountDeleteWorkObservation,
+  nowMs: number,
+  failureCode: string,
+  options: Readonly<{ forceQuarantine?: boolean }> = {},
+): Promise<AccountDeleteWorkFailureOutcome> {
+  const code = safeFailureCode(failureCode);
+  const ref = db.collection(AA_DELETE_JOBS_COLLECTION).doc(docId);
+  const result = await db.runTransaction(async (transaction): Promise<AccountDeleteWorkFailureOutcome> => {
+    const snapshot = await transaction.get(ref);
+    const data = snapshot.exists ? snapshot.data() : undefined;
+    if (!snapshot.exists || !sameObservation(observationOf(data), observed)) {
+      accountAuthorityLogInfo('[AA-S4] delete_worker failure_skipped', {
+        stage: 'delete_worker', reason: snapshot.exists ? 'state_moved_on' : 'job_gone', causeCode: code,
+      });
+      return Object.freeze({ outcome: 'stale' as const, failures: workFailuresOf(data), nextAtMs: null });
+    }
+    const failures = options.forceQuarantine === true
+      ? ACCOUNT_DELETE_WORK_MAX_FAILURES
+      : workFailuresOf(data) + 1;
+    const quarantinedNow = failures >= ACCOUNT_DELETE_WORK_MAX_FAILURES;
+    const nextAtMs = quarantinedNow ? null : nowMs + accountDeleteWorkRetryDelayMs(failures);
+    transaction.set(ref, {
+      pendingWorkAtMs: nextAtMs,
+      [ACCOUNT_DELETE_WORK_FAILURES_FIELD]: failures,
+      [ACCOUNT_DELETE_WORK_LAST_FAILURE_CODE_FIELD]: code,
+      ...(quarantinedNow ? { [ACCOUNT_DELETE_WORK_QUARANTINED_AT_FIELD]: nowMs } : {}),
+    }, { merge: true });
+    return Object.freeze({ outcome: quarantinedNow ? 'quarantined' as const : 'backoff' as const, failures, nextAtMs });
+  });
+  if (result.outcome === 'stale') return result;
+  const failures = result.failures;
+  if (result.outcome === 'quarantined') {
+    accountAuthorityLogError('[AA-S4] delete_worker job_quarantined', {
+      stage: 'delete_worker', reason: 'max_failures', failures, causeCode: code,
+    });
+  } else {
+    accountAuthorityLogWarn('[AA-S4] delete_worker job_backoff', {
+      stage: 'delete_worker', failures, delayMs: accountDeleteWorkRetryDelayMs(failures), causeCode: code,
+    });
+  }
+  return result;
+}
+
+/**
+ * S4a раунд 3 (L-A2): число снятых с очереди задач («требует внимания») —
+ * серверная агрегация `.count()`, документы не выкачиваются, id не
+ * возвращаются. Индекс: одно поле `workQuarantinedAtMs` с неравенством —
+ * хватает автоматического однополевого индекса, составной не нужен.
+ * К Джарвису и тревогам НЕ подключено (чужой контур — решает координатор).
+ */
+export async function countQuarantinedAccountDeleteJobs(db: Firestore): Promise<number> {
+  const snapshot = await db.collection(AA_DELETE_JOBS_COLLECTION)
+    .where(ACCOUNT_DELETE_WORK_QUARANTINED_AT_FIELD, '>', 0)
+    .count()
+    .get();
+  const count = snapshot.data().count;
+  accountAuthorityLogInfo('[AA-S4] delete_worker quarantined_count', { stage: 'delete_worker', count });
+  return count;
+}
+
+/** Шаг задачи прошёл — счётчик сбоев подряд обнуляется (pendingWorkAtMs ведёт контракт). */
+export async function clearAccountDeleteWorkFailures(db: Firestore, docId: string): Promise<void> {
+  await db.collection(AA_DELETE_JOBS_COLLECTION).doc(docId).set({
+    [ACCOUNT_DELETE_WORK_FAILURES_FIELD]: FieldValue.delete(),
+    [ACCOUNT_DELETE_WORK_LAST_FAILURE_CODE_FIELD]: FieldValue.delete(),
+  }, { merge: true });
+  accountAuthorityLogInfo('[AA-S4] delete_worker failures_cleared', { stage: 'delete_worker' });
+}
+
+async function quarantineMalformed(
+  db: Firestore,
+  docId: string,
+  observed: AccountDeleteWorkObservation,
+  nowMs: number,
+  reason: string,
+): Promise<void> {
+  try {
+    await recordAccountDeleteWorkFailure(db, docId, observed, nowMs, `malformed_${reason}`, { forceQuarantine: true });
+  } catch (error) {
+    accountAuthorityLogWarn('[AA-S4] delete_work quarantine_failed', {
+      stage: 'delete_worker', reason, causeCode: accountAuthorityServerErrorCode(error),
+    });
+  }
+}
+
+/**
+ * S4a: задачи, ждущие фонового шага (повтор освобождения Auth / проход purge).
+ * Один запрос с лимитом по полю `pendingWorkAtMs`; статус перепроверяет
+ * контракт в своей транзакции (здесь — только маршрут шага).
+ */
+export async function listDueAccountDeletePendingWork(
+  db: Firestore,
+  nowMs: number,
+  limit: number,
+): Promise<readonly AccountDeletePendingWork[]> {
+  const boundedLimit = Math.max(1, Math.min(limit, 100));
+  accountAuthorityLogInfo('[AA-S4] delete_work list_start', { stage: 'delete_worker', limit: boundedLimit });
+  // guard-ok: where + limit ниже (многострочная цепочка).
+  const snapshot = await db.collection(AA_DELETE_JOBS_COLLECTION)
+    .where('pendingWorkAtMs', '<=', nowMs)
+    .limit(boundedLimit)
+    .get();
+  const due: AccountDeletePendingWork[] = [];
+  for (const doc of snapshot.docs) {
+    const data = doc.data();
+    const job = isRecord(data) && isRecord(data.job) ? data.job : null;
+    const status = job?.status;
+    // зачем (S4a раунд 2, M-S4a-1): испорченный документ, оставленный в
+    // выборке, каждый проход занимал бы место в limit и закрыл бы очередь.
+    // Его сразу снимаем с очереди служебной записью (без разбора job).
+    if (job === null || typeof job.jobId !== 'string' || (status !== 'identity_release_pending' && status !== 'purge_queued')) {
+      const reason = job === null ? 'job_missing' : 'status_not_pending';
+      accountAuthorityLogWarn('[AA-S4] delete_work skipped', { stage: 'delete_worker', reason });
+      await quarantineMalformed(db, doc.id, observationOf(data), nowMs, reason);
+      continue;
+    }
+    try {
+      due.push(Object.freeze({
+        accountId: asAccountId(data.accountId),
+        tenantId: asTenantId(data.tenantId),
+        jobId: job.jobId,
+        status,
+        workFailures: workFailuresOf(data),
+        observedPendingWorkAtMs: data.pendingWorkAtMs as number,
+      }));
+    } catch (error) {
+      accountAuthorityLogWarn('[AA-S4] delete_work skipped', {
+        stage: 'delete_worker', reason: 'identity_invalid', causeCode: accountAuthorityServerErrorCode(error),
+      });
+      await quarantineMalformed(db, doc.id, observationOf(data), nowMs, 'identity_invalid');
+    }
+  }
+  accountAuthorityLogInfo('[AA-S4] delete_work listed', { stage: 'delete_worker', due: due.length });
   return Object.freeze(due);
 }
 
@@ -346,7 +615,10 @@ export function createFirebaseProviderIdentityReleasePort(deps: Readonly<{
           accountAuthorityLogInfo('delete identity_release done', { stage: 'identity', status: 'already_absent' });
           return;
         }
-        accountAuthorityLogWarn('delete identity_release error', { stage: 'identity', ...accountAuthorityServerErrorFields(error) });
+        // S4a: поля без разворота (сторож логов запрещает `...x` в аргументах лога).
+        accountAuthorityLogWarn('delete identity_release error', {
+          stage: 'identity', kind: accountAuthorityServerErrorKind(error), code: accountAuthorityServerErrorCode(error),
+        });
         throw error;
       }
     },

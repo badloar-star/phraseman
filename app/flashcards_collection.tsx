@@ -60,6 +60,7 @@ import { PackAddCardButton, PackInfoBlock, PackTopBar, type PackBadge } from './
 import { ExpandedCardV2, type ExpandedCardData } from './flashcards/ExpandedCardV2';
 import { VideoSetView } from './flashcards/VideoSetView';
 import { togglePackCardSaved } from './flashcards/save_pack_card';
+import { schedulePublishedPackCardRemoval, type PublishedPackCardRemovalOutcome } from './community_packs/publishedPackCardRemoval';
 import { removeCardFromLocalPack, restoreCardToLocalPack, type LocalPackCardSnapshot } from './community_packs/localPackCardOps';
 import { isFlashcardSaved } from '../hooks/use-flashcards';
 import { useCommunityAuthorName } from './community_packs/packAuthorNames';
@@ -190,7 +191,7 @@ export default function FlashcardsScreen() {
   const [openedSaved, setOpenedSaved] = useState(false);
   // зачем (владелец 04.10: «Удалить» у карточки своего набора + «Вернуть»): скрытые сразу (Optimistic UI) и снимок для возврата
   const [hiddenPackCardIds, setHiddenPackCardIds] = useState<ReadonlySet<string>>(() => new Set());
-  const [packUndo, setPackUndo] = useState<{ key: number; snapshot: LocalPackCardSnapshot } | null>(null);
+  const [packUndo, setPackUndo] = useState<{ key: number; snapshot: LocalPackCardSnapshot | null; undoPublished?: () => Promise<boolean>; cardId?: string } | null>(null);
   const packUndoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const packUndoKeyRef = useRef(0);
   /**
@@ -1116,18 +1117,71 @@ export default function FlashcardsScreen() {
       failToast();
     });
   }, [loadAll, packDeeplink, unhidePackCard]);
+  // зачем (координатор 04.10): карточка опубликованного набора — окно «Вернуть» 5 с на клиенте, затем ОДИН вызов сервера (очередь ядра);
+  // карточка прячется сразу (Optimistic UI), при отказе сервера — возвращается с причиной.
+  const deletePublishedPackCard = useCallback((card: CardItem) => {
+    if (!packDeeplink) return;
+    console.log(`[PACK-CARD-REMOVE] экран: удалить из опубликованного cardId=${card.id} packId=${packDeeplink}`);
+    setHiddenPackCardIds((prev) => new Set(prev).add(card.id));
+    const refusalText = (reason: string) => {
+      const ru: Record<string, string> = {
+        card_count: 'В наборе должно остаться минимум 10 карточек.',
+        update_pending: 'Набор на проверке — удалить сейчас нельзя.',
+        pack_removed: 'Набор уже удалён.',
+        not_author: 'Удалять карточки может только автор.',
+        pack_not_found: 'Набор не найден.',
+        not_published: 'Набор не опубликован.',
+        network: 'Нет связи — карточку не удалось удалить.',
+      };
+      return ru[reason] ?? 'Не удалось удалить карточку.';
+    };
+    void schedulePublishedPackCardRemoval({
+      cloudPackId: packDeeplink,
+      cardId: card.id,
+      onSettled: (outcome: PublishedPackCardRemovalOutcome) => {
+        console.log(`[PACK-CARD-REMOVE] экран: итог kind=${outcome.kind} reason=${outcome.kind === 'refused' ? outcome.reason : '-'}`);
+        if (outcome.kind === 'refused') {
+          unhidePackCard(card.id);
+          emitAppEvent('action_toast', actionToastTri('error', {
+            ru: refusalText(outcome.reason), uk: refusalText(outcome.reason), en: refusalText(outcome.reason), es: refusalText(outcome.reason),
+            'pt-BR': refusalText(outcome.reason), vi: refusalText(outcome.reason), id: refusalText(outcome.reason), tr: refusalText(outcome.reason), pl: refusalText(outcome.reason),
+          }));
+        }
+        void loadAll();
+      },
+    }).then((handle) => {
+      const key = ++packUndoKeyRef.current;
+      if (packUndoTimerRef.current) clearTimeout(packUndoTimerRef.current);
+      setPackUndo({ key, snapshot: null, undoPublished: handle.undo, cardId: card.id });
+      packUndoTimerRef.current = setTimeout(() => setPackUndo((cur) => (cur?.key === key ? null : cur)), 5000);
+    }).catch((error: unknown) => {
+      console.warn('[PACK-CARD-REMOVE] экран: не поставили в очередь, откат', error instanceof Error ? error.message : String(error));
+      unhidePackCard(card.id);
+    });
+  }, [loadAll, packDeeplink, unhidePackCard]);
   const undoPackDelete = useCallback(() => {
     const entry = packUndo;
     if (!entry) return;
     setPackUndo(null);
     if (packUndoTimerRef.current) clearTimeout(packUndoTimerRef.current);
-    void restoreCardToLocalPack(entry.snapshot).then((ok) => {
+    if (entry.undoPublished) {
+      void entry.undoPublished().then((ok) => {
+        console.log(`[PACK-CARD-REMOVE] экран: «Вернуть» отменено=${ok}`);
+        if (ok && entry.cardId) unhidePackCard(entry.cardId);
+      }).catch((error: unknown) => {
+        console.warn('[PACK-CARD-REMOVE] экран: «Вернуть» не удалось', error instanceof Error ? error.message : String(error));
+      });
+      return;
+    }
+    if (!entry.snapshot) return;
+    const snapshot = entry.snapshot;
+    void restoreCardToLocalPack(snapshot).then((ok) => {
       console.log(`[PACK-CARD-DELETE] экран: возврат ok=${ok}`);
       void loadAll();
     }).catch((error: unknown) => {
       console.warn('[PACK-CARD-DELETE] экран: возврат не удался', error instanceof Error ? error.message : String(error));
     });
-  }, [loadAll, packUndo]);
+  }, [loadAll, packUndo, unhidePackCard]);
   useEffect(() => () => { if (packUndoTimerRef.current) clearTimeout(packUndoTimerRef.current); }, []);
   const onToggleOpenedSave = useCallback(() => {
     const card = openedCard;
@@ -1200,6 +1254,8 @@ export default function FlashcardsScreen() {
   const expandedOwn = !!expandedOpened && (savedSurface || packMine || expandedEditable);
   // зачем: удалять карточку из набора отсюда можно только в локальном наборе автора, которого ещё нет в сообществе (опубликованный правится через сервер)
   const packCardDeletable = packMine && !!packDeeplink && isLocalAuthorPackId(packDeeplink) && currentMarketPack?.listingStatus === 'local_only';
+  // зачем: опубликованный набор автора (есть в облаке, не локальный) — удаление идёт через очередь «Вернуть → один вызов сервера»
+  const publishedCardDeletable = packMine && !!packDeeplink && !isLocalAuthorPackId(packDeeplink) && !!currentMarketPack && currentMarketPack.listingStatus !== 'local_only' && !currentMarketPack.videoId;
   const expandedStrength = expandedOpened && strengthForCard ? strengthForCard(expandedOpened.en) : null;
   const expandedData: ExpandedCardData | null = expandedOpened ? {
     id: expandedOpened.id,
@@ -1696,7 +1752,7 @@ export default function FlashcardsScreen() {
         showSave={!savedSurface}
         saved={openedSaved}
         canEdit={!!expandedOpened && (expandedEditable || packMine)}
-        canDelete={!!expandedOpened && (expandedEditable || expandedOpened.categoryId === 'saved' || packCardDeletable)}
+        canDelete={!!expandedOpened && (expandedEditable || expandedOpened.categoryId === 'saved' || packCardDeletable || publishedCardDeletable)}
         onClose={closeOpenedCard}
         onSpeak={(text) => onSpeakCb(text)}
         onEdit={() => {
@@ -1712,6 +1768,7 @@ export default function FlashcardsScreen() {
           if (!card) return;
           if (expandedEditable || card.categoryId === 'saved') void deleteCardById(card.id);
           else if (packCardDeletable) deletePackCard(card);
+          else if (publishedCardDeletable) deletePublishedPackCard(card);
         }}
         onToggleSave={onToggleOpenedSave}
       />

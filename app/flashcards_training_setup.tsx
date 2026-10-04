@@ -171,6 +171,9 @@ export default function FlashcardsTrainingSetupScreen() {
   const [starting, setStarting] = useState(false);
   // зачем (макет cards-section «Устно / Вспомни и напиши»): «Карточек 10 / 20 / Все» — по умолчанию 20, как в макете
   const [sizeId, setSizeId] = useState('20');
+  // зачем (ядро): блиц `sec` 30/60/90 (по умолчанию 60), вспомни и напиши `dir` to_target/to_source
+  const [secId, setSecId] = useState('60');
+  const [dirId, setDirId] = useState('to_target');
   const startInFlightRef = useRef(false);
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
 
@@ -463,7 +466,7 @@ export default function FlashcardsTrainingSetupScreen() {
 
   const startTraining = useCallback(async () => {
     if (startInFlightRef.current || !mode || !canStart) return;
-    const route = buildCardsTrainingRoute(mode, selectedDeckIds, mode === 'speaking' || mode === 'recall' ? sizeId : undefined);
+    const route = buildCardsTrainingRoute(mode, selectedDeckIds, mode === 'speaking' || mode === 'recall' || mode === 'truefalse' ? sizeId : undefined, { sec: secId, dir: dirId });
     if (!route) return;
     startInFlightRef.current = true;
     setStarting(true);
@@ -479,7 +482,7 @@ export default function FlashcardsTrainingSetupScreen() {
     } catch {
       resetStartLock();
     }
-  }, [canStart, mode, resetStartLock, router, selectedDeckIds, sizeId]);
+  }, [canStart, mode, resetStartLock, router, selectedDeckIds, sizeId, secId, dirId]);
 
   const emptyLabel = triLang(lang, {
     ru: 'Пока нет карточек для тренировки. Сохрани карточки или добавь набор из сообщества.', uk: 'Поки немає карток для тренування. Збережи картки або додай набір зі спільноти.',
@@ -535,13 +538,31 @@ export default function FlashcardsTrainingSetupScreen() {
       : mode === 'recall'
         ? { ru: 'Пишите по памяти', uk: 'Пишіть із пам’яті', en: 'Write from memory', es: 'Escribe de memoria', 'pt-BR': 'Escreva de memória', vi: 'Viết theo trí nhớ', id: 'Tulis dari ingatan', tr: 'Hafızadan yaz', pl: 'Pisz z pamięci' }
         : { ru: 'Верен ли перевод', uk: 'Чи правильний переклад', en: 'Is the translation right', es: '¿Es correcta la traducción?', 'pt-BR': 'A tradução está certa?', vi: 'Bản dịch có đúng không', id: 'Apakah terjemahannya benar', tr: 'Çeviri doğru mu', pl: 'Czy tłumaczenie jest poprawne' });
-  const sizeOptions = mode === 'speaking' || mode === 'recall'
+  const sizeOptions = mode === 'speaking' || mode === 'recall' || mode === 'truefalse'
     ? [
       { id: '10', label: '10' },
       { id: '20', label: '20' },
       { id: 'all', label: triLang(lang, { ru: 'Все', uk: 'Усі', en: 'All', es: 'Todas', 'pt-BR': 'Todos', vi: 'Tất cả', id: 'Semua', tr: 'Tümü', pl: 'Wszystkie' }) },
     ]
     : null;
+  const extra = mode === 'blitz'
+    ? {
+      title: triLang(lang, { ru: 'Время', uk: 'Час', en: 'Time', es: 'Tiempo', 'pt-BR': 'Tempo', vi: 'Thời gian', id: 'Waktu', tr: 'Süre', pl: 'Czas' }),
+      options: [{ id: '30', label: '30 с' }, { id: '60', label: '60 с' }, { id: '90', label: '90 с' }],
+      value: secId,
+      onChange: setSecId,
+    }
+    : mode === 'recall'
+      ? {
+        title: triLang(lang, { ru: 'Направление', uk: 'Напрям', en: 'Direction', es: 'Dirección', 'pt-BR': 'Direção', vi: 'Hướng', id: 'Arah', tr: 'Yön', pl: 'Kierunek' }),
+        options: [
+          { id: 'to_target', label: triLang(lang, { ru: 'Перевод → фраза', uk: 'Переклад → фраза', en: 'Translation → phrase', es: 'Traducción → frase', 'pt-BR': 'Tradução → frase', vi: 'Bản dịch → cụm', id: 'Terjemahan → frasa', tr: 'Çeviri → ifade', pl: 'Tłumaczenie → fraza' }) },
+          { id: 'to_source', label: triLang(lang, { ru: 'Фраза → перевод', uk: 'Фраза → переклад', en: 'Phrase → translation', es: 'Frase → traducción', 'pt-BR': 'Frase → tradução', vi: 'Cụm → bản dịch', id: 'Frasa → terjemahan', tr: 'İfade → çeviri', pl: 'Fraza → tłumaczenie' }) },
+        ],
+        value: dirId,
+        onChange: setDirId,
+      }
+      : null;
   const sessionCount = sizeOptions ? (sizeId === 'all' ? summary.cardCount : Math.min(Number(sizeId) || 0, summary.cardCount)) : 0;
   const startLabel = sizeOptions && sessionCount > 0 ? `${copy.start} · ${sessionCount}` : copy.start;
   const setupStatus: 'ready' | 'loading' | 'unavailable' | 'empty' | 'exhausted' | 'invalid' = !mode
@@ -588,6 +609,7 @@ export default function FlashcardsTrainingSetupScreen() {
             onToggle={(deckId) => setSelectedDeckIds((current) => toggleDeckSelection(current, deckId))}
             selectedCardCount={summary.cardCount}
             sizeOptions={sizeOptions}
+            extra={extra}
             size={sizeId}
             onSizeChange={setSizeId}
             startLabel={startLabel}

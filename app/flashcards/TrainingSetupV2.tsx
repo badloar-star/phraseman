@@ -39,6 +39,8 @@ type Props = Readonly<{
   sizeOptions: readonly SetupSizeOption[] | null;
   size: string;
   onSizeChange: (id: string) => void;
+  /** Второй сегмент режима: блиц — «Время», вспомни и напиши — «Направление»; null — нет. */
+  extra: Readonly<{ title: string; options: readonly SetupSizeOption[]; value: string; onChange: (id: string) => void }> | null;
   /** Подпись внизу: «Начать» или «Начать · 20». */
   startLabel: string;
   canStart: boolean;
@@ -63,7 +65,7 @@ const copyFor = (lang: Lang) => triLang(lang, {
 });
 
 function TrainingSetupV2Inner(props: Props) {
-  const { lang, title, subtitle, limitLabel, status, resetText, invalidText, decks, countLabelFor, selectedIds, onToggle, selectedCardCount, sizeOptions, size, onSizeChange, startLabel, canStart, hint, onStart, onBack, onFindPacks, onRetry } = props;
+  const { lang, title, subtitle, limitLabel, status, resetText, invalidText, decks, countLabelFor, selectedIds, onToggle, selectedCardCount, sizeOptions, size, onSizeChange, extra, startLabel, canStart, hint, onStart, onBack, onFindPacks, onRetry } = props;
   const g = useLv2Glass();
   const copy = useMemo(() => copyFor(lang), [lang]);
   const showList = status === 'ready' || status === 'loading';
@@ -130,6 +132,12 @@ function TrainingSetupV2Inner(props: Props) {
               <>
                 <KitSectionHead g={g} title={copy.cards} count={0} hideCount />
                 <KitSegment g={g} options={sizeOptions} value={size} onChange={onSizeChange} testIDPrefix="fc-training-setup-size" />
+              </>
+            ) : null}
+            {status === 'ready' && extra ? (
+              <>
+                <KitSectionHead g={g} title={extra.title} count={0} hideCount />
+                <KitSegment g={g} options={extra.options} value={extra.value} onChange={extra.onChange} testIDPrefix="fc-training-setup-extra" />
               </>
             ) : null}
             {hint ? <Text accessibilityLiveRegion="polite" style={[styles.hint, { color: g.secondary }]}>{hint}</Text> : null}

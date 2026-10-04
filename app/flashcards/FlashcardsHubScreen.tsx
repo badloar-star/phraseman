@@ -12,7 +12,6 @@ import ContentWrap from '../../components/ContentWrap';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import FeatureIntroEntry from '../../components/feature_intro/FeatureIntroEntry';
-import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import { usePremium } from '../../components/PremiumContext';
@@ -34,6 +33,7 @@ import {
 } from './marketplace';
 import CardsHubV2 from './CardsHubV2';
 import { useFcReduceMotion } from './PhraseCard';
+import V2Backdrop from '../../components/v2/V2Backdrop';
 import FlashcardsTrainingModeSheet from './FlashcardsTrainingModeSheet';
 import type { CardsTrainingMode } from './training_entry';
 import { primeFlashcardsCollectionCache } from './useCollectionData';
@@ -571,7 +571,15 @@ export default function FlashcardsHubScreen() {
   // зачем (макет: «64», «4», «3 набора», «1 240»): число целиком с разделителем тысяч, без «1,2K»; у «Из видео» — число со словом «наборов» в нужной форме.
   const fmt = (n: number | null) => (n === null ? '' : new Intl.NumberFormat(lang).format(n));
   const packsWord = (n: number): string => {
-    const cat = (() => { try { return new Intl.PluralRules(lang).select(n); } catch (error) { console.warn('[FC-HUB] plural rules failed —', error instanceof Error ? error.message : String(error)); return 'other'; } })(); // guard-ok: лог причины, форма по умолчанию — other
+    // зачем: Intl.PluralRules в Hermes на Android не даёт русских форм («4 наборов»); считаем вручную по правилам ru/uk/pl, остальные языки — «один / другие».
+    const n10 = n % 10;
+    const n100 = n % 100;
+    const slavic = lang === 'ru' || lang === 'uk';
+    const cat = slavic
+      ? (n10 === 1 && n100 !== 11 ? 'one' : n10 >= 2 && n10 <= 4 && (n100 < 12 || n100 > 14) ? 'few' : 'many')
+      : lang === 'pl'
+        ? (n === 1 ? 'one' : n10 >= 2 && n10 <= 4 && (n100 < 12 || n100 > 14) ? 'few' : 'many')
+        : (n === 1 ? 'one' : 'other');
     const forms: Record<string, [string, string, string]> = {
       ru: ['набор', 'набора', 'наборов'], uk: ['набір', 'набори', 'наборів'], pl: ['zestaw', 'zestawy', 'zestawów'],
       en: ['pack', 'packs', 'packs'], es: ['pack', 'packs', 'packs'], 'pt-BR': ['pacote', 'pacotes', 'pacotes'],
@@ -583,16 +591,17 @@ export default function FlashcardsHubScreen() {
   const fmtPacks = (n: number | null) => (n === null ? '' : `${fmt(n)} ${packsWord(n)}`);
   const tiles = [
     { id: 'saved' as const, icon: 'bookmark-outline' as const, title: copy.saved, count: fmt(savedCount), onPress: () => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub' } } as never) },
-    { id: 'mine' as const, icon: 'albums-outline' as const, title: copy.mine, count: fmt(myPackCount), onPress: () => router.push('/flashcards_my_packs' as never) },
-    { id: 'video' as const, icon: 'play-circle-outline' as const, title: copy.videoShort, count: fmtPacks(videoPackCount), onPress: () => router.push('/flashcards_video_packs' as never) },
-    { id: 'community' as const, icon: 'earth-outline' as const, title: copy.communitySegment, count: fmt(communityPackCount), onPress: () => router.push('/flashcards_packs' as never) },
+    { id: 'mine' as const, icon: 'layers-outline' as const, title: copy.mine, count: fmt(myPackCount), onPress: () => router.push('/flashcards_my_packs' as never) },
+    { id: 'video' as const, icon: 'play' as const, title: copy.videoShort, count: fmtPacks(videoPackCount), onPress: () => router.push('/flashcards_video_packs' as never) },
+    { id: 'community' as const, icon: 'globe-outline' as const, title: copy.communitySegment, count: fmt(communityPackCount), onPress: () => router.push('/flashcards_packs' as never) },
   ];
   const reduceMotion = useFcReduceMotion();
   const windowHeight = useWindowDimensions().height;
 
   return (
     <View style={[styles.screen, { backgroundColor: g.bg }]}>
-      <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} locations={[0, 0.58, 1]} style={StyleSheet.absoluteFill} />
+      {/* зачем: фон хаба как в макете — пятна цвета темы (один статичный слой), а не плоская заливка */}
+      <V2Backdrop />
       <FeatureIntroEntry id="cards_hub_first_visit" enabled={accessResolved && !modeSheetVisible && openingPackId === null} />
       <View style={[styles.safe, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
         <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />

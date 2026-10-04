@@ -101,8 +101,11 @@ export function buildRows(matrixRows, scan, existingRows) {
   const rows = [];
   const addRow = (fresh) => {
     const old = byId.get(fresh.id);
+    // зачем (владелец 04.10): строка, переведённая на новый макет вручную (mockup_pinned), не возвращается к макету матрицы при пересборке
     rows.push({
       ...fresh,
+      ...(old?.mockup_pinned ? { mockup: old.mockup, mockup_pinned: old.mockup_pinned } : {}),
+      ...(old?.blocked_reason ? { blocked_reason: old.blocked_reason } : {}),
       evidence: old?.evidence ?? null,
       evidence_at: old?.evidence_at ?? null,
       evidence_sha256: old?.evidence_sha256 ?? null,
@@ -170,7 +173,7 @@ async function main() {
     generatedAt: new Date().toISOString(),
     matrix: MATRIX,
     mockupServer: SERVER,
-    statuses: ['pending', 'match', 'diff', 'no_mockup', 'removed_by_owner'],
+    statuses: ['pending', 'match', 'diff', 'no_mockup', 'removed_by_owner', 'blocked'],
     rows,
   };
   fs.writeFileSync(REGISTRY, JSON.stringify(registry, null, 2) + '\n');

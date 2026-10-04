@@ -127,6 +127,14 @@ test('реестр: строки без макета в папке — no_mockup
       assert.ok(row.reviewed_by, `${row.id}: match без reviewed_by`);
       continue;
     }
+    if (row.status === 'blocked') {
+      assert.ok(row.blocked_reason, `${row.id}: blocked без причины`);
+      continue;
+    }
+    if (row.mockup_pinned) {
+      assert.equal(row.status, 'pending', `${row.id}: переведённая строка стартует pending`);
+      continue;
+    }
     if (row.status === 'removed_by_owner') {
       assert.ok(row.removed_reason, `${row.id}: removed_by_owner без причины`);
       continue;

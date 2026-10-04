@@ -87,6 +87,9 @@ import PressableHybrid from './PressableHybrid';
 import { LUM } from '../constants/motionHybrid';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useKeyboardBottomInset } from './keyboardAvoidance';
+import { useRouter } from 'expo-router';
+import { accountSwitchRequiredCopy, SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM } from '../app/account_switch_copy';
+import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // зачем: владелец 2026-08-22 — было 45 с: почти минута на занятой кнопке без
@@ -228,6 +231,9 @@ function RegistrationPromptModal({
   const [inlineError, setInlineError] = useState<string | null>(null);
   // Провайдер последней неуспешной попытки — для кнопки «Повторить» под ошибкой.
   const [retryProvider, setRetryProvider] = useState<AuthProviderId | null>(null);
+  // зачем (§127): отказ account_switch_required — вместо «Повторить» одна кнопка, сразу открывающая смену аккаунта.
+  const [switchAccountOffered, setSwitchAccountOffered] = useState(false);
+  const router = useRouter();
   // Recovery hint: каким аккаунтом входить (маска email с сервера).
   const [recoveryHint, setRecoveryHint] = useState<AuthRecoveryHint | null>(null);
   const [recoveryPanelVisible, setRecoveryPanelVisible] = useState(false);
@@ -360,6 +366,7 @@ function RegistrationPromptModal({
     }
     setInlineError(null);
     setRetryProvider(null);
+    setSwitchAccountOffered(false);
     setRecoveryPanelVisible(false);
     setRecoveryOfferedAfterMismatch(false);
     setRecoveryFlowState({ stage: 'idle' });
@@ -1125,20 +1132,10 @@ function RegistrationPromptModal({
           if (__DEV__) console.warn('[RegistrationPromptModal] sign-in error', result.error);
           if (result.error === 'account_switch_required') {
             setRetryProvider(null);
-            showInlineError(
-              triLang(lang, { ru: 'Нужно подтвердить смену аккаунта', uk: 'Потрібно підтвердити зміну акаунта', en: 'Confirm the account switch', es: 'Confirma el cambio de cuenta', 'pt-BR': 'Confirme a troca de conta', vi: 'Xác nhận đổi tài khoản', id: 'Konfirmasi pergantian akun', tr: 'Hesap değişikliğini onayla', pl: 'Potwierdź zmianę konta' }),
-              triLang(lang, {
-                ru: 'Локальные данные сохранены. Сначала выбери «Сменить аккаунт» и подтверди безопасное сохранение или очистку данных, затем войди снова.',
-                uk: 'Локальні дані збережено. Спочатку вибери «Змінити акаунт» і підтвердь безпечне збереження або очищення даних, потім увійди знову.',
-                en: 'Local data is preserved. Choose “Switch account” first and confirm the safe save or cleanup, then sign in again.',
-                es: 'Los datos locales están guardados. Elige primero «Cambiar cuenta» y confirma el guardado o la limpieza segura; después vuelve a entrar.',
-                'pt-BR': 'Os dados locais foram preservados. Primeiro escolha “Trocar conta” e confirme o salvamento ou a limpeza segura; depois entre novamente.',
-                vi: 'Dữ liệu cục bộ đã được giữ nguyên. Trước tiên hãy chọn “Đổi tài khoản” và xác nhận lưu hoặc dọn dẹp an toàn, rồi đăng nhập lại.',
-                id: 'Data lokal tetap tersimpan. Pilih “Ganti akun” dahulu dan konfirmasikan penyimpanan atau pembersihan aman, lalu masuk lagi.',
-                tr: 'Yerel veriler korundu. Önce “Hesap değiştir”i seçip güvenli kaydetme veya temizlemeyi onayla, ardından tekrar giriş yap.',
-                pl: 'Dane lokalne zostały zachowane. Najpierw wybierz „Zmień konto” i potwierdź bezpieczny zapis lub czyszczenie, a potem zaloguj się ponownie.',
-              }),
-            );
+            // зачем (§127): простым языком + кнопка «Сменить аккаунт» (рендер ниже) вместо инструкции «Настройки → …».
+            const switchCopy = accountSwitchRequiredCopy(lang);
+            setSwitchAccountOffered(true);
+            showInlineError(switchCopy.title, switchCopy.body);
             return;
           }
           if (result.error === 'recovery_provider_mismatch') {
@@ -1549,6 +1546,24 @@ function RegistrationPromptModal({
             >
               <Text style={[styles.laterText, { color: glass.accentInk, fontSize: f.body }]}>
                 {triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
+              </Text>
+            </Pressable>
+          )}
+
+          {!!inlineError && switchAccountOffered && loadingProvider === null && !recoverySessionActive && (
+            <Pressable
+              testID="auth-switch-account"
+              onPress={() => {
+                // зачем (§127): окно входа закрываем и сразу открываем «Сменить аккаунт?» в Настройках — без лишних тапов.
+                console.log('[AUTH-SWITCH-OFFER] tap → settings switch dialog');
+                navigateAfterModalClose(onClose, () => router.push({ pathname: '/(tabs)/settings', params: { [SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM]: '1' } }));
+              }}
+              accessibilityRole="button"
+              accessibilityLabel={accountSwitchRequiredCopy(lang).action}
+              style={[styles.laterButton, { borderRadius: 12, marginTop: 8, backgroundColor: glass.accent }]}
+            >
+              <Text style={[styles.laterText, { color: glass.accentInk, fontSize: f.body }]}>
+                {accountSwitchRequiredCopy(lang).action}
               </Text>
             </Pressable>
           )}

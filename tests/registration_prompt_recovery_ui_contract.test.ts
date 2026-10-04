@@ -88,7 +88,12 @@ describe('RegistrationPromptModal recovery UI contract', () => {
   it('renders account-switch-required as an explicit safe-switch decision, not a generic retry', () => {
     expect(source).toContain("result.error === 'account_switch_required'");
     expect(source).toContain('setRetryProvider(null)');
-    expect(source).toContain('Локальные данные сохранены');
+    // зачем (§127, 04.10): текст переписан простым языком (app/account_switch_copy.ts) — «прогресс на месте»
+    // и одна кнопка «Сменить аккаунт», сразу открывающая окно смены в Настройках, вместо инструкции.
+    expect(source).toContain('accountSwitchRequiredCopy(lang)');
+    expect(source).toContain('testID="auth-switch-account"');
+    const copySource = fs.readFileSync(path.join(__dirname, '..', 'app', 'account_switch_copy.ts'), 'utf8');
+    expect(copySource).toContain('Твой прогресс на месте');
     expect(onboardingSource).toContain("code === 'account_switch_required'");
     expect(onboardingSource).toContain('Локальный прогресс сохранён');
     expect(onboardingSource).not.toContain('return ENABLE_DEV_TOOLS && code ? `${human}\\n${code.slice(0, 120)}` : human;');

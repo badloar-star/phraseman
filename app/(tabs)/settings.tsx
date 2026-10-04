@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Reanimated from 'react-native-reanimated';
 import { Image } from 'expo-image';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useTabNav } from '../TabContext';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -51,6 +51,7 @@ import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { useGlassAlert } from '../../hooks/use-glass-alert';
 import GlassInlineAlert from '../../components/account/GlassInlineAlert';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
+import { PLUS_TRANSFER_SWITCH_NOTICE_ENABLED, plusTransferSwitchNotice, SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM } from '../account_switch_copy';
 import { useReferralRoulettePolicy } from '../referral_roulette_flag';
 import { getClaimableReferralState } from '../referral_vip';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
@@ -474,6 +475,19 @@ export default function SettingsMain() {
     if (__DEV__) console.log(`[ACC-MUT] switch_stage ${prev}→${next}`); // guard-ok: под __DEV__
     setSwitchAccountStageRaw(next);
   }, []);
+  // зачем (§127): кнопка «Сменить аккаунт» из окна входа (отказ account_switch_required) открывает это окно сразу,
+  // без поиска пункта в Настройках. Параметр снимаем, чтобы окно не открывалось повторно при возврате на вкладку.
+  const openSwitchParam = useLocalSearchParams<{ [SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM]?: string }>()[SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM];
+  useEffect(() => {
+    if (openSwitchParam !== '1') return;
+    if (switchStageRef.current !== 'idle') {
+      console.log(`[AUTH-SWITCH-OFFER] settings: param ignored, stage=${switchStageRef.current}`);
+    } else {
+      console.log('[AUTH-SWITCH-OFFER] settings: open switch dialog from sign-in offer');
+      setSwitchAccountStage('confirm');
+    }
+    router.setParams({ [SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM]: undefined });
+  }, [openSwitchParam, router, setSwitchAccountStage]);
   // зачем (Account V2, 8L): защита от двойного тапа на время проверки невыгруженных карточек
   // перед «Сменить без сохранения» (стадия в это время ещё 'idle').
   const unsavedCardsCheckBusyRef = useRef(false);
@@ -1561,6 +1575,12 @@ export default function SettingsMain() {
                 'Obecny postęp pozostanie przypisany do konta, na którym jesteś teraz zalogowany. Aby wrócić, zaloguj się na nie ponownie.',
               )}
             </Text>
+            {PLUS_TRANSFER_SWITCH_NOTICE_ENABLED && isPremium ? (
+              // зачем (§127): при активном Plus — что с ним будет (Transfer в RevenueCat); только вместе с переносом AccountV2.
+              <Text testID="settings-switch-plus-notice" style={{ color: t.textPrimary, fontSize: f.body, lineHeight: 22, fontWeight: '600', marginBottom: 8 }}>
+                {plusTransferSwitchNotice(lang)}
+              </Text>
+            ) : null}
             <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: 20 }}>
               {L(
                 'Перед выходом надёжно сохраним прогресс. Если соединение не ответит — отменим смену аккаунта, чтобы ничего не потерялось.',

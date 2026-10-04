@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { restoreBanFromIdentityHash } from './banned_identity_hash';
 import { createHash, randomBytes, timingSafeEqual } from 'crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
@@ -2346,10 +2347,20 @@ export const authEnsureStableLink = onCall({
   // зачем (M-1 HIGH-1): необязательный nonce из authStampAnonOwnership (клиент 2.0+).
   const anonMergeNonce = parseAnonMergeNonce(request.data?.anonMergeNonce);
   logDeviceHeaderPresence('authEnsureStableLink', request.rawRequest?.headers);
-  return ensureStableLinkForAuth(
+  const linked = await ensureStableLinkForAuth(
     db, authUid, request.data?.stableId, signInProvider, metadata, anonMergeNonce,
     authTimeMsFromToken(request.auth.token),
   );
+  // зачем (PM-252, координатор 04.10): забаненный удалил аккаунт и вошёл тем же Google/Apple — бан возвращается.
+  // Только для входа с почтой: одно чтение документа по id; сбой проверки вход не ломает (лог [BAN-HASH]).
+  if (signInProvider === 'google.com' || signInProvider === 'apple.com') {
+    await restoreBanFromIdentityHash(db, {
+      stableUid: linked.stableUid,
+      email: request.auth.token?.email,
+      provider: signInProvider,
+    });
+  }
+  return linked;
 });
 
 // ── Recovery hint: каким аккаунтом входить (маскированный email) ─────────────

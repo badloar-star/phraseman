@@ -18,6 +18,7 @@ const RESIDENT_UID_PREFIX = 'res_';
 // зачем: id контактной записи считается ТЕМ ЖЕ хешем, что и при записи —
 // иначе удаление промахнётся мимо документа и данные тихо переживут запрос.
 import { emailContactDocId } from './email_contacts';
+import { BANNED_IDENTITY_HASHES, bannedEmailHashId, bannedUidHashId, normalizeBanEmail } from './banned_identity_hash';
 // Обратный индекс исходящих заявок в друзья — без него удаление аккаунта
 // перебирало всю коллекцию users (см. shared/friend_requests_index_contract.ts).
 import {
@@ -1413,11 +1414,12 @@ export async function removeFromSpireGroups(
  * PM-252 п.1 (решение координатора 04.10): запись бана с uid заменяется хешем идентификатора — только факт бана
  * (защита от повторной регистрации), без имени и текста причины. Исходный документ удаляется.
  */
-export const BANNED_IDENTITY_HASHES = 'banned_identity_hashes';
+export { BANNED_IDENTITY_HASHES };
 export async function replaceBanWithHash(
   db: admin.firestore.Firestore,
   identity: string,
   stats: DeleteStats,
+  emails: string[] = [],
 ): Promise<void> {
   const banRef = db.collection('banned_users').doc(identity);
   stats.queriesRun += 1;
@@ -1426,16 +1428,17 @@ export async function replaceBanWithHash(
   const data = snap.data() ?? {};
   const bannedAtMs = Number(data.bannedAtMs ?? data.createdAtMs ?? 0) || Date.now();
   const batch = db.batch();
-  batch.set(db.collection(BANNED_IDENTITY_HASHES).doc(hashId(identity)), {
-    schema: 'banned-identity-hash-v1',
-    bannedAtMs,
-    source: 'account_delete',
-    hashedAtMs: Date.now(),
-  }, { merge: true });
+  const hashRecord = { schema: 'banned-identity-hash-v1', bannedAtMs, source: 'account_delete', hashedAtMs: Date.now() };
+  batch.set(db.collection(BANNED_IDENTITY_HASHES).doc(bannedUidHashId(identity)), hashRecord, { merge: true });
+  // зачем (координатор 04.10, п.2): после пересоздания uid новый — повторную регистрацию ловит только хеш email.
+  const emailHashes = [...new Set(emails.map(normalizeBanEmail).filter(Boolean))];
+  for (const email of emailHashes) {
+    batch.set(db.collection(BANNED_IDENTITY_HASHES).doc(bannedEmailHashId(email)), { ...hashRecord, kind: 'email' }, { merge: true });
+  }
   batch.delete(banRef);
   await batch.commit();
   stats.docsDeleted += 1;
-  console.log('[ACCOUNT-DELETE] banned_users replaced with identity hash', JSON.stringify({ bannedAtMs }));
+  console.log('[ACCOUNT-DELETE] banned_users replaced with identity hash', JSON.stringify({ bannedAtMs, emailHashes: emailHashes.length }));
 }
 
 async function anonymizeActivityLikeStats(
@@ -1800,7 +1803,7 @@ export async function executeAccountDeletion(
       for (const identity of identities) await removeFromSpireGroups(db, identity, stats);
     });
     await runDeleteStage(ctx, stats, 'banned_users_hash', async () => {
-      for (const identity of identities) await replaceBanWithHash(db, identity, stats);
+      for (const identity of identities) await replaceBanWithHash(db, identity, stats, emails);
     });
     await runDeleteStage(ctx, stats, 'friend_gift_daily_limits', async () => {
       for (const identity of identities) {

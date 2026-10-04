@@ -12,6 +12,7 @@ import {
   removeFromSpireGroups,
   replaceBanWithHash,
 } from './account_delete';
+import { bannedEmailHashId } from './banned_identity_hash';
 
 const STABLE = 'stable-123';
 const AUTH = 'auth-456';
@@ -147,4 +148,13 @@ test('a ban keeps only an identity hash — no uid, name or reason text', async 
   // Повтор задачи удаления безопасен: бана уже нет — ничего не делаем.
   await replaceBanWithHash(db, STABLE, stats());
   expect(store[BANNED_IDENTITY_HASHES].size).toBe(1);
+});
+
+test('a deleted ban also leaves an email hash so the same Google/Apple login is caught after re-registration', async () => {
+  const { db, store } = makeDb({ banned_users: { [STABLE]: { uid: STABLE, bannedAtMs: 7 } } });
+  await replaceBanWithHash(db, STABLE, stats(), ['Ann@Example.com', 'ann@example.com']);
+  const ids = [...store[BANNED_IDENTITY_HASHES].keys()];
+  expect(ids).toHaveLength(2);
+  expect(ids).toContain(bannedEmailHashId('ann@example.com'));
+  expect(JSON.stringify([...store[BANNED_IDENTITY_HASHES].values()])).not.toMatch(/ann@|stable-123/i);
 });

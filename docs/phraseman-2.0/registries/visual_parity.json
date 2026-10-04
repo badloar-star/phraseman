@@ -16473,9 +16473,9 @@
       "anim_notes": [
         "replay-control"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/overlays-041.png",
+      "evidence_at": "2026-10-04T17:36:07.655Z",
+      "evidence_sha256": "4174b410443242f91bc38782e44509ffb02bff48a11be0e5953434673d802232",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,

@@ -19,7 +19,7 @@ import * as Speech from 'expo-speech';
 
 import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
-import { VoiceEqualizer, type VoiceEqualizerRef } from '../app/voice_equalizer';
+import { VOICE_EQUALIZER_ROW_H, VoiceEqualizer, type VoiceEqualizerRef } from '../app/voice_equalizer';
 import {
   SPEECH_PRONUNCIATION_PASS_THRESHOLD,
   scoreSpeechPronunciationTranscript,
@@ -2258,7 +2258,6 @@ export function SpeakingPanel({
     if (!renderInlineSurface) return null;
     const inlineScale = inlineMetrics.scale;
     const scaled = (base: number, floor: number) => Math.max(floor, Math.round(base * inlineScale));
-    const isLive = status === 'requesting' || status === 'listening';
     const canOpenSettings = status === 'denied';
     return (
       <View
@@ -2304,16 +2303,22 @@ export function SpeakingPanel({
           </Text>
         )}
 
-        {isLive && (
+        {/* зачем (§126, жалоба «строка микрофона прыгает» в «Моих ошибках», 04.10): эквалайзер (52 pt)
+            появлялся только во время записи, а спиннер — только при проверке, и кнопка «Удерживай и
+            говори» под карточкой ездила на эту высоту. Место держим всегда: в покое — спокойный
+            эквалайзер (он сам не схлопывается в ноль), при проверке — спиннер в той же высоте. */}
+        {!showResult && (status === 'scoring' ? (
+          <View style={{ height: VOICE_EQUALIZER_ROW_H, alignItems: 'center', justifyContent: 'center' }}>
+            <ActivityIndicator color={theme.accent} />
+          </View>
+        ) : (
           <VoiceEqualizer
             ref={equalizerRef}
             active={status === 'listening'}
             color={theme.accent}
             idleColor={theme.textMuted}
           />
-        )}
-
-        {status === 'scoring' && <ActivityIndicator color={theme.accent} />}
+        ))}
 
         {!showResult && (
           <Text

@@ -43,6 +43,8 @@ type VoiceEqualizerProps = {
 
 const MIN_BAR_H = 5; // resting height so the row never collapses to nothing
 const MAX_BAR_H = 44; // tallest a bar can grow
+// зачем (§126, 04.10): высота строки наружу — SpeakingPanel держит ровно это место под эквалайзер/спиннер, чтобы кнопка не прыгала.
+export const VOICE_EQUALIZER_ROW_H = MAX_BAR_H + 8;
 
 /**
  * Императивный setSample-путь: без свежих сэмплов дольше этого окна эквалайзер
@@ -252,7 +254,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 4,
-    height: MAX_BAR_H + 8,
+    height: VOICE_EQUALIZER_ROW_H,
   },
   bar: {
     width: 4,

@@ -218,7 +218,9 @@ test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchan
       hold: '92c92d8b1e7d00de8c0738f5455514ea338924ad5f75e495d6502977a5b7a9e9',
       // зачем (03.10): SpeakingPanel менялся законно — PM-229 db985607f (причины в немых catch) и D139 997f56dfe
       // (шкала текста 16/13); логика записи/удержания не тронута (hold и slot — прежние).
-      panel: '45075aa9df43c1bb8f14bfc4ad84d5e0ef6f4b4e81ad437015e86dc07d2a3963',
+      // зачем (04.10, §126 «строка микрофона прыгает»): в inline-карточке место под эквалайзер/спиннер держится
+      // всегда (VOICE_EQUALIZER_ROW_H) — только раскладка; запись/удержание/оценка не тронуты.
+      panel: '19441b78ec7aa496b56aee1bc2bc24e245ac108acaeed56d140c0aaaac68a04d',
       slot: 'ef4f0bab5e4bd50af4c9855af1e24e2084bc1b04756de016e368cbd2bd071ae7',
       stars: '38631c90662c00baf57ee9b9e129d6049854f6799bd13fe05e1c9587fc3e6d60',
       logic: '3b4d1528d7223cb1ca37f52e0e2304b55552c86a7a3102cad6657a00cd4084ef',

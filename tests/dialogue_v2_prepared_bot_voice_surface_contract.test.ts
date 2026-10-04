@@ -22,6 +22,11 @@ describe('Dialogue V2 prepared bot voice surface boundary', () => {
     expect(source).toContain('resolveCurrentDialogueV2PreparedBotVoice');
     expect(source).toContain('result.preparedBotVoiceSelection');
     expect(source).not.toContain('dialogueV2BotVoiceClaim');
-    expect(source).not.toMatch(/speech|tts|openai/i);
+    // зачем (04.10): §SPEECH-NA (83300f8d5) добавил текст «распознавание речи недоступно» — это подпись
+    // интерфейса, а не генерация голоса. Её и комментарии вычищаем; синтез/TTS/OpenAI по-прежнему запрещены.
+    const voiceRelevant = source
+      .split(/\r?\n/).map((line) => line.replace(/\/\/.*$/, '')).join('\n')
+      .replace(/speechUnavailableOnDeviceText|'\.\/speech_device_availability'/g, '');
+    expect(voiceRelevant).not.toMatch(/speech|tts|openai/i);
   });
 });

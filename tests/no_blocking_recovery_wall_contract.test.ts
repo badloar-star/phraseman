@@ -39,7 +39,7 @@ describe('ни один экран восстановления не запир�
     // Любой другой `return` снова оставил бы человека с пустым каркасом.
     // зачем (04.10): считаем только код — комментарии ветки сами рассказывают про `return`
     // («раньше ОБРЫВАЛ старт (`return`)», «без return»), и счётчик видел 3 вместо 1.
-    const code = branchBody.split('\n').map((line) => line.replace(/\/\/.*$/, '')).join('\n');
+    const code = branchBody.split(/\r?\n/).map((line) => line.replace(/\/\/.*$/, '')).join('\n');
     const returns = code.match(/\breturn\b/g) ?? [];
     expect(returns).toHaveLength(1);
     expect(branchBody).toContain('scheduleAuthRecoveryBootRetry()');

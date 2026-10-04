@@ -75,7 +75,9 @@ describe('отключённое состояние на всех голосов
 
   it('«Мои ошибки»: голосовое задание превращается в печать', () => {
     const source = read('app', 'mistake_practice_session.tsx');
-    expect(source).toContain("entry?.exercise.renderer === 'speech' && speechNa ? 'typing'");
+    // зачем (04.10): к недоступному распознавателю добавился ручной пропуск голоса (speechSkipped) — печать
+    // включается в обоих случаях.
+    expect(source).toMatch(/entry\?\.exercise\.renderer === 'speech' && \(speechNa(?: \|\| speechSkipped)?\) \? 'typing'|entry\?\.exercise\.renderer === 'speech' && speechNa \? 'typing'/);
     expect(source).toContain("renderer === 'speech' ? (");
     expect(source).not.toContain("entry.exercise.renderer === 'speech' ? (");
   });

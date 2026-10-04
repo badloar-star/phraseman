@@ -1,6 +1,8 @@
 # Task packet: сверка экранов с макетами 2.0 глазами + пометки чек-листа
 
 Governance-ID: TG-BFEEB3D21569
+Governance-ID: TG-36731001AF58
+Governance-ID: TG-C1CDB07A6233
 Status: In progress
 Owner: сессия «Дизайн» (по поручению координатора, решение владельца: весь перенос экранов — «Дизайн»)
 Related epic/enabler: STATE_CHECKLIST_2026-09-30, INBOX §DESIGN-VIS

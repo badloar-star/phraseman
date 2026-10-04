@@ -93,6 +93,11 @@ export function DialogueV2CatalogueSection({
     <View testID="dialogue-v2-catalogue-section" style={{ gap: 13, marginTop: 20 }}>
       {groups.map(({ world, items: worldItems }) => {
         const expanded = activeWorldId === world.id;
+        // зачем (сверка с dialogs.html A1–A2, 04.10): карточка категории по макету несёт «пройдено N / всего M»
+        // и полоску — оба числа уже есть в статусах строк, сеть не нужна.
+        const doneCount = worldItems.filter((item) => item.status === 'done').length;
+        const totalCount = worldItems.length;
+        const progress = totalCount > 0 ? doneCount / totalCount : 0;
 
         return (
           <View
@@ -104,7 +109,7 @@ export function DialogueV2CatalogueSection({
               testID={`dialogue-v2-world-toggle-${world.id}`}
               accessibilityRole="button"
               accessibilityState={{ expanded }}
-              accessibilityLabel={world.title}
+              accessibilityLabel={`${world.title}, ${doneCount}/${totalCount}`}
               onPress={() => toggleWorld(world.id)}
               variant="flat"
               style={{ flexDirection: 'row', alignItems: 'center', gap: 16, minHeight: 55 }}
@@ -117,8 +122,15 @@ export function DialogueV2CatalogueSection({
                   {world.title}
                 </Text>
               </View>
+              <Text testID={`dialogue-v2-world-count-${world.id}`} style={{ color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700', fontVariant: ['tabular-nums'] }} maxFontSizeMultiplier={1.3}>
+                {doneCount}
+                <Text style={{ color: glass.secondary, fontSize: 13, fontWeight: '500' }}>/{totalCount}</Text>
+              </Text>
               <Ionicons name={expanded ? 'chevron-up' : 'chevron-forward'} size={20} color={glass.secondary} />
             </PressableScale>
+            <View style={{ height: 6, borderRadius: 3, backgroundColor: glass.line, marginTop: 12, overflow: 'hidden' }}>
+              <View style={{ height: 6, minWidth: 6, width: `${Math.round(progress * 100)}%`, borderRadius: 3, backgroundColor: glass.text }} />
+            </View>
 
             {expanded ? (
               <View style={{ marginTop: 18, gap: V2.gapTight }}>

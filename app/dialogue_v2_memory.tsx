@@ -12,6 +12,7 @@ import {
 } from './dialogue_v2_memory_client';
 import {
   fetchReleasedDialogueV2Catalogue,
+  peekDialogueV2Catalogue,
   type DialogueV2CatalogueReleaseEnvelope,
 } from './dialogue_v2_catalogue_client';
 import { triLang } from '../constants/i18n';
@@ -152,7 +153,11 @@ export default function DialogueV2MemoryRoute() {
     return cached ? { kind: 'available', memory: cached } : { kind: 'loading' };
   });
   const [retryTick, setRetryTick] = useState(0);
-  const [labels, setLabels] = useState<CatalogueLabels>(() => catalogueLabels(null, 'en'));
+  // зачем (правило «мгновенное открытие», 04.10): названия сцен — сразу из локального каталога (встроенный
+  // снимок), а не английская заглушка с подменой после сети.
+  const [labels, setLabels] = useState<CatalogueLabels>(() => (
+    supportedTarget(studyTarget) ? catalogueLabels(peekDialogueV2Catalogue(studyTarget), studyTarget) : catalogueLabels(null, 'en')
+  ));
   const [clearing, setClearing] = useState(false);
   // зачем (чек-лист 2.0, нативные Alert → стекло): подтверждение — стеклянное окно, отказ — строка
   // под кнопкой, а не системный диалог поверх стеклянного экрана.

@@ -339,8 +339,8 @@
 
 | # | Раздел | Состояние | Статус | Файл / коммит |
 |---|---|---|---|---|
-| 1 | Карта — вариант А «Лента-змейка» | Лента урока 1 · занятия 5–11 | ✅ | `components/learning-v2/LearningV2PulseCourse.tsx`; `components/learning-v2/LearningV2Glass.tsx` — вариант А переведён на токены LG (узлы: пройден/текущий/следующий/закрыт, дужка, звёзды 3 шт., плашки, «Все уроки»/«Текущая»); в приложении сейчас не подключён (в lessons.tsx боевой вариант Б) |
-| 2 | Карта — вариант А «Лента-змейка» | Текущий узел ушёл с экрана — кнопка «Текущая» | ✅ | `components/learning-v2/LearningV2PulseCourse.tsx`; `components/learning-v2/LearningV2Glass.tsx` — вариант А переведён на токены LG (узлы: пройден/текущий/следующий/закрыт, дужка, звёзды 3 шт., плашки, «Все уроки»/«Текущая»); в приложении сейчас не подключён (в lessons.tsx боевой вариант Б) |
+| 1 | Карта — вариант А «Лента-змейка» | Лента урока 1 · занятия 5–11 | ➖ | вариант А «Лента-змейка» удалён как мёртвая карта (0855385c2); боевая карта — вариант Б `components/learning-v2/LearningV2ChaptersCourse.tsx` — [04.10 «Дизайн», PM-034 перепривязка] |
+| 2 | Карта — вариант А «Лента-змейка» | Текущий узел ушёл с экрана — кнопка «Текущая» | ➖ | вариант А удалён (0855385c2), кнопка «Текущая» жила только в нём; боевая карта — вариант Б — [04.10 «Дизайн», PM-034 перепривязка] |
 | 3 | Карта — вариант Б «Главы» | Урок 1 · глава 2 раскрыта | ✅ | `components/learning-v2/LearningV2ChaptersCourse.tsx`; `components/learning-v2/LearningV2Glass.tsx` — вариант Б: карточки глав (плитка 55, «N/8», дорожка), раскрытая глава — сетка узлов 4 в ряд со звёздами; логика выбора урока/глав не менялась |
 | 4 | Карта — вариант В «Список уроков» | Курс · урок 1 раскрыт | ➖ | `components/learning-v2/horizons/LearningV2Horizons.tsx` — вариант В «Список уроков» в приложении не подключён и не перерисован (боевой список — «Все уроки» вариант Б + LessonsListGlass) | — не применимо: владелец выбрал вариант Б
 | 5 | Состояния карты, первый вход, «Все уроки», тосты | Легенда состояний узла | ✅ | `components/learning-v2/LearningV2ChaptersCourse.tsx`; `components/learning-v2/LearningV2Glass.tsx` — состояния узла (пройден/текущий/следующий/закрыт/Plus, кубок) задаёт lv2NodePaint; отдельного экрана-легенды в приложении нет — это справка макета |
@@ -403,7 +403,7 @@
 | 62 | Окна внутри занятия | Не сохранилось | ✅ | `components/learning-v2/LearningV2NewWordEncounterOverlay.tsx`; `components/learning-v2/LearningV2Glass.tsx` — новое слово: плита стекла, затемнение фона, «Новое слово · N из M», определение 17/24, подсказка-пульс, «Продолжить», статус сохранения — карточка-пояснение (галочка/лампочка) |
 | 63 | Окна внутри занятия | Карман слов | ✅ | `components/learning-v2/LearningV2WordPocketOverlayV1.tsx`; `components/learning-v2/LearningV2Glass.tsx` — карман слов: заголовок 34/700, «Открыто: N», строки-карточки 88 dp со звуком и закладкой, пусто |
 | 64 | Окна внутри занятия | Карман слов — пусто | ✅ | `components/learning-v2/LearningV2WordPocketOverlayV1.tsx`; `components/learning-v2/LearningV2Glass.tsx` — карман слов: заголовок 34/700, «Открыто: N», строки-карточки 88 dp со звуком и закладкой, пусто |
-| 65 | Окна внутри занятия | Попытки закончились | ✅ | `components/session_attempts/SessionAttemptsRecoveryModal.tsx`; `components/learning-v2/LearningV2Glass.tsx` — «Попытки закончились»: три погасших сердца, заголовок 25/800, кнопки-пилюли (главная — за руны), «Завершить» тихой кнопкой |
+| 65 | Окна внутри занятия | Попытки закончились | ➖ | окно «Попытки закончились» с восстановлением удалено вместе с подарочным путём попыток (ef0eea570); исчерпание отыгрывается как неверный ответ в `app/learning_v2_direct_session_player_v1.tsx` — [04.10 «Дизайн», PM-034 перепривязка] |
 | 66 | Окна внутри занятия | Тост первого сохранения | ✅ | `components/learning-v2/LearningV2NewWordEncounterOverlay.tsx`; `components/learning-v2/LearningV2Glass.tsx` — отдельного тоста «первого сохранения» в приложении нет — его роль играет статус сохранения в окне слова (карточка-пояснение с галочкой); новый тост не выдумывал |
 | 67 | Окна внутри занятия | Скелет — пока подтверждается энергия | ✅ | `app/learning-v2/session/[id].tsx`; `components/learning-v2/LearningV2Glass.tsx` — скелет ожидания энергии: фон/кнопка/дорожка на токенах, добавлена заглушка пилюли попыток; геометрия шапки как у плеера |
 | 68 | Окна внутри занятия | Сессия недоступна | ✅ | `app/learning_v2_direct_session_player_v1.tsx`; `components/learning-v2/LearningV2Glass.tsx` — «Сессия недоступна»: облако, заголовок 22/700, «Назад» контурной кнопкой |
@@ -413,7 +413,7 @@
 | 72 | Итог занятия — единый экран завершения | Экзамен урока — следующий открыт | ✅ | `components/learning-v2/horizons/HorizonSessionResult.tsx`; `components/learning-v2/horizons/HorizonMistakeReview.tsx`; `components/learning-v2/LearningV2Glass.tsx` — обвязка итога (шапка, карточка отзыва, разбор ошибок) на токенах LG; анимированное ядро ResultsSequence — общее для приложения, не перерисовано (нет карточки «верно/ошибок/точность» и блока «Что вы теперь умеете» как в макете) | — [30.09 закрыто] HorizonResultGlass / карта Б (413fd2538, bd9774765)
 | 73 | Итог занятия — единый экран завершения | Экзамен урока — следующий ещё в работе | ✅ | `components/learning-v2/horizons/HorizonSessionResult.tsx`; `components/learning-v2/horizons/HorizonMistakeReview.tsx`; `components/learning-v2/LearningV2Glass.tsx` — обвязка итога (шапка, карточка отзыва, разбор ошибок) на токенах LG; анимированное ядро ResultsSequence — общее для приложения, не перерисовано (нет карточки «верно/ошибок/точность» и блока «Что вы теперь умеете» как в макете) | — [30.09 закрыто] HorizonResultGlass / карта Б (413fd2538, bd9774765)
 | 74 | Итог занятия — единый экран завершения | Повтор — без повторного начисления | ✅ | `components/learning-v2/horizons/HorizonSessionResult.tsx`; `components/learning-v2/horizons/HorizonMistakeReview.tsx`; `components/learning-v2/LearningV2Glass.tsx` — обвязка итога (шапка, карточка отзыва, разбор ошибок) на токенах LG; анимированное ядро ResultsSequence — общее для приложения, не перерисовано (нет карточки «верно/ошибок/точность» и блока «Что вы теперь умеете» как в макете) | — [30.09 закрыто] HorizonResultGlass / карта Б (413fd2538, bd9774765)
-| 75 | Анимации — живые | Прохождение узла + полёт монет | ✅ | `components/LearningV2RuneFlight.tsx`; `components/LearningV2MapNode.tsx` — полёт наград есть (без палитры); переход узла в «пройден» живёт только на неподключённой карте А, у боевой карты Б анимации узла нет | — [30.09 закрыто] HorizonResultGlass / карта Б (413fd2538, bd9774765)
+| 75 | Анимации — живые | Прохождение узла + полёт монет | ✅ | `components/rewards/CoinRewardFlight.tsx` (bc4595c9e — полёт монет перенесён из LearningV2RuneFlight); `components/LearningV2MapNode.tsx` — [04.10 «Дизайн», PM-034 перепривязка] | — [30.09 закрыто] HorizonResultGlass / карта Б (413fd2538, bd9774765)
 | 76 | Анимации — живые | Раскрытие карты | ✅ | `components/learning-v2/LearningV2ChaptersCourse.tsx` — у боевой карты Б нет вступительного раскрытия — анимация есть только у неподключённой карты А | — [30.09 закрыто] HorizonResultGlass / карта Б (413fd2538, bd9774765)
 | 77 | Анимации — живые | Сборка фразы — чипы перелетают | ✅ | `modules/learning-v2/modes/phrase_builder_mode_v1.tsx`; `components/learning-v2/LearningV2Glass.tsx` — перелёт/посадка чипов — прежняя анимация (spring), чипы теперь на токенах |
 | 78 | Анимации — живые | Верно — волна по чипам | ✅ | `modules/learning-v2/modes/phrase_builder_mode_v1.tsx`; `components/learning-v2/LearningV2Glass.tsx` — верно — волна по чипам (okPop) на зелёной заливке |
@@ -559,7 +559,7 @@
 | 14 | Цена и покупка | Ожидание банка или родителя · отдельный диалог | ✅ | `app/paywall_purchase.ts` (0217c4a21, +правки в дереве) — ожидание/неизвестный результат — нативный Alert.alert | — [30.09 закрыто] в коде уже стеклянные окна enqueueThemedBlockingInfoAlert, сверка устарела
 | 15 | Цена и покупка | Результат покупки неизвестен · отдельный диалог | ✅ | `app/paywall_purchase.ts` (0217c4a21, +правки в дереве) — ожидание/неизвестный результат — нативный Alert.alert | — [30.09 закрыто] в коде уже стеклянные окна enqueueThemedBlockingInfoAlert, сверка устарела
 | 16 | Цена и покупка | Статус неизвестен | ✅ | `app/paywall_purchase.ts` (0217c4a21, +правки в дереве) — ожидание/неизвестный результат — нативный Alert.alert | — [30.09 закрыто] в коде уже стеклянные окна enqueueThemedBlockingInfoAlert, сверка устарела
-| 17 | Цена и покупка | Уход с пейволла | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6); `components/ThemedConfirmModal.tsx` (96c32bb97, +правки в дереве) — уход с пейволла — ThemedConfirmModal |
+| 17 | Цена и покупка | Уход с пейволла | ➖ | единый пейвол Plus без перехвата на выходе: `components/paywall/PaywallPlusScreen.tsx` передаёт disableExitOffer: true (D115 «честный», 60155883a) — [04.10 «Дизайн», PM-034 перепривязка] |
 | 18 | Цена и покупка | Промо от магазина | ✅ | `components/paywall/PaywallPlusScreen.tsx` (60155883a) — промо от магазина: storePromo.yearly/monthly → цена промо в планах и ленте пробного периода — [04.10 «Дизайн», PM-034 перепривязка] |
 | 19 | Управление действующим Plus | Управление подпиской | ✅ | `app/manage_subscription.tsx` (41648d48d, +правки в дереве) — управление Plus и вложенные окна |
 | 20 | Управление действующим Plus | Загрузка плана | ✅ | `app/manage_subscription.tsx` (41648d48d, +правки в дереве) — управление Plus и вложенные окна |
@@ -690,11 +690,11 @@
 | 26 | Код от друга | ReferralCodeSheet · disabled | ✅ | `components/referral_code_sheet.tsx` + `referral_sheet_shell.tsx` + `referral_how_sheet.tsx` — токены стекла (30.09) |
 | 27 | Код от друга | ReferralCodeSheet · error | ✅ | `components/referral_code_sheet.tsx` + `referral_sheet_shell.tsx` + `referral_how_sheet.tsx` — токены стекла (30.09) |
 | 28 | Код от друга | ReferralCodeSheet · friend-request | ✅ | `components/referral_code_sheet.tsx` + `referral_sheet_shell.tsx` + `referral_how_sheet.tsx` — токены стекла (30.09) |
-| 29 | Досье достижения | earned dossier · demo date | ✅ | `app/achievements_screen.tsx` (1b5e8588e); `app/collectibles_screen.tsx` (135ef4938) — досье достижения и детали карточки на LG (135ef4938) |
-| 30 | Досье достижения | locked/progress shell · condition pending 2.0 | ✅ | `app/achievements_screen.tsx` (1b5e8588e); `app/collectibles_screen.tsx` (135ef4938) — досье достижения и детали карточки на LG (135ef4938) |
-| 31 | Детали карточки | first normal card · previous disabled | ✅ | `app/achievements_screen.tsx` (1b5e8588e); `app/collectibles_screen.tsx` (135ef4938) — досье достижения и детали карточки на LG (135ef4938) |
-| 32 | Детали карточки | interior normal card · both directions enabled | ✅ | `app/achievements_screen.tsx` (1b5e8588e); `app/collectibles_screen.tsx` (135ef4938) — досье достижения и детали карточки на LG (135ef4938) |
-| 33 | Детали карточки | last secret card · next disabled | ✅ | `app/achievements_screen.tsx` (1b5e8588e); `app/collectibles_screen.tsx` (135ef4938) — досье достижения и детали карточки на LG (135ef4938) |
+| 29 | Досье достижения | earned dossier · demo date | ✅ | `app/achievements_screen.tsx` (1b5e8588e) — досье достижения на LG (collectibles_screen удалён D136–D140, 33636dd55) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 30 | Досье достижения | locked/progress shell · condition pending 2.0 | ✅ | `app/achievements_screen.tsx` (1b5e8588e) — досье достижения на LG (collectibles_screen удалён D136–D140, 33636dd55) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 31 | Детали карточки | first normal card · previous disabled | ➖ | детали коллекционной карточки удалены вместе с коллекциями, D136–D140 (33636dd55) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 32 | Детали карточки | interior normal card · both directions enabled | ➖ | детали коллекционной карточки удалены вместе с коллекциями, D136–D140 (33636dd55) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 33 | Детали карточки | last secret card · next disabled | ➖ | детали коллекционной карточки удалены вместе с коллекциями, D136–D140 (33636dd55) — [04.10 «Дизайн», PM-034 перепривязка] |
 
 ## overlays-runtime.html
 
@@ -734,7 +734,7 @@
 | 32 | Подтверждения | lesson menu · verbs unavailable | ✅ | `app/lesson_menu.tsx` (7e162b5c5); `components/ThemedChoiceModal.tsx` (3587edede, +правки в дереве) — «недоступно» в меню урока — ThemedChoiceModal |
 | 33 | Подтверждения | lesson menu · prepositions unavailable | ✅ | `app/lesson_menu.tsx` (7e162b5c5); `components/ThemedChoiceModal.tsx` (3587edede, +правки в дереве) — «недоступно» в меню урока — ThemedChoiceModal |
 | 34 | Подтверждения | French final exam gate | ✅ | `app/(tabs)/lessons.tsx` (4fa4ab32b); `components/ThemedChoiceModal.tsx` (3587edede, +правки в дереве) — французский экзамен — gateModal через ThemedChoiceModal |
-| 35 | Подтверждения | store trial offer · placeholders only | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6); `components/ThemedConfirmModal.tsx` (96c32bb97, +правки в дереве) — триал-оффер — ThemedConfirmModal |
+| 35 | Подтверждения | store trial offer · placeholders only | ➖ | триал-оффер на выходе выключен в едином пейволе (disableExitOffer: true, D115, 60155883a) — [04.10 «Дизайн», PM-034 перепривязка] |
 | 36 | Критические стадии аккаунта | switch rejected before durable marker · retry allowed | ✅ | `components/account/AccountLogoutFlow.tsx` (e8a8c8220) — стадии смены аккаунта: LG-окно есть, разные исходы не подтверждены | — [30.09 закрыто] AccountLogoutFlow: precommit/recovery; synced:false — settings.tsx showInfoAlert
 | 37 | Критические стадии аккаунта | switch after possible marker · no blind retry | ✅ | `components/account/AccountLogoutFlow.tsx` (e8a8c8220) — стадии смены аккаунта: LG-окно есть, разные исходы не подтверждены | — [30.09 закрыто] AccountLogoutFlow: precommit/recovery; synced:false — settings.tsx showInfoAlert
 | 38 | Критические стадии аккаунта | committed switch · synced:false · local emergency copy only | ✅ | `components/account/AccountLogoutFlow.tsx` (e8a8c8220) — стадии смены аккаунта: LG-окно есть, разные исходы не подтверждены | — [30.09 закрыто] AccountLogoutFlow: precommit/recovery; synced:false — settings.tsx showInfoAlert
@@ -879,22 +879,22 @@
 | video.html | 24 | 23 | 0 | 0 | 1 | 0 |
 | dialogs.html | 46 | 46 | 0 | 0 | 0 | 0 |
 | learn.html | 103 | 103 | 0 | 0 | 0 | 0 |
-| learning-v2.html | 82 | 81 | 0 | 0 | 0 | 1 |
+| learning-v2.html | 82 | 78 | 0 | 0 | 0 | 4 |
 | community.html | 25 | 25 | 0 | 0 | 0 | 0 |
 | profile.html | 35 | 34 | 0 | 0 | 0 | 1 |
 | results.html | 14 | 14 | 0 | 0 | 0 | 0 |
 | coins.html | 17 | 16 | 0 | 0 | 0 | 1 |
 | paywall-review.html | 1 | 1 | 0 | 0 | 0 | 0 |
-| paywalls.html | 25 | 18 | 0 | 0 | 0 | 7 |
+| paywalls.html | 25 | 17 | 0 | 0 | 0 | 8 |
 | system.html | 22 | 22 | 0 | 0 | 0 | 0 |
 | overlays.html | 57 | 56 | 0 | 0 | 0 | 1 |
-| overlays-more.html | 33 | 29 | 0 | 0 | 0 | 4 |
-| overlays-runtime.html | 44 | 42 | 0 | 0 | 0 | 2 |
+| overlays-more.html | 33 | 26 | 0 | 0 | 0 | 7 |
+| overlays-runtime.html | 44 | 41 | 0 | 0 | 0 | 3 |
 | overlays-players.html | 7 | 7 | 0 | 0 | 0 | 0 |
 | overlays-campaigns.html | 38 | 38 | 0 | 0 | 0 | 0 |
 | overlays-specialist.html | 38 | 32 | 0 | 0 | 0 | 6 |
 | themes.html | 19 | 19 | 0 | 0 | 0 | 0 |
-| **Итого** | **758** | **729** | **0** | **0** | **6** | **23** |
+| **Итого** | **758** | **721** | **0** | **0** | **6** | **31** |
 
 <details><summary>Итог на 30.09 (устарел, сохранён для истории)</summary>
 

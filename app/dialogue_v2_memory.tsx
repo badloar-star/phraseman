@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Alert, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {
@@ -20,6 +20,7 @@ import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { PressableScale } from '../components/feedback/PressableScale';
+import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { useV2Palette } from '../components/v2/useV2Palette';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
@@ -153,6 +154,10 @@ export default function DialogueV2MemoryRoute() {
   const [retryTick, setRetryTick] = useState(0);
   const [labels, setLabels] = useState<CatalogueLabels>(() => catalogueLabels(null, 'en'));
   const [clearing, setClearing] = useState(false);
+  // зачем (чек-лист 2.0, нативные Alert → стекло): подтверждение — стеклянное окно, отказ — строка
+  // под кнопкой, а не системный диалог поверх стеклянного экрана.
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [clearFailed, setClearFailed] = useState(false);
 
   useEffect(() => {
     if (!accessResolved || !hasPremiumAccess) return undefined;
@@ -194,6 +199,7 @@ export default function DialogueV2MemoryRoute() {
   const clearMemory = useCallback(async () => {
     if (clearing || !supportedTarget(studyTarget)) return;
     setClearing(true);
+    setClearFailed(false);
     try {
       const receipt = await clearDialogueV2Memory({ studyTarget });
       if (receipt) {
@@ -203,18 +209,13 @@ export default function DialogueV2MemoryRoute() {
       }
     } catch (error: unknown) {
       console.warn('[DIALOGUE-V2] memory: clear failed', { studyTarget, message: error instanceof Error ? error.message : String(error) });
-      Alert.alert(copy.clearFailed);
+      setClearFailed(true);
     } finally {
       setClearing(false);
     }
-  }, [clearing, copy.clearFailed, studyTarget]);
+  }, [clearing, studyTarget]);
 
-  const confirmClear = useCallback(() => {
-    Alert.alert(copy.confirmTitle, copy.confirmBody, [
-      { text: copy.cancel, style: 'cancel' },
-      { text: copy.clear, style: 'destructive', onPress: () => { void clearMemory(); } },
-    ]);
-  }, [clearMemory, copy]);
+  const confirmClear = useCallback(() => setConfirmOpen(true), []);
 
   const renderHeader = () => (
     <View style={{ height: 60, paddingHorizontal: V2.screenPad, flexDirection: 'row', alignItems: 'center', gap: V2.gap }}>
@@ -244,6 +245,25 @@ export default function DialogueV2MemoryRoute() {
     </PressableScale>
   );
 
+  const renderClearFeedback = () => (
+    <>
+      {clearFailed ? (
+        <Text testID="dialogue-v2-memory-clear-failed" accessibilityLiveRegion="polite" style={{ color: p.wrong, ...V2_TYPE.body, textAlign: 'center' }}>{copy.clearFailed}</Text>
+      ) : null}
+      <ThemedConfirmModal
+        visible={confirmOpen}
+        title={copy.confirmTitle}
+        message={copy.confirmBody}
+        cancelLabel={copy.cancel}
+        confirmLabel={copy.clear}
+        onCancel={() => setConfirmOpen(false)}
+        onConfirm={() => { setConfirmOpen(false); void clearMemory(); }}
+        destructive
+        testIDPrefix="dialogue-v2-memory-clear"
+      />
+    </>
+  );
+
   if (!accessResolved) {
     return <SafeAreaView testID="dialogue-v2-memory-access-checking" style={{ flex: 1, backgroundColor: p.bg }} />;
   }
@@ -265,6 +285,7 @@ export default function DialogueV2MemoryRoute() {
             <View testID="dialogue-v2-memory-delete-only" style={{ gap: V2.gapTight }}>
               <Text style={{ color: p.textSecondary, ...V2_TYPE.body, textAlign: 'center' }}>{copy.deleteOnly}</Text>
               {renderClearControl()}
+              {renderClearFeedback()}
             </View>
           </View>
         </SafeAreaView>
@@ -321,6 +342,7 @@ export default function DialogueV2MemoryRoute() {
           ) : null}
 
           {renderClearControl()}
+          {renderClearFeedback()}
         </ScrollView>
       </SafeAreaView>
     </View>

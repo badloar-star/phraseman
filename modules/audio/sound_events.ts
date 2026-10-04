@@ -254,7 +254,9 @@ export const SOUND_EVENTS = Object.freeze({
   // любой кулдаун проглотил бы вторую и третью.
   // зачем (D75, PM-052): полёт монет — звук отрыва переименован из pm.reward.rune_flight_start, файл прежний.
   'pm.coin.flight_start': event(require('../../assets/audio/sfx/v1/reward/pm_rune_flight_start_v1.m4a'), 0.22, 40, 0, 500, 'reward', { mixWithVoice: true, allowConcurrent: true }),
-  'pm.reward.rune_flight_land': event(require('../../assets/audio/sfx/v1/reward/pm_rune_flight_land_v1.m4a'), 0.34, 52, 0, 300, 'reward', { mixWithVoice: true, allowConcurrent: true }),
+  // зачем (04.10): pm.reward.rune_flight_land удалён из реестра — его единственный вызов жил в «сборе наград
+  // на Главной», снятом по D75 (9ecb23d94); полёт монет намеренно звучит один раз на старте
+  // (pm.coin.flight_start), без щелчка на каждую монету. Файл ассета на диске оставлен, в сборку не идёт.
   // Тик перекрутки счётчика НЕ объявлен: в приложении цифра баланса меняется
   // мгновенно, без анимации счёта (проверено 2026-08-28 — в PracticeRuneCounter
   // и RuneBalanceChip анимируется только пульс, не число). Ставить тик некуда.

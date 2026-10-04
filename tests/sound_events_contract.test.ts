@@ -63,10 +63,11 @@ describe('semantic sound event catalog', () => {
     // каталог 120 → 98, со звуком 91 → 70. Счёт подтверждён пробой: catalog=98, orphaned=0.
     // PM-206 (01.10): −2 осиротевших (pm.energy.refilled — пополнение за осколки удалено;
     // pm.customization.applied — без вызывающих), файлы удалены. Проба: catalog=95, orphaned=0.
-    expect(ids).toHaveLength(95);
+    // 04.10: −1 осиротевший pm.reward.rune_flight_land (вызов ушёл со «сбором наград на Главной», D75), файл удалён.
+    expect(ids).toHaveLength(94);
     // D83: −9 файлов Арены (стали немыми).
     // 01.10: −3 со звуком относительно прежних 70: два осиротевших PM-206 + один снятый раньше другой сессией (каталог тогда стал 97).
-    expect(enabled).toHaveLength(67);
+    expect(enabled).toHaveLength(66);
     expect(disabled).toEqual(MISSING_EVENTS);
     enabled.forEach((id) => expect(SOUND_EVENTS[id].source).toBeTruthy());
   });
@@ -82,10 +83,8 @@ describe('semantic sound event catalog', () => {
       mixWithVoice: true,
       allowConcurrent: true,
     });
-    expect(SOUND_EVENTS['pm.reward.rune_flight_land']).toMatchObject({
-      mixWithVoice: true,
-      allowConcurrent: true,
-    });
+    // зачем (04.10): мёртвый звук приземления руны снят с реестра (D75) — он не должен вернуться без вызова.
+    expect(Object.keys(SOUND_EVENTS)).not.toContain('pm.reward.rune_flight_land');
     expect(SOUND_EVENTS['pm.voice.record_ready']).toMatchObject({
       volume: 0.4,
       priority: 95,

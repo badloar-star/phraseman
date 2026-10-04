@@ -125,11 +125,12 @@ describe('SoundDirector', () => {
     director.setVoiceActive(true);
 
     const runeFlight = { scope: 'rune-flight', rateLimit: { maxStarts: 4, windowMs: 1000 } };
+    // зачем (04.10): звук приземления удалён (D75) — соседний полёт проверяем вторым стартом того же звука.
     expect(director.request('pm.coin.flight_start', runeFlight).kind).toBe('play');
-    expect(director.request('pm.reward.rune_flight_land', runeFlight).kind).toBe('play');
+    expect(director.request('pm.coin.flight_start', runeFlight).kind).toBe('play');
     expect(backend.plays.map((play) => play.eventId)).toEqual([
       'pm.coin.flight_start',
-      'pm.reward.rune_flight_land',
+      'pm.coin.flight_start',
     ]);
     expect(backend.stopCount).toBe(0);
   });

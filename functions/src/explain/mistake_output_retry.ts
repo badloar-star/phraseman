@@ -59,12 +59,18 @@ function addUsage(total: MistakeOpenAiUsage, next: MistakeOpenAiUsage): MistakeO
   };
 }
 
+/** Код причины отказа валидатора для журнала: message HttpsError/Error, обрезанный. */
+export function validationReasonOf(error: unknown): string {
+  return String((error as Error)?.message ?? error).slice(0, 120);
+}
+
 export async function generateWithOutputValidationRetry<T>(params: {
   maxAttempts: number;
   generate: (attempt: number) => Promise<GeneratedOutput>;
   validate: (answer: string) => T;
   isValidationError: (error: unknown) => boolean;
-  onValidationReject?: (attempt: number) => void;
+  /** зачем (§126): второй аргумент — причина отказа (код ошибки валидатора), для журнала. */
+  onValidationReject?: (attempt: number, reason: string) => void;
 }): Promise<OutputValidationRetryResult<T>> {
   if (!Number.isInteger(params.maxAttempts) || params.maxAttempts < 1) {
     throw new Error('mistake_output_retry_invalid_max_attempts');
@@ -89,7 +95,7 @@ export async function generateWithOutputValidationRetry<T>(params: {
           );
         }
         validatorRejects += 1;
-        params.onValidationReject?.(attempt);
+        params.onValidationReject?.(attempt, validationReasonOf(error.validationError));
         if (attempt === params.maxAttempts) {
           throw new OutputValidationRetriesExhausted(error.validationError, usage, attempt);
         }
@@ -113,7 +119,7 @@ export async function generateWithOutputValidationRetry<T>(params: {
         throw new OutputValidationRetryAborted(error, usage, attempt, validatorRejects);
       }
       validatorRejects += 1;
-      params.onValidationReject?.(attempt);
+      params.onValidationReject?.(attempt, validationReasonOf(error));
       if (attempt === params.maxAttempts) {
         throw new OutputValidationRetriesExhausted(error, usage, attempt);
       }

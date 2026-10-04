@@ -623,6 +623,7 @@ async function generateCheckedMistakeText(
   payload: ExplainMistakePayload,
   messages: Array<{ role: 'system' | 'user'; content: string }>,
 ): Promise<CheckedGenerateResult> {
+  let lastAnswer = '';
   const checked = await generateWithOutputValidationRetry({
     maxAttempts: VALIDATION_MAX_ATTEMPTS,
     generate: (attempt) => generate(
@@ -632,14 +633,20 @@ async function generateCheckedMistakeText(
       attempt === 1 ? MAX_OUTPUT_TOKENS : RETRY_OUTPUT_TOKENS,
     ),
     validate: (answer) => {
+      lastAnswer = answer;
       assertMistakeGeneratedText(answer, payload);
       return answer;
     },
     isValidationError: isOutputValidationRejection,
-    onValidationReject: (attempt) => {
+    onValidationReject: (attempt, reason) => {
+      // зачем (§126, 04.10): 503 ~21% = три отказа валидатора подряд, а причину лог не печатал.
       console.warn('mistake_explain validator rejected output', {
         variant: payload.variant,
         attempt,
+        reason,
+        interfaceLang: payload.interfaceLang,
+        answerLength: lastAnswer.length,
+        answerHead: lastAnswer.slice(0, 80),
       });
     },
   });
@@ -672,6 +679,7 @@ async function generateCheckedMistakeBundle(
   payload: ExplainMistakePayload,
 ): Promise<CheckedBundleResult> {
   const messages = buildMistakeBundleMessages(buildFullMessages(payload));
+  let lastBundleAnswer = '';
   const checked = await generateWithOutputValidationRetry({
     maxAttempts: VALIDATION_MAX_ATTEMPTS,
     generate: (attempt) => generate(
@@ -680,12 +688,20 @@ async function generateCheckedMistakeBundle(
       messages,
       attempt === 1 ? BUNDLE_MAX_OUTPUT_TOKENS : BUNDLE_RETRY_OUTPUT_TOKENS,
     ),
-    validate: (answer) => validateMistakeBundle(answer, payload),
+    validate: (answer) => {
+      lastBundleAnswer = answer;
+      return validateMistakeBundle(answer, payload);
+    },
     isValidationError: isOutputValidationRejection,
-    onValidationReject: (attempt) => {
+    onValidationReject: (attempt, reason) => {
+      // зачем (§126, 04.10): см. выше — причина отказа обязана быть в журнале.
       console.warn('mistake_explain validator rejected output', {
         variant: 'full_bundle',
         attempt,
+        reason,
+        interfaceLang: payload.interfaceLang,
+        answerLength: lastBundleAnswer.length,
+        answerHead: lastBundleAnswer.slice(0, 80),
       });
     },
   });

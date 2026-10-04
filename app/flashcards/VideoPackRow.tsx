@@ -62,7 +62,7 @@ function youtubeThumbnailUrl(videoId?: string): string | null {
  * Без неё значение из документа Firestore могло бы увести человека на
  * посторонний адрес — тот же класс риска, что и битое превью, только опаснее.
  */
-async function openVideo(videoId: string | undefined, onFail: () => void): Promise<void> {
+export async function openVideo(videoId: string | undefined, onFail: () => void): Promise<void> {
   const id = String(videoId ?? '').trim();
   if (!id) {
     DebugLogger.warn('[VIDEO-PACK]', 'тап по кадру без videoId — ролик не открыт');
@@ -85,7 +85,7 @@ async function openVideo(videoId: string | undefined, onFail: () => void): Promi
   }
 }
 
-function formatDuration(totalSec?: number): string {
+export function formatDuration(totalSec?: number): string {
   if (!totalSec || !Number.isFinite(totalSec) || totalSec <= 0) return '';
   const sec = Math.floor(totalSec % 60);
   const min = Math.floor(totalSec / 60) % 60;

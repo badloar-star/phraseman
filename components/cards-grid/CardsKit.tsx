@@ -32,7 +32,7 @@ function Sheen({ radius }: Readonly<{ radius: number }>) {
 }
 
 /** «.card» макета: заливка 150° из цветов темы, тень вниз, блик и кромка. */
-export const KitCard = memo(function KitCard({ g, children, onPress, onLongPress, testID, accessibilityLabel, disabled, style, solid }: Readonly<{
+export const KitCard = memo(function KitCard({ g, children, onPress, onLongPress, testID, accessibilityLabel, disabled, style, solid, radius = 14 }: Readonly<{
   g: GlassTokens;
   children: React.ReactNode;
   onPress?: () => void;
@@ -43,6 +43,8 @@ export const KitCard = memo(function KitCard({ g, children, onPress, onLongPress
   style?: StyleProp<ViewStyle>;
   /** Сплошная заливка вместо градиента темы (например, кнопки-плитки «Изменить / Удалить»: #202022). */
   solid?: string;
+  /** Скругление: 14 у обычных карточек, 20 у строк фраз набора из видео. */
+  radius?: number;
 }>) {
   const [a, b] = themePair(g);
   const colors = [`${mixDark(a, '#0E0E12', 0.17)}B0`, 'rgba(14,14,18,0.58)', `${mixDark(b, '#0E0E12', 0.17)}A3`] as const;
@@ -55,10 +57,10 @@ export const KitCard = memo(function KitCard({ g, children, onPress, onLongPress
       accessibilityState={{ disabled: !!(disabled || !onPress) }}
       onPress={onPress}
       onLongPress={onLongPress}
-      style={({ pressed }) => [styles.card, { boxShadow: DROP as never }, pressed && styles.pressed, style]}>
-      {solid ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.cardFill, { backgroundColor: solid }]} /> : <LinearGradient pointerEvents="none" colors={colors} locations={[0, 0.6, 1]} start={SHEEN_START} end={SHEEN_END} style={[StyleSheet.absoluteFill, styles.cardFill]} />}
+      style={({ pressed }) => [styles.card, { borderRadius: radius, boxShadow: DROP as never }, pressed && styles.pressed, style]}>
+      {solid ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, backgroundColor: solid }]} /> : <LinearGradient pointerEvents="none" colors={colors} locations={[0, 0.6, 1]} start={SHEEN_START} end={SHEEN_END} style={[StyleSheet.absoluteFill, { borderRadius: radius }]} />}
       {children}
-      <Sheen radius={14} />
+      <Sheen radius={radius} />
     </Pressable>
   );
 });
@@ -147,10 +149,12 @@ export const KitTitle = memo(function KitTitle({ g, title, subtitle, testID }: R
 });
 
 /** «.cta» макета: мятная кнопка 48 высотой, свечение снизу, блик сверху; иконка слева необязательна. */
-export const KitCta = memo(function KitCta({ g, label, icon, onPress, testID, accessibilityLabel }: Readonly<{
+export const KitCta = memo(function KitCta({ g, label, icon, trailingIcon, onPress, testID, accessibilityLabel }: Readonly<{
   g: GlassTokens;
   label: string;
   icon?: keyof typeof Ionicons.glyphMap;
+  /** Иконка после подписи (стрелка «→»). */
+  trailingIcon?: keyof typeof Ionicons.glyphMap;
   onPress: () => void;
   testID?: string;
   accessibilityLabel?: string;
@@ -168,6 +172,7 @@ export const KitCta = memo(function KitCta({ g, label, icon, onPress, testID, ac
       ]}>
       {icon ? <Ionicons name={icon} size={20} color={g.accentInk} /> : null}
       <Text style={[styles.ctaText, { color: g.accentInk }]}>{label}</Text>
+      {trailingIcon ? <Ionicons name={trailingIcon} size={20} color={g.accentInk} /> : null}
       <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 24, boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,0.7)' }] }]} />
     </Pressable>
   );

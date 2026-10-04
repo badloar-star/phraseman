@@ -55,6 +55,8 @@ type Props = {
   /** @deprecated используйте `variant="tile"`. */
   compact?: boolean;
   variant?: CommunityPackSocialVariant;
+  /** Подпись нижней кнопки `previewCta` до добавления (у набора из видео — «Учить набор»). */
+  ctaLabel?: string;
   onAdded?: (packId: string) => void;
   /**
    * Набор платный и ещё не добавлен — экран должен показать шит покупки.
@@ -78,6 +80,7 @@ export default function CommunityPackSocialBar({
   isTop = false,
   compact = false,
   variant,
+  ctaLabel,
   onAdded,
   onRequestPurchase,
   onOpenComments,
@@ -482,7 +485,7 @@ export default function CommunityPackSocialBar({
       <TouchableOpacity
         testID={`pack-add-${pack.id}`}
         accessibilityRole="button"
-        accessibilityLabel={isAdded ? ownedLabel : addLabel}
+        accessibilityLabel={isAdded ? ownedLabel : (ctaLabel ?? addLabel)}
         accessibilityState={{ disabled: isAdded }}
         disabled={isAdded}
         onPress={onAddPress}
@@ -500,7 +503,7 @@ export default function CommunityPackSocialBar({
         {isAdded ? <Ionicons name="checkmark" size={18} color={g.text} /> : null}
         {/* зачем: макет 17/700; шкала D145 (решение владельца 04.10) — 16. */}
         <Text style={{ color: isAdded ? g.text : t.correctText, fontSize: 16, lineHeight: 22, fontWeight: '700' }}>
-          {isAdded ? ownedLabel : addLabel}
+          {isAdded ? ownedLabel : (ctaLabel ?? addLabel)}
         </Text>
       </TouchableOpacity>
     );

@@ -58,7 +58,9 @@ import CollectionGalleryView from './flashcards/CollectionGalleryView';
 import { CollectionMenuSheet, CollectionTitleBlock, CollectionTopBar } from './flashcards/CollectionHeaderV2';
 import { PackAddCardButton, PackInfoBlock, PackTopBar, type PackBadge } from './flashcards/PackHeaderV2';
 import { ExpandedCardV2, type ExpandedCardData } from './flashcards/ExpandedCardV2';
+import { VideoSetView } from './flashcards/VideoSetView';
 import { togglePackCardSaved } from './flashcards/save_pack_card';
+import { removeCardFromLocalPack, restoreCardToLocalPack, type LocalPackCardSnapshot } from './community_packs/localPackCardOps';
 import { isFlashcardSaved } from '../hooks/use-flashcards';
 import { useCommunityAuthorName } from './community_packs/packAuthorNames';
 import { isLocalAuthorPackId } from './community_packs/localAuthorPacks';
@@ -186,6 +188,11 @@ export default function FlashcardsScreen() {
   // зачем: раскрытая карточка (ExpandedCardV2) — состояние нужно уже Back-обработчику выше по файлу
   const [openedCardId, setOpenedCardId] = useState<string | null>(null);
   const [openedSaved, setOpenedSaved] = useState(false);
+  // зачем (владелец 04.10: «Удалить» у карточки своего набора + «Вернуть»): скрытые сразу (Optimistic UI) и снимок для возврата
+  const [hiddenPackCardIds, setHiddenPackCardIds] = useState<ReadonlySet<string>>(() => new Set());
+  const [packUndo, setPackUndo] = useState<{ key: number; snapshot: LocalPackCardSnapshot } | null>(null);
+  const packUndoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const packUndoKeyRef = useRef(0);
   /**
    * Покупка набора за руны (владелец 2026-09-17, экран 8 макета рун).
    * Шит переиспользован целиком — своей вёрстки покупки здесь нет.
@@ -635,7 +642,7 @@ export default function FlashcardsScreen() {
   }, [activeCat, savedContentKind]);
 
   // ── Derived: категория → фильтр → поиск → free-limit (E11: хук) ────────────
-  const { cards, filteredCards, listCards, hiddenByLimitCount } = useDerivedCollectionCards({
+  const { cards, filteredCards, listCards: listCardsRaw, hiddenByLimitCount } = useDerivedCollectionCards({
     activeCat,
     packDeeplink,
     savedCards: savedCardsForPackLanguage,
@@ -643,6 +650,10 @@ export default function FlashcardsScreen() {
     marketCards,
     systemCards: systemCardsForTarget, savedContentKind, activeFilter, searchQuery, isPremium,
   });
+  const listCards = useMemo(
+    () => (hiddenPackCardIds.size === 0 ? listCardsRaw : listCardsRaw.filter((card) => !hiddenPackCardIds.has(card.id))),
+    [hiddenPackCardIds, listCardsRaw],
+  );
 
   /** Куплені набори (`sourceId` = `DEV:…`) — без CTA «додати свою картку». */
   const allowAddCustomCard = useMemo(() => {
@@ -1076,6 +1087,48 @@ export default function FlashcardsScreen() {
     });
     return () => { cancelled = true; };
   }, [openedCard?.id]); // eslint-disable-line react-hooks/exhaustive-deps -- проверяем только при открытии новой карточки
+  const unhidePackCard = useCallback((cardId: string) => {
+    setHiddenPackCardIds((prev) => {
+      if (!prev.has(cardId)) return prev;
+      const next = new Set(prev);
+      next.delete(cardId);
+      return next;
+    });
+  }, []);
+  const deletePackCard = useCallback((card: CardItem) => {
+    if (!packDeeplink) return;
+    console.log(`[PACK-CARD-DELETE] экран: удалить cardId=${card.id} packId=${packDeeplink}`);
+    setHiddenPackCardIds((prev) => new Set(prev).add(card.id)); // Optimistic UI: карточка исчезает сразу
+    const failToast = () => emitAppEvent('action_toast', actionToastTri('error', {
+      ru: 'Не удалось удалить карточку.', uk: 'Не вдалося видалити картку.', en: 'Could not delete the card.', es: 'No se pudo eliminar la tarjeta.',
+      'pt-BR': 'Não foi possível excluir o cartão.', vi: 'Không thể xóa thẻ.', id: 'Kartu tidak dapat dihapus.', tr: 'Kart silinemedi.', pl: 'Nie udało się usunąć karty.',
+    }));
+    void removeCardFromLocalPack(packDeeplink, card.id).then((snapshot) => {
+      if (!snapshot) { unhidePackCard(card.id); failToast(); return; }
+      const key = ++packUndoKeyRef.current;
+      if (packUndoTimerRef.current) clearTimeout(packUndoTimerRef.current);
+      setPackUndo({ key, snapshot });
+      packUndoTimerRef.current = setTimeout(() => setPackUndo((cur) => (cur?.key === key ? null : cur)), 5000);
+      void loadAll();
+    }).catch((error: unknown) => {
+      console.warn('[PACK-CARD-DELETE] экран: сбой, откат', error instanceof Error ? error.message : String(error));
+      unhidePackCard(card.id);
+      failToast();
+    });
+  }, [loadAll, packDeeplink, unhidePackCard]);
+  const undoPackDelete = useCallback(() => {
+    const entry = packUndo;
+    if (!entry) return;
+    setPackUndo(null);
+    if (packUndoTimerRef.current) clearTimeout(packUndoTimerRef.current);
+    void restoreCardToLocalPack(entry.snapshot).then((ok) => {
+      console.log(`[PACK-CARD-DELETE] экран: возврат ok=${ok}`);
+      void loadAll();
+    }).catch((error: unknown) => {
+      console.warn('[PACK-CARD-DELETE] экран: возврат не удался', error instanceof Error ? error.message : String(error));
+    });
+  }, [loadAll, packUndo]);
+  useEffect(() => () => { if (packUndoTimerRef.current) clearTimeout(packUndoTimerRef.current); }, []);
   const onToggleOpenedSave = useCallback(() => {
     const card = openedCard;
     if (!card) return;
@@ -1115,6 +1168,8 @@ export default function FlashcardsScreen() {
 
   // зачем (макет cards-section «Свой набор» / «Чужой — добавлен»): экран набора — своя шапка и сетка карточек. Наборы из видео
   // (ролик-герой, «момент из видео») остаются на прежнем виде — они в группе «Из видео».
+  // зачем (макет cards-section «Набор из видео»): набор из ролика (есть videoId) — свой экран: заголовок, превью, пилюли, фразы с таймкодом, кнопка внизу
+  const videoSetSurface = !!packDeeplink && !!currentMarketPack?.videoId;
   const packSurface = !!packDeeplink && !(previewMode && currentMarketPack) && !videoMomentPack && !currentMarketPack?.videoId;
   const packMine = !!packDeeplink && (
     isLocalAuthorPackId(packDeeplink)
@@ -1143,6 +1198,8 @@ export default function FlashcardsScreen() {
   const expandedOpened = openedCard;
   const expandedEditable = expandedOpened ? isEditableCustomCard(expandedOpened) : false;
   const expandedOwn = !!expandedOpened && (savedSurface || packMine || expandedEditable);
+  // зачем: удалять карточку из набора отсюда можно только в локальном наборе автора, которого ещё нет в сообществе (опубликованный правится через сервер)
+  const packCardDeletable = packMine && !!packDeeplink && isLocalAuthorPackId(packDeeplink) && currentMarketPack?.listingStatus === 'local_only';
   const expandedStrength = expandedOpened && strengthForCard ? strengthForCard(expandedOpened.en) : null;
   const expandedData: ExpandedCardData | null = expandedOpened ? {
     id: expandedOpened.id,
@@ -1181,7 +1238,32 @@ export default function FlashcardsScreen() {
 
         {/* зачем (packs-simple.html кадр 4, указание координатора 04.10): набор ДО добавления рисует отдельный
             CommunityPackPreview; свой набор (эталон «Карточек», CARDS_LOCKED) идёт прежней веткой без изменений. */}
-        {previewMode && currentMarketPack ? (
+        {videoSetSurface && currentMarketPack ? (
+          <VideoSetView
+            pack={currentMarketPack}
+            title={packTitleForInterface(currentMarketPack, cardContentLang)}
+            cards={listCards}
+            lang={lang}
+            cardContentLang={cardContentLang}
+            onBack={handleCollectionBack}
+            onMore={currentMarketPack.isCommunityUgc && !packMine ? () => setPackReportOpen(true) : null}
+            onSpeak={(text) => onSpeakCb(text)}
+            onOpenMoment={videoMomentPack ? openVideoMoment : null}
+            cta={previewMode ? (
+              <CommunityPackSocialBar
+                pack={currentMarketPack}
+                lang={lang}
+                t={t}
+                owned={false}
+                variant="previewCta"
+                ctaLabel={triLang(lang, { ru: 'Учить набор', uk: 'Вчити набір', en: 'Learn this pack', es: 'Aprender el pack', 'pt-BR': 'Aprender o pacote', vi: 'Học bộ thẻ', id: 'Pelajari paket', tr: 'Paketi öğren', pl: 'Ucz się zestawu' })}
+                onAdded={() => { void loadAll(); }}
+                onRequestPurchase={(p, price) => { setPurchasePack(p); setPurchasePrice(price); }}
+              />
+            ) : null}
+            onTrain={!previewMode && listCards.length > 0 ? onTrainThisPack : null}
+          />
+        ) : previewMode && currentMarketPack ? (
           <CommunityPackPreview
             pack={currentMarketPack}
             cards={listCards}
@@ -1435,9 +1517,18 @@ export default function FlashcardsScreen() {
 
         </>)}
 
+      {packUndo && !undoEntry && (
+        <UndoDeleteSnackbar
+          bottomOffset={Math.max(insets.bottom + 6, 14)}
+          lang={cardContentLang}
+          t={t}
+          f={f}
+          onUndo={undoPackDelete}
+        />
+      )}
       {undoEntry && (
         <UndoDeleteSnackbar
-          bottomOffset={Math.max(insets.bottom, 8) + 14}
+          bottomOffset={Math.max(insets.bottom + 6, 14)}
           lang={cardContentLang}
           t={t}
           f={f}
@@ -1605,7 +1696,7 @@ export default function FlashcardsScreen() {
         showSave={!savedSurface}
         saved={openedSaved}
         canEdit={!!expandedOpened && (expandedEditable || packMine)}
-        canDelete={!!expandedOpened && (expandedEditable || expandedOpened.categoryId === 'saved')}
+        canDelete={!!expandedOpened && (expandedEditable || expandedOpened.categoryId === 'saved' || packCardDeletable)}
         onClose={closeOpenedCard}
         onSpeak={(text) => onSpeakCb(text)}
         onEdit={() => {
@@ -1618,7 +1709,9 @@ export default function FlashcardsScreen() {
         onDelete={() => {
           const card = expandedOpened;
           setOpenedCardId(null);
-          if (card) void deleteCardById(card.id);
+          if (!card) return;
+          if (expandedEditable || card.categoryId === 'saved') void deleteCardById(card.id);
+          else if (packCardDeletable) deletePackCard(card);
         }}
         onToggleSave={onToggleOpenedSave}
       />

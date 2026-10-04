@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Карточки — остальные состояния и окна</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<link rel="stylesheet" href="cards-section.css">
+<style>
+  /* зачем (владелец 04.10: «в карточках ВСЕ состояния, все модали раздела» + правило координатора «каждое состояние старого макета обязано найтись в новом»):
+     утверждённый cards-section.html (57 экранов) НЕ трогаем — замок. Здесь — состояния, которых в нём нет, в том же стиле: стекло, градиент цвета темы, аврора, акцентная кнопка. */
+  .scr > .in { min-height: 100%; }
+  .bot2 { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 20px 20px 34px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.92) 40%); }
+  .row2 { display: flex; gap: 10px; }
+  .cta2 { display: flex; align-items: center; justify-content: center; gap: 8px; height: 52px; border-radius: 26px; flex: 1; font-size: 17px; font-weight: 700; background: rgba(255,255,255,.1); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); }
+  .cta2.red { color: #FF9C93; background: rgba(242,118,107,.14); box-shadow: inset 0 0 0 1px rgba(242,118,107,.35); }
+  .ac-cta.flex1 { flex: 1; width: auto; }
+  .center { text-align: center; }
+  .gcell { position: relative; }
+  .gcell .ck { position: absolute; z-index: 5; left: 8px; top: 8px; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.4); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.7); }
+  .gcell.on .ck { background: var(--acc); color: var(--on); box-shadow: none; }
+  .gcell.on .gcs { box-shadow: 0 0 0 2px var(--acc); border-radius: 22px; }
+  .skel { border-radius: 10px; background: linear-gradient(90deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.12) 50%, rgba(255,255,255,.06) 100%); background-size: 200% 100%; animation: sh 1.4s linear infinite; }
+  @keyframes sh { to { background-position: -200% 0; } }
+  .lbl { font-size: 14px; font-weight: 600; color: var(--sec); margin: 18px 0 8px; }
+  .fld { border-radius: 18px; min-height: 58px; display: flex; align-items: center; padding: 0 18px; font-size: 18px; background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+  .fld.ph { color: var(--muted); } .fld.err { box-shadow: inset 0 0 0 1.5px rgba(242,118,107,.75); }
+  .fld.tall { min-height: 92px; align-items: flex-start; padding-top: 16px; }
+  .hint { font-size: 14px; margin-top: 8px; color: var(--sec); } .hint.err { color: #FF9C93; }
+  .ban { display: flex; align-items: center; gap: 12px; padding: 12px 16px; margin-top: 12px; font-size: 15px; line-height: 20px; border-radius: 20px; }
+  .opt { display: flex; align-items: center; gap: 14px; padding: 10px 16px 10px 10px; margin-top: 10px; min-height: 62px; }
+  .opt .tx { flex: 1; font-size: 17px; font-weight: 700; text-align: left; }
+  .tg { width: 52px; height: 30px; border-radius: 15px; background: rgba(255,255,255,.16); position: relative; flex: none; }
+  .tg::after { content: ""; position: absolute; left: 3px; top: 3px; width: 24px; height: 24px; border-radius: 50%; background: #fff; }
+  .tg.on { background: var(--acc); } .tg.on::after { left: 25px; background: var(--on); }
+  .cm { padding: 14px 16px; margin-top: 10px; } .cm .nm { font-size: 15px; font-weight: 700; } .cm .tx2 { font-size: 16px; line-height: 22px; margin-top: 4px; color: #E2E2E6; } .cm .mt { font-size: 13px; color: var(--sec); margin-top: 6px; }
+  .tag { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 14px; background: rgba(255,255,255,.09); font-size: 13px; font-weight: 600; color: #E4E4E8; }
+  .tag.ac { background: var(--acc); color: var(--on); }
+  .dlg { position: absolute; left: 22px; right: 22px; top: 50%; transform: translateY(-50%); z-index: 60; padding: 22px 20px 18px; text-align: center; border-radius: 30px; }
+  .dlg .h { font-size: 21px; font-weight: 700; } .dlg .p { font-size: 16px; line-height: 22px; color: var(--sec); margin-top: 8px; }
+  .toast2 { position: absolute; left: 16px; right: 16px; bottom: 40px; z-index: 30; display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 22px; font-size: 16px; font-weight: 600; }
+  .toast2 .u { margin-left: auto; color: var(--acc); font-weight: 700; }
+  .rnd { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; }
+  .chip.on { background: #222224; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Карточки — остальные состояния и окна</h1>
+  <p class="page-lead">Дополнение к утверждённому «Карточки — весь раздел»: состояния, окна и уведомления старого макета, которых там нет (загрузка, ошибки, пусто, подтверждения, меню, жалобы, редактор, создание набора, подготовка). Тот же стиль: стекло, градиент цвета темы, аврора, акцентная кнопка. Утверждённый макет не изменён. Состояние «Лимит Free: первые 20» устарело — действует «30 тренировок в месяц», оно уже есть в утверждённом макете.</p>
+  <div class="page-nav"><a href="#saved">Сохранённые</a><a href="#packs">Наборы</a><a href="#social">Отклик и жалобы</a><a href="#editor">Редактор карточки</a><a href="#create">Создание набора</a><a href="#prep">Подготовка</a><a href="#ask">Нужен ответ владельца</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script src="cards-section-extra.js"></script>
+<script>
+(() => {
+const { icon, phone, col, block, sheet } = K;
+const cta = (t, x = '') => `<div class="ac-cta t"${x}>${t}</div>`;
+const bot = (inner) => `<div class="bot2">${inner}</div>`;
+const hd = (title, sub = '', right = '') => `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><div class="flex">${right}</div></div><div class="lt"><div class="ti">${title}</div>${sub ? `<div class="su">${sub}</div>` : ''}</div>`;
+const ttl = (t, right = '') => `<div class="flex" style="gap:16px;margin-top:4px"><span class="rb l t">${icon('back', 's20')}</span><div class="grow" style="font-size:22px;font-weight:700">${t}</div>${right}</div>`;
+const W = [['Boarding pass', 'Посадочный талон'], ['Layover', 'Пересадка'], ['Check in', 'Зарегистрироваться'], ['Carry-on', 'Ручная кладь'], ['Gate', 'Выход на посадку'], ['Delay', 'Задержка']];
+const grid = (n = 6, lv = 'm', extra = (i, c) => c) => `<div class="cgrid ${lv}" style="margin-top:16px">${W.slice(0, n).map(([e, r], i) => extra(i, cardS(e, r, '', { lv }))).join('')}</div>`;
+const row = (ic, t, st = '') => `<div class="gl opt t" style="${st}"><div class="gtile" style="width:42px;height:42px;border-radius:13px">${icon(ic, 's20')}</div><div class="tx">${t}</div></div>`;
+const rowRed = (ic, t) => `<div class="gl opt t"><div class="gtile" style="width:42px;height:42px;border-radius:13px;color:#F2766B">${icon(ic, 's20')}</div><div class="tx" style="color:#F2766B">${t}</div></div>`;
+const st = (ic, h, p, btn, color = '') => `<div class="center" style="margin-top:96px"><div class="gtile" style="width:72px;height:72px;border-radius:22px;margin:0 auto${color ? ';color:' + color : ''}">${ic}</div><div style="font-size:24px;font-weight:700;margin-top:22px">${h}</div>${p ? `<div style="font-size:16px;line-height:22px;color:var(--sec);margin:8px 28px 0">${p}</div>` : ''}${btn ? `<div style="margin:24px 56px 0">${btn}</div>` : ''}</div>`;
+const dim = (inner, id = 'd') => `<div class="dim on" data-dim="${id}"></div>${inner}`;
+const dlg = (h, p, b1, b2, red) => dim(`<div class="gl dlg t"><div class="h">${h}</div><div class="p">${p}</div><div class="row2" style="margin-top:20px"><div class="cta2">${b1}</div>${red ? `<div class="cta2 red">${b2}</div>` : `<div class="ac-cta flex1">${b2}</div>`}</div></div>`);
+const toast = (ic, t, u = '') => `<div class="gl toast2 t">${icon(ic, 's20')}<span>${t}</span>${u ? `<span class="u">${u}</span>` : ''}</div>`;
+const SV = (n = 24) => `<div class="pill s">${lic('cards', 's16')}${n}/30</div>`;
+const dimBase = (inner) => `<div style="opacity:.3">${inner}</div>`;
+const sh = (id, inner) => sheet(id, inner, true);
+
+// ---------- СОХРАНЁННЫЕ ----------
+const savedHead = hd('Сохранённые', '64 карточки', `<span class="rb t">${icon('search', 's20')}</span><span class="rb t">${icon('dotsH', 's20')}</span>`);
+const hubUnavail = () => phone(`<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><div class="flex">${SV()}<span class="rb t">${icon('plus', 's20')}</span></div></div><div class="lt"><div class="ti">Карточки</div><div class="su">Слова и фразы</div></div>
+  ${stackHero('Boarding pass', '/ˈbɔːdɪŋ pɑːs/')}<div class="gl ban t" style="margin-top:14px">${icon('wifiOff', 's20')}<span class="grow">Сообщество недоступно</span><span style="color:var(--acc);font-weight:700">Повторить</span></div>
+  ${tilesS(['64', '4', '3 набора', 'нет связи'], false)}`);
+const selMode = () => phone(`<div class="flex" style="gap:14px;margin-top:4px"><span class="rb t">${icon('close', 's20')}</span><div class="grow" style="font-size:22px;font-weight:700">Выбрано 3</div><span style="color:var(--acc);font-weight:700">Все</span></div>${grid(6, 'm', (i, c) => `<div class="gcell${i < 3 ? ' on' : ''}"><span class="ck">${i < 3 ? icon('check', 's16') : ''}</span>${c}</div>`)}`, { fixed: bot(`<div class="row2"><div class="cta2 red">${icon('trash', 's20')}Удалить</div><div class="ac-cta flex1">Создать набор</div></div>`) });
+const longPress = () => phone(dimBase(savedHead + grid(4)), { overlay: dim(`<div class="copen on" style="top:46%"><div style="width:62%;margin:0 auto">${cardS('Layover', 'Пересадка', '', { lv: 'm' })}</div><div style="margin:16px 4px 0">${row('layers', 'Открыть')}${row('bookmark', 'Добавить в набор')}${rowRed('trash', 'Удалить')}</div></div>`) });
+const savedLoading = () => phone(`${hd('Сохранённые', '')}<div class="cgrid m" style="margin-top:16px">${[0, 1, 2, 3, 4, 5].map(() => `<div class="skel" style="height:150px;border-radius:22px"></div>`).join('')}</div>`);
+const menuDots = () => phone(dimBase(savedHead + grid(4)), { overlay: sh('m', row('check', 'Выбрать') + row('layers', 'Вид: сетка · стопка') + row('fwd', 'Сортировка: сначала новые') + rowRed('trash', 'Очистить всё')) });
+const hintOnce = () => phone(savedHead + grid(4), { overlay: dim(`<div class="gl t" style="position:absolute;left:22px;right:22px;top:210px;z-index:60;padding:18px 20px;border-radius:26px"><div style="font-size:19px;font-weight:700">Меняйте размер щипком</div><div style="font-size:16px;line-height:22px;color:var(--sec);margin-top:6px">Двумя пальцами — крупнее или мельче. Или ползунком вверху.</div><div style="margin-top:16px">${cta('Понятно')}</div></div>`) });
+const delLong = () => phone(savedHead + grid(4, 'm', (i, c) => i === 1 ? `<div style="transform:scale(1.04);box-shadow:0 24px 40px -10px rgba(0,0,0,.8);border-radius:22px">${c}</div>` : `<div style="opacity:.4">${c}</div>`), { overlay: `<div class="gl t" style="position:absolute;right:26px;top:330px;z-index:60;width:190px;padding:6px 14px;border-radius:20px"><div class="flex" style="gap:10px;min-height:48px;color:#F2766B;font-weight:700">${icon('trash', 's20')}Удалить</div></div>` });
+const massDel = () => phone(dimBase(savedHead + grid(4)), { overlay: dlg('Удалить 12 карточек?', 'Их можно будет вернуть в течение минуты.', 'Отмена', 'Удалить', true) });
+const fewForPack = () => phone(`${ttl('Новый набор')}<div class="gl ban t" style="margin-top:18px">${icon('flag', 's20')}<span class="grow">Для набора нужно минимум 10 карточек — выберите ещё 4</span></div>${grid(6, 'm', (i, c) => `<div class="gcell on"><span class="ck">${icon('check', 's16')}</span>${c}</div>`)}`, { fixed: bot(`<div class="ac-cta" style="opacity:.45;box-shadow:none">Создать набор · 6 из 10</div>`) });
+const savedErr = () => phone(`${hd('Сохранённые', '')}${st(icon('wifiOff', 's32'), 'Не удалось загрузить', 'Проверьте интернет и попробуйте ещё раз.', cta('Повторить'))}`);
+const savedNoMatch = () => phone(`${ttl('Сохранённые')}<div class="gl t" style="display:flex;align-items:center;gap:10px;padding:0 16px;height:52px;margin-top:18px;border-radius:26px">${icon('search', 's20')}<span>xyz</span></div>${st(icon('search', 's32'), 'Ничего не найдено', 'Попробуйте другое слово.', '')}`);
+
+// ---------- НАБОРЫ ----------
+const pkHead = (t, sub) => `${ttl(t, `<span class="rb t">${icon('dotsH', 's20')}</span>`)}<div style="font-size:15px;color:var(--sec);margin-top:10px">${sub}</div>`;
+const myNotShared = () => phone(`${pkHead('Travel', 'Только вы · 24 карточки')}${grid(4)}`, { fixed: bot(`<div class="row2"><div class="cta2">${lic('globe', 's20')}В сообщество</div><div class="ac-cta flex1">Тренировать</div></div>`) });
+const sendingShare = () => phone(dimBase(pkHead('Travel', 'Только вы · 24 карточки') + grid(2)), { overlay: sh('s', `<div class="center"><div style="font-size:22px;font-weight:700">Отправить в сообщество?</div><div style="font-size:16px;color:var(--sec);margin-top:6px">Набор увидят все после проверки.</div></div><div class="gl ban t" style="margin-top:16px">${icon('check', 's20')}<span class="grow">Название, автор и 24 карточки готовы</span></div><div class="row2" style="margin-top:18px"><div class="cta2">Отмена</div><div class="ac-cta flex1">Отправить</div></div>`) });
+const pubEdit = () => phone(`${pkHead('Travel', 'В сообществе · 3 добавили')}<div class="row2" style="margin-top:16px"><div class="cta2">${icon('edit', 's20')}Править набор</div></div>${grid(4)}`, { fixed: bot(cta('Тренировать')) });
+const openFail = () => phone(`${hd('Наборы', 'Сообщество')}${grid(4)}`, { fixed: toast('wifiOff', 'Не удалось открыть набор', 'Повторить') });
+const packDeleted = () => phone(`${hd('Мои наборы', '')}<div class="gl opt t" style="margin-top:20px"><div class="gtile" style="width:42px;height:42px;border-radius:13px">${icon('layers', 's20')}</div><div class="tx">Family</div><span class="pill s">20</span></div>`, { fixed: toast('trash', 'Набор удалён', 'Вернуть') });
+const catalogLoading = () => phone(`${hd('Сообщество', '')}${[0, 1, 2, 3].map(() => `<div class="gl opt"><div class="skel" style="width:42px;height:42px;border-radius:13px"></div><div class="tx"><div class="skel" style="width:55%;height:16px"></div><div class="skel" style="width:35%;height:12px;margin-top:8px"></div></div></div>`).join('')}`);
+const catalogEmpty = () => phone(`${hd('Сообщество', '')}${st(lic('globe', 's32'), 'Пока нет публикаций', 'Станьте первым — поделитесь своим набором.', cta('Создать набор'))}`);
+const myPublished = () => phone(`${hd('Сообщество', '')}<div class="gl opt t" style="margin-top:20px"><div class="gtile" style="width:42px;height:42px;border-radius:13px">${icon('layers', 's20')}</div><div class="tx">Travel<div style="font-size:14px;color:var(--sec);font-weight:400;margin-top:2px">Вы · 3 добавили</div></div><span class="tag ac">Топ</span><span class="rnd">${icon('edit', 's18')}</span></div>`);
+const reportPack = () => phone(dimBase(pkHead('B2 глаголы', 'Ирина · 49 карточек') + grid(2)), { overlay: sh('r', `<div style="font-size:22px;font-weight:700;text-align:center">Пожаловаться на набор</div>${row('flag', 'Неточные переводы')}${row('flag', 'Неприемлемое содержимое')}${row('flag', 'Спам или реклама')}${row('flag', 'Другое')}`) });
+const noPublications = () => phone(`${hd('Сообщество', '')}<div class="gl t" style="display:flex;align-items:center;gap:10px;padding:0 16px;height:52px;margin-top:18px;border-radius:26px">${icon('search', 's20')}<span>Новые</span></div>${st(lic('globe', 's32'), 'Пока нет публикаций', 'В этом языке ещё ничего не опубликовано.', '')}`);
+
+// ---------- ОТКЛИК ----------
+const cmt = (n, t, m, x = '') => `<div class="gl cm t"><div class="nm">${n}</div><div class="tx2">${t}</div><div class="mt">${m}</div>${x}</div>`;
+const lead = (extra, fx) => phone(`${pkHead('B2 глаголы', 'Ирина · 49 карточек')}<div class="row2" style="margin-top:14px;justify-content:flex-start"><span class="pill s" style="color:${fx.like ? '#FF8FA3' : '#fff'}">${icon(fx.like ? 'heartF' : 'heart', 's18')}${fx.n}</span><span class="pill s">${icon('chat', 's18')}${fx.c}</span></div>${extra}`);
+const likeAfter = () => lead(cmt('Ирина', 'Отличный набор для работы!', '2 ч назад'), { like: true, n: 5, c: 1 });
+const respEmpty = () => lead(`<div class="center" style="margin-top:48px;color:var(--sec);font-size:16px">Пока никто не написал</div>`, { like: false, n: 4, c: 0 });
+const respLocked = () => lead(`<div class="gl ban t" style="margin-top:16px">${icon('lock', 's20')}<span class="grow">Писать можно после добавления набора</span></div>`, { like: false, n: 4, c: 0 });
+const authorMenu = () => phone(dimBase(`${pkHead('Travel', 'Вы')}${cmt('Анна', 'Спасибо!', '1 ч назад')}`), { overlay: sh('a', row('flag', 'Закрепить') + row('close', 'Скрыть') + rowRed('trash', 'Удалить')) });
+const ownMenu = () => phone(dimBase(`${pkHead('B2 глаголы', 'Ирина')}${cmt('Вы', 'Хороший набор', '5 мин назад')}`), { overlay: sh('o', row('edit', 'Изменить') + rowRed('trash', 'Удалить')) });
+const foreignMenu = () => phone(dimBase(`${pkHead('B2 глаголы', 'Ирина')}${cmt('Игорь', 'Плохой набор', '3 ч назад')}`), { overlay: sh('f', row('flag', 'Пожаловаться')) });
+const sending = () => phone(`${pkHead('B2 глаголы', 'Ирина')}${cmt('Вы', 'Спасибо за набор', 'Отправляется…', '')}${cmt('Вы', 'Отличный', 'Не отправлено', `<div style="color:var(--acc);font-weight:700;margin-top:8px">Повторить</div>`)}`);
+const reportCmt = () => phone(dimBase(`${pkHead('B2 глаголы', 'Ирина')}${cmt('Игорь', 'Плохой набор', '3 ч назад')}`), { overlay: sh('c', `<div style="font-size:22px;font-weight:700;text-align:center">Пожаловаться на комментарий</div>${row('flag', 'Оскорбление')}${row('flag', 'Спам')}${row('flag', 'Другое')}`) });
+const reportCmtSent = () => phone(dimBase(`${pkHead('B2 глаголы', 'Ирина')}${cmt('Игорь', 'Плохой набор', '3 ч назад')}`), { fixed: toast('check', 'Жалоба на комментарий отправлена') });
+const reportPackSent = () => phone(dimBase(pkHead('B2 глаголы', 'Ирина') + grid(2)), { fixed: toast('check', 'Жалоба на набор отправлена') });
+
+// ---------- РЕДАКТОР КАРТОЧКИ ----------
+const plusCheck = () => phone(`${ttl('Новая карточка')}<div class="skel" style="height:58px;border-radius:18px;margin-top:24px"></div><div class="skel" style="height:58px;border-radius:18px;margin-top:20px"></div><div class="skel" style="height:92px;border-radius:18px;margin-top:20px"></div>`);
+const edNote = () => phone(`${ttl('Новая карточка')}<div class="lbl">Фраза</div><div class="fld">Boarding pass</div><div class="lbl">Перевод</div><div class="fld">Посадочный талон</div><div class="lbl">Заметка</div><div class="fld tall">Выдают на стойке регистрации</div>`, { fixed: bot(cta('Сохранить')) });
+const edDup = () => phone(`${ttl('Изменить карточку')}<div class="gl ban t" style="margin-top:18px">${icon('flag', 's20')}<span class="grow">Такая карточка уже есть — это дубликат</span></div><div class="lbl">Фраза</div><div class="fld">Boarding pass</div><div class="lbl">Перевод</div><div class="fld">Посадочный талон</div>`, { fixed: bot(`<div class="row2"><div class="cta2">Открыть</div><div class="ac-cta flex1">Сохранить</div></div>`) });
+const edFail = () => phone(`${ttl('Новая карточка')}<div class="lbl">Фраза</div><div class="fld">Boarding pass</div><div class="lbl">Перевод</div><div class="fld">Посадочный талон</div>`, { fixed: toast('close', 'Не удалось сохранить', 'Повторить') });
+const edMissing = () => phone(`${hd('Карточка', '')}${st(icon('search', 's32'), 'Карточка не найдена', 'Возможно, её уже удалили.', cta('К сохранённым'))}`);
+const edSaved = () => phone(`${ttl('Новая карточка')}<div class="lbl">Фраза</div><div class="fld">Boarding pass</div><div class="lbl">Перевод</div><div class="fld">Посадочный талон</div>`, { fixed: toast('check', 'Карточка сохранена') });
+
+// ---------- СОЗДАНИЕ НАБОРА ----------
+const nm = (v, err) => `<div class="lbl">Название</div><div class="fld${v ? '' : ' ph'}${err ? ' err' : ''}">${v || 'Например, Путешествия'}</div>`;
+const crEdit = () => phone(`${ttl('Изменить набор')}${nm('Travel')}<div class="lbl">Карточки · 24</div>${grid(2)}`, { fixed: bot(cta('Сохранить')) });
+const crPrivate = () => phone(`${ttl('Новый набор')}${nm('Travel')}<div class="gl opt t" style="margin-top:20px"><div class="gtile" style="width:42px;height:42px;border-radius:13px">${icon('lock', 's20')}</div><div class="tx">Только для меня</div><div class="tg on"></div></div>`, { fixed: bot(cta('Создать')) });
+const crMenu = () => phone(dimBase(`${ttl('Новый набор')}${nm('Travel')}`), { overlay: sh('m', row('edit', 'Сохранить черновик') + rowRed('trash', 'Очистить черновик') + row('flag', 'Сообщить об ошибке')) });
+const crClear = () => phone(dimBase(`${ttl('Новый набор')}${nm('Travel')}`), { overlay: dlg('Очистить черновик?', 'Название и карточки будут удалены.', 'Отмена', 'Очистить', true) });
+const crMin = () => phone(`${ttl('Новый набор')}${nm('Travel')}<div class="hint err">Минимум 10 карточек — сейчас 6</div>${grid(2)}`, { fixed: bot(`<div class="ac-cta" style="opacity:.45;box-shadow:none">Создать</div>`) });
+const crFields = () => phone(`${ttl('Новый набор')}${nm('', true)}<div class="hint err">Введите название</div><div class="lbl">Описание</div><div class="fld tall err ph">Расскажите, о чём набор</div><div class="hint err">Добавьте описание</div>`, { fixed: bot(cta('Создать')) });
+const crLimit = () => phone(`${ttl('Новый набор')}${nm('Travel')}<div class="gl ban t" style="margin-top:16px">${icon('flag', 's20')}<span class="grow">В наборе может быть не больше 50 карточек</span></div>${grid(2)}`, { fixed: bot(`<div class="ac-cta" style="opacity:.45;box-shadow:none">50 из 50</div>`) });
+const crOffline = () => phone(`${ttl('Новый набор')}${nm('Travel')}`, { fixed: toast('wifiOff', 'Нет сети — набор сохранён на устройстве') });
+const crSaved = () => phone(`${ttl('Travel', `<span class="rb t">${icon('dotsH', 's20')}</span>`)}${grid(2)}`, { fixed: toast('check', 'Набор сохранён') });
+const crNoEdit = () => phone(`${hd('Набор', '')}${st(icon('lock', 's32'), 'Недоступен для правки', 'Этот набор нельзя изменить.', cta('Назад'))}`);
+
+// ---------- ПОДГОТОВКА ----------
+const prLoading = () => phone(`${hd('Блиц', 'Минута на скорость')}<div class="lbl" style="font-size:20px;color:#fff;font-weight:700">Наборы</div>${[0, 1, 2, 3].map(() => `<div class="gl opt"><div class="skel" style="width:42px;height:42px;border-radius:13px"></div><div class="tx"><div class="skel" style="width:50%;height:16px"></div></div></div>`).join('')}`);
+const prNone = () => phone(`${hd('Блиц', 'Минута на скорость')}${st(icon('layers', 's32'), 'Нет наборов', 'Сохраните карточки или добавьте набор.', cta('Найти наборы'))}`);
+const prNet = () => phone(`${hd('Блиц', 'Минута на скорость')}${st(icon('wifiOff', 's32'), 'Нет связи', 'Не удалось загрузить наборы.', cta('Повторить'))}`);
+const prMode = () => phone(`${hd('Устно', 'Говорите вслух')}${st(icon('mic', 's32'), 'Режим недоступен', 'Нужен доступ к микрофону.', cta('Открыть настройки'))}`);
+const prPicker = () => phone(dimBase(`${hd('Устно', 'Говорите вслух')}`), { overlay: sh('p', `<div style="font-size:22px;font-weight:700;text-align:center">Выбор наборов</div>${[['bookmark', 'Сохранённые', 64, 1], ['layers', 'Travel', 24, 0], ['people', 'B2 глаголы', 49, 1]].map(([ic, t, n, on]) => `<div class="gl opt t"><div class="gtile" style="width:42px;height:42px;border-radius:13px">${icon(ic, 's20')}</div><div class="tx">${t}<div style="font-size:14px;color:var(--sec);font-weight:400">${n} карточек</div></div><span class="rnd" style="width:30px;height:30px;${on ? 'background:var(--acc);color:var(--on)' : 'box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.4);background:none'}">${on ? icon('check', 's16') : ''}</span></div>`).join('')}<div style="margin-top:16px">${cta('Готово · 113')}</div>`) });
+const prLang = () => phone(`${hd('Блиц', 'Минута на скорость')}<div class="lbl" style="font-size:20px;color:#fff;font-weight:700">Наборы</div>${row('bookmark', 'Сохранённые')}`, { overlay: `<div class="gl t" style="position:absolute;right:20px;top:118px;z-index:60;width:210px;padding:6px 14px;border-radius:22px">${['Английский', 'Немецкий', 'Испанский'].map((l, i) => `<div class="flex" style="min-height:46px;gap:10px;font-weight:600;${i === 0 ? 'color:var(--acc)' : ''}">${l}${i === 0 ? '<span style="margin-left:auto">' + icon('check', 's18') + '</span>' : ''}</div>`).join('')}</div>` });
+const vidFail = () => phone(`${hd('Из видео', '')}${st(icon('play', 's32'), 'Ролик не открылся', 'Откроем набор без видео.', cta('Открыть набор'))}`);
+
+// ---------- НУЖЕН ОТВЕТ ВЛАДЕЛЬЦА ----------
+const stackView = () => phone(`${ttl('Сохранённые', `<span class="pill s">3 / 64</span>`)}<div class="rise"><div style="position:relative;height:420px;margin-top:30px">
+  <div class="mc solid" style="position:absolute;left:34px;right:34px;top:0;height:300px;opacity:.55;border-radius:30px"></div><div class="mc solid" style="position:absolute;left:17px;right:17px;top:20px;height:320px;opacity:.8;border-radius:30px"></div>
+  <div class="mc solid t float" style="position:absolute;left:0;right:0;top:42px;height:340px;border-radius:32px;flex-direction:column"><span style="font-size:40px;font-weight:700">Check in</span><span style="font-size:17px;font-style:italic;color:rgba(255,255,255,.65);margin-top:10px;font-weight:400">/tʃek ɪn/</span></div></div></div>`);
+
+document.getElementById('root').innerHTML =
+  block('saved', 'Сохранённые — состояния и окна', '', [col('Хаб — сообщество недоступно', hubUnavail()), col('Режим выделения', selMode()), col('Загрузка', savedLoading()), col('Меню «⋯»', menuDots()), col('Разовая подсказка', hintOnce()), col('Долгое нажатие', longPress()), col('Удалить с карточки', delLong()), col('Массовое удаление', massDel()), col('Мало для набора', fewForPack()), col('Ошибка загрузки', savedErr()), col('Поиск — не найдено', savedNoMatch())]) +
+  block('packs', 'Наборы — состояния и окна', '', [col('Мой набор — не в сообществе', myNotShared()), col('Отправка в сообщество', sendingShare()), col('Опубликованный — «Править»', pubEdit()), col('Сеть упала при открытии', openFail()), col('Набор удалён', packDeleted()), col('Каталог — загрузка', catalogLoading()), col('Каталог пуст', catalogEmpty()), col('Свой опубликованный', myPublished()), col('Жалоба на набор', reportPack()), col('Нет публикаций — поиск', noPublications())]) +
+  block('social', 'Отклик, лайк и жалобы', '', [col('Лайк после добавления', likeAfter()), col('Отклик пуст', respEmpty()), col('Писать нельзя', respLocked()), col('Меню автора набора', authorMenu()), col('Меню своего комментария', ownMenu()), col('Меню чужого комментария', foreignMenu()), col('Отправляется · не отправлено', sending()), col('Жалоба на комментарий', reportCmt()), col('Жалоба на комментарий — отправлена', reportCmtSent()), col('Жалоба на набор — отправлена', reportPackSent())]) +
+  block('editor', 'Редактор карточки — состояния', '', [col('Проверка Plus', plusCheck()), col('Новая — заметка', edNote()), col('Правка — дубликат', edDup()), col('Не удалось сохранить', edFail()), col('Карточка не найдена', edMissing()), col('Сохранено', edSaved())]) +
+  block('create', 'Создание набора — состояния', '', [col('Правка своего набора', crEdit()), col('Только для меня', crPrivate()), col('Меню черновика', crMenu()), col('Очистить черновик?', crClear()), col('Минимум 10 карточек', crMin()), col('Проверь поля', crFields()), col('Лимит 50 карточек', crLimit()), col('Офлайн', crOffline()), col('Набор сохранён', crSaved()), col('Недоступен для правки', crNoEdit())]) +
+  block('prep', 'Подготовка тренировки — состояния', '', [col('Загрузка наборов', prLoading()), col('Нет наборов', prNone()), col('Ошибка сети', prNet()), col('Режим недоступен', prMode()), col('Шторка выбора наборов', prPicker()), col('Кнопка языка открыта', prLang()), col('Из видео — ролик не открылся', vidFail())]) +
+  block('ask', 'Нужен ответ владельца', 'Старое состояние «Сохранённые — Стопка» (карточки стопкой с листанием смахиванием). В утверждённом макете вместо него ползунок масштаба: карточки меняют размер, в одну колонку — широкие. Оставить ли режим «Стопка» отдельным видом (вариант ниже) или он заменён ползунком?', [col('Стопка (если оставить)', stackView())]);
+K.init();
+
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const T = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', T[1]); p.style.setProperty('--g2', T[2]); p.style.setProperty('--acc', T[3]); p.style.setProperty('--on', T[4]); }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((T, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${T[1]},${T[2]})"></i>${T[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+document.addEventListener('click', (e) => { const c = e.target.closest('.gc.static'); if (c && !c.closest('.gcell')) c.classList.toggle('flipped'); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

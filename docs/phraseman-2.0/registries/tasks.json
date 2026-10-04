@@ -2621,7 +2621,8 @@
     ],
     "notes": [
       "Removed process-wide friend gift polling, AppState/account listeners and gift modal by unmounting/deleting the exclusive host. Friends screen gift picker, receive modal, gift handlers/subscription and sheet CTA are also removed. Friend gift outbox, inbox, client RPC, inventory, dead active-gift inventory and background sync drain are removed. Streak and statistics no longer call/read/display server friend chain shield; local freeze remains. Cloud sync no longer hydrates the retired shield and deletes the local key during restore; outbound blocklists remain until server producers/rules are retired. Server gift callables removed from source/export/deploy lists, while shared Expo push remains in a neutral module. PM-048-A1/A2 remain open: other gift producers, published Firebase functions, legacy pending data and purchase rights not yet purged; no deployment was run.",
-      "2026-10-04 (координатор, §140): PM-048 остаётся в review ДО РЕЛИЗА — критерий A2 (перевод неиспользованных спинов/подарков в монеты) выполняется миграцией после релиза скриптом с пробным прогоном по команде владельца (D90/D91, Q12); до тех пор не закрывать. A1 подтверждён, путь подарка попыток удалён (ef0eea570)."
+      "2026-10-04 (координатор, §140): PM-048 остаётся в review ДО РЕЛИЗА — критерий A2 (перевод неиспользованных спинов/подарков в монеты) выполняется миграцией после релиза скриптом с пробным прогоном по команде владельца (D90/D91, Q12); до тех пор не закрывать. A1 подтверждён, путь подарка попыток удалён (ef0eea570).",
+      "2026-10-04 (App Check): по независимому ревью A1 PASS, A2 ждёт миграции после релиза — остаётся в review. Красные сторожа починены по смыслу (a6bdd027c): loyalty_gift_flow_contract (подарок удалён в 285ac732c → тест проверяет отсутствие), friends_tab_gift_interaction_contract (окно «уровень дружбы вырос» убрано в 61830d835), spin_gift_storage_integrity (бонусная энергия читается как 0 при миграции схемы v2 — НАМЕРЕННО: D07/D09, ENERGY_BONUS_CAPACITY_LIMIT = 0 с 00d854736 от 30.09; не потеря)."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -12061,7 +12062,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12098,9 +12099,9 @@
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
     ],
     "audit_sha": "c5eb80f70",
-    "result_sha": "c728159c8",
+    "result_sha": "a6bdd027c",
     "owner": "Ядро (Claude)",
-    "reviewer": null,
+    "reviewer": "Независимый рецензент (вердикт передан координатором), 04.10",
     "evidence": [
       "99cc78b2f: дедлайн 10 с на задачу foreground-очереди (app_resume_policy 10/10, «moves on after deadline»); prefetch не пишет в AsyncStorage и уступает занятию",
       "2026-10-04: цифры замера (calls 144/122/159, maxInflight 43/39/29, замок на старте простаивает) СОГЛАСОВАНЫ координатором (сообщение сессии «Сессии с таймером и автоматизацией» 04.10); дедлайн замка 13 с = худшее удержание 4 268 мс × 3 — D153, app/storage_mutex.ts, tests/storage_mutex_deadline_d153.test.ts; бюджеты — config/perf-budgets.json (1ed37e5cb)"
@@ -12111,14 +12112,18 @@
       "§115: шаг 0 (метрики) — да; приоритет записи — счётчик «запись в полёте»; A3 — эмулятор слабого профиля, физический телефон — владельцу в FINAL; дедлайн storage_mutex — после замера, владелец (D153).",
       "2026-10-04 (App Check): данные для A3 «лимиты измерены» — 3 холодных старта store-release на слабом профиле (окно 15 с): обращений к хранилищу 144 / 122 / 159 (было 370–420 до снимка §122), maxInflight 43 / 39 / 29 (потолок 58), метрики глобального замка storage_mutex: acquisitions 0, maxQueueDepth 0, maxWaitMs 0, deadlineTimeouts 0 во всех трёх запусках (на старте замок не берётся — очередь не голодает). Потолки обновлены в config/perf-budgets.json (1ed37e5cb). «Согласованы» и дедлайн storage_mutex — решение владельца (D153); реальный слабый телефон — владельцу.",
       "2026-10-04: A3 принят (согласовано координатором); D153 дополнен числом дедлайна замка. Остальные критерии были приняты ранее — ждёт рецензента для done.",
-      "2026-10-04 честный статус (App Check): все три критерия приняты (A1–A3), работа сделана: общий снимок хранилища, дедлайн замка D153 = 13 с (c728159c8), сторож ожидания; замер холодного старта 122–159 обращений (INBOX §137, §141). Осталось только независимая проверка рецензентом (не исполнитель) — затем done."
+      "2026-10-04 честный статус (App Check): все три критерия приняты (A1–A3), работа сделана: общий снимок хранилища, дедлайн замка D153 = 13 с (c728159c8), сторож ожидания; замер холодного старта 122–159 обращений (INBOX §137, §141). Осталось только независимая проверка рецензентом (не исполнитель) — затем done.",
+      "2026-10-04 закрыта (App Check): независимый вердикт PASS по A1–A3 (сообщение координатора: дедлайн 13 000 мс = 4268×3, лог [STORAGE-MUTEX] wait_exceeded/deadline_timeout, 27/27 тестов); замечание ревью исполнено — немой catch в captureHolderTag теперь пишет причину один раз за процесс (a6bdd027c)."
     ],
     "actual_cost": null,
     "kind": "code",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
+    "actual_model": "claude-sonnet-5-5 (сессия App Check, исполнитель)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
     "id": "PM-216",

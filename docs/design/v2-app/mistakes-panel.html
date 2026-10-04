@@ -74,8 +74,8 @@ const L = [['Grandchildren', 'Внуки', 0], ['I have been', 'Я был', 1], 
 const chips = (on = 0) => `<div class="fchips">${['Все 12', 'Значение 5', 'Грамматика 4', 'Произношение 3'].map((t, i) => `<span class="${i === on ? 'on' : ''}">${t}</span>`).join('')}</div>`;
 const legend = `<div class="legend"><span><i style="background:var(--acc)"></i>38 исправлено</span><span><i style="background:rgba(255,255,255,.25)"></i>12 ждут</span></div>`;
 const hubHead = back() + `<div class="lt"><div class="ti">Мои ошибки</div></div>`;
-const timer = `<div class="tmr"><svg viewBox="0 0 74 74"><circle cx="37" cy="37" r="32" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="6"/><circle cx="37" cy="37" r="32" fill="none" stroke="var(--acc)" stroke-width="6" stroke-linecap="round" stroke-dasharray="130 201" transform="rotate(-90 37 37)"/></svg><b>0:13</b></div>`;
-const runTop = (n) => `${barX(`<div class="sec2" style="text-align:right;font-weight:600">${n} / 12</div>`)}${timer}`;
+// зачем (владелец 04.10): кольцо-таймер на вопрос убрано; в шапке задания — крестик, счётчик «n / 12» и меню «⋯» (скрыть ошибку, сообщить об ошибке в задании).
+const runTop = (n) => `${barX(`<div class="flex" style="justify-content:flex-end;gap:12px"><div class="sec2" style="font-weight:600">${n} / 12</div><span class="rb t">${icon('dotsH', 's20')}</span></div>`)}`;
 const trayG = (opts, marks = {}) => `<div class="g">${opts.map((o) => `<div class="${marks[o] || ''}">${o}</div>`).join('')}</div>`;
 const Q = `<div class="q"><div class="k">Выберите перевод</div><div class="v">Grandchildren</div></div>`;
 const WHY = '<b>Grand-</b> добавляет поколение: grandmother — бабушка, grandchildren — внуки. Дети — это <b>children</b>.';
@@ -102,6 +102,7 @@ const menu = () => phone(`<div style="opacity:.3"><div class="hero2" style="padd
 const runChoose = () => phone(`${runTop(3)}${Q}`, { fixed: `<div class="tray">${trayG(['Внуки', 'Дети', 'Родители', 'Племянники'])}</div>` });
 const runBuild = () => phone(`${runTop(5)}<div class="q"><div class="k">Собери фразу</div><div class="v" style="font-size:32px;line-height:38px">Я был здесь раньше</div></div><div class="slot" style="margin-top:26px"><span class="tok">I</span><span class="tok">have</span></div>`, { fixed: `<div class="tray"><div class="flex" style="flex-wrap:wrap;gap:10px;margin-bottom:16px"><span class="tok used">I</span><span class="tok">before</span><span class="tok used">have</span><span class="tok">been</span><span class="tok">here</span><span class="tok">was</span></div><div class="ac-cta" style="opacity:.4;box-shadow:none">Проверить</div></div>` });
 const runType = () => phone(`${runTop(7)}<div class="q"><div class="k">Напиши по-английски</div><div class="v" style="font-size:36px;line-height:42px">Принять решение</div></div><div class="fld" style="margin-top:26px">Make a decis<span style="width:2px;height:26px;background:var(--acc);margin-left:1px"></span></div>`, { fixed: `<div class="tray">${cta('Проверить')}</div>` });
+const runMenu = () => phone(`${runTop(3)}${Q}`, { fixed: `<div class="tray">${trayG(['Внуки', 'Дети', 'Родители', 'Племянники'])}</div>`, overlay: sheet('rm', menuRow('eyeOff', 'Скрыть ошибку') + menuRow('flag', 'Сообщить об ошибке в задании'), true) });
 const runSay = () => phone(`${runTop(9)}<div class="q"><div class="k">Скажи по-английски</div><div class="v">Через</div></div><div class="center" style="margin-top:44px"><span class="mic">${icon('mic', 's32')}</span><div class="sec2" style="margin-top:16px;font-size:15px">Зажми и говори</div></div>`, { fixed: `<div class="tray"><div class="cta2">Не могу сейчас говорить</div></div>` });
 
 // ---------- ответ и разбор ----------
@@ -120,7 +121,7 @@ document.getElementById('root').innerHTML =
   block('hub', 'Вход и хаб', 'Кольцо прогресса, ленты-фильтры по типам и одна панель с самыми частыми ошибками. Кнопка «Отработать» открывает выбор перед стартом.', [col('Главная — вход', homeEntry()), col('Хаб', hub()), col('Хаб — загрузка', hubLoading()), col('Перед отработкой', startS())]) +
   block('list', 'Список', '', [col('Все ошибки — ждут', list(false)), col('Все ошибки — исправлены', list(true))]) +
   block('card', 'Ошибка', '', [col('Ошибка', detail(false)), col('Ошибка — шаги и история', detail(true)), col('Меню ошибки', menu())]) +
-  block('run', 'Отработка — типы заданий', 'Ответы — в «стакане» внизу экрана, под большим пальцем.', [col('Выбери перевод', runChoose()), col('Собери фразу', runBuild()), col('Напиши', runType()), col('Скажи вслух', runSay())]) +
+  block('run', 'Отработка — типы заданий', 'Ответы — в «стакане» внизу экрана, под большим пальцем.', [col('Выбери перевод', runChoose()), col('Собери фразу', runBuild()), col('Напиши', runType()), col('Скажи вслух', runSay()), col('Меню задания', runMenu())]) +
   block('fb', 'Ответ и разбор', 'Результат и разбор выезжают в том же «стакане»; нижней шторки поверх экрана нет.', [col('Верно', fbOk()), col('Неверно', fbNo()), col('Почему', why())]) +
   block('end', 'Итог и пустые состояния', '', [col('Итог отработки', result()), col('Ошибок нет', empty()), col('На сегодня всё', allDone()), col('Нет сети и кэша', offline())]);
 K.init();

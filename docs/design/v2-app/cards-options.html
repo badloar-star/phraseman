@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Карточки — 5 вариантов на выбор</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+  /* зачем (владелец 04.10: «ХАБ КАРТОЧЕК — 5 НОВЫХ ДИЗАЙНОВ, Я ВЫБЕРУ 1»; «И НОВЫЕ ДИЗАЙНЫ КАРТОЧЕК ТОЖЕ»; «ТАК ЖЕ НОВЫЕ ДИЗАЙНЫ НАБОРОВ ВЕЗДЕ»):
+     три блока по пять вариантов — хаб, карточка, набор. Всё строго на наборе kit.css (графит, белый, серый, Inter, стекло), содержание — только то, что
+     уже есть в продукте (ничего не выдумано). Наложений нет: страница проходит scripts/mockup_overlap_scan.mjs. */
+  .scr > .in { min-height: 100%; }
+  .bot { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 18px 20px 34px; background: linear-gradient(rgba(12,12,13,0), #0C0C0D 30%); }
+  .srch { display: flex; align-items: center; gap: 10px; height: 46px; border-radius: 23px; background: #161618; border: 1px solid var(--line); padding: 0 16px; color: var(--muted); font-size: 16px; }
+  .chips { display: flex; gap: 8px; overflow: hidden; margin-right: -20px; margin-top: 14px; }
+  .chipbtn { height: 36px; padding: 0 16px; border-radius: 18px; display: inline-flex; align-items: center; font-size: 15px; font-weight: 600; color: var(--sec); background: #161618; border: 1px solid var(--line); white-space: nowrap; }
+  .chipbtn.on { color: var(--cta-ink); background: var(--cta); border-color: transparent; }
+  .ava { width: 24px; height: 24px; border-radius: 50%; background: #2A2A2C; display: flex; align-items: center; justify-content: center; color: #8C8C90; flex: none; }
+  .note { border-radius: 16px; background: #202022; border: 1px solid var(--line); padding: 16px 16px 16px 18px; }
+  .pick { position: absolute; top: 58px; right: 26px; z-index: 35; height: 28px; padding: 0 12px; border-radius: 14px; background: rgba(255,255,255,.1); font-size: 13px; font-weight: 700; display: flex; align-items: center; letter-spacing: .5px; }
+
+  /* колода: два слоя выглядывают из-под карточки снизу */
+  .deck { box-shadow: 0 8px 0 -3px #151517, 0 8px 0 -2px rgba(255,255,255,.07), 0 15px 0 -7px #101012, 0 15px 0 -6px rgba(255,255,255,.05); margin-bottom: 16px; }
+  .mono { width: 56px; height: 56px; border-radius: 16px; background: linear-gradient(145deg, #34343A, #1E1E21); display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; flex: none; letter-spacing: -.5px; }
+  .mono.lg { width: 88px; height: 88px; border-radius: 24px; font-size: 40px; }
+  .big-n { font-size: 56px; line-height: 60px; font-weight: 800; letter-spacing: -1.2px; font-variant-numeric: tabular-nums; }
+  .sq { width: 168px; flex: none; }
+  .hscroll { display: flex; gap: 12px; overflow: hidden; margin-right: -20px; }
+  .hair > * + * { border-top: 1px solid var(--line); }
+  .round { width: 76px; height: 76px; border-radius: 50%; background: var(--cta); color: var(--cta-ink); display: flex; align-items: center; justify-content: center; flex: none; }
+  .round svg.i { width: 32px; height: 32px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Карточки — по 5 вариантов на выбор</h1>
+  <p class="page-lead">Три блока: хаб «Карточки», сама карточка, набор (строка в списках и заголовок). Выберите по одному варианту в каждом блоке — выбранный я перенесу на все экраны раздела.
+  Содержание везде одно и то же и взято из продукта (тренировка, «Сохранённые», «Мои наборы», сообщество); меняется только подача.</p>
+  <div class="page-nav"><a href="#hub">Хаб</a><a href="#card">Карточка</a><a href="#set">Набор</a></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+const { icon, phone, col, block } = K;
+const LP = {
+  cards: '<rect x="4" y="7.5" width="12" height="13" rx="2.5"/><path d="M8 4.5h9.5A2.5 2.5 0 0120 7v10"/>',
+  lock: '<rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/>',
+  globe: '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.6 3.4 5.5 3.4 8.5s-1 5.9-3.4 8.5c-2.4-2.6-3.4-5.5-3.4-8.5s1-5.9 3.4-8.5z"/>',
+  bookmarkF: '<path d="M7 4h10v16l-5-3.6L7 20z" fill="currentColor"/>',
+};
+const li = (n, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${LP[n]}</svg>`;
+const ch = `<span class="ch">${icon('fwd', 's20')}</span>`;
+const arr = `<span class="ar">${icon('arrowR', 's20')}</span>`;
+const bot = (html) => `<div class="bot">${html}</div>`;
+const lim = (n) => `<span class="pill s">${li('cards', 's16')}${n}/3</span>`;
+const topRow = (right = '') => `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><div class="flex">${right}</div></div>`;
+const title = (ti, su) => `<div class="lt"><div class="ti">${ti}</div>${su ? `<div class="su">${su}</div>` : ''}</div>`;
+const sec = (t, ac = '', n = '') => `<div class="sec"><div class="ti">${t}${n !== '' ? `<span class="n">${n}</span>` : ''}</div>${ac ? `<div class="ac">${ac}</div>` : ''}</div>`;
+const meta = (h, p, c) => `<span>${icon('heart', 's18')}${h}</span><span>${icon('people', 's18')}${p}</span>${c ? `<span>${icon('chat', 's18')}${c}</span>` : ''}`;
+const tag = (n) => `<div class="pick">ВАРИАНТ ${n}</div>`;
+const PACKS = [['Family', 'Лидия', meta(4, 9), 20, 'A2'], ['B2 глаголы', 'Ирина', meta(3, 11, 1), 49, 'B2'], ['Антоніми дієслів', 'Natalia', meta(1, 2), 30, 'B1']];
+// базовая строка набора текущего макета — для сравнения в блоке «Набор»
+const packRow = (t, a, m, n, lvl) => `<div class="card t"><div class="row" style="min-height:74px"><div class="tx"><div class="tt">${t}</div><div class="st" style="font-size:16px">${a}</div><div class="meta">${m}</div></div><span class="lvl">${lvl}</span><span class="cntp">${n}</span>${ch}</div></div>`;
+
+// =====================================================================
+// A. ХАБ «КАРТОЧКИ» — 5 вариантов
+// =====================================================================
+const COMM = () => PACKS.map((p) => packRow(...p)).join('');
+const head = (right = `${lim(2)}<span class="rb t">${icon('plus', 's20')}</span>`) => `${topRow(right)}${title('Карточки', 'Слова и фразы')}`;
+
+// 1. «Колода» — крупная стопка карточек и главная кнопка внутри неё
+const hub1 = () => phone(`${head()}
+  <div class="card c2 deck" style="margin-top:26px;padding:22px 20px 20px;overflow:visible">
+    <div class="ov">Тренировка</div>
+    <div class="big-n" style="margin-top:10px">133</div>
+    <div style="font-size:16px;color:var(--sec);margin-top:4px">карточки · 3 набора</div>
+    <div class="cta t" style="margin-top:20px">Тренироваться${arr}</div></div>
+  <div class="flex" style="gap:10px;margin-top:34px">
+    <div class="card t grow" style="padding:16px"><div class="tile">${icon('bookmark', 's20')}</div><div class="tt" style="font-size:17px;font-weight:700;margin-top:14px">Сохранённые</div><div style="font-size:15px;color:var(--sec);margin-top:2px">64</div></div>
+    <div class="card t grow" style="padding:16px"><div class="tile">${icon('layers', 's20')}</div><div class="tt" style="font-size:17px;font-weight:700;margin-top:14px">Мои наборы</div><div style="font-size:15px;color:var(--sec);margin-top:2px">4</div></div></div>
+  ${sec('Лучшее у сообщества', `Все ${icon('fwd', 's16')}`)}<div class="stack">${COMM()}</div>`);
+
+// 2. «Плитки 2×2» — четыре входа равного веса, кнопка тренировки закреплена снизу
+const tileCard = (ic, t, s) => `<div class="card t" style="padding:18px 16px 16px;min-height:150px"><div class="tile t46">${ic}</div><div style="font-size:18px;font-weight:700;margin-top:18px">${t}</div><div style="font-size:15px;color:var(--sec);margin-top:3px">${s}</div></div>`;
+const hub2 = () => phone(`${head()}
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px">
+    ${tileCard(li('cards', 's24'), 'Тренировка', '133 карточки')}${tileCard(icon('bookmark', 's24'), 'Сохранённые', '64')}
+    ${tileCard(icon('layers', 's24'), 'Мои наборы', '4')}${tileCard(li('globe', 's24'), 'Сообщество', '1 240 наборов')}</div>
+  ${sec('Лучшее у сообщества')}<div class="stack">${PACKS.slice(0, 2).map((p) => packRow(...p)).join('')}</div>`, { fixed: bot(`<div class="cta t">Тренироваться${arr}</div>`) });
+
+// 3. «Карусель наборов» — широкая шапка тренировки и горизонтальная лента наборов
+const deckTile = (t, a, n, lvl) => `<div class="card t deck" style="padding:16px;overflow:visible;flex:1;min-width:0"><div class="mono">${t[0]}</div><div style="font-size:18px;line-height:23px;font-weight:700;margin-top:16px">${t}</div><div style="font-size:15px;color:var(--sec);margin-top:3px">${a}</div><div class="flex" style="margin-top:14px"><span class="lvl">${lvl}</span><span class="cntp">${n}</span></div></div>`;
+const hub3 = () => phone(`${head()}
+  <div class="flex" style="margin-top:26px;gap:14px"><div class="grow"><div style="font-size:19px;font-weight:700">Тренировка</div><div style="font-size:15px;color:var(--sec);margin-top:3px">133 карточки · 3 набора</div></div><div class="cta sm t">Начать${icon('arrowR', 's18')}</div></div>
+  ${sec('Ваши карточки')}
+  <div class="stack">${[['bookmark', 'Сохранённые', 64], ['layers', 'Мои наборы', 4]].map(([i, t, n]) => `<div class="card t"><div class="row"><div class="tile">${icon(i, 's20')}</div><div class="tx"><div class="tt">${t}</div></div><span class="cntp">${n}</span>${ch}</div></div>`).join('')}</div>
+  ${sec('Лучшее у сообщества', `Все ${icon('fwd', 's16')}`)}
+  <div class="flex" style="gap:14px;align-items:stretch">${deckTile('Family', 'Лидия', 20, 'A2')}${deckTile('B2 глаголы', 'Ирина', 49, 'B2')}</div>`);
+
+// 4. «Списком без коробок» — разделители вместо карточек, одна главная кнопка вверху
+const lrow = (ic, t, n) => `<div class="t flex" style="gap:16px;padding:16px 2px"><div class="tile">${ic}</div><div class="grow" style="font-size:18px;font-weight:600">${t}</div><span class="cntp">${n}</span>${ch}</div>`;
+const hub4 = () => phone(`${head()}
+  <div class="cta t" style="margin-top:26px">Тренироваться · 133${arr}</div>
+  <div style="font-size:15px;color:var(--sec);margin:12px 4px 0;text-align:center">3 набора · лимит на сегодня — 2 из 3</div>
+  <div class="hair" style="margin-top:22px">${lrow(icon('bookmark', 's20'), 'Сохранённые', 64)}${lrow(icon('layers', 's20'), 'Мои наборы', 4)}${lrow(li('globe', 's20'), 'Сообщество', 1240)}</div>
+  ${sec('Лучшее у сообщества')}
+  <div class="hair">${PACKS.map(([t, a, , n, l]) => `<div class="t flex" style="gap:14px;padding:16px 2px"><div class="grow"><div style="font-size:18px;font-weight:700">${t}</div><div style="font-size:15px;color:var(--sec);margin-top:2px">${a}</div></div><span class="lvl">${l}</span><span class="cntp">${n}</span></div>`).join('')}</div>`);
+
+// 5. «Одна большая сцена» — тренировка как постер на пол-экрана, остальное — компактной строкой
+const hub5 = () => phone(`${topRow(`${lim(2)}<span class="rb t">${icon('plus', 's20')}</span>`)}
+  <div class="card c2" style="margin-top:20px;padding:26px 22px 22px;min-height:330px;display:flex;flex-direction:column">
+    <div class="flex" style="gap:14px"><div class="tile t57">${li('cards', 's28')}</div><div class="ov">Карточки</div></div>
+    <div style="font-size:38px;line-height:44px;font-weight:800;letter-spacing:-.8px;margin-top:auto">Слова и фразы</div>
+    <div style="font-size:16px;color:var(--sec);margin-top:8px">133 карточки · 3 набора</div>
+    <div class="cta t" style="margin-top:22px">Тренироваться${arr}</div></div>
+  <div class="stack" style="margin-top:12px">${[['bookmark', 'Сохранённые', 64], ['layers', 'Мои наборы', 4]].map(([ic, tt, n]) => `<div class="card t"><div class="row" style="min-height:56px"><div class="tile" style="width:36px;height:36px">${icon(ic, 's18')}</div><div class="tx"><div class="tt">${tt}</div></div><span class="cntp">${n}</span>${ch}</div></div>`).join('')}</div>
+  ${sec('Лучшее у сообщества', `Все ${icon('fwd', 's16')}`)}<div class="stack">${PACKS.slice(0, 2).map((p) => packRow(...p)).join('')}</div>`);
+
+// =====================================================================
+// B. КАРТОЧКА — 5 вариантов (своя карточка набора «Travel»)
+// =====================================================================
+const CARD = { set: 'Travel', w: 'Boarding pass', ipa: '/ˈbɔːdɪŋ pɑːs/', tr: 'Посадочный талон', ex: 'Have your boarding pass ready.', exTr: 'Приготовьте посадочный талон.' };
+const exNote = (more = '') => `<div class="note"${more}><div class="ov">Пример</div><div style="font-size:18px;line-height:24px;margin-top:10px">${CARD.ex}</div><div style="font-size:15px;color:var(--sec);margin-top:6px">${CARD.exTr}</div></div>`;
+const act3 = `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px"><div class="card t" style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:16px 8px;font-size:15px;font-weight:600">${icon('edit', 's22')}Изменить</div><div class="card t" style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:16px 8px;font-size:15px;font-weight:600">${li('bookmarkF', 's22')}Сохранено</div><div class="card t" style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:16px 8px;font-size:15px;font-weight:600">${icon('trash', 's22')}Удалить</div></div>`;
+const cardTop = () => `<div class="topbar"><span class="rb t">${icon('close', 's20')}</span><span class="rb sq t">${icon('dotsV', 's18')}</span></div>`;
+
+// 1. «Слово по центру» — крупная озвучка-кнопка, всё по оси
+const card1 = () => phone(`${cardTop()}
+  <div class="center" style="margin-top:46px"><div class="ov">${CARD.set}</div>
+    <div style="font-size:46px;line-height:52px;font-weight:800;letter-spacing:-1px;margin-top:22px">${CARD.w}</div>
+    <div style="font-size:19px;color:var(--sec);margin-top:10px">${CARD.ipa}</div>
+    <div style="display:flex;justify-content:center;margin-top:28px"><span class="round t">${icon('vol', 's28')}</span></div>
+    <div style="font-size:26px;line-height:32px;font-weight:600;margin-top:34px">${CARD.tr}</div></div>
+  <div style="margin-top:30px">${exNote()}</div>`, { fixed: bot(act3) });
+
+// 2. «Живая карточка» — одна высокая карточка-лист, перевод под линией, точки позиции
+const card2 = () => phone(`${cardTop()}
+  <div class="card c2" style="margin-top:22px;padding:26px 24px 24px;border-radius:30px;min-height:470px;display:flex;flex-direction:column">
+    <div class="flex"><div class="ov grow">${CARD.set}</div><span class="rb fill t">${icon('vol', 's18')}</span></div>
+    <div style="font-size:40px;line-height:46px;font-weight:800;letter-spacing:-.8px;margin-top:26px">${CARD.w}</div>
+    <div style="font-size:18px;color:var(--sec);margin-top:8px">${CARD.ipa}</div>
+    <div class="divider" style="margin-top:auto"></div>
+    <div style="font-size:26px;line-height:32px;font-weight:600">${CARD.tr}</div>
+    <div style="font-size:16px;color:var(--sec);margin-top:10px;line-height:22px">${CARD.ex}<br>${CARD.exTr}</div></div>
+  <div class="flex" style="justify-content:center;gap:8px;margin-top:18px">${[0, 1, 2, 3, 4].map((i) => `<i style="width:${i === 2 ? 22 : 7}px;height:7px;border-radius:4px;background:${i === 2 ? '#fff' : '#3A3A3E'}"></i>`).join('')}</div>`, { fixed: bot(act3) });
+
+// 3. «Две плиты» — слово сверху, смысл снизу, действия в нижней панели
+const card3 = () => phone(`${cardTop()}
+  <div class="card c2" style="margin-top:22px;padding:24px 22px"><div class="flex"><div class="grow"><div class="ov">${CARD.set}</div><div style="font-size:36px;line-height:42px;font-weight:800;letter-spacing:-.6px;margin-top:12px">${CARD.w}</div><div style="font-size:17px;color:var(--sec);margin-top:6px">${CARD.ipa}</div></div><span class="rb l t">${icon('vol', 's22')}</span></div></div>
+  <div class="card" style="margin-top:12px;padding:22px"><div class="ov">Перевод</div><div style="font-size:28px;line-height:34px;font-weight:700;margin-top:10px">${CARD.tr}</div></div>
+  <div style="margin-top:12px">${exNote()}</div>`,
+  { fixed: bot(`<div class="flex" style="gap:10px"><div class="cta gh t" style="flex:1">${icon('edit', 's20')}Изменить</div><div class="cta t" style="flex:1">${li('bookmarkF', 's20')}Сохранено</div><span class="rb l t">${icon('trash', 's20')}</span></div>`) });
+
+// 4. «Редакторская» — слово слева крупным кеглем, цитата с линией, действия строкой
+const card4 = () => phone(`${cardTop()}
+  <div class="ov" style="margin-top:44px">${CARD.set}</div>
+  <div style="font-size:54px;line-height:58px;font-weight:800;letter-spacing:-1.4px;margin-top:16px">Boarding<br>pass</div>
+  <div class="flex" style="margin-top:16px;gap:14px"><span style="font-size:19px;color:var(--sec)">${CARD.ipa}</span><span class="rb fill t">${icon('vol', 's18')}</span></div>
+  <div class="divider" style="margin:26px 0 22px"></div>
+  <div style="font-size:30px;line-height:36px;font-weight:600">${CARD.tr}</div>
+  <div style="display:flex;gap:16px;margin-top:30px"><i style="width:3px;border-radius:2px;background:#fff;opacity:.5;flex:none"></i><div><div style="font-size:19px;line-height:26px">${CARD.ex}</div><div style="font-size:16px;color:var(--sec);margin-top:6px">${CARD.exTr}</div></div></div>`,
+  { fixed: bot(`<div class="flex" style="justify-content:space-between;padding:0 6px;font-size:16px;font-weight:600"><span class="t flex" style="gap:8px">${icon('edit', 's20')}Изменить</span><span class="t flex" style="gap:8px">${li('bookmarkF', 's20')}Сохранено</span><span class="t flex" style="gap:8px;color:var(--sec)">${icon('trash', 's20')}Удалить</span></div>`) });
+
+// 5. «Стопка» — карточка лежит на колоде, сверху позиция «3 из 24» и стрелки соседних
+const card5 = () => phone(`<div class="topbar"><span class="rb t">${icon('close', 's20')}</span><span class="pill s">3 из 24</span><span class="rb sq t">${icon('dotsV', 's18')}</span></div>
+  <div class="card c2 deck" style="margin-top:30px;padding:28px 24px;min-height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:visible">
+    <div class="ov">${CARD.set}</div>
+    <div style="font-size:40px;line-height:46px;font-weight:800;letter-spacing:-.8px;margin-top:20px">${CARD.w}</div>
+    <div style="font-size:18px;color:var(--sec);margin-top:8px">${CARD.ipa}</div>
+    <div style="font-size:26px;line-height:32px;font-weight:600;margin-top:28px">${CARD.tr}</div></div>
+  <div class="flex" style="justify-content:space-between;margin-top:44px"><span class="rb l t">${icon('back', 's22')}</span><span class="rb l t">${icon('vol', 's22')}</span><span class="rb l t">${icon('fwd', 's22')}</span></div>
+  <div style="margin-top:22px">${exNote()}</div>`, { fixed: bot(act3) });
+
+// =====================================================================
+// C. НАБОР — 5 вариантов (строка в списках «Мои наборы» / «Сообщество» и заголовок набора)
+// =====================================================================
+const MINE = [['Travel', 'Только вы', 24], ['Phrasal verbs', 'В сообществе', 18]];
+const metaLine = (m) => (m ? `<div class="meta" style="margin-top:3px">${m}</div>` : '');
+const lvlTag = (l) => (l ? `<span class="lvl">${l}</span>` : '');
+
+// 1. Монограмма
+const s1row = (t, a, m, n, l) => `<div class="card t"><div class="row" style="min-height:84px;gap:14px"><div class="mono">${t[0]}</div><div class="tx"><div class="tt">${t}</div><div class="st">${a}</div>${metaLine(m)}</div>${lvlTag(l)}<span class="cntp">${n}</span></div></div>`;
+// 2. Постер
+const s2row = (t, a, m, n, l) => `<div class="card c2 t" style="padding:18px 18px 16px"><div class="flex" style="align-items:flex-start"><div class="grow"><div style="font-size:22px;line-height:28px;font-weight:700">${t}</div><div class="flex" style="margin-top:8px;color:var(--sec);font-size:16px"><span class="ava">${icon('user', 's16')}</span>${a}</div></div><div style="text-align:right"><div style="font-size:32px;line-height:36px;font-weight:800;font-variant-numeric:tabular-nums">${n}</div><div style="font-size:13px;color:var(--sec)">карточек</div></div></div>${m || l ? `<div class="flex" style="margin-top:14px;justify-content:space-between"><div class="meta" style="margin:0">${m}</div>${lvlTag(l)}</div>` : ''}</div>`;
+// 3. Колода
+const s3row = (t, a, m, n, l) => `<div class="card t deck" style="overflow:visible"><div class="row" style="min-height:78px"><div class="tx"><div class="tt">${t}</div><div class="st">${a}</div>${metaLine(m)}</div>${lvlTag(l)}<span class="cntp">${n}</span>${ch}</div></div>`;
+// 4. Лента без коробок
+const plain = (m) => (m ? ' · ' + m.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() : '');
+const s4row = (t, a, m, n, l) => `<div class="t flex" style="gap:14px;padding:16px 2px"><div class="grow"><div style="font-size:19px;font-weight:700">${t}</div><div style="font-size:15px;color:var(--sec);margin-top:3px">${a}</div></div>${lvlTag(l)}<span class="cntp">${n}</span></div>`;
+// 5. Рейка уровня
+const s5row = (t, a, m, n, l) => `<div class="card t"><div class="row" style="min-height:84px;gap:14px"><div class="tile t57" style="font-size:19px;font-weight:800">${l || icon('layers', 's22')}</div><div class="tx"><div class="tt">${t}</div><div class="st">${a}</div>${metaLine(m)}</div><span class="cntp">${n}</span>${ch}</div></div>`;
+
+const setList = (fn, wrap) => phone(`${topRow()}${title('Наборы', 'Мои и сообщества')}
+  ${sec('Мои наборы', '', 2)}<div class="${wrap}">${MINE.map(([t, a, n]) => fn(t, a, '', n, '')).join('')}</div>
+  ${sec('Сообщество', `Все ${icon('fwd', 's16')}`)}<div class="${wrap}">${PACKS.map(([t, a, m, n, l]) => fn(t, a, m, n, l)).join('')}</div>`);
+
+const WORD_ROWS = [['Lay', 'Класть'], ['Claim', 'Утверждать']];
+const WORDS = () => WORD_ROWS.map(([w, tr]) => `<div class="card t" style="border-radius:16px;min-height:84px;display:flex;align-items:center;gap:16px;padding:12px 18px 12px 14px"><span class="rb" style="width:40px;height:40px;background:#262628;border:none">${icon('vol', 's18')}</span><div class="grow"><div style="font-size:22px;line-height:28px;font-weight:600">${w}</div><div style="font-size:16px;color:var(--sec);margin-top:2px">${tr}</div></div></div>`).join('');
+const addBtn = `<span class="cta sm t">Добавить себе ${icon('plus', 's18')}</span>`;
+const addWide = `<span class="cta t">Добавить себе ${icon('plus', 's18')}</span>`;
+const hbar = `<div class="topbar"><span class="rb bare t">${icon('back', 's24')}</span><span class="rb sq t">${icon('dotsV', 's18')}</span></div>`;
+const mm = `<div class="meta" style="margin:0;font-size:16px;gap:22px">${meta(3, 11, 1)}</div>`;
+const authorLine = `<div class="flex" style="color:var(--sec);font-size:16px"><span class="ava">${icon('user', 's16')}</span>Ирина</div>`;
+const cardsLabel = (n) => `<div style="font-size:17px;font-weight:600;margin-bottom:14px">Карточки${n ? `<span style="color:var(--muted);margin-left:8px">${n}</span>` : ''}</div>`;
+
+const setHead1 = () => phone(`${hbar}<div class="flex" style="gap:18px;margin-top:20px"><div class="mono lg">B</div><div class="grow"><div style="font-size:30px;line-height:35px;font-weight:700;letter-spacing:-.4px">B2 глаголы</div><div style="margin-top:8px">${authorLine}</div></div></div>
+  <div class="flex" style="margin-top:20px;justify-content:space-between">${mm}${addBtn}</div><div class="divider"></div>${cardsLabel(49)}<div class="stack g13">${WORDS()}</div>`);
+const setHead2 = () => phone(`${hbar}<div class="card c2" style="margin-top:20px;padding:22px 20px 20px"><div class="flex" style="align-items:flex-start"><div class="grow"><div style="font-size:32px;line-height:38px;font-weight:800;letter-spacing:-.5px">B2 глаголы</div><div style="margin-top:10px">${authorLine}</div></div><div style="text-align:right"><div class="big-n" style="font-size:44px;line-height:48px">49</div><div style="font-size:13px;color:var(--sec)">карточек</div></div></div>
+  <div class="flex" style="margin-top:18px;justify-content:space-between">${mm}${lvlTag('B2')}</div><div style="margin-top:18px">${addWide}</div></div>
+  <div style="margin-top:26px">${cardsLabel(0)}</div><div class="stack g13">${WORDS()}</div>`);
+const setHead3 = () => phone(`${hbar}<div class="card c2 deck" style="margin-top:22px;padding:24px 20px;overflow:visible"><div class="ov">Набор · B2</div><div style="font-size:34px;line-height:40px;font-weight:800;letter-spacing:-.5px;margin-top:12px">B2 глаголы</div><div style="margin-top:10px">${authorLine}</div><div class="flex" style="margin-top:18px;justify-content:space-between">${mm}<span class="cntp">49</span></div></div>
+  <div style="margin-top:34px;display:flex;justify-content:flex-end">${addBtn}</div><div style="margin-top:22px">${cardsLabel(0)}</div><div class="stack g13">${WORDS()}</div>`);
+const setHead4 = () => phone(`${hbar}<div style="font-size:42px;line-height:46px;font-weight:800;letter-spacing:-1px;margin-top:22px">B2 глаголы</div>
+  <div class="flex" style="margin-top:14px;gap:14px">${authorLine}${lvlTag('B2')}<span class="cntp">49</span></div><div style="margin-top:16px">${mm}</div>
+  <div class="divider" style="margin:22px 0"></div><div class="flex" style="justify-content:space-between;margin-bottom:16px"><div style="font-size:17px;font-weight:600">Карточки</div>${addBtn}</div><div class="stack g13">${WORDS()}</div>`);
+const setHead5 = () => phone(`${hbar}<div class="flex" style="gap:18px;margin-top:20px"><div class="tile" style="width:88px;height:88px;border-radius:24px;font-size:34px;font-weight:800;background:linear-gradient(145deg,#34343A,#1E1E21)">B2</div><div class="grow"><div style="font-size:30px;line-height:35px;font-weight:700;letter-spacing:-.4px">B2 глаголы</div><div style="margin-top:8px">${authorLine}</div></div></div>
+  <div class="flex" style="margin-top:20px;justify-content:space-between">${mm}<span class="cntp">49</span></div><div style="margin-top:18px">${addWide}</div><div class="divider"></div>${cardsLabel(0)}<div class="stack g13">${WORDS()}</div>`);
+
+document.getElementById('root').innerHTML =
+  block('hub', 'A. Хаб «Карточки» — выберите 1 из 5', 'Одно и то же содержание: тренировка (133 карточки · 3 набора), «Сохранённые» 64, «Мои наборы» 4, лучшее у сообщества, лимит 2/3 — разная подача.',
+    [col('Вариант 1 · «Колода»: крупное число и стопка', hub1()), col('Вариант 2 · «Плитки 2×2»: равные входы, кнопка снизу', hub2()), col('Вариант 3 · «Крупные плитки наборов»', hub3()),
+     col('Вариант 4 · «Списком без коробок»', hub4()), col('Вариант 5 · «Большая сцена»: тренировка — постер', hub5())]) +
+  block('card', 'B. Карточка — выберите 1 из 5', 'Своя карточка набора «Travel»: слово, транскрипция, озвучка, перевод, пример, действия.',
+    [col('Вариант 1 · «Слово по центру»', card1()), col('Вариант 2 · «Живая карточка»', card2()), col('Вариант 3 · «Две плиты»', card3()), col('Вариант 4 · «Редакторская»', card4()), col('Вариант 5 · «Стопка»', card5())]) +
+  block('set', 'C. Набор — выберите 1 из 5 (строка в списках и заголовок набора)', 'Применится везде: «Мои наборы», «Сообщество», выбор наборов, результаты поиска, заголовок открытого набора.',
+    [col('Вариант 1 · «Монограмма» — список', setList(s1row, 'stack')), col('Вариант 1 — заголовок', setHead1()), col('Вариант 2 · «Постер» — список', setList(s2row, 'stack')), col('Вариант 2 — заголовок', setHead2()),
+     col('Вариант 3 · «Колода» — список', setList(s3row, 'stack')), col('Вариант 3 — заголовок', setHead3()), col('Вариант 4 · «Лента без коробок» — список', setList(s4row, 'hair')), col('Вариант 4 — заголовок', setHead4()),
+     col('Вариант 5 · «Рейка уровня» — список', setList(s5row, 'stack')), col('Вариант 5 — заголовок', setHead5())]);
+K.init();
+</script>
+</body>
+</html>

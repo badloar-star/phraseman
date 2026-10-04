@@ -33,3 +33,12 @@ Unit test for the helper; type check; the lesson screen behaviour unchanged.
 ## Rollback
 
 Revert the commit.
+
+Governance-ID: TG-FB90008A087E
+(2026-10-04: dev-сборки не пишут в прод app_errors; rollback = git revert.)
+
+Governance-ID: TG-7A6F8A1474C1
+(2026-10-04: [LESSON-EXIT] в app/_layout.tsx на replace к главной; rollback = git revert.)
+
+Governance-ID: TG-8389FEEF57E0
+(2026-10-04: dev-клиент не шлёт в прод Crashlytics; rollback = git revert.)

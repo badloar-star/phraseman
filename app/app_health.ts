@@ -144,7 +144,9 @@ export async function logAppError(context: string, error: unknown, meta: AppHeal
   if (!(await shouldSend(fingerprint, severity, meta.sampleRate))) return;
 
   const errForCrashlytics = error instanceof Error ? error : new Error(normalized.message);
-  if (severity === 'critical' || severity === 'warning') {
+  // зачем (§126): в dev-клиенте (не в автотестах) ошибку в Crashlytics прод-проекта не отправляем — см. условие ниже для app_errors
+  const isDevClient = typeof __DEV__ !== 'undefined' && __DEV__ && process.env.JEST_WORKER_ID === undefined;
+  if (!isDevClient && (severity === 'critical' || severity === 'warning')) {
     try {
       recordError(errForCrashlytics, context);
     } catch (e) {
@@ -155,6 +157,14 @@ export async function logAppError(context: string, error: unknown, meta: AppHeal
 
   const shouldWrite = meta.writeToFirestore ?? severity === 'critical';
   if (!shouldWrite) return;
+
+  // зачем (§126, разбор обращений: ReferenceError «Property 'X' doesn't exist» по одному разу у каждого имени, 29.09–01.10 — это наши
+  // dev-клиенты с Fast Refresh на полу-отредактированных файлах, а не пользователи): dev-сборка не пишет в прод-журнал app_errors,
+  // иначе шум выглядит блокером релиза. Ошибка остаётся в консоли и в Crashlytics-пути выше; в тестах (там тоже __DEV__) запись не отключается.
+  if (typeof __DEV__ !== 'undefined' && __DEV__ && process.env.JEST_WORKER_ID === undefined) {
+    console.warn(`[APP-HEALTH] dev-сборка: запись в прод app_errors пропущена context=${context} severity=${severity} message=${normalized.message.slice(0, 120)}`);
+    return;
+  }
 
   const userName = await AsyncStorage.getItem('user_name').catch((e) => { warnHealthIo('user_name_read_failed', e); return null; });
   const appVersion = Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown';

@@ -4,6 +4,7 @@ import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import {
   ActivityIndicator,
+  AppState,
   Linking,
   Modal,
   Platform,
@@ -112,6 +113,14 @@ import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229
  * ранний выход, каждое событие движка и каждая смена аудиорежима пишут
  * причину; grep «SPEAK» собирает хост ([FC-SPEAK]) и панель ([SPEAK-MIC]).
  */
+/**
+ * PM-130 (04.10): потеря аудиофокуса во время записи (звонок, другое приложение, сворачивание).
+ * Сперва логи: какой код пришёл от движка и какую ветку выбрала панель. Текст речи не пишем — только длины.
+ */
+const SPEAK_FOCUS_INTERRUPT_CODES = new Set(['interrupted', 'audio-capture', 'aborted', 'busy', 'client']);
+function speakFocusTrace(step: string, data?: Record<string, unknown>): void {
+  console.log('[SPEAK-FOCUS]', step, data ? JSON.stringify(data) : ''); // guard-ok: временная трасса PM-130, только на событиях фокуса
+}
 function micTrace(step: string, data?: Record<string, unknown>): void {
   console.log('[SPEAK-MIC]', step, data ? JSON.stringify(data) : ''); // guard-ok: трасса владельца; ~10 строк на попытку, не в кадре
 }
@@ -330,6 +339,17 @@ export function SpeakingPanel({
   const runtimeActive = useRuntimeActive();
   const runtimeActiveRef = useRef(runtimeActive);
   runtimeActiveRef.current = runtimeActive;
+  // зачем (PM-130): общий стор сводит inactive (звонок на iOS, шторка) и background в одно «не активно» —
+  // для диагноза нужен сырой переход и то, шла ли в этот момент запись.
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (next) => {
+      const status = statusRef.current; // statusRef объявлен ниже; читается только в обработчике, после рендера
+      if (status === 'requesting' || status === 'listening' || status === 'scoring') {
+        speakFocusTrace('appstate', { next, status });
+      }
+    });
+    return () => sub.remove();
+  }, []);
   const { playRecordStart } = useRecordStartCue();
   const { playNoSpeech } = useNoSpeechCue();
   const { speak: speakReferenceAudio, stop: stopReferenceAudio } = useAudio();
@@ -1272,6 +1292,21 @@ export function SpeakingPanel({
       }
       clearWatchdog();
       micTrace('event:error', { captureGeneration, error: String(event?.error ?? ''), message: String(event?.message ?? ''), best, latest, status: statusRef.current });
+      const focusCode = String(event?.error ?? '');
+      const focusFinal = best || latest;
+      const focusBranch = systemHoldPressActiveRef.current && restartSystemRecognition
+        ? 'hold_restart'
+        : !mountedRef.current ? 'unmounted' : focusFinal ? 'score_partial' : 'no_speech';
+      speakFocusTrace('engine_error', {
+        code: focusCode,
+        message: String(event?.message ?? '').slice(0, 120),
+        interruptLike: SPEAK_FOCUS_INTERRUPT_CODES.has(focusCode),
+        appState: AppState.currentState,
+        runtimeActive: runtimeActiveRef.current,
+        heardChars: focusFinal.length,
+        sinceStartMs: Date.now() - attemptStartRef.current,
+        branch: focusBranch,
+      });
       if (systemHoldPressActiveRef.current && restartSystemRecognition) {
         restartSystemRecognition('error');
         return;
@@ -1945,6 +1980,7 @@ export function SpeakingPanel({
     const phraseCaptureWasActive = statusRef.current === 'requesting' || statusRef.current === 'listening' || statusRef.current === 'scoring';
     const wordCaptureWasActive = wordPhaseRef.current === 'requesting' || wordPhaseRef.current === 'listening' || wordPhaseRef.current === 'scoring';
     micTrace('panel:background', { status: statusRef.current, phraseCaptureWasActive, wordCaptureWasActive, generation: captureGenerationRef.current });
+    speakFocusTrace('capture_cancelled', { appState: AppState.currentState, phraseCaptureWasActive, wordCaptureWasActive, status: statusRef.current, outcome: phraseCaptureWasActive || wordCaptureWasActive ? 'idle_no_score' : 'nothing_to_cancel' });
     captureGenerationRef.current += 1;
     playbackTokenRef.current += 1;
     systemHoldPressActiveRef.current = false;

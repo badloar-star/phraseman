@@ -2386,7 +2386,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // зачем (04.10, удаление карточки из опубликованного набора): запись, не отправленная до закрытия
       // приложения, уходит при следующем входе. Одно чтение диска после первого кадра; сеть — только если
       // очередь не пуста. Модуль грузится динамически, не в старт.
-      runAfterHomeFirstFrame('published_pack_card_remove_flush', () => import('./community_packs/publishedPackCardRemoval')
+      // зачем (замер №5/№6): на старте отправка шла 2–5 с в общей очереди AsyncStorage и мешала Главной; записи
+      // там бывают только если приложение закрыли посреди окна «Вернуть» — ей не нужно спешить. 20 с после
+      // сплеша — одно чтение уже в спокойное время.
+      runAfterHomeFirstFrame('published_pack_card_remove_flush', () => new Promise<void>((resolve) => {
+        setTimeout(resolve, 20_000);
+      }).then(() => import('./community_packs/publishedPackCardRemoval'))
         .then(({ flushPublishedPackCardRemovals }) => flushPublishedPackCardRemovals())
         .catch((error: unknown) => console.warn('[PACK-CARD-REMOVE] flush на входе не удался', String(error)))); // guard-ok: одна строка на запуск
 

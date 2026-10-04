@@ -1457,13 +1457,33 @@ export const checkAchievements = async (
 ): Promise<Achievement[]> => {
   if (!FOUNDATION_ACHIEVEMENT_EVENT_TYPES.has(event.type)) return [];
   const operationToken = accountToken ?? captureAccountGeneration();
-  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) return [];
+  if (!operationToken.stableId || !isCurrentAccountGeneration(operationToken)) {
+    console.log('[ACH-CHECK] exit:no_account', JSON.stringify({ event: event.type, hasStableId: Boolean(operationToken.stableId) }));
+    return [];
+  }
+  // зачем (координатор 04.10, «сперва логи»): отложенная проверка по монетам на старте шла 11,6 с — по коду это
+  // цепочка последовательных обращений к хранилищу; трасса показывает ожидание очереди/замков и цену КАЖДОГО
+  // шага, чтобы объединять чтения по фактам, а не наугад. Итоговая строка — console.warn (живёт в release).
+  const calledAt = Date.now();
+  const stages: Record<string, number> = {};
+  let stageAt = calledAt;
+  const stage = (name: string) => {
+    const now = Date.now();
+    stages[name] = now - stageAt;
+    stageAt = now;
+  };
+  const stale = (at: string): Achievement[] => {
+    console.warn('[ACH-CHECK] exit:account_changed', JSON.stringify({ event: event.type, at, totalMs: Date.now() - calledAt, stages }));
+    return [];
+  };
   return enqueueAchievementOperation(operationToken, async () => {
+  stage('queue_wait');
   const execute = async (): Promise<Achievement[]> => {
   try {
     const eventStudyTarget = 'studyTarget' in event ? event.studyTarget : undefined;
     const states = await loadAchievementStatesForTargetInternal(eventStudyTarget, operationToken, true);
-    if (!isCurrentAccountGeneration(operationToken)) return [];
+    stage('load_states');
+    if (!isCurrentAccountGeneration(operationToken)) return stale('load_states');
     const justUnlocked: Achievement[] = [];
 
     const u = (id: string) => {
@@ -1488,15 +1508,19 @@ export const checkAchievements = async (
     // зачем: D107 — починки серии больше нет; «чистую» серию прерывает только заморозка Plus.
     if (event.type === 'streak_freeze_used') {
       await markStreakSafetyUsed(operationToken);
-      if (!isCurrentAccountGeneration(operationToken)) return [];
+      stage('streak_safety');
+      if (!isCurrentAccountGeneration(operationToken)) return stale('streak_safety');
     }
 
     const backfillMarker = await AsyncStorage.getItem(ACHIEVEMENT_BACKFILL_KEY);
-    if (!isCurrentAccountGeneration(operationToken)) return [];
+    stage('backfill_marker');
+    if (!isCurrentAccountGeneration(operationToken)) return stale('backfill_marker');
     const progress = await reduceFoundationEventProgress(event, operationToken);
-    if (!isCurrentAccountGeneration(operationToken)) return [];
+    stage('reduce_progress');
+    if (!isCurrentAccountGeneration(operationToken)) return stale('reduce_progress');
     const eligibleIds = await evaluateFoundationSnapshot(event, progress, operationToken);
-    if (!isCurrentAccountGeneration(operationToken)) return [];
+    stage('evaluate_snapshot');
+    if (!isCurrentAccountGeneration(operationToken)) return stale('evaluate_snapshot');
     const silentBackfill = event.type === 'backfill' || backfillMarker !== '1';
     for (const id of eligibleIds) {
       if (silentBackfill) backfillUnlock(id);
@@ -1504,7 +1528,8 @@ export const checkAchievements = async (
     }
     if (backfillMarker !== '1') {
       await commitAchievementStoragePairs([[ACHIEVEMENT_BACKFILL_KEY, '1']], operationToken);
-      if (!isCurrentAccountGeneration(operationToken)) return [];
+      stage('commit_backfill_marker');
+      if (!isCurrentAccountGeneration(operationToken)) return stale('commit_backfill_marker');
     }
 
     if (justUnlocked.length > 0) {
@@ -1519,7 +1544,7 @@ export const checkAchievements = async (
       // снимок и накатываем на него ТОЛЬКО свои разблокировки, не трогая чужие поля.
       const unlockedIds = new Set(justUnlocked.map((a) => a.id));
       const fresh = await loadAchievementStatesForTargetInternal(eventStudyTarget, operationToken, false);
-      if (!isCurrentAccountGeneration(operationToken)) return [];
+      if (!isCurrentAccountGeneration(operationToken)) return stale('reload_fresh_states');
       const freshById = new Map(fresh.map((s) => [s.id, s]));
       for (const row of states) {
           if (!unlockedIds.has(row.id)) continue;
@@ -1540,11 +1565,18 @@ export const checkAchievements = async (
           if (backfilledIds.has(row.id)) current.notified = true;
       }
       const saved = await saveStates(Array.from(freshById.values()), eventStudyTarget, operationToken);
-      if (!saved) return [];
-      if (!isCurrentAccountGeneration(operationToken)) return [];
+      stage('reload_and_save');
+      if (!saved) {
+        console.warn('[ACH-CHECK] exit:save_failed', JSON.stringify({ event: event.type, totalMs: Date.now() - calledAt, stages }));
+        return [];
+      }
+      if (!isCurrentAccountGeneration(operationToken)) return stale('reload_and_save');
       emitAppEvent('achievement_unlocked');
 
     }
+    console.warn('[ACH-CHECK] done', JSON.stringify({
+      event: event.type, unlocked: justUnlocked.length, eligible: eligibleIds.length, totalMs: Date.now() - calledAt, stages,
+    }));
     return justUnlocked;
   } catch (error) {
     // зачем (аудит 2026-08-26): раньше здесь стояло глухое `catch { return [] }`.

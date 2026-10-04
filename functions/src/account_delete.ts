@@ -204,6 +204,22 @@ const FIELD_QUERY_SPECS: AccountDeleteQuerySpec[] = [
   { collection: 'app_activity', field: 'uid', values: 'stable' },
   { collection: 'app_errors', field: 'uid', values: 'stable' },
   { collection: 'error_reports', field: 'uid', values: 'stable' },
+  // зачем (PM-252 п.1, 04.10): эти персональные записи переживали удаление аккаунта — найдено ревью сервера.
+  { collection: 'user_warnings', field: 'uid', values: 'both' },
+  { collection: 'explain_report_entries', field: 'stableUid', values: 'stable' },
+  { collection: 'explain_report_entries', field: 'authUid', values: 'auth' },
+  { collection: 'client_report_rate_limits', field: 'stableUid', values: 'stable' },
+  { collection: 'client_report_rate_limits', field: 'authUid', values: 'auth' },
+  { collection: 'explain_report_rate_limits', field: 'stableUid', values: 'stable' },
+  { collection: 'explain_report_rate_limits', field: 'authUid', values: 'auth' },
+  { collection: 'premium_dialog_rate_limits', field: 'stableUid', values: 'stable' },
+  { collection: 'premium_dialog_rate_limits', field: 'authUid', values: 'auth' },
+  { collection: 'premium_dialog_quotas', field: 'stableUid', values: 'stable' },
+  { collection: 'premium_dialog_quotas', field: 'authUid', values: 'auth' },
+  { collection: 'premium_dialog_billing', field: 'uid', values: 'stable' },
+  { collection: 'premium_dialog_billing', field: 'authUid', values: 'auth' },
+  { collection: 'spire_task_report_reservations', field: 'stableUid', values: 'stable' },
+  { collection: 'friend_pairs', field: 'uids', values: 'stable', op: 'array-contains' },
   // Free-form feedback can contain personal data. Both the stable product
   // identity and the current Firebase Auth identity are queryable so deletion
   // remains complete across account linking and retries.
@@ -304,6 +320,9 @@ const DIRECT_DOCUMENT_SPECS: AccountDeleteDirectDocumentSpec[] = [
   { collection: 'referral_owners', values: 'both' },
   { collection: 'referral_attributions', values: 'both' },
   { collection: 'voice_minute_wallets', values: 'stable' },
+  // зачем (PM-252 п.1, 04.10): публичная проекция «Топ хелперов» и архив дубля профиля — по id = uid.
+  { collection: 'top_helpers', values: 'both' },
+  { collection: 'users_dedup_archive', values: 'both' },
 ];
 
 // `users/{stableUid}` is removed through deleteDocTree, which recursively
@@ -1329,6 +1348,96 @@ async function deleteArenaV2MatchesForIdentity(
   }
 }
 
+/**
+ * PM-252 п.1 (04.10): счётчик жалоб на объяснение хранит uid жалобщиков (reporters.<uid>) и последнего жалобщика.
+ * Счётчик — обезличенный агрегат и остаётся; убираем только личность.
+ */
+export async function anonymizeExplainReportReporters(
+  db: admin.firestore.Firestore,
+  stableUid: string,
+  stats: DeleteStats,
+): Promise<void> {
+  const reporterPath = new admin.firestore.FieldPath('reporters', stableUid);
+  for (const [field, value] of [[reporterPath, true], ['lastReporterStableUid', stableUid]] as const) {
+    for (;;) {
+      stats.queriesRun += 1;
+      const snap = await db.collection('explain_reports').where(field as never, '==', value).limit(DELETE_BATCH_LIMIT).get();
+      if (snap.empty) break;
+      const batch = db.batch();
+      for (const doc of snap.docs) {
+        const data = doc.data() ?? {};
+        const patch: Record<string, unknown> = { [`reporters.${stableUid}`]: admin.firestore.FieldValue.delete() };
+        if (data.lastReporterStableUid === stableUid) {
+          patch.lastReporterStableUid = admin.firestore.FieldValue.delete();
+          patch.lastReporterAuthUid = admin.firestore.FieldValue.delete();
+        }
+        batch.update(doc.ref, patch);
+        stats.docsUpdated += 1;
+      }
+      await batch.commit();
+      if (snap.size < DELETE_BATCH_LIMIT) break;
+    }
+  }
+  console.log('[ACCOUNT-DELETE] explain_reports anonymized', JSON.stringify({ docsUpdated: stats.docsUpdated }));
+}
+
+/** PM-252 п.1 (04.10): участник недельной группы Шпиля хранится как members.<uid> с отображаемым именем. */
+export async function removeFromSpireGroups(
+  db: admin.firestore.Firestore,
+  stableUid: string,
+  stats: DeleteStats,
+): Promise<void> {
+  const memberPath = new admin.firestore.FieldPath('members', stableUid);
+  let removed = 0;
+  for (;;) {
+    stats.queriesRun += 1;
+    const snap = await db.collection('spire_groups').where(memberPath, '!=', null).limit(DELETE_BATCH_LIMIT).get();
+    if (snap.empty) break;
+    const batch = db.batch();
+    for (const doc of snap.docs) {
+      batch.update(doc.ref, {
+        [`members.${stableUid}`]: admin.firestore.FieldValue.delete(),
+        liveMemberCount: admin.firestore.FieldValue.increment(-1),
+        updatedAt: Date.now(),
+      });
+      stats.docsUpdated += 1;
+      removed += 1;
+    }
+    await batch.commit();
+    if (snap.size < DELETE_BATCH_LIMIT) break;
+  }
+  console.log('[ACCOUNT-DELETE] spire_groups member removed', JSON.stringify({ groups: removed }));
+}
+
+/**
+ * PM-252 п.1 (решение координатора 04.10): запись бана с uid заменяется хешем идентификатора — только факт бана
+ * (защита от повторной регистрации), без имени и текста причины. Исходный документ удаляется.
+ */
+export const BANNED_IDENTITY_HASHES = 'banned_identity_hashes';
+export async function replaceBanWithHash(
+  db: admin.firestore.Firestore,
+  identity: string,
+  stats: DeleteStats,
+): Promise<void> {
+  const banRef = db.collection('banned_users').doc(identity);
+  stats.queriesRun += 1;
+  const snap = await banRef.get();
+  if (!snap.exists) return;
+  const data = snap.data() ?? {};
+  const bannedAtMs = Number(data.bannedAtMs ?? data.createdAtMs ?? 0) || Date.now();
+  const batch = db.batch();
+  batch.set(db.collection(BANNED_IDENTITY_HASHES).doc(hashId(identity)), {
+    schema: 'banned-identity-hash-v1',
+    bannedAtMs,
+    source: 'account_delete',
+    hashedAtMs: Date.now(),
+  }, { merge: true });
+  batch.delete(banRef);
+  await batch.commit();
+  stats.docsDeleted += 1;
+  console.log('[ACCOUNT-DELETE] banned_users replaced with identity hash', JSON.stringify({ bannedAtMs }));
+}
+
 async function anonymizeActivityLikeStats(
   db: admin.firestore.Firestore,
   stableUid: string,
@@ -1682,6 +1791,16 @@ export async function executeAccountDeletion(
     });
     await runDeleteStage(ctx, stats, 'activity_like_stats', async () => {
       for (const identity of identities) await anonymizeActivityLikeStats(db, identity, stats);
+    });
+    // зачем (PM-252 п.1, 04.10): персональные следы, переживавшие удаление (ревью сервера).
+    await runDeleteStage(ctx, stats, 'explain_reports_reporters', async () => {
+      for (const identity of identities) await anonymizeExplainReportReporters(db, identity, stats);
+    });
+    await runDeleteStage(ctx, stats, 'spire_groups_members', async () => {
+      for (const identity of identities) await removeFromSpireGroups(db, identity, stats);
+    });
+    await runDeleteStage(ctx, stats, 'banned_users_hash', async () => {
+      for (const identity of identities) await replaceBanWithHash(db, identity, stats);
     });
     await runDeleteStage(ctx, stats, 'friend_gift_daily_limits', async () => {
       for (const identity of identities) {

@@ -12,9 +12,10 @@
  *   3) Каждый юзер получает ответ в приложении; если проблема подтверждена и
  *      исправлена — с кнопкой «Получить» (клейм через CF claimReportReward).
  *
- * Запуск:
- *   node scripts/reply_to_reports.mjs replies.json --dry-run   - preview only; no writes
- *   node scripts/reply_to_reports.mjs replies.json --send      - live send only after manual confirmation
+ * Запуск (зачем, D109 04.10: по умолчанию ничего не пишется — запись только явным флагом):
+ *   node scripts/reply_to_reports.mjs replies.json             - предпросмотр: кому и что уйдёт, без записи
+ *   node scripts/reply_to_reports.mjs replies.json --dry-run   - то же
+ *   node scripts/reply_to_reports.mjs replies.json --send      - реальная отправка (после ручной проверки предпросмотра)
  *
  * Формат replies.json — массив объектов:
  *   {
@@ -23,7 +24,7 @@
  *     "title": "Спасибо за репорт!",     // заголовок уведомления НА ЯЗЫКЕ ЮЗЕРА
  *     "body": "Ошибка исправлена…",      // 2-4 предложения, вежливо, на языке юзера
  *     "resolution": "confirmed_fixed",   // подтверждённая и уже исправленная проблема
- *     "rewardBundle": { "version": 1, "severity": "minor", "spins": 1, "runes": 300, "pearls": 1 },
+ *     "rewardBundle": { "version": 2, "severity": "minor", "coins": 300 },  // D109: только монеты 300/600/1000
  *     "reportCollection": "error_reports" // опционально, дефолт error_reports
  *   }
  *
@@ -40,62 +41,15 @@ let admin;
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-const REPORT_COLLECTIONS = new Set([
-  'error_reports',
-  'explain_report_entries',
-  'user_reports',
-  'community_pack_reports',
-]);
+import {
+  bundleHasReward,
+  normalizeReplyRow,
+  resolveRunMode,
+  rewardLabel,
+} from './reply_to_reports_rewards.mjs';
+
 const HELPFUL_REPORTS_CONFIRMED_KEY = 'helpful_error_reports_confirmed_v1';
 const TOP_HELPERS_COLLECTION = 'top_helpers';
-const TITLE_MAX = 120;
-const BODY_MAX = 1200;
-const REPORT_RESOLUTIONS = new Set(['confirmed_fixed', 'duplicate', 'in_progress', 'rejected', 'unconfirmed']);
-const LEGACY_RESOLUTION_MAP = Object.freeze({
-  confirmed_investigating: 'in_progress',
-  content_review: 'in_progress',
-  stale_content_not_reproduced: 'unconfirmed',
-  not_reproduced: 'unconfirmed',
-  by_design: 'rejected',
-  user_error: 'rejected',
-  no_issue_details: 'rejected',
-});
-const REPORT_REWARD_BUNDLES = Object.freeze({
-  none: Object.freeze({ version: 1, severity: 'none', spins: 0, runes: 0, pearls: 0 }),
-  minor: Object.freeze({ version: 1, severity: 'minor', spins: 1, runes: 300, pearls: 1 }),
-  serious: Object.freeze({ version: 1, severity: 'serious', spins: 2, runes: 600, pearls: 5 }),
-  critical: Object.freeze({ version: 1, severity: 'critical', spins: 3, runes: 1000, pearls: 10 }),
-});
-
-function bundleHasReward(bundle) {
-  return bundle.spins > 0 || bundle.runes > 0 || bundle.pearls > 0;
-}
-
-function exactRewardBundle(value) {
-  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
-  const tier = REPORT_REWARD_BUNDLES[String(value.severity || '')];
-  if (!tier) return null;
-  return Number(value.version) === tier.version
-    && Number(value.spins) === tier.spins
-    && Number(value.runes) === tier.runes
-    && Number(value.pearls) === tier.pearls
-    ? tier
-    : null;
-}
-
-function rewardLabel(bundle) {
-  return bundle.severity === 'none'
-    ? 'без награды'
-    : `${bundle.spins} спин · ${bundle.runes} рун · ${bundle.pearls} жемч.`;
-}
-
-function sanitizePreparedReplyBody(value) {
-  return String(value || '')
-    .replace(/(^|[.!?]\s+)[^.!?\n]*(?:вам\s+(?:начисл\p{L}*|нарах\p{L}*)|за\s+(?:находку|знахідку)\s+(?:начисл\p{L}*|нарах\p{L}*))[^.!?\n]*[.!?]?/giu, '$1')
-    .replace(/(^|[.!?]\s+)(?=[^.!?\n]*(?:жемчуж\p{L}*|перлин\p{L}*|спин\p{L}*|рун\p{L}*))(?=[^.!?\n]*(?:забрат\p{L}*|отрим\p{L}*|получ\p{L}*|награ\p{L}*|бонус\p{L}*|подяк\p{L}*))[^.!?\n]*[.!?]?/giu, '$1')
-    .replace(/\s{2,}/g, ' ')
-    .trim();
-}
 
 /**
  * Публичные поля профиля для проекции борда «Топ хелперов».
@@ -165,9 +119,8 @@ function fail(msg) {
 }
 
 const fileArg = process.argv[2];
-const dryRun = process.argv.includes('--dry-run');
-const send = process.argv.includes('--send');
-if (!fileArg) fail('Usage: node scripts/reply_to_reports.mjs <replies_batch.json> --dry-run|--send');
+const dryRun = resolveRunMode(process.argv.slice(3)) === 'dry-run';
+if (!fileArg || fileArg.startsWith('--')) fail('Usage: node scripts/reply_to_reports.mjs <replies_batch.json> [--dry-run|--send]');
 
 let rows;
 try {
@@ -179,42 +132,22 @@ if (!Array.isArray(rows) || rows.length === 0) fail('replies.json: ожидае�
 
 // Валидация ДО любых записей: один битый элемент — не шлём ничего (fail fast).
 const clean = rows.map((row, i) => {
-  const at = `элемент #${i + 1}`;
-  const reportId = String(row.reportId ?? '').trim();
-  const uid = String(row.uid ?? '').trim();
-  const title = String(row.title ?? '').trim().slice(0, TITLE_MAX);
-  const body = sanitizePreparedReplyBody(row.body).slice(0, BODY_MAX);
-  const legacyShards = Math.floor(Number(row.shards ?? 0));
-  const rawResolution = String(row.resolution ?? (legacyShards > 0 ? 'confirmed_fixed' : 'unconfirmed')).trim();
-  const resolution = LEGACY_RESOLUTION_MAP[rawResolution] || rawResolution;
-  const rewardBundle = row.rewardBundle === undefined
-    ? (legacyShards > 0 && resolution === 'confirmed_fixed'
-      ? REPORT_REWARD_BUNDLES.minor
-      : REPORT_REWARD_BUNDLES.none)
-    : exactRewardBundle(row.rewardBundle);
-  const reportCollection = String(row.reportCollection ?? 'error_reports').trim();
-  if (!reportId) fail(`${at}: пустой reportId`);
-  if (!uid || uid === 'unknown' || uid === 'test_uid_abc123') fail(`${at}: невалидный uid "${uid}"`);
-  if (!title || !body) fail(`${at}: пустой title/body`);
-  if (!REPORT_RESOLUTIONS.has(resolution)) fail(`${at}: неизвестный resolution "${resolution}"`);
-  if (!rewardBundle) fail(`${at}: rewardBundle должен точно совпадать с одним из уровней none/minor/serious/critical`);
-  if (bundleHasReward(rewardBundle) && resolution !== 'confirmed_fixed') {
-    fail(`${at}: награда разрешена только при resolution=confirmed_fixed`);
-  }
-  if (!REPORT_COLLECTIONS.has(reportCollection)) fail(`${at}: неизвестная reportCollection "${reportCollection}"`);
-  return { reportId, uid, title, body, resolution, rewardBundle, reportCollection };
+  const result = normalizeReplyRow(row, i);
+  if (result.error) fail(result.error);
+  if (result.warning) console.warn(`⚠️ ${result.warning}`);
+  return result.item;
 });
 
 if (dryRun) {
   console.log(`🔍 DRY-RUN: ${clean.length} ответ(ов)\n`);
   for (const item of clean) {
-    console.log(`  · ${item.reportCollection}/${item.reportId} → users/${item.uid.slice(0, 10)}… (${rewardLabel(item.rewardBundle)})`);
+    console.log(`  · ${item.reportCollection}/${item.reportId} → users/${item.uid.slice(0, 10)}… · ${item.resolution} · ${rewardLabel(item.rewardBundle)}`);
     console.log(`    «${item.title}» — ${item.body.slice(0, 120)}${item.body.length > 120 ? '…' : ''}`);
   }
   console.log('\n🔍 DRY-RUN завершён — ничего не записано и Firebase Admin не инициализирован.');
+  console.log('   Реальная отправка — только с флагом --send.');
   process.exit(0);
 }
-if (!send) fail('Live-режим требует явного флага --send. Без него используйте --dry-run.');
 
 admin = require('firebase-admin');
 
@@ -354,7 +287,7 @@ async function sendOne(item) {
 }
 
 (async () => {
-  console.log(`${dryRun ? '🔍 DRY-RUN' : '📨 Рассылка'}: ${clean.length} ответ(ов)\n`);
+  console.log(`📨 Рассылка: ${clean.length} ответ(ов)\n`);
   let sent = 0, skipped = 0, missing = 0, errors = 0;
   for (const item of clean) {
     const label = `${item.reportCollection}/${item.reportId} → users/${item.uid.slice(0, 10)}… (${rewardLabel(item.rewardBundle)})`;
@@ -368,7 +301,6 @@ async function sendOne(item) {
       console.error(`  ❌ ${label}: ${e.message}`);
     }
   }
-  if (dryRun) { console.log('\n🔍 DRY-RUN завершён — ничего не записано.'); process.exit(0); }
   console.log(`\nИтог: отправлено ${sent}, пропущено (уже отвечены) ${skipped}, не найдено ${missing}, ошибок ${errors}`);
   process.exit(errors ? 1 : 0);
 })();

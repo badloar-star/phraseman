@@ -344,6 +344,7 @@
   "overrides": {
     "postcss": "8.5.14"
   },
+  "//jest": "зачем (04.10, координатор; замер): ts-jest только транспилирует (isolatedModules) — с проверкой типов он строил программу TS по всему графу импортов на КАЖДЫЙ тест-файл: куча одного файла 2001 МБ -> 68 МБ, 11 с -> 3 с; jest ронял эмулятор и снимал соседние сессии. Типы теперь ловит npm run typecheck (отдельно), не jest.",
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
@@ -400,6 +401,7 @@
       "^.+\\.tsx?$": [
         "ts-jest",
         {
+          "isolatedModules": true,
           "tsconfig": {
             "strict": true,
             "esModuleInterop": true,

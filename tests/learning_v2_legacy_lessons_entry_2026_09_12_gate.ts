@@ -83,16 +83,20 @@ assert.doesNotMatch(legacyBranch, /t\.textSecondary/);
 assert.doesNotMatch(pulseCourse, /testID="learning-v2-open-dialogs"/);
 assert.doesNotMatch(pulseCourse, /dialogsLabel: string|onDialogs: \(\) => void/);
 assert.doesNotMatch(lessons, /dialogsLabel=\{|onDialogs=\{openDialogs\}/);
-assert.match(pulseCourse, /section: \{[\s\S]*?minWidth: 54,[\s\S]*?minHeight: 44/);
-assert.match(pulseCourse, /accessibilityRole="tab"[\s\S]*?accessibilityState=\{\{ selected:/);
-assert.match(pulseCourse, /utilitySectionText: \{ flexShrink: 1,[\s\S]*?fontSize: 14/);
-assert.match(pulseCourse, /<PressableHybrid[\s\S]*?testID=\{`learning-v2-level-/);
-assert.match(pulseCourse, /<PressableHybrid[\s\S]*?testID="learning-v2-open-legacy-lessons"/);
-assert.match(
-  pulseCourse,
-  /testID="learning-v2-level-rail"[\s\S]*?<\/ScrollView>[\s\S]*?testID="learning-v2-open-legacy-lessons"/,
-);
-assert.match(pulseCourse, /utilitySection: \{[\s\S]*?maxWidth: 160/);
+// зачем (04.10, «Дизайн»): здесь стоял контракт вкладок/рельсы уровней карты LearningV2PulseCourse — она удалена
+// в 0855385c2, а сторож перенацелен на LearningV2ChaptersCourse, где этих элементов не было никогда. Сторожим
+// то, что карта «Главы» реально несёт по learning-v2.html: вход в «Старые уроки» из «Все уроки», подписи узлов
+// «Занятие N» / «Проверка главы» и область нажатия узла не меньше 44.
+assert.match(pulseCourse, /legacyLessonsLabel: string;/);
+assert.match(pulseCourse, /<PressableHybrid[^>]*accessibilityLabel=\{props\.legacyLessonsLabel\}[^>]*onPress=\{props\.onLegacyLessons\}/);
+assert.match(pulseCourse, /testID="learning-v2-all-lessons"/);
+assert.match(pulseCourse, /ru: `Занятие \$\{row\.sessionOrdinal\}`/);
+assert.match(pulseCourse, /isCheckpoint \? triLang\(props\.lang, \{ ru: "Проверка главы"/);
+assert.doesNotMatch(pulseCourse, /ru: `Сессия \$\{row\.sessionOrdinal\}`/);
+{
+  const nodeSize = Number(pulseCourse.match(/const NODE_SIZE = (\d+);/)?.[1] ?? 0);
+  assert.ok(nodeSize >= 44, `узел карты не меньше области нажатия 44, сейчас ${nodeSize}`);
+}
 // зачем: здесь сторожилась геометрия чипов уровней (minWidth 52 / height 44)
 // и отсутствие у них своего alignSelf. Чипы удалены владельцем 21.09, так что
 // сторожить нечего. Высота 44 как минимальная область тапа осталась у COMBO —
@@ -101,7 +105,8 @@ const comboChipBlock = legacyBranch.slice(
   legacyBranch.indexOf('testID="legacy-lessons-level-combo"'),
   legacyBranch.indexOf('testID="legacy-lessons-open-new-lessons"'),
 );
-assert.match(comboChipBlock, /height: 44/);
+// зачем (владелец 04.10, «Обучение B»): строка инструментов 40px — у «Смешать темы» высота 40, как у всех кнопок ряда.
+assert.match(comboChipBlock, /height: 40/);
 assert.doesNotMatch(comboChipBlock, /alignSelf: "center"/);
 // зачем: «Новые уроки» живут ВНУТРИ рельсы (решение владельца 2026-09-17:
 // «это один ряд весь») — рельса открывается, кнопка идёт в ней, рельса

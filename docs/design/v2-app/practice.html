@@ -154,17 +154,16 @@ const li = (n, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidd
 
 // ---- общие детали занятия ----
 const hearts = (lost = 0, shake = false) => `<span class="pill hearts${shake ? ' shake' : ''}">${[0, 1, 2].map((i) => `<span${i >= 3 - lost ? ' class="lost"' : ''}>${icon('heartF', 's16')}</span>`).join('')}</span>`;
-const scoreP = (n) => `<span class="pill" style="padding:0 10px;gap:6px;font-size:16px">${coinImg(5, 18)}${n}</span>`;
 // Шапка занятия: круглая «‹», название и подзаголовок, справа энергия (Free), сердца и монеты — у Блица.
 const head = (title, sub, right, o = {}) => `<div class="hd"><span class="rb l t">${icon('back', 's20')}</span><div class="grow"><div class="tt">${title}</div><div class="su">${sub}</div></div>${o.plus ? '' : energy(o.en ?? 4, { s: true, anim: o.enAnim })}${right || ''}</div>`;
-const progress = (pct, timer, a = '0', b = '100') => `<div class="trk" style="margin-top:22px;height:6px"><i style="width:${pct}%"></i></div>${timer ? `<div class="prog"><span>${a}</span><span class="pill timer">${timer}</span><span>${b}</span></div>` : `<div class="prog"><span>${a}</span><span>${b}</span></div>`}`;
+const progress = (pct, timer, a = '0', b = '100') => `<div class="trk" style="margin-top:22px;height:6px"><i style="width:${pct}%"></i></div>${a === null ? `<div class="prog" style="justify-content:center"><span class="pill timer">${timer}</span></div>` : timer ? `<div class="prog"><span>${a}</span><span class="pill timer">${timer}</span><span>${b}</span></div>` : `<div class="prog"><span>${a}</span><span>${b}</span></div>`}`;
 const OPTS = ['Нанимать- увольнять-увольняться, бросить привычку', 'Складывать, сгибать об одежде', 'Обманывать, изменять', 'Иметь склонность'];
 const opts = (state) => `<div class="stack g13" style="margin-top:23px">${OPTS.map((t, i) => { const s = state[i] || ''; return `<div class="opt t ${s}">${t}${s === 'ok' ? `<span class="mk">${icon('check', 's20')}</span>` : s === 'no' ? `<span class="mk">${icon('close', 's20')}</span>` : ''}</div>`; }).join('')}</div>`;
 
 // ================= Блиц =================
 const blitz = (o = {}) => phone(`
-  ${head('Блиц', 'Набор карточек', hearts(o.lost || 0, o.shake) + scoreP(o.score ?? 0), o)}
-  ${progress(o.pct ?? 45, o.timer ?? '0:47')}
+  ${head('Блиц', 'Набор карточек', hearts(o.lost || 0, o.shake), o)}
+  ${/* зачем (владелец 04.10: «только монеты считаем»): у Блица нет очков, счёта и комбо — шапка без счёта, под полосой только время, полоса растёт по времени */''}${progress(o.pct ?? 45, o.timer ?? '0:47', null, null)}
   <div class="qc" style="margin-top:38px"><div class="k">Выбери перевод</div><div class="q">Hire, fire, quit</div></div>
   ${opts(o.state || [])}`, { time: '12:53' });
 
@@ -231,9 +230,9 @@ const E_DLG = [['Заказ', 'I want a coffee', "I'd like a coffee, please"], [
 // ================= сборка страницы =================
 const replayBtn = (id) => `<span class="replay t" data-replay="${id}">Повторить анимацию</span>`;
 document.getElementById('root').innerHTML = [
-  block('blitz', 'Блиц', 'Эталонный экран 1:1 плюс энергия у бесплатного пользователя. Состояния: вопрос, верный ответ, неверный (показан правильный), потеря сердца.', [
-    col('Вопрос', blitz({ en: 4 })), col('Верный ответ', blitz({ en: 4, state: ['ok'], score: 120, pct: 55, timer: '0:41' })),
-    col('Неверный ответ', blitz({ en: 4, state: ['ok', , 'no'], score: 120, pct: 55, timer: '0:41', lost: 0 })), col(`Потеря сердца ${replayBtn('h')}`, blitz({ en: 4, state: ['ok', , 'no'], score: 120, pct: 55, timer: '0:41', lost: 1 })),
+  block('blitz', 'Блиц', 'Эталонный экран 1:1 плюс энергия у бесплатного пользователя. Очков, счёта и комбо нет — считаются только монеты; полоса растёт по времени. Состояния: вопрос, верный ответ, неверный (показан правильный), потеря сердца.', [
+    col('Вопрос', blitz({ en: 4 })), col('Верный ответ', blitz({ en: 4, state: ['ok'], pct: 55, timer: '0:41' })),
+    col('Неверный ответ', blitz({ en: 4, state: ['ok', , 'no'], pct: 55, timer: '0:41', lost: 0 })), col(`Потеря сердца ${replayBtn('h')}`, blitz({ en: 4, state: ['ok', , 'no'], pct: 55, timer: '0:41', lost: 1 })),
   ]),
   block('speak', 'Устно', 'Кнопка микрофона — чистый круг (76 pt как в коде), без квадратов внутри. Живая волна пока идёт запись, «Сказано» — распознанный текст; расхождение подчёркнуто.', [
     col('Ожидание — «Зажми и говори»', speak({ en: 4 })), col('Идёт запись — «Слушаю…»', speak({ en: 4, live: true })),
@@ -253,8 +252,8 @@ document.getElementById('root').innerHTML = [
     col('Plus — энергии нет', blitz({ plus: true, pct: 0, timer: '1:00' })),
   ]),
   block('done', 'Единый экран завершения', 'Один макет для всех режимов: результат → анимированное начисление монет (счёт растёт, монета пружинит, баланс в шапке увеличивается) → ошибки этого занятия с «Повторить ошибки» → оценка + комментарий → «Дальше». Опыта нет.', [
-    col(`Без ошибок ${replayBtn('d1')}`, done({ title: 'Тренировка завершена', sub: 'Блиц · 10 карточек', score: '1 250', c: 10, w: 0, gain: 50, again: 'Ещё разок!' })),
-    col(`С ошибками ${replayBtn('d2')}`, done({ title: 'Тренировка завершена', sub: 'Блиц · 10 карточек', score: '860', c: 7, w: 3, gain: 35, errs: E_BLITZ })),
+    col(`Без ошибок ${replayBtn('d1')}`, done({ title: 'Тренировка завершена', sub: 'Блиц · 10 карточек', c: 10, w: 0, gain: 50, again: 'Ещё разок!' })),
+    col(`С ошибками ${replayBtn('d2')}`, done({ title: 'Тренировка завершена', sub: 'Блиц · 10 карточек', c: 7, w: 3, gain: 35, errs: E_BLITZ })),
     col(`Оценка раскрыта, есть комментарий ${replayBtn('d3')}`, done({ title: 'Тренировка завершена', sub: 'Вспомни и напиши · 10 карточек', c: 9, w: 1, gain: 40, errs: E_RECALL.slice(0, 1), rate: { open: true, stars: 4, text: 'Не хватило слов про звонки и встречи.' } })),
   ]),
   block('done2', 'Завершение — тот же макет в других режимах', 'Меняются только заголовок, подпись и цифры. Урок V1 добавляет звёзды по D36 (1★ <60%, 2★ 60–84%, 3★ ≥85%).', [

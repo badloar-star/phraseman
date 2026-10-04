@@ -431,7 +431,7 @@ function describeAuthError(raw: string, lang: Lang): string {
   } else if (code.includes('apple_signin_no_id_token') || code.includes('apple_oauth_')) {
     human = 'Apple не подтвердил вход. Попробуй ещё раз.';
   } else if (code.includes('network-request-failed') || code.includes('Network')) {
-    human = 'Нет связи. Проверь интернет и попробуй ещё раз.';
+    human = 'Связь пропала. Попробуй ещё раз.';
   } else if (code.includes('operation-not-allowed')) {
     human = 'Этот способ входа сейчас выключен на сервере.';
   } else if (code.includes('invalid-credential') || code.includes('invalid_credential')) {

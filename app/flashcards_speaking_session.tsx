@@ -1488,15 +1488,15 @@ RU: ${card.translation}`}
               glass={speakingGlass}
               icon="cloud-offline-outline"
               message={triLang(lang, {
-                  ru: 'Не удалось открыть данные тренировок на этом устройстве. Попробуй снова или перезапусти приложение.',
-                  uk: 'Не вдалося відкрити дані тренувань на цьому пристрої. Спробуй ще раз або перезапусти застосунок.',
-                  en: 'We could not open your training data on this device. Try again or restart the app.',
-                  es: 'No pudimos abrir tus datos de entrenamiento en este dispositivo. Inténtalo de nuevo o reinicia la app.',
-                  'pt-BR': 'Não foi possível abrir seus dados de treino neste dispositivo. Tente de novo ou reinicie o app.',
-                  vi: 'Không thể mở dữ liệu luyện tập trên thiết bị này. Hãy thử lại hoặc khởi động lại ứng dụng.',
-                  id: 'Data latihan tidak bisa dibuka di perangkat ini. Coba lagi atau mulai ulang aplikasi.',
-                  tr: 'Antrenman verilerin bu cihazda açılamadı. Tekrar dene ya da uygulamayı yeniden başlat.',
-                  pl: 'Nie udało się otworzyć danych treningowych na tym urządzeniu. Spróbuj ponownie lub uruchom aplikację ponownie.',
+                  ru: 'Тренировка не открылась. Попробуй ещё раз.',
+                  uk: 'Тренування не відкрилося. Спробуй ще раз.',
+                  en: "Practice didn't open. Try again.",
+                  es: 'La práctica no se abrió. Inténtalo de nuevo.',
+                  'pt-BR': 'O treino não abriu. Tente de novo.',
+                  vi: 'Bài luyện chưa mở được. Hãy thử lại.',
+                  id: 'Latihan belum terbuka. Coba lagi.',
+                  tr: 'Alıştırma açılmadı. Tekrar dene.',
+                  pl: 'Trening się nie otworzył. Spróbuj ponownie.',
                 })}
               action={{
                 label: triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще раз', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' }),

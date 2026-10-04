@@ -36,7 +36,7 @@ describe('mistake practice session screen', () => {
     expect(screen).toContain('Правильный ответ');
     expect(screen).toContain('Почему так');
     expect(screen).toContain('SpeakingPanel');
-    expect(screen).toContain('Не удалось уверенно распознать речь');
+    expect(screen).toContain('Не расслышал. Попробуй ещё раз — энергия не потрачена.');
     expect(screen).not.toContain("entry.exercise.mode.replace(/_/g, ' ')");
   });
 

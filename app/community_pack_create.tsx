@@ -291,6 +291,8 @@ export default function CommunityPackCreateScreen() {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  // зачем (владелец 04.10: «Описание» необязательное и не на виду): поле показывается по пункту меню «⋮»; пока пусто — при сохранении берётся название
+  const [descriptionOpen, setDescriptionOpen] = useState(false);
   const [themeIdx, setThemeIdx] = useState(0);
   const [packLanguage, setPackLanguage] = useState<PackLanguage>(() => normalizePackLanguage(params.packLanguage ?? studyTarget));
   const [publishToCommunity, setPublishToCommunity] = useState(false);
@@ -803,7 +805,8 @@ export default function CommunityPackCreateScreen() {
       publishToCommunity,
       studyTarget,
       title: title.trim(),
-      description: description.trim(),
+      // зачем (владелец 04.10): описание необязательно — пустое заменяется названием, чтобы набор проходил прежние проверки и публикацию
+      description: description.trim() || title.trim(),
       sourceLang: lang,
       cards,
       cardThemeKey: themeKey,
@@ -1142,23 +1145,24 @@ export default function CommunityPackCreateScreen() {
                   />
                 </View>
 
-                {/* зачем: описание обязательно при сохранении (проверка title_or_desc) — поле остаётся, хоть в макете его нет; язык набора — в меню «⋮» */}
-                <View style={{ marginTop: 22 }}>
-                  <EditorField g={kg} label={`${L('Описание', 'Опис', 'Description', 'Descripción', 'Descrição', 'Mô tả', 'Deskripsi', 'Açıklama', 'Opis')} *`} tall>
-                    <TextInput
-                      ref={descriptionInputRef}
-                      accessibilityLabel={L('Описание набора', 'Опис набору', 'Pack description', 'Descripción del pack', 'Descrição do pack', 'Mô tả bộ thẻ', 'Deskripsi paket', 'Paket açıklaması', 'Opis pakietu')}
-                      {...getTextInputSystemEditMenuProps()}
-                      value={description}
-                      onChangeText={setDescription}
-                      onFocus={bindScrollOnFocus(descriptionInputRef)}
-                      placeholder={L('Кратко о наборе', 'Коротко про набір', 'Briefly about the pack', 'Breve descripción del pack', 'Resumo do pack', 'Mô tả ngắn về bộ thẻ', 'Ringkasan paket', 'Paket hakkında kısa bilgi', 'Krótko o pakiecie')}
-                      placeholderTextColor="#6E6E72"
-                      multiline
-                      style={[fieldInput, { fontSize: 16, lineHeight: 22, minHeight: 60, textAlignVertical: 'top' }]}
-                    />
-                  </EditorField>
-                </View>
+                {descriptionOpen ? (
+                  <View style={{ marginTop: 22 }}>
+                    <EditorField g={kg} label={L('Описание', 'Опис', 'Description', 'Descripción', 'Descrição', 'Mô tả', 'Deskripsi', 'Açıklama', 'Opis')} tall>
+                      <TextInput
+                        ref={descriptionInputRef}
+                        accessibilityLabel={L('Описание набора', 'Опис набору', 'Pack description', 'Descripción del pack', 'Descrição do pack', 'Mô tả bộ thẻ', 'Deskripsi paket', 'Paket açıklaması', 'Opis pakietu')}
+                        {...getTextInputSystemEditMenuProps()}
+                        value={description}
+                        onChangeText={setDescription}
+                        onFocus={bindScrollOnFocus(descriptionInputRef)}
+                        placeholder={L('Кратко о наборе', 'Коротко про набір', 'Briefly about the pack', 'Breve descripción del pack', 'Resumo do pack', 'Mô tả ngắn về bộ thẻ', 'Ringkasan paket', 'Paket hakkında kısa bilgi', 'Krótko o pakiecie')}
+                        placeholderTextColor="#6E6E72"
+                        multiline
+                        style={[fieldInput, { fontSize: 16, lineHeight: 22, minHeight: 60, textAlignVertical: 'top' }]}
+                      />
+                    </EditorField>
+                  </View>
+                ) : null}
 
                 {/* зачем здесь НЕТ цены (владелец 2026-09-21: «убери чтобы никто
                     не смог сделать набор платным»): блок цены с ползунком снят
@@ -1250,7 +1254,7 @@ export default function CommunityPackCreateScreen() {
             </EditorField>
           </View>
           <View style={{ marginTop: 16 }}>
-            <EditorField g={kg} label={L('Подсказка (необязательно)', 'Підказка (необов\'язково)', 'Hint (optional)', 'Nota (opcional)', 'Nota (opcional)', 'Ghi chú (không bắt buộc)', 'Catatan (opsional)', 'Not (isteğe bağlı)', 'Notatka (opcjonalnie)')}>
+            <EditorField g={kg} label={L('Пример', 'Приклад', 'Example', 'Ejemplo', 'Exemplo', 'Ví dụ', 'Contoh', 'Örnek', 'Przykład')}>
               <TextInput
                 ref={draftNoteInputRef}
                 accessibilityLabel={L('Описание или заметка к карточке', 'Опис або замітка до картки', 'Description or note for the card', 'Descripción o nota de la tarjeta', 'Descrição ou nota do cartão', 'Mô tả hoặc ghi chú thẻ', 'Deskripsi atau catatan kartu', 'Kart açıklaması veya notu', 'Opis lub notatka do karty')}
@@ -1288,6 +1292,15 @@ export default function CommunityPackCreateScreen() {
 
         {/* Меню шапки (макет #67): очистка черновика и сообщение об ошибке. */}
         <PackPopoverMenu g={g} visible={packMenuOpen} onClose={() => setPackMenuOpen(false)} top={68} closeLabel={cancelLabel}>
+          <PackMenuRow
+            g={g}
+            testID="ugc-pack-menu-description"
+            icon="document-text-outline"
+            label={descriptionOpen
+              ? L('Скрыть описание', 'Сховати опис', 'Hide description', 'Ocultar descripción', 'Ocultar descrição', 'Ẩn mô tả', 'Sembunyikan deskripsi', 'Açıklamayı gizle', 'Ukryj opis')
+              : L('Описание набора', 'Опис набору', 'Pack description', 'Descripción del pack', 'Descrição do pack', 'Mô tả bộ thẻ', 'Deskripsi paket', 'Paket açıklaması', 'Opis pakietu')}
+            onPress={() => { setPackMenuOpen(false); setDescriptionOpen((open) => !open); }}
+          />
           {/* зачем: язык набора в макете не нарисован, но менять его нужно — он в меню «⋮» */}
           <View style={{ minHeight: 56, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, paddingHorizontal: 12 }}>
             <Text style={{ color: g.text, fontSize: 16, lineHeight: 22, fontWeight: '600', flexShrink: 1 }}>

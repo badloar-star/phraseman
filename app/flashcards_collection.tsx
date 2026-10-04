@@ -1100,6 +1100,11 @@ export default function FlashcardsScreen() {
   const onTrainGallery = useCallback(() => {
     router.navigate({ pathname: '/flashcards', params: { train: '1' } } as never);
   }, [router]);
+  // зачем (владелец 04.10): «Тренировать» внутри набора — сразу этот набор: хаб откроет окно режимов и после выбора запустит сессию с ним
+  const onTrainThisPack = useCallback(() => {
+    if (!packDeeplink) { router.navigate({ pathname: '/flashcards', params: { train: '1' } } as never); return; }
+    router.navigate({ pathname: '/flashcards', params: { train: '1', deck: `pack:${packDeeplink}`, cnt: String(listCards.length) } } as never);
+  }, [listCards.length, packDeeplink, router]);
 
   // зачем: имя автора для шапки набора; хук обязан стоять до раннего return ниже
   const packAuthorName = useCommunityAuthorName(currentMarketPack ?? null, lang);
@@ -1130,7 +1135,7 @@ export default function FlashcardsScreen() {
         : currentMarketPack?.isCommunityUgc
           ? <CommunityPackSocialBar pack={currentMarketPack} lang={lang} t={t} owned variant="previewMeta" onOpenComments={() => { setHighlightCommentId(null); setCommentsSheetOpen(true); }} />
           : null}
-      onTrain={listCards.length > 0 ? onTrainGallery : null}
+      onTrain={listCards.length > 0 ? onTrainThisPack : null}
       cardCount={listCards.length}
     />
   ) : null;
@@ -1145,7 +1150,8 @@ export default function FlashcardsScreen() {
     ipa: expandedOpened.transcription ?? null,
     back: resolveFlashcardBackText(expandedOpened, cardContentLang),
     dots: expandedStrength === 'strong' ? 4 : expandedStrength === 'medium' ? 2 : expandedStrength === 'weak' ? 1 : 0,
-    example: expandedOpened.exampleEn?.trim() || null,
+    // зачем: в редакторе набора третье поле теперь «Пример» (хранится как заметка карточки) — показываем её, если готового примера нет
+    example: expandedOpened.exampleEn?.trim() || expandedOpened.description?.trim() || null,
     exampleTr: (cardContentLang === 'uk' ? expandedOpened.exampleUk : cardContentLang === 'es' ? expandedOpened.exampleEs : expandedOpened.exampleRu)?.trim() || null,
   } : null;
   const expandedOverline = savedSurface ? s.title : packBadge === 'in_you' && packAuthorName ? `${packTitleText} · ${packAuthorName}` : packTitleText;

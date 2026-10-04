@@ -10,6 +10,7 @@
  *   • `tile`   — плитка сетки 3-в-ряд: только компактные счётчики, без кнопок;
  *   • `screen` — экран набора: ЯВНАЯ заметная кнопка лайка + «Добавить себе»;
  *   • `list`   — строка каталога «Наборы сообщества» (packs-simple.html, 04.10): счётчики 18px, без кнопок;
+ *   • `videoAdd` — строка списка «Из видео» (cards-section кадры 024–029): только мятная кнопка «Добавить» 98×34, после добавления — пилюля с галочкой;
  *   • `previewMeta` / `previewCta` — экран набора ДО добавления (packs-simple.html кадр 4): счётчики справа
  *     от автора и нижняя кнопка «Добавить себе». Логика добавления — та же `onAddPress`.
  *
@@ -41,7 +42,7 @@ import {
 import { isCommunityPackLikedLocally } from './packSocialStorage';
 import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
-export type CommunityPackSocialVariant = 'row' | 'tile' | 'screen' | 'list' | 'previewMeta' | 'previewCta';
+export type CommunityPackSocialVariant = 'row' | 'tile' | 'screen' | 'list' | 'previewMeta' | 'previewCta' | 'videoAdd';
 
 type Props = {
   pack: FlashcardMarketPack;
@@ -92,6 +93,7 @@ export default function CommunityPackSocialBar({
   const isList = mode === 'list';
   const isPreviewMeta = mode === 'previewMeta';
   const isPreviewCta = mode === 'previewCta';
+  const isVideoAdd = mode === 'videoAdd';
   // зачем: строки каталога, как и плитки, — без чтения членства (2 чтения Firestore на КАЖДЫЙ набор).
   // Экран просмотра тоже: набор ещё не добавлен, лайк закрыт — членство читать незачем.
   const isCatalog = isTile || isList || isPreviewMeta;
@@ -444,6 +446,33 @@ export default function CommunityPackSocialBar({
           ) : cell('chatbubble-outline', formatCommentsCount(commentsCount, lang))
         ) : null}
       </View>
+    );
+  }
+
+  if (isVideoAdd) {
+    // зачем (владелец: «любые различия с макетом запрещены», cards-section «Из видео»): `.vadd` — мятная пилюля 98×34, 14/700, тёмный текст;
+    // у уже добавленного набора — пилюля `.cntp` с галочкой. Логика добавления — та же `onAddPress` (оптимистично, откат при отказе).
+    const shortAdd = triLang(lang, {
+      ru: 'Добавить', uk: 'Додати', en: 'Add', es: 'Añadir', 'pt-BR': 'Adicionar', vi: 'Thêm', id: 'Tambah', tr: 'Ekle', pl: 'Dodaj',
+    });
+    return (
+      <TouchableOpacity
+        testID={`pack-add-${pack.id}`}
+        accessibilityRole="button"
+        accessibilityLabel={isAdded ? ownedLabel : addLabel}
+        accessibilityState={{ disabled: isAdded }}
+        disabled={isAdded}
+        onPress={onAddPress}
+        activeOpacity={0.85}
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        style={isAdded
+          ? { minWidth: 34, height: 24, borderRadius: 12, paddingHorizontal: 9, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.07)' }
+          : { minWidth: 98, height: 34, borderRadius: 17, paddingHorizontal: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: t.accent }}
+      >
+        {isAdded
+          ? <Ionicons name="checkmark" size={16} color={g.text} />
+          : <Text style={{ color: t.correctText, fontSize: 14, lineHeight: 18, fontWeight: '700' }}>{shortAdd}</Text>}
+      </TouchableOpacity>
     );
   }
 

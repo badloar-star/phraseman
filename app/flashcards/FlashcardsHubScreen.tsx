@@ -35,7 +35,11 @@ import CardsHubV2 from './CardsHubV2';
 import { useFcReduceMotion } from './PhraseCard';
 import V2Backdrop from '../../components/v2/V2Backdrop';
 import FlashcardsTrainingModeSheet from './FlashcardsTrainingModeSheet';
-import type { CardsTrainingMode } from './training_entry';
+import { buildCardsTrainingRoute, type CardsTrainingMode } from './training_entry';
+import { canStartBlitz } from './blitz_logic';
+import { isValidDeckId } from './deck_selection';
+import { FC_DEFAULT_SESSION_SIZE, setLastPreset } from './mode_prefs';
+import { fcTrainOptionPresetMode } from './tabbar_state';
 import { primeFlashcardsCollectionCache } from './useCollectionData';
 import { hydrateFcDeckOptionsSnapshot, loadFcDeckOptions } from './deck_options';
 import { loadSelectedSavedContour, peekSelectedSavedContour } from './saved_language_contour';
@@ -182,6 +186,8 @@ export default function FlashcardsHubScreen() {
   const [earlyTap, setEarlyTap] = useState<'waiting' | 'failed' | null>(null);
   const earlyTapStartedAtRef = useRef<number | null>(null);
   const pendingModeRef = useRef<CardsTrainingMode | null>(null);
+  // зачем: набор, с экрана которого нажали «Тренировать» (прямой старт после выбора режима)
+  const pendingDeckRef = useRef<{ deckId: string; count: number } | null>(null);
   const trainButtonRef = useRef<View>(null);
 
   const copy = useMemo(() => ({
@@ -523,10 +529,26 @@ export default function FlashcardsHubScreen() {
       });
       return;
     }
+    // зачем (владелец 04.10: «Тренировать в наборе — СРАЗУ ЭТОТ НАБОР, без экрана выбора наборов»): если вход пришёл с экрана набора (?deck=pack:…),
+    // после выбора режима сразу открываем сессию с этим набором. Блиц с малым числом карточек, неизвестный набор — прежний путь через экран выбора.
+    const deck = pendingDeckRef.current;
+    pendingDeckRef.current = null;
+    if (deck && isValidDeckId(deck.deckId)) {
+      const route = mode === 'blitz' && !canStartBlitz(deck.count) ? null : buildCardsTrainingRoute(mode, [deck.deckId]);
+      console.log(`[FC-TRAIN-ENTRY] прямой старт набора deck=${deck.deckId} режим=${mode} карточек=${deck.count} маршрут=${route ? route.pathname : 'нет → экран выбора'}`);
+      if (route) {
+        const presetMode = mode === 'blitz' ? fcTrainOptionPresetMode('blitz') : mode === 'speaking' ? fcTrainOptionPresetMode('speak') : fcTrainOptionPresetMode('train');
+        void setLastPreset(presetMode, { deckIds: [deck.deckId], size: FC_DEFAULT_SESSION_SIZE }).catch((error: unknown) => {
+          console.warn('[FC-TRAIN-ENTRY] прямой старт: пресет не сохранился', error instanceof Error ? error.message : String(error));
+        });
+        router.push({ pathname: route.pathname, params: route.params } as never);
+        return;
+      }
+    }
     router.push({ pathname: '/flashcards_training_setup', params: { mode } } as never);
   }, [router]);
 
-  const hubParams = useLocalSearchParams<{ train?: string }>();
+  const hubParams = useLocalSearchParams<{ train?: string; deck?: string; cnt?: string }>();
   const onTrainPress = () => {
         void hapticTap();
         console.log('[FC-TRAIN-ENTRY] tap:train', JSON.stringify({
@@ -562,7 +584,9 @@ export default function FlashcardsHubScreen() {
   useEffect(() => {
     if (hubParams.train !== '1' || autoTrainHandledRef.current) return;
     autoTrainHandledRef.current = true;
-    router.setParams({ train: undefined } as never);
+    const deckParam = typeof hubParams.deck === 'string' ? hubParams.deck.trim() : '';
+    pendingDeckRef.current = deckParam ? { deckId: deckParam, count: Number(hubParams.cnt) || 0 } : null;
+    router.setParams({ train: undefined, deck: undefined, cnt: undefined } as never);
     onTrainPress();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hubParams.train]);
@@ -633,7 +657,7 @@ export default function FlashcardsHubScreen() {
             availableHeight={windowHeight - insets.top - insets.bottom}
             onBack={() => safeRouterBack(router, '/(tabs)/home' as never)}
             onCreate={openCreatePack}
-            onTrain={onTrainPress}
+            onTrain={() => { pendingDeckRef.current = null; onTrainPress(); }}
             trainButtonRef={trainButtonRef}
             labels={{ back: copy.back, create: copy.create, trainA11y: trainAccessibilityLabel }}
           />

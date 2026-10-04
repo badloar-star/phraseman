@@ -14,6 +14,9 @@ import { Image } from 'expo-image';
 import React, { useMemo } from 'react';
 import { ActivityIndicator, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import { FlowText } from '../../components/text-integrity/FlowText';
+import { KitCard } from '../../components/cards-grid/CardsKit';
+import { pluralWord } from '../../constants/plural';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import type { Theme } from '../../constants/theme';
@@ -115,80 +118,81 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
     es: 'El vídeo no se abre ahora. Las tarjetas del pack siguen disponibles.',
   }), []);
 
+  // зачем (владелец: «в приложении запрещены любые различия с макетом», cards-section «Из видео»): строка — карточка 87 высотой:
+  // кадр 112×63 слева, название (до двух строк) и «N фраз», справа мятная «Добавить» (после добавления — пилюля с галочкой).
+  const phrasesText = `${pack.cardCount} ${triLang(lang, {
+    ru: pluralWord(lang, pack.cardCount, { one: 'фраза', few: 'фразы', many: 'фраз' }),
+    uk: pluralWord(lang, pack.cardCount, { one: 'фраза', few: 'фрази', many: 'фраз' }),
+    en: 'phrases', es: 'frases', 'pt-BR': 'frases', vi: 'cụm từ', id: 'frasa', tr: 'ifade',
+    pl: pluralWord(lang, pack.cardCount, { one: 'fraza', few: 'frazy', many: 'fraz' }),
+  })}`;
   return (
-    <View
-      testID={`video-pack-row-${pack.id}`}
-      // зачем: паритет с макетом video-packs-from-video-mockup.html (D131) — строка без плашки, только тонкая линия снизу (`.item`).
-      style={[styles.row, { borderBottomColor: g.glassEdge, opacity: disabled ? 0.55 : 1 }]}
-    >
-      {/* Кадр ролика — СВОЯ цель тапа: открывает видео, а не набор. */}
-      <Pressable
-        testID={`video-pack-play-${pack.id}`}
-        accessibilityRole="button"
-        accessibilityLabel={playLabel}
-        accessibilityState={{ disabled }}
-        disabled={disabled}
-        onPress={() => {
-          void hapticTap();
-          void openVideo(pack.videoId, () => emitAppEvent('action_toast', videoFailed));
-        }}
-        style={({ pressed }) => [styles.thumb, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.8 : 1 }]}
-      >
-        {thumbUrl ? (
-          <Image
-            accessible={false}
-            source={{ uri: thumbUrl }}
-            style={StyleSheet.absoluteFill}
-            contentFit="cover"
-            transition={120}
-            /**
-             * зачем recyclingKey: FlatList переиспользует строки, и без ключа
-             * при быстрой прокрутке в строке на кадр-другой висит ЧУЖОЕ превью.
-             */
-            recyclingKey={pack.videoId}
-            cachePolicy="memory-disk"
-          />
-        ) : null}
+    <View testID={`video-pack-row-${pack.id}`} style={{ opacity: disabled ? 0.55 : 1 }}>
+      <KitCard g={g} style={styles.card}>
+        <View style={styles.row}>
+          {/* Кадр ролика — СВОЯ цель тапа: открывает видео, а не набор. */}
+          <Pressable
+            testID={`video-pack-play-${pack.id}`}
+            accessibilityRole="button"
+            accessibilityLabel={playLabel}
+            accessibilityState={{ disabled }}
+            disabled={disabled}
+            onPress={() => {
+              void hapticTap();
+              void openVideo(pack.videoId, () => emitAppEvent('action_toast', videoFailed));
+            }}
+            style={({ pressed }) => [styles.thumb, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.8 : 1 }]}
+          >
+            {thumbUrl ? (
+              <Image
+                accessible={false}
+                source={{ uri: thumbUrl }}
+                style={StyleSheet.absoluteFill}
+                contentFit="cover"
+                transition={120}
+                /**
+                 * зачем recyclingKey: FlatList переиспользует строки, и без ключа
+                 * при быстрой прокрутке в строке на кадр-другой висит ЧУЖОЕ превью.
+                 */
+                recyclingKey={pack.videoId}
+                cachePolicy="memory-disk"
+              />
+            ) : null}
+            <View style={styles.playCircle} pointerEvents="none">
+              <Ionicons name="play" size={16} color="#FFFFFF" />
+            </View>
+            {duration ? (
+              <View style={styles.duration} pointerEvents="none">
+                <Text style={styles.durationText}>{duration}</Text>
+              </View>
+            ) : null}
+            {opening ? (
+              <View style={[StyleSheet.absoluteFillObject, styles.openingVeil, { backgroundColor: g.opaqueCard }]} pointerEvents="none">
+                <ActivityIndicator color={g.cta} />
+              </View>
+            ) : null}
+          </Pressable>
 
-        {duration ? (
-          <View style={styles.duration} pointerEvents="none">
-            <Text style={styles.durationText}>{duration}</Text>
+          <View style={styles.main}>
+            <Pressable
+              testID={`video-pack-open-${pack.id}`}
+              accessibilityRole="button"
+              accessibilityLabel={`${title}. ${phrasesText}`}
+              accessibilityState={{ disabled }}
+              disabled={disabled}
+              onPress={() => { void hapticTap(); onOpen(pack); }}
+              style={StyleSheet.absoluteFill}
+            />
+            <FlowText testID={`video-pack-title-${pack.id}`} provenance="user" pointerEvents="none" style={[styles.title, { color: g.text }]}>
+              {title}
+            </FlowText>
+            <Text pointerEvents="none" style={[styles.count, { color: g.secondary }]}>{phrasesText}</Text>
           </View>
-        ) : null}
 
-        {opening ? (
-          <View style={[StyleSheet.absoluteFillObject, styles.openingVeil, { backgroundColor: g.opaqueCard }]} pointerEvents="none">
-            <ActivityIndicator color={g.cta} />
-          </View>
-        ) : null}
-      </Pressable>
-
-      <View style={styles.main}>
-        <Pressable
-          testID={`video-pack-open-${pack.id}`}
-          accessibilityRole="button"
-          accessibilityLabel={`${title}. ${pack.cardCount} ${cardsLabel}`}
-          accessibilityState={{ disabled }}
-          disabled={disabled}
-          onPress={() => { void hapticTap(); onOpen(pack); }}
-          style={StyleSheet.absoluteFill}
-        />
-        <FlowText testID={`video-pack-title-${pack.id}`} provenance="user" pointerEvents="none" style={[styles.title, { color: g.text }]}>
-          {title}
-        </FlowText>
-
-        {/* Лайк и «Добавить себе» — общий компонент каталога: его оптимистичность
-            и защита от гонок уже написаны, второй копии быть не должно. */}
-        <View style={styles.social}>
-          <CommunityPackSocialBar
-            pack={pack}
-            lang={lang}
-            t={t}
-            owned={false}
-            variant="row"
-          />
+          {/* «Добавить себе» — общий компонент каталога: его оптимистичность и защита от гонок уже написаны, второй копии быть не должно. */}
+          <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={false} variant="videoAdd" />
         </View>
-      </View>
+      </KitCard>
     </View>
   );
 }
@@ -207,15 +211,8 @@ export default React.memo(VideoPackRowBase, (prev, next) => (
 ));
 
 const styles = StyleSheet.create({
-  row: {
-    minHeight: 87,
-    borderBottomWidth: 1, // guard-ok: тонкая разделительная линия строки, как `.item` макета
-    overflow: 'hidden',
-    paddingVertical: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
+  card: { minHeight: 87 },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, paddingLeft: 12, paddingRight: 14 },
   thumb: {
     width: THUMB_W,
     height: THUMB_H,
@@ -224,6 +221,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  playCircle: { width: 30, height: 30, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.45)' },
   duration: {
     position: 'absolute',
     right: 5,
@@ -233,9 +231,9 @@ const styles = StyleSheet.create({
     paddingVertical: 1,
     backgroundColor: 'rgba(0,0,0,0.72)',
   },
-  durationText: { fontSize: 13, fontWeight: '700', color: '#FFFFFF' },
+  durationText: { fontSize: 11, lineHeight: 14, fontWeight: '700', color: '#FFFFFF' },
   openingVeil: { alignItems: 'center', justifyContent: 'center' },
   main: { flex: 1, minWidth: 0, justifyContent: 'center' },
-  title: { fontSize: 16, lineHeight: 21, fontWeight: '800' },
-  social: { marginTop: 7 },
+  title: { fontSize: 15, lineHeight: 19, fontWeight: '700' },
+  count: { marginTop: 4, fontSize: 14, lineHeight: 17 },
 });

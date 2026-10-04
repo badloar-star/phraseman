@@ -68,6 +68,10 @@ import {
 } from './community_packs/communityCatalogFilter';
 import type { FlashcardMarketPack } from './flashcards/marketplace';
 import VideoPackRow from './flashcards/VideoPackRow';
+import { KitEmpty, KitFound, KitSearchField, KitTitle } from '../components/cards-grid/CardsKit';
+import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
+import { BackButton, SheetRow } from '../components/mistakes-panel/PanelKit';
+import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
 import PackLanguagePicker from './flashcards/PackLanguagePicker';
 import { defaultPackLanguageForStudyTarget, normalizePackLanguage, type PackLanguage } from './flashcards/pack_languages';
 import { getStoredPackLanguage, peekStoredPackLanguage, setStoredPackLanguage, subscribePackLanguage } from './flashcards/pack_language_preferences';
@@ -197,6 +201,9 @@ export default function FlashcardsVideoPacksScreen() {
   );
   const [query, setQuery] = useState('');
   const [sort, setSort] = useState<CommunityPacksSort>('popular');
+  const [menuOpen, setMenuOpen] = useState(false);
+  // зачем: части экрана рисуются токенами 2.0 (макет cards-section «Из видео»)
+  const kg = useLv2Glass();
   const [openingPackId, setOpeningPackId] = useState<string | null>(null);
   const openingRef = useRef<string | null>(null);
 
@@ -244,6 +251,19 @@ export default function FlashcardsVideoPacksScreen() {
     unavailable: triLang(lang, {
       ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now', es: 'No disponible ahora',
       'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne',
+    }),
+    checkInternet: triLang(lang, {
+      ru: 'Проверьте интернет', uk: 'Перевірте інтернет', en: 'Check your connection', es: 'Comprueba tu conexión',
+      'pt-BR': 'Verifique sua conexão', vi: 'Kiểm tra kết nối', id: 'Periksa koneksi', tr: 'Bağlantını kontrol et', pl: 'Sprawdź połączenie',
+    }),
+    menu: triLang(lang, {
+      ru: 'Меню', uk: 'Меню', en: 'Menu', es: 'Menú', 'pt-BR': 'Menu', vi: 'Menu', id: 'Menu', tr: 'Menü', pl: 'Menu',
+    }),
+    found: triLang(lang, {
+      ru: 'Найдено', uk: 'Знайдено', en: 'Found', es: 'Encontrado', 'pt-BR': 'Encontrado', vi: 'Tìm thấy', id: 'Ditemukan', tr: 'Bulundu', pl: 'Znaleziono',
+    }),
+    clear: triLang(lang, {
+      ru: 'Очистить', uk: 'Очистити', en: 'Clear', es: 'Borrar', 'pt-BR': 'Limpar', vi: 'Xóa', id: 'Hapus', tr: 'Temizle', pl: 'Wyczyść',
     }),
     tryAgain: triLang(lang, {
       ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo',
@@ -453,111 +473,61 @@ export default function FlashcardsVideoPacksScreen() {
   const showEmpty = searching && visible.length === 0;
   const phraseTotal = visible.reduce((sum, pack) => sum + (Number(pack.cardCount) || 0), 0);
 
+  const summaryText = visible.length > 0
+    ? triLang(lang, {
+      ru: `${visible.length} ${pluralWord(lang, visible.length, { one: 'набор', few: 'набора', many: 'наборов' })} · ${phraseTotal} ${pluralWord(lang, phraseTotal, { one: 'фраза', few: 'фразы', many: 'фраз' })}`,
+      uk: `${visible.length} ${pluralWord(lang, visible.length, { one: 'набір', few: 'набори', many: 'наборів' })} · ${phraseTotal} ${pluralWord(lang, phraseTotal, { one: 'фраза', few: 'фрази', many: 'фраз' })}`,
+      en: `${visible.length} packs · ${phraseTotal} phrases`,
+      es: `${visible.length} paquetes · ${phraseTotal} frases`,
+      'pt-BR': `${visible.length} pacotes · ${phraseTotal} frases`,
+      vi: `${visible.length} bộ · ${phraseTotal} cụm từ`,
+      id: `${visible.length} paket · ${phraseTotal} frasa`,
+      tr: `${visible.length} paket · ${phraseTotal} ifade`,
+      pl: `${visible.length} ${pluralWord(lang, visible.length, { one: 'zestaw', few: 'zestawy', many: 'zestawów' })} · ${phraseTotal} ${pluralWord(lang, phraseTotal, { one: 'fraza', few: 'frazy', many: 'fraz' })}`,
+    })
+    : null;
   return (
     <View style={{ flex: 1, backgroundColor: g.bg }}>
       <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />
       <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
         <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
         <ContentWrap>
-          <View style={styles.header}>
+          <View style={styles.top}>
+            <BackButton g={kg} onPress={() => safeRouterBack(router, '/flashcards' as never)} label={copy.back} />
             <Pressable
-              testID="fc-video-packs-back"
+              testID="fc-video-packs-menu"
               accessibilityRole="button"
-              accessibilityLabel={copy.back}
+              accessibilityLabel={copy.menu}
               hitSlop={8}
-              onPress={() => safeRouterBack(router, '/flashcards' as never)}
-              style={({ pressed }) => [styles.headerBtn, { backgroundColor: g.card, borderColor: g.glassEdge, opacity: pressed ? 0.78 : 1 }]}
+              onPress={() => setMenuOpen(true)}
+              style={({ pressed }) => [styles.square, { opacity: pressed ? 0.82 : 1 }]}
             >
-              <VideoGlass tint={g.selected} edge={g.glassEdge} />
-              <Ionicons name="arrow-back" size={23} color={g.text} />
+              <Ionicons name="ellipsis-vertical" size={18} color={kg.text} />
             </Pressable>
-            {/* зачем распорка, а не заголовок рядом (владелец 2026-09-23, со
-                скриншотом «Мои наборы»): кнопка языка стоит В ШАПКЕ СПРАВА, на
-                одной линии со стрелкой «назад», а название раздела — ниже.
-                Здесь повторена ровно та же раскладка, чтобы экраны не спорили. */}
-            {/* зачем: паритет с макетом video-packs-from-video-mockup.html — заголовок на одной линии с «назад», язык ниже. */}
-            <Text
-              accessibilityRole="header"
-              style={[styles.screenTitle, { color: g.text }]}
-            >
-              {copy.title}
-            </Text>
           </View>
-          <View style={styles.langRow}>
-            <PackLanguagePicker lang={lang} t={t} value={packLanguage} onChange={handlePackLanguageChange} liquidGlass />
-          </View>
-          {visible.length > 0 ? (
-            <Text testID="fc-video-packs-summary" style={[styles.summary, { color: g.secondary }]}>
-              {triLang(lang, {
-                ru: `${visible.length} ${pluralWord(lang, visible.length, { one: 'набор', few: 'набора', many: 'наборов' })} · ${phraseTotal} ${pluralWord(lang, phraseTotal, { one: 'фраза', few: 'фразы', many: 'фраз' })}`,
-                uk: `${visible.length} ${pluralWord(lang, visible.length, { one: 'набір', few: 'набори', many: 'наборів' })} · ${phraseTotal} ${pluralWord(lang, phraseTotal, { one: 'фраза', few: 'фрази', many: 'фраз' })}`,
-                en: `${visible.length} packs · ${phraseTotal} phrases`,
-                es: `${visible.length} paquetes · ${phraseTotal} frases`,
-                'pt-BR': `${visible.length} pacotes · ${phraseTotal} frases`,
-                vi: `${visible.length} bộ · ${phraseTotal} cụm từ`,
-                id: `${visible.length} paket · ${phraseTotal} frasa`,
-                tr: `${visible.length} paket · ${phraseTotal} ifade`,
-                pl: `${visible.length} ${pluralWord(lang, visible.length, { one: 'zestaw', few: 'zestawy', many: 'zestawów' })} · ${phraseTotal} ${pluralWord(lang, phraseTotal, { one: 'fraza', few: 'frazy', many: 'fraz' })}`,
-              })}
-            </Text>
-          ) : null}
-
-          <View style={[styles.searchRow, { backgroundColor: g.card, borderColor: g.glassEdge }]}>
-            <VideoGlass tint={g.selected} edge={g.glassEdge} />
-            <Ionicons name="search" size={17} color={g.secondary} />
-            <TextInput
-              testID="fc-video-packs-search"
-              value={query}
-              onChangeText={setQuery}
-              accessibilityLabel={copy.search}
-              placeholder={copy.search}
-              placeholderTextColor={g.secondary}
-              style={[styles.searchInput, { color: g.text, fontSize: 16 }]}
-              returnKeyType="search"
-            />
-          </View>
-
-          <View style={styles.sorts}>
-            {(['popular', 'new'] as const).map((option) => {
-              const active = sort === option;
-              return (
-                <Pressable
-                  key={option}
-                  testID={`fc-video-packs-sort-${option}`}
-                  accessibilityRole="button"
-                  accessibilityLabel={communitySortLabel(option, lang)}
-                  accessibilityState={{ selected: active }}
-                  onPress={() => { void hapticTap(); setSort(option); }}
-                  style={({ pressed }) => [
-                    styles.sortBtn,
-                    { backgroundColor: active ? g.selected : g.card, borderColor: g.glassEdge, opacity: pressed ? 0.78 : 1 },
-                  ]}
-                >
-                  <VideoGlass tint={g.selected} edge={g.glassEdge} />
-                  <Ionicons
-                    name={communitySortIonicon(option, active) as keyof typeof Ionicons.glyphMap}
-                    size={18}
-                    color={active ? g.text : g.secondary}
-                  />
-                </Pressable>
-              );
-            })}
+          <View style={styles.headBlock}>
+            <KitTitle g={kg} title={copy.title} subtitle={summaryText} testID="fc-video-packs-title" />
+            <View style={styles.langRow}>
+              <PackLanguagePicker lang={lang} t={t} value={packLanguage} onChange={handlePackLanguageChange} liquidGlass />
+            </View>
+            <View style={styles.searchWrap}>
+              <KitSearchField g={kg} value={query} onChangeText={setQuery} placeholder={copy.search} clearLabel={copy.clear} testID="fc-video-packs-search" />
+            </View>
+            {searching && visible.length > 0 ? <KitFound g={kg} label={`${copy.found} · ${visible.length}`} /> : null}
           </View>
 
           {waitingForCatalog && catalogExhausted ? (
-            <View style={styles.center} testID="fc-video-packs-unavailable">
-              <Text accessibilityRole="header" style={[styles.stateTitle, { color: g.text, fontSize: 20 }]}>
-                {copy.unavailable}
-              </Text>
-              <Pressable
-                testID="fc-video-packs-try-again"
-                accessibilityRole="button"
-                onPress={() => retryCatalog('tap')}
-                style={({ pressed }) => [styles.stateAction, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.8 : 1 }]}
-              >
-                <Text style={{ color: g.text, fontSize: 16, fontWeight: '600' }}>{copy.tryAgain}</Text>
-              </Pressable>
-            </View>
+            <KitEmpty
+              g={kg}
+              testID="fc-video-packs-unavailable"
+              icon="cloud-offline-outline"
+              title={copy.unavailable}
+              detail={copy.checkInternet}
+              action={copy.tryAgain}
+              actionIcon="refresh"
+              onAction={() => retryCatalog('tap')}
+              actionTestID="fc-video-packs-try-again"
+            />
           ) : waitingForCatalog ? (
             /**
              * Скелет, а не спиннер по центру: первый кадр обязан совпадать по
@@ -565,36 +535,27 @@ export default function FlashcardsVideoPacksScreen() {
              * приезжают (инвариант layout-stability проекта).
              */
             <View style={styles.listContent}>
-              {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-                <View key={`sk${i}`} style={[styles.skeletonRow, { borderBottomColor: g.glassEdge }]}>
+              {[0, 1, 2].map((i) => (
+                <View key={`sk${i}`} style={styles.skeletonRow}>
                   <View style={[styles.skeletonThumb, { backgroundColor: g.opaqueControl }]} />
                   <View style={styles.skeletonLines}>
-                    <View style={[styles.skeletonLine, { backgroundColor: g.opaqueControl, width: '82%' }]} />
-                    <View style={[styles.skeletonLine, { backgroundColor: g.opaqueControl, width: '46%', marginTop: 9 }]} />
+                    <View style={[styles.skeletonLine, { backgroundColor: g.opaqueControl, width: '80%' }]} />
+                    <View style={[styles.skeletonLine, { backgroundColor: g.opaqueControl, width: '40%', marginTop: 10 }]} />
                   </View>
                 </View>
               ))}
             </View>
           ) : showEmpty ? (
-            <View style={styles.center}>
-              <View style={[styles.stateTile, { backgroundColor: g.opaqueControl }]}><Ionicons name={searching ? 'search' : 'play'} size={24} color={g.text} /></View>
-              <Text style={[styles.stateTitle, { color: g.text, fontSize: 20 }]}>
-                {copy.notFoundTitle}
-              </Text>
-              <Text style={[styles.stateBody, { color: g.secondary, fontSize: 16 }]}>
-                {copy.notFoundBody}
-              </Text>
-              {searching ? (
-                <Pressable
-                  testID="fc-video-packs-clear-search"
-                  accessibilityRole="button"
-                  onPress={() => { void hapticTap(); setQuery(''); }}
-                  style={({ pressed }) => [styles.stateAction, { backgroundColor: g.accent, opacity: pressed ? 0.8 : 1 }]}
-                >
-                  <Text style={{ color: g.accentInk, fontSize: 16, fontWeight: '600' }}>{copy.showAll}</Text>
-                </Pressable>
-              ) : null}
-            </View>
+            <KitEmpty
+              g={kg}
+              testID="fc-video-packs-empty"
+              icon="search"
+              title={copy.notFoundTitle}
+              detail={copy.notFoundBody}
+              action={copy.showAll}
+              onAction={() => { void hapticTap(); setQuery(''); }}
+              actionTestID="fc-video-packs-clear-search"
+            />
           ) : (
             <FlatList
               data={visible}
@@ -611,36 +572,40 @@ export default function FlashcardsVideoPacksScreen() {
             />
           )}
         </ContentWrap>
+        {/* зачем: сортировка «Популярные / Новые» в макете не нарисована, но нужна — живёт в меню «⋮» */}
+        <PanelSheet visible={menuOpen} onClose={() => setMenuOpen(false)} testID="fc-video-packs-menu-sheet">
+          {(['popular', 'new'] as const).map((option) => (
+            <SheetRow
+              key={option}
+              g={kg}
+              testID={`fc-video-packs-sort-${option}`}
+              icon={communitySortIonicon(option, sort === option) as keyof typeof Ionicons.glyphMap}
+              title={`${communitySortLabel(option, lang)}${sort === option ? ' ✓' : ''}`}
+              onPress={() => { void hapticTap(); setSort(option); setMenuOpen(false); }}
+            />
+          ))}
+        </PanelSheet>
       </SafeAreaView>
     </View>
   );
 }
 
 function RowGap() {
-  // зачем: строки плоские, разделитель — линия внутри строки (макет video-packs-from-video-mockup.html).
+  // зачем: зазор между карточками задаёт contentContainerStyle.gap (макет cards-section «Из видео»).
   return null;
 }
 
 const styles = StyleSheet.create({
   safe: { flex: 1, minHeight: 0, backgroundColor: 'transparent' },
-  header: { minHeight: 60, paddingHorizontal: 16, paddingTop: 8, paddingBottom: 8, flexDirection: 'row', alignItems: 'center', gap: 10 },
-  headerBtn: { width: 46, height: 46, borderRadius: 23, borderWidth: 1, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
-  screenTitle: { flex: 1, minWidth: 0, fontSize: 32, lineHeight: 38, fontWeight: '800', letterSpacing: -0.5 },
-  langRow: { paddingHorizontal: 16, paddingTop: 6, paddingBottom: 12, flexDirection: 'row' },
-  summary: { paddingHorizontal: 16, paddingBottom: 12, fontSize: 16, lineHeight: 21, fontWeight: '400' },
-  searchRow: { marginHorizontal: 16, height: 46, borderWidth: 1, overflow: 'hidden', borderRadius: 14, flexDirection: 'row', alignItems: 'center', gap: 9, paddingHorizontal: 13 },
-  searchInput: { flex: 1, padding: 0, fontWeight: '600' },
-  sorts: { flexDirection: 'row', gap: 8, paddingHorizontal: 16, paddingTop: 12, paddingBottom: 12 },
-  sortBtn: { width: 46, height: 46, borderRadius: 23, borderWidth: 1, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
-  listContent: { paddingHorizontal: 16, paddingBottom: 32 },
-  center: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32, paddingBottom: 60 },
-  /** Геометрия скелета = геометрия строки (87 / превью 112×63) — без прыжка. */
-  skeletonRow: { minHeight: 87, borderBottomWidth: 1, overflow: 'hidden', paddingVertical: 12, flexDirection: 'row', alignItems: 'center', gap: 12 }, // guard-ok: линия строки, как `.item` макета
+  top: { height: 44, marginTop: 6, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  square: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center', boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.14)' }] },
+  headBlock: { paddingHorizontal: 20 },
+  langRow: { marginTop: 14, flexDirection: 'row' },
+  searchWrap: { marginTop: 16 },
+  listContent: { paddingHorizontal: 20, paddingTop: 10, paddingBottom: 32, gap: 10 },
+  /** Геометрия скелета = геометрия строки (карточка 87, кадр 112×63) — без прыжка. */
+  skeletonRow: { height: 87, borderRadius: 14, paddingVertical: 12, paddingLeft: 12, flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: 'rgba(255,255,255,0.04)' },
   skeletonThumb: { width: 112, height: 63, borderRadius: 12 },
-  skeletonLines: { flex: 1 },
-  skeletonLine: { height: 13, borderRadius: 5 },
-  stateTile: { width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center', marginBottom: 18 },
-  stateTitle: { fontWeight: '700', textAlign: 'center' },
-  stateBody: { marginTop: 8, textAlign: 'center', lineHeight: 20 },
-  stateAction: { marginTop: 22, minHeight: 44, paddingHorizontal: 22, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
+  skeletonLines: { flex: 1, paddingRight: 14 },
+  skeletonLine: { height: 14, borderRadius: 5 },
 });

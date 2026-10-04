@@ -8,7 +8,7 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useCallback, useRef, useState } from 'react';
-import { Pressable, StyleSheet, Text, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
+import { Pressable, StyleSheet, Text, TextInput, View, useWindowDimensions, type StyleProp, type ViewStyle } from 'react-native';
 
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { LinearGradient } from '../SafeLinearGradient';
@@ -173,6 +173,44 @@ export const KitCta = memo(function KitCta({ g, label, icon, onPress, testID, ac
   );
 });
 
+/** Поле поиска-капсула (`.srch`): лупа, ввод 16, крестик очистки; 46 высотой r23. */
+export const KitSearchField = memo(function KitSearchField({ g, value, onChangeText, placeholder, clearLabel, testID }: Readonly<{
+  g: GlassTokens;
+  value: string;
+  onChangeText: (value: string) => void;
+  placeholder: string;
+  clearLabel: string;
+  testID?: string;
+}>) {
+  return (
+    <View style={styles.search}>
+      <Ionicons name="search" size={18} color="#6E6E72" />
+      <TextInput
+        testID={testID}
+        accessibilityLabel={placeholder}
+        value={value}
+        onChangeText={onChangeText}
+        placeholder={placeholder}
+        placeholderTextColor="#6E6E72"
+        autoCorrect={false}
+        autoCapitalize="none"
+        returnKeyType="search"
+        style={[styles.searchInput, { color: g.text }]}
+      />
+      {value.length > 0 ? (
+        <Pressable accessibilityRole="button" accessibilityLabel={clearLabel} hitSlop={10} onPress={() => onChangeText('')}>
+          <Ionicons name="close" size={18} color="#A6A6A8" />
+        </Pressable>
+      ) : null}
+    </View>
+  );
+});
+
+/** «Найдено · N» — мятная строка 12/700 с разрядкой над результатами поиска (`.ov`). */
+export const KitFound = memo(function KitFound({ g, label }: Readonly<{ g: GlassTokens; label: string }>) {
+  return <Text testID="fc-search-found" style={[styles.found, { color: g.accent }]}>{label}</Text>;
+});
+
 const EMPTY_BLOCK_H = 217;
 
 /**
@@ -228,6 +266,9 @@ const styles = StyleSheet.create({
   secCount: { fontSize: 20, lineHeight: 26, fontWeight: '600', color: '#6E6E72' },
   title: { fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 },
   subtitle: { marginTop: 6, fontSize: 16, lineHeight: 22, letterSpacing: 0.15 },
+  search: { height: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.07)' },
+  searchInput: { flex: 1, minWidth: 0, fontSize: 16, paddingVertical: 0 },
+  found: { marginTop: 22, marginBottom: 12, marginLeft: 4, fontSize: 12, lineHeight: 16, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase' },
   emptyBlock: { position: 'absolute', left: 0, right: 0, alignItems: 'center', paddingHorizontal: 40 },
   emptyTile: { width: 61, height: 61, borderRadius: 16, backgroundColor: '#28282A', alignItems: 'center', justifyContent: 'center' },
   emptyTitle: { fontSize: 24, lineHeight: 30, fontWeight: '700', letterSpacing: -0.2, textAlign: 'center', marginTop: 22 },

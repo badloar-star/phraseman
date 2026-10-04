@@ -18,7 +18,9 @@ test('Video list and row use current translucent theme material with native diff
     assert.match(source, /liquidGlassTokens\(liquidGlassThemeId\)/);
     // зачем: строка набора — плоская (макет video-packs-from-video-mockup.html), блюр только у экрана; кромка — у обоих.
     if (source === screen) assert.match(source, /dimezisBlurView/);
-    assert.match(source, /g\.glassEdge/);
+    // зачем (макет cards-section «Из видео»): строка — KitCard (кромка внутренними тенями), экран — токены 2.0
+    if (source === screen) assert.match(source, /useLv2Glass/);
+    else assert.match(source, /KitCard/);
   }
   assert.match(screen, /colors=\{\[g\.bgTop, g\.bg, g\.bgBottom\]\}/);
 });
@@ -29,7 +31,7 @@ test('Video shows rows or row placeholders with silent retry, never an error or 
   assert.doesNotMatch(screen, /fc-video-packs-retry/);
   assert.doesNotMatch(screen, /copy.errorTitle|copy.emptyTitle/);
   assert.match(screen, /silentRetryRef/);
-  assert.match(screen, /fc-video-packs-summary/);
+  assert.match(screen, /fc-video-packs-title/);
   for (const token of ["'loading' | 'ready' | 'error'", 'fc-video-packs-clear-search', 'THUMB_W = 112', 'THUMB_H = 63']) {
     assert.ok((screen + row).includes(token), `missing state: ${token}`);
   }

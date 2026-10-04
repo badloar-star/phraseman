@@ -89,3 +89,7 @@ Reload из меню → Главная через 59 с → деплинк Бл
 - [FC-TRAIN-ENTRY] bootstrap:skip (homePainted=false) → bootstrap:start.
 Полный вывод: evidence/parity/BLITZ_cold_run_1853.log. Повтор «Попробовать снова» не сделала — эмулятор пропал (5-й раз, ~18:56).
 ⚠ В 18:55 буфер logcat оказался пуст — его очистил кто-то другой (ещё одна сессия на эмуляторе?).
+
+## 04.10 19:15 — ВОПРОС по списку одобренного (LANES.md, 1137792c1)
+В списке НЕТ: practice.html (Тренировки), overlays.html / overlays-more / overlays-runtime (окна, в т.ч. окна первого входа и OV-AUTH), profile.html, coins.html, community.html, dialogs.html, learning-v2.html, spire.html. По правилу «всё, чего нет в списке, — не эталон» сверять их не по чему. Но ты ставил их в очередь (practice 1–28, overlays 36–47, OV-AUTH, overlays-more 15–30). Подтверди: эти макеты — эталон или нет? До ответа снимаю по ним только склейки «для просмотра», без вывода «расхождение», а сверку веду по одобренному: Обучение, Карточки (cards-section/cards-gallery), Мои ошибки (mistakes-panel), Наборы (packs-simple), Темы, round-1/round-2.
+Приложение новее макета (по твоему правилу — списком): окно первого входа «Карточки» — сцена вместо значка (overlays-041).

@@ -119,34 +119,73 @@ export const activeLearningV2CompletionRetryScope = (): string | null => {
     : null;
 };
 
+// зачем (координатор 05.10, пакет 00:30, «сперва логи»): persist курсора под замком аккаунта держал его 3394 мс
+// на холодном старте, за ним стояли кошелёк и курс. Что внутри стоит 3,4 с — хеш scope, чтение, запись,
+// проверочное чтение — видно только по шагам. Пишем, только если весь проход под замком дольше 300 мс.
+type CursorStage = (name: string) => void;
+const CURSOR_SLOW_LOG_MS = 300;
+
 const withExactActiveScope = async <T>(
+  op: 'load' | 'persist' | 'clear',
   expectedAccountScopeHash: string,
-  work: (storage: CursorStorage) => Promise<T>,
-): Promise<T> => withAccountTransitionLock(async () => {
-  const token = captureAccountGeneration();
-  if (token.phase !== 'active' || !token.stableId ||
-    deriveLocalOfflineProgressAccountScopeHash(token.stableId) !== expectedAccountScopeHash) {
-    throw new Error('learning_v2_retry_cursor_scope_stale');
-  }
-  const value = await work(AsyncStorage);
-  if (!isCurrentAccountGeneration(token, token.stableId)) {
-    throw new Error('learning_v2_retry_cursor_scope_stale');
-  }
-  return value;
-});
+  work: (storage: CursorStorage, stage: CursorStage) => Promise<T>,
+): Promise<T> => {
+  const queuedAt = Date.now();
+  return withAccountTransitionLock(async () => {
+    const lockedAt = Date.now();
+    const stages: Record<string, number> = { lock_wait: lockedAt - queuedAt };
+    let stageAt = lockedAt;
+    const stage: CursorStage = (name) => {
+      const now = Date.now();
+      stages[name] = now - stageAt;
+      stageAt = now;
+    };
+    let outcome = 'ok';
+    try {
+      const token = captureAccountGeneration();
+      const activeScope = token.phase === 'active' && token.stableId
+        ? deriveLocalOfflineProgressAccountScopeHash(token.stableId)
+        : null;
+      stage('scope_hash');
+      if (activeScope === null || activeScope !== expectedAccountScopeHash) {
+        outcome = `scope_stale(phase=${token.phase})`;
+        throw new Error('learning_v2_retry_cursor_scope_stale');
+      }
+      const value = await work(AsyncStorage, stage);
+      if (!isCurrentAccountGeneration(token, token.stableId)) {
+        outcome = 'generation_changed';
+        throw new Error('learning_v2_retry_cursor_scope_stale');
+      }
+      return value;
+    } catch (error) {
+      if (outcome === 'ok') outcome = `error:${error instanceof Error ? error.message : String(error)}`;
+      throw error;
+    } finally {
+      const heldMs = Date.now() - lockedAt;
+      if (heldMs >= CURSOR_SLOW_LOG_MS) {
+        console.warn('[LV2-RETRY-CURSOR] slow', JSON.stringify({ op, outcome, heldMs, stages }));
+      }
+    }
+  });
+};
 
 export const loadLearningV2CompletionRetryCursor = (
   accountScopeHash: string,
   nowMs: number,
 ): Promise<LearningV2CompletionRetryCursor | null> => withExactActiveScope(
+  'load',
   accountScopeHash,
-  async (storage) => {
+  async (storage, stage) => {
     const key = learningV2CompletionRetryCursorKey(accountScopeHash);
     const raw = await storage.getItem(key);
+    stage('get_item');
     if (raw === null) return null;
     try {
-      return parseLearningV2CompletionRetryCursor(raw, accountScopeHash, nowMs);
+      const cursor = parseLearningV2CompletionRetryCursor(raw, accountScopeHash, nowMs);
+      stage('parse');
+      return cursor;
     } catch {
+      console.warn('[LV2-RETRY-CURSOR] load:corrupt_cursor — курсор не разобрался, удаляем после перечтения');
       // Corrupt advisory pacing may be removed, but the exact raw is re-read
       // under the account lock first so a newer replacement is never erased.
       if (await storage.getItem(key) !== raw) {
@@ -163,11 +202,13 @@ export const loadLearningV2CompletionRetryCursor = (
 
 export const persistLearningV2CompletionRetryCursor = (
   cursor: LearningV2CompletionRetryCursor,
-): Promise<void> => withExactActiveScope(cursor.accountScopeHash, async (storage) => {
+): Promise<void> => withExactActiveScope('persist', cursor.accountScopeHash, async (storage, stage) => {
   const key = learningV2CompletionRetryCursorKey(cursor.accountScopeHash);
   const encoded = canonicalJsonV1(cursor);
   parseLearningV2CompletionRetryCursor(encoded, cursor.accountScopeHash, Date.now());
+  stage('encode_and_self_parse');
   const previousRaw = await storage.getItem(key);
+  stage('get_previous');
   if (previousRaw === null) {
     if (cursor.revision !== 1) throw new Error('learning_v2_retry_cursor_stale');
   } else {
@@ -176,6 +217,7 @@ export const persistLearningV2CompletionRetryCursor = (
       cursor.accountScopeHash,
       Date.now(),
     );
+    stage('parse_previous');
     if (previousRaw === encoded) return;
     const expectedRevision = previous.revision === LEARNING_V2_COMPLETION_RETRY_MAX_REVISION
       ? 1
@@ -185,7 +227,10 @@ export const persistLearningV2CompletionRetryCursor = (
     }
   }
   await storage.setItem(key, encoded);
-  if (await storage.getItem(key) !== encoded) {
+  stage('set_item');
+  const verifyRaw = await storage.getItem(key);
+  stage('verify_get');
+  if (verifyRaw !== encoded) {
     throw new Error('learning_v2_retry_cursor_indeterminate');
   }
 });
@@ -193,9 +238,10 @@ export const persistLearningV2CompletionRetryCursor = (
 export const clearLearningV2CompletionRetryCursor = (
   accountScopeHash: string,
   expectedRevision?: number,
-): Promise<void> => withExactActiveScope(accountScopeHash, async (storage) => {
+): Promise<void> => withExactActiveScope('clear', accountScopeHash, async (storage, stage) => {
   const key = learningV2CompletionRetryCursorKey(accountScopeHash);
   const previousRaw = await storage.getItem(key);
+  stage('get_previous');
   if (previousRaw === null) return;
   const previous = parseLearningV2CompletionRetryCursor(previousRaw, accountScopeHash, Date.now());
   if (expectedRevision !== undefined && previous.revision !== expectedRevision) {

@@ -293,7 +293,7 @@ test("mandatory German authorities are content-addressed and every source has a 
     "repo/docs/v2/curriculum/de/RESEARCH_DOSSIER.ru.md",
     "repo/docs/v2/curriculum/de/SOURCE_EVIDENCE_LEDGER.md",
     "repo/docs/v2/curriculum/de/OWNER_DECISIONS.md",
-    "repo/docs/v2/curriculum/de/LINGUISTIC_REVIEW_RECEIPT_2026-10-03.md",
+    "repo/docs/v2/curriculum/de/LINGUISTIC_REVIEW_RECEIPT_2026-10-04.md",
     "repo/modules/learning-v2/curriculum/de/research_authority_de_v1.ts",
     "factory/pipeline/prompts/judge_recenter_pre.md",
     "factory/pipeline/prompts/judge_recenter_post.md",

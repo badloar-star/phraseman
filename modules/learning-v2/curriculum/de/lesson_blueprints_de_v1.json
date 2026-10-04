@@ -2718,7 +2718,7 @@
       "canDoTerritory": "present a controlled event with werden passive while backgrounding or omitting the actor",
       "grammarBoundary": {
         "productive": "finite werden plus controlled participle in an event-passive bracket",
-        "receptive": "known active completed-event clauses used for contrast",
+        "receptive": "known active completed-event clauses used for contrast plus exactly one known finite separable clause from L08 used only as a receptive contrast",
         "excluded": "state passive and recipient passive"
       },
       "introducedConstructIds": ["de_gc_event_passive_v1"],
@@ -2788,6 +2788,11 @@
       "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
       "pragmatics": "use actor-backgrounding only when the actor is genuinely secondary, not to evade responsibility",
       "crossLessonRecall": [
+        {
+          "fromLessonId": "de_l08",
+          "constructIds": ["de_gc_separable_verb_bracket_v1"],
+          "responsibility": "retrieve exactly one known finite split clause from L08 as reception-only contrast; a Partizip II whole does not count as evidence of the finite separable-verb bracket"
+        },
         {
           "fromLessonId": "de_l15",
           "constructIds": [

@@ -56,8 +56,8 @@
       "sha256": "8366f2440f2ae338c7f4f4b55a7686e28a5b19e2cf9fd59f88600329cfc587f7"
     },
     {
-      "sourcePath": "repo/docs/v2/curriculum/de/LINGUISTIC_REVIEW_RECEIPT_2026-10-03.md",
-      "sha256": "5e04cb35bc5044fa5db535a30b0275209fb9f948603aa9bbfc961b3478b0d332"
+      "sourcePath": "repo/docs/v2/curriculum/de/LINGUISTIC_REVIEW_RECEIPT_2026-10-04.md",
+      "sha256": "4f0f7359624a3c7681f0dfa875cfc067804d31ca591bcc5981064710cd1a162f"
     },
     {
       "sourcePath": "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md",
@@ -325,7 +325,7 @@
     },
     {
       "id": "DE-RESEARCH-005",
-      "sourcePath": "repo/docs/v2/curriculum/de/LINGUISTIC_REVIEW_RECEIPT_2026-10-03.md",
+      "sourcePath": "repo/docs/v2/curriculum/de/LINGUISTIC_REVIEW_RECEIPT_2026-10-04.md",
       "sourceSection": "**Verdict:** `PASS`",
       "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
       "applicability": "always",

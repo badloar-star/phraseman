@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
@@ -103,6 +104,28 @@ const PRONUNCIATION_PLAN_ID = /^de_pron_plan_[a-z0-9]+(?:_[a-z0-9]+)*_v1$/u;
 const CLAUSE_BRACKET_RHYTHM_TARGET_ID = "de_pron_plan_clause_bracket_rhythm_v1";
 const L12_PRONUNCIATION_TARGET_IDS = [
   "de_pron_plan_case_marker_perception_v1",
+] as const;
+const L24_RECEPTIVE_BOUNDARY =
+  "known active completed-event clauses used for contrast plus exactly one known finite separable clause from L08 used only as a receptive contrast";
+const L24_CANONICAL_OBJECT_SHA256 =
+  "c04a3b85a017855eba5bfdaac514dca66b27255d275fffb6e4c67c176244d8b3";
+const L24_L08_RECALL_RESPONSIBILITY =
+  "retrieve exactly one known finite split clause from L08 as reception-only contrast; a Partizip II whole does not count as evidence of the finite separable-verb bracket";
+const L24_CROSS_LESSON_RECALL = [
+  {
+    fromLessonId: "de_l08",
+    constructIds: ["de_gc_separable_verb_bracket_v1"],
+    responsibility: L24_L08_RECALL_RESPONSIBILITY,
+  },
+  {
+    fromLessonId: "de_l15",
+    constructIds: [
+      "de_gc_controlled_partizip_ii_v1",
+      "de_gc_perfekt_haben_classes_v1",
+    ],
+    responsibility:
+      "contrast participle brackets by function rather than surface form",
+  },
 ] as const;
 const ACTIVE_BRACKET_CONSTRUCT_IDS = new Set([
   "de_gc_separable_verb_bracket_v1",
@@ -1280,6 +1303,47 @@ function validateBlueprint(
       "RESOLVED_WITHIN_TASK4",
       `uncertainty_status_invalid:${candidate.id}`,
     );
+    if (expectedOrdinal === 24) {
+      if (candidate.grammarBoundary.receptive !== L24_RECEPTIVE_BOUNDARY) {
+        throw new Error("l24_finite_separable_receptive_boundary_invalid");
+      }
+      const l24Recalls = candidate.crossLessonRecall as JsonRecord[];
+      const l08Recalls = l24Recalls.filter(
+        (recall) => recall.fromLessonId === "de_l08",
+      );
+      if (l08Recalls.length !== 1) {
+        throw new Error("l24_l08_separable_recall_count_invalid");
+      }
+      const l08Recall = l08Recalls[0];
+      if (
+        JSON.stringify(l08Recall.constructIds) !==
+        JSON.stringify(["de_gc_separable_verb_bracket_v1"])
+      ) {
+        throw new Error("l24_l08_separable_recall_construct_invalid");
+      }
+      if (l08Recall.responsibility !== L24_L08_RECALL_RESPONSIBILITY) {
+        throw new Error("l24_partizip_not_finite_separable_guard_invalid");
+      }
+      if (
+        JSON.stringify(l24Recalls) !== JSON.stringify(L24_CROSS_LESSON_RECALL)
+      ) {
+        throw new Error("l24_cross_lesson_recall_contract_invalid");
+      }
+      const l24Final = candidate.session56Final as JsonRecord;
+      if (
+        !(l24Final.requiredConstructIds as string[]).includes(
+          "de_gc_separable_verb_bracket_v1",
+        )
+      ) {
+        throw new Error("l24_separable_final_evidence_invalid");
+      }
+      const l24CanonicalObjectSha256 = createHash("sha256")
+        .update(JSON.stringify(candidate))
+        .digest("hex");
+      if (l24CanonicalObjectSha256 !== L24_CANONICAL_OBJECT_SHA256) {
+        throw new Error("l24_canonical_object_identity_invalid");
+      }
+    }
   });
 
   for (const domain of SCENARIO_DOMAINS) {
@@ -1371,7 +1435,14 @@ function expectFailure(
   const candidate = clone(blueprint) as JsonRecord;
   const grammar = clone(constructs) as GrammarConstruct[];
   mutate(candidate, grammar);
-  assert.throws(() => validateBlueprint(candidate, grammar), expected);
+  let validationError: unknown;
+  try {
+    validateBlueprint(candidate, grammar);
+  } catch (error) {
+    validationError = error;
+  }
+  assert.ok(validationError instanceof Error, "validation failure expected");
+  assert.match(validationError.message, expected);
 }
 
 const raw = JSON.parse(readFileSync(LESSONS_PATH, "utf8")) as unknown;
@@ -1563,6 +1634,159 @@ expectFailure(
     chapter04.outcome = "sequence two completed errands with known connectors";
   },
   /l15_c04_sequence_lexical_contract_invalid/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson24 = (candidate.lessons as JsonRecord[])[23];
+    (lesson24.grammarBoundary as JsonRecord).receptive =
+      "known active completed-event clauses used for contrast";
+  },
+  /l24_finite_separable_receptive_boundary_invalid/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson24 = (candidate.lessons as JsonRecord[])[23];
+    (lesson24.grammarBoundary as JsonRecord).receptive =
+      "known active completed-event clauses used for contrast plus two known finite separable clauses from L08 used only as a receptive contrast";
+  },
+  /l24_finite_separable_receptive_boundary_invalid/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson24 = (candidate.lessons as JsonRecord[])[23];
+    lesson24.crossLessonRecall = (
+      lesson24.crossLessonRecall as JsonRecord[]
+    ).filter((recall) => recall.fromLessonId !== "de_l08");
+  },
+  /l24_l08_separable_recall_count_invalid/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson24 = (candidate.lessons as JsonRecord[])[23];
+    const recalls = lesson24.crossLessonRecall as JsonRecord[];
+    recalls.splice(1, 0, clone(recalls[0]));
+  },
+  /l24_l08_separable_recall_count_invalid/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson24 = (candidate.lessons as JsonRecord[])[23];
+    const l08Recall = (lesson24.crossLessonRecall as JsonRecord[])[0];
+    l08Recall.constructIds = ["de_gc_accusative_personal_pronouns_v1"];
+  },
+  /l24_l08_separable_recall_construct_invalid/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson24 = (candidate.lessons as JsonRecord[])[23];
+    const l08Recall = (lesson24.crossLessonRecall as JsonRecord[])[0];
+    l08Recall.responsibility =
+      "retrieve exactly one known finite split clause from L08 as reception-only contrast";
+  },
+  /l24_partizip_not_finite_separable_guard_invalid/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson24 = (candidate.lessons as JsonRecord[])[23];
+    const l15Recall = (lesson24.crossLessonRecall as JsonRecord[])[1];
+    l15Recall.responsibility = "contrast known participle brackets";
+  },
+  /l24_cross_lesson_recall_contract_invalid/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson24 = (candidate.lessons as JsonRecord[])[23];
+    const final = lesson24.session56Final as JsonRecord;
+    final.requiredConstructIds = (
+      final.requiredConstructIds as string[]
+    ).filter(
+      (constructId) => constructId !== "de_gc_separable_verb_bracket_v1",
+    );
+  },
+  /l24_separable_final_evidence_invalid/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson24 = (candidate.lessons as JsonRecord[])[23];
+    const final = lesson24.session56Final as JsonRecord;
+    final.evidenceDimensions = (final.evidenceDimensions as string[]).filter(
+      (dimension) => dimension !== "reception",
+    );
+  },
+  /^session56_core_dimension_missing:de_l24:reception$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson24 = (candidate.lessons as JsonRecord[])[23];
+    lesson24.crossLessonRecall = null;
+  },
+  /^cross_lesson_recall_array_required:de_l24$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson24 = (candidate.lessons as JsonRecord[])[23];
+    lesson24.session56Final = null;
+  },
+  /^plain_record_required:de_l24\.session56Final$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson24 = (candidate.lessons as JsonRecord[])[23];
+    const final = lesson24.session56Final as JsonRecord;
+    final.requiredConstructIds = (
+      final.requiredConstructIds as string[]
+    ).filter(
+      (constructId) => constructId !== "de_gc_controlled_partizip_ii_v1",
+    );
+  },
+  /^l24_canonical_object_identity_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson24 = (candidate.lessons as JsonRecord[])[23];
+    const final = lesson24.session56Final as JsonRecord;
+    final.requiredConstructIds = [
+      ...(final.requiredConstructIds as string[]),
+      "de_gc_statement_v2_v1",
+    ];
+  },
+  /^l24_canonical_object_identity_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson24 = (candidate.lessons as JsonRecord[])[23];
+    (lesson24.grammarBoundary as JsonRecord).productive =
+      "finite werden plus controlled participle in event, recipient, and agent passive clauses";
+  },
+  /^l24_canonical_object_identity_invalid$/u,
 );
 expectFailure(
   raw,

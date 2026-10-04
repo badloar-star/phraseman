@@ -109,6 +109,9 @@ const GATES = [
     script: 'scripts/eas_production_version_gate.mjs',
     env: { ...productionEnv, EAS_BUILD_PROFILE: 'production' },
   },
+  // зачем (инцидент 04.10, решение координатора): контент урока 1 перегенерировали без озвучки — занятие молча не открывалось.
+  // Гейт собирает КАЖДОЕ встроенное занятие из бандла и падает, если для реплики нет записи в таблице озвучки.
+  { name: 'озвучка встроенных занятий Learning V2', script: 'scripts/learning_v2_audio_coverage_gate.mjs', env: {} },
 ];
 
 let failed = 0;

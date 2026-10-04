@@ -464,10 +464,27 @@ export default function FlashcardsTrainingSetupScreen() {
     safeRouterBack(router, '/flashcards' as never);
   }, [router]);
 
+  // зачем (координатор 04.10, «первый тап «Начать» молчит, сработал только второй»; логов на тап не было): сперва трассировка каждого выхода;
+  // Optimistic UI — тап, пока наборы ещё грузятся, запоминается и сам срабатывает, когда экран готов (а не пропадает).
+  const pendingStartRef = useRef(false);
   const startTraining = useCallback(async () => {
-    if (startInFlightRef.current || !mode || !canStart) return;
+    const state = { canStart, starting, inFlight: startInFlightRef.current, mode: mode ?? null, loadState, cardCount: summary.cardCount, quotaStatus: quotaPreview.status, blitzHasEnoughCards };
+    console.log('[FC-TRAIN-ENTRY] setup:start-tap', JSON.stringify(state));
+    if (startInFlightRef.current) { console.log('[FC-TRAIN-ENTRY] setup:start-exit in_flight_lock'); return; }
+    if (!mode) { console.log('[FC-TRAIN-ENTRY] setup:start-exit no_mode'); return; }
+    if (!canStart) {
+      if (loadState === 'loading') {
+        pendingStartRef.current = true;
+        console.log('[FC-TRAIN-ENTRY] setup:start-queued — наборы грузятся, запуск сам, когда будет готово');
+      } else {
+        console.log('[FC-TRAIN-ENTRY] setup:start-exit cannot_start', JSON.stringify(state));
+      }
+      return;
+    }
+    pendingStartRef.current = false;
     const route = buildCardsTrainingRoute(mode, selectedDeckIds, mode === 'speaking' || mode === 'recall' || mode === 'truefalse' ? sizeId : undefined, { sec: secId, dir: dirId });
-    if (!route) return;
+    if (!route) { console.log('[FC-TRAIN-ENTRY] setup:start-exit no_route', JSON.stringify({ mode, selectedDecks: selectedDeckIds.length })); return; }
+    console.log('[FC-TRAIN-ENTRY] setup:push', JSON.stringify({ pathname: route.pathname, params: route.params }));
     startInFlightRef.current = true;
     setStarting(true);
     void setLastPreset(presetModeFor(mode), {
@@ -479,10 +496,17 @@ export default function FlashcardsTrainingSetupScreen() {
     });
     try {
       router.push({ pathname: route.pathname, params: route.params } as never);
-    } catch {
+    } catch (pushError) {
+      console.warn('[FC-TRAIN-ENTRY] setup:push-failed', pushError instanceof Error ? pushError.message : String(pushError));
       resetStartLock();
     }
-  }, [canStart, mode, resetStartLock, router, selectedDeckIds, sizeId, secId, dirId]);
+  }, [blitzHasEnoughCards, canStart, loadState, mode, quotaPreview.status, resetStartLock, router, selectedDeckIds, sizeId, secId, dirId, starting, summary.cardCount]);
+
+  useEffect(() => {
+    if (!pendingStartRef.current || !canStart) return;
+    console.log('[FC-TRAIN-ENTRY] setup:start-queued → fire');
+    void startTraining();
+  }, [canStart, startTraining]);
 
   const emptyLabel = triLang(lang, {
     ru: 'Пока нет карточек для тренировки. Сохрани карточки или добавь набор из сообщества.', uk: 'Поки немає карток для тренування. Збережи картки або додай набір зі спільноти.',

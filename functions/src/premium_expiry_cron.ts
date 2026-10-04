@@ -206,7 +206,13 @@ export async function sweepExpiredPremium(now: number = Date.now()): Promise<Swe
 
   let lastDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
   for (;;) {
-    let q = db.collection('users').orderBy('__name__').limit(500);
+    // зачем (PM-252 п.6, 04.10): скан тянул документ users целиком (прогресс, настройки) ради 12 полей подписки.
+    // Маска полей — чтений столько же, но трафик и память крона меньше в разы. Решение по-прежнему
+    // принимается по полному документу внутри транзакции ниже.
+    let q = db.collection('users')
+      .select(...PREMIUM_AUTHORITY_FIELDS.map((field) => `progress.${field}`))
+      .orderBy('__name__')
+      .limit(500);
     if (lastDoc) q = q.startAfter(lastDoc);
     const page = await q.get();
     if (page.empty) break;

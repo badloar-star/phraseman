@@ -9,7 +9,8 @@ import path from 'node:path';
  * Список только сокращать: убрал MAX из файла — убери файл отсюда.
  */
 const root = process.cwd();
-const SCAN_DIRS = ['app', 'components', 'modules', 'hooks', 'functions/src'];
+// зачем: functions-admin тоже экспортирует из functions/src — после шага 2 он ссылался на удалённые файлы MAX и не собирался.
+const SCAN_DIRS = ['app', 'components', 'modules', 'hooks', 'functions/src', 'functions-admin', 'functions-content', 'functions-english-test'];
 const MAX_MARK = /max_voice|maxVoice|MaxVoice|voice_minute|functions-max/;
 
 const ALLOWED = new Set([
@@ -53,7 +54,7 @@ function listSources(dir: string, out: string[] = []): string[] {
   const abs = path.join(root, dir);
   if (!fs.existsSync(abs)) return out;
   for (const entry of fs.readdirSync(abs, { withFileTypes: true })) {
-    if (entry.name === 'node_modules' || entry.name === 'generated' || entry.name.startsWith('.')) continue;
+    if (entry.name === 'node_modules' || entry.name === 'lib' || entry.name === 'generated' || entry.name.startsWith('.')) continue;
     const rel = `${dir}/${entry.name}`;
     if (entry.isDirectory()) listSources(rel, out);
     else if (/\.(ts|tsx)$/.test(entry.name)) out.push(rel);

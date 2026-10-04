@@ -16,8 +16,7 @@
 //
 // ВАЖНО: исходники НЕ дублируются. tsconfig с rootDir ".." компилирует те же
 // файлы functions/src/*, что и основная кодбаза, — правка делается в одном
-// месте и попадает в обе сборки. Тот же приём уже работает в functions-max
-// (голосовой учитель, 2026-08-23).
+// месте и попадает в обе сборки (так же устроена functions-content).
 //
 // Деплой: firebase deploy --only functions:admin
 // ═══════════════════════════════════════════════════════════════════════════
@@ -240,8 +239,8 @@ export {
   adminActivateCourseRelease,
   adminRollbackCourseRelease,
 } from '../functions/src/language_release';
-export { adminListMaxVoiceFeedback } from '../functions/src/max_voice_feedback';
-export { adminGetMaxVoiceOpsDashboard } from '../functions/src/max_voice_ops_dashboard';
+// 04.10 (владелец, «вычистить весь MAX»): админские функции отзывов и здоровья MAX
+// удалены вместе с исходниками; админка их больше не зовёт. Из облака их убирает координатор по имени.
 export { adminGetOnboardingFunnel } from '../functions/src/onboarding_funnel';
 export { adminListPromoCodes } from '../functions/src/promo_codes';
 export {

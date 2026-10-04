@@ -13,11 +13,12 @@ describe('admin ratings dashboard', () => {
 
   // зачем (FINAL_PHASE п.8, 03.10): Арена удалена в 2.0 (D10) — фильтры «Арена: блиц/рейтинг» убраны из админки;
   // источников осталось пять. Серверные обработчики не тронуты (1.6.24).
-  it('offers five one-click sources (no Arena) and three comment modes', () => {
-    for (const kind of ['max_call', 'lesson', 'learning_v2', 'vocab', 'dialogue']) {
+  // 04.10 (владелец, «вычистить весь MAX»): «Звонок MAX» убран — источников четыре.
+  it('offers four one-click sources (no Arena, no MAX) and three comment modes', () => {
+    for (const kind of ['lesson', 'learning_v2', 'vocab', 'dialogue']) {
       expect(html).toContain(`data-feedback-kind="${kind}"`);
     }
-    for (const kind of ['arena_blitz', 'arena_rating']) {
+    for (const kind of ['arena_blitz', 'arena_rating', 'max_call']) {
       expect(html).not.toContain(`data-feedback-kind="${kind}"`);
     }
     for (const mode of ['all', 'with', 'without']) {

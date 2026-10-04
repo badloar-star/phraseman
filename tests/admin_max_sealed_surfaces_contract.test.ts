@@ -2,47 +2,41 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 /**
- * зачем: Q2 (координатор 01.10) — MAX законсервирован владельцем
- * (MAX_SECTION_SEALED_BY_OWNER_2026_09_04). В админке все MAX-поверхности
- * (вкладка «Здоровье MAX», чип «Звонок MAX», пробник по тирам, выдача минут)
- * скрыты за пломбой и показывают короткую заметку. Код НЕ удалён (D11).
+ * зачем: владелец 04.10 — «вычистить весь MAX». Раньше (Q2, 01.10) MAX-поверхности
+ * админки прятались за пломбой; теперь они удалены совсем. Общая вкладка «Оценки»
+ * (id max-feedback — исторический, на нём держатся маршрут и первая вкладка) остаётся,
+ * из неё убран только вид «Звонок MAX». Данные MAX в базе не тронуты.
  */
 const html = fs.readFileSync(path.join(process.cwd(), 'admin', 'v2', 'legacy.html'), 'utf8');
-const NOTE = 'Раздел законсервирован (решение владельца 2026-09-04)';
 
-describe('admin MAX surfaces sealed (Q2)', () => {
-  it('пломба объявлена до любых скриптов и ссылается на клиентскую константу', () => {
-    const seal = html.indexOf('window.ADMIN_MAX_SEALED = true;');
-    expect(seal).toBeGreaterThan(-1);
-    expect(seal).toBeLessThan(html.indexOf('id="pm-v9-theme-bootstrap"'));
-    expect(html).toContain('MAX_SECTION_SEALED_BY_OWNER_2026_09_04');
-    expect(html).toContain(`window.ADMIN_MAX_SEALED_NOTE = '${NOTE}'`);
+describe('admin MAX surfaces removed (owner 2026-10-04)', () => {
+  it('пломбы MAX больше нет — нечего прятать', () => {
+    expect(html).not.toContain('ADMIN_MAX_SEALED');
+    expect(html).not.toContain('MAX_SECTION_SEALED_BY_OWNER_2026_09_04');
+    expect(html).not.toContain('data-max-sealed');
   });
 
-  it('вкладка «Здоровье MAX» в шапке не кликается и показывает заметку', () => {
-    expect(html).not.toContain(`onclick="switchTab('max-ops')"`);
-    expect(html).toContain('data-max-sealed="tab"');
+  it('вкладки «Здоровье MAX» и пробника по тирам нет', () => {
+    expect(html).not.toContain('tab-max-ops');
+    expect(html).not.toContain("'max-ops'");
+    expect(html).not.toContain('maxOpsLoad');
+    expect(html).not.toContain('loadMaxTrialTiers');
+    expect(html).not.toContain("httpsCallable(functionsUs, 'adminGetMaxVoiceOpsDashboard')");
+    expect(html).not.toContain("httpsCallable(functionsUs, 'maxVoiceConfigAdmin')");
   });
 
-  it('чип «Звонок MAX» скрыт, по умолчанию открываются «Уроки»', () => {
-    expect(html).toMatch(/data-feedback-kind="max_call" aria-pressed="false"[^>]*hidden>/);
+  it('«Оценки» живы, но без вида «Звонок MAX»', () => {
+    expect(html).toContain("switchTab('max-feedback')");
     expect(html).toContain('data-feedback-kind="lesson" aria-pressed="true"');
-    expect(html).toContain("kind:(window.ADMIN_MAX_SEALED ? 'lesson' : FEEDBACK_MAX_CALL_KIND)");
+    expect(html).not.toContain('data-feedback-kind="max_call"');
+    expect(html).not.toContain("httpsCallable(functionsUs, 'adminListMaxVoiceFeedback')");
   });
 
-  it('раздел MAX (с пробником по тирам) скрыт и показывает заметку', () => {
-    expect(html).toContain(`data-max-sealed="section" role="status" style="margin:0 24px 24px">${NOTE}</div>`);
-    expect(html).toContain('<div class="max-ops-shell" hidden>');
+  it('департамента MAX у Джарвиса в панели нет', () => {
+    expect(html).not.toMatch(/\bmaxvoice:\s*\{/);
   });
 
-  it('загрузчики и действия MAX выходят рано с логом, без вызова функций', () => {
-    for (const name of ['loadMaxTrialTiers', 'saveMaxTrialTier', 'maxOpsLoad']) {
-      expect(html).toContain(`[ADMIN-MAX-SEAL] ${name} skipped: section sealed`);
-    }
-  });
-
-  // зачем: D136 (владелец 2026-10-01) — выдача минут MAX удалена целиком
-  // (кнопка, обработчик и серверная adminGrantVoiceMinutes), а не спрятана.
+  // зачем: D136 (владелец 2026-10-01) — выдача минут MAX удалена целиком.
   it('выдачи минут MAX в админке нет совсем (D136)', () => {
     expect(html).not.toContain('data-action="grant-voice-minutes"');
     expect(html).not.toContain('window.grantVoiceMinutes');

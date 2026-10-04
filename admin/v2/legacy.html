@@ -21,14 +21,6 @@
       }
     })();
   </script>
-  <script id="pm-admin-max-seal">
-    // зачем: Q2 (координатор 01.10) — раздел MAX законсервирован владельцем
-    // (MAX_SECTION_SEALED_BY_OWNER_2026_09_04 в app/max_voice_flags.ts, функции
-    // functions-max сняты с деплоя). В админке MAX-поверхности скрыты за этой
-    // пломбой; код НЕ удалён (D11). Снимать только по прямой команде владельца.
-    window.ADMIN_MAX_SEALED = true;
-    window.ADMIN_MAX_SEALED_NOTE = 'Раздел законсервирован (решение владельца 2026-09-04)';
-  </script>
   <script id="pm-v9-theme-bootstrap">
     (() => {
       try {
@@ -6586,75 +6578,6 @@ html[data-pm-motion="off"] .pm-v5-ripple { display: none !important; }
   body.pm-v5-motion-ready [class*="overlay"] { backdrop-filter: none !important; }
 }
 
-/* MAX operations: content-free server aggregates, deliberately without drill-down. */
-#tab-max-ops { --max-ops-line:rgba(228,228,231,.13); --max-ops-muted:#a1a1aa; }
-.max-ops-shell { display:grid; gap:24px; padding:0 24px 36px; max-width:1440px; margin:0 auto; }
-.max-ops-toolbar { display:flex; flex-wrap:wrap; align-items:end; gap:12px; padding:16px 0; border-bottom:1px solid var(--max-ops-line); }
-.max-ops-control { display:grid; gap:6px; min-width:180px; }
-.max-ops-control label { color:var(--max-ops-muted); font-size:12px; font-weight:700; }
-.max-ops-control select,.max-ops-refresh { min-height:44px; border-radius:9px; border:1px solid rgba(228,228,231,.2); font:inherit; }
-.max-ops-control select { padding:0 40px 0 12px; color:#f4f4f5; background:#17191f; }
-.max-ops-refresh { padding:0 20px; background:#dbeafe; color:#0b1324; font-weight:850; cursor:pointer; }
-.max-ops-refresh:hover { background:#bfdbfe; }
-#tab-max-ops .max-ops-control select:focus,#tab-max-ops .max-ops-refresh:focus,#tab-max-ops .max-ops-control select:focus-visible,#tab-max-ops .max-ops-refresh:focus-visible { outline:3px solid #60a5fa !important; outline-offset:3px; box-shadow:0 0 0 3px rgba(96,165,250,.22) !important; }
-.max-ops-source { margin-left:auto; display:grid; gap:4px; color:var(--max-ops-muted); font-size:12px; text-align:right; }
-.max-ops-source strong { color:#e4e4e7; font-weight:750; }
-.max-ops-state { min-height:76px; padding:18px 20px; border:1px solid var(--max-ops-line); border-radius:10px; background:#15171c; color:#d4d4d8; line-height:1.55; }
-.max-ops-state strong { display:block; margin-bottom:4px; color:#fafafa; font-size:16px; }
-.max-ops-state[data-state="error"],.max-ops-state[data-state="denied"] { border-color:rgba(248,113,113,.42); background:rgba(127,29,29,.15); }
-.max-ops-state[data-state="warning"] { border-color:rgba(250,204,21,.34); background:rgba(113,63,18,.12); }
-.max-ops-health { display:flex; align-items:center; gap:12px; min-height:64px; padding:14px 0; border-bottom:1px solid var(--max-ops-line); }
-.max-ops-health-dot { width:12px; height:12px; flex:0 0 12px; border-radius:50%; background:#71717a; box-shadow:0 0 0 4px rgba(113,113,122,.15); }
-.max-ops-health[data-health="healthy"] .max-ops-health-dot { background:#4ade80; box-shadow:0 0 0 4px rgba(74,222,128,.14); }
-.max-ops-health[data-health="warning"] .max-ops-health-dot { background:#facc15; box-shadow:0 0 0 4px rgba(250,204,21,.14); }
-.max-ops-health[data-health="critical"] .max-ops-health-dot { background:#f87171; box-shadow:0 0 0 4px rgba(248,113,113,.14); }
-.max-ops-health-title { color:#fafafa; font-size:18px; font-weight:850; }
-.max-ops-health-note { margin-top:3px; color:var(--max-ops-muted); font-size:13px; }
-.max-ops-kpis { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border:1px solid var(--max-ops-line); border-radius:12px; overflow:hidden; }
-.max-ops-kpi { min-width:0; padding:20px; background:#15171c; border-right:1px solid var(--max-ops-line); }
-.max-ops-kpi:last-child { border-right:0; }
-.max-ops-kpi-label { color:var(--max-ops-muted); font-size:12px; font-weight:750; }
-.max-ops-kpi-value { margin-top:10px; color:#fafafa; font-size:clamp(28px,3vw,44px); font-weight:900; letter-spacing:-.04em; }
-.max-ops-kpi-sub { margin-top:7px; color:#71717a; font-size:12px; }
-.max-ops-section { display:grid; gap:14px; padding-top:2px; }
-.max-ops-section + .max-ops-section { padding-top:24px; border-top:1px solid var(--max-ops-line); }
-.max-ops-section h3 { margin:0; color:#fafafa; font-size:18px; }
-.max-ops-section > p { margin:-7px 0 0; color:var(--max-ops-muted); font-size:13px; }
-/* зачем 2026-08-24 (владелец): пробный звонок 3 минуты — платный, и его надо
-   гасить из админки отдельно по тирам, «чтобы не тратить деньги». Разделяем
-   тоном и фоном, без обводок вокруг блока — стиль владельца. */
-.max-trial-card { margin-bottom:18px; padding:18px 20px; border-radius:14px; background:#15171c; }
-.max-trial-card h3 { margin:0; color:#fafafa; font-size:17px; font-weight:800; }
-.max-trial-card > p { margin:6px 0 0; color:var(--max-ops-muted); font-size:12.5px; line-height:1.5; }
-.max-trial-rows { margin-top:14px; display:flex; flex-direction:column; }
-.max-trial-row { display:flex; align-items:center; gap:14px; padding:11px 8px; border-radius:10px; transition:background .15s ease; }
-.max-trial-row + .max-trial-row { border-top:1px solid var(--max-ops-line); }
-.max-trial-row:hover { background:rgba(255,255,255,.025); }
-.max-trial-ico { flex:none; width:30px; height:30px; border-radius:9px; display:grid; place-items:center; font-size:15px; background:rgba(129,140,248,.10); }
-.max-trial-name { flex:1; min-width:0; font-size:13.5px; font-weight:700; color:#e5e7eb; }
-.max-trial-switch { display:flex; align-items:center; gap:8px; cursor:pointer; user-select:none; }
-.max-trial-chip { min-width:38px; text-align:center; font-size:11.5px; font-weight:800; letter-spacing:.02em; color:#71717a; }
-.max-trial-chip[data-on="1"] { color:#4ade80; }
-.max-trial-status { margin-top:12px; font-size:12px; color:var(--max-ops-muted); }
-.max-ops-chart-grid,.max-ops-detail-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
-.max-ops-chart { min-width:0; }
-.max-ops-chart-title { margin-bottom:8px; color:#d4d4d8; font-size:13px; font-weight:750; }
-.max-ops-chart svg { display:block; width:100%; height:190px; border-bottom:1px solid var(--max-ops-line); overflow:visible; }
-.max-ops-chart-legend { display:flex; flex-wrap:wrap; gap:12px; margin-top:8px; color:var(--max-ops-muted); font-size:11px; }
-.max-ops-chart-legend span::before { content:''; display:inline-block; width:8px; height:8px; margin-right:5px; border-radius:50%; background:var(--legend,#60a5fa); }
-.max-ops-bars { display:grid; gap:10px; }
-.max-ops-bar-row { display:grid; grid-template-columns:minmax(110px,1.4fr) minmax(90px,3fr) 54px; align-items:center; gap:10px; min-height:28px; }
-.max-ops-bar-label { overflow:hidden; color:#d4d4d8; font-size:12px; text-overflow:ellipsis; white-space:nowrap; }
-.max-ops-bar-track { height:8px; overflow:hidden; border-radius:999px; background:#27272a; }
-.max-ops-bar-fill { height:100%; min-width:0; border-radius:inherit; background:#60a5fa; }
-.max-ops-bar-value { color:#a1a1aa; font-size:12px; font-variant-numeric:tabular-nums; text-align:right; }
-.max-ops-metric-list { margin:0; display:grid; }
-.max-ops-metric-row { display:flex; justify-content:space-between; gap:18px; padding:11px 0; border-bottom:1px solid rgba(228,228,231,.08); }
-.max-ops-metric-row dt { color:#a1a1aa; font-size:13px; }
-.max-ops-metric-row dd { margin:0; color:#f4f4f5; font-weight:800; font-variant-numeric:tabular-nums; text-align:right; }
-@media (max-width:900px) { .max-ops-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } .max-ops-kpi:nth-child(2){border-right:0}.max-ops-kpi:nth-child(-n+2){border-bottom:1px solid var(--max-ops-line)} }
-@media (max-width:700px) { .max-ops-shell{padding:0 16px 28px;gap:20px}.max-ops-source{width:100%;margin-left:0;text-align:left}.max-ops-chart-grid,.max-ops-detail-grid{grid-template-columns:1fr} }
-@media (max-width:480px) { .max-ops-kpis{grid-template-columns:1fr}.max-ops-kpi{border-right:0!important;border-bottom:1px solid var(--max-ops-line)}.max-ops-kpi:last-child{border-bottom:0}.max-ops-bar-row{grid-template-columns:minmax(92px,1.2fr) minmax(72px,2fr) 44px} }
 
 </style>
 
@@ -11163,7 +11086,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         analytics: 'core',
         'openai-budget': 'revenue',
         'app-health': 'core',
-        'max-ops': 'system',
         'max-feedback': 'core',
         'warm-instances': 'system',
         reports: 'users',
@@ -11714,8 +11636,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   <div class="tab" onclick="switchTab('community-packs')" data-i18n-es="Comunidad">Community</div>
   <div class="tab" onclick="switchTab('referrals')" data-i18n-es="Referidos">Referrals</div>
   <div class="tab" onclick="switchTab('app-health')" data-i18n-es="Salud de la app">App Health</div>
-  <!-- зачем: Q2 (координатор 01.10) — вкладка «Здоровье MAX» скрыта за пломбой MAX_SECTION_SEALED_BY_OWNER_2026_09_04. -->
-  <div class="tab" aria-disabled="true" data-max-sealed="tab" title="Раздел законсервирован (решение владельца 2026-09-04)" style="opacity:.55;cursor:default">MAX: законсервирован</div>
   <div class="tab" onclick="switchTab('push-notify')" data-i18n-es="Push">Push</div>
   <!-- зачем: старая админка стала главной; уникальные разделы v2 (Офис агентов, Центр монет, Фабрика, Брифинг) остаются в один клик -->
   <!-- зачем: /index.html теперь редиректит на старую (закладки на index.html тоже должны открывать старую) — ссылка на новую ведёт на /v2.html -->
@@ -14400,9 +14320,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     <div class="feedback-control-row">
       <div class="feedback-control-title">Раздел</div>
       <div class="feedback-switch" role="group" aria-label="Раздел оценок">
-        <!-- зачем: Q2 (координатор 01.10) — чип «Звонок MAX» скрыт за пломбой MAX_SECTION_SEALED_BY_OWNER_2026_09_04; по умолчанию открываются «Уроки». -->
-        <button class="feedback-chip" data-feedback-kind="max_call" aria-pressed="false" onclick="setFeedbackKind('max_call')" hidden>Звонок MAX</button>
-        <span class="feedback-chip" data-max-sealed="feedback-chip" aria-disabled="true" title="Раздел законсервирован (решение владельца 2026-09-04)" style="opacity:.55;cursor:default">MAX: законсервирован</span>
         <button class="feedback-chip" data-feedback-kind="lesson" aria-pressed="true" onclick="setFeedbackKind('lesson')">Уроки</button>
         <button class="feedback-chip" data-feedback-kind="learning_v2" aria-pressed="false" onclick="setFeedbackKind('learning_v2')">Learning V2</button>
         <button class="feedback-chip" data-feedback-kind="vocab" aria-pressed="false" onclick="setFeedbackKind('vocab')">Словарь</button>
@@ -15394,137 +15311,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   <div id="ah-list"><div class="reports-empty" data-i18n-es="Abre App Health para cargar diagnósticos.">Open App Health to load diagnostics.</div></div>
   <div style="text-align:center;padding:8px 0 28px"><button id="ah-load-more" onclick="loadMoreAppHealth()" style="display:none;background:#1a2540;border:1px solid #5a8ad0;color:#bfdbfe;padding:9px 20px;border-radius:9px;cursor:pointer;font-weight:600">⬇ Load more (older)</button></div>
 </div>
-
-<!-- MAX OPERATIONS: content-free daily server aggregates only -->
-<section id="tab-max-ops" class="reports-tab pm-v4-page" data-pm-v4-section="max-ops" aria-labelledby="max-ops-title">
-  <div class="pm-v4-section-header" data-pm-v4-header="max-ops"><div class="pm-v4-section-heading"><h2 id="max-ops-title" class="pm-v4-section-title">Здоровье MAX</h2><div class="pm-v4-section-sub">Надёжность звонка, разбора и памяти без содержимого разговоров.</div></div></div>
-  <!-- зачем: Q2 (координатор 01.10) — содержимое (включая пробник по тирам) скрыто за пломбой MAX_SECTION_SEALED_BY_OWNER_2026_09_04; код не удалён (D11). -->
-  <div class="max-ops-state" data-max-sealed="section" role="status" style="margin:0 24px 24px">Раздел законсервирован (решение владельца 2026-09-04)</div>
-  <div class="max-ops-shell" hidden>
-    <!-- зачем 2026-08-24 (владелец): «чтобы не тратить деньги» — пробный звонок
-         платный, и его надо уметь выключить отдельно каждому бесплатному тиру,
-         не трогая релиз и не задевая месячный пакет MAX. -->
-    <section class="max-trial-card" aria-labelledby="max-trial-title">
-      <h3 id="max-trial-title">Пробный звонок 3 минуты</h3>
-      <p>Один пробный звонок на весь срок жизни аккаунта для тех, у кого нет подписки MAX. Выключение действует не позже чем через минуту и показывает пейвол MAX вместо звонка. Уже начатый звонок не обрывается, месячный пакет MAX не затрагивается.</p>
-      <div class="max-trial-rows">
-        <div class="max-trial-row">
-          <div class="max-trial-ico">🆓</div>
-          <div class="max-trial-name">Free — без подписки</div>
-          <label class="max-trial-switch"><input type="checkbox" id="max-trial-free" class="cp-toggle" onchange="saveMaxTrialTier('trialEnabledFree', this.checked)" disabled/><span id="max-trial-chip-free" class="max-trial-chip">…</span></label>
-        </div>
-        <div class="max-trial-row">
-          <div class="max-trial-ico">✨</div>
-          <div class="max-trial-name">Плюс — подписка на месяц или год</div>
-          <label class="max-trial-switch"><input type="checkbox" id="max-trial-plus" class="cp-toggle" onchange="saveMaxTrialTier('trialEnabledPlus', this.checked)" disabled/><span id="max-trial-chip-plus" class="max-trial-chip">…</span></label>
-        </div>
-        <div class="max-trial-row">
-          <div class="max-trial-ico">👑</div>
-          <div class="max-trial-name">Про — покупка «Навсегда»</div>
-          <label class="max-trial-switch"><input type="checkbox" id="max-trial-pro" class="cp-toggle" onchange="saveMaxTrialTier('trialEnabledPro', this.checked)" disabled/><span id="max-trial-chip-pro" class="max-trial-chip">…</span></label>
-        </div>
-      </div>
-      <div id="max-trial-status" class="max-trial-status" role="status" aria-live="polite">Загрузка…</div>
-    </section>
-
-    <div class="max-ops-toolbar" aria-label="Параметры диагностики MAX">
-      <div class="max-ops-control">
-        <label for="max-ops-days">Период</label>
-        <select id="max-ops-days" aria-label="Период диагностики MAX" title="Показать агрегаты за выбранное число UTC-дней" data-tooltip="Показать агрегаты за выбранное число UTC-дней">
-          <option value="1">1 день</option>
-          <option value="7" selected>7 дней</option>
-          <option value="30">30 дней</option>
-        </select>
-      </div>
-      <button id="max-ops-refresh" class="max-ops-refresh" type="button" onclick="maxOpsLoad(true)" title="Перечитать дневные агрегаты MAX" data-tooltip="Перечитать дневные агрегаты MAX">Обновить</button>
-      <div class="max-ops-source">
-        <strong>Source: server daily MAX aggregates</strong>
-        <span id="max-ops-last-update">Последний агрегат: ещё не загружен</span>
-      </div>
-    </div>
-
-    <div id="max-ops-state" class="max-ops-state" role="status" aria-live="polite" data-state="loading">
-      <strong>Данные ещё не загружены</strong>
-      Откройте раздел или нажмите «Обновить».
-    </div>
-
-    <div id="max-ops-content" hidden>
-      <div id="max-ops-health" class="max-ops-health" data-health="unknown">
-        <span class="max-ops-health-dot" aria-hidden="true"></span>
-        <div><div id="max-ops-health-title" class="max-ops-health-title">Недостаточно данных</div><div id="max-ops-health-note" class="max-ops-health-note"></div></div>
-      </div>
-
-      <div class="max-ops-kpis" aria-label="Ключевые показатели MAX">
-        <article class="max-ops-kpi"><div class="max-ops-kpi-label">Начато звонков</div><div id="max-ops-kpi-calls" class="max-ops-kpi-value">—</div><div class="max-ops-kpi-sub">серверный старт</div></article>
-        <article class="max-ops-kpi"><div class="max-ops-kpi-label">Успешное соединение</div><div id="max-ops-kpi-connection" class="max-ops-kpi-value">—</div><div id="max-ops-kpi-connection-sub" class="max-ops-kpi-sub">—</div></article>
-        <article class="max-ops-kpi"><div class="max-ops-kpi-label">Готовый разбор</div><div id="max-ops-kpi-review" class="max-ops-kpi-value">—</div><div id="max-ops-kpi-review-sub" class="max-ops-kpi-sub">—</div></article>
-        <article class="max-ops-kpi"><div class="max-ops-kpi-label">Восстановление связи</div><div id="max-ops-kpi-reconnect" class="max-ops-kpi-value">—</div><div id="max-ops-kpi-reconnect-sub" class="max-ops-kpi-sub">—</div></article>
-      </div>
-
-      <!-- зачем (владелец 2026-08-30): «сколько минут MAX использовано в общем
-           и сколько это стоило денег реально (точно)». Источник —
-           voice_call_billing: фактические usage-токены каждой завершённой
-           сессии × официальный прайс OpenAI (кэш-скидка и транскрипция
-           учтены). Серверная sum-агрегация, документы не выкачиваются. -->
-      <div class="max-ops-section">
-        <h3>Минуты и деньги</h3><p>Фактические токены каждой сессии × прайс OpenAI (кэш-скидка и транскрипция учтены). Источник: voice_call_billing, включая watchdog-сессии.</p>
-        <p id="max-ops-usage-recon" data-recon="unknown">Сверка с OpenAI: данные ещё не загружены.</p>
-        <div class="max-ops-kpis" aria-label="Минуты и себестоимость MAX">
-          <article class="max-ops-kpi"><div class="max-ops-kpi-label">Минуты за всё время</div><div id="max-ops-usage-minutes-all" class="max-ops-kpi-value">—</div><div id="max-ops-usage-minutes-all-sub" class="max-ops-kpi-sub">—</div></article>
-          <article class="max-ops-kpi"><div class="max-ops-kpi-label">Себестоимость за всё время</div><div id="max-ops-usage-cost-all" class="max-ops-kpi-value">—</div><div id="max-ops-usage-cost-all-sub" class="max-ops-kpi-sub">—</div></article>
-          <article class="max-ops-kpi"><div class="max-ops-kpi-label">Минуты в этом месяце</div><div id="max-ops-usage-minutes-month" class="max-ops-kpi-value">—</div><div id="max-ops-usage-minutes-month-sub" class="max-ops-kpi-sub">—</div></article>
-          <article class="max-ops-kpi"><div class="max-ops-kpi-label">Себестоимость в этом месяце</div><div id="max-ops-usage-cost-month" class="max-ops-kpi-value">—</div><div id="max-ops-usage-cost-month-sub" class="max-ops-kpi-sub">—</div></article>
-        </div>
-      </div>
-
-      <div class="max-ops-section">
-        <h3>Динамика</h3><p>По UTC-дням; точное значение доступно в подписи точки.</p>
-        <div class="max-ops-chart-grid">
-          <div class="max-ops-chart"><div class="max-ops-chart-title">Звонки: старт, завершение, ошибка</div><div id="max-ops-calls-chart"></div></div>
-          <div class="max-ops-chart"><div class="max-ops-chart-title">Разбор: готов и не готов</div><div id="max-ops-review-chart"></div></div>
-        </div>
-      </div>
-
-      <div class="max-ops-section">
-        <h3>Задержки и длительность</h3><p>Распределения показывают серверные этапы, а не отдельные разговоры.</p>
-        <div class="max-ops-detail-grid">
-          <div><div class="max-ops-chart-title">Подготовка урока</div><div id="max-ops-dist-preparation" class="max-ops-bars"></div></div>
-          <div><div class="max-ops-chart-title">Первое аудио</div><div id="max-ops-dist-first-audio" class="max-ops-bars"></div></div>
-          <div><div class="max-ops-chart-title">Ответ MAX</div><div id="max-ops-dist-response" class="max-ops-bars"></div></div>
-          <div><div class="max-ops-chart-title">Готовность разбора</div><div id="max-ops-dist-finalize" class="max-ops-bars"></div></div>
-          <div><div class="max-ops-chart-title">Восстановление связи</div><div id="max-ops-dist-reconnect" class="max-ops-bars"></div></div>
-          <div><div class="max-ops-chart-title">Длительность звонка</div><div id="max-ops-dist-duration" class="max-ops-bars"></div></div>
-        </div>
-      </div>
-
-      <div class="max-ops-section">
-        <h3>Дисциплина учителя</h3><p>Доли уроков, где учитель довёл сценарий до конца. Только счётчики, без содержания разговоров.</p>
-        <div class="max-ops-detail-grid">
-          <div><div class="max-ops-chart-title">Сценарий урока</div><dl id="max-ops-lesson-metrics" class="max-ops-metric-list"></dl></div>
-        </div>
-      </div>
-
-      <div class="max-ops-section">
-        <h3>Серверные этапы</h3><p>Очередь разбора, запись памяти, квота и использование провайдера.</p>
-        <div class="max-ops-detail-grid">
-          <div><div class="max-ops-chart-title">Разбор и память</div><dl id="max-ops-finalize-metrics" class="max-ops-metric-list"></dl></div>
-          <div><div class="max-ops-chart-title">Квота и watchdog</div><dl id="max-ops-quota-metrics" class="max-ops-metric-list"></dl></div>
-          <div><div class="max-ops-chart-title">Использование провайдера</div><dl id="max-ops-provider-metrics" class="max-ops-metric-list"></dl></div>
-          <div><div class="max-ops-chart-title">Причины завершения</div><div id="max-ops-end-reasons" class="max-ops-bars"></div></div>
-          <div data-tooltip="Серверные отказы, случившиеся до создания резерва секунд; содержание звонков и данные пользователя не записываются."><div class="max-ops-chart-title">Причины отказа до резерва</div><div id="max-ops-mint-rejections" class="max-ops-bars"></div></div>
-        </div>
-      </div>
-
-      <div class="max-ops-section">
-        <h3>Распределение без малых групп</h3><p>Значения меньше 5 скрыты как «—» для защиты приватности.</p>
-        <div class="max-ops-detail-grid">
-          <div><div class="max-ops-chart-title">Язык интерфейса</div><div id="max-ops-locales" class="max-ops-bars"></div></div>
-          <div><div class="max-ops-chart-title">Уровень английского</div><div id="max-ops-levels" class="max-ops-bars"></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- OPS LOG TAB -->
 <div id="tab-ops-log" class="reports-tab pm-v4-page" data-pm-v4-section="ops-log">
@@ -17588,343 +17374,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     }
     return _fnOpenAiBudgetDashboard;
   }
-  let _fnAdminGetMaxVoiceOpsDashboard = null;
-  function getAdminGetMaxVoiceOpsDashboardCallable() {
-    if (!_fnAdminGetMaxVoiceOpsDashboard) {
-      _fnAdminGetMaxVoiceOpsDashboard = httpsCallable(functionsUs, 'adminGetMaxVoiceOpsDashboard');
-    }
-    return _fnAdminGetMaxVoiceOpsDashboard;
-  }
-
-  // ── Пробный звонок MAX: выключатели по тирам ─────────────────────────────
-  // зачем 2026-08-24 (владелец): пробник платный («чтобы не тратить деньги»),
-  // выключается отдельно для Free / Плюса / Про. Пишем через maxVoiceConfigAdmin
-  // (не setDoc напрямую): там серверный кламп и сброс кэша конфига.
-  let _fnMaxVoiceConfigAdmin = null;
-  function getMaxVoiceConfigAdminCallable() {
-    if (!_fnMaxVoiceConfigAdmin) {
-      _fnMaxVoiceConfigAdmin = httpsCallable(functionsUs, 'maxVoiceConfigAdmin');
-    }
-    return _fnMaxVoiceConfigAdmin;
-  }
-
-  const MAX_TRIAL_TIERS = {
-    trialEnabledFree: { input: 'max-trial-free', chip: 'max-trial-chip-free', name: 'Free' },
-    trialEnabledPlus: { input: 'max-trial-plus', chip: 'max-trial-chip-plus', name: 'Плюс' },
-    trialEnabledPro:  { input: 'max-trial-pro',  chip: 'max-trial-chip-pro',  name: 'Про' },
-  };
-
-  function maxTrialSetStatus(text, color) {
-    const el = document.getElementById('max-trial-status');
-    if (!el) return;
-    el.textContent = text;
-    el.style.color = color || '';
-  }
-
-  function maxTrialRenderTier(key, on, { enable = true } = {}) {
-    const meta = MAX_TRIAL_TIERS[key];
-    if (!meta) return;
-    const input = document.getElementById(meta.input);
-    const chip = document.getElementById(meta.chip);
-    if (input) { input.checked = !!on; if (enable) input.disabled = false; }
-    if (chip) {
-      chip.textContent = on ? 'Вкл' : 'Выкл';
-      chip.setAttribute('data-on', on ? '1' : '0');
-    }
-  }
-
-  window.loadMaxTrialTiers = async function(force) {
-    // зачем: Q2 (координатор 01.10) — пломба MAX: пробник по тирам не читаем и не показываем.
-    if (window.ADMIN_MAX_SEALED) { console.info('[ADMIN-MAX-SEAL] loadMaxTrialTiers skipped: section sealed'); return; }
-    if (window._maxTrialLoaded && !force) return;
-    if (window._maxTrialLoading) return;
-    window._maxTrialLoading = true;
-    maxTrialSetStatus('Загрузка…');
-    try {
-      const res = await getMaxVoiceConfigAdminCallable()({ action: 'get' });
-      const config = (res && res.data && res.data.config) || {};
-      Object.keys(MAX_TRIAL_TIERS).forEach((key) => {
-        // Поле может отсутствовать в старом доке — сервер клампит к true.
-        maxTrialRenderTier(key, config[key] !== false);
-      });
-      window._maxTrialLoaded = true;
-      maxTrialSetStatus('Изменения действуют не позже чем через минуту.');
-    } catch (e) {
-      const denied = e && String(e.code || '').includes('permission-denied');
-      maxTrialSetStatus(denied ? 'Нет прав администратора.' : 'Ошибка загрузки: ' + ((e && e.message) || e), '#f87171');
-    } finally {
-      window._maxTrialLoading = false;
-    }
-  };
-
-  window.saveMaxTrialTier = async function(key, checked) {
-    // зачем: Q2 (координатор 01.10) — пломба MAX: пробник не переключаем.
-    if (window.ADMIN_MAX_SEALED) { console.info('[ADMIN-MAX-SEAL] saveMaxTrialTier skipped: section sealed', { key }); return; }
-    const meta = MAX_TRIAL_TIERS[key];
-    if (!meta) return;
-    const input = document.getElementById(meta.input);
-    const prev = !checked; // состояние до тапа — для отката
-    // Optimistic UI: чип меняется мгновенно, сеть догоняет. Инпут блокируем от
-    // двойного тапа, иначе две записи подряд гоняют конфиг туда-сюда.
-    maxTrialRenderTier(key, checked, { enable: false });
-    if (input) input.disabled = true;
-    maxTrialSetStatus('Сохранение…');
-    try {
-      await getMaxVoiceConfigAdminCallable()({ action: 'set', config: { [key]: !!checked } });
-      maxTrialRenderTier(key, checked);
-      maxTrialSetStatus(checked
-        ? '✅ ' + meta.name + ': пробник включён. Действует не позже чем через минуту.'
-        : '✅ ' + meta.name + ': пробник выключен. Эти люди увидят пейвол MAX.', '#4ade80');
-    } catch (e) {
-      // Откат: возвращаем прежнее состояние, чтобы админ не думал, что сохранил.
-      maxTrialRenderTier(key, prev);
-      maxTrialSetStatus('Не сохранено (' + ((e && e.message) || e) + '). Вернул как было.', '#f87171');
-    }
-  };
-
-  function maxOpsNumber(value) {
-    const number = Number(value);
-    return Number.isFinite(number) && number >= 0 ? Math.floor(number) : 0;
-  }
-
-  function maxOpsPercent(value) {
-    return value == null || !Number.isFinite(Number(value)) ? '—' : Math.round(Number(value) * 1000) / 10 + '%';
-  }
-
-  function maxOpsSetState(state, title, note) {
-    const host = document.getElementById('max-ops-state');
-    if (!host) return;
-    host.hidden = false;
-    host.dataset.state = state;
-    host.replaceChildren();
-    const strong = document.createElement('strong');
-    strong.textContent = title;
-    host.append(strong, document.createTextNode(note));
-  }
-
-  const MAX_OPS_LABELS = Object.freeze({
-    completed:'Завершено', capped:'Лимит времени', dropped:'Обрыв', background:'Приложение в фоне', failed:'Ошибка',
-    lt1s:'< 1 с', '1to3s':'1–3 с', '3to8s':'3–8 с', gte8s:'≥ 8 с',
-    lt500ms:'< 0,5 с', '500msto1s':'0,5–1 с', gte3s:'≥ 3 с',
-    lt5s:'< 5 с', '5to15s':'5–15 с', '15to60s':'15–60 с', gte60s:'≥ 60 с',
-    lt2s:'< 2 с', '2to5s':'2–5 с', gte15s:'≥ 15 с',
-    lt1m:'< 1 мин', '1to3m':'1–3 мин', '3to10m':'3–10 мин', gte10m:'≥ 10 мин',
-    ru:'Русский', uk:'Українська', es:'Español', 'pt-BR':'Português', vi:'Tiếng Việt', id:'Bahasa Indonesia', tr:'Türkçe', pl:'Polski',
-    paywall:'Нет доступа MAX', daily_quota:'Дневной лимит', monthly_quota:'Месячный лимит', kill_switch:'Линия выключена', budget:'Бюджет', rate_limit:'Слишком много попыток',
-  });
-
-  function maxOpsRenderBars(id, values) {
-    const host = document.getElementById(id);
-    if (!host) return;
-    host.replaceChildren();
-    const entries = Object.entries(values || {});
-    const max = Math.max(1, ...entries.map(([, value]) => value == null ? 0 : maxOpsNumber(value)));
-    entries.forEach(([key, value]) => {
-      const row = document.createElement('div'); row.className = 'max-ops-bar-row';
-      const label = document.createElement('span'); label.className = 'max-ops-bar-label'; label.textContent = MAX_OPS_LABELS[key] || key;
-      const track = document.createElement('span'); track.className = 'max-ops-bar-track'; track.setAttribute('aria-hidden', 'true');
-      const fill = document.createElement('span'); fill.className = 'max-ops-bar-fill'; fill.style.width = value == null ? '0' : Math.max(2, maxOpsNumber(value) / max * 100) + '%';
-      track.append(fill);
-      const count = document.createElement('span'); count.className = 'max-ops-bar-value'; count.textContent = value == null ? '—' : maxOpsNumber(value).toLocaleString('ru-RU');
-      row.append(label, track, count); host.append(row);
-    });
-    if (!entries.length) host.textContent = 'Нет данных';
-  }
-
-  function maxOpsRenderMetrics(id, rows) {
-    const host = document.getElementById(id);
-    if (!host) return;
-    host.replaceChildren();
-    rows.forEach(([label, value]) => {
-      const row = document.createElement('div'); row.className = 'max-ops-metric-row';
-      const term = document.createElement('dt'); term.textContent = label;
-      const detail = document.createElement('dd'); detail.textContent = String(value);
-      row.append(term, detail); host.append(row);
-    });
-  }
-
-  function maxOpsRenderTrend(id, rows, series) {
-    const host = document.getElementById(id);
-    if (!host) return;
-    host.replaceChildren();
-    const width = 600, height = 190, left = 16, right = 8, top = 12, bottom = 24;
-    const values = rows.flatMap((row) => series.map((item) => maxOpsNumber(row[item.key])));
-    const max = Math.max(1, ...values);
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
-    svg.setAttribute('role', 'img');
-    svg.setAttribute('aria-label', series.map((item) => item.label).join(', ') + ' по дням');
-    [0, .5, 1].forEach((part) => {
-      const y = top + (height - top - bottom) * part;
-      const line = document.createElementNS(svg.namespaceURI, 'line');
-      line.setAttribute('x1', String(left)); line.setAttribute('x2', String(width - right)); line.setAttribute('y1', String(y)); line.setAttribute('y2', String(y)); line.setAttribute('stroke', 'rgba(228,228,231,.10)');
-      svg.append(line);
-    });
-    series.forEach((item) => {
-      const points = rows.map((row, index) => {
-        const x = left + (rows.length <= 1 ? 0 : index / (rows.length - 1)) * (width - left - right);
-        const y = top + (1 - maxOpsNumber(row[item.key]) / max) * (height - top - bottom);
-        return { x, y, value:maxOpsNumber(row[item.key]), day:String(row.dayKey || '') };
-      });
-      const polyline = document.createElementNS(svg.namespaceURI, 'polyline');
-      polyline.setAttribute('points', points.map((point) => `${point.x},${point.y}`).join(' '));
-      polyline.setAttribute('fill', 'none'); polyline.setAttribute('stroke', item.color); polyline.setAttribute('stroke-width', '3'); polyline.setAttribute('vector-effect', 'non-scaling-stroke');
-      svg.append(polyline);
-      points.forEach((point) => {
-        const circle = document.createElementNS(svg.namespaceURI, 'circle');
-        circle.setAttribute('cx', String(point.x)); circle.setAttribute('cy', String(point.y)); circle.setAttribute('r', '4'); circle.setAttribute('fill', item.color);
-        const title = document.createElementNS(svg.namespaceURI, 'title'); title.textContent = `${point.day}: ${item.label} — ${point.value}`;
-        circle.append(title); svg.append(circle);
-      });
-    });
-    const legend = document.createElement('div'); legend.className = 'max-ops-chart-legend';
-    series.forEach((item) => { const label = document.createElement('span'); label.style.setProperty('--legend', item.color); label.textContent = item.label; legend.append(label); });
-    host.append(svg, legend);
-  }
-
-  function maxOpsRender(data) {
-    const content = document.getElementById('max-ops-content');
-    const state = document.getElementById('max-ops-state');
-    if (!content || !state) return;
-    const totals = data?.totals || {}, rates = data?.rates || {}, distributions = data?.distributions || {};
-    const status = data?.state || {}, health = data?.health || { code:'unknown', label:'Недостаточно данных', reason:'' };
-    if (status.empty) {
-      content.hidden = true;
-      maxOpsSetState('empty', 'За выбранный период данных нет', 'MAX ещё не запускался или дневные агрегаты пока не сформированы.');
-      return;
-    }
-    content.hidden = false;
-    if (status.partial || status.stale) {
-      maxOpsSetState('warning', status.stale ? 'Данные устарели' : 'Данные получены частично', status.stale ? 'Последний дневной агрегат старше 36 часов.' : `Доступно дней: ${maxOpsNumber(status.availableDays)} из ${maxOpsNumber(status.requestedDays)}.`);
-    } else {
-      state.hidden = true;
-    }
-    const healthHost = document.getElementById('max-ops-health');
-    if (healthHost) healthHost.dataset.health = String(health.code || 'unknown');
-    document.getElementById('max-ops-health-title').textContent = String(health.label || 'Недостаточно данных');
-    document.getElementById('max-ops-health-note').textContent = String(health.reason || '');
-    document.getElementById('max-ops-kpi-calls').textContent = maxOpsNumber(totals.callsStarted).toLocaleString('ru-RU');
-    document.getElementById('max-ops-kpi-connection').textContent = maxOpsPercent(rates.connection);
-    document.getElementById('max-ops-kpi-connection-sub').textContent = `${maxOpsNumber(totals.callsConnected)} из ${maxOpsNumber(totals.callsStarted)}`;
-    document.getElementById('max-ops-kpi-review').textContent = maxOpsPercent(rates.reviewReady);
-    document.getElementById('max-ops-kpi-review-sub').textContent = `${maxOpsNumber(totals.reviewsReady)} готово · ${maxOpsNumber(totals.reviewsFailed)} ошибок`;
-    document.getElementById('max-ops-kpi-reconnect').textContent = maxOpsPercent(rates.reconnectRecovery);
-    document.getElementById('max-ops-kpi-reconnect-sub').textContent = `${maxOpsNumber(totals.reconnectRecovered)} из ${maxOpsNumber(totals.reconnectAttempts)}`;
-    // Минуты и деньги (usage) — из sum-агрегаций voice_call_billing; при сбое
-    // агрегации сервер отдаёт usage:null, карточки честно показывают прочерк.
-    const usage = data && typeof data.usage === 'object' ? data.usage : null;
-    const usageMinutes = (bucket) => bucket ? Math.round(maxOpsNumber(bucket.seconds) / 60).toLocaleString('ru-RU') + ' мин' : '—';
-    const usageCost = (bucket) => bucket ? '$' + maxOpsNumber(bucket.estCostUsd).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '—';
-    const usageCalls = (bucket) => bucket ? `${maxOpsNumber(bucket.calls).toLocaleString('ru-RU')} сессий` : 'агрегация недоступна';
-    const usageTranscription = (bucket) => bucket ? `в т.ч. транскрипция $${maxOpsNumber(bucket.transcriptionCostUsd).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : 'агрегация недоступна';
-    document.getElementById('max-ops-usage-minutes-all').textContent = usageMinutes(usage && usage.allTime);
-    document.getElementById('max-ops-usage-minutes-all-sub').textContent = usageCalls(usage && usage.allTime);
-    document.getElementById('max-ops-usage-cost-all').textContent = usageCost(usage && usage.allTime);
-    document.getElementById('max-ops-usage-cost-all-sub').textContent = usageTranscription(usage && usage.allTime);
-    document.getElementById('max-ops-usage-minutes-month').textContent = usageMinutes(usage && usage.currentMonth);
-    document.getElementById('max-ops-usage-minutes-month-sub').textContent = usageCalls(usage && usage.currentMonth);
-    document.getElementById('max-ops-usage-cost-month').textContent = usageCost(usage && usage.currentMonth);
-    document.getElementById('max-ops-usage-cost-month-sub').textContent = usageTranscription(usage && usage.currentMonth);
-    // Дневная сверка с OpenAI Usage API (крон maxVoiceUsageRecon).
-    const reconHost = document.getElementById('max-ops-usage-recon');
-    if (reconHost) {
-      const recon = usage && usage.recon ? usage.recon.latest : null;
-      if (!recon) {
-        reconHost.textContent = 'Сверка с OpenAI: ещё не выполнялась (крон стартует ночью по UTC).';
-        reconHost.dataset.recon = 'unknown';
-      } else if (recon.status === 'no_admin_key') {
-        reconHost.textContent = 'Сверка с OpenAI: нужен админ-ключ — firebase functions:secrets:set OPENAI_ADMIN_API_KEY.';
-        reconHost.dataset.recon = 'warning';
-      } else if (recon.status === 'drift') {
-        reconHost.textContent = `Сверка с OpenAI (${recon.dayKey}): РАСХОЖДЕНИЕ — ${String(recon.note || '')}`;
-        reconHost.dataset.recon = 'critical';
-      } else if (recon.status === 'api_error') {
-        reconHost.textContent = `Сверка с OpenAI (${recon.dayKey}): Usage API не ответил, повтор следующей ночью.`;
-        reconHost.dataset.recon = 'warning';
-      } else {
-        const openaiCost = recon.openaiCostUsd == null ? '—' : '$' + maxOpsNumber(recon.openaiCostUsd).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        reconHost.textContent = `Сверка с OpenAI (${recon.dayKey}): сходится — у нас $${maxOpsNumber(recon.oursCostUsd).toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}, у OpenAI ${openaiCost}.`;
-        reconHost.dataset.recon = 'ok';
-      }
-    }
-    const updated = maxOpsNumber(status.lastAggregateAtMs);
-    document.getElementById('max-ops-last-update').textContent = updated ? `Последний агрегат: ${new Date(updated).toLocaleString('ru-RU')}` : 'Последний агрегат: время неизвестно';
-    const trend = Array.isArray(data?.trend) ? data.trend.slice(0, 30) : [];
-    maxOpsRenderTrend('max-ops-calls-chart', trend, [
-      { key:'callsStarted', label:'Старт', color:'#60a5fa' }, { key:'callsCompleted', label:'Завершено', color:'#4ade80' }, { key:'callsFailed', label:'Ошибка', color:'#f87171' },
-    ]);
-    maxOpsRenderTrend('max-ops-review-chart', trend, [
-      { key:'reviewsReady', label:'Готов', color:'#a78bfa' }, { key:'reviewsFailed', label:'Не готов', color:'#fb923c' },
-    ]);
-    maxOpsRenderBars('max-ops-dist-preparation', distributions.preparationLatencyBuckets);
-    maxOpsRenderBars('max-ops-dist-first-audio', distributions.firstAudioLatencyBuckets);
-    maxOpsRenderBars('max-ops-dist-response', distributions.responseLatencyBuckets);
-    maxOpsRenderBars('max-ops-dist-finalize', distributions.finalizeLatencyBuckets);
-    maxOpsRenderBars('max-ops-dist-reconnect', distributions.reconnectRecoveryBuckets);
-    maxOpsRenderBars('max-ops-dist-duration', distributions.callDurationBuckets);
-    maxOpsRenderBars('max-ops-end-reasons', distributions.endReasons);
-    maxOpsRenderBars('max-ops-mint-rejections', distributions.mintRejectionReasons);
-    maxOpsRenderBars('max-ops-locales', distributions.localeCounts);
-    maxOpsRenderBars('max-ops-levels', distributions.levelCounts);
-    maxOpsRenderMetrics('max-ops-finalize-metrics', [
-      ['В очереди', maxOpsNumber(totals.finalizationQueued)], ['Повторяемые ошибки', maxOpsNumber(totals.finalizationRetryable)], ['Конечные ошибки', maxOpsNumber(totals.finalizationTerminal)], ['Разбор готов', maxOpsNumber(totals.reviewsReady)], ['Разбор не готов', maxOpsNumber(totals.reviewsFailed)], ['Память записана', maxOpsNumber(totals.memoryUpdatesSucceeded)], ['Ошибка памяти', maxOpsNumber(totals.memoryUpdatesFailed)], ['Чувствительные факты отклонены', maxOpsNumber(totals.sensitiveMemoryCandidatesRejected)],
-    ]);
-    // зачем: владелец 2026-08-22 — видеть дисциплину боевой модели учителя
-    // (симуляция ловит только слабую текстовую). Доли, а не абсолюты: важно
-    // «в скольких уроках из ста», а не сколько всего.
-    const lessons = maxOpsNumber(totals.lessonsFinalized);
-    const maxOpsShare = (value) => (lessons > 0 ? Math.round((maxOpsNumber(value) / lessons) * 100) + '%' : '—');
-    const phraseTotal = maxOpsNumber(totals.phraseResultsTotal);
-    maxOpsRenderMetrics('max-ops-lesson-metrics', [
-      ['Уроков с разбором', lessons.toLocaleString('ru-RU')],
-      ['Учитель сам попрощался', maxOpsShare(totals.lessonsEndedByTutor)],
-      ['Задал домашку', maxOpsShare(totals.lessonsWithHomework)],
-      ['Продвинул цель', maxOpsShare(totals.lessonsGoalAdvanced)],
-      ['Довёл сцену', maxOpsShare(totals.lessonsSceneDone)],
-      ['Запомнил языковое пожелание', maxOpsShare(totals.lessonsWithLanguagePreference)],
-      ['Уроков с флагом безопасности', maxOpsShare(totals.lessonsTutorSafetyFlagged)],
-      ['Успешных фраз', phraseTotal > 0 ? Math.round((maxOpsNumber(totals.phraseResultsPass) / phraseTotal) * 100) + '% из ' + phraseTotal.toLocaleString('ru-RU') : '—'],
-    ]);
-    maxOpsRenderMetrics('max-ops-quota-metrics', [
-      ['Резервов', maxOpsNumber(totals.quotaReservations)], ['Закрыто резервов', maxOpsNumber(totals.quotaSettlements)], ['Закрыто watchdog', maxOpsNumber(totals.watchdogSettlements)], ['Завершений watchdog', maxOpsNumber(totals.watchdogEnds)], ['Невозможный порядок', maxOpsNumber(totals.impossibleSequences)],
-    ]);
-    // зачем переименование (2026-08-31): в этой же функции выше уже объявлен
-    // `usage` (data.usage) — повторный const ломал ВЕСЬ module-скрипт админки
-    // с SyntaxError, то есть страница не выполняла ни строки JS.
-    const providerUsage = distributions.providerUsage || {};
-    maxOpsRenderMetrics('max-ops-provider-metrics', [
-      ['Audio input tokens', maxOpsNumber(providerUsage.audioInputTokens).toLocaleString('ru-RU')], ['Audio output tokens', maxOpsNumber(providerUsage.audioOutputTokens).toLocaleString('ru-RU')], ['Cached tokens', maxOpsNumber(providerUsage.cachedTokens).toLocaleString('ru-RU')], ['Text tokens', maxOpsNumber(providerUsage.textTokens).toLocaleString('ru-RU')], ['Оценка стоимости', '$' + (maxOpsNumber(usage.estimatedCostMicros) / 1_000_000).toFixed(2)],
-    ]);
-  }
-
-  window.maxOpsLoad = async function maxOpsLoad(force) {
-    // зачем: Q2 (координатор 01.10) — пломба MAX: агрегаты не читаем (лишние вызовы функций).
-    if (window.ADMIN_MAX_SEALED) { console.info('[ADMIN-MAX-SEAL] maxOpsLoad skipped: section sealed'); return { status:'cached', source:'max_voice_ops_daily', message:window.ADMIN_MAX_SEALED_NOTE }; }
-    if (window._maxOpsLoaded && !force) return { status:'cached', source:'max_voice_ops_daily' };
-    if (window._maxOpsLoading) return { status:'cached', source:'max_voice_ops_daily', message:'Загрузка уже выполняется' };
-    window._maxOpsLoading = true;
-    const button = document.getElementById('max-ops-refresh');
-    const days = Number(document.getElementById('max-ops-days')?.value || 7);
-    if (button) { button.disabled = true; button.setAttribute('aria-busy', 'true'); }
-    maxOpsSetState('loading', 'Загружаем серверные агрегаты', 'До 30 дневных документов, без сведений об отдельных людях.');
-    try {
-      const response = await getAdminGetMaxVoiceOpsDashboardCallable()({ days });
-      const data = response?.data || {};
-      maxOpsRender(data);
-      window._maxOpsLoaded = true;
-      const status = data?.state?.partial ? 'partial' : data?.state?.stale ? 'stale' : 'fresh';
-      return { status, source:'max_voice_ops_daily', message:status === 'fresh' ? 'Агрегаты MAX обновлены' : 'Агрегаты MAX требуют внимания' };
-    } catch (error) {
-      const code = String(error?.code || '');
-      const denied = code.includes('permission-denied') || code.includes('unauthenticated');
-      maxOpsSetState(denied ? 'denied' : 'error', denied ? 'Нет доступа' : 'Не удалось загрузить данные', denied ? 'Для просмотра требуется право diagnostics.read.' : 'Повторите попытку. Если ошибка сохранится, проверьте состояние функций.');
-      document.getElementById('max-ops-content').hidden = true;
-      return { status:'error', source:'max_voice_ops_daily', message:denied ? 'Нет права diagnostics.read' : 'Ошибка загрузки MAX' };
-    } finally {
-      window._maxOpsLoading = false;
-      if (button) { button.disabled = false; button.removeAttribute('aria-busy'); }
-    }
-  };
   let _fnOpenAiDialogModelConfig = null;
   function getOpenAiDialogModelConfigCallable() {
     if (!_fnOpenAiDialogModelConfig) {
@@ -18482,7 +17931,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
   const ADMIN_REQUIRED_FIRST_TAB = 'max-feedback';
-  const ADMIN_TAB_KEYS = ['max-feedback','control-panel','jarvis','jarvis-plans','product-charter','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','soc2-readiness','daily-digest','diagnostics','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','max-ops','warm-instances','users','testers','beta-testers','site-admin','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','daily-phrases','daily-polls','arena-content','push-notify','archive','audit','ops-log','remote-config','youtube-catalog','video-phrases','paywall-ab','v2-generator','alerts','access-management'];
+  const ADMIN_TAB_KEYS = ['max-feedback','control-panel','jarvis','jarvis-plans','product-charter','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','soc2-readiness','daily-digest','diagnostics','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','warm-instances','users','testers','beta-testers','site-admin','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','daily-phrases','daily-polls','arena-content','push-notify','archive','audit','ops-log','remote-config','youtube-catalog','video-phrases','paywall-ab','v2-generator','alerts','access-management'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab);
@@ -22799,9 +22248,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     if(tab==='archive' && !window._archiveLoaded) loadArchive();
     if(tab==='audit' && !window._auditLoaded) loadAuditLog();
     if(tab==='app-health' && !window._appHealthLoaded) loadAppHealth();
-    if(tab==='max-ops' && !window._maxOpsLoaded && typeof window.maxOpsLoad === 'function') void window.maxOpsLoad(false);
-    // Выключатели пробника читаются один раз за сессию: это один документ конфига.
-    if(tab==='max-ops' && typeof window.loadMaxTrialTiers === 'function') void window.loadMaxTrialTiers(false);
     if(tab==='max-feedback' && typeof window.loadMaxVoiceFeedback === 'function') void window.loadMaxVoiceFeedback();
     if(tab==='ops-log' && !window._opsLoaded) loadOpsLog();
     if (tab === 'community-packs' && typeof window.setCommunityPacksSubtab === 'function') {
@@ -23889,7 +23335,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'arena-content': 'Контент Spire',
     referrals: 'Рефералы',
     'app-health': 'Состояние приложения',
-    'max-ops': 'Здоровье MAX',
     'max-feedback': 'Оценки',
     'warm-instances': 'Тёплые инстансы',
     'push-notify': 'Push-уведомления',
@@ -23945,7 +23390,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     analytics: 'chart',
     'openai-budget': 'wallet',
     'app-health': 'activity',
-    'max-ops': 'activity',
     'max-feedback': 'chat',
     'warm-instances': 'activity',
     users: 'users',
@@ -24022,7 +23466,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'onboarding-sources': 'core',
     'openai-budget': 'revenue',
     'app-health': 'core',
-    'max-ops': 'system',
     'max-feedback': 'core',
     'warm-instances': 'system',
     users: 'users',
@@ -31484,19 +30927,17 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   // зачем (владелец 2026-08-23, расширено 2026-08-25): «на экране результатов
   // добавь окно фидбека; в админке — раздел где можно читать эти фидбеки, ТАКОЙ
   // ЖЕ блок нужен везде: уроки, словарь, диалог, арена — с фильтром по разделу,
-  // по датам и AI-саммари каждого раздела». Два источника за одним UI:
-  // 'max_call' читает старый adminListMaxVoiceFeedback (звонок MAX, коллекция
-  // max_voice_feedback — уже в проде, переезд не дал бы выгоды), остальные пять
-  // разделов читают новый adminListFeedbackEntries (коллекция feedback_entries,
-  // общая, с полем kind). Обе коллекции закрыты в firestore.rules на чтение
+  // по датам и AI-саммари каждого раздела». Все разделы читают
+  // adminListFeedbackEntries (коллекция feedback_entries, общая, с полем kind).
+  // зачем 04.10 (владелец, «вычистить весь MAX»): вид «Звонок MAX» убран; старые
+  // отзывы в max_voice_feedback остаются в базе, админка их не читает. Коллекция закрыта в firestore.rules на чтение
   // только серверной функцией — отзыв это свободный текст, в нём может быть
   // что угодно, персональные данные в браузер без серверного фильтра не тянем.
   let _feedbackNextCursor = null;
   let _feedbackItems = [];
   const FEEDBACK_PAGE = 30;
-  const FEEDBACK_MAX_CALL_KIND = 'max_call';
-  // зачем: Q2 (координатор 01.10) — MAX законсервирован, раздел оценок по умолчанию «Уроки».
-  const feedbackViewState = { kind:(window.ADMIN_MAX_SEALED ? 'lesson' : FEEDBACK_MAX_CALL_KIND), periodDays:7, commentMode:'all', rating:null, generation: 0, statsCache:new Map() };
+  const FEEDBACK_DEFAULT_KIND = 'lesson';
+  const feedbackViewState = { kind:FEEDBACK_DEFAULT_KIND, periodDays:7, commentMode:'all', rating:null, generation: 0, statsCache:new Map() };
   window.feedbackViewState = feedbackViewState;
 
   function feedbackStatsCacheKey() {
@@ -31521,18 +30962,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       commentMode: feedbackViewState.commentMode,
       ...(feedbackViewState.rating === null ? {} : { rating:feedbackViewState.rating }),
     };
-    if (kind === FEEDBACK_MAX_CALL_KIND) {
-      const call = httpsCallable(functionsUs, 'adminListMaxVoiceFeedback');
-      const res = await call(payload);
-      const data = res.data || { items: [], nextCursor: null };
-      // Единая форма карточки: MAX хранит sessionId/cefr/format/callSeconds,
-      // остальные разделы — entityId/entityLabel. Приводим к общему виду здесь,
-      // а не в рендере, чтобы рендер не знал про два источника.
-      return {
-        items: (data.items || []).map((r) => ({ ...r, kind: FEEDBACK_MAX_CALL_KIND, entityId: r.sessionId, entityLabel: null })),
-        nextCursor: data.nextCursor || null,
-      };
-    }
     const call = httpsCallable(functionsUs, 'adminListFeedbackEntries');
     const res = await call({ ...payload, kind });
     return res.data || { items: [], nextCursor: null };
@@ -31608,7 +31037,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   // Обратная совместимость: старое имя могло остаться в закладках/памяти.
   window.loadMaxVoiceFeedback = window.loadFeedbackFeed;
 
-  window.setFeedbackKind = function(kind) { if (kind === FEEDBACK_MAX_CALL_KIND && window.ADMIN_MAX_SEALED) { console.info('[ADMIN-MAX-SEAL] setFeedbackKind: max_call skipped, section sealed'); return; } if (kind === feedbackViewState.kind) return; feedbackViewState.kind = kind; feedbackViewState.rating = null; void window.refreshFeedbackDashboard(false); };
+  window.setFeedbackKind = function(kind) { if (kind === feedbackViewState.kind) return; feedbackViewState.kind = kind; feedbackViewState.rating = null; void window.refreshFeedbackDashboard(false); };
   window.setFeedbackCommentMode = function(mode) { if (mode === feedbackViewState.commentMode) return; feedbackViewState.commentMode = mode; feedbackViewState.rating = null; void window.refreshFeedbackDashboard(false); };
   window.setFeedbackPeriod = function(days) { if (Number(days) === feedbackViewState.periodDays) return; feedbackViewState.periodDays = Number(days); feedbackViewState.rating = null; void window.refreshFeedbackDashboard(false); };
   window.setFeedbackRating = function(rating) {
@@ -31619,7 +31048,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     syncFeedbackControls();
     void loadFeedbackList(generation, true);
   };
-  window.resetFeedbackFilters = function() { feedbackViewState.kind=FEEDBACK_MAX_CALL_KIND; feedbackViewState.periodDays=7; feedbackViewState.commentMode='all'; feedbackViewState.rating=null; void window.refreshFeedbackDashboard(false); };
+  window.resetFeedbackFilters = function() { feedbackViewState.kind=FEEDBACK_DEFAULT_KIND; feedbackViewState.periodDays=7; feedbackViewState.commentMode='all'; feedbackViewState.rating=null; void window.refreshFeedbackDashboard(false); };
 
   window.loadMoreFeedbackFeed = async function() {
     if (!_feedbackNextCursor) return;
@@ -31644,7 +31073,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   };
 
   const FEEDBACK_SECTION_LABELS = {
-    max_call: '📞 Звонок MAX', lesson: '📘 Урок', learning_v2: '🛠 Learning V2', vocab: '🗂 Словарь',
+    lesson: '📘 Урок', learning_v2: '🛠 Learning V2', vocab: '🗂 Словарь',
     dialogue: '💬 Диалог',
   };
 
@@ -33624,7 +33053,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     // зачем сине-фиолетовый: «Удержание» — про долгую картину, а не про
     // срочность. Спокойный тон отличает его от тревожных департаментов.
     retention: { title: 'Удержание', accentRgb: '129,140,248' },
-    maxvoice: { title: 'MAX', accentRgb: '52,211,153' },
     // зачем: команды /stop и /start в журнале записаны как department 'jarvis'
     // (не относятся ни к одному конкретному отделу) — без этой записи в
     // журнале они показывались бы с сырым словом "jarvis" вместо заголовка.
@@ -48940,7 +48368,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     }).join('')}</tbody></table>`;
     void pmHydrateUserIdentities(list);
   };
-  /* зачем: D110 — возврат покупки набора (adminRefundCommunityPackPurchase) удалён целиком. */
+  /* зачем: D110 — админский возврат покупки набора удалён целиком (и функция, и кнопка). */
 
   function pmEnsureEntityDrawer() {
     if (document.getElementById('pm-entity-drawer')) return;
@@ -49194,7 +48622,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'daily-phrases':{ reopenMs:60000, focusMs:600000, readBudget:180 },
     'arena-content':{ reopenMs:60000, focusMs:600000, readBudget:0 },
     'app-health':{ reopenMs:30000, focusMs:180000, readBudget:180 },
-    'max-ops':{ reopenMs:60000, focusMs:300000, readBudget:30 },
     'max-feedback':{ reopenMs:60000, focusMs:300000, readBudget:80 },
     audit:{ reopenMs:30000, focusMs:300000, readBudget:180 },
     'ops-log':{ reopenMs:30000, focusMs:300000, readBudget:180 },
@@ -49221,7 +48648,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'diagnostics':'Диагностика',
     'gmail-support':'Gmail-поддержка','overview':'Обзор','mod-queue':'Очередь модерации',
     'ideas':'Идеи пользователей','analytics':'Доход и аналитика','openai-budget':'Бюджет OpenAI',
-    'app-health':'Состояние приложения','max-ops':'Здоровье MAX','max-feedback':'Оценки','users':'Пользователи','testers':'Телеграм-оплаты',
+    'app-health':'Состояние приложения','max-feedback':'Оценки','users':'Пользователи','testers':'Телеграм-оплаты',
     'beta-testers':'Бета-тестеры','site-admin':'Сайт и веб-оплаты',
     'reports':'Ошибки контента','emails':'Имейлы','website-inbox':'Сайт: обращения',
     'user-reports':'Жалобы на пользователей','explain-reports':'Жалобы на объяснения',
@@ -50362,7 +49789,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'analytics': pmV5RefreshAnalyticsSection,
     'openai-budget': async () => pmV5CombineRefresh(await Promise.all([pmV5SafeCall('loadOpenAiBudgetDashboard', true), pmV5SafeCall('loadOpenAiDialogQuotaConfig', true)])),
     'app-health': () => pmV5SafeCall('loadAppHealth', true),
-    'max-ops': () => pmV5SafeCall('maxOpsLoad', true),
     'max-feedback': () => pmV5SafeCall('loadMaxVoiceFeedback', true),
     'users': pmV5RefreshUsersSection,
     'testers': () => pmV5SafeCall('loadTelegramPremiumOrders', true),
@@ -51021,10 +50447,9 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
 
   const SECTION_META = {"control-panel":{"title":"Пульт управления","description":"Живые настройки приложения без релиза."},"jarvis":{"title":"Око Саурона","description":"Автопроверка качества, денег, контента и инфраструктуры."},"jarvis-plans":{"title":"Планы Ока Саурона","description":"Все находки и планы Ока Саурона в одном журнале."},"overview":{"title":"Обзор","description":"Ключевые показатели и быстрые переходы к проблемным зонам."},"mod-queue":{"title":"Очередь модерации","description":"Единая очередь открытых обращений и приоритетов."},"users":{"title":"Пользователи","description":"Профили, прогресс, доступы и действия с аккаунтами."},"testers":{"title":"Телеграм-оплаты","description":"Заказы, коды активации и ручная выдача доступа."},"beta-testers":{"title":"Бета-тестеры","description":"Участники тестирования, ауры, Plus и энергия — внутри единой админки."},"site-admin":{"title":"Сайт и веб-оплаты","description":"Заказы Stripe/PayPal, цены и веб-воронка — внутри единой админки."},"reports":{"title":"Ошибки контента","description":"Репорты, фильтры, статусы и массовые действия."},"remote-config":{"title":"Remote Config","description":"Лимиты, экономика и конфигурация без релиза."},"youtube-catalog":{"title":"YouTube-каталог","description":"Каналы, плейлисты и настройки премьер."},"surveys":{"title":"Опросы","description":"Опросы, ответы и управление публикацией."},"paywall-ab":{"title":"A/B paywall","description":"Варианты экрана оплаты, аудитория и результаты."},"v2-generator":{"title":"Генератор Learning V2","description":"Генерация, проверка и публикация уроков."},"alerts":{"title":"Telegram-алерты","description":"Правила и маршрутизация уведомлений."},"app-messages":{"title":"Сообщения пользователям","description":"Inbox-сообщения, опросы, статистика и история."},"website-inbox":{"title":"Сайт: обращения","description":"Сообщения с сайта Knowly и статусы обработки."},"emails":{"title":"Имейлы","description":"Единый список адресов и массовые рассылки."},"user-reports":{"title":"Жалобы на пользователей","description":"Очередь жалоб и решения модерации."},"safety-flags":{"title":"Сигналы безопасности","description":"Риски, категории и обработка сигналов."},"product-charter":{"title":"Продуктовая хартия","description":"Правила продукта, ревью и история изменений."},"age-consent":{"title":"Возраст и согласие","description":"Возрастные требования и согласия пользователей."},"compliance-radar":{"title":"Комплаенс","description":"Проверки соответствия и открытые риски."},"daily-digest":{"title":"Дайджест владельца","description":"Изменения, сравнения и продуктовые выводы."},"gmail-support":{"title":"Gmail-поддержка","description":"Письма, черновики и автоматические ответы."},"ideas":{"title":"Идеи пользователей","description":"Идеи, решения и приоритеты."},"explain-reports":{"title":"Жалобы на объяснения","description":"Проблемные объяснения и статус разбора."},"explain-cache":{"title":"Кэш объяснений","description":"Сгенерированные объяснения и очистка кэша."},"compass":{"title":"Компас","description":"Операционные переключатели и статус направлений."},"ban-list":{"title":"Бан-лист","description":"Блокировки, причины, поиск и восстановление доступа."},"premium":{"title":"Реальный Plus","description":"Подписки RevenueCat и фильтры доступа."},"vip":{"title":"Admin Plus","description":"Ручные доступы и сроки действия."},"plus-radar":{"title":"Диагностика Plus","description":"Конфликты, дубли и устаревшие флаги."},"promo-codes":{"title":"Промокоды","description":"Создание, выдача и история промокодов."},"gift-certificates":{"title":"Подарочные сертификаты","description":"Одноразовые сертификаты, отправка и активации."},"cancel-surveys":{"title":"Причины отмены","description":"Причины отмены подписки и комментарии."},"review-promo":{"title":"Опрос Plus","description":"Управление опросом и результатами."},"ugc-purchases":{"title":"Покупки наборов","description":"Покупатели, продавцы, осколки и возвраты."},"refunds":{"title":"Центр возвратов","description":"Возвраты UGC и RevenueCat в одном журнале."},"archive":{"title":"Архив","description":"Закрытые жалобы и обращения."},"audit":{"title":"Журнал аудита","description":"Кто, когда и какое действие выполнил."},"app-health":{"title":"Состояние приложения","description":"Ошибки, предупреждения и состояние функций."},"ops-log":{"title":"Журнал операций","description":"Операционные события и технические результаты."},"community-packs":{"title":"Наборы сообщества","description":"Заявки, опубликованные наборы и жалобы."},"daily-phrases":{"title":"Фразы дня","description":"Очередь, редактор и публикация."},"referrals":{"title":"Рефералы","description":"Приглашения, покупки, награды и аналитика."},"push-notify":{"title":"Push-уведомления","description":"Точечные, сегментные и запланированные отправки."},"onboarding-screens":{"title":"Онбординг","description":"Экраны, поведение и прохождение новых пользователей."},"onboarding-sources":{"title":"Источники онбординга","description":"Откуда пользователи узнали о приложении."},"analytics":{"title":"Доход и аналитика","description":"Подписки, магазин, paywall и продуктовые события."},"openai-budget":{"title":"Бюджет OpenAI","description":"Расходы по моделям, функциям и периодам."},"access-management":{"title":"Управление доступом","description":"Администраторы, роли, права по разделам и настройки анимаций."}};
   const UI_TRANSLATIONS = {"Overview":"Обзор","Analytics":"Аналитика","Reports":"Ошибки контента","Support (site)":"Сайт: обращения","User reports":"Жалобы на пользователей","Explain reports":"Жалобы на объяснения","Explain cache":"Кэш объяснений","Ban list":"Бан-лист","Plus Radar":"Диагностика Plus","Cancel surveys":"Причины отмены","UGC purchases":"Покупки UGC","Refunds":"Возвраты","Archive":"Архив","Audit log":"Журнал аудита","Ops log":"Журнал операций","Community":"Сообщество","Card packs":"Наборы карточек","Clubs":"Лиги","Referrals":"Рефералы","App Health":"Состояние приложения","Push notifications":"Push-уведомления","Push":"Push","OpenAI budget":"Бюджет OpenAI","Refresh":"Обновить","Loading...":"Загрузка…","Loading…":"Загрузка…","Waiting for Firestore data...":"Ожидание данных Firestore…","Waiting for Cloud Function data...":"Ожидание серверных данных…","All platforms":"Все платформы","All languages":"Все языки","All plans":"Все тарифы","All themes":"Все темы","All accounts":"Все аккаунты","All versions":"Все версии","All cases":"Все случаи","Critical only":"Только критические","All reasons":"Все причины","All severity":"Все уровни","All statuses":"Все статусы","All features":"Все функции","All users":"Все пользователи","All":"Все","Any":"Любой","Users":"Пользователи","User":"Пользователь","Title":"Заголовок","Text":"Текст","Language":"Язык","Platform":"Платформа","Theme":"Тема","Total":"Всего","Period":"Период","From":"С","To":"По","Previous":"Назад","Next":"Далее","Save":"Сохранить","Send":"Отправить","Schedule":"Расписание","Selected":"Выбрано","Sort by XP":"Сортировать по XP","Sort by name":"Сортировать по имени","Sort by streak":"Сортировать по серии","Sort by lessons":"Сортировать по урокам","Sort by version":"Сортировать по версии","Sort by date":"Сортировать по дате","Russian":"Русский","Ukrainian":"Украинский","Free":"Бесплатные","Registered":"Зарегистрированные","Anonymous":"Анонимные","Hide duplicates":"Скрыть дубли","Duplicates":"Дубли","Email list":"Список email","Grant shards":"Выдать осколки","Grant Plus":"Выдать Plus","Ban users":"Заблокировать","Clear selection":"Снять выделение","Progress Streak Lessons":"Прогресс · серия · уроки","Streak":"Серия","Lessons":"Уроки","Account Shards":"Аккаунт · осколки","Shards":"Осколки","Download CSV":"Скачать CSV","CSV":"CSV","Real Plus + admin Plus":"Real Plus + Admin Plus","Same identity or email":"Совпадает профиль или email","Same name with access":"Совпадает имя и доступ","Stale premium flag":"Устаревший premium-флаг","Manual store fields":"Ручные поля магазина","Inactive admin Plus fields":"Неактивные поля Admin Plus","Too expensive":"Слишком дорого","Not enough content":"Мало контента","Technical issues":"Технические проблемы","Found better app":"Нашёл лучшее приложение","Rarely using":"Редко использует","Other":"Другое","Open tab or press Refresh.":"Откройте раздел или нажмите «Обновить».","Last 1h":"1 час","Last 6h":"6 часов","Last 24h":"24 часа","Last 7d":"7 дней","Open":"Открыто","Reviewed":"Проверено","Fixed":"Исправлено","Known issue":"Известная проблема","Copy AI report":"Копировать отчёт ИИ","Copy raw JSON":"Копировать JSON","Load activity":"Загрузить активность","Activity is lazy-loaded to save Firestore reads.":"Активность загружается только по запросу.","Open App Health to load diagnostics.":"Откройте раздел для загрузки диагностики.","⬇ Load more (older)":"⬇ Загрузить ещё","Published":"Опубликован","Unpublished":"Снят с публикации","Draft":"Черновик","Preview French rows":"Предпросмотр французских строк","Create French draft":"Создать французский черновик","Check French approval":"Проверить французское утверждение","Rollback French draft":"Откатить французский черновик","By UID":"По пользователю","Segment":"Сегмент","Reactivation":"Реактивация","User UID":"Пользователь","Click action (optional)":"Действие по нажатию","Send segment":"Отправить сегменту","Inactive >= days":"Неактивен минимум, дней","Inactive <= days ago":"Неактивен не более, дней","Send reactivation":"Отправить реактивацию","Date and time":"Дата и время","Audience":"Аудитория","Inactive 7+ days":"Неактивные 7+ дней","Статистика загрузится автоматически при открытии раздела.":"Статистика загрузится при открытии раздела.","Source answers":"Ответы об источнике","Unique users":"Уникальные пользователи","Top source":"Главный источник","Sources":"Источники","Paywall analytics":"Аналитика paywall","Custom":"Свой период","Bar width":"Ширина столбцов","Compact":"Компактно","Normal":"Обычно","Wide":"Широко","Analytics opens with a safe dashboard shell first. Live data loads when this tab opens.":"Данные загружаются после открытия раздела.","Paywall views":"Показы paywall","Paywall purchases":"Покупки из paywall","Plus events":"События Plus","Shards purchases":"Покупки осколков","Settings paywall":"Paywall в настройках","Automatic paywall":"Автоматический paywall","Onboarding paywall":"Paywall онбординга","1 day":"1 день","7 days":"7 дней","28 days":"28 дней","30 days":"30 дней","90 days":"90 дней","180 days":"180 дней","Daily":"По дням","Weekly":"По неделям","Reset zoom":"Сбросить масштаб","Save model":"Сохранить модель","Theo model config is loading...":"Настройки модели Theo загружаются…","Free tier replies/day":"Ответов Free в день","Plus tier replies/day":"Ответов Plus в день","Save quota":"Сохранить лимиты","Reload quota":"Перечитать лимиты","Theo quota config is loading...":"Лимиты Theo загружаются…","OpenAI estimated month loads when this tab is active.":"Расчёт загружается при открытии раздела.","OpenAI estimated month":"Оценка OpenAI за месяц","Selected period":"Выбранный период","Paid calls":"Платные вызовы","Tokens":"Токены","Feature costs":"Расходы по функциям","Model costs":"Расходы по моделям","Avg XP":"Средний XP","AVG XP":"Средний XP","Average XP":"Средний XP","Avg streak":"Средняя серия","AVG STREAK":"Средняя серия","Average streak":"Средняя серия","Avg shards":"Средние осколки","AVG SHARDS":"Средние осколки","Average shards":"Средние осколки","days":"дн.","Days":"Дни","Search name or UID":"Поиск по нику или #nameIndex","Search by name or UID":"Поиск по нику или #nameIndex","Search name, email or UID":"Поиск по нику, email или #nameIndex","Search":"Поиск","Status":"Статус","Actions":"Действия","Date":"Дата","Name":"Имя","Email":"Email","Version":"Версия","Country":"Страна","Source":"Источник","Created":"Создано","Updated":"Обновлено","Active":"Активен","Inactive":"Неактивен","Enabled":"Включено","Disabled":"Выключено","Completed":"Завершено","Pending":"Ожидает","Failed":"Ошибка","Success":"Успешно","Error":"Ошибка","Copy":"Копировать","Close":"Закрыть","Cancel":"Отмена","Delete":"Удалить","Edit":"Изменить","Create":"Создать","Publish":"Опубликовать","Unpublish":"Снять с публикации","Details":"Подробнее","More":"Ещё","Settings":"Настройки","Management":"Управление","No data":"Нет данных","No results":"Ничего не найдено","Unknown":"Неизвестно","Никнейм или UID":"Никнейм или #nameIndex","UID или никнейм":"#nameIndex или никнейм","Selected:":"Выбрано:","Progress":"Прогресс","App":"Приложение","Account":"Аккаунт","Find user":"Найти пользователя","Revenue":"Доход","Push composer":"Push-редактор","Loaded user records in this admin session.":"Профили, загруженные в текущей сессии.","Limited":"Ограничено","Paywall and RevenueCat data status.":"Статус paywall и данных RevenueCat.","Moderation":"Модерация","Queues":"Очереди","Reports, user reports, and ban list.":"Ошибки контента, жалобы и блокировки.","Delivery":"Доставка","Ready":"Готово","Push jobs, app messages, and daily content.":"Push-задачи, сообщения и ежедневный контент.","Visits today":"Посещения сегодня","Unique sessions on knowlyapps.com today (UTC).":"Уникальные сессии knowlyapps.com сегодня (UTC).","Total visits":"Посещения за всё время","All-time unique sessions since tracking started.":"Уникальные сессии с начала отслеживания.","iOS store clicks today":"Переходы в App Store сегодня","App Store badge clicks today — clicks, not installs.":"Нажатия на App Store сегодня, не установки.","iOS store clicks total":"Переходы в App Store всего","All-time App Store badge clicks — clicks, not installs.":"Все нажатия на App Store, не установки.","Android store clicks today":"Переходы в Google Play сегодня","Google Play badge clicks today — clicks, not installs.":"Нажатия на Google Play сегодня, не установки.","Android store clicks total":"Переходы в Google Play всего","All-time Google Play badge clicks — clicks, not installs.":"Все нажатия на Google Play, не установки.","Daily trend":"Динамика по дням","Hover a point for the exact day. Scroll to zoom, drag to pan.":"Наведите для точного значения. Колесо — масштаб, перетаскивание — обзор.","Visits":"Посещения","Purchases":"Покупки","Check app health first":"Сначала проверьте состояние приложения","Recent activity, health events, archive, audit, and ops diagnostics.":"Активность, ошибки, архив, аудит и журнал операций.","Review incoming reports":"Разберите новые жалобы","Content reports and user reports are the highest-risk human queue.":"Ошибки контента и жалобы пользователей требуют ручной проверки.","Inspect revenue funnel":"Проверьте воронку дохода","Paywall views, purchases, RevenueCat events, and shards purchases.":"Показы paywall, покупки, RevenueCat и покупки осколков.","Quick admin actions":"Быстрые действия администратора","Admin status summary":"Сводка состояния админки","Site traffic":"Трафик сайта","Granularity":"Детализация","Admin worklist":"Рабочая очередь администратора","Show duplicate names with different UIDs":"Показать одинаковые ники у разных аккаунтов","Copy or download the email list":"Копировать или скачать список email","Select all":"Выбрать всё","Sort by semantic app version":"Сортировать по версии приложения","Source:":"Источник:","Search uid, name, text...":"Поиск по нику, #nameIndex или тексту…","Server-side estimate from billing logs. Cache hits are not billed, so they do not appear here.":"Серверная оценка по журналу биллинга. Попадания в кэш не тарифицируются и не отображаются.","Revenue, conversion, and shard-purchase signals from consented product events and server-owned RevenueCat records.":"Доход, конверсия и покупки осколков по разрешённым продуктовым событиям и серверным данным RevenueCat.","Choose the onboarding source date window":"Выбрать период источников онбординга","Filter onboarding source events by platform":"Фильтровать источники по платформе","Reload onboarding source statistics":"Обновить статистику источников","Reload revenue analytics":"Обновить аналитику дохода","Revenue analytics filters":"Фильтры аналитики дохода","Revenue date window":"Период аналитики дохода","First UTC day":"Первый день UTC","Last UTC day":"Последний день UTC","Revenue platform":"Платформа дохода","App message delivery surface":"Место показа сообщения","Settings message slot":"Позиция сообщения в настройках","Settings message control percent":"Доля показа сообщения","App message format":"Формат сообщения","App message status":"Статус сообщения","App message audience":"Аудитория сообщения","App message priority":"Приоритет сообщения","App message retention days":"Срок хранения сообщения","App message title":"Заголовок сообщения","App message body":"Текст сообщения","App message poll question":"Вопрос опроса","App message poll option count":"Количество вариантов ответа","App health period":"Период состояния приложения","App health severity filter":"Фильтр важности","App health status filter":"Фильтр статуса","App health feature filter":"Фильтр функции","Search app health events":"Поиск событий состояния приложения","Search audit log by UID, email, or details":"Поиск в аудите по #nameIndex, email или деталям","Copy for Claude":"Копировать для Claude","Job history":"История заданий","Enter UID...":"Введите никнейм или #nameIndex…","Push target user UID":"Получатель push","Notification title...":"Заголовок уведомления…","Notification text...":"Текст уведомления…","Push title for UID mode":"Заголовок точечного push","Push message text for UID mode":"Текст точечного push","Push click action for UID mode":"Действие точечного push","Push segment language":"Язык сегмента push","Push segment premium status":"Статус Plus сегмента","Push segment minimum streak":"Минимальная серия сегмента","Push title for segment mode":"Заголовок push для сегмента","Push message text for segment mode":"Текст push для сегмента","Push click action for segment mode":"Действие push для сегмента","Push reactivation minimum inactive days":"Минимум дней неактивности","Push reactivation maximum inactive days":"Максимум дней неактивности","We miss you":"Мы скучаем","Come back and continue your streak.":"Возвращайтесь и продолжайте свою серию.","Push title for reactivation mode":"Заголовок push для реактивации","Push message text for reactivation mode":"Текст push для реактивации","Push click action for reactivation mode":"Действие push для реактивации","Scheduled push date and time":"Дата и время запланированного push","Scheduled push audience":"Аудитория запланированного push","Scheduled push title":"Заголовок запланированного push","Scheduled push message text":"Текст запланированного push","Scheduled push click action":"Действие запланированного push","Theo model":"Модель Theo"};
-  SECTION_META['max-ops'] = { title:'Здоровье MAX', description:'Надёжность звонка, разбора и памяти по приватным серверным агрегатам.' };
   SECTION_META['max-feedback'] = { title:'Оценки', description:'Точные оценки, распределение звёзд и комментарии со всех экранов завершения.' };
   const UI_TRANSLATIONS_LOWER = Object.fromEntries(Object.entries(UI_TRANSLATIONS).map(([key, value]) => [key.toLocaleLowerCase('ru-RU'), value]));
-  const TECHNICAL_SECTIONS = new Set(['tab-audit','tab-ops-log','tab-max-ops']);
+  const TECHNICAL_SECTIONS = new Set(['tab-audit','tab-ops-log']);
   const USER_REF_SKIP = '#help-modal-overlay,.umodal,.dp-modal,.pg-modal,.pm-tech-details,#pm-entity-drawer,[data-pm-technical="true"]';
   let queued = false;
   let activeHydrationTimer = 0;
@@ -52942,7 +52367,7 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
     const list=document.getElementById('pm-phase3-inbox-list');if(!list)return;const q=state.inboxSearch.trim().toLowerCase();const rows=state.inboxItems.filter((row)=>(state.inboxFilter==='all'||row.type===state.inboxFilter)&&(!q||`${row.title} ${row.detail} ${row.provenance}`.toLowerCase().includes(q)));const count=document.getElementById('pm-phase3-inbox-count');if(count)count.textContent=String(rows.length);list.replaceChildren();if(!rows.length){list.append(el('div','pm-phase3-empty','В уже загруженных источниках подходящих элементов нет. Откройте нужный исходный раздел, чтобы загрузить его ограниченную страницу.'));return;}rows.forEach((row)=>{const item=el('article','pm-phase3-inbox-item');item.append(el('span','pm-phase3-inbox-kind',row.icon||'•'));const main=el('div');main.append(el('div','pm-phase3-inbox-title',row.title),el('div','pm-phase3-inbox-meta',`${row.detail}${row.at?` · ${formatTime(row.at)}`:''}`));const prov=el('div','pm-phase3-provenance',row.provenance);prov.dataset.pmPhase3Provenance=row.section;main.append(prov);const open=el('button','', 'Открыть');open.type='button';open.addEventListener('click',()=>{if(typeof row.jump==='function')row.jump();else section(row.section);});item.append(main,open);list.append(item);});
   }
 
-  const GROUPS={work:new Set(['overview','daily-digest','mod-queue','app-health','website-inbox','gmail-support','reports','user-reports','safety-flags','audit','ops-log']),people:new Set(['users','testers','beta-testers','ban-list','access-management','referrals','surveys']),content:new Set(['product-charter','onboarding-screens','onboarding-sources','ideas','max-feedback','app-messages','community-packs','daily-phrases','daily-polls','arena-content','youtube-catalog','v2-generator','review-promo']),revenue:new Set(['analytics','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','ugc-purchases','refunds','paywall-ab','openai-budget']),system:new Set(['control-panel','jarvis','jarvis-plans','max-ops','remote-config','alerts','archive','site-admin','compass','age-consent','compliance-radar','explain-reports','explain-cache'])};
+  const GROUPS={work:new Set(['overview','daily-digest','mod-queue','app-health','website-inbox','gmail-support','reports','user-reports','safety-flags','audit','ops-log']),people:new Set(['users','testers','beta-testers','ban-list','access-management','referrals','surveys']),content:new Set(['product-charter','onboarding-screens','onboarding-sources','ideas','max-feedback','app-messages','community-packs','daily-phrases','daily-polls','arena-content','youtube-catalog','v2-generator','review-promo']),revenue:new Set(['analytics','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','ugc-purchases','refunds','paywall-ab','openai-budget']),system:new Set(['control-panel','jarvis','jarvis-plans','remote-config','alerts','archive','site-admin','compass','age-consent','compliance-radar','explain-reports','explain-cache'])};
   function tabKey(node){const oc=node?.getAttribute?.('onclick')||'';const m=oc.match(/switchTab\(['"]([^'"]+)/);if(m)return m[1];if(node?.dataset?.tab)return node.dataset.tab;const id=String(node?.id||'');return id.replace(/^admin-nav-/,'').replace(/^tab-/,'');}
   function applyNavGroup(group){state.navGroup=GROUPS[group]?group:'all';document.querySelectorAll('#pm-phase3-nav-groups button').forEach((btn)=>btn.classList.toggle('is-active',btn.dataset.group===state.navGroup));document.querySelectorAll('.tabs .tab').forEach((node)=>{const key=tabKey(node);const hide=state.navGroup!=='all'&&!GROUPS[state.navGroup]?.has(key);node.dataset.pmPhase3GroupHidden=hide?'true':'false';});}
   function installQuickNavigation(){

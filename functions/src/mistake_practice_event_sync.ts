@@ -43,27 +43,40 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 const exact = (value: Record<string, unknown>, keys: readonly string[]) =>
   Reflect.ownKeys(value).length === keys.length && Reflect.ownKeys(value).every((key) =>
     typeof key === 'string' && keys.includes(key));
-const fail = (): never => { throw new Error('mistake_practice_event_sync_invalid'); };
+// зачем (§126 п.9, 04.10): ~половина вызовов отвечала 400, а немой catch не говорил, ЧТО не прошло разбор.
+// Ошибка та же (клиент видит прежний invalid-argument), но несёт причину для журнала.
+const fail = (reason: string): never => {
+  const error = new Error('mistake_practice_event_sync_invalid') as Error & { reason?: string };
+  error.reason = reason;
+  throw error;
+};
 const fingerprint = (value: unknown): string =>
   createHash('sha256').update(canonicalJsonV1(value), 'utf8').digest('hex');
 
 function parseEvent(input: unknown, target: StudyTarget): Record<string, unknown> {
-  if (!isRecord(input) || !exact(input, [
+  if (!isRecord(input)) return fail('event_shape:not_object');
+  if (!exact(input, [
     'eventId', 'mistakeId', 'cycleId', 'type', 'occurredAtMs', 'studyTarget', 'payload',
-  ]) || typeof input.eventId !== 'string' || !ID.test(input.eventId) ||
-    typeof input.mistakeId !== 'string' || !ID.test(input.mistakeId) ||
-    typeof input.cycleId !== 'string' || !ID.test(input.cycleId) ||
-    typeof input.type !== 'string' || !TYPES.has(input.type) ||
-    !Number.isSafeInteger(input.occurredAtMs) || input.studyTarget !== target ||
-    !isRecord(input.payload)) return fail();
+  ])) return fail(`event_shape:keys:${Object.keys(input).sort().join(',').slice(0, 120)}`);
+  if (typeof input.eventId !== 'string' || !ID.test(input.eventId)) return fail('event_shape:eventId');
+  if (typeof input.mistakeId !== 'string' || !ID.test(input.mistakeId)) return fail('event_shape:mistakeId');
+  if (typeof input.cycleId !== 'string' || !ID.test(input.cycleId)) return fail('event_shape:cycleId');
+  if (typeof input.type !== 'string' || !TYPES.has(input.type)) return fail(`event_shape:type:${String(input.type).slice(0, 40)}`);
+  if (!Number.isSafeInteger(input.occurredAtMs)) return fail('event_shape:occurredAtMs');
+  if (input.studyTarget !== target) return fail('event_target_mismatch');
+  if (!isRecord(input.payload)) return fail('event_shape:payload');
   const detached = JSON.parse(canonicalJsonV1(input)) as Record<string, unknown>;
-  if (canonicalJsonV1(detached).length > EVENT_MAX_CHARS) return fail();
+  if (canonicalJsonV1(detached).length > EVENT_MAX_CHARS) return fail('event_too_large');
   return Object.freeze(detached);
 }
 
 export function parseMistakePracticeEventSyncRequest(input: unknown): SyncRequest {
   if (!isRecord(input) || !isStudyTarget(input.studyTarget) ||
-    typeof input.expectedStableUid !== 'string' || !ID.test(input.expectedStableUid)) return fail();
+    typeof input.expectedStableUid !== 'string' || !ID.test(input.expectedStableUid)) {
+    return fail(isRecord(input) && !isStudyTarget(input.studyTarget)
+      ? `request_shape:studyTarget:${String(input.studyTarget).slice(0, 12)}`
+      : 'request_shape');
+  }
   if (input.action === 'append' && exact(input, ['action', 'expectedStableUid', 'studyTarget', 'events']) &&
     Array.isArray(input.events) && input.events.length > 0 &&
     input.events.length <= MISTAKE_PRACTICE_EVENT_PAGE_MAX) {
@@ -78,7 +91,12 @@ export function parseMistakePracticeEventSyncRequest(input: unknown): SyncReques
     (input.cursor === null || (typeof input.cursor === 'string' && /^mp_[a-f0-9]{64}$/.test(input.cursor)))) {
     return Object.freeze({ action: 'list', expectedStableUid: input.expectedStableUid, studyTarget: input.studyTarget, cursor: input.cursor });
   }
-  return fail();
+  if (input.action === 'append') {
+    return fail(Array.isArray(input.events)
+      ? `append_shape:events=${input.events.length}`
+      : 'append_shape:keys');
+  }
+  return fail(input.action === 'list' ? 'list_shape' : `action_shape:${String(input.action).slice(0, 20)}`);
 }
 
 export function materializeMistakePracticeEventRecord(input: Readonly<{
@@ -86,7 +104,7 @@ export function materializeMistakePracticeEventRecord(input: Readonly<{
   studyTarget: StudyTarget;
   event: unknown;
 }>): EventRecord {
-  if (!ID.test(input.stableUid)) return fail();
+  if (!ID.test(input.stableUid)) return fail('record_uid');
   const event = parseEvent(input.event, input.studyTarget);
   return Object.freeze({
     schemaVersion: 'mistake-practice-event-record.v1',
@@ -133,7 +151,17 @@ export function createMistakePracticeEventSyncHandler(dependencies: Readonly<{
   const authUid = normalizeProgressAuthUid(request.auth?.uid);
   let input: SyncRequest;
   try { input = parseMistakePracticeEventSyncRequest(request.data); }
-  catch { throw new HttpsError('invalid-argument', 'mistake_practice_event_sync_invalid'); }
+  catch (error) {
+    const raw = isRecord(request.data) ? request.data : {};
+    console.warn('[MP-SYNC] invalid', JSON.stringify({
+      reason: (error as { reason?: string })?.reason ?? String((error as Error)?.message ?? error).slice(0, 80),
+      studyTarget: typeof raw.studyTarget === 'string' ? raw.studyTarget.slice(0, 12) : null,
+      action: typeof raw.action === 'string' ? raw.action.slice(0, 12) : null,
+      events: Array.isArray(raw.events) ? raw.events.length : null,
+      requestChars: (() => { try { return JSON.stringify(request.data).length; } catch { return -1; } })(),
+    }));
+    throw new HttpsError('invalid-argument', 'mistake_practice_event_sync_invalid');
+  }
   const binding = await resolveBinding(authUid);
   assertMistakePracticeExpectedOwner(input.expectedStableUid, binding.stableUid);
   const collection = db.collection('users').doc(binding.stableUid).collection('progress_events');

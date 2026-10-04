@@ -13,6 +13,7 @@ import {
 import { getLingmanYoutubeChrome } from '../../app/lingman_youtube_chrome';
 import { publishYoutubePosition, registerYoutubeSeekHandler, takePendingYoutubeSeek } from '../../app/youtube_player_seek_bus';
 import { createYoutubeSeekController } from '../../app/youtube_seek_controller';
+import { forgetYoutubePosition, readYoutubeResumeSec, rememberYoutubePosition } from '../../app/youtube_resume_position';
 import { triLang } from '../../constants/i18n';
 import { setManagedAudioMode } from '../../app/audio_session_coordinator';
 import { UI_SFX_AUDIO_MODE } from '../../app/audio_playback_mode';
@@ -123,7 +124,10 @@ export default function YoutubeInlinePlayer({
   // аренду звука в арбитре; озвучка/микрофон вытесняют его — тогда stop() ставит паузу в
   // плеере. Аренда снимается при паузе, окончании и размонтировании (не залипает).
   const audioClaimRef = useRef<SpokenAudioClaim | null>(null);
+  // зачем (§126 п.9, «видео не помнит позицию»): последняя секунда из моста — запоминается на паузе/закрытии.
+  const lastPositionSecRef = useRef<number | null>(null);
   const releaseAudioClaim = useCallback((why: string) => {
+    if (lastPositionSecRef.current !== null) rememberYoutubePosition(videoId, lastPositionSecRef.current, true);
     const claim = audioClaimRef.current;
     audioClaimRef.current = null;
     if (!claim) return;
@@ -191,6 +195,13 @@ export default function YoutubeInlinePlayer({
       if (parsed?.source !== LINGMAN_PLAYER_BRIDGE_SOURCE) return;
       if (parsed.type === 'ready') {
         seekController.markReady();
+        // Явный момент (startSec, фраза из видео) главнее сохранённой позиции.
+        if (startSec === undefined) {
+          void readYoutubeResumeSec(videoId).then((resumeSec) => {
+            console.log('[VIDEO-RESUME] плеер готов', JSON.stringify({ videoId, resumeSec }));
+            if (resumeSec !== null) seekController.requestSeek(resumeSec);
+          });
+        }
         return;
       }
       if (parsed.type !== 'playback') return;
@@ -214,10 +225,19 @@ export default function YoutubeInlinePlayer({
       } else {
         releaseAudioClaim('paused_or_ended');
       }
+      // YT state 0 = ended: ролик досмотрен — следующее открытие с начала.
+      if ((parsed as { state?: unknown }).state === 0) {
+        lastPositionSecRef.current = null;
+        forgetYoutubePosition(videoId);
+      }
       const positionMs = Number(parsed.positionMs);
       if (!Number.isFinite(positionMs) || positionMs < 0) {
         if (__DEV__) console.log(`[VIDEO-PLAYER] bridge: invalid position=${String(parsed.positionMs)}`);
         return;
+      }
+      if ((parsed as { state?: unknown }).state !== 0) {
+        lastPositionSecRef.current = positionMs / 1000;
+        rememberYoutubePosition(videoId, positionMs / 1000);
       }
       // Позиция для подсветки текущей фразы: канал уже шлёт пробы раз в секунду
       // и только пока видео играет — отдельного опроса не заводим.
@@ -227,7 +247,7 @@ export default function YoutubeInlinePlayer({
       // без неё поломка моста однажды тихо остановит подсветку фраз.
       if (__DEV__) console.log(`[VIDEO-PLAYER] bridge: unparsable message=${raw.slice(0, 64)}`);
     }
-  }, [seekController, videoId, releaseAudioClaim]);
+  }, [seekController, videoId, releaseAudioClaim, startSec]);
 
   if (!active) return null;
 

@@ -78,7 +78,7 @@ export const LESSON32_THEORY: { titleRu: string; titleUk: string; titleEs: strin
       titleUk: 'Важливі конструкції',
       titleEs: 'Construcciones importantes',
       defaultOpen: true,
-      exampleCount: 8,
+      exampleCount: 9,
       blocks: [
         {
           kind: 'body',
@@ -97,13 +97,15 @@ export const LESSON32_THEORY: { titleRu: string; titleUk: string; titleEs: strin
             { en: 'I used to play tennis.', ru: 'used to + V — было раньше, а сейчас нет', uk: 'used to + V — було раніше, а зараз ні', es: 'used to + V — pasaba antes, pero ahora no', hi: 'used to' },
             { en: "She's already finished.", ru: 'have/has + V3 — Present Perfect', uk: 'have/has + V3 — Present Perfect', es: 'have/has + V3 — Present Perfect', hi: "She's already finished" },
             { en: 'I want you to stay.', ru: 'want you to + V — хочу, чтобы ты...', uk: 'want you to + V — хочу, щоб ти...', es: 'want you to + V — quiero que tú...', hi: 'want you to' },
+            // зачем (§126, жалоба 04.10): в уроке есть «I saw him leave», а в теории этой конструкции не было — ученики писали left / to leave.
+            { en: 'I saw him leave.', ru: 'see / hear + кто + глагол — видел (слышал), как кто-то что-то сделал', uk: 'see / hear + хто + дієслово — бачив (чув), як хтось щось зробив', es: 'see / hear + quién + verbo — vi (oí) a alguien hacer algo', hi: 'saw him leave' },
           ],
         },
         {
           kind: 'tip',
-          ru: 'После can, must, should глагол идёт без to. А вот в have to, used to, want you to частица to нужна. Сравни: I can swim, но I have to work.',
-          uk: 'Після can, must, should дієслово йде без to. А ось у have to, used to, want you to частка to потрібна. Порівняй: I can swim, але I have to work.',
-          es: 'Después de can, must, should el verbo va sin to. En cambio, en have to, used to, want you to la partícula to sí hace falta. Compara: I can swim, pero I have to work.',
+          ru: 'После can, must, should глагол идёт без to. А вот в have to, used to, want you to частица to нужна. Сравни: I can swim, но I have to work. После saw him, heard me глагол тоже без to и без окончаний: I saw him leave, не left и не to leave.',
+          uk: 'Після can, must, should дієслово йде без to. А ось у have to, used to, want you to частка to потрібна. Порівняй: I can swim, але I have to work. Після saw him, heard me дієслово теж без to і без закінчень: I saw him leave, не left і не to leave.',
+          es: 'Después de can, must, should el verbo va sin to. En cambio, en have to, used to, want you to la partícula to sí hace falta. Compara: I can swim, pero I have to work. Después de saw him, heard me el verbo también va sin to y sin terminaciones: I saw him leave, no left ni to leave.',
         },
         {
           kind: 'drill',

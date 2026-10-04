@@ -43,6 +43,13 @@ export const LESSON22_THEORY: { titleRu: string; titleUk: string; titleEs: strin
           uk: 'Не перекладай дослівно — запам’ятовуй саме слово разом з його формою: like + -ing, want + to. З часом правильна форма приходить сама.',
           es: 'No traduzcas literalmente — memoriza la palabra junto con su forma: like + -ing, want + to. Con el tiempo la forma correcta llega sola.',
         },
+        // зачем (§126, жалоба 04.10): «учить» по-русски — и learn, и study; ученики не знали, какое писать. В уроке засчитываются оба.
+        {
+          kind: 'tip',
+          ru: '«Учить» — это и learn, и study. Learn — освоить, выучить: learn English. Study — заниматься, сидеть над учёбой: study every day. В ответах этого урока подходят оба.',
+          uk: '«Вчити» — це і learn, і study. Learn — опанувати, вивчити: learn English. Study — займатися, сидіти над навчанням: study every day. У відповідях цього уроку підходять обидва.',
+          es: '«Aprender/estudiar»: learn es dominar algo (learn English), study es dedicarse a estudiar (study every day). En las respuestas de esta lección valen los dos.',
+        },
       ],
     },
 
@@ -70,9 +77,11 @@ export const LESSON22_THEORY: { titleRu: string; titleUk: string; titleEs: strin
         },
         {
           kind: 'tip',
-          ru: 'enjoy, like, love, hate, stop, finish, mind, suggest — после них глагол берёт -ing.',
-          uk: 'enjoy, like, love, hate, stop, finish, mind, suggest — після них дієслово бере -ing.',
-          es: 'enjoy, like, love, hate, stop, finish, mind, suggest — después de ellos el verbo toma -ing.',
+          // зачем (§126, жалоба 04.10): like/love/hate стояли в одном ряду с enjoy как «только -ing», а «I like to swim»
+          // тоже верно — ученик получал «ошибку» за правильный ответ. Разводим: только -ing и «можно обе формы».
+          ru: 'enjoy, finish, mind, suggest, stop — только -ing. А после like, love и hate подходят обе формы: I like swimming = I like to swim.',
+          uk: 'enjoy, finish, mind, suggest, stop — тільки -ing. А після like, love і hate підходять обидві форми: I like swimming = I like to swim.',
+          es: 'enjoy, finish, mind, suggest, stop — solo -ing. Después de like, love y hate valen las dos formas: I like swimming = I like to swim.',
         },
         {
           kind: 'drill',

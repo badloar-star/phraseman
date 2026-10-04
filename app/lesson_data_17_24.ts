@@ -7185,6 +7185,8 @@ export const LESSON_22_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson22_phrase_4',
     english: 'Learning English is useful',
+    // зачем (§126, жалоба 04.10): «учить/нравится» по-русски покрывает и learn/study, и like + to — верный синоним не может быть ошибкой.
+    alternatives: ["Studying English is useful"],
     russian: 'Учить английский полезно',
     ukrainian: 'Вчити англійську корисно',
     spanish: 'Aprender inglés es útil',
@@ -7279,6 +7281,8 @@ export const LESSON_22_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson22_phrase_9',
     english: 'Listening helps me learn',
+    // зачем (§126, жалоба 04.10): «учить/нравится» по-русски покрывает и learn/study, и like + to — верный синоним не может быть ошибкой.
+    alternatives: ["Listening helps me study"],
     russian: 'Слушание помогает мне учиться',
     ukrainian: 'Слухання допомагає мені вчитися',
     spanish: 'Escuchar me ayuda a aprender',
@@ -7292,7 +7296,7 @@ export const LESSON_22_PHRASES: LessonPhrase[] = [
       { text: 'Listening', correct: 'Listening', distractors: ['Reading', 'Speaking', 'listen', 'listens', 'listened'] },
       { text: 'helps', correct: 'helps', distractors: ['help', 'helped', 'helping', 'do', 'does'] },
       { text: 'me', correct: 'me', distractors: ['him', 'her', 'us', 'them', 'you'] },
-      { text: 'learn', correct: 'learn', distractors: ['learning', 'learned', 'study', 'practice', 'read'] },
+      { text: 'learn', correct: 'learn', distractors: ['learning', 'learned', 'studies', 'learns', 'read'] },
     ],
   },
   {
@@ -7334,6 +7338,8 @@ export const LESSON_22_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson22_phrase_12',
     english: 'Studying every day helps',
+    // зачем (§126, жалоба 04.10): «учить/нравится» по-русски покрывает и learn/study, и like + to — верный синоним не может быть ошибкой.
+    alternatives: ["Learning every day helps"],
     russian: 'Учеба каждый день помогает',
     ukrainian: 'Навчання щодня допомагає',
     spanish: 'Estudiar cada día ayuda',
@@ -7440,6 +7446,8 @@ export const LESSON_22_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson22_phrase_18',
     english: 'We enjoy learning English',
+    // зачем (§126, жалоба 04.10): «учить/нравится» по-русски покрывает и learn/study, и like + to — верный синоним не может быть ошибкой.
+    alternatives: ["We enjoy studying English", "We like learning English", "We like studying English"],
     russian: 'Нам нравится учить английский',
     ukrainian: 'Нам подобається вчити англійську',
     spanish: 'Nos gusta aprender inglés',
@@ -7451,7 +7459,7 @@ export const LESSON_22_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['I', 'you', 'he', 'she', 'they'] },
-      { text: 'enjoy', correct: 'enjoy', distractors: ['hate', 'avoid', 'like', 'finish', 'practice'] },
+      { text: 'enjoy', correct: 'enjoy', distractors: ['hate', 'avoid', 'enjoys', 'finish', 'enjoyed'] },
       { text: 'learning', correct: 'learning', distractors: ['listening', 'speaking', 'learn', 'learns', 'learned'] },
       { text: 'English', correct: 'English', distractors: ['Spanish', 'French', 'grammar', 'lesson', 'language'] },
     ],
@@ -7498,6 +7506,8 @@ export const LESSON_22_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson22_phrase_21',
     english: 'I like driving',
+    // зачем (§126, жалоба 04.10): «учить/нравится» по-русски покрывает и learn/study, и like + to — верный синоним не может быть ошибкой.
+    alternatives: ["I like to drive", "I enjoy driving"],
     russian: 'Мне нравится водить машину',
     ukrainian: 'Мені подобається водити машину',
     spanish: 'Me gusta conducir',
@@ -7509,7 +7519,7 @@ export const LESSON_22_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['you', 'he', 'she', 'we', 'they'] },
-      { text: 'like', correct: 'like', distractors: ['hate', 'avoid', 'enjoy', 'need', 'prefer'] },
+      { text: 'like', correct: 'like', distractors: ['hate', 'avoid', 'likes', 'need', 'liked'] },
       { text: 'driving', correct: 'driving', distractors: ['walking', 'running', 'working', 'reading', 'writing'] },
     ],
   },
@@ -7554,6 +7564,8 @@ export const LESSON_22_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson22_phrase_24',
     english: 'We like listening to music',
+    // зачем (§126, жалоба 04.10): «учить/нравится» по-русски покрывает и learn/study, и like + to — верный синоним не может быть ошибкой.
+    alternatives: ["We like to listen to music", "We enjoy listening to music"],
     russian: 'Нам нравится слушать музыку',
     ukrainian: 'Нам подобається слухати музику',
     spanish: 'Nos gusta escuchar música',
@@ -7565,7 +7577,7 @@ export const LESSON_22_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['I', 'you', 'he', 'she', 'they'] },
-      { text: 'like', correct: 'like', distractors: ['hate', 'avoid', 'enjoy', 'need', 'prefer'] },
+      { text: 'like', correct: 'like', distractors: ['hate', 'avoid', 'likes', 'need', 'liked'] },
       { text: 'listening', correct: 'listening', distractors: ['reading', 'speaking', 'listen', 'listens', 'listened'] },
       { text: 'to', correct: 'to', distractors: ['in', 'on', 'at', 'for', 'with'] },
       { text: 'music', correct: 'music', distractors: ['TV', 'radio', 'sound', 'song', 'voice'] },
@@ -7574,6 +7586,8 @@ export const LESSON_22_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson22_phrase_25',
     english: 'They like traveling',
+    // зачем (§126, жалоба 04.10): «учить/нравится» по-русски покрывает и learn/study, и like + to — верный синоним не может быть ошибкой.
+    alternatives: ["They like travelling", "They like to travel", "They enjoy traveling", "They enjoy travelling"],
     russian: 'Им нравится путешествовать',
     ukrainian: 'Їм подобається подорожувати',
     spanish: 'Les gusta viajar',
@@ -7584,7 +7598,7 @@ export const LESSON_22_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'They', correct: 'They', distractors: ['I', 'you', 'he', 'she', 'we'] },
-      { text: 'like', correct: 'like', distractors: ['hate', 'avoid', 'enjoy', 'need', 'prefer'] },
+      { text: 'like', correct: 'like', distractors: ['hate', 'avoid', 'likes', 'need', 'liked'] },
       { text: 'traveling', correct: 'traveling', distractors: ['working', 'studying', 'travel', 'travels', 'traveled'] },
     ],
   },

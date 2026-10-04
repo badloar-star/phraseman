@@ -165,10 +165,6 @@ export default function LearningV2ChaptersCourse(props: Props) {
   );
   const completed = useMemo(() => new Set(props.completedSessionIds), [props.completedSessionIds]);
   const currentLessonTitle = props.titles[selectedLessonOrdinal - 1] ?? "";
-  // зачем (сверка с learning-v2.html «Урок 1 · глава 2», 04.10): под шапкой — прогресс урока «пройдено / всего»;
-  // числа берутся из тех же строк карты, сеть не нужна.
-  const lessonDoneCount = sessionRows.filter((row) => completed.has(row.id)).length;
-  const lessonTotalCount = sessionRows.length;
 
   const toggleChapter = useCallback((chapterOrdinal: number) => {
     const next = expandedChapter === chapterOrdinal ? null : chapterOrdinal;
@@ -212,21 +208,17 @@ export default function LearningV2ChaptersCourse(props: Props) {
   }
 
   return <View testID="learning-v2-chapters-course" style={[styles.root, { backgroundColor: g.bg, paddingTop: props.topPadding ?? 0 }]}>
+    {/* зачем (владелец 04.10, раунд 2 → вариант A «Два этажа»): строка 1 — «назад» + HUD (словарь, монеты, энергия);
+        строка 2 — «Урок N» и тема 22px на всю ширину: длинная тема помещается в две строки и ничего не пересекает. */}
     <View style={styles.header}>
       {props.navigationControl}
-      {/* зачем (макет learning-v2.html, 04.10): крупно — короткое «Урок N» (не рвётся), тема — строкой ниже; раньше длинная тема
-          стояла крупным шрифтом в узкой колонке рядом с монетами и ломалась посреди слова («у / тверждение»). */}
-      <View style={styles.titleBlock}><Text accessibilityRole="header" style={[styles.headerTitle, { color: g.text }]}>{triLang(props.lang, { ru: `Урок ${selectedLessonOrdinal}`, en: `Lesson ${selectedLessonOrdinal}`, uk: `Урок ${selectedLessonOrdinal}`, es: `Lección ${selectedLessonOrdinal}`, "pt-BR": `Lição ${selectedLessonOrdinal}`, vi: `Bài ${selectedLessonOrdinal}`, id: `Pelajaran ${selectedLessonOrdinal}`, tr: `Ders ${selectedLessonOrdinal}`, pl: `Lekcja ${selectedLessonOrdinal}` })}</Text><Text style={[styles.lessonTopic, { color: g.secondary }]}>{currentLessonTitle}</Text></View>
+      <View style={styles.headerSpacer} />
       <View ref={headerAccessoryRef} collapsable={false}>{props.headerAccessory}</View>
     </View>
-    {lessonTotalCount > 0 ? (
-      <View testID="learning-v2-lesson-progress" style={styles.lessonProgressRow} accessible accessibilityLabel={`${lessonDoneCount}/${lessonTotalCount}`}>
-        <View style={[styles.lessonProgressTrack, { backgroundColor: g.line }]}>
-          <View style={[styles.lessonProgressFill, { backgroundColor: g.text, width: `${Math.round((lessonDoneCount / lessonTotalCount) * 100)}%` }]} />
-        </View>
-        <Text style={[styles.lessonProgressCount, { color: g.text }]}>{lessonDoneCount}<Text style={{ color: g.secondary, fontSize: 13, fontWeight: "500" }}>/{lessonTotalCount}</Text></Text>
-      </View>
-    ) : null}
+    <View style={styles.lessonTitleBlock}>
+      <Text style={[styles.lessonKicker, { color: g.secondary }]}>{triLang(props.lang, { ru: `Урок ${selectedLessonOrdinal}`, en: `Lesson ${selectedLessonOrdinal}`, uk: `Урок ${selectedLessonOrdinal}`, es: `Lección ${selectedLessonOrdinal}`, "pt-BR": `Lição ${selectedLessonOrdinal}`, vi: `Bài ${selectedLessonOrdinal}`, id: `Pelajaran ${selectedLessonOrdinal}`, tr: `Ders ${selectedLessonOrdinal}`, pl: `Lekcja ${selectedLessonOrdinal}` })}</Text>
+      <Text accessibilityRole="header" style={[styles.lessonTitleWide, { color: g.text }]}>{currentLessonTitle}</Text>
+    </View>
     <ScrollView contentContainerStyle={[styles.list, { paddingBottom: props.bottomPadding }]}>
       {chapterRows.map((chapter, chapterIndex) => {
         const chapterSessions = sessionRows.filter((row) => row.chapterOrdinal === chapter.chapterOrdinal);
@@ -249,7 +241,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
             const hasMaterial = props.isSessionMaterialAvailable?.(row.lessonOrdinal, row.sessionOrdinal) ?? true;
             const isCheckpoint = row.role === "chapter_checkpoint";
             const isExam = row.role === "final_exam";
-            // зачем (макет learning-v2.html, 04.10): узел подписан «Занятие N» (как «Занятия 1–8» у главы), проверка главы — «Проверка главы».
+            // зачем (владелец 04.10, вариант A раунда 2): узлы подписаны «Сессия N», как в утверждённом макете.
             const available = hasMaterial && (row.state === "current" || row.state === "completed");
             const paint = lv2NodePaint(g, row.state, available);
             const icon = !hasMaterial ? "construct-outline" : row.state === "completed" ? "checkmark" : isCheckpoint || isExam ? "trophy" : row.state === "locked" ? "lock-closed" : available ? "play" : "lock-closed";
@@ -279,7 +271,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
                 </LearningV2MapNode>
                 {stars > 0 ? <View pointerEvents="none" style={[styles.nodeStars, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}>{[0, 1, 2].map((starIndex) => <Ionicons key={starIndex} name="star" size={11} color={starIndex < stars ? g.text : lv2Alpha(g.text, 0.2)} />)}</View> : null}
               </Lv2Reveal>
-              <Text style={[styles.sessionLabel, { color: row.state === "current" ? g.text : g.secondary, fontWeight: row.state === "current" ? "800" : "700" }]}>{isCheckpoint ? triLang(props.lang, { ru: "Проверка главы", en: "Chapter check", uk: "Перевірка розділу", es: "Repaso del capítulo", "pt-BR": "Revisão do capítulo", vi: "Kiểm tra chương", id: "Uji bab", tr: "Bölüm testi", pl: "Sprawdzian rozdziału" }) : triLang(props.lang, { ru: `Занятие ${row.sessionOrdinal}`, en: `Session ${row.sessionOrdinal}`, uk: `Заняття ${row.sessionOrdinal}`, es: `Sesión ${row.sessionOrdinal}`, "pt-BR": `Sessão ${row.sessionOrdinal}`, vi: `Buổi ${row.sessionOrdinal}`, id: `Sesi ${row.sessionOrdinal}`, tr: `Ders ${row.sessionOrdinal}`, pl: `Zajęcia ${row.sessionOrdinal}` })}</Text>
+              <Text style={[styles.sessionLabel, { color: row.state === "current" ? g.text : g.secondary, fontWeight: row.state === "current" ? "800" : "700" }]}>{triLang(props.lang, { ru: `Сессия ${row.sessionOrdinal}`, en: `Session ${row.sessionOrdinal}`, uk: `Сесія ${row.sessionOrdinal}`, es: `Sesión ${row.sessionOrdinal}`, "pt-BR": `Sessão ${row.sessionOrdinal}`, vi: `Phiên ${row.sessionOrdinal}`, id: `Sesi ${row.sessionOrdinal}`, tr: `Oturum ${row.sessionOrdinal}`, pl: `Sesja ${row.sessionOrdinal}` })}</Text>
             </View>;
           })}</View> : <View style={[styles.chapterTrack, { backgroundColor: g.opaqueControl }]}><View style={[styles.chapterTrackFill, { backgroundColor: g.accent, width: `${Math.round(completedCount / 8 * 100)}%` }]} /></View>}
         </Lv2Reveal>;
@@ -299,7 +291,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1 }, header: { minHeight: 72, paddingHorizontal: 12, flexDirection: "row", alignItems: "center", gap: 10 }, titleBlock: { flex: 1, minWidth: 0, flexShrink: 1 }, headerTitle: { flexShrink: 1, fontSize: 20, lineHeight: 25, fontWeight: "700" }, lessonKicker: { fontSize: 13, lineHeight: 17, fontWeight: "700" }, lessonTopic: { fontSize: 13, lineHeight: 17, fontWeight: "500", marginTop: 2 }, lessonProgressRow: { flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 16, paddingBottom: 12 }, lessonProgressTrack: { flex: 1, height: 6, borderRadius: 3, overflow: "hidden" }, lessonProgressFill: { height: 6, minWidth: 6, borderRadius: 3 }, lessonProgressCount: { fontSize: 16, lineHeight: 21, fontWeight: "700", fontVariant: ["tabular-nums"] }, iconButton: { width: 48, height: 48, borderRadius: 24 }, iconButtonContent: { flex: 1, alignItems: "center", justifyContent: "center" }, list: { paddingHorizontal: 12, gap: 12 },
+  root: { flex: 1 }, header: { minHeight: 56, paddingHorizontal: 12, flexDirection: "row", alignItems: "center", gap: 10 }, headerSpacer: { flex: 1 }, lessonTitleBlock: { paddingHorizontal: 16, paddingBottom: 12, gap: 2 }, lessonTitleWide: { fontSize: 22, lineHeight: 28, fontWeight: "800" }, titleBlock: { flex: 1, minWidth: 0, flexShrink: 1 }, headerTitle: { flexShrink: 1, fontSize: 20, lineHeight: 25, fontWeight: "700" }, lessonKicker: { fontSize: 13, lineHeight: 17, fontWeight: "700" }, lessonTopic: { fontSize: 13, lineHeight: 17, fontWeight: "500", marginTop: 2 }, iconButton: { width: 48, height: 48, borderRadius: 24 }, iconButtonContent: { flex: 1, alignItems: "center", justifyContent: "center" }, list: { paddingHorizontal: 12, gap: 12 },
   chapter: { overflow: "hidden", paddingBottom: 6 },
   chapterPress: { borderRadius: 22 },
   chapterPressContent: { minHeight: 84, paddingHorizontal: 16, flexDirection: "row", alignItems: "center", gap: 14 },

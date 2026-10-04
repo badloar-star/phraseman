@@ -595,12 +595,14 @@ function AchievementModal({
   const progPct  = prog ? Math.round((prog[0] / (prog[1] || 1)) * 100) : 0;
 
   const modalMaxHeight = Math.max(240, screenH - 48);
-  const modalPad = screenW < 360 ? 18 : 24;
+  // `.om-modal`: поля 21 (на узком экране 18).
+  const modalPad = screenW < 360 ? 18 : 21;
 
+  // `.om-rarity` «Получено · 18.09.2026» — дата цифрами.
   const formatDate = (iso: string) => {
     const d = new Date(iso);
     const dateLocale = ACHIEVEMENT_DATE_LOCALES[lang];
-    return d.toLocaleDateString(dateLocale, { day: 'numeric', month: 'long', year: 'numeric' });
+    return d.toLocaleDateString(dateLocale, { day: '2-digit', month: '2-digit', year: 'numeric' });
   };
   const obtainedLabel = triLang(lang, { ru: 'Получено', uk: 'Отримано', en: 'Received', es: 'Obtenido', 'pt-BR': 'Obtido', vi: 'Đã nhận', id: 'Diperoleh', tr: 'Alındı', pl: 'Zdobyto' });
   const shareLabel = triLang(lang, { ru: 'Поделиться', uk: 'Поділитися', en: 'Share', es: 'Compartir', 'pt-BR': 'Compartilhar', vi: 'Chia sẻ', id: 'Bagikan', tr: 'Paylaş', pl: 'Udostępnij' });
@@ -608,7 +610,9 @@ function AchievementModal({
 
   // зачем: владелец 2026-09-29 — Liquid Glass «1 в 1 с макета» (overlays-more.html
   // OM-ACHIEVEMENT-EARNED / -PROGRESS): непрозрачное досье из токенов активной темы (13 тем), без
-  // градиентов и обводок; цвет категории — только точка/значок/полоса прогресса. Прокрутка — для крупного шрифта.
+  // градиентов и обводок. 04.10 — сверка с кадром: окно r26/p21, герой 178/r20 сразу сверху (крестик
+  // поверх), чип «Получено · дата» по центру, заголовок 25/31 и текст 16/22 слева, плашка «Как получить»
+  // 13/19, нейтральная полоса прогресса 8, «Поделиться» — тёмная капсула 48/24 без значков.
   return (
     <HybridAlertShell scrollContent={false}
       visible
@@ -621,7 +625,7 @@ function AchievementModal({
         testID="achievement-award-dossier"
         style={{
           backgroundColor: glass.opaqueSheet,
-          borderRadius: 28,
+          borderRadius: 26,
           width: '100%',
           maxHeight: modalMaxHeight,
           overflow: 'hidden',
@@ -635,30 +639,29 @@ function AchievementModal({
           scaleTo={0.94}
           onPress={onClose}
           style={{
-            position: 'absolute', top: 12, right: 12, zIndex: 3,
-            width: 44, height: 44, borderRadius: 22, backgroundColor: glass.opaqueControl,
+            position: 'absolute', top: 14, right: 14, zIndex: 3,
+            width: 44, height: 44, borderRadius: 22, backgroundColor: glass.selected,
             alignItems: 'center', justifyContent: 'center',
           }}
         >
-          <Ionicons name="close" size={21} color={glass.text} />
+          <Ionicons name="close" size={18} color={glass.text} />
         </TapScale>
 
         <ScrollView
           keyboardShouldPersistTaps="handled"
           decelerationRate="fast"
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ padding: modalPad, alignItems: 'stretch', gap: 16 }}
+          contentContainerStyle={{ padding: modalPad, alignItems: 'stretch' }}
         >
           <View
             testID="achievement-dossier-hero"
             style={{
-              minHeight: 190,
-              borderRadius: 22,
+              minHeight: 178,
+              borderRadius: 20,
               backgroundColor: glass.opaqueControl,
               alignItems: 'center',
               justifyContent: 'center',
               overflow: 'hidden',
-              marginTop: 40,
             }}
           >
             <BadgeShield
@@ -666,78 +669,82 @@ function AchievementModal({
               inProgress={!unlocked && showLockedDetails}
               color={color}
               iconName={iconName}
-              size={132}
+              size={124}
               maskBg={glass.opaqueControl}
               achievementId={achievement.id}
               isDark={isDark}
             />
           </View>
 
-          <View style={{ gap: 8 }}>
-            {unlocked && state?.unlockedAt && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: color }} />
-                <Ionicons name="calendar-outline" size={15} color={glass.secondary} />
-                <Text style={{ color: glass.secondary, fontSize: f.sub, fontWeight: '800', flex: 1 }}>
-                  {obtainedLabel} · {formatDate(state.unlockedAt)}
-                </Text>
-              </View>
-            )}
-            <Text accessibilityRole="header" style={{ color: glass.text, fontSize: f.h2, fontWeight: '900', lineHeight: Math.round(f.h2 * 1.08) }}>
-              {unlocked || showLockedDetails ? name : triLang(lang, {
-                ru: 'Секретное достижение', uk: 'Секретне досягнення', en: 'Secret achievement', es: 'Logro secreto',
-                'pt-BR': 'Conquista secreta', vi: 'Thành tựu bí mật', id: 'Pencapaian rahasia',
-                tr: 'Gizli başarı', pl: 'Tajne osiągnięcie',
-              })}
-            </Text>
-            <Text
-              testID="achievement-dossier-description"
-              style={{ color: glass.secondary, fontSize: f.body, fontWeight: '700', lineHeight: Math.round(f.body * 1.5) }}
+          {unlocked && state?.unlockedAt ? (
+            <View
+              testID="achievement-dossier-obtained"
+              style={{
+                alignSelf: 'center', marginTop: 12, paddingVertical: 5, paddingHorizontal: 10,
+                borderRadius: 999, backgroundColor: glass.selected,
+              }}
             >
-              {unlocked || showLockedDetails ? desc : triLang(lang, {
-                ru: 'Разблокируй, чтобы узнать', uk: 'Розблокуй, щоб дізнатись',
-                en: 'Unlock to find out',
-                es: 'Desbloquéalo para descubrirlo', 'pt-BR': 'Desbloqueie para descobrir',
-                vi: 'Mở khóa để xem', id: 'Buka untuk mengetahui', tr: 'Öğrenmek için aç',
-                pl: 'Odblokuj, aby zobaczyć',
-              })}
-            </Text>
-          </View>
+              <Text style={{ color: glass.text, fontSize: 13, lineHeight: 16, fontWeight: '800' }}>
+                {obtainedLabel} · {formatDate(state.unlockedAt)}
+              </Text>
+            </View>
+          ) : null}
+
+          <Text accessibilityRole="header" style={{ marginTop: 7, color: glass.text, fontSize: 25, lineHeight: 31, fontWeight: '800' }}>
+            {unlocked || showLockedDetails ? name : triLang(lang, {
+              ru: 'Секретное достижение', uk: 'Секретне досягнення', en: 'Secret achievement', es: 'Logro secreto',
+              'pt-BR': 'Conquista secreta', vi: 'Thành tựu bí mật', id: 'Pencapaian rahasia',
+              tr: 'Gizli başarı', pl: 'Tajne osiągnięcie',
+            })}
+          </Text>
+          <Text
+            testID="achievement-dossier-description"
+            style={{ marginTop: 9, color: glass.secondary, fontSize: 16, lineHeight: 22, fontWeight: '400' }}
+          >
+            {unlocked || showLockedDetails ? desc : triLang(lang, {
+              ru: 'Разблокируй, чтобы узнать', uk: 'Розблокуй, щоб дізнатись',
+              en: 'Unlock to find out',
+              es: 'Desbloquéalo para descubrirlo', 'pt-BR': 'Desbloqueie para descobrir',
+              vi: 'Mở khóa để xem', id: 'Buka untuk mengetahui', tr: 'Öğrenmek için aç',
+              pl: 'Odblokuj, aby zobaczyć',
+            })}
+          </Text>
 
           {condition && (unlocked || showLockedDetails) ? (
             <View
               testID="achievement-dossier-condition"
               style={{
-                width: '100%', backgroundColor: glass.opaqueControl, borderRadius: 16,
-                paddingHorizontal: 14, paddingVertical: 13, gap: 6,
+                width: '100%', marginTop: 13, backgroundColor: glass.opaqueControl, borderRadius: 16,
+                paddingHorizontal: 14, paddingVertical: 13,
               }}
             >
-              <Text style={{ color: glass.secondary, fontSize: f.caption, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase' }}>
+              <Text style={{ color: glass.text, fontSize: 13, lineHeight: 19, fontWeight: '700', marginBottom: 4 }}>
                 {triLang(lang, {
                   ru: 'Как получить', uk: 'Як отримати', en: 'How to get it', es: 'Cómo conseguirlo',
                   'pt-BR': 'Como conseguir', vi: 'Cách nhận', id: 'Cara mendapatkan',
                   tr: 'Nasıl kazanılır', pl: 'Jak zdobyć',
                 })}
               </Text>
-              <Text style={{ color: glass.text, fontSize: f.body, fontWeight: '800', lineHeight: Math.round(f.body * 1.45) }}>
+              <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 19, fontWeight: '400' }}>
                 {condition}
               </Text>
             </View>
           ) : null}
 
-          {prog && prog[1] > 0 && (
-            <View style={{ width: '100%', gap: 9, backgroundColor: glass.opaqueControl, borderRadius: 16, padding: 14 }}>
-              <View style={{ height: 8, backgroundColor: glass.line, borderRadius: 4, overflow: 'hidden' }}>
-                <View style={{ height: 8, width: `${progPct}%` as any, backgroundColor: color, borderRadius: 4 }} />
+          {prog && prog[1] > 0 ? (
+            <>
+              {/* `.om-progress`: полоса 8, нейтральная заливка цветом текста */}
+              <View testID="achievement-dossier-progress" style={{ height: 8, marginTop: 12, backgroundColor: glass.selected, borderRadius: 6, overflow: 'hidden' }}>
+                <View style={{ height: 8, width: `${progPct}%` as any, backgroundColor: glass.text, borderRadius: 6 }} />
               </View>
-              <Text style={{ color: glass.secondary, fontSize: f.sub, fontWeight: '800', textAlign: 'center' }}>
+              <Text style={{ marginTop: 9, color: glass.secondary, fontSize: 16, lineHeight: 22, fontWeight: '400', textAlign: 'center' }}>
                 {prog[0]} / {prog[1]}
                 {prog[1] - prog[0] > 0 && progPct > 0 && (
                   `  ·  ${triLang(lang, { ru: 'ещё', uk: 'ще', en: 'more', es: 'faltan', 'pt-BR': 'faltam', vi: 'còn', id: 'lagi', tr: 'kaldı', pl: 'jeszcze' })} ${prog[1] - prog[0]}`
                 )}
               </Text>
-            </View>
-          )}
+            </>
+          ) : null}
 
           {unlocked && (
             <TapScale
@@ -746,8 +753,8 @@ function AchievementModal({
               accessibilityLabel={shareLabel}
               scaleTo={0.97}
               style={{
-                width: '100%', minHeight: 56, backgroundColor: glass.accent, borderRadius: 18,
-                paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 11,
+                width: '100%', minHeight: 48, marginTop: 13, backgroundColor: glass.opaqueControl, borderRadius: 24,
+                paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center',
               }}
               onPress={async () => {
                 const msg = buildAchievementShareMessage(lang, name, STORE_URL);
@@ -757,11 +764,9 @@ function AchievementModal({
                 }
               }}
             >
-              <Ionicons name="share-outline" size={20} color={glass.ctaInk} />
-              <Text style={{ color: glass.accentInk, fontSize: f.body, fontWeight: '900', flex: 1 }}>
+              <Text style={{ color: glass.text, fontSize: 16, fontWeight: '700' }}>
                 {shareLabel}
               </Text>
-              <Ionicons name="chevron-forward" size={18} color={glass.ctaInk} />
             </TapScale>
           )}
         </ScrollView>

@@ -28,13 +28,16 @@ test('achievement modal presents a premium dossier hierarchy', () => {
   expect(modal).toContain('testID="achievement-award-dossier"');
   expect(modal).toContain('testID="achievement-dossier-hero"');
   expect(modal).toContain('testID="achievement-dossier-description"');
-  expect(modal).toContain("fontWeight: '900'");
-  expect(modal).toContain("fontWeight: '700'");
-  expect(modal).toContain('name="calendar-outline"');
+  // 04.10 (overlays-more OM-ACHIEVEMENT-EARNED — эталон): дата — чип «Получено · дд.мм.гггг» по центру,
+  // заголовок 25/31 800; значка календаря на кадре нет.
+  expect(modal).toContain('testID="achievement-dossier-obtained"');
+  expect(modal).toContain("fontSize: 25, lineHeight: 31, fontWeight: '800'");
+  expect(modal).not.toContain('name="calendar-outline"');
   expect(modal).toContain('<HybridAlertShell');
 });
 
-test('share is a premium full-width row and close is an accessible icon action', () => {
+// 04.10: на кадре «Поделиться» — тёмная капсула `.cta.gh` 48/24 без значков (было: строка 56 со стрелкой).
+test('share is a full-width 48 capsule and close is an accessible icon action', () => {
   const shareStart = modal.indexOf('testID="achievement-share-primary"');
   const share = modal.slice(shareStart, shareStart + 1800);
   const closeStart = modal.indexOf('testID="achievement-close-secondary"');
@@ -42,11 +45,11 @@ test('share is a premium full-width row and close is an accessible icon action',
 
   expect(shareStart).toBeGreaterThan(0);
   expect(share).toContain("width: '100%'");
-  expect(share).toContain('minHeight: 56');
+  expect(share).toContain('minHeight: 48');
+  expect(share).toContain('borderRadius: 24');
   expect(share).toContain('accessibilityRole="button"');
   expect(share).toContain('accessibilityLabel=');
-  expect(share).toContain('name="share-outline"');
-  expect(share).toContain('color={glass.ctaInk}');
+  expect(share).not.toContain('name="share-outline"');
 
   expect(closeStart).toBeGreaterThan(0);
   expect(close).toContain('width: 44');

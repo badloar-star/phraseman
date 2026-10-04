@@ -2542,7 +2542,7 @@
     "actual_reasoning": "high"
   },
   {
-  "id": "PM-048",
+    "id": "PM-048",
     "epic": "E05",
     "title": "Удалить раздел подарков и его эксклюзивные зависимости",
     "requirement_ids": [
@@ -2550,7 +2550,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-  "status": "review",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2558,10 +2558,10 @@
     "acceptance": [
       {
         "id": "PM-048-A1",
-      "text": "Нет импортов/провайдеров/собственных таймеров",
-      "accepted": true,
+        "text": "Нет импортов/провайдеров/собственных таймеров",
+        "accepted": true,
         "evidence": [
-        "2026-09-28 bounded import scan: no app/components/modules/hooks runtime imports level_gift_system; remaining level-gift code is fail-closed compatibility/retirement code in app and functions/src."
+          "2026-09-28 bounded import scan: no app/components/modules/hooks runtime imports level_gift_system; remaining level-gift code is fail-closed compatibility/retirement code in app and functions/src."
         ]
       },
       {
@@ -2603,11 +2603,12 @@
       "cloud_sync no longer restores chain_shield and removes its local key on restore; narrow probe, ESLint and diff check passed",
       "adminGrantReward no longer accepts XP boosts or chain shields; both individual admin forms remove them; tests/admin_retired_reward_types.probe.ts RED→GREEN",
       "global broadcast publish rejects retired XP/shield/league rewards; old claim mutations/replays neutralized; client and admin UI removed; narrow probe RED→GREEN",
-      "focused Jest attempt failed at ~4 GB heap; not treated as a pass"
-    ,"tests/pm048_gift_section_retirement.probe.ts: PM-048 GIFT SECTION RETIREMENT: PASS; remaining level-gift module is compatibility/parser surface and active catalog excludes retired IDs"
+      "focused Jest attempt failed at ~4 GB heap; not treated as a pass",
+      "tests/pm048_gift_section_retirement.probe.ts: PM-048 GIFT SECTION RETIREMENT: PASS; remaining level-gift module is compatibility/parser surface and active catalog excludes retired IDs"
     ],
     "notes": [
-      "Removed process-wide friend gift polling, AppState/account listeners and gift modal by unmounting/deleting the exclusive host. Friends screen gift picker, receive modal, gift handlers/subscription and sheet CTA are also removed. Friend gift outbox, inbox, client RPC, inventory, dead active-gift inventory and background sync drain are removed. Streak and statistics no longer call/read/display server friend chain shield; local freeze remains. Cloud sync no longer hydrates the retired shield and deletes the local key during restore; outbound blocklists remain until server producers/rules are retired. Server gift callables removed from source/export/deploy lists, while shared Expo push remains in a neutral module. PM-048-A1/A2 remain open: other gift producers, published Firebase functions, legacy pending data and purchase rights not yet purged; no deployment was run."
+      "Removed process-wide friend gift polling, AppState/account listeners and gift modal by unmounting/deleting the exclusive host. Friends screen gift picker, receive modal, gift handlers/subscription and sheet CTA are also removed. Friend gift outbox, inbox, client RPC, inventory, dead active-gift inventory and background sync drain are removed. Streak and statistics no longer call/read/display server friend chain shield; local freeze remains. Cloud sync no longer hydrates the retired shield and deletes the local key during restore; outbound blocklists remain until server producers/rules are retired. Server gift callables removed from source/export/deploy lists, while shared Expo push remains in a neutral module. PM-048-A1/A2 remain open: other gift producers, published Firebase functions, legacy pending data and purchase rights not yet purged; no deployment was run.",
+      "2026-10-04 (координатор, §140): PM-048 остаётся в review ДО РЕЛИЗА — критерий A2 (перевод неиспользованных спинов/подарков в монеты) выполняется миграцией после релиза скриптом с пробным прогоном по команде владельца (D90/D91, Q12); до тех пор не закрывать. A1 подтверждён, путь подарка попыток удалён (ef0eea570)."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -3652,7 +3653,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -3661,10 +3662,11 @@
       {
         "id": "PM-066-A1",
         "text": "Есть unreachable evidence, bundle diff и проверка cold start",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
           "Бандл-часть подтверждена ранее (tests/android_bundle_hygiene_contract.test.ts 10/10, PROGRESS 2026-09-28); недостижимость ассетов — docs/phraseman-2.0/evidence/PM-009_asset_bundle_inventory.md (88 файлов без потребителей).",
-          "2026-10-01 NOT_MET: проверка cold start на устройстве/эмуляторе не выполнена — эмулятор этой сессии запрещён (FINAL_PHASE п.4, слабый профиль)."
+          "2026-10-01 NOT_MET: проверка cold start на устройстве/эмуляторе не выполнена — эмулятор этой сессии запрещён (FINAL_PHASE п.4, слабый профиль).",
+          "2026-10-04: evidence/PM-066_bundle_size_2026-10-04.md — JS-бандл HEAD 35 808 409 байт, ассеты 99 файлов ~2,8 МБ, осиротевшие каталоги в карте ассетов 0 вхождений (разница 0 байт по построению); cold start — INBOX §138 (fin6 ~1,4 с / fin7 ~1,6 с, слабый профиль). Решение координатора 04.10: A1 принять по построению"
         ]
       },
       {
@@ -3685,19 +3687,25 @@
       "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "c58142f9a",
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": null,
+    "reviewer": "координатор (решение 04.10: A1 принят по построению; INBOX §140/§141)",
     "evidence": [
-      "commit 3c15409e6"
+      "commit 3c15409e6",
+      "2026-10-04: evidence/PM-066_bundle_size_2026-10-04.md — JS-бандл HEAD 35 808 409 байт, ассеты 99 файлов ~2,8 МБ, осиротевшие каталоги в карте ассетов 0 вхождений (разница 0 байт по построению); cold start — INBOX §138 (fin6 ~1,4 с / fin7 ~1,6 с, слабый профиль). Решение координатора 04.10: A1 принять по построению"
     ],
     "notes": [
-      "Разведка: expo-background-task в package.json без вызовов API — не удалён (нужен npm install/ребилд, риск в общем дереве); устаревшие evidence-пути в screen_inventory.json на удалённые студии — не критично; level_reward_spin_balance в firestore.rules проверен — живой, не трогать"
+      "Разведка: expo-background-task в package.json без вызовов API — не удалён (нужен npm install/ребилд, риск в общем дереве); устаревшие evidence-пути в screen_inventory.json на удалённые студии — не критично; level_reward_spin_balance в firestore.rules проверен — живой, не трогать",
+      "2026-10-04: закрыто по построению (JS/ассеты 0 байт). Нативный эффект снятия expo-background-task проверяется EAS-замером размера APK/AAB при релизной сборке — gate владельца."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE": "n/a: удаляются неиспользуемые ресурсы и нативный пакет без данных пользователей; нативный эффект проверяется EAS-замером при релизной сборке (gate владельца), решение координатора 04.10"
+    },
     "actual_model": "sonnet-5",
     "actual_reasoning": "high"
   },

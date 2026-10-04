@@ -50,12 +50,29 @@ type Props = Readonly<{
   onLongPress?: (id: string) => void;
   /** Режим выбора: отмеченные плитки получают галочку. */
   selectedIds?: ReadonlySet<string>;
+  /** Строка поиска: совпадение в слове подчёркивается (макет, кадр «Поиск»). */
+  highlight?: string;
 }>;
+
+// зачем (макет «Поиск»): найденный кусок слова подчёркнут, остальное как обычно.
+function renderFront(front: string, highlight?: string): React.ReactNode {
+  const needle = (highlight ?? '').trim().toLowerCase();
+  if (!needle) return front;
+  const at = front.toLowerCase().indexOf(needle);
+  if (at < 0) return front;
+  return (
+    <>
+      {front.slice(0, at)}
+      <Text style={styles.match}>{front.slice(at, at + needle.length)}</Text>
+      {front.slice(at + needle.length)}
+    </>
+  );
+}
 
 const FACE_ALPHA_TOP = 'E6';
 const FACE_ALPHA_MID = 'DB';
 
-const Tile = memo(function Tile({ card, index, lvl, scale, width, a, b, accent, onOpen, onSpeak, speakLabel, onLongPress, selected }: Readonly<{
+const Tile = memo(function Tile({ card, index, lvl, scale, width, a, b, accent, onOpen, onSpeak, speakLabel, onLongPress, selected, highlight }: Readonly<{
   card: GalleryCard;
   index: number;
   lvl: number;
@@ -69,6 +86,7 @@ const Tile = memo(function Tile({ card, index, lvl, scale, width, a, b, accent, 
   speakLabel?: string;
   onLongPress?: (id: string) => void;
   selected?: boolean | undefined;
+  highlight?: string;
 }>) {
   const style = useAnimatedStyle(() => {
     const layout = galleryLayoutFor(scale.value, width);
@@ -110,7 +128,7 @@ const Tile = memo(function Tile({ card, index, lvl, scale, width, a, b, accent, 
               <Circle cx="50" cy="50" r="50" fill={`url(#gl-${card.id})`} />
             </Svg>
           </View>
-          <Text style={[styles.en, { fontSize: GALLERY_FONT[lvl], lineHeight: Math.round(GALLERY_FONT[lvl]! * 1.15) }]}>{card.front}</Text>
+          <Text style={[styles.en, { fontSize: GALLERY_FONT[lvl], lineHeight: Math.round(GALLERY_FONT[lvl]! * 1.15) }]}>{renderFront(card.front, highlight)}</Text>
           {showIpa ? <Text style={[styles.ipa, { fontSize: GALLERY_IPA[lvl] }]}>{card.ipa}</Text> : null}
           {full && onSpeak ? (
             <Pressable
@@ -139,7 +157,7 @@ const Tile = memo(function Tile({ card, index, lvl, scale, width, a, b, accent, 
   );
 });
 
-function CardsGalleryInner({ g, cards, width, scale, scrollY, viewportH, onOpen, onSpeak, speakLabel, onLongPress, selectedIds }: Props) {
+function CardsGalleryInner({ g, cards, width, scale, scrollY, viewportH, onOpen, onSpeak, speakLabel, onLongPress, selectedIds, highlight }: Props) {
   const [a, b] = themePair(g);
   const [lvl, setLvl] = useState(() => galleryLayoutFor(scale.value, width).idx);
   // зачем: смена «ступени» (колонки 1…4) — редкое событие; на неё меняются скругление, поля, кегль и набор деталей (не покадрово).
@@ -167,6 +185,7 @@ function CardsGalleryInner({ g, cards, width, scale, scrollY, viewportH, onOpen,
           onOpen={onOpen}
           onSpeak={onSpeak}
           speakLabel={speakLabel}
+          highlight={highlight}
           onLongPress={onLongPress}
           selected={selectedIds ? selectedIds.has(card.id) : undefined}
         />
@@ -185,6 +204,7 @@ const styles = StyleSheet.create({
   face: { flex: 1, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
   glow: { position: 'absolute', width: '80%', aspectRatio: 1, right: '-30%', top: '-40%', opacity: 0.55 },
   en: { width: '100%', textAlign: 'center', color: '#FFFFFF', fontWeight: '500', letterSpacing: -0.2 },
+  match: { textDecorationLine: 'underline' },
   ipa: { marginTop: 6, fontStyle: 'italic', color: 'rgba(255,255,255,0.62)', textAlign: 'center' },
   speak: { position: 'absolute', right: 10, top: 10, width: 32, height: 32, borderRadius: 16, backgroundColor: 'rgba(255,255,255,0.12)', alignItems: 'center', justifyContent: 'center' },
   dots: { position: 'absolute', left: 14, bottom: 11, flexDirection: 'row', gap: 4 },

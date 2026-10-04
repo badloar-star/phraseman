@@ -7,7 +7,7 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 
@@ -52,6 +52,8 @@ type Props = Readonly<{
   allowAddCustomCard: boolean;
   onCreateCard: () => void;
   activeCat: string;
+  /** Запрос поиска: при нём список — одна колонка, сверху «Найдено · N», совпадение подчёркнуто. */
+  searchQuery: string;
 }>;
 
 const SIDE = 20;
@@ -73,13 +75,30 @@ const DOTS_FOR: Record<WordStrength, number> = { weak: 1, medium: 2, strong: 4 }
 export default function CollectionGalleryView({
   cards, lang, header, hiddenByLimitCount, onOpenPremiumLimit, onOpenCard, onSpeak, strengthForCard, onCardsViewed,
   isEditableCustomCard, onEditCard, onDeleteCardById, selectionMode, selectedIds, onToggleSelection, selectedCount, canCreatePack,
-  selectionRemaining, onCreatePack, onDeleteSelected, showDeleteHint, onSetShowDeleteHint, onTrain, allowAddCustomCard, onCreateCard, activeCat,
+  selectionRemaining, onCreatePack, onDeleteSelected, showDeleteHint, onSetShowDeleteHint, onTrain, allowAddCustomCard, onCreateCard, activeCat, searchQuery,
 }: Props) {
   const g = useLv2Glass();
   const copy = useMemo(() => copyFor(lang), [lang]);
   const { width: screenW, height: screenH } = useWindowDimensions();
   const width = screenW - SIDE * 2;
-  const { scale, gesture } = useCardsScale(0.3);
+  const { scale, gesture, animateTo } = useCardsScale(0.3);
+  // зачем (макет cards-section «Поиск»): пока идёт поиск, результаты — одна широкая колонка; после очистки
+  // возвращается тот размер, который человек выбрал щипком.
+  const searching = searchQuery.trim().length > 0;
+  const beforeSearchScale = useRef<number | null>(null);
+  useEffect(() => {
+    if (searching && beforeSearchScale.current === null) {
+      beforeSearchScale.current = scale.value;
+      animateTo(0);
+    } else if (!searching && beforeSearchScale.current !== null) {
+      animateTo(beforeSearchScale.current);
+      beforeSearchScale.current = null;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- animateTo/scale стабильны по смыслу; реагируем только на смену режима поиска
+  }, [searching]);
+  const foundLabel = useMemo(() => triLang(lang, {
+    ru: 'Найдено', uk: 'Знайдено', en: 'Found', es: 'Encontrado', 'pt-BR': 'Encontrado', vi: 'Tìm thấy', id: 'Ditemukan', tr: 'Bulundu', pl: 'Znaleziono',
+  }), [lang]);
   const [scrollY, setScrollY] = useState(0);
   const [gridTop, setGridTop] = useState(260);
   const [pressedId, setPressedId] = useState<string | null>(null);
@@ -132,7 +151,10 @@ export default function CollectionGalleryView({
               <Text style={[styles.addText, { color: g.text }]}>{copy.add}</Text>
             </Pressable>
           ) : null}
-          <View style={styles.gridWrap} onLayout={(event) => setGridTop(Math.round(event.nativeEvent.layout.y))}>
+          {searching && cards.length > 0 ? (
+            <Text testID="fc-search-found" style={[styles.found, { color: g.accent }]}>{`${foundLabel} · ${cards.length}`}</Text>
+          ) : null}
+          <View style={[styles.gridWrap, searching && cards.length > 0 && styles.gridWrapFound]} onLayout={(event) => setGridTop(Math.round(event.nativeEvent.layout.y))}>
             <CardsGallery
               g={g}
               cards={items}
@@ -145,6 +167,7 @@ export default function CollectionGalleryView({
               speakLabel={copy.speak}
               onLongPress={selectionMode ? undefined : setPressedId}
               selectedIds={selectionMode ? selectedIds : undefined}
+              highlight={searching ? searchQuery : undefined}
             />
           </View>
           {!selectionMode && hiddenByLimitCount > 0 ? (
@@ -205,6 +228,8 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   content: { paddingHorizontal: SIDE, paddingBottom: 150 },
   gridWrap: { marginTop: 16 },
+  gridWrapFound: { marginTop: 12 },
+  found: { marginTop: 22, marginLeft: 4, fontSize: 12, lineHeight: 16, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase' },
   addBtn: { marginTop: 16, height: 42, alignSelf: 'flex-start', paddingHorizontal: 18, borderRadius: 21, flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: 'rgba(255,255,255,0.06)' },
   addText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
   limit: { marginTop: 16, borderRadius: 24, paddingVertical: 22, paddingHorizontal: 20, alignItems: 'center', gap: 6 },

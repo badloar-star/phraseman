@@ -23,7 +23,7 @@ test('Saved loading has four glass skeleton rows and error/search/empty are dist
   assert.ok(source.includes('liquidGlassTokens(liquidGlassThemeId)'));
   assert.ok(source.includes('BlurView'));
   assert.ok(source.includes("'dimezisBlurView'"));
-  for (const text of ['Нет карточек', 'Ничего не найдено']) {
+  for (const text of ['Пока пусто', 'Ничего не найдено']) {
     assert.ok(source.includes(text), `missing state copy: ${text}`);
   }
   assert.ok(!source.includes('Не удалось загрузить карточки'), 'экрана ошибки загрузки нет');

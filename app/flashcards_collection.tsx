@@ -1064,6 +1064,8 @@ export default function FlashcardsScreen() {
       lang={lang}
       title={s.title}
       cardCount={savedCardsForPackLanguage.length}
+      // зачем: кадр 7 «Пусто» — только заголовок; поиск нужен, пока он активен (результат «ничего не найдено»)
+      titleOnly={isEmpty && !loadError && searchQuery.trim().length === 0 && searchInput.length === 0}
       showSearch
       searchInput={searchInput}
       onSearchInput={setSearchInput}
@@ -1257,6 +1259,7 @@ export default function FlashcardsScreen() {
         ) : savedSurface ? (
           <CollectionGalleryView
             cards={listCards}
+            searchQuery={searchQuery}
             lang={cardContentLang}
             header={savedTitleBlock}
             hiddenByLimitCount={hiddenByLimitCount}

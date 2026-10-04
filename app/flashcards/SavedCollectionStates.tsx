@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { BlurView } from 'expo-blur';
-import React, { useCallback } from 'react';
-import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { useCallback, useRef, useState } from 'react';
+import { Platform, Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
@@ -80,40 +80,67 @@ function SavedCollectionUnavailable({ lang, onRetry }: Readonly<{ lang: Lang; on
   </View>;
 }
 
+// зачем (владелец: «в приложении запрещены любые различия с макетом», cards-section кадр 7 «Пусто»): блок стоит
+// по центру ЭКРАНА (top:50%, translateY(-46%) от высоты 217), а не под заголовком; плитка 61×61 r16 #28282A,
+// «Пока пусто» 24/30, подпись 16/22, кнопка 48 высотой с мятным свечением. Поиск без результатов (кадр 38) — прежний вид.
+const EMPTY_BLOCK_H = 217;
+
 function SavedCollectionEmpty({ lang, searchActive, onCommunity }: Props) {
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
+  const { height } = useWindowDimensions();
+  // зачем: блок центрируется по ЭКРАНУ (как в макете), а родитель начинается под шапкой — меряем его верх в окне.
+  const holder = useRef<View>(null);
+  const [pageTop, setPageTop] = useState<number | null>(null);
+  const measure = useCallback(() => {
+    holder.current?.measureInWindow((_x, y) => { setPageTop((prev) => (prev === y ? prev : y)); });
+  }, []);
   const title = searchActive ? triLang(lang, {
     ru: 'Ничего не найдено', uk: 'Нічого не знайдено', en: 'Nothing found', es: 'No se encontró nada',
     'pt-BR': 'Nada encontrado', vi: 'Không tìm thấy gì', id: 'Tidak ditemukan', tr: 'Hiçbir şey bulunamadı', pl: 'Nic nie znaleziono',
   }) : triLang(lang, {
-    ru: 'Нет карточек', uk: 'Немає карток', en: 'No cards yet', es: 'Aún no hay tarjetas',
-    'pt-BR': 'Ainda não há cartões', vi: 'Chưa có thẻ', id: 'Belum ada kartu', tr: 'Henüz kart yok', pl: 'Brak kart',
+    ru: 'Пока пусто', uk: 'Поки порожньо', en: 'Nothing here yet', es: 'Todavía no hay nada',
+    'pt-BR': 'Ainda está vazio', vi: 'Chưa có gì', id: 'Masih kosong', tr: 'Henüz boş', pl: 'Na razie pusto',
   });
   const detail = searchActive ? triLang(lang, {
     ru: 'Попробуй другое слово.', uk: 'Спробуй інше слово.', en: 'Try another word.', es: 'Prueba con otra palabra.',
     'pt-BR': 'Tente outra palavra.', vi: 'Thử từ khác.', id: 'Coba kata lain.', tr: 'Başka bir kelime dene.', pl: 'Spróbuj innego słowa.',
   }) : triLang(lang, {
-    ru: 'Сохраняй слова из уроков, видео и наборов — они соберутся здесь.', uk: 'Зберігай слова з уроків, відео й наборів — вони з’являться тут.', en: 'Save words from lessons, videos and packs — they will appear here.',
-    es: 'Guarda palabras de lecciones, vídeos y packs; aparecerán aquí.', 'pt-BR': 'Salve palavras de aulas, vídeos e pacotes; elas aparecerão aqui.',
-    vi: 'Lưu từ từ bài học, video và bộ thẻ — chúng sẽ xuất hiện ở đây.', id: 'Simpan kata dari pelajaran, video, dan paket — semuanya akan muncul di sini.',
-    tr: 'Derslerden, videolardan ve paketlerden kelime kaydet; burada toplanacaklar.', pl: 'Zapisuj słowa z lekcji, filmów i zestawów — pojawią się tutaj.',
+    ru: 'Сохраняйте слова в уроках', uk: 'Зберігайте слова в уроках', en: 'Save words in lessons', es: 'Guarda palabras en las lecciones',
+    'pt-BR': 'Salve palavras nas aulas', vi: 'Lưu từ trong bài học', id: 'Simpan kata di pelajaran',
+    tr: 'Derslerde kelime kaydet', pl: 'Zapisuj słowa w lekcjach',
   });
   const action = triLang(lang, {
-    ru: 'Наборы сообщества', uk: 'Набори спільноти', en: 'Community packs', es: 'Packs de la comunidad',
-    'pt-BR': 'Pacotes da comunidade', vi: 'Bộ thẻ cộng đồng', id: 'Paket komunitas', tr: 'Topluluk paketleri', pl: 'Zestawy społeczności',
+    ru: 'Найти наборы', uk: 'Знайти набори', en: 'Find packs', es: 'Buscar packs',
+    'pt-BR': 'Encontrar pacotes', vi: 'Tìm bộ thẻ', id: 'Cari paket', tr: 'Paket bul', pl: 'Znajdź zestawy',
   });
-  return <View testID={searchActive ? 'fc-saved-search-empty' : 'fc-saved-empty'} style={styles.state}>
-    <View style={[styles.icon, { backgroundColor: g.card, borderColor: g.glassEdge }]}>
-      <SavedGlassSheen edge={g.glassEdge} tint={g.selected} />
-      <Ionicons name={searchActive ? 'search-outline' : 'bookmark-outline'} size={27} color={g.lightTint} />
+  if (searchActive) {
+    return <View testID="fc-saved-search-empty" style={styles.state}>
+      <View style={[styles.icon, { backgroundColor: g.card, borderColor: g.glassEdge }]}>
+        <SavedGlassSheen edge={g.glassEdge} tint={g.selected} />
+        <Ionicons name="search-outline" size={27} color={g.lightTint} />
+      </View>
+      <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
+      <Text style={[styles.detail, { color: g.secondary }]}>{detail}</Text>
+    </View>;
+  }
+  return <View ref={holder} onLayout={measure} testID="fc-saved-empty" pointerEvents="box-none" style={StyleSheet.absoluteFill}>
+    <View pointerEvents="box-none" style={[styles.emptyBlock, { top: Math.round(height / 2 - 0.46 * EMPTY_BLOCK_H - (pageTop ?? 0)), opacity: pageTop === null ? 0 : 1 }]}>
+      <View style={styles.emptyTile}>
+        <Ionicons name="bookmark" size={28} color="#E9E9EB" />
+      </View>
+      <Text accessibilityRole="header" style={[styles.emptyTitle, { color: g.text }]}>{title}</Text>
+      <Text style={[styles.emptyDetail, { color: g.secondary }]}>{detail}</Text>
+      <Pressable testID="fc-saved-find-packs" accessibilityRole="button" accessibilityLabel={action} onPress={onCommunity}
+        style={({ pressed }) => [
+          styles.emptyCta,
+          { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -12, color: `${g.accent}B3` }] },
+          pressed && styles.pressed,
+        ]}>
+        <Text style={[styles.emptyCtaText, { color: g.accentInk }]}>{action}</Text>
+        <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 24, boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,0.7)' }] }]} />
+      </Pressable>
     </View>
-    <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
-    <Text style={[styles.detail, { color: g.secondary }]}>{detail}</Text>
-    {!searchActive ? <Pressable accessibilityRole="button" accessibilityLabel={action} onPress={onCommunity}
-      style={({ pressed }) => [styles.action, { backgroundColor: g.accent }, pressed && styles.pressed]}>
-      <Text style={[styles.actionText, { color: g.accentInk }]}>{action}</Text>
-    </Pressable> : null}
   </View>;
 }
 
@@ -128,4 +155,10 @@ const styles = StyleSheet.create({
   action: { minHeight: 46, borderRadius: 14, paddingHorizontal: 22, alignItems: 'center', justifyContent: 'center', marginTop: 22 },
   actionText: { fontSize: 16, fontWeight: '700' },
   pressed: { opacity: 0.82 },
+  emptyBlock: { position: 'absolute', left: 0, right: 0, alignItems: 'center', paddingHorizontal: 40 },
+  emptyTile: { width: 61, height: 61, borderRadius: 16, backgroundColor: '#28282A', alignItems: 'center', justifyContent: 'center' },
+  emptyTitle: { fontSize: 24, lineHeight: 30, fontWeight: '700', letterSpacing: -0.2, textAlign: 'center', marginTop: 22 },
+  emptyDetail: { fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 8 },
+  emptyCta: { height: 48, borderRadius: 24, paddingHorizontal: 28, alignItems: 'center', justifyContent: 'center', marginTop: 26 },
+  emptyCtaText: { fontSize: 17, fontWeight: '700' },
 });

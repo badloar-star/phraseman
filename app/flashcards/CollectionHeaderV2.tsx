@@ -114,12 +114,14 @@ export function useCollectionLimitLabel(): string | null {
 }
 
 /** Заголовок, число карточек и поиск-капсула. */
-export const CollectionTitleBlock = memo(function CollectionTitleBlock({ lang, title, cardCount, big = true, showSearch, searchInput, onSearchInput }: Readonly<{
+export const CollectionTitleBlock = memo(function CollectionTitleBlock({ lang, title, cardCount, big = true, titleOnly = false, showSearch, searchInput, onSearchInput }: Readonly<{
   lang: Lang;
   title: string;
   cardCount: number;
   /** 40/46 у «Сохранённых», 34/40 у набора. */
   big?: boolean;
+  /** Кадр «Пусто»: только заголовок, без числа и поиска. */
+  titleOnly?: boolean;
   showSearch: boolean;
   searchInput: string;
   onSearchInput: (value: string) => void;
@@ -130,8 +132,8 @@ export const CollectionTitleBlock = memo(function CollectionTitleBlock({ lang, t
   return (
     <View>
       <Text testID="fc-collection-title" accessibilityRole="header" style={[big ? styles.titleBig : styles.title, { color: g.text }]}>{title}</Text>
-      <Text style={[styles.subtitle, { color: g.secondary }]}>{`${cardCount} ${pluralWord(lang, cardCount, copy.cards)}`}</Text>
-      {showSearch ? (
+      {titleOnly ? null : <Text style={[styles.subtitle, { color: g.secondary }]}>{`${cardCount} ${pluralWord(lang, cardCount, copy.cards)}`}</Text>}
+      {showSearch && !titleOnly ? (
         <View style={styles.search}>
           <Ionicons name="search" size={18} color="#6E6E72" />
           <TextInput

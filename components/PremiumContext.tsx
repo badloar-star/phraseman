@@ -228,6 +228,19 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   const runReload = useCallback(async () => {
     const reloadEpoch = premiumReloadEpochRef.current;
     const isReloadCurrent = () => premiumReloadEpochRef.current === reloadEpoch;
+    // зачем (Блиц 04.10: accessResolved ~94 с на эмуляторе): по логам не было видно, КАКОЙ шаг расчёта
+    // доступа ждёт минуты. Трасса шагов с длительностью — одна строка на расчёт, плюс причина раннего выхода.
+    const traceStartedAt = Date.now();
+    let traceAt = traceStartedAt;
+    const traceSteps: Record<string, number> = {};
+    const traceStep = (name: string): void => {
+      const now = Date.now();
+      traceSteps[name] = now - traceAt;
+      traceAt = now;
+    };
+    const traceExit = (reason: string): void => {
+      console.warn('[PREMIUM-RESOLVE] reload:exit', JSON.stringify({ reason, epoch: reloadEpoch, currentEpoch: premiumReloadEpochRef.current, totalMs: Date.now() - traceStartedAt, steps: traceSteps }));
+    };
     if (premiumIdentityRequiredRef.current) {
       // зачем (2026-08-25, «карточка виснет на скелетоне»): раньше неудачный
       // identity sync (сеть/сторовые причуды на TestFlight) обрывал ВЕСЬ
@@ -237,9 +250,10 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       // локальный кэш/Firestore и в свежем identity sync не нуждаются —
       // поэтому при неудаче просто продолжаем расчёт как обычно; флаг
       // остаётся true и sync попробуется снова на следующем reload().
-      if (!isReloadCurrent()) return;
+      if (!isReloadCurrent()) { traceExit('stale_before_identity'); return; }
       const identityReady = await syncRevenueCatIdentity(isReloadCurrent).catch(noteSwallowedAs('PremiumContext:promise_1', false));
-      if (!isReloadCurrent()) return;
+      traceStep(`identity_sync:${String(identityReady)}`);
+      if (!isReloadCurrent()) { traceExit('stale_after_identity'); return; }
       if (identityReady) premiumIdentityRequiredRef.current = false;
     }
     const devAccountGeneration = captureAccountGeneration();
@@ -249,10 +263,11 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     const devOverride = devStableId
       ? await readDevLocalPlusOverride(devStableId).catch(noteSwallowedAs('PremiumContext:promise_2', 'inherit' as const))
       : 'inherit';
+    traceStep('dev_override');
     if (
       !isReloadCurrent()
       || (devStableId && !isCurrentAccountGeneration(devAccountGeneration, devStableId))
-    ) return;
+    ) { traceExit(!isReloadCurrent() ? 'stale_after_dev_override' : 'account_generation_changed'); return; }
     setDevLocalPlusOverrideState(devOverride);
     // FORCE_PREMIUM раздаёт Premium в dev, НО тестерский «Снять премиум»
     // (tester_no_premium) должен побеждать — иначе не проверить не-премиум UI.
@@ -282,12 +297,14 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       getVerifiedVipStatus(),
       isLifetimePlanLocal(),
     ]);
+    traceStep('verified_local');
     let verifiedAccess = realPremium || vip;
-    if (!isReloadCurrent()) return;
+    if (!isReloadCurrent()) { traceExit('stale_after_verified_local'); return; }
     if (!realPremium && !vip) {
       const accessAfterCloud = await getVerifiedPremiumAccessStatus().catch(noteSwallowedAs('PremiumContext:promise_3', false));
+      traceStep(`verified_cloud:${String(accessAfterCloud)}`);
       verifiedAccess = accessAfterCloud;
-      if (!isReloadCurrent()) return;
+      if (!isReloadCurrent()) { traceExit('stale_after_verified_cloud'); return; }
       if (accessAfterCloud) {
         [realPremium, vip, lifetimePlan] = await Promise.all([
           getVerifiedRealPremiumStatus().catch(noteSwallowedAs('PremiumContext:promise_4', false)),
@@ -300,14 +317,16 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     // Тестер «Снять премиум» гасит и intro-доступ (3 дня) — иначе он
     // переживал бы снятие и hasPremiumAccess оставался true.
     const testerFlags = await readTesterFlags(); // зачем: [COLD-START-IO] — одно чтение флагов на всех
-    if (!isReloadCurrent()) return;
+    traceStep('tester_flags');
+    if (!isReloadCurrent()) { traceExit('stale_after_tester_flags'); return; }
     const noPremiumTester = resolveTesterNoPremiumOverride(testerFlags.noPremium);
     const noLimitsRaw = testerFlags.noLimits;
     const testerNoLimits = !noPremiumTester && noLimitsRaw === 'true' && !IS_STORE_RELEASE;
     const introState = noPremiumTester
       ? { active: false, endsAt: null }
       : await getIntroFullAccessState();
-    if (!isReloadCurrent()) return;
+    traceStep('intro_state');
+    if (!isReloadCurrent()) { traceExit('stale_after_intro'); return; }
     const effectivePremium = !noPremiumTester && (realPremium || testerNoLimits);
     const effectiveVip = !noPremiumTester && vip;
     // зачем: владелец (2026-08-03) — Pro даёт и безденежный пожизненный доступ
@@ -339,6 +358,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       void reloadTrialEligible(isReloadCurrent);
     }
     resolvedReloadEpochRef.current = reloadEpoch;
+    console.warn('[PREMIUM-RESOLVE] reload:done', JSON.stringify({ epoch: reloadEpoch, totalMs: Date.now() - traceStartedAt, steps: traceSteps, access: projectedEntitlement.hasPremiumAccess }));
   }, [reloadTrialEligible]);
   const reload = useCallback(async () => {
     const requestedEpoch = premiumReloadEpochRef.current;
@@ -352,6 +372,10 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       // local cache and the cloud-backed fallback at least once. Direct-entry
       // premium screens use this to avoid a first-frame paywall redirect.
       setAccessResolved(true);
+    } else {
+      // зачем: новая эпоха (снимок хранилища/смена аккаунта) прошла поверх — резолв не выставлен. Если так
+      // повторяется много раз подряд, это и держит экраны на каркасе минутами.
+      console.warn('[PREMIUM-RESOLVE] reload:not_resolved', JSON.stringify({ requestedEpoch, currentEpoch: premiumReloadEpochRef.current, resolvedEpoch: resolvedReloadEpochRef.current }));
     }
   }, [runReload]);
 

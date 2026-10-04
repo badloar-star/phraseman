@@ -127,6 +127,16 @@ type ResultState = {
   summary: SessionOutcomeSummary;
 };
 
+/** Кадр после отрисовки: в RN — requestAnimationFrame; в среде без него (тесты) — следующий тик. */
+function scheduleAfterPaint(callback: () => void): number {
+  if (typeof requestAnimationFrame === 'function') return requestAnimationFrame(callback);
+  return setTimeout(callback, 0) as unknown as number;
+}
+function cancelAfterPaint(handle: number): void {
+  if (typeof cancelAnimationFrame === 'function') cancelAnimationFrame(handle);
+  else clearTimeout(handle as unknown as ReturnType<typeof setTimeout>);
+}
+
 // Fisher-Yates: единое перемешивание карточек.
 function shuffleArr<T>(a: readonly T[]): T[] {
   const r = [...a];
@@ -239,6 +249,12 @@ export default function FlashcardsBlitzSession() {
   );
   const [energyGate, setEnergyGate] = useState<'checking' | 'ok' | 'denied'>('checking');
   const [quotaUnavailable, setQuotaUnavailable] = useState(false);
+  const quotaUnavailableRef = useRef(false);
+  quotaUnavailableRef.current = quotaUnavailable;
+  // зачем (сверка 04.10 16:50, «ошибка на экране, а энергия списана»): стартовый запуск, который ещё идёт.
+  // «Попробовать снова» при живом запуске присоединяется к нему, а не стартует второй prepare с тем же
+  // receiptId (это давало reused-запись, гонку discard и второе списание).
+  const blitzRunInFlightRef = useRef<object | null>(null);
   const blitzChargedRoundRef = useRef<number | null>(null);
   // зачем (баг «Блиц висит на каркасе», 03.10): актуальность стартового запуска — по токену, а не по
   // флагу cleanup. Смена любой зависимости эффекта в полёте (доступ, премиум, токен аккаунта, безлимит)
@@ -451,6 +467,7 @@ export default function FlashcardsBlitzSession() {
     const accessEpoch = blitzAccessEpochRef.current;
     const runToken = {};
     blitzStartRunRef.current = runToken;
+    blitzRunInFlightRef.current = runToken;
     const startedAt = Date.now();
     const gateLog = (step: string, extra: Record<string, unknown> = {}) => {
       blitzGateStepRef.current = step;
@@ -647,6 +664,11 @@ export default function FlashcardsBlitzSession() {
       };
       blitzPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
       setPool(restored.pool);
+      if (quotaUnavailableRef.current) {
+        // зачем: сторож показал «Попробовать снова», но запуск дошёл — показываем раунд, за который заплачено.
+        gateLog('ok:after_retry_screen', { hideRetry: true });
+        setQuotaUnavailable(false);
+      }
       gateLog('ok', { pool: restored.pool.length });
       setEnergyGate('ok');
     })().catch(async (error) => {
@@ -696,12 +718,19 @@ export default function FlashcardsBlitzSession() {
         blitzSpentOperationRef.current = null;
         console.warn('[FC-TRAIN-ENTRY] blitz entry:fail-open — грант недоступен, раунд стартует локально без чека и без списания энергии', JSON.stringify({ reason: message, poolSize: pool.length }));
         setPool(pool);
+        if (quotaUnavailableRef.current) {
+          gateLog('ok:after_retry_screen', { hideRetry: true, failOpen: true });
+          setQuotaUnavailable(false);
+        }
         gateLog('ok:fail_open', { reason: message });
         setEnergyGate('ok');
         return;
       }
       gateLog('exit:unavailable', { reason: message });
       setQuotaUnavailable(true);
+    }).finally(() => {
+      if (blitzRunInFlightRef.current === runToken) blitzRunInFlightRef.current = null;
+      console.log('[FC-BLITZ-GATE] run:settled', JSON.stringify({ round: roundId, ms: Date.now() - startedAt, step: blitzGateStepRef.current }));
     });
     // зачем (баг 03.10): cleanup больше НЕ отменяет запуск — латч всё равно не дал бы перезапуску пройти,
     // и экран остался бы на каркасе. Устаревание определяет isStaleRun (новый запуск / размонтирование / уход).
@@ -746,6 +775,18 @@ export default function FlashcardsBlitzSession() {
   }, [blitzAccessGranted, energyGate, loading, pool.length, quotaUnavailable, roundId]);
 
   const retryQuotaStart = useCallback(() => {
+    // зачем (сверка 04.10): прежний итог (раунд, отыгравший за экраном ошибки) не должен всплыть после повтора.
+    setResult(null);
+    const inFlight = blitzRunInFlightRef.current;
+    if (inFlight && blitzStartRunRef.current === inFlight && !loading) {
+      // Запуск ещё идёт — второй не стартуем (тот же receiptId → reused/гонка/второе списание).
+      // Ждём его исход: ok снимет экран сам, отказ вернёт «Попробовать снова».
+      console.warn('[FC-BLITZ-GATE] retry:attach_in_flight', JSON.stringify({ round: roundId, step: blitzGateStepRef.current }));
+      blitzGateStepAtRef.current = Date.now();
+      setQuotaUnavailable(false);
+      return;
+    }
+    console.warn('[FC-BLITZ-GATE] retry:new_run', JSON.stringify({ round: roundId, inFlight: Boolean(inFlight), loading }));
     blitzChargedRoundRef.current = null;
     setQuotaUnavailable(false);
     setEnergyGate('checking');
@@ -760,6 +801,11 @@ export default function FlashcardsBlitzSession() {
   // ── Старт/рестарт раунда: перемешка, таймер-полоса, первый вопрос ─────────
   useEffect(() => {
     if (!blitzAccessGranted || loading || !canStartBlitz(pool.length) || energyGate !== 'ok') return;
+    if (quotaUnavailable) {
+      // зачем (сверка 04.10): раунд за экраном ошибки отыгрывал 60 с невидимо и оставлял итог 0/0.
+      console.warn('[FC-BLITZ-GATE] round:held_behind_retry_screen', JSON.stringify({ round: roundId }));
+      return;
+    }
     finishingRef.current = false;
     eventsRef.current = [];
     const durableManifest = blitzPlayableManifestRef.current;
@@ -775,12 +821,22 @@ export default function FlashcardsBlitzSession() {
     setLocked(false);
     setTimeLeft(BLITZ_DURATION_SEC);
     setQuestion(durableManifest?.initialQuestion ?? buildBlitzQuestion(queueRef.current[0]!, pool));
-    shownAtRef.current = Date.now();
-    endAtRef.current = Date.now() + BLITZ_DURATION_SEC * 1000;
+    // зачем (сверка 04.10, «таймер 0:42 при появлении»): отсчёт идёт с ПЕРВОГО кадра с вопросом, не раньше.
+    const roundStartedAt = Date.now();
+    shownAtRef.current = roundStartedAt;
+    endAtRef.current = roundStartedAt + BLITZ_DURATION_SEC * 1000;
     progress.value = 1;
-    progress.value = withTiming(0, {
-      duration: BLITZ_DURATION_SEC * 1000,
-      easing: Easing.linear,
+    let firstFrame: ReturnType<typeof scheduleAfterPaint> | null = scheduleAfterPaint(() => {
+      firstFrame = null;
+      const paintedAt = Date.now();
+      shownAtRef.current = paintedAt;
+      endAtRef.current = paintedAt + BLITZ_DURATION_SEC * 1000;
+      console.log('[FC-BLITZ-GATE] round:timer_start', JSON.stringify({ round: roundId, afterPaintMs: paintedAt - roundStartedAt }));
+      progress.value = withTiming(0, {
+        duration: BLITZ_DURATION_SEC * 1000,
+        easing: Easing.linear,
+      });
+      startRoundTicker();
     });
 
     /**
@@ -791,12 +847,14 @@ export default function FlashcardsBlitzSession() {
      * в секунду, и на слабом Android это читалось как дрожание.
      * Полоса таймера не затронута — она и так едет на UI-потоке (progress).
      */
-    intervalRef.current = setInterval(() => {
-      const rem = endAtRef.current - Date.now();
-      const sec = Math.max(0, Math.ceil(rem / 1000));
-      setTimeLeft((cur) => (cur === sec ? cur : sec));
-      if (rem <= 0) finish();
-    }, 200);
+    function startRoundTicker(): void {
+      intervalRef.current = setInterval(() => {
+        const rem = endAtRef.current - Date.now();
+        const sec = Math.max(0, Math.ceil(rem / 1000));
+        setTimeLeft((cur) => (cur === sec ? cur : sec));
+        if (rem <= 0) finish();
+      }, 200);
+    }
 
     const pending = blitzPendingGrantRef.current;
     // зачем (Блиц «28 из 30», 04.10): неочищенная запись наследуется следующим раундом — исход очистки пишется
@@ -825,12 +883,13 @@ export default function FlashcardsBlitzSession() {
     }
 
     return () => {
+      if (firstFrame != null) cancelAfterPaint(firstFrame);
       clearRoundTimers();
       cancelAnimation(progress);
     };
-    // Рестарт — только по roundId / новой загрузке пула / решению по энергии
+    // Рестарт — только по roundId / новой загрузке пула / решению по энергии / снятию экрана ошибки
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [acknowledgeSessionStart, blitzAccessGranted, loading, pool, roundId, energyGate]);
+  }, [acknowledgeSessionStart, blitzAccessGranted, loading, pool, roundId, energyGate, quotaUnavailable]);
 
   // ── Следующий вопрос (пул зациклен — 60с может пережить весь список) ─────
   const nextQuestion = useCallback(() => {

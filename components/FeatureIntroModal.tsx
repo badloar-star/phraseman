@@ -195,11 +195,11 @@ function FeatureIntroModal({
         {family ? <FeatureIntroStage family={family} art={art} /> : <View style={styles.iconRow}><IconStage icon={icon} /></View>}
 
       <CascadeItem index={1}>
-        <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: family ? f.h1 * 1.3 : f.h3, lineHeight: (family ? f.h1 * 1.3 : f.h3) * 1.2 }]}>{title}</Text>
+        <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: family ? f.h1 * 1.3 : 25, lineHeight: family ? f.h1 * 1.3 * 1.2 : 31 }]}>{title}</Text>
       </CascadeItem>
 
       <CascadeItem index={2}>
-        <Text style={[styles.body, { color: glass.secondary, fontSize: f.body, lineHeight: f.body * 1.5 }]}>{body}</Text>
+        <Text style={[styles.body, { color: glass.secondary, fontSize: 16, lineHeight: 22 }]}>{body}</Text>
       </CascadeItem>
       </ScrollView>
 
@@ -210,19 +210,20 @@ function FeatureIntroModal({
           onPress={() => requestAction(onDone, requestDismiss)}
           edgeColor={glass.glassEdge}
           edgeHeight={4}
-          style={[styles.primaryFace, { backgroundColor: glass.accent, borderRadius: family === 'orbit' ? 30 : 18 }]}
+          style={[styles.primaryFace, { backgroundColor: glass.accent }]}
         >
-          <Text style={[styles.primaryText, { color: glass.accentInk, fontSize: f.bodyLg }]}>{ctaLabel}</Text>
+          <Text style={[styles.primaryText, { color: glass.accentInk, fontSize: 16 }]}>{ctaLabel}</Text>
         </DuoPressable>
         {!hideSecondary ? <PressableHybrid
           variant="secondary"
           onPress={() => requestAction(onSecondary ?? onLater, requestDismiss)}
           style={styles.secondaryBtn}
-          contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
+          // зачем (overlays.html `.cta.gh`): «Позже» — капсула 48 на всю ширину с тонким светлым контуром, а не текст.
+          contentStyle={[styles.secondaryFace, { borderColor: glass.text.length === 7 ? `${glass.text}4D` : glass.glassEdge }]}
         >
           <Text
             testID={`${testIdPrefix}-later`}
-            style={[styles.secondaryText, { color: glass.secondary, fontSize: f.body }]}
+            style={[styles.secondaryText, { color: glass.text, fontSize: 16 }]}
           >
             {secondaryLabel ?? laterLabel}
           </Text>
@@ -262,9 +263,10 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     backgroundColor: 'rgba(255,255,255,0.2)',
   },
+  // зачем (overlay.css `.ov-title` 25/31 760, `.ov-body` 15/22 → 16 по D145, кнопка на 20 ниже текста).
   title: {
     marginTop: 14,
-    fontWeight: '700',
+    fontWeight: '800',
     lineHeight: 28,
     textAlign: 'center',
     marginBottom: 10,
@@ -273,14 +275,15 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     fontWeight: '400',
     textAlign: 'center',
-    marginBottom: 22,
+    marginBottom: 20,
   },
   footer: {
     gap: 10,
   },
+  // `.cta`: пилюля 48, радиус 24, 16/700.
   primaryFace: {
-    minHeight: 56,
-    borderRadius: 18,
+    minHeight: 48,
+    borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 18,
@@ -292,6 +295,12 @@ const styles = StyleSheet.create({
   },
   secondaryBtn: {
     minHeight: 48,
+    alignSelf: 'stretch',
+  },
+  secondaryFace: {
+    minHeight: 48,
+    borderRadius: 24,
+    borderWidth: 1, // guard-ok: `.cta.gh` — 1px полупрозрачный контур капсулы
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -2,9 +2,10 @@ import fs from 'fs';
 import path from 'path';
 
 const ROOT = path.join(__dirname, '..');
+// 04.10: список тем — ровно союз ThemeMode (constants/theme.ts). minimalDark/business/businessLight
+// удалены из приложения раньше; сторож держал старый набор и падал на каждом прогоне.
 const THEME_MODES = [
-  'dark', 'gold', 'minimalDark', 'business',
-  'businessLight', 'sagePorcelain', 'midnight', 'ember', 'aurora', 'volt',
+  'dark', 'gold', 'olive', 'midnight', 'ember', 'aurora', 'volt', 'indigo', 'sagePorcelain',
 ];
 
 describe('statistics tonal hierarchy contract', () => {
@@ -28,10 +29,11 @@ describe('statistics tonal hierarchy contract', () => {
     const accentsStart = chrome.indexOf('const STATS_CHROME_ACCENT_BY_THEME');
     const accentsEnd = chrome.indexOf('};', accentsStart) + 2;
 
-    expect(chrome.slice(pageFieldStart, pageFieldEnd)).toContain("sagePorcelain: '#F0F1EC'");
+    // Кавычки в исходнике — двойные (форматтер); проверяем значение, а не стиль кавычек.
+    expect(chrome.slice(pageFieldStart, pageFieldEnd)).toMatch(/sagePorcelain:\s*['"]#F0F1EC['"]/);
     expect(chrome.slice(accentsStart, accentsEnd)).toContain('sagePorcelain: SAGE_PORCELAIN.accent');
     expect(chrome).toContain('SAGE_PORCELAIN');
-    expect(chrome).toContain("const alpha = strength === 'strong' ? '2E' : strength === 'quiet' ? '14' : '22'");
+    expect(chrome).toMatch(/const alpha =\s*strength === ['"]strong['"] \? ['"]2E['"] : strength === ['"]quiet['"] \? ['"]14['"] : ['"]22['"]/);
   });
 
   it('applies the stats-only page field to the safe area and opts cards into the lighter stats scrim', () => {
@@ -63,7 +65,10 @@ describe('statistics tonal hierarchy contract', () => {
     expect(screen).not.toContain('<BlurView');
     expect(lifetimeTotals).toContain('scrim="stats"');
     expect(lifetimeTotals).not.toContain('scrim="strong"');
-    expect(screen).toContain("scrim={freezeActive ? 'strong' : 'stats'}");
+    // 04.10 (results.html «Серия и результаты», решение (б)): серия — герой по центру без карточки-подложки,
+    // поэтому усиленной подложки при заморозке больше нет.
+    expect(screen).toContain('testID="stats-streak-hero"');
+    expect(screen).not.toContain("scrim={freezeActive ? 'strong' : 'stats'}");
     expect(screen).toContain('<ActivityHeatmap365/>');
     expect(heatmap).not.toContain('StatsCardArtSurface');
     expect(heatmap).not.toContain('scrim?: StatsCardArtScrim');
@@ -83,7 +88,8 @@ describe('statistics tonal hierarchy contract', () => {
     for (const tone of ['streak', 'multipliers', 'practiceBalance', 'weekRhythm', 'percentiles', 'archiveMap', 'wager']) {
       expect(cardSurface).toContain(`case '${tone}':`);
     }
-    expect(cardSurface).toContain('colors={semanticTonalGradient(name, theme, isGoldTheme)}');
+    // Градиент учитывает тему (themeMode) — подпись функции расширена.
+    expect(cardSurface).toContain('colors={semanticTonalGradient(name, theme, isGoldTheme, resolvedThemeMode)}');
     expect(cardSurface).toContain('opacity: semanticTonalOpacity(theme, isGoldTheme, scrim)');
     expect(cardSurface).not.toContain('BlurView');
     expect(cardSurface).not.toContain('backdropFilter');

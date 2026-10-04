@@ -3,7 +3,7 @@ import path from 'path';
 
 const ROOT = path.join(__dirname, '..');
 const statsSource = fs.readFileSync(path.join(ROOT, 'app', 'streak_stats.tsx'), 'utf8');
-const xpSummarySource = fs.readFileSync(path.join(ROOT, 'components', 'StatsXpProgressSummary.tsx'), 'utf8');
+// 04.10: опыт удалён (D02) — StatsXpProgressSummary стёрт в снимке 2.0 (efe19ae9d), сторож его больше не читает.
 const metricPath = path.join(ROOT, 'app', 'stats_primary_metric.ts');
 const metricSource = fs.existsSync(metricPath) ? fs.readFileSync(metricPath, 'utf8') : '';
 const keySource = fs.readFileSync(path.join(ROOT, 'app', 'target_storage_keys.ts'), 'utf8');
@@ -14,7 +14,7 @@ const activeSurface = statsSource.slice(activeStart, activeEnd);
 describe('selected statistics design contract', () => {
   it('keeps one persisted primary visual with exactly the approved metric choices', () => {
     expect(metricSource).toContain(
-      "STATS_PRIMARY_METRICS = ['xp', 'time', 'year']",
+      "STATS_PRIMARY_METRICS = ['time', 'year']",
     );
     expect(keySource).toContain('statsPrimaryMetricKey');
     expect(statsSource).toContain('testID="stats-primary-metric-selector"');
@@ -32,9 +32,8 @@ describe('selected statistics design contract', () => {
   });
 
   it('keeps approved functions behind concise progressive disclosure', () => {
-    expect(statsSource).toContain('StatsXpProgressSummary');
-    expect(statsSource).toContain('totalXP={totalXP}');
-    expect(xpSummarySource).toContain('testID="stats-xp-progress-expand"');
+    expect(statsSource).not.toContain('StatsXpProgressSummary');
+    expect(statsSource).not.toContain('totalXP={totalXP}');
     expect(statsSource).toContain('testID="stats-recent-achievements"');
     expect(statsSource).toContain("router.push('/achievements_screen'");
     expect(statsSource).not.toContain('testID="stats-today-benefits"');
@@ -49,9 +48,11 @@ describe('selected statistics design contract', () => {
     expect(activeSurface).not.toContain('<PlusBadge');
   });
 
-  it('keeps the 365-day label while retaining its persisted key', () => {
-    expect(statsSource).toContain("year: { ru: '365 дней'");
-    expect(statsSource).toContain("ru: 'Последние 365 дней'");
+  // 04.10: вкладка называется «Год» с редизайна экрана 18.07 (c376a329e, сегмент «Время / Год» как в макете);
+  // ключ хранения прежний — 'year'.
+  it('labels the year tab «Год» while retaining its persisted key', () => {
+    expect(statsSource).toContain("year: { ru: 'Год'");
+    expect(statsSource).toContain("const WEEK_SEGMENT_METRICS: readonly StatsPrimaryMetric[] = ['time', 'year'];");
   });
 
   it('uses a compact padded time label for hour-and-minute totals', () => {

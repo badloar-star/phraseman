@@ -16,8 +16,9 @@ function block(text: string, start: string, end: string): string {
 }
 
 describe('статистика обычного аккаунта — свободное сверху, замки целиком снизу', () => {
-  test('порядок: уровень/опыт → последние достижения → аналитика', () => {
-    const xp = activeSurface.indexOf('<XpLevelCard');
+  // 04.10: опыт и уровень удалены (D02) — сверху теперь свободный герой серии (results.html, решение (б)).
+  test('порядок: серия → последние достижения → аналитика', () => {
+    const xp = activeSurface.indexOf('<StreakHeroCard');
     const achievements = activeSurface.indexOf('<RecentAchievementsCard');
     const locked = activeSurface.indexOf('testID="stats-free-locked-analytics"');
     const plusBranch = activeSurface.indexOf('{weekAnalyticsBlock}');

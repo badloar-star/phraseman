@@ -24,7 +24,11 @@ describe('stats premium lock veil performance contract', () => {
     expect(streakStats).toContain('snapshotKey="learningCoach"');
     // «Ритм недели» слит в «Твою неделю» (learningCoach) — отдельного weekRhythm-блюра больше нет.
     expect(streakStats).not.toContain('snapshotKey="weekRhythm"');
-    expect(streakStats).toContain('snapshotKey="heatmap"');
+    // 04.10: годовая карта — вкладка «365 дней» внутри «Вашей недели» (WeekAnalyticsCard) и закрыта тем же
+    // замком learningCoach; отдельного heatmap-замка нет с переделки экрана.
+    expect(streakStats).not.toContain('snapshotKey="heatmap"');
+    const week = streakStats.slice(streakStats.indexOf('function WeekAnalyticsCard'), streakStats.indexOf('function AllMetricsFoldCard'));
+    expect(week.indexOf('snapshotKey="learningCoach"')).toBeLessThan(week.indexOf('<ActivityHeatmap365/>'));
     expect(source).not.toContain('StatsPremiumObscuredContext');
     expect(streakStats).not.toContain('SKELETON_XP');
     expect(heatmap).not.toContain('SKELETON_ACTIVITY_DAYS');

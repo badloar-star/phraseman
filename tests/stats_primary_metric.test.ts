@@ -6,19 +6,21 @@ import {
 } from '../app/stats_primary_metric';
 
 describe('statistics primary metric preference', () => {
-  it('keeps only XP, time, and the full year', () => {
-    expect(STATS_PRIMARY_METRICS).toEqual(['xp', 'time', 'year']);
-    expect(isStatsPrimaryMetric('xp')).toBe(true);
+  // 04.10: опыт удалён (D02) — остались время и год, всё прежнее (включая 'xp') мигрирует во время.
+  it('keeps only time and the full year', () => {
+    expect(STATS_PRIMARY_METRICS).toEqual(['time', 'year']);
+    expect(isStatsPrimaryMetric('xp')).toBe(false);
     expect(isStatsPrimaryMetric('time')).toBe(true);
     expect(isStatsPrimaryMetric('year')).toBe(true);
     expect(isStatsPrimaryMetric('activity')).toBe(false);
   });
 
-  it('migrates all removed choices to XP', () => {
-    expect(DEFAULT_STATS_PRIMARY_METRIC).toBe('xp');
-    expect(normalizeStatsPrimaryMetric('activity')).toBe('xp');
-    expect(normalizeStatsPrimaryMetric('rhythm')).toBe('xp');
-    expect(normalizeStatsPrimaryMetric('learned')).toBe('xp');
+  it('migrates all removed choices to time', () => {
+    expect(DEFAULT_STATS_PRIMARY_METRIC).toBe('time');
+    expect(normalizeStatsPrimaryMetric('xp')).toBe('time');
+    expect(normalizeStatsPrimaryMetric('activity')).toBe('time');
+    expect(normalizeStatsPrimaryMetric('rhythm')).toBe('time');
+    expect(normalizeStatsPrimaryMetric('learned')).toBe('time');
   });
 });
 

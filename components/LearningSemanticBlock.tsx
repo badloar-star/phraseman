@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import type { Theme } from '../constants/theme';
 import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import {
   semanticToneAccent,
   type SemanticExplanationBlock,
@@ -83,6 +84,64 @@ export default function LearningSemanticBlock({ block, compact, style }: Props) 
     </View>
   );
 }
+
+// зачем (redesign-round-2 «Разбор промаха» вариант A, владелец 04.10): вместо стопки цветных плиток — одна
+// спокойная карточка r12 с тонкими разделителями; заголовки «Твой выбор / Почему / Правильно» мелким капсом
+// в цвете тона, без заливок и полос; «Твой выбор» зачёркнут. Блок «Запомни» (tone memory) в макете удалён.
+export function LearningSemanticGroup({ blocks, testID }: { blocks: readonly SemanticExplanationBlock[]; testID?: string }) {
+  const { theme: t, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const rows = blocks.filter((block) => block.tone !== 'memory');
+  if (rows.length === 0) return null;
+  return (
+    <View testID={testID} style={[groupStyles.card, { backgroundColor: glass.opaqueControl }]}>
+      {rows.map((block, index) => {
+        const accent = semanticBlockColor(t, block.tone);
+        return (
+          <React.Fragment key={`${block.tone}-${index}`}>
+            {index > 0 ? <View style={[groupStyles.divider, { backgroundColor: glass.line }]} /> : null}
+            <View testID={`semantic-explanation-block-${block.tone}`} style={groupStyles.row}>
+              <View style={groupStyles.head}>
+                <Ionicons name={GROUP_ICON[block.tone]} size={15} color={accent} />
+                <Text style={[groupStyles.title, { color: accent }]}>{block.title}</Text>
+              </View>
+              <Text
+                style={[
+                  groupStyles.text,
+                  {
+                    color: block.tone === 'wrong' ? glass.secondary : glass.text,
+                    fontWeight: block.emphasizeText || block.tone !== 'insight' ? '800' : '500',
+                    textDecorationLine: block.tone === 'wrong' ? 'line-through' : 'none',
+                  },
+                ]}
+              >
+                {block.text}
+              </Text>
+            </View>
+          </React.Fragment>
+        );
+      })}
+    </View>
+  );
+}
+
+const GROUP_ICON: Record<SemanticExplanationTone, React.ComponentProps<typeof Ionicons>['name']> = {
+  wrong: 'flag-outline',
+  insight: 'bulb-outline',
+  memory: 'bookmark-outline',
+  correct: 'checkmark',
+};
+
+const groupStyles = StyleSheet.create({
+  card: { alignSelf: 'stretch', borderRadius: 12, overflow: 'hidden' },
+  row: { paddingVertical: 12, paddingHorizontal: 14, gap: 5 },
+  divider: { height: StyleSheet.hairlineWidth, marginHorizontal: 14 },
+  head: { flexDirection: 'row', alignItems: 'center', gap: 7 },
+  // `12/900` капсом с разрядкой .5 — шкала D145: 13.
+  title: { flex: 1, minWidth: 0, fontSize: 13, lineHeight: 16, fontWeight: '900', letterSpacing: 0.5, textTransform: 'uppercase' },
+  // `16/23`
+  text: { fontSize: 16, lineHeight: 23 },
+});
 
 const styles = StyleSheet.create({
   card: {

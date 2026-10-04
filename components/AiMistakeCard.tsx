@@ -7,7 +7,7 @@ import { useTheme } from './ThemeContext';
 import ExplainReportButton from './ExplainReportButton';
 import AiLimitUpsellCard from './AiLimitUpsellCard';
 import { aiPersonalLimitToast } from '../app/ai_kill_switch_copy';
-import LearningSemanticBlock from './LearningSemanticBlock';
+import { LearningSemanticGroup } from './LearningSemanticBlock';
 import { buildMistakeExplanationBlocks } from '../app/explanation_presentation';
 import AiBadge from './AiBadge';
 import { FlowText } from './text-integrity/FlowText';
@@ -143,9 +143,8 @@ export default function AiMistakeCard({
         </View>
       ) : isReadyExplanation && readyBlocks.length ? (
         <View style={styles.semanticBlocks}>
-          {readyBlocks.map((block, idx) => (
-            <LearningSemanticBlock key={`${block.tone}-${idx}`} block={block} />
-          ))}
+          {/* зачем (redesign-round-2 «Разбор промаха» A): одна карточка с тремя строками вместо стопки плиток. */}
+          <LearningSemanticGroup blocks={readyBlocks} testID="ai-mistake-semantic-group" />
         </View>
       ) : state === 'limit' && limitCopy ? (
         <AiLimitUpsellCard

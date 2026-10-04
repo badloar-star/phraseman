@@ -11,6 +11,8 @@
 .hub .tt { font-size: 17px; font-weight: 700; }
 .hub .st { font-size: 14px; color: var(--sec); margin-top: 3px; }
 .hub .soon { opacity: .45; pointer-events: none; }
+.hub .rej .tt { color: #FF8A80; }
+.hub .rej { box-shadow: inset 0 0 0 1.5px rgba(198,40,40,.8); }
 </style>
 </head>
 <body>
@@ -54,10 +56,17 @@ const PAGES = [
   ['video-favorites-mockup.html', 'Видео — избранное', 'вариант A'],
   ['video-packs-from-video-mockup.html', 'Видео — наборы из видео', ''],
   ['themes.html', 'Темы — прежние', 'история'],
+  // зачем (владелец 04.10): новые концепции Главной, «Сегодня», Диалогов, Уроков, Learning и полосы звания забракованы — файлы не удаляем, помечаем
+  ['home-concepts.html', 'ЗАБРАКОВАНО владельцем 04.10 — Главная — концепции', 'не переносить в приложение; раздел остаётся на старом макете'],
+  ['today-concepts.html', 'ЗАБРАКОВАНО владельцем 04.10 — «Сегодня» — концепции', 'не переносить в приложение; раздел остаётся на старом макете'],
+  ['dialogs-concepts.html', 'ЗАБРАКОВАНО владельцем 04.10 — Диалоги — концепции', 'не переносить в приложение; раздел остаётся на старом макете'],
+  ['lessons-concepts.html', 'ЗАБРАКОВАНО владельцем 04.10 — Уроки — концепции', 'не переносить в приложение; раздел остаётся на старом макете'],
+  ['learning-b2-concepts.html', 'ЗАБРАКОВАНО владельцем 04.10 — Learning B2 — концепции', 'не переносить в приложение; раздел остаётся на старом макете'],
+  ['mistakes-shelf-proposal.html', 'ЗАБРАКОВАНО владельцем 04.10 — Мои ошибки — звание и лестница (предложение)', 'не переносить в приложение; раздел остаётся на старом макете'],
 ];
 // зачем: владелец жаловался «макеты не открываются» — ссылка ведёт только на существующие страницы
 Promise.all(PAGES.map(([h]) => fetch(h, { method: 'HEAD' }).then((r) => r.ok).catch(() => location.protocol === 'file:'))).then((ok) => {
-  document.getElementById('hub').innerHTML = PAGES.map(([h, t, s], i) => `<a href="${h}" class="card t${ok[i] ? '' : ' soon'}"><div class="grow"><div class="tt">${t}</div><div class="st">${ok[i] ? s : 'готовится'}</div></div><span style="color:var(--sec)">${K.icon('fwd', 's20')}</span></a>`).join('');
+  document.getElementById('hub').innerHTML = PAGES.map(([h, t, s], i) => `<a href="${h}" class="card t${ok[i] ? '' : ' soon'}${t.startsWith('ЗАБРАКОВАНО') ? ' rej' : ''}"><div class="grow"><div class="tt">${t}</div><div class="st">${ok[i] ? s : 'готовится'}</div></div><span style="color:var(--sec)">${K.icon('fwd', 's20')}</span></a>`).join('');
   K.init();
 });
 </script>

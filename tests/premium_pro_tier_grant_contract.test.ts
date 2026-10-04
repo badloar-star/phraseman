@@ -155,7 +155,8 @@ describe('settings copy derives the tier name instead of hardcoding Plus', () =>
     );
 
     // Тир берётся из контекста, а не из локального premium_plan.
-    expect(source).toContain("const tierName = premiumPlan === 'max_monthly' ? 'MAX' : isPro ? 'Pro' : 'Plus'");
+    // зачем (04.10): раздел MAX удалён (владелец 04.10 «вычистить весь MAX»), тир MAX больше не существует.
+    expect(source).toContain("const tierName = isPro ? 'Pro' : 'Plus'");
     expect(source).not.toContain("premiumPlan === 'lifetime' ? 'Pro' : 'Plus'");
 
     // Строки, которые владелец видел неверными, больше не зашивают слово Plus.

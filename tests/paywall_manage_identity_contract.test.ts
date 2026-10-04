@@ -78,11 +78,18 @@ describe('paywall and manage subscription account identity wiring', () => {
     const submit = manage.slice(submitStart, manage.indexOf('return (', submitStart));
     const guard = submit.indexOf('if (!isManageSubscriptionOperationCurrent(screenAccount))');
     expect(guard).toBeGreaterThan(-1);
-    expect(submit.indexOf('setShowCancelSheet(false);', guard)).toBeGreaterThan(guard);
+    // зачем (04.10): после шага «предложение остаться» шторку закрывает closeCancelSheet(), а переход в
+    // магазин — openStoreCancel(); защита от устаревшего замыкания прежняя: return до хаптика/лога/магазина.
+    expect(submit.indexOf('closeCancelSheet();', guard)).toBeGreaterThan(guard);
     expect(submit.indexOf('setCancelReason(null);', guard)).toBeGreaterThan(guard);
     expect(submit.indexOf("setCancelText('');", guard)).toBeGreaterThan(guard);
-    expect(submit.indexOf('hapticTap();')).toBeGreaterThan(submit.indexOf('return;', guard));
-    expect(submit.indexOf('logCancelSurvey(')).toBeGreaterThan(submit.indexOf('return;', guard));
-    expect(submit.indexOf('Linking.openURL(')).toBeGreaterThan(submit.indexOf('return;', guard));
+    const staleReturn = submit.indexOf('return;', guard);
+    expect(submit.indexOf('hapticTap();')).toBeGreaterThan(staleReturn);
+    expect(submit.indexOf('logCancelSurvey(')).toBeGreaterThan(staleReturn);
+    expect(submit.indexOf('openStoreCancel();')).toBeGreaterThan(staleReturn);
+    const closeHelper = manage.slice(manage.indexOf('const closeCancelSheet = useCallback'));
+    expect(closeHelper.slice(0, 200)).toContain('setShowCancelSheet(false);');
+    const storeHelper = manage.slice(manage.indexOf('const openStoreCancel = useCallback'));
+    expect(storeHelper.slice(0, 400)).toContain('Linking.openURL(');
   });
 });

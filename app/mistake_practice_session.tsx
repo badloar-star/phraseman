@@ -454,6 +454,8 @@ function MistakePracticeSessionScreen() {
   // они «уезжают» на полку в финале со штампом «Навсегда».
   const [fixedNow, setFixedNow] = useState<readonly MistakeFinaleFixed[]>([]);
   const [wrongAnswers, setWrongAnswers] = useState(0);
+  // зачем (макет «Панель», итог: «Ещё повторить N» и кнопка «Ещё N»): какие ошибки ЭТОЙ сессии получили неверный ответ (без повторов).
+  const [missedIds, setMissedIds] = useState<readonly string[]>([]);
   const [hideConfirmVisible, setHideConfirmVisible] = useState(false);
   // зачем (макет «Панель»): меню «⋯» на экране задания (скрыть ошибку, сообщить об ошибке в задании), «Почему» в «стакане»,
   // «Не могу сейчас говорить» — переход голосового задания на печать той же фразы.
@@ -762,6 +764,7 @@ function MistakePracticeSessionScreen() {
       // ошибок платится 1 ⚡ один раз при старте сессии (эффект подготовки выше).
       if (!correct) {
         setWrongAnswers((value) => value + 1);
+        setMissedIds((ids) => (ids.includes(entry.mistakeId) ? ids : [...ids, entry.mistakeId]));
       }
       const occurredAtMs = Date.now();
       const modeDefinition = MISTAKE_EXERCISE_MODE_REGISTRY[entry.exercise.mode];
@@ -1142,7 +1145,7 @@ function MistakePracticeSessionScreen() {
           lang={lang}
           answered={session?.initialCount ?? 0}
           total={session?.initialCount ?? 0}
-          wrong={wrongAnswers}
+          wrong={missedIds.length}
           runes={practiceRunes.runes}
           fixed={fixedNow}
           onDone={leavePractice}

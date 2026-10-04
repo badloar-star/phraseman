@@ -35,14 +35,33 @@ const KNOWN_DEBT: readonly string[] = [
   // (project_motion_program.md) — тот же долг центрирования без скролла
   // переехал из точки входа (теперь тонкая обёртка) в Hybrid-файл.
   'components/DialogVictoryCelebrationHybrid.tsx',
-  'components/ExplainReportButton.tsx',
-  'components/ReportErrorButton.tsx',
+  // зачем (04.10): ExplainReportButton и ReportErrorButton починены (прокрутка есть) — убраны из долга.
   'components/SpeakingPanel.tsx',
   'components/VerbLetterBank.tsx',
   'components/onboarding_aha/AhaScene.tsx',
   'components/onboarding_aha/SpeechBeat.tsx',
   'components/roulette_win_modal.tsx',
 ];
+
+/**
+ * Ложные срабатывания эвристики (разбор 04.10, каждый файл прочитан). Эвристика смотрит на файл
+ * целиком: `flex:1` и `justifyContent:'center'` у мелких контролов плюс слово-действие в пропсе или
+ * комментарии дают совпадение без полноэкранного центрированного блока. Сюда — ТОЛЬКО с причиной;
+ * настоящая ловушка (кнопка уходит за низкий экран) — баг экрана, а не запись в этот список.
+ */
+const FALSE_POSITIVES: Readonly<Record<string, string>> = {
+  'app/flashcards/CollectionHeaderV2.tsx': 'шапка: flex:1 у поля поиска, центр у круглых кнопок',
+  'app/flashcards/ExpandedCardV2.tsx': 'карточка фиксированной высоты (230) в оверлее, действия — плитки ряда',
+  'app/flashcards/FlashcardsCategoryHub.tsx': 'центр только у плиток/пилюль; «Продолжить» — текст строки',
+  'app/learning_v2_modes_showcase_run/[family].tsx': 'dev-only (редирект при !__DEV__), сцена space-between с доком',
+  'components/FeedbackRatingCard.tsx': 'встроенная карточка: центр у звёзд и кнопки, «Отправить» в комментарии',
+  'components/account/NicknameEditModal.tsx': 'панель 88% ширины, не во всю высоту; основной вид — нижняя шторка',
+  'components/dialogs/DialogHowToSaySheet.tsx': 'нижняя шторка flex-end с maxHeight 80% экрана',
+  'components/lessons/LessonsListGlassCard.tsx': 'строка списка; onDone — колбэк анимации',
+  'components/practice/PracticeStates.tsx': 'панель состояния ~250px: значок, заголовок, текст, одна кнопка',
+  'components/spire/SpireTour.tsx': 'вёрстка сверху вниз со spacer, без центрирования (зона Codex; риск переполнения отмечен)',
+  'components/v2/V2Kit.tsx': 'набор мелких примитивов без полноэкранного контейнера',
+};
 
 function walk(dir: string, out: string[] = []): string[] {
   if (!fs.existsSync(dir)) return out;
@@ -64,6 +83,7 @@ function findTrappedScreens(): string[] {
     for (const file of walk(path.join(ROOT, dir))) {
       const source = fs.readFileSync(file, 'utf8');
       const rel = path.relative(ROOT, file).split(path.sep).join('/');
+      if (FALSE_POSITIVES[rel]) continue;
       if (SCROLLERS.test(source)) continue;
       if (!ACTION.test(source)) continue;
       if (!CENTERED_FULL_HEIGHT.test(source) || !CENTERING.test(source)) continue;
@@ -101,5 +121,10 @@ describe('reachable action buttons contract', () => {
         ? 'Эти экраны уже починены — удалите их из KNOWN_DEBT, чтобы храповик не ослаб.'
         : 'ok',
     }).toEqual({ staleDebtEntries: [], hint: 'ok' });
+  });
+
+  it('список ложных срабатываний не хранит удалённые файлы', () => {
+    const missing = Object.keys(FALSE_POSITIVES).filter((file) => !fs.existsSync(path.join(ROOT, file)));
+    expect(missing).toEqual([]);
   });
 });

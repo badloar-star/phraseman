@@ -1151,6 +1151,24 @@ function MistakePracticeSessionScreen() {
     );
   }
 
+  // зачем (макет «Панель», итог: «Ещё N»; владелец 04.10): тап — сразу новая отработка ровно по ошибкам ЭТОЙ сессии с неверным ответом.
+  // Маршрут ВСЕГДА без pool (даже после «Повторить исправленные»): неверный ответ переводит ошибку в активные, с pool=corrected все id отсеялись бы.
+  // Цену списывает сам экран сессии по общим правилам (от 5 ошибок 1 ⚡, 1–4 бесплатно).
+  const startMissedAgain = () => {
+    if (missedIds.length < 1) return;
+    hapticTap();
+    trackMistakePracticeEvent('mistake_practice_setup_started', {
+      study_target: studyTarget,
+      entry_source: 'mistake_finale_more',
+      requested_length: 'all',
+      ready_count: missedIds.length,
+      session_count: missedIds.length,
+      costs_energy: mistakePracticeSessionCostsEnergy(missedIds.length),
+    });
+    markNextNavigationAsReplace();
+    router.replace({ pathname: '/mistake_practice_session', params: { mistakeIds: missedIds.join(','), length: 'all' } } as never);
+  };
+
   if (complete) {
     return (
       <MistakePracticeScreenFrame>
@@ -1159,6 +1177,7 @@ function MistakePracticeSessionScreen() {
           answered={session?.initialCount ?? 0}
           total={session?.initialCount ?? 0}
           wrong={missedIds.length}
+          onMore={missedIds.length > 0 ? startMissedAgain : undefined}
           runes={practiceRunes.runes}
           fixed={fixedNow}
           onDone={leavePractice}

@@ -11,7 +11,8 @@ import { openPremiumPaywall } from './paywall_navigation';
 import PaywallPlusScreen from '../components/paywall/PaywallPlusScreen';
 import { usePremium } from '../components/PremiumContext';
 import { dismissPaywallModal } from './navigation_back';
-import { resolvePremiumModalEntry, type CachedPaywallEntitlement } from './paywall_entry_contract';
+import { paywallEntryAccessInputs, resolvePremiumModalEntry, type CachedPaywallEntitlement } from './paywall_entry_contract';
+import { PAYWALL_ENTRY_WAIT_CEILING_MS } from './load_gate_config';
 import { getAppSnapshot } from './app_snapshot_store';
 
 /** §141: последний известный доступ из снимка профиля (тот же источник, что засевает PremiumContext). */
@@ -63,6 +64,18 @@ export default function PremiumModalDispatcher() {
   // Снимок читается один раз на открытие окна: решение «показать сразу» не должно прыгать между кадрами.
   const [cachedEntitlement] = useState(cachedEntitlementFromSnapshot);
   const cachedShowLoggedRef = useRef(false);
+  // зачем (PM-214, D158): без кэша профиля окно ждало резолва доступа без потолка — без сети пустой экран
+  // висел вечно. После PAYWALL_ENTRY_WAIT_CEILING_MS решаем по кэшу (paywallEntryAccessInputs).
+  const [waitCeilingPassed, setWaitCeilingPassed] = useState(false);
+  useEffect(() => {
+    if (accessResolved || waitCeilingPassed) return;
+    const timer = setTimeout(() => {
+      console.log('[PAYWALL] потолок ожидания доступа', JSON.stringify({ cached: cachedEntitlement, ceilingMs: PAYWALL_ENTRY_WAIT_CEILING_MS })); // guard-ok: один раз на открытие окна
+      setWaitCeilingPassed(true);
+    }, PAYWALL_ENTRY_WAIT_CEILING_MS);
+    return () => clearTimeout(timer);
+  }, [accessResolved, cachedEntitlement, waitCeilingPassed]);
+  const accessInputs = paywallEntryAccessInputs({ accessResolved, hasPremiumAccess, cachedEntitlement, waitCeilingPassed });
 
   // Готов ли корневой навигатор. При холодном старте прямо на /premium_modal (deep-link,
   // первый экран) Root Layout ещё НЕ смонтирован — навигация в этот момент бросает
@@ -79,8 +92,8 @@ export default function PremiumModalDispatcher() {
     ? null
     : resolvePremiumModalEntry({
         params,
-        accessResolved,
-        hasPremiumAccess,
+        accessResolved: accessInputs.accessResolved,
+        hasPremiumAccess: accessInputs.hasPremiumAccess,
         impressionId: paywallImpressionId,
         cachedEntitlement,
       });

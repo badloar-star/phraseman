@@ -22,6 +22,13 @@ export const AI_EXPLAIN_AUTO_RETRIES = 2;
 export const AI_EXPLAIN_RETRY_PAUSE_MS = 2000;
 
 /** Пауза перед следующим повтором после `failedAttempts` неудач подряд; null — повторы исчерпаны. */
+/**
+ * зачем (PM-214, 04.10): окно Plus без кэша профиля (первый запуск) ждало резолва доступа без потолка —
+ * без сети пустая подложка висела вечно (нарушение D158). Ждём не дольше этого и решаем по кэшу.
+ * Коротко, потому что это первый кадр окна, а покупку всё равно сверяет магазин.
+ */
+export const PAYWALL_ENTRY_WAIT_CEILING_MS = 1_500;
+
 export function loadGateBackoffMs(failedAttempts: number): number | null {
   if (!Number.isFinite(failedAttempts) || failedAttempts < 1 || failedAttempts > LOAD_GATE_ATTEMPTS) return null;
   return LOAD_GATE_BACKOFF_MS[failedAttempts - 1] ?? null;

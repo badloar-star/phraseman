@@ -223,6 +223,23 @@ export type CachedPaywallEntitlement = 'free' | 'premium' | 'unknown';
  * Plus/неизвестно — прежнее ожидание: платному окно покупки не мелькает. Если живой статус окажется
  * Plus, сработает обычный dismiss.
  */
+/**
+ * PM-214 (04.10): входные данные резолвера окна Plus с учётом потолка ожидания.
+ * До потолка — как было (ждём резолв, если кэш не «free»). После потолка без резолва:
+ * кэш «premium» → считаем доступ есть (окно закроется); кэш «unknown» → считаем, что нет (окно покажется).
+ * Поздний резолв возвращает живые значения — подписчика окно закроет прежний путь «dismiss».
+ */
+export function paywallEntryAccessInputs(input: Readonly<{
+  accessResolved: boolean;
+  hasPremiumAccess: boolean;
+  cachedEntitlement: CachedPaywallEntitlement;
+  waitCeilingPassed: boolean;
+}>): Readonly<{ accessResolved: boolean; hasPremiumAccess: boolean; source: 'live' | 'wait' | 'ceiling_cache' }> {
+  if (input.accessResolved) return { accessResolved: true, hasPremiumAccess: input.hasPremiumAccess, source: 'live' };
+  if (!input.waitCeilingPassed) return { accessResolved: false, hasPremiumAccess: input.hasPremiumAccess, source: 'wait' };
+  return { accessResolved: true, hasPremiumAccess: input.cachedEntitlement === 'premium', source: 'ceiling_cache' };
+}
+
 export function resolvePremiumModalEntry(input: Readonly<{
   params: RawPaywallEntryParams;
   accessResolved: boolean;

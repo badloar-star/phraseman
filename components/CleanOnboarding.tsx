@@ -1,10 +1,10 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { isAccountDeleteIdentityQuarantinedFromKnownState } from '../app/account_delete_quarantine';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import ThemedConfirmModal from './ThemedConfirmModal';
 import {
   ActivityIndicator,
   AccessibilityInfo,
+  Alert,
   Animated,
   AppState,
   Easing,
@@ -333,17 +333,13 @@ function firstNameOf(displayName: string | null | undefined): string | null {
  *
  * Возвращает true, если удаление отменено и вход можно повторить.
  */
-/** Вопрос «да/нет» стеклянным окном онбординга (вместо системного Alert). */
-type OnboardingGlassAsk = (dialog: OnboardingGlassDialog) => Promise<boolean>;
-type OnboardingGlassDialog = Readonly<{ title: string; message: string; cancelLabel: string; confirmLabel: string }>;
-
-async function offerAccountRestore(lang: Lang, ask: OnboardingGlassAsk): Promise<boolean> {
+async function offerAccountRestore(lang: Lang): Promise<boolean> {
   const status = await fetchAccountDeleteStatus();
   if (!status?.pending || !status.restorable) return false;
   const days = Math.max(1, Number(status.daysLeft ?? 1));
-  // зачем (чек-лист 2.0, нативные Alert → стекло): тот же вопрос и те же 9 языков, но в стеклянном окне.
-  const agreed = await ask({
-    title: triLang(lang, {
+  const agreed = await new Promise<boolean>((resolve) => {
+    Alert.alert(
+      triLang(lang, {
         ru: 'Восстановить аккаунт?',
         uk: 'Відновити акаунт?',
         en: 'Restore your account?',
@@ -354,7 +350,7 @@ async function offerAccountRestore(lang: Lang, ask: OnboardingGlassAsk): Promise
         tr: 'Hesap geri yüklensin mi?',
         pl: 'Przywrócić konto?',
       }),
-    message: triLang(lang, {
+      triLang(lang, {
         ru: `Этот аккаунт помечен на удаление. Осталось ${days} дн. — весь прогресс ещё на месте и вернётся полностью.`,
         uk: `Цей акаунт позначено на видалення. Лишилося ${days} дн. — увесь прогрес на місці й повернеться повністю.`,
         en: `This account is scheduled for deletion. ${days} day(s) left — all your progress is intact and comes back in full.`,
@@ -365,16 +361,27 @@ async function offerAccountRestore(lang: Lang, ask: OnboardingGlassAsk): Promise
         tr: `Bu hesap silinmek üzere işaretli. ${days} gün kaldı — tüm ilerlemen duruyor ve eksiksiz geri gelir.`,
         pl: `To konto jest oznaczone do usunięcia. Zostało ${days} dni — cały postęp jest nienaruszony i wróci w całości.`,
       }),
-    cancelLabel: triLang(lang, {
+      [
+        {
+          text: triLang(lang, {
             ru: 'Не восстанавливать', uk: 'Не відновлювати', en: "Don't restore",
             es: 'No restaurar', 'pt-BR': 'Não restaurar', vi: 'Không khôi phục',
             id: 'Jangan pulihkan', tr: 'Geri yükleme', pl: 'Nie przywracaj',
           }),
-    confirmLabel: triLang(lang, {
+          style: 'cancel',
+          onPress: () => resolve(false),
+        },
+        {
+          text: triLang(lang, {
             ru: 'Восстановить', uk: 'Відновити', en: 'Restore',
             es: 'Restaurar', 'pt-BR': 'Restaurar', vi: 'Khôi phục',
             id: 'Pulihkan', tr: 'Geri yükle', pl: 'Przywróć',
           }),
+          onPress: () => resolve(true),
+        },
+      ],
+      { cancelable: false },
+    );
   });
   if (!agreed) return false;
   const outcome = await restoreDeletedAccount();
@@ -2327,18 +2334,6 @@ function CleanOnboarding({
   const [studyTarget, setStudyTarget] = useState<StudyTarget>('en');
   const [level, setLevel] = useState<LevelChoice | null>(null);
   const [notificationBusy, setNotificationBusy] = useState(false);
-  // зачем (чек-лист 2.0): системные Alert онбординга заменены одним стеклянным окном;
-  // askGlass отдаёт ответ промисом, чтобы код входа читался так же линейно, как с Alert.
-  const [glassDialog, setGlassDialog] = useState<(OnboardingGlassDialog & { resolve: (ok: boolean) => void }) | null>(null);
-  const askGlass = useCallback<OnboardingGlassAsk>((dialog) => new Promise<boolean>((resolve) => {
-    setGlassDialog({ ...dialog, resolve });
-  }), []);
-  const answerGlass = useCallback((ok: boolean) => {
-    setGlassDialog((current) => {
-      current?.resolve(ok);
-      return null;
-    });
-  }, []);
   const [notificationChoice, setNotificationChoice] = useState<OnboardingNotificationChoice | null>(null);
   const [paywallBusy, setPaywallBusy] = useState(false);
   const [ageAnswer, setAgeAnswer] = useState<AgeAnswer>(null);
@@ -2598,7 +2593,7 @@ function CleanOnboarding({
         // зачем (владелец, 2026-08-31): аккаунт на удалении — не тупик.
         // Пока идут 14 дней, предлагаем вернуть его прямо здесь; согласие
         // снимает заявку, и человек повторяет вход обычным тапом.
-        if (result.error === 'account_delete_pending' && await offerAccountRestore(lang, askGlass)) {
+        if (result.error === 'account_delete_pending' && await offerAccountRestore(lang)) {
           setAuthError(triLang(lang, {
             ru: 'Аккаунт восстановлен. Войди ещё раз — весь прогресс на месте.',
             uk: 'Акаунт відновлено. Увійди ще раз — увесь прогрес на місці.',
@@ -2680,7 +2675,7 @@ function CleanOnboarding({
         // зачем (владелец, 2026-08-31): аккаунт на удалении — не тупик.
         // Пока идут 14 дней, предлагаем вернуть его прямо здесь; согласие
         // снимает заявку, и человек повторяет вход обычным тапом.
-        if (result.error === 'account_delete_pending' && await offerAccountRestore(lang, askGlass)) {
+        if (result.error === 'account_delete_pending' && await offerAccountRestore(lang)) {
           setAuthError(triLang(lang, {
             ru: 'Аккаунт восстановлен. Войди ещё раз — весь прогресс на месте.',
             uk: 'Акаунт відновлено. Увійди ще раз — увесь прогрес на місці.',
@@ -2807,18 +2802,20 @@ function CleanOnboarding({
       if (blocked) {
         await setOnboardingNotificationChoice('blocked').catch(noteSwallowedHandler('CleanOnboarding:useCallback.setOnboardingNotificationChoice_2'));
         setNotificationChoice('blocked');
-        const openSettings = await askGlass({
-          title: 'Напоминание не включилось',
-          message: 'Разрешение на уведомления отключено. Включить его можно в настройках телефона.',
-          cancelLabel: 'Позже',
-          confirmLabel: 'Открыть настройки',
-        });
-        if (openSettings) {
-          Linking.openSettings().catch(noteSwallowedHandler('CleanOnboarding:onPress.openSettings'));
-          go('name');
-        } else {
-          continueAfterNotificationDialog();
-        }
+        Alert.alert(
+          'Напоминание не включилось',
+          'Разрешение на уведомления отключено. Включить его можно в настройках телефона.',
+          [
+            { text: 'Позже', style: 'cancel', onPress: continueAfterNotificationDialog },
+            {
+              text: 'Открыть настройки',
+              onPress: () => {
+                Linking.openSettings().catch(noteSwallowedHandler('CleanOnboarding:onPress.openSettings'));
+                go('name');
+              },
+            },
+          ],
+        );
         return;
       }
       // Даже обычный отказ в системном диалоге — уже сделанный выбор. Не просим
@@ -2829,7 +2826,7 @@ function CleanOnboarding({
     } finally {
       setNotificationBusy(false);
     }
-  }, [askGlass, continueAfterNotificationDialog, go, lang, notificationBusy, studyTarget]);
+  }, [continueAfterNotificationDialog, go, lang, notificationBusy, studyTarget]);
 
   const skipPracticeNotification = useCallback(async () => {
     await setOnboardingNotificationChoice('skip').catch(noteSwallowedHandler('CleanOnboarding:useCallback.setOnboardingNotificationChoice_4'));
@@ -3918,17 +3915,6 @@ function CleanOnboarding({
       ) : (
         <Animated.View style={[styles.stepSlide, slideStyle]}>{renderStep(displayStep)}</Animated.View>
       )}
-      <ThemedConfirmModal
-        visible={glassDialog !== null}
-        title={glassDialog?.title ?? ''}
-        message={glassDialog?.message}
-        cancelLabel={glassDialog?.cancelLabel ?? ''}
-        confirmLabel={glassDialog?.confirmLabel ?? ''}
-        onCancel={() => answerGlass(false)}
-        onConfirm={() => answerGlass(true)}
-        confirmVariant="accent"
-        testIDPrefix="onboarding-glass-dialog"
-      />
       {accountDeletedNotice && (
         <AccountDeletedNotice
           onDone={() => setAccountDeletedNotice(false)}

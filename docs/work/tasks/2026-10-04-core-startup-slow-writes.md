@@ -37,3 +37,6 @@ Revert the commit.
 
 Governance-ID: TG-0AA4B7F3C1D2
 (см. выше; пакет для медленных записей. Лог [WORD-AUDIO] для заикания озвучки слов — тот же пакет.)
+
+Governance-ID: TG-BB975BB1E9BB
+(2026-10-04: трасса холодного старта пишет операции дольше 1,5 с отдельной строкой; rollback = git revert.)

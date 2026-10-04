@@ -45,6 +45,8 @@ type AnyFn = (...args: unknown[]) => unknown;
  * пишем ИСТОЧНИК — первые кадры стека вне этого файла (dev — имена функций, release — адреса,
  * которые сопоставляются по source map той же сборки). Только в окне старта и только для них.
  */
+const SLOW_CALL_MS = 1_500;
+
 export function coldStartIoCallerTag(stack: string | undefined): string {
   const frames = String(stack ?? '')
     .split('\n')
@@ -87,6 +89,10 @@ export function installColdStartIoTrace(
         callers.set(tag, (callers.get(tag) ?? 0) + 1);
       }
       const callStartedAt = Date.now();
+      const inflightAtStart = inflight;
+      // зачем (замер weak-профиля 04.10: десяток разных ключей разом простаивал по 3,5 с — впереди в очереди стоит ОДНА долгая операция).
+      // Каждая операция дольше 1,5 с пишет отдельную строку: что, когда началась (от старта окна), сколько ждали в очереди, размер значения.
+      const argBytes = typeof args[1] === 'string' ? (args[1] as string).length : -1;
       calls += 1;
       inflight += 1;
       maxInflight = Math.max(maxInflight, inflight);
@@ -99,6 +105,9 @@ export function installColdStartIoTrace(
         group.maxMs = Math.max(group.maxMs, ms);
         if (!ok) group.failed += 1;
         groups.set(name, group);
+        if (ms >= SLOW_CALL_MS) {
+          console.warn(`[COLD-START-IO] slow name=${name} ms=${ms} startedAtMs=${callStartedAt - startedAt} inflightAtStart=${inflightAtStart} valueBytes=${argBytes} ok=${String(ok)}`);
+        }
       };
       return Promise.resolve((original as AnyFn).apply(this, args)).then(
         (value) => { settle(true); return value; },

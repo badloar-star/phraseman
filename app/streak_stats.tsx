@@ -1147,7 +1147,8 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', textAlign: 'center', lineHeight: f.body * 1.2 }} numberOfLines={2}>
               {item.value}
             </Text>
-            <Text style={{ color: t.textMuted, fontSize: 9.5, fontWeight: '800', textAlign: 'center', marginTop: 'auto', textTransform: 'uppercase', letterSpacing: 0.3 }} numberOfLines={1}>
+            {/* зачем (D145, 04.10): подпись была 9.5 капсом — нечитаемо; подписи короткие («Дни», «Время»), 13 обычным регистром влезает в треть ширины. */}
+            <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', textAlign: 'center', marginTop: 'auto' }} numberOfLines={1}>
               {item.label}
             </Text>
           </View>))}

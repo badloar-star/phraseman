@@ -1,8 +1,8 @@
 {
-  "total": 17,
+  "total": 16,
   "files": {
     "app/ai_dialog_session.tsx": 1,
     "app/learning-v2/lesson/[id].tsx": 10,
-    "app/streak_stats.tsx": 6
+    "app/streak_stats.tsx": 5
   }
 }

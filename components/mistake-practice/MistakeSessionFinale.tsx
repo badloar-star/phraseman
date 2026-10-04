@@ -1,41 +1,34 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { memo, useEffect, useMemo } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import Reanimated, { useAnimatedProps, useSharedValue, withTiming } from 'react-native-reanimated';
-import Svg, { Circle } from 'react-native-svg';
+import React, { memo, useMemo } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import AnimatedCountUpText from '../AnimatedCountUpText';
 import { triLang, type Lang } from '../../constants/i18n';
 import { pluralWord } from '../../constants/plural';
-import { useReduceMotion } from '../../hooks/use_reduce_motion';
-import { useTheme } from '../ThemeContext';
 import { useLv2Glass } from '../learning-v2/LearningV2Glass';
+import { MiniDots, Panel, PanelCta, PanelDock, PanelRing, PanelRow } from '../mistakes-panel/PanelKit';
+import { RoundButton } from '../mistakes-panel/PracticeKit';
 import {
   type MistakeRewardsSnapshot,
   type MistakeTitleId,
 } from '../../modules/mistake-practice/rewards_model';
 
 /**
- * Финал сессии ошибок (макет финала А, утверждён владельцем 2026-09-14).
+ * Итог отработки — «Итог отработки» макета «Панель» (docs/design/v2-app/mistakes-panel.html, вариант Б, одобрен владельцем 04.10).
  *
- * Кольцо результата, три награды крупно, исправленные фразы со штампом
- * «Навсегда», серия исправлений и новое звание. Всё рисуется из
- * УЖЕ посчитанных локальных данных — экран ничего не ждёт от сервера
- * (Optimistic UI): начисление догоняет фоном.
+ * Кольцо «9/12 верно», панель из трёх чисел (исправлено совсем · ближе к исправлению · ещё повторить), список исправленных фраз и кнопки внизу.
+ * Монеты за сессию, серия исправлений и новое звание (решение владельца 04.10: монеты видны в итоге, звания остаются) — строками той же панели.
+ * Всё рисуется из УЖЕ посчитанных локальных данных — экран ничего не ждёт от сервера (Optimistic UI): начисление догоняет фоном.
  */
-
-const RADIUS = 55;
-const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
-const AnimatedCircle = Reanimated.createAnimatedComponent(Circle);
 
 export type MistakeFinaleFixed = Readonly<{ mistakeId: string; phrase: string; meaning: string | null }>;
 
 type Props = {
   lang: Lang;
-  /** Сколько ошибок закрыто из скольких. */
+  /** Сколько заданий было в сессии. */
   answered: number;
   total: number;
-  perfect: boolean;
+  /** Сколько раз за сессию ответили неверно. */
+  wrong: number;
   runes: number;
   /** Ошибки, ушедшие навсегда именно в этой сессии. */
   fixed: readonly MistakeFinaleFixed[];
@@ -43,185 +36,87 @@ type Props = {
   /** Звание, поднятое этой сессией (null — не поднялось). */
   newTitle: MistakeTitleId | null;
   onDone: () => void;
+  /** Повторить то, что не вышло: пока в продукте нет такой сессии — кнопка рисуется, только если экран передал действие. */
   onMore?: () => void;
 };
 
 const copyFor = (lang: Lang) => triLang(lang, {
-  ru: { perfect: 'Сессия без единого промаха', done: 'Сессия завершена', of: 'из', runes: 'монет', fixedLabel: 'исправлено', forever: 'Навсегда', streak: 'Серия исправлений', days: { one: "день", few: "дня", many: "дней" }, newTitle: 'Новое звание', more: 'Ещё', finish: 'Забрать', titles: { attentive: 'Внимательный', proofreader: 'Корректор', editor: 'Редактор', master: 'Мастер' } },
-  uk: { perfect: 'Сесія без жодного промаху', done: 'Сесію завершено', of: 'з', runes: 'монет', fixedLabel: 'виправлено', forever: 'Назавжди', streak: 'Серія виправлень', days: { one: "день", few: "дні", many: "днів" }, newTitle: 'Нове звання', more: 'Ще', finish: 'Забрати', titles: { attentive: 'Уважний', proofreader: 'Коректор', editor: 'Редактор', master: 'Майстер' } },
-  en: { perfect: 'A session without a single miss', done: 'Session complete', of: 'of', runes: 'coins', fixedLabel: 'fixed', forever: 'For good', streak: 'Fixing streak', days: { one: "day", few: "days", many: "days" }, newTitle: 'New title', more: 'More', finish: 'Collect', titles: { attentive: 'Attentive', proofreader: 'Proofreader', editor: 'Editor', master: 'Master' } },
-  es: { perfect: 'Sesión sin un solo fallo', done: 'Sesión completada', of: 'de', runes: 'monedas', fixedLabel: 'corregidos', forever: 'Para siempre', streak: 'Racha de correcciones', days: { one: "día", few: "días", many: "días" }, newTitle: 'Nuevo título', more: 'Más', finish: 'Recoger', titles: { attentive: 'Atento', proofreader: 'Corrector', editor: 'Editor', master: 'Maestro' } },
-  'pt-BR': { perfect: 'Sessão sem nenhum erro', done: 'Sessão concluída', of: 'de', runes: 'moedas', fixedLabel: 'corrigidos', forever: 'Para sempre', streak: 'Sequência de correções', days: { one: "dia", few: "dias", many: "dias" }, newTitle: 'Novo título', more: 'Mais', finish: 'Receber', titles: { attentive: 'Atento', proofreader: 'Revisor', editor: 'Editor', master: 'Mestre' } },
-  vi: { perfect: 'Buổi học không sai lần nào', done: 'Đã hoàn thành', of: 'trên', runes: 'xu', fixedLabel: 'đã sửa', forever: 'Mãi mãi', streak: 'Chuỗi ngày sửa lỗi', days: { one: "ngày", few: "ngày", many: "ngày" }, newTitle: 'Danh hiệu mới', more: 'Thêm', finish: 'Nhận', titles: { attentive: 'Chăm chú', proofreader: 'Người soát lỗi', editor: 'Biên tập', master: 'Bậc thầy' } },
-  id: { perfect: 'Sesi tanpa satu pun kesalahan', done: 'Sesi selesai', of: 'dari', runes: 'koin', fixedLabel: 'diperbaiki', forever: 'Selamanya', streak: 'Rentetan perbaikan', days: { one: "hari", few: "hari", many: "hari" }, newTitle: 'Gelar baru', more: 'Lagi', finish: 'Ambil', titles: { attentive: 'Teliti', proofreader: 'Korektor', editor: 'Editor', master: 'Master' } },
-  tr: { perfect: 'Tek hatasız bir oturum', done: 'Oturum tamamlandı', of: '/', runes: 'jeton', fixedLabel: 'düzeltildi', forever: 'Kalıcı', streak: 'Düzeltme serisi', days: { one: "gün", few: "gün", many: "gün" }, newTitle: 'Yeni unvan', more: 'Devam', finish: 'Al', titles: { attentive: 'Dikkatli', proofreader: 'Düzeltmen', editor: 'Editör', master: 'Usta' } },
-  pl: { perfect: 'Sesja bez jednej pomyłki', done: 'Sesja zakończona', of: 'z', runes: 'monet', fixedLabel: 'poprawione', forever: 'Na zawsze', streak: 'Seria poprawek', days: { one: "dzień", few: "dni", many: "dni" }, newTitle: 'Nowy tytuł', more: 'Jeszcze', finish: 'Odbierz', titles: { attentive: 'Uważny', proofreader: 'Korektor', editor: 'Redaktor', master: 'Mistrz' } },
+  ru: { close: 'Закрыть', correct: 'верно', fixedFully: 'Исправлено совсем', closer: 'Ближе к исправлению', repeat: 'Ещё повторить', coins: 'Монеты', fixedSection: 'Исправлено', streak: 'Серия исправлений', days: { one: 'день', few: 'дня', many: 'дней' }, newTitle: 'Новое звание', titles: { attentive: 'Внимательный', proofreader: 'Корректор', editor: 'Редактор', master: 'Мастер' }, more: 'Ещё', finish: 'Готово' },
+  uk: { close: 'Закрити', correct: 'правильно', fixedFully: 'Виправлено остаточно', closer: 'Ближче до виправлення', repeat: 'Ще повторити', coins: 'Монети', fixedSection: 'Виправлено', streak: 'Серія виправлень', days: { one: 'день', few: 'дні', many: 'днів' }, newTitle: 'Нове звання', titles: { attentive: 'Уважний', proofreader: 'Коректор', editor: 'Редактор', master: 'Майстер' }, more: 'Ще', finish: 'Готово' },
+  en: { close: 'Close', correct: 'correct', fixedFully: 'Fixed for good', closer: 'Closer to fixed', repeat: 'Still to repeat', coins: 'Coins', fixedSection: 'Fixed', streak: 'Fixing streak', days: { one: 'day', few: 'days', many: 'days' }, newTitle: 'New title', titles: { attentive: 'Attentive', proofreader: 'Proofreader', editor: 'Editor', master: 'Master' }, more: 'More', finish: 'Done' },
+  es: { close: 'Cerrar', correct: 'correctas', fixedFully: 'Corregido para siempre', closer: 'Más cerca de corregir', repeat: 'Aún por repetir', coins: 'Monedas', fixedSection: 'Corregido', streak: 'Racha de correcciones', days: { one: 'día', few: 'días', many: 'días' }, newTitle: 'Nuevo título', titles: { attentive: 'Atento', proofreader: 'Corrector', editor: 'Editor', master: 'Maestro' }, more: 'Más', finish: 'Listo' },
+  'pt-BR': { close: 'Fechar', correct: 'corretas', fixedFully: 'Corrigido para sempre', closer: 'Mais perto de corrigir', repeat: 'Ainda a repetir', coins: 'Moedas', fixedSection: 'Corrigido', streak: 'Sequência de correções', days: { one: 'dia', few: 'dias', many: 'dias' }, newTitle: 'Novo título', titles: { attentive: 'Atento', proofreader: 'Revisor', editor: 'Editor', master: 'Mestre' }, more: 'Mais', finish: 'Pronto' },
+  vi: { close: 'Đóng', correct: 'đúng', fixedFully: 'Đã sửa hẳn', closer: 'Gần sửa xong', repeat: 'Còn phải lặp lại', coins: 'Xu', fixedSection: 'Đã sửa', streak: 'Chuỗi ngày sửa lỗi', days: { one: 'ngày', few: 'ngày', many: 'ngày' }, newTitle: 'Danh hiệu mới', titles: { attentive: 'Chăm chú', proofreader: 'Người soát lỗi', editor: 'Biên tập', master: 'Bậc thầy' }, more: 'Thêm', finish: 'Xong' },
+  id: { close: 'Tutup', correct: 'benar', fixedFully: 'Diperbaiki selamanya', closer: 'Mendekati diperbaiki', repeat: 'Masih diulang', coins: 'Koin', fixedSection: 'Diperbaiki', streak: 'Rentetan perbaikan', days: { one: 'hari', few: 'hari', many: 'hari' }, newTitle: 'Gelar baru', titles: { attentive: 'Teliti', proofreader: 'Korektor', editor: 'Editor', master: 'Master' }, more: 'Lagi', finish: 'Selesai' },
+  tr: { close: 'Kapat', correct: 'doğru', fixedFully: 'Kalıcı düzeldi', closer: 'Düzelmeye yakın', repeat: 'Hâlâ tekrar', coins: 'Jeton', fixedSection: 'Düzeltildi', streak: 'Düzeltme serisi', days: { one: 'gün', few: 'gün', many: 'gün' }, newTitle: 'Yeni unvan', titles: { attentive: 'Dikkatli', proofreader: 'Düzeltmen', editor: 'Editör', master: 'Usta' }, more: 'Daha', finish: 'Bitti' },
+  pl: { close: 'Zamknij', correct: 'dobrze', fixedFully: 'Poprawione na zawsze', closer: 'Bliżej poprawy', repeat: 'Jeszcze powtórzyć', coins: 'Monety', fixedSection: 'Poprawione', streak: 'Seria poprawek', days: { one: 'dzień', few: 'dni', many: 'dni' }, newTitle: 'Nowy tytuł', titles: { attentive: 'Uważny', proofreader: 'Korektor', editor: 'Redaktor', master: 'Mistrz' }, more: 'Jeszcze', finish: 'Gotowe' },
 });
 
-function ResultRing({ share, gold, children }: Readonly<{ share: number; gold: boolean; children: React.ReactNode }>) {
+function MistakeSessionFinale({
+  lang, answered, total, wrong, runes, fixed, rewards, newTitle, onDone, onMore,
+}: Props) {
   const g = useLv2Glass();
-  const reduceMotion = useReduceMotion();
-  const progress = useSharedValue(reduceMotion ? share : 0);
-  useEffect(() => {
-    progress.value = reduceMotion ? share : withTiming(share, { duration: 1100 });
-  }, [progress, reduceMotion, share]);
-  const animatedProps = useAnimatedProps(() => ({
-    strokeDashoffset: CIRCUMFERENCE * (1 - progress.value),
-  }));
+  const copy = useMemo(() => copyFor(lang), [lang]);
+  const base = Math.max(total, answered, 0);
+  const missed = Math.min(base, Math.max(0, wrong));
+  const right = Math.max(0, base - missed);
+  const closer = Math.max(0, right - fixed.length);
+  const share = base > 0 ? right / base : 0;
+  const count = (label: string, value: React.ReactNode, first?: boolean) => (
+    <PanelRow g={g} first={first} title={label} right={<Text style={[styles.num, { color: g.text }]}>{value}</Text>} />
+  );
+
   return (
-    <View style={styles.ring}>
-      <Svg width={156} height={156} viewBox="0 0 132 132" style={styles.ringSvg}>
-        <Circle cx={66} cy={66} r={RADIUS} stroke={g.opaqueControl} strokeWidth={11} fill="none" />
-        <AnimatedCircle
-          cx={66}
-          cy={66}
-          r={RADIUS}
-          stroke={gold ? g.text : g.cta}
-          strokeWidth={11}
-          fill="none"
-          strokeLinecap="round"
-          strokeDasharray={CIRCUMFERENCE}
-          animatedProps={animatedProps}
-        />
-      </Svg>
-      <View style={styles.ringLabel}>{children}</View>
+    <View style={styles.root}>
+      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+        <View style={styles.topbar}>
+          <RoundButton g={g} icon="close" label={copy.close} onPress={onDone} testID="mistake-finale-close" />
+        </View>
+        <PanelRing g={g} progress={share}>
+          <Text style={[styles.big, { color: g.text }]}>{`${right}/${base}`}</Text>
+          <Text style={[styles.bigLabel, { color: g.secondary }]}>{copy.correct}</Text>
+        </PanelRing>
+        <Panel g={g} style={styles.counts}>
+          {count(copy.fixedFully, fixed.length, true)}
+          {count(copy.closer, closer)}
+          {count(copy.repeat, missed)}
+          {/* зачем (решение владельца 04.10): монеты видны в итоге; серия и звание остаются строками той же панели. */}
+          {count(copy.coins, <AnimatedCountUpText value={runes} style={[styles.num, { color: g.text }]} accessibilityLabel={`${runes} ${copy.coins}`} />)}
+          {rewards && rewards.streakDays > 0 ? count(copy.streak, `${rewards.streakDays} ${pluralWord(lang, rewards.streakDays, copy.days)}`) : null}
+          {newTitle ? count(copy.newTitle, copy.titles[newTitle]) : null}
+        </Panel>
+
+        {fixed.length > 0 ? (
+          <>
+            <Text style={[styles.section, { color: g.secondary }]}>{copy.fixedSection}</Text>
+            <Panel g={g}>
+              {fixed.map((item, index) => (
+                <PanelRow key={item.mistakeId} g={g} first={index === 0} title={item.phrase} subtitle={item.meaning} right={<MiniDots g={g} n={3} />} />
+              ))}
+            </Panel>
+          </>
+        ) : null}
+      </ScrollView>
+      <PanelDock>
+        <View style={styles.actions}>
+          {onMore ? <PanelCta g={g} ghost flex testID="mistake-finale-more" label={`${copy.more} ${missed}`} onPress={onMore} /> : null}
+          <PanelCta g={g} flex={!!onMore} testID="mistake-finale-done" label={copy.finish} onPress={onDone} />
+        </View>
+      </PanelDock>
     </View>
   );
 }
 
-function MistakeSessionFinale({
-  lang, answered, total, perfect, runes, fixed, rewards, newTitle, onDone, onMore,
-}: Props) {
-  // зачем (practice.html «Завершение → Работа над ошибками»): финал на токенах Liquid Glass темы; награды/данные прежние.
-  const { f } = useTheme();
-  const g = useLv2Glass();
-  const copy = useMemo(() => copyFor(lang), [lang]);
-  const share = total > 0 ? Math.min(1, answered / total) : 0;
-
-  return (
-    <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-      <View style={styles.hero}>
-        <ResultRing share={share} gold={perfect}>
-          <AnimatedCountUpText
-            value={answered}
-            style={[styles.ringNum, { color: g.text }]}
-            accessibilityLabel={`${answered} ${copy.of} ${total}`}
-          />
-          <Text style={[styles.ringSub, { color: g.secondary, fontSize: f.sub }]}>{copy.of} {total}</Text>
-        </ResultRing>
-        <Text style={[styles.title, { color: g.text, fontSize: f.h3 }]}>
-          {perfect ? copy.perfect : copy.done}
-        </Text>
-      </View>
-
-      <View style={styles.rewardGrid}>
-        <View style={[styles.rewardTile, { backgroundColor: g.opaqueControl }]}>
-          <AnimatedCountUpText value={runes} style={[styles.rewardNum, { color: g.text }]} accessibilityLabel={`${runes} ${copy.runes}`} />
-          <Text style={[styles.rewardLabel, { color: g.secondary, fontSize: f.sub }]}>{copy.runes}</Text>
-        </View>
-        <View style={[styles.rewardTile, { backgroundColor: g.opaqueControl }]}>
-          <AnimatedCountUpText value={fixed.length} style={[styles.rewardNum, { color: g.text }]} accessibilityLabel={`${fixed.length} ${copy.fixedLabel}`} />
-          <Text style={[styles.rewardLabel, { color: g.secondary, fontSize: f.sub }]}>{copy.fixedLabel}</Text>
-        </View>
-      </View>
-
-      {/* Ошибки, ушедшие навсегда именно сейчас — «уезжают» на полку. */}
-      {fixed.map((item) => (
-        <View key={item.mistakeId} style={[styles.fixedRow, { backgroundColor: g.opaqueCard }]}>
-          <View style={[styles.fixedMark, { backgroundColor: g.opaqueControl }]}>
-            <Ionicons name="star" size={18} color={g.text} />
-          </View>
-          <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={[styles.fixedPhrase, { color: g.text, fontSize: f.body }]}>{item.phrase}</Text>
-            {item.meaning ? (
-              <Text style={[styles.fixedMeaning, { color: g.secondary, fontSize: f.sub }]}>{item.meaning}</Text>
-            ) : null}
-          </View>
-          <View style={[styles.stamp, { backgroundColor: g.accent }]}>
-            <Text style={[styles.stampText, { color: g.accentInk }]}>{copy.forever}</Text>
-          </View>
-        </View>
-      ))}
-
-      {rewards && rewards.streakDays > 0 ? (
-        <View style={[styles.card, { backgroundColor: g.opaqueCard }]}>
-          <View style={styles.cardRow}>
-            <View style={[styles.cardMedal, { backgroundColor: g.opaqueControl }]}>
-              <Ionicons name="flame" size={22} color={g.text} />
-            </View>
-            <Text style={[styles.cardTitle, { color: g.text, fontSize: f.body, flex: 1 }]}>{copy.streak}</Text>
-            <Text style={[styles.cardNum, { color: g.text }]}>{rewards.streakDays}<Text style={{ fontSize: f.sub, color: g.secondary }}> {pluralWord(lang, rewards.streakDays, copy.days)}</Text></Text>
-          </View>
-        </View>
-      ) : null}
-
-      {newTitle ? (
-        <View style={[styles.card, { backgroundColor: g.opaqueControl }]}>
-          <View style={styles.cardRow}>
-            <View style={[styles.cardMedal, { backgroundColor: g.accent }]}>
-              <Ionicons name="ribbon" size={24} color={g.ctaInk} />
-            </View>
-            <View style={{ flex: 1, minWidth: 0 }}>
-              <Text style={[styles.cardTitle, { color: g.text, fontSize: f.body }]}>{copy.newTitle}</Text>
-              <Text style={[styles.titleName, { color: g.text, fontSize: f.bodyLg }]}>{copy.titles[newTitle]}</Text>
-            </View>
-          </View>
-        </View>
-      ) : null}
-
-      <View style={styles.actions}>
-        {onMore ? (
-          <Pressable
-            testID="mistake-finale-more"
-            accessibilityRole="button"
-            onPress={onMore}
-            style={({ pressed }) => [styles.secondary, { backgroundColor: g.opaqueControl, transform: [{ scale: pressed ? 0.98 : 1 }] }]}
-          >
-            <Text style={{ color: g.text, fontSize: f.body, fontWeight: '800' }}>{copy.more}</Text>
-          </Pressable>
-        ) : null}
-        <Pressable
-          testID="mistake-finale-done"
-          accessibilityRole="button"
-          onPress={onDone}
-          style={({ pressed }) => [styles.primary, { backgroundColor: g.accent, transform: [{ scale: pressed ? 0.98 : 1 }] }]}
-        >
-          <Text style={{ color: g.accentInk, fontSize: f.body, fontWeight: '800' }}>{copy.finish}</Text>
-        </Pressable>
-      </View>
-    </ScrollView>
-  );
-}
-
 const styles = StyleSheet.create({
-  content: { paddingHorizontal: 16, paddingTop: 12, paddingBottom: 40, gap: 12 },
-  hero: { alignItems: 'center', gap: 10, paddingVertical: 4 },
-  ring: { width: 156, height: 156, alignItems: 'center', justifyContent: 'center' },
-  ringSvg: { position: 'absolute', transform: [{ rotate: '-90deg' }] },
-  ringLabel: { alignItems: 'center' },
-  ringNum: { fontSize: 44, fontWeight: '900', letterSpacing: -1.2, fontVariant: ['tabular-nums'] },
-  ringSub: { fontWeight: '700', marginTop: 2 },
-  title: { fontWeight: '900', textAlign: 'center', letterSpacing: -0.4 },
-  rewardGrid: { flexDirection: 'row', gap: 10 },
-  rewardTile: { flex: 1, borderRadius: 20, paddingVertical: 14, alignItems: 'center', gap: 4 },
-  rewardNum: { fontSize: 30, fontWeight: '900', letterSpacing: -0.8, fontVariant: ['tabular-nums'] },
-  rewardLabel: { fontWeight: '800' },
-  fixedRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 12, borderRadius: 18, padding: 12, minHeight: 68 },
-  fixedMark: { width: 40, height: 40, borderRadius: 14, alignItems: 'center', justifyContent: 'center', alignSelf: 'center' },
-  fixedPhrase: { fontWeight: '800', flexShrink: 1 },
-  fixedMeaning: { fontWeight: '700', marginTop: 2, flexShrink: 1 },
-  stamp: { height: 30, borderRadius: 10, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'center', alignSelf: 'center' },
-  stampText: { fontWeight: '900', fontSize: 13 },
-  card: { borderRadius: 20, padding: 16, gap: 10 },
-  cardRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  cardMedal: { width: 44, height: 44, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
-  cardTitle: { fontWeight: '900' },
-  cardNum: { fontSize: 26, fontWeight: '900', letterSpacing: -0.6, fontVariant: ['tabular-nums'] },
-  cardHint: { fontWeight: '700', lineHeight: 20 },
-  titleName: { fontWeight: '900', marginTop: 2 },
-  actions: { flexDirection: 'row', gap: 10, marginTop: 4 },
-  secondary: { flex: 1, minHeight: 56, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
-  primary: { flex: 1, minHeight: 56, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
+  root: { flex: 1 },
+  content: { paddingHorizontal: 20, paddingBottom: 140 },
+  topbar: { height: 44, marginTop: 6, flexDirection: 'row', alignItems: 'center' },
+  big: { fontSize: 58, lineHeight: 60, fontWeight: '800', letterSpacing: -1.5 },
+  bigLabel: { marginTop: 2, fontSize: 15, lineHeight: 19 },
+  counts: { marginTop: 22 },
+  num: { marginLeft: 'auto', fontSize: 22, lineHeight: 28, fontWeight: '700' },
+  section: { marginTop: 20, marginBottom: 8, fontSize: 15, lineHeight: 20, fontWeight: '600' },
+  actions: { flexDirection: 'row', gap: 10 },
 });
 
 export default memo(MistakeSessionFinale);

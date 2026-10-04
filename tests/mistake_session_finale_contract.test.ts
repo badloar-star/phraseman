@@ -9,10 +9,11 @@ const screen = read('app/mistake_practice_session.tsx');
 // кольцо результата, три награды крупно, исправленные фразы со штампом,
 // серия, цель недели и звание.
 describe('mistake session finale contract', () => {
-  test('shows the ring, three rewards and the fixed phrases', () => {
-    expect(finale).toContain('ResultRing');
+  test('shows the ring, the three counts, coins and the fixed phrases', () => {
+    // 04.10 (макет «Панель», «Итог отработки»): кольцо «верно», три числа, строка монет, список исправленных с тремя полосками.
+    expect(finale).toContain('PanelRing');
     expect(finale).toContain('AnimatedCountUpText');
-    expect(finale).toContain('copy.forever');
+    expect(finale).toContain('copy.fixedFully');
     expect(finale).toContain('fixed.map');
   });
 

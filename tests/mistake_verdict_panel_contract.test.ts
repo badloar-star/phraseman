@@ -1,50 +1,49 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+const NL = String.fromCharCode(10);
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
-const panel = read('components/mistake-practice/MistakeVerdictPanel.tsx');
+const kit = read('components/mistakes-panel/PracticeKit.tsx');
 const screen = read('app/mistake_practice_session.tsx');
 
-// зачем (владелец 2026-09-14, макет промаха А): панель показывает ОБА ответа,
-// объяснение разбирает именно этот ответ, цепочка дней видна, персонажа и
-// пометки «ИИ» на экране нет.
-describe('mistake verdict panel contract', () => {
+// зачем (владелец 2026-09-14, макет промаха А; с 04.10 — «стакан» макета «Панель»): вердикт показывает ОБА ответа с подсветкой расхождения,
+// объяснение разбирает именно этот ответ, цепочка дней видна, персонажа и пометки «ИИ» на экране нет.
+describe('mistake verdict contract', () => {
   test('shows both answers with the mismatch highlighted', () => {
-    expect(panel).toContain('buildMistakeAnswerDiff');
-    expect(panel).toContain('<DiffLine label={copy.mine}');
-    expect(panel).toContain('<DiffLine label={copy.correctLabel}');
-    expect(panel).toContain("tone === 'gap'");
+    expect(screen).toContain('buildMistakeAnswerDiff');
+    expect(screen).toContain('segments={diff.mine}');
+    expect(screen).toContain('segments={diff.correct}');
+    expect(kit).toContain("segment.tone === 'gap'");
+    expect(kit).toContain("segment.tone === 'wrong'");
   });
 
   test('explains this very answer and never blocks on a spinner', () => {
-    expect(panel).toContain('explanationLoading');
-    expect(panel).toContain('SkeletonBlock');
-    expect(panel).not.toMatch(/ActivityIndicator/);
     expect(screen).toContain('useMistakeExplain');
     expect(screen).toContain('prewarmMistakeSessionExplanations');
     expect(screen).toContain('liveExplanation ?? feedback?.explanation');
+    expect(screen).not.toMatch(/ActivityIndicator/);
+    expect(kit).not.toMatch(/ActivityIndicator/);
   });
 
   test('makes the three-day chain visible and keeps the rule as its source', () => {
-    expect(panel).toContain('chain.days');
-    expect(panel).toContain('chain.corrected');
+    expect(screen).toContain('feedback.chain.corrected ? 3 : feedback.chain.days');
     expect(screen).toContain('afterItem.qualifyingDays.length');
     expect(screen).toContain('correct && independent && afterItem');
   });
 
   test('no character, no AI badge, no container outlines on screen', () => {
-    const visibleCopy = panel
-      .split('\n')
+    const visible = (source: string) => source
+      .split(NL)
       .filter((line) => !line.trimStart().startsWith('//') && !line.trimStart().startsWith('*') && !line.trimStart().startsWith('{/*'))
-      .join('\n');
-    expect(visibleCopy).not.toMatch(/\bИИ\b|Тео|AiBadge/);
-    expect(panel).not.toMatch(/borderWidth|borderColor/);
-    expect(panel).not.toMatch(/adjustsFontSizeToFit/);
+      .join(NL);
+    expect(visible(kit)).not.toMatch(/ИИ|Тео|AiBadge/);
+    expect(kit).not.toMatch(/borderWidth|borderColor/);
+    expect(kit).not.toMatch(/adjustsFontSizeToFit/);
   });
 
-  test('the old six canned templates no longer own the panel', () => {
-    // 04.10 (макет «Панель»): вердикт рисует «стакан» экрана с подсветкой расхождения (DiffValue); файл старой панели ждёт удаления после чистки сторожей.
+  test('the old six canned templates and the old panel no longer own the verdict', () => {
     expect(screen).toContain('<DiffValue');
+    expect(screen).not.toContain('<MistakeVerdictPanel');
     expect(screen).not.toContain('{copy.correctAnswer}</Text>');
   });
 });

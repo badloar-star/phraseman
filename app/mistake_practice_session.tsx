@@ -1148,7 +1148,7 @@ function MistakePracticeSessionScreen() {
           lang={lang}
           answered={session?.initialCount ?? 0}
           total={session?.initialCount ?? 0}
-          perfect={(session?.initialCount ?? 0) >= 1 && wrongAnswers === 0}
+          wrong={wrongAnswers}
           runes={practiceRunes.runes}
           fixed={fixedNow}
           rewards={rewardsSnapshot}

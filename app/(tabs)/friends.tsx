@@ -2383,10 +2383,12 @@ export default function FriendsTabScreen() {
       <ThemedConfirmModal
         visible={deleteTarget !== null}
         title={L('Убрать друга?', 'Прибрати друга?', 'Remove friend?', '¿Quitar amigo?', 'Remover amigo?', 'Gỡ bạn bè?', 'Hapus teman?', 'Arkadaşı kaldır?', 'Usunąć znajomego?')}
-        message={deleteTarget?.name ?? ''}
+        // зачем: паритет с макетом community.html COM-04-REMOVE — пояснение «{имя} исчезнет из списка…» и красная «Убрать».
+        message={L(`${deleteTarget?.name ?? ''} исчезнет из списка друзей. Запрос можно будет отправить снова.`, `${deleteTarget?.name ?? ''} зникне зі списку друзів. Запит можна буде надіслати знову.`, `${deleteTarget?.name ?? ''} will disappear from your friends list. You can send a request again.`, `${deleteTarget?.name ?? ''} desaparecerá de tu lista de amigos. Podrás enviar la solicitud de nuevo.`, `${deleteTarget?.name ?? ''} vai sumir da sua lista de amigos. Você poderá enviar o pedido de novo.`, `${deleteTarget?.name ?? ''} sẽ biến mất khỏi danh sách bạn bè. Bạn có thể gửi lời mời lại.`, `${deleteTarget?.name ?? ''} akan hilang dari daftar teman. Permintaan bisa dikirim lagi.`, `${deleteTarget?.name ?? ''} arkadaş listenden kaybolacak. İsteği tekrar gönderebilirsin.`, `${deleteTarget?.name ?? ''} zniknie z listy znajomych. Zaproszenie można wysłać ponownie.`)}
         cancelLabel={L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'İptal', 'Anuluj')}
         confirmLabel={L('Убрать', 'Прибрати', 'Remove', 'Quitar', 'Remover', 'Gỡ', 'Hapus', 'Kaldır', 'Usuń')}
         confirmVariant="default"
+        destructive
         testIDPrefix="friends-delete-confirm"
         onCancel={() => setDeleteTarget(null)}
         onConfirm={() => {

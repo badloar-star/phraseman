@@ -22,12 +22,29 @@ const FILES = [
   '../components/youtube/YoutubeInlinePlayer.tsx',
 ];
 
+// зачем (04.10, Ядро): 82eb12007 (паритет «Видео» с макетом, состояние «Ошибка») вернул текст ошибки каталога —
+// но ТОЛЬКО для самого первого открытия без каталога и без сохранённой копии (D158: «Сейчас недоступно» —
+// лишь когда кэша нет совсем). Разрешаем его в одном файле и сторожим именно это условие.
+const ALLOWED_IN_FILE = { '../app/lingman_videos.tsx': ['Не удалось загрузить каталог'] };
+
 for (const file of FILES) {
   test(`${file} не содержит текстов загрузки/ошибки/пустоты`, () => {
     const src = strip(file);
-    for (const text of BANNED) assert.ok(!src.includes(text), `${file}: найден «${text}»`);
+    const allowed = ALLOWED_IN_FILE[file] ?? [];
+    for (const text of BANNED) {
+      if (allowed.includes(text)) continue;
+      assert.ok(!src.includes(text), `${file}: найден «${text}»`);
+    }
   });
 }
+
+test('ошибка каталога «Видео» — только без каталога и без сохранённой копии (D158)', () => {
+  const src = strip('../app/lingman_videos.tsx');
+  const branch = src.indexOf('catalogExhausted && !catalog && !snapshot ? (');
+  const shown = src.indexOf('{copy.catalogFailed}');
+  assert.ok(branch > -1 && shown > branch, 'catalogFailed показывается только в ветке без каталога и без копии');
+  assert.equal(src.split('{copy.catalogFailed}').length - 1, 1, 'catalogFailed выводится ровно в одном месте');
+});
 
 test('плеер без кнопки «Повторить» и без lingman-player-error', () => {
   const src = strip('../components/youtube/YoutubeInlinePlayer.tsx');

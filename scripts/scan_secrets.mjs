@@ -96,6 +96,15 @@ const IGNORE_DIR_PARTS = new Set([
 // Files explicitly allowed to contain key-shaped placeholders (templates/docs
 // that the audit reviewed). The scanner skips these by exact relative path.
 const ALLOWLIST_FILES = new Set([
+  // зачем 2026-10-04 (Диалоги V2: память): тестовые фикстуры HMAC-секрета памяти
+  // ('server-owned-secret-with-at-least-32-bytes', 'rotated-server-secret…',
+  // 'dialogue-v2-memory-management-test-secret', 'emulator-dialogue-memory-secret-2026-09-26')
+  // и тестовые параметры authorization: … — не ключи; боевой модуль в исключения не внесён.
+  'functions/src/dialogue_v2_memory_contract.test.ts',
+  'functions/src/dialogue_v2_memory_management.test.ts',
+  'functions/src/dialogue_v2_memory_reader.test.ts',
+  'functions/src/dialogue_v2_memory_writer.test.ts',
+  'functions/src/dialogue_v2_memory_resume_callable.emulator.test.ts',
   // зачем 2026-08-24: deliveryToken: 'delivery0000000001' — тестовая фикстура
   // спин-журнала (последовательные нули), не ключ; ловилась как named-secret-assign.
   'tests/phone_state_existing_journal_adapters.test.ts',

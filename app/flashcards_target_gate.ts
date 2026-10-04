@@ -6,6 +6,7 @@ import {
   getCachedFrenchRemoteFlashcards,
 } from './french_flashcard_remote_runtime';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import { isStudyTarget, type StudyTarget } from './study_target';
 
 export type FlashcardsSourceGatedSurface =
   | 'system_cards'
@@ -14,12 +15,14 @@ export type FlashcardsSourceGatedSurface =
 
 export type FlashcardsSourceGate = {
   enabled: boolean;
-  studyTarget: 'en' | 'fr';
+  studyTarget: StudyTarget;
   surface: FlashcardsSourceGatedSurface;
   reason?:
     | 'french_flashcards_source_gate'
     | 'french_flashcards_server_system_cards_available'
-    | 'french_flashcards_server_marketplace_packs_available';
+    | 'french_flashcards_server_marketplace_packs_available'
+    | 'unsupported_flashcards_target'
+    | 'no_native_system_cards';
   blockedRoutes: readonly string[];
   requiredEvidence: readonly string[];
 };
@@ -31,27 +34,76 @@ export const FRENCH_FLASHCARDS_REQUIRED_EVIDENCE = Object.freeze([
   'ru_uk_flashcard_prompt_review',
 ]);
 
+/**
+ * зачем (D160, владелец 04.10 «правильно он и сделал, доведи правку»): закрываем ТОЛЬКО то, чего
+ * реально нет. Встроенный банк SYSTEM_CARDS — английский; немецкому/испанскому/итальянскому
+ * ученику его не подставляем (раньше любой язык молча получал английские слова). Но раздел карточек,
+ * свои наборы и наборы маркета у этих языков открыты (D129/D130). Пустой/неизвестный язык — это
+ * не «неготовый язык», а недочитанное значение: трактуем как язык по умолчанию, иначе карточки
+ * пропали бы у всех.
+ */
+const FC_TARGET_GATE_LOGGED = new Set<string>();
+
+function logFlashcardsTargetGate(event: string, details: Record<string, unknown>): void {
+  // зачем: гейт зовут из useMemo при каждой смене языка — пишем каждый ИСХОД один раз, без флуда.
+  const key = `${event}|${JSON.stringify(details)}`;
+  if (FC_TARGET_GATE_LOGGED.has(key)) return;
+  FC_TARGET_GATE_LOGGED.add(key);
+  console.warn('[FC-TARGET-GATE]', event, JSON.stringify(details));
+}
+
+/** Языки без родного системного банка: встроенный английский банк им не показываем. */
+const NO_NATIVE_SYSTEM_CARDS_TARGETS: ReadonlySet<StudyTarget> = new Set<StudyTarget>(['es', 'de', 'it']);
+
+function resolveFlashcardsTarget(studyTarget: RuntimeStudyTarget, surface: FlashcardsSourceGatedSurface): StudyTarget {
+  if (isStudyTarget(studyTarget)) return studyTarget;
+  const fallback = storageStudyTarget(studyTarget);
+  logFlashcardsTargetGate('target:unresolved_fallback_default', {
+    raw: studyTarget === undefined ? 'undefined' : studyTarget,
+    fallback,
+    surface,
+  });
+  return fallback;
+}
+
 export function flashcardsSourceGateForTarget(
   studyTarget: RuntimeStudyTarget,
   surface: FlashcardsSourceGatedSurface,
   sourceLocale?: unknown,
 ): FlashcardsSourceGate {
   void sourceLocale;
-  const target = storageStudyTarget(studyTarget);
+  const target = resolveFlashcardsTarget(studyTarget, surface);
   if (surface === 'official_marketplace_packs') {
+    logFlashcardsTargetGate('exit:official_packs_retired', { target, surface });
     return {
       enabled: false,
-      studyTarget: target === 'fr' ? 'fr' : 'en',
+      studyTarget: target,
+      surface,
+      blockedRoutes: [],
+      requiredEvidence: [],
+    };
+  }
+  if (target === 'en') {
+    return {
+      enabled: true,
+      studyTarget: 'en',
       surface,
       blockedRoutes: [],
       requiredEvidence: [],
     };
   }
   if (target !== 'fr') {
+    // Свои и маркетные наборы у языка свои — их не закрываем; закрыт только английский системный банк.
+    const enabled = surface === 'community_packs';
+    const reason = NO_NATIVE_SYSTEM_CARDS_TARGETS.has(target)
+      ? 'no_native_system_cards'
+      : 'unsupported_flashcards_target';
+    if (!enabled) logFlashcardsTargetGate('exit:system_cards_closed', { target, surface, reason });
     return {
-      enabled: true,
-      studyTarget: 'en',
+      enabled,
+      studyTarget: target,
       surface,
+      reason: enabled ? undefined : reason,
       blockedRoutes: [],
       requiredEvidence: [],
     };
@@ -94,8 +146,11 @@ export function flashcardsSystemCardsForTarget(
   studyTarget: RuntimeStudyTarget,
   sourceLocale?: unknown,
 ): CardItem[] {
-  if (storageStudyTarget(studyTarget) === 'fr') return getCachedFrenchRemoteFlashcards(sourceLocale);
-  if (!flashcardsSourceGatedContentAvailableForTarget(studyTarget, 'system_cards')) return [];
+  if (studyTarget === 'fr') return getCachedFrenchRemoteFlashcards(sourceLocale);
+  if (!flashcardsSourceGatedContentAvailableForTarget(studyTarget, 'system_cards')) {
+    logFlashcardsTargetGate('exit:system_cards_empty', { target: studyTarget ?? 'undefined', cards: cards.length });
+    return [];
+  }
   return [...cards];
 }
 

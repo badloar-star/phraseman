@@ -8,6 +8,8 @@ import {
   accountLocalDataKeysForToday,
   isAccountLocalJournalStorageKey,
 } from '../app/cloud_sync';
+import { LEARNING_LANGUAGE_TARGETS } from '../app/learning_language_contour';
+import { languageProfileKey } from '../app/study_languages';
 
 describe('meaningful local account data', () => {
   const pendingShardGrantAccountKeys = [
@@ -50,8 +52,7 @@ describe('meaningful local account data', () => {
       'user_name',
       'onboarding_done',
       'study_languages_started_v1',
-      'language_profile_v1::en',
-      'language_profile_v1::fr',
+      ...LEARNING_LANGUAGE_TARGETS.map(languageProfileKey),
       'xp_migration_v2',
       'week_points_migrated_v1',
       'xp_level_restore_250_to_400_v1',

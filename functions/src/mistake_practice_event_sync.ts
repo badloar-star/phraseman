@@ -24,7 +24,7 @@ const TYPES = new Set(['captured', 'hint_used', 'practice_answered', 'hidden', '
  */
 /** Предел длины ответа ученика (зеркало клиентского MISTAKE_GIVEN_MAX_CHARS). */
 export const MISTAKE_GIVEN_MAX_CHARS = 200;
-const STUDY_TARGETS = ['en', 'es', 'fr', 'de'] as const;
+const STUDY_TARGETS = ['en', 'es', 'fr', 'de', 'it'] as const;
 type StudyTarget = (typeof STUDY_TARGETS)[number];
 const isStudyTarget = (value: unknown): value is StudyTarget =>
   typeof value === 'string' && (STUDY_TARGETS as readonly string[]).includes(value);

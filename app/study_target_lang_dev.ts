@@ -29,15 +29,10 @@ export function isStudyTargetSourceUiLang(uiLang: Lang): uiLang is StudyTargetSo
 }
 
 export function devStudyTargetsForUiLang(uiLang: Lang): readonly StudyTargetLang[] {
-  // зачем (PM-123, восстановлен контракт tests/study_target_lang_dev.test.ts):
-  // dev-кнопка переключения языка на карточке Learning V2 (lessons.tsx) должна
-  // предлагать es/fr только при интерфейсе ru/uk — иначе на английском/другом
-  // UI она молча писала 'en' поверх 'en' и выглядела сломанной (владелец,
-  // 2026-08-27, «кнопка не работает, не могу включить испанский»). Кто-то
-  // позже превратил функцию в no-op (return DEV_STUDY_TARGET_LANGS без учёта
-  // uiLang) — контракт сломался, немецкий сюда сознательно не добавляем,
-  // тест его не ждёт.
-  if (uiLang === 'ru' || uiLang === 'uk') return ['en', 'es', 'fr'];
+  // Onboarding/dev builds use this compatibility facade too. A canonical
+  // target must never be coerced to English merely because this legacy picker
+  // forgot to copy the central target registry.
+  if (uiLang === 'ru' || uiLang === 'uk') return DEV_STUDY_TARGET_LANGS;
   return ['en'];
 }
 

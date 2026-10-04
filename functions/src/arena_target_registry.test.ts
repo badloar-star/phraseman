@@ -16,9 +16,9 @@ function exactPublications(overrides: Partial<Record<(typeof ARENA_STUDY_TARGETS
 
 describe('server Arena target registry', () => {
   it('mirrors the complete client contract', () => {
-    expect(ARENA_STUDY_TARGETS).toEqual(['en', 'es', 'fr', 'de']);
+    expect(ARENA_STUDY_TARGETS).toEqual(['en', 'es', 'fr', 'de', 'it']);
     expect(ARENA_STUDY_TARGETS.map((target) => arenaStudyTargetMeta(target).speechLocale))
-      .toEqual(['en-US', 'es-ES', 'fr-FR', 'de-DE']);
+      .toEqual(['en-US', 'es-ES', 'fr-FR', 'de-DE', 'it-IT']);
     expect(ARENA_STUDY_TARGETS.every((target) => arenaStudyTargetMeta(target).modes.length === 5))
       .toBe(true);
   });
@@ -26,7 +26,7 @@ describe('server Arena target registry', () => {
   it('fails closed for absent and unknown target codes', () => {
     expect(resolveArenaStudyTarget('fr')).toBe('fr');
     expect(resolveArenaStudyTarget(undefined)).toBeNull();
-    expect(resolveArenaStudyTarget('it')).toBeNull();
+    expect(resolveArenaStudyTarget('it')).toBe('it');
   });
 
   it('requires an explicitly ready target-scoped publication with a target-bound fingerprint', () => {
@@ -48,6 +48,12 @@ describe('server Arena target registry', () => {
     expect(resolveArenaTargetPublication({ targetPublications: exactPublications({
       es: { ...ready, publicationFingerprint },
     }) }, 'es')).toEqual({ ...ready, publicationFingerprint });
+  });
+
+  it('keeps pre-Italian four-key publication configs valid and treats Italian as pending', () => {
+    const old = exactPublications();
+    delete (old as Record<string, unknown>).it;
+    expect(resolveArenaTargetPublication({ targetPublications: old }, 'it')).toBeNull();
   });
 
   it('rejects spoofed, cross-target, incomplete and non-exact publications', () => {

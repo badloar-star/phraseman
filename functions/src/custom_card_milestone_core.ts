@@ -6,7 +6,7 @@ import {
 
 const CUSTOM_CARD_MILESTONE = 1_500;
 const SOURCE = 'custom_cards.milestone';
-const STUDY_LANGUAGES = new Set(['en', 'es', 'fr', 'de']);
+const STUDY_LANGUAGES = new Set(['en', 'es', 'fr', 'de', 'it']);
 
 export type CustomCardMilestoneErrorCode =
   | 'unauthenticated'
@@ -31,7 +31,7 @@ export interface CustomCardMilestoneStore {
 type ValidatedRequest = Readonly<{
   authUid: string;
   count: number;
-  language: 'en' | 'es' | 'fr' | 'de';
+  language: 'en' | 'es' | 'fr' | 'de' | 'it';
 }>;
 
 function boundedUid(value: unknown): string | null {

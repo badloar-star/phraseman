@@ -5,8 +5,8 @@ import {
 } from '../modules/arena/target_registry';
 
 describe('Arena target registry', () => {
-  it('declares the four isolated targets with the complete five-mode contract', () => {
-    expect(ARENA_STUDY_TARGETS).toEqual(['en', 'es', 'fr', 'de']);
+  it('declares the five isolated targets with the complete five-mode contract', () => {
+    expect(ARENA_STUDY_TARGETS).toEqual(['en', 'es', 'fr', 'de', 'it']);
     for (const target of ARENA_STUDY_TARGETS) {
       const meta = arenaStudyTargetMeta(target);
       expect(meta.sourceLocale).toBe('ru');
@@ -23,7 +23,7 @@ describe('Arena target registry', () => {
     expect(resolveArenaStudyTarget(' de ')).toBe('de');
     expect(resolveArenaStudyTarget(undefined)).toBeNull();
     expect(resolveArenaStudyTarget(null)).toBeNull();
-    expect(resolveArenaStudyTarget('it')).toBeNull();
+    expect(resolveArenaStudyTarget('IT')).toBe('it');
     expect(resolveArenaStudyTarget('')).toBeNull();
   });
 });

@@ -1,14 +1,14 @@
 import { ARENA_TASK_MODES, type ArenaTaskMode } from './contract';
 
 /** Arena owns this registry; unrelated product surfaces may support fewer targets. */
-export const ARENA_STUDY_TARGETS = ['en', 'es', 'fr', 'de'] as const;
+export const ARENA_STUDY_TARGETS = ['en', 'es', 'fr', 'de', 'it'] as const;
 export type ArenaStudyTarget = typeof ARENA_STUDY_TARGETS[number];
 
 export type ArenaStudyTargetMeta = Readonly<{
-  name: 'English' | 'Spanish' | 'French' | 'German';
+  name: 'English' | 'Spanish' | 'French' | 'German' | 'Italian';
   sourceLocale: 'ru';
-  speechLocale: 'en-US' | 'es-ES' | 'fr-FR' | 'de-DE';
-  distractorProfile: 'english_core' | 'spanish_agreement' | 'french_agreement' | 'german_case_order';
+  speechLocale: 'en-US' | 'es-ES' | 'fr-FR' | 'de-DE' | 'it-IT';
+  distractorProfile: 'english_core' | 'spanish_agreement' | 'french_agreement' | 'german_case_order' | 'italian_agreement';
   modes: readonly ArenaTaskMode[];
 }>;
 
@@ -28,6 +28,10 @@ const META: Readonly<Record<ArenaStudyTarget, ArenaStudyTargetMeta>> = Object.fr
   de: Object.freeze({
     name: 'German', sourceLocale: 'ru', speechLocale: 'de-DE',
     distractorProfile: 'german_case_order', modes: ARENA_TASK_MODES,
+  }),
+  it: Object.freeze({
+    name: 'Italian', sourceLocale: 'ru', speechLocale: 'it-IT',
+    distractorProfile: 'italian_agreement', modes: ARENA_TASK_MODES,
   }),
 });
 

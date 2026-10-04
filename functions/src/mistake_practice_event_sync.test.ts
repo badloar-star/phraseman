@@ -22,6 +22,9 @@ describe('mistake practice immutable event transport', () => {
       .toMatchObject({ action: 'append', events: [event] });
     expect(parseMistakePracticeEventSyncRequest({ action: 'list', expectedStableUid: 'owner-a', studyTarget: 'fr', cursor: null }))
       .toEqual({ action: 'list', expectedStableUid: 'owner-a', studyTarget: 'fr', cursor: null });
+    const italianEvent = { ...event, studyTarget: 'it' };
+    expect(parseMistakePracticeEventSyncRequest({ action: 'append', expectedStableUid: 'owner-a', studyTarget: 'it', events: [italianEvent] }))
+      .toMatchObject({ action: 'append', studyTarget: 'it', events: [italianEvent] });
     expect(() => parseMistakePracticeEventSyncRequest({
       action: 'append', expectedStableUid: 'owner-a', studyTarget: 'en', events: Array(MISTAKE_PRACTICE_EVENT_PAGE_MAX + 1).fill(event),
     })).toThrow('mistake_practice_event_sync_invalid');

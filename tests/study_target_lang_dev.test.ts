@@ -32,9 +32,9 @@ beforeEach(() => {
 });
 
 describe('dev study target language guard', () => {
-  it('keeps the existing Spanish button and adds French for Russian and Ukrainian source UI', async () => {
-    expect(devStudyTargetsForUiLang('ru')).toEqual(['en', 'es', 'fr']);
-    expect(devStudyTargetsForUiLang('uk')).toEqual(['en', 'es', 'fr']);
+  it('offers every canonical learning target for Russian and Ukrainian source UI', async () => {
+    expect(devStudyTargetsForUiLang('ru')).toEqual(['en', 'es', 'fr', 'de', 'it']);
+    expect(devStudyTargetsForUiLang('uk')).toEqual(['en', 'es', 'fr', 'de', 'it']);
     expect(devStudyTargetsForUiLang('es')).toEqual(['en']);
 
     // зачем (PM-123): хранилище единое ('study_target_v1', без uiLang в ключе) —
@@ -49,6 +49,9 @@ describe('dev study target language guard', () => {
     await setDevStudyTargetLang('fr', 'ru');
     expect(await getDevStudyTargetLang('ru')).toBe('fr');
 
+    await setDevStudyTargetLang('it', 'ru');
+    expect(await getDevStudyTargetLang('ru')).toBe('it');
+
     await setDevStudyTargetLang('es', 'es');
     expect(await getDevStudyTargetLang('ru')).toBe('en');
   });
@@ -59,9 +62,9 @@ describe('dev study target language guard', () => {
     expect(isStudyTargetSourceUiLang('es')).toBe(false);
 
     expect(devStudyTargetsForUiLang('ru').map((target) => studyTargetLabelForSourceUiLang(target, 'ru')))
-      .toEqual(['Английский', 'Испанский', 'Французский']);
+      .toEqual(['Английский', 'Испанский', 'Французский', 'Немецкий', 'Итальянский']);
     expect(devStudyTargetsForUiLang('uk').map((target) => studyTargetLabelForSourceUiLang(target, 'uk')))
-      .toEqual(['Англійська', 'Іспанська', 'Французька']);
+      .toEqual(['Англійська', 'Іспанська', 'Французька', 'Німецька', 'Італійська']);
 
     const sourceUiLabels = [
       studyTargetLabelForSourceUiLang('fr', 'ru'),

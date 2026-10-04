@@ -91,8 +91,9 @@ describe('custom-card owner milestone', () => {
     const { store, documents } = fakeStore();
     await recordCustomCardMilestone({ authUid: 'uid-a', data: { count: 1_500, language: 'en', expectedOwnerUid: 'uid-a' }, nowMs: 1_700_000_000_000 }, store);
     await recordCustomCardMilestone({ authUid: 'uid-a', data: { count: 1_500, language: 'fr', expectedOwnerUid: 'uid-a' }, nowMs: 1_700_000_000_000 }, store);
+    await recordCustomCardMilestone({ authUid: 'uid-a', data: { count: 1_500, language: 'it', expectedOwnerUid: 'uid-a' }, nowMs: 1_700_000_000_000 }, store);
     await recordCustomCardMilestone({ authUid: 'uid-b', data: { count: 1_500, language: 'en', expectedOwnerUid: 'uid-b' }, nowMs: 1_700_000_000_000 }, store);
-    expect(documents.size).toBe(3);
+    expect(documents.size).toBe(4);
   });
 
   test('allows only count and language into the Telegram event payload', () => {

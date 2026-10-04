@@ -10,7 +10,7 @@ import {
 
 const hash = (seed: string) => arenaCanonicalSha256({ seed });
 
-function preauthoring(studyTarget: 'en' | 'es' | 'fr' | 'de', overrides: Record<string, unknown> = {}) {
+function preauthoring(studyTarget: 'en' | 'es' | 'fr' | 'de' | 'it', overrides: Record<string, unknown> = {}) {
   const profile = ARENA_GENERATOR_PROFILES[studyTarget];
   return {
     schemaVersion: 'arena-preauthoring-v1',
@@ -43,7 +43,7 @@ function preauthoring(studyTarget: 'en' | 'es' | 'fr' | 'de', overrides: Record<
   };
 }
 
-function request(studyTarget: 'en' | 'es' | 'fr' | 'de', overrides: Record<string, unknown> = {}) {
+function request(studyTarget: 'en' | 'es' | 'fr' | 'de' | 'it', overrides: Record<string, unknown> = {}) {
   const profile = ARENA_GENERATOR_PROFILES[studyTarget];
   return {
     schemaVersion: 'arena-generator-request-v1',
@@ -62,13 +62,13 @@ function request(studyTarget: 'en' | 'es' | 'fr' | 'de', overrides: Record<strin
 }
 
 describe('Arena target-specific generation contract', () => {
-  it('requires exactly 4,000 new tasks for Spanish, French and German, not a duplicate English generation', () => {
-    expect(ARENA_REQUIRED_GENERATION_TARGETS).toEqual(['es', 'fr', 'de']);
-    expect(ARENA_REQUIRED_GENERATION_PLAN).toEqual({ es: 4_000, fr: 4_000, de: 4_000 });
+  it('requires exactly 4,000 new tasks for Spanish, French, German and Italian, not a duplicate English generation', () => {
+    expect(ARENA_REQUIRED_GENERATION_TARGETS).toEqual(['es', 'fr', 'de', 'it']);
+    expect(ARENA_REQUIRED_GENERATION_PLAN).toEqual({ es: 4_000, fr: 4_000, de: 4_000, it: 4_000 });
     expect(ARENA_GENERATOR_PROFILES.en.requiredNewTaskCount).toBe(0);
   });
 
-  test.each(['es', 'fr', 'de'] as const)(
+  test.each(['es', 'fr', 'de', 'it'] as const)(
     '%s profile requires 4,000 new tasks over the English V11 five-mode difficulty envelope',
     (target) => {
       const profile = ARENA_GENERATOR_PROFILES[target];
@@ -77,7 +77,7 @@ describe('Arena target-specific generation contract', () => {
         'guess_phrase', 'fill_gap', 'find_oddity', 'translate_build', 'speed_match',
       ]);
       expect(profile.difficulties).toEqual([1, 2, 3]);
-      expect(Object.values(profile.modeDifficultyQuotas).reduce((sum, count) => sum + count, 0)).toBe(4_000);
+      expect(Object.values(profile.modeDifficultyQuotas).reduce<number>((sum, count) => sum + count, 0)).toBe(4_000);
       expect(profile.sourceLocale).toBe('ru');
       expect(profile.targetLocale.startsWith(target)).toBe(true);
       expect(profile.profileSha256).toMatch(/^[a-f0-9]{64}$/);

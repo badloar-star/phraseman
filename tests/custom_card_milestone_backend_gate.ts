@@ -120,7 +120,7 @@ const retry = await core.recordCustomCardMilestone({
 assert.deepEqual(retry, { accepted: true, duplicate: true });
 assert.equal(memory.documents.size, 1, 'same account+language milestone must dedupe across retries');
 
-for (const language of ['es', 'fr', 'de'] as const) {
+for (const language of ['es', 'fr', 'de', 'it'] as const) {
   await core.recordCustomCardMilestone({
     authUid: 'owner-a',
     data: { count: 1_500, language, expectedOwnerUid: 'owner-a' },
@@ -132,8 +132,8 @@ await core.recordCustomCardMilestone({
   data: { count: 1_500, language: 'en', expectedOwnerUid: 'owner-b' },
   nowMs,
 }, memory.store);
-assert.equal(memory.documents.size, 5,
-  'all four study languages and separate authenticated accounts need independent milestones');
+assert.equal(memory.documents.size, 6,
+  'all five study languages and separate authenticated accounts need independent milestones');
 
 assert.deepEqual(privacy.sanitizeAdminAlertPayload('customCardMilestone', {
   count: 1_500,

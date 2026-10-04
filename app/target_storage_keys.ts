@@ -3,6 +3,7 @@ import {
   assertStudyTarget,
   defaultStudyTarget,
   isStudyTarget,
+  STUDY_TARGETS,
   type SourceLocale,
   type StudyTarget,
 } from './study_target';
@@ -103,7 +104,14 @@ const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^resolved_personal_trainings_v1$/,
   /^pos_mastery_v1$/,
 ];
-const TARGET_SCOPED_KEY_PATTERN = /^(?:(?:lesson_progress|lesson_session_local|lesson_rewards|level_exams|mistake_practice|cloud_sync|daily_phrase|flashcards|quiz_session|quiz_achievements|target_stats|achievements)_v2::(?:en|es|fr|de)(?:::|$)|personal_practice_v2::(?:en|es|fr|de)::(?:ru|uk)(?:::|$))/;
+const TARGET_SCOPED_DOMAINS_PATTERN = '(?:lesson_progress|lesson_session_local|lesson_rewards|level_exams|mistake_practice|cloud_sync|daily_phrase|flashcards|quiz_session|quiz_achievements|target_stats|achievements)';
+const TARGET_SCOPED_TARGETS_PATTERN = `(?:${STUDY_TARGETS.join('|')})`;
+const TARGET_SCOPED_KEY_PATTERN = new RegExp(
+  `^(?:${TARGET_SCOPED_DOMAINS_PATTERN}_v2::${TARGET_SCOPED_TARGETS_PATTERN}(?:::|$)|personal_practice_v2::${TARGET_SCOPED_TARGETS_PATTERN}::(?:ru|uk)(?:::|$))`,
+);
+const TARGET_SCOPED_KEY_PREFIX_PATTERN = new RegExp(
+  `^(?:${TARGET_SCOPED_DOMAINS_PATTERN}|personal_practice)_v2::`,
+);
 
 function assertMember<T extends string>(value: string, allowed: readonly T[], label: string): T {
   if ((allowed as readonly string[]).includes(value)) return value as T;
@@ -667,6 +675,9 @@ export function legacyEnglishKey(domain: TargetKeyDomain, id?: string | number):
 
 export function assertTargetKey(key: string): string {
   if (TARGET_SCOPED_KEY_PATTERN.test(key)) return key;
+  if (TARGET_SCOPED_KEY_PREFIX_PATTERN.test(key)) {
+    throw new Error('Unsupported target-scoped key: ' + key);
+  }
   if (RAW_TARGET_SENSITIVE_PATTERNS.some((pattern) => pattern.test(key))) {
     throw new Error('Raw target-sensitive key is blocked: ' + key);
   }

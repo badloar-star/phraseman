@@ -7,7 +7,7 @@ import { validateTournamentTask, type TournamentTask } from './tournament_core';
 const FACT_PACK_HASH = 'a'.repeat(64);
 
 function evidence(
-  studyTarget: 'en' | 'es' | 'fr' | 'de',
+  studyTarget: 'en' | 'es' | 'fr' | 'de' | 'it',
   mode: 'guess_phrase' | 'fill_gap' | 'find_oddity' | 'translate_build' | 'speed_match',
   modeProof: Record<string, unknown>,
 ) {
@@ -16,6 +16,7 @@ function evidence(
     es: 'spanish_agreement',
     fr: 'french_agreement',
     de: 'german_case_order',
+    it: 'italian_agreement',
   } as const;
   return {
     schemaVersion: 'arena-target-evidence-v1' as const,
@@ -29,7 +30,7 @@ function evidence(
   };
 }
 
-function choiceTask(studyTarget: 'en' | 'es' | 'fr' | 'de' = 'en'): ArenaTargetNewRoomTask {
+function choiceTask(studyTarget: 'en' | 'es' | 'fr' | 'de' | 'it' = 'en'): ArenaTargetNewRoomTask {
   const options = ['I am home.', 'I is home.', 'I home.', 'Me am home.'];
   return {
     taskId: `arena-${studyTarget}-guess-001`,
@@ -57,7 +58,7 @@ function choiceTask(studyTarget: 'en' | 'es' | 'fr' | 'de' = 'en'): ArenaTargetN
   };
 }
 
-function expected(studyTarget: 'en' | 'es' | 'fr' | 'de') {
+function expected(studyTarget: 'en' | 'es' | 'fr' | 'de' | 'it') {
   return {
     studyTarget,
     factPackVersion: 'arena-target-fact-pack-v1',
@@ -76,7 +77,7 @@ describe('Arena target-aware new-room boundary', () => {
     });
   });
 
-  it.each(['en', 'es', 'fr', 'de'] as const)(
+  it.each(['en', 'es', 'fr', 'de', 'it'] as const)(
     'rejects missing and unknown target identity for a requested %s room',
     (studyTarget) => {
       expect(validateArenaTaskForNewRoom({
@@ -85,12 +86,12 @@ describe('Arena target-aware new-room boundary', () => {
       }, expected(studyTarget))).toEqual({ ok: false, reason: 'arena_task_target_missing' });
       expect(validateArenaTaskForNewRoom({
         ...choiceTask(studyTarget),
-        studyTarget: 'it',
+        studyTarget: 'pt',
       }, expected(studyTarget))).toEqual({ ok: false, reason: 'arena_task_target_unknown' });
     },
   );
 
-  it.each(['es', 'fr', 'de'] as const)(
+  it.each(['es', 'fr', 'de', 'it'] as const)(
     'rejects a valid English task when the requested target is %s',
     (studyTarget) => {
       expect(validateArenaTaskForNewRoom(choiceTask('en'), expected(studyTarget))).toEqual({
@@ -237,7 +238,7 @@ describe('Arena target-aware new-room boundary', () => {
     }, expected('en'))).toEqual({ ok: false, reason: 'speed_match_field_contract_invalid' });
   });
 
-  it.each(['en', 'es', 'fr', 'de'] as const)('accepts complete %s target evidence', (studyTarget) => {
+  it.each(['en', 'es', 'fr', 'de', 'it'] as const)('accepts complete %s target evidence', (studyTarget) => {
     expect(validateArenaTaskForNewRoom(choiceTask(studyTarget), expected(studyTarget)))
       .toEqual({ ok: true, kind: 'choice' });
   });

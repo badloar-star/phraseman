@@ -41,7 +41,9 @@ const hidden = (decidedBy: string): LearningSurfaceReadinessCell => Object.freez
  * - arena — удалена в 2.0 (D83), скрыта у всех.
  * - videos — D132: лента Главной берёт канал на языке изучения из каталога YouTube,
  *   канала нет → лента скрыта (английский канал другим языкам не подставляем).
- * - flashcards — открыты у всех по D129/D130.
+ * - flashcards — раздел открыт у всех по D129/D130; D160: встроенный английский банк
+ *   системных карточек у es/de/it не показывается (родного банка нет), свои и маркетные
+ *   наборы открыты; пустой/неизвестный язык = язык по умолчанию (app/flashcards_target_gate.ts).
  * - spire — D133: пул заданий есть для en/es/fr/de, для it нет.
  */
 export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<

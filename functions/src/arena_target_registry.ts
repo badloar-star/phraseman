@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 
 /** Server twin of modules/arena/target_registry.ts. Keep both covered by mirror tests. */
-export const ARENA_STUDY_TARGETS = ['en', 'es', 'fr', 'de'] as const;
+export const ARENA_STUDY_TARGETS = ['en', 'es', 'fr', 'de', 'it'] as const;
 export type ArenaStudyTarget = typeof ARENA_STUDY_TARGETS[number];
 
 export const ARENA_TASK_MODES = [
@@ -10,10 +10,10 @@ export const ARENA_TASK_MODES = [
 export type ArenaTaskMode = typeof ARENA_TASK_MODES[number];
 
 export type ArenaStudyTargetMeta = Readonly<{
-  name: 'English' | 'Spanish' | 'French' | 'German';
+  name: 'English' | 'Spanish' | 'French' | 'German' | 'Italian';
   sourceLocale: 'ru';
-  speechLocale: 'en-US' | 'es-ES' | 'fr-FR' | 'de-DE';
-  distractorProfile: 'english_core' | 'spanish_agreement' | 'french_agreement' | 'german_case_order';
+  speechLocale: 'en-US' | 'es-ES' | 'fr-FR' | 'de-DE' | 'it-IT';
+  distractorProfile: 'english_core' | 'spanish_agreement' | 'french_agreement' | 'german_case_order' | 'italian_agreement';
   modes: readonly ArenaTaskMode[];
 }>;
 
@@ -22,6 +22,7 @@ const META: Readonly<Record<ArenaStudyTarget, ArenaStudyTargetMeta>> = Object.fr
   es: Object.freeze({ name: 'Spanish', sourceLocale: 'ru', speechLocale: 'es-ES', distractorProfile: 'spanish_agreement', modes: ARENA_TASK_MODES }),
   fr: Object.freeze({ name: 'French', sourceLocale: 'ru', speechLocale: 'fr-FR', distractorProfile: 'french_agreement', modes: ARENA_TASK_MODES }),
   de: Object.freeze({ name: 'German', sourceLocale: 'ru', speechLocale: 'de-DE', distractorProfile: 'german_case_order', modes: ARENA_TASK_MODES }),
+  it: Object.freeze({ name: 'Italian', sourceLocale: 'ru', speechLocale: 'it-IT', distractorProfile: 'italian_agreement', modes: ARENA_TASK_MODES }),
 });
 
 export const ARENA_LANGUAGE_REGISTRY_VERSION = 'arena-language-registry-v1' as const;
@@ -179,9 +180,19 @@ export function parseArenaTargetPublicationState<T extends ArenaStudyTarget>(
 
 export function parseArenaTargetPublications(value: unknown): ArenaTargetPublications | null {
   const raw = record(value);
-  if (!raw || !hasExactKeys(raw, [...ARENA_STUDY_TARGETS].sort())) return null;
+  if (!raw) return null;
+  const fullKeys = [...ARENA_STUDY_TARGETS].sort();
+  const preItalianKeys = fullKeys.filter((target) => target !== 'it');
+  if (!hasExactKeys(raw, fullKeys) && !hasExactKeys(raw, preItalianKeys)) return null;
   const parsed = {} as Record<ArenaStudyTarget, ArenaTargetPublicationState>;
   for (const target of ARENA_STUDY_TARGETS) {
+    // Backward compatibility: configs sealed before D154 have four exact
+    // target keys. Italian is pending until explicitly published; existing
+    // contours keep working byte-for-byte.
+    if (target === 'it' && raw[target] === undefined) {
+      parsed[target] = { studyTarget: target, enabled: false, ready: false };
+      continue;
+    }
     const publication = parseArenaTargetPublicationState(raw[target], target);
     if (!publication) return null;
     parsed[target] = publication;

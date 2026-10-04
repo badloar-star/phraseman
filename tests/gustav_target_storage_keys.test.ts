@@ -69,8 +69,20 @@ import {
   unlockedLessonsKey,
   userStatsKey,
 } from '../app/target_storage_keys';
+import { LEARNING_LANGUAGE_TARGETS } from '../app/learning_language_contour';
 
 describe('target storage key contract', () => {
+  it('recognizes every canonical learning target in target-scoped keys', () => {
+    for (const target of LEARNING_LANGUAGE_TARGETS) {
+      expect(assertTargetKey(targetKey('flashcards', target, 'cards')))
+        .toBe(`flashcards_v2::${target}::cards`);
+      expect(assertTargetKey(sourceTargetKey('personal_practice', target, 'ru', 'practice')))
+        .toBe(`personal_practice_v2::${target}::ru::practice`);
+    }
+    expect(() => assertTargetKey('flashcards_v2::unknown::cards'))
+      .toThrow(/Unsupported target-scoped key/);
+  });
+
   it('produces distinct target keys for English and French', () => {
     expect(targetKey('lesson_progress', 'en', '1')).toBe('lesson_progress_v2::en::1');
     expect(targetKey('lesson_progress', 'fr', '1')).toBe('lesson_progress_v2::fr::1');
@@ -159,12 +171,12 @@ describe('target storage key contract', () => {
     expect(assertTargetKey(levelExamKey('A1', 'passed', 'fr'))).toBe('level_exams_v2::fr::level_exam_A1_passed');
   });
 
-  it('keeps the current English app on legacy lesson keys while scoping French', () => {
-    expect(storageStudyTarget('es')).toBe('en');
+  it('keeps English on legacy lesson keys while scoping every canonical non-English target', () => {
+    expect(storageStudyTarget('es')).toBe('es');
     expect(storageSourceLocale('uk')).toBe('uk');
     expect(storageSourceLocale('es')).toBe('ru');
     expect(lessonProgressKey(1, 'en')).toBe('lesson1_progress');
-    expect(lessonProgressKey(1, 'es')).toBe('lesson1_progress');
+    expect(lessonProgressKey(1, 'es')).toBe('lesson_progress_v2::es::1');
     expect(lessonProgressKey(1, 'fr')).toBe('lesson_progress_v2::fr::1');
     expect(lessonBestScoreKey(1, 'fr')).toBe('lesson_progress_v2::fr::lesson1_best_score');
     expect(lessonPassCountKey(1, 'fr')).toBe('lesson_progress_v2::fr::lesson1_pass_count');

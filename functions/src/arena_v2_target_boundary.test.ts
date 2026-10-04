@@ -8,7 +8,7 @@ const FINGERPRINT = 'a'.repeat(64);
 const OTHER_FINGERPRINT = 'b'.repeat(64);
 
 describe('Arena V2 target boundary', () => {
-  it.each(['en', 'es', 'fr', 'de'] as const)('accepts explicit %s', (studyTarget) => {
+  it.each(['en', 'es', 'fr', 'de', 'it'] as const)('accepts explicit %s', (studyTarget) => {
     expect(arenaResolveRequiredStudyTarget(studyTarget)).toEqual({ ok: true, studyTarget });
   });
 
@@ -21,7 +21,7 @@ describe('Arena V2 target boundary', () => {
       ok: false,
       reason: 'arena_target_required',
     });
-    expect(arenaResolveRequiredStudyTarget('it')).toEqual({
+    expect(arenaResolveRequiredStudyTarget('pt')).toEqual({
       ok: false,
       reason: 'arena_target_invalid',
     });

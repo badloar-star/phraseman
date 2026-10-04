@@ -35,7 +35,7 @@ import {
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { loadMistakePracticeHubSnapshot, type MistakePracticeHubSnapshot } from './mistake_practice_insights';
 import { safeRouterBack } from './navigation_back';
-import { getStableId } from './stable_id';
+import { getStableId, peekStableId } from './stable_id';
 
 /**
  * Хаб «Работа над ошибками» (макет: хаб Б, утверждён владельцем 2026-09-14).
@@ -58,6 +58,17 @@ const copyFor = (lang: Lang) => triLang(lang, {
 
 /** Peek-кэш: повторный вход рисует прошлое состояние сразу, без скелетона. */
 let hubSnapshotPeek: Readonly<{ key: string; snapshot: MistakePracticeHubSnapshot }> | null = null;
+
+/**
+ * зачем (аудит «каждый раздел открывается мгновенно», 04.10): список ошибок на каждом открытии показывал пять скелетон-строк, хотя хаб уже держит снимок.
+ * Ключ включает аккаунт (stable id из памяти): снимок другого аккаунта первым кадром не показываем.
+ */
+export function mistakesHubPeekKey(target: string, lang: string): string {
+  return `${peekStableId() ?? ''}:${target}:${lang}`;
+}
+export function peekMistakesHubSnapshot(target: string, lang: string): MistakePracticeHubSnapshot | null {
+  return hubSnapshotPeek?.key === mistakesHubPeekKey(target, lang) ? hubSnapshotPeek.snapshot : null;
+}
 
 function FacetBar({ share, index, top, reduceMotion }: Readonly<{ share: number; index: number; top: boolean; reduceMotion: boolean }>) {
   const g = useLv2Glass();
@@ -85,7 +96,7 @@ export default function MistakesHubScreen() {
   // немецкий молча превращались в английский, и человек видел ЧУЖИЕ ошибки
   // вместо своих. Журнал разложен по языковым ключам, язык нельзя подменять.
   const target = normalizeMistakeStudyTarget(studyTarget);
-  const peekKey = `${target}:${lang}`;
+  const peekKey = mistakesHubPeekKey(target, lang);
   const [snapshot, setSnapshot] = useState<MistakePracticeHubSnapshot | null>(() =>
     hubSnapshotPeek?.key === peekKey ? hubSnapshotPeek.snapshot : null);
   const [advice, setAdvice] = useState<MistakeHubAdvice | null>(null);

@@ -30,6 +30,8 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { clearPrimedSurvey, takePrimedSurvey } from './survey_handoff';
 import type { SurveyLaunch } from './survey_flow_controller';
 import { getCanonicalUserId } from './user_id_policy';
+import { CLOUD_SYNC_ENABLED } from './config';
+import { peekStableId } from './stable_id';
 
 type ScopeIdentityState =
   | { phase: 'checking'; key: string }
@@ -59,7 +61,20 @@ export default function SurveyScreen() {
     return stableId && dayKey && params.lang === lang ? { stableId, dayKey, lang } : undefined;
   }, [lang, params.dayKey, params.lang, params.stableId]);
   const routeScopeKey = `${surveyId}:${String(params.stableId ?? '')}:${String(params.dayKey ?? '')}:${String(params.lang ?? '')}:${lang}`;
-  const [scopeIdentity, setScopeIdentity] = useState<ScopeIdentityState>({ phase: 'checking', key: '' });
+  // зачем (правило владельца «каждый раздел открывается мгновенно», аудит 04.10): раньше на КАЖДОМ открытии весь экран был спиннером, пока
+  // шёл await getCanonicalUserId. Если stable id уже в памяти и совпадает с областью маршрута — подтверждаем в первом же кадре,
+  // а каноническая проверка по-прежнему идёт фоном и закрывает маршрут при расхождении (см. эффект ниже).
+  const syncVerifiedIdentity = (): ScopeIdentityState | null => {
+    if (!CLOUD_SYNC_ENABLED || !scope) return null;
+    const peeked = peekStableId();
+    const account = captureAccountGeneration();
+    if (!peeked || peeked !== scope.stableId || scope.dayKey !== getUtcDayKey()
+      || account.phase !== 'active' || account.stableId !== peeked) return null;
+    return { phase: 'verified', key: routeScopeKey, stableId: peeked, account };
+  };
+  const [scopeIdentity, setScopeIdentity] = useState<ScopeIdentityState>(
+    () => syncVerifiedIdentity() ?? { phase: 'checking', key: '' },
+  );
   const [routeVisible, setRouteVisible] = useState(true);
   const closeStartedRef = useRef(false);
 
@@ -67,7 +82,11 @@ export default function SurveyScreen() {
     let active = true;
     closeStartedRef.current = false;
     setRouteVisible(true);
-    setScopeIdentity({ phase: 'checking', key: routeScopeKey });
+    // Первый проход: если синхронная проверка уже подтвердила область — не сбрасываем в «checking» (иначе вернётся спиннер на кадр).
+    const syncVerified = syncVerifiedIdentity();
+    setScopeIdentity((current) => (
+      syncVerified ?? (current.key === routeScopeKey && current.phase === 'verified' ? current : { phase: 'checking', key: routeScopeKey })
+    ));
     void getCanonicalUserId()
       .then((canonicalStableId) => {
         if (!active) return;

@@ -18,6 +18,7 @@ import { buildMistakeRewardsSnapshot, type MistakeRewardsSnapshot } from '../mod
 import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { loadMistakeEventJournal } from './mistake_practice_store';
 import { getStableId } from './stable_id';
+import { peekMistakesHubSnapshot } from './mistakes_hub';
 import { loadMistakePracticeHubSnapshot, type MistakePracticeListItem } from './mistake_practice_insights';
 import { safeRouterBack } from './navigation_back';
 
@@ -56,7 +57,8 @@ export default function MistakesListScreen() {
   // чужой список ошибок. Журнал ключуется по языку, подменять его нельзя.
   const target = normalizeMistakeStudyTarget(studyTarget);
   const [filter, setFilter] = useState<Filter>(params.filter === 'corrected' || params.filter === 'all' ? params.filter : 'ready');
-  const [items, setItems] = useState<readonly MistakePracticeListItem[] | null>(null);
+  // зачем (аудит 04.10): первый кадр — из снимка хаба (если он есть для этого аккаунта/цели/языка), загрузка идёт фоном и заменяет строки.
+  const [items, setItems] = useState<readonly MistakePracticeListItem[] | null>(() => peekMistakesHubSnapshot(target, lang)?.items ?? null);
   // Полка «Исправлены» носит шапку со званием и лестницей (макет полки А).
   const [rewards, setRewards] = useState<MistakeRewardsSnapshot | null>(null);
   const openingRef = useRef(false);

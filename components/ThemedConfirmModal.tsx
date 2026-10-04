@@ -51,7 +51,7 @@ function ThemedConfirmModal({
   motionVariant = 'hybrid',
   destructive = false,
 }: Props) {
-  const { theme: t, liquidGlassThemeId, f } = useTheme();
+  const { theme: t, liquidGlassThemeId, liquidGlassAppearance } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const reduceMotion = useReduceMotion();
@@ -78,13 +78,16 @@ function ThemedConfirmModal({
     );
   };
   const panelBackground = Platform.OS === 'android' ? glass.opaqueSheet : glass.sheet;
+  // зачем: паритет с макетом system.html system_23 — «Удалить» это приглушённо-красная плашка (#3A1E1C) с коралловым
+  // текстом (#FF8C82). Эти значения рассчитаны на тёмный графит; в светлой теме берём красные роли темы.
+  const darkDanger = liquidGlassAppearance === 'dark';
   const confirmBackground = destructive
-    ? t.wrongBg
+    ? (darkDanger ? '#3A1E1C' : t.wrongBg)
     : confirmVariant === 'accent'
       ? glass.cta
       : glass.opaqueControl;
   const confirmForeground = destructive
-    ? t.wrong
+    ? (darkDanger ? '#FF8C82' : t.wrong)
     : confirmVariant === 'accent'
       ? glass.ctaInk
       : glass.text;
@@ -179,7 +182,7 @@ function ThemedConfirmModal({
           bounces={false}
         >
           <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
-            <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h2 }]}>
+            <Text accessibilityRole="header" style={[styles.title, { color: glass.text }, !message && !messageNode ? styles.titleAlone : null]}>
               {title}
             </Text>
           </CascadeItem>
@@ -187,7 +190,7 @@ function ThemedConfirmModal({
             {messageNode ? (
               <View style={styles.messageNode}>{messageNode}</View>
             ) : message ? (
-              <Text style={[styles.message, { color: glass.secondary, fontSize: f.body, lineHeight: f.body * 1.5 }]}>
+              <Text style={[styles.message, { color: glass.secondary }]}>
                 {message}
               </Text>
             ) : null}
@@ -206,7 +209,7 @@ function ThemedConfirmModal({
                 }}
                 style={[styles.action, { backgroundColor: glass.selected }]}
               >
-                <Text style={[styles.actionLabel, { color: glass.text, fontSize: f.body }]}>
+                <Text style={[styles.actionLabel, { color: glass.text }]}>
                   {cancelLabel}
                 </Text>
               </TouchableOpacity>
@@ -227,7 +230,7 @@ function ThemedConfirmModal({
                 }}
                 style={[styles.action, { backgroundColor: confirmBackground }]}
               >
-                <Text style={[styles.actionLabel, { color: confirmForeground, fontSize: f.body }]}>
+                <Text style={[styles.actionLabel, { color: confirmForeground }]}>
                   {confirmLabel}
                 </Text>
               </TouchableOpacity>
@@ -293,13 +296,15 @@ function ThemedConfirmModal({
 
 const styles = StyleSheet.create({
   panelShell: { width: '100%', maxHeight: '100%' },
-  panel: { width: '100%', maxHeight: '100%', borderRadius: 20, overflow: 'hidden' },
+  panel: { width: '100%', maxHeight: '100%', borderRadius: 26, overflow: 'hidden' },
   scroll: { flexShrink: 1, minHeight: 0 },
-  content: { paddingHorizontal: 20, paddingTop: 20, paddingBottom: 18 },
-  title: { fontWeight: '700', marginBottom: 10 },
-  message: { marginBottom: 20 },
-  messageNode: { marginBottom: 20 },
-  confirmActions: { flexDirection: 'row', gap: 10 },
+  content: { paddingHorizontal: 20, paddingTop: 26, paddingBottom: 20 },
+  title: { fontSize: 21, lineHeight: 27, fontWeight: '700', textAlign: 'center' },
+  titleAlone: { marginBottom: 20 },
+  // зачем (system.html `.modal .mb` 15/21): шкала D145 — текст под заголовком 16/22.
+  message: { fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 8, marginBottom: 20 },
+  messageNode: { marginTop: 8, marginBottom: 20 },
+  confirmActions: { flexDirection: 'row', gap: 10, marginTop: 0 },
   action: {
     flex: 1,
     minHeight: 48,
@@ -310,7 +315,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
   },
-  actionLabel: { fontWeight: '700', textAlign: 'center' },
+  // `.cta` 17 в ките; шкала D145 — 16, как во всех окнах 2.0.
+  actionLabel: { fontSize: 16, fontWeight: '700', textAlign: 'center' },
   classicBackdrop: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.68)',

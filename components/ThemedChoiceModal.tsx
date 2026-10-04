@@ -49,7 +49,7 @@ function ThemedChoiceModal({
   onRequestClose,
   motionVariant = 'hybrid',
 }: Props) {
-  const { theme: t, liquidGlassThemeId, f } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const reduceMotion = useReduceMotion();
@@ -81,12 +81,12 @@ function ThemedChoiceModal({
         bounces={false}
       >
         <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
-          <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h2 }]}>
+          <Text accessibilityRole="header" style={[styles.title, { color: glass.text }]}>
             {title}
           </Text>
         </CascadeItem>
         <CascadeItem delay={isHybrid ? LUM.ladder[2] + 96 : 0} reduceMotion={!isHybrid || reduceMotion}>
-          <Text style={[styles.message, { color: glass.secondary, fontSize: f.body, lineHeight: f.body * 1.5 }]}>
+          <Text style={[styles.message, { color: glass.secondary }]}>
             {message}
           </Text>
         </CascadeItem>
@@ -95,8 +95,9 @@ function ThemedChoiceModal({
             {choices.map((c, index) => {
               const destructive = c.variant === 'destructive';
               const primary = c.variant !== 'secondary' && !destructive;
-              const background = destructive ? t.wrongBg : primary ? glass.opaqueControl : glass.selected;
-              const foreground = destructive ? t.wrong : primary ? glass.text : glass.secondary;
+              // зачем: макет system.html system_23 — приглушённо-красная плашка и коралловый текст для необратимого действия.
+              const background = destructive ? '#3A1E1C' : primary ? glass.opaqueControl : glass.selected;
+              const foreground = destructive ? '#FF8C82' : primary ? glass.text : glass.secondary;
               return (
                 <TouchableOpacity
                   key={index}
@@ -125,7 +126,7 @@ function ThemedChoiceModal({
                       importantForAccessibility="no"
                     />
                   ) : null}
-                  <Text style={[styles.choiceLabel, { color: foreground, fontSize: f.body }]}>
+                  <Text style={[styles.choiceLabel, { color: foreground }]}>
                     {c.label}
                   </Text>
                   {primary ? <Ionicons name="chevron-forward" size={18} color={glass.secondary} accessibilityElementsHidden importantForAccessibility="no" /> : null}
@@ -186,13 +187,14 @@ const styles = StyleSheet.create({
   grabber: { width: 42, height: 4, borderRadius: 2, alignSelf: 'center', marginBottom: 8 },
   scroll: { flexShrink: 1, minHeight: 0 },
   content: { paddingHorizontal: 18, paddingBottom: 2 },
-  title: { fontWeight: '700', paddingHorizontal: 4, marginBottom: 8 },
-  message: { paddingHorizontal: 4, marginBottom: 16 },
+  // зачем: макет system_24 — заголовок шторки выбора 22/700, строки-карточки радиус 14, подпись 16/600.
+  title: { fontSize: 22, lineHeight: 28, fontWeight: '700', paddingHorizontal: 4, marginBottom: 8 },
+  message: { fontSize: 16, lineHeight: 22, paddingHorizontal: 4, marginBottom: 16 }, // D145: 16/22
   choices: { gap: 8 },
   choice: {
     width: '100%',
     minHeight: 52,
-    borderRadius: 16,
+    borderRadius: 14,
     paddingHorizontal: 16,
     paddingVertical: 12,
     flexDirection: 'row',
@@ -201,7 +203,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   choiceIcon: { width: 24, height: 24, flexShrink: 0 },
-  choiceLabel: { flex: 1, fontWeight: '700' },
+  choiceLabel: { flex: 1, fontSize: 16, fontWeight: '600' },
   classicBackdrop: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.68)',

@@ -1141,7 +1141,8 @@ function MistakePracticeSessionScreen() {
         </View>
       </View>
       <View style={styles.header}>
-        <Pressable accessibilityLabel={copy.close} onPress={leavePractice} style={[styles.headerButton, { backgroundColor: g.opaqueCard }]}>
+        {/* зачем (DQA / PM-134 A2, 04.10): у крестика роль кнопки — диктор объявляет «Закрыть, кнопка». */}
+        <Pressable accessibilityRole="button" accessibilityLabel={copy.close} hitSlop={8} onPress={leavePractice} style={[styles.headerButton, { backgroundColor: g.opaqueCard }]}>
           <Ionicons name="close" size={24} color={g.secondary} />
         </Pressable>
         <SessionAttemptsHud
@@ -1210,7 +1211,13 @@ OK: ${entry.exercise.correctAnswer}`}
                 {builderTokenIndexes.map((index) => entry.exercise.tokens?.[index] ?? '').join(' ') || copy.buildPhrase}
               </Text>
               {builderTokenIndexes.length ? (
-                <Pressable onPress={() => setBuilderTokenIndexes([])}><Ionicons name="refresh" size={20} color={g.secondary} /></Pressable>
+                <Pressable
+                  // зачем (DQA / PM-134 A2, 04.10): кнопка сброса была немой для диктора — роль и подпись.
+                  accessibilityRole="button"
+                  accessibilityLabel={triLang(lang, { ru: 'Собрать заново', uk: 'Зібрати заново', en: 'Start over', es: 'Empezar de nuevo', 'pt-BR': 'Recomeçar', vi: 'Ghép lại từ đầu', id: 'Susun ulang', tr: 'Baştan diz', pl: 'Ułóż od nowa' })}
+                  hitSlop={8}
+                  onPress={() => setBuilderTokenIndexes([])}
+                ><Ionicons name="refresh" size={20} color={g.secondary} /></Pressable>
               ) : null}
             </View>
             <View style={styles.tokens}>

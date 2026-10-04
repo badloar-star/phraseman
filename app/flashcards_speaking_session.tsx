@@ -72,6 +72,7 @@ import { estimateSpeechDurationMs } from './flashcards/audioSession';
 import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { deckRefKey, loadDeckCardsMulti, parseDeckParams, voicedDeckCards, type DeckCard, type DeckRef } from './flashcards/deck_sources';
+import { sayItInStudyLanguage } from './flashcards_say_it_copy';
 import { isValidSessionSize, FC_DEFAULT_SESSION_SIZE, getLastPreset, presetDeckIds, type FcModePreset } from './flashcards/mode_prefs';
 import { deckRouteParam, decksCountLabel, SOLO_DECK_ID } from './flashcards/deck_selection';
 import {
@@ -1240,6 +1241,12 @@ export default function FlashcardsSpeakingSession() {
       ru: 'Мои карточки', uk: 'Мої картки', en: 'My cards', es: 'Mis tarjetas', 'pt-BR': 'Meus cartões',
       vi: 'Thẻ của tôi', id: 'Kartu saya', tr: 'Kartlarım', pl: 'Moje fiszki',
     });
+    if (deckRef.kind === 'pack') {
+      // зачем (DQA, 04.10): в шапке — название выбранного набора («Family»), а не безличное «Набор карточек»;
+      // название уже есть в локальном списке наборов (тёплый снимок), сеть не нужна.
+      const known = deckOptions.find((option) => option.deckId === deckRefKey(deckRef))?.title;
+      if (known) return known;
+    }
     if (deckRef.kind === 'pack') return triLang(lang, {
       ru: 'Набор карточек', uk: 'Набір карток', en: 'Card pack', es: 'Pack de tarjetas', 'pt-BR': 'Pacote de cartões',
       vi: 'Bộ thẻ', id: 'Set kartu', tr: 'Kart seti', pl: 'Zestaw fiszek',
@@ -1248,7 +1255,7 @@ export default function FlashcardsSpeakingSession() {
       ru: 'Сохранённые', uk: 'Збережені', en: 'Saved', es: 'Guardadas', 'pt-BR': 'Salvos',
       vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane',
     });
-  }, [deckRefs, lang]);
+  }, [deckOptions, deckRefs, lang]);
 
   const labels = useMemo(
     () => ({
@@ -1266,11 +1273,8 @@ export default function FlashcardsSpeakingSession() {
         'pt-BR': 'Ouça a frase e repita. Segure o microfone enquanto fala.', vi: 'Nghe câu rồi nhắc lại. Giữ micrô khi nói.',
         id: 'Dengarkan frasa lalu ulangi. Tahan mikrofon saat berbicara.', tr: 'İfadeyi dinle ve tekrarla. Konuşurken mikrofonu basılı tut.', pl: 'Posłuchaj zwrotu i powtórz go. Przytrzymaj mikrofon podczas mówienia.',
       }),
-      recall: triLang(lang, {
-        ru: 'Скажи по-английски', uk: 'Скажи англійською', en: 'Say it in English', es: 'Dilo en inglés',
-        'pt-BR': 'Diga em inglês', vi: 'Nói bằng tiếng Anh', id: 'Ucapkan dalam bahasa Inggris',
-        tr: 'İngilizce söyle', pl: 'Powiedz po angielsku',
-      }),
+      // зачем (DQA, 04.10): «Скажи по-…» — по изучаемому языку, а не зашитый английский.
+      recall: sayItInStudyLanguage(lang, studyTarget),
       repeat: triLang(lang, {
         ru: 'Повтори за диктором', uk: 'Повтори за диктором', en: 'Repeat after the speaker', es: 'Repite al locutor',
         'pt-BR': 'Repita o locutor', vi: 'Nhắc lại theo giọng đọc', id: 'Tirukan pembaca',
@@ -1331,7 +1335,7 @@ export default function FlashcardsSpeakingSession() {
         vi: 'Đã nói', id: 'Diucapkan', tr: 'Söylenen', pl: 'Powiedziano',
       }),
     }),
-    [lang],
+    [lang, studyTarget],
   );
 
   const panelTheme = useMemo(() => buildSpeakingPanelTheme(t), [t]);

@@ -3932,13 +3932,9 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
               </View>
             ) : null}
           </View>
-          <TouchableOpacity
-            onPress={openSettings}
-            style={[styles.iconButton, isCompactFlashcardsTask && styles.compactIconButton, { backgroundColor: t.bgSurface }]}
-            accessibilityLabel={text.settings}
-          >
-            <Ionicons name="options-outline" size={isCompactFlashcardsTask ? 19 : 21} color={t.textPrimary} />
-          </TouchableOpacity>
+          {/* зачем (PM-134, 04.10): «Настройки» в шапке вела туда же, куда «Выйти» (экран выбора наборов убран) —
+              дубль снят; пустое место той же ширины держит счётчик по центру, геометрия шапки не прыгает. */}
+          <View style={[styles.iconButton, isCompactFlashcardsTask && styles.compactIconButton]} accessible={false} importantForAccessibility="no-hide-descendants" />
         </View>
 
         <View style={[styles.progressTrack, isCompactFlashcardsTask && styles.compactProgressTrack, { backgroundColor: t.bgSurface2 }]}>

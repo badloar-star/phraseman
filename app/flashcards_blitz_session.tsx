@@ -1233,6 +1233,12 @@ export default function FlashcardsBlitzSession() {
       ru: 'Мои карточки', uk: 'Мої картки', en: 'My cards', es: 'Mis tarjetas', 'pt-BR': 'Meus cartões',
       vi: 'Thẻ của tôi', id: 'Kartu saya', tr: 'Kartlarım', pl: 'Moje fiszki',
     });
+    if (deckRef.kind === 'pack') {
+      // зачем (DQA, 04.10): в шапке — название выбранного набора («Family»), а не безличное «Набор карточек»;
+      // название уже есть в локальном списке наборов (тёплый снимок), сеть не нужна.
+      const known = deckOptions.find((option) => option.deckId === deckRefKey(deckRef))?.title;
+      if (known) return known;
+    }
     if (deckRef.kind === 'pack') return triLang(lang, {
       ru: 'Набор карточек', uk: 'Набір карток', en: 'Card pack', es: 'Pack de tarjetas', 'pt-BR': 'Pacote de cartões',
       vi: 'Bộ thẻ', id: 'Set kartu', tr: 'Kart seti', pl: 'Zestaw fiszek',
@@ -1241,7 +1247,7 @@ export default function FlashcardsBlitzSession() {
       ru: 'Сохранённые', uk: 'Збережені', en: 'Saved', es: 'Guardadas', 'pt-BR': 'Salvos',
       vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane',
     });
-  }, [deckRefs, lang]);
+  }, [deckOptions, deckRefs, lang]);
 
   // ── Рендер ─────────────────────────────────────────────────────────────────
   /**
@@ -1442,7 +1448,7 @@ export default function FlashcardsBlitzSession() {
                 icon: 'albums-outline',
                 onPress: openDeckPicker,
                 testID: 'fc-blitz-pick-decks-empty',
-                accessibilityLabel: 'qa-fc-blitz-pick-decks',
+                accessibilityLabel: pickDecksLabel,
               }}
             />
           </ContentWrap>
@@ -1587,7 +1593,10 @@ RU: ${question.card.translation}`}
                   <TouchableOpacity
                     key={`${qIdxRef.current}_${i}`}
                     testID={`fc-blitz-opt-${i}`}
-                    accessibilityLabel={`qa-fc-blitz-opt-${i}`}
+                    // зачем (DQA / PM-134 A2, 04.10): диктор читает сам вариант ответа, а не служебную строку; testID для тестов остаётся.
+                    accessibilityLabel={opt}
+                    accessibilityRole="button"
+                    accessibilityState={{ disabled: locked }}
                     accessible
                     onPress={() => pick(i)}
                     disabled={locked}

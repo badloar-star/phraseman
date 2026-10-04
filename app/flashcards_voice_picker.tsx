@@ -184,19 +184,9 @@ export default function FlashcardsVoicePickerScreen() {
           ru: 'Системный (авто)', uk: 'Системний (авто)', en: 'System (auto)', es: 'Sistema (auto)',
           'pt-BR': 'Sistema (auto)', vi: 'Hệ thống (tự động)', id: 'Sistem (otomatis)', tr: 'Sistem (otomatik)', pl: 'Systemowy (auto)',
         });
-    const sub = v
-      ? v.language
-      : triLang(lang, {
-          ru: 'Голос подберёт устройство',
-          uk: 'Голос підбере пристрій',
-          en: 'The device picks the voice',
-          es: 'El dispositivo elige la voz',
-          'pt-BR': 'O dispositivo escolherá a voz',
-          vi: 'Thiết bị sẽ tự chọn giọng đọc',
-          id: 'Perangkat akan memilih suara',
-          tr: 'Sesi cihaz seçecek',
-          pl: 'Urządzenie dobierze głos',
-        });
+    // зачем (DQA, 04.10): у «Системный (авто)» подписи нет — название самодостаточно (экрана нет в макетах,
+    // правило владельца: без расшифровок мелким шрифтом); у конкретного голоса подпись — его язык.
+    const sub = v ? v.language : null;
     return (
       <TouchableOpacity
         key={id ?? '__system__'}
@@ -246,9 +236,11 @@ export default function FlashcardsVoicePickerScreen() {
               </View>
             ) : null}
           </View>
-          <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
-            {sub}
-          </Text>
+          {sub ? (
+            <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
+              {sub}
+            </Text>
+          ) : null}
         </View>
         {/* Превью конкретного голоса без смены выбора */}
         <TouchableOpacity

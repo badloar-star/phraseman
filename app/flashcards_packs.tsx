@@ -37,6 +37,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import ScreenGradient from '../components/ScreenGradient';
 import { LinearGradient } from '../components/SafeLinearGradient';
+import { KitGlassLayer, KIT_GLASS_DROP } from '../components/v2/KitLiquidGlass';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -415,13 +416,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
 
   const headerActions = (
           <View style={styles.headerActions}>
-            <PackLanguagePicker
-              pill={embedded}
-              lang={lang}
-              t={t}
-              value={packLanguage}
-              onChange={handlePackLanguageChange}
-            />
+            {/* зачем (владелец 04.10, packs-simple.html кадр 1): в шапке сначала круглая лупа, затем пилюля «EN ▾». */}
             <TouchableOpacity
               testID="flashcards-packs-search-toggle"
               accessibilityRole="button"
@@ -447,6 +442,13 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
                 color={searchOpen || communityQuery.trim().length > 0 ? t.accent : g.secondary}
               />
             </TouchableOpacity>
+            <PackLanguagePicker
+              pill={embedded}
+              lang={lang}
+              t={t}
+              value={packLanguage}
+              onChange={handlePackLanguageChange}
+            />
 
           </View>
   );
@@ -623,18 +625,28 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
           </Animated.ScrollView>
         </View>
         <View style={[styles.bottomTabsDock, { paddingBottom: embedded ? tabContentBottomPad - 8 : Math.max(insets.bottom, 12) }]}>
-          <View style={[styles.bottomTabs, { backgroundColor: g.sheet, borderColor: g.glassEdge, borderWidth: 1, overflow: 'hidden' }]}>
-            <CatalogGlass tint={g.selected} edge={g.glassEdge} />
+          {/* зачем (владелец 04.10, packs-simple.html `.bar3`, «как на макете»): компактная плавающая пилюля по центру —
+              «Новые» и «Топ» текстом без значков (44, радиус 22, 15/600), активная залита цветом темы;
+              «+» по центру — круг 48 цвета темы. Стекло kit.css (блик + кромка), тень --lg-drop. */}
+          <View style={[styles.bottomTabs, { boxShadow: KIT_GLASS_DROP }]}>
+            {/* зачем (`.bar3` background): почти непрозрачная пилюля (.94) — список под ней не просвечивает. */}
+            <LinearGradient
+              pointerEvents="none"
+              colors={['rgba(28,28,34,0.94)', 'rgba(16,16,20,0.94)']}
+              start={{ x: 0.25, y: 0.067 }}
+              end={{ x: 0.75, y: 0.933 }}
+              style={StyleSheet.absoluteFill}
+            />
+            <KitGlassLayer radius={30} />
             <TouchableOpacity
               testID="flashcards-packs-sort-new"
               accessibilityRole="button"
               accessibilityLabel={newPacksLabel}
               accessibilityState={{ selected: communitySort === 'new' }}
               onPress={() => { void hapticTap(); setCommunitySort('new'); }}
-              style={[styles.bottomTab, communitySort === 'new' ? { backgroundColor: g.selected } : null]}
+              style={[styles.bottomTab, communitySort === 'new' ? { backgroundColor: t.accent } : null]}
             >
-              <Ionicons name={communitySort === 'new' ? 'sparkles' : 'sparkles-outline'} size={20} color={communitySort === 'new' ? g.text : g.secondary} />
-              <Text style={{ color: communitySort === 'new' ? g.text : g.secondary, fontSize: 13, fontWeight: '700', marginTop: 3 }}>{newPacksLabel}</Text>
+              <Text style={[styles.bottomTabText, { color: communitySort === 'new' ? t.correctText : g.secondary }]}>{newPacksLabel}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               testID="flashcards-packs-create"
@@ -645,9 +657,9 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
                 void hapticTap();
                 router.push({ pathname: '/community_pack_create', params: { origin: 'community', packLanguage } } as never);
               }}
-              style={[styles.bottomTab, styles.bottomCreateTab, { backgroundColor: t.accent }]}
+              style={[styles.bottomCreateTab, { backgroundColor: t.accent }]}
             >
-              <Ionicons name="add" size={30} color={t.correctText} />
+              <Ionicons name="add" size={24} color={t.correctText} />
             </TouchableOpacity>
             <TouchableOpacity
               testID="flashcards-packs-sort-popular"
@@ -655,10 +667,9 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               accessibilityLabel={topPacksLabel}
               accessibilityState={{ selected: communitySort === 'popular' }}
               onPress={() => { void hapticTap(); setCommunitySort('popular'); }}
-              style={[styles.bottomTab, communitySort === 'popular' ? { backgroundColor: g.selected } : null]}
+              style={[styles.bottomTab, communitySort === 'popular' ? { backgroundColor: t.accent } : null]}
             >
-              <Ionicons name={communitySort === 'popular' ? 'trophy' : 'trophy-outline'} size={20} color={communitySort === 'popular' ? g.text : g.secondary} />
-              <Text style={{ color: communitySort === 'popular' ? g.text : g.secondary, fontSize: 13, fontWeight: '700', marginTop: 3 }}>{topPacksLabel}</Text>
+              <Text style={[styles.bottomTabText, { color: communitySort === 'popular' ? t.correctText : g.secondary }]}>{topPacksLabel}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -682,29 +693,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     zIndex: 10,
   },
+  // зачем (packs-simple.html `.bar3`): пилюля по содержимому, отступ 6, зазор 6, радиус 30.
   bottomTabs: {
-    minHeight: 68,
-    width: '92%',
-    maxWidth: 420,
     alignSelf: 'center',
-    borderRadius: 20,
-    paddingHorizontal: 8,
+    borderRadius: 30,
+    padding: 6,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    gap: 6,
+    overflow: 'hidden',
   },
   bottomTab: {
-    minWidth: 88,
-    minHeight: 52,
-    borderRadius: 14,
+    height: 44,
+    paddingHorizontal: 22,
+    borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  bottomTabText: { fontSize: 15, lineHeight: 20, fontWeight: '600' },
   bottomCreateTab: {
-    width: 54,
-    minWidth: 54,
-    height: 54,
-    borderRadius: 18,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   header: {
     flexDirection: 'row',

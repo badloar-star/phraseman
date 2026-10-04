@@ -1023,17 +1023,20 @@ function MistakePracticeSessionScreen() {
       <MistakePracticeScreenFrame centered>
         {/* зачем (D158): спокойно — без красного значка ошибки; повтор только там, где он имеет смысл. */}
         <Text accessibilityRole="header" style={[styles.errorTitle, { color: g.text, fontSize: f.h3 }]}>{loadError ?? copy.sessionEnded}</Text>
+        {/* зачем (координатор 03.10, D158 «тихо везде»): сбой — не повод для акцента. «Попробовать снова»
+            — тихая кнопка как в статистике (bgSurface2 = opaqueSheet, 48), «Вернуться» — текстовая
+            ссылка. Акцент остаётся только когда занятие закончилось (действие с результатом). */}
         {loadError && loadRetriable ? (
-          <Pressable accessibilityRole="button" testID="mistake-practice-try-again" style={[styles.primaryButton, { backgroundColor: g.accent }]} onPress={retryPrepare}>
-            <Text style={{ color: g.accentInk, fontSize: f.body, fontWeight: '700' }}>{copy.tryAgain}</Text>
+          <Pressable accessibilityRole="button" testID="mistake-practice-try-again" style={({ pressed }) => [styles.quietButton, { backgroundColor: g.opaqueSheet }, pressed && { opacity: 0.85 }]} onPress={retryPrepare}>
+            <Text style={{ color: g.text, fontSize: f.body, fontWeight: '700' }}>{copy.tryAgain}</Text>
           </Pressable>
         ) : null}
         <Pressable
           accessibilityRole="button"
-          style={loadError && loadRetriable ? [styles.primaryButton, { backgroundColor: g.opaqueCard }] : [styles.primaryButton, { backgroundColor: g.accent }]}
+          style={loadError && loadRetriable ? ({ pressed }) => [styles.textLink, pressed && { opacity: 0.6 }] : [styles.primaryButton, { backgroundColor: g.accent }]}
           onPress={leavePractice}
         >
-          <Text style={{ color: loadError && loadRetriable ? g.text : g.accentInk, fontSize: f.body, fontWeight: '700' }}>{copy.back}</Text>
+          <Text style={{ color: loadError && loadRetriable ? g.secondary : g.accentInk, fontSize: f.body, fontWeight: '700' }}>{copy.back}</Text>
         </Pressable>
       </MistakePracticeScreenFrame>
     );
@@ -1335,6 +1338,8 @@ const styles = StyleSheet.create({
   undoRow: { position: 'absolute', left: 22, right: 22, bottom: 22, flexDirection: 'row', gap: 10 },
   undoButton: { flex: 1, minHeight: 56, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   primaryButton: { minWidth: 180, minHeight: 52, borderRadius: 17, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 },
+  quietButton: { minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 22 },
+  textLink: { minHeight: 44, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 16 },
   errorTitle: { textAlign: 'center', fontWeight: '700' },
 });
 

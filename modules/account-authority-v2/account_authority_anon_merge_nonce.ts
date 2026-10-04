@@ -26,6 +26,14 @@ const NONCE_MAX_LENGTH = 128;
 type Entry = Readonly<{ secret: string; issuedAtMs: number }>;
 
 const entries = new Map<string, Entry>();
+/**
+ * зачем (AA S2c, L-S2b-4): НЕ секрет — только факт «nonce этому stableId выдан в
+ * этом процессе» и «к вызову его уже не было» (истёк/стёрт). По нему отказ
+ * сервера (stable_id_mismatch) отличается от настоящего «чужой аккаунт»: это
+ * «повторите вход», а не тупик. Стирается вместе с секретом по завершении входа.
+ */
+const issuedMarkers = new Map<string, number>();
+const lostStableIds = new Set<string>();
 let log: AccountAuthorityLogger = safeAccountAuthorityLogger(undefined);
 
 /** Только для тестов: подменить логгер (по умолчанию console с префиксом AA). */
@@ -64,15 +72,21 @@ export function acceptAnonMergeStampResponse(
     : undefined;
   if (candidate === undefined || candidate === null) {
     entries.delete(stableId);
+    issuedMarkers.delete(stableId);
+    lostStableIds.delete(stableId);
     log.info('anon_merge_nonce absent', { reason: 'legacy_server' });
     return 'absent';
   }
   if (!isValidSecret(candidate)) {
     entries.delete(stableId);
+    issuedMarkers.delete(stableId);
+    lostStableIds.delete(stableId);
     log.warn('anon_merge_nonce absent', { reason: 'malformed_response' });
     return 'invalid';
   }
   entries.set(stableId, Object.freeze({ secret: candidate, issuedAtMs: nowMs }));
+  issuedMarkers.set(stableId, nowMs);
+  lostStableIds.delete(stableId);
   log.info('anon_merge_nonce issued', { result: 'memory_only' });
   return 'issued';
 }
@@ -107,7 +121,18 @@ export function anonMergeNonceField(
       return Object.freeze({ anonMergeNonce: secret });
     }
   }
-  if (entries.size > 0) log.info('anon_merge_nonce not_attached', { source, reason: 'other_stable_id' });
+  // S2c (L-S2b-4): nonce этому stableId выдавали, а к вызову его нет — запомнить
+  // факт потери, чтобы отказ сервера стал «повторите вход», а не тупиком.
+  let lost = 0;
+  for (const stableIdRaw of stableIds) {
+    const stableId = normalizeStableId(stableIdRaw);
+    if (stableId && issuedMarkers.has(stableId) && !entries.has(stableId)) {
+      lostStableIds.add(stableId);
+      lost += 1;
+    }
+  }
+  if (lost > 0) log.warn('anon_merge_nonce lost', { source, count: lost });
+  else if (entries.size > 0) log.info('anon_merge_nonce not_attached', { source, reason: 'other_stable_id' });
   return Object.freeze({});
 }
 
@@ -115,7 +140,10 @@ export function anonMergeNonceField(
 export function forgetAnonMergeNonce(stableIds: readonly string[], reason: 'merged' | 'cancelled'): void {
   let cleared = 0;
   for (const stableId of stableIds) {
-    if (entries.delete(normalizeStableId(stableId))) cleared += 1;
+    const normalized = normalizeStableId(stableId);
+    if (entries.delete(normalized)) cleared += 1;
+    issuedMarkers.delete(normalized);
+    lostStableIds.delete(normalized);
   }
   if (cleared > 0) log.info('anon_merge_nonce cleared', { reason, count: cleared });
 }
@@ -124,7 +152,34 @@ export function forgetAnonMergeNonce(stableIds: readonly string[], reason: 'merg
 export function forgetAllAnonMergeNonces(reason: 'sign_in_settled' | 'sign_out' | 'tests'): void {
   const count = entries.size;
   entries.clear();
+  issuedMarkers.clear();
+  lostStableIds.clear();
   if (count > 0) log.info('anon_merge_nonce cleared', { reason, count });
+}
+
+/** Код для UI «повторите вход»: слияние/перепривязка отклонены из-за потерянного nonce. */
+export const ANON_MERGE_NONCE_LOST_CODE = 'anon_merge_nonce_lost' as const;
+
+/** Отказы сервера, которыми проявляется отсутствие nonce (сервер не раскрывает причину). */
+const NONCE_REJECTION_FAILURES = new Set(['stable_id_mismatch', 'permission_denied', 'permission-denied']);
+
+/**
+ * зачем (AA S2c, L-S2b-4): сервер на отказ по nonce отвечает тем же
+ * stable_id_mismatch, что и на чужой аккаунт. Клиент различает сам: если nonce
+ * этому stableId был выдан в этом процессе, но к вызову потерялся, — это не
+ * «чужой», а «повторите вход» (новая метка выдаст новый nonce). Иначе null —
+ * отказ остаётся прежним. Лог — только факт и источник, без stableId.
+ */
+export function classifyAnonMergeNonceRejection(
+  source: 'ensure_link' | 'merge',
+  stableIds: readonly string[],
+  failure: string | null | undefined,
+): typeof ANON_MERGE_NONCE_LOST_CODE | null {
+  if (!failure || !NONCE_REJECTION_FAILURES.has(failure)) return null;
+  const lost = stableIds.some((stableId) => lostStableIds.has(normalizeStableId(stableId)));
+  if (!lost) return null;
+  log.warn('anon_merge_nonce rejection_classified', { source, result: ANON_MERGE_NONCE_LOST_CODE });
+  return ANON_MERGE_NONCE_LOST_CODE;
 }
 
 /** Только для тестов: сколько секретов в памяти. */

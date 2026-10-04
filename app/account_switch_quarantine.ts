@@ -1,6 +1,27 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const ACCOUNT_SWITCH_QUARANTINE_KEY = 'account_switch_quarantine_v1';
+
+/**
+ * зачем (AA S2c, [ACC-SWITCH-WIPE]): трассировка ранних выходов и catch. Модуль
+ * трассировки грузится ЛЕНИВО: этот файл читается на холодном старте до
+ * гидрации Firebase и не должен заранее тянуть журнал и здоровье приложения.
+ */
+function traceAccountSwitchWipe(
+  event: string,
+  fields: Readonly<Record<string, string | number | boolean | null>>,
+  error?: unknown,
+  persist = false,
+): void {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const trace = require('./identity_trace') as typeof import('./identity_trace');
+    const withCode = error === undefined ? fields : { ...fields, code: trace.identityErrorCode(error) };
+    trace.identityTrace('[ACC-SWITCH-WIPE]', event, withCode, { persist });
+  } catch (traceError) {
+    console.warn(`[ACC-SWITCH-WIPE] trace_unavailable event=${event} kind=${traceError instanceof Error ? traceError.name : typeof traceError}`);
+  }
+}
 export const ACCOUNT_SWITCH_COMPLETION_RECEIPT_KEY = 'account_switch_completion_receipt_v1';
 export const ACCOUNT_SWITCH_POST_COMPLETION_HANDOFF_KEY = 'account_switch_post_completion_handoff_v1';
 export const ACCOUNT_PROVIDER_HANDOFF_KEY = 'account_provider_handoff_v1';
@@ -879,14 +900,20 @@ async function resumeInternal(
     return { result: 'quarantined', reason: 'journal_state_invalid' };
   }
   let marker: AccountSwitchQuarantineMarker;
-  try { marker = parseMarker(raw); } catch {
+  try { marker = parseMarker(raw); } catch (parseError) {
+    // зачем (AA S2c): прежде немой catch — битый маркер выглядел как «перезапусти».
+    traceAccountSwitchWipe('resume marker_invalid', {}, parseError, true);
     publish({ visible: true, status: 'quarantined', reason: 'marker_invalid' });
     return { result: 'quarantined', reason: 'marker_invalid' };
   }
 
   let quiesced = false;
-  try { quiesced = await deps.quiesce(); } catch { quiesced = false; }
+  try { quiesced = await deps.quiesce(); } catch (quiesceError) {
+    traceAccountSwitchWipe('resume quiesce_threw', {}, quiesceError);
+    quiesced = false;
+  }
   if (!quiesced) {
+    traceAccountSwitchWipe('resume quiesce_failed', { phase: marker.phase }, undefined, true);
     publish({ visible: true, status: 'retryable', reason: 'quiesce_failed' });
     return { result: 'retryable', reason: 'quiesce_failed' };
   }
@@ -1032,6 +1059,10 @@ async function resumeInternal(
           : detail.startsWith('account_switch_marker_')
             ? 'marker_write_failed'
             : 'transition_failed';
+      // зачем (AA S2c, случай 1.6.19 AccountLogoutFlow:wipe_failed): reason
+      // «wipe_failed» ставится по ФАЗЕ маркера, а не по шагу — им может быть и
+      // стирание (account_wipe_incomplete), и запись маркера. Код шага — здесь.
+      traceAccountSwitchWipe('resume step_failed', { phase: marker.phase, reason }, error, true);
       deps.invalidateGeneration();
       publish({ visible: true, status: 'retryable', reason });
       return { result: 'retryable', reason, detail };

@@ -777,6 +777,14 @@ export function createAccountAuthoritySecureRevisionStore(input: Readonly<{
       await writeUidRevision(record.uidHash, revision);
       await writeLeaseRecord(owner, record.uidHash, revision);
     },
+    // зачем (AA S2c, L-S2b-3): аренда «своя» для uid, если хеш uid в её записи
+    // совпадает с хешем этого uid. Записи нет — не своя (проверять нечего).
+    leaseOwnedBy: async (owner, firebaseAuthUid) => {
+      const record = await readLeaseRecord(owner);
+      if (record === null) return false;
+      const { uidHash } = await revisionKey(firebaseAuthUid, input.digestSha256);
+      return record.uidHash === uidHash;
+    },
   };
   return Object.freeze(store);
 }
@@ -952,6 +960,10 @@ export function createAccountAuthoritySecureInstallationBindingCredentialStore(i
       }
       await deleteAt(keyForUidHash(uidHash), 'lease');
     },
+    // зачем (AA S2c, L-S2b-2): ключи промисов привязки в памяти транспорта —
+    // тот же хеш uid, что в имени ключа SecureStore; сырой uid в ключ не идёт.
+    uidKey: async (firebaseAuthUid) => (await keyForUid(firebaseAuthUid)).uidHash,
+    leaseOwnerKey: (owner) => leaseUidHash(owner),
   };
   return Object.freeze(credentialStore);
 }

@@ -45,8 +45,10 @@ import { getAuthLinkCacheTtlMs } from './remote_flags';
 import { peekStoredItem, readStoredItem, removeStoredItem, writeStoredItem } from './storage_snapshot';
 import {
   anonMergeNonceField,
+  classifyAnonMergeNonceRejection,
   forgetAnonMergeNonce,
 } from '../modules/account-authority-v2/account_authority_anon_merge_nonce';
+import { identityErrorCode, identityTag, identityTrace, redactStorageKey } from './identity_trace';
 import {
   ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS,
   ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS,
@@ -1016,6 +1018,13 @@ export type StableAuthLinkEnsureResult = {
   source: 'disabled' | 'cache' | 'callable' | 'unavailable';
   failure?: StableAuthLinkFailure;
   retiredSubject?: 'stable' | 'auth' | 'closure' | 'unknown';
+  /**
+   * зачем (AA S2c, L-S2b-4): отказ перепривязки, за которым стоит потерянный
+   * nonce M-1 (выдан этому stableId в этом процессе, к вызову истёк/стёрт).
+   * failure остаётся прежним — старые ветки ведут себя как раньше; поле лишь
+   * даёт различимый код «повторите вход» вместо общего auth_link_failed.
+   */
+  nonceRejection?: 'anon_merge_nonce_lost';
 };
 
 export type StableAuthLinkMetadata = {
@@ -2057,6 +2066,7 @@ export async function ensureStableAuthLinkForStableIdDetailed(
     } catch (error) {
       if (__DEV__) console.warn('[cloud_sync] authEnsureStableLink callable failed', error);
       const failure = classifyCloudAccessFailure(error);
+      const nonceRejection = classifyAnonMergeNonceRejection('ensure_link', [stableId], failure);
       return {
         ok: false,
         requestedStableId: stableId,
@@ -2067,6 +2077,7 @@ export async function ensureStableAuthLinkForStableIdDetailed(
         ...(failure === 'identity_retired'
           ? { retiredSubject: classifyRetiredIdentitySubject(error) }
           : {}),
+        ...(nonceRejection ? { nonceRejection } : {}),
       };
     } finally {
       stableAuthLinkPromise = null;
@@ -2366,6 +2377,10 @@ export async function mergeStableAccountsViaServer(
     return res?.data ?? null;
   } catch (e) {
     if (__DEV__) console.warn('[cloud_sync] mergeStableAccountsViaServer failed', e);
+    // зачем (AA S2c, L-S2b-4): слияние, отклонённое из-за потерянного nonce,
+    // различимо в логе (контракт возврата null не меняем — вызывающий и так
+    // перечитывает якорь авторитетно и не делает разрушительный свап вслепую).
+    classifyAnonMergeNonceRejection('merge', [a, b], classifyCloudAccessFailure(e));
     return null;
   }
 }
@@ -2406,14 +2421,29 @@ async function adoptAuthoritativeStableIdentity(
   if (localStableId === authoritativeStableId) return true;
 
   const sourceGeneration = captureAccountGeneration();
-  if (!isCurrentAccountGeneration(sourceGeneration, localStableId)) return false;
+  // зачем (AA S2c, [PROFILE-FLIP]): сервер назвал другой канонический профиль —
+  // здесь локальные данные стираются и stable_id переключается. Если на
+  // следующем старте stable_id снова старый, этот переход повторится, и профиль
+  // будет «прыгать» между двумя на каждом перезапуске.
+  if (!isCurrentAccountGeneration(sourceGeneration, localStableId)) {
+    identityTrace('[PROFILE-FLIP]', 'adopt skipped', { reason: 'stale_generation_before_lock', from: identityTag(localStableId) });
+    return false;
+  }
+  identityTrace('[PROFILE-FLIP]', 'adopt start', { from: identityTag(localStableId), to: identityTag(authoritativeStableId) }, { persist: true });
 
   return withAccountTransitionLock(async () => {
-    if (!isCurrentAccountGeneration(sourceGeneration, localStableId)) return false;
+    if (!isCurrentAccountGeneration(sourceGeneration, localStableId)) {
+      identityTrace('[PROFILE-FLIP]', 'adopt skipped', { reason: 'stale_generation_in_lock', from: identityTag(localStableId) });
+      return false;
+    }
     await wipeLocalAccountDataUnsafe();
-    if (!isCurrentAccountGeneration(sourceGeneration, localStableId)) return false;
+    if (!isCurrentAccountGeneration(sourceGeneration, localStableId)) {
+      identityTrace('[PROFILE-FLIP]', 'adopt skipped', { reason: 'stale_generation_after_wipe', from: identityTag(localStableId) });
+      return false;
+    }
     await setStableId(authoritativeStableId);
     beginAccountGeneration(authoritativeStableId);
+    identityTrace('[PROFILE-FLIP]', 'adopt done', { to: identityTag(authoritativeStableId) });
     stableAuthLinkPromise = null;
     stableAuthLinkKey = '';
     await removeStoredItem(STABLE_AUTH_LINK_CACHE_KEY).catch(swallowError('cloud_sync:adoptAuthoritativeStableIdentity'));
@@ -2483,10 +2513,20 @@ export async function ensureAuthoritativeIdentityForCloudMutation(
     return { ok: true, stableUid: localStableId, adopted: false };
   }
 
+  identityTrace('[PROFILE-FLIP]', 'authoritative mismatch', {
+    local: identityTag(localStableId),
+    server: identityTag(stableLink.stableUid),
+    authUid: identityTag(stableLink.authUid),
+    source: stableLink.source,
+  }, { persist: true });
   const adopted = await adoptAuthoritativeStableIdentity(localStableId, stableLink.stableUid);
   if (adopted) {
     // Hydrate the canonical account only after the source-account wipe and id swap.
-    await restoreAndMigrateFromCloudResult(false).catch(() => failedCloudRestoreAttempt('transport_unavailable'));
+    await restoreAndMigrateFromCloudResult(false).catch((restoreError: unknown) => {
+      // зачем (S2c): прежде немой — после смены профиля не подтянулись его данные.
+      identityTrace('[PROFILE-FLIP]', 'adopt restore_failed', { code: identityErrorCode(restoreError) }, { persist: true });
+      return failedCloudRestoreAttempt('transport_unavailable');
+    });
   }
   // The operation which discovered the mismatch must never continue with its
   // source-generation payload. A later operation will capture the new generation.
@@ -4861,7 +4901,17 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
       const residue = (await AsyncStorage.multiGet(chunk))
         .filter(([, value]) => value != null)
         .map(([key]) => key);
-      if (residue.length > 0) throw new Error('account_wipe_incomplete');
+      if (residue.length > 0) {
+        // зачем (AA S2c, случай 1.6.19 AccountLogoutFlow:wipe_failed): какой ключ
+        // переписал живой писатель между удалением и проверкой. Только ИМЕНА
+        // ключей (не значения) — по ним видно, чей таймер не остановлен.
+        identityTrace('[ACC-SWITCH-WIPE]', 'residue', {
+          stage: 'chunk',
+          count: residue.length,
+          keys: residue.slice(0, 5).map(redactStorageKey).join(','),
+        }, { persist: true });
+        throw new Error('account_wipe_incomplete');
+      }
     }
   };
   const toRemove = accountKeys.filter((key) => (
@@ -4888,7 +4938,14 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
       || isCustomizationAccountLocalKey(key)
       || isVipSnapshotStorageKey(key)
     ));
-  if (finalResidue.length > 0) throw new Error('account_wipe_incomplete');
+  if (finalResidue.length > 0) {
+    identityTrace('[ACC-SWITCH-WIPE]', 'residue', {
+      stage: 'final_scan',
+      count: finalResidue.length,
+      keys: finalResidue.slice(0, 5).map(redactStorageKey).join(','),
+    }, { persist: true });
+    throw new Error('account_wipe_incomplete');
+  }
   if (receiptOwnerStableId) {
     await assertNoOwnerLevelGiftEffectReceipts(receiptOwnerStableId);
   }

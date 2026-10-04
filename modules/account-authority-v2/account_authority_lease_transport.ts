@@ -57,6 +57,16 @@ export interface AccountAuthorityLeaseRevisionStore {
     owner: Readonly<{ accountId: AccountId; sessionId: SessionId }>,
     revision: number,
   ): Promise<void>;
+  /**
+   * зачем (AA S2c, L-S2b-3): «выход выполнен» на повторе (S2b-R4) — допущение.
+   * Чтобы при следующем входе ТОГО ЖЕ uid проверить оставшуюся аренду, транспорт
+   * должен знать, что эта аренда принадлежала именно ему. Сравнение — по хешу uid
+   * в записи аренды; сам uid не хранится. Нет метода → проверка не выполняется (лог).
+   */
+  leaseOwnedBy?(
+    owner: Readonly<{ accountId: AccountId; sessionId: SessionId }>,
+    firebaseAuthUid: FirebaseAuthUid,
+  ): Promise<boolean>;
 }
 
 export type AccountAuthorityInstallationBinding = Readonly<{
@@ -94,6 +104,14 @@ export interface AccountAuthorityInstallationBindingCredentialStore {
   write(firebaseAuthUid: FirebaseAuthUid, credentials: AccountAuthorityInstallationBindingCredentials): Promise<void>;
   clear(firebaseAuthUid: FirebaseAuthUid): Promise<void>;
   clearForLease(owner: AccountAuthorityLeaseOwnerRef): Promise<void>;
+  /**
+   * зачем (AA S2c, L-S2b-2): ключ промисов привязки в памяти — хеш uid (тот же,
+   * что в SecureStore), а не сырой uid. По нему resetForLease сбрасывает ТОЛЬКО
+   * запись владельца аренды, не трогая привязки других uid этого устройства.
+   */
+  uidKey?(firebaseAuthUid: FirebaseAuthUid): Promise<string>;
+  /** Хеш uid владельца аренды по её записи; null — записи нет. */
+  leaseOwnerKey?(owner: AccountAuthorityLeaseOwnerRef): Promise<string | null>;
 }
 
 type LeaseResponse = Readonly<{
@@ -101,6 +119,8 @@ type LeaseResponse = Readonly<{
   sessionId: ReturnType<typeof parseSessionId>;
   revision: number;
   previousLeaseRevoked: boolean;
+  /** S2c (L-S2b-3): «renewed» после проверки = сервер ещё держал нашу аренду. */
+  type: 'acquired' | 'renewed';
 }>;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -174,11 +194,13 @@ function parseLeaseResponse(
     }
   }
   const previousLeaseRevoked = data.previousLeaseRevoked;
+  const type: 'acquired' | 'renewed' = data.type;
   return parseOrThrow(log, 'lease parse_ids_invalid', 'account_authority_lease_invalid', () => Object.freeze({
     accountId: parseAccountId(data.accountId),
     sessionId: parseSessionId(data.sessionId),
     revision: data.revision as number,
     previousLeaseRevoked,
+    type,
   }));
 }
 
@@ -296,6 +318,43 @@ export function createAccountAuthorityFirebaseLeasePort(input: Readonly<{
   // зачем (S2b-R4): выходы, чей ответ уже терялся. Отказ контракта на повторе
   // такого выхода значит «первая попытка дошла», а не ошибку.
   const releaseResponseLost = new Set<string>();
+  // зачем (AA S2c, L-S2b-3): аренды, чей выход засчитан «выполненным» на повторе
+  // (S2b-R4) БЕЗ подтверждения сервера. Если первая попытка на самом деле не
+  // дошла, сервер держит старую ревизию, а клиент уже сдвинул свою на +1 — и
+  // следующий вход того же uid упал бы в revision_mismatch навсегда. Поэтому при
+  // следующем входе этого uid — одна проверка: на revision_mismatch вход
+  // повторяется с ревизией сервера (expectedRevision=null), и сервер сам
+  // продлевает или отзывает оставшуюся аренду. Живёт в памяти процесса (как R2/R4).
+  const presumedReleases = new Map<string, AccountAuthorityLeaseOwnerRef>();
+  const leaseMapKey = (owner: AccountAuthorityLeaseOwnerRef): string => (
+    `${owner.accountId.value}\u0000${owner.sessionId.value}`
+  );
+  const findPresumedRelease = async (firebaseAuthUid: FirebaseAuthUid): Promise<string | null> => {
+    if (presumedReleases.size === 0) return null;
+    const leaseOwnedBy = input.revisionStore.leaseOwnedBy;
+    if (leaseOwnedBy === undefined) {
+      log.warn('lease acquire_presumed_release_unverifiable', {
+        reason: 'owner_match_unavailable',
+        count: presumedReleases.size,
+      });
+      return null;
+    }
+    for (const [key, owner] of presumedReleases) {
+      try {
+        if (await leaseOwnedBy(owner, firebaseAuthUid)) {
+          log.info('lease acquire_presumed_release_pending', { count: presumedReleases.size });
+          return key;
+        }
+      } catch (error) {
+        log.warn('lease acquire_presumed_release_owner_check_failed', {
+          kind: accountAuthorityErrorKind(error),
+          code: accountAuthorityErrorCode(error),
+        });
+      }
+    }
+    log.info('lease acquire_presumed_release_other_owner', { count: presumedReleases.size });
+    return null;
+  };
 
   const backoff = async (
     event: string,
@@ -338,6 +397,10 @@ export function createAccountAuthorityFirebaseLeasePort(input: Readonly<{
         throw new Error('account_authority_lease_replay_expired');
       }
     }
+    // S2c (L-S2b-3): своя оставшаяся аренда после «выход выполнен» на повторе.
+    const presumedKey = await findPresumedRelease(request.firebaseAuthUid);
+    let requestRevision = expectedRevision;
+    let presumedChecked = false;
     let rotated = false;
     for (let attempt = 1; ; attempt += 1) {
       try {
@@ -345,13 +408,23 @@ export function createAccountAuthorityFirebaseLeasePort(input: Readonly<{
         log.info('lease acquire_call', { callable: ACCOUNT_AUTHORITY_LEASE_ACQUIRE_CALLABLE, attempt });
         const response = await input.invoke(ACCOUNT_AUTHORITY_LEASE_ACQUIRE_CALLABLE, Object.freeze({
           operationId: request.operationId.value,
-          expectedRevision,
+          expectedRevision: requestRevision,
           bindingToken: binding.bindingToken,
         }));
-        const parsed = parseLeaseResponse(log, response, expectedRevision);
+        const parsed = parseLeaseResponse(log, response, requestRevision);
         const owner = Object.freeze({ accountId: parsed.accountId, sessionId: parsed.sessionId });
         await input.revisionStore.bindLease(request.firebaseAuthUid, owner, parsed.revision);
         initialAcquireFirstAttemptAt.delete(operationKey);
+        if (presumedKey !== null) {
+          presumedReleases.delete(presumedKey);
+          let outcome = 'release_confirmed';
+          if (presumedChecked) {
+            if (parsed.type === 'renewed') outcome = 'leftover_lease_reclaimed';
+            else if (parsed.previousLeaseRevoked) outcome = 'leftover_lease_revoked';
+            else outcome = 'server_revision_adopted';
+          }
+          log.info('lease acquire_presumed_release_resolved', { result: outcome, attempt });
+        }
         log.info('lease acquire_ok', {
           previousLeaseRevoked: parsed.previousLeaseRevoked,
           attempt,
@@ -370,6 +443,20 @@ export function createAccountAuthorityFirebaseLeasePort(input: Readonly<{
         });
         if (failure.kind === 'retryable' && attempt < maxAttempts) {
           await backoff('lease acquire_retry_scheduled', attempt, failure.reason);
+          continue;
+        }
+        // зачем (S2c, L-S2b-3): ревизия этого uid сдвинута допущением R4. Если
+        // сервер её не признал — ОДНА проверка с ревизией сервера; второй отказ
+        // окончательный (без цикла). Старый сервер без кода — та же трактовка.
+        const revisionSuspect = failure.kind === 'contract_rejected'
+          && (failure.leaseCode === null || failure.leaseCode === 'revision_mismatch');
+        if (presumedKey !== null && !presumedChecked && revisionSuspect) {
+          presumedChecked = true;
+          requestRevision = null;
+          log.warn('lease acquire_presumed_release_check', {
+            reason: failureReason(failure),
+            attempt,
+          });
           continue;
         }
         // зачем (S2b-R3, раунд 2): аренду перехватило другое устройство — эпоха
@@ -409,6 +496,12 @@ export function createAccountAuthorityFirebaseLeasePort(input: Readonly<{
               code: accountAuthorityErrorCode(resetError),
             });
           }
+        }
+        if (presumedKey !== null && presumedChecked) {
+          // Проверка выполнена и не помогла — отметку снимаем, чтобы не крутить её
+          // на каждом входе; дальше решает обычная политика отказов.
+          presumedReleases.delete(presumedKey);
+          log.warn('lease acquire_presumed_release_unresolved', { reason: failureReason(failure), attempt });
         }
         const mapped = mapFailure(error, failure);
         log.warn('lease acquire_gave_up', {
@@ -486,6 +579,9 @@ export function createAccountAuthorityFirebaseLeasePort(input: Readonly<{
         if (releaseDone && releaseResponseLost.has(operationKey)) {
           releaseResponseLost.delete(operationKey);
           await input.revisionStore.writeLease(owner, expectedRevision + 1);
+          // S2c (L-S2b-3): допущение без подтверждения — следующий вход этого
+          // uid проверит оставшуюся аренду (см. presumedReleases).
+          presumedReleases.set(leaseMapKey(owner), owner);
           log.info('lease release_presumed_done', { reason: 'replay_rejected_after_lost_response', attempt });
           return;
         }
@@ -527,26 +623,60 @@ export function createAccountAuthorityFirebaseInstallationBindingPort(input: Rea
   installationId: string;
   credentials: AccountAuthorityInstallationBindingCredentialStore;
   logger?: AccountAuthorityLogger;
+  /**
+   * зачем (AA S2c, L-S2b-1): текущий uid Firebase на устройстве. Привязку,
+   * созданную для uid A, нельзя сохранять, если за время вызова вошёл B: сервер
+   * выдаёт привязку вызывающему uid, и запись под чужим ключом вернула бы цикл
+   * binding_mismatch. Не передан — сверка не выполняется (тестовые фейки).
+   */
+  currentAuthUid?: () => string | null;
 }>): AccountAuthorityInstallationBindingPort {
   const log = safeAccountAuthorityLogger(input.logger);
   // Один промис на uid: повтор операции не ротирует доказательство (AA S0).
+  // S2c (L-S2b-2): ключ — хеш uid (credentials.uidKey), а не сырой uid.
   const bindings = new Map<string, Promise<AccountAuthorityInstallationBinding>>();
+  const uidMapKey = async (firebaseAuthUid: FirebaseAuthUid): Promise<string> => {
+    const uidKey = input.credentials.uidKey;
+    if (uidKey === undefined) return `uid:${firebaseAuthUid.value}`;
+    return `hash:${await uidKey(firebaseAuthUid)}`;
+  };
   const parsePersisted = (
     persisted: AccountAuthorityInstallationBindingCredentials | null,
   ): AccountAuthorityInstallationBinding | null => (
     persisted === null ? null : parseInstallationBindingCredentials(log, persisted)
   );
+  // S2c (L-S2b-1): сверка uid до вызова и перед сохранением. Не читается —
+  // отказ закрыто (лучше ещё одна привязка, чем чужая под этим ключом).
+  const assertCurrentUid = (firebaseAuthUid: FirebaseAuthUid, stage: 'before_call' | 'before_store'): void => {
+    const readCurrent = input.currentAuthUid;
+    if (readCurrent === undefined) return;
+    const event = stage === 'before_call'
+      ? 'installation_binding binding_create_skipped'
+      : 'installation_binding binding_store_skipped';
+    let current: string | null;
+    try {
+      current = readCurrent();
+    } catch (error) {
+      log.warn(event, { reason: 'current_uid_unreadable', kind: accountAuthorityErrorKind(error) });
+      throw new Error('account_authority_installation_binding_uid_changed');
+    }
+    if (current === firebaseAuthUid.value) return;
+    log.warn(event, { reason: current === null ? 'signed_out' : 'uid_changed' });
+    throw new Error('account_authority_installation_binding_uid_changed');
+  };
   const createOnServer = async (
     firebaseAuthUid: FirebaseAuthUid,
     startedAt: number,
     source: 'network' | 'rotation',
   ): Promise<AccountAuthorityInstallationBinding> => {
+    assertCurrentUid(firebaseAuthUid, 'before_call');
     log.info('installation_binding create_call', { callable: ACCOUNT_AUTHORITY_INSTALLATION_BINDING_CALLABLE, source });
     const response = await input.invoke(
       ACCOUNT_AUTHORITY_INSTALLATION_BINDING_CALLABLE,
       Object.freeze({ installationId: input.installationId }),
     );
     const binding = parseInstallationBindingResponse(log, response);
+    assertCurrentUid(firebaseAuthUid, 'before_store');
     await input.credentials.write(firebaseAuthUid, {
       bindingToken: binding.bindingToken,
       deviceBindingId: binding.deviceBindingId.value,
@@ -555,13 +685,13 @@ export function createAccountAuthorityFirebaseInstallationBindingPort(input: Rea
     return binding;
   };
   const track = (
-    uidKey: string,
+    mapKey: string,
     startedAt: number,
     event: string,
     work: () => Promise<AccountAuthorityInstallationBinding>,
   ): Promise<AccountAuthorityInstallationBinding> => {
     const guarded: Promise<AccountAuthorityInstallationBinding> = Promise.resolve().then(work).catch((error: unknown) => {
-      if (bindings.get(uidKey) === guarded) bindings.delete(uidKey);
+      if (bindings.get(mapKey) === guarded) bindings.delete(mapKey);
       // зачем (AA S0): наружу по-прежнему один код «привязка недоступна»
       // (fail-closed, без утечки токена), но вид исходного сбоя — сеть,
       // отказ callable или битые сохранённые данные — виден в логе.
@@ -572,7 +702,7 @@ export function createAccountAuthorityFirebaseInstallationBindingPort(input: Rea
       });
       throw new Error('account_authority_installation_binding_unavailable');
     });
-    bindings.set(uidKey, guarded);
+    bindings.set(mapKey, guarded);
     return guarded;
   };
   const port: AccountAuthorityInstallationBindingPort = {
@@ -581,15 +711,17 @@ export function createAccountAuthorityFirebaseInstallationBindingPort(input: Rea
       log.info('installation_binding read_for_lease', { result: persisted === null ? 'missing' : 'found' });
       return parsePersisted(persisted);
     },
-    obtain: (firebaseAuthUid) => {
-      const uidKey = firebaseAuthUid.value;
-      const existing = bindings.get(uidKey);
+    obtain: async (firebaseAuthUid) => {
+      const startedAt = Date.now();
+      const mapKey = await uidMapKey(firebaseAuthUid);
+      // Проверка и запись в Map идут синхронно после await — два параллельных
+      // obtain одного uid получают один промис (второй видит запись первого).
+      const existing = bindings.get(mapKey);
       if (existing !== undefined) {
         log.info('installation_binding obtain_shared_in_flight');
         return existing;
       }
-      const startedAt = Date.now();
-      return track(uidKey, startedAt, 'installation_binding obtain_failed', async () => {
+      return track(mapKey, startedAt, 'installation_binding obtain_failed', async () => {
         const persisted = parsePersisted(await input.credentials.read(firebaseAuthUid));
         if (persisted !== null) {
           log.info('installation_binding obtain_ok', { source: 'secure_store' });
@@ -598,26 +730,39 @@ export function createAccountAuthorityFirebaseInstallationBindingPort(input: Rea
         return createOnServer(firebaseAuthUid, startedAt, 'network');
       });
     },
-    rotate: (firebaseAuthUid) => {
+    rotate: async (firebaseAuthUid) => {
       const startedAt = Date.now();
       log.info('installation_binding rotate_start');
+      const mapKey = await uidMapKey(firebaseAuthUid);
       return track(
-        firebaseAuthUid.value,
+        mapKey,
         startedAt,
         'installation_binding rotate_failed',
         () => createOnServer(firebaseAuthUid, startedAt, 'rotation'),
       );
     },
     reset: async (firebaseAuthUid) => {
-      bindings.delete(firebaseAuthUid.value);
+      bindings.delete(await uidMapKey(firebaseAuthUid));
       await input.credentials.clear(firebaseAuthUid);
       log.info('installation_binding reset', { source: 'uid' });
     },
     resetForLease: async (owner) => {
-      // Ключ памяти — uid, а его тут нет. Сохранённая привязка аренды
-      // удаляется, промисы в памяти сбрасываются целиком: следующий obtain
-      // перечитает хранилище (одно чтение SecureStore, не сеть).
-      bindings.clear();
+      // зачем (S2c, L-S2b-2): сбрасываем в памяти ТОЛЬКО промис владельца аренды
+      // (по хешу uid из её записи). Прежде сбрасывались все — чужой вход на том
+      // же устройстве терял свой промис посреди операции.
+      const leaseOwnerKey = input.credentials.leaseOwnerKey;
+      if (leaseOwnerKey === undefined) {
+        bindings.clear();
+        log.warn('installation_binding reset_memory', { result: 'all', reason: 'owner_key_unavailable' });
+      } else {
+        const ownerHash = await leaseOwnerKey(owner);
+        if (ownerHash === null) {
+          log.info('installation_binding reset_memory', { result: 'none', reason: 'lease_record_missing' });
+        } else {
+          const removed = bindings.delete(`hash:${ownerHash}`);
+          log.info('installation_binding reset_memory', { result: 'owner', removed });
+        }
+      }
       await input.credentials.clearForLease(owner);
       log.info('installation_binding reset', { source: 'lease' });
     },
@@ -657,6 +802,18 @@ export function createProductionAccountAuthorityFirebaseLeasePort(
   });
 }
 
+/**
+ * зачем (AA S2c, L-S2b-1): текущий uid Firebase для сверки перед сохранением
+ * привязки. Модуль грузится лениво (как invokeFirebaseCallable) — в тестах и на
+ * старте legacy-пути нативный Firebase не тянется. null — никто не вошёл.
+ */
+function readFirebaseCurrentAuthUid(): string | null {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const authModule = require('@react-native-firebase/auth');
+  const uid = authModule.default().currentUser?.uid;
+  return typeof uid === 'string' && uid.length > 0 ? uid : null;
+}
+
 export function createProductionAccountAuthorityFirebaseInstallationBindingPort(input: Readonly<{
   installationId: string;
   credentials: AccountAuthorityInstallationBindingCredentialStore;
@@ -667,5 +824,6 @@ export function createProductionAccountAuthorityFirebaseInstallationBindingPort(
     installationId: input.installationId,
     credentials: input.credentials,
     logger: input.logger,
+    currentAuthUid: readFirebaseCurrentAuthUid,
   });
 }

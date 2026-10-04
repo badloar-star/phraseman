@@ -532,7 +532,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
 
     expect(census).toEqual({
       authProvider: {
-        stableIdentityReads: 17,
+        // S2c: +2 — peekStableId только для меток [AUTH-LINK-GOOGLE] (осознанно, без записи).
+        stableIdentityReads: 19,
         stableIdentityWrites: 8,
         authLinkLookups: 1,
         ownerMergeDecisions: 7,
@@ -552,7 +553,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         anonymousSessionDecisions: 9,
       },
       stableId: {
-        persistedIdentityReadsAndWrites: 20,
+        // S2c: +1 — чтение AsyncStorage для сверки слоёв [PROFILE-FLIP] (осознанно).
+        persistedIdentityReadsAndWrites: 21,
         generatedIdentities: 1,
         generationTransitions: 8,
         exportedLegacyIdentityApis: 5,
@@ -615,7 +617,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
     expect(provenance).toEqual({
       'app/auth_provider.ts': {
         // AA S2b (пункт 9): +2 — nonce M-1 (приём ответа метки, стирание по завершении входа).
-        occurrences: 109,
+        // AA S2c: +2 — peekStableId только для меток трассировки [AUTH-LINK-GOOGLE].
+        occurrences: 111,
         imports: 3,
         census: {
           'call:acceptAnonMergeStampResponse': 1,
@@ -635,7 +638,7 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:isLocalAnonymousIdentityProvenCleanForCredentialHandoff': 1,
           'call:mergeStableAccountsViaServer': 2,
           'call:onAuthStateChanged': 2,
-          'call:peekStableId': 5,
+          'call:peekStableId': 7,
           'call:quiesceCloudSyncForAccountTransition': 4,
           'call:quiesceSyncBeforeStableIdSwap': 3,
           'call:readExistingStableId': 1,
@@ -658,13 +661,15 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
       },
       'app/cloud_sync.ts': {
         // AA S2b (пункт 9): +1 — стирание nonce M-1 после успешного слияния.
-        occurrences: 71,
+        // AA S2c (L-S2b-4): +2 — различение отказа из-за потерянного nonce (ensureLink, merge).
+        occurrences: 73,
         imports: 2,
         census: {
           'call:adoptAuthoritativeStableIdentity': 1,
           'call:beginAccountGeneration': 1,
           'call:beginInitialAccountGeneration': 3,
           'call:captureAccountGeneration': 5,
+          'call:classifyAnonMergeNonceRejection': 2,
           'call:clearStableId': 2,
           'call:collection': 1,
           'call:ensureAnonAuthReady': 1,

@@ -24,6 +24,7 @@ import {
   assertAccountDeleteStableIdentityAvailable,
 } from './account_delete_quarantine';
 import { DebugLogger } from './debug-logger';
+import { identityErrorCode, identityTag, identityTrace } from './identity_trace';
 import { noteSwallowed, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const SECURE_KEY = 'phraseman_stable_uid';
@@ -136,6 +137,7 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
   if (SecureStore && opts) {
     try {
       // Сначала пробуем с фиксированным keychainService.
+      let usedLegacySecureItem = false;
       let stored = await SecureStore.getItemAsync(SECURE_KEY, opts);
       assertCurrentStableIdRead(epoch);
       // Миграция со старого Keychain item (без keychainService): если новый ключ
@@ -148,6 +150,7 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
             await SecureStore.setItemAsync(SECURE_KEY, legacy, opts).catch(noteSwallowedHandler('stable_id:promise_1'));
             await SecureStore.deleteItemAsync(SECURE_KEY).catch(noteSwallowedHandler('stable_id:promise_2'));
             stored = legacy;
+            usedLegacySecureItem = true;
           }
         } catch (e) {
       // ignore legacy migration errors
@@ -157,6 +160,28 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
       if (stored) {
         await assertStableIdentityAvailableAtStartup(stored);
         assertCurrentStableIdRead(epoch);
+        // зачем (AA S2c, случай §126 «после перезапуска уровень 13↔12, дни
+        // 155↔52»): гипотеза — два слоя хранения разошлись (SecureStore держит
+        // старый профиль, AsyncStorage — новый), и SecureStore при старте
+        // побеждает. СПЕРВА ЛОГИ: сравниваем оба слоя ДО перезаписи AsyncStorage.
+        // Одно лишнее чтение AsyncStorage за холодный старт.
+        let asyncBefore: string | null = null;
+        let asyncReadFailed = false;
+        try {
+          asyncBefore = await AsyncStorage.getItem(ASYNC_KEY);
+        } catch (asyncError) {
+          asyncReadFailed = true;
+          identityTrace('[PROFILE-FLIP]', 'startup async_read_failed', { code: identityErrorCode(asyncError) });
+        }
+        const layersAgree = !asyncReadFailed && asyncBefore === stored;
+        // В журнал (переживает перезапуск) — только расхождение слоёв: обычный
+        // старт не платит записью в AsyncStorage (холодный старт не тяжелеет).
+        identityTrace('[PROFILE-FLIP]', 'startup source', {
+          source: usedLegacySecureItem ? 'secure_store_legacy' : 'secure_store',
+          stable: identityTag(stored),
+          asyncStable: asyncReadFailed ? 'unreadable' : identityTag(asyncBefore),
+          layersAgree,
+        }, { persist: !layersAgree });
         cachedId = stored;
         await AsyncStorage.setItem(ASYNC_KEY, stored);
         assertCurrentStableIdRead(epoch);
@@ -166,6 +191,7 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
     } catch (e) {
       // native / keystore issues → fall through
       DebugLogger.error('stable_id:legacy', e instanceof Error ? e : new Error(String(e)), 'warning');
+      identityTrace('[PROFILE-FLIP]', 'startup secure_read_failed', { code: identityErrorCode(e) }, { persist: true });
     }
   }
 
@@ -177,6 +203,11 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
     if (cached) {
       await assertStableIdentityAvailableAtStartup(cached);
       assertCurrentStableIdRead(epoch);
+      identityTrace('[PROFILE-FLIP]', 'startup source', {
+        source: 'async_storage',
+        stable: identityTag(cached),
+        secureAvailable: Boolean(SecureStore && opts),
+      }, { persist: true });
       cachedId = cached;
       if (SecureStore && opts) {
         await SecureStore.setItemAsync(SECURE_KEY, cached, opts).catch(noteSwallowedHandler('stable_id:promise_3'));
@@ -208,6 +239,7 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
 
   cachedId = newId;
   beginInitialAccountGeneration(newId);
+  identityTrace('[PROFILE-FLIP]', 'startup source', { source: 'generated', stable: identityTag(newId) });
 
   return newId;
 }
@@ -282,25 +314,47 @@ export function getStableId(): Promise<string> {
  * иначе данные старого аккаунта останутся в кеше.
  */
 async function persistStableId(newId: string, epoch: number): Promise<void> {
-  if (epoch !== stableIdOperationEpoch) return;
+  if (epoch !== stableIdOperationEpoch) {
+    identityTrace('[PROFILE-FLIP]', 'persist skipped', { reason: 'stale_epoch', target: identityTag(newId) });
+    return;
+  }
   let persisted = false;
+  // зачем (AA S2c, [PROFILE-FLIP]): итог по КАЖДОМУ слою. Если SecureStore не
+  // записался, а AsyncStorage записался — на следующем старте SecureStore
+  // вернёт прежний профиль (он читается первым). Это главная гипотеза случая.
+  let secureResult: 'ok' | 'failed' | 'unavailable' = 'unavailable';
+  let secureCode: string | null = null;
+  let asyncResult: 'ok' | 'failed' = 'failed';
   const SecureStore = getSecureStore();
   if (SecureStore) {
     try {
       await SecureStore.setItemAsync(SECURE_KEY, newId, getSecureStoreOpts(SecureStore));
       persisted = true;
+      secureResult = 'ok';
     } catch (e) {
       // SecureStore unavailable — продолжаем через AsyncStorage
       DebugLogger.error('stable_id:SecureStore', e instanceof Error ? e : new Error(String(e)), 'warning');
+      secureResult = 'failed';
+      secureCode = identityErrorCode(e);
     }
   }
   try {
     await AsyncStorage.setItem(ASYNC_KEY, newId);
     persisted = true;
+    asyncResult = 'ok';
   } catch (e) {
       // SecureStore may still have persisted the identity.
       DebugLogger.error('stable_id:SecureStore', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
+  identityTrace('[PROFILE-FLIP]', 'persist result', {
+    target: identityTag(newId),
+    previous: identityTag(cachedId),
+    secure: secureResult,
+    secureCode,
+    async: asyncResult,
+    layersDiverge: secureResult === 'failed' && asyncResult === 'ok',
+    epochCurrent: epoch === stableIdOperationEpoch,
+  }, { persist: secureResult === 'failed' || asyncResult === 'failed' });
   if (epoch !== stableIdOperationEpoch) return;
   if (persisted) {
     cachedId = newId;
@@ -356,6 +410,7 @@ export function _resetStableIdCache(): void {
  * а stored value в SecureStore/AsyncStorage остаётся прежним.
  */
 async function clearStableIdStorage(): Promise<void> {
+  identityTrace('[PROFILE-FLIP]', 'cleared', { previous: identityTag(cachedId) }, { persist: true });
   cachedId = null;
   const SecureStore = getSecureStore();
   if (SecureStore) {

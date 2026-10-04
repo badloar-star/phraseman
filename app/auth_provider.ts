@@ -33,6 +33,7 @@ import * as WebBrowser from 'expo-web-browser';
 import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getStableId, setStableId, clearStableId, peekStableId, readExistingStableId } from './stable_id';
+import { identityErrorCode, identityTag, identityTrace, identityTraceClockMs } from './identity_trace';
 import {
   ensureAnonUser,
   ensureAnonIdentityDetailed,
@@ -2067,6 +2068,20 @@ async function runSignInWithProviderWhileOwningHandoffLease(
   handoffLeaseScope: ProviderHandoffLeaseScope,
 ): Promise<SignInResult> {
   if (__DEV__) console.log(`[auth_provider] signInWithProvider(${provider}): start`);
+  // зачем (AA S2c, случай §126 «после смены Google-аккаунта не привязывается»):
+  // СПЕРВА ЛОГИ. Вход, каждая развилка со значением, итог. Без uid/stableId —
+  // только метки h:xxxxxxxx (см. identity_trace.ts).
+  const traceStartedAt = identityTraceClockMs();
+  {
+    const traceUser = getAuth()?.currentUser;
+    identityTrace('[AUTH-LINK-GOOGLE]', 'start', {
+      provider,
+      authState: !traceUser ? 'none' : traceUser.isAnonymous === false ? 'provider' : 'anonymous',
+      authUid: identityTag(traceUser?.uid),
+      localStable: identityTag(peekStableId()),
+      requireOwnership: Boolean(options.requireCurrentStableIdOwnership),
+    });
+  }
   if (!CLOUD_SYNC_ENABLED) {
     if (__DEV__) console.warn('[auth_provider] signInWithProvider: CLOUD_SYNC_ENABLED=false');
     captureAuthSignInFailure(provider, 'config', 'cloud_sync_disabled');
@@ -2140,6 +2155,16 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     && auth.currentUser.isAnonymous === false
     && !options.requireCurrentStableIdOwnership
   ) {
+    // Главная гипотеза случая §126: Firebase уже держит провайдер-сессию
+    // (например, прошлый вход оборвался после signInWithCredential — см.
+    // swap_presync), а локально — анонимный профиль. Любой новый тап сюда.
+    identityTrace('[AUTH-LINK-GOOGLE]', 'branch account_switch_required', {
+      provider,
+      source: 'provider_session_active',
+      authUid: identityTag(auth.currentUser.uid),
+      localStable: identityTag(peekStableId()),
+      tookMs: identityTraceClockMs() - traceStartedAt,
+    }, { persist: true });
     logAuthEvent('auth_signin_account_switch_required', { provider });
     return { result: 'error', error: 'account_switch_required' };
   }
@@ -2170,6 +2195,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     const detail = code ? `${code}:${msg}` : msg;
     logAuthEvent('auth_signin_error', { provider, stage: 'native', error: detail.slice(0, 80) });
     const errStr = `native_${detail}`.slice(0, 120);
+    identityTrace('[AUTH-LINK-GOOGLE]', 'native failed', { provider, code: identityErrorCode(e) });
     if (errStr.includes(APPLE_ANDROID_MISSING_SERVICE_ID)) {
       return { result: 'error', error: errStr };
     }
@@ -2177,9 +2203,15 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     return { result: 'error', error: errStr };
   }
   if ('cancelled' in cred) {
+    identityTrace('[AUTH-LINK-GOOGLE]', 'native cancelled', { provider });
     logAuthEvent('auth_signin_cancelled', { provider });
     return { result: 'cancelled' };
   }
+  identityTrace('[AUTH-LINK-GOOGLE]', 'native ok', {
+    provider,
+    providerSubject: identityTag(cred.providerSubject ?? null),
+    deferIdentityPreparation,
+  });
 
   try {
     await anonPreparation;
@@ -2233,12 +2265,20 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     );
 
     let userCredential: any = null;
+    identityTrace('[AUTH-LINK-GOOGLE]', 'link decision', {
+      provider,
+      canTryLink,
+      anonymous: anonUser?.isAnonymous === true,
+      sourceUid: identityTag(anonUser?.uid),
+      preProviderStable: identityTag(preProviderStableId),
+    });
     if (canTryLink) {
       try {
         // Firebase credential mutations are not cancellable. A Promise.race timeout
         // here used to start signInWithCredential while the timed-out link could
         // still complete in the background, racing two identity mutations.
         userCredential = await anonUser.linkWithCredential(credential);
+        identityTrace('[AUTH-LINK-GOOGLE]', 'link linked_in_place', { provider });
         logAuthEvent('auth_signin_linked_in_place', { provider });
       } catch (linkErr: any) {
         const linkCode = String(linkErr?.code ?? '');
@@ -2250,6 +2290,11 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           'auth/provider-already-linked',
           'auth/account-exists-with-different-credential',
         ]);
+        identityTrace('[AUTH-LINK-GOOGLE]', 'link conflict', {
+          provider,
+          code: identityErrorCode(linkErr),
+          expectedConflict: EXPECTED_LINK_CONFLICT.has(linkCode),
+        });
         if (EXPECTED_LINK_CONFLICT.has(linkCode)) {
           const localClean = await isLocalAnonymousIdentityProvenCleanForCredentialHandoff();
           postCompletionHandoff = await hasAccountSwitchPostCompletionHandoff({
@@ -2282,7 +2327,14 @@ async function runSignInWithProviderWhileOwningHandoffLease(
             quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
           ]);
           if (!restoreIdle || !cloudIdle) throw new Error('provider_handoff_quiesce_failed');
+          identityTrace('[AUTH-LINK-GOOGLE]', 'handoff proof', { provider, localClean, postCompletionHandoff });
           if (!localClean && !postCompletionHandoff) {
+            identityTrace('[AUTH-LINK-GOOGLE]', 'branch account_switch_required', {
+              provider,
+              source: 'anonymous_link_conflict',
+              localStable: identityTag(preProviderStableId),
+              tookMs: identityTraceClockMs() - traceStartedAt,
+            }, { persist: true });
             try {
               await clearProviderCredentialHandoff(providerHandoffMarker);
               providerHandoffMarker = null;
@@ -2301,6 +2353,12 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           await stampAnonOwnershipBeforeSignIn(preProviderStableId);
           userCredential = await auth.signInWithCredential(credential);
           const targetAuthUid = String(userCredential?.user?.uid ?? auth.currentUser?.uid ?? '').trim();
+          identityTrace('[AUTH-LINK-GOOGLE]', 'handoff signed_in', {
+            provider,
+            sourceUid: identityTag(sourceAuthUid),
+            targetUid: identityTag(targetAuthUid),
+            uidChanged: targetAuthUid !== sourceAuthUid,
+          });
           if (!targetAuthUid) throw new Error('firebase_no_uid');
           providerHandoffMarker = await markProviderCredentialHandoffAuthenticated(
             providerHandoffMarker,
@@ -2315,6 +2373,11 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         // ensureAnonUser completed above. Reaching this branch means auth changed
         // during the picker or the SDK cannot perform the only non-destructive
         // credential mutation. Either case must preserve local A.
+        identityTrace('[AUTH-LINK-GOOGLE]', 'branch account_switch_required', {
+          provider,
+          source: 'anonymous_link_unavailable',
+          tookMs: identityTraceClockMs() - traceStartedAt,
+        }, { persist: true });
         logAuthEvent('auth_signin_account_switch_required', { provider, source: 'anonymous_link_unavailable' });
         return { result: 'error', error: 'account_switch_required' };
       }
@@ -2345,6 +2408,12 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     const detail = code ? `${code}:${msg}` : msg;
     logAuthEvent('auth_signin_error', { provider, stage: 'firebase', error: detail.slice(0, 80) });
     const errStr = `firebase_${detail}`.slice(0, 120);
+    identityTrace('[AUTH-LINK-GOOGLE]', 'firebase failed', {
+      provider,
+      code: identityErrorCode(e),
+      handoffMarker: providerHandoffMarker !== null,
+      tookMs: identityTraceClockMs() - traceStartedAt,
+    }, { persist: true });
     captureAuthSignInFailure(provider, 'firebase', errStr);
     return { result: 'error', error: errStr };
   }
@@ -2416,9 +2485,21 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     if (typeof linkedStableId === 'string' && linkedStableId.trim() && linkedStableId !== localStableId) {
       remoteStableId = linkedStableId.trim();
     }
-  } catch {
+  } catch (lookupError) {
+    // зачем (S2c): прежде немой catch — «не нашли привязку» и «не смогли
+    // прочитать» были неотличимы, а от этого зависит ветка remote/local.
+    identityTrace('[AUTH-LINK-GOOGLE]', 'link_lookup failed', { provider, code: identityErrorCode(lookupError) });
     remoteStableId = null;
   }
+  identityTrace('[AUTH-LINK-GOOGLE]', 'link_lookup result', {
+    provider,
+    completed: linkLookupCompleted,
+    found: linkLookupFound,
+    providerUid: identityTag(firebaseProviderUid),
+    localStable: identityTag(localStableId),
+    remoteStable: identityTag(remoteStableId),
+    branch: remoteStableId ? 'remote' : 'local',
+  });
 
   // Точка синхронизации параллельного рефреша токена (см. комментарий выше):
   // дальше идут только callable-вызовы, которым нужен свежий claim.
@@ -2466,6 +2547,14 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     // stable_id first: authEnsureStableLink correctly rejects that as
     // stable_id_mismatch because auth_links/{providerUid} points to remoteStableId.
     const linkedRemote = await ensureStableAuthLinkWithRetry(remoteStableId);
+    identityTrace('[AUTH-LINK-GOOGLE]', 'ensure_link remote', {
+      provider,
+      ok: linkedRemote.ok,
+      failure: linkedRemote.failure ?? null,
+      source: linkedRemote.source,
+      stableUid: identityTag(linkedRemote.stableUid),
+      nonceRejection: linkedRemote.nonceRejection ?? null,
+    });
     if (!linkedRemote.ok || !linkedRemote.stableUid) {
       // failure-класс в репорт: app_check/transport/identity — иначе по «*_failed»
       // не отличить сломанный App Check от сети (инцидент 2026-07-21).
@@ -2504,7 +2593,11 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         logAuthEvent('auth_signin_account_delete_pending', { provider, scope: 'remote' });
         return { result: 'error', error: 'account_delete_pending' };
       }
-      return { result: 'error', error: 'auth_link_failed' };
+      // зачем (AA S2c, L-S2b-4): перепривязку отклонили из-за потерянного nonce —
+      // различимый код «повторите вход» вместо общего тупика auth_link_failed.
+      const remoteFailureCode = linkedRemote.nonceRejection ?? 'auth_link_failed';
+      identityTrace('[AUTH-LINK-GOOGLE]', 'result error', { provider, error: remoteFailureCode, branch: 'remote', tookMs: identityTraceClockMs() - traceStartedAt }, { persist: true });
+      return { result: 'error', error: remoteFailureCode };
     }
     outcome = {
       kind: 'merged_swap_to_remote',
@@ -2513,6 +2606,18 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     };
   } else {
     let linkedLocal = await ensureStableAuthLinkWithRetry(localStableId);
+    identityTrace('[AUTH-LINK-GOOGLE]', 'ensure_link local', {
+      provider,
+      ok: linkedLocal.ok,
+      failure: linkedLocal.failure ?? null,
+      source: linkedLocal.source,
+      stableUid: identityTag(linkedLocal.stableUid),
+      sameAsLocal: linkedLocal.stableUid === localStableId,
+      nonceRejection: linkedLocal.nonceRejection ?? null,
+    });
+    // S2c (L-S2b-4): потерянный nonce запоминаем ДО ротации — ротация не меняет
+    // прежнее поведение, но итоговый отказ получит различимый код.
+    const localNonceRejection = linkedLocal.nonceRejection ?? null;
     if (!linkedLocal.ok && linkedLocal.failure === 'stable_id_mismatch') {
       if (options.requireCurrentStableIdOwnership) {
         return rejectRecoveryProviderMismatch(provider, 'stable_owner_mismatch');
@@ -2528,9 +2633,16 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         localStableId = await getStableId();
         beginAccountGeneration(localStableId);
         linkedLocal = await ensureStableAuthLinkWithRetry(localStableId);
+        identityTrace('[AUTH-LINK-GOOGLE]', 'stale_identity rotated', {
+          provider,
+          ok: linkedLocal.ok,
+          failure: linkedLocal.failure ?? null,
+          newLocalStable: identityTag(localStableId),
+        }, { persist: true });
         if (linkedLocal.ok) logAuthEvent('auth_signin_stale_identity_rotated', { provider });
       } catch (e) {
         if (__DEV__) console.warn('[auth_provider] stale stable id rotation failed', e);
+        identityTrace('[AUTH-LINK-GOOGLE]', 'stale_identity rotation_failed', { provider, code: identityErrorCode(e) }, { persist: true });
       }
     }
     if (!linkedLocal.ok || !linkedLocal.stableUid) {
@@ -2587,10 +2699,14 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           failure: linkedLocal.failure,
         });
         logAuthEvent('auth_signin_deferred_pending', { provider, failure: linkedLocal.failure });
+        identityTrace('[AUTH-LINK-GOOGLE]', 'result linked_pending', { provider, failure: linkedLocal.failure, tookMs: identityTraceClockMs() - traceStartedAt });
         emitAuthProviderLinked();
         return { result: 'linked_pending', email: firebaseEmail, displayName: providerDisplayName };
       }
-      return { result: 'error', error: 'auth_link_failed' };
+      // зачем (AA S2c, L-S2b-4): см. remote-ветку — различимый код при потере nonce.
+      const localFailureCode = localNonceRejection ?? 'auth_link_failed';
+      identityTrace('[AUTH-LINK-GOOGLE]', 'result error', { provider, error: localFailureCode, branch: 'local', failure: linkedLocal.failure ?? null, tookMs: identityTraceClockMs() - traceStartedAt }, { persist: true });
+      return { result: 'error', error: localFailureCode };
     }
     if (options.requireCurrentStableIdOwnership && linkedLocal.stableUid !== preProviderStableId) {
       return rejectRecoveryProviderMismatch(provider, 'linked_to_different_stable_id');
@@ -2607,6 +2723,13 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       };
     }
   }
+
+  identityTrace('[AUTH-LINK-GOOGLE]', 'outcome', {
+    provider,
+    kind: outcome.kind,
+    handoffMarker: providerHandoffMarker !== null,
+    target: outcome.kind === 'merged_swap_to_remote' ? identityTag(outcome.remoteStableId) : identityTag(localStableId),
+  });
 
   // Любой успешный outcome снимает отложенную привязку — она больше не нужна.
   void clearPendingAuthLink();
@@ -2627,13 +2750,32 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         // единственная защита свежего локального прогресса перед wipeLocalAccountData.
         // Унести в фон или укоротить = риск потери прогресса на медленной сети.
         const presyncStarted = Date.now();
+        identityTrace('[AUTH-LINK-GOOGLE]', 'swap presync_start', { provider, timeoutMs: SIGNIN_CLOUD_SYNC_TIMEOUT_MS });
         try {
           await withTimeout(syncToCloud({ forceNow: true }), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, 'swap_presync');
-          console.log(`[SIGNIN] presync ok ${Date.now() - presyncStarted}ms`);
+          const presyncTookMs = Date.now() - presyncStarted;
+          console.log(`[SIGNIN] presync ok ${presyncTookMs}ms`);
+          identityTrace('[AUTH-LINK-GOOGLE]', 'swap presync_ok', { provider, tookMs: presyncTookMs });
         } catch (e) {
-          console.warn(`[SIGNIN] presync FAIL ${Date.now() - presyncStarted}ms reason=${String((e as any)?.message ?? e).slice(0, 120)}`);
+          const presyncTookMs = Date.now() - presyncStarted;
+          console.warn(`[SIGNIN] presync FAIL ${presyncTookMs}ms reason=${String((e as any)?.message ?? e).slice(0, 120)}`);
+          // Случай §126 (swap_timeout_swap_presync_20000ms): вход прерывается здесь,
+          // но Firebase УЖЕ держит провайдер-сессию — следующий тап упрётся в
+          // account_switch_required. Пишем состояние, которое останется после отказа.
+          identityTrace('[AUTH-LINK-GOOGLE]', 'swap presync_failed', {
+            provider,
+            code: identityErrorCode(e),
+            tookMs: presyncTookMs,
+            authState: auth.currentUser?.isAnonymous === false ? 'provider' : 'anonymous_or_none',
+            localStable: identityTag(localStableId),
+          }, { persist: true });
           throw e;
         }
+      } else {
+        identityTrace('[AUTH-LINK-GOOGLE]', 'swap presync_skipped', {
+          provider,
+          reason: providerHandoffMarker ? 'handoff' : 'no_meaningful_local_progress',
+        });
       }
 
       // СЛИЯНИЕ НА СЕРВЕРЕ (Admin SDK, best-of-field). Заменяет старую клиентскую
@@ -2650,6 +2792,14 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       const merge = preserveLocalProgress
         ? await mergeStableAccountsViaServer(outcome.mergedFromStableId, outcome.remoteStableId)
         : null;
+      identityTrace('[AUTH-LINK-GOOGLE]', 'swap merge_result', {
+        provider,
+        called: preserveLocalProgress,
+        ok: merge?.ok === true,
+        canonical: identityTag(merge?.canonicalStableId ?? null),
+        canonicalIsRemote: merge?.canonicalStableId === outcome.remoteStableId,
+        alreadyMerged: merge?.alreadyMerged === true,
+      });
       let canonicalStableId: string;
       if (merge?.ok && merge.canonicalStableId) {
         canonicalStableId = merge.canonicalStableId;
@@ -2662,6 +2812,15 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           authLinkMetadata,
           { requireAuthoritative: true },
         );
+        // 🔴 для координатора (Plus): сюда попадаем, когда слияние не выполнено
+        // (null) — свап на remote БЕЗ переноса premium-блока локального аккаунта.
+        identityTrace('[AUTH-LINK-GOOGLE]', 'swap merge_skipped_fallback', {
+          provider,
+          preserveLocalProgress,
+          ok: authoritativeAfterMerge.ok,
+          failure: authoritativeAfterMerge.failure ?? null,
+          canonical: identityTag(authoritativeAfterMerge.stableUid),
+        }, { persist: true });
         if (!authoritativeAfterMerge.ok || !authoritativeAfterMerge.stableUid) {
           return { result: 'error', error: 'merge_pending' };
         }
@@ -2708,6 +2867,12 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         from: outcome.mergedFromStableId.slice(0, 8),
         to: canonicalStableId.slice(0, 8),
       });
+      identityTrace('[AUTH-LINK-GOOGLE]', 'result merged_devices', {
+        provider,
+        from: identityTag(outcome.mergedFromStableId),
+        to: identityTag(canonicalStableId),
+        tookMs: identityTraceClockMs() - traceStartedAt,
+      });
       scheduleReferralApplyAfterLink();
       emitAuthProviderLinked();
       return {
@@ -2720,6 +2885,13 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       if (__DEV__) console.warn('[auth_provider] post-merge swap failed', e);
       logAuthEvent('auth_signin_error', { provider, stage: 'swap', error: String(e?.message ?? e).slice(0, 80) });
       const errStr = `swap_${e?.message ?? 'unknown'}`.slice(0, 80);
+      identityTrace('[AUTH-LINK-GOOGLE]', 'result error', {
+        provider,
+        error: 'swap',
+        code: identityErrorCode(e),
+        authState: auth.currentUser?.isAnonymous === false ? 'provider' : 'anonymous_or_none',
+        tookMs: identityTraceClockMs() - traceStartedAt,
+      }, { persist: true });
       captureAuthSignInFailure(provider, 'swap', errStr);
       return { result: 'error', error: errStr };
     }
@@ -2828,6 +3000,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       }
     }
     scheduleSameStablePostAuthRefresh('linked_restore');
+    identityTrace('[AUTH-LINK-GOOGLE]', 'result linked_existing', { provider, tookMs: identityTraceClockMs() - traceStartedAt });
     logAuthEvent('auth_signin_linked', { provider });
     scheduleReferralApplyAfterLink();
     emitAuthProviderLinked();
@@ -2847,6 +3020,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     }
   }
   scheduleSameStablePostAuthRefresh('created_restore');
+  identityTrace('[AUTH-LINK-GOOGLE]', 'result created_new', { provider, tookMs: identityTraceClockMs() - traceStartedAt });
   logAuthEvent('auth_signin_created', { provider });
   scheduleReferralApplyAfterLink();
   emitAuthProviderLinked();
@@ -3132,7 +3306,12 @@ export async function signOutAndWipeForAccountSwitch(
 async function signOutAndWipeForAccountSwitchReserved(
   options?: SignOutSwitchOptions,
 ): Promise<SignOutSwitchResult> {
-  const existingTransition = await inspectAccountSwitchQuarantine().catch(() => ({ status: 'corrupt' as const }));
+  const existingTransition = await inspectAccountSwitchQuarantine().catch((inspectError: unknown) => {
+    // зачем (AA S2c, [ACC-SWITCH-WIPE]): прежде немой — «маркер битый» и «не
+    // смогли прочитать» сливались в один recovery_required/marker_invalid.
+    identityTrace('[ACC-SWITCH-WIPE]', 'signout inspect_failed', { code: identityErrorCode(inspectError) }, { persist: true });
+    return { status: 'corrupt' as const };
+  });
   if (existingTransition.status !== 'none') {
     if (existingTransition.status === 'corrupt') {
       invalidateAccountGeneration();
@@ -3221,8 +3400,12 @@ async function signOutAndWipeForAccountSwitchReserved(
       }
       logAuthEvent('auth_signout_wipe_shard_spend_discard', { stage: 'preflight' });
     }
-    await forceSyncShardsToCloud().catch(() => {});
+    await forceSyncShardsToCloud().catch((shardSyncError: unknown) => {
+      // Осколки дальше страхует аварийная копия; причина — в лог (S2c).
+      identityTrace('[ACC-SWITCH-WIPE]', 'signout shard_sync_failed', { code: identityErrorCode(shardSyncError) });
+    });
     const synced = await forceSyncToCloud();
+    identityTrace('[ACC-SWITCH-WIPE]', 'signout force_sync', { synced, allowWipeWithoutSync: options?.allowWipeWithoutSync === true });
     if (!synced) {
       try {
         const backedUp = await saveAccountSwitchEmergencyBackup(
@@ -3255,7 +3438,12 @@ async function signOutAndWipeForAccountSwitchReserved(
       quarantinedShardQueue: false,
     };
     const transitionLock = await withAccountTransitionLockWithDeadline(async (): Promise<boolean> => {
-      if (!isCurrentAccountGeneration(switchToken, switchOwnerStableId)) return false;
+      if (!isCurrentAccountGeneration(switchToken, switchOwnerStableId)) {
+        // зачем (S2c): этот ранний выход прежде маскировался под sync_failed
+        // «pending_shard_queue» — на деле сменилось поколение аккаунта.
+        identityTrace('[ACC-SWITCH-WIPE]', 'signout generation_changed', { stage: 'lock_enter' }, { persist: true });
+        return false;
+      }
       const finalShardQueue = await readShardDeltaQueue(switchOwnerStableId);
       if (!isCurrentAccountGeneration(switchToken, switchOwnerStableId)) return false;
       if (!discardPendingShardSpend && (await hasQuarantinedShardDeltaQueue(switchOwnerStableId))) {

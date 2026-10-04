@@ -405,36 +405,8 @@ export default function FlashcardsVoicePickerScreen() {
               {enhancedVoices.map((v) => voiceRow(v))}
               {regularVoices.map((v) => voiceRow(v))}
 
-              {voices.length === 0 ? (
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    gap: 10,
-                    borderRadius: 14,
-                    borderWidth: 1,
-                    borderColor: t.border,
-                    backgroundColor: t.bgSurface,
-                    padding: 14,
-                  }}
-                  testID="fc-voice-empty"
-                >
-                  <Ionicons name="information-circle-outline" size={20} color={t.textMuted} />
-                  <Text style={{ color: t.textMuted, fontSize: f.caption, flex: 1, lineHeight: 17 }}>
-                    {triLang(lang, {
-                      ru: 'Список голосов недоступен на этом устройстве — используется системный голос.',
-                      uk: 'Список голосів недоступний на цьому пристрої — використовується системний голос.',
-                      en: 'The voice list is unavailable on this device — the system voice is used.',
-                      es: 'La lista de voces no está disponible en este dispositivo; se usa la voz del sistema.',
-                      'pt-BR': 'A lista de vozes não está disponível neste dispositivo — usa-se a voz do sistema.',
-                      vi: 'Danh sách giọng đọc không khả dụng trên thiết bị này — dùng giọng hệ thống.',
-                      id: 'Daftar suara tidak tersedia di perangkat ini — menggunakan suara sistem.',
-                      tr: 'Bu cihazda ses listesi kullanılamıyor — sistem sesi kullanılıyor.',
-                      pl: 'Lista głosów jest niedostępna na tym urządzeniu — używany jest głos systemowy.',
-                    })}
-                  </Text>
-                </View>
-              ) : null}
+              {/* зачем (PM-097-A2, координатор 04.10): по D128 карточки озвучиваются клипами нужного языка —
+                  подсказки про голоса телефона («список недоступен», «докачать в Google TTS») вводили в заблуждение и убраны. */}
 
               {/* Превью выбранного */}
               <TouchableOpacity
@@ -469,59 +441,6 @@ export default function FlashcardsVoicePickerScreen() {
                 «{PREVIEW_PHRASE}»
               </Text>
 
-              {/* Платформенная подсказка про докачку голосов */}
-              <View
-                style={{
-                  flexDirection: 'row',
-                  gap: 10,
-                  borderRadius: 14,
-                  borderWidth: 1,
-                  borderColor: `${t.accent}44`,
-                  backgroundColor: `${t.accent}0F`,
-                  padding: 14,
-                  marginTop: 10,
-                }}
-                testID="fc-voice-hint"
-              >
-                <Ionicons name="download-outline" size={20} color={t.accent} />
-                <Text style={{ color: t.textMuted, fontSize: f.caption, flex: 1, lineHeight: 18 }}>
-                  {effectiveOs === 'ios'
-                    ? triLang(lang, {
-                        ru: 'Улучшенные голоса можно докачать: Настройки → Универсальный доступ → Устный контент → Голоса → English.',
-                        uk: 'Покращені голоси можна довантажити: Параметри → Доступність → Промовлення → Голоси → English.',
-                        en: 'You can download enhanced voices: Settings → Accessibility → Spoken Content → Voices → English.',
-                        es: 'Puedes descargar voces mejoradas: Ajustes → Accesibilidad → Contenido leído → Voces → Inglés.',
-                        'pt-BR': 'Você pode baixar vozes aprimoradas: Ajustes → Acessibilidade → Conteúdo Falado → Vozes → English.',
-                        vi: 'Bạn có thể tải thêm giọng nâng cao: Cài đặt → Trợ năng → Nội dung đọc → Giọng nói → English.',
-                        id: 'Kamu bisa mengunduh suara yang lebih baik: Pengaturan → Aksesibilitas → Konten Terucap → Suara → English.',
-                        tr: 'Gelişmiş sesleri indirebilirsin: Ayarlar → Erişilebilirlik → Sesli İçerik → Sesler → English.',
-                        pl: 'Możesz pobrać ulepszone głosy: Ustawienia → Dostępność → Czytana zawartość → Głosy → English.',
-                      })
-                    : effectiveOs === 'android'
-                      ? triLang(lang, {
-                          ru: 'Голоса можно докачать в настройках телефона: Настройки → Система → Язык и ввод → Синтез речи → Google TTS → английские голоса.',
-                          uk: 'Голоси можна довантажити в налаштуваннях телефона: Налаштування → Система → Мова і введення → Синтез мовлення → Google TTS → англійські голоси.',
-                          en: 'You can download voices in your phone settings: Settings → System → Languages & input → Text-to-speech → Google TTS → English voices.',
-                          es: 'Puedes descargar voces en los ajustes del teléfono: Ajustes → Sistema → Idioma → Síntesis de voz → Google TTS → voces en inglés.',
-                          'pt-BR': 'Você pode baixar vozes nas configurações do telefone: Configurações → Sistema → Idioma → Síntese de voz → Google TTS → vozes em inglês.',
-                          vi: 'Bạn có thể tải giọng nói trong cài đặt điện thoại: Cài đặt → Hệ thống → Ngôn ngữ và nhập liệu → Tổng hợp giọng nói → Google TTS → giọng tiếng Anh.',
-                          id: 'Kamu bisa mengunduh suara di pengaturan ponsel: Pengaturan → Sistem → Bahasa & Input → Sintesis Suara → Google TTS → suara bahasa Inggris.',
-                          tr: 'Sesleri telefon ayarlarından indirebilirsin: Ayarlar → Sistem → Dil ve Giriş → Konuşma Sentezi → Google TTS → İngilizce sesler.',
-                          pl: 'Głosy możesz pobrać w ustawieniach telefonu: Ustawienia → System → Język i wpisywanie → Synteza mowy → Google TTS → głosy angielskie.',
-                        })
-                      : triLang(lang, {
-                          ru: 'Голоса зависят от браузера и системы — дополнительные можно установить в настройках устройства.',
-                          uk: 'Голоси залежать від браузера і системи — додаткові можна встановити в налаштуваннях пристрою.',
-                          en: 'Voices depend on the browser and system — you can install more in your device settings.',
-                          es: 'Las voces dependen del navegador y del sistema; puedes instalar más en los ajustes del dispositivo.',
-                          'pt-BR': 'As vozes dependem do navegador e do sistema — você pode instalar mais nas configurações do dispositivo.',
-                          vi: 'Giọng nói phụ thuộc vào trình duyệt và hệ thống — bạn có thể cài thêm trong cài đặt thiết bị.',
-                          id: 'Suara tergantung pada browser dan sistem — kamu bisa memasang lebih banyak di pengaturan perangkat.',
-                          tr: 'Sesler tarayıcıya ve sisteme bağlıdır — cihaz ayarlarından ek sesler yükleyebilirsin.',
-                          pl: 'Głosy zależą od przeglądarki i systemu — dodatkowe możesz zainstalować w ustawieniach urządzenia.',
-                        })}
-                </Text>
-              </View>
             </ScrollView>
           )}
         </ContentWrap>

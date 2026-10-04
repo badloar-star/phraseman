@@ -65,14 +65,48 @@ export type AccountAuthorityCallableErrorCode =
   | 'permission-denied'
   | 'internal';
 
-/** Public, deliberately detail-free error contract for a future Firebase adapter. */
+/**
+ * зачем (AA S2b раунд 2): клиенту нужен точный код отказа контракта аренды —
+ * ротация привязки только при stale_auth_epoch, «выход выполнен» только при
+ * revision_mismatch/stale_lease на повторе. Публикуется ТОЛЬКО код из этого
+ * закрытого списка (без идентификаторов); всё прочее — `other`.
+ */
+export const ACCOUNT_AUTHORITY_PUBLIC_LEASE_CODES = Object.freeze([
+  'account_mismatch',
+  'identity_mismatch',
+  'account_lifecycle_blocked',
+  'operation_reused',
+  'revision_mismatch',
+  'stale_auth_epoch',
+  'session_reused',
+  'stale_lease',
+  'receipt_capacity_exhausted',
+  'clock_rollback',
+] as const);
+export type AccountAuthorityPublicLeaseCode = typeof ACCOUNT_AUTHORITY_PUBLIC_LEASE_CODES[number] | 'other';
+
+export function accountAuthorityPublicLeaseCode(code: unknown): AccountAuthorityPublicLeaseCode {
+  return (ACCOUNT_AUTHORITY_PUBLIC_LEASE_CODES as readonly unknown[]).includes(code)
+    ? code as AccountAuthorityPublicLeaseCode
+    : 'other';
+}
+
+export type AccountAuthorityCallableErrorDetails = Readonly<{ leaseCode: AccountAuthorityPublicLeaseCode }>;
+
+/** Public error contract: code + machine message; details only from the allowlist above. */
 export class AccountAuthorityCallableError extends Error {
   readonly code: AccountAuthorityCallableErrorCode;
+  readonly details?: AccountAuthorityCallableErrorDetails;
 
-  constructor(code: AccountAuthorityCallableErrorCode, message: string) {
+  constructor(
+    code: AccountAuthorityCallableErrorCode,
+    message: string,
+    details?: AccountAuthorityCallableErrorDetails,
+  ) {
     super(message);
     this.name = 'AccountAuthorityCallableError';
     this.code = code;
+    if (details !== undefined) this.details = Object.freeze({ leaseCode: accountAuthorityPublicLeaseCode(details.leaseCode) });
   }
 }
 
@@ -562,7 +596,11 @@ function mapContractError(error: unknown, operation: BoundaryOperation): Account
       return mapUnknownAccountAuthorityFailure(error, operation, 'contract');
     }
     return attachAccountAuthorityFailureDetail(
-      publicError('failed-precondition', 'account_authority_request_rejected'),
+      new AccountAuthorityCallableError(
+        'failed-precondition',
+        'account_authority_request_rejected',
+        { leaseCode: accountAuthorityPublicLeaseCode(error.code) },
+      ),
       { stage: 'contract', leaseCode: error.code, mappedTo: 'failed-precondition' },
     );
   }

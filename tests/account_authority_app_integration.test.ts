@@ -15,6 +15,12 @@ import {
 } from '../modules/account-session-v2/account_authority_production_adapter';
 import { MemoryScopeStorageAdapter } from '../modules/account-session-v2/testing/memory_scope_storage';
 
+// зачем (AA S2b): ключ привязки — sha256 от uid; тест сверяет его настоящим хешем.
+function sha256Sync(value: string): string {
+  return createHash('sha256').update(value).digest('hex');
+}
+const sha256 = async (value: string): Promise<string> => sha256Sync(value);
+
 type SecureStoreFake = AccountAuthorityProductionAdapterDependencies['secureStore'] & Readonly<{
   keysRead(): readonly string[];
   snapshot(): Readonly<Record<string, string>>;
@@ -35,6 +41,7 @@ function secureStore(initial: Readonly<Record<string, string>> = {}): SecureStor
       return values.get(key) ?? null;
     },
     setItemAsync: async (key, value) => { values.set(key, value); },
+    deleteItemAsync: async (key) => { values.delete(key); },
     keysRead: () => Object.freeze([...reads]),
     snapshot: () => Object.freeze(Object.fromEntries(values)),
   };
@@ -51,15 +58,18 @@ function dependencies(input: Readonly<{
     randomInstallationId: async () => `5d3b3527-07e0-4dc1-8aac-${String(++random).padStart(12, '0')}`,
     digestSha256: async (value) => `hash-${Buffer.from(value).toString('hex').slice(0, 48)}`,
     createInstallationBinding: ({ credentials }) => ({
-      readPersisted: async () => {
-        const persisted = await credentials.read();
+      readPersistedForLease: async (owner) => {
+        const persisted = await credentials.readForLease(owner);
         return persisted === null ? null : Object.freeze({
           bindingToken: persisted.bindingToken,
           deviceBindingId: parseDeviceId(persisted.deviceBindingId),
         });
       },
-      obtain: async () => {
-        await credentials.write({
+      rotate: async () => { throw new Error('not_used'); },
+      reset: async (uid) => credentials.clear(uid),
+      resetForLease: async (owner) => credentials.clearForLease(owner),
+      obtain: async (uid) => {
+        await credentials.write(uid, {
           bindingToken: 'opaque-binding-token',
           deviceBindingId: 'server-device-binding-a',
         });
@@ -283,47 +293,54 @@ describe('Account Authority production app integration', () => {
     }
   });
 
-  test('stores only the opaque binding token and server deviceBindingId in dedicated SecureStore keys', async () => {
+  test('stores only the opaque binding token and server deviceBindingId in a per-uid hashed SecureStore key', async () => {
     const secure = secureStore({ stable_id: 'legacy-owner' });
     const credentials = createAccountAuthoritySecureInstallationBindingCredentialStore({
       secureStore: secure,
+      digestSha256: sha256,
     });
+    const uid = parseFirebaseAuthUid('firebase-client-a');
 
-    await credentials.write({
+    await credentials.write(uid, {
       bindingToken: 'opaque-binding-token',
       deviceBindingId: 'server-device-binding-a',
     });
 
-    await expect(credentials.read()).resolves.toEqual({
+    await expect(credentials.read(uid)).resolves.toEqual({
       bindingToken: 'opaque-binding-token',
       deviceBindingId: 'server-device-binding-a',
     });
 
-    expect(secure.snapshot()).toMatchObject({
-      'phraseman.account_authority.binding_token.v1': 'opaque-binding-token',
-      'phraseman.account_authority.device_binding_id.v1': 'server-device-binding-a',
-    });
+    const keys = Object.keys(secure.snapshot()).filter((key) => key.startsWith('phraseman.account_authority.binding'));
+    expect(keys).toEqual(['phraseman.account_authority.binding.v2.' + sha256Sync('account-authority-revision-uid.v1\u0000firebase-client-a')]);
+    expect(JSON.stringify(secure.snapshot())).not.toContain('firebase-client-a');
     expect(secure.keysRead()).not.toContain('stable_id');
     expect(JSON.stringify(secure.snapshot())).not.toContain('auth_links');
   });
 
   test.each([
-    ['missing token', { 'phraseman.account_authority.device_binding_id.v1': 'server-device-binding-a' }],
-    ['missing device binding id', { 'phraseman.account_authority.binding_token.v1': 'opaque-binding-token' }],
-    ['malformed token', {
-      'phraseman.account_authority.binding_token.v1': ' opaque-binding-token ',
-      'phraseman.account_authority.device_binding_id.v1': 'server-device-binding-a',
-    }],
-    ['malformed device binding id', {
-      'phraseman.account_authority.binding_token.v1': 'opaque-binding-token',
-      'phraseman.account_authority.device_binding_id.v1': '../auth_links',
-    }],
-  ])('fails closed on %s in the dedicated credential keys', async (_case, initial) => {
+    ['malformed json', 'not-json'],
+    ['foreign uid hash', 'foreign'],
+    ['malformed token', 'bad-token'],
+    ['malformed device binding id', 'bad-device'],
+  ])('fails closed on %s in the per-uid credential key', async (_case, variant) => {
+    const uidHash = sha256Sync('account-authority-revision-uid.v1\u0000firebase-client-a');
+    const record = (hash: string, token: string, device: string) => JSON.stringify({
+      schemaVersion: 'account-authority-installation-binding.v2',
+      uidHash: hash,
+      bindingToken: token,
+      deviceBindingId: device,
+    });
+    const raw = variant === 'not-json' ? 'not-json'
+      : variant === 'foreign' ? record('0'.repeat(64), 'opaque-binding-token', 'server-device-binding-a')
+        : variant === 'bad-token' ? record(uidHash, ' opaque-binding-token ', 'server-device-binding-a')
+          : record(uidHash, 'opaque-binding-token', '../auth_links');
     const credentials = createAccountAuthoritySecureInstallationBindingCredentialStore({
-      secureStore: secureStore(initial),
+      secureStore: secureStore({ ['phraseman.account_authority.binding.v2.' + uidHash]: raw }),
+      digestSha256: sha256,
     });
 
-    const failure = await credentials.read().catch((error: unknown) => error);
+    const failure = await credentials.read(parseFirebaseAuthUid('firebase-client-a')).catch((error: unknown) => error);
 
     expect(failure).toEqual(new Error('account_authority_installation_binding_unavailable'));
     expect(String(failure)).not.toContain('opaque-binding-token');
@@ -337,7 +354,10 @@ describe('Account Authority production app integration', () => {
       ...base,
       createInstallationBinding: () => ({
         obtain: async () => { throw new Error('binding_callable_unavailable'); },
-        readPersisted: async () => null,
+        readPersistedForLease: async () => null,
+        rotate: async () => { throw new Error('binding_callable_unavailable'); },
+        reset: async () => undefined,
+        resetForLease: async () => undefined,
       }),
       createLease: (_revisionStore, binding) => ({
         acquire: async (request) => {
@@ -354,7 +374,7 @@ describe('Account Authority production app integration', () => {
       deviceId: bootstrap!.deviceId,
       operationId: parseOperationId('operation-client-a'),
     })).rejects.toThrow('binding_callable_unavailable');
-    expect(secure.snapshot()).not.toHaveProperty('phraseman.account_authority.binding_token.v1');
+    expect(Object.keys(secure.snapshot()).some((key) => key.startsWith('phraseman.account_authority.binding'))).toBe(false);
   });
 
   test('real startup seam attempts production installation before legacy auth sync', async () => {

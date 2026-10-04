@@ -655,7 +655,10 @@ function mapCallableError(error: unknown, operation: string, startedAt: number):
   if (error instanceof HttpsError) {
     mapped = error;
   } else if (error instanceof AccountAuthorityCallableError) {
-    mapped = new HttpsError(error.code, error.message);
+    // зачем (AA S2b раунд 2): точный код отказа контракта — только из allowlist.
+    mapped = error.details === undefined
+      ? new HttpsError(error.code, error.message)
+      : new HttpsError(error.code, error.message, { leaseCode: error.details.leaseCode });
   } else {
     const unknownMapped = mapUnknownAccountAuthorityFailure(error, operation, 'adapter');
     related = [error, unknownMapped];

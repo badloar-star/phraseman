@@ -124,6 +124,20 @@ export function accountAuthorityErrorCode(error: unknown): string {
   return 'other';
 }
 
+/**
+ * Код ошибки провайдера/Firebase для AA-входа: `auth/invalid-credential` →
+ * `auth_invalid-credential`. Только короткий машинный код (см. логгер S1),
+ * иначе `unknown`. Текст ошибки не читается вовсе.
+ */
+export function accountAuthorityProviderErrorCode(error: unknown): string {
+  const raw = typeof error === 'object' && error !== null ? (error as { code?: unknown }).code : undefined;
+  if (typeof raw === 'number' && Number.isSafeInteger(raw)) return String(raw);
+  if (typeof raw !== 'string' || raw.length === 0) return 'unknown';
+  const normalized = raw.toLowerCase().replace(/\//g, '_');
+  const safe = accountAuthorityErrorCode({ code: normalized });
+  return safe === 'other' ? 'unknown' : safe;
+}
+
 /** Строковый код состояния (например, ошибка перехода V2): безопасный код или `other`. */
 export function accountAuthoritySafeCode(value: string | null | undefined): string {
   if (value === null || value === undefined) return 'none';

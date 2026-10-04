@@ -50,6 +50,9 @@ import {
 const INSTALLATION_ID_KEY = 'phraseman.account_authority.installation_id.v1';
 const BINDING_TOKEN_KEY = 'phraseman.account_authority.binding_token.v1';
 const DEVICE_BINDING_ID_KEY = 'phraseman.account_authority.device_binding_id.v1';
+// зачем (AA S2b, пункт 8): привязка по uid — ключ с хешем uid (см. хранилище привязок ниже).
+const BINDING_KEY_PREFIX = 'phraseman.account_authority.binding.v2.';
+const BINDING_SCHEMA = 'account-authority-installation-binding.v2';
 const LOCAL_METADATA_KEY = 'phraseman.account_authority.local_metadata.v1';
 const LEASE_REVISION_KEY_PREFIX = 'phraseman.account_authority.lease_revision.v1.';
 const LEASE_OWNER_REVISION_KEY_PREFIX = 'phraseman.account_authority.lease_owner_revision.v1.';
@@ -67,6 +70,7 @@ export type AccountAuthoritySecureStorePort = Readonly<{
   setItem(key: string, value: string, options?: object): void;
   getItemAsync(key: string, options?: object): Promise<string | null>;
   setItemAsync(key: string, value: string, options?: object): Promise<void>;
+  deleteItemAsync(key: string, options?: object): Promise<void>;
 }>;
 
 type DurableOwner = Readonly<{ accountId: string; sessionId: string }>;
@@ -777,12 +781,76 @@ export function createAccountAuthoritySecureRevisionStore(input: Readonly<{
   return Object.freeze(store);
 }
 
+/**
+ * Найти uidHash владельца аренды по её записи ревизии (тот uid, что брал
+ * аренду). null — записи нет. Битая запись — отказ закрыто.
+ */
+async function leaseOwnerUidHash(input: Readonly<{
+  secureStore: AccountAuthoritySecureStorePort;
+  options: object;
+  digestSha256(value: string): Promise<string>;
+  log: AccountAuthorityLogger;
+  owner: LeaseOwner;
+}>): Promise<string | null> {
+  const { key, ownerHash } = await leaseOwnerKey(input.owner, input.digestSha256);
+  const raw = await input.secureStore.getItemAsync(key, input.options);
+  if (raw === null) return null;
+  return parseOrThrow(input.log, 'binding_credentials lease_record_invalid', 'account_authority_installation_binding_unavailable', () => {
+    const value: unknown = JSON.parse(raw);
+    if (
+      !isRecord(value)
+      || value.ownerHash !== ownerHash
+      || typeof value.uidHash !== 'string'
+      || !SHA256_HEX.test(value.uidHash)
+    ) throw new Error('invalid');
+    return value.uidHash;
+  });
+}
+
+/**
+ * зачем (AA S2b, пункт 8): привязка установки хранится ПО UID. Ключ —
+ * `binding.v2.<sha256(uid)>` (тот же хеш, что у ревизии аренды, поэтому выход
+ * находит привязку по записи своей аренды); сам uid на диск не попадает.
+ * Токен и id устройства лежат одним JSON — запись атомарна, полупары нет.
+ *
+ * Миграция: прежняя пара ключей v1 была ОДНА на установку, и чей это uid —
+ * неизвестно. Перенос «первому, кто спросит» вернул бы цикл binding_mismatch
+ * при смене A→B, поэтому старая пара читается один раз за процесс и
+ * удаляется (лог `binding_credentials legacy_dropped`). Цена — одна новая
+ * привязка на установку; на проде привязок нет (rollout сервера выключен).
+ */
 export function createAccountAuthoritySecureInstallationBindingCredentialStore(input: Readonly<{
   secureStore: AccountAuthoritySecureStorePort;
+  digestSha256(value: string): Promise<string>;
   logger?: AccountAuthorityLogger;
 }>): AccountAuthorityInstallationBindingCredentialStore {
   const log = safeAccountAuthorityLogger(input.logger);
   const options = secureOptions(input.secureStore);
+  let legacyMigration: Promise<void> | null = null;
+  const migrateLegacyOnce = (): Promise<void> => {
+    if (legacyMigration !== null) return legacyMigration;
+    legacyMigration = (async () => {
+      const [legacyToken, legacyDevice] = await Promise.all([
+        input.secureStore.getItemAsync(BINDING_TOKEN_KEY, options),
+        input.secureStore.getItemAsync(DEVICE_BINDING_ID_KEY, options),
+      ]);
+      if (legacyToken === null && legacyDevice === null) {
+        log.info('binding_credentials legacy_check', { result: 'absent' });
+        return;
+      }
+      await input.secureStore.deleteItemAsync(BINDING_TOKEN_KEY, options);
+      await input.secureStore.deleteItemAsync(DEVICE_BINDING_ID_KEY, options);
+      log.info('binding_credentials legacy_dropped', { reason: 'owner_unknown' });
+    })().catch((error: unknown) => {
+      // Не сорвать вход из-за уборки: следующая попытка в этом процессе повторит её.
+      legacyMigration = null;
+      log.warn('binding_credentials legacy_drop_failed', {
+        kind: accountAuthorityErrorKind(error),
+        code: accountAuthorityErrorCode(error),
+      });
+    });
+    return legacyMigration;
+  };
   const parseCredentials = (bindingToken: unknown, deviceBindingId: unknown) => {
     if (
       typeof bindingToken !== 'string'
@@ -800,30 +868,89 @@ export function createAccountAuthoritySecureInstallationBindingCredentialStore(i
       () => Object.freeze({ bindingToken, deviceBindingId: parseDeviceId(deviceBindingId).value }),
     );
   };
-  const credentialStore: AccountAuthorityInstallationBindingCredentialStore = {
-    read: async () => {
-      const [bindingToken, deviceBindingId] = await Promise.all([
-        input.secureStore.getItemAsync(BINDING_TOKEN_KEY, options),
-        input.secureStore.getItemAsync(DEVICE_BINDING_ID_KEY, options),
-      ]);
-      if (bindingToken === null && deviceBindingId === null) return null;
-      return parseCredentials(bindingToken, deviceBindingId);
-    },
-    write: async (credentials) => {
-      const parsed = parseCredentials(credentials.bindingToken, credentials.deviceBindingId);
-      await input.secureStore.setItemAsync(BINDING_TOKEN_KEY, parsed.bindingToken, options);
-      await input.secureStore.setItemAsync(DEVICE_BINDING_ID_KEY, parsed.deviceBindingId, options);
-      const [storedToken, storedDeviceBindingId] = await Promise.all([
-        input.secureStore.getItemAsync(BINDING_TOKEN_KEY, options),
-        input.secureStore.getItemAsync(DEVICE_BINDING_ID_KEY, options),
-      ]);
+  const keyForUidHash = (uidHash: string): string => `${BINDING_KEY_PREFIX}${uidHash}`;
+  const keyForUid = async (firebaseAuthUid: FirebaseAuthUid) => {
+    const { uidHash } = await revisionKey(firebaseAuthUid, input.digestSha256);
+    return Object.freeze({ key: keyForUidHash(uidHash), uidHash });
+  };
+  const readAt = async (key: string, uidHash: string) => {
+    const raw = await input.secureStore.getItemAsync(key, options);
+    if (raw === null) {
+      log.info('binding_credentials read', { result: 'missing' });
+      return null;
+    }
+    const value = parseOrThrow(log, 'binding_credentials record_invalid', 'account_authority_installation_binding_unavailable', () => {
+      const parsed: unknown = JSON.parse(raw);
       if (
-        storedToken !== parsed.bindingToken
-        || storedDeviceBindingId !== parsed.deviceBindingId
-      ) {
+        !isRecord(parsed)
+        || !exactKeys(parsed, ['schemaVersion', 'uidHash', 'bindingToken', 'deviceBindingId'])
+        || parsed.schemaVersion !== BINDING_SCHEMA
+        || parsed.uidHash !== uidHash
+      ) throw new Error('invalid');
+      return parsed;
+    });
+    const credentials = parseCredentials(value.bindingToken, value.deviceBindingId);
+    log.info('binding_credentials read', { result: 'found' });
+    return credentials;
+  };
+  const deleteAt = async (key: string, source: 'uid' | 'lease') => {
+    await input.secureStore.deleteItemAsync(key, options);
+    if (await input.secureStore.getItemAsync(key, options) !== null) {
+      log.warn('binding_credentials clear_verify_failed', { source });
+      throw new Error('account_authority_installation_binding_unavailable');
+    }
+    log.info('binding_credentials cleared', { source });
+  };
+  const leaseUidHash = (owner: LeaseOwner) => leaseOwnerUidHash({
+    secureStore: input.secureStore,
+    options,
+    digestSha256: input.digestSha256,
+    log,
+    owner,
+  });
+  const credentialStore: AccountAuthorityInstallationBindingCredentialStore = {
+    read: async (firebaseAuthUid) => {
+      await migrateLegacyOnce();
+      const { key, uidHash } = await keyForUid(firebaseAuthUid);
+      return readAt(key, uidHash);
+    },
+    readForLease: async (owner) => {
+      await migrateLegacyOnce();
+      const uidHash = await leaseUidHash(owner);
+      if (uidHash === null) {
+        log.info('binding_credentials read_for_lease', { result: 'lease_record_missing' });
+        return null;
+      }
+      return readAt(keyForUidHash(uidHash), uidHash);
+    },
+    write: async (firebaseAuthUid, credentials) => {
+      await migrateLegacyOnce();
+      const parsed = parseCredentials(credentials.bindingToken, credentials.deviceBindingId);
+      const { key, uidHash } = await keyForUid(firebaseAuthUid);
+      const encoded = JSON.stringify({
+        schemaVersion: BINDING_SCHEMA,
+        uidHash,
+        bindingToken: parsed.bindingToken,
+        deviceBindingId: parsed.deviceBindingId,
+      });
+      await input.secureStore.setItemAsync(key, encoded, options);
+      if (await input.secureStore.getItemAsync(key, options) !== encoded) {
         log.warn('binding_credentials write_verify_failed', { code: 'account_authority_installation_binding_unavailable' });
         throw new Error('account_authority_installation_binding_unavailable');
       }
+      log.info('binding_credentials written');
+    },
+    clear: async (firebaseAuthUid) => {
+      const { key } = await keyForUid(firebaseAuthUid);
+      await deleteAt(key, 'uid');
+    },
+    clearForLease: async (owner) => {
+      const uidHash = await leaseUidHash(owner);
+      if (uidHash === null) {
+        log.info('binding_credentials clear_skipped', { reason: 'lease_record_missing' });
+        return;
+      }
+      await deleteAt(keyForUidHash(uidHash), 'lease');
     },
   };
   return Object.freeze(credentialStore);
@@ -885,6 +1012,7 @@ export async function createAccountAuthorityProductionBootstrap(
     installationId: deviceId.value,
     credentials: createAccountAuthoritySecureInstallationBindingCredentialStore({
       secureStore: dependencies.secureStore,
+      digestSha256: dependencies.digestSha256,
       logger: log,
     }),
   });

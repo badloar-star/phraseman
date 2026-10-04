@@ -133,6 +133,20 @@ import { logEvent, recordError } from './firebase';
 import { logAppError } from './app_health';
 import { emitAppEvent } from './events';
 import { persistPortableProgressRegister } from './phone_state_progress_register_bridge';
+import {
+  acceptAnonMergeStampResponse,
+  forgetAllAnonMergeNonces,
+} from '../modules/account-authority-v2/account_authority_anon_merge_nonce';
+import {
+  accountAuthorityErrorCode,
+  accountAuthorityErrorKind,
+  accountAuthorityProviderErrorCode,
+  safeAccountAuthorityLogger,
+} from '../modules/account-authority-v2/account_authority_logger';
+
+// зачем (AA S2b, пункт 11): ветки входа AA и nonce M-1 пишут через логгер S1 —
+// только коды и виды, без uid, stableId, nonce и токенов.
+const AUTH_PROVIDER_AA_LOG = safeAccountAuthorityLogger(undefined);
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -198,8 +212,17 @@ async function stampAnonOwnershipBeforeSignIn(localStableId: string): Promise<vo
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
     const fn = httpsCallable(getFunctions(getApp(), 'us-central1'), 'authStampAnonOwnership');
-    await fn({ stableId: localStableId });
+    // зачем (AA S2b, пункт 9, контракт M-1): просим одноразовый nonce метки. Он
+    // живёт только в памяти процесса (модуль nonce) и уходит в ensureLink/merge
+    // для этого же stableId. Старый сервер nonce не даёт — работаем без него.
+    const response = await fn({ stableId: localStableId, nonceRequested: true });
+    acceptAnonMergeStampResponse(localStableId, response);
   } catch (e) {
+    // Лог без текста ошибки и без stableId: только вид и код (S1-логгер).
+    AUTH_PROVIDER_AA_LOG.warn('anon_merge_nonce stamp_failed', {
+      kind: accountAuthorityErrorKind(e),
+      code: accountAuthorityErrorCode(e),
+    });
     if (__DEV__) console.warn('[auth_provider] stampAnonOwnershipBeforeSignIn failed', e);
   }
 }
@@ -1860,12 +1883,17 @@ async function runAccountAuthorityCredentialSignIn(provider: AuthProviderId): Pr
       : Platform.OS === 'android'
         ? await runAppleAndroidOAuthSignIn()
         : await runAppleNativeSignIn();
-  } catch (error: any) {
-    const code = error?.code ? String(error.code) : '';
-    const message = error?.message ? String(error.message) : 'unknown';
-    return { result: 'error', error: `native_${code ? `${code}:` : ''}${message}`.slice(0, 120) };
+  } catch (error: unknown) {
+    // зачем (AA S2b, пункт 10): наружу и в лог — только код ошибки. Сырой текст
+    // Firebase/провайдера может нести email, токен или uid и не уходит никуда.
+    const code = accountAuthorityProviderErrorCode(error);
+    AUTH_PROVIDER_AA_LOG.warn('credential_sign_in failed', { phase: 'native', code, kind: accountAuthorityErrorKind(error) });
+    return { result: 'error', error: `native_${code}` };
   }
-  if ('cancelled' in nativeCredential) return { result: 'cancelled' };
+  if ('cancelled' in nativeCredential) {
+    AUTH_PROVIDER_AA_LOG.info('credential_sign_in cancelled', { phase: 'native' });
+    return { result: 'cancelled' };
+  }
 
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -1880,17 +1908,23 @@ async function runAccountAuthorityCredentialSignIn(provider: AuthProviderId): Pr
     const user = signedIn?.user ?? auth.currentUser;
     const uid = String(user?.uid ?? '').trim();
     if (!uid || user?.isAnonymous !== false) {
+      AUTH_PROVIDER_AA_LOG.warn('credential_sign_in rejected', {
+        phase: 'firebase',
+        reason: uid ? 'still_anonymous' : 'uid_missing',
+      });
       return { result: 'error', error: 'firebase_authenticated_uid_missing' };
     }
+    AUTH_PROVIDER_AA_LOG.info('credential_sign_in ok', { phase: 'firebase' });
     return {
       result: 'linked_existing',
       email: nativeCredential.email ?? user?.email ?? null,
       displayName: nativeCredential.displayName ?? user?.displayName ?? null,
     };
-  } catch (error: any) {
-    const code = error?.code ? String(error.code) : '';
-    const message = error?.message ? String(error.message) : 'unknown';
-    return { result: 'error', error: `firebase_${code ? `${code}:` : ''}${message}`.slice(0, 120) };
+  } catch (error: unknown) {
+    // зачем (AA S2b, пункт 10): только код, без текста ошибки Firebase.
+    const code = accountAuthorityProviderErrorCode(error);
+    AUTH_PROVIDER_AA_LOG.warn('credential_sign_in failed', { phase: 'firebase', code, kind: accountAuthorityErrorKind(error) });
+    return { result: 'error', error: `firebase_${code}` };
   }
 }
 
@@ -2020,6 +2054,9 @@ async function runSignInWithProvider(
   try {
     return await runSignInWithProviderWhileOwningHandoffLease(provider, options, handoffLeaseScope);
   } finally {
+    // зачем (AA S2b, пункт 9): nonce M-1 нужен только внутри одного входа —
+    // успех (merge/relink), отказ или отмена одинаково его стирают.
+    forgetAllAnonMergeNonces('sign_in_settled');
     await handoffLeaseScope.release?.();
   }
 }

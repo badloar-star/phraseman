@@ -614,9 +614,11 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
     }));
     expect(provenance).toEqual({
       'app/auth_provider.ts': {
-        occurrences: 107,
+        // AA S2b (пункт 9): +2 — nonce M-1 (приём ответа метки, стирание по завершении входа).
+        occurrences: 109,
         imports: 3,
         census: {
+          'call:acceptAnonMergeStampResponse': 1,
           'call:beginAccountGeneration': 10,
           'call:captureAccountGeneration': 2,
           'call:clearStableId': 5,
@@ -626,6 +628,7 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:ensureFreshStableIdentityForLiveProvider': 1,
           'call:ensureStableAuthLinkForStableIdDetailed': 5,
           'call:forceSyncToCloud': 1,
+          'call:forgetAllAnonMergeNonces': 1,
           'call:getStableId': 11,
           'call:invalidateAccountGeneration': 5,
           'call:isCurrentAccountGeneration': 7,
@@ -654,7 +657,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         },
       },
       'app/cloud_sync.ts': {
-        occurrences: 70,
+        // AA S2b (пункт 9): +1 — стирание nonce M-1 после успешного слияния.
+        occurrences: 71,
         imports: 2,
         census: {
           'call:adoptAuthoritativeStableIdentity': 1,
@@ -667,6 +671,7 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:ensureAnonIdentityDetailed': 1,
           'call:ensureAnonUser': 8,
           'call:ensureStableAuthLinkForStableIdDetailed': 8,
+          'call:forgetAnonMergeNonce': 1,
           'call:isCurrentAccountGeneration': 9,
           'call:isForceGenerationCurrent': 4,
           'call:isSyncGenerationCurrent': 15,

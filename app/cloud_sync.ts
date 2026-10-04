@@ -42,6 +42,11 @@ import {
 import { shardDeltaQueueStorageKey } from './shards_delta_queue';
 import { resumePendingReportReplyShardClaims } from './app_messages';
 import { getAuthLinkCacheTtlMs } from './remote_flags';
+import { peekStoredItem, readStoredItem, removeStoredItem, writeStoredItem } from './storage_snapshot';
+import {
+  anonMergeNonceField,
+  forgetAnonMergeNonce,
+} from '../modules/account-authority-v2/account_authority_anon_merge_nonce';
 import {
   ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS,
   ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS,
@@ -1065,19 +1070,22 @@ function classifyRetiredIdentitySubject(
 
 async function readStableAuthLinkCache(key: string): Promise<boolean> {
   try {
-    const raw = await AsyncStorage.getItem(STABLE_AUTH_LINK_CACHE_KEY);
+    const peeked = peekStoredItem(STABLE_AUTH_LINK_CACHE_KEY);
+    const raw = peeked !== undefined ? peeked : await readStoredItem(STABLE_AUTH_LINK_CACHE_KEY);
     if (!raw) return false;
     const parsed = JSON.parse(raw) as { key?: unknown; linkedAt?: unknown };
     const linkedAt = typeof parsed.linkedAt === 'number' ? parsed.linkedAt : 0;
     const ttlMs = Math.max(60_000, getAuthLinkCacheTtlMs() || DEFAULT_STABLE_AUTH_LINK_CACHE_TTL_MS);
     return parsed.key === key && linkedAt > 0 && Date.now() - linkedAt < ttlMs;
-  } catch {
+  } catch (error) {
+    // Битый кэш = промах: пойдём к серверу. Причина — в лог, без значения ключа.
+    console.warn(`[AUTH-LINK-CACHE] read:catch kind=${error instanceof Error ? error.name : typeof error}`);
     return false;
   }
 }
 
 async function writeStableAuthLinkCache(key: string): Promise<void> {
-  await AsyncStorage.setItem(STABLE_AUTH_LINK_CACHE_KEY, JSON.stringify({ key, linkedAt: Date.now() }));
+  await writeStoredItem(STABLE_AUTH_LINK_CACHE_KEY, JSON.stringify({ key, linkedAt: Date.now() }));
 }
 
 function isJestRuntime(): boolean {
@@ -1099,6 +1107,10 @@ function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise
     if (timeoutId !== undefined) clearTimeout(timeoutId);
   });
 }
+// зачем (AA S2b, пункт 12, §122): на холодном старте ключ читали ~16 потребителей
+// подряд, и каждое чтение шло мостом в SQLite. Теперь он читается через снапшот:
+// из хранилища один раз, дальше синхронно из памяти (peek); запись и удаление идут
+// сквозь снапшот, а любая запись мимо него (wipe аккаунта) выбрасывает ключ из памяти.
 
 // ── Lazy getters — грузятся только если пакеты установлены ───────────────────
 const isDateKey = (value: unknown): value is string =>
@@ -2005,7 +2017,15 @@ export async function ensureStableAuthLinkForStableIdDetailed(
   if (!options.requireAuthoritative && !hasFreshMetadata && cacheHit) {
     return { ok: true, requestedStableId: stableId, stableUid: stableId, authUid, source: 'cache' };
   }
-  const promiseKey = [key, hasFreshMetadata ? 'metadata' : '', options.requireAuthoritative ? 'authoritative' : '']
+  // зачем (AA S2b, пункт 9, M-1): nonce метки анонимного аккаунта предъявляется
+  // серверу, только если он выдан этому же stableId; живёт в памяти процесса.
+  const nonceField = anonMergeNonceField('ensure_link', [stableId]);
+  const promiseKey = [
+    key,
+    hasFreshMetadata ? 'metadata' : '',
+    options.requireAuthoritative ? 'authoritative' : '',
+    nonceField.anonMergeNonce !== undefined ? 'nonce' : '',
+  ]
     .filter(Boolean)
     .join(':');
   if (stableAuthLinkPromise && stableAuthLinkKey === promiseKey) return stableAuthLinkPromise;
@@ -2014,11 +2034,11 @@ export async function ensureStableAuthLinkForStableIdDetailed(
   stableAuthLinkPromise = (async () => {
     try {
       const fn = callable<
-        { stableId: string; linkMetadata?: StableAuthLinkMetadata },
+        { stableId: string; linkMetadata?: StableAuthLinkMetadata; anonMergeNonce?: string },
         { ok: boolean; stableUid: string; authUid: string; identityReady: boolean }
       >('authEnsureStableLink');
       const res = await withTimeout(
-        fn({ stableId, ...(hasFreshMetadata ? { linkMetadata: metadata } : {}) }),
+        fn({ stableId, ...(hasFreshMetadata ? { linkMetadata: metadata } : {}), ...nonceField }),
         STABLE_AUTH_LINK_TIMEOUT_MS,
         'auth_link_callable',
       );
@@ -2113,7 +2133,7 @@ export async function ensureStableAuthLink(): Promise<boolean> {
  */
 export async function repairStableAuthLinkAfterIdentityFailure(): Promise<boolean> {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return true;
-  await AsyncStorage.removeItem(STABLE_AUTH_LINK_CACHE_KEY).catch(swallowError('cloud_sync:repairStableAuthLinkAfterIdentityFailure'));
+  await removeStoredItem(STABLE_AUTH_LINK_CACHE_KEY).catch(swallowError('cloud_sync:repairStableAuthLinkAfterIdentityFailure'));
   stableAuthLinkPromise = null;
   stableAuthLinkKey = '';
   const stableId = await ensureAnonUser();
@@ -2332,11 +2352,11 @@ export async function mergeStableAccountsViaServer(
   if (!a || !b) return null;
   try {
     const fn = callable<
-      { stableIdA: string; stableIdB: string },
+      { stableIdA: string; stableIdB: string; anonMergeNonce?: string },
       MergeStableAccountsResult
     >('authMergeStableAccounts');
     const res = await withTimeout(
-      fn({ stableIdA: a, stableIdB: b }),
+      fn({ stableIdA: a, stableIdB: b, ...anonMergeNonceField('merge', [a, b]) }),
       STABLE_AUTH_LINK_TIMEOUT_MS,
       'auth_merge_callable',
     );
@@ -2359,7 +2379,7 @@ export function resetAnonAuthCacheForSignOut(): void {
   _anonAuthReady = null;
   stableAuthLinkPromise = null;
   stableAuthLinkKey = '';
-  AsyncStorage.removeItem(STABLE_AUTH_LINK_CACHE_KEY).catch(swallowError('cloud_sync:resetAnonAuthCacheForSignOut'));
+  removeStoredItem(STABLE_AUTH_LINK_CACHE_KEY).catch(swallowError('cloud_sync:resetAnonAuthCacheForSignOut'));
 }
 
 // ── Получить uid текущего пользователя ───────────────────────────────────────
@@ -2378,11 +2398,14 @@ async function adoptAuthoritativeStableIdentity(
   authoritativeStableIdRaw: string,
 ): Promise<boolean> {
   const localStableId = String(localStableIdRaw || '').trim();
+    // зачем (AA S2b, пункт 9, M-1): nonce метки анонимного аккаунта — если он
+    // выдан одной из сторон слияния; после успешного слияния он больше не нужен.
   const authoritativeStableId = String(authoritativeStableIdRaw || '').trim();
   if (!localStableId || !authoritativeStableId) return false;
   if (localStableId === authoritativeStableId) return true;
 
   const sourceGeneration = captureAccountGeneration();
+    if (res?.data?.ok === true) forgetAnonMergeNonce([a, b], 'merged');
   if (!isCurrentAccountGeneration(sourceGeneration, localStableId)) return false;
 
   return withAccountTransitionLock(async () => {
@@ -2393,7 +2416,7 @@ async function adoptAuthoritativeStableIdentity(
     beginAccountGeneration(authoritativeStableId);
     stableAuthLinkPromise = null;
     stableAuthLinkKey = '';
-    await AsyncStorage.removeItem(STABLE_AUTH_LINK_CACHE_KEY).catch(swallowError('cloud_sync:adoptAuthoritativeStableIdentity'));
+    await removeStoredItem(STABLE_AUTH_LINK_CACHE_KEY).catch(swallowError('cloud_sync:adoptAuthoritativeStableIdentity'));
     invalidatePremiumCache();
     return true;
   });

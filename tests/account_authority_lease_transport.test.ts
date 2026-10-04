@@ -47,7 +47,10 @@ function bindingPort(
   });
   return {
     obtain: async () => binding,
-    readPersisted: async () => binding,
+    readPersistedForLease: async () => binding,
+    rotate: async () => binding,
+    reset: async () => undefined,
+    resetForLease: async () => undefined,
   };
 }
 
@@ -57,7 +60,10 @@ function memoryBindingCredentials(
   let current = initial;
   return {
     read: async () => current,
-    write: async (credentials) => { current = Object.freeze({ ...credentials }); },
+    readForLease: async () => current,
+    write: async (_uid, credentials) => { current = Object.freeze({ ...credentials }); },
+    clear: async () => { current = null; },
+    clearForLease: async () => { current = null; },
   };
 }
 
@@ -282,10 +288,12 @@ describe('Account Authority Firebase lease transport', () => {
         },
       };
     });
+    // Один вызов — одна попытка: проверяется повтор именно после перезапуска.
     const input = {
       invoke,
       revisionStore: revisions,
       installationBinding: bindingPort('persisted-binding-token'),
+      retry: { maxAttempts: 1 },
     };
     const request = {
       accountId: parseAccountId('account-server-a'),
@@ -334,8 +342,8 @@ describe('Account Authority Firebase lease transport', () => {
       invoke,
       revisionStore: memoryRevisions(),
       installationBinding: {
-        obtain: bindingPort().obtain,
-        readPersisted: async () => null,
+        ...bindingPort(),
+        readPersistedForLease: async () => null,
       },
     });
     const request = {
@@ -361,7 +369,7 @@ describe('Account Authority Firebase lease transport', () => {
     const port = createAccountAuthorityFirebaseInstallationBindingPort({
       invoke,
       installationId: '550e8400-e29b-41d4-a716-446655440000',
-      credentials: { read: async () => null, write },
+      credentials: { ...memoryBindingCredentials(), read: async () => null, write },
     });
 
     await expect(port.obtain(parseFirebaseAuthUid('firebase-client-a'))).resolves.toEqual({
@@ -371,7 +379,7 @@ describe('Account Authority Firebase lease transport', () => {
     expect(invoke).toHaveBeenCalledWith('accountAuthorityInstallationBindingCreate', {
       installationId: '550e8400-e29b-41d4-a716-446655440000',
     });
-    expect(write).toHaveBeenCalledWith({
+    expect(write).toHaveBeenCalledWith(parseFirebaseAuthUid('firebase-client-a'), {
       bindingToken: 'opaque-binding-token',
       deviceBindingId: 'server-device-binding-a',
     });
@@ -388,7 +396,7 @@ describe('Account Authority Firebase lease transport', () => {
     const port = createAccountAuthorityFirebaseInstallationBindingPort({
       invoke,
       installationId: '550e8400-e29b-41d4-a716-446655440000',
-      credentials: { read: async () => null, write: async () => undefined },
+      credentials: memoryBindingCredentials(),
     });
     const uid = parseFirebaseAuthUid('firebase-client-a');
 
@@ -434,6 +442,7 @@ describe('Account Authority Firebase lease transport', () => {
     };
     const first = createAccountAuthorityFirebaseLeasePort({
       invoke: leaseInvoke,
+      retry: { maxAttempts: 1 },
       revisionStore,
       installationBinding: createAccountAuthorityFirebaseInstallationBindingPort({
         invoke: bindingInvoke,
@@ -483,6 +492,7 @@ describe('Account Authority Firebase lease transport', () => {
       invoke,
       installationId: '550e8400-e29b-41d4-a716-446655440000',
       credentials: {
+        ...memoryBindingCredentials(),
         read: async () => stored,
         write: async () => { throw new Error('must_not_write'); },
       },
@@ -529,8 +539,9 @@ describe('Account Authority Firebase lease transport', () => {
       invoke,
       revisionStore: memoryRevisions(null),
       installationBinding: {
+        ...bindingPort(),
         obtain: async () => { throw new Error('account_authority_installation_binding_unavailable'); },
-        readPersisted: async () => null,
+        readPersistedForLease: async () => null,
       },
     });
 

@@ -8,6 +8,8 @@ Governance-ID: TG-660F45C494B1
 Governance-ID: TG-D6050F60865A
 Governance-ID: TG-2B71ACE8758C
 Governance-ID: TG-D469BF3869DB
+Governance-ID: TG-5588AE32E6C2
+Governance-ID: TG-BB69AE2C24EC
 Status: In progress — S2a (сервер); D-AA1…4 подтверждены координатором §116
 Owner: Claude session (Account Authority 2.0)
 
@@ -370,3 +372,83 @@ S2b-R2. Повтор после потерянного ответа — с те�
 S2b-R3. Аренду перехватило другое устройство (stale_auth_epoch) → перед повторным входом одна ротация привязки на одну попытку, без цикла.
 S2b-R4. Повтор ВЫХОДА после потерянного ответа получил revision_mismatch/stale_lease → считать выход выполненным, ошибку не показывать (L-R5-1).
 S2b-R5. Окончательные отказы (binding_missing/binding_mismatch/deletion_pending/identity_unresolved/anchor_removed/sign_in_provider_rejected/anonymous_rejected) не повторять; повторяемые (unavailable) — с backoff.
+
+## Итог исполнителя S2b (2026-10-04)
+
+Клиент: пункты 8–12 и S2b-R1…R5. Без git (ничего не в индексе), без деплоя, App Check и MAX не тронуты. Тяжёлые прогоны — только со слотом, по одному файлу. Снимки до правок: `.tmp_aa_s2b_backup/pre/`, перед мутациями — `.tmp_aa_s2b_backup/premutation/`.
+
+**Что сделано**
+- **8. Транспорт и привязка по uid.** Новый чистый модуль `modules/account-authority-v2/account_authority_failure_policy.ts`: `classifyAccountAuthorityFailure` → `final` (binding_missing/binding_mismatch со сбросом привязки, deletion_pending, identity_unresolved, sign_in_provider_rejected, anonymous_rejected, disabled, invalid-argument, internal, своя ошибка клиента) / `retryable` (unavailable, deadline-exceeded, resource-exhausted, обрыв без кода) / `contract_rejected` (`account_authority_request_rejected`) / `unauthenticated`. Транспорт (`account_authority_lease_transport.ts`) повторяет только `retryable` (3 попытки, пауза 0,5→1→2 с с джиттером, потолок 8 с, троттлинг ≥6 с), окончательные не повторяет, наружу — различимые коды (`account_authority_lease_binding_rejected`, `_deletion_pending`, `_identity_unresolved`, `_provider_rejected`, `_disabled`, `_request_invalid`, `_rejected`, `_unavailable`). Привязка хранится по uid: SecureStore-ключ `phraseman.account_authority.binding.v2.<sha256("account-authority-revision-uid.v1\0"+uid)>`, одним JSON (атомарно); выход находит привязку по записи своей аренды. binding_missing/mismatch → `reset(uid)` / `resetForLease(owner)`. Миграция: старая пара ключей v1 (одна на установку, владелец неизвестен) читается один раз за процесс и удаляется, лог `binding_credentials legacy_dropped reason=owner_unknown`.
+- **9. Nonce M-1.** Новый модуль `account_authority_anon_merge_nonce.ts`: секрет только в памяти процесса (Map по stableId), TTL 10 мин, валидация 1..128; `stampAnonOwnershipBeforeSignIn` шлёт `nonceRequested: true` и отдаёт ответ модулю; `anonMergeNonce` уходит в `authEnsureStableLink` (если выдан этому stableId) и в `authMergeStableAccounts` (если выдан одной из сторон); стирается после успешного merge, в `finally` у `runSignInWithProvider` (успех/отказ/отмена) и по сроку. Ответ без `mergeNonce` → legacy-путь без поля.
+- **10.** `runAccountAuthorityCredentialSignIn` возвращает и логирует только код (`native_<code>`/`firebase_<code>`, код нормализован: `auth/x`→`auth_x`, нижний регистр, иначе `unknown`); помощник `accountAuthorityProviderErrorCode` — в логгере S1.
+- **11.** Все ветки транспорта/привязки/nonce/входа пишут через логгер S1 (коды, номер попытки, задержка), без uid/stableId/nonce/токенов; сторож логов зелёный, поведенческий тест проверяет отсутствие uid/токена/operationId/installationId.
+- **12.** `stable_auth_link_cache_v1` читается через `peekStoredItem`/`readStoredItem`, пишется `writeStoredItem`, удаляется `removeStoredItem` (3 места). Замер (тест «холодный старт, 16 потребителей с готовым кэшем»): **до — 16 чтений из хранилища, после — 1**. Немой `catch {}` в чтении кэша заменён логом.
+- **R1** — чистая политика `createAccountAuthorityRenewalGate` (только `cold_start`/`foreground`, не чаще 5 мин, in-flight, неудача отметку не сдвигает). Не подключена: жизненного цикла продлений в клиенте нет (cutover выключен). Подключать в `app/accounts_v2_client_flag.ts`: перед `resumeAccountAuthorityProviderSessionIfIdle` — `tryBegin('cold_start')`, в слушателе AppState 'active' — `tryBegin('foreground')`, по завершении resume — `finish()`.
+- **R2** — ревизия читается один раз на вызов, все повторы с тем же operationId и expectedRevision; начальный вход (ревизии нет) с тем же operationId повторяется только 50 мин от первой попытки, позже `account_authority_lease_replay_expired` без вызова сервера (`planAccountAuthorityAcquireReplay`). Окно — в памяти процесса.
+- **R3** — `contract_rejected` на входе → ровно одна ротация привязки (`rotate`) и один повтор; второй отказ окончательный.
+- **R4** — выход, чей ответ терялся (retryable), на повторе получил `contract_rejected` → выполнен (`lease release_presumed_done`), ревизия аренды = expected+1. Отказ контракта на первой попытке НЕ глушится.
+- **R5** — см. пункт 8.
+
+**Проверки**
+- Новые тесты: `account_authority_s2b_transport` 26/26, `account_authority_s2b_cloud_sync` 8/8 (RED до правок: 4 failed, замер 16), `account_authority_s2b_auth_provider_guard` 4/4.
+- Затронутые: lease_transport 18/18, app_integration 18/18, logging_guard 10/10, legacy_callsite_guard 31/31 (перепись +3 вызова nonce, осознанно), auth_provider_stable_link 35/35 (2 строковые проверки обновлены), cloud_sync_identity_anchor 5/5, auth_provider_wiring 8/8, runtime 51/51, bootstrap_contract 10/10, auth_provider_bridge 8/8, storage_snapshot 12/12, auth_provider_behavior 93/93.
+- `npm run typecheck`: 0 ошибок.
+- Мутации 11/11 убиты (наборы реально запускались, 26/8/4 тестов): сброс привязки, mismatch как повторяемый, nonce в ensureLink, стирание после merge, сырой текст Firebase, uid в логе, кэш мимо снапшота, R1 без дебаунса, R2 без окна, R3 без ротации, R4 без «выполнено». cmp после мутаций — все 4 файла совпали.
+
+**Решения для координатора**
+- (а) Сервер отдаёт `revision_mismatch`/`stale_lease`/`stale_auth_epoch` одним `account_authority_request_rejected`. Клиент поэтому ротирует привязку на любой отказ контракта входа (≤1 на попытку) и считает выполненным любой отказ контракта на повторе потерянного выхода. Точнее было бы публиковать код (`details.leaseCode`) — правка сервера, на решение.
+- (б) Старая привязка v1 удаляется, а не переносится (владелец неизвестен).
+- (в) `internal` не повторяется автоматически.
+- (г) Окно R2 и пометки потерянных выходов живут в памяти процесса; после перезапуска повтор начального входа с тем же operationId допускается заново (persist — при подключении жизненного цикла).
+
+**Конфиденциальность (для S10):** новый ключ SecureStore на устройстве с sha256 от Firebase uid (без соли) и токеном привязки на каждый uid, вошедший на устройстве; nonce — только память.
+
+**Что проверить security-ревьюеру:** что nonce не утекает (лог, `__DEV__`-warn ошибки stamp, промис-ключ дедупа содержит только флаг), сброс привязки по `resetForLease` при чужом uid, «выполнено» на R4 при перехвате аренды другим устройством, хеш uid без соли в ключе SecureStore, миграция v1 (удаление без переноса).
+
+## S2b раунд 2 — точные коды отказа контракта (решение (а) из итога S2b), 2026-10-04
+
+Планка «ничего на потом»: вместо грубой трактовки «любой отказ контракта» сервер публикует точный код.
+- Сервер (`functions/src/account_authority/callable_boundary.ts`): у `failed-precondition`/`account_authority_request_rejected` от контракта аренды — `details: { leaseCode: <revision_mismatch|stale_lease|stale_auth_epoch|identity_mismatch|account_lifecycle_blocked|…> }` из закрытого списка (allowlist; неизвестное → `other`). Без идентификаторов. Тесты сервера.
+- Клиент: R3 — ротация привязки ТОЛЬКО при `stale_auth_epoch` (одна на попытку); R4 — выход считается выполненным ТОЛЬКО при `revision_mismatch`/`stale_lease` на ПОВТОРЕ; прочие коды — окончательный отказ с логом. Совместимость: ответ без `details.leaseCode` (старый сервер) → прежняя грубая трактовка (с логом `lease_code_missing`).
+- Решения (б) удаление привязки v1 без переноса, (в) internal без автоповтора, (г) окно R2/отметки в памяти до подключения жизненного цикла — принимаются как есть (записать в Technical debt (г)).
+
+## Итог исполнителя S2b — раунд 2 (2026-10-04)
+
+Точные коды отказа контракта. Правила прежние: без git, без деплоя, тяжёлое только со слотом, общие файлы компилируются после каждой правки. Снимки: `.tmp_aa_s2b_backup/r2pre/`, `.tmp_aa_s2b_backup/r2_premutation/`.
+
+**Сервер**
+- `callable_boundary.ts`: закрытый список `ACCOUNT_AUTHORITY_PUBLIC_LEASE_CODES` (account_mismatch, identity_mismatch, account_lifecycle_blocked, operation_reused, revision_mismatch, stale_auth_epoch, session_reused, stale_lease, receipt_capacity_exhausted, clock_rollback) и `accountAuthorityPublicLeaseCode` (остальное, включая invalid_input, → `other`). У `AccountAuthorityCallableError` появились необязательные `details: { leaseCode }`, значение проходит через allowlist и в конструкторе. `mapContractError` кладёт код `AccountLeaseError` в details у `failed-precondition / account_authority_request_rejected`.
+- `firebase_lease_callable.ts`: `HttpsError` получает `{ leaseCode }`, только если details есть. У прочих отказов details нет.
+- Отказ `account_authority_delete_*` details не получает (это не контракт аренды).
+
+**Клиент**
+- `classifyAccountAuthorityFailure` → `{ kind: 'contract_rejected', leaseCode }`. Код берётся из `details.leaseCode`, только строчный `[a-z_]{1,40}`, иначе null.
+- R3: ротация привязки только при `stale_auth_epoch`: одна на попытку и один повтор. Остальные коды окончательные, без ротации и без повтора.
+- R4: выход считается выполненным только при `revision_mismatch` или `stale_lease` на повторе потерянного выхода. Остальные коды — окончательный отказ.
+- Старый сервер без кода: прежняя грубая трактовка, лог `lease acquire_lease_code_missing` / `lease release_lease_code_missing`.
+- `app/auth_provider.ts` и `app/cloud_sync.ts` в раунде 2 не менялись: cmp со снимком раунда 1 совпал.
+
+**Проверки**
+- Сервер, по одному файлу: новый `s2b_lease_code.test.ts` 8/8, callable_boundary 23/23, firebase_lease_callable 10/10, s2a_identity_security 68/68, installation_binding_callable 13/13.
+- Клиент: s2b_transport 41/41 (+15 тестов раунда 2), lease_transport 18/18, logging_guard 10/10.
+- Тайпчек: приложение 0 ошибок, functions 0 ошибок.
+- Мутации 9/9 убиты (наборы запускались: 8 и 41 тест):
+  - обход allowlist;
+  - нет кода из контракта;
+  - адаптер теряет details;
+  - клиент не разбирает код;
+  - ротация на любой код;
+  - старый сервер без ротации;
+  - «выполнено» на любой код;
+  - stale_lease не «выполнено»;
+  - нет лога lease_code_missing.
+
+  После мутаций cmp: все 4 файла совпали.
+
+**Technical debt (г):** окно R2 (50 мин) и отметки потерянных выходов живут в памяти процесса до подключения жизненного цикла продлений.
+
+## S2b — security-ревью APPROVE (2026-10-04). Хвосты LOW → S2b раунд 3 (сразу после коммита)
+- L-S2b-1: перед сохранением привязки сверять текущий uid Firebase с firebaseAuthUid; не совпал — не сохранять (лог).
+- L-S2b-2: промисы создания привязки хранить по uidHash; resetForLease удаляет только запись владельца аренды.
+- L-S2b-3: при следующем входе A проверять/освобождать свою оставшуюся аренду (если «выход выполнен» на повторе прикрыл невыполненный выход) — лог.
+- L-S2b-4: отказ слияния/перепривязки из-за потерянного nonce → понятный код для UI «повторите вход» (не тупик) + тест.

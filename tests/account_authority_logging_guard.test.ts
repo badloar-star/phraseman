@@ -529,7 +529,10 @@ describe('Account Authority logging guard (S1)', () => {
       installationId: '550e8400-e29b-41d4-a716-446655440000',
       credentials: {
         read: async () => credentials,
-        write: async (next) => { credentials = Object.freeze({ ...next }); },
+        readForLease: async () => credentials,
+        write: async (_uid, next) => { credentials = Object.freeze({ ...next }); },
+        clear: async () => { credentials = null; },
+        clearForLease: async () => { credentials = null; },
       },
       logger,
     });

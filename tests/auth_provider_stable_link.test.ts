@@ -94,7 +94,8 @@ describe('auth provider stable-id linking', () => {
     expect(source).toContain('const authLinkMetadata: StableAuthLinkMetadata');
     expect(source).toContain('ensureStableAuthLinkForStableIdDetailed(stableId, authLinkMetadata)');
     expect(cloudSyncSource).toContain('linkMetadata?: StableAuthLinkMetadata');
-    expect(cloudSyncSource).toContain("fn({ stableId, ...(hasFreshMetadata ? { linkMetadata: metadata } : {}) })");
+    // зачем (AA S2b, пункт 9): к данным добавлен nonce M-1 (только для того же stableId).
+    expect(cloudSyncSource).toContain("fn({ stableId, ...(hasFreshMetadata ? { linkMetadata: metadata } : {}), ...nonceField })");
   });
 
   test('provider sign-in does not stack three serial stable-link deadlines after auth is ready', () => {
@@ -370,7 +371,8 @@ describe('auth provider stable-id linking', () => {
     expect(ensureSource).toContain("writeStableAuthLinkCache(`${actualStableUid}:${actualAuthUid}`).catch(swallowError('cloud_sync:ensureStableAuthLinkForStableIdDetailed'))");
     expect(ensureSource).not.toContain('writeStableAuthLinkCache(`${actualStableUid}:${actualAuthUid}`).catch(() => {})');
     expect(ensureSource).not.toContain('writeStableAuthLinkCache(key).catch(() => {})');
-    expect(resetSource).toContain('AsyncStorage.removeItem(STABLE_AUTH_LINK_CACHE_KEY)');
+    // зачем (AA S2b, пункт 12): удаление идёт сквозь снапшот хранилища.
+    expect(resetSource).toContain("removeStoredItem(STABLE_AUTH_LINK_CACHE_KEY)");
   });
 
   test('registration prompt reset uses the full account-switch wipe path', () => {

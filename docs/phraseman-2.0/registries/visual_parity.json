@@ -18824,9 +18824,10 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "note": "OR-BANNER-REPORT-REPLY: компонент удалён 01.10 (Q92) — по указанию координатора 04.10"
     },
     {
       "id": "overlays-runtime-025",

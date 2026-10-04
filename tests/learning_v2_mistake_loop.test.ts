@@ -19,7 +19,8 @@ describe('Learning V2 optional mistake loop', () => {
   });
 
   test('captures the canonical released lesson id and never resumes the cards draft in Learning V2', () => {
-    expect(legacySession).toContain('lessonId: payload.lessonId');
+    // зачем: 936b8c09b (30.08) обернул значение в String() ради типов — смысл тот же: урок из payload.
+    expect(legacySession).toMatch(/lessonId: (?:String\()?payload\.lessonId/);
     expect(legacySession).not.toContain('lessonId: "lesson-1"');
     expect(mistakeSession).toContain("const persistSession = entrySource === 'cards'");
   });

@@ -25,6 +25,13 @@ export async function prepareMistakePracticeSession(input: Readonly<{
   studyTarget: MistakeStudyTarget;
   requestedLength: MistakePracticeLength;
   persistSession: boolean;
+  /**
+   * зачем (§123, координатор 04.10): НОВУЮ сессию не сохранять здесь — экран сохранит её
+   * через commitPreparedMistakePracticeSession только после списания энергии. Иначе отмена окна
+   * энергии (или закрытое приложение) оставляла сохранённую сессию, и следующий вход шёл
+   * «продолжением» бесплатно.
+   */
+  deferNewSessionSave?: boolean;
   lessonId?: string;
   focusMistakeId?: string;
   storage?: MistakePracticeStorage;
@@ -33,6 +40,8 @@ export async function prepareMistakePracticeSession(input: Readonly<{
   session: MistakePracticeSession;
   resumed: boolean;
   unavailableCount: number;
+  /** true — новая сессия ещё не сохранена (deferNewSessionSave); её сохраняет экран после оплаты. */
+  needsSave: boolean;
 }>> {
   const accountFence = captureMistakePracticeSessionAccountFence(input.accountScope);
   const loadedJournal = await loadMistakeEventJournal(input);
@@ -83,6 +92,7 @@ export async function prepareMistakePracticeSession(input: Readonly<{
       session: restored,
       resumed: true,
       unavailableCount: reconciled.unavailableCount,
+      needsSave: false,
     });
   }
   if (restored && input.persistSession) {
@@ -105,13 +115,33 @@ export async function prepareMistakePracticeSession(input: Readonly<{
     nowMs: input.nowMs ?? Date.now(),
     focusMistakeId: input.focusMistakeId,
   });
-  if (input.persistSession) {
+  const deferSave = input.persistSession && input.deferNewSessionSave === true;
+  if (input.persistSession && !deferSave) {
     await saveMistakePracticeSession({ ...input, session });
     accountFence.assertCurrent();
   }
+  console.log('[MISTAKE-PRACTICE-PREPARE] new session', JSON.stringify({
+    sessionId: session.sessionId, initialCount: session.initialCount, savedNow: input.persistSession && !deferSave, deferSave,
+  }));
   return Object.freeze({
     session,
     resumed: false,
     unavailableCount: reconciled.unavailableCount,
+    needsSave: deferSave,
   });
+}
+
+/**
+ * Сохранить новую сессию, подготовленную с deferNewSessionSave, — когда за неё уже заплачено
+ * (или она бесплатная). Только тогда следующий вход вправе «продолжить» её без списания.
+ */
+export async function commitPreparedMistakePracticeSession(input: Readonly<{
+  accountScope: string;
+  studyTarget: MistakeStudyTarget;
+  session: MistakePracticeSession;
+  storage?: MistakePracticeStorage;
+}>): Promise<void> {
+  const accountFence = captureMistakePracticeSessionAccountFence(input.accountScope);
+  await saveMistakePracticeSession(input);
+  accountFence.assertCurrent();
 }

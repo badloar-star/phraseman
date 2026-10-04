@@ -52,7 +52,7 @@ import MistakeEli5Modal from '../components/MistakeEli5Modal';
 import AiExplainConsentModal from '../components/AiExplainConsentModal';
 import { useMistakeExplain } from './use_mistake_explain';
 import { prewarmMistakeSessionExplanations } from './mistake_explain_prewarm';
-import { prepareMistakePracticeSession } from './mistake_practice_session_runtime';
+import { commitPreparedMistakePracticeSession, prepareMistakePracticeSession } from './mistake_practice_session_runtime';
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import {
@@ -516,6 +516,7 @@ function MistakePracticeSessionScreen() {
         studyTarget,
         requestedLength,
         persistSession,
+        deferNewSessionSave: true,
         lessonId: params.lessonId,
         focusMistakeId: focusedMistakeId,
       });
@@ -533,12 +534,32 @@ function MistakePracticeSessionScreen() {
         }));
         if (!prepared.resumed && costsEnergy) {
           const energyResult = await confirmSpendOneRef.current(mistakeEnergyIntent);
+          // зачем (§123): какая ветка и почему — продолжение без списания допустимо ТОЛЬКО для
+          // сессии, за которую энергия списана; отменённая не сохраняется и при следующем входе
+          // снова просит энергию.
+          console.log('[MISTAKES-GATE] session:energy_result', JSON.stringify({ // guard-ok
+            energyResult, sessionId: prepared.session.sessionId, needsSave: prepared.needsSave, cancelledEffect: cancelled,
+          }));
           if (cancelled) return;
           if (energyResult === 'cancelled' || energyResult === 'insufficient') {
+            console.log('[MISTAKES-GATE] session:not_paid → not saved', JSON.stringify({ energyResult })); // guard-ok
             safeRouterBack(router, '/flashcards' as never);
             return;
           }
           if (energyResult === 'spent') void acknowledgeSessionStart(mistakeEnergyIntent.operationId);
+        }
+        if (prepared.needsSave) {
+          // Оплачена (spent/unlimited) или бесплатная (короткий набор) — теперь её можно продолжать.
+          try {
+            await commitPreparedMistakePracticeSession({ accountScope: scope, studyTarget, session: prepared.session });
+            console.log('[MISTAKES-GATE] session:saved_after_payment', JSON.stringify({ sessionId: prepared.session.sessionId, costsEnergy })); // guard-ok
+          } catch (error) {
+            // Сохранение не удалось — играем дальше без «продолжения»: следующий вход начнёт заново.
+            console.warn('[MISTAKES-GATE] session:save_after_payment_failed', error instanceof Error ? error.message : String(error)); // guard-ok
+            if (cancelled) return;
+            if (error instanceof Error && error.message === 'stale_account_generation') throw error;
+          }
+          if (cancelled) return;
         }
         trackMistakePracticeEvent('mistake_practice_session_started', {
           study_target: studyTarget,

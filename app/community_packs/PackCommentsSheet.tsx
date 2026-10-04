@@ -135,6 +135,8 @@ function timeAgoLabel(ms: number, lang: Lang): string {
 /** Последняя серверная лента комментариев по набору: память процесса, ключ — аккаунт и набор; не больше 20 наборов. */
 const packCommentsMemory = new Map<string, PackComment[]>();
 const PACK_COMMENTS_MEMORY_MAX = 20;
+/** Сколько ждём ленту, прежде чем сказать «не удалось загрузить» (PM-214 A2). */
+const PACK_COMMENTS_LOAD_DEADLINE_MS = 8_000;
 function packCommentsMemoryKey(packId: string): string | null {
   const owner = peekStableId();
   return owner ? `${owner}:${packId}` : null;
@@ -180,6 +182,10 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
   const serverConfirmedWriteRef = useRef(isPackAuthor);
   const [comments, setComments] = useState<PackComment[]>([]);
   const [loading, setLoading] = useState(true);
+  // зачем (PM-214 A2): без офлайн-дедлайна спиннер мог крутиться без конца. После PACK_COMMENTS_LOAD_DEADLINE_MS сообщаем «не удалось загрузить»
+  // с повтором; запоздавший ответ всё равно сливается в список тем же путём.
+  const [loadFailed, setLoadFailed] = useState(false);
+  const [reloadTick, setReloadTick] = useState(0);
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
   const [menuFor, setMenuFor] = useState<PackComment | null>(null);
@@ -263,6 +269,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
     // зачем (аудит «мгновенное открытие», 04.10): спиннер крутился на КАЖДОМ открытии, даже если ленту этого набора только что видели. Теперь, если
     // в памяти есть последняя серверная лента для этого аккаунта и набора, показываем её сразу, а загрузка идёт фоном и сливается через mergeServerComments.
     const remembered = peekPackCommentsMemory(packId);
+    setLoadFailed(false);
     if (remembered) {
       setComments((prev) => mergeServerComments(prev, remembered));
       setLoading(false);
@@ -275,10 +282,28 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
         return null;
       });
       if (__DEV__) console.log('[PACK-COMMENTS-COMPOSER] uid получен', { packId, uid, hasUid: !!uid });
-      const [addedByMe, serverComments] = await Promise.all([
+      const pending = Promise.all([
         uid ? canWritePackComment(packId, uid) : Promise.resolve(false),
         fetchPackComments(packId, uid),
       ]);
+      const raced = await Promise.race([
+        pending,
+        new Promise<null>((resolve) => { setTimeout(() => resolve(null), PACK_COMMENTS_LOAD_DEADLINE_MS); }),
+      ]);
+      let result = raced;
+      if (result === null) {
+        console.warn(`[PACK-COMMENTS] load:deadline packId=${packId} afterMs=${PACK_COMMENTS_LOAD_DEADLINE_MS} — показываем «не удалось загрузить», ответ ещё ждём`);
+        if (!cancelled) {
+          setLoadFailed(true);
+          setLoading(false);
+        }
+        result = await pending.catch((error: unknown) => {
+          console.warn('[PACK-COMMENTS] load:late_failed', error instanceof Error ? error.message : String(error));
+          return null;
+        });
+        if (!result) return;
+      }
+      const [addedByMe, serverComments] = result;
       if (__DEV__) console.log('[PACK-COMMENTS-COMPOSER] canWritePackComment вернул', { packId, uid, addedByMe, isPackAuthorProp: isPackAuthor, ownedLocally });
       if (addedByMe || isPackAuthor) serverConfirmedWriteRef.current = true;
       if (cancelled) {
@@ -305,6 +330,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
       setCanWrite((prev) => prev || finalCanWrite);
       rememberPackCommentsMemory(packId, serverComments);
       setComments((prev) => mergeServerComments(prev, serverComments));
+      setLoadFailed(false);
       setLoading(false);
     })();
     return () => { cancelled = true; };
@@ -320,7 +346,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
     // РАЗРЕШИТЬ писать (читается через отдельный эффект выше и напрямую в
     // finalCanWrite при первом входе), а не чтобы дёргать чтение ленты заново.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible, packId, isPackAuthor]);
+  }, [visible, packId, isPackAuthor, reloadTick]);
 
   /**
    * Прокрутка + подсветка к комментарию из deep-link (колокольчик).
@@ -576,6 +602,8 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
   const pinnedBadge = triLang(lang, { ru: 'закреплено', uk: 'закріплено', en: 'pinned', es: 'fijado', 'pt-BR': 'fixado', vi: 'đã ghim', id: 'disematkan', tr: 'sabitlendi', pl: 'przypięte' });
   const headerTitle = triLang(lang, { ru: 'Отклик', uk: 'Відгук', en: 'Comments', es: 'Comentarios', 'pt-BR': 'Comentários', vi: 'Phản hồi', id: 'Tanggapan', tr: 'Yorumlar', pl: 'Komentarze' });
 
+  const loadFailedTitle = triLang(lang, { ru: 'Не удалось загрузить комментарии', uk: 'Не вдалося завантажити коментарі', en: 'Could not load comments', es: 'No se pudieron cargar los comentarios', 'pt-BR': 'Não foi possível carregar os comentários', vi: 'Không tải được bình luận', id: 'Komentar tidak dapat dimuat', tr: 'Yorumlar yüklenemedi', pl: 'Nie udało się wczytać komentarzy' });
+  const retryLabel = triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' });
   const loadingLabel = triLang(lang, { ru: 'Загрузка комментариев…', uk: 'Завантаження коментарів…', en: 'Loading comments…', es: 'Cargando comentarios…', 'pt-BR': 'Carregando comentários…', vi: 'Đang tải bình luận…', id: 'Memuat komentar…', tr: 'Yorumlar yükleniyor…', pl: 'Ładowanie komentarzy…' });
   const closeLabel = triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
   const sendLabel = triLang(lang, { ru: 'Отправить', uk: 'Надіслати', en: 'Send', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' });
@@ -746,6 +774,13 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
             <View accessibilityRole="progressbar" accessibilityLabel={loadingLabel} style={{ minHeight: 154, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
               <ActivityIndicator color={glass.secondary} />
               <Text style={{ color: glass.secondary, fontSize: f.caption }}>{loadingLabel}</Text>
+            </View>
+          ) : comments.length === 0 && loadFailed ? (
+            <View testID="pack-comments-load-failed" style={{ alignItems: 'center', paddingVertical: 28, paddingHorizontal: 20 }}>
+              <Text style={{ color: glass.text, fontSize: 16, fontWeight: '700', textAlign: 'center' }}>{loadFailedTitle}</Text>
+              <TouchableOpacity accessibilityRole="button" onPress={() => setReloadTick((tick) => tick + 1)} style={{ minHeight: 44, paddingHorizontal: 20, marginTop: 12, alignItems: 'center', justifyContent: 'center' }}>
+                <Text style={{ color: glass.secondary, fontSize: f.body, fontWeight: '700' }}>{retryLabel}</Text>
+              </TouchableOpacity>
             </View>
           ) : comments.length === 0 ? (
             <View style={{ alignItems: 'center', paddingVertical: 28, paddingHorizontal: 20 }}>

@@ -25,6 +25,14 @@ describe('instant open batch', () => {
     expect(src).toContain('rememberPackCommentsMemory(packId, serverComments);');
   });
 
+  it('pack comments stop spinning after a deadline and offer a retry (PM-214 A2)', () => {
+    const src = read('app/community_packs/PackCommentsSheet.tsx');
+    expect(src).toContain('const PACK_COMMENTS_LOAD_DEADLINE_MS = 8_000;');
+    expect(src).toContain('[PACK-COMMENTS] load:deadline');
+    expect(src).toContain('testID="pack-comments-load-failed"');
+    expect(src).toContain('[visible, packId, isPackAuthor, reloadTick]');
+  });
+
   it('explanation disk cache is moved into memory on touch and on open', () => {
     expect(read('app/explain_phrase_request.ts')).toContain('export async function prefillExplainResultFromDisk(');
     const button = read('components/ExplainButton.tsx');

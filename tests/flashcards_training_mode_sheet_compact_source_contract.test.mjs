@@ -18,19 +18,17 @@ const styleBlock = (name, nextName) => {
 
 assert.match(source, /animationType="slide"/, 'bottom sheet slides up');
 assert.match(styleBlock('modalRoot', 'backdrop'), /justifyContent: 'flex-end'/, 'sheet is anchored to the bottom');
-assert.match(styleBlock('sheet', 'rim'), /borderTopLeftRadius: 30/);
+// зачем (макет cards-section «Режим тренировки»): шторка r28, ручка 44×5, заголовок 22/700 и пилюля остатка, строки 90 с плиткой 57
+assert.match(styleBlock('sheet', 'sheetFill'), /borderTopLeftRadius: 28/);
 assert.match(source, /styles\.grabber/, 'sheet has a grabber');
-assert.match(source, /backgroundColor: g\.opaqueSheet/, 'opaque base so underlying text cannot show through');
 assert.doesNotMatch(source, /<BlurView/, 'no backdrop sampler');
-assert.match(source, /Тренироваться с карточками/);
-assert.match(source, /Выбери формат тренировки/);
-assert.match(styleBlock('heading', 'headingSubtitle'), /fontSize: 26/);
-assert.match(styleBlock('close', 'scroll'), /width: 44,[\s\S]*height: 44/, 'round close button');
-assert.match(styleBlock('icon', 'copy'), /width: 48,[\s\S]*height: 48/, 'icon in a square tile');
-assert.match(styleBlock('row', 'icon'), /minHeight: 76/);
+assert.match(source, /Режим тренировки/);
+assert.match(styleBlock('heading', 'headingSubtitle'), /fontSize: 22/);
+assert.match(styleBlock('icon', 'copy'), /width: 57,[\s\S]*height: 57/, 'icon in a square tile');
+assert.match(styleBlock('row', 'rowLine'), /minHeight: 90/);
 assert.match(styleBlock('scroll', 'content'), /flexShrink: 1,[\s\S]*minHeight: 0/);
 assert.doesNotMatch(source, /numberOfLines/);
-assert.doesNotMatch(source, /styles\.cancelButton/, 'no separate Cancel button — closing is the round ×');
+assert.doesNotMatch(source, /styles\.cancelButton/, 'no separate Cancel button — closing is the backdrop');
 for (const mode of ['blitz', 'speaking', 'truefalse', 'recall']) {
   assert.match(source, new RegExp(`mode: '${mode}'`));
 }

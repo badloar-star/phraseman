@@ -664,6 +664,7 @@ export default function FlashcardsHubScreen() {
         </ContentWrap>
 
         <FlashcardsTrainingModeSheet
+          limitLabel={limitLabel}
           visible={modeSheetVisible}
           lang={lang}
           onClose={closeModeSheet}

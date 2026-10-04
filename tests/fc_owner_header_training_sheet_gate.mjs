@@ -23,19 +23,19 @@ const sheet = read('app/flashcards/FlashcardsTrainingModeSheet.tsx');
 assert.doesNotMatch(sheet, /Как тренируемся\?/);
 assert.doesNotMatch(sheet, /Выберите режим, затем отметьте нужные наборы\./);
 assert.doesNotMatch(sheet, /mode: 'listening'|Слушать|Listening/);
-assert.match(sheet, /За 60 секунд находи верные переводы и вспоминай быстрее\./);
+assert.match(sheet, /Минута на скорость/);
 // зачем (владелец 01.10, по скрину; bb5d31820): описание «Устно» сокращено — строка про паузу убрана.
-assert.match(sheet, /Произноси фразы вслух и тренируй разговорную речь\./);
+assert.match(sheet, /Говорите вслух/);
 assert.doesNotMatch(sheet, /Можно остановиться и попробовать ещё раз\./);
-assert.match(sheet, /Сверяй фразу с переводом и сразу проверяй память\./);
+assert.match(sheet, /Верен ли перевод/);
 // зачем: D129 — языков обучения несколько, «английскую» заменили на «на изучаемом языке».
-assert.match(sheet, /Вводи фразу на изучаемом языке целиком по памяти\./);
+assert.match(sheet, /Пишите по памяти/);
 assert.match(sheet, /mode: 'recall'/);
 assert.doesNotMatch(sheet, /Слушай фразы подряд и понимай их без подсказки\./);
 // зачем: bb5d31820 — окно переделано по скрину владельца; строка режима ниже (76), но выше минимума касания 44.
-assert.match(sheet, /row: \{ minHeight: 76/);
+assert.match(sheet, /row: \{ minHeight: 90/);
 assert.match(sheet, /<ScrollView/);
-assert.match(sheet, /accessibilityLabel=\{`\$\{row\.title\}.*?\$\{row\.description\}`\}/);
+assert.match(sheet, /accessibilityLabel=\{`\$\{row\.title\}.*?\$\{rowDescription\}`\}/);
 // зачем: efe19ae9d (снимок 30.09) — удалённый флаг «Устно» снят из приложения целиком (isSpeakingEnabled нет нигде);
 // режим всегда в списке, и подписка на remote_config для него не нужна.
 assert.doesNotMatch(sheet, /isSpeakingEnabled/);
@@ -61,10 +61,10 @@ assert.match(read('app/flashcards/DeckSelectionTile.tsx'), /accessibilityLabel=\
 const hub = read('app/flashcards/FlashcardsHubScreen.tsx');
 assert.match(hub, /primeFlashcardsCollectionCache\(studyTarget\)/);
 assert.match(hub, /catalogLoadState/);
-assert.match(hub, /loading=\{catalogLoadState === 'loading'\}/);
-assert.match(hub, /onRetry=\{reloadCatalog\}/);
-// зачем: кнопка тренировки стала широкой (стиль 2.0) — фиксируем высоту касания, а не квадрат 48×48.
-assert.match(hub, /trainButton: \{ minHeight: 52/);
+// зачем (владелец 04.10, хаб А утверждён): экран рисует CardsHubV2 — кнопка тренировки там 52 высотой, а загрузка каталога решается без спиннера
+const hubView = read('app/flashcards/CardsHubV2.tsx');
+assert.match(hubView, /cta: \{ marginTop: 14, minHeight: 52/);
+assert.match(hubView, /fc-cards-hub-train/);
 assert.match(hub, /trainButtonRef/);
 assert.match(hub, /AccessibilityInfo\.setAccessibilityFocus/);
 

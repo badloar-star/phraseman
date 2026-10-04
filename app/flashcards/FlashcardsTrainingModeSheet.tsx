@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import { useTheme } from '../../components/ThemeContext';
 import { LinearGradient } from '../../components/SafeLinearGradient';
+import { mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
@@ -35,6 +36,8 @@ type Props = {
    */
   preparing?: 'waiting' | 'failed' | null;
   onRetry?: () => void;
+  /** Остаток тренировок месяца («24/30») — пилюля справа от заголовка; null — пилюли нет. */
+  limitLabel?: string | null;
 };
 
 type ModeRow = {
@@ -52,6 +55,7 @@ export default function FlashcardsTrainingModeSheet({
   onSelect,
   preparing = null,
   onRetry,
+  limitLabel = null,
 }: Props) {
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
@@ -106,17 +110,7 @@ export default function FlashcardsTrainingModeSheet({
           ru: 'Блиц', uk: 'Бліц', en: 'Blitz', es: 'Blitz', 'pt-BR': 'Blitz',
           vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz',
         }),
-        description: triLang(lang, {
-          ru: 'За 60 секунд находи верные переводы и вспоминай быстрее.',
-          uk: 'За 60 секунд знаходь правильні переклади й згадуй швидше.',
-          en: 'Find the right translations for 60 seconds and recall them faster.',
-          es: 'Encuentra las traducciones correctas en 60 segundos y recuérdalas más rápido.',
-          'pt-BR': 'Encontre as traduções certas em 60 segundos e lembre-se mais rápido.',
-          vi: 'Tìm bản dịch đúng trong 60 giây và nhớ lại nhanh hơn.',
-          id: 'Temukan terjemahan yang tepat dalam 60 detik dan ingat lebih cepat.',
-          tr: '60 saniyede doğru çevirileri bul ve daha hızlı hatırla.',
-          pl: 'Znajduj poprawne tłumaczenia przez 60 sekund i szybciej je przywołuj.',
-        }),
+        description: triLang(lang, { ru: 'Минута на скорость', uk: 'Хвилина на швидкість', en: 'A minute for speed', es: 'Un minuto de velocidad', 'pt-BR': 'Um minuto de velocidade', vi: 'Một phút tốc độ', id: 'Satu menit kilat', tr: 'Hız için bir dakika', pl: 'Minuta na szybkość' }),
       },
       {
         mode: 'speaking',
@@ -125,17 +119,7 @@ export default function FlashcardsTrainingModeSheet({
           ru: 'Устно', uk: 'Усно', en: 'Speaking', es: 'Oral', 'pt-BR': 'Falando',
           vi: 'Nói', id: 'Lisan', tr: 'Sözlü', pl: 'Ustnie',
         }),
-        description: triLang(lang, {
-          ru: 'Произноси фразы вслух и тренируй разговорную речь.',
-          uk: 'Промовляй фрази вголос і тренуй розмовне мовлення.',
-          en: 'Say phrases aloud and practise speaking.',
-          es: 'Di frases en voz alta y practica la conversación.',
-          'pt-BR': 'Diga frases em voz alta e pratique a fala.',
-          vi: 'Đọc các câu thành tiếng và luyện nói.',
-          id: 'Ucapkan frasa dan latih percakapan.',
-          tr: 'Cümleleri sesli söyle ve konuşma pratiği yap.',
-          pl: 'Wypowiadaj frazy na głos i ćwicz mówienie.',
-        }),
+        description: triLang(lang, { ru: 'Говорите вслух', uk: 'Говоріть уголос', en: 'Speak out loud', es: 'Habla en voz alta', 'pt-BR': 'Fale em voz alta', vi: 'Nói thành tiếng', id: 'Ucapkan keras-keras', tr: 'Yüksek sesle söyle', pl: 'Mów na głos' }),
       },
       {
         mode: 'truefalse',
@@ -145,17 +129,7 @@ export default function FlashcardsTrainingModeSheet({
           'pt-BR': 'Verdadeiro / falso', vi: 'Đúng / sai', id: 'Benar / salah',
           tr: 'Doğru / yanlış', pl: 'Prawda / fałsz',
         }),
-        description: triLang(lang, {
-          ru: 'Сверяй фразу с переводом и сразу проверяй память.',
-          uk: 'Звіряй фразу з перекладом і відразу перевіряй пам’ять.',
-          en: 'Match each phrase with its translation and check your memory instantly.',
-          es: 'Compara cada frase con su traducción y comprueba tu memoria al instante.',
-          'pt-BR': 'Compare cada frase com a tradução e teste sua memória na hora.',
-          vi: 'Đối chiếu cụm từ với bản dịch và kiểm tra trí nhớ ngay lập tức.',
-          id: 'Cocokkan frasa dengan terjemahannya dan langsung uji ingatanmu.',
-          tr: 'Cümleyi çevirisiyle eşleştir ve hafızanı hemen sına.',
-          pl: 'Porównuj zwrot z tłumaczeniem i od razu sprawdzaj pamięć.',
-        }),
+        description: triLang(lang, { ru: 'Верен ли перевод', uk: 'Чи правильний переклад', en: 'Is the translation right', es: '¿Es correcta la traducción?', 'pt-BR': 'A tradução está certa?', vi: 'Bản dịch có đúng không', id: 'Apakah terjemahannya benar', tr: 'Çeviri doğru mu', pl: 'Czy tłumaczenie jest poprawne' }),
       },
       {
         mode: 'recall',
@@ -165,26 +139,17 @@ export default function FlashcardsTrainingModeSheet({
           'pt-BR': 'Lembre e escreva', vi: 'Nhớ và viết', id: 'Ingat dan tulis',
           tr: 'Hatırla ve yaz', pl: 'Przypomnij i napisz',
         }),
-        description: triLang(lang, {
-          ru: 'Вводи фразу на изучаемом языке целиком по памяти.',
-          uk: 'Вводь фразу мовою, яку вивчаєш, повністю з пам’яті.',
-          en: 'Type the complete phrase in the language you are learning.',
-          es: 'Escribe de memoria la frase completa en el idioma que estudias.',
-          'pt-BR': 'Digite de memória a frase completa no idioma que você está aprendendo.',
-          vi: 'Nhập toàn bộ cụm từ bằng ngôn ngữ bạn đang học.',
-          id: 'Ketik seluruh frasa dalam bahasa yang sedang kamu pelajari.',
-          tr: 'İfadeyi öğrendiğin dilde tamamen hafızandan yaz.',
-          pl: 'Wpisz z pamięci całe wyrażenie w języku, którego się uczysz.',
-        }),
+        description: triLang(lang, { ru: 'Пишите по памяти', uk: 'Пишіть із пам’яті', en: 'Write from memory', es: 'Escribe de memoria', 'pt-BR': 'Escreva de memória', vi: 'Viết theo trí nhớ', id: 'Tulis dari ingatan', tr: 'Hafızadan yaz', pl: 'Pisz z pamięci' }),
       },
     ];
     return allRows;
   }, [lang]);
 
+  // зачем (владелец: «любые различия с макетом запрещены», cards-section «Режим тренировки»): заголовок «Режим тренировки», справа пилюля остатка «24/30»
   const heading = triLang(lang, {
-    ru: 'Тренироваться с карточками', uk: 'Тренуватися з картками', en: 'Practise with cards',
-    es: 'Practicar con tarjetas', 'pt-BR': 'Treinar com cartões', vi: 'Luyện tập với thẻ',
-    id: 'Latihan dengan kartu', tr: 'Kartlarla çalış', pl: 'Ćwicz z kartami',
+    ru: 'Режим тренировки', uk: 'Режим тренування', en: 'Practice mode',
+    es: 'Modo de práctica', 'pt-BR': 'Modo de treino', vi: 'Chế độ luyện tập',
+    id: 'Mode latihan', tr: 'Çalışma modu', pl: 'Tryb ćwiczeń',
   });
   const chooseSubtitle = triLang(lang, {
     ru: 'Выбери формат тренировки', uk: 'Обери формат тренування',
@@ -210,29 +175,26 @@ export default function FlashcardsTrainingModeSheet({
   });
   const subtitle = preparing === 'waiting' ? preparingSubtitle : preparing === 'failed' ? failedSubtitle : chooseSubtitle;
 
+  const [ga, gb] = themePair(g);
   return (
     <Modal visible={visible} transparent animationType="slide" statusBarTranslucent onRequestClose={onClose} onDismiss={finishDismiss}>
-      {/* зачем (владелец 01.10, скрин «Тренироваться с карточками»): шторка снизу с ручкой,
-          заголовок слева в две строки, подпись, круглая ×; крупные строки «значок в квадрате ·
-          название · описание · ›». Цвета — наши токены liquid glass. */}
       <View style={styles.modalRoot}>
         <Pressable style={[StyleSheet.absoluteFill, styles.backdrop]} onPress={onClose} accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} />
-        <View testID="fc-training-mode-sheet" accessibilityViewIsModal style={[styles.sheet, { maxHeight: screenHeight - insets.top - 24, paddingBottom: insets.bottom + 16, backgroundColor: g.opaqueSheet }]}>
-          <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-            <LinearGradient colors={[g.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
-            <View style={[styles.rim, { backgroundColor: g.glassEdge }]} />
-          </View>
-          <View style={[styles.grabber, { backgroundColor: g.glassEdge }]} />
+        <View testID="fc-training-mode-sheet" accessibilityViewIsModal style={[styles.sheet, { maxHeight: screenHeight - insets.top - 24, paddingBottom: Math.max(24, insets.bottom + 16) }]}>
+          <LinearGradient pointerEvents="none" colors={[`${mixDark(ga, '#101014', 0.17)}EA`, 'rgba(16,16,20,0.9)']} locations={[0, 0.55]} start={{ x: 0.42, y: 0.01 }} end={{ x: 0.58, y: 0.99 }} style={[StyleSheet.absoluteFill, styles.sheetFill]} />
+          <View style={styles.grabber} />
           <View style={styles.headRow}>
             <View style={styles.headCopy}>
               <Text accessibilityRole="header" style={[styles.heading, { color: g.text }]}>{heading}</Text>
-              <Text
-                testID="fc-training-mode-subtitle"
-                accessibilityLiveRegion={preparing ? 'polite' : 'none'}
-                style={[styles.headingSubtitle, { color: g.secondary }]}
-              >
-                {subtitle}
-              </Text>
+              {preparing ? (
+                <Text
+                  testID="fc-training-mode-subtitle"
+                  accessibilityLiveRegion="polite"
+                  style={[styles.headingSubtitle, { color: g.secondary }]}
+                >
+                  {subtitle}
+                </Text>
+              ) : null}
               {preparing === 'failed' && onRetry ? (
                 <Pressable
                   testID="fc-training-mode-retry"
@@ -246,12 +208,17 @@ export default function FlashcardsTrainingModeSheet({
                 </Pressable>
               ) : null}
             </View>
-            <Pressable testID="fc-training-mode-cancel" accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} hitSlop={6} onPress={onClose} style={({ pressed }) => [styles.close, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.8 : 1 }]}>
-              <Ionicons name="close" size={22} color={g.text} />
-            </Pressable>
+            {limitLabel ? (
+              <View style={styles.limitPill}>
+                <Ionicons name="copy-outline" size={16} color={g.text} />
+                <Text style={[styles.limitText, { color: g.text }]}>{limitLabel}</Text>
+              </View>
+            ) : null}
+            {/* зачем: закрытие — тап по затемнению и системный «назад»; кнопка осталась невидимой для тестов и читалок экрана */}
+            <Pressable testID="fc-training-mode-cancel" accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} onPress={onClose} style={styles.closeHidden} />
           </View>
           <ScrollView style={styles.scroll} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} nestedScrollEnabled>
-            <View style={styles.list}>
+            <View>
               {rows.map((row, rowIndex) => {
                 const speakingBlocked = row.mode === 'speaking' && !speakingEnabled;
                 const disabled = speakingBlocked || preparing !== null;
@@ -267,21 +234,24 @@ export default function FlashcardsTrainingModeSheet({
                     accessibilityState={{ disabled }}
                     disabled={disabled}
                     onPress={() => onSelect(row.mode)}
-                    style={({ pressed }) => [styles.row, { backgroundColor: g.card, borderColor: g.glassEdge, opacity: disabled ? 0.48 : pressed ? 0.82 : 1 }]}
+                    style={({ pressed }) => [styles.row, rowIndex > 0 && styles.rowLine, { opacity: disabled ? 0.48 : pressed ? 0.82 : 1 }]}
                   >
-                    <View style={[styles.icon, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}>
+                    <View style={styles.icon}>
+                      <LinearGradient pointerEvents="none" colors={[mixDark(ga, '#1E1E20', 0.6), mixDark(gb, '#08080B', 0.32)]} start={{ x: 0.21, y: 0.09 }} end={{ x: 0.79, y: 0.91 }} style={StyleSheet.absoluteFill} />
                       <Ionicons name={rowIcon} size={24} color={g.text} />
+                      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 14, boxShadow: [{ inset: true, offsetX: 1, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: 'rgba(255,255,255,0.32)' }, { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 0.5, color: 'rgba(255,255,255,0.08)' }] }]} />
                     </View>
                     <View style={styles.copy}>
                       <Text style={[styles.rowTitle, { color: g.text }]}>{row.title}</Text>
                       <Text style={[styles.description, { color: g.secondary }]}>{rowDescription}</Text>
                     </View>
-                    {speakingBlocked ? <View style={{ width: 20 }} /> : <Ionicons name="chevron-forward" size={20} color={g.secondary} />}
+                    {speakingBlocked ? <View style={{ width: 20 }} /> : <Ionicons name="chevron-forward" size={20} color={g.text} />}
                   </Pressable>
                 );
               })}
             </View>
           </ScrollView>
+          <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.sheetFill, { boxShadow: [{ inset: true, offsetX: 0, offsetY: 1.5, blurRadius: 0, spreadDistance: -0.2, color: 'rgba(255,255,255,0.2)' }, { inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: 'rgba(255,255,255,0.05)' }] }]} />
         </View>
       </View>
     </Modal>
@@ -290,23 +260,25 @@ export default function FlashcardsTrainingModeSheet({
 
 const styles = StyleSheet.create({
   modalRoot: { flex: 1, justifyContent: 'flex-end' },
-  backdrop: { backgroundColor: '#000000AA' },
-  sheet: { width: '100%', borderTopLeftRadius: 30, borderTopRightRadius: 30, overflow: 'hidden', paddingHorizontal: 16, paddingTop: 10 },
-  rim: { height: 1, marginHorizontal: 1 },
-  grabber: { alignSelf: 'center', width: 40, height: 5, borderRadius: 3, marginBottom: 14 },
-  headRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 12, paddingHorizontal: 6 },
+  backdrop: { backgroundColor: '#00000099' },
+  sheet: { width: '100%', borderTopLeftRadius: 28, borderTopRightRadius: 28, overflow: 'hidden', paddingHorizontal: 18, paddingTop: 12 },
+  sheetFill: { borderTopLeftRadius: 28, borderTopRightRadius: 28 },
+  grabber: { alignSelf: 'center', width: 44, height: 5, borderRadius: 3, marginBottom: 20, backgroundColor: '#4A4A4E' },
+  headRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 4 },
   headCopy: { flex: 1, minWidth: 0 },
-  heading: { fontSize: 26, lineHeight: 31, fontWeight: '700', letterSpacing: -0.4 },
-  headingSubtitle: { fontSize: 16, lineHeight: 21, marginTop: 6 },
-  close: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
+  heading: { fontSize: 22, lineHeight: 28, fontWeight: '700' },
+  headingSubtitle: { fontSize: 16, lineHeight: 21, marginTop: 4 },
+  limitPill: { height: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: 'rgba(255,255,255,0.07)' },
+  limitText: { fontSize: 15, lineHeight: 20, fontWeight: '700' },
+  closeHidden: { width: 1, height: 1, opacity: 0 },
   scroll: { flexGrow: 0, flexShrink: 1, minHeight: 0 },
-  content: { paddingTop: 18, paddingBottom: 4 },
-  list: { gap: 10 },
-  row: { minHeight: 76, paddingHorizontal: 12, paddingVertical: 12, borderRadius: 18, borderWidth: StyleSheet.hairlineWidth, flexDirection: 'row', alignItems: 'center', gap: 14 }, // guard-ok: D43 — тонкая рамка как на скрине владельца
-  icon: { width: 48, height: 48, borderRadius: 14, borderWidth: StyleSheet.hairlineWidth, alignItems: 'center', justifyContent: 'center' }, // guard-ok: D43
+  content: { paddingTop: 12, paddingBottom: 4 },
+  row: { minHeight: 90, paddingHorizontal: 4, flexDirection: 'row', alignItems: 'center', gap: 16 },
+  rowLine: { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: 'rgba(255,255,255,0.12)' }, // guard-ok: разделитель строк меню (макет «Режим тренировки»), не контейнер
+  icon: { width: 57, height: 57, borderRadius: 14, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   copy: { flex: 1, minWidth: 0 },
-  rowTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  rowTitle: { fontSize: 18, lineHeight: 23, fontWeight: '700' },
   retry: { alignSelf: 'flex-start', marginTop: 4 },
   retryText: { marginTop: 0, fontWeight: '700' },
-  description: { fontSize: 13, lineHeight: 18, marginTop: 3 },
+  description: { fontSize: 16, lineHeight: 20, marginTop: 3 },
 });

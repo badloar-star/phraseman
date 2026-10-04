@@ -491,11 +491,10 @@ test('actual heading, populated, loading and empty renders preserve adaptive geo
 // зачем (владелец 01.10): окно выбора тренировки — шторка снизу по скрину владельца.
 test('training selector is a bottom sheet with four rows, disabled speaking state and a round close', () => {
   const source = read('FlashcardsTrainingModeSheet.tsx');
-  assert.ok(source.includes('Тренироваться с карточками'));
-  assert.ok(source.includes('Выбери формат тренировки'));
+  assert.ok(source.includes('Режим тренировки'));
   assert.ok(source.includes('<Modal'));
   assert.ok(source.includes('styles.sheet'));
-  assert.ok(source.includes('styles.close'));
+  assert.ok(source.includes('fc-training-mode-cancel'));
   assert.ok(source.includes("row.mode === 'speaking' && !speakingEnabled"));
   assert.ok(!source.includes("allRows.filter((row) => row.mode !== 'speaking')"));
 });

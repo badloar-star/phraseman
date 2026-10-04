@@ -2,14 +2,17 @@
 
 **Verdict:** `PASS`
 **Findings:** `P0=0`; `P1=0`; `P2=0`
-**Scope:** the bounded `de_l24` closure across Stage A (Task 4 authority
-repair) and Stage B (Task 5 chapter blueprint plus fail-closed chapter gate).
-**Mode:** fresh independent read-only reviews after each GREEN. Stage B used
-exact-spec and native-German semantic judges. No reviewer authored or mutated
-the reviewed files.
+**Scope:** the bounded `de_l24` and `de_l25` closure across Stage A (Task 4
+authority repair), Stage B (Task 5 L24 chapter blueprint plus fail-closed
+chapter gate) and Stage C (Task 5 L25 chapter blueprint plus fail-closed
+chapter gate).
+**Mode:** fresh independent read-only reviews after each GREEN. Stages B and C
+used exact-spec and native-German semantic judges. No reviewer authored or
+mutated the reviewed files.
 **Reviewed commits:** Stage A
 `40a9087f0d00a679e66439f932f5fa0044e145fc`; Stage B
-`eadfba9fe2225a9205eb9242a62f74496685e3fc`.
+`eadfba9fe2225a9205eb9242a62f74496685e3fc`; Stage C
+`917c02a80599354847ba211e205484751a53fef0`.
 
 ## Stable authority identities
 
@@ -75,6 +78,41 @@ recipient passive, agent phrase, future/`werden`-infinitive reading, universal
 participle rule, auxiliary guessing, new connector, new case/preposition
 relation or English-contour reuse.
 
+## Stage C — closed Task 5 L25 blueprint
+
+| Reviewed artifact                                                 | SHA-256                                                            |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `modules/learning-v2/curriculum/de/chapter_blueprints_de_v1.json` | `9C319C9546CBDF234B1A97ADE8555ABA80B7D2483A6BB482EA805DC2AB36525E` |
+| `tests/learning_v2_de_chapter_blueprints_gate.ts`                 | `D503BEC21EF1850273E848DC232B4C7A94D4184F60BF53D404AD2BEED8B05DAF` |
+
+The canonical Task 5 `de_l25` chapter object SHA-256 is
+`31125F05DDD4AD87F67BE874A259EBBA62D15E0E86D4C9D8C749C4998FE64150`.
+The chapter gate pins the exact Task 4 `de_l25` plan SHA-256
+`3AA85EC64295BDAE6FA46070F60E7559000B5BAA78DAA9024B5E32F1483E8A5D`.
+
+The materialized lesson contains exactly seven chapters and 56 packet IDs. It
+preserves the declared lifecycle anchors, inverse L24→L25 recall provenance,
+per-chapter changed-context evidence, controlled lexical packages, exact
+support fading and independent final transfer at `de_l25_c07_s56`.
+
+Stage C received two fresh independent reviews on the exact identities above:
+
+- exact-spec review: `PASS`, `P0=0`, `P1=0`, `P2=0`;
+- native-German semantic review: `PASS`, `P0=0`, `P1=0`, `P2=0`.
+
+The native review confirmed bounded, natural German for the productive contrast
+between present singular event passive `wird` plus one verified controlled
+participle and present singular state passive `ist` plus the matching
+participle. The sole Perfekt-with-`sein` contrast remains the already known
+receptive whole `Der Techniker ist angekommen`; no broader auxiliary rule or
+new tense is licensed. It found no plural or other passive person-number
+paradigm, `war`, `wurde`, `worden`, `werden` plus infinitive, recipient passive,
+agent phrase, unverified participle, participle-formation rule, auxiliary
+guessing, adjectival substitution, new connector, new case/preposition
+relation, broader narrative Präteritum, L26 grammar, Task 6 lexical
+adjudication, learner-facing surface, release, audio, mockup or English-contour
+reuse.
+
 ## Hostile and deterministic evidence
 
 - All 52 ordered L24 hostile mutations fail closed with their dedicated
@@ -93,6 +131,31 @@ Task6 lexical reconciliation pending)`.
 - Recenter manifest/pack/receipt suite: `PASS (31/31)` after the manifest binds
   this cumulative receipt's final SHA-256.
 
+## L25 hostile and deterministic evidence
+
+- All 60 ordered L25 hostile mutations fail closed with their dedicated
+  diagnostics, including event/state confusion, number and tense expansion,
+  `werden`-infinitive and recipient-passive leakage, agent phrases, unverified
+  participles, auxiliary guessing, lexical/situation drift, future
+  learner-layer flags, topology/provenance mutations and terminal transfer
+  weakening.
+- L25 focused chapter gate: `PASS (de_l25; 7 chapters; 56 packet IDs; Task6
+lexical reconciliation pending)`.
+- Prefix-25 chapter gate: `PASS (prefix 25; 175 chapters; 1400 packet IDs;
+Task6 lexical reconciliation pending)`.
+- L24 focused and prefix-24 regression gates: `PASS`.
+- The unscoped Task 5 gate remains the required incompleteness signal:
+  `INCREMENTAL_TASK5;25/32 lessons;175/224 chapters`.
+- Task 4 lesson-boundary gate: `PASS (32 lessons; 224 chapter outcomes; 32
+session-56 finals; 48 Task3 constructs; DACH PENDING/HOLD)`.
+- Research-authority gate: `PASS (53 claims)`.
+- Grammar-graph gate: `PASS (48 constructs; 89 edges; 18 branches)`.
+- One-phrase interaction gate: `PASS (66/66)`.
+- Schema, owner-decision, formatting, lint and scoped diff gates: `PASS`.
+- Recenter manifest/pack/receipt suite is valid only after the manifest binds
+  this cumulative receipt's final SHA-256; at that point it must report
+  `PASS (31/31)`.
+
 ## Identity-cycle boundary
 
 This receipt deliberately excludes
@@ -105,9 +168,10 @@ weakens the separate recenter hash gate or handover obligation.
 
 ## Closed boundary and next authorized step
 
-- `de_l24` is closed for Task 4 and Task 5 at the two reviewed commits above.
+- `de_l24` and `de_l25` are closed for Task 5 at the reviewed commits above;
+  their applicable Task 4 identities remain pinned by the fail-closed gate.
 - The next exact grammar-first blueprint task is a fresh instruction reread and
-  content-addressed guardian for `de_l25`, followed by one bounded lesson and
+  content-addressed guardian for `de_l26`, followed by one bounded lesson and
   both independent final reviews.
 - Task 6 lexical reconciliation remains mandatory before exact learner-facing
   packet authoring.
@@ -117,5 +181,5 @@ weakens the separate recenter hash gate or handover obligation.
 - This receipt authorizes no English-contour change, deploy, push, production
   write or release action.
 
-Any byte change in a reviewed Stage A or Stage B identity invalidates the
+Any byte change in a reviewed Stage A, B, or C identity invalidates the
 corresponding verdict and requires fresh independent review.

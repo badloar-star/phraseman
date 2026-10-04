@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Главная — три концепции</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (владелец 04.10: три разных языка Главной, не повторяя «Карточки» и «Мои ошибки»): общее с приложением — только цвет темы,
+     акцентная кнопка и состав экрана (шапка, «Продолжить обучение», разделы, Видео, «Сегодня», «Фраза дня», таббар). Раскладка у каждой своя. */
+  .scr > .in { min-height: 100%; }
+  .sec2 { color: var(--sec); } .acc { color: var(--acc); }
+  .ph .sb { background: linear-gradient(rgba(12,12,13,.92) 55%, rgba(12,12,13,0)) !important; }
+  .ph:has(.p-hero) .sb { background: none !important; }
+  .coin16 { width: 20px; height: 20px; border-radius: 50%; display: block; flex: none; }
+
+  /* ---------- таббар (components/v2/V2TabBar.tsx) ---------- */
+  .tb { position: absolute; left: 12px; right: 12px; bottom: 26px; height: 66px; border-radius: 33px; z-index: 35; display: flex; padding: 0 9px;
+    background: linear-gradient(180deg, rgba(44,44,46,.86), rgba(20,20,22,.92)); -webkit-backdrop-filter: blur(24px) saturate(150%); backdrop-filter: blur(24px) saturate(150%);
+    box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.22), inset -1px -1.5px 0 -.2px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.07), 0 22px 44px -14px rgba(0,0,0,.85); }
+  .tb .cap { position: absolute; top: 9px; bottom: 9px; left: 9px; border-radius: 18px; background: linear-gradient(160deg, rgba(255,255,255,.16), rgba(255,255,255,.05) 60%, rgba(255,255,255,.09)); box-shadow: inset 1px 1px 0 rgba(255,255,255,.28), inset -1px -1px 0 rgba(0,0,0,.35); }
+  .tb .it { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #8A8A8D; font-size: 10.5px; font-weight: 600; position: relative; z-index: 1; }
+  .tb .it.on { color: #fff; }
+  .tb .it svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .tbfade { position: absolute; left: 0; right: 0; bottom: 0; height: 128px; z-index: 34; pointer-events: none; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.94) 58%); }
+
+  /* ---------- общие мелочи ---------- */
+  .av { width: 44px; height: 44px; flex: none; } .av img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .ck { width: 26px; height: 26px; border-radius: 50%; flex: none; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.34); display: flex; align-items: center; justify-content: center; }
+  .ck.on { background: var(--acc); color: var(--on); box-shadow: none; }
+  .xth { position: relative; border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; flex: none;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--g1) 50%, #0c0c10), color-mix(in srgb, var(--g2) 38%, #0a0a0d)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+  .xth .pl { width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,.42); display: flex; align-items: center; justify-content: center; }
+
+  /* ===== Концепция 1: ЖУРНАЛ — только крупный текст и тонкие линии, ни одной карточки ===== */
+  .j-top { display: flex; align-items: center; gap: 22px; min-height: 48px; }
+  .j-st b { display: flex; align-items: center; gap: 7px; font-size: 17px; line-height: 20px; font-weight: 700; } .j-st span { display: block; font-size: 13px; line-height: 16px; color: var(--sec); margin-top: 2px; }
+  .j-top .sp { flex: 1; }
+  .j-cont { position: relative; margin-top: 26px; padding-right: 124px; }
+  .j-cont .art { position: absolute; right: -6px; top: 4px; width: 118px; height: 118px; object-fit: contain; }
+  .j-k { font-size: 16px; font-weight: 600; color: var(--acc); }
+  .j-ct { font-size: 32px; line-height: 36px; font-weight: 700; letter-spacing: -.7px; margin-top: 8px; }
+  .j-m { display: flex; gap: 14px; font-size: 15px; color: var(--sec); margin-top: 12px; font-weight: 600; }
+  .j-line { height: 3px; border-radius: 2px; background: rgba(255,255,255,.12); margin: 14px -124px 0 0; } .j-line i { display: block; width: 4%; min-width: 8px; height: 100%; border-radius: 2px; background: var(--acc); }
+  .j-go { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; font-size: 17px; font-weight: 700; color: var(--acc); }
+  .j-sec { margin-top: 14px; }
+  .j-row { display: flex; align-items: center; gap: 18px; min-height: 76px; }
+  .j-row + .j-row, .j-sec .j-row:first-child { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .j-row img { width: 56px; height: 56px; object-fit: contain; flex: none; }
+  .j-row .n { flex: 1; font-size: 26px; font-weight: 700; letter-spacing: -.5px; } .j-row .c { color: var(--sec); }
+  .j-sec.big .j-row { min-height: 118px; } .j-sec.big .j-row img { width: 80px; height: 80px; }
+  .j-vl { display: flex; align-items: center; gap: 14px; min-height: 84px; } .j-vl + .j-vl { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); } .j-vl .xth { width: 120px; height: 68px; border-radius: 12px; } .j-vl .xth .pl { width: 34px; height: 34px; } .j-vl .vt { font-size: 18px; font-weight: 600; flex: 1; }
+  .j-feat .xth { width: 100%; aspect-ratio: 16/9; border-radius: 22px; } .j-feat .vt { font-size: 20px; font-weight: 700; margin: 10px 0 8px; }
+  .j-h { display: flex; align-items: baseline; justify-content: space-between; margin: 30px 0 12px; }
+  .j-h b { font-size: 24px; line-height: 28px; font-weight: 700; letter-spacing: -.4px; }
+  .j-h span { font-size: 15px; color: var(--sec); display: inline-flex; align-items: center; gap: 2px; font-weight: 600; }
+  .j-rail { display: flex; gap: 12px; margin-right: -20px; overflow: hidden; }
+  .j-rail .v { flex: none; width: 212px; } .j-rail .xth { width: 100%; aspect-ratio: 16/9; } .j-rail .vt { font-size: 15px; font-weight: 600; margin-top: 8px; }
+  .j-rail.lg .v { width: 296px; }
+  .j-t { display: flex; align-items: center; gap: 14px; min-height: 68px; padding: 8px 0; }
+  .j-t + .j-t { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .j-t .tx { flex: 1; min-width: 0; } .j-t .tt { font-size: 18px; line-height: 22px; font-weight: 600; } .j-t .ss { font-size: 14px; line-height: 18px; color: var(--sec); margin-top: 2px; }
+  .j-t .cn { font-size: 16px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; } .j-t.done .tt { color: var(--sec); } .j-t.done .cn { color: var(--acc); }
+  .j-q { position: relative; margin-top: 34px; padding-right: 96px; box-shadow: inset 0 1px 0 rgba(255,255,255,.08); padding-top: 22px; }
+  .j-q img { position: absolute; right: -2px; top: 22px; width: 84px; height: 84px; object-fit: contain; }
+  .j-q .k { font-size: 15px; font-weight: 600; color: var(--acc); } .j-q .w { font-size: 38px; line-height: 44px; font-weight: 700; letter-spacing: -.8px; margin-top: 6px; } .j-q .tr { font-size: 18px; color: var(--sec); margin-top: 4px; }
+
+  /* ===== Концепция 2: ПОСТЕР — полноэкранный плакат сверху, стеклянная полоса разделов на его кромке ===== */
+  .p-hero { margin: -52px -20px 0; padding: 62px 20px 78px; border-radius: 0 0 40px 40px; position: relative; overflow: hidden;
+    background: linear-gradient(160deg, color-mix(in srgb, var(--g1) 50%, #0b0b0f), color-mix(in srgb, var(--g2) 42%, #08080b)); box-shadow: inset 0 -1px 0 rgba(255,255,255,.12); }
+  .p-hero.sm { padding-bottom: 62px; }
+  .p-hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 60% at 85% 20%, rgba(255,255,255,.16), transparent 70%); }
+  .p-hd { position: relative; z-index: 2; display: flex; align-items: center; gap: 8px; }
+  .p-pill { display: flex; align-items: center; gap: 8px; height: 50px; padding: 0 14px 0 12px; border-radius: 25px; background: rgba(0,0,0,.28); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+  .p-pill b { display: block; font-size: 15px; line-height: 18px; font-weight: 700; } .p-pill span { display: block; font-size: 12px; line-height: 15px; font-weight: 600; opacity: .78; }
+  .p-hd .sp { flex: 1; }
+  .p-body { position: relative; z-index: 2; margin-top: 22px; padding-right: 150px; min-height: 150px; }
+  .p-art { position: absolute; z-index: 1; right: 14px; top: 100px; width: 156px; height: 156px; object-fit: contain; transform: rotate(8deg); filter: drop-shadow(0 18px 18px rgba(0,0,0,.45)); }
+  .p-k { font-size: 16px; font-weight: 600; opacity: .85; }
+  .p-ct { font-size: 32px; line-height: 36px; font-weight: 700; letter-spacing: -.7px; margin-top: 8px; text-shadow: 0 1px 14px rgba(0,0,0,.25); }
+  .p-m { display: flex; align-items: center; gap: 12px; margin-top: 14px; font-size: 15px; font-weight: 600; } .p-m .tr { flex: 1; height: 4px; border-radius: 2px; background: rgba(255,255,255,.22); max-width: 150px; } .p-m .tr i { display: block; width: 4%; min-width: 8px; height: 100%; border-radius: 2px; background: #fff; }
+  .p-cta { position: relative; z-index: 2; margin-top: 20px; }
+  .p-dock { position: relative; z-index: 3; margin: -46px 0 0; display: flex; height: 92px; border-radius: 30px; }
+  .p-dock.two .s { flex: 1; }
+  .p-dock .s { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; position: relative; z-index: 1; }
+  .p-dock .s + .s { box-shadow: inset 1px 0 0 rgba(255,255,255,.09); }
+  .p-dock .s img { width: 42px; height: 42px; object-fit: contain; } .p-dock .s b { font-size: 15px; font-weight: 700; }
+  .p-big { position: relative; z-index: 3; margin: -44px 0 0; display: flex; gap: 12px; }
+  .p-big .s { flex: 1; height: 196px; border-radius: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+  .p-big .s img { width: 100px; height: 100px; object-fit: contain; } .p-big .s b { font-size: 21px; font-weight: 700; letter-spacing: -.3px; }
+  .p-h { display: flex; align-items: baseline; justify-content: space-between; margin: 26px 2px 12px; }
+  .p-h b { font-size: 24px; font-weight: 700; letter-spacing: -.4px; } .p-h span { font-size: 15px; color: var(--sec); font-weight: 600; display: inline-flex; align-items: center; gap: 2px; }
+  .p-strip { display: flex; align-items: center; gap: 14px; min-height: 66px; padding: 8px 18px 8px 16px; border-radius: 24px; margin-top: 8px; }
+  .p-strip .tx { flex: 1; min-width: 0; } .p-strip .tt { font-size: 17px; line-height: 21px; font-weight: 700; } .p-strip .ss { font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 1px; }
+  .p-strip .cn { font-size: 15px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; } .p-strip.done .cn { color: var(--acc); }
+  .p-rail { display: flex; gap: 12px; margin-right: -20px; overflow: hidden; }
+  .p-rail .v { flex: none; width: 292px; } .p-rail .xth { width: 100%; aspect-ratio: 16/9; border-radius: 24px; } .p-rail .vt { font-size: 15px; font-weight: 600; margin-top: 9px; padding-left: 4px; }
+  .p-feat { position: relative; z-index: 3; margin: -44px 0 0; height: 218px; border-radius: 30px; }
+  .p-feat .pl { width: 64px; height: 64px; }
+  .p-feat .tl { position: absolute; left: 20px; bottom: 16px; font-size: 20px; font-weight: 700; }
+  .p-q { display: flex; align-items: center; gap: 16px; padding: 14px 18px 14px 14px; border-radius: 26px; margin-top: 26px; }
+  .p-q img { width: 72px; height: 72px; object-fit: contain; flex: none; } .p-q .k { font-size: 14px; font-weight: 600; color: var(--acc); } .p-q .w { font-size: 24px; line-height: 28px; font-weight: 700; letter-spacing: -.4px; margin-top: 2px; } .p-q .tr { font-size: 15px; color: var(--sec); margin-top: 2px; }
+
+  /* ===== Концепция 3: ЛЕНТЫ — горизонтальные полки, «Продолжить» — мини-плеер над таббаром ===== */
+  .r-top { display: flex; align-items: center; gap: 12px; min-height: 48px; }
+  .r-top .st { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+  .r-top .st b { display: flex; align-items: center; gap: 6px; font-size: 16px; line-height: 19px; font-weight: 700; } .r-top .st span { display: block; font-size: 12.5px; line-height: 15px; color: var(--sec); margin-top: 1px; }
+  .r-top .st .d { width: 1px; height: 28px; background: rgba(255,255,255,.12); margin: 0 4px; }
+  .r-h { display: flex; align-items: baseline; justify-content: space-between; margin: 28px 0 12px; }
+  .r-h b { font-size: 22px; line-height: 26px; font-weight: 700; letter-spacing: -.3px; } .r-h span { font-size: 15px; color: var(--sec); font-weight: 600; display: inline-flex; align-items: center; gap: 2px; }
+  .r-rail { display: flex; gap: 12px; margin-right: -20px; overflow: hidden; }
+  .r-cov { flex: 1; min-width: 0; height: 188px; border-radius: 30px; position: relative; overflow: hidden; }
+  .r-cov.w2 { height: 270px; }
+  .r-cov img { position: absolute; left: 50%; margin-left: -36px; top: 22px; width: 72px; height: 72px; object-fit: contain; }
+  .r-cov.w2 img { margin-left: -58px; top: 40px; width: 116px; height: 116px; }
+  .r-cov b { position: absolute; left: 0; right: 0; text-align: center; bottom: 20px; font-size: 17px; font-weight: 700; letter-spacing: -.2px; } .r-cov.w2 b { left: 0; right: 0; text-align: center; bottom: 22px; font-size: 22px; }
+  .r-tok3 { display: flex; gap: 8px; }
+  .r-tok { flex: 1; min-width: 0; height: 164px; border-radius: 26px; padding: 14px 12px 14px 14px; display: flex; flex-direction: column; }
+  .r-tok .hd { display: flex; align-items: center; justify-content: space-between; height: 28px; } .r-tok .hd .ic { color: var(--acc); }
+  .r-tok .cn { font-size: 30px; line-height: 34px; font-weight: 700; letter-spacing: -.6px; margin-top: auto; font-variant-numeric: tabular-nums; } .r-tok .cn small { font-size: 17px; color: var(--sec); font-weight: 600; }
+  .r-tok .tt { font-size: 14px; line-height: 18px; font-weight: 600; margin-top: 6px; }
+  .r-tok.done .cn { color: var(--acc); }
+  .r-tok.two { flex: 1; height: 210px; }
+  .r-rail .v { flex: none; width: 196px; } .r-rail .xth { width: 100%; aspect-ratio: 16/9; border-radius: 20px; } .r-rail .vt { font-size: 15px; font-weight: 600; margin-top: 8px; padding-left: 2px; }
+  .r-rail.lg .v { width: 290px; } .r-rail.lg .xth { border-radius: 26px; }
+  .r-strip { display: flex; align-items: center; gap: 14px; padding: 12px 18px 12px 12px; border-radius: 26px; margin-top: 26px; }
+  .r-strip img { width: 60px; height: 60px; object-fit: contain; flex: none; } .r-strip .k { font-size: 14px; font-weight: 600; color: var(--acc); } .r-strip .w { font-size: 22px; line-height: 26px; font-weight: 700; margin-top: 2px; } .r-strip .tr { font-size: 15px; color: var(--sec); margin-top: 1px; }
+  .r-player { position: absolute; left: 12px; right: 12px; bottom: 106px; z-index: 36; height: 72px; border-radius: 36px; display: flex; align-items: center; gap: 12px; padding: 0 12px 0 14px; }
+  .r-player img { width: 46px; height: 46px; object-fit: contain; flex: none; position: relative; z-index: 1; }
+  .r-player .tx { flex: 1; min-width: 0; position: relative; z-index: 1; } .r-player .tt { font-size: 15px; line-height: 19px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .r-player .ss { font-size: 13px; line-height: 16px; color: var(--sec); margin-top: 1px; }
+  .r-player .go.ac-cta { width: 48px; height: 48px; border-radius: 50%; padding: 0; flex: none; position: relative; z-index: 1; }
+  .r-player .pg { position: absolute; left: 28px; right: 28px; bottom: 5px; height: 3px; border-radius: 2px; background: rgba(255,255,255,.12); z-index: 1; } .r-player .pg i { display: block; width: 4%; min-width: 6px; height: 100%; border-radius: 2px; background: var(--acc); }
+  .r-pad { height: 130px; }
+  .center { text-align: center; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Главная — три концепции</h1>
+  <p class="page-lead">Состав экрана везде один и тот же, как в приложении: шапка с серией и монетами, «Продолжить обучение», разделы, Видео, «Сегодня», «Фраза дня», таббар. Меняется язык раскладки; от «Карточек» и «Мои ошибки» все три нарочно далеки. В каждой четыре экрана: полная Главная на английском, её нижняя часть после прокрутки, французский (два раздела и фраза дня) и итальянский (раздел только один, он ушёл во вкладку). Выберите одну.</p>
+  <div class="page-nav"><a href="#c1">1 · Журнал</a><a href="#c2">2 · Постер</a><a href="#c3">3 · Ленты</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone, col, block } = K;
+const A = 'assets/';
+const coin = A + 'coin_rank_00.webp';
+const KI = {
+  book: '<path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M4 20.5A2.5 2.5 0 016.5 18H20v3H6.5"/>',
+  chat: '<path d="M4 6.5A2.5 2.5 0 016.5 4h11A2.5 2.5 0 0120 6.5v7a2.5 2.5 0 01-2.5 2.5H10l-4 3.5V16h0A2.5 2.5 0 014 13.5z"/>',
+  cards: '<rect x="4" y="6" width="13" height="14" rx="2.5"/><path d="M8 3.5h9.5A2.5 2.5 0 0120 6v11"/>',
+  video: '<circle cx="12" cy="12" r="8.5"/><path d="M10.3 8.8v6.4l5.2-3.2z" fill="currentColor"/>',
+  mistakes: '<path d="M19.5 12a7.5 7.5 0 11-2.2-5.3"/><path d="M19.5 4.5v4.5H15"/>',
+  spire: '<path d="M3.5 16.5l6-6 4 4 7-7.5"/><path d="M15 7h5.5v5.5"/>',
+  bell: '<path d="M6 16.5V11a6 6 0 0112 0v5.5l1.5 2h-15z"/><path d="M10 21h4"/>',
+  home: '<path d="M4 11l8-7 8 7v8.5a1.5 1.5 0 01-1.5 1.5h-4v-6h-5v6h-4A1.5 1.5 0 014 19.5z"/>',
+  vid: '<rect x="3" y="5.5" width="18" height="13" rx="3.5"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/>',
+  people: '<circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.5-3.2 2.7-5 5.5-5s5 1.8 5.5 5"/><circle cx="16.5" cy="9.5" r="2.6"/><path d="M15.5 14.2c2.6-.3 4.6 1.3 5 4.3"/>',
+  gear: '<circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.4M12 18.8v2.4M4.2 7.5l2 1.2M17.8 15.3l2 1.2M4.2 16.5l2-1.2M17.8 8.7l2-1.2"/><circle cx="12" cy="12" r="7"/>',
+  cardsT: '<rect x="4" y="6" width="13" height="14" rx="2.5"/><path d="M8 3.5h9.5A2.5 2.5 0 0120 6v11"/>',
+  chatT: '<path d="M4 6.5A2.5 2.5 0 016.5 4h11A2.5 2.5 0 0120 6.5v7a2.5 2.5 0 01-2.5 2.5H10l-4 3.5V16h0A2.5 2.5 0 014 13.5z"/>',
+};
+const ico = (n, c = 's20') => `<svg class="i ${c}" viewBox="0 0 24 24">${KI[n]}</svg>`;
+const flame = (pending) => icon('flame', pending ? 's18' : 's18 f');
+const ALL_TABS = [['home', 'Главная'], ['book', 'Обучение'], ['vid', 'Видео'], ['people', 'Сообщество'], ['gear', 'Настройки']];
+const tabbar = (tabs) => `<div class="tbfade"></div><div class="tb"><div class="cap" style="width:calc((100% - 18px) / ${tabs.length})"></div>${tabs.map(([k, l], i) => `<div class="it${i === 0 ? ' on' : ''}"><svg viewBox="0 0 24 24">${KI[k === 'cardsT' ? 'cards' : k]}</svg>${l}</div>`).join('')}</div>`;
+const TABS = {
+  en: ALL_TABS,
+  fr: [ALL_TABS[0], ALL_TABS[2], ALL_TABS[3], ALL_TABS[4]],
+  it: [ALL_TABS[0], ['cardsT', 'Карточки'], ALL_TABS[2], ALL_TABS[3], ALL_TABS[4]],
+};
+const TILE = { lessons: ['book_stack', 'Уроки'], dialogs: ['chat_bubbles', 'Диалоги'], cards: ['notecard_stack', 'Карточки'] };
+const TASK = { lesson: ['Пройти урок', '', 1], dialog: ['Потренировать диалог', '', 1], cards: ['Повторить карточки', 'Не менее 10 слов', 10], video: ['Посмотреть видео', 'Хотя бы минуту', 1], mistakes: ['Исправить ошибки', '', 5], spire: ['Пройти ступени Шпиля', '', 3] };
+const tk = (k, p, sub) => ({ k, t: TASK[k][0], s: sub ?? TASK[k][1], p, n: TASK[k][2], done: p >= TASK[k][2] });
+const LESSON = 'Местоимения и глагол To Be';
+const SC = {
+  enA: { tabs: TABS.en, pending: true, tiles: ['lessons', 'dialogs', 'cards'], cont: true, tasks: [tk('lesson', 0, LESSON), tk('cards', 0), tk('mistakes', 0)], phrase: ['Pitch in', 'Вброситься.'] },
+  enB: { tabs: TABS.en, pending: false, tiles: ['lessons', 'dialogs', 'cards'], cont: true, tasks: [tk('lesson', 1, LESSON), tk('cards', 4), tk('mistakes', 0)], phrase: ['Pitch in', 'Вброситься.'] },
+  fr: { tabs: TABS.fr, pending: false, tiles: ['dialogs', 'cards'], cont: false, tasks: [tk('dialog', 1), tk('cards', 3), tk('spire', 0)], phrase: ['Ça marche !', 'Договорились!'] },
+  it: { tabs: TABS.it, pending: true, tiles: [], cont: false, tasks: [tk('cards', 0), tk('video', 0)], phrase: null },
+};
+const VID = ['Catch a flight', 'Small talk', 'Get over it'];
+const cnt = (t) => `${Math.min(t.p, t.n)}/${t.n}`;
+const stat1 = (S) => `${flame(S.pending)}12 дней`;
+const stat1l = (S) => (S.pending ? 'Сегодня ещё нет' : 'Серия');
+const seeAll = `<span>Смотреть все ${icon('fwd', 's16')}</span>`;
+const todayHead = (S) => `${S.tasks.filter((t) => t.done).length} из ${S.tasks.length}`;
+const GL = 'gl';
+
+// ================= 1. ЖУРНАЛ =================
+const jTop = (S) => `<div class="j-top"><div class="j-st"><b>${stat1(S)}</b><span>${stat1l(S)}</span></div><div class="j-st"><b><img class="coin16" src="${coin}" alt="">1 240</b><span>Монеты</span></div><span class="sp"></span><span class="rb fill t">${ico('bell', 's18')}</span><span class="av"><img src="${coin}" alt=""></span></div>`;
+const jCont = `<div class="j-cont t"><img class="art" src="${A}spiral_notepad.png" alt=""><div class="j-k">Продолжить обучение</div><div class="j-ct">${LESSON}</div><div class="j-m"><span>Урок 1</span><span>0 / 50</span></div><div class="j-line"><i></i></div><div class="j-go">Продолжить ${icon('arrowR', 's20')}</div></div>`;
+const jSec = (S) => (S.tiles.length ? `<div class="j-sec${S.tiles.length < 3 ? ' big' : ''}">${S.tiles.map((k) => `<div class="j-row t"><img src="${A}${TILE[k][0]}.png" alt=""><span class="n">${TILE[k][1]}</span><span class="c">${icon('fwd', 's20')}</span></div>`).join('')}</div>` : '');
+const jVid = (lg) => `<div class="j-h"><b>Видео</b>${seeAll}</div><div class="j-rail${lg ? ' lg' : ''}">${VID.map((t) => `<div class="v t"><div class="xth"><span class="pl">${icon('play', 's20')}</span></div><div class="vt">${t}</div></div>`).join('')}</div>`;
+const jToday = (S) => `<div class="j-h t"><b>Сегодня</b><span>${todayHead(S)} ${icon('fwd', 's16')}</span></div>${S.tasks.map((t) => `<div class="j-t t${t.done ? ' done' : ''}"><span class="ck${t.done ? ' on' : ''}">${t.done ? icon('check', 's16') : ''}</span><div class="tx"><div class="tt">${t.t}</div>${t.s ? `<div class="ss">${t.s}</div>` : ''}</div><span class="cn">${cnt(t)}</span></div>`).join('')}`;
+const jQ = (S) => (S.phrase ? `<div class="j-q"><img src="${A}mug_quote.png" alt=""><div class="k">Фраза дня</div><div class="w">${S.phrase[0]}</div><div class="tr">${S.phrase[1]}</div></div>` : '');
+const jVidList = () => `<div class="j-h"><b>Видео</b>${seeAll}</div><div class="j-feat t"><div class="xth"><span class="pl">${icon('play', 's20')}</span></div><div class="vt">${VID[0]}</div></div>${VID.slice(1).map((t) => `<div class="j-vl t"><div class="xth"><span class="pl">${icon('play', 's16')}</span></div><div class="vt">${t}</div></div>`).join('')}`;
+const jPhone = (S, body) => phone(body + '<div class="r-pad"></div>', { fixed: tabbar(S.tabs) });
+const J1 = () => jPhone(SC.enA, `${jTop(SC.enA)}${jCont}${jSec(SC.enA)}${jVid()}`);
+const J2 = () => jPhone(SC.enB, `<div style="height:6px"></div>${jToday(SC.enB).replace('j-h t', 'j-h t" style="margin-top:6px')}${jVid(true)}${jQ(SC.enB)}`);
+const J3 = () => jPhone(SC.fr, `${jTop(SC.fr)}${jSec(SC.fr)}${jToday(SC.fr)}${jQ(SC.fr)}`);
+const J4 = () => jPhone(SC.it, `${jTop(SC.it)}${jVidList()}${jToday(SC.it)}`);
+
+// ================= 2. ПОСТЕР =================
+const pHd = (S) => `<div class="p-hd"><div class="p-pill">${flame(S.pending)}<div><b>12 дней</b><span>${stat1l(S)}</span></div></div><div class="p-pill"><img class="coin16" src="${coin}" alt=""><div><b>1 240</b><span>Монеты</span></div></div><span class="sp"></span><span class="rb fill t" style="background:rgba(0,0,0,.28)">${ico('bell', 's18')}</span><span class="av"><img src="${coin}" alt=""></span></div>`;
+const pHero = `<div class="p-hero">${pHd(SC.enA).replace('<span class="sp"></span>', '<span class="sp"></span>')}<img class="p-art" src="${A}spiral_notepad.png" alt=""><div class="p-body"><div class="p-k">Продолжить обучение</div><div class="p-ct">${LESSON}</div><div class="p-m"><span>Урок 1 · 0 / 50</span></div></div><div class="p-cta ac-cta t">Продолжить ${icon('arrowR', 's20')}</div></div>`;
+const pDock = (S) => `<div class="p-dock gl${S.tiles.length === 2 ? ' two' : ''}">${S.tiles.map((k) => `<div class="s t"><img src="${A}${TILE[k][0]}.png" alt=""><b>${TILE[k][1]}</b></div>`).join('')}</div>`;
+const pBig = (S) => `<div class="p-big">${S.tiles.map((k) => `<div class="s gl t"><img src="${A}${TILE[k][0]}.png" alt=""><b>${TILE[k][1]}</b></div>`).join('')}</div>`;
+const pHeroSm = (S) => `<div class="p-hero sm">${pHd(S)}</div>`;
+const pToday = (S) => `<div class="p-h t"><b>Сегодня</b><span>${todayHead(S)} ${icon('fwd', 's16')}</span></div>${S.tasks.map((t) => `<div class="p-strip gl t${t.done ? ' done' : ''}"><span class="ck${t.done ? ' on' : ''}">${t.done ? icon('check', 's16') : ''}</span><div class="tx"><div class="tt">${t.t}</div>${t.s ? `<div class="ss">${t.s}</div>` : ''}</div><span class="cn">${cnt(t)}</span></div>`).join('')}`;
+const pVid = `<div class="p-h"><b>Видео</b>${seeAll}</div><div class="p-rail">${VID.map((t) => `<div class="v t"><div class="xth"><span class="pl">${icon('play', 's20')}</span></div><div class="vt">${t}</div></div>`).join('')}</div>`;
+const pQ = (S) => (S.phrase ? `<div class="p-q gl t"><img src="${A}mug_quote.png" alt=""><div><div class="k">Фраза дня</div><div class="w">${S.phrase[0]}</div><div class="tr">${S.phrase[1]}</div></div></div>` : '');
+const pPhone = (S, body) => phone(body + '<div class="r-pad"></div>', { fixed: tabbar(S.tabs) });
+const P1 = () => pPhone(SC.enA, `${pHero}${pDock(SC.enA)}${pToday(SC.enA)}`);
+const P2 = () => pPhone(SC.enB, `<div style="height:2px"></div>${pToday(SC.enB).replace('margin', 'margin')}${pVid}${pQ(SC.enB)}`);
+const P3 = () => pPhone(SC.fr, `${pHeroSm(SC.fr)}${pBig(SC.fr)}${pToday(SC.fr)}${pQ(SC.fr)}`);
+const P4 = () => pPhone(SC.it, `${pHeroSm(SC.it)}<div class="p-feat xth t"><span class="pl">${icon('play', 's24')}</span><span class="tl">${VID[0]}</span></div><div class="p-h" style="margin-top:22px"><b>Видео</b>${seeAll}</div><div class="p-rail">${VID.slice(1).map((t) => `<div class="v t" style="width:250px"><div class="xth"><span class="pl">${icon('play', 's20')}</span></div><div class="vt">${t}</div></div>`).join('')}</div>${pToday(SC.it)}`);
+
+// ================= 3. ЛЕНТЫ =================
+const rTop = (S) => `<div class="r-top"><span class="av"><img src="${coin}" alt=""></span><div class="st"><div><b>${stat1(S)}</b><span>${stat1l(S)}</span></div><i class="d"></i><div><b><img class="coin16" src="${coin}" alt="">1 240</b><span>Монеты</span></div></div><span class="rb fill t">${ico('bell', 's18')}</span></div>`;
+const rCov = (S) => { const w2 = S.tiles.length === 2; return `<div class="r-rail" style="margin-top:20px;margin-right:0">${S.tiles.map((k) => `<div class="r-cov${w2 ? ' w2' : ''} gl t"><img src="${A}${TILE[k][0]}.png" alt=""><b>${TILE[k][1]}</b></div>`).join('')}</div>`; };
+const KIK = { lesson: 'book', dialog: 'chat', cards: 'cards', video: 'video', mistakes: 'mistakes', spire: 'spire' };
+const rTok = (S) => `<div class="r-h t"><b>Сегодня</b><span>${todayHead(S)} ${icon('fwd', 's16')}</span></div><div class="r-tok3">${S.tasks.map((t) => `<div class="r-tok gl t${t.done ? ' done' : ''}${S.tasks.length === 2 ? ' two' : ''}"><div class="hd"><span class="ic">${ico(KIK[t.k])}</span>${t.done ? `<span class="ck on" style="width:24px;height:24px">${icon('check', 's16')}</span>` : ''}</div><div class="cn">${t.p > t.n ? t.n : t.p}<small>/${t.n}</small></div><div class="tt">${t.t}</div></div>`).join('')}</div>`;
+const rVid = (lg) => `<div class="r-h"><b>Видео</b>${seeAll}</div><div class="r-rail${lg ? ' lg' : ''}">${VID.map((t) => `<div class="v t"><div class="xth"><span class="pl">${icon('play', 's20')}</span></div><div class="vt">${t}</div></div>`).join('')}</div>`;
+const rQ = (S) => (S.phrase ? `<div class="r-strip gl t"><img src="${A}mug_quote.png" alt=""><div><div class="k">Фраза дня</div><div class="w">${S.phrase[0]}</div><div class="tr">${S.phrase[1]}</div></div></div>` : '');
+const rPlayer = `<div class="r-player gl t"><img src="${A}spiral_notepad.png" alt=""><div class="tx"><div class="tt">${LESSON}</div><div class="ss">Урок 1 · 0 / 50</div></div><span class="go ac-cta">${icon('play', 's20')}</span><div class="pg"><i></i></div></div>`;
+const rPhone = (S, body, player) => phone(body + '<div class="r-pad"></div>', { fixed: tabbar(S.tabs) + (player || '') });
+const R1 = () => rPhone(SC.enA, `${rTop(SC.enA)}${rCov(SC.enA)}${rTok(SC.enA)}${rVid().replace('class="r-h"', 'class="r-h" style="margin-top:20px"')}`, rPlayer);
+const R2 = () => rPhone(SC.enB, `<div style="height:2px"></div>${rTok(SC.enB)}${rVid(true)}${rQ(SC.enB)}`, rPlayer);
+const R3 = () => rPhone(SC.fr, `${rTop(SC.fr)}${rCov(SC.fr)}${rTok(SC.fr)}${rQ(SC.fr)}`);
+const R4 = () => rPhone(SC.it, `${rTop(SC.it)}${rVid(true).replace('class="r-h"', 'class="r-h" style="margin-top:22px"')}${rTok(SC.it)}`);
+
+const L = ['Главная на английском', 'Ниже по прокрутке', 'Французский: два раздела', 'Итальянский: один раздел'];
+document.getElementById('root').innerHTML =
+  block('c1', '1 · Журнал', 'Ни одной карточки: крупный текст, тонкие линии и маленькие картинки. «Продолжить» — заголовок страницы со ссылкой, разделы — три строки-оглавления, «Сегодня» — список дел с отметками.', [col(L[0], J1()), col(L[1], J2()), col(L[2], J3()), col(L[3], J4())]) +
+  block('c2', '2 · Постер', 'Сверху цветной плакат со «Продолжить» и большой кнопкой, на его нижней кромке — стеклянная полоса разделов. Всё остальное — стеклянные полосы и крупные ролики; без урока плакат сжимается до шапки.', [col(L[0], P1()), col(L[1], P2()), col(L[2], P3()), col(L[3], P4())]) +
+  block('c3', '3 · Ленты', 'Как в кино-приложениях: каждый блок — своя горизонтальная лента. «Продолжить» уходит в мини-плеер над таббаром и всегда под большим пальцем, три задания дня — тройка плиток со счётом.', [col(L[0], R1()), col(L[1], R2()), col(L[2], R3()), col(L[3], R4())]);
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const T = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', T[1]); p.style.setProperty('--g2', T[2]); p.style.setProperty('--acc', T[3]); p.style.setProperty('--on', T[4]); }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((T, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${T[1]},${T[2]})"></i>${T[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

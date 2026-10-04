@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сегодня — три концепции</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (владелец 04.10: «Сегодня» — отдельный раздел, он открывается по тапу на блок «Сегодня» на Главной): содержимое — только то, что блок содержит
+     сейчас (HomeV2TodayCard + modules/today-tasks): набор из трёх заданий дня, у каждого название, подпись, счётчик «сделано/цель», отметка и награда 50 монет;
+     серия дней — из шапки Главной. Новых функций нет. Три концепции — три языка раскладки. */
+  .scr > .in { min-height: 100%; }
+  .sec2 { color: var(--sec); } .acc { color: var(--acc); }
+  .ph .sb { background: linear-gradient(rgba(12,12,13,.92) 55%, rgba(12,12,13,0)) !important; }
+  .coin16 { width: 20px; height: 20px; border-radius: 50%; display: block; flex: none; }
+  .bot2 { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 28px 20px 38px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.94) 42%); }
+  .ck { width: 26px; height: 26px; border-radius: 50%; flex: none; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.34); display: flex; align-items: center; justify-content: center; }
+  .ck.on { background: var(--acc); color: var(--on); box-shadow: none; }
+  .st b { display: flex; align-items: center; gap: 7px; font-size: 16px; line-height: 19px; font-weight: 700; } .st span { display: block; font-size: 12.5px; line-height: 15px; color: var(--sec); margin-top: 2px; }
+  .rw { display: inline-flex; align-items: center; gap: 5px; font-size: 14px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; } .rw img { width: 16px; height: 16px; border-radius: 50%; display: block; } .rw.on { color: var(--acc); }
+  .xth { position: relative; border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; flex: none;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--g1) 50%, #0c0c10), color-mix(in srgb, var(--g2) 38%, #0a0a0d)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+  .xth .pl { width: 36px; height: 36px; border-radius: 50%; background: rgba(0,0,0,.42); display: flex; align-items: center; justify-content: center; }
+  .tbx { position: absolute; left: 12px; right: 12px; bottom: 26px; height: 66px; border-radius: 33px; z-index: 35; display: flex; padding: 0 9px;
+    background: linear-gradient(180deg, rgba(44,44,46,.86), rgba(20,20,22,.92)); -webkit-backdrop-filter: blur(24px) saturate(150%); backdrop-filter: blur(24px) saturate(150%);
+    box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.22), inset -1px -1.5px 0 -.2px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.07), 0 22px 44px -14px rgba(0,0,0,.85); }
+  .tbx .cap { position: absolute; top: 9px; bottom: 9px; left: 9px; width: calc((100% - 18px) / 5); border-radius: 18px; background: linear-gradient(160deg, rgba(255,255,255,.16), rgba(255,255,255,.05) 60%, rgba(255,255,255,.09)); box-shadow: inset 1px 1px 0 rgba(255,255,255,.28), inset -1px -1px 0 rgba(0,0,0,.35); }
+  .tbx .it { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #8A8A8D; font-size: 10.5px; font-weight: 600; position: relative; z-index: 1; } .tbx .it.on { color: #fff; }
+  .tbx .it svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .tbfade { position: absolute; left: 0; right: 0; bottom: 0; height: 128px; z-index: 34; pointer-events: none; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.94) 58%); }
+  .pad { height: 120px; }
+
+  /* ===== Концепция 1: СТРАНИЦА ДНЯ — крупные цифры, список без карточек, одна кнопка внизу ===== */
+  .a-top { display: flex; align-items: center; gap: 12px; height: 48px; } .a-top .sp { flex: 1; }
+  .a-h { font-size: 46px; line-height: 50px; font-weight: 700; letter-spacing: -1.2px; margin-top: 16px; }
+  .a-big { display: flex; align-items: baseline; gap: 12px; margin-top: 18px; } .a-big b { font-size: 96px; line-height: 96px; font-weight: 700; letter-spacing: -2.4px; } .a-big span { font-size: 26px; color: var(--sec); font-weight: 600; }
+  .a-segs { display: flex; gap: 6px; margin-top: 14px; } .a-segs i { flex: 1; height: 5px; border-radius: 3px; background: rgba(255,255,255,.12); overflow: hidden; } .a-segs i b { display: block; height: 100%; background: var(--acc); }
+  .a-list { margin-top: 20px; }
+  .a-t { display: flex; align-items: center; gap: 16px; min-height: 120px; padding: 14px 0; box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .a-t .ck { width: 34px; height: 34px; } .a-t .tx { flex: 1; min-width: 0; }
+  .a-t .tt { font-size: 25px; line-height: 30px; font-weight: 600; letter-spacing: -.35px; } .a-t .ss { font-size: 15px; line-height: 19px; color: var(--sec); margin-top: 3px; }
+  .a-t .rt { text-align: right; flex: none; } .a-t .cn { font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; } .a-t .rw { margin-top: 5px; }
+  .a-t.done .tt { color: var(--sec); } .a-t.done .cn { color: var(--acc); }
+  .a-total { display: flex; align-items: center; gap: 12px; min-height: 110px; box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .a-total img { width: 44px; height: 44px; border-radius: 50%; } .a-total b { font-size: 52px; font-weight: 700; letter-spacing: -1px; } .a-total span { font-size: 18px; color: var(--sec); font-weight: 600; }
+  .a-e { margin: 28px -12px 0; padding: 14px 12px 6px; border-radius: 24px; background: rgba(255,255,255,.05); }
+  .a-e .hh { display: flex; align-items: baseline; justify-content: space-between; } .a-e .hh b { font-size: 24px; font-weight: 700; letter-spacing: -.4px; } .a-e .hh span { font-size: 15px; font-weight: 600; color: var(--sec); display: inline-flex; align-items: center; gap: 2px; }
+  .a-e .a-t { min-height: 68px; padding: 8px 0; } .a-e .a-t .tt { font-size: 18px; line-height: 22px; } .a-e .a-t .ss { font-size: 14px; } .a-e .a-t .ck { width: 26px; height: 26px; } .a-e .a-t .cn { font-size: 16px; color: var(--sec); }
+  .a-e .a-t:first-of-type { box-shadow: none; }
+
+  /* ===== Концепция 2: ДОРОЖКА — путь из станций, награда в конце ===== */
+  .b-h { display: flex; align-items: baseline; justify-content: space-between; margin-top: 16px; } .b-h b { font-size: 38px; line-height: 42px; font-weight: 700; letter-spacing: -.9px; } .b-h span { font-size: 17px; font-weight: 600; color: var(--sec); }
+  .b-path { margin-top: 20px; }
+  .b-n { display: flex; gap: 14px; position: relative; padding-bottom: 22px; }
+  .b-n::before { content: ""; position: absolute; left: 21px; top: 64px; bottom: 6px; width: 2px; background: rgba(255,255,255,.14); }
+  .b-n.ln::before { background: var(--acc); } .b-n:last-child::before { display: none; }
+  .b-dot { width: 44px; height: 44px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 2px rgba(255,255,255,.2); color: #fff; position: relative; z-index: 1; margin-top: 22px; }
+  .b-dot.on { background: var(--acc); color: var(--on); box-shadow: none; }
+  .b-dot.cur { color: var(--acc); box-shadow: inset 0 0 0 2px var(--acc), 0 0 0 7px color-mix(in srgb, var(--acc) 20%, transparent); }
+  .b-dot img { width: 44px; height: 44px; border-radius: 50%; display: block; }
+  .b-c { flex: 1; min-width: 0; border-radius: 28px; padding: 22px 20px; }
+  .b-c .tt { font-size: 22px; line-height: 27px; font-weight: 700; letter-spacing: -.2px; } .b-c .ss { font-size: 15px; line-height: 19px; color: var(--sec); margin-top: 2px; }
+  .b-c .rowb { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; } .b-c .cn { font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .b-c.done .tt { color: var(--sec); } .b-c.done .cn { color: var(--acc); }
+  .b-c .ac-cta { margin-top: 18px; height: 52px; }
+  .b-end { display: flex; align-items: center; min-height: 54px; gap: 12px; } .b-end b { font-size: 32px; letter-spacing: -.7px; } .b-end span { font-size: 17px; color: var(--sec); font-weight: 600; }
+  .b-e { border-radius: 28px; padding: 18px 16px 16px; margin-top: 28px; }
+  .b-e .hh { display: flex; align-items: center; justify-content: space-between; } .b-e .hh b { font-size: 22px; font-weight: 700; } .b-e .hh span { font-size: 15px; color: var(--sec); font-weight: 600; display: inline-flex; align-items: center; gap: 2px; }
+  .b-mini { display: flex; align-items: center; margin-top: 16px; } .b-mini .d { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 2px rgba(255,255,255,.2); background: rgba(255,255,255,.05); flex: none; }
+  .b-mini .d.cur { color: var(--acc); box-shadow: inset 0 0 0 2px var(--acc); } .b-mini .l { flex: 1; height: 2px; background: rgba(255,255,255,.14); }
+  .b-next { display: flex; align-items: center; gap: 10px; margin-top: 16px; font-size: 18px; font-weight: 700; } .b-next .cn { margin-left: auto; color: var(--sec); font-size: 16px; }
+
+  /* ===== Концепция 3: ФОКУС — одно задание крупно, остальные — тихим списком ===== */
+  .f-hero { border-radius: 36px; padding: 28px 24px 26px; margin-top: 20px; }
+  .f-hero .hd { display: flex; align-items: center; justify-content: space-between; }
+  .f-ic { width: 60px; height: 60px; border-radius: 20px; display: flex; align-items: center; justify-content: center; color: #fff; background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 62%, #1a1a20), color-mix(in srgb, var(--g2) 30%, #0b0b0f)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.32), inset 0 0 0 1px rgba(255,255,255,.08); }
+  .f-hero .of { font-size: 16px; font-weight: 600; color: var(--sec); }
+  .f-hero .tt { font-size: 38px; line-height: 42px; font-weight: 700; letter-spacing: -1px; margin-top: 34px; } .f-hero .ss { font-size: 17px; line-height: 22px; color: var(--sec); margin-top: 6px; }
+  .f-num { display: flex; align-items: baseline; gap: 8px; margin-top: 30px; } .f-num b { font-size: 104px; line-height: 104px; font-weight: 700; letter-spacing: -2.4px; font-variant-numeric: tabular-nums; } .f-num span { font-size: 26px; font-weight: 600; color: var(--sec); } .f-num .rw { margin-left: auto; font-size: 17px; }
+  .f-meter { display: flex; gap: 5px; margin-top: 18px; } .f-meter i { flex: 1; height: 12px; border-radius: 6px; background: rgba(255,255,255,.12); } .f-meter i.on { background: var(--acc); }
+  .f-hero .ac-cta { margin-top: 30px; }
+  .f-big { width: 104px; height: 104px; border-radius: 50%; background: var(--acc); color: var(--on); display: flex; align-items: center; justify-content: center; margin: 16px auto 0; box-shadow: 0 16px 36px -12px color-mix(in srgb, var(--acc) 70%, transparent); }
+  .f-r { display: flex; align-items: center; gap: 14px; min-height: 86px; } .f-r + .f-r { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .f-r .tx { flex: 1; min-width: 0; } .f-r .tt { font-size: 20px; line-height: 24px; font-weight: 600; } .f-r .ss { font-size: 14px; line-height: 18px; color: var(--sec); margin-top: 1px; } .f-r .cn { font-size: 18px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+  .f-r.done .tt { color: var(--sec); } .f-r.done .cn { color: var(--acc); }
+  .f-list { margin-top: 18px; padding: 0 4px; }
+  .f-e { border-radius: 30px; padding: 18px 18px 18px; margin-top: 28px; }
+  .f-e .hd { display: flex; align-items: center; gap: 14px; } .f-e .f-ic { width: 52px; height: 52px; border-radius: 17px; } .f-e .hd b { font-size: 22px; font-weight: 700; flex: 1; } .f-e .hd span { color: var(--sec); font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 2px; }
+  .f-e .tt { font-size: 19px; font-weight: 700; margin-top: 16px; display: flex; align-items: center; justify-content: space-between; } .f-e .tt .cn { color: var(--sec); font-size: 16px; }
+  .f-e .f-meter { margin-top: 10px; }
+
+  /* ---------- общий низ входа с Главной ---------- */
+  .e-tiles { display: flex; gap: 8px; margin-bottom: 22px; } .e-tiles .s { flex: 1; height: 104px; border-radius: 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; } .e-tiles img { width: 46px; height: 46px; object-fit: contain; } .e-tiles b { font-size: 15px; font-weight: 700; }
+  .e-h { display: flex; align-items: baseline; justify-content: space-between; margin: 6px 0 12px; } .e-h b { font-size: 24px; font-weight: 700; letter-spacing: -.4px; } .e-h span { font-size: 15px; color: var(--sec); font-weight: 600; display: inline-flex; align-items: center; gap: 2px; }
+  .e-rail { display: flex; gap: 12px; margin-right: -20px; overflow: hidden; } .e-rail .v { flex: none; width: 196px; } .e-rail .xth { width: 100%; aspect-ratio: 16/9; border-radius: 20px; } .e-rail .vt { font-size: 15px; font-weight: 600; margin-top: 8px; }
+  .e-q { display: flex; align-items: center; gap: 14px; padding: 12px 18px 12px 12px; border-radius: 26px; margin-top: 26px; } .e-q img { width: 60px; height: 60px; object-fit: contain; flex: none; } .e-q .k { font-size: 14px; font-weight: 600; color: var(--acc); } .e-q .w { font-size: 22px; line-height: 26px; font-weight: 700; margin-top: 2px; } .e-q .tr { font-size: 15px; color: var(--sec); margin-top: 1px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Сегодня — три концепции</h1>
+  <p class="page-lead">Новый раздел, который открывается по тапу на блок «Сегодня» на Главной. Содержимое то же, что у блока сейчас: три задания дня, у каждого название, подпись, счётчик и награда 50 монет, плюс серия дней из шапки Главной. В каждой концепции четыре экрана: начало дня, день в процессе, всё выполнено и вход с Главной. Выберите одну.</p>
+  <div class="page-nav"><a href="#c1">1 · Страница дня</a><a href="#c2">2 · Дорожка</a><a href="#c3">3 · Фокус</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone, col, block } = K;
+const A = 'assets/';
+const coin = A + 'coin_rank_00.webp';
+const KI = {
+  lesson: '<path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M4 20.5A2.5 2.5 0 016.5 18H20v3H6.5"/>',
+  cards: '<rect x="4" y="6" width="13" height="14" rx="2.5"/><path d="M8 3.5h9.5A2.5 2.5 0 0120 6v11"/>',
+  mistakes: '<path d="M19.5 12a7.5 7.5 0 11-2.2-5.3"/><path d="M19.5 4.5v4.5H15"/>',
+  home: '<path d="M4 11l8-7 8 7v8.5a1.5 1.5 0 01-1.5 1.5h-4v-6h-5v6h-4A1.5 1.5 0 014 19.5z"/>',
+  book: '<path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M4 20.5A2.5 2.5 0 016.5 18H20v3H6.5"/>',
+  vid: '<rect x="3" y="5.5" width="18" height="13" rx="3.5"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/>',
+  people: '<circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.5-3.2 2.7-5 5.5-5s5 1.8 5.5 5"/><circle cx="16.5" cy="9.5" r="2.6"/><path d="M15.5 14.2c2.6-.3 4.6 1.3 5 4.3"/>',
+  gear: '<circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.4M12 18.8v2.4M4.2 7.5l2 1.2M17.8 15.3l2 1.2M4.2 16.5l2-1.2M17.8 8.7l2-1.2"/><circle cx="12" cy="12" r="7"/>',
+};
+const ico = (n, c = 's20') => `<svg class="i ${c}" viewBox="0 0 24 24">${KI[n]}</svg>`;
+const flame = (pending) => icon('flame', pending ? 's18' : 's18 f');
+const TABS = [['home', 'Главная'], ['book', 'Обучение'], ['vid', 'Видео'], ['people', 'Сообщество'], ['gear', 'Настройки']];
+const tabbar = `<div class="tbfade"></div><div class="tbx"><div class="cap"></div>${TABS.map(([k, l], i) => `<div class="it${i === 0 ? ' on' : ''}"><svg viewBox="0 0 24 24">${KI[k]}</svg>${l}</div>`).join('')}</div>`;
+const TASK = { lesson: ['Пройти урок', 1], cards: ['Повторить карточки', 10, 'Не менее 10 слов'], mistakes: ['Исправить ошибки', 5] };
+const LESSON = 'Местоимения и глагол To Be';
+const tk = (k, p) => ({ k, t: TASK[k][0], s: k === 'lesson' ? LESSON : (TASK[k][2] || ''), p, n: TASK[k][1], done: p >= TASK[k][1] });
+const S = {
+  s1: { pending: true, tasks: [tk('lesson', 0), tk('cards', 0), tk('mistakes', 0)] },
+  s2: { pending: false, tasks: [tk('lesson', 1), tk('cards', 4), tk('mistakes', 0)] },
+  s3: { pending: false, tasks: [tk('lesson', 1), tk('cards', 10), tk('mistakes', 5)] },
+};
+const doneN = (X) => X.tasks.filter((t) => t.done).length;
+const nextT = (X) => X.tasks.find((t) => !t.done);
+const cnt = (t) => `${Math.min(t.p, t.n)}/${t.n}`;
+const rw = (t) => `<span class="rw${t.done ? ' on' : ''}"><img src="${coin}" alt="">+50</span>`;
+const stat = (X) => `<div class="st"><b>${flame(X.pending)}12 дней</b><span>${X.pending ? 'Сегодня ещё нет' : 'Серия'}</span></div>`;
+const back = `<span class="rb fill t">${icon('back', 's20')}</span>`;
+const bot = (h) => `<div class="bot2">${h}</div>`;
+const cta = (t) => `<div class="ac-cta t">${t} ${icon('arrowR', 's20')}</div>`;
+const seg = (t) => `<i><b style="width:${Math.round(100 * Math.min(t.p, t.n) / t.n)}%"></b></i>`;
+
+// ================= 1. СТРАНИЦА ДНЯ =================
+const aHead = (X) => `<div class="a-top">${back}<span class="sp"></span>${stat(X)}</div><div class="a-h">Сегодня</div><div class="a-big"><b>${doneN(X)}</b><span>из ${X.tasks.length}</span></div><div class="a-segs">${X.tasks.map(seg).join('')}</div>`;
+const aList = (X) => `<div class="a-list">${X.tasks.map((t) => `<div class="a-t t${t.done ? ' done' : ''}"><span class="ck${t.done ? ' on' : ''}">${t.done ? icon('check', 's18') : ''}</span><div class="tx"><div class="tt">${t.t}</div>${t.s ? `<div class="ss">${t.s}</div>` : ''}</div><div class="rt"><div class="cn">${cnt(t)}</div>${rw(t)}</div></div>`).join('')}</div>`;
+const A1 = () => phone(aHead(S.s1) + aList(S.s1), { fixed: bot(cta(nextT(S.s1).t)) });
+const A2 = () => phone(aHead(S.s2) + aList(S.s2), { fixed: bot(cta(nextT(S.s2).t)) });
+const A3 = () => phone(aHead(S.s3) + aList(S.s3) + `<div class="a-total"><img src="${coin}" alt=""><b>+150</b><span>Монеты</span></div>`);
+const eTiles = `<div class="e-tiles">${[['book_stack', 'Уроки'], ['chat_bubbles', 'Диалоги'], ['notecard_stack', 'Карточки']].map(([a, t]) => `<div class="s gl"><img src="${A}${a}.png" alt=""><b>${t}</b></div>`).join('')}</div>`;
+const eVid = `<div class="e-h"><b>Видео</b><span>Смотреть все ${icon('fwd', 's16')}</span></div><div class="e-rail">${['Catch a flight', 'Small talk'].map((t) => `<div class="v"><div class="xth"><span class="pl">${icon('play', 's16')}</span></div><div class="vt">${t}</div></div>`).join('')}</div>`;
+const eQ = `<div class="e-q gl"><img src="${A}mug_quote.png" alt=""><div><div class="k">Фраза дня</div><div class="w">Pitch in</div><div class="tr">Вброситься.</div></div></div>`;
+const A4 = () => phone(`${eTiles}${eVid}<div class="a-e t down"><div class="hh"><b>Сегодня</b><span>0 из 3 ${icon('fwd', 's16')}</span></div><div style="margin-top:6px">${S.s1.tasks.map((t) => `<div class="a-t"><span class="ck"></span><div class="tx"><div class="tt">${t.t}</div>${t.s ? `<div class="ss">${t.s}</div>` : ''}</div><div class="cn">${cnt(t)}</div></div>`).join('')}</div></div>${eQ}<div class="pad"></div>`, { fixed: tabbar });
+
+// ================= 2. ДОРОЖКА =================
+const bHead = (X) => `<div class="a-top">${back}<span class="sp"></span>${stat(X)}</div><div class="b-h"><b>Сегодня</b><span>${doneN(X)} из ${X.tasks.length}</span></div>`;
+const bPath = (X, withCta, total) => { const nx = nextT(X); return `<div class="b-path">${X.tasks.map((t, i) => { const cur = nx === t; const prevDone = i === 0 ? false : X.tasks[i - 1].done; return `<div class="b-n${t.done ? ' ln' : ''}"><span class="b-dot${t.done ? ' on' : ''}${cur ? ' cur' : ''}">${t.done ? icon('check', 's20') : ico(t.k)}</span><div class="b-c gl t${t.done ? ' done' : ''}"><div class="tt">${t.t}</div>${t.s ? `<div class="ss">${t.s}</div>` : ''}<div class="rowb"><span class="cn">${cnt(t)}</span>${rw(t)}</div>${cur && withCta ? `<div class="ac-cta">${t.p ? 'Продолжить' : 'Начать'} ${icon('arrowR', 's20')}</div>` : ''}</div></div>`; }).join('')}${total ? `<div class="b-n"><span class="b-dot" style="box-shadow:none;background:none"><img src="${coin}" alt=""></span><div class="b-end" style="margin-top:12px"><b>+150</b><span>Монеты</span></div></div>` : ''}</div>`; };
+const B1 = () => phone(bHead(S.s1) + bPath(S.s1, true, false));
+const B2 = () => phone(bHead(S.s2) + bPath(S.s2, true, false));
+const B3 = () => phone(bHead(S.s3) + bPath(S.s3, false, true));
+const B4 = () => phone(`${eTiles}${eVid}<div class="b-e gl t down"><div class="hh"><b>Сегодня</b><span>0 из 3 ${icon('fwd', 's16')}</span></div><div class="b-mini">${S.s1.tasks.map((t, i) => `${i ? '<span class="l"></span>' : ''}<span class="d${i === 0 ? ' cur' : ''}">${ico(t.k)}</span>`).join('')}</div><div class="b-next"><span class="ck"></span><span>${S.s1.tasks[0].t}</span><span class="cn">${cnt(S.s1.tasks[0])}</span></div></div>${eQ}<div class="pad"></div>`, { fixed: tabbar });
+
+// ================= 3. ФОКУС =================
+const fMeter = (t) => `<div class="f-meter">${Array.from({ length: t.n }, (_, i) => `<i class="${i < t.p ? 'on' : ''}"></i>`).join('')}</div>`;
+const fRows = (X, skip) => `<div class="f-list">${X.tasks.filter((t) => t !== skip).map((t) => `<div class="f-r t${t.done ? ' done' : ''}"><span class="ck${t.done ? ' on' : ''}">${t.done ? icon('check', 's18') : ''}</span><div class="tx"><div class="tt">${t.t}</div>${t.s ? `<div class="ss">${t.s}</div>` : ''}</div><span class="cn">${cnt(t)}</span></div>`).join('')}</div>`;
+const fTop = (X) => `<div class="a-top">${back}<div class="b-h" style="margin:0 0 0 6px"><b style="font-size:30px;line-height:34px">Сегодня</b></div><span class="sp"></span>${stat(X)}</div>`;
+const fHero = (X) => { const t = nextT(X); return `<div class="f-hero gl"><div class="hd"><span class="f-ic">${ico(t.k, 's28')}</span><span class="of">${X.tasks.indexOf(t) + 1} из ${X.tasks.length}</span></div><div class="tt">${t.t}</div>${t.s ? `<div class="ss">${t.s}</div>` : ''}<div class="f-num"><b>${t.p}</b><span>/${t.n}</span>${rw(t)}</div>${fMeter(t)}<div class="ac-cta t">${t.p ? 'Продолжить' : 'Начать'} ${icon('arrowR', 's20')}</div></div>`; };
+const fDone = (X) => `<div class="f-hero gl center"><div class="f-big">${icon('check', 's28')}</div><div class="f-num" style="justify-content:center;margin-top:20px"><b>${doneN(X)}</b><span>из ${X.tasks.length}</span></div><div class="a-total" style="justify-content:center;box-shadow:none;min-height:60px;margin-top:8px"><img src="${coin}" alt=""><b>+150</b><span>Монеты</span></div></div>`;
+const F1 = () => phone(fTop(S.s1) + fHero(S.s1) + fRows(S.s1, nextT(S.s1)));
+const F2 = () => phone(fTop(S.s2) + fHero(S.s2) + fRows(S.s2, nextT(S.s2)));
+const F3 = () => phone(fTop(S.s3) + fDone(S.s3) + fRows(S.s3, null));
+const F4 = () => phone(`${eTiles}${eVid}<div class="f-e gl t down"><div class="hd"><span class="f-ic">${ico('lesson', 's24')}</span><b>Сегодня</b><span>0 из 3 ${icon('fwd', 's16')}</span></div><div class="tt"><span>${S.s1.tasks[0].t}</span><span class="cn">${cnt(S.s1.tasks[0])}</span></div><div class="f-meter"><i></i></div></div>${eQ}<div class="pad"></div>`, { fixed: tabbar });
+
+const L = ['Начало дня', 'День в процессе', 'Всё выполнено', 'Вход с Главной'];
+document.getElementById('root').innerHTML =
+  block('c1', '1 · Страница дня', 'Крупная цифра «сколько сделано», три отрезка прогресса и список заданий без карточек: отметка, название, счёт и награда. Одна кнопка внизу сразу ведёт к следующему заданию.', [col(L[0], A1()), col(L[1], A2()), col(L[2], A3()), col(L[3], A4())]) +
+  block('c2', '2 · Дорожка', 'День как путь из трёх станций: пройденные залиты цветом, текущая светится и сама показывает кнопку «Начать». В конце пути — монеты за день.', [col(L[0], B1()), col(L[1], B2()), col(L[2], B3()), col(L[3], B4())]) +
+  block('c3', '3 · Фокус', 'Одно задание на весь экран: крупный счётчик, шкала по числу единиц и кнопка. Остальные задания — тихий список ниже; когда всё сделано, экран превращается в итог дня.', [col(L[0], F1()), col(L[1], F2()), col(L[2], F3()), col(L[3], F4())]);
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const T = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', T[1]); p.style.setProperty('--g2', T[2]); p.style.setProperty('--acc', T[3]); p.style.setProperty('--on', T[4]); }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((T, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${T[1]},${T[2]})"></i>${T[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

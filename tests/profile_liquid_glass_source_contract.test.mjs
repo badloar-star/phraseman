@@ -73,16 +73,23 @@ test('account: new copy exists in all nine locales', () => {
   }
 });
 
-test('themes: 13 glass rows, instant apply, level + appearance controls, no paywall', () => {
+test('themes: 13 glass rows + gradient rows, instant apply, intensity slider + appearance controls, no paywall', () => {
   assert.match(themes, /liquidGlassTokens\(liquidGlassThemeId\)/);
   assert.match(themes, /settingsGlassCardStyle/);
   assert.match(themes, /accessibilityRole="radio"/);
   assert.equal(themes.match(/\{ mode: '/g).length, 13);
+  // 2026-10-04 (владелец): 10 градиентных тем добавлены к 13 — из одного списка-конфига.
+  assert.match(themes, /LIQUID_GLASS_GRADIENT_THEME_IDS\.map\(mode => \(\{ mode \}\)\)/);
   // 2026-09-30 (темы 2.0, макет themes-v2-proposals): тап по теме применяет её сразу —
-  // примерки и кнопки «Применить» нет; сверху луна/солнце и «Спокойно / Акцент / Максимум».
+  // примерки и кнопки «Применить» нет; сверху луна/солнце.
   assert.match(themes, /setLiquidGlassThemeId\(mode\)/);
   assert.match(themes, /testID=\{`theme-appearance-\$\{opt\.key\}`\}/);
-  assert.match(themes, /testID=\{`theme-level-\$\{level\}`\}/);
+  // 2026-10-04 (владелец): «Спокойно / Акцент / Максимум» заменены ОДНИМ ползунком —
+  // превью при перетаскивании, запись при отпускании; сегмент не возвращается.
+  assert.match(themes, /<ThemeIntensitySlider/);
+  assert.match(themes, /onPreview=\{setPreviewLiquidGlassIntensity\}/);
+  assert.match(themes, /onCommit=\{setLiquidGlassIntensity\}/);
+  assert.doesNotMatch(themes, /theme-level-|LIQUID_GLASS_COLOR_LEVELS|LevelSegment/);
   // 2026-09-30: темы бесплатны — экран тем больше не ведёт на пейвол.
   assert.doesNotMatch(themes, /premium_modal/);
   assert.match(themes, /profile_theme_set/);

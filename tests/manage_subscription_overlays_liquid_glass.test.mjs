@@ -7,7 +7,12 @@ import ts from 'typescript';
 
 const SOURCE_PATH = 'app/manage_subscription.tsx';
 const source = fs.readFileSync(SOURCE_PATH, 'utf8');
-const THEMES = ['graphite', 'polar', 'slate', 'ink', 'lavender', 'iris', 'rose', 'terracotta', 'taupe', 'olive', 'sage', 'eucalyptus', 'marine'];
+// Действующий набор тем 2.0 (constants/liquidGlassThemePalette.ts → LIQUID_GLASS_THEME_IDS):
+// 13 тонированных + 10 градиентных (владелец 2026-10-04, constants/liquidGlassGradientThemes.ts).
+const THEMES = [
+  'graphite', 'polar', 'slate', 'ink', 'lavender', 'iris', 'rose', 'terracotta', 'taupe', 'olive', 'sage', 'eucalyptus', 'marine',
+  'grad_aurora', 'grad_iris', 'grad_magma', 'grad_midnight', 'grad_champagne', 'grad_jade', 'grad_orchid', 'grad_ice', 'grad_coral', 'grad_lilac',
+];
 const LANGS = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
 // Canonical HEAD overlay copy, with only the independently verified retired XP tuple removed.
 const OVERLAY_LP_BASELINE = [

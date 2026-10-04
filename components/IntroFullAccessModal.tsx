@@ -111,17 +111,17 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
         </View>
       ))}
       {step(LUM.ladder[2], (
-        <Text style={[styles.kicker, { color: glass.secondary, fontSize: f.caption }]}>
+        <Text style={[styles.kicker, { color: glass.mutedText }]}>
           {isWelcome ? copy.welcomeEyebrow : copy.endedEyebrow}
         </Text>
       ))}
       {step(LUM.ladder[2], (
-        <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h1, lineHeight: Math.round(f.h1 * 1.24) }]}>
+        <Text accessibilityRole="header" style={[styles.title, { color: glass.text }]}>
           {isWelcome ? copy.welcomeTitle : copy.endedTitle}
         </Text>
       ))}
       {step(LUM.ladder[3], (
-        <Text style={[styles.body, { color: glass.secondary, fontSize: f.body, lineHeight: Math.round(f.body * 1.45) }]}>
+        <Text style={[styles.body, { color: glass.secondary }]}>
           {isWelcome ? copy.welcomeBody : copy.endedBody}
         </Text>
       ))}
@@ -135,7 +135,7 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
           style={styles.primaryWrap}
           contentStyle={[styles.primary, { backgroundColor: glass.accent }]}
         >
-          <Text style={[styles.primaryText, { color: glass.accentInk, fontSize: f.body }]}>{primaryLabel}</Text>
+          <Text style={[styles.primaryText, { color: glass.accentInk }]}>{primaryLabel}</Text>
         </PressableHybrid>
       ))}
       {isWelcome
@@ -152,9 +152,9 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
             variant="secondary"
             onPress={handleSecondaryPress}
             style={styles.secondaryButton}
-            contentStyle={styles.secondaryContent}
+            contentStyle={[styles.secondaryContent, { backgroundColor: glass.opaqueControl }]}
           >
-            <Text style={[styles.secondaryText, { color: glass.secondary, fontSize: f.body }]}>{copy.endedSecondary}</Text>
+            <Text style={[styles.secondaryText, { color: glass.text }]}>{copy.endedSecondary}</Text>
           </PressableHybrid>
         ))}
     </View>
@@ -232,7 +232,8 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 440,
     alignSelf: 'center',
-    borderRadius: 28,
+    // зачем (overlay-more.css `.om-modal`): радиус 26, поля 21; всё по центру.
+    borderRadius: 26,
     overflow: 'hidden',
   },
   // HybridAlertShell даёт панель без встроенного скролла — оборачиваем контент
@@ -246,54 +247,74 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   content: {
-    padding: 22,
-    gap: 13,
+    padding: 21,
+    gap: 9,
   },
+  // `.om-art`: карточка-сцена 202×160, радиус 22, значок по центру; 14 от верха.
   art: {
-    width: 58,
-    height: 58,
-    borderRadius: 18,
+    width: 202,
+    height: 160,
+    borderRadius: 22,
+    alignSelf: 'center',
+    marginTop: 14,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  // `.om-kicker` 11/800, разрядка 1.2; шкала D145 — 13.
   kicker: {
+    fontSize: 13,
+    lineHeight: 16,
     fontWeight: '800',
-    letterSpacing: 0,
+    letterSpacing: 1.2,
     textTransform: 'uppercase',
+    textAlign: 'center',
   },
+  // `.om-title` 25/31.
   title: {
+    fontSize: 25,
+    lineHeight: 31,
     fontWeight: '800',
     letterSpacing: 0,
+    textAlign: 'center',
   },
+  // `.om-copy` 14/21; шкала D145 — 16/22.
   body: {
-    fontWeight: '500',
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: '400',
     letterSpacing: 0,
+    textAlign: 'center',
   },
   primaryWrap: {
     marginTop: 4,
   },
+  // `.cta`: пилюля 48/24, 16/700.
   primary: {
-    minHeight: 56,
-    borderRadius: 18,
+    minHeight: 48,
+    borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 18,
     paddingVertical: 12,
   },
   primaryText: {
-    fontWeight: '800',
+    fontSize: 16,
+    fontWeight: '700',
     letterSpacing: 0,
     textAlign: 'center',
   },
   secondaryButton: {
     minHeight: 48,
   },
+  // `.cta.gh`: тёмная капсула 48 (рамок в этом окне нет — сторож), тон заливкой.
   secondaryContent: {
     minHeight: 48,
+    borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
   },
   secondaryText: {
+    fontSize: 16,
     fontWeight: '700',
     letterSpacing: 0,
     textAlign: 'center',

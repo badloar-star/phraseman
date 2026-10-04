@@ -14,13 +14,17 @@ const owners = [
 
 // зачем (04.10): раздел наборов карточек (editCardPack/loadCardPacks/renderCardPacks/
 // toggleCardPackStatus) и клубы (loadClubsData) сняты в 2.0 — сторож удалён.
-// Три владельца в 2.0 намеренно переопределены поздней версией (phase 1): побеждает
-// последнее присваивание. Число зафиксировано, чтобы дубли не росли дальше.
+// зачем (04.10): мёртвые ранние loadUgcPurchases/renderUgcPurchases удалены — теперь ровно один владелец.
+// renderPremiumList — НЕ дубль: поздняя версия (phase 1) сохраняет раннюю в _pmP1RenderPremiumList и
+// делегирует ей; две записи законны, сторожим именно обёртку.
 const KNOWN_OVERRIDES: Record<string, number> = {
-  loadUgcPurchases: 2,
-  renderUgcPurchases: 2,
   renderPremiumList: 2,
 };
+
+test('renderPremiumList phase 1 wraps (not replaces) the base renderer', () => {
+  expect(html).toMatch(/const _pmP1RenderPremiumList = window\.renderPremiumList;\s*[\s\S]{0,200}window\.renderPremiumList = function renderPremiumListPhase1\(\)/);
+  expect(html).toContain('return _pmP1RenderPremiumList?.();');
+});
 
 describe('live legacy runtime ownership', () => {
   test.each(owners)('%s has the expected number of window function owners', (name) => {

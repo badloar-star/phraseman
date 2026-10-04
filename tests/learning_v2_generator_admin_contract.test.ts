@@ -33,7 +33,9 @@ describe("Learning V2 full-course generator admin contract", () => {
     expect(deliveryContract).toContain(
       "Фраза «генератор готов на 100%» разрешена только если одновременно",
     );
-    expect(deliveryContract).toContain("`admin/v2` запрещён");
+    // зачем (04.10): живая админка — admin/v2/legacy.html; прежнее «admin/v2 запрещён» отменено.
+    expect(deliveryContract).toContain("`admin/v2/legacy.html` (Hosting публикует папку `admin/v2`)");
+    expect(deliveryContract).not.toMatch(/^- `admin\/v2` запрещён/m);
     expect(deliveryContract).toContain("**Ash, Onyx, Nova, Coral**");
     expect(deliveryContract).toContain(
       "Следующая стадия начинается только после полного закрытия предыдущей",

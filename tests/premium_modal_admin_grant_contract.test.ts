@@ -46,7 +46,11 @@ describe('premium modal dispatcher contract', () => {
     const restoreBody = purchase.slice(restoreStart, purchase.indexOf('const handleClose = useCallback', restoreStart));
 
     expect(purchaseBody).toContain('await initRevenueCat(isOperationAccountCurrent);');
-    expect(purchaseBody).toContain('if (!(await syncRevenueCatIdentity(isOperationAccountCurrent)))');
+    // зачем (D158, d33ab1b66): личность сверяется до оплаты с потолком (withLoadTimeout) — смысл тот же:
+    // нет подтверждённой личности RevenueCat → оплата не начинается.
+    expect(purchaseBody).toContain('withLoadTimeout(syncRevenueCatIdentity(isOperationAccountCurrent)');
+    expect(purchaseBody).toContain('identityReady = await syncRevenueCatIdentity(isOperationAccountCurrent);');
+    expect(purchaseBody.indexOf('if (!identityReady) {')).toBeLessThan(purchaseBody.indexOf('Purchases.purchasePackage(pkg)'));
     expect(purchaseBody).toContain('Purchases.purchasePackage(pkg)');
     expect(purchaseBody).toContain('revenueCatPremiumMetadata(customerInfo, pkg.product.identifier)');
     expect(purchaseBody).toContain('persistStorePremiumLocally');

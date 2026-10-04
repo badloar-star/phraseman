@@ -6,7 +6,7 @@
 // не менялась). Здесь: сборка блоков по макету paywall-v3, аналитика показа,
 // защита жестов на время оплаты и экран «Напомнить о конце пробного?» после покупки.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { BackHandler, Platform, StyleSheet, View } from 'react-native';
 import { Stack, useLocalSearchParams } from 'expo-router';
 
@@ -24,6 +24,7 @@ import { trackEvent } from '../../app/analytics';
 import { createPaywallAnalyticsImpression, paywallImpressionParams } from '../../app/paywall_analytics_impression';
 import { animateNextLayoutTransition } from '../../app/smooth_layout';
 import { DebugLogger } from '../../app/debug-logger';
+import { useLoadGate } from '../../app/use_load_gate';
 import { usePaywallScreenStackOptions } from './paywallShared';
 import {
   PaywallPlusDetails, PaywallPlusDock, PaywallPlusHeader, PaywallPlusPlans, PaywallPlusPlansSkeleton, PaywallPlusPlansUnavailable,
@@ -76,23 +77,15 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const state: PaywallPlusState = hasPrices ? 'ready' : (!p.offeringsSettled || p.loading) ? 'loading' : 'error';
   // Пробный — только из магазина: цены из кэша его не несут (yearlyTrialDays берётся из пакета).
   const pricesReady = state === 'ready' && !!p.yearlyPrice;
-  const priceRetryRef = useRef(0);
-  const reloadOfferingsRef = useRef(p.reloadOfferings);
-  reloadOfferingsRef.current = p.reloadOfferings;
-  useEffect(() => {
-    if (state === 'ready') priceRetryRef.current = 0; // зачем (D158): счётчик обнуляется при успехе
-    if (state !== 'error') return undefined;
-    if (priceRetryRef.current >= 5) {
-      DebugLogger.warn('[PAYWALL-PLUS]', `цены не пришли, тихие повторы исчерпаны (${priceRetryRef.current})`);
-      return undefined;
-    }
-    const timer = setTimeout(() => {
-      priceRetryRef.current += 1;
-      DebugLogger.info('[PAYWALL-PLUS]', `тихий повтор цен #${priceRetryRef.current}`);
-      reloadOfferingsRef.current();
-    }, 20_000);
-    return () => clearTimeout(timer);
-  }, [state]);
+  // зачем (D158 / PM-214, 04.10): цены докачиваем фоном общим useLoadGate (паузы 1/3/8 с, повтор при
+  // возврате в приложение) вместо своей копии «5×20 с». Кнопка покупки активна всегда — панель
+  // «Сейчас недоступно» рисует state 'error' ниже, хук только повторяет запрос цен.
+  const reloadOfferings = p.reloadOfferings;
+  const retryPrices = useCallback(() => {
+    DebugLogger.info('[PAYWALL-PLUS]', 'тихий повтор цен');
+    reloadOfferings();
+  }, [reloadOfferings]);
+  useLoadGate({ id: 'paywall-plus-prices', status: state, retry: retryPrices });
   // Пробный — ТОЛЬКО из магазина и только когда цены реально пришли.
   const yearlyTrialDays = pricesReady ? p.yearlyTrialDays : null;
   const monthlyTrialDays = pricesReady && p.selected === 'monthly' ? p.trialDays : null;

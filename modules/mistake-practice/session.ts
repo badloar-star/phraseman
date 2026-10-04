@@ -100,12 +100,20 @@ export function buildMistakePracticeSession(input: {
   readonly nowMs: number;
   /** Direct handoff from a correction card: practice exactly this mistake. */
   readonly focusMistakeId?: string;
+  /**
+   * зачем (макет «Панель», окно «Перед отработкой»: чипы Значение / Грамматика / Произношение): сузить сессию до выбранных типов ошибок.
+   * Без параметра (или пустой список) поведение прежнее байт в байт.
+   */
+  readonly facets?: readonly MistakeFacet[];
 }): MistakePracticeSession {
   const focusMistakeId = input.focusMistakeId?.trim() ?? '';
+  const facetFiltered = input.facets && input.facets.length > 0
+    ? input.items.filter((item) => input.facets!.includes(item.facet))
+    : input.items;
   const ready = selectMistakesForSession(
     focusMistakeId
-      ? input.items.filter((item) => item.mistakeId === focusMistakeId)
-      : input.items,
+      ? facetFiltered.filter((item) => item.mistakeId === focusMistakeId)
+      : facetFiltered,
     {
       nowMs: input.nowMs,
       limit: focusMistakeId ? 1 : 30,

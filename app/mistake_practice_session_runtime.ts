@@ -1,4 +1,4 @@
-import type { MistakeStudyTarget } from '../modules/mistake-practice/contracts';
+import type { MistakeFacet, MistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { projectMistakes } from '../modules/mistake-practice/projection';
 import {
   buildMistakePracticeSession,
@@ -34,6 +34,8 @@ export async function prepareMistakePracticeSession(input: Readonly<{
   deferNewSessionSave?: boolean;
   lessonId?: string;
   focusMistakeId?: string;
+  /** Сузить НОВУЮ сессию до типов ошибок (окно «Перед отработкой»); без параметра — как раньше. Сохранённая сессия возобновляется как есть. */
+  facets?: readonly MistakeFacet[];
   storage?: MistakePracticeStorage;
   nowMs?: number;
 }>, dependencies: MutableMistakeContentDependencies = {}): Promise<Readonly<{
@@ -72,6 +74,7 @@ export async function prepareMistakePracticeSession(input: Readonly<{
     persistSession: input.persistSession,
     lessonId: input.lessonId ?? null,
     focusMistakeId: input.focusMistakeId ?? null,
+    facets: input.facets ?? null,
     projectionItems: projection.items.size,
     unavailableCount: reconciled.unavailableCount,
     restoredFound: restored !== null,
@@ -114,6 +117,7 @@ export async function prepareMistakePracticeSession(input: Readonly<{
     requestedLength: input.requestedLength,
     nowMs: input.nowMs ?? Date.now(),
     focusMistakeId: input.focusMistakeId,
+    facets: input.facets,
   });
   const deferSave = input.persistSession && input.deferNewSessionSave === true;
   if (input.persistSession && !deferSave) {

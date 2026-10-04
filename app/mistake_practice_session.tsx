@@ -1,5 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import SkeletonBlock from '../components/SkeletonShimmer';
+import { facetsFromParam } from '../components/mistakes-panel/mistakeGroups';
 import { LOAD_GATE_TOTAL_MS } from './load_gate_config';
 import { actionToastTri, emitAppEvent } from './events';
 import { useAudioPlayer } from 'expo-audio';
@@ -368,6 +369,8 @@ function MistakePracticeSessionScreen() {
     planId?: string;
     planDayIndex?: string;
     focusMistakeId?: string;
+    /** Группа типов из окна «Перед отработкой» хаба (meaning / grammar / sound); без параметра — все. */
+    facetGroup?: string;
     returnTo?: string;
     maxReviewSessionId?: string;
     devRunesSeed?: string | string[];
@@ -532,6 +535,7 @@ function MistakePracticeSessionScreen() {
         deferNewSessionSave: true,
         lessonId: params.lessonId,
         focusMistakeId: focusedMistakeId,
+        facets: facetsFromParam(params.facetGroup),
       });
       if (!cancelled && prepareStageRef.current === 'abandoned') {
         console.warn('[MISTAKES-GATE] session:prepare:late_after_ceiling → ignored', JSON.stringify({ resumed: prepared.resumed })); // guard-ok
@@ -618,7 +622,7 @@ function MistakePracticeSessionScreen() {
     return () => {
       cancelled = true;
     };
-  }, [acknowledgeSessionStart, copy, entrySource, focusedMistakeId, hasPremiumAccess, loadRevision, mistakeEnergyIntent, params.lessonId, persistSession, requestedLength, router, studyTarget]);
+  }, [acknowledgeSessionStart, copy, entrySource, focusedMistakeId, hasPremiumAccess, loadRevision, mistakeEnergyIntent, params.facetGroup, params.lessonId, persistSession, requestedLength, router, studyTarget]);
 
   // зачем (D158): подготовка, не ответившая ни успехом, ни ошибкой, не держит экран вечно.
   useEffect(() => {

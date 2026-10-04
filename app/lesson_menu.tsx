@@ -1251,7 +1251,9 @@ function LessonMenu() {
               })}
               progress={progress}
               earnedStars={earnedStars}
-              showStars={scoreKnown}
+              // зачем (сверка learn-020 п.4, learn.html B): звёзды — только у пройденного урока; в процессе — полоса.
+              showStars={scoreKnown && earnedStars > 0}
+              unitLabel={triLang(lang, { ru: 'фраз', uk: 'фраз', en: 'phrases', es: 'frases', 'pt-BR': 'frases', vi: 'cụm từ', id: 'frasa', tr: 'ifade', pl: 'zwrotów' })}
             />
           );
         })()}

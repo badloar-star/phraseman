@@ -4,6 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../PressableHybrid';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { ThemeGlassSmoke } from '../v2/ThemeGlassSmoke';
+import { KitGlassLayer } from '../v2/KitLiquidGlass';
 
 // зачем (владелец 2026-09-29): меню урока переносится «1 в 1» по макету learn.html B1–B5
 // (Liquid Glass). Раньше экран собирался из общего V2Kit с его собственной палитрой, из-за чего
@@ -71,8 +72,11 @@ export function LessonMenuRoundButton({
         backgroundColor: glass.opaqueControl,
         borderWidth: 1, // guard-ok: тонкая полупрозрачная кромка PhraseMan 2.0
         borderColor: glass.glassEdge,
+        overflow: 'hidden',
       }}
     >
+      {/* зачем (сверка learn-020 п.1–2, kit.css `.rb::after`): круг — стекло с бликом сверху и тенью снизу, не плоский. */}
+      <KitGlassLayer radius={box / 2} />
       <Ionicons name={icon} size={20} color={glass.text} />
     </PressableHybrid>
   );
@@ -163,6 +167,8 @@ export function LessonMenuRow({
     >
       {/* зачем (темы 2.0): цветная дымка внутри карточки — только «Максимум». */}
       <ThemeGlassSmoke glass={glass} />
+      {/* зачем (сверка learn-020 п.5, kit.css `.card::after`): строка — стекло: блик 150°, светлая кромка сверху. */}
+      <KitGlassLayer radius={14} />
       <View
         style={{
           width: 46,
@@ -211,6 +217,7 @@ export function LessonMenuTip({
       }}
     >
       <ThemeGlassSmoke glass={glass} />
+      <KitGlassLayer radius={22} />
       <View
         style={{
           width: 55,
@@ -242,6 +249,7 @@ export function LessonMenuSummary({
   progress,
   earnedStars,
   showStars,
+  unitLabel,
 }: {
   glass: LessonMenuGlassTokens;
   testID?: string;
@@ -249,6 +257,8 @@ export function LessonMenuSummary({
   progress: number;
   earnedStars: number;
   showStars: boolean;
+  /** learn.html B: у пройденного урока — «N / 50 фраз», у урока в процессе — «N / 50». */
+  unitLabel?: string;
 }) {
   const ratio = Math.max(0, Math.min(1, progress / 50));
   return (
@@ -276,7 +286,7 @@ export function LessonMenuSummary({
           <View style={{ width: `${ratio * 100}%`, minWidth: 7, height: 7, borderRadius: 4, backgroundColor: glass.accent }} />
         </View>
       )}
-      <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 21, fontWeight: '700', fontVariant: ['tabular-nums'] }}>{`${progress}/50`}</Text>
+      <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 21, fontWeight: '600', fontVariant: ['tabular-nums'] }}>{`${progress} / 50${showStars && unitLabel ? ` ${unitLabel}` : ''}`}</Text>
     </View>
   );
 }

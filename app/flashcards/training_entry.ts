@@ -33,6 +33,8 @@ export function parseCardsTrainingMode(
 export function buildCardsTrainingRoute(
   mode: CardsTrainingMode,
   selectedDeckIds: readonly FcDeckId[],
+  /** Сколько карточек в сессии: число или 'all' (экран настройки, «Карточек 10 / 20 / Все»); без значения — все. */
+  size?: string,
 ): CardsTrainingRoute | null {
   const deck = deckRouteParam(normalizeDeckIds(selectedDeckIds));
   if (!deck) return null;
@@ -41,10 +43,10 @@ export function buildCardsTrainingRoute(
     return { pathname: '/flashcards_blitz_session', params: { deck } };
   }
   if (mode === 'speaking') {
-    return { pathname: '/flashcards_speaking_session', params: { deck, size: 'all' } };
+    return { pathname: '/flashcards_speaking_session', params: { deck, size: size || 'all' } };
   }
   if (mode === 'recall') {
-    return { pathname: '/flashcards_recall_session', params: { deck, size: 'all' } };
+    return { pathname: '/flashcards_recall_session', params: { deck, size: size || 'all' } };
   }
   return { pathname: '/flashcards_truefalse_session', params: { deck, quick: '1' } };
 }

@@ -63,8 +63,10 @@ test('training setup: shared gate, calm «Сейчас недоступно», n
   const src = read('app/flashcards_training_setup.tsx');
   expect(src).toContain("from './load_gate_config'");
   expect(src).toContain('loadGateBackoffMs(silentRetryRef.current + 1)');
-  expect(src).toContain('testID="fc-training-setup-unavailable"');
-  expect(src).toContain('testID="fc-training-setup-try-again"');
+  // зачем (cards-section): разметка «Сейчас недоступно» — в TrainingSetupV2
+  const setupView = read('app/flashcards/TrainingSetupV2.tsx');
+  expect(setupView).toContain('testID="fc-training-setup-unavailable"');
+  expect(setupView).toContain('actionTestID="fc-training-setup-try-again"');
   expect(src).toContain("AppState.addEventListener('change'");
   expect(src).not.toMatch(/silentRetryRef\.current >= 5/);
   expect(src).not.toContain('}, 20_000);');
@@ -75,7 +77,7 @@ test('video packs: hung load has a ceiling, retries 1/3/8 s, then calm «Сей�
   expect(src).toContain("from './load_gate_config'");
   expect(src).toContain("const delayMs = loadState === 'loading' ? LOAD_GATE_TOTAL_MS : (backoffMs as number);");
   expect(src).toContain('testID="fc-video-packs-unavailable"');
-  expect(src).toContain('testID="fc-video-packs-try-again"');
+  expect(src).toContain('actionTestID="fc-video-packs-try-again"');
   expect(src).toContain("AppState.addEventListener('change'");
   expect(src).not.toMatch(/silentRetryRef\.current >= 5/);
   expect(src).not.toContain('}, 20_000);');

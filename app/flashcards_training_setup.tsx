@@ -24,6 +24,8 @@ import { trainingSetupExplanation } from './flashcards/training_setup_explanatio
 import { hideDecksWithoutVoice, loadFcDeckOptions, peekFcDeckOptions, sameDeckOptions } from './flashcards/deck_options';
 import type { DeckSheetOption } from './flashcards/DeckPickerSheet';
 import DeckSelectionTile from './flashcards/DeckSelectionTile';
+import { TrainingSetupV2 } from './flashcards/TrainingSetupV2';
+import { FC_PACKS_ROUTE } from './flashcards/tabbar_state';
 import {
   deckSelectionLabel,
   summarizeDeckSelection,
@@ -167,6 +169,8 @@ export default function FlashcardsTrainingSetupScreen() {
   const [selectedDeckIds, setSelectedDeckIds] = useState<FcDeckId[]>([]);
   const [loadRevision, setLoadRevision] = useState(0);
   const [starting, setStarting] = useState(false);
+  // зачем (макет cards-section «Устно / Вспомни и напиши»): «Карточек 10 / 20 / Все» — по умолчанию 20, как в макете
+  const [sizeId, setSizeId] = useState('20');
   const startInFlightRef = useRef(false);
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
 
@@ -459,7 +463,7 @@ export default function FlashcardsTrainingSetupScreen() {
 
   const startTraining = useCallback(async () => {
     if (startInFlightRef.current || !mode || !canStart) return;
-    const route = buildCardsTrainingRoute(mode, selectedDeckIds);
+    const route = buildCardsTrainingRoute(mode, selectedDeckIds, mode === 'speaking' || mode === 'recall' ? sizeId : undefined);
     if (!route) return;
     startInFlightRef.current = true;
     setStarting(true);
@@ -475,7 +479,7 @@ export default function FlashcardsTrainingSetupScreen() {
     } catch {
       resetStartLock();
     }
-  }, [canStart, mode, resetStartLock, router, selectedDeckIds]);
+  }, [canStart, mode, resetStartLock, router, selectedDeckIds, sizeId]);
 
   const emptyLabel = triLang(lang, {
     ru: 'Пока нет карточек для тренировки. Сохрани карточки или добавь набор из сообщества.', uk: 'Поки немає карток для тренування. Збережи картки або додай набір зі спільноти.',
@@ -509,6 +513,56 @@ export default function FlashcardsTrainingSetupScreen() {
     pl: 'Blitz wymaga co najmniej 4 kart.',
   });
 
+  // зачем (владелец: «в приложении запрещены любые различия с макетом», cards-section «Блиц / Устно / Правда-ложь / Вспомни и напиши»):
+  // разметка вынесена в TrainingSetupV2; здесь — только логика (загрузка наборов, выбор, квота, запуск).
+  const modeTitle = mode === 'blitz'
+    ? 'Блиц'
+    : triLang(lang, {
+      ru: mode === 'speaking' ? 'Устно' : mode === 'recall' ? 'Вспомни и напиши' : 'Правда / ложь',
+      uk: mode === 'speaking' ? 'Усно' : mode === 'recall' ? 'Згадай і напиши' : 'Правда / неправда',
+      en: mode === 'speaking' ? 'Speaking' : mode === 'recall' ? 'Recall and write' : 'True / false',
+      es: mode === 'speaking' ? 'Oral' : mode === 'recall' ? 'Recuerda y escribe' : 'Verdadero / falso',
+      'pt-BR': mode === 'speaking' ? 'Falando' : mode === 'recall' ? 'Lembre e escreva' : 'Verdadeiro / falso',
+      vi: mode === 'speaking' ? 'Nói' : mode === 'recall' ? 'Nhớ và viết' : 'Đúng / sai',
+      id: mode === 'speaking' ? 'Lisan' : mode === 'recall' ? 'Ingat dan tulis' : 'Benar / salah',
+      tr: mode === 'speaking' ? 'Sözlü' : mode === 'recall' ? 'Hatırla ve yaz' : 'Doğru / yanlış',
+      pl: mode === 'speaking' ? 'Ustnie' : mode === 'recall' ? 'Przypomnij i napisz' : 'Prawda / fałsz',
+    });
+  const modeSubtitle = triLang(lang, mode === 'blitz'
+    ? { ru: 'Минута на скорость', uk: 'Хвилина на швидкість', en: 'A minute for speed', es: 'Un minuto de velocidad', 'pt-BR': 'Um minuto de velocidade', vi: 'Một phút tốc độ', id: 'Satu menit kilat', tr: 'Hız için bir dakika', pl: 'Minuta na szybkość' }
+    : mode === 'speaking'
+      ? { ru: 'Говорите вслух', uk: 'Говоріть уголос', en: 'Speak out loud', es: 'Habla en voz alta', 'pt-BR': 'Fale em voz alta', vi: 'Nói thành tiếng', id: 'Ucapkan keras-keras', tr: 'Yüksek sesle söyle', pl: 'Mów na głos' }
+      : mode === 'recall'
+        ? { ru: 'Пишите по памяти', uk: 'Пишіть із пам’яті', en: 'Write from memory', es: 'Escribe de memoria', 'pt-BR': 'Escreva de memória', vi: 'Viết theo trí nhớ', id: 'Tulis dari ingatan', tr: 'Hafızadan yaz', pl: 'Pisz z pamięci' }
+        : { ru: 'Верен ли перевод', uk: 'Чи правильний переклад', en: 'Is the translation right', es: '¿Es correcta la traducción?', 'pt-BR': 'A tradução está certa?', vi: 'Bản dịch có đúng không', id: 'Apakah terjemahannya benar', tr: 'Çeviri doğru mu', pl: 'Czy tłumaczenie jest poprawne' });
+  const sizeOptions = mode === 'speaking' || mode === 'recall'
+    ? [
+      { id: '10', label: '10' },
+      { id: '20', label: '20' },
+      { id: 'all', label: triLang(lang, { ru: 'Все', uk: 'Усі', en: 'All', es: 'Todas', 'pt-BR': 'Todos', vi: 'Tất cả', id: 'Semua', tr: 'Tümü', pl: 'Wszystkie' }) },
+    ]
+    : null;
+  const sessionCount = sizeOptions ? (sizeId === 'all' ? summary.cardCount : Math.min(Number(sizeId) || 0, summary.cardCount)) : 0;
+  const startLabel = sizeOptions && sessionCount > 0 ? `${copy.start} · ${sessionCount}` : copy.start;
+  const setupStatus: 'ready' | 'loading' | 'unavailable' | 'empty' | 'exhausted' | 'invalid' = !mode
+    ? 'invalid'
+    : quotaPreview.status === 'exhausted'
+      ? 'exhausted'
+      : loadState === 'loading'
+        ? 'loading'
+        : loadState === 'error'
+          ? (loadErrorKind === 'load' ? (loadExhausted ? 'unavailable' : 'loading') : 'invalid')
+          : decks.length === 0
+            ? 'empty'
+            : 'ready';
+  const limitLabel = quotaPreview.status === 'waiting' ? null : `${Math.max(0, quotaPreview.limit - quotaPreview.used)}/${quotaPreview.limit}`;
+  const resetText = (() => {
+    const now = new Date();
+    let date = '';
+    try { date = new Date(now.getFullYear(), now.getMonth() + 1, 1).toLocaleDateString(lang, { day: 'numeric', month: 'long' }); } catch (error) { console.warn('[FC-TRAIN-SETUP] reset date format failed', error instanceof Error ? error.message : String(error)); }
+    return triLang(lang, { ru: `Обновится ${date}`, uk: `Оновиться ${date}`, en: `Renews ${date}`, es: `Se renueva el ${date}`, 'pt-BR': `Renova em ${date}`, vi: `Làm mới ${date}`, id: `Diperbarui ${date}`, tr: `${date} tarihinde yenilenir`, pl: `Odnowi się ${date}` });
+  })();
+
   return (
     <ScreenGradient>
       <View
@@ -520,232 +574,30 @@ export default function FlashcardsTrainingSetupScreen() {
       >
         <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
         <ContentWrap>
-          <View style={styles.layout}>
-          <ScrollView
-            testID="fc-training-setup-body-scroll"
-            style={styles.scroll}
-            contentContainerStyle={styles.content}
-            showsVerticalScrollIndicator={false}
-          >
-            <View testID="fc-training-setup-header" style={styles.header}>
-              <V2IconButton
-                icon="chevron-back"
-                onPress={leave}
-                accessibilityLabel={triLang(lang, {
-                  ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại',
-                  id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
-                })}
-                testID="fc-training-setup-header-back"
-              />
-              <Text
-                testID="fc-training-setup-header-title"
-                accessibilityRole="header"
-                style={[
-                  styles.headerTitle,
-                  { color: glass.text, fontSize: 20 * textScale, lineHeight: 24 * textScale },
-                ]}
-              >
-                {copy.title}
-              </Text>
-            </View>
-
-            {loadState === 'ready' && decks.length === 0 && suggestedPacks.length === 0 ? null : <View style={styles.summaryRow}>
-              <Text
-                testID="fc-training-setup-summary"
-                accessibilityLiveRegion="polite"
-                style={[styles.summary, { color: t.textPrimary, fontSize: 16 * textScale, lineHeight: 21 * textScale }]}
-              >
-                {selectionExplanation}
-              </Text>
-            </View>}
-
-            {loadState === 'error' && loadErrorKind === 'load' && loadExhausted ? (
-              <SetupSurface testID="fc-training-setup-unavailable" glass={glass} style={styles.messageBox}>
-                <Text accessibilityLiveRegion="polite" style={[
-                  styles.message,
-                  { color: t.textPrimary, fontSize: 16 * textScale, lineHeight: 22 * textScale },
-                ]}>{triLang(lang, {
-                  ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now', es: 'No disponible ahora',
-                  'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang',
-                  tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne',
-                })}</Text>
-                <Pressable
-                  testID="fc-training-setup-try-again"
-                  accessibilityRole="button"
-                  onPress={() => retryDecksLoad('tap')}
-                  style={({ pressed }) => [styles.tryAgain, { backgroundColor: glass.opaqueControl }, pressed && { opacity: 0.82 }]}
-                >
-                  <Text style={[styles.tryAgainLabel, { color: t.textPrimary, fontSize: 16 * textScale }]}>{triLang(lang, {
-                    ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo',
-                    'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
-                  })}</Text>
-                </Pressable>
-              </SetupSurface>
-            ) : loadState === 'loading' || (loadState === 'error' && loadErrorKind === 'load') ? (
-              <SetupSurface
-                testID="fc-training-setup-loading"
-                glass={glass}
-                style={styles.loadingBox}
-              >
-                <View accessible accessibilityRole="progressbar" accessibilityLabel={triLang(lang, {
-                  ru: 'Загрузка наборов', uk: 'Завантаження наборів', en: 'Loading packs', es: 'Cargando packs',
-                  'pt-BR': 'Carregando pacotes', vi: 'Đang tải bộ thẻ', id: 'Memuat paket', tr: 'Paketler yükleniyor',
-                  pl: 'Ładowanie zestawów',
-                })} style={styles.loadingContent}>
-                  {/* зачем (cards.html setupLoading, spec_learn F7): загрузка — только скелет строк, без спиннера. */}
-                  <View style={styles.loadingRows}>
-                    {[0, 1, 2].map((index) => (
-                      <View
-                        key={`loading-row-${index}`}
-                        testID={`fc-training-setup-loading-row-${index}`}
-                        accessible={false}
-                        accessibilityElementsHidden
-                        importantForAccessibility="no-hide-descendants"
-                        style={[
-                          styles.loadingRow,
-                          { backgroundColor: glass.opaqueControl, borderColor: glass.glassEdge },
-                        ]}
-                      >
-                        <View style={[styles.loadingIcon, { backgroundColor: glass.selected }]} />
-                        <View style={styles.loadingCopy}>
-                          <View style={[styles.loadingLineLong, { backgroundColor: glass.selected }]} />
-                          <View style={[styles.loadingLineShort, { backgroundColor: glass.selected }]} />
-                        </View>
-                      </View>
-                    ))}
-                  </View>
-                </View>
-              </SetupSurface>
-            ) : loadState === 'error' ? (
-              <SetupSurface testID="fc-training-setup-error" glass={glass} style={styles.messageBox}>
-                <Text accessibilityLiveRegion="polite" style={[
-                  styles.message,
-                  { color: t.textSecond, fontSize: 16 * textScale, lineHeight: 22 * textScale },
-                ]}>{loadErrorMessage}</Text>
-              </SetupSurface>
-            ) : decks.length === 0 ? (
-              <SetupSurface testID="fc-training-setup-empty" glass={glass} style={styles.emptyBox}>
-                {/*
-                  зачем: с витриной сводка остаётся над карточкой и поясняет
-                  состояние до списка рекомендаций. Без витрины тот же текст
-                  показывается один раз внутри пустой карточки.
-                */}
-                {suggestedPacks.length > 0 ? (
-                  <>
-                    <Text style={[
-                      styles.suggestHeading,
-                      { color: t.textPrimary, fontSize: 16 * textScale, lineHeight: 22 * textScale },
-                    ]}>{suggestHeading}</Text>
-                    <View style={styles.suggestRow}>
-                      {suggestedPacks.map((pack) => {
-                        const opening = openingPackId === pack.id;
-                        return (
-                          <Pressable
-                            key={`fc-setup-suggest-${pack.id}`}
-                            testID={`fc-training-setup-suggest-${pack.id}`}
-                            accessibilityRole="button"
-                            accessibilityLabel={packTitleForInterface(pack, contentLangForTitle) || pack.codeName || pack.id}
-                            accessibilityState={{ busy: opening, disabled: openingPackId !== null }}
-                            disabled={openingPackId !== null}
-                            onPress={() => openSuggestedPack(pack)}
-                            style={({ pressed }) => [
-                              styles.suggestTile,
-                              {
-                                backgroundColor: glass.opaqueCard,
-                                borderColor: glass.glassEdge,
-                                opacity: pressed ? 0.82 : openingPackId !== null && !opening ? 0.5 : 1,
-                              },
-                            ]}
-                          >
-                            <View style={[styles.suggestIcon, { backgroundColor: glass.opaqueCard }]}>
-                              {opening ? (
-                                <ActivityIndicator color={glass.secondary} />
-                              ) : (
-                                <Ionicons name="albums-outline" size={21} color={glass.secondary} />
-                              )}
-                            </View>
-                            <Text
-                              style={[
-                                styles.suggestTitle,
-                                { color: glass.text, fontSize: 13 * textScale, lineHeight: 18 * textScale },
-                              ]}
-                            >
-                              {packTitleForInterface(pack, contentLangForTitle) || pack.codeName || pack.id}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ) : (
-                  <Text
-                    testID="fc-training-setup-empty-message"
-                    accessibilityLiveRegion="polite"
-                    style={[styles.message, { color: t.textSecond, fontSize: 16 * textScale, lineHeight: 22 * textScale }]}
-                  >
-                    {selectionExplanation}
-                  </Text>
-                )}
-              </SetupSurface>
-            ) : (
-              <View style={styles.deckGrid}>
-                {decks.map((deck, index) => {
-                  const selected = selectedDeckIds.includes(deck.deckId);
-                  return (
-                    <DeckSelectionTile
-                      key={deck.deckId}
-                      deck={deck}
-                      index={index}
-                      selected={selected}
-                      onToggle={(deckId) => setSelectedDeckIds((current) => toggleDeckSelection(current, deckId))}
-                      simpleMotion={Boolean(reducedMotion)}
-                      t={t}
-                      f={f}
-                      testIDPrefix="fc-training-setup-deck"
-                      presentation="compact-liquid-glass"
-                      liquidGlass={glass}
-                      textScale={textScale}
-                      countLabel={compactDeckCountLabel(lang, deck.count)}
-                    />
-                  );
-                })}
-              </View>
-            )}
-
-            {!blitzHasEnoughCards && summary.cardCount > 0 ? (
-              <Text accessibilityLiveRegion="polite" style={[
-                styles.validation,
-                { color: t.wrong, fontSize: 13 * textScale, lineHeight: 18 * textScale },
-              ]}>{blitzMinimumLabel}</Text>
-            ) : null}
-          </ScrollView>
-
-          <ScrollView
-            testID="fc-training-setup-dock-scroll"
-            style={styles.dockScroll}
-            contentContainerStyle={[styles.dockContent, { paddingBottom: insets.bottom }]}
-            showsVerticalScrollIndicator={false}
-          >
-            <MonthlyTrainingSessionIndicator
-              testID="fc-training-setup-monthly-limit"
-              quota={quotaPreview}
-              textColor={t.textSecond}
-              mutedColor={t.wrong}
-              textMetrics={{ fontSize: 13 * textScale, lineHeight: 17 * textScale }}
-              style={styles.quota}
-            />
-            {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся.
-                Кнопка — светлая главная кнопка стиля 2.0. */}
-            <SetupAction
-              testID="fc-training-setup-start"
-              label={copy.start}
-              disabled={!canStart}
-              onPress={() => void startTraining()}
-              glass={glass}
-              textScale={textScale}
-            />
-          </ScrollView>
-          </View>
+          <TrainingSetupV2
+            lang={lang}
+            title={modeTitle}
+            subtitle={modeSubtitle}
+            limitLabel={limitLabel}
+            status={setupStatus}
+            resetText={resetText}
+            invalidText={loadErrorMessage}
+            decks={decks}
+            countLabelFor={(count) => compactDeckCountLabel(lang, count)}
+            selectedIds={selectedDeckIds}
+            onToggle={(deckId) => setSelectedDeckIds((current) => toggleDeckSelection(current, deckId))}
+            selectedCardCount={summary.cardCount}
+            sizeOptions={sizeOptions}
+            size={sizeId}
+            onSizeChange={setSizeId}
+            startLabel={startLabel}
+            canStart={canStart}
+            hint={!blitzHasEnoughCards && summary.cardCount > 0 ? blitzMinimumLabel : null}
+            onStart={() => void startTraining()}
+            onBack={leave}
+            onFindPacks={() => router.push(FC_PACKS_ROUTE as never)}
+            onRetry={() => retryDecksLoad('tap')}
+          />
         </ContentWrap>
       </View>
       {mode && mode !== 'truefalse' ? <FeatureIntroEntry

@@ -53,10 +53,10 @@ assert.match(setupStart, /router\.push/);
 assert.match(setup, /const \{ theme: t, f, statusBarLight[^}]*\} = useTheme\(\);/);
 assert.match(setup, /type LoadErrorKind = 'invalid' \| 'unavailable' \| 'load' \| null;/);
 assert.match(setup, /loadErrorKind === 'load'/);
-assert.match(setup, /accessibilityLiveRegion="polite"/);
-// зачем: строки наборов вынесены в DeckSelectionTile — диктор по-прежнему слышит название и число карточек.
-assert.match(setup, /<DeckSelectionTile/);
-assert.match(read('app/flashcards/DeckSelectionTile.tsx'), /accessibilityLabel=\{`\$\{deck\.title\}\. \$\{countLabel\}`\}/);
+// зачем (владелец 04.10, cards-section): строки наборов и живые подписи рисует TrainingSetupV2 (KitCard + KitCheck, accessibilityLiveRegion у сводки)
+const setupView = read('app/flashcards/TrainingSetupV2.tsx');
+assert.match(setupView, /accessibilityLiveRegion="polite"/);
+assert.match(setupView, /accessibilityLabel=\{`\$\{deck\.title\}, \$\{deck\.count\}`\}/);
 
 const hub = read('app/flashcards/FlashcardsHubScreen.tsx');
 assert.match(hub, /primeFlashcardsCollectionCache\(studyTarget\)/);

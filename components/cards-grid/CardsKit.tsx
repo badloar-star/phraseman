@@ -129,11 +129,11 @@ export const KitPackRow = memo(function KitPackRow({ g, icon, title, subtitle, c
 });
 
 /** «.sec»: название раздела 20/700 и число рядом 20/600 приглушённым. */
-export const KitSectionHead = memo(function KitSectionHead({ g, title, count }: Readonly<{ g: GlassTokens; title: string; count: number }>) {
+export const KitSectionHead = memo(function KitSectionHead({ g, title, count, hideCount }: Readonly<{ g: GlassTokens; title: string; count: number; hideCount?: boolean }>) {
   return (
-    <View accessible accessibilityRole="header" accessibilityLabel={`${title}, ${count}`} style={styles.sec}>
+    <View accessible accessibilityRole="header" accessibilityLabel={hideCount ? title : `${title}, ${count}`} style={styles.sec}>
       <Text style={[styles.secTitle, { color: g.text }]}>{title}</Text>
-      <Text style={styles.secCount}>{count}</Text>
+      {hideCount ? null : <Text style={styles.secCount}>{count}</Text>}
     </View>
   );
 });
@@ -216,13 +216,50 @@ export const KitFound = memo(function KitFound({ g, label }: Readonly<{ g: Glass
   return <Text testID="fc-search-found" style={[styles.found, { color: g.accent }]}>{label}</Text>;
 });
 
+/** Переключатель из N сегментов (`.seg3`): плашка 50, сегменты 40, активный — мятный. */
+export const KitSegment = memo(function KitSegment({ g, options, value, onChange, testIDPrefix }: Readonly<{
+  g: GlassTokens;
+  options: readonly Readonly<{ id: string; label: string }>[];
+  value: string;
+  onChange: (id: string) => void;
+  testIDPrefix?: string;
+}>) {
+  return (
+    <KitSurface g={g} style={styles.segWrap}>
+      {options.map((option) => {
+        const on = option.id === value;
+        return (
+          <Pressable
+            key={option.id}
+            testID={testIDPrefix ? `${testIDPrefix}-${option.id}` : undefined}
+            accessibilityRole="radio"
+            accessibilityState={{ selected: on }}
+            onPress={() => onChange(option.id)}
+            style={[styles.seg, on && { backgroundColor: g.accent, boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,0.12)' }, { offsetX: 0, offsetY: 4, blurRadius: 12, spreadDistance: -6, color: 'rgba(0,0,0,0.8)' }] }]}>
+            <Text style={[styles.segText, { color: on ? g.accentInk : g.secondary }]}>{option.label}</Text>
+          </Pressable>
+        );
+      })}
+    </KitSurface>
+  );
+});
+
+/** Круглый индикатор выбора 26: выбран — светлый круг с галочкой, не выбран — тонкое кольцо. */
+export const KitCheck = memo(function KitCheck({ on }: Readonly<{ on: boolean }>) {
+  return (
+    <View style={[styles.check, on ? styles.checkOn : styles.checkOff]}>
+      {on ? <Ionicons name="checkmark" size={16} color="#0B0C0E" /> : null}
+    </View>
+  );
+});
+
 const EMPTY_BLOCK_H = 217;
 
 /**
  * Блок «Пусто»: плитка 61, заголовок 24/30, подпись, кнопка — по ЦЕНТРУ ЭКРАНА (top:50%, translateY(-46%) макета),
  * а не под заголовком. Верх родителя меряем в окне, чтобы центрировать именно по экрану.
  */
-export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action, actionIcon, onAction, testID, actionTestID }: Readonly<{
+export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action, actionIcon, onAction, testID, actionTestID, hideAction }: Readonly<{
   g: GlassTokens;
   icon: keyof typeof Ionicons.glyphMap;
   title: string;
@@ -232,6 +269,8 @@ export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action,
   onAction: () => void;
   testID?: string;
   actionTestID?: string;
+  /** Без кнопки (например, «Лимит исчерпан»). */
+  hideAction?: boolean;
 }>) {
   const { height } = useWindowDimensions();
   const holder = useRef<View>(null);
@@ -247,9 +286,11 @@ export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action,
         </View>
         <Text accessibilityRole="header" style={[styles.emptyTitle, { color: g.text }]}>{title}</Text>
         <Text style={[styles.emptyDetail, { color: g.secondary }]}>{detail}</Text>
-        <View style={styles.emptyCtaWrap}>
-          <KitCta g={g} label={action} icon={actionIcon} onPress={onAction} testID={actionTestID} />
-        </View>
+        {hideAction ? null : (
+          <View style={styles.emptyCtaWrap}>
+            <KitCta g={g} label={action} icon={actionIcon} onPress={onAction} testID={actionTestID} />
+          </View>
+        )}
       </View>
     </View>
   );
@@ -274,6 +315,12 @@ const styles = StyleSheet.create({
   search: { height: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.07)' },
   searchInput: { flex: 1, minWidth: 0, fontSize: 16, paddingVertical: 0 },
   found: { marginTop: 22, marginBottom: 12, marginLeft: 4, fontSize: 12, lineHeight: 16, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase' },
+  segWrap: { height: 50, padding: 4, flexDirection: 'row' },
+  seg: { flex: 1, height: 42, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
+  segText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
+  check: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
+  checkOn: { backgroundColor: '#E9E9EB' },
+  checkOff: { boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: 'rgba(255,255,255,0.3)' }] },
   emptyBlock: { position: 'absolute', left: 0, right: 0, alignItems: 'center', paddingHorizontal: 40 },
   emptyTile: { width: 61, height: 61, borderRadius: 16, backgroundColor: '#28282A', alignItems: 'center', justifyContent: 'center' },
   emptyTitle: { fontSize: 24, lineHeight: 30, fontWeight: '700', letterSpacing: -0.2, textAlign: 'center', marginTop: 22 },

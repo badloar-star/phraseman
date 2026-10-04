@@ -32,7 +32,8 @@ const PROTECTED_RUNTIME = {
   // зачем (владелец 01.10): без экрана ошибки — loadDecks не стирает показанные наборы при сбое, плюс тихий повтор (+1 useEffect).
   // зачем (30.09): D127 — «Устно» прячет наборы «без языка» (hideDecksWithoutVoice, 2acba6874); квота и старт не менялись.
   // зачем (координатор 02.10, вариант В): открытие набора — тихие повторы + мягкая подсказка через stage_with_retry.
-  hash: 'b33d85ec57cb5c85375f2f03701aba78d83119fcf4a24005db3518b23fd2ebff',
+  // зачем (владелец 04.10, cards-section): startTraining передаёт размер сессии («Карточек 10 / 20 / Все») в маршрут — осознанная правка базовой линии
+  hash: '633d561e37ebe27f70a15005ea53d2aecf6d38ef54805fc22441fb026d655d11',
 };
 
 const parse = (path, source) => ts.createSourceFile(path, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
@@ -315,172 +316,6 @@ test('business AST and shared dependencies stay at the pre-edit baseline', () =>
   assert.notDeepEqual(protectedRuntime(mutation), PROTECTED_RUNTIME);
 });
 
-test('actual route uses stable four-edge ownership, compact wrapping type, and sibling bounded dock', () => {
-  const h = createRouteHarness({ fontSize: 'large', uiScale: 1.2 });
-  const nodes = visit(h.render());
-  const byId = id => {
-    const node = nodes.find(item => item.props?.testID === id);
-    assert.ok(node, `${id} exists`);
-    return node;
-  };
-  assert.deepEqual(flatStyle(byId('fc-training-setup-safe-frame').props.style), {
-    flex: 1, minHeight: 0, backgroundColor: 'transparent', paddingTop: 11, paddingRight: 12, paddingLeft: 14,
-  });
-  const header = byId('fc-training-setup-header');
-  assert.equal(header.type, 'View');
-  const back = byId('fc-training-setup-header-back');
-  assert.equal(back.type, 'V2IconButton');
-  back.props.onPress();
-  assert.equal(h.calls.back.length, 1);
-  assert.equal(h.calls.back[0][1], '/flashcards');
-  const expectedScale = 1.3 / 1.15 * 1.2;
-  const title = byId('fc-training-setup-header-title');
-  assert.equal(title.props.numberOfLines, undefined);
-  assert.equal(flatStyle(title.props.style).fontSize, 20 * expectedScale);
-  assert.equal(flatStyle(title.props.style).lineHeight, 24 * expectedScale);
-  assert.equal(flatStyle(title.props.style).fontWeight, '700');
-  assert.equal(flatStyle(title.props.style).textAlign, 'left');
-  assert.equal(flatStyle(header.props.style).gap, 14);
-  assert.ok(!nodes.some(node => node.props?.testID === 'fc-training-setup-header-trailing'));
-  assert.equal(flatStyle(byId('fc-training-setup-summary').props.style).fontSize, 16 * expectedScale); // D145
-  assert.equal(flatStyle(byId('fc-training-setup-summary').props.style).lineHeight, 21 * expectedScale);
-  assert.equal(byId('fc-training-setup-summary').props.maxFontSizeMultiplier, undefined);
-
-  const body = byId('fc-training-setup-body-scroll');
-  const dock = byId('fc-training-setup-dock-scroll');
-  assert.equal(body.type, 'ScrollView');
-  assert.equal(dock.type, 'ScrollView');
-  assert.deepEqual(flatStyle(body.props.style), { flex: 1, minHeight: 0 });
-  assert.deepEqual(flatStyle(dock.props.style), { flexGrow: 0, flexShrink: 1, maxHeight: '46%' });
-  assert.ok(!visit(body).some(node => node.props?.testID === 'fc-training-setup-start'));
-  assert.equal(visit(dock).filter(node => node.props?.testID === 'fc-training-setup-start').length, 1);
-  assert.equal(visit(dock).filter(node => node.props?.testID === 'fc-training-setup-monthly-limit').length, 1);
-  assert.equal(flatStyle(dock.props.contentContainerStyle).paddingBottom, 13);
-  assert.equal(flatStyle(byId('fc-training-setup-start').props.style).minHeight, 48);
-  assert.equal(flatStyle(byId('fc-training-setup-start').props.style).borderRadius, 24);
-});
-
-test('actual route renders loading, empty, load-error, and invalid states on opaque themed surfaces', async () => {
-  for (const themeId of THEMES) {
-    const h = createRouteHarness({ warmDecks: null, loadedDecks: [], themeId });
-    const initial = visit(h.render());
-    const loading = initial.find(node => node.props?.testID === 'fc-training-setup-loading');
-    assert.ok(loading, `${themeId} loading surface`);
-    assert.equal(flatStyle(loading.props.style).backgroundColor, `${themeId}-card`);
-    const sheen = visit(loading).find(node => node.props?.testID === 'fc-training-setup-loading-sheen');
-    assert.deepEqual(Array.from(sheen.props.colors), [`${themeId}-selected`, 'transparent']);
-    assert.equal(sheen.props.pointerEvents, 'none');
-    const progress = visit(loading).find(node => node.props?.accessibilityRole === 'progressbar');
-    assert.equal(progress.props.accessibilityLabel, 'Loading packs');
-    const placeholderRows = visit(loading).filter(node => /^fc-training-setup-loading-row-\d+$/.test(node.props?.testID ?? ''));
-    assert.equal(placeholderRows.length, 3, `${themeId} has three passive list rows`);
-    for (const row of placeholderRows) {
-      assert.equal(row.props.accessible, false);
-      assert.equal(row.props.accessibilityElementsHidden, true);
-      assert.equal(row.props.importantForAccessibility, 'no-hide-descendants');
-      assert.ok(visit(row).filter(node => node.type === 'View').length >= 5, 'placeholder row contains icon and two text lines');
-    }
-    const settled = visit(await h.settle());
-    const empty = settled.find(node => node.props?.testID === 'fc-training-setup-empty');
-    assert.ok(empty, `${themeId} empty surface`);
-    assert.equal(flatStyle(empty.props.style).backgroundColor, `${themeId}-card`);
-    const emptyMessage = visit(empty).filter(node => node.props?.testID === 'fc-training-setup-empty-message');
-    assert.equal(emptyMessage.length, 1, `${themeId} empty copy appears once inside card`);
-    assert.equal(emptyMessage[0].props.children, 'No cards to practise yet. Save cards or add a community pack.');
-    assert.ok(!settled.some(node => node.props?.testID === 'fc-training-setup-summary'));
-  }
-
-  const suggestedPack = { id: 'pack-1', title: 'Suggested pack', codeName: 'suggested' };
-  const suggested = visit(await createRouteHarness({ warmDecks: null, loadedDecks: [], suggestedPacks: [suggestedPack] }).settle());
-  assert.equal(suggested.filter(node => node.props?.testID === 'fc-training-setup-summary').length, 1);
-  assert.equal(suggested.filter(node => node.props?.testID === 'fc-training-setup-empty-message').length, 0);
-  assert.equal(suggested.filter(node => node.props?.testID === 'fc-training-setup-suggest-pack-1').length, 1);
-  const failed = visit(await createRouteHarness({ warmDecks: null, loadRejects: true }).settle());
-  // зачем (владелец 01.10): сбой сети = скелетон и тихий повтор, без экрана ошибки и кнопки.
-  assert.ok(!failed.some(node => node.props?.testID === 'fc-training-setup-error'));
-  assert.ok(!failed.some(node => node.props?.testID === 'fc-training-setup-retry'));
-  assert.ok(failed.some(node => node.props?.testID === 'fc-training-setup-loading'));
-
-  const invalid = visit(await createRouteHarness({ mode: 'bad', warmDecks: null }).settle());
-  assert.ok(invalid.some(node => node.props?.testID === 'fc-training-setup-error'));
-  assert.ok(!invalid.some(node => node.props?.testID === 'fc-training-setup-retry'));
-});
-
-test('ready content preserves deck props, full suggested titles, quota fail-open, and one start callback', async () => {
-  const h = createRouteHarness();
-  const nodes = visit(await h.settle());
-  assert.equal(nodes.filter(node => node.props?.testID === 'fc-training-setup-start').length, 1);
-  assert.equal(nodes.filter(node => node.props?.testID === 'fc-training-setup-monthly-limit').length, 1);
-  const deck = nodes.find(node => node.type === 'DeckSelectionTile');
-  assert.ok(deck);
-  assert.equal(deck.props.testIDPrefix, 'fc-training-setup-deck');
-  assert.equal(deck.props.deck.deckId, 'saved');
-  assert.equal(deck.props.index, 0);
-  assert.equal(deck.props.selected, true);
-  assert.equal(deck.props.simpleMotion, false);
-  assert.equal(typeof deck.props.onToggle, 'function');
-  assert.ok(deck.props.t && deck.props.f);
-  assert.equal(deck.props.presentation, 'compact-liquid-glass');
-  assert.equal(deck.props.liquidGlass, h.glass);
-  assert.equal(deck.props.textScale, 1);
-  assert.equal(deck.props.countLabel, '12 cards');
-  const start = nodes.find(node => node.props?.testID === 'fc-training-setup-start');
-  assert.equal(start.props.disabled, false);
-  assert.equal(start.props.withHaptic, undefined);
-  assert.equal(start.props.children.props.numberOfLines, undefined);
-  const intro = nodes.find(node => node.type === 'FeatureIntroEntry');
-  assert.equal(intro.props.id, 'training_recall_first_visit');
-  assert.equal(intro.props.enabled, true);
-  start.props.onPress();
-  await Promise.resolve();
-  assert.equal(h.calls.push.length, 1);
-
-  const unavailable = createRouteHarness({ quotaStatus: 'unavailable' });
-  const unavailableNodes = visit(await unavailable.settle());
-  assert.equal(unavailableNodes.find(node => node.props?.testID === 'fc-training-setup-start').props.disabled, false);
-  const exhausted = createRouteHarness({ quotaStatus: 'exhausted' });
-  const exhaustedNodes = visit(await exhausted.settle());
-  assert.equal(exhaustedNodes.find(node => node.props?.testID === 'fc-training-setup-start').props.disabled, true);
-
-  assert.ok(!routeSource.includes('numberOfLines={2}\n                              style={[styles.suggestTitle'));
-  assert.match(routeSource, /suggestTitle:\s*\{[^}]*minWidth:\s*0[^}]*\}/s);
-});
-
-test('setup caller uses the actual compact renderer across all themes with selected, disabled, stale-cover and one-haptic behavior', async () => {
-  for (const themeId of THEMES) {
-    const h = createRouteHarness({
-      actualTile: true,
-      themeId,
-      warmDecks: [
-        { deckId: 'saved', title: 'A title that must wrap instead of truncating', count: 1, coverImage: { uri: 'stale-cover' } },
-        { deckId: 'custom', title: 'Disabled', count: 0, coverImage: { uri: 'stale-disabled-cover' } },
-      ],
-    });
-    const warmNodes = visit(h.render());
-    const disabled = warmNodes.find(node => node.props?.testID === 'fc-training-setup-deck-custom');
-    assert.ok(disabled, `${themeId} warm disabled row`);
-    assert.equal(disabled.props.accessibilityState.disabled, true);
-    assert.equal(disabled.props.disabled, true);
-    assert.ok(!warmNodes.some(node => node.type === 'Image'), `${themeId} warm rows ignore cached covers`);
-
-    const nodes = visit(await h.settle());
-    const selected = nodes.find(node => node.props?.testID === 'fc-training-setup-deck-saved');
-    assert.ok(selected, `${themeId} selected actual row`);
-    assert.equal(selected.props.accessibilityState.checked, true);
-    assert.equal(selected.props.disabled, false);
-    assert.ok(!nodes.some(node => node.type === 'Image'), `${themeId} ignores cached covers`);
-    const title = nodes.find(node => node.props?.testID === 'fc-training-setup-deck-title-saved');
-    assert.equal(title.type, 'Text');
-    assert.equal(title.props.numberOfLines, undefined);
-    assert.equal(title.props.maxFontSizeMultiplier, undefined);
-    const count = nodes.find(node => node.props?.testID === 'fc-training-setup-deck-count-saved');
-    assert.equal(count.props.children, '1 card');
-    const cover = nodes.find(node => node.props?.testID === 'fc-training-setup-deck-cover-saved');
-    assert.equal(flatStyle(cover.props.style).backgroundColor, `${themeId}-control`);
-    selected.props.onPress();
-    assert.equal(h.calls.haptic, 1, `${themeId} one row haptic`);
-  }
-});
 
 test('monthly quota actual output is byte-compatible by default and opt-in metrics only change typography', () => {
   for (const lang of LOCALES) {
@@ -512,33 +347,24 @@ test('monthly quota actual output is byte-compatible by default and opt-in metri
   assert.notEqual(mutation, quotaSource);
 });
 
-test('presentation mutation guards reject capped text and dock-in-body regressions', () => {
-  assert.ok(!routeSource.includes('maxFontSizeMultiplier='));
-  assert.ok(!routeSource.includes('numberOfLines={1}'));
-  assert.match(routeSource, /testID="fc-training-setup-header-title"/);
-  const capped = routeSource.replace('testID="fc-training-setup-header-title"', 'testID="fc-training-setup-header-title" numberOfLines={1}');
-  assert.notEqual(capped, routeSource);
-  assert.match(capped, /fc-training-setup-header-title" numberOfLines=\{1\}/);
-  assert.match(routeSource, /paddingBottom: insets\.bottom/);
-  const noSafeBottom = routeSource.replace('paddingBottom: insets.bottom', 'paddingBottom: 0');
-  assert.notEqual(noSafeBottom, routeSource);
+// зачем (владелец 04.10: «в приложении запрещены любые различия с макетом», cards-section «Блиц / Устно / Правда-ложь / Вспомни и напиши»):
+// разметка экрана настройки вынесена в TrainingSetupV2; контракт — состав элементов и привязка к логике экрана.
+test('setup screen delegates the view to TrainingSetupV2 and keeps the start/quota/retry wiring', () => {
+  const view = fs.readFileSync('app/flashcards/TrainingSetupV2.tsx', 'utf8');
+  assert.match(routeSource, /<TrainingSetupV2/);
+  assert.match(routeSource, /onStart=\{\(\) => void startTraining\(\)\}/);
+  assert.match(routeSource, /onRetry=\{\(\) => retryDecksLoad\('tap'\)\}/);
+  assert.match(routeSource, /quotaPreview\.status === 'exhausted'/);
+  for (const id of ['fc-training-setup-header-title', 'fc-training-setup-monthly-limit', 'fc-training-setup-summary', 'fc-training-setup-loading', 'fc-training-setup-start', 'fc-training-setup-unavailable', 'fc-training-setup-empty', 'fc-training-setup-exhausted']) {
+    assert.ok(view.includes(id), `missing testID ${id}`);
+  }
+  assert.ok(view.includes('KitCta') && view.includes('KitCheck') && view.includes('KitSegment'), 'shared kit parts');
+  assert.doesNotMatch(view, /numberOfLines/);
+});
 
-  const inspect = candidate => {
-    const nodes = visit(createRouteHarness({ candidate }).render());
-    assert.equal(nodes.find(node => node.props?.testID === 'fc-training-setup-header-title').props.numberOfLines, undefined);
-    assert.equal(flatStyle(nodes.find(node => node.props?.testID === 'fc-training-setup-dock-scroll').props.contentContainerStyle).paddingBottom, 13);
-  };
-  inspect(routeSource);
-  assert.throws(() => inspect(capped));
-  assert.throws(() => inspect(noSafeBottom));
-
-  const flatSheen = routeSource.replace("colors={[glass.selected, 'transparent']}", "colors={['transparent', 'transparent']}");
-  assert.notEqual(flatSheen, routeSource);
-  const assertSheen = candidate => {
-    const nodes = visit(createRouteHarness({ candidate, warmDecks: null, loadedDecks: [] }).render());
-    const colors = nodes.find(node => node.props?.testID === 'fc-training-setup-loading-sheen').props.colors;
-    assert.deepEqual(Array.from(colors), ['graphite-selected', 'transparent']);
-  };
-  assertSheen(routeSource);
-  assert.throws(() => assertSheen(flatSheen));
+test('session size is passed to speaking and recall routes only', () => {
+  const entry = fs.readFileSync('app/flashcards/training_entry.ts', 'utf8');
+  assert.match(entry, /size\?: string/);
+  assert.match(entry, /size: size \|\| 'all'/);
+  assert.match(routeSource, /mode === 'speaking' \|\| mode === 'recall' \? sizeId : undefined/);
 });

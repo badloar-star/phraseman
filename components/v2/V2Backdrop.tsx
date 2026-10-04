@@ -42,12 +42,14 @@ const ThemeGlow = memo(function ThemeGlow({ colors }: { colors: readonly [string
  */
 function V2Backdrop() {
   const p = useV2Palette();
-  const { liquidGlassThemeId, liquidGlassIntensity } = useTheme();
+  const { liquidGlassThemeId, liquidGlassIntensity, liquidGlassAppearance } = useTheme();
   // зачем: владелец 24.09 — «пятна света на фоне убрать»: фон ровный тёмный,
   // глубину дают сами карточки (дымка внутри стекла), а не фон.
-  // Исключение — верхняя половина ползунка (бывший «Максимум», владелец 30.09): свечение
-  // фона цветом темы. Его прозрачность смешивается от 0 на середине шкалы — без скачка.
-  const glow = liquidGlassIntensity > 0.5 ? liquidGlassTokens(liquidGlassThemeId).bgGlow : null;
+  // Исключения: верхняя половина ползунка у тонированных тем (бывший «Максимум», 30.09) и
+  // градиентные темы (04.10, пятна видны при любой насыщенности). Решает сама палитра:
+  // есть непрозрачное пятно — рисуем один статичный слой, нет — слоя нет вовсе.
+  const tokens = liquidGlassTokens(liquidGlassThemeId, { level: 'calm', appearance: liquidGlassAppearance, intensity: liquidGlassIntensity });
+  const glow = tokens.bgGlow.some(c => opacityOf(c) > 0) ? tokens.bgGlow : null;
   return (
     <>
       <LinearGradient

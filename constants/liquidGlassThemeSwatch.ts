@@ -1,5 +1,6 @@
 import { oklchToHex } from './liquidGlassColor';
 import { LIQUID_GLASS_VIVID } from './liquidGlassThemeVariants';
+import { liquidGlassGradientTheme } from './liquidGlassGradientThemes';
 
 export type ThemeSwatchStops = ReadonlyArray<readonly [number, string]>;
 export type ThemeSwatchSpec = Readonly<{ kind: 'linear'; stops: ThemeSwatchStops } | { kind: 'radial'; cx: string; cy: string; stops: ThemeSwatchStops }>;
@@ -10,6 +11,10 @@ export type ThemeSwatchSpec = Readonly<{ kind: 'linear'; stops: ThemeSwatchStops
  * но узнаваемые (иначе 13 тем не различить); в «Акценте/Максимуме» — фактура семейства.
  */
 export function themeSwatchSpec(id: string, vivid: boolean): ThemeSwatchSpec {
+  // зачем (владелец 04.10, themes-gradient.html): кружок градиентной темы — два её пятна
+  // по диагонали (как фишка темы в макете), при любой насыщенности.
+  const gradient = liquidGlassGradientTheme(id);
+  if (gradient) return { kind: 'linear', stops: [[0, gradient.glowA], [1, gradient.glowB]] };
   const v = LIQUID_GLASS_VIVID[id] ?? LIQUID_GLASS_VIVID.graphite!;
   const { fam, h, h2, c } = v;
   const ok = (l: number, ch: number, hue = h) => oklchToHex(l, ch, hue);

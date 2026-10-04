@@ -14,6 +14,12 @@ import {
   liquidGlassLevelForIntensity,
   quantizeLiquidGlassIntensity,
 } from './liquidGlassThemeIntensity';
+import {
+  LIQUID_GLASS_GRADIENT_THEME_IDS,
+  buildLiquidGlassGradientTokens,
+  liquidGlassGradientTheme,
+  type LiquidGlassGradientThemeId,
+} from './liquidGlassGradientThemes';
 
 export {
   DEFAULT_LIQUID_GLASS_VARIANT,
@@ -37,14 +43,25 @@ export {
 } from './liquidGlassThemeIntensity';
 
 /** The approved 2.0 tint family. This registry changes color only, never assets or access. */
-export const LIQUID_GLASS_THEME_IDS = [
+const LIQUID_GLASS_TINT_THEME_IDS = [
   'graphite', 'polar', 'slate', 'ink', 'lavender', 'iris', 'rose',
   'terracotta', 'taupe', 'olive', 'sage', 'eucalyptus', 'marine',
 ] as const;
 
-export type LiquidGlassThemeId = typeof LIQUID_GLASS_THEME_IDS[number];
+type LiquidGlassTintThemeId = typeof LIQUID_GLASS_TINT_THEME_IDS[number];
 
-const HUES: Readonly<Record<Exclude<LiquidGlassThemeId, 'graphite'>, number>> = {
+// зачем (владелец 2026-10-04): 10 градиентных тем ДОБАВЛЕНЫ к 13 тонированным, а не вместо.
+// Их набор живёт одним списком в liquidGlassGradientThemes.ts.
+export type LiquidGlassThemeId = LiquidGlassTintThemeId | LiquidGlassGradientThemeId;
+
+export const LIQUID_GLASS_THEME_IDS: readonly LiquidGlassThemeId[] = Object.freeze([
+  ...LIQUID_GLASS_TINT_THEME_IDS,
+  ...LIQUID_GLASS_GRADIENT_THEME_IDS,
+]);
+
+export { LIQUID_GLASS_GRADIENT_THEMES, LIQUID_GLASS_GRADIENT_THEME_IDS, type LiquidGlassGradientThemeId } from './liquidGlassGradientThemes';
+
+const HUES: Readonly<Record<Exclude<LiquidGlassTintThemeId, 'graphite'>, number>> = {
   polar: 225, slate: 245, ink: 275, lavender: 300, iris: 320,
   rose: 350, terracotta: 40, taupe: 65, olive: 110, sage: 150,
   eucalyptus: 180, marine: 205,
@@ -90,10 +107,10 @@ function tintedTokens(hue: number): BaseGlassTokens {
   });
 }
 
-const TOKEN_REGISTRY: Readonly<Record<LiquidGlassThemeId, BaseGlassTokens>> = Object.freeze({
+const TOKEN_REGISTRY: Readonly<Record<LiquidGlassTintThemeId, BaseGlassTokens>> = Object.freeze({
   graphite: GRAPHITE,
   ...Object.fromEntries(Object.entries(HUES).map(([id, hue]) => [id, tintedTokens(hue)])),
-}) as Readonly<Record<LiquidGlassThemeId, BaseGlassTokens>>;
+}) as Readonly<Record<LiquidGlassTintThemeId, BaseGlassTokens>>;
 
 // зачем (владелец 2026-09-30, темы 2.0): уровень цвета и светлое оформление — выбор
 // пользователя, который обязан мгновенно перекрасить ВСЕ ~270 экранов, читающих
@@ -102,7 +119,7 @@ const TOKEN_REGISTRY: Readonly<Record<LiquidGlassThemeId, BaseGlassTokens>> = Ob
 // регистрирует активный вариант здесь, а вызов без второго аргумента берёт его.
 // Пока провайдер ничего не записал — «Спокойно» + тёмное, т.е. прежние токены байт-в-байт.
 let activeVariant: Required<LiquidGlassVariant> = normalizeVariant(DEFAULT_LIQUID_GLASS_VARIANT);
-// зачем: 13 тем × 2 оформления × 21 шаг ползунка = 546 палитр максимум — кэш ограничен сам.
+// зачем: 23 темы × 2 оформления × 21 шаг ползунка = 966 палитр максимум — кэш ограничен сам.
 const variantCache = new Map<string, GlassTokens>();
 
 /** Called only by ThemeProvider: the variant that argument-less token lookups resolve to. */
@@ -121,20 +138,35 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
   // зачем: вызов вида ids.map(liquidGlassTokens) передаёт индекс вторым аргументом —
   // всё, что не вариант, трактуем как активный вариант, а не как «неизвестный уровень».
   const variant = requested && typeof requested === 'object' ? normalizeVariant(requested) : activeVariant;
-  const themeId: LiquidGlassThemeId = typeof id === 'string' && Object.prototype.hasOwnProperty.call(TOKEN_REGISTRY, id)
-    ? id as LiquidGlassThemeId
-    : 'graphite';
+  const themeId = resolveLiquidGlassTheme(id);
   const key = `${themeId}|${variant.intensity}|${variant.appearance}`;
   const cached = variantCache.get(key);
   if (cached) return cached;
-  // зачем (ползунок 2026-10-04): на опорных точках 0 / 0.5 / 1 — прежние формулы байт-в-байт,
-  // между ними — смешивание соседних (liquidGlassThemeIntensity.ts).
   const tokens: GlassTokens = Object.freeze({
-    ...buildLiquidGlassIntensityTokens(themeId, TOKEN_REGISTRY[themeId], variant.appearance, variant.intensity),
+    ...buildThemeTokens(themeId, variant),
     intensity: variant.intensity,
   });
   variantCache.set(key, tokens);
   return tokens;
+}
+
+function isTintTheme(id: LiquidGlassThemeId): id is LiquidGlassTintThemeId {
+  return Object.prototype.hasOwnProperty.call(TOKEN_REGISTRY, id);
+}
+
+function buildThemeTokens(themeId: LiquidGlassThemeId, variant: Required<LiquidGlassVariant>) {
+  const gradient = liquidGlassGradientTheme(themeId);
+  // зачем (владелец 2026-10-04): градиентные темы по макету themes-gradient.html — только тёмные.
+  // Светлых пока нет (макет в работе): в светлом оформлении такая тема показывает светлый
+  // Графит той же насыщенности, ничего не выдумывая поверх.
+  if (gradient && variant.appearance === 'dark') {
+    const graphiteDark = buildLiquidGlassIntensityTokens('graphite', TOKEN_REGISTRY.graphite, 'dark', 0);
+    return buildLiquidGlassGradientTokens(gradient, graphiteDark, variant.intensity);
+  }
+  const tintId: LiquidGlassTintThemeId = isTintTheme(themeId) ? themeId : 'graphite';
+  // зачем (ползунок 2026-10-04): на опорных точках 0 / 0.5 / 1 — прежние формулы байт-в-байт,
+  // между ними — смешивание соседних (liquidGlassThemeIntensity.ts).
+  return buildLiquidGlassIntensityTokens(tintId, TOKEN_REGISTRY[tintId], variant.appearance, variant.intensity);
 }
 
 /**
@@ -196,6 +228,7 @@ export function makeLiquidGlassTheme(id: LiquidGlassThemeId, base: Theme, varian
     cardGradient: [t.opaqueControl, t.opaqueCard],
     bgGradient: [t.bgTop, t.bgBottom],
   };
-  THEME_GLASS_SOURCE.set(theme, { tokens: t, calmCta: TOKEN_REGISTRY[resolveLiquidGlassTheme(id)].cta });
+  const resolvedId = resolveLiquidGlassTheme(id);
+  THEME_GLASS_SOURCE.set(theme, { tokens: t, calmCta: TOKEN_REGISTRY[isTintTheme(resolvedId) ? resolvedId : 'graphite'].cta });
   return theme;
 }

@@ -16,6 +16,7 @@ import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
 import {
+  LIQUID_GLASS_GRADIENT_THEME_IDS,
   liquidGlassTokens,
   type GlassTokens,
   type LiquidGlassAppearance,
@@ -44,6 +45,8 @@ const THEME_OPTIONS: ThemeOption[] = [
   { mode: 'taupe' }, { mode: 'olive' }, { mode: 'sage' }, { mode: 'eucalyptus' },
   { mode: 'marine' },
 ];
+
+const GRADIENT_OPTIONS: ThemeOption[] = LIQUID_GLASS_GRADIENT_THEME_IDS.map(mode => ({ mode }));
 
 // Только для экранного диктора: у ползунка нет видимой подписи (владелец: «только ползунок»).
 const INTENSITY_LABEL: ThemeDisplayName = {
@@ -236,6 +239,26 @@ export default function SettingsThemes() {
                   applied={item.mode === appliedLiquidGlassThemeId}
                   first={index === 0}
                   vivid={vivid}
+                  onPress={onRowPress}
+                  glass={glass}
+                />
+              ))}
+            </View>
+            {/* зачем (владелец 2026-10-04): 10 градиентных тем ДОБАВЛЕНЫ к 13 — отдельной
+                карточкой ниже, без подписи; набор берётся из одного списка-конфига. */}
+            <View
+              accessibilityRole="radiogroup"
+              style={[settingsGlassCardStyle(glass), styles.list, listShadow]}
+            >
+              <ThemeGlassSmoke glass={glass} />
+              {GRADIENT_OPTIONS.map((item, index) => (
+                <ThemeRow
+                  key={item.mode}
+                  option={item}
+                  label={themeDisplayName(item.mode, lang)}
+                  applied={item.mode === appliedLiquidGlassThemeId}
+                  first={index === 0}
+                  vivid
                   onPress={onRowPress}
                   glass={glass}
                 />

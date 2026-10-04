@@ -190,7 +190,7 @@ import { schedulePhoneStateDeferredIntegrityCheck } from './phone_state_runtime'
 import { coldStartMark, coldStartStep } from './cold_start_trace';
 import { msSinceJsEntry, takeModuleEvalReport } from './cold_start_entry_mark';
 import { whenHomePainted } from './home_paint_marker'; // зачем: §80 — [COLD-START] от старта процесса
-import { runAfterHomeFirstFrame } from './first_frame_deferred_warmups'; // зачем: PM-211 — необязательное после первого кадра Главной
+import { markNativeSplashHidden, runAfterHomeFirstFrame } from './first_frame_deferred_warmups'; // зачем: PM-211 — необязательное после первого кадра Главной
 import { installColdStartIoTrace } from './cold_start_io_trace'; // зачем: §89 — [COLD-START-IO]
 import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from './cloud_restore_coordinator';
 import { hasMeaningfulLocalAccountData } from './local_account_data';
@@ -1603,6 +1603,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     bootMark('SplashScreen.hideAsync() — сплеш скрыт');
     void SplashScreen.hideAsync();
     resolveNativeSplashHidden();
+    markNativeSplashHidden();
   }, [nativeSplashCanHide]);
 
   useEffect(() => {

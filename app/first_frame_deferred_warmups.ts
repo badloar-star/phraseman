@@ -19,6 +19,38 @@ import { onAppEvent } from './events';
 import { coldStartProcessMs } from './cold_start_trace';
 
 export const FIRST_FRAME_WARMUP_FALLBACK_MS = 2_500;
+/**
+ * зачем (координатор 04.10, замер №5): кадр Главной часто наступает ДО снятия сплеша — тогда все отложенные
+ * задачи (достижения 11,6 с, прогрев цен, очередь карточек, посев озвучки) набрасывались на JS-поток и
+ * AsyncStorage, и корень снимал сплеш на 2,6–3,4 с позже уже нарисованной Главной. После кадра ждём и
+ * снятия сплеша, но не дольше потолка — задача не теряется.
+ */
+export const FIRST_FRAME_SPLASH_WAIT_CEILING_MS = 4_000;
+
+type SplashHolder = { __phrasemanNativeSplashHiddenAt?: number; __phrasemanNativeSplashWaiters?: Array<() => void> };
+const splashHolder = globalThis as SplashHolder;
+
+/** Корень зовёт в момент SplashScreen.hideAsync(). */
+export function markNativeSplashHidden(): void {
+  if (typeof splashHolder.__phrasemanNativeSplashHiddenAt === 'number') return;
+  splashHolder.__phrasemanNativeSplashHiddenAt = Date.now();
+  const waiters = splashHolder.__phrasemanNativeSplashWaiters ?? [];
+  splashHolder.__phrasemanNativeSplashWaiters = [];
+  waiters.forEach((resolve) => resolve());
+}
+
+function whenNativeSplashHiddenOrCeiling(ceilingMs: number): Promise<'hidden' | 'ceiling'> {
+  if (typeof splashHolder.__phrasemanNativeSplashHiddenAt === 'number') return Promise.resolve('hidden');
+  return new Promise((resolve) => {
+    const timer = setTimeout(() => resolve('ceiling'), ceilingMs);
+    const waiters = splashHolder.__phrasemanNativeSplashWaiters ?? [];
+    waiters.push(() => {
+      clearTimeout(timer);
+      resolve('hidden');
+    });
+    splashHolder.__phrasemanNativeSplashWaiters = waiters;
+  });
+}
 
 export type FirstFrameReleaseTrigger = 'home_painted' | 'fallback';
 
@@ -77,15 +109,24 @@ export function runAfterHomeFirstFrame(
     sub?.remove();
     if (fallbackTimer) clearTimeout(fallbackTimer);
     if (trigger === 'home_painted') logHomePaintedOnce();
-    console.warn(`[FIRST-FRAME] deferred:release label=${label} trigger=${trigger} waitedMs=${Date.now() - registeredAt}`);
-    interaction = InteractionManager.runAfterInteractions(() => {
-      interaction = null;
+    const proceed = (splash: 'hidden' | 'ceiling') => {
       if (cancelled) {
-        console.log(`[FIRST-FRAME] deferred:skip label=${label} reason=cancelled_after_release`);
+        console.log(`[FIRST-FRAME] deferred:skip label=${label} reason=cancelled_while_waiting_splash`);
         return;
       }
-      runTask(label, task);
-    });
+      console.warn(`[FIRST-FRAME] deferred:release label=${label} trigger=${trigger} splash=${splash} waitedMs=${Date.now() - registeredAt}`);
+      interaction = InteractionManager.runAfterInteractions(() => {
+        interaction = null;
+        if (cancelled) {
+          console.log(`[FIRST-FRAME] deferred:skip label=${label} reason=cancelled_after_release`);
+          return;
+        }
+        runTask(label, task);
+      });
+    };
+    // Сплеш уже снят — без лишнего тика; иначе ждём его снятия или потолка.
+    if (typeof splashHolder.__phrasemanNativeSplashHiddenAt === 'number') proceed('hidden');
+    else void whenNativeSplashHiddenOrCeiling(FIRST_FRAME_SPLASH_WAIT_CEILING_MS).then(proceed);
   };
 
   sub = onAppEvent('app_home_screen_ready', () => release('home_painted'));

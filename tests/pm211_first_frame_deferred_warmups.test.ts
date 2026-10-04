@@ -71,6 +71,9 @@ describe('PM-211 runAfterHomeFirstFrame — поведение', () => {
     listeners.clear();
     interactionQueue.length = 0;
     latchedHomeReady = false;
+    // зачем (04.10): по умолчанию сплеш уже снят — проверяем прежнее поведение; ожидание сплеша — отдельный тест.
+    (globalThis as { __phrasemanNativeSplashHiddenAt?: number }).__phrasemanNativeSplashHiddenAt = 1;
+    delete (globalThis as { __phrasemanNativeSplashWaiters?: unknown }).__phrasemanNativeSplashWaiters;
     jest.spyOn(console, 'log').mockImplementation(() => undefined);
     jest.spyOn(console, 'warn').mockImplementation(() => undefined);
   });
@@ -78,6 +81,36 @@ describe('PM-211 runAfterHomeFirstFrame — поведение', () => {
   afterEach(() => {
     jest.useRealTimers();
     jest.restoreAllMocks();
+  });
+
+  it('после кадра Главной ждёт снятия сплеша (или потолка), чтобы не отнимать поток у снятия сплеша', async () => {
+    delete (globalThis as { __phrasemanNativeSplashHiddenAt?: number }).__phrasemanNativeSplashHiddenAt;
+    const { runAfterHomeFirstFrame, markNativeSplashHidden, FIRST_FRAME_SPLASH_WAIT_CEILING_MS } = loadModule();
+    const task = jest.fn();
+    runAfterHomeFirstFrame('splash', task, { fallbackMs: 60_000 });
+    emitHomeReady();
+    await Promise.resolve();
+    flushInteractions();
+    expect(task).not.toHaveBeenCalled(); // кадр есть, сплеш ещё висит
+
+    markNativeSplashHidden();
+    await Promise.resolve();
+    await Promise.resolve();
+    flushInteractions();
+    expect(task).toHaveBeenCalledTimes(1);
+
+    // потолок: без снятия сплеша задача всё равно не теряется
+    delete (globalThis as { __phrasemanNativeSplashHiddenAt?: number }).__phrasemanNativeSplashHiddenAt;
+    jest.resetModules();
+    const again = loadModule();
+    const late = jest.fn();
+    again.runAfterHomeFirstFrame('ceiling', late, { fallbackMs: 60_000 });
+    emitHomeReady();
+    jest.advanceTimersByTime(FIRST_FRAME_SPLASH_WAIT_CEILING_MS);
+    await Promise.resolve();
+    await Promise.resolve();
+    flushInteractions();
+    expect(late).toHaveBeenCalledTimes(1);
   });
 
   it('задача НЕ стартует до кадра Главной и стартует после него и взаимодействий', () => {

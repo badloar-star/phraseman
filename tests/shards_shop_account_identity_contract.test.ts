@@ -22,14 +22,21 @@ describe('shards store purchase account boundary', () => {
     expect(layout).not.toContain('await loadShardsFromCloud()');
   });
 
-  it('uses only stable-id-scoped v2 journals and never adopts ownerless v1', () => {
+  // зачем (PM-289 этап 2г, D70/D78, 02.10): журнал ожидающих оплаченных пакетов жемчуга удалён целиком — вместе с карантином легаси-журнала
+  // (quarantineLegacyIfNeededLocked, 'ownerless_v1') и разбором строк. Остался один путь: снос ключей журнала ПО ВЛАДЕЛЬЦУ при удалении аккаунта.
+  // Прежний контракт сторожил «не усыновлять безхозный v1»; теперь журнал не читается вообще — сторожим то, что осталось: ключи только
+  // с id владельца, снос под замками с проверкой, никакого разбора и усыновления.
+  it('only removes stable-id-scoped journal keys and never reads or adopts a journal', () => {
     expect(pending).toContain("const STORAGE_KEY_PREFIX = 'pending_shard_grants_v2:'");
-    expect(pending).toContain('quarantineLegacyIfNeededLocked');
-    expect(pending).toContain("'ownerless_v1'");
+    expect(pending).toContain('encodeURIComponent(stableId)');
+    expect(pending).toContain('withAccountTransitionLockWithDeadline');
+    expect(pending).toContain('withStorageLock');
+    expect(pending).toContain('key_survived');
+    expect(pending).not.toContain('quarantineLegacyIfNeededLocked');
+    expect(pending).not.toContain("'ownerless_v1'");
     expect(pending).not.toContain('JSON.parse(raw) as PendingShardGrant[]');
-    expect(pending).toContain('isCurrentAccountGeneration');
-    expect(pending).toContain('ownerStableId');
-    expect(pending).toContain('MAX_PENDING_GRANTS');
+    expect(pending).not.toContain('recordPendingShardGrant');
+    expect(pending).not.toContain('resumePendingShardGrants');
   });
 
   it('removes the scoped journal during account deletion', () => {

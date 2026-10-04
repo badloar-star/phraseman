@@ -36,11 +36,13 @@ const PROTECTED = {
     isLifetime: '4f7491ad8e638bd4e6ed1e0e1d3c0d84f9c0c64406ed2c5d86231c72c8293668',
     isMonthly: '0e26382096b4bdbf76e42dc5ddcbc4093d3f9fecfc9eb3b4679bf524c59fc5ad',
     planLabel: '4452e54660a8def87df4a03d96a9e4b7673931a615c7c3a233dcc80726512200',
-    handleChangePlan: '8b57b383f3cc3cc5659abc533f1cd762e6cbf49e1fba882ff18c40cbc3526d57',
-    handleRestore: '1cea263d41ad861eda856c2e9acd925040fb48cb1b7bd5c4d21b0c7db24e23d2',
+    // зачем (PM-229, db985607f, проверено по диффу): в этих трёх функциях изменились ТОЛЬКО немые `.catch(() => {})` → `.catch(noteSwallowedHandler(...))`:
+    // причина сбоя пишется в журнал, значение по умолчанию и порядок платёжных шагов прежние. Хеши перечислены заново после этого осмотра.
+    handleChangePlan: '1c022e9a9f992f4656295b8578a42ca2196ac26806beac5448c7e7322d492e0d',
+    handleRestore: '402469dd7ed58fa86e2abd0c69ce693b037c7e64f6ee5e3ae23f3df7a2e7a244',
     handleRestoreRef: '1b3dbed6ce5c65341dc1c80dac2a6478a19c791b36f0b38d6bb9d161c7663cf4',
     closeCancelSheet: 'f0f3df64441f33d8e9298e729fbe40fedf5ee81c3eade3bea7e3acc27c567090',
-    openStoreCancel: '07d3f08ae889367cd51fb54009df1589d452a446fa47af7f616b31e50fa38c38',
+    openStoreCancel: '0b2945979dcd63ecc9bc77f93c13c0cc8d1a52b33711b824c8481112f3b71720',
     submitCancel: '38777f1a8a224bef157733dd95500aeb1320553fe79f51fb1552de9d11df92b7',
     acceptSaveOffer: '062c49d78361a4a2714e55ae2809682429d2b092819e441cb2a7ab0eb41b48b0',
     declineSaveOffer: '2a951a60709478ff7a332b8508882b2c326fa185f89b232f736687aaa2ede883',
@@ -210,6 +212,8 @@ function createHarness({ plan = 'yearly', themeId = 'graphite', lang = 'ru', sto
     './home_screen_hydration': { peekHomeScreenHydration: () => null },
     './manage_subscription_save_offer': { resolveSaveOffer: () => 'none' },
     './debug-logger': { DebugLogger: { error: () => {} } },
+    // зачем (PM-229): экран подключил журнал проглоченных ошибок; заглушка ничего не пишет и ничего не меняет в поведении
+    './swallow_log': { noteSwallowedHandler: () => () => {} },
   };
   const output = ts.transpileModule(source, { fileName: SOURCE_PATH, compilerOptions: { esModuleInterop: true, jsx: ts.JsxEmit.React, module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText;
   const mod = { exports: {} };

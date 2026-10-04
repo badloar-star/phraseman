@@ -42,3 +42,6 @@ Governance-ID: TG-7A6F8A1474C1
 
 Governance-ID: TG-8389FEEF57E0
 (2026-10-04: dev-клиент не шлёт в прод Crashlytics; rollback = git revert.)
+
+Governance-ID: TG-001B09C684F1
+(2026-10-04: обновление четырёх старых красных сторожей по смыслу; rollback = git revert.)

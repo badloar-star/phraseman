@@ -14,7 +14,19 @@ describe('Cards collection ready-snapshot contract', () => {
   });
 
   test('collection reload follows the active study target and migration writes stay target-scoped', () => {
-    expect(source).toContain('await saveFlashcards(migratedLocal, studyTarget);');
+    // зачем (D158-ряд правок карточек, 01.10): миграция больше не перезаписывает весь список целиком `saveFlashcards(migratedLocal, studyTarget)` —
+    // она ДОЛИВАЕТ исправления (uk, транскрипция, версия движка) только в карточки, что ещё существуют, под замком записи и токеном аккаунта
+    // (запоздавшая миграция не воскресит удалённую карточку). Границу по языку держит сама функция: обновления берутся только для
+    // карточек своего языка, список читается и пишется по каждому языку отдельно.
+    expect(source).toContain('await mergeSavedFlashcardRepairs(migratedLocal, accountToken);');
+    expect(source).not.toContain('await saveFlashcards(migratedLocal, studyTarget);');
+    const hookSource = fs.readFileSync(path.join(__dirname, '..', 'hooks', 'use-flashcards.ts'), 'utf8');
+    const repairStart = hookSource.indexOf('export const mergeSavedFlashcardRepairs');
+    const repairBody = hookSource.slice(repairStart, repairStart + 1800);
+    expect(repairBody).toContain('withWriteLock(accountToken');
+    expect(repairBody).toContain("for (const target of ['en', 'fr'] as const)");
+    expect(repairBody).toContain('updates.filter(card => card.studyTarget === target)');
+    expect(repairBody).toContain('persistFlashcards(next, target, accountToken)');
     expect(source).toContain('loadBuiltMarketplaceCardsCache(studyTarget, lang)');
     expect(source).toContain('bundledPacksForOwned(ownedIdsEarly, studyTarget, lang)');
     expect(source).toContain('buildMarketplaceOwnedCards(ownedBundled, lang, studyTarget)');

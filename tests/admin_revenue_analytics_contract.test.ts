@@ -30,12 +30,12 @@ describe('admin revenue analytics contract', () => {
     expect(firebaseSource).toContain("source: paywallSourceForContext(context)");
   });
 
-  it('persists shards shop funnel events into admin-readable app_activity', () => {
-    expect(shardsShopSource).toContain("trackActivity('shards_shop:open'");
-    expect(shardsShopSource).toContain("trackActivity('shards_shop:pack_click'");
-    expect(shardsShopSource).toContain("trackActivity('shards_shop:purchase_success'");
-    expect(shardsShopSource).toContain("writeToFirestore: true");
-    expect(shardsShopSource).toContain("tags: { packId, productId, shards");
+  // зачем (PM-057, 24.09): магазин осколков убран из 2.0 — экран остался лишь редиректом для старых ссылок и событий воронки не пишет.
+  // Прежний тест проверял воронку несуществующего магазина; теперь охраняем обратное: старый маршрут ничего не торгует и не трекает.
+  it('keeps the retired shards shop route a plain redirect without funnel events', () => {
+    expect(shardsShopSource).toContain('<Redirect href="/flashcards_my_packs" />');
+    expect(shardsShopSource).not.toContain('trackActivity');
+    expect(shardsShopSource).not.toContain('purchase');
   });
 
   it('tracks onboarding paywall source from the onboarding flow', () => {
@@ -340,15 +340,15 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).not.toContain('text-transform: uppercase;\n    }\n    .admin-login-google');
   });
 
-  it('keeps the user stats strip neutral and text-first', () => {
-    expect(adminHtml).toContain('<div class="label" data-i18n-es="Total">Total</div>');
-    // зачем: D02/D70 — XP и жемчуг удалены в 2.0, их средних в полосе статистики нет.
+  // зачем (владелец, 21.09 «50 строк выдавались за всю базу», затем чистка 2.0): полоса считает только то, что честно посчитать на сервере —
+  // count() всей коллекции («Total») и число строк на странице. Средняя серия, тема, язык, платформа убраны, а не заполнены прочерком:
+  // среднее по загруженной странице было неправдой о базе. XP и жемчуг удалены в 2.0 (D02/D70).
+  it('keeps the user stats strip honest: only the whole-database count and the page count', () => {
+    expect(adminHtml).toContain('<div class="label" data-i18n-es="Total">Total</div><div class="value" id="s-total">');
+    expect(adminHtml).toContain('<div class="label">На странице</div><div class="value" id="s-page-count">');
     expect(adminHtml).not.toContain('>Avg XP</div>');
-    expect(adminHtml).toContain('<div class="label" data-i18n-es="Racha media">Avg streak</div>');
-    expect(adminHtml).toContain('<div class="label" data-i18n-es="Tema">Theme</div>');
-    expect(adminHtml).toContain('<div class="label">Language</div>');
-    expect(adminHtml).toContain('<div class="label">Платформа</div>');
     expect(adminHtml).not.toContain('>Avg shards</div>');
+    expect(adminHtml).not.toContain('<div class="label" data-i18n-es="Racha media">Avg streak</div>');
     expect(adminHtml).not.toContain('<div class="label" data-i18n-es="Tema: oscuro">');
     expect(adminHtml).not.toContain('<div class="label">🇷🇺 / 🇺🇦</div>');
     expect(adminHtml).not.toContain('<div class="label">📱 iOS / 🤖 Android</div>');
@@ -370,10 +370,12 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('<th onclick="setSort(\'name\')" data-i18n-es="Usuario">User</th>');
     expect(adminHtml).toContain('data-i18n-es="Progreso">Progress');
     expect(adminHtml).toContain('setSort(\'streak\')">Streak</button>');
-    expect(adminHtml).toContain('setSort(\'lessons\')">Lessons</button>');
+    // зачем: уроки лежат JSON-строкой в документе — сортировка возможна только в пределах загруженной страницы, кнопка говорит это («·стр.»)
+    expect(adminHtml).toContain('setSort(\'lessons\')" title="Уроки лежат JSON-строкой — сортировка только в пределах загруженной страницы">Lessons ·стр.</button>');
     expect(adminHtml).toContain('data-i18n-es="App"');
     expect(adminHtml).toContain('data-i18n-es="Cuenta">Account');
-    expect(adminHtml).toContain('setSort(\'shards\')">Shards</button>');
+    // зачем: D02/D70 — осколки удалены в 2.0, сортировки по ним в списке пользователей нет
+    expect(adminHtml).not.toContain('setSort(\'shards\')');
     expect(adminHtml).toContain('>Previous</button>');
     expect(adminHtml).toContain('>Next</button>');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-users .table-wrap');

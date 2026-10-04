@@ -20885,6 +20885,762 @@
           }
         }
       ]
+    },
+    {
+      "lessonId": "de_l24",
+      "lessonOrdinal": 24,
+      "grammarBoundary": {
+        "allowedConstructIds": [
+          "de_gc_event_passive_v1",
+          "de_gc_controlled_partizip_ii_v1",
+          "de_gc_separable_verb_bracket_v1",
+          "de_gc_perfekt_haben_classes_v1"
+        ],
+        "prohibitedConstructIds": [
+          "de_gc_state_passive_v1",
+          "de_gc_werden_infinitive_meanings_v1"
+        ],
+        "noExpansion": "Permit only present singular event passive wird plus a verified controlled Partizip II while the actor is genuinely secondary or omitted, with bounded contrast against an already known haben-Perfekt clause. Productive passive wholes are limited to wird geprüft, wird bearbeitet, wird abgegeben, wird abgeholt, wird repariert and wird bezahlt. The separable-verb bracket is reception-only in L24 and is evidenced only by the single known finite split clause Der Abholdienst holt das Fahrrad ab from L08; the controlled Partizip II wholes abgegeben and abgeholt do not count as evidence of a finite separable-verb bracket. passieren is limited to the present clarification question Was passiert jetzt? and its recorded perfect auxiliary is lexical metadata only, not a productive target. Do not introduce state passive, recipient passive, werden plus infinitive, an agent phrase, another separable lexical verb or finite separable clause, a universal passive or participle-formation rule, auxiliary guessing, a new tense or passive person-number paradigm, a new connector, a new case or preposition relation, L25 grammar, learner-facing artifacts, release, audio, mockup, English-contour reuse, or any Task6 lexical adjudication."
+      },
+      "chapters": [
+        {
+          "id": "de_l24_c01",
+          "ordinal": 1,
+          "lessonOutcomeId": "de_l24_ch01",
+          "lessonOutcome": "recognise event-passive werden and participle bracket",
+          "packetIds": [
+            "de_l24_c01_s01",
+            "de_l24_c01_s02",
+            "de_l24_c01_s03",
+            "de_l24_c01_s04",
+            "de_l24_c01_s05",
+            "de_l24_c01_s06",
+            "de_l24_c01_s07",
+            "de_l24_c01_s08"
+          ],
+          "allowedConstructIds": [
+            "de_gc_event_passive_v1",
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_state_passive_v1",
+            "de_gc_werden_infinitive_meanings_v1"
+          ],
+          "situation": {
+            "setting": "municipal-application-intake-observation",
+            "participants": "new-clerk-and-intake-mentor",
+            "goal": "recognise-werden-plus-geprueft-as-event-passive-bracket",
+            "contextSignature": "municipal-form-passive-recognition"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Das Formular wird geprüft.",
+            "exit": "Das Formular wird geprüft.",
+            "independentEvidenceByPacketId": "de_l24_c01_s08"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_event_passive_v1",
+              "stage": "introduction",
+              "packetId": "de_l24_c01_s01"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l24_c01_s03", "de_l24_c01_s04"],
+          "checkpoint": {
+            "packetId": "de_l24_c01_s08",
+            "integratedConstructIds": [
+              "de_gc_event_passive_v1",
+              "de_gc_controlled_partizip_ii_v1",
+              "de_gc_perfekt_haben_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l24_c01_pruefen_v1",
+                "semanticIdentity": "prufen|check one submitted form as a controlled process action",
+                "lemmaOrExpression": "prüfen",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "prüfen",
+                  "valencyFrame": "transitive check-submitted-form accusative frame",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "check one submitted form as a controlled process action",
+                "communicativeUse": "Das Formular wird geprüft.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l24_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l24_ch01",
+                  "checkpointPacketId": "de_l24_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_event_passive_v1",
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-recognise-werden-plus-geprueft-as-event-passive-bracket",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l24_c01_s08"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "community-grant-form-screening-note",
+              "participants": "volunteer-reviewer-and-project-coordinator",
+              "goal": "independently-recognise-werden-plus-geprueft-as-event-passive-bracket",
+              "contextSignature": "grant-form-passive-recognition-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l15_c01", "de_l15_c02"],
+            "targetsFutureChapterIds": ["de_l24_c02"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l25_c07_s51"
+            }
+          }
+        },
+        {
+          "id": "de_l24_c02",
+          "ordinal": 2,
+          "lessonOutcomeId": "de_l24_ch02",
+          "lessonOutcome": "contrast a controlled active event with actor-backgrounding passive",
+          "packetIds": [
+            "de_l24_c02_s09",
+            "de_l24_c02_s10",
+            "de_l24_c02_s11",
+            "de_l24_c02_s12",
+            "de_l24_c02_s13",
+            "de_l24_c02_s14",
+            "de_l24_c02_s15",
+            "de_l24_c02_s16"
+          ],
+          "allowedConstructIds": [
+            "de_gc_event_passive_v1",
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_state_passive_v1",
+            "de_gc_werden_infinitive_meanings_v1"
+          ],
+          "situation": {
+            "setting": "housing-office-active-passive-briefing",
+            "participants": "caseworker-and-new-colleague",
+            "goal": "contrast-actor-named-perfekt-with-actor-backgrounded-event-passive",
+            "contextSignature": "housing-active-passive-contrast"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Die Sachbearbeiterin hat das Formular geprüft. Das Formular wird geprüft.",
+            "exit": "Die Sachbearbeiterin hat das Formular geprüft. Das Formular wird geprüft.",
+            "independentEvidenceByPacketId": "de_l24_c02_s16"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_event_passive_v1",
+              "stage": "guided",
+              "packetId": "de_l24_c02_s09"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l24_c02_s11", "de_l24_c02_s12"],
+          "checkpoint": {
+            "packetId": "de_l24_c02_s16",
+            "integratedConstructIds": [
+              "de_gc_event_passive_v1",
+              "de_gc_controlled_partizip_ii_v1",
+              "de_gc_perfekt_haben_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l24_c02_sachbearbeiterin_v1",
+                "semanticIdentity": "sachbearbeiterin|caseworker named only to contrast an active completed event with actor backgrounded passive",
+                "lemmaOrExpression": "Sachbearbeiterin",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Sachbearbeiterin",
+                  "plural": "Sachbearbeiterinnen"
+                },
+                "nounPackageIdentity": "die|sachbearbeiterin|sachbearbeiterinnen",
+                "verbPackage": null,
+                "senseGloss": "caseworker named only to contrast an active completed event with actor backgrounded passive",
+                "communicativeUse": "Die Sachbearbeiterin hat das Formular geprüft. Das Formular wird geprüft.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l24_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l24_ch02",
+                  "checkpointPacketId": "de_l24_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_event_passive_v1",
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1"
+                  ],
+                  "utilityRole": "participant_reference",
+                  "situationFacet": "participants",
+                  "facetValue": "caseworker-and-applicant",
+                  "necessityClass": "PARTICIPANT_UNIDENTIFIABLE",
+                  "plannedUsePacketIds": ["de_l24_c02_s16"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "community-support-application-review",
+              "participants": "caseworker-and-applicant",
+              "goal": "independently-contrast-a-caseworker-named-completed-form-check-with-an-actor-backgrounded-process",
+              "contextSignature": "community-support-active-passive-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l15_c02", "de_l15_c04"],
+            "targetsFutureChapterIds": ["de_l24_c03"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l25_c07_s52"
+            }
+          }
+        },
+        {
+          "id": "de_l24_c03",
+          "ordinal": 3,
+          "lessonOutcomeId": "de_l24_ch03",
+          "lessonOutcome": "describe one step of a familiar process",
+          "packetIds": [
+            "de_l24_c03_s17",
+            "de_l24_c03_s18",
+            "de_l24_c03_s19",
+            "de_l24_c03_s20",
+            "de_l24_c03_s21",
+            "de_l24_c03_s22",
+            "de_l24_c03_s23",
+            "de_l24_c03_s24"
+          ],
+          "allowedConstructIds": [
+            "de_gc_event_passive_v1",
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_state_passive_v1",
+            "de_gc_werden_infinitive_meanings_v1"
+          ],
+          "situation": {
+            "setting": "community-permit-processing-desk",
+            "participants": "permit-clerk-and-resident",
+            "goal": "describe-one-familiar-form-processing-step-with-event-passive",
+            "contextSignature": "permit-form-passive-step"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Das Formular wird bearbeitet.",
+            "exit": "Das Formular wird bearbeitet.",
+            "independentEvidenceByPacketId": "de_l24_c03_s24"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_event_passive_v1",
+              "stage": "retrieval",
+              "packetId": "de_l24_c03_s17"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l24_c03_s19", "de_l24_c03_s20"],
+          "checkpoint": {
+            "packetId": "de_l24_c03_s24",
+            "integratedConstructIds": [
+              "de_gc_event_passive_v1",
+              "de_gc_controlled_partizip_ii_v1",
+              "de_gc_perfekt_haben_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l24_c03_bearbeiten_v1",
+                "semanticIdentity": "bearbeiten|process one submitted form as a controlled procedure step",
+                "lemmaOrExpression": "bearbeiten",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "bearbeiten",
+                  "valencyFrame": "transitive process-submitted-form accusative frame",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "process one submitted form as a controlled procedure step",
+                "communicativeUse": "Das Formular wird bearbeitet.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l24_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l24_ch03",
+                  "checkpointPacketId": "de_l24_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_event_passive_v1",
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-describe-one-familiar-registration-processing-step-with-event-passive",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l24_c03_s24"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "sports-club-registration-processing",
+              "participants": "club-secretary-and-new-member",
+              "goal": "independently-describe-one-familiar-registration-processing-step-with-event-passive",
+              "contextSignature": "club-registration-passive-step-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l15_c03", "de_l15_c05"],
+            "targetsFutureChapterIds": ["de_l24_c04"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l25_c07_s53"
+            }
+          }
+        },
+        {
+          "id": "de_l24_c04",
+          "ordinal": 4,
+          "lessonOutcomeId": "de_l24_ch04",
+          "lessonOutcome": "sequence two passive process steps",
+          "packetIds": [
+            "de_l24_c04_s25",
+            "de_l24_c04_s26",
+            "de_l24_c04_s27",
+            "de_l24_c04_s28",
+            "de_l24_c04_s29",
+            "de_l24_c04_s30",
+            "de_l24_c04_s31",
+            "de_l24_c04_s32"
+          ],
+          "allowedConstructIds": [
+            "de_gc_event_passive_v1",
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_state_passive_v1",
+            "de_gc_werden_infinitive_meanings_v1"
+          ],
+          "situation": {
+            "setting": "workplace-expense-form-sequence-briefing",
+            "participants": "team-lead-and-new-employee",
+            "goal": "sequence-two-event-passive-process-steps-with-known-zuerst-dann",
+            "contextSignature": "expense-form-passive-sequence"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Der Ablaufplan ist klar: Zuerst wird das Formular abgegeben. Dann wird das Formular geprüft.",
+            "exit": "Der Ablaufplan ist klar: Zuerst wird das Formular abgegeben. Dann wird das Formular geprüft.",
+            "independentEvidenceByPacketId": "de_l24_c04_s32"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_event_passive_v1",
+              "stage": "production",
+              "packetId": "de_l24_c04_s25"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l24_c04_s27", "de_l24_c04_s28"],
+          "checkpoint": {
+            "packetId": "de_l24_c04_s32",
+            "integratedConstructIds": [
+              "de_gc_event_passive_v1",
+              "de_gc_controlled_partizip_ii_v1",
+              "de_gc_perfekt_haben_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l24_c04_ablaufplan_v1",
+                "semanticIdentity": "ablaufplan|workflow plan used to sequence two passive procedure steps",
+                "lemmaOrExpression": "Ablaufplan",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Ablaufplan",
+                  "plural": "Ablaufpläne"
+                },
+                "nounPackageIdentity": "der|ablaufplan|ablaufplane",
+                "verbPackage": null,
+                "senseGloss": "workflow plan used to sequence two passive procedure steps",
+                "communicativeUse": "Der Ablaufplan ist klar: Zuerst wird das Formular abgegeben. Dann wird das Formular geprüft.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l24_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l24_ch04",
+                  "checkpointPacketId": "de_l24_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_event_passive_v1",
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1"
+                  ],
+                  "utilityRole": "discourse",
+                  "situationFacet": "setting",
+                  "facetValue": "community-room-booking-sequence",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l24_c04_s32"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "community-room-booking-sequence",
+              "participants": "facility-coordinator-and-volunteer",
+              "goal": "independently-sequence-two-event-passive-booking-steps",
+              "contextSignature": "room-booking-passive-sequence-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l15_c04", "de_l15_c06"],
+            "targetsFutureChapterIds": ["de_l24_c05"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l25_c07_s54"
+            }
+          }
+        },
+        {
+          "id": "de_l24_c05",
+          "ordinal": 5,
+          "lessonOutcomeId": "de_l24_ch05",
+          "lessonOutcome": "answer clarification about what happens rather than who acts",
+          "packetIds": [
+            "de_l24_c05_s33",
+            "de_l24_c05_s34",
+            "de_l24_c05_s35",
+            "de_l24_c05_s36",
+            "de_l24_c05_s37",
+            "de_l24_c05_s38",
+            "de_l24_c05_s39",
+            "de_l24_c05_s40"
+          ],
+          "allowedConstructIds": [
+            "de_gc_event_passive_v1",
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_state_passive_v1",
+            "de_gc_werden_infinitive_meanings_v1"
+          ],
+          "situation": {
+            "setting": "repair-desk-process-clarification",
+            "participants": "customer-and-service-adviser",
+            "goal": "answer-what-happens-now-without-supplying-an-actor",
+            "contextSignature": "repair-process-what-happens-clarification"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Was passiert jetzt? Das Fahrrad wird repariert.",
+            "exit": "Was passiert jetzt? Das Fahrrad wird repariert.",
+            "independentEvidenceByPacketId": "de_l24_c05_s40"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l24_c05_s35", "de_l24_c05_s36"],
+          "checkpoint": {
+            "packetId": "de_l24_c05_s40",
+            "integratedConstructIds": [
+              "de_gc_event_passive_v1",
+              "de_gc_controlled_partizip_ii_v1",
+              "de_gc_perfekt_haben_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l24_c05_passieren_v1",
+                "semanticIdentity": "passieren|happen as the next actor backgrounded process event",
+                "lemmaOrExpression": "passieren",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "passieren",
+                  "valencyFrame": "intransitive event-occurrence clarification frame",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "sein"
+                },
+                "senseGloss": "happen as the next actor backgrounded process event",
+                "communicativeUse": "Was passiert jetzt? Das Fahrrad wird repariert.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l24_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l24_ch05",
+                  "checkpointPacketId": "de_l24_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_event_passive_v1",
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1"
+                  ],
+                  "utilityRole": "interaction_opening",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-answer-what-happens-next-without-supplying-an-actor",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l24_c05_s40"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "recycling-centre-process-question",
+              "participants": "resident-and-site-guide",
+              "goal": "independently-answer-what-happens-next-without-supplying-an-actor",
+              "contextSignature": "recycling-process-clarification-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l15_c05", "de_l15_c07"],
+            "targetsFutureChapterIds": ["de_l24_c06"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l25_c07_s55"
+            }
+          }
+        },
+        {
+          "id": "de_l24_c06",
+          "ordinal": 6,
+          "lessonOutcomeId": "de_l24_ch06",
+          "lessonOutcome": "repair event-passive and Perfekt confusion",
+          "packetIds": [
+            "de_l24_c06_s41",
+            "de_l24_c06_s42",
+            "de_l24_c06_s43",
+            "de_l24_c06_s44",
+            "de_l24_c06_s45",
+            "de_l24_c06_s46",
+            "de_l24_c06_s47",
+            "de_l24_c06_s48"
+          ],
+          "allowedConstructIds": [
+            "de_gc_event_passive_v1",
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_perfekt_haben_classes_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_state_passive_v1",
+            "de_gc_werden_infinitive_meanings_v1"
+          ],
+          "situation": {
+            "setting": "training-sheet-passive-perfekt-repair",
+            "participants": "learner-and-workplace-trainer",
+            "goal": "repair-active-perfekt-versus-event-passive-function",
+            "contextSignature": "passive-perfekt-function-repair"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Die Sachbearbeiterin hat das Formular abgegeben. Das nennt die Person und ein abgeschlossenes Ereignis. Der Ablauf lautet: Das Formular wird abgegeben. Ich korrigiere die Verwechslung.",
+            "exit": "Die Sachbearbeiterin hat das Formular abgegeben. Das nennt die Person und ein abgeschlossenes Ereignis. Der Ablauf lautet: Das Formular wird abgegeben. Ich korrigiere die Verwechslung.",
+            "independentEvidenceByPacketId": "de_l24_c06_s48"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_event_passive_v1",
+              "stage": "transfer",
+              "packetId": "de_l24_c06_s41"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l24_c06_s43", "de_l24_c06_s44"],
+          "checkpoint": {
+            "packetId": "de_l24_c06_s48",
+            "integratedConstructIds": [
+              "de_gc_event_passive_v1",
+              "de_gc_controlled_partizip_ii_v1",
+              "de_gc_perfekt_haben_classes_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l24_c06_verwechslung_v1",
+                "semanticIdentity": "verwechslung|confusion between a completed active event and an actor backgrounded procedure",
+                "lemmaOrExpression": "Verwechslung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Verwechslung",
+                  "plural": "Verwechslungen"
+                },
+                "nounPackageIdentity": "die|verwechslung|verwechslungen",
+                "verbPackage": null,
+                "senseGloss": "confusion between a completed active event and an actor backgrounded procedure",
+                "communicativeUse": "Die Sachbearbeiterin hat das Formular abgegeben. Das nennt die Person und ein abgeschlossenes Ereignis. Der Ablauf lautet: Das Formular wird abgegeben. Ich korrigiere die Verwechslung.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l24_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l24_ch06",
+                  "checkpointPacketId": "de_l24_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_event_passive_v1",
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_perfekt_haben_classes_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-repair-active-perfekt-versus-event-passive-function",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l24_c06_s48"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "volunteer-procedure-language-check",
+              "participants": "volunteer-and-language-mentor",
+              "goal": "independently-repair-active-perfekt-versus-event-passive-function",
+              "contextSignature": "volunteer-passive-perfekt-repair-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l15_c06", "de_l15_c07"],
+            "targetsFutureChapterIds": ["de_l24_c07"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l25_c07_s56"
+            }
+          }
+        },
+        {
+          "id": "de_l24_c07",
+          "ordinal": 7,
+          "lessonOutcomeId": "de_l24_ch07",
+          "lessonOutcome": "transfer actor-backgrounded process explanation to a new routine",
+          "packetIds": [
+            "de_l24_c07_s49",
+            "de_l24_c07_s50",
+            "de_l24_c07_s51",
+            "de_l24_c07_s52",
+            "de_l24_c07_s53",
+            "de_l24_c07_s54",
+            "de_l24_c07_s55",
+            "de_l24_c07_s56"
+          ],
+          "allowedConstructIds": [
+            "de_gc_event_passive_v1",
+            "de_gc_controlled_partizip_ii_v1",
+            "de_gc_separable_verb_bracket_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_state_passive_v1",
+            "de_gc_werden_infinitive_meanings_v1"
+          ],
+          "situation": {
+            "setting": "new-colleague-bicycle-workshop-orientation",
+            "participants": "experienced-mechanic-and-new-colleague",
+            "goal": "transfer-an-actor-backgrounded-process-explanation-to-an-analogous-routine",
+            "contextSignature": "bicycle-workshop-passive-final-transfer"
+          },
+          "supportFading": {
+            "entryLevel": 2,
+            "exitLevel": 0,
+            "entry": "Herr Weber, der Arbeitsablauf ist klar: „Der Abholdienst holt das Fahrrad ab.“ Was passiert jetzt? Zuerst wird das Fahrrad abgeholt. Dann wird das Fahrrad repariert. Und die Rechnung? Die Rechnung wird bezahlt.",
+            "exit": "Herr Weber, der Arbeitsablauf ist klar: „Der Abholdienst holt das Fahrrad ab.“ Was passiert jetzt? Zuerst wird das Fahrrad abgeholt. Dann wird das Fahrrad repariert. Und die Rechnung? Die Rechnung wird bezahlt.",
+            "independentEvidenceByPacketId": "de_l24_c07_s56"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": [
+            "de_l24_c07_s51",
+            "de_l24_c07_s52",
+            "de_l24_c07_s53",
+            "de_l24_c07_s54",
+            "de_l24_c07_s55",
+            "de_l24_c07_s56"
+          ],
+          "checkpoint": {
+            "packetId": "de_l24_c07_s56",
+            "integratedConstructIds": [
+              "de_gc_event_passive_v1",
+              "de_gc_controlled_partizip_ii_v1",
+              "de_gc_separable_verb_bracket_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l24_c07_arbeitsablauf_v1",
+                "semanticIdentity": "arbeitsablauf|work routine explained to a new colleague through actor backgrounded steps",
+                "lemmaOrExpression": "Arbeitsablauf",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Arbeitsablauf",
+                  "plural": "Arbeitsabläufe"
+                },
+                "nounPackageIdentity": "der|arbeitsablauf|arbeitsablaufe",
+                "verbPackage": null,
+                "senseGloss": "work routine explained to a new colleague through actor backgrounded steps",
+                "communicativeUse": "Herr Weber, der Arbeitsablauf ist klar: „Der Abholdienst holt das Fahrrad ab.“ Was passiert jetzt? Zuerst wird das Fahrrad abgeholt. Dann wird das Fahrrad repariert. Und die Rechnung? Die Rechnung wird bezahlt.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l24_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l24_ch07",
+                  "checkpointPacketId": "de_l24_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_event_passive_v1",
+                    "de_gc_controlled_partizip_ii_v1",
+                    "de_gc_separable_verb_bracket_v1"
+                  ],
+                  "utilityRole": "transfer",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-explain-an-analogous-actor-backgrounded-work-routine",
+                  "necessityClass": "TRANSFER_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l24_c07_s56"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "neighbourhood-bicycle-repair-station-handover",
+              "participants": "volunteer-mechanic-and-new-helper",
+              "goal": "independently-explain-an-analogous-actor-backgrounded-work-routine",
+              "contextSignature": "neighbourhood-workflow-passive-transfer-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l24_c05", "de_l24_c06"],
+            "targetsFutureChapterIds": ["de_l25_c01"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l25_c07_s55"
+            }
+          }
+        }
+      ]
     }
   ]
 }

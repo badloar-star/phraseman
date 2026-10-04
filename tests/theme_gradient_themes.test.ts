@@ -87,10 +87,51 @@ describe('gradient formulas from themes-gradient.html', () => {
     expect(t.progressGradient[0]).toBe(def.accent);
   });
 
-  it('light appearance shows the light Graphite palette (no invented light gradient yet)', () => {
-    const g = liquidGlassTokens(def.id, { level: 'calm', appearance: 'light', intensity: 0.6 });
-    const graphite = liquidGlassTokens('graphite', { level: 'calm', appearance: 'light', intensity: 0.6 });
-    expect(g).toEqual(graphite);
+  it('light = variant B «Пастель»: two-colour wash, white cards, ink button turns pastel', () => {
+    const at0 = liquidGlassTokens(def.id, { level: 'calm', appearance: 'light', intensity: 0 });
+    const at1 = liquidGlassTokens(def.id, { level: 'calm', appearance: 'light', intensity: 1 });
+    expect(at0.isLight).toBe(true);
+    expect(at0.bgTop).toBe('#F6F6F8');
+    expect(at0.accent).toBe('#1C1C1F');
+    expect(at0.accentInk).toBe('#FFFFFF');
+    expect(at1.bgTop).toBe(mixLiquidGlassColor('#F6F6F8', def.glowA, 0.22));
+    expect(at1.bgBottom).toBe(mixLiquidGlassColor('#F6F6F8', def.glowB, 0.20));
+    expect(at1.accent).toBe(def.accent);
+    expect(at1.accentInk).toBe(def.onAccent);
+    expect(at1.opaqueCard).toBe('#FFFFFF');
+    expect(at1.bgGlow.every(c => c.endsWith('00'))).toBe(true);
+  });
+});
+
+describe('renamed tinted themes (owner 04.10)', () => {
+  it('«Сирень» and «Орхидея» belong to the gradient themes now', () => {
+    expect(THEME_DISPLAY_NAMES.lavender?.ru).toBe('Туманность');
+    expect(THEME_DISPLAY_NAMES.iris?.ru).toBe('Комета');
+    expect(THEME_DISPLAY_NAMES.grad_lilac?.ru).toBe('Сирень');
+    expect(THEME_DISPLAY_NAMES.grad_orchid?.ru).toBe('Орхидея');
+    const ru = Object.values(THEME_DISPLAY_NAMES).map(n => n.ru);
+    expect(ru.filter(n => n === 'Сирень')).toHaveLength(1);
+    expect(ru.filter(n => n === 'Орхидея')).toHaveLength(1);
+  });
+});
+
+describe('contrast ≥ 4.5:1 on every slider step — light «Пастель»', () => {
+  it.each(LIQUID_GLASS_GRADIENT_THEMES.map(t => [t.id]))('%s', (id) => {
+    for (const k of STEPS) {
+      const t = liquidGlassTokens(id, { level: 'calm', appearance: 'light', intensity: k });
+      const checks: [string, number][] = [
+        ['text on button', contrast(t.accentInk, t.accent)],
+        ['text on card', contrast(t.text, t.opaqueCard)],
+        ['secondary on card', contrast(t.secondary, t.opaqueCard)],
+        ['muted on card', contrast(t.mutedText, t.opaqueCard)],
+        ['text on background (top)', contrast(t.text, t.bgTop)],
+        ['accent text on background', contrast(t.accentText, t.bgTop)],
+        ['accent text on background (bottom)', contrast(t.accentText, t.bgBottom)],
+      ];
+      for (const [what, ratio] of checks) {
+        if (ratio < 4.5) throw new Error(`${id} light @ ${k}: ${what} = ${ratio.toFixed(2)} < 4.5`);
+      }
+    }
   });
 });
 

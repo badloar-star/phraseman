@@ -16,6 +16,7 @@ import {
 } from './liquidGlassThemeIntensity';
 import {
   LIQUID_GLASS_GRADIENT_THEME_IDS,
+  buildLiquidGlassGradientLightTokens,
   buildLiquidGlassGradientTokens,
   liquidGlassGradientTheme,
   type LiquidGlassGradientThemeId,
@@ -156,10 +157,12 @@ function isTintTheme(id: LiquidGlassThemeId): id is LiquidGlassTintThemeId {
 
 function buildThemeTokens(themeId: LiquidGlassThemeId, variant: Required<LiquidGlassVariant>) {
   const gradient = liquidGlassGradientTheme(themeId);
-  // зачем (владелец 2026-10-04): градиентные темы по макету themes-gradient.html — только тёмные.
-  // Светлых пока нет (макет в работе): в светлом оформлении такая тема показывает светлый
-  // Графит той же насыщенности, ничего не выдумывая поверх.
-  if (gradient && variant.appearance === 'dark') {
+  // зачем (владелец 2026-10-04): тёмное — themes-gradient.html, светлое — вариант B «Пастель»
+  // из themes-gradient-light.html.
+  if (gradient && variant.appearance === 'light') {
+    return buildLiquidGlassGradientLightTokens(gradient, variant.intensity);
+  }
+  if (gradient) {
     const graphiteDark = buildLiquidGlassIntensityTokens('graphite', TOKEN_REGISTRY.graphite, 'dark', 0);
     return buildLiquidGlassGradientTokens(gradient, graphiteDark, variant.intensity);
   }

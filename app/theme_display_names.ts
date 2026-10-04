@@ -33,8 +33,9 @@ export const THEME_DISPLAY_NAMES: Readonly<Record<string, ThemeDisplayName>> = O
   polar: { ru: 'Иней', uk: 'Іній', en: 'Frost', es: 'Escarcha', 'pt-BR': 'Geada', vi: 'Sương giá', id: 'Embun beku', tr: 'Kırağı', pl: 'Szron' },
   slate: { ru: 'Шторм', uk: 'Шторм', en: 'Storm', es: 'Tormenta', 'pt-BR': 'Tempestade', vi: 'Bão', id: 'Badai', tr: 'Fırtına', pl: 'Burza' },
   ink: { ru: 'Сумерки', uk: 'Сутінки', en: 'Twilight', es: 'Crepúsculo', 'pt-BR': 'Crepúsculo', vi: 'Chạng vạng', id: 'Temaram', tr: 'Alacakaranlık', pl: 'Zmierzch' },
-  lavender: { ru: 'Сирень', uk: 'Бузок', en: 'Lilac', es: 'Lila', 'pt-BR': 'Lilás', vi: 'Tử đinh hương', id: 'Lilak', tr: 'Leylak', pl: 'Bez' },
-  iris: { ru: 'Орхидея', uk: 'Орхідея', en: 'Orchid', es: 'Orquídea', 'pt-BR': 'Orquídea', vi: 'Hoa lan', id: 'Anggrek', tr: 'Orkide', pl: 'Orchidea' },
+  // зачем (владелец 2026-10-04): «Сирень» и «Орхидея» отданы градиентным темам, старые переименованы.
+  lavender: { ru: 'Туманность', uk: 'Туманність', en: 'Nebula', es: 'Nebulosa', 'pt-BR': 'Nebulosa', vi: 'Tinh vân', id: 'Nebula', tr: 'Bulutsu', pl: 'Mgławica' },
+  iris: { ru: 'Комета', uk: 'Комета', en: 'Comet', es: 'Cometa', 'pt-BR': 'Cometa', vi: 'Sao chổi', id: 'Komet', tr: 'Kuyruklu yıldız', pl: 'Kometa' },
   rose: { ru: 'Рассвет', uk: 'Світанок', en: 'Dawn', es: 'Amanecer', 'pt-BR': 'Amanhecer', vi: 'Bình minh', id: 'Fajar', tr: 'Şafak', pl: 'Świt' },
   terracotta: { ru: 'Закат', uk: 'Захід сонця', en: 'Sunset', es: 'Atardecer', 'pt-BR': 'Pôr do sol', vi: 'Hoàng hôn', id: 'Senja', tr: 'Gün batımı', pl: 'Zachód słońca' },
   taupe: { ru: 'Дюна', uk: 'Дюна', en: 'Dune', es: 'Duna', 'pt-BR': 'Duna', vi: 'Đụn cát', id: 'Bukit pasir', tr: 'Kumul', pl: 'Wydma' },

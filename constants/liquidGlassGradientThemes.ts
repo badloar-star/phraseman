@@ -12,7 +12,7 @@
 //   полоска      color-mix(acc k·100 %, #FFFFFF)
 //   плитка       color-mix(acc k·16 %, #2A2A2C)
 // Набор тем — ОДИН список ниже: владелец может убрать любую строку, остальное подстроится.
-// Только тёмное оформление: светлых градиентных тем пока нет (макет в работе, 04.10).
+// Светлое оформление — вариант B «Пастель» (themes-gradient-light.html, выбор владельца 04.10).
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { alpha } from './liquidGlassColor';
@@ -63,6 +63,94 @@ const MOCK_CARD = '#18181BB8';
 const MOCK_EDGE = '#FFFFFF17';
 const MOCK_TILE = '#2A2A2C';
 const MOCK_CTA = '#F2F1F6';
+
+// ─── светлое оформление: вариант B «Пастель» (владелец 2026-10-04, themes-gradient-light.html) ───
+// фон        диагональная заливка: сверху glowA·22 %·k, снизу glowB·20 %·k поверх #F6F6F8
+// карточки   сплошные белые на тени, без кромки
+// кнопка     от почти чёрной #1C1C1F к пастели темы по k; текст — белый или тёмный тон темы,
+//            что контрастнее на текущем цвете кнопки (без серой середины)
+// полоска    от #1C1C1F к глубокому тону glowA (52 % цвета + чёрный)
+// плитка     acc·40 %·k поверх #F0F0F3
+const LIGHT_BASE = '#F6F6F8';
+const LIGHT_INK = '#1C1C1F';
+
+function channel(v: number): number {
+  const c = v / 255;
+  return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+}
+function luminance(hex: string): number {
+  const n = (i: number) => channel(parseInt(hex.slice(i, i + 2), 16));
+  return 0.2126 * n(1) + 0.7152 * n(3) + 0.0722 * n(5);
+}
+/** Контраст WCAG двух непрозрачных #RRGGBB. */
+export function liquidGlassContrast(a: string, b: string): number {
+  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (hi! + 0.05) / (lo! + 0.05);
+}
+/**
+ * Текст на кнопке: белый, если он даёт ≥ 4.5; иначе тёмный тон темы; иначе чёрный.
+ * зачем: кнопка плавно идёт от почти чёрной к пастели и на середине проходит тон, где ни
+ * белый, ни тёмный тон темы не дотягивают до 4.5 (замер 4.04–4.44). Худший случай
+ * «белый или чёрный» — 4.58, поэтому чёрный — гарантированный запасной вариант.
+ */
+export function liquidGlassButtonInk(bg: string, themeDark: string): string {
+  if (liquidGlassContrast('#FFFFFF', bg) >= 4.5) return '#FFFFFF';
+  if (liquidGlassContrast(themeDark, bg) >= 4.5) return themeDark;
+  return '#000000';
+}
+const pickInk = liquidGlassButtonInk;
+
+export function buildLiquidGlassGradientLightTokens(
+  def: LiquidGlassGradientTheme,
+  intensity: number,
+): LiquidGlassBaseTokens & LiquidGlassAccentRoles {
+  const k = quantizeLiquidGlassIntensity(intensity);
+  const deepA = mixLiquidGlassColor('#000000', def.glowA, 0.52);
+  // зачем: текст цвета темы (ссылки, огонь) на самой насыщенной заливке у Авроры/Шампани/Льда
+  // давал 4.29–4.42 при тоне полоски (52 %) — для текста тон на ступень глубже (42 %).
+  const deepText = mixLiquidGlassColor('#000000', def.glowA, 0.42);
+  const bgTop = mixLiquidGlassColor(LIGHT_BASE, def.glowA, 0.22 * k);
+  const bgBottom = mixLiquidGlassColor(LIGHT_BASE, def.glowB, 0.20 * k);
+  const cta = mixLiquidGlassColor(LIGHT_INK, def.accent, k);
+  const ink = pickInk(cta, def.onAccent);
+  const fill = mixLiquidGlassColor(LIGHT_INK, deepA, k);
+  const tile = mixLiquidGlassColor('#F0F0F3', def.accent, 0.40 * k);
+  const text = '#111114';
+  const dir = { start: { x: 0.5, y: 0 }, end: { x: 0.5, y: 1 } };
+  return Object.freeze({
+    bg: bgBottom, bgTop, bgBottom,
+    opaqueCard: '#FFFFFF', opaqueSheet: '#FFFFFF', opaqueControl: '#ECECEF',
+    card: '#FFFFFF', sheet: '#FFFFFF',
+    glassEdge: '#00000000',
+    lightTint: alpha(text, 0.92),
+    cta, ctaInk: ink,
+    text, secondary: '#5C5C63', mutedText: '#6E6E75',
+    line: '#00000014',
+    selected: mixLiquidGlassColor('#0000000D', alpha(def.accent, 0.30), k),
+    level: liquidGlassLevelForIntensity(k),
+    appearance: 'light',
+    isLight: true,
+    accent: cta,
+    accentInk: ink,
+    // зачем: ссылки/огонь на светлом фоне — глубокий тон, чтобы держать контраст ≥ 4.5.
+    accentText: mixLiquidGlassColor('#3A3A40', deepText, k),
+    accentBright: mixLiquidGlassColor('#3A3A40', deepText, k),
+    accentSoft: mixLiquidGlassColor('#0000000D', alpha(def.accent, 0.30), k),
+    accentBorder: fill,
+    accentCap: mixLiquidGlassColor('#0000001A', alpha(deepA, 0.18), k),
+    accentTile: tile,
+    accentGlow: mixLiquidGlassColor(CLEAR, alpha(def.accent, 0.40), k),
+    accentGradient: Object.freeze([cta, cta]),
+    accentGradientStart: dir.start,
+    accentGradientEnd: dir.end,
+    progressGradient: Object.freeze([fill, fill]),
+    overline: '#5C5C63',
+    // В «Пастели» пятен нет — цвет даёт сама заливка фона.
+    bgGlow: Object.freeze([CLEAR, CLEAR, CLEAR]) as readonly [string, string, string],
+    cardSmoke: Object.freeze([CLEAR, CLEAR]) as readonly [string, string],
+    shadowTint: '#00000038',
+  });
+}
 
 /**
  * Палитра градиентной темы на насыщенности k. `graphite` — тёмные токены Графита:

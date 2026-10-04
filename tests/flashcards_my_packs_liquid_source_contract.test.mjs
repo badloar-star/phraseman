@@ -5,11 +5,15 @@ import test from 'node:test';
 
 const root = process.cwd();
 const source = readFileSync(join(root, 'app/flashcards_my_packs.tsx'), 'utf8');
+// зачем: разметка списка — MyPacksV2 + общие части CardsKit (макет cards-section «Мои наборы»)
+const view = readFileSync(join(root, 'app/flashcards/MyPacksV2.tsx'), 'utf8');
+const kit = readFileSync(join(root, 'components/cards-grid/CardsKit.tsx'), 'utf8');
 
-test('My Packs retains real Added then Created data, create, edit and delete actions', () => {
-  assert.ok(source.indexOf("renderSection('added'") < source.indexOf("renderSection('created'"));
-  for (const token of ['openPack(pack)', 'openPackEditor(pack)', 'setDeletePackTarget(pack)', "pathname: '/community_pack_create'", 'onPress={() => { void deletePack(); }}']) {
-    assert.ok(source.includes(token), `missing live action: ${token}`);
+test('My Packs retains real Created then Added data, create, edit and delete actions', () => {
+  // макет: «Созданные» идут раньше «Добавленных»
+  assert.ok(view.indexOf('copy.created} count={created.length}') < view.indexOf('copy.added} count={added.length}'));
+  for (const token of ['onOpen={(pack) => { void openPack(pack); }}', 'onEdit={openPackEditor}', 'onDelete={setDeletePackTarget}', "pathname: '/community_pack_create'", 'onPress={() => { void deletePack(); }}']) {
+    assert.ok((source + view).includes(token), `missing live action: ${token}`);
   }
 });
 
@@ -18,22 +22,24 @@ test('My Packs uses exact live liquid tokens, glass materials and approved typog
   assert.ok(source.includes('colors={[g.bgTop, g.bg, g.bgBottom]}'));
   assert.ok(source.includes('<MyPacksGlass'));
   assert.ok(source.includes("'dimezisBlurView'"));
-  assert.ok(source.includes('fontSize: 34, lineHeight: 40'));
-  assert.ok(source.includes('fontSize: 16, lineHeight: 22'));
-  assert.ok(source.includes('height: 46'));
+  // размеры из макета: заголовок 40/46, подпись 16/22, поиск 46
+  assert.ok(kit.includes('fontSize: 40, lineHeight: 46'));
+  assert.ok(kit.includes('fontSize: 16, lineHeight: 22'));
+  assert.ok(view.includes('height: 46'));
 });
 
-test('My Packs has honest pending/error/search/true-empty states and image flags', () => {
-  for (const token of ["useState<'loading' | 'ready' | 'stale' | 'error'>", "loadStatus === 'loading'", "loadStatus !== 'ready'", 'visiblePackCount === 0', 'packCount === 0', 'language_en.webp', 'language_fr_dev.webp', 'language_es_dev.webp']) {
-    assert.ok(source.includes(token), `missing live state or asset: ${token}`);
+test('My Packs has honest pending/error/search/true-empty states', () => {
+  for (const token of ["useState<'loading' | 'ready' | 'stale' | 'error'>", "loadStatus !== 'ready'", 'packCount > 0', "'empty'"]) {
+    assert.ok(source.includes(token), `missing live state: ${token}`);
   }
-  assert.ok(!source.includes('flagGlyph'), 'pack tiles use approved flag images, not emoji glyphs');
-  assert.ok(!source.includes('numberOfLines={2}'), 'long user-authored pack titles remain readable');
+  assert.ok(view.includes("status === 'loading'") && view.includes("status === 'unavailable'") && view.includes("status === 'empty'"));
+  assert.ok(!source.includes('flagGlyph'), 'pack rows use no emoji glyphs');
+  assert.ok(!view.includes('numberOfLines'), 'long user-authored pack titles remain readable');
 });
 
 test('My Packs keeps live picker and deletion confirmation in theme glass', () => {
   const picker = readFileSync(join(root, 'app/flashcards/PackLanguagePicker.tsx'), 'utf8');
-  assert.match(source, /<PackLanguagePicker[^>]*liquidGlass/);
+  assert.match(view, /<PackLanguagePicker/);
   assert.match(picker, /liquidGlassTokens\(liquidGlassThemeId\)/);
   assert.match(source, /fc-delete-pack-confirm-modal/);
   assert.match(source, /deletePackBusy/);

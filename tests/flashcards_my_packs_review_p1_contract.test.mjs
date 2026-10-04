@@ -8,7 +8,8 @@ const mine = readFileSync(join(root, 'app/flashcards_my_packs.tsx'), 'utf8');
 const hub = readFileSync(join(root, 'app/flashcards/FlashcardsHubScreen.tsx'), 'utf8');
 const sameGroup = mine.slice(mine.indexOf('function sameGroup('), mine.indexOf('export default function FlashcardsMyPacksScreen'));
 const loadMine = mine.slice(mine.indexOf('const loadMine = useCallback'), mine.indexOf('useFocusEffect(', mine.indexOf('const loadMine = useCallback')));
-const renderTile = mine.slice(mine.indexOf('const renderTile = useCallback'), mine.indexOf('const renderSection = useCallback'));
+// зачем: плитки заменены строками-карточками MyPacksV2 / KitPackRow (макет cards-section «Мои наборы»)
+const renderTile = readFileSync(join(root, 'app/flashcards/MyPacksV2.tsx'), 'utf8') + readFileSync(join(root, 'components/cards-grid/CardsKit.tsx'), 'utf8');
 
 test('My Packs refreshes changed visible metadata and freshness sort keys', () => {
   for (const field of ['titleRu', 'titleUk', 'titleEs', 'codeName', 'cardCount', 'updatedAt', 'authorName', 'packTileArtRevision']) {
@@ -32,10 +33,10 @@ test.todo('shared storage loaders must expose read failure separately from real 
 
 test('screen-reader exposes open, edit and delete as separate real actions', () => {
   assert.doesNotMatch(renderTile, /accessibilityLabel={`qa-fc-my-packs-pack-/);
-  assert.match(renderTile, /accessibilityLabel={`\$\{label\}/);
+  assert.match(renderTile, /accessibilityLabel \?\? `\$\{title\}, \$\{subtitle\}, \$\{count\}`/);
   assert.match(renderTile, /fc-my-packs-pack-edit-/);
   assert.match(renderTile, /fc-my-packs-pack-delete-/);
-  assert.match(renderTile, /<View\s+key=\{pack\.id\}/);
+  assert.match(renderTile, /key=\{pack\.id\}/);
   assert.doesNotMatch(mine, /accessibilityLabel="qa-fc-my-packs-(back|browse-community)"/);
   // зачем: 0ee956c9e — неизвестное число не озвучивается прочерком: пока count === null, подпись без числа.
   // зачем: плитки хаба рисует CardsHubV2 (макет 2.0); неизвестное число — пустая строка, и подпись тогда без числа.

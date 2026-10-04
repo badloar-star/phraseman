@@ -52,10 +52,10 @@ describe('правка своего набора не снимает его с �
     // Раньше кнопка жила только в каталоге сообщества и требовала
     // isCommunityUgc — то есть уже опубликованный набор. Черновик править
     // было негде, о чём и был репорт.
-    const screen = read('app', 'flashcards_my_packs.tsx');
+    const screen = read('app', 'flashcards_my_packs.tsx') + read('app', 'flashcards', 'MyPacksV2.tsx');
     expect(screen).toContain('community_pack_create');
     expect(screen).toContain('fc-my-packs-pack-edit-');
-    // Только «Созданные мной»: в «Добавленных» лежат чужие наборы.
-    expect(screen).toContain("key === 'created'");
+    // Только «Созданные мной»: в «Добавленных» лежат чужие наборы (пункт «Изменить» шторки — только при actionsOwn).
+    expect(screen).toContain('actionsOwn ?');
   });
 });

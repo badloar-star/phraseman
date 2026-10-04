@@ -121,22 +121,23 @@ describe('«назад» из набора ведёт туда, откуда п�
 describe('«Мои наборы»: иконки и два раздела', () => {
   const myPacks = read('flashcards_my_packs.tsx');
 
-  it('иконка набора берётся так же, как в каталоге сообщества', () => {
-    expect(myPacks).toContain('bundledPackTilePng,');
-    expect(myPacks).toContain('packTileImageForPack,');
-    expect(myPacks).toContain("from './flashcards/packMarketplaceIcons';");
-    expect(myPacks).toContain('const png = packTileImageForPack(pack) ?? bundledPackTilePng(pack.id);');
-    expect(myPacks).toContain('packCategoryIonIcon(pack.category)');
-    expect(myPacks).toContain("import { Image } from 'expo-image';");
+  // зачем (макет cards-section «Мои наборы»): плитки-обложки заменены строками-карточками с плиткой-иконкой
+  // (layers у созданных, people у добавленных); разметка живёт в MyPacksV2, логика групп — в экране.
+  const view = read('flashcards', 'MyPacksV2.tsx');
+
+  it('строка набора: плитка-иконка макета, название, подпись, число', () => {
+    expect(view).toContain("icon={own ? 'layers-outline' : 'people-outline'}");
+    expect(view).toContain('count={pack.cardCount}');
   });
 
   it('добавленные из сообщества и созданные мной — разные разделы, пустой не рисуется', () => {
     expect(myPacks).toContain('type MyPacksGroups = {');
     expect(myPacks).toContain('(isMine(pack) ? created : added).push(pack);');
     // зачем: 13c9f3012 (PM-093..096) — разделы рисуются из отфильтрованных поиском групп.
-    expect(myPacks).toContain("renderSection('added', copy.added, visibleGroups.added)");
-    expect(myPacks).toContain("renderSection('created', copy.created, visibleGroups.created)");
-    expect(myPacks).toContain('if (packs.length === 0) return null;');
+    expect(myPacks).toContain('created={visibleGroups.created}');
+    expect(myPacks).toContain('added={visibleGroups.added}');
+    expect(view).toContain('created.length > 0');
+    expect(view).toContain('added.length > 0');
   });
 
   it('заголовки разделов есть во всех 8 локалях', () => {

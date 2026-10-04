@@ -19,10 +19,8 @@
  * Лэйаут стабилен с первого кадра: пока владение читается, показываем тот же
  * каркас (заголовок + сетка-заглушка), а не пустоту, которая потом «прыгает».
  */
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { BlurView } from 'expo-blur';
 import { DebugLogger } from './debug-logger';
-import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -34,23 +32,21 @@ import {
   Pressable,
   StatusBar,
   StyleSheet,
-  ScrollView,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
-  useWindowDimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import { LinearGradient } from '../components/SafeLinearGradient';
-import { FlowText } from '../components/text-integrity/FlowText';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { actionToastTri, emitAppEvent } from './events';
+import { MyPacksV2 } from './flashcards/MyPacksV2';
+import { runPublishPackFlow } from './flashcards/publish_pack_flow';
 import { safeRouterBack } from './navigation_back';
 import { useLoadGate } from './use_load_gate';
 import { hapticTap } from '../hooks/use-haptics';
@@ -60,28 +56,20 @@ import { fetchCommunityPackMetaResult, forgetAuthorPackLastKnown, loadAuthorComm
 import { isLocalAuthorPackId, loadLocalAuthorPacks, loadLocalAuthorPacksResult, localAuthorPackToMarketPack, removeLocalAuthorPack } from './community_packs/localAuthorPacks';
 import { withdrawLocalAuthorPack } from './community_packs/publishLocalPack';
 import { emitPackNotDownloadedToast, stageCommunityPackCardsWithSilentRetry } from './community_packs/stage_with_retry';
-import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import {
   loadAccessiblePackIdsResult,
   loadMarketplacePacksResult,
-  packCategoryIonIcon,
   packHubCodeName,
   packTitleForInterface,
   peekAccessiblePackIds,
   peekWarmMarketplacePacks,
   type FlashcardMarketPack,
 } from './flashcards/marketplace';
-import {
-  bundledPackTilePng,
-  packTileArtRevision,
-  packTileImageForPack,
-} from './flashcards/packMarketplaceIcons';
-import { FC_PACKS_ROUTE } from './flashcards/tabbar_state';
+import { packTileArtRevision } from './flashcards/packMarketplaceIcons';
 import { stageOwnedPackCardsForNavigation } from './flashcards/useCollectionData';
 import { getCanonicalUserId } from './user_id_policy';
 import { type RuntimeStudyTarget } from './target_storage_keys';
-import PackLanguagePicker from './flashcards/PackLanguagePicker';
-import { defaultPackLanguageForStudyTarget, NO_PACK_LANGUAGE, noPackLanguageLabel, normalizePackLanguage, PACK_LANGUAGE_META, type PackLanguage } from './flashcards/pack_languages';
+import { defaultPackLanguageForStudyTarget, type PackLanguage } from './flashcards/pack_languages';
 import { publishMyPacksCount } from './flashcards/myPacksCountCache';
 import { getStoredPackLanguage, setStoredPackLanguage, subscribePackLanguage } from './flashcards/pack_language_preferences';
 import { filterPacksByLanguage } from './community_packs/communityCatalogFilter';
@@ -99,25 +87,6 @@ import {
   MY_PACKS_MISSING_TTL_MS,
 } from './flashcards/myPacksDataIntegrity';
 import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
-
-const COLS = 3;
-const GAP = 10;
-/**
- * Пропорция PNG-«веера» наборов (329x268). Тот же расчёт, что в
- * `FlashcardsCategoryHub` — иконка должна вписываться по высоте, не по ширине.
- */
-const PACK_FAN_ASPECT = 329 / 268;
-const H_PAD = 16;
-const TILE_RADIUS = 18;
-
-const PACK_FLAG_ART: Partial<Record<PackLanguage, number>> = {
-  en: require('../assets/images/language_flags/language_en.webp'),
-  fr: require('../assets/images/language_flags/language_fr_dev.webp'),
-  es: require('../assets/images/language_flags/language_es_dev.webp'),
-  // зачем D130: флаги итальянского и немецкого в стиле готовых (2026-09-30).
-  de: require('../assets/images/language_flags/language_de.webp'),
-  it: require('../assets/images/language_flags/language_it.webp'),
-};
 
 function MyPacksGlass({ tint, edge }: { tint: string; edge: string }) {
   return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
@@ -267,8 +236,6 @@ export default function FlashcardsMyPacksScreen() {
   const g = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const insets = useStableSafeAreaInsets();
-  const { width } = useWindowDimensions();
   // Первый кадр — из прогретых кэшей, без ожидания диска и сети (см. peekMyPacksGroups).
   const [packLanguage, setPackLanguage] = useState<PackLanguage>(() => defaultPackLanguageForStudyTarget(studyTarget));
   React.useEffect(() => subscribePackLanguage(setPackLanguage), []);
@@ -329,7 +296,6 @@ export default function FlashcardsMyPacksScreen() {
     void setStoredPackLanguage(next).catch(noteSwallowedHandler('flashcards_my_packs:useCallback.setStoredPackLanguage'));
   }, []);
 
-  const tileW = Math.floor((Math.min(width, 640) - H_PAD * 2 - GAP * (COLS - 1)) / COLS);
   const packCount = groups.added.length + groups.created.length;
 
   /** PM-095/PM-096: поиск и сортировка применяются к каждому разделу отдельно,
@@ -686,41 +652,6 @@ export default function FlashcardsMyPacksScreen() {
     [lang],
   );
 
-  /**
-   * Единый значок набора без старых изображений рубашек.
-   */
-  const packIcon = useCallback(
-    (pack: FlashcardMarketPack, tile: number) => {
-      const png = packTileImageForPack(pack) ?? bundledPackTilePng(pack.id);
-      /**
-       * Обложка занимает плитку почти целиком (как в хабе), иконка-дефолт — скромнее.
-       *
-       * зачем: владелец жаловался на крошечные иконки наборов. Размер терялся
-       * дважды — `contain` вписывал веер 329x268 в КВАДРАТ по ширине (минус ~20%
-       * высоты) плюс прозрачные поля внутри самого webp. Растим бокс по пропорции
-       * веера и вписываем по высоте; у плитки `overflow:'hidden'`, края не торчат.
-       */
-      if (png) {
-        const size = Math.max(84, Math.floor(tile * 0.98));
-        return (
-          <Image
-            key={packTileArtRevision(pack)}
-            source={png}
-            style={{ width: size * PACK_FAN_ASPECT, height: size }}
-            contentFit="contain"
-          />
-        );
-      }
-      return (
-        <Ionicons
-          name={(packCategoryIonIcon(pack.category) || 'albums-outline') as never}
-          size={Math.round(tile * 0.6)}
-          color={pack.isCommunityUgc ? g.lightTint : g.text}
-        />
-      );
-    },
-    [g.lightTint, g.text],
-  );
 
   // зачем (репорт #7ea8, 2026-09-04: «чи можна зробити картки мною створені і
   // ще не опубліковані доступними для редагування»): свой набор редактировался
@@ -801,174 +732,6 @@ export default function FlashcardsMyPacksScreen() {
     }
   }, [deletePackBusy, deletePackTarget, studyTarget]);
 
-  const renderTile = useCallback(
-    (pack: FlashcardMarketPack, editable = false) => {
-      const displayTitle = packTitleForInterface(pack, contentLang);
-      const label =
-        pack.isCommunityUgc && displayTitle.trim().length > 0
-          ? displayTitle.trim()
-          : packHubCodeName(pack);
-      const packLang = normalizePackLanguage(pack.packLanguage ?? pack.studyTarget);
-      const flagArt = PACK_FLAG_ART[packLang];
-      return (
-        <View
-          key={pack.id}
-          style={{ width: tileW, alignItems: 'center', paddingBottom: 6 }}
-        >
-          <View
-            style={{
-              width: tileW,
-              height: tileW,
-              position: 'relative',
-            }}
-          >
-            <TouchableOpacity
-              testID={`fc-my-packs-pack-${pack.id}`}
-              accessibilityLabel={`${label}, ${pack.cardCount} ${copy.cards}`}
-              accessibilityRole="button"
-              activeOpacity={0.85}
-              disabled={openingPackId !== null}
-              onPress={() => { void openPack(pack); }}
-              style={{
-              width: tileW,
-              height: tileW,
-              borderRadius: TILE_RADIUS,
-              borderWidth: 1,
-              borderColor: g.glassEdge,
-              backgroundColor: g.card,
-              alignItems: 'center',
-              justifyContent: 'center',
-              paddingHorizontal: 4,
-              overflow: 'hidden',
-            }}
-          >
-            <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
-            {packIcon(pack, tileW)}
-            {openingPackId === pack.id ? (
-              <View
-                pointerEvents="none"
-                style={[StyleSheet.absoluteFillObject, { alignItems: 'center', justifyContent: 'center', backgroundColor: g.sheet }]}
-              >
-                <ActivityIndicator color={g.cta} />
-              </View>
-            ) : null}
-            {pack.cardCount > 0 ? (
-              <View
-                pointerEvents="none"
-                style={{
-                  position: 'absolute',
-                  right: 5,
-                  bottom: 5,
-                  borderRadius: 9,
-                  paddingHorizontal: 6,
-                  paddingVertical: 1,
-                  backgroundColor: g.sheet,
-                  borderWidth: 1,
-                  borderColor: g.glassEdge,
-                }}
-              >
-                <Text style={{ fontSize: 13, fontWeight: '700', color: g.text }}>{pack.cardCount}</Text>
-              </View>
-            ) : null}
-            <View
-              pointerEvents="none"
-              style={{
-                position: 'absolute', left: 5, bottom: 5,
-                borderRadius: 9, paddingHorizontal: 4, paddingVertical: 2,
-                backgroundColor: g.sheet, borderWidth: 1, borderColor: g.glassEdge,
-              }}
-            >
-              {/* зачем (D127): набор «без языка» помечаем нейтральным значком и подписью, а не выдуманным флагом. */}
-              {packLang === NO_PACK_LANGUAGE ? (
-                <View testID={`fc-my-packs-pack-nolang-${pack.id}`} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, maxWidth: tileW - 16 }}>
-                  <Ionicons name="globe-outline" size={11} color={g.text} />
-                  <Text style={{ flexShrink: 1, fontSize: 13, lineHeight: 17, fontWeight: '700', color: g.text }}>{noPackLanguageLabel(lang)}</Text>
-                </View>
-              ) : flagArt ? <Image source={flagArt} style={{ width: 18, height: 12, borderRadius: 2 }} contentFit="cover" /> : <Text style={{ fontSize: 13, lineHeight: 17, fontWeight: '700', color: g.text }}>{PACK_LANGUAGE_META[packLang].shortName}</Text>}
-            </View>
-            </TouchableOpacity>
-            {editable ? (
-              <TouchableOpacity
-                testID={`fc-my-packs-pack-edit-${pack.id}`}
-                accessibilityRole="button"
-                accessibilityLabel={`${copy.editPack}: ${label}`}
-                disabled={openingPackId !== null}
-                onPress={() => openPackEditor(pack)}
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                style={{
-                  position: 'absolute',
-                  top: 2,
-                  right: 2,
-                  zIndex: 8,
-                  padding: 7,
-                  borderRadius: 12,
-                  backgroundColor: g.sheet,
-                }}
-              >
-                <Ionicons name="create-outline" size={17} color={g.text} />
-              </TouchableOpacity>
-            ) : null}
-            {editable ? (
-              <TouchableOpacity
-                testID={`fc-my-packs-pack-delete-${pack.id}`}
-                accessibilityRole="button"
-                accessibilityLabel={`${copy.deletePack}: ${label}`}
-                disabled={openingPackId !== null}
-                onPress={() => setDeletePackTarget(pack)}
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                style={{
-                  position: 'absolute',
-                  top: 2,
-                  left: 2,
-                  zIndex: 8,
-                  padding: 7,
-                  borderRadius: 12,
-                  backgroundColor: g.sheet,
-                }}
-              >
-                <Ionicons name="trash-outline" size={17} color={g.text} />
-              </TouchableOpacity>
-            ) : null}
-          </View>
-          <FlowText testID={`fc-my-packs-title-${pack.id}`} provenance="user" style={{ color: g.text, fontSize: 13, lineHeight: 17, fontWeight: '700', marginTop: 6, textAlign: 'center' }}>
-            {label}
-          </FlowText>
-        </View>
-      );
-    },
-    [contentLang, copy.cards, copy.deletePack, copy.editPack, openPack, openPackEditor, openingPackId, packIcon, g.card, g.cta, g.glassEdge, g.selected, g.sheet, g.text, tileW],
-  );
-
-  /** Раздел с заголовком и счётчиком; пустой раздел не рендерится вообще. */
-  const renderSection = useCallback(
-    (key: 'added' | 'created', title: string, packs: FlashcardMarketPack[]) => {
-      if (packs.length === 0) return null;
-      return (
-        <View key={key} testID={`fc-my-packs-section-${key}`} style={{ marginTop: 18 }}>
-          <View style={styles.sectionHead}>
-            <Text
-              accessibilityRole="header"
-              style={{ color: g.text, fontSize: 16, fontWeight: '700', letterSpacing: 0.2 }}
-            >
-              {title}
-            </Text>
-            <View
-              style={[styles.sectionCount, { borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }]}
-              pointerEvents="none"
-            >
-              <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
-              <Text style={{ color: g.secondary, fontSize: 13, fontWeight: '700' }}>{packs.length}</Text>
-            </View>
-          </View>
-          {/* Кнопка правки — только в «Созданных мной»: в «Добавленных» лежат
-              чужие наборы, их редактировать нельзя. */}
-          <View style={styles.grid}>{packs.map((pack) => renderTile(pack, key === 'created'))}</View>
-        </View>
-      );
-    },
-    [renderTile, g.card, g.glassEdge, g.secondary, g.selected, g.text],
-  );
-
   useEffect(() => {
     if (loadStatus !== 'ready') return;
     const publishAccount = accountGeneration;
@@ -988,176 +751,62 @@ export default function FlashcardsMyPacksScreen() {
     return () => { cancelled = true; };
   }, [accountGeneration, groups, loadStatus, studyTarget]);
 
+  // зачем (владелец: «в приложении запрещены любые различия с макетом», cards-section «Мои наборы»): разметка списка вынесена
+  // в MyPacksV2 (строки-карточки, разделы, «Создать набор», шторка действий); здесь остаётся только логика экрана.
+  const listStatus: 'list' | 'loading' | 'unavailable' | 'empty' = packCount > 0
+    ? 'list'
+    : loadStatus !== 'ready' && myPacksGate.exhausted
+      ? 'unavailable'
+      : loadStatus !== 'ready'
+        ? 'loading'
+        : 'empty';
+  const labelFor = useCallback((pack: FlashcardMarketPack): string => {
+    const displayTitle = packTitleForInterface(pack, contentLang);
+    return pack.isCommunityUgc && displayTitle.trim().length > 0 ? displayTitle.trim() : packHubCodeName(pack);
+  }, [contentLang]);
+  const trainFromPack = useCallback(() => {
+    // зачем: тренировка стартует общим входом раздела (окно режимов → выбор наборов) — как кнопка «Тренировать» на списке карточек.
+    DebugLogger.info('[MY-PACKS]', 'шторка набора: «Тренировать» → вход в тренировку');
+    router.navigate({ pathname: '/flashcards', params: { train: '1' } } as never);
+  }, [router]);
+  const publishPackFromList = useCallback((pack: FlashcardMarketPack) => {
+    DebugLogger.info('[MY-PACKS]', `шторка набора: «Открыть сообществу» ${pack.id}`);
+    void runPublishPackFlow(pack.id, lang, studyTarget).then((result) => {
+      if (result === 'submitted') setReloadTick((value) => value + 1);
+    });
+  }, [lang, studyTarget]);
+
   return (
     <View style={{ flex: 1, backgroundColor: g.bg }}>
       <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />
       <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
         <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
-        <View style={[styles.header, { borderBottomColor: g.line }]}>
-          <TouchableOpacity
-            testID="fc-my-packs-back"
-            accessibilityLabel={copy.back}
-            accessibilityRole="button"
-            accessible
-            onPress={leave}
-            style={{ width: 46, height: 46, borderRadius: 23, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.card, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}
-            hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-          >
-            <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
-            <Ionicons name="arrow-back" size={24} color={g.text} />
-          </TouchableOpacity>
-          <View style={{ flex: 1 }} />
-          <PackLanguagePicker lang={lang} t={t} value={packLanguage} onChange={handlePackLanguageChange} liquidGlass />
-        </View>
-
-        <ScrollView
-          decelerationRate="fast"
-          style={styles.scroll}
-          contentContainerStyle={[
-            styles.scrollContent,
-            { paddingBottom: Math.max(insets.bottom, 16) + 84 },
-          ]}
-          showsVerticalScrollIndicator
-        >
-          <View style={{ paddingHorizontal: H_PAD }}>
-            <Text style={{ color: g.text, fontSize: 34, lineHeight: 40, fontWeight: '800', letterSpacing: 0.2 }}>
-              {copy.title}
-            </Text>
-            {/* PM-093/094: короткое описание раздела — одна строка, не пересказ кнопок. */}
-            <Text style={{ color: g.secondary, fontSize: 16, lineHeight: 22, fontWeight: '700', marginTop: 4 }}>
-              {copy.sectionHint}
-            </Text>
-
-            {packCount > 0 ? (
-              <View style={styles.toolsRow}>
-                <View style={[styles.searchField, { borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }]}>
-                  <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
-                  <Ionicons name="search-outline" size={18} color={g.secondary} />
-                  <TextInput
-                    testID="fc-my-packs-search"
-                    accessibilityLabel={copy.searchPlaceholder}
-                    value={myPacksQuery}
-                    onChangeText={setMyPacksQuery}
-                    placeholder={copy.searchPlaceholder}
-                    placeholderTextColor={g.secondary}
-                    autoCorrect={false}
-                    autoCapitalize="none"
-                    returnKeyType="search"
-                    maxFontSizeMultiplier={1.2}
-                    style={[styles.searchInput, { color: g.text }]}
-                  />
-                  {myPacksQuery.length > 0 ? (
-                    <TouchableOpacity
-                      testID="fc-my-packs-search-clear"
-                      accessibilityRole="button"
-                      accessibilityLabel={copy.searchPlaceholder}
-                      onPress={() => setMyPacksQuery('')}
-                      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                    >
-                      <Ionicons name="close-circle" size={16} color={g.secondary} />
-                    </TouchableOpacity>
-                  ) : null}
-                </View>
-                <TouchableOpacity
-                  testID="fc-my-packs-sort-toggle"
-                  accessibilityRole="button"
-                  accessibilityLabel={myPacksSort === 'updated' ? copy.sortByName : copy.sortByUpdated}
-                  onPress={() => { void hapticTap(); handleMyPacksSortChange(myPacksSort === 'updated' ? 'name' : 'updated'); }}
-                  style={[styles.sortBtn, { borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }]}
-                >
-                  <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
-                  <Ionicons name={myPacksSort === 'updated' ? 'time-outline' : 'text-outline'} size={16} color={g.secondary} />
-                  <Text style={{ color: g.secondary, fontSize: 13, fontWeight: '700' }}>
-                    {myPacksSort === 'updated' ? copy.sortByUpdated : copy.sortByName}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            ) : null}
-
-            {renderSection('added', copy.added, visibleGroups.added)}
-            {renderSection('created', copy.created, visibleGroups.created)}
-
-            {packCount > 0 && visiblePackCount === 0 ? (
-              <Text style={{ color: g.secondary, fontSize: 16, marginTop: 16, textAlign: 'center' }}>
-                {copy.noSearchResults}
-              </Text>
-            ) : null}
-
-            {packCount === 0 ? (
-              <View style={{ marginTop: 24, alignItems: 'center', gap: 14, padding: 20, borderRadius: 24, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }}>
-                <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
-                {loadStatus !== 'ready' && myPacksGate.exhausted ? (
-                  <View testID="fc-my-packs-unavailable" style={{ alignSelf: 'stretch', alignItems: 'center', gap: 12 }}>
-                    <Text accessibilityRole="header" style={{ color: g.text, fontSize: 16, fontWeight: '700', textAlign: 'center' }}>{triLang(lang, {
-                      ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now', es: 'No disponible ahora',
-                      'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne',
-                    })}</Text>
-                    <Pressable
-                      testID="fc-my-packs-try-again"
-                      accessibilityRole="button"
-                      onPress={() => { void hapticTap(); myPacksGate.retryNow('tap'); }}
-                      style={({ pressed }) => ({ minHeight: 44, paddingHorizontal: 20, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: g.opaqueControl, opacity: pressed ? 0.8 : 1 })}
-                    >
-                      <Text style={{ color: g.text, fontSize: 16, fontWeight: '600' }}>{triLang(lang, {
-                        ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo',
-                        'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
-                      })}</Text>
-                    </Pressable>
-                  </View>
-                ) : loadStatus !== 'ready' ? (
-                  <View testID="fc-my-packs-loading" style={{ alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-between' }}>
-                    {[0, 1, 2].map((index) => <View key={index} style={{ width: tileW * 0.78, height: tileW * 0.78, borderRadius: 18, backgroundColor: g.opaqueControl }} />)}
-                  </View>
-                ) : <Text style={{ color: g.secondary, fontSize: 13, fontWeight: '700', textAlign: 'center' }}>
-                  {copy.empty}
-                </Text>}
-                {loadStatus === 'ready' ? (
-                <TouchableOpacity
-                  testID="fc-my-packs-browse-community"
-                  accessibilityLabel={copy.browse}
-                  accessibilityRole="button"
-                  accessible
-                  activeOpacity={0.85}
-                  onPress={() => router.push(FC_PACKS_ROUTE as never)}
-                  style={{
-                    paddingVertical: 12,
-                    paddingHorizontal: 18,
-                    borderRadius: 14,
-                    borderWidth: 1.5,
-                    borderColor: g.glassEdge,
-                    backgroundColor: g.sheet,
-                  }}
-                >
-                  <Text style={{ color: g.text, fontSize: 13, fontWeight: '700' }}>{copy.browse}</Text>
-                </TouchableOpacity>) : null}
-              </View>
-            ) : null}
-
-          </View>
-        </ScrollView>
-        <View pointerEvents="box-none" style={[styles.createFabDock, { bottom: Math.max(insets.bottom, 16) }]}>
-          <Pressable
-            testID="fc-my-packs-create"
-            accessibilityLabel={copy.create}
-            accessibilityRole="button"
-            accessible
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            onPress={() => {
-              void hapticTap();
-              router.push({ pathname: '/community_pack_create', params: { packLanguage } } as never);
-            }}
-            style={({ pressed }) => [
-              styles.createFab,
-              {
-                backgroundColor: g.accent,
-                opacity: pressed ? 0.82 : 1,
-                transform: [{ scale: pressed ? 0.96 : 1 }],
-              },
-            ]}
-          >
-            <Ionicons name="add" size={32} color={g.ctaInk} />
-          </Pressable>
-        </View>
+        <MyPacksV2
+          lang={lang}
+          created={visibleGroups.created}
+          added={visibleGroups.added}
+          totalCount={packCount}
+          status={listStatus}
+          labelFor={labelFor}
+          openingPackId={openingPackId}
+          query={myPacksQuery}
+          onQueryChange={setMyPacksQuery}
+          sort={myPacksSort}
+          onSortChange={(next) => { void hapticTap(); handleMyPacksSortChange(next); }}
+          packLanguage={packLanguage}
+          onPackLanguageChange={handlePackLanguageChange}
+          onBack={leave}
+          onCreate={() => {
+            void hapticTap();
+            router.push({ pathname: '/community_pack_create', params: { packLanguage } } as never);
+          }}
+          onOpen={(pack) => { void openPack(pack); }}
+          onTrain={trainFromPack}
+          onEdit={openPackEditor}
+          onPublish={publishPackFromList}
+          onDelete={setDeletePackTarget}
+          onRetry={() => { void hapticTap(); myPacksGate.retryNow('tap'); }}
+        />
         <Modal visible={!!deletePackTarget} transparent animationType="fade" statusBarTranslucent onRequestClose={() => { if (!deletePackBusy) setDeletePackTarget(null); }}>
           <View style={{ flex: 1, justifyContent: 'center', padding: 24, backgroundColor: '#00000099' }}>
             <Pressable accessibilityRole="button" accessibilityLabel={copy.back} onPress={() => { if (!deletePackBusy) setDeletePackTarget(null); }} style={StyleSheet.absoluteFill} />
@@ -1187,78 +836,5 @@ export default function FlashcardsMyPacksScreen() {
 }
 
 const styles = StyleSheet.create({
-  // PM-095/PM-096: строка поиска + переключатель сортировки над разделами.
-  toolsRow: { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 14 },
-  searchField: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    height: 46,
-    paddingHorizontal: 12,
-    borderRadius: 12,
-    borderWidth: 1,
-  },
-  searchInput: { flex: 1, height: 44, paddingVertical: 0, fontSize: 13 },
-  sortBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    height: 46,
-    paddingHorizontal: 12,
-    borderRadius: 12,
-    borderWidth: 1,
-  },
   safe: { flex: 1, flexDirection: 'column', minHeight: 0, backgroundColor: 'transparent' },
-  scroll: { flex: 1, minHeight: 0 },
-  scrollContent: { paddingTop: 16 },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingTop: 12,
-    paddingBottom: 8,
-    borderBottomWidth: 0.5,
-  },
-  sectionHead: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    marginBottom: 10,
-  },
-  sectionCount: {
-    minWidth: 24,
-    paddingHorizontal: 7,
-    paddingVertical: 1,
-    borderRadius: 999,
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  grid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: GAP,
-    justifyContent: 'flex-start',
-  },
-  createFabDock: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    alignItems: 'center',
-    zIndex: 10,
-  },
-  createFab: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    elevation: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.24,
-    shadowRadius: 8,
-  },
 });

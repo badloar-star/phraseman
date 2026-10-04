@@ -1,7 +1,8 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { BlurView } from 'expo-blur';
-import React, { useCallback, useRef, useState } from 'react';
-import { Platform, Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import React, { useCallback } from 'react';
+import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { KitEmpty } from '../../components/cards-grid/CardsKit';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
@@ -83,18 +84,9 @@ function SavedCollectionUnavailable({ lang, onRetry }: Readonly<{ lang: Lang; on
 // зачем (владелец: «в приложении запрещены любые различия с макетом», cards-section кадр 7 «Пусто»): блок стоит
 // по центру ЭКРАНА (top:50%, translateY(-46%) от высоты 217), а не под заголовком; плитка 61×61 r16 #28282A,
 // «Пока пусто» 24/30, подпись 16/22, кнопка 48 высотой с мятным свечением. Поиск без результатов (кадр 38) — прежний вид.
-const EMPTY_BLOCK_H = 217;
-
 function SavedCollectionEmpty({ lang, searchActive, onCommunity }: Props) {
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
-  const { height } = useWindowDimensions();
-  // зачем: блок центрируется по ЭКРАНУ (как в макете), а родитель начинается под шапкой — меряем его верх в окне.
-  const holder = useRef<View>(null);
-  const [pageTop, setPageTop] = useState<number | null>(null);
-  const measure = useCallback(() => {
-    holder.current?.measureInWindow((_x, y) => { setPageTop((prev) => (prev === y ? prev : y)); });
-  }, []);
   const title = searchActive ? triLang(lang, {
     ru: 'Ничего не найдено', uk: 'Нічого не знайдено', en: 'Nothing found', es: 'No se encontró nada',
     'pt-BR': 'Nada encontrado', vi: 'Không tìm thấy gì', id: 'Tidak ditemukan', tr: 'Hiçbir şey bulunamadı', pl: 'Nic nie znaleziono',
@@ -124,24 +116,7 @@ function SavedCollectionEmpty({ lang, searchActive, onCommunity }: Props) {
       <Text style={[styles.detail, { color: g.secondary }]}>{detail}</Text>
     </View>;
   }
-  return <View ref={holder} onLayout={measure} testID="fc-saved-empty" pointerEvents="box-none" style={StyleSheet.absoluteFill}>
-    <View pointerEvents="box-none" style={[styles.emptyBlock, { top: Math.round(height / 2 - 0.46 * EMPTY_BLOCK_H - (pageTop ?? 0)), opacity: pageTop === null ? 0 : 1 }]}>
-      <View style={styles.emptyTile}>
-        <Ionicons name="bookmark" size={28} color="#E9E9EB" />
-      </View>
-      <Text accessibilityRole="header" style={[styles.emptyTitle, { color: g.text }]}>{title}</Text>
-      <Text style={[styles.emptyDetail, { color: g.secondary }]}>{detail}</Text>
-      <Pressable testID="fc-saved-find-packs" accessibilityRole="button" accessibilityLabel={action} onPress={onCommunity}
-        style={({ pressed }) => [
-          styles.emptyCta,
-          { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 14, blurRadius: 30, spreadDistance: -12, color: `${g.accent}B3` }] },
-          pressed && styles.pressed,
-        ]}>
-        <Text style={[styles.emptyCtaText, { color: g.accentInk }]}>{action}</Text>
-        <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 24, boxShadow: [{ inset: true, offsetX: 0, offsetY: 1, blurRadius: 0, spreadDistance: 0, color: 'rgba(255,255,255,0.7)' }] }]} />
-      </Pressable>
-    </View>
-  </View>;
+  return <KitEmpty g={g} testID="fc-saved-empty" icon="bookmark" title={title} detail={detail} action={action} onAction={onCommunity} actionTestID="fc-saved-find-packs" />;
 }
 
 const styles = StyleSheet.create({
@@ -155,10 +130,4 @@ const styles = StyleSheet.create({
   action: { minHeight: 46, borderRadius: 14, paddingHorizontal: 22, alignItems: 'center', justifyContent: 'center', marginTop: 22 },
   actionText: { fontSize: 16, fontWeight: '700' },
   pressed: { opacity: 0.82 },
-  emptyBlock: { position: 'absolute', left: 0, right: 0, alignItems: 'center', paddingHorizontal: 40 },
-  emptyTile: { width: 61, height: 61, borderRadius: 16, backgroundColor: '#28282A', alignItems: 'center', justifyContent: 'center' },
-  emptyTitle: { fontSize: 24, lineHeight: 30, fontWeight: '700', letterSpacing: -0.2, textAlign: 'center', marginTop: 22 },
-  emptyDetail: { fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 8 },
-  emptyCta: { height: 48, borderRadius: 24, paddingHorizontal: 28, alignItems: 'center', justifyContent: 'center', marginTop: 26 },
-  emptyCtaText: { fontSize: 17, fontWeight: '700' },
 });

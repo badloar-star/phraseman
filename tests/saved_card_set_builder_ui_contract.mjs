@@ -3,7 +3,8 @@ import fs from 'node:fs';
 
 const packsScreen = fs.readFileSync('app/flashcards_packs.tsx', 'utf8');
 const hub = fs.readFileSync('app/flashcards/FlashcardsCategoryHub.tsx', 'utf8');
-const myPacks = fs.readFileSync('app/flashcards_my_packs.tsx', 'utf8');
+// зачем: выбор языка наборов переехал в шторку «⋯» MyPacksV2 (макет cards-section)
+const myPacks = fs.readFileSync('app/flashcards_my_packs.tsx', 'utf8') + fs.readFileSync('app/flashcards/MyPacksV2.tsx', 'utf8');
 const editor = fs.readFileSync('app/community_pack_create.tsx', 'utf8');
 const listItem = fs.readFileSync('app/flashcards/FlashcardListItem.tsx', 'utf8');
 

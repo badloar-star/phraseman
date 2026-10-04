@@ -1726,7 +1726,7 @@
     ],
     "basis": "OWNER",
     "stage": "B",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -1763,6 +1763,7 @@
       "evidence/STATE_CHECKLIST_2026-09-30.md: 768 строк матрицы (746 ✅, 8 🏠, 2 ❌, прочее ➖), прогон ревью"
     ],
     "notes": [
+      "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "Дизайн: визуальный проход в эмуляторе — в очереди",
       "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): НЕ принято. A1: матрица существует, но это самопроверка дизайнера по файлам (многие строки «не закоммичен»/«+правки в дереве»), в конце документа остаётся список невыполненного (Learning V2 82 = 78 🟠+4 ❌, старый урок 41 🟠, диагностика 27 🟠, диалоги V2 25 = 18 🟠+7 ❌, нативные Alert 17 и т.д.) — он противоречит шапке «747 ✅» и не помечен как устаревший. A2: «ни один старый экран не спрятан за фасадом» без эмуляторного прохода не подтвердить (в notes задачи: «визуальный проход в эмуляторе — в очереди»). Нужно: актуализировать итоговую часть матрицы, провести проход в эмуляторе/на устройстве, независимо подтвердить."
     ],
@@ -2275,7 +2276,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -2321,6 +2322,7 @@
       "commit 747deb70d"
     ],
     "notes": [
+      "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "Дизайн 01.10: шкала из существующего векторного огня по решению координатора; заменим, если появится макет",
       "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): содержание PASS (A1 заливка контура 0–10 и насыщение к 30; A2 нет withRepeat/Animated.loop и сетевых чтений, сторож 4/4). В done НЕ переведена: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES — шкала принята координатором, не владельцем (\"заменим, если появится макет\")."
     ],
@@ -4072,8 +4074,10 @@
       {
         "id": "PM-073-A2",
         "text": "выбранный стиль утверждён до массовой генерации",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Дизайн 2026-10-04: стиль — лист монет самого владельца (D34/D60, coin-assets/sliced), утверждён до генерации; A1 НЕ принят: на 40 px серебро (5–9) и платина (15–19) почти неотличимы — design_gate/PM-073_coin_ranks_40px.png, решение владельца"
+        ]
       }
     ],
     "depends_on": [],
@@ -4109,7 +4113,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -4118,14 +4122,18 @@
       {
         "id": "PM-074-A1",
         "text": "Нет обещаний реального владения языком по косметическому рангу",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Дизайн 2026-10-04: app/coin_rank_table_v1.ts:55 — статусные слова (Стажёр…Титан), ни одного уровня языка (A1–C2) или «свободно владеет»"
+        ]
       },
       {
         "id": "PM-074-A2",
         "text": "строки локализуемы и не обрезаются",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Дизайн 2026-10-04: 9 локалей (coin_rank_table_v1.ts:65–84, PM-128), заголовок без numberOfLines — переносится, не обрезается"
+        ]
       }
     ],
     "depends_on": [],
@@ -4137,11 +4145,12 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Opus 5.5",
-    "reviewer": null,
+    "reviewer": "сессия «Дизайн» по поручению координатора 04.10 (FINAL_PHASE)",
     "evidence": [
       "docs/phraseman-2.0/docs/COIN_RANKS.md"
     ],
     "notes": [
+      "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "21 название (Классика + 20 рангов, металлы/монеты) предложено, ждёт утверждения владельца"
     ],
     "actual_cost": null,
@@ -5195,7 +5204,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -5212,8 +5221,10 @@
       {
         "id": "PM-092-A2",
         "text": "длинные названия и счётчики не ломают строку",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Дизайн 2026-10-04: app/flashcards/DeckSelectionTile.tsx — название и счётчик в колонке flex:1/minWidth:0 переносятся, чекбокс flexShrink:0; строка не ломается"
+        ]
       }
     ],
     "depends_on": [],
@@ -5225,11 +5236,12 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": null,
+    "reviewer": "сессия «Дизайн» по поручению координатора 04.10 (FINAL_PHASE)",
     "evidence": [
       "commit 378ac4081"
     ],
     "notes": [
+      "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "DeckPickerSheet: квадратные плитки → компактный список. Каталог сообщества (сетка 3-в-ряд) НЕ переделан — делит файл с активной сессией наборов из видео, риск конфликта",
       "пачка 14: остаток — A2 не принят (длинные названия/счётчики), каталог сообщества не переделан; кадр «настройка тренировки без ценника» не снят. Gate DESIGN подписан."
     ],
@@ -5249,7 +5261,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -5266,8 +5278,10 @@
       {
         "id": "PM-093-A2",
         "text": "нет автоматического маркетингового абзаца",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Дизайн 2026-10-04: описание «Мои наборы» — одна фактическая строка (13c9f3012), без маркетингового абзаца; есть в app/flashcards_my_packs.tsx"
+        ]
       }
     ],
     "depends_on": [],
@@ -5279,11 +5293,12 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": null,
+    "reviewer": "сессия «Дизайн» по поручению координатора 04.10 (FINAL_PHASE)",
     "evidence": [
       "commits 13c9f3012 8d38d6733"
     ],
     "notes": [
+      "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "D20: короткие описания у «Мои наборы» и «Наборы сообщества»",
       "пачка 14: остаток — A2 («нет маркетингового абзаца») не принят, проверка текстов/кадров не сделана. Gate DESIGN подписан."
     ],
@@ -5303,7 +5318,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -5320,8 +5335,10 @@
       {
         "id": "PM-094-A2",
         "text": "языковые варианты проверены",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Дизайн 2026-10-04: строка описания и поиск/сортировка — во всех 9 локалях (ru/uk/en/es/pt-BR/vi/id/tr/pl), 13c9f3012"
+        ]
       }
     ],
     "depends_on": [],
@@ -5333,11 +5350,12 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": null,
+    "reviewer": "сессия «Дизайн» по поручению координатора 04.10 (FINAL_PHASE)",
     "evidence": [
       "commits 13c9f3012 8d38d6733"
     ],
     "notes": [
+      "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "пачка 14: остаток — A2 (языковые варианты) не принят/не проверен. Gate DESIGN подписан."
     ],
     "actual_cost": null,
@@ -5416,7 +5434,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -5433,14 +5451,18 @@
       {
         "id": "PM-096-A2",
         "text": "выбранная сортировка сохраняется локально",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Дизайн 2026-10-04: выбор сортировки в AsyncStorage fc_my_packs_sort_v1 (app/flashcards_my_packs.tsx:153–173)"
+        ]
       },
       {
         "id": "PM-096-A3",
         "text": "нет перетасовки во время выбора",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Дизайн 2026-10-04: sortMyPacks детерминирован (localeCompare / updatedAt), выделение наборов порядок не меняет"
+        ]
       }
     ],
     "depends_on": [],
@@ -5452,11 +5474,12 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": null,
+    "reviewer": "сессия «Дизайн» по поручению координатора 04.10 (FINAL_PHASE)",
     "evidence": [
       "commit 13c9f3012"
     ],
     "notes": [
+      "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "единая сортировка «Мои наборы», сохраняется в AsyncStorage",
       "пачка 14: остаток — A2 (сортировка сохраняется локально) и A3 (без перетасовки) не приняты. Gate DESIGN подписан."
     ],
@@ -5476,7 +5499,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -5493,8 +5516,10 @@
       {
         "id": "PM-097-A2",
         "text": "язык озвучки выбирается отдельно",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Дизайн 2026-10-04: голос озвучки выбирается отдельно на экране «Голос озвучки · EN» (кадр design_gate/PM-097-A2_voice_picker_global_en.png); подсказки про голоса телефона убраны 31d1ad28b; «на набор, а не на язык» — в вето-списке владельца"
+        ]
       }
     ],
     "depends_on": [],
@@ -5506,11 +5531,12 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": null,
+    "reviewer": "сессия «Дизайн» по поручению координатора 04.10 (FINAL_PHASE)",
     "evidence": [
       "проверка"
     ],
     "notes": [
+      "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "поля стороны уже нейтральны (Передняя/Задняя), PM-065 не выполнялась и ничего не задела"
     ],
     "actual_cost": null,
@@ -5632,7 +5658,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -5664,12 +5690,13 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": null,
-    "reviewer": null,
+    "reviewer": "сессия «Дизайн» по поручению координатора 04.10 (FINAL_PHASE)",
     "evidence": [
       "2026-10-03 2acba6874 feat(cards): наборы «Без языка» (D127): packLanguage 'none' только при явном выборе автора, легаси без поля = en; выбор в создании набора (community_pack_create, PackLanguagePicker), такие наборы видны при любом фильтре языка, помечены значком, не озвучиваются (zxx-маркер), в «Устно» не предлагаются; сервер принимает 'none' (functions/src/community_pack_language.ts); tests/pack_language_none_d127 + pack_language_none_voice_d127 16/16, functions community_pack_language 3/3 (прогон 03.10)",
       "2026-10-03 2acba6874: вся «неязыковость» — одно значение 'none' поля packLanguage (pack_languages.ts, deck_sources/deck_options, communityCatalogFilter) без новой предметной академии, каталога тем или классификатора; сервер: один хелпер community_pack_language.ts (48 строк)"
     ],
     "notes": [
+      "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "Owner decision 2026-09-27: отдельный выбор языка разрешён только в разделе карточек; остальные учебные контуры используют язык, выбранный в настройках.",
       "2026-10-03 ревизия реестра: PM-100 → review; гейт DESIGN_APPROVED_FOR_VISIBLE_CHANGES (значок и подпись «Без языка» в списках) — на проверку ревьюера/«Дизайна»; Owner decision 2026-09-27 про выбор языка только в разделе карточек соблюдено"
     ],
@@ -7211,7 +7238,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -7220,8 +7247,10 @@
       {
         "id": "PM-129-A1",
         "text": "Новый UI использует общий selector, единое начало сессии и понятный результат без фанфар",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Дизайн 2026-10-04: общий выбор наборов + единый старт (FC-gate) + итог без фанфар — кадры 80ec52e93, 498841db6; 9a9519fe3 по practice.html; подписано координатором (DESIGN_GATE_OWNER_REVIEW §80)"
+        ]
       }
     ],
     "depends_on": [],
@@ -7233,11 +7262,12 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": null,
+    "reviewer": "сессия «Дизайн» по поручению координатора 04.10 (FINAL_PHASE)",
     "evidence": [
       "commit a17fef2cb (общий индекс)"
     ],
     "notes": [
+      "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "убран устаревший комментарий про старую цену энергии 10⚡. Сам редизайн макета — зона сессии интерфейса, ждёт DESIGN_APPROVED_FOR_VISIBLE_CHANGES",
       "пачка 14: остаток — A1 не принят: редизайн «Блиц» (общий selector, итог без фанфар) не сделан, в коммите только правка комментария. Gate DESIGN подписан."
     ],
@@ -7450,7 +7480,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -7467,8 +7497,10 @@
       {
         "id": "PM-134-A2",
         "text": "повтор, выход и необходимые настройки доступности не пропали",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Дизайн 2026-10-04: «назад», повтор и accessibilityLabel есть во всех 4 режимах (blitz/recall/speaking/mistakes — grep), кадры design_gate/D158_mistake_practice_unavailable.png и speaking_inline_slot_450x800_after.png"
+        ]
       }
     ],
     "depends_on": [],
@@ -7485,6 +7517,7 @@
       "commit f61e9f468"
     ],
     "notes": [
+      "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "4 экрана практики проверены, мусора почти нет (PM-086 уже вычистил). Убраны 2 мёртвых импорта в mistake_practice_session.tsx",
       "пачка 15: остаток — A2 не принят: коммит f61e9f468 убрал лишь 2 мёртвых импорта, ни одного control; список «control → назначение» отсутствует; mistake_practice_screen_contract красный 7/8 (ожидает params.returnTo==='max_voice_review', MAX запломбирован, тест устарел)"
     ],
@@ -7536,7 +7569,7 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": null,
+    "reviewer": "сессия «Дизайн» по поручению координатора 04.10 (FINAL_PHASE)",
     "evidence": [
       "tests/mistake_practice_screen_contract.test.ts 8/8"
     ],

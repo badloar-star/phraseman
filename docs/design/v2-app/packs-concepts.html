@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Наборы сообщества — три концепции</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (владелец 04.10: вкладка «Наборы» сообщества — три принципиально разных языка интерфейса).
+     Общее с приложением: тёмный фон, аврора темы (--g1 --g2 --acc --on), акцентная кнопка ac-cta, Inter.
+     Нет: стопки-героя, плиток 2×2 с разделами, сетки стеклянных карточек, переворота, обложек и «рубашек» набора (убраны в 2.0), цен и рун (наборы бесплатные). */
+  .scr > .in { min-height: 100%; }
+  .acc { color: var(--acc); } .sec2 { color: var(--sec); }
+
+  /* ---------- общие детали ---------- */
+  .ib { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex: none; color: #fff; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+  .ib.bare { background: transparent; box-shadow: none; }
+  .lg { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px 0 12px; border-radius: 22px; flex: none; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); font-size: 15px; font-weight: 700; }
+  .lg img { width: 24px; height: 15px; border-radius: 3px; object-fit: cover; display: block; }
+  .mx { display: flex; gap: 14px; font-size: 14px; line-height: 18px; color: var(--sec); align-items: center; }
+  .mx span { display: inline-flex; align-items: center; gap: 5px; }
+  .tp { display: inline-flex; align-items: center; height: 26px; padding: 0 10px; border-radius: 13px; background: var(--acc); color: var(--on); font-size: 13px; font-weight: 700; flex: none; }
+  .pe { width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,.92); color: #0B0C0E; flex: none; }
+  .tg { display: flex; align-items: center; gap: 6px; } .tg:empty { display: none; }
+  .tt { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+  .dm { opacity: .3; }
+  .bot2 { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 24px 20px 34px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.94) 42%); }
+  .wave { color: var(--sec); }
+  .gsk { background: linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); }
+  .fade { -webkit-mask-image: linear-gradient(#000 30%, transparent); mask-image: linear-gradient(#000 30%, transparent); }
+
+  /* ===== Концепция 1: ПОЛОСЫ — широкие цветные полосы от края до края, крупное название, число карточек справа ===== */
+  .t1 { display: flex; align-items: center; gap: 14px; height: 48px; margin-top: 4px; }
+  .t1 .tb { height: 44px; display: flex; align-items: center; font-size: 16px; font-weight: 600; color: var(--sec); position: relative; }
+  .t1 .tb.on { color: #fff; }
+  .t1 .tb.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: 1px; height: 3px; border-radius: 2px; background: var(--acc); }
+  .h1c { font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -.6px; margin-top: 12px; }
+  .cn1 { margin: 16px -20px 0; min-height: 64px; display: flex; align-items: center; gap: 14px; padding: 0 20px; background: rgba(255,255,255,.06); font-size: 17px; font-weight: 600; }
+  .cn1 .pc { width: 40px; height: 40px; border-radius: 50%; background: var(--acc); color: var(--on); display: flex; align-items: center; justify-content: center; flex: none; }
+  .bands { margin: 3px -20px 0; display: flex; flex-direction: column; gap: 3px; }
+  .bd { position: relative; min-height: 134px; padding: 18px 20px; display: flex; align-items: center; gap: 14px; overflow: hidden; isolation: isolate;
+    background: linear-gradient(var(--a), color-mix(in srgb, var(--g1) var(--x), #0c0c10), color-mix(in srgb, var(--g2) var(--y), #0a0a0d)); }
+  .bd::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(150deg, rgba(255,255,255,.12), rgba(255,255,255,0) 50%); }
+  .bd .bx { flex: 1; min-width: 0; }
+  .bd .tt { font-size: 24px; line-height: 28px; font-weight: 700; letter-spacing: -.4px; }
+  .bd .au { font-size: 16px; line-height: 20px; margin-top: 6px; color: rgba(255,255,255,.85); }
+  .bd .mx { margin-top: 6px; color: rgba(255,255,255,.8); }
+  .bd .rt { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; min-width: 86px; flex: none; }
+  .bd .nm { font-size: 42px; line-height: 40px; font-weight: 800; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+  .bd .un { font-size: 13px; line-height: 16px; color: rgba(255,255,255,.78); margin-top: -2px; }
+  .nb1 { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; height: 104px; padding: 0 20px 34px; display: flex; align-items: center; background: rgba(12,12,13,.95); box-shadow: inset 0 1px 0 rgba(255,255,255,.1); }
+  .nb1 .b { flex: 1; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; color: var(--sec); position: relative; }
+  .nb1 .b.on { color: #fff; }
+  .nb1 .b.on::after { content: ""; position: absolute; top: -1px; width: 30px; height: 3px; border-radius: 2px; background: var(--acc); }
+  .nb1 .pl { width: 56px; height: 56px; border-radius: 50%; background: var(--acc); color: var(--on); display: flex; align-items: center; justify-content: center; flex: none; box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--acc) 70%, transparent); }
+  .sf { display: flex; align-items: center; gap: 10px; height: 48px; flex: 1; min-width: 0; padding: 0 4px 0 16px; border-radius: 24px; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); font-size: 17px; }
+  .sf .q { flex: 1; min-width: 0; }
+  .sf .ph0 { color: var(--sec); }
+  .ac1 { margin: 0 -20px; background: rgba(22,22,27,.98); }
+  .ac1 > div { display: flex; align-items: center; gap: 16px; min-height: 60px; padding: 0 20px; font-size: 17px; font-weight: 600; }
+  .ac1 > div + div { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .ac1 .rdc { color: #FF9C93; }
+  .em1 { text-align: center; padding: 40px 28px 26px; }
+  .em1 .ci { width: 64px; height: 64px; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.08); }
+  .em1 p { font-size: 22px; line-height: 29px; font-weight: 600; margin: 18px 0 0; letter-spacing: -.3px; }
+  .gb { height: 134px; background: linear-gradient(100deg, rgba(255,255,255,.07), rgba(255,255,255,.025)); }
+  .pv1 { margin: -52px -20px 0; padding: 52px 20px 26px; position: relative; isolation: isolate;
+    background: linear-gradient(105deg, color-mix(in srgb, var(--g1) 52%, #0c0c10), color-mix(in srgb, var(--g2) 36%, #0a0a0d)); }
+  .pv1::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(150deg, rgba(255,255,255,.12), rgba(255,255,255,0) 50%); }
+  .wd1 { display: flex; align-items: center; gap: 14px; min-height: 76px; }
+  .wd1 + .wd1 { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .wd1 .w { flex: 1; font-size: 24px; font-weight: 600; letter-spacing: -.3px; }
+  .wd1 .n { color: var(--sec); font-size: 15px; font-weight: 600; width: 28px; text-align: right; }
+
+  /* ===== Концепция 2: МОЗАИКА — плитки разного размера, число карточек как крупная цифра, меню — всплывающее ===== */
+  .sg2 { display: flex; height: 52px; padding: 4px; border-radius: 26px; background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+  .sg2 span { flex: 1; display: flex; align-items: center; justify-content: center; border-radius: 22px; font-size: 16px; font-weight: 600; color: var(--sec); }
+  .sg2 span.on { background: var(--acc); color: var(--on); }
+  .h2c { font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -.6px; margin-top: 20px; }
+  .tr2 { display: flex; gap: 10px; margin-top: 14px; }
+  .cn2 { margin-top: 14px; min-height: 60px; display: flex; align-items: center; gap: 14px; padding: 0 16px 0 10px; border-radius: 30px; background: linear-gradient(120deg, color-mix(in srgb, var(--g1) 22%, rgba(24,24,30,.7)), rgba(14,14,18,.7)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); font-size: 17px; font-weight: 600; }
+  .cn2 .pc { width: 40px; height: 40px; border-radius: 50%; background: var(--acc); color: var(--on); display: flex; align-items: center; justify-content: center; flex: none; }
+  .mzw { position: relative; margin-top: 16px; }
+  .mz { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 140px; gap: 10px; }
+  .mt { position: relative; border-radius: 28px; padding: 14px 16px 16px; overflow: hidden; isolation: isolate; display: flex; flex-direction: column; justify-content: space-between;
+    background: linear-gradient(var(--a), color-mix(in srgb, var(--g1) var(--x), #0b0b0f), color-mix(in srgb, var(--g2) var(--y), #0a0a0d));
+    box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.28), inset 0 0 0 1px rgba(255,255,255,.06), 0 18px 34px -18px rgba(0,0,0,.85); }
+  .mt::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(150deg, rgba(255,255,255,.14), rgba(255,255,255,0) 52%); }
+  .mt.w { grid-column: span 2; grid-row: span 2; padding: 20px 22px 22px; }
+  .mt.tl { grid-row: span 2; }
+  .mt.wd { grid-column: span 2; flex-direction: row; align-items: center; justify-content: flex-start; gap: 18px; padding: 14px 18px; }
+  .mt .tr { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+  .mt .nb b { display: block; font-weight: 800; letter-spacing: -2px; font-variant-numeric: tabular-nums; }
+  .mt .nb span { display: block; font-size: 14px; line-height: 18px; color: rgba(255,255,255,.8); margin-top: 10px; }
+  .mt.w .nb b { font-size: 88px; line-height: 80px; } .mt.tl .nb b { font-size: 56px; line-height: 54px; } .mt.wd .nb b { font-size: 52px; line-height: 50px; }
+  .mt .bt { min-width: 0; }
+  .mt.wd .bt { flex: 1; }
+  .mt .tt { font-weight: 700; letter-spacing: -.3px; }
+  .mt.w .tt { font-size: 30px; line-height: 34px; } .mt.tl .tt { font-size: 21px; line-height: 25px; } .mt.sm .tt { font-size: 17px; line-height: 21px; } .mt.wd .tt { font-size: 22px; line-height: 26px; }
+  .mt .au { font-size: 14px; line-height: 18px; color: rgba(255,255,255,.85); margin-top: 4px; } .mt.w .au { font-size: 17px; line-height: 22px; margin-top: 8px; }
+  .mt .mx { margin-top: 5px; color: rgba(255,255,255,.8); } .mt.w .mx { font-size: 16px; margin-top: 10px; gap: 18px; }
+  .mt .cp { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 11px; border-radius: 14px; background: rgba(0,0,0,.34); font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .mt.pr { transform: scale(1.03); box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.34), 0 26px 44px -14px rgba(0,0,0,.95); z-index: 3; }
+  .mz.lp .mt:not(.pr) { opacity: .32; }
+  .pop { position: absolute; right: 0; top: calc(100% + 14px); width: 280px; z-index: 6; border-radius: 24px; padding: 6px; background: rgba(30,30,37,.98); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1), 0 24px 50px -12px rgba(0,0,0,.9); }
+  .pop > div { display: flex; align-items: center; gap: 14px; min-height: 52px; padding: 0 16px; font-size: 16px; font-weight: 600; border-radius: 18px; }
+  .pop > div + div { box-shadow: inset 0 1px 0 rgba(255,255,255,.07); border-radius: 0 0 18px 18px; }
+  .pop .rdc { color: #FF9C93; }
+  .fl2 { position: absolute; left: 20px; right: 20px; bottom: 30px; z-index: 20; display: flex; gap: 12px; align-items: center; }
+  .fl2 .sg2 { flex: 1; height: 56px; background: rgba(24,24,30,.94); }
+  .fl2 .fb { width: 56px; height: 56px; border-radius: 50%; background: var(--acc); color: var(--on); display: flex; align-items: center; justify-content: center; flex: none; box-shadow: 0 12px 26px -10px color-mix(in srgb, var(--acc) 70%, transparent); }
+  .gh2 { border-radius: 28px; background: rgba(255,255,255,.045); box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); }
+  .gh2.msg { grid-column: span 2; grid-row: span 2; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 34px; background: rgba(255,255,255,.06); }
+  .gh2.msg .ci { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.09); }
+  .gh2.msg p { font-size: 21px; line-height: 28px; font-weight: 600; margin: 16px 0 0; letter-spacing: -.3px; }
+  .pst { position: relative; margin-top: 14px; border-radius: 34px; padding: 24px 24px 22px; overflow: hidden; isolation: isolate;
+    background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 50%, #0b0b0f), color-mix(in srgb, var(--g2) 36%, #0a0a0d)); box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.28), 0 24px 44px -20px rgba(0,0,0,.9); }
+  .pst::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(150deg, rgba(255,255,255,.14), rgba(255,255,255,0) 52%); }
+  .pst .big { display: flex; align-items: baseline; gap: 12px; }
+  .pst .big b { font-size: 96px; line-height: 88px; font-weight: 800; letter-spacing: -3px; font-variant-numeric: tabular-nums; }
+  .pst .big span { font-size: 18px; color: rgba(255,255,255,.82); }
+  .pst h2 { margin: 12px 0 0; font-size: 30px; line-height: 34px; font-weight: 700; letter-spacing: -.5px; }
+  .au2 { display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 17px; color: rgba(255,255,255,.88); }
+  .au2 img { width: 28px; height: 28px; border-radius: 50%; }
+  .mb2 { display: flex; gap: 10px; margin-top: 14px; }
+  .mb2 span { display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 18px; border-radius: 23px; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); font-size: 16px; font-weight: 700; }
+  .mb2 span.off { opacity: .55; }
+  .h3c { font-size: 20px; line-height: 26px; font-weight: 700; margin: 26px 2px 12px; } .h3c i { font-style: normal; color: var(--muted); margin-left: 10px; font-weight: 600; }
+  .wc { display: flex; align-items: center; gap: 14px; min-height: 76px; padding: 0 12px 0 14px; border-radius: 24px; margin-top: 10px; background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 14%, rgba(24,24,30,.7)), rgba(14,14,18,.7) 70%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.07); }
+  .wc .w { flex: 1; font-size: 23px; font-weight: 600; letter-spacing: -.3px; }
+
+  /* ===== Концепция 3: ТАБЛИЦА — плотные строки без контейнеров, три числовых столбца ===== */
+  .sq3 { display: flex; height: 46px; border-radius: 14px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); padding: 3px; margin-top: 4px; }
+  .sq3 span { flex: 1; display: flex; align-items: center; justify-content: center; border-radius: 11px; font-size: 15px; font-weight: 600; color: var(--sec); }
+  .sq3 span.on { background: rgba(255,255,255,.13); color: #fff; }
+  .h3t { font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.5px; margin-top: 18px; }
+  .sf3 { display: flex; align-items: center; gap: 10px; height: 52px; margin-top: 14px; padding: 0 8px 0 14px; border-radius: 14px; background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); font-size: 17px; }
+  .sf3 .q { flex: 1; min-width: 0; color: var(--sec); }
+  .sf3 .lg { height: 38px; border-radius: 10px; background: rgba(255,255,255,.1); }
+  .th3 { display: flex; align-items: center; height: 40px; margin-top: 10px; color: var(--sec); font-size: 14px; box-shadow: inset 0 -1px 0 rgba(255,255,255,.1); }
+  .th3 .g { flex: 1; padding-left: 52px; }
+  .th3 .c, .rw .nu { width: 46px; flex: none; text-align: center; display: flex; align-items: center; justify-content: center; }
+  .rw { display: flex; align-items: center; gap: 12px; min-height: 76px; padding: 8px 0; }
+  .rw + .rw { box-shadow: inset 0 1px 0 rgba(255,255,255,.07); }
+  .rw .av { width: 40px; height: 40px; border-radius: 50%; flex: none; display: block; }
+  .rw .pc { width: 40px; height: 40px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; background: var(--acc); color: var(--on); }
+  .rw .pc.own { background: rgba(255,255,255,.92); color: #0B0C0E; }
+  .rw .bx { flex: 1; min-width: 0; }
+  .rw .tt { font-size: 17px; line-height: 21px; font-weight: 600; }
+  .rw .sbt { font-size: 14px; line-height: 20px; color: var(--sec); margin-top: 3px; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+  .rw .sbt .tp { height: 22px; padding: 0 8px; border-radius: 11px; font-size: 12px; }
+  .rw .nu { font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .rw.pr { background: rgba(255,255,255,.09); border-radius: 16px; margin: 0 -10px; padding: 8px 10px; box-shadow: none; }
+  .rw.pr + .rw { box-shadow: none; }
+  .nb3 { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; height: 104px; padding: 0 20px 34px; display: flex; align-items: center; gap: 4px; background: rgba(12,12,13,.95); box-shadow: inset 0 1px 0 rgba(255,255,255,.1); }
+  .nb3 .sw3 { height: 48px; padding: 0 18px; display: flex; align-items: center; font-size: 16px; font-weight: 600; color: var(--sec); border-radius: 24px; }
+  .nb3 .sw3.on { background: rgba(255,255,255,.13); color: #fff; }
+  .nb3 .cr3 { margin-left: auto; height: 48px; padding: 0 20px 0 16px; border-radius: 24px; background: var(--acc); color: var(--on); display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 700; flex: none; }
+  .cx3 { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; padding: 22px 20px 34px; border-radius: 28px 28px 0 0; background: rgba(24,24,30,.99); box-shadow: inset 0 1.5px 0 rgba(255,255,255,.14), 0 -20px 40px -10px rgba(0,0,0,.7); }
+  .cx3 .hd { font-size: 17px; font-weight: 700; padding: 0 2px 10px; }
+  .cx3 > div + div { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .cx3 > div:not(.hd) { display: flex; align-items: center; gap: 16px; min-height: 58px; font-size: 17px; font-weight: 600; }
+  .cx3 .rdc { color: #FF9C93; }
+  .gr3 { display: flex; align-items: center; gap: 12px; height: 76px; }
+  .gr3 .sk { background: rgba(255,255,255,.06); border-radius: 8px; }
+  .em3 { text-align: center; padding: 34px 24px 20px; }
+  .em3 p { font-size: 20px; line-height: 27px; font-weight: 600; margin: 14px 0 0; letter-spacing: -.3px; }
+  .em3 .ci { display: flex; justify-content: center; color: var(--sec); }
+  .st3 { display: flex; margin-top: 22px; box-shadow: inset 0 1px 0 rgba(255,255,255,.1), inset 0 -1px 0 rgba(255,255,255,.1); }
+  .st3 > div { flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px; height: 64px; font-size: 26px; font-weight: 700; }
+  .st3 > div + div { box-shadow: inset 1px 0 0 rgba(255,255,255,.1); }
+  .st3 > div.off { color: rgba(255,255,255,.5); }
+  .wr3 { display: flex; align-items: center; gap: 14px; min-height: 72px; }
+  .wr3 + .wr3 { box-shadow: inset 0 1px 0 rgba(255,255,255,.07); }
+  .wr3 .n { width: 26px; color: var(--sec); font-size: 16px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .wr3 .w { flex: 1; font-size: 22px; font-weight: 600; letter-spacing: -.3px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Наборы сообщества — три концепции</h1>
+  <p class="page-lead">Вкладка «Наборы» внутри «Сообщества»: каталог, поиск с долгим нажатием, пустой каталог и набор до добавления. Три разных языка: цветные полосы, мозаика плиток и плотная таблица. Без обложек и «рубашек», без цен: в 2.0 наборы бесплатные. Выберите одну — построю вкладку в этом языке.</p>
+  <div class="page-nav"><a href="#c1">1 · Полосы</a><a href="#c2">2 · Мозаика</a><a href="#c3">3 · Таблица</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone, col, block } = K;
+const A = 'assets/';
+const lang = `<span class="lg t"><img src="${A}language_en.webp" alt="">EN${icon('down', 's16')}</span>`;
+const ib = (n, x = '') => `<span class="ib t${x}">${icon(n, 's20')}</span>`;
+const coin = (n, s) => `<img src="${K.coin(n)}" width="${s}" height="${s}" style="width:${s}px;height:${s}px;border-radius:50%" alt="">`;
+// зачем: данные берём из каталога «Карточки» (названия, авторы, счётчики) — ничего нового не придумываем
+// [название, карточек, автор, лайки, добавили, комментарии, «Топ», мой, монета автора]
+const P = [
+  ['B2 глаголы', 49, 'Ирина', 3, 11, 1, 1, 1, 12], ['Family', 20, 'Лидия', 4, 9, 0, 0, 0, 9], ['Антоніми дієслів', 30, 'Natalia', 1, 2, 0, 0, 0, 3],
+  ['Фразовые глаголы с get', 40, 'Марк', 12, 31, 4, 1, 0, 7], ['В аэропорту', 18, 'Olena', 6, 14, 0, 0, 0, 6], ['Small talk', 25, 'Дима', 2, 5, 0, 0, 0, 4],
+  ['Кафе и ресторан', 22, 'Анна', 3, 8, 0, 0, 0, 2], ['Эмоции', 30, 'Sasha', 1, 3, 0, 0, 0, 8], ['IT-английский', 50, 'Paul', 9, 20, 2, 0, 0, 10]];
+const mx = (p, dim = false) => `<div class="mx"><span${dim ? ' style="opacity:.55"' : ''}>${icon('heart', 's16')}${p[3]}</span><span>${icon('people', 's16')}${p[4]}</span>${p[5] ? `<span>${icon('chat', 's16')}${p[5]}</span>` : ''}</div>`;
+const badges = (p) => `${p[6] ? '<span class="tp">Топ</span>' : ''}${p[7] ? `<span class="pe">${icon('edit', 's16')}</span>` : ''}`;
+const tune = (i) => `--x:${36 + (i * 13) % 18}%;--y:${26 + (i * 7) % 20}%;--a:${i % 2 ? 255 : 105}deg`;
+const bot = (h) => `<div class="bot2">${h}</div>`;
+const cta = (t) => `<div class="ac-cta t">${t}${icon('plus', 's20')}</div>`;
+const WORDS = ['Lay', 'Claim', 'Convince'];
+const EMPTY = 'Здесь появятся наборы после публикации.';
+
+// ================= 1. ПОЛОСЫ =================
+const tabs1 = `<div class="t1"><span class="tb t">Шпиль</span><span class="tb t">Друзья</span><span class="tb on t">Наборы</span><span class="grow"></span>${ib('search')}${lang}</div>`;
+const head1 = `${tabs1}<div class="h1c">Наборы сообщества</div>`;
+const band = (p, i, dm = false) => `<div class="bd t${dm ? ' dm' : ''}" style="${tune(i)}"><div class="bx"><div class="tt">${p[0]}</div><div class="au">${p[2]}</div>${mx(p)}</div><div class="rt"><div class="tg">${badges(p)}</div><div class="nm">${p[1]}</div><div class="un">карточек</div></div></div>`;
+const bar1 = (on) => `<div class="nb1"><span class="b t${on === 0 ? ' on' : ''}">Новые</span><span class="pl t">${icon('plus', 's24')}</span><span class="b t${on === 1 ? ' on' : ''}">Топ</span></div>`;
+const a1 = () => phone(`${head1}<div class="cn1 t"><span class="pc">${icon('edit', 's20')}</span><span class="grow">Продолжить создание набора</span><span class="sec2">${icon('fwd', 's20')}</span></div>
+  <div class="bands">${P.map((p, i) => band(p, i)).join('')}</div><div style="height:100px"></div>`, { fixed: bar1(0) });
+const searchTop1 = `<div class="flex" style="margin-top:4px">${ib('back', ' bare')}<div class="sf">${icon('search', 's20')}<span class="q">глаголы</span><span class="ib bare t">${icon('close', 's18')}</span></div></div>`;
+const a2 = () => phone(`${searchTop1}<div class="bands" style="margin-top:18px">${band(P[0], 0, true)}${band(P[3], 3)}
+  <div class="ac1"><div class="t"><span>${icon('flag', 's20')}</span>Пожаловаться на набор</div><div class="t"><span>${icon('close', 's20')}</span>Не показывать мне</div></div>${band(P[2], 2, true)}</div>`, { fixed: bar1(1) });
+const a3 = () => phone(`${head1}<div class="em1"><div class="ci">${icon('people', 's28')}</div><p>${EMPTY}</p></div>
+  <div class="bands fade" style="margin-top:0">${[0, 1, 2, 3].map(() => '<div class="gb"></div>').join('')}</div>`, { fixed: bar1(0) });
+const a4 = () => phone(`<div class="pv1"><div class="topbar">${ib('back', ' bare')}${ib('dotsV')}</div>
+  <div style="font-size:38px;line-height:42px;font-weight:700;letter-spacing:-.8px;margin-top:20px">B2 глаголы</div>
+  <div class="flex" style="margin-top:12px;font-size:17px;color:rgba(255,255,255,.88);gap:10px">${coin(12, 28)}Ирина</div>
+  <div class="flex" style="margin-top:22px;justify-content:space-between"><div class="mx" style="font-size:17px;gap:20px;color:rgba(255,255,255,.88)"><span style="opacity:.55">${icon('heart', 's20')}3</span><span>${icon('people', 's20')}11</span><span>${icon('chat', 's20')}1</span></div><div style="font-size:17px;font-weight:700">49 карточек</div></div></div>
+  <div class="h3c" style="margin-top:26px">Карточки<i>49</i></div>
+  ${WORDS.map((w, i) => `<div class="wd1 t">${ib('vol', ' bare')}<div class="w">${w}</div><div class="n">${i + 1}</div></div>`).join('')}<div style="height:110px"></div>`, { fixed: bot(cta('Добавить себе')) });
+
+// ================= 2. МОЗАИКА =================
+const head2 = `<div class="sg2" style="margin-top:4px"><span>Шпиль</span><span>Друзья</span><span class="on">Наборы</span></div><div class="h2c">Наборы сообщества</div>
+  <div class="tr2"><div class="sf" style="padding-right:16px">${icon('search', 's20')}<span class="q ph0">Поиск набора</span></div>${lang}</div>`;
+const tile = (p, i, k, o = {}) => {
+  const tr = k === 'sm' ? `<div class="tr"><span class="cp">${icon('layers', 's16')}${p[1]}</span><div class="tg">${badges(p)}</div></div>` : `<div class="tr"><div class="nb"><b>${p[1]}</b><span>карточек</span></div><div class="tg">${badges(p)}</div></div>`;
+  const bt = `<div class="bt"><div class="tt">${p[0]}</div><div class="au">${p[2]}</div>${mx(p)}</div>`;
+  return `<div class="mt ${k}${o.pr ? ' pr' : ''} t" style="${tune(i)}">${k === 'wd' ? `<div class="nb"><b>${p[1]}</b><span>карточек</span></div>${bt}<div class="tg" style="flex-direction:column;align-items:flex-end">${badges(p)}</div>` : tr + bt}</div>`;
+};
+const bar2 = (on) => `<div class="fl2"><div class="sg2"><span class="t${on === 0 ? ' on' : ''}">Новые</span><span class="t${on === 1 ? ' on' : ''}">Топ</span></div><span class="fb t">${icon('plus', 's24')}</span></div>`;
+const b1 = () => phone(`${head2}<div class="cn2 t"><span class="pc">${icon('edit', 's20')}</span><span class="grow">Продолжить создание набора</span><span class="sec2">${icon('fwd', 's20')}</span></div>
+  <div class="mzw"><div class="mz">${tile(P[0], 0, 'w')}${tile(P[1], 1, 'tl')}${tile(P[2], 2, 'sm')}${tile(P[4], 4, 'sm')}${tile(P[3], 3, 'wd')}${tile(P[5], 5, 'sm')}${tile(P[6], 6, 'sm')}${tile(P[7], 7, 'sm')}${tile(P[8], 8, 'sm')}</div></div><div style="height:110px"></div>`, { fixed: bar2(0) });
+const searchTop2 = `<div class="flex" style="margin-top:4px">${ib('back', ' bare')}<div class="sf">${icon('search', 's20')}<span class="q">глаголы</span><span class="ib bare t">${icon('close', 's18')}</span></div></div>`;
+const b2 = () => phone(`${searchTop2}<div class="mzw" style="margin-top:20px"><div class="mz lp">${tile(P[0], 0, 'tl')}${tile(P[2], 2, 'sm')}${tile(P[3], 3, 'sm', { pr: 1 })}</div>
+  <div class="pop"><div class="t"><span>${icon('flag', 's20')}</span>Пожаловаться на набор</div><div class="t"><span>${icon('close', 's20')}</span>Не показывать мне</div></div></div>`, { fixed: bar2(1) });
+const b3 = () => phone(`${head2}<div class="mzw fade" style="margin-top:22px"><div class="mz"><div class="gh2 msg"><div class="ci">${icon('people', 's26')}</div><p>${EMPTY}</p></div><div class="gh2"></div><div class="gh2"></div><div class="gh2"></div><div class="gh2"></div></div></div>`, { fixed: bar2(0) });
+const b4 = () => phone(`<div class="topbar" style="margin-top:4px">${ib('back', ' bare')}${ib('dotsV')}</div>
+  <div class="pst"><div class="big"><b>49</b><span>карточек</span></div><h2>B2 глаголы</h2><div class="au2">${coin(12, 28)}Ирина</div></div>
+  <div class="mb2"><span class="off t">${icon('heart', 's20')}3</span><span class="t">${icon('people', 's20')}11</span><span class="t">${icon('chat', 's20')}1</span></div>
+  <div class="h3c">Карточки<i>49</i></div>${WORDS.map((w) => `<div class="wc t">${ib('vol')}<div class="w">${w}</div><span class="sec2">${icon('dotsH', 's20')}</span></div>`).join('')}<div style="height:120px"></div>`,
+  { fixed: `<div class="fl2" style="bottom:30px"><div class="ac-cta t">Добавить себе${icon('plus', 's20')}</div></div>` });
+
+// ================= 3. ТАБЛИЦА =================
+const head3 = `<div class="sq3"><span>Шпиль</span><span>Друзья</span><span class="on">Наборы</span></div><div class="h3t">Наборы сообщества</div>
+  <div class="sf3">${icon('search', 's20')}<span class="q">Поиск набора</span>${lang}</div>`;
+const th3 = `<div class="th3"><span class="g">Набор</span><span class="c">${icon('heart', 's18')}</span><span class="c">${icon('people', 's18')}</span><span class="c">${icon('chat', 's18')}</span></div>`;
+const nu = (v) => `<span class="nu">${v ? v : '<span class="sec2">–</span>'}</span>`;
+const row = (p, o = {}) => `<div class="rw t${o.pr ? ' pr' : ''}${o.dm ? ' dm' : ''}">${p[7] ? `<span class="pc own">${icon('edit', 's20')}</span>` : coin(p[8], 40).replace('<img', '<img class="av"')}
+  <div class="bx"><div class="tt">${p[0]}</div><div class="sbt"><span>${p[2]} · ${p[1]} карточек</span>${p[6] ? '<span class="tp">Топ</span>' : ''}</div></div>${nu(p[3])}${nu(p[4])}${nu(p[5])}</div>`;
+const bar3 = (on) => `<div class="nb3"><span class="sw3 t${on === 0 ? ' on' : ''}">Новые</span><span class="sw3 t${on === 1 ? ' on' : ''}">Топ</span><span class="cr3 t">${icon('plus', 's20')}Создать набор</span></div>`;
+const c1 = () => phone(`${head3}${th3}<div class="rw t"><span class="pc">${icon('edit', 's20')}</span><div class="bx"><div class="tt">Продолжить создание набора</div></div><span class="sec2" style="padding-right:4px">${icon('fwd', 's20')}</span></div>${P.map((p) => row(p)).join('')}<div style="height:110px"></div>`, { fixed: bar3(0) });
+const searchTop3 = `<div class="flex" style="margin-top:4px">${ib('back', ' bare')}<div class="sf3" style="margin-top:0;flex:1">${icon('search', 's20')}<span class="q" style="color:#fff">глаголы</span><span class="ib bare t" style="width:44px">${icon('close', 's18')}</span></div></div>`;
+const c2 = () => phone(`${searchTop3}${th3}${row(P[0], { dm: 1 })}${row(P[3], { pr: 1 })}${row(P[2], { dm: 1 })}`,
+  { fixed: `<div class="cx3"><div class="hd">Фразовые глаголы с get</div><div class="t"><span>${icon('flag', 's20')}</span>Пожаловаться на набор</div><div class="t"><span>${icon('close', 's20')}</span>Не показывать мне</div></div>` });
+const c3 = () => phone(`${head3}${th3}<div class="em3"><div class="ci">${icon('people', 's28')}</div><p>${EMPTY}</p></div>
+  <div class="fade">${[0, 1, 2, 3].map(() => `<div class="gr3"><span class="sk" style="width:40px;height:40px;border-radius:50%"></span><div class="grow"><div class="sk" style="height:14px;width:68%"></div><div class="sk" style="height:11px;width:40%;margin-top:9px"></div></div><span class="nu"><span class="sk" style="width:18px;height:12px"></span></span><span class="nu"><span class="sk" style="width:18px;height:12px"></span></span><span class="nu"><span class="sk" style="width:18px;height:12px"></span></span></div>`).join('')}</div>`, { fixed: bar3(0) });
+const c4 = () => phone(`<div class="topbar" style="margin-top:4px">${ib('back', ' bare')}${ib('dotsV')}</div>
+  <div style="font-size:36px;line-height:42px;font-weight:700;letter-spacing:-.8px;margin-top:14px">B2 глаголы</div>
+  <div class="flex" style="margin-top:12px;font-size:17px;color:var(--sec);gap:10px">${coin(12, 28)}Ирина · 49 карточек</div>
+  <div class="st3"><div class="off t">${icon('heart', 's22')}3</div><div class="t">${icon('people', 's22')}11</div><div class="t">${icon('chat', 's22')}1</div></div>
+  <div class="h3c">Карточки<i>49</i></div>${WORDS.map((w, i) => `<div class="wr3 t"><span class="n">${i + 1}</span><div class="w">${w}</div>${ib('vol', ' bare')}</div>`).join('')}<div style="height:110px"></div>`,
+  { fixed: `<div class="bot2" style="background:rgba(12,12,13,.96);box-shadow:inset 0 1px 0 rgba(255,255,255,.1);padding-top:18px"><div class="ac-cta t">Добавить себе${icon('plus', 's20')}</div></div>` });
+
+const labels = ['Каталог', 'Поиск · долгое нажатие', 'Пустой каталог', 'Набор до добавления'];
+const set = (a) => a.map((f, i) => col(labels[i], f()));
+document.getElementById('root').innerHTML =
+  block('c1', '1 · Полосы', 'Каждый набор — широкая цветная полоса от края до края: название крупно, число карточек справа цифрой. Долгое нажатие раскрывает действия прямо под полосой.', set([a1, a2, a3, a4])) +
+  block('c2', '2 · Мозаика', 'Плитки разного размера: самые заметные наборы крупнее, число карточек — главная цифра плитки. Долгое нажатие поднимает плитку и открывает всплывающее меню.', set([b1, b2, b3, b4])) +
+  block('c3', '3 · Таблица', 'Спокойный плотный список без контейнеров: слева автор и название, справа три столбца — лайки, добавления, комментарии. Долгое нажатие подсвечивает строку и вызывает панель действий внизу.', set([c1, c2, c3, c4]));
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const T = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', T[1]); p.style.setProperty('--g2', T[2]); p.style.setProperty('--acc', T[3]); p.style.setProperty('--on', T[4]); }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((T, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${T[1]},${T[2]})"></i>${T[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

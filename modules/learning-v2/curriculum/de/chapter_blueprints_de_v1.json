@@ -23218,6 +23218,797 @@
           }
         }
       ]
+    },
+    {
+      "lessonId": "de_l27",
+      "lessonOrdinal": 27,
+      "grammarBoundary": {
+        "allowedConstructIds": [
+          "de_gc_werden_infinitive_meanings_v1",
+          "de_gc_state_passive_v1",
+          "de_gc_relative_clause_gender_case_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_present_future_reference_v1",
+          "de_gc_event_passive_v1"
+        ],
+        "prohibitedConstructIds": [
+          "de_gc_broader_narrative_preterite_v1",
+          "de_gc_limited_functional_genitive_v1"
+        ],
+        "noExpansion": "Permit only review-only integration of already introduced project-update resources: present third-person singular wird plus a clause-final bare infinitive for one taught future-time use or a cautious assessment explicitly marked by wahrscheinlich; Präsens plus an explicit future-time expression for an ordinary confirmed plan; present singular event passive wird plus one verified controlled participle and present singular state passive ist plus one verified controlled participle; the closed L22 relative mappings masculine singular der, den and dem, feminine singular die in nominative role, neuter singular das in nominative role and plural die in nominative role; and the known deshalb-plus-V2 versus weil-plus-complete-verb-final topology. This is review-only integration and licenses no new lifecycle introduction or generative operation. Do not introduce another werden person or number, question or negation-scope expansion, universal-future marking, future perfect, modal Perfekt, double-infinitive clusters, a new passive person-number form, recipient passive, an agent phrase, an unverified participle or participle-formation rule, auxiliary guessing, a new relative form or function, a new connector or introducer, a new case or preposition relation, broader narrative Präteritum, functional Genitiv, L28 grammar, learner-facing artifacts, release, audio, mockup, English-contour reuse, or Task6 lexical adjudication."
+      },
+      "chapters": [
+        {
+          "id": "de_l27_c01",
+          "ordinal": 1,
+          "lessonOutcomeId": "de_l27_ch01",
+          "lessonOutcome": "extract changed plan process and responsibility details from an update",
+          "packetIds": [
+            "de_l27_c01_s01",
+            "de_l27_c01_s02",
+            "de_l27_c01_s03",
+            "de_l27_c01_s04",
+            "de_l27_c01_s05",
+            "de_l27_c01_s06",
+            "de_l27_c01_s07",
+            "de_l27_c01_s08"
+          ],
+          "allowedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_state_passive_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_present_future_reference_v1",
+            "de_gc_event_passive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "situation": {
+            "setting": "community-centre-project-update-reading",
+            "participants": "volunteer-coordinator-and-facility-manager",
+            "goal": "extract-changed-plan-process-and-responsibility-details",
+            "contextSignature": "community-project-connected-update-extraction"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Die Änderung ist klar: Morgen beginnt die Arbeit. Der Helfer, der den Plan prüft, hilft Frau Keller. Der Eingang wird repariert. Der Eingang ist noch nicht repariert. Wahrscheinlich wird die Arbeit später beginnen.",
+            "exit": "Die Änderung ist klar: Morgen beginnt die Arbeit. Der Helfer, der den Plan prüft, hilft Frau Keller. Der Eingang wird repariert. Der Eingang ist noch nicht repariert. Wahrscheinlich wird die Arbeit später beginnen.",
+            "independentEvidenceByPacketId": "de_l27_c01_s08"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l27_c01_s03", "de_l27_c01_s04"],
+          "checkpoint": {
+            "packetId": "de_l27_c01_s08",
+            "integratedConstructIds": [
+              "de_gc_werden_infinitive_meanings_v1",
+              "de_gc_state_passive_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_present_future_reference_v1",
+              "de_gc_event_passive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l27_c01_aenderung_v1",
+                "semanticIdentity": "anderung|change in a community project update whose plan process and responsibility details must be extracted",
+                "lemmaOrExpression": "Änderung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Änderung",
+                  "plural": "Änderungen"
+                },
+                "nounPackageIdentity": "die|anderung|anderungen",
+                "verbPackage": null,
+                "senseGloss": "change in a community project update whose plan process and responsibility details must be extracted",
+                "communicativeUse": "Die Änderung ist klar: Morgen beginnt die Arbeit. Der Helfer, der den Plan prüft, hilft Frau Keller. Der Eingang wird repariert. Der Eingang ist noch nicht repariert. Wahrscheinlich wird die Arbeit später beginnen.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l27_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l27_ch01",
+                  "checkpointPacketId": "de_l27_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_werden_infinitive_meanings_v1",
+                    "de_gc_state_passive_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_event_passive_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "youth-club-repair-update-reading",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l27_c01_s08"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "youth-club-repair-update-reading",
+              "participants": "club-volunteer-and-building-manager",
+              "goal": "independently-extract-changed-plan-process-and-responsibility-details",
+              "contextSignature": "youth-club-connected-update-extraction-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l26_c06", "de_l26_c07"],
+            "targetsFutureChapterIds": ["de_l27_c02"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l28_c07_s51"
+            }
+          }
+        },
+        {
+          "id": "de_l27_c02",
+          "ordinal": 2,
+          "lessonOutcomeId": "de_l27_ch02",
+          "lessonOutcome": "identify the people or services affected with known relative clauses",
+          "packetIds": [
+            "de_l27_c02_s09",
+            "de_l27_c02_s10",
+            "de_l27_c02_s11",
+            "de_l27_c02_s12",
+            "de_l27_c02_s13",
+            "de_l27_c02_s14",
+            "de_l27_c02_s15",
+            "de_l27_c02_s16"
+          ],
+          "allowedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_state_passive_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_present_future_reference_v1",
+            "de_gc_event_passive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "situation": {
+            "setting": "neighbourhood-support-change-review",
+            "participants": "volunteer-and-community-adviser",
+            "goal": "identify-people-and-services-affected-by-the-change",
+            "contextSignature": "community-change-relative-reference"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Das ist der Helfer, den die Änderung betrifft. Das ist der Beratungsdienst, den die Änderung betrifft. Die Form „den“ folgt hier der Rolle im Relativsatz, nicht dem Kasus des Bezugsworts.",
+            "exit": "Das ist der Helfer, den die Änderung betrifft. Das ist der Beratungsdienst, den die Änderung betrifft.",
+            "independentEvidenceByPacketId": "de_l27_c02_s16"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l27_c02_s11", "de_l27_c02_s12"],
+          "checkpoint": {
+            "packetId": "de_l27_c02_s16",
+            "integratedConstructIds": [
+              "de_gc_werden_infinitive_meanings_v1",
+              "de_gc_state_passive_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_present_future_reference_v1",
+              "de_gc_event_passive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l27_c02_betreffen_v1",
+                "semanticIdentity": "betreffen|affect a person or service identified precisely in a project update",
+                "lemmaOrExpression": "betreffen",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "betreffen",
+                  "valencyFrame": "transitive affected-person-or-service accusative frame",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "affect a person or service identified precisely in a project update",
+                "communicativeUse": "Das ist der Helfer, den die Änderung betrifft. Das ist der Beratungsdienst, den die Änderung betrifft. Die Form „den“ folgt hier der Rolle im Relativsatz, nicht dem Kasus des Bezugsworts.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l27_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l27_ch02",
+                  "checkpointPacketId": "de_l27_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_werden_infinitive_meanings_v1",
+                    "de_gc_state_passive_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_event_passive_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-identify-people-and-services-affected-by-the-change",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l27_c02_s16"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "school-project-change-review",
+              "participants": "parent-volunteer-and-school-coordinator",
+              "goal": "independently-identify-people-and-services-affected-by-the-change",
+              "contextSignature": "school-project-relative-reference-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l22_c07", "de_l27_c01"],
+            "targetsFutureChapterIds": ["de_l27_c03"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l28_c07_s52"
+            }
+          }
+        },
+        {
+          "id": "de_l27_c03",
+          "ordinal": 3,
+          "lessonOutcomeId": "de_l27_ch03",
+          "lessonOutcome": "state what will happen and what remains only an assessment",
+          "packetIds": [
+            "de_l27_c03_s17",
+            "de_l27_c03_s18",
+            "de_l27_c03_s19",
+            "de_l27_c03_s20",
+            "de_l27_c03_s21",
+            "de_l27_c03_s22",
+            "de_l27_c03_s23",
+            "de_l27_c03_s24"
+          ],
+          "allowedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_state_passive_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_present_future_reference_v1",
+            "de_gc_event_passive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "situation": {
+            "setting": "community-project-phase-briefing",
+            "participants": "project-coordinator-and-team-member",
+            "goal": "separate-a-confirmed-project-phase-from-a-cautious-assessment",
+            "contextSignature": "community-project-phase-certainty-contrast"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Die Projektphase beginnt am Freitag. Das ist der bestätigte Plan. Wahrscheinlich wird die Projektphase später beginnen. Das ist eine vorsichtige Einschätzung.",
+            "exit": "Die Projektphase beginnt am Freitag. Wahrscheinlich wird die Projektphase später beginnen.",
+            "independentEvidenceByPacketId": "de_l27_c03_s24"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l27_c03_s19", "de_l27_c03_s20"],
+          "checkpoint": {
+            "packetId": "de_l27_c03_s24",
+            "integratedConstructIds": [
+              "de_gc_werden_infinitive_meanings_v1",
+              "de_gc_state_passive_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_present_future_reference_v1",
+              "de_gc_event_passive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l27_c03_projektphase_v1",
+                "semanticIdentity": "projektphase|project phase used to distinguish a confirmed schedule from a cautious assessment",
+                "lemmaOrExpression": "Projektphase",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Projektphase",
+                  "plural": "Projektphasen"
+                },
+                "nounPackageIdentity": "die|projektphase|projektphasen",
+                "verbPackage": null,
+                "senseGloss": "project phase used to distinguish a confirmed schedule from a cautious assessment",
+                "communicativeUse": "Die Projektphase beginnt am Freitag. Das ist der bestätigte Plan. Wahrscheinlich wird die Projektphase später beginnen. Das ist eine vorsichtige Einschätzung.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l27_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l27_ch03",
+                  "checkpointPacketId": "de_l27_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_werden_infinitive_meanings_v1",
+                    "de_gc_state_passive_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_event_passive_v1"
+                  ],
+                  "utilityRole": "temporal_spatial",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-separate-a-confirmed-project-phase-from-a-cautious-assessment",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l27_c03_s24"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "library-renovation-phase-briefing",
+              "participants": "library-coordinator-and-contractor",
+              "goal": "independently-separate-a-confirmed-project-phase-from-a-cautious-assessment",
+              "contextSignature": "library-renovation-phase-certainty-contrast-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l26_c02", "de_l27_c02"],
+            "targetsFutureChapterIds": ["de_l27_c04"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l28_c07_s53"
+            }
+          }
+        },
+        {
+          "id": "de_l27_c04",
+          "ordinal": 4,
+          "lessonOutcomeId": "de_l27_ch04",
+          "lessonOutcome": "explain which process is underway and which result already holds",
+          "packetIds": [
+            "de_l27_c04_s25",
+            "de_l27_c04_s26",
+            "de_l27_c04_s27",
+            "de_l27_c04_s28",
+            "de_l27_c04_s29",
+            "de_l27_c04_s30",
+            "de_l27_c04_s31",
+            "de_l27_c04_s32"
+          ],
+          "allowedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_state_passive_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_present_future_reference_v1",
+            "de_gc_event_passive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "situation": {
+            "setting": "community-site-repair-status",
+            "participants": "site-coordinator-and-volunteer",
+            "goal": "separate-an-ongoing-repair-process-from-an-existing-result",
+            "contextSignature": "community-site-process-state-status"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Der Fahrradständer wird repariert. Das ist der laufende Vorgang. Der Eingang ist schon geöffnet. Das ist der aktuelle Zustand.",
+            "exit": "Der Fahrradständer wird repariert. Der Eingang ist schon geöffnet.",
+            "independentEvidenceByPacketId": "de_l27_c04_s32"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l27_c04_s27", "de_l27_c04_s28"],
+          "checkpoint": {
+            "packetId": "de_l27_c04_s32",
+            "integratedConstructIds": [
+              "de_gc_werden_infinitive_meanings_v1",
+              "de_gc_state_passive_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_present_future_reference_v1",
+              "de_gc_event_passive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l27_c04_fahrradstaender_v1",
+                "semanticIdentity": "fahrradstander|bicycle rack whose repair process is contrasted with an already holding facility result",
+                "lemmaOrExpression": "Fahrradständer",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Fahrradständer",
+                  "plural": "Fahrradständer"
+                },
+                "nounPackageIdentity": "der|fahrradstander|fahrradstander",
+                "verbPackage": null,
+                "senseGloss": "bicycle rack whose repair process is contrasted with an already holding facility result",
+                "communicativeUse": "Der Fahrradständer wird repariert. Das ist der laufende Vorgang. Der Eingang ist schon geöffnet. Das ist der aktuelle Zustand.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l27_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l27_ch04",
+                  "checkpointPacketId": "de_l27_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_werden_infinitive_meanings_v1",
+                    "de_gc_state_passive_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_event_passive_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "sports-ground-repair-status",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l27_c04_s32"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "sports-ground-repair-status",
+              "participants": "club-coordinator-and-site-worker",
+              "goal": "independently-separate-an-ongoing-repair-process-from-an-existing-result",
+              "contextSignature": "sports-ground-process-state-status-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l24_c07", "de_l25_c07"],
+            "targetsFutureChapterIds": ["de_l27_c05"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l28_c07_s54"
+            }
+          }
+        },
+        {
+          "id": "de_l27_c05",
+          "ordinal": 5,
+          "lessonOutcomeId": "de_l27_ch05",
+          "lessonOutcome": "mediate the update into a revised shared plan",
+          "packetIds": [
+            "de_l27_c05_s33",
+            "de_l27_c05_s34",
+            "de_l27_c05_s35",
+            "de_l27_c05_s36",
+            "de_l27_c05_s37",
+            "de_l27_c05_s38",
+            "de_l27_c05_s39",
+            "de_l27_c05_s40"
+          ],
+          "allowedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_state_passive_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_present_future_reference_v1",
+            "de_gc_event_passive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "situation": {
+            "setting": "volunteer-project-plan-revision",
+            "participants": "volunteer-coordinator-and-group-representative",
+            "goal": "mediate-the-update-into-a-revised-shared-plan",
+            "contextSignature": "volunteer-project-update-mediation"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Die Zwischenlösung ist klar: Der Helfer, der den Plan prüft, hilft der Gruppe. Deshalb beginnt die Arbeit am Freitag, weil der Eingang noch gesperrt ist.",
+            "exit": "Die Zwischenlösung ist klar: Der Helfer, der den Plan prüft, hilft der Gruppe. Deshalb beginnt die Arbeit am Freitag, weil der Eingang noch gesperrt ist.",
+            "independentEvidenceByPacketId": "de_l27_c05_s40"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l27_c05_s35", "de_l27_c05_s36"],
+          "checkpoint": {
+            "packetId": "de_l27_c05_s40",
+            "integratedConstructIds": [
+              "de_gc_werden_infinitive_meanings_v1",
+              "de_gc_state_passive_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_present_future_reference_v1",
+              "de_gc_event_passive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l27_c05_zwischenloesung_v1",
+                "semanticIdentity": "zwischenlosung|interim solution used to mediate separate update details into one revised shared plan",
+                "lemmaOrExpression": "Zwischenlösung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Zwischenlösung",
+                  "plural": "Zwischenlösungen"
+                },
+                "nounPackageIdentity": "die|zwischenlosung|zwischenlosungen",
+                "verbPackage": null,
+                "senseGloss": "interim solution used to mediate separate update details into one revised shared plan",
+                "communicativeUse": "Die Zwischenlösung ist klar: Der Helfer, der den Plan prüft, hilft der Gruppe. Deshalb beginnt die Arbeit am Freitag, weil der Eingang noch gesperrt ist.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l27_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l27_ch05",
+                  "checkpointPacketId": "de_l27_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_werden_infinitive_meanings_v1",
+                    "de_gc_state_passive_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_event_passive_v1"
+                  ],
+                  "utilityRole": "mediation",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-mediate-the-update-into-a-revised-shared-plan",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l27_c05_s40"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "food-bank-project-plan-revision",
+              "participants": "logistics-volunteer-and-team-representative",
+              "goal": "independently-mediate-the-update-into-a-revised-shared-plan",
+              "contextSignature": "food-bank-project-update-mediation-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l18_c07", "de_l27_c04"],
+            "targetsFutureChapterIds": ["de_l27_c06"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l28_c07_s55"
+            }
+          }
+        },
+        {
+          "id": "de_l27_c06",
+          "ordinal": 6,
+          "lessonOutcomeId": "de_l27_ch06",
+          "lessonOutcome": "repair ambiguous responsibility or certainty",
+          "packetIds": [
+            "de_l27_c06_s41",
+            "de_l27_c06_s42",
+            "de_l27_c06_s43",
+            "de_l27_c06_s44",
+            "de_l27_c06_s45",
+            "de_l27_c06_s46",
+            "de_l27_c06_s47",
+            "de_l27_c06_s48"
+          ],
+          "allowedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_state_passive_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_connector_topology_contrast_v1",
+            "de_gc_present_future_reference_v1",
+            "de_gc_event_passive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "situation": {
+            "setting": "community-update-language-repair",
+            "participants": "project-helper-and-language-mentor",
+            "goal": "repair-ambiguous-responsibility-and-unsupported-certainty",
+            "contextSignature": "community-update-responsibility-certainty-repair"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "[1] Der Helfer ist da. Der Berater ist da. Er hilft der Gruppe. → Der Helfer, der den Plan prüft, hilft der Gruppe. [2] Die Vorhersage ist nur eine Einschätzung: Die Arbeit wird später beginnen. → Die Arbeit wird wahrscheinlich später beginnen. Die Zuständigkeit und die Einschätzung sind jetzt klar.",
+            "exit": "Der Helfer, der den Plan prüft, hilft der Gruppe. Die Arbeit wird wahrscheinlich später beginnen. Die Zuständigkeit ist jetzt klar.",
+            "independentEvidenceByPacketId": "de_l27_c06_s48"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l27_c06_s43", "de_l27_c06_s44"],
+          "checkpoint": {
+            "packetId": "de_l27_c06_s48",
+            "integratedConstructIds": [
+              "de_gc_werden_infinitive_meanings_v1",
+              "de_gc_state_passive_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_connector_topology_contrast_v1",
+              "de_gc_present_future_reference_v1",
+              "de_gc_event_passive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l27_c06_zustaendigkeit_v1",
+                "semanticIdentity": "zustandigkeit|responsibility made explicit while repairing an ambiguous project update",
+                "lemmaOrExpression": "Zuständigkeit",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Zuständigkeit",
+                  "plural": "Zuständigkeiten"
+                },
+                "nounPackageIdentity": "die|zustandigkeit|zustandigkeiten",
+                "verbPackage": null,
+                "senseGloss": "responsibility made explicit while repairing an ambiguous project update",
+                "communicativeUse": "[1] Der Helfer ist da. Der Berater ist da. Er hilft der Gruppe. → Der Helfer, der den Plan prüft, hilft der Gruppe. [2] Die Vorhersage ist nur eine Einschätzung: Die Arbeit wird später beginnen. → Die Arbeit wird wahrscheinlich später beginnen. Die Zuständigkeit und die Einschätzung sind jetzt klar.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l27_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l27_ch06",
+                  "checkpointPacketId": "de_l27_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_werden_infinitive_meanings_v1",
+                    "de_gc_state_passive_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_connector_topology_contrast_v1",
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_event_passive_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-repair-ambiguous-responsibility-and-unsupported-certainty",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l27_c06_s48"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "neighbourhood-event-update-review",
+              "participants": "event-helper-and-peer-reviewer",
+              "goal": "independently-repair-ambiguous-responsibility-and-unsupported-certainty",
+              "contextSignature": "neighbourhood-event-responsibility-certainty-repair-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l26_c06", "de_l27_c05"],
+            "targetsFutureChapterIds": ["de_l27_c07"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l28_c07_s56"
+            }
+          }
+        },
+        {
+          "id": "de_l27_c07",
+          "ordinal": 7,
+          "lessonOutcomeId": "de_l27_ch07",
+          "lessonOutcome": "transfer integrated project adaptation to a new community context",
+          "packetIds": [
+            "de_l27_c07_s49",
+            "de_l27_c07_s50",
+            "de_l27_c07_s51",
+            "de_l27_c07_s52",
+            "de_l27_c07_s53",
+            "de_l27_c07_s54",
+            "de_l27_c07_s55",
+            "de_l27_c07_s56"
+          ],
+          "allowedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_state_passive_v1",
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_connector_topology_contrast_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "situation": {
+            "setting": "neighbourhood-garden-project-handover",
+            "participants": "garden-coordinator-and-new-volunteer-group",
+            "goal": "transfer-integrated-project-adaptation-to-a-new-community-context",
+            "contextSignature": "neighbourhood-garden-project-final-transfer"
+          },
+          "supportFading": {
+            "entryLevel": 2,
+            "exitLevel": 0,
+            "entry": "Herr Brandt, der Eingang ist noch gesperrt. Der Helfer, der den Plan prüft, hilft der Gruppe. Wahrscheinlich wird das Treffen später beginnen, weil der Eingang noch gesperrt ist. Deshalb lautet der Vorschlag: Das Treffen wird am Freitag beginnen. Passt Freitag, oder wann passt es?",
+            "exit": "Herr Brandt, der Eingang ist noch gesperrt. Der Helfer, der den Plan prüft, hilft der Gruppe. Wahrscheinlich wird das Treffen später beginnen, weil der Eingang noch gesperrt ist. Deshalb lautet der Vorschlag: Das Treffen wird am Freitag beginnen. Passt Freitag, oder wann passt es?",
+            "independentEvidenceByPacketId": "de_l27_c07_s56"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_werden_infinitive_meanings_v1",
+              "stage": "delayed",
+              "packetId": "de_l27_c07_s49"
+            }
+          ],
+          "chapterEvidencePacketIds": [
+            "de_l27_c07_s51",
+            "de_l27_c07_s52",
+            "de_l27_c07_s53",
+            "de_l27_c07_s54",
+            "de_l27_c07_s55",
+            "de_l27_c07_s56"
+          ],
+          "checkpoint": {
+            "packetId": "de_l27_c07_s56",
+            "integratedConstructIds": [
+              "de_gc_werden_infinitive_meanings_v1",
+              "de_gc_state_passive_v1",
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_connector_topology_contrast_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l27_c07_vorschlag_v1",
+                "semanticIdentity": "vorschlag|revised proposal presented to a new group for a community project decision",
+                "lemmaOrExpression": "Vorschlag",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Vorschlag",
+                  "plural": "Vorschläge"
+                },
+                "nounPackageIdentity": "der|vorschlag|vorschlage",
+                "verbPackage": null,
+                "senseGloss": "revised proposal presented to a new group for a community project decision",
+                "communicativeUse": "Herr Brandt, der Eingang ist noch gesperrt. Der Helfer, der den Plan prüft, hilft der Gruppe. Wahrscheinlich wird das Treffen später beginnen, weil der Eingang noch gesperrt ist. Deshalb lautet der Vorschlag: Das Treffen wird am Freitag beginnen. Passt Freitag, oder wann passt es?",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l27_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l27_ch07",
+                  "checkpointPacketId": "de_l27_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_werden_infinitive_meanings_v1",
+                    "de_gc_state_passive_v1",
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_connector_topology_contrast_v1"
+                  ],
+                  "utilityRole": "transfer",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-brief-a-new-group-and-negotiate-one-revised-action",
+                  "necessityClass": "TRANSFER_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l27_c07_s56"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "community-workshop-project-handover",
+              "participants": "workshop-coordinator-and-new-volunteer-group",
+              "goal": "independently-brief-a-new-group-and-negotiate-one-revised-action",
+              "contextSignature": "community-workshop-project-transfer-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l27_c05", "de_l27_c06"],
+            "targetsFutureChapterIds": ["de_l28_c01"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l28_c07_s55"
+            }
+          }
+        }
+      ]
     }
   ]
 }

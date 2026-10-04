@@ -11820,6 +11820,365 @@ function validateL26SemanticContract(raw: R, plan: Boundary): void {
     throw new Error("l26_semantic_contract_invalid:identity");
 }
 
+const L27_CONTRACT_HASH =
+  "dbbfc9c8f5adc2c0aa871ec5f998549aecb35b9b7a78e482f05008828e458884";
+const L27_PLAN_HASH =
+  "ca4411b999f2f0e199c1de2b352b8f606e89969713f4c5350ed5f5f5e40bc9d5";
+
+function validateL27SemanticContract(raw: R, plan: Boundary): void {
+  const lesson = (raw.lessons as R[]).find((x) => x.lessonId === "de_l27") as R;
+  const expected = ((json(FILE) as R).lessons as R[]).find(
+    (x) => x.lessonId === "de_l27",
+  ) as R;
+  if (!lesson || !expected || l23Hash(expected) !== L27_CONTRACT_HASH)
+    throw new Error("l27_semantic_contract_invalid:identity");
+  const requiredPlanRecall = [
+    {
+      fromLessonId: "de_l26",
+      constructIds: ["de_gc_werden_infinitive_meanings_v1"],
+      responsibility:
+        "retrieve certainty contrasts under connected-project conditions",
+    },
+    {
+      fromLessonId: "de_l22",
+      constructIds: ["de_gc_relative_clause_gender_case_v1"],
+      responsibility: "maintain precise reference during mediation",
+    },
+    {
+      fromLessonId: "de_l18",
+      constructIds: ["de_gc_connector_topology_contrast_v1"],
+      responsibility:
+        "retrieve the established deshalb-plus-V2 versus weil-plus-verb-final topology while mediating a revised shared plan",
+    },
+    {
+      fromLessonId: "de_l24",
+      constructIds: ["de_gc_event_passive_v1"],
+      responsibility:
+        "retrieve process passive meaning to distinguish an ongoing project process from an existing result",
+    },
+    {
+      fromLessonId: "de_l25",
+      constructIds: ["de_gc_state_passive_v1"],
+      responsibility:
+        "retrieve state passive meaning to distinguish an existing project result from an ongoing process",
+    },
+  ];
+  if (
+    JSON.stringify(plan.crossLessonRecall) !==
+    JSON.stringify(requiredPlanRecall)
+  )
+    throw new Error("l27_plan_recall_authority_invalid");
+  if (l23Hash(plan as unknown as R) !== L27_PLAN_HASH)
+    throw new Error("l27_semantic_contract_invalid:identity");
+  const chapters = lesson.chapters as R[],
+    expectedChapters = expected.chapters as R[];
+  const allowed = [
+      "de_gc_werden_infinitive_meanings_v1",
+      "de_gc_state_passive_v1",
+      "de_gc_relative_clause_gender_case_v1",
+      "de_gc_connector_topology_contrast_v1",
+      "de_gc_present_future_reference_v1",
+      "de_gc_event_passive_v1",
+    ],
+    finalAllowed = allowed.slice(0, 4),
+    prohibited = [
+      "de_gc_broader_narrative_preterite_v1",
+      "de_gc_limited_functional_genitive_v1",
+    ];
+  if (
+    (lesson.grammarBoundary as R).noExpansion !==
+    (expected.grammarBoundary as R).noExpansion
+  )
+    throw new Error("l27_semantic_contract_invalid:no_expansion");
+  if (
+    chapters.length !== 7 ||
+    chapters.some(
+      (c, i) =>
+        JSON.stringify(c.allowedConstructIds) !==
+          JSON.stringify(i === 6 ? finalAllowed : allowed) ||
+        JSON.stringify((c.checkpoint as R).integratedConstructIds) !==
+          JSON.stringify(i === 6 ? finalAllowed : allowed) ||
+        JSON.stringify(c.prohibitedConstructIds) !== JSON.stringify(prohibited),
+    )
+  )
+    throw new Error("l27_semantic_contract_invalid:sets");
+  if (
+    chapters.slice(0, 6).some((c) => (c.lifecycleAnchors as R[]).length !== 0)
+  )
+    throw new Error("l27_review_only_anchor_invalid");
+  const anchors = chapters.flatMap((c) => c.lifecycleAnchors as R[]);
+  if (
+    JSON.stringify(anchors.map((a) => [a.constructId, a.stage, a.packetId])) !==
+    JSON.stringify([
+      ["de_gc_werden_infinitive_meanings_v1", "delayed", "de_l27_c07_s49"],
+    ])
+  )
+    throw new Error("l27_registry_anchor_mismatch");
+  const prior = (raw.lessons as R[]).find((x) => x.lessonId === "de_l26") as R;
+  if (
+    !prior ||
+    JSON.stringify(
+      (prior.chapters as R[]).map(
+        (c) => ((c.recallSchedule as R).futureDelayedProbe as R).packetId,
+      ),
+    ) !==
+      JSON.stringify([
+        "de_l27_c07_s51",
+        "de_l27_c07_s52",
+        "de_l27_c07_s53",
+        "de_l27_c07_s54",
+        "de_l27_c07_s55",
+        "de_l27_c07_s56",
+        "de_l27_c07_s55",
+      ])
+  )
+    throw new Error("l26_l27_inverse_provenance_invalid");
+  const surfaces = chapters.map((c) => {
+    const s = c.supportFading as R,
+      x = ((c.checkpoint as R).plannedNewLexicalSenses as R[])[0] as R;
+    return [String(s.entry), String(s.exit), String(x.communicativeUse)];
+  });
+  const pedagogic = surfaces.flat().join(" "),
+    meta = JSON.stringify(lesson).replaceAll(
+      String((expected.grammarBoundary as R).noExpansion),
+      "",
+    );
+  const requireSurface = (i: number, values: string[], id: string) => {
+    if (values.some((v) => !surfaces[i].join(" ").includes(v)))
+      throw new Error(id);
+  };
+  requireSurface(
+    0,
+    [
+      "Die Änderung ist klar",
+      "Der Eingang wird repariert",
+      "Der Eingang ist noch nicht repariert",
+    ],
+    "l27_connected_update_evidence_missing",
+  );
+  requireSurface(
+    1,
+    [
+      "der Helfer, den die Änderung betrifft",
+      "Beratungsdienst, den die Änderung betrifft",
+    ],
+    "l27_relative_reference_invalid",
+  );
+  requireSurface(
+    2,
+    [
+      "Die Projektphase beginnt am Freitag",
+      "Wahrscheinlich wird die Projektphase später beginnen",
+    ],
+    "l27_future_certainty_contrast_invalid",
+  );
+  requireSurface(
+    3,
+    ["Fahrradständer wird repariert", "Eingang ist schon geöffnet"],
+    "l27_process_state_contrast_invalid",
+  );
+  if (
+    [surfaces[3][0], surfaces[3][2]].some(
+      (surface) => !surface.includes("Das ist der aktuelle Zustand."),
+    )
+  )
+    throw new Error("l27_process_state_contrast_invalid");
+  requireSurface(
+    4,
+    [
+      "Zwischenlösung",
+      "Deshalb beginnt die Arbeit am Freitag",
+      "weil der Eingang noch gesperrt ist",
+    ],
+    "l27_mediation_plan_invalid",
+  );
+  if (
+    !surfaces[4].join(" ").includes("Deshalb beginnt") ||
+    /Deshalb die Arbeit beginnt|weil der Eingang ist noch gesperrt/iu.test(
+      pedagogic,
+    )
+  )
+    throw new Error("l27_connector_topology_invalid");
+  requireSurface(
+    5,
+    [
+      "Der Helfer, der den Plan prüft",
+      "wahrscheinlich später beginnen",
+      "Zuständigkeit",
+    ],
+    "l27_responsibility_certainty_repair_invalid",
+  );
+  if (/\b(?:ich werde|du wirst|die termine werden)\b/iu.test(pedagogic))
+    throw new Error("l27_werden_person_number_paradigm_leak");
+  if (/\bwird\b[^.!?:;]{0,80}\?/iu.test(pedagogic))
+    throw new Error("l27_werden_question_scope_leak");
+  if (/\bwird nicht\b/iu.test(pedagogic))
+    throw new Error("l27_werden_negation_scope_leak");
+  if (
+    /\bwird\s+\w+\s+(?:haben|sein|können)\b|futurePerfectProbe|modalPerfektProbe|doubleInfinitiveProbe/iu.test(
+      pedagogic + meta,
+    )
+  )
+    throw new Error("l27_future_perfect_or_modalperfekt_leak");
+  if (
+    /\b(?:sind|waren|werden|wurden)\b[^.!?:;]{0,100}\b(?:geöffnet|geschlossen|gesperrt|gereinigt|repariert|geprüft)\b/iu.test(
+      pedagogic,
+    ) ||
+    /personNumberParadigmProbe/iu.test(meta)
+  )
+    throw new Error("l27_passive_number_paradigm_leak");
+  if (
+    /\b(?:bekommt|kriegt|erhält)\b|recipientPassiveProbe/iu.test(
+      pedagogic + meta,
+    )
+  )
+    throw new Error("l27_recipient_passive_leak");
+  if (/\b(?:vom|von|durch)\b|agentPhraseProbe/iu.test(pedagogic + meta))
+    throw new Error("l27_agent_phrase_leak");
+  if (/unverified participle|participleFormationProbe/iu.test(pedagogic + meta))
+    throw new Error("l27_unverified_participle_leak");
+  if (/\b(?:war|wurde|worden)\b/iu.test(pedagogic))
+    throw new Error("l27_new_tense_leak");
+  if (/\b(?:kam|blieb)\b|narrativeTenseProbe/iu.test(pedagogic + meta))
+    throw new Error("l27_broader_preterite_leak");
+  if (/\b(?:dessen|wo|wer)\b|relativeScopeProbe/iu.test(pedagogic + meta))
+    throw new Error("l27_relative_scope_leak");
+  if (/\b(?:obwohl|nachdem)\b|connectorProbe/iu.test(pedagogic + meta))
+    throw new Error("l27_new_connector_leak");
+  if (
+    /\b(?:wegen|trotz)\b|newCaseOrPrepositionRelationProbe/iu.test(
+      pedagogic + meta,
+    )
+  )
+    throw new Error("l27_new_case_preposition_relation_leak");
+  if (/functionalGenitiveProbe/iu.test(meta))
+    throw new Error("l27_functional_genitive_leak");
+  if (/hidden L28|TASK6_ADJUDICATED/iu.test(meta))
+    throw new Error("l27_l28_or_task6_leak");
+  const walk = (v: unknown, keys: Set<string>): boolean =>
+    Array.isArray(v)
+      ? v.some((x) => walk(x, keys))
+      : !!v &&
+        typeof v === "object" &&
+        Object.entries(v as R).some(([k, x]) => keys.has(k) || walk(x, keys));
+  if (walk(lesson, new Set(["releaseProjection", "releasePath", "mockupPath"])))
+    throw new Error("l27_release_surface_leak");
+  if (
+    lesson.learnerArtifactsAuthorized === true ||
+    walk(
+      lesson,
+      new Set([
+        "interaction",
+        "interactions",
+        "prompt",
+        "target",
+        "audioTarget",
+        "audioTranscript",
+        "referenceAudio",
+        "voiceTarget",
+        "correctText",
+        "responseOptions",
+        "modePayload",
+        "feedback",
+        "learnerText",
+        "ru",
+        "uk",
+      ]),
+    )
+  )
+    throw new Error("l27_learner_surface_leak");
+  if (lesson.allowNonGermanAssessedTarget === true)
+    throw new Error("l27_interaction_002_future_boundary_invalid");
+  if (lesson.englishContourProbe !== undefined)
+    throw new Error("l27_english_contour_leak");
+  const final = surfaces[6].join(" ");
+  if (
+    !final.includes("Herr Brandt") ||
+    !final.includes("Vorschlag") ||
+    !final.includes("Das Treffen wird am Freitag beginnen")
+  )
+    throw new Error("l27_c07_final_transfer");
+  if (/\bIhre\b|\bein anderer Tag\b|\bbesser\b/u.test(surfaces[6].join(" ")))
+    throw new Error("l27_final_negotiation_boundary_leak");
+  if (
+    surfaces[6].some(
+      (surface) => !surface.includes("Passt Freitag, oder wann passt es?"),
+    )
+  )
+    throw new Error("l27_final_negotiation_correction_invitation_invalid");
+  if (
+    chapters.some(
+      (c, i) =>
+        JSON.stringify(c.situation) !==
+          JSON.stringify(expectedChapters[i].situation) ||
+        JSON.stringify((c.checkpoint as R).newSituation) !==
+          JSON.stringify((expectedChapters[i].checkpoint as R).newSituation),
+    )
+  )
+    throw new Error("l27_semantic_contract_invalid:situations");
+  if (
+    chapters.some(
+      (c, i) =>
+        (((c.checkpoint as R).plannedNewLexicalSenses as R[])[0] as R)
+          .communicativeUse !==
+        (
+          (
+            (expectedChapters[i].checkpoint as R).plannedNewLexicalSenses as R[]
+          )[0] as R
+        ).communicativeUse,
+    ) ||
+    (chapters[4].checkpoint as R).packetId !==
+      (expectedChapters[4].checkpoint as R).packetId
+  )
+    throw new Error("l27_checkpoint_lexical_alignment_invalid");
+  if (
+    chapters.some((c, i) => {
+      const a = clone(
+          ((c.checkpoint as R).plannedNewLexicalSenses as R[])[0] as R,
+        ),
+        b = clone(
+          (
+            (expectedChapters[i].checkpoint as R).plannedNewLexicalSenses as R[]
+          )[0] as R,
+        );
+      delete a.utilityProof;
+      delete b.utilityProof;
+      return JSON.stringify(a) !== JSON.stringify(b);
+    })
+  )
+    throw new Error("l27_semantic_contract_invalid:lexical_packages");
+  if (
+    chapters.some(
+      (c, i) =>
+        JSON.stringify(
+          (((c.checkpoint as R).plannedNewLexicalSenses as R[])[0] as R)
+            .utilityProof,
+        ) !==
+        JSON.stringify(
+          (
+            (
+              (expectedChapters[i].checkpoint as R)
+                .plannedNewLexicalSenses as R[]
+            )[0] as R
+          ).utilityProof,
+        ),
+    )
+  )
+    throw new Error("l27_semantic_contract_invalid:lexical_utility");
+  if (
+    chapters.some(
+      (c, i) =>
+        JSON.stringify(c.chapterEvidencePacketIds) !==
+          JSON.stringify(expectedChapters[i].chapterEvidencePacketIds) ||
+        JSON.stringify(c.recallSchedule) !==
+          JSON.stringify(expectedChapters[i].recallSchedule),
+    )
+  )
+    throw new Error("l27_semantic_contract_invalid:evidence");
+  if (l23Hash(lesson) !== L27_CONTRACT_HASH)
+    throw new Error("l27_semantic_contract_invalid:identity");
+}
+
 function validate(raw: unknown): {
   lessons: number;
   chapters: number;
@@ -11957,6 +12316,12 @@ function validate(raw: unknown): {
     (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l26")
   )
     validateL26SemanticContract(raw, l26Plan);
+  const l27Plan = source.get("de_l27");
+  if (
+    l27Plan &&
+    (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l27")
+  )
+    validateL27SemanticContract(raw, l27Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -16742,6 +17107,455 @@ function fixtures(): void {
   expectL26((r) => {
     (l26(r).chapters as R[])[0].lessonOutcome = "x";
   }, "l26_semantic_contract_invalid:identity"); // 60
+
+  // L27 hostile corpus: exactly one mutation per frozen guardian requirement.
+  const l27 = (raw: R) =>
+    (raw.lessons as R[]).find((x) => x.lessonId === "de_l27") as R;
+  const expectL27 = (mut: (raw: R, plan: R) => void, id: string): void => {
+    const raw = clone(json(FILE)) as R;
+    const plan = clone(
+      (json(LESSONS) as { lessons: Boundary[] }).lessons.find(
+        (x) => x.id === "de_l27",
+      ),
+    ) as R;
+    mut(raw, plan);
+    let thrown: unknown;
+    try {
+      validateL27SemanticContract(raw, plan as Boundary);
+    } catch (error) {
+      thrown = error;
+    }
+    assert.ok(thrown instanceof Error, `expected_error:${id}`);
+    assert.equal(thrown.message, id);
+  };
+  const l27Plan = () =>
+    clone(
+      (json(LESSONS) as { lessons: Boundary[] }).lessons.find(
+        (x) => x.id === "de_l27",
+      ),
+    ) as R;
+  const expectL27PlanRecall = (mut: (plan: R) => void): void => {
+    expectL27((_raw, plan) => mut(plan), "l27_plan_recall_authority_invalid");
+  };
+  // The Task4 rows, rather than a lesson-specific shortcut, are the sole
+  // authority for every non-adjacent L27 retrieval source.
+  const repairedL27Plan = l27Plan() as Boundary;
+  assert.equal(recallSourceAllowed(18, 7, 27, 5, repairedL27Plan), true);
+  assert.equal(recallSourceAllowed(24, 7, 27, 4, repairedL27Plan), true);
+  assert.equal(recallSourceAllowed(25, 7, 27, 4, repairedL27Plan), true);
+  const absentL27Plan = l27Plan() as Boundary;
+  absentL27Plan.crossLessonRecall = absentL27Plan.crossLessonRecall.slice(0, 2);
+  assert.equal(recallSourceAllowed(18, 7, 27, 5, absentL27Plan), false);
+  assert.equal(recallSourceAllowed(24, 7, 27, 4, absentL27Plan), false);
+  assert.equal(recallSourceAllowed(25, 7, 27, 4, absentL27Plan), false);
+  expectL27PlanRecall((plan) => {
+    (plan.crossLessonRecall as R[]).splice(2, 1);
+  });
+  expectL27PlanRecall((plan) => {
+    ((plan.crossLessonRecall as R[])[3].constructIds as string[])[0] = "x";
+  });
+  expectL27PlanRecall((plan) => {
+    const row = (plan.crossLessonRecall as R[])[4];
+    row.fromLessonId = "de_l24";
+  });
+  expectL27PlanRecall((plan) => {
+    (plan.crossLessonRecall as R[])[4].responsibility = "x";
+  });
+  expectL27PlanRecall((plan) => {
+    (plan.crossLessonRecall as R[]).push({
+      fromLessonId: "de_l01",
+      constructIds: ["x"],
+      responsibility: "x",
+    });
+  });
+  const expectRawL27RecallRejected = (
+    chapter: number,
+    source: string,
+  ): void => {
+    const raw = clone(json(FILE)) as R;
+    (
+      (l27(raw).chapters as R[])[chapter].recallSchedule as R
+    ).retrievesFromChapterIds = [source];
+    const [sourceLesson, sourceChapter] = source
+      .match(/de_l(\d+)_c(\d+)/u)!
+      .slice(1)
+      .map(Number);
+    assert.throws(
+      () => {
+        if (
+          !recallSourceAllowed(
+            sourceLesson,
+            sourceChapter,
+            27,
+            chapter + 1,
+            repairedL27Plan,
+          )
+        )
+          throw new Error(`recall_source_not_earlier:de_l27_c0${chapter + 1}`);
+      },
+      new RegExp(`recall_source_not_earlier:de_l27_c0${chapter + 1}`, "u"),
+    );
+  };
+  expectRawL27RecallRejected(4, "de_l19_c07");
+  expectRawL27RecallRejected(3, "de_l23_c07");
+  const addL27 = (r: R, chapter: number, text: string): void => {
+    const support = (l27(r).chapters as R[])[chapter].supportFading as R;
+    support.entry = `${String(support.entry)} ${text}`;
+  };
+  const setL27Surfaces = (r: R, chapter: number, text: string): void => {
+    const c = (l27(r).chapters as R[])[chapter],
+      s = c.supportFading as R;
+    s.entry = text;
+    s.exit = text;
+    (
+      ((c.checkpoint as R).plannedNewLexicalSenses as R[])[0] as R
+    ).communicativeUse = text;
+  };
+  expectL27((r) => {
+    (l27(r).grammarBoundary as R).noExpansion = "x";
+  }, "l27_semantic_contract_invalid:no_expansion"); // 1
+  expectL27((r) => {
+    ((l27(r).chapters as R[])[0].allowedConstructIds as string[]).push("x");
+  }, "l27_semantic_contract_invalid:sets"); // 2
+  expectL27((r) => {
+    const c = (l27(r).chapters as R[])[6];
+    (c.allowedConstructIds as string[]).push(
+      "de_gc_present_future_reference_v1",
+    );
+    ((c.checkpoint as R).integratedConstructIds as string[]).push(
+      "de_gc_present_future_reference_v1",
+    );
+  }, "l27_semantic_contract_invalid:sets"); // 3
+  expectL27((r) => {
+    ((l27(r).chapters as R[])[0].lifecycleAnchors as R[]).push({
+      constructId: "x",
+      stage: "introduction",
+      packetId: "x",
+    });
+  }, "l27_review_only_anchor_invalid"); // 4
+  expectL27((r) => {
+    ((l27(r).chapters as R[])[6].lifecycleAnchors as R[])[0].packetId = "x";
+  }, "l27_registry_anchor_mismatch"); // 5
+  expectL27((r) => {
+    const p = (r.lessons as R[]).find((x) => x.lessonId === "de_l26") as R;
+    (
+      ((p.chapters as R[])[0].recallSchedule as R).futureDelayedProbe as R
+    ).packetId = "x";
+  }, "l26_l27_inverse_provenance_invalid"); // 6
+  expectL27(
+    (r) => setL27Surfaces(r, 0, "Die Änderung ist klar."),
+    "l27_connected_update_evidence_missing",
+  ); // 7
+  expectL27(
+    (r) => setL27Surfaces(r, 1, "Das ist der Helfer."),
+    "l27_relative_reference_invalid",
+  ); // 8
+  expectL27(
+    (r) =>
+      setL27Surfaces(
+        r,
+        1,
+        "Das ist der Helfer, der die Änderung betrifft. Das ist der Beratungsdienst, der die Änderung betrifft.",
+      ),
+    "l27_relative_reference_invalid",
+  ); // 9
+  expectL27(
+    (r) =>
+      setL27Surfaces(
+        r,
+        2,
+        "Wahrscheinlich wird die Projektphase später beginnen.",
+      ),
+    "l27_future_certainty_contrast_invalid",
+  ); // 10
+  expectL27(
+    (r) => setL27Surfaces(r, 2, "Die Projektphase beginnt am Freitag."),
+    "l27_future_certainty_contrast_invalid",
+  ); // 11
+  expectL27(
+    (r) => setL27Surfaces(r, 3, "Der Eingang ist schon geöffnet."),
+    "l27_process_state_contrast_invalid",
+  ); // 12
+  expectL27(
+    (r) => setL27Surfaces(r, 3, "Der Fahrradständer wird repariert."),
+    "l27_process_state_contrast_invalid",
+  ); // 13
+  expectL27(
+    (r) => addL27(r, 4, "Deshalb die Arbeit beginnt."),
+    "l27_connector_topology_invalid",
+  ); // 14
+  expectL27(
+    (r) => addL27(r, 4, "weil der Eingang ist noch gesperrt."),
+    "l27_connector_topology_invalid",
+  ); // 15
+  expectL27(
+    (r) => setL27Surfaces(r, 4, "Die Arbeit beginnt am Freitag."),
+    "l27_mediation_plan_invalid",
+  ); // 16
+  expectL27(
+    (r) =>
+      setL27Surfaces(r, 5, "Die Arbeit wird wahrscheinlich später beginnen."),
+    "l27_responsibility_certainty_repair_invalid",
+  ); // 17
+  expectL27(
+    (r) =>
+      setL27Surfaces(
+        r,
+        5,
+        "Der Helfer, der den Plan prüft, hilft der Gruppe. Die Zuständigkeit ist klar.",
+      ),
+    "l27_responsibility_certainty_repair_invalid",
+  ); // 18
+  expectL27(
+    (r) => addL27(r, 0, "Ich werde beginnen."),
+    "l27_werden_person_number_paradigm_leak",
+  ); // 19
+  expectL27(
+    (r) => addL27(r, 0, "Du wirst beginnen."),
+    "l27_werden_person_number_paradigm_leak",
+  ); // 20
+  expectL27(
+    (r) => addL27(r, 0, "Die Termine werden beginnen."),
+    "l27_werden_person_number_paradigm_leak",
+  ); // 21
+  expectL27(
+    (r) => addL27(r, 0, "Wird die Arbeit beginnen?"),
+    "l27_werden_question_scope_leak",
+  ); // 22
+  expectL27(
+    (r) => addL27(r, 0, "Die Arbeit wird nicht beginnen."),
+    "l27_werden_negation_scope_leak",
+  ); // 23
+  expectL27(
+    (r) => addL27(r, 0, "Die Arbeit wird begonnen haben."),
+    "l27_future_perfect_or_modalperfekt_leak",
+  ); // 24
+  expectL27(
+    (r) => addL27(r, 0, "Die Arbeit wird beginnen können."),
+    "l27_future_perfect_or_modalperfekt_leak",
+  ); // 25
+  expectL27(
+    (r) => addL27(r, 0, "Der Eingang ist repariert worden."),
+    "l27_new_tense_leak",
+  ); // 26
+  expectL27(
+    (r) => addL27(r, 0, "Die Türen werden repariert."),
+    "l27_passive_number_paradigm_leak",
+  ); // 27
+  expectL27(
+    (r) => addL27(r, 0, "Frau Keller bekommt den Plan geprüft."),
+    "l27_recipient_passive_leak",
+  ); // 28
+  expectL27(
+    (r) => addL27(r, 0, "Der Plan wird vom Team geprüft."),
+    "l27_agent_phrase_leak",
+  ); // 29
+  expectL27((r) => {
+    l27(r).unverifiedParticipleProbe = "unverified participle";
+  }, "l27_unverified_participle_leak"); // 30
+  expectL27((r) => {
+    l27(r).participleFormationProbe = "x";
+  }, "l27_unverified_participle_leak"); // 31
+  expectL27(
+    (r) => addL27(r, 0, "der Helfer, dessen Plan geprüft wird"),
+    "l27_relative_scope_leak",
+  ); // 32
+  expectL27(
+    (r) => addL27(r, 0, "der Ort, wo der Plan geprüft wird"),
+    "l27_relative_scope_leak",
+  ); // 33
+  expectL27(
+    (r) => addL27(r, 0, "Wer hilft, prüft den Plan."),
+    "l27_relative_scope_leak",
+  ); // 34
+  expectL27(
+    (r) => addL27(r, 0, "obwohl der Eingang gesperrt ist"),
+    "l27_new_connector_leak",
+  ); // 35
+  expectL27(
+    (r) => addL27(r, 0, "wegen der Änderung"),
+    "l27_new_case_preposition_relation_leak",
+  ); // 36
+  expectL27(
+    (r) => addL27(r, 0, "Der Eingang war gesperrt."),
+    "l27_new_tense_leak",
+  ); // 37
+  expectL27(
+    (r) => addL27(r, 0, "Der Helfer kam."),
+    "l27_broader_preterite_leak",
+  ); // 38
+  expectL27((r) => {
+    l27(r).functionalGenitiveProbe = "x";
+  }, "l27_functional_genitive_leak"); // 39
+  expectL27((r) => {
+    l27(r).hiddenGrammarProbe = "hidden L28 field";
+  }, "l27_l28_or_task6_leak"); // 40
+  expectL27((r) => {
+    l27(r).task6Probe = "TASK6_ADJUDICATED";
+  }, "l27_l28_or_task6_leak"); // 41
+  expectL27((r) => {
+    ((l27(r).chapters as R[])[0].checkpoint as R).interaction = { target: "x" };
+  }, "l27_learner_surface_leak"); // 42
+  expectL27((r) => {
+    (l27(r).chapters as R[])[0].ru = { prompt: "x" };
+  }, "l27_learner_surface_leak"); // 43
+  expectL27((r) => {
+    (l27(r).chapters as R[])[0].audioTranscript = "x";
+  }, "l27_learner_surface_leak"); // 44
+  expectL27((r) => {
+    (l27(r).chapters as R[])[0].responseOptions = ["x"];
+  }, "l27_learner_surface_leak"); // 45
+  expectL27((r) => {
+    l27(r).learnerArtifactsAuthorized = true;
+  }, "l27_learner_surface_leak"); // 46
+  expectL27((r) => {
+    l27(r).allowNonGermanAssessedTarget = true;
+  }, "l27_interaction_002_future_boundary_invalid"); // 47
+  expectL27((r) => {
+    l27(r).englishContourProbe = "x";
+  }, "l27_english_contour_leak"); // 48
+  expectL27((r) => {
+    ((l27(r).chapters as R[])[0].checkpoint as R).releaseProjection = "x";
+  }, "l27_release_surface_leak"); // 49
+  expectL27((r) => {
+    (l27(r).chapters as R[])[0].mockupPath = "x";
+  }, "l27_release_surface_leak"); // 50
+  expectL27((r) => {
+    ((l27(r).chapters as R[])[0].checkpoint as R).newSituation = {};
+  }, "l27_semantic_contract_invalid:situations"); // 51
+  expectL27((r) => {
+    (
+      (
+        ((l27(r).chapters as R[])[0].checkpoint as R)
+          .plannedNewLexicalSenses as R[]
+      )[0] as R
+    ).id = "x";
+  }, "l27_semantic_contract_invalid:lexical_packages"); // 52
+  expectL27((r) => {
+    (
+      (
+        ((l27(r).chapters as R[])[0].checkpoint as R)
+          .plannedNewLexicalSenses as R[]
+      )[0] as R
+    ).communicativeUse = "x";
+  }, "l27_checkpoint_lexical_alignment_invalid"); // 53
+  expectL27((r) => {
+    ((l27(r).chapters as R[])[4].checkpoint as R).packetId = "x";
+  }, "l27_checkpoint_lexical_alignment_invalid"); // 54
+  expectL27((r) => {
+    (
+      (
+        (
+          ((l27(r).chapters as R[])[5].checkpoint as R)
+            .plannedNewLexicalSenses as R[]
+        )[0] as R
+      ).utilityProof as R
+    ).facetValue = "x";
+  }, "l27_semantic_contract_invalid:lexical_utility"); // 55
+  expectL27((r) => {
+    ((l27(r).chapters as R[])[0].chapterEvidencePacketIds as string[]).pop();
+  }, "l27_semantic_contract_invalid:evidence"); // 56
+  expectL27((r) => {
+    const c = (l27(r).chapters as R[])[0];
+    ((c.recallSchedule as R).futureDelayedProbe as R).packetId = "x";
+  }, "l27_semantic_contract_invalid:evidence"); // 57
+  expectL27(
+    (r) =>
+      setL27Surfaces(
+        r,
+        6,
+        String(((l27(r).chapters as R[])[6].supportFading as R).entry).replace(
+          "Herr Brandt, ",
+          "",
+        ),
+      ),
+    "l27_c07_final_transfer",
+  ); // 58
+  expectL27((r) => {
+    (l27(r).chapters as R[])[0].unrelatedFieldProbe = "x";
+  }, "l27_semantic_contract_invalid:identity"); // 59
+  expectL27((_r, plan) => {
+    ((plan.chapterOutcomes as R[])[0] as R).outcome = "x";
+  }, "l27_semantic_contract_invalid:identity"); // 60
+  const oldC04 =
+    "Der Fahrradständer wird repariert. Das ist der laufende Vorgang. Der Eingang ist schon geöffnet. Das ist das Ergebnis, das bereits gilt.";
+  const oldC07 =
+    "Herr Brandt, der Eingang ist noch gesperrt. Der Helfer, der den Plan prüft, hilft der Gruppe. Wahrscheinlich wird das Treffen später beginnen, weil der Eingang noch gesperrt ist. Deshalb lautet der Vorschlag: Das Treffen wird am Freitag beginnen. Die Gruppe prüft den Vorschlag.";
+  const finalQuestion = "Passt Freitag, oder wann passt es?";
+  expectL27((r) => {
+    ((l27(r).chapters as R[])[3].supportFading as R).entry = oldC04;
+  }, "l27_process_state_contrast_invalid"); // 61
+  expectL27((r) => {
+    (
+      (
+        ((l27(r).chapters as R[])[3].checkpoint as R)
+          .plannedNewLexicalSenses as R[]
+      )[0] as R
+    ).communicativeUse = oldC04;
+  }, "l27_process_state_contrast_invalid"); // 62
+  expectL27((r) => {
+    ((l27(r).chapters as R[])[6].supportFading as R).entry = oldC07;
+  }, "l27_final_negotiation_correction_invitation_invalid"); // 63
+  expectL27((r) => {
+    ((l27(r).chapters as R[])[6].supportFading as R).exit = oldC07;
+  }, "l27_final_negotiation_correction_invitation_invalid"); // 64
+  expectL27((r) => {
+    (
+      (
+        ((l27(r).chapters as R[])[6].checkpoint as R)
+          .plannedNewLexicalSenses as R[]
+      )[0] as R
+    ).communicativeUse = oldC07;
+  }, "l27_final_negotiation_correction_invitation_invalid"); // 65
+  expectL27((r) => {
+    const c = (l27(r).chapters as R[])[6];
+    const weaken = (value: string) =>
+      value.replace(finalQuestion, "Passt Freitag?");
+    (c.supportFading as R).entry = weaken(String((c.supportFading as R).entry));
+    (c.supportFading as R).exit = weaken(String((c.supportFading as R).exit));
+    (
+      ((c.checkpoint as R).plannedNewLexicalSenses as R[])[0] as R
+    ).communicativeUse = weaken(
+      String(
+        (((c.checkpoint as R).plannedNewLexicalSenses as R[])[0] as R)
+          .communicativeUse,
+      ),
+    );
+  }, "l27_final_negotiation_correction_invitation_invalid"); // 66
+  const leakedQuestion =
+    "Passt Freitag für Ihre Gruppe, oder passt ein anderer Tag besser?";
+  expectL27((r) => {
+    const c = (l27(r).chapters as R[])[6];
+    (c.supportFading as R).entry = String((c.supportFading as R).entry).replace(
+      finalQuestion,
+      leakedQuestion,
+    );
+  }, "l27_final_negotiation_boundary_leak"); // 67
+  expectL27((r) => {
+    const c = (l27(r).chapters as R[])[6];
+    (c.supportFading as R).exit = String((c.supportFading as R).exit).replace(
+      finalQuestion,
+      leakedQuestion,
+    );
+  }, "l27_final_negotiation_boundary_leak"); // 68
+  expectL27((r) => {
+    const c = (l27(r).chapters as R[])[6];
+    (
+      ((c.checkpoint as R).plannedNewLexicalSenses as R[])[0] as R
+    ).communicativeUse = String(
+      (((c.checkpoint as R).plannedNewLexicalSenses as R[])[0] as R)
+        .communicativeUse,
+    ).replace(finalQuestion, leakedQuestion);
+  }, "l27_final_negotiation_boundary_leak"); // 69
+  expectL27((r) => addL27(r, 6, "Ihre"), "l27_final_negotiation_boundary_leak"); // 70
+  expectL27(
+    (r) => addL27(r, 6, "ein anderer Tag"),
+    "l27_final_negotiation_boundary_leak",
+  ); // 71
+  expectL27(
+    (r) => addL27(r, 6, "besser"),
+    "l27_final_negotiation_boundary_leak",
+  ); // 72
 
   const prematureL23 = clone(json(FILE)) as R;
   prematureL23.lessons = (prematureL23.lessons as R[]).slice(0, 23);

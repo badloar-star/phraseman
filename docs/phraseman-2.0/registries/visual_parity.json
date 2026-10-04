@@ -5897,9 +5897,9 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/learn-001.png",
+      "evidence_at": "2026-10-04T18:10:55.126Z",
+      "evidence_sha256": "21c8e81a4f5bfe6f3906f85759285dd2a093b06c3b8a79b1663aed56558a231d",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -5961,9 +5961,9 @@
       "anim_notes": [
         "blink 1s steps(1) infinite"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/learn-003.png",
+      "evidence_at": "2026-10-04T18:13:48.698Z",
+      "evidence_sha256": "9d1ca49b62a7b36de297a00bd5d636d11ec689ee02c0764d6f9355869df5f972",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -5994,9 +5994,9 @@
       "anim_notes": [
         "blink 1s steps(1) infinite"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/learn-004.png",
+      "evidence_at": "2026-10-04T18:18:57.770Z",
+      "evidence_sha256": "4813c62b61cdd75bfed018ae878ac7f9fce76ca8b9eb82a6ef45bf15a9717110",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,

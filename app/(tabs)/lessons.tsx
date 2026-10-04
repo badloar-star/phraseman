@@ -5609,6 +5609,9 @@ export default function LessonsTab({
               // теперь либо полный, либо честно ограничен доступом, а не
               // «скоро продолжится»). Кнопка жалобы на список уроков остаётся.
               ListFooterComponent={
+                // зачем (сверка learn-004, learn.html A4): при пустом результате поиска в макете под
+                // «Ничего не нашлось» только совет — жалобу на список уроков тут не показываем.
+                legacyFilteredListData.length === 0 && legacyLessonQuery.trim() ? null : (
                 <>
                   <View style={{ alignItems: "center", paddingVertical: 20 }}>
                     <ReportErrorButton
@@ -5628,6 +5631,7 @@ export default function LessonsTab({
                     />
                   </View>
                 </>
+                )
               }
               renderItem={({ item, index: i }) => {
                 const scaleAnim = itemAnims[i];

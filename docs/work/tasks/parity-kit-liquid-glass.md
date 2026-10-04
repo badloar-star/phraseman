@@ -48,3 +48,6 @@ Governance-ID: TG-D731AF26BED5
 
 Governance-ID: TG-B42BE230DCA8
 (стекло карточек «Обучения» — components/lessons/LessonsListGlassCard.tsx, сторож lessons_list_liquid_glass_source_contract PASS)
+
+Governance-ID: TG-D64A3791D1A1
+(learn-004: футер «Нашёл ошибку?» скрыт при пустом поиске — app/(tabs)/lessons.tsx; сторожа lessons_* PASS)

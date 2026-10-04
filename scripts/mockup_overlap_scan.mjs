@@ -37,6 +37,8 @@ export const SCAN_SOURCE = `(() => {
       let flipped = false;
       for (let a = el; a && a !== ph; a = a.parentElement) { if (getComputedStyle(a).backfaceVisibility === 'hidden') { flipped = true; break; } }
       if (flipped) continue;
+      // зачем: обрезанный многоточием текст (line-clamp) считаем по видимой части — скрытые строки не наложение
+      if (getComputedStyle(el).webkitLineClamp && getComputedStyle(el).webkitLineClamp !== 'none') continue;
       const own = [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim().length > 0);
       const isIcon = el.tagName.toLowerCase() === 'svg' && el.classList.contains('i');
       if (!own && !isIcon) continue;

@@ -38,3 +38,13 @@ legal/privacy_policy_en.json, legal/privacy_policy_en_ios.json (+ сгенери
 
 ## Rollback
 Удалить пункт и повторить legal:sync.
+
+## Применение (Ядро, 04.10) — решение владельца §124 «Да, удалить»
+Governance-ID: TG-D93A5D8AFD89
+Governance-ID: TG-7A24B74C9CC5
+- Outcome: строка §19 о 90 днях для журналов ошибок и активности в обеих версиях политики (en, en_ios), «Last updated: October 4, 2026»; legal:sync. Затем TTL-поля → выкладка координатора → бэкфилл expireAt (сухой прогон, затем батчи ≤500 с логом [PM-252]).
+- Scope: legal/*.json и сгенерированные копии; firestore.indexes.json; scripts/pm252_log_ttl_backfill.py.
+- Security and privacy: срок хранения диагностики сокращается; новых данных нет.
+- Technical debt: нет нового — политика приведена к механизму.
+- Verification: legal-сторожа, поиск фразы в сгенерированных HTML; сухой прогон бэкфилла числами.
+- Rollback: убрать пункт + legal:sync; TTL-поля снять; expireAt можно стереть тем же скриптом (обратный режим не нужен — до удаления 90 дней).

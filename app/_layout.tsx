@@ -2352,6 +2352,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           console.warn(cache ? `[PAYWALL] цены прогреты: из кэша ${plans}` : '[PAYWALL] цены прогреты: нет кэша'); // guard-ok: одна строка на запуск, цепочка [PAYWALL]
         })
         .catch((error: unknown) => console.warn('[PAYWALL] цены: прогрев не удался', String(error)))); // guard-ok: одна строка на запуск
+      // зачем (04.10, удаление карточки из опубликованного набора): запись, не отправленная до закрытия
+      // приложения, уходит при следующем входе. Одно чтение диска после первого кадра; сеть — только если
+      // очередь не пуста. Модуль грузится динамически, не в старт.
+      runAfterHomeFirstFrame('published_pack_card_remove_flush', () => import('./community_packs/publishedPackCardRemoval')
+        .then(({ flushPublishedPackCardRemovals }) => flushPublishedPackCardRemovals())
+        .catch((error: unknown) => console.warn('[PACK-CARD-REMOVE] flush на входе не удался', String(error)))); // guard-ok: одна строка на запуск
 
       let shouldPrimeLessonsAfterReveal = false;
       try {

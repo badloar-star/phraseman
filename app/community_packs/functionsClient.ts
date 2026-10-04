@@ -57,6 +57,22 @@ export async function callCommunityAuthorRemovePack(data: {
   return callFunction<typeof data, { ok: boolean }>('communityAuthorRemovePack', data);
 }
 
+export type CommunityAuthorRemoveCardResult =
+  | { ok: true; status: 'removed' | 'not_found_already_removed'; cardCount: number }
+  | {
+    ok: false;
+    reason: 'pack_not_found' | 'not_author' | 'pack_removed' | 'update_pending' | 'not_published' | 'card_count';
+    cardCount?: number;
+  };
+
+/** Удаление одной карточки из своего опубликованного набора (автор определяется сервером по входу). */
+export async function callCommunityAuthorRemoveCard(data: {
+  packId: string;
+  cardId: string;
+}): Promise<CommunityAuthorRemoveCardResult> {
+  return callFunction<typeof data, CommunityAuthorRemoveCardResult>('communityAuthorRemoveCard', data);
+}
+
 // зачем: D140 (владелец 2026-10-01) — клиентские вызовы подарочных наборов
 // (flashcardPackGiftRedeem, flashcardPackGiftSyncState, flashcardPackGiftGrantGlobalBroadcast,
 // communityRedeemPackGiftVoucher) удалены вместе с серверными функциями.

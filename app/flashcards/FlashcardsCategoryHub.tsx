@@ -4,9 +4,9 @@
  *
  * Что здесь есть:
  *   • «Мои наборы» — уже добавленные наборы (открываются как набор карточек);
- *   • «Наборы сообщества» — сетка компактных плиток ПО 3 В РЯД: иконка, название,
- *     лайки и счётчик добавлений. Плитка открывается ДО добавления — в режиме
- *     просмотра (`preview=1`), где и живут «Добавить себе» и лайк.
+ *   • «Наборы сообщества» — список строк-карточек (packs-simple.html, замок 04.10): название
+ *     и «Топ», автор, ♥ · 👥 · 💬, плашка числа карточек, стрелка. Строка открывается ДО
+ *     добавления — в режиме просмотра (`preview=1`), где и живут «Добавить себе» и лайк.
  *
  * Чего здесь БОЛЬШЕ НЕТ (по спеке):
  *   • заголовка «Наборы» и подзаголовка секции «Наборы сообщества» — дубль убран,
@@ -211,7 +211,7 @@ function HubTileShell({ testID, a11y, onPress, onLongPress, disabled, reduceMoti
   );
 }
 
-type CommunityPackTileProps = {
+type CommunityPackRowProps = {
   pack: FlashcardMarketPack;
   lang: Lang;
   t: Theme;
@@ -221,8 +221,6 @@ type CommunityPackTileProps = {
   isTop: boolean;
   reduceMotion: boolean;
   showEdit: boolean;
-  labelSize: number;
-  icon: React.ReactNode;
   onOpen: () => void;
   onLongPress?: () => void;
   onEdit: () => void;
@@ -230,182 +228,105 @@ type CommunityPackTileProps = {
   disabled?: boolean;
 };
 
-/**
- * Компактная плитка набора сообщества (сетка 3-в-ряд): иконка, название,
- * ник автора, лайки и счётчик добавлений. Открывается и БЕЗ добавления —
- * в режиме просмотра.
- */
-/** PM-092: плашки поверх обложки и подписи плитки — размеры `.ptile` из cards.html. */
-const tileStyles = StyleSheet.create({
-  badge: {
-    position: 'absolute',
-    height: 22,
-    borderRadius: 11,
-    paddingHorizontal: 7,
+/** packs-simple.html (замок 04.10): размеры строки `.card .row`, плашки `.cntp`, метки `.tag2`. */
+const rowStyles = StyleSheet.create({
+  card: {
+    minHeight: 74,
+    borderRadius: 14,
+    borderWidth: 1, // guard-ok: исключение 2.0 (24.09) — 1px полупрозрачная обводка `.card`
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(12,12,13,0.82)',
+    gap: 16,
+    paddingVertical: 9,
+    paddingLeft: 18,
+    paddingRight: 16,
+    overflow: 'hidden',
   },
-  badgeText: { fontSize: 13, lineHeight: 17, fontWeight: '700' }, // зачем: шкала D145 — только 16/13
-  ownBadge: {
-    position: 'absolute',
-    right: 7,
-    top: 7,
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    backgroundColor: '#F2F1F6',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  titleLine: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap' },
+  // зачем: макет 17/22 жирный; шкала D145 (решение владельца 04.10: при сверке главнее 16/13) — 16.
+  title: { flexShrink: 1, fontSize: 16, lineHeight: 22, fontWeight: '700' },
+  topTag: { height: 22, paddingHorizontal: 8, borderRadius: 7, marginLeft: 8, alignItems: 'center', justifyContent: 'center' },
+  topTagText: { fontSize: 13, lineHeight: 16, fontWeight: '700' }, // зачем: макет 12, D145 — 13
+  author: { fontSize: 16, lineHeight: 20, marginTop: 1 },
+  pill: { minWidth: 33, height: 24, paddingHorizontal: 9, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+  pillText: { fontSize: 13, lineHeight: 16, fontWeight: '700', fontVariant: ['tabular-nums'] }, // зачем: макет 14, D145 — 13
 });
 
-function CommunityPackTileBase({
-  pack, lang, t, g, width, owned, isTop, reduceMotion, showEdit, labelSize, icon, onOpen, onLongPress, onEdit, opening, disabled,
-}: CommunityPackTileProps) {
+/**
+ * Строка набора сообщества (packs-simple.html кадр 1): название и «Топ», автор, ♥ · 👥 · 💬,
+ * плашка числа карточек и стрелка. Открывается и БЕЗ добавления — в режиме просмотра;
+ * долгое нажатие на чужой набор — «Пожаловаться» / «Не показывать мне».
+ */
+function CommunityPackRowBase({
+  pack, lang, t, g, width, owned, isTop, reduceMotion, showEdit, onOpen, onLongPress, onEdit, opening, disabled,
+}: CommunityPackRowProps) {
   const authorName = useCommunityAuthorName(pack, lang);
   // Единственный источник цены — тот же, из которого спишет шит покупки.
   const packPriceRunes = communityPackPriceRunes(pack);
   const title = packTitleForInterface(pack, lang) || packHubCodeName(pack);
+  const topLabel = triLang(lang, { ru: 'Топ', uk: 'Топ', en: 'Top', es: 'Top', 'pt-BR': 'Top', vi: 'Top', id: 'Top', tr: 'Top', pl: 'Top' });
 
   return (
-    // зачем (PM-092, cards.html `.ptile`): подписи плитки выровнены влево, как в макете, — сетка
-    // читается колонками, а не «облаком» по центру.
-    <View style={{ width, alignItems: 'flex-start', paddingBottom: 4, position: 'relative' }}>
-      <HubTileShell
-        testID={`flashcards-pack-card-${pack.id}`}
-        a11y={`${title}, ${authorName}, ${pack.cardCount} ${triLang(lang, { ru: 'карточек', uk: 'карток', en: 'cards', es: 'tarjetas' })}`}
-        width={width}
-        reduceMotion={reduceMotion}
-        onPress={onOpen}
-        onLongPress={onLongPress}
-        disabled={disabled}
-      >
-        <View
-          style={[
-            {
-              width,
-              height: width,
-              borderRadius: TILE_RADIUS,
-              // зачем: одна тонкая обводка `.cv` для всех плиток; «топ» и «уже у тебя» видны по плашкам.
-              borderWidth: 1, // guard-ok: исключение 2.0 (24.09) — 1px полупрозрачная обводка обложки
-              borderColor: g.glassEdge, // guard-ok: исключение 2.0 — 1px обводка .cv
-              backgroundColor: g.card,
-              alignItems: 'center',
-              justifyContent: 'center',
-              overflow: 'hidden',
-              position: 'relative',
-            },
-            shadowForTile(t, isTop ? 'top' : owned ? 'owned' : 'base'),
-          ]}
-        >
-          <CatalogTileGlass g={g} />
-          {icon}
-          {opening ? (
-            <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { alignItems: 'center', justifyContent: 'center', backgroundColor: g.sheet }]}>
-              <ActivityIndicator color={t.accent} />
-            </View>
-          ) : null}
-          {pack.cardCount > 0 ? (
-            <View
-              pointerEvents="none"
-              style={[tileStyles.badge, { right: 7, bottom: 7, minWidth: 28, justifyContent: 'center' }]}
-            >
-              <Text style={[tileStyles.badgeText, { color: g.text }]}>{pack.cardCount}</Text>
-            </View>
-          ) : null}
-          {isTop ? (
-            // зачем (cards.html `.top`): «Топ» словом на тёмной плашке — значок тренда без подписи не читался.
-            <View pointerEvents="none" style={[tileStyles.badge, { left: 7, top: 7, gap: 4 }]}>
-              <Ionicons name="trending-up-outline" size={13} color={g.text} />
-              <Text style={[tileStyles.badgeText, { color: g.text }]}>
-                {triLang(lang, { ru: 'Топ', uk: 'Топ', en: 'Top', es: 'Top', 'pt-BR': 'Top', vi: 'Top', id: 'Top', tr: 'Top', pl: 'Top' })}
-              </Text>
-            </View>
-          ) : null}
-          {owned ? (
-            // зачем (cards.html `.own`): «уже у тебя» — светлый кружок с тёмной галочкой, заметен на любой обложке.
-            <View pointerEvents="none" style={tileStyles.ownBadge}>
-              <Ionicons name="checkmark" size={14} color="#0B0C0E" />
-            </View>
-          ) : null}
-          <View
-            pointerEvents="none"
-            style={[tileStyles.badge, { left: 7, bottom: 7, paddingHorizontal: 5 }]}
-          >
-            {/* зачем (D127): «Без языка» — нейтральный значок + подпись вместо флага. */}
-            {normalizePackLanguage(pack.packLanguage ?? pack.studyTarget) === NO_PACK_LANGUAGE ? (
-              <View testID={`flashcards-pack-card-nolang-${pack.id}`} style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
-                <Ionicons name="globe-outline" size={11} color={g.text} />
-                <Text style={{ flexShrink: 1, fontSize: 13, lineHeight: 17, fontWeight: '700', color: g.text }}>{noPackLanguageLabel(lang)}</Text>
+    <HubTileShell
+      testID={`flashcards-pack-card-${pack.id}`}
+      a11y={`${title}, ${authorName}, ${pack.cardCount} ${triLang(lang, { ru: 'карточек', uk: 'карток', en: 'cards', es: 'tarjetas' })}`}
+      width={width}
+      reduceMotion={reduceMotion}
+      onPress={onOpen}
+      onLongPress={onLongPress}
+      disabled={disabled}
+    >
+      <View style={[rowStyles.card, { width, borderColor: g.glassEdge, backgroundColor: g.card }]}>
+        <CatalogTileGlass g={g} />
+        <View style={{ flex: 1, minWidth: 0 }}>
+          <View style={rowStyles.titleLine}>
+            <FlowText testID={`flashcards-pack-title-${pack.id}`} provenance="user" style={[rowStyles.title, { color: g.text }]}>
+              {title}
+            </FlowText>
+            {isTop ? (
+              <View pointerEvents="none" style={[rowStyles.topTag, { backgroundColor: t.accent }]}>
+                <Text style={[rowStyles.topTagText, { color: t.correctText }]}>{topLabel}</Text>
               </View>
-            ) : (
-              <Text style={{ fontSize: 13, lineHeight: 17 }}>
-                {PACK_LANGUAGE_META[normalizePackLanguage(pack.packLanguage ?? pack.studyTarget)].flagGlyph}
-              </Text>
-            )}
+            ) : null}
           </View>
+          {/* зачем цена рядом с автором (владелец 2026-09-17): свойство набора, а не наклейка; «0» — шум. */}
+          <FlowText testID={`flashcards-pack-author-${pack.id}`} provenance="user" style={[rowStyles.author, { color: g.secondary }]}>
+            {packPriceRunes > 0 ? `${authorName} · ᚱ ${packPriceRunes.toLocaleString('ru-RU').replace(/ /g, ' ')}` : authorName}
+          </FlowText>
+          <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={owned} variant="list" />
         </View>
-      </HubTileShell>
-
-      {showEdit ? (
-        <TouchableOpacity
-          testID={`flashcards-pack-card-edit-${pack.id}`}
-          onPress={onEdit}
-          hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-          style={{
-            position: 'absolute', top: 2, left: 2, zIndex: 8,
-            padding: 6, borderRadius: 12, backgroundColor: g.sheet, borderWidth: 1, borderColor: g.glassEdge,
-          }}
-        >
-          <Ionicons name="create-outline" size={15} color={g.text} />
-        </TouchableOpacity>
-      ) : null}
-
-      <FlowText
-        testID={`flashcards-pack-title-${pack.id}`}
-        provenance="user"
-        style={{
-          marginTop: 7, fontSize: labelSize + 1, fontWeight: '700',
-          color: g.text, textAlign: 'left', lineHeight: labelSize + 4,
-        }}
-      >
-        {title}
-      </FlowText>
-      {/* зачем цена ЗДЕСЬ, рядом с автором (владелец 2026-09-17, экран 7
-          макета рун, выбран дизайн 3): бейдж поверх обложки закрывал бы саму
-          картинку набора, а лента внизу спорила бы с соцбаром. Строка в
-          описании ничего не перекрывает и читается вместе с автором — цена
-          воспринимается как свойство набора, а не как рекламная наклейка.
-          Бесплатные наборы цены не показывают: «0» — это шум. */}
-      <FlowText
-        testID={`flashcards-pack-author-${pack.id}`}
-        provenance="user"
-        style={{ marginTop: 2, fontSize: Math.max(8, labelSize - 1), fontWeight: '500', color: g.secondary, textAlign: 'left' }}
-      >
-        {packPriceRunes > 0 ? `${authorName} · ᚱ ${packPriceRunes.toLocaleString('ru-RU').replace(/ /g, ' ')}` : authorName}
-      </FlowText>
-      <View style={{ marginTop: 5 }}>
-        <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={owned} variant="tile" />
+        {showEdit ? (
+          <TouchableOpacity
+            testID={`flashcards-pack-card-edit-${pack.id}`}
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, { ru: 'Редактировать набор', uk: 'Редагувати набір', en: 'Edit pack', es: 'Editar pack', 'pt-BR': 'Editar pacote', vi: 'Sửa bộ thẻ', id: 'Edit paket', tr: 'Paketi düzenle', pl: 'Edytuj zestaw' })}
+            onPress={onEdit}
+            hitSlop={{ top: 10, bottom: 10, left: 6, right: 6 }}
+            style={[rowStyles.pill, { backgroundColor: g.opaqueControl }]}
+          >
+            <Ionicons name="create-outline" size={16} color={g.text} />
+          </TouchableOpacity>
+        ) : null}
+        <View pointerEvents="none" style={[rowStyles.pill, { backgroundColor: g.opaqueControl }]}>
+          <Text style={[rowStyles.pillText, { color: g.text }]}>{pack.cardCount}</Text>
+        </View>
+        {opening ? (
+          <ActivityIndicator size="small" color={g.secondary} />
+        ) : (
+          <Ionicons name="chevron-forward" size={20} color={g.secondary} accessibilityElementsHidden importantForAccessibility="no" />
+        )}
       </View>
-    </View>
+    </HubTileShell>
   );
 }
 
 /**
- * зачем (владелец, 2026-08-16, «прыжки страниц» / скорость): сетка сообщества
- * рендерит до 50 плиток (серверный limit(50)) внутри общего ScrollView. Без
- * memo ЛЮБОЙ ре-рендер хаба — ввод буквы в поиск, смена сортировки, тап по
- * «пожаловаться» — перерисовывал все 50 плиток разом, и скролл спотыкался.
- *
- * Сравниваем ПО СУЩЕСТВУ, а не по ссылкам: `icon` — это заново созданный
- * React-элемент, а `onOpen`/`onEdit`/`onLongPress` — стрелки, пересоздаваемые
- * на каждый рендер родителя. При поверхностном сравнении memo не дал бы
- * ничего. Иконка целиком выводится из pack.id и ширины плитки, а колбэки
- * замкнуты на тот же pack, поэтому при равенстве полей ниже пропуск
- * перерисовки безопасен: показать плитка может ровно то же самое.
+ * зачем (владелец, 2026-08-16, «прыжки страниц» / скорость): каталог рендерит до 50 строк
+ * (серверный limit(50)). Без memo ЛЮБОЙ ре-рендер хаба — буква в поиске, смена сортировки,
+ * долгое нажатие — перерисовывал все строки разом. Колбэки замкнуты на тот же pack,
+ * поэтому сравнение по полям безопасно.
  */
-const CommunityPackTile = React.memo(CommunityPackTileBase, (prev, next) => (
+const CommunityPackRow = React.memo(CommunityPackRowBase, (prev, next) => (
   prev.pack === next.pack
   && prev.lang === next.lang
   && prev.t === next.t
@@ -415,7 +336,6 @@ const CommunityPackTile = React.memo(CommunityPackTileBase, (prev, next) => (
   && prev.isTop === next.isTop
   && prev.reduceMotion === next.reduceMotion
   && prev.showEdit === next.showEdit
-  && prev.labelSize === next.labelSize
   && prev.opening === next.opening
   && prev.disabled === next.disabled
   // Наличие/отсутствие long-press меняет поведение, ссылка — нет.
@@ -510,7 +430,6 @@ export default function FlashcardsCategoryHub({
    * рендерятся на обычной поверхности, поэтому берём цвета прямо из темы.
    */
   const isGradientSurface = false;
-  const hubLabelMuted = g.secondary;
   const hubLabelAccent = t.accent;
 
   /** Свой набор: добавлен, авторский, или id в общем `ownedPackIds` (легаси-ветка). */
@@ -796,7 +715,7 @@ export default function FlashcardsCategoryHub({
    * просмотра (`preview=1`): карточки видно, тренировать/редактировать нельзя,
    * «Добавить себе» и лайк живут на самом экране набора.
    */
-  const renderCommunityPackTile = (pack: FlashcardMarketPack) => {
+  const renderCommunityPackRow = (pack: FlashcardMarketPack) => {
     const owned = isCommunityPackMine(pack);
     const showReportShortcut = !!pack.isCommunityUgc && !owned;
     const showAuthorEdit =
@@ -806,25 +725,17 @@ export default function FlashcardsCategoryHub({
       pack.authorStableId === hubAuthorStableId;
 
     return (
-      <CommunityPackTile
+      <CommunityPackRow
         key={`ugc_${pack.id}`}
         pack={pack}
         lang={lang}
         t={t}
         g={g}
-        width={tileW}
+        width={hubBarW}
         owned={owned}
         isTop={topPackIds.has(pack.id)}
         reduceMotion={reduceMotion}
         showEdit={showAuthorEdit}
-        labelSize={labelSize}
-        /* зачем (владелец 2026-09-21: «иконки маленькие, увеличь»): обложка
-           занимала 68% плитки и после `contain` по пропорции веера съедала ещё
-           часть — набор читался как крошечная марка в пустом квадрате. Растим
-           до 92%: это +35% к площади и один масштаб с «Моими наборами», но
-           угловые бейджи (флаг, счётчик, галочка, тренд) остаются читаемыми —
-           у них свой слой поверх, а 0.98 как в «Моих» их бы поджало. */
-        icon={packIcon(pack, Math.floor(tileW * 0.92))}
         opening={openingPackId === pack.id}
         disabled={openingPackId !== null}
         onOpen={() => {
@@ -942,21 +853,8 @@ export default function FlashcardsCategoryHub({
         <Reanimated.View {...enterProps(2)} style={sectionGapStyle}>
           {/* Подзаголовок «Наборы сообщества» убран: он дублировал заголовок экрана
               и теперь стоит в шапке, справа от стрелки «назад». */}
-          {/* PM-093/094 (D20, S64 — прямое требование владельца): короткая строка
-              описания подраздела «Наборы сообщества», не пересказ кнопок. */}
-          <Text style={{ color: hubLabelMuted, fontSize: 13, fontWeight: '600', marginBottom: 12 }}>
-            {triLang(lang, {
-              ru: 'Готовые наборы от других пользователей — добавь себе и тренируйся.',
-              uk: 'Готові набори від інших користувачів — додай собі й тренуйся.',
-              en: 'Ready-made packs from other learners — add one and start practicing.',
-              es: 'Packs listos de otros usuarios — añádelo y empieza a practicar.',
-              'pt-BR': 'Pacotes prontos de outros usuários — adicione e comece a treinar.',
-              vi: 'Bộ thẻ có sẵn từ người dùng khác — thêm vào và luyện tập.',
-              id: 'Paket siap pakai dari pengguna lain — tambahkan dan mulai berlatih.',
-              tr: 'Diğer kullanıcılardan hazır paketler — ekle ve çalışmaya başla.',
-              pl: 'Gotowe zestawy od innych użytkowników — dodaj i zacznij trening.',
-            })}
-          </Text>
+          {/* зачем (packs-simple.html, замок 04.10): строки-описания под заголовком в утверждённом макете нет —
+              макет новее PM-093/094; сразу «Продолжить создание набора» и строки наборов. */}
           {hasUnfinishedPackDraft ? (
             <TouchableOpacity
               testID="flashcards-packs-continue-draft"
@@ -966,6 +864,7 @@ export default function FlashcardsCategoryHub({
               } as never)}
               style={{
                 width: hubBarW,
+                marginTop: 2,
                 marginBottom: 12,
                 paddingVertical: 12,
                 paddingHorizontal: 14,
@@ -1002,10 +901,13 @@ export default function FlashcardsCategoryHub({
             </TouchableOpacity>
           ) : null}
           {visibleCommunityPacks.length === 0 ? (
-            <View testID="flashcards-community-empty" style={{ width: hubBarW, minHeight: 132, borderRadius: 18, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden', alignItems: 'center', justifyContent: 'center', padding: 18, gap: 9 }}>
-              <CatalogTileGlass g={g} />
-              <Ionicons name={catalogCommunityPacks.length === 0 ? 'albums-outline' : 'search-outline'} size={24} color={g.secondary} />
-              <FlowText testID="flashcards-community-empty-label" provenance="authored" style={{ color: g.secondary, fontSize: 13, lineHeight: 18, textAlign: 'center' }}>
+            // зачем (packs-simple.html кадр 3): пустой каталог — плитка 61 со значком и фраза 20/700 по центру, без карточки.
+            <View testID="flashcards-community-empty" style={{ width: hubBarW, alignItems: 'center', paddingTop: 96, paddingHorizontal: 24 }}>
+              <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: g.opaqueControl, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' }}>
+                <CatalogTileGlass g={g} />
+                <Ionicons name={catalogCommunityPacks.length === 0 ? 'people-outline' : 'search-outline'} size={26} color={g.text} />
+              </View>
+              <FlowText testID="flashcards-community-empty-label" provenance="authored" style={{ color: g.text, fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center', marginTop: 20 }}>
                 {catalogCommunityPacks.length === 0
                   ? triLang(lang, {
                       ru: 'Здесь появятся наборы после публикации.',
@@ -1032,17 +934,10 @@ export default function FlashcardsCategoryHub({
               </FlowText>
             </View>
           ) : null}
-          <View
-            style={{
-              width: hubBarW,
-              flexDirection: 'row',
-              flexWrap: 'wrap',
-              gap: GAP,
-              justifyContent: 'flex-start',
-            }}
-            >
-              {visibleCommunityPacks.map(renderCommunityPackTile)}
-            </View>
+          {/* зачем (packs-simple.html `.stack`): строки столбиком через 9. */}
+          <View style={{ width: hubBarW, gap: 9 }}>
+            {visibleCommunityPacks.map(renderCommunityPackRow)}
+          </View>
           {renderReportShortcutRow()}
         </Reanimated.View>
       ) : null}

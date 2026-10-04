@@ -194,13 +194,15 @@ describe('экран набора: раскладка и действия', () =
   });
 });
 
-describe('каталог сообщества: сетка и тексты', () => {
+describe('каталог сообщества: строки и тексты', () => {
   const hub = read('app', 'flashcards', 'FlashcardsCategoryHub.tsx');
 
-  it('плитки рисуются сеткой по 3 в ряд', () => {
-    expect(hub).toContain('const COLS = 3;');
-    expect(hub).toContain('renderCommunityPackTile');
-    expect(hub).toContain("flexWrap: 'wrap'");
+  // 04.10: утверждённый packs-simple.html — каталог списком строк-карточек вместо сетки 3-в-ряд.
+  it('наборы рисуются столбиком строк-карточек (packs-simple.html)', () => {
+    expect(hub).toContain('renderCommunityPackRow');
+    expect(hub).toContain('minHeight: 74');
+    expect(hub).toContain('variant="list"');
+    expect(hub).not.toContain('renderCommunityPackTile');
   });
 
   it('иконка набора берёт обложку автора, а не только бандл по id', () => {

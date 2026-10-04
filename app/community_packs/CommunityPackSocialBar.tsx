@@ -8,7 +8,8 @@
  * Варианты (`variant`):
  *   • `row`    — строка в списке/каталоге: счётчики + «Добавить себе»;
  *   • `tile`   — плитка сетки 3-в-ряд: только компактные счётчики, без кнопок;
- *   • `screen` — экран набора: ЯВНАЯ заметная кнопка лайка + «Добавить себе».
+ *   • `screen` — экран набора: ЯВНАЯ заметная кнопка лайка + «Добавить себе»;
+ *   • `list`   — строка каталога «Наборы сообщества» (packs-simple.html, 04.10): счётчики 18px, без кнопок.
  *
  * Анимации только на transform/opacity (нажатие лайка — короткий pop).
  */
@@ -38,7 +39,7 @@ import {
 import { isCommunityPackLikedLocally } from './packSocialStorage';
 import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
-export type CommunityPackSocialVariant = 'row' | 'tile' | 'screen';
+export type CommunityPackSocialVariant = 'row' | 'tile' | 'screen' | 'list';
 
 type Props = {
   pack: FlashcardMarketPack;
@@ -86,6 +87,9 @@ export default function CommunityPackSocialBar({
   const g = liquidGlassTokens(liquidGlassThemeId);
   const mode: CommunityPackSocialVariant = variant ?? (compact ? 'tile' : 'row');
   const isTile = mode === 'tile';
+  const isList = mode === 'list';
+  // зачем: строки каталога, как и плитки, — без чтения членства (2 чтения Firestore на КАЖДЫЙ набор).
+  const isCatalog = isTile || isList;
   const isScreen = mode === 'screen';
 
   /** Изоляция целей обучения: «Добавить себе» пишет владение по ТЕКУЩЕЙ цели. */
@@ -117,7 +121,7 @@ export default function CommunityPackSocialBar({
        * можно лайкнуть, — на экране набора. Плиткам каталога это лишние 2 чтения
        * Firestore КАЖДАЯ: их снимок обновляет событие `community_pack_like_changed`.
        */
-      const userId = isTile ? null : await getCanonicalUserId().catch(noteSwallowedAs('CommunityPackSocialBar:useEffect.getCanonicalUserId', null));
+      const userId = isCatalog ? null : await getCanonicalUserId().catch(noteSwallowedAs('CommunityPackSocialBar:useEffect.getCanonicalUserId', null));
       const [liked, state] = await Promise.all([
         isCommunityPackLikedLocally(pack.id).catch(noteSwallowedAs('CommunityPackSocialBar:useEffect.isCommunityPackLikedLocally', false)),
         fetchCommunityPackSocialState(pack.id, userId).catch(() => ({
@@ -138,7 +142,7 @@ export default function CommunityPackSocialBar({
     return () => {
       cancelled = true;
     };
-  }, [pack.id, pack.likesCount, pack.addedCount, owned, isTile]);
+  }, [pack.id, pack.likesCount, pack.addedCount, owned, isCatalog]);
 
   /**
    * Счётчик откликов.
@@ -350,16 +354,16 @@ export default function CommunityPackSocialBar({
         <Ionicons
           name="chatbubble-outline"
           size={iconSize}
-          color={isTile ? g.secondary : (onOpenComments ? g.text : g.secondary)}
+          color={isCatalog ? g.secondary : (onOpenComments ? g.text : g.secondary)}
         />
         {shouldShowCommentsCount(commentsCount) ? (
           <Text
             style={{
               // зачем (PM-092, cards.html `.ptile .mt`): на плитке счётчики — тихая служебная строка
               // 12px вторичным тоном; прежний t.textSecond в стеклянной теме давал почти белый жирный.
-              color: isTile ? g.secondary : (onOpenComments ? g.text : g.secondary),
+              color: isCatalog ? g.secondary : (onOpenComments ? g.text : g.secondary),
               fontSize,
-              fontWeight: isTile ? '500' : '700',
+              fontWeight: isCatalog ? '500' : '700',
             }}
           >
             {formatCommentsCount(commentsCount, lang)}
@@ -407,6 +411,23 @@ export default function CommunityPackSocialBar({
   };
 
   /** Плитка сетки: только компактные счётчики (лайк ставится на экране набора). */
+  if (isList) {
+    // зачем (packs-simple.html `.meta`): иконки 18, промежуток 18 между парами и 6 внутри; кегль 13 по D145 (макет 14).
+    return (
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 18, marginTop: 4 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+          <Ionicons name={snapshot.liked ? 'heart' : 'heart-outline'} size={18} color={snapshot.liked ? g.text : g.secondary} />
+          <Text style={{ color: g.secondary, fontSize: 13, lineHeight: 18, fontWeight: '500' }}>{snapshot.likesCount}</Text>{/* guard-ok: счётчик, не подпись */}
+        </View>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+          <Ionicons name="people-outline" size={18} color={g.secondary} />
+          <Text style={{ color: g.secondary, fontSize: 13, lineHeight: 18, fontWeight: '500' }}>{snapshot.addedCount}</Text>{/* guard-ok: счётчик, не подпись */}
+        </View>
+        {renderCommentsCount(18, 13, 6)}
+      </View>
+    );
+  }
+
   if (isTile) {
     // зачем gap 8, а не 10: замер макета показал, что три счётчика на плитке
     // шириной в треть экрана не помещаются при прежнем промежутке.

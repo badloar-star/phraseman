@@ -33,9 +33,12 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import type { SoundEventId } from '../modules/audio/sound_events';
 import { actionToastToneLabel, resolveActionToastActionLabel, resolveActionToastMessage } from './action_toast_copy';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 
 type ToastPayload = {
   type: ToastType;
+  layout?: AppEventMap['action_toast']['layout'];
+  lineIcon?: AppEventMap['action_toast']['lineIcon'];
   soundEventId?: SoundEventId;
   /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
   motionVariant?: 'classic' | 'hybrid';
@@ -257,6 +260,7 @@ function ActionToast() {
   const { lang } = useLang();
   const { liquidGlassThemeId } = useTheme();
   const bottomOffset = useGlobalBottomOverlayOffset();
+  const toastInsets = useStableSafeAreaInsets();
   const [toast, setToast] = useState<ToastPayload | null>(null);
   const [overlayWanted, setOverlayWanted] = useState(false);
   const overlayVisible = useOverlayVisible('actionToast', overlayWanted);
@@ -320,7 +324,8 @@ function ActionToast() {
       queueIfBusy: true,
       rateLimit: { maxStarts: 4, windowMs: 1000 },
     });
-    const hybrid = payload.motionVariant !== 'classic';
+    // зачем: строка сверху (layout 'top_line') анимируется хостом — въезд сверху и уход вверх (translateY × −1).
+    const hybrid = payload.motionVariant !== 'classic' && payload.layout !== 'top_line';
     // Reset animated values before mounting the Animated.View. On Fabric, doing
     // setValue immediately after setToast can trip the React insertion-effect
     // update warning while native animated props are being attached.
@@ -502,6 +507,27 @@ function ActionToast() {
   const toastAction = !isHybrid ? toast.action : undefined;
   const actionLabel = toastAction ? resolveActionToastActionLabel(toastAction, lang) : null;
 
+  if (toast.layout === 'top_line') {
+    // `.or-toast` (overlays-runtime): 14 от краёв, сразу под статус-баром, высота 58, поля 12/14, радиус 19,
+    // плитка 41 со значком, одна строка 13/18; сквозной для тапов, действия нет. Смысл тона — в подписи для диктора.
+    const lineIconName = (toast.lineIcon && toast.lineIcon in Ionicons.glyphMap ? toast.lineIcon : tone.icon) as keyof typeof Ionicons.glyphMap;
+    return (
+      <View style={[styles.lineAnchor, { top: Math.max(54, toastInsets.top + 8) }]} pointerEvents="none">
+        <Animated.View
+          testID="action-toast-top-line"
+          style={[styles.line, { backgroundColor: actionToastGlass.opaqueControl, borderColor: chrome.border, shadowColor: chrome.shadowColor, opacity, transform: [{ translateY: Animated.multiply(y, -1) }] }]}
+          accessible
+          accessibilityLabel={`${toneLabel}. ${message}`}
+        >
+          <View style={[styles.lineTile, { backgroundColor: actionToastGlass.opaqueCard }]}>
+            <Ionicons name={lineIconName} size={20} color={chrome.title} />
+          </View>
+          <Text style={[styles.lineCopy, { color: chrome.title }]}>{message}</Text>
+        </Animated.View>
+      </View>
+    );
+  }
+
   return (
     // зачем: аудит 2026-08-17 (скрин владельца, iPhone) — тост показывался
     // обрезанным слева, хотя host уже имел left:0/right:0. Внешняя обёртка
@@ -598,6 +624,26 @@ function ActionToast() {
 export default memo(ActionToast);
 
 const styles = StyleSheet.create({
+  lineAnchor: { position: 'absolute', left: 14, right: 14, zIndex: 9997, alignItems: 'center' },
+  line: {
+    width: '100%',
+    maxWidth: 560,
+    minHeight: 58,
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    borderRadius: 19,
+    borderWidth: StyleSheet.hairlineWidth, // guard-ok: тонкая кромка `.or-toast` (исключение 2.0)
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 11,
+    shadowOpacity: 0.48,
+    shadowRadius: 19,
+    shadowOffset: { width: 0, height: 18 },
+    ...noAndroidOutline,
+  },
+  lineTile: { width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
+  // `.or-toast-copy` 13/18/680
+  lineCopy: { flex: 1, minWidth: 0, fontSize: 13, lineHeight: 18, fontWeight: '700' },
   // зачем: геометрия (top/left/right) отделена от transform — см. комментарий
   // у места использования выше.
   hostAnchor: {

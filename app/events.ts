@@ -131,6 +131,14 @@ export type AppEventMap = {
   action_toast: {
     /** 'warning' — есть срок и цена бездействия, но ничего не сломалось. */
     type: 'success' | 'error' | 'info' | 'warning' | 'reward';
+    /**
+     * зачем (координатор 04.10, вариант (б)): пассивные напоминания (серия под угрозой, оплата не прошла) по
+     * overlays-runtime OR-TOAST-STREAK-RISK / BILLING-ISSUE — сверху одной строкой с плиткой-значком, без
+     * подписи тона и без кнопки. Нет поля — обычная карточка по overlays.html (кадры 48–57).
+     */
+    layout?: 'top_line';
+    /** Значок в плитке для layout 'top_line' (имя Ionicons). */
+    lineIcon?: string;
     /** Optional exact semantic cue; the visible ActionToast remains the playback trigger. */
     soundEventId?: SoundEventId;
     /**

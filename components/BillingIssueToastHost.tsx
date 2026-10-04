@@ -81,7 +81,10 @@ export default function BillingIssueToastHost() {
       // ActionToastHybridCard (components/ActionToast.tsx), закон №15 (выход
       // короче входа). Условия показа (grace-период/кулдоун 3 дня/привязка к
       // инциденту) не менялись.
+      // зачем (OR-TOAST-BILLING-ISSUE): пассивное напоминание — сверху одной строкой с плиткой-корзиной.
       emitAppEvent('action_toast', {
+        layout: 'top_line',
+        lineIcon: 'basket-outline',
         ...actionToastTri('warning', {
           // зачем (аудит по Библии, 2026-08-26): «чтобы не потерять» — давление
           // потерей. Правило 2 требует gain-framing: та же правда, но о том,

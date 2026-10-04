@@ -48,7 +48,10 @@ export default function StreakRiskToastHost() {
       // ActionToastHybridCard (components/ActionToast.tsx), закон №15 (выход
       // короче входа). Условия показа (вечер/раз в день/цепочка под угрозой)
       // не менялись.
+      // зачем (OR-TOAST-STREAK-RISK): пассивное напоминание — сверху одной строкой с плиткой-огоньком.
       emitAppEvent('action_toast', {
+        layout: 'top_line',
+        lineIcon: 'flame-outline',
         ...actionToastTri('warning', {
           ru: `Цепочка ${streakBefore} дн. сгорит в полночь — позанимайся, чтобы сохранить`,
           uk: `Серія ${streakBefore} дн. згорить опівночі — позаймайся, щоб зберегти`,

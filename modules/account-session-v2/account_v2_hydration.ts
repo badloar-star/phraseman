@@ -88,6 +88,11 @@ export type HydrationSnapshot = Readonly<{
   lessons: readonly HydratedLesson[];
   cards: readonly HydratedCard[];
   libraries: readonly HydratedLibrary[];
+  /**
+   * S1d: часы прохода гидрации (ports.nowMs) — «сейчас» для решения 8E: время правки карточки
+   * позже now + запас (часы устройства ушли вперёд) считается неизвестным. Нет — без отсечки.
+   */
+  nowMs?: number;
 }>;
 export type HydrationApplyResult = Readonly<Record<string, number>>;
 
@@ -634,7 +639,9 @@ export async function hydrateAccountsV2Scope(ports: AccountsV2HydrationPorts): P
     // зачем (8E): применение получает доступ к засеянному зеркалу — решить «чья версия
     // свежее» для карточек, уже лежащих на телефоне, ДО своих записей.
     const snapshot = withoutLocallyOwned(parsed.snapshot, mirror.keptLibraries, mirror.keptDeletedCards);
-    applied = await ports.applyLocal(Object.freeze({ ...snapshot, mirror: createMirrorAccess(ports, mirror.seededCards) }), ports.isCurrent);
+    applied = await ports.applyLocal(Object.freeze({
+      ...snapshot, mirror: createMirrorAccess(ports, mirror.seededCards), nowMs: ports.nowMs(),
+    }), ports.isCurrent);
   } catch (error) {
     if (!ports.isCurrent()) {
       console.warn(`${LOG} hydrate stale_midway code=${errorCode(error)}`);

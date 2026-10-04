@@ -282,7 +282,11 @@ describe('8K — встройка в cloud_sync (единый путь выгр�
     expect(refuseAt).toBeGreaterThan(uploadAt);
     expect(refuseAt).toBeLessThan(writeAt);
     const refuse = body.slice(refuseAt, body.indexOf('const flashcardUpload = flashcardOutcome.plan;', refuseAt));
-    expect(refuse).toContain('return false;');
+    // зачем (S2d, ebc1a860d): отказ теперь возвращается через refuse(код) — тот же false, но с
+    // понятным кодом причины для UI; смысл прежний: выгрузка карточек не удалась → отказ.
+    expect(refuse).toContain("return refuse('flashcards_upload_failed');");
+    const refuseHelper = body.slice(body.indexOf('const refuse = (code: ForceSyncRefusalCode): false => {'));
+    expect(refuseHelper.slice(0, 300)).toContain('return false;');
     expect(refuse).not.toContain('writeUserDocWithNestedProgress');
     expect(body).toContain('const forceDocProgress = buildDocProgressWithoutFlashcardLists(forceData, flashcardUpload);');
     expect(body).toMatch(/\},\s*forceDocProgress,\s*\),/);

@@ -258,7 +258,7 @@ describe('S1b/S1c — конфликт версий одной карточки 
   const T = 1_800_000_000_000;
   const H = 60 * 60 * 1000;
   const merge = (local: unknown[], cloud: unknown[]) => mergeLockedFlashcardsWithPages(
-    JSON.stringify(local), JSON.stringify(cloud), new Set(), 'flashcards_v1', { mode: 'active', target: 'en' },
+    JSON.stringify(local), JSON.stringify(cloud), new Set(), 'flashcards_v1', { mode: 'active', target: 'en', now: T + 10 * H },
   );
   const summaries = () => logs().filter((line) => line.includes('merge_conflict'));
 
@@ -342,7 +342,7 @@ describe('S1b/S1c — конфликт версий одной карточки 
   // зачем: удаление (журнал 7D) отсекается ДО выбора версии — в любом режиме, поэтому проверяем оба.
   test.each(['active', 'restore'] as const)('удалённая журналом карточка не участвует в конфликте и не возвращается (%s)', (mode) => {
     const out = mergeLockedFlashcardsWithPages(
-      JSON.stringify([{ id: 'gone', updatedAt: T + H }]), JSON.stringify([{ id: 'gone', updatedAt: T }]), new Set(['gone']), 'k', { mode },
+      JSON.stringify([{ id: 'gone', updatedAt: T + H }]), JSON.stringify([{ id: 'gone', updatedAt: T }]), new Set(['gone']), 'k', { mode, now: T + 10 * H },
     );
     expect(JSON.parse(out.value)).toEqual([]);
     expect(summaries()).toEqual([]);
@@ -357,7 +357,7 @@ describe('S1c — конфликт версий в режиме restore (чис�
   const T = 1_800_000_000_000;
   const H = 60 * 60 * 1000;
   const restore = (local: unknown[], cloud: unknown[]) => mergeLockedFlashcardsWithPages(
-    JSON.stringify(local), JSON.stringify(cloud), new Set(), 'flashcards_v1', { mode: 'restore', target: 'en' },
+    JSON.stringify(local), JSON.stringify(cloud), new Set(), 'flashcards_v1', { mode: 'restore', target: 'en', now: T + 10 * H },
   );
   const summaries = () => logs().filter((line) => line.includes('merge_conflict'));
 
@@ -387,5 +387,110 @@ describe('S1c — конфликт версий в режиме restore (чис�
   test('restore: облако новее на ≥ запаса → облачная', () => {
     const out = restore([{ id: 'a', ru: 'моё', updatedAt: T }], [{ id: 'a', ru: 'облако', updatedAt: T + H }]);
     expect(JSON.parse(out.value)).toEqual([{ id: 'a', ru: 'облако', updatedAt: T + H }]);
+  });
+});
+
+// зачем (S1d, TG-4AC6243A1836): часы устройства убежали вперёд больше чем на запас — такое время
+// правки «неизвестно»: active → локальная, restore → облачная (как без времени).
+describe('S1d — время правки «из будущего» при объединении', () => {
+  const T = 1_800_000_000_000;
+  const H = 60 * 60 * 1000;
+  const NOW = T + 10 * H;
+  const run = (mode: 'active' | 'restore', local: unknown[], cloud: unknown[]) => mergeLockedFlashcardsWithPages(
+    JSON.stringify(local), JSON.stringify(cloud), new Set(), 'flashcards_v1', { mode, target: 'en', now: NOW },
+  );
+  const summaries = () => logs().filter((line) => line.includes('merge_conflict'));
+
+  test('облако из будущего: active → локальная, restore → облачная; в сводке time_unknown', () => {
+    const local = [{ id: 'a', ru: 'моё', updatedAt: T }];
+    const cloud = [{ id: 'a', ru: 'облако', updatedAt: NOW + H + 1 }];
+    expect(JSON.parse(run('active', local, cloud).value)).toEqual(local);
+    expect(JSON.parse(run('restore', local, cloud).value)).toEqual(cloud);
+    expect(summaries()).toEqual([
+      '[FLASHCARD-PAGES] merge_conflicts key=flashcards_v1 mode=active local_newer=0 remote_newer=0 within_margin=0 time_unknown=1',
+      '[FLASHCARD-PAGES] merge_conflicts key=flashcards_v1 mode=restore local_newer=0 remote_newer=0 within_margin=0 time_unknown=1',
+    ]);
+  });
+
+  test('локальная из будущего: restore → облачная (раньше побеждала локальная)', () => {
+    const local = [{ id: 'a', ru: 'моё', updatedAt: NOW + 100 * H }];
+    const cloud = [{ id: 'a', ru: 'облако', updatedAt: T }];
+    expect(JSON.parse(run('restore', local, cloud).value)).toEqual(cloud);
+    expect(JSON.parse(run('active', local, cloud).value)).toEqual(local);
+  });
+
+  test('ровно на границе now + запас — время ещё действует', () => {
+    const out = run('active', [{ id: 'a', ru: 'моё', updatedAt: T }], [{ id: 'a', ru: 'облако', updatedAt: NOW + H }]);
+    expect(out).toMatchObject({ localWon: 0, remoteWon: 1 });
+  });
+
+  test('без now — часы устройства (Date.now) в точке вызова', () => {
+    const now = jest.spyOn(Date, 'now').mockReturnValue(NOW);
+    const out = mergeLockedFlashcardsWithPages(
+      JSON.stringify([{ id: 'a', ru: 'моё', updatedAt: T }]), JSON.stringify([{ id: 'a', ru: 'облако', updatedAt: NOW + H + 1 }]),
+      new Set(), 'k', { mode: 'restore' },
+    );
+    expect(now).toHaveBeenCalled();
+    expect(out).toMatchObject({ localWon: 0, remoteWon: 1 });
+    expect(summaries()).toEqual(['[FLASHCARD-PAGES] merge_conflicts key=k mode=restore local_newer=0 remote_newer=0 within_margin=0 time_unknown=1']);
+  });
+});
+
+// зачем (S1d R2, решение AA): на пути записи страниц (8N, active) отсечка «будущего» у ОБЛАЧНОЙ
+// стороны означает, что у ЭТОГО телефона часы отстают — его версия не должна затереть облачную
+// правку: в страницы идёт облачная, локальная на телефоне остаётся. Отсечка у локальной (свои
+// часы спешат) — прежнее правило режима. Без флага (restore запертых ключей — значение кладётся
+// в локальное хранилище) поведение прежнее.
+describe('S1d R2 — облачная правка «из будущего» на пути записи страниц', () => {
+  const T = 1_800_000_000_000;
+  const H = 60 * 60 * 1000;
+  const NOW = T + 10 * H;
+  const run = (local: unknown[], cloud: unknown[], keepRemoteFromFuture: boolean) => mergeLockedFlashcardsWithPages(
+    JSON.stringify(local), JSON.stringify(cloud), new Set(), 'flashcards_v1',
+    { mode: 'active', target: 'en', now: NOW, keepRemoteFromFuture },
+  );
+  const summaries = () => logs().filter((line) => line.includes('merge_conflict'));
+
+  test('отстающие часы: облачная «из будущего» остаётся в объединении, локальная не заменяется', () => {
+    const cloud = { id: 'a', ru: 'облако', updatedAt: NOW + 3 * H };
+    const out = run([{ id: 'a', ru: 'моё', updatedAt: T }], [cloud], true);
+    expect(JSON.parse(out.value)).toEqual([cloud]);
+    expect(out).toMatchObject({ localWon: 0, remoteWon: 0, remoteFutureKept: 1, remoteWonCards: [] });
+    expect(summaries()).toEqual(['[FLASHCARD-PAGES] merge_conflicts key=flashcards_v1 mode=active local_newer=0 remote_newer=0 within_margin=0 time_unknown=1 remote_future_kept=1']);
+  });
+
+  test('обе стороны «из будущего» — облачную всё равно не затираем', () => {
+    const cloud = { id: 'a', ru: 'облако', updatedAt: NOW + 3 * H };
+    const out = run([{ id: 'a', ru: 'моё', updatedAt: NOW + 5 * H }], [cloud], true);
+    expect(JSON.parse(out.value)).toEqual([cloud]);
+    expect(out.remoteFutureKept).toBe(1);
+  });
+
+  test('спешащие часы (будущее у локальной) не побеждают: прежнее правило active, без remote_future_kept', () => {
+    const local = { id: 'a', ru: 'моё', updatedAt: NOW + 3 * H };
+    const out = run([local], [{ id: 'a', ru: 'облако', updatedAt: T }], true);
+    expect(JSON.parse(out.value)).toEqual([local]);
+    expect(out).toMatchObject({ localWon: 1, remoteWon: 0, remoteFutureKept: 0 });
+    expect(summaries()).toEqual(['[FLASHCARD-PAGES] merge_conflicts key=flashcards_v1 mode=active local_newer=0 remote_newer=0 within_margin=0 time_unknown=1']);
+  });
+
+  test('без флага (restore запертых ключей → локальное хранилище) — прежнее правило: локальная', () => {
+    const local = { id: 'a', ru: 'моё', updatedAt: T };
+    const out = run([local], [{ id: 'a', ru: 'облако', updatedAt: NOW + 3 * H }], false);
+    expect(JSON.parse(out.value)).toEqual([local]);
+    expect(out).toMatchObject({ localWon: 1, remoteFutureKept: 0 });
+  });
+
+  test('облачная ровно на границе now + запас и локальная в пределах запаса — не «будущее»: локальная', () => {
+    const local = { id: 'a', ru: 'моё', updatedAt: NOW + H - 1000 };
+    const out = run([local], [{ id: 'a', ru: 'облако', updatedAt: NOW + H }], true);
+    expect(JSON.parse(out.value)).toEqual([local]);
+    expect(out).toMatchObject({ localWon: 1, remoteFutureKept: 0 });
+  });
+
+  test('облачная ровно на границе now + запас — обычное сравнение (облако новее)', () => {
+    const cloud = { id: 'a', ru: 'облако', updatedAt: NOW + H };
+    const out = run([{ id: 'a', ru: 'моё', updatedAt: T }], [cloud], true);
+    expect(out).toMatchObject({ remoteWon: 1, remoteFutureKept: 0 });
   });
 });

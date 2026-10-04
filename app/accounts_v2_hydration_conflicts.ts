@@ -49,16 +49,20 @@ export function comparableCardFields(target: string, list: List, card: Readonly<
   return normalizeCardFieldsForSync(target, list, fields);
 }
 
-/** Чья версия свежее (чистая функция). */
+/**
+ * Чья версия свежее (чистая функция). `now` — часы прохода гидрации (S1d): время правки больше
+ * now + запас — неизвестно (keep_local). Без now (null) отсечки «будущего» нет — прежнее поведение.
+ */
 export function decideCardConflict(
   target: string, list: List, server: Readonly<Record<string, unknown>>, local: Readonly<Record<string, unknown>>,
+  now: number | null = null,
 ): ConflictVerdict {
   const serverFields = comparableCardFields(target, list, server);
   const localFields = comparableCardFields(target, list, local);
   if (canonicalJson(serverFields) === canonicalJson(localFields)) return { decision: 'same', reason: 'equal' };
   // зачем (S1c): время правки и запас по часам — общее правило app/card_edit_time.ts (его же
   // использует объединение страниц S1b); поведение 8E прежнее байт-в-байт.
-  const order = compareCardEditTimes(cardEditTime(localFields), cardEditTime(serverFields));
+  const order = compareCardEditTimes(cardEditTime(localFields), cardEditTime(serverFields), now);
   if (order === 'time_unknown') return { decision: 'keep_local', reason: 'time_unknown' };
   if (order === 'remote_newer') return { decision: 'apply_server', reason: 'server_newer' };
   if (order === 'local_newer') return { decision: 'send_local', reason: 'local_newer' };
@@ -132,6 +136,11 @@ export async function applyHydratedCardConflicts(
     if (card.deleted || !isStudyTarget(card.target) || !access.seeded.has(`${key}:${card.id}`)) continue;
     groups.set(key, [...(groups.get(key) ?? []), card]);
   }
+  // зачем (S1d): «сейчас» — часы прохода гидрации (порт nowMs, кладётся в снимок), одно на весь
+  // проход; время правки позже now + запас считается неизвестным. Снимок без часов (старый вызов)
+  // — отсечки нет, прежнее поведение 8E; это видно в логе.
+  const now = typeof snapshot.nowMs === 'number' && Number.isSafeInteger(snapshot.nowMs) && snapshot.nowMs > 0 ? snapshot.nowMs : null;
+  if (now === null && groups.size > 0) console.warn(`${LOG} hydrate card_conflict future_check=off reason=now_unknown`);
   const overrides: LocalMirrorOverride[] = [];
   const toApply = new Map<string, Map<string, Pending>>();
   for (const [key, cards] of groups) {
@@ -147,7 +156,7 @@ export async function applyHydratedCardConflicts(
     for (const server of cards) {
       const mine = byId.get(server.id);
       if (mine === undefined) continue;
-      const verdict = decideCardConflict(target, list, server.fields, mine);
+      const verdict = decideCardConflict(target, list, server.fields, mine, now);
       if (verdict.decision === 'same') continue;
       console.log(`${LOG} hydrate card_conflict decision=${verdict.decision} reason=${verdict.reason} list=${list}`);
       counts[`cards_conflict_${verdict.decision}`] = (counts[`cards_conflict_${verdict.decision}`] ?? 0) + 1;

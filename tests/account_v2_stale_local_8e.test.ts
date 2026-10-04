@@ -197,3 +197,42 @@ describe('8E — защитные ветки', () => {
     expect(calls).toEqual([]);
   });
 });
+
+// зачем (S1d, TG-4AC6243A1836): часы устройства убежали вперёд — время правки больше
+// now + запас считается неизвестным (keep_local), иначе такое устройство побеждало бы все
+// конфликты. now гидрации — часы прохода (порт nowMs, в хелпере hydrate = T + 10 ч).
+describe('8E — время правки «из будущего» (S1d)', () => {
+  const NOW = T + 10 * H;
+
+  test('чистая функция: будущее у сервера / у локальной / у обеих → keep_local time_unknown', () => {
+    const far = NOW + 100 * H;
+    expect(decideCardConflict('en', 'custom', { id: 'a', en: 'x', updatedAt: far }, { id: 'a', en: 'y', addedAt: T }, NOW))
+      .toEqual({ decision: 'keep_local', reason: 'time_unknown' });
+    expect(decideCardConflict('en', 'custom', { id: 'a', en: 'x', addedAt: T }, { id: 'a', en: 'y', updatedAt: far }, NOW))
+      .toEqual({ decision: 'keep_local', reason: 'time_unknown' });
+    expect(decideCardConflict('en', 'custom', { id: 'a', en: 'x', updatedAt: far + 2 * H }, { id: 'a', en: 'y', updatedAt: far }, NOW))
+      .toEqual({ decision: 'keep_local', reason: 'time_unknown' });
+  });
+
+  test('чистая функция: ровно now + запас — ещё время; на 1 мс больше — неизвестно', () => {
+    expect(decideCardConflict('en', 'custom', { id: 'a', en: 'x', updatedAt: NOW + H }, { id: 'a', en: 'y', addedAt: T }, NOW).decision)
+      .toBe('apply_server');
+    expect(decideCardConflict('en', 'custom', { id: 'a', en: 'x', updatedAt: NOW + H + 1 }, { id: 'a', en: 'y', addedAt: T }, NOW))
+      .toEqual({ decision: 'keep_local', reason: 'time_unknown' });
+  });
+
+  test('гидрация: правка сервера из будущего не применяется и ничего не шлётся', async () => {
+    await upsertCustomCard(own(), 'en');
+    const { mirrorOf } = await hydrate([entity('en:custom:u1', { ...own(), en: 'future text', updatedAt: NOW + H + 1 })]);
+    expect((await listCustomCards('en'))[0].en).toBe('old text');
+    expect((await firstSnapshot('custom', mirrorOf)).operations).toEqual([]);
+    expect(lines()).toContain('[ACCOUNT-V2] hydrate card_conflict decision=keep_local reason=time_unknown list=custom');
+  });
+
+  test('гидрация: правка сервера ровно на границе now + запас применяется', async () => {
+    await upsertCustomCard(own(), 'en');
+    await hydrate([entity('en:custom:u1', { ...own(), en: 'edge text', updatedAt: NOW + H })]);
+    expect((await listCustomCards('en'))[0].en).toBe('edge text');
+    expect(lines()).toContain('[ACCOUNT-V2] hydrate card_conflict decision=apply_server reason=server_newer list=custom');
+  });
+});

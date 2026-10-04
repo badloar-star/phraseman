@@ -16,8 +16,12 @@ import { ACCOUNTS_V2_DELETION_CLOCK_MARGIN_MS } from './accounts_v2_hydration_de
  * NaN, Infinity, дробные — «неизвестно»). Сравниваются часы РАЗНЫХ устройств, поэтому одна сторона
  * «новее», только если её время больше не меньше чем на запас; иначе — «в пределах запаса».
  *
- * Время «из будущего» (часы устройства убежали вперёд) отдельно НЕ отсекается: 8E так не делает,
- * а менять 8E в S1c запрещено — вопрос записан координатору (пакет aa-s1c, итог исполнителя).
+ * S1d (TG-4AC6243A1836, §121): время «из будущего» — больше now + запас — считается неизвестным
+ * (time_unknown). зачем: устройство, у которого часы ушли вперёд больше чем на час, иначе побеждало
+ * во всех конфликтах (8E и S1b), пока остальные не догонят. Ровно now + запас — ещё время.
+ * `now` — параметр (чистая функция, тесты детерминированы); его берут потребители в точке вызова.
+ * now = null (или не целое число > 0) — часов нет: отсечки нет, прежнее поведение (8E без часов
+ * гидрации — см. app/accounts_v2_hydration_conflicts.ts).
  *
  * Чистые функции, без логов (решение логируют потребители), без сети.
  */
@@ -40,8 +44,31 @@ export function cardEditTime(card: unknown): number | null {
   return known.length === 0 ? null : Math.max(...known);
 }
 
-/** Чьё время правки свежее — с запасом по часам. Нет времени хоть у одной стороны → time_unknown. */
-export function compareCardEditTimes(localTime: number | null, remoteTime: number | null): CardEditTimeOrder {
+/** S1d: время правки не позже now + запас; иначе (часы ушли вперёд) — неизвестно. now нет → без отсечки. */
+function notFromFuture(time: number | null, now: number | null): number | null {
+  if (time === null) return null;
+  const clock = cardTimestamp(now);
+  return clock === null || time <= clock + CARD_EDIT_CLOCK_MARGIN_MS ? time : null;
+}
+
+/**
+ * S1d R2: время правки «из будущего» — больше now + запас (часы ЭТОГО устройства отстают, если
+ * время чужое). now нет / время неизвестно → false. Нужен пути записи страниц (8N): облачную
+ * правку «из будущего» нельзя затирать локальной.
+ */
+export function isCardEditTimeFromFuture(time: number | null, now: number | null): boolean {
+  return time !== null && notFromFuture(time, now) === null;
+}
+
+/**
+ * Чьё время правки свежее — с запасом по часам. Нет времени хоть у одной стороны (или оно
+ * «из будущего»: > now + запас, S1d) → time_unknown.
+ */
+export function compareCardEditTimes(
+  localTimeRaw: number | null, remoteTimeRaw: number | null, now: number | null,
+): CardEditTimeOrder {
+  const localTime = notFromFuture(localTimeRaw, now);
+  const remoteTime = notFromFuture(remoteTimeRaw, now);
   if (localTime === null || remoteTime === null) return 'time_unknown';
   if (remoteTime - localTime >= CARD_EDIT_CLOCK_MARGIN_MS) return 'remote_newer';
   if (localTime - remoteTime >= CARD_EDIT_CLOCK_MARGIN_MS) return 'local_newer';

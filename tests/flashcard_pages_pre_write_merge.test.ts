@@ -315,6 +315,11 @@ describe('8N — объединение с текущими страницами
 describe('S1b/S1c — версия одной карточки при объединении перед записью', () => {
   const T = 1_800_000_000_000;
   const H = 60 * 60 * 1000;
+  // зачем (S1d): T лежит в будущем относительно настоящих часов, а время правки > now + запас
+  // теперь «неизвестно» — часы устройства в этих сценариях = T + 10 ч.
+  let clock: jest.SpyInstance;
+  beforeEach(() => { clock = jest.spyOn(Date, 'now').mockReturnValue(T + 10 * H); });
+  afterEach(() => { clock.mockRestore(); });
   const v = (id: string, ru: string, updatedAt?: number) => ({ ...card(id), ru, ...(updatedAt === undefined ? {} : { updatedAt }) });
   function remoteCard(id: string): Record<string, unknown> | undefined {
     return mockRemote.pages
@@ -369,6 +374,36 @@ describe('S1b/S1c — версия одной карточки при объед
     expect(lines()).toContain('[FLASHCARD-PAGES] merge_conflicts key=flashcards_v1 mode=active local_newer=0 remote_newer=0 within_margin=1 time_unknown=0');
   });
 
+  // зачем (S1d R2): телефон с отстающими часами видит свежую облачную правку «из будущего» —
+  // в страницы уходит облачная, локальная на телефоне остаётся, отпечаток не сохраняется
+  // (иначе следующий синк счёл бы облако «своим» и записал локальную поверх).
+  test('отстающие часы не перезаписывают свежую облачную правку', async () => {
+    const cloudTime = T + 10 * H + 3 * H;
+    setRemote('en', [v('a', 'облако-свежее', cloudTime), card('b')]);
+    await AsyncStorage.setItem(EN, JSON.stringify([v('a', 'моё', T)]));
+
+    await sync([v('a', 'моё', T)]);
+
+    expect(remoteCard('a')?.ru).toBe('облако-свежее');
+    expect((await localCard('a'))?.ru).toBe('моё');
+    expect(lines()).toContain('[FLASHCARD-PAGES] merge_conflicts key=flashcards_v1 mode=active local_newer=0 remote_newer=0 within_margin=0 time_unknown=1 remote_future_kept=1');
+    expect(lines()).toContain('[FLASHCARD-PAGES] pre_write_merge_finish key=flashcards_v1 result=ok fingerprint=not_saved reason=remote_future_kept=1');
+
+    // Второй синк: облако по-прежнему не затирается.
+    const raw = await AsyncStorage.getItem(EN);
+    await sync(JSON.parse(raw!) as Card[]);
+    expect(remoteCard('a')?.ru).toBe('облако-свежее');
+    expect((await localCard('a'))?.ru).toBe('моё');
+  });
+
+  test('спешащие часы не побеждают: локальная «из будущего» — прежнее правило active', async () => {
+    setRemote('en', [v('a', 'облако', T)]);
+    await sync([v('a', 'моё-спешит', T + 10 * H + 3 * H)]);
+    expect(remoteCard('a')?.ru).toBe('моё-спешит');
+    expect(lines()).toContain('[FLASHCARD-PAGES] merge_conflicts key=flashcards_v1 mode=active local_newer=0 remote_newer=0 within_margin=0 time_unknown=1');
+    expect(lines().some((line) => line.includes('remote_future_kept'))).toBe(false);
+  });
+
   test('карточки без updatedAt → локальная версия в страницах', async () => {
     setRemote('en', [v('a', 'облако')]);
     await sync([v('a', 'моё')]);
@@ -381,6 +416,11 @@ describe('S1b/S1c — версия одной карточки при объед
 describe('S1b — замена локальной версии облачной: сбой и гонка', () => {
   const T = 1_800_000_000_000;
   const H = 60 * 60 * 1000;
+  // зачем (S1d): T лежит в будущем относительно настоящих часов, а время правки > now + запас
+  // теперь «неизвестно» — часы устройства в этих сценариях = T + 10 ч.
+  let clock: jest.SpyInstance;
+  beforeEach(() => { clock = jest.spyOn(Date, 'now').mockReturnValue(T + 10 * H); });
+  afterEach(() => { clock.mockRestore(); });
   const decision = (remote: unknown[]) => ({
     kind: 'write' as const, cardsJson: '[]', merged: true, addedFromRemote: [], replacedFromRemote: remote, fingerprint: 'fp',
   });

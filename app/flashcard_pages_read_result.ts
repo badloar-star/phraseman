@@ -26,7 +26,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { canonicalJson } from '../modules/account-session-v2/account_sync_producer_plan';
 import { comparableCardFields } from './accounts_v2_hydration_conflicts';
-import { cardEditTime, compareCardEditTimes, type CardEditTimeOrder } from './card_edit_time';
+import { cardEditTime, compareCardEditTimes, isCardEditTimeFromFuture, type CardEditTimeOrder } from './card_edit_time';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { FLASHCARD_PAGES_COLLECTION } from './flashcards_cloud_pages';
 import { readCardDeletionJournal } from './flashcards/card_deletion_journal';
@@ -174,6 +174,11 @@ export type LockedFlashcardsMerge = Readonly<{
   remoteWon: number;
   /** S1b: облачные версии, победившие локальные (их надо положить и в локальный список). */
   remoteWonCards: readonly unknown[];
+  /**
+   * S1d R2: облачные версии «из будущего», оставленные в объединении вместо локальной (только с
+   * keepRemoteFromFuture). Локальный список их НЕ получает — на телефоне остаётся своя версия.
+   */
+  remoteFutureKept: number;
 }>;
 
 /**
@@ -203,9 +208,10 @@ export type CardVersionWinner = Readonly<{
  * updatedAt точно, и разница в миллисекунду между часами двух устройств решала спор.
  * Новее на ≥ запаса — та сторона и побеждает (в любом режиме). Иначе (в пределах запаса /
  * времени нет хоть у одной стороны): `active` → локальная, `restore` → облачная (§116).
+ * S1d: `now` — часы устройства в точке вызова; время правки позже now + запас — «нет времени».
  */
-export function pickCardVersion(local: unknown, remote: unknown, mode: CardMergeMode): CardVersionWinner {
-  const reason = compareCardEditTimes(cardEditTime(local), cardEditTime(remote));
+export function pickCardVersion(local: unknown, remote: unknown, mode: CardMergeMode, now: number): CardVersionWinner {
+  const reason = compareCardEditTimes(cardEditTime(local), cardEditTime(remote), now);
   if (reason === 'local_newer') return { winner: 'local', reason };
   if (reason === 'remote_newer') return { winner: 'remote', reason };
   return { winner: mode === 'restore' ? 'remote' : 'local', reason };
@@ -266,17 +272,19 @@ export function mergeLockedFlashcardsWithPages(
   pagesRaw: string,
   deletedIds: ReadonlySet<string>,
   logKey: string,
-  options: Readonly<{ mode: CardMergeMode; target?: string }>,
+  options: Readonly<{ mode: CardMergeMode; target?: string; now?: number; keepRemoteFromFuture?: boolean }>,
 ): LockedFlashcardsMerge {
   // зачем (S1c R2): режим обязателен — значение по умолчанию 'restore' молча откатывало правки
   // под замком на активном устройстве (вызовы cloud_sync.ts); ошибиться выбором нельзя.
   const mode = options.mode;
+  // зачем (S1d): одно «сейчас» на всё объединение — часы устройства в точке вызова (тесты передают явно).
+  const now = options.now ?? Date.now();
   const cloudCards = parseCardArray(pagesRaw) ?? [];
   const localCards = parseCardArray(localRaw);
   if (localCards === null) {
     return {
       value: pagesRaw, cloud: cloudCards.length, localOnly: 0, deletedSkipped: 0, localUnparsable: true,
-      localWon: 0, remoteWon: 0, remoteWonCards: [],
+      localWon: 0, remoteWon: 0, remoteWonCards: [], remoteFutureKept: 0,
     };
   }
   const isDeleted = (card: unknown): boolean => {
@@ -289,14 +297,24 @@ export function mergeLockedFlashcardsWithPages(
     if (!localByIdentity.has(identity)) localByIdentity.set(identity, card);
   }
   let localWon = 0;
+  let remoteFutureKept = 0;
   const remoteWonCards: unknown[] = [];
   const conflicts: Record<CardEditTimeOrder, number> = { local_newer: 0, remote_newer: 0, within_clock_margin: 0, time_unknown: 0 };
   const keptCloud = cloudCards.filter((card) => !isDeleted(card)).map((cloudCard) => {
     const localCard = localByIdentity.get(cardIdentity(cloudCard));
     if (localCard === undefined || JSON.stringify(localCard) === JSON.stringify(cloudCard)) return cloudCard;
-    const pick = pickCardVersion(localCard, cloudCard, mode);
+    const pick = pickCardVersion(localCard, cloudCard, mode, now);
     // зачем (S1c): в сводку — только настоящие расхождения текста (как 8E), не порядок полей.
     if (!sameCardContent(localCard, cloudCard, options.target)) conflicts[pick.reason] += 1;
+    // зачем (S1d R2, решение AA): на пути записи страниц (8N, active) облачная правка «из будущего»
+    // значит, что часы ЭТОГО телефона отстают — затереть её локальной = потерять свежую правку.
+    // В объединение (страницы) идёт облачная, локальный список не трогаем (не в remoteWonCards).
+    // Будущее у локальной (свои часы спешат) — прежнее правило режима.
+    if (options.keepRemoteFromFuture === true && mode === 'active' && pick.winner === 'local'
+      && isCardEditTimeFromFuture(cardEditTime(cloudCard), now)) {
+      remoteFutureKept += 1;
+      return cloudCard;
+    }
     if (pick.winner === 'local') {
       localWon += 1;
       return localCard;
@@ -305,7 +323,9 @@ export function mergeLockedFlashcardsWithPages(
     return cloudCard;
   });
   if (conflicts.local_newer + conflicts.remote_newer + conflicts.within_clock_margin + conflicts.time_unknown > 0) {
-    console.log(`${LOG} merge_conflicts key=${logKey} mode=${mode} local_newer=${conflicts.local_newer} remote_newer=${conflicts.remote_newer} within_margin=${conflicts.within_clock_margin} time_unknown=${conflicts.time_unknown}`);
+    // S1d R2: remote_future_kept — только когда > 0 (прежний формат строки сводки не меняется).
+    const futureKept = remoteFutureKept > 0 ? ` remote_future_kept=${remoteFutureKept}` : '';
+    console.log(`${LOG} merge_conflicts key=${logKey} mode=${mode} local_newer=${conflicts.local_newer} remote_newer=${conflicts.remote_newer} within_margin=${conflicts.within_clock_margin} time_unknown=${conflicts.time_unknown}${futureKept}`);
   }
   const seen = new Set(keptCloud.map(cardIdentity));
   const localOnly = localCards.filter((card) => !seen.has(cardIdentity(card)) && !isDeleted(card));
@@ -318,6 +338,7 @@ export function mergeLockedFlashcardsWithPages(
     localWon,
     remoteWon: remoteWonCards.length,
     remoteWonCards,
+    remoteFutureKept,
   };
 }
 
@@ -478,6 +499,11 @@ export type FlashcardPagesPreWriteDecision =
     replacedFromRemote: readonly unknown[];
     /** Отпечаток того, что будет лежать в страницах после записи. */
     fingerprint: string;
+    /**
+     * S1d R2: сколько облачных правок «из будущего» оставлено в страницах при локальной версии на
+     * телефоне. > 0 → отпечаток не сохраняется (иначе следующий синк записал бы локальную поверх).
+     */
+    remoteFutureKept?: number;
   }>
   | Readonly<{ kind: 'skip'; reason: string }>;
 
@@ -590,12 +616,14 @@ export const defaultFlashcardLocalReplace: FlashcardLocalReplace = async (target
   }
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const store = require('../hooks/use-flashcards') as typeof import('../hooks/use-flashcards');
+  // зачем (S1d): часы устройства в точке вызова — одно «сейчас» на всю замену.
+  const now = Date.now();
   return store.replaceSavedFlashcardsFromAccountsV2(target, (fresh) => {
     const remote = byId.get(fresh.id);
     if (remote === undefined) return null;
     // зачем: между решением и записью человек мог изменить карточку — свежая правка новее облака
     // остаётся (гонка), а финал не сохранит отпечаток, и следующий синк объединит заново.
-    return pickCardVersion(fresh, remote, 'active').winner === 'remote'
+    return pickCardVersion(fresh, remote, 'active', now).winner === 'remote'
       ? remote as import('../hooks/use-flashcards').Flashcard
       : null;
   });
@@ -707,7 +735,8 @@ export async function decideFlashcardPagesPreWrite(input: PreWriteInput): Promis
       return { kind: 'write', cardsJson: localNormalized, merged: false, addedFromRemote: [], replacedFromRemote: [], fingerprint: fingerprintCardsJson(localNormalized) };
     }
     const deletedIds = await store.readDeletedIds(target);
-    const merge = mergeLockedFlashcardsWithPages(localNormalized, read.value, deletedIds, key, { mode: 'active', target });
+    // зачем (S1d R2): пишем в страницы — облачную правку «из будущего» не затираем (keepRemoteFromFuture).
+    const merge = mergeLockedFlashcardsWithPages(localNormalized, read.value, deletedIds, key, { mode: 'active', target, keepRemoteFromFuture: true });
     // зачем (S1c, §116): перед записью на активном устройстве — правило §100 (без времени / в пределах
     // запаса остаётся локальная); restore в cloud_sync.ts зовёт без режима и получает 'restore'.
     if (merge.localUnparsable) {
@@ -721,11 +750,12 @@ export async function decideFlashcardPagesPreWrite(input: PreWriteInput): Promis
     // S3: порядок как в локальном списке, пришедшие из облака — в конце (см. orderMergedLikeLocal).
     // S1b: облачная версия общей карточки победила (новее updatedAt) → тоже пишем объединение;
     // где победила локальная, в объединении уже локальная версия.
-    const mergedAny = addedFromRemote.length > 0 || merge.remoteWon > 0;
+    const mergedAny = addedFromRemote.length > 0 || merge.remoteWon > 0 || merge.remoteFutureKept > 0;
     const cardsJson = mergedAny ? orderMergedLikeLocal(localNormalized, merge.value) : localNormalized;
     console.log(`${LOG} pre_write_merge key=${key} local=${local} remote=${read.cards} added_from_remote=${addedFromRemote.length} dropped_by_journal=${merge.deletedSkipped} decision=${mergedAny ? 'merged' : 'local'} reason=${lastWritten === null ? 'no_own_fingerprint' : 'remote_changed_elsewhere'}`);
-    if (merge.localWon > 0 || merge.remoteWon > 0) {
-      console.log(`${LOG} pre_write_merge_versions key=${key} local_won=${merge.localWon} remote_won=${merge.remoteWon}`);
+    if (merge.localWon > 0 || merge.remoteWon > 0 || merge.remoteFutureKept > 0) {
+      const futureKept = merge.remoteFutureKept > 0 ? ` remote_future_kept=${merge.remoteFutureKept}` : '';
+      console.log(`${LOG} pre_write_merge_versions key=${key} local_won=${merge.localWon} remote_won=${merge.remoteWon}${futureKept}`);
     }
     return {
       kind: 'write',
@@ -734,6 +764,7 @@ export async function decideFlashcardPagesPreWrite(input: PreWriteInput): Promis
       addedFromRemote,
       replacedFromRemote: merge.remoteWonCards,
       fingerprint: fingerprintCardsJson(cardsJson),
+      remoteFutureKept: merge.remoteFutureKept,
     };
   } catch (error) {
     console.warn(`${LOG} pre_write_merge key=${key} decision=skip_write reason=decide_error error=${String(error).slice(0, 120)}`);
@@ -827,6 +858,13 @@ export async function finishFlashcardPagesPreWrite(input: PreWriteFinishInput): 
       console.warn(`${LOG} pre_write_merge_finish key=${key} result=ok fingerprint=not_saved reason=local_replace_skipped=${skipped}`);
       return;
     }
+  }
+  const futureKept = decision.remoteFutureKept ?? 0;
+  if (futureKept > 0) {
+    // Ранний выход (S1d R2): в страницах облачная правка «из будущего», на телефоне — своя версия.
+    // Отпечаток не сохраняем: иначе следующий синк счёл бы облако «своим» и записал локальную поверх.
+    console.warn(`${LOG} pre_write_merge_finish key=${key} result=ok fingerprint=not_saved reason=remote_future_kept=${futureKept}`);
+    return;
   }
   const saved = await store.writeFingerprint(owner, key, decision.fingerprint);
   console.log(`${LOG} pre_write_merge_finish key=${key} result=ok merged=${decision.merged} fingerprint=${saved ? 'saved' : 'not_saved'}`);

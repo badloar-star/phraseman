@@ -71,6 +71,7 @@ import { bundledPackTilePng, packTileImageForPack } from './packMarketplaceIcons
 import { useCommunityAuthorName } from '../community_packs/packAuthorNames';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import ReportPackModal from '../../components/ReportPackModal';
+import HybridSheetShell from '../../components/modal_fx/HybridSheetShell';
 import { hideCommunityPackOnDevice, loadHiddenCommunityPackIds } from '../community_packs/communityPackHiddenStorage';
 import { getEffectivePlatformOS } from '../platform_ui_preview';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
@@ -228,6 +229,25 @@ type CommunityPackRowProps = {
   opening?: boolean;
   disabled?: boolean;
 };
+
+/** packs-simple.html кадр 2: шторка долгого нажатия — заголовок набора и строки `.card .row` с плиткой 41. */
+const sheetStyles = StyleSheet.create({
+  // зачем: макет 18/700; шкала D145 (решение владельца 04.10) — 16 жирным.
+  title: { fontSize: 16, lineHeight: 22, fontWeight: '700', paddingHorizontal: 4, paddingBottom: 8 },
+  row: {
+    minHeight: 63,
+    borderRadius: 14,
+    borderWidth: 1, // guard-ok: исключение 2.0 (24.09) — 1px полупрозрачная обводка `.card`
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
+    paddingVertical: 9,
+    paddingLeft: 18,
+    paddingRight: 16,
+  },
+  tile: { width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
+  rowText: { flex: 1, fontSize: 16, lineHeight: 22, fontWeight: '600' }, // зачем: макет 17/600, D145 — 16
+});
 
 /** packs-simple.html (замок 04.10): размеры строки `.card .row`, плашки `.cntp`, метки `.tag2`. */
 const rowStyles = StyleSheet.create({
@@ -762,80 +782,81 @@ export default function FlashcardsCategoryHub({
     );
   };
 
-  /** Действия по долгому тапу на чужой набор — отдельной строкой под сеткой. */
-  const renderReportShortcutRow = () => {
-    const pack = visibleCommunityPacks.find((p) => p.id === ugcReportHintPackId);
+  /**
+   * зачем (packs-simple.html кадр 2): долгое нажатие на чужой набор — шторка снизу с названием набора и двумя
+   * строками-карточками «Пожаловаться на набор» / «Не показывать мне» (раньше — строка ссылок под сеткой).
+   * Жалоба открывается ПОСЛЕ ухода шторки (onDismissed): два нативных Modal подряд на iOS теряют второй.
+   */
+  const lastSheetPackRef = useRef<FlashcardMarketPack | null>(null);
+  const pendingReportPackRef = useRef<FlashcardMarketPack | null>(null);
+  const renderPackActionsSheet = () => {
+    const livePack = visibleCommunityPacks.find((p) => p.id === ugcReportHintPackId) ?? null;
+    if (livePack) lastSheetPackRef.current = livePack;
+    const pack = livePack ?? lastSheetPackRef.current;
     if (!pack) return null;
-    return (
-      <View
-        style={{
-          width: hubBarW,
-          marginTop: 12,
-          flexDirection: 'row',
-          gap: 16,
-          alignItems: 'center',
-          justifyContent: 'center',
-          paddingVertical: 10,
-          paddingHorizontal: 12,
-          borderRadius: 14,
-          borderWidth: 1,
-          borderColor: g.glassEdge,
-          backgroundColor: g.card,
-          overflow: 'hidden',
-        }}
+    const closeLabel = triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
+    const actionRow = (testID: string, icon: keyof typeof Ionicons.glyphMap, label: string, onPress: () => void) => (
+      <TouchableOpacity
+        testID={testID}
+        accessibilityRole="button"
+        accessibilityLabel={label}
+        activeOpacity={0.8}
+        onPress={onPress}
+        style={[sheetStyles.row, { borderColor: g.glassEdge, backgroundColor: g.card }]}
       >
-        <CatalogTileGlass g={g} />
-        <TouchableOpacity
-          onPress={() => {
-            void hapticTap();
-            setReportModalPack(pack);
-            setUgcReportHintPackId(null);
-          }}
-          hitSlop={{ top: 6, bottom: 6, left: 8, right: 8 }}
-        >
-          <Text style={{ color: t.wrong, fontSize: 13, fontWeight: '700', textDecorationLine: 'underline' }}>
-            {triLang(lang, {
-              ru: 'Пожаловаться на набор',
-              uk: 'Поскаржитися на набір',
-              en: 'Report the pack',
-              es: 'Reportar el pack',
-              'pt-BR': 'Denunciar o pacote',
-              vi: 'Báo cáo bộ thẻ',
-              id: 'Laporkan paket',
-              tr: 'Paketi bildir',
-              pl: 'Zgłoś zestaw',
+        <View style={[sheetStyles.tile, { backgroundColor: g.opaqueControl }]}>
+          <Ionicons name={icon} size={20} color={g.text} />
+        </View>
+        <Text style={[sheetStyles.rowText, { color: g.text }]}>{label}</Text>
+      </TouchableOpacity>
+    );
+    return (
+      <HybridSheetShell
+        visible={livePack !== null}
+        onClose={() => setUgcReportHintPackId(null)}
+        onDismissed={() => {
+          const report = pendingReportPackRef.current;
+          pendingReportPackRef.current = null;
+          lastSheetPackRef.current = null;
+          if (report) setReportModalPack(report);
+        }}
+        closeLabel={closeLabel}
+        testID="flashcards-pack-actions-sheet"
+        material="liquid-glass"
+      >
+        {({ requestDismiss }) => (
+          <View style={{ width: '100%' }}>
+            <FlowText testID="flashcards-pack-actions-title" provenance="user" style={[sheetStyles.title, { color: g.text }]}>
+              {packTitleForInterface(pack, lang) || packHubCodeName(pack)}
+            </FlowText>
+            {actionRow('flashcards-pack-report', 'flag-outline', triLang(lang, {
+              ru: 'Пожаловаться на набор', uk: 'Поскаржитися на набір', en: 'Report the pack', es: 'Reportar el pack',
+              'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan paket', tr: 'Paketi bildir', pl: 'Zgłoś zestaw',
+            }), () => {
+              void hapticTap();
+              pendingReportPackRef.current = pack;
+              requestDismiss();
             })}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={async () => {
-            void hapticTap();
-            setUgcReportHintPackId(null);
-            try {
-              await hideCommunityPackOnDevice(pack.id, studyTarget);
-              await refreshHiddenCommunityPacks();
-            } catch (e) {
-      // no-op: AsyncStorage unavailable
-      DebugLogger.error('FlashcardsCategoryHub:pack', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-          }}
-          hitSlop={{ top: 6, bottom: 6, left: 8, right: 8 }}
-        >
-          <Text style={{ color: t.textMuted, fontSize: 13, fontWeight: '700', textDecorationLine: 'underline' }}>
-            {triLang(lang, {
-              ru: 'Не показывать мне',
-              uk: 'Не показувати мені',
-              en: "Don't show me",
-              es: 'No mostrarme',
-              'pt-BR': 'Não mostrar para mim',
-              vi: 'Không hiển thị nữa',
-              id: 'Jangan tampilkan lagi',
-              tr: 'Bana gösterme',
-              pl: 'Nie pokazuj mi',
+            <View style={{ height: 9 }} />
+            {actionRow('flashcards-pack-hide', 'close', triLang(lang, {
+              ru: 'Не показывать мне', uk: 'Не показувати мені', en: "Don't show me", es: 'No mostrarme',
+              'pt-BR': 'Não mostrar para mim', vi: 'Không hiển thị nữa', id: 'Jangan tampilkan lagi', tr: 'Bana gösterme', pl: 'Nie pokazuj mi',
+            }), () => {
+              void hapticTap();
+              requestDismiss();
+              void (async () => {
+                try {
+                  await hideCommunityPackOnDevice(pack.id, studyTarget);
+                  await refreshHiddenCommunityPacks();
+                } catch (e) {
+                  // no-op: AsyncStorage unavailable
+                  DebugLogger.error('FlashcardsCategoryHub:pack', e instanceof Error ? e : new Error(String(e)), 'warning');
+                }
+              })();
             })}
-          </Text>
-        </TouchableOpacity>
-      </View>
+          </View>
+        )}
+      </HybridSheetShell>
     );
   };
 
@@ -939,7 +960,7 @@ export default function FlashcardsCategoryHub({
           <View style={{ width: hubBarW, gap: 9 }}>
             {visibleCommunityPacks.map(renderCommunityPackRow)}
           </View>
-          {renderReportShortcutRow()}
+          {renderPackActionsSheet()}
         </Reanimated.View>
       ) : null}
 

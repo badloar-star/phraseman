@@ -89,6 +89,7 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useKeyboardBottomInset } from './keyboardAvoidance';
 import { useRouter } from 'expo-router';
 import { accountSwitchRequiredCopy, SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM } from '../app/account_switch_copy';
+import { signInRefusalCopyFor } from '../app/account_sync_copy';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -233,6 +234,8 @@ function RegistrationPromptModal({
   const [retryProvider, setRetryProvider] = useState<AuthProviderId | null>(null);
   // зачем (§127): отказ account_switch_required — вместо «Повторить» одна кнопка, сразу открывающая смену аккаунта.
   const [switchAccountOffered, setSwitchAccountOffered] = useState(false);
+  // AA S2d раунд 3: подпись кнопки «Сменить аккаунт» от текущего отказа (null — текст account_switch_required).
+  const [switchAccountActionText, setSwitchAccountActionText] = useState<string | null>(null);
   const router = useRouter();
   // Recovery hint: каким аккаунтом входить (маска email с сервера).
   const [recoveryHint, setRecoveryHint] = useState<AuthRecoveryHint | null>(null);
@@ -367,6 +370,7 @@ function RegistrationPromptModal({
     setInlineError(null);
     setRetryProvider(null);
     setSwitchAccountOffered(false);
+    setSwitchAccountActionText(null);
     setRecoveryPanelVisible(false);
     setRecoveryOfferedAfterMismatch(false);
     setRecoveryFlowState({ stage: 'idle' });
@@ -1135,7 +1139,21 @@ function RegistrationPromptModal({
             // зачем (§127): простым языком + кнопка «Сменить аккаунт» (рендер ниже) вместо инструкции «Настройки → …».
             const switchCopy = accountSwitchRequiredCopy(lang);
             setSwitchAccountOffered(true);
+            setSwitchAccountActionText(null);
             showInlineError(switchCopy.title, switchCopy.body);
+            return;
+          }
+          // зачем (AA S2d раунды 2–3, §134 (б), §135 ❓1): вход отменён без стирания —
+          // прогресс цел. not_uploaded: «Повторить» остаётся, кнопки перехода нет.
+          // backup_blocked: повтор не поможет — как account_switch_required.
+          const refusalCopy = signInRefusalCopyFor(result.error, lang);
+          if (refusalCopy) {
+            if (refusalCopy.offersAccountSwitch) {
+              setRetryProvider(null);
+              setSwitchAccountOffered(true);
+              setSwitchAccountActionText(refusalCopy.action);
+            }
+            showInlineError(refusalCopy.title, refusalCopy.body);
             return;
           }
           if (result.error === 'recovery_provider_mismatch') {
@@ -1559,11 +1577,11 @@ function RegistrationPromptModal({
                 navigateAfterModalClose(onClose, () => router.push({ pathname: '/(tabs)/settings', params: { [SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM]: '1' } }));
               }}
               accessibilityRole="button"
-              accessibilityLabel={accountSwitchRequiredCopy(lang).action}
+              accessibilityLabel={switchAccountActionText ?? accountSwitchRequiredCopy(lang).action}
               style={[styles.laterButton, { borderRadius: 12, marginTop: 8, backgroundColor: glass.accent }]}
             >
               <Text style={[styles.laterText, { color: glass.accentInk, fontSize: f.body }]}>
-                {accountSwitchRequiredCopy(lang).action}
+                {switchAccountActionText ?? accountSwitchRequiredCopy(lang).action}
               </Text>
             </Pressable>
           )}

@@ -2456,7 +2456,18 @@ export type AuthoritativeCloudIdentityResult = {
   ok: boolean;
   stableUid: string | null;
   adopted: boolean;
+  /** AA S2d 🔴2: сервер назвал ДРУГОЙ канонический профиль (adopt мог не выполняться). */
+  mismatch?: boolean;
 };
+
+export type AuthoritativeCloudIdentityOptions = Readonly<{
+  /**
+   * false — при расхождении с сервером НЕ стирать локальное и НЕ переключать
+   * stable_id (presync входа: там adopt + полное восстановление чужого профиля
+   * внутри 20-секундного окна и были причиной H7-1). По умолчанию true.
+   */
+  adoptOnMismatch?: boolean;
+}>;
 
 export type CloudMutationIdentityResult =
   | { status: 'ready'; stableUid: string; authUid: string }
@@ -2499,6 +2510,7 @@ export async function ensureCloudMutationIdentity(
  */
 export async function ensureAuthoritativeIdentityForCloudMutation(
   stableIdRaw: string,
+  options: AuthoritativeCloudIdentityOptions = {},
 ): Promise<AuthoritativeCloudIdentityResult> {
   const localStableId = String(stableIdRaw || '').trim();
   const stableLink = await ensureStableAuthLinkForStableIdDetailed(
@@ -2518,7 +2530,14 @@ export async function ensureAuthoritativeIdentityForCloudMutation(
     server: identityTag(stableLink.stableUid),
     authUid: identityTag(stableLink.authUid),
     source: stableLink.source,
+    adopt: options.adoptOnMismatch !== false,
   }, { persist: true });
+  if (options.adoptOnMismatch === false) {
+    // зачем (AA S2d 🔴2, H7-1/H7-2): presync входа не имеет права стирать
+    // локальный прогресс и тянуть чужой профиль — он только выгружает или
+    // честно отказывает; переключение делает сам вход после presync.
+    return { ok: false, stableUid: stableLink.stableUid, adopted: false, mismatch: true };
+  }
   const adopted = await adoptAuthoritativeStableIdentity(localStableId, stableLink.stableUid);
   if (adopted) {
     // Hydrate the canonical account only after the source-account wipe and id swap.
@@ -2530,7 +2549,7 @@ export async function ensureAuthoritativeIdentityForCloudMutation(
   }
   // The operation which discovered the mismatch must never continue with its
   // source-generation payload. A later operation will capture the new generation.
-  return { ok: false, stableUid: stableLink.stableUid, adopted };
+  return { ok: false, stableUid: stableLink.stableUid, adopted, mismatch: true };
 }
 
 // ── Синхронизировать прогресс в облако ───────────────────────────────────────
@@ -2541,6 +2560,13 @@ export function markCloudSyncPending(): void {
 
 export async function syncToCloud(options?: { forceNow?: boolean; deferMs?: number }): Promise<void> {
   pendingSync = true;
+  // зачем (AA S2d раунд 2, H-S2d-1): НЕ ждать идущую синхронизацию даже при
+  // forceNow. Покупка в «Управлении подпиской» зовёт syncToCloud({forceNow}) под
+  // withAccountTransitionLock (commitRevenueCatResultForGeneration →
+  // persistStorePremiumLocally), а идущий doSyncToCloud в adopt ждёт тот же
+  // замок — ожидание здесь давало взаимную блокировку. pendingSync=true выше
+  // гарантирует повтор после идущего такта; presync входа ждёт через
+  // forceSyncToCloud с потолком FORCE_SYNC_WAIT_INFLIGHT_MS.
   if (syncInFlight) return;
   if (options?.forceNow) {
     if (syncTimer) {
@@ -4423,16 +4449,39 @@ export async function quiesceCloudSyncForAccountTransition(
   return drained;
 }
 
-export async function forceSyncToCloud(): Promise<boolean> {
+export type ForceSyncRefusalCode =
+  | 'inflight_timeout'
+  | 'identity_mismatch'
+  | 'identity_unavailable'
+  | 'stale_generation'
+  | 'flashcards_upload_failed'
+  | 'upload_failed';
+
+export type ForceSyncOptions = Readonly<{
+  /** AA S2d 🔴2: false — при расхождении личности НЕ делать adopt (presync входа). */
+  adoptOnIdentityMismatch?: boolean;
+  /** Причина отказа (код без идентификаторов) — для понятного кода в UI и логов. */
+  onRefusal?: (code: ForceSyncRefusalCode) => void;
+}>;
+
+export async function forceSyncToCloud(options: ForceSyncOptions = {}): Promise<boolean> {
+  const refuse = (code: ForceSyncRefusalCode): false => {
+    try {
+      options.onRefusal?.(code);
+    } catch (error) {
+      noteSwallowed('cloud_sync:force_sync_refusal_report', error);
+    }
+    return false;
+  };
   if (!CLOUD_SYNC_ENABLED) return true; // в Expo Go считаем что "локально и так всё"
   const db = getFirestore();
-  if (!db) return false;
+  if (!db) return refuse('identity_unavailable');
   const uid = await ensureAnonUser();
-  if (!uid) return false;
+  if (!uid) return refuse('identity_unavailable');
   beginInitialAccountGeneration(uid);
   const forceGeneration = captureAccountGeneration();
   const isForceGenerationCurrent = () => isCurrentAccountGeneration(forceGeneration, uid);
-  if (!isForceGenerationCurrent()) return false;
+  if (!isForceGenerationCurrent()) return refuse('stale_generation');
   try {
     pendingSync = true;
     if (syncTimer) {
@@ -4443,16 +4492,32 @@ export async function forceSyncToCloud(): Promise<boolean> {
     if (syncInFlight) {
       try {
         await withTimeout(syncInFlight, FORCE_SYNC_WAIT_INFLIGHT_MS, 'wait_inflight');
-      } catch {
+      } catch (inflightError) {
         pendingSync = false;
-        if (__DEV__) console.warn('[cloud_sync] forceSyncToCloud: inflight sync timeout');
-        return false;
+        // зачем (AA S2d раунд 2): прежде немой catch под __DEV__ — в релизе отказ
+        // принудительной выгрузки (выход/смена аккаунта/presync входа) был невидим.
+        console.warn('[SYNC-DENY] forceSyncToCloud inflight_timeout', {
+          waitMs: FORCE_SYNC_WAIT_INFLIGHT_MS,
+          reason: inflightError instanceof Error ? inflightError.message.slice(0, 80) : typeof inflightError,
+        });
+        DebugLogger.error(
+          'cloud_sync:force_sync_inflight_timeout',
+          inflightError instanceof Error ? inflightError : new Error(String(inflightError)),
+          'warning',
+        );
+        return refuse('inflight_timeout');
       }
     }
-    const authoritativeIdentity = await ensureAuthoritativeIdentityForCloudMutation(uid);
+    const authoritativeIdentity = await ensureAuthoritativeIdentityForCloudMutation(uid, {
+      adoptOnMismatch: options.adoptOnIdentityMismatch !== false,
+    });
     if (!authoritativeIdentity.ok || authoritativeIdentity.stableUid !== uid || !isForceGenerationCurrent()) {
       pendingSync = false;
-      return false;
+      // зачем (AA S2d 🔴2): различимая причина — presync входа превращает её в
+      // понятный отказ вместо «молча ничего не выгрузили, но успех».
+      if (authoritativeIdentity.mismatch) return refuse('identity_mismatch');
+      if (!authoritativeIdentity.ok) return refuse('identity_unavailable');
+      return refuse('stale_generation');
     }
     // doSyncToCloud глотает ошибки внутри, так что обернём напрямую без try-catch фасада:
     // повторим логику записи минимально-инвазивно, ловя ошибки явно.
@@ -4484,7 +4549,7 @@ export async function forceSyncToCloud(): Promise<boolean> {
     if (!isForceGenerationCurrent()) {
       console.log('[LEGACY-V2-SYNC] force_sync aborted reason=stale_generation stage=before_flashcards');
       pendingSync = false;
-      return false;
+      return refuse('stale_generation');
     }
     // зачем (Account V2, 8K): прежде перенос клал progress.flashcards_v1 (и fr) ЦЕЛИКОМ в
     // документ и заново создавал затеняющую копию (8H/8H-2) — restore на другом устройстве
@@ -4505,7 +4570,7 @@ export async function forceSyncToCloud(): Promise<boolean> {
       // Ранний выход: документ не пишем; вызывающий сделает аварийную копию и отменит смену.
       console.log(`[LEGACY-V2-SYNC] force_sync result=false reason=${flashcardOutcome.reason}`);
       pendingSync = false;
-      return false;
+      return refuse('flashcards_upload_failed');
     }
     const flashcardUpload = flashcardOutcome.plan;
     const forceDocProgress = buildDocProgressWithoutFlashcardLists(forceData, flashcardUpload);
@@ -4519,7 +4584,7 @@ export async function forceSyncToCloud(): Promise<boolean> {
     // а отклонённый set терял бы всю миграцию, а не один heartbeat.
     if (!isForceGenerationCurrent()) {
       pendingSync = false;
-      return false;
+      return refuse('stale_generation');
     }
     // зачем (владелец 2026-09-02): та же авария, что в doSyncToCloud, и здесь она
     // ДОРОЖЕ — это перенос прогресса при смене устройства. `set` с вложенной
@@ -4573,7 +4638,7 @@ export async function forceSyncToCloud(): Promise<boolean> {
       'critical',
     );
     pendingSync = false;
-    return false;
+    return refuse('upload_failed');
   }
 }
 
@@ -4612,8 +4677,106 @@ async function shelveOtherOwnerAccountSwitchBackup(
   }
   await AsyncStorage.removeItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
   console.warn(
-    `[ACC-MUT] backup:shelved_other_owner owner=${otherOwnerStableId} key=${shelvedKey} bytes=${previousBackupRaw.length}`,
+    // зачем (AA S2d, ревью): без сырого stableId — метка identityTag; ключ несёт id
+    // владельца в имени, поэтому в лог идёт только его метка времени.
+    `[ACC-MUT] backup:shelved_other_owner owner=${identityTag(otherOwnerStableId)} stamp=${shelvedKey.slice(shelvedKey.lastIndexOf(':') + 1)} bytes=${previousBackupRaw.length}`,
   );
+}
+
+/**
+ * Отложить аварийную копию, только если она принадлежит `ownerStableId`.
+ *
+ * зачем (AA S2d раунд 3, §135 ❓2, ревью п.2): вход сохранил копию гостя A, но
+ * серверный merge(A→B) НЕ подтверждён — долить её в B нельзя (чужие данные), а
+ * оставленная в корне она блокировала бы «Сменить аккаунт» (other_owner_pending).
+ * Переименование сохраняет содержимое (страницы не трогаются) — его можно вернуть
+ * вручную через поддержку; чистит его pruneShelvedAccountSwitchBackups через 30 дней.
+ */
+export async function shelveAccountSwitchEmergencyBackupOf(ownerStableId: string): Promise<boolean> {
+  const raw = await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
+  if (raw === null) return false;
+  const identity = parsePreviousAccountSwitchBackupIdentity(raw);
+  if (!identity || identity.stableId !== ownerStableId) {
+    identityTrace('[AUTH-LINK-GOOGLE]', 'backup shelve_skipped', {
+      reason: identity ? 'other_owner' : 'unparsable',
+      owner: identityTag(identity?.stableId ?? null),
+    });
+    return false;
+  }
+  await shelveOtherOwnerAccountSwitchBackup(raw, ownerStableId);
+  return true;
+}
+
+const SHELVED_BACKUP_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000;
+
+/**
+ * Удалить отложенные копии старше 30 дней (вместе со страницами v3).
+ *
+ * зачем (AA S2d раунд 3, ревью п.2 — давняя утечка): отложенные копии
+ * `account_switch_emergency_backup_shelved_v1:<owner>:<base36 ms>` жили вечно.
+ * Возраст — по метке времени в ключе; ключ без метки не трогаем.
+ */
+export async function pruneShelvedAccountSwitchBackups(nowMs: number = Date.now()): Promise<number> {
+  let removed = 0;
+  try {
+    const keys = await AsyncStorage.getAllKeys();
+    for (const key of keys) {
+      if (!key.startsWith(ACCOUNT_SWITCH_BACKUP_SHELVED_PREFIX)) continue;
+      const stampedAt = parseInt(key.slice(key.lastIndexOf(':') + 1), 36);
+      if (!Number.isFinite(stampedAt) || stampedAt <= 0 || nowMs - stampedAt <= SHELVED_BACKUP_MAX_AGE_MS) continue;
+      const raw = await AsyncStorage.getItem(key);
+      const identity = raw === null ? null : parsePreviousAccountSwitchBackupIdentity(raw);
+      if (raw !== null && identity?.backupId) {
+        const parsed = JSON.parse(raw) as { pageCount?: unknown };
+        const pageCount = Number.isSafeInteger(parsed.pageCount) ? Number(parsed.pageCount) : 0;
+        const pageKeys = Array.from({ length: pageCount }, (_, index) => `${ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX}${identity.backupId}:${index}`);
+        if (pageKeys.length > 0) await AsyncStorage.multiRemove(pageKeys);
+      }
+      await AsyncStorage.removeItem(key);
+      removed += 1;
+    }
+  } catch (error) {
+    identityTrace('[AUTH-LINK-GOOGLE]', 'backup shelved_prune_failed', { code: identityErrorCode(error), removed });
+    return removed;
+  }
+  if (removed > 0) identityTrace('[AUTH-LINK-GOOGLE]', 'backup shelved_pruned', { removed });
+  return removed;
+}
+
+export type AccountSwitchEmergencyBackupSummary = Readonly<{
+  stableId: string;
+  /** Число сохранённых ключей (без значений). */
+  pairCount: number;
+  /** Объём копии в байтах UTF-8 (v3 — по манифесту, v1/v2 — по корню). */
+  bytes: number;
+}>;
+
+/**
+ * Сводка последней аварийной копии смены аккаунта (или null).
+ *
+ * зачем (AA S2d раунд 2, H-S2d-2): вход, не сумевший выгрузить прогресс гостя,
+ * имеет право стереть его только ПОСЛЕ проверки, что копия реально лежит на
+ * устройстве и принадлежит этому гостю. §134 координатора: в лог входа пишется
+ * РАЗМЕР копии (ключи и байты, без значений). Только чтение.
+ */
+export async function readAccountSwitchEmergencyBackupSummary(): Promise<AccountSwitchEmergencyBackupSummary | null> {
+  try {
+    const raw = await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
+    if (raw === null) return null;
+    const identity = parsePreviousAccountSwitchBackupIdentity(raw);
+    if (!identity) return null;
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    const pairCount = Number.isSafeInteger(parsed.pairCount)
+      ? Number(parsed.pairCount)
+      : Array.isArray(parsed.pairs) ? parsed.pairs.length : 0;
+    const bytes = Number.isSafeInteger(parsed.totalUtf8Bytes)
+      ? Number(parsed.totalUtf8Bytes)
+      : utf8ByteLengthV1(raw);
+    return { stableId: identity.stableId, pairCount, bytes };
+  } catch (error) {
+    identityTrace('[AUTH-LINK-GOOGLE]', 'backup summary_read_failed', { code: identityErrorCode(error) });
+    return null;
+  }
 }
 
 export async function saveAccountSwitchEmergencyBackup(
@@ -4654,7 +4817,8 @@ export async function saveAccountSwitchEmergencyBackup(
     // иначе человек заперт в аккаунте до возвращения того владельца.
     if (options?.allowShelveOtherOwnerBackup !== true) {
       console.warn(
-        `[ACC-MUT] backup:other_owner_blocked owner=${previousBackupIdentity.stableId} current=${stableId} reason=${reason}`,
+        // зачем (AA S2d, ревью): без сырых stableId — только метки identityTag.
+        `[ACC-MUT] backup:other_owner_blocked owner=${identityTag(previousBackupIdentity.stableId)} current=${identityTag(stableId)} reason=${reason}`,
       );
       throw new Error('account_switch_backup_other_owner_pending');
     }

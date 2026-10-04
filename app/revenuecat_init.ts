@@ -21,6 +21,7 @@ import { readVipSnapshotForGeneration, writeVipSnapshotForAccount } from './prem
 import { resolveTesterNoPremiumOverride } from './tester_premium_override';
 import { selectVoiceMinutePackages, type VoiceMinutePack } from '../modules/voice_minutes/catalog';
 import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
+import { installPlusTransferRunner } from './plus_transfer';
 
 // зачем: PM-229 — на денежном пути (личность RevenueCat, CustomerInfo) сбой чтения раньше превращался
 // в «нет данных» без следа; теперь причина пишется, а возвращаемое значение прежнее.
@@ -392,6 +393,19 @@ async function _doInit(): Promise<void> {
         if (__DEV__) console.warn('[RevenueCat] addCustomerInfoUpdateListener failed:', e);
       }
     }
+    // зачем (AA S2d 🔴1): перенос Plus после смены аккаунта — тихое восстановление
+    // покупок с повтором на старте/возврате из фона. Ставится только когда SDK
+    // сконфигурирован; RC-зависимости передаются сюда, чтобы не было цикла импортов.
+    installPlusTransferRunner({
+      syncIdentity: () => syncRevenueCatIdentity(),
+      persistConfirmedPremium: async (confirmedInfo, isTransferCurrent) => {
+        const applied = await withAccountTransitionLockWithDeadline(
+          () => applyPushedCustomerInfo(confirmedInfo, isTransferCurrent),
+          RC_ACCOUNT_STORAGE_LOCK_TIMEOUT_MS,
+        );
+        if (!applied.completed) throw new Error('plus_transfer_persist_lock_timeout');
+      },
+    });
     // зачем (PM-057): прогрев getOfferings для магазина жемчуга убран вместе с
     // самим магазином — это был лишний сетевой запрос к RevenueCat на КАЖДОМ
     // старте. Подписка Plus грузит свои offerings сама, в paywall.

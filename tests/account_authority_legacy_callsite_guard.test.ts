@@ -554,9 +554,11 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
       },
       stableId: {
         // S2c: +1 — чтение AsyncStorage для сверки слоёв [PROFILE-FLIP] (осознанно).
-        persistedIdentityReadsAndWrites: 21,
+        // S2d 🔴3: +5 — метка «SecureStore отстал» (чтение/снятие), починка отставшего слоя,
+        // чтение AsyncStorage при доказательстве владения; +1 поколение — ветка расхождения слоёв.
+        persistedIdentityReadsAndWrites: 26,
         generatedIdentities: 1,
-        generationTransitions: 8,
+        generationTransitions: 9,
         exportedLegacyIdentityApis: 5,
       },
       accountGeneration: {
@@ -618,7 +620,9 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
       'app/auth_provider.ts': {
         // AA S2b (пункт 9): +2 — nonce M-1 (приём ответа метки, стирание по завершении входа).
         // AA S2c: +2 — peekStableId только для меток трассировки [AUTH-LINK-GOOGLE].
-        occurrences: 111,
+        // AA S2d раунд 2 (H-S2d-2): +2 — аварийная копия гостя и чтение её сводки перед стиранием.
+        // AA S2d раунд 3 (§135 ❓2): +2 — откладывание копии без merge, очистка отложенных >30 дн.
+        occurrences: 115,
         imports: 3,
         census: {
           'call:acceptAnonMergeStampResponse': 1,
@@ -630,7 +634,8 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:ensureAnonUser': 5,
           'call:ensureFreshStableIdentityForLiveProvider': 1,
           'call:ensureStableAuthLinkForStableIdDetailed': 5,
-          'call:forceSyncToCloud': 1,
+          // AA S2d 🔴2: presync входа — forceSyncToCloud без adopt вместо syncToCloud({forceNow}).
+          'call:forceSyncToCloud': 2,
           'call:forgetAllAnonMergeNonces': 1,
           'call:getStableId': 11,
           'call:invalidateAccountGeneration': 5,
@@ -639,16 +644,19 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:mergeStableAccountsViaServer': 2,
           'call:onAuthStateChanged': 2,
           'call:peekStableId': 7,
+          'call:pruneShelvedAccountSwitchBackups': 1,
           'call:quiesceCloudSyncForAccountTransition': 4,
           'call:quiesceSyncBeforeStableIdSwap': 3,
           'call:readExistingStableId': 1,
           'call:resetAnonAuthCacheForSignOut': 3,
+          'call:readAccountSwitchEmergencyBackupSummary': 1,
           'call:restoreFromCloudDetailed': 1,
-          'call:saveAccountSwitchEmergencyBackup': 5,
+          'call:saveAccountSwitchEmergencyBackup': 6,
           'call:setStableId': 3,
+          'call:shelveAccountSwitchEmergencyBackupOf': 1,
           'call:stampAnonOwnershipBeforeSignIn': 2,
           'call:startCloudDeletionEnqueue': 2,
-          'call:syncToCloud': 3,
+          'call:syncToCloud': 2,
           'call:waitForAccountDeletionCredentialSafe': 3,
           'call:waitForRestoreApplicationIdleWithDeadline': 4,
           'call:wipeLocalAccountData': 5,
@@ -693,18 +701,21 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         },
       },
       'app/stable_id.ts': {
-        occurrences: 34,
+        // AA S2d 🔴3: +5 — ветка расхождения слоёв на старте (проверки эпохи/удаления,
+        // поколение) и повторное чтение владения; 🔴1: +2 — сообщение о смене аккаунта.
+        occurrences: 41,
         imports: 1,
         census: {
           'call:assertAccountDeleteStableIdentityAvailable': 2,
-          'call:assertCurrentStableIdRead': 12,
-          'call:assertStableIdentityAvailableAtStartup': 5,
-          'call:beginInitialAccountGeneration': 4,
+          'call:assertCurrentStableIdRead': 14,
+          'call:assertStableIdentityAvailableAtStartup': 6,
+          'call:beginInitialAccountGeneration': 5,
           'call:clearStableIdStorage': 1,
+          'call:emitStableIdChange': 2,
           'call:getStableId': 1,
           'call:invalidateAccountGeneration': 4,
           'call:persistStableId': 1,
-          'call:readExistingStableId': 3,
+          'call:readExistingStableId': 4,
           'call:readOrCreateStableId': 1,
           'import:./account_generation': 1,
         },

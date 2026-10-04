@@ -34,6 +34,23 @@ import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getStableId, setStableId, clearStableId, peekStableId, readExistingStableId } from './stable_id';
 import { identityErrorCode, identityTag, identityTrace, identityTraceClockMs } from './identity_trace';
+
+type AuthSwallowPrefix = '[AUTH-SIGNIN]' | '[AUTH-SIGNOUT]' | '[AUTH-DELETE]' | '[AUTH-LINK-GOOGLE]' | '[AUTH-RC]' | '[AUTH-BG-REFRESH]';
+
+/**
+ * Обработчик для .catch: прежнее значение по умолчанию + причина в логе.
+ *
+ * зачем (PM-229, AA S2d): 25 немых catch в этом файле — отказы шагов входа/выхода/
+ * удаления были невидимы. Поведение не меняется (ошибка по-прежнему проглатывается),
+ * но строка с префиксом, шагом и кодом ошибки (identityErrorCode: без текста, uid,
+ * stableId и токенов) остаётся в релизе.
+ */
+function swallowAuthAs<T>(prefix: AuthSwallowPrefix, step: string, whenSwallowed: T): (error: unknown) => T {
+  return (error: unknown): T => {
+    console.warn(`${prefix} swallowed step=${step} code=${identityErrorCode(error)}`);
+    return whenSwallowed;
+  };
+}
 import {
   ensureAnonUser,
   ensureAnonIdentityDetailed,
@@ -50,6 +67,9 @@ import {
   ensureStableAuthLinkForStableIdDetailed,
   mergeStableAccountsViaServer,
   saveAccountSwitchEmergencyBackup,
+  readAccountSwitchEmergencyBackupSummary,
+  shelveAccountSwitchEmergencyBackupOf,
+  pruneShelvedAccountSwitchBackups,
   type StableAuthLinkMetadata,
   type StableAuthLinkEnsureResult,
   type AccountDeleteEnqueueAck,
@@ -123,7 +143,8 @@ import {
   hasQuarantinedShardDeltaQueue,
   readShardDeltaQueue,
 } from './shards_delta_queue';
-import { restoreAccountSwitchEmergencyBackupIfSafe } from './account_switch_backup_restore';
+import { restoreAccountSwitchEmergencyBackupIfSafe, writeAccountSwitchBackupMergeAlias } from './account_switch_backup_restore';
+import { classifyPresyncBackupRefusal } from './presync_backup_refusal';
 import { clearPendingAuthLink, recordPendingAuthLink } from './pending_auth_link';
 import {
   assertNoCleanInstallRecoveryTransition,
@@ -191,7 +212,7 @@ async function syncRevenueCatAfterAuthLink(isCurrent: () => boolean = () => true
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return;
   await import('./revenuecat_init')
     .then((m) => m.syncRevenueCatIdentity(isCurrent))
-    .catch(() => {});
+    .catch(swallowAuthAs('[AUTH-RC]', 'rc_identity_sync', undefined));
 }
 
 /**
@@ -522,6 +543,47 @@ async function tryRestoreAccountSwitchBackup(
       // восстановление — best effort
       DebugLogger.error('auth_provider:res', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
+  // AA S2d раунд 3 (ревью п.2): отложенные копии старше 30 дней — давняя утечка.
+  try {
+    await pruneShelvedAccountSwitchBackups();
+  } catch (error) {
+    identityTrace('[AUTH-LINK-GOOGLE]', 'backup shelved_prune_failed', { stage, code: identityErrorCode(error) });
+  }
+}
+
+/**
+ * Судьба аварийной копии гостя A после свапа на B (вызов под замком смены аккаунта).
+ *
+ * зачем (AA S2d раунд 3, §135 ❓2 + повторное security-ревью):
+ *  - merge(A→B) подтверждён в этом же входе → метка {from: A, to: B}; фоновое
+ *    восстановление после входа дольёт в B только недостающие ключи и удалит копию;
+ *  - не подтверждён → копию A сразу отложить, иначе она блокирует «Сменить аккаунт».
+ * Копию НЕ удаляем по признаку «выгрузка подтверждена» — дельта A в облако не попала.
+ * Сбой здесь вход не рвёт: свап уже выполнен, причина — в журнал.
+ */
+async function settleGuestBackupAfterSwap(
+  guestStableId: string,
+  targetStableId: string,
+  mergeConfirmed: boolean,
+  provider: AuthProviderId,
+): Promise<void> {
+  try {
+    if (mergeConfirmed) {
+      await writeAccountSwitchBackupMergeAlias(guestStableId, targetStableId);
+      identityTrace('[AUTH-LINK-GOOGLE]', 'swap backup_alias_written', {
+        provider, from: identityTag(guestStableId), to: identityTag(targetStableId),
+      }, { persist: true });
+      return;
+    }
+    const shelved = await shelveAccountSwitchEmergencyBackupOf(guestStableId);
+    identityTrace('[AUTH-LINK-GOOGLE]', 'swap backup_shelved', {
+      provider, shelved, owner: identityTag(guestStableId),
+    }, { persist: true });
+  } catch (error) {
+    identityTrace('[AUTH-LINK-GOOGLE]', 'swap backup_settle_failed', {
+      provider, mergeConfirmed, code: identityErrorCode(error),
+    }, { persist: true });
+  }
 }
 
 const REMOTE_ACCOUNT_DELETED_NOTICE_KEY = 'remote_account_deleted_notice_v1';
@@ -761,11 +823,11 @@ async function executePostDeleteLocalWipe(
     beginPremiumAccountTransition();
     const [premiumDrained, restoreDrained, cloudDrained] = await Promise.all([
       waitForPremiumAccountWorkIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS)
-        .catch(() => false),
+        .catch(swallowAuthAs('[AUTH-DELETE]', 'post_delete_drain_premium', false)),
       waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS)
-        .catch(() => false),
+        .catch(swallowAuthAs('[AUTH-DELETE]', 'post_delete_drain_restore', false)),
       quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS)
-        .catch(() => false),
+        .catch(swallowAuthAs('[AUTH-DELETE]', 'post_delete_drain_cloud', false)),
     ]);
     traceAccountDeleteLocal(
       `drains:premium=${premiumDrained ? 1 : 0}:restore=${restoreDrained ? 1 : 0}:cloud=${cloudDrained ? 1 : 0}`,
@@ -892,7 +954,7 @@ async function ensureAccountDeleteCredentialCapability(
   lock: AccountDeletePendingAuthLock,
 ): Promise<AccountDeletePendingAuthLock | null> {
   if (lock.credentialSafeCapability) return lock;
-  const bytes = await Crypto.getRandomBytesAsync(32).catch(() => null);
+  const bytes = await Crypto.getRandomBytesAsync(32).catch(swallowAuthAs('[AUTH-DELETE]', 'credential_capability_random', null));
   if (!bytes || bytes.length !== 32) return null;
   const credentialSafeCapability = Array.from(bytes)
     .map((byte) => byte.toString(16).padStart(2, '0'))
@@ -932,7 +994,7 @@ async function ensureAccountDeleteCredentialSafe(
       if (safe) clearStoredAccountsV2DeletionCredentialIfEnabled(lock.operationId);
       return safe;
     })
-    .catch(() => false);
+    .catch(swallowAuthAs('[AUTH-DELETE]', 'credential_safe_wait', false));
 }
 
 async function waitForPostDeleteAuthHydration(): Promise<boolean> {
@@ -966,7 +1028,7 @@ async function synthesizeRemoteDeleteTransition(
   evidence: RetiredIdentityEvidence,
 ): Promise<AccountDeletePendingAuthLock | null> {
   const authUid = cleanAccountDeleteLockId(getAuth()?.currentUser?.uid);
-  const localStableId = await getStableId().catch(() => null);
+  const localStableId = await getStableId().catch(swallowAuthAs('[AUTH-DELETE]', 'retired_identity_read_stable', null));
   const retiredStableId = cleanAccountDeleteLockId(evidence.retiredStableId ?? localStableId);
   const subject = evidence.subject ?? 'unknown';
   const providerAnchor = subject === 'stable'
@@ -1020,7 +1082,7 @@ export async function ensureFreshPostDeletionIdentity(
   // restart. Hydration is therefore best-effort only: the durable receipt can
   // advance the guard and the coordinator can create a fresh anonymous user.
   if (lock.source === 'local' && !getAuth()?.currentUser) {
-    await waitForPostDeleteAuthHydration().catch(() => false);
+    await waitForPostDeleteAuthHydration().catch(swallowAuthAs('[AUTH-DELETE]', 'post_delete_auth_hydration', false));
   }
   if (lock.retiredSubject === 'stable') {
     const liveProvider = getAuth()?.currentUser;
@@ -1191,7 +1253,7 @@ async function ensureFreshStableIdentityForLiveProvider(
             || currentProvider.isAnonymous !== false
             || currentProvider.uid !== liveProviderUid
           ) return { status: 'pending_auth', phase: lock.phase };
-          const freshStableId = await getStableId().catch(() => null);
+          const freshStableId = await getStableId().catch(swallowAuthAs('[AUTH-DELETE]', 'fresh_identity_read_stable', null));
           if (
             !freshStableId
             || freshStableId === lock.stableId
@@ -1267,7 +1329,7 @@ async function convergePendingAccountDeleteBeforeCredential(
   const ageMs = Math.max(0, Date.now() - pendingDelete.createdAt);
   logAuthEvent('auth_signin_waiting_account_delete_pending', { provider, ageMs });
   const activeCompletion = activeLocalAccountDeletionCompletions.get(pendingDelete.operationId);
-  if (activeCompletion) await activeCompletion.catch(() => null);
+  if (activeCompletion) await activeCompletion.catch(swallowAuthAs('[AUTH-SIGNIN]', 'wait_active_delete_completion', null));
   let remaining: AccountDeletePendingAuthLock | null;
   try {
     remaining = await readPendingDeleteTransition();
@@ -1279,7 +1341,7 @@ async function convergePendingAccountDeleteBeforeCredential(
   if (result.status !== 'ready') {
     if (remaining.phase === 'local_data_cleared') {
       const proof = accountDeleteCredentialProof(remaining);
-      if (proof) await waitForAccountDeletionCredentialSafe(proof).catch(() => false);
+      if (proof) await waitForAccountDeletionCredentialSafe(proof).catch(swallowAuthAs('[AUTH-SIGNIN]', 'wait_delete_credential_safe', false));
     }
     logAuthEvent('auth_account_delete_pending_convergence_failed', { provider });
     return false;
@@ -1808,7 +1870,7 @@ function captureAuthSignInFailure(provider: AuthProviderId, stage: string, detai
       severity,
       writeToFirestore: severity === 'critical',
       tags: { provider, stage },
-    }).catch(() => {});
+    }).catch(swallowAuthAs('[AUTH-SIGNIN]', 'report_signin_failure', undefined));
   } catch (e) {
       // ignore
       DebugLogger.error('auth_provider:severity', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -1835,7 +1897,7 @@ async function rejectRecoveryProviderMismatch(
     logAuthEvent('auth_recovery_provider_mismatch_signout_failed', { provider, reason });
     return { result: 'error', error: 'recovery_signout_failed' };
   }
-  await ensureAnonUser().catch(() => null);
+  await ensureAnonUser().catch(swallowAuthAs('[AUTH-SIGNIN]', 'recovery_mismatch_ensure_anon', null));
   return { result: 'error', error: 'recovery_provider_mismatch' };
 }
 
@@ -1938,7 +2000,7 @@ export async function signInWithProvider(
   } catch {
     // A provider tap made after the delete handoff joins that exact durable
     // transition. Other clean-install/recovery mutations remain excluded.
-    const pendingDelete = await readPendingDeleteTransition().catch(() => null);
+    const pendingDelete = await readPendingDeleteTransition().catch(swallowAuthAs('[AUTH-SIGNIN]', 'read_pending_delete_transition', null));
     if (!pendingDelete) {
       return { result: 'error', error: 'clean_recovery_transition_active' };
     }
@@ -2300,7 +2362,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           postCompletionHandoff = await hasAccountSwitchPostCompletionHandoff({
             freshAuthUid: String(anonUser?.uid ?? '').trim(),
             freshStableId: preProviderStableId,
-          }).catch(() => false);
+          }).catch(swallowAuthAs('[AUTH-LINK-GOOGLE]', 'post_completion_handoff_check', false));
           console.log('[AUTH-SWITCH] handoff-proof', JSON.stringify({
             provider,
             localClean,
@@ -2740,6 +2802,9 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       const preserveLocalProgress = providerHandoffMarker
         ? false
         : await hasMeaningfulLocalAccountData();
+      // AA S2d раунд 3 (§135 ❓2): в этом входе сохранена аварийная копия гостя A —
+      // после свапа она либо получает метку подтверждённого merge, либо откладывается.
+      let presyncBackupSaved = false;
       // Сразу синкаем текущий локальный прогресс в облако
       // (на случай если local чуть-чуть свежее — после swap данные не пропадут).
       // syncToCloud у нас пишет в users/{currentLocalStableId} — это корректно ДО swap.
@@ -2749,27 +2814,99 @@ async function runSignInWithProviderWhileOwningHandoffLease(
         // зачем: ЭТОТ шаг намеренно остаётся блокирующим и с полным таймаутом —
         // единственная защита свежего локального прогресса перед wipeLocalAccountData.
         // Унести в фон или укоротить = риск потери прогресса на медленной сети.
-        const presyncStarted = Date.now();
+        //
+        // зачем (AA S2d 🔴2, §127, H7-1/H7-2): прежде здесь был syncToCloud({forceNow}).
+        // Он (а) возвращался сразу, если синхронизация уже шла; (б) при расхождении
+        // с сервером молча НИЧЕГО не выгружал, а presync считался успешным;
+        // (в) в том же расхождении запускал adopt — стирание и ПОЛНОЕ
+        // восстановление чужого профиля прямо внутри 20-секундного окна
+        // (swap_timeout_swap_presync_20000ms). Теперь: принудительная выгрузка,
+        // которая дожидается идущей синхронизации, НЕ делает adopt и возвращает
+        // да/нет. Нет подтверждённой выгрузки → НЕ стираем, понятный отказ
+        // local_progress_not_uploaded. Восстановление профиля remote — уже после
+        // свапа, в фоне (scheduleSameStablePostAuthRefresh ниже), со своим повтором.
+        const presyncStarted = identityTraceClockMs();
         identityTrace('[AUTH-LINK-GOOGLE]', 'swap presync_start', { provider, timeoutMs: SIGNIN_CLOUD_SYNC_TIMEOUT_MS });
+        let presyncRefusal: string = 'not_uploaded';
+        let presyncUploaded = false;
+        let presyncErrorCode: string | null = null;
         try {
-          await withTimeout(syncToCloud({ forceNow: true }), SIGNIN_CLOUD_SYNC_TIMEOUT_MS, 'swap_presync');
-          const presyncTookMs = Date.now() - presyncStarted;
-          console.log(`[SIGNIN] presync ok ${presyncTookMs}ms`);
-          identityTrace('[AUTH-LINK-GOOGLE]', 'swap presync_ok', { provider, tookMs: presyncTookMs });
+          presyncUploaded = await withTimeout(
+            forceSyncToCloud({
+              adoptOnIdentityMismatch: false,
+              onRefusal: (code) => { presyncRefusal = code; },
+            }),
+            SIGNIN_CLOUD_SYNC_TIMEOUT_MS,
+            'swap_presync',
+          );
         } catch (e) {
-          const presyncTookMs = Date.now() - presyncStarted;
-          console.warn(`[SIGNIN] presync FAIL ${presyncTookMs}ms reason=${String((e as any)?.message ?? e).slice(0, 120)}`);
-          // Случай §126 (swap_timeout_swap_presync_20000ms): вход прерывается здесь,
-          // но Firebase УЖЕ держит провайдер-сессию — следующий тап упрётся в
-          // account_switch_required. Пишем состояние, которое останется после отказа.
-          identityTrace('[AUTH-LINK-GOOGLE]', 'swap presync_failed', {
+          presyncErrorCode = identityErrorCode(e);
+          presyncRefusal = presyncErrorCode.startsWith('timeout_') ? 'timeout' : 'error';
+        }
+        const presyncTookMs = identityTraceClockMs() - presyncStarted;
+        if (!presyncUploaded) {
+          // зачем (AA S2d раунд 2, H-S2d-2, вариант б): в этой ветке выгрузить гостя A
+          // структурно нельзя (сервер называет remote, правила не дают писать A), и
+          // голый отказ оставлял человека в тупике. Поэтому — аварийная копия A,
+          // проверенная ДО стирания (записана и читается как копия именно A), без
+          // права отодвинуть чужую копию; затем тот же серверный merge(A, B), что и до
+          // S2d. Любой отказ копии → прежний отказ без стирания.
+          let backupCode: string | null = null;
+          let backupPairs: number | null = null;
+          let backupBytes: number | null = null;
+          try {
+            const saved = await saveAccountSwitchEmergencyBackup(
+              'sign_in_presync_not_uploaded_before_swap',
+              localStableId,
+            );
+            const summary = saved ? await readAccountSwitchEmergencyBackupSummary() : null;
+            backupPairs = summary?.pairCount ?? null;
+            backupBytes = summary?.bytes ?? null;
+            if (!saved) {
+              backupCode = 'account_switch_backup_unavailable';
+            } else if (summary?.stableId !== localStableId) {
+              backupCode = 'account_switch_backup_owner_mismatch';
+            }
+          } catch (backupError) {
+            backupCode = identityErrorCode(backupError);
+          }
+          if (backupCode !== null) {
+            console.warn(`[SIGNIN] presync REFUSED ${presyncTookMs}ms reason=${presyncRefusal} backup=${backupCode}`);
+            // Случай §126: Firebase УЖЕ держит провайдер-сессию — следующий тап упрётся
+            // в account_switch_required. Локальный профиль НЕ стёрт и stable_id прежний.
+            identityTrace('[AUTH-LINK-GOOGLE]', 'swap presync_failed', {
+              provider,
+              reason: presyncRefusal,
+              code: presyncErrorCode,
+              backup: backupCode,
+              refusal: classifyPresyncBackupRefusal(backupCode),
+              tookMs: presyncTookMs,
+              wiped: false,
+              authState: auth.currentUser?.isAnonymous === false ? 'provider' : 'anonymous_or_none',
+              localStable: identityTag(localStableId),
+            }, { persist: true });
+            captureAuthSignInFailure(provider, 'swap', `presync_${presyncRefusal}_backup_${backupCode}`);
+            // зачем (AA S2d раунд 3, §135 ❓1): «копию сделать нельзя» по состоянию
+            // устройства → local_progress_backup_blocked («Сменить аккаунт»); сбой
+            // записи/связи → local_progress_not_uploaded («Повторить»). Таблица —
+            // app/presync_backup_refusal.ts.
+            return { result: 'error', error: classifyPresyncBackupRefusal(backupCode) };
+          }
+          presyncBackupSaved = true;
+          // §134: размер копии (ключи и байты, без значений) — по нему видно, что
+          // свежий прогресс гостя действительно сохранён до стирания.
+          identityTrace('[AUTH-LINK-GOOGLE]', 'swap presync_backup_saved', {
             provider,
-            code: identityErrorCode(e),
+            reason: presyncRefusal,
+            code: presyncErrorCode,
+            backupPairs,
+            backupBytes,
             tookMs: presyncTookMs,
-            authState: auth.currentUser?.isAnonymous === false ? 'provider' : 'anonymous_or_none',
             localStable: identityTag(localStableId),
           }, { persist: true });
-          throw e;
+        } else {
+          console.log(`[SIGNIN] presync ok ${presyncTookMs}ms`);
+          identityTrace('[AUTH-LINK-GOOGLE]', 'swap presync_ok', { provider, tookMs: presyncTookMs });
         }
       } else {
         identityTrace('[AUTH-LINK-GOOGLE]', 'swap presync_skipped', {
@@ -2842,6 +2979,14 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           providerHandoffMarker = null;
         }
         beginAccountGeneration(canonicalStableId);
+        if (presyncBackupSaved && canonicalStableId !== outcome.mergedFromStableId) {
+          await settleGuestBackupAfterSwap(
+            outcome.mergedFromStableId,
+            canonicalStableId,
+            merge?.ok === true && merge.canonicalStableId === outcome.remoteStableId,
+            provider,
+          );
+        }
       }, handoffLeaseScope.lease ?? undefined);
 
       // Премиум-кэш (premium_guard, TTL 5 мин) держит решение ПРЕДЫДУЩЕГО аккаунта.
@@ -3048,7 +3193,7 @@ function scheduleSameStablePostAuthRefresh(
 ): void {
   void (async () => {
     const t0 = Date.now();
-    const stableId = options.preparedStableId ?? (await getStableId().catch(() => null));
+    const stableId = options.preparedStableId ?? (await getStableId().catch(swallowAuthAs('[AUTH-BG-REFRESH]', 'read_stable', null)));
     // зачем: в merge-ветках поколение уже открыто под новый stable_id —
     // второй beginAccountGeneration сделал бы токен вызывающего устаревшим.
     if (!options.preparedStableId) beginAccountGeneration(stableId);
@@ -3085,7 +3230,7 @@ function scheduleSameStablePostAuthRefresh(
     if (!isCurrent()) { console.log(`[SIGNIN] bg:${stage} abort=stale_after_rc`); return; }
     if (restoreResult !== 'failed' && await hasMeaningfulLocalAccountData()) {
       if (!isCurrent()) return;
-      await syncToCloud({ forceNow: true }).catch(() => {});
+      await syncToCloud({ forceNow: true }).catch(swallowAuthAs('[AUTH-BG-REFRESH]', 'sync_after_restore', undefined));
     } else if (__DEV__) {
       console.warn(`[auth_provider] ${stage}: skipping syncToCloud — local AsyncStorage empty`);
     }
@@ -3150,7 +3295,7 @@ function currentAccountSwitchOwnerProvider(): AccountSwitchOwnerProvider {
 function accountSwitchRecoveryDependencies() {
   return {
     readStableId: async (): Promise<string | null> => {
-      const stableId = peekStableId() ?? await readExistingStableId().catch(() => null);
+      const stableId = peekStableId() ?? await readExistingStableId().catch(swallowAuthAs('[AUTH-SIGNOUT]', 'switch_recovery_read_stable', null));
       invalidateAccountGeneration();
       return stableId;
     },
@@ -3719,7 +3864,7 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
   // зачем: completion живёт в фоне и его никто не обязан ждать. Без этой
   // заглушки отказ внутри превратился бы в unhandled rejection. Причина при
   // этом НЕ теряется — её печатает и шлёт владельцу блок выше.
-  void completion.catch(() => {});
+  void completion.catch(swallowAuthAs('[AUTH-DELETE]', 'background_completion', undefined));
 
   return { ok: true, completion };
 }
@@ -3904,7 +4049,7 @@ async function finishAccountDeletion(
         .then(({ removePendingShardGrantsForAccount }) => (
           removePendingShardGrantsForAccount(pendingDeleteStableId)
         ))
-        .catch(() => {});
+        .catch(swallowAuthAs('[AUTH-DELETE]', 'remove_pending_shard_grants', undefined));
     }
     // зачем: удаление аккаунта не трогало уведомления вовсе — cancelAllNotifications
     // вызывался ТОЛЬКО из тумблера в настройках. В результате запланированные локальные
@@ -3959,7 +4104,7 @@ async function finishAccountDeletion(
       }
       const proof = accountDeleteCredentialProof(pendingDeleteLock);
       if (!credentialSafe && proof) {
-        credentialSafe = await waitForAccountDeletionCredentialSafe(proof).catch(() => false);
+        credentialSafe = await waitForAccountDeletionCredentialSafe(proof).catch(swallowAuthAs('[AUTH-DELETE]', 'wait_credential_safe', false));
       }
       if (!credentialSafe) {
         logAuthEvent('auth_account_delete_enqueue_failed');
@@ -4060,16 +4205,16 @@ export async function handleAccountDeletedOnAnotherDevice(): Promise<RemoteAccou
   if (freshIdentity.status !== 'ready') {
     return { ok: false, reason: freshIdentity.status };
   }
-  await AsyncStorage.setItem(REMOTE_ACCOUNT_DELETED_NOTICE_KEY, '1').catch(() => {});
+  await AsyncStorage.setItem(REMOTE_ACCOUNT_DELETED_NOTICE_KEY, '1').catch(swallowAuthAs('[AUTH-DELETE]', 'remote_deleted_notice_write', undefined));
   invalidatePremiumCache();
   logAuthEvent('auth_account_deleted_on_another_device');
   return { ok: true };
 }
 
 export async function consumeRemoteAccountDeletionNotice(): Promise<boolean> {
-  const value = await AsyncStorage.getItem(REMOTE_ACCOUNT_DELETED_NOTICE_KEY).catch(() => null);
+  const value = await AsyncStorage.getItem(REMOTE_ACCOUNT_DELETED_NOTICE_KEY).catch(swallowAuthAs('[AUTH-DELETE]', 'remote_deleted_notice_read', null));
   if (value !== '1') return false;
-  await AsyncStorage.removeItem(REMOTE_ACCOUNT_DELETED_NOTICE_KEY).catch(() => {});
+  await AsyncStorage.removeItem(REMOTE_ACCOUNT_DELETED_NOTICE_KEY).catch(swallowAuthAs('[AUTH-DELETE]', 'remote_deleted_notice_remove', undefined));
   return true;
 }
 
@@ -4089,7 +4234,7 @@ async function performCurrentProviderSignOut(): Promise<void> {
   if (__DEV__) console.log('[auth_provider] signOutCurrentProvider: start');
   // Сбрасываем PostHog-идентичность, чтобы события следующего юзера не приписались прошлому
   // (no-op, если PostHog выключен).
-  void import('./posthog_client').then(({ resetPostHog }) => resetPostHog()).catch(() => {});
+  void import('./posthog_client').then(({ resetPostHog }) => resetPostHog()).catch(swallowAuthAs('[AUTH-SIGNOUT]', 'posthog_reset', undefined));
   if (!CLOUD_SYNC_ENABLED) return;
   // Google: revoke session чтобы при следующем signIn показался picker аккаунтов
   try {

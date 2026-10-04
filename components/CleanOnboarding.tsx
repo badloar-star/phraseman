@@ -54,6 +54,7 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { computeHeightScale, isShortScreen } from '../constants/layout-scale';
 import { getDeviceBootstrapLocale, triLang, type Lang } from '../constants/i18n';
+import { signInRefusalCopyFor } from '../app/account_sync_copy';
 import AccountDeletedNotice from './AccountDeletedNotice';
 import { consumeAccountDeletedNotice } from '../app/account_deleted_notice';
 import { warmAuthSignInCallables } from '../app/cloud_sync';
@@ -404,6 +405,11 @@ function describeAuthError(raw: string, lang: Lang): string {
       tr: 'Yerel ilerleme korundu. Önce güvenli hesap değişikliğini onayla, ardından tekrar giriş yap.',
       pl: 'Postęp lokalny został zachowany. Najpierw potwierdź bezpieczną zmianę konta, potem zaloguj się ponownie.',
     });
+  } else if (code === 'local_progress_not_uploaded' || code === 'local_progress_backup_blocked') {
+    // зачем (AA S2d раунды 2–3, §134 (б), §135 ❓1): вход отменён без стирания —
+    // тот же текст, что в модалке входа (выбор текста — одна функция).
+    const copy = signInRefusalCopyFor(code, lang);
+    if (copy) human = `${copy.title}. ${copy.body}`;
   } else if (code === 'identity_retired') {
     human = triLang(lang, {
       ru: 'Старые данные удалены и не восстановятся. Открывается новый пустой профиль.',

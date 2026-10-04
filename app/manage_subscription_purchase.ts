@@ -12,6 +12,7 @@ import {
   type PremiumStorePlan,
 } from './premium_revenuecat_state';
 import { reportSwallowed } from './debug-logger';
+import { withPurchaseFlow } from './purchase_flow_activity';
 
 export type ManagePlanChangeResult =
   | { status: 'stale' }
@@ -78,7 +79,8 @@ export async function changeManageSubscriptionPlanForGeneration(params: Readonly
       },
     }
     : undefined;
-  const { customerInfo } = await Purchases.purchasePackage(yearlyPackage, opts as any);
+  // AA S2d раунд 3: метка потока покупки — фоновый перенос Plus в это время ждёт.
+  const { customerInfo } = await withPurchaseFlow('manage_subscription_upgrade', () => Purchases.purchasePackage(yearlyPackage, opts as any));
   if (!isManageSubscriptionOperationCurrent(generation)) return { status: 'stale' };
   if (!await revenueCatIdentityMatches(generation)) return { status: 'stale' };
   const persisted = await persistForGeneration(

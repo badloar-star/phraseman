@@ -29,6 +29,7 @@ import {
   utf8ByteLengthV1,
 } from '../modules/learning-v2/policies/decision_registry';
 import { DebugLogger, reportSwallowed } from './debug-logger';
+import { identityErrorCode, identityTrace } from './identity_trace';
 
 // Литерал продублирован из app/cloud_sync.ts (ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY):
 // константа там не экспортируется. При смене ключа менять в обоих местах.
@@ -40,6 +41,47 @@ const BACKUP_PAGE_MAX_BYTES = 512 * 1024;
 const BACKUP_MAX_PAGES = 512;
 const BACKUP_MAX_PAIRS = BACKUP_MAX_PAGES * BACKUP_PAGE_MAX_PAIRS;
 const BACKUP_MAX_TOTAL_UTF8_BYTES = 128 * 1024 * 1024;
+
+/**
+ * Метка-псевдоним копии: {from: A, to: B, at}.
+ *
+ * зачем (AA S2d раунд 3, §135 ❓2 + повторное security-ревью): вход сохранил
+ * аварийную копию гостя A, и сервер ПОДТВЕРДИЛ merge(A→B). Копию переписывать на B
+ * нельзя (страницы v3 связаны хешами по stableId), поэтому вход под замком смены
+ * аккаунта пишет метку, а восстановление ниже принимает копию A для B только по ней:
+ * доливает недостающие ключи, B не перезаписывает, затем удаляет копию и метку.
+ * Без метки копия A остаётся «чужой» (different_account).
+ */
+const MERGE_ALIAS_KEY = 'account_switch_backup_merge_alias_v1';
+
+export type AccountSwitchBackupMergeAlias = Readonly<{ from: string; to: string; at: number }>;
+
+export async function writeAccountSwitchBackupMergeAlias(from: string, to: string): Promise<void> {
+  const alias: AccountSwitchBackupMergeAlias = { from, to, at: Date.now() };
+  await AsyncStorage.setItem(MERGE_ALIAS_KEY, JSON.stringify(alias));
+}
+
+export async function readAccountSwitchBackupMergeAlias(): Promise<AccountSwitchBackupMergeAlias | null> {
+  try {
+    const raw = await AsyncStorage.getItem(MERGE_ALIAS_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Partial<AccountSwitchBackupMergeAlias>;
+    if (typeof parsed.from !== 'string' || !parsed.from || typeof parsed.to !== 'string' || !parsed.to
+      || typeof parsed.at !== 'number') return null;
+    return { from: parsed.from, to: parsed.to, at: parsed.at };
+  } catch (error) {
+    identityTrace('[ACC-BACKUP-MERGE]', 'alias read_failed', { code: identityErrorCode(error) });
+    return null;
+  }
+}
+
+async function removeMergeAlias(reason: string): Promise<void> {
+  try {
+    await AsyncStorage.removeItem(MERGE_ALIAS_KEY);
+  } catch (error) {
+    identityTrace('[ACC-BACKUP-MERGE]', 'alias remove_failed', { reason, code: identityErrorCode(error) });
+  }
+}
 
 type BackupPayload = {
   version: 1 | 2;
@@ -224,7 +266,11 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(
   return withAccountTransitionLock(async () => {
     if (!generationIsCurrent()) return { status: 'stale_generation' };
     const raw = await AsyncStorage.getItem(BACKUP_KEY);
-    if (!raw) return { status: 'no_backup' };
+    if (!raw) {
+      // Раунд 3: метка без копии больше ничего не значит — убираем.
+      if (await AsyncStorage.getItem(MERGE_ALIAS_KEY) !== null) await removeMergeAlias('no_backup');
+      return { status: 'no_backup' };
+    }
     if (raw.length > BACKUP_PAGE_MAX_BYTES) return { status: 'upgrade_required' };
 
     const backup = parseBackup(raw);
@@ -245,10 +291,27 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(
       return null;
     });
     if (!generationIsCurrent()) return { status: 'stale_generation' };
-    if (!backup.stableId || !currentId || backup.stableId !== currentId) {
+    // Раунд 3 (§135 ❓2): копия гостя A принимается для B только по метке
+    // подтверждённого merge(A→B); иначе — чужой аккаунт, копию не трогаем.
+    let mergedFrom: string | null = null;
+    if (backup.stableId && currentId && backup.stableId !== currentId) {
+      const alias = await readAccountSwitchBackupMergeAlias();
+      if (!generationIsCurrent()) return { status: 'stale_generation' };
+      if (alias && alias.from === backup.stableId && alias.to === currentId) mergedFrom = alias.from;
+    }
+    if (!backup.stableId || !currentId || (backup.stableId !== currentId && mergedFrom === null)) {
     // Чужой (или неизвестный) аккаунт — копию не трогаем: владелец может вернуться.
       return { status: 'different_account' };
     }
+    // Ключи, названные по id гостя A (очереди, квитанции), в B не переносим: B их не
+    // прочтёт, а чужая очередь не должна оказаться в чужом профиле.
+    const restorable = (key: string): boolean => mergedFrom === null || !key.includes(mergedFrom);
+    let skippedForeignKeys = 0;
+    const finishMergedRestore = async (restoredKeys: number, skippedExisting: number): Promise<void> => {
+      if (mergedFrom === null) return;
+      await removeMergeAlias('restored');
+      identityTrace('[ACC-BACKUP-MERGE]', 'restored', { restoredKeys, skippedExisting, skippedForeignKeys });
+    };
 
     if (backup.version === 3) {
       let observedPairs = 0;
@@ -281,11 +344,12 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(
           }
         }
         observedPairs += page.pairs.length;
+        skippedForeignKeys += page.pairs.filter(([key]) => !restorable(key)).length;
         const current = await multiGetExactly(page.pairs.map(([key]) => key));
         if (!generationIsCurrent()) return { status: 'stale_generation' };
         const backedValues = new Map(page.pairs);
         if (current.some(([key, value]) => value != null && isLearningV2SpoolGraphKey(key) &&
-          value !== backedValues.get(key))) return { status: 'invalid' };
+          restorable(key) && value !== backedValues.get(key))) return { status: 'invalid' };
         previousPageFingerprint = page.pageFingerprint;
         auditedPageFingerprints.push(page.pageFingerprint);
       }
@@ -310,7 +374,7 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(
             throw new Error('account_switch_backup_restore_indeterminate');
           }
           previousPageFingerprint = page.pageFingerprint;
-          const rankedPairs = page.pairs.filter(([key]) => restoreDependencyRank(key) === rank);
+          const rankedPairs = page.pairs.filter(([key]) => restoreDependencyRank(key) === rank && restorable(key));
           if (rankedPairs.length === 0) continue;
           const keys = rankedPairs.map(([key]) => key);
           const current = await multiGetExactly(keys);
@@ -356,7 +420,7 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(
           throw new Error('account_switch_backup_restore_indeterminate');
         }
         previousPageFingerprint = page.pageFingerprint;
-        const graphPairs = page.pairs.filter(([key]) => isLearningV2SpoolGraphKey(key));
+        const graphPairs = page.pairs.filter(([key]) => isLearningV2SpoolGraphKey(key) && restorable(key));
         if (graphPairs.length === 0) continue;
         const verified = await multiGetExactly(graphPairs.map(([key]) => key));
         if (verified.some(([key, value], index) =>
@@ -370,13 +434,16 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(
       if (!generationIsCurrent()) return { status: 'stale_generation' };
       await removeBackupRootExactly();
       await removeBackupPagesExactly(backup);
+      await finishMergedRestore(restoredKeys, skippedExisting);
       return { status: 'restored', restoredKeys, skippedExisting };
     }
 
-    const candidates = backup.pairs.filter(
+    const typedPairs = backup.pairs.filter(
       (pair): pair is [string, string] =>
         Array.isArray(pair) && typeof pair[0] === 'string' && typeof pair[1] === 'string',
     );
+    const candidates = typedPairs.filter(([key]) => restorable(key));
+    skippedForeignKeys = typedPairs.length - candidates.length;
     if (candidates.length === 0) {
       await removeBackupRootExactly();
       return { status: 'invalid' };
@@ -433,6 +500,7 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(
     }
     if (!generationIsCurrent()) return { status: 'stale_generation' };
     await removeBackupRootExactly();
+    await finishMergedRestore(restoredKeys, skippedExisting);
     return { status: 'restored', restoredKeys, skippedExisting };
   });
 }

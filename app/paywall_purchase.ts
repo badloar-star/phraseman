@@ -73,6 +73,7 @@ import {
   runRevenueCatOperationForGeneration,
 } from './revenuecat_account_identity';
 import { DebugLogger, swallowError } from './debug-logger';
+import { withPurchaseFlow } from './purchase_flow_activity';
 import { LOAD_GATE_ATTEMPTS, LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
 import {
   hydratePaywallPriceCache,
@@ -921,7 +922,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       setPayStarted(true); // L1: с этого момента окно не закрывается
       const purchaseResult = await runRevenueCatOperationForGeneration(
         operationAccount,
-        () => Purchases.purchasePackage(pkg), // RAW пакет — цена стора без изменений
+        // AA S2d раунд 3: метка потока покупки — фоновый перенос Plus в это время ждёт.
+        () => withPurchaseFlow('paywall_purchase', () => Purchases.purchasePackage(pkg)), // RAW пакет — цена стора без изменений
       );
       if (purchaseResult.status !== 'ok') return;
       let { customerInfo } = purchaseResult.value;
@@ -1186,7 +1188,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       }
       const restoreResult = await runRevenueCatOperationForGeneration(
         operationAccount,
-        () => Purchases.restorePurchases(),
+        () => withPurchaseFlow('paywall_restore', () => Purchases.restorePurchases()),
       );
       if (restoreResult.status !== 'ok') return;
       const info = restoreResult.value;

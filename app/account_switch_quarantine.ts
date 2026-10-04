@@ -420,8 +420,10 @@ async function removeVerified(key: string, errorCode: string): Promise<void> {
     // while presence preserves the original failure for a safe retry.
     try {
       if (await AsyncStorage.getItem(key) === null) return;
-    } catch {
+    } catch (readBackError) {
       // The delete result is unknowable; retain the fail-closed error below.
+      // зачем (PM-229, AA S2d): прежде немой — причину сбоя проверки видно в логе.
+      traceAccountSwitchWipe('remove readback_failed', { step: 'remove_key_readback' }, readBackError);
     }
     throw removeError;
   }
@@ -1078,7 +1080,10 @@ export function resumeAccountSwitchQuarantine(
     recoveryFlight = flight;
     void flight.finally(() => {
       if (recoveryFlight === flight) recoveryFlight = null;
-    }).catch(() => {});
+    }).catch((flightError: unknown) => {
+      // зачем (PM-229, AA S2d): отказ фонового возобновления прежде глотался молча.
+      traceAccountSwitchWipe('resume flight_failed', { step: 'resume_recovery_flight' }, flightError);
+    });
   }
   return recoveryFlight;
 }
@@ -1103,7 +1108,11 @@ export function resumeRuntimeAccountSwitchQuarantine(): Promise<AccountSwitchRes
   const timeoutMs = 10_000;
   return resumeAccountSwitchQuarantine({
     readStableId: async () => {
-      const stableId = stable.peekStableId() ?? await stable.readExistingStableId().catch(() => null);
+      // зачем (PM-229, AA S2d): прежде немой — чтение личности при возобновлении смены.
+      const stableId = stable.peekStableId() ?? await stable.readExistingStableId().catch((readError: unknown) => {
+        traceAccountSwitchWipe('resume read_stable_failed', { step: 'resume_read_stable' }, readError);
+        return null;
+      });
       generation.invalidateAccountGeneration();
       return stableId;
     },

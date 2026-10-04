@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import {
   View, Text, TouchableOpacity,
   TextInput, Modal, DeviceEventEmitter,
@@ -51,7 +51,9 @@ import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { useGlassAlert } from '../../hooks/use-glass-alert';
 import GlassInlineAlert from '../../components/account/GlassInlineAlert';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
-import { PLUS_TRANSFER_SWITCH_NOTICE_ENABLED, plusTransferSwitchNotice, SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM } from '../account_switch_copy';
+import { plusTransferSwitchNotice, SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM, shouldShowPlusTransferSwitchNotice } from '../account_switch_copy';
+import { peekStableId } from '../stable_id';
+import { ACCOUNT_SWITCH_UI_DEADLINE_MS, accountSwitchStillRunningDraft, awaitWithStillRunningNotice } from '../account_switch_deadline';
 import { useReferralRoulettePolicy } from '../referral_roulette_flag';
 import { getClaimableReferralState } from '../referral_vip';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
@@ -463,6 +465,14 @@ export default function SettingsMain() {
    *   'wiping'      — крутится спиннер: forced sync + signOut + wipe
    */
   const [switchAccountStage, setSwitchAccountStageRaw] = useState<'idle' | 'confirm' | 'wiping'>('idle');
+  // зачем (AA S2d раунд 2): строка «Plus перейдёт на новый аккаунт» — только при
+  // реальном переносе store-Plus (не VIP/промо). Считаем один раз на открытие окна
+  // подтверждения, а не на каждый рендер: внутри — точка предупреждения с логом.
+  const switchConfirmOpen = switchAccountStage === 'confirm';
+  const showPlusTransferNotice = useMemo(
+    () => switchConfirmOpen && shouldShowPlusTransferSwitchNotice(isPremium, peekStableId()),
+    [switchConfirmOpen, isPremium],
+  );
   // зачем (владелец, 2026-09-13): «сперва логи». «Сохранить и выйти» мелькало и
   // ничего не происходило, а переходы стадий были нем. ВАЖНО: 'confirm' и
   // 'wiping' живут в ДВУХ РАЗНЫХ нативных <Modal> (ниже по файлу), поэтому
@@ -1575,7 +1585,7 @@ export default function SettingsMain() {
                 'Obecny postęp pozostanie przypisany do konta, na którym jesteś teraz zalogowany. Aby wrócić, zaloguj się na nie ponownie.',
               )}
             </Text>
-            {PLUS_TRANSFER_SWITCH_NOTICE_ENABLED && isPremium ? (
+            {showPlusTransferNotice ? (
               // зачем (§127): при активном Plus — что с ним будет (Transfer в RevenueCat); только вместе с переносом AccountV2.
               <Text testID="settings-switch-plus-notice" style={{ color: t.textPrimary, fontSize: f.body, lineHeight: 22, fontWeight: '600', marginBottom: 8 }}>
                 {plusTransferSwitchNotice(lang)}
@@ -1617,8 +1627,16 @@ export default function SettingsMain() {
                   }
                   doHaptic();
                   const attemptStartedAtMs = Date.now();
+                  // зачем (AA S2d, §139): оверлей «стираю» не висит бесконечно — через
+                  // 45 с снимаем его и говорим «ещё идёт»; саму смену не обрываем
+                  // (маркер/карантин, возобновляется), её результат обработается ниже.
+                  const onSwitchStillRunning = () => {
+                    setSwitchAccountStage('idle');
+                    const stillRunning = accountSwitchStillRunningDraft(lang);
+                    showInfoAlert(stillRunning.title, stillRunning.body);
+                  };
                   setSwitchAccountStage('wiping');
-                  const res = await signOutAndWipeForAccountSwitch();
+                  const res = await awaitWithStillRunningNotice(signOutAndWipeForAccountSwitch(), ACCOUNT_SWITCH_UI_DEADLINE_MS, onSwitchStillRunning);
                   setSwitchAccountStage('idle');
                   // Общий forced-путь «Сменить без сохранения» для всех блокировок
                   // смены аккаунта. Аварийная копия (включая очередь осколков)
@@ -1630,10 +1648,10 @@ export default function SettingsMain() {
                       return;
                     }
                     setSwitchAccountStage('wiping');
-                    const forced = await signOutAndWipeForAccountSwitch({
+                    const forced = await awaitWithStillRunningNotice(signOutAndWipeForAccountSwitch({
                       allowWipeWithoutSync: true,
                       allowPendingShardSpendDiscard: true,
-                    });
+                    }), ACCOUNT_SWITCH_UI_DEADLINE_MS, onSwitchStillRunning);
                     setSwitchAccountStage('idle');
                     if (!forced.ok) {
                       showInfoAlert(

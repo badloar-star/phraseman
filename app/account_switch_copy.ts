@@ -6,6 +6,7 @@
  * и одна кнопка, которая сразу открывает окно «Сменить аккаунт?» в Настройках.
  */
 import { triLang, type Lang } from '../constants/i18n';
+import { getPlusTransferSwitchWarning } from './plus_transfer_hold';
 
 /**
  * зачем (§127): строку «Plus перейдёт на новый аккаунт» показываем ТОЛЬКО вместе с тихим
@@ -13,7 +14,26 @@ import { triLang, type Lang } from '../constants/i18n';
  * одной поставкой. Пока перенос не выпущен, флаг выключен: иначе пообещаем то, чего нет.
  * AccountV2 включает флаг тем же коммитом, которым выпускает перенос.
  */
-export const PLUS_TRANSFER_SWITCH_NOTICE_ENABLED = false;
+// зачем (AA S2d раунд 2): включено тем же изменением, что выпускает тихий перенос Plus
+// (app/plus_transfer.ts: syncPurchases после любой смены аккаунта).
+export const PLUS_TRANSFER_SWITCH_NOTICE_ENABLED = true;
+
+/**
+ * Показывать ли строку о переносе Plus в окне «Сменить аккаунт?».
+ *
+ * зачем (AA S2d раунд 2, координатор): только при РЕАЛЬНОМ переносе store-Plus —
+ * VIP/промо-Plus без покупки в сторе через RevenueCat не переносится, им строка
+ * пообещала бы неправду. Проверка store-Plus — по последнему решению premium_guard
+ * (память, без сети). Условия идут по порядку: при выключенном флаге или без Plus
+ * точка предупреждения (и её лог [PLUS-TRANSFER]) не вызывается вовсе.
+ */
+export function shouldShowPlusTransferSwitchNotice(
+  isPremium: boolean,
+  currentStableId: string | null,
+  enabled: boolean = PLUS_TRANSFER_SWITCH_NOTICE_ENABLED,
+): boolean {
+  return enabled && isPremium && getPlusTransferSwitchWarning(currentStableId).show;
+}
 
 export function plusTransferSwitchNotice(lang: Lang): string {
   return triLang(lang, {

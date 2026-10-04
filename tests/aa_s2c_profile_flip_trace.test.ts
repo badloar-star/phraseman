@@ -78,7 +78,7 @@ test('both layers agree on a normal cold start; one persisted [PROFILE-FLIP] sta
   warn.mockRestore();
 });
 
-test('H6-1: SecureStore write fails on switch → layers diverge → next cold start returns the OLD profile, and the trace shows it', async () => {
+test('H6-1 (починено в S2d 🔴3): SecureStore write fails on switch → next cold start keeps the NEW profile, and the trace shows it', async () => {
   secureStore.phraseman_stable_uid = STABLE_A;
   asyncStore.phraseman_stable_uid_cache = STABLE_A;
   const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
@@ -97,16 +97,17 @@ test('H6-1: SecureStore write fails on switch → layers diverge → next cold s
   expect(persistLine).toContain('"layersDiverge":true');
   expect(mockPersisted).toContain('[PROFILE-FLIP] persist result');
 
-  // Запуск 2 (холодный): SecureStore всё ещё держит A.
+  // Запуск 2 (холодный): SecureStore не принял B — после S2d он очищен при записи.
   warn.mockClear();
   jest.resetModules();
   stable = require('../app/stable_id');
   const afterRestart = await stable.getStableId();
 
-  // Характеризация текущего поведения 1.6.x: старт поднимает A (вот и «прыжок»).
-  expect(afterRestart).toBe(STABLE_A);
+  // зачем (AA S2d 🔴3): прежняя характеризация «старт поднимает A» перевёрнута —
+  // отставший SecureStore обезврежен при записи, старт поднимает B (без «прыжка»).
+  expect(afterRestart).toBe(STABLE_B);
   const startup = traceLines(warn).find((line) => line.includes('startup source'));
-  expect(startup).toContain('"layersAgree":false');
+  expect(startup).toContain('"source":"async_storage"');
   expect(mockPersisted).toContain('[PROFILE-FLIP] startup source');
   expect(traceLines(warn).join('\n')).not.toContain(STABLE_A);
   expect(traceLines(warn).join('\n')).not.toContain(STABLE_B);

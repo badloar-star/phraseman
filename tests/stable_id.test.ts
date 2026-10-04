@@ -226,9 +226,17 @@ test('failed set invalidates old generation instead of leaving split-brain ident
   const generation = require('../app/account_generation');
   await getStableId();
   const captured = generation.captureAccountGeneration();
-  SS.setItemAsync.mockRejectedValueOnce(new Error('secure failed'));
-  AS.setItem.mockRejectedValueOnce(new Error('async failed'));
-  await setStableId('unpersisted-account');
+  // зачем (AA S2d 🔴3): каждый слой теперь пишется с одним повтором, а запись,
+  // не принятая ни одним слоем, — явный провал, а не молчаливый «успех».
+  SS.setItemAsync.mockImplementation(async (k: string, v: string) => {
+    if (k === 'phraseman_stable_uid') throw new Error('secure failed');
+    secureStore[k] = v;
+  });
+  AS.setItem.mockImplementation(async (k: string, v: string) => {
+    if (k === 'phraseman_stable_uid_cache') throw new Error('async failed');
+    asyncStore[k] = v;
+  });
+  await expect(setStableId('unpersisted-account')).rejects.toThrow('stable_id_persist_failed');
   expect(generation.isCurrentAccountGeneration(captured)).toBe(false);
   expect(generation.captureAccountGeneration().phase).toBe('transitioning');
   expect(await getStableId()).not.toBe('unpersisted-account');

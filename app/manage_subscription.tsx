@@ -72,6 +72,7 @@ import {
   type SaveOfferProgress,
 } from './manage_subscription_save_offer';
 import { DebugLogger } from './debug-logger';
+import { withPurchaseFlow } from './purchase_flow_activity';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type ManageSubscriptionCopy = {
@@ -497,7 +498,8 @@ export default function ManageSubscription() {
         console.warn('[RESTORE] drop:identity_sync_failed'); // guard-ok
         return;
       }
-      const restored = await Purchases.restorePurchases();
+      // AA S2d раунд 3: метка потока покупки — фоновый перенос Plus в это время ждёт.
+      const restored = await withPurchaseFlow('manage_subscription_restore', () => Purchases.restorePurchases());
       if (!isOperationCurrent()) {
         console.warn('[RESTORE] drop:stale_after_network'); // guard-ok
         return;

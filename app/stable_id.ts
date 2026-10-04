@@ -29,6 +29,26 @@ import { noteSwallowed, noteSwallowedHandler } from './swallow_log'; // заче
 
 const SECURE_KEY = 'phraseman_stable_uid';
 const ASYNC_KEY = 'phraseman_stable_uid_cache';
+/**
+ * Метка «SecureStore отстал»: значение = stable_id, который приняла последняя
+ * намеренная запись (setStableId), но НЕ принял SecureStore.
+ *
+ * зачем (AA S2d 🔴3, §127, случай «уровень 13↔12, дни 155↔52»): какой слой
+ * правдивее при расхождении? Ни у одного слоя нет времени записи, а Date.now()
+ * в этом модуле подменяют тесты входа. Правдиво то, что записала ПОСЛЕДНЯЯ
+ * намеренная смена профиля (её делает только auth_provider/cloud_sync после
+ * подтверждения сервером). Если SecureStore её не принял, единственный способ
+ * донести это до следующего старта — метка в слое, который запись ПРИНЯЛ.
+ * Метка живёт в AsyncStorage, потому что сбой именно SecureStore (Keystore /
+ * Keychain) и есть найденная причина; без метки при расхождении остаётся
+ * прежнее правило «SecureStore первым» (оно верно для переустановки на iOS, где
+ * AsyncStorage приезжает из старого бэкапа, а Keychain — актуальный).
+ * Метка действует, только если совпадает со значением AsyncStorage: чужая или
+ * старая метка не может перевесить SecureStore.
+ */
+const SECURE_STALE_MARKER_KEY = 'phraseman_stable_uid_secure_stale_v1';
+/** Одна запись + один повтор на слой: сбой Keystore часто разовый (занят/не разблокирован). */
+const LAYER_WRITE_ATTEMPTS = 2;
 
 /**
  * iOS Keychain Service (group/namespace для Keychain item).
@@ -121,6 +141,127 @@ export function peekStableId(): string | null {
   return cachedId;
 }
 
+export type StableIdChange = Readonly<{
+  previous: string | null;
+  next: string | null;
+  kind: 'set' | 'cleared';
+}>;
+
+const stableIdChangeListeners = new Set<(change: StableIdChange) => void>();
+
+/**
+ * Подписка на ЛЮБУЮ смену аккаунта на устройстве (setStableId на другой id или
+ * clearStableId). Слушатель зовётся синхронно, сразу после успешной записи.
+ *
+ * зачем (AA S2d 🔴1): перенос Plus обязан срабатывать после ЛЮБОГО переключения
+ * (вход со свапом, adopt по серверу, «Сменить аккаунт», восстановление после
+ * переустановки) — единственная общая точка всех путей здесь. Модуль личности
+ * ничего не знает о Plus: он только сообщает факт смены.
+ */
+export function onStableIdChanged(listener: (change: StableIdChange) => void): () => void {
+  stableIdChangeListeners.add(listener);
+  return () => { stableIdChangeListeners.delete(listener); };
+}
+
+function emitStableIdChange(change: StableIdChange): void {
+  for (const listener of stableIdChangeListeners) {
+    try {
+      listener(change);
+    } catch (error) {
+      // Слушатель не имеет права сорвать смену аккаунта; причина — в журнал.
+      identityTrace('[PROFILE-FLIP]', 'change listener_failed', { kind: change.kind, code: identityErrorCode(error) });
+    }
+  }
+}
+
+type StableLayerChoiceReason = 'secure_marked_stale' | 'no_marker' | 'marker_mismatch';
+
+type StableLayerChoice = Readonly<{
+  value: string;
+  chosen: 'secure' | 'async';
+  reason: StableLayerChoiceReason;
+}>;
+
+/**
+ * Правило выбора при расхождении слоёв (AA S2d 🔴3). Вызывается ТОЛЬКО когда
+ * оба слоя непусты и различаются. AsyncStorage побеждает лишь при метке,
+ * совпадающей с его значением; иначе — прежний порядок «SecureStore первым».
+ */
+function chooseDivergentStableLayer(
+  secureValue: string,
+  asyncValue: string,
+  marker: string | null,
+): StableLayerChoice {
+  if (marker && marker === asyncValue) {
+    return { value: asyncValue, chosen: 'async', reason: 'secure_marked_stale' };
+  }
+  return { value: secureValue, chosen: 'secure', reason: marker ? 'marker_mismatch' : 'no_marker' };
+}
+
+async function readSecureStaleMarker(): Promise<string | null> {
+  try {
+    const raw = await AsyncStorage.getItem(SECURE_STALE_MARKER_KEY);
+    const marker = typeof raw === 'string' ? raw.trim() : '';
+    return marker || null;
+  } catch (error) {
+    // зачем: немой catch запрещён; без метки остаётся прежнее правило «SecureStore первым».
+    identityTrace('[PROFILE-FLIP]', 'marker read_failed', { code: identityErrorCode(error) });
+    return null;
+  }
+}
+
+async function removeSecureStaleMarker(context: string): Promise<boolean> {
+  try {
+    await AsyncStorage.removeItem(SECURE_STALE_MARKER_KEY);
+    return true;
+  } catch (error) {
+    identityTrace('[PROFILE-FLIP]', 'marker remove_failed', { context, code: identityErrorCode(error) }, { persist: true });
+    return false;
+  }
+}
+
+/**
+ * Старт нашёл в SecureStore и AsyncStorage РАЗНЫЕ профили: выбрать по правилу,
+ * починить отставший слой, записать `layersDiverge` в журнал (переживает
+ * перезапуск — по нему видно, что «прыжки» прекратились).
+ */
+async function resolveStartupLayerDivergence(
+  SecureStore: SecureStoreModule,
+  opts: import('expo-secure-store').SecureStoreOptions,
+  secureValue: string,
+  asyncValue: string,
+): Promise<string> {
+  const marker = await readSecureStaleMarker();
+  const choice = chooseDivergentStableLayer(secureValue, asyncValue, marker);
+  let repair: 'ok' | 'failed' = 'ok';
+  let repairCode: string | null = null;
+  try {
+    if (choice.chosen === 'async') {
+      await SecureStore.setItemAsync(SECURE_KEY, choice.value, opts);
+    } else {
+      await AsyncStorage.setItem(ASYNC_KEY, choice.value);
+    }
+  } catch (error) {
+    repair = 'failed';
+    repairCode = identityErrorCode(error);
+  }
+  // Метка больше не нужна, когда SecureStore догнал, или когда она не совпала
+  // (устаревшая). Держим её только пока SecureStore по-прежнему отстаёт.
+  if (marker && (repair === 'ok' || choice.chosen === 'secure')) {
+    await removeSecureStaleMarker('startup');
+  }
+  identityTrace('[PROFILE-FLIP]', 'startup layersDiverge', {
+    chosen: choice.chosen,
+    reason: choice.reason,
+    secure: identityTag(secureValue),
+    async: identityTag(asyncValue),
+    marker: marker ? identityTag(marker) : 'none',
+    repair,
+    repairCode,
+  }, { persist: true });
+  return choice.value;
+}
+
 async function readOrCreateStableId(epoch: number): Promise<string> {
   await assertStableIdentityAvailableAtStartup();
   assertCurrentStableIdRead(epoch);
@@ -182,6 +323,19 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
           asyncStable: asyncReadFailed ? 'unreadable' : identityTag(asyncBefore),
           layersAgree,
         }, { persist: !layersAgree });
+        // зачем (AA S2d 🔴3): раньше при расхождении SecureStore молча побеждал и
+        // AsyncStorage перезаписывался — новый профиль, принятый только
+        // AsyncStorage, терялся на каждом старте («прыжок»). Теперь выбор по
+        // метке последней намеренной записи и починка отставшего слоя.
+        if (!asyncReadFailed && asyncBefore && asyncBefore !== stored) {
+          const resolved = await resolveStartupLayerDivergence(SecureStore, opts, stored, asyncBefore);
+          assertCurrentStableIdRead(epoch);
+          await assertStableIdentityAvailableAtStartup(resolved);
+          assertCurrentStableIdRead(epoch);
+          cachedId = resolved;
+          beginInitialAccountGeneration(resolved);
+          return resolved;
+        }
         cachedId = stored;
         await AsyncStorage.setItem(ASYNC_KEY, stored);
         assertCurrentStableIdRead(epoch);
@@ -210,7 +364,13 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
       }, { persist: true });
       cachedId = cached;
       if (SecureStore && opts) {
-        await SecureStore.setItemAsync(SECURE_KEY, cached, opts).catch(noteSwallowedHandler('stable_id:promise_3'));
+        // зачем (AA S2d 🔴3): SecureStore пуст/нечитаем — догоняем его; метку
+        // «SecureStore отстал» снимаем только когда он реально принял значение.
+        let secureRepaired = false;
+        await SecureStore.setItemAsync(SECURE_KEY, cached, opts)
+          .then(() => { secureRepaired = true; })
+          .catch(noteSwallowedHandler('stable_id:promise_3'));
+        if (secureRepaired) await removeSecureStaleMarker('startup_async_fallback');
       }
       beginInitialAccountGeneration(cached);
       return cached;
@@ -244,6 +404,26 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
   return newId;
 }
 
+/** Только чтение (без починки слоёв): значение AsyncStorage, если метка подтверждает его. */
+async function readMarkedAsyncOverride(secureValue: string): Promise<string> {
+  try {
+    const asyncValue = await AsyncStorage.getItem(ASYNC_KEY);
+    if (!asyncValue || asyncValue === secureValue) return secureValue;
+    const marker = await readSecureStaleMarker();
+    const choice = chooseDivergentStableLayer(secureValue, asyncValue, marker);
+    identityTrace('[PROFILE-FLIP]', 'ownership_read layersDiverge', {
+      chosen: choice.chosen,
+      reason: choice.reason,
+      secure: identityTag(secureValue),
+      async: identityTag(asyncValue),
+    });
+    return choice.value;
+  } catch (error) {
+    identityTrace('[PROFILE-FLIP]', 'ownership_read async_failed', { code: identityErrorCode(error) });
+    return secureValue;
+  }
+}
+
 let stableIdLoadInFlight: Promise<string> | null = null;
 let stableIdMutationInFlight: Promise<void> | null = null;
 
@@ -267,8 +447,13 @@ export async function readExistingStableId(): Promise<string | null> {
       const current = normalize(await SecureStore.getItemAsync(SECURE_KEY, opts));
       if (epoch !== stableIdOperationEpoch) return readExistingStableId();
       if (current) {
-        cachedId = current;
-        return current;
+        // зачем (AA S2d 🔴3): восстановление/карантин доказывают владение тем же
+        // правилом, что и старт; иначе они видели бы «старый» профиль из
+        // отставшего SecureStore, а приложение — новый.
+        const resolved = await readMarkedAsyncOverride(current);
+        if (epoch !== stableIdOperationEpoch) return readExistingStableId();
+        cachedId = resolved;
+        return resolved;
       }
     } catch (swallowedError) { /* fall through to legacy/AsyncStorage read */ noteSwallowed('stable_id:catch_1', swallowedError); }
     try {
@@ -313,55 +498,120 @@ export function getStableId(): Promise<string> {
  * После вызова обязательно очистить локальный AsyncStorage с прогрессом и сделать restoreFromCloud,
  * иначе данные старого аккаунта останутся в кеше.
  */
+type LayerWriteResult = Readonly<{ ok: boolean; attempts: number; code: string | null }>;
+
+async function writeLayerWithRetry(context: string, write: () => Promise<void>): Promise<LayerWriteResult> {
+  let code: string | null = null;
+  for (let attempt = 1; attempt <= LAYER_WRITE_ATTEMPTS; attempt += 1) {
+    try {
+      await write();
+      return { ok: true, attempts: attempt, code };
+    } catch (e) {
+      code = identityErrorCode(e);
+      DebugLogger.error(context, e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
+  }
+  return { ok: false, attempts: LAYER_WRITE_ATTEMPTS, code };
+}
+
+/**
+ * SecureStore не принял новый профиль: убрать из него старый (тогда старт
+ * провалится в AsyncStorage) и поставить метку «SecureStore отстал».
+ * Достаточно ЛЮБОГО из двух — старт не вернёт прежний профиль.
+ */
+async function neutralizeStaleSecureLayer(
+  SecureStore: SecureStoreModule,
+  newId: string,
+): Promise<{ deleted: boolean; marked: boolean }> {
+  let deleted = false;
+  try {
+    await SecureStore.deleteItemAsync(SECURE_KEY, getSecureStoreOpts(SecureStore));
+    await SecureStore.deleteItemAsync(SECURE_KEY);
+    deleted = true;
+  } catch (error) {
+    identityTrace('[PROFILE-FLIP]', 'persist secure_delete_failed', { code: identityErrorCode(error) });
+  }
+  let marked = false;
+  try {
+    await AsyncStorage.setItem(SECURE_STALE_MARKER_KEY, newId);
+    marked = true;
+  } catch (error) {
+    identityTrace('[PROFILE-FLIP]', 'persist marker_write_failed', { code: identityErrorCode(error) });
+  }
+  return { deleted, marked };
+}
+
+type PersistOutcome = 'complete' | 'async_authoritative' | 'secure_authoritative' | 'failed';
+
+/**
+ * зачем (AA S2d 🔴3, §127): раньше запись считалась успешной, если удался ХОТЯ
+ * БЫ ОДИН слой. SecureStore не записался → новый профиль жил только в
+ * AsyncStorage → холодный старт читал SecureStore первым и поднимал СТАРЫЙ
+ * профиль → облако снова переключало (adopt): «уровень 13↔12, дни 155↔52» на
+ * каждом перезапуске. Теперь:
+ *   - успех = записаны ВСЕ доступные слои (каждый с одним повтором);
+ *   - слой не принял запись → он обезврежен (SecureStore: удалён + метка;
+ *     AsyncStorage: снята метка, старт и так читает SecureStore первым), и
+ *     следующий старт гарантированно вернёт новый профиль;
+ *   - обезвредить не удалось / не записан ни один слой → явный провал
+ *     `stable_id_persist_failed`: вызывающий (свап/adopt) видит ошибку, а не
+ *     «успех», после которого старт молча вернёт старый профиль.
+ */
 async function persistStableId(newId: string, epoch: number): Promise<void> {
   if (epoch !== stableIdOperationEpoch) {
     identityTrace('[PROFILE-FLIP]', 'persist skipped', { reason: 'stale_epoch', target: identityTag(newId) });
     return;
   }
-  let persisted = false;
-  // зачем (AA S2c, [PROFILE-FLIP]): итог по КАЖДОМУ слою. Если SecureStore не
-  // записался, а AsyncStorage записался — на следующем старте SecureStore
-  // вернёт прежний профиль (он читается первым). Это главная гипотеза случая.
-  let secureResult: 'ok' | 'failed' | 'unavailable' = 'unavailable';
-  let secureCode: string | null = null;
-  let asyncResult: 'ok' | 'failed' = 'failed';
   const SecureStore = getSecureStore();
-  if (SecureStore) {
-    try {
-      await SecureStore.setItemAsync(SECURE_KEY, newId, getSecureStoreOpts(SecureStore));
-      persisted = true;
-      secureResult = 'ok';
-    } catch (e) {
-      // SecureStore unavailable — продолжаем через AsyncStorage
-      DebugLogger.error('stable_id:SecureStore', e instanceof Error ? e : new Error(String(e)), 'warning');
-      secureResult = 'failed';
-      secureCode = identityErrorCode(e);
-    }
+  const secure: LayerWriteResult | null = SecureStore
+    ? await writeLayerWithRetry('stable_id:SecureStore', () => SecureStore.setItemAsync(SECURE_KEY, newId, getSecureStoreOpts(SecureStore)))
+    : null;
+  const asyncWrite = await writeLayerWithRetry('stable_id:AsyncStorage', () => AsyncStorage.setItem(ASYNC_KEY, newId));
+  const secureOk = secure === null || secure.ok;
+
+  let outcome: PersistOutcome;
+  let neutralized: { deleted: boolean; marked: boolean } | null = null;
+  if (secureOk && asyncWrite.ok) {
+    // Прежняя метка (от давнего сбоя) больше не правда — снимаем. Не снялась —
+    // не страшно: метка ≠ значению AsyncStorage и будет проигнорирована.
+    await removeSecureStaleMarker('persist_complete');
+    outcome = 'complete';
+  } else if (SecureStore && !secureOk && asyncWrite.ok) {
+    neutralized = await neutralizeStaleSecureLayer(SecureStore, newId);
+    outcome = neutralized.deleted || neutralized.marked ? 'async_authoritative' : 'failed';
+  } else if (secure?.ok && !asyncWrite.ok) {
+    // Старт читает SecureStore первым и сам починит AsyncStorage. Опасна лишь
+    // старая метка, совпадающая со старым значением AsyncStorage, — её снимаем.
+    outcome = (await removeSecureStaleMarker('persist_secure_only')) ? 'secure_authoritative' : 'failed';
+  } else {
+    outcome = 'failed';
   }
-  try {
-    await AsyncStorage.setItem(ASYNC_KEY, newId);
-    persisted = true;
-    asyncResult = 'ok';
-  } catch (e) {
-      // SecureStore may still have persisted the identity.
-      DebugLogger.error('stable_id:SecureStore', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
+
   identityTrace('[PROFILE-FLIP]', 'persist result', {
     target: identityTag(newId),
     previous: identityTag(cachedId),
-    secure: secureResult,
-    secureCode,
-    async: asyncResult,
-    layersDiverge: secureResult === 'failed' && asyncResult === 'ok',
+    outcome,
+    secure: secure === null ? 'unavailable' : secure.ok ? 'ok' : 'failed',
+    secureAttempts: secure?.attempts ?? 0,
+    secureCode: secure?.code ?? null,
+    async: asyncWrite.ok ? 'ok' : 'failed',
+    asyncAttempts: asyncWrite.attempts,
+    asyncCode: asyncWrite.code,
+    secureDeleted: neutralized?.deleted ?? null,
+    secureMarkedStale: neutralized?.marked ?? null,
+    layersDiverge: secure !== null && secure.ok !== asyncWrite.ok,
     epochCurrent: epoch === stableIdOperationEpoch,
-  }, { persist: secureResult === 'failed' || asyncResult === 'failed' });
+  }, { persist: outcome !== 'complete' || (secure?.attempts ?? 1) > 1 || asyncWrite.attempts > 1 });
   if (epoch !== stableIdOperationEpoch) return;
-  if (persisted) {
+  if (outcome !== 'failed') {
+    const previousId = cachedId;
     cachedId = newId;
-  } else {
-    cachedId = null;
-    invalidateAccountGeneration();
+    if (previousId !== newId) emitStableIdChange({ previous: previousId, next: newId, kind: 'set' });
+    return;
   }
+  cachedId = null;
+  invalidateAccountGeneration();
+  throw new Error('stable_id_persist_failed');
 }
 
 export function setStableId(newId: string): Promise<void> {
@@ -411,6 +661,7 @@ export function _resetStableIdCache(): void {
  */
 async function clearStableIdStorage(): Promise<void> {
   identityTrace('[PROFILE-FLIP]', 'cleared', { previous: identityTag(cachedId) }, { persist: true });
+  const previousId = cachedId;
   cachedId = null;
   const SecureStore = getSecureStore();
   if (SecureStore) {
@@ -428,6 +679,10 @@ async function clearStableIdStorage(): Promise<void> {
   await AsyncStorage.removeItem(ASYNC_KEY);
   const asyncValue = await AsyncStorage.getItem(ASYNC_KEY);
   if (asyncValue !== null) throw new Error('stable_id_async_clear_mismatch');
+  // зачем (AA S2d 🔴3): метка «SecureStore отстал» относится к стёртому профилю.
+  await AsyncStorage.removeItem(SECURE_STALE_MARKER_KEY);
+  // AA S2d 🔴1: «Сменить аккаунт» — тоже смена аккаунта (новый id появится при следующем чтении).
+  emitStableIdChange({ previous: previousId, next: null, kind: 'cleared' });
 }
 
 export function clearStableId(): Promise<void> {

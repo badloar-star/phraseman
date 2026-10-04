@@ -21,6 +21,7 @@ import {
 import { readVipSnapshotForGeneration, writeVipSnapshotForAccount } from './premium_vip_storage';
 import { readTesterFlags, resolveTesterNoPremiumOverride } from './tester_premium_override';
 import { emitAppEvent } from './events';
+import { notePlusStoreAccessEvidence, plusTransferHoldGrantsAccess } from './plus_transfer_hold';
 import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
@@ -508,6 +509,16 @@ export async function getVerifiedRealPremiumStatus(
     return persisted ? finish(false) : false;
   }
   if (legacyAdminGrant) return finish(false);
+  // зачем (AA S2d 🔴1): после смены аккаунта Plus прежнего аккаунта держится
+  // локально, пока тихое восстановление покупок (plus_transfer) не ответило.
+  // Удержание не пишется в premium_* нового аккаунта — только решение доступа;
+  // откат = снятие удержания при ПОДТВЕРЖДЁННОМ отсутствии entitlement.
+  const withTransferHold = async (realAccess: boolean): Promise<boolean> => {
+    notePlusStoreAccessEvidence(generation.stableId, realAccess, realAccess ? normalizedPlan : null);
+    if (realAccess) return true;
+    const held = await plusTransferHoldGrantsAccess(generation.stableId).catch(noteSwallowedAs('premium_guard:plus_transfer_hold', false));
+    return held && accountGenerationIsCurrent(generation);
+  };
   if (!storePlan) {
     // premium_active без store-плана не является проверяемым свидетельством.
     // Фоновый RevenueCat-refresh вернёт доступ событием, если покупка реальна.
@@ -517,7 +528,7 @@ export async function getVerifiedRealPremiumStatus(
       ), options?.lease);
       if (!persisted) return false;
     }
-    return finish(false);
+    return finish(await withTransferHold(false));
   }
 
   const lifetime = normalizedPlan === 'lifetime';
@@ -549,7 +560,8 @@ export async function getVerifiedRealPremiumStatus(
     ), options?.lease);
     if (!persisted) return false;
   }
-  return accountGenerationIsCurrent(generation) ? finish(localAccess) : false;
+  if (!accountGenerationIsCurrent(generation)) return false;
+  return finish(await withTransferHold(localAccess));
 }
 
 export async function getVerifiedVipStatus(options?: PremiumLeaseReadOptions): Promise<boolean> {

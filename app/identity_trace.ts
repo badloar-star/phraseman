@@ -19,7 +19,10 @@
  */
 import { DebugLogger } from './debug-logger';
 
-export type IdentityTracePrefix = '[AUTH-LINK-GOOGLE]' | '[PROFILE-FLIP]' | '[ACC-SWITCH-WIPE]';
+// зачем (AA S2d 🔴1): [PLUS-TRANSFER] — перенос Plus после смены аккаунта (тихое восстановление покупок).
+export type IdentityTracePrefix = '[AUTH-LINK-GOOGLE]' | '[PROFILE-FLIP]' | '[ACC-SWITCH-WIPE]' | '[PLUS-TRANSFER]'
+  // зачем (AA S2d раунд 3): долив копии гостя A в B после подтверждённого merge.
+  | '[ACC-BACKUP-MERGE]';
 
 export type IdentityTraceValue = string | number | boolean | null;
 

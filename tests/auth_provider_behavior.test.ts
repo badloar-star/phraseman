@@ -137,6 +137,12 @@ const ensureAnonIdentityDetailed = jest.fn(async () => ({
 }));
 const forceSyncToCloud = jest.fn(async () => true);
 const saveAccountSwitchEmergencyBackup = jest.fn(async () => true);
+// AA S2d раунд 2 (H-S2d-2): сводка сохранённой аварийной копии (владелец + размер; проверка до стирания).
+type BackupSummaryMock = { stableId: string; pairCount: number; bytes: number } | null;
+const readAccountSwitchEmergencyBackupSummary = jest.fn<Promise<BackupSummaryMock>, []>(async () => null);
+// AA S2d раунд 3 (§135 ❓2): merge не подтверждён → копия гостя откладывается.
+const shelveAccountSwitchEmergencyBackupOf = jest.fn<Promise<boolean>, [string]>(async () => true);
+const pruneShelvedAccountSwitchBackups = jest.fn<Promise<number>, [number?]>(async () => 0);
 const resetAnonAuthCacheForSignOut = jest.fn();
 jest.mock('../app/cloud_sync', () => ({
   SYNC_KEYS: ['user_total_xp', 'streak_count', 'unlocked_lessons', 'unlocked_lessons::fr', 'user_name', 'custom_flashcards_v2'],
@@ -160,6 +166,9 @@ jest.mock('../app/cloud_sync', () => ({
   ensureStableAuthLinkForStableIdDetailed: (...a: unknown[]) => (ensureStableAuthLinkForStableIdDetailed as any)(...a),
   mergeStableAccountsViaServer: (...a: unknown[]) => (mergeStableAccountsViaServer as any)(...a),
   saveAccountSwitchEmergencyBackup: (...a: unknown[]) => (saveAccountSwitchEmergencyBackup as any)(...a),
+  readAccountSwitchEmergencyBackupSummary: () => readAccountSwitchEmergencyBackupSummary(),
+  shelveAccountSwitchEmergencyBackupOf: (owner: string) => shelveAccountSwitchEmergencyBackupOf(owner),
+  pruneShelvedAccountSwitchBackups: (now?: number) => pruneShelvedAccountSwitchBackups(now),
   accountOwnedStorageKeysFrom: (keys: readonly string[]) => Array.from(new Set([
     'user_total_xp', 'streak_count', 'unlocked_lessons', 'unlocked_lessons::fr',
     'user_name', 'custom_flashcards_v2', 'shards_balance', 'shards_balance_meta_v1',
@@ -368,6 +377,12 @@ beforeEach(() => {
   forceSyncToCloud.mockResolvedValue(true);
   saveAccountSwitchEmergencyBackup.mockReset();
   saveAccountSwitchEmergencyBackup.mockResolvedValue(true);
+  readAccountSwitchEmergencyBackupSummary.mockReset();
+  readAccountSwitchEmergencyBackupSummary.mockResolvedValue(null);
+  shelveAccountSwitchEmergencyBackupOf.mockReset();
+  shelveAccountSwitchEmergencyBackupOf.mockResolvedValue(true);
+  pruneShelvedAccountSwitchBackups.mockReset();
+  pruneShelvedAccountSwitchBackups.mockResolvedValue(0);
   preparePendingShardDeltasForAccountSwitch.mockReset();
   preparePendingShardDeltasForAccountSwitch.mockImplementation(async () => ({
     resolved: 0,
@@ -2422,4 +2437,172 @@ test('an unexpected anonymous-link error fails closed without replacing Firebase
   expect(authState.calls).toContain('link');
   expect(authState.calls).not.toContain('signin');
   expect(res).toEqual({ result: 'error', error: 'firebase_auth/network-request-failed:transient' });
+});
+
+// ── AA S2d 🔴2 (§127): presync перед свапом на remote ─────────────────────────
+// зачем: presync обязан ВЫГРУЗИТЬ свежий локальный прогресс до стирания; adopt и
+// восстановление чужого профиля внутри 20-секундного окна запрещены. Раунд 2
+// (H-S2d-2, вариант б): выгрузка не подтверждена → проверенная аварийная копия A
+// (без откладывания чужой копии) и тот же серверный merge(A, B); копия не
+// сохранилась → отказ local_progress_not_uploaded без стирания.
+function presyncSwapToRemote(): void {
+  ensureStableAuthLinkForStableIdDetailed.mockResolvedValueOnce({
+    ok: true,
+    stableUid: 'remote-stable-id',
+    source: 'server',
+  });
+}
+
+function presyncRefusesWith(code: string): void {
+  forceSyncToCloud.mockImplementationOnce((async (...args: unknown[]) => {
+    const options = args[0] as { onRefusal?: (refusal: string) => void } | undefined;
+    options?.onRefusal?.(code);
+    return false;
+  }) as any);
+}
+
+test('S2d 🔴2: guest with progress joins an existing account — upload impossible, verified backup of A, then the same server merge', async () => {
+  presyncSwapToRemote();
+  presyncRefusesWith('identity_mismatch');
+  readAccountSwitchEmergencyBackupSummary.mockResolvedValueOnce({ stableId: 'local-stable-id', pairCount: 7, bytes: 2048 });
+  const { signInWithProvider } = loadAuthProvider({ unlocked_lessons: '[1,2]' }, 'ios');
+  const warnSpy = jest.spyOn(console, 'warn');
+
+  const result = await signInWithProvider('apple');
+
+  expect(result).toMatchObject({ result: 'merged_devices' });
+  // §134: в лог — размер копии (ключи и байты), без значений и сырых id.
+  const savedLine = warnSpy.mock.calls.map((call) => String(call[0])).find((line) => line.includes('swap presync_backup_saved'));
+  warnSpy.mockRestore();
+  expect(savedLine).toContain('"backupPairs":7');
+  expect(savedLine).toContain('"backupBytes":2048');
+  expect(savedLine).not.toContain('local-stable-id');
+  expect(forceSyncToCloud).toHaveBeenCalledWith(expect.objectContaining({ adoptOnIdentityMismatch: false }));
+  // Копия — только для A и без права отодвинуть чужую копию.
+  expect(saveAccountSwitchEmergencyBackup).toHaveBeenCalledTimes(1);
+  expect(saveAccountSwitchEmergencyBackup.mock.calls[0]).toEqual([
+    'sign_in_presync_not_uploaded_before_swap',
+    'local-stable-id',
+  ]);
+  expect(readAccountSwitchEmergencyBackupSummary).toHaveBeenCalled();
+  expect(saveAccountSwitchEmergencyBackup.mock.invocationCallOrder[0]).toBeLessThan(
+    wipeLocalAccountData.mock.invocationCallOrder[0],
+  );
+  expect(mergeStableAccountsViaServer).toHaveBeenCalledWith('local-stable-id', 'remote-stable-id');
+});
+
+// Раунд 3 (§135 ❓1): «копию сделать нельзя» → local_progress_backup_blocked (кнопка
+// «Сменить аккаунт»), сбой записи/личности → local_progress_not_uploaded («Повторить»).
+test.each([
+  ['account_switch_backup_other_owner_pending', 'local_progress_backup_blocked'],
+  ['account_switch_backup_capacity', 'local_progress_backup_blocked'],
+  ['account_switch_backup_history_upgrade_required', 'local_progress_backup_blocked'],
+  ['account_switch_backup_identity_unavailable', 'local_progress_not_uploaded'],
+])('S2d 🔴2: backup refusal %s → %s, nothing wiped', async (code, expectedError) => {
+  presyncSwapToRemote();
+  presyncRefusesWith('identity_mismatch');
+  saveAccountSwitchEmergencyBackup.mockRejectedValueOnce(new Error(code));
+  const { signInWithProvider } = loadAuthProvider({ unlocked_lessons: '[1,2]' }, 'ios');
+  const stableModule = require('../app/stable_id');
+  (stableModule.setStableId as jest.Mock).mockClear();
+
+  const result = await signInWithProvider('apple');
+
+  expect(result).toEqual({ result: 'error', error: expectedError });
+  expect(wipeLocalAccountData).not.toHaveBeenCalled();
+  expect(stableModule.setStableId).not.toHaveBeenCalled();
+  expect(mergeStableAccountsViaServer).not.toHaveBeenCalled();
+});
+
+test('S2d 🔴2: a backup that reports success but is not readable as A is not trusted', async () => {
+  presyncSwapToRemote();
+  presyncRefusesWith('identity_mismatch');
+  readAccountSwitchEmergencyBackupSummary.mockResolvedValueOnce({ stableId: 'someone-else', pairCount: 7, bytes: 2048 });
+  const { signInWithProvider } = loadAuthProvider({ unlocked_lessons: '[1,2]' }, 'ios');
+
+  const result = await signInWithProvider('apple');
+
+  expect(result).toEqual({ result: 'error', error: 'local_progress_not_uploaded' });
+  expect(wipeLocalAccountData).not.toHaveBeenCalled();
+});
+
+test('S2d 🔴2: confirmed presync upload happens before the wipe, no emergency backup needed', async () => {
+  presyncSwapToRemote();
+  forceSyncToCloud.mockResolvedValueOnce(true);
+  const { signInWithProvider } = loadAuthProvider({ unlocked_lessons: '[1,2]' }, 'ios');
+
+  const result = await signInWithProvider('apple');
+
+  expect(result).toMatchObject({ result: 'merged_devices' });
+  expect(forceSyncToCloud).toHaveBeenCalledTimes(1);
+  expect(saveAccountSwitchEmergencyBackup).not.toHaveBeenCalled();
+  expect(forceSyncToCloud.mock.invocationCallOrder[0]).toBeLessThan(
+    wipeLocalAccountData.mock.invocationCallOrder[0],
+  );
+});
+
+test('S2d 🔴2: presync slower than its 20 s budget and no backup → refused without wipe; a late upload does not resume the swap', async () => {
+  jest.useFakeTimers();
+  try {
+    presyncSwapToRemote();
+    let releaseUpload!: (value: boolean) => void;
+    forceSyncToCloud.mockImplementationOnce(() => new Promise<boolean>((resolve) => { releaseUpload = resolve; }));
+    saveAccountSwitchEmergencyBackup.mockRejectedValueOnce(new Error('account_switch_backup_capacity'));
+    const { signInWithProvider } = loadAuthProvider({ unlocked_lessons: '[1,2]' }, 'ios');
+
+    const pending = signInWithProvider('apple');
+    await jest.advanceTimersByTimeAsync(20_001);
+    await expect(pending).resolves.toEqual({ result: 'error', error: 'local_progress_backup_blocked' });
+
+    releaseUpload(true);
+    await jest.advanceTimersByTimeAsync(10);
+    expect(wipeLocalAccountData).not.toHaveBeenCalled();
+    expect(mergeStableAccountsViaServer).not.toHaveBeenCalled();
+  } finally {
+    jest.useRealTimers();
+  }
+});
+
+// ── AA S2d раунд 3 (§135 ❓2): жизнь копии гостя после свапа ──────────────────
+const MERGE_ALIAS_KEY = 'account_switch_backup_merge_alias_v1';
+
+test('S2d 🔴2 r3: confirmed merge(A→B) writes the alias {from:A,to:B} under the swap lock; copy is not shelved', async () => {
+  presyncSwapToRemote();
+  presyncRefusesWith('identity_mismatch');
+  readAccountSwitchEmergencyBackupSummary.mockResolvedValueOnce({ stableId: 'local-stable-id', pairCount: 3, bytes: 99 });
+  mergeStableAccountsViaServer.mockResolvedValueOnce({ ok: true, canonicalStableId: 'remote-stable-id' } as any);
+  const { signInWithProvider } = loadAuthProvider({ unlocked_lessons: '[1,2]' }, 'ios');
+
+  const result = await signInWithProvider('apple');
+
+  expect(result).toMatchObject({ result: 'merged_devices' });
+  const alias = JSON.parse(String(await (lastLoadedAuthProviderStorage as any).getItem(MERGE_ALIAS_KEY)));
+  expect(alias).toMatchObject({ from: 'local-stable-id', to: 'remote-stable-id' });
+  expect(typeof alias.at).toBe('number');
+  expect(shelveAccountSwitchEmergencyBackupOf).not.toHaveBeenCalled();
+});
+
+test('S2d 🔴2 r3: merge NOT confirmed → no alias, the guest copy is shelved right away (does not block «Сменить аккаунт»)', async () => {
+  presyncSwapToRemote();
+  presyncRefusesWith('identity_mismatch');
+  readAccountSwitchEmergencyBackupSummary.mockResolvedValueOnce({ stableId: 'local-stable-id', pairCount: 3, bytes: 99 });
+  const { signInWithProvider } = loadAuthProvider({ unlocked_lessons: '[1,2]' }, 'ios');
+
+  const result = await signInWithProvider('apple');
+
+  expect(result).toMatchObject({ result: 'merged_devices' });
+  expect(await (lastLoadedAuthProviderStorage as any).getItem(MERGE_ALIAS_KEY)).toBeNull();
+  expect(shelveAccountSwitchEmergencyBackupOf).toHaveBeenCalledWith('local-stable-id');
+});
+
+test('S2d 🔴2 r3: a confirmed upload does not touch the copy lifecycle (no alias, no shelve)', async () => {
+  presyncSwapToRemote();
+  forceSyncToCloud.mockResolvedValueOnce(true);
+  mergeStableAccountsViaServer.mockResolvedValueOnce({ ok: true, canonicalStableId: 'remote-stable-id' } as any);
+  const { signInWithProvider } = loadAuthProvider({ unlocked_lessons: '[1,2]' }, 'ios');
+
+  await signInWithProvider('apple');
+
+  expect(await (lastLoadedAuthProviderStorage as any).getItem(MERGE_ALIAS_KEY)).toBeNull();
+  expect(shelveAccountSwitchEmergencyBackupOf).not.toHaveBeenCalled();
 });

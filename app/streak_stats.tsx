@@ -1349,6 +1349,8 @@ function StreakHeroCard({
         pl: 'dni z rzędu',
     });
     const recordWord = triLang(lang, { ru: 'рекорд', uk: 'рекорд', en: 'record', es: 'récord', 'pt-BR': 'recorde', vi: 'kỷ lục', id: 'rekor', tr: 'rekor', pl: 'rekord' });
+    // зачем (results.html): подпись героя — «дней подряд · лучший 21».
+    const bestWord = triLang(lang, { ru: 'лучший', uk: 'найкращий', en: 'best', es: 'mejor', 'pt-BR': 'melhor', vi: 'tốt nhất', id: 'terbaik', tr: 'en iyi', pl: 'najlepszy' });
     const weekDays = rhythmDays.slice(-7);
     // зачем (§137, 04.10): кружки недели молчали для программы чтения с экрана — незрячий не узнавал,
     // какие дни засчитаны. Каждый день теперь подписан: «Пн — засчитан» / «Пн — не засчитан».
@@ -1366,52 +1368,26 @@ function StreakHeroCard({
           gradientColors={statsCardGradient(t)}
           gradientLocations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
           radius={cardRadius}
-          style={[{ borderRadius: cardRadius, padding: 16, borderWidth: 0, overflow: 'hidden' }, isGoldTheme ? goldShadow(2) : null]}
+          style={[{ borderRadius: cardRadius, padding: 24, borderWidth: 0, overflow: 'hidden' }, isGoldTheme ? goldShadow(2) : null]}
         >
             {isGoldTheme ? <GoldBevel radius={16} intensity="normal" /> : null}
-            <Pressable testID="stats-primary-series" accessibilityRole="button" accessibilityLabel={heroA11yLabel} accessibilityState={{ expanded: seriesOpen }} onPress={onToggleSeries} style={({ pressed }) => [pressed && { opacity: 0.92 }]}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-                    <Pressable
-                      testID="stats-streak-stages-open"
-                      accessibilityRole="button"
-                      accessibilityLabel={triLang(lang, { ru: 'Стадии серии', uk: 'Стадії серії', en: 'Streak stages', es: 'Etapas de la racha', 'pt-BR': 'Etapas da sequência', vi: 'Các giai đoạn chuỗi', id: 'Tahap rangkaian', tr: 'Seri aşamaları', pl: 'Etapy serii' })}
-                      onPress={() => setStagesOpen(true)}
-                      style={({ pressed }) => [{ width: 62, height: 62, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? GOLD_RICH.wash : accentTint(t.accent) }, pressed && { opacity: 0.85 }]}
-                    >
-                        {/* зачем (PM-044, координатор 01.10): перо → огонь, заполняемый до 10 дней; заморозка — свой значок. */}
-                        {freezeActive
-                          ? <StreakChainIcon themeMode={themeMode} frozen streakDays={totalStreak} size={46} />
-                          : <StreakFlameFill streakDays={totalStreak} size={46} inactive={totalStreak <= 0} />}
-                    </Pressable>
-                    <View style={{ flex: 1, minWidth: 0 }}>
-                        <Text style={{ color: t.textPrimary, fontSize: f.numLg + 16, fontWeight: '900', lineHeight: (f.numLg + 16) * 1.05 }}>{totalStreak}</Text>
-                        <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', marginTop: 2 }}>{streakCaption}</Text>
-                    </View>
-                    <View style={{ alignItems: 'flex-end' }}>
-                        <Text style={{ color: accent, fontSize: f.h1, fontWeight: '900' }}>{bestStreak}</Text>
-                        <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '600', marginTop: 2 }}>{recordWord}</Text>
-                    </View>
-                    <Ionicons name={seriesOpen ? 'chevron-up' : 'chevron-down'} size={18} color={t.textGhost} />
-                </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 14, paddingTop: 12, borderTopWidth: 1, borderTopColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }}>
-                    {weekDays.map((day) => (
-                        <View key={day.date} style={{ alignItems: 'center', gap: 5 }} accessible accessibilityLabel={`${day.shortLabel} — ${day.active ? dayCountedWord : dayNotCountedWord}`}>
-                            <View style={{
-                                width: 26,
-                                height: 26,
-                                borderRadius: 13,
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                backgroundColor: day.active ? accent : (isGoldTheme ? GOLD_RICH.bronzeWash : accentTint(t.accent, 'quiet')),
-                                borderWidth: day.isToday ? 1 : 0,
-                                borderColor: t.textPrimary,
-                            }}>
-                                {day.active ? <Ionicons name="checkmark" size={14} color={t.bgCard} /> : null}
-                            </View>
-                            <Text style={{ color: day.isToday ? t.textPrimary : t.textMuted, fontSize: f.label, fontWeight: day.isToday ? '800' : '600' }}>{day.shortLabel}</Text>
-                        </View>
-                    ))}
-                </View>
+            {/* зачем (results.html streak(), решение владельца 04.10 (б)): по центру плитка 61 с огнём, число 46 и
+                «дней подряд · лучший N». Нажатие на карточку раскрывает защиту серии, на огонь — «Стадии серии». */}
+            <Pressable testID="stats-primary-series" accessibilityRole="button" accessibilityLabel={heroA11yLabel} accessibilityState={{ expanded: seriesOpen }} onPress={onToggleSeries} style={({ pressed }) => [{ alignItems: 'center' }, pressed && { opacity: 0.92 }]}>
+                <Pressable
+                  testID="stats-streak-stages-open"
+                  accessibilityRole="button"
+                  accessibilityLabel={triLang(lang, { ru: 'Стадии серии', uk: 'Стадії серії', en: 'Streak stages', es: 'Etapas de la racha', 'pt-BR': 'Etapas da sequência', vi: 'Các giai đoạn chuỗi', id: 'Tahap rangkaian', tr: 'Seri aşamaları', pl: 'Etapy serii' })}
+                  onPress={() => setStagesOpen(true)}
+                  style={({ pressed }) => [{ width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? GOLD_RICH.wash : 'rgba(255,255,255,0.08)' }, pressed && { opacity: 0.85 }]}
+                >
+                    {/* зачем (PM-044, координатор 01.10): огонь, заполняемый до 10 дней; заморозка — свой значок. */}
+                    {freezeActive
+                      ? <StreakChainIcon themeMode={themeMode} frozen streakDays={totalStreak} size={30} />
+                      : <StreakFlameFill streakDays={totalStreak} size={30} inactive={totalStreak <= 0} />}
+                </Pressable>
+                <Text style={{ color: t.textPrimary, fontSize: 46, lineHeight: 52, fontWeight: '800', marginTop: 10, fontVariant: ['tabular-nums'] }}>{totalStreak}</Text>
+                <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 20, textAlign: 'center' }}>{`${streakCaption} · ${bestWord} ${bestStreak}`}</Text>
             </Pressable>
             {seriesOpen ? (
                 <Reanimated.View entering={FadeInDown.duration(220)} style={{ gap: 8, paddingTop: 12 }}>
@@ -2145,8 +2121,10 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             freezeInFlightRef.current = false;
         }
     };
+    // зачем: строка ритма (results.html) ведёт к подробной аналитике недели — запоминаем её место в прокрутке.
+    const weekAnalyticsYRef = useRef(0);
     const weekAnalyticsBlock = (
-        <Reanimated.View key="week-analytics" entering={FadeInDown.duration(420).delay(210)}>
+        <Reanimated.View key="week-analytics" entering={FadeInDown.duration(420).delay(210)} onLayout={(event) => { weekAnalyticsYRef.current = event.nativeEvent.layout.y; }}>
           <WeekAnalyticsCard
             t={t}
             f={f}
@@ -2243,32 +2221,33 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
 
               <ContentWrap>
               <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
-              <View style={{ paddingHorizontal: 15, paddingTop: embedded ? 4 : (Platform.OS === 'android' ? 28 : 15), paddingBottom: 14, borderBottomWidth: 0.5, borderBottomColor: t.border, zIndex: 2 /* зачем (D158): шапка с «назад» выше панели «Сейчас недоступно» */ }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              {/* зачем (results.html back(), решение владельца 04.10 (б)): голая «‹» и заголовок 34 под ней, без линии снизу. */}
+              <View style={{ paddingHorizontal: 20, paddingTop: embedded ? 4 : (Platform.OS === 'android' ? 28 : 15), paddingBottom: 4, zIndex: 2 /* зачем (D158): шапка с «назад» выше панели «Сейчас недоступно» */ }}>
+                <View style={{ alignItems: 'flex-start' }}>
                 {!embedded && (<TapScale
                   onPress={() => {
                     safeRouterBack(router, '/(tabs)/home' as any);
                   }}
                   hitSlop={10}
-                  style={{ width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: statsGlass.opaqueControl }}
+                  style={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
                 >
-                  <Ionicons name="chevron-back" size={22} color={statsGlass.text}/>
+                  <Ionicons name="chevron-back" size={21} color={statsGlass.text}/>
                 </TapScale>)}
                 <FlowText
                   testID="stats-header-title"
                   provenance="authored"
-                  style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginLeft: embedded ? 0 : 8, flex: 1 }}
+                  style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: embedded ? 0 : 10 }}
                 >
                   {triLang(lang, {
-                    ru: 'Твои результаты',
-                    uk: 'Твої результати',
-                    en: 'Your results',
-                    es: 'Tus resultados',
-                    'pt-BR': "Seus resultados",
-                    vi: "Kết quả của bạn",
-                    id: "Hasilmu",
-                    tr: "Sonuçların",
-                    pl: "Twoje wyniki",
+                    ru: 'Серия и результаты',
+                    uk: 'Серія і результати',
+                    en: 'Streak and results',
+                    es: 'Racha y resultados',
+                    'pt-BR': 'Sequência e resultados',
+                    vi: 'Chuỗi và kết quả',
+                    id: 'Rangkaian dan hasil',
+                    tr: 'Seri ve sonuçlar',
+                    pl: 'Seria i wyniki',
                 })}
                 </FlowText>
                 {/* зачем (D49, владелец 2026-10-01): кнопка «Подарки» показывала только подарки
@@ -2329,6 +2308,54 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                     onFreezeStreak={handleFreezeStreak}
                   />
                 </Reanimated.View>
+                {/* зачем (results.html streak(), решение владельца 04.10 (б)): под серией «Ваша неделя» столбиками и строка
+                    ритма — точно по макету. Подробная аналитика недели и всё прежнее остаются ниже без изменений. */}
+                <View testID="stats-week-spark" style={{ borderRadius: 14, padding: 18, backgroundColor: statsGlass.card, borderWidth: StyleSheet.hairlineWidth, borderColor: statsGlass.glassEdge /* guard-ok: исключение 2.0 — 1px кромка .card */ }}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Text style={{ flex: 1, color: t.textPrimary, fontSize: 19, lineHeight: 24, fontWeight: '700' }}>
+                      {triLang(lang, { ru: 'Ваша неделя', uk: 'Ваш тиждень', en: 'Your week', es: 'Tu semana', 'pt-BR': 'Sua semana', vi: 'Tuần của bạn', id: 'Minggumu', tr: 'Haftan', pl: 'Twój tydzień' })}
+                    </Text>
+                    {/* зачем (`.value`): вторичный тон; макет 14, шкала D145 — 13. */}
+                    <Text style={{ color: statsGlass.secondary, fontSize: 13, lineHeight: 18 }}>{humanMinutes(coachMetrics.minutes7, lang)}</Text>
+                  </View>
+                  {(() => {
+                    const days = coachMetrics.rhythmDays.slice(-7);
+                    const maxMinutes = Math.max(1, ...days.map((day) => day.minutes));
+                    const idle = statsGlass.text.length === 7 ? `${statsGlass.text}47` : statsGlass.mutedText;
+                    return (
+                      <>
+                        {/* `.spark`: 72 высотой, промежуток 6, скругление 5/5/2/2; сегодняшний столбик светлый. */}
+                        <View style={{ height: 72, marginTop: 18, flexDirection: 'row', alignItems: 'flex-end', gap: 6 }}>
+                          {days.map((day) => (
+                            <View key={day.date} style={{ flex: 1, height: `${Math.max(8, Math.round((day.minutes / maxMinutes) * 100))}%`, minHeight: 6, borderTopLeftRadius: 5, borderTopRightRadius: 5, borderBottomLeftRadius: 2, borderBottomRightRadius: 2, backgroundColor: day.isToday ? statsGlass.text : idle }} />
+                          ))}
+                        </View>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 8 }}>
+                          {days.map((day) => (
+                            <Text key={day.date} style={{ color: statsGlass.mutedText, fontSize: 13, lineHeight: 16 }}>{day.shortLabel}</Text>
+                          ))}
+                        </View>
+                      </>
+                    );
+                  })()}
+                </View>
+                <Pressable
+                  testID="stats-rhythm-row"
+                  accessibilityRole="button"
+                  accessibilityLabel={`${coachMetrics.status}. ${coachMetrics.rhythmSummary}`}
+                  onPress={() => { hapticTap(); scrollRef.current?.scrollTo({ y: Math.max(0, weekAnalyticsYRef.current), animated: true }); }}
+                  style={({ pressed }) => [{ minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 10, paddingHorizontal: 14, borderRadius: 14, backgroundColor: statsGlass.card, borderWidth: StyleSheet.hairlineWidth, borderColor: statsGlass.glassEdge /* guard-ok: исключение 2.0 — 1px кромка .list-row */ }, pressed && { opacity: 0.85 }]}
+                >
+                  <View style={{ width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: statsGlass.opaqueControl }}>
+                    <Ionicons name="trending-up" size={20} color={statsGlass.text} />
+                  </View>
+                  <View style={{ flex: 1, minWidth: 0 }}>
+                    <Text style={{ color: t.textPrimary, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{coachMetrics.status}</Text>
+                    <Text style={{ color: statsGlass.secondary, fontSize: 13, lineHeight: 18, marginTop: 3 }}>{coachMetrics.rhythmSummary}</Text>
+                  </View>
+                  <Ionicons name="chevron-forward" size={18} color={statsGlass.secondary} />
+                </Pressable>
+
                 {/* зачем (§126/§137): одноразовое объяснение, как считается серия — сразу под самой серией. */}
                 <StreakRuleExplainer lang={lang} />
 

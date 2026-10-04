@@ -1,6 +1,7 @@
 # Task packet: «Профиль / Настройки» по profile.html — сверка кода с CSS макета до съёмки сессией 6
 
 Governance-ID: TG-B24D20763F00
+Governance-ID: TG-F398C78C8ACD
 Status: In progress
 Owner: сессия «2 · Дизайн» (контур 2), поручение координатора 04.10
 Related epic/enabler: гейт «приложение = макет»
@@ -11,7 +12,7 @@ Related epic/enabler: гейт «приложение = макет»
 
 ## Scope
 
-In scope: `app/account_details.tsx` и другие экраны профиля по кадрам PRF-*.
+In scope: `app/account_details.tsx` и другие экраны профиля (PRF-*), монеты (PAY-*), верх «Серия и результаты» (`app/streak_stats.tsx`, results.html кадр 7, решение владельца (б)).
 Out of scope: темы (сессия 4), логика аккаунта/входа/удаления, состав экранов (функции владельца).
 
 ## Architecture

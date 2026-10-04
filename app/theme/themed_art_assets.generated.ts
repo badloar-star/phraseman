@@ -14,6 +14,7 @@ export const THEMED_ART_GENERATED: Readonly<Partial<Record<string, ThemedArtSlot
   intro_friends: { dark: require('../../assets/images/v2art/dark/intro_friends.webp'), light: require('../../assets/images/v2art/light/intro_friends.webp') },
   intro_legacy_lessons: { dark: require('../../assets/images/v2art/dark/intro_legacy_lessons.webp'), darkAccent: require('../../assets/images/v2art/dark/intro_legacy_lessons.accent.webp'), light: require('../../assets/images/v2art/light/intro_legacy_lessons.webp'), lightAccent: require('../../assets/images/v2art/light/intro_legacy_lessons.accent.webp') },
   intro_mistake_practice: { dark: require('../../assets/images/v2art/dark/intro_mistake_practice.webp'), light: require('../../assets/images/v2art/light/intro_mistake_practice.webp') },
+  intro_profile_card: { dark: require('../../assets/images/v2art/dark/intro_profile_card.webp'), light: require('../../assets/images/v2art/light/intro_profile_card.webp') },
   intro_statistics: { dark: require('../../assets/images/v2art/dark/intro_statistics.webp'), light: require('../../assets/images/v2art/light/intro_statistics.webp') },
   intro_training_blitz: { dark: require('../../assets/images/v2art/dark/intro_training_blitz.webp'), light: require('../../assets/images/v2art/light/intro_training_blitz.webp') },
   intro_training_listening: { dark: require('../../assets/images/v2art/dark/intro_training_listening.webp'), light: require('../../assets/images/v2art/light/intro_training_listening.webp') },

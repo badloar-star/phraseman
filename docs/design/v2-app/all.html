@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Все макеты 2.0</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+  /* зачем (владелец 04.10): «это всё надо на один макет, всё» — одна страница со всеми разделами подряд */
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(5,5,6,.94); backdrop-filter: blur(14px); padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .nav a { font-size: 13px; padding: 6px 12px; border-radius: 999px; background: #161618; border: 1px solid var(--line); color: var(--sec); margin: 0 6px 6px 0; display: inline-block; }
+  .sec-h { font-size: 26px; font-weight: 800; margin: 60px 0 10px; letter-spacing: -.3px; }
+  iframe { width: 100%; border: 0; display: block; background: #050506; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">PhraseMan 2.0 — все макеты на одной странице</h1>
+  <div class="nav" id="nav"></div>
+  <div id="root"></div>
+</div>
+<script>
+const PAGES = [
+  ['etalon.html', 'Эталон'],
+  ['home-by-language-mockup.html', 'Главная'],
+  ['home-tiles-variants.html', 'Главная — варианты плиток'],
+  ['home-mistakes-entry.html', 'Главная — вход в ошибки'],
+  ['learn.html', 'Обучение'],
+  ['learning-v2.html', 'Learning V2'],
+  ['redesign-round-1.html', 'Раунд 1 — выбрано: Настройки A, Словарь A'],
+  ['redesign-round-2.html', 'Раунд 2 — выбрано: Обучение B, Разбор промаха A, Видео C-2, Урок → главы A'],
+  ['cards-v2.html', 'Карточки (новые)'],
+  ['practice.html', 'Тренировки и итог'],
+  ['mistakes-v2.html', 'Мои ошибки (новые)'],
+  ['dialogs.html', 'Диалоги'],
+  ['video.html', 'Видео'],
+  ['video-favorites-mockup.html', 'Видео — избранное'],
+  ['video-packs-from-video-mockup.html', 'Видео — наборы из видео'],
+  ['results.html', 'Результаты'],
+  ['community.html', 'Сообщество'],
+  ['spire.html', 'Шпиль'],
+  ['profile.html', 'Профиль и настройки'],
+  ['themes-gradient.html', 'Темы — градиенты и ползунок'],
+  ['coins.html', 'Монеты, ранги, Plus'],
+  ['coin-rank-up-animation.html', 'Анимация повышения ранга'],
+  ['overlays.html', 'Окна и шторки'],
+  ['overlays-more.html', 'Окна и шторки — ещё'],
+  ['overlays-runtime.html', 'Окна во время работы'],
+  ['system.html', 'Системные окна'],
+];
+const root = document.getElementById('root');
+document.getElementById('nav').innerHTML = PAGES.map(([, t], i) => `<a href="#s${i}">${t}</a>`).join('');
+PAGES.forEach(([src, title], i) => {
+  const h = document.createElement('div');
+  h.className = 'sec-h'; h.id = 's' + i; h.textContent = title;
+  const f = document.createElement('iframe');
+  f.src = src; f.loading = 'lazy'; f.style.height = '1200px';
+  // зачем: каждая страница во всю высоту, без вложенной прокрутки
+  const fit = () => { try { f.style.height = f.contentDocument.documentElement.scrollHeight + 'px'; } catch (e) { console.warn('[ALL-MOCKUPS] fit failed', src, e); } };
+  f.addEventListener('load', () => { fit(); setTimeout(fit, 600); setTimeout(fit, 2000); });
+  root.append(h, f);
+});
+</script>
+</body>
+</html>

@@ -9,7 +9,9 @@
  *   • `row`    — строка в списке/каталоге: счётчики + «Добавить себе»;
  *   • `tile`   — плитка сетки 3-в-ряд: только компактные счётчики, без кнопок;
  *   • `screen` — экран набора: ЯВНАЯ заметная кнопка лайка + «Добавить себе»;
- *   • `list`   — строка каталога «Наборы сообщества» (packs-simple.html, 04.10): счётчики 18px, без кнопок.
+ *   • `list`   — строка каталога «Наборы сообщества» (packs-simple.html, 04.10): счётчики 18px, без кнопок;
+ *   • `previewMeta` / `previewCta` — экран набора ДО добавления (packs-simple.html кадр 4): счётчики справа
+ *     от автора и нижняя кнопка «Добавить себе». Логика добавления — та же `onAddPress`.
  *
  * Анимации только на transform/opacity (нажатие лайка — короткий pop).
  */
@@ -39,7 +41,7 @@ import {
 import { isCommunityPackLikedLocally } from './packSocialStorage';
 import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
-export type CommunityPackSocialVariant = 'row' | 'tile' | 'screen' | 'list';
+export type CommunityPackSocialVariant = 'row' | 'tile' | 'screen' | 'list' | 'previewMeta' | 'previewCta';
 
 type Props = {
   pack: FlashcardMarketPack;
@@ -88,8 +90,11 @@ export default function CommunityPackSocialBar({
   const mode: CommunityPackSocialVariant = variant ?? (compact ? 'tile' : 'row');
   const isTile = mode === 'tile';
   const isList = mode === 'list';
+  const isPreviewMeta = mode === 'previewMeta';
+  const isPreviewCta = mode === 'previewCta';
   // зачем: строки каталога, как и плитки, — без чтения членства (2 чтения Firestore на КАЖДЫЙ набор).
-  const isCatalog = isTile || isList;
+  // Экран просмотра тоже: набор ещё не добавлен, лайк закрыт — членство читать незачем.
+  const isCatalog = isTile || isList || isPreviewMeta;
   const isScreen = mode === 'screen';
 
   /** Изоляция целей обучения: «Добавить себе» пишет владение по ТЕКУЩЕЙ цели. */
@@ -113,6 +118,8 @@ export default function CommunityPackSocialBar({
   const opSeqRef = useRef(0);
 
   useEffect(() => {
+    // зачем: на экране просмотра цифры читает соседний `previewMeta`; кнопке второе чтение того же документа не нужно.
+    if (isPreviewCta) return undefined;
     let cancelled = false;
     const seqAtStart = opSeqRef.current;
     void (async () => {
@@ -142,7 +149,7 @@ export default function CommunityPackSocialBar({
     return () => {
       cancelled = true;
     };
-  }, [pack.id, pack.likesCount, pack.addedCount, owned, isCatalog]);
+  }, [pack.id, pack.likesCount, pack.addedCount, owned, isCatalog, isPreviewCta]);
 
   /**
    * Счётчик откликов.
@@ -411,6 +418,65 @@ export default function CommunityPackSocialBar({
   };
 
   /** Плитка сетки: только компактные счётчики (лайк ставится на экране набора). */
+  if (isPreviewMeta) {
+    // зачем (packs-simple.html кадр 4, `meta(3, 11, 1)` справа от автора): значок над числом, промежуток 16, вторичный тон.
+    const cell = (icon: keyof typeof Ionicons.glyphMap, value: string) => (
+      <View style={{ alignItems: 'center', gap: 2 }}>
+        <Ionicons name={icon} size={18} color={g.secondary} />
+        <Text style={{ color: g.secondary, fontSize: 16, lineHeight: 20 }}>{value}</Text>{/* guard-ok: счётчик, не подпись */}
+      </View>
+    );
+    return (
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
+        {cell('heart-outline', String(snapshot.likesCount))}
+        {cell('people-outline', String(snapshot.addedCount))}
+        {shouldShowCommentsCount(commentsCount) ? (
+          onOpenComments ? (
+            <TouchableOpacity
+              testID={`pack-comments-${pack.id}`}
+              accessibilityRole="button"
+              accessibilityLabel="qa-pack-comments"
+              onPress={() => onOpenComments(pack.id)}
+              hitSlop={{ top: 10, bottom: 10, left: 8, right: 8 }}
+            >
+              {cell('chatbubble-outline', formatCommentsCount(commentsCount, lang))}
+            </TouchableOpacity>
+          ) : cell('chatbubble-outline', formatCommentsCount(commentsCount, lang))
+        ) : null}
+      </View>
+    );
+  }
+
+  if (isPreviewCta) {
+    // зачем (packs-simple.html кадр 4, `.ac-cta`): нижняя кнопка 52 на акценте темы; после добавления — «В моих наборах».
+    return (
+      <TouchableOpacity
+        testID={`pack-add-${pack.id}`}
+        accessibilityRole="button"
+        accessibilityLabel={isAdded ? ownedLabel : addLabel}
+        accessibilityState={{ disabled: isAdded }}
+        disabled={isAdded}
+        onPress={onAddPress}
+        activeOpacity={0.88}
+        style={{
+          height: 52,
+          borderRadius: 26,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 8,
+          backgroundColor: isAdded ? g.opaqueControl : t.accent,
+        }}
+      >
+        {isAdded ? <Ionicons name="checkmark" size={18} color={g.text} /> : null}
+        {/* зачем: макет 17/700; шкала D145 (решение владельца 04.10) — 16. */}
+        <Text style={{ color: isAdded ? g.text : t.correctText, fontSize: 16, lineHeight: 22, fontWeight: '700' }}>
+          {isAdded ? ownedLabel : addLabel}
+        </Text>
+      </TouchableOpacity>
+    );
+  }
+
   if (isList) {
     // зачем (packs-simple.html `.meta`): иконки 18, промежуток 18 между парами и 6 внутри; кегль 13 по D145 (макет 14).
     return (

@@ -30,6 +30,7 @@ import { useScreen } from '../hooks/use-screen';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
+import CommunityPackPreview from './flashcards/CommunityPackPreview';
 import { useTheme } from '../components/ThemeContext';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -1053,6 +1054,23 @@ export default function FlashcardsScreen() {
     <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]}>
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
 
+        {/* зачем (packs-simple.html кадр 4, указание координатора 04.10): набор ДО добавления рисует отдельный
+            CommunityPackPreview; свой набор (эталон «Карточек», CARDS_LOCKED) идёт прежней веткой без изменений. */}
+        {previewMode && currentMarketPack ? (
+          <CommunityPackPreview
+            pack={currentMarketPack}
+            cards={listCards}
+            lang={lang}
+            cardContentLang={cardContentLang}
+            t={t}
+            onBack={handleCollectionBack}
+            onMore={() => setPackReportOpen(true)}
+            onAdded={() => { void loadAll(); }}
+            onRequestPurchase={(p, price) => { setPurchasePack(p); setPurchasePrice(price); }}
+            onOpenComments={() => { setHighlightCommentId(null); setCommentsSheetOpen(true); }}
+            onSpeak={onSpeakCb}
+          />
+        ) : (<>
         <CollectionHeader
           t={t}
           f={f}
@@ -1241,6 +1259,8 @@ export default function FlashcardsScreen() {
             videoMomentLabel={videoMomentLabel}
           />
         )}
+
+        </>)}
 
       {undoEntry && (
         <UndoDeleteSnackbar

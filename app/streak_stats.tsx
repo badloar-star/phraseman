@@ -1342,6 +1342,12 @@ function StreakHeroCard({
     });
     const recordWord = triLang(lang, { ru: 'рекорд', uk: 'рекорд', en: 'record', es: 'récord', 'pt-BR': 'recorde', vi: 'kỷ lục', id: 'rekor', tr: 'rekor', pl: 'rekord' });
     const weekDays = rhythmDays.slice(-7);
+    // зачем (§137, 04.10): кружки недели молчали для программы чтения с экрана — незрячий не узнавал,
+    // какие дни засчитаны. Каждый день теперь подписан: «Пн — засчитан» / «Пн — не засчитан».
+    const dayCountedWord = triLang(lang, { ru: 'засчитан', uk: 'зараховано', en: 'counted', es: 'contado', 'pt-BR': 'contado', vi: 'đã tính', id: 'dihitung', tr: 'sayıldı', pl: 'zaliczony' });
+    const dayNotCountedWord = triLang(lang, { ru: 'не засчитан', uk: 'не зараховано', en: 'not counted', es: 'sin contar', 'pt-BR': 'não contado', vi: 'chưa tính', id: 'belum dihitung', tr: 'sayılmadı', pl: 'niezaliczony' });
+    const streakWord = triLang(lang, { ru: 'Серия', uk: 'Серія', en: 'Streak', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Runtunan', tr: 'Seri', pl: 'Seria' });
+    const heroA11yLabel = `${streakWord}: ${totalStreak} ${streakCaption}, ${recordWord} ${bestStreak}. ${weekDays.map((day) => `${day.shortLabel} — ${day.active ? dayCountedWord : dayNotCountedWord}`).join(', ')}`;
     return (
         <StatsCardArtSurface
           testID="stats-streak-hero"
@@ -1355,7 +1361,7 @@ function StreakHeroCard({
           style={[{ borderRadius: cardRadius, padding: 16, borderWidth: 0, overflow: 'hidden' }, isGoldTheme ? goldShadow(2) : null]}
         >
             {isGoldTheme ? <GoldBevel radius={16} intensity="normal" /> : null}
-            <Pressable testID="stats-primary-series" onPress={onToggleSeries} style={({ pressed }) => [pressed && { opacity: 0.92 }]}>
+            <Pressable testID="stats-primary-series" accessibilityRole="button" accessibilityLabel={heroA11yLabel} accessibilityState={{ expanded: seriesOpen }} onPress={onToggleSeries} style={({ pressed }) => [pressed && { opacity: 0.92 }]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
                     <Pressable
                       testID="stats-streak-stages-open"
@@ -1381,7 +1387,7 @@ function StreakHeroCard({
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 14, paddingTop: 12, borderTopWidth: 1, borderTopColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }}>
                     {weekDays.map((day) => (
-                        <View key={day.date} style={{ alignItems: 'center', gap: 5 }}>
+                        <View key={day.date} style={{ alignItems: 'center', gap: 5 }} accessible accessibilityLabel={`${day.shortLabel} — ${day.active ? dayCountedWord : dayNotCountedWord}`}>
                             <View style={{
                                 width: 26,
                                 height: 26,

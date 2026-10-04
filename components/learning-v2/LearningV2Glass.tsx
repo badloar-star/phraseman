@@ -85,7 +85,9 @@ export function lv2NodePaint(
   if (state === 'current' && available) return { face: g.text, ink: g.ctaInk };
   if (available) return { face: g.opaqueControl, ink: g.text };
   if (state === 'next') return { face: g.opaqueControl, ink: g.secondary };
-  return { face: g.opaqueCard, ink: g.mutedText };
+  // зачем (сверка с learning-v2.html, 04.10): закрытый узел был цвета самой карточки главы (opaqueCard) и сливался с ней —
+  // в макете у него виден кружок. Заливка как у «следующего», замок приглушённый.
+  return { face: g.opaqueControl, ink: g.mutedText };
 }
 
 export type Lv2Verdict = 'idle' | 'ok' | 'bad' | 'dim';

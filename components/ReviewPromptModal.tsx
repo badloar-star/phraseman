@@ -14,6 +14,7 @@ import PressableHybrid from './PressableHybrid';
 import DuoPressable from './DuoPressable';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM } from '../constants/motionHybrid';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
 type Props = {
   visible: boolean;
@@ -41,7 +42,8 @@ function labelForContext(context: ReviewContext, lang: Lang): string {
 }
 
 function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motionVariant = 'hybrid' }: Props) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { top: topInset, bottom: bottomInset } = useStableSafeAreaInsets();
   const { height: screenHeight } = useWindowDimensions();
   const [variant, setVariant] = useState<ReviewVariant | null>(null);
@@ -77,8 +79,9 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
   // Только эти два запроса появляются сразу после завершения учебного действия:
   // нижний sheet сохраняет видимый контекст, а streak остаётся прежней alert-панелью.
   const bottomSheet = context === 'perfect_lesson' || context === 'level_exam_pass';
-  const accent = context === 'level_exam_pass' ? t.gold : context === 'streak_milestone' ? '#C3B7FF' : t.correct;
-  const accentText = context === 'streak_milestone' ? '#1B1030' : t.correctText;
+  // зачем: паритет с макетом system.html system_20 — главная кнопка белая (графит/белый), без золота, зелёного и фиолетового.
+  const accent = glass.accent;
+  const accentText = glass.accentInk;
   const storeName = Platform.OS === 'ios' ? 'App Store' : 'Google Play';
   const storeCta = triLang(lang, {
     ru: `Оценить в ${storeName}`,
@@ -109,38 +112,32 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
   // HybridAlertShell намеренно всегда центрирует alert и не меняется глобально.
   const panelBody = (
     <>
-      <CascadeItem delay={isHybrid ? LUM.ladder[1] : 0} reduceMotion={!isHybrid || reduceMotion}>
-        <View style={{ width: 42, height: 42, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: accent, marginBottom: 12 }}>
-          <Ionicons name={iconForContext[context]} size={23} color={accentText} />
-        </View>
-      </CascadeItem>
       <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
-        <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', letterSpacing: 1.1, textAlign: 'center' }}>
-          {labelForContext(context, lang)}
+        {/* зачем: кикер `.ov` макета system_20 (12/3px), размер по шкале D145 (01.10, новее макета) — 13. */}
+        <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 16, fontWeight: '700', letterSpacing: 3, alignSelf: 'flex-start' }}>
+          {labelForContext(context === 'streak_milestone' ? 'level_exam_pass' : context, lang)}
         </Text>
       </CascadeItem>
       <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
-        <Text style={{ color: t.textPrimary, fontSize: f.h2, lineHeight: f.h2 * 1.05, fontWeight: '800', letterSpacing: -0.45, textAlign: 'center', marginTop: 10 }}>
+        <Text style={{ color: glass.text, fontSize: 24, lineHeight: 30, fontWeight: '700', marginTop: 8 }}>
           {variant.title}
         </Text>
       </CascadeItem>
       {context === 'streak_milestone' && streakDays ? (
-        <View style={{ marginTop: 14, minHeight: 42, paddingHorizontal: 14, borderRadius: 14, backgroundColor: `${accent}33`, alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ color: accent, fontSize: f.bodyLg, fontWeight: '800' }}>{triLang(lang, { ru: `${streakDays} дней подряд`, uk: `${streakDays} днів поспіль`, en: `${streakDays} days in a row`, es: `${streakDays} días seguidos`, 'pt-BR': `${streakDays} dias seguidos`, vi: `${streakDays} ngày liên tiếp`, id: `${streakDays} hari berturut-turut`, tr: `${streakDays} gün üst üste`, pl: `${streakDays} dni z rzędu` })}</Text>
+        <View style={{ marginTop: 16, width: '100%', padding: 14, paddingHorizontal: 16, borderRadius: 14, backgroundColor: glass.opaqueCard, flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+          <View style={{ width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl }}>
+            <Ionicons name={iconForContext.streak_milestone} size={20} color={glass.text} />
+          </View>
+          <View style={{ flex: 1, minWidth: 0 }}>
+            <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 16, fontWeight: '700', letterSpacing: 2 }}>{labelForContext('streak_milestone', lang)}</Text>
+            <Text style={{ color: glass.text, fontSize: 16, lineHeight: 22, fontWeight: '700', marginTop: 2 }}>{triLang(lang, { ru: `${streakDays} дней подряд`, uk: `${streakDays} днів поспіль`, en: `${streakDays} days in a row`, es: `${streakDays} días seguidos`, 'pt-BR': `${streakDays} dias seguidos`, vi: `${streakDays} ngày liên tiếp`, id: `${streakDays} hari berturut-turut`, tr: `${streakDays} gün üst üste`, pl: `${streakDays} dni z rzędu` })}</Text>
+          </View>
         </View>
       ) : null}
-      <Text style={{ color: t.textMuted, fontSize: f.body, lineHeight: f.body * 1.45, textAlign: 'center', marginTop: 9, maxWidth: 330 }}>
+      {/* зачем: в кадре 20 подзаголовка нет, но без него контекстный заголовок не просит отзыв — оставлен, 16 по D145; отличие в журнале паритета. */}
+      <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 22, marginTop: 8 }}>
         {variant.subtitle}
       </Text>
-      <View style={{ flexDirection: 'row', gap: 8, marginTop: 19 }} accessibilityLabel={ratingAccessibilityLabel}>
-        {isHybrid
-          ? [1, 2, 3, 4, 5].map((value, i) => (
-              <CascadeItem key={value} delay={LUM.ladder[Math.min(i + 2, LUM.ladder.length - 1)]} reduceMotion={reduceMotion}>
-                <Ionicons name="star" size={28} color={t.gold} />
-              </CascadeItem>
-            ))
-          : [1, 2, 3, 4, 5].map((value) => <Ionicons key={value} name="star" size={28} color={t.gold} />)}
-      </View>
     </>
   );
 
@@ -153,9 +150,9 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
           withHaptic
           onPress={() => { void rate(); }}
           wrapStyle={{ width: '100%', marginTop: 20 }}
-          style={{ minHeight: 52, borderRadius: 16, backgroundColor: accent }}
+          style={{ minHeight: 48, borderRadius: 24, backgroundColor: accent }}
         >
-          <Text style={{ color: accentText, fontSize: f.body, fontWeight: '800' }}>{storeCta}</Text>
+          <Text style={{ color: accentText, fontSize: 16, fontWeight: '700' }}>{storeCta}</Text>
         </DuoPressable>
       ) : (
         <TouchableOpacity
@@ -163,9 +160,9 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
           accessibilityLabel={storeCta}
           activeOpacity={0.85}
           onPress={() => { void rate(); }}
-          style={{ width: '100%', minHeight: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: accent, marginTop: 20 }}
+          style={{ width: '100%', minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: accent, marginTop: 20 }}
         >
-          <Text style={{ color: accentText, fontSize: f.body, fontWeight: '800' }}>{storeCta}</Text>
+          <Text style={{ color: accentText, fontSize: 16, fontWeight: '700' }}>{storeCta}</Text>
         </TouchableOpacity>
       )}
       {isHybrid ? (
@@ -174,13 +171,15 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
           accessibilityLabel={variant.btnNo}
           variant="secondary"
           onPress={close}
-          contentStyle={{ paddingVertical: 13, paddingHorizontal: 24 }}
+          style={{ width: '100%', marginTop: 10 }}
+          // зачем: `.cta.gh` макета — тёмная капсула с бликом (lg-sheen), а не голый текст.
+          contentStyle={{ minHeight: 48, borderRadius: 24, backgroundColor: glass.card, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24 }}
         >
-          <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>{variant.btnNo}</Text>
+          <Text style={{ color: glass.text, fontSize: 16, fontWeight: '700', textAlign: 'center' }}>{variant.btnNo}</Text>
         </PressableHybrid>
       ) : (
-        <TouchableOpacity accessibilityRole="button" accessibilityLabel={variant.btnNo} activeOpacity={0.7} onPress={close} style={{ paddingVertical: 13, paddingHorizontal: 24 }}>
-          <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>{variant.btnNo}</Text>
+        <TouchableOpacity accessibilityRole="button" accessibilityLabel={variant.btnNo} activeOpacity={0.7} onPress={close} style={{ width: '100%', minHeight: 48, borderRadius: 24, marginTop: 10, backgroundColor: glass.card, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24 }}>
+          <Text style={{ color: glass.text, fontSize: 16, fontWeight: '700' }}>{variant.btnNo}</Text>
         </TouchableOpacity>
       )}
     </>
@@ -198,7 +197,7 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
     borderTopRightRadius: bottomSheet ? 28 : 24,
     borderBottomLeftRadius: bottomSheet ? 0 : 24,
     borderBottomRightRadius: bottomSheet ? 0 : 24,
-    alignItems: 'center' as const,
+    alignItems: 'flex-start' as const,
   };
 
   const panelContent = (
@@ -208,7 +207,7 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
         <ScrollView
           testID="review-prompt-scroll-content"
           style={{ width: '100%', flexShrink: 1, minHeight: 0 }}
-          contentContainerStyle={{ alignItems: 'center', paddingTop: 8, paddingBottom: 8 }}
+          contentContainerStyle={{ alignItems: 'flex-start', paddingTop: 8, paddingBottom: 8 }}
           bounces={false}
           showsVerticalScrollIndicator
         >

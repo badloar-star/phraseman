@@ -234,7 +234,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
           <PressableHybrid variant="card" testID={`learning-v2-chapter-${chapter.chapterOrdinal}`} accessibilityLabel={`${triLang(props.lang, { ru: "Глава", en: "Chapter", uk: "Розділ", es: "Capítulo", "pt-BR": "Capítulo", vi: "Chương", id: "Bab", tr: "Bölüm", pl: "Rozdział" })} ${chapter.chapterOrdinal}`} onPress={() => toggleChapter(chapter.chapterOrdinal)} style={styles.chapterPress} contentStyle={styles.chapterPressContent}>
             <View style={[styles.chapterTile, { backgroundColor: g.opaqueControl }]}><Ionicons name={chapterState === "done" ? "checkmark" : chapterState === "locked" ? "lock-closed" : "trophy-outline"} size={24} color={chapterState === "locked" ? g.mutedText : g.text} /></View>
             <View style={styles.chapterCopy}><Text style={[styles.chapterTitle, { color: g.text }]}>{triLang(props.lang, { ru: "Глава", en: "Chapter", uk: "Розділ", es: "Capítulo", "pt-BR": "Capítulo", vi: "Chương", id: "Bab", tr: "Bölüm", pl: "Rozdział" })} {chapter.chapterOrdinal}</Text><Text style={[styles.chapterSub, { color: g.secondary }]}>{sessionsWord} {firstOrdinal}–{lastOrdinal}</Text></View>
-            <Text style={[styles.chapterFrac, { color: g.secondary }]}><Text style={{ color: g.text, fontWeight: "700" }}>{completedCount}</Text>/8</Text>
+            <Text style={[styles.chapterFrac, { color: g.secondary }]}><Text style={[styles.chapterFracDone, { color: g.text }]}>{completedCount}</Text>/8</Text>
             <Ionicons name={isExpanded ? "chevron-up" : "chevron-down"} size={20} color={g.secondary} />
           </PressableHybrid>
           {isExpanded ? <View style={styles.sessions}>{chapterSessions.map((row, sessionIndex) => {
@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
   chapterCopy: { flex: 1, minWidth: 0, gap: 4 },
   chapterTitle: { fontSize: 19, lineHeight: 24, fontWeight: "700" },
   chapterSub: { fontSize: 16, lineHeight: 21 },
-  chapterFrac: { fontSize: 16, lineHeight: 21, fontVariant: ["tabular-nums"] },
+  chapterFrac: { fontSize: 13, lineHeight: 28, fontVariant: ["tabular-nums"] }, chapterFracDone: { fontSize: 24, lineHeight: 28, fontWeight: "800" },
   chapterTrack: { height: 7, borderRadius: 4, marginTop: 2, marginBottom: 14, marginHorizontal: 20, overflow: "hidden" },
   chapterTrackFill: { height: "100%", borderRadius: 4 },
   sessions: { paddingHorizontal: 6, paddingBottom: 10, paddingTop: 6, flexDirection: "row", flexWrap: "wrap", rowGap: 18 },

@@ -29,7 +29,6 @@ export interface BuildAllDepartmentsSnapshotInput {
   readonly runSupport: (appTier: AppTier) => Promise<DepartmentSnapshotLike>;
   readonly runFactory: (appTier: AppTier) => Promise<DepartmentSnapshotLike>;
   readonly runRetention: (appTier: AppTier) => Promise<DepartmentSnapshotLike>;
-  readonly runMaxvoice: (appTier: AppTier) => Promise<DepartmentSnapshotLike>;
   readonly nowMs: number;
 }
 
@@ -43,7 +42,7 @@ export interface AllDepartmentsSnapshot {
   readonly departmentErrors: readonly Department[];
 }
 
-const DEPARTMENT_RUNNERS: readonly [Department, keyof Pick<BuildAllDepartmentsSnapshotInput, 'runQuality' | 'runMoney' | 'runGrowth' | 'runContent' | 'runPayments' | 'runSafety' | 'runSupport' | 'runFactory' | 'runRetention' | 'runMaxvoice'>][] = [
+const DEPARTMENT_RUNNERS: readonly [Department, keyof Pick<BuildAllDepartmentsSnapshotInput, 'runQuality' | 'runMoney' | 'runGrowth' | 'runContent' | 'runPayments' | 'runSafety' | 'runSupport' | 'runFactory' | 'runRetention'>][] = [
   ['quality', 'runQuality'],
   ['money', 'runMoney'],
   ['growth', 'runGrowth'],
@@ -53,7 +52,6 @@ const DEPARTMENT_RUNNERS: readonly [Department, keyof Pick<BuildAllDepartmentsSn
   ['support', 'runSupport'],
   ['factory', 'runFactory'],
   ['retention', 'runRetention'],
-  ['maxvoice', 'runMaxvoice'],
 ];
 
 export async function buildAllDepartmentsSnapshot(input: BuildAllDepartmentsSnapshotInput): Promise<AllDepartmentsSnapshot> {

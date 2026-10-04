@@ -105,7 +105,6 @@ export function buildCodeList(root = process.cwd()) {
     }
   };
   add('default', readLiveExports(root));
-  add('max', readCodebaseExports(root, 'functions-max/index.ts'));
   add('content', readCodebaseExports(root, 'functions-content/index.ts'));
   add('english-test', readCodebaseExports(root, 'functions-english-test/index.js'));
   return rows;

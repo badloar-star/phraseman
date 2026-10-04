@@ -5,7 +5,6 @@
   "scripts": {
     "start": "node scripts/canonical_workspace_guard.mjs && cross-env NODE_OPTIONS=--max-old-space-size=12288 expo start",
     "assets:audit:themes": "node scripts/theme_assets/audit-theme-assets.mjs --root . --out-dir .codex-tmp/theme-assets-v2/audit",
-    "max:text-qa-gate": "npx tsx tests/max_text_qa_gate.ts",
     "dialogues:language-contours-gate": "npx tsx tests/dialogue_language_contours_gate.ts",
     "learning-v2:content-gate": "npx tsx scripts/learning_v2_content_quality_gate.ts",
     "learning-v2:progression-gate": "node content/learning-v2-course/pipeline/progression_quality_gate.mjs --sessions-root content/learning-v2-course/sessions/en/l03 --from 25",

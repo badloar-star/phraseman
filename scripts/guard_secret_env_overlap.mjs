@@ -32,7 +32,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 /** Кодовые базы со своим .env и своими исходниками. */
-const CODEBASES = ['functions', 'functions-max', 'functions-content'];
+const CODEBASES = ['functions', 'functions-content'];
 
 /** Имена переменных из .env. Значения не читаем — только левую часть до '='. */
 function readEnvNames(envPath) {

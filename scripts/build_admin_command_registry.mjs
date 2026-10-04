@@ -19,7 +19,7 @@ function collectFunctionSources(dir) {
   }
   return files;
 }
-const sourceRoots = ['functions/src', 'functions-admin', 'functions-english-test', 'functions-content/lib', 'functions-max/lib'];
+const sourceRoots = ['functions/src', 'functions-admin', 'functions-english-test', 'functions-content/lib'];
 const functionSource = sourceRoots.flatMap((sourceRoot) => collectFunctionSources(path.join(root, sourceRoot)))
   .map((file) => fs.readFileSync(file, 'utf8'))
   .join('\n');

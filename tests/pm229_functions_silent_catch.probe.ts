@@ -16,13 +16,7 @@ const root = path.resolve(__dirname, '..', 'functions', 'src');
 
 // Ключ — файл относительно functions/src (через /), значение — разрешённый долг. Только сокращать.
 const BASELINE: Record<string, number> = {
-  // Раздел MAX законсервирован владельцем 04.09 (функции сняты с деплоя) — не правим, долг при возврате.
-  'max_voice_mint.ts': 10,
-  'max_voice_watchdog.ts': 5,
-  'max_voice_finalize.ts': 3,
-  'max_voice_session_end.ts': 3,
-  'max_voice_usage_recon.ts': 2,
-  'max_voice_safety.ts': 1,
+  // MAX удалён целиком (владелец 04.10, «вычистить весь MAX») — долгов не осталось.
 };
 
 function isSilentValue(expr: ts.Expression): boolean {

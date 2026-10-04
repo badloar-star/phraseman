@@ -37,19 +37,8 @@ const ENGLISH_TEST_INDEX = resolve(
   REPO_ROOT,
   "functions-english-test/index.js",
 );
-/*
- * Третий codebase (firebase.json → codebase "max"): боевые функции MAX
- * переехали туда 2026-08-23, чтобы старт не грузил все 240 функций основного
- * бандла (370 МБ → 78 МБ, 2.2 с → 0.44 с).
- *
- * зачем сторожу про него знать: без этого он считает 12 функций MAX
- * «потерянными» и ругается на КАЖДОМ запуске. Сторож, который кричит всегда,
- * перестают читать — и он пропустит настоящую пропажу.
- *
- * rootDir ".." в его tsconfig (нужен, чтобы компилировать общие исходники без
- * дублирования) кладёт сборку в lib/functions-max/index.js.
- */
-const MAX_INDEX = resolve(REPO_ROOT, "functions-max/lib/functions-max/index.js");
+/* Кодовая база MAX удалена (владелец 04.10, «вычистить весь MAX»): функции MAX, ещё живущие в облаке, честно
+   показываются непокрытыми, пока их не удалят по имени. */
 /* Четвёртый codebase "content": контент-фабрика Learning V2 (2026-08-23).
    Тянула в память авторские сессии курса — 236 МБ из 380 МБ основного бандла. */
 const CONTENT_INDEX = resolve(REPO_ROOT, "functions-content/lib/functions-content/index.js");
@@ -236,23 +225,6 @@ function readCodebaseExports(indexPath, label, buildHint) {
   }
 }
 
-function readMaxCodebaseExports() {
-  if (!existsSync(MAX_INDEX)) {
-    console.warn(
-      `[gate] нет сборки ${MAX_INDEX} — функции MAX будут считаться непокрытыми.
-` +
-      `       Собрать: npm --prefix functions-max run build`,
-    );
-    return [];
-  }
-  try {
-    return Object.keys(require(MAX_INDEX));
-  } catch (error) {
-    console.warn(`[gate] не читается ${MAX_INDEX}: ${error.message}`);
-    return [];
-  }
-}
-
 function readEnglishTestExports() {
   if (!existsSync(ENGLISH_TEST_INDEX)) return [];
   const source = readFileSync(ENGLISH_TEST_INDEX, "utf8");
@@ -319,13 +291,12 @@ function readLiveFunctions() {
 
 const builtNames = readBuiltExports();
 const englishTestNames = readEnglishTestExports();
-const maxNames = readMaxCodebaseExports();
 const contentNames = readCodebaseExports(
   CONTENT_INDEX,
   "content",
   "npm --prefix functions-content run build",
 );
-const covered = new Set([...builtNames, ...englishTestNames, ...maxNames, ...contentNames]);
+const covered = new Set([...builtNames, ...englishTestNames, ...contentNames]);
 const live = readLiveFunctions();
 
 const allMissing = live.names.filter((name) => !covered.has(name));
@@ -363,7 +334,7 @@ console.log("\n=== Гейт «экспорты vs прод» ===");
 console.log(`Источник списка живых функций: ${live.source}`);
 console.log(`Живых функций в проде:          ${live.names.length}`);
 console.log(
-  `Покрыто исходниками:            ${covered.size} (основной codebase ${builtNames.length} + english-test ${englishTestNames.length} + max ${maxNames.length} + content ${contentNames.length})`,
+  `Покрыто исходниками:            ${covered.size} (основной codebase ${builtNames.length} + english-test ${englishTestNames.length} + content ${contentNames.length})`,
 );
 console.log(`Осознанно удалено (чаты):       ${intentional.length}`);
 console.log(

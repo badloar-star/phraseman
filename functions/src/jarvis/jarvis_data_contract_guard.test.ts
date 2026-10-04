@@ -213,23 +213,6 @@ const FIELD_CONTRACTS: readonly FieldContract[] = [
     field: 'comparisons',
     breaks: 'Джарвис потерял бы current-vs-previous динамику и снова видел бы только текущие счётчики',
   },
-  ...[
-    'callsStarted',
-    'callsConnected',
-    'callsCompleted',
-    'reviewsReady',
-    'reconnectAttempts',
-    'reconnectRecovered',
-    'firstAudioLatencyBuckets',
-    'mintRejections',
-    'mintRejectionReasons',
-  ].map((field): FieldContract => ({
-    department: 'maxvoice',
-    writtenIn: 'max_voice_ops.ts',
-    readIn: 'jarvis/maxvoice_firestore_fetcher.ts',
-    field,
-    breaks: `надёжность MAX по полю ${field} превратилась бы в ложный ноль`,
-  })),
 ];
 
 // Immutable per-user purchase facts are deliberately not Jarvis metrics. Money
@@ -440,19 +423,19 @@ const ISOLATED_COLLECTION_CONTRACTS = [
   },
   {
     collection: 'voice_call_reviews',
-    writer: 'functions/src/max_voice_finalize.ts',
+    writer: 'retired MAX (writer removed 04.10, owner); prod data kept until a separate owner decision',
     authority: 'intentionally_unread_personal_payload',
     fields: ['studyTarget'],
   },
   {
     collection: 'voice_tutor_memory',
-    writer: 'functions/src/max_voice_tutor_memory.ts',
+    writer: 'retired MAX (writer removed 04.10, owner); prod data kept until a separate owner decision',
     authority: 'intentionally_unread_personal_payload',
     fields: ['studyTarget'],
   },
   {
     collection: 'voice_call_quotas',
-    writer: 'functions/src/max_voice_safety.ts',
+    writer: 'retired MAX (writer removed 04.10, owner); prod data kept until a separate owner decision',
     authority: 'server-only quota ownership and opaque bounded safetyGuard state; intentionally unread by Jarvis and every browser client',
     fields: ['quotaIdentityClosureProof', 'lifetimeTrialUsedAtMs'],
   },
@@ -692,19 +675,6 @@ describe('Jarvis data contract — silence must never replace a broken source', 
     expect(readSource('admin_alerts.ts')).not.toContain('report.diagnostics');
     expect(readSource('admin_daily_digest.ts')).not.toContain('d.diagnostics');
   });
-  test('MAX daily operations are an explicit bounded Jarvis source', () => {
-    const writer = readSource('max_voice_ops.ts');
-    const reader = readSource('jarvis/maxvoice_firestore_fetcher.ts');
-    const callable = readSource('jarvis/all_departments_callables.ts');
-    const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
-
-    expect(writer).toContain("MAX_VOICE_OPS_COLLECTION = 'max_voice_ops_daily'");
-    expect(callable).toContain("db.collection('max_voice_ops_daily')");
-    expect(reader).toContain("limit(MAXVOICE_SOURCE_DAYS)");
-    expect(reader).toContain('MAXVOICE_SOURCE_DAYS = 7');
-    expect(rules).toContain('match /max_voice_ops_daily/{docId}');
-  });
-
   test('MAX review and tutor memory remain intentionally unread personal payloads', () => {
     for (const collection of ['voice_call_reviews', 'voice_tutor_memory']) {
       expect(ISOLATED_COLLECTION_CONTRACTS).toContainEqual(expect.objectContaining({
@@ -722,26 +692,16 @@ describe('Jarvis data contract — silence must never replace a broken source', 
     }));
   });
 
-  test('MAX nested safety guard remains server-only and intentionally unread', () => {
+  // 04.10: код MAX удалён (владелец), коллекция квот остаётся в проде — она закрыта для клиентов и не читается Джарвисом.
+  test('retired MAX quota collection stays server-only and intentionally unread', () => {
     const contract = ISOLATED_COLLECTION_CONTRACTS.find(({ collection }) => collection === 'voice_call_quotas');
-    const writer = readSource('max_voice_safety.ts');
-    const quotaWriter = readSource('max_voice_quota.ts');
     const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
     const jarvisReaders = fs.readdirSync(path.join(functionsSrc, 'jarvis'))
       .filter((file) => file.endsWith('_firestore_fetcher.ts'))
       .map((file) => fs.readFileSync(path.join(functionsSrc, 'jarvis', file), 'utf8'))
       .join('\n');
 
-    expect(contract).toEqual(expect.objectContaining({
-      writer: 'functions/src/max_voice_safety.ts',
-      authority: expect.stringContaining('opaque bounded safetyGuard'),
-      fields: expect.arrayContaining(['quotaIdentityClosureProof', 'lifetimeTrialUsedAtMs']),
-    }));
-    expect(writer).toContain('safetyGuard');
-    expect(quotaWriter).toContain('quotaIdentityClosureProof');
-    // Trial/admin settlement plus paid-wallet release/settlement all close the
-    // server-owned session marker; adding a paid path must update this guard.
-    expect(quotaWriter.match(/lastSettledAtMs:\s*now/g)).toHaveLength(3);
+    expect(contract).toEqual(expect.objectContaining({ writer: expect.stringContaining('retired MAX') }));
     expect(rules).toMatch(/match \/voice_call_quotas\/\{docId\}\s*\{\s*allow read, write: if false;/);
     expect(jarvisReaders).not.toContain("collection('voice_call_quotas')");
   });
@@ -1113,8 +1073,8 @@ describe('Arena friend invite and notification isolation', () => {
     expect(readers).not.toContain("collection('notifications')");
   });
 
-  test('MAX review receipts stay private, transcript-free, and deletable without becoming a Jarvis content source', () => {
-    const writer = fs.readFileSync(path.join(functionsSrc, 'max_voice_finalize.ts'), 'utf8');
+  // 04.10: код MAX удалён (владелец); разборы звонков остаются в проде — закрыты, стираются при удалении аккаунта.
+  test('retired MAX review receipts stay private and deletable without becoming a Jarvis content source', () => {
     const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
     const deletion = fs.readFileSync(path.join(functionsSrc, 'account_delete.ts'), 'utf8');
     const jarvisDir = path.join(functionsSrc, 'jarvis');
@@ -1123,8 +1083,6 @@ describe('Arena friend invite and notification isolation', () => {
       .map((file) => fs.readFileSync(path.join(jarvisDir, file), 'utf8'))
       .join('\n');
 
-    expect(writer).toContain("const REVIEW_COLLECTION = 'voice_call_reviews'");
-    expect(writer).not.toMatch(/tx\.set\([^\n]+(?:history|transcript|audio)/i);
     expect(rules).toContain('match /voice_call_reviews/{docId}');
     expect(rules).toContain('allow read, write: if false;');
     expect(deletion).toContain("{ collection: 'voice_call_reviews', field: 'stableUid', values: 'stable' }");

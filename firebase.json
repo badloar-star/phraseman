@@ -177,8 +177,8 @@
             {
               "key": "Cache-Control",
               "value": "public, max-age=0, must-revalidate"
-            }
-            ,{
+            },
+            {
               "key": "X-Content-Type-Options",
               "value": "nosniff"
             },
@@ -229,21 +229,6 @@
       "predeploy": [
         "npm --prefix functions run build",
         "node scripts/functions_runtime_parity_gate.mjs"
-      ]
-    },
-    {
-      "source": "functions-max",
-      "codebase": "max",
-      "runtime": "nodejs22",
-      "predeploy": [
-        "npm --prefix functions-max run build"
-      ],
-      "ignore": [
-        "node_modules",
-        ".git",
-        "firebase-debug.log",
-        "firebase-debug.*.log",
-        "**/*.test.ts"
       ]
     },
     {

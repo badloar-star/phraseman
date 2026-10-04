@@ -37,11 +37,9 @@ describe('feedback rating layout reachability', () => {
   it('keeps every other feedback form in vertically scrollable content', () => {
     const vocabulary = read('app/flashcards/SessionResultScreen.tsx');
     const dialogue = read('components/DialogVerdictScreen.tsx');
-    const maxReview = read('app/max_voice_review.tsx');
 
     expect(vocabulary).toContain('<ScrollView');
     expect(vocabulary).toContain('automaticallyAdjustKeyboardInsets');
     expect(dialogue).toContain('<ScrollView');
-    expect(maxReview).toContain('<ScrollView');
   });
 });

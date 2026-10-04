@@ -105,7 +105,8 @@ describe('aggregateAdminFeedback', () => {
 });
 
 describe('admin feedback list callable wiring', () => {
-  it.each(['feedback_entries.ts', 'max_voice_feedback.ts'])(
+  // 04.10: max_voice_feedback.ts удалён вместе с MAX — проверяем только живой список отзывов.
+  it.each(['feedback_entries.ts'])(
     '%s applies validated filters before returning a page',
     (filename) => {
       const source = fs.readFileSync(path.join(__dirname, filename), 'utf8');

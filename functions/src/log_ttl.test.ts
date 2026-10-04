@@ -32,8 +32,6 @@ describe('log_ttl (журналы app_errors / app_activity живут 90 дне
   test('каждый серверный писатель журналов ставит expireAt', () => {
     const src = (name: string) => fs.readFileSync(path.resolve(__dirname, name), 'utf8');
     expect(src('client_reports.ts').match(/expireAt: logExpireAt\(now\)/g)).toHaveLength(2);
-    expect(src('max_voice_watchdog.ts')).toContain('expireAt: logExpireAt(nowMs)');
-    expect(src('max_voice_usage_recon.ts')).toContain('expireAt: logExpireAt(nowMs)');
     expect(src('payment_webhook_alert.ts')).toContain('expireAt: logExpireAt(input.nowMs)');
   });
 });

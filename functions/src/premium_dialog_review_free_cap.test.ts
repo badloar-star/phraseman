@@ -33,14 +33,6 @@ jest.mock('./openai_dialog_model_config', () => ({
   resolveConfiguredDialogModel: jest.fn(async () => 'gpt-4.1-mini'),
   modelSupportsJsonObject: jest.fn(() => true),
 }));
-jest.mock('./max_voice_tutor_memory', () => ({
-  applyTutorMemoryUpdate: jest.fn(),
-  sanitizeTutorSessionId: () => '',
-}));
-jest.mock('./max_voice_safety', () => ({
-  reviewVoiceSafety: jest.fn(async () => ({ categories: [] })),
-  sanitizeClientSafetyFlags: jest.fn(() => []),
-}));
 jest.mock('./premium_dialog', () => ({
   enforceRateLimit: jest.fn(async () => undefined),
   asInterfaceLang: (value: unknown) => (typeof value === 'string' ? value : 'ru'),

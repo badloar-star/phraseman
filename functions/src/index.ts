@@ -903,7 +903,6 @@ export { voiceMinuteWalletMine } from "./voice_minutes_api";
 // см. CLAUDE.md → «РАЗДЕЛ MAX ЗАКОНСЕРВИРОВАН».
 // Не возвращать без прямой команды владельца — возврат экспорта заново создаёт
 // функцию на проде при следующем деплое.
-// export { voiceMinuteDevGrant } from "./voice_minutes_dev_grant";
 
 export { adminPushJobCreated, adminPushJobsCron } from "./admin_push_jobs";
 export { adminUserBriefs } from "./admin_user_briefs";

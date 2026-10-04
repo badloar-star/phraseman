@@ -38,7 +38,6 @@ const ACTIVE_HOUR_FROM = 8; // включительно
  */
 export const WARM_INSTANCE_CANDIDATES = [
   { id: 'authensurestablelink', label: 'Вход · authEnsureStableLink' },
-  { id: 'maxvoicemint', label: 'MAX-звонок · maxVoiceMint' },
 ] as const;
 
 export interface WarmGaugeMinutePoint {

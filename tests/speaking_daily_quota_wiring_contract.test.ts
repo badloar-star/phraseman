@@ -18,7 +18,14 @@ describe('голосовая практика — дневной лимит че
     const src = read(relative);
     expect(src).toContain('useSpeakingAttemptGate(');
     expect(src).toContain(`source: '${source}'`);
-    expect(src).toContain('.tryStartAttempt()');
+    if (relative === 'app/ai_dialog_session.tsx') {
+      // зачем (04.10): диалог проверяет лимит до записи (canStartAttempt) и списывает попытку, только когда микрофон реально начал
+      // слушать (commitStartedAttempt) — отказ системы в записи не сжигает попытку. Остальные поверхности списывают одним шагом.
+      expect(src).toContain('.canStartAttempt()');
+      expect(src).toContain('.commitStartedAttempt()');
+    } else {
+      expect(src).toContain('.tryStartAttempt()');
+    }
     // Старый глухой пейвол без source ушёл.
     expect(src).not.toMatch(/params:\s*\{\s*context:\s*'speaking'\s*\}/);
     expect(src).not.toContain("useFeatureAccess('speaking')");

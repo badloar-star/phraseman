@@ -96,7 +96,11 @@ describe('RegistrationPromptModal recovery UI contract', () => {
     expect(copySource).toContain('Твой прогресс на месте');
     expect(onboardingSource).toContain("code === 'account_switch_required'");
     expect(onboardingSource).toContain('Локальный прогресс сохранён');
-    expect(onboardingSource).not.toContain('return ENABLE_DEV_TOOLS && code ? `${human}\\n${code.slice(0, 120)}` : human;');
+    // зачем (04.10): техническая строка с кодом ошибки добавляется к тексту ТОЛЬКО при включённых dev-инструментах (ENABLE_DEV_TOOLS) — в сборке
+    // для людей её нет; прежняя проверка «этой строки в файле нет» была записана до появления dev-замка и ловила его. Охраняем суть: код
+    // никогда не показывается без замка и сам текст account_switch_required берётся из простого текста, а не из кода ошибки.
+    expect(onboardingSource).toContain('ENABLE_DEV_TOOLS && code');
+    expect(onboardingSource).not.toMatch(/return code\s*\?/);
   });
 
   it('keeps identity reset tooling opt-in instead of exposing it in the login sheet', () => {

@@ -33,3 +33,5 @@ The four suites run green; type check clean.
 ## Rollback
 
 Revert the commit.
+
+Дополнение 04.10 (по просьбе координатора): speaking_hold_ui_contract, speaking_daily_quota_wiring_contract, registration_prompt_recovery_ui_contract и AST/хеш-сторож «Устно» (flashcards_speaking_liquid_glass_source_contract) — по смыслу, только тесты.

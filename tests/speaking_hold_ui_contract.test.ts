@@ -14,7 +14,8 @@ describe('canonical speaking push-to-talk UI contract', () => {
   it('never auto-starts a practice microphone when the panel opens', () => {
     expect(panel).not.toContain('autoStartedRef');
     expect(panel).not.toContain('void startListening();\n  }, [isPreview, holdSupported');
-    expect(panel).toContain("const [status, setStatus] = useState<SpeakingPanelStatus>(previewStatus ?? 'idle')");
+    // зачем (04.10): режим предпросмотра панели (previewStatus) убран — панель всегда стартует в «idle», микрофон включает только удержание.
+    expect(panel).toContain("const [status, setStatus] = useState<SpeakingPanelStatus>('idle')");
   });
 
   it('keeps requesting neutral and turns listening on only from native start/audio', () => {
@@ -68,7 +69,10 @@ describe('canonical speaking push-to-talk UI contract', () => {
       expect(source).toContain('playRecordStart');
     }
     expect(panel).toContain('restoreLoudPlaybackMode');
-    expect(onboarding).toContain('restoreLoudPlayback');
+    // зачем (04.10): онбординг больше не вызывает restoreLoudPlayback — громкий режим возвращается снятием аренды записи
+    // (recordingLeaseRef.release в releaseRecording), которую берёт только настоящая запись. Требование то же: без записи режим не трогаем.
+    expect(onboarding).toContain('releaseRecording');
+    expect(onboarding).toContain('recordingLeaseRef.current?.release()');
     expect(dialog).toContain('restoreLoudPlaybackMode');
   });
 

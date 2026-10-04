@@ -349,11 +349,13 @@ function loadShell(material, themeId = 'graphite') {
 }
 
 test('protects pre-edit business, classic, default tile, and dependency contracts', () => {
+  // зачем (REVIEW_UI_11, 04.10): удалена недостижимая ветка 'classic' и её эффект входа (−1 useEffect) — деловая
+  // логика выбора/пресета/старта не менялась; эталон и хэш последнего return обновлены по смыслу.
   assert.deepEqual(protectedPickerBusiness(pickerSource), {
-    count: 19,
-    hash: '43aa3b50924d2ac30a4d8c708596f2e401e5c887a0dbcf3382fbee2eeda01e18',
+    count: 18,
+    hash: 'de0ad33d93b0190fe26645e2b23f5dbeae11b03adfd592fb74ff52327feec66f',
   });
-  assert.equal(finalReturnHash(PICKER_PATH, pickerSource, 'DeckPickerSheet'), 'bfa5abc914aa1445fac37763fd002ddbc1187fc53d4db5be04a836dd0fd19d8b');
+  assert.equal(finalReturnHash(PICKER_PATH, pickerSource, 'DeckPickerSheet'), '8fbe27312e3f92b53cf340cfc4b90f43921f91dd26b181dac079d9313df63946');
   assert.equal(finalReturnHash(TILE_PATH, tileSource, 'DeckSelectionTile'), '24db75ac2c63c7709364a4d6432c2b613a2563128dfb2a719398d6bc2539223e');
   assert.deepEqual(protectedShellCoordination(shellSource), {
     count: 32,

@@ -18,12 +18,10 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { ImageSourcePropType } from 'react-native';
-import { Modal, Platform, Pressable, ScrollView, Text, useWindowDimensions, View } from 'react-native';
-import Reanimated, {
+import { Platform, ScrollView, Text, useWindowDimensions, View } from 'react-native';
+import {
   runOnJS,
-  useAnimatedStyle,
   useSharedValue,
-  withSpring,
   withTiming,
 } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -96,7 +94,7 @@ type Props = {
   reduceMotion?: boolean;
   /** E10: чей пресет сохраняем и какой CTA показываем (дефолт — тренер). */
   mode?: FcPresetMode;
-  /** Гибрид «Световод + Чекан» (HybridSheetShell вместо самодельного Modal). Дефолт — боевой 'classic'. */
+  /** Устарело (04.10): ветка 'classic' удалена, шит всегда гибрид; свойство оставлено, чтобы не ломать вызовы витрины. */
   motionVariant?: 'classic' | 'hybrid';
   // зачем (PM-086, владелец 2026-09-24): showsEnergyCostForPreset удалён —
   // жил только ради ценника энергии над кнопкой старта, который убрали.
@@ -119,7 +117,6 @@ const SPEAKING_SHEET_START = (lang: Lang) =>
     tr: 'Konuşmaya başla', pl: 'Zacznij mówić',
   });
 
-const SHEET_SPRING = { damping: 22, stiffness: 260, mass: 0.9 } as const;
 const SHEET_HIDE_Y = 620;
 
 export default function DeckPickerSheet({
@@ -139,7 +136,7 @@ export default function DeckPickerSheet({
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const textScale = (FONT_SCALE[fontSize] / FONT_SCALE.medium) * uiScale;
   const insets = useStableSafeAreaInsets();
-  const { height: winH, width: winW } = useWindowDimensions();
+  const { height: winH } = useWindowDimensions();
   /** Modal живёт чуть дольше visible — успевает проиграться анимация закрытия. */
   const [mounted, setMounted] = useState(visible);
   /** cards-2.1: мультивыбор наборов (§6). Пустой список — старт заблокирован. */
@@ -200,22 +197,6 @@ export default function DeckPickerSheet({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible, decks]);
 
-  // Анимация входа — ПОСЛЕ монтирования Modal (иначе стартовый кадр web
-  // пропускает начатую до маунта анимацию и шит остаётся за экраном).
-  useEffect(() => {
-    if (!visible || !mounted) return;
-    ty.value = SHEET_HIDE_Y;
-    backdrop.value = withTiming(1, { duration: FC_TIMING.base });
-    ty.value = reduceMotion
-      ? withTiming(0, { duration: FC_TIMING.fast })
-      : Platform.OS === 'web'
-        ? withTiming(0, { duration: FC_TIMING.enter })
-        : withSpring(0, SHEET_SPRING);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible, mounted]);
-
-  const backdropStyle = useAnimatedStyle(() => ({ opacity: backdrop.value }));
-  const sheetStyle = useAnimatedStyle(() => ({ transform: [{ translateY: ty.value }] }));
 
   const toggleDeck = useCallback((id: FcDeckId) => {
     setDeckIds((prev) => toggleDeckSelection(prev, id));
@@ -317,329 +298,90 @@ export default function DeckPickerSheet({
   // CTA), но каркас HybridSheetShell (подъём из света без отскока, drag-to-dismiss
   // встроен) вместо самодельного Modal+backdrop+Reanimated.View выше. 'classic'
   // ниже не тронут — минимальная вставка по правилу владельца.
-  if (motionVariant === 'hybrid') {
-    const normalizedBottomInset = normalizeSafeAreaBottomInset(insets.bottom);
-    const hybridContentMaxHeight = Math.max(
-      0,
-      Math.min(winH - insets.top, winH * 0.86) - 20 - normalizedBottomInset - 28,
-    );
-    const hybridDockMaxHeight = Math.max(0, Math.min(240, hybridContentMaxHeight * 0.55));
-    const hybridBodyMaxHeight = Math.max(0, hybridContentMaxHeight - hybridDockMaxHeight);
-    return (
-      <HybridSheetShell
-        visible={visible}
-        onClose={onClose}
-        closeLabel={closeLabel}
-        testID="fc-deck-sheet"
-        material="liquid-glass-opaque"
-        backdropAccessible={false}
-      >
-        {({ requestDismiss }) => (
-          <View
-            testID="fc-deck-picker-safe-frame"
-            style={{
-              maxHeight: hybridContentMaxHeight,
-              minHeight: 0,
-              flexShrink: 1,
-              paddingLeft: insets.left,
-              paddingRight: insets.right,
-              overflow: 'hidden',
-            }}
+  // зачем (REVIEW_UI_11, 04.10): ветка 'classic' (самодельный Modal с цветной рамкой и ужатием шрифта) была
+  // недостижима в боевых экранах и нарушала правила владельца — удалена; шит всегда рисуется утверждённым гибридом.
+  const normalizedBottomInset = normalizeSafeAreaBottomInset(insets.bottom);
+  const hybridContentMaxHeight = Math.max(
+    0,
+    Math.min(winH - insets.top, winH * 0.86) - 20 - normalizedBottomInset - 28,
+  );
+  const hybridDockMaxHeight = Math.max(0, Math.min(240, hybridContentMaxHeight * 0.55));
+  const hybridBodyMaxHeight = Math.max(0, hybridContentMaxHeight - hybridDockMaxHeight);
+  return (
+    <HybridSheetShell
+      visible={visible}
+      onClose={onClose}
+      closeLabel={closeLabel}
+      testID="fc-deck-sheet"
+      material="liquid-glass-opaque"
+      backdropAccessible={false}
+    >
+      {({ requestDismiss }) => (
+        <View
+          testID="fc-deck-picker-safe-frame"
+          style={{
+            maxHeight: hybridContentMaxHeight,
+            minHeight: 0,
+            flexShrink: 1,
+            paddingLeft: insets.left,
+            paddingRight: insets.right,
+            overflow: 'hidden',
+          }}
+        >
+          <ScrollView
+            testID="fc-deck-picker-body"
+            decelerationRate="fast"
+            style={{ flexGrow: 0, flexShrink: 0, minHeight: 0, maxHeight: hybridBodyMaxHeight }}
+            contentContainerStyle={{ paddingBottom: 4 }}
+            showsVerticalScrollIndicator={false}
           >
-            <ScrollView
-              testID="fc-deck-picker-body"
-              decelerationRate="fast"
-              style={{ flexGrow: 0, flexShrink: 0, minHeight: 0, maxHeight: hybridBodyMaxHeight }}
-              contentContainerStyle={{ paddingBottom: 4 }}
-              showsVerticalScrollIndicator={false}
-            >
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 4 }}>
-                <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text
-                    testID="fc-deck-picker-heading"
-                    style={{ color: glass.text, fontSize: 22 * textScale, lineHeight: 28 * textScale, fontWeight: '700' }}
-                  >
-                    {sheetHeading}
-                  </Text>
-                  <Text
-                    testID="fc-deck-selection-summary"
-                    accessibilityLabel="qa-fc-deck-selection-summary"
-                    accessible
-                    style={{
-                      color: summary.deckCount > 0 ? glass.secondary : glass.mutedText,
-                      fontSize: 16 * textScale,
-                      lineHeight: 21 * textScale,
-                      fontWeight: '400',
-                      marginTop: 4,
-                    }}
-                  >
-                    {summaryLabel}
-                  </Text>
-                </View>
-                <PressableHybrid
-                  testID="fc-deck-sheet-close"
-                  accessibilityLabel={closeLabel}
-                  variant="icon"
-                  withHaptic={false}
-                  withSound={false}
-                  onPress={requestDismiss}
-                  style={{
-                    width: 44,
-                    height: 44,
-                    alignSelf: 'center',
-                    borderRadius: 22,
-                    backgroundColor: glass.opaqueControl,
-                    borderWidth: 1,
-                    borderColor: glass.glassEdge,
-                  }}
-                  contentStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-                >
-                  <Ionicons name="close" size={18} color={glass.secondary} />
-                </PressableHybrid>
-              </View>
-
-              <View style={{ height: 12 }} />
-              <View style={{ flexDirection: 'column' }}>
-                {decks.map((d, i) => (
-                  <DeckSelectionTile
-                    key={d.deckId}
-                    deck={d}
-                    index={i}
-                    selected={selectedIds.has(d.deckId)}
-                    onToggle={toggleDeck}
-                    simpleMotion={simpleMotion}
-                    t={t}
-                    f={f}
-                    presentation="compact-liquid-glass"
-                    liquidGlass={glass}
-                    textScale={textScale}
-                    countLabel={compactDeckCountLabel(lang, d.count)}
-                  />
-                ))}
-              </View>
-            </ScrollView>
-
-            <ScrollView
-              testID="fc-deck-picker-dock"
-              style={{ flexGrow: 0, flexShrink: 0, minHeight: 0, maxHeight: hybridDockMaxHeight }}
-              contentContainerStyle={{ paddingTop: mode === 'blitz' ? 8 : 16 }}
-              showsVerticalScrollIndicator={false}
-            >
-              {mode === 'blitz' ? null : (
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 4 }}>
+              <View style={{ flex: 1, minWidth: 0 }}>
                 <Text
+                  testID="fc-deck-picker-heading"
+                  style={{ color: glass.text, fontSize: 22 * textScale, lineHeight: 28 * textScale, fontWeight: '700' }}
+                >
+                  {sheetHeading}
+                </Text>
+                <Text
+                  testID="fc-deck-selection-summary"
+                  accessibilityLabel="qa-fc-deck-selection-summary"
+                  accessible
                   style={{
-                    color: glass.text,
+                    color: summary.deckCount > 0 ? glass.secondary : glass.mutedText,
                     fontSize: 16 * textScale,
                     lineHeight: 21 * textScale,
-                    fontWeight: '700',
-                    marginHorizontal: 4,
-                    marginBottom: 10,
+                    fontWeight: '400',
+                    marginTop: 4,
                   }}
                 >
-                  {cardsInSessionLabel}
+                  {summaryLabel}
                 </Text>
-              )}
-              {mode === 'blitz' ? null : (
-                <View style={{ flexDirection: 'row', gap: 8 }}>
-                  {FC_SESSION_SIZES.map((n) => {
-                    const active = n === size;
-                    return (
-                      <PressableHybrid
-                        key={n}
-                        testID={`fc-deck-size-${n}`}
-                        accessibilityLabel={`qa-fc-deck-size-${n}`}
-                        variant="chip"
-                        onPress={() => setSize(n)}
-                        style={{
-                          flex: 1,
-                          minHeight: 44,
-                          borderRadius: 22,
-                          backgroundColor: active ? glass.cta : glass.opaqueControl,
-                          borderWidth: active ? 0 : 1,
-                          borderColor: glass.glassEdge,
-                        }}
-                        contentStyle={{ flex: 1, paddingHorizontal: 12, alignItems: 'center', justifyContent: 'center' }}
-                      >
-                        <Text
-                          style={{
-                            color: active ? glass.ctaInk : glass.text,
-                            fontSize: 16 * textScale,
-                            lineHeight: 21 * textScale,
-                            fontWeight: '700',
-                          }}
-                        >
-                          {n}
-                        </Text>
-                      </PressableHybrid>
-                    );
-                  })}
-                </View>
-              )}
-
+              </View>
               <PressableHybrid
-                testID="fc-deck-start"
-                accessibilityLabel="qa-fc-deck-start"
-                variant="primary"
-                disabled={!canStart}
-                onPress={handleStart}
+                testID="fc-deck-sheet-close"
+                accessibilityLabel={closeLabel}
+                variant="icon"
+                withHaptic={false}
+                withSound={false}
+                onPress={requestDismiss}
                 style={{
-                  minHeight: 48,
-                  marginTop: 20,
-                  borderRadius: 24,
-                  backgroundColor: canStart ? glass.cta : glass.opaqueControl,
-                  borderWidth: canStart ? 0 : 1,
+                  width: 44,
+                  height: 44,
+                  alignSelf: 'center',
+                  borderRadius: 22,
+                  backgroundColor: glass.opaqueControl,
+                  borderWidth: 1,
                   borderColor: glass.glassEdge,
                 }}
-                contentStyle={{ minHeight: 48, paddingVertical: 12, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' }}
+                contentStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
               >
-                <Text
-                  testID="fc-deck-start-label"
-                  style={{
-                    color: canStart ? glass.ctaInk : glass.mutedText,
-                    fontSize: 16 * textScale,
-                    lineHeight: 23 * textScale,
-                    fontWeight: '700',
-                    textAlign: 'center',
-                  }}
-                >
-                  {startLabel}
-                </Text>
+                <Ionicons name="close" size={18} color={glass.secondary} />
               </PressableHybrid>
-            </ScrollView>
-          </View>
-        )}
-      </HybridSheetShell>
-    );
-  }
+            </View>
 
-  return (
-    <Modal visible transparent animationType="none" onRequestClose={onClose} statusBarTranslucent>
-      {/* web: контент шире device-width (лента магазина хаба) раздувает layout viewport,
-          и «низ»/«ширина» fixed-модалки уезжают за видимый экран — капим окном. */}
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'flex-end',
-          ...(Platform.OS === 'web' ? { maxHeight: winH, maxWidth: winW } : {}),
-        }}
-      >
-        {/* Backdrop */}
-        <Reanimated.View
-          style={[
-            { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.55)' },
-            backdropStyle,
-          ]}
-        >
-          <Pressable
-            testID="fc-deck-sheet-backdrop"
-            accessibilityLabel="qa-fc-deck-sheet-backdrop"
-            accessible
-            onPress={onClose}
-            style={{ flex: 1 }}
-          />
-        </Reanimated.View>
-
-        {/* Sheet */}
-        <Reanimated.View
-          testID="fc-deck-sheet"
-          style={[
-            {
-              borderTopLeftRadius: 24,
-              borderTopRightRadius: 24,
-              backgroundColor: t.bgCard,
-              borderWidth: 1,
-              borderBottomWidth: 0,
-              borderColor: t.border,
-              paddingTop: 10,
-              paddingHorizontal: 16,
-              paddingBottom: Math.max(insets.bottom, 12) + 8,
-              maxHeight: '82%',
-            },
-            sheetStyle,
-          ]}
-        >
-          {/* Grabber + заголовок */}
-          <View style={{ alignItems: 'center', marginBottom: 6 }}>
-            <View style={{ width: 40, height: 4, borderRadius: 2, backgroundColor: t.border }} />
-          </View>
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '800' }}>
-              {mode === 'speaking'
-                  ? SPEAKING_SHEET_HEADING(lang)
-                : mode === 'blitz'
-                  ? triLang(lang, {
-                      ru: 'Что в блице?',
-                      uk: 'Що в бліці?',
-                      en: 'What’s in the blitz?',
-                      es: '¿Qué entra en el blitz?',
-                      'pt-BR': 'O que entra no blitz?',
-                      vi: 'Blitz gồm những gì?',
-                      id: 'Apa isi blitz?',
-                      tr: 'Blitz’te ne olsun?',
-                      pl: 'Co w blitzu?',
-                    })
-                  : triLang(lang, {
-                      ru: 'Что тренируем?',
-                      uk: 'Що тренуємо?',
-                      en: 'What are we practicing?',
-                      es: '¿Qué entrenamos?',
-                      'pt-BR': 'O que vamos treinar?',
-                      vi: 'Luyện gì?',
-                      id: 'Latih apa?',
-                      tr: 'Ne çalışalım?',
-                      pl: 'Co trenujemy?',
-                    })}
-            </Text>
-            <Pressable
-              testID="fc-deck-sheet-close"
-              accessibilityLabel="qa-fc-deck-sheet-close"
-              accessible
-              onPress={onClose}
-              hitSlop={10}
-              style={{
-                width: 30,
-                height: 30,
-                borderRadius: 15,
-                backgroundColor: t.bgSurface,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Ionicons name="close" size={18} color={t.textMuted} />
-            </Pressable>
-          </View>
-
-          {/* §6: счётчик выбранного — «Выбрано 3 · 84 карточки»; при нуле — подсказка */}
-          <Text
-            testID="fc-deck-selection-summary"
-            accessibilityLabel="qa-fc-deck-selection-summary"
-            accessible
-            style={{
-              color: summary.deckCount > 0 ? t.accent : t.textMuted,
-              fontSize: f.caption,
-              fontWeight: '800',
-              marginBottom: 12,
-            }}
-          >
-            {summary.deckCount > 0
-              ? deckSelectionLabel(lang, summary)
-              : triLang(lang, {
-                  ru: 'Отметьте один или несколько наборов',
-                  uk: 'Позначте один або кілька наборів',
-                  en: 'Select one or more packs',
-                  es: 'Marca uno o varios packs',
-                  'pt-BR': 'Marque um ou mais pacotes',
-                  vi: 'Chọn một hoặc nhiều bộ thẻ',
-                  id: 'Tandai satu atau beberapa set',
-                  tr: 'Bir veya birkaç set işaretle',
-                  pl: 'Zaznacz jeden lub kilka zestawów',
-                })}
-          </Text>
-
-          {/* Наборы — чекбоксы (мультивыбор). PM-092: столбец компактных строк
-              вместо сетки 2-в-ряд (владелец: «не квадраты блоки здоровые»). */}
-          <ScrollView decelerationRate="fast" style={{ flexGrow: 0 }} showsVerticalScrollIndicator={false}>
-            <View style={{ flexDirection: 'column', gap: 8 }}>
+            <View style={{ height: 12 }} />
+            <View style={{ flexDirection: 'column' }}>
               {decks.map((d, i) => (
                 <DeckSelectionTile
                   key={d.deckId}
@@ -650,118 +392,104 @@ export default function DeckPickerSheet({
                   simpleMotion={simpleMotion}
                   t={t}
                   f={f}
+                  presentation="compact-liquid-glass"
+                  liquidGlass={glass}
+                  textScale={textScale}
+                  countLabel={compactDeckCountLabel(lang, d.count)}
                 />
               ))}
             </View>
-
-            {/* Размер сессии (блиц — на время, размер не выбирается: E12 §3.9).
-                Пояснительная подпись под режимом убрана по просьбе владельца
-                (2026-08-13): кнопки без описаний. */}
-            {mode === 'blitz' ? null : (
-            <Text
-              style={{
-                color: t.textMuted,
-                fontSize: f.caption,
-                fontWeight: '800',
-                letterSpacing: 0.8,
-                textTransform: 'uppercase',
-                marginTop: 16,
-                marginBottom: 8,
-              }}
-            >
-              {triLang(lang, {
-                ru: 'Карточек в сессии',
-                uk: 'Карток у сесії',
-                en: 'Cards per session',
-                es: 'Tarjetas por sesión',
-                'pt-BR': 'Cartões por sessão',
-                vi: 'Số thẻ mỗi phiên',
-                id: 'Kartu per sesi',
-                tr: 'Oturum başına kart',
-                pl: 'Fiszek na sesję',
-              })}
-            </Text>
-            )}
-            {mode === 'blitz' ? null : (
-            <View style={{ flexDirection: 'row', gap: 8 }}>
-              {FC_SESSION_SIZES.map((n) => {
-                const active = n === size;
-                return (
-                  <Pressable
-                    key={n}
-                    testID={`fc-deck-size-${n}`}
-                    accessibilityLabel={`qa-fc-deck-size-${n}`}
-                    accessible
-                    onPress={() => {
-                      fcHaptic('tap');
-                      setSize(n);
-                    }}
-                    style={{
-                      flex: 1,
-                      borderRadius: 14,
-                      borderWidth: 1.5,
-                      borderColor: active ? t.accent : t.border,
-                      backgroundColor: active ? `${t.accent}14` : t.bgSurface,
-                      paddingVertical: 10,
-                      alignItems: 'center',
-                    }}
-                  >
-                    <Text style={{ color: active ? t.accent : t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                      {n}
-                    </Text>
-                  </Pressable>
-                );
-              })}
-            </View>
-            )}
           </ScrollView>
 
-          {/* CTA */}
-          <View style={{ position: 'relative' }}>
-          <Pressable
-            testID="fc-deck-start"
-            accessibilityLabel="qa-fc-deck-start"
-            accessible
-            accessibilityState={{ disabled: !canStart }}
-            disabled={!canStart}
-            onPress={handleStart}
-            style={{
-              marginTop: 16,
-              borderRadius: 16,
-              backgroundColor: canStart ? t.accent : t.bgSurface,
-              paddingVertical: 15,
-              alignItems: 'center',
-              borderWidth: canStart ? 0 : 1,
-              borderColor: t.border,
-            }}
+          <ScrollView
+            testID="fc-deck-picker-dock"
+            style={{ flexGrow: 0, flexShrink: 0, minHeight: 0, maxHeight: hybridDockMaxHeight }}
+            contentContainerStyle={{ paddingTop: mode === 'blitz' ? 8 : 16 }}
+            showsVerticalScrollIndicator={false}
           >
-            <Text
+            {mode === 'blitz' ? null : (
+              <Text
+                style={{
+                  color: glass.text,
+                  fontSize: 16 * textScale,
+                  lineHeight: 21 * textScale,
+                  fontWeight: '700',
+                  marginHorizontal: 4,
+                  marginBottom: 10,
+                }}
+              >
+                {cardsInSessionLabel}
+              </Text>
+            )}
+            {mode === 'blitz' ? null : (
+              <View style={{ flexDirection: 'row', gap: 8 }}>
+                {FC_SESSION_SIZES.map((n) => {
+                  const active = n === size;
+                  return (
+                    <PressableHybrid
+                      key={n}
+                      testID={`fc-deck-size-${n}`}
+                      accessibilityLabel={`qa-fc-deck-size-${n}`}
+                      variant="chip"
+                      onPress={() => setSize(n)}
+                      style={{
+                        flex: 1,
+                        minHeight: 44,
+                        borderRadius: 22,
+                        backgroundColor: active ? glass.cta : glass.opaqueControl,
+                        borderWidth: active ? 0 : 1,
+                        borderColor: glass.glassEdge,
+                      }}
+                      contentStyle={{ flex: 1, paddingHorizontal: 12, alignItems: 'center', justifyContent: 'center' }}
+                    >
+                      <Text
+                        style={{
+                          color: active ? glass.ctaInk : glass.text,
+                          fontSize: 16 * textScale,
+                          lineHeight: 21 * textScale,
+                          fontWeight: '700',
+                        }}
+                      >
+                        {n}
+                      </Text>
+                    </PressableHybrid>
+                  );
+                })}
+              </View>
+            )}
+
+            <PressableHybrid
+              testID="fc-deck-start"
+              accessibilityLabel="qa-fc-deck-start"
+              variant="primary"
+              disabled={!canStart}
+              onPress={handleStart}
               style={{
-                color: canStart ? t.correctText : t.textGhost,
-                fontSize: f.body,
-                fontWeight: '800',
+                minHeight: 48,
+                marginTop: 20,
+                borderRadius: 24,
+                backgroundColor: canStart ? glass.cta : glass.opaqueControl,
+                borderWidth: canStart ? 0 : 1,
+                borderColor: glass.glassEdge,
               }}
+              contentStyle={{ minHeight: 48, paddingVertical: 12, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' }}
             >
-              {mode === 'speaking'
-                  ? SPEAKING_SHEET_START(lang)
-                : mode === 'blitz'
-                  ? triLang(lang, {
-                      ru: 'В блиц!', uk: 'У бліц!', en: 'To the blitz!', es: '¡Al blitz!',
-                      'pt-BR': 'Ao blitz!', vi: 'Vào blitz!', id: 'Mulai blitz!',
-                      tr: 'Blitz’e!', pl: 'Do blitza!',
-                    })
-                  : triLang(lang, {
-                      ru: 'Начать тренировку', uk: 'Почати тренування', en: 'Start practice', es: 'Empezar',
-                      'pt-BR': 'Começar o treino', vi: 'Bắt đầu luyện tập',
-                      id: 'Mulai latihan', tr: 'Alıştırmaya başla', pl: 'Zacznij trening',
-                    })}
-            </Text>
-          </Pressable>
-          {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой
-              старта убран — расход энергии не меняется. */}
-          </View>
-        </Reanimated.View>
-      </View>
-    </Modal>
+              <Text
+                testID="fc-deck-start-label"
+                style={{
+                  color: canStart ? glass.ctaInk : glass.mutedText,
+                  fontSize: 16 * textScale,
+                  lineHeight: 23 * textScale,
+                  fontWeight: '700',
+                  textAlign: 'center',
+                }}
+              >
+                {startLabel}
+              </Text>
+            </PressableHybrid>
+          </ScrollView>
+        </View>
+      )}
+    </HybridSheetShell>
   );
 }

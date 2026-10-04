@@ -649,7 +649,8 @@ export default function FlashcardsMyPacksScreen() {
         ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás',
         'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
       }),
-      cards: triLang(lang, { ru: 'карточек', uk: 'карток', en: 'cards', es: 'tarjetas' }),
+      // зачем (REVIEW_UI_11, PM-094): на pt-BR/vi/id/tr/pl диктор читал русское «карточек» в подписи набора.
+      cards: triLang(lang, { ru: 'карточек', uk: 'карток', en: 'cards', es: 'tarjetas', 'pt-BR': 'cartões', vi: 'thẻ', id: 'kartu', tr: 'kart', pl: 'kart' }),
       // PM-093/094 (D20, S64 — прямое требование владельца, не общий запрет на
       // подписи): одна короткая полезная строка у раздела «Мои наборы».
       sectionHint: triLang(lang, {

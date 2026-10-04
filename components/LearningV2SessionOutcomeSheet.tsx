@@ -224,7 +224,9 @@ export default function LearningV2SessionOutcomeSheet({
             <Animated.View style={detailsStyle}>
               <Text testID="learning-v2-session-modal-kicker" style={[styles.kicker, { color: g.secondary }]}>{sessionLabel.toUpperCase()} {sessionOrdinal} · {chapterLabel.toUpperCase()} {chapterOrdinal}</Text>
               <Text style={[styles.title, { color: g.text, fontSize: layout.headingSize, lineHeight: 31 }]}>{title}</Text>
-              <Text style={[styles.message, { color: g.secondary, fontSize: 16, lineHeight: 22 }]}>{message}</Text>
+              {/* зачем (сверка с learning-v2.html, 04.10): цель занятия приходит из текста курса с разметкой `код` —
+                  человеку показывались сами обратные кавычки («`I am + слово о себе`»). Показываем текст без разметки. */}
+              <Text style={[styles.message, { color: g.secondary, fontSize: 16, lineHeight: 22 }]}>{message.replace(/`/g, '')}</Text>
 
               <View style={styles.stats}>
                 {stats.map((stat) => (

@@ -207,7 +207,10 @@ export function useAudio() {
 
     const now = Date.now();
     const dedupeKey = `${normalized}\u0000${spokenText}`;
-    if (dedupeKey === lastTextRef.current && now - lastSpeakAtRef.current < 220) return;
+    if (dedupeKey === lastTextRef.current && now - lastSpeakAtRef.current < 220) {
+      console.warn(`[WORD-AUDIO] speak:dedupe_skip text=${JSON.stringify(normalized.slice(0, 40))} sinceLastMs=${now - lastSpeakAtRef.current}`);
+      return;
+    }
 
     speechGenerationRef.current += 1;
     const generation = speechGenerationRef.current;
@@ -220,6 +223,9 @@ export function useAudio() {
 
     lastTextRef.current = dedupeKey;
     lastSpeakAtRef.current = now;
+    // зачем (§126, «озвучка слов урока 9 заикается»): сперва логи. Один вызов speak должен дать РОВНО один голос — либо клип, либо системный.
+    // Подозрение: пока клип грузится, таймер запуска отдаёт озвучку системному голосу, а клип потом всё равно стартует → два голоса подряд.
+    console.warn(`[WORD-AUDIO] speak:enter gen=${generation} text=${JSON.stringify(normalized.slice(0, 40))}`);
 
     const settings = getUserSettingsSnapshot();
     // зачем: скорость применяется ТОЛЬКО к системному TTS. Готовые клипы озвучки
@@ -345,7 +351,7 @@ export function useAudio() {
         if (clipStartTimerRef.current === clipStartTimer) clipStartTimerRef.current = null;
         clipStartTimer = null;
       };
-      const fallbackOnce = () => {
+      const fallbackOnce = (reason: string) => {
         if (
           speechGenerationRef.current !== generation
           || !voicePlaybackPolicy.canStart(voicePolicyToken)
@@ -355,11 +361,12 @@ export function useAudio() {
         }
         if (fellBack) return;
         fellBack = true;
+        console.warn(`[WORD-AUDIO] clip:fallback_to_system gen=${generation} reason=${reason} text=${JSON.stringify(normalized.slice(0, 40))}`);
         clearClipStartTimer();
         stopPhraseAudioIfLoaded();
         speakWithSystemTts();
       };
-      clipStartTimer = setTimeout(fallbackOnce, CLIP_START_TIMEOUT_MS);
+      clipStartTimer = setTimeout(() => fallbackOnce('start_timeout'), CLIP_START_TIMEOUT_MS);
       clipStartTimerRef.current = clipStartTimer;
       void loadPhraseAudioPlayer()
         .then(({ hasPhraseAudio, playPhraseByText }) => {
@@ -373,19 +380,21 @@ export function useAudio() {
             normalized,
             {
               onStart: () => {
+                // fellBack=true здесь = ДВА ГОЛОСА: системный уже заговорил, а клип всё же стартовал
+                console.warn(`[WORD-AUDIO] clip:onStart gen=${generation} fellBackAlready=${fellBack} text=${JSON.stringify(normalized.slice(0, 40))}`);
                 clearClipStartTimer();
                 opts?.onStart?.();
               },
               onDone: opts?.onDone,
-              onError: fallbackOnce,
+              onError: () => fallbackOnce('player_error'),
             },
           );
         })
         .then((played) => {
           clearClipStartTimer();
-          if (!played) fallbackOnce();
+          if (!played) fallbackOnce('not_played');
         })
-        .catch(fallbackOnce);
+        .catch((error: unknown) => fallbackOnce(`catch:${error instanceof Error ? error.message : String(error)}`));
       return;
     }
 

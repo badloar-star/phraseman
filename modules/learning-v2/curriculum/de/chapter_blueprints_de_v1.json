@@ -22421,6 +22421,803 @@
           }
         }
       ]
+    },
+    {
+      "lessonId": "de_l26",
+      "lessonOrdinal": 26,
+      "grammarBoundary": {
+        "allowedConstructIds": [
+          "de_gc_werden_infinitive_meanings_v1",
+          "de_gc_present_future_reference_v1",
+          "de_gc_modal_finite_bare_infinitive_v1",
+          "de_gc_event_passive_v1",
+          "de_gc_state_passive_v1"
+        ],
+        "prohibitedConstructIds": [
+          "de_gc_broader_narrative_preterite_v1",
+          "de_gc_limited_functional_genitive_v1"
+        ],
+        "noExpansion": "Permit only present third-person singular wird plus a clause-final bare infinitive in controlled work-schedule statements: one explicitly future-time use and one cautious modal-assessment use marked by wahrscheinlich; keep Präsens plus explicit future-time wording as the ordinary confirmed-plan option. Contrast only the known present singular event passive wird plus one verified controlled participle and present singular state passive ist plus that participle. Do not generalize werden as obligatory or universal future marking; do not introduce other werden persons or numbers, questions, negation scope, future perfect, modal Perfekt, double-infinitive clusters, new passive paradigms, recipient passive, agent phrases, participle formation, new tense, new connector, new case or preposition relation, broader narrative Präteritum, functional Genitiv, L27 grammar, learner-facing artifacts, release, audio, mockup, English-contour reuse, or Task6 lexical adjudication."
+      },
+      "chapters": [
+        {
+          "id": "de_l26_c01",
+          "ordinal": 1,
+          "lessonOutcomeId": "de_l26_ch01",
+          "lessonOutcome": "recognise future-time and modal-assessment readings of werden plus infinitive",
+          "packetIds": [
+            "de_l26_c01_s01",
+            "de_l26_c01_s02",
+            "de_l26_c01_s03",
+            "de_l26_c01_s04",
+            "de_l26_c01_s05",
+            "de_l26_c01_s06",
+            "de_l26_c01_s07",
+            "de_l26_c01_s08"
+          ],
+          "allowedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_present_future_reference_v1",
+            "de_gc_modal_finite_bare_infinitive_v1",
+            "de_gc_event_passive_v1",
+            "de_gc_state_passive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "situation": {
+            "setting": "project-office-forecast-briefing",
+            "participants": "planner-and-team-lead",
+            "goal": "recognise-future-time-and-modal-assessment-readings-of-werden-plus-infinitive",
+            "contextSignature": "project-forecast-werden-reading-recognition"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Der Termin wird am Freitag beginnen. Die Besprechung wird wahrscheinlich später beginnen. Der erste Satz verweist auf spätere Zeit. Der zweite Satz ist eine vorsichtige Einschätzung.",
+            "exit": "Der Termin wird am Freitag beginnen. Die Besprechung wird wahrscheinlich später beginnen.",
+            "independentEvidenceByPacketId": "de_l26_c01_s08"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_werden_infinitive_meanings_v1",
+              "stage": "introduction",
+              "packetId": "de_l26_c01_s01"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l26_c01_s03", "de_l26_c01_s04"],
+          "checkpoint": {
+            "packetId": "de_l26_c01_s08",
+            "integratedConstructIds": [
+              "de_gc_werden_infinitive_meanings_v1",
+              "de_gc_present_future_reference_v1",
+              "de_gc_modal_finite_bare_infinitive_v1",
+              "de_gc_event_passive_v1",
+              "de_gc_state_passive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l26_c01_wahrscheinlich_v1",
+                "semanticIdentity": "wahrscheinlich|probably marking a statement as a cautious assessment rather than a confirmed fact",
+                "lemmaOrExpression": "wahrscheinlich",
+                "partOfSpeech": "adverb",
+                "lexicalKind": "ADVERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": null,
+                "senseGloss": "probably, marking a statement as a cautious assessment rather than a confirmed fact",
+                "communicativeUse": "Der Termin wird am Freitag beginnen. Die Besprechung wird wahrscheinlich später beginnen. Der erste Satz verweist auf spätere Zeit. Der zweite Satz ist eine vorsichtige Einschätzung.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l26_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l26_ch01",
+                  "checkpointPacketId": "de_l26_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_werden_infinitive_meanings_v1",
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_event_passive_v1",
+                    "de_gc_state_passive_v1"
+                  ],
+                  "utilityRole": "discourse",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-recognise-future-time-and-modal-assessment-readings-of-werden-plus-infinitive",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l26_c01_s08"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "site-repair-forecast-briefing",
+              "participants": "site-coordinator-and-project-manager",
+              "goal": "independently-recognise-future-time-and-modal-assessment-readings-of-werden-plus-infinitive",
+              "contextSignature": "site-repair-forecast-recognition-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l17_c01", "de_l17_c02"],
+            "targetsFutureChapterIds": ["de_l26_c02"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l27_c07_s51"
+            }
+          }
+        },
+        {
+          "id": "de_l26_c02",
+          "ordinal": 2,
+          "lessonOutcomeId": "de_l26_ch02",
+          "lessonOutcome": "contrast ordinary present future with a taught werden meaning",
+          "packetIds": [
+            "de_l26_c02_s09",
+            "de_l26_c02_s10",
+            "de_l26_c02_s11",
+            "de_l26_c02_s12",
+            "de_l26_c02_s13",
+            "de_l26_c02_s14",
+            "de_l26_c02_s15",
+            "de_l26_c02_s16"
+          ],
+          "allowedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_present_future_reference_v1",
+            "de_gc_modal_finite_bare_infinitive_v1",
+            "de_gc_event_passive_v1",
+            "de_gc_state_passive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "situation": {
+            "setting": "maintenance-schedule-review",
+            "participants": "maintenance-planner-and-site-manager",
+            "goal": "contrast-ordinary-present-future-with-a-cautious-werden-forecast",
+            "contextSignature": "maintenance-present-future-werden-contrast"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Morgen beginnt die Besprechung. Die Vorhersage lautet: Wahrscheinlich wird die Besprechung später beginnen. Präsens mit morgen zeigt den bestätigten Plan; werden plus Infinitiv zeigt hier eine vorsichtige Vorhersage.",
+            "exit": "Morgen beginnt die Besprechung. Die Vorhersage lautet: Wahrscheinlich wird die Besprechung später beginnen.",
+            "independentEvidenceByPacketId": "de_l26_c02_s16"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_werden_infinitive_meanings_v1",
+              "stage": "guided",
+              "packetId": "de_l26_c02_s09"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l26_c02_s11", "de_l26_c02_s12"],
+          "checkpoint": {
+            "packetId": "de_l26_c02_s16",
+            "integratedConstructIds": [
+              "de_gc_werden_infinitive_meanings_v1",
+              "de_gc_present_future_reference_v1",
+              "de_gc_modal_finite_bare_infinitive_v1",
+              "de_gc_event_passive_v1",
+              "de_gc_state_passive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l26_c02_vorhersage_v1",
+                "semanticIdentity": "vorhersage|forecast used to contrast a cautious prediction with a confirmed schedule",
+                "lemmaOrExpression": "Vorhersage",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Vorhersage",
+                  "plural": "Vorhersagen"
+                },
+                "nounPackageIdentity": "die|vorhersage|vorhersagen",
+                "verbPackage": null,
+                "senseGloss": "forecast used to contrast a cautious prediction with a confirmed schedule",
+                "communicativeUse": "Morgen beginnt die Besprechung. Die Vorhersage lautet: Wahrscheinlich wird die Besprechung später beginnen. Präsens mit morgen zeigt den bestätigten Plan; werden plus Infinitiv zeigt hier eine vorsichtige Vorhersage.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l26_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l26_ch02",
+                  "checkpointPacketId": "de_l26_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_werden_infinitive_meanings_v1",
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_event_passive_v1",
+                    "de_gc_state_passive_v1"
+                  ],
+                  "utilityRole": "discourse",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-contrast-ordinary-present-future-with-a-cautious-werden-forecast",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l26_c02_s16"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "training-room-schedule-review",
+              "participants": "trainer-and-office-coordinator",
+              "goal": "independently-contrast-ordinary-present-future-with-a-cautious-werden-forecast",
+              "contextSignature": "training-schedule-present-future-contrast-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l17_c04", "de_l26_c01"],
+            "targetsFutureChapterIds": ["de_l26_c03"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l27_c07_s52"
+            }
+          }
+        },
+        {
+          "id": "de_l26_c03",
+          "ordinal": 3,
+          "lessonOutcomeId": "de_l26_ch03",
+          "lessonOutcome": "state a bounded schedule forecast",
+          "packetIds": [
+            "de_l26_c03_s17",
+            "de_l26_c03_s18",
+            "de_l26_c03_s19",
+            "de_l26_c03_s20",
+            "de_l26_c03_s21",
+            "de_l26_c03_s22",
+            "de_l26_c03_s23",
+            "de_l26_c03_s24"
+          ],
+          "allowedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_present_future_reference_v1",
+            "de_gc_modal_finite_bare_infinitive_v1",
+            "de_gc_event_passive_v1",
+            "de_gc_state_passive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "situation": {
+            "setting": "supplier-delivery-forecast-call",
+            "participants": "buyer-and-supplier-coordinator",
+            "goal": "state-a-bounded-delivery-schedule-forecast",
+            "contextSignature": "supplier-delivery-bounded-forecast"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Der Liefertermin wird am Freitag sein. Das ist eine begrenzte Zeitprognose, nicht die einzige Form für Zukunft.",
+            "exit": "Der Liefertermin wird am Freitag sein.",
+            "independentEvidenceByPacketId": "de_l26_c03_s24"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_werden_infinitive_meanings_v1",
+              "stage": "retrieval",
+              "packetId": "de_l26_c03_s17"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l26_c03_s19", "de_l26_c03_s20"],
+          "checkpoint": {
+            "packetId": "de_l26_c03_s24",
+            "integratedConstructIds": [
+              "de_gc_werden_infinitive_meanings_v1",
+              "de_gc_present_future_reference_v1",
+              "de_gc_modal_finite_bare_infinitive_v1",
+              "de_gc_event_passive_v1",
+              "de_gc_state_passive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l26_c03_liefertermin_v1",
+                "semanticIdentity": "liefertermin|delivery date used to state one bounded schedule forecast",
+                "lemmaOrExpression": "Liefertermin",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Liefertermin",
+                  "plural": "Liefertermine"
+                },
+                "nounPackageIdentity": "der|liefertermin|liefertermine",
+                "verbPackage": null,
+                "senseGloss": "delivery date used to state one bounded schedule forecast",
+                "communicativeUse": "Der Liefertermin wird am Freitag sein. Das ist eine begrenzte Zeitprognose, nicht die einzige Form für Zukunft.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l26_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l26_ch03",
+                  "checkpointPacketId": "de_l26_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_werden_infinitive_meanings_v1",
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_event_passive_v1",
+                    "de_gc_state_passive_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "equipment-delivery-forecast-call",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l26_c03_s24"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "equipment-delivery-forecast-call",
+              "participants": "workshop-lead-and-logistics-coordinator",
+              "goal": "independently-state-a-bounded-delivery-schedule-forecast",
+              "contextSignature": "equipment-delivery-bounded-forecast-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l17_c06", "de_l26_c02"],
+            "targetsFutureChapterIds": ["de_l26_c04"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l27_c07_s53"
+            }
+          }
+        },
+        {
+          "id": "de_l26_c04",
+          "ordinal": 4,
+          "lessonOutcomeId": "de_l26_ch04",
+          "lessonOutcome": "express a cautious modal assessment",
+          "packetIds": [
+            "de_l26_c04_s25",
+            "de_l26_c04_s26",
+            "de_l26_c04_s27",
+            "de_l26_c04_s28",
+            "de_l26_c04_s29",
+            "de_l26_c04_s30",
+            "de_l26_c04_s31",
+            "de_l26_c04_s32"
+          ],
+          "allowedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_present_future_reference_v1",
+            "de_gc_modal_finite_bare_infinitive_v1",
+            "de_gc_event_passive_v1",
+            "de_gc_state_passive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "situation": {
+            "setting": "quality-check-duration-estimate",
+            "participants": "quality-coordinator-and-project-lead",
+            "goal": "express-a-cautious-assessment-of-check-duration",
+            "contextSignature": "quality-check-cautious-duration-assessment"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Der Ablauf wird wahrscheinlich länger dauern. Das Wort „wahrscheinlich“ kennzeichnet die Aussage als Einschätzung, nicht als bestätigte Tatsache.",
+            "exit": "Der Ablauf wird wahrscheinlich länger dauern.",
+            "independentEvidenceByPacketId": "de_l26_c04_s32"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_werden_infinitive_meanings_v1",
+              "stage": "production",
+              "packetId": "de_l26_c04_s25"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l26_c04_s27", "de_l26_c04_s28"],
+          "checkpoint": {
+            "packetId": "de_l26_c04_s32",
+            "integratedConstructIds": [
+              "de_gc_werden_infinitive_meanings_v1",
+              "de_gc_present_future_reference_v1",
+              "de_gc_modal_finite_bare_infinitive_v1",
+              "de_gc_event_passive_v1",
+              "de_gc_state_passive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l26_c04_dauern_v1",
+                "semanticIdentity": "dauern|last for a length of time in a cautious assessment",
+                "lemmaOrExpression": "dauern",
+                "partOfSpeech": "verb",
+                "lexicalKind": "VERB_LEXEME",
+                "nounPackage": null,
+                "verbPackage": {
+                  "infinitive": "dauern",
+                  "valencyFrame": "intransitive duration-assessment frame",
+                  "separability": "inseparable",
+                  "perfectAuxiliary": "haben"
+                },
+                "senseGloss": "last for a length of time in a cautious assessment",
+                "communicativeUse": "Der Ablauf wird wahrscheinlich länger dauern. Das Wort „wahrscheinlich“ kennzeichnet die Aussage als Einschätzung, nicht als bestätigte Tatsache.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l26_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l26_ch04",
+                  "checkpointPacketId": "de_l26_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_werden_infinitive_meanings_v1",
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_event_passive_v1",
+                    "de_gc_state_passive_v1"
+                  ],
+                  "utilityRole": "action",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-express-a-cautious-assessment-of-inspection-duration",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l26_c04_s32"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "inspection-duration-estimate",
+              "participants": "inspector-and-service-manager",
+              "goal": "independently-express-a-cautious-assessment-of-inspection-duration",
+              "contextSignature": "inspection-cautious-duration-assessment-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l09_c04", "de_l26_c03"],
+            "targetsFutureChapterIds": ["de_l26_c05"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l27_c07_s54"
+            }
+          }
+        },
+        {
+          "id": "de_l26_c05",
+          "ordinal": 5,
+          "lessonOutcomeId": "de_l26_ch05",
+          "lessonOutcome": "distinguish passive werden from infinitive-bracket werden",
+          "packetIds": [
+            "de_l26_c05_s33",
+            "de_l26_c05_s34",
+            "de_l26_c05_s35",
+            "de_l26_c05_s36",
+            "de_l26_c05_s37",
+            "de_l26_c05_s38",
+            "de_l26_c05_s39",
+            "de_l26_c05_s40"
+          ],
+          "allowedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_present_future_reference_v1",
+            "de_gc_modal_finite_bare_infinitive_v1",
+            "de_gc_event_passive_v1",
+            "de_gc_state_passive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "situation": {
+            "setting": "design-review-process-update",
+            "participants": "designer-and-project-coordinator",
+            "goal": "distinguish-an-event-passive-process-from-a-werden-infinitive-assessment",
+            "contextSignature": "design-review-passive-infinitive-discrimination"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Der Entwurf wird geprüft. Der Ablauf wird wahrscheinlich länger dauern. Die Verbindung aus „wird“ und Partizip II bezeichnet hier einen Vorgang. Die Verbindung aus „wird“ und Infinitiv bezeichnet hier eine Einschätzung.",
+            "exit": "Der Entwurf wird geprüft. Der Ablauf wird wahrscheinlich länger dauern.",
+            "independentEvidenceByPacketId": "de_l26_c05_s40"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l26_c05_s35", "de_l26_c05_s36"],
+          "checkpoint": {
+            "packetId": "de_l26_c05_s40",
+            "integratedConstructIds": [
+              "de_gc_werden_infinitive_meanings_v1",
+              "de_gc_present_future_reference_v1",
+              "de_gc_modal_finite_bare_infinitive_v1",
+              "de_gc_event_passive_v1",
+              "de_gc_state_passive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l26_c05_entwurf_v1",
+                "semanticIdentity": "entwurf|draft whose review process distinguishes event passive from a duration assessment",
+                "lemmaOrExpression": "Entwurf",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Entwurf",
+                  "plural": "Entwürfe"
+                },
+                "nounPackageIdentity": "der|entwurf|entwurfe",
+                "verbPackage": null,
+                "senseGloss": "draft whose review process distinguishes event passive from a duration assessment",
+                "communicativeUse": "Der Entwurf wird geprüft. Der Ablauf wird wahrscheinlich länger dauern. Die Verbindung aus „wird“ und Partizip II bezeichnet hier einen Vorgang. Die Verbindung aus „wird“ und Infinitiv bezeichnet hier eine Einschätzung.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l26_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l26_ch05",
+                  "checkpointPacketId": "de_l26_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_werden_infinitive_meanings_v1",
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_event_passive_v1",
+                    "de_gc_state_passive_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "document-approval-process-update",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l26_c05_s40"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "document-approval-process-update",
+              "participants": "editor-and-administration-coordinator",
+              "goal": "independently-distinguish-an-event-passive-process-from-a-werden-infinitive-assessment",
+              "contextSignature": "document-approval-passive-infinitive-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l24_c07", "de_l25_c02"],
+            "targetsFutureChapterIds": ["de_l26_c06"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l27_c07_s55"
+            }
+          }
+        },
+        {
+          "id": "de_l26_c06",
+          "ordinal": 6,
+          "lessonOutcomeId": "de_l26_ch06",
+          "lessonOutcome": "repair a universal-future or passive-meaning overgeneralisation",
+          "packetIds": [
+            "de_l26_c06_s41",
+            "de_l26_c06_s42",
+            "de_l26_c06_s43",
+            "de_l26_c06_s44",
+            "de_l26_c06_s45",
+            "de_l26_c06_s46",
+            "de_l26_c06_s47",
+            "de_l26_c06_s48"
+          ],
+          "allowedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_present_future_reference_v1",
+            "de_gc_modal_finite_bare_infinitive_v1",
+            "de_gc_event_passive_v1",
+            "de_gc_state_passive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "situation": {
+            "setting": "planning-language-correction",
+            "participants": "junior-planner-and-language-mentor",
+            "goal": "repair-universal-future-and-passive-meaning-overgeneralisation",
+            "contextSignature": "planning-werden-overgeneralisation-repair"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Die Annahme ist falsch. „Morgen beginnt die Besprechung“ verweist bereits auf die Zukunft. „Wahrscheinlich wird die Besprechung später beginnen“ ist hier eine Einschätzung. „Der Entwurf wird geprüft“ beschreibt einen Vorgang.",
+            "exit": "„Morgen beginnt die Besprechung“ verweist auf die Zukunft. „Wahrscheinlich wird die Besprechung später beginnen“ ist eine Einschätzung. „Der Entwurf wird geprüft“ beschreibt einen Vorgang.",
+            "independentEvidenceByPacketId": "de_l26_c06_s48"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_werden_infinitive_meanings_v1",
+              "stage": "transfer",
+              "packetId": "de_l26_c06_s41"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l26_c06_s43", "de_l26_c06_s44"],
+          "checkpoint": {
+            "packetId": "de_l26_c06_s48",
+            "integratedConstructIds": [
+              "de_gc_werden_infinitive_meanings_v1",
+              "de_gc_present_future_reference_v1",
+              "de_gc_modal_finite_bare_infinitive_v1",
+              "de_gc_event_passive_v1",
+              "de_gc_state_passive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l26_c06_annahme_v1",
+                "semanticIdentity": "annahme|assumption corrected when werden is overgeneralised as universal future or passive meaning",
+                "lemmaOrExpression": "Annahme",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Annahme",
+                  "plural": "Annahmen"
+                },
+                "nounPackageIdentity": "die|annahme|annahmen",
+                "verbPackage": null,
+                "senseGloss": "assumption corrected when werden is overgeneralised as universal future or passive meaning",
+                "communicativeUse": "Die Annahme ist falsch. „Morgen beginnt die Besprechung“ verweist bereits auf die Zukunft. „Wahrscheinlich wird die Besprechung später beginnen“ ist hier eine Einschätzung. „Der Entwurf wird geprüft“ beschreibt einen Vorgang.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l26_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l26_ch06",
+                  "checkpointPacketId": "de_l26_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_werden_infinitive_meanings_v1",
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_modal_finite_bare_infinitive_v1",
+                    "de_gc_event_passive_v1",
+                    "de_gc_state_passive_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-repair-universal-future-and-passive-meaning-overgeneralisation",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l26_c06_s48"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "volunteer-plan-language-correction",
+              "participants": "volunteer-planner-and-language-coach",
+              "goal": "independently-repair-universal-future-and-passive-meaning-overgeneralisation",
+              "contextSignature": "volunteer-plan-werden-repair-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l17_c07", "de_l26_c05"],
+            "targetsFutureChapterIds": ["de_l26_c07"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l27_c07_s56"
+            }
+          }
+        },
+        {
+          "id": "de_l26_c07",
+          "ordinal": 7,
+          "lessonOutcomeId": "de_l26_ch07",
+          "lessonOutcome": "transfer future and assessment contrast to a new planning forecast",
+          "packetIds": [
+            "de_l26_c07_s49",
+            "de_l26_c07_s50",
+            "de_l26_c07_s51",
+            "de_l26_c07_s52",
+            "de_l26_c07_s53",
+            "de_l26_c07_s54",
+            "de_l26_c07_s55",
+            "de_l26_c07_s56"
+          ],
+          "allowedConstructIds": [
+            "de_gc_werden_infinitive_meanings_v1",
+            "de_gc_present_future_reference_v1",
+            "de_gc_event_passive_v1",
+            "de_gc_state_passive_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_broader_narrative_preterite_v1",
+            "de_gc_limited_functional_genitive_v1"
+          ],
+          "situation": {
+            "setting": "community-centre-renovation-handover",
+            "participants": "project-coordinator-and-facility-manager",
+            "goal": "transfer-confirmed-plan-cautious-forecast-event-and-state-to-a-changed-project",
+            "contextSignature": "renovation-plan-forecast-final-transfer"
+          },
+          "supportFading": {
+            "entryLevel": 2,
+            "exitLevel": 0,
+            "entry": "Frau Keller, der Plan steht fest: Morgen beginnt der Umbau. Wahrscheinlich wird der Umbau länger dauern. Der Eingang wird heute gesperrt. Danach ist der Eingang gesperrt. „Morgen beginnt der Umbau“ ist bestätigt. „Wahrscheinlich wird der Umbau länger dauern“ bleibt eine Einschätzung.",
+            "exit": "Frau Keller, der Plan steht fest: Morgen beginnt der Umbau. Wahrscheinlich wird der Umbau länger dauern. Der Eingang wird heute gesperrt. Danach ist der Eingang gesperrt. „Morgen beginnt der Umbau“ ist bestätigt. „Wahrscheinlich wird der Umbau länger dauern“ bleibt eine Einschätzung.",
+            "independentEvidenceByPacketId": "de_l26_c07_s56"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_state_passive_v1",
+              "stage": "delayed",
+              "packetId": "de_l26_c07_s49"
+            }
+          ],
+          "chapterEvidencePacketIds": [
+            "de_l26_c07_s51",
+            "de_l26_c07_s52",
+            "de_l26_c07_s53",
+            "de_l26_c07_s54",
+            "de_l26_c07_s55",
+            "de_l26_c07_s56"
+          ],
+          "checkpoint": {
+            "packetId": "de_l26_c07_s56",
+            "integratedConstructIds": [
+              "de_gc_werden_infinitive_meanings_v1",
+              "de_gc_present_future_reference_v1",
+              "de_gc_event_passive_v1",
+              "de_gc_state_passive_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l26_c07_umbau_v1",
+                "semanticIdentity": "umbau|renovation project used to separate a confirmed plan from a cautious forecast in transfer",
+                "lemmaOrExpression": "Umbau",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Umbau",
+                  "plural": "Umbauten"
+                },
+                "nounPackageIdentity": "der|umbau|umbauten",
+                "verbPackage": null,
+                "senseGloss": "renovation project used to separate a confirmed plan from a cautious forecast in transfer",
+                "communicativeUse": "Frau Keller, der Plan steht fest: Morgen beginnt der Umbau. Wahrscheinlich wird der Umbau länger dauern. Der Eingang wird heute gesperrt. Danach ist der Eingang gesperrt. „Morgen beginnt der Umbau“ ist bestätigt. „Wahrscheinlich wird der Umbau länger dauern“ bleibt eine Einschätzung.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l26_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l26_ch07",
+                  "checkpointPacketId": "de_l26_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_werden_infinitive_meanings_v1",
+                    "de_gc_present_future_reference_v1",
+                    "de_gc_event_passive_v1",
+                    "de_gc_state_passive_v1"
+                  ],
+                  "utilityRole": "transfer",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-separate-a-confirmed-plan-cautious-forecast-event-and-state",
+                  "necessityClass": "TRANSFER_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l26_c07_s56"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "sports-hall-renovation-handover",
+              "participants": "club-coordinator-and-building-manager",
+              "goal": "independently-separate-a-confirmed-plan-cautious-forecast-event-and-state",
+              "contextSignature": "sports-hall-renovation-transfer-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l25_c05", "de_l26_c06"],
+            "targetsFutureChapterIds": ["de_l27_c01"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l27_c07_s55"
+            }
+          }
+        }
+      ]
     }
   ]
 }

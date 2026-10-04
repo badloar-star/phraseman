@@ -11517,6 +11517,309 @@ function validateL25SemanticContract(raw: R, plan: Boundary): void {
     throw new Error("l25_semantic_contract_invalid:identity");
 }
 
+const L26_CONTRACT_HASH =
+  "695cb33190db3141a47a27f3a26988c9906cd15a6a469aea70f03fed3660424a";
+const L26_PLAN_HASH =
+  "805fe54f40b7f2c9229f6bec162bcf2d4eb686e0f849a1dca1435d5af3106f1d";
+
+function validateL26SemanticContract(raw: R, plan: Boundary): void {
+  const lesson = (raw.lessons as R[]).find((x) => x.lessonId === "de_l26") as R;
+  const expected = ((json(FILE) as R).lessons as R[]).find(
+    (x) => x.lessonId === "de_l26",
+  ) as R;
+  if (
+    !lesson ||
+    !expected ||
+    l23Hash(expected) !== L26_CONTRACT_HASH ||
+    l23Hash(plan as unknown as R) !== L26_PLAN_HASH
+  )
+    throw new Error("l26_semantic_contract_invalid:identity");
+  const chapters = lesson.chapters as R[],
+    expectedChapters = expected.chapters as R[];
+  const allowed = [
+      "de_gc_werden_infinitive_meanings_v1",
+      "de_gc_present_future_reference_v1",
+      "de_gc_modal_finite_bare_infinitive_v1",
+      "de_gc_event_passive_v1",
+      "de_gc_state_passive_v1",
+    ],
+    finalAllowed = allowed.filter(
+      (x) => x !== "de_gc_modal_finite_bare_infinitive_v1",
+    ),
+    prohibited = [
+      "de_gc_broader_narrative_preterite_v1",
+      "de_gc_limited_functional_genitive_v1",
+    ];
+  if (
+    (lesson.grammarBoundary as R).noExpansion !==
+    (expected.grammarBoundary as R).noExpansion
+  )
+    throw new Error("l26_semantic_contract_invalid:no_expansion");
+  if (
+    chapters.length !== 7 ||
+    chapters.some(
+      (c, i) =>
+        JSON.stringify(c.allowedConstructIds) !==
+          JSON.stringify(i === 6 ? finalAllowed : allowed) ||
+        JSON.stringify((c.checkpoint as R).integratedConstructIds) !==
+          JSON.stringify(i === 6 ? finalAllowed : allowed) ||
+        JSON.stringify(c.prohibitedConstructIds) !== JSON.stringify(prohibited),
+    )
+  )
+    throw new Error("l26_semantic_contract_invalid:sets");
+  const anchors = chapters.flatMap((c) => c.lifecycleAnchors as R[]);
+  const expectedAnchors = [
+    ["de_gc_werden_infinitive_meanings_v1", "introduction", "de_l26_c01_s01"],
+    ["de_gc_werden_infinitive_meanings_v1", "guided", "de_l26_c02_s09"],
+    ["de_gc_werden_infinitive_meanings_v1", "retrieval", "de_l26_c03_s17"],
+    ["de_gc_werden_infinitive_meanings_v1", "production", "de_l26_c04_s25"],
+    ["de_gc_werden_infinitive_meanings_v1", "transfer", "de_l26_c06_s41"],
+    ["de_gc_state_passive_v1", "delayed", "de_l26_c07_s49"],
+  ];
+  if (
+    JSON.stringify(anchors.map((a) => [a.constructId, a.stage, a.packetId])) !==
+    JSON.stringify(expectedAnchors)
+  )
+    throw new Error("l26_registry_anchor_mismatch");
+  const prior = (raw.lessons as R[]).find((x) => x.lessonId === "de_l25") as R;
+  if (
+    !prior ||
+    JSON.stringify(
+      (prior.chapters as R[]).map(
+        (c) => ((c.recallSchedule as R).futureDelayedProbe as R).packetId,
+      ),
+    ) !==
+      JSON.stringify([
+        "de_l26_c07_s51",
+        "de_l26_c07_s52",
+        "de_l26_c07_s53",
+        "de_l26_c07_s54",
+        "de_l26_c07_s55",
+        "de_l26_c07_s56",
+        "de_l26_c07_s55",
+      ])
+  )
+    throw new Error("l25_l26_inverse_provenance_invalid");
+  const surfaces = chapters.map((c) => {
+      const s = c.supportFading as R,
+        x = ((c.checkpoint as R).plannedNewLexicalSenses as R[])[0] as R;
+      return [String(s.entry), String(s.exit), String(x.communicativeUse)];
+    }),
+    pedagogic = surfaces.flat().join(" "),
+    meta = JSON.stringify(lesson).replaceAll(
+      String((expected.grammarBoundary as R).noExpansion),
+      "",
+    );
+  const c1 = surfaces[0].join(" "),
+    c2 = surfaces[1].join(" "),
+    c4 = surfaces[3].join(" "),
+    c5 = surfaces[4].join(" ");
+  const c1FutureTimeEvidence = /Der Termin wird am Freitag beginnen/iu.test(c1),
+    c1ModalAssessmentEvidence =
+      /Die Besprechung wird wahrscheinlich später beginnen/iu.test(c1),
+    c2PresentFutureEvidence = /Morgen beginnt die Besprechung/iu.test(c2),
+    c2WerdenInfinitiveEvidence =
+      /Wahrscheinlich wird die Besprechung später beginnen/iu.test(c2),
+    c4UncertaintyMarkedAssessmentEvidence =
+      /Der Ablauf wird wahrscheinlich länger dauern/iu.test(c4) &&
+      /Das Wort „wahrscheinlich“ kennzeichnet die Aussage als Einschätzung/iu.test(
+        c4,
+      ),
+    c5EventPassiveEvidence =
+      /Der Entwurf wird geprüft/iu.test(c5) &&
+      /Die Verbindung aus „wird“ und Partizip II bezeichnet hier einen Vorgang/iu.test(
+        c5,
+      ),
+    c5InfinitiveAssessmentEvidence =
+      /Der Ablauf wird wahrscheinlich länger dauern/iu.test(c5) &&
+      /Die Verbindung aus „wird“ und Infinitiv bezeichnet hier eine Einschätzung/iu.test(
+        c5,
+      );
+  if (!c1FutureTimeEvidence || !c1ModalAssessmentEvidence)
+    throw new Error("l26_werden_meaning_evidence_missing");
+  if (!c2PresentFutureEvidence || !c2WerdenInfinitiveEvidence)
+    throw new Error("l26_present_future_contrast_invalid");
+  if (!c4UncertaintyMarkedAssessmentEvidence)
+    throw new Error("l26_modal_assessment_invalid");
+  if (
+    !/Der Entwurf wird geprüft/iu.test(c5) ||
+    !/Der Ablauf wird wahrscheinlich länger dauern/iu.test(c5)
+  )
+    throw new Error("l26_passive_infinitive_contrast_invalid");
+  if (!c5EventPassiveEvidence)
+    throw new Error("l26_event_passive_meaning_confusion");
+  if (!c5InfinitiveAssessmentEvidence)
+    throw new Error("l26_passive_infinitive_contrast_invalid");
+  if (!/Danach ist der Eingang gesperrt/iu.test(surfaces[6].join(" ")))
+    throw new Error("l26_state_passive_confusion");
+  if (
+    /\b(?:ich werde|du wirst|wir werden|ihr werdet|die termine werden)\b/iu.test(
+      pedagogic,
+    )
+  )
+    throw new Error("l26_werden_person_number_paradigm_leak");
+  if (
+    /\b(?:sind|waren|werden|wurden)\b[^.!?:;]{0,100}\b(?:geöffnet|geschlossen|gesperrt|gereinigt|repariert|geprüft)\b/iu.test(
+      pedagogic,
+    ) ||
+    /personNumberParadigmProbe/iu.test(meta)
+  )
+    throw new Error("l26_passive_number_paradigm_leak");
+  if (
+    /\b(?:sein|haben|können)\s+\w+\s+(?:worden|haben|sein)\b|\bwird\s+\w+\s+(?:haben|sein|können)\b|futurePerfectProbe|modalPerfektProbe|doubleInfinitiveProbe/iu.test(
+      pedagogic + meta,
+    )
+  )
+    throw new Error("l26_future_perfect_or_modalperfekt_leak");
+  if (
+    /universal future|immer.*Zukunft|obligatorisch/iu.test(pedagogic) ||
+    /futureAlwaysRequiresWerdenProbe/iu.test(meta)
+  )
+    throw new Error("l26_universal_future_claim_leak");
+  if (
+    /\b(?:bekommt|kriegt|erhält)\b|recipientPassiveProbe/iu.test(
+      pedagogic + meta,
+    )
+  )
+    throw new Error("l26_recipient_passive_leak");
+  if (/\b(?:vom|von|durch)\b|agentPhraseProbe/iu.test(pedagogic + meta))
+    throw new Error("l26_agent_phrase_leak");
+  if (/unverified participle|participleFormationProbe/iu.test(pedagogic + meta))
+    throw new Error("l26_unverified_participle_leak");
+  if (/\b(?:war|wurde)\b/iu.test(pedagogic))
+    throw new Error("l26_new_tense_leak");
+  if (/\b(?:kam|blieb)\b|narrativeTenseProbe/iu.test(pedagogic + meta))
+    throw new Error("l26_broader_preterite_leak");
+  if (/\b(?:obwohl|nachdem)\b|connectorProbe/iu.test(pedagogic + meta))
+    throw new Error("l26_new_connector_leak");
+  if (
+    /\b(?:wegen|trotz)\b|newCaseOrPrepositionRelationProbe/iu.test(
+      pedagogic + meta,
+    )
+  )
+    throw new Error("l26_new_case_preposition_relation_leak");
+  if (/functionalGenitiveProbe/iu.test(meta))
+    throw new Error("l26_functional_genitive_leak");
+  if (/hidden L27|TASK6_ADJUDICATED/iu.test(meta))
+    throw new Error("l26_l27_or_task6_leak");
+  const walk = (v: unknown, keys: Set<string>): boolean =>
+    Array.isArray(v)
+      ? v.some((x) => walk(x, keys))
+      : !!v &&
+        typeof v === "object" &&
+        Object.entries(v as R).some(([k, x]) => keys.has(k) || walk(x, keys));
+  if (walk(lesson, new Set(["releaseProjection", "releasePath", "mockupPath"])))
+    throw new Error("l26_release_surface_leak");
+  if (
+    lesson.learnerArtifactsAuthorized === true ||
+    walk(
+      lesson,
+      new Set([
+        "interaction",
+        "interactions",
+        "prompt",
+        "target",
+        "audioTarget",
+        "audioTranscript",
+        "referenceAudio",
+        "voiceTarget",
+        "correctText",
+        "responseOptions",
+        "modePayload",
+        "feedback",
+        "learnerText",
+        "ru",
+        "uk",
+      ]),
+    )
+  )
+    throw new Error("l26_learner_surface_leak");
+  if (lesson.allowNonGermanAssessedTarget === true)
+    throw new Error("l26_interaction_002_future_boundary_invalid");
+  if (lesson.englishContourProbe !== undefined)
+    throw new Error("l26_english_contour_leak");
+  const final = surfaces[6].join(" ");
+  if (
+    !final.includes("Frau Keller") ||
+    !final.includes("Morgen beginnt der Umbau") ||
+    !final.includes("Wahrscheinlich wird der Umbau länger dauern") ||
+    !final.includes("Der Eingang wird heute gesperrt") ||
+    !final.includes("Danach ist der Eingang gesperrt")
+  )
+    throw new Error("l26_c07_final_transfer");
+  if (
+    chapters.some(
+      (c, i) =>
+        JSON.stringify(c.situation) !==
+          JSON.stringify(expectedChapters[i].situation) ||
+        JSON.stringify((c.checkpoint as R).newSituation) !==
+          JSON.stringify((expectedChapters[i].checkpoint as R).newSituation),
+    )
+  )
+    throw new Error("l26_semantic_contract_invalid:situations");
+  if (
+    chapters.some(
+      (c, i) =>
+        ((c.checkpoint as R).plannedNewLexicalSenses as R[])[0]
+          .communicativeUse !==
+        (
+          (
+            (expectedChapters[i].checkpoint as R).plannedNewLexicalSenses as R[]
+          )[0] as R
+        ).communicativeUse,
+    ) ||
+    (chapters[4].checkpoint as R).packetId !==
+      (expectedChapters[4].checkpoint as R).packetId
+  )
+    throw new Error("l26_checkpoint_lexical_alignment_invalid");
+  if (
+    chapters.some((c, i) => {
+      const a = clone(
+          ((c.checkpoint as R).plannedNewLexicalSenses as R[])[0] as R,
+        ),
+        b = clone(
+          (
+            (expectedChapters[i].checkpoint as R).plannedNewLexicalSenses as R[]
+          )[0] as R,
+        );
+      delete a.utilityProof;
+      delete b.utilityProof;
+      return JSON.stringify(a) !== JSON.stringify(b);
+    })
+  )
+    throw new Error("l26_semantic_contract_invalid:lexical_packages");
+  if (
+    chapters.some(
+      (c, i) =>
+        JSON.stringify(
+          (((c.checkpoint as R).plannedNewLexicalSenses as R[])[0] as R)
+            .utilityProof,
+        ) !==
+        JSON.stringify(
+          (
+            (
+              (expectedChapters[i].checkpoint as R)
+                .plannedNewLexicalSenses as R[]
+            )[0] as R
+          ).utilityProof,
+        ),
+    )
+  )
+    throw new Error("l26_semantic_contract_invalid:lexical_utility");
+  if (
+    chapters.some(
+      (c, i) =>
+        JSON.stringify(c.chapterEvidencePacketIds) !==
+          JSON.stringify(expectedChapters[i].chapterEvidencePacketIds) ||
+        JSON.stringify(c.recallSchedule) !==
+          JSON.stringify(expectedChapters[i].recallSchedule),
+    )
+  )
+    throw new Error("l26_semantic_contract_invalid:evidence");
+  if (l23Hash(lesson) !== L26_CONTRACT_HASH)
+    throw new Error("l26_semantic_contract_invalid:identity");
+}
+
 function validate(raw: unknown): {
   lessons: number;
   chapters: number;
@@ -11648,6 +11951,12 @@ function validate(raw: unknown): {
     (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l25")
   )
     validateL25SemanticContract(raw, l25Plan);
+  const l26Plan = source.get("de_l26");
+  if (
+    l26Plan &&
+    (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l26")
+  )
+    validateL26SemanticContract(raw, l26Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -16117,6 +16426,322 @@ function fixtures(): void {
   expectL25((r) => {
     (l25(r).chapters as R[])[0].lessonOutcome = "x";
   }, "l25_semantic_contract_invalid:identity"); // 60
+
+  // L26 hostile corpus: one numbered mutation per guardian requirement.  The
+  // fixtures call the semantic validator directly, so every diagnostic stays
+  // attributable even when the general registry validator becomes stricter.
+  const l26 = (raw: R) =>
+    (raw.lessons as R[]).find((x) => x.lessonId === "de_l26") as R;
+  const expectL26 = (mut: (raw: R, plan: R) => void, id: string): void => {
+    const raw = clone(json(FILE)) as R;
+    const plan = clone(
+      (json(LESSONS) as { lessons: Boundary[] }).lessons.find(
+        (x) => x.id === "de_l26",
+      ),
+    ) as R;
+    mut(raw, plan);
+    let thrown: unknown;
+    try {
+      validateL26SemanticContract(raw, plan as Boundary);
+    } catch (error) {
+      thrown = error;
+    }
+    assert.ok(thrown instanceof Error, `expected_error:${id}`);
+    assert.equal(thrown.message, id);
+  };
+  const addL26 = (r: R, chapter: number, text: string): void => {
+    const support = (l26(r).chapters as R[])[chapter].supportFading as R;
+    support.entry = `${String(support.entry)} ${text}`;
+  };
+  const setL26Surfaces = (r: R, chapter: number, text: string): void => {
+    const c = (l26(r).chapters as R[])[chapter],
+      s = c.supportFading as R;
+    s.entry = text;
+    s.exit = text;
+    (
+      ((c.checkpoint as R).plannedNewLexicalSenses as R[])[0] as R
+    ).communicativeUse = text;
+  };
+  expectL26((r) => {
+    (l26(r).grammarBoundary as R).noExpansion = "x";
+  }, "l26_semantic_contract_invalid:no_expansion"); // 1
+  expectL26((r) => {
+    ((l26(r).chapters as R[])[0].allowedConstructIds as string[]).push("x");
+  }, "l26_semantic_contract_invalid:sets"); // 2
+  expectL26((r) => {
+    const c = (l26(r).chapters as R[])[6];
+    (c.allowedConstructIds as string[]).push(
+      "de_gc_modal_finite_bare_infinitive_v1",
+    );
+    ((c.checkpoint as R).integratedConstructIds as string[]).push(
+      "de_gc_modal_finite_bare_infinitive_v1",
+    );
+  }, "l26_semantic_contract_invalid:sets"); // 3
+  expectL26(
+    (r) =>
+      setL26Surfaces(
+        r,
+        0,
+        "Die Besprechung wird wahrscheinlich später beginnen. Der Satz ist eine vorsichtige Einschätzung.",
+      ),
+    "l26_werden_meaning_evidence_missing",
+  ); // 4
+  expectL26(
+    (r) =>
+      setL26Surfaces(
+        r,
+        0,
+        "Der Termin wird am Freitag beginnen. Der Satz verweist auf spätere Zeit.",
+      ),
+    "l26_werden_meaning_evidence_missing",
+  ); // 5
+  expectL26(
+    (r) =>
+      setL26Surfaces(
+        r,
+        1,
+        "Die Vorhersage lautet: Wahrscheinlich wird die Besprechung später beginnen.",
+      ),
+    "l26_present_future_contrast_invalid",
+  ); // 6
+  expectL26(
+    (r) => setL26Surfaces(r, 1, "Morgen beginnt die Besprechung."),
+    "l26_present_future_contrast_invalid",
+  ); // 7
+  expectL26(
+    (r) => setL26Surfaces(r, 3, "Der Ablauf wird länger dauern."),
+    "l26_modal_assessment_invalid",
+  ); // 8
+  expectL26(
+    (r) =>
+      setL26Surfaces(
+        r,
+        4,
+        "Der Entwurf wird geprüft. Die Verbindung aus „wird“ und Partizip II bezeichnet hier einen Vorgang.",
+      ),
+    "l26_passive_infinitive_contrast_invalid",
+  ); // 9
+  expectL26(
+    (r) =>
+      setL26Surfaces(
+        r,
+        4,
+        "Der Ablauf wird wahrscheinlich länger dauern. Die Verbindung aus „wird“ und Infinitiv bezeichnet hier eine Einschätzung.",
+      ),
+    "l26_passive_infinitive_contrast_invalid",
+  ); // 10
+  expectL26(
+    (r) => addL26(r, 0, "Ich werde beginnen."),
+    "l26_werden_person_number_paradigm_leak",
+  ); // 11
+  expectL26(
+    (r) => addL26(r, 0, "Du wirst beginnen."),
+    "l26_werden_person_number_paradigm_leak",
+  ); // 12
+  expectL26(
+    (r) => addL26(r, 0, "Wir werden beginnen."),
+    "l26_werden_person_number_paradigm_leak",
+  ); // 13
+  expectL26(
+    (r) => addL26(r, 0, "Ihr werdet beginnen."),
+    "l26_werden_person_number_paradigm_leak",
+  ); // 14
+  expectL26(
+    (r) => addL26(r, 0, "Die Termine werden beginnen."),
+    "l26_werden_person_number_paradigm_leak",
+  ); // 15
+  expectL26(
+    (r) => addL26(r, 0, "Er wird begonnen haben."),
+    "l26_future_perfect_or_modalperfekt_leak",
+  ); // 16
+  expectL26(
+    (r) => addL26(r, 0, "Er wird beginnen können."),
+    "l26_future_perfect_or_modalperfekt_leak",
+  ); // 17
+  expectL26((r) => {
+    l26(r).doubleInfinitiveProbe = "x";
+  }, "l26_future_perfect_or_modalperfekt_leak"); // 18
+  expectL26((r) => {
+    l26(r).futureAlwaysRequiresWerdenProbe = "x";
+  }, "l26_universal_future_claim_leak"); // 19
+  expectL26(
+    (r) =>
+      setL26Surfaces(
+        r,
+        4,
+        String(((l26(r).chapters as R[])[4].supportFading as R).entry).replace(
+          "bezeichnet hier einen Vorgang",
+          "bezeichnet hier Zukunft",
+        ),
+      ),
+    "l26_event_passive_meaning_confusion",
+  ); // 20
+  expectL26(
+    (r) =>
+      setL26Surfaces(
+        r,
+        6,
+        String(((l26(r).chapters as R[])[6].supportFading as R).entry).replace(
+          "Danach ist der Eingang gesperrt",
+          "Danach passiert der Eingang gesperrt",
+        ),
+      ),
+    "l26_state_passive_confusion",
+  ); // 21
+  expectL26(
+    (r) => addL26(r, 0, "Die Türen werden geprüft."),
+    "l26_passive_number_paradigm_leak",
+  ); // 22
+  expectL26(
+    (r) => addL26(r, 0, "Sie bekommt den Entwurf geprüft."),
+    "l26_recipient_passive_leak",
+  ); // 23
+  expectL26(
+    (r) => addL26(r, 0, "Der Entwurf wird vom Team geprüft."),
+    "l26_agent_phrase_leak",
+  ); // 24
+  expectL26((r) => {
+    l26(r).unverifiedParticipleProbe = "unverified participle";
+  }, "l26_unverified_participle_leak"); // 25
+  expectL26((r) => {
+    l26(r).participleFormationProbe = "x";
+  }, "l26_unverified_participle_leak"); // 26
+  expectL26((r) => addL26(r, 0, "Er war bereit."), "l26_new_tense_leak"); // 27
+  expectL26(
+    (r) => addL26(r, 0, "Der Entwurf wurde geprüft."),
+    "l26_new_tense_leak",
+  ); // 28
+  expectL26((r) => addL26(r, 0, "Er kam."), "l26_broader_preterite_leak"); // 29
+  expectL26((r) => addL26(r, 0, "Er blieb."), "l26_broader_preterite_leak"); // 30
+  expectL26(
+    (r) => addL26(r, 0, "obwohl der Termin beginnt"),
+    "l26_new_connector_leak",
+  ); // 31
+  expectL26(
+    (r) => addL26(r, 0, "nachdem der Termin beginnt"),
+    "l26_new_connector_leak",
+  ); // 32
+  expectL26(
+    (r) => addL26(r, 0, "wegen der Besprechung"),
+    "l26_new_case_preposition_relation_leak",
+  ); // 33
+  expectL26(
+    (r) => addL26(r, 0, "trotz der Besprechung"),
+    "l26_new_case_preposition_relation_leak",
+  ); // 34
+  expectL26((r) => {
+    l26(r).functionalGenitiveProbe = "x";
+  }, "l26_functional_genitive_leak"); // 35
+  expectL26((r) => {
+    l26(r).hiddenGrammarProbe = "hidden L27 grammar";
+  }, "l26_l27_or_task6_leak"); // 36
+  expectL26((r) => {
+    l26(r).task6Probe = "TASK6_ADJUDICATED";
+  }, "l26_l27_or_task6_leak"); // 37
+  expectL26((r) => {
+    ((l26(r).chapters as R[])[0].checkpoint as R).interaction = { target: "x" };
+  }, "l26_learner_surface_leak"); // 38
+  expectL26((r) => {
+    (l26(r).chapters as R[])[0].ru = { prompt: "x" };
+  }, "l26_learner_surface_leak"); // 39
+  expectL26((r) => {
+    (l26(r).chapters as R[])[0].audioTranscript = "x";
+  }, "l26_learner_surface_leak"); // 40
+  expectL26((r) => {
+    (l26(r).chapters as R[])[0].responseOptions = ["x"];
+  }, "l26_learner_surface_leak"); // 41
+  expectL26((r) => {
+    l26(r).learnerArtifactsAuthorized = true;
+  }, "l26_learner_surface_leak"); // 42
+  expectL26((r) => {
+    l26(r).allowNonGermanAssessedTarget = true;
+  }, "l26_interaction_002_future_boundary_invalid"); // 43
+  expectL26((r) => {
+    l26(r).englishContourProbe = "x";
+  }, "l26_english_contour_leak"); // 44
+  expectL26((r) => {
+    ((l26(r).chapters as R[])[0].checkpoint as R).releaseProjection = "x";
+  }, "l26_release_surface_leak"); // 45
+  expectL26((r) => {
+    (l26(r).chapters as R[])[0].mockupPath = "x";
+  }, "l26_release_surface_leak"); // 46
+  expectL26((r) => {
+    ((l26(r).chapters as R[])[0].lifecycleAnchors as R[])[0].packetId = "x";
+  }, "l26_registry_anchor_mismatch"); // 47
+  expectL26((r) => {
+    const p = (r.lessons as R[]).find((x) => x.lessonId === "de_l25") as R;
+    (
+      ((p.chapters as R[])[0].recallSchedule as R).futureDelayedProbe as R
+    ).packetId = "x";
+  }, "l25_l26_inverse_provenance_invalid"); // 48
+  expectL26((r) => {
+    ((l26(r).chapters as R[])[0].checkpoint as R).newSituation = {};
+  }, "l26_semantic_contract_invalid:situations"); // 49
+  expectL26((r) => {
+    (
+      ((l26(r).chapters as R[])[0].checkpoint as R)
+        .plannedNewLexicalSenses as R[]
+    )[0].id = "x";
+  }, "l26_semantic_contract_invalid:lexical_packages"); // 50
+  expectL26((r) => {
+    (
+      ((l26(r).chapters as R[])[0].checkpoint as R)
+        .plannedNewLexicalSenses as R[]
+    )[0].communicativeUse = "x";
+  }, "l26_checkpoint_lexical_alignment_invalid"); // 51
+  expectL26((r) => {
+    ((l26(r).chapters as R[])[4].checkpoint as R).packetId = "x";
+  }, "l26_checkpoint_lexical_alignment_invalid"); // 52
+  expectL26((r) => {
+    (
+      (
+        (
+          ((l26(r).chapters as R[])[5].checkpoint as R)
+            .plannedNewLexicalSenses as R[]
+        )[0] as R
+      ).utilityProof as R
+    ).facetValue = "x";
+  }, "l26_semantic_contract_invalid:lexical_utility"); // 53
+  expectL26((r) => {
+    ((l26(r).chapters as R[])[0].chapterEvidencePacketIds as string[]).pop();
+  }, "l26_semantic_contract_invalid:evidence"); // 54
+  expectL26((r) => {
+    const c = (l26(r).chapters as R[])[0];
+    ((c.recallSchedule as R).futureDelayedProbe as R).packetId = "x";
+  }, "l26_semantic_contract_invalid:evidence"); // 55
+  expectL26(
+    (r) =>
+      setL26Surfaces(
+        r,
+        6,
+        String(((l26(r).chapters as R[])[6].supportFading as R).entry).replace(
+          "Frau Keller, ",
+          "",
+        ),
+      ),
+    "l26_c07_final_transfer",
+  ); // 56
+  expectL26(
+    (r) =>
+      setL26Surfaces(
+        r,
+        6,
+        String(((l26(r).chapters as R[])[6].supportFading as R).entry).replace(
+          "Der Eingang wird heute gesperrt",
+          "Der Eingang bleibt offen",
+        ),
+      ),
+    "l26_c07_final_transfer",
+  ); // 57
+  expectL26((r) => {
+    (l26(r).chapters as R[])[0].unrelatedFieldProbe = "x";
+  }, "l26_semantic_contract_invalid:identity"); // 58
+  expectL26((_r, plan) => {
+    ((plan.chapterOutcomes as R[])[0] as R).outcome = "x";
+  }, "l26_semantic_contract_invalid:identity"); // 59
+  expectL26((r) => {
+    (l26(r).chapters as R[])[0].lessonOutcome = "x";
+  }, "l26_semantic_contract_invalid:identity"); // 60
 
   const prematureL23 = clone(json(FILE)) as R;
   prematureL23.lessons = (prematureL23.lessons as R[]).slice(0, 23);

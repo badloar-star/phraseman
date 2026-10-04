@@ -56,6 +56,9 @@ import FlashcardsFilterDropdown from './flashcards/FlashcardsFilterDropdown';
 import CollectionHeader from './flashcards/CollectionHeader';
 import CollectionGalleryView from './flashcards/CollectionGalleryView';
 import { CollectionMenuSheet, CollectionTitleBlock, CollectionTopBar } from './flashcards/CollectionHeaderV2';
+import { PackAddCardButton, PackInfoBlock, PackTopBar, type PackBadge } from './flashcards/PackHeaderV2';
+import { useCommunityAuthorName } from './community_packs/packAuthorNames';
+import { isLocalAuthorPackId } from './community_packs/localAuthorPacks';
 import CollectionListView, {
   CollectionEmptyState,
   UndoDeleteSnackbar,
@@ -1055,9 +1058,39 @@ export default function FlashcardsScreen() {
     router.navigate({ pathname: '/flashcards', params: { train: '1' } } as never);
   }, [router]);
 
+  // зачем: имя автора для шапки набора; хук обязан стоять до раннего return ниже
+  const packAuthorName = useCommunityAuthorName(currentMarketPack ?? null, lang);
+
   if (bypassEmptyCustomCollection) {
     return <View style={{ flex: 1, backgroundColor: t.bgPrimary }} />;
   }
+
+  // зачем (макет cards-section «Свой набор» / «Чужой — добавлен»): экран набора — своя шапка и сетка карточек. Наборы из видео
+  // (ролик-герой, «момент из видео») остаются на прежнем виде — они в группе «Из видео».
+  const packSurface = !!packDeeplink && !(previewMode && currentMarketPack) && !videoMomentPack && !currentMarketPack?.videoId;
+  const packMine = !!packDeeplink && (
+    isLocalAuthorPackId(packDeeplink)
+    || (!!currentMarketPack?.isCommunityUgc && !!currentMarketPack.authorStableId && currentMarketPack.authorStableId === accessStableId)
+  );
+  const packPublished = currentMarketPack?.listingStatus === 'published' || currentMarketPack?.listingStatus === 'update_pending';
+  const packBadge: PackBadge = packMine ? (packPublished ? 'community' : 'only_you') : currentMarketPack?.isCommunityUgc ? 'in_you' : null;
+  const packTitleText = currentMarketPack ? packTitleForInterface(currentMarketPack, cardContentLang) : s.title;
+  const packInfoBlock = packSurface ? (
+    <PackInfoBlock
+      lang={lang}
+      title={packTitleText}
+      authorName={packMine || currentMarketPack?.isCommunityUgc ? packAuthorName : null}
+      mine={packMine}
+      badge={packBadge}
+      left={packMine
+        ? <PackAddCardButton lang={lang} onPress={onEditPack} />
+        : currentMarketPack?.isCommunityUgc
+          ? <CommunityPackSocialBar pack={currentMarketPack} lang={lang} t={t} owned variant="previewMeta" onOpenComments={() => { setHighlightCommentId(null); setCommentsSheetOpen(true); }} />
+          : null}
+      onTrain={listCards.length > 0 ? onTrainGallery : null}
+      cardCount={listCards.length}
+    />
+  ) : null;
 
   const savedTitleBlock = savedSurface ? (
     <CollectionTitleBlock
@@ -1109,6 +1142,8 @@ export default function FlashcardsScreen() {
             selectionTotal={savedCardsForPackLanguage.length}
             onExitSelection={exitSelectionMode}
           />
+        ) : packSurface ? (
+          <PackTopBar lang={lang} onBack={handleCollectionBack} onMenu={() => setSavedActionsOpen(true)} />
         ) : (
         <CollectionHeader
           t={t}
@@ -1172,7 +1207,7 @@ export default function FlashcardsScreen() {
           </View>
         ) : null}
 
-        {packDeeplink && currentMarketPack?.isCommunityUgc ? (
+        {packDeeplink && currentMarketPack?.isCommunityUgc && !packSurface ? (
           <View style={[st.socialRow, { maxWidth: contentMaxW }]}>
             <CommunityPackSocialBar
               pack={currentMarketPack}
@@ -1256,12 +1291,13 @@ export default function FlashcardsScreen() {
             strengthForCard={strengthForCard}
             extraBottomPad={0}
           />
-        ) : savedSurface ? (
+        ) : savedSurface || packSurface ? (
           <CollectionGalleryView
             cards={listCards}
-            searchQuery={searchQuery}
+            searchQuery={savedSurface ? searchQuery : ''}
+            gridTopGap={packSurface ? 0 : undefined}
             lang={cardContentLang}
-            header={savedTitleBlock}
+            header={savedSurface ? savedTitleBlock : packInfoBlock}
             hiddenByLimitCount={hiddenByLimitCount}
             onOpenPremiumLimit={openPremiumLimit}
             onOpenCard={openCardFromGallery}
@@ -1345,7 +1381,7 @@ export default function FlashcardsScreen() {
         />
       )}
 
-      {savedSurface ? (
+      {savedSurface || packSurface ? (
         <CollectionMenuSheet
           visible={savedActionsOpen}
           onClose={() => setSavedActionsOpen(false)}
@@ -1353,20 +1389,26 @@ export default function FlashcardsScreen() {
             lang,
             viewMode,
             onToggleViewMode: toggleViewMode,
-            showViewToggle: !isEmpty,
-            hasFilter: filterGroups.length > 0 && savedContentKind === 'phrase',
+            showViewToggle: savedSurface && !isEmpty,
+            hasFilter: savedSurface && filterGroups.length > 0 && savedContentKind === 'phrase',
             filterActive: activeFilter !== 'all',
             onOpenFilter: () => setFilterOpen(true),
-            savedContentKind,
-            savedContentCounts,
-            onSavedContentKindChange: setSavedContentKind,
-            packLanguage,
-            onPackLanguageChange: handlePackLanguageChange,
+            savedContentKind: savedSurface ? savedContentKind : undefined,
+            savedContentCounts: savedSurface ? savedContentCounts : undefined,
+            onSavedContentKindChange: savedSurface ? setSavedContentKind : undefined,
+            packLanguage: savedSurface ? packLanguage : undefined,
+            onPackLanguageChange: savedSurface ? handlePackLanguageChange : undefined,
             selectionMode,
             selectedCount: selectedCardIds.length,
-            onEnterSelection: enterSelectionMode,
+            onEnterSelection: savedSurface ? enterSelectionMode : undefined,
             onDeleteSelected: confirmDeleteSelected,
-            onOpenCommunity: openCommunityPacks,
+            onOpenCommunity: savedSurface ? openCommunityPacks : undefined,
+            showPublish: packSurface && showPublishButton,
+            publishBusy,
+            onPublish: onPublishPack,
+            showEdit: packSurface && (showEditButton || packMine),
+            onEdit: onEditPack,
+            onReport: packSurface && !packMine && !!currentMarketPack?.isCommunityUgc ? () => setPackReportOpen(true) : undefined,
           }}
         />
       ) : null}

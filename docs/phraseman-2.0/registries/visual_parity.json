@@ -6839,6 +6839,7 @@
       "anim_evidence_sha256": null,
       "diffs": [],
       "status": "pending",
+      "note": "блок разбора (AiMistakeCard) сверять по redesign-round-2, телефон 4 (A); остальной кадр — по learn.html",
       "reviewed_by": null,
       "reviewed_at": null
     },

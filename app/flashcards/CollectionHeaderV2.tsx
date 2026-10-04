@@ -45,6 +45,8 @@ export type CollectionMenuProps = Readonly<{
   onPublish?: () => void;
   showEdit?: boolean;
   onEdit?: () => void;
+  /** Чужой набор сообщества: «Пожаловаться на набор». */
+  onReport?: () => void;
 }>;
 
 const copyFor = (lang: Lang) => triLang(lang, {
@@ -191,6 +193,12 @@ export const CollectionMenuSheet = memo(function CollectionMenuSheet({ visible, 
       ) : null}
       {menu.showPublish ? (
         <SheetRow g={g} testID="fc-pack-publish" icon="cloud-upload-outline" title={copy.publish} onPress={run(menu.publishBusy ? undefined : menu.onPublish)} />
+      ) : null}
+      {menu.onReport ? (
+        <SheetRow g={g} testID="collection-report-pack" icon="flag-outline" title={triLang(menu.lang, {
+          ru: 'Пожаловаться на набор', uk: 'Поскаржитись на набір', en: 'Report this pack', es: 'Denunciar el pack',
+          'pt-BR': 'Denunciar o pacote', vi: 'Báo cáo bộ thẻ', id: 'Laporkan set', tr: 'Seti bildir', pl: 'Zgłoś zestaw',
+        })} onPress={run(menu.onReport)} />
       ) : null}
       {menu.showEdit ? (
         <SheetRow g={g} testID="fc-pack-edit" icon="create-outline" title={copy.edit} onPress={run(menu.onEdit)} />

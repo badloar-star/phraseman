@@ -54,6 +54,8 @@ type Props = Readonly<{
   activeCat: string;
   /** Запрос поиска: при нём список — одна колонка, сверху «Найдено · N», совпадение подчёркнуто. */
   searchQuery: string;
+  /** Отступ сетки от шапки; у экрана набора её роль играет подпись «Карточки N» (0). */
+  gridTopGap?: number;
 }>;
 
 const SIDE = 20;
@@ -75,13 +77,13 @@ const DOTS_FOR: Record<WordStrength, number> = { weak: 1, medium: 2, strong: 4 }
 export default function CollectionGalleryView({
   cards, lang, header, hiddenByLimitCount, onOpenPremiumLimit, onOpenCard, onSpeak, strengthForCard, onCardsViewed,
   isEditableCustomCard, onEditCard, onDeleteCardById, selectionMode, selectedIds, onToggleSelection, selectedCount, canCreatePack,
-  selectionRemaining, onCreatePack, onDeleteSelected, showDeleteHint, onSetShowDeleteHint, onTrain, allowAddCustomCard, onCreateCard, activeCat, searchQuery,
+  selectionRemaining, onCreatePack, onDeleteSelected, showDeleteHint, onSetShowDeleteHint, onTrain, allowAddCustomCard, onCreateCard, activeCat, searchQuery, gridTopGap,
 }: Props) {
   const g = useLv2Glass();
   const copy = useMemo(() => copyFor(lang), [lang]);
   const { width: screenW, height: screenH } = useWindowDimensions();
   const width = screenW - SIDE * 2;
-  const { scale, gesture, animateTo } = useCardsScale(0.3);
+  const { scale, gesture, animateTo } = useCardsScale(0.395); // зачем: макет cards-section — две колонки, плитка 189×150 (форма «m» на 58 %)
   // зачем (макет cards-section «Поиск»): пока идёт поиск, результаты — одна широкая колонка; после очистки
   // возвращается тот размер, который человек выбрал щипком.
   const searching = searchQuery.trim().length > 0;
@@ -154,7 +156,7 @@ export default function CollectionGalleryView({
           {searching && cards.length > 0 ? (
             <Text testID="fc-search-found" style={[styles.found, { color: g.accent }]}>{`${foundLabel} · ${cards.length}`}</Text>
           ) : null}
-          <View style={[styles.gridWrap, searching && cards.length > 0 && styles.gridWrapFound]} onLayout={(event) => setGridTop(Math.round(event.nativeEvent.layout.y))}>
+          <View style={[styles.gridWrap, searching && cards.length > 0 && styles.gridWrapFound, gridTopGap !== undefined && { marginTop: gridTopGap }]} onLayout={(event) => setGridTop(Math.round(event.nativeEvent.layout.y))}>
             <CardsGallery
               g={g}
               cards={items}

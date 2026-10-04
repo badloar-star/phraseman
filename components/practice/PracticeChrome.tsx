@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View, type StyleProp, type ViewStyle } fro
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { KitGlassLayer } from '../v2/KitLiquidGlass';
 
 // зачем (владелец 2026-09-30): тренировки карточек переносятся 1 в 1 по макету practice.html
 // (Liquid Glass). Шапка занятия (круглая «‹» 34 в области нажатия 44, заголовок 20/700,
@@ -43,6 +44,8 @@ export function PracticeBackButton({
       style={({ pressed }) => [styles.touch, large ? styles.touchLarge : null, { opacity: pressed ? 0.7 : 1, transform: [{ scale: pressed ? 0.96 : 1 }] }]}
     >
       <View style={[styles.round, large ? styles.roundLarge : null, { backgroundColor: glass.opaqueControl, borderColor: glass.glassEdge }]}>
+        {/* зачем (сверка 04.10, kit.css `.rb::after`): круг — стекло с бликом и кромкой, а не плоский. */}
+        <KitGlassLayer radius={large ? 24 : PRACTICE_ROUND / 2} />
         <Ionicons name="chevron-back" size={20} color={color} />
       </View>
     </Pressable>
@@ -73,6 +76,7 @@ export function PracticeRoundIconButton({
       style={({ pressed }) => [styles.touch, { opacity: disabled ? 0.45 : pressed ? 0.7 : 1 }]}
     >
       <View style={[styles.round, { backgroundColor: glass.opaqueControl, borderColor: glass.glassEdge }]}>
+        <KitGlassLayer radius={PRACTICE_ROUND / 2} />
         <Ionicons name={icon} size={18} color={color} />
       </View>
     </Pressable>
@@ -111,6 +115,8 @@ export function PracticeTimerPill({
 }) {
   return (
     <View style={[styles.timer, { backgroundColor: glass.opaqueControl }]}>
+      {/* зачем (сверка 04.10, kit.css `.pill::after`): пилюля таймера — стекло, как в макете. */}
+      <KitGlassLayer radius={19} />
       <Text testID={testID} style={[styles.timerText, { color }]}>{text}</Text>
     </View>
   );
@@ -129,13 +135,13 @@ const styles = StyleSheet.create({
   touch: { width: PRACTICE_TOUCH, height: PRACTICE_TOUCH, alignItems: 'center', justifyContent: 'center' },
   round: {
     width: PRACTICE_ROUND, height: PRACTICE_ROUND, borderRadius: PRACTICE_ROUND / 2,
-    alignItems: 'center', justifyContent: 'center', borderWidth: StyleSheet.hairlineWidth,
+    alignItems: 'center', justifyContent: 'center', borderWidth: StyleSheet.hairlineWidth, overflow: 'hidden',
   },
   touchLarge: { width: 48, height: 48 },
   roundLarge: { width: 48, height: 48, borderRadius: 24 },
   title: { fontSize: 20, lineHeight: 26, fontWeight: '700' },
   subtitle: { fontSize: 16, lineHeight: 22, marginTop: 2 },
-  timer: { minHeight: 38, borderRadius: 19, paddingHorizontal: 24, alignItems: 'center', justifyContent: 'center' },
+  timer: { minHeight: 38, borderRadius: 19, paddingHorizontal: 24, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   timerText: { fontSize: 16, lineHeight: 22, fontWeight: '700', fontVariant: ['tabular-nums'] },
   mark: { position: 'absolute', right: 16, top: 0, bottom: 0, justifyContent: 'center' },
 });

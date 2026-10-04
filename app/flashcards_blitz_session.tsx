@@ -51,10 +51,10 @@ import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import EnergyBar from '../components/EnergyBar';
-import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { PracticeAnswerMark, PracticeBackButton, PracticeHeaderTitle, PracticeTimerPill } from '../components/practice/PracticeChrome';
+import { KitGlassLayer } from '../components/v2/KitLiquidGlass';
 import { PracticeStatePanel } from '../components/practice/PracticeStates';
 import { flashcardContentLang } from './spanish_content_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -144,18 +144,11 @@ const IDLE_BTNS: BtnState[] = ['idle', 'idle', 'idle', 'idle'];
  * A static translucent substrate is deliberate here: five live BlurViews on the
  * timed interaction path would be an avoidable Android rendering cost.
  */
-function BlitzGlassSurface({ chrome, sheen = true }: { chrome: ReturnType<typeof liquidGlassTokens>; sheen?: boolean }) {
-  if (!sheen) return null;
-  return (
-    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-      <LinearGradient
-        colors={[chrome.lightTint, 'transparent']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 0.85, y: 1 }}
-        style={[StyleSheet.absoluteFill, { opacity: 0.08 }]}
-      />
-    </View>
-  );
+// зачем (сверка 04.10, kit.css блок LIQUID GLASS): карточка вопроса и варианты — то же стекло, что в макете
+// (блик 150°, светлая кромка сверху-слева, тёмная снизу-справа), через общий слой; у ответа «верно/неверно»
+// своя цветная кромка, поэтому там только блик без кромки (`rim={false}`).
+function BlitzGlassSurface({ radius, sheen = true }: { radius: number; sheen?: boolean }) {
+  return <KitGlassLayer radius={radius} rim={sheen} />;
 }
 
 export default function FlashcardsBlitzSession() {
@@ -1412,7 +1405,7 @@ export default function FlashcardsBlitzSession() {
             <PracticeTimerPill
               testID="fc-blitz-timer"
               glass={blitzGlass}
-              color={danger ? BAD : blitzGlass.text}
+              color={danger ? BAD : blitzGlass.secondary} // зачем (practice.html `.prog`): цифры таймера вторичным тоном, как в макете
               text={`${mm}:${ss}`}
             />
           </View>
@@ -1421,7 +1414,7 @@ export default function FlashcardsBlitzSession() {
               через 23 и между собой 13 — не по центру экрана. */}
           <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 20, paddingTop: 38, paddingBottom: 16, gap: 23 }} keyboardShouldPersistTaps="handled">
             <View style={[styles.questionBox, styles.glassSurface, { backgroundColor: blitzGlass.card, borderColor: blitzGlass.glassEdge }]}>
-              <BlitzGlassSurface chrome={blitzGlass} />
+              <BlitzGlassSurface radius={16} />
               {/* зачем (`.qc .k`): подпись 16 обычного веса вторичным тоном, вопрос ниже на 22. */}
               <Text style={{ color: blitzGlass.secondary, fontSize: f.body, lineHeight: Math.round(f.body * 1.35) }}>
                 {triLang(lang, {
@@ -1460,7 +1453,7 @@ export default function FlashcardsBlitzSession() {
                     activeOpacity={0.75}
                     style={[styles.optionBtn, styles.glassSurface, { backgroundColor: blitzGlass.card, borderColor: edge }]} // guard-ok: исключение 2.0 — 1px полупрозрачная обводка .opt
                   >
-                    <BlitzGlassSurface chrome={blitzGlass} sheen={state === 'idle'} />
+                    <BlitzGlassSurface radius={14} sheen={state === 'idle'} />
                     {tint ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: tint }]} /> : null}
                     <Text  style={[styles.optionText, { color: t.textPrimary, fontSize: f.body }]}>
                       {opt}

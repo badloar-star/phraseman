@@ -8,7 +8,9 @@ test('active mistakes hub uses Liquid Glass cards while retaining its safe area 
   // 30.09 (2.0): стекло непрозрачное (память владельца «стекло 2.0 = непрозрачное»),
   // экраны ошибок переведены на useLv2Glass + g.opaque* (efe19ae9d); полупрозрачный glassFill снят.
   assert.match(source, /useLv2Glass\(\)/);
-  assert.ok((source.match(/g\.opaque(Card|Control|Sheet)/g) ?? []).length >= 4);
+  // 04.10 (макет «Панель»): карточки и кнопки рисует общий набор components/mistakes-panel (границ нет, кромки — внутренние тени).
+  assert.match(source, /components\/mistakes-panel\/PanelKit/);
+  assert.doesNotMatch(source, /borderWidth|borderColor/);
   assert.match(source, /edges=\{\['top', 'left', 'right'\]\}/);
   assert.match(source, /pathname: '\/mistake_practice_session'/);
   assert.match(source, /pathname: '\/mistakes_list'/);

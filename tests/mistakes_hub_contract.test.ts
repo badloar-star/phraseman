@@ -48,8 +48,9 @@ describe('mistakes hub snapshot', () => {
     expect(layout).toContain('<Stack.Screen name="mistakes_list" />');
     const hub = read('app/mistakes_hub.tsx');
     expect(hub).toContain('useMistakePracticeStartGate');
-    expect(hub).toContain('resolveMistakeHubAdvice');
-    expect(hub).toContain('SkeletonBlock');
+    // 04.10 (макет «Панель»): подсказка-наблюдение в хабе не предусмотрена — вызовы ИИ убраны вместе с блоком; каркас загрузки рисует сам хаб.
+    expect(hub).not.toContain('resolveMistakeHubAdvice');
+    expect(hub).toContain('PanelRing');
     expect(hub).not.toMatch(/ActivityIndicator/);
     expect(hub).not.toMatch(/borderWidth/);
     // Владелец 2026-09-14: без персонажа и без пометки «ИИ» на экране. Комментарии

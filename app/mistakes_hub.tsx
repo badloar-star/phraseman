@@ -1,66 +1,57 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import Reanimated, { useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // зачем: тот же контрол обновления, что в лиге — один язык жеста по приложению.
 import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
-import SkeletonBlock from '../components/SkeletonShimmer';
 import { useStudyTarget } from '../components/StudyTargetContext';
-import { useTheme } from '../components/ThemeContext';
 import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
+import { BackButton, FilterChips, MiniDots, Panel, PanelCta, PanelDock, PanelRing, PanelRow, ScreenTitle, type PanelChip } from '../components/mistakes-panel/PanelKit';
+import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
+import { MP_COLORS, themePair, mixDark } from '../components/mistakes-panel/panelPaint';
+import { MISTAKE_GROUPS, mistakeGroupLabel, mistakeGroupOf, type MistakeGroupFilter } from '../components/mistakes-panel/mistakeGroups';
 import { triLang, type Lang } from '../constants/i18n';
 import { pluralWord } from '../constants/plural';
 import { hapticTap } from '../hooks/use-haptics';
 import { useMistakePracticeStartGate } from '../hooks/useMistakePracticeStartGate';
-import { useReduceMotion } from '../hooks/use_reduce_motion';
-import { normalizeMistakeStudyTarget, type MistakeFacet } from '../modules/mistake-practice/contracts';
-import {
-  mistakePracticeLengthOptions,
-  mistakePracticeSessionCostsEnergy,
-  mistakePracticeSessionCount,
-  type MistakePracticeLength,
-} from '../modules/mistake-practice/session';
-import { mistakeFacetLabel, mistakeSourceLabel } from './mistake_facet_copy';
-import {
-  buildMistakeHubAdviceSummary,
-  refreshMistakeHubAdvice,
-  resolveMistakeHubAdvice,
-  type MistakeHubAdvice,
-} from './mistake_hub_advice';
+import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
+import { MISTAKE_PRACTICE_MAX_SESSION, mistakePracticeSessionCostsEnergy } from '../modules/mistake-practice/session';
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { loadMistakePracticeHubSnapshot, type MistakePracticeHubSnapshot } from './mistake_practice_insights';
 import { safeRouterBack } from './navigation_back';
-import { getStableId, peekStableId } from './stable_id';
+import { peekStableId } from './stable_id';
 
 /**
- * Хаб «Работа над ошибками» (макет: хаб Б, утверждён владельцем 2026-09-14).
- * Карта слабых мест по типам, подсказка-наблюдение, откуда приходят ошибки,
- * запуск сессии любой длины от одной ошибки. Всё из локального журнала:
- * первый кадр - скелетон финальной геометрии, потом данные без прыжков.
+ * Хаб «Мои ошибки» — вариант Б «Панель» (макет docs/design/v2-app/mistakes-panel.html, экраны «Хаб», «Хаб — загрузка», «Перед отработкой»,
+ * «Ошибок нет», «На сегодня всё», «Сейчас недоступно»; одобрен владельцем 04.10.2026).
+ *
+ * зачем (владелец: «1 в 1, без малейших потерь»): кольцо прогресса, ленты-фильтры по типам, одна панель с ошибками, кнопка «Отработать N»
+ * и шторка выбора перед стартом. Всё из локального журнала: первый кадр — снимок прошлого открытия (peek) или каркас финальной геометрии,
+ * сети нет вовсе (0 чтений Firestore). Подсказка-наблюдение и «откуда приходят» в макете «Панели» не предусмотрены — убраны вместе с их
+ * вызовами ИИ (экономия).
  */
 
 const copyFor = (lang: Lang) => triLang(lang, {
-  ru: { title: 'Работа над ошибками', back: 'Назад', ready: 'готовы', corrected: 'исправлено', map30: 'За 30 дней', mistakes: { one: "ошибка", few: "ошибки", many: "ошибок" }, sources: 'Откуда приходят', all: 'Все', start: 'Разобрать', startAll: 'Разобрать все', list: 'Мои ошибки', empty: 'Всё исправлено', emptyBody: 'Новые ошибки из уроков и карточек появятся здесь сами.', shelf: 'Смотреть исправленные', noData: 'Ошибок пока нет' },
-  uk: { title: 'Робота над помилками', back: 'Назад', ready: 'готові', corrected: 'виправлено', map30: 'За 30 днів', mistakes: { one: "помилка", few: "помилки", many: "помилок" }, sources: 'Звідки приходять', all: 'Усі', start: 'Розібрати', startAll: 'Розібрати всі', list: 'Мої помилки', empty: 'Усе виправлено', emptyBody: 'Нові помилки з уроків і карток з’являться тут самі.', shelf: 'Дивитися виправлені', noData: 'Помилок поки немає' },
-  en: { title: 'Mistake practice', back: 'Back', ready: 'ready', corrected: 'fixed', map30: 'Last 30 days', mistakes: { one: "mistake", few: "mistakes", many: "mistakes" }, sources: 'Where they come from', all: 'All', start: 'Practise', startAll: 'Practise all', list: 'My mistakes', empty: 'Everything is fixed', emptyBody: 'New mistakes from lessons and cards will show up here on their own.', shelf: 'See fixed mistakes', noData: 'No mistakes yet' },
-  es: { title: 'Trabajo con errores', back: 'Atrás', ready: 'listos', corrected: 'corregidos', map30: 'Últimos 30 días', mistakes: { one: "error", few: "errores", many: "errores" }, sources: 'De dónde vienen', all: 'Todos', start: 'Practicar', startAll: 'Practicar todos', list: 'Mis errores', empty: 'Todo corregido', emptyBody: 'Los nuevos errores de lecciones y tarjetas aparecerán aquí solos.', shelf: 'Ver corregidos', noData: 'Aún no hay errores' },
-  'pt-BR': { title: 'Trabalho com erros', back: 'Voltar', ready: 'prontos', corrected: 'corrigidos', map30: 'Últimos 30 dias', mistakes: { one: "erro", few: "erros", many: "erros" }, sources: 'De onde vêm', all: 'Todos', start: 'Praticar', startAll: 'Praticar todos', list: 'Meus erros', empty: 'Tudo corrigido', emptyBody: 'Novos erros de lições e cartões vão aparecer aqui sozinhos.', shelf: 'Ver corrigidos', noData: 'Ainda não há erros' },
-  vi: { title: 'Luyện lỗi sai', back: 'Quay lại', ready: 'sẵn sàng', corrected: 'đã sửa', map30: '30 ngày qua', mistakes: { one: "lỗi", few: "lỗi", many: "lỗi" }, sources: 'Lỗi đến từ đâu', all: 'Tất cả', start: 'Luyện', startAll: 'Luyện tất cả', list: 'Lỗi của tôi', empty: 'Đã sửa hết', emptyBody: 'Lỗi mới từ bài học và thẻ sẽ tự xuất hiện ở đây.', shelf: 'Xem lỗi đã sửa', noData: 'Chưa có lỗi nào' },
-  id: { title: 'Latihan kesalahan', back: 'Kembali', ready: 'siap', corrected: 'diperbaiki', map30: '30 hari terakhir', mistakes: { one: "kesalahan", few: "kesalahan", many: "kesalahan" }, sources: 'Asal kesalahan', all: 'Semua', start: 'Latih', startAll: 'Latih semua', list: 'Kesalahanku', empty: 'Semua sudah diperbaiki', emptyBody: 'Kesalahan baru dari pelajaran dan kartu akan muncul di sini.', shelf: 'Lihat yang diperbaiki', noData: 'Belum ada kesalahan' },
-  tr: { title: 'Hata çalışması', back: 'Geri', ready: 'hazır', corrected: 'düzeltildi', map30: 'Son 30 gün', mistakes: { one: "hata", few: "hata", many: "hata" }, sources: 'Nereden geliyor', all: 'Tümü', start: 'Çalış', startAll: 'Tümünü çalış', list: 'Hatalarım', empty: 'Hepsi düzeltildi', emptyBody: 'Ders ve kartlardan gelen yeni hatalar burada kendiliğinden görünür.', shelf: 'Düzeltilenleri gör', noData: 'Henüz hata yok' },
-  pl: { title: 'Praca nad błędami', back: 'Wstecz', ready: 'gotowe', corrected: 'poprawione', map30: 'Ostatnie 30 dni', mistakes: { one: "błąd", few: "błędy", many: "błędów" }, sources: 'Skąd pochodzą', all: 'Wszystkie', start: 'Przećwicz', startAll: 'Przećwicz wszystkie', list: 'Moje błędy', empty: 'Wszystko poprawione', emptyBody: 'Nowe błędy z lekcji i fiszek pojawią się tu same.', shelf: 'Zobacz poprawione', noData: 'Nie ma jeszcze błędów' },
+  ru: { title: 'Мои ошибки', back: 'Назад', fixed: 'исправлено', fixedN: 'исправлено', waitN: 'ждут', all: 'Все', practice: 'Отработать', sheetTitle: 'Отработка', mistakes: { one: 'ошибка', few: 'ошибки', many: 'ошибок' }, about: 'около', mins: { one: 'минуты', few: 'минут', many: 'минут' }, start: 'Начать', loading: 'Загружаем…', emptyTitle: 'Ошибок нет', emptySub: 'Всё исправлено', emptyFresh: 'Новые ошибки из уроков и карточек появятся здесь сами', todayTitle: 'На сегодня всё', todaySub: 'Остальные ошибки вернутся завтра', waiting: 'Ждут', toLessons: 'К урокам', offlineTitle: 'Сейчас недоступно', offlineSub: 'Проверьте интернет', retry: 'Попробовать снова' },
+  uk: { title: 'Мої помилки', back: 'Назад', fixed: 'виправлено', fixedN: 'виправлено', waitN: 'чекають', all: 'Усі', practice: 'Відпрацювати', sheetTitle: 'Відпрацювання', mistakes: { one: 'помилка', few: 'помилки', many: 'помилок' }, about: 'близько', mins: { one: 'хвилини', few: 'хвилин', many: 'хвилин' }, start: 'Почати', loading: 'Завантажуємо…', emptyTitle: 'Помилок немає', emptySub: 'Усе виправлено', emptyFresh: 'Нові помилки з уроків і карток з’являться тут самі', todayTitle: 'На сьогодні все', todaySub: 'Решта помилок повернеться завтра', waiting: 'Чекають', toLessons: 'До уроків', offlineTitle: 'Зараз недоступно', offlineSub: 'Перевірте інтернет', retry: 'Спробувати знову' },
+  en: { title: 'My mistakes', back: 'Back', fixed: 'fixed', fixedN: 'fixed', waitN: 'waiting', all: 'All', practice: 'Practise', sheetTitle: 'Practice', mistakes: { one: 'mistake', few: 'mistakes', many: 'mistakes' }, about: 'about', mins: { one: 'minute', few: 'minutes', many: 'minutes' }, start: 'Start', loading: 'Loading…', emptyTitle: 'No mistakes', emptySub: 'Everything is fixed', emptyFresh: 'New mistakes from lessons and cards will show up here on their own', todayTitle: 'All done for today', todaySub: 'The rest will come back tomorrow', waiting: 'Waiting', toLessons: 'To lessons', offlineTitle: 'Unavailable right now', offlineSub: 'Check your internet', retry: 'Try again' },
+  es: { title: 'Mis errores', back: 'Atrás', fixed: 'corregidos', fixedN: 'corregidos', waitN: 'esperan', all: 'Todos', practice: 'Practicar', sheetTitle: 'Práctica', mistakes: { one: 'error', few: 'errores', many: 'errores' }, about: 'unos', mins: { one: 'minuto', few: 'minutos', many: 'minutos' }, start: 'Empezar', loading: 'Cargando…', emptyTitle: 'Sin errores', emptySub: 'Todo corregido', emptyFresh: 'Los nuevos errores de lecciones y tarjetas aparecerán aquí solos', todayTitle: 'Todo por hoy', todaySub: 'El resto volverá mañana', waiting: 'Esperan', toLessons: 'A las lecciones', offlineTitle: 'No disponible ahora', offlineSub: 'Revisa tu internet', retry: 'Reintentar' },
+  'pt-BR': { title: 'Meus erros', back: 'Voltar', fixed: 'corrigidos', fixedN: 'corrigidos', waitN: 'esperam', all: 'Todos', practice: 'Praticar', sheetTitle: 'Prática', mistakes: { one: 'erro', few: 'erros', many: 'erros' }, about: 'cerca de', mins: { one: 'minuto', few: 'minutos', many: 'minutos' }, start: 'Começar', loading: 'Carregando…', emptyTitle: 'Sem erros', emptySub: 'Tudo corrigido', emptyFresh: 'Novos erros de lições e cartões vão aparecer aqui sozinhos', todayTitle: 'Tudo por hoje', todaySub: 'O resto volta amanhã', waiting: 'Esperam', toLessons: 'Às lições', offlineTitle: 'Indisponível agora', offlineSub: 'Verifique a internet', retry: 'Tentar de novo' },
+  vi: { title: 'Lỗi của tôi', back: 'Quay lại', fixed: 'đã sửa', fixedN: 'đã sửa', waitN: 'đang chờ', all: 'Tất cả', practice: 'Luyện', sheetTitle: 'Luyện tập', mistakes: { one: 'lỗi', few: 'lỗi', many: 'lỗi' }, about: 'khoảng', mins: { one: 'phút', few: 'phút', many: 'phút' }, start: 'Bắt đầu', loading: 'Đang tải…', emptyTitle: 'Không có lỗi', emptySub: 'Đã sửa hết', emptyFresh: 'Lỗi mới từ bài học và thẻ sẽ tự xuất hiện ở đây', todayTitle: 'Xong hôm nay', todaySub: 'Phần còn lại sẽ quay lại vào ngày mai', waiting: 'Đang chờ', toLessons: 'Tới bài học', offlineTitle: 'Hiện chưa dùng được', offlineSub: 'Kiểm tra internet', retry: 'Thử lại' },
+  id: { title: 'Kesalahanku', back: 'Kembali', fixed: 'diperbaiki', fixedN: 'diperbaiki', waitN: 'menunggu', all: 'Semua', practice: 'Latih', sheetTitle: 'Latihan', mistakes: { one: 'kesalahan', few: 'kesalahan', many: 'kesalahan' }, about: 'sekitar', mins: { one: 'menit', few: 'menit', many: 'menit' }, start: 'Mulai', loading: 'Memuat…', emptyTitle: 'Tidak ada kesalahan', emptySub: 'Semua sudah diperbaiki', emptyFresh: 'Kesalahan baru dari pelajaran dan kartu akan muncul di sini', todayTitle: 'Cukup untuk hari ini', todaySub: 'Sisanya kembali besok', waiting: 'Menunggu', toLessons: 'Ke pelajaran', offlineTitle: 'Tidak tersedia sekarang', offlineSub: 'Periksa internet', retry: 'Coba lagi' },
+  tr: { title: 'Hatalarım', back: 'Geri', fixed: 'düzeltildi', fixedN: 'düzeltildi', waitN: 'bekliyor', all: 'Tümü', practice: 'Çalış', sheetTitle: 'Çalışma', mistakes: { one: 'hata', few: 'hata', many: 'hata' }, about: 'yaklaşık', mins: { one: 'dakika', few: 'dakika', many: 'dakika' }, start: 'Başla', loading: 'Yükleniyor…', emptyTitle: 'Hata yok', emptySub: 'Hepsi düzeltildi', emptyFresh: 'Ders ve kartlardan gelen yeni hatalar burada kendiliğinden görünür', todayTitle: 'Bugünlük bu kadar', todaySub: 'Kalanlar yarın geri gelir', waiting: 'Bekleyen', toLessons: 'Derslere', offlineTitle: 'Şu an kullanılamıyor', offlineSub: 'İnterneti kontrol et', retry: 'Tekrar dene' },
+  pl: { title: 'Moje błędy', back: 'Wstecz', fixed: 'poprawione', fixedN: 'poprawione', waitN: 'czeka', all: 'Wszystkie', practice: 'Przećwicz', sheetTitle: 'Ćwiczenie', mistakes: { one: 'błąd', few: 'błędy', many: 'błędów' }, about: 'około', mins: { one: 'minuty', few: 'minut', many: 'minut' }, start: 'Zacznij', loading: 'Ładowanie…', emptyTitle: 'Brak błędów', emptySub: 'Wszystko poprawione', emptyFresh: 'Nowe błędy z lekcji i fiszek pojawią się tu same', todayTitle: 'Na dziś wszystko', todaySub: 'Reszta wróci jutro', waiting: 'Czekają', toLessons: 'Do lekcji', offlineTitle: 'Chwilowo niedostępne', offlineSub: 'Sprawdź internet', retry: 'Spróbuj ponownie' },
 });
 
-/** Peek-кэш: повторный вход рисует прошлое состояние сразу, без скелетона. */
+/** Peek-кэш: повторный вход рисует прошлое состояние сразу, без каркаса. */
 let hubSnapshotPeek: Readonly<{ key: string; snapshot: MistakePracticeHubSnapshot }> | null = null;
 
 /**
- * зачем (аудит «каждый раздел открывается мгновенно», 04.10): список ошибок на каждом открытии показывал пять скелетон-строк, хотя хаб уже держит снимок.
+ * зачем (аудит «каждый раздел открывается мгновенно», 04.10): список ошибок на каждом открытии показывал скелетон, хотя хаб уже держит снимок.
  * Ключ включает аккаунт (stable id из памяти): снимок другого аккаунта первым кадром не показываем.
  */
 export function mistakesHubPeekKey(target: string, lang: string): string {
@@ -70,71 +61,55 @@ export function peekMistakesHubSnapshot(target: string, lang: string): MistakePr
   return hubSnapshotPeek?.key === mistakesHubPeekKey(target, lang) ? hubSnapshotPeek.snapshot : null;
 }
 
-function FacetBar({ share, index, top, reduceMotion }: Readonly<{ share: number; index: number; top: boolean; reduceMotion: boolean }>) {
-  const g = useLv2Glass();
-  const progress = useSharedValue(reduceMotion ? share : 0);
-  useEffect(() => {
-    progress.value = reduceMotion ? share : withDelay(index * 90, withTiming(share, { duration: 720 }));
-  }, [index, progress, reduceMotion, share]);
-  const style = useAnimatedStyle(() => ({ width: `${Math.max(0, Math.min(100, progress.value * 100))}%` }));
-  return (
-    <View style={[styles.barTrack, { backgroundColor: g.opaqueControl }]}>
-      <Reanimated.View style={[styles.barFill, { backgroundColor: top ? g.bad : g.cta }, style]} />
-    </View>
-  );
-}
+const SECONDS_PER_MISTAKE = 20;
+
+type HubMode = 'loading' | 'failed' | 'fresh' | 'allFixed' | 'todayDone' | 'normal';
 
 export default function MistakesHubScreen() {
   const router = useRouter();
-  const { f } = useTheme();
   const g = useLv2Glass();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const reduceMotion = useReduceMotion();
   const copy = useMemo(() => copyFor(lang), [lang]);
-  // зачем (22.09): было `studyTarget === 'fr' ? 'fr' : 'en'` — испанский и
-  // немецкий молча превращались в английский, и человек видел ЧУЖИЕ ошибки
-  // вместо своих. Журнал разложен по языковым ключам, язык нельзя подменять.
+  // зачем (22.09): было `studyTarget === 'fr' ? 'fr' : 'en'` — испанский и немецкий молча превращались в английский, и человек
+  // видел ЧУЖИЕ ошибки вместо своих. Журнал разложен по языковым ключам, язык нельзя подменять.
   const target = normalizeMistakeStudyTarget(studyTarget);
   const peekKey = mistakesHubPeekKey(target, lang);
-  const [snapshot, setSnapshot] = useState<MistakePracticeHubSnapshot | null>(() =>
-    hubSnapshotPeek?.key === peekKey ? hubSnapshotPeek.snapshot : null);
-  const [advice, setAdvice] = useState<MistakeHubAdvice | null>(null);
-  const [length, setLength] = useState<MistakePracticeLength>('5');
+  const [snapshot, setSnapshot] = useState<MistakePracticeHubSnapshot | null>(() => (hubSnapshotPeek?.key === peekKey ? hubSnapshotPeek.snapshot : null));
+  const [failed, setFailed] = useState(false);
+  const [group, setGroup] = useState<MistakeGroupFilter>('all');
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const [sheetGroup, setSheetGroup] = useState<MistakeGroupFilter>('all');
   const gate = useMistakePracticeStartGate('mistakes_hub_start');
   const openingRef = useRef(false);
+
+  const load = useCallback((reason: string, isCancelled: () => boolean) => {
+    const startedAt = Date.now();
+    return loadMistakePracticeHubSnapshot(target)
+      .then((next) => {
+        if (isCancelled()) return;
+        hubSnapshotPeek = { key: peekKey, snapshot: next };
+        setSnapshot(next);
+        setFailed(false);
+        // guard-ok: трассировка входа экрана (правило «сперва логи»)
+        console.log('[MISTAKES-HUB] open', JSON.stringify({ reason, ready: next.readyCount, active: next.insights.active, corrected: next.insights.corrected, ms: Date.now() - startedAt }));
+      })
+      .catch((error: unknown) => {
+        // guard-ok: лог в catch обязателен; журнал локальный, отказ почти невозможен — но причина должна быть видна.
+        console.warn('[MISTAKES-HUB] open:catch', reason, error instanceof Error ? error.message : String(error));
+        if (!isCancelled()) setFailed(true);
+      });
+  }, [peekKey, target]);
 
   useFocusEffect(useCallback(() => {
     let cancelled = false;
     openingRef.current = false;
-    void (async () => {
-      const startedAt = Date.now();
-      const [accountScope, next] = await Promise.all([getStableId(), loadMistakePracticeHubSnapshot(target)]);
-      if (cancelled) return;
-      hubSnapshotPeek = { key: peekKey, snapshot: next };
-      setSnapshot(next);
-      const summary = buildMistakeHubAdviceSummary({ insights: next.insights, readyCount: next.readyCount, studyTarget: target, lang });
-      // Сначала то, что уже готово (кэш ИИ на сегодня или правило), сеть - фоном.
-      const shown = await resolveMistakeHubAdvice({ accountScope, summary });
-      if (cancelled) return;
-      setAdvice(shown);
-      // guard-ok: трассировка входа экрана (правило «сперва логи»)
-      console.log('[MISTAKES-HUB] open', JSON.stringify({ ready: next.readyCount, active: next.insights.active, adviceSource: shown.source, ms: Date.now() - startedAt }));
-      void refreshMistakeHubAdvice({ accountScope, summary }).then((fresh) => {
-        if (!cancelled && fresh) setAdvice(fresh);
-      });
-    })().catch((error: unknown) => {
-      // guard-ok: лог в catch обязателен
-      console.warn('[MISTAKES-HUB] open:catch', error instanceof Error ? error.message : String(error));
-    });
+    void load('focus', () => cancelled);
     return () => { cancelled = true; };
-  }, [lang, peekKey, target]));
+  }, [load]));
 
-  // зачем (аудит 2026-09-21, одобрено владельцем): pull-to-refresh ставим ТОЛЬКО
-  // там, где жест стоит 0 чтений Firestore. Журнал ошибок лежит на устройстве,
-  // поэтому жест ПЕРЕСЧИТЫВАЕТ локальный снапшот и в сеть не идёт вовсе.
-  // Подсказку-наблюдение здесь намеренно НЕ трогаем: она кэшируется на день,
-  // дёргать её жестом — лишние вызовы ИИ за деньги.
+  // зачем (аудит 2026-09-21, одобрено владельцем): pull-to-refresh ставим ТОЛЬКО там, где жест стоит 0 чтений Firestore.
+  // Журнал ошибок лежит на устройстве, поэтому жест пересчитывает локальный снимок и в сеть не идёт вовсе.
   const [refreshing, setRefreshing] = useState(false);
   const refreshingRef = useRef(false);
   const onPullRefresh = useCallback(() => {
@@ -145,220 +120,232 @@ export default function MistakesHubScreen() {
     }
     refreshingRef.current = true;
     setRefreshing(true);
-    const startedAt = Date.now();
-    void loadMistakePracticeHubSnapshot(target)
-      .then((next) => {
-        hubSnapshotPeek = { key: peekKey, snapshot: next };
-        setSnapshot(next);
-        if (__DEV__) {
-          console.log('[MISTAKES-HUB] refresh:done', JSON.stringify({
-            ready: next.readyCount, active: next.insights.active, ms: Date.now() - startedAt, reads: 0,
-          }));
-        }
-      })
-      .catch((error: unknown) => {
-        // guard-ok: немой catch запрещён. Данные локальные, поэтому отказ здесь
-        // почти невозможен — но если он есть, причина обязана быть видна.
-        console.warn('[MISTAKES-HUB] refresh:catch', error instanceof Error ? error.message : String(error));
-      })
-      .finally(() => {
-        refreshingRef.current = false;
-        setRefreshing(false);
-      });
-  }, [peekKey, target]);
+    void load('pull', () => false).finally(() => {
+      refreshingRef.current = false;
+      setRefreshing(false);
+    });
+  }, [load]);
 
-  const readyCount = snapshot?.readyCount ?? 0;
-  const options = useMemo(() => mistakePracticeLengthOptions(readyCount), [readyCount]);
-  useEffect(() => {
-    if (options.some((option) => option.id === length && option.enabled)) return;
-    setLength(options.find((option) => option.enabled)?.id ?? 'all');
-  }, [length, options]);
-  const sessionCount = mistakePracticeSessionCount(length, readyCount);
-  const costsEnergy = mistakePracticeSessionCostsEnergy(sessionCount);
-  const showSegments = readyCount >= 5;
-
-  const facetTotal = snapshot?.insights.frequentFacets.reduce((sum, item) => sum + item.count, 0) ?? 0;
-  const facets = snapshot?.insights.frequentFacets ?? [];
-  const sources = (snapshot?.insights.frequentSources ?? []).slice(0, 3);
+  const items = snapshot?.items ?? [];
   const active = snapshot?.insights.active ?? 0;
   const corrected = snapshot?.insights.corrected ?? 0;
-  const loaded = snapshot !== null;
-  const allFixed = loaded && active === 0 && corrected > 0;
-  const nothingYet = loaded && active === 0 && corrected === 0;
+  const readyCount = snapshot?.readyCount ?? 0;
+  const progress = active + corrected > 0 ? corrected / (active + corrected) : 0;
+  const percent = Math.round(progress * 100);
+
+  const mode: HubMode = !snapshot ? (failed ? 'failed' : 'loading')
+    : active === 0 ? (corrected > 0 ? 'allFixed' : 'fresh')
+    : readyCount === 0 ? 'todayDone'
+    : 'normal';
+
+  const activeItems = useMemo(() => items.filter((item) => item.status === 'active'), [items]);
+  const groupCounts = useMemo(() => {
+    const counts: Record<string, number> = { all: activeItems.length, meaning: 0, grammar: 0, sound: 0 };
+    for (const item of activeItems) counts[mistakeGroupOf(item.facet)] += 1;
+    return counts;
+  }, [activeItems]);
+  const chips = useMemo<PanelChip[]>(() => [
+    { id: 'all', label: `${copy.all} ${groupCounts.all}` },
+    ...MISTAKE_GROUPS.filter((id) => (groupCounts[id] ?? 0) > 0).map((id) => ({ id, label: `${mistakeGroupLabel(lang, id)} ${groupCounts[id]}` })),
+  ], [copy.all, groupCounts, lang]);
+  const rows = useMemo(() => activeItems.filter((item) => group === 'all' || mistakeGroupOf(item.facet) === group).slice(0, 12), [activeItems, group]);
+
+  // Число ошибок в шторке «Перед отработкой»: готовые к повтору в выбранной группе, не больше предела сессии.
+  const sheetReady = useMemo(
+    () => Math.min(MISTAKE_PRACTICE_MAX_SESSION, activeItems.filter((item) => item.ready && (sheetGroup === 'all' || mistakeGroupOf(item.facet) === sheetGroup)).length),
+    [activeItems, sheetGroup],
+  );
+  const sheetChips = useMemo<PanelChip[]>(() => [
+    { id: 'all', label: `${copy.all} ${Math.min(MISTAKE_PRACTICE_MAX_SESSION, readyCount)}` },
+    ...MISTAKE_GROUPS.map((id) => ({ id, n: activeItems.filter((item) => item.ready && mistakeGroupOf(item.facet) === id).length }))
+      .filter((entry) => entry.n > 0)
+      .map((entry) => ({ id: entry.id, label: `${mistakeGroupLabel(lang, entry.id)} ${entry.n}` })),
+  ], [activeItems, copy.all, lang, readyCount]);
+
+  const openSheet = useCallback(() => {
+    hapticTap();
+    setSheetGroup(group);
+    setSheetOpen(true);
+  }, [group]);
+  const closeSheet = useCallback(() => setSheetOpen(false), []);
 
   const startSession = useCallback(() => {
-    if (openingRef.current || sessionCount < 1) return;
+    if (openingRef.current || sheetReady < 1) return;
     hapticTap();
     if (!gate.tryStartSession()) return;
     openingRef.current = true;
+    const costsEnergy = mistakePracticeSessionCostsEnergy(sheetReady);
     trackMistakePracticeEvent('mistake_practice_setup_started', {
       study_target: target,
       entry_source: 'mistakes_hub',
-      requested_length: length,
+      requested_length: 'all',
       ready_count: readyCount,
-      session_count: sessionCount,
+      session_count: sheetReady,
       costs_energy: costsEnergy,
     });
-    router.push({ pathname: '/mistake_practice_session', params: { length } } as never);
-  }, [costsEnergy, gate, length, readyCount, router, sessionCount, target]);
+    setSheetOpen(false);
+    router.push({ pathname: '/mistake_practice_session', params: sheetGroup === 'all' ? { length: 'all' } : { length: 'all', facetGroup: sheetGroup } } as never);
+  }, [gate, readyCount, router, sheetGroup, sheetReady, target]);
 
   const openList = useCallback((filter: 'ready' | 'all' | 'corrected') => {
     hapticTap();
     router.push({ pathname: '/mistakes_list', params: { filter } } as never);
   }, [router]);
+  const openOne = useCallback((mistakeId: string) => {
+    hapticTap();
+    router.push({ pathname: '/mistake_detail', params: { mistakeId } } as never);
+  }, [router]);
+  const goBack = useCallback(() => safeRouterBack(router, '/' as never), [router]);
 
+  const [accentA, accentB] = themePair(g);
+  const iconTile = (name: keyof typeof Ionicons.glyphMap, color: string) => (
+    <View style={styles.bigTile}>
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: mixDark(accentA, '#1E1E20', 0.6) }]} />
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: mixDark(accentB, '#08080B', 0.32), opacity: 0.55 }]} />
+      <Ionicons name={name} size={32} color={color} />
+    </View>
+  );
+
+  const centerRing = (full: boolean, node: React.ReactNode) => (
+    <PanelRing g={g} progress={full ? 1 : 0}>{node}</PanelRing>
+  );
+
+  const legend = (
+    <View style={styles.legend}>
+      <Pressable testID="mistakes-hub-corrected" accessibilityRole="button" onPress={() => openList('corrected')} style={styles.legendItem}>
+        <View style={[styles.legendDot, { backgroundColor: g.accent }]} />
+        <Text style={[styles.legendText, { color: g.secondary }]}>{`${corrected} ${copy.fixedN}`}</Text>
+      </Pressable>
+      <Pressable testID="mistakes-hub-ready" accessibilityRole="button" onPress={() => openList('all')} style={styles.legendItem}>
+        <View style={[styles.legendDot, { backgroundColor: 'rgba(255,255,255,0.25)' }]} />
+        <Text style={[styles.legendText, { color: g.secondary }]}>{`${active} ${copy.waitN}`}</Text>
+      </Pressable>
+    </View>
+  );
+
+  const body = (() => {
+    if (mode === 'loading') {
+      return (
+        <>
+          <PanelRing g={g} progress={0} />
+          <Text style={[styles.loadingText, { color: g.secondary }]}>{copy.loading}</Text>
+          <View style={styles.dimmed}><FilterChips g={g} chips={[{ id: 'a', label: copy.all }, { id: 'b', label: mistakeGroupLabel(lang, 'meaning') }, { id: 'c', label: mistakeGroupLabel(lang, 'grammar') }]} activeId="a" onChange={() => undefined} testIDPrefix="mistakes-hub-chip-skeleton" /></View>
+          <Panel g={g}>
+            {[0, 1, 2].map((i) => (
+              <View key={`sk-${i}`} style={styles.skelRow}>
+                {i > 0 ? <View pointerEvents="none" style={styles.skelLine} /> : null}
+                <View style={[styles.skel, { height: 16, width: '50%' }]} />
+                <View style={[styles.skel, { height: 12, width: '30%', marginTop: 8 }]} />
+              </View>
+            ))}
+          </Panel>
+        </>
+      );
+    }
+    if (mode === 'failed') {
+      return (
+        <View style={styles.stateWrap}>
+          {centerRing(false, iconTile('wifi-outline', g.text))}
+          <Text style={[styles.stateTitle, { color: g.text }]}>{copy.offlineTitle}</Text>
+          <Text style={[styles.stateSub, { color: g.secondary }]}>{copy.offlineSub}</Text>
+        </View>
+      );
+    }
+    if (mode === 'fresh' || mode === 'allFixed') {
+      return (
+        <View style={styles.stateWrap}>
+          {centerRing(true, iconTile('checkmark', MP_COLORS.ok))}
+          <Text style={[styles.stateTitle, { color: g.text }]}>{copy.emptyTitle}</Text>
+          <Text style={[styles.stateSub, { color: g.secondary }]}>{mode === 'fresh' ? copy.emptyFresh : copy.emptySub}</Text>
+        </View>
+      );
+    }
+    if (mode === 'todayDone') {
+      return (
+        <View style={styles.stateWrap}>
+          {centerRing(false, iconTile('flag-outline', g.text))}
+          <Text style={[styles.stateTitle, { color: g.text }]}>{copy.todayTitle}</Text>
+          <Text style={[styles.stateSub, { color: g.secondary }]}>{copy.todaySub}</Text>
+          <Panel g={g} style={styles.waitPanel}>
+            <PanelRow g={g} first title={copy.waiting} right={<Text style={[styles.waitNum, { color: g.text }]}>{active}</Text>} />
+          </Panel>
+        </View>
+      );
+    }
+    return (
+      <>
+        <PanelRing g={g} progress={progress}>
+          <Text style={[styles.percent, { color: g.text }]}>{`${percent}%`}</Text>
+          <Text style={[styles.percentLabel, { color: g.secondary }]}>{copy.fixed}</Text>
+        </PanelRing>
+        {legend}
+        <FilterChips g={g} chips={chips} activeId={group} onChange={(id) => { hapticTap(); setGroup(id as MistakeGroupFilter); }} testIDPrefix="mistakes-hub-chip" />
+        <Panel g={g}>
+          {rows.map((item, index) => (
+            <PanelRow
+              key={item.mistakeId}
+              g={g}
+              first={index === 0}
+              testID={`mistakes-hub-row-${item.mistakeId}`}
+              title={item.phrase}
+              subtitle={item.meaning}
+              right={<MiniDots g={g} n={item.qualifyingDays} />}
+              onPress={() => openOne(item.mistakeId)}
+            />
+          ))}
+        </Panel>
+      </>
+    );
+  })();
+
+  const showDock = mode === 'normal' || mode === 'loading' || mode === 'fresh' || mode === 'allFixed' || mode === 'todayDone' || mode === 'failed';
+  const dockCta = (() => {
+    if (mode === 'normal') return <PanelCta g={g} testID="mistakes-hub-start" label={`${copy.practice} ${Math.min(MISTAKE_PRACTICE_MAX_SESSION, readyCount)}`} onPress={openSheet} />;
+    if (mode === 'loading') return <PanelCta g={g} label={copy.practice} onPress={() => undefined} disabled />;
+    if (mode === 'failed') return <PanelCta g={g} ghost label={copy.retry} onPress={() => { hapticTap(); void load('retry', () => false); }} />;
+    return <PanelCta g={g} testID="mistakes-hub-to-lessons" label={copy.toLessons} onPress={() => { hapticTap(); router.push('/lessons_list' as never); }} />;
+  })();
+
+  const minutes = Math.max(1, Math.ceil((sheetReady * SECONDS_PER_MISTAKE) / 60));
+  const sheetCosts = mistakePracticeSessionCostsEnergy(sheetReady);
 
   return (
     <ScreenGradient>
       <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
-        <View style={styles.header}>
-          <Pressable accessibilityRole="button" accessibilityLabel={copy.back} hitSlop={10} onPress={() => safeRouterBack(router, '/' as never)} style={[styles.iconButton, { backgroundColor: g.opaqueCard }]}>
-            <Ionicons name="chevron-back" size={24} color={g.text} />
-          </Pressable>
-          <Text style={[styles.title, { color: g.text, fontSize: f.h3 }]}>{copy.title}</Text>
-        </View>
         <ScrollView
           contentContainerStyle={styles.content}
           showsVerticalScrollIndicator={false}
           refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={onPullRefresh} />}
         >
-          {/* Сводка: готовы / исправлено. Тап ведёт в список с нужным фильтром. */}
-          <View style={styles.pillRow}>
-            {loaded ? (
-              <>
-                <Pressable testID="mistakes-hub-ready" accessibilityRole="button" onPress={() => openList('ready')} style={[styles.pill, { backgroundColor: g.badFill }]}>
-                  <Text style={[styles.pillNum, { color: g.text, fontSize: f.body }]}>{readyCount}</Text>
-                  <Text style={[styles.pillText, { color: g.text, fontSize: f.label }]}>{copy.ready}</Text>
-                </Pressable>
-                <Pressable testID="mistakes-hub-corrected" accessibilityRole="button" onPress={() => openList('corrected')} style={[styles.pill, { backgroundColor: g.goodFill }]}>
-                  <Text style={[styles.pillNum, { color: g.text, fontSize: f.body }]}>{corrected}</Text>
-                  <Text style={[styles.pillText, { color: g.text, fontSize: f.label }]}>{copy.corrected}</Text>
-                </Pressable>
-              </>
-            ) : (
-              <>
-                <SkeletonBlock width={110} height={36} borderRadius={18} />
-                <SkeletonBlock width={130} height={36} borderRadius={18} />
-              </>
-            )}
-          </View>
-
-          {allFixed || nothingYet ? (
-            <View style={[styles.card, { backgroundColor: g.opaqueCard }]}>
-              <View style={[styles.emptyIcon, { backgroundColor: g.goodFill }]}>
-                <Ionicons name="checkmark" size={36} color={g.good} />
-              </View>
-              <Text style={[styles.emptyTitle, { color: g.text, fontSize: f.h3 }]}>{allFixed ? copy.empty : copy.noData}</Text>
-              <Text style={[styles.body, { color: g.secondary, fontSize: f.body }]}>{copy.emptyBody}</Text>
-              {allFixed ? (
-                <Pressable accessibilityRole="button" onPress={() => openList('corrected')} style={[styles.secondary, { backgroundColor: g.opaqueControl }]}>
-                  <Text style={{ color: g.text, fontSize: f.body, fontWeight: '800' }}>{copy.shelf}</Text>
-                </Pressable>
-              ) : null}
-            </View>
-          ) : (
-            <>
-              {/* Карта слабых мест: тип → доля за 30 дней. */}
-              <View style={[styles.card, { backgroundColor: g.opaqueCard }]}>
-                <Text style={[styles.cardTitle, { color: g.text, fontSize: f.bodyLg }]}>
-                  {loaded ? `${copy.map30} · ${facetTotal} ${pluralWord(lang, facetTotal, copy.mistakes)}` : copy.map30}
-                </Text>
-                <View style={styles.facets}>
-                  {loaded ? facets.map((item, index) => (
-                    <View key={item.facet} style={styles.facet}>
-                      <View style={styles.facetRow}>
-                        <Text style={[styles.facetName, { color: g.text, fontSize: f.body }]}>{mistakeFacetLabel(lang, item.facet as MistakeFacet)}</Text>
-                        <Text style={[styles.facetVal, { color: g.secondary, fontSize: f.body }]}>{facetTotal > 0 ? Math.round((item.count / facetTotal) * 100) : 0}%</Text>
-                      </View>
-                      <FacetBar share={facetTotal > 0 ? item.count / facetTotal : 0} index={index} top={index === 0} reduceMotion={reduceMotion} />
-                    </View>
-                  )) : [0, 1, 2].map((index) => (
-                    <View key={`skeleton-${index}`} style={styles.facet}>
-                      <View style={styles.facetRow}><SkeletonBlock width={140} height={16} /><SkeletonBlock width={40} height={16} /></View>
-                      <SkeletonBlock width="100%" height={10} />
-                    </View>
-                  ))}
-                </View>
-              </View>
-
-
-              {/* Наблюдение: готово до открытия (кэш ИИ на сегодня или правило). Без подписи «ИИ». */}
-              <View style={[styles.card, { backgroundColor: g.opaqueControl }]}>
-                {advice ? (
-                  <Text testID="mistakes-hub-advice" style={[styles.advice, { color: g.text, fontSize: f.bodyLg }]}>{advice.hub}</Text>
-                ) : (
-                  <View style={{ gap: 10 }}><SkeletonBlock width="92%" height={18} /><SkeletonBlock width="70%" height={18} /></View>
-                )}
-              </View>
-
-              {/* Откуда приходят. */}
-              <View style={[styles.card, { backgroundColor: g.opaqueCard }]}>
-                <Text style={[styles.cardTitle, { color: g.text, fontSize: f.bodyLg }]}>{copy.sources}</Text>
-                <View style={styles.sourceRow}>
-                  {loaded ? sources.map((item) => (
-                    <View key={item.source} style={[styles.sourceTile, { backgroundColor: g.opaqueControl }]}>
-                      <Text style={[styles.sourceNum, { color: g.text }]}>{item.count}</Text>
-                      <Text style={[styles.sourceLabel, { color: g.secondary, fontSize: f.label }]}>{mistakeSourceLabel(lang, item.source)}</Text>
-                    </View>
-                  )) : [0, 1, 2].map((index) => <SkeletonBlock key={`skeleton-source-${index}`} width="31%" height={76} borderRadius={18} />)}
-                  {loaded && advice?.map ? (
-                    <Text style={[styles.body, { color: g.secondary, fontSize: f.sub, width: '100%' }]}>{advice.map}</Text>
-                  ) : null}
-                </View>
-              </View>
-
-              <Pressable testID="mistakes-hub-list" accessibilityRole="button" onPress={() => openList('all')} style={[styles.listLink, { backgroundColor: g.opaqueCard }]}>
-                <Text style={[styles.cardTitle, { color: g.text, fontSize: f.body, flex: 1 }]}>{copy.list}</Text>
-                <Text style={[styles.facetVal, { color: g.secondary, fontSize: f.body }]}>{active}</Text>
-                <Ionicons name="chevron-forward" size={20} color={g.secondary} />
-              </Pressable>
-            </>
-          )}
+          <View style={styles.topbar}><BackButton g={g} label={copy.back} onPress={goBack} /></View>
+          <ScreenTitle g={g} text={copy.title} />
+          {body}
         </ScrollView>
-
-        {loaded && readyCount > 0 ? (
-          // зачем (сверка с results.html, 04.10): у нижней панели не было подложки — текст списка просвечивал между
-          // выбором длины и кнопкой; панель теперь на сплошном фоне экрана во всю ширину.
-          <View style={[styles.dock, { backgroundColor: g.bg }]}>
-            {showSegments ? (
-              <View style={[styles.segment, { backgroundColor: g.opaqueCard }]}>
-                {options.map((option) => {
-                  const on = option.id === length;
-                  return (
-                    <Pressable
-                      key={option.id}
-                      testID={`mistakes-hub-length-${option.id}`}
-                      accessibilityRole="radio"
-                      accessibilityState={{ checked: on, disabled: !option.enabled }}
-                      disabled={!option.enabled}
-                      hitSlop={4}
-                      onPress={() => { hapticTap(); setLength(option.id); }}
-                      style={[styles.segmentItem, on && { backgroundColor: g.opaqueControl }, !option.enabled && { opacity: 0.38 }]}
-                    >
-                      <Text style={{ color: on ? g.text : g.secondary, fontSize: f.body, fontWeight: '800' }}>
-                        {option.id === 'all' ? `${copy.all} ${option.count}` : option.id}
-                      </Text>
-                    </Pressable>
-                  );
-                })}
-              </View>
-            ) : null}
-            <View style={styles.startWrap}>
-              <Pressable
-                testID="mistakes-hub-start"
-                accessibilityRole="button"
-                onPress={startSession}
-                style={({ pressed }) => [styles.start, { backgroundColor: g.accent, transform: [{ scale: pressed ? 0.98 : 1 }] }]}
-              >
-                <Text style={{ color: g.accentInk, fontSize: f.body, fontWeight: '800' }}>
-                  {showSegments ? `${copy.start} ${sessionCount}` : `${copy.startAll} ${sessionCount}`}
-                </Text>
-              </Pressable>
-              {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над
-                  кнопкой убран — costsEnergy остаётся для аналитики. */}
-            </View>
+        {showDock ? <PanelDock>{dockCta}</PanelDock> : null}
+        <PanelSheet visible={sheetOpen} onClose={closeSheet} testID="mistakes-hub-sheet">
+          <View style={styles.sheetHead}>
+            <Text style={styles.sheetTitle}>{copy.sheetTitle}</Text>
+            <Text style={[styles.sheetSub, { color: g.secondary }]}>
+              {`${sheetReady} ${pluralWord(lang, sheetReady, copy.mistakes)} · ${copy.about} ${minutes} ${pluralWord(lang, minutes, copy.mins)}`}
+            </Text>
           </View>
-        ) : null}
+          <FilterChips g={g} chips={sheetChips} activeId={sheetGroup} onChange={(id) => { hapticTap(); setSheetGroup(id as MistakeGroupFilter); }} testIDPrefix="mistakes-hub-sheet-chip" />
+          <View style={styles.sheetCta}>
+            <PanelCta
+              g={g}
+              testID="mistakes-hub-sheet-start"
+              label={copy.start}
+              disabled={sheetReady < 1}
+              onPress={startSession}
+              trailing={sheetCosts ? (
+                <View style={styles.energy}>
+                  <Ionicons name="flash" size={18} color={g.accentInk} />
+                  <Text style={[styles.energyNum, { color: g.accentInk }]}>1</Text>
+                </View>
+              ) : null}
+            />
+          </View>
+        </PanelSheet>
       </SafeAreaView>
     </ScreenGradient>
   );
@@ -366,37 +353,30 @@ export default function MistakesHubScreen() {
 
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: 'transparent' },
-  header: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingTop: 6, paddingBottom: 8 },
-  iconButton: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
-  title: { flex: 1, fontWeight: '900', letterSpacing: -0.4 },
-  // зачем: отступ под нижнюю панель (выбор длины + кнопка ≈ 210) — последняя строка списка не уходит под кнопку.
-  content: { paddingHorizontal: 16, paddingTop: 4, paddingBottom: 250, gap: 12 },
-  pillRow: { flexDirection: 'row', gap: 8, minHeight: 36 },
-  pill: { height: 36, borderRadius: 18, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', gap: 6 },
-  pillNum: { fontWeight: '900', fontVariant: ['tabular-nums'] },
-  pillText: { fontWeight: '800' },
-  card: { borderRadius: 22, padding: 18, gap: 12 },
-  cardTitle: { fontWeight: '900', letterSpacing: -0.2 },
-  facets: { gap: 12 },
-  facet: { gap: 7 },
-  facetRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 10, minHeight: 20 },
-  facetName: { fontWeight: '800', flexShrink: 1 },
-  facetVal: { fontWeight: '900', fontVariant: ['tabular-nums'] },
-  barTrack: { height: 10, borderRadius: 5, overflow: 'hidden' },
-  barFill: { height: 10, borderRadius: 5 },
-  advice: { fontWeight: '700', lineHeight: 26 },
-  body: { fontWeight: '600', lineHeight: 22 },
-  sourceRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
-  sourceTile: { width: '31%', flexGrow: 1, minHeight: 76, borderRadius: 18, alignItems: 'center', justifyContent: 'center', gap: 4, paddingHorizontal: 6 },
-  sourceNum: { fontSize: 28, fontWeight: '900', letterSpacing: -0.8, fontVariant: ['tabular-nums'] },
-  sourceLabel: { fontWeight: '800', textAlign: 'center', flexShrink: 1 },
-  listLink: { borderRadius: 18, paddingHorizontal: 18, minHeight: 60, flexDirection: 'row', alignItems: 'center', gap: 10 },
-  emptyIcon: { width: 72, height: 72, borderRadius: 26, alignItems: 'center', justifyContent: 'center', alignSelf: 'center' },
-  emptyTitle: { fontWeight: '900', textAlign: 'center' },
-  secondary: { minHeight: 52, borderRadius: 17, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 },
-  dock: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 16, paddingTop: 12, paddingBottom: 22, gap: 10 },
-  segment: { flexDirection: 'row', gap: 6, padding: 5, borderRadius: 18 },
-  segmentItem: { flex: 1, height: 42, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
-  startWrap: { position: 'relative' },
-  start: { minHeight: 56, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
+  // зачем: нижний отступ под панель-кнопку (52 + поля), чтобы последняя строка не уходила под неё.
+  content: { paddingHorizontal: 20, paddingBottom: 140 },
+  topbar: { height: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center' },
+  percent: { fontSize: 60, lineHeight: 62, fontWeight: '800', letterSpacing: -1.5 },
+  percentLabel: { marginTop: 2, fontSize: 15, lineHeight: 19 },
+  legend: { marginTop: 14, flexDirection: 'row', justifyContent: 'center', gap: 22 },
+  legendItem: { flexDirection: 'row', alignItems: 'center', minHeight: 19 },
+  legendDot: { width: 10, height: 10, borderRadius: 5, marginRight: 8 },
+  legendText: { fontSize: 15, lineHeight: 19 },
+  loadingText: { marginTop: 14, fontSize: 15, lineHeight: 19, textAlign: 'center' },
+  dimmed: { opacity: 0.5 },
+  skelRow: { minHeight: 64, justifyContent: 'center' },
+  skelLine: { position: 'absolute', left: 0, right: 0, top: 0, height: 1, backgroundColor: MP_COLORS.hairline },
+  skel: { borderRadius: 10, backgroundColor: 'rgba(255,255,255,0.09)' },
+  stateWrap: { alignItems: 'stretch' },
+  stateTitle: { marginTop: 24, fontSize: 26, lineHeight: 32, fontWeight: '700', textAlign: 'center' },
+  stateSub: { marginTop: 8, fontSize: 16, lineHeight: 22, textAlign: 'center' },
+  waitPanel: { marginTop: 26 },
+  waitNum: { marginLeft: 'auto', fontSize: 22, lineHeight: 28, fontWeight: '700' },
+  bigTile: { width: 76, height: 76, borderRadius: 24, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
+  sheetHead: { alignItems: 'center' },
+  sheetTitle: { color: '#FFFFFF', fontSize: 24, lineHeight: 30, fontWeight: '700' },
+  sheetSub: { marginTop: 6, fontSize: 16, lineHeight: 22 },
+  sheetCta: { marginTop: 10 },
+  energy: { flexDirection: 'row', alignItems: 'center', gap: 2 },
+  energyNum: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
 });

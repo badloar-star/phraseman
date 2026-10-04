@@ -17,7 +17,7 @@ describe('mistake title shelf contract', () => {
   });
 
   test('the shelf sits on the corrected filter only', () => {
-    expect(list).toContain("filter === 'corrected' ? <MistakeTitleShelf");
+    expect(list).toContain("tab === 'corrected' ? <MistakeTitleShelf");
     expect(list).toContain('buildMistakeRewardsSnapshot(journal.events)');
   });
 

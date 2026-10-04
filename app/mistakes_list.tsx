@@ -1,67 +1,74 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
-import SkeletonBlock from '../components/SkeletonShimmer';
 import { useStudyTarget } from '../components/StudyTargetContext';
-import { useTheme } from '../components/ThemeContext';
 import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
-import { triLang, type Lang } from '../constants/i18n';
-import { hapticTap } from '../hooks/use-haptics';
-import { mistakeFacetLabel } from './mistake_facet_copy';
+import { BackButton, FilterChips, MiniDots, Panel, PanelCta, PanelDock, PanelRow, ScreenTitle, type PanelChip } from '../components/mistakes-panel/PanelKit';
+import { MP_COLORS } from '../components/mistakes-panel/panelPaint';
 import MistakeTitleShelf from '../components/mistake-practice/MistakeTitleShelf';
 import { buildMistakeRewardsSnapshot, type MistakeRewardsSnapshot } from '../modules/mistake-practice/rewards_model';
-import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { loadMistakeEventJournal } from './mistake_practice_store';
 import { getStableId } from './stable_id';
+import { MISTAKE_GROUPS, mistakeGroupLabel, mistakeGroupOf, type MistakeGroupFilter } from '../components/mistakes-panel/mistakeGroups';
+import { triLang, type Lang } from '../constants/i18n';
+import { hapticTap } from '../hooks/use-haptics';
+import { useMistakePracticeStartGate } from '../hooks/useMistakePracticeStartGate';
+import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
+import { MISTAKE_PRACTICE_MAX_SESSION } from '../modules/mistake-practice/session';
 import { peekMistakesHubSnapshot } from './mistakes_hub';
 import { loadMistakePracticeHubSnapshot, type MistakePracticeListItem } from './mistake_practice_insights';
+import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { safeRouterBack } from './navigation_back';
 
 /**
- * Список ошибок (макет: хаб В). Три фильтра: готовы / все / исправлены.
- * Строка: число промахов, фраза, перевод и тип, три точки цепочки дней.
- * Тап по активной ошибке открывает сессию из одной этой ошибки (бесплатно,
- * без энергии - правило «меньше 5 без энергии»).
+ * Список ошибок — «Все ошибки» (макет docs/design/v2-app/mistakes-panel.html, экраны «Все ошибки — ждут» и «Все ошибки — исправлены», вариант Б «Панель»).
+ *
+ * зачем (владелец: «1 в 1, без малейших потерь»): две вкладки «Ждут · N» / «Исправлены · N», под ними ленты-фильтры по типам и одна панель:
+ * слово, перевод и три полоски дней. Тап по строке открывает карточку ошибки. Данные — снимок хаба (локальный журнал, 0 чтений Firestore).
  */
 
-type Filter = 'ready' | 'all' | 'corrected';
+type Tab = 'waiting' | 'corrected';
 
 const copyFor = (lang: Lang) => triLang(lang, {
-  ru: { title: 'Мои ошибки', back: 'Назад', ready: 'Готовы', all: 'Все', corrected: 'Исправлены', empty: 'Здесь пока пусто', fixed: 'навсегда', one: 'Отработать одну' },
-  uk: { title: 'Мої помилки', back: 'Назад', ready: 'Готові', all: 'Усі', corrected: 'Виправлені', empty: 'Тут поки порожньо', fixed: 'назавжди', one: 'Відпрацювати одну' },
-  en: { title: 'My mistakes', back: 'Back', ready: 'Ready', all: 'All', corrected: 'Fixed', empty: 'Nothing here yet', fixed: 'for good', one: 'Practise this one' },
-  es: { title: 'Mis errores', back: 'Atrás', ready: 'Listos', all: 'Todos', corrected: 'Corregidos', empty: 'Aún no hay nada', fixed: 'para siempre', one: 'Practicar este' },
-  'pt-BR': { title: 'Meus erros', back: 'Voltar', ready: 'Prontos', all: 'Todos', corrected: 'Corrigidos', empty: 'Ainda não há nada', fixed: 'para sempre', one: 'Praticar este' },
-  vi: { title: 'Lỗi của tôi', back: 'Quay lại', ready: 'Sẵn sàng', all: 'Tất cả', corrected: 'Đã sửa', empty: 'Chưa có gì ở đây', fixed: 'mãi mãi', one: 'Luyện lỗi này' },
-  id: { title: 'Kesalahanku', back: 'Kembali', ready: 'Siap', all: 'Semua', corrected: 'Diperbaiki', empty: 'Belum ada apa-apa', fixed: 'selamanya', one: 'Latih yang ini' },
-  tr: { title: 'Hatalarım', back: 'Geri', ready: 'Hazır', all: 'Tümü', corrected: 'Düzeltilen', empty: 'Burası şimdilik boş', fixed: 'kalıcı', one: 'Bunu çalış' },
-  pl: { title: 'Moje błędy', back: 'Wstecz', ready: 'Gotowe', all: 'Wszystkie', corrected: 'Poprawione', empty: 'Na razie pusto', fixed: 'na zawsze', one: 'Przećwicz ten' },
+  ru: { title: 'Все ошибки', back: 'Назад', waiting: 'Ждут', corrected: 'Исправлены', all: 'Все', empty: 'Здесь пока пусто', practice: 'Отработать', search: 'Поиск', clear: 'Очистить' },
+  uk: { title: 'Усі помилки', back: 'Назад', waiting: 'Чекають', corrected: 'Виправлені', all: 'Усі', empty: 'Тут поки порожньо', practice: 'Відпрацювати', search: 'Пошук', clear: 'Очистити' },
+  en: { title: 'All mistakes', back: 'Back', waiting: 'Waiting', corrected: 'Fixed', all: 'All', empty: 'Nothing here yet', practice: 'Practise', search: 'Search', clear: 'Clear' },
+  es: { title: 'Todos los errores', back: 'Atrás', waiting: 'Esperan', corrected: 'Corregidos', all: 'Todos', empty: 'Aún no hay nada', practice: 'Practicar', search: 'Buscar', clear: 'Borrar' },
+  'pt-BR': { title: 'Todos os erros', back: 'Voltar', waiting: 'Esperam', corrected: 'Corrigidos', all: 'Todos', empty: 'Ainda não há nada', practice: 'Praticar', search: 'Buscar', clear: 'Limpar' },
+  vi: { title: 'Tất cả lỗi', back: 'Quay lại', waiting: 'Đang chờ', corrected: 'Đã sửa', all: 'Tất cả', empty: 'Chưa có gì ở đây', practice: 'Luyện', search: 'Tìm', clear: 'Xóa' },
+  id: { title: 'Semua kesalahan', back: 'Kembali', waiting: 'Menunggu', corrected: 'Diperbaiki', all: 'Semua', empty: 'Belum ada apa-apa', practice: 'Latih', search: 'Cari', clear: 'Hapus' },
+  tr: { title: 'Tüm hatalar', back: 'Geri', waiting: 'Bekleyen', corrected: 'Düzeltilen', all: 'Tümü', empty: 'Burası şimdilik boş', practice: 'Çalış', search: 'Ara', clear: 'Temizle' },
+  pl: { title: 'Wszystkie błędy', back: 'Wstecz', waiting: 'Czekają', corrected: 'Poprawione', all: 'Wszystkie', empty: 'Na razie pusto', practice: 'Przećwicz', search: 'Szukaj', clear: 'Wyczyść' },
 });
 
-const FILTERS: readonly Filter[] = ['ready', 'all', 'corrected'];
+const PAGE = 40;
 
 export default function MistakesListScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{ filter?: string }>();
-  const { f } = useTheme();
   const g = useLv2Glass();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const copy = useMemo(() => copyFor(lang), [lang]);
-  // зачем (22.09): подмена испанского/немецкого на английский — человек видел
-  // чужой список ошибок. Журнал ключуется по языку, подменять его нельзя.
+  // зачем (22.09): подмена испанского/немецкого на английский — человек видел чужой список ошибок. Журнал ключуется по языку.
   const target = normalizeMistakeStudyTarget(studyTarget);
-  const [filter, setFilter] = useState<Filter>(params.filter === 'corrected' || params.filter === 'all' ? params.filter : 'ready');
+  const [tab, setTab] = useState<Tab>(params.filter === 'corrected' ? 'corrected' : 'waiting');
+  const [group, setGroup] = useState<MistakeGroupFilter>('all');
+  const [query, setQuery] = useState('');
+  const [searching, setSearching] = useState(false);
+  const [limit, setLimit] = useState(PAGE);
   // зачем (аудит 04.10): первый кадр — из снимка хаба (если он есть для этого аккаунта/цели/языка), загрузка идёт фоном и заменяет строки.
   const [items, setItems] = useState<readonly MistakePracticeListItem[] | null>(() => peekMistakesHubSnapshot(target, lang)?.items ?? null);
-  // Полка «Исправлены» носит шапку со званием и лестницей (макет полки А).
+  // зачем (владелец 2026-09-14: «победы должны где-то храниться»): полка со званием и лестницей остаётся на вкладке «Исправлены»;
+  // в макете «Панель» её нет — решение владельца ждём, функцию не теряем.
   const [rewards, setRewards] = useState<MistakeRewardsSnapshot | null>(null);
   const openingRef = useRef(false);
+  const gate = useMistakePracticeStartGate('mistakes_hub_start');
 
   useFocusEffect(useCallback(() => {
     let cancelled = false;
@@ -81,12 +88,26 @@ export default function MistakesListScreen() {
     return () => { cancelled = true; };
   }, [target]));
 
-  const visible = useMemo(() => (items ?? []).filter((item) =>
-    filter === 'ready' ? item.ready : filter === 'corrected' ? item.status === 'corrected' : item.status === 'active'),
-  [filter, items]);
+  const inTab = useMemo(() => (items ?? []).filter((item) => (tab === 'corrected' ? item.status === 'corrected' : item.status === 'active')), [items, tab]);
+  const waitingCount = useMemo(() => (items ?? []).filter((item) => item.status === 'active').length, [items]);
+  const correctedCount = (items?.length ?? 0) - waitingCount;
+  const counts = useMemo(() => {
+    const result: Record<string, number> = { all: inTab.length, meaning: 0, grammar: 0, sound: 0 };
+    for (const item of inTab) result[mistakeGroupOf(item.facet)] += 1;
+    return result;
+  }, [inTab]);
+  const chips = useMemo<PanelChip[]>(() => [
+    { id: 'all', label: `${copy.all} ${counts.all}` },
+    ...MISTAKE_GROUPS.filter((id) => (counts[id] ?? 0) > 0).map((id) => ({ id, label: `${mistakeGroupLabel(lang, id)} ${counts[id]}` })),
+  ], [copy.all, counts, lang]);
+  const needle = query.trim().toLowerCase();
+  const visible = useMemo(() => inTab.filter((item) =>
+    (group === 'all' || mistakeGroupOf(item.facet) === group)
+    && (!needle || item.phrase.toLowerCase().includes(needle) || (item.meaning ?? '').toLowerCase().includes(needle))),
+  [group, inTab, needle]);
+  const readyInGroup = useMemo(() => Math.min(MISTAKE_PRACTICE_MAX_SESSION, (items ?? []).filter((item) => item.ready && (group === 'all' || mistakeGroupOf(item.facet) === group)).length), [group, items]);
 
-  // зачем (макет Б): строка ведёт в КАРТОЧКУ ошибки — там хроника и разбор,
-  // а отработка одной ошибки запускается уже оттуда осознанной кнопкой.
+  // зачем (макет Б): строка ведёт в КАРТОЧКУ ошибки — там хроника и разбор, а отработка одной ошибки запускается оттуда осознанной кнопкой.
   const openOne = useCallback((item: MistakePracticeListItem) => {
     if (openingRef.current) return;
     openingRef.current = true;
@@ -94,81 +115,115 @@ export default function MistakesListScreen() {
     router.push({ pathname: '/mistake_detail', params: { mistakeId: item.mistakeId } } as never);
   }, [router]);
 
-  const renderItem = useCallback(({ item }: { item: MistakePracticeListItem }) => {
-    const corrected = item.status === 'corrected';
-    return (
-      <Pressable
-        accessibilityRole="button"
-        accessibilityLabel={`${item.phrase}${item.meaning ? `, ${item.meaning}` : ''}`}
-        onPress={() => openOne(item)}
-        style={({ pressed }) => [styles.row, { backgroundColor: g.opaqueCard, opacity: pressed ? 0.86 : 1 }]}
-      >
-        <View style={[styles.count, { backgroundColor: corrected ? g.goodFill : g.badFill }]}>
-          {corrected
-            ? <Ionicons name="checkmark" size={18} color={g.good} />
-            : <Text style={[styles.countText, { color: g.bad, fontSize: f.body }]}>×{item.captureCount}</Text>}
-        </View>
-        <View style={{ flex: 1, minWidth: 0, gap: 3 }}>
-          <Text style={[styles.phrase, { color: g.text, fontSize: f.body }]}>{item.phrase}</Text>
-          <Text style={[styles.meaning, { color: g.secondary, fontSize: f.sub }]}>
-            {[item.meaning, corrected ? copy.fixed : mistakeFacetLabel(lang, item.facet)].filter(Boolean).join(' · ')}
-          </Text>
-          {!corrected ? (
-            <View style={styles.dots}>
-              {[0, 1, 2].map((index) => (
-                <View key={`day-${index}`} style={[styles.dot, { backgroundColor: index < item.qualifyingDays ? g.cta : g.opaqueControl }]} />
-              ))}
-            </View>
-          ) : null}
-        </View>
-        <Ionicons name="chevron-forward" size={20} color={g.secondary} />
-      </Pressable>
-    );
-  }, [copy.fixed, f.body, f.sub, lang, openOne, g]);
+  const startPractice = useCallback(() => {
+    if (openingRef.current || readyInGroup < 1) return;
+    hapticTap();
+    if (!gate.tryStartSession()) return;
+    openingRef.current = true;
+    trackMistakePracticeEvent('mistake_practice_setup_started', {
+      study_target: target,
+      entry_source: 'mistakes_list',
+      requested_length: 'all',
+      ready_count: readyInGroup,
+      session_count: readyInGroup,
+      costs_energy: readyInGroup >= 5,
+    });
+    router.push({ pathname: '/mistake_practice_session', params: group === 'all' ? { length: 'all' } : { length: 'all', facetGroup: group } } as never);
+  }, [gate, group, readyInGroup, router, target]);
+
+  const onScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const { contentOffset, contentSize, layoutMeasurement } = event.nativeEvent;
+    if (contentOffset.y + layoutMeasurement.height >= contentSize.height - 400) setLimit((value) => value + PAGE);
+  }, []);
+
+  const goBack = useCallback(() => safeRouterBack(router, '/mistakes_hub' as never), [router]);
+  const closeSearch = useCallback(() => { setSearching(false); setQuery(''); }, []);
+
+  const tabs = [
+    { id: 'waiting' as const, label: `${copy.waiting} · ${waitingCount}` },
+    { id: 'corrected' as const, label: `${copy.corrected} · ${correctedCount}` },
+  ];
 
   return (
     <ScreenGradient>
       <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
-        <View style={styles.header}>
-          <Pressable accessibilityRole="button" accessibilityLabel={copy.back} hitSlop={10} onPress={() => safeRouterBack(router, '/mistakes_hub' as never)} style={[styles.iconButton, { backgroundColor: g.opaqueCard }]}>
-            <Ionicons name="chevron-back" size={24} color={g.text} />
-          </Pressable>
-          <Text style={[styles.title, { color: g.text, fontSize: f.h3 }]}>{copy.title}</Text>
-        </View>
-        <View style={[styles.segment, { backgroundColor: g.opaqueCard }]}>
-          {FILTERS.map((id) => {
-            const on = id === filter;
-            const count = items ? items.filter((item) => id === 'ready' ? item.ready : id === 'corrected' ? item.status === 'corrected' : item.status === 'active').length : null;
-            return (
-              <Pressable key={id} testID={`mistakes-list-filter-${id}`} accessibilityRole="tab" accessibilityState={{ selected: on }} onPress={() => { hapticTap(); setFilter(id); }} style={[styles.segmentItem, on && { backgroundColor: g.opaqueControl }]}>
-                <Text style={{ color: on ? g.text : g.secondary, fontSize: f.sub, fontWeight: '800', textAlign: 'center' }}>
-                  {copy[id]}{count !== null ? ` ${count}` : ''}
-                </Text>
-              </Pressable>
-            );
-          })}
-        </View>
-        {items === null ? (
-          <View style={styles.list}>
-            {[0, 1, 2, 3, 4].map((index) => <SkeletonBlock key={`skeleton-${index}`} width="100%" height={78} borderRadius={18} />)}
-          </View>
-        ) : (
-          <FlatList
-            data={visible}
-            keyExtractor={(item) => item.mistakeId}
-            renderItem={renderItem}
-            contentContainerStyle={styles.list}
-            showsVerticalScrollIndicator={false}
-            initialNumToRender={12}
-            windowSize={7}
-            ListHeaderComponent={filter === 'corrected' ? <MistakeTitleShelf lang={lang} rewards={rewards} /> : null}
-            ListEmptyComponent={
-              <View style={[styles.emptyBox, { backgroundColor: g.opaqueCard }]}>
-                <Text style={{ color: g.secondary, fontSize: f.body, fontWeight: '700' }}>{copy.empty}</Text>
+        <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} onScroll={onScroll} scrollEventThrottle={64} keyboardShouldPersistTaps="handled">
+          {searching ? (
+            <View style={styles.topbar}>
+              <BackButton g={g} label={copy.back} onPress={closeSearch} />
+              <View style={styles.field}>
+                <Ionicons name="search" size={20} color={g.secondary} />
+                <TextInput
+                  testID="mistakes-list-search"
+                  value={query}
+                  onChangeText={(value) => { setQuery(value); setLimit(PAGE); }}
+                  accessibilityLabel={copy.search}
+                  placeholder={copy.search}
+                  placeholderTextColor={g.secondary}
+                  autoFocus
+                  style={[styles.fieldInput, { color: g.text }]}
+                />
+                {query ? (
+                  <Pressable accessibilityRole="button" accessibilityLabel={copy.clear} hitSlop={10} onPress={() => setQuery('')}>
+                    <Ionicons name="close" size={18} color={g.secondary} />
+                  </Pressable>
+                ) : null}
               </View>
-            }
-          />
-        )}
+            </View>
+          ) : (
+            <View style={styles.topbar}>
+              <BackButton g={g} label={copy.back} onPress={goBack} />
+              <Pressable testID="mistakes-list-search-open" accessibilityRole="button" accessibilityLabel={copy.search} hitSlop={8} onPress={() => { hapticTap(); setSearching(true); }} style={({ pressed }) => [styles.round, { backgroundColor: g.opaqueControl }, pressed && styles.pressed]}>
+                <Ionicons name="search" size={20} color={g.text} />
+              </Pressable>
+            </View>
+          )}
+          <ScreenTitle g={g} text={copy.title} />
+          <View style={styles.tabs}>
+            {tabs.map((entry) => {
+              const on = entry.id === tab;
+              return (
+                <Pressable
+                  key={entry.id}
+                  testID={`mistakes-list-filter-${entry.id}`}
+                  accessibilityRole="tab"
+                  accessibilityState={{ selected: on }}
+                  onPress={() => { hapticTap(); setTab(entry.id); setGroup('all'); setLimit(PAGE); }}
+                  style={({ pressed }) => [styles.tab, { backgroundColor: on ? g.accent : MP_COLORS.chip }, pressed && styles.pressed]}>
+                  <Text style={[styles.tabText, { color: on ? g.accentInk : g.secondary }]}>{entry.label}</Text>
+                </Pressable>
+              );
+            })}
+          </View>
+          <FilterChips g={g} chips={chips} activeId={group} onChange={(id) => { hapticTap(); setGroup(id as MistakeGroupFilter); setLimit(PAGE); }} testIDPrefix="mistakes-list-chip" />
+          {tab === 'corrected' ? <MistakeTitleShelf lang={lang} rewards={rewards} /> : null}
+          <Panel g={g}>
+            {items !== null && visible.length === 0 ? (
+              <View style={styles.empty}><Text style={[styles.emptyText, { color: g.secondary }]}>{copy.empty}</Text></View>
+            ) : null}
+            {items === null ? [0, 1, 2, 3, 4].map((index) => (
+              <View key={`sk-${index}`} style={styles.skelRow}>
+                {index > 0 ? <View pointerEvents="none" style={styles.skelLine} /> : null}
+                <View style={[styles.skel, { height: 16, width: '50%' }]} />
+                <View style={[styles.skel, { height: 12, width: '30%', marginTop: 8 }]} />
+              </View>
+            )) : visible.slice(0, limit).map((item, index) => (
+              <PanelRow
+                key={item.mistakeId}
+                g={g}
+                first={index === 0}
+                testID={`mistakes-list-row-${item.mistakeId}`}
+                title={item.phrase}
+                subtitle={item.meaning}
+                right={<MiniDots g={g} n={item.status === 'corrected' ? 3 : item.qualifyingDays} />}
+                onPress={() => openOne(item)}
+              />
+            ))}
+          </Panel>
+        </ScrollView>
+        {tab === 'waiting' && readyInGroup > 0 ? (
+          <PanelDock><PanelCta g={g} testID="mistakes-list-start" label={`${copy.practice} ${readyInGroup}`} onPress={startPractice} /></PanelDock>
+        ) : null}
       </SafeAreaView>
     </ScreenGradient>
   );
@@ -176,19 +231,19 @@ export default function MistakesListScreen() {
 
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: 'transparent' },
-  header: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingTop: 6, paddingBottom: 8 },
-  iconButton: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
-  title: { flex: 1, fontWeight: '900', letterSpacing: -0.4 },
-  segment: { flexDirection: 'row', gap: 6, padding: 5, borderRadius: 18, marginHorizontal: 16, marginBottom: 10 },
-  // зачем (сверка 04.10): равные доли ширины переносили «Исправлены 0» на две строки — ширина по содержимому + поровну остаток.
-  segmentItem: { flexGrow: 1, flexBasis: 'auto', minHeight: 40, borderRadius: 14, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 6, paddingVertical: 6 },
-  list: { paddingHorizontal: 16, paddingBottom: 40, gap: 8 },
-  row: { minHeight: 78, borderRadius: 18, paddingHorizontal: 14, paddingVertical: 12, flexDirection: 'row', alignItems: 'center', gap: 12 },
-  count: { width: 40, height: 40, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
-  countText: { fontWeight: '900', fontVariant: ['tabular-nums'] },
-  phrase: { fontWeight: '800' },
-  meaning: { fontWeight: '700' },
-  dots: { flexDirection: 'row', gap: 5, marginTop: 3 },
-  dot: { width: 9, height: 9, borderRadius: 5 },
-  emptyBox: { borderRadius: 18, minHeight: 72, alignItems: 'center', justifyContent: 'center', padding: 18 },
+  content: { paddingHorizontal: 20, paddingBottom: 140 },
+  topbar: { height: 44, marginTop: 4, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
+  pressed: { opacity: 0.82 },
+  round: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
+  // зачем: поле поиска — как в утверждённом макете «Наборы» (packs-simple, кадр поиска): высота 46, капсула, фон 8 %.
+  field: { flex: 1, height: 46, borderRadius: 23, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: 'rgba(255,255,255,0.08)' },
+  fieldInput: { flex: 1, fontSize: 17, paddingVertical: 0 },
+  tabs: { marginTop: 18, flexDirection: 'row', gap: 8 },
+  tab: { height: 38, paddingHorizontal: 18, borderRadius: 19, alignItems: 'center', justifyContent: 'center' },
+  tabText: { fontSize: 15, lineHeight: 20, fontWeight: '600' },
+  empty: { minHeight: 72, alignItems: 'center', justifyContent: 'center' },
+  emptyText: { fontSize: 16, lineHeight: 22 },
+  skelRow: { minHeight: 64, justifyContent: 'center' },
+  skelLine: { position: 'absolute', left: 0, right: 0, top: 0, height: 1, backgroundColor: MP_COLORS.hairline },
+  skel: { borderRadius: 10, backgroundColor: 'rgba(255,255,255,0.09)' },
 });

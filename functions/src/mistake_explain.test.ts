@@ -344,6 +344,13 @@ describe('explainMistake', () => {
     expect(global.fetch).not.toHaveBeenCalled();
   });
 
+  it('accepts lessonId 0 from the mistakes section and rejects negative ids', async () => {
+    await expect(callExplain({ ...validPayload, lessonId: -1 })).rejects.toMatchObject({ code: 'invalid-argument' });
+    const res = await callExplain({ ...validPayload, lessonId: 0 });
+    expect(res.ok).toBe(true);
+    expect(billingDocs()[0]).toMatchObject({ lessonId: 0 });
+  });
+
   it('free users hit the daily cap after 3 distinct breakdowns', async () => {
     await callExplain(validPayload);
     await callExplain({ ...validPayload, userAnswer: 'I has table' });

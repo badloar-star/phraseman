@@ -266,7 +266,9 @@ function sanitizePayload(data: ExplainMistakeRequest): ExplainMistakePayload {
   const userAnswer = text(data.userAnswer, MAX_ANSWER);
   const targetAnswer = text(data.targetAnswer, MAX_ANSWER);
 
-  if (!Number.isInteger(lessonId) || lessonId < 1 || lessonId > 999) {
+  // зачем (04.10, журнал прода: все 400 = lesson_id_required c lessonId 0): раздел «Мои ошибки» не принадлежит уроку и
+  // шлёт синтетический 0 (mistake_practice_session.tsx). Номер идёт только в строку учёта расходов — 0 = «вне урока».
+  if (!Number.isInteger(lessonId) || lessonId < 0 || lessonId > 999) {
     explainInvalidInput('lesson_id_required', data);
   }
   if (!phraseId) explainInvalidInput('phrase_id_required', data);

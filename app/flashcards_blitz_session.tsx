@@ -259,6 +259,8 @@ export default function FlashcardsBlitzSession() {
   // ставила cancelled=true, латч не пускал перезапуск — запуск молча выходил, energyGate навсегда 'checking'.
   const blitzStartRunRef = useRef<object | null>(null);
   const blitzGateStepRef = useRef('idle');
+  // зачем (Дизайн 04.10): время последнего шага старта — сторож считает простой, а не время с начала.
+  const blitzGateStepAtRef = useRef(Date.now());
   const blitzGateLastSkipRef = useRef('');
   const blitzSpentOperationRef = useRef<string | null>(null);
   const blitzMountedRef = useRef(true);
@@ -518,6 +520,7 @@ export default function FlashcardsBlitzSession() {
     const startedAt = Date.now();
     const gateLog = (step: string, extra: Record<string, unknown> = {}) => {
       blitzGateStepRef.current = step;
+      blitzGateStepAtRef.current = Date.now();
       console.log(`[FC-BLITZ-GATE] ${step}`, JSON.stringify({ round: roundId, ms: Date.now() - startedAt, ...extra }));
     };
     // Устарел, только если начался другой запуск, экран размонтирован или вход брошен явно.
@@ -757,10 +760,19 @@ export default function FlashcardsBlitzSession() {
   // экран всё ещё на каркасе — полный снимок в лог (чтобы по одному grep было видно, ЧТО держит), и если
   // держит стартовая проверка (не ожидание ответа человека в окне энергии) — экран «Попробовать снова».
   const BLITZ_GATE_WATCHDOG_MS = 20_000;
+  // зачем (Дизайн 04.10): как в «Устно» — сторож считает простой (20 с без нового шага), а не время с начала,
+  // чтобы медленный, но идущий запуск на слабом телефоне не превращался в «Попробовать снова».
   useEffect(() => {
     const onSkeleton = !blitzAccessGranted || loading || energyGate === 'checking';
     if (!onSkeleton || quotaUnavailable) return undefined;
-    const timer = setTimeout(() => {
+    blitzGateStepAtRef.current = Math.max(blitzGateStepAtRef.current, Date.now() - 1);
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const check = () => {
+      const idleMs = Date.now() - blitzGateStepAtRef.current;
+      if (idleMs < BLITZ_GATE_WATCHDOG_MS) {
+        timer = setTimeout(check, BLITZ_GATE_WATCHDOG_MS - idleMs);
+        return;
+      }
       const step = blitzGateStepRef.current;
       const snapshot = {
         access: blitzAccessGranted, loading, energyGate, pool: pool.length, round: roundId, step,
@@ -772,8 +784,9 @@ export default function FlashcardsBlitzSession() {
         console.warn('[FC-BLITZ-GATE] watchdog:show_retry', JSON.stringify({ step }));
         setQuotaUnavailable(true);
       }
-    }, BLITZ_GATE_WATCHDOG_MS);
-    return () => clearTimeout(timer);
+    };
+    timer = setTimeout(check, BLITZ_GATE_WATCHDOG_MS);
+    return () => { if (timer) clearTimeout(timer); };
   }, [blitzAccessGranted, energyGate, loading, pool.length, quotaUnavailable, roundId]);
 
   const retryQuotaStart = useCallback(() => {

@@ -291,6 +291,8 @@ export default function FlashcardsSpeakingSession() {
   const speakingEntryChargedRef = useRef(false);
   // зачем (баг «Блиц висит на каркасе», 03.10 — тот же класс здесь): шаг старта для сторожа и логов.
   const speakingGateStepRef = useRef('idle');
+  // зачем (Дизайн 04.10): время последнего шага старта — сторож считает простой, а не время с начала.
+  const speakingGateStepAtRef = useRef(Date.now());
   const speakingRefundInFlightRef = useRef<Promise<void> | null>(null);
   const refundSpeakingEntry = useCallback((operationId: string, reason: string): Promise<void> => {
     if (speakingRefundInFlightRef.current) return speakingRefundInFlightRef.current;
@@ -435,6 +437,7 @@ export default function FlashcardsSpeakingSession() {
     const startedAt = Date.now();
     const gateLog = (step: string, extra: Record<string, unknown> = {}) => {
       speakingGateStepRef.current = step;
+      speakingGateStepAtRef.current = Date.now();
       console.log(`[FC-SPEAKING-GATE] ${step}`, JSON.stringify({ ms: Date.now() - startedAt, ...extra }));
     };
     gateLog('start:begin', { deckKey, sessionSize, accountPhase: accountToken.phase, stable: String(accountToken.stableId ?? '').slice(0, 8) });
@@ -1167,19 +1170,29 @@ export default function FlashcardsSpeakingSession() {
   // зачем (баг «Блиц висит на каркасе», 03.10): любой исход обязан выводить с загрузки. 20 с на загрузке —
   // снимок в лог; если держит не ожидание ответа человека в окне энергии — экран «Попробовать снова».
   const SPEAKING_GATE_WATCHDOG_MS = 20_000;
+  // зачем (Дизайн 04.10, слабый телефон): шаги шли каждые 1–8 с, запуск дошёл до quota:done на 16,7 с, а сторож
+  // «20 с с начала» показал ошибку и отменил поздний ok. Теперь срабатывает только после 20 с БЕЗ нового шага.
   useEffect(() => {
     if (!loading || quotaUnavailable) return undefined;
-    const timer = setTimeout(() => {
+    speakingGateStepAtRef.current = Math.max(speakingGateStepAtRef.current, Date.now() - 1);
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const check = () => {
+      const idleMs = Date.now() - speakingGateStepAtRef.current;
       const step = speakingGateStepRef.current;
-      console.warn('[FC-SPEAKING-GATE] watchdog:stuck_on_loading', JSON.stringify({ step, accessResolved, deckKey }));
+      if (idleMs < SPEAKING_GATE_WATCHDOG_MS) {
+        timer = setTimeout(check, SPEAKING_GATE_WATCHDOG_MS - idleMs);
+        return;
+      }
+      console.warn('[FC-SPEAKING-GATE] watchdog:stuck_on_loading', JSON.stringify({ step, idleMs, accessResolved, deckKey }));
       if (accessResolved && step !== 'energy:await') {
-        console.warn('[FC-SPEAKING-GATE] watchdog:show_retry', JSON.stringify({ step }));
+        console.warn('[FC-SPEAKING-GATE] watchdog:show_retry', JSON.stringify({ step, idleMs }));
         quotaUnavailableRef.current = true;
         setQuotaUnavailable(true);
         setLoading(false);
       }
-    }, SPEAKING_GATE_WATCHDOG_MS);
-    return () => clearTimeout(timer);
+    };
+    timer = setTimeout(check, SPEAKING_GATE_WATCHDOG_MS);
+    return () => { if (timer) clearTimeout(timer); };
   }, [accessResolved, deckKey, loading, quotaUnavailable]);
 
   const retryQuotaStart = useCallback(() => {

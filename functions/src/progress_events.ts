@@ -327,15 +327,26 @@ function normalizePayload(raw: unknown): Record<string, unknown> {
     : {};
 }
 
+/**
+ * зачем (§126 п.9, 04.10): progressSubmitEvent отвечал 400 на 2–3 устройствах, а причину (код в сообщении
+ * HttpsError) журнал функции не видел. Печатаем причину, тип и форму id; ответ клиенту прежний.
+ */
+function rejectProgressEvent(reason: string, detail: Record<string, unknown>): never {
+  console.warn('[PROGRESS-EVENT] rejected', JSON.stringify({ reason, ...detail }));
+  throw new HttpsError('invalid-argument', reason);
+}
+
 export function normalizeProgressEvent(raw: unknown): ProgressEventInput {
   const data = normalizePayload(raw);
   const eventId = cleanString(data.eventId, 180);
   if (!EVENT_ID_RE.test(eventId)) {
-    throw new HttpsError('invalid-argument', 'bad_progress_event_id');
+    rejectProgressEvent('bad_progress_event_id', {
+      idLength: eventId.length, idHead: eventId.slice(0, 24), type: cleanString(data.type, 64),
+    });
   }
   const typeRaw = cleanString(data.type, 64);
   if (!EVENT_TYPE_SET.has(typeRaw)) {
-    throw new HttpsError('invalid-argument', 'bad_progress_event_type');
+    rejectProgressEvent('bad_progress_event_type', { type: typeRaw, idHead: eventId.slice(0, 24) });
   }
   const payload = normalizePayload(data.payload);
   if (typeRaw === 'plan_task_complete') {
@@ -349,7 +360,9 @@ export function normalizeProgressEvent(raw: unknown): ProgressEventInput {
       || planTaskId !== planTaskId.trim()
       || !PLAN_COMPLETION_ID_RE.test(planTaskId)
     ) {
-      throw new HttpsError('invalid-argument', 'bad_plan_completion_identity');
+      rejectProgressEvent('bad_plan_completion_identity', {
+        planInstanceIdType: typeof planInstanceId, planTaskIdType: typeof planTaskId,
+      });
     }
   }
   return {
@@ -415,7 +428,8 @@ export function candidateHasSameProgressSemantics(
         ? candidate.payload as Record<string, unknown>
         : {},
     });
-  } catch {
+  } catch (error) {
+    console.warn('[PROGRESS-EVENT] candidate normalize failed', String((error as Error)?.message ?? error).slice(0, 120));
     return false;
   }
 }
@@ -493,7 +507,8 @@ function parseUnlocked(raw: unknown): number[] {
   try {
     const parsed = JSON.parse(raw);
     return Array.isArray(parsed) ? parsed.map((v) => readInt(v, 0)).filter((v) => v > 0) : [];
-  } catch {
+  } catch (error) {
+    console.warn('[PROGRESS-EVENT] int list parse failed', String((error as Error)?.message ?? error).slice(0, 120));
     return [];
   }
 }
@@ -504,7 +519,8 @@ function progressArrayScore(raw: unknown): number {
   try {
     const parsed = JSON.parse(raw);
     return Array.isArray(parsed) ? parsed.filter((item) => item != null && item !== 'empty').length : 0;
-  } catch {
+  } catch (error) {
+    console.warn('[PROGRESS-EVENT] list count parse failed', String((error as Error)?.message ?? error).slice(0, 120));
     return 0;
   }
 }
@@ -719,8 +735,9 @@ export function buildMigrationPatch(snapshot: ProgressMap, existing: ProgressMap
         try {
           const parsed = JSON.parse(snapshot[key] as string);
           if (Array.isArray(parsed) && parsed.length <= 300) patch[key] = JSON.stringify(parsed);
-        } catch {
-          // Ignore malformed structural progress.
+        } catch (error) {
+          // Ignore malformed structural progress — but say so (no silent catch).
+          console.warn('[PROGRESS-MIGRATE] malformed structural key skipped', JSON.stringify({ key, error: String((error as Error)?.message ?? error).slice(0, 80) }));
         }
       }
     }

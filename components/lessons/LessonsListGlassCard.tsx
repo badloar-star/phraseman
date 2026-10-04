@@ -155,7 +155,8 @@ function NumberCircle({ glass, num, state, current }: {
       {done ? (
         <Ionicons name="checkmark" size={20} color={glass.ctaInk} />
       ) : locked ? (
-        <Ionicons name="lock-closed" size={18} color={glass.secondary} />
+        // зачем: замок в макете (redesign-round-2 I.lock) — контур, не заливка.
+        <Ionicons name="lock-closed-outline" size={18} color={glass.secondary} />
       ) : (
         <Text style={{ color: glass.text, fontSize: 16, fontWeight: '700', fontVariant: ['tabular-nums'] }}>
           {num}
@@ -189,7 +190,7 @@ function StatusRow({ glass, lang, state }: { glass: LessonsListGlass; lang: Lang
   if (state.kind === 'plus') {
     return (
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, flexShrink: 1 }}>
-        <Ionicons name="lock-closed" size={16} color={glass.secondary} />
+        <Ionicons name="lock-closed-outline" size={16} color={glass.secondary} />
         <Text style={[muted, { flexShrink: 1 }]}>{lessonsListCopy.plus(lang)}</Text>
       </View>
     );

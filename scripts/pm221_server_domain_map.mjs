@@ -62,6 +62,9 @@ const RULES = [
   { n: /^ACCOUNT_DELETE_RETRY_OPTIONS$/u, d: 'account-delete', c: 'Опции повтора воркера удаления аккаунта (константа, не функция — ложное срабатывание атласа)' },
   { n: /accountDelete|AccountDeletion|DeleteDuplicateUser/u, d: 'account-delete', c: C_DEL },
   { f: /^account_delete/u, d: 'account-delete', c: C_DEL },
+  // зачем (PM-221 обновление 04.10): Account Authority 2.0 (сессия AA) — аренда устройства и привязка установки;
+  // в работе, экспорта в index.ts пока нет. Домен auth защищён (A2), поэтому keep с пометкой «проверить подключение».
+  { n: /^accountAuthority/u, d: 'auth', c: 'Account Authority 2.0: аренда аккаунта устройством и привязка установки (в работе AA)' },
   { n: /^(auth|accountClaim|accountMerge|adminRepairAuthLink|adminRelinkProvider|adminRequestUserMerge)/u, d: 'auth', c: C_AUTH },
   { f: /^(auth_|account_claim|account_merge|admin_auth_repair)/u, d: 'auth', c: C_AUTH },
   { n: /^recordAgeConsentSnapshot$/u, d: 'auth', c: 'Фиксация возрастного согласия (приватность и вход)' },

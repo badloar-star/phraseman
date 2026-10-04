@@ -2,13 +2,13 @@
 
 Сгенерировано `node scripts/pm221_server_domain_map.mjs` (детерминированно: без даты и без обращения к сети).
 
-Всего серверных точек (callable/http/schedule/trigger) из атласа: **495**. Имён с живым экспортом в `functions/src/index.ts`: 422.
+Всего серверных точек (callable/http/schedule/trigger) из атласа: **482**. Имён с живым экспортом в `functions/src/index.ts`: 422.
 
 ## Сводка по доменам
 
 | Домен | Всего | keep | dormant | retired-tombstone | atlas-false-positive | needs-owner-decision |
 |---|---:|---:|---:|---:|---:|---:|
-| auth | 19 | 19 | 0 | 0 | 0 | 0 |
+| auth | 22 | 22 | 0 | 0 | 0 | 0 |
 | purchases/subscriptions | 67 | 67 | 0 | 0 | 0 | 0 |
 | account-delete | 11 | 11 | 0 | 0 | 0 | 0 |
 | support/reports | 46 | 46 | 0 | 0 | 0 | 0 |
@@ -19,9 +19,9 @@
 | ai/audio | 44 | 25 | 0 | 17 | 0 | 2 |
 | learning-v2 | 83 | 55 | 28 | 0 | 0 | 0 |
 | social/friends | 52 | 52 | 0 | 0 | 0 | 0 |
-| spire/arena | 58 | 22 | 0 | 36 | 0 | 0 |
+| spire/arena | 42 | 22 | 0 | 20 | 0 | 0 |
 | retired-tombstone | 3 | 0 | 0 | 3 | 0 | 0 |
-| **Итого** | **495** | **408** | **28** | **56** | **1** | **2** |
+| **Итого** | **482** | **411** | **28** | **40** | **1** | **2** |
 
 ## Владельцы и коллекции доменов
 
@@ -40,7 +40,7 @@
 | ai/audio | Логика/сервер; бюджет OpenAI — PM-224 | `admin_log`, `app_errors`, `config`, `max_voice_usage_recon` |
 | learning-v2 | Логика/сервер + фабрика курса | `account_deletion_tombstones`, `account_identity_owner_map`, `admin_command_operations`, `admin_log`, `app_messages`, `auth_links`, `community_packs`, `content_factory_artifact_orphans`, `content_factory_bulk_plans`, `content_factory_catalog`, `content_factory_catalog_releases`, `content_factory_config`, `content_factory_correction_events`, `content_factory_flashcard_ledgers`, `content_factory_flashcard_semantic_keys`, `content_factory_job_reviews`, `content_factory_job_units`, `content_factory_jobs`, `content_factory_learning_v2_session_shard_receipts`, `content_factory_lesson_ledgers`, `content_factory_question_ledgers`, `content_factory_release_history`, `content_factory_releases`, `content_factory_source_registry`, `content_factory_stages`, `content_v2_required_session_sets`, `fixed_poll_votes`, `lesson_stats`, `progress_daily_counters`, `progress_events`, `progress_migrations`, `star_operations`, `users`, `v2_activity_released_settlement_decisions`, `v2_required_session_completion_inbox`, `v2_required_session_course_awards`, `v2_required_session_performance_award_decisions`, `v2_required_session_performance_awards` |
 | social/friends | Логика/сервер | `account_deletion_auth_markers`, `account_deletion_tombstones`, `activity_like_stats`, `activity_likes_received`, `admin_command_operations`, `admin_log`, `banned_users`, `content_factory_config`, `friend_activity_like_daily_limits`, `friend_activity_likes_sent`, `friend_nudges`, `friend_pairs`, `friend_requests`, `friends`, `friends_together_nudge_receipts`, `idea_likes_sent`, `leaderboard`, `my_events`, `public_profiles`, `remote_config`, `shard_rewards`, `users` |
-| spire/arena | Логика/сервер (Шпиль, D113) | `admin_command_operations`, `admin_log`, `attempts`, `auth_links`, `banned_users`, `error_reports`, `internal`, `inventory`, `leaderboard`, `public_profiles`, `shard_log`, `terminals`, `users` |
+| spire/arena | Логика/сервер (Шпиль, D113) | `admin_command_operations`, `admin_log`, `auth_links`, `banned_users`, `error_reports`, `inventory`, `leaderboard`, `public_profiles`, `shard_log`, `users` |
 | retired-tombstone | Логика/сервер (надгробия старым клиентам) | — (имена через константы) |
 
 ## Правила (A1/A2)
@@ -180,9 +180,12 @@
 
 | Функция | Тип | Домен | Возможность | Статус | Экспорт index.ts | Файл |
 |---|---|---|---|---|---|---|
+| accountAuthorityInstallationBindingCreate | callable | auth | Account Authority 2.0: аренда аккаунта устройством и привязка установки (в работе AA) | keep | нет | functions/src/account_authority/installation_binding_callable.ts:539 |
+| accountAuthorityLeaseAcquire | callable | auth | Account Authority 2.0: аренда аккаунта устройством и привязка установки (в работе AA) | keep | нет | functions/src/account_authority/firebase_lease_callable.ts:721 |
+| accountAuthorityLeaseRelease | callable | auth | Account Authority 2.0: аренда аккаунта устройством и привязка установки (в работе AA) | keep | нет | functions/src/account_authority/firebase_lease_callable.ts:736 |
 | accountClaimMine | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/account_claim.ts:245 |
-| accountMergeOutboxRetryCron | schedule | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_merge.ts:1322 |
-| accountMergeOutboxWorker | trigger | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_merge.ts:1314 |
+| accountMergeOutboxRetryCron | schedule | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_merge.ts:1454 |
+| accountMergeOutboxWorker | trigger | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_merge.ts:1446 |
 | adminRelinkProvider | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/admin_auth_repair.ts:311 |
 | adminRepairAuthLink | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/admin_auth_repair.ts:131 |
 | adminRequestUserMerge | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/admin_user_operations.ts:345 |
@@ -190,14 +193,14 @@
 | authCompleteRecoveryHandoff | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_recovery.ts:1926 |
 | authConfirmCleanInstallRecoveryCode | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_recovery.ts:1477 |
 | authConfirmRecoveryCode | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_recovery.ts:866 |
-| authEnsureStableLink | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_identity.ts:2157 |
+| authEnsureStableLink | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_identity.ts:2315 |
 | authIssueRecoveryHandoffToken | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_recovery.ts:1801 |
-| authMergeStableAccounts | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_merge.ts:1546 |
+| authMergeStableAccounts | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_merge.ts:1678 |
 | authorizeLearningV2CourseUnlock | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | нет | functions/src/learning_v2_course_unlock.ts:375 |
-| authRecoveryHint | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_identity.ts:2241 |
+| authRecoveryHint | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_identity.ts:2400 |
 | authRequestCleanInstallRecoveryCode | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_recovery.ts:1256 |
 | authRequestRecoveryCode | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_recovery.ts:481 |
-| authStampAnonOwnership | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_identity.ts:2312 |
+| authStampAnonOwnership | callable | auth | Вход, стабильная личность, восстановление и слияние аккаунтов | keep | да | functions/src/auth_identity.ts:2622 |
 | recordAgeConsentSnapshot | callable | auth | Фиксация возрастного согласия (приватность и вход) | keep | да | functions/src/record_age_consent_snapshot.ts:181 |
 | activationEmailRetryCron | schedule | purchases/subscriptions | Сторож почты активации: повтор писем и проверка ключа Resend (код перенесён в email_delivery_watchdog.ts 01.10, инцидент 21.09) | keep | да | functions/src/email_delivery_watchdog.ts:459 |
 | adminActivateTelegramPremiumOrder | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/telegram_premium_admin.ts:256 |
@@ -231,7 +234,7 @@
 | adminUpdateGiftCertificatePersonalization | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/web_checkout.ts:2499 |
 | adminUpdateGiftCertificateRecipient | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/web_checkout.ts:2456 |
 | aiDialogSyncPurchase | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | нет | functions/src/ai_dialog_sync_purchase.ts:96 |
-| coinReconcileV1 | callable | purchases/subscriptions | Разовая серверная сверка кошелька монет по level_spin_results (Q-COIN (b), решение координатора 01.10) | keep | да | functions/src/coin_reconcile_v1.ts:313 |
+| coinReconcileV1 | callable | purchases/subscriptions | Разовая серверная сверка кошелька монет по level_spin_results (Q-COIN (b), решение координатора 01.10) | keep | да | functions/src/coin_reconcile_v1.ts:527 |
 | createV2AccessPurchaseCallable | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | нет | functions/src/learning_v2_access_callable.ts:128 |
 | finalizeLearningV2AccessPurchase | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/learning_v2_access_production_callable.ts:16 |
 | giftsToCoinsMigrationReport | callable | purchases/subscriptions | Кошелёк монет: начисление и серверный админ-отчёт старой миграции подарков (клиент миграции удалён: D148, Q109) | keep | да | functions/src/gifts_to_coins_report.ts:98 |
@@ -252,7 +255,7 @@
 | recordVipSurveyReviewClick | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/vip_survey.ts:245 |
 | referralClaimVipReward | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/referral.ts:999 |
 | resendKeyHealthCron | schedule | purchases/subscriptions | Сторож почты активации: повтор писем и проверка ключа Resend (код перенесён в email_delivery_watchdog.ts 01.10, инцидент 21.09) | keep | да | functions/src/email_delivery_watchdog.ts:361 |
-| revenueCatPremiumReconcileMine | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/revenuecat_reconcile.ts:389 |
+| revenueCatPremiumReconcileMine | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/revenuecat_reconcile.ts:395 |
 | revenueCatShardsWebhook | http | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/revenuecat_shards.ts:1163 |
 | stripeWebhook | http | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/web_checkout.ts:3114 |
 | submitVipSurvey | callable | purchases/subscriptions | Покупки, подписка Plus, промокоды, подарки и возвраты | keep | да | functions/src/vip_survey.ts:134 |
@@ -316,7 +319,7 @@
 | claimReportReward | callable | support/reports | Жалобы и обратная связь пользователей, очередь разбора и ответы | keep | да | functions/src/report_replies.ts:526 |
 | maxVoiceSafetyReport | callable | support/reports | Жалобы и обратная связь пользователей, очередь разбора и ответы | keep | нет | functions/src/max_voice_safety.ts:480 |
 | reportUserIdea | callable | support/reports | Жалобы и обратная связь пользователей, очередь разбора и ответы | keep | да | functions/src/user_idea_reports.ts:67 |
-| submitClientReport | callable | support/reports | Жалобы и обратная связь пользователей, очередь разбора и ответы | keep | да | functions/src/client_reports.ts:679 |
+| submitClientReport | callable | support/reports | Жалобы и обратная связь пользователей, очередь разбора и ответы | keep | да | functions/src/client_reports.ts:680 |
 | submitExplainReport | callable | support/reports | Жалобы и обратная связь пользователей, очередь разбора и ответы | keep | да | functions/src/explain/explain_reports.ts:127 |
 | submitFeedbackEntry | callable | support/reports | Жалобы и обратная связь пользователей, очередь разбора и ответы | keep | да | functions/src/feedback_entries.ts:157 |
 | submitWebsiteContact | http | support/reports | Жалобы и обратная связь пользователей, очередь разбора и ответы | keep | да | functions/src/website_contact.ts:156 |
@@ -388,7 +391,7 @@
 | soc2ReadinessCollectorCron | schedule | sync/progress | Связка записи профиля пользователя, квесты и регламентные сверки | keep | да | functions/src/soc2_readiness_collector.ts:240 |
 | usersWriteRouter | trigger | sync/progress | Связка записи профиля пользователя, квесты и регламентные сверки | keep | да | functions/src/users_write_router.ts:16 |
 | adminCardTtsRequeuePack | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/card_tts_worker.ts:491 |
-| adminCreateAssetJob | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_asset_studio.ts:244 |
+| adminCreateAssetJob | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_asset_studio.ts:247 |
 | adminGenerateDailyDigest | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_daily_digest.ts:1057 |
 | adminGetAdminConfigWorkspace | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_config_controls.ts:156 |
 | adminGetAnalyticsSnapshot | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_analytics.ts:160 |
@@ -401,7 +404,7 @@
 | adminGetRemoteConfigWorkspace | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_remote_config.ts:171 |
 | adminGetUserProfile | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_user_profile.ts:473 |
 | adminGrantReward | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_grant.ts:181 |
-| adminListAssetJobs | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_asset_studio.ts:233 |
+| adminListAssetJobs | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_asset_studio.ts:236 |
 | adminListAuditLog | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_audit_log.ts:182 |
 | adminListOpsLog | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_ops_log.ts:213 |
 | adminMonthlyDecisionPack | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_monthly_decision_pack.ts:110 |
@@ -411,7 +414,7 @@
 | adminPublishNavLayout | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_config_controls.ts:166 |
 | adminPublishRemoteConfig | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_remote_config.ts:104 |
 | adminResetUserProgress | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_user_operations.ts:467 |
-| adminRunAssetJob | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_asset_studio.ts:271 |
+| adminRunAssetJob | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_asset_studio.ts:274 |
 | adminSaveProductCharter | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_product_charter.ts:84 |
 | adminSearchUsers | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_user_profile.ts:265 |
 | adminSetUserBan | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/admin_access_controls.ts:182 |
@@ -435,11 +438,11 @@
 | jarvisRunBusinessTierBackfill | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/jarvis/business_tier_callables.ts:98 |
 | jarvisSetPlanStatus | callable | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/jarvis/jarvis_plans_callables.ts:77 |
 | jarvisTelegramApprovalWebhook | http | admin | Админка и аналитика владельца (Jarvis, конфиги, аудит, кошельки, пользователи) | keep | да | functions/src/jarvis/approval_webhook.ts:174 |
-| adminCommunityPackApplyQaFixes | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/admin_community_pack_qa.ts:546 |
-| adminCommunityPackApplyQaFixesToPublished | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/admin_community_pack_qa.ts:630 |
+| adminCommunityPackApplyQaFixes | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/admin_community_pack_qa.ts:551 |
+| adminCommunityPackApplyQaFixesToPublished | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/admin_community_pack_qa.ts:635 |
 | adminCommunityPackQaReview | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/admin_community_pack_qa.ts:430 |
-| adminCommunityPackTranslateLocales | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/admin_community_pack_translate.ts:151 |
-| adminGenerateDirectorDigestAudio | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/admin_director_digest_audio.ts:120 |
+| adminCommunityPackTranslateLocales | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/admin_community_pack_translate.ts:152 |
+| adminGenerateDirectorDigestAudio | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/admin_director_digest_audio.ts:134 |
 | adminGetMaxVoiceOpsDashboard | callable | ai/audio | Раздел MAX (голосовой звонок с ИИ) — законсервирован владельцем 2026-09-04 | retired-tombstone | нет | functions/src/max_voice_ops_dashboard.ts:268 |
 | adminListMaxVoiceFeedback | callable | ai/audio | Раздел MAX (голосовой звонок с ИИ) — законсервирован владельцем 2026-09-04 | retired-tombstone | нет | functions/src/max_voice_feedback.ts:152 |
 | adminListMistakeExplanationCache | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/admin_explain_cache.ts:86 |
@@ -456,7 +459,7 @@
 | dialogueV2SessionStart | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_session_start_callable.ts:204 |
 | dialogueV2TextTurn | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/dialogue_v2_turn_production_callable.ts:875 |
 | explainChoice | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/explain_choice.ts:76 |
-| explainMistake | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/mistake_explain.ts:787 |
+| explainMistake | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/mistake_explain.ts:838 |
 | explainPhrase | callable | ai/audio | ИИ: диалоги, репетитор, объяснения, переводы и бюджет OpenAI | keep | да | functions/src/explain_phrase.ts:109 |
 | maxVoiceClearMemory | callable | ai/audio | Раздел MAX (голосовой звонок с ИИ) — законсервирован владельцем 2026-09-04 | retired-tombstone | нет | functions/src/max_voice_memory_controls.ts:344 |
 | maxVoiceConfigAdmin | callable | ai/audio | Раздел MAX (голосовой звонок с ИИ) — законсервирован владельцем 2026-09-04 | retired-tombstone | нет | functions/src/max_voice_config.ts:412 |
@@ -550,10 +553,10 @@
 | learningV2CourseReleasedSessionGetV3 | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | dormant | нет | functions/src/content_factory/v2_course_released_session_callable_v3.ts:338 |
 | learningV2LocalizedCourseShardBackgroundWorker | trigger | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/content_factory/learning_v2_course_shard_background.ts:237 |
 | mistakeHubAdvice | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/mistake_hub_advice.ts:164 |
-| mistakePracticeSyncEvents | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/mistake_practice_event_sync.ts:204 |
+| mistakePracticeSyncEvents | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/mistake_practice_event_sync.ts:232 |
 | practiceRuneGrant | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/practice_rune_grant.ts:302 |
-| progressMigrateSnapshot | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/progress_events.ts:1017 |
-| progressSubmitEvent | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/progress_events.ts:773 |
+| progressMigrateSnapshot | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/progress_events.ts:1034 |
+| progressSubmitEvent | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/progress_events.ts:790 |
 | recordOnboardingFunnelEvent | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/onboarding_funnel.ts:299 |
 | resolveLearningV2CourseUnlockReceipt | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | dormant | нет | functions/src/learning_v2_course_unlock.ts:380 |
 | resolveLearningV2WalletRewardReceipt | callable | learning-v2 | Курс Learning V2 и учебный прогресс: выдача сессий, награды, фабрика контента | keep | да | functions/src/learning_v2_wallet_reward_callable.ts:138 |
@@ -616,41 +619,25 @@
 | updateUserIdea | callable | social/friends | Друзья, рефералы, идеи, публичный профиль, имена и сообщество наборов | keep | да | functions/src/user_ideas.ts:270 |
 | adminArenaConfigGet | callable | spire/arena | Пул заданий Шпиля и его админ-публикация (CLAUDE.md: рабочая зависимость Шпиля, D74/D78) | keep | да | functions/src/admin_arena_config.ts:64 |
 | adminArenaConfigSet | callable | spire/arena | Пул заданий Шпиля и его админ-публикация (CLAUDE.md: рабочая зависимость Шпиля, D74/D78) | keep | да | functions/src/admin_arena_config.ts:96 |
-| adminArenaContentStatus | callable | spire/arena | Пул заданий Шпиля и его админ-публикация (CLAUDE.md: рабочая зависимость Шпиля, D74/D78) | keep | да | functions/src/admin_arena_content.ts:181 |
-| adminArenaContentValidate | callable | spire/arena | Пул заданий Шпиля и его админ-публикация (CLAUDE.md: рабочая зависимость Шпиля, D74/D78) | keep | да | functions/src/admin_arena_content.ts:189 |
+| adminArenaContentStatus | callable | spire/arena | Пул заданий Шпиля и его админ-публикация (CLAUDE.md: рабочая зависимость Шпиля, D74/D78) | keep | да | functions/src/admin_arena_content.ts:239 |
+| adminArenaContentValidate | callable | spire/arena | Пул заданий Шпиля и его админ-публикация (CLAUDE.md: рабочая зависимость Шпиля, D74/D78) | keep | да | functions/src/admin_arena_content.ts:247 |
 | adminArenaPublicationActivate | callable | spire/arena | Пул заданий Шпиля и его админ-публикация (CLAUDE.md: рабочая зависимость Шпиля, D74/D78) | keep | да | functions/src/admin_arena_publication.ts:221 |
 | adminArenaPublicationRollback | callable | spire/arena | Пул заданий Шпиля и его админ-публикация (CLAUDE.md: рабочая зависимость Шпиля, D74/D78) | keep | да | functions/src/admin_arena_publication.ts:278 |
 | adminArenaPublicationStage | callable | spire/arena | Пул заданий Шпиля и его админ-публикация (CLAUDE.md: рабочая зависимость Шпиля, D74/D78) | keep | да | functions/src/admin_arena_publication.ts:161 |
 | adminArenaPublicationStatus | callable | spire/arena | Пул заданий Шпиля и его админ-публикация (CLAUDE.md: рабочая зависимость Шпиля, D74/D78) | keep | да | functions/src/admin_arena_publication.ts:182 |
-| adminBulkTournamentFolder | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/admin_tournament_full.ts:468 |
-| adminEditTournamentTask | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/admin_tournament_tasks.ts:808 |
-| adminFillTournamentPool | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/admin_tournament_tasks.ts:2718 |
-| adminGenerateTournamentAi | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/admin_tournament_full.ts:255 |
-| adminGenerateTournamentAudioTasksAi | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/admin_tournament_tasks.ts:1462 |
-| adminGenerateTournamentTasksAi | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/admin_tournament_tasks.ts:730 |
-| adminGetTournamentCurated | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/admin_tournament_tasks.ts:950 |
 | adminGetTournamentEconomy | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/tournament_weekly_payout.ts:245 |
-| adminGetTournamentModeMix | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/admin_tournament_tasks.ts:2741 |
-| adminGetTournamentSchedule | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/admin_tournament_tasks.ts:1243 |
-| adminListTournamentTasks | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/admin_tournament_tasks.ts:978 |
-| adminMutateTournamentTasks | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/admin_tournament_tasks.ts:1009 |
 | adminPayoutTournamentWeeklyBank | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/tournament_weekly_payout.ts:197 |
-| adminRegenerateTournamentTask | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/admin_tournament_full.ts:375 |
 | adminSeedBotProfiles | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/tournament_bots.ts:20 |
-| adminSetTournamentCurated | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/admin_tournament_tasks.ts:902 |
 | adminSetTournamentEconomy | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/tournament_weekly_payout.ts:219 |
-| adminSetTournamentModeMix | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/admin_tournament_tasks.ts:2774 |
-| adminSetTournamentSchedule | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/admin_tournament_tasks.ts:1199 |
 | adminSpireConfigGet | callable | spire/arena | Шпиль: группы, шаги, недельная финализация, паки | keep | да | functions/src/admin_spire_config.ts:54 |
 | adminSpireConfigSet | callable | spire/arena | Шпиль: группы, шаги, недельная финализация, паки | keep | да | functions/src/admin_spire_config.ts:64 |
 | adminSpirePackBuild | callable | spire/arena | Шпиль: группы, шаги, недельная финализация, паки | keep | да | functions/src/spire_pack_build.ts:623 |
-| adminSpireTaskFlagAdd | callable | spire/arena | Шпиль: группы, шаги, недельная финализация, паки | keep | да | functions/src/admin_spire_task_flag.ts:347 |
-| adminSpireTaskFlagList | callable | spire/arena | Шпиль: группы, шаги, недельная финализация, паки | keep | да | functions/src/admin_spire_task_flag.ts:335 |
-| adminSpireTaskFlagRemove | callable | spire/arena | Шпиль: группы, шаги, недельная финализация, паки | keep | да | functions/src/admin_spire_task_flag.ts:450 |
-| adminSpireTaskIncidentSetState | callable | spire/arena | Шпиль: группы, шаги, недельная финализация, паки | keep | да | functions/src/admin_spire_task_flag.ts:309 |
-| adminSpireTaskIncidentStates | callable | spire/arena | Шпиль: группы, шаги, недельная финализация, паки | keep | да | functions/src/admin_spire_task_flag.ts:194 |
-| adminSpireTaskReportList | callable | spire/arena | Шпиль: группы, шаги, недельная финализация, паки | keep | да | functions/src/admin_spire_task_flag.ts:180 |
-| adminTournamentPoolStats | callable | spire/arena | Турниры — выключены владельцем 2026-08-23/09-02; модули живут ради Арены | retired-tombstone | нет | functions/src/admin_tournament_tasks.ts:1092 |
+| adminSpireTaskFlagAdd | callable | spire/arena | Шпиль: группы, шаги, недельная финализация, паки | keep | да | functions/src/admin_spire_task_flag.ts:352 |
+| adminSpireTaskFlagList | callable | spire/arena | Шпиль: группы, шаги, недельная финализация, паки | keep | да | functions/src/admin_spire_task_flag.ts:340 |
+| adminSpireTaskFlagRemove | callable | spire/arena | Шпиль: группы, шаги, недельная финализация, паки | keep | да | functions/src/admin_spire_task_flag.ts:455 |
+| adminSpireTaskIncidentSetState | callable | spire/arena | Шпиль: группы, шаги, недельная финализация, паки | keep | да | functions/src/admin_spire_task_flag.ts:314 |
+| adminSpireTaskIncidentStates | callable | spire/arena | Шпиль: группы, шаги, недельная финализация, паки | keep | да | functions/src/admin_spire_task_flag.ts:199 |
+| adminSpireTaskReportList | callable | spire/arena | Шпиль: группы, шаги, недельная финализация, паки | keep | да | functions/src/admin_spire_task_flag.ts:185 |
 | spireFinalizeCron | schedule | spire/arena | Шпиль: группы, шаги, недельная финализация, паки | keep | да | functions/src/spire_finalize_cron.ts:89 |
 | spireJoinRoom | callable | spire/arena | Шпиль: группы, шаги, недельная финализация, паки | keep | да | functions/src/spire_groups.ts:194 |
 | spirePackWeeklyCron | schedule | spire/arena | Шпиль: группы, шаги, недельная финализация, паки | keep | да | functions/src/spire_pack_build.ts:560 |

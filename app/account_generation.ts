@@ -177,9 +177,24 @@ export async function withRestoreApplicationLock<T>(work: () => Promise<T>): Pro
  */
 function lockCallerTag(): string {
   if (typeof __DEV__ === 'undefined' || !__DEV__) return 'n/a';
+  // зачем (замер №7): первые кадры — служебные кадры async-генератора (next/asyncGeneratorStep) без имени
+  // держателя. Берём больше кадров и оставляем только содержательные имена функций.
   const stack = new Error().stack ?? '';
-  return stack.split('\n').slice(3, 6).map((line) => line.trim()).join(' <- ').slice(0, 300);
+  const names: string[] = [];
+  for (const line of stack.split('\n').slice(2, 40)) {
+    const match = /at\s+([^\s(]+)/.exec(line.trim());
+    const name = match?.[1] ?? '';
+    if (!name || LOCK_CALLER_NOISE.has(name) || name.startsWith('?anon') || name.startsWith('_callee')) continue;
+    if (names[names.length - 1] !== name) names.push(name);
+    if (names.length >= 5) break;
+  }
+  return names.join(' <- ') || 'unknown';
 }
+const LOCK_CALLER_NOISE = new Set([
+  'next', 'asyncGeneratorStep', '_next', '_throw', 'tryCallOne', 'tryCallTwo', 'doResolve', 'Promise', 'anonymous',
+  'lockCallerTag', 'withAccountTransitionLock', 'withStorageLock', 'apply', 'call', 'Generator', 'invoke',
+  'callTimer', 'callTimers', 'flushedQueue', 'callReactNativeMicrotasks', 'run', 'step', 'new',
+]);
 
 const ACCOUNT_LOCK_SLOW_WAIT_MS = 2000;
 const ACCOUNT_LOCK_SLOW_HOLD_MS = 5000;

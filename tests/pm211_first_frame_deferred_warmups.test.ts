@@ -203,8 +203,9 @@ describe('PM-211 структура: путь первого кадра не ж�
   });
 
   it('проверка достижений по монетам на старте идёт только после кадра Главной', () => {
+    // зачем (04.10, замер №7): сверка идёт через 15 с после сплеша — допускаем задержку перед getStableId.
     expect(bootstrap).toMatch(
-      /runAfterHomeFirstFrame\('achievements_coins_boot_check',\s*\(\) => getStableId\(\)\s*\n\s*\.then\(\(\) => getRunesBalanceRead\(\)\)/,
+      /runAfterHomeFirstFrame\('achievements_coins_boot_check',\s*\(\) => (?:new Promise<void>\(\(resolve\) => \{\s*setTimeout\(resolve, [\d_]+\);\s*\}\)\.then\(\(\) => getStableId\(\)\)|getStableId\(\))\s*\n\s*\.then\(\(\) => getRunesBalanceRead\(\)\)/,
     );
     expect(bootstrap).not.toMatch(/void getStableId\(\)\s*\n\s*\.then\(\(\) => getRunesBalanceRead\(\)\)/);
     // любой вызов checkAchievements в bootstrap обёрнут помощником

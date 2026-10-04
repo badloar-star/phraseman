@@ -2369,7 +2369,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // локальная проекция, без Firestore). Номера достижений прежние.
       // зачем: PM-211 — проверка достижений не нужна первому кадру; раньше она стартовала
       // здесь, до setReady, и делила JS-поток и диск с ещё не нарисованной Главной.
-      runAfterHomeFirstFrame('achievements_coins_boot_check', () => getStableId()
+      // зачем (замер №7): сверка достижений по монетам вместе с чтением баланса держала очередь хранилища и замок
+      // аккаунта ~9 с сразу после сплеша (стыковалась с загрузкой состояния телефона и стартом Блица). Сверка
+      // не срочна — через 15 с после снятия сплеша.
+      runAfterHomeFirstFrame('achievements_coins_boot_check', () => new Promise<void>((resolve) => { setTimeout(resolve, 15_000); }).then(() => getStableId())
         .then(() => getRunesBalanceRead())
         .then((read) => checkAchievements({ type: 'shards', balance: read.wallet.balance }))
         .catch((error: unknown) => console.warn('[ACHIEVEMENTS] coins_boot_check_failed', String(error))));

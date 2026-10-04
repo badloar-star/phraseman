@@ -29,6 +29,8 @@ export const SNAPSHOT_DENY_PATTERNS: readonly RegExp[] = Object.freeze([
   /operation_ledger/i,
 ]);
 
+// зачем: журналы ошибок хранятся кусками; очень большое значение в памяти держать не стоит — такое читаем без запоминания
+const MAX_CACHED_VALUE_CHARS = 262_144;
 const MISS_LOG_LIMIT = 40;
 const SUMMARY_AFTER_MS = 20_000;
 
@@ -91,6 +93,10 @@ function ensureSubscribed(): void {
   (summaryTimer as { unref?: () => void }).unref?.();
 }
 
+function fitsInMemory(value: string | null): boolean {
+  return value === null || value.length <= MAX_CACHED_VALUE_CHARS;
+}
+
 function canCache(key: string): boolean {
   return globalWritesInFlight === 0 && !writesInFlight.has(key);
 }
@@ -133,7 +139,7 @@ export function readStoredItem(key: string): Promise<string | null> {
   const epoch = epochOf(key);
   const cacheable = canCache(key);
   const promise: Promise<string | null> = AsyncStorage.getItem(key).then((value) => {
-    if (cacheable && epoch === epochOf(key) && canCache(key)) entries.set(key, { value });
+    if (cacheable && epoch === epochOf(key) && canCache(key) && fitsInMemory(value)) entries.set(key, { value });
     if (readsInFlight.get(key)?.promise === promise) readsInFlight.delete(key);
     return value;
   }, (error: unknown) => {
@@ -200,7 +206,7 @@ export async function readStoredItems(keys: readonly string[]): Promise<Readonly
     if (stats.misses <= MISS_LOG_LIMIT) warn(`miss many=${missing.length} first=${missing[0]}`);
     for (const [key, value] of rows) {
       result.set(key, value);
-      if (!isSnapshotDeniedKey(key) && cacheable.get(key) && epochs.get(key) === epochOf(key) && canCache(key)) {
+      if (!isSnapshotDeniedKey(key) && cacheable.get(key) && epochs.get(key) === epochOf(key) && canCache(key) && fitsInMemory(value)) {
         entries.set(key, { value });
       }
     }
@@ -247,7 +253,7 @@ async function writeThrough(key: string, value: string | null): Promise<void> {
     else pendingWrites.delete(key);
   }
   // запись подтверждена и других записей по ключу нет — значение можно держать в памяти
-  if (!pendingWrites.has(key) && canCache(key)) entries.set(key, { value });
+  if (!pendingWrites.has(key) && canCache(key) && fitsInMemory(value)) entries.set(key, { value });
 }
 
 export function writeStoredItem(key: string, value: string): Promise<void> {

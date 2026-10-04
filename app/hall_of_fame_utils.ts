@@ -1,3 +1,6 @@
+// зачем (§122, замер 04.10: streak_count ×8 multiGet, last_active_date ×9 за старт): чтения серии — через снапшот; запись
+// (setItem/multiSet) идёт как раньше и выбрасывает ключ из снапшота, так что обновление серии видит актуальные значения.
+import { readStoredItem, readStoredItems } from './storage_snapshot';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persistLegacyPersonalProgressScalar } from '../modules/phone-state/legacy_mirror';
 
@@ -184,7 +187,7 @@ export const updateStreakOnActivity = async (
 ): Promise<number> => {
   try {
     // зачем (баг 01.10): временная трассировка — вход и сырые значения до любых правок.
-    const [[, rawStreak], [, rawLast], [, rawStreakLast]] = await AsyncStorage.multiGet(['streak_count', 'last_active_date', 'streak_last_date']);
+    const [[, rawStreak], [, rawLast], [, rawStreakLast]] = await readStoredItems(['streak_count', 'last_active_date', 'streak_last_date']);
     console.log(`[STREAK] update:called streak_count=${String(rawStreak)} last_active_date=${String(rawLast)} streak_last_date=${String(rawStreakLast)}`);
     // зачем: D107 — защита серии «Путешествием дня» и починка уроком удалены;
     // пропуск спасает только бесплатная заморозка Plus (streak_freeze ниже).
@@ -199,9 +202,9 @@ export const updateStreakOnActivity = async (
     // last_active_date, записанный ДО этого апдейта, ещё может быть в старой схеме.
     const today = getLocalDayKey();
     const lastActiveKey = 'last_active_date';
-    const lastActive = await AsyncStorage.getItem(lastActiveKey);
+    const lastActive = await readStoredItem(lastActiveKey);
 
-    let streak = parseInt(await AsyncStorage.getItem('streak_count') || '0');
+    let streak = parseInt(await readStoredItem('streak_count') || '0');
     // зачем (баг «Дизайна» 01.10: серия 1 при 6 днях подряд): временная трассировка [STREAK] —
     // вход, ветка и значения, что её решили. Убрать после диагноза, ранние выходы оставить.
     const streakBefore = streak;
@@ -347,7 +350,7 @@ export const updateStreakOnActivity = async (
  */
 export const checkStreakLossPending = async (): Promise<{ willLose: boolean; streakBefore: number }> => {
   try {
-    const lastActive = await AsyncStorage.getItem('last_active_date');
+    const lastActive = await readStoredItem('last_active_date');
     // Уже активен сегодня или вчера — цепочка в порядке
     if (!lastActive || isSameLocalOrUtcDay(lastActive) || isYesterdayFlexible(lastActive)) {
       return { willLose: false, streakBefore: 0 };
@@ -357,7 +360,7 @@ export const checkStreakLossPending = async (): Promise<{ willLose: boolean; str
       return { willLose: false, streakBefore: 0 };
     }
 
-    const streak = parseInt(await AsyncStorage.getItem('streak_count') || '0');
+    const streak = parseInt(await readStoredItem('streak_count') || '0');
     if (streak <= 1) return { willLose: false, streakBefore: streak };
 
     const freezeRaw = await AsyncStorage.getItem('streak_freeze');

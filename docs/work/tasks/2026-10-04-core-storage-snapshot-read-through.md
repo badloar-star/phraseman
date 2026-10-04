@@ -34,3 +34,6 @@ Unit tests for hit, miss, single-flight, invalidation by foreign write, in-fligh
 ## Rollback
 
 Revert the commit; consumers fall back to direct AsyncStorage reads with no data format change.
+
+Governance-ID: TG-9DFC3A513661
+(2026-10-04: журнал ошибок и серия дней читаются через снапшот; rollback = git revert.)

@@ -1,3 +1,4 @@
+import { readStoredItem } from './storage_snapshot';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { canonicalJsonV1, sha256Utf8 } from '../modules/learning-v2/policies/decision_registry';
 import type {
@@ -222,7 +223,13 @@ async function loadMistakeEventJournalFresh(
 ): Promise<MistakeEventJournal> {
   const accountScope = normalizedScope(input.accountScope);
   const storage = input.storage ?? AsyncStorage;
-  const raw = await storage.getItem(mistakePracticeEventsKey(accountScope, input.studyTarget));
+  // зачем (§122, замер 04.10: чтение корня журнала ×17, страниц ×5, кусков ×5 за старт): для боевого хранилища читаем через снапшот —
+  // хранилище один раз, дальше память; любая запись (в т.ч. под замком записи журнала) выбрасывает ключ. Страницы и куски журнала
+  // адресуются хешем содержимого, корень меняется только записью. Подставное хранилище (тесты) читается напрямую.
+  const getRaw = input.storage
+    ? (rawKey: string): Promise<string | null> => storage.getItem(rawKey)
+    : readStoredItem;
+  const raw = await getRaw(mistakePracticeEventsKey(accountScope, input.studyTarget));
   if (!raw) return mergePhoneStateJournal(emptyJournal(accountScope, input.studyTarget));
   let rootCandidate: unknown;
   try { rootCandidate = JSON.parse(raw); } catch (e) {
@@ -245,7 +252,7 @@ async function loadMistakeEventJournalFresh(
     while (pageId) {
       if (visited.has(pageId) || visited.size > 10_000) throw new Error('mistake_practice_events_corrupt');
       visited.add(pageId);
-      const pageRaw = await storage.getItem(mistakePracticeManifestPageKey(accountScope, input.studyTarget, pageId));
+      const pageRaw = await getRaw(mistakePracticeManifestPageKey(accountScope, input.studyTarget, pageId));
       if (!pageRaw) throw new Error('mistake_practice_events_corrupt');
       let page: JournalManifestPageV1;
       try { page = JSON.parse(pageRaw) as JournalManifestPageV1; } catch { throw new Error('mistake_practice_events_corrupt'); }
@@ -262,7 +269,7 @@ async function loadMistakeEventJournalFresh(
     let journal = emptyJournal(accountScope, input.studyTarget);
     for (const page of reversedPages.reverse()) {
       for (const chunkId of page.chunkIds) {
-        const chunkRaw = await storage.getItem(mistakePracticeEventChunkKey(accountScope, input.studyTarget, chunkId));
+        const chunkRaw = await getRaw(mistakePracticeEventChunkKey(accountScope, input.studyTarget, chunkId));
         if (!chunkRaw || sha256Utf8(chunkRaw) !== chunkId) throw new Error('mistake_practice_events_corrupt');
         journal = mergeMistakeEventJournals(journal, parseMistakeEventJournal(chunkRaw));
       }

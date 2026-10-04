@@ -13,7 +13,8 @@ describe('live admin support diagnostics contract', () => {
     expect(source).toContain('normalizeSupportDiagnostics(r.diagnostics)');
     expect(source).not.toContain('JSON.stringify(r.diagnostics)');
     expect(source).toContain('--- безопасная диагностика перед ошибкой ---');
-    expect(source).toContain('const safeDiagnostics = normalizeSupportDiagnostics(r.diagnostics)');
+    // зачем (04.10): переменная переименована (normalizedDiagnostics) — смысл тот же: в рендер идёт только нормализованное.
+    expect(source).toMatch(/const \w+ = normalizeSupportDiagnostics\(r\.diagnostics\)/);
   });
 
   test('escapes rendered event fields and caps the admin view', () => {

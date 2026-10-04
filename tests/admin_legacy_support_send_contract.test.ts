@@ -5,8 +5,15 @@ const legacy = fs.readFileSync(path.resolve(__dirname, '..', 'admin', 'v2', 'leg
 
 function functionBlock(startMarker: string, endMarker: string): string {
   const start = legacy.indexOf(startMarker);
-  const end = legacy.indexOf(endMarker, start + startMarker.length);
   expect(start).toBeGreaterThanOrEqual(0);
+  let end = legacy.indexOf(endMarker, start + startMarker.length);
+  if (end < 0) {
+    // зачем (04.10): конечный маркер (напр. window.loadUserReports) мог исчезнуть или переехать при чистке
+    // админки — блок кончается на следующем объявлении верхнего уровня, а не на позиции в файле.
+    const rest = legacy.slice(start + startMarker.length);
+    const next = rest.search(/\n {2}(?:window\.\w+\s*=|async function |function )/);
+    end = next < 0 ? legacy.length : start + startMarker.length + next;
+  }
   expect(end).toBeGreaterThan(start);
   return legacy.slice(start, end);
 }

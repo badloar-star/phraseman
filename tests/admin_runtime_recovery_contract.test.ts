@@ -48,7 +48,12 @@ describe('live admin runtime recovery contract', () => {
   test('keeps explicit refresh controls visible as a recovery path for stale data', () => {
     expect(live).not.toContain("button.setAttribute('aria-hidden', 'true')");
     expect(live).not.toContain('button.tabIndex = -1');
-    expect(live).not.toMatch(/data-pm-v[57]-refresh-control[^}]*display\s*:\s*none/i);
+    // зачем (04.10): прежний regex перескакивал через соседние элементы и ловил display:none у
+    // #ref-table. Проверяем сам тег кнопки и CSS-правила, нацеленные на неё.
+    const refreshTags = live.match(/<[^>]*data-pm-v[57]-refresh-control[^>]*>/gi) ?? [];
+    expect(refreshTags.length).toBeGreaterThan(0);
+    for (const tag of refreshTags) expect(tag).not.toMatch(/display\s*:\s*none/i);
+    expect(live).not.toMatch(/\[data-pm-v[57]-refresh-control[^\]]*\][^{]*\{[^}]*display\s*:\s*none/i);
     expect(live).toContain("'referrals': () => pmV5SafeCall('loadReferralsData', true, false)");
     expect(live).toContain("'analytics': pmV5RefreshAnalyticsSection");
   });

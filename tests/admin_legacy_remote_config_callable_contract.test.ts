@@ -1,14 +1,17 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const legacy = fs.readFileSync(path.resolve(__dirname, '..', 'admin', 'legacy.html'), 'utf8');
+const legacy = fs.readFileSync(path.resolve(__dirname, '..', 'admin', 'v2', 'legacy.html'), 'utf8');
 
-function functionBlock(startMarker: string, endMarker: string): string {
+// зачем (04.10): в живой админке порядок секций поменялся, поэтому конец функции ищем
+// по закрытию на втором отступе, а не по соседнему комментарию.
+function functionBlock(startMarker: string): string {
   const start = legacy.indexOf(startMarker);
-  const end = legacy.indexOf(endMarker, start + startMarker.length);
   expect(start).toBeGreaterThanOrEqual(0);
-  expect(end).toBeGreaterThan(start);
-  return legacy.slice(start, end);
+  const tail = legacy.slice(start);
+  const close = /\n {2}\}/.exec(tail);
+  expect(close).not.toBeNull();
+  return tail.slice(0, (close as RegExpExecArray).index);
 }
 
 describe('Legacy admin protected remote-config workflow', () => {
@@ -19,10 +22,7 @@ describe('Legacy admin protected remote-config workflow', () => {
   });
 
   test('publishes once with cryptographic operation ids and the cached revision', () => {
-    const block = functionBlock(
-      'async function publishAdminRemoteConfigPatch(nextConfig, reason)',
-      'function rcSetStatus(',
-    );
+    const block = functionBlock('async function publishAdminRemoteConfigPatch(nextConfig, reason)');
 
     expect(block).toContain('expectedRevision: workspace.config.revision');
     expect(block).toContain("createAdminCommandId('remote_config_operation')");
@@ -34,19 +34,19 @@ describe('Legacy admin protected remote-config workflow', () => {
   });
 
   test.each([
-    ['window.loadRemoteConfig = async function(force)', 'window.saveRemoteConfig = async function()', 'loadAdminRemoteConfigWorkspace'],
-    ['window.saveRemoteConfig = async function()', '// ── Пульт управления', 'publishAdminRemoteConfigPatch'],
-    ['window.saveControlPanelBool = async function(key, checked)', '// Совместимость: старый онколл lifetime-тумблера', 'publishAdminRemoteConfigPatch'],
-    ['window.saveControlPanelTexts = async function(patch)', '// ── 📺 YouTube-канал', 'publishAdminRemoteConfigPatch'],
-    ['window.saveControlPanelNumbers = async function(patch)', '// ── Недельные бонусы', 'publishAdminRemoteConfigPatch'],
-  ])('%s uses protected helpers without direct Firestore writes or reads', (start, end, expectedHelper) => {
-    const block = functionBlock(start, end);
+    ['window.loadRemoteConfig = async function(force)', 'loadAdminRemoteConfigWorkspace'],
+    ['window.saveRemoteConfig = async function()', 'publishAdminRemoteConfigPatch'],
+    ['window.saveControlPanelBool = async function(key, checked)', 'publishAdminRemoteConfigPatch'],
+    ['window.saveControlPanelTexts = async function(patch)', 'publishAdminRemoteConfigPatch'],
+    ['window.saveControlPanelNumbers = async function(patch)', 'publishAdminRemoteConfigPatch'],
+  ])('%s uses protected helpers without direct Firestore writes or reads', (start, expectedHelper) => {
+    const block = functionBlock(start);
     expect(block).toContain(expectedHelper);
     expect(block).not.toMatch(/\b(?:getDoc|setDoc|addDoc|logAction)\s*\(/);
   });
 
   test('remote-config history is rendered from the protected workspace', () => {
-    const block = functionBlock('window.rcLoadHistory = async function(force)', '// ══ Paywall A/B');
+    const block = functionBlock('window.rcLoadHistory = async function(force)');
     expect(block).toContain('loadAdminRemoteConfigWorkspace');
     expect(block).not.toMatch(/\bgetDocs\s*\(/);
   });

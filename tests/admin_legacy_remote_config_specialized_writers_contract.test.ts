@@ -1,14 +1,17 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const legacy = fs.readFileSync(path.resolve(__dirname, '..', 'admin', 'legacy.html'), 'utf8');
+const legacy = fs.readFileSync(path.resolve(__dirname, '..', 'admin', 'v2', 'legacy.html'), 'utf8');
 
-function functionBlock(startMarker: string, endMarker: string): string {
+// зачем (04.10): в живой админке порядок секций поменялся, поэтому конец функции ищем
+// по закрытию на втором отступе, а не по соседнему комментарию.
+function functionBlock(startMarker: string): string {
   const start = legacy.indexOf(startMarker);
-  const end = legacy.indexOf(endMarker, start + startMarker.length);
   expect(start).toBeGreaterThanOrEqual(0);
-  expect(end).toBeGreaterThan(start);
-  return legacy.slice(start, end);
+  const tail = legacy.slice(start);
+  const close = /\n {2}\}/.exec(tail);
+  expect(close).not.toBeNull();
+  return tail.slice(0, (close as RegExpExecArray).index);
 }
 
 describe('Legacy admin specialized Remote Config writers', () => {
@@ -18,26 +21,28 @@ describe('Legacy admin specialized Remote Config writers', () => {
   });
 
   test.each([
-    ['window.saveControlPanelPremium = async function()', '// ── Пульт: управление ИИ'],
-    ['window.saveControlPanelMaintenance = async function()', '// ── Remote Config changelog'],
-  ])('%s uses cached before-values and the protected publisher', (start, end) => {
-    const block = functionBlock(start, end);
-    expect(block).toContain('loadAdminRemoteConfigWorkspace(false)');
+    ['window.saveControlPanelPremium = async function()', false],
+    ['window.saveControlPanelMaintenance = async function()', true],
+  ])('%s uses the protected publisher (cached before-values where it diffs)', (start, usesBeforeValues) => {
+    const block = functionBlock(start);
+    // зачем (04.10): Plus/Free-пульт в 2.0 шлёт целиком свои ветки, before-значения не читает;
+    // защита от гонки — expectedRevision внутри publishAdminRemoteConfigPatch (см. callable-контракт).
+    if (usesBeforeValues) expect(block).toContain('loadAdminRemoteConfigWorkspace(false)');
     expect(block).toContain('await publishAdminRemoteConfigPatch(');
     expect(block).not.toMatch(/\b(?:getDoc|setDoc|addDoc|logAction)\s*\(/);
   });
 
   test('specialized publishers submit only their managed branches with generated reasons', () => {
-    const premium = functionBlock('window.saveControlPanelPremium = async function()', '// ── Пульт: управление ИИ');
-    const maintenance = functionBlock('window.saveControlPanelMaintenance = async function()', '// ── Remote Config changelog');
+    const premium = functionBlock('window.saveControlPanelPremium = async function()');
+    const maintenance = functionBlock('window.saveControlPanelMaintenance = async function()');
 
-    expect(premium).toContain("'Премиум-пульт: '");
+    expect(premium).toContain("'Пульт Plus/Free: изменяемые доступы и лимиты'");
     expect(maintenance).toContain("'Технические работы: banner='");
   });
 
   test('retired weekly boon Remote Config has no admin reader or writer', () => {
-    const v2 = fs.readFileSync(path.resolve(__dirname, '..', 'admin', 'v2', 'legacy.html'), 'utf8');
-    for (const html of [legacy, v2]) {
+    // зачем (04.10): старой admin/legacy.html больше нет — читаем единственную живую админку
+    for (const html of [legacy]) {
       expect(html).not.toContain('weekly_boons_config');
       expect(html).not.toContain('loadWeeklyBoons');
       expect(html).not.toContain('saveWeeklyBoons');

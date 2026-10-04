@@ -4,7 +4,7 @@ import vm from 'vm';
 
 describe('legacy admin daily digest contract', () => {
   const root = path.resolve(__dirname, '..');
-  const admin = fs.readFileSync(path.join(root, 'admin', 'legacy.html'), 'utf8');
+  const admin = fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'), 'utf8');
   const digestV2 = fs.readFileSync(path.join(root, 'admin', 'v2', 'daily-digest.js'), 'utf8');
 
   it('shows an exact since-last-open interval and readable comparison surface', () => {
@@ -25,7 +25,8 @@ describe('legacy admin daily digest contract', () => {
   });
 
   it('renders escaped digest sections with restrained semantic color accents', () => {
-    expect(admin).toContain('<script src="v2/daily-digest.js"></script>');
+    // зачем (04.10): живая админка лежит в admin/v2, поэтому скрипт подключён относительно неё (без префикса v2/)
+    expect(admin).toMatch(/<script src="(?:v2\/)?daily-digest\.js"><\/script>/);
     expect(admin).toContain('window.AdminDailyDigestV2.renderSummarySections');
     expect(digestV2).toContain('class="dd-summary-sections"');
     expect(digestV2).toContain('function parseSummarySections(summary)');

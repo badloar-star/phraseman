@@ -42,7 +42,7 @@ describe('web and admin runtime locale fallback audit', () => {
   });
 
   it('does not seed pt-BR/vi/id/tr/pl VIP survey copy from generic admin text', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'admin', 'legacy.html'), 'utf8');
+    const source = fs.readFileSync(path.join(ROOT, 'admin', 'v2', 'legacy.html'), 'utf8');
 
     for (const id of [
       'vs-title-ptbr',
@@ -67,7 +67,7 @@ describe('web and admin runtime locale fallback audit', () => {
   });
 
   it('keeps admin Google login persistent across page reloads', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'admin', 'legacy.html'), 'utf8');
+    const source = fs.readFileSync(path.join(ROOT, 'admin', 'v2', 'legacy.html'), 'utf8');
 
     expect(source).toContain('setPersistence(auth, browserLocalPersistence)');
     expect(source).toContain("setAdminSignInBusy(true, 'ПРОВЕРЯЕМ СЕССИЮ...')");
@@ -76,7 +76,10 @@ describe('web and admin runtime locale fallback audit', () => {
 
     const cachedTokenCheck = source.indexOf('tr = await user.getIdTokenResult(false)');
     const forcedTokenRefresh = source.indexOf('tr = await user.getIdTokenResult(true)', cachedTokenCheck);
-    const unexpectedSignOut = source.indexOf('await signOut(auth)', cachedTokenCheck);
+    // зачем (04.10): прежняя проверка «signOut идёт позже» стала бессмысленной — в v2 единственный
+    // signOut стоит в совсем другом месте (отзыв управляемого доступа). Настоящий смысл правила
+    // владельца: в ветке «нет claim admin» сессию НЕ сносим (2026-08-16 так сгорел автовход).
+    const claimDeniedEnd = source.indexOf('showAdminRetryClaimButton(true)', cachedTokenCheck);
     const missingAdminClaimGuard = 'if (!tr.claims || tr.claims.admin !== true) {';
     const refreshBranch = extractBracedBlock(source, missingAdminClaimGuard, cachedTokenCheck);
 
@@ -85,7 +88,9 @@ describe('web and admin runtime locale fallback audit', () => {
     expect(source.slice(cachedTokenCheck, source.indexOf(missingAdminClaimGuard, cachedTokenCheck)))
       .not.toContain('getIdTokenResult(true)');
     expect(forcedTokenRefresh).toBeGreaterThan(cachedTokenCheck);
-    expect(unexpectedSignOut).toBeGreaterThan(forcedTokenRefresh);
+    expect(claimDeniedEnd).toBeGreaterThan(forcedTokenRefresh);
+    expect(source.slice(cachedTokenCheck, claimDeniedEnd)).not.toMatch(/signOut\s*\(/);
+    expect(source).toContain('getRedirectResult(auth)');
   });
 
   it('keeps the public referral invite page install-first for new users', () => {
@@ -100,10 +105,10 @@ describe('web and admin runtime locale fallback audit', () => {
   });
 
   it('does not label Firebase-authenticated users as anonymous when provider metadata is missing', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'admin', 'legacy.html'), 'utf8');
+    const source = fs.readFileSync(path.join(ROOT, 'admin', 'v2', 'legacy.html'), 'utf8');
 
     expect(source).toContain('firebaseAuthUid: snap.data().firebaseAuthUid || null');
-    expect(source).toContain('firebaseAuthUid: doc.data().firebaseAuthUid || null');
+    expect(source).toContain('firebaseAuthUid: data.firebaseAuthUid || null');
     expect(source).toContain('function hasAnyAuth(u)');
     expect(source).toContain("if(fAuth==='any')   us=us.filter(u=>hasAnyAuth(u));");
     expect(source).toContain("if(fAuth==='anon')  us=us.filter(u=>!hasAnyAuth(u));");

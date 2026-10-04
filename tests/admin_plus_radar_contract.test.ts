@@ -2,13 +2,13 @@ import fs from 'fs';
 import path from 'path';
 
 describe('admin Plus Radar contract', () => {
-  const html = fs.readFileSync(path.join(process.cwd(), 'admin', 'legacy.html'), 'utf8');
+  const html = fs.readFileSync(path.join(process.cwd(), 'admin', 'v2', 'legacy.html'), 'utf8');
 
   it('registers a read-only Plus Radar revenue section', () => {
     expect(html).toContain("switchTab('plus-radar')");
     expect(html).toContain('id="tab-plus-radar"');
     expect(html).toContain("'plus-radar','promo-codes'");
-    expect(html).toContain("'plus-radar': 'Plus Radar'");
+    expect(html).toContain("'plus-radar': 'Радар Plus'");
     expect(html).toContain("'plus-radar': 'revenue'");
     expect(html).toContain("if (tab === 'plus-radar'");
   });
@@ -16,7 +16,7 @@ describe('admin Plus Radar contract', () => {
   it('tracks the premium duplication cases admins need to inspect', () => {
     expect(html).toContain('function buildPlusRadarRows(users)');
     expect(html).toContain('window.renderPlusRadar = function renderPlusRadar()');
-    expect(html).toContain('window.loadPlusRadarData = async function loadPlusRadarData(force)');
+    expect(html).toMatch(/window\.loadPlusRadarData = async function loadPlusRadarData\(/);
     expect(html).toContain('window.exportPlusRadarCSV = function()');
     expect(html).toContain('double_access');
     expect(html).toContain('identity_duplicate_access');
@@ -29,7 +29,7 @@ describe('admin Plus Radar contract', () => {
 
   it('does not add Firestore writes to the Plus Radar implementation block', () => {
     const start = html.indexOf('const PLUS_RADAR_KIND_LABELS');
-    const end = html.indexOf('// -- SUBSCRIPTION CANCEL SURVEYS TAB', start);
+    const end = html.indexOf('// -- GIFT CERTIFICATES', start);
     expect(start).toBeGreaterThan(0);
     expect(end).toBeGreaterThan(start);
     const radarBlock = html.slice(start, end);

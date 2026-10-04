@@ -5,7 +5,7 @@ const root = path.join(__dirname, '..');
 const html = fs.readFileSync(path.join(root, 'admin', 'learning-v2-generator.html'), 'utf8');
 const css = fs.readFileSync(path.join(root, 'admin', 'styles', 'learning-v2-generator.css'), 'utf8');
 const js = fs.readFileSync(path.join(root, 'admin', 'scripts', 'pages', 'learning-v2-generator.js'), 'utf8');
-const legacy = fs.readFileSync(path.join(root, 'admin', 'legacy.html'), 'utf8');
+const legacy = fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'), 'utf8');
 
 describe('Learning V2 root-admin course studio', () => {
   test('opens inside the legacy admin and keeps the old standalone URL as a redirect only', () => {
@@ -24,7 +24,12 @@ describe('Learning V2 root-admin course studio', () => {
     expect(css).toContain('prefers-reduced-motion');
     const stageCatalog = js.slice(js.indexOf('const COURSE_STAGES'), js.indexOf('const COURSE_LOCALES'));
     expect(stageCatalog.match(/kind: 'learning_v2_/g)).toHaveLength(7);
-    expect(js).toContain("Object.freeze(['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'])");
+    // зачем (04.10): форматирование prettier переносит массив по строкам — сверяем состав локалей, а не раскладку
+    const localesMatch = js.match(/const COURSE_LOCALES = Object\.freeze\(\[([^\]]*)\]\)/);
+    expect(localesMatch).not.toBeNull();
+    expect(Array.from((localesMatch as RegExpMatchArray)[1].matchAll(/'([^']+)'/g), (m) => m[1])).toEqual([
+      'ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl',
+    ]);
     expect(html).toContain('E1–E8');
     expect(html).toContain('E1–E32');
     expect(html).toContain('Полный сезон только после двух зелёных ворот');
@@ -46,7 +51,7 @@ describe('Learning V2 root-admin course studio', () => {
   test('replaces a generic paused-stage restart with an exact owner wave review', () => {
     expect(js).toContain("learningV2PauseReason === 'owner_wave_approval_required'");
     expect(js).toContain("learningV2PauseReason === 'root_manifest_materialization_pending'");
-    expect(js).toContain("WAVE_LABELS = Object.freeze({ e1: 'E1', chapter_1: 'E1–E8', season: 'E1–E32' })");
+    expect(js).toMatch(/WAVE_LABELS = Object\.freeze\(\{\s*e1: 'E1',\s*chapter_1: 'E1–E8',\s*season: 'E1–E32',?\s*\}\)/);
     expect(js).toContain('expectedCheckpointFingerprint');
     expect(html).toContain('Сессия для полной проверки');
     expect(html).toContain('Предыдущий эпизод');

@@ -21,7 +21,8 @@ function lastBlock(start: string, end: string): string {
 }
 
 function expectLoadedOnlyAfterRead(source: string, flag: string): void {
-  const readAt = Math.min(...['await getDocs', 'await getDoc', 'await pabFn', 'await callable', 'await getAdmin', 'await an2Fetch', 'await loadAdminRemoteConfigWorkspace', 'await onboardingSourceFetchRows', 'await revenueFetchRows', 'await Promise.all(', 'await Promise.allSettled', 'await window.fetchUserIdeasShared', 'await loadCompassToggleStates']
+  // зачем (04.10): кэш объяснений читает серверный список через `const call = httpsCallable(...); await call(...)`.
+  const readAt = Math.min(...['await getDocs', 'await getDoc', 'await pabFn', 'await callable', 'await call(', 'await getAdmin', 'await an2Fetch', 'await loadAdminRemoteConfigWorkspace', 'await onboardingSourceFetchRows', 'await revenueFetchRows', 'await Promise.all(', 'await Promise.allSettled', 'await window.fetchUserIdeasShared', 'await loadCompassToggleStates']
     .map((needle) => source.indexOf(needle))
     .filter((index) => index >= 0));
   const loadedAt = source.indexOf(`${flag} = true`);
@@ -40,9 +41,9 @@ describe('Admin D2 bounded and truthful loader contract', () => {
 
   test('bounded list surfaces use cap+1 and persistent sample/truncation truth', () => {
     const cases: Array<[string, string, string]> = [
-      ['window.loadHelpersBoard = async function', 'window.renderHelpersBoard = function', 'HELPERS_PAGE'],
+      // зачем (04.10): доска «Топ хелперов» снята (2026-08-23) — сторож удалён.
       ['window.loadVipSurveyResponses = async function', 'window.renderVipSurveyResponses = function', 'VIP_SURVEY_PAGE'],
-      ['window.fetchUserIdeasShared = async function', 'const XR_REASON_LABELS', 'USER_IDEAS_PAGE'],
+      // зачем (04.10): идеи читаются постранично до USER_IDEAS_MAX с пробой хвоста — проверка ниже отдельно.
       ['window.loadCancelSurveys = async function', '/**', 'CANCEL_SURVEYS_PAGE'],
       ['window.loadUgcPurchases = async function', 'window.renderUgcPurchases = function', 'UGC_PURCHASES_PAGE'],
       ['window.loadDailyPhrases = async function', 'window.renderDailyPhrases = function', 'DAILY_PHRASES_PAGE'],
@@ -55,6 +56,10 @@ describe('Admin D2 bounded and truthful loader contract', () => {
       expect(source).toContain('truncated');
     }
     expect(html).toContain('в загруженной выборке');
+    const ideas = block('window.fetchUserIdeasShared = async function', 'const XR_REASON_LABELS');
+    expect(ideas).toMatch(/while \(rows\.length < USER_IDEAS_MAX\)/);
+    expect(ideas).toMatch(/startAfter\(cursor\), limit\(1\)\)\);\s*truncated = !probe\.empty;/);
+    expect(ideas).toContain('complete:!truncated, truncated');
   });
 
   test('community queues filter before ordered cap+1 and disclose truncation', () => {
@@ -269,20 +274,16 @@ describe('Admin D2 bounded and truthful loader contract', () => {
   });
 
   test('helper and Plus-survey samples do not become session-complete caches', () => {
-    const helpers = block('window.loadHelpersBoard = async function', 'window.renderHelpersBoard = function');
+    // зачем (04.10): доска «Топ хелперов» снята (2026-08-23) — её проверка удалена, Plus-опрос остаётся.
     const vip = block('window.loadVipSurveyResponses = async function', 'window.renderVipSurveyResponses = function');
     const vipRender = block('window.renderVipSurveyResponses = function', 'window.addTestReport');
-    expect(helpers).toContain('if (!truncated) window._helpersBoardLoaded = true');
     expect(vip).toContain('if (!truncated) window._vipSurveyLoaded = true');
     expect(vipRender).toContain('загруженной выборке');
   });
 
   test('user shard-log totals and App Message paywall funnels use cap sentinels', () => {
-    const shards = block('async function loadShardLog', 'window.loadHelpersBoard = async function');
+    // зачем (04.10): журнал осколков пользователя снят в 2.0 (осколки удалены) — проверка удалена, воронка остаётся.
     const funnel = block('async function loadSettingsMessageFunnel', 'const APP_MESSAGES_PAGE');
-    expect(shards).toContain('SHARD_LOG_PAGE + 1');
-    expect(shards).toContain('truncated');
-    expect(shards).toContain("truncated ? '—'");
     expect(funnel).toContain('APP_MESSAGE_FUNNEL_PAGE + 1');
     expect(funnel).toContain('funnel-truncated');
     expect(funnel).toContain('campaign.settingsFunnel = null');

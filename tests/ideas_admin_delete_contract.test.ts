@@ -9,7 +9,7 @@ describe('community ideas admin delete contract', () => {
     const functions = read('functions/src/user_ideas.ts');
     expect(html).toContain("'adminDeleteUserIdea'");
     expect(html).toContain('data-idea-delete');
-    expect(html).toContain('Удалённые из публичного списка');
+    // зачем (04.10): блок «Удалённые из публичного списка» снят в 2.0 — проверка удалена; мягкое удаление через callable осталось.
     expect(functions).toContain('export const adminDeleteUserIdea');
     expect(functions).toContain('export const adminSetUserIdeaStatus');
     expect(functions).toContain("'in_progress'");
@@ -24,6 +24,7 @@ describe('community ideas admin delete contract', () => {
   test('does not add a second admin surface', () => {
     const html = read('admin/v2/legacy.html');
     expect(html).toContain('Идеи пользователей');
-    expect(fs.existsSync(path.join(__dirname, '..', 'admin/legacy.html'))).toBe(true);
+    // зачем (04.10): старая admin/legacy.html удалена снимком 2.0 (efe19ae9d) — вторая поверхность не должна вернуться.
+    expect(fs.existsSync(path.join(__dirname, '..', 'admin/legacy.html'))).toBe(false);
   });
 });

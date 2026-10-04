@@ -5,6 +5,10 @@ const root = path.resolve(__dirname, '..');
 const live = fs.readFileSync(path.join(root, 'admin/v2/legacy.html'), 'utf8');
 const mainEntry = fs.readFileSync(path.join(root, 'functions/src/index.ts'), 'utf8');
 const englishTestEntry = fs.readFileSync(path.join(root, 'functions-english-test/index.js'), 'utf8');
+// зачем (04.10): админка зовёт и функции кодовых баз content/admin (напр. learningV2CourseActiveCatalogGetV1
+// живёт в functions-content) — паритет считаем по всем развёртываемым точкам входа.
+const contentEntry = fs.readFileSync(path.join(root, 'functions-content/index.ts'), 'utf8');
+const adminEntry = fs.readFileSync(path.join(root, 'functions-admin/index.ts'), 'utf8');
 const functionsPackage = JSON.parse(fs.readFileSync(path.join(root, 'functions/package.json'), 'utf8')) as {
   scripts?: Record<string, string>;
 };
@@ -22,6 +26,8 @@ describe('live admin callable deployment parity', () => {
     const missing = inventory.filter((name) => (
       !mainEntry.includes(name)
       && !englishTestEntry.includes(`exports.${name}`)
+      && !new RegExp(`\\b${name}\\b`).test(contentEntry)
+      && !new RegExp(`\\b${name}\\b`).test(adminEntry)
     ));
 
     expect(inventory).toContain('adminActivateTelegramPremiumOrder');

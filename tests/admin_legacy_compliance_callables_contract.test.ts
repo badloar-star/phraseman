@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-const html = readFileSync(join(__dirname, '..', 'admin', 'legacy.html'), 'utf8');
+const html = readFileSync(join(__dirname, '..', 'admin', 'v2', 'legacy.html'), 'utf8');
 
 function block(start: string, end: string) {
   const from = html.indexOf(start);
@@ -47,6 +47,7 @@ describe('live admin compliance boundaries', () => {
     expect(radar).toContain('ожидаемая privacy-защита, не нарушение');
     expect(radar).toContain('страна не собирается');
     expect(radar).toContain("openMinorFlags > 0 ? 'red'");
-    expect(radar).toContain('зелёный статус недоступен');
+    // зачем (04.10): светофор не может быть зелёным, пока юрисдикция недоступна — смысл прежней подписи
+    expect(radar).toMatch(/openFlags > 0 \|\| jurisdictionUnavailable\)\s*\?\s*'amber'/);
   });
 });

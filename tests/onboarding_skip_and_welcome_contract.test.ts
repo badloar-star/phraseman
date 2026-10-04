@@ -3,7 +3,7 @@ import path from 'path';
 
 const onboarding = fs.readFileSync(path.join(process.cwd(), 'components', 'CleanOnboarding.tsx'), 'utf8');
 const flags = fs.readFileSync(path.join(process.cwd(), 'app', 'remote_flags.ts'), 'utf8');
-const legacy = fs.readFileSync(path.join(process.cwd(), 'admin', 'legacy.html'), 'utf8');
+const legacy = fs.readFileSync(path.join(process.cwd(), 'admin', 'v2', 'legacy.html'), 'utf8');
 
 // зачем: владелец (2026-07-26) — «Пропустить» на каждом экране кроме оплаты.
 // Фича обязана оставаться выключаемой из админки без релиза, а «Пропустить» —
@@ -48,10 +48,9 @@ describe('Admin controls for onboarding behaviour', () => {
     expect(legacy).toContain('if (input) input.checked = !next;');
   });
 
-  it('shows the skip percentage without extra Firestore queries', () => {
+  // зачем (04.10): процент пропусков онбординга снят в 2.0 (карточка теперь «n/a»: честного
+  // знаменателя без серверной воронки нет) — сторож на подсчёт по onboarding_skip удалён
+  it('keeps the skip counter card in the onboarding exits summary', () => {
     expect(legacy).toContain("['Пропустили онбординг'");
-    expect(legacy).toContain("r.action === 'onboarding_skip'");
-    // Проценты считаем по уникальным пользователям, а не по сырым событиям.
-    expect(legacy).toContain('const uniqUsers = (list) =>');
   });
 });

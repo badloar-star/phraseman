@@ -51,8 +51,9 @@ describe("privacy-safe aggregate onboarding funnel contract", () => {
   });
 
   it("exports both callables from the deployed functions entry point", () => {
-    expect(functionsIndex).toContain(
-      "export { recordOnboardingFunnelEvent, adminGetOnboardingFunnel } from './onboarding_funnel';",
+    // зачем (04.10): экспорт стал многострочным — проверяем по смыслу: оба имени из './onboarding_funnel'.
+    expect(functionsIndex).toMatch(
+      /export \{[^}]*\brecordOnboardingFunnelEvent\b[^}]*\badminGetOnboardingFunnel\b[^}]*\} from ['"]\.\/onboarding_funnel['"]/,
     );
   });
 
@@ -72,8 +73,5 @@ describe("privacy-safe aggregate onboarding funnel contract", () => {
     );
   });
 
-  it("labels the new totals as server aggregates rather than app_activity totals", () => {
-    expect(admin).toContain("Серверные агрегаты с момента запуска счётчика");
-    expect(admin).toContain("app_activity не используется");
-  });
+  // зачем (04.10): подпись «Серверные агрегаты … app_activity не используется» снята в 2.0 — сторож удалён.
 });

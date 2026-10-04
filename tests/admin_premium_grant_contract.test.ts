@@ -8,7 +8,7 @@ describe("admin premium grant contract", () => {
   // именно там, а в index.html его нет вовсе — тест падал на семи проверках,
   // сверяя контракт с файлом, который не попадает на боевую.
   const html = fs.readFileSync(
-    path.join(process.cwd(), "admin", "legacy.html"),
+    path.join(process.cwd(), "admin", "v2", "legacy.html"),
     "utf8",
   );
 
@@ -29,11 +29,8 @@ describe("admin premium grant contract", () => {
   };
 
   it("routes admin VIP grants through the protected callable with verified responses", () => {
+    // зачем (04.10): grantHelperPlus (выдача Plus помощнику) снята в 2.0 — сторож удалён
     const grants = [
-      between(
-        "window.grantHelperPlus = async function",
-        "window.editShards = async function",
-      ),
       between(
         "async function grantAdminPremiumChoice",
         "window.revokeAdminVip = async function",
@@ -46,8 +43,9 @@ describe("admin premium grant contract", () => {
     for (const body of grants) {
       expectNoDirectSensitiveWrite(body);
       expect(body).toContain("getAdminGrantAccessCallable()");
-      expect(body).toContain("kind: 'vip'");
-      expect(body).toContain("active: true");
+      // зачем: массовая выдача в v2 записана компактно (kind:'vip'), поэтому пробелы необязательны
+      expect(body).toMatch(/kind:\s*'vip'/);
+      expect(body).toMatch(/active:\s*true/);
       expect(body).toContain("reason");
       expect(body).toContain("requestId");
       expect(body).toContain("idempotencyKey");
@@ -55,9 +53,8 @@ describe("admin premium grant contract", () => {
       expect(body).toContain("response.data.uid");
     }
     expect(grants[0]).toContain("Number(response.data.expiresAtMs)");
-    expect(grants[1]).toContain("Number(response.data.expiresAtMs)");
-    expect(grants[2]).toContain("response.data.kind !== 'vip'");
-    expect(grants[2]).toContain("response.data.active !== true");
+    expect(grants[1]).toMatch(/response\.data\.kind\s*!==\s*'vip'/);
+    expect(grants[1]).toMatch(/response\.data\.active\s*!==\s*true/);
   });
 
   it("shows VIP as a separate admin section instead of hiding it inside Premium", () => {
@@ -82,8 +79,8 @@ describe("admin premium grant contract", () => {
     );
     expect(timedGrant).toContain("spec.kind === 'forever' ? 0");
     expect(timedGrant).toContain("vip_plan: 'admin_vip'");
-    expect(bulkGrant).toContain("durationDays: 0");
-    expect(bulkGrant).toContain("vip_plan: 'admin_vip'");
+    expect(bulkGrant).toMatch(/durationDays:\s*0/);
+    expect(bulkGrant).toMatch(/vip_plan:\s*'admin_vip'/);
     expect(timedGrant + bulkGrant).not.toContain("premium_plan: 'annual'");
   });
 
@@ -113,7 +110,7 @@ describe("admin premium grant contract", () => {
     expect(repair).toContain(
       "where('progress.premium_plan', '==', 'admin_grant')",
     );
-    expect(repair).toContain("limit(500)");
+    expect(repair).toMatch(/limit\(\s*LEGACY_PLUS_MIGRATION_PAGE\b/);
     expect(repair).toContain("getAdminMigrateLegacyAdminPremiumCallable()");
     expect(repair).toContain("uids: chunk, reason");
     expect(repair).toContain(

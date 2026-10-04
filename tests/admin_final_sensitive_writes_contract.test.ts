@@ -45,7 +45,8 @@ describe("live admin sensitive write handlers", () => {
       expect(body).toMatch(/reason/i);
       expect(body).toMatch(/idempotencyKey/);
       expect(body).toMatch(/requestId/);
-      expect(body).toMatch(/\.data\?\.ok|\.data\.ok/);
+      // зачем (04.10): ответ сервера проверяется и как `response.data.ok`, и как `const data = response?.data; data.ok !== true`.
+      expect(body).toMatch(/\bdata\??\.ok\b/);
     },
   );
 

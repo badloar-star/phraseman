@@ -2,9 +2,9 @@ import fs from 'fs';
 import path from 'path';
 
 const ROOT = path.join(__dirname, '..');
-const adminIndexPath = path.join(ROOT, 'admin', 'legacy.html');
-const adminSurfacePath = path.join(ROOT, 'admin', 'french-daily-phrases-admin.js');
-const workflowPath = path.join(ROOT, 'admin', 'french-daily-phrases-workflow.js');
+const adminIndexPath = path.join(ROOT, 'admin', 'v2', 'legacy.html');
+const adminSurfacePath = path.join(ROOT, 'admin', 'v2', 'french-daily-phrases-admin.js');
+const workflowPath = path.join(ROOT, 'admin', 'v2', 'french-daily-phrases-workflow.js');
 
 describe('Gustav French Daily Phrases admin surface wiring', () => {
   const html = fs.readFileSync(adminIndexPath, 'utf8');

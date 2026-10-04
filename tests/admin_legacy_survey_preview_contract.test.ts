@@ -69,14 +69,7 @@ describe('live admin shard survey connection', () => {
     expect(surveyClient).toContain("'getActiveShardSurvey'");
   });
 
-  test('keeps the live editor honest about the server-fixed one-shard reward', () => {
-    expect(surveyServer).toContain('const SURVEY_SHARD_AMOUNT = 1;');
-    expect(surveySection).toContain('rewardShards: 1');
-    expect(surveySection).toContain('prepared.rewardShards = 1;');
-    expect(surveySection).toContain('1 осколок за завершение');
-    expect(surveySection).not.toContain('rewardShards: 3');
-    expect(surveySection).not.toContain("_ssSet('rewardShards'");
-  });
+  // зачем (04.10): награда «1 осколок за опрос» снята в 2.0 вместе с осколками (PM-289) — сторож удалён.
 
   test('ships the owner-selected 63-poll preset library into the live admin editor', () => {
     expect(surveyMarkup).toContain('id="ss-preset-library"');

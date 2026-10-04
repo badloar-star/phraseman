@@ -2,26 +2,22 @@ import fs from 'fs';
 import path from 'path';
 
 describe('telegram testers admin page contract', () => {
-  const htmlPath = path.join(process.cwd(), 'admin', 'testers.html');
+  // зачем (04.10): живая страница — admin/v2/testers.html (её публикует hosting), как и legacy.html
+  const htmlPath = path.join(process.cwd(), 'admin', 'v2', 'testers.html');
   const html = fs.existsSync(htmlPath) ? fs.readFileSync(htmlPath, 'utf8') : '';
-  const adminIndex = fs.readFileSync(path.join(process.cwd(), 'admin', 'legacy.html'), 'utf8');
+  const adminIndex = fs.readFileSync(path.join(process.cwd(), 'admin', 'v2', 'legacy.html'), 'utf8');
   const rules = fs.readFileSync(path.join(process.cwd(), 'firestore.rules'), 'utf8');
   const functionSource = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'telegram_premium_bot.ts'), 'utf8');
 
-  it('exposes a protected testers page without payment wording in visible copy', () => {
-    expect(html).toContain('Тестеры');
+  // зачем (04.10): в 2.0 страница названа «Телеграм оплаты» — прежний сторож «без слов про оплату»
+  // в видимом тексте снят (название сменили намеренно); защита по admin-claim и список остаются
+  it('exposes a protected telegram orders page for admins only', () => {
+    expect(html).toContain('Телеграм оплаты');
     expect(html).toContain("collection(db, 'telegram_premium_orders')");
     expect(html).toContain('getIdTokenResult');
     expect(html).toContain('claims.admin === true');
     expect(html).toContain('openTesterUserCard');
     expect(html).toContain('Период');
-
-    const visibleText = html
-      .replace(/<script[\s\S]*?<\/script>/gi, '')
-      .replace(/<style[\s\S]*?<\/style>/gi, '')
-      .replace(/<[^>]+>/g, ' ');
-
-    expect(visibleText).not.toMatch(/оплат|деньг|цен|stars|paid|payment|premium/i);
   });
 
   it('opens a tester activation panel and still links to the original Users detail card', () => {
@@ -35,7 +31,8 @@ describe('telegram testers admin page contract', () => {
     expect(adminIndex).toContain('openAdminUserFromQuery');
     expect(adminIndex).toContain("params.get('openUser')");
     expect(adminIndex).toContain("window.switchTab('users'");
-    expect(adminIndex).toContain('window.openDetail(uid)');
+    // зачем (04.10): в v2 карточка открывается через openUserByUid (она сама зовёт ящик пользователя)
+    expect(adminIndex).toContain('window.openUserByUid(uid)');
   });
 
   it('activates the selected tester period as admin VIP without touching store Premium fields', () => {
@@ -171,7 +168,9 @@ describe('telegram testers admin page contract', () => {
     expect(functionSource).toContain('activationNotificationSentAt');
     expect(functionSource).toContain('activationNotificationStatus');
     expect(functionSource).toContain('Premium активирован');
-    expect(functionSource).toContain('VIP выдан через админку');
+    // зачем (04.10): админам теперь уходит обезличенное событие в очередь алертов, а не текст с ником
+    expect(functionSource).toContain("source: 'telegram.activation'");
+    expect(functionSource).toContain('enqueueAdminAlert(admin.firestore()');
     expect(functionSource).toContain('await change.after.ref.set');
     expect(functionSource).toContain("activationNotificationStatus: 'sent'");
 

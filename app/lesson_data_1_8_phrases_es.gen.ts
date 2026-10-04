@@ -3395,7 +3395,7 @@ export const LESSON_4_PHRASES: LessonPhrase[] = [
       { text: 'We', correct: 'We', distractors: ['way', 'us', 'our', 'why', 'west'] },
       { text: 'do', correct: 'do', distractors: ['does', 'did', 'done', 'day', 'dot'] },
       { text: 'not', correct: 'not', distractors: ['no', 'know', 'nose', 'note', 'net'] },
-      { text: 'waste', correct: 'waste', distractors: ['wastes', 'wasting', 'west', 'waist', 'wash'] },
+      { text: 'waste', correct: 'waste', distractors: ['wastes', 'wasting', 'west', 'wait', 'wash'] /* зачем (§136): waist — омофон waste, на слух неотличим */ },
       { text: 'time', correct: 'time', distractors: ['team', 'tired', 'tame', 'times', 'term'] }
     ],
   },
@@ -3907,6 +3907,8 @@ export const LESSON_5_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson5_phrase_8',
     english: 'Do you travel often?',
+    // зачем (§126/§136, жалоба 04.10): «often» перед глаголом — такой же верный порядок; ответ не должен быть ошибкой.
+    alternatives: ["Do you often travel?"],
     russian: 'Вы часто путешествуете?',
     ukrainian: 'Ви часто подорожуєте?',
     spanish: '¿Viajan mucho?',

@@ -2734,6 +2734,8 @@ export const LESSON_11_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson11_phrase_37',
     english: 'I fixed a problem two hours ago',
+    // зачем (§126/§136, жалоба «почему исправляет на a problem»): по русскому определённость не выводится — the тоже верно.
+    alternatives: ["I fixed the problem two hours ago"],
     russian: 'Я исправил проблему два часа назад',
     ukrainian: 'Я виправив проблему дві години тому',
     spanish: 'Arreglé un problema hace dos horas.',
@@ -2749,7 +2751,7 @@ export const LESSON_11_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['me', 'my', 'hi', 'eye', 'he'] },
       { text: 'fixed', correct: 'fixed', distractors: ['fix', 'fixes', 'fixing', 'mixed', 'nixed'] },
-      { text: 'a', correct: 'a', distractors: ['an', 'the', 'some', 'any', 'one'] },
+      { text: 'a', correct: 'a', distractors: ['an', 'these', 'some', 'any', 'many'] },
       { text: 'problem', correct: 'problem', distractors: ['error', 'bug', 'issue', 'conflict', 'topic'] },
       { text: 'two', correct: 'two', distractors: ['three', 'four', 'five', 'ten', 'one'] },
       { text: 'hours', correct: 'hours', distractors: ['minutes', 'days', 'weeks', 'months', 'years'] },

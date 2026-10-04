@@ -167,6 +167,22 @@ export function buildMistakePracticeSession(input: {
       nowMs: input.nowMs,
       limit: focusMistakeId ? 1 : 30,
     });
+  // зачем (координатор 04.10, «выбрано Все 12, а сессия из одного задания»): сперва логи — сколько ошибок отсеял каждый фильтр
+  // и сколько реально готово по сроку. Печатаем значения, не голые флаги.
+  console.log('[MISTAKE-SESSION] build', JSON.stringify({
+    items: input.items.length,
+    activeItems: input.items.filter((item) => item.status === 'active').length,
+    dueActiveItems: input.items.filter((item) => item.status === 'active' && item.dueAtMs <= input.nowMs).length,
+    afterFacets: facetFiltered.length,
+    afterRetryIds: idFiltered.length,
+    candidates: candidates.length,
+    ready: ready.length,
+    requestedLength: input.requestedLength,
+    facets: input.facets ?? null,
+    pool,
+    focusMistakeId: focusMistakeId || null,
+    retryIds: retryIds ? retryIds.size : null,
+  }));
   if (focusMistakeId && ready.length !== 1) {
     throw new Error('mistake_practice_focus_unavailable');
   }
@@ -209,6 +225,10 @@ export function buildMistakePracticeSession(input: {
       }),
     });
   });
+  console.log('[MISTAKE-SESSION] queue', JSON.stringify({
+    count,
+    queue: queue.map((entry) => ({ id: entry.mistakeId.slice(-8), mode: entry.exercise.mode })),
+  }));
   const sessionId = `mistake-session:v1:${sha256Utf8(canonicalJsonV1({
     mistakeIds: queue.map((entry) => entry.mistakeId),
     focusMistakeId: focusMistakeId || null,
@@ -274,6 +294,17 @@ export function advanceMistakePracticeSession(
     }
   }
   const nextCursor = session.cursor + 1;
+  console.log('[MISTAKE-SESSION] advance', JSON.stringify({
+    attemptId,
+    correct: answer.correct,
+    cursorBefore: session.cursor,
+    queueLengthBefore: session.queue.length,
+    queueLengthAfter: queue.length,
+    requeue: requeue ? requeue.kind : null,
+    failureCount: failureCounts[entry.mistakeId] ?? 0,
+    initialCount: session.initialCount,
+    completeAfter: nextCursor >= queue.length,
+  }));
   const next = Object.freeze({
     ...session,
     cursor: nextCursor,

@@ -1,7 +1,6 @@
 import React, { memo, useMemo } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import AnimatedCountUpText from '../AnimatedCountUpText';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useLv2Glass } from '../learning-v2/LearningV2Glass';
 import { MiniDots, Panel, PanelCta, PanelDock, PanelRing, PanelRow } from '../mistakes-panel/PanelKit';
@@ -24,7 +23,8 @@ type Props = {
   total: number;
   /** Сколько раз за сессию ответили неверно. */
   wrong: number;
-  runes: number;
+  /** Оставлено для совместимости вызова; монеты в итоге не показываются (макет — три строки). */
+  runes?: number;
   /** Ошибки, ушедшие навсегда именно в этой сессии. */
   fixed: readonly MistakeFinaleFixed[];
   onDone: () => void;
@@ -45,7 +45,7 @@ const copyFor = (lang: Lang) => triLang(lang, {
 });
 
 function MistakeSessionFinale({
-  lang, answered, total, wrong, runes, fixed, onDone, onMore,
+  lang, answered, total, wrong, fixed, onDone, onMore,
 }: Props) {
   const g = useLv2Glass();
   const copy = useMemo(() => copyFor(lang), [lang]);
@@ -72,8 +72,7 @@ function MistakeSessionFinale({
           {count(copy.fixedFully, fixed.length, true)}
           {count(copy.closer, closer)}
           {count(copy.repeat, missed)}
-          {/* зачем (владелец 04.10: «звание и серию убрать совсем»): в итоге остаются монеты; серии и звания нет. */}
-          {count(copy.coins, <AnimatedCountUpText value={runes} style={[styles.num, { color: g.text }]} accessibilityLabel={`${runes} ${copy.coins}`} />)}
+          {/* зачем (владелец 04.10: «звание и серию убрать совсем»; сверка 15–18: в макете «Итог отработки» ровно три строки) — монет в итоге нет, их видно в полёте во время отработки. */}
         </Panel>
 
         {fixed.length > 0 ? (

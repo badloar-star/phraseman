@@ -45,6 +45,7 @@ import { SPEECH_PRONUNCIATION_PASS_THRESHOLD } from './pronunciation_scoring_cli
 import { useSpeechUnavailableOnDevice } from './speech_device_availability';
 import SpeechUnavailableNote from '../components/SpeechUnavailableNote';
 import { isMistakeStudyTargetValue, type MistakeEvent } from '../modules/mistake-practice/contracts';
+import { cleanMistakeExplanation } from './mistake_explanation_text';
 import { projectMistakes, requiredModesForMistake } from '../modules/mistake-practice/projection';
 import {
   advanceMistakePracticeSession,
@@ -776,6 +777,13 @@ function MistakePracticeSessionScreen() {
       if (correct) {
         const awarded = practiceRunes.onCorrectAnswer(entry.mistakeId);
         if (awarded > 0) runeFlight.fly(awarded);
+        // зачем (координатор 04.10, «верный повтор не засчитан: итог 0/1 верно»): ошибка, на которую в итоге ответили верно
+        // (после повторного показа), в итог идёт как верная и в «Ещё N» не попадает.
+        setMissedIds((ids) => {
+          const next = ids.filter((id) => id !== entry.mistakeId);
+          console.log('[MISTAKE-SESSION] missed:recovered', JSON.stringify({ mistakeId: entry.mistakeId.slice(-8), before: ids.length, after: next.length }));
+          return next;
+        });
       }
       // зачем: владелец 2026-08-23 — энергия НЕ тратится за ошибки. За отработку
       // ошибок платится 1 ⚡ один раз при старте сессии (эффект подготовки выше).
@@ -783,6 +791,27 @@ function MistakePracticeSessionScreen() {
         setWrongAnswers((value) => value + 1);
         setMissedIds((ids) => (ids.includes(entry.mistakeId) ? ids : [...ids, entry.mistakeId]));
       }
+      // зачем (координатор 04.10, «шторка «Верно» через ~2 с»): вердикт — Optimistic UI. Шторка и курсор обновляются СРАЗУ,
+      // до чтения журнала с диска; цепочка «N дня из 3» (нужна проекция журнала) дорисуется следом, когда журнал прочитан.
+      const tVerdict = Date.now();
+      setPendingSession(result.session);
+      const attemptEffect = attempts.registerVerdict({
+        answerAttemptId: attemptId,
+        verdict: correct ? 'correct' : 'pedagogical_wrong',
+      });
+      setFeedback({
+        correct,
+        answer: entry.exercise.feedbackAnswer,
+        explanation: explanationFor(entry, copy),
+        stopForToday: result.requeue?.kind === 'stop_for_today',
+        userAnswer: answerValueRef.current,
+        chain: null,
+      });
+      if (attemptEffect === 'attempts_exhausted') {
+        // Stop the held capture before the automatic same-card reset.
+        setSpeechHeld(false);
+      }
+      console.log('[MISTAKE-SESSION] verdict:shown', JSON.stringify({ attemptId, correct, attemptEffect, ms: Date.now() - tVerdict, cursorAfter: result.session.cursor, queueLength: result.session.queue.length }));
       const occurredAtMs = Date.now();
       const modeDefinition = MISTAKE_EXERCISE_MODE_REGISTRY[entry.exercise.mode];
       const independent = modeDefinition.countsAsIndependentProduction;
@@ -876,17 +905,14 @@ function MistakePracticeSessionScreen() {
           console.warn('[MISTAKES-GATE] session:save:catch', error instanceof Error ? error.message : String(error));
         });
       }
-      setPendingSession(result.session);
-      const attemptEffect = attempts.registerVerdict({
-        answerAttemptId: attemptId,
-        verdict: correct ? 'correct' : 'pedagogical_wrong',
-      });
       // зачем (макет промаха А): цепочка «3 дня в 2 режимах» берётся из той же
       // проекции, что решает статус — не из отдельного счётчика, иначе экран и
       // правило разойдутся. Показываем её только за самостоятельный ответ:
       // подсказанный день в цепочку не идёт (см. projection.ts).
       const afterItem = projectMistakes(write.journal.events).items.get(entry.mistakeId);
-      const chain = correct && independent && afterItem
+      // зачем (сверка 15–18, кадр «Верно»): три точки-шага справа от «Верно» стоят и после ответа на выбор (распознавание) — тогда они показывают
+      // текущую цепочку без нового дня (gainedToday=false); подсказанный ответ день не добавляет (projection.ts).
+      const chain = correct && afterItem
         ? {
           days: Math.min(3, afterItem.qualifyingDays.length),
           // зачем (аудит 2026-09-15): без числа режимов панель обещала «ещё один
@@ -894,22 +920,13 @@ function MistakePracticeSessionScreen() {
           modes: new Set(afterItem.qualifyingModes).size,
           // зачем (§130): второй режим обещаем только там, где он для этой ошибки возможен (как в правиле).
           requiredModes: requiredModesForMistake(afterItem),
-          gainedToday: true,
+          gainedToday: independent,
           corrected: afterStatus === 'corrected',
         }
         : null;
-      setFeedback({
-        correct,
-        answer: entry.exercise.feedbackAnswer,
-        explanation: explanationFor(entry, copy),
-        stopForToday: result.requeue?.kind === 'stop_for_today',
-        userAnswer: answerValueRef.current,
-        chain,
-      });
-      if (attemptEffect === 'attempts_exhausted') {
-        // Stop the held capture before the automatic same-card reset.
-        setSpeechHeld(false);
-      }
+      // дорисовываем цепочку в уже показанную шторку (если её за это время не закрыли)
+      setFeedback((current) => (current && current.chain === null ? { ...current, chain } : current));
+      console.log('[MISTAKE-SESSION] verdict:chain', JSON.stringify({ attemptId, chain, afterStatus, ms: Date.now() - tVerdict }));
     } finally {
       submissionLatchRef.current = false;
       setSubmitting(false);
@@ -1200,10 +1217,18 @@ function MistakePracticeSessionScreen() {
         : renderer === 'speech' ? pcopy.kindSay
           : renderer === 'typing' ? pcopy.kindType
             : pcopy.kindChoose;
+  const feedbackOptions = (() => {
+    const right = entry.exercise.correctAnswer;
+    if (!feedback) return options;
+    const other = !feedback.correct && feedback.userAnswer && feedback.userAnswer !== right
+      ? feedback.userAnswer
+      : options.find((option) => option !== right);
+    return other ? [right, other] : [right];
+  })();
   const marks: Record<string, OptionMark> | undefined = feedback && isChoice
     ? { [entry.exercise.correctAnswer]: 'ok', ...(feedback.correct ? {} : { [feedback.userAnswer]: 'no' as const }) }
     : undefined;
-  const whyText = liveExplanation ?? feedback?.explanation ?? '';
+  const whyText = cleanMistakeExplanation(liveExplanation ?? feedback?.explanation ?? '', { lang, answers: [feedback?.answer ?? '', feedback?.userAnswer ?? ''] });
   // зачем (владелец 2026-09-14): «твой ответ» и «верный» стоят рядом с подсветкой расхождения; разметку даёт чистая функция buildMistakeAnswerDiff.
   const diff = feedback && !feedback.correct ? buildMistakeAnswerDiff({ userAnswer: feedback.userAnswer, correctAnswer: feedback.answer }) : null;
   const total = session.initialCount;
@@ -1247,7 +1272,7 @@ function MistakePracticeSessionScreen() {
             </View>
           </Panel>
           <View style={[styles.trayRow, styles.trayRowGap]}>
-            {liveExplanation ? <PanelCta g={g} ghost flex testID="mistake-verdict-simpler" label={pcopy.simpler} onPress={mistakeExplain.eli5.onOpen} /> : null}
+            {liveExplanation ? <PanelCta g={g} ghost testID="mistake-verdict-simpler" label={pcopy.simpler} onPress={mistakeExplain.eli5.onOpen} /> : null}
             <PanelCta g={g} flex label={pcopy.understood} onPress={() => setWhyOpen(false)} />
           </View>
         </Tray>
@@ -1262,7 +1287,8 @@ function MistakePracticeSessionScreen() {
             label={feedback.correct ? pcopy.rightOk : pcopy.almost}
             right={feedback.chain ? <StepDots g={g} n={feedback.chain.corrected ? 3 : feedback.chain.days} /> : null}
           />
-          {isChoice ? <OptionGrid g={g} options={options} marks={marks} disabled /> : null}
+          {/* зачем (сверка 15–18): в шторке «Верно»/«Неверно» по макету только два варианта — верный и выбранный (при верном — первый другой). */}
+          {isChoice ? <OptionGrid g={g} options={feedbackOptions} marks={marks} disabled /> : null}
           {!feedback.correct ? (
             <>
               {!isChoice ? (
@@ -1273,7 +1299,7 @@ function MistakePracticeSessionScreen() {
               ) : null}
               <Text testID="mistake-verdict-text" style={styles.trayWhy}>{whyText}</Text>
               <View style={styles.trayRow}>
-                <PanelCta g={g} ghost flex testID="mistake-practice-why" label={pcopy.why} onPress={() => setWhyOpen(true)} />
+                <PanelCta g={g} ghost testID="mistake-practice-why" label={pcopy.why} onPress={() => setWhyOpen(true)} />
                 <PanelCta g={g} flex testID="mistake-practice-next" label={pcopy.next} onPress={continueAfterFeedback} />
               </View>
             </>

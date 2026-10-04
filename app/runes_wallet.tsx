@@ -124,14 +124,13 @@ export default function RunesWalletScreen() {
             accessibilityLabel={backLabel}
             onPress={goBack}
             scaleTo={0.94}
-            style={[styles.backButton, glass]}
+            style={styles.backButton}
           >
-            <V2GlassSheen seed={4} />
-            <Ionicons name="chevron-back" size={24} color={p.text} />
+            <Ionicons name="chevron-back" size={21} color={p.text} />
           </V2Pressable>
-          <Text accessibilityRole="header" style={[styles.headerTitle, { color: p.text }]}>{title}</Text>
-          <View style={styles.headerSpacer} />
         </View>
+        {/* зачем (coins.html back()): «назад» голым шевроном, ниже крупный заголовок 34 слева — как во всех экранах профиля. */}
+        <Text accessibilityRole="header" style={[styles.headerTitle, { color: p.text }]}>{title}</Text>
 
         <ScrollView
           decelerationRate="fast"
@@ -201,7 +200,7 @@ export default function RunesWalletScreen() {
               <Text style={[styles.earnedTitle, { color: p.text }]}>{earnedTitle}</Text>
               <Text style={[styles.earnedNote, { color: p.textSecondary }]}>{earnedNote}</Text>
             </View>
-            <Text testID="runes-wallet-earned" style={[styles.earnedValue, { color: p.text }]}>{formatCoins(wallet.earnedTotal)}</Text>
+            <Text testID="runes-wallet-earned" style={[styles.earnedValue, { color: p.textSecondary }]}>{formatCoins(wallet.earnedTotal)}</Text>
           </View>
         </ScrollView>
       </ContentWrap>
@@ -211,10 +210,11 @@ export default function RunesWalletScreen() {
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
-  header: { minHeight: 70, paddingHorizontal: V2.screenPad, paddingBottom: 10, flexDirection: 'row', alignItems: 'center' },
-  backButton: { width: V2.iconButton, height: V2.iconButton, borderRadius: V2.iconButton / 2, alignItems: 'center', justifyContent: 'center' },
-  headerTitle: { ...V2_TYPE.title, flex: 1, textAlign: 'center', marginHorizontal: 10 },
-  headerSpacer: { width: V2.iconButton, height: V2.iconButton },
+  // зачем (`.topbar` 44 + `.rb.bare`): голый шеврон в области нажатия 48×44.
+  header: { minHeight: 44, paddingHorizontal: V2.screenPad, flexDirection: 'row', alignItems: 'center' },
+  backButton: { width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' },
+  // `.screen-title`: 34/40, 700, -0.5, 10 под строкой «назад».
+  headerTitle: { fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10, paddingHorizontal: V2.screenPad },
   scroll: { flex: 1 },
   scrollContent: { paddingHorizontal: V2.screenPad, paddingTop: 8, gap: V2.gap },
   hero: { alignItems: 'center', paddingTop: 26, paddingBottom: 18 },
@@ -229,10 +229,12 @@ const styles = StyleSheet.create({
   fill: { height: '100%', borderRadius: 999 },
   rankFoot: { flexDirection: 'row', justifyContent: 'space-between', gap: 12, marginTop: 9 },
   footText: { ...V2_TYPE.subtitle },
-  earnedRow: { flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 12 },
+  // `.list-row`: высота 64, поля 10/14, промежуток 14.
+  earnedRow: { flexDirection: 'row', alignItems: 'center', gap: 14, minHeight: 64, paddingVertical: 10, paddingHorizontal: 14 },
   tile: { width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
   earnedCopy: { flex: 1, minWidth: 0 },
   earnedTitle: { ...V2_TYPE.headline },
   earnedNote: { ...V2_TYPE.subtitle, marginTop: 1 },
-  earnedValue: { ...V2_TYPE.headline, fontVariant: ['tabular-nums'] },
+  // `.value`: вторичный тон; макет 14, шкала D145 — 13.
+  earnedValue: { fontSize: 13, lineHeight: 18, textAlign: 'right', fontVariant: ['tabular-nums'] },
 });

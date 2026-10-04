@@ -14,11 +14,11 @@ const EXPECTED_L_CALL_COUNTS = new Map([
   ['c672a0ca30eabc1cf5e35c47fb0a74178bafe7936fb26fe6d46e9516739299ac', 1],
   ['cfa87d9160e3cefca9ac33d1d81c837569c7bbcff22273d4abe19927359e62b7', 1],
   ['0cd8274691c731d0ce61163881c8e3c6ee65650f74f5741bd99b0f73a2bfd87f', 1],
-  ['636b31d5d4a4b4fa9f67bf2fb7c223371b009d070348db72e98b836e2e6aec62', 1],
   ['82e705d4b06ea723b06d2685c20af2dfdb52170b819e8557b1c534745f65dbce', 2],
-  ['16486221550de6f22eb689dc597c2fda44fad8189e41bac8e2e189aa13b44bc4', 1],
+  // 04.10 (profile.html PRF-09, abc8be429): подсказка и строка диагностики сокращены, длинный абзац про бонус убран.
+  ['8469e87365fb0da35574e4fbe22959a7e383db894493e4f434ea81798731197b', 1],
   ['e81a0adc1aef4b7aa958d40d03ac4c6be53ea0d5f2ccb6ccf3870cd5d77398d4', 1],
-  ['4cad774b84cee3998518fb25dbd9f1de380f99e3d6594d9f7b526941e408bcba', 1],
+  ['0d28caef3ca1a7a66555e05d3d4b367f1594fb3a2c9bcad52cbfa4aed8421413', 1],
   ['d1305be1462fa75044a75d0cd4e9366bf7f0d4d77a3f50e16ac891dac085cf16', 1],
   ['882d52d08a08b4d61850ce12791e99ba44e56250425ea31916ecc1ac38070744', 1],
   ['dbd58511e45eaaf6d232348a25ae4248db34f3c330910d55fcf7e8216758cf59', 1],
@@ -47,7 +47,7 @@ function assertLocalizedBaseline(candidate) {
     ts.forEachChild(node, walk);
   };
   walk(file);
-  assert.equal(calls.length, 15, 'the shared title removes one duplicate baseline call and adds the local close label');
+  assert.equal(calls.length, 14, 'the shared title removes one duplicate baseline call and adds the local close label; PRF-09 drops the long intro paragraph');
   const actual = new Map();
   for (const call of calls) {
     const digest = signature(call);
@@ -177,6 +177,8 @@ function createHarness({ lang = 'ru', capturePromise } = {}) {
     './navigation_back': { safeRouterBack: (_router, fallback) => calls.back.push(fallback) },
     './stable_safe_area_metrics': { useStableSafeAreaInsets: () => ({ top: 1, bottom: 2, left: 3, right: 4 }) },
     './support_diagnostics': { captureSupportDiagnosticBundle: () => capturePromise ?? Promise.resolve(diagnostics) },
+    // зачем: PM-229 (db985607f) добавил в экран noteSwallowedHandler — обвязка теста его не знала.
+    './swallow_log': { noteSwallowedHandler: () => () => undefined },
     './support_report_outbox': { sendSupportReportInBackground: (...args) => { calls.sends.push(args); return Promise.resolve(); } },
   };
   const module = { exports: {} };
@@ -207,7 +209,8 @@ test('support screen uses the approved bounded liquid-glass geometry and font no
   assert.match(source, /liquidGlassTokens\(liquidGlassThemeId\)/);
   assert.match(source, /FONT_SCALE\[fontSize\]\s*\/\s*FONT_SCALE\.medium\s*\*\s*uiScale/);
   for (const side of ['top', 'bottom', 'left', 'right']) assert.match(source, new RegExp(`padding${side[0].toUpperCase()}${side.slice(1)}:\\s*insets\\.${side}`));
-  assert.match(source, /testID="support-report-back"[\s\S]*?width:\s*48,\s*height:\s*48/);
+  // 04.10 (profile.html `.rb.bare`, 7aae452a2): «назад» — голый шеврон, область нажатия 48×44.
+  assert.match(source, /testID="support-report-back"[\s\S]*?width:\s*48,\s*height:\s*44/);
   assert.match(source, /fontSize:\s*scaled\(34\),\s*lineHeight:\s*scaled\(40\)/);
   assert.match(source, /fontSize:\s*scaled\(15\),\s*lineHeight:\s*scaled\(20\)/);
   assert.match(source, /fontSize:\s*scaled\(11\)[\s\S]*?letterSpacing:\s*1\.7/);
@@ -328,9 +331,8 @@ test('capture cleanup prevents a late diagnostic bundle from updating the unmoun
 
 test('support copy, payload, diagnostics allowlist projection, and controls remain intact', () => {
   for (const text of [
-    'Здесь можно описать любую проблему, найденную в приложении.',
-    'очень приятный бонус', 'Описание проблемы', 'Например: в «Карточках» нажимаю «Послушать», но звука нет.',
-    'Техническая диагностика', 'Без текста сообщений, паролей и платёжных данных.',
+    'Описание проблемы', 'Например: в «Карточках» нажимаю «Послушать», но звука нет.',
+    'Техническая диагностика', 'без сообщений, паролей и платёжных данных.',
     'Посмотреть', 'Скрыть', 'Отправить', 'Обращение отправлено',
     'Спасибо! Команда всё проверит и ответит в приложении.', 'Готово',
   ]) assert.ok(source.includes(text), `${text} is preserved`);

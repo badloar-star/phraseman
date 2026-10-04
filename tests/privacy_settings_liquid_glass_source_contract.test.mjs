@@ -179,14 +179,16 @@ function assertActionWrapperFeedback(candidate) {
 function assertCloseHeaderGeometry(candidate) {
   const close = visit(createHarness(undefined, 'ru', candidate).render()).find(node => node.props?.testID === 'privacy-settings-close');
   assert.ok(close, 'close action renders');
+  // 04.10 (profile.html PRF-07 и `.rb.bare`, коммиты abc8be429/7aae452a2): в шапке «назад» — голый шеврон
+  // 21 без круга, область нажатия 48×44.
   assert.equal(flatStyle(close.props.style).width, 48);
-  assert.equal(flatStyle(close.props.style).height, 48);
+  assert.equal(flatStyle(close.props.style).height, 44);
   assert.equal(flatStyle(close.props.contentStyle).width, 48);
-  assert.equal(flatStyle(close.props.contentStyle).height, 48);
-  assert.equal(flatStyle(close.props.contentStyle).borderRadius, 24);
+  assert.equal(flatStyle(close.props.contentStyle).height, 44);
+  assert.equal(flatStyle(close.props.contentStyle).borderRadius, undefined);
   const icon = visit(close).find(node => node.type === 'Ionicons');
-  assert.equal(icon?.props.name, 'close');
-  assert.equal(icon?.props.size, 20);
+  assert.equal(icon?.props.name, 'chevron-back');
+  assert.equal(icon?.props.size, 21);
 }
 
 test('reviewed handlers and all original eight-locale maps remain byte-semantic snapshots', () => {
@@ -284,8 +286,8 @@ test('feedback and close geometry assertions reject scoped wrapper and header mu
   assert.throws(() => assertActionWrapperFeedback(feedbackMutation));
 
   const headerMutation = source.replace(
-    "style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}",
-    "style={{ width: 47, height: 48, alignSelf: 'flex-start', marginTop: 4 }}",
+    "style={{ width: 48, height: 44, alignSelf: 'flex-start', marginTop: 4 }}",
+    "style={{ width: 47, height: 44, alignSelf: 'flex-start', marginTop: 4 }}",
   );
   assert.notEqual(headerMutation, source, 'the close-header mutation was applied');
   assert.throws(() => assertCloseHeaderGeometry(headerMutation));

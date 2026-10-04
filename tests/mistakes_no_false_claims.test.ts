@@ -43,26 +43,21 @@ describe('mistakes section never claims more than the data says', () => {
     expect(finale).toContain('pluralWord(lang, rewards.streakDays, copy.days)');
   });
 
-  test('the detail card drops the plural-less noun and hints about modes only when relevant', () => {
+  test('the detail card drops the plural-less noun and shows the rule only as three bars', () => {
     const detail = read('app/mistake_detail.tsx');
     expect(detail).not.toContain('{copy.misses}');
-    // зачем (§130, 04.10): вместо «нужен другой режим» — правило словами; голос упоминается только когда
-    // для этой ошибки он возможен (requiredModes из того же расчёта, что проекция bc60bac61).
-    expect(detail).toContain('ruleCopyFor(lang, detail.requiredModes)');
-    expect(detail).toContain("requiredModes === 2");
+    // зачем (координатор 04.10, §126/§130): прогресс — три деления без пояснений «верно в 3 разных дня».
+    expect(detail).not.toContain('ruleCopyFor');
+    expect(detail).not.toContain('3 разных дня');
+    expect(detail).toContain('[0, 1, 2].map((index) => (');
   });
 
-  test('the verdict promises exactly what the rule requires', () => {
+  test('the verdict shows bars and the fixed fact, without day-count promises', () => {
     const panel = read('components/mistake-practice/MistakeVerdictPanel.tsx');
-    expect(panel).toContain('oneMoreTwoDays');
-    expect(panel).toContain('oneMoreOtherMode');
-    expect(panel).toContain('oneMoreAnyMode');
-    expect(panel).toContain('chain.days <= 1');
-    // §130: «другой режим» — только если второй режим этой ошибке нужен и возможен.
-    expect(panel).toContain('chain.modes < chain.requiredModes');
-    expect(panel).not.toContain('chain.modes < 2');
+    expect(panel).not.toMatch(/oneMoreTwoDays|oneMoreOtherMode|oneMoreAnyMode/);
+    expect(panel).toContain('{chain.corrected ? (');
+    // Логику не трогали: панель по-прежнему получает число режимов и требуемый минимум.
     expect(panel).toContain('requiredModes: 1 | 2;');
-    // Панель обязана ЗНАТЬ число режимов, иначе не может сказать правду.
     expect(panel).toContain('modes: number;');
     const screen = read('app/mistake_practice_session.tsx');
     expect(screen).toContain('modes: new Set(afterItem.qualifyingModes).size');

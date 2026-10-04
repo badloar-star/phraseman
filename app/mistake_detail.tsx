@@ -28,33 +28,6 @@ import { getStableId } from './stable_id';
  * ТОЛЬКО этой ошибки (focusMistakeId — механизм был в коде, входа не было).
  */
 
-// зачем (§126/§130, жалоба «17 не уменьшается», 04.10): правило ухода ошибки словами человека — ровно то,
-// что считает проекция (bc60bac61): 3 разных дня верных ответов, неверный ответ обнуляет; голос нужен,
-// только если для этой ошибки он возможен (requiredModes = 2). Иначе экран обещал бы недостижимое.
-const ruleCopyFor = (lang: Lang, requiredModes: 1 | 2): string => (requiredModes === 2
-  ? triLang(lang, {
-    ru: 'Ответь верно в 3 разных дня, хотя бы раз голосом и раз печатью, — и ошибка уйдёт. Неверный ответ начинает счёт заново.',
-    uk: 'Дай правильну відповідь у 3 різні дні, хоча б раз голосом і раз письмово, — і помилка зникне. Неправильна відповідь починає рахунок заново.',
-    en: 'Answer correctly on 3 different days, at least once by voice and once by typing, and the mistake goes away. A wrong answer restarts the count.',
-    es: 'Responde bien en 3 días distintos, al menos una vez con la voz y otra escribiendo, y el error desaparecerá. Una respuesta incorrecta reinicia la cuenta.',
-    'pt-BR': 'Responda certo em 3 dias diferentes, pelo menos uma vez falando e outra digitando, e o erro some. Uma resposta errada recomeça a contagem.',
-    vi: 'Trả lời đúng vào 3 ngày khác nhau, ít nhất một lần bằng giọng nói và một lần bằng cách gõ, lỗi sẽ biến mất. Trả lời sai sẽ đếm lại từ đầu.',
-    id: 'Jawab benar di 3 hari berbeda, minimal sekali dengan suara dan sekali dengan mengetik, dan kesalahan akan hilang. Jawaban salah memulai hitungan dari awal.',
-    tr: '3 farklı günde, en az bir kez sesle ve bir kez yazarak doğru cevap ver, hata kaybolsun. Yanlış cevap sayımı baştan başlatır.',
-    pl: 'Odpowiedz poprawnie w 3 różne dni, choć raz głosem i raz pisząc, a błąd zniknie. Błędna odpowiedź zaczyna liczenie od nowa.',
-  })
-  : triLang(lang, {
-    ru: 'Ответь верно в 3 разных дня — и ошибка уйдёт. Неверный ответ начинает счёт заново.',
-    uk: 'Дай правильну відповідь у 3 різні дні — і помилка зникне. Неправильна відповідь починає рахунок заново.',
-    en: 'Answer correctly on 3 different days and the mistake goes away. A wrong answer restarts the count.',
-    es: 'Responde bien en 3 días distintos y el error desaparecerá. Una respuesta incorrecta reinicia la cuenta.',
-    'pt-BR': 'Responda certo em 3 dias diferentes e o erro some. Uma resposta errada recomeça a contagem.',
-    vi: 'Trả lời đúng vào 3 ngày khác nhau, lỗi sẽ biến mất. Trả lời sai sẽ đếm lại từ đầu.',
-    id: 'Jawab benar di 3 hari berbeda dan kesalahan akan hilang. Jawaban salah memulai hitungan dari awal.',
-    tr: '3 farklı günde doğru cevap ver, hata kaybolsun. Yanlış cevap sayımı baştan başlatır.',
-    pl: 'Odpowiedz poprawnie w 3 różne dni, a błąd zniknie. Błędna odpowiedź zaczyna liczenie od nowa.',
-  }));
-
 const copyFor = (lang: Lang) => triLang(lang, {
   ru: { back: 'Назад', listen: 'Послушать', history: 'Хроника', toFix: 'До исправления', dayLeft: 'один день', daysLeft: 'дня', needMode: 'Нужен верный ответ в другом режиме', fixed: 'Исправлено навсегда', solved: 'Похожие фразы, где ты уже прав', practise: 'Отработать эту ошибку', notReady: 'Вернёмся к ней позже', misses: 'промахов', captured: 'Ошибся', right: 'Верно', rightSelf: 'Верно, сам', wrong: 'Промах', hidden: 'Скрыта', restored: 'Возвращена', done: 'Исправлено навсегда', noData: 'Эта ошибка больше не отслеживается' },
   uk: { back: 'Назад', listen: 'Послухати', history: 'Хроніка', toFix: 'До виправлення', dayLeft: 'один день', daysLeft: 'дні', needMode: 'Потрібна правильна відповідь в іншому режимі', fixed: 'Виправлено назавжди', solved: 'Схожі фрази, де ти вже маєш рацію', practise: 'Відпрацювати цю помилку', notReady: 'Повернемося до неї пізніше', misses: 'промахів', captured: 'Помилився', right: 'Правильно', rightSelf: 'Правильно, сам', wrong: 'Промах', hidden: 'Прихована', restored: 'Повернена', done: 'Виправлено назавжди', noData: 'Ця помилка більше не відстежується' },
@@ -183,7 +156,7 @@ export default function MistakeDetailScreen() {
                 </View>
               </View>
 
-              {/* Сколько осталось: правило «3 дня в 2 режимах» словами и полосами. */}
+              {/* зачем (координатор 04.10, §126/§130): прогресс — три деления без пояснений правила. */}
               <View style={[styles.card, { backgroundColor: g.opaqueCard }]}>
                 <View style={styles.progressRow}>
                   <Text style={[styles.cardTitle, { color: g.text, fontSize: f.bodyLg, flex: 1 }]}>
@@ -200,9 +173,6 @@ export default function MistakeDetailScreen() {
                     <View key={`step-${index}`} style={[styles.chainStep, { backgroundColor: index < detail.qualifyingDays ? g.cta : g.opaqueControl }]} />
                   ))}
                 </View>
-                {detail.status !== 'corrected' ? (
-                  <Text testID="mistake-detail-rule" style={[styles.hint, { color: g.secondary, fontSize: f.sub }]}>{ruleCopyFor(lang, detail.requiredModes)}</Text>
-                ) : null}
               </View>
 
               <View style={[styles.card, { backgroundColor: g.opaqueCard }]}>

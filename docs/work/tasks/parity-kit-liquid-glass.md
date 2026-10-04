@@ -40,3 +40,8 @@ Out of scope: логика тренировок, энергия, награды,
 Governance-ID: TG-51DA273CFD34
 Governance-ID: TG-4FCAA5531C60
 (продолжение той же задачи: стекло строк «Настроек» — components/settings/SettingsGlassRows.tsx; коммит только через временный индекс)
+
+Governance-ID: TG-054D34C312FC
+Governance-ID: TG-2F0A2C2CE0D1
+Governance-ID: TG-D731AF26BED5
+(сторож tests/flashcards_blitz_liquid_glass_source_contract.test.mjs обновлён под KitGlassLayer — следствие 9b848f4b8)

@@ -42,7 +42,8 @@ test('continue-learning card receives the approved notepad art from the real pro
   assert.match(assetProducer, /const HOME_LAST_LESSON_ART = require\("\.\.\/assets\/images\/home_last_lesson\/home-last-lesson-notepad\.png"\);/);
   assert.equal((assetProducer.match(/HOME_LAST_LESSON_ART/g) ?? []).length, 10);
   assert.match(home, /const lastLessonImage = getHomeLastLessonImage\(themeMode\);/);
-  assert.match(home, /const priorityCardImage = priorityCardShowsMistakes[\s\S]*?: lastLessonImage;/);
+  // 04.10: карточка «Продолжить» — только последний урок (владелец), арт урока.
+  assert.match(home, /const priorityCardImage = resolveThemedArt\(lastLessonCompleted \? 'today' : 'continue', homeArtTone\)\.base \?\? lastLessonImage;/);
   assert.match(home, /<HomeV2ContinueCard[\s\S]{0,900}art=\{priorityCardImage\}/);
   assert.match(continueCard, /<Image source=\{art\}/);
   assert.match(continueCard, /style=\{s\.artImage\}/);

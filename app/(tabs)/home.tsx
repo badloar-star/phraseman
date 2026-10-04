@@ -87,7 +87,7 @@ import { getV2Palette, V2 } from '../../constants/v2Style';
 // зачем отдельное имя: в этом файле `Animated` — из react-native и им пользуются
 // сотни мест. Пульс счётчиков живёт на Reanimated (UI-поток), поэтому его
 // компонент импортируется как Reanimated, а не подменяет существующий.
-import { runOnJS, useSharedValue, withTiming } from 'react-native-reanimated';
+import { runOnJS, useSharedValue } from 'react-native-reanimated';
 import NotificationCenterButton from '../../components/NotificationCenterButton';
 import PlayerProfileModal, { type PlayerInfo } from '../../components/PlayerProfileModal';
 import FeatureIntroEntry from '../../components/feature_intro/FeatureIntroEntry';
@@ -105,9 +105,8 @@ import { isMistakeStudyTargetValue } from '../../modules/mistake-practice/contra
 // пригодится следующему разделу, которому понадобится такая же кнопка.
 // зачем (владелец 2026-09-21): HomeMistakesLockedSheet больше не импортируется —
 // порог открытия раздела снят, шторка «ошибок мало» стала недостижимой.
-// homeMistakesButtonState остаётся: по нему карточка решает, захватывать ли слот.
-import { homeMistakesButtonState, homeMistakesCounterLabel } from '../home_mistakes_pulse_model';
-import { getHomeMistakesImage } from '../home_mistakes_assets';
+// homeMistakesButtonState остаётся: по нему решаются плитка «Мои ошибки» и прогрев подсказки хаба.
+import { homeMistakesButtonState } from '../home_mistakes_pulse_model';
 import { getLingmanYoutubeSnapshot, type LingmanYoutubeVideo } from '../lingman_youtube';
 import { isVideoButtonEnabled } from '../remote_flags';
 import { prewarmMistakeHubAdvice } from '../mistake_hub_advice';
@@ -627,6 +626,19 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // сдвигала Главную на ~290 px): пока урок не прочитан, место держит заготовка той же формы.
     const [continueResolved, setContinueResolved] = useState(() => lastLesson !== null);
     const continueResolvedRef = useRef(continueResolved);
+    // зачем (владелец 04.10): карточка «Продолжить обучение» = последний урок. Лог показывает, какой урок
+    // и почему карточка скрыта (нет урока / раздел уроков не виден для языка / урок ещё не прочитан).
+    useEffect(() => {
+        const visible = lastLesson !== null && homeLearnVisible;
+        const reason = visible ? 'shown'
+            : !homeLearnVisible ? 'learn_surface_hidden_for_target'
+                : !continueResolved ? 'last_lesson_pending'
+                    : 'no_last_lesson';
+        console.log('[HOME-CONTINUE] card', JSON.stringify({
+            visible, reason, lessonId: lastLesson?.id ?? null, progress: lastLesson?.progress ?? null,
+            studyTarget: String(studyTarget), source: 'hydration_or_loadData',
+        }));
+    }, [continueResolved, homeLearnVisible, lastLesson?.id, lastLesson?.progress, studyTarget]);
     useEffect(() => {
         continueResolvedRef.current = continueResolved;
         if (continueResolved) return undefined;
@@ -699,146 +711,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             : mistakeReadyCount;
     const homePriorityCardReduceMotion = useReduceMotion();
     const homePriorityCardScale = useSharedValue(1);
-    const homePriorityCardLongPressHandledRef = useRef(false);
-    /**
-     * Какое «лицо» карточки выбрал человек долгим нажатием: урок или ошибки.
-     *
-     * null — человек ещё не трогал карточку, решает автозахват (при 10+
-     * ошибках она сама показывает ошибки). Любое зажатие фиксирует выбор и
-     * перебивает автозахват: владелец требует, чтобы жест работал ВСЕГДА.
-     *
-     * зачем (владелец 2026-09-21): «плашка последнего урока при зажатии
-     * менялась анимированно на плашку раздела мои ошибки». Состояние живёт
-     * только в памяти экрана и НЕ сохраняется на диск: это выбор показа, а не
-     * награда. Durable-очередь показа — прямой запрет владельца (см. правило
-     * «празднование не ставится в durable-очередь»): непоказанная запись
-     * однажды всплыла бы не вовремя.
-     */
-    const [homePriorityCardFace, setHomePriorityCardFace] = useState<'lesson' | 'mistakes' | null>(null);
-    /** Переворот карточки: 0 — покой, 1 — середина оборота (содержимое скрыто). */
-    const homePriorityCardFlip = useSharedValue(0);
-    /** Замок на время переворота — см. handleHomeLearningPriorityCardLongPress. */
-    const homePriorityCardFlipBusyRef = useRef(false);
-    const releaseHomePriorityCardFlip = useCallback(() => {
-        homePriorityCardFlipBusyRef.current = false;
-    }, []);
-    // Страховка на размонтирование: экран живёт под freeze-on-blur, и прерванный
-    // переворот иначе пережил бы уход с вкладки схлопнутой гранью.
-    useEffect(() => () => {
-        homePriorityCardFlip.value = 0;
-        homePriorityCardFlipBusyRef.current = false;
-    }, [homePriorityCardFlip]);
+    // зачем (владелец 04.10, скриншот: «ТУТ НЕ ДОЛЖНО БЫТЬ МОИ ОШИБКИ! ТУТ ПОСЛЕДНИЙ УРОК ОТКРЫТЫЙ, А НЕ ОШИБКИ!
+    // ОШИБКИ В БЛОКЕ СЕГОДНЯ»): карточка «Продолжить обучение» — всегда только последний открытый урок.
+    // Автозахват ошибками (10+) и переворот долгим нажатием «урок ↔ ошибки» удалены вместе с состоянием лица;
+    // вход в «Мои ошибки» на Главной — строка «Сегодня» (D144).
     useEffect(() => {
         if (homePriorityCardReduceMotion) homePriorityCardScale.value = 1;
     }, [homePriorityCardReduceMotion, homePriorityCardScale]);
-    /**
-     * Ошибок не осталось — ручной выбор лица забываем.
-     *
-     * зачем (аудит 2026-09-21): без сброса старый выбор оживал. Человек
-     * переключал карточку на ошибки, разбирал их все, а при появлении ОДНОЙ
-     * новой карточка снова показывала ошибки — хотя порог автозахвата 10 и он
-     * этого не просил. Это ровно правило фундамента «поздравляем ФАКТОМ, а не
-     * записью»: сохранённый выбор описывал уже закрытую пачку ошибок.
-     */
-    useEffect(() => {
-        if (mistakeActiveCount >= 1 || homePriorityCardFace === null) return;
-        console.warn('[MISTAKES-CARD] face:reset', JSON.stringify({ // guard-ok: сброс состояния обязан быть виден в логе
-            reason: 'no_active_mistakes',
-            was: homePriorityCardFace,
-        }));
-        setHomePriorityCardFace(null);
-    }, [homePriorityCardFace, mistakeActiveCount]);
-    /**
-     * DEV: выдать случайное число ошибок (от 10) и включить заглушку.
-     *
-     * зачем (владелец 2026-09-21): одним тапом проверить всю цепочку зарубки.
-     * Каждый тап даёт НОВОЕ число, поэтому кнопку можно жать подряд и смотреть,
-     * как меняются длина зарубки и счётчик; выключение — долгим нажатием.
-     *
-     * Лог печатает и само число, и то, что из него следует (ширина зарубки,
-     * перелив за уровень), чтобы по одному grep `[MISTAKES-DEV]` была видна
-     * вся картина, а не только «нажали кнопку».
-     */
-    /** DEV: вернуть настоящие данные — долгое нажатие по той же кнопке. */
-    /**
-     * Долгое нажатие переворачивает карточку «урок ↔ мои ошибки».
-     *
-     * зачем (владелец 2026-09-21): это ускоритель для того, кто уже понял, а не
-     * единственная дверь — при 10+ ошибках карточка переключается сама, и жест
-     * искать не нужно. Поэтому обучающего экрана здесь нет.
-     *
-     * Optimistic UI: лицо меняется в том же кадре, что и нажатие. Сети тут нет
-     * вообще — ни запроса, ни отката: mistakeActiveCount уже лежит локально.
-     */
-    const handleHomeLearningPriorityCardLongPress = useCallback(() => {
-        // зачем (владелец 2026-09-21): «и зажатие работало» — жест переключает
-        // карточку ВСЕГДА, в том числе при 10+ ошибках. Прежний запрет возврата
-        // урока снят: держать человека на одной стороне карточки нельзя, он
-        // хочет видеть и урок тоже. Автозахват при 10+ при этом остаётся —
-        // карточка сама встаёт на ошибки при входе на экран, а жест даёт
-        // временно посмотреть урок.
-        if (mistakeActiveCount < 1) {
-            console.warn('[MISTAKES-CARD] longPress:ignored', JSON.stringify({ // guard-ok: ранний выход логирует причину
-                reason: 'no_active_mistakes',
-                activeCount: mistakeActiveCount,
-                face: homePriorityCardFace,
-            }));
-            return;
-        }
-        homePriorityCardLongPressHandledRef.current = true;
-        hapticTap();
-        // Считаем от ВИДИМОГО лица, а не от состояния: при face === null и 10+
-        // ошибках на экране уже «Мои ошибки», и переключение от null дало бы
-        // снова «mistakes» — первое зажатие выглядело бы сломанным.
-        const shownFace = homePriorityCardFace
-            ?? (homeMistakesButtonState(mistakeActiveCount) === 'ready' ? 'mistakes' : 'lesson');
-        const nextFace = shownFace === 'mistakes' ? 'lesson' : 'mistakes';
-        console.warn('[MISTAKES-CARD] longPress:flip', JSON.stringify({ // guard-ok: жест обязан быть виден в логе целиком
-            activeCount: mistakeActiveCount,
-            faceState: homePriorityCardFace,
-            shownFace,
-            nextFace,
-            reduceMotion: homePriorityCardReduceMotion,
-        }));
-        if (homePriorityCardReduceMotion) {
-            setHomePriorityCardFace(nextFace);
-            return;
-        }
-        // зачем (аудит 2026-09-21): замок от повторного входа. Без него второе
-        // зажатие внутри 360 мс отменяло идущую анимацию, её колбэк приходил с
-        // finished === false и прежний код просто выходил — обратное раскрытие
-        // не планировалось НИКОГДА, и карточка оставалась схлопнутой полоской в
-        // 15% непрозрачности. Shared value, управляющий ВИДИМОСТЬЮ, не должен
-        // уметь застревать в скрытом состоянии.
-        if (homePriorityCardFlipBusyRef.current) {
-            console.warn('[MISTAKES-CARD] longPress:busy', JSON.stringify({ // guard-ok: ранний выход логирует причину
-                reason: 'flip_in_progress',
-                faceState: homePriorityCardFace,
-            }));
-            return;
-        }
-        homePriorityCardFlipBusyRef.current = true;
-        // Схлопнули грань → подменили содержимое на середине → раскрыли обратно.
-        homePriorityCardFlip.value = withTiming(1, { duration: 150 }, (finished) => {
-            runOnJS(setHomePriorityCardFace)(nextFace);
-            if (!finished) {
-                // Анимацию оборвали — грань раскрываем немедленно, иначе
-                // карточка останется невидимой.
-                homePriorityCardFlip.value = 0;
-                runOnJS(releaseHomePriorityCardFlip)();
-                return;
-            }
-            homePriorityCardFlip.value = withTiming(0, { duration: 210 }, () => {
-                runOnJS(releaseHomePriorityCardFlip)();
-            });
-        });
-    }, [
-        homePriorityCardFace,
-        homePriorityCardFlip,
-        homePriorityCardReduceMotion,
-        mistakeActiveCount,
-        releaseHomePriorityCardFlip,
-    ]);
     // Сколько раз юзер запрашивал повторный показ подсказок (0 = первый показ,
     // 1..5 = юмористические наборы №2..№6). Двигается кнопкой в настройках.
     const [homeFeatureTipsReplayCount, setHomeFeatureTipsReplayCount] = useState(0);
@@ -1941,54 +1820,21 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const lastLessonName = lastLesson == null
             ? ''
             : (lessonNamesForStudyTarget(lang, studyTarget)[lastLesson.id - 1] ?? lastLesson.name);
-        // зачем (владелец 2026-09-21): отдельной кнопки «Ошибки» у «Сегодня»
-        // больше нет — её заменили зарубка прогресса и ЭТА карточка.
-        // Правила владельца (уточнены 2026-09-21 — жест работает ВЕЗДЕ):
-        //   · ошибок 10+ → карточка САМА встаёт на ошибки (автозахват);
-        //   · ошибок 1..9 → по умолчанию урок;
-        //   · в обоих случаях долгое нажатие переключает лицо и перебивает
-        //     автозахват: держать человека на одной стороне нельзя;
-        //   · ошибок нет → всегда урок, ручной выбор забывается (см. эффект
-        //     сброса homePriorityCardFace).
-        const mistakesTakeOverPriorityCard = homeMistakesButtonState(mistakeActiveCount) === 'ready';
-        // зачем (владелец 2026-09-21): ручной выбор СИЛЬНЕЕ автозахвата — жест
-        // обязан работать всегда, в том числе при 10+ ошибках. Пока человек не
-        // трогал карточку (face === null), решает автозахват; как только он
-        // зажал — показываем выбранное им, пока он не сменит снова.
-        const priorityCardShowsMistakes = mistakeActiveCount < 1
-            ? false
-            : homePriorityCardFace === null
-                ? mistakesTakeOverPriorityCard
-                : homePriorityCardFace === 'mistakes';
-        // Карточка ошибок живёт и без последнего урока: разбирать есть что даже
-        // тому, кто ни одного урока не открыл (ошибки копятся и в карточках).
-        // зачем D129: «Продолжить урок» — это курс; без курса для языка плашку урока не рисуем.
-        // зачем D134: плашка «Мои ошибки» — для любого языка, если ошибки есть (без условия курса).
-        const priorityCardVisible = (lastLesson !== null && homeLearnVisible) || priorityCardShowsMistakes;
+        // зачем (владелец 04.10): «Продолжить обучение» = последний открытый урок, ошибки — только в «Сегодня».
+        // D129: без курса для языка плашку урока не рисуем.
+        const priorityCardVisible = lastLesson !== null && homeLearnVisible;
         const continueCardPending = !continueResolved && homeLearnVisible && !priorityCardVisible;
-        const priorityCardTitle = priorityCardShowsMistakes
-            ? triLang(lang, {
-                ru: 'Мои ошибки', uk: 'Мої помилки', en: 'My mistakes', es: 'Mis errores',
-                'pt-BR': 'Meus erros', vi: 'Lỗi của tôi', id: 'Kesalahan saya',
-                tr: 'Hatalarım', pl: 'Moje błędy',
-            })
-            : lastLessonName;
+        const priorityCardTitle = lastLessonName;
         // зачем (ассеты 2.0, 04.10): реестр отдаёт новый предмет, а пока его нет — прежнюю картинку этого места.
         // Владелец 04.10 про today.webp: «ЭТО ДЛЯ ПОСЛЕДНЕГО УРОКА» — блокнот с галочкой, когда последний урок пройден
         // (тот же порог 45 верных, что у счётчика пройденных уроков выше); урок в процессе — блокнот с ручкой (continue).
         const lastLessonCompleted = (lastLesson?.progress ?? 0) >= 45;
-        const priorityCardImage = priorityCardShowsMistakes
-            ? (resolveThemedArt('mistakes_entry', homeArtTone).base ?? getHomeMistakesImage(themeMode))
-            : (resolveThemedArt(lastLessonCompleted ? 'today' : 'continue', homeArtTone).base ?? lastLessonImage);
-        // зачем (владелец 2026-09-21): жест работает при ЛЮБОМ числе ошибок от
-        // одной — прежнее ограничение «только 1..9» снято. Переворачивать не на
-        // что лишь когда ошибок нет совсем.
-        const priorityCardLongPressEnabled = mistakeActiveCount > 0;
+        const priorityCardImage = resolveThemedArt(lastLessonCompleted ? 'today' : 'continue', homeArtTone).base ?? lastLessonImage;
         /**
          * Единственный вход в «Мои ошибки» с Главной.
          *
          * зачем: раньше защита жила в кнопке-пилюле у «Сегодня». Кнопки больше
-         * нет, а входов стало два (карточка и зарубка на полосе) — значит
+         * нет; 04.10 карточка «Продолжить» перестала вести в ошибки (владелец) — вход здесь для плитки, значит
          * защита обязана быть общей, иначе один из входов однажды поведёт в
          * закрытый раздел.
          *
@@ -2146,7 +1992,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 available: homeMistakesButtonState(mistakeActiveCount) === 'ready',
                 title: triLang(lang, { ru: 'Мои ошибки', uk: 'Мої помилки', en: 'My mistakes', es: 'Mis errores', 'pt-BR': 'Meus erros', vi: 'Lỗi của tôi', id: 'Kesalahanku', tr: 'Hatalarım', pl: 'Moje błędy' }),
                 subtitle: triLang(lang, { ru: 'Разбор и повтор', uk: 'Розбір і повтор', en: 'Review and retry', es: 'Repasa y repite', 'pt-BR': 'Revise e repita', vi: 'Xem lại và làm lại', id: 'Tinjau dan ulangi', tr: 'Gözden geçir, tekrarla', pl: 'Przegląd i powtórka' }),
-                onPress: () => { nav.push('/mistakes_hub' as never); },
+                // зачем: единая точка входа в «Мои ошибки» (лог + аналитика) — карточка «Продолжить» больше не ведёт в ошибки.
+                onPress: () => { openHomeMistakesHub('home_tile'); },
                 art: require('../../assets/images/home_mistakes/home-mistakes-dark.webp'),
             },
             {
@@ -2229,17 +2076,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               <HomeV2ContinueCard
                 pending={!priorityCardVisible && continueCardPending}
                 title={priorityCardTitle}
-                done={priorityCardShowsMistakes ? 0 : Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}
-                total={priorityCardShowsMistakes ? Math.max(1, mistakeActiveCount) : 50}
+                done={Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}
+                total={50}
                 art={priorityCardImage}
-                artWide={!priorityCardShowsMistakes && !lastLessonCompleted}
-                badge={!priorityCardShowsMistakes && lastLesson ? triLang(lang, { ru: `Урок ${lastLesson.id}`, uk: `Урок ${lastLesson.id}`, en: `Lesson ${lastLesson.id}`, es: `Lección ${lastLesson.id}`, 'pt-BR': `Lição ${lastLesson.id}`, vi: `Bài ${lastLesson.id}`, id: `Pelajaran ${lastLesson.id}`, tr: `Ders ${lastLesson.id}`, pl: `Lekcja ${lastLesson.id}` }) : undefined}
-                accessibilityLabel={priorityCardShowsMistakes ? `${priorityCardTitle}: ${homeMistakesCounterLabel(mistakeActiveCount)}` : `${s.home.continueBtn}: ${lastLessonName}`}
-                onLongPress={priorityCardLongPressEnabled ? handleHomeLearningPriorityCardLongPress : undefined}
+                artWide={!lastLessonCompleted}
+                badge={lastLesson ? triLang(lang, { ru: `Урок ${lastLesson.id}`, uk: `Урок ${lastLesson.id}`, en: `Lesson ${lastLesson.id}`, es: `Lección ${lastLesson.id}`, 'pt-BR': `Lição ${lastLesson.id}`, vi: `Bài ${lastLesson.id}`, id: `Pelajaran ${lastLesson.id}`, tr: `Ders ${lastLesson.id}`, pl: `Lekcja ${lastLesson.id}` }) : undefined}
+                accessibilityLabel={`${s.home.continueBtn}: ${lastLessonName}`}
                 onPress={() => {
-                  if (homePriorityCardLongPressHandledRef.current) return;
-                  if (priorityCardShowsMistakes) { openHomeMistakesHub('home_priority_card'); return; }
-                  if (!lastLesson) return;
+                  if (!lastLesson) {
+                    console.warn('[HOME-CONTINUE] press:ignored', JSON.stringify({ reason: 'no_last_lesson' })); // guard-ok: ранний выход логирует причину
+                    return;
+                  }
+                  console.log('[HOME-CONTINUE] open', JSON.stringify({ lessonId: lastLesson.id, progress: lastLesson.progress ?? 0 }));
                   logFeatureOpened('lesson_menu');
                   trackFeatureOpened('lesson_menu').catch((error: unknown) => {
                     if (__DEV__) console.warn('[HOME-NAV] track_feature_failed', error instanceof Error ? error.message : String(error)); // guard-ok

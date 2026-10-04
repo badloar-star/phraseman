@@ -28,10 +28,10 @@ describe('home learning CTA contract', () => {
     expect(cardStart).toBeGreaterThan(-1);
     expect(source).toContain("import { getHomeLastLessonImage } from '../home_last_lesson_assets';");
     expect(source).toContain('const lastLessonImage = getHomeLastLessonImage(themeMode);');
-    expect(source).toContain('const priorityCardImage = priorityCardShowsMistakes');
-    // 04.10 (владелец: «первые ассеты готовы, вшивай»): новый предмет 2.0 из реестра, прежняя картинка — запасная.
-    expect(source).toContain("? (resolveThemedArt('mistakes_entry', homeArtTone).base ?? getHomeMistakesImage(themeMode))");
-    expect(source).toContain(": (resolveThemedArt(lastLessonCompleted ? 'today' : 'continue', homeArtTone).base ?? lastLessonImage);");
+    // 04.10 (владелец: «ТУТ ПОСЛЕДНИЙ УРОК, А НЕ ОШИБКИ»): у карточки только арт урока — новый предмет 2.0 из реестра,
+    // прежняя картинка запасная; арта «Мои ошибки» на карточке больше нет.
+    expect(source).toContain("const priorityCardImage = resolveThemedArt(lastLessonCompleted ? 'today' : 'continue', homeArtTone).base ?? lastLessonImage;");
+    expect(source).not.toContain("resolveThemedArt('mistakes_entry'");
     expect(cardSource).toContain('art={priorityCardImage}');
     expect(cardSource).not.toContain('menuImages.lesson');
 
@@ -73,12 +73,14 @@ describe('home learning CTA contract', () => {
     expect(source).not.toContain('personalPlanSnapshot: planSnapshot');
   });
 
-  it('keeps the long-press swap on the V2 card and no V1 press-scale wrapper', () => {
-    // зачем (01.10, удаление Главной V1): удержание-подмена урока на «Мои ошибки» осталась на
-    // карточке V2 (HomeV2ContinueCard), а масштаб при удержании жил в V1-обёртке и удалён.
-    expect(source).toContain('priorityCardShowsMistakes');
-    expect(source).toContain('handleHomeLearningPriorityCardLongPress');
-    expect(source).toContain('homePriorityCardFace');
+  // 04.10 (решение владельца): «Продолжить обучение» = последний открытый урок; ошибки — только строкой «Сегодня» (D144).
+  // Автозахват ошибками и переворот долгим нажатием удалены.
+  it('continue card always shows the last lesson: no mistakes takeover, no long-press swap', () => {
+    expect(source).not.toContain('priorityCardShowsMistakes');
+    expect(source).not.toContain('handleHomeLearningPriorityCardLongPress');
+    expect(source).not.toContain('homePriorityCardFace');
+    expect(source).toContain('const priorityCardVisible = lastLesson !== null && homeLearnVisible;');
+    expect(source).toContain('[HOME-CONTINUE] card');
     expect(source).not.toContain('<Reanimated.View style={homePriorityCardScaleStyle}>');
     expect(source).not.toContain('testID="home-mistakes-pulse-button"');
     expect(source).not.toContain('testID="home-videos-pulse-button"');

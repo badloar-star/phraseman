@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Диалоги — три концепции</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (владелец 04.10: «в каждом разделе три разных дизайна по ключевым экранам»): три концепции раздела «Диалоги» с разным ЯЗЫКОМ интерфейса.
+     Общее с приложением — только цвет темы (аврора, акцентная кнопка). Нет: стопки-героя, плиток 2×2, сетки карточек, переворота карточки
+     (раздел «Карточки») и кольца, лент-фильтров, панели-списка, стакана ответов (раздел «Ошибки»). Все тексты — из dialogs.html. */
+  .scr > .in { min-height: 100%; }
+  .acc { color: var(--acc); } .sec2 { color: var(--sec); }
+  .center { text-align: center; }
+  .ac-cta { position: relative; }
+  .bot2 { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 24px 20px 34px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.92) 42%); }
+  .key { text-decoration: underline; text-decoration-color: rgba(255,255,255,.4); text-underline-offset: 4px; font-weight: 700; }
+  .hair { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .ib { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; flex: none; color: #fff; }
+  .hd { display: flex; align-items: center; gap: 12px; margin-top: 4px; }
+  .hd .ti { font-size: 20px; line-height: 24px; font-weight: 700; letter-spacing: -.2px; white-space: nowrap; }
+  .hd .su { font-size: 15px; line-height: 19px; color: var(--sec); margin-top: 1px; white-space: nowrap; }
+  .duo { gap: 6px; padding: 0 12px; } .duo .sep { width: 1px; height: 14px; background: rgba(255,255,255,.2); margin: 0 3px; display: block; }
+  .mast { display: flex; gap: 4px; flex: none; } .mast i { width: 16px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.16); display: block; } .mast i.on { background: var(--acc); }
+  .h1 { font-size: 40px; line-height: 46px; font-weight: 700; letter-spacing: -.6px; }
+  .frc { font-variant-numeric: tabular-nums; white-space: nowrap; } .frc b { font-weight: 700; } .frc span { color: var(--sec); }
+
+  /* ===== Концепция 1: СЦЕНА — шрифт вместо контейнеров, речь без пузырей, одно крупное действие внизу ===== */
+  .a-pick { margin-top: 44px; }
+  .a-w { display: flex; align-items: baseline; justify-content: space-between; padding: 18px 0; font-size: 42px; line-height: 48px; font-weight: 700; letter-spacing: -.8px; color: rgba(255,255,255,.3); }
+  .a-w .n { font-size: 17px; font-weight: 600; letter-spacing: 0; }
+  .a-w.on { color: #fff; padding-bottom: 8px; }
+  .a-w.on .n { color: var(--acc); }
+  .a-on { display: flex; align-items: center; gap: 14px; padding-bottom: 14px; }
+  .a-on .t1 { font-size: 17px; color: var(--sec); }
+  .a-trk { flex: 1; height: 4px; border-radius: 2px; background: rgba(255,255,255,.12); } .a-trk i { display: block; height: 100%; width: 0; background: var(--acc); border-radius: 2px; }
+  .a-slab { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 24px 22px 36px; border-radius: 34px 34px 0 0;
+    background: linear-gradient(170deg, color-mix(in srgb, var(--g1) 34%, #121216), color-mix(in srgb, var(--g2) 24%, #0d0d10)); box-shadow: inset 0 1px 0 rgba(255,255,255,.16); }
+  .a-slab .r1 { display: flex; align-items: center; gap: 14px; }
+  .a-slab .r1 .tl { font-size: 22px; line-height: 26px; font-weight: 700; letter-spacing: -.3px; }
+  .a-slab .mem { font-size: 15px; line-height: 21px; color: #E4E4E8; margin: 14px 0 18px; }
+  .a-orb { width: 96px; height: 96px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 30px; color: #fff;
+    background: radial-gradient(circle at 32% 26%, color-mix(in srgb, var(--g1) 80%, #fff 8%), color-mix(in srgb, var(--g2) 40%, #0a0a0d) 80%); box-shadow: inset 1px 2px 0 rgba(255,255,255,.3), 0 26px 50px -18px color-mix(in srgb, var(--g1) 70%, transparent); }
+  .a-lv { display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 15px; background: rgba(255,255,255,.1); font-size: 15px; font-weight: 600; margin-top: 20px; }
+  .a-big { font-size: 44px; line-height: 48px; font-weight: 700; letter-spacing: -1px; margin-top: 10px; }
+  .a-ds { font-size: 17px; line-height: 25px; color: #E2E2E6; margin-top: 14px; }
+  .a-tk { font-size: 15px; color: var(--sec); font-weight: 600; margin-top: 26px; }
+  .a-t { display: flex; align-items: center; gap: 16px; min-height: 58px; font-size: 19px; font-weight: 600; letter-spacing: -.2px; } .a-t + .a-t { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .a-t .nn { width: 30px; font-size: 28px; font-weight: 300; color: var(--acc); font-variant-numeric: tabular-nums; }
+  .a-seg { display: flex; gap: 6px; margin-top: 16px; } .a-seg i { flex: 1; height: 5px; border-radius: 3px; background: rgba(255,255,255,.14); } .a-seg i.dn { background: var(--acc); } .a-seg i.cur { background: color-mix(in srgb, var(--acc) 45%, rgba(255,255,255,.14)); }
+  .a-gl { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+  .a-gl .k { font-size: 14px; color: var(--sec); font-weight: 600; } .a-gl .v { font-size: 19px; line-height: 24px; font-weight: 700; margin-top: 1px; }
+  .a-chat { margin-top: auto; padding-top: 22px; }
+  .a-m { margin-top: 24px; } .a-m:first-child { margin-top: 0; }
+  .a-m .who { font-size: 14px; color: var(--sec); font-weight: 500; margin-bottom: 6px; }
+  .a-m .say { font-size: 24px; line-height: 31px; font-weight: 600; letter-spacing: -.3px; }
+  .a-m.me { text-align: right; } .a-m.me .say { color: var(--acc); font-size: 22px; }
+  .a-m.old .say { color: rgba(255,255,255,.55); }
+  .lk { display: inline-flex; align-items: center; gap: 7px; height: 44px; padding: 0 14px 0 0; font-size: 15px; font-weight: 600; color: #D8D8DC; }
+  .a-acts { display: flex; gap: 8px; margin-top: 2px; }
+  .a-in { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 18px 16px 34px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.94) 36%); }
+  .a-in .r { display: flex; align-items: center; gap: 10px; }
+  .a-in .mic { width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; flex: none; }
+  .a-in .fld { flex: 1; min-width: 0; height: 52px; border-radius: 26px; background: rgba(255,255,255,.07); display: flex; align-items: center; padding: 0 18px; font-size: 16px; color: var(--muted); white-space: nowrap; overflow: hidden; }
+  .a-in .snd { width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,.07); color: var(--muted); display: flex; align-items: center; justify-content: center; flex: none; }
+  .a-in .hn { text-align: center; font-size: 14px; color: var(--sec); font-weight: 600; margin-top: 10px; }
+  .a-bd { margin-top: 20px; padding: 18px 0 8px; box-shadow: inset 0 1px 0 rgba(255,255,255,.1), inset 0 -1px 0 rgba(255,255,255,.1); }
+  .a-bd .k { font-size: 15px; font-weight: 600; color: var(--acc); }
+  .a-bd .p { font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.8px; margin-top: 8px; }
+  .a-bd .t { font-size: 18px; color: var(--sec); margin-top: 4px; }
+  .a-bd .ac { display: flex; gap: 8px; margin-top: 6px; }
+
+  /* ===== Концепция 2: МЕССЕНДЖЕР — собеседники с аватарами, строки-беседы, пузыри, шаги цели кружками ===== */
+  .b-pin { margin-top: 30px; padding: 16px; border-radius: 28px; background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 30%, rgba(24,24,30,.9)), color-mix(in srgb, var(--g2) 22%, rgba(14,14,18,.92))); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+  .b-pin .r1 { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .b-pin .tl { font-size: 20px; line-height: 24px; font-weight: 700; } .b-pin .mm { font-size: 14px; line-height: 19px; color: #E4E4E8; margin-top: 3px; }
+  .b-av { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex: none; color: #fff;
+    background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 62%, #1a1a20), color-mix(in srgb, var(--g2) 32%, #0b0b0f)); box-shadow: inset 1px 1.5px 0 rgba(255,255,255,.3); }
+  .b-av.sm { width: 40px; height: 40px; }
+  .b-rows { margin-top: 12px; }
+  .b-r { display: flex; align-items: center; gap: 14px; min-height: 100px; } .b-r + .b-r { box-shadow: inset 0 1px 0 rgba(255,255,255,.07); margin-left: 70px; padding-left: 0; }
+  .b-r + .b-r > .b-av { margin-left: -70px; }
+  .b-r .tt { font-size: 19px; line-height: 24px; font-weight: 700; } .b-r .st { font-size: 15px; color: var(--sec); margin-top: 2px; }
+  .b-lock { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 30px; font-size: 15px; font-weight: 600; color: var(--sec); }
+  .b-orb { width: 116px; height: 116px; border-radius: 50%; margin: 22px auto 0; display: flex; align-items: center; justify-content: center; color: #fff; position: relative;
+    background: radial-gradient(circle at 32% 26%, color-mix(in srgb, var(--g1) 80%, #fff 8%), color-mix(in srgb, var(--g2) 40%, #0a0a0d) 80%); box-shadow: inset 1px 2px 0 rgba(255,255,255,.3), 0 0 0 14px rgba(255,255,255,.04), 0 0 0 30px rgba(255,255,255,.025); }
+  .b-lv { display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 14px; background: rgba(255,255,255,.1); font-size: 15px; font-weight: 600; margin-top: 30px; }
+  .b-ti { font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.6px; margin-top: 8px; }
+  .b-ds { font-size: 17px; line-height: 25px; color: #DADADE; margin: 12px 8px 0; }
+  .b-tk { display: flex; align-items: center; gap: 12px; height: 52px; padding: 0 18px 0 11px; border-radius: 26px; background: rgba(255,255,255,.07); font-size: 17px; font-weight: 600; text-align: left; margin-top: 8px; }
+  .b-tk .nn { width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,.12); font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none; }
+  .b-steps { display: flex; align-items: center; min-height: 44px; margin-top: 12px; }
+  .b-steps .st { width: 34px; height: 34px; border-radius: 50%; background: #1b1b1f; color: var(--sec); font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none; }
+  .b-steps .st.dn { background: var(--acc); color: var(--on); }
+  .b-steps .st.cur { background: color-mix(in srgb, var(--acc) 26%, #1b1b1f); color: #fff; box-shadow: 0 0 0 4px color-mix(in srgb, var(--acc) 20%, transparent); }
+  .b-steps .ln { flex: 1; height: 2px; background: rgba(255,255,255,.12); } .b-steps .ln.dn { background: var(--acc); }
+  .b-gl { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+  .b-gl .v { flex: 1; font-size: 17px; font-weight: 600; } .b-gl .v span { color: var(--sec); font-weight: 500; }
+  .b-chat { margin-top: auto; padding-top: 12px; }
+  .b-m { display: flex; gap: 10px; align-items: flex-start; margin-top: 16px; } .b-m.me { justify-content: flex-end; }
+  .b-m .av { margin-top: 0; }
+  .b-m .col2 { max-width: 82%; min-width: 0; }
+  .b-bub { padding: 13px 18px; border-radius: 22px 22px 22px 8px; font-size: 17px; line-height: 24px; font-weight: 500; background: rgba(255,255,255,.09); box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.18); }
+  .b-m.me .b-bub { background: var(--acc); color: var(--on); border-radius: 22px 22px 8px 22px; font-weight: 600; }
+  .b-who { font-size: 13px; color: var(--sec); margin: 0 0 5px 4px; }
+  .b-acts { display: flex; gap: 8px; margin-top: 8px; }
+  .pl { display: inline-flex; align-items: center; gap: 7px; height: 44px; padding: 0 14px; border-radius: 22px; background: rgba(255,255,255,.08); font-size: 15px; font-weight: 600; color: #E0E0E4; }
+  .pl.ic { width: 44px; padding: 0; justify-content: center; }
+  .b-in { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 18px 14px 34px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.94) 34%); }
+  .b-in .box { display: flex; align-items: center; gap: 6px; height: 60px; padding: 0 8px; border-radius: 30px; background: rgba(32,32,38,.92); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+  .b-in .box .fld { flex: 1; min-width: 0; font-size: 16px; color: var(--muted); white-space: nowrap; overflow: hidden; padding-left: 4px; }
+  .b-in .box .snd { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.1); color: var(--muted); display: flex; align-items: center; justify-content: center; flex: none; }
+  .b-in .hn { text-align: center; font-size: 14px; color: var(--sec); font-weight: 600; margin-top: 10px; }
+  .b-note { margin: 16px 0 0 50px; padding: 16px 18px; border-radius: 22px; background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 22%, rgba(26,26,32,.92)), rgba(16,16,20,.94)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+  .b-note .k { font-size: 14px; color: var(--acc); font-weight: 600; } .b-note .p { font-size: 24px; line-height: 30px; font-weight: 700; letter-spacing: -.4px; margin-top: 6px; } .b-note .t { font-size: 16px; color: var(--sec); margin-top: 3px; }
+  .b-note .ac { display: flex; gap: 8px; margin-top: 12px; }
+
+  /* ===== Концепция 3: МАРШРУТ — вертикальная нить с узлами, вкладки-значки, фокус на одной реплике, доска-сцена ===== */
+  .c-tabs { display: flex; align-items: center; gap: 10px; margin-top: 22px; }
+  .c-tab { height: 52px; min-width: 52px; border-radius: 26px; background: rgba(255,255,255,.07); display: flex; align-items: center; justify-content: center; gap: 10px; color: #E0E0E4; flex: none; }
+  .c-tab.on { background: var(--acc); color: var(--on); padding: 0 20px 0 16px; font-size: 17px; font-weight: 700; }
+  .c-hd { display: flex; align-items: baseline; justify-content: space-between; margin-top: 26px; }
+  .c-hd .tt { font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -.5px; }
+  .c-trk { height: 4px; border-radius: 2px; background: rgba(255,255,255,.12); margin-top: 12px; } .c-trk i { display: block; height: 100%; border-radius: 2px; background: var(--acc); }
+  .c-route { position: relative; margin-top: 14px; }
+  .c-route::before { content: ""; position: absolute; left: 21px; top: 30px; bottom: 30px; width: 2px; background: rgba(255,255,255,.14); }
+  .c-n { display: flex; align-items: center; gap: 16px; min-height: 66px; position: relative; }
+  .c-nd { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex: none; background: #1b1b1f; color: var(--sec); position: relative; z-index: 1; }
+  .c-nd.dn { background: var(--acc); color: var(--on); }
+  .c-nd.cur { background: color-mix(in srgb, var(--acc) 24%, #121215); color: #fff; box-shadow: 0 0 0 5px color-mix(in srgb, var(--acc) 16%, transparent); }
+  .c-n .tt { font-size: 19px; line-height: 24px; font-weight: 600; } .c-n .st { font-size: 14px; color: var(--sec); margin-top: 2px; }
+  .c-n .lv { font-size: 15px; font-weight: 600; color: var(--sec); }
+  .c-dock { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 28px 16px 34px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.95) 38%); }
+  .c-dock .in2 { display: flex; align-items: center; gap: 12px; }
+  .c-dock .tl { font-size: 17px; line-height: 22px; font-weight: 700; flex: 1; min-width: 0; }
+  .c-q { margin-top: 20px; padding: 2px 0 2px 18px; box-shadow: inset 3px 0 0 var(--acc); font-size: 17px; line-height: 25px; color: #E2E2E6; }
+  .c-tk { display: flex; align-items: center; gap: 16px; min-height: 72px; position: relative; font-size: 19px; font-weight: 600; letter-spacing: -.2px; }
+  .c-tk .c-nd { width: 36px; height: 36px; font-size: 15px; font-weight: 700; }
+  .c-body { display: flex; gap: 16px; margin-top: 18px; min-height: 380px; }
+  .c-rail { width: 44px; flex: none; position: relative; padding-top: 4px; }
+  .c-rail::before { content: ""; position: absolute; left: 21px; top: 22px; bottom: 22px; width: 2px; background: rgba(255,255,255,.14); }
+  .c-rail .rn { width: 44px; height: 54px; display: flex; align-items: center; justify-content: center; position: relative; }
+  .c-rail .c-nd { width: 32px; height: 32px; font-size: 14px; font-weight: 700; }
+  .c-main { flex: 1; min-width: 0; }
+  .c-old { font-size: 16px; line-height: 22px; color: rgba(255,255,255,.5); }
+  .c-old.me { text-align: right; margin-top: 10px; }
+  .c-now { margin-top: 36px; }
+  .c-now .who { font-size: 14px; color: var(--sec); font-weight: 500; margin-bottom: 8px; }
+  .c-now .say { font-size: 30px; line-height: 37px; font-weight: 700; letter-spacing: -.7px; }
+  .c-now .acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .c-gtx { display: flex; align-items: center; gap: 10px; }
+  .c-gtx .k { font-size: 14px; color: var(--sec); font-weight: 600; } .c-gtx .v { font-size: 19px; line-height: 24px; font-weight: 700; margin-top: 1px; }
+  .c-cmp { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 16px 16px 34px; border-radius: 30px 30px 0 0; background: linear-gradient(170deg, color-mix(in srgb, var(--g1) 14%, rgba(26,26,32,.97)), rgba(14,14,18,.98)); box-shadow: inset 0 1px 0 rgba(255,255,255,.12); }
+  .c-cmp .fld { display: flex; align-items: center; height: 52px; border-radius: 26px; background: rgba(255,255,255,.07); padding: 0 8px 0 18px; font-size: 16px; color: var(--muted); }
+  .c-cmp .fld span { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; }
+  .c-cmp .snd { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.1); color: var(--muted); display: flex; align-items: center; justify-content: center; flex: none; }
+  .c-cmp .mic { width: 68px; height: 68px; border-radius: 50%; margin: 14px auto 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 100%, #fff 22%), var(--acc)); color: var(--on); box-shadow: 0 12px 28px -10px color-mix(in srgb, var(--acc) 70%, transparent); }
+  .c-cmp .hn { text-align: center; font-size: 14px; color: var(--sec); font-weight: 600; margin-top: 10px; }
+  .c-slate { margin-top: 18px; padding: 24px 22px 20px; border-radius: 30px; background: radial-gradient(90% 80% at 12% 0%, color-mix(in srgb, var(--g1) 30%, #17171b), #101013 70%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+  .c-slate .top { display: flex; align-items: center; justify-content: space-between; }
+  .c-slate .k { font-size: 15px; font-weight: 600; color: var(--acc); }
+  .c-slate .p { font-size: 36px; line-height: 42px; font-weight: 700; letter-spacing: -.9px; margin-top: 18px; }
+  .c-slate .t { font-size: 19px; color: #CFCFD4; margin-top: 8px; }
+  .c-slate .ac { display: flex; gap: 8px; margin-top: 18px; }
+  .c-sc { margin-top: 20px; }
+  .c-sc .ln { display: flex; gap: 14px; margin-top: 16px; font-size: 18px; line-height: 25px; }
+  .c-sc .ln .w { width: 52px; flex: none; font-size: 15px; font-weight: 700; padding-top: 2px; color: var(--sec); }
+  .c-sc .ln.mx .w { color: var(--acc); } .c-sc .ln.me .w { color: #fff; }
+  .c-sc .ln.me { color: #fff; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Диалоги — три концепции</h1>
+  <p class="page-lead">Все три нарочно непохожи и на «Карточки» (стопка-герой, плитки, сетка стеклянных карточек), и на «Мои ошибки» (кольцо, ленты-фильтры, панель-список, стакан ответов). Общее с приложением — только цвет темы (аврора, акцентная кнопка). В каждой по четыре ключевых экрана: хаб, брифинг, сессия с Мией, урок с Максом. Выберите одну — построю весь раздел в этом языке.</p>
+  <div class="page-nav"><a href="#c1">1 · Сцена</a><a href="#c2">2 · Мессенджер</a><a href="#c3">3 · Маршрут</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone, col, block, energy } = K;
+// локальные значки (контур 1.8, как в dialogs.html)
+const LP = {
+  bulb: '<path d="M9.5 18.5h5M10.5 21.5h3M12 3a6 6 0 014 10.4c-.7.7-1 1.4-1 2.6H9c0-1.2-.3-1.9-1-2.6A6 6 0 0112 3z"/>',
+  trans: '<path d="M4 5h9M8.5 3v2M6 5c.5 3.5 2.6 6 5.5 7.5M11 5c-.6 3-2.5 5.6-5 7.5"/><path d="M12.5 21l4-10 4 10M14 17.5h5"/>',
+  arrowUp: '<path d="M12 19V5M6 11l6-6 6 6"/>',
+  school: '<path d="M3 9.5l9-4.5 9 4.5-9 4.5z"/><path d="M6.5 11.3V16c1.6 1.6 3.4 2.4 5.5 2.4s3.9-.8 5.5-2.4v-4.7M21 9.5V15"/>',
+  cafe: '<path d="M4 8h12v6a5 5 0 01-5 5H9a5 5 0 01-5-5z"/><path d="M16 10h1.5a2.5 2.5 0 010 5H16"/><path d="M8 4.5c0 1 1 1 1 2M11.5 4.5c0 1 1 1 1 2"/>',
+};
+const li = (n, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${LP[n]}</svg>`;
+const keyify = (s) => s.replace(/\*\*(.+?)\*\*/g, '<span class="key">$1</span>');
+const cta = (t, ar = true) => `<div class="ac-cta t">${t}${ar ? `<span class="ar">${icon('arrowR', 's20')}</span>` : ''}</div>`;
+const bot2 = (i) => `<div class="bot2">${i}</div>`;
+const pills = (q = '10/10') => `<div class="flex" style="gap:8px">${energy(5, { s: true })}<span class="pill s">${icon('chatDots', 's16')}${q}</span></div>`;
+const duo = (en = 4, q = '8/10') => `<span class="pill s duo">${icon('boltF', 's16')}${en}<i class="sep"></i>${icon('chatDots', 's16')}${q}</span>`;
+const back = `<span class="rb l t">${icon('back', 's20')}</span>`;
+const dots = `<span class="rb t">${icon('dotsH', 's20')}</span>`;
+const hd = (title, sub, right) => `<div class="hd">${back}<div class="grow"><div class="ti">${title}</div>${sub ? `<div class="su">${sub}</div>` : ''}</div>${right}</div>`;
+const mast = (n) => `<span class="mast">${[0, 1, 2].map((i) => `<i${i < n ? ' class="on"' : ''}></i>`).join('')}</span>`;
+const topbar = (right) => `<div class="flex" style="justify-content:space-between;margin-top:2px">${back}${right}</div>`;
+const OBJ = ['Заказать капучино', 'Выбрать размер', 'Сказать, какое молоко', 'Уточнить: с собой или здесь', 'Спросить цену'];
+const DESC = 'Закажи капучино, выбери размер и спроси цену. Бариста не читает мысли — зато отлично понимает вежливый английский.';
+const T = { hi: "Hi there! Welcome in. I'm Mia. **What can I get started for you today?**", size: '**What size would you like** — small, medium or large?', me: "I'd like a cappuccino, please.", me2: 'Medium, please.', milk: 'Medium it is. **Which milk** do you prefer — regular, oat or almond?' };
+const MAX1 = 'Скажи, что ты уже бывал в этом кафе. **Начни с I’ve…**';
+const MAX2 = 'Отлично! Теперь добавь **never** — скажи, что никогда не пробовал их капучино.';
+const WORLDS = [['cupF', 'Каждый день', 'Повседневные диалоги', 11], ['planeF', 'Путешествия', 'В поездках и на отдыхе', 8], ['peopleF', 'Общение', 'Знакомства и разговоры', 13], ['docF', 'Ситуации', 'Разные жизненные сценарии', 19]];
+
+// ================= 1. СЦЕНА =================
+const a1 = () => phone(`<div class="flex" style="align-items:flex-start;justify-content:space-between;margin-top:22px"><div class="h1">Диалоги</div><div style="margin-top:8px">${pills()}</div></div>
+  <div class="a-pick">${WORLDS.map(([, t, s, n], i) => i === 0
+    ? `<div class="t"><div class="a-w on"><span>${t}</span><span class="n frc">0/${n}</span></div><div class="a-on"><span class="t1">${s}</span><span class="a-trk"><i></i></span><span class="acc">${icon('fwd', 's20')}</span></div></div>`
+    : `<div class="a-w t"><span>${t}</span><span class="n frc">0/${n}</span></div>`).join('')}</div>`,
+  { fixed: `<div class="a-slab"><div class="r1"><div class="b-av" style="width:52px;height:52px;background:rgba(255,255,255,.14)">${li('school', 's26')}</div><div class="tl">Урок с Максом</div></div><div class="mem">В прошлый раз договорились: Present Perfect</div>${cta('Начать урок')}</div>` });
+const a2 = () => phone(`${topbar(energy(5, { s: true }))}
+  <div class="a-orb">${li('cafe', 's28').replace('<svg class="i s28"', '<svg class="i" style="width:44px;height:44px"')}</div><span class="a-lv">A1</span>
+  <div class="a-big">Закажи кофе</div><div class="a-ds">${DESC}</div>
+  <div class="a-tk">Задания</div>${OBJ.map((t, i) => `<div class="a-t"><span class="nn">${i + 1}</span><span>${t}</span></div>`).join('')}`,
+  { fixed: bot2(cta('Начать диалог')) });
+const aIn = (o = {}) => `<div class="a-in"><div class="r"><span class="mic t">${icon('mic', 's24')}</span><div class="fld t">${o.ph || 'Напиши или зажми микрофон'}</div><span class="snd t">${li('arrowUp', 's24')}</span></div>${o.mic === false ? '' : '<div class="hn">Или зажми и говори</div>'}</div>`;
+const aAct = `<div class="a-acts"><span class="lk t">${icon('vol', 's20')}</span><span class="lk t">${li('trans', 's20')}Перевод</span><span class="lk t">${li('bulb', 's20')}Почему так</span></div>`;
+const a3 = () => phone(`${hd('Закажи кофе', '', duo() + dots)}
+  <div class="a-seg"><i class="dn"></i><i class="dn"></i><i class="cur"></i><i></i><i></i></div>
+  <div class="a-gl"><div class="grow"><div class="k">Цель 3 из 5</div><div class="v">Сказать, какое молоко</div></div><span class="ib t">${li('bulb', 's20')}</span></div>
+  <div class="a-chat"><div class="a-m old"><div class="who">Мия · бариста</div><div class="say" style="font-size:19px;line-height:26px">${keyify(T.hi)}</div></div>
+  <div class="a-m me old"><div class="who">Вы</div><div class="say" style="font-size:19px">${T.me}</div></div>
+  <div class="a-m old"><div class="who">Мия · бариста</div><div class="say" style="font-size:19px;line-height:26px">${keyify(T.size)}</div></div>
+  <div class="a-m me old"><div class="who">Вы</div><div class="say" style="font-size:19px">${T.me2}</div></div>
+  <div class="a-m"><div class="who">Мия · бариста</div><div class="say">${keyify(T.milk)}</div>${aAct}</div></div>`,
+  { fixed: aIn(), inStyle: 'padding:52px 20px 190px;display:flex;flex-direction:column' });
+const a4 = () => phone(`${hd('Макс', 'Present Perfect', mast(1) + `<span class="pill s">${icon('chatDots', 's16')}9/10</span>`)}
+  <div class="a-bd"><div class="k">На доске</div><div class="p">I've been here before.</div><div class="t">Я уже здесь бывал.</div><div class="ac"><span class="lk t">${icon('vol', 's20')}Послушать</span><span class="lk t">${icon('bookmark', 's20')}В карточки</span></div></div>
+  <div class="a-chat"><div class="a-m old"><div class="who">Макс</div><div class="say" style="font-size:19px;line-height:26px">${keyify(MAX1)}</div></div>
+  <div class="a-m me old"><div class="who">Вы</div><div class="say" style="font-size:19px">I've been here before.</div></div>
+  <div class="a-m"><div class="who">Макс</div><div class="say">${keyify(MAX2)}</div><div class="a-acts"><span class="lk t">${icon('vol', 's20')}</span><span class="lk t">${li('trans', 's20')}Перевод</span></div></div></div>`,
+  { fixed: aIn({ ph: 'Ответь Максу…', mic: false }).replace(/<span class="mic t">.*?<\/span>/, ''), inStyle: 'padding:52px 20px 150px' });
+
+// ================= 2. МЕССЕНДЖЕР =================
+const b1 = () => phone(`<div class="flex" style="align-items:flex-start;justify-content:space-between;margin-top:22px"><div class="h1">Диалоги</div><div style="margin-top:8px">${pills()}</div></div>
+  <div class="b-pin"><div class="r1"><div class="b-av">${li('school', 's26')}</div><div class="grow"><div class="tl">Урок с Максом</div><div class="mm">В прошлый раз договорились: Present Perfect</div></div></div>${cta('Начать урок')}</div>
+  <div class="b-rows">${WORLDS.map(([ic, t, s, n]) => `<div class="b-r t"><div class="b-av">${icon(ic, 's26')}</div><div class="grow"><div class="tt">${t}</div><div class="st">${s}</div></div><span class="frc sec2" style="font-size:16px;font-weight:600">0/${n}</span><span class="sec2">${icon('fwd', 's20')}</span></div>`).join('')}</div>
+  <div class="b-lock">${icon('lockF', 's16')}Некоторые диалоги пока закрыты</div>`);
+const b2 = () => phone(`${topbar(energy(5, { s: true }))}
+  <div class="center"><div class="b-orb">${li('cafe').replace('<svg class="i "', '<svg class="i" style="width:48px;height:48px"')}</div><span class="b-lv">A1</span><div class="b-ti">Закажи кофе</div><div class="b-ds">${DESC}</div></div>
+  <div style="margin-top:22px">${OBJ.map((t, i) => `<div class="b-tk"><span class="nn">${i + 1}</span>${t}</div>`).join('')}</div>`,
+  { fixed: bot2(cta('Начать диалог')) });
+const bIn = (ph = 'Напиши или зажми микрофон', mic = true) => `<div class="b-in"><div class="box">${mic ? `<span class="ib t">${icon('mic', 's24')}</span>` : ''}<span class="fld" style="${mic ? '' : 'padding-left:14px'}">${ph}</span><span class="snd t">${li('arrowUp', 's20')}</span></div>${mic ? '<div class="hn">Или зажми и говори</div>' : ''}</div>`;
+const bSteps = (n) => `<div class="b-steps t">${[1, 2, 3, 4, 5].map((i) => `${i > 1 ? `<span class="ln${i <= n ? ' dn' : ''}"></span>` : ''}<span class="st${i < n ? ' dn' : i === n ? ' cur' : ''}">${i < n ? icon('check', 's16') : i}</span>`).join('')}</div>`;
+const bBot = (txt, acts, av = 'cafe', who = 'Мия · бариста') => `<div class="b-m"><div class="b-av sm av">${li(av, 's20')}</div><div class="col2"><div class="b-who">${who}</div><div class="b-bub">${keyify(txt)}</div>${acts ? `<div class="b-acts"><span class="pl ic t">${icon('vol', 's20')}</span><span class="pl t">${li('trans', 's18')}Перевод</span><span class="pl t">${li('bulb', 's18')}Почему так</span></div>` : ''}</div></div>`;
+const bMe = (t) => `<div class="b-m me"><div class="col2"><div class="b-bub">${t}</div></div></div>`;
+const b3 = () => phone(`${hd('Закажи кофе', '', duo() + dots)}
+  ${bSteps(3)}<div class="b-gl"><div class="v"><span>Цель 3 из 5 · </span>Сказать, какое молоко</div><span class="ib t">${li('bulb', 's20')}</span></div>
+  <div class="b-chat">${bBot(T.hi, false)}${bMe(T.me)}${bBot(T.size, false)}${bMe(T.me2)}${bBot(T.milk, true)}</div>`, { fixed: bIn(), inStyle: 'padding:52px 20px 190px;display:flex;flex-direction:column' });
+const b4 = () => phone(`${hd('Макс', 'Present Perfect', mast(1) + `<span class="pill s">${icon('chatDots', 's16')}9/10</span>`)}
+  <div class="b-chat">${bBot(MAX1, false, 'school', 'Макс')}${bMe("I've been here before.")}
+  <div class="b-note"><div class="k">На доске</div><div class="p">I've been here before.</div><div class="t">Я уже здесь бывал.</div><div class="ac"><span class="pl t">${icon('vol', 's18')}Послушать</span><span class="pl t">${icon('bookmark', 's18')}В карточки</span></div></div>
+  ${bBot(MAX2, false, 'school', 'Макс')}</div>`, { fixed: bIn('Ответь Максу…', false), inStyle: 'padding:52px 20px 130px' });
+
+// ================= 3. МАРШРУТ =================
+const nd = (k, ic) => `<span class="c-nd ${k}">${ic}</span>`;
+const route = [['Закажи кофе', 'A1', 'dn'], ['В продуктовом', 'A1', 'cur'], ['Магазин одежды', 'A2', ''], ['В аптеке', 'A2', 'plus'], ['В ресторане', 'A2', 'plus'], ['У врача', 'B1', 'plus'], ['Доставка', 'A2', 'plus']];
+const c1 = () => phone(`<div class="flex" style="align-items:flex-start;justify-content:space-between;margin-top:22px"><div class="h1">Диалоги</div><div style="margin-top:8px">${pills()}</div></div>
+  <div class="c-tabs"><span class="c-tab on t">${icon('cupF', 's24')}Каждый день</span>${['planeF', 'peopleF', 'docF'].map((x) => `<span class="c-tab t">${icon(x, 's24')}</span>`).join('')}</div>
+  <div class="c-hd"><div class="tt">Каждый день</div><div class="frc"><b style="font-size:22px">1</b><span style="font-size:16px">/11</span></div></div><div class="c-trk"><i style="width:9%"></i></div>
+  <div class="c-route">${route.map(([t, l, k]) => `<div class="c-n t">${nd(k === 'dn' ? 'dn' : k === 'cur' ? 'cur' : '', k === 'dn' ? icon('check', 's20') : k === 'plus' ? icon('lockF', 's18') : icon('play', 's18'))}<div class="grow"><div class="tt" ${k === 'plus' ? 'style="color:#D0D0D2"' : ''}>${t}</div>${k === 'plus' ? '<div class="st">Входит в Plus</div>' : ''}</div><span class="lv">${l}</span></div>`).join('')}</div>`,
+  { fixed: `<div class="c-dock"><div class="in2"><div class="b-av" style="width:48px;height:48px">${li('school', 's24')}</div><div class="tl">Урок с Максом</div><div class="ac-cta sm t">Начать урок</div></div></div>` });
+const c2 = () => phone(`${topbar(energy(5, { s: true }))}
+  <span class="a-lv" style="margin-top:30px">A1</span><div class="a-big" style="font-size:40px;line-height:46px">Закажи кофе</div>
+  <div class="c-q">${DESC}</div>
+  <div class="c-route" style="margin-top:26px"><div style="font-size:15px;color:var(--sec);font-weight:600;margin-bottom:6px">Задания</div>${OBJ.map((t, i) => `<div class="c-tk"><span class="c-nd ${i === 0 ? 'cur' : ''}">${i + 1}</span>${t}</div>`).join('')}</div>`,
+  { fixed: bot2(cta('Начать диалог')) });
+const c3 = () => phone(`${hd('Закажи кофе', '', duo() + dots)}
+  <div class="c-gtx" style="margin-top:16px"><div class="grow"><div class="k">Цель 3 из 5</div><div class="v">Сказать, какое молоко</div></div><span class="ib t">${li('bulb', 's20')}</span></div>
+  <div class="c-body"><div class="c-rail">${[1, 2, 3, 4, 5].map((i) => `<div class="rn">${nd(i < 3 ? 'dn' : i === 3 ? 'cur' : '', i < 3 ? icon('check', 's16') : i)}</div>`).join('')}</div>
+  <div class="c-main"><div class="c-old">${keyify(T.hi)}</div><div class="c-old me">${T.me}</div><div class="c-old" style="margin-top:10px">${keyify(T.size)}</div><div class="c-old me">${T.me2}</div>
+  <div class="c-now"><div class="who">Мия · бариста</div><div class="say">${keyify(T.milk)}</div><div class="acts"><span class="pl ic t">${icon('vol', 's20')}</span><span class="pl t">${li('trans', 's18')}Перевод</span><span class="pl t">${li('bulb', 's18')}Почему так</span></div></div></div></div>`,
+  { fixed: `<div class="c-cmp"><div class="fld"><span>Напиши или зажми микрофон</span><span class="snd t" style="flex:none">${li('arrowUp', 's20')}</span></div><div class="mic t">${icon('mic', 's28')}</div><div class="hn">Или зажми и говори</div></div>`, inStyle: 'padding:52px 20px 320px' });
+const c4 = () => phone(`${hd('Макс', 'Present Perfect', `<span class="pill s">${icon('chatDots', 's16')}9/10</span>`)}
+  <div class="c-slate"><div class="top"><span class="k">На доске</span>${mast(1)}</div><div class="p">I've been here before.</div><div class="t">Я уже здесь бывал.</div><div class="ac"><span class="pl t">${icon('vol', 's18')}Послушать</span><span class="pl t">${icon('bookmark', 's18')}В карточки</span></div></div>
+  <div class="c-sc"><div class="ln mx"><span class="w">Макс</span><span>${keyify(MAX1)}</span></div><div class="ln me"><span class="w">Вы</span><span>I've been here before.</span></div><div class="ln mx"><span class="w">Макс</span><span>${keyify(MAX2)}</span></div></div>`,
+  { fixed: `<div class="c-cmp" style="padding-bottom:34px"><div class="fld"><span>Ответь Максу…</span><span class="snd t" style="flex:none">${li('arrowUp', 's20')}</span></div></div>`, inStyle: 'padding:52px 20px 150px' });
+
+document.getElementById('root').innerHTML =
+  block('c1', '1 · Сцена', 'Шрифт вместо контейнеров: миры — крупные строки-названия, активный светится, реплики идут чистым текстом без пузырей. Одно главное действие всегда в нижней плите.', [col('Хаб', a1()), col('Брифинг', a2()), col('Сессия', a3()), col('Урок с Максом', a4())]) +
+  block('c2', '2 · Мессенджер', 'Диалоги как переписка: у каждого мира и собеседника свой круглый аватар, миры — строки беседы, Макс закреплён сверху. Реплики — пузыри, цель — пять шагов-кружков над перепиской.', [col('Хаб', b1()), col('Брифинг', b2()), col('Сессия', b3()), col('Урок с Максом', b4())]) +
+  block('c3', '3 · Маршрут', 'Всё лежит на одной нити: миры переключаются значками, диалоги идут маршрутом с узлами, цели — вертикальная лента слева. В сессии крупно только текущая реплика, ввод — в нижней панели с большим микрофоном.', [col('Хаб', c1()), col('Брифинг', c2()), col('Сессия', c3()), col('Урок с Максом', c4())]);
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const T = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', T[1]); p.style.setProperty('--g2', T[2]); p.style.setProperty('--acc', T[3]); p.style.setProperty('--on', T[4]); }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((T, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${T[1]},${T[2]})"></i>${T[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

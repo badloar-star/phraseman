@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning B2 — три концепции</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (владелец 04.10: новые разделы не должны повторять «Карточки» и «Мои ошибки»): три концепции курса Learning B2 с разным ЯЗЫКОМ интерфейса.
+     Общее с приложением — только цвет темы (аврора, акцентная кнопка). Нет: стопки-героя, плиток 2×2, сетки стеклянных карточек, переворота, кольца прогресса, фильтр-лент и стакана ответов. */
+  .scr > .in { min-height: 100%; }
+  .bot2 { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 24px 20px 34px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.94) 38%); }
+  .acc { color: var(--acc); } .sec2 { color: var(--sec); } .rd { color: #FF9C93; } .gr { color: #8DEBB0; }
+  .stx { display: inline-flex; gap: 2px; color: var(--acc); } .stx i { display: inline-flex; } .stx i.off { opacity: .22; }
+  .hrt { display: inline-flex; gap: 3px; color: #FF8A80; } .hrt i { display: inline-flex; } .hrt i.x { color: rgba(255,255,255,.2); }
+  .sh { display: flex; align-items: center; gap: 10px; height: 44px; }
+  .sh .trk { flex: 1; }
+  .big { font-size: 40px; line-height: 46px; font-weight: 700; letter-spacing: -.6px; }
+  .qlink { display: flex; align-items: center; justify-content: center; height: 46px; margin-top: 4px; font-size: 16px; font-weight: 600; color: var(--sec); }
+  .fcts { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 16px; font-weight: 600; color: #D6D6D8; } .fcts span { display: inline-flex; align-items: center; gap: 7px; min-height: 30px; }
+  .ft3 { display: flex; justify-content: space-between; align-items: center; }
+  .ft3 span { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 16px; font-size: 16px; font-weight: 600; color: #D6D6D8; } .ft3 span.on { color: var(--acc); }
+  .ft3 b { min-width: 22px; height: 22px; border-radius: 11px; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; background: var(--acc); color: var(--on); }
+
+  /* ===== Концепция 1: СЦЕНАРИЙ ДНЯ — один тонкий «нить» слева, занятия как сцены, текущее раскрывается прямо в ленте ===== */
+  .a-nm { font-size: 20px; line-height: 26px; font-weight: 600; color: #E2E2E6; margin-top: 6px; }
+  .a-pr { display: flex; align-items: center; gap: 14px; margin-top: 16px; font-size: 15px; font-weight: 700; color: var(--sec); }
+  .a-pr .trk { flex: 1; }
+  .a-ch { display: flex; justify-content: space-between; align-items: baseline; margin: 30px 0 4px; font-size: 22px; font-weight: 700; } .a-ch span { font-size: 15px; color: var(--sec); font-weight: 600; }
+  .a-th { position: relative; margin-left: 4px; }
+  .a-th::before { content: ""; position: absolute; left: 7px; top: 12px; bottom: 12px; width: 2px; background: rgba(255,255,255,.14); }
+  .a-s { position: relative; display: flex; gap: 18px; padding: 14px 0 14px 0; min-height: 64px; align-items: flex-start; }
+  .a-s .d { position: relative; z-index: 1; width: 16px; height: 16px; border-radius: 50%; margin-top: 5px; flex: none; background: #3a3a3f; box-shadow: 0 0 0 5px #0c0c0d; }
+  .a-s.do .d { background: var(--acc); } .a-s.cu .d { background: #0c0c0d; box-shadow: 0 0 0 3px var(--acc), 0 0 0 7px #0c0c0d; }
+  .a-s .n { font-size: 14px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+  .a-s .w { font-size: 20px; line-height: 25px; font-weight: 600; letter-spacing: -.2px; margin-top: 1px; }
+  .a-s.lk .w, .a-s.nx .w { color: #8A8A8E; } .a-s .k { margin-left: auto; padding-top: 4px; color: #8A8A8E; flex: none; }
+  .a-s.cu .w { font-size: 26px; line-height: 31px; font-weight: 700; letter-spacing: -.4px; }
+  .a-more { margin-top: 12px; }
+  .a-more .ms { font-size: 18px; line-height: 26px; color: #E2E2E6; margin-bottom: 14px; }
+  .a-sum { font-size: 17px; color: var(--sec); font-weight: 600; padding: 12px 0 0 34px; }
+  .a-st { font-size: 16px; font-weight: 700; color: var(--sec); margin-top: 18px; display: flex; justify-content: space-between; }
+  .a-ti { font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.7px; margin-top: 12px; }
+  .a-ld { font-size: 18px; line-height: 24px; color: #E2E2E6; margin-top: 8px; }
+  .a-p { font-size: 16px; line-height: 23px; color: #D6D6D8; margin-top: 12px; }
+  .a-p b, .b-body .p b, .c-bub b { white-space: nowrap; }
+  .a-ex { display: flex; align-items: center; gap: 12px; font-size: 22px; font-weight: 600; margin-top: 6px; } .a-ex.ok { color: #8DEBB0; } .a-ex.no { color: #FF9C93; }
+  .a-ex.no span { text-decoration: line-through; text-decoration-thickness: 2px; }
+  .a-q { font-size: 24px; line-height: 29px; font-weight: 700; letter-spacing: -.4px; margin-top: 8px; }
+  .a-o { display: flex; align-items: center; gap: 18px; min-height: 52px; font-size: 21px; font-weight: 600; } .a-o + .a-o { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); } .a-o i { font-style: normal; width: 22px; color: var(--sec); font-weight: 500; }
+  .a-src { font-size: 54px; line-height: 60px; font-weight: 700; letter-spacing: -1.4px; margin-top: 12px; display: flex; align-items: center; gap: 14px; }
+  .a-sent { margin-top: 34px; font-size: 38px; line-height: 44px; font-weight: 600; letter-spacing: -.6px; display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: flex-end; } .a-sent .bl { min-width: 66px; height: 44px; box-shadow: inset 0 -2px 0 rgba(255,255,255,.22); } .a-sent .fi { color: var(--acc); }
+  .a-bank { display: flex; flex-wrap: wrap; gap: 4px 4px; margin: 40px -10px 0; } .a-bank span { min-height: 56px; padding: 0 18px; display: inline-flex; align-items: center; font-size: 30px; font-weight: 500; letter-spacing: -.4px; } .a-bank span.u { opacity: .22; text-decoration: line-through; text-decoration-thickness: 2px; }
+
+  /* ===== Концепция 2: ЛЕСТНИЦА — восемь ступеней-колонок растут слева направо, наверху «проверка главы» ===== */
+  .b-lv { display: flex; align-items: baseline; justify-content: space-between; margin-top: 26px; font-size: 24px; font-weight: 700; } .b-lv span { font-size: 15px; font-weight: 600; color: var(--sec); }
+  .b-stair { display: flex; align-items: flex-end; justify-content: space-between; height: 340px; margin-top: 18px; }
+  .b-c { width: 44px; border-radius: 16px 16px 8px 8px; padding: 8px 0 10px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums;
+    background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05)); color: #A6A6A8; }
+  .b-c.do { background: linear-gradient(180deg, var(--acc), color-mix(in srgb, var(--acc) 38%, #101014)); color: var(--on); }
+  .b-c.do .nn { color: #fff; }
+  .b-c.cu { background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 30%, #15151a), #15151a); color: #fff; box-shadow: inset 0 0 0 2.5px var(--acc); }
+  .b-c.ch { background: linear-gradient(180deg, color-mix(in srgb, var(--g1) 55%, #15151a), color-mix(in srgb, var(--g2) 35%, #0b0b0f)); color: #fff; }
+  .b-det { margin-top: 24px; } .b-det .nm { font-size: 28px; line-height: 33px; font-weight: 700; letter-spacing: -.4px; margin-top: 4px; } .b-det .ov3 { font-size: 16px; font-weight: 600; color: var(--sec); }
+  .b-two { display: flex; align-items: center; justify-content: space-between; margin-top: 18px; min-height: 56px; font-size: 18px; font-weight: 600; color: #D6D6D8; box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .b-sh { text-align: center; } .b-sh .orb { width: 84px; height: 84px; border-radius: 50%; margin: 10px auto 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 62%, #1a1a20), color-mix(in srgb, var(--g2) 40%, #0b0b0f)); box-shadow: inset 1px 2px 0 rgba(255,255,255,.3); }
+  .b-sh .ck { font-size: 16px; font-weight: 600; color: var(--sec); margin-top: 16px; } .b-sh .ti { font-size: 28px; line-height: 33px; font-weight: 700; letter-spacing: -.4px; margin-top: 6px; } .b-sh .ms { font-size: 17px; line-height: 24px; color: #E2E2E6; margin: 10px 8px 0; }
+  .b-sh .fcts { justify-content: center; margin-top: 16px; }
+  .b-rl { position: relative; display: flex; gap: 18px; margin-top: 26px; }
+  .b-rl::before { content: ""; position: absolute; left: 16px; top: 20px; bottom: 20px; width: 2px; background: rgba(255,255,255,.12); }
+  .b-stg { display: flex; flex-direction: column; justify-content: flex-start; gap: 0; width: 34px; flex: none; position: relative; }
+  .b-stg span { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; background: #1d1d22; color: #77777B; position: relative; }
+  .b-stg span.on { background: var(--acc); color: var(--on); } .b-stg span + span { margin-top: 30px; }
+  .b-stp { display: flex; gap: 8px; margin-top: 10px; } .b-stp div { flex: 1; font-size: 16px; font-weight: 700; color: #77777B; } .b-stp i { display: block; height: 5px; border-radius: 3px; background: rgba(255,255,255,.14); margin-bottom: 8px; } .b-stp .on { color: var(--acc); } .b-stp .on i { background: var(--acc); }
+  .b-body .ti { font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -.7px; margin-top: 18px; }
+  .b-body .p { font-size: 16px; line-height: 23px; color: #D6D6D8; margin-top: 10px; }
+  .b-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; } .b-pair div { min-height: 48px; border-radius: 16px; padding: 0 14px; display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 600; }
+  .b-pair .ok { background: rgba(111,208,140,.16); color: #8DEBB0; } .b-pair .no { background: rgba(242,118,107,.16); color: #FF9C93; } .b-pair .no span { text-decoration: line-through; text-decoration-thickness: 2px; }
+  .b-opts { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .b-opts div { min-height: 50px; border-radius: 28px; padding: 0 22px; display: flex; align-items: center; gap: 14px; font-size: 20px; font-weight: 600; background: rgba(255,255,255,.08); } .b-opts i { font-style: normal; color: var(--sec); width: 16px; }
+  .b-th { margin-top: 16px; font-size: 17px; font-weight: 700; display: flex; justify-content: space-between; } .b-th span { color: var(--sec); }
+  .b-src { font-size: 48px; line-height: 54px; font-weight: 700; letter-spacing: -1.2px; margin-top: 20px; display: flex; align-items: center; gap: 14px; } .b-src .sn { width: 46px; height: 46px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,.1); flex: none; }
+  .b-steps { display: flex; gap: 8px; align-items: flex-end; margin-top: 36px; height: 130px; }
+  .b-steps span { flex: 1; min-width: 0; height: 58px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 600; background: rgba(255,255,255,.06); color: #77777B; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+  .b-steps span.f { background: color-mix(in srgb, var(--acc) 22%, rgba(20,20,24,.9)); color: #fff; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--acc) 70%, transparent); }
+  .b-shelf { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 30px; padding: 22px 14px; border-radius: 28px; background: rgba(255,255,255,.05); }
+  .b-shelf span { height: 56px; padding: 0 26px; border-radius: 28px; display: inline-flex; align-items: center; font-size: 22px; font-weight: 600; background: rgba(255,255,255,.1); box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.25); } .b-shelf span.u { opacity: .22; }
+
+  /* ===== Концепция 3: ПЛЁНКА СЦЕН — занятия листаются по одному, крупная сцена посередине, соседние выглядывают по краям; диалог-чат ===== */
+  .c-segs { display: flex; gap: 5px; margin-top: 14px; } .c-segs i { flex: 1; height: 5px; border-radius: 3px; background: rgba(255,255,255,.14); } .c-segs i.do { background: var(--acc); } .c-segs i.cu { background: #fff; }
+  .c-pg { position: relative; height: 500px; margin: 24px -20px 0; }
+  .c-card { position: absolute; top: 0; width: 330px; height: 500px; border-radius: 36px; padding: 26px 24px; display: flex; flex-direction: column; background: linear-gradient(160deg, color-mix(in srgb, var(--g1) 50%, #0b0b0f), color-mix(in srgb, var(--g2) 38%, #0a0a0d)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1), 0 26px 40px -22px rgba(0,0,0,.85); }
+  .c-card.l { left: -294px; opacity: .55; } .c-card.r { left: 394px; opacity: .55; } .c-card.m { left: 50px; }
+  .c-card .nn { font-size: 120px; line-height: 124px; font-weight: 800; letter-spacing: -6px; }
+  .c-card .tt { font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -.6px; margin-top: auto; }
+  .c-card .sub { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 16px; font-weight: 600; color: rgba(255,255,255,.85); }
+  .c-card.r > *, .c-card.l > * { visibility: hidden; }
+  .c-go { margin-top: 18px; }
+  .c-poster { margin: -52px -20px 0; padding: 70px 24px 0; min-height: 700px; background: linear-gradient(170deg, color-mix(in srgb, var(--g1) 52%, #0b0b0f), color-mix(in srgb, var(--g2) 40%, #0a0a0d) 70%, #0b0b0f); border-radius: 0 0 40px 40px; }
+  .c-poster .ck { font-size: 17px; font-weight: 600; margin-top: 26px; opacity: .9; } .c-poster .nn { font-size: 150px; line-height: 150px; font-weight: 800; letter-spacing: -8px; margin-top: 8px; }
+  .c-poster .ti { font-size: 38px; line-height: 44px; font-weight: 700; letter-spacing: -.8px; margin-top: 6px; } .c-poster .ms { font-size: 19px; line-height: 27px; margin-top: 14px; color: rgba(255,255,255,.92); }
+  .c-poster .fcts { margin-top: 22px; color: #fff; }
+  .c-bub { max-width: 340px; border-radius: 22px 22px 22px 8px; padding: 10px 16px; font-size: 16px; line-height: 23px; background: rgba(255,255,255,.09); margin-top: 8px; color: #E8E8EA; }
+  .c-bub.h { font-size: 24px; line-height: 29px; font-weight: 700; letter-spacing: -.4px; color: #fff; }
+  .c-bub .e { display: flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 600; margin-top: 2px; } .c-bub .e.ok { color: #8DEBB0; } .c-bub .e.no { color: #FF9C93; } .c-bub .e.no span { text-decoration: line-through; text-decoration-thickness: 2px; }
+  .c-me { margin-left: auto; width: fit-content; max-width: 320px; border-radius: 24px 24px 8px 24px; padding: 0 22px; min-height: 46px; display: flex; align-items: center; gap: 10px; margin-top: 8px; font-size: 19px; font-weight: 600; background: rgba(255,255,255,.1); }
+  .c-me i { font-style: normal; color: var(--sec); }
+  .c-lbl { font-size: 15px; font-weight: 600; color: var(--sec); margin: 14px 0 0; }
+  .c-say { display: flex; align-items: center; gap: 12px; }
+  .c-snd { width: 46px; height: 46px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,.12); flex: none; }
+  .c-ans { margin-left: auto; margin-top: 18px; width: fit-content; max-width: 360px; min-height: 64px; border-radius: 28px 28px 8px 28px; padding: 8px 22px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 26px; font-weight: 600; background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 38%, rgba(10,10,14,.92)), color-mix(in srgb, var(--g2) 28%, rgba(8,8,12,.9))); box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.3); } .c-ans .el { color: #8A8A8E; }
+  .c-keys { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 20px 20px 34px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.96) 24%); }
+  .c-keys .bk { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 14px; } .c-keys .bk span { height: 54px; padding: 0 24px; border-radius: 27px; display: inline-flex; align-items: center; font-size: 22px; font-weight: 600; background: rgba(255,255,255,.1); box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.25); } .c-keys .bk span.u { opacity: .22; }
+  .chip.on { background: #222224; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Learning B2 — три концепции</h1>
+  <p class="page-lead">Все три нарочно непохожи на «Карточки» и «Мои ошибки» и друг на друга: нет стопки-героя, плиток 2×2, сетки стеклянных карточек, переворота, кольца прогресса, фильтр-лент и стакана ответов. Общее с приложением — только цвет темы (аврора, акцентная кнопка). В каждой по четыре ключевых экрана: карта курса, старт занятия, интро «Смысл», сборка фразы.</p>
+  <div class="page-nav"><a href="#c1">1 · Сценарий дня</a><a href="#c2">2 · Лестница</a><a href="#c3">3 · Плёнка сцен</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone, col, block, sheet, energy, coins } = K;
+const LP = {
+  starF: '<path d="M12 3.4l2.7 5.7 6.2.8-4.5 4.3 1.1 6.2L12 17.4l-5.5 3 1.1-6.2L3.1 9.9l6.2-.8z" fill="currentColor" stroke="none"/>',
+  book: '<path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M4 18.5A2.5 2.5 0 016.5 16H20"/><path d="M8 7h8M8 10.5h6"/>',
+  time: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 1.8"/>',
+  trophyF: '<path d="M7 3.5h10v6a5 5 0 01-10 0z" fill="currentColor" stroke="none"/><path d="M7 5.5H4.5v1.5a3.5 3.5 0 003.5 3.5M17 5.5h2.5v1.5a3.5 3.5 0 01-3.5 3.5" stroke-width="1.8"/><path d="M12 14.5V18M8.5 20.5h7" stroke-width="2.2"/>',
+};
+const li = (n, c = '') => `<svg class="i ${c}" viewBox="0 0 24 24" aria-hidden="true">${LP[n]}</svg>`;
+const stars = (n, s = 's16') => `<span class="stx">${[1, 2, 3].map((i) => `<i class="${i <= n ? '' : 'off'}">${li('starF', s)}</i>`).join('')}</span>`;
+const hearts = (lost = 0) => `<span class="hrt">${[0, 1, 2].map((i) => `<i class="${i >= 3 - lost ? 'x' : ''}">${icon('heartF', 's16')}</i>`).join('')}</span>`;
+const cta = (t, x = '', ar = 'arrowR') => `<div class="ac-cta t"${x}>${t}<span class="ar">${icon(ar, 's20')}</span></div>`;
+const bot = (i) => `<div class="bot2">${i}</div>`;
+const L1 = 'Present be: утверждение + not';
+const S = { 1: 'Вошли в офис', 2: 'День продолжается', 3: 'Заботливый начальник', 4: 'Утренняя планёрка вслух', 5: 'Типичные ошибки: I fine, I no sure', 6: 'Вечером в квартире, звонок другу', 7: 'Конец дня, всё вперемешку', 8: 'Итог первого дня: 10 вопросов о себе', 9: 'Коллега приносит кофе', 10: 'Замечаем и говорим о собеседнике' };
+const MSG = 'Ты научишься собирать простые фразы с глаголом to be.';
+const facts = `<div class="fcts"><span>${li('time', 's18')}≈ 5 минут</span><span>${li('book', 's18')}4 новых слова</span><span>${icon('heart', 's18')}3 попытки</span></div>`;
+const mhead = () => `<div class="flex" style="height:44px"><span class="rb t">${icon('arrowL', 's20')}</span><div class="grow"></div><span class="rb t">${li('book', 's20')}</span></div>`;
+const WORDS = ['am', 'in', 'I', 'the', 'office'];
+// шапка занятия: закрыть, полоса, сердца, энергия
+const sh = (step = '3 / 16') => `<div class="sh"><span class="rb t">${icon('close', 's20')}</span><span class="trk"><i style="width:19%"></i></span>${hearts(0)}${energy(4, { s: true })}</div>
+  <div class="flex" style="justify-content:space-between;margin-top:6px;font-size:15px;font-weight:600;color:var(--sec)"><span>${step}</span><span class="pill s" style="height:28px;padding:0 10px;gap:6px;font-size:14px">${K.coinImg(5, 16)}+6</span></div>`;
+const ft = (cls = '') => `<div class="bot2" style="padding-top:12px"><div class="ft3 ${cls}"><span class="t">${icon('arrowL', 's20')}Назад</span><span class="t">${icon('layers', 's20')}Слова<b>3</b></span><span class="t" style="opacity:.4">Дальше${icon('fwd', 's20')}</span></div></div>`;
+
+// ================= 1. СЦЕНАРИЙ ДНЯ =================
+const aS = (n, st, o = {}) => `<div class="a-s ${st} t"><span class="d"></span><div class="grow"><div class="n">Занятие ${n}</div><div class="w">${o.t || S[n]}</div>${o.more || ''}</div>${st === 'do' ? stars(o.s || 3) : st === 'lk' ? `<span class="k">${icon('lockF', 's18')}</span>` : st === 'nx' && o.chk ? `<span class="k">${li('trophyF', 's20')}</span>` : ''}</div>`;
+const aMapBody = (open) => `${mhead()}<div class="big" style="margin-top:14px">Урок 1</div><div class="a-nm">${L1}</div>
+  <div class="a-pr"><span class="trk"><i style="width:11%"></i></span>6 / 56</div>
+  <div class="a-ch">Глава 1<span>занятия 1–8</span></div>
+  <div class="a-sum" style="padding-left:34px">Занятия 1–4 пройдены</div>
+  <div class="a-th">${aS(5, 'do', { s: 3 })}${aS(6, 'do', { s: 2 })}${aS(7, 'cu', open ? { more: `<div class="a-more"><div class="ms">${MSG}</div>${facts}<div style="margin-top:18px">${cta('Начать')}</div><div class="qlink t">Сразу к практике</div></div>` } : {})}${aS(8, 'nx', { chk: true })}</div>
+  <div class="a-ch">Глава 2<span>занятия 9–16</span></div>
+  <div class="a-th">${aS(9, 'nx')}${aS(10, 'lk')}</div>`;
+const a1 = () => phone(aMapBody(false), { inStyle: 'padding-bottom:120px' });
+const a2 = () => phone(aMapBody(true), { inStyle: 'padding-bottom:120px' });
+const aOpt = (l, t) => `<div class="a-o t"><i>${l}</i>${t}</div>`;
+const a3 = () => phone(`<div class="sh"><span class="rb t">${icon('close', 's20')}</span><div class="grow" style="font-size:19px;font-weight:700">Смысл</div><span style="font-size:15px;font-weight:700;color:var(--sec)">1 / 3</span>${hearts(0)}${energy(4, { s: true })}</div>
+  <div class="a-ti" style="margin-top:20px"><span class="acc">am, is, are</span> — это и есть «быть»</div>
+  <div class="a-ld">Одно короткое слово связывает, кто есть кто.</div>
+  <div class="a-p">В русском мы говорим «Я — Анна» и обходимся без глагола. В английском между словами обязательно стоит связка — иначе фраза рассыпается.</div>
+  <div class="a-ex ok">${icon('check', 's22')}<span>I am Anna.</span></div><div class="a-ex no">${icon('close', 's22')}<span>I Anna.</span></div>
+  <div class="a-p">Связка меняется по лицу: <b>I am</b>, <b>he is</b>, <b>you are</b>. Больше ничего запоминать не нужно.</div>
+  <div class="a-st"><span>Проверь себя</span><span>1 / 3</span></div><div class="a-q">Какая фраза собрана правильно?</div>
+  <div style="margin-top:10px">${aOpt('A', 'I am here.')}${aOpt('B', 'I here.')}${aOpt('C', 'I is here.')}</div>`,
+  { inStyle: 'padding-bottom:130px', fixed: bot(`<div class="ac-cta t" style="opacity:.4">Дальше<span class="ar">${icon('arrowR', 's20')}</span></div>`) });
+const a4 = () => phone(`${sh()}<div style="font-size:17px;color:var(--sec);font-weight:600;margin-top:30px">Собери фразу</div>
+  <div class="a-src">Я в офисе.<span class="c-snd t">${icon('vol', 's20')}</span></div>
+  <div class="a-sent"><span class="fi">I</span><span class="fi">am</span><span class="bl"></span><span class="bl"></span><span class="bl"></span></div>
+  <div class="a-bank">${WORDS.map((w) => `<span class="t${w === 'am' || w === 'I' ? ' u' : ''}">${w}</span>`).join('')}</div>
+  <div class="sec2" style="font-size:15px;margin-top:10px">Нажимай слова по порядку</div>`,
+  { fixed: `<div class="bot2" style="padding-top:12px"><div class="ac-cta t" style="margin-bottom:6px;opacity:.4">Проверить</div><div class="ft3"><span class="t">${icon('arrowL', 's20')}Назад</span><span class="t">${icon('layers', 's20')}Слова<b>3</b></span><span class="t" style="opacity:.4">Дальше${icon('fwd', 's20')}</span></div></div>` });
+
+// ================= 2. ЛЕСТНИЦА =================
+const stCol = (n, st, h) => `<div class="b-c t ${st}" style="height:${h}px"><span>${st === 'do' ? icon('check', 's20') : st === 'cu' ? icon('play', 's20') : st === 'ch' ? li('trophyF', 's22') : ''}</span><span class="nn">${n}</span></div>`;
+const STAIR = [['do', 1], ['do', 2], ['do', 3], ['do', 4], ['do', 5], ['do', 6], ['cu', 7], ['ch', 8]];
+const bMap = () => `${mhead()}<div class="big" style="margin-top:14px">Урок 1</div><div class="a-nm">${L1}</div>
+  <div class="a-pr"><span class="trk"><i style="width:11%"></i></span>6 / 56</div>
+  <div class="b-lv">Глава 1<span>занятия 1–8</span></div>
+  <div class="b-stair">${STAIR.map((s, i) => stCol(s[1], s[0], 120 + i * 30)).join('')}</div>
+  <div class="b-det"><div class="ov3">Занятие 7</div><div class="nm">${S[7]}</div><div style="margin-top:16px">${cta('Начать')}</div>
+  <div class="b-two t"><span>Глава 2 · занятия 9–16</span>${icon('fwd', 's20')}</div></div>`;
+const b1 = () => phone(bMap(), { inStyle: 'padding-bottom:60px' });
+const b2 = () => phone(bMap(), { overlay: sheet('s', `<div class="b-sh"><div class="orb">${icon('play', 's28')}</div><div class="ck">Сессия 7 · Глава 1</div><div class="ti">Чему научишься</div><div class="ms">${MSG}</div>${facts}
+  <div style="margin-top:20px">${cta('Начать')}</div><div class="qlink t">Сразу к практике</div></div>`, true) });
+const b3 = () => phone(`<div class="sh"><span class="rb t">${icon('close', 's20')}</span><div class="grow"></div>${hearts(0)}${energy(4, { s: true })}</div>
+  <div class="b-stp"><div class="on"><i></i>Смысл</div><div><i></i>Схема</div><div><i></i>Ловушка</div></div>
+  <div class="b-body"><div class="ti"><span class="acc">am, is, are</span> — это и есть «быть»</div>
+  <div class="p">Одно короткое слово связывает, кто есть кто. В русском мы говорим «Я — Анна» и обходимся без глагола. В английском между словами обязательно стоит связка — иначе фраза рассыпается.</div>
+  <div class="b-pair"><div class="ok">${icon('check', 's20')}I am Anna.</div><div class="no">${icon('close', 's20')}<span>I Anna.</span></div></div>
+  <div class="p">Связка меняется по лицу: <b>I am</b>, <b>he is</b>, <b>you are</b>. Больше ничего запоминать не нужно.</div></div>
+  <div class="b-th"><span style="color:#fff">Проверь себя</span><span>1 / 3</span></div><div class="a-q">Какая фраза собрана правильно?</div>
+  <div class="b-opts"><div class="t"><i>A</i>I am here.</div><div class="t"><i>B</i>I here.</div><div class="t"><i>C</i>I is here.</div></div>`,
+  { inStyle: 'padding-bottom:130px', fixed: bot(`<div class="ac-cta t" style="opacity:.4">Дальше<span class="ar">${icon('arrowR', 's20')}</span></div>`) });
+const b4 = () => phone(`${sh()}<div style="font-size:17px;color:var(--sec);font-weight:600;margin-top:30px">Собери фразу</div>
+  <div class="b-src">Я в офисе.<span class="sn t">${icon('vol', 's20')}</span></div>
+  <div class="b-steps">${['I', 'am', '', '', ''].map((w, i) => `<span class="${w ? 'f' : ''}" style="transform:translateY(${-i * 18}px)">${w || i + 1}</span>`).join('')}</div>
+  <div class="b-shelf">${WORDS.map((w) => `<span class="t${w === 'am' || w === 'I' ? ' u' : ''}">${w}</span>`).join('')}</div>
+  <div class="sec2" style="font-size:15px;margin-top:14px;text-align:center">Нажимай слова по порядку</div>`,
+  { fixed: `<div class="bot2" style="padding-top:12px"><div class="ac-cta t" style="margin-bottom:6px;opacity:.4">Проверить</div><div class="ft3"><span class="t">${icon('arrowL', 's20')}Назад</span><span class="t">${icon('layers', 's20')}Слова<b>3</b></span><span class="t" style="opacity:.4">Дальше${icon('fwd', 's20')}</span></div></div>` });
+
+// ================= 3. ПЛЁНКА СЦЕН =================
+const cCard = (cls, n, title, sub) => `<div class="c-card ${cls} t"><div class="nn">${n}</div><div class="tt">${title}</div><div class="sub">${sub}</div></div>`;
+const cMap = () => `${mhead()}<div class="big" style="margin-top:14px">Урок 1</div><div class="a-nm">${L1}</div>
+  <div class="c-segs">${[1, 2, 3, 4, 5, 6].map(() => '<i class="do"></i>').join('')}<i class="cu"></i><i></i></div>
+  <div class="c-pg">${cCard('l', 6, S[6], `${stars(2)}`)}${cCard('m', 7, S[7], `${icon('play', 's18')}Текущее занятие`)}${cCard('r', 8, S[8], `${li('trophyF', 's18')}Проверка главы`)}</div>
+  <div class="c-go">${cta('Начать')}</div>`;
+const c1 = () => phone(cMap(), { inStyle: 'padding-bottom:40px' });
+const c2 = () => phone(`<div class="c-poster"><div class="flex" style="height:44px"><span class="rb t">${icon('close', 's18')}</span></div>
+  <div class="ck">Сессия 7 · Глава 1</div><div class="nn">7</div><div class="ti">Чему научишься</div><div class="ms">${MSG}</div>${facts}</div>
+  <div style="margin-top:26px">${cta('Начать')}</div><div class="qlink t">Сразу к практике</div>`, { inStyle: 'padding-bottom:40px' });
+const c3 = () => phone(`<div class="sh"><span class="rb t">${icon('close', 's20')}</span><div class="grow" style="font-size:19px;font-weight:700">Смысл</div><span style="font-size:15px;font-weight:700;color:var(--sec)">1 / 3</span>${hearts(0)}${energy(4, { s: true })}</div>
+  <div class="c-segs" style="margin-top:8px"><i class="cu"></i><i></i><i></i></div>
+  <div class="c-bub h" style="margin-top:14px"><span class="acc">am, is, are</span> — это и есть «быть»</div>
+  <div class="c-bub">Одно короткое слово связывает, кто есть кто. В русском мы говорим «Я — Анна» и обходимся без глагола. В английском между словами обязательно стоит связка — иначе фраза рассыпается.</div>
+  <div class="c-bub"><div class="e ok">${icon('check', 's20')}I am Anna.</div><div class="e no">${icon('close', 's20')}<span>I Anna.</span></div></div>
+  <div class="c-bub">Связка меняется по лицу: <b>I am</b>, <b>he is</b>, <b>you are</b>. Больше ничего запоминать не нужно.</div>
+  <div class="c-lbl">Проверь себя · 1 / 3</div><div class="c-bub h" style="font-size:20px;line-height:25px">Какая фраза собрана правильно?</div>
+  <div class="c-me t"><i>A</i>I am here.</div><div class="c-me t"><i>B</i>I here.</div><div class="c-me t"><i>C</i>I is here.</div>`,
+  { inStyle: 'padding-bottom:130px', fixed: bot(`<div class="ac-cta t" style="opacity:.4">Дальше<span class="ar">${icon('arrowR', 's20')}</span></div>`) });
+const c4 = () => phone(`${sh()}<div class="c-lbl" style="margin-top:28px">Собери фразу</div>
+  <div class="c-bub h" style="display:flex;align-items:center;gap:14px;font-size:34px;line-height:40px;margin-top:10px">Я в офисе.<span class="c-snd t">${icon('vol', 's20')}</span></div>
+  <div class="c-ans"><span>I</span><span>am</span><span class="el">…</span></div>
+  <div class="sec2" style="font-size:15px;margin-top:16px;text-align:right">Нажимай слова по порядку</div>`,
+  { fixed: `<div class="c-keys"><div class="bk">${WORDS.map((w) => `<span class="t${w === 'am' || w === 'I' ? ' u' : ''}">${w}</span>`).join('')}</div><div class="ac-cta t" style="opacity:.4">Проверить</div><div class="ft3" style="margin-top:4px"><span class="t">${icon('arrowL', 's20')}Назад</span><span class="t">${icon('layers', 's20')}Слова<b>3</b></span><span class="t" style="opacity:.4">Дальше${icon('fwd', 's20')}</span></div></div>` });
+
+document.getElementById('root').innerHTML =
+  block('c1', '1 · Сценарий дня', 'Занятия — сцены одного рабочего дня на тонкой нити слева; текущее занятие раскрывается прямо в ленте, без окна. Уроки читаются как текст, фраза собирается как предложение с пропусками.', [col('Карта курса', a1()), col('Старт занятия', a2()), col('Интро «Смысл»', a3()), col('Сборка фразы', a4())]) +
+  block('c2', '2 · Лестница', 'Восемь занятий главы — ступени, растущие слева направо к «проверке главы» на вершине. Старт — шторка, интро идёт по вертикальной шкале «Смысл — Схема — Ловушка», слова ответа собираются лесенкой.', [col('Карта курса', b1()), col('Старт занятия', b2()), col('Интро «Смысл»', b3()), col('Сборка фразы', b4())]) +
+  block('c3', '3 · Плёнка сцен', 'Занятия листаются по одному: крупная сцена посередине, соседние выглядывают по краям, сверху — полоски прогресса. Старт — полноэкранный постер, интро и сборка фразы устроены как диалог-переписка.', [col('Карта курса', c1()), col('Старт занятия', c2()), col('Интро «Смысл»', c3()), col('Сборка фразы', c4())]);
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const T = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', T[1]); p.style.setProperty('--g2', T[2]); p.style.setProperty('--acc', T[3]); p.style.setProperty('--on', T[4]); }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((T, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${T[1]},${T[2]})"></i>${T[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

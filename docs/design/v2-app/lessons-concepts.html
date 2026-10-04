@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Уроки — три концепции</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="cards-glass.css">
+<style>
+  /* зачем (владелец 04.10: новые разделы не должны повторять «Карточки» и «Мои ошибки»): три концепции раздела «Уроки» с разным ЯЗЫКОМ интерфейса.
+     Общее с приложением — только цвет темы (аврора, акцентная кнопка). Нет: стопки-героя, плиток 2×2, сетки стеклянных карточек, переворота, кольца прогресса, фильтр-лент и стакана ответов. */
+  .scr > .in { min-height: 100%; }
+  .bot2 { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 24px 20px 34px; background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.94) 38%); }
+  .bot2 .quiet { display: flex; align-items: center; justify-content: center; height: 44px; margin-top: 6px; font-size: 16px; font-weight: 600; color: var(--sec); }
+  .acc { color: var(--acc); } .sec2 { color: var(--sec); } .rd { color: #FF9C93; } .gr { color: #8DEBB0; }
+  .stx { display: inline-flex; gap: 2px; color: var(--acc); } .stx i { display: inline-flex; } .stx i.off { opacity: .22; }
+  .hrt { display: inline-flex; gap: 3px; color: #FF8A80; margin-right: 4px; } .hrt i { display: inline-flex; } .hrt i.x { color: rgba(255,255,255,.2); }
+  .hd3 { display: flex; align-items: center; gap: 12px; height: 44px; }
+  .hd3 .ti { font-size: 18px; font-weight: 700; } .hd3 .lv { font-size: 15px; color: var(--sec); margin-left: 8px; font-weight: 600; }
+
+  /* ===== Концепция 1: ОГЛАВЛЕНИЕ — крупные номера в левом поле, текст и тонкие линии ===== */
+  .a-h { font-size: 40px; line-height: 46px; font-weight: 700; letter-spacing: -.6px; }
+  .a-lv { display: flex; align-items: baseline; justify-content: space-between; margin-top: 26px; margin-bottom: 8px; }
+  .a-lv b { font-size: 68px; line-height: 68px; font-weight: 800; letter-spacing: -2px; } .a-lv span { font-size: 16px; color: var(--sec); font-weight: 600; }
+  .a-r { display: flex; align-items: center; gap: 16px; min-height: 68px; padding: 10px 0; }
+  .a-r + .a-r { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .a-r .n { width: 54px; flex: none; font-size: 32px; line-height: 36px; font-weight: 300; letter-spacing: -1px; color: var(--sec); font-variant-numeric: tabular-nums; }
+  .a-r .w { font-size: 19px; line-height: 24px; font-weight: 600; letter-spacing: -.2px; }
+  .a-r .m { font-size: 14px; color: var(--sec); margin-top: 2px; }
+  .a-r.cur .n { color: var(--acc); font-weight: 600; }
+  .a-r.lk .n, .a-r.lk .w { color: #77777B; } .a-r .k { margin-left: auto; color: #77777B; flex: none; }
+  .a-r .thin { height: 3px; border-radius: 2px; background: rgba(255,255,255,.12); margin-top: 9px; } .a-r .thin i { display: block; height: 100%; border-radius: 2px; background: var(--acc); }
+  .a-big { font-size: 128px; line-height: 120px; font-weight: 200; letter-spacing: -6px; color: var(--acc); margin-top: 20px; }
+  .a-ti { font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.4px; margin-top: 8px; }
+  .a-act { display: flex; align-items: center; justify-content: space-between; min-height: 72px; font-size: 24px; font-weight: 600; letter-spacing: -.3px; }
+  .a-act + .a-act, .a-acts { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .a-act span { font-size: 15px; color: var(--sec); font-weight: 500; letter-spacing: 0; display: flex; align-items: center; gap: 8px; }
+  .a-q { font-size: 17px; color: var(--sec); font-weight: 600; margin-top: 30px; }
+  .a-src { font-size: 38px; line-height: 44px; font-weight: 700; letter-spacing: -.8px; margin-top: 10px; }
+  .a-sent { font-size: 34px; line-height: 40px; font-weight: 600; letter-spacing: -.5px; margin-top: 38px; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: flex-end; }
+  .a-sent .bl { min-width: 74px; height: 40px; box-shadow: inset 0 -2px 0 rgba(255,255,255,.22); }
+  .a-sent .fi { color: var(--acc); }
+  .a-bank { display: flex; flex-wrap: wrap; gap: 4px 6px; margin: 44px -8px 0; }
+  .a-bank span { min-height: 52px; padding: 0 16px; display: inline-flex; align-items: center; font-size: 28px; font-weight: 500; letter-spacing: -.4px; }
+  .a-bank span.u { opacity: .22; text-decoration: line-through; text-decoration-thickness: 2px; }
+  .a-line { height: 3px; border-radius: 2px; background: rgba(255,255,255,.12); margin-top: 8px; } .a-line i { display: block; height: 100%; width: 22%; border-radius: 2px; background: var(--acc); }
+  .a-tools { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 8px 20px 34px; background: rgba(12,12,13,.92); box-shadow: inset 0 1px 0 rgba(255,255,255,.08); display: flex; flex-wrap: wrap; justify-content: space-between; }
+  .a-tools span { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 6px; font-size: 15px; font-weight: 600; color: #D6D6D8; }
+  .a-tools b { font-size: 12px; color: var(--on); background: var(--acc); border-radius: 8px; padding: 1px 6px; }
+  .a-pct { font-size: 128px; line-height: 118px; font-weight: 800; letter-spacing: -6px; margin-top: 26px; } .a-pct small { font-size: 28px; letter-spacing: 0; font-weight: 600; color: var(--sec); margin-left: 6px; }
+  .a-led .l { display: flex; justify-content: space-between; align-items: baseline; padding: 15px 0; font-size: 20px; font-weight: 600; } .a-led .l + .l { box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+  .a-led .l b { font-size: 26px; font-variant-numeric: tabular-nums; }
+  .a-was { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 20px; font-weight: 600; margin-top: 8px; } .a-was s { color: #FF9C93; text-decoration-thickness: 2px; } .a-was b { color: #8DEBB0; }
+
+  /* ===== Концепция 2: ПОСТЕР + РЕЛЬСА — один крупный текущий урок, ступени курса на одной линии ===== */
+  .b-post { margin-top: 18px; border-radius: 34px; padding: 26px 24px 26px; background: linear-gradient(160deg, color-mix(in srgb, var(--g1) 52%, #0b0b0f), color-mix(in srgb, var(--g2) 40%, #0a0a0d)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1), 0 24px 40px -22px rgba(0,0,0,.8); }
+  .b-post .k { font-size: 17px; font-weight: 600; opacity: .85; }
+  .b-post .num { font-size: 120px; line-height: 132px; font-weight: 800; letter-spacing: -6px; margin-top: 4px; }
+  .b-post .nm { font-size: 26px; line-height: 31px; font-weight: 700; letter-spacing: -.4px; margin-top: 8px; }
+  .b-bar { height: 10px; border-radius: 5px; background: rgba(255,255,255,.18); margin-top: 22px; } .b-bar i { display: block; height: 100%; border-radius: 5px; background: #fff; }
+  .b-pr { display: flex; justify-content: space-between; margin-top: 10px; font-size: 15px; font-weight: 600; opacity: .9; }
+  .b-lv { display: flex; align-items: baseline; justify-content: space-between; margin-top: 30px; font-size: 24px; font-weight: 700; } .b-lv span { font-size: 15px; font-weight: 600; color: var(--sec); }
+  .b-rail { position: relative; display: flex; justify-content: space-between; margin-top: 16px; }
+  .b-rail::before { content: ""; position: absolute; left: 22px; right: 22px; top: 21px; height: 3px; background: rgba(255,255,255,.14); }
+  .b-d { position: relative; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700; background: #1d1d22; color: #77777B; }
+  .b-d.do { background: var(--acc); color: var(--on); } .b-d.cu { background: #15151a; color: #fff; box-shadow: inset 0 0 0 3px var(--acc); }
+  .b-row { display: flex; align-items: center; gap: 14px; min-height: 64px; } .b-row + .b-row { box-shadow: inset 0 1px 0 rgba(255,255,255,.07); }
+  .b-row .w { font-size: 18px; font-weight: 600; flex: 1; min-width: 0; } .b-row.lk { color: #8A8A8E; }
+  .b-row .ck { width: 32px; height: 32px; border-radius: 50%; background: var(--acc); color: var(--on); display: flex; align-items: center; justify-content: center; flex: none; }
+  .b-row .ck.lk { background: rgba(255,255,255,.07); color: #77777B; }
+  .b-sh .ov3 { font-size: 15px; color: var(--sec); font-weight: 600; }
+  .b-sh .nm { font-size: 28px; line-height: 33px; font-weight: 700; letter-spacing: -.4px; margin-top: 4px; }
+  .b-two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .b-two > div { min-height: 72px; border-radius: 22px; padding: 12px 16px; background: rgba(255,255,255,.08); font-size: 17px; font-weight: 700; display: flex; flex-direction: column; justify-content: center; }
+  .b-two small { font-size: 14px; font-weight: 500; color: var(--sec); margin-top: 2px; }
+  .b-band { margin: -52px -20px 0; padding: 60px 24px 30px; border-radius: 0 0 38px 38px; background: linear-gradient(165deg, color-mix(in srgb, var(--g1) 55%, #0b0b0f), color-mix(in srgb, var(--g2) 38%, #0a0a0d)); }
+  .b-band .k { font-size: 17px; font-weight: 600; opacity: .85; margin-top: 22px; } .b-band .src { font-size: 36px; line-height: 42px; font-weight: 700; letter-spacing: -.8px; margin-top: 6px; }
+  .b-band .cnt { display: flex; align-items: center; gap: 12px; margin-top: 20px; font-size: 15px; font-weight: 600; } .b-band .cnt .b-bar { flex: 1; margin: 0; height: 8px; }
+  .b-slots { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+  .b-slots span { min-width: 84px; height: 58px; padding: 0 20px; border-radius: 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 600; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); color: #77777B; }
+  .b-slots span.f { background: color-mix(in srgb, var(--acc) 22%, rgba(20,20,24,.9)); color: #fff; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--acc) 70%, transparent); }
+  .b-cl { display: flex; flex-wrap: wrap; gap: 14px 12px; justify-content: center; margin-top: 40px; }
+  .b-cl span { height: 60px; padding: 0 28px; border-radius: 30px; display: inline-flex; align-items: center; font-size: 24px; font-weight: 600; background: rgba(255,255,255,.1); box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.25); }
+  .b-cl span:nth-child(odd) { transform: translateY(8px); } .b-cl span.u { opacity: .2; }
+  .b-dock { position: absolute; left: 50%; transform: translateX(-50%); bottom: 30px; z-index: 25; display: flex; gap: 6px; padding: 8px; border-radius: 36px; background: rgba(26,26,32,.94); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1), 0 18px 40px -14px rgba(0,0,0,.8); }
+  .b-dock span { position: relative; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.07); color: #fff; }
+  .b-dock b { position: absolute; top: -4px; right: -4px; min-width: 20px; height: 20px; border-radius: 10px; font-size: 12px; display: flex; align-items: center; justify-content: center; background: var(--acc); color: var(--on); }
+  .b-stars { display: flex; justify-content: center; gap: 12px; margin-top: 22px; color: #fff; }
+  .b-stars svg { width: 58px; height: 58px; }
+  .b-ttl { text-align: center; font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.6px; margin-top: 18px; } .b-sub { text-align: center; font-size: 17px; color: rgba(255,255,255,.8); margin-top: 6px; }
+  .b-chips { display: flex; justify-content: center; gap: 8px; margin-top: 24px; } .b-chips span { height: 44px; padding: 0 16px; border-radius: 22px; display: inline-flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 600; background: rgba(255,255,255,.07); } .b-chips b { font-size: 20px; }
+  .b-aw { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 26px; font-size: 38px; font-weight: 800; } .b-aw small { font-size: 18px; font-weight: 600; color: var(--sec); }
+  .b-err { margin-top: 26px; border-radius: 24px; padding: 16px 18px; background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 14%, rgba(24,24,30,.7)), rgba(14,14,18,.7)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.07); }
+  .b-err .h { font-size: 17px; font-weight: 700; display: flex; justify-content: space-between; } .b-err .e { margin-top: 12px; display: flex; flex-direction: column; gap: 4px; font-size: 19px; font-weight: 600; }
+
+  /* ===== Концепция 3: КАРТА КУРСА — все 32 урока как шкала-мозаика, подробности выбранного ниже; клавиатура слов ===== */
+  .c-lv { display: flex; align-items: baseline; justify-content: space-between; margin: 20px 0 10px; font-size: 20px; font-weight: 700; } .c-lv span { font-size: 15px; font-weight: 600; color: var(--sec); }
+  .c-g { display: grid; grid-template-columns: repeat(8, 44px); gap: 5px; justify-content: center; }
+  .c-s { height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700; background: rgba(255,255,255,.06); color: #7a7a7e; font-variant-numeric: tabular-nums; }
+  .c-s.s3 { background: var(--acc); color: var(--on); } .c-s.s2 { background: color-mix(in srgb, var(--acc) 40%, #16161b); color: #fff; }
+  .c-s.cu { background: #15151a; color: #fff; box-shadow: inset 0 0 0 2.5px var(--acc); }
+  .c-leg { display: flex; gap: 16px; margin-top: 16px; font-size: 14px; color: var(--sec); font-weight: 600; flex-wrap: wrap; } .c-leg i { display: inline-block; width: 12px; height: 12px; border-radius: 4px; margin-right: 7px; vertical-align: -1px; background: rgba(255,255,255,.1); }
+  .c-det { margin-top: 20px; border-radius: 28px; padding: 20px 20px 18px; background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 22%, rgba(24,24,30,.72)), rgba(14,14,18,.7) 60%, color-mix(in srgb, var(--g2) 16%, rgba(14,14,18,.7))); box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.26), inset 0 0 0 1px rgba(255,255,255,.07); }
+  .c-det .nm { font-size: 24px; line-height: 29px; font-weight: 700; letter-spacing: -.3px; } .c-det .pr { display: flex; align-items: center; gap: 12px; margin: 14px 0 16px; font-size: 16px; font-weight: 700; } .c-det .trk { flex: 1; }
+  .c-tabs { display: flex; padding: 4px; gap: 4px; border-radius: 24px; background: rgba(255,255,255,.07); margin-top: 22px; }
+  .c-tabs span { flex: 1; height: 46px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; color: var(--sec); } .c-tabs span.on { background: var(--acc); color: var(--on); }
+  .c-fr { font-size: 84px; line-height: 84px; font-weight: 800; letter-spacing: -3px; margin-top: 34px; } .c-fr small { font-size: 26px; letter-spacing: 0; font-weight: 600; color: var(--sec); margin-left: 8px; }
+  .c-cells { display: flex; gap: 2px; margin-top: 24px; } .c-cells i { flex: 1; height: 28px; border-radius: 3px; background: rgba(255,255,255,.1); } .c-cells i.ok { background: var(--acc); } .c-cells i.no { background: #FF9C93; } .c-cells i.cu { background: transparent; box-shadow: inset 0 0 0 2px var(--acc); }
+  .c-hint { display: flex; justify-content: space-between; margin-top: 12px; font-size: 15px; font-weight: 600; color: var(--sec); }
+  .c-ans { margin-top: 26px; min-height: 76px; border-radius: 24px; padding: 14px 18px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 30%, rgba(10,10,14,.9)), rgba(8,8,12,.86) 60%, color-mix(in srgb, var(--g2) 24%, rgba(8,8,12,.86))); box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.3), inset 0 0 0 1px rgba(255,255,255,.07); font-size: 26px; font-weight: 600; }
+  .c-ans .el { color: #77777B; } .c-kb { display: flex; gap: 12px; margin-top: 26px; }
+  .c-keys { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; grid-auto-rows: 88px; }
+  .c-keys span { border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 600; background: rgba(255,255,255,.09); box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.25), 0 8px 0 -3px rgba(0,0,0,.4); } .c-keys span.u { opacity: .2; box-shadow: none; }
+  .c-rail { width: 48px; display: flex; flex-direction: column; justify-content: space-between; } .c-rail span { position: relative; width: 48px; height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.06); color: #E2E2E6; }
+  .c-rail b { position: absolute; top: -5px; right: -5px; min-width: 20px; height: 20px; border-radius: 10px; font-size: 12px; display: flex; align-items: center; justify-content: center; background: var(--acc); color: var(--on); }
+  .c-t { display: flex; align-items: center; gap: 14px; margin-top: 20px; } .c-t .stx svg { width: 30px; height: 30px; } .c-t .ti { font-size: 30px; line-height: 34px; font-weight: 700; letter-spacing: -.5px; }
+  .c-sub { font-size: 17px; color: var(--sec); margin-top: 6px; }
+  .c-aw { display: flex; align-items: center; gap: 14px; margin-top: 28px; font-size: 64px; line-height: 66px; font-weight: 800; letter-spacing: -2px; } .c-aw small { font-size: 20px; font-weight: 600; color: var(--sec); letter-spacing: 0; }
+  .c-seg { display: flex; gap: 4px; height: 22px; margin-top: 28px; } .c-seg i { display: block; border-radius: 6px; } .c-seg .g { flex: 48; background: #6FD08C; } .c-seg .r { flex: 2; background: #F2766B; min-width: 10px; }
+  .c-n3 { display: flex; justify-content: space-between; margin-top: 12px; font-size: 16px; font-weight: 600; } .c-n3 b { font-size: 22px; margin-right: 6px; }
+  .c-er { margin-top: 26px; border-radius: 22px; padding: 16px 18px; background: linear-gradient(160deg, rgba(242,118,107,.2), rgba(242,118,107,.05)); } .c-er .h { font-size: 17px; font-weight: 700; }
+  .chip.on { background: #222224; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Уроки — три концепции</h1>
+  <p class="page-lead">Все три нарочно непохожи на «Карточки» и «Мои ошибки»: нет стопки-героя, плиток 2×2, сетки стеклянных карточек, переворота, кольца прогресса, фильтр-лент и стакана ответов. Общее с приложением — только цвет темы (аврора, акцентная кнопка). В каждой по четыре ключевых экрана: список уроков, меню урока, сборка фразы, итог урока.</p>
+  <div class="page-nav"><a href="#c1">1 · Оглавление</a><a href="#c2">2 · Постер и рельса</a><a href="#c3">3 · Карта курса</a></div>
+  <div class="ctl"><div class="chips2" id="chips"></div></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone, col, block, sheet, coins } = K;
+// локальные значки (контур 1.8, как в learn.html)
+const LP = {
+  starF: '<path d="M12 3.4l2.7 5.7 6.2.8-4.5 4.3 1.1 6.2L12 17.4l-5.5 3 1.1-6.2L3.1 9.9l6.2-.8z" fill="currentColor" stroke="none"/>',
+  book: '<path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M4 18.5A2.5 2.5 0 016.5 16H20"/><path d="M8 7h8M8 10.5h6"/>',
+  list: '<path d="M8 6h12M8 12h12M8 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01" stroke-width="2.6"/>',
+  cut: '<circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8.2 7.5L20 17M8.2 16.5L20 7"/>',
+  history: '<path d="M4 12a8 8 0 108-8 8 8 0 00-6 2.7"/><path d="M4 4v4h4"/><path d="M12 8v4.5l3 1.8"/>',
+  bulb: '<path d="M9.5 18.5h5M10.5 21.5h3M12 3a6 6 0 014 10.4c-.7.7-1 1.4-1 2.6H9c0-1.2-.3-1.9-1-2.6A6 6 0 0112 3z"/>',
+  refresh: '<path d="M20 12a8 8 0 11-2.4-5.7"/><path d="M20 4v5h-5"/>',
+};
+const li = (n, c = '') => `<svg class="i ${c}" viewBox="0 0 24 24" aria-hidden="true">${LP[n]}</svg>`;
+const stars = (n, s = 's16') => `<span class="stx">${[1, 2, 3].map((i) => `<i class="${i <= n ? '' : 'off'}">${li('starF', s)}</i>`).join('')}</span>`;
+const hearts = (lost = 0) => `<span class="hrt">${[0, 1, 2].map((i) => `<i class="${i >= 3 - lost ? 'x' : ''}">${icon('heartF', 's16')}</i>`).join('')}</span>`;
+const cta = (t, x = '') => `<div class="ac-cta t"${x}>${t}<span class="ar">${icon('arrowR', 's20')}</span></div>`;
+const bot = (i) => `<div class="bot2">${i}</div>`;
+const NAMES = ['Местоимения и глагол To Be', 'Отрицание и вопросы (To Be)', 'Present Simple: Утверждение', 'Present Simple: Отрицание', 'Present Simple: Вопросы', 'Специальные вопросы', 'Глагол To Have', 'Предлоги времени'];
+const URL3 = 'Present Simple: Утверждение';
+const th = () => `<div class="hd3"><span class="rb t">${icon('back', 's20')}</span><div class="grow"><span class="ti">Урок 3</span><span class="lv">A1</span></div>${hearts(0)}${coins(1240, { s: true })}</div>`;
+const tools = [['cut', 'cut'], ['book', 'book'], ['mic', 'mic'], ['history', 'history'], ['bulb', 'bulb'], ['vol', 'vol']];
+const toolIc = (n) => (LP[n] ? li(n, 's22') : icon(n, 's22'));
+const WORDS = ['works', 'She', 'every', 'day', 'work', 'is', 'at', 'the'];
+
+// ================= 1. ОГЛАВЛЕНИЕ =================
+const aRow = (n, st, extra = {}) => {
+  const nn = String(n).padStart(2, '0');
+  if (st === 'done') return `<div class="a-r t"><div class="n">${nn}</div><div class="grow"><div class="w">${NAMES[n - 1]}</div></div>${stars(extra.s)}</div>`;
+  if (st === 'cur') return `<div class="a-r cur t"><div class="n">${nn}</div><div class="grow"><div class="w">${NAMES[n - 1]}</div><div class="thin"><i style="width:64%"></i></div></div><b style="font-size:16px;font-variant-numeric:tabular-nums">64%</b></div>`;
+  return `<div class="a-r lk t"><div class="n">${nn}</div><div class="grow"><div class="w">${NAMES[n - 1]}</div>${extra.m ? `<div class="m">${extra.m}</div>` : ''}</div><span class="k">${icon('lockF', 's18')}</span></div>`;
+};
+const a1 = () => phone(`<div class="flex" style="margin-top:14px"><div class="grow a-h">Уроки</div>${coins(1240, { rank: 5 })}</div>
+  <div class="a-lv"><b>A1</b><span>2 из 8</span></div>
+  ${aRow(1, 'done', { s: 3 })}${aRow(2, 'done', { s: 2 })}${aRow(3, 'cur')}${aRow(4, 'lk', { m: 'Пройди урок 3 на 2★' })}${aRow(5, 'lk')}${aRow(6, 'lk')}${aRow(7, 'lk')}${aRow(8, 'lk')}
+  <div class="a-r lk t"><div class="n">${icon('docF', 's28')}</div><div class="grow"><div class="w">Экзамен A1</div><div class="m">Пройди все уроки A1 на 2★</div></div></div>
+  <div class="a-lv"><b>A2</b><span>0 из 10</span></div>
+  <div class="a-r lk t"><div class="n">09</div><div class="grow"><div class="w">There is / There are</div><div class="m">Сначала зачёт A1</div></div><span class="k">${icon('lockF', 's18')}</span></div>`);
+const a2 = () => phone(`<div class="hd3"><span class="rb t">${icon('back', 's20')}</span><div class="grow"><span class="ti">Урок 3</span><span class="lv">A1</span></div><span class="rb t">${icon('dotsH', 's20')}</span></div>
+  <div class="a-big">03</div><div class="a-ti">${URL3}</div>
+  <div class="flex" style="gap:14px;margin-top:18px"><span class="trk grow"><i style="width:34%"></i></span><b style="font-size:15px;color:var(--sec);font-variant-numeric:tabular-nums">17 / 50</b></div>
+  <div class="a-acts" style="margin-top:28px"><div class="a-act t">Слова урока<span>9/24 слов${icon('fwd', 's20')}</span></div><div class="a-act t">Теория<span>${icon('fwd', 's20')}</span></div></div>`,
+  { fixed: bot(cta('Продолжить')) });
+const a3 = () => phone(`${th()}<div class="a-line"><i></i></div>
+  <div class="a-q">Собери фразу:</div><div class="a-src">Она работает каждый день</div>
+  <div class="a-sent"><span class="fi">She</span><span class="bl"></span><span class="bl"></span><span class="bl"></span></div>
+  <div class="a-bank">${WORDS.map((w) => `<span class="t${w === 'She' ? ' u' : ''}">${w}</span>`).join('')}</div>`,
+  { fixed: `<div class="a-tools"><span class="t">${li('cut', 's18')}50/50<b>3</b></span><span class="t">${li('book', 's18')}Теория</span><span class="t">${icon('mic', 's18')}Устно</span><span class="t">${li('history', 's18')}Назад</span><span class="t">${li('bulb', 's18')}Объяснить</span><span class="t">${icon('vol', 's18')}Повтор</span></div>` });
+const a4 = () => phone(`<div class="flex" style="height:44px;gap:12px"><span class="rb t">${icon('close', 's20')}</span><div class="grow"></div>${coins(1240, { rank: 5 })}</div>
+  <div class="a-q" style="margin-top:22px">Урок пройден</div><div style="font-size:17px;color:var(--sec);margin-top:4px">Урок 3 · ${URL3}</div>
+  <div style="margin-top:16px">${stars(3, 's28')}</div>
+  <div class="a-pct">96<small>% точность</small></div>
+  <div class="a-led" style="margin-top:22px"><div class="l"><span>верно</span><b class="gr">48</b></div><div class="l"><span>ошибок</span><b class="rd">2</b></div><div class="l"><span>монет</span><b>+60</b></div></div>
+  <div style="margin-top:22px;font-size:17px;font-weight:700">Ошибки</div><div class="a-was"><span>Вопрос</span><s>Do she work?</s><b>Does she work?</b></div>`,
+  { fixed: bot(`${cta('Следующий урок')}<div class="quiet t">Пройти ещё раз</div>`) });
+
+// ================= 2. ПОСТЕР И РЕЛЬСА =================
+const bDots = [['do', 1], ['do', 2], ['cu', 3], ['', 4], ['', 5], ['', 6], ['', 7], ['', 8]];
+const b1body = `<div class="flex" style="margin-top:14px"><div class="grow a-h">Уроки</div>${coins(1240, { rank: 5 })}</div>
+  <div class="b-post"><div class="k">Текущий урок</div><div class="num">3</div><div class="nm">${URL3}</div><div class="b-bar"><i style="width:64%"></i></div><div class="b-pr"><span>A1</span><span>64%</span></div></div>
+  <div style="margin-top:16px">${cta('Продолжить')}</div>
+  <div class="b-lv">A1<span>2 из 8</span></div>
+  <div class="b-rail">${bDots.map((d) => `<span class="b-d t ${d[0]}">${d[0] === '' ? icon('lockF', 's16') : d[1]}</span>`).join('')}</div>
+  <div style="margin-top:12px"><div class="b-row t"><span class="ck">${icon('check', 's18')}</span><div class="w">${NAMES[0]}</div>${stars(3)}</div><div class="b-row t"><span class="ck">${icon('check', 's18')}</span><div class="w">${NAMES[1]}</div>${stars(2)}</div>
+  <div class="b-row lk t"><span class="ck lk">${icon('docF', 's16')}</span><div class="w">Экзамен A1</div>${icon('lockF', 's18')}</div></div>`;
+const b1 = () => phone(b1body);
+const b2 = () => phone(b1body, { overlay: sheet('m', `<div class="b-sh"><div class="flex"><div class="grow"><div class="ov3">Урок 3 · A1</div><div class="nm">${URL3}</div></div><span class="rb t" data-close>${icon('close', 's18')}</span></div>
+  <div class="flex" style="gap:14px;margin-top:18px"><span class="trk grow"><i style="width:34%"></i></span><b style="font-size:15px;color:var(--sec)">17 / 50 фраз</b></div>
+  <div style="margin-top:18px">${cta('Продолжить')}</div>
+  <div class="b-two"><div class="t">Слова урока<small>9/24 слов</small></div><div class="t">Теория<small>${icon('fwd', 's16')}</small></div></div></div>`, true) });
+const b3 = () => phone(`<div class="b-band"><div class="hd3"><span class="rb t">${icon('back', 's20')}</span><div class="grow"><span class="ti">Урок 3</span><span class="lv">A1</span></div>${hearts(0)}${coins(1240, { s: true })}</div>
+  <div class="k">Собери фразу:</div><div class="src">Она работает каждый день</div><div class="cnt"><div class="b-bar"><i style="width:22%"></i></div>12 / 50</div></div>
+  <div class="b-slots"><span class="f">She</span><span>2</span><span>3</span><span>4</span></div>
+  <div class="b-cl">${WORDS.map((w) => `<span class="t${w === 'She' ? ' u' : ''}">${w}</span>`).join('')}</div>`,
+  { inStyle: 'padding-bottom:140px', fixed: `<div class="b-dock"><span class="t">${li('cut', 's22')}<b>3</b></span><span class="t">${li('book', 's22')}</span><span class="t">${icon('mic', 's22')}</span><span class="t">${li('history', 's22')}</span><span class="t">${li('bulb', 's22')}</span><span class="t">${icon('vol', 's22')}</span></div>` });
+const b4 = () => phone(`<div class="b-band" style="padding-bottom:34px"><div class="flex" style="height:44px;gap:12px"><span class="rb t">${icon('close', 's20')}</span><div class="grow"></div>${coins(1240, { rank: 5 })}</div>
+  <div class="b-stars">${[1, 2, 3].map(() => li('starF')).join('')}</div><div class="b-ttl">Урок пройден</div><div class="b-sub">Урок 3 · ${URL3}</div></div>
+  <div class="b-chips"><span><b class="gr">48</b>верно</span><span><b class="rd">2</b>ошибок</span><span><b>96%</b>точность</span></div>
+  <div class="b-aw">${K.coinImg(5, 44)}+60<small>монет</small></div>
+  <div class="b-err"><div class="h">Ошибки<span class="sec2">1</span></div><div class="e"><span class="sec2" style="font-size:15px">Вопрос</span><span class="rd" style="text-decoration:line-through">Do she work?</span><span class="gr">Does she work?</span></div></div>`,
+  { inStyle: 'padding-bottom:170px', fixed: bot(`${cta('Следующий урок')}<div class="quiet t">Пройти ещё раз</div>`) });
+
+// ================= 3. КАРТА КУРСА =================
+const cs = (n, c, lock) => `<span class="c-s t ${c}">${lock ? '' : n}${lock ? n : ''}</span>`;
+const cGroup = (from, to, st) => Array.from({ length: to - from + 1 }, (_, i) => { const n = from + i; return `<span class="c-s t ${st[n] || ''}">${n}</span>`; }).join('');
+const STS = { 1: 's3', 2: 's2', 3: 'cu' };
+const c1 = () => phone(`<div class="flex" style="margin-top:14px"><div class="grow a-h">Уроки</div>${coins(1240, { rank: 5 })}</div>
+  <div class="c-lv">A1<span>2 из 8</span></div><div class="c-g">${cGroup(1, 8, STS)}</div>
+  <div class="c-lv">A2<span>0 из 10</span></div><div class="c-g">${cGroup(9, 16, STS)}${cGroup(17, 18, STS)}</div>
+  <div class="c-lv">B1<span>0 из 10</span></div><div class="c-g">${cGroup(19, 26, STS)}${cGroup(27, 28, STS)}</div>
+  <div class="c-lv">B2<span>0 из 4</span></div><div class="c-g">${cGroup(29, 32, STS)}</div>
+  <div class="c-leg"><span><i style="background:var(--acc)"></i>3★</span><span><i style="background:color-mix(in srgb,var(--acc) 40%,#16161b)"></i>2★</span><span><i style="box-shadow:inset 0 0 0 2px var(--acc);background:transparent"></i>Текущий</span><span><i></i>Закрыт</span></div>
+  <div class="c-det"><div class="nm">Урок 3 · ${URL3}</div><div class="pr"><span class="trk"><i style="width:64%"></i></span>64%</div>${cta('Продолжить')}</div>`);
+const c2 = () => phone(`<div class="hd3"><span class="rb t">${icon('back', 's20')}</span><div class="grow"><span class="ti">Урок 3</span><span class="lv">A1</span></div><span class="rb t">${icon('dotsH', 's20')}</span></div>
+  <div class="a-ti" style="font-size:32px;line-height:38px;margin-top:22px">${URL3}</div>
+  <div class="c-tabs"><span class="on t">Урок</span><span class="t">Слова урока</span><span class="t">Теория</span></div>
+  <div class="c-fr">17<small>/ 50 фраз</small></div>
+  <div class="c-cells">${Array.from({ length: 50 }, (_, i) => `<i class="${i < 16 ? 'ok' : i === 16 ? 'cu' : ''}"></i>`).join('')}</div>
+  <div class="c-hint"><span>Слова урока · 9/24 слов</span><span>Теория</span></div>`,
+  { fixed: bot(cta('Продолжить')) });
+const c3 = () => phone(`${th()}<div class="a-line"><i></i></div>
+  <div class="a-q" style="margin-top:22px">Собери фразу:</div><div class="a-src" style="font-size:34px;line-height:40px">Она работает каждый день</div>
+  <div class="c-ans"><span>She</span><span class="el">…</span></div>
+  <div class="c-kb"><div class="c-keys">${WORDS.map((w) => `<span class="t${w === 'She' ? ' u' : ''}">${w}</span>`).join('')}</div>
+    <div class="c-rail"><span class="t">${li('cut', 's22')}<b>3</b></span><span class="t">${li('book', 's22')}</span><span class="t">${icon('mic', 's22')}</span><span class="t">${li('history', 's22')}</span><span class="t">${li('bulb', 's22')}</span><span class="t">${icon('vol', 's22')}</span></div></div>
+  <div class="c-cells" style="margin-top:34px">${Array.from({ length: 50 }, (_, i) => `<i class="${i === 4 ? 'no' : i < 11 ? 'ok' : i === 11 ? 'cu' : ''}"></i>`).join('')}</div><div class="c-hint"><span>12 / 50</span></div>`);
+const c4 = () => phone(`<div class="flex" style="height:44px;gap:12px"><span class="rb t">${icon('close', 's20')}</span><div class="grow"></div>${coins(1240, { rank: 5 })}</div>
+  <div class="c-t">${stars(3, 's28')}</div><div class="c-t" style="margin-top:12px"><div class="ti">Урок пройден</div></div><div class="c-sub">Урок 3 · ${URL3}</div>
+  <div class="c-aw">${K.coinImg(5, 56)}+60<small>монет</small></div>
+  <div class="c-seg"><i class="g"></i><i class="r"></i></div>
+  <div class="c-n3"><span><b class="gr">48</b>верно</span><span><b class="rd">2</b>ошибок</span><span><b>96%</b>точность</span></div>
+  <div class="c-er"><div class="h">Ошибки</div><div class="a-was"><s>Do she work?</s><b>Does she work?</b></div></div>`,
+  { fixed: bot(`${cta('Следующий урок')}<div class="quiet t">Пройти ещё раз</div>`) });
+
+document.getElementById('root').innerHTML =
+  block('c1', '1 · Оглавление', 'Только текст и тонкие линии, без контейнеров: крупные номера уроков в левом поле, звёзды справа. В уроке слова лежат просто строкой, фраза собирается как предложение с пропусками.', [col('Список уроков', a1()), col('Меню урока', a2()), col('Сборка фразы', a3()), col('Итог урока', a4())]) +
+  block('c2', '2 · Постер и рельса', 'Текущий урок — один большой постер, весь курс уровня — ступени на одной линии. Меню урока выезжает шторкой поверх списка, слова в сборке лежат облаком, инструменты — плавающая капсула.', [col('Список уроков', b1()), col('Меню урока', b2()), col('Сборка фразы', b3()), col('Итог урока', b4())]) +
+  block('c3', '3 · Карта курса', 'Все 32 урока сразу как мозаика по уровням: чем ярче клетка, тем больше звёзд. Подробности выбранного урока — под мозаикой. Меню — вкладки, слова — клавиатура справа от инструментов.', [col('Список уроков', c1()), col('Меню урока', c2()), col('Сборка фразы', c3()), col('Итог урока', c4())]);
+K.init();
+const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
+  ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];
+let theme = 0;
+const applyTheme = () => { const T = THEMES[theme]; document.querySelectorAll('.ph').forEach((p) => { p.style.setProperty('--g1', T[1]); p.style.setProperty('--g2', T[2]); p.style.setProperty('--acc', T[3]); p.style.setProperty('--on', T[4]); }); document.querySelectorAll('.chip').forEach((c, i) => c.classList.toggle('on', i === theme)); };
+document.getElementById('chips').innerHTML = THEMES.map((T, i) => `<span class="chip" data-i="${i}"><i class="sw" style="background:linear-gradient(135deg,${T[1]},${T[2]})"></i>${T[0]}</span>`).join('');
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.chip'); if (!c) return; theme = +c.dataset.i; applyTheme(); });
+applyTheme();
+})();
+</script>
+</body>
+</html>

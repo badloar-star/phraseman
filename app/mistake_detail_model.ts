@@ -1,7 +1,6 @@
 import type { MistakeEvent, MistakeFacet, MistakeStudyTarget } from '../modules/mistake-practice/contracts';
-import { projectMistakes } from '../modules/mistake-practice/projection';
-import { independentProductionModeCount, MISTAKE_EXERCISE_MODE_REGISTRY, type MistakeExerciseMode } from '../modules/mistake-practice/exercise_mode_registry';
-import { mistakeExerciseCapabilitiesFor } from '../modules/mistake-practice/capabilities';
+import { projectMistakes, requiredModesForMistake } from '../modules/mistake-practice/projection';
+import { MISTAKE_EXERCISE_MODE_REGISTRY, type MistakeExerciseMode } from '../modules/mistake-practice/exercise_mode_registry';
 import { loadMistakeEventJournal } from './mistake_practice_store';
 import { mistakeSourceGroupFor, type MistakeSourceGroup } from './mistake_practice_insights';
 
@@ -117,8 +116,8 @@ export function buildMistakeDetail(
     captureCount: item.captureCount,
     qualifyingDays: Math.min(3, item.qualifyingDays.length),
     qualifyingModes: new Set(item.qualifyingModes).size,
-    // зачем (§130, 04.10): тот же расчёт, что в projection.ts — экран не должен требовать голос там, где его нет.
-    requiredModes: independentProductionModeCount({ facet: item.facet, capabilities: mistakeExerciseCapabilitiesFor(item) }) >= 2 ? 2 : 1,
+    // зачем (§130, 04.10): общий помощник проекции — карточка, панель итога и правило не могут разойтись.
+    requiredModes: requiredModesForMistake(item),
     ready: item.status === 'active' && item.dueAtMs <= nowMs,
     dueAtMs: item.dueAtMs,
     correctedAtMs: item.correctedAtMs,

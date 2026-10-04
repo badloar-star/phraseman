@@ -4,6 +4,8 @@ import path from 'node:path';
 import test from 'node:test';
 
 // зачем: корень «Настройки» переносится 1 в 1 по макету profile.html#PRF-01 (Liquid Glass).
+// 04.10: эталон сменён — redesign-round-1 вариант A «Группы одним блоком» (владелец), лишние рабочие
+// функции разложены по разделам макета (решение (б), координатор).
 // Контракт держит геометрию и тексты макета, порядок секций/строк и то, что рабочие функции
 // (Plus, промокод, размер шрифта, отклик, кеш, оценка, реферальный shield) не потеряны.
 const source = fs.readFileSync(path.resolve('app/(tabs)/settings.tsx'), 'utf8');
@@ -32,17 +34,20 @@ test('root settings use the Liquid Glass tokens and the approved scroll shell wi
   assert.doesNotMatch(source, /SETTINGS_SURFACES|SettingsGroup'|SettingsSectionTitle|SettingsCustomRow|SettingsIconTile/);
 });
 
-test('header, profile card and section titles follow the PRF-01 geometry', () => {
-  assert.match(body, /fontSize:\s*34,\s*lineHeight:\s*40,\s*fontWeight:\s*'700',\s*letterSpacing:\s*-0\.5/);
-  assert.match(body, /fontSize:\s*16,\s*lineHeight:\s*22,\s*marginTop:\s*7/); // D145: текст 16/13
-  assert.match(source, /style=\{\{ width: 48, height: 48 \}\} contentFit="contain"/);
-  assert.match(body, /settings-header-coin/);
-  assert.match(body, /testID="settings-profile-card"[\s\S]*?leading=\{renderRankCoin\('settings-profile-coin'\)\}/);
+test('header, profile card and section titles follow the round-1 A geometry', () => {
+  assert.match(body, /fontSize:\s*40,\s*lineHeight:\s*46,\s*fontWeight:\s*'700',\s*letterSpacing:\s*-0\.6/);
+  assert.doesNotMatch(source, /'Профиль и приложение'/); // в макете A подзаголовка нет
+  assert.match(source, /style=\{\{ width: size, height: size \}\} contentFit="contain"/);
+  assert.match(body, /renderRankCoin\('settings-header-coin', 44\)/);
+  assert.match(body, /testID="settings-profile-card"[\s\S]*?renderRankCoin\('settings-profile-coin', 52\)/);
+  assert.match(body, /testID="settings-profile-sign-in"[\s\S]*?onPress=\{\(\) => setAuthPromptVisible\(true\)\}/);
+  assert.match(body, /authReady && !linkedAuth \? \(/);
   assert.match(source, /const myCoinRank = useMyCoinRank\(\);/);
   assert.match(source, /coinRankRowForDisplay\(myCoinRank\)/);
   // 01.10 (PM-128): звание на языке интерфейса — на pt-BR раньше стояло «Агент».
   assert.match(source, /\[myCoinRankRow \? coinRankTitle\(myCoinRankRow\.rank, lang\) : undefined, accountLinkedSub\]\.filter\(Boolean\)\.join\(' · '\)/);
-  assert.match(rows, /fontSize:\s*13,\s*lineHeight:\s*18,\s*fontWeight:\s*'700',\s*letterSpacing:\s*1\.7,\s*marginTop:\s*24,\s*marginHorizontal:\s*4,\s*marginBottom:\s*10/);
+  assert.match(rows, /letterSpacing: wide \? 3 : 1\.7, marginTop: wide \? 26 : 24, marginHorizontal: 4, marginBottom: 10/);
+  assert.match(body, /<SettingsGlassEyebrow wide glass=\{glass\}/);
   assert.match(rows, /gap:\s*10,\s*marginTop/);
 });
 
@@ -53,7 +58,11 @@ test('glass rows keep the approved row, tile, text and switch metrics without he
   assert.match(rows, /backgroundColor:\s*glass\.opaqueCard/);
   assert.match(rows, /colors=\{\[glass\.selected, 'transparent'\]\}/);
   assert.match(rows, /width:\s*41,\s*height:\s*41,\s*borderRadius:\s*10/);
-  assert.match(rows, /fontSize:\s*16,\s*lineHeight:\s*21,\s*fontWeight:\s*'700'/);
+  assert.match(rows, /fontSize: 16, lineHeight: grouped \? 22 : 21, fontWeight: grouped \? '600' : '700'/);
+  // Группа макета A: одна карточка, пункты через тонкий разделитель, строки внутри плоские 60 / 9·16.
+  assert.match(rows, /export function SettingsGlassGroup/);
+  assert.match(rows, /borderTopWidth: StyleSheet\.hairlineWidth, borderTopColor: glass\.line/);
+  assert.match(rows, /minHeight: 60,\s*paddingVertical: 9,\s*paddingHorizontal: 16/);
   assert.match(rows, /fontSize:\s*13,\s*lineHeight:\s*18,\s*marginTop:\s*3/);
   assert.match(rows, /name="chevron-forward"\s+size=\{18\}/);
   assert.match(rows, /accessibilityRole="switch"[\s\S]*accessibilityState=\{\{ checked: value \}\}/);
@@ -72,8 +81,9 @@ test('glass rows keep the approved row, tile, text and switch metrics without he
 test('sections and rows keep the macet order', () => {
   const order = [
     'settings-profile-card', "'ПРОФИЛЬ'", 'settings-account-row', 'settings-language-row', 'settings-study-language-row',
-    "'ОБУЧЕНИЕ'", 'settings-edu-row', 'settings-notifications-row',
-    "'ВНЕШНИЙ ВИД И ПОМОЩЬ'", 'settings-themes-row', 'settings-privacy-row', 'settings-support-report-row',
+    "'ОБУЧЕНИЕ'", 'settings-edu-row', 'settings-notifications-row', 'settings-themes-row', 'settings-tap-haptics-row', 'settings-font-size-row',
+    '"PHRASEMAN PLUS"', 'settings-plus-row', 'settings-promo-code-row', 'settings-invite-banner',
+    "'ПОМОЩЬ'", 'settings-support-report-row', 'settings-privacy-row', 'settings-clear-cache-row', 'settings-rate-app-row',
   ];
   let cursor = 0;
   for (const marker of order) cursor = indexOfOrThrow(body, marker, cursor) + marker.length;
@@ -81,21 +91,20 @@ test('sections and rows keep the macet order', () => {
 
 test('macet texts exist for all nine locales', () => {
   const required = {
-    subtitle: ["'Профиль и приложение'", "'Профіль і застосунок'", "'Profile and app'", "'Perfil y aplicación'", "'Perfil e aplicativo'", "'Hồ sơ và ứng dụng'", "'Profil dan aplikasi'", "'Profil ve uygulama'", "'Profil i aplikacja'"],
     eyebrowProfile: ["L('ПРОФИЛЬ', 'ПРОФІЛЬ', 'PROFILE', 'PERFIL', 'PERFIL', 'HỒ SƠ', 'PROFIL', 'PROFİL', 'PROFIL')"],
     eyebrowLearning: ["'ОБУЧЕНИЕ'", "'НАВЧАННЯ'", "'LEARNING'", "'APRENDIZAJE'", "'APRENDIZADO'", "'HỌC TẬP'", "'PEMBELAJARAN'", "'ÖĞRENME'", "'NAUKA'"],
-    eyebrowHelp: ["'ВНЕШНИЙ ВИД И ПОМОЩЬ'", "'ВИГЛЯД І ДОПОМОГА'", "'APPEARANCE AND HELP'", "'APARIENCIA Y AYUDA'", "'APARÊNCIA E AJUDA'", "'GIAO DIỆN VÀ TRỢ GIÚP'", "'TAMPILAN DAN BANTUAN'", "'GÖRÜNÜM VE YARDIM'", "'WYGLĄD I POMOC'"],
-    accountSub: ["'Данные, вход и удаление'", "'Дані, вхід і видалення'", "'Details, sign-in and deletion'", "'Datos, acceso y eliminación'", "'Dados, login e exclusão'", "'Dữ liệu, đăng nhập và xóa'", "'Data, masuk, dan penghapusan'", "'Veriler, giriş ve silme'", "'Dane, logowanie i usuwanie'"],
-    studySub: ["'Прогресс хранится отдельно'", "'Прогрес зберігається окремо'", "'Progress is stored separately'", "'El progreso se guarda por separado'", "'O progresso fica separado'", "'Tiến độ được lưu riêng'", "'Progres disimpan terpisah'", "'İlerleme ayrı saklanır'", "'Postęp jest zapisywany osobno'"],
-    eduSub: ["'Проверка, ввод и озвучка'", "'Перевірка, введення та озвучення'", "'Answer checking, input and voice'", "'Comprobación, escritura y voz'", "'Verificação, digitação e voz'", "'Kiểm tra, nhập và giọng đọc'", "'Pemeriksaan, input, dan suara'", "'Kontrol, giriş ve ses'", "'Sprawdzanie, wpisywanie i głos'"],
-    notifSub: ["'Напоминания и итоги'", "'Нагадування та підсумки'", "'Reminders and summaries'", "'Recordatorios y resúmenes'", "'Lembretes e resumos'", "'Lời nhắc và tổng kết'", "'Pengingat dan ringkasan'", "'Hatırlatmalar ve özetler'", "'Przypomnienia i podsumowania'"],
-    themesSub: ["'Только тёмные варианты'", "'Лише темні варіанти'", "'Dark variants only'", "'Solo variantes oscuras'", "'Somente variantes escuras'", "'Chỉ có bản tối'", "'Hanya varian gelap'", "'Yalnızca koyu varyantlar'", "'Tylko ciemne warianty'"],
+    eyebrowHelp: ["L('ПОМОЩЬ', 'ДОПОМОГА', 'HELP', 'AYUDA', 'AJUDA', 'TRỢ GIÚP', 'BANTUAN', 'YARDIM', 'POMOC')"],
+    signIn: ["L('Войти', 'Увійти', 'Sign in', 'Iniciar sesión', 'Entrar', 'Đăng nhập', 'Masuk', 'Giriş yap', 'Zaloguj się')"],
     linked: ["'аккаунт привязан'", "'акаунт прив’язано'", "'account linked'", "'cuenta vinculada'", "'conta vinculada'", "'đã liên kết tài khoản'", "'akun tertaut'", "'hesap bağlı'", "'konto połączone'"],
     studyTitle: ["'Язык изучения'", "'Мова навчання'", "'Learning language'", "'Idioma de estudio'", "'Idioma de estudo'", "'Ngôn ngữ học'", "'Bahasa belajar'", "'Öğrenilen dil'", "'Język nauki'"],
   };
   for (const [name, needles] of Object.entries(required)) {
     assert.ok(needles.length >= 1, `${name} sanity`);
     for (const needle of needles) assert.ok(source.includes(needle), `${name}: ${needle}`);
+  }
+  // В макете A строки без подписей: прежние расшифровки под названиями убраны.
+  for (const gone of ["'Данные, вход и удаление'", "'Прогресс хранится отдельно'", "'Проверка, ввод и озвучка'", "'Напоминания и итоги'", "'Только тёмные варианты'", "'ВНЕШНИЙ ВИД И ПОМОЩЬ'"]) {
+    assert.ok(!source.includes(gone), `removed sub/eyebrow: ${gone}`);
   }
   assert.equal(LOCALES.length, 9);
   assert.match(source, /en: 'English',/);
@@ -117,8 +126,9 @@ test('rows, values and handlers of the old screen are preserved', () => {
   assert.match(body, /testID="settings-promo-code-row"[\s\S]*?pathname: '\/promo_code_entry', params: \{ source: 'settings' \}/);
   assert.match(source, /pathname: '\/manage_subscription'/);
   assert.match(body, /testID="settings-plus-access-details"|premiumDetails/);
-  assert.ok(indexOfOrThrow(body, 'settings-message-slot-top') > indexOfOrThrow(body, 'settings-plus-row'));
-  assert.ok(indexOfOrThrow(body, 'settings-message-slot-bottom') < indexOfOrThrow(body, 'PHRASEMAN'));
+  assert.ok(indexOfOrThrow(body, 'settings-message-slot-top') > indexOfOrThrow(body, 'settings-study-language-row'));
+  assert.ok(indexOfOrThrow(body, 'settings-message-slot-bottom') > indexOfOrThrow(body, 'settings-rate-app-row'));
+  assert.ok(indexOfOrThrow(body, 'settings-message-slot-bottom') < indexOfOrThrow(body, 'settings-dev-hub-button'));
   assert.match(source, /<DeleteAccountConfirmModal/);
   assert.match(source, /signOutAndWipeForAccountSwitch/);
 });
@@ -140,12 +150,12 @@ test('functions absent from the macet stay reachable as glass rows and are not s
   assert.match(body, /sound-settings-start[\s\S]*settings-ui-sounds-switch[\s\S]*settings-voice-out-switch[\s\S]*sound-settings-end/);
 });
 
-test('study language row is informational: flag, name, no chevron and no press action', () => {
+test('study language row is informational: globe, name, no chevron and no press action', () => {
   const start = indexOfOrThrow(body, 'testID="settings-study-language-row"');
   const end = indexOfOrThrow(body, '/>', indexOfOrThrow(body, 'value={studyTargetName}', start));
   const row = body.slice(start, end);
   assert.doesNotMatch(row, /onPress=/);
-  assert.match(row, /studyTargetFlag/);
+  assert.match(row, /icon="globe-outline"/); // макет A: значок-глобус
   assert.match(source, /language_flags\/language_en\.webp/);
   assert.doesNotMatch(source, /<StudyLanguagePicker|Изучаемый язык|Выбранный язык применяется ко всем учебным разделам/);
   assert.match(rows, /\{onPress \? <Ionicons name="chevron-forward"/);

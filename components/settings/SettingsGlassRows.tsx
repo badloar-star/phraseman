@@ -1,5 +1,5 @@
-import React from 'react';
-import { Text, View, type StyleProp, type ViewStyle } from 'react-native';
+import React, { createContext, useContext } from 'react';
+import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../PressableHybrid';
 import SafeLinearGradient from '../SafeLinearGradient';
@@ -35,14 +35,53 @@ export function settingsGlassCardStyle(glass: SettingsGlass) {
 }
 
 /** Заголовок секции (eyebrow макета): 11/14, жирный, разрежённый, верхний регистр задаёт вызывающий. */
-export function SettingsGlassEyebrow({ title, glass }: { title: string; glass: SettingsGlass }) {
+export function SettingsGlassEyebrow({ title, glass, wide = false }: { title: string; glass: SettingsGlass; wide?: boolean }) {
   return (
     <Text
       accessibilityRole="header"
-      style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, fontWeight: '700', letterSpacing: 1.7, marginTop: 24, marginHorizontal: 4, marginBottom: 10 }}
+      // wide — заголовок раздела макета A (`.ov` 12/16, разрядка 3, отступ 26; D145: 13); остальные экраны — как было.
+      style={{ color: glass.secondary, fontSize: 13, lineHeight: wide ? 16 : 18, fontWeight: '700', letterSpacing: wide ? 3 : 1.7, marginTop: wide ? 26 : 24, marginHorizontal: 4, marginBottom: 10 }}
     >
       {title}
     </Text>
+  );
+}
+
+// зачем (redesign-round-1 вариант A «Группы одним блоком», владелец 04.10): на корневых «Настройках» пункты
+// раздела собраны в ОДНУ карточку с тонкими разделителями. Строки внутри группы плоские (без своего фона и
+// кромки), высота 60, поля 9/16. Другие экраны (язык, темы, уведомления, друзья, видео) остаются на
+// SettingsGlassList — у них свои макеты; режим включается только через SettingsGlassGroup.
+const SettingsGroupContext = createContext<boolean>(false);
+
+const GROUPED_ROW_STYLE = {
+  minHeight: 60,
+  paddingVertical: 9,
+  paddingHorizontal: 16,
+  gap: 14,
+  flexDirection: 'row' as const,
+  alignItems: 'center' as const,
+};
+
+/** `.card.list` макета A: одна карточка r14 с кромкой, пункты через тонкий разделитель `.row+.row`. */
+export function SettingsGlassGroup({ glass, children, testID, marginTop }: { glass: SettingsGlass; children: React.ReactNode; testID?: string; marginTop?: number }) {
+  const items = React.Children.toArray(children).filter(Boolean);
+  if (items.length === 0) return null;
+  return (
+    <View testID={testID} style={{ marginTop, borderRadius: 14, backgroundColor: glass.opaqueCard, borderWidth: 1, borderColor: glass.glassEdge, overflow: 'hidden' }}>
+      <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
+      <ThemeGlassSmoke glass={glass} />
+      <KitGlassLayer radius={14} />
+      <SettingsGroupContext.Provider value>
+        {items.map((child, index) => (
+          <View
+            key={React.isValidElement(child) && child.key != null ? child.key : index}
+            style={index > 0 ? { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: glass.line } : undefined}
+          >
+            {child}
+          </View>
+        ))}
+      </SettingsGroupContext.Provider>
+    </View>
   );
 }
 
@@ -63,6 +102,10 @@ export function SettingsGlassTile({ glass, children }: { glass: SettingsGlass; c
 
 /** Пустая плашка-контейнер с тем же фоном, что у строк (для составных строк: размер шрифта). */
 export function SettingsGlassCard({ glass, children, testID, style }: { glass: SettingsGlass; children: React.ReactNode; testID?: string; style?: StyleProp<ViewStyle> }) {
+  const grouped = useContext(SettingsGroupContext);
+  if (grouped) {
+    return <View testID={testID} style={[GROUPED_ROW_STYLE, { paddingVertical: 14 }, style]}>{children}</View>;
+  }
   return (
     <View testID={testID} style={[settingsGlassCardStyle(glass), style]}>
       <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
@@ -98,14 +141,20 @@ type RowProps = {
 };
 
 export function SettingsGlassRow({ glass, testID, title, sub, value, icon, leading, onPress, right, haptic = true, accessibilityLabel, titleColor, titleTestID, subTestID }: RowProps) {
+  const grouped = useContext(SettingsGroupContext);
   const label = accessibilityLabel ?? [title, value, sub].filter(Boolean).join(', ');
+  const containerStyle = grouped ? GROUPED_ROW_STYLE : settingsGlassCardStyle(glass);
   const body = (
     <>
-      <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
-      {/* зачем (темы 2.0): цветная дымка внутри карточки — только «Максимум». */}
-      <ThemeGlassSmoke glass={glass} />
-      {/* зачем (сверка 04.10, profile-001): строка — стекло kit.css (блик 150°, светлая кромка сверху-слева, тёмная снизу). */}
-      <KitGlassLayer radius={14} />
+      {grouped ? null : (
+        <>
+          <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
+          {/* зачем (темы 2.0): цветная дымка внутри карточки — только «Максимум». */}
+          <ThemeGlassSmoke glass={glass} />
+          {/* зачем (сверка 04.10, profile-001): строка — стекло kit.css (блик 150°, светлая кромка сверху-слева, тёмная снизу). */}
+          <KitGlassLayer radius={14} />
+        </>
+      )}
       {leading ?? (icon ? (
         <SettingsGlassTile glass={glass}>
           {/* зачем (темы 2.0): значок плитки в цвете темы в «Акценте/Максимуме»; в «Спокойно» — как было. */}
@@ -113,13 +162,15 @@ export function SettingsGlassRow({ glass, testID, title, sub, value, icon, leadi
         </SettingsGlassTile>
       ) : null)}
       <View style={{ flex: 1, minWidth: 0 }}>
-        <Text testID={titleTestID} style={{ color: titleColor ?? glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{title}</Text>
+        {/* `.row .tt` 17/22/600 в группе A — шкала D145: 16/22. */}
+        <Text testID={titleTestID} style={{ color: titleColor ?? glass.text, fontSize: 16, lineHeight: grouped ? 22 : 21, fontWeight: grouped ? '600' : '700' }}>{title}</Text>
         {sub ? <Text testID={subTestID} style={{ color: glass.mutedText, fontSize: 13, lineHeight: 18, marginTop: 3 }}>{sub}</Text> : null}
       </View>
       {right ?? (
         <>
-          {value ? <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, textAlign: 'right', flexShrink: 1, maxWidth: '45%' }}>{value}</Text> : null}
-          {onPress ? <Ionicons name="chevron-forward" size={18} color={glass.secondary} /> : null}
+          {/* `.row .val` 15 вторичным (D145: 16), `.ch` — шеврон приглушённым тоном. */}
+          {value ? <Text style={{ color: glass.secondary, fontSize: grouped ? 16 : 13, lineHeight: grouped ? 22 : 18, textAlign: 'right', flexShrink: 1, maxWidth: '45%' }}>{value}</Text> : null}
+          {onPress ? <Ionicons name="chevron-forward" size={18} color={grouped ? glass.mutedText : glass.secondary} /> : null}
         </>
       )}
     </>
@@ -128,7 +179,7 @@ export function SettingsGlassRow({ glass, testID, title, sub, value, icon, leadi
     return (
       // Со своим правым элементом (переключатель) контейнер не «склеивается» в один фокус —
       // иначе скринридер не доберётся до самого переключателя.
-      <View testID={testID} accessible={!right} accessibilityLabel={right ? undefined : label} style={settingsGlassCardStyle(glass)}>
+      <View testID={testID} accessible={!right} accessibilityLabel={right ? undefined : label} style={containerStyle}>
         {body}
       </View>
     );
@@ -141,7 +192,7 @@ export function SettingsGlassRow({ glass, testID, title, sub, value, icon, leadi
       withHaptic={haptic}
       withSound={false}
       variant="card"
-      contentStyle={settingsGlassCardStyle(glass)}
+      contentStyle={containerStyle}
     >
       {body}
     </PressableHybrid>

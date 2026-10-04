@@ -16,7 +16,6 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Pressable,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -85,6 +84,7 @@ import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { captureAccountGeneration } from './account_generation';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 // зачем (PM-134): SESSION_ATTEMPTS_MOTION был мёртвым импортом — константа анимации нигде не читалась в этом экране
 
 type Feedback = {
@@ -358,11 +358,15 @@ function MistakePracticeScreenFrame({ children, centered = false }: Readonly<{
   children: React.ReactNode;
   centered?: boolean;
 }>) {
+  // зачем (сверка mistakes-panel-010, 04.10): SafeAreaView из react-native на Android не даёт отступов —
+  // шапка задания (✕, счётчик, ⋯) лежала под часами и значками строки состояния. Отступы — из стабильных
+  // safe-area insets проекта (Performance Bible: insets только через useStableSafeAreaInsets).
+  const insets = useStableSafeAreaInsets();
   return (
     <ScreenGradient>
-      <SafeAreaView style={styles.screen}>
+      <View style={[styles.screen, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
         {centered ? <View style={[styles.screen, styles.center]}>{children}</View> : children}
-      </SafeAreaView>
+      </View>
     </ScreenGradient>
   );
 }

@@ -57,3 +57,5 @@ Governance-ID: TG-8BA51DC640FB
 
 Governance-ID: TG-02F41E43283D
 (Наборы: нижняя панель по .bar3 и порядок лупа/EN — app/flashcards_packs.tsx; сборка 500 по уроку 4 — не моя)
+
+(mistakes-panel-010: шапка отработки под строкой состояния — app/mistake_practice_session.tsx, RN SafeAreaView → useStableSafeAreaInsets)

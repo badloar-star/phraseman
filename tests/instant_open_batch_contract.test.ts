@@ -33,6 +33,13 @@ describe('instant open batch', () => {
     expect(src).toContain('[visible, packId, isPackAuthor, reloadTick]');
   });
 
+  it('blitz offers try-again when the card pool never loads and the retry restarts the pool (PM-214 A2)', () => {
+    const src = read('app/flashcards_blitz_session.tsx');
+    expect(src).toContain('[FC-BLITZ-GATE] watchdog:show_retry_pool');
+    expect(src).toContain('setPoolReloadRevision((current) => current + 1);');
+    expect(src).toContain('[blitzAccessGranted, contentLang, deckRefs, studyTarget, poolReloadRevision]');
+  });
+
   it('explanation disk cache is moved into memory on touch and on open', () => {
     expect(read('app/explain_phrase_request.ts')).toContain('export async function prefillExplainResultFromDisk(');
     const button = read('components/ExplainButton.tsx');

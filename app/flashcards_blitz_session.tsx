@@ -246,6 +246,8 @@ export default function FlashcardsBlitzSession() {
     acknowledgeSessionStart,
   } = useEnergy();
   const [quotaRetryRevision, setQuotaRetryRevision] = useState(0);
+  // зачем (PM-214 A2, D158): если пул карточек не загрузился — «Попробовать снова» перезапускает именно его загрузку (эффект пула зависит от этого счётчика).
+  const [poolReloadRevision, setPoolReloadRevision] = useState(0);
   const blitzEnergyIntent = useEnergySessionIntent(
     'flashcards_blitz',
     deckParamStr ?? 'saved',
@@ -430,7 +432,7 @@ export default function FlashcardsBlitzSession() {
     return () => {
       cancelled = true;
     };
-  }, [blitzAccessGranted, contentLang, deckRefs, studyTarget]);
+  }, [blitzAccessGranted, contentLang, deckRefs, studyTarget, poolReloadRevision]);
 
 
   // ── Финал: таймер 0 или жизни 0 → результат ───────────────────────────────
@@ -783,6 +785,10 @@ export default function FlashcardsBlitzSession() {
       if (energyGate === 'checking' && blitzAccessGranted && !loading && step !== 'energy:await') {
         console.warn('[FC-BLITZ-GATE] watchdog:show_retry', JSON.stringify({ step }));
         setQuotaUnavailable(true);
+      } else if (loading && blitzAccessGranted) {
+        // Пул карточек не загрузился за 20 с простоя — не вечный каркас, а «Попробовать снова» (повтор перезапускает загрузку пула).
+        console.warn('[FC-BLITZ-GATE] watchdog:show_retry_pool', JSON.stringify({ step, pool: pool.length, round: roundId }));
+        setQuotaUnavailable(true);
       }
     };
     timer = setTimeout(check, BLITZ_GATE_WATCHDOG_MS);
@@ -794,7 +800,12 @@ export default function FlashcardsBlitzSession() {
     setQuotaUnavailable(false);
     setEnergyGate('checking');
     setQuotaRetryRevision((current) => current + 1);
-  }, []);
+    // Если зависла загрузка пула — перезапускаем её (прежний прогон отменяется флагом cancelled в эффекте).
+    if (loading) {
+      console.warn('[FC-BLITZ-GATE] retry:reload_pool', JSON.stringify({ round: roundId }));
+      setPoolReloadRevision((current) => current + 1);
+    }
+  }, [loading, roundId]);
 
   // ── Старт/рестарт раунда: перемешка, таймер-полоса, первый вопрос ─────────
   useEffect(() => {

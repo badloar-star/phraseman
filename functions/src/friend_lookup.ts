@@ -2,6 +2,7 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 
+import { reportSwallowedServer, swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const NAME_INDEX = 'name_index';
 
 function sanitizeString(value: unknown, max: number): string {
@@ -88,7 +89,7 @@ async function resolveUidByLegacyName(
   ];
   for (const query of queries) {
     // eslint-disable-next-line no-await-in-loop
-    const snap = await query.get().catch(() => null);
+    const snap = await query.get().catch(swallowed('friend_lookup:get', null));
     for (const doc of snap?.docs ?? []) {
       const candidate = sanitizeString(doc.id, 180);
       // eslint-disable-next-line no-await-in-loop
@@ -118,7 +119,7 @@ async function resolveUidByNamePrefix(
     .orderBy('progress.user_name_lower')
     .limit(10)
     .get()
-    .catch(() => null);
+    .catch(swallowed('friend_lookup:get', null));
   for (const doc of snap?.docs ?? []) {
     const candidate = sanitizeString(doc.id, 180);
     // eslint-disable-next-line no-await-in-loop
@@ -147,7 +148,8 @@ async function backfillNameIndex(
       { uid, name: sanitizeString(name, 32), nameLower, backfilledAt: Date.now() },
       { merge: true },
     );
-  } catch {
+  } catch (pm229Error) {
+    reportSwallowedServer('friend_lookup:existing', pm229Error);
     /* best-effort self-heal */
   }
 }

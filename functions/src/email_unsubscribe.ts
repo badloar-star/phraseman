@@ -17,6 +17,7 @@ import * as logger from 'firebase-functions/logger';
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 import { defineSecret, defineString } from 'firebase-functions/params';
 
+import { reportSwallowedServer } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const REGION = 'us-central1';
 
 /**
@@ -136,7 +137,8 @@ export function verifyUnsubscribeToken(email: string, token: string): boolean {
     if (given.length !== expected.length) continue;
     try {
       if (timingSafeEqual(Buffer.from(expected), Buffer.from(given))) matched = true;
-    } catch {
+    } catch (pm229Error) {
+      reportSwallowedServer('email_unsubscribe:expected', pm229Error);
       // повреждённый ввод — просто не совпал
     }
   }

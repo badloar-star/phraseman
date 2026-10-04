@@ -70,6 +70,7 @@ import {
   resolveDialogIdentityCached,
 } from './premium_dialog_fastpath';
 
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 export { createLiveReplyPublisher, extractPartialReply };
 
 if (!admin.apps.length) admin.initializeApp();
@@ -512,7 +513,7 @@ export const premiumDialogStream = onRequest({
       timer.mark(attempt === 0 ? 'providerHeadersMs' : 'retryProviderHeadersMs');
 
       if (!upstream.ok || !upstream.body) {
-        const detail = await upstream.text().catch(() => '');
+        const detail = await upstream.text().catch(swallowed('premium_dialog_stream:text', ''));
         console.error('premium_dialog_stream chat failed', {
           status: upstream.status,
           model: dialogModel,

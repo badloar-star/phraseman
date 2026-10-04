@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions/v2';
 
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const APP_MESSAGE_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 
 function toMs(value: unknown): number {
@@ -188,7 +189,7 @@ export const onAppMessagePollVoteWritten = functions.firestore.onDocumentWritten
     let countedBeforeOptionId = beforeOptionId;
 
     if (beforeOptionId && beforeUpdatedAtMs > 0) {
-      const messageSnap = await messageRef.get().catch(() => null);
+      const messageSnap = await messageRef.get().catch(swallowed('app_messages:get', null));
       const pollResetAtMs = toMs(messageSnap?.exists ? messageSnap.data()?.pollResetAtMs : 0);
       if (pollResetAtMs >= beforeUpdatedAtMs) {
         countedBeforeOptionId = '';

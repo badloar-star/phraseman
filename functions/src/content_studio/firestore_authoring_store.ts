@@ -50,6 +50,7 @@ import { validateSeasonLifecycleHead, type SeasonRevisionEnvelope } from "../../
 import { validateSeasonLifecycleOperationEnvelope, type SeasonLifecycleTransitionStore } from "./season_lifecycle_transition_repository";
 import type { SeasonApprovalReceipt } from "../../../modules/learning-v2/authoring/season_approval_receipt";
 
+import { reportSwallowedServer } from '../swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 export const episodeDraftDocumentPath = (draftId: string): string =>
   `content_episode_drafts/${draftId}`;
 export const seasonDraftDocumentPath = (draftId: string): string =>
@@ -821,7 +822,8 @@ export function createFirestoreEpisodeLifecycleStore(
               if (resolved.lifecycle.status !== "approved") continue;
               const refs: unknown[] = Array.isArray((resolved.body as Record<string, unknown>).episodeRevisionRefs) ? (resolved.body as Record<string, unknown>).episodeRevisionRefs as unknown[] : [];
               if (refs.some((item: unknown) => item && typeof item === "object" && (item as Record<string, unknown>).episodeId === ref.episodeId && (item as Record<string, unknown>).revision === ref.revision && (item as Record<string, unknown>).revisionFingerprint === ref.revisionFingerprint && (item as Record<string, unknown>).contentHash === ref.contentHash)) return true;
-            } catch {
+            } catch (pm229Error) {
+              reportSwallowedServer('content_studio_firestore_authoring_store:document', pm229Error);
               // Fail closed for malformed/missing canonical Season objects.
             }
             continue;

@@ -24,6 +24,7 @@ import {
   utcDayKey,
 } from '../growth_daily_aggregate';
 
+import { reportSwallowedServer } from '../swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 /** @deprecated Kept for callers; growth no longer caps recent rows at this value. */
 export const MAX_GROWTH_ROWS_PER_SOURCE = 500;
 export const GROWTH_PAGE_SIZE = 500;
@@ -91,7 +92,8 @@ export async function fetchGrowthSource(input: FetchGrowthSourceInput): Promise<
           });
         }
       }
-    } catch {
+    } catch (pm229Error) {
+      reportSwallowedServer('jarvis_growth_firestore_fetcher:valid', pm229Error);
       // Fall through to bounded degraded evidence. Aggregate availability must
       // not turn into an unbounded users scan or a fabricated exact zero.
     }

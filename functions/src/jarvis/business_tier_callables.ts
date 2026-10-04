@@ -8,6 +8,7 @@ import { MAX_HISTORY_POINTS_PER_READ, readPeakTier, readRecentHistory, writePeak
 import { buildBusinessTierSnapshot } from './business_tier_snapshot';
 import { fetchActiveUserCount } from './app_tier_reader';
 
+import { swallowed } from '../swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 /**
  * Два входа owner-facing раздела «Стадия роста бизнеса».
  *
@@ -84,7 +85,7 @@ export const jarvisGetBusinessTier = onCall(READ_OPTIONS, async (request: Callab
   // текущий тир; без записи храповик забывал бы достигнутое между вызовами.
   // Запись поднимает пик только вверх (writePeakTier сам это гарантирует).
   if (snapshot.hasData) {
-    await writePeakTier(db, snapshot.currentTier, nowMs).catch(() => undefined);
+    await writePeakTier(db, snapshot.currentTier, nowMs).catch(swallowed('jarvis_business_tier_callables:writePeakTier', undefined));
   }
 
   return {

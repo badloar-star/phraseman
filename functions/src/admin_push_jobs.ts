@@ -3,6 +3,7 @@ import { withCronHeartbeat } from './cron_heartbeat';
 import { onDocumentCreated } from 'firebase-functions/v2/firestore';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const REGION = 'us-central1';
 const EXPO_PUSH_ENDPOINT = 'https://exp.host/--/api/v2/push/send';
 const USER_SCAN_PAGE_SIZE = 500;
@@ -393,14 +394,14 @@ export async function sendExpoPushMessages(
         body: JSON.stringify(chunk),
       });
       if (!res.ok) {
-        const detail = await res.text().catch(() => '');
+        const detail = await res.text().catch(swallowed('admin_push_jobs:text', ''));
         summary.failedChunks++;
         summary.failedCount += chunk.length;
         summary.errors.push(`expo_http_${res.status}:${detail.slice(0, 160)}`);
         continue;
       }
 
-      const json = await res.json().catch(() => ({})) as { data?: ExpoTicket[] | ExpoTicket };
+      const json = await res.json().catch(swallowed('admin_push_jobs:json', {})) as { data?: ExpoTicket[] | ExpoTicket };
       const tickets = Array.isArray(json.data)
         ? json.data
         : json.data

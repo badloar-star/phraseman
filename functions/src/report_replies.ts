@@ -25,6 +25,7 @@ import { buildUserNotification, userNotificationRef } from './user_notifications
 import { hasClaimedPermission, type AdminPermission } from './admin/permissions';
 import { aiOperationUsageSink } from './ai_operation_billing';
 
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
@@ -414,7 +415,7 @@ export const adminReplyToReport = onCall(
     );
     // Pro-план (разовая «Навсегда») резолвим СЕРВЕРНО из users/{uid} — leaderboard-документ
     // премиум-поля не обновляет, поэтому опираться на него для Pro нельзя.
-    helperProjection.isLifetime = await resolveIsLifetimePlan(db, uid, nowMs).catch(() => false);
+    helperProjection.isLifetime = await resolveIsLifetimePlan(db, uid, nowMs).catch(swallowed('report_replies:resolveIsLifetimePlan', false));
 
     await db.runTransaction(async (tx) => {
       const reportSnap = await tx.get(reportRef);

@@ -10,6 +10,7 @@
  */
 import { HttpsError } from 'firebase-functions/v2/https';
 
+import { swallowed } from '../swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 const OPENAI_CHAT_TIMEOUT_MS = 30_000;
 const OPENAI_CHAT_MAX_ATTEMPTS = 3;
@@ -110,7 +111,7 @@ export async function openAiChat(params: OpenAiChatParams): Promise<OpenAiChatRe
         signal: AbortSignal.timeout(timeoutMs),
       });
       if (response.ok || !isRetryableStatus(response.status) || attempt === maxAttempts) break;
-      const detail = await response.text().catch(() => '');
+      const detail = await response.text().catch(swallowed('explain_explain_provider:text', ''));
       console.warn('explain_provider retryable chat status', response.status, detail.slice(0, 240), { attempt });
     } catch (error) {
       lastError = error;
@@ -129,7 +130,7 @@ export async function openAiChat(params: OpenAiChatParams): Promise<OpenAiChatRe
   }
 
   if (!response.ok) {
-    const detail = await response.text().catch(() => '');
+    const detail = await response.text().catch(swallowed('explain_explain_provider:text', ''));
     console.error('explain_provider chat failed', response.status, detail.slice(0, 500));
     throw new HttpsError('unavailable', 'explain_provider_failed');
   }

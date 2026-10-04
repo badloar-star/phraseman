@@ -11,6 +11,7 @@ import {
 } from './account_gate';
 import { resolvePremiumAccess } from './premium_status';
 
+import { reportSwallowedServer } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 export const DIALOGUE_V2_FREEFORM_MEMORY_COLLECTION = 'dialogue_v2_freeform_memory';
 export const DIALOGUE_V2_FREEFORM_MEMORY_MAX_BYTES = 4_096;
 
@@ -400,7 +401,8 @@ function safeNowMs(runtime: DialogueV2FreeformMemoryRuntime): number {
   try {
     const nowMs = runtime.nowMs();
     if (positiveSafeInteger(nowMs)) return nowMs;
-  } catch {
+  } catch (pm229Error) {
+    reportSwallowedServer('dialogue_v2_freeform_memory:nowMs', pm229Error);
     // Normalize runtime failures below.
   }
   throw new DialogueV2FreeformMemoryError('authorization_unavailable');

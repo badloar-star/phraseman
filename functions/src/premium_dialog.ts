@@ -46,6 +46,7 @@ import {
   resolveDialogIdentityCached,
 } from './premium_dialog_fastpath';
 
+import { reportSwallowedServer, swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 // A targeted/isolated deployment can load this module directly instead of lib/index.js.
 // Keep the bootstrap idempotent so both entry points share the same default Admin app.
 if (!admin.apps.length) admin.initializeApp();
@@ -1213,13 +1214,13 @@ export const premiumDialogSend = onCall({
   };
   const safetyVerdict = evaluateSafety(userText);
   const keywordFlagPromise = safetyVerdict.flagged
-    ? recordSafetyFlag(safetyVerdict, safetyCtx).catch(() => {})
+    ? recordSafetyFlag(safetyVerdict, safetyCtx).catch(swallowed('premium_dialog:recordSafetyFlag', undefined))
     : null;
   const moderationFlagPromise = safetyVerdict.flagged
     ? null
     : moderateUserText(apiKey, userText)
         .then((verdict) => (verdict.flagged ? recordSafetyFlag(verdict, safetyCtx) : undefined))
-        .catch(() => {});
+        .catch(swallowed('premium_dialog:recordSafetyFlag', undefined));
   const flushSafetyFlags = async (): Promise<void> => {
     if (keywordFlagPromise) await keywordFlagPromise;
     if (moderationFlagPromise) await moderationFlagPromise;
@@ -1289,7 +1290,7 @@ export const premiumDialogSend = onCall({
       });
 
       if (!response.ok) {
-        const detail = await response.text().catch(() => '');
+        const detail = await response.text().catch(swallowed('premium_dialog:text', ''));
         console.error('premium_dialog chat failed', {
           status: response.status,
           model: dialogModel,
@@ -1575,7 +1576,8 @@ export function parseHowToSayVariants(raw: string): { text: string; hint: string
       if (value) out.push({ text: value, hint: text(record.hint, 200) });
     }
     if (out.length > 0) return out;
-  } catch {
+  } catch (pm229Error) {
+    reportSwallowedServer('premium_dialog:value', pm229Error);
     // Модель ответила не JSON — падать нельзя, разберём построчно ниже.
   }
   return unfenced
@@ -1783,7 +1785,7 @@ export const premiumDialogTranslate = onCall({
     });
 
     if (!response.ok) {
-      const detail = await response.text().catch(() => '');
+      const detail = await response.text().catch(swallowed('premium_dialog:text', ''));
       console.error('premium_dialog_translate chat failed', {
         status: response.status,
         model: translateModel,

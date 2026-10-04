@@ -37,6 +37,7 @@ import { openAiChat } from './explain/explain_provider';
 import { judgeExplanation } from './explain/explain_judge';
 import { resolveAiOutputLang, resolveStudyTarget } from './ai_language_contract';
 
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
 const REGION = 'us-central1';
@@ -196,7 +197,7 @@ export const explainPhrase = onCall({
   try {
     isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
   } catch (error) {
-    await releasePendingLock(phraseHash, claimedAtMs).catch(() => {});
+    await releasePendingLock(phraseHash, claimedAtMs).catch(swallowed('explain_phrase:releasePendingLock', undefined));
     throw error;
   }
   // 4. Cost guards (cache MISS only). Per-user FIRST, then the global breaker. If EITHER is
@@ -213,10 +214,10 @@ export const explainPhrase = onCall({
     );
   } catch (err) {
     if (err instanceof HttpsError && err.code === 'resource-exhausted') {
-      await releasePendingLock(phraseHash, claimedAtMs).catch(() => {});
+      await releasePendingLock(phraseHash, claimedAtMs).catch(swallowed('explain_phrase:releasePendingLock', undefined));
       return { ok: true, text: buildFallback(phraseMeaning, lang), status: 'exhausted', fromCache: false };
     }
-    await releasePendingLock(phraseHash, claimedAtMs).catch(() => {});
+    await releasePendingLock(phraseHash, claimedAtMs).catch(swallowed('explain_phrase:releasePendingLock', undefined));
     throw err;
   }
 
@@ -254,14 +255,14 @@ export const explainPhrase = onCall({
   } catch (err) {
     await refundExplainBudgetReservation(budgetReservation, 'provider_failed');
     budgetReservation = null;
-    await releasePendingLock(phraseHash, claimedAtMs).catch(() => {});
+    await releasePendingLock(phraseHash, claimedAtMs).catch(swallowed('explain_phrase:releasePendingLock', undefined));
     throw err;
   }
 
   if (!gen || !verdict) {
     await refundExplainBudgetReservation(budgetReservation, 'provider_failed');
     budgetReservation = null;
-    await releasePendingLock(phraseHash, claimedAtMs).catch(() => {});
+    await releasePendingLock(phraseHash, claimedAtMs).catch(swallowed('explain_phrase:releasePendingLock', undefined));
     throw new HttpsError('unavailable', 'explain_generation_incomplete');
   }
 

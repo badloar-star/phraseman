@@ -7,6 +7,7 @@ import {
   qualityUtcDayStartMs,
 } from '../quality_daily_aggregate';
 
+import { reportSwallowedServer } from '../swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 /**
  * Тонкая обёртка над Firestore для департамента «Качество».
  *
@@ -146,7 +147,8 @@ export async function fetchQualitySource(input: FetchQualitySourceInput): Promis
           evidenceMode: 'exact_daily_aggregate' as const,
         });
       }
-    } catch {
+    } catch (pm229Error) {
+      reportSwallowedServer('jarvis_quality_firestore_fetcher:aggregateRows', pm229Error);
       // Missing/corrupt aggregate evidence is never treated as an exact zero.
       // The bounded raw projection below remains privacy-safe but degraded.
     }

@@ -7,6 +7,7 @@ import { hasAdminRole, type AdminRole } from './admin/roles';
 import { assertJobEnabled, resolveJobConfig } from './openai_jobs_config';
 import { PAID_AI_FETCH_TIMEOUT_MS, paidAiFetchFailureReason } from './paid_ai_fetch_timeout';
 
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 const JOBS_COLLECTION = 'admin_asset_jobs';
@@ -180,7 +181,7 @@ async function generateImage(apiKey: string, job: ReturnType<typeof normalizeAss
     throw new Error(reason === 'timeout' ? 'image_api_timeout' : 'image_api_fetch_failed');
   }
   if (!response.ok) {
-    await response.text().catch(() => '');
+    await response.text().catch(swallowed('admin_asset_studio:text', ''));
     throw new Error(`image_api_${response.status}`);
   }
   // зачем (PM-231-A3, решение координатора §80): ручной инструмент владельца; лимит картинок

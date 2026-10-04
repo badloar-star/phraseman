@@ -4,6 +4,7 @@ import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { randomInt } from 'node:crypto';
 
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const NAME_INDEX = 'name_index';
 const NICKNAME_CHANGE_COOLDOWN_MS = 14 * 24 * 60 * 60 * 1000;
 const GENERATED_NICKNAME_WORDS = [
@@ -156,7 +157,7 @@ async function assertNotBanned(db: FirebaseFirestore.Firestore, stableUid: strin
 async function nameOwnerIsLive(db: FirebaseFirestore.Firestore, uid: string): Promise<boolean> {
   const cleanUid = sanitizeString(uid, 180);
   if (!cleanUid) return false;
-  const userSnap = await db.collection('users').doc(cleanUid).get().catch(() => null);
+  const userSnap = await db.collection('users').doc(cleanUid).get().catch(swallowed('leaderboard:get', null));
   if (!userSnap?.exists) return false;
   const data = userSnap.data() ?? {};
   if (data.identityHidden === true) return false;
@@ -504,19 +505,19 @@ export const nameReleaseMine = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
     if (nameLower) candidates.add(nameLower);
   }
 
-  const lbSnap = await db.collection('leaderboard').doc(stableUid).get().catch(() => null);
+  const lbSnap = await db.collection('leaderboard').doc(stableUid).get().catch(swallowed('leaderboard:get', null));
   const lb = lbSnap?.data() || {};
   if (typeof lb.nameLower === 'string' && lb.nameLower.trim()) candidates.add(lb.nameLower.trim().toLowerCase());
   if (typeof lb.name === 'string' && lb.name.trim()) candidates.add(lb.name.trim().toLowerCase());
 
-  const byUid = await db.collection(NAME_INDEX).where('uid', '==', stableUid).limit(20).get().catch(() => null);
+  const byUid = await db.collection(NAME_INDEX).where('uid', '==', stableUid).limit(20).get().catch(swallowed('leaderboard:get', null));
   byUid?.docs.forEach((doc) => candidates.add(doc.id));
 
   const batch = db.batch();
   let deleted = 0;
   for (const nameLower of candidates) {
     const ref = db.collection(NAME_INDEX).doc(nameLower);
-    const snap = await ref.get().catch(() => null);
+    const snap = await ref.get().catch(swallowed('leaderboard:get', null));
     if (snap?.exists && snap.data()?.uid === stableUid) {
       batch.delete(ref);
       deleted += 1;

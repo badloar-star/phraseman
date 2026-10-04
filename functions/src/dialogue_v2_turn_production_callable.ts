@@ -72,6 +72,7 @@ import {
   logDialogueV2Warm,
 } from './dialogue_v2_warm';
 
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const REGION = 'us-central1';
 const PROVIDER_MAX_TOKENS = 500;
 const PROVIDER_MAX_CONTENT_LENGTH = 2_500;
@@ -797,7 +798,7 @@ export function createDialogueV2SessionTextTurnHandler(
           scenarioId: input.scenarioId,
         }),
         ledgerResult,
-      ).catch(() => null);
+      ).catch(swallowed('dialogue_v2_turn_production_callable:selectPreparedBotVoiceAfterCommit', null));
 
       if (ledgerResult.kind === 'replay') {
         return Object.freeze({

@@ -4,6 +4,7 @@ import { hasClaimedPermission } from './admin/permissions';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { recordAiOperationUsage, type AiOperationUsage } from './ai_operation_billing';
 
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 const OPENAI_SPEECH_URL = 'https://api.openai.com/v1/audio/speech';
@@ -94,7 +95,7 @@ async function requestSpeech(input: DirectorDigestSpeechInput): Promise<Director
     signal: AbortSignal.timeout(60_000),
   });
   if (!response.ok) {
-    const detail = await response.text().catch(() => '');
+    const detail = await response.text().catch(swallowed('admin_director_digest_audio:text', ''));
     console.error('admin director digest TTS failed', response.status, detail.slice(0, 240));
     throw new HttpsError('unavailable', 'Text-to-speech provider failed.');
   }

@@ -22,6 +22,7 @@ import {
 } from './dialogue_v2_turn_coaching';
 import type { DialogueV2SessionGroupState } from './dialogue_v2_session_ledger';
 
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const MAX_USER_MESSAGE_LENGTH = 2_000;
 const MAX_REPLY_LENGTH = 800;
 const SESSION_ID_RE = /^d2s_[A-Za-z0-9_-]{32,96}$/;
@@ -631,7 +632,7 @@ export async function executeDialogueV2TextTurn(
     }));
   } catch {
     if (quota.consumed) {
-      await dependencies.releaseMonthlyQuota(authUid, stableAccountId, quota.resetAtMs).catch(() => undefined);
+      await dependencies.releaseMonthlyQuota(authUid, stableAccountId, quota.resetAtMs).catch(swallowed('dialogue_v2_turn_callable:releaseMonthlyQuota', undefined));
     }
     throw new DialogueV2TextTurnError('provider_failed');
   }
@@ -645,7 +646,7 @@ export async function executeDialogueV2TextTurn(
   );
   if (!envelope) {
     if (quota.consumed) {
-      await dependencies.releaseMonthlyQuota(authUid, stableAccountId, quota.resetAtMs).catch(() => undefined);
+      await dependencies.releaseMonthlyQuota(authUid, stableAccountId, quota.resetAtMs).catch(swallowed('dialogue_v2_turn_callable:releaseMonthlyQuota', undefined));
     }
     throw new DialogueV2TextTurnError('provider_incompatible');
   }

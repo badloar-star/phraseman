@@ -1,6 +1,7 @@
 import { logger } from 'firebase-functions';
 import type { InlineKeyboard } from './telegram_buttons';
 
+import { swallowed } from '../swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 /**
  * Отправка сводки Джарвиса С КНОПКАМИ.
  *
@@ -59,14 +60,14 @@ export async function sendJarvisDigestMessage(input: SendJarvisDigestInput): Pro
       body: JSON.stringify(body),
     });
     if (!res.ok) {
-      const detail = await res.text().catch(() => '');
+      const detail = await res.text().catch(swallowed('jarvis_telegram_send:text', ''));
       logger.error('jarvis_digest: sendMessage failed', res.status, detail.slice(0, 300));
       return null;
     }
     // зачем 0 при неразобранном ответе: отправка УДАЛАСЬ, и вернуть null
     // значило бы соврать вызывающему, что письмо не ушло. Ноль означает
     // «отправлено, но номер неизвестен» — гасить будет нечего, не более.
-    const payload = await res.json().catch(() => null) as { result?: { message_id?: unknown } } | null;
+    const payload = await res.json().catch(swallowed('jarvis_telegram_send:json', null)) as { result?: { message_id?: unknown } } | null;
     const messageId = Number(payload?.result?.message_id ?? 0);
     return Number.isSafeInteger(messageId) && messageId > 0 ? messageId : 0;
   } catch (error) {

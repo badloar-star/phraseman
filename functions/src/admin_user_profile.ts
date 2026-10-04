@@ -4,6 +4,7 @@ import { ENFORCE_APP_CHECK } from './callable_options';
 import { hasPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const REGION = 'us-central1';
 const MAX_SEARCH_RESULTS = 20;
 const MAX_SEARCH_CANDIDATES = 40;
@@ -493,9 +494,9 @@ export const adminGetUserProfile = onCall(
     const uid = identity.canonicalUid;
 
     const [leaderboardSnap, banRead, statsSnap, errorReports, reportsAgainst, reportsBy, premiumEvents, shardTransactions, adminRewardHistory, ugcBuys, ugcSells, referralsBy, invitedByRead, economyProjection] = await Promise.all([
-      db.collection('leaderboard').doc(uid).get().catch(() => null),
+      db.collection('leaderboard').doc(uid).get().catch(swallowed('admin_user_profile:get', null)),
       db.collection('banned_users').doc(uid).get().then((snap) => ({ snap, error: null as unknown })).catch((error: unknown) => ({ snap: null, error })),
-      db.collection('leaderboard_stats').doc('global').get().catch(() => null),
+      db.collection('leaderboard_stats').doc('global').get().catch(swallowed('admin_user_profile:get', null)),
       readRecentByField(db, 'error_reports', 'uid', uid),
       readRecentByField(db, 'user_reports', 'reportedUid', uid),
       readRecentByField(db, 'user_reports', 'reporterUid', uid),

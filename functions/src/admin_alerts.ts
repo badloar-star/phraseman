@@ -7,6 +7,7 @@ import { canonicalAdminAlertType, type AdminAlertType } from './admin_alert_cata
 import { legacyAdminAlertEvent, type LegacyAdminAlertType } from './admin_alert_legacy';
 import { adminAlertEventId, buildAdminAlertOutboxDocument, enqueueAdminAlert } from './admin_alert_outbox';
 
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 /**
  * Admin Telegram alerts.
  *
@@ -136,7 +137,7 @@ export async function sendTelegramAlert(token: string, text: string, cfg?: Alert
       }),
     });
     if (!res.ok) {
-      const detail = await res.text().catch(() => '');
+      const detail = await res.text().catch(swallowed('admin_alerts:text', ''));
       console.error('[adminAlerts] sendMessage non-200', res.status, detail.slice(0, 300));
       return false;
     }

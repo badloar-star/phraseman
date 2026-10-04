@@ -1,6 +1,7 @@
 import { buildBusinessTierSnapshot } from './business_tier_snapshot';
 import { readPeakTier, readRecentHistory, type RecentHistoryPoint } from './business_tier_history_store';
 
+import { swallowed } from '../swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 /**
  * Компактный проверяемый бизнес-контекст для PM-слоя Джарвиса.
  *
@@ -149,9 +150,9 @@ export async function readJarvisPmBusinessContext(
   nowMs: number,
 ): Promise<JarvisPmBusinessContext> {
   const [history, peakTier, digestSnapshot] = await Promise.all([
-    readRecentHistory({ db, limit: JARVIS_PM_HISTORY_DAYS }).catch(() => []),
-    readPeakTier(db).catch(() => null),
-    db.collection('admin_digests').orderBy('generatedAtMs', 'desc').limit(1).get().catch(() => null),
+    readRecentHistory({ db, limit: JARVIS_PM_HISTORY_DAYS }).catch(swallowed('jarvis_pm_business_context:readRecentHistory', [])),
+    readPeakTier(db).catch(swallowed('jarvis_pm_business_context:readPeakTier', null)),
+    db.collection('admin_digests').orderBy('generatedAtMs', 'desc').limit(1).get().catch(swallowed('jarvis_pm_business_context:get', null)),
   ]);
   const latestDigest = digestSnapshot && !digestSnapshot.empty
     ? (digestSnapshot.docs[0].data() as Record<string, unknown>)

@@ -3,6 +3,7 @@ import * as crypto from 'node:crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const REGION = 'us-central1';
 const USERS = 'users';
 const AUTH_LINKS = 'auth_links';
@@ -46,8 +47,8 @@ async function assertStableOwner(
   if (stableId === authUid) return;
 
   const [userSnap, linkSnap] = await Promise.all([
-    db.collection(USERS).doc(stableId).get().catch(() => null),
-    db.collection(AUTH_LINKS).doc(authUid).get().catch(() => null),
+    db.collection(USERS).doc(stableId).get().catch(swallowed('friend_codes:get', null)),
+    db.collection(AUTH_LINKS).doc(authUid).get().catch(swallowed('friend_codes:get', null)),
   ]);
   const userAuthUid = String(userSnap?.data()?.firebaseAuthUid ?? '').trim();
   if (userAuthUid && userAuthUid === authUid) return;

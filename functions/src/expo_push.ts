@@ -1,4 +1,5 @@
-/** Best-effort Expo push transport shared by social notifications. */
+
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]/** Best-effort Expo push transport shared by social notifications. */
 export type ExpoPushTransport = 'sent' | 'failed' | 'timeout' | 'skipped';
 
 export async function sendExpoPush(
@@ -20,7 +21,7 @@ export async function sendExpoPush(
     })
       .then(async (response) => {
         if (!response.ok) return 'failed' as const;
-        const payload = await response.json().catch(() => null) as { data?: Array<{ status?: string }> } | null;
+        const payload = await response.json().catch(swallowed('expo_push:json', null)) as { data?: Array<{ status?: string }> } | null;
         const tickets = Array.isArray(payload?.data) ? payload!.data! : [];
         return tickets.length > 0 && tickets.every((ticket) => ticket?.status === 'ok')
           ? 'sent' as const

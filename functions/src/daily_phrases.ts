@@ -2,6 +2,7 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const REGION = 'us-central1';
 const DAILY_PHRASES = 'daily_phrases';
 const DAILY_PHRASE_SAVES = 'daily_phrase_saves';
@@ -17,9 +18,9 @@ function cleanPhraseId(raw: unknown): string {
 
 async function resolveStableUid(authUid: string): Promise<string> {
   const db = admin.firestore();
-  const direct = await db.collection('users').doc(authUid).get().catch(() => null);
+  const direct = await db.collection('users').doc(authUid).get().catch(swallowed('daily_phrases:get', null));
   if (direct?.exists) return authUid;
-  const byAuth = await db.collection('users').where('firebaseAuthUid', '==', authUid).limit(1).get().catch(() => null);
+  const byAuth = await db.collection('users').where('firebaseAuthUid', '==', authUid).limit(1).get().catch(swallowed('daily_phrases:get', null));
   if (byAuth && !byAuth.empty) return byAuth.docs[0]!.id;
   return authUid;
 }

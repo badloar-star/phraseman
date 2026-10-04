@@ -47,6 +47,7 @@ import {
 import { resolvePremiumAccess } from './premium_status';
 import { aiGloballyDisabled } from './remote_gates';
 
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const REGION = 'us-central1';
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 const PROVIDER_DEADLINE_MS = 20_000;
@@ -186,7 +187,7 @@ export function createDialogueV2SessionCompleteHandler(
         });
       } catch (error) {
         if (claim.kind === 'new') {
-          await dependencies.releaseClaim({ claim, selection }).catch(() => undefined);
+          await dependencies.releaseClaim({ claim, selection }).catch(swallowed('dialogue_v2_session_complete_callable:releaseClaim', undefined));
         }
         throw error;
       }

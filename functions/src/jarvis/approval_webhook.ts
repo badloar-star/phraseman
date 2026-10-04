@@ -22,6 +22,7 @@ import { buildStatusText, type JarvisCommand } from './commands';
 import { JARVIS_CONTROL_DOC, parseControl } from './control';
 import { JARVIS_TELEGRAM_CONFIG } from './telegram_owner_config';
 
+import { swallowed } from '../swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 /**
  * HTTP-точка входа для кнопок Джарвиса в Telegram.
  *
@@ -128,7 +129,7 @@ async function handleCommand(input: HandleCommandInput): Promise<void> {
   const ref = input.db.doc(JARVIS_CONTROL_DOC);
 
   if (input.command === 'status') {
-    const snap = await ref.get().catch(() => null);
+    const snap = await ref.get().catch(swallowed('jarvis_approval_webhook:get', null));
     const control = parseControl(snap?.data());
     const text = buildStatusText({
       mode: control.mode,

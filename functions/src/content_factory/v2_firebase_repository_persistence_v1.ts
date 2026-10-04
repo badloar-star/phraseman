@@ -10,6 +10,7 @@ import {
   type V2RepositorySingleflightReceiptPinV1,
 } from "./v2_repository_singleflight_state_v1";
 
+import { reportSwallowedServer } from '../swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 export const V2_REPOSITORY_IMMUTABLE_JSON_CONTENT_TYPE_V1 =
   "application/json; charset=utf-8" as const;
 export const V2_REPOSITORY_IMMUTABLE_BINARY_CONTENT_TYPE_V1 =
@@ -362,7 +363,8 @@ async function quarantineBestEffort(
 ): Promise<void> {
   try {
     await storage.quarantineConflict(Object.freeze(conflict));
-  } catch {
+  } catch (pm229Error) {
+    reportSwallowedServer('content_factory_v2_firebase_repository_persistence_v1:quarantineBestEffort', pm229Error);
     // Quarantine is audit-only; its failure must never mask the primary conflict.
   }
 }

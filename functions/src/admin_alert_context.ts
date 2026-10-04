@@ -1,6 +1,7 @@
 import type { AdminAlertType } from './admin_alert_catalog';
 import { sanitizeAdminAlertPayload, sanitizePublicNickname, type AdminAlertDetail, type AdminAlertSafePayload } from './admin_alert_privacy';
 
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 export type AlertSourceRow = Readonly<Record<string, unknown>>;
 export interface AlertContextInput {
   readonly eventType: AdminAlertType;
@@ -174,7 +175,7 @@ async function lookupNickname(uid: string, read: ReadAlertDocument): Promise<str
   if (name) return name;
   // Legacy public projections are read-only fallbacks, never auth displayName/email.
   for (const collection of ['public_profiles', 'leaderboard']) {
-    const profile = await read(`${collection}/${stableId}`).catch(() => null);
+    const profile = await read(`${collection}/${stableId}`).catch(swallowed('admin_alert_context:read', null));
     if (profile?.identityHidden === true) continue;
     const projected = uniqueNickname(profile?.name);
     if (projected) return projected;
@@ -194,11 +195,11 @@ export async function enrichAdminAlertContext(input: AlertContextInput, read: Re
   }
   if (!path && !DOC_ID.test(input.sourceId)) return sanitizeAdminAlertPayload(input.eventType, input.payload);
   if (input.source === 'idea.report' && path) {
-    const idea = await read(`user_ideas/${input.sourceId.split(':')[0]}`).catch(() => null);
+    const idea = await read(`user_ideas/${input.sourceId.split(':')[0]}`).catch(swallowed('admin_alert_context:read_user_idea', null));
     data = { title: idea?.title, titleRu: idea?.titleRu, ...data };
   }
   if (input.eventType === 'ugcPurchase' && DOC_ID.test(text(data, 'packId'))) {
-    const pack = await read(`community_packs/${text(data, 'packId')}`).catch(() => null);
+    const pack = await read(`community_packs/${text(data, 'packId')}`).catch(swallowed('admin_alert_context:text', null));
     if (pack) data = { titleRu: pack.titleRu, titleEn: pack.titleEn, ...data };
   }
   let uid = text(data, 'reporterUid', 'stableUid', 'stableId', 'uid', 'userId', 'buyerStableId', 'buyerUid', 'authorStableId', 'actorUid');
@@ -216,7 +217,7 @@ export async function enrichAdminAlertContext(input: AlertContextInput, read: Re
   if (input.source.startsWith('referral.')) { relatedUid = text(data, 'referrerStableId', 'referrerUid'); relatedRole = 'Пригласивший'; }
   if (input.eventType === 'adminAudit' && text(data, 'entity.collection') === 'users') { relatedUid = text(data, 'entity.id'); relatedRole = 'Пользователь изменения'; }
   if (input.eventType === 'ugcPurchase') { relatedUid = text(data, 'sellerStableId', 'authorStableId'); relatedRole = 'Автор набора'; }
-  const relatedNickname = relatedUid ? await lookupNickname(relatedUid, read).catch(() => '') : '';
+  const relatedNickname = relatedUid ? await lookupNickname(relatedUid, read).catch(swallowed('admin_alert_context:lookupNickname', '')) : '';
   const identifiers = [uid, relatedUid, text(data, 'authUid'), text(data, 'reporterAuthUid')].filter((id) => id.length >= 4);
   const details = [...(input.payload.details ?? []), ...eventDetails(input.eventType, data)].map((detail) => ({
     label: detail.label,

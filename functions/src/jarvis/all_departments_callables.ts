@@ -32,6 +32,7 @@ import { fetchRecentApprovalAudit } from './approval_audit_reader';
 import { runCohortRetentionDepartment } from './cohort_retention_department';
 import { fetchCohortRetentionMetrics } from './learning_metrics';
 
+import { swallowed } from '../swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 /**
  * Одна кнопка «Проверить сейчас», один вызов, все три департамента разом.
  *
@@ -101,7 +102,7 @@ export const jarvisGetAllDecisions = onCall(OPTIONS, async (request: CallableReq
 
   // зачем параллельно, а не после снапшота: чтение режима не зависит от
   // департаментов, ждать его последовательно — терять время впустую.
-  const controlPromise = db.doc(JARVIS_CONTROL_DOC).get().catch(() => null);
+  const controlPromise = db.doc(JARVIS_CONTROL_DOC).get().catch(swallowed('jarvis_all_departments_callables:get', null));
 
   const snapshot = await buildAllDepartmentsSnapshot({
     resolveAppTier: () => resolveAppTier(() => fetchActiveUserCount({ collection: db.collection('users'), nowMs })),

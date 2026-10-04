@@ -1,6 +1,7 @@
 import { createHash } from 'crypto';
 import { FieldValue } from 'firebase-admin/firestore';
 
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 export type EmailContactSource = 'app' | 'site';
 
 export interface UpsertEmailContactInput {
@@ -85,7 +86,7 @@ export async function upsertEmailContact(
   if (input.source === 'app' && isApplePrivateRelayEmail(email)) return false;
 
   const ref = db.collection('email_contacts').doc(emailContactDocId(email));
-  const snap = await ref.get().catch(() => null);
+  const snap = await ref.get().catch(swallowed('email_contacts:get', null));
   const nowIso = new Date().toISOString();
   const patch: Record<string, unknown> = {
     email,

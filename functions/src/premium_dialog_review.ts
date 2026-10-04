@@ -38,6 +38,7 @@ import {
   persistDialogueV2CompletionMemory,
 } from './dialogue_v2_memory_writer';
 
+import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 const DIALOGUE_V2_MEMORY_ID_SECRET = defineSecret('DIALOGUE_V2_MEMORY_ID_SECRET');
 
@@ -806,7 +807,7 @@ export const premiumDialogReview = onCall({
       });
 
       if (!response.ok) {
-        const detail = await response.text().catch(() => '');
+        const detail = await response.text().catch(swallowed('premium_dialog_review:text', ''));
         console.error('premium_dialog_review chat failed', {
           status: response.status,
           model: dialogModel,

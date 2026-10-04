@@ -8,6 +8,7 @@ import { type GenerationStageKind } from './stage_contracts';
 import { validateTheoryArtifact } from './theory_generation';
 import { LEARNING_V2_GENERATION_STAGE_KINDS, validateLearningV2GenerationArtifact } from './learning_v2_generation_artifacts';
 
+import { reportSwallowedServer } from '../swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 const STAGE_ID_RE = /^[A-Za-z0-9._:-]{1,500}$/;
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
 const HASH_RE = /^[a-f0-9]{64}$/i;
@@ -22,7 +23,7 @@ export function parseArtifactEditRequest(value: unknown) {
   const idempotencyKey = String(value.idempotencyKey ?? '').trim();
   const reason = String(value.reason ?? '').trim();
   let byteSize = Number.POSITIVE_INFINITY;
-  try { byteSize = Buffer.byteLength(JSON.stringify(value.artifact), 'utf8'); } catch { /* invalid below */ }
+  try { byteSize = Buffer.byteLength(JSON.stringify(value.artifact), 'utf8'); } catch (pm229Error) { reportSwallowedServer('content_factory_artifact_edit:reason', pm229Error); /* invalid below */ }
   if (!STAGE_ID_RE.test(baseStageId) || !HASH_RE.test(expectedBaseReviewFingerprint) || !TOKEN_RE.test(idempotencyKey) || reason.length < 5 || reason.length > 500 || !record(value.artifact) || byteSize > 512 * 1024) throw new Error('artifact_edit_invalid');
   return Object.freeze({ baseStageId, expectedBaseReviewFingerprint, idempotencyKey, reason, artifact: value.artifact });
 }

@@ -1,6 +1,7 @@
 import type { Firestore } from 'firebase-admin/firestore';
 import { logExpireAt } from './log_ttl';
 
+import { reportSwallowedServer } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
 /**
  * Сигнал владельцу, когда падает вебхук платежей.
  *
@@ -103,7 +104,8 @@ export async function recordPaymentWebhookFailure(
     await db.collection('app_errors')
       .doc(paymentWebhookFailureId(input.hook, input.nowMs))
       .set(buildPaymentWebhookFailureDoc(input), { merge: true });
-  } catch {
+  } catch (pm229Error) {
+    reportSwallowedServer('payment_webhook_alert:ok', pm229Error);
     // Молча: логирование уже сделал вызывающий, дублировать нечего.
   }
 }

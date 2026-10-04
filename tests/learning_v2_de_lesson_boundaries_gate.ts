@@ -189,6 +189,43 @@ const L28_PLAN_RECALL_AUTHORITY_SHA256 =
   "4498cc546c93be421b36baa5fd911c755af937e58c07a5d0cc7cba74d3b68b6c";
 const L28_CANONICAL_OBJECT_SHA256 =
   "bbed0011f3a848a569cf608a0de706d82a5503b0a137235d60dbddf412bc8328";
+const L29_PLAN_RECALL_AUTHORITY = [
+  {
+    fromLessonId: "de_l13",
+    constructIds: ["de_gc_staged_nominal_group_agreement_v1"],
+    responsibility:
+      "retain nominal-group cues while adding a bounded genitive relation",
+  },
+  {
+    fromLessonId: "de_l12",
+    constructIds: ["de_gc_two_object_case_contrast_v1"],
+    responsibility:
+      "retain the established dative-recipient and accusative-transferred-entity contrast while adding a bounded genitive relation",
+  },
+  {
+    fromLessonId: "de_l22",
+    constructIds: ["de_gc_relative_clause_gender_case_v1"],
+    responsibility: "contrast clause-internal case with a nominal relationship",
+  },
+  {
+    fromLessonId: "de_l28",
+    constructIds: ["de_gc_broader_narrative_preterite_v1"],
+    responsibility:
+      "retrieve a bounded past account when explaining how a document situation arose",
+  },
+] as const;
+const L29_PLAN_RECALL_AUTHORITY_SHA256 =
+  "9132d6885fc12dd807b12cf537f6e19b8a9c328e2a4c9093b5d08e9eb9433124";
+const L29_EVIDENCE_IDS = [
+  "DE-GRM-CASE-001",
+  "DE-GRM-ADP-001",
+  "DE-GRM-NP-001",
+  "DE-RSCH-CEFR-009",
+] as const;
+const L29_EVIDENCE_IDS_SHA256 =
+  "b05eeca3ce0f6992804f7edf96532d28ddf23b6453a9c4e75259c1a58700ee7e";
+const L29_CANONICAL_OBJECT_SHA256 =
+  "414e499f0ff839d80ca6df6af2a29c3a1f7e3b9ec133b2f8aa1549fed5207295";
 const ACTIVE_BRACKET_CONSTRUCT_IDS = new Set([
   "de_gc_separable_verb_bracket_v1",
   "de_gc_modal_finite_bare_infinitive_v1",
@@ -296,6 +333,16 @@ function hasExactL28PlanRecallAuthority(value: unknown): boolean {
     canonical === JSON.stringify(L28_PLAN_RECALL_AUTHORITY) &&
     createHash("sha256").update(canonical).digest("hex") ===
       L28_PLAN_RECALL_AUTHORITY_SHA256
+  );
+}
+
+function hasExactL29PlanRecallAuthority(value: unknown): boolean {
+  if (!Array.isArray(value)) return false;
+  const canonical = JSON.stringify(value);
+  return (
+    canonical === JSON.stringify(L29_PLAN_RECALL_AUTHORITY) &&
+    createHash("sha256").update(canonical).digest("hex") ===
+      L29_PLAN_RECALL_AUTHORITY_SHA256
   );
 }
 
@@ -942,6 +989,12 @@ function validateBlueprint(
     ) {
       throw new Error("l28_plan_recall_authority_invalid");
     }
+    if (
+      expectedOrdinal === 29 &&
+      !hasExactL29PlanRecallAuthority(candidate.crossLessonRecall)
+    ) {
+      throw new Error("l29_plan_recall_authority_invalid");
+    }
     candidate.crossLessonRecall.forEach((recall, recallIndex) => {
       assertPlainRecord(
         recall,
@@ -1454,6 +1507,23 @@ function validateBlueprint(
         throw new Error("l28_canonical_object_identity_invalid");
       }
     }
+    if (expectedOrdinal === 29) {
+      if (
+        JSON.stringify(candidate.evidenceIds) !==
+          JSON.stringify(L29_EVIDENCE_IDS) ||
+        createHash("sha256")
+          .update(JSON.stringify(candidate.evidenceIds))
+          .digest("hex") !== L29_EVIDENCE_IDS_SHA256
+      ) {
+        throw new Error("l29_evidence_authority_invalid");
+      }
+      const l29CanonicalObjectSha256 = createHash("sha256")
+        .update(JSON.stringify(candidate))
+        .digest("hex");
+      if (l29CanonicalObjectSha256 !== L29_CANONICAL_OBJECT_SHA256) {
+        throw new Error("l29_canonical_object_identity_invalid");
+      }
+    }
   });
 
   for (const domain of SCENARIO_DOMAINS) {
@@ -1585,8 +1655,127 @@ assert.equal(
   true,
   "L28 authority must pass only for the exact ordered three-row contract",
 );
+assert.equal(
+  hasExactL29PlanRecallAuthority(clone(L29_PLAN_RECALL_AUTHORITY)),
+  true,
+  "L29 authority must pass only for the exact ordered four-row contract",
+);
 validateBlueprint(raw, constructs);
 
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson29 = (candidate.lessons as JsonRecord[])[28];
+    lesson29.crossLessonRecall = (
+      lesson29.crossLessonRecall as JsonRecord[]
+    ).filter((recall) => recall.fromLessonId !== "de_l12");
+  },
+  /^l29_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson29 = (candidate.lessons as JsonRecord[])[28];
+    const recall = (lesson29.crossLessonRecall as JsonRecord[]).find(
+      (entry) => entry.fromLessonId === "de_l12",
+    )!;
+    recall.fromLessonId = "de_l11";
+  },
+  /^l29_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson29 = (candidate.lessons as JsonRecord[])[28];
+    const recall = (lesson29.crossLessonRecall as JsonRecord[]).find(
+      (entry) => entry.fromLessonId === "de_l12",
+    )!;
+    recall.constructIds = ["de_gc_staged_nominal_group_agreement_v1"];
+  },
+  /^l29_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson29 = (candidate.lessons as JsonRecord[])[28];
+    const recall = (lesson29.crossLessonRecall as JsonRecord[]).find(
+      (entry) => entry.fromLessonId === "de_l12",
+    )!;
+    recall.responsibility = "retain two-object case control";
+  },
+  /^l29_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson29 = (candidate.lessons as JsonRecord[])[28];
+    const recalls = lesson29.crossLessonRecall as JsonRecord[];
+    lesson29.crossLessonRecall = [
+      recalls[1],
+      recalls[0],
+      recalls[2],
+      recalls[3],
+    ];
+  },
+  /^l29_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson29 = (candidate.lessons as JsonRecord[])[28];
+    (lesson29.crossLessonRecall as JsonRecord[]).push({
+      fromLessonId: "de_l01",
+      constructIds: ["de_gc_statement_v2_v1"],
+      responsibility: "extra recall row",
+    });
+  },
+  /^l29_plan_recall_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson29 = (candidate.lessons as JsonRecord[])[28];
+    lesson29.evidenceIds = (lesson29.evidenceIds as string[]).filter(
+      (id) => id !== "DE-GRM-ADP-001",
+    );
+  },
+  /^l29_evidence_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson29 = (candidate.lessons as JsonRecord[])[28];
+    const evidence = lesson29.evidenceIds as string[];
+    lesson29.evidenceIds = [evidence[1], evidence[0], evidence[2], evidence[3]];
+  },
+  /^l29_evidence_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson29 = (candidate.lessons as JsonRecord[])[28];
+    (lesson29.evidenceIds as string[]).push("DE-GRM-ADJ-001");
+  },
+  /^l29_evidence_authority_invalid$/u,
+);
+expectFailure(
+  raw,
+  constructs,
+  (candidate) => {
+    const lesson29 = (candidate.lessons as JsonRecord[])[28];
+    lesson29.title = "Dokumente und Zugehörigkeit erweitert";
+  },
+  /^l29_canonical_object_identity_invalid$/u,
+);
 expectFailure(
   raw,
   constructs,

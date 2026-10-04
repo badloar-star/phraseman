@@ -3419,6 +3419,11 @@
           "responsibility": "retain nominal-group cues while adding a bounded genitive relation"
         },
         {
+          "fromLessonId": "de_l12",
+          "constructIds": ["de_gc_two_object_case_contrast_v1"],
+          "responsibility": "retain the established dative-recipient and accusative-transferred-entity contrast while adding a bounded genitive relation"
+        },
+        {
           "fromLessonId": "de_l22",
           "constructIds": ["de_gc_relative_clause_gender_case_v1"],
           "responsibility": "contrast clause-internal case with a nominal relationship"
@@ -3451,7 +3456,12 @@
         "changedContextRequired": true
       },
       "accessibilityAlternative": "provide a readable document excerpt and plain-language typed mediation alternative",
-      "evidenceIds": ["DE-GRM-CASE-001", "DE-GRM-NP-001", "DE-RSCH-CEFR-009"],
+      "evidenceIds": [
+        "DE-GRM-CASE-001",
+        "DE-GRM-ADP-001",
+        "DE-GRM-NP-001",
+        "DE-RSCH-CEFR-009"
+      ],
       "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
     },
     {

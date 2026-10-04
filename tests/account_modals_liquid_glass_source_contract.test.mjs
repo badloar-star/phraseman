@@ -82,7 +82,8 @@ test('ReferralAccessEndedModal: уведомление-совместимост�
     'ResponsiveModalScrollView']) {
     assert.ok(referral.includes(token), token);
   }
-  // PM-202 / REMOVAL.md: награды рефералки удалены — экран не зовёт друга ради возврата доступа.
-  assert.ok(!referral.includes('bodyInvite') && !referral.includes('btnInvite'), 'нет призыва пригласить ради доступа');
-  assert.ok(!/person-add/.test(referral), 'нет кнопки приглашения');
+  // 04.10: рулетка вернулась (D99), кадр OM-REFERRAL-ACCESS-ENDED снова зовёт друга —
+  // но только если вызов передал onInviteFriend (раздел включён). Без пропса — один путь.
+  assert.ok(referral.includes('onPress={onInviteFriend ?? onOpenFullAccess}'), 'приглашение главное, полный доступ — запасной путь');
+  assert.ok(referral.includes("'Пригласить друга'") && referral.includes("'Доступ можно открыть снова'"), 'тексты кадра');
 });

@@ -3,7 +3,7 @@
  *
  * Показывается когда vip_until < now и доступ был открыт через реферальную программу.
  * Фрейминг — только «что осталось» и «как получить больше» (без страха и потерь).
- * Два пути: позвать ещё друга (бесплатно) или открыть полный доступ (пейвол).
+ * Два пути: позвать ещё друга (бесплатно, D99) или открыть полный доступ (пейвол).
  */
 import React from 'react';
 import {
@@ -22,12 +22,13 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 interface ReferralAccessEndedModalProps {
   visible: boolean;
   /**
-   * Оставлен ради совместимости вызова (friends.tsx). Награды рефералки удалены
-   * (REMOVAL.md / PM-202), поэтому окно больше НЕ зовёт друга ради возврата доступа —
-   * это чисто уведомление о прошлом доступе (макет OM-REFERRAL-ACCESS-ENDED).
+   * Главное действие кадра OM-REFERRAL-ACCESS-ENDED — «Пригласить друга». Рулетка
+   * приглашений вернулась решением D99 (30.09), поэтому кнопка снова есть. Вызов
+   * (friends.tsx) передаёт её только пока раздел приглашений включён; нет пропса —
+   * нет кнопки, остаётся один путь к полному доступу.
    */
   onInviteFriend?: () => void;
-  onOpenFullAccess: () => void; // единственное действие: открыть пейвол
+  onOpenFullAccess: () => void; // открыть пейвол
   onClose: () => void;          // закрыть / отложить
   /** Переводчик: ru / uk / en / es / pt-BR / vi / id / tr / pl */
   L: (
@@ -58,26 +59,27 @@ interface ReferralAccessEndedModalProps {
 
 export function ReferralAccessEndedModal({
   visible,
+  onInviteFriend,
   onOpenFullAccess,
   onClose,
   L,
 }: ReferralAccessEndedModalProps) {
-  // зачем: макет OM-REFERRAL-ACCESS-ENDED — «compatibility notice» для ранее открытого
-  // доступа: сохранённые права + один путь (полный доступ) + закрытие. Материал — из
-  // активной темы (13 тем), CTA нейтральный, без зелёного.
-  const { liquidGlassThemeId, f } = useTheme();
+  // зачем: макет OM-REFERRAL-ACCESS-ENDED (overlays-more, кадр 15) — сцена 202×160 с галочкой,
+  // заголовок 25/31, две строки текста, «Пригласить друга» (главная) и «Открыть полный доступ»
+  // (тёмная капсула). Материал — из активной темы, CTA нейтральный. Текст 16/22 — шкала D145.
+  const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
 
   const title = L(
-    'Реферальный доступ закончился',
-    'Реферальний доступ закінчився',
-    'Referral access has ended',
-    'El acceso por referidos terminó',
-    'O acesso por indicação terminou',
-    'Quyền truy cập giới thiệu đã kết thúc',
-    'Akses referral telah berakhir',
-    'Davet erişimi sona erdi',
-    'Dostęp z polecenia zakończył się',
+    'Доступ можно открыть снова',
+    'Доступ можна відкрити знову',
+    'You can unlock access again',
+    'Puedes volver a abrir el acceso',
+    'Você pode abrir o acesso de novo',
+    'Bạn có thể mở lại quyền truy cập',
+    'Akses bisa dibuka lagi',
+    'Erişimi yeniden açabilirsin',
+    'Dostęp możesz otworzyć ponownie',
   );
 
   // Reassurance: что уже твоё — останется твоим
@@ -93,7 +95,32 @@ export function ReferralAccessEndedModal({
     'Wszystko, co otworzyłeś, wciąż jest Twoje.',
   );
 
-  // Единственная кнопка: открыть полный доступ — глагол «Открыть», никогда «Купить»
+  // Вторая строка кадра: как вернуть доступ бесплатно (только когда есть кнопка приглашения).
+  const bodyRestore = L(
+    'Позови ещё друга — и доступ вернётся.',
+    'Запроси ще друга — і доступ повернеться.',
+    'Invite one more friend and access will return.',
+    'Invita a otro amigo y el acceso regresará.',
+    'Convide mais um amigo e o acesso voltará.',
+    'Mời thêm một người bạn và quyền truy cập sẽ trở lại.',
+    'Ajak satu teman lagi dan aksesmu akan kembali.',
+    'Bir arkadaşını daha davet et, erişim geri gelsin.',
+    'Zaproś kolejnego znajomego — dostęp wróci.',
+  );
+
+  const inviteLabel = L(
+    'Пригласить друга',
+    'Запросити друга',
+    'Invite a friend',
+    'Invitar a un amigo',
+    'Convidar um amigo',
+    'Mời một người bạn',
+    'Ajak teman',
+    'Arkadaş davet et',
+    'Zaproś znajomego',
+  );
+
+  // Полный доступ — глагол «Открыть», никогда «Купить»
   const btnFullAccess = L(
     'Открыть полный доступ',
     'Відкрити повний доступ',
@@ -128,24 +155,25 @@ export function ReferralAccessEndedModal({
     >
       {/* Тёмный оверлей */}
       <ResponsiveModalScrollView style={{ backgroundColor: 'rgba(0,0,0,0.7)' }}>
-        {/* Карточка: непрозрачная основа темы */}
+        {/* Карточка `.om-modal`: непрозрачная основа темы, радиус 26, поля 21 */}
         <View
           accessibilityViewIsModal
           style={{
             width: '100%',
-            maxWidth: 380,
+            maxWidth: 440,
             backgroundColor: glass.opaqueSheet,
-            borderRadius: 28,
-            paddingTop: 22,
-            paddingBottom: 22,
-            paddingHorizontal: 22,
+            borderRadius: 26,
+            padding: 21,
             alignItems: 'center',
           }}
         >
-          {/* Кнопка закрытия — верхний правый угол, область нажатия 44dp */}
+          {/* `.om-close`: круглая кнопка в углу (14 от краёв), область нажатия 44dp */}
           <Pressable
             style={{
-              alignSelf: 'flex-end',
+              position: 'absolute',
+              top: 14,
+              right: 14,
+              zIndex: 1,
               width: 44,
               height: 44,
               borderRadius: 22,
@@ -157,63 +185,88 @@ export function ReferralAccessEndedModal({
             accessibilityRole="button"
             accessibilityLabel={closeLabel}
           >
-            <Ionicons name="close" size={20} color={glass.text} />
+            <Ionicons name="close" size={18} color={glass.text} />
           </Pressable>
 
-          {/* Иконка-арт: нейтральный круг темы */}
+          {/* `.om-art`: сцена 202×160, радиус 22, галочка 28 */}
           <View
             accessibilityElementsHidden
             importantForAccessibility="no-hide-descendants"
             style={{
-              width: 72,
-              height: 72,
-              borderRadius: 36,
+              width: 202,
+              height: 160,
+              borderRadius: 22,
+              marginTop: 14,
               alignItems: 'center',
               justifyContent: 'center',
               backgroundColor: glass.selected,
-              marginTop: 4,
             }}
           >
-            <Ionicons name="checkmark" size={32} color={glass.text} />
+            <Ionicons name="checkmark" size={28} color={glass.text} />
           </View>
 
-          {/* Заголовок */}
+          {/* `.om-title` 25/31 */}
           <Text
             accessibilityRole="header"
-            style={{ color: glass.text, fontSize: f.h2, fontWeight: '700', textAlign: 'center', marginTop: 16 }}
+            style={{ color: glass.text, fontSize: 25, lineHeight: 31, fontWeight: '800', textAlign: 'center', marginTop: 7 }}
           >
             {title}
           </Text>
 
-          {/* Reassurance */}
-          <Text
-            style={{ color: glass.secondary, fontSize: f.body, lineHeight: f.body * 1.5, textAlign: 'center', marginTop: 10 }}
-          >
+          {/* `.om-copy` — шкала D145 16/22 */}
+          <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 9 }}>
             {bodyKeep}
           </Text>
-
-          {/* Единственное действие: полный доступ (нейтральный CTA темы) */}
-          <Pressable
-            style={({ pressed }) => ({
-              alignSelf: 'stretch',
-              minHeight: 48,
-              marginTop: 22,
-              paddingHorizontal: 20,
-              paddingVertical: 12,
-              borderRadius: 24,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: glass.accent,
-              opacity: pressed ? 0.85 : 1,
-            })}
-            onPress={onOpenFullAccess}
-            accessibilityRole="button"
-            accessibilityLabel={btnFullAccess}
-          >
-            <Text style={{ color: glass.accentInk, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-              {btnFullAccess}
+          {onInviteFriend ? (
+            <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 9 }}>
+              {bodyRestore}
             </Text>
-          </Pressable>
+          ) : null}
+
+          <View style={{ alignSelf: 'stretch', marginTop: 18, gap: 10 }}>
+            {/* `.cta`: главная — пригласить (если раздел включён), иначе полный доступ */}
+            <Pressable
+              testID={onInviteFriend ? 'referral-ended-invite' : 'referral-ended-full-access'}
+              style={({ pressed }) => ({
+                minHeight: 48,
+                paddingHorizontal: 20,
+                borderRadius: 24,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: glass.accent,
+                opacity: pressed ? 0.85 : 1,
+              })}
+              onPress={onInviteFriend ?? onOpenFullAccess}
+              accessibilityRole="button"
+              accessibilityLabel={onInviteFriend ? inviteLabel : btnFullAccess}
+            >
+              <Text style={{ color: glass.accentInk, fontSize: 16, fontWeight: '700', textAlign: 'center' }}>
+                {onInviteFriend ? inviteLabel : btnFullAccess}
+              </Text>
+            </Pressable>
+            {/* `.cta.gh`: тёмная капсула тоном (рамок в этом файле нет — сторож) */}
+            {onInviteFriend ? (
+              <Pressable
+                testID="referral-ended-full-access"
+                style={({ pressed }) => ({
+                  minHeight: 48,
+                  paddingHorizontal: 20,
+                  borderRadius: 24,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: glass.selected,
+                  opacity: pressed ? 0.85 : 1,
+                })}
+                onPress={onOpenFullAccess}
+                accessibilityRole="button"
+                accessibilityLabel={btnFullAccess}
+              >
+                <Text style={{ color: glass.text, fontSize: 16, fontWeight: '700', textAlign: 'center' }}>
+                  {btnFullAccess}
+                </Text>
+              </Pressable>
+            ) : null}
+          </View>
         </View>
       </ResponsiveModalScrollView>
     </Modal>

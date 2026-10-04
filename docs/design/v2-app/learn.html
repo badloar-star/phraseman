@@ -19,7 +19,19 @@
 .replay:hover { color: #fff; }
 
 /* ---- список уроков ---- */
-.ltools { display: flex; gap: 10px; margin-top: 26px; }
+.ltools { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+/* зачем (владелец 04.10, «Обучение — одобрено состояние приложения»): шапка раздела снята с приложения:
+   заголовок 34/40, справа монеты (пилюля 30) и энергия без плашки; ниже поле поиска 40 + два круга 40 («перемешать», «ИИ»). */
+.lhd { display: flex; align-items: center; gap: 12px; margin-top: 22px; min-height: 44px; padding-right: 14px; }
+.lhd .ttl { flex: 1; min-width: 0; font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.6px; }
+.lhd .enp { display: inline-flex; align-items: center; gap: 8px; font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--text); }
+.lhd .enp .i { color: var(--sec); }
+.lsr { flex: 1; min-width: 0; height: 40px; border-radius: 20px; background: #1C1C1E; border: 1px solid var(--line); display: flex; align-items: center; gap: 8px; padding: 0 14px; font-size: 16px; color: var(--muted); }
+.lsr .q { color: var(--text); }
+.lsr .cur { width: 2px; height: 20px; background: #fff; animation: blink 1s steps(1) infinite; }
+.lsr .x { margin-left: auto; width: 40px; height: 40px; margin-right: -14px; display: flex; align-items: center; justify-content: center; color: var(--sec); }
+.rb.c40 { width: 40px; height: 40px; }
+.ltools .rb.c40:last-child { margin-right: 18px; }
 .lvh { display: flex; align-items: center; gap: 8px; margin: 28px 2px 14px; }
 .lvh .lv { font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -.2px; }
 .lvh .lk { color: var(--sec); }
@@ -398,6 +410,7 @@ const LP = {
   list: '<path d="M8 6h12M8 12h12M8 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01" stroke-width="2.6"/>',
   cut: '<circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8.2 7.5L20 17M8.2 16.5L20 7"/>',
   history: '<path d="M4 12a8 8 0 108-8 8 8 0 00-6 2.7"/><path d="M4 4v4h4"/><path d="M12 8v4.5l3 1.8"/>',
+  sparkleF: '<path d="M10.5 4l1.9 5.6L18 11.5l-5.6 1.9L10.5 19l-1.9-5.6L3 11.5l5.6-1.9z" fill="currentColor" stroke="none"/><path d="M18.5 3l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="currentColor" stroke="none"/><path d="M18.5 15l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="currentColor" stroke="none"/>',
   sparkle: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/>',
   school: '<path d="M2.5 9.5L12 5l9.5 4.5L12 14z"/><path d="M6 11.5v4.5c1.5 1.5 3.5 2.3 6 2.3s4.5-.8 6-2.3v-4.5"/><path d="M21.5 9.5v6"/>',
   ribbon: '<circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.5L7 21l5-2.5 5 2.5-1.5-7.5"/>',
@@ -437,9 +450,8 @@ const lvlHead = (lvl, locked, cnt) => `<div class="lvh"><span class="lv">${lvl}<
 const examCard = (lvl, st, dim) => `<div class="card c2 t exc${dim ? ' faint' : ''}"><div class="tile t46">${icon('docF', 's22')}</div><div class="tx grow"><div class="tt" style="font-size:17px;font-weight:700">Экзамен ${lvl}</div><div class="st">${st}</div></div>${ch}</div>`;
 const attestCard = () => `<div class="card c2 t attest"><div class="tile t55" style="background:#2A2A2C">${li('school', 's26')}</div><div class="grow"><div class="ov" style="letter-spacing:2px">B2 / CEFR</div><div style="font-size:20px;font-weight:700;margin-top:6px">Аттестация</div></div>${ch}</div>`;
 const listHead = (o = {}) => `
-  <div class="flex" style="margin-top:22px"><div class="grow" style="font-size:40px;line-height:46px;font-weight:700;letter-spacing:-.6px">Уроки</div>${coins(o.coins ?? 1240, { rank: 5 })}${o.plus ? '' : energy(o.en ?? 5)}</div>
-  <div style="font-size:16px;line-height:20px;color:var(--sec);margin-top:6px">Учись. Практикуй. Говори увереннее.</div>
-  <div class="ltools"><span class="rb t${o.search ? ' fill' : ''}" style="${o.search ? 'background:#E9E9EB;color:#0B0C0E;width:42px;height:42px' : ''}">${icon('search', 's20')}</span><span class="rb t">${li('shuffle', 's20')}</span></div>`;
+  <div class="lhd"><div class="ttl">Обучение</div>${coins(o.coins ?? 1240, { rank: 5, s: true })}${o.plus ? '' : `<span class="enp" data-energy="${o.en ?? 5}">${icon('bolt', 's20')}<span class="num">${o.en ?? 5}</span></span>`}</div>
+  <div class="ltools"><div class="lsr">${icon('search', 's18')}${o.q ? `<span class="q">${o.q}</span><span class="cur"></span><span class="x t">${icon('close', 's18')}</span>` : '<span class="plc">Урок или тема</span>'}</div><span class="rb c40 t">${li('shuffle', 's20')}</span><span class="rb c40 t">${li('sparkleF', 's20')}</span></div>`;
 const reportBtn = () => `<div class="report t">${li('info', 's16')}Сообщить об ошибке</div>`;
 
 const BF = '<div class="botfade"></div>';
@@ -449,8 +461,7 @@ const listFree = () => phone(`${listHead()}${lvlHead('A1', false, '1 из 8')}
 const listPlus = () => phone(`${listHead({ plus: true })}${lvlHead('A1', false, '2 из 8')}
   <div class="stack">${lessonCard(1, { done: 3 })}${lessonCard(2, { done: 2 })}${lessonCard(3, { pct: 64, cur: true })}${lessonCard(4, { lock: 'Пройди урок 3 на 2★' })}${lessonCard(5, { lock: 'Пройди урок 4 на 2★' })}${lessonCard(6, { lock: 'Пройди урок 5 на 2★' })}${lessonCard(7, { lock: 'Пройди урок 6 на 2★' })}${lessonCard(8, { lock: 'Пройди урок 7 на 2★' })}${examCard('A1', 'Пройди все уроки A1 на 2★', true)}</div>
   ${lvlHead('A2', false, '0 из 10')}<div class="stack">${lessonCard(9, { lock: 'Сначала зачёт A1' })}</div>`, { time: '9:41', fixed: BF });
-const listSearch = (empty) => phone(`${listHead({ search: true })}
-  <div class="srch">${icon('search', 's18')}<span>${empty ? 'прошедшее время' : 'Present'}</span><span class="cur"></span><span class="x t">${icon('close', 's18')}</span></div>
+const listSearch = (empty) => phone(`${listHead({ q: empty ? 'прошедшее время' : 'Present' })}
   ${empty ? `<div class="empty"><div class="tt">Ничего не нашлось</div><div class="st">Попробуй короче — например «прош» вместо целой фразы.</div></div>`
     : `${lvlHead('A1')}<div class="stack">${lessonCard(3, { open: true })}${lessonCard(4, { plus: true })}${lessonCard(5, { plus: true })}</div>${lvlHead('A2', true)}<div class="stack">${lessonCard(17, { plus: true })}</div>${lvlHead('B1', true)}<div class="stack">${lessonCard(24, { plus: true })}</div>`}`, { time: '9:41', fixed: empty ? '' : BF });
 const listExam = (variant) => {

@@ -38,15 +38,16 @@ describe('Home per-theme artwork contract', () => {
     // зачем (координатор §46, 2026-10-01): плитка Лиги жила в Главной V1 (удалена
     // 01.10); у плиток 2.0 арт задан явно, и каждый файл обязан существовать.
     expect(home).not.toContain('RetiredRasterFallback kind="league"');
-    const tileArts = [...home.matchAll(/art: require\('\.\.\/\.\.\/(assets\/images\/[^']+)'\)/g)].map((m) => m[1]!);
+    // 04.10: плитки берут предмет 2.0 из реестра, `?? require(...)` — прежняя картинка на случай, если предмета нет.
+    const tileArts = [...home.matchAll(/art: (?:resolveThemedArt\('[a-z_]+', homeArtTone\)\.base \?\? )?require\('\.\.\/\.\.\/(assets\/images\/[^']+)'\)/g)].map((m) => m[1]!);
     expect(tileArts.length).toBeGreaterThanOrEqual(3);
     for (const art of tileArts) expect(existsSync(join(ROOT, art))).toBe(true);
     expect(home).toContain('const lastLessonImage = getHomeLastLessonImage(themeMode);');
     // Проверка была КРАСНОЙ до 2026-09-21: карточку научили переключаться на
     // «Мои ошибки», и в разметку арт идёт через priorityCardImage. Намерение
     // прежнее — арт последнего урока берётся из подготовленного набора темы.
-    expect(home).toContain('? getHomeMistakesImage(themeMode)');
-    expect(home).toContain(': lastLessonImage;');
+    expect(home).toContain("? (resolveThemedArt('mistakes_entry', homeArtTone).base ?? getHomeMistakesImage(themeMode))");
+    expect(home).toContain(": (resolveThemedArt('continue', homeArtTone).base ?? lastLessonImage);");
     expect(home).toContain('art={priorityCardImage}');
     expect(phrase).toContain('getHomeSupportingArt(themeMode).phraseOfDay');
   });

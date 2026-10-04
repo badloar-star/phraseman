@@ -14,6 +14,8 @@ type Props = {
   total: number;
   /** Реальный тематически-независимый арт продолжения либо арт состояния ошибок. */
   art: ImageSourcePropType;
+  /** зачем (ассеты 2.0, continue 1536×1024, предмет справа): заполнить блок с привязкой к правому краю, а не ужимать. */
+  artWide?: boolean;
   /** «Урок 4» — плашка поверх арта справа. */
   badge?: string;
   accessibilityLabel: string;
@@ -32,7 +34,7 @@ type Props = {
  * название, счётчик x / N и полоса прогресса, круглая стрелка; справа арт
  * из утверждённого ассета с плашкой номера урока.
  */
-export default function HomeV2ContinueCard({ overline, title, done, total, art, badge, accessibilityLabel, onPress, onLongPress, pending = false }: Props) {
+export default function HomeV2ContinueCard({ overline, title, done, total, art, artWide = false, badge, accessibilityLabel, onPress, onLongPress, pending = false }: Props) {
   const p = useV2Palette();
   const glass = useV2GlassStyle();
   const safeTotal = Math.max(1, total);
@@ -51,7 +53,7 @@ export default function HomeV2ContinueCard({ overline, title, done, total, art, 
     >
       <V2GlassSheen seed={0} />
       <View pointerEvents="none" style={[s.art, pending ? s.artPending : null]}>
-        <Image source={art} style={s.artImage} contentFit="contain" accessible={false} />
+        <Image source={art} style={s.artImage} contentFit={artWide ? 'cover' : 'contain'} contentPosition={artWide ? 'right' : 'center'} accessible={false} />
         {badge && !pending ? (
           <View
             style={[s.badge, { backgroundColor: p.control, borderColor: p.hairline }]} // guard-ok: D43

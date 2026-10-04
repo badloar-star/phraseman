@@ -80,6 +80,7 @@ import HomeV2ContinueCard from '../../components/home/v2/HomeV2ContinueCard';
 import HomeV2FeatureTiles from '../../components/home/v2/HomeV2FeatureTiles';
 import HomeV2VideoRail from '../../components/home/v2/HomeV2VideoRail';
 import HomeV2TodayCard from '../../components/home/v2/HomeV2TodayCard';
+import { resolveThemedArt } from '../theme/themed_art_registry';
 import { useTodayTasks } from '../../hooks/use_today_tasks';
 import type { HomeFeatureTile } from '../../components/home/v2/home_v2_types';
 import { getV2Palette, V2 } from '../../constants/v2Style';
@@ -430,7 +431,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const router = useRouter();
     // Навигация к отдельным экранам — через guard от двойного тапа (дубли в стеке).
     const nav = useGuardedNav();
-    const { theme: t, f, themeMode } = useTheme();
+    const { theme: t, f, themeMode, liquidGlassAppearance } = useTheme();
+    // зачем (владелец 04.10, «первые ассеты готовы, вшивай»): предметы 2.0 — светлый комплект у светлых тем, тёмный у тёмных и градиентных.
+    const homeArtTone = liquidGlassAppearance === 'light' ? 'light' : 'dark';
     const myCoinRank = useMyCoinRank();
     const { s, lang } = useLang();
     const { studyTarget } = useStudyTarget();
@@ -1970,9 +1973,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 tr: 'Hatalarım', pl: 'Moje błędy',
             })
             : lastLessonName;
+        // зачем (ассеты 2.0, 04.10): реестр отдаёт новый предмет, а пока его нет — прежнюю картинку этого места.
         const priorityCardImage = priorityCardShowsMistakes
-            ? getHomeMistakesImage(themeMode)
-            : lastLessonImage;
+            ? (resolveThemedArt('mistakes_entry', homeArtTone).base ?? getHomeMistakesImage(themeMode))
+            : (resolveThemedArt('continue', homeArtTone).base ?? lastLessonImage);
         // зачем (владелец 2026-09-21): жест работает при ЛЮБОМ числе ошибок от
         // одной — прежнее ограничение «только 1..9» снято. Переворачивать не на
         // что лишь когда ошибок нет совсем.
@@ -2090,21 +2094,21 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 title: quickItems[0]!.label,
                 subtitle: triLang(lang, { ru: 'Грамматика шаг за шагом', uk: 'Граматика крок за кроком', en: 'Grammar step by step', es: 'Gramática paso a paso', 'pt-BR': 'Gramática passo a passo', vi: 'Ngữ pháp từng bước', id: 'Tata bahasa langkah demi langkah', tr: 'Adım adım dilbilgisi', pl: 'Gramatyka krok po kroku' }),
                 onPress: quickItems[0]!.onPress,
-                art: require('../../assets/images/v2/book_stack.png'),
+                art: resolveThemedArt('lessons', homeArtTone).base ?? require('../../assets/images/v2/book_stack.png'),
             },
             {
                 key: 'dialogs',
                 title: quickItems[1]!.label,
                 subtitle: triLang(lang, { ru: 'Реальные ситуации', uk: 'Реальні ситуації', en: 'Real-life situations', es: 'Situaciones reales', 'pt-BR': 'Situações reais', vi: 'Tình huống thực tế', id: 'Situasi nyata', tr: 'Gerçek durumlar', pl: 'Prawdziwe sytuacje' }),
                 onPress: quickItems[1]!.onPress,
-                art: require('../../assets/images/v2/chat_bubbles.png'),
+                art: resolveThemedArt('dialogs', homeArtTone).base ?? require('../../assets/images/v2/chat_bubbles.png'),
             },
             {
                 key: 'cards',
                 title: quickItems[2]!.label,
                 subtitle: triLang(lang, { ru: 'Слова, фразы и выражения', uk: 'Слова, фрази й вирази', en: 'Words, phrases and idioms', es: 'Palabras, frases y expresiones', 'pt-BR': 'Palavras, frases e expressões', vi: 'Từ, cụm từ và thành ngữ', id: 'Kata, frasa, dan ungkapan', tr: 'Kelimeler, ifadeler, deyimler', pl: 'Słowa, zwroty i wyrażenia' }),
                 onPress: quickItems[2]!.onPress,
-                art: require('../../assets/images/v2/notecard_stack.png'),
+                art: resolveThemedArt('cards', homeArtTone).base ?? require('../../assets/images/v2/notecard_stack.png'),
             },
         ];
         const homeV2TileVisible: Record<string, boolean> = {
@@ -2226,6 +2230,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 done={priorityCardShowsMistakes ? 0 : Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}
                 total={priorityCardShowsMistakes ? Math.max(1, mistakeActiveCount) : 50}
                 art={priorityCardImage}
+                artWide={!priorityCardShowsMistakes}
                 badge={!priorityCardShowsMistakes && lastLesson ? triLang(lang, { ru: `Урок ${lastLesson.id}`, uk: `Урок ${lastLesson.id}`, en: `Lesson ${lastLesson.id}`, es: `Lección ${lastLesson.id}`, 'pt-BR': `Lição ${lastLesson.id}`, vi: `Bài ${lastLesson.id}`, id: `Pelajaran ${lastLesson.id}`, tr: `Ders ${lastLesson.id}`, pl: `Lekcja ${lastLesson.id}` }) : undefined}
                 accessibilityLabel={priorityCardShowsMistakes ? `${priorityCardTitle}: ${homeMistakesCounterLabel(mistakeActiveCount)}` : `${s.home.continueBtn}: ${lastLessonName}`}
                 onLongPress={priorityCardLongPressEnabled ? handleHomeLearningPriorityCardLongPress : undefined}

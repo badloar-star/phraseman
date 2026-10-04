@@ -10,6 +10,7 @@ import {
   View,
 } from 'react-native';
 import { Image } from 'expo-image';
+import { resolveThemedArt } from '../app/theme/themed_art_registry';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useGlobalSearchParams } from 'expo-router';
 import { inferExpoSpeechLanguage, useAudio } from '../hooks/use-audio';
@@ -80,7 +81,9 @@ function DailyPhraseCard({
   variant = 'default',
   homeCardVisible = false,
 }: Props) {
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f, themeMode, liquidGlassAppearance } = useTheme();
+  // зачем (ассеты 2.0, 04.10): «Фраза дня» берёт предмет из реестра по яркости темы; кэш реестра — без пересоздания источника.
+  const phraseArt = resolveThemedArt('phrase_of_day', liquidGlassAppearance === 'light' ? 'light' : 'dark').base ?? require('../assets/images/v2/mug_quote.png');
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { speak } = useAudio();
@@ -635,7 +638,7 @@ function DailyPhraseCard({
           <V2GlassSheen seed={4} />
           {/* зачем: владелец 24.09 — арт не должен читаться отдельным блоком от иконки;
               картинка сама служит иконкой-цитатой, без второго графического слоя. */}
-          <Image source={require('../assets/images/v2/mug_quote.png')} style={styles.v2Art} contentFit="contain" accessible={false} />
+          <Image source={phraseArt} style={styles.v2Art} contentFit="contain" accessible={false} />
           <View style={styles.v2Copy}>
             <Text style={[styles.v2Kicker, { color: v2.textSecondary }]}>{title.toUpperCase()}</Text>
             <Text style={[styles.v2Phrase, { color: v2.text }]}>{phrase.english}</Text>

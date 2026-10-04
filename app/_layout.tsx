@@ -187,7 +187,8 @@ import { ensurePhoneStateSyncLifecycleInstalled } from './phone_state_sync_lifec
 import { bootstrapPhoneState } from './phone_state_bootstrap';
 import { installPhoneStateProductionRuntime } from './phone_state_runtime';
 import { schedulePhoneStateDeferredIntegrityCheck } from './phone_state_runtime'; // зачем: §84 — фоновая проверка целостности
-import { coldStartMark, coldStartStep } from './cold_start_trace'; // зачем: §80 — [COLD-START] от старта процесса
+import { coldStartMark, coldStartStep } from './cold_start_trace';
+import { msSinceJsEntry } from './cold_start_entry_mark'; // зачем: §80 — [COLD-START] от старта процесса
 import { runAfterHomeFirstFrame } from './first_frame_deferred_warmups'; // зачем: PM-211 — необязательное после первого кадра Главной
 import { installColdStartIoTrace } from './cold_start_io_trace'; // зачем: §89 — [COLD-START-IO]
 import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from './cloud_restore_coordinator';
@@ -304,7 +305,7 @@ installColdStartIoTrace();
 installPhoneStateProductionRuntime();
 // зачем (координатор 04.10, холодный старт п.1, «сперва логи»): статические import исполняются до этой
 // строки — proc= здесь = цена всего графа импортов корня (включая модальные хосты), до первого рендера.
-coldStartMark('layout.module_imports:done', '_layout');
+coldStartMark('layout.module_imports:done', '_layout', { entryToImportsMs: msSinceJsEntry() });
 
 const INSTANT_STACK_ANIMATION = { animation: 'none', animationDuration: 0 } as const;
 const screenFadeEnabled = SCREEN_FADE_TRANSITIONS && !ENABLE_SCREEN_TRANSITIONS;

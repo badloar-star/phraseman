@@ -22,6 +22,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useLang } from './LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { ROULETTE_PRIZES, rouletteCoinsLabel, roulettePrizeLabel } from '../app/roulette_prizes';
@@ -80,7 +81,9 @@ const DATE_LOCALE_BY_LANG: Record<Lang, string> = {
 // Локализованное имя приза («1 месяц», не «30 дн.») — канон в roulette_prizes.ts.
 
 export default function RouletteWinModal({ data, onClose, motionVariant = 'classic' }: Props) {
-  const { theme: t, f, ds } = useTheme();
+  const { theme: t, f, ds, liquidGlassThemeId } = useTheme();
+  // зачем (overlays-more OM-ROULETTE-WIN): обычное окно — материал активной темы Liquid Glass.
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const isHybrid = motionVariant === 'hybrid';
   const reduceMotion = useReducedMotion();
@@ -211,15 +214,16 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
   return (
     <Modal transparent visible animationType="fade" onRequestClose={onClose} statusBarTranslucent navigationBarTranslucent>
       <View style={styles.backdrop}>
+        {/* `.om-modal`: радиус 26, поля 21, непрозрачная основа темы */}
         <Animated.View
           style={[
             styles.card,
-            { backgroundColor: t.bgCard, shadowColor: '#000000' },
+            { backgroundColor: glass.opaqueSheet, shadowColor: '#000000' },
             cardAnim,
           ]}
         >
-          {/* Ассет клипается скруглением внутри карточки — всегда в рамках экрана. */}
-          <View style={styles.prizeImageWrap}>
+          {/* `.om-art` 202×160 r22: картинка приза клипается внутри сцены. */}
+          <View style={[styles.prizeImageWrap, { backgroundColor: glass.selected }]}>
             <Image
               source={prize.image}
               style={styles.prizeImage}
@@ -229,49 +233,55 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
             />
           </View>
 
+          {/* `.om-title` 25/31 */}
           <Text
             maxFontSizeMultiplier={1.2}
-            style={[styles.winTitle, { color: t.textPrimary, fontSize: f.h2 ?? 22, fontFamily: ds.fontFamily }]}
+            accessibilityRole="header"
+            style={[styles.winTitle, { color: glass.text }]}
           >
-            {L('Поздравляем!', 'Congratulations!', 'Вітаємо!', '¡Felicidades!', 'Parabéns!', 'Chúc mừng!', 'Selamat!', 'Tebrikler!', 'Gratulacje!')}
+            {winTitleText}
           </Text>
+          {/* `.om-prize` 28 */}
           <Text
             maxFontSizeMultiplier={1.2}
-            style={[styles.winDays, { color: t.accent, fontSize: (f.numLg ?? 28) + 2, fontFamily: ds.fontFamily }]}
+            style={[styles.winDays, { color: glass.text }]}
           >
             {heroLine}
           </Text>
+          {/* `.om-copy` — шкала D145 16/22, дата выделена цветом текста */}
           <Text
             maxFontSizeMultiplier={1.2}
-            style={[styles.winSub, { color: t.textMuted, fontSize: f.sub ?? 13, fontFamily: ds.fontFamily }]}
+            style={[styles.winSub, { color: glass.secondary }]}
           >
             {isCoins ? (
               winSubCoinsText
             ) : (
               <>
-                {L('Твой Plus теперь до', 'Your Plus now lasts until', 'Твій Plus тепер до', 'Tu Plus ahora hasta', 'Seu Plus agora até', 'Plus của bạn đến', 'Plus-mu sampai', 'Plus artık şu tarihe kadar:', 'Twój Plus teraz do')}
+                {winSubPlusPrefix}
                 {' '}
-                <Text maxFontSizeMultiplier={1.2} style={{ color: t.textPrimary, fontWeight: '700' }}>{vipDate}</Text>
+                <Text maxFontSizeMultiplier={1.2} style={{ color: glass.text, fontWeight: '700' }}>{vipDate}</Text>
                 {' · '}
-                <Text maxFontSizeMultiplier={1.2} style={{ color: t.accent, fontWeight: '700' }}>{daysShort}</Text>
+                {daysShort}
               </>
             )}
           </Text>
 
+          {/* `.cta` 48/24 */}
           <Pressable
+            testID="roulette-win-claim"
             onPress={onClose}
             accessibilityRole="button"
+            accessibilityLabel={doneLabel}
             style={({ pressed }: { pressed: boolean }) => [
               styles.claimBtn,
-              ds.shadow.medium,
-              { backgroundColor: t.accent, opacity: pressed ? 0.92 : 1, height: ds.buttonHeight },
+              { backgroundColor: glass.accent, opacity: pressed ? 0.88 : 1 },
             ]}
           >
             <Text
               maxFontSizeMultiplier={1.2}
-              style={[styles.claimBtnText, { color: t.correctText, fontSize: f.bodyLg ?? 16, fontFamily: ds.fontFamily }]}
+              style={[styles.claimBtnText, { color: glass.accentInk }]}
             >
-              {L('Готово', 'Done', 'Готово', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Tamam', 'Gotowe')}
+              {doneLabel}
             </Text>
           </Pressable>
         </Animated.View>
@@ -286,16 +296,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.72)',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 28,
+    paddingHorizontal: 22,
     paddingVertical: 48,
   },
   card: {
     width: '100%',
-    maxWidth: 330,
-    borderRadius: 28,
-    paddingTop: 22,
-    paddingBottom: 20,
-    paddingHorizontal: 20,
+    maxWidth: 440,
+    borderRadius: 26,
+    padding: 21,
     alignItems: 'center',
     shadowOffset: { width: 0, height: 12 },
     shadowOpacity: 0.38,
@@ -303,39 +311,47 @@ const styles = StyleSheet.create({
     ...noAndroidOutline,
   },
   prizeImageWrap: {
-    width: '100%',
-    maxWidth: 220,
-    borderRadius: 18,
+    width: 202,
+    height: 160,
+    marginTop: 14,
+    borderRadius: 22,
     overflow: 'hidden',
   },
   prizeImage: {
     width: '100%',
-    aspectRatio: 3 / 2,
+    height: '100%',
   },
   winTitle: {
-    marginTop: 18,
-    fontWeight: '700',
+    marginTop: 7,
+    fontSize: 25,
+    lineHeight: 31,
+    fontWeight: '800',
     textAlign: 'center',
   },
   winDays: {
-    marginTop: 6,
-    fontWeight: '700',
+    marginTop: 8,
+    fontSize: 28,
+    lineHeight: 34,
+    fontWeight: '800',
     textAlign: 'center',
   },
   winSub: {
-    marginTop: 8,
+    marginTop: 9,
+    fontSize: 16,
+    lineHeight: 22,
     textAlign: 'center',
-    lineHeight: 20,
     fontWeight: '400',
   },
   claimBtn: {
-    marginTop: 20,
+    marginTop: 18,
     alignSelf: 'stretch',
-    borderRadius: 18,
+    minHeight: 48,
+    borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
   },
   claimBtnText: {
+    fontSize: 16,
     fontWeight: '700',
   },
 });

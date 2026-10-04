@@ -14,14 +14,28 @@ import Animated, {
   useAnimatedStyle,
   useReducedMotion,
   useSharedValue,
+  withDelay,
   withTiming,
 } from 'react-native-reanimated';
 import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
-const CONFETTI_COUNT = 24;
-const CONFETTI_COLORS = ['#FFFFFF', '#FFC800'];
-/** Самая долгая частица: 1500 + max(delay) = 1500 + 5*40 = 1700мс. */
-const LONGEST_PIECE_MS = 1500 + 5 * 40;
+// зачем (overlays-more OM-ROULETTE-CELEBRATION, kit `om-burst`): шесть нейтральных лепестков 7×13,
+// фиксированные траектории из макета, 1150 мс cubic-bezier(.15,.75,.25,1), чётные — с задержкой 80 мс.
+const CONFETTI_PATHS = [
+  { dx: -132, dy: -122, rot: 210 },
+  { dx: -82, dy: 138, rot: -250 },
+  { dx: -24, dy: -172, rot: 340 },
+  { dx: 44, dy: 155, rot: -300 },
+  { dx: 98, dy: -134, rot: 260 },
+  { dx: 148, dy: 72, rot: -220 },
+] as const;
+const CONFETTI_COUNT = CONFETTI_PATHS.length;
+const BURST_MS = 1150;
+const EVEN_DELAY_MS = 80;
+const BURST_EASING = Easing.bezier(0.15, 0.75, 0.25, 1);
+/** Самая долгая частица: 1150 + 80 = 1230 мс. */
+const LONGEST_PIECE_MS = BURST_MS + EVEN_DELAY_MS;
 /**
  * Страховка: слой обязан сняться, даже если ни один колбэк не дошёл.
  * зачем: колбэк withTiming приходит с finished=false, когда анимацию прервали
@@ -40,23 +54,20 @@ type ConfettiPieceProps = {
 function ConfettiPiece({ index, colors, onDone }: ConfettiPieceProps) {
   const progress = useSharedValue(0);
   const params = useMemo(() => {
-    const angle = ((index * 137.5) % 360) * (Math.PI / 180);
-    const dist = 110 + ((index * 53) % 130);
+    const path = CONFETTI_PATHS[index % CONFETTI_COUNT]!;
+    // `:nth-child(2n)` — второй, четвёртый, шестой (index 1, 3, 5): серый тон и задержка.
+    const even = index % 2 === 1;
     return {
-      dx: Math.cos(angle) * dist,
-      dy: Math.sin(angle) * dist - 90,
-      rot: (index % 2 === 0 ? 1 : -1) * (180 + (index * 47) % 360),
-      color: colors[index % colors.length],
-      width: 6 + (index % 3) * 2,
-      height: 10 + (index % 4) * 3,
-      delay: (index % 6) * 40,
+      ...path,
+      color: even ? colors[1]! : colors[0]!,
+      delay: even ? EVEN_DELAY_MS : 0,
     };
   }, [colors, index]);
 
   useEffect(() => {
-    progress.value = withTiming(
+    progress.value = withDelay(params.delay, withTiming(
       1,
-      { duration: 1500 + params.delay, easing: Easing.out(Easing.cubic) },
+      { duration: BURST_MS, easing: BURST_EASING },
       () => {
         'worklet';
         // зачем: отчитываемся ВСЕГДА, а не только при finished===true. Прерванная
@@ -64,7 +75,7 @@ function ConfettiPiece({ index, colors, onDone }: ConfettiPieceProps) {
         // Прежнее `if (finished)` навсегда подвешивало конфетти на экране.
         runOnJS(onDone)();
       },
-    );
+    ));
   }, [onDone, params.delay, progress]);
 
   const style = useAnimatedStyle(() => ({
@@ -73,10 +84,10 @@ function ConfettiPiece({ index, colors, onDone }: ConfettiPieceProps) {
       { translateY: interpolate(progress.value, [0, 1], [0, params.dy]) },
       { rotate: `${interpolate(progress.value, [0, 1], [0, params.rot])}deg` },
     ],
-    opacity: interpolate(progress.value, [0, 0.75, 1], [1, 1, 0]),
+    opacity: interpolate(progress.value, [0, 0.72, 1], [1, 1, 0]),
   }));
 
-  return <Animated.View style={[styles.piece, style, { backgroundColor: params.color, width: params.width, height: params.height }]} />;
+  return <Animated.View style={[styles.piece, style, { backgroundColor: params.color }]} />;
 }
 
 type Props = {
@@ -85,11 +96,12 @@ type Props = {
 };
 
 export default function RouletteWinCelebration({ visible, onComplete }: Props) {
-  const { theme: t } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const doneCount = useRef(0);
   const completedRef = useRef(false);
   const safetyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const colors = useMemo(() => [t.accent, t.gold, ...CONFETTI_COLORS], [t.accent, t.gold]);
+  const colors = useMemo(() => [glass.text, glass.mutedText], [glass.text, glass.mutedText]);
   // Системное «Уменьшение движения»: разлетающиеся частицы — чистое движение,
   // ради которого правило и существует. Празднование не отменяем — награду
   // по-прежнему показывает модалка, но конфетти не рисуем вовсе.
@@ -161,7 +173,10 @@ const styles = StyleSheet.create({
   piece: {
     position: 'absolute',
     left: '50%',
-    top: '32%',
-    borderRadius: 2,
+    top: '33%',
+    width: 7,
+    height: 13,
+    marginLeft: -3.5,
+    borderRadius: 3,
   },
 });

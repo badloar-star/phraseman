@@ -325,6 +325,14 @@ function humanMinutes(minutes: number, lang: Lang): string {
         pl: `${h} godz. ${m} min`,
     });
 }
+/** [STREAK-WEEK]: сколько из последних 7 дней имеют время и сумма минут — чтобы видеть «пустую неделю» в первом кадре. */
+function streakWeekSummary(rows: readonly { date: string; ms: number }[]): { weekDaysWithTime: number; weekMinutes: number } {
+    const last7 = new Set<string>();
+    const cursor = new Date();
+    for (let i = 0; i < 7; i++) { last7.add(getLocalDayKey(cursor)); cursor.setDate(cursor.getDate() - 1); }
+    const week = rows.filter((row) => last7.has(row.date));
+    return { weekDaysWithTime: week.filter((row) => row.ms > 0).length, weekMinutes: Math.round(week.reduce((sum, row) => sum + row.ms, 0) / 60000) };
+}
 function buildLearningCoachMetrics(dayRows: DayData[], timeRows: TimeDayData[], totalStreak: number, lang: Lang): LearningCoachMetrics {
     // зачем (жалоба «серия висит», 04.10): «сегодня» и даты недели — по ЛОКАЛЬНОМУ дню устройства, как у счётчика серии и у строк statsCache
     // (modules/stats_activity_rows.ts); UTC-день расходился с ними вечером/ночью в поясах UTC+N.
@@ -1768,6 +1776,14 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     const [days, setDays] = useState<DayData[]>(() => labelCachedDayRows(_sc.days, wdays));
     const [allDays, setAllDays] = useState<DayData[]>(() => labelCachedDayRows(_sc.allDays, wdays));
     const [allTimeDays, setAllTimeDays] = useState<TimeDayData[]>(() => labelCachedTimeDayRows(_sc.allTimeDays, wdays));
+    // зачем (сверка 04.10, правило «сперва логи»): на первом входе после перезапуска столбики недели пустые,
+    // пока данные не догрузятся. Трассировка [STREAK-WEEK]: что было в первом кадре и откуда пришло следующее.
+    const streakWeekMountAtRef = useRef(Date.now());
+    useEffect(() => {
+        const week = streakWeekSummary(_sc.allTimeDays);
+        if (__DEV__) console.log('[STREAK-WEEK] mount', JSON.stringify({ studyTarget, cacheLoaded: _sc.loaded, rows: _sc.allTimeDays.length, ...week }));
+        // eslint-disable-next-line react-hooks/exhaustive-deps -- один раз на монтирование: снимок первого кадра
+    }, []);
     // зачем: shortLabel («Ср», «Чт»...) «запекался» в состояние один раз и обновлялся
     // только через useFocusEffect (уход с экрана и возврат). Если язык меняется, пока
     // экран статистики остаётся смонтированным, дни недели оставались на старом языке —
@@ -1982,9 +1998,11 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             await hydrateStatsCacheFromStorage();
             const cachedSnapshot = getStatsCache(studyTarget);
             debugStatsRoute('loadAll:cache', { loaded: cachedSnapshot.loaded });
+            if (__DEV__) console.log('[STREAK-WEEK] source=disk', JSON.stringify({ studyTarget, loaded: cachedSnapshot.loaded, rows: cachedSnapshot.allTimeDays.length, sinceMountMs: Date.now() - streakWeekMountAtRef.current, ...streakWeekSummary(cachedSnapshot.allTimeDays) }));
             if (cachedSnapshot.loaded)
                 applyStatsSnapshot(cachedSnapshot);
             const snapshot = await refreshStatsCache(studyTarget);
+            if (__DEV__) console.log('[STREAK-WEEK] source=network', JSON.stringify({ studyTarget, ok: Boolean(snapshot), rows: snapshot?.allTimeDays.length ?? null, sinceMountMs: Date.now() - streakWeekMountAtRef.current, ...(snapshot ? streakWeekSummary(snapshot.allTimeDays) : {}) }));
             debugStatsRoute('loadAll:refreshStatsCache', { ok: !!snapshot });
             if (snapshot)
                 applyStatsSnapshot(snapshot);

@@ -31,7 +31,8 @@ import { triLang } from '../constants/i18n';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { hapticTap } from '../hooks/use-haptics';
 import fk from './feedback/feedback_kit';
-import { LESSONS_WITH_WORDS, WORD_COUNT_BY_LESSON, WORD_KEYS_BY_LESSON } from './lesson_words';
+// зачем (холодный старт 04.10): счётчик и ключи слов — по запросу урока, а не таблицами при импорте.
+import { LESSONS_WITH_WORDS, lessonWordCount, lessonWordKeys } from './lesson_words';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { LESSONS_WITH_IRREGULAR_VERBS, IRREGULAR_VERB_COUNT_BY_LESSON, IRREGULAR_VERBS_BY_LESSON } from './irregular_verbs_data';
 import { getLessonPrepositionPack, hasLessonPrepositionDrillForTarget } from './lesson_prepositions';
@@ -216,7 +217,7 @@ function parseWordsLearned(lessonId: number, wordsRaw: string | null): number {
   try {
     if (!wordsRaw) return 0;
     const counts: Record<string, number> = JSON.parse(wordsRaw);
-    const validKeys = WORD_KEYS_BY_LESSON[lessonId];
+    const validKeys = lessonWordKeys(lessonId);
     return validKeys
       ? Object.entries(counts).filter(([k, c]) => c >= 3 && validKeys.has(k)).length
       : Object.values(counts).filter(c => c >= 3).length;
@@ -688,7 +689,7 @@ function LessonMenu() {
           }
           if (migrated) AsyncStorage.setItem(wordsKey, JSON.stringify(counts));
         }
-        const validKeys = WORD_KEYS_BY_LESSON[lessonId];
+        const validKeys = lessonWordKeys(lessonId);
         const learned = validKeys
           ? Object.entries(counts).filter(([k, c]) => c >= 3 && validKeys.has(k)).length
           : Object.values(counts).filter(c => c >= 3).length;
@@ -900,7 +901,7 @@ function LessonMenu() {
           })
         : LESSONS_WITH_WORDS.has(lessonId)
         ? (() => {
-            const total = WORD_COUNT_BY_LESSON[lessonId] ?? 0;
+            const total = lessonWordCount(lessonId);
             if (total > 0) {
               return triLang(lang, {
                 ru: `${wordsLearned}/${total} слов`,
@@ -941,7 +942,7 @@ function LessonMenu() {
       pct: (() => {
         if (frenchAuxiliarySourceGated) return undefined;
         if (!LESSONS_WITH_WORDS.has(lessonId)) return undefined;
-        const total = WORD_COUNT_BY_LESSON[lessonId] ?? 0;
+        const total = lessonWordCount(lessonId);
         return total > 0 ? Math.round(wordsLearned / total * 100) : undefined;
       })(),
       onPress: () => {

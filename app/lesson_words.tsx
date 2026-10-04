@@ -2380,7 +2380,21 @@ function wordsByLessonForBank(): Record<number, Word[]> {
  * Слова урока для словаря и тренажёра: без `irregular_verbs` (отдельный экран «Неправильные глаголы»)
  * и без дублей he/she/it (…s / …es), если в том же уроке уже есть соответствующая лемма.
  */
+// зачем (координатор 04.10, холодный старт; замеры №5–7: lesson_words — самый тяжёлый модуль по своему времени):
+// при импорте банк урока считался ТРИЖДЫ для каждого урока (общий пул, счётчики, ключи). Теперь — один раз на
+// урок и только при первом обращении. Наружу отдаём копию массива: вызывающий может его сортировать.
+const lessonWordBankCache = new Map<number, readonly Word[]>();
+
 export function lessonWordBank(lessonId: number): Word[] {
+  let cached = lessonWordBankCache.get(lessonId);
+  if (!cached) {
+    cached = computeLessonWordBank(lessonId);
+    lessonWordBankCache.set(lessonId, cached);
+  }
+  return cached.slice();
+}
+
+function computeLessonWordBank(lessonId: number): Word[] {
   const bank = wordsByLessonForBank();
   const raw = bank[lessonId] ?? bank[1]!;
   const noIrreg = raw.filter((w) => w.pos !== 'irregular_verbs' && isDictionaryWordAllowed(w));
@@ -2428,7 +2442,10 @@ const groupByPOS = (words: Word[], lang: Lang) => {
 };
 
 // Cross-lesson pool: deduped union of all lesson words for expanding distractors
-const ALL_WORDS_FLAT: Word[] = (() => {
+// зачем: пул считается при первом обращении (дистракторы, слияние старых ключей), а не при импорте модуля.
+let allWordsFlatCache: Word[] | null = null;
+function allWordsFlat(): Word[] {
+  if (allWordsFlatCache) return allWordsFlatCache;
   const seen = new Set<string>();
   const result: Word[] = [];
   for (const id of Object.keys(WORDS_BY_LESSON).map(Number)) {
@@ -2439,10 +2456,15 @@ const ALL_WORDS_FLAT: Word[] = (() => {
       }
     }
   }
+  allWordsFlatCache = result;
   return result;
-})();
+}
 
-const LESSON_WORD_BANK_EN_SET = new Set(ALL_WORDS_FLAT.map((w) => w.en));
+let lessonWordBankEnSetCache: Set<string> | null = null;
+function lessonWordBankEnSet(): Set<string> {
+  if (!lessonWordBankEnSetCache) lessonWordBankEnSetCache = new Set(allWordsFlat().map((w) => w.en));
+  return lessonWordBankEnSetCache;
+}
 
 /**
  * Старые ключи прогресса (мн. ч.) до singularize — см. scripts/singularize_lesson_vocab.py.
@@ -2593,8 +2615,9 @@ function mergeLegacyPluralLessonWordCounts(counts: Record<string, number>): { co
   for (const [legacyPlural, canonical] of Object.entries(LEGACY_PLURAL_WORD_COUNT_MERGES)) {
     if (legacyPlural === canonical) continue;
     if (out[legacyPlural] == null) continue;
-    if (LESSON_WORD_BANK_EN_SET.has(legacyPlural)) continue;
-    if (!LESSON_WORD_BANK_EN_SET.has(canonical)) continue;
+    const bankEnSet = lessonWordBankEnSet();
+    if (bankEnSet.has(legacyPlural)) continue;
+    if (!bankEnSet.has(canonical)) continue;
     const a = Number(out[canonical]) || 0;
     const b = Number(out[legacyPlural]) || 0;
     out[canonical] = Math.max(a, b);
@@ -2623,7 +2646,7 @@ const makeOptions = (correct: Word, all: Word[]): string[] => {
     ISSUE_RECOGNITION_DISTRACTOR_SKIP.forEach((value) => blockedValues.add(value));
   }
 
-  return buildLessonWordOptions(correct, all, ALL_WORDS_FLAT, { blockedValues });
+  return buildLessonWordOptions(correct, all, allWordsFlat(), { blockedValues });
 };
 
 const isLessonWordOptionCorrect = (option: string, correct: string): boolean =>
@@ -3769,15 +3792,18 @@ function LessonWords() {
 export default withLessonRuntimeAccessBoundary(LessonWords);
 
 export const LESSONS_WITH_WORDS: Set<number> = new Set(Object.keys(WORDS_BY_LESSON).map(Number));
-export const WORD_COUNT_BY_LESSON: Record<number, number> = Object.fromEntries(
-  Object.keys(WORDS_BY_LESSON).map((k) => {
-    const id = Number(k);
-    return [id, lessonWordBank(id).length] as const;
-  }),
-);
-export const WORD_KEYS_BY_LESSON: Record<number, Set<string>> = Object.fromEntries(
-  Object.keys(WORDS_BY_LESSON).map((k) => {
-    const id = Number(k);
-    return [id, new Set(lessonWordBank(id).map((w: Word) => w.en))] as const;
-  }),
-);
+// зачем (холодный старт 04.10): были таблицы по всем урокам, считавшиеся при импорте; теперь — по запросу
+// одного урока (меню урока), из общего кэша банка. Урок без слов — 0 / undefined, как у прежних таблиц.
+export function lessonWordCount(lessonId: number): number {
+  return LESSONS_WITH_WORDS.has(lessonId) ? lessonWordBank(lessonId).length : 0;
+}
+const lessonWordKeysCache = new Map<number, Set<string>>();
+export function lessonWordKeys(lessonId: number): Set<string> | undefined {
+  if (!LESSONS_WITH_WORDS.has(lessonId)) return undefined;
+  let keys = lessonWordKeysCache.get(lessonId);
+  if (!keys) {
+    keys = new Set(lessonWordBank(lessonId).map((w: Word) => w.en));
+    lessonWordKeysCache.set(lessonId, keys);
+  }
+  return keys;
+}

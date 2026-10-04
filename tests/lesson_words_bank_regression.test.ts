@@ -107,3 +107,27 @@ describe('lesson words bank regressions from error reports', () => {
     expect(options).toContain('learning');
   });
 });
+
+// зачем (холодный старт 04.10): таблицы счётчиков и ключей слов заменены ленивыми функциями с кэшем —
+// сторожим, что значения прежние и кэш не портится, если вызывающий меняет полученный массив.
+describe('lesson words lazy bank accessors', () => {
+  it('count and keys match the bank for every lesson with words; lessons without words stay empty', () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { LESSONS_WITH_WORDS, lessonWordCount, lessonWordKeys } = require('../app/lesson_words') as typeof import('../app/lesson_words');
+    expect(LESSONS_WITH_WORDS.size).toBeGreaterThan(0);
+    for (const lessonId of LESSONS_WITH_WORDS) {
+      const bank = lessonWordBank(lessonId);
+      expect(lessonWordCount(lessonId)).toBe(bank.length);
+      expect([...(lessonWordKeys(lessonId) ?? [])].sort()).toEqual([...new Set(bank.map((word) => word.en))].sort());
+    }
+    expect(lessonWordCount(9_999)).toBe(0);
+    expect(lessonWordKeys(9_999)).toBeUndefined();
+  });
+
+  it('a caller mutating the returned bank does not change the cached bank', () => {
+    const first = lessonWordBank(11);
+    const length = first.length;
+    first.splice(0, first.length);
+    expect(lessonWordBank(11)).toHaveLength(length);
+  });
+});

@@ -1396,7 +1396,7 @@ export default function FlashcardsBlitzSession() {
             </View>
           </View>
 
-          {/* Таймер-полоса: Reanimated scaleX от 1 к 0, origin слева (принцип 3) */}
+          {/* Таймер-полоса: растёт по прошедшему времени (scaleX 0 → 1), origin слева (practice.html). */}
           <View style={[styles.timerTrack, { backgroundColor: '#2C2C2E' }]}>
             <Reanimated.View
               style={[
@@ -1407,7 +1407,7 @@ export default function FlashcardsBlitzSession() {
             />
           </View>
 
-          {/* Счёт · время · комбо — источник полёта рун (владелец, 2026-08-27) */}
+          {/* Таймер по центру — источник полёта монет (владелец, 2026-08-27); очков и комбо нет (владелец 04.10). */}
           <View ref={runeFlight.originRef} collapsable={false} style={styles.scoreRow}>
             <PracticeTimerPill
               testID="fc-blitz-timer"

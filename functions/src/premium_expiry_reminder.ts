@@ -98,6 +98,24 @@ export function isExpiryReminderOptedOut(u: ExpiryReminderUser): boolean {
 }
 
 /** Достаёт нужные поля из сырого Firestore-документа users/{uid}. */
+/** Поля users, которые читает напоминание (маска скана). Добавляешь чтение поля — добавь сюда. */
+export const EXPIRY_REMINDER_SELECT_FIELDS = [
+  'expoPushToken',
+  'pushTokenLang',
+  'pushTokenTimezone',
+  'lastPremiumExpiryReminderAt',
+  'pushPrefs',
+  'progress.premium_plan',
+  'progress.premium_expiry',
+  'progress.premium_rc_expiry_ms',
+  'progress.admin_premium_override',
+  'progress.vip_active',
+  'progress.vip_admin_override',
+  'progress.vip_plan',
+  'progress.vip_until',
+  'progress.vip_expiry',
+] as const;
+
 export function parseExpiryReminderUser(
   uid: string,
   data: Record<string, unknown> | undefined,
@@ -309,10 +327,14 @@ export async function runPremiumExpiryReminder(
 
   // 1) Scan + отбор.
   for (;;) {
+    // зачем (PM-252 п.6, 04.10): документ users самый «толстый» в базе, а напоминанию нужны 14 полей.
+    // Маска режет трафик и память (чтений столько же). Список обязан совпадать с полями
+    // parseExpiryReminderUser/resolveExpiringAccess — сторож premium_expiry_reminder_select.test.ts.
     let q: FirebaseFirestore.Query = db.collection('users')
       .orderBy('expoPushToken')
       .orderBy('__name__')
-      .limit(PAGE_SIZE);
+      .limit(PAGE_SIZE)
+      .select(...EXPIRY_REMINDER_SELECT_FIELDS);
     if (lastDoc) q = q.startAfter(lastDoc);
     const snap = await q.get();
     if (snap.empty) break;

@@ -237,6 +237,29 @@ export function projectMistakes(
       current.dueAtMs = Math.min(current.dueAtMs, event.occurredAtMs);
       continue;
     }
+    // зачем (владелец 04.10, «Повторить исправленные»): ответ в повторе исправленной ошибки помечен
+    // payload.review. Верно — «исправлена» остаётся как есть. Неверно — ошибка возвращается в активные:
+    // срок «сейчас», путь к исправлению заново (дни и режимы с нуля, иначе следующий же верный ответ
+    // снова «исправил» бы её без закрепления). События без пометки читаются как раньше.
+    if (
+      event.type === 'practice_answered'
+      && current.status === 'corrected'
+      && event.payload.review === true
+    ) {
+      if (event.payload.correct !== true) {
+        current.status = 'active';
+        current.correctedAtMs = null;
+        current.supportPassCount = 0;
+        current.qualifyingDays = [];
+        current.qualifyingModes = [];
+        current.hasIndependentProduction = false;
+        current.dueAtMs = event.occurredAtMs;
+        if (Date.now() - event.occurredAtMs < 10 * 60 * 1000) {
+          console.log('[MISTAKE-REVIEW] corrected mistake reactivated after a wrong review answer', JSON.stringify({ facet: current.facet }));
+        }
+      }
+      continue;
+    }
     if (event.type !== 'practice_answered' || current.status !== 'active') {
       continue;
     }

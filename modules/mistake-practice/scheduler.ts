@@ -29,6 +29,31 @@ export function selectMistakesForSession(
     .slice(0, limit);
 }
 
+/**
+ * зачем (владелец 04.10, «Повторить исправленные»): закрепление уже исправленных ошибок.
+ * Срок не важен — исправленная ошибка «не созревает». Первыми идут те, что исправлены давнее всего.
+ */
+export function selectCorrectedMistakesForReview(
+  items: readonly MistakeProjectionItem[],
+  options: Readonly<{ limit: number }>,
+): readonly MistakeProjectionItem[] {
+  const limit = Math.max(0, Math.floor(options.limit));
+  return [...items]
+    .filter((item) => item.status === 'corrected')
+    .sort((left, right) =>
+      (left.correctedAtMs ?? 0) - (right.correctedAtMs ?? 0)
+      || left.firstCapturedAtMs - right.firstCapturedAtMs
+      || left.mistakeId.localeCompare(right.mistakeId))
+    .slice(0, limit);
+}
+
+/** Сколько исправленных ошибок можно повторить (для кнопки: ноль — кнопку не показывать). */
+export function correctedMistakeCount(items: Iterable<MistakeProjectionItem>): number {
+  let count = 0;
+  for (const item of items) if (item.status === 'corrected') count += 1;
+  return count;
+}
+
 export type FailureRequeuePlan =
   | Readonly<{ kind: 'requeue'; afterTaskCount: 2 | 3 | 4 }>
   | Readonly<{ kind: 'stop_for_today'; showExplanation: true }>;

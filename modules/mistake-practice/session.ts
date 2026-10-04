@@ -13,9 +13,17 @@ import {
 import type { MistakeFacet } from './contracts';
 import type { MistakeProjectionItem } from './projection';
 import { mistakeExerciseCapabilitiesFor } from './capabilities';
-import { planFailureRequeue, selectMistakesForSession, type FailureRequeuePlan } from './scheduler';
+import {
+  planFailureRequeue,
+  selectCorrectedMistakesForReview,
+  selectMistakesForSession,
+  type FailureRequeuePlan,
+} from './scheduler';
 
 export type MistakePracticeLength = '5' | '10' | '15' | 'all';
+
+/** Откуда берётся сессия: активные ошибки (по умолчанию) или уже исправленные — повтор для закрепления. */
+export type MistakePracticePool = 'active' | 'corrected';
 
 export interface MistakePracticeLengthOption {
   readonly id: MistakePracticeLength;
@@ -34,6 +42,8 @@ export interface MistakePracticeSessionEntry {
 export interface MistakePracticeSession {
   readonly version: 1;
   readonly sessionId: string;
+  /** Есть только у повтора исправленных; у обычной сессии поля нет (сохранённые сессии читаются как раньше). */
+  readonly pool?: 'corrected';
   readonly startedAtMs: number;
   readonly initialCount: number;
   readonly cursor: number;
@@ -105,20 +115,26 @@ export function buildMistakePracticeSession(input: {
    * Без параметра (или пустой список) поведение прежнее байт в байт.
    */
   readonly facets?: readonly MistakeFacet[];
+  /**
+   * зачем (владелец 04.10, «Повторить исправленные»): 'corrected' собирает сессию из уже
+   * исправленных ошибок для закрепления. Без параметра — 'active', поведение прежнее байт в байт.
+   */
+  readonly pool?: MistakePracticePool;
 }): MistakePracticeSession {
   const focusMistakeId = input.focusMistakeId?.trim() ?? '';
   const facetFiltered = input.facets && input.facets.length > 0
     ? input.items.filter((item) => input.facets!.includes(item.facet))
     : input.items;
-  const ready = selectMistakesForSession(
-    focusMistakeId
-      ? facetFiltered.filter((item) => item.mistakeId === focusMistakeId)
-      : facetFiltered,
-    {
+  const pool: MistakePracticePool = input.pool ?? 'active';
+  const candidates = focusMistakeId
+    ? facetFiltered.filter((item) => item.mistakeId === focusMistakeId)
+    : facetFiltered;
+  const ready = pool === 'corrected'
+    ? selectCorrectedMistakesForReview(candidates, { limit: focusMistakeId ? 1 : 30 })
+    : selectMistakesForSession(candidates, {
       nowMs: input.nowMs,
       limit: focusMistakeId ? 1 : 30,
-    },
-  );
+    });
   if (focusMistakeId && ready.length !== 1) {
     throw new Error('mistake_practice_focus_unavailable');
   }
@@ -166,10 +182,13 @@ export function buildMistakePracticeSession(input: {
     focusMistakeId: focusMistakeId || null,
     requestedLength: input.requestedLength,
     startedAtMs: input.nowMs,
+    // поле только у повтора — у обычной сессии id прежний байт в байт
+    ...(pool === 'corrected' ? { pool } : {}),
   }))}`;
   return Object.freeze({
     version: 1,
     sessionId,
+    ...(pool === 'corrected' ? { pool } : {}),
     startedAtMs: input.nowMs,
     initialCount: count,
     cursor: 0,

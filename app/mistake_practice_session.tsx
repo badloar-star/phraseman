@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { LOAD_GATE_TOTAL_MS } from './load_gate_config';
+import { actionToastTri, emitAppEvent } from './events';
 import { useAudioPlayer } from 'expo-audio';
 import { useManagedSpokenAudioPlayer } from '../hooks/use_managed_spoken_audio_player';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -994,6 +995,15 @@ function MistakePracticeSessionScreen() {
       }
       setHiddenUndo({ entry, nextSession, hiddenEventId });
       setHideConfirmVisible(false);
+    } catch (error: unknown) {
+      // зачем (аудит Optimistic UI, 04.10): отказ записи «скрыть» уходил в неотловленный rejection — окно висело без объяснения. Состояние не меняем
+      // (событие могло не записаться), пишем причину и говорим пользователю.
+      console.warn('[MISTAKES-GATE] hide:failed', error instanceof Error ? error.message : String(error));
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось скрыть ошибку. Попробуйте ещё раз.',
+        uk: 'Не вдалося приховати помилку. Спробуйте ще раз.',
+        es: 'No se pudo ocultar el error. Inténtalo de nuevo.',
+      }));
     } finally {
       submissionLatchRef.current = false;
     }
@@ -1035,6 +1045,13 @@ function MistakePracticeSessionScreen() {
         });
       }
       setHiddenUndo(null);
+    } catch (error: unknown) {
+      console.warn('[MISTAKES-GATE] restore:failed', error instanceof Error ? error.message : String(error));
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось вернуть ошибку. Попробуйте ещё раз.',
+        uk: 'Не вдалося повернути помилку. Спробуйте ще раз.',
+        es: 'No se pudo restaurar el error. Inténtalo de nuevo.',
+      }));
     } finally {
       submissionLatchRef.current = false;
     }

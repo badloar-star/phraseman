@@ -229,14 +229,18 @@ async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promis
   });
 }
 
-let _refreshPromise: Promise<StatsPreloadData | null> | null = null;
+// зачем (аудит Optimistic UI, 04.10): общий промис не различал studyTarget — вызов для цели B получал результат, собранный для цели A.
+// Дедупликация теперь по цели; одновременные вызовы ОДНОЙ цели по-прежнему делят один рефреш.
+const _refreshPromises = new Map<string, Promise<StatsPreloadData | null>>();
 
 export async function refreshStatsCache(studyTarget?: RuntimeStudyTarget): Promise<StatsPreloadData | null> {
   await hydrateStatsCacheFromStorage();
   // Конкурентные вызовы ждут текущий рефреш вместо возврата устаревшего кэша.
-  if (_refreshPromise) return _refreshPromise;
+  const refreshKey = studyTarget ?? '';
+  const inFlight = _refreshPromises.get(refreshKey);
+  if (inFlight) return inFlight;
   _preloadInFlight = true;
-  _refreshPromise = buildFreshStatsSnapshot(studyTarget)
+  const refresh = buildFreshStatsSnapshot(studyTarget)
     .then((fresh) => rememberStatsCache(fresh))
     .catch((error: unknown) => {
       // зачем (PM-214 preflight, D158): немой catch прятал отказ сборки статистики — экран ждал
@@ -245,10 +249,11 @@ export async function refreshStatsCache(studyTarget?: RuntimeStudyTarget): Promi
       return _cache.loaded ? _cache : null;
     })
     .finally(() => {
-      _preloadInFlight = false;
-      _refreshPromise = null;
+      _refreshPromises.delete(refreshKey);
+      _preloadInFlight = _refreshPromises.size > 0;
     }) as Promise<StatsPreloadData | null>;
-  return _refreshPromise;
+  _refreshPromises.set(refreshKey, refresh);
+  return refresh;
 }
 
 /**

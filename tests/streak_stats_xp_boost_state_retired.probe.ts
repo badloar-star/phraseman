@@ -15,4 +15,5 @@ for (const token of [
 ]) {
   assert.equal(source.includes(token), false, `retired XP boost state remains: ${token}`);
 }
-assert.equal(source.includes('const handleFreezeStreak = () =>'), true);
+// зачем (04.10): заморозка стала асинхронной (бесплатная заморозка Plus пишет в хранилище; D101 убрал платную) — сторожим сам обработчик, а не форму без async.
+assert.equal(source.includes('const handleFreezeStreak = async () =>'), true);

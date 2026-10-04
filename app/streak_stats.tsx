@@ -35,7 +35,7 @@ import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { commitPremiumFreeFreeze } from './economy/premium_free_freeze';
 import { DebugLogger } from './debug-logger';
 import { getStatsCache, hydrateStatsCacheFromStorage, refreshStatsCache, type StatsCachedDay, type StatsCachedTimeDay, type StatsPreloadData, } from './statsCache';
-import { emitAppEvent } from './events';
+import { actionToastTri, emitAppEvent } from './events';
 import { syncDailyAnalyticsIfNeeded, loadPercentileData } from './daily_analytics_sync';
 import { loadLifetimeProfileStats, type LifetimeProfileStats } from './lifetime_profile_stats';
 import { devRandomizeLifetimePathDailyMetrics, loadLifetimeTotalsChartDays, loadWeeklyLearnedCounts, type LifetimeTotalsChartKind, type LifetimeChartDay, type DevLifetimePathRandomSums, } from './stats_daily_breakdown';
@@ -2078,6 +2078,9 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     // зачем: D101 — заморозка и восстановление серии за жемчуг удалены; осталась
     // только бесплатная заморозка Plus (один раз), без Plus — путь к Plus.
     const canFreezeStreak = !isPremium || !premiumFreezeUsed;
+    // зачем (аудит Optimistic UI, 04.10): раньше кнопка менялась только ПОСЛЕ записи, повторный тап шёл параллельно, а отказ молчал
+    // (только лог). Теперь: замок от повторных тапов, состояние меняется сразу, при отказе — откат и тост.
+    const freezeInFlightRef = useRef(false);
     const handleFreezeStreak = async () => {
         hapticTap();
         if (!isPremium) {
@@ -2088,16 +2091,31 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             DebugLogger.warn('STREAK-FREEZE', 'stats: premium free freeze already used, paid freeze removed (D101)');
             return;
         }
-        try {
-            await commitPremiumFreeFreeze(toDateStr(new Date()));
-        } catch (error) {
-            DebugLogger.error('streak_stats:premiumFreeFreeze', error, 'warning');
+        if (freezeInFlightRef.current) {
+            DebugLogger.warn('STREAK-FREEZE', 'stats: freeze tap ignored — previous commit still in flight');
             return;
         }
+        freezeInFlightRef.current = true;
+        const previous = { freezeActive, premiumFreezeUsed, streakAtRisk };
         setPremiumFreezeUsed(true);
         setFreezeActive(true);
-        emitAppEvent('streak_freeze_updated', { active: true });
         setStreakAtRisk(false);
+        try {
+            await commitPremiumFreeFreeze(toDateStr(new Date()));
+            emitAppEvent('streak_freeze_updated', { active: true });
+        } catch (error) {
+            DebugLogger.error('streak_stats:premiumFreeFreeze', error, 'warning');
+            setPremiumFreezeUsed(previous.premiumFreezeUsed);
+            setFreezeActive(previous.freezeActive);
+            setStreakAtRisk(previous.streakAtRisk);
+            emitAppEvent('action_toast', actionToastTri('error', {
+                ru: 'Не удалось включить заморозку. Попробуйте ещё раз.',
+                uk: 'Не вдалося увімкнути заморозку. Спробуйте ще раз.',
+                es: 'No se pudo activar la congelación. Inténtalo de nuevo.',
+            }));
+        } finally {
+            freezeInFlightRef.current = false;
+        }
     };
     const weekAnalyticsBlock = (
         <Reanimated.View key="week-analytics" entering={FadeInDown.duration(420).delay(210)}>

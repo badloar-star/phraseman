@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сохранённые окна и тосты 2.0</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="extension.css">
+<link rel="stylesheet" href="overlay.css">
+</head>
+<body>
+<main class="page">
+  <h1 class="page-h1">Сохранённые окна и тосты</h1>
+  <p class="page-lead">Пять подтверждённых семейств существующих оверлеев: объявления, текущий вход и восстановление, жалоба на ник, feature intro и ActionToast.</p>
+  <nav class="page-nav" aria-label="Разделы макетов"><a href="index.html">Все разделы</a><a href="etalon.html">Эталон</a><a class="on" href="overlays.html" aria-current="page">Окна и тосты</a><a href="system.html">Системные окна</a></nav>
+  <div class="scope-note"><strong>Граница каталога.</strong> Это не заявление о полном покрытии всех оверлеев приложения. Здесь сохранены только пять подтверждённых семейств текущего bounded-пакета. Все имена, email, коды, сообщения и таймеры внутри телефонов — демонстрационные данные; кнопки не запускают вход, восстановление, жалобу, подтверждение сообщения или сетевой запрос.</div>
+  <table class="coverage" id="coverage" aria-label="Покрытие сохранённых оверлеев"></table>
+  <div id="root"></div>
+</main>
+<script src="kit.js"></script>
+<script>
+const { icon, phone, block } = K;
+const esc = value => String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const replay = id => `<button type="button" class="replay t" data-replay="${id}">${icon('arrowR','s16')}Повторить анимацию</button>`;
+const demo = (id, label, html) => `<article class="col" id="${id}"><div class="lbl">${label}</div>${html}${replay(id)}</article>`;
+const underlay = (title='Главная') => `<div class="ov-underlay"><div class="topbar"><button class="rb bare" type="button" aria-label="Назад">${icon('back','s22')}</button></div><div class="screen-title">${title}</div><div class="card ghost"></div><div class="card ghost"></div><div class="card ghost"></div></div>`;
+const modal = (id, content, cls='') => `<div class="ov-dim"></div><section class="modal ov-modal ov-anim ${cls}" role="region" aria-label="Демонстрация оверлея ${id}" data-anim="${id}">${content}</section>`;
+const sheet = (id, content, cls='') => `<div class="ov-dim"></div><section class="sheet on ov-sheet ov-anim ${cls}" role="region" aria-label="Демонстрация оверлея ${id}" data-anim="${id}"><div class="ov-grab" aria-hidden="true"></div>${content}</section>`;
+const overlayPhone = (id, content, kind='sheet', title='Главная', time='9:41') => phone(underlay(title), { time, overlay: kind === 'modal' ? modal(id, content) : sheet(id, content) });
+const closeButton = `<button class="rb fill t" type="button" aria-label="Закрыть">${icon('close','s18')}</button>`;
+const providerButton = (provider, disabled=false) => `<button type="button" class="cta ${provider==='Google'?'':'gh '}ov-provider ${provider==='Google'?'light':'dark'} t"${disabled?' disabled aria-disabled="true"':''}>${provider==='Google'?icon('user','s19'):icon('lockF','s18')}Войти через ${provider}</button>`;
+const trust = `<div class="ov-trust">${icon('lockF','s15')}Данные на устройстве сохранятся</div>`;
+const authClose = (disabled=false) => `<div class="flex" style="justify-content:flex-end"><button class="rb fill t" type="button" aria-label="Закрыть"${disabled?' disabled aria-disabled="true"':''}>${icon('close','s18')}</button></div>`;
+const authHead = (title, body, badge='lockF', dismissible=true) => `${authClose(!dismissible)}<div class="ov-auth-head"><div class="tile t55">${icon(badge,'s24')}</div><div><div class="ov-title ov-left">${title}</div><div class="ov-body ov-left">${body}</div></div></div>`;
+const later = `<button type="button" class="cta gh t" style="margin-top:10px">Позже</button>`;
+const laterDisabled = `<button type="button" class="cta gh t" style="margin-top:10px" disabled aria-disabled="true">Позже</button>`;
+const authPrompt = (id, subtitle, extra='', buttons=true) => overlayPhone(id, `${authHead('Всё в безопасности',subtitle)}${extra}${buttons?`<div style="margin-top:18px">${providerButton('Google')}${providerButton('Apple')}${later}</div>`:''}${trust}`);
+const field = (id, label, value, placeholder='', disabled=false) => `<label class="ov-field-label" for="${id}">${label}</label><input class="field ov-field" id="${id}" value="${esc(value)}" placeholder="${esc(placeholder)}"${disabled?' disabled':''}>`;
+const panel = (title, body) => `<div class="ov-panel"><div class="ov-panel-title">${title}</div><div class="ov-panel-body">${body}</div></div>`;
+
+function announcement(id, remote=false){
+  const title=remote?'Заголовок сообщения':'Мы готовим кое-что особенное';
+  const body=remote?'Текст сообщения, переданный сервисом объявлений.':'Мы готовим для тебя кое-что новое — спокойное, полезное и немного неожиданное. Скоро расскажем больше.';
+  return overlayPhone(id, `<div class="flex" style="justify-content:flex-end">${closeButton}</div><div class="ov-stage">${icon('chatDots','s28')}</div><div class="ov-title">${title}</div><div class="ov-body ov-scroll-copy">${body}</div><button type="button" class="cta t" style="margin-top:20px">Понятно</button>`, 'modal', 'Сообщения', remote?'10:08':'10:07');
+}
+
+function authBusy(id, slow=false){
+  return authPrompt(id,'Быстрый вход. Прогресс синхронизируется между устройствами.',`<div class="ov-panel ov-busy" role="status"><span class="spin" aria-hidden="true"></span><div class="ov-panel-body">${slow?'Вход занимает больше времени. Можно безопасно закрыть это окно — попытка продолжится.':'Входим... подожди пару секунд'}</div></div>`,true);
+}
+function authNoProvider(){
+  return overlayPhone('OV-AUTH-NO-PROVIDER',`${authHead('Всё в безопасности','Быстрый вход. Прогресс синхронизируется между устройствами.')}<div class="ov-inline-error">Ни один провайдер не доступен на этом устройстве.</div>${later}${trust}`);
+}
+function authError(){
+  return overlayPhone('OV-AUTH-ERROR',`${authHead('Всё в безопасности','Быстрый вход. Прогресс синхронизируется между устройствами.')}<div style="margin-top:18px">${providerButton('Google')}${providerButton('Apple')}</div><div class="ov-inline-error"><strong>Не получилось</strong><br>Не получилось войти. Попробуй позже.</div><button type="button" class="cta t" style="margin-top:12px">Повторить</button>${later}${trust}`);
+}
+function authSwitchRequired(){
+  return overlayPhone('OV-AUTH-SWITCH-REQUIRED',`${authHead('Нужно подтвердить смену аккаунта','Локальные данные сохранены. Сначала выбери «Сменить аккаунт» и подтверди безопасное сохранение или очистку данных, затем войди снова.','flag')}<div class="ov-inline-error"><strong>Повтор входа недоступен</strong><br>Вернись к управлению аккаунтом и сначала подтверди смену.</div><button type="button" class="cta gh t" style="margin-top:14px">Закрыть</button>${trust}`);
+}
+function authProviderMismatch(){
+  return overlayPhone('OV-AUTH-PROVIDER-MISMATCH',`${authHead('Нужен прежний аккаунт','Выбранный аккаунт не связан с этим прогрессом. Попробуй тот Google- или Apple-аккаунт, которым ты пользовался раньше. Локальные данные не изменены.','user')}<button type="button" class="cta gh t" style="margin-top:18px">Нет доступа к этому аккаунту?</button><button type="button" class="cta gh t" style="margin-top:10px">Закрыть</button>${trust}`);
+}
+function authCancelled(){
+  return overlayPhone('OV-AUTH-CANCELLED',`${authHead('Вход не завершён','Окно входа закрылось без выбора аккаунта. Нажми кнопку ещё раз или попробуй другой способ.','flag')}<div style="margin-top:18px">${providerButton('Google')}${providerButton('Apple')}</div><button type="button" class="cta t" style="margin-top:12px">Повторить</button>${later}${trust}`);
+}
+function authLinked(){
+  return overlayPhone('OV-AUTH-LINKED',`${authHead('Всё в безопасности','Войди в тот же аккаунт Google или Apple — вернём прогресс из облака.')}<div class="ov-panel"><div class="ov-panel-body">Твой прогресс привязан к аккаунту a***@example.com — войди через него</div></div><div style="margin-top:16px">${providerButton('Google')}${providerButton('Apple')}${later}</div>${trust}`,'sheet','Запуск','9:48');
+}
+
+function recoveryChoice(){
+  return overlayPhone('OV-REC-CHOICE',`${authHead('Нет доступа к этому аккаунту?','Выбери способ, которым был привязан аккаунт. Ответ не раскроет, существует ли аккаунт.','unlock')}<div style="margin-top:18px"><button class="cta ov-provider light t" type="button">${icon('user','s19')}Продолжить через Google</button><button class="cta gh ov-provider dark t" type="button">${icon('lockF','s18')}Продолжить через Apple</button><button class="cta gh t" type="button" style="margin-top:10px">Отправить код</button></div>${later}`,'sheet','Запуск','9:50');
+}
+function recoveryGoogle(){
+  return overlayPhone('OV-REC-GOOGLE',`${authHead('Сначала попробуй прежний Google-аккаунт','Открой Настройки устройства → Аккаунты, добавь указанный ниже аккаунт, затем войди через Google. Если доступа к нему нет, запроси код.','user')}<div class="ov-panel"><div class="ov-panel-title">a***@example.com</div><div class="ov-panel-body">Маскированная подсказка аккаунта</div></div><button class="cta ov-provider light t" type="button" style="margin-top:16px">${icon('user','s19')}Продолжить через Google</button><button class="cta gh t" type="button" style="margin-top:10px">Отправить код</button>${later}`,'sheet','Запуск','9:51');
+}
+function recoveryCode(expired=false){
+  const id=expired?'OV-REC-EXPIRED':'OV-REC-CODE';
+  return overlayPhone(id,`${authHead('Восстановление по коду','Мы отправим 6-значный код на привязанную почту. Адрес будет показан только в маскированном виде.','unlock')}<div class="ov-panel"><div class="ov-panel-title">a***@example.com</div><div class="ov-panel-body">${expired?'Срок действия кода истёк. Запроси новый код.':'Код действует ещё 08:42'}</div></div>${field(`${id}-code`,'6-значный код',expired?'':'142 806','000 000',expired)}<button class="cta t" type="button" style="margin-top:14px"${expired?' disabled aria-disabled="true"':''}>Подтвердить</button><button class="cta gh t" type="button" style="margin-top:10px">Отправить код ещё раз</button><div class="ov-note center">${expired?'Можно запросить новый код сейчас.':'Повторная отправка через 00:28'}</div>${later}`,'sheet','Запуск',expired?'9:54':'9:53');
+}
+function recoverySupport(id, clean=false){
+  return overlayPhone(id,`${authHead('Нужна помощь поддержки','Восстановление остановлено, чтобы не затронуть другой аккаунт. Локальные данные сохранены.','flag')}${later}`,'sheet',clean?'Чистая установка':'Запуск','9:55');
+}
+function recoveryWorking(){
+  return overlayPhone('OV-REC-WORKING',`${authHead('Восстановление по коду','Проверяем и восстанавливаем аккаунт…','unlock')}${field('OV-REC-WORKING-code','6-значный код','142 806','000 000',true)}<button class="cta t" type="button" style="margin-top:14px" disabled aria-disabled="true"><span class="spin" aria-hidden="true"></span>Проверяем и восстанавливаем аккаунт…</button><button class="cta gh t" type="button" style="margin-top:10px" disabled aria-disabled="true">Отправить код ещё раз</button><div class="ov-note center">Код и повторная отправка заблокированы, пока выполняется проверка.</div>${later}`,'sheet','Запуск','9:54');
+}
+function recoveryCodeError(id,message){
+  return overlayPhone(id,`${authHead('Восстановление по коду','a***@example.com','unlock')}<div class="ov-note">Код действует ещё 08:42</div>${field(`${id}-code`,'6-значный код','142 806','000 000')}<button class="cta t" type="button" style="margin-top:14px">Подтвердить</button><button class="cta gh t" type="button" style="margin-top:10px" disabled aria-disabled="true">Повторная отправка через 00:28</button><div class="ov-inline-error">${message}</div>${later}`,'sheet','Запуск','9:55');
+}
+function recoveryCancelled(){
+  return overlayPhone('OV-REC-CANCELLED',`${authHead('Нет доступа к этому аккаунту?','Выбери способ, которым был привязан аккаунт. Ответ не раскроет, существует ли аккаунт.','unlock')}<div style="margin-top:18px"><button class="cta ov-provider light t" type="button">${icon('user','s19')}Продолжить через Google</button><button class="cta gh ov-provider dark t" type="button">${icon('lockF','s18')}Продолжить через Apple</button></div><div class="ov-inline-error">Вход был отменён. Можно попробовать ещё раз.</div>${later}`,'sheet','Запуск','9:55');
+}
+function recoverySupportError(){
+  return overlayPhone('OV-REC-SUPPORT-ERROR',`${authHead('Нужна помощь поддержки','Не удалось безопасно продолжить. Обратись в поддержку.','flag')}<div class="ov-panel"><div class="ov-panel-body">Восстановление не продолжается автоматически.</div></div>${later}`,'sheet','Запуск','9:56');
+}
+
+function cleanProvider(){
+  return overlayPhone('OV-CLEAN-PROVIDER',`${authHead('Подтверди способ входа','Сначала подтверди Google или Apple на этом устройстве. Это защищает восстановление от посторонних.','lockF')}<div style="margin-top:18px">${providerButton('Google')}${providerButton('Apple')}</div>${later}`,'sheet','Чистая установка','10:01');
+}
+function cleanEmail(){
+  return overlayPhone('OV-CLEAN-EMAIL',`${authHead('Введи email аккаунта','Укажи почту, к которой был привязан прогресс.','unlock')}${field('OV-CLEAN-EMAIL-field','Email аккаунта','','name@example.com')}<div class="ov-inline-error">Введи корректный email.</div><button class="cta t" type="button" style="margin-top:14px" disabled aria-disabled="true">Отправить код</button>${later}`,'sheet','Чистая установка','10:02');
+}
+function cleanCode(expired=false){
+  const id=expired?'OV-CLEAN-EXPIRED':'OV-CLEAN-CODE';
+  return overlayPhone(id,`${authHead('Проверь почту','Если данные подходят, письмо с 6-значным кодом уже отправлено.','chat')}${field(`${id}-code`,'6-значный код',expired?'':'284 019','000 000',expired)}<button class="cta t" type="button" style="margin-top:14px"${expired?' disabled aria-disabled="true"':''}>Подтвердить и восстановить</button><button class="cta gh t" type="button" style="margin-top:10px">Отправить код ещё раз</button><div class="ov-note center">${expired?'Код больше не действует. Для повторной отправки снова введи email.':'Код действует ещё 08:42 · повторная отправка через 00:28'}</div><button class="bare ov-text-action t" type="button">Изменить email</button>${later}`,'sheet','Чистая установка',expired?'10:05':'10:04');
+}
+function cleanResume(){
+  return overlayPhone('OV-CLEAN-RESUME',`${authHead('Продолжить восстановление','Проверка уже завершена. Безопасно продолжи перенос аккаунта.','check')}<button class="cta t" type="button" style="margin-top:18px">Продолжить</button>${later}`,'sheet','Чистая установка','10:06');
+}
+function cleanAdopting(){
+  return overlayPhone('OV-CLEAN-ADOPTING',`${authHead('Восстановление аккаунта','Безопасно восстанавливаем аккаунт…','lockF',false)}<div class="ov-panel ov-busy" role="status"><span class="spin" aria-hidden="true"></span><div class="ov-panel-body">Не закрывай приложение, пока перенос не завершён.</div></div><button class="cta t" type="button" style="margin-top:18px" disabled aria-disabled="true">Безопасно восстанавливаем аккаунт…</button><button class="cta gh t" type="button" style="margin-top:10px" disabled aria-disabled="true">Изменить email</button>${laterDisabled}`,'sheet','Чистая установка','10:07');
+}
+
+function reportConfirm(){
+  return overlayPhone('OV-REPORT-CONFIRM',`<div class="ov-stage ov-stage-small">${icon('flag','s28')}</div><div class="ov-title">Пожаловаться на ник?</div><div class="ov-report-name">demo_user_17</div><div class="ov-actions"><button class="cta gh t" type="button">Отмена</button><button class="cta t" type="button">Отправить</button></div>`,'modal','Профиль игрока','11:18');
+}
+function reportSent(){
+  return overlayPhone('OV-REPORT-SENT',`<div class="ov-stage ov-stage-small">${icon('check','s28')}</div><div class="ov-title">Жалоба отправлена</div>`,'modal','Профиль игрока','11:19');
+}
+const toastIcons={success:'check',error:'close',info:'chat',warning:'flag',reward:'bookmark'};
+const toastLabels={success:'Готово',error:'Что-то пошло не так',info:'Сообщение',warning:'Внимание',reward:'Награда'};
+const toastMessages={success:'Настройки сохранены',error:'Не удалось завершить действие',info:'Есть новое сообщение',warning:'Проверь данные перед продолжением',reward:'Награда готова к просмотру'};
+const toastActions={success:'Открыть',error:'Повторить',info:'Подробнее',warning:'Проверить',reward:'Посмотреть'};
+function toastMarkup(id,tone,classic=false,message=toastMessages[tone]){
+  return `<aside class="toast ov-action-toast ov-anim tone-${tone} ${classic?'classic':'hybrid'}" role="status" data-anim="${id}"><span class="rail" aria-hidden="true"></span><span class="tile t44">${icon(toastIcons[tone],'s20')}</span><span class="copy"><span class="tone">${toastLabels[tone]}</span><span class="message">${message}</span></span>${classic?`<button type="button" class="ov-toast-action t">${toastActions[tone]}</button>`:''}</aside>`;
+}
+function toastPhone(id,tone,classic=false,message){
+  return phone(`${underlay('Профиль')}`,{time:'11:24',overlay:toastMarkup(id,tone,classic,message)});
+}
+function reportError(){ return toastPhone('OV-REPORT-ERROR','error',false,'Жалоба не отправилась'); }
+
+const intros=[
+  ['OV-INTRO-MISTAKES','Работа над ошибками','Потренируем задания, в которых раньше были ошибки. Выбери объём занятия — остальное разберём по ходу. Это практика, а не пересдача с укором.','Закрыть','arrowR'],
+  ['OV-INTRO-SWIPE','Карточки в движении','Смахни карточку влево или вправо. Кнопки под ней выполняют те же действия: акробатика пальцами не обязательна.','Понятно, попробуем','layers'],
+  ['OV-INTRO-LISTENING','Сначала — услышать','Здесь фраза звучит, а ты учишься узнавать её на слух. Выбери наборы, слушай столько раз, сколько нужно, и двигайся в своём темпе — это не экзамен, а тренировка слуха.','Выбрать наборы','vol'],
+  ['OV-INTRO-SPEAKING','Теперь твой голос','Вспоминай фразу по переводу или слушай и повторяй. Зажми микрофон, пока говоришь, и отпусти, когда закончишь. Здесь можно пробовать — идеальный дубль с первого раза не требуется.','Выбрать наборы','mic'],
+  ['OV-INTRO-BLITZ','Фразы на быстром старте','Выбирай ответ из вариантов и проверяй, что уже вспоминается без долгих раздумий. Для блица нужны хотя бы 4 карточки: из них собираются варианты. Сначала выбери наборы — гонка ещё не началась.','Выбрать наборы','bolt'],
+  ['OV-INTRO-CARDS','Фразы — в твою коллекцию','Выбирай готовые наборы или собирай свои, а затем переходи к тренировке. Набор — это просто коллекция карточек по теме. Собирать приятно, вспоминать без подсказки — ещё приятнее.','Понятно, посмотрим','layers'],
+  ['OV-INTRO-STATS','Прогресс, который видно','Здесь собраны дни занятий и время практики. Смотри на свой ритм и замечай, сколько уже сделано. Цифры здесь за тебя, а не против: один тихий день не отменяет весь путь.','Понятно, посмотрим','trend'],
+  ['OV-INTRO-DAILY','Одна фраза на сегодня','Каждый день здесь новая фраза: узнай её смысл, послушай произношение и проверь себя в коротком задании. Понравилась — сохрани в карточки. Маленькая находка, а в разговоре пригодится.','Понятно, посмотрим','chatDots'],
+  ['OV-INTRO-VIDEOS','Занимаем место у экрана','Выбирай канал, открывай новые видео или ищи тему в плейлистах. Нажми на ролик, чтобы посмотреть его. Попкорн по желанию, любопытство пригодится.','Понятно, посмотрим','play'],
+  ['OV-INTRO-FRIENDS','С компанией веселее','Найди друга по нику или коду и отправь заявку. Здесь можно видеть успехи друг друга и заниматься вместе. Иногда для занятия не хватает не силы воли, а знакомого «ну что, погнали?».','Понятно, посмотрим','people'],
+  ['OV-INTRO-LEGACY','Знакомый путь — в новом порядке','Здесь собраны классические уроки Phraseman: теория, упражнения и весь прежний прогресс. Выбери уровень в ленте и продолжай с нужного места — к новым урокам можно вернуться одним нажатием.','Открыть старые уроки','bookmark'],
+  ['OV-INTRO-PROFILE','Твоя визитка','Здесь собраны имя, монета-аватар и короткая подпись, которые видят другие игроки. Посмотри, как выглядит твоя визитка.','Посмотреть визитку','user'],
+];
+function introPhone([id,title,body,cta,ico]){
+  return overlayPhone(id,`<div class="ov-stage">${icon(ico,'s28')}</div><div class="ov-title">${title}</div><div class="ov-body">${body}</div><button class="cta t" type="button" style="margin-top:20px">${cta}</button><button class="cta gh t" type="button" style="margin-top:10px">Позже</button>`,'sheet','Раздел','12:12');
+}
+
+const rows=[
+ ['ANN','AppMessageAnnouncementModal: fallback и supplied payload','OV-ANN-FALLBACK'],
+ ['AUTH','RegistrationPromptModal: контексты, busy/slow, switch/mismatch/cancelled, linked hint','OV-AUTH-SETTINGS'],
+ ['REC','Startup recovery: provider / code / expiry / busy / five error branches / support','OV-REC-CHOICE'],
+ ['CLEAN','Clean-install recovery: provider / email / code / resume / non-dismissible adopting','OV-CLEAN-PROVIDER'],
+ ['REPORT','ReportUserModal + sent/error ActionToast','OV-REPORT-CONFIRM'],
+ ['INTRO','12 retained FeatureIntroModal definitions','OV-INTRO-MISTAKES'],
+ ['D54','league_rules_first_visit migrated to Spire intro','spire.html#tour'],
+ ['D10','arena_first_visit removed; no overlay rendered','overlays-intros'],
+ ['TOAST','5 tones × hybrid no-action / classic action','OV-TOAST-SUCCESS-HYBRID'],
+];
+document.getElementById('coverage').innerHTML='<tr><th>ID</th><th>Состояния</th><th>Макет</th></tr>'+rows.map(([a,b,c])=>`<tr><td>${a}</td><td>${b}</td><td><a href="${c.includes('.html')?c:'#'+c}">${c}</a></td></tr>`).join('');
+
+const announcementPhones=[
+ demo('OV-ANN-FALLBACK','fallback copy · acknowledgement preview',announcement('OV-ANN-FALLBACK')),
+ demo('OV-ANN-REMOTE','supplied remote payload · demo content',announcement('OV-ANN-REMOTE',true)),
+];
+const authPhones=[
+ demo('OV-AUTH-SETTINGS','settings context',authPrompt('OV-AUTH-SETTINGS','Быстрый вход. Прогресс синхронизируется между устройствами.')),
+ demo('OV-AUTH-LESSON','lesson complete context',authPrompt('OV-AUTH-LESSON','Один клик через Google — и прогресс в безопасности.')),
+ demo('OV-AUTH-ONBOARDING','onboarding overlay context',authPrompt('OV-AUTH-ONBOARDING','Можно пропустить, но без аккаунта прогресс легко потерять.')),
+ demo('OV-AUTH-HOME','SaveProgressBanner / home context',authPrompt('OV-AUTH-HOME','Быстрый вход. Прогресс синхронизируется между устройствами.')),
+ demo('OV-AUTH-BUSY','provider busy',authBusy('OV-AUTH-BUSY')),
+ demo('OV-AUTH-SLOW','provider slow · safe close',authBusy('OV-AUTH-SLOW',true)),
+ demo('OV-AUTH-NO-PROVIDER','no provider',authNoProvider()),
+ demo('OV-AUTH-ERROR','failure + retry',authError()),
+ demo('OV-AUTH-SWITCH-REQUIRED','account switch required · non-retryable',authSwitchRequired()),
+ demo('OV-AUTH-PROVIDER-MISMATCH','previous provider mismatch · non-retryable',authProviderMismatch()),
+ demo('OV-AUTH-CANCELLED','provider picker cancelled · retryable',authCancelled()),
+ demo('OV-AUTH-LINKED','startup linked-account hint',authLinked()),
+];
+const recoveryPhones=[
+ demo('OV-REC-CHOICE','existing account · provider choice',recoveryChoice()),
+ demo('OV-REC-GOOGLE','existing account · Google instructions',recoveryGoogle()),
+ demo('OV-REC-CODE','existing account · code + timers',recoveryCode(false)),
+ demo('OV-REC-EXPIRED','existing account · expired code',recoveryCode(true)),
+ demo('OV-REC-WORKING','existing account · working · controls disabled',recoveryWorking()),
+ demo('OV-REC-RATE-LIMIT','existing account · code_sent + rate-limit copy',recoveryCodeError('OV-REC-RATE-LIMIT','Слишком много попыток. Подожди немного и попробуй снова.')),
+ demo('OV-REC-INVALID-CODE','existing account · code_sent + invalid-code copy',recoveryCodeError('OV-REC-INVALID-CODE','Код не подошёл. Проверь все 6 цифр.')),
+ demo('OV-REC-NETWORK','existing account · code_sent + network-error copy',recoveryCodeError('OV-REC-NETWORK','Нет связи с сервером. Проверь интернет и попробуй снова.')),
+ demo('OV-REC-CANCELLED','existing account · provider choice + cancelled copy',recoveryCancelled()),
+ demo('OV-REC-SUPPORT-ERROR','existing account · support error · no retry',recoverySupportError()),
+ demo('OV-REC-SUPPORT','existing account · support stop',recoverySupport('OV-REC-SUPPORT')),
+];
+const cleanPhones=[
+ demo('OV-CLEAN-PROVIDER','clean install · provider proof',cleanProvider()),
+ demo('OV-CLEAN-EMAIL','clean install · email + disabled send',cleanEmail()),
+ demo('OV-CLEAN-CODE','clean install · sent code + timers',cleanCode(false)),
+ demo('OV-CLEAN-EXPIRED','clean install · expired code',cleanCode(true)),
+ demo('OV-CLEAN-RESUME','clean install · resume',cleanResume()),
+ demo('OV-CLEAN-ADOPTING','clean install · adopting · blocking and non-dismissible',cleanAdopting()),
+ demo('OV-CLEAN-SUPPORT','clean install · support stop',recoverySupport('OV-CLEAN-SUPPORT',true)),
+];
+const reportPhones=[
+ demo('OV-REPORT-CONFIRM','report nickname · confirm',reportConfirm()),
+ demo('OV-REPORT-SENT','report nickname · sent preview',reportSent()),
+ demo('OV-REPORT-ERROR','report nickname · failure toast',reportError()),
+];
+const introPhones=intros.map(item=>demo(item[0],`${item[0].replace('OV-INTRO-','').toLowerCase()} · retained surface, 2.0 copy`,introPhone(item)));
+const toastPhones=[];
+Object.keys(toastLabels).forEach(tone=>{
+ const up=tone.toUpperCase();
+ toastPhones.push(demo(`OV-TOAST-${up}-HYBRID`,`${toastLabels[tone]} · hybrid no action`,toastPhone(`OV-TOAST-${up}-HYBRID`,tone,false)));
+ toastPhones.push(demo(`OV-TOAST-${up}-CLASSIC`,`${toastLabels[tone]} · classic + demo action`,toastPhone(`OV-TOAST-${up}-CLASSIC`,tone,true)));
+});
+
+document.getElementById('root').innerHTML=
+ block('overlays-announcements','Объявления','Fallback и supplied-message используют один существующий ReleaseNotesModal shell. Закрытие и CTA здесь не записывают acknowledgement.',announcementPhones)+
+ block('overlays-auth','Текущий runtime-вход','Это текущий RegistrationPromptModal, не draft account-session contract из профиля. Non-retryable account-switch и provider-mismatch не предлагают повтор; состояния не имитируют успешный вход.',authPhones)+
+ block('overlays-recovery','Восстановление существующего аккаунта','Provider choice, инструкция Google, код, срок, busy и отдельные ошибки. Retry показывается только в разрешённых ветках; маскированный email, код и таймеры — демо.',recoveryPhones)+
+ block('overlays-clean-recovery','Восстановление после чистой установки','Проверка провайдера предшествует email. Adopting блокирует действия и закрытие; отсутствие ответа не изображается успехом.',cleanPhones)+
+ block('overlays-report','Жалоба на ник','Подтверждение, статический sent preview и текущий error toast. Ничего не отправляется.',reportPhones)+
+ block('overlays-intros','Feature intro','12 существующих intro-поверхностей сохранены. Statistics и profile-card уже мигрированы к settled 2.0: без удалённого опыта, энергетических бонусов и покупки улучшений визитки.',introPhones)+
+ block('overlays-toasts','ActionToast','Пять текущих тонов. Hybrid не показывает action; action-bearing layout существует только в classic rollback path. Тексты сообщений и action labels — демонстрационные.',toastPhones);
+
+document.body.addEventListener('click',event=>{
+ const button=event.target.closest('[data-replay]');
+ if(!button)return;
+ const id=button.dataset.replay;
+ button.parentElement.querySelectorAll(`[data-anim="${id}"]`).forEach(node=>{
+   node.classList.remove('ov-anim');
+   void node.offsetWidth;
+   node.classList.add('ov-anim');
+ });
+});
+K.init();
+</script>
+</body>
+</html>

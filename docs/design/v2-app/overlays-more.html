@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сохранённые окна — продолжение</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="extension.css">
+<link rel="stylesheet" href="overlay.css">
+<link rel="stylesheet" href="overlay-more.css">
+</head>
+<body>
+<main class="page">
+  <h1 class="page-h1">Сохранённые окна — продолжение</h1>
+  <p class="page-lead">Четырнадцать подтверждённых семейств: коллекция, доступ, энергия, рефералы, календарь, достижения и детали карточек.</p>
+  <nav class="page-nav" aria-label="Разделы макетов"><a href="index.html">Все разделы</a><a href="overlays.html">Окна и тосты I</a><a class="on" href="overlays-more.html" aria-current="page">Окна II</a><a href="system.html">Системные окна</a></nav>
+  <div class="scope-note"><strong>Граница каталога.</strong> Это второй bounded-пакет, а не заявление о полном покрытии приложения. Все имена, даты, коды, цены и значения внутри телефонов — демонстрационные. Кнопки не меняют доступ, баланс, энергию, аккаунт, покупки, друзей, уведомления или прогресс.</div>
+  <table class="coverage" id="coverage" aria-label="Покрытие дополнительных оверлеев"></table>
+  <div id="root"></div>
+</main>
+<script src="kit.js"></script>
+<script>
+const { icon, phone, block } = K;
+const replay = id => `<button type="button" class="replay t" data-replay="${id}">${icon('arrowR','s16')}Повторить анимацию</button>`;
+const demo = (id,label,html) => `<article class="col" id="${id}"><div class="lbl">${label}</div>${html}${replay(id)}</article>`;
+const underlay = (title='Главная') => `<div class="om-underlay"><div class="topbar"><button class="rb bare" type="button" aria-label="Назад">${icon('back','s22')}</button><span class="grow"></span><span class="pill">${title}</span></div><div class="screen-title">${title}</div><div class="card ghost"></div><div class="card ghost"></div><div class="card ghost"></div></div>`;
+const close = (disabled=false) => `<button class="rb fill t om-close" type="button" aria-label="Закрыть"${disabled?' disabled aria-disabled="true"':''}>${icon('close','s18')}</button>`;
+const surface = (id,content,kind='modal',label='') => `<div class="om-dim"></div><section class="${kind==='sheet'?'sheet om-sheet':'modal om-modal'} om-region ov-anim" role="region" aria-label="${label||`Демонстрация оверлея ${id}`}" data-anim="${id}">${kind==='sheet'?'<div class="om-grab" aria-hidden="true"></div>':''}${content}</section>`;
+const fullSurface = (id,content,label='') => `<section class="modal om-region om-full ov-anim" role="region" aria-label="${label||`Демонстрация оверлея ${id}`}" data-anim="${id}">${content}</section>`;
+const popupSurface = (id,content,home=false) => `<section class="card om-region om-popover ov-anim${home?' om-popover-home':''}" role="region" aria-label="Демонстрация оверлея ${id}" data-anim="${id}">${content}</section>`;
+const phoneOverlay = (id,content,kind='modal',title='Главная',time='9:41') => phone(underlay(title),{time,overlay:surface(id,content,kind)});
+const cta = (label,ghost=false,disabled=false) => `<button class="cta ${ghost?'gh ':''}t" type="button"${disabled?' disabled aria-disabled="true"':''}>${label}</button>`;
+const art = (letter='H',secret=false) => `<div class="om-art${secret?' secret':''}" aria-hidden="true"><span class="glyph">${letter}</span></div>`;
+
+function collectible(id,mode){
+ const secret=mode==='secret', complete=mode==='complete';
+ return phoneOverlay(id,`${art('H')}<div class="om-kicker">Новая карточка!</div><div class="om-rarity">Обычная</div><div class="om-title">Hold your horses</div><div class="om-copy">Придержи коней</div>${complete||secret?`<div class="om-info"><strong>Сет собран!</strong>${secret?'Секретная карточка открыта: Top dog':''}</div>`:''}<div style="margin-top:16px">${cta('Класс!')}${complete||secret?cta('В коллекцию',true):''}</div>`,'modal','Коллекция','9:44');
+}
+function fullAccess(id,ended=false){
+ return phoneOverlay(id,`${close()}<div class="om-art" aria-hidden="true">${icon(ended?'check':'unlock','s28')}</div><div class="om-kicker">${ended?'Три дня позади':'Подарок на старт'}</div><div class="om-title">${ended?'Продолжай — на базовом или с Plus':'Три дня — всё открыто'}</div><div class="om-copy">${ended?'Всё, что ты выучил — остаётся с тобой. Базовый режим открыт всегда. Plus вернёт все планы, темы, разборы и практику без ограничений.':'Мы дарим тебе три дня полного доступа. Никаких лимитов, всё открыто, энергия бесконечная. Посмотри приложение в полной силе — и сам реши, что тебе нужно.'}</div><div style="margin-top:18px">${cta(ended?'Открыть полный доступ':'Начать — всё открыто')}${ended?cta('Остаться на базовом',true):'<div class="om-copy">Это подарок. Подписка не включается автоматически.</div>'}</div>`,'modal','Доступ','9:48');
+}
+function energy(id,state,home=false){
+ const body=state==='plus'?`<div class="om-energy-main">${icon('bolt','s18')}<span>Энергия безлимитная</span></div>`:state==='full'?`<div class="om-energy-main">${icon('bolt','s18')}<span>5/5 · запас полон</span></div>`:`<div class="om-energy-main">${icon('bolt','s18')}<span>3/5 · 1 энергия каждые 10 мин</span></div><div class="om-countdown"><span>Через</span><b>06:24</b></div>`;
+ const overlay=popupSurface(id,body,home);
+ return phone(`${underlay(home?'Главная':'Уроки')}${home?'<div class="om-energy-anchor">3/5</div>':''}`,{time:home?'10:12':'10:08',overlay});
+}
+function saveProgress(){
+ const id='OM-SAVE-PROGRESS';
+ return phone(underlay('Главная'),{time:'10:18',overlay:`<section class="card om-banner ov-anim" role="region" aria-label="Демонстрация оверлея ${id}" data-anim="${id}"><div class="flex">${icon('bookmark','s24')}<div class="grow"><div class="om-banner-title">Сохрани свой путь</div><div class="om-banner-copy">Привяжи аккаунт, чтобы включить синхронизацию учебных данных между поддерживаемыми устройствами.</div></div><button class="rb bare t" type="button" aria-label="Закрыть">${icon('close','s18')}</button></div><button class="chipbtn t" type="button">Привязать</button></section>`});
+}
+function promo(id,present){
+ const promo=present?`<section class="card om-promo ov-anim" role="region" aria-label="Демонстрация оверлея ${id}" data-anim="${id}"><div class="om-kicker">Скидка действует сейчас</div><div class="om-price-row"><span class="pill">−{percent}%</span><span class="om-price om-placeholder">{promoPrice}</span><span class="om-standard om-placeholder">{standardPrice}</span></div><div class="om-copy ov-left om-placeholder">далее {standardPrice}</div></section>`:'';
+ return phone(`<div class="om-paywall"><div class="om-kicker">PLUS</div><div class="screen-title">Полный доступ</div>${promo}<div class="card"><div class="tt">План из магазина</div><div class="om-copy ov-left">Цена загружается из storefront.</div></div>${cta('Продолжить')}</div>`,{time:'10:25'});
+}
+function rouletteWin(){
+ return phoneOverlay('OM-ROULETTE-WIN',`${art('7')}<div class="om-title">Поздравляем!</div><div class="om-prize">+7 дней Plus</div><div class="om-copy">Твой Plus теперь до <strong>31.10.2026</strong> · +7 дн.</div><div style="margin-top:18px">${cta('Готово')}</div>`,'modal','Награда за друга','10:31');
+}
+function celebration(){
+ const id='OM-ROULETTE-CELEBRATION';
+ const pieces=Array.from({length:6},(_,i)=>`<i class="om-piece" aria-hidden="true"></i>`).join('');
+ return phone(underlay('Награда за друга'),{time:'10:32',overlay:`<section class="om-celebration ov-anim" role="region" aria-label="Неблокирующая анимация конфетти ${id}" data-anim="${id}">${pieces}</section>`});
+}
+function referralEnded(){
+ return phoneOverlay('OM-REFERRAL-ACCESS-ENDED',`${close()}<div class="om-art" aria-hidden="true">${icon('check','s28')}</div><div class="om-title">Доступ можно открыть снова</div><div class="om-copy">Всё, что ты открыл — осталось с тобой.</div><div class="om-copy">Позови ещё друга — и доступ вернётся.</div><div style="margin-top:18px">${cta('Пригласить друга')}${cta('Открыть полный доступ',true)}</div>`,'modal','Друзья','10:36');
+}
+function timeModal(){
+ return phoneOverlay('OM-TIME',`<div class="om-title">Время</div><div class="om-picker"><div class="om-wheel"><span>18</span><b>19</b><span>20</span></div><div class="om-colon">:</div><div class="om-wheel"><span>15</span><b>30</b><span>45</span></div></div><div class="om-actions"><button class="cta gh t" type="button">Отмена</button><button class="cta t" type="button">OK</button></div>`,'modal','Уведомления','10:40');
+}
+// September 2026 starts on Tuesday in the Monday-first grid and has 30 days.
+const days=Array.from({length:35},(_,i)=>i===0||i>30?'<span aria-hidden="true"></span>':`<button class="om-day${i===15?' active selected':''}" type="button">${i}</button>`).join('');
+function month(id,compare=false){
+ const header=`<div class="om-month-head"><button class="rb bare t" type="button" aria-label="Предыдущий месяц">${icon('back','s20')}</button><strong>Сентябрь 2026</strong><button class="rb bare t" type="button" aria-label="Следующий месяц" disabled aria-disabled="true">${icon('fwd','s20')}</button><button class="rb bare t" type="button" aria-label="Закрыть">${icon('close','s20')}</button></div>`;
+ const calendar=`<section class="om-month-section om-month-calendar" aria-label="Календарь месяца"${compare?' inert aria-hidden="true"':''}><div class="om-calendar"><span class="om-weekday">Пн</span><span class="om-weekday">Вт</span><span class="om-weekday">Ср</span><span class="om-weekday">Чт</span><span class="om-weekday">Пт</span><span class="om-weekday">Сб</span><span class="om-weekday">Вс</span>${days}</div><div class="om-info"><strong>15 сентября</strong>24 минуты практики</div></section>`;
+ const comparison=`<section class="om-month-section om-month-comparison" aria-label="Сравнение месяцев"><div class="om-title ov-left">Сравнение месяцев</div><div class="om-compare"><div class="om-compare-card"><div class="om-compare-nav"><button class="bare t" type="button" aria-label="Предыдущий месяц A">${icon('back','s16')}</button><b>Сентябрь</b><button class="bare t" type="button" aria-label="Следующий месяц A" disabled aria-disabled="true">${icon('fwd','s16')}</button></div><span>12 дней</span><span>148 мин</span></div><div class="om-compare-card"><div class="om-compare-nav"><button class="bare t" type="button" aria-label="Предыдущий месяц B">${icon('back','s16')}</button><b>Август</b><button class="bare t" type="button" aria-label="Следующий месяц B">${icon('fwd','s16')}</button></div><span>9 дней</span><span>121 мин</span></div></div></section>`;
+ const content=`${header}<div class="om-month-viewport"><div class="om-month-body${compare?' focus-compare':''}">${calendar}${comparison}</div></div>`;
+ return phone('',{time:'10:45',overlay:fullSurface(id,content,`Месячный календарь ${compare?'сравнение':'детали дня'}`)});
+}
+const codeFeedback={
+ applied:'Код принят. Когда оформишь Plus или Pro — другу откроется ключ к награде.',
+ already:'Код уже привязан к вашему аккаунту.',
+ invalid:'Проверьте код: он слишком короткий.',
+ unknown:'Такой код не найден. Убедитесь, что это код приглашения Phraseman.',
+ 'too-old':'Этот код можно ввести только на новом аккаунте.',
+ self:'Это ваш код. Его нужно отправить другу.',
+ 'needs-link':'Код сохранён. Приложение применит его автоматически, как только соединение будет готово.',
+ disabled:'Приглашения сейчас недоступны. Попробуйте позже.',
+ error:'Не получилось применить код. Проверьте интернет и попробуйте ещё раз.',
+ 'friend-request':'Заявка в друзья отправлена — будете видеть прогресс друг друга.',
+};
+function codeSheet(id,state){
+ const idle=state==='idle', busy=state==='busy';
+ const feedback=state==='friend-request'?codeFeedback.applied:(codeFeedback[state]||'');
+ const friendReceipt=state==='friend-request'?codeFeedback['friend-request']:'';
+ return phoneOverlay(id,`${close()}<div class="om-title ov-left">Код от друга</div><div class="om-copy ov-left">Введи код и оформи Plus или Pro — другу откроется ключ к награде.</div><label class="om-field-label" for="${id}-input">Код приглашения</label><input class="field om-field" id="${id}-input" value="${idle?'':'DEMO42'}" placeholder="Введите код"><button class="cta t" type="button" style="margin-top:12px"${idle||busy?' disabled aria-disabled="true"':''}>${busy?'<span class="spin" aria-hidden="true"></span>Применяем…':'Применить код'}</button>${feedback?`<div class="om-feedback">${feedback}</div>`:''}${friendReceipt?`<div class="om-receipt">${friendReceipt}</div>`:''}`,'sheet','Награда за друга','10:51');
+}
+function referralHow(){
+ const steps=[['Пригласи друга','Отправь другу свой код — он на этом экране.'],['Друг оформит Plus или Pro','Когда он введёт твой код и оформит Plus или Pro, ты получишь ключ.'],['Открой награду','Каждый ключ даёт Plus от 1 дня до 365 дней.']];
+ return phoneOverlay('OM-REFERRAL-HOW',`${close()}<div class="om-title ov-left">Как это работает</div><div class="om-steps">${steps.map((s,i)=>`<div class="om-step"><b>${i+1}</b><div><strong>${s[0]}</strong><span>${s[1]}</span></div></div>`).join('')}</div><div class="om-info">• Сколько друзей оформит подписку — столько ключей ты получишь.<br>• Выигрыш суммируется с текущим сроком Plus.<br>• Приз выпадает случайно — шанс есть у каждого ключа.</div>`,'sheet','Награда за друга','10:57');
+}
+function friendReward(){
+ return phoneOverlay('OM-REFERRAL-FRIEND-REWARD',`${art('K')}<div class="om-title">Ключ получен!</div><div class="om-copy">Алекс оформил Plus или Pro — забирай ключ и крути награду.</div><div style="margin-top:18px">${cta('Забрать награду')}</div>`,'modal','Награда за друга','11:01');
+}
+function achievement(id,earned){
+ const title='Первые три искры';
+ return phoneOverlay(id,`${close()}<div class="om-dossier-hero"><div class="om-shield">${icon(earned?'check':'flame','s28')}</div></div>${earned?'<div class="om-rarity">Получено · 18.09.2026</div>':''}<div class="om-title ov-left">${title}</div><div class="om-copy ov-left">Три дня — ещё не легенда, зато уже обещание себе. Маленькое, упрямое и выполненное.</div><div class="om-info"><strong>Как получить</strong>Условие обновляется для версии 2.0. Старое условие с удалённым показателем не публикуется.</div>${earned?cta('Поделиться',true):'<div class="om-progress"><i style="width:0"></i></div><div class="om-copy">Прогресс временно не рассчитывается до утверждения условия 2.0.</div>'}`,'modal','Достижения','11:06');
+}
+function cardDetail(id,position='first'){
+ const secret=position==='last';
+ const card=secret?{rarity:'Секретная',set:'Животные',en:'Top dog',ipa:'tɒp dɒɡ',ru:'Главный, лучший',literal:'верхний пёс',meaning:'Самый главный или самый успешный человек в группе.',example:"After the promotion, she's the top dog now.",exampleRu:'После повышения теперь она тут главная.',origin:'Из собачьих боёв: победитель оказывался сверху — «верхним псом».'}:position==='interior'?{rarity:'Обычная',set:'Животные',en:'A little bird told me',ipa:'ə ˈlɪtl bɜːd təʊld miː',ru:'Сорока на хвосте принесла',literal:'маленькая птичка мне сказала',meaning:'Узнал по секрету — не скажу от кого.',example:"A little bird told me it's your birthday tomorrow!",exampleRu:'Птичка нашептала, что у тебя завтра день рождения!',origin:'Птицы-вестники — образ из древних историй и Библии.'}:{rarity:'Обычная',set:'Животные',en:'Hold your horses',ipa:'həʊld jɔː ˈhɔːsɪz',ru:'Придержи коней',literal:'придержи своих лошадей',meaning:'Не торопись, подожди.',example:'Hold your horses! Let me finish my coffee first.',exampleRu:'Придержи коней! Дай сначала допить кофе.',origin:'Из времён конных повозок: чтобы остановиться, кучер натягивал поводья.'};
+ const content=`<div class="om-detail-head"><span class="om-rarity">${card.rarity}</span><span>${card.set}</span><button class="rb fill t" type="button" aria-label="Закрыть">${icon('close','s18')}</button></div>${art(card.en[0],secret)}<div class="om-card-title"><h2>${card.en}</h2><button class="om-audio t" type="button" aria-label="Прослушать фразу">${icon('vol','s18')}</button></div><div class="om-copy">[${card.ipa}]</div><div class="om-title">${card.ru}</div><div class="om-section"><small>Дословно</small><p>${card.literal}</p></div><div class="om-section"><small>Что значит</small><p>${card.meaning}</p></div><div class="om-section"><small>Пример</small><div class="om-example"><p><strong>${card.example}</strong><br>${card.exampleRu}</p><button class="om-audio t" type="button" aria-label="Прослушать пример">${icon('vol','s16')}</button></div></div><div class="om-section"><small>История</small><p>${card.origin}</p></div><div class="om-card-nav"><button class="bare t" type="button" aria-label="Предыдущая карточка"${position==='first'?' disabled aria-disabled="true"':''}>${icon('back','s28')}</button><button class="bare t" type="button" aria-label="Следующая карточка"${position==='last'?' disabled aria-disabled="true"':''}>${icon('fwd','s28')}</button></div>`;
+ return phone('',{time:'11:12',overlay:fullSurface(id,content,`Детали карточки ${card.en}`)});
+}
+
+const rows=[
+ ['COLLECTIBLE','CollectibleDropModal: normal / set complete / secret','OM-COLLECTIBLE-NORMAL'],
+ ['FULL','IntroFullAccessModal: welcome / ended','OM-FULL-WELCOME'],
+ ['ENERGY','EnergyInfoPopover: recovering / full / Plus / Home position','OM-ENERGY-RECOVERING'],
+ ['SAVE','SaveProgressBanner','OM-SAVE-PROGRESS'],
+ ['PROMO','PaywallPromoBanner: store promo / null','OM-PROMO-PRESENT'],
+ ['ROULETTE','Win modal + separate celebration','OM-ROULETTE-WIN'],
+ ['ENDED','ReferralAccessEndedModal','OM-REFERRAL-ACCESS-ENDED'],
+ ['TIME','TimeModal','OM-TIME'],
+ ['MONTH','MonthExplorerModal: day / comparison','OM-MONTH-DAY'],
+ ['CODE','ReferralCodeSheet: idle, busy, statuses, friend receipt','OM-CODE-IDLE'],
+ ['HOW','ReferralHowSheet','OM-REFERRAL-HOW'],
+ ['FRIEND','ReferralFriendRewardModal','OM-REFERRAL-FRIEND-REWARD'],
+ ['ACH','AchievementModal: earned / progress shell','OM-ACHIEVEMENT-EARNED'],
+ ['CARD','CardDetailModal: first / interior / secret-last','OM-CARD-NORMAL'],
+ ['SUNSET','PersonalPlanSunsetNotice planned removal; no 2.0 target','overlays-more-exclusions'],
+];
+document.getElementById('coverage').innerHTML='<tr><th>ID</th><th>Состояния</th><th>Макет</th></tr>'+rows.map(([a,b,c])=>`<tr><td>${a}</td><td>${b}</td><td><a href="#${c}">${c}</a></td></tr>`).join('');
+
+const collectiblePhones=[demo('OM-COLLECTIBLE-NORMAL','обычная находка · demo card',collectible('OM-COLLECTIBLE-NORMAL','normal')),demo('OM-COLLECTIBLE-SET-COMPLETE','сет собран · без удалённой награды и названия сета',collectible('OM-COLLECTIBLE-SET-COMPLETE','complete')),demo('OM-COLLECTIBLE-SECRET','секретная ветка · demo card',collectible('OM-COLLECTIBLE-SECRET','secret'))];
+const fullPhones=[demo('OM-FULL-WELCOME','welcome · no auto-subscribe',fullAccess('OM-FULL-WELCOME')),demo('OM-FULL-ENDED','ended · base path retained',fullAccess('OM-FULL-ENDED',true))];
+const energyPhones=[demo('OM-ENERGY-RECOVERING','recovering · 5 / 1 / 10 contract',energy('OM-ENERGY-RECOVERING','recovering')),demo('OM-ENERGY-FULL','full · no hidden reserve',energy('OM-ENERGY-FULL','full')),demo('OM-ENERGY-PLUS','Plus · unlimited presentation',energy('OM-ENERGY-PLUS','plus')),demo('OM-ENERGY-HOME','Home-positioned variant',energy('OM-ENERGY-HOME','recovering',true))];
+const promoPhones=[demo('OM-PROMO-PRESENT','store promo present · placeholders only',promo('OM-PROMO-PRESENT',true)),demo('OM-PROMO-ABSENT','promo null · banner absent',promo('OM-PROMO-ABSENT',false))];
+const roulettePhones=[demo('OM-ROULETTE-WIN','win modal · sample 7-day D52 prize',rouletteWin()),demo('OM-ROULETTE-CELEBRATION','separate nonblocking finale',celebration())];
+const monthPhones=[demo('OM-MONTH-DAY','month bounds + day details',month('OM-MONTH-DAY')),demo('OM-MONTH-COMPARE','two-month comparison · settled metrics',month('OM-MONTH-COMPARE',true))];
+const codeStates=['idle','busy','applied','already','invalid','unknown','too-old','self','needs-link','disabled','error','friend-request'];
+const codePhones=codeStates.map(state=>{const id=`OM-CODE-${state.toUpperCase()}`;return demo(id,`ReferralCodeSheet · ${state}`,codeSheet(id,state));});
+const achievementPhones=[demo('OM-ACHIEVEMENT-EARNED','earned dossier · demo date',achievement('OM-ACHIEVEMENT-EARNED',true)),demo('OM-ACHIEVEMENT-PROGRESS','locked/progress shell · condition pending 2.0',achievement('OM-ACHIEVEMENT-PROGRESS',false))];
+const cardPhones=[demo('OM-CARD-NORMAL','first normal card · previous disabled',cardDetail('OM-CARD-NORMAL','first')),demo('OM-CARD-INTERIOR','interior normal card · both directions enabled',cardDetail('OM-CARD-INTERIOR','interior')),demo('OM-CARD-SECRET','last secret card · next disabled',cardDetail('OM-CARD-SECRET','last'))];
+
+document.getElementById('root').innerHTML=
+ block('overlays-more-collectibles','Коллекционные находки','Три существующих исхода. Удалённая валютная награда и название сета не возвращаются.',collectiblePhones)+
+ block('overlays-more-full-access','Стартовый полный доступ','Welcome и ended сохраняют явное отсутствие автоподписки и путь остаться на базовом.',fullPhones)+
+ block('overlays-more-energy','Энергия','Четыре размещения по контракту 5 / 1 / 10. Старые подарки ёмкости и ускорения не показаны.',energyPhones)+
+ block('overlays-more-save','Сохранить путь','Только существующий Home-баннер; нейтральный переход к привязке аккаунта.',[demo('OM-SAVE-PROGRESS','Home banner only',saveProgress())])+
+ block('overlays-more-promo','Промо магазина','Показывается только при store promo; фигурные значения — placeholders, не оффер.',promoPhones)+
+ block('overlays-more-roulette','Реферальный выигрыш','Модал и отдельный неблокирующий финал. Число 7 — sample из разрешённого D52 набора, не вероятность.',roulettePhones)+
+ block('overlays-more-ended','Доступ закончился','Три существующих действия: пригласить, открыть полный доступ, закрыть.',[demo('OM-REFERRAL-ACCESS-ENDED','access ended · 3 current actions',referralEnded())])+
+ block('overlays-more-time','Выбор времени','Колёса часов и минут, Отмена и OK.',[demo('OM-TIME','notification time picker',timeModal())])+
+ block('overlays-more-month','Месячный календарь','Границы навигации, детали дня и сравнение без удалённого показателя.',monthPhones)+
+ block('overlays-more-code','Код от друга','Idle, busy, девять текущих статусов и отдельная квитанция заявки в друзья.',codePhones)+
+ block('overlays-more-how','Как работает приглашение','Точные правила D52 без вероятностей и монет.',[demo('OM-REFERRAL-HOW','D52 rules',referralHow())])+
+ block('overlays-more-friend-reward','Друг принёс ключ','Имя, Plus/Pro, ключ и CTA. Алекс — вымышленное имя.',[demo('OM-REFERRAL-FRIEND-REWARD','friend qualified · demo name',friendReward())])+
+ block('overlays-more-achievement','Досье достижения','Существующий centered dossier shell. Условие 2.0 остаётся явно pending; старый удалённый показатель не публикуется.',achievementPhones)+
+ block('overlays-more-card-detail','Детали карточки','Обычная и секретная карточки из текущего каталога: перевод, audio и все секции.',cardPhones)+
+ block('overlays-more-exclusions','Подтверждённое исключение','PersonalPlanSunsetNotice запланирован к удалению после 20.10.2026 и не имеет целевого макета 2.0.',[]);
+
+document.body.addEventListener('click',event=>{
+ const button=event.target.closest('[data-replay]');
+ if(!button)return;
+ const id=button.dataset.replay;
+ button.parentElement.querySelectorAll(`[data-anim="${id}"]`).forEach(node=>{
+   node.classList.remove('ov-anim');
+   node.querySelectorAll('*').forEach(child=>child.style.animation='none');
+   void node.offsetWidth;
+   node.querySelectorAll('*').forEach(child=>child.style.animation='');
+   node.classList.add('ov-anim');
+ });
+});
+K.init();
+</script>
+</body>
+</html>

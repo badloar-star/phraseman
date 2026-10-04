@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Тёмные темы Liquid Glass</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="extension.css">
+</head>
+<body>
+<main class="page">
+  <h1 class="page-h1">Тёмные темы Liquid Glass</h1>
+  <p class="page-lead">Исходный графит и двенадцать лёгких тонировок одного интерфейса. Меняются только цветовые роли материала — не контент, геометрия, ассеты или смысл состояний.</p>
+  <nav class="page-nav" aria-label="Разделы макетов"><a href="index.html">Все разделы</a><a href="profile.html#PRF-06">Профиль · темы</a><a class="on" href="themes.html" aria-current="page">Сравнение тем</a><a href="overlays-runtime.html">Runtime-окна</a></nav>
+  <div class="scope-note"><strong>Граница.</strong> Это локальная настройка HTML-каталога, не аккаунтная настройка приложения и не платный доступ. Неизвестное имя темы или недоступное хранилище возвращает графит. Все 13 телефонов ниже закреплены за своей темой и не меняются глобальным селектором.</div>
+  <table class="coverage" id="coverage" aria-label="Покрытие тем"></table>
+  <div id="root"></div>
+</main>
+<script src="kit.js"></script>
+<script>
+const { icon, phone, block } = K;
+const themeCatalog=[
+ ['graphite','Графит'],['polar','Полярная'],['slate','Сланец'],['ink','Чернильная'],
+ ['lavender','Лаванда'],['iris','Ирис'],['rose','Пыльная роза'],['terracotta','Мягкая терракота'],
+ ['taupe','Тауп'],['olive','Олива'],['sage','Шалфей'],['eucalyptus','Эвкалипт'],['marine','Морская'],
+];
+const idFor=id=>`THEME-${id.toUpperCase()}`;
+const themeArticle=(id,label,html)=>`<article class="col" id="${id}" data-fixed-theme="${label}"><div class="lbl">${label}</div>${html}</article>`;
+const back=title=>`<div class="topbar"><button class="rb bare t" type="button" aria-label="Назад">${icon('back','s21')}</button></div><div class="screen-title" style="margin-top:10px">${title}</div>`;
+function sameInterface(label){return phone(`${back('Тема')}<div class="flex" style="margin-top:18px"><span class="theme-swatch" aria-hidden="true"></span><div class="grow"><div class="section-title">${label}</div><div class="screen-sub">Тёмная тонировка</div></div>${icon('check','s20')}</div><div class="seg" style="margin-top:20px" aria-label="Статический пример сегментов"><span class="seg-btn on">Выбрано</span><span class="seg-btn">Вариант</span></div><div class="card" style="margin-top:14px;padding:18px"><div class="eyebrow">Одинаковый интерфейс</div><div class="section-title" style="margin-top:8px">Практика продолжается</div><div class="screen-sub">Тонировка не меняет расположение, текст или прогресс.</div><button class="cta t" type="button" style="margin-top:18px">Продолжить</button><button class="cta gh t" type="button" style="margin-top:10px">Не сейчас</button></div>`,{time:'15:10'});}
+const fixed=(id,label,html)=>themeArticle(id,label,html);
+const surfacePhone=(id,kind)=>{
+ const base=`${back('Образец')}<div class="card" style="height:120px;margin-top:18px;opacity:.45"></div>`;
+ if(kind==='modal')return phone(base,{time:'15:12',overlay:`<div class="dim on"></div><section class="modal" role="region" aria-label="Статический образец модала"><div class="modal-title">Подтверждение</div><div class="modal-copy">Материал меняет оттенок, но не смысл действия.</div><div class="modal-actions"><button class="cta gh t" type="button">Отмена</button><button class="cta t" type="button">Продолжить</button></div></section>`});
+ if(kind==='sheet')return phone(base,{time:'15:13',overlay:`<div class="dim on"></div><section class="sheet on" role="region" aria-label="Статический образец шторки"><div class="grab"></div><div class="section-title">Шторка</div><div class="screen-sub">Тот же стеклянный материал в нижней поверхности.</div><button class="cta t" type="button" style="margin-top:18px">Готово</button></section>`});
+ if(kind==='notices')return phone(`${back('Уведомления')}<div class="card" style="margin-top:20px;padding:18px">Фоновая карточка</div>`,{time:'15:14',overlay:`<section class="toast" role="region" aria-label="Статический образец тоста" style="top:54px;bottom:auto">${icon('chat','s20')}<div class="grow"><b>Нейтральное уведомление</b><div style="color:var(--sec);margin-top:2px">Без смены семантики.</div></div></section><section class="card" role="region" aria-label="Статический образец поповера" style="position:absolute;z-index:56;right:18px;top:160px;width:210px;padding:14px;border-radius:18px"><b>Поповер</b><div class="screen-sub">Та же тонировка.</div></section>`});
+ if(kind==='form')return phone(`${back('Форма')}<div class="theme-state-stack"><label class="eyebrow" for="theme-demo-field">Поле</label><input id="theme-demo-field" class="field" value="Пример"><div class="seg" aria-label="Статический сегмент"><span class="seg-btn on">Выбрано</span><span class="seg-btn">Обычно</span></div><button class="cta dis" type="button" disabled>Недоступно</button><div class="card theme-state-row"><span class="tile" aria-hidden="true">${icon('dotsH','s18')}</span><span>Загрузка…</span></div></div>`,{time:'15:15'});
+ if(kind==='semantic')return phone(`${back('Состояния')}<div class="theme-state-stack"><div class="card status-card good" data-glass="success">${icon('check','s20')}<div><strong>Готово</strong>Успешное состояние сохраняет смысл и иконку.</div></div><div class="card status-card bad" data-glass="danger">${icon('close','s20')}<div><strong>Ошибка</strong>Опасное состояние не становится цветом темы.</div></div><button class="cta red t" type="button">Удалить</button></div>`,{time:'15:16'});
+ return phone(`<div class="theme-force-opaque">${back('Доступность')}<div class="card" style="margin-top:20px;padding:18px"><div class="section-title">Непрозрачный fallback</div><div class="screen-sub">Для reduced transparency, high contrast и отсутствующего backdrop-filter.</div><button class="cta t" type="button" style="margin-top:18px">Основное действие</button><div class="theme-a11y-note">Текст остаётся читаемым; движение темы не добавляется.</div></div></div>`,{time:'15:17'});
+};
+
+const rows=[
+ ['13','Графит + 12 утверждённых тёмных тонировок','theme-palettes'],
+ ['MODAL','Modal material','THEME-MODAL'],['SHEET','Sheet material','THEME-SHEET'],
+ ['NOTICES','Toast + popover','THEME-NOTICES'],['FORM','Field, selected, disabled, loading','THEME-FORM'],
+ ['SEMANTIC','Success / error meanings unchanged','THEME-SEMANTIC'],['A11Y','Opaque accessibility fallback','THEME-ACCESSIBLE'],
+];
+document.getElementById('coverage').innerHTML='<tr><th>ID</th><th>Состояния</th><th>Макет</th></tr>'+rows.map(([a,b,c])=>`<tr><td>${a}</td><td>${b}</td><td><a href="#${c}">${c}</a></td></tr>`).join('');
+const palettePhones=themeCatalog.map(([id,label])=>fixed(idFor(id),id,sameInterface(label)));
+const statePhones=[
+ fixed('THEME-MODAL','ink',surfacePhone('THEME-MODAL','modal')),
+ fixed('THEME-SHEET','sage',surfacePhone('THEME-SHEET','sheet')),
+ fixed('THEME-NOTICES','marine',surfacePhone('THEME-NOTICES','notices')),
+ fixed('THEME-FORM','lavender',surfacePhone('THEME-FORM','form')),
+ fixed('THEME-SEMANTIC','rose',surfacePhone('THEME-SEMANTIC','semantic')),
+ `<article class="col theme-force-opaque" id="THEME-ACCESSIBLE" data-fixed-theme="slate"><div class="lbl">opaque fallback · slate</div>${surfacePhone('THEME-ACCESSIBLE','accessible')}</article>`,
+];
+document.getElementById('root').innerHTML=
+ block('theme-palettes','Один интерфейс · 13 тем','Каждый телефон закреплён за своей темой. Графит сохраняет исходные токены; остальные варианты используют низкохроматическую тёмную шкалу.',palettePhones)+
+ block('theme-surfaces','Материалы и состояния','Шесть representative states проверяют glass surfaces, controls, semantic exceptions и непрозрачный accessibility fallback.',statePhones);
+document.addEventListener('phraseman-theme-ready',()=>window.PhraseManThemeController?.applyFixedThemes(document),{once:true});
+K.init();
+</script>
+</body>
+</html>

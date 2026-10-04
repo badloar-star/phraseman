@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Runtime-окна и уведомления</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="extension.css">
+<link rel="stylesheet" href="overlay.css">
+<link rel="stylesheet" href="overlay-runtime.css">
+</head>
+<body>
+<main class="page">
+  <h1 class="page-h1">Runtime-окна и уведомления</h1>
+  <p class="page-lead">Сорок четыре текущих alerts, inline-состояния, уведомления, подтверждения и fail-closed ветки аккаунта.</p>
+  <nav class="page-nav" aria-label="Разделы макетов"><a href="index.html">Все разделы</a><a href="overlays.html">Окна I</a><a href="overlays-more.html">Окна II</a><a class="on" href="overlays-runtime.html" aria-current="page">Runtime</a><a href="system.html">Системные окна</a></nav>
+  <div class="scope-note"><strong>Граница каталога.</strong> Это статическая галерея runtime-композиций, а не работающие системные диалоги. Кнопки не очищают кеш, не открывают настройки, не меняют аккаунт, не удаляют данные, не запускают покупку и не отправляют запросы. Фигурные значения и demo email — только placeholders. Критические ветки привязаны к подтверждённой стадии операции: после durable marker нет обещания «всё осталось» и нет слепого повтора.</div>
+  <table class="coverage" id="coverage" aria-label="Покрытие runtime-оверлеев"></table>
+  <div id="root"></div>
+</main>
+<script src="kit.js"></script>
+<script>
+const { icon, phone, block } = K;
+const replay=id=>`<button type="button" class="replay t" data-replay="${id}">${icon('arrowR','s16')}Повторить анимацию</button>`;
+const demo=(id,label,html)=>`<article class="col" id="${id}"><div class="lbl">${label}</div>${html}${replay(id)}</article>`;
+const underlay=(title='Главная')=>`<div class="or-underlay"><div class="topbar"><button class="rb bare" type="button" aria-label="Назад">${icon('back','s22')}</button><span class="grow"></span><span class="pill">${title}</span></div><div class="screen-title">${title}</div><div class="card ghost"></div><div class="card ghost"></div><div class="card ghost"></div></div>`;
+const btn=(label,ghost=false,disabled=false,danger=false)=>`<button class="cta ${ghost?'gh ':''}${danger?'or-danger ':''}t" type="button"${disabled?' disabled aria-disabled="true"':''}>${label}</button>`;
+const actions=list=>list.length?`<div class="or-actions${list.some(item=>item.label.length>18)?' stack':''}" style="--or-actions:${list.length}">${list.map(item=>btn(item.label,item.ghost,item.disabled,item.danger)).join('')}</div>`:'';
+const alertSurface=(id,title,body='',buttons=[{label:'OK'}],opts={})=>`<section class="modal or-region or-alert or-anim" role="region" aria-label="${opts.label||`Статический alert ${title}`}" data-anim="${id}">${opts.icon?`<div class="or-stage">${icon(opts.icon,'s26')}</div>`:''}<div class="or-title">${title}</div>${body?`<div class="or-body">${body}</div>`:''}${actions(buttons)}${opts.note?`<div class="or-native-note">${opts.note}</div>`:''}</section>`;
+const alertPhone=(id,title,body='',buttons=[{label:'OK'}],opts={})=>phone(underlay(opts.context||'Главная'),{time:opts.time||'9:41',overlay:`<div class="or-dim"></div>${alertSurface(id,title,body,buttons,opts)}`});
+const inlinePhone=(id,title,content,opts={})=>phone(`<div class="or-inline-page"><div class="topbar"><button class="rb bare t" type="button" aria-label="Назад">${icon('back','s22')}</button></div><div class="screen-title">${title}</div><section class="card or-inline-card or-anim" role="region" aria-label="${opts.label||`Статическое inline-состояние ${title}`}" data-anim="${id}">${content}</section></div>`,{time:opts.time||'9:41'});
+const sheetPhone=(id,title,content,opts={})=>phone(underlay(opts.context||title),{time:opts.time||'9:41',overlay:`<div class="or-dim"></div><section class="sheet or-region or-sheet or-anim" role="region" aria-label="${opts.label||`Статическая шторка ${title}`}" data-anim="${id}"><div class="or-grab" aria-hidden="true"></div>${content}</section>`});
+const toastPhone=(id,content,kind='toast',opts={})=>{
+  const cls=kind==='banner'?'card or-banner':'or-toast';
+  return phone(underlay(opts.context||'Главная'),{time:opts.time||'9:41',overlay:`<section class="${kind==='toast'?'toast ':''}or-region ${cls} ${opts.error?'error ':''}${opts.pass?'or-pass-through ':''}or-anim" role="region" aria-label="${opts.label||'Статическое уведомление'}" data-anim="${id}">${content}</section>`});
+};
+const tile=ic=>`<div class="tile">${icon(ic,'s20')}</div>`;
+
+const nativePhones=[
+  demo('OR-ALERT-CACHE-CLEAR','native alert · cache clear',alertPhone('OR-ALERT-CACHE-CLEAR','Очистить кеш?','',[{label:'Не сейчас',ghost:true},{label:'Очистить',danger:true}],{context:'Настройки'})),
+  demo('OR-ALERT-NAME-EMPTY','native alert · empty name',alertPhone('OR-ALERT-NAME-EMPTY','Сообщение','Введи имя',[{label:'OK'}],{context:'Настройки'})),
+  demo('OR-ALERT-NAME-SHORT','native alert · short name',alertPhone('OR-ALERT-NAME-SHORT','Сообщение','Минимум 2 символа',[{label:'OK'}],{context:'Настройки'})),
+  demo('OR-ALERT-NAME-LONG','native alert · long name',alertPhone('OR-ALERT-NAME-LONG','Сообщение','Максимум 20 символов',[{label:'OK'}],{context:'Настройки'})),
+  demo('OR-ALERT-NAME-BLOCKED','native alert · blocked name',alertPhone('OR-ALERT-NAME-BLOCKED','Сообщение','Недопустимое имя',[{label:'OK'}],{context:'Настройки'})),
+  demo('OR-ALERT-SWITCH-UNSAVED','switch blocked before account change',alertPhone('OR-ALERT-SWITCH-UNSAVED','Прогресс не сохранён','Не удалось надёжно сохранить прогресс — похоже, нет соединения. Смена аккаунта отменена, всё осталось на месте. Проверь интернет и попробуй снова.',[{label:'Остаться здесь',ghost:true},{label:'Сменить без сохранения',danger:true}],{context:'Аккаунт'})),
+  demo('OR-ALERT-EXAM-EXIT-LEGACY','legacy exam · destructive exit',alertPhone('OR-ALERT-EXAM-EXIT-LEGACY','Выйти из экзамена?','Текущая попытка будет потеряна, ответы не сохранятся.',[{label:'Продолжить экзамен',ghost:true},{label:'Выйти',danger:true}],{context:'Экзамен'})),
+  demo('OR-ALERT-VIDEO-REMINDER-SET','video reminder · success',alertPhone('OR-ALERT-VIDEO-REMINDER-SET','Напоминание установлено','',[{label:'OK'}],{context:'Видео'})),
+  demo('OR-ALERT-VIDEO-REMINDER-PERMISSION','video reminder · permission blocked · current source mismatch',alertPhone('OR-ALERT-VIDEO-REMINDER-PERMISSION','Не удалось загрузить каталог. Потяни вниз, чтобы повторить.','',[{label:'OK',ghost:true},{label:'Settings'}],{context:'Видео'})),
+  demo('OR-ALERT-VIDEO-REMINDER-MASTER-OFF','video reminder · master disabled · current source mismatch',alertPhone('OR-ALERT-VIDEO-REMINDER-MASTER-OFF','Не удалось загрузить каталог. Потяни вниз, чтобы повторить.','',[{label:'OK'}],{context:'Видео'})),
+  demo('OR-ALERT-ONBOARDING-PERMISSION','onboarding permission blocked',alertPhone('OR-ALERT-ONBOARDING-PERMISSION','Напоминание не включилось','Разрешение на уведомления отключено. Включить его можно в настройках телефона.',[{label:'Позже',ghost:true},{label:'Открыть настройки'}],{context:'Добро пожаловать'})),
+  demo('OR-ALERT-DIALOG-FRENCH-GATE','French AI-dialog gate',alertPhone('OR-ALERT-DIALOG-FRENCH-GATE','Французские AI-диалоги ещё проверяются','Английские сценарии скрыты в режиме French. Диалоги появятся после отдельной проверки французских сценариев, подсказок и озвучки.',[{label:'К урокам'}],{context:'Диалоги'})),
+  demo('OR-ALERT-PURCHASE-EXTERNAL-PENDING','purchase · external approval pending',alertPhone('OR-ALERT-PURCHASE-EXTERNAL-PENDING','Покупка ждёт подтверждения','Оплата ожидает подтверждения — например, родителя или банка. Как только её подтвердят, доступ включится сам. Покупать повторно не нужно.',[{label:'OK'}],{context:'Plus'})),
+  demo('OR-ALERT-PURCHASE-STATUS-UNKNOWN','purchase · status unknown · no repurchase',alertPhone('OR-ALERT-PURCHASE-STATUS-UNKNOWN','Статус покупки не подтверждён','Не удалось подтвердить результат покупки. Проверь статус или восстанови покупки перед новой попыткой.',[{label:'Проверить статус',ghost:true},{label:'Восстановить покупки'}],{context:'Plus'})),
+];
+
+const inlinePhones=[
+  demo('OR-INLINE-ACCOUNT-DETAIL-UNLINKED','account details · unlinked',inlinePhone('OR-INLINE-ACCOUNT-DETAIL-UNLINKED','Аккаунт',`${tile('user')}<div class="or-card-title">Не привязан</div><div class="or-inline-actions"><button class="chipbtn t" type="button">Отмена</button><button class="chipbtn t" type="button">Сменить аккаунт</button><button class="chipbtn t" type="button">Удалить аккаунт и данные</button></div>`,{label:'Аккаунт без привязки'})),
+  demo('OR-INLINE-ACCOUNT-DETAIL-LINKED','account details · linked · fictional email',inlinePhone('OR-INLINE-ACCOUNT-DETAIL-LINKED','Аккаунт',`${tile('user')}<div class="or-card-title">Google</div><div class="or-copy">demo@example.com</div><div class="or-inline-actions"><button class="chipbtn t" type="button">Отмена</button><button class="chipbtn t" type="button">Сменить аккаунт</button><button class="chipbtn t" type="button">Удалить аккаунт и данные</button></div>`,{label:'Привязанный аккаунт'})),
+  demo('OR-INLINE-SWITCH-CONFIRM','account switch · confirmation',alertPhone('OR-INLINE-SWITCH-CONFIRM','Сменить аккаунт?','Текущий прогресс останется привязан к аккаунту, под которым ты сейчас вошёл. Чтобы вернуться — войди под ним снова.<span class="or-next">Перед выходом надёжно сохраним прогресс. Если соединение не ответит — отменим смену аккаунта, чтобы ничего не потерялось.</span>',[{label:'Отмена',ghost:true},{label:'Продолжить'}],{context:'Аккаунт'})),
+  demo('OR-INLINE-SWITCH-WIPING','account switch · non-dismissible wiping',alertPhone('OR-INLINE-SWITCH-WIPING','Аккаунт','Не закрывай приложение',[],{context:'Аккаунт',icon:'lockF',label:'Недоступное для закрытия состояние смены аккаунта'})),
+  demo('OR-INLINE-NAME-SAVING','name edit · saving controls disabled',inlinePhone('OR-INLINE-NAME-SAVING','Изменить имя',`<label class="or-kicker" for="runtime-name-saving">Имя</label><input id="runtime-name-saving" class="field or-field" value="{newName}" disabled aria-disabled="true"><div class="or-loading" style="min-height:64px"><span class="or-spin" aria-hidden="true"></span><strong>Сохраняем</strong></div><div class="or-actions" style="--or-actions:2">${btn('Отмена',true,true)}${btn('Сохранить',false,true)}</div>`,{label:'Сохранение имени'})),
+  demo('OR-INLINE-COMMENTS-LOADING','comments sheet · loading',sheetPhone('OR-INLINE-COMMENTS-LOADING','Комментарии',`<div class="flex"><div class="or-title" style="text-align:left">Комментарии</div><span class="grow"></span><button class="rb bare t" type="button" aria-label="Закрыть">${icon('close','s20')}</button></div><div class="or-loading"><span class="or-spin" aria-hidden="true"></span><span>Загрузка комментариев…</span></div>`,{context:'Набор сообщества'})),
+  demo('OR-INLINE-REPORT-THROTTLED','comment report · throttled',sheetPhone('OR-INLINE-REPORT-THROTTLED','Жалоба',`<div class="or-stage">${icon('flag','s24')}</div><div class="or-title">Подожди 30 секунд</div><div class="or-actions">${btn('Закрыть')}</div>`,{context:'Комментарии'})),
+];
+
+const toastPhones=[
+  demo('OR-TOAST-INGAME-INFO','InGameToast · info · demo payload',toastPhone('OR-TOAST-INGAME-INFO',`${tile('chat')}<div class="or-toast-copy">{информационное сообщение}</div>`,'toast',{label:'Пассивный информационный InGameToast'})),
+  demo('OR-TOAST-INGAME-ERROR','InGameToast · error · demo payload',toastPhone('OR-TOAST-INGAME-ERROR',`${tile('close')}<div class="or-toast-copy">{сообщение об ошибке}</div>`,'toast',{error:true,label:'Пассивный InGameToast ошибки'})),
+  demo('OR-BANNER-REPORT-REPLY','persistent unread reply · whole banner opens · separate close',toastPhone('OR-BANNER-REPORT-REPLY',`<button class="or-banner-open t" type="button" aria-label="Команда ответила на ваше обращение">${tile('chat')}<span class="or-banner-title grow">Команда ответила на ваше обращение</span>${icon('fwd','s19')}</button><button class="rb bare t or-banner-close" type="button" aria-label="Скрыть">${icon('close','s18')}</button>`,'banner',{label:'Постоянный баннер ответа команды'})),
+  demo('OR-TOAST-STREAK-RISK','streak risk · warning · no action',toastPhone('OR-TOAST-STREAK-RISK',`${tile('flame')}<div class="or-toast-copy">🔥 Цепочка {N} дн. сгорит в полночь — позанимайся, чтобы сохранить</div>`,'toast',{label:'Пассивный тост риска серии'})),
+  demo('OR-TOAST-BILLING-ISSUE','billing issue · warning · no action',toastPhone('OR-TOAST-BILLING-ISSUE',`${tile('basket')}<div class="or-toast-copy">💳 Оплата не прошла — обнови карту, и Plus останется с тобой</div>`,'toast',{label:'Пассивный тост проблемы оплаты'})),
+  demo('OR-TOAST-ACCOUNT-DELETED','receipt-limited handoff · 3s · pass-through',toastPhone('OR-TOAST-ACCOUNT-DELETED',`${tile('check')}<div class="or-toast-copy">Локальный выход после удаления подтверждён</div>`,'toast',{pass:true,label:'Трёхсекундное локальное подтверждение handoff удаления'})),
+];
+
+const confirmPhones=[
+  demo('OR-CONFIRM-LEVEL-EXAM-PAUSE','Экзамен уровня · пауза и выход',alertPhone('OR-CONFIRM-LEVEL-EXAM-PAUSE','Выйти','Ответы сохранятся, экзамен будет приостановлен.',[{label:'Остаться',ghost:true},{label:'Выйти'}],{context:'Экзамен уровня'})),
+  demo('OR-CONFIRM-MISTAKE-HIDE','mistake practice · hide',alertPhone('OR-CONFIRM-MISTAKE-HIDE','Скрыть ошибку?','',[{label:'Отмена',ghost:true},{label:'Скрыть'}],{context:'Работа над ошибками'})),
+  demo('OR-CONFIRM-LESSON-THEORY','lesson menu · theory soon',alertPhone('OR-CONFIRM-LESSON-THEORY','Скоро','Теория этого урока пока готовится. Мы откроем её, когда материал будет полностью готов.',[{label:'Закрыть'}],{context:'Урок'})),
+  demo('OR-CONFIRM-LESSON-VOCAB','lesson menu · vocabulary soon',alertPhone('OR-CONFIRM-LESSON-VOCAB','Скоро','Словарь для этого урока скоро появится',[{label:'Закрыть'}],{context:'Урок'})),
+  demo('OR-CONFIRM-LESSON-VERBS','lesson menu · verbs soon',alertPhone('OR-CONFIRM-LESSON-VERBS','Скоро','Материал для этого урока ещё готовится',[{label:'Закрыть'}],{context:'Урок'})),
+  demo('OR-CONFIRM-LESSON-PREPOSITIONS','lesson menu · prepositions unavailable',alertPhone('OR-CONFIRM-LESSON-PREPOSITIONS','Скоро','Тренажёр предлогов временно недоступен.',[{label:'Закрыть'}],{context:'Урок'})),
+  demo('OR-CONFIRM-FRENCH-EXAM-GATE','French final exam gate',alertPhone('OR-CONFIRM-FRENCH-EXAM-GATE','Французский итоговый тест ещё готовится','Финальный английский тест скрыт в режиме French. Его нельзя запускать, пока не будет создан и проверен отдельный французский экзаменационный банк.',[{label:'К урокам'}],{context:'Уроки'})),
+  demo('OR-CONFIRM-TRIAL-EXIT','store trial offer · placeholders only',alertPhone('OR-CONFIRM-TRIAL-EXIT','Пробный доступ на {trialDays} дней','Условия пробного периода и последующей оплаты показывает магазин перед подтверждением.',[{label:'Попробовать пробный доступ'},{label:'Не сейчас',ghost:true}],{context:'Plus'})),
+];
+
+const accountPhones=[
+  demo('OR-ACCOUNT-SWITCH-PRECOMMIT-REJECTED','switch rejected before durable marker · retry allowed',alertPhone('OR-ACCOUNT-SWITCH-PRECOMMIT-REJECTED','Смена аккаунта не началась','Защитная проверка остановила смену до записи маркера. Аккаунт и локальные данные не изменены.',[{label:'Закрыть',ghost:true},{label:'Повторить'}],{context:'Аккаунт',icon:'lockF'})),
+  demo('OR-ACCOUNT-SWITCH-RECOVERY-REQUIRED','switch after possible marker · no blind retry',alertPhone('OR-ACCOUNT-SWITCH-RECOVERY-REQUIRED','Нужно завершить смену аккаунта','Защитный маркер уже мог быть записан. Перезапусти приложение, чтобы продолжить восстановление состояния.',[{label:'Закрыть'}],{context:'Аккаунт',icon:'lockF'})),
+  demo('OR-ACCOUNT-SWITCH-UNSYNCED-BACKUP','committed switch · synced:false · local emergency copy only',alertPhone('OR-ACCOUNT-SWITCH-UNSYNCED-BACKUP','Можно выбрать аккаунт','Сервер не ответил перед выходом, поэтому мы сохранили аварийную копию на устройстве. Теперь войди в нужный Google-аккаунт.',[{label:'Продолжить'}],{context:'Аккаунт',icon:'bookmark'})),
+  demo('OR-ACCOUNT-DELETE-PRECOMMIT-REJECTED','delete guard persistence failed · retry allowed',alertPhone('OR-ACCOUNT-DELETE-PRECOMMIT-REJECTED','Не получилось','Не удалось подготовить удаление. Аккаунт и данные не изменены. Освободи место на телефоне и попробуй снова.',[{label:'Закрыть',ghost:true},{label:'Повторить'}],{context:'Аккаунт',icon:'lockF'})),
+  demo('OR-ACCOUNT-DELETE-PROTECTED-RESTART','delete protected transition · no cancel/retry',alertPhone('OR-ACCOUNT-DELETE-PROTECTED-RESTART','Не получилось','Выход не завершился. Аккаунт под защитой — перезапусти приложение, чтобы продолжить защищённый переход.',[{label:'Закрыть'}],{context:'Аккаунт',icon:'lockF'})),
+  demo('OR-ACCOUNT-DELETE-STATUS-UNKNOWN','delete stage unknown · no completion claim',alertPhone('OR-ACCOUNT-DELETE-STATUS-UNKNOWN','Статус удаления не подтверждён','Не удалось определить этап удаления. Перезапусти приложение: оно проверит маркер и продолжит незавершённый переход.',[{label:'Закрыть'}],{context:'Аккаунт',icon:'lockF'})),
+];
+
+const rollback=(id,message)=>inlinePhone(id,'Аккаунт',`<div class="or-kicker">Имя</div><div class="or-card-title">{прежнее имя}</div><div class="or-rollback">${message}<span class="or-restored">Прежнее имя восстановлено.</span></div>`,{label:'Inline-уведомление отката имени'});
+const nicknamePhones=[
+  demo('OR-NAME-TAKEN','nickname rollback · taken · no action',rollback('OR-NAME-TAKEN','Это имя уже занято. Выбери другое.')),
+  demo('OR-NAME-COOLDOWN','nickname rollback · cooldown · no invented date',rollback('OR-NAME-COOLDOWN','Ник можно менять не чаще одного раза в 14 дней.')),
+  demo('OR-NAME-NETWORK','nickname rollback · network · no auto-retry',rollback('OR-NAME-NETWORK','Имя не проверилось. Проверь интернет и попробуй ещё раз.')),
+];
+
+const rows=[
+ ['ALERT','14 native alerts: cache, name, switch, exam, permissions, gates, purchase','runtime-native'],
+ ['INLINE','7 inline/sheet states: account, switch, name, comments, report','runtime-inline'],
+ ['TOAST','6 passive toasts and persistent banner','runtime-toasts'],
+ ['CONFIRM','8 retained confirmations','runtime-confirms'],
+ ['ACCOUNT','6 fail-closed account switch/delete stages','runtime-account'],
+ ['NAME','3 nickname rollback notices','runtime-nickname'],
+ ['UNDO','Existing 5-second undo is cross-referenced, not duplicated','runtime-crossrefs'],
+];
+document.getElementById('coverage').innerHTML='<tr><th>ID</th><th>Состояния</th><th>Макет</th></tr>'+rows.map(([a,b,c])=>`<tr><td>${a}</td><td>${b}</td><td><a href="#${c}">${c}</a></td></tr>`).join('');
+document.getElementById('root').innerHTML=
+ block('runtime-native','Native alerts','Текущая композиция системных alerts; видео-ветки честно показывают существующий copy mismatch.',nativePhones)+
+ block('runtime-inline','Inline и sheets','Состояния остаются внутри исходной страницы или шторки; demo placeholders не задают продуктовые названия.',inlinePhones)+
+ block('runtime-toasts','Тосты и баннер','InGameToast живёт 3 секунды без действий; ответ команды остаётся до открытия или отдельного скрытия.',toastPhones)+
+ block('runtime-confirms','Подтверждения','Потеря попытки V1, пауза экзамена уровня, ограничения контента и пробный период магазина не смешиваются.',confirmPhones)+
+ block('runtime-account','Критические стадии аккаунта','До durable marker допустим bounded retry. После marker/dispatch — только проверка, restart/resume и никакого фиктивного успеха.',accountPhones)+
+ block('runtime-nickname','Откат ника','Оптимистично закрытый редактор уже восстановил прежнее имя; notice не запускает повтор автоматически.',nicknamePhones)+
+ block('runtime-crossrefs','Существующий undo','`Карточка удалена` + `Вернуть` уже представлены в системном диалоге и каталоге сохранённых карточек; точные ссылки и пятиисекундный lifecycle закреплены в спецификации.',[]);
+
+document.body.addEventListener('click',event=>{
+ const button=event.target.closest('[data-replay]');
+ if(!button)return;
+ const id=button.dataset.replay;
+ button.parentElement.querySelectorAll(`[data-anim="${id}"]`).forEach(node=>{
+   node.classList.remove('or-anim');
+   node.querySelectorAll('*').forEach(child=>child.style.animation='none');
+   void node.offsetWidth;
+   node.querySelectorAll('*').forEach(child=>child.style.animation='');
+   node.classList.add('or-anim');
+ });
+});
+K.init();
+</script>
+</body>
+</html>

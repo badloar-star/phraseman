@@ -38,6 +38,7 @@ import {
   type AccountsV2EnqueueOutcome,
 } from './accounts_v2_deletion/pipeline';
 import { createFirestoreAccountsV2DeletionDeps } from './accounts_v2_deletion/pipeline_firestore';
+import { purgeAccountAuthorityForLegacyIdentities } from './account_authority/account_authority_purge';
 import { swallowed } from './swallowed_error';
 
 const REGION = 'us-central1';
@@ -1813,6 +1814,14 @@ export async function executeAccountDeletion(
     await runDeleteStage(ctx, stats, 'merge_identity_records', () => (
       deleteMergeIdentityRecords(db, identities, ctx, stats)
     ));
+    // зачем (AA S3, пункт 3; security-ревью S2a): коллекции Account Authority
+    // (принципалы, аренда, отметки сессий, привязки, индекс токенов, квота,
+    // состояние удаления AA) по хешу uid и по accountId раньше переживали
+    // старое удаление. Идемпотентно: повтор задачи находит только остаток.
+    await runDeleteStage(ctx, stats, 'account_authority_purge', async () => {
+      const purged = await purgeAccountAuthorityForLegacyIdentities(db, [...identities, stableUid, authUid]);
+      stats.docsDeleted += purged.deleted;
+    });
     // зачем (Пакет 6A): данные Account V2 (accounts_v2/{uid}/**) стираются для
     // КАЖДОЙ личности замыкания — ещё один идемпотентный шаг. Не уложился в
     // остаток таймаута → курсор в задачу и ошибка стадии: задача повторится

@@ -2,6 +2,7 @@ import { createHash } from 'crypto';
 import type { DocumentReference, Firestore, Transaction } from 'firebase-admin/firestore';
 import { readAuthAccountStateInTx, readStableAccountStateInTx, type AccountState } from '../account_gate';
 import { AccountAuthorityCallableError } from './callable_boundary';
+import { AA_PRINCIPALS_COLLECTION } from './account_authority_collections';
 import {
   accountAuthorityLogInfo,
   accountAuthorityServerCauseFields,
@@ -34,7 +35,8 @@ import {
  * жизни (expireAt). Он удаляется вместе с аккаунтом (S3/S4).
  */
 
-export const PRINCIPALS_COLLECTION = 'account_authority_principals_v1';
+// зачем (S3): имя — из единого списка AA (удаление, правила, TTL).
+export const PRINCIPALS_COLLECTION = AA_PRINCIPALS_COLLECTION;
 const AUTH_LINKS_COLLECTION = 'auth_links';
 const USERS_COLLECTION = 'users';
 const PRINCIPAL_SCHEMA_V1 = 'account-authority-principal.v1';

@@ -98,6 +98,13 @@ service cloud.firestore {
         || collection == 'admin_alert_events';
     }
 
+    // Account Authority 2.0 (S3): every account_authority_* root is Admin-SDK only.
+    // Overlapping matches are OR-combined, so the legacy browser-admin catch-all
+    // must exclude the whole prefix as well as the explicit deny blocks below.
+    function isServerOwnedAccountAuthorityRoot(collection) {
+      return collection.matches('account_authority_.*');
+    }
+
     function isServerOwnedSupportRoot(collection) {
       return collection.matches('support_auto_reply_(reservations|counters)')
         || collection.matches('support_telegram_(reviews|edit_sessions|reply_jobs)')
@@ -993,6 +1000,28 @@ service cloud.firestore {
     // исключительно Admin SDK: клиент отменяет удаление через callable
     // accountDeleteRestoreMine, напрямую сюда не ходит.
     match /account_deletion_restores/{jobId} {
+      allow read, write: if false;
+    }
+
+    // Account Authority 2.0 (S3): principals, leases (+ retired_sessions),
+    // installation bindings, token index, quota and AA delete state. Only the
+    // Admin SDK reads or writes them; clients and browser admins never do.
+    match /account_authority_accounts_v1/{document=**} {
+      allow read, write: if false;
+    }
+    match /account_authority_principals_v1/{document=**} {
+      allow read, write: if false;
+    }
+    match /account_authority_installation_bindings_v1/{document=**} {
+      allow read, write: if false;
+    }
+    match /account_authority_installation_binding_tokens_v1/{document=**} {
+      allow read, write: if false;
+    }
+    match /account_authority_installation_binding_quota_v1/{document=**} {
+      allow read, write: if false;
+    }
+    match /account_authority_delete_jobs_v1/{document=**} {
       allow read, write: if false;
     }
 
@@ -3370,6 +3399,7 @@ service cloud.firestore {
         && !isServerOwnedAuthRoot(collection)
         && !isServerOwnedSupportRoot(collection)
         && !isServerOwnedSensitiveRoot(collection)
+        && !isServerOwnedAccountAuthorityRoot(collection)
         && collection != 'business_tier_history'
         && collection != 'business_tier_peak'
         && collection != 'business_tier_backfill_state'

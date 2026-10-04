@@ -11,6 +11,7 @@ import {
   createEmptyDeleteContractState,
   type AccountDeleteContractState,
   type AccountDeleteExpirySchedule,
+  type ProviderIdentityReleasePort,
 } from './delete_contract';
 import {
   accountAuthorityLogInfo,
@@ -23,6 +24,7 @@ import {
   logAccountAuthorityFailureOnce,
 } from './account_authority_log';
 import { accountAuthorityUidFingerprint } from './account_authority_policy';
+import { AA_ACCOUNTS_COLLECTION, AA_RETIRED_SESSIONS_SUBCOLLECTION } from './account_authority_collections';
 import {
   assertAuthNotDeletingInTransaction,
   identityUnresolved,
@@ -42,6 +44,7 @@ import {
 import {
   AccountLeaseError,
   asAccountId,
+  asClaimId,
   asDeviceId,
   asFirebaseAuthUid,
   asOperationId,
@@ -62,8 +65,9 @@ import {
   type TenantId,
 } from './lease_contract';
 
-const ACCOUNTS_COLLECTION = 'account_authority_accounts_v1';
-const RETIRED_SESSIONS_COLLECTION = 'retired_sessions';
+// зачем (S3): имена коллекций — из единого списка AA (удаление, правила, TTL).
+const ACCOUNTS_COLLECTION = AA_ACCOUNTS_COLLECTION;
+const RETIRED_SESSIONS_COLLECTION = AA_RETIRED_SESSIONS_SUBCOLLECTION;
 type UnknownRecord = Record<string, unknown>;
 
 /** Подмена часов и генератора id — только для тестов. */
@@ -83,6 +87,16 @@ export interface AccountDeleteStateStorePort {
     state: AccountDeleteContractState,
     expirySchedules: readonly AccountDeleteExpirySchedule[],
   ): void;
+  /**
+   * S3 раунд 2: сырой uid из проверенного request.auth.uid для освобождения
+   * личности у провайдера. Хранилище пишет его в задачу удаления только пока
+   * личность не освобождена и только если он совпадает с субъектом аренды.
+   */
+  rememberProviderUid?(
+    transaction: Transaction,
+    identity: Readonly<{ accountId: AccountId; tenantId: TenantId }>,
+    rawUid: string,
+  ): void;
 }
 
 const DELETE_STATE_STORE_NOT_WIRED: AccountDeleteStateStorePort = Object.freeze({
@@ -95,6 +109,8 @@ export type FirebaseLeasePortsOverrides = Readonly<{
   nowMs?: () => number;
   newAccountId?: () => string;
   deleteStateStore?: AccountDeleteStateStorePort;
+  /** S3 раунд 2: освобождение личности у провайдера (до S4 по умолчанию не подключено). */
+  providerIdentityRelease?: ProviderIdentityReleasePort;
 }>;
 
 type FirebaseAccountAuthorityLeaseGateDependencies = Readonly<{
@@ -260,9 +276,16 @@ function leaseState(value: unknown, accountId: AccountId, tenantId: TenantId): A
 // поэтому срок жизни продлевается здесь бесплатно. У удаляемого/удалённого
 // аккаунта срока нет (null): его надгробие не должно исчезнуть по TTL.
 function storedLeaseState(state: AccountLeaseState, nowMs: number): UnknownRecord {
+  // зачем (S3, пункт 2): надгробие удалённого аккаунта хранится бессрочно, а
+  // квитанции в журнале несут субъект аренды (хеш uid), провайдера и
+  // устройство. После purge они никому не нужны — в надгробии журнал пуст.
+  const receiptLedger = state.lifecycle.status === 'deleted'
+    ? { ...state.receiptLedger, entries: [] }
+    : state.receiptLedger;
   return {
     schemaVersion: 'account-authority-firestore-lease.v1',
     ...state,
+    receiptLedger,
     expireAt: state.lifecycle.status === 'active' ? accountAuthorityExpireAtTimestamp(nowMs) : null,
   };
 }
@@ -595,6 +618,9 @@ export function createFirebaseLeasePorts(
           state: result.state.leaseState,
           retirements: result.retirements,
         }, serverNowMs);
+        // зачем (S3 раунд 2): сырой uid — для удаления учётки Auth в этом же
+        // запросе, а при сбое — для фонового повтора; стирается после успеха.
+        deleteStateStore.rememberProviderUid?.(transaction, identity, rawUid);
         deleteStateStore.write(transaction, identity, result.state.deleteState, result.expirySchedules);
         return result.result;
       });
@@ -635,10 +661,12 @@ export function createFirebaseLeasePorts(
     },
     deletion: {
       clock: { nowMs },
-      claims: { issueClaimId: () => { throw new Error('account_authority_delete_not_wired'); } },
+      // зачем (S3 раунд 2): claim — случайный серверный id; удаление всё равно
+      // закрыто, пока не подключены хранилище и освобождение личности (S4).
+      claims: { issueClaimId: () => asClaimId(`claim-${randomUUID()}`) },
       transactions: deletionTransactions,
       bound: deletionBound,
-      identity: {
+      identity: overrides.providerIdentityRelease ?? {
         releaseProviderIdentity: async () => { throw new Error('account_authority_delete_not_wired'); },
       },
     },

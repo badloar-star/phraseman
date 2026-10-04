@@ -360,10 +360,10 @@ describe('Account Authority Firebase lease callable wiring', () => {
     expect(test.fixture.documents.get(`account_authority_accounts_v1/${test.accountId}`))
       .toMatchObject({ revision: 2, activeLease: null });
     expect(test.fixture.create.mock.calls.filter(([ref]) => (
-      (ref as FakeDocumentRef).path.includes('/retired_sessions/')
+      (ref as FakeDocumentRef).path.includes('/account_authority_retired_sessions_v1/')
     ))).toHaveLength(1);
     expect(test.fixture.documents.get(
-      `account_authority_accounts_v1/${test.accountId}/retired_sessions/${test.sessionId}`,
+      `account_authority_accounts_v1/${test.accountId}/account_authority_retired_sessions_v1/${test.sessionId}`,
     )).toMatchObject({
       schemaVersion: 'account-authority-retired-session.v1',
       sessionId: test.sessionId,

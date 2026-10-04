@@ -533,11 +533,11 @@ describe('S2a item 7: raw uid minimised, expireAt on lease and binding records',
       'account_authority_installation_binding_tokens_v1/',
       'account_authority_installation_binding_quota_v1/',
     ]) {
-      const entry = [...fixture.documents.entries()].find(([key]) => key.startsWith(prefix) && !key.includes('/retired_sessions/'));
+      const entry = [...fixture.documents.entries()].find(([key]) => key.startsWith(prefix) && !key.includes('/account_authority_retired_sessions_v1/'));
       const expireAt = (entry?.[1] as { expireAt?: unknown } | undefined)?.expireAt;
       expect({ prefix, isTimestamp: expireAt instanceof Timestamp }).toEqual({ prefix, isTimestamp: true });
     }
-    const account = [...fixture.documents.entries()].find(([key]) => key.startsWith('account_authority_accounts_v1/') && !key.includes('/retired_sessions/'));
+    const account = [...fixture.documents.entries()].find(([key]) => key.startsWith('account_authority_accounts_v1/') && !key.includes('/account_authority_retired_sessions_v1/'));
     const accountExpireMs = ((account?.[1] as { expireAt: Timestamp }).expireAt).toMillis();
     expect(accountExpireMs).toBeGreaterThanOrEqual(before + ACCOUNT_AUTHORITY_RECORD_TTL_MS);
     expect(accountExpireMs).toBeLessThanOrEqual(Date.now() + ACCOUNT_AUTHORITY_RECORD_TTL_MS);
@@ -552,7 +552,7 @@ describe('S2a item 7: raw uid minimised, expireAt on lease and binding records',
       app: null,
       data: { operationId: 'release-a', expectedRevision: acquired.revision, sessionId: acquired.sessionId, bindingToken },
     });
-    const retired = [...fixture.documents.entries()].find(([key]) => key.includes('/retired_sessions/'));
+    const retired = [...fixture.documents.entries()].find(([key]) => key.includes('/account_authority_retired_sessions_v1/'));
     expect((retired?.[1] as { expireAt?: unknown }).expireAt).toBeInstanceOf(Timestamp);
     expect(JSON.stringify([...fixture.documents.entries()])).not.toContain(RAW_UID);
   });
@@ -1060,7 +1060,7 @@ describe('S2a round 4 L-R3-3: a full receipt journal does not keep the old lease
     // L-R3-3 проверяется на другом отказе контракта выхода: активная сессия
     // старого аккаунта уже отмечена как отозванная (stale_lease).
     fixture.externalSet(
-      `account_authority_accounts_v1/${STABLE_A}/retired_sessions/${old.activeLease.sessionId}`,
+      `account_authority_accounts_v1/${STABLE_A}/account_authority_retired_sessions_v1/${old.activeLease.sessionId}`,
       { schemaVersion: 'account-authority-retired-session.v1' },
     );
     fixture.externalSet('auth_links/RawFirebaseUidA1234567890', { stable_id: STABLE_B });
@@ -1078,7 +1078,7 @@ describe('S2a round 4 L-R3-3: a full receipt journal does not keep the old lease
     const after = accountDoc(fixture, STABLE_A) as typeof old;
     expect(after).toMatchObject({ activeLease: null, revision: old.revision + 1 });
     expect(after.receiptLedger.entries).toHaveLength(old.receiptLedger.entries.length);
-    expect(fixture.documents.has(`account_authority_accounts_v1/${STABLE_A}/retired_sessions/${old.activeLease.sessionId}`)).toBe(true);
+    expect(fixture.documents.has(`account_authority_accounts_v1/${STABLE_A}/account_authority_retired_sessions_v1/${old.activeLease.sessionId}`)).toBe(true);
     expect(lines.some((line) => line[0] === '[ACCOUNT-AUTHORITY] principal_rebound lease forced'
       && (line[1] as { reason?: unknown }).reason === 'stale_lease')).toBe(true);
     expect(JSON.stringify(lines)).not.toContain(RAW_UID);

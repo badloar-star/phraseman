@@ -16,6 +16,12 @@ import {
 } from './account_authority_log';
 import { asDeviceId, asTenantId, type DeviceId, type TenantId } from './lease_contract';
 import {
+  AA_PRIMARY_TENANT_ID,
+  AA_INSTALLATION_BINDING_QUOTA_COLLECTION,
+  AA_INSTALLATION_BINDING_TOKENS_COLLECTION,
+  AA_INSTALLATION_BINDINGS_COLLECTION,
+} from './account_authority_collections';
+import {
   createInstallationBinding,
   installationBindingEvictionCandidates,
   InstallationBindingError,
@@ -34,11 +40,12 @@ import {
   shouldRefreshAccountAuthorityExpireAt,
 } from './account_authority_policy';
 
-const INSTALLATION_BINDINGS_COLLECTION = 'account_authority_installation_bindings_v1';
-const INSTALLATION_BINDING_TOKENS_COLLECTION = 'account_authority_installation_binding_tokens_v1';
+// зачем (S3): имена коллекций — из единого списка AA (удаление, правила, TTL).
+const INSTALLATION_BINDINGS_COLLECTION = AA_INSTALLATION_BINDINGS_COLLECTION;
+const INSTALLATION_BINDING_TOKENS_COLLECTION = AA_INSTALLATION_BINDING_TOKENS_COLLECTION;
 // зачем (AA S2a, пункт 2): счётчик привязок одного uid; ключ — хеш uid.
-const INSTALLATION_BINDING_QUOTA_COLLECTION = 'account_authority_installation_binding_quota_v1';
-const PRIMARY_TENANT_ID = asTenantId('phraseman-primary');
+const INSTALLATION_BINDING_QUOTA_COLLECTION = AA_INSTALLATION_BINDING_QUOTA_COLLECTION;
+const PRIMARY_TENANT_ID = asTenantId(AA_PRIMARY_TENANT_ID);
 const INSTALLATION_BINDING_RECORD_FIELDS = [
   'schemaVersion',
   'authUidHash',

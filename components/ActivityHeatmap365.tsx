@@ -34,7 +34,8 @@ const YEAR_GRID_ROWS = 7;
 const YEAR_GRID_COLS = 53;
 const YEAR_GRID_CELLS = YEAR_GRID_ROWS * YEAR_GRID_COLS;
 const YEAR_CELL_GAP = 1;
-const MONTH_CELL_GAP = 4;
+// `.om-calendar`: промежуток 6 между клетками месяца.
+const MONTH_CELL_GAP = 6;
 
 type LoadStatus = 'loading' | 'ready' | 'error';
 type MonthComparisonSummary = { activeDays: number; minutes: number };
@@ -84,15 +85,6 @@ function localeForLang(lang: string): string {
     pl: 'pl-PL',
   };
   return locales[lang] ?? 'en-US';
-}
-
-function formatMonth(monthKey: string, lang: string, withYear: boolean): string {
-  const [year, month] = monthKey.split('-').map(Number) as [number, number];
-  return new Intl.DateTimeFormat(localeForLang(lang), {
-    month: 'short',
-    ...(withYear ? { year: 'numeric' as const } : {}),
-    timeZone: 'UTC',
-  }).format(new Date(Date.UTC(year, month - 1, 1)));
 }
 
 function formatSelectedDay(dateKey: string, lang: string): string {
@@ -299,6 +291,7 @@ function CompactHistoryHeatmap({
   );
 }
 
+// зачем (overlays-more `.om-compare-nav`): месяц сравнения — кнопки 24, шеврон 16, название по центру.
 function MonthSelector({
   monthKey,
   lang,
@@ -306,6 +299,7 @@ function MonthSelector({
   canNext,
   onPrevious,
   onNext,
+  color,
 }: {
   monthKey: string | null;
   lang: string;
@@ -313,8 +307,8 @@ function MonthSelector({
   canNext: boolean;
   onPrevious: () => void;
   onNext: () => void;
+  color: string;
 }) {
-  const { theme: t, f } = useTheme();
   return (
     <View style={styles.monthSelector}>
       <TouchableOpacity
@@ -322,29 +316,76 @@ function MonthSelector({
         accessibilityLabel={copy(lang, { ru: 'Предыдущий месяц', uk: 'Попередній місяць', es: 'Mes anterior', 'pt-BR': 'Mês anterior', vi: 'Tháng trước', id: 'Bulan sebelumnya', tr: 'Önceki ay', pl: 'Poprzedni miesiąc', en: 'Previous month' })}
         disabled={!canPrevious}
         onPress={onPrevious}
-        style={[styles.iconButton, { opacity: canPrevious ? 1 : 0.28 }]}
+        hitSlop={10}
+        style={[styles.compareNavButton, { opacity: canPrevious ? 1 : 0.42 }]}
       >
-        <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
+        <Ionicons name="chevron-back" size={16} color={color} />
       </TouchableOpacity>
       <FlowText
         testID="activity-365-month-selector-label"
         provenance="authored"
-        style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontWeight: '800', textAlign: 'center' }}
+        style={{ flex: 1, color, fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center' }}
       >
-        {monthKey ? formatMonth(monthKey, lang, true) : '—'}
+        {monthKey ? formatMonthName(monthKey, lang, false) : '—'}
       </FlowText>
       <TouchableOpacity
         accessibilityRole="button"
         accessibilityLabel={copy(lang, { ru: 'Следующий месяц', uk: 'Наступний місяць', es: 'Mes siguiente', 'pt-BR': 'Próximo mês', vi: 'Tháng sau', id: 'Bulan berikutnya', tr: 'Sonraki ay', pl: 'Następny miesiąc', en: 'Next month' })}
         disabled={!canNext}
         onPress={onNext}
-        style={[styles.iconButton, { opacity: canNext ? 1 : 0.28 }]}
+        hitSlop={10}
+        style={[styles.compareNavButton, { opacity: canNext ? 1 : 0.42 }]}
       >
-        <Ionicons name="chevron-forward" size={20} color={t.textPrimary} />
+        <Ionicons name="chevron-forward" size={16} color={color} />
       </TouchableOpacity>
     </View>
   );
 }
+
+// зачем (OM-MONTH-*): заголовок «Сентябрь 2026» и «Сентябрь» в карточке — полное имя месяца с заглавной.
+function formatMonthName(monthKey: string, lang: string, withYear: boolean): string {
+  const [year, month] = monthKey.split('-').map(Number) as [number, number];
+  const text = new Intl.DateTimeFormat(localeForLang(lang), {
+    month: 'long',
+    ...(withYear ? { year: 'numeric' as const } : {}),
+    timeZone: 'UTC',
+  }).format(new Date(Date.UTC(year, month - 1, 1)));
+  return text.charAt(0).toLocaleUpperCase(localeForLang(lang)) + text.slice(1);
+}
+
+type CountForms = { one: string; few?: string; many?: string; other: string };
+
+// зачем: «12 дней», «24 минуты практики» — склонение по правилам языка, а не «мин» на всё.
+function countLabel(lang: string, count: number, forms: Record<string, CountForms>): string {
+  const set = forms[lang] ?? forms.en!;
+  const rule = new Intl.PluralRules(localeForLang(lang)).select(count);
+  const word = (rule === 'one' ? set.one : rule === 'few' ? set.few : rule === 'many' ? set.many : undefined) ?? set.other;
+  return `${count} ${word}`;
+}
+
+const DAY_FORMS: Record<string, CountForms> = {
+  ru: { one: 'день', few: 'дня', many: 'дней', other: 'дня' },
+  uk: { one: 'день', few: 'дні', many: 'днів', other: 'дня' },
+  pl: { one: 'dzień', few: 'dni', many: 'dni', other: 'dnia' },
+  es: { one: 'día', other: 'días' },
+  'pt-BR': { one: 'dia', other: 'dias' },
+  vi: { one: 'ngày', other: 'ngày' },
+  id: { one: 'hari', other: 'hari' },
+  tr: { one: 'gün', other: 'gün' },
+  en: { one: 'day', other: 'days' },
+};
+
+const PRACTICE_MINUTE_FORMS: Record<string, CountForms> = {
+  ru: { one: 'минута практики', few: 'минуты практики', many: 'минут практики', other: 'минуты практики' },
+  uk: { one: 'хвилина практики', few: 'хвилини практики', many: 'хвилин практики', other: 'хвилини практики' },
+  pl: { one: 'minuta ćwiczeń', few: 'minuty ćwiczeń', many: 'minut ćwiczeń', other: 'minuty ćwiczeń' },
+  es: { one: 'minuto de práctica', other: 'minutos de práctica' },
+  'pt-BR': { one: 'minuto de prática', other: 'minutos de prática' },
+  vi: { one: 'phút luyện tập', other: 'phút luyện tập' },
+  id: { one: 'menit latihan', other: 'menit latihan' },
+  tr: { one: 'dakika pratik', other: 'dakika pratik' },
+  en: { one: 'minute of practice', other: 'minutes of practice' },
+};
 
 function MonthExplorerModal({
   days,
@@ -361,7 +402,7 @@ function MonthExplorerModal({
   onMonthChange: (monthKey: string) => void;
   onClose: () => void;
 }) {
-  const { theme: t, f, themeMode, liquidGlassThemeId } = useTheme();
+  const { theme: t, liquidGlassThemeId } = useTheme();
   const { lang } = useLang();
   const { width } = useWindowDimensions();
   const insets = useStableSafeAreaInsets();
@@ -369,7 +410,18 @@ function MonthExplorerModal({
   const [selectedDay, setSelectedDay] = useState<Activity365Day | null>(null);
   const [monthAKey, setMonthAKey] = useState<string | null>(null);
   const [monthBKey, setMonthBKey] = useState<string | null>(null);
-  const palette = heatPalette(themeMode);
+  // зачем (overlays-more `.om-day`): нейтральная графитовая клетка; день с практикой светлеет
+  // по уровню, самый активный — светлая плашка `.om-day.active` с тёмной цифрой.
+  const palette = useMemo(
+    () => [
+      monthGlass.opaqueControl,
+      withAlpha(monthGlass.text, 0.4),
+      withAlpha(monthGlass.text, 0.6),
+      withAlpha(monthGlass.text, 0.8),
+      monthGlass.text,
+    ],
+    [monthGlass.opaqueControl, monthGlass.text],
+  );
   const currentIndex = monthKey ? monthKeys.indexOf(monthKey) : -1;
   const latestMonth = monthKeys[monthKeys.length - 1] ?? null;
   const previousMonth = monthKeys[Math.max(0, monthKeys.length - 2)] ?? latestMonth;
@@ -387,10 +439,12 @@ function MonthExplorerModal({
     () => activity365MonthGridCells(days, monthKey),
     [days, monthKey],
   );
+  // `.om-full` поля 18 + сетка в 7 колонок с промежутком 6.
   const daySize = Math.max(
     32,
-    Math.floor((width - 32 - 24 - (6 * MONTH_CELL_GAP)) / 7),
+    Math.floor((width - 36 - (6 * MONTH_CELL_GAP)) / 7),
   );
+  const minutesShort = copy(lang, { ru: 'мин', uk: 'хв', es: 'min', 'pt-BR': 'min', vi: 'phút', id: 'mnt', tr: 'dk', pl: 'min', en: 'min' });
 
   useEffect(() => {
     setSelectedDay(null);
@@ -418,6 +472,21 @@ function MonthExplorerModal({
     en: 'Mo Tu We Th Fr Sa Su',
   }).split(' ');
 
+  const comparisonCards = [
+    {
+      key: 'a',
+      monthKey: resolvedMonthA,
+      summary: summaryA,
+      setValue: setMonthAKey,
+    },
+    {
+      key: 'b',
+      monthKey: resolvedMonthB,
+      summary: summaryB,
+      setValue: setMonthBKey,
+    },
+  ];
+
   return (
     <Modal
       testID="activity-365-month-modal"
@@ -439,6 +508,7 @@ function MonthExplorerModal({
           end={{ x: 1, y: 1 }}
           style={StyleSheet.absoluteFill}
         />
+        {/* `.om-month-head`: 40 · месяц 16 · 40 · 40, голые кнопки, значки 20 */}
         <View style={styles.modalHeader}>
           <TouchableOpacity
             accessibilityRole="button"
@@ -447,14 +517,14 @@ function MonthExplorerModal({
             onPress={() => currentIndex > 0 && onMonthChange(monthKeys[currentIndex - 1]!)}
             style={[styles.iconButton, { opacity: currentIndex > 0 ? 1 : 0.28 }]}
           >
-            <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
+            <Ionicons name="chevron-back" size={20} color={monthGlass.text} />
           </TouchableOpacity>
           <FlowText
             testID="activity-365-month-modal-title"
             provenance="authored"
-            style={{ flex: 1, color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}
+            style={{ flex: 1, color: monthGlass.text, fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center' }}
           >
-            {monthKey ? formatMonth(monthKey, lang, true) : ''}
+            {monthKey ? formatMonthName(monthKey, lang, true) : ''}
           </FlowText>
           <TouchableOpacity
             accessibilityRole="button"
@@ -463,7 +533,7 @@ function MonthExplorerModal({
             onPress={() => currentIndex >= 0 && currentIndex < monthKeys.length - 1 && onMonthChange(monthKeys[currentIndex + 1]!)}
             style={[styles.iconButton, { opacity: currentIndex >= 0 && currentIndex < monthKeys.length - 1 ? 1 : 0.28 }]}
           >
-            <Ionicons name="chevron-forward" size={22} color={t.textPrimary} />
+            <Ionicons name="chevron-forward" size={20} color={monthGlass.text} />
           </TouchableOpacity>
           <TouchableOpacity
             accessibilityRole="button"
@@ -471,7 +541,7 @@ function MonthExplorerModal({
             onPress={onClose}
             style={styles.iconButton}
           >
-            <Ionicons name="close" size={24} color={t.textPrimary} />
+            <Ionicons name="close" size={20} color={monthGlass.text} />
           </TouchableOpacity>
         </View>
 
@@ -484,143 +554,115 @@ function MonthExplorerModal({
           ]}
           showsVerticalScrollIndicator
         >
-          <View
-            testID="activity-365-month-calendar"
-            style={[styles.entity, { backgroundColor: monthGlass.card }]}
-          >
-          <LinearGradient
-            pointerEvents="none"
-            colors={[monthGlass.lightTint, 'transparent']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 0.8, y: 0.7 }}
-            style={[StyleSheet.absoluteFill, { opacity: 0.08 }]}
-          />
-          <View style={styles.weekdayRow}>
-            {weekdayLabels.map((label) => (
-              <Text
-                key={label}
-                style={{
-                  width: daySize,
-                  color: t.textMuted,
-                  fontSize: f.sub,
-                  fontWeight: '700',
-                  textAlign: 'center',
-                }}
-              >
-                {label}
-              </Text>
-            ))}
-          </View>
-          <View style={styles.monthGrid}>
-            {monthGrid.cells.map((cell, index) => {
-              if (!cell.day) {
-                return <View key={`empty-${index}`} style={{ width: daySize, height: daySize }} />;
-              }
-              const isSelected = selectedDay?.date === cell.day.date;
-              const foreground = cell.day.level >= 3 ? t.correctText : t.textPrimary;
-              return (
-                <TouchableOpacity
-                  key={cell.day.date}
-                  testID={`activity-365-day-${cell.day.date}`}
-                  accessibilityRole="button"
-                  accessibilityLabel={cell.day.date}
-                  disabled={cell.day.future}
-                  activeOpacity={0.78}
-                  onPress={() => setSelectedDay(cell.day)}
-                  style={{
-                    width: daySize,
-                    height: daySize,
-                    borderRadius: 10,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: palette[cell.day.level],
-                    opacity: cell.day.future ? 0.25 : 1,
-                    transform: [{ scale: isSelected ? 0.9 : 1 }],
-                  }}
+          {/* `.om-month-calendar`: секция без карточки — сетка дней прямо на фоне */}
+          <View testID="activity-365-month-calendar" style={styles.monthSection}>
+            <View style={styles.weekdayRow}>
+              {weekdayLabels.map((label) => (
+                <Text
+                  key={label}
+                  style={{ width: daySize, color: monthGlass.mutedText, fontSize: 13, lineHeight: 16, textAlign: 'center' }}
                 >
-                  <Text style={{ color: foreground, fontSize: f.body, fontWeight: '800' }}>
-                    {Number(cell.day.date.slice(8))}
-                  </Text>
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-          {selectedDay ? (
-            <Text
-              testID="activity-365-selected-day"
-              style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 14 }}
-            >
-              {formatSelectedDay(selectedDay.date, lang)} · {selectedDay.minutes} {copy(lang, { ru: 'мин', uk: 'хв', es: 'min', 'pt-BR': 'min', vi: 'phút', id: 'mnt', tr: 'dk', pl: 'min', en: 'min' })}
-            </Text>
-          ) : null}
+                  {label}
+                </Text>
+              ))}
+            </View>
+            <View style={styles.monthGrid}>
+              {monthGrid.cells.map((cell, index) => {
+                if (!cell.day) {
+                  return <View key={`empty-${index}`} style={{ width: daySize, height: daySize }} />;
+                }
+                const isSelected = selectedDay?.date === cell.day.date;
+                const foreground = cell.day.level >= 3 ? monthGlass.opaqueSheet : monthGlass.secondary;
+                return (
+                  <TouchableOpacity
+                    key={cell.day.date}
+                    testID={`activity-365-day-${cell.day.date}`}
+                    accessibilityRole="button"
+                    accessibilityLabel={cell.day.date}
+                    accessibilityState={{ selected: isSelected, disabled: cell.day.future }}
+                    disabled={cell.day.future}
+                    activeOpacity={0.78}
+                    onPress={() => setSelectedDay(cell.day)}
+                    style={{
+                      width: daySize,
+                      height: daySize,
+                      borderRadius: 10,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor: palette[cell.day.level],
+                      opacity: cell.day.future ? 0.28 : 1,
+                    }}
+                  >
+                    {isSelected ? (
+                      // `.om-day.selected`: кольцо 2 с отступом 2 — признак выбранного дня, не обводка блока.
+                      <View
+                        pointerEvents="none"
+                        style={[styles.selectedRing, { borderColor: monthGlass.text }]} // guard-ok: кольцо выбранного дня из макета
+                      />
+                    ) : null}
+                    <Text style={{ color: foreground, fontSize: 13, fontWeight: '700' }}>
+                      {Number(cell.day.date.slice(8))}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+            {selectedDay ? (
+              // `.om-info`: плашка дня — дата и минуты практики.
+              <View
+                testID="activity-365-selected-day"
+                style={[styles.dayInfo, { backgroundColor: monthGlass.opaqueControl }]}
+              >
+                <Text style={{ color: monthGlass.text, fontSize: 13, lineHeight: 19, fontWeight: '700', marginBottom: 4 }}>
+                  {formatSelectedDay(selectedDay.date, lang)}
+                </Text>
+                <Text style={{ color: monthGlass.secondary, fontSize: 13, lineHeight: 19 }}>
+                  {countLabel(lang, selectedDay.minutes, PRACTICE_MINUTE_FORMS)}
+                </Text>
+              </View>
+            ) : null}
           </View>
 
-          <View
-            testID="activity-365-month-comparison"
-            style={[styles.entity, { backgroundColor: monthGlass.sheet }]}
-          >
-          <LinearGradient
-            pointerEvents="none"
-            colors={[monthGlass.lightTint, 'transparent']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 0.8, y: 0.7 }}
-            style={[StyleSheet.absoluteFill, { opacity: 0.06 }]}
-          />
-          <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', marginBottom: 10 }}>
-            {copy(lang, {
-              ru: 'Сравнение месяцев',
-              uk: 'Порівняння місяців',
-              es: 'Comparar meses',
-              'pt-BR': 'Comparar meses',
-              vi: 'So sánh tháng',
-              id: 'Bandingkan bulan',
-              tr: 'Ayları karşılaştır',
-              pl: 'Porównaj miesiące',
-              en: 'Compare months',
-            })}
-          </Text>
-          <View style={styles.comparisonSelectors}>
-            <MonthSelector
-              monthKey={resolvedMonthA}
-              lang={lang}
-              canPrevious={!!resolvedMonthA && monthKeys.indexOf(resolvedMonthA) > 0}
-              canNext={!!resolvedMonthA && monthKeys.indexOf(resolvedMonthA) < monthKeys.length - 1}
-              onPrevious={() => shiftComparisonMonth(resolvedMonthA, -1, setMonthAKey)}
-              onNext={() => shiftComparisonMonth(resolvedMonthA, 1, setMonthAKey)}
-            />
-            <MonthSelector
-              monthKey={resolvedMonthB}
-              lang={lang}
-              canPrevious={!!resolvedMonthB && monthKeys.indexOf(resolvedMonthB) > 0}
-              canNext={!!resolvedMonthB && monthKeys.indexOf(resolvedMonthB) < monthKeys.length - 1}
-              onPrevious={() => shiftComparisonMonth(resolvedMonthB, -1, setMonthBKey)}
-              onNext={() => shiftComparisonMonth(resolvedMonthB, 1, setMonthBKey)}
-            />
-          </View>
-          {[
-            {
-              label: copy(lang, { ru: 'Дни', uk: 'Дні', es: 'Días', 'pt-BR': 'Dias', vi: 'Ngày', id: 'Hari', tr: 'Gün', pl: 'Dni', en: 'Days' }),
-              left: summaryA.activeDays,
-              right: summaryB.activeDays,
-            },
-            {
-              label: copy(lang, { ru: 'Время', uk: 'Час', es: 'Tiempo', 'pt-BR': 'Tempo', vi: 'Thời gian', id: 'Waktu', tr: 'Süre', pl: 'Czas', en: 'Time' }),
-              left: `${summaryA.minutes} ${copy(lang, { ru: 'мин', uk: 'хв', es: 'min', 'pt-BR': 'min', vi: 'phút', id: 'mnt', tr: 'dk', pl: 'min', en: 'min' })}`,
-              right: `${summaryB.minutes} ${copy(lang, { ru: 'мин', uk: 'хв', es: 'min', 'pt-BR': 'min', vi: 'phút', id: 'mnt', tr: 'dk', pl: 'min', en: 'min' })}`,
-            },
-          ].map((row) => (
-            <View key={row.label} style={styles.comparisonRow}>
-              <Text style={{ flex: 1, color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>
-                {row.label}
-              </Text>
-              <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontWeight: '800', textAlign: 'center' }}>
-                {row.left}
-              </Text>
-              <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontWeight: '800', textAlign: 'right' }}>
-                {row.right}
-              </Text>
+          {/* `.om-month-comparison`: заголовок 25/31 слева и две карточки месяцев */}
+          <View testID="activity-365-month-comparison" style={styles.comparisonSection}>
+            <Text style={{ color: monthGlass.text, fontSize: 25, lineHeight: 31, fontWeight: '800' }}>
+              {copy(lang, {
+                ru: 'Сравнение месяцев',
+                uk: 'Порівняння місяців',
+                es: 'Comparar meses',
+                'pt-BR': 'Comparar meses',
+                vi: 'So sánh tháng',
+                id: 'Bandingkan bulan',
+                tr: 'Ayları karşılaştır',
+                pl: 'Porównaj miesiące',
+                en: 'Compare months',
+              })}
+            </Text>
+            <View style={styles.comparisonCards}>
+              {comparisonCards.map((card) => (
+                <View
+                  key={card.key}
+                  testID={`activity-365-month-compare-${card.key}`}
+                  style={[styles.compareCard, { backgroundColor: monthGlass.opaqueControl }]}
+                >
+                  <MonthSelector
+                    monthKey={card.monthKey}
+                    lang={lang}
+                    color={monthGlass.text}
+                    canPrevious={!!card.monthKey && monthKeys.indexOf(card.monthKey) > 0}
+                    canNext={!!card.monthKey && monthKeys.indexOf(card.monthKey) < monthKeys.length - 1}
+                    onPrevious={() => shiftComparisonMonth(card.monthKey, -1, card.setValue)}
+                    onNext={() => shiftComparisonMonth(card.monthKey, 1, card.setValue)}
+                  />
+                  <Text style={[styles.compareValue, { color: monthGlass.secondary }]}>
+                    {countLabel(lang, card.summary.activeDays, DAY_FORMS)}
+                  </Text>
+                  <Text style={[styles.compareValue, { color: monthGlass.secondary }]}>
+                    {`${card.summary.minutes} ${minutesShort}`}
+                  </Text>
+                </View>
+              ))}
             </View>
-          ))}
           </View>
         </ScrollView>
       </View>
@@ -733,11 +775,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 9,
   },
+  // `.om-full`: поля 18 по бокам.
   modal: {
     flex: 1,
-    paddingHorizontal: 16,
+    paddingHorizontal: 18,
     paddingTop: 52,
-    gap: 14,
+    gap: 4,
   },
   modalHeader: {
     minHeight: 48,
@@ -749,7 +792,6 @@ const styles = StyleSheet.create({
     minHeight: 0,
   },
   monthViewportContent: {
-    gap: 14,
     paddingBottom: 28,
   },
   iconButton: {
@@ -758,36 +800,67 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  entity: {
-    borderRadius: 18,
-    padding: 12,
-    borderWidth: 0,
-    overflow: 'hidden',
+  monthSection: {
+    paddingTop: 8,
   },
   weekdayRow: {
     flexDirection: 'row',
     gap: MONTH_CELL_GAP,
-    marginBottom: 6,
+    marginTop: 13,
+    marginBottom: MONTH_CELL_GAP,
   },
   monthGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: MONTH_CELL_GAP,
   },
-  comparisonSelectors: {
-    flexDirection: 'row',
-    gap: 10,
+  selectedRing: {
+    position: 'absolute',
+    top: -4,
+    left: -4,
+    right: -4,
+    bottom: -4,
+    borderRadius: 13,
+    borderWidth: 2,
   },
-  monthSelector: {
+  // `.om-info`
+  dayInfo: {
+    marginTop: 13,
+    paddingVertical: 13,
+    paddingHorizontal: 14,
+    borderRadius: 16,
+  },
+  comparisonSection: {
+    marginTop: 18,
+    paddingTop: 8,
+  },
+  // `.om-compare` / `.om-compare-card`
+  comparisonCards: {
+    flexDirection: 'row',
+    gap: 8,
+    marginTop: 12,
+  },
+  compareCard: {
     flex: 1,
     minWidth: 0,
-    flexDirection: 'row',
-    alignItems: 'center',
+    padding: 12,
+    borderRadius: 15,
   },
-  comparisonRow: {
-    minHeight: 42,
+  compareNavButton: {
+    width: 24,
+    height: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  compareValue: {
+    marginTop: 5,
+    fontSize: 13,
+    lineHeight: 18,
+  },
+  monthSelector: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 4,
   },
 });
 

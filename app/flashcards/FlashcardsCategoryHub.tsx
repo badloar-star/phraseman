@@ -85,8 +85,12 @@ type CatalogGlassTokens = ReturnType<typeof liquidGlassTokens>;
 
 function CatalogTileGlass({ g }: { g: CatalogGlassTokens }) {
   return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+    {/* зачем (сверка packs-simple-001, 04.10, проверено на эмуляторе): на Android dimezisBlurView захватывает
+        текст самой строки и кладёт под него размытую копию — вокруг «Продолжить создание набора», «Топ», имени
+        автора был белый ореол, которого нет в макете. Без этого метода размытие на Android не рисуется (под строкой
+        однотонный фон — размывать нечего), ореол исчезает; iOS не меняется. */}
     <BlurView intensity={Platform.OS === 'android' ? 6 : 12} blurReductionFactor={4}
-      experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
+      experimentalBlurMethod="none"
       tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
     <LinearGradient colors={[g.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
     <View style={{ height: 1, backgroundColor: g.glassEdge }} />

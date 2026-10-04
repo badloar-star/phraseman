@@ -19,7 +19,10 @@ test('community tiles use tinted translucent material, real diffusion and readab
   assert.match(hub, /<CatalogTileGlass/);
   assert.match(hub, /backgroundColor: g\.card/);
   assert.match(hub, /borderColor: g\.glassEdge/);
-  assert.match(hub, /dimezisBlurView/);
+  // зачем (сверка packs-simple-001, 04.10): на Android dimezisBlurView в строках каталога давал белый ореол вокруг
+  // текста строки (захват собственного содержимого). Размытие строк каталога — без этого метода на всех платформах.
+  assert.match(hub, /<BlurView[^>]*experimentalBlurMethod="none"/);
+  assert.doesNotMatch(hub, /experimentalBlurMethod=\{[^}]*'dimezisBlurView'/);
   assert.doesNotMatch(hub, /a11y=\{`qa-flashcards-pack-card-/);
 });
 

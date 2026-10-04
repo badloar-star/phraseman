@@ -51,3 +51,6 @@ Governance-ID: TG-B42BE230DCA8
 
 Governance-ID: TG-D64A3791D1A1
 (learn-004: футер «Нашёл ошибку?» скрыт при пустом поиске — app/(tabs)/lessons.tsx; сторожа lessons_* PASS)
+
+Governance-ID: TG-8BA51DC640FB
+(ореол текста в каталоге наборов — FlashcardsCategoryHub.tsx; сторож community_liquid обновлён)

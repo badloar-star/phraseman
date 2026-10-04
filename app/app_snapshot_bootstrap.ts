@@ -14,6 +14,7 @@ import { buildCustomizationSnapshot } from './customization_snapshot';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { hydratePersonalProgress } from './personal_progress_store';
 import { primeEnergyPeekFromBoot } from './energy_peek_cache';
+import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — последние немые catch старта пишут причину
 import {
   migrateLegacyVipSnapshotOnce,
   readVipSnapshotForGeneration,
@@ -204,9 +205,9 @@ export async function primeAppSnapshotFromStorage(
   if (!isAccountCurrent()) return;
   // PhoneState hydration is local-only and wins for the cutover cohort. Legacy
   // storage remains the compatibility source for everyone else.
-  await hydratePersonalProgress().catch(() => null);
+  await hydratePersonalProgress().catch(noteSwallowedAs('app_snapshot_bootstrap:hydratePersonalProgress', null));
   if (!isAccountCurrent()) return;
-  await migrateLegacyVipSnapshotOnce(accountGeneration).catch(() => false);
+  await migrateLegacyVipSnapshotOnce(accountGeneration).catch(noteSwallowedAs('app_snapshot_bootstrap:migrateLegacyVipSnapshotOnce', false));
   if (!isAccountCurrent()) return;
   const vipSnapshot = await readVipSnapshotForGeneration(accountGeneration);
   if (!isAccountCurrent()) return;
@@ -225,7 +226,7 @@ export async function primeAppSnapshotFromStorage(
       (pairs) => ({ ok: true as const, pairs }),
       () => ({ ok: false as const, pairs: [] as [string, string | null][] }),
     ),
-    hydrateUserSettingsFromStorage(settingsBootReadScope).catch(() => {}),
+    hydrateUserSettingsFromStorage(settingsBootReadScope).catch(noteSwallowedHandler('app_snapshot_bootstrap:hydrateUserSettingsFromStorage')),
     // зачем: руны в общий multiGet не входят — их ключ зависит от владельца
     // (level_spin_star_projection_v1:<uid>). Читаем параллельно, чтобы старт не
     // стал длиннее ни на один лишний последовательный поход в хранилище.
@@ -234,7 +235,7 @@ export async function primeAppSnapshotFromStorage(
     // подключает его тем же `await import`).
     import('./level_spin_star_grants')
       .then((module) => module.peekStoredLevelSpinStarsForBoot(accountGeneration))
-      .catch(() => null),
+      .catch(noteSwallowedAs('app_snapshot_bootstrap:peekStoredLevelSpinStarsForBoot', null)),
   ]);
 
   if (!isAccountCurrent()) return;
@@ -258,7 +259,7 @@ export async function primeAppSnapshotFromStorage(
   // вызова отсюда не хватило бы к первому кадру). Повторный вызов дешёв: внутри
   // стоит ранний выход, если кэш уже заполнен, — но он спасает случай, когда
   // хранилище на старте было недоступно.
-  void primeEnergyPeekFromBoot().catch(() => {});
+  void primeEnergyPeekFromBoot().catch(noteSwallowedHandler('app_snapshot_bootstrap:primeEnergyPeekFromBoot'));
   patchAppSnapshot((current) => ({
     profile,
     progress: buildProgressSnapshot(values, studyTarget, now, current, bootRunes),

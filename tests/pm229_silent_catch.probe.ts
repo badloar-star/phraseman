@@ -26,8 +26,8 @@ const SKIP_DIRS = new Set(['node_modules', '__tests__', 'graphify-out', '__mocks
 // База на 04.10: 37 (было 42 → 41 → 37): statsCache, mistake_practice_answer_journal, flashcards_speaking_session пишут причину.
 // AA S2d (04.10): 37 → 9 — auth_provider.ts (25) и account_switch_quarantine.ts (3) пишут причину; записи сняты.
 const BASELINE: Record<string, number> = {
-  'app/app_snapshot_bootstrap.ts': 5, // Q5: чтение Avatar DNA на старте удалено
   // PM-229 04.10: 9 → 5 — debug-logger (2), keyed_exclusive_transaction (1), account_detach_latch (1) пишут причину; записи сняты.
+  // PM-229 04.10: 5 → 0 — app_snapshot_bootstrap (5) пишет причину. Клиент закрыт: новых немых catch быть не должно.
 };
 
 function listSourceFiles(): string[] {

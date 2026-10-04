@@ -139,7 +139,10 @@ describe('friendLookupUser — finds players across all storage paths', () => {
       users: { 'u-roma': VISIBLE('Roma', 4200, 12) },
     });
     const res: any = await run(friendLookupUser, { query: '  @Roma ' }, 'searcher-auth');
-    expect(res.user).toMatchObject({ uid: 'u-roma', name: 'Roma', level: 12, totalXp: 4200, source: 'name_index' });
+    expect(res.user).toMatchObject({ uid: 'u-roma', name: 'Roma', source: 'name_index' });
+    // 04.10: D02 (владелец) — XP и привычный уровень удалены; поиск друга их больше не отдаёт (efe19ae9d).
+    expect(res.user).not.toHaveProperty('level');
+    expect(res.user).not.toHaveProperty('totalXp');
   });
 
   it('finds a legacy user who is NOT in name_index (via users.progress) and self-heals the index', async () => {

@@ -861,10 +861,17 @@ export function useCollectionDeletion(args: {
   }, []);
   useEffect(() => () => clearUndoTimer(), [clearUndoTimer]);
 
+  // зачем (аудит Optimistic UI, 04.10): двойной тап «удалить» запускал два удаления — второе не находило карточку в хранилище, падало и
+  // откатом возвращало в список карточку, уже удалённую. Один проход на карточку, пока первый не завершился.
+  const deletingCardIdsRef = useRef<Set<string>>(new Set());
   const deleteCardById = useCallback(async (cardId: string, fallbackIdx?: number) => {
     const accountToken = captureAccountGeneration();
     const target = cards.find((c) => c.id === cardId);
     if (!target || target.isSystem) return;
+    if (deletingCardIdsRef.current.has(cardId)) {
+      console.warn(`[FC-COLLECTION] delete:skip_in_flight cardId=${cardId}`);
+      return;
+    }
     const kind: 'custom' | 'saved' | null =
       target.categoryId === 'custom' && customCards.some((c) => c.id === target.id)
         ? 'custom'
@@ -872,6 +879,7 @@ export function useCollectionDeletion(args: {
           ? 'saved'
           : null;
     if (!kind) return;
+    deletingCardIdsRef.current.add(cardId);
     try {
       // 1) Оптимистично из списка сразу
       let uiIndex = 0;
@@ -897,10 +905,15 @@ export function useCollectionDeletion(args: {
       undoTimerRef.current = setTimeout(() => {
         setUndoEntry((cur) => (cur?.key === key ? null : cur));
       }, 5000);
-    } catch {
+    } catch (error: unknown) {
+      console.warn(`[FC-COLLECTION] delete:failed kind=${kind} cardId=${cardId} — откат только этой карточки`, error instanceof Error ? error.message : String(error));
       if (!isCurrentAccountGeneration(accountToken)) return;
-      if (kind === 'saved') updateSavedCards(() => savedCards);
-      else updateCustomCards(() => customCards);
+      // зачем: откат возвращает ТОЛЬКО удалённую карточку на её место, а не весь список из устаревшего замыкания — иначе стирались бы правки, сделанные за время удаления.
+      const restoreTarget = <T extends { id: string }>(prev: T[], card: T, index: number): T[] => (
+        prev.some((c) => c.id === card.id) ? prev : [...prev.slice(0, index), card, ...prev.slice(index)]
+      );
+      if (kind === 'saved') updateSavedCards((prev) => restoreTarget(prev, target as (typeof prev)[number], Math.max(0, savedCards.findIndex((c) => c.id === target.id))));
+      else updateCustomCards((prev) => restoreTarget(prev, target as (typeof prev)[number], Math.max(0, customCards.findIndex((c) => c.id === target.id))));
       emitAppEvent(
         'action_toast',
         actionToastTri('error', {
@@ -909,6 +922,8 @@ export function useCollectionDeletion(args: {
           es: 'No se pudo eliminar la tarjeta.',
         }),
       );
+    } finally {
+      deletingCardIdsRef.current.delete(cardId);
     }
   }, [cards, customCards, savedCards, clearUndoTimer, updateCustomCards, updateSavedCards, currentIndexRef, onIndexClamped, studyTarget]);
 

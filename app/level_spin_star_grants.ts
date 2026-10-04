@@ -57,6 +57,20 @@ const STAR_AMOUNTS = Object.freeze({
   stars_2000: 2_000,
 } as const);
 
+/**
+ * зачем (§126 п.7, 04.10): level_spin_star_operation_corrupt ×26 на одном устройстве (1.6.24), а шесть мест
+ * бросали эту ошибку молча — неизвестно, где и почему. Печатаем участок, причину, длину и форму записи
+ * (имена ключей, version/kind) — без uid и сумм. Ошибка и поведение прежние.
+ */
+function runeOperationCorrupt(site: string, reason: string, value: unknown, raw: string | null): never {
+  const shape = value && typeof value === 'object' && !Array.isArray(value)
+    ? { keys: Object.keys(value as Record<string, unknown>).sort().join(',').slice(0, 300),
+      version: (value as { version?: unknown }).version ?? null, kind: (value as { kind?: unknown }).kind ?? null }
+    : { type: Array.isArray(value) ? 'array' : typeof value };
+  console.warn('[RUNE-OP-CORRUPT]', JSON.stringify({ site, reason, rawLength: raw?.length ?? null, ...shape }));
+  throw new Error('level_spin_star_operation_corrupt');
+}
+
 type LevelSpinStarGiftId = keyof typeof STAR_AMOUNTS;
 type LevelSpinStarLane = 'base' | 'premium';
 type LevelSpinStarOperation = LevelSpinStarCreditExactResult;
@@ -885,9 +899,10 @@ async function storedOperationsForOwner(ownerStableId: string): Promise<readonly
   for (const [, raw] of rows) {
     if (raw === null) continue;
     let parsed: unknown;
-    try { parsed = JSON.parse(raw) as unknown; } catch { throw new Error('level_spin_star_operation_corrupt'); }
+    try { parsed = JSON.parse(raw) as unknown; } catch { runeOperationCorrupt('read_all', 'json_parse', null, raw); }
     const operation = parseLocalRuneOperation(parsed, ownerStableId);
-    if (!operation || !await hasValidLocalRuneFingerprint(operation)) throw new Error('level_spin_star_operation_corrupt');
+    if (!operation) runeOperationCorrupt('read_all', 'parse_failed', parsed, raw);
+    if (!await hasValidLocalRuneFingerprint(operation)) runeOperationCorrupt('read_all', 'fingerprint_invalid', parsed, raw);
     result.push(operation);
   }
   for (const [, raw] of journalRows) {
@@ -1699,11 +1714,12 @@ export async function prepareSessionAttemptRuneRecovery(input: Readonly<{
       const projection = parseProjection(projectionRaw, ownerStableId);
       if (existingRaw !== null) {
         let parsed: unknown;
-        try { parsed = JSON.parse(existingRaw); } catch { throw new Error('level_spin_star_operation_corrupt'); }
+        try { parsed = JSON.parse(existingRaw); } catch { runeOperationCorrupt('attempt_recovery', 'json_parse', null, existingRaw); }
         const existing = parseSessionAttemptRuneRecoveryExactResult(parsed);
-        if (!existing || existing.ownerStableId !== ownerStableId
-          || !await hasValidSessionAttemptRuneRecoveryFingerprint(existing)) {
-          throw new Error('level_spin_star_operation_corrupt');
+        if (!existing) runeOperationCorrupt('attempt_recovery', 'parse_failed', parsed, existingRaw);
+        if (existing.ownerStableId !== ownerStableId) runeOperationCorrupt('attempt_recovery', 'owner_mismatch', parsed, existingRaw);
+        if (!await hasValidSessionAttemptRuneRecoveryFingerprint(existing)) {
+          runeOperationCorrupt('attempt_recovery', 'fingerprint_invalid', parsed, existingRaw);
         }
         if (existing.operationId !== operationId
           || existing.sessionId !== input.sessionId
@@ -1841,10 +1857,10 @@ export async function enqueueLevelSpinStarGrant(
     ]);
     let existingValue: unknown = null;
     try { existingValue = existingRaw ? JSON.parse(existingRaw) as unknown : null; } catch {
-      throw new Error('level_spin_star_operation_corrupt');
+      runeOperationCorrupt('star_grant', 'json_parse', null, existingRaw);
     }
     const existing = existingRaw ? parseStarOperation(existingValue, ownerStableId) : null;
-    if (existingRaw && !existing) throw new Error('level_spin_star_operation_corrupt');
+    if (existingRaw && !existing) runeOperationCorrupt('star_grant', 'parse_failed', existingValue, existingRaw);
     if (existing) {
       if (existing.requestId !== requestId || existing.lane !== input.lane ||
         existing.deliveryToken !== deliveryToken || existing.giftId !== giftId ||
@@ -1937,10 +1953,10 @@ export async function commitPracticeRuneGrantLocally(
       ]);
       let existingValue: unknown = null;
       try { existingValue = existingRaw ? JSON.parse(existingRaw) as unknown : null; } catch {
-        throw new Error('level_spin_star_operation_corrupt');
+        runeOperationCorrupt('practice_rune', 'json_parse', null, existingRaw);
       }
       const existing = existingRaw ? parseLocalRuneOperation(existingValue, ownerStableId) : null;
-      if (existingRaw && !existing) throw new Error('level_spin_star_operation_corrupt');
+      if (existingRaw && !existing) runeOperationCorrupt('practice_rune', 'parse_failed', existingValue, existingRaw);
       let journalValue: unknown = null;
       try { journalValue = journalRaw ? JSON.parse(journalRaw) as unknown : null; } catch {
         throw new Error('practice_rune_journal_corrupt');

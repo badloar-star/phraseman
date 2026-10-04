@@ -10,7 +10,7 @@ import {
   isCurrentAccountGeneration,
   subscribeAccountGeneration,
 } from './account_generation';
-import { coinRankMetal, coinRankRowForDisplay, coinRankTitle } from './coin_rank_table_v1';
+import { coinRankRowForDisplay, coinRankTitle } from './coin_rank_table_v1';
 import { DebugLogger } from './debug-logger';
 import { actionToastTri, emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
@@ -185,17 +185,26 @@ export default function CoinRankScreen() {
 
   // зачем (PM-128, эмулятор 01.10): раньше `lang === 'ru' ? … : English` — украинский,
   // португальский и остальные видели экран по-английски. Теперь все 9 языков интерфейса.
+  // зачем: паритет с макетом coins.html PAY-01 — заголовок «Повысить ранг», тексты состояний дословно;
+  // для языков без отдельного перевода берём английский (как в тостах ниже).
+  const tl = (ru: string, uk: string, en: string, es: string) => triLang(lang, {
+    ru, uk, en, es, 'pt-BR': en, vi: en, id: en, tr: en, pl: en,
+  });
   const copy = useMemo(() => ({
-    title: triLang(lang, { ru: 'Ранг игрока', uk: 'Ранг гравця', en: 'Player rank', es: 'Rango del jugador', 'pt-BR': 'Rank do jogador', vi: 'Hạng người chơi', id: 'Peringkat pemain', tr: 'Oyuncu rütbesi', pl: 'Ranga gracza' }),
-    current: triLang(lang, { ru: 'Текущий ранг', uk: 'Поточний ранг', en: 'Current rank', es: 'Rango actual', 'pt-BR': 'Rank atual', vi: 'Hạng hiện tại', id: 'Peringkat saat ini', tr: 'Mevcut rütbe', pl: 'Obecna ranga' }),
-    level: triLang(lang, { ru: 'Уровень', uk: 'Рівень', en: 'Level', es: 'Nivel', 'pt-BR': 'Nível', vi: 'Cấp', id: 'Level', tr: 'Seviye', pl: 'Poziom' }),
+    title: triLang(lang, { ru: 'Повысить ранг', uk: 'Підвищити ранг', en: 'Upgrade rank', es: 'Subir de rango', 'pt-BR': 'Subir de rank', vi: 'Nâng hạng', id: 'Naik peringkat', tr: 'Rütbeyi yükselt', pl: 'Awansuj' }),
+    rank: triLang(lang, { ru: 'Ранг', uk: 'Ранг', en: 'Rank', es: 'Rango', 'pt-BR': 'Rank', vi: 'Hạng', id: 'Peringkat', tr: 'Rütbe', pl: 'Ranga' }),
     balance: triLang(lang, { ru: 'Ваш баланс', uk: 'Ваш баланс', en: 'Your balance', es: 'Tu saldo', 'pt-BR': 'Seu saldo', vi: 'Số dư của bạn', id: 'Saldo kamu', tr: 'Bakiyen', pl: 'Twoje saldo' }),
     coins: triLang(lang, { ru: 'монет', uk: 'монет', en: 'coins', es: 'monedas', 'pt-BR': 'moedas', vi: 'xu', id: 'koin', tr: 'jeton', pl: 'monet' }),
-    next: triLang(lang, { ru: 'Следующий ранг', uk: 'Наступний ранг', en: 'Next rank', es: 'Siguiente rango', 'pt-BR': 'Próximo rank', vi: 'Hạng tiếp theo', id: 'Peringkat berikutnya', tr: 'Sonraki rütbe', pl: 'Następna ranga' }),
     cost: triLang(lang, { ru: 'Стоимость повышения', uk: 'Вартість підвищення', en: 'Upgrade cost', es: 'Coste de la mejora', 'pt-BR': 'Custo da promoção', vi: 'Chi phí nâng hạng', id: 'Biaya naik peringkat', tr: 'Yükseltme bedeli', pl: 'Koszt awansu' }),
-    remaining: triLang(lang, { ru: 'Осталось накопить', uk: 'Залишилося накопичити', en: 'Still needed', es: 'Te falta', 'pt-BR': 'Ainda falta', vi: 'Còn thiếu', id: 'Masih kurang', tr: 'Kalan', pl: 'Brakuje jeszcze' }),
-    enough: triLang(lang, { ru: 'Монет достаточно для повышения', uk: 'Монет достатньо для підвищення', en: 'Enough coins to upgrade', es: 'Tienes monedas suficientes para subir', 'pt-BR': 'Moedas suficientes para subir', vi: 'Đủ xu để nâng hạng', id: 'Koin cukup untuk naik peringkat', tr: 'Yükseltmek için yeterli jeton var', pl: 'Masz dość monet na awans' }),
+    costNote: tl('Монеты списываются один раз', 'Монети списуються один раз', 'Coins are charged once', 'Las monedas se descuentan una vez'),
     upgrade: triLang(lang, { ru: 'Повысить ранг', uk: 'Підвищити ранг', en: 'Upgrade rank', es: 'Subir de rango', 'pt-BR': 'Subir de rank', vi: 'Nâng hạng', id: 'Naik peringkat', tr: 'Rütbeyi yükselt', pl: 'Awansuj' }),
+    upgradeFor: tl('Повысить за', 'Підвищити за', 'Upgrade for', 'Subir por'),
+    ceremonyNote: tl('Церемония начнётся только после подтверждённого повышения.', 'Церемонія почнеться лише після підтвердженого підвищення.', 'The ceremony starts only after the upgrade is confirmed.', 'La ceremonia empieza solo tras confirmar la mejora.'),
+    shortTitle: tl('Не хватает', 'Не вистачає', 'Missing', 'Faltan'),
+    shortNote: tl('Продолжайте практику. Покупка монет за деньги не предлагается.', 'Продовжуйте практику. Купівля монет за гроші не пропонується.', 'Keep practicing. Buying coins for money is not offered.', 'Sigue practicando. No se ofrece comprar monedas con dinero.'),
+    pendingTitle: tl('Проверяем повышение', 'Перевіряємо підвищення', 'Checking the upgrade', 'Comprobando la mejora'),
+    pendingNote: tl('Не закрывайте приложение. Повторный тап не создаёт новое списание.', 'Не закривайте застосунок. Повторний дотик не створює нового списання.', 'Do not close the app. Tapping again will not charge twice.', 'No cierres la app. Volver a tocar no genera otro cargo.'),
+    pendingCta: tl('Повышение проверяется…', 'Підвищення перевіряється…', 'Upgrade is being checked…', 'Comprobando la mejora…'),
     max: triLang(lang, { ru: 'Достигнут максимальный ранг', uk: 'Досягнуто максимального рангу', en: 'Maximum rank reached', es: 'Has alcanzado el rango máximo', 'pt-BR': 'Rank máximo alcançado', vi: 'Đã đạt hạng cao nhất', id: 'Peringkat maksimum tercapai', tr: 'En yüksek rütbeye ulaşıldı', pl: 'Osiągnięto najwyższą rangę' }),
   }), [lang]);
 
@@ -279,14 +288,19 @@ export default function CoinRankScreen() {
 
   const goBack = useCallback(() => safeRouterBack(router), [router]);
   const missing = balance !== null && next ? Math.max(0, next.priceToReach - balance) : null;
-  const progress = balance !== null && next ? Math.max(0, Math.min(1, balance / next.priceToReach)) : 0;
-  const ctaLabel = upgrading || balanceReconciling
-    ? triLang(lang, { ru: 'Повышаем…', uk: 'Підвищуємо…', en: 'Upgrading…', es: 'Subiendo…', 'pt-BR': 'Subindo…', vi: 'Đang nâng hạng…', id: 'Menaikkan…', tr: 'Yükseltiliyor…', pl: 'Awansujemy…' })
+  const pending = upgrading || balanceReconciling;
+  // зачем: макет PAY-01 «недостаточно монет» — только когда баланс известен и реально меньше цены.
+  const short = !pending && missing !== null && missing > 0;
+  const ready = !pending && !short && canUpgrade;
+  const ctaLabel = pending
+    ? copy.pendingCta
     : rank === null || balance === null
-      ? ' ' // зачем (владелец 01.10): без текста «Загружаем» — резерв высоты
+      ? ' ' // зачем (владелец 01.10): без текста «Загружаем» — резерв высоты
       : isMaxRank
         ? copy.max
-        : `${copy.upgrade} · ${formatCoins(next!.priceToReach)} ${copy.coins}`;
+        : short
+          ? copy.upgrade
+          : `${copy.upgradeFor} ${formatCoins(next!.priceToReach)}`;
   const visibleCeremony = isCoinRankCeremonyBindingCurrent(
     ceremony,
     rankBinding,
@@ -338,71 +352,88 @@ export default function CoinRankScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
+        {/* зачем (coins.html PAY-01): две монеты со стрелкой «текущая → следующая», ниже «Лектор → Эксперт» и «Ранг 5 → 6». */}
         <View style={styles.hero}>
-          {current ? (
-            <Image
-              testID="coin-rank-current-asset"
-              source={current.source}
-              contentFit="contain"
-              style={styles.heroCoin}
-              accessible={false}
-            />
-          ) : (
-            <View testID="coin-rank-loading-asset" style={[styles.heroPlaceholder, { backgroundColor: g.opaqueCard }]}>
-            </View>
-          )}
-          <Text style={[styles.overline, { color: p.textSecondary }]}>{copy.current.toUpperCase()}</Text>
+          <View style={styles.coinsRow}>
+            {current ? (
+              <Image
+                testID="coin-rank-current-asset"
+                source={current.source}
+                contentFit="contain"
+                style={next ? styles.heroCoinFrom : styles.heroCoinSolo}
+                accessible={false}
+              />
+            ) : (
+              <View testID="coin-rank-loading-asset" style={[styles.heroPlaceholder, { backgroundColor: g.opaqueCard }]} />
+            )}
+            {next && current ? (
+              <>
+                <Ionicons name="arrow-forward" size={26} color={p.text} />
+                <Image source={next.source} contentFit="contain" style={styles.heroCoinTo} accessible={false} />
+              </>
+            ) : null}
+          </View>
           <Text testID="coin-rank-current-title" style={[styles.rankTitle, { color: p.text }]}>
-            {current ? coinRankTitle(current.rank, lang) : '—'}
+            {current
+              ? (next ? `${coinRankTitle(current.rank, lang)} → ${coinRankTitle(next.rank, lang)}` : coinRankTitle(current.rank, lang))
+              : '—'}
           </Text>
           <Text style={[styles.rankMeta, { color: p.textSecondary }]}>
-            {rank === null ? ' ' : `${copy.level} ${rank} · ${coinRankMetal(current!.rank, lang)}`}
+            {rank === null ? ' ' : next ? `${copy.rank} ${rank} → ${next.rank}` : `${copy.rank} ${rank}`}
           </Text>
         </View>
 
-        <View style={[styles.card, glass]}>
-          <V2GlassSheen seed={1} />
-          <Text style={[styles.cardLabel, { color: p.textSecondary }]}>{copy.balance}</Text>
-          <Text testID="coin-rank-balance" style={[styles.balanceValue, { color: p.text }]}>
-            {balance === null ? '—' : formatCoins(balance)}
-          </Text>
-          <Text style={[styles.cardFootnote, { color: p.textSecondary }]}>{copy.coins}</Text>
-        </View>
-
-        <View style={[styles.card, styles.nextCard, glass]}>
-          <V2GlassSheen seed={2} />
-          {next ? (
-            <>
-              <View style={styles.nextHeader}>
-                <View style={styles.nextCopy}>
-                  <Text style={[styles.cardLabel, { color: p.textSecondary }]}>{copy.next}</Text>
-                  <Text testID="coin-rank-next-title" style={[styles.nextTitle, { color: p.text }]}>{coinRankTitle(next.rank, lang)}</Text>
-                  <Text style={[styles.nextMeta, { color: p.textSecondary }]}>{`${copy.level} ${next.rank} · ${coinRankMetal(next.rank, lang)}`}</Text>
-                </View>
-                <Image source={next.source} contentFit="contain" style={styles.nextCoin} accessible={false} />
+        {next && current ? (
+          <View style={[styles.card, glass]}>
+            <V2GlassSheen seed={1} />
+            <View style={styles.costRow}>
+              <View style={styles.costCopy}>
+                <Text style={[styles.costTitle, { color: p.text }]}>{copy.cost}</Text>
+                <Text style={[styles.costNote, { color: p.textSecondary }]}>{copy.costNote}</Text>
               </View>
-              <View style={[styles.progressTrack, { backgroundColor: g.opaqueControl }]}>
-                <View style={[styles.progressFill, { width: `${progress * 100}%`, backgroundColor: g.accent }]} />
+              <View style={[styles.pricePill, { backgroundColor: p.control }]}>
+                <Image source={current.source} contentFit="contain" style={styles.priceCoin} accessible={false} />
+                <Text testID="coin-rank-next-title" style={[styles.priceText, { color: p.text }]}>{formatCoins(next.priceToReach)}</Text>
               </View>
-              <View style={styles.costRow}>
-                <Text style={[styles.costText, { color: p.textSecondary }]}>{copy.cost}</Text>
-                <Text style={[styles.costValue, { color: p.text }]}>{formatCoins(next.priceToReach)}</Text>
-              </View>
-              <Text style={[styles.statusText, { color: missing === 0 ? p.text : p.textSecondary }]}>
-                {balance === null
-                  ? ' '
-                  : missing === 0
-                    ? copy.enough
-                    : `${copy.remaining}: ${formatCoins(missing!)} ${copy.coins}`}
+            </View>
+            <View style={[styles.divider, { backgroundColor: p.divider }]} />
+            <View style={styles.costRow}>
+              <Text style={[styles.costTitle, { color: p.text }]}>{copy.balance}</Text>
+              <Text testID="coin-rank-balance" style={[styles.balanceValue, { color: p.text }]}>
+                {balance === null ? '—' : formatCoins(balance)}
               </Text>
-            </>
-          ) : (
+            </View>
+          </View>
+        ) : (
+          <View style={[styles.card, glass]}>
+            <V2GlassSheen seed={2} />
             <View style={styles.maxState}>
               <Ionicons name="checkmark-circle" size={30} color={p.iconTint} />
-              <Text style={[styles.maxTitle, { color: p.text }]}>{rank === null ? ' ' : copy.max}</Text>
+              <Text style={[styles.maxTitle, { color: p.text }]}>{rank === null ? ' ' : copy.max}</Text>
             </View>
-          )}
-        </View>
+          </View>
+        )}
+
+        {short ? (
+          <View style={[styles.card, styles.statusCard, glass]}>
+            <V2GlassSheen seed={3} />
+            <Ionicons name="lock-closed" size={20} color={p.text} />
+            <View style={styles.statusCopy}>
+              <Text style={[styles.statusTitle, { color: p.text }]}>{`${copy.shortTitle} ${formatCoins(missing!)} ${copy.coins}`}</Text>
+              <Text style={[styles.statusNote, { color: p.textSecondary }]}>{copy.shortNote}</Text>
+            </View>
+          </View>
+        ) : null}
+        {pending ? (
+          <View style={[styles.card, styles.statusCard, glass]}>
+            <V2GlassSheen seed={3} />
+            <ActivityIndicator size="small" color={p.text} />
+            <View style={styles.statusCopy}>
+              <Text style={[styles.statusTitle, { color: p.text }]}>{copy.pendingTitle}</Text>
+              <Text style={[styles.statusNote, { color: p.textSecondary }]}>{copy.pendingNote}</Text>
+            </View>
+          </View>
+        ) : null}
 
         {/* зачем (coins.html «каталог 00–19»): ряд всех 20 рангов под карточкой повышения; чисто вид. */}
         <CoinRankCatalog glass={g} lang={lang} currentRank={rank} />
@@ -420,9 +451,9 @@ export default function CoinRankScreen() {
             { backgroundColor: canUpgrade ? g.cta : g.opaqueControl },
           ]}
         >
-          {upgrading ? <ActivityIndicator size="small" color={g.ctaInk} /> : null}
           <Text style={[styles.ctaText, { color: canUpgrade ? g.ctaInk : g.mutedText }]}>{ctaLabel}</Text>
         </V2Pressable>
+        {ready ? <Text style={[styles.footNote, { color: p.textSecondary }]}>{copy.ceremonyNote}</Text> : null}
       </View>
 
       <CoinRankUpgradeCeremony ceremony={visibleCeremony} onDone={dismissCeremony} />
@@ -450,33 +481,29 @@ const styles = StyleSheet.create({
   headerSpacer: { width: V2.iconButton, height: V2.iconButton },
   scroll: { flex: 1 },
   scrollContent: { paddingHorizontal: V2.screenPad, paddingTop: 8, paddingBottom: 24, gap: V2.gap },
-  hero: { alignItems: 'center', paddingVertical: 10 },
-  heroCoin: { width: 178, height: 178 },
-  heroPlaceholder: { width: 178, height: 178, borderRadius: 89, alignItems: 'center', justifyContent: 'center' },
-  overline: { ...V2_TYPE.overline, marginTop: 4 },
-  rankTitle: { ...V2_TYPE.largeTitle, marginTop: 4, textAlign: 'center' },
-  rankMeta: { ...V2_TYPE.body, marginTop: 3, textAlign: 'center' },
-  card: {
-    minHeight: 112,
-    borderRadius: V2.radius.card,
-    padding: 18,
-  },
-  cardLabel: { ...V2_TYPE.caption, textTransform: 'uppercase', letterSpacing: 1.1 },
-  balanceValue: { fontSize: 38, lineHeight: 44, fontWeight: '800', letterSpacing: -0.6, marginTop: 4 },
-  cardFootnote: { ...V2_TYPE.body },
-  nextCard: { minHeight: 224 },
-  nextHeader: { flexDirection: 'row', alignItems: 'center', minHeight: 84 },
-  nextCopy: { flex: 1, minWidth: 0, paddingRight: 8 },
-  nextTitle: { ...V2_TYPE.section, marginTop: 4 },
-  nextMeta: { ...V2_TYPE.subtitle, marginTop: 2 },
-  nextCoin: { width: 82, height: 82, flexShrink: 0 },
-  progressTrack: { height: 7, borderRadius: 999, overflow: 'hidden', marginTop: 14 },
-  progressFill: { height: '100%', borderRadius: 999 },
-  costRow: { flexDirection: 'row', justifyContent: 'space-between', gap: 12, marginTop: 14 },
-  costText: { ...V2_TYPE.body, flex: 1 },
-  costValue: { ...V2_TYPE.headline, fontVariant: ['tabular-nums'] },
-  statusText: { ...V2_TYPE.caption, marginTop: 8 },
-  maxState: { minHeight: 176, alignItems: 'center', justifyContent: 'center', gap: 12 },
+  hero: { alignItems: 'center', paddingTop: 14, paddingBottom: 10 },
+  coinsRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 22 },
+  heroCoinFrom: { width: 88, height: 88 },
+  heroCoinTo: { width: 104, height: 104 },
+  heroCoinSolo: { width: 112, height: 112 },
+  heroPlaceholder: { width: 88, height: 88, borderRadius: 44 },
+  rankTitle: { fontSize: 28, lineHeight: 34, fontWeight: '700', marginTop: 18, textAlign: 'center' },
+  rankMeta: { ...V2_TYPE.body, marginTop: 2, textAlign: 'center' },
+  card: { borderRadius: V2.radius.card, padding: 18 },
+  costRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  costCopy: { flex: 1, minWidth: 0 },
+  costTitle: { ...V2_TYPE.headline },
+  costNote: { ...V2_TYPE.subtitle, marginTop: 4 },
+  pricePill: { flexDirection: 'row', alignItems: 'center', gap: 9, height: 35, paddingHorizontal: 14, borderRadius: 18 },
+  priceCoin: { width: 20, height: 20 },
+  priceText: { ...V2_TYPE.headline, fontVariant: ['tabular-nums'] },
+  divider: { height: StyleSheet.hairlineWidth, marginVertical: 16 },
+  balanceValue: { ...V2_TYPE.headline, fontWeight: '400', fontVariant: ['tabular-nums'] },
+  statusCard: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 16 },
+  statusCopy: { flex: 1, minWidth: 0 },
+  statusTitle: { ...V2_TYPE.headline },
+  statusNote: { ...V2_TYPE.subtitle, marginTop: 2 },
+  maxState: { minHeight: 120, alignItems: 'center', justifyContent: 'center', gap: 12 },
   maxTitle: { ...V2_TYPE.headline, textAlign: 'center' },
   footer: { paddingHorizontal: V2.screenPad, paddingTop: 12 },
   cta: {
@@ -489,5 +516,6 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   ctaText: { ...V2_TYPE.headline, textAlign: 'center' },
+  footNote: { ...V2_TYPE.subtitle, textAlign: 'center', marginTop: 10 },
 });
 

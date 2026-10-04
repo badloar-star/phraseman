@@ -63,6 +63,14 @@ import { useLang } from "../components/LangContext";
 import { useStudyTarget } from "../components/StudyTargetContext";
 import { useTheme } from "../components/ThemeContext";
 import { Lv2Cta, Lv2Explain, lv2Alpha, lv2CardStyle, useLv2Glass } from "../components/learning-v2/LearningV2Glass";
+import {
+  speechUnavailableOnDeviceText,
+  useSpeechUnavailableOnDevice,
+} from "./speech_device_availability";
+import {
+  learningV2DeviceSkippedVoiceCompletionV1,
+  learningV2StarEligibleCompletionsV1,
+} from "./learning_v2_device_voice_skip_v1";
 import { useEnergy, useEnergySessionIntent } from "../components/EnergyContext";
 import { hapticError, hapticSuccess, hapticTap } from "../hooks/use-haptics";
 import { useAudio } from "../hooks/use-audio";
@@ -684,6 +692,11 @@ export default function LearningV2DirectSessionPlayerV1() {
   const completionsRef = useRef(
     new Map<string, LearningV2CourseSessionInteractionCompletionV1>(),
   );
+  // зачем (§SPEECH-NA, владелец 04.10): голосовые задания, пропущенные потому,
+  // что на устройстве нет распознавателя. Они честно уходят как "skipped", но
+  // не считаются в звёздах занятия — человек не виноват, что телефон не слышит,
+  // и занятие/серия/прогресс засчитываются так же, как у всех.
+  const deviceSkippedVoiceIdsRef = useRef(new Set<string>());
   const answeredUiByInteractionRef = useRef(
     new Map<string, LearningV2AnsweredUiSnapshotV1>(),
   );
@@ -1316,6 +1329,13 @@ export default function LearningV2DirectSessionPlayerV1() {
   );
   const practiceEncounterKey = practiceEncounterIds.join("\u0000");
   const practiceActivated = introDone && newWordFlow.kind !== "presenting";
+  const speechNa = useSpeechUnavailableOnDevice();
+  const voiceSkipOnDevice =
+    showVoiceFooter &&
+    speechNa &&
+    practiceActivated &&
+    result !== "correct" &&
+    sessionAttempts.state.phase === "active";
   const voiceFooterDisabled =
     !practiceActivated ||
     auxiliary?.voice.available !== true ||
@@ -1967,7 +1987,16 @@ export default function LearningV2DirectSessionPlayerV1() {
         interactionCompletions:
           interactionCompletions as LearningV2CourseSessionInteractionCompletionV1[],
       });
-      earned = learningV2SessionStars(completion.interactionCompletions);
+      const starCompletions = learningV2StarEligibleCompletionsV1(
+        completion.interactionCompletions,
+        deviceSkippedVoiceIdsRef.current,
+      );
+      if (starCompletions.length !== completion.interactionCompletions.length)
+        console.warn("[SPEECH-AVAIL] learning-v2 finish: voice tasks skipped on device excluded from stars", JSON.stringify({
+          skipped: completion.interactionCompletions.length - starCompletions.length,
+          total: completion.interactionCompletions.length,
+        }));
+      earned = learningV2SessionStars(starCompletions);
       const passedSession = learningV2SessionUnlocksNextV1(earned);
       if (isCheckpoint) {
         // «Что вы теперь умеете»: по типу задания — всё с первой попытки → «Закрепилось»,
@@ -2299,6 +2328,32 @@ export default function LearningV2DirectSessionPlayerV1() {
     }
     showPracticeIndex(practiceIndex + 1);
   }, [finish, practiceIndex, result, runSummary, showPracticeIndex]);
+
+  // зачем (§SPEECH-NA): на устройстве без распознавателя голосовой шаг не
+  // блокирует занятие — «Дальше» сразу доступна и закрывает шаг как пропущенный.
+  const skipVoicePracticeOnDevice = useCallback(() => {
+    if (!practice || !runSummary || !voiceSkipOnDevice || finishing) {
+      console.warn("[SPEECH-AVAIL] learning-v2 skip: ignored", JSON.stringify({
+        hasPractice: Boolean(practice), hasRun: Boolean(runSummary), voiceSkipOnDevice, finishing,
+      }));
+      return;
+    }
+    void hapticTap();
+    completionsRef.current.set(
+      practice.interactionId,
+      learningV2DeviceSkippedVoiceCompletionV1(practice.interactionId),
+    );
+    deviceSkippedVoiceIdsRef.current.add(practice.interactionId);
+    const isLast = practiceIndex + 1 >= runSummary.practiceInteractionCount;
+    console.warn("[SPEECH-AVAIL] learning-v2 skip: voice task skipped on device", JSON.stringify({
+      interactionId: practice.interactionId, practiceIndex, isLast,
+    }));
+    if (isLast) {
+      void finish();
+      return;
+    }
+    showPracticeIndex(practiceIndex + 1);
+  }, [finish, finishing, practice, practiceIndex, runSummary, showPracticeIndex, voiceSkipOnDevice]);
 
   const resetLearningV2AfterSessionRuneForfeit = useCallback(() => {
     setShowAttemptsModal(false);
@@ -3190,12 +3245,17 @@ export default function LearningV2DirectSessionPlayerV1() {
               {copy.voiceFailed}
             </Lv2Explain>
           )}
+          {showVoiceFooter && speechNa ? (
+            <Lv2Explain icon="mic-off-outline" style={styles.voiceStatus}>
+              {speechUnavailableOnDeviceText(lang)}
+            </Lv2Explain>
+          ) : null}
           {showVoiceFooter && voiceTargetText ? (
             <View
               testID="learning-v2-speaking-surface"
               style={styles.speakingSurface}
             >
-              <SpeakingPanel
+              {speechNa ? null : <SpeakingPanel
                 key={`${practice.interactionId}:${voicePanelEpoch}`}
                 targetText={voiceTargetText}
                 lang={lang}
@@ -3232,7 +3292,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                   );
                 }}
                 onClose={cancelVoiceCapture}
-              />
+              />}
               {voiceAttemptResult ? (
                 <View
                   accessible
@@ -3380,13 +3440,13 @@ export default function LearningV2DirectSessionPlayerV1() {
                   ? copy.finish
                   : copy.next
               }
-              disabled={result !== "correct" || finishing}
-              onPress={advance}
+              disabled={(result !== "correct" && !voiceSkipOnDevice) || finishing}
+              onPress={voiceSkipOnDevice ? skipVoicePracticeOnDevice : advance}
               style={({ pressed }) => [
                 styles.footerAction,
                 {
                   opacity:
-                    result !== "correct" || finishing
+                    (result !== "correct" && !voiceSkipOnDevice) || finishing
                       ? 0.3
                       : pressed
                         ? 0.62
@@ -3397,13 +3457,13 @@ export default function LearningV2DirectSessionPlayerV1() {
               <Ionicons
                 name="play-forward"
                 size={26}
-                color={result === "correct" ? g.text : g.secondary}
+                color={result === "correct" || voiceSkipOnDevice ? g.text : g.secondary}
               />
               <Text
                 style={[
                   styles.footerActionLabel,
                   {
-                    color: result === "correct" ? g.text : g.secondary,
+                    color: result === "correct" || voiceSkipOnDevice ? g.text : g.secondary,
                     fontSize: f.label,
                   },
                 ]}

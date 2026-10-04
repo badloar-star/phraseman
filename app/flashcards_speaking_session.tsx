@@ -41,6 +41,7 @@ import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import { buildManifestCardIndex, manifestSeed, restoreManifestCards, toManifestIds } from './flashcards/training_manifest_ids';
 import { attemptRevisionCandidates, resolveEnergyIntentForRecord } from './flashcards/training_energy_intent';
 import NoEnergyModal from '../components/NoEnergyModal';
+import { speechUnavailableOnDeviceText, useSpeechUnavailableOnDevice } from './speech_device_availability';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
@@ -273,6 +274,10 @@ export default function FlashcardsSpeakingSession() {
   const reduceMotion = useFcReduceMotion();
 
   const [loading, setLoading] = useState(true);
+  // зачем (§SPEECH-NA, владелец 04.10): «Устно» на устройстве без распознавателя
+  // сразу показывает «Распознавание речи не работает на этом устройстве» и НЕ
+  // запускает старт сессии — значит ни энергия, ни грант тренировки не тратятся.
+  const speechNa = useSpeechUnavailableOnDevice();
   const [quotaUnavailable, setQuotaUnavailable] = useState(false);
   const quotaUnavailableRef = useRef(false);
   // зачем (PM-130, владелец 2026-09-24): комментарий держал устаревшую цену
@@ -432,6 +437,10 @@ export default function FlashcardsSpeakingSession() {
 
   // ── Загрузка карточек + настроек ───────────────────────────────────────────
   useEffect(() => {
+    if (speechNa) {
+      console.warn('[FC-SPEAKING-GATE] exit:speech_unavailable_on_device — старт не начат, энергия не списана ([SPEECH-AVAIL])');
+      return undefined;
+    }
     if (!accessResolved || quotaUnavailableRef.current) return undefined;
     setQuotaSessionAuthorized(false);
     speakingExplicitlyAbandonedRef.current = false;
@@ -740,7 +749,7 @@ export default function FlashcardsSpeakingSession() {
     };
     // deckRefs пересоздаётся на каждый рендер; deckKey — стабильный ключ того же списка.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [accessResolved, accountToken, acknowledgeSessionStart, attemptSessionId, clearAdvanceTimer, confirmSpeakEnergy, contentLang, deckKey, quotaUnavailable, refundSpeakingEntry, router, sessionSize, speakingEnergyIntent]);
+  }, [accessResolved, accountToken, acknowledgeSessionStart, attemptSessionId, clearAdvanceTimer, confirmSpeakEnergy, contentLang, deckKey, quotaUnavailable, refundSpeakingEntry, router, sessionSize, speakingEnergyIntent, speechNa]);
 
   // ── Финал ──────────────────────────────────────────────────────────────────
   // Речь здесь НЕ глушим специально (проверено 2026-09-17): `finished`
@@ -1175,7 +1184,7 @@ export default function FlashcardsSpeakingSession() {
   // зачем (Дизайн 04.10, слабый телефон): шаги шли каждые 1–8 с, запуск дошёл до quota:done на 16,7 с, а сторож
   // «20 с с начала» показал ошибку и отменил поздний ok. Теперь срабатывает только после 20 с БЕЗ нового шага.
   useEffect(() => {
-    if (!loading || quotaUnavailable) return undefined;
+    if (!loading || quotaUnavailable || speechNa) return undefined;
     speakingGateStepAtRef.current = Math.max(speakingGateStepAtRef.current, Date.now() - 1);
     let timer: ReturnType<typeof setTimeout> | null = null;
     const check = () => {
@@ -1195,7 +1204,7 @@ export default function FlashcardsSpeakingSession() {
     };
     timer = setTimeout(check, SPEAKING_GATE_WATCHDOG_MS);
     return () => { if (timer) clearTimeout(timer); };
-  }, [accessResolved, deckKey, loading, quotaUnavailable]);
+  }, [accessResolved, deckKey, loading, quotaUnavailable, speechNa]);
 
   const retryQuotaStart = useCallback(() => {
     quotaUnavailableRef.current = false;
@@ -1400,6 +1409,29 @@ RU: ${card.translation}`}
     </View>
     </>
   );
+
+  if (speechNa) {
+    return (
+      <ScreenGradient>
+        <SafeAreaView style={{ flex: 1 }} testID="fc-speak-speech-unavailable">
+          <ContentWrap>
+            {header(true)}
+            <PracticeStatePanel
+              glass={speakingGlass}
+              icon="mic-off-outline"
+              message={speechUnavailableOnDeviceText(lang)}
+              action={{
+                label: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
+                icon: 'arrow-back-outline',
+                onPress: leave,
+                testID: 'fc-speak-speech-unavailable-back',
+              }}
+            />
+          </ContentWrap>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
 
   /**
    * Performance Bible: первый кадр = финальная геометрия. На загрузке держим

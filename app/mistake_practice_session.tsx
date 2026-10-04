@@ -35,6 +35,8 @@ import {
   mistakeVoiceOutcomeToSessionAttemptVerdict,
 } from '../modules/mistake-practice/voice_verdict';
 import { SPEECH_PRONUNCIATION_PASS_THRESHOLD } from './pronunciation_scoring_client';
+import { useSpeechUnavailableOnDevice } from './speech_device_availability';
+import SpeechUnavailableNote from '../components/SpeechUnavailableNote';
 import { isMistakeStudyTargetValue, type MistakeEvent } from '../modules/mistake-practice/contracts';
 import { projectMistakes, requiredModesForMistake } from '../modules/mistake-practice/projection';
 import {
@@ -660,8 +662,22 @@ function MistakePracticeSessionScreen() {
   // открытии): формула переехала в mistakePracticeProgress рядом с сессией —
   // там её сторожит тест. Подробности класса бага — в комментарии к функции.
   const progress = useMemo(() => (session ? mistakePracticeProgress(session) : 0), [session]);
-  const answerValue = entry?.exercise.renderer === 'builder'
-    ? builderTokenIndexes.map((index) => entry.exercise.tokens?.[index] ?? '').join(' ')
+  // зачем (§SPEECH-NA, владелец 04.10): на устройстве без распознавателя голосовое
+  // задание «Моих ошибок» превращается в печать той же фразы — ошибка всё равно
+  // отрабатывается и засчитывается, а микрофон не обещает того, что не умеет.
+  const speechNa = useSpeechUnavailableOnDevice();
+  const renderer = entry?.exercise.renderer === 'speech' && speechNa ? 'typing' : entry?.exercise.renderer;
+  const speechReplacedByTyping = entry?.exercise.renderer === 'speech' && speechNa;
+  const speechSwapLoggedRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!entry || !speechReplacedByTyping) return;
+    const key = `${entry.mistakeId}:${entry.exercise.exerciseId}`;
+    if (speechSwapLoggedRef.current === key) return;
+    speechSwapLoggedRef.current = key;
+    console.warn('[SPEECH-AVAIL] mistakes: speech exercise → typing on device without recognizer', JSON.stringify({ key }));
+  }, [entry, speechReplacedByTyping]);
+  const answerValue = renderer === 'builder'
+    ? builderTokenIndexes.map((index) => entry?.exercise.tokens?.[index] ?? '').join(' ')
     : input;
   // зачем: панель вердикта показывает ответ ученика, но к моменту показа поля
   // уже очищены — держим последнее отправленное значение в ref.
@@ -1190,7 +1206,7 @@ OK: ${entry.exercise.correctAnswer}`}
           </Text>
         ) : null}
 
-        {!feedback && !hiddenUndo && (entry.exercise.renderer === 'choices' || entry.exercise.renderer === 'fill_gap' || entry.exercise.renderer === 'matching') ? (
+        {!feedback && !hiddenUndo && (renderer === 'choices' || renderer === 'fill_gap' || renderer === 'matching') ? (
           <View style={styles.optionList}>
             {(entry.exercise.options ?? [entry.exercise.correctAnswer]).map((option) => (
               <Pressable
@@ -1204,7 +1220,7 @@ OK: ${entry.exercise.correctAnswer}`}
           </View>
         ) : null}
 
-        {!feedback && !hiddenUndo && entry.exercise.renderer === 'builder' ? (
+        {!feedback && !hiddenUndo && renderer === 'builder' ? (
           <>
             <View style={[styles.builderAnswer, { backgroundColor: g.opaqueCard }]}>
               <Text style={{ color: builderTokenIndexes.length ? g.text : g.mutedText, fontSize: f.body }}>
@@ -1235,8 +1251,11 @@ OK: ${entry.exercise.correctAnswer}`}
           </>
         ) : null}
 
-        {!feedback && !hiddenUndo && (entry.exercise.renderer === 'typing' || entry.exercise.renderer === 'listening') ? (
+        {!feedback && !hiddenUndo && (renderer === 'typing' || renderer === 'listening') ? (
           <>
+            {speechReplacedByTyping ? (
+              <SpeechUnavailableNote lang={lang} color={g.secondary} testID="mistakes-speech-unavailable" />
+            ) : null}
             {entry.exercise.renderer === 'listening' && entry.exercise.audioRef ? (
               <ListeningPlayback audioRef={entry.exercise.audioRef} color={g.cta} foreground={g.ctaInk} accessibilityLabel={copy.listen} />
             ) : null}
@@ -1252,7 +1271,7 @@ OK: ${entry.exercise.correctAnswer}`}
           </>
         ) : null}
 
-        {!feedback && !hiddenUndo && entry.exercise.renderer === 'speech' ? (
+        {!feedback && !hiddenUndo && renderer === 'speech' ? (
           <View style={styles.speechArea}>
             <SpeakingPanel
               targetText={entry.exercise.correctAnswer}
@@ -1328,7 +1347,7 @@ OK: ${entry.exercise.correctAnswer}`}
         <Pressable style={[styles.bottomButton, { backgroundColor: g.accent }]} onPress={continueAfterFeedback}>
           <Text style={{ color: g.accentInk, fontSize: f.body, fontWeight: '700' }}>{copy.continue}</Text>
         </Pressable>
-      ) : entry.exercise.renderer !== 'choices' && entry.exercise.renderer !== 'fill_gap' && entry.exercise.renderer !== 'matching' && entry.exercise.renderer !== 'speech' ? (
+      ) : renderer !== 'choices' && renderer !== 'fill_gap' && renderer !== 'matching' && renderer !== 'speech' ? (
         <Pressable
           disabled={!answerValue.trim() || submitting}
           style={[styles.bottomButton, { backgroundColor: answerValue.trim() ? g.cta : g.opaqueControl }]}

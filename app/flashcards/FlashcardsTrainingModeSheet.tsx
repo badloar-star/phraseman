@@ -19,6 +19,7 @@ import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import type { CardsTrainingMode } from './training_entry';
+import { speechUnavailableOnDeviceText, useSpeechUnavailableOnDevice } from '../speech_device_availability';
 
 type Props = {
   visible: boolean;
@@ -56,7 +57,12 @@ export default function FlashcardsTrainingModeSheet({
   const g = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const { height: screenHeight } = useWindowDimensions();
-  const speakingEnabled = true;
+  // зачем (§SPEECH-NA, владелец 04.10): на устройстве без распознавателя «Устно»
+  // остаётся в списке, но отключено: перечёркнутый микрофон и вместо описания —
+  // «Распознавание речи не работает на этом устройстве». Вход в режим (и трата
+  // энергии) с такого устройства невозможен.
+  const speechNa = useSpeechUnavailableOnDevice();
+  const speakingEnabled = !speechNa;
   const firstRowRef = useRef<View>(null);
   const hadVisibleRef = useRef(visible);
   const didDismissRef = useRef(false);
@@ -247,27 +253,30 @@ export default function FlashcardsTrainingModeSheet({
           <ScrollView style={styles.scroll} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} nestedScrollEnabled>
             <View style={styles.list}>
               {rows.map((row, rowIndex) => {
-                const disabled = (row.mode === 'speaking' && !speakingEnabled) || preparing !== null;
+                const speakingBlocked = row.mode === 'speaking' && !speakingEnabled;
+                const disabled = speakingBlocked || preparing !== null;
+                const rowDescription = speakingBlocked ? speechUnavailableOnDeviceText(lang) : row.description;
+                const rowIcon = speakingBlocked ? 'mic-off-outline' : row.icon;
                 return (
                   <Pressable
                     ref={rowIndex === 0 ? firstRowRef : undefined}
                     key={row.mode}
                     testID={`fc-training-mode-${row.mode}`}
                     accessibilityRole="button"
-                    accessibilityLabel={`${row.title}. ${row.description}`}
+                    accessibilityLabel={`${row.title}. ${rowDescription}`}
                     accessibilityState={{ disabled }}
                     disabled={disabled}
                     onPress={() => onSelect(row.mode)}
                     style={({ pressed }) => [styles.row, { backgroundColor: g.card, borderColor: g.glassEdge, opacity: disabled ? 0.48 : pressed ? 0.82 : 1 }]}
                   >
                     <View style={[styles.icon, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}>
-                      <Ionicons name={row.icon} size={24} color={g.text} />
+                      <Ionicons name={rowIcon} size={24} color={g.text} />
                     </View>
                     <View style={styles.copy}>
                       <Text style={[styles.rowTitle, { color: g.text }]}>{row.title}</Text>
-                      <Text style={[styles.description, { color: g.secondary }]}>{row.description}</Text>
+                      <Text style={[styles.description, { color: g.secondary }]}>{rowDescription}</Text>
                     </View>
-                    <Ionicons name="chevron-forward" size={20} color={g.secondary} />
+                    {speakingBlocked ? <View style={{ width: 20 }} /> : <Ionicons name="chevron-forward" size={20} color={g.secondary} />}
                   </Pressable>
                 );
               })}

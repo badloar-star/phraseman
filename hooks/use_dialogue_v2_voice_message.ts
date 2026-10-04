@@ -26,6 +26,7 @@ import {
   type SpokenAudioClaim,
 } from '../modules/audio/audio_runtime_arbiter';
 import { useRuntimeActive } from './use_runtime_active';
+import { useSpeechUnavailableOnDevice } from '../app/speech_device_availability';
 import { noteSwallowed } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type DialogueV2VoiceStatus = 'idle' | 'starting' | 'recording';
@@ -46,6 +47,8 @@ export type UseDialogueV2VoiceMessageInput = Readonly<{
 export type DialogueV2VoiceMessageController = Readonly<{
   status: DialogueV2VoiceStatus;
   failure: DialogueV2VoiceFailure;
+  /** §SPEECH-NA: на устройстве нет распознавателя — микрофон показывается отключённым. */
+  unavailableOnDevice: boolean;
   clearFailure: () => void;
   voiceDraft: DialogueVoiceDraft | null;
   playingVoiceUri: string | null;
@@ -93,6 +96,7 @@ export function useDialogueV2VoiceMessage({
   const onTranscriptRef = useRef(onTranscript);
   onTranscriptRef.current = onTranscript;
   const speechModule = useMemo(() => loadSpeechRecognitionModule(), []);
+  const unavailableOnDevice = useSpeechUnavailableOnDevice();
 
   const mountedRef = useRef(true);
   const voiceInputSessionRef = useRef(0);
@@ -211,7 +215,18 @@ export function useDialogueV2VoiceMessage({
   }, [releaseVoiceRecording, speechModule]);
 
   const start = useCallback(async () => {
-    if (disabledRef.current || !runtimeActiveRef.current || !speechModule) return;
+    // зачем (§SPEECH-NA): раньше при отсутствии модуля старт молча выходил — на
+    // Huawei без Google тап по микрофону не давал НИКАКОГО отклика. Теперь
+    // устройство без распознавателя получает понятный отказ 'unavailable'.
+    if (unavailableOnDevice || !speechModule) {
+      console.warn('[SPEECH-AVAIL] dialogue-v2: mic tap on device without recognizer', JSON.stringify({ unavailableOnDevice, hasModule: Boolean(speechModule) }));
+      reportFailure('unavailable', unavailableOnDevice ? 'speech_unavailable_on_device' : 'module_missing');
+      return;
+    }
+    if (disabledRef.current || !runtimeActiveRef.current) {
+      console.warn('[DIALOGUE-V2] voice:start ignored', JSON.stringify({ disabled: disabledRef.current, runtimeActive: runtimeActiveRef.current }));
+      return;
+    }
     invalidateCapture();
     cleanupPendingVoiceRecordings();
     clearFailure();
@@ -357,6 +372,7 @@ export function useDialogueV2VoiceMessage({
     releaseVoiceRecording,
     speechModule,
     studyTarget,
+    unavailableOnDevice,
     updateStatus,
     updateVoiceDraft,
   ]);
@@ -448,6 +464,7 @@ export function useDialogueV2VoiceMessage({
   return Object.freeze({
     status,
     failure,
+    unavailableOnDevice,
     clearFailure,
     voiceDraft,
     playingVoiceUri,

@@ -8,6 +8,8 @@ import SpeakingQuotaDots from './SpeakingQuotaDots';
 import SpeakingPanel, { buildSpeakingPanelTheme } from './SpeakingPanel';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
+import { speechUnavailableOnDeviceText, useSpeechUnavailableOnDevice } from '../app/speech_device_availability';
+import type { Lang } from '../constants/i18n';
 
 /**
  * Drop-in "Устно" (speaking) control + paywall gate + panel overlay.
@@ -74,25 +76,32 @@ export function SpeakingButton({
   const isPremium = !gate.locked;
   const [open, setOpen] = useState(false);
   const holdStartedRef = useRef(false);
+  // зачем (§SPEECH-NA): без распознавателя на устройстве кнопка спокойно отключена
+  // (перечёркнутый микрофон), попытка не списывается и пейвол не открывается.
+  const speechNa = useSpeechUnavailableOnDevice();
 
   const cleaned = (targetText ?? '').trim();
 
   const onPress = useCallback(() => {
     hapticTap();
+    if (speechNa) {
+      console.warn('[SPEECH-AVAIL] SpeakingButton: press ignored — speech unavailable on device');
+      return;
+    }
     if (!gate.tryStartAttempt()) return;
     setOpen(true);
-  }, [gate]);
+  }, [gate, speechNa]);
 
   const onPressIn = useCallback(() => {
     if (!inlineHold) return;
     hapticTap();
-    if (!gate.tryStartAttempt()) {
+    if (speechNa || !gate.tryStartAttempt()) {
       holdStartedRef.current = false;
       return;
     }
     holdStartedRef.current = true;
     inlineHold.onStart();
-  }, [inlineHold, gate]);
+  }, [inlineHold, gate, speechNa]);
 
   const onPressOut = useCallback(() => {
     if (!holdStartedRef.current) return;
@@ -105,7 +114,7 @@ export function SpeakingButton({
   // cleanup»); доступность речи локальная, кнопка больше не гасится удалённо.
 
   const label = SPEAKING_LABELS[lang] ?? SPEAKING_LABELS.ru;
-  const a11y = SPEAKING_A11Y[lang] ?? SPEAKING_A11Y.ru;
+  const a11y = speechNa ? speechUnavailableOnDeviceText(lang as Lang) : SPEAKING_A11Y[lang] ?? SPEAKING_A11Y.ru;
 
   return (
     <>
@@ -120,8 +129,8 @@ export function SpeakingButton({
           style={[{ alignItems: 'center', justifyContent: 'center', minHeight: 44 }, style]}
         >
           <View style={{ position: 'relative' }}>
-            <Ionicons name="mic-outline" size={26} color={t.textSecond} />
-            {!isPremium && (
+            <Ionicons name={speechNa ? 'mic-off-outline' : 'mic-outline'} size={26} color={speechNa ? t.textMuted : t.textSecond} />
+            {!isPremium && !speechNa && (
               <View style={{ position: 'absolute', top: -8, right: -22 }}>
                 <PlusBadge themeMode={themeMode} size="xs" showIcon={false} />
               </View>
@@ -132,7 +141,7 @@ export function SpeakingButton({
               а не в момент отказа. Высота ряда постоянна (компонент сам держит
               распорку), поэтому подпись и соседи по футеру не сдвигаются. */}
           <SpeakingQuotaDots
-            quota={gate.quota}
+            quota={speechNa ? { ...gate.quota, limit: null } : gate.quota}
             spentColor={t.textMuted}
             remainingColor={t.accent}
             style={{ marginTop: 3 }}
@@ -162,20 +171,20 @@ export function SpeakingButton({
             style,
           ]}
         >
-          <Ionicons name="mic" size={18} color={t.accent} />
+          <Ionicons name={speechNa ? 'mic-off-outline' : 'mic'} size={18} color={speechNa ? t.textMuted : t.accent} />
           <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '700' }}>{label}</Text>
           {/* В пилюле точки идут в один ряд с подписью: высота строки задана
               иконкой и текстом, поэтому ряд точек её не меняет ни в одном состоянии. */}
           <SpeakingQuotaDots
-            quota={gate.quota}
+            quota={speechNa ? { ...gate.quota, limit: null } : gate.quota}
             spentColor={t.textMuted}
             remainingColor={t.accent}
           />
-          {!isPremium && <PlusBadge themeMode={themeMode} size="xs" />}
+          {!isPremium && !speechNa && <PlusBadge themeMode={themeMode} size="xs" />}
         </Pressable>
       )}
 
-      {open && !inlineHold && (
+      {open && !inlineHold && !speechNa && (
         <SpeakingPanel
           targetText={cleaned}
           lang={lang}

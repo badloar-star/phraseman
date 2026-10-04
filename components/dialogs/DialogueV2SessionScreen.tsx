@@ -161,6 +161,8 @@ export type DialogueV2SessionScreenProps = Readonly<{
   limitWallMessage?: string;
   /** Причина, почему голос не дал текста (C14/C15), и действие рядом. */
   voiceFailure?: Readonly<{ text: string; actionLabel?: string; onAction?: () => void }> | null;
+  /** §SPEECH-NA: на устройстве нет распознавателя — микрофон перечёркнут и приглушён. */
+  voiceUnavailable?: boolean;
   /** Последний ход не дошёл: плашка в ленте (C18/C19), разговор остаётся на экране. */
   turnError: boolean;
   /** Текст плашки; по умолчанию labels.turnError. */
@@ -213,6 +215,7 @@ export function DialogueV2SessionScreen({
   onOpenPlus,
   limitWallMessage,
   voiceFailure = null,
+  voiceUnavailable = false,
   turnError,
   turnErrorMessage,
   retryDisabled,
@@ -497,15 +500,15 @@ export function DialogueV2SessionScreen({
                 onPressOut={onStopVoice}
                 disabled={sending} // guard-ok: accessibilityState ниже
                 accessibilityRole="button"
-                accessibilityLabel={voiceBusy ? labels.voiceRecording : labels.voiceIdle}
-                accessibilityState={{ disabled: sending, selected: voiceBusy }}
+                accessibilityLabel={voiceUnavailable && voiceFailure ? voiceFailure.text : voiceBusy ? labels.voiceRecording : labels.voiceIdle}
+                accessibilityState={{ disabled: sending || voiceUnavailable, selected: voiceBusy }}
                 testID="dialogue-v2-voice-input"
-                style={[dialogueGlassRoundButtonStyle(glass, voiceStatus === 'recording'), { opacity: sending ? 0.55 : 1 }]}
+                style={[dialogueGlassRoundButtonStyle(glass, voiceStatus === 'recording'), { opacity: sending || voiceUnavailable ? 0.55 : 1 }]}
               >
                 {voiceStatus === 'starting' ? (
                   <ActivityIndicator color={glass.text} />
                 ) : (
-                  <Ionicons name="mic-outline" size={24} color={voiceStatus === 'recording' ? glass.ctaInk : glass.text} />
+                  <Ionicons name={voiceUnavailable ? 'mic-off-outline' : 'mic-outline'} size={24} color={voiceStatus === 'recording' ? glass.ctaInk : glass.text} />
                 )}
               </Pressable>
               <TextInput

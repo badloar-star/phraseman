@@ -35,6 +35,7 @@ import {
 } from '../hooks/use_dialogue_v2_session_coaching';
 import { DialogueGlassGate, useDialogueGlass } from '../components/dialogs/glass/DialogueGlassKit';
 import { useDialogueV2VoiceMessage } from '../hooks/use_dialogue_v2_voice_message';
+import { speechUnavailableOnDeviceText } from './speech_device_availability';
 import { useDialogueV2PreparedBotVoicePlayback } from '../hooks/use_dialogue_v2_prepared_bot_voice_playback';
 import {
   DialogueV2SessionScreen,
@@ -542,7 +543,10 @@ function SessionContent() {
           });
         },
       }
-      : voice.failure === 'unavailable' ? { text: coachingLabels.voiceUnavailable } : null;
+      // зачем (§SPEECH-NA): на устройстве без распознавателя — единый понятный текст.
+      : voice.failure === 'unavailable'
+        ? { text: voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : coachingLabels.voiceUnavailable }
+        : null;
   const openPlus = () => router.push({
     pathname: '/premium_modal',
     params: { context: 'dialog_limit', source: 'dialogue_v2_session' },
@@ -555,6 +559,7 @@ function SessionContent() {
       draft={draft}
       sending={sending}
       voiceStatus={voice.status}
+      voiceUnavailable={voice.unavailableOnDevice}
       voiceDraft={voice.voiceDraft}
       playingVoiceUri={voice.playingVoiceUri}
       playingPreparedBotVoiceMessageId={preparedBotVoice.playingMessageId}

@@ -16,6 +16,7 @@ const mockSpeak = jest.fn();
 const mockStopSpeech = jest.fn();
 let mockAttemptIdFactory = () => 'attempt-stable';
 let mockPendingRecord: Record<string, any> | null = null;
+let mockSpeechNa = false;
 
 jest.mock('react-native', () => ({
   ScrollView: 'ScrollView', Text: 'Text', TouchableOpacity: 'TouchableOpacity', View: 'View',
@@ -144,6 +145,11 @@ jest.mock('../app/flashcards/deck_options', () => ({ loadFcDeckOptions: jest.fn(
 jest.mock('../app/flashcards/SoundService', () => ({ fcHaptic: jest.fn(), playSfx: jest.fn() }));
 jest.mock('../app/navigation_back', () => ({ markNextNavigationAsReplace: jest.fn(), safeRouterBack: jest.fn() }));
 jest.mock('../components/NoEnergyModal', () => 'NoEnergyModal');
+// зачем (§SPEECH-NA): экран «Устно» спрашивает, есть ли распознаватель на устройстве.
+jest.mock('../app/speech_device_availability', () => ({
+  useSpeechUnavailableOnDevice: () => mockSpeechNa,
+  speechUnavailableOnDeviceText: () => 'Speech recognition doesn’t work on this device',
+}));
 jest.mock('../components/ScreenGradient', () => 'ScreenGradient');
 jest.mock('../components/ContentWrap', () => 'ContentWrap');
 jest.mock('../components/SkeletonShimmer', () => 'SkeletonBlock');
@@ -166,6 +172,7 @@ beforeEach(() => {
   jest.clearAllMocks();
   mockAttemptIdFactory = () => 'attempt-stable';
   mockPendingRecord = null;
+  mockSpeechNa = false;
   mockConfirmEnergy.mockResolvedValue('spent');
   mockRefundEnergy.mockResolvedValue(undefined);
   mockAcknowledgeEnergy.mockResolvedValue(true);
@@ -223,4 +230,18 @@ test('pending allowed Speaking consume survives unmount and same-intent remount 
   expect(mockPendingRecord).toBeNull();
   expect(mockRefundEnergy).not.toHaveBeenCalled();
   expect(mockAcknowledgeEnergy).toHaveBeenCalledTimes(1);
+});
+
+test('§SPEECH-NA: «Устно» на устройстве без распознавателя показывает сообщение и не тратит энергию', async () => {
+  mockSpeechNa = true;
+  const view = await render(React.createElement(FlashcardsSpeakingSession));
+
+  await waitFor(() => expect(view.getByTestId('fc-speak-speech-unavailable')).toBeTruthy());
+  expect(view.getByText('Speech recognition doesn’t work on this device')).toBeTruthy();
+  await act(async () => { await new Promise((resolve) => setTimeout(resolve, 20)); });
+  expect(mockConfirmEnergy).not.toHaveBeenCalled();
+  expect(mockConsumeQuota).not.toHaveBeenCalled();
+  expect(mockRefundEnergy).not.toHaveBeenCalled();
+  expect(mockPendingRecord).toBeNull();
+  expect(view.queryByTestId('mock-speak-hold')).toBeNull();
 });

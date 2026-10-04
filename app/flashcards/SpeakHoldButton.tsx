@@ -30,6 +30,7 @@ import { useTheme } from '../../components/ThemeContext';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useLang } from '../../components/LangContext';
 import { triLang } from '../../constants/i18n';
+import { speechUnavailableOnDeviceText, useSpeechUnavailableOnDevice } from '../speech_device_availability';
 
 const PRESS_SPRING = { damping: 16, stiffness: 320, mass: 0.6 } as const;
 /**
@@ -76,7 +77,7 @@ export type SpeakHoldButtonProps = {
 export default function SpeakHoldButton({
   accent,
   listening,
-  disabled = false,
+  disabled: disabledProp = false,
   sessionAuthorized = false,
   reduceMotion = false,
   onHoldStart,
@@ -90,9 +91,14 @@ export default function SpeakHoldButton({
   // дневной лимит голосовых попыток обычного аккаунта (не глухой пейвол).
   // Авторизованная сессия уже заплатила квотой тренировок — гейт не спрашиваем.
   const speakingGate = useSpeakingAttemptGate({ context: 'speaking', source: 'flashcards_speak_hold' });
-  const speakingAllowed = sessionAuthorized || !speakingGate.locked;
   const holdStartedRef = useRef(false);
   const { lang } = useLang();
+  // зачем (§SPEECH-NA, владелец 04.10): на устройстве без распознавателя кнопка
+  // заранее спокойно отключена (перечёркнутый микрофон), без бейджа Plus и без
+  // точек остатка — попытку здесь потратить нельзя, значит и показывать нечего.
+  const speechNa = useSpeechUnavailableOnDevice();
+  const disabled = disabledProp || speechNa;
+  const speakingAllowed = sessionAuthorized || !speakingGate.locked;
   const microphoneLabel = triLang(lang, {
     ru: 'Микрофон. Ответить устно', uk: 'Мікрофон. Відповісти вголос', en: 'Microphone. Answer aloud',
     es: 'Micrófono. Responder en voz alta', 'pt-BR': 'Microfone. Responder em voz alta', vi: 'Micrô. Trả lời thành tiếng',
@@ -135,13 +141,18 @@ export default function SpeakHoldButton({
   const onPressIn = useCallback(() => {
     press.value = reduceMotion ? withTiming(1, { duration: 50 }) : withSpring(1, PRESS_SPRING);
     void hapticTap();
+    if (speechNa) {
+      console.warn('[SPEECH-AVAIL] SpeakHoldButton: press ignored — speech unavailable on device', JSON.stringify({ testID }));
+      holdStartedRef.current = false;
+      return;
+    }
     if (!sessionAuthorized && !speakingGate.tryStartAttempt()) {
       holdStartedRef.current = false;
       return;
     }
     holdStartedRef.current = true;
     onHoldStart();
-  }, [sessionAuthorized, speakingGate, press, reduceMotion, onHoldStart]);
+  }, [sessionAuthorized, speakingGate, press, reduceMotion, onHoldStart, speechNa, testID]);
 
   const onPressOut = useCallback(() => {
     press.value = reduceMotion ? withTiming(0, { duration: 80 }) : withSpring(0, PRESS_SPRING);
@@ -160,7 +171,7 @@ export default function SpeakHoldButton({
         <Pressable
           testID={testID}
           accessibilityRole="button"
-          accessibilityLabel={microphoneLabel}
+          accessibilityLabel={speechNa ? speechUnavailableOnDeviceText(lang) : microphoneLabel}
           accessibilityHint={onAccessibilityActivate ? microphoneAssistiveHint : microphoneHint}
           accessibilityState={{ disabled, selected: listening }}
           accessibilityActions={onAccessibilityActivate ? [{ name: 'activate' }] : undefined}
@@ -187,10 +198,10 @@ export default function SpeakHoldButton({
               btnStyle,
             ]}
           >
-            <Ionicons name={listening ? 'mic' : 'mic-outline'} size={34} color={disabled ? t.textMuted : '#07110A'} />
+            <Ionicons name={speechNa ? 'mic-off-outline' : listening ? 'mic' : 'mic-outline'} size={34} color={disabled ? t.textMuted : '#07110A'} />
           </Reanimated.View>
         </Pressable>
-        {!speakingAllowed ? (
+        {!speakingAllowed && !speechNa ? (
           <View pointerEvents="none" style={styles.badge}>
             <PlusBadge themeMode={themeMode} size="xs" />
           </View>
@@ -209,7 +220,7 @@ export default function SpeakHoldButton({
           ложью. Высота ряда постоянна в обоих случаях — транспортный ряд и
           соседние круги не сдвигаются. */}
       <SpeakingQuotaDots
-        quota={sessionAuthorized ? SESSION_AUTHORIZED_QUOTA : speakingGate.quota}
+        quota={sessionAuthorized || speechNa ? SESSION_AUTHORIZED_QUOTA : speakingGate.quota}
         spentColor={t.textMuted}
         remainingColor={accent}
         style={styles.dots}

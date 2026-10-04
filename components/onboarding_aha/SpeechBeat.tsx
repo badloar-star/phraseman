@@ -36,6 +36,7 @@ import { AHA_STRINGS, pickTri } from './aha_scenes';
 import { pickBetterTranscript, softSpeechOutcome, type SoftSpeechOutcome } from './aha_speech_logic';
 import { AHA_THEME } from './aha_theme';
 import type { AhaSpeechStatus, SpeechBeatProps, TriText } from './aha_types';
+import { isSpeechUnavailableOnDevice } from '../../app/speech_device_availability';
 import { DebugLogger } from '../../app/debug-logger';
 
 // Android-движок может принять start() и молчать вечно — 7с и выходим в shadow.
@@ -76,8 +77,16 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
   const runtimeActive = useRuntimeActive();
   const runtimeActiveRef = useRef(runtimeActive);
   runtimeActiveRef.current = runtimeActive;
-  const [status, setStatus] = useState<AhaSpeechStatus>('preprompt');
-  const statusRef = useRef<AhaSpeechStatus>('preprompt');
+  // зачем (§SPEECH-NA, владелец 04.10): без распознавателя на устройстве не
+  // обещаем «скажи вслух — оценим», а сразу даём неголосовой путь (послушать
+  // эталон и продолжить). Онбординг проходится так же до конца.
+  const [initialStatus] = useState<AhaSpeechStatus>(() => {
+    if (!isSpeechUnavailableOnDevice()) return 'preprompt';
+    console.warn('[SPEECH-AVAIL] onboarding SpeechBeat: device without recognizer → fallback (shadow) from first frame');
+    return 'fallback';
+  });
+  const [status, setStatus] = useState<AhaSpeechStatus>(initialStatus);
+  const statusRef = useRef<AhaSpeechStatus>(initialStatus);
   statusRef.current = status;
   const [transcript, setTranscript] = useState('');
   const [report, setReport] = useState<readonly SpokenWordEntry[] | null>(null);

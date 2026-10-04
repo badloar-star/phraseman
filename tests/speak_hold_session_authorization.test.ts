@@ -53,6 +53,12 @@ jest.mock('../components/ThemeContext', () => ({
 jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'en' }) }));
 jest.mock('../constants/i18n', () => ({ triLang: (_lang: string, values: { en: string }) => values.en }));
 jest.mock('../hooks/use-haptics', () => ({ hapticTap: jest.fn() }));
+// зачем (§SPEECH-NA): кнопка сама спрашивает, есть ли распознаватель на устройстве;
+// здесь проверяется авторизация сессии — устройство считаем «с распознавателем».
+jest.mock('../app/speech_device_availability', () => ({
+  useSpeechUnavailableOnDevice: () => false,
+  speechUnavailableOnDeviceText: () => 'Speech recognition doesn’t work on this device',
+}));
 
 import SpeakHoldButton from '../app/flashcards/SpeakHoldButton';
 

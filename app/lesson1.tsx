@@ -43,6 +43,8 @@ import TapScale from '../components/TapScale';
 import LessonReviewSheet from '../components/LessonReviewSheet';
 import SpeakingPanel, { buildSpeakingPanelTheme } from '../components/SpeakingPanel';
 import SpeakingInlineSlot from '../components/SpeakingInlineSlot';
+import SpeechUnavailableNote from '../components/SpeechUnavailableNote';
+import { speechUnavailableOnDeviceText, useSpeechUnavailableOnDevice } from './speech_device_availability';
 import SpeakingInlineResultStars, { type SpeakingAttemptResult } from '../components/SpeakingInlineResultStars';
 import { getVerifiedPremiumAccessStatus, isTesterNoLimitsActive } from './premium_guard';
 import { useSpeakingAttemptGate } from '../hooks/useSpeakingAttemptGate';
@@ -592,6 +594,12 @@ const LessonContent = React.memo(function LessonContent({
   const [speakingHoldActive, setSpeakingHoldActive] = useState(false);
   const [speakingResult, setSpeakingResult] = useState<SpeakingAttemptResult | null>(null);
   const speakingOpenedForPhraseRef = useRef<string | null>(null);
+  // зачем (§SPEECH-NA, владелец 04.10): на устройстве без распознавателя «Устно»
+  // заранее отключено (перечёркнутый микрофон); тап не тратит попытку и не ведёт
+  // на пейвол, а показывает в слоте панели короткое «не работает на этом устройстве».
+  // Урок идёт дальше обычным ответом — голос здесь необязательный шаг.
+  const speechNa = useSpeechUnavailableOnDevice();
+  const [speechNaNoteKey, setSpeechNaNoteKey] = useState<string | null>(null);
 
   // [REVIEW] Окно «Назад к фразам» — просмотр уже пройденных фраз урока (read-only).
   const [reviewOpen, setReviewOpen] = useState(false);
@@ -609,6 +617,11 @@ const LessonContent = React.memo(function LessonContent({
   const reviewCurrent = reviewOpen ? (reviewPhrases[reviewIndex] ?? null) : null;
   const startSpeakingHold = useCallback(() => {
     hapticTap();
+    if (speechNa) {
+      console.warn('[SPEECH-AVAIL] lesson1: «Устно» tap on device without recognizer — show note, no attempt', JSON.stringify({ phrase: speakingPhraseKey }));
+      setSpeechNaNoteKey(speakingPhraseKey);
+      return;
+    }
     if (!speakingGate.tryStartAttempt()) return;
     // Замораживаем авто-переход у родителя: панель произносит эталон в фоне и даёт
     // «Моя запись» / «Сказать ещё раз», и 4-сек таймер не должен увести урок
@@ -618,7 +631,7 @@ const LessonContent = React.memo(function LessonContent({
     setSpeakingResult(null);
     setSpeakingOpen(true);
     setSpeakingHoldActive(true);
-  }, [speakingGate, onSpeakingActiveChange, speakingPhraseKey]);
+  }, [speakingGate, onSpeakingActiveChange, speakingPhraseKey, speechNa]);
 
   const endSpeakingHold = useCallback(() => setSpeakingHoldActive(false), []);
 
@@ -1293,6 +1306,9 @@ const LessonContent = React.memo(function LessonContent({
 
           {speakingFeatureEnabled && !!gradeTarget && (
             <SpeakingInlineSlot variant="lesson" style={{ marginTop: linkedSliceCompact ? 14 : 18 }}>
+              {speechNa && speechNaNoteKey === speakingPhraseKey && (
+                <SpeechUnavailableNote lang={lang} color={glass.secondary} background={glass.opaqueControl} testID="lesson1-speech-unavailable" />
+              )}
               {speakingVisible && (
                 <SpeakingPanel
                   targetText={cleanPhraseForDisplay(gradeTarget)}
@@ -1542,7 +1558,7 @@ const LessonContent = React.memo(function LessonContent({
             <LessonPressable
               testID="lesson1-speaking"
               accessibilityRole="button"
-              accessibilityLabel={triLang(lang, {
+              accessibilityLabel={speechNa ? speechUnavailableOnDeviceText(lang) : triLang(lang, {
                 ru: 'Сказать фразу вслух',
                 uk: 'Сказати фразу вголос',
                 en: 'Say the phrase out loud',
@@ -1553,13 +1569,14 @@ const LessonContent = React.memo(function LessonContent({
                 tr: 'Cümleyi sesli söyle',
                 pl: 'Powiedz frazę na głos',
               })}
-              style={toolChip}
+              accessibilityState={{ disabled: speechNa }}
+              style={[toolChip, speechNa ? { opacity: 0.45 } : null]}
               onPressIn={startSpeakingHold}
               onPressOut={endSpeakingHold}
             >
               <View style={{ position: 'relative' }}>
-                <Ionicons name="mic-outline" size={26} color={glass.text} />
-                {!speakingIsPremium && (
+                <Ionicons name={speechNa ? 'mic-off-outline' : 'mic-outline'} size={26} color={glass.text} />
+                {!speakingIsPremium && !speechNa && (
                   <View style={{ position: 'absolute', top: -4, right: -8 }}>
                     <Ionicons name="lock-closed" size={12} color={glass.text} />
                   </View>

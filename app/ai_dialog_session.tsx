@@ -117,6 +117,7 @@ import {
   scheduleSpeechStopSettlement,
 } from './speech_recognition_module';
 import { resolveDialogueAsrCapability } from './dialogue_voice_capability';
+import { speechUnavailableOnDeviceText, useSpeechUnavailableOnDevice } from './speech_device_availability';
 import { buildSpeakingStartOptions } from './speaking_recognition_options';
 import { TranscriptAccumulator } from './speaking_transcript_accumulator';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
@@ -298,6 +299,10 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     return strictDialogueVoice.speakDialogue(text);
   }, [dialogueSpeechLocale, dialogueTarget, legacySpeak, strictDialogueVoice]);
   const speechModule = useMemo(() => loadSpeechRecognitionModule(), []);
+  // зачем (§SPEECH-NA, владелец 04.10): без распознавателя на устройстве микрофон
+  // диалога заранее перечёркнут, тап не трогает квоту/пейвол и пишет понятное
+  // «не работает на этом устройстве»; диалог идёт текстом.
+  const speechNa = useSpeechUnavailableOnDevice();
   const recordingAudio = useManagedRecordingAudio(() => {
     try { speechModule?.abort(); } catch (e) {
       // native capture already gone
@@ -981,6 +986,12 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
   }, [cleanupVoiceInputListeners, clearRecognizerWatchdog, restoreLoudPlaybackMode]);
 
   const startVoiceInput = useCallback(async () => {
+    if (speechNa) {
+      DebugLogger.warn('[DIALOG-VOICE]', 'start: early return — speech unavailable on device ([SPEECH-AVAIL])');
+      console.warn('[SPEECH-AVAIL] ai_dialog: mic tap on device without recognizer — no attempt, no paywall');
+      setVoiceInputStatus('unavailable');
+      return;
+    }
     if (!runtimeActiveRef.current) return;
     if (sending || ended || voiceInputStatus === 'requesting') return;
     if (!accessResolved) return;
@@ -1284,6 +1295,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
       if (isCurrentSession()) setVoiceInputStatus('error');
     }
   }, [
+    speechNa,
     accessResolved,
     cleanupVoiceAudioEndListener,
     cleanupVoiceInputListeners,
@@ -2105,7 +2117,9 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
               pl: 'Nie udało się usłyszeć. Spróbuj ponownie',
             })
         : voiceInputStatus === 'unavailable'
-          ? triLang(lang, {
+          ? speechNa
+            ? speechUnavailableOnDeviceText(lang)
+            : triLang(lang, {
               ru: 'Голосовой ввод недоступен на этом устройстве',
               uk: 'Голосове введення недоступне на цьому пристрої',
               en: 'Voice input isn’t available on this device',
@@ -3202,7 +3216,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                   busy: voiceInputStatus === 'requesting' || voiceInputStatus === 'finishing',
                 }}
                 accessibilityLabel={
-                  triLang(lang, {
+                  speechNa ? speechUnavailableOnDeviceText(lang) : triLang(lang, {
                         ru: 'Зажми и говори',
                         uk: 'Затисни і говори',
                         en: 'Hold and speak',
@@ -3223,7 +3237,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                   backgroundColor: voiceInputStatus === 'listening' ? t.accent : t.bgSurface,
                   borderWidth: 0,
                   borderColor: 'transparent',
-                  opacity: sending || voiceInputStatus === 'finishing' ? 0.55 : 1,
+                  opacity: sending || voiceInputStatus === 'finishing' || speechNa ? 0.55 : 1,
                   position: 'relative',
                 }}
               >
@@ -3232,7 +3246,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                   <ActivityIndicator size="small" color={t.textSecond} style={{ marginTop: -5 }} />
                 ) : (
                   <Ionicons
-                    name={voiceInputStatus === 'listening' ? 'mic' : 'mic-outline'}
+                    name={speechNa ? 'mic-off-outline' : voiceInputStatus === 'listening' ? 'mic' : 'mic-outline'}
                     size={21}
                     color={voiceInputStatus === 'listening' ? t.correctText : t.textSecond}
                     // Ряд точек занимает низ круга всегда (в том числе распоркой),
@@ -3246,14 +3260,14 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                     44×44 — строка ввода, поле и кнопка отправки не двигаются
                     ни в одном состоянии. */}
                 <SpeakingQuotaDots
-                  quota={voiceInputGate.quota}
+                  quota={speechNa ? { ...voiceInputGate.quota, limit: null } : voiceInputGate.quota}
                   size="sm"
                   spentColor={voiceInputStatus === 'listening' ? `${t.correctText}59` : t.textMuted}
                   remainingColor={voiceInputStatus === 'listening' ? t.correctText : t.accent}
                   style={{ position: 'absolute', left: 0, right: 0, bottom: 6 }}
                   testID="ai-dialog-voice-quota-dots"
                 />
-                {voiceInputGate.locked && (
+                {voiceInputGate.locked && !speechNa && (
                   <View
                     style={{
                       position: 'absolute',
@@ -3282,7 +3296,17 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                 }}
                 // Текст поля — как в макете (`composer()`): он же и заменяет
                 // снятую подпись про микрофон.
-                placeholder={triLang(lang, {
+                placeholder={speechNa ? triLang(lang, {
+                  ru: 'Напиши ответ',
+                  uk: 'Напиши відповідь',
+                  en: 'Type your reply',
+                  es: 'Escribe tu respuesta',
+                  'pt-BR': 'Escreva sua resposta',
+                  vi: 'Nhập câu trả lời',
+                  id: 'Tulis jawabanmu',
+                  tr: 'Cevabını yaz',
+                  pl: 'Napisz odpowiedź',
+                }) : triLang(lang, {
                   ru: 'Напиши или зажми микрофон',
                   uk: 'Напиши або затисни мікрофон',
                   en: 'Type or hold the mic',

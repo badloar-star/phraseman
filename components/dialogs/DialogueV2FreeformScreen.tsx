@@ -57,6 +57,10 @@ export type DialogueV2FreeformScreenProps = Readonly<{
   onStopVoice: () => void;
   onDiscardVoice: () => void;
   onPlayVoice: (uri: string) => void;
+  /** §SPEECH-NA: на устройстве нет распознавателя — микрофон перечёркнут и приглушён. */
+  voiceUnavailable?: boolean;
+  /** Строка-ответ на тап по недоступному микрофону («не работает на этом устройстве»). */
+  voiceNotice?: string | null;
 }>;
 
 /** A dedicated V2 freeform surface, deliberately separate from scenario sessions. */
@@ -78,6 +82,8 @@ export function DialogueV2FreeformScreen({
   onStopVoice,
   onDiscardVoice,
   onPlayVoice,
+  voiceUnavailable = false,
+  voiceNotice = null,
 }: DialogueV2FreeformScreenProps) {
   const glass = useDialogueGlass();
   const voiceBusy = voiceStatus !== 'idle';
@@ -148,15 +154,15 @@ export function DialogueV2FreeformScreen({
               onPressOut={onStopVoice}
               disabled={sending}
               accessibilityRole="button"
-              accessibilityLabel={voiceBusy ? labels.voiceRecording : labels.voiceIdle}
-              accessibilityState={{ disabled: sending, selected: voiceBusy }}
+              accessibilityLabel={voiceUnavailable && voiceNotice ? voiceNotice : voiceBusy ? labels.voiceRecording : labels.voiceIdle}
+              accessibilityState={{ disabled: sending || voiceUnavailable, selected: voiceBusy }}
               testID="dialogue-v2-freeform-voice-input"
-              style={[dialogueGlassRoundButtonStyle(glass, voiceStatus === 'recording'), { opacity: sending ? 0.55 : 1 }]}
+              style={[dialogueGlassRoundButtonStyle(glass, voiceStatus === 'recording'), { opacity: sending || voiceUnavailable ? 0.55 : 1 }]}
             >
               {voiceStatus === 'starting' ? (
                 <ActivityIndicator color={glass.text} />
               ) : (
-                <Ionicons name="mic-outline" size={24} color={voiceStatus === 'recording' ? glass.ctaInk : glass.text} />
+                <Ionicons name={voiceUnavailable ? 'mic-off-outline' : 'mic-outline'} size={24} color={voiceStatus === 'recording' ? glass.ctaInk : glass.text} />
               )}
             </Pressable>
             <TextInput
@@ -194,6 +200,15 @@ export function DialogueV2FreeformScreen({
               <Ionicons name="arrow-up" size={24} color={!sending && canSend ? glass.ctaInk : glass.mutedText} />
             </PressableScale>
           </View>
+          {voiceNotice ? (
+            <Text
+              testID="dialogue-v2-freeform-voice-notice"
+              accessibilityLiveRegion="polite"
+              style={{ color: glass.mutedText, fontSize: 14, lineHeight: 19, marginTop: 8, paddingHorizontal: 4 }}
+            >
+              {voiceNotice}
+            </Text>
+          ) : null}
         </View>
       </SafeAreaView>
     </KeyboardAvoidingView>

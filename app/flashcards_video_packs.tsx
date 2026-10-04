@@ -24,7 +24,9 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { BlurView } from 'expo-blur';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
 import {
+  AppState,
   FlatList,
   Platform,
   Pressable,
@@ -239,6 +241,14 @@ export default function FlashcardsVideoPacksScreen() {
       ru: 'Показать все', uk: 'Показати всі', en: 'Show all', es: 'Mostrar todos',
       'pt-BR': 'Mostrar todos', vi: 'Hiện tất cả', id: 'Tampilkan semua', tr: 'Tümünü göster', pl: 'Pokaż wszystkie',
     }),
+    unavailable: triLang(lang, {
+      ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now', es: 'No disponible ahora',
+      'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne',
+    }),
+    tryAgain: triLang(lang, {
+      ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo',
+      'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
+    }),
   }), [lang]);
 
   /**
@@ -307,13 +317,6 @@ export default function FlashcardsVideoPacksScreen() {
       return () => { cancelled = true; };
     }, [cloudEnabled, reloadTick, studyTarget, targetKey]),
   );
-
-  const retryCatalog = useCallback(() => {
-    void hapticTap();
-    retryTargetKeyRef.current = targetKey;
-    setCatalogState((current) => transitionVideoCatalogState(current, targetKey, 'loading'));
-    setReloadTick((n) => n + 1);
-  }, [targetKey]);
 
   /** Четвёртым аргументом идёт язык — тот же отбор, что в каталоге наборов. */
   const visible = useMemo(
@@ -388,24 +391,65 @@ export default function FlashcardsVideoPacksScreen() {
 
   const searching = query.trim().length > 0;
   // зачем (владелец 01.10: «этот экран больше никогда не должен быть пустым»; «ошибок не показываем»):
-  // нет данных или сбой — держим места строк и тихо повторяем загрузку в фоне (до 5 раз по 20 с).
+  // нет данных или сбой — держим места строк и тихо повторяем загрузку в фоне.
+  // D158 / PM-214 (04.10): «тихо» ≠ «бесконечно». Было 5 повторов по 20 с, а зависшая загрузка
+  // (loadState='loading') не имела потолка вовсе — скелет висел вечно. Теперь 3 повтора ~1/3/8 с
+  // и потолок одной загрузки 12 с (app/load_gate_config.ts), затем спокойное «Сейчас недоступно» +
+  // тихая «Попробовать снова»; при возврате в приложение повтор идёт сам.
   // «Ничего не нашли» остаётся только как ответ на поиск пользователя.
   const waitingForCatalog = !searching && packs.length === 0 && (loadState === 'error' || loadState === 'ready' || loadState === 'loading');
   const silentRetryRef = useRef(0);
+  const [catalogExhausted, setCatalogExhausted] = useState(false);
   useEffect(() => {
-    if (!waitingForCatalog || loadState === 'loading') return undefined;
-    if (silentRetryRef.current >= 5) {
-      DebugLogger.warn(LOG, `каталог пуст после ${silentRetryRef.current} тихих повторов (loadState=${loadState}) — ждём данных Ядра`);
+    if (!waitingForCatalog) {
+      silentRetryRef.current = 0;
+      setCatalogExhausted(false);
       return undefined;
     }
+    if (catalogExhausted) return undefined;
+    const nextAttempt = silentRetryRef.current + 1;
+    const backoffMs = loadGateBackoffMs(nextAttempt);
+    if (loadState !== 'loading' && backoffMs === null) {
+      DebugLogger.warn(LOG, `каталог пуст после ${silentRetryRef.current} тихих повторов (loadState=${loadState}) → «Сейчас недоступно»`);
+      setCatalogExhausted(true);
+      return undefined;
+    }
+    // Идёт загрузка — ждём потолок; сбой или пусто — ждём паузу бэкоффа.
+    const delayMs = loadState === 'loading' ? LOAD_GATE_TOTAL_MS : (backoffMs as number);
     const timer = setTimeout(() => {
-      silentRetryRef.current += 1;
-      DebugLogger.info(LOG, `тихий повтор каталога #${silentRetryRef.current} (loadState=${loadState})`);
+      if (backoffMs === null) {
+        DebugLogger.warn(LOG, `загрузка каталога не ответила за ${LOAD_GATE_TOTAL_MS} мс после ${silentRetryRef.current} повторов → «Сейчас недоступно»`);
+        setCatalogExhausted(true);
+        return;
+      }
+      silentRetryRef.current = nextAttempt;
+      DebugLogger.info(LOG, `тихий повтор каталога #${nextAttempt} (loadState=${loadState}, ждали ${delayMs} мс)`);
       retryTargetKeyRef.current = targetKey;
+      // Повтор переводит экран в 'loading' — следующая пауза начнётся только после ответа (или потолка).
+      setCatalogState((current) => transitionVideoCatalogState(current, targetKey, 'loading'));
       setReloadTick((n) => n + 1);
-    }, 20_000);
+    }, delayMs);
     return () => clearTimeout(timer);
-  }, [loadState, targetKey, waitingForCatalog]);
+  }, [catalogExhausted, loadState, targetKey, waitingForCatalog]);
+
+  const retryCatalog = useCallback((source: 'tap' | 'foreground') => {
+    DebugLogger.info(LOG, `повтор каталога после «Сейчас недоступно» (${source})`);
+    if (source === 'tap') void hapticTap();
+    silentRetryRef.current = 0;
+    setCatalogExhausted(false);
+    retryTargetKeyRef.current = targetKey;
+    setCatalogState((current) => transitionVideoCatalogState(current, targetKey, 'loading'));
+    setReloadTick((n) => n + 1);
+  }, [targetKey]);
+
+  // D158: автоповтор при возврате в приложение, если повторы исчерпаны.
+  useEffect(() => {
+    if (!catalogExhausted) return undefined;
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') retryCatalog('foreground');
+    });
+    return () => sub.remove();
+  }, [catalogExhausted, retryCatalog]);
   const showEmpty = searching && visible.length === 0;
   const phraseTotal = visible.reduce((sum, pack) => sum + (Number(pack.cardCount) || 0), 0);
 
@@ -499,7 +543,21 @@ export default function FlashcardsVideoPacksScreen() {
             })}
           </View>
 
-          {waitingForCatalog ? (
+          {waitingForCatalog && catalogExhausted ? (
+            <View style={styles.center} testID="fc-video-packs-unavailable">
+              <Text accessibilityRole="header" style={[styles.stateTitle, { color: g.text, fontSize: 20 }]}>
+                {copy.unavailable}
+              </Text>
+              <Pressable
+                testID="fc-video-packs-try-again"
+                accessibilityRole="button"
+                onPress={() => retryCatalog('tap')}
+                style={({ pressed }) => [styles.stateAction, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.8 : 1 }]}
+              >
+                <Text style={{ color: g.text, fontSize: 16, fontWeight: '600' }}>{copy.tryAgain}</Text>
+              </Pressable>
+            </View>
+          ) : waitingForCatalog ? (
             /**
              * Скелет, а не спиннер по центру: первый кадр обязан совпадать по
              * геометрии с готовым списком, иначе экран «прыгает», когда данные

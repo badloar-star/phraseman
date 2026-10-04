@@ -13764,7 +13764,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "2026-10-04 (App Check): протокол записан — docs/phraseman-2.0/SESSION_COMMIT_PROTOCOL.md (одно дерево; коммит только своих путей через временный индекс с проверкой родителя; выравнивание общего индекса после каждого коммита; правка реестров блоком «HEAD + мои блоки»; зависшая блокировка индекса; ревьюеры только читают). Критерии НЕ приняты: A2 говорит про «изоляцию при параллельных правках», а правило владельца — одно общее дерево без копий (CLAUDE.md); решает координатор/владелец, принимать ли протокол как исполнение A1/A2."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -15763,6 +15765,58 @@
     "kind": "code",
     "review_verdict": null,
     "gate_evidence": [],
+    "actual_model": null,
+    "actual_reasoning": null
+  },
+  {
+    "id": "PM-290",
+    "epic": "E06",
+    "title": "Удалить денежный журнал шардов (client_shard_operation_ledger) с миграцией остатков",
+    "requirement_ids": [
+      "R057",
+      "R058"
+    ],
+    "basis": "OWNER",
+    "stage": "C",
+    "status": "planned",
+    "profile": "S2",
+    "model": "gpt-6-sol",
+    "reasoning": "high",
+    "spec": "docs/REMOVAL.md",
+    "acceptance": [
+      {
+        "id": "PM-290-A1",
+        "text": "Остатки журнала операций шардов (ключи client_shard_operation_v1:, состояние журнала, исходящая очередь зеркала phone-state) обнулены или перенесены без потери баланса монет (D70/D84): пробный прогон на копии, отчёт и откат одобрены до удаления",
+        "accepted": false,
+        "evidence": []
+      },
+      {
+        "id": "PM-290-A2",
+        "text": "Код журнала (app/economy/client_shard_operation_ledger.ts) и его потребители удалены, а не заглушены (D78); сторожа economy_constitution_contract и post_auth_generation_guard_contract переписаны по смыслу",
+        "accepted": false,
+        "evidence": []
+      }
+    ],
+    "depends_on": [
+      "PM-289"
+    ],
+    "gates": [
+      "BASELINE_SHA_APPROVED",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE"
+    ],
+    "audit_sha": null,
+    "result_sha": null,
+    "owner": null,
+    "reviewer": null,
+    "evidence": [],
+    "notes": [
+      "2026-10-04 (решение координатора, сессия App Check): заведена из PM-289. Срез PM-289 «вход без шардов» (AccountV2, после S2d) денежный журнал не трогает: его удаление затрагивает деньги пользователей и требует миграции и гейта MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE. Точки: app/economy/client_shard_operation_ledger.ts (в т.ч. phone-state mirror outbox), список blocklist ключей client_shard_operation_v1: в app/cloud_sync.ts (~683), app/auth_provider.ts (импорт shards_pending_grants ~4056 — в срезе PM-289)."
+    ],
+    "actual_cost": null,
+    "kind": "code",
+    "review_verdict": null,
+    "gate_evidence": {},
     "actual_model": null,
     "actual_reasoning": null
   }

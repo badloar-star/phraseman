@@ -114,8 +114,11 @@ describe('PM-195-A1: общая статистика не зависит от ф
   test('экран списка: фильтр — только вид; снимок грузится без фильтра, счётчики вкладок идут по полному items', () => {
     const source = read('app/mistakes_list.tsx');
     expect(source).toContain('loadMistakePracticeHubSnapshot(target)');
-    expect(source).toMatch(/const count = items \? items\.filter\(/);
-    expect(source).toMatch(/const visible = useMemo\(\(\) => \(items \?\? \[\]\)\.filter\(/);
+    // зачем (PM-195, экран переделан по макету «Панель»): счётчик «Ждут» и вкладка считаются по ПОЛНОМУ items,
+    // а фильтр группы — только срез поверх вкладки (visible = inTab.filter), на итоги не влияет.
+    expect(source).toMatch(/const waitingCount = useMemo\(\(\) => \(items \?\? \[\]\)\.filter\(/);
+    expect(source).toMatch(/const inTab = useMemo\(\(\) => \(items \?\? \[\]\)\.filter\(/);
+    expect(source).toMatch(/const visible = useMemo\(\(\) => inTab\.filter\(/);
     // setItems получает полный snapshot.items, а не отфильтрованное.
     expect(source).toContain('setItems(snapshot.items)');
   });

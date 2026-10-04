@@ -19,7 +19,6 @@ import {
 } from './account_generation';
 import { readVipSnapshotForGeneration, writeVipSnapshotForAccount } from './premium_vip_storage';
 import { resolveTesterNoPremiumOverride } from './tester_premium_override';
-import { selectVoiceMinutePackages, type VoiceMinutePack } from '../modules/voice_minutes/catalog';
 import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 import { installPlusTransferRunner } from './plus_transfer';
 
@@ -75,12 +74,6 @@ export function resolvePremiumPackages(
     byId(/lifetime|forever|one.?time|onetime|perpetual/i);
 
   return { monthly, yearly, lifetime };
-}
-
-export function resolveVoiceMinutePackages(
-  offerings: Parameters<typeof selectVoiceMinutePackages>[0],
-): VoiceMinutePack[] {
-  return selectVoiceMinutePackages(offerings);
 }
 
 function trimKey(raw: unknown): string {

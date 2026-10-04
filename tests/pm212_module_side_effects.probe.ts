@@ -52,7 +52,6 @@ const ALLOW: Record<string, Allow> = {
   'app/flashcards/low_power.ts::getItem': { count: 1, reason: 'ДОЛГ PM-212: app/flashcards/* — файлы сессии «Дизайн»; сделать чтение ленивым по первому вызову' },
   'app/flashcards/SoundService.ts::getItem': { count: 2, reason: 'ДОЛГ PM-212: app/flashcards/* — файлы сессии «Дизайн»; сделать чтение ленивым по первому вызову' },
   'app/flashcards/voice_prefs.ts::getItem': { count: 1, reason: 'ДОЛГ PM-212: app/flashcards/* — файлы сессии «Дизайн»; сделать чтение ленивым по первому вызову' },
-  'modules/voice_minutes/packages_cache.ts::primeVoiceMinutePricePeekFromBoot': { count: 1, reason: 'раздел MAX запломбирован (0 импортёров — модуль не вычисляется); код не удаляем по пломбе владельца 2026-09-04' },
 };
 
 // Статический JSON при импорте: разрешён только осознанно (размер в байтах на

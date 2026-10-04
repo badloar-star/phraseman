@@ -16,7 +16,7 @@ import { LinearGradient } from './SafeLinearGradient';
 const AUTOMATIC_RETRY_MS = 5_000;
 
 function PhoneStateRecoveryScreen() {
-  const { f, liquidGlassThemeId } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
   const { lang } = useLang();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const [snapshot, setSnapshot] = useState(phoneStateDurabilityRecovery.getSnapshot());
@@ -73,12 +73,12 @@ function PhoneStateRecoveryScreen() {
     </View>
   );
   const titleSlot = (
-    <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h2 }]}>
+    <Text accessibilityRole="header" style={[styles.title, { color: glass.text }]}>
       {title}
     </Text>
   );
   const bodySlot = (
-    <Text style={[styles.body, { color: glass.secondary, fontSize: f.body }]}>
+    <Text style={[styles.body, { color: glass.secondary }]}>
       {body}
     </Text>
   );
@@ -147,6 +147,7 @@ const styles = StyleSheet.create({
   },
   entrance: { width: '100%' },
   indicatorWrap: { alignItems: 'center', minHeight: 48 },
-  title: { marginTop: 22, fontWeight: '800', textAlign: 'center' },
-  body: { width: '100%', maxWidth: 440, alignSelf: 'center', marginTop: 10, lineHeight: 24, textAlign: 'center' },
+  // зачем: паритет с макетом system.html system_11 — заголовок 22/700, текст серым (15 → 16/22 по D145), отступы 22 и 8.
+  title: { marginTop: 22, fontSize: 22, lineHeight: 28, fontWeight: '700', textAlign: 'center' },
+  body: { width: '100%', maxWidth: 300, alignSelf: 'center', marginTop: 8, fontSize: 16, lineHeight: 22, textAlign: 'center' },
 });

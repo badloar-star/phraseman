@@ -77,7 +77,7 @@ function OfflineBannerSurface({
         <View style={[styles.surfaceSheen, { backgroundColor: edge }]} />
       </View>
       <View style={styles.surfaceRow}>
-        <Ionicons name="cloud-offline-outline" size={18} color={textColor} />
+        <Ionicons name="cloud-offline-outline" size={20} color={textColor} />
         <Text style={[styles.surfaceText, { color: textColor }]}>{offlineText}</Text>
       </View>
     </View>
@@ -327,9 +327,11 @@ const styles = StyleSheet.create({
   hybridCard: {
     width: '100%',
   },
+  // зачем: паритет с макетом system.html SYS-02 — капсула 44pt, радиус 22, значок 20; текст 15/600 → 16 по шкале D145.
   surface: {
-    borderRadius: 12,
-    paddingVertical: 8,
+    minHeight: 44,
+    justifyContent: 'center',
+    borderRadius: 22,
     paddingHorizontal: 14,
     overflow: 'hidden',
     ...noAndroidOutline,
@@ -344,10 +346,10 @@ const styles = StyleSheet.create({
   surfaceRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: 10,
   },
   surfaceText: {
-    fontSize: 13,
-    fontWeight: '700',
+    fontSize: 16,
+    fontWeight: '600',
   },
 });

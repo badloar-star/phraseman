@@ -82,7 +82,7 @@ export function dialogueGlassActionStyle(glass: DialogueGlass, live: boolean): V
   return {
     minHeight: 36,
     minWidth: 40,
-    paddingHorizontal: 12,
+    paddingHorizontal: 14, // dialogs.html `.ab`: поля 0·14
     borderRadius: 18,
     flexDirection: 'row',
     alignItems: 'center',
@@ -187,9 +187,11 @@ const styles = StyleSheet.create({
   avatar: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
   column: { maxWidth: '78%', minWidth: 0 },
   columnEnd: { alignItems: 'flex-end' },
-  who: { fontSize: 13, lineHeight: 18, fontWeight: '400', marginHorizontal: 6, marginBottom: 6 },
+  // `.msg .who` 14/19/500 — шкала D145: 13/18, вес 500.
+  who: { fontSize: 13, lineHeight: 18, fontWeight: '500', marginHorizontal: 6, marginBottom: 6 },
   bubble: { borderRadius: 20, paddingHorizontal: 18, paddingVertical: 14 },
-  bubbleText: { fontSize: 16, lineHeight: 22, fontWeight: '400' },
+  // `.msg .bub` 17/24/500 — шкала D145: 16/22, вес 500.
+  bubbleText: { fontSize: 16, lineHeight: 22, fontWeight: '500' },
   actions: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 8 },
   actionsEnd: { justifyContent: 'flex-end' },
   typing: {

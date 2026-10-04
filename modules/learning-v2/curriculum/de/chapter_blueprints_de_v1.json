@@ -19304,6 +19304,820 @@
           }
         }
       ]
+    },
+    {
+      "lessonId": "de_l22",
+      "lessonOrdinal": 22,
+      "grammarBoundary": {
+        "allowedConstructIds": [
+          "de_gc_relative_clause_gender_case_v1",
+          "de_gc_introduced_verbletzt_clause_v1",
+          "de_gc_noun_article_singular_plural_v1",
+          "de_gc_frequent_accusative_frames_v1",
+          "de_gc_dative_recipient_frames_v1",
+          "de_gc_staged_nominal_group_agreement_v1"
+        ],
+        "prohibitedConstructIds": [
+          "de_gc_event_passive_v1",
+          "de_gc_state_passive_v1"
+        ],
+        "noExpansion": "Permit only the introduced relative-element Verbletzt clause in which the relative form matches antecedent gender-number while its bounded nominative, accusative or dative form follows the verified clause-internal role, plus review of established noun packages, frequent accusative frames, dative-recipient frames, introduced-clause topology and staged nominal-group agreement. The exact productive relative mappings are masculine singular der, den and dem, feminine singular die in nominative role, neuter singular das in nominative role, and plural die in nominative role, only as instantiated by the closed models; no exhaustive relative-pronoun paradigm is licensed. Do not copy antecedent case onto the relative element, infer case from animacy or word order, introduce genitive relatives, preposition-plus-relative combinations, wer, was or wo relatives, free relative clauses, nonrestrictive punctuation doctrine, participial alternatives, new case or preposition relations, event or state passive, L23+ grammar, or any Task6 lexical adjudication."
+      },
+      "chapters": [
+        {
+          "id": "de_l22_c01",
+          "ordinal": 1,
+          "lessonOutcomeId": "de_l22_ch01",
+          "lessonOutcome": "recognise the antecedent and introduced relative clause",
+          "packetIds": [
+            "de_l22_c01_s01",
+            "de_l22_c01_s02",
+            "de_l22_c01_s03",
+            "de_l22_c01_s04",
+            "de_l22_c01_s05",
+            "de_l22_c01_s06",
+            "de_l22_c01_s07",
+            "de_l22_c01_s08"
+          ],
+          "allowedConstructIds": [
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_introduced_verbletzt_clause_v1",
+            "de_gc_noun_article_singular_plural_v1",
+            "de_gc_frequent_accusative_frames_v1",
+            "de_gc_dative_recipient_frames_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_event_passive_v1",
+            "de_gc_state_passive_v1"
+          ],
+          "situation": {
+            "setting": "local-advice-recommendation-reading",
+            "participants": "resident-and-service-guide",
+            "goal": "recognise-the-antecedent-and-introduced-relative-clause",
+            "contextSignature": "advice-profile-relative-recognition"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Das ist der Berater, der Frau Keller hilft.",
+            "exit": "Das ist der Berater, der Frau Keller hilft.",
+            "independentEvidenceByPacketId": "de_l22_c01_s08"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_relative_clause_gender_case_v1",
+              "stage": "introduction",
+              "packetId": "de_l22_c01_s01"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l22_c01_s03", "de_l22_c01_s04"],
+          "checkpoint": {
+            "packetId": "de_l22_c01_s08",
+            "integratedConstructIds": [
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_introduced_verbletzt_clause_v1",
+              "de_gc_noun_article_singular_plural_v1",
+              "de_gc_frequent_accusative_frames_v1",
+              "de_gc_dative_recipient_frames_v1",
+              "de_gc_staged_nominal_group_agreement_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l22_c01_berater_v1",
+                "semanticIdentity": "berater|male adviser used as the antecedent of an introduced relative clause",
+                "lemmaOrExpression": "Berater",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Berater",
+                  "plural": "Berater"
+                },
+                "nounPackageIdentity": "der|berater|berater",
+                "verbPackage": null,
+                "senseGloss": "male adviser used as the antecedent of an introduced relative clause",
+                "communicativeUse": "Das ist der Berater, der Frau Keller hilft.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l22_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l22_ch01",
+                  "checkpointPacketId": "de_l22_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_introduced_verbletzt_clause_v1",
+                    "de_gc_noun_article_singular_plural_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_staged_nominal_group_agreement_v1"
+                  ],
+                  "utilityRole": "participant_reference",
+                  "situationFacet": "participants",
+                  "facetValue": "library-visitor-and-service-librarian",
+                  "necessityClass": "PARTICIPANT_UNIDENTIFIABLE",
+                  "plannedUsePacketIds": ["de_l22_c01_s08"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "library-advice-profile-reading",
+              "participants": "library-visitor-and-service-librarian",
+              "goal": "independently-recognise-the-antecedent-and-introduced-relative-clause",
+              "contextSignature": "library-profile-relative-recognition-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l17_c06", "de_l17_c07"],
+            "targetsFutureChapterIds": ["de_l22_c02"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l23_c07_s51"
+            }
+          }
+        },
+        {
+          "id": "de_l22_c02",
+          "ordinal": 2,
+          "lessonOutcomeId": "de_l22_ch02",
+          "lessonOutcome": "select relative gender-number agreement",
+          "packetIds": [
+            "de_l22_c02_s09",
+            "de_l22_c02_s10",
+            "de_l22_c02_s11",
+            "de_l22_c02_s12",
+            "de_l22_c02_s13",
+            "de_l22_c02_s14",
+            "de_l22_c02_s15",
+            "de_l22_c02_s16"
+          ],
+          "allowedConstructIds": [
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_introduced_verbletzt_clause_v1",
+            "de_gc_noun_article_singular_plural_v1",
+            "de_gc_frequent_accusative_frames_v1",
+            "de_gc_dative_recipient_frames_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_event_passive_v1",
+            "de_gc_state_passive_v1"
+          ],
+          "situation": {
+            "setting": "community-service-gender-number-sort",
+            "participants": "learner-and-language-coach",
+            "goal": "select-relative-gender-number-agreement",
+            "contextSignature": "relative-gender-number-selection"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "Das ist der Helfer, der hilft. Das ist die Beraterin, die hilft. Das ist das Zimmer, das frei ist. Das sind die Helfer, die helfen.",
+            "exit": "Das ist der Helfer, der hilft. Das ist die Beraterin, die hilft. Das ist das Zimmer, das frei ist. Das sind die Helfer, die helfen.",
+            "independentEvidenceByPacketId": "de_l22_c02_s16"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_relative_clause_gender_case_v1",
+              "stage": "guided",
+              "packetId": "de_l22_c02_s09"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l22_c02_s11", "de_l22_c02_s12"],
+          "checkpoint": {
+            "packetId": "de_l22_c02_s16",
+            "integratedConstructIds": [
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_introduced_verbletzt_clause_v1",
+              "de_gc_noun_article_singular_plural_v1",
+              "de_gc_frequent_accusative_frames_v1",
+              "de_gc_dative_recipient_frames_v1",
+              "de_gc_staged_nominal_group_agreement_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l22_c02_beraterin_v1",
+                "semanticIdentity": "beraterin|female adviser used to instantiate feminine singular relative agreement",
+                "lemmaOrExpression": "Beraterin",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Beraterin",
+                  "plural": "Beraterinnen"
+                },
+                "nounPackageIdentity": "die|beraterin|beraterinnen",
+                "verbPackage": null,
+                "senseGloss": "female adviser used to instantiate feminine singular relative agreement",
+                "communicativeUse": "Das ist der Helfer, der hilft. Das ist die Beraterin, die hilft. Das ist das Zimmer, das frei ist. Das sind die Helfer, die helfen.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l22_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l22_ch02",
+                  "checkpointPacketId": "de_l22_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_introduced_verbletzt_clause_v1",
+                    "de_gc_noun_article_singular_plural_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_staged_nominal_group_agreement_v1"
+                  ],
+                  "utilityRole": "participant_reference",
+                  "situationFacet": "participants",
+                  "facetValue": "parent-volunteer-and-language-coach",
+                  "necessityClass": "PARTICIPANT_UNIDENTIFIABLE",
+                  "plannedUsePacketIds": ["de_l22_c02_s16"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "school-support-directory-sort",
+              "participants": "parent-volunteer-and-language-coach",
+              "goal": "independently-select-relative-gender-number-agreement",
+              "contextSignature": "school-directory-relative-agreement-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l02_c07", "de_l22_c01"],
+            "targetsFutureChapterIds": ["de_l22_c03"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l23_c07_s52"
+            }
+          }
+        },
+        {
+          "id": "de_l22_c03",
+          "ordinal": 3,
+          "lessonOutcomeId": "de_l22_ch03",
+          "lessonOutcome": "select a bounded clause-internal case independently",
+          "packetIds": [
+            "de_l22_c03_s17",
+            "de_l22_c03_s18",
+            "de_l22_c03_s19",
+            "de_l22_c03_s20",
+            "de_l22_c03_s21",
+            "de_l22_c03_s22",
+            "de_l22_c03_s23",
+            "de_l22_c03_s24"
+          ],
+          "allowedConstructIds": [
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_introduced_verbletzt_clause_v1",
+            "de_gc_noun_article_singular_plural_v1",
+            "de_gc_frequent_accusative_frames_v1",
+            "de_gc_dative_recipient_frames_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_event_passive_v1",
+            "de_gc_state_passive_v1"
+          ],
+          "situation": {
+            "setting": "advice-centre-case-comparison",
+            "participants": "resident-and-two-service-staff",
+            "goal": "select-a-bounded-clause-internal-case-independently",
+            "contextSignature": "relative-accusative-dative-case-selection"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Das ist der Sozialberater, den Frau Keller sucht. Das ist der Sozialberater, dem der Helfer hilft.",
+            "exit": "Das ist der Sozialberater, den Frau Keller sucht. Das ist der Sozialberater, dem der Helfer hilft.",
+            "independentEvidenceByPacketId": "de_l22_c03_s24"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_relative_clause_gender_case_v1",
+              "stage": "retrieval",
+              "packetId": "de_l22_c03_s17"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l22_c03_s19", "de_l22_c03_s20"],
+          "checkpoint": {
+            "packetId": "de_l22_c03_s24",
+            "integratedConstructIds": [
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_introduced_verbletzt_clause_v1",
+              "de_gc_noun_article_singular_plural_v1",
+              "de_gc_frequent_accusative_frames_v1",
+              "de_gc_dative_recipient_frames_v1",
+              "de_gc_staged_nominal_group_agreement_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l22_c03_sozialberater_v1",
+                "semanticIdentity": "sozialberater|social adviser used to contrast accusative den with dative dem inside a relative clause",
+                "lemmaOrExpression": "Sozialberater",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Sozialberater",
+                  "plural": "Sozialberater"
+                },
+                "nounPackageIdentity": "der|sozialberater|sozialberater",
+                "verbPackage": null,
+                "senseGloss": "social adviser used to contrast accusative den with dative dem inside a relative clause",
+                "communicativeUse": "Das ist der Sozialberater, den Frau Keller sucht. Das ist der Sozialberater, dem der Helfer hilft.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l22_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l22_ch03",
+                  "checkpointPacketId": "de_l22_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_introduced_verbletzt_clause_v1",
+                    "de_gc_noun_article_singular_plural_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_staged_nominal_group_agreement_v1"
+                  ],
+                  "utilityRole": "participant_reference",
+                  "situationFacet": "participants",
+                  "facetValue": "tenant-and-two-service-advisers",
+                  "necessityClass": "PARTICIPANT_UNIDENTIFIABLE",
+                  "plannedUsePacketIds": ["de_l22_c03_s24"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "housing-advice-case-check",
+              "participants": "tenant-and-two-service-advisers",
+              "goal": "independently-select-a-bounded-clause-internal-case",
+              "contextSignature": "housing-relative-case-selection-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l22_c01", "de_l22_c02"],
+            "targetsFutureChapterIds": ["de_l22_c04"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l23_c07_s53"
+            }
+          }
+        },
+        {
+          "id": "de_l22_c04",
+          "ordinal": 4,
+          "lessonOutcomeId": "de_l22_ch04",
+          "lessonOutcome": "identify a person with a short relative clause",
+          "packetIds": [
+            "de_l22_c04_s25",
+            "de_l22_c04_s26",
+            "de_l22_c04_s27",
+            "de_l22_c04_s28",
+            "de_l22_c04_s29",
+            "de_l22_c04_s30",
+            "de_l22_c04_s31",
+            "de_l22_c04_s32"
+          ],
+          "allowedConstructIds": [
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_introduced_verbletzt_clause_v1",
+            "de_gc_noun_article_singular_plural_v1",
+            "de_gc_frequent_accusative_frames_v1",
+            "de_gc_dative_recipient_frames_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_event_passive_v1",
+            "de_gc_state_passive_v1"
+          ],
+          "situation": {
+            "setting": "local-technician-identification",
+            "participants": "resident-and-service-desk-worker",
+            "goal": "identify-a-person-with-a-short-relative-clause",
+            "contextSignature": "technician-short-relative-identification"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "Das ist der Techniker, den Frau Keller sucht.",
+            "exit": "Das ist der Techniker, den Frau Keller sucht.",
+            "independentEvidenceByPacketId": "de_l22_c04_s32"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_relative_clause_gender_case_v1",
+              "stage": "production",
+              "packetId": "de_l22_c04_s25"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l22_c04_s27", "de_l22_c04_s28"],
+          "checkpoint": {
+            "packetId": "de_l22_c04_s32",
+            "integratedConstructIds": [
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_introduced_verbletzt_clause_v1",
+              "de_gc_noun_article_singular_plural_v1",
+              "de_gc_frequent_accusative_frames_v1",
+              "de_gc_dative_recipient_frames_v1",
+              "de_gc_staged_nominal_group_agreement_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l22_c04_techniker_v1",
+                "semanticIdentity": "techniker|technician identified precisely by a short relative clause",
+                "lemmaOrExpression": "Techniker",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Techniker",
+                  "plural": "Techniker"
+                },
+                "nounPackageIdentity": "der|techniker|techniker",
+                "verbPackage": null,
+                "senseGloss": "technician identified precisely by a short relative clause",
+                "communicativeUse": "Das ist der Techniker, den Frau Keller sucht.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l22_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l22_ch04",
+                  "checkpointPacketId": "de_l22_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_introduced_verbletzt_clause_v1",
+                    "de_gc_noun_article_singular_plural_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_staged_nominal_group_agreement_v1"
+                  ],
+                  "utilityRole": "participant_reference",
+                  "situationFacet": "participants",
+                  "facetValue": "visitor-and-repair-cafe-coordinator",
+                  "necessityClass": "PARTICIPANT_UNIDENTIFIABLE",
+                  "plannedUsePacketIds": ["de_l22_c04_s32"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "repair-cafe-person-identification",
+              "participants": "visitor-and-repair-cafe-coordinator",
+              "goal": "independently-identify-a-person-with-a-short-relative-clause",
+              "contextSignature": "repair-cafe-person-relative-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l22_c02", "de_l22_c03"],
+            "targetsFutureChapterIds": ["de_l22_c05"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l23_c07_s54"
+            }
+          }
+        },
+        {
+          "id": "de_l22_c05",
+          "ordinal": 5,
+          "lessonOutcomeId": "de_l22_ch05",
+          "lessonOutcome": "describe a service in relation to a stated need",
+          "packetIds": [
+            "de_l22_c05_s33",
+            "de_l22_c05_s34",
+            "de_l22_c05_s35",
+            "de_l22_c05_s36",
+            "de_l22_c05_s37",
+            "de_l22_c05_s38",
+            "de_l22_c05_s39",
+            "de_l22_c05_s40"
+          ],
+          "allowedConstructIds": [
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_introduced_verbletzt_clause_v1",
+            "de_gc_noun_article_singular_plural_v1",
+            "de_gc_frequent_accusative_frames_v1",
+            "de_gc_dative_recipient_frames_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_event_passive_v1",
+            "de_gc_state_passive_v1"
+          ],
+          "situation": {
+            "setting": "pickup-service-need-match",
+            "participants": "resident-and-community-coordinator",
+            "goal": "describe-a-service-in-relation-to-a-stated-need",
+            "contextSignature": "pickup-need-relative-service-description"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "Frau Keller sucht einen Abholdienst. Das ist der Abholdienst, der die Kisten abholt.",
+            "exit": "Frau Keller sucht einen Abholdienst. Das ist der Abholdienst, der die Kisten abholt.",
+            "independentEvidenceByPacketId": "de_l22_c05_s40"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l22_c05_s35", "de_l22_c05_s36"],
+          "checkpoint": {
+            "packetId": "de_l22_c05_s40",
+            "integratedConstructIds": [
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_introduced_verbletzt_clause_v1",
+              "de_gc_noun_article_singular_plural_v1",
+              "de_gc_frequent_accusative_frames_v1",
+              "de_gc_dative_recipient_frames_v1",
+              "de_gc_staged_nominal_group_agreement_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l22_c05_abholdienst_v1",
+                "semanticIdentity": "abholdienst|pickup service described in relation to a stated collection need",
+                "lemmaOrExpression": "Abholdienst",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Abholdienst",
+                  "plural": "Abholdienste"
+                },
+                "nounPackageIdentity": "der|abholdienst|abholdienste",
+                "verbPackage": null,
+                "senseGloss": "pickup service described in relation to a stated collection need",
+                "communicativeUse": "Frau Keller sucht einen Abholdienst. Das ist der Abholdienst, der die Kisten abholt.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l22_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l22_ch05",
+                  "checkpointPacketId": "de_l22_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_introduced_verbletzt_clause_v1",
+                    "de_gc_noun_article_singular_plural_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_staged_nominal_group_agreement_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "food-bank-pickup-service-match",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l22_c05_s40"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "food-bank-pickup-service-match",
+              "participants": "donor-and-logistics-coordinator",
+              "goal": "independently-describe-a-service-in-relation-to-a-stated-need",
+              "contextSignature": "food-bank-relative-service-match-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l22_c03", "de_l22_c04"],
+            "targetsFutureChapterIds": ["de_l22_c06"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l23_c07_s55"
+            }
+          }
+        },
+        {
+          "id": "de_l22_c06",
+          "ordinal": 6,
+          "lessonOutcomeId": "de_l22_ch06",
+          "lessonOutcome": "repair agreement-case conflation",
+          "packetIds": [
+            "de_l22_c06_s41",
+            "de_l22_c06_s42",
+            "de_l22_c06_s43",
+            "de_l22_c06_s44",
+            "de_l22_c06_s45",
+            "de_l22_c06_s46",
+            "de_l22_c06_s47",
+            "de_l22_c06_s48"
+          ],
+          "allowedConstructIds": [
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_introduced_verbletzt_clause_v1",
+            "de_gc_noun_article_singular_plural_v1",
+            "de_gc_frequent_accusative_frames_v1",
+            "de_gc_dative_recipient_frames_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_event_passive_v1",
+            "de_gc_state_passive_v1"
+          ],
+          "situation": {
+            "setting": "recommendation-form-repair",
+            "participants": "learner-and-language-reviewer",
+            "goal": "repair-agreement-case-conflation",
+            "contextSignature": "relative-agreement-case-dual-repair"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "[1] Das ist die Beraterin, der im Zentrum arbeitet. → Das ist die Beraterin, die im Zentrum arbeitet. [2] Ich suche den Berater, den Frau Keller hilft. → Ich suche den Berater, dem Frau Keller hilft. Die Zuordnung ist jetzt richtig.",
+            "exit": "[1] Das ist die Beraterin, der im Zentrum arbeitet. → Das ist die Beraterin, die im Zentrum arbeitet. [2] Ich suche den Berater, den Frau Keller hilft. → Ich suche den Berater, dem Frau Keller hilft. Die Zuordnung ist jetzt richtig.",
+            "independentEvidenceByPacketId": "de_l22_c06_s48"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_relative_clause_gender_case_v1",
+              "stage": "transfer",
+              "packetId": "de_l22_c06_s41"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l22_c06_s43", "de_l22_c06_s44"],
+          "checkpoint": {
+            "packetId": "de_l22_c06_s48",
+            "integratedConstructIds": [
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_introduced_verbletzt_clause_v1",
+              "de_gc_noun_article_singular_plural_v1",
+              "de_gc_frequent_accusative_frames_v1",
+              "de_gc_dative_recipient_frames_v1",
+              "de_gc_staged_nominal_group_agreement_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l22_c06_zuordnung_v1",
+                "semanticIdentity": "zuordnung|mapping between antecedent agreement and clause-internal case that is repaired",
+                "lemmaOrExpression": "Zuordnung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Zuordnung",
+                  "plural": "Zuordnungen"
+                },
+                "nounPackageIdentity": "die|zuordnung|zuordnungen",
+                "verbPackage": null,
+                "senseGloss": "mapping between antecedent agreement and clause-internal case that is repaired",
+                "communicativeUse": "[1] Das ist die Beraterin, der im Zentrum arbeitet. → Das ist die Beraterin, die im Zentrum arbeitet. [2] Ich suche den Berater, den Frau Keller hilft. → Ich suche den Berater, dem Frau Keller hilft. Die Zuordnung ist jetzt richtig.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l22_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l22_ch06",
+                  "checkpointPacketId": "de_l22_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_introduced_verbletzt_clause_v1",
+                    "de_gc_noun_article_singular_plural_v1",
+                    "de_gc_frequent_accusative_frames_v1",
+                    "de_gc_dative_recipient_frames_v1",
+                    "de_gc_staged_nominal_group_agreement_v1"
+                  ],
+                  "utilityRole": "repair",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-repair-agreement-case-conflation",
+                  "necessityClass": "REPAIR_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l22_c06_s48"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "community-directory-peer-review",
+              "participants": "learner-and-peer-reviewer",
+              "goal": "independently-repair-agreement-case-conflation",
+              "contextSignature": "community-directory-relative-repair-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l22_c04", "de_l22_c05"],
+            "targetsFutureChapterIds": ["de_l22_c07"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l23_c07_s56"
+            }
+          }
+        },
+        {
+          "id": "de_l22_c07",
+          "ordinal": 7,
+          "lessonOutcomeId": "de_l22_ch07",
+          "lessonOutcome": "transfer relative description to an unfamiliar recommendation",
+          "packetIds": [
+            "de_l22_c07_s49",
+            "de_l22_c07_s50",
+            "de_l22_c07_s51",
+            "de_l22_c07_s52",
+            "de_l22_c07_s53",
+            "de_l22_c07_s54",
+            "de_l22_c07_s55",
+            "de_l22_c07_s56"
+          ],
+          "allowedConstructIds": [
+            "de_gc_relative_clause_gender_case_v1",
+            "de_gc_introduced_verbletzt_clause_v1",
+            "de_gc_staged_nominal_group_agreement_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_event_passive_v1",
+            "de_gc_state_passive_v1"
+          ],
+          "situation": {
+            "setting": "unfamiliar-family-service-recommendation",
+            "participants": "resident-and-new-community-adviser",
+            "goal": "transfer-relative-description-to-an-unfamiliar-recommendation",
+            "contextSignature": "changed-service-relative-final-transfer"
+          },
+          "supportFading": {
+            "entryLevel": 2,
+            "exitLevel": 0,
+            "entry": "Frau Keller sucht einen Beratungsdienst. Ich empfehle den neuen Beratungsdienst, der Familien hilft.",
+            "exit": "Frau Keller sucht einen Beratungsdienst. Ich empfehle den neuen Beratungsdienst, der Familien hilft.",
+            "independentEvidenceByPacketId": "de_l22_c07_s56"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": [
+            "de_l22_c07_s49",
+            "de_l22_c07_s50",
+            "de_l22_c07_s51",
+            "de_l22_c07_s52",
+            "de_l22_c07_s53",
+            "de_l22_c07_s54",
+            "de_l22_c07_s55",
+            "de_l22_c07_s56"
+          ],
+          "checkpoint": {
+            "packetId": "de_l22_c07_s56",
+            "integratedConstructIds": [
+              "de_gc_relative_clause_gender_case_v1",
+              "de_gc_introduced_verbletzt_clause_v1",
+              "de_gc_staged_nominal_group_agreement_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l22_c07_beratungsdienst_v1",
+                "semanticIdentity": "beratungsdienst|advisory service recommended for a different stated family need",
+                "lemmaOrExpression": "Beratungsdienst",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Beratungsdienst",
+                  "plural": "Beratungsdienste"
+                },
+                "nounPackageIdentity": "der|beratungsdienst|beratungsdienste",
+                "verbPackage": null,
+                "senseGloss": "advisory service recommended for a different stated family need",
+                "communicativeUse": "Frau Keller sucht einen Beratungsdienst. Ich empfehle den neuen Beratungsdienst, der Familien hilft.",
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l22_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l22_ch07",
+                  "checkpointPacketId": "de_l22_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_relative_clause_gender_case_v1",
+                    "de_gc_introduced_verbletzt_clause_v1",
+                    "de_gc_staged_nominal_group_agreement_v1"
+                  ],
+                  "utilityRole": "transfer",
+                  "situationFacet": "goal",
+                  "facetValue": "independently-recommend-a-different-local-service-by-identifying-the-relevant-person-or-feature-precisely",
+                  "necessityClass": "TRANSFER_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l22_c07_s56"]
+                }
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "school-family-support-referral",
+              "participants": "parent-and-school-coordinator",
+              "goal": "independently-recommend-a-different-local-service-by-identifying-the-relevant-person-or-feature-precisely",
+              "contextSignature": "school-family-service-relative-transfer-check"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l22_c05", "de_l22_c06"],
+            "targetsFutureChapterIds": ["de_l23_c01"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l23_c07_s55"
+            }
+          }
+        }
+      ]
     }
   ]
 }

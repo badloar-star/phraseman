@@ -10335,6 +10335,270 @@ function validateL21SemanticContract(raw: R, plan: Boundary): void {
     throw new Error("l21_semantic_contract_invalid:identity");
 }
 
+const L22_CONTRACT_HASH =
+  "6c1b5bf2c3067436678af68d1503834a5a7f9445e3ded11d4ee5ddcad8da8fd8";
+const L22_ALLOWED = [
+  "de_gc_relative_clause_gender_case_v1",
+  "de_gc_introduced_verbletzt_clause_v1",
+  "de_gc_noun_article_singular_plural_v1",
+  "de_gc_frequent_accusative_frames_v1",
+  "de_gc_dative_recipient_frames_v1",
+  "de_gc_staged_nominal_group_agreement_v1",
+] as const;
+const L22_FINAL = [
+  "de_gc_relative_clause_gender_case_v1",
+  "de_gc_introduced_verbletzt_clause_v1",
+  "de_gc_staged_nominal_group_agreement_v1",
+] as const;
+const L22_PROHIBITED = [
+  "de_gc_event_passive_v1",
+  "de_gc_state_passive_v1",
+] as const;
+const L22_NO_EXPANSION =
+  "Permit only the introduced relative-element Verbletzt clause in which the relative form matches antecedent gender-number while its bounded nominative, accusative or dative form follows the verified clause-internal role, plus review of established noun packages, frequent accusative frames, dative-recipient frames, introduced-clause topology and staged nominal-group agreement. The exact productive relative mappings are masculine singular der, den and dem, feminine singular die in nominative role, neuter singular das in nominative role, and plural die in nominative role, only as instantiated by the closed models; no exhaustive relative-pronoun paradigm is licensed. Do not copy antecedent case onto the relative element, infer case from animacy or word order, introduce genitive relatives, preposition-plus-relative combinations, wer, was or wo relatives, free relative clauses, nonrestrictive punctuation doctrine, participial alternatives, new case or preposition relations, event or state passive, L23+ grammar, or any Task6 lexical adjudication.";
+
+function l22Hash(value: unknown): string {
+  return createHash("sha256").update(JSON.stringify(value)).digest("hex");
+}
+
+function validateL22SemanticContract(raw: R, plan: Boundary): void {
+  const l22 = (raw.lessons as R[]).find(
+    (lesson) => lesson.lessonId === "de_l22",
+  );
+  if (!l22) throw new Error("l22_semantic_contract_invalid:identity");
+  const expected = ((json(FILE) as R).lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l22",
+    ) as R,
+    chapters = l22.chapters as R[],
+    expectedChapters = expected.chapters as R[],
+    boundary = l22.grammarBoundary as R;
+  if (!expected || l22Hash(expected) !== L22_CONTRACT_HASH)
+    throw new Error("l22_semantic_contract_invalid:identity");
+  if (l22.lessonOrdinal !== 22 || chapters.length !== 7)
+    throw new Error("l22_semantic_contract_invalid:identity");
+  if (boundary.noExpansion !== L22_NO_EXPANSION)
+    throw new Error("l22_semantic_contract_invalid:no_expansion");
+  if (
+    JSON.stringify(plan.introducedConstructIds) !==
+      JSON.stringify(L22_ALLOWED.slice(0, 1)) ||
+    JSON.stringify(plan.extendedConstructIds) !==
+      JSON.stringify(L22_ALLOWED.slice(1, 5)) ||
+    JSON.stringify(plan.reviewedConstructIds) !==
+      JSON.stringify(L22_ALLOWED.slice(5)) ||
+    JSON.stringify(plan.prohibitedConstructIds) !==
+      JSON.stringify(L22_PROHIBITED) ||
+    JSON.stringify(boundary.allowedConstructIds) !==
+      JSON.stringify(L22_ALLOWED) ||
+    JSON.stringify(boundary.prohibitedConstructIds) !==
+      JSON.stringify(L22_PROHIBITED) ||
+    JSON.stringify((plan.session56Final as R).requiredConstructIds) !==
+      JSON.stringify(L22_FINAL)
+  )
+    throw new Error("l22_semantic_contract_invalid:sets");
+  const incoming = [51, 52, 53, 54, 55, 56, 55].map((n) => `de_l22_c07_s${n}`),
+    l21 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l21",
+    ) as R;
+  if (
+    !l21 ||
+    JSON.stringify(
+      (l21.chapters as R[]).map(
+        (chapter) =>
+          ((chapter.recallSchedule as R).futureDelayedProbe as R).packetId,
+      ),
+    ) !== JSON.stringify(incoming)
+  )
+    throw new Error("l21_l22_inverse_provenance_invalid");
+  const c02 = chapters[1].supportFading as R,
+    c03 = chapters[2].supportFading as R,
+    c06 = chapters[5].supportFading as R,
+    c07 = chapters[6].supportFading as R,
+    expectedC02 = expectedChapters[1].supportFading as R,
+    expectedC03 = expectedChapters[2].supportFading as R,
+    expectedC06 = expectedChapters[5].supportFading as R,
+    expectedC07 = expectedChapters[6].supportFading as R,
+    c07Lexical = (
+      (chapters[6].checkpoint as R).plannedNewLexicalSenses as R[]
+    )[0] as R,
+    c07StandaloneRelationSurface = [
+      String(c07.entry),
+      String(c07.exit),
+      String(c07Lexical.communicativeUse),
+    ].join(" ");
+  if (
+    /standalonePrepositionRelationProbe|(?:^|[\s.,;:!?])(?:an|auf|aus|bei|durch|für|gegen|hinter|in|mit|nach|neben|ohne|über|um|unter|von|vor|zu|zwischen)(?=$|[\s.,;:!?])/iu.test(
+      c07StandaloneRelationSurface,
+    )
+  )
+    throw new Error("l22_standalone_preposition_relation_leak");
+  if (c02.entry !== expectedC02.entry || c02.exit !== expectedC02.exit)
+    throw new Error("l22_c02_gender_number_mapping_invalid");
+  if (c03.entry !== expectedC03.entry || c03.exit !== expectedC03.exit)
+    throw new Error("l22_c03_internal_case_mapping_invalid");
+  if (
+    c06.entry !== expectedC06.entry ||
+    c06.exit !== expectedC06.exit ||
+    (String(c06.entry).match(/→/gu) ?? []).length !== 2
+  )
+    throw new Error("l22_c06_repair_items");
+  if (
+    c07.entry !== expectedC07.entry ||
+    c07.exit !== expectedC07.exit ||
+    c07.entryLevel !== 2 ||
+    c07.exitLevel !== 0 ||
+    c07.independentEvidenceByPacketId !== "de_l22_c07_s56" ||
+    !String(c07.entry).includes("den neuen Beratungsdienst") ||
+    !String(c07.entry).includes("der Familien hilft") ||
+    JSON.stringify(chapters[6].situation) !==
+      JSON.stringify(expectedChapters[6].situation)
+  )
+    throw new Error("l22_c07_final_transfer");
+  const surface = JSON.stringify(l22)
+    .replaceAll(L22_NO_EXPANSION, "")
+    .replaceAll(String(expectedC02.entry), "")
+    .replaceAll(String(expectedC03.entry), "")
+    .replaceAll(String(expectedC06.entry), "")
+    .replaceAll(String(expectedC07.entry), "")
+    .replaceAll(
+      String(
+        (
+          (
+            (expectedChapters[5].checkpoint as R).plannedNewLexicalSenses as R[]
+          )[0] as R
+        ).communicativeUse,
+      ),
+      "",
+    );
+  if (
+    /relativeTopologyProbe|der Frau Keller helfen|die Frau Keller hilft/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l22_relative_verbletzt_missing");
+  if (
+    /antecedentCaseCopyProbe|den der Helfer hilft|dem Frau Keller sucht/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l22_antecedent_case_copy_leak");
+  if (/genitiveRelativeProbe|dessen|deren|genitive relative/iu.test(surface))
+    throw new Error("l22_genitive_relative_leak");
+  if (
+    /prepositionRelativeProbe|mit dem|für den|preposition-plus-relative/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l22_preposition_relative_leak");
+  if (/freeRelativeProbe|\bwer\b|\bwas\b|\bwo\b|free relative/iu.test(surface))
+    throw new Error("l22_free_or_wo_relative_leak");
+  if (
+    /passiveProbe|event passive|state passive|wird beraten|ist beraten/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l22_passive_leak");
+  if (/hiddenGrammarProbe|new generative operation|L23 grammar/iu.test(surface))
+    throw new Error("l22_hidden_grammar_leak");
+  if (
+    /learnerArtifactsAuthorized.{0,10}true|already satisfies DE-INTERACTION-001|sessions|release|audio|mockup|one natural German target phrase.{0,40}(?:optional|not required)/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l22_interaction_001_future_boundary_invalid");
+  if (
+    /allowNonGermanAssessedTarget.{0,10}true|non-German assessed|localized markers.{0,20}(?:allowed|permitted)|allow localized markers/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l22_interaction_002_future_boundary_invalid");
+  if (
+    /English contour|copy English|English reuse|englishContourProbe/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l22_english_contour_leak");
+  const signatures = new Set<string>(),
+    ids = new Set<string>(),
+    semantics = new Set<string>();
+  chapters.forEach((chapter, index) => {
+    const expectedChapter = expectedChapters[index],
+      cp = chapter.checkpoint as R,
+      expectedCp = expectedChapter.checkpoint as R;
+    if (
+      chapter.id !== expectedChapter.id ||
+      chapter.ordinal !== expectedChapter.ordinal ||
+      chapter.lessonOutcomeId !== expectedChapter.lessonOutcomeId ||
+      chapter.lessonOutcome !== expectedChapter.lessonOutcome ||
+      JSON.stringify(chapter.packetIds) !==
+        JSON.stringify(expectedChapter.packetIds) ||
+      JSON.stringify(chapter.recallSchedule) !==
+        JSON.stringify(expectedChapter.recallSchedule)
+    )
+      throw new Error("l22_semantic_contract_invalid:identity");
+    if (
+      JSON.stringify(chapter.allowedConstructIds) !==
+        JSON.stringify(expectedChapter.allowedConstructIds) ||
+      JSON.stringify(chapter.prohibitedConstructIds) !==
+        JSON.stringify(expectedChapter.prohibitedConstructIds) ||
+      JSON.stringify(cp.integratedConstructIds) !==
+        JSON.stringify(expectedCp.integratedConstructIds)
+    )
+      throw new Error("l22_semantic_contract_invalid:sets");
+    if (
+      JSON.stringify(chapter.lifecycleAnchors) !==
+      JSON.stringify(expectedChapter.lifecycleAnchors)
+    )
+      throw new Error("l22_semantic_contract_invalid:anchors");
+    if (
+      JSON.stringify(chapter.supportFading) !==
+      JSON.stringify(expectedChapter.supportFading)
+    )
+      throw new Error("l22_semantic_contract_invalid:support_fading");
+    if (
+      JSON.stringify([chapter.situation, cp.newSituation]) !==
+      JSON.stringify([expectedChapter.situation, expectedCp.newSituation])
+    )
+      throw new Error("l22_semantic_contract_invalid:situations");
+    for (const sit of [chapter.situation as R, cp.newSituation as R]) {
+      const signature = String(sit.contextSignature);
+      if (signatures.has(signature))
+        throw new Error("l22_semantic_contract_invalid:situations");
+      signatures.add(signature);
+    }
+    if (
+      JSON.stringify(chapter.chapterEvidencePacketIds) !==
+      JSON.stringify(expectedChapter.chapterEvidencePacketIds)
+    )
+      throw new Error("l22_semantic_contract_invalid:evidence");
+    const senses = cp.plannedNewLexicalSenses as R[],
+      expectedSenses = expectedCp.plannedNewLexicalSenses as R[];
+    if (senses.length !== 1 || expectedSenses.length !== 1)
+      throw new Error("l22_semantic_contract_invalid:lexical_packages");
+    const sense = senses[0],
+      expectedSense = expectedSenses[0],
+      actualPackage = clone(sense),
+      expectedPackage = clone(expectedSense);
+    delete actualPackage.utilityProof;
+    delete expectedPackage.utilityProof;
+    if (
+      ids.has(String(sense.id)) ||
+      semantics.has(String(sense.semanticIdentity)) ||
+      JSON.stringify(actualPackage) !== JSON.stringify(expectedPackage) ||
+      cp.lexicalStatus !== expectedCp.lexicalStatus
+    )
+      throw new Error("l22_semantic_contract_invalid:lexical_packages");
+    ids.add(String(sense.id));
+    semantics.add(String(sense.semanticIdentity));
+    if (
+      JSON.stringify(sense.utilityProof) !==
+      JSON.stringify(expectedSense.utilityProof)
+    )
+      throw new Error("l22_semantic_contract_invalid:lexical_utility");
+  });
+  if (l22Hash(l22) !== L22_CONTRACT_HASH)
+    throw new Error("l22_semantic_contract_invalid:identity");
+}
+
 function validate(raw: unknown): {
   lessons: number;
   chapters: number;
@@ -10442,6 +10706,12 @@ function validate(raw: unknown): {
     (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l21")
   )
     validateL21SemanticContract(raw, l21Plan);
+  const l22Plan = source.get("de_l22");
+  if (
+    l22Plan &&
+    (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l22")
+  )
+    validateL22SemanticContract(raw, l22Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -10715,6 +10985,11 @@ function validate(raw: unknown): {
               sv.id === "de_lex_plan_l21_c07_nachbarschaftsaktion_v1" &&
               sv.semanticIdentity ===
                 "nachbarschaftsaktion|neighbourhood initiative used for changed-group transfer"
+            ) &&
+            !(
+              sv.id === "de_lex_plan_l22_c06_zuordnung_v1" &&
+              sv.semanticIdentity ===
+                "zuordnung|mapping between antecedent agreement and clause-internal case that is repaired"
             )) ||
           sv.chapterOutcomeId !== cv.lessonOutcomeId ||
           LEXICAL_KIND_BY_POS[sv.partOfSpeech as string] !== sv.lexicalKind
@@ -11343,6 +11618,40 @@ function expectL21PlanExact(mut: (plan: R) => void, message: string): void {
   let thrown: unknown;
   try {
     validateL21SemanticContract(raw, plan as Boundary);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+
+function expectL22Exact(mut: (raw: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: Boundary[] };
+  const plan = lessonRegistry.lessons.find(
+    (lesson) => lesson.id === "de_l22",
+  ) as Boundary;
+  mut(raw);
+  let thrown: unknown;
+  try {
+    validateL22SemanticContract(raw, plan);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+
+function expectL22PlanExact(mut: (plan: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: R[] };
+  const plan = clone(
+    lessonRegistry.lessons.find((lesson) => lesson.id === "de_l22") as R,
+  );
+  mut(plan);
+  let thrown: unknown;
+  try {
+    validateL22SemanticContract(raw, plan as Boundary);
   } catch (error) {
     thrown = error;
   }
@@ -14005,6 +14314,138 @@ function fixtures(): void {
         `full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;${result.lessons}/32 lessons;${result.chapters}/224 chapters`,
       );
   }, /full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;21\/32 lessons;147\/224 chapters/u);
+
+  const l22 = (raw: R) =>
+    (raw.lessons as R[]).find((lesson) => lesson.lessonId === "de_l22") as R;
+  expectL22Exact((raw) => {
+    const lesson = l22(raw);
+    lesson.lessonOrdinal = 23;
+    const packetIds = (lesson.chapters as R[])[0].packetIds as string[];
+    [packetIds[0], packetIds[1]] = [packetIds[1], packetIds[0]];
+  }, "l22_semantic_contract_invalid:identity");
+  expectL22Exact((raw) => {
+    (l22(raw).grammarBoundary as R).noExpansion = `${L22_NO_EXPANSION} `;
+  }, "l22_semantic_contract_invalid:no_expansion");
+  expectL22PlanExact((plan) => {
+    (plan.extendedConstructIds as string[]).reverse();
+  }, "l22_semantic_contract_invalid:sets");
+  expectL22Exact((raw) => {
+    (l22(raw).chapters as R[])[0].lifecycleAnchors = [];
+  }, "l22_semantic_contract_invalid:anchors");
+  expectL22Exact((raw) => {
+    ((l22(raw).chapters as R[])[3].supportFading as R).exitLevel = 2;
+  }, "l22_semantic_contract_invalid:support_fading");
+  expectL22Exact((raw) => {
+    const chapters = l22(raw).chapters as R[];
+    ((chapters[1].checkpoint as R).newSituation as R).contextSignature = (
+      (chapters[0].checkpoint as R).newSituation as R
+    ).contextSignature;
+  }, "l22_semantic_contract_invalid:situations");
+  expectL22Exact((raw) => {
+    const sense = (
+      ((l22(raw).chapters as R[])[0].checkpoint as R)
+        .plannedNewLexicalSenses as R[]
+    )[0];
+    (sense.nounPackage as R).article = "das";
+  }, "l22_semantic_contract_invalid:lexical_packages");
+  expectL22Exact((raw) => {
+    const sense = (
+      ((l22(raw).chapters as R[])[4].checkpoint as R)
+        .plannedNewLexicalSenses as R[]
+    )[0];
+    (sense.utilityProof as R).facetValue = "pickup-service-need-match";
+  }, "l22_semantic_contract_invalid:lexical_utility");
+  expectL22Exact((raw) => {
+    ((l22(raw).chapters as R[])[3].chapterEvidencePacketIds as string[]).pop();
+  }, "l22_semantic_contract_invalid:evidence");
+  expectL22Exact((raw) => {
+    const predecessor = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l21",
+    ) as R;
+    (
+      ((predecessor.chapters as R[])[6].recallSchedule as R)
+        .futureDelayedProbe as R
+    ).packetId = "de_l22_c07_s56";
+  }, "l21_l22_inverse_provenance_invalid");
+  expectL22Exact((raw) => {
+    const support = (l22(raw).chapters as R[])[1].supportFading as R;
+    support.entry = String(support.entry).replace(
+      "Das ist die Beraterin, die hilft.",
+      "Das ist die Beraterin, der hilft.",
+    );
+  }, "l22_c02_gender_number_mapping_invalid");
+  expectL22Exact((raw) => {
+    const support = (l22(raw).chapters as R[])[2].supportFading as R;
+    support.entry = String(support.entry).replace(
+      "den Frau Keller sucht",
+      "dem Frau Keller sucht",
+    );
+  }, "l22_c03_internal_case_mapping_invalid");
+  expectL22Exact((raw) => {
+    ((l22(raw).chapters as R[])[5].supportFading as R).entry =
+      "Das ist die Beraterin, der arbeitet. → Das ist die Beraterin, die arbeitet.";
+  }, "l22_c06_repair_items");
+  expectL22Exact((raw) => {
+    const support = (l22(raw).chapters as R[])[6].supportFading as R;
+    support.entry = String(support.entry).replace(
+      "den neuen Beratungsdienst",
+      "einen Beratungsdienst",
+    );
+  }, "l22_c07_final_transfer");
+  expectL22Exact((raw) => {
+    l22(raw).relativeTopologyProbe = "der Frau Keller helfen";
+  }, "l22_relative_verbletzt_missing");
+  expectL22Exact((raw) => {
+    l22(raw).antecedentCaseCopyProbe = "dem Frau Keller sucht";
+  }, "l22_antecedent_case_copy_leak");
+  expectL22Exact((raw) => {
+    l22(raw).genitiveRelativeProbe = "Teach dessen as a genitive relative.";
+  }, "l22_genitive_relative_leak");
+  expectL22Exact((raw) => {
+    l22(raw).prepositionRelativeProbe = "Teach mit dem as a relative form.";
+  }, "l22_preposition_relative_leak");
+  expectL22Exact((raw) => {
+    const chapter = (l22(raw).chapters as R[])[6];
+    const support = chapter.supportFading as R;
+    const sense = ((chapter.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    const leaked =
+      "Frau Keller sucht einen Dienst für Familien. Ich empfehle den neuen Beratungsdienst, der Familien hilft.";
+    support.entry = leaked;
+    support.exit = leaked;
+    sense.communicativeUse = leaked;
+  }, "l22_standalone_preposition_relation_leak");
+  expectL22Exact((raw) => {
+    l22(raw).freeRelativeProbe = "Teach wer and wo as free relatives.";
+  }, "l22_free_or_wo_relative_leak");
+  expectL22Exact((raw) => {
+    l22(raw).passiveProbe = "Teach event passive: Er wird beraten.";
+  }, "l22_passive_leak");
+  expectL22Exact((raw) => {
+    l22(raw).hiddenGrammarProbe =
+      "Add a new generative operation from L23 grammar.";
+  }, "l22_hidden_grammar_leak");
+  expectL22Exact((raw) => {
+    l22(raw).learnerArtifactsAuthorized = true;
+  }, "l22_interaction_001_future_boundary_invalid");
+  expectL22Exact((raw) => {
+    l22(raw).allowNonGermanAssessedTarget = true;
+  }, "l22_interaction_002_future_boundary_invalid");
+  expectL22Exact((raw) => {
+    l22(raw).englishContourProbe = "Copy English reuse into L22.";
+  }, "l22_english_contour_leak");
+  const prematureL22 = clone(json(FILE)) as R;
+  prematureL22.lessons = (prematureL22.lessons as R[]).slice(0, 22);
+  assert.throws(() => {
+    const result = validate(prematureL22);
+    if (
+      result.buildStatus !== "COMPLETE_TASK5" ||
+      result.lessons !== 32 ||
+      result.chapters !== 224
+    )
+      throw new Error(
+        `full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;${result.lessons}/32 lessons;${result.chapters}/224 chapters`,
+      );
+  }, /full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;22\/32 lessons;154\/224 chapters/u);
 
   const l2Boundary: Boundary = {
     id: "de_l02",

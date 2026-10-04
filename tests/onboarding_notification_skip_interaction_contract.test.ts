@@ -7,10 +7,12 @@ const source = fs.readFileSync(
 );
 
 describe('onboarding notification skip interaction', () => {
-  it('defers the native Alert action until the dialog dismissal interaction is finished', () => {
+  it('defers the "later" action until the glass dialog dismissal interaction is finished', () => {
     expect(source).toContain('const continueAfterNotificationDialog = useCallback(() => {');
     expect(source).toContain("InteractionManager.runAfterInteractions(() => go('name'))");
-    expect(source).toContain("style: 'cancel', onPress: continueAfterNotificationDialog");
+    // зачем (2.0, 04.10): системный Alert заменён стеклянным окном askGlass; «Позже» идёт тем же отложенным путём.
+    expect(source).not.toContain('Alert.alert(');
+    expect(source).toMatch(/const openSettings = await askGlass\([\s\S]*?\} else \{\s+continueAfterNotificationDialog\(\);/);
   });
 
   it('persists the visible notification skip before continuing', () => {

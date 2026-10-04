@@ -466,7 +466,9 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
       setLearnedBurst(null);
       setAllDone(false);
       initVerb(next[0]);
-    } catch {
+    } catch (error) {
+      // зачем: запрет немого catch — причина отказа перехода к следующей порции должна быть видна.
+      console.warn('[VERBS-PORTION] continue:failed', error instanceof Error ? error.message : String(error));
       if (mountedRef.current) setContinuationFailed(true);
     } finally {
       continuationInFlightRef.current = false;

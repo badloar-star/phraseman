@@ -28,6 +28,11 @@ function fixture() {
     practiceRunes: { hydrating: false, startNewCompletionIfSettled: jest.fn(() => true) },
     continuationInFlightRef: { current: false },
     mountedRef: { current: true },
+    // зачем: 738ce914a8 (01.10) — новая порция обнуляет счёт итога в начале continuePortion; без этих ссылок
+    // вырезанный колбэк падал с ReferenceError и сторож не запускался вовсе.
+    runCorrectRef: { current: 3 },
+    runWrongRef: { current: 2 },
+    runErrorsRef: { current: ['went'] as string[] },
     setContinuing: jest.fn(), setContinuationFailed: jest.fn(),
     settlePortion: jest.fn(async () => {}),
     setPortionVerbs: jest.fn(), setQueue: jest.fn(), setPos: jest.fn(),
@@ -52,6 +57,10 @@ test('double tap waits for settlement and advances the paid screen exactly once'
   expect(scope.initVerb).toHaveBeenCalledWith(scope.sectionProgress.next[0]);
   expect(scope.setAllDone).toHaveBeenCalledWith(false);
   expect(scope.onReset).not.toHaveBeenCalled();
+  // Новая порция — новый счёт итога (738ce914a8).
+  expect(scope.runCorrectRef.current).toBe(0);
+  expect(scope.runWrongRef.current).toBe(0);
+  expect(scope.runErrorsRef.current).toEqual([]);
 });
 
 test('failed local settlement preserves the portion and permits a successful retry', async () => {
@@ -88,6 +97,8 @@ test('screen waits for progress hydration and displays a captured portion denomi
   expect(source).toContain('hydratedCountsKey !== irregularStorageKey');
   expect(source).toContain('${learnedCnt} / ${portionVerbs.length}');
   expect(source).not.toContain('${learnedCnt} / ${verbs.length}');
-  expect(source).toContain('if (!allDone || !sectionProgress.complete) return;');
-  expect(source).toContain('if (!allDone || !sectionProgress.complete || learnedCnt === 0) return;');
+  // зачем: оба эффекта «раздел закрыт» удалены по решениям владельца — дроп карточки коллекции (D140, 33636dd55)
+  // и начисление осколков (снимок 30.09, efe19ae9d). Сторожим, что они не вернулись без решения.
+  expect(source).not.toContain('maybeRollCollectibleDrop');
+  expect(source).not.toContain('lessonIrregularShardsGrantedKey');
 });

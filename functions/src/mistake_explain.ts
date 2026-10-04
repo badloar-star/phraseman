@@ -239,6 +239,26 @@ function sanitizeDiffPairs(value: unknown): DiffPair[] {
   return pairs;
 }
 
+/**
+ * зачем (§142, логи выкладки 04.10): 5×400 и 2×503 прошли без единой строки функции — не видно, какой выход сработал.
+ * Каждый немой выход пишет причину; тексты ответов ученика не пишем — только длины и коды.
+ */
+function explainInvalidInput(reason: string, data: ExplainMistakeRequest): never {
+  console.warn('[EXPLAIN-MISTAKE] invalid_input', JSON.stringify({
+    reason,
+    lessonId: Number.isFinite(Number(data?.lessonId)) ? Number(data.lessonId) : String(typeof data?.lessonId),
+    phraseIdChars: String(data?.phraseId ?? '').length,
+    userAnswerChars: String(data?.userAnswer ?? '').length,
+    targetAnswerChars: String(data?.targetAnswer ?? '').length,
+  }));
+  throw new HttpsError('invalid-argument', reason);
+}
+
+function explainPending(site: string, variant: unknown): never {
+  console.warn('[EXPLAIN-MISTAKE] pending', JSON.stringify({ site, variant }));
+  throw new HttpsError('unavailable', 'mistake_explanation_pending');
+}
+
 function sanitizePayload(data: ExplainMistakeRequest): ExplainMistakePayload {
   const lessonId = Number(data.lessonId);
   const phraseId = text(data.phraseId, 120);
@@ -246,11 +266,11 @@ function sanitizePayload(data: ExplainMistakeRequest): ExplainMistakePayload {
   const targetAnswer = text(data.targetAnswer, MAX_ANSWER);
 
   if (!Number.isInteger(lessonId) || lessonId < 1 || lessonId > 999) {
-    throw new HttpsError('invalid-argument', 'lesson_id_required');
+    explainInvalidInput('lesson_id_required', data);
   }
-  if (!phraseId) throw new HttpsError('invalid-argument', 'phrase_id_required');
-  if (!userAnswer) throw new HttpsError('invalid-argument', 'user_answer_required');
-  if (!targetAnswer) throw new HttpsError('invalid-argument', 'target_answer_required');
+  if (!phraseId) explainInvalidInput('phrase_id_required', data);
+  if (!userAnswer) explainInvalidInput('user_answer_required', data);
+  if (!targetAnswer) explainInvalidInput('target_answer_required', data);
 
   return {
     lessonId,
@@ -883,7 +903,7 @@ export const explainMistake = onCall({
           };
         }
       }
-      throw new HttpsError('unavailable', 'mistake_explanation_pending');
+      explainPending('eli5_1', payload.variant);
     }
     let freeCapReservation: MistakeFreeCapReservation | null = null;
     let gen: CheckedGenerateResult;
@@ -929,7 +949,7 @@ export const explainMistake = onCall({
         if (latest?.eli5 && isMistakeGeneratedTextSafe(latest.eli5, payload)) {
           eli5ResultText = latest.eli5;
         } else {
-          throw new HttpsError('unavailable', 'mistake_explanation_pending');
+          explainPending('eli5_2', payload.variant);
         }
       }
     } catch (error) {
@@ -1000,7 +1020,7 @@ export const explainMistake = onCall({
         };
       }
     }
-    throw new HttpsError('unavailable', 'mistake_explanation_pending');
+    explainPending('full_1', payload.variant);
   }
 
   let gen: CheckedBundleResult;
@@ -1073,7 +1093,7 @@ export const explainMistake = onCall({
       ) {
         resultBundle = { full: latest.full, eli5: latest.eli5 };
       } else {
-        throw new HttpsError('unavailable', 'mistake_explanation_pending');
+        explainPending('full_2', payload.variant);
       }
     }
   } catch (error) {

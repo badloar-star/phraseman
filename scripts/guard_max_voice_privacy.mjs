@@ -210,11 +210,8 @@ export function runMaxVoicePrivacyGuard({ overrides = {} } = {}) {
     if (!deletion.includes(spec)) violations.push(`functions/src/account_delete.ts missing quota guard deletion spec: ${spec}`);
   }
 
-  const client = get('app/max_call_session.tsx');
-  const safetyCall = callBlocks(client, ['safetyReportCallable('])[0]?.text ?? '';
-  for (const key of ['mode', 'note', 'history', 'transcript', 'userText', 'assistantText']) {
-    if (new RegExp(`\\b${key}\\s*:`).test(safetyCall)) violations.push(`app/max_call_session.tsx safety payload contains ${key}`);
-  }
+  // зачем: клиент MAX-звонка (app/max_call_session.tsx) удалён коммитом efe19ae9d — проверка его safety-payload читала несуществующий файл
+  // и краснила сторож. Клиентскую проверку снимаем (проверять нечего); серверные проверки (max_voice_safety, удаление, rules) остаются.
 
   for (const [relativePath, requiredSecrets] of [
     ['functions/src/max_voice_safety.ts', ['ADMIN_ALERT_BOT_TOKEN']],

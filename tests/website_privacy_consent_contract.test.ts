@@ -6,14 +6,25 @@ function read(relativePath: string): string {
 }
 
 describe('website privacy consent contract', () => {
-  it('requests only the quiz-plan email without marketing consent UI', () => {
-    const start = read('knowly-www/assets/start.js');
-
-    expect(start).toContain('submitLead(email);');
-    expect(start).toContain('marketingConsent: false');
-    expect(start).toContain('На этот адрес придёт только ваш персональный план.');
-    expect(start).not.toContain('qlead-marketing-consent');
-    expect(start).not.toContain('Можно присылать мне до двух писем');
+  // зачем: страница сбора e-mail квиз-плана (knowly-www/assets/start.js) удалена коммитом 1d70c8fc5 (release 1.6.21 build 127), submitLead
+  // в knowly-www не существует. Прежняя проверка читала несуществующий файл. По смыслу «сайт не просит маркетинговое согласие» теперь
+  // проверяем так: ни одна страница/скрипт сайта не содержит UI маркетингового согласия и не шлёт marketingConsent: true. Если сбор
+  // вернут — тест сразу потребует явного решения (адрес и согласие должны быть отражены в политике).
+  it('has no marketing-consent collection anywhere on the website', () => {
+    const walk = (dir: string): string[] => fs.readdirSync(path.join(process.cwd(), dir), { withFileTypes: true }).flatMap((entry) => {
+      const rel = path.join(dir, entry.name);
+      if (entry.isDirectory()) return entry.name === 'node_modules' ? [] : walk(rel);
+      return /.(html|js)$/.test(entry.name) ? [rel] : [];
+    });
+    const files = walk('knowly-www');
+    expect(files.length).toBeGreaterThan(20);
+    for (const file of files) {
+      const text = read(file);
+      expect(text).not.toContain('qlead-marketing-consent');
+      expect(text).not.toContain('Можно присылать мне до двух писем');
+      expect(text).not.toMatch(/marketingConsents*:s*true/);
+    }
+    expect(files.some((file) => /start.js$/.test(file) && read(file).includes('submitLead'))).toBe(false);
   });
 
   it('does not schedule marketing nudges without explicit consent', () => {

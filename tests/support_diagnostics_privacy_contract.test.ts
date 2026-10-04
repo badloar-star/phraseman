@@ -10,12 +10,31 @@ describe('support diagnostics privacy and retention contract', () => {
     const outbox = read('app/support_report_outbox.ts');
     expect(outbox).toContain('captureSupportDiagnosticBundle');
     expect(ring).not.toMatch(/submitClientReport|setInterval|setTimeout|background upload|daily upload/i);
-    expect(ring).not.toMatch(/email|token|receipt|stack|comment|message|uid:/i);
+    // зачем: слово «token» в регулярке ловило безобидную переменную captureAccountGeneration() (токен поколения аккаунта, не секрет) —
+    // сторож краснел без утечки. Сужено до НАСТОЯЩИХ секретов: именованные токены доступа и подстановка значения (Bearer …, длинная
+    // токен-подобная строка, JWT). Остальные запреты (email/receipt/stack/comment/message/uid:) не ослаблены.
+    expect(ring).not.toMatch(/email|receipt|stack|comment|message|uid:/i);
+    expect(ring).not.toMatch(/\b(?:id|auth|access|refresh|fcm|push|bearer|api|session)[_-]?token\b/i);
+    expect(ring).not.toMatch(/bearer\s+[a-z0-9._-]{8,}/i);
+    expect(ring).not.toMatch(/eyJ[a-z0-9_-]{10,}\.[a-z0-9_-]{10,}\./i);
+    expect(ring).not.toMatch(/\btoken\s*[:=]\s*['"`][^'"`]{8,}['"`]/i);
     const recordStart = ring.indexOf('export async function recordSupportDiagnostic');
     const captureContext = ring.indexOf('const context = activeContext();', recordStart);
     const enqueueMutation = ring.indexOf('await withMutationLock', recordStart);
     expect(captureContext).toBeGreaterThan(recordStart);
     expect(captureContext).toBeLessThan(enqueueMutation);
+  });
+
+  test('the narrowed secret patterns still catch a substituted token value', () => {
+    const leaks = ['const idToken = 1;', "const x = { token: 'abcdefgh12345' };", 'h = "Bearer abcdefgh12345"', 'jwt eyJhbGciOiJIUzI1NiIs.eyJzdWIiOiIxMjM0.sig'];
+    const patterns = [
+      /\b(?:id|auth|access|refresh|fcm|push|bearer|api|session)[_-]?token\b/i,
+      /bearer\s+[a-z0-9._-]{8,}/i,
+      /eyJ[a-z0-9_-]{10,}\.[a-z0-9_-]{10,}\./i,
+      /\btoken\s*[:=]\s*['"`][^'"`]{8,}['"`]/i,
+    ];
+    for (const leak of leaks) expect(patterns.some((p) => p.test(leak))).toBe(true);
+    expect(patterns.some((p) => p.test('const token = captureAccountGeneration();'))).toBe(false);
   });
 
   test('documents the bounded on-device history and explicit report action', () => {

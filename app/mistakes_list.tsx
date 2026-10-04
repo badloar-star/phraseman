@@ -180,7 +180,8 @@ const styles = StyleSheet.create({
   iconButton: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   title: { flex: 1, fontWeight: '900', letterSpacing: -0.4 },
   segment: { flexDirection: 'row', gap: 6, padding: 5, borderRadius: 18, marginHorizontal: 16, marginBottom: 10 },
-  segmentItem: { flex: 1, minHeight: 40, borderRadius: 14, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 6, paddingVertical: 6 },
+  // зачем (сверка 04.10): равные доли ширины переносили «Исправлены 0» на две строки — ширина по содержимому + поровну остаток.
+  segmentItem: { flexGrow: 1, flexBasis: 'auto', minHeight: 40, borderRadius: 14, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 6, paddingVertical: 6 },
   list: { paddingHorizontal: 16, paddingBottom: 40, gap: 8 },
   row: { minHeight: 78, borderRadius: 18, paddingHorizontal: 14, paddingVertical: 12, flexDirection: 'row', alignItems: 'center', gap: 12 },
   count: { width: 40, height: 40, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },

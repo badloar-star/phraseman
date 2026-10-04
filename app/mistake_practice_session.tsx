@@ -550,6 +550,9 @@ function MistakePracticeSessionScreen() {
         }
         if (prepared.needsSave) {
           // Оплачена (spent/unlimited) или бесплатная (короткий набор) — теперь её можно продолжать.
+          // зачем (координатор §123, 04.10): сохраняем СРАЗУ после списания — между spent и этой записью
+          // нет других await (подтверждение старта уходит фоном). Если приложение убито ровно в этом окне,
+          // следующий вход попросит энергию ещё раз: в пользу сервера, не пользователя — принято.
           try {
             await commitPreparedMistakePracticeSession({ accountScope: scope, studyTarget, session: prepared.session });
             console.log('[MISTAKES-GATE] session:saved_after_payment', JSON.stringify({ sessionId: prepared.session.sessionId, costsEnergy })); // guard-ok

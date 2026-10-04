@@ -17,6 +17,7 @@ import {
 } from '../../app/dialogue_v2_catalogue_client';
 import { V2, V2_TYPE } from '../../constants/v2Style';
 import { triLang } from '../../constants/i18n';
+import { dialogueWorldSubtitle } from './dialogue_world_subtitle';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useLang } from '../LangContext';
 import { usePremium } from '../PremiumContext';
@@ -65,6 +66,7 @@ function dialogueV2WorldHeadings(lang: ReturnType<typeof useLang>['lang']): read
 
 function catalogueCopy(lang: ReturnType<typeof useLang>['lang']): Readonly<{
   lockedAtRank: (rank: number) => string;
+  worldSubtitle: (worldId: string) => string | null;
 }> {
   return Object.freeze({
     // зачем (макет dialogs.html A4): строка ранга под названием закрытого диалога, 9 языков.
@@ -74,6 +76,7 @@ function catalogueCopy(lang: ReturnType<typeof useLang>['lang']): Readonly<{
       id: `Terbuka di peringkat ${rank}`, tr: `${rank}. rütbede açılır`, pl: `Odblokuje się na randze ${rank}`,
       fr: `Se débloque au rang ${rank}`, de: `Wird ab Rang ${rank} freigeschaltet`,
     }),
+    worldSubtitle: (worldId: string) => dialogueWorldSubtitle(lang, worldId),
   });
 }
 

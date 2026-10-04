@@ -56,7 +56,7 @@ export type DialogueV2CatalogueSectionProps = Readonly<{
   /** Ordered, localized world headings supplied by the release projection. */
   worlds: readonly DialogueV2CatalogueWorld[];
   /** Localized row copy supplied by the caller (rank line under a locked title). */
-  labels: Readonly<{ lockedAtRank: (rank: number) => string }>;
+  labels: Readonly<{ lockedAtRank: (rank: number) => string; worldSubtitle?: (worldId: string) => string | null }>;
   /** Called for every row; locked rows use this to open their briefing. */
   onPressItem: (item: DialogueV2CatalogueLearnerItem) => void;
 }>;
@@ -98,6 +98,7 @@ export function DialogueV2CatalogueSection({
         const doneCount = worldItems.filter((item) => item.status === 'done').length;
         const totalCount = worldItems.length;
         const progress = totalCount > 0 ? doneCount / totalCount : 0;
+        const subtitle = labels.worldSubtitle?.(world.id) ?? null;
 
         return (
           <View
@@ -121,6 +122,11 @@ export function DialogueV2CatalogueSection({
                 <Text style={{ color: glass.text, fontSize: 19, lineHeight: 24, fontWeight: '700' }} maxFontSizeMultiplier={1.3}>
                   {world.title}
                 </Text>
+                {subtitle ? (
+                  <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, marginTop: 2 }} maxFontSizeMultiplier={1.3}>{/* guard-ok: исключение 2.0 — короткая строка категории из макета dialogs.html A1 */}
+                    {subtitle}
+                  </Text>
+                ) : null}
               </View>
               <Text testID={`dialogue-v2-world-count-${world.id}`} style={{ color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700', fontVariant: ['tabular-nums'] }} maxFontSizeMultiplier={1.3}>
                 {doneCount}

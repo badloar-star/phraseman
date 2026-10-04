@@ -144,15 +144,15 @@ function feedbackForStatus(
     case 'error':
     default:
       return { kind: 'error', text: L(
-        'Не получилось активировать код. Проверь интернет и попробуй ещё раз.',
-        'Не вдалося активувати код. Перевір інтернет і спробуй ще раз.',
-        'Could not activate the code. Check your internet and try again.',
-        'No se pudo activar el código. Revisa internet e inténtalo de nuevo.',
-        'Não foi possível ativar o código. Confira a internet e tente de novo.',
-        'Không kích hoạt được mã. Kiểm tra mạng rồi thử lại.',
-        'Kode belum bisa diaktifkan. Periksa internet lalu coba lagi.',
-        'Kod etkinleştirilemedi. İnterneti kontrol edip tekrar dene.',
-        'Nie udało się aktywować kodu. Sprawdź internet i spróbuj ponownie.',
+        'Сейчас не получилось активировать код. Попробуй ещё раз.',
+        'Зараз не вдалося активувати код. Спробуй ще раз.',
+        "Couldn't activate the code right now. Try again.",
+        'Ahora no se pudo activar el código. Inténtalo de nuevo.',
+        'Não deu para ativar o código agora. Tente de novo.',
+        'Lúc này chưa kích hoạt được mã. Hãy thử lại.',
+        'Kode belum bisa diaktifkan sekarang. Coba lagi.',
+        'Kod şu an etkinleştirilemedi. Tekrar dene.',
+        'Teraz nie udało się aktywować kodu. Spróbuj ponownie.',
       ) };
   }
 }

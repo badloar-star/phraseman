@@ -1244,15 +1244,15 @@ function RegistrationPromptModal({
         showInlineError(
           triLang(lang, { ru: 'Не получилось', uk: 'Не вийшло', en: 'It did not work', es: 'No salió', 'pt-BR': 'Não deu certo', vi: 'Chưa được', id: 'Belum berhasil', tr: 'Olmadı', pl: 'Nie udało się' }),
           triLang(lang, {
-            ru: 'Что-то пошло не так при входе.',
-            uk: 'Щось пішло не так під час входу.',
-            en: 'Something went wrong while signing in.',
-            es: 'Algo salió mal al iniciar sesión.',
-            'pt-BR': 'Algo deu errado ao entrar.',
-            vi: 'Có lỗi xảy ra khi đăng nhập.',
-            id: 'Ada yang salah saat masuk.',
-            tr: 'Giriş sırasında bir şeyler ters gitti.',
-            pl: 'Coś poszło nie tak podczas logowania.',
+            ru: 'Сейчас не получилось войти. Попробуй ещё раз.',
+            uk: 'Зараз не вдалося увійти. Спробуй ще раз.',
+            en: "Couldn't sign in right now. Try again.",
+            es: 'Ahora no se pudo iniciar sesión. Inténtalo de nuevo.',
+            'pt-BR': 'Não deu para entrar agora. Tente de novo.',
+            vi: 'Lúc này chưa đăng nhập được. Hãy thử lại.',
+            id: 'Belum bisa masuk sekarang. Coba lagi.',
+            tr: 'Şu an giriş yapılamadı. Tekrar dene.',
+            pl: 'Teraz nie udało się zalogować. Spróbuj ponownie.',
           }),
         );
       } finally {

@@ -548,15 +548,15 @@ export default function ManageSubscription() {
         .catch(noteSwallowedHandler('manage_subscription:useCallback.call_2'));
       emitAppEvent('action_toast', {
         type: 'error',
-        messageRu: 'Не удалось проверить покупки. Проверь связь и попробуй ещё раз.',
-        messageUk: 'Не вдалося перевірити покупки. Перевір зв’язок і спробуй ще раз.',
-        messageEn: 'Could not check your purchases. Check your connection and try again.',
-        messageEs: 'No se pudieron comprobar las compras. Revisa la conexión e inténtalo de nuevo.',
-        messagePtBr: 'Não foi possível verificar as compras. Verifique a conexão e tente de novo.',
-        messageVi: 'Không kiểm tra được giao dịch. Hãy kiểm tra kết nối và thử lại.',
-        messageId: 'Pembelian tidak dapat diperiksa. Periksa koneksi dan coba lagi.',
-        messageTr: 'Satın alımlar kontrol edilemedi. Bağlantını kontrol edip tekrar dene.',
-        messagePl: 'Nie udało się sprawdzić zakupów. Sprawdź połączenie i spróbuj ponownie.',
+        messageRu: 'Сейчас не удалось проверить покупки. Попробуй ещё раз.',
+        messageUk: 'Зараз не вдалося перевірити покупки. Спробуй ще раз.',
+        messageEn: "Couldn't check your purchases right now. Try again.",
+        messageEs: 'Ahora no se pudieron comprobar las compras. Inténtalo de nuevo.',
+        messagePtBr: 'Não deu para verificar as compras agora. Tente de novo.',
+        messageVi: 'Lúc này chưa kiểm tra được giao dịch. Hãy thử lại.',
+        messageId: 'Pembelian belum bisa diperiksa sekarang. Coba lagi.',
+        messageTr: 'Satın alımlar şu an kontrol edilemedi. Tekrar dene.',
+        messagePl: 'Teraz nie udało się sprawdzić zakupów. Spróbuj ponownie.',
         // зачем: повтор прямо в тосте. Без него человек должен сам найти
         // экран и ряд заново — а сообщение о сбое уже может висеть поверх
         // другого экрана. `void` — onPress синхронный, ждать его некому.

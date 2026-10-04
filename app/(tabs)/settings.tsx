@@ -1872,15 +1872,15 @@ export default function SettingsMain() {
                     showGlassAlert(
                       L('Прогресс не сохранён', 'Прогрес не збережено', 'Progress not saved', 'Progreso no guardado', 'Progresso não salvo', 'Chưa lưu tiến độ', 'Progres belum disimpan', 'İlerleme kaydedilmedi', 'Postęp nie został zapisany'),
                       L(
-                        'Не удалось надёжно сохранить прогресс — похоже, нет соединения. Смена аккаунта отменена, всё осталось на месте. Проверь интернет и попробуй снова.',
-                        'Не вдалося надійно зберегти прогрес — схоже, немає з’єднання. Зміну акаунту скасовано, все залишилося на місці. Перевір інтернет і спробуй ще раз.',
-                        'Could not safely save your progress — it looks like there is no connection. The account switch was cancelled, everything stayed in place. Check your internet and try again.',
-                        'No pudimos guardar tu progreso de forma segura: parece que no hay conexión. El cambio de cuenta se canceló y todo sigue en su lugar. Revisa tu internet e inténtalo de nuevo.',
-                        'Não foi possível salvar seu progresso com segurança — parece que não há conexão. A troca de conta foi cancelada e tudo continua no lugar. Verifique a internet e tente novamente.',
-                        'Không thể lưu tiến độ an toàn — có vẻ mất kết nối. Việc đổi tài khoản đã bị hủy, mọi thứ vẫn nguyên. Kiểm tra internet và thử lại.',
-                        'Kami tidak bisa menyimpan progres dengan aman — sepertinya tidak ada koneksi. Pergantian akun dibatalkan dan semuanya tetap aman. Periksa internet lalu coba lagi.',
-                        'İlerlemen güvenle kaydedilemedi — bağlantı yok gibi görünüyor. Hesap değişimi iptal edildi, her şey yerinde. İnterneti kontrol edip tekrar dene.',
-                        'Nie udało się bezpiecznie zapisać postępu — wygląda na brak połączenia. Zmiana konta została anulowana, wszystko zostało na miejscu. Sprawdź internet i spróbuj ponownie.',
+                        'Смена аккаунта отменена, всё на месте. Попробуй ещё раз.',
+                        'Зміну акаунту скасовано, усе на місці. Спробуй ще раз.',
+                        'The account switch was cancelled, everything is in place. Try again.',
+                        'El cambio de cuenta se canceló, todo sigue en su sitio. Inténtalo de nuevo.',
+                        'A troca de conta foi cancelada, tudo continua no lugar. Tente de novo.',
+                        'Đã hủy đổi tài khoản, mọi thứ vẫn nguyên. Hãy thử lại.',
+                        'Pergantian akun dibatalkan, semuanya tetap aman. Coba lagi.',
+                        'Hesap değişimi iptal edildi, her şey yerinde. Tekrar dene.',
+                        'Zmiana konta anulowana, wszystko zostało na miejscu. Spróbuj ponownie.',
                       ),
                       [
                         {

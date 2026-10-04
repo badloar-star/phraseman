@@ -719,15 +719,15 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
         </View>
         <Text style={{ color: glass.text, fontSize: 16, lineHeight: 22, fontWeight: '600', textAlign: 'center', marginTop: 18 }}>
           {triLang(lang, {
-            ru: 'Что-то пошло не так. Вернись к уроку или открой вкладку «Словарь» и снова нажми «Начать тренировку».',
-            uk: 'Щось пішло не так. Повернись до уроку або відкрий вкладку «Словник» і знову натисни «Почати тренування».',
-            en: 'Something went wrong. Go back to the lesson or open the "Vocabulary" tab and tap "Start practice" again.',
-            es: 'Algo salió mal. Vuelve a la lección o abre «Vocabulario» y pulsa «Empieza a practicar» otra vez.',
-            'pt-BR': 'Algo deu errado. Volte à lição ou abra a aba “Vocabulário” e toque em “Começar treino” novamente.',
-            vi: 'Đã có lỗi xảy ra. Hãy quay lại bài học hoặc mở tab “Từ vựng” và bấm “Bắt đầu luyện tập” lần nữa.',
-            id: 'Ada yang salah. Kembali ke pelajaran atau buka tab “Kosakata” dan tekan “Mulai latihan” lagi.',
-            tr: 'Bir şeyler ters gitti. Derse dön veya “Sözlük” sekmesini açıp “Alıştırmaya başla”ya tekrar dokun.',
-            pl: 'Coś poszło nie tak. Wróć do lekcji albo otwórz zakładkę „Słownik” i ponownie stuknij „Rozpocznij trening”.',
+            ru: 'Тренировка не открылась. Вернись к уроку и начни её снова.',
+            uk: 'Тренування не відкрилося. Повернись до уроку і почни його знову.',
+            en: "Practice didn't open. Go back to the lesson and start it again.",
+            es: 'La práctica no se abrió. Vuelve a la lección y empiézala de nuevo.',
+            'pt-BR': 'O treino não abriu. Volte à lição e comece de novo.',
+            vi: 'Bài luyện chưa mở được. Hãy quay lại bài học và bắt đầu lại.',
+            id: 'Latihan belum terbuka. Kembali ke pelajaran dan mulai lagi.',
+            tr: 'Alıştırma açılmadı. Derse dön ve yeniden başla.',
+            pl: 'Trening się nie otworzył. Wróć do lekcji i zacznij od nowa.',
           })}
         </Text>
       </View>

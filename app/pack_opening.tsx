@@ -470,7 +470,7 @@ export default function PackOpeningScreen() {
         setLoading(false);
       } catch {
         if (!cancelled) {
-          setError(triLang(lang, { ru: 'Что-то пошло не так', uk: 'Щось пішло не так', en: 'Something went wrong', es: 'Algo salió mal', 'pt-BR': 'Algo deu errado', vi: 'Có lỗi xảy ra', id: 'Ada yang salah', tr: 'Bir şeyler ters gitti', pl: 'Coś poszło nie tak' }));
+          setError(triLang(lang, { ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Unavailable right now', es: 'No disponible ahora', 'pt-BR': 'Indisponível agora', vi: 'Hiện không khả dụng', id: 'Belum tersedia', tr: 'Şu an kullanılamıyor', pl: 'Teraz niedostępne' }));
           setLoading(false);
         }
       }

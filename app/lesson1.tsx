@@ -3808,15 +3808,15 @@ function LessonScreen() {
                 pl: 'Pakiet francuski nie został załadowany',
               })}
               message={triLang(lang, {
-                ru: 'Проверь интернет и повтори загрузку. Английские фразы не используются как замена.',
-                uk: 'Перевір інтернет і повтори завантаження. Англійські фрази не використовуються як заміна.',
-                en: 'Check your connection and reload. English phrases aren’t used as a substitute.',
-                es: 'Revisa tu conexión y vuelve a cargar. No se usarán frases en inglés como reemplazo.',
-                'pt-BR': 'Verifique sua conexão e recarregue. Frases em inglês não serão usadas como substituto.',
-                vi: 'Kiểm tra kết nối và tải lại. Câu tiếng Anh sẽ không được dùng thay thế.',
-                id: 'Periksa koneksi dan muat ulang. Frasa Inggris tidak dipakai sebagai pengganti.',
-                tr: 'Bağlantını kontrol edip yeniden yükle. İngilizce ifadeler yedek olarak kullanılmaz.',
-                pl: 'Ta lekcja nie użyje angielskich fraz jako zamiennika.',
+                ru: 'Сейчас недоступно. Попробуй загрузить ещё раз.',
+                uk: 'Зараз недоступно. Спробуй завантажити ще раз.',
+                en: 'Unavailable right now. Try loading again.',
+                es: 'No disponible ahora. Prueba a cargar de nuevo.',
+                'pt-BR': 'Indisponível agora. Tente carregar de novo.',
+                vi: 'Hiện không khả dụng. Hãy tải lại.',
+                id: 'Belum tersedia. Coba muat lagi.',
+                tr: 'Şu an kullanılamıyor. Yeniden yüklemeyi dene.',
+                pl: 'Teraz niedostępne. Spróbuj wczytać ponownie.',
               })}
               action={{
                 label: triLang(lang, { ru: 'К урокам', uk: 'До уроків', en: 'To lessons', es: 'A lecciones', 'pt-BR': 'Para aulas', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derslere', pl: 'Do lekcji' }),

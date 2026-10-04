@@ -327,15 +327,15 @@ function ReportErrorButton({
                   </Text>
                   <Text style={{ color: glass.secondary, fontSize: f.body, textAlign: 'center' }}>
                     {triLang(lang, {
-                      ru: 'Проверь интернет и попробуй еще раз.',
-                      uk: 'Перевір інтернет і спробуй ще раз.',
-                      en: 'Check your connection and try again.',
-                      es: 'Revisa internet e inténtalo de nuevo.',
-                      'pt-BR': 'Verifique a internet e tente de novo.',
-                      vi: 'Hãy kiểm tra mạng rồi thử lại.',
-                      id: 'Periksa internet lalu coba lagi.',
-                      tr: 'İnterneti kontrol edip tekrar dene.',
-                      pl: 'Sprawdź internet i spróbuj ponownie.',
+                      ru: 'Не отправилось. Попробуй ещё раз.',
+                      uk: 'Не надіслалося. Спробуй ще раз.',
+                      en: "Didn't send. Try again.",
+                      es: 'No se envió. Inténtalo de nuevo.',
+                      'pt-BR': 'Não foi enviado. Tente de novo.',
+                      vi: 'Chưa gửi được. Hãy thử lại.',
+                      id: 'Belum terkirim. Coba lagi.',
+                      tr: 'Gönderilemedi. Tekrar dene.',
+                      pl: 'Nie wysłano. Spróbuj ponownie.',
                     })}
                   </Text>
                   <TouchableOpacity

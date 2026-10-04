@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo, useSyncExternalStore } from 'react';
 // зачем: allowFontScaling={false} отключал системный размер шрифта — заголовки
 // обрезались при крупном шрифте и на длинных языках. FlowText переносит.
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, Easing, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle } from 'react-native';
@@ -119,6 +119,15 @@ import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
 import { ENABLE_DEV_TOOLS } from '../config';
 import { markHomeFirstPaint } from '../home_paint_marker';
+import { peekStreakDayState, subscribeStreakDayState } from '../streak_day_signal';
+
+// зачем (§137): строка, а не объект — peekStreakDayState при смене дня отдаёт новый объект, а
+// useSyncExternalStore требует устойчивого снимка. null (сверки ещё не было) → 'unknown': молчим.
+function streakTodaySnapshot(): 'unknown' | 'counted' | 'pending' {
+  const state = peekStreakDayState();
+  if (state === null) return 'unknown';
+  return state.counted ? 'counted' : 'pending';
+}
 import { noteSwallowedAs, noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 const { height: SCREEN_H } = Dimensions.get('window');
 /** Значок действия в шапке (спин, подарок) — соразмерен соседям хедера. */
@@ -425,6 +434,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const myCoinRank = useMyCoinRank();
     const { s, lang } = useLang();
     const { studyTarget } = useStudyTarget();
+    // зачем (§137): «сегодня ещё не засчитано» на плашке серии — синхронно из сигнала Ядра, без чтений хранилища.
+    const streakToday = useSyncExternalStore(subscribeStreakDayState, streakTodaySnapshot);
     // зачем (D49, PM-259): живые задания дня вместо заглушки — прогресс, done и монеты
     // считает modules/today-tasks; хук стоит до раннего return (правила хуков).
     const todayTasks = useTodayTasks(lang, studyTarget);
@@ -2069,6 +2080,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             vi: `${homeV2Days} ngày`, id: `${homeV2Days} hari`, tr: `${homeV2Days} gün`,
             pl: `${homeV2Days} ${homeV2Days === 1 ? 'dzień' : 'dni'}`,
         });
+        const homeV2StreakPendingWord = triLang(lang, { ru: 'Сегодня ещё нет', uk: 'Сьогодні ще ні', en: 'Not yet today', es: 'Hoy aún no', 'pt-BR': 'Hoje ainda não', vi: 'Hôm nay chưa có', id: 'Hari ini belum', tr: 'Bugün henüz yok', pl: 'Dziś jeszcze nie' });
+        const homeV2StreakPendingA11y = triLang(lang, { ru: 'Сегодня день ещё не засчитан — заверши любое упражнение.', uk: 'Сьогодні день ще не зараховано — заверши будь-яку вправу.', en: 'Today hasn’t counted yet — finish any exercise.', es: 'Hoy aún no cuenta: termina cualquier ejercicio.', 'pt-BR': 'Hoje ainda não contou — termine qualquer exercício.', vi: 'Hôm nay chưa được tính — hãy hoàn thành một bài tập.', id: 'Hari ini belum dihitung — selesaikan latihan apa pun.', tr: 'Bugün henüz sayılmadı — herhangi bir alıştırmayı bitir.', pl: 'Dziś dzień jeszcze się nie liczy — ukończ dowolne ćwiczenie.' });
         const homeV2StreakWord = triLang(lang, { ru: 'Серия', uk: 'Серія', en: 'Streak', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Runtunan', tr: 'Seri', pl: 'Seria' });
         // зачем D129/D130: плитка показывается, только если её раздел готов для языка обучения.
         const homeV2AllTiles: HomeFeatureTile[] = [
@@ -2182,10 +2195,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 stats={[
                   {
                     testID: 'home-v2-streak',
-                    icon: <Ionicons name="flame" size={20} color={homeV2Palette.iconTint} />,
+                    // зачем (§137): пока за сегодня ничего не сделано — контурный огонь и «Сегодня ещё нет»;
+                    // после первого упражнения дня — обычный огонь и «Серия» (сигнал streak_day_counted).
+                    icon: <Ionicons name={streakToday === 'pending' ? 'flame-outline' : 'flame'} size={20} color={homeV2Palette.iconTint} />,
                     value: homeV2DaysLabel,
-                    label: homeV2StreakWord,
-                    accessibilityLabel: `${homeV2StreakWord}: ${homeV2DaysLabel}`,
+                    label: streakToday === 'pending' ? homeV2StreakPendingWord : homeV2StreakWord,
+                    accessibilityLabel: streakToday === 'pending' ? `${homeV2StreakWord}: ${homeV2DaysLabel}. ${homeV2StreakPendingA11y}` : `${homeV2StreakWord}: ${homeV2DaysLabel}`,
                     onPress: () => { nav.push('/streak_stats'); },
                   },
                   {

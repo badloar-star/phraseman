@@ -13,6 +13,7 @@ import Reanimated, {
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from './SafeLinearGradient';
 import { onAppEvent, type AppEventMap } from '../app/events';
+import { streakDayToastPayload } from '../app/streak_day_toast';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { hapticError, hapticWarning, hapticSoftImpact, hapticSuccess } from '../hooks/use-haptics';
@@ -440,6 +441,17 @@ function ActionToast() {
     }, PENDING_SLOT_TIMEOUT_MS);
     return () => clearTimeout(giveUp);
   }, [overlayVisible]);
+
+  // зачем (§137): «День засчитан 🔥 N» в момент первого учебного действия дня — сигнал Ядра streak_day_counted
+  // (локально, без сети); текст и фильтр (только activity:*) — в app/streak_day_toast.ts.
+  useEffect(() => {
+    const sub = onAppEvent('streak_day_counted', (event) => {
+      const payload = streakDayToastPayload(event);
+      if (__DEV__) console.log('[STREAK-DAY] toast', JSON.stringify({ source: event.source, days: event.days, shown: payload !== null }));
+      if (payload) enqueue(payload);
+    });
+    return () => sub.remove();
+  }, [enqueue]);
 
   useEffect(() => {
     const sub = onAppEvent('action_toast', (payload) => enqueue(payload));

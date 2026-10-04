@@ -33,16 +33,18 @@ export function streakRuleExplainerCopy(lang: Lang): { title: string; body: stri
       tr: 'Seri nasıl sayılır',
       pl: 'Jak liczy się seria',
     }),
+    // зачем (§137, координатор 04.10): разговор тоже засчитывает день; заморозка Plus — до 3 раз в месяц
+    // (PREMIUM_FREE_FREEZES_PER_MONTH = 3) — пишем лимит, чтобы не обещать больше, чем есть.
     body: triLang(lang, {
-      ru: 'День в серии засчитывается, когда ты завершаешь хотя бы одно упражнение — в уроке, тренировке или в «Моих ошибках». С Plus один пропущенный день замораживается сам, и серия не сгорает.',
-      uk: 'День у серії зараховується, коли ти завершуєш хоча б одну вправу — в уроці, тренуванні або в «Моїх помилках». З Plus один пропущений день заморожується сам, і серія не згорає.',
-      en: 'A day counts toward your streak when you finish at least one exercise — in a lesson, a practice session, or in My mistakes. With Plus, one missed day freezes automatically, so your streak doesn’t break.',
-      es: 'Un día cuenta para tu racha cuando terminas al menos un ejercicio: en una lección, un entrenamiento o en «Mis errores». Con Plus, un día perdido se congela solo y la racha no se rompe.',
-      'pt-BR': 'Um dia conta na sua sequência quando você termina pelo menos um exercício — numa lição, num treino ou em «Meus erros». Com o Plus, um dia perdido é congelado sozinho e a sequência não se perde.',
-      vi: 'Một ngày được tính vào chuỗi khi bạn hoàn thành ít nhất một bài tập — trong bài học, buổi luyện tập hoặc trong «Lỗi của tôi». Với Plus, một ngày bỏ lỡ sẽ tự đóng băng và chuỗi không bị mất.',
-      id: 'Satu hari dihitung dalam streak saat kamu menyelesaikan setidaknya satu latihan — di pelajaran, sesi latihan, atau di «Kesalahanku». Dengan Plus, satu hari yang terlewat dibekukan otomatis dan streak tidak putus.',
-      tr: 'Bir gün, en az bir alıştırmayı bitirdiğinde seriye sayılır — derste, antrenmanda ya da «Hatalarım»da. Plus ile kaçırılan bir gün kendiliğinden dondurulur ve seri bozulmaz.',
-      pl: 'Dzień liczy się do serii, gdy ukończysz choć jedno ćwiczenie — w lekcji, treningu albo w «Moich błędach». Z Plus jeden opuszczony dzień zamraża się sam i seria nie przepada.',
+      ru: 'День в серии засчитывается, когда ты завершаешь хотя бы одно упражнение — урок, тренировку, «Мои ошибки» или разговор. С Plus пропущенный день замораживается сам, до 3 раз в месяц, и серия не сгорает.',
+      uk: 'День у серії зараховується, коли ти завершуєш хоча б одну вправу — урок, тренування, «Мої помилки» або розмову. З Plus пропущений день заморожується сам, до 3 разів на місяць, і серія не згорає.',
+      en: 'A day counts toward your streak when you finish at least one exercise — a lesson, a practice session, My mistakes, or a conversation. With Plus, a missed day freezes automatically, up to 3 times a month, so your streak doesn’t break.',
+      es: 'Un día cuenta para tu racha cuando terminas al menos un ejercicio: una lección, un entrenamiento, «Mis errores» o una conversación. Con Plus, un día perdido se congela solo, hasta 3 veces al mes, y la racha no se rompe.',
+      'pt-BR': 'Um dia conta na sua sequência quando você termina pelo menos um exercício — uma lição, um treino, «Meus erros» ou uma conversa. Com o Plus, um dia perdido é congelado sozinho, até 3 vezes por mês, e a sequência não se perde.',
+      vi: 'Một ngày được tính vào chuỗi khi bạn hoàn thành ít nhất một bài tập — bài học, buổi luyện tập, «Lỗi của tôi» hoặc một cuộc trò chuyện. Với Plus, ngày bỏ lỡ sẽ tự đóng băng, tối đa 3 lần mỗi tháng, và chuỗi không bị mất.',
+      id: 'Satu hari dihitung dalam streak saat kamu menyelesaikan setidaknya satu latihan — pelajaran, sesi latihan, «Kesalahanku», atau percakapan. Dengan Plus, hari yang terlewat dibekukan otomatis, hingga 3 kali sebulan, dan streak tidak putus.',
+      tr: 'Bir gün, en az bir alıştırmayı bitirdiğinde seriye sayılır — ders, antrenman, «Hatalarım» ya da bir sohbet. Plus ile kaçırılan gün kendiliğinden dondurulur, ayda 3 kereye kadar, ve seri bozulmaz.',
+      pl: 'Dzień liczy się do serii, gdy ukończysz choć jedno ćwiczenie — lekcję, trening, «Moje błędy» albo rozmowę. Z Plus opuszczony dzień zamraża się sam, do 3 razy w miesiącu, i seria nie przepada.',
     }),
     ok: triLang(lang, {
       ru: 'Понятно', uk: 'Зрозуміло', en: 'Got it', es: 'Entendido', 'pt-BR': 'Entendi',

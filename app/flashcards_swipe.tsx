@@ -99,6 +99,7 @@ import {
 import { peekCustomCardsCache, readCustomCards } from './flashcards/storage';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './flashcards/types';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { loadGateBackoffMs } from './load_gate_config';
 import { flashcardContentLang } from './spanish_content_gate';
 import { getCanonicalUserId } from './user_id_policy';
 import { flashcardsSwipeHintSeenKey, flashcardsSwipeMemoryKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
@@ -1194,6 +1195,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
   const swipeMountedRef = useRef(true);
   const sourcesRetryRef = useRef(0);
   const sourcesRetryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // зачем (D158 / PM-214, 04.10): после исчерпанных тихих повторов — «Сейчас недоступно», а не вечный скелетон.
+  const [sourcesExhausted, setSourcesExhausted] = useState(false);
   const loadSourcesRef = useRef<((opts?: { quiet?: boolean }) => Promise<void>) | null>(null);
   const swipeExplicitlyAbandonedRef = useRef(false);
   useEffect(() => {
@@ -2113,6 +2116,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       }
       if (!accessIsCurrent()) return;
       sourcesRetryRef.current = 0;
+      setSourcesExhausted(false);
       hasVisibleSourcesRef.current = next.length > 0;
       setSources(next);
       setSelectedIds((cur) => {
@@ -2125,25 +2129,28 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         return fromDecks.length > 0 ? new Set(fromDecks) : valid;
       });
     } catch (error) {
-      // зачем (владелец 01.10): текста «Наборы не загрузились» больше нет. Кэш/уже показанные наборы остаются,
-      // а загрузка молча повторяется (до 5 раз по 20 с). Пока наборов нет совсем — держим скелетон.
+      // зачем (владелец 01.10 + D158): текста «Наборы не загрузились» нет. Кэш/уже показанные наборы остаются,
+      // а загрузка молча повторяется с паузами 1/3/8 с (app/load_gate_config.ts). Пока наборов нет совсем —
+      // скелетон; повторы кончились — «Сейчас недоступно» + «Попробовать снова» (было: 5×20 с и вечный скелетон).
       console.warn('[FC-SWIPE] loadSources отклонён', { error: String(error), attempt: sourcesRetryRef.current, hasVisible: hasVisibleSourcesRef.current });
       if (!accessIsCurrent()) {
         console.warn('[FC-SWIPE] loadSources: доступ сменился, повтор не планируем');
         return;
       }
-      if (sourcesRetryRef.current < 5) {
+      const backoffMs = loadGateBackoffMs(sourcesRetryRef.current + 1);
+      if (backoffMs !== null) {
         sourcesRetryRef.current += 1;
         keepSkeleton = !hasVisibleSourcesRef.current;
         if (sourcesRetryTimerRef.current) clearTimeout(sourcesRetryTimerRef.current);
         sourcesRetryTimerRef.current = setTimeout(() => {
           sourcesRetryTimerRef.current = null;
           if (!swipeMountedRef.current) { console.warn('[FC-SWIPE] тихий повтор отменён: экран закрыт'); return; }
-          console.warn('[FC-SWIPE] тихий повтор наборов', { attempt: sourcesRetryRef.current });
+          console.warn('[FC-SWIPE] тихий повтор наборов', { attempt: sourcesRetryRef.current, backoffMs });
           void loadSourcesRef.current?.({ quiet: true });
-        }, 20_000);
+        }, backoffMs);
       } else {
-        console.warn('[FC-SWIPE] тихие повторы наборов исчерпаны');
+        console.warn('[FC-SWIPE] тихие повторы наборов исчерпаны → «Сейчас недоступно»', { attempts: sourcesRetryRef.current, hasVisible: hasVisibleSourcesRef.current });
+        if (!hasVisibleSourcesRef.current) setSourcesExhausted(true);
       }
     } finally {
       if (accessIsCurrent() && !keepSkeleton) setLoadingSources(false);
@@ -2155,6 +2162,23 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     if (!swipeAccessGranted) return;
     void loadSources({ quiet: hasVisibleSourcesRef.current });
   }, [loadSources, swipeAccessGranted]);
+
+  const retrySourcesAfterUnavailable = useCallback((source: 'tap' | 'foreground') => {
+    console.warn('[FC-SWIPE] повтор наборов после «Сейчас недоступно»', { source });
+    if (source === 'tap') hapticTap();
+    sourcesRetryRef.current = 0;
+    setSourcesExhausted(false);
+    void loadSourcesRef.current?.({ quiet: false });
+  }, []);
+
+  // D158: автоповтор при возврате в приложение, если повторы исчерпаны.
+  useEffect(() => {
+    if (!sourcesExhausted) return undefined;
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') retrySourcesAfterUnavailable('foreground');
+    });
+    return () => sub.remove();
+  }, [retrySourcesAfterUnavailable, sourcesExhausted]);
 
   const selectedSources = useMemo(
     () => sources.filter((source) => selectedIds.has(source.id)),
@@ -3587,7 +3611,26 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         <Text style={[styles.errorText, { color: t.wrong, fontSize: f.caption }]}>{loadError}</Text>
       ) : null}
 
-      {loadingSources && sources.length === 0 ? (
+      {sourcesExhausted && sources.length === 0 ? (
+        <View testID="fc-swipe-sources-unavailable" style={[styles.loadingBox, { gap: 12 }]}>
+          <Text accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>{triLang(lang, {
+            ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now', es: 'No disponible ahora',
+            'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne',
+          })}</Text>
+          <TouchableOpacity
+            testID="fc-swipe-sources-try-again"
+            accessibilityRole="button"
+            onPress={() => retrySourcesAfterUnavailable('tap')}
+            activeOpacity={0.8}
+            style={{ minHeight: 44, paddingHorizontal: 20, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: glassFill(t.bgSurface, 0.46) }}
+          >
+            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600' }}>{triLang(lang, {
+              ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo',
+              'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
+            })}</Text>
+          </TouchableOpacity>
+        </View>
+      ) : loadingSources && sources.length === 0 ? (
         <View style={styles.loadingBox}>
           <Ionicons name="albums-outline" size={26} color={t.accent} />
         </View>

@@ -106,9 +106,17 @@ export function createDialogueV2FreeformPreparedBotVoicePublicHandler(
     try {
       result = await resolveInternal(request);
     } catch (error) {
+      // зачем (PM-252 п.4): отказ подбора голоса бота был немым.
+      console.warn('[DIALOGUE-V2-BOT-VOICE] refused', JSON.stringify({
+        stage: 'resolve',
+        error: String((error as { code?: unknown })?.code ?? (error as { message?: unknown })?.message ?? error).slice(0, 160),
+      }));
       throw safeBoundaryError(error);
     }
-    if (!isExactTextOnlyResult(result)) throw unavailable();
+    if (!isExactTextOnlyResult(result)) {
+      console.warn('[DIALOGUE-V2-BOT-VOICE] refused', JSON.stringify({ stage: 'result_not_text_only' }));
+      throw unavailable();
+    }
     return Object.freeze({ selection: null });
   };
 }

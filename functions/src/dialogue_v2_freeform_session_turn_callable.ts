@@ -337,16 +337,28 @@ function exactTurnResult(value: unknown): DialogueV2FreeformSessionTurnResult | 
   }
 }
 
+// зачем (PM-252 п.4): отказы хода свободного диалога были немыми — стадия и код, без текстов и uid.
+function logFreeformTurnRefusal(stage: string, error?: unknown): void {
+  console.warn('[DIALOGUE-V2-FREEFORM-TURN] refused', JSON.stringify({
+    stage,
+    ...(error === undefined ? {} : {
+      error: String((error as { code?: unknown })?.code ?? (error as { message?: unknown })?.message ?? error).slice(0, 160),
+    }),
+  }));
+}
+
 export function createDialogueV2FreeformSessionTurnHandler(
   dependencies: DialogueV2FreeformSessionTurnDependencies,
 ): (request: TurnRequest) => Promise<TurnPublicResult> {
   return async (request) => {
     const authUid = request.auth?.uid;
     if (typeof authUid !== 'string' || !AUTH_UID_RE.test(authUid)) {
+      logFreeformTurnRefusal('auth_required');
       throw new HttpsError('unauthenticated', 'auth_required');
     }
     const input = exactInput(request.data);
     if (!input) {
+      logFreeformTurnRefusal('request_invalid');
       throw new HttpsError(
         'invalid-argument',
         'dialogue_v2_freeform_session_turn_request_invalid',
@@ -358,11 +370,13 @@ export function createDialogueV2FreeformSessionTurnHandler(
       rawResult = await dependencies.runAuthorizedTurn(authUid, input);
     } catch (error) {
       const safe = safeAuthorizationError(error);
+      logFreeformTurnRefusal(safe ? 'authorization' : 'turn_failed', error);
       if (safe) throw safe;
       throw unavailable();
     }
     const result = exactTurnResult(rawResult);
     if (!result || result.sessionId !== input.sessionId || result.turnId !== input.turnId) {
+      logFreeformTurnRefusal(result ? 'turn_result_mismatch' : 'turn_result_invalid');
       throw unavailable();
     }
     return Object.freeze({

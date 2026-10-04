@@ -49,10 +49,18 @@ async function loadVisibleTarget(
 ): Promise<FirebaseFirestore.DocumentData | null> {
   const cleanUid = sanitizeString(uid, 180);
   if (!cleanUid) return null;
+  // зачем (PM-252 п.4): чтение — при сбое человек скрывается (безопасно), но причина больше не немая.
   const [userSnap, bannedSnap] = await Promise.all([
-    db.collection('users').doc(cleanUid).get().catch(() => null),
-    db.collection('banned_users').doc(cleanUid).get().catch(() => null),
+    db.collection('users').doc(cleanUid).get().catch((error: unknown) => {
+      console.warn('[BAN-CHECK] lookup users read failed — target hidden', String((error as { code?: unknown })?.code ?? error).slice(0, 80));
+      return null;
+    }),
+    db.collection('banned_users').doc(cleanUid).get().catch((error: unknown) => {
+      console.warn('[BAN-CHECK] lookup banned_users read failed — target hidden', String((error as { code?: unknown })?.code ?? error).slice(0, 80));
+      return null;
+    }),
   ]);
+  if (bannedSnap === null) return null;
   if (bannedSnap?.exists || !userSnap?.exists) return null;
   const data = userSnap.data() ?? {};
   if (data.identityHidden === true || data.banned === true) return null;

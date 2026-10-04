@@ -121,16 +121,28 @@ function exactSessionResult(value: unknown): Readonly<{
   }
 }
 
+// зачем (PM-252 п.4): у старта свободного диалога отказы были немыми — пишем стадию и код, без текстов и uid.
+function logFreeformStartRefusal(stage: string, error?: unknown): void {
+  console.warn('[DIALOGUE-V2-FREEFORM-START] refused', JSON.stringify({
+    stage,
+    ...(error === undefined ? {} : {
+      error: String((error as { code?: unknown })?.code ?? (error as { message?: unknown })?.message ?? error).slice(0, 160),
+    }),
+  }));
+}
+
 export function createDialogueV2FreeformSessionStartHandler(
   dependencies: DialogueV2FreeformSessionStartDependencies,
 ): (request: StartRequest) => Promise<StartResult> {
   return async (request) => {
     const authUid = request.auth?.uid;
     if (typeof authUid !== 'string' || !AUTH_UID_RE.test(authUid)) {
+      logFreeformStartRefusal('auth_required');
       throw new HttpsError('unauthenticated', 'auth_required');
     }
     const selection = exactSelection(request.data);
     if (!selection) {
+      logFreeformStartRefusal('request_invalid');
       throw new HttpsError(
         'invalid-argument',
         'dialogue_v2_freeform_session_start_request_invalid',
@@ -142,11 +154,15 @@ export function createDialogueV2FreeformSessionStartHandler(
       created = await dependencies.startAuthorizedSession(authUid, selection);
     } catch (error) {
       const safe = safeAuthorizationError(error);
+      logFreeformStartRefusal(safe ? 'authorization' : 'start_failed', error);
       if (safe) throw safe;
       throw unavailable();
     }
     const session = exactSessionResult(created);
-    if (!session) throw unavailable();
+    if (!session) {
+      logFreeformStartRefusal('session_result_invalid');
+      throw unavailable();
+    }
     return Object.freeze({
       ok: true as const,
       sessionId: session.sessionId,

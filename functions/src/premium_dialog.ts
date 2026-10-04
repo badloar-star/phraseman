@@ -1118,7 +1118,11 @@ export const premiumDialogSend = onCall({
     resolveRemoteBool(db, 'gate_ai_dialog_premium', true),
   ]);
 
-  if (aiOff) throw new HttpsError('failed-precondition', 'ai_globally_disabled');
+  if (aiOff) {
+    // зачем (PM-252 п.4): отказ по рубильнику ИИ был немым — в логах не отличить от сбоя.
+    console.warn('[AI-KILL-SWITCH] rejected', JSON.stringify({ callable: 'premiumDialog' }));
+    throw new HttpsError('failed-precondition', 'ai_globally_disabled');
+  }
 
   const history = sanitizeHistory(data.history);
   // Сервер сам резолвит подписку: поле isPremium из тела запроса недоверенное.

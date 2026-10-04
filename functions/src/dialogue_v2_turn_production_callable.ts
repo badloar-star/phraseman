@@ -827,7 +827,14 @@ export function createDialogueV2SessionTextTurnHandler(
           authUid,
           stableAccountId,
           capturedReservation.resetAtMs,
-        ).catch(() => undefined);
+        ).catch((releaseError: unknown) => {
+          // зачем (PM-252 п.4): неудачный возврат квоты был невидим — человек молча терял попытку месяца.
+          console.error('[DIALOGUE-V2-TURN] quota_release_failed', JSON.stringify({
+            scenarioId: input.scenarioId,
+            resetAtMs: capturedReservation.resetAtMs,
+            error: String((releaseError as { message?: unknown })?.message ?? releaseError).slice(0, 160),
+          }));
+        });
       }
       console.warn('[DIALOGUE-V2-TURN] failed', JSON.stringify({
         scenarioId: input.scenarioId,

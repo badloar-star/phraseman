@@ -73,6 +73,15 @@ function emptyBatch(status: ChoiceStatus, fromCache: boolean): ChoiceResponse {
   return { ok: true, confirm: '', distractors: {}, status, fromCache };
 }
 
+/**
+ * зачем (PM-252 п.4, ревью сервера 04.10): у explainChoice не было НИ ОДНОГО лога — пустой ответ «exhausted»
+ * не отличить от выключенного рубильника, исчерпанного бюджета или отказа судьи. Каждый выход пишет причину;
+ * тексты фраз не пишем — только коды и длины.
+ */
+function logChoiceExit(reason: string, extra: Record<string, unknown> = {}): void {
+  console.info('[EXPLAIN-CHOICE] exit', JSON.stringify({ reason, ...extra }));
+}
+
 export const explainChoice = onCall({
   region: REGION,
   enforceAppCheck: ENFORCE_APP_CHECK_OPENAI,
@@ -82,10 +91,16 @@ export const explainChoice = onCall({
   secrets: [OPENAI_API_KEY],
 }, async (request): Promise<ChoiceResponse> => {
   // 1. Auth gate — identity NEVER from body.
-  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
+  if (!request.auth?.uid) {
+    logChoiceExit('auth_required');
+    throw new HttpsError('unauthenticated', 'auth_required');
+  }
 
   const apiKey = asText(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY, 300);
-  if (!apiKey) throw new HttpsError('failed-precondition', 'openai_key_missing');
+  if (!apiKey) {
+    console.error('[EXPLAIN-CHOICE] exit', JSON.stringify({ reason: 'openai_key_missing' }));
+    throw new HttpsError('failed-precondition', 'openai_key_missing');
+  }
 
   const data = (request.data ?? {}) as ChoiceRequestData;
   const correctEn = asText(data.correctEn, 1000);
@@ -98,7 +113,10 @@ export const explainChoice = onCall({
   // Глобальный рубильник ИИ (админ «Пульт»): серверный дубль клиентского гейта —
   // чтобы прямой вызов callable в обход UI не запускал ИИ. Клиент по этому коду
   // показывает забавную плашку.
-  if (await aiGloballyDisabled(db)) throw new HttpsError('failed-precondition', 'ai_globally_disabled');
+  if (await aiGloballyDisabled(db)) {
+    logChoiceExit('ai_globally_disabled');
+    throw new HttpsError('failed-precondition', 'ai_globally_disabled');
+  }
   const jobCfg = await resolveJobConfig(db, 'choice');
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForAuth(db, authUid);
@@ -106,6 +124,12 @@ export const explainChoice = onCall({
   // 2. Deterministic input gate — also returns the cleaned/capped distractor list.
   const input = validateChoiceInput({ correctEn, phraseMeaning, distractors: rawDistractors, lang });
   if (!input.ok || !input.distractors) {
+    logChoiceExit('invalid_input', {
+      detail: input.reason ?? 'invalid_input',
+      correctChars: correctEn.length,
+      meaningChars: phraseMeaning.length,
+      distractors: rawDistractors.length,
+    });
     throw new HttpsError('invalid-argument', input.reason ?? 'invalid_input');
   }
   const distractors = input.distractors;
@@ -118,6 +142,7 @@ export const explainChoice = onCall({
       await enforceFreeJobGenLimit('choice', authUid, stableUid, FREE_DAILY_CAP);
     } catch (err) {
       if (err instanceof HttpsError && err.code === 'resource-exhausted') {
+        logChoiceExit('free_daily_cap', { cap: FREE_DAILY_CAP });
         return emptyBatch('exhausted', false);
       }
       throw err;
@@ -140,11 +165,15 @@ export const explainChoice = onCall({
     };
   }
   if (cached?.status === 'rejected' && !isRetryableRejectedChoice(cached, Date.now())) {
+    logChoiceExit('cached_rejected');
     return emptyBatch('rejected', true);
   }
 
   // Kill-switch: choice выключен админом → не жжём OpenAI.
-  if (!jobCfg.enabled) return emptyBatch('exhausted', false);
+  if (!jobCfg.enabled) {
+    logChoiceExit('job_disabled');
+    return emptyBatch('exhausted', false);
+  }
 
   // 4. Cost guards (cache MISS only). Shares the explain budget collections.
   // Free-кап уже списан выше (до кэша) — здесь только общие счётчики.
@@ -153,6 +182,7 @@ export const explainChoice = onCall({
     budgetReservation = await reserveExplainBudget(authUid, stableUid, jobCfg.globalDailyCap);
   } catch (err) {
     if (err instanceof HttpsError && err.code === 'resource-exhausted') {
+      logChoiceExit('budget_exhausted', { globalDailyCap: jobCfg.globalDailyCap });
       return emptyBatch('exhausted', false);
     }
     throw err;
@@ -163,6 +193,7 @@ export const explainChoice = onCall({
   if (!claimed) {
     await refundExplainBudgetReservation(budgetReservation, 'lock_not_claimed');
     budgetReservation = null;
+    logChoiceExit('pending_lock_not_claimed');
     return emptyBatch('pending', true);
   }
 
@@ -180,6 +211,10 @@ export const explainChoice = onCall({
   } catch (err) {
     await refundExplainBudgetReservation(budgetReservation, 'provider_failed');
     budgetReservation = null;
+    console.warn('[EXPLAIN-CHOICE] exit', JSON.stringify({
+      reason: 'provider_failed',
+      error: String((err as { message?: unknown })?.message ?? err).slice(0, 160),
+    }));
     throw err;
   }
 
@@ -219,7 +254,10 @@ export const explainChoice = onCall({
     createdAtMs: Date.now(),
   });
 
-  if (!verdict.ok) return emptyBatch('rejected', false);
+  if (!verdict.ok) {
+    logChoiceExit('judge_rejected', { verdict: verdict.reason, parsedOk: parsed.ok });
+    return emptyBatch('rejected', false);
+  }
 
   return {
     ok: true,

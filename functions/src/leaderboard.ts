@@ -120,11 +120,23 @@ async function resolveStableUid(
 }
 
 async function assertNotBanned(db: FirebaseFirestore.Firestore, stableUid: string): Promise<void> {
+  // зачем (PM-252 п.4, координатор 04.10): прежний .catch(() => null) при сбое чтения ПРОПУСКАЛ забаненного.
+  // Это запись (выдача/резерв) — при сбое закрываем, причину пишем в лог.
+  const failures: string[] = [];
+  const read = (label: string, ref: FirebaseFirestore.DocumentReference) => ref.get().catch((error: unknown) => {
+    failures.push(`${label}:${String((error as { code?: unknown })?.code ?? (error as { message?: unknown })?.message ?? error).slice(0, 80)}`);
+    return null;
+  });
   const [userSnap, bannedSnap] = await Promise.all([
-    db.collection('users').doc(stableUid).get().catch(() => null),
-    db.collection('banned_users').doc(stableUid).get().catch(() => null),
+    read('users', db.collection('users').doc(stableUid)),
+    read('banned_users', db.collection('banned_users').doc(stableUid)),
   ]);
+  if (failures.length > 0) {
+    console.warn('[BAN-CHECK] read_failed — fail-closed', JSON.stringify({ site: 'leaderboard_name', failures }));
+    throw new HttpsError('unavailable', 'ban_check_unavailable');
+  }
   if (bannedSnap?.exists || userSnap?.data()?.banned === true) {
+    console.info('[BAN-CHECK] denied', JSON.stringify({ site: 'leaderboard_name', source: bannedSnap?.exists ? 'banned_users' : 'users.banned' }));
     throw new HttpsError('permission-denied', 'user_banned');
   }
 }

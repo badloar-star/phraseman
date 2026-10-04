@@ -98,6 +98,20 @@ function releaseRepository(
   });
 }
 
+/**
+ * зачем (PM-252 п.4, ревью сервера 04.10): у старта сессии диалога было 7 отказов и 0 логов — «сессия
+ * недоступна» не отличалась по причине. Пишем стадию и код ошибки; без текстов и uid.
+ */
+function logStartRefusal(stage: string, error?: unknown, extra: Record<string, unknown> = {}): void {
+  console.warn('[DIALOGUE-V2-START] refused', JSON.stringify({
+    stage,
+    ...extra,
+    ...(error === undefined ? {} : {
+      error: String((error as { code?: unknown })?.code ?? (error as { message?: unknown })?.message ?? error).slice(0, 160),
+    }),
+  }));
+}
+
 export function createDialogueV2SessionStartHandler(
   dependencies: StartDependencies,
 ): (request: StartRequest) => Promise<Readonly<{
@@ -114,10 +128,14 @@ export function createDialogueV2SessionStartHandler(
     }
     const authUid = request.auth?.uid;
     if (typeof authUid !== 'string' || !AUTH_UID_RE.test(authUid)) {
+      logStartRefusal('auth_required');
       throw new HttpsError('unauthenticated', 'auth_required');
     }
     const selection = exactSelection(request.data);
     if (!selection) {
+      logStartRefusal('request_invalid', undefined, {
+        keys: request.data && typeof request.data === 'object' ? Object.keys(request.data as object).slice(0, 8) : typeof request.data,
+      });
       throw new HttpsError('invalid-argument', 'dialogue_v2_session_request_invalid');
     }
 
@@ -127,7 +145,8 @@ export function createDialogueV2SessionStartHandler(
       if (typeof stableAccountId !== 'string' || stableAccountId.length < 1) {
         throw new Error('identity_invalid');
       }
-    } catch {
+    } catch (error) {
+      logStartRefusal('identity', error, selection);
       throw new HttpsError('unavailable', 'dialogue_v2_session_unavailable');
     }
 
@@ -135,24 +154,28 @@ export function createDialogueV2SessionStartHandler(
       await dependencies.acquireStartPermit(authUid, stableAccountId);
     } catch (error) {
       if (error instanceof HttpsError && error.code === 'resource-exhausted') {
+        logStartRefusal('start_rate_limited', error, selection);
         throw new HttpsError(
           'resource-exhausted',
           'dialogue_v2_session_start_rate_limited',
         );
       }
+      logStartRefusal('start_permit', error, selection);
       throw new HttpsError('unavailable', 'dialogue_v2_session_unavailable');
     }
 
     let release: unknown | null;
     try {
       release = await dependencies.resolveRelease();
-    } catch {
+    } catch (error) {
+      logStartRefusal('release_read', error, selection);
       release = null;
     }
     const packet = release
       ? authorizeDialogueV2ServerPacket(selection, release)
       : null;
     if (!packet) {
+      logStartRefusal(release ? 'scenario_not_in_release' : 'release_missing', undefined, selection);
       throw new HttpsError(
         'failed-precondition',
         'dialogue_v2_session_release_unavailable',
@@ -165,7 +188,8 @@ export function createDialogueV2SessionStartHandler(
         selection,
       );
       return Object.freeze({ ok: true as const, ...session });
-    } catch {
+    } catch (error) {
+      logStartRefusal('create_session', error, selection);
       throw new HttpsError('unavailable', 'dialogue_v2_session_unavailable');
     }
   };

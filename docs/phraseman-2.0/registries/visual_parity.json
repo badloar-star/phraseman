@@ -22767,7 +22767,10 @@
       },
       "screen": "Хаб — вариант А",
       "state": "Хаб — вариант А",
-      "code": [],
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
       "matrix_status": null,
       "has_animation": true,
       "anim_notes": [
@@ -22796,7 +22799,10 @@
       },
       "screen": "Хаб — загрузка сообщества",
       "state": "Хаб — загрузка сообщества",
-      "code": [],
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
       "matrix_status": null,
       "has_animation": true,
       "anim_notes": [
@@ -22824,7 +22830,10 @@
       },
       "screen": "Хаб — новичок, своих карточек нет",
       "state": "Хаб — новичок, своих карточек нет",
-      "code": [],
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
       "matrix_status": null,
       "has_animation": true,
       "anim_notes": [
@@ -22852,7 +22861,10 @@
       },
       "screen": "Хаб — лимит исчерпан (Free)",
       "state": "Хаб — лимит исчерпан (Free)",
-      "code": [],
+      "code": [
+        "app/flashcards/CardsHubV2.tsx",
+        "app/flashcards/FlashcardsHubScreen.tsx"
+      ],
       "matrix_status": null,
       "has_animation": true,
       "anim_notes": [

@@ -390,9 +390,10 @@ async function offerAccountRestore(lang: Lang): Promise<boolean> {
 
 function describeAuthError(raw: string, lang: Lang): string {
   const code = String(raw || '');
-  let human = 'Не получилось войти. Попробуй ещё раз.';
+  // зачем (04.10): язык интерфейса известен (lang) — раньше 9 веток отдавали русский текст любому языку.
+  let human = triLang(lang, { ru: 'Не получилось войти. Попробуй ещё раз.', uk: 'Не вдалося увійти. Спробуй ще раз.', en: "Couldn't sign in. Try again.", es: 'No se pudo iniciar sesión. Inténtalo de nuevo.', 'pt-BR': 'Não deu para entrar. Tente de novo.', vi: 'Chưa đăng nhập được. Hãy thử lại.', id: 'Belum bisa masuk. Coba lagi.', tr: 'Giriş yapılamadı. Tekrar dene.', pl: 'Nie udało się zalogować. Spróbuj ponownie.' });
   if (code === 'account_delete_pending' || code.includes('user-disabled')) {
-    human = 'Этот аккаунт ещё удаляется. Попробуй войти через пару минут.';
+    human = triLang(lang, { ru: 'Этот аккаунт ещё удаляется. Попробуй войти через пару минут.', uk: 'Цей акаунт ще видаляється. Спробуй увійти за кілька хвилин.', en: 'This account is still being deleted. Try signing in in a few minutes.', es: 'Esta cuenta aún se está eliminando. Intenta entrar en unos minutos.', 'pt-BR': 'Esta conta ainda está sendo excluída. Tente entrar em alguns minutos.', vi: 'Tài khoản này vẫn đang được xóa. Hãy thử đăng nhập sau vài phút.', id: 'Akun ini masih dihapus. Coba masuk beberapa menit lagi.', tr: 'Bu hesap hâlâ siliniyor. Birkaç dakika sonra giriş yapmayı dene.', pl: 'To konto jest jeszcze usuwane. Spróbuj zalogować się za kilka minut.' });
   } else if (code === 'account_switch_required') {
     human = triLang(lang, {
       ru: 'Локальный прогресс сохранён. Сначала подтверди безопасную смену аккаунта, затем повтори вход.',
@@ -423,19 +424,19 @@ function describeAuthError(raw: string, lang: Lang): string {
       pl: 'Stare dane zostały usunięte i nie można ich odzyskać. Otwiera się nowy pusty profil.',
     });
   } else if (code.includes('google_signin_timeout')) {
-    human = 'Вход занимает слишком много времени. Вернись в приложение и попробуй ещё раз.';
+    human = triLang(lang, { ru: 'Вход затянулся. Вернись в приложение и попробуй ещё раз.', uk: 'Вхід затягнувся. Повернись у застосунок і спробуй ще раз.', en: 'Sign-in is taking too long. Come back to the app and try again.', es: 'El inicio de sesión tarda demasiado. Vuelve a la app e inténtalo de nuevo.', 'pt-BR': 'O login está demorando. Volte ao app e tente de novo.', vi: 'Đăng nhập quá lâu. Hãy quay lại ứng dụng và thử lại.', id: 'Masuk terlalu lama. Kembali ke aplikasi dan coba lagi.', tr: 'Giriş çok uzun sürdü. Uygulamaya dön ve tekrar dene.', pl: 'Logowanie trwa zbyt długo. Wróć do aplikacji i spróbuj ponownie.' });
   } else if (code.includes('apple_auth_module_unavailable')) {
-    human = 'Вход через Apple не встроен в эту сборку приложения.';
+    human = triLang(lang, { ru: 'Вход через Apple недоступен в этой версии приложения.', uk: 'Вхід через Apple недоступний у цій версії застосунку.', en: 'Sign in with Apple is not available in this app version.', es: 'Iniciar sesión con Apple no está disponible en esta versión.', 'pt-BR': 'Entrar com a Apple não está disponível nesta versão.', vi: 'Đăng nhập bằng Apple không có trong phiên bản này.', id: 'Masuk dengan Apple tidak tersedia di versi ini.', tr: 'Apple ile giriş bu sürümde kullanılamıyor.', pl: 'Logowanie przez Apple nie jest dostępne w tej wersji.' });
   } else if (code.includes('apple_signin_nonce')) {
-    human = 'Не удалось подготовить безопасный вход через Apple. Попробуй ещё раз.';
+    human = triLang(lang, { ru: 'Вход через Apple не начался. Попробуй ещё раз.', uk: 'Вхід через Apple не почався. Спробуй ще раз.', en: "Sign in with Apple didn't start. Try again.", es: 'El inicio con Apple no empezó. Inténtalo de nuevo.', 'pt-BR': 'O login com a Apple não começou. Tente de novo.', vi: 'Đăng nhập bằng Apple chưa bắt đầu. Hãy thử lại.', id: 'Masuk dengan Apple belum dimulai. Coba lagi.', tr: 'Apple ile giriş başlamadı. Tekrar dene.', pl: 'Logowanie przez Apple nie ruszyło. Spróbuj ponownie.' });
   } else if (code.includes('apple_signin_no_id_token') || code.includes('apple_oauth_')) {
-    human = 'Apple не подтвердил вход. Попробуй ещё раз.';
+    human = triLang(lang, { ru: 'Apple не подтвердил вход. Попробуй ещё раз.', uk: 'Apple не підтвердив вхід. Спробуй ще раз.', en: "Apple didn't confirm the sign-in. Try again.", es: 'Apple no confirmó el inicio de sesión. Inténtalo de nuevo.', 'pt-BR': 'A Apple não confirmou o login. Tente de novo.', vi: 'Apple chưa xác nhận đăng nhập. Hãy thử lại.', id: 'Apple belum mengonfirmasi masuk. Coba lagi.', tr: 'Apple girişi onaylamadı. Tekrar dene.', pl: 'Apple nie potwierdził logowania. Spróbuj ponownie.' });
   } else if (code.includes('network-request-failed') || code.includes('Network')) {
-    human = 'Связь пропала. Попробуй ещё раз.';
+    human = triLang(lang, { ru: 'Связь пропала. Попробуй ещё раз.', uk: 'Зв’язок зник. Спробуй ще раз.', en: 'Connection lost. Try again.', es: 'Se perdió la conexión. Inténtalo de nuevo.', 'pt-BR': 'A conexão caiu. Tente novamente.', vi: 'Mất kết nối. Hãy thử lại.', id: 'Koneksi terputus. Coba lagi.', tr: 'Bağlantı kesildi. Tekrar dene.', pl: 'Brak połączenia. Spróbuj ponownie.' });
   } else if (code.includes('operation-not-allowed')) {
-    human = 'Этот способ входа сейчас выключен на сервере.';
+    human = triLang(lang, { ru: 'Этот способ входа сейчас недоступен.', uk: 'Цей спосіб входу зараз недоступний.', en: 'This sign-in method is unavailable right now.', es: 'Este método de inicio de sesión no está disponible ahora.', 'pt-BR': 'Este método de login está indisponível agora.', vi: 'Cách đăng nhập này hiện không khả dụng.', id: 'Cara masuk ini belum tersedia sekarang.', tr: 'Bu giriş yöntemi şu an kullanılamıyor.', pl: 'Ten sposób logowania jest teraz niedostępny.' });
   } else if (code.includes('invalid-credential') || code.includes('invalid_credential')) {
-    human = 'Сервер не принял данные входа. Попробуй ещё раз.';
+    human = triLang(lang, { ru: 'Вход не подтвердился. Попробуй ещё раз.', uk: 'Вхід не підтвердився. Спробуй ще раз.', en: "Sign-in wasn't confirmed. Try again.", es: 'No se confirmó el inicio de sesión. Inténtalo de nuevo.', 'pt-BR': 'O login não foi confirmado. Tente de novo.', vi: 'Đăng nhập chưa được xác nhận. Hãy thử lại.', id: 'Masuk belum terkonfirmasi. Coba lagi.', tr: 'Giriş onaylanmadı. Tekrar dene.', pl: 'Logowanie nie zostało potwierdzone. Spróbuj ponownie.' });
   }
   return ENABLE_DEV_TOOLS && code ? `${human}\n${code.slice(0, 120)}` : human;
 }

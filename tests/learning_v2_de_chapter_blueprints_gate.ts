@@ -9118,6 +9118,813 @@ const L20_CONTRACT = {
   ],
 } as const;
 
+const L21_CONTRACT = {
+  lessonId: "de_l21",
+  lessonOrdinal: 21,
+  grammarBoundary: {
+    allowedConstructIds: [
+      "de_gc_infinitive_verb_cluster_v1",
+      "de_gc_connector_topology_contrast_v1",
+      "de_gc_formal_sie_sich_v1",
+      "de_gc_reciprocal_reference_v1",
+      "de_gc_modal_finite_bare_infinitive_v1",
+      "de_gc_lexical_reflexive_v1",
+    ],
+    prohibitedConstructIds: ["de_gc_relative_clause_gender_case_v1"],
+    noExpansion:
+      "Permit only review-only integration of the already introduced controlled right-bracket infinitive cluster, deshalb-plus-V2 versus weil-plus-finite-verb-final topology, formal Sie→sich in the verified sich vorbereiten frame, person-compatible reciprocal wir→uns, ihr→euch and plural sie/Sie→sich, the known finite-modal bare-infinitive bracket, and the known lexical reflexive frame. Do not license any new generative operation, new connector or introducer, new modal meaning, new reflexive verb, free reflexive paradigm, new reciprocal marker, singular-collective reciprocal evidence, zu-infinitive complement, lassen or perception-verb cluster, modal Perfekt or Ersatzinfinitiv, relative clause, event or state passive, new case or preposition relation, L22+ grammar, or any Task6 lexical adjudication.",
+  },
+  chapters: [
+    {
+      id: "de_l21_c01",
+      ordinal: 1,
+      lessonOutcomeId: "de_l21_ch01",
+      lessonOutcome:
+        "follow a longer collaborative proposal using known connectors",
+      packetIds: [
+        "de_l21_c01_s01",
+        "de_l21_c01_s02",
+        "de_l21_c01_s03",
+        "de_l21_c01_s04",
+        "de_l21_c01_s05",
+        "de_l21_c01_s06",
+        "de_l21_c01_s07",
+        "de_l21_c01_s08",
+      ],
+      allowedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+        "de_gc_modal_finite_bare_infinitive_v1",
+        "de_gc_lexical_reflexive_v1",
+      ],
+      prohibitedConstructIds: ["de_gc_relative_clause_gender_case_v1"],
+      situation: {
+        setting: "community-council-proposal-review",
+        participants: "neighbourhood-coordinator-and-volunteers",
+        goal: "follow-a-longer-collaborative-proposal-with-known-connectors",
+        contextSignature: "council-proposal-connector-review",
+      },
+      supportFading: {
+        entryLevel: 5,
+        exitLevel: 2,
+        entry:
+          "Das Bürgerprojekt ist morgen. Deshalb bereiten wir uns heute vor. Wir können die Kisten abholen, weil Frau Keller helfen kann.",
+        exit: "Das Bürgerprojekt ist morgen. Deshalb bereiten wir uns heute vor. Wir können die Kisten abholen, weil Frau Keller helfen kann.",
+        independentEvidenceByPacketId: "de_l21_c01_s08",
+      },
+      lifecycleAnchors: [],
+      chapterEvidencePacketIds: ["de_l21_c01_s03", "de_l21_c01_s04"],
+      checkpoint: {
+        packetId: "de_l21_c01_s08",
+        integratedConstructIds: [
+          "de_gc_infinitive_verb_cluster_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+          "de_gc_modal_finite_bare_infinitive_v1",
+          "de_gc_lexical_reflexive_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l21_c01_buergerprojekt_v1",
+            semanticIdentity:
+              "bürgerprojekt|local civic project used to ground a collaborative proposal",
+            lemmaOrExpression: "Bürgerprojekt",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "das",
+              singular: "Bürgerprojekt",
+              plural: "Bürgerprojekte",
+            },
+            nounPackageIdentity: "das|burgerprojekt|burgerprojekte",
+            verbPackage: null,
+            senseGloss:
+              "local civic project used to ground a collaborative proposal",
+            communicativeUse:
+              "Das Bürgerprojekt ist morgen. Deshalb bereiten wir uns heute vor. Wir können die Kisten abholen, weil Frau Keller helfen kann.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l21_ch01",
+            utilityProof: {
+              chapterOutcomeId: "de_l21_ch01",
+              checkpointPacketId: "de_l21_c01_s08",
+              integratedConstructIds: [
+                "de_gc_infinitive_verb_cluster_v1",
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+                "de_gc_modal_finite_bare_infinitive_v1",
+                "de_gc_lexical_reflexive_v1",
+              ],
+              utilityRole: "scene_grounding",
+              situationFacet: "setting",
+              facetValue: "school-yard-project-briefing",
+              necessityClass: "SCENE_UNGROUNDED",
+              plannedUsePacketIds: ["de_l21_c01_s08"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "school-yard-project-briefing",
+          participants: "parent-representative-and-school-volunteers",
+          goal: "independently-follow-a-longer-collaborative-proposal-with-known-connectors",
+          contextSignature: "school-project-connector-review-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l20_c06", "de_l20_c07"],
+        targetsFutureChapterIds: ["de_l21_c02"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l22_c07_s51",
+        },
+      },
+    },
+    {
+      id: "de_l21_c02",
+      ordinal: 2,
+      lessonOutcomeId: "de_l21_ch02",
+      lessonOutcome:
+        "state an individual constraint with known reflexive resources",
+      packetIds: [
+        "de_l21_c02_s09",
+        "de_l21_c02_s10",
+        "de_l21_c02_s11",
+        "de_l21_c02_s12",
+        "de_l21_c02_s13",
+        "de_l21_c02_s14",
+        "de_l21_c02_s15",
+        "de_l21_c02_s16",
+      ],
+      allowedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+        "de_gc_modal_finite_bare_infinitive_v1",
+        "de_gc_lexical_reflexive_v1",
+      ],
+      prohibitedConstructIds: ["de_gc_relative_clause_gender_case_v1"],
+      situation: {
+        setting: "individual-schedule-constraint-call",
+        participants: "resident-and-peer-coordinator",
+        goal: "state-an-individual-constraint-with-known-reflexive-resources",
+        contextSignature: "individual-constraint-reflexive-review",
+      },
+      supportFading: {
+        entryLevel: 5,
+        exitLevel: 2,
+        entry:
+          "Die Verpflichtung beginnt morgen. Deshalb bereite ich mich heute vor.",
+        exit: "Die Verpflichtung beginnt morgen. Deshalb bereite ich mich heute vor.",
+        independentEvidenceByPacketId: "de_l21_c02_s16",
+      },
+      lifecycleAnchors: [],
+      chapterEvidencePacketIds: ["de_l21_c02_s11", "de_l21_c02_s12"],
+      checkpoint: {
+        packetId: "de_l21_c02_s16",
+        integratedConstructIds: [
+          "de_gc_infinitive_verb_cluster_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+          "de_gc_modal_finite_bare_infinitive_v1",
+          "de_gc_lexical_reflexive_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l21_c02_verpflichtung_v1",
+            semanticIdentity:
+              "verpflichtung|individual obligation used to state a planning constraint",
+            lemmaOrExpression: "Verpflichtung",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "die",
+              singular: "Verpflichtung",
+              plural: "Verpflichtungen",
+            },
+            nounPackageIdentity: "die|verpflichtung|verpflichtungen",
+            verbPackage: null,
+            senseGloss:
+              "individual obligation used to state a planning constraint",
+            communicativeUse:
+              "Die Verpflichtung beginnt morgen. Deshalb bereite ich mich heute vor.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l21_ch02",
+            utilityProof: {
+              chapterOutcomeId: "de_l21_ch02",
+              checkpointPacketId: "de_l21_c02_s16",
+              integratedConstructIds: [
+                "de_gc_infinitive_verb_cluster_v1",
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+                "de_gc_modal_finite_bare_infinitive_v1",
+                "de_gc_lexical_reflexive_v1",
+              ],
+              utilityRole: "action",
+              situationFacet: "goal",
+              facetValue:
+                "independently-state-an-individual-constraint-with-known-reflexive-resources",
+              necessityClass: "OUTCOME_UNACHIEVABLE",
+              plannedUsePacketIds: ["de_l21_c02_s16"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "club-duty-availability-message",
+          participants: "club-member-and-organiser",
+          goal: "independently-state-an-individual-constraint-with-known-reflexive-resources",
+          contextSignature: "club-duty-reflexive-constraint-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l20_c07", "de_l21_c01"],
+        targetsFutureChapterIds: ["de_l21_c03"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l22_c07_s52",
+        },
+      },
+    },
+    {
+      id: "de_l21_c03",
+      ordinal: 3,
+      lessonOutcomeId: "de_l21_ch03",
+      lessonOutcome:
+        "state a mutual responsibility with correct reciprocal reference",
+      packetIds: [
+        "de_l21_c03_s17",
+        "de_l21_c03_s18",
+        "de_l21_c03_s19",
+        "de_l21_c03_s20",
+        "de_l21_c03_s21",
+        "de_l21_c03_s22",
+        "de_l21_c03_s23",
+        "de_l21_c03_s24",
+      ],
+      allowedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+        "de_gc_modal_finite_bare_infinitive_v1",
+        "de_gc_lexical_reflexive_v1",
+      ],
+      prohibitedConstructIds: ["de_gc_relative_clause_gender_case_v1"],
+      situation: {
+        setting: "volunteer-responsibility-allocation",
+        participants: "several-community-volunteers",
+        goal: "state-a-mutual-responsibility-with-correct-reciprocal-reference",
+        contextSignature: "mutual-responsibility-reciprocal-review",
+      },
+      supportFading: {
+        entryLevel: 4,
+        exitLevel: 1,
+        entry: "Die Aufgabenteilung ist klar. Deshalb helfen die Helfer sich.",
+        exit: "Die Aufgabenteilung ist klar. Deshalb helfen die Helfer sich.",
+        independentEvidenceByPacketId: "de_l21_c03_s24",
+      },
+      lifecycleAnchors: [],
+      chapterEvidencePacketIds: ["de_l21_c03_s19", "de_l21_c03_s20"],
+      checkpoint: {
+        packetId: "de_l21_c03_s24",
+        integratedConstructIds: [
+          "de_gc_infinitive_verb_cluster_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+          "de_gc_modal_finite_bare_infinitive_v1",
+          "de_gc_lexical_reflexive_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l21_c03_aufgabenteilung_v1",
+            semanticIdentity:
+              "aufgabenteilung|division of tasks used to state mutual responsibility",
+            lemmaOrExpression: "Aufgabenteilung",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "die",
+              singular: "Aufgabenteilung",
+              plural: "Aufgabenteilungen",
+            },
+            nounPackageIdentity: "die|aufgabenteilung|aufgabenteilungen",
+            verbPackage: null,
+            senseGloss: "division of tasks used to state mutual responsibility",
+            communicativeUse:
+              "Die Aufgabenteilung ist klar. Deshalb helfen die Helfer sich.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l21_ch03",
+            utilityProof: {
+              chapterOutcomeId: "de_l21_ch03",
+              checkpointPacketId: "de_l21_c03_s24",
+              integratedConstructIds: [
+                "de_gc_infinitive_verb_cluster_v1",
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+                "de_gc_modal_finite_bare_infinitive_v1",
+                "de_gc_lexical_reflexive_v1",
+              ],
+              utilityRole: "mediation",
+              situationFacet: "goal",
+              facetValue:
+                "independently-state-a-mutual-responsibility-with-correct-reciprocal-reference",
+              necessityClass: "OUTCOME_UNACHIEVABLE",
+              plannedUsePacketIds: ["de_l21_c03_s24"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "festival-helper-task-board",
+          participants: "event-helpers-and-coordinator",
+          goal: "independently-state-a-mutual-responsibility-with-correct-reciprocal-reference",
+          contextSignature: "festival-task-reciprocal-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l21_c01", "de_l21_c02"],
+        targetsFutureChapterIds: ["de_l21_c04"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l22_c07_s53",
+        },
+      },
+    },
+    {
+      id: "de_l21_c04",
+      ordinal: 4,
+      lessonOutcomeId: "de_l21_ch04",
+      lessonOutcome: "compare feasible task sequences with known verb clusters",
+      packetIds: [
+        "de_l21_c04_s25",
+        "de_l21_c04_s26",
+        "de_l21_c04_s27",
+        "de_l21_c04_s28",
+        "de_l21_c04_s29",
+        "de_l21_c04_s30",
+        "de_l21_c04_s31",
+        "de_l21_c04_s32",
+      ],
+      allowedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+        "de_gc_modal_finite_bare_infinitive_v1",
+        "de_gc_lexical_reflexive_v1",
+      ],
+      prohibitedConstructIds: ["de_gc_relative_clause_gender_case_v1"],
+      situation: {
+        setting: "community-task-sequence-comparison",
+        participants: "two-team-planners",
+        goal: "compare-feasible-task-sequences-with-known-verb-clusters",
+        contextSignature: "task-sequence-cluster-comparison",
+      },
+      supportFading: {
+        entryLevel: 4,
+        exitLevel: 1,
+        entry:
+          "Ein Arbeitsschritt ist heute möglich, weil wir die Kisten abholen können. Der andere ist morgen möglich, weil die Helfer helfen können.",
+        exit: "Ein Arbeitsschritt ist heute möglich, weil wir die Kisten abholen können. Der andere ist morgen möglich, weil die Helfer helfen können.",
+        independentEvidenceByPacketId: "de_l21_c04_s32",
+      },
+      lifecycleAnchors: [],
+      chapterEvidencePacketIds: ["de_l21_c04_s27", "de_l21_c04_s28"],
+      checkpoint: {
+        packetId: "de_l21_c04_s32",
+        integratedConstructIds: [
+          "de_gc_infinitive_verb_cluster_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+          "de_gc_modal_finite_bare_infinitive_v1",
+          "de_gc_lexical_reflexive_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l21_c04_arbeitsschritt_v1",
+            semanticIdentity:
+              "arbeitsschritt|work step used to compare feasible task sequences",
+            lemmaOrExpression: "Arbeitsschritt",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "der",
+              singular: "Arbeitsschritt",
+              plural: "Arbeitsschritte",
+            },
+            nounPackageIdentity: "der|arbeitsschritt|arbeitsschritte",
+            verbPackage: null,
+            senseGloss: "work step used to compare feasible task sequences",
+            communicativeUse:
+              "Ein Arbeitsschritt ist heute möglich, weil wir die Kisten abholen können. Der andere ist morgen möglich, weil die Helfer helfen können.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l21_ch04",
+            utilityProof: {
+              chapterOutcomeId: "de_l21_ch04",
+              checkpointPacketId: "de_l21_c04_s32",
+              integratedConstructIds: [
+                "de_gc_infinitive_verb_cluster_v1",
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+                "de_gc_modal_finite_bare_infinitive_v1",
+                "de_gc_lexical_reflexive_v1",
+              ],
+              utilityRole: "action",
+              situationFacet: "goal",
+              facetValue:
+                "independently-compare-feasible-task-sequences-with-known-verb-clusters",
+              necessityClass: "OUTCOME_UNACHIEVABLE",
+              plannedUsePacketIds: ["de_l21_c04_s32"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "library-move-step-planning",
+          participants: "library-volunteer-and-site-manager",
+          goal: "independently-compare-feasible-task-sequences-with-known-verb-clusters",
+          contextSignature: "library-move-cluster-comparison-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l21_c02", "de_l21_c03"],
+        targetsFutureChapterIds: ["de_l21_c05"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l22_c07_s54",
+        },
+      },
+    },
+    {
+      id: "de_l21_c05",
+      ordinal: 5,
+      lessonOutcomeId: "de_l21_ch05",
+      lessonOutcome: "mediate two preferences into one joint plan",
+      packetIds: [
+        "de_l21_c05_s33",
+        "de_l21_c05_s34",
+        "de_l21_c05_s35",
+        "de_l21_c05_s36",
+        "de_l21_c05_s37",
+        "de_l21_c05_s38",
+        "de_l21_c05_s39",
+        "de_l21_c05_s40",
+      ],
+      allowedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+        "de_gc_modal_finite_bare_infinitive_v1",
+        "de_gc_lexical_reflexive_v1",
+      ],
+      prohibitedConstructIds: ["de_gc_relative_clause_gender_case_v1"],
+      situation: {
+        setting: "mixed-group-preference-mediation",
+        participants: "formal-contact-and-neighbour-team",
+        goal: "mediate-two-preferences-into-one-joint-plan",
+        contextSignature: "joint-plan-preference-mediation",
+      },
+      supportFading: {
+        entryLevel: 3,
+        exitLevel: 1,
+        entry:
+          "Der Kompromiss ist klar: Frau Keller, Sie bereiten sich heute vor. Wir helfen uns morgen, weil wir die Kisten abholen müssen.",
+        exit: "Der Kompromiss ist klar: Frau Keller, Sie bereiten sich heute vor. Wir helfen uns morgen, weil wir die Kisten abholen müssen.",
+        independentEvidenceByPacketId: "de_l21_c05_s40",
+      },
+      lifecycleAnchors: [],
+      chapterEvidencePacketIds: ["de_l21_c05_s35", "de_l21_c05_s36"],
+      checkpoint: {
+        packetId: "de_l21_c05_s40",
+        integratedConstructIds: [
+          "de_gc_infinitive_verb_cluster_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+          "de_gc_modal_finite_bare_infinitive_v1",
+          "de_gc_lexical_reflexive_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l21_c05_kompromiss_v1",
+            semanticIdentity:
+              "kompromiss|compromise that combines two preferences into one joint plan",
+            lemmaOrExpression: "Kompromiss",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "der",
+              singular: "Kompromiss",
+              plural: "Kompromisse",
+            },
+            nounPackageIdentity: "der|kompromiss|kompromisse",
+            verbPackage: null,
+            senseGloss:
+              "compromise that combines two preferences into one joint plan",
+            communicativeUse:
+              "Der Kompromiss ist klar: Frau Keller, Sie bereiten sich heute vor. Wir helfen uns morgen, weil wir die Kisten abholen müssen.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l21_ch05",
+            utilityProof: {
+              chapterOutcomeId: "de_l21_ch05",
+              checkpointPacketId: "de_l21_c05_s40",
+              integratedConstructIds: [
+                "de_gc_infinitive_verb_cluster_v1",
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+                "de_gc_modal_finite_bare_infinitive_v1",
+                "de_gc_lexical_reflexive_v1",
+              ],
+              utilityRole: "mediation",
+              situationFacet: "goal",
+              facetValue:
+                "independently-mediate-two-preferences-into-one-joint-plan",
+              necessityClass: "OUTCOME_UNACHIEVABLE",
+              plannedUsePacketIds: ["de_l21_c05_s40"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "park-cleanup-consensus-call",
+          participants: "municipal-contact-and-resident-group",
+          goal: "independently-mediate-two-preferences-into-one-joint-plan",
+          contextSignature: "park-cleanup-joint-plan-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l21_c03", "de_l21_c04"],
+        targetsFutureChapterIds: ["de_l21_c06"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l22_c07_s55",
+        },
+      },
+    },
+    {
+      id: "de_l21_c06",
+      ordinal: 6,
+      lessonOutcomeId: "de_l21_ch06",
+      lessonOutcome: "repair register or topology after misunderstanding",
+      packetIds: [
+        "de_l21_c06_s41",
+        "de_l21_c06_s42",
+        "de_l21_c06_s43",
+        "de_l21_c06_s44",
+        "de_l21_c06_s45",
+        "de_l21_c06_s46",
+        "de_l21_c06_s47",
+        "de_l21_c06_s48",
+      ],
+      allowedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+        "de_gc_modal_finite_bare_infinitive_v1",
+        "de_gc_lexical_reflexive_v1",
+      ],
+      prohibitedConstructIds: ["de_gc_relative_clause_gender_case_v1"],
+      situation: {
+        setting: "joint-plan-misunderstanding-review",
+        participants: "learner-and-community-language-reviewer",
+        goal: "repair-register-or-topology-after-misunderstanding",
+        contextSignature: "joint-plan-register-topology-repair",
+      },
+      supportFading: {
+        entryLevel: 3,
+        exitLevel: 1,
+        entry:
+          "[1] Frau Keller, Sie bereiten Sich vor. → Frau Keller, Sie bereiten sich vor. [2] weil wir müssen die Kisten abholen → weil wir die Kisten abholen müssen. Ich korrigiere das Missverständnis.",
+        exit: "[1] Frau Keller, Sie bereiten Sich vor. → Frau Keller, Sie bereiten sich vor. [2] weil wir müssen die Kisten abholen → weil wir die Kisten abholen müssen. Ich korrigiere das Missverständnis.",
+        independentEvidenceByPacketId: "de_l21_c06_s48",
+      },
+      lifecycleAnchors: [],
+      chapterEvidencePacketIds: ["de_l21_c06_s43", "de_l21_c06_s44"],
+      checkpoint: {
+        packetId: "de_l21_c06_s48",
+        integratedConstructIds: [
+          "de_gc_infinitive_verb_cluster_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+          "de_gc_modal_finite_bare_infinitive_v1",
+          "de_gc_lexical_reflexive_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l21_c06_missverstaendnis_v1",
+            semanticIdentity:
+              "missverständnis|misunderstanding whose register and topology errors are repaired",
+            lemmaOrExpression: "Missverständnis",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "das",
+              singular: "Missverständnis",
+              plural: "Missverständnisse",
+            },
+            nounPackageIdentity: "das|missverstandnis|missverstandnisse",
+            verbPackage: null,
+            senseGloss:
+              "misunderstanding whose register and topology errors are repaired",
+            communicativeUse:
+              "Falsch: Frau Keller, Sie bereiten Sich vor. Richtig: Frau Keller, Sie bereiten sich vor. Falsch: weil wir müssen die Kisten abholen. Richtig: weil wir die Kisten abholen müssen. Ich korrigiere das Missverständnis.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l21_ch06",
+            utilityProof: {
+              chapterOutcomeId: "de_l21_ch06",
+              checkpointPacketId: "de_l21_c06_s48",
+              integratedConstructIds: [
+                "de_gc_infinitive_verb_cluster_v1",
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+                "de_gc_modal_finite_bare_infinitive_v1",
+                "de_gc_lexical_reflexive_v1",
+              ],
+              utilityRole: "repair",
+              situationFacet: "goal",
+              facetValue:
+                "independently-repair-register-or-topology-after-misunderstanding",
+              necessityClass: "REPAIR_UNAVAILABLE",
+              plannedUsePacketIds: ["de_l21_c06_s48"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "peer-review-of-club-plan",
+          participants: "learner-and-peer-reviewer",
+          goal: "independently-repair-register-or-topology-after-misunderstanding",
+          contextSignature: "club-plan-dual-repair-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l21_c04", "de_l21_c05"],
+        targetsFutureChapterIds: ["de_l21_c07"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l22_c07_s56",
+        },
+      },
+    },
+    {
+      id: "de_l21_c07",
+      ordinal: 7,
+      lessonOutcomeId: "de_l21_ch07",
+      lessonOutcome:
+        "transfer collaborative planning to a new group and objective",
+      packetIds: [
+        "de_l21_c07_s49",
+        "de_l21_c07_s50",
+        "de_l21_c07_s51",
+        "de_l21_c07_s52",
+        "de_l21_c07_s53",
+        "de_l21_c07_s54",
+        "de_l21_c07_s55",
+        "de_l21_c07_s56",
+      ],
+      allowedConstructIds: [
+        "de_gc_infinitive_verb_cluster_v1",
+        "de_gc_connector_topology_contrast_v1",
+        "de_gc_formal_sie_sich_v1",
+        "de_gc_reciprocal_reference_v1",
+      ],
+      prohibitedConstructIds: ["de_gc_relative_clause_gender_case_v1"],
+      situation: {
+        setting: "changed-local-initiative-planning",
+        participants: "formal-contact-and-new-volunteer-group",
+        goal: "transfer-collaborative-planning-to-a-new-group-and-objective",
+        contextSignature: "changed-initiative-final-transfer",
+      },
+      supportFading: {
+        entryLevel: 2,
+        exitLevel: 0,
+        entry:
+          "Die Nachbarschaftsaktion ist morgen. Frau Keller kann nur heute helfen. Die Helfer können nur morgen helfen. Frau Keller, Sie bereiten sich heute vor. Die Helfer helfen sich morgen, weil sie die Kisten abholen müssen. Deshalb ist der Kompromiss klar.",
+        exit: "Die Nachbarschaftsaktion ist morgen. Frau Keller kann nur heute helfen. Die Helfer können nur morgen helfen. Frau Keller, Sie bereiten sich heute vor. Die Helfer helfen sich morgen, weil sie die Kisten abholen müssen. Deshalb ist der Kompromiss klar.",
+        independentEvidenceByPacketId: "de_l21_c07_s56",
+      },
+      lifecycleAnchors: [
+        {
+          constructId: "de_gc_infinitive_verb_cluster_v1",
+          stage: "delayed",
+          packetId: "de_l21_c07_s49",
+        },
+      ],
+      chapterEvidencePacketIds: [
+        "de_l21_c07_s49",
+        "de_l21_c07_s50",
+        "de_l21_c07_s51",
+        "de_l21_c07_s52",
+        "de_l21_c07_s53",
+        "de_l21_c07_s54",
+        "de_l21_c07_s55",
+        "de_l21_c07_s56",
+      ],
+      checkpoint: {
+        packetId: "de_l21_c07_s56",
+        integratedConstructIds: [
+          "de_gc_infinitive_verb_cluster_v1",
+          "de_gc_connector_topology_contrast_v1",
+          "de_gc_formal_sie_sich_v1",
+          "de_gc_reciprocal_reference_v1",
+        ],
+        plannedNewLexicalSenses: [
+          {
+            id: "de_lex_plan_l21_c07_nachbarschaftsaktion_v1",
+            semanticIdentity:
+              "nachbarschaftsaktion|neighbourhood initiative used for changed-group transfer",
+            lemmaOrExpression: "Nachbarschaftsaktion",
+            partOfSpeech: "noun",
+            lexicalKind: "NOUN_LEXEME",
+            nounPackage: {
+              article: "die",
+              singular: "Nachbarschaftsaktion",
+              plural: "Nachbarschaftsaktionen",
+            },
+            nounPackageIdentity:
+              "die|nachbarschaftsaktion|nachbarschaftsaktionen",
+            verbPackage: null,
+            senseGloss:
+              "neighbourhood initiative used for changed-group transfer",
+            communicativeUse:
+              "Die Nachbarschaftsaktion ist morgen. Frau Keller kann nur heute helfen. Die Helfer können nur morgen helfen. Frau Keller, Sie bereiten sich heute vor. Die Helfer helfen sich morgen, weil sie die Kisten abholen müssen. Deshalb ist der Kompromiss klar.",
+            lemmaStatus: "FIRST_MEANING",
+            contrastsWithSenseId: null,
+            contrastEvidence: null,
+            chapterOutcomeId: "de_l21_ch07",
+            utilityProof: {
+              chapterOutcomeId: "de_l21_ch07",
+              checkpointPacketId: "de_l21_c07_s56",
+              integratedConstructIds: [
+                "de_gc_infinitive_verb_cluster_v1",
+                "de_gc_connector_topology_contrast_v1",
+                "de_gc_formal_sie_sich_v1",
+                "de_gc_reciprocal_reference_v1",
+              ],
+              utilityRole: "transfer",
+              situationFacet: "goal",
+              facetValue:
+                "independently-mediate-conflicting-constraints-into-a-workable-local-initiative",
+              necessityClass: "TRANSFER_UNAVAILABLE",
+              plannedUsePacketIds: ["de_l21_c07_s56"],
+            },
+          },
+        ],
+        lexicalStatus: "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+        newSituation: {
+          setting: "school-fair-coordination-call",
+          participants: "school-coordinator-and-parent-volunteers",
+          goal: "independently-mediate-conflicting-constraints-into-a-workable-local-initiative",
+          contextSignature: "school-fair-changed-group-transfer-check",
+        },
+      },
+      recallSchedule: {
+        entryException: null,
+        retrievesFromChapterIds: ["de_l21_c05", "de_l21_c06"],
+        targetsFutureChapterIds: ["de_l22_c01"],
+        futureDelayedProbe: {
+          kind: "COURSE_PACKET",
+          packetId: "de_l22_c07_s55",
+        },
+      },
+    },
+  ],
+} as const;
+
 function validateL20SemanticContract(raw: R, plan: Boundary): void {
   const l20 = (raw.lessons as R[]).find(
     (lesson) => lesson.lessonId === "de_l20",
@@ -9317,6 +10124,217 @@ function validateL20SemanticContract(raw: R, plan: Boundary): void {
     throw new Error("l20_semantic_contract_invalid:identity");
 }
 
+function validateL21SemanticContract(raw: R, plan: Boundary): void {
+  const l21 = (raw.lessons as R[]).find(
+    (lesson) => lesson.lessonId === "de_l21",
+  );
+  if (!l21) throw new Error("l21_semantic_contract_invalid:identity");
+  const expected = L21_CONTRACT as unknown as R,
+    chapters = l21.chapters as R[],
+    expectedChapters = expected.chapters as R[],
+    boundary = l21.grammarBoundary as R,
+    expectedBoundary = expected.grammarBoundary as R,
+    expectedAllowed = expectedBoundary.allowedConstructIds as string[];
+  if (l21.lessonOrdinal !== expected.lessonOrdinal || chapters.length !== 7)
+    throw new Error("l21_semantic_contract_invalid:identity");
+  if (boundary.noExpansion !== expectedBoundary.noExpansion)
+    throw new Error("l21_semantic_contract_invalid:no_expansion");
+  if (
+    JSON.stringify(plan.introducedConstructIds) !== JSON.stringify([]) ||
+    JSON.stringify(plan.extendedConstructIds) !==
+      JSON.stringify(expectedAllowed.slice(0, 4)) ||
+    JSON.stringify(plan.reviewedConstructIds) !==
+      JSON.stringify(expectedAllowed.slice(4)) ||
+    JSON.stringify(plan.prohibitedConstructIds) !==
+      JSON.stringify(expectedBoundary.prohibitedConstructIds) ||
+    JSON.stringify(boundary.allowedConstructIds) !==
+      JSON.stringify(expectedBoundary.allowedConstructIds) ||
+    JSON.stringify(boundary.prohibitedConstructIds) !==
+      JSON.stringify(expectedBoundary.prohibitedConstructIds) ||
+    JSON.stringify((plan.session56Final as R).requiredConstructIds) !==
+      JSON.stringify(
+        (expectedChapters[6].checkpoint as R).integratedConstructIds,
+      )
+  )
+    throw new Error("l21_semantic_contract_invalid:sets");
+  const incoming = [51, 52, 53, 54, 55, 56, 55].map((n) => `de_l21_c07_s${n}`),
+    l20 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l20",
+    ) as R;
+  if (
+    !l20 ||
+    JSON.stringify(
+      (l20.chapters as R[]).map(
+        (chapter) =>
+          ((chapter.recallSchedule as R).futureDelayedProbe as R).packetId,
+      ),
+    ) !== JSON.stringify(incoming)
+  )
+    throw new Error("l20_l21_inverse_provenance_invalid");
+  const c06 = chapters[5].supportFading as R,
+    c07 = chapters[6].supportFading as R,
+    expectedC06 = expectedChapters[5].supportFading as R,
+    expectedC07 = expectedChapters[6].supportFading as R;
+  if (
+    c06.entry !== expectedC06.entry ||
+    c06.exit !== expectedC06.exit ||
+    (String(c06.entry).match(/→/gu) ?? []).length !== 2
+  )
+    throw new Error("l21_c06_repair_items");
+  if (
+    /(?:Das|Ein)\s+(?:Team|Ersatzteam)\s+hilft\s+sich/iu.test(
+      `${String(c07.entry)} ${String(c07.exit)}`,
+    )
+  )
+    throw new Error("l21_singular_collective_reciprocal_leak");
+  if (
+    !String(c07.entry).includes("Frau Keller, Sie bereiten sich heute vor.") ||
+    !String(c07.exit).includes("Frau Keller, Sie bereiten sich heute vor.")
+  )
+    throw new Error("l21_formal_sie_sich_missing");
+  if (
+    !String(c07.entry).includes("Die Helfer helfen sich morgen") ||
+    !String(c07.exit).includes("Die Helfer helfen sich morgen")
+  )
+    throw new Error("l21_plural_reciprocal_missing");
+  if (
+    c07.entry !== expectedC07.entry ||
+    c07.exit !== expectedC07.exit ||
+    c07.entryLevel !== 2 ||
+    c07.exitLevel !== 0 ||
+    c07.independentEvidenceByPacketId !== "de_l21_c07_s56" ||
+    JSON.stringify(chapters[6].situation) !==
+      JSON.stringify(expectedChapters[6].situation)
+  )
+    throw new Error("l21_c07_final_transfer");
+  const signatures = new Set<string>(),
+    ids = new Set<string>(),
+    semantics = new Set<string>();
+  chapters.forEach((chapter, index) => {
+    const expectedChapter = expectedChapters[index],
+      cp = chapter.checkpoint as R,
+      expectedCp = expectedChapter.checkpoint as R;
+    if (
+      chapter.id !== expectedChapter.id ||
+      chapter.ordinal !== expectedChapter.ordinal ||
+      chapter.lessonOutcomeId !== expectedChapter.lessonOutcomeId ||
+      chapter.lessonOutcome !== expectedChapter.lessonOutcome ||
+      JSON.stringify(chapter.packetIds) !==
+        JSON.stringify(expectedChapter.packetIds) ||
+      JSON.stringify(chapter.recallSchedule) !==
+        JSON.stringify(expectedChapter.recallSchedule)
+    )
+      throw new Error("l21_semantic_contract_invalid:identity");
+    if (
+      JSON.stringify(chapter.allowedConstructIds) !==
+        JSON.stringify(expectedChapter.allowedConstructIds) ||
+      JSON.stringify(chapter.prohibitedConstructIds) !==
+        JSON.stringify(expectedChapter.prohibitedConstructIds) ||
+      JSON.stringify(cp.integratedConstructIds) !==
+        JSON.stringify(expectedCp.integratedConstructIds)
+    )
+      throw new Error("l21_semantic_contract_invalid:sets");
+    if (
+      JSON.stringify(chapter.lifecycleAnchors) !==
+      JSON.stringify(expectedChapter.lifecycleAnchors)
+    )
+      throw new Error("l21_semantic_contract_invalid:anchors");
+    if (
+      JSON.stringify(chapter.supportFading) !==
+      JSON.stringify(expectedChapter.supportFading)
+    )
+      throw new Error("l21_semantic_contract_invalid:support_fading");
+    if (
+      JSON.stringify([chapter.situation, cp.newSituation]) !==
+      JSON.stringify([expectedChapter.situation, expectedCp.newSituation])
+    )
+      throw new Error("l21_semantic_contract_invalid:situations");
+    for (const sit of [chapter.situation as R, cp.newSituation as R]) {
+      const signature = String(sit.contextSignature);
+      if (signatures.has(signature))
+        throw new Error("l21_semantic_contract_invalid:situations");
+      signatures.add(signature);
+    }
+    if (
+      JSON.stringify(chapter.chapterEvidencePacketIds) !==
+      JSON.stringify(expectedChapter.chapterEvidencePacketIds)
+    )
+      throw new Error("l21_semantic_contract_invalid:evidence");
+    const senses = cp.plannedNewLexicalSenses as R[],
+      expectedSenses = expectedCp.plannedNewLexicalSenses as R[];
+    if (senses.length !== 1 || expectedSenses.length !== 1)
+      throw new Error("l21_semantic_contract_invalid:lexical_packages");
+    const sense = senses[0],
+      expectedSense = expectedSenses[0],
+      actualPackage = clone(sense),
+      expectedPackage = clone(expectedSense);
+    delete actualPackage.utilityProof;
+    delete expectedPackage.utilityProof;
+    if (
+      ids.has(String(sense.id)) ||
+      semantics.has(String(sense.semanticIdentity)) ||
+      JSON.stringify(actualPackage) !== JSON.stringify(expectedPackage) ||
+      cp.lexicalStatus !== expectedCp.lexicalStatus
+    )
+      throw new Error("l21_semantic_contract_invalid:lexical_packages");
+    ids.add(String(sense.id));
+    semantics.add(String(sense.semanticIdentity));
+    if (
+      JSON.stringify(sense.utilityProof) !==
+      JSON.stringify(expectedSense.utilityProof)
+    )
+      throw new Error("l21_semantic_contract_invalid:lexical_utility");
+  });
+  const surface = JSON.stringify(l21)
+    .replaceAll(String(expectedBoundary.noExpansion), "")
+    .replaceAll(String(expectedC06.entry), "")
+    .replaceAll(String(expectedC07.entry), "")
+    .replaceAll(
+      String(
+        (
+          (
+            (expectedChapters[5].checkpoint as R).plannedNewLexicalSenses as R[]
+          )[0] as R
+        ).communicativeUse,
+      ),
+      "",
+    );
+  if (/relative clause|Relativsatz|relativeClauseProbe/iu.test(surface))
+    throw new Error("l21_relative_clause_leak");
+  if (
+    /event passive|state passive|wird abgeholt|ist abgeholt|passiveProbe/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l21_passive_leak");
+  if (
+    /hiddenGrammarProbe|new generative operation|new connector|new modal meaning|new reflexive verb|Ersatzinfinitiv/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l21_hidden_grammar_leak");
+  if (
+    /learnerArtifactsAuthorized.{0,10}true|already satisfies DE-INTERACTION-001|sessions|release|audio|mockup|one natural German target phrase.{0,40}(?:optional|not required)/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l21_interaction_001_future_boundary_invalid");
+  if (
+    /allowNonGermanAssessedTarget.{0,10}true|non-German assessed|localized markers.{0,20}(?:allowed|permitted)|allow localized markers/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l21_interaction_002_future_boundary_invalid");
+  if (
+    /English contour|copy English|English reuse|englishContourProbe/iu.test(
+      surface,
+    )
+  )
+    throw new Error("l21_english_contour_leak");
+  if (JSON.stringify(l21) !== JSON.stringify(expected))
+    throw new Error("l21_semantic_contract_invalid:identity");
+}
+
 function validate(raw: unknown): {
   lessons: number;
   chapters: number;
@@ -9418,6 +10436,12 @@ function validate(raw: unknown): {
     (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l20")
   )
     validateL20SemanticContract(raw, l20Plan);
+  const l21Plan = source.get("de_l21");
+  if (
+    l21Plan &&
+    (raw.lessons as R[]).some((lesson) => lesson.lessonId === "de_l21")
+  )
+    validateL21SemanticContract(raw, l21Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -9676,6 +10700,21 @@ function validate(raw: unknown): {
               sv.id === "de_lex_plan_l20_c03_zeitplan_v1" &&
               sv.semanticIdentity ===
                 "zeitplan|timetable used to contrast a simple modal bracket with a clause-final cluster"
+            ) &&
+            !(
+              sv.id === "de_lex_plan_l21_c01_buergerprojekt_v1" &&
+              sv.semanticIdentity ===
+                "bürgerprojekt|local civic project used to ground a collaborative proposal"
+            ) &&
+            !(
+              sv.id === "de_lex_plan_l21_c06_missverstaendnis_v1" &&
+              sv.semanticIdentity ===
+                "missverständnis|misunderstanding whose register and topology errors are repaired"
+            ) &&
+            !(
+              sv.id === "de_lex_plan_l21_c07_nachbarschaftsaktion_v1" &&
+              sv.semanticIdentity ===
+                "nachbarschaftsaktion|neighbourhood initiative used for changed-group transfer"
             )) ||
           sv.chapterOutcomeId !== cv.lessonOutcomeId ||
           LEXICAL_KIND_BY_POS[sv.partOfSpeech as string] !== sv.lexicalKind
@@ -10270,6 +11309,40 @@ function expectL20PlanExact(mut: (plan: R) => void, message: string): void {
   let thrown: unknown;
   try {
     validateL20SemanticContract(raw, plan as Boundary);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+
+function expectL21Exact(mut: (raw: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: Boundary[] };
+  const plan = lessonRegistry.lessons.find(
+    (lesson) => lesson.id === "de_l21",
+  ) as Boundary;
+  mut(raw);
+  let thrown: unknown;
+  try {
+    validateL21SemanticContract(raw, plan);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+
+function expectL21PlanExact(mut: (plan: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: R[] };
+  const plan = clone(
+    lessonRegistry.lessons.find((lesson) => lesson.id === "de_l21") as R,
+  );
+  mut(plan);
+  let thrown: unknown;
+  try {
+    validateL21SemanticContract(raw, plan as Boundary);
   } catch (error) {
     thrown = error;
   }
@@ -12814,6 +13887,124 @@ function fixtures(): void {
         `full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;${result.lessons}/32 lessons;${result.chapters}/224 chapters`,
       );
   }, /full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;20\/32 lessons;140\/224 chapters/u);
+
+  const l21 = (raw: R) =>
+    (raw.lessons as R[]).find((lesson) => lesson.lessonId === "de_l21") as R;
+  expectL21Exact((raw) => {
+    const lesson = l21(raw);
+    lesson.lessonOrdinal = 22;
+    const packetIds = (lesson.chapters as R[])[0].packetIds as string[];
+    [packetIds[0], packetIds[1]] = [packetIds[1], packetIds[0]];
+  }, "l21_semantic_contract_invalid:identity");
+  expectL21Exact((raw) => {
+    (l21(raw).grammarBoundary as R).noExpansion =
+      "Permit hidden new generative operations.";
+  }, "l21_semantic_contract_invalid:no_expansion");
+  expectL21PlanExact((plan) => {
+    (plan.extendedConstructIds as string[]).reverse();
+  }, "l21_semantic_contract_invalid:sets");
+  expectL21Exact((raw) => {
+    (l21(raw).chapters as R[])[6].lifecycleAnchors = [];
+  }, "l21_semantic_contract_invalid:anchors");
+  expectL21Exact((raw) => {
+    ((l21(raw).chapters as R[])[1].supportFading as R).exitLevel = 1;
+  }, "l21_semantic_contract_invalid:support_fading");
+  expectL21Exact((raw) => {
+    const chapters = l21(raw).chapters as R[];
+    ((chapters[1].checkpoint as R).newSituation as R).contextSignature = (
+      (chapters[0].checkpoint as R).newSituation as R
+    ).contextSignature;
+  }, "l21_semantic_contract_invalid:situations");
+  expectL21Exact((raw) => {
+    const sense = (
+      ((l21(raw).chapters as R[])[0].checkpoint as R)
+        .plannedNewLexicalSenses as R[]
+    )[0];
+    (sense.nounPackage as R).article = "der";
+  }, "l21_semantic_contract_invalid:lexical_packages");
+  expectL21Exact((raw) => {
+    const sense = (
+      ((l21(raw).chapters as R[])[2].checkpoint as R)
+        .plannedNewLexicalSenses as R[]
+    )[0];
+    (sense.utilityProof as R).facetValue =
+      "state-a-mutual-responsibility-with-correct-reciprocal-reference";
+  }, "l21_semantic_contract_invalid:lexical_utility");
+  expectL21Exact((raw) => {
+    ((l21(raw).chapters as R[])[3].chapterEvidencePacketIds as string[]).pop();
+  }, "l21_semantic_contract_invalid:evidence");
+  expectL21Exact((raw) => {
+    const predecessor = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l20",
+    ) as R;
+    (
+      ((predecessor.chapters as R[])[6].recallSchedule as R)
+        .futureDelayedProbe as R
+    ).packetId = "de_l21_c07_s56";
+  }, "l20_l21_inverse_provenance_invalid");
+  expectL21Exact((raw) => {
+    ((l21(raw).chapters as R[])[5].supportFading as R).entry =
+      "Frau Keller, Sie bereiten Sich vor. → Frau Keller, Sie bereiten sich vor.";
+  }, "l21_c06_repair_items");
+  expectL21Exact((raw) => {
+    const support = (l21(raw).chapters as R[])[6].supportFading as R;
+    support.entry = String(support.entry).replace(
+      "Deshalb ist der Kompromiss klar.",
+      "Deshalb bleibt der Kompromiss offen.",
+    );
+  }, "l21_c07_final_transfer");
+  expectL21Exact((raw) => {
+    l21(raw).relativeClauseProbe = "Teach a relative clause.";
+  }, "l21_relative_clause_leak");
+  expectL21Exact((raw) => {
+    l21(raw).passiveProbe = "Teach event passive: Die Kiste wird abgeholt.";
+  }, "l21_passive_leak");
+  expectL21Exact((raw) => {
+    l21(raw).hiddenGrammarProbe = "Add a new generative operation.";
+  }, "l21_hidden_grammar_leak");
+  expectL21Exact((raw) => {
+    const support = (l21(raw).chapters as R[])[6].supportFading as R;
+    support.entry = String(support.entry).replace(
+      "Die Helfer helfen sich morgen",
+      "Das Team hilft sich morgen",
+    );
+  }, "l21_singular_collective_reciprocal_leak");
+  expectL21Exact((raw) => {
+    const support = (l21(raw).chapters as R[])[6].supportFading as R;
+    support.entry = String(support.entry).replace(
+      "Frau Keller, Sie bereiten sich heute vor.",
+      "Frau Keller, Sie helfen heute.",
+    );
+  }, "l21_formal_sie_sich_missing");
+  expectL21Exact((raw) => {
+    const support = (l21(raw).chapters as R[])[6].supportFading as R;
+    support.entry = String(support.entry).replace(
+      "Die Helfer helfen sich morgen",
+      "Die Helfer arbeiten morgen",
+    );
+  }, "l21_plural_reciprocal_missing");
+  expectL21Exact((raw) => {
+    l21(raw).learnerArtifactsAuthorized = true;
+  }, "l21_interaction_001_future_boundary_invalid");
+  expectL21Exact((raw) => {
+    l21(raw).allowNonGermanAssessedTarget = true;
+  }, "l21_interaction_002_future_boundary_invalid");
+  expectL21Exact((raw) => {
+    l21(raw).englishContourProbe = "Copy English reuse into L21.";
+  }, "l21_english_contour_leak");
+  const prematureL21 = clone(json(FILE)) as R;
+  prematureL21.lessons = (prematureL21.lessons as R[]).slice(0, 21);
+  assert.throws(() => {
+    const result = validate(prematureL21);
+    if (
+      result.buildStatus !== "COMPLETE_TASK5" ||
+      result.lessons !== 32 ||
+      result.chapters !== 224
+    )
+      throw new Error(
+        `full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;${result.lessons}/32 lessons;${result.chapters}/224 chapters`,
+      );
+  }, /full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;21\/32 lessons;147\/224 chapters/u);
 
   const l2Boundary: Boundary = {
     id: "de_l02",

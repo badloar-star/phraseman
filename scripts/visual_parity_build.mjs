@@ -113,6 +113,7 @@ export function buildRows(matrixRows, scan, existingRows) {
       status: old?.status ?? (fresh.mockup.file ? 'pending' : 'no_mockup'),
       reviewed_by: old?.reviewed_by ?? null,
       reviewed_at: old?.reviewed_at ?? null,
+      ...(old?.removed_reason ? { removed_reason: old.removed_reason } : {}),
     });
   };
   for (const row of matrixRows) {
@@ -169,7 +170,7 @@ async function main() {
     generatedAt: new Date().toISOString(),
     matrix: MATRIX,
     mockupServer: SERVER,
-    statuses: ['pending', 'match', 'diff', 'no_mockup'],
+    statuses: ['pending', 'match', 'diff', 'no_mockup', 'removed_by_owner'],
     rows,
   };
   fs.writeFileSync(REGISTRY, JSON.stringify(registry, null, 2) + '\n');

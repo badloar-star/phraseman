@@ -66,10 +66,15 @@ export function evaluateRegistry(root, registry, options = {}) {
   const runGit = options.runGit ?? defaultGit;
   const rows = Array.isArray(registry?.rows) ? registry.rows : [];
   if (rows.length === 0) violations.push({ id: '*', code: 'registry_empty', detail: 'в реестре нет строк' });
-  const counts = { total: rows.length, match: 0, pending: 0, diff: 0, no_mockup: 0, other: 0 };
+  const counts = { total: rows.length, match: 0, pending: 0, diff: 0, no_mockup: 0, removed_by_owner: 0, other: 0 };
   for (const row of rows) {
     if (row.status in counts) counts[row.status] += 1;
     else counts.other += 1;
+    // зачем (координатор 04.10): экран удалён владельцем — это не расхождение и не pending, но причина обязательна.
+    if (row.status === 'removed_by_owner') {
+      if (!row.removed_reason) violations.push({ id: row.id, code: 'removed_reason_missing', detail: 'removed_by_owner без removed_reason' });
+      continue;
+    }
     if (row.status !== 'match') {
       violations.push({ id: row.id, code: `status_${row.status}`, detail: `${row.screen} / ${row.state}` });
       continue;

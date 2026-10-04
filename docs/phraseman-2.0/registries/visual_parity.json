@@ -8,7 +8,8 @@
     "pending",
     "match",
     "diff",
-    "no_mockup"
+    "no_mockup",
+    "removed_by_owner"
   ],
   "rows": [
     {
@@ -16987,7 +16988,8 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
+      "removed_reason": "коллекции удалены владельцем D136–D140, 33636dd55",
       "reviewed_by": null,
       "reviewed_at": null
     },
@@ -17015,7 +17017,8 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
+      "removed_reason": "коллекции удалены владельцем D136–D140, 33636dd55",
       "reviewed_by": null,
       "reviewed_at": null
     },
@@ -17043,7 +17046,8 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
+      "removed_reason": "коллекции удалены владельцем D136–D140, 33636dd55",
       "reviewed_by": null,
       "reviewed_at": null
     },

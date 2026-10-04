@@ -124,6 +124,10 @@ test('реестр: строки без макета в папке — no_mockup
       assert.ok(row.reviewed_by, `${row.id}: match без reviewed_by`);
       continue;
     }
+    if (row.status === 'removed_by_owner') {
+      assert.ok(row.removed_reason, `${row.id}: removed_by_owner без причины`);
+      continue;
+    }
     assert.equal(row.status, row.mockup.file ? 'pending' : 'no_mockup', `${row.id}: статус ${row.status} при макете ${row.mockup.file}`);
   }
 });

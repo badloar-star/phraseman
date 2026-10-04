@@ -9,6 +9,8 @@ Governance-ID: TG-27F4C3F44093
 Governance-ID: TG-773834FD0C57
 Governance-ID: TG-1D27EF9D683E
 Governance-ID: TG-A26CDB1989F3
+Governance-ID: TG-EC388979539F
+Governance-ID: TG-31F2C432A89B
 Status: In progress
 Owner: сессия «Дизайн» (по поручению координатора, решение владельца: весь перенос экранов — «Дизайн»)
 Related epic/enabler: STATE_CHECKLIST_2026-09-30, INBOX §DESIGN-VIS

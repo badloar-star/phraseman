@@ -95,7 +95,9 @@ test('Home header has one compact utility row without brand or tagline, and Vide
   assert.match(header, /stats\.map\(/);
   assert.doesNotMatch(header, /numberOfLines/);
   assert.doesNotMatch(home, /tagline=\{triLang\(/);
-  assert.match(home, /<View style=\{\{ gap: 4 \}\}>\s*<HomeV2FeatureTiles/);
+  // зачем (04.10): с D129/D130 (0829e4b3e) плитки рендерятся только для готовых разделов языка — внутри
+  // того же плотного блока gap 4 стоит условие homeV2Tiles.length > 0; смысл «Видео сразу за плитками» прежний.
+  assert.match(home, /<View style=\{\{ gap: 4 \}\}>\s*\{homeV2Tiles\.length > 0 \? <HomeV2FeatureTiles/);
 });
 
 test('compact Home utility row shrinks on narrow screens and preserves optional stat interactivity', () => {
@@ -105,7 +107,9 @@ test('compact Home utility row shrinks on narrow screens and preserves optional 
   assert.match(header, /stat\.onPress \?/);
   assert.match(header, /accessibilityRole="text"/);
   const coinsStat = home.slice(home.indexOf("testID: 'home-v2-coins'"), home.indexOf("testID: 'home-v2-coins'") + 750);
-  assert.match(coinsStat, /accessibilityLabel: `\$\{homeV2CoinsLabel\}: \$\{rewardCollect\.displayRunes\(runesBalance\)\}`/);
+  // зачем (04.10): PM-052/D75 (9ecb23d94) убрал сбор наград и rewardCollect; в подписи — сам баланс,
+  // а пока он не известен — «—», как и на экране (без нуля-заглушки).
+  assert.match(coinsStat, /accessibilityLabel: `\$\{homeV2CoinsLabel\}: \$\{runesKnown \? runesBalance : '—'\}`/);
   assert.match(coinsStat, /onPress: \(\) => \{ nav\.push\('\/coin_rank'\); \}/);
   assert.doesNotMatch(coinsStat, /homeRunesA11yLabel/);
 });

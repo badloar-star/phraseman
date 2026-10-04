@@ -208,6 +208,7 @@ import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS } from '../constants/d
 import { APP_FONT_FAMILY } from './typography';
 import { getLocalDayKey } from './local_date';
 import { installInterFontPatch } from './font_family_patch';
+import { noteNavRoute } from './nav_paint_trace';
 import { shouldRunFullAppBootstrap } from './native_runtime_capability';
 import {
   acknowledgeAppMessageModal,
@@ -948,6 +949,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const pathname = usePathname();
   const pathnameRef = useRef(pathname);
   pathnameRef.current = pathname;
+  // зачем (PM-220): release-метка [NAV-PAINT] на каждую смену маршрута — метод измерения навигации и тренировок.
+  noteNavRoute(pathname);
   const warmDeepLinkTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const coldExamBestPctRestoreOptions = useMemo(() => ({
     canPublishExamBestPctOverlay: () => {

@@ -87,6 +87,36 @@ export function evaluateHomePaint(runs, budget) {
   return { ok: problems.length === 0, problems, median, p90, values };
 }
 
+/** PM-220: строки «[NAV-PAINT] group=… route=… ms=…» → значения по группам (tab/screen/training). */
+export function parseNavPaint(logText) {
+  const groups = {};
+  const re = /\[NAV-PAINT\] group=(\w+) route=(\S+) ms=(\d+)/;
+  for (const line of logText.split(/\r?\n/)) {
+    const m = re.exec(line);
+    if (!m) continue;
+    (groups[m[1]] ??= []).push(Number(m[3]));
+  }
+  return groups;
+}
+
+/** Бюджет навигации по группам. Бюджет null (нет baseline устройств) — НЕ «ОК»: честно «нет бюджета». */
+export function evaluateNavPaint(groups, budget) {
+  const problems = [];
+  const missingBudget = [];
+  const stats = {};
+  for (const [group, limits] of Object.entries(budget.groups)) {
+    const values = [...(groups[group] ?? [])].sort((a, b) => a - b);
+    const median = percentile(values, 0.5);
+    const p90 = percentile(values, 0.9);
+    stats[group] = { n: values.length, median, p90 };
+    if (values.length < budget.minSamples) problems.push(`${group}: замеров ${values.length} < ${budget.minSamples}`);
+    if (limits.maxMedianMs === null || limits.maxP90Ms === null) { missingBudget.push(group); continue; }
+    if (median !== null && median > limits.maxMedianMs) problems.push(`${group}: медиана ${median} мс > ${limits.maxMedianMs} мс`);
+    if (p90 !== null && p90 > limits.maxP90Ms) problems.push(`${group}: p90 ${p90} мс > ${limits.maxP90Ms} мс`);
+  }
+  return { ok: problems.length === 0 && missingBudget.length === 0, problems, missingBudget, stats };
+}
+
 /** Последняя строка «[COLD-START-IO] summary …» → числа. */
 export function parseColdStartIo(logText) {
   const lines = logText.split(/\r?\n/).filter((l) => l.includes('[COLD-START-IO] summary'));
@@ -211,7 +241,14 @@ export function main(argv) {
     report('плавность кадров (gfxinfo)', result);
     return result.ok ? 0 : 1;
   }
-  console.error(`${LOG} usage: pm220_perf_gates.mjs bundle <каталог> | homepaint <logcat...> | coldio <logcat> | amstart <coldStartAmW|warmStart|reenter> <файл с TotalTime> | frames <gfxinfo.txt>`);
+  if (cmd === 'navpaint' && args[0]) {
+    const result = evaluateNavPaint(parseNavPaint(fs.readFileSync(args[0], 'utf8')), budgets.navPaint);
+    for (const [g, s] of Object.entries(result.stats)) console.log(`${LOG}   ${g}: n=${s.n} median=${s.median} p90=${s.p90}`);
+    if (result.missingBudget.length) console.log(`${LOG}   нет бюджета (ждёт baseline устройств): ${result.missingBudget.join(', ')}`);
+    report('навигация и тренировки ([NAV-PAINT])', result);
+    return result.missingBudget.length ? 2 : (result.ok ? 0 : 1);
+  }
+  console.error(`${LOG} usage: pm220_perf_gates.mjs bundle <каталог> | homepaint <logcat...> | coldio <logcat> | amstart <coldStartAmW|warmStart|reenter> <файл с TotalTime> | frames <gfxinfo.txt> | navpaint <logcat>`);
   return 2;
 }
 

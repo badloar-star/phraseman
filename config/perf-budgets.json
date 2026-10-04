@@ -200,5 +200,24 @@
     "maxP99Ms": 50,
     "maxJankyPct": 12,
     "headroom": "p95 +40 %, p99 +55 %, janky ×2 к базовой линии (эмулятор; прямая задержка тапа не измерена)"
+  },
+  "navPaint": {
+    "metric": "мс от смены маршрута в корне до второго кадра нового экрана, строки [NAV-PAINT] (app/nav_paint_trace.ts)",
+    "why": "PM-220 A2: навигация и тренировки без метода измерения (реестр 04.10). Метод есть; пороги — после baseline на слабом Android и iPhone (владелец).",
+    "minSamples": 5,
+    "groups": {
+      "tab": {
+        "maxMedianMs": null,
+        "maxP90Ms": null
+      },
+      "screen": {
+        "maxMedianMs": null,
+        "maxP90Ms": null
+      },
+      "training": {
+        "maxMedianMs": null,
+        "maxP90Ms": null
+      }
+    }
   }
 }

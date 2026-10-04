@@ -15,6 +15,7 @@ import { captureAccountGeneration, type AccountGenerationToken } from '../app/ac
 import { DebugLogger, reportSwallowed } from '../app/debug-logger';
 
 const LOG = '[STARTUP-READS]';
+const GRANT_MAINTENANCE_DELAY_MS = 4_000;
 
 type RefundEnergy = (operationId: string, reason: string) => Promise<void>;
 
@@ -63,18 +64,27 @@ export function useFlashcardTrainingGrantBootMaintenance(
     const key = `${stableId}:${token.generation}`;
     if (maintainedGenerations.has(key)) return undefined;
     let cancelled = false;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    // зачем: после первого кадра на старте идёт пачка чтений хранилища для экранов; сверка журнала (getAllKeys + чтения записей,
+    // до 5,7 с на слабом телефоне) вставала в ту же очередь и тормозила их. Журнал локальный, записи живут сутки — ждём ещё
+    // GRANT_MAINTENANCE_DELAY_MS после interactions: пользователь этого не заметит, а старт не делит очередь.
     const task = InteractionManager.runAfterInteractions(() => {
       if (cancelled || maintainedGenerations.has(key)) return;
-      maintainedGenerations.add(key);
-      // guard-ok: функция сама ловит и логирует любую ошибку (reportSwallowed).
-      void runFlashcardTrainingGrantMaintenanceOnce(
-        token,
-        (operationId, reason) => refundRef.current(operationId, reason),
-      );
+      timer = setTimeout(() => {
+        timer = null;
+        if (cancelled || maintainedGenerations.has(key)) return;
+        maintainedGenerations.add(key);
+        // guard-ok: функция сама ловит и логирует любую ошибку (reportSwallowed).
+        void runFlashcardTrainingGrantMaintenanceOnce(
+          token,
+          (operationId, reason) => refundRef.current(operationId, reason),
+        );
+      }, GRANT_MAINTENANCE_DELAY_MS);
     });
     return () => {
       cancelled = true;
       task.cancel?.();
+      if (timer) clearTimeout(timer);
     };
   }, [energyReady]);
 }

@@ -188,7 +188,15 @@ function lockCallerTag(): string {
     if (names[names.length - 1] !== name) names.push(name);
     if (names.length >= 5) break;
   }
-  return names.join(' <- ') || 'unknown';
+  if (names.length > 0) return names.join(' <- ');
+  // зачем (замер №11: держатели «unknown», 6,8 с): все кадры безымянные — печатаем сырые кадры (имя + место),
+  // чтобы вызывающего можно было найти хотя бы по позиции в бандле, а не по пустому «unknown».
+  const rawFrames = stack.split('\n').slice(2, 40)
+    .map((line) => line.trim().replace(/^at\s+/, ''))
+    .filter((line) => line.length > 0 && !/^(next|asyncGeneratorStep|_next|_throw|tryCallOne|tryCallTwo|doResolve|lockCallerTag|withAccountTransitionLock|withStorageLock)\b/.test(line))
+    .slice(0, 4)
+    .map((line) => line.replace(/https?:\/\/[^\s)]*\//g, '').slice(0, 120));
+  return rawFrames.length > 0 ? `raw: ${rawFrames.join(' <- ')}` : 'unknown';
 }
 const LOCK_CALLER_NOISE = new Set([
   'next', 'asyncGeneratorStep', '_next', '_throw', 'tryCallOne', 'tryCallTwo', 'doResolve', 'Promise', 'anonymous',
@@ -197,7 +205,20 @@ const LOCK_CALLER_NOISE = new Set([
 ]);
 
 const ACCOUNT_LOCK_SLOW_WAIT_MS = 2000;
-const ACCOUNT_LOCK_SLOW_HOLD_MS = 5000;
+// зачем (координатор 04.10, замер №11): ожидающие ждали до 6,8 с, а hold_exceeded (порог 5 с) молчал — держатели
+// отпускали раньше порога по очереди. Держателя печатаем при ЛЮБОМ удержании дольше 1 с.
+const ACCOUNT_LOCK_SLOW_HOLD_MS = 1000;
+// Последние держатели замка — чтобы у долгого ожидания было видно, КТО держал замок, пока мы стояли.
+type AccountLockHoldRecord = Readonly<{ caller: string; heldAt: number; releasedAt: number }>;
+const ACCOUNT_LOCK_HOLD_HISTORY_LIMIT = 32;
+let accountLockHoldHistory: readonly AccountLockHoldRecord[] = [];
+
+function accountLockHoldersDuring(fromMs: number, toMs: number): { caller: string; heldMs: number }[] {
+  return accountLockHoldHistory
+    .filter((record) => record.releasedAt > fromMs && record.heldAt < toMs)
+    .map((record) => ({ caller: record.caller, heldMs: record.releasedAt - record.heldAt }))
+    .filter((record) => record.heldMs >= 50);
+}
 
 /** Serializes account-level storage commits with wipe/hydration boundaries. */
 export async function withAccountTransitionLock<T>(
@@ -215,7 +236,11 @@ export async function withAccountTransitionLock<T>(
   await previous;
   const waitedMs = Date.now() - queuedAt;
   if (waitedMs > ACCOUNT_LOCK_SLOW_WAIT_MS) {
-    console.warn('[ACCOUNT-LOCK] wait_exceeded', JSON.stringify({ waitedMs, caller }));
+    console.warn('[ACCOUNT-LOCK] wait_exceeded', JSON.stringify({
+      waitedMs,
+      caller,
+      blockedBy: accountLockHoldersDuring(queuedAt, Date.now()),
+    }));
   }
   const lease = Object.freeze({}) as AccountTransitionLockLease;
   activeAccountTransitionLockLeases.add(lease);
@@ -223,12 +248,22 @@ export async function withAccountTransitionLock<T>(
   try {
     return await work(lease);
   } finally {
-    const heldMs = Date.now() - heldAt;
-    if (heldMs > ACCOUNT_LOCK_SLOW_HOLD_MS) {
-      console.warn('[ACCOUNT-LOCK] hold_exceeded', JSON.stringify({ heldMs, caller }));
-    }
+    // зачем (ревью 04.10): замок отпускаем ПЕРВЫМ — диагностика ниже не должна суметь его заклинить.
     activeAccountTransitionLockLeases.delete(lease);
     release();
+    const releasedAt = Date.now();
+    const heldMs = releasedAt - heldAt;
+    try {
+      if (heldMs > ACCOUNT_LOCK_SLOW_HOLD_MS) {
+        console.warn('[ACCOUNT-LOCK] hold_exceeded', JSON.stringify({ heldMs, caller, waitedMs }));
+      }
+      accountLockHoldHistory = [
+        ...accountLockHoldHistory.slice(-(ACCOUNT_LOCK_HOLD_HISTORY_LIMIT - 1)),
+        Object.freeze({ caller, heldAt, releasedAt }),
+      ];
+    } catch (error) {
+      console.warn('[ACCOUNT-LOCK] hold_log_failed', error instanceof Error ? error.message : String(error));
+    }
   }
 }
 
@@ -303,5 +338,6 @@ export function __resetAccountGenerationForTests(): void {
   restoreLockTail = Promise.resolve();
   accountTransitionLockTail = Promise.resolve();
   activeAccountTransitionLockLeases = new WeakSet<object>();
+  accountLockHoldHistory = [];
   generationListeners.clear();
 }

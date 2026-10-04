@@ -1,0 +1,51 @@
+# Task packet: макеты 2.0 раунд 2 — по замечаниям владельца к раунду 1
+
+Governance-ID: TG-F0A818D507A5
+Status: In progress
+Owner: сессия «Макеты экранов 2.0» (Claude)
+Related epic/enabler: docs/work/tasks/2026-10-04_ui_2_0_redesign_mockups_round_1.md
+
+## Outcome
+
+Владелец выбрал по раунду 1: **Настройки — A**, **Словарь — A**. Отклонил: шапку «Обучения» (менять ТОЛЬКО верхнюю часть, список уроков не трогать), разбор ошибки (не соответствовал коду `AiMistakeCard` + `LearningSemanticBlock`), видео C (кнопка «Учить 500 фраз» не отражает связь с разделом «Карточки»; нет анимаций). Добавил экран «Урок → главы» (`LearningV2ChaptersCourse`): заголовок урока лезет на иконки HUD.
+
+Результат раунда 2: `docs/design/v2-app/redesign-round-2.html` — по 3 варианта на 4 экрана, каждый вариант воспроизводит СТРУКТУРУ живого кода (те же элементы, порядок, тексты, иконки, размеры из StyleSheet), меняется только спорная зона; все макеты интерактивны с анимациями (нажатие, появление, прогресс, раскрытие главы, смена видео). Успех: владелец называет вариант по каждому из 4 экранов.
+
+## Scope
+
+In scope:
+- `docs/design/v2-app/redesign-round-2.html` (новый файл).
+- Этот пакет; запись решений A/A в пакет раунда 1.
+- Сообщение сессии «Дизайн»: Настройки A, Словарь A.
+
+Out of scope: код приложения; `kit.css` и чужие макеты; эмулятор; ползунок темы (ждёт решения владельца).
+
+Источник структуры (только чтение): `components/AiMistakeCard.tsx`, `components/LearningSemanticBlock.tsx`, `app/explanation_presentation.ts`, `app/lesson1.tsx` (шапка/прогресс/нижняя панель), `components/learning-v2/LearningV2ChaptersCourse.tsx`, `app/(tabs)/lessons.tsx` (шапка хаба + HUD), `components/lessons/LessonsListGlassCard.tsx`, `LessonsListGlassKit.tsx`, `app/lingman_videos.tsx`, `components/youtube/*`, `app/flashcards_video_packs.tsx`.
+
+## Architecture
+
+No architecture change — документация. Связь «видео ↔ Карточки» в макете показана по факту кода: набор видео = community pack `video_<videoId>`, открывается `/flashcards_collection?pack=video_<id>&preview=1`; каталог «Из видео» — `/flashcards_video_packs`.
+
+## Security and privacy
+
+Не применимо: демо-данные, без сети, без PII. Google Fonts только для просмотра макета.
+
+## Technical debt
+
+- Токены продублированы в HTML (как в раунде 1) — Accept temporarily, пересмотр при закрытии раунда, владелец — эта сессия.
+- Проверка рендера: раунд 1 ушёл без визуальной проверки — Pay now: раунд 2 открывается через `preview_start` (конфиг `sound-motion`, корень репо, порт 8843) и проверяется скриншотами до отправки.
+
+## Verification
+
+- Скриншоты каждого телефона в браузере: ничего не налезает на статус-бар и HUD, заголовок урока не пересекает иконки.
+- Консоль без ошибок.
+- Коммит через временный индекс; `git show --name-only --format= HEAD` — только `docs/design/v2-app/redesign-round-2.html` и пакеты задач; `git rev-parse HEAD^` == база.
+
+## Rollback
+
+Удалить файл макета и пакет. Код и данные не затронуты.
+
+## Решения владельца
+
+- Настройки → A (группы одним блоком). Словарь → A (сетка 2×3 контурных).
+- Обучение / Разбор ошибки / Видео / Урок-главы → ожидают раунда 2.

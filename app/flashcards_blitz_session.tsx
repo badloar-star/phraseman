@@ -1017,9 +1017,7 @@ export default function FlashcardsBlitzSession() {
   useSessionAttemptAutoReset({
     phase: attempts.state.phase,
     hydrated: attempts.hydrated,
-    inventoryTrusted: attempts.inventoryTrusted,
-    giftCount: attempts.giftCount,
-    recoverWithGift: attempts.recoverWithGift,
+    hydrationTrusted: attempts.hydrationTrusted,
     forfeitSessionRunes: practiceRunes.forfeitPendingRunes,
     restoreAttempts: attempts.restoreAfterSessionRuneForfeit,
     onRestored: resetBlitzAfterSessionRuneForfeit,

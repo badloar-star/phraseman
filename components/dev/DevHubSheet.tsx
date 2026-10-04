@@ -461,9 +461,6 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       case 'preview-lesson-results':
         openLessonResultsPreview();
         return;
-      case 'preview-session-attempt-gift':
-        requestClose(false, () => emitAppEvent('session_attempt_gift_rescued'));
-        return;
       case 'open-cancel-flow':
         // Витрина сценариев отписки — обычный маршрут; закрываем native Modal
         // до смены route, иначе iOS оставит DEV-sheet поверх сцены.

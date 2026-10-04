@@ -636,12 +636,10 @@ export default function FlashcardsRecallSession() {
     setHintVisible(false);
   }, []);
 
-  const attemptsReset = useSessionAttemptAutoReset({
+  useSessionAttemptAutoReset({
     phase: attempts.state.phase,
     hydrated: attempts.hydrated,
-    inventoryTrusted: attempts.inventoryTrusted,
-    giftCount: attempts.giftCount,
-    recoverWithGift: attempts.recoverWithGift,
+    hydrationTrusted: attempts.hydrationTrusted,
     forfeitSessionRunes: practiceRunes.forfeitPendingRunes,
     restoreAttempts: attempts.restoreAfterSessionRuneForfeit,
     onRestored: resetRecallAfterSessionRuneForfeit,
@@ -782,9 +780,6 @@ export default function FlashcardsRecallSession() {
           <SessionAttemptsHud
             remaining={attempts.state.remainingAttempts}
             locale={lang}
-            giftRescueSequence={attemptsReset.giftRescueSequence}
-            giftRecoveryError={attemptsReset.giftRecoveryError}
-            onRetryGiftRecovery={attemptsReset.retryGiftRecovery}
             testID="fc-recall-session-attempts"
           />
           <PracticeRoundIconButton

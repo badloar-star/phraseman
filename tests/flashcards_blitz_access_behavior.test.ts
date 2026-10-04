@@ -143,11 +143,9 @@ jest.mock('../hooks/useSessionAttempts', () => ({
     return ({
     state: { phase: 'active', remainingAttempts: 3 },
     hydrated: true,
-    inventoryTrusted: true,
-    giftCount: 0,
+    hydrationTrusted: true,
     registerVerdict: jest.fn(() => 'continue'),
     updateQuestion: jest.fn(),
-    recoverWithGift: jest.fn(),
     restoreAfterSessionRuneForfeit: jest.fn(),
     });
   },

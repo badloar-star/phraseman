@@ -2,8 +2,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { AccountGenerationToken } from '../app/account_generation';
 import { readUnifiedLevelSpinStars } from '../app/level_spin_star_grants';
-import { emitAppEvent } from '../app/events';
-import { readAttemptRestoreGiftCount } from '../app/session_attempts/session_attempt_restore_inventory';
 import {
   commitSessionAttemptRecovery,
   hydrateSessionAttemptsState,
@@ -36,18 +34,16 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
   const stateRef = useRef(state);
   const sessionIdRef = useRef(input.sessionId);
   const [lossSequence, setLossSequence] = useState(0);
-  const [giftCount, setGiftCount] = useState(0);
   const [runeBalance, setRuneBalance] = useState<number | null>(null);
   const [hydrated, setHydrated] = useState(false);
   /**
-   * Достоверен ли прочитанный инвентарь подарков.
+   * Достоверно ли прочитано состояние попыток и ресурсов.
    *
-   * Отдельно от `hydrated` намеренно: `hydrated` отвечает на вопрос «можно ли
-   * уже действовать» (экран обязан ожить даже после сбоя), а этот флаг — на
-   * вопрос «можно ли верить giftCount». Ноль при недостоверном чтении означает
-   * «не знаем», а не «подарка нет», и сжигать за него руны сессии нельзя.
+   * зачем (D09/D148, 04.10): подарки убраны, остался один способ вернуть сердечки — сжечь руны сессии. Флаг остался, потому что
+   * по-прежнему нужен: `hydrated` отвечает на вопрос «можно ли уже действовать» (экран обязан ожить даже после сбоя), а этот флаг —
+   * «можно ли верить прочитанному». При недостоверном чтении («не знаем») попытки возвращаем, но руны сессии не сжигаем.
    */
-  const [inventoryTrusted, setInventoryTrusted] = useState(false);
+  const [hydrationTrusted, setHydrationTrusted] = useState(false);
   const [recoveryBusy, setRecoveryBusy] = useState(false);
   const recoveryBusyRef = useRef(false);
   const [recoveryError, setRecoveryError] = useState<string | null>(null);
@@ -73,7 +69,6 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
     });
     adoptState(next);
     setLossSequence(0);
-    setGiftCount(0);
     setRuneBalance(null);
     setHydrated(false);
     setRecoveryBusy(false);
@@ -82,11 +77,7 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
   }, [adoptState, input.initialQuestionId, input.sessionId]);
 
   const refreshResources = useCallback(async (): Promise<void> => {
-    const [nextGiftCount, stars] = await Promise.all([
-      readAttemptRestoreGiftCount(input.token),
-      readUnifiedLevelSpinStars(input.token),
-    ]);
-    setGiftCount(nextGiftCount);
+    const stars = await readUnifiedLevelSpinStars(input.token);
     setRuneBalance(stars.balance);
   }, [input.token]);
 
@@ -114,21 +105,17 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
        * а не на каждом из девяти экранов.
        */
       if (stored && stored.phase !== 'ended') adoptState(stored);
-      // Инвентарь прочитан — только теперь giftCount отражает реальность.
-      setInventoryTrusted(true);
+      // Состояние прочитано без сбоя — только теперь ему можно верить.
+      setHydrationTrusted(true);
     } catch (error) {
       /*
-       * зачем (аудит 2026-09-03): при сбое чтения giftCount остаётся 0, но это
-       * НЕ значит «подарка нет» — значит «мы не знаем». Раньше автосброс
-       * принимал это за отсутствие подарка и СЖИГАЛ заработанные за сессию
-       * руны. Инвариант из док-комментария useSessionAttemptAutoReset —
-       * технические ошибки fail-closed — был невыполним со стороны поставщика.
+       * зачем (аудит 2026-09-03): при сбое чтения это НЕ значит «ресурсов нет» — значит «мы не знаем». Автосброс не должен принимать
+       * незнание за отсутствие и СЖИГАТЬ заработанные за сессию руны.
        *
-       * `hydrated` при этом поднимается всё равно (ниже, в `finally`): экран
-       * обязан ожить, иначе вернётся то самое зависание. Разницу несёт
-       * отдельный флаг достоверности.
+       * `hydrated` при этом поднимается всё равно (ниже, в `finally`): экран обязан ожить, иначе вернётся то самое зависание.
+       * Разницу несёт отдельный флаг достоверности.
        */
-      setInventoryTrusted(false);
+      setHydrationTrusted(false);
       setRecoveryError(error instanceof Error ? error.message : 'session_attempts_hydrate_failed');
     } finally {
       setHydrated(true);
@@ -171,7 +158,7 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
     return transition.effect;
   }, [adoptState, persist]);
 
-  const recover = useCallback(async (source: 'gift' | 'runes'): Promise<void> => {
+  const recover = useCallback(async (source: 'runes'): Promise<void> => {
     if (recoveryBusyRef.current) return;
     recoveryBusyRef.current = true;
     setRecoveryBusy(true);
@@ -183,9 +170,6 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
         sessionState: stateRef.current,
       });
       adoptState(result.attemptsState);
-      if (source === 'gift' && !result.duplicate) {
-        emitAppEvent('session_attempt_gift_rescued');
-      }
       await refreshResources();
     } catch (error) {
       setRecoveryError(error instanceof Error ? error.message : 'session_attempt_recovery_failed');
@@ -196,7 +180,6 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
     }
   }, [adoptState, input.token, refreshResources]);
 
-  const recoverWithGift = useCallback(() => recover('gift'), [recover]);
   const recoverWithRunes = useCallback(() => recover('runes'), [recover]);
 
   const restoreAfterSessionRuneForfeit = useCallback((): SessionAttemptsEffect => {
@@ -222,15 +205,13 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
   return Object.freeze({
     state,
     lossSequence,
-    giftCount,
     runeBalance,
     hydrated,
-    inventoryTrusted,
+    hydrationTrusted,
     recoveryBusy,
     recoveryError,
     registerVerdict,
     updateQuestion,
-    recoverWithGift,
     recoverWithRunes,
     restoreAfterSessionRuneForfeit,
     endAttemptsSession,

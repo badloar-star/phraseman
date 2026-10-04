@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { DebugLogger } from '../app/debug-logger';
 import type { SessionAttemptsPhase } from '../app/session_attempts/session_attempts_domain';
@@ -6,82 +6,52 @@ import type { SessionAttemptsPhase } from '../app/session_attempts/session_attem
 type Input = Readonly<{
   phase: SessionAttemptsPhase;
   /**
-   * Gift count is authoritative only after this inventory hydration gate.
+   * Состояние попыток прочитано (успешно или нет).
    *
-   * зачем необязательные: автоспасение подарком подключено пока не на всех
-   * девяти экранах-хостах. Экран, который их не передаёт, ведёт себя как
-   * раньше (обычное восстановление), а не падает — так фича раскатывается
-   * по одному экрану, а не «всё или ничего».
+   * зачем необязательный: экран, который его не передаёт, не получает автовосстановления (ранний выход пишет причину), а не падает.
    */
   hydrated?: boolean;
-  giftCount?: number;
   /**
-   * Достоверен ли `giftCount`.
+   * Достоверно ли прочитано состояние попыток и ресурсов.
    *
-   * зачем (аудит 2026-09-03): при сбое чтения инвентаря счётчик равен нулю, но
-   * это «не знаем», а не «подарка нет». Сжигать за такое «не знаем» руны
-   * сессии нельзя — попытки восстанавливаем, заработанное сохраняем.
-   * Значение по умолчанию `true` бережёт экраны, которые флаг не передают:
-   * их поведение остаётся прежним.
+   * зачем (аудит 2026-09-03): при сбое чтения «не знаем» — не то же, что «ничего нет». Сжигать за такое «не знаем» руны сессии
+   * нельзя — попытки восстанавливаем, заработанное сохраняем. Значение по умолчанию `true` бережёт экраны, которые флаг не передают.
    */
-  inventoryTrusted?: boolean;
-  /** Atomically consumes one permanent gift and grants all attempts. */
-  recoverWithGift?: () => Promise<void>;
+  hydrationTrusted?: boolean;
   /** Persists clearing unclaimed runes belonging only to this session. */
   forfeitSessionRunes?: () => Promise<void> | void;
-  /** Restores the three hearts without a gift or wallet operation. */
+  /** Restores the three hearts without a wallet operation. */
   restoreAttempts: () => void;
   /** Re-enables the current card/activity after the state becomes active. */
   onRestored?: () => void;
 }>;
 
-export type SessionAttemptAutoResetPresentation = Readonly<{
-  giftRescueSequence: number;
-  giftRecoveryError: string | null;
-  retryGiftRecovery: () => void;
-}>;
-
 /**
- * Converts the zero-heart recovery stop into one automatic recovery decision.
+ * Converts the zero-heart recovery stop into one automatic recovery.
  *
- * A hydrated gift is consumed through the durable composite recovery and never
- * touches the session rune buffer. Confirmed absence — and only confirmed
- * absence — pays with the session runes.
- *
- * Экран оживает ВСЕГДА: технический сбой подарка и недостоверный инвентарь
- * возвращают попытки без платы, а причина остаётся в `giftRecoveryError`.
- * Раньше эти две ветки оставляли экран заблокированным (то самое зависание)
- * либо сжигали руны за «подарка нет», которого никто не проверял.
+ * зачем (D09/D148, 04.10): подарки «защиты от трёх попыток» убраны (старые подарки не конвертируются) — остался единственный
+ * способ: сжечь руны сессии и вернуть попытки. Достоверно прочитанное состояние — платим рунами сессии; недостоверное («не знаем») —
+ * попытки возвращаем БЕЗ платы. Экран оживает ВСЕГДА: раньше недостоверное чтение оставляло экран заблокированным (то самое
+ * зависание) либо сжигало руны за «ничего нет», которого никто не проверял.
  */
 export function useSessionAttemptAutoReset({
   phase,
-  // Нет данных о подарках — считаем, что подарка нет: спасение не сработает,
-  // но и руны не сгорят молча, экран пойдёт обычным путём восстановления.
   hydrated = false,
-  giftCount = 0,
-  inventoryTrusted = true,
-  recoverWithGift,
+  hydrationTrusted = true,
   forfeitSessionRunes,
   restoreAttempts,
   onRestored,
-}: Input): SessionAttemptAutoResetPresentation {
+}: Input): void {
   const handlingRef = useRef(false);
   const mountedRef = useRef(true);
-  const [giftRescueSequence, setGiftRescueSequence] = useState(0);
-  const [giftRecoveryError, setGiftRecoveryError] = useState<string | null>(null);
-  const [retrySequence, setRetrySequence] = useState(0);
   const callbacksRef = useRef({
-    giftCount,
-    inventoryTrusted,
-    recoverWithGift,
+    hydrationTrusted,
     forfeitSessionRunes,
     restoreAttempts,
     onRestored,
   });
   callbacksRef.current = {
-    giftCount,
-    inventoryTrusted,
-    recoverWithGift,
+    hydrationTrusted,
     forfeitSessionRunes,
     restoreAttempts,
     onRestored,
@@ -89,47 +59,38 @@ export function useSessionAttemptAutoReset({
 
   useEffect(() => () => { mountedRef.current = false; }, []);
 
-  const retryGiftRecovery = useCallback(() => {
-    setGiftRecoveryError(null);
-    setRetrySequence((current) => current + 1);
-  }, []);
-
   useEffect(() => {
-    // зачем (2026-09-03): КАЖДЫЙ ранний выход обязан назвать причину. Именно
-    // немой выход по `hydrated === false` делал экран мёртвым: сердца кончались,
-    // блокировщик ввода ложился поверх, а восстановление молча не запускалось.
+    // зачем (2026-09-03): КАЖДЫЙ ранний выход обязан назвать причину. Именно немой выход по `hydrated === false` делал экран мёртвым:
+    // сердца кончались, блокировщик ввода ложился поверх, а восстановление молча не запускалось.
     if (phase !== 'awaiting_recovery') return;
     if (!hydrated) {
-      DebugLogger.warn('[ATTEMPTS-RESET]', `early return: phase=${phase} hydrated=${String(hydrated)} giftCount=${String(giftCount)} — восстановление НЕ запущено, экран останется заблокированным`);
+      DebugLogger.warn('[ATTEMPTS-RESET]', `early return: phase=${phase} hydrated=${String(hydrated)} — восстановление ждёт чтения состояния попыток`);
       return;
     }
     if (handlingRef.current) {
       DebugLogger.warn('[ATTEMPTS-RESET]', `early return: уже идёт восстановление (handling=true), phase=${phase}`);
       return;
     }
-    DebugLogger.info('[ATTEMPTS-RESET]', `вход: phase=${phase} hydrated=${String(hydrated)} giftCount=${String(giftCount)} hasGiftFn=${String(Boolean(recoverWithGift))} retrySeq=${String(retrySequence)}`);
+    DebugLogger.info('[ATTEMPTS-RESET]', `вход: phase=${phase} hydrated=${String(hydrated)} hydrationTrusted=${String(callbacksRef.current.hydrationTrusted)} hasForfeitFn=${String(Boolean(callbacksRef.current.forfeitSessionRunes))}`);
     handlingRef.current = true;
 
     const callbacks = callbacksRef.current;
     /**
      * @param burnRunes сжигать ли заработанное за сессию.
      *
-     * зачем (аудит 2026-09-03): руны сжигаются как ПЛАТА за восстановление, и
-     * брать её можно только когда точно известно, что подарка нет. При
-     * недостоверном инвентаре (сбой чтения) или технической ошибке подарка
-     * попытки всё равно возвращаем — экран обязан ожить, — но заработанное
-     * не трогаем: «не знаем» не равно «подарка нет».
+     * зачем (аудит 2026-09-03): руны сжигаются как ПЛАТА за восстановление и только когда состояние прочитано достоверно. При
+     * недостоверном чтении или технической ошибке попытки всё равно возвращаем — экран обязан ожить, — но заработанное не трогаем.
      */
     const restoreAttemptsNow = async (burnRunes: boolean): Promise<void> => {
       if (!burnRunes) {
-        DebugLogger.warn('[ATTEMPTS-RESET]', 'восстановление БЕЗ платы: инвентарь недостоверен, монеты сессии сохраняем');
+        DebugLogger.warn('[ATTEMPTS-RESET]', 'восстановление БЕЗ платы: состояние недостоверно, монеты сессии не сжигаем');
       } else {
-        DebugLogger.info('[ATTEMPTS-RESET]', `путь без подарка: сжигаем монеты сессии, hasForfeitFn=${String(Boolean(callbacks.forfeitSessionRunes))}`);
+        DebugLogger.info('[ATTEMPTS-RESET]', `сжигаем монеты сессии, hasForfeitFn=${String(Boolean(callbacks.forfeitSessionRunes))}`);
       }
       if (burnRunes) await Promise.resolve(callbacks.forfeitSessionRunes?.()).catch((reason) => {
         // The local rune buffer clears before persistence. Restore attempts even
         // if that persistence retry must be completed by the owning rune hook.
-        // зачем: запрет немого catch — даже намеренно проглоченная ошибка пишет причину.
+        // зачем: запрет немого catch — даже намеренно проглоченная ошибка пишет причину
         DebugLogger.warn('[ATTEMPTS-RESET]', `forfeitSessionRunes отклонён (продолжаем восстановление): ${String(reason)}`);
       });
       if (!mountedRef.current) {
@@ -138,67 +99,19 @@ export function useSessionAttemptAutoReset({
       }
       callbacks.restoreAttempts();
       callbacks.onRestored?.();
-      DebugLogger.info('[ATTEMPTS-RESET]', `итог: попытки восстановлены, экран разблокирован (плата монетами=${String(burnRunes)})`);
+      DebugLogger.info('[ATTEMPTS-RESET]', `итог: попытки восстановлены, экран разблокирован (плата монетами сессии=${String(burnRunes)})`);
     };
 
     void (async () => {
       try {
-        // Спасение подарком возможно, только если экран его подключил:
-        // без recoverWithGift идём обычным путём, а не падаем на undefined.
-        // Недостоверный инвентарь: подарок не трогаем (его состояние неизвестно),
-        // но и руны не сжигаем — просто возвращаем попытки.
-        if (!callbacks.inventoryTrusted) {
-          DebugLogger.warn('[ATTEMPTS-RESET]', `инвентарь недостоверен (giftCount=${String(callbacks.giftCount)} мог не прочитаться) — восстанавливаем без платы`);
-          await restoreAttemptsNow(false);
-          return;
-        }
-        if (callbacks.giftCount > 0 && callbacks.recoverWithGift) {
-          DebugLogger.info('[ATTEMPTS-RESET]', `путь с подарком: giftCount=${String(callbacks.giftCount)}`);
-          await callbacks.recoverWithGift();
-          if (!mountedRef.current) {
-            DebugLogger.warn('[ATTEMPTS-RESET]', 'early return: экран размонтирован после подарка');
-            return;
-          }
-          setGiftRecoveryError(null);
-          setGiftRescueSequence((current) => current + 1);
-          callbacks.onRestored?.();
-          DebugLogger.info('[ATTEMPTS-RESET]', 'итог: попытки восстановлены подарком, экран разблокирован');
-          return;
-        }
-        await restoreAttemptsNow(true);
+        await restoreAttemptsNow(callbacks.hydrationTrusted);
       } catch (error) {
-        const code = error instanceof Error
-          ? error.message
-          : 'session_attempt_recovery_failed';
-        if (code === 'attempt_restore_gift_unavailable') {
-          DebugLogger.warn('[ATTEMPTS-RESET]', 'подарок недоступен — уходим на путь без подарка (с платой)');
-          await restoreAttemptsNow(true);
-        } else if (mountedRef.current) {
-          /*
-           * зачем (аудит 2026-09-03): раньше здесь экран ОСТАВАЛСЯ заблокирован
-           * до явного повтора — то есть техническая ошибка подарка давала ровно
-           * то зависание, ради которого всё и чинилось. Теперь попытки
-           * возвращаем всегда, но БЕЗ платы рунами: подарок мог не потратиться,
-           * и брать за него плату нечестно. Причина остаётся в giftRecoveryError.
-           */
-          DebugLogger.error('[ATTEMPTS-RESET]', `подарок не сработал (${code}) — восстанавливаем без платы, экран не оставляем мёртвым`, 'critical');
-          setGiftRecoveryError(code);
-          await restoreAttemptsNow(false);
-        } else {
-          DebugLogger.warn('[ATTEMPTS-RESET]', `ошибка на мёртвом экране: ${code}`);
-        }
+        DebugLogger.error('[ATTEMPTS-RESET]', error instanceof Error ? error : new Error(String(error)), 'warning');
       } finally {
         handlingRef.current = false;
       }
     })();
-
-  }, [hydrated, phase, retrySequence]);
-
-  return {
-    giftRescueSequence,
-    giftRecoveryError,
-    retryGiftRecovery,
-  };
+  }, [hydrated, phase]);
 }
 
 export default useSessionAttemptAutoReset;

@@ -129,8 +129,8 @@ jest.mock('../app/flashcards/mode_prefs', () => ({
 }));
 jest.mock('../app/flashcards/word_strength', () => ({ loadWordStrengthMap: jest.fn() }));
 jest.mock('../hooks/useSessionAttempts', () => ({ useSessionAttempts: () => ({
-  state: { phase: 'ready', remainingAttempts: 3, giftCount: 0 }, hydrated: true, inventoryTrusted: true, giftCount: 0,
-  registerVerdict: jest.fn(), updateQuestion: jest.fn(), recoverWithGift: jest.fn(), restoreAfterSessionRuneForfeit: jest.fn(),
+  state: { phase: 'ready', remainingAttempts: 3 }, hydrated: true, hydrationTrusted: true,
+  registerVerdict: jest.fn(), updateQuestion: jest.fn(), restoreAfterSessionRuneForfeit: jest.fn(),
 }) }));
 jest.mock('../hooks/useSessionAttemptAutoReset', () => ({ useSessionAttemptAutoReset: jest.fn() }));
 jest.mock('../hooks/usePracticeRunes', () => ({ usePracticeRunes: () => ({ hydrating: false, runes: 0, settle: jest.fn(), startNewCompletion: jest.fn(), forfeitPendingRunes: jest.fn() }) }));

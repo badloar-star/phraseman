@@ -14,7 +14,6 @@ let appHomeScreenReadyFired = false;
 
 export type AppEventMap = {
   level_spin_balance_changed: undefined;
-  session_attempt_gift_rescued: undefined;
   /**
    * Повышение уровня ждёт показа НА ГЛАВНОЙ (полоска доливается, аватарка
    * подпрыгивает, цифра меняется). Пришло на смену полноэкранной модалке

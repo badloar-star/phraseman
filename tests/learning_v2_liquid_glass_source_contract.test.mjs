@@ -21,7 +21,6 @@ const GLASS_FILES = [
   "app/learning_v2_direct_session_player_v1.tsx",
   "app/learning_v2_session_intro.tsx",
   "app/learning-v2/session/[id].tsx",
-  "components/session_attempts/SessionAttemptsRecoveryModal.tsx",
   "components/EnergyBar.tsx",
   "components/learning-v2/LearningV2WordPocketOverlayV1.tsx",
   "components/learning-v2/LearningV2LessonDictionaryOverlayV1.tsx",

@@ -104,9 +104,9 @@ jest.mock('../app/flashcards/mode_prefs', () => ({ FC_DEFAULT_SESSION_SIZE: 10, 
 jest.mock('../app/flashcards/word_strength', () => ({ loadWordStrengthMap: jest.fn(async () => ({})) }));
 jest.mock('../hooks/useSessionAttempts', () => ({ useSessionAttempts: () => ({
   state: { phase: 'active', remainingAttempts: 3 }, registerVerdict: jest.fn(), updateQuestion: jest.fn(),
-  recoverWithGift: jest.fn(), restoreAfterSessionRuneForfeit: jest.fn(), hydrated: true, inventoryTrusted: true, giftCount: 0,
+  restoreAfterSessionRuneForfeit: jest.fn(), hydrated: true, hydrationTrusted: true,
 }) }));
-jest.mock('../hooks/useSessionAttemptAutoReset', () => ({ useSessionAttemptAutoReset: () => ({ giftRescueSequence: 0, giftRecoveryError: false, retryGiftRecovery: jest.fn() }) }));
+jest.mock('../hooks/useSessionAttemptAutoReset', () => ({ useSessionAttemptAutoReset: () => undefined }));
 jest.mock('../hooks/usePracticeRunes', () => ({ usePracticeRunes: () => ({ hydrating: false, runes: 0, settle: jest.fn(), forfeitPendingRunes: jest.fn(), onCorrectAnswer: jest.fn() }) }));
 // зачем (координатор §47): экран вешает ref карточки на originRef — без него мок падал
 // TypeError внутри React и всплывал «немым» AggregateError (причина skip с 14.09).

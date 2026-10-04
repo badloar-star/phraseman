@@ -2307,12 +2307,10 @@ export default function LearningV2DirectSessionPlayerV1() {
 
   // зачем (2026-09-03): без hydrated автосброс молча не запускался и экран
   // намертво замирал под блокировщиком ввода после трёх ошибок.
-  const attemptsReset = useSessionAttemptAutoReset({
+  useSessionAttemptAutoReset({
     phase: sessionAttempts.state.phase,
     hydrated: sessionAttempts.hydrated,
-    inventoryTrusted: sessionAttempts.inventoryTrusted,
-    giftCount: sessionAttempts.giftCount,
-    recoverWithGift: sessionAttempts.recoverWithGift,
+    hydrationTrusted: sessionAttempts.hydrationTrusted,
     forfeitSessionRunes: () => { setSessionRunes(0); },
     restoreAttempts: sessionAttempts.restoreAfterSessionRuneForfeit,
     onRestored: resetLearningV2AfterSessionRuneForfeit,
@@ -2679,9 +2677,6 @@ export default function LearningV2DirectSessionPlayerV1() {
                 remaining={sessionAttempts.state.remainingAttempts}
                 locale={lang}
                 testID="learning-v2-intro-attempts"
-                giftRescueSequence={attemptsReset.giftRescueSequence}
-                giftRecoveryError={attemptsReset.giftRecoveryError}
-                onRetryGiftRecovery={attemptsReset.retryGiftRecovery}
               />
               <EnergyBar glass />
               {runeHud}
@@ -2760,9 +2755,6 @@ export default function LearningV2DirectSessionPlayerV1() {
             remaining={sessionAttempts.state.remainingAttempts}
             locale={lang}
             testID="learning-v2-session-attempts"
-            giftRescueSequence={attemptsReset.giftRescueSequence}
-            giftRecoveryError={attemptsReset.giftRecoveryError}
-            onRetryGiftRecovery={attemptsReset.retryGiftRecovery}
           />
           {/* зачем (learning-v2.html, шапка занятия): пилюля энергии рядом с попытками; у Plus
               EnergyBar сам не рисуется («Plus — энергии нет»). Только показ, трата — в гейте. */}

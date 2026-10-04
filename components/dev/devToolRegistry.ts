@@ -12,7 +12,6 @@ export type DevToolAction =
   | 'open-shop'
   | 'open-paywall-plus'
   | 'preview-lesson-results'
-  | 'preview-session-attempt-gift'
   | 'grant-plus'
   | 'revoke-plus'
   // Отписка: витрина сценариев удержания при отмене подписки (владелец, 24.08).
@@ -294,25 +293,6 @@ export const DEV_TOOL_SECTIONS = [
         action: 'open-learning-v2-authoring-preview',
         icon: 'school-outline',
         testID: 'dev-open-learning-v2-authoring-preview',
-      },
-    ],
-  },
-  {
-    id: 'lessons',
-    order: 5.5,
-    title: 'Уроки',
-    icon: 'school-outline',
-    testID: 'dev-hub-section-lessons',
-    tools: [
-      {
-        id: 'session-attempt-gift',
-        order: 10,
-        title: 'Восстановление сердец',
-        detail: 'Показывает подарок восстановления трёх сердец на открытом экране урока. Ничего не начисляет.',
-        actionLabel: 'Показать',
-        action: 'preview-session-attempt-gift',
-        icon: 'gift-outline',
-        testID: 'dev-preview-session-attempt-gift',
       },
     ],
   },

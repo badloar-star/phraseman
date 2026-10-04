@@ -49,7 +49,6 @@ describe('автосброс попыток разблокирует экран'
     renderHook(() => useSessionAttemptAutoReset({
       phase: 'awaiting_recovery',
       hydrated: true,
-      giftCount: 0,
       restoreAttempts,
       forfeitSessionRunes,
       onRestored,
@@ -60,90 +59,58 @@ describe('автосброс попыток разблокирует экран'
     await waitFor(() => expect(onRestored).toHaveBeenCalledTimes(1));
   });
 
-  test('подарок тратится вместо рун сессии, а не вместе с ними', async () => {
+  // зачем (D09/D148, 04.10): подарки «защиты от трёх попыток» убраны (старые подарки не конвертируются) — три прежних теста про подарок
+  // (трата подарка вместо рун, сбой подарка, «подарок уже потрачен») описывали несуществующий путь и удалены вместе с ним. Остались
+  // два правила, которые продолжают жить: плата рунами сессии только при достоверном состоянии, и экран оживает ВСЕГДА.
+  test('недостоверное состояние: попытки возвращаются, заработанное сохраняется', async () => {
     const restoreAttempts = jest.fn();
     const forfeitSessionRunes = jest.fn();
-    const recoverWithGift = jest.fn().mockResolvedValue(undefined);
+
+    renderHook(() => useSessionAttemptAutoReset({
+      phase: 'awaiting_recovery',
+      hydrated: true,
+      // Чтение состояния упало: «не знаем» — не повод сжигать заработанное.
+      hydrationTrusted: false,
+      restoreAttempts,
+      forfeitSessionRunes,
+    }));
+
+    await waitFor(() => expect(restoreAttempts).toHaveBeenCalledTimes(1));
+    expect(forfeitSessionRunes).not.toHaveBeenCalled();
+  });
+
+  test('сбой сжигания рун не оставляет экран заблокированным', async () => {
+    const restoreAttempts = jest.fn();
+    const forfeitSessionRunes = jest.fn().mockRejectedValue(new Error('persist_failed'));
     const onRestored = jest.fn();
 
     renderHook(() => useSessionAttemptAutoReset({
       phase: 'awaiting_recovery',
       hydrated: true,
-      giftCount: 2,
-      recoverWithGift,
       restoreAttempts,
       forfeitSessionRunes,
       onRestored,
     }));
 
-    await waitFor(() => expect(recoverWithGift).toHaveBeenCalledTimes(1));
-    // Заработанное за сессию не сгорает, когда спасение оплачено подарком.
-    expect(forfeitSessionRunes).not.toHaveBeenCalled();
-    expect(restoreAttempts).not.toHaveBeenCalled();
+    // Экран обязан ожить: оставлять его заблокированным — ровно то зависание, ради которого всё чинилось.
+    await waitFor(() => expect(restoreAttempts).toHaveBeenCalledTimes(1));
+    expect(forfeitSessionRunes).toHaveBeenCalledTimes(1);
     await waitFor(() => expect(onRestored).toHaveBeenCalledTimes(1));
   });
 
-  test('технический сбой подарка НЕ сжигает руны, но экран всё равно оживает', async () => {
+  test('активное занятие ничего не восстанавливает', async () => {
     const restoreAttempts = jest.fn();
     const forfeitSessionRunes = jest.fn();
-    const recoverWithGift = jest.fn().mockRejectedValue(new Error('network_failed'));
 
     renderHook(() => useSessionAttemptAutoReset({
-      phase: 'awaiting_recovery',
+      phase: 'active',
       hydrated: true,
-      giftCount: 1,
-      recoverWithGift,
       restoreAttempts,
       forfeitSessionRunes,
     }));
 
-    // Экран обязан ожить: оставлять его заблокированным — это ровно то
-    // зависание, ради которого всё чинилось.
-    await waitFor(() => expect(restoreAttempts).toHaveBeenCalledTimes(1));
-    // Но платы за неудавшийся подарок не берём: он мог не потратиться.
+    await new Promise((resolve) => { setTimeout(resolve, 50); });
+    expect(restoreAttempts).not.toHaveBeenCalled();
     expect(forfeitSessionRunes).not.toHaveBeenCalled();
-  });
-
-  test('недостоверный инвентарь: попытки возвращаются, заработанное сохраняется', async () => {
-    const restoreAttempts = jest.fn();
-    const forfeitSessionRunes = jest.fn();
-    const recoverWithGift = jest.fn();
-
-    renderHook(() => useSessionAttemptAutoReset({
-      phase: 'awaiting_recovery',
-      hydrated: true,
-      // Чтение инвентаря упало: ноль здесь означает «не знаем», а не «нет».
-      inventoryTrusted: false,
-      giftCount: 0,
-      recoverWithGift,
-      restoreAttempts,
-      forfeitSessionRunes,
-    }));
-
-    await waitFor(() => expect(restoreAttempts).toHaveBeenCalledTimes(1));
-    expect(forfeitSessionRunes).not.toHaveBeenCalled();
-    // Подарок не трогаем: его состояние неизвестно, тратить вслепую нельзя.
-    expect(recoverWithGift).not.toHaveBeenCalled();
-  });
-
-  test('отсутствие подарка на сервере честно уводит на путь без подарка', async () => {
-    const restoreAttempts = jest.fn();
-    const forfeitSessionRunes = jest.fn();
-    // Инвентарь говорил «подарок есть», сервер ответил «уже потрачен».
-    const recoverWithGift = jest.fn()
-      .mockRejectedValue(new Error('attempt_restore_gift_unavailable'));
-
-    renderHook(() => useSessionAttemptAutoReset({
-      phase: 'awaiting_recovery',
-      hydrated: true,
-      giftCount: 1,
-      recoverWithGift,
-      restoreAttempts,
-      forfeitSessionRunes,
-    }));
-
-    // Экран обязан ожить даже в этом случае — иначе снова мёртвый кадр.
-    await waitFor(() => expect(restoreAttempts).toHaveBeenCalledTimes(1));
-    expect(forfeitSessionRunes).toHaveBeenCalledTimes(1);
   });
 });

@@ -7,11 +7,9 @@ module.exports = {
   ...base,
   rootDir,
   testMatch: [
-    '<rootDir>/tests/session_attempt_gift_rescue_entry.test.tsx',
     '<rootDir>/tests/learning_v2_rune_flight_lifecycle.test.tsx',
     '<rootDir>/tests/learning_v2_intro_reader_a.test.tsx',
     '<rootDir>/tests/learning_v2_rune_flight_sound_contract.test.ts',
-    '<rootDir>/tests/session_attempt_gift_rescue_presentation.test.ts',
   ],
   transform: {
     '^.+\\.tsx?$': ['ts-jest', {

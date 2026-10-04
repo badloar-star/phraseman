@@ -16,9 +16,6 @@ jest.mock('../app/session_attempts/session_attempt_recovery', () => ({
   persistSessionAttemptsState: (...args: unknown[]) => mockCoordinator.persistSessionAttemptsState(...args),
   recoverPreparedSessionAttemptRecoveries: (...args: unknown[]) => mockCoordinator.recoverPreparedSessionAttemptRecoveries(...args),
 }));
-jest.mock('../app/session_attempts/session_attempt_restore_inventory', () => ({
-  readAttemptRestoreGiftCount: jest.fn().mockResolvedValue(2),
-}));
 jest.mock('../app/level_spin_star_grants', () => ({
   readUnifiedLevelSpinStars: jest.fn().mockResolvedValue({ balance: 80, earnedTotal: 0 }),
 }));
@@ -106,12 +103,13 @@ test('hydrate restores the blocking zero-attempt state and resource choices afte
   await waitFor(() => expect(hook.result.current.hydrated).toBe(true));
   expect(hook.result.current).toMatchObject({
     state: { remainingAttempts: 0, phase: 'awaiting_recovery', questionId: 'q7' },
-    giftCount: 2,
+    hydrationTrusted: true,
     runeBalance: 80,
   });
 });
 
-test('successful gift recovery restores the same question and exposes busy state safely', async () => {
+// зачем (D09/D148, 04.10): подарок убран — восстановление одно, за руны сессии; те же гарантии (тот же вопрос, безопасное busy) проверяем на нём
+test('successful rune recovery restores the same question and exposes busy state safely', async () => {
   const token = captureAccountGeneration();
   const restoredState = {
     schemaVersion: 'session-attempts-state.v1' as const,
@@ -120,7 +118,7 @@ test('successful gift recovery restores the same question and exposes busy state
     processedAnswerAttemptIds: ['a1', 'a2', 'a3'], recoveryReceiptIds: ['receipt-1'],
   };
   mockCoordinator.commitSessionAttemptRecovery.mockResolvedValue({
-    duplicate: false, source: 'gift', attemptsState: restoredState, receiptId: 'receipt-1',
+    duplicate: false, source: 'runes', attemptsState: restoredState, receiptId: 'receipt-1',
   });
   mockCoordinator.hydrateSessionAttemptsState.mockResolvedValue({ ...restoredState, remainingAttempts: 0, phase: 'awaiting_recovery' });
   const hook = await renderHook(() => useSessionAttempts({
@@ -128,8 +126,8 @@ test('successful gift recovery restores the same question and exposes busy state
   }));
   await waitFor(() => expect(hook.result.current.hydrated).toBe(true));
 
-  await act(async () => { await hook.result.current.recoverWithGift(); });
-  expect(mockCoordinator.commitSessionAttemptRecovery).toHaveBeenCalledWith(expect.objectContaining({ source: 'gift' }));
+  await act(async () => { await hook.result.current.recoverWithRunes(); });
+  expect(mockCoordinator.commitSessionAttemptRecovery).toHaveBeenCalledWith(expect.objectContaining({ source: 'runes' }));
   expect(hook.result.current).toMatchObject({
     state: { remainingAttempts: 3, phase: 'active', questionId: 'voice-q' },
     recoveryBusy: false,
@@ -151,7 +149,7 @@ test('two recovery taps in the same frame commit only one durable operation', as
     await commitPending;
     return {
       duplicate: false,
-      source: 'gift',
+      source: 'runes',
       attemptsState: restoredState,
       receiptId: 'receipt-double-tap',
     };
@@ -167,8 +165,8 @@ test('two recovery taps in the same frame commit only one durable operation', as
   let first!: Promise<void>;
   let second!: Promise<void>;
   await act(() => {
-    first = hook.result.current.recoverWithGift();
-    second = hook.result.current.recoverWithGift();
+    first = hook.result.current.recoverWithRunes();
+    second = hook.result.current.recoverWithRunes();
   });
   expect(mockCoordinator.commitSessionAttemptRecovery).toHaveBeenCalledTimes(1);
 

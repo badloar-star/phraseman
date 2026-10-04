@@ -228,7 +228,8 @@ test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchan
       panel: 'df3e064961dab7bb4d138cde28593d4eccdc253aff819e1a8c8cbb12b562cdc4',
       // зачем (04.10, §126 срез карточки речи): на коротких экранах тренажёр прижимает карточку к верху слота
       // (speakingInlineSlotAlign) — только выравнивание; геометрия слота и логика записи не тронуты.
-      slot: 'd4c0d899ecf038075486d4c24d5225dd831ac0e0ddef0fa8b3783eebab382c93',
+      // зачем (04.10): + 8 dp воздуха сверху у прижатой карточки (кадр 450×800).
+      slot: '9349576ffb4cd827b9fe39a9b1164a9b1e5232df4b33894b867a5b965c4650de',
       stars: '38631c90662c00baf57ee9b9e129d6049854f6799bd13fe05e1c9587fc3e6d60',
       logic: '3b4d1528d7223cb1ca37f52e0e2304b55552c86a7a3102cad6657a00cd4084ef',
     },

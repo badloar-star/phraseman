@@ -26,12 +26,14 @@ export function useSpeakingInlineMetrics(): SpeakingInlineMetrics {
 function SpeakingInlineSlot({ children, style, variant = 'trainer' }: SpeakingInlineSlotProps) {
   const { width, height } = useWindowDimensions();
   const metrics = useMemo(() => speakingInlineMetrics(width, height, variant), [width, height, variant]);
+  const align = speakingInlineSlotAlign(height, variant);
   return (
     <SpeakingInlineMetricsContext.Provider value={metrics}>
       <View
         testID="speaking-inline-slot"
         pointerEvents="box-none"
-        style={[styles.slot, { minHeight: metrics.slotHeight, justifyContent: speakingInlineSlotAlign(height, variant) }, style]}
+        // зачем (§126, кадр 04.10): прижатая к верху карточка липла к строке над слотом — 8 dp воздуха (запас слота ~21 dp).
+        style={[styles.slot, { minHeight: metrics.slotHeight, justifyContent: align, paddingTop: align === 'flex-start' ? 8 : 0 }, style]}
       >
         {children}
       </View>

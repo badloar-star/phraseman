@@ -26,6 +26,10 @@ const readFlag = (name, fallback) => {
 
 const PORT = readFlag('--port', '8085');
 const USE_TUNNEL = argv.includes('--tunnel');
+// зачем (Дизайн 04.10): временная правка для кадров не доходила до приложения — сборщик отдавал
+// закэшированный бандл. `--clear` разово пересобирает кэш Metro (expo start --clear), без обхода супервизора.
+const CLEAR_CACHE = argv.includes('--clear');
+let clearPending = CLEAR_CACHE; // только первый старт; перезапуски после сбоя кэш не трогают
 const RELOAD_EVERY_MS = Number(readFlag('--reload-ms', String(3 * 60_000)));
 const PROJECT_ROOT = new URL('..', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
 
@@ -51,7 +55,9 @@ function startMetro() {
     '--port', PORT,
     '--dev-client',
     ...(USE_TUNNEL ? ['--tunnel'] : []),
+    ...(clearPending ? ['--clear'] : []),
   ];
+  clearPending = false;
 
   log(`запускаю Metro на порту ${PORT}${USE_TUNNEL ? ' (tunnel)' : ''}...`);
   child = spawn('npx', args, {

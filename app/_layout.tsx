@@ -2323,6 +2323,16 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         .then(() => getRunesBalanceRead())
         .then((read) => checkAchievements({ type: 'shards', balance: read.wallet.balance }))
         .catch((error: unknown) => console.warn('[ACHIEVEMENTS] coins_boot_check_failed', String(error))));
+      // зачем (§142, правило владельца «каждый раздел открывается мгновенно»): окно Plus открывается
+      // сразу (02a922192), но цены читались с диска уже после показа. Кэш цен читаем в память фоном
+      // после первого кадра — только диск, без сети; модуль подгружаем динамически, не в старт.
+      runAfterHomeFirstFrame('paywall_price_cache_warmup', () => import('./paywall_price_cache')
+        .then(({ hydratePaywallPriceCache }) => hydratePaywallPriceCache())
+        .then((cache) => {
+          const plans = cache ? [cache.yearly, cache.monthly].filter(Boolean).length : 0;
+          console.warn(cache ? `[PAYWALL] цены прогреты: из кэша ${plans}` : '[PAYWALL] цены прогреты: нет кэша'); // guard-ok: одна строка на запуск, цепочка [PAYWALL]
+        })
+        .catch((error: unknown) => console.warn('[PAYWALL] цены: прогрев не удался', String(error)))); // guard-ok: одна строка на запуск
 
       let shouldPrimeLessonsAfterReveal = false;
       try {

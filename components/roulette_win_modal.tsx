@@ -23,6 +23,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { ThemedArt } from '../app/theme/ThemedArt';
+import { THEMED_ART_ALL_NAMES, resolveThemedArt, type ThemedArtName } from '../app/theme/themed_art_registry';
 import { useLang } from './LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { ROULETTE_PRIZES, rouletteCoinsLabel, roulettePrizeLabel } from '../app/roulette_prizes';
@@ -66,6 +68,18 @@ function rouletteRarity(prizeIndex: number): RewardImpactRarity {
   return 'legendary';
 }
 
+// зачем (координатор 04.10, решение по кадру OM-ROULETTE-WIN): сцена окна — нейтральная плашка с глифом
+// срока («7»), как в макете; картинка-карточка приза (решение 26.07) больше не показывается. Когда в реестр
+// ThemedArt придут билеты prize_1d…prize_1y (ТЗ ASSETS_V2_REMAINING, блок G), сцена сама покажет билет.
+const PRIZE_TICKET_SUFFIX_BY_DAYS: Readonly<Record<number, string>> = { 1: '1d', 7: '7d', 30: '1m', 90: '3m', 180: '6m', 365: '1y' };
+
+function prizeTicketName(days: number): ThemedArtName | null {
+  const suffix = PRIZE_TICKET_SUFFIX_BY_DAYS[days];
+  if (!suffix) return null;
+  const candidate = `prize_${suffix}`;
+  return (THEMED_ART_ALL_NAMES as readonly string[]).includes(candidate) ? candidate as ThemedArtName : null;
+}
+
 const DATE_LOCALE_BY_LANG: Record<Lang, string> = {
   ru: 'ru-RU',
   uk: 'uk-UA',
@@ -81,7 +95,7 @@ const DATE_LOCALE_BY_LANG: Record<Lang, string> = {
 // Локализованное имя приза («1 месяц», не «30 дн.») — канон в roulette_prizes.ts.
 
 export default function RouletteWinModal({ data, onClose, motionVariant = 'classic' }: Props) {
-  const { theme: t, f, ds, liquidGlassThemeId } = useTheme();
+  const { theme: t, f, ds, liquidGlassThemeId, liquidGlassAppearance } = useTheme();
   // зачем (overlays-more OM-ROULETTE-WIN): обычное окно — материал активной темы Liquid Glass.
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
@@ -119,8 +133,18 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
     opacity: opacity.value,
   }));
 
+  const ticketName = data && data.prizeKind !== 'coins' ? prizeTicketName(data.prizeDays) : null;
+  const ticketOrigin = ticketName ? resolveThemedArt(ticketName, liquidGlassAppearance).origin : 'none';
+  const showTicket = ticketName !== null && (ticketOrigin === 'v2art' || ticketOrigin === 'v2art_other_brightness');
+  useEffect(() => {
+    if (!data || isHybrid) return;
+    console.log('[ROULETTE-ART]', JSON.stringify({ prizeIndex: data.prizeIndex, prizeDays: data.prizeDays, prizeKind: data.prizeKind ?? 'days', ticketName, origin: ticketOrigin, shown: showTicket ? 'ticket' : 'glyph' }));
+  }, [data, isHybrid, ticketName, ticketOrigin, showTicket]);
+
   if (!data) return null;
   const prize = ROULETTE_PRIZES[data.prizeIndex] ?? ROULETTE_PRIZES[0];
+  // Глиф сцены: число срока («7», «1» для месяца/года) или сумма монет для Pro (D100).
+  const sceneGlyph = data.prizeKind === 'coins' && (data.prizeCoins ?? 0) > 0 ? String(data.prizeCoins) : prize.num;
   const dateLocale = DATE_LOCALE_BY_LANG[lang as Lang] ?? 'ru-RU';
   const vipDate = data.vipUntil > 0 ? new Date(data.vipUntil).toLocaleDateString(dateLocale) : '—';
   const daysShort = `+${data.prizeDays} ${L('дн.', 'd.', 'дн.', 'd.', 'd.', 'ngày', 'hari', 'gün', 'dn.')}`;
@@ -222,15 +246,18 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
             cardAnim,
           ]}
         >
-          {/* `.om-art` 202×160 r22: картинка приза клипается внутри сцены. */}
-          <View style={[styles.prizeImageWrap, { backgroundColor: glass.selected }]}>
-            <Image
-              source={prize.image}
-              style={styles.prizeImage}
-              contentFit="cover"
-              cachePolicy="memory-disk"
-              accessible={false}
-            />
+          {/* `.om-art` 202×160 r22: билет приза из ThemedArt, пока его нет — глиф срока 48/800. */}
+          <View
+            testID="roulette-win-scene"
+            accessibilityElementsHidden
+            importantForAccessibility="no-hide-descendants"
+            style={[styles.prizeImageWrap, styles.scene, { backgroundColor: glass.selected }]}
+          >
+            {showTicket && ticketName ? (
+              <ThemedArt name={ticketName} width={202} height={160} />
+            ) : (
+              <Text maxFontSizeMultiplier={1.2} style={[styles.sceneGlyph, { color: glass.text }]}>{sceneGlyph}</Text>
+            )}
           </View>
 
           {/* `.om-title` 25/31 */}
@@ -320,6 +347,16 @@ const styles = StyleSheet.create({
   prizeImage: {
     width: '100%',
     height: '100%',
+  },
+  scene: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  // `.om-art .glyph` 48/800
+  sceneGlyph: {
+    fontSize: 48,
+    lineHeight: 56,
+    fontWeight: '800',
   },
   winTitle: {
     marginTop: 7,

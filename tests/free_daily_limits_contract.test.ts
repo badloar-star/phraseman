@@ -176,7 +176,9 @@ describe('карточки: кнопка тренировки показывае
   // SpeakingQuotaDots, и без отдельной плашки Plus — исчерпание объясняет текст индикатора.
   // Сохранено главное: остаток виден у кнопки, а тап по исчерпанной тренировке ведёт на пейвол.
   it('остаток нарисован рядом с кнопкой', () => {
-    expect(source).toMatch(/<MonthlyTrainingSessionIndicator[\s\S]{0,400}quota=\{quotaPreview\}/);
+    // зачем (хаб А утверждён 04.10): остаток — на самой главной кнопке («Тренироваться · осталось N из 30») и пилюлей в шапке.
+    expect(source).toMatch(/осталось \$\{trainingRemaining\} из \$\{quotaPreview\.limit\}/);
+    expect(source).toContain('limitLabel');
   });
 
   it('исчерпано — пейвол по тапу', () => {

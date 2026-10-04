@@ -1,19 +1,10 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { BlurView } from 'expo-blur';
-import { Image } from 'expo-image';
 import {
   AccessibilityInfo,
   findNodeHandle,
-  type LayoutChangeEvent,
-  Platform,
-  Pressable,
-  ScrollView,
   StatusBar,
   StyleSheet,
-  Text,
-  useWindowDimensions,
   View,
 } from 'react-native';
 import ContentWrap from '../../components/ContentWrap';
@@ -24,10 +15,8 @@ import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import { usePremium } from '../../components/PremiumContext';
-import MonthlyTrainingSessionIndicator from '../../components/MonthlyTrainingSessionIndicator';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
-import { useScreen } from '../../hooks/use-screen';
 import { useFlashcardTrainingQuotaPreview } from '../../hooks/useFlashcardTrainingQuotaPreview';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
@@ -42,7 +31,8 @@ import {
   peekWarmMarketplacePacks,
   type FlashcardMarketPack,
 } from './marketplace';
-import SavedTopCommunityPacks from './SavedTopCommunityPacks';
+import CardsHubV2 from './CardsHubV2';
+import { useFcReduceMotion } from './PhraseCard';
 import FlashcardsTrainingModeSheet from './FlashcardsTrainingModeSheet';
 import type { CardsTrainingMode } from './training_entry';
 import { primeFlashcardsCollectionCache } from './useCollectionData';
@@ -56,83 +46,6 @@ import { peekStoredPackLanguage } from './pack_language_preferences';
 import { defaultPackLanguageForStudyTarget } from './pack_languages';
 import { buildFcCreateRoute } from './tabbar_state';
 import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
-
-type LibraryRowProps = {
-  testID: string;
-  icon: keyof typeof Ionicons.glyphMap;
-  savedArt?: boolean;
-  title: string;
-  subtitle: string;
-  count: number | null;
-  countPendingLabel: string;
-  lang: string;
-  onPress: () => void;
-};
-
-/** Low-intensity native diffusion is bounded to the visible Hub surfaces. */
-function HeaderGlassSheen({ edge, tint, wash }: { edge: string; tint: string; wash: string }) {
-  return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-    <BlurView intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3}
-      experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
-      tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
-    <View style={[StyleSheet.absoluteFill, { backgroundColor: `${wash}A6` }]} />
-    <LinearGradient colors={[tint, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
-    <View style={[styles.rowSheen, { backgroundColor: edge }]} />
-  </View>;
-}
-
-const LIBRARY_ROW_GRADIENT_FALLBACK = {
-  start: { x: 0, y: 0 },
-  end: { x: 1, y: 1 },
-} as const;
-
-function libraryRowGradientForSize(width: number, height: number) {
-  if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) {
-    return LIBRARY_ROW_GRADIENT_FALLBACK;
-  }
-  // CSS 110deg is 20deg from the physical x-axis. Expo multiplies normalized
-  // coordinates by the rendered size, so compensate for each row aspect ratio.
-  const radians = 20 * Math.PI / 180;
-  const direction = { x: Math.cos(radians), y: Math.sin(radians) };
-  const length = Math.abs(width * direction.x) + Math.abs(height * direction.y);
-  return {
-    start: {
-      x: 0.5 - direction.x * length / (2 * width),
-      y: 0.5 - direction.y * length / (2 * height),
-    },
-    end: {
-      x: 0.5 + direction.x * length / (2 * width),
-      y: 0.5 + direction.y * length / (2 * height),
-    },
-  };
-}
-
-function LibraryRowSheen({ testID }: Readonly<{ testID: string }>) {
-  const [layout, setLayout] = useState({ width: 0, height: 0 });
-  const gradient = useMemo(
-    () => libraryRowGradientForSize(layout.width, layout.height),
-    [layout.height, layout.width],
-  );
-  const onLayout = useCallback((event: LayoutChangeEvent) => {
-    const { width, height } = event.nativeEvent.layout;
-    if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) return;
-    setLayout(current => current.width === width && current.height === height
-      ? current
-      : { width, height });
-  }, []);
-  return (
-    <LinearGradient
-      pointerEvents="none"
-      testID={testID}
-      colors={['rgba(239,241,255,0.09)', 'rgba(239,241,255,0)']}
-      locations={[0, 0.58]}
-      start={gradient.start}
-      end={gradient.end}
-      onLayout={onLayout}
-      style={[StyleSheet.absoluteFill, { opacity: layout.width > 0 && layout.height > 0 ? 1 : 0 }]}
-    />
-  );
-}
 
 /**
  * Совпадают ли каталоги по составу (id и социальные счётчики, которые видно на
@@ -197,37 +110,6 @@ function mergeCatalogs(...catalogs: readonly FlashcardMarketPack[][]): Flashcard
   return merged;
 }
 
-function LibraryRow({ testID, icon, savedArt = false, title, subtitle, count, countPendingLabel, lang, onPress }: LibraryRowProps) {
-  const { liquidGlassThemeId } = useTheme();
-  const g = liquidGlassTokens(liquidGlassThemeId);
-  return (
-    <Pressable
-      testID={testID}
-      accessibilityRole="button"
-      accessibilityLabel={count === null ? `${title}. ${subtitle}` : `${title}. ${subtitle}. ${new Intl.NumberFormat(lang).format(count)}`}
-      onPress={onPress}
-      style={({ pressed }) => [styles.libraryRow, { backgroundColor: g.opaqueCard }, pressed && styles.pressed]}
-    >
-      <LibraryRowSheen testID={`${testID}-sheen`} />
-      <View style={[styles.libraryIcon, { backgroundColor: g.opaqueControl }]}>
-        {savedArt
-          ? <Image source={require('../../assets/images/v2/cards_hub_saved.webp')} style={styles.savedArt} contentFit="contain" accessible={false} />
-          : <Ionicons name={icon} size={20} color={g.lightTint} />}
-      </View>
-      <View style={styles.libraryCopy}>
-        <Text style={[styles.libraryTitle, { color: g.text }]}>{title}</Text>
-        <Text style={[styles.librarySubtitle, { color: g.secondary }]}>{subtitle}</Text>
-      </View>
-      {/* зачем (владелец 01.10: «никаких загружается/прочерков»): число неизвестно — пустое
-          зарезервированное место той же ширины, а не «—»; появится, как только станет известно. */}
-      <Text accessibilityElementsHidden={count === null} importantForAccessibility={count === null ? 'no-hide-descendants' : 'auto'} style={[styles.libraryCount, { color: g.secondary }]}>
-        {count === null ? '' : new Intl.NumberFormat(lang, { notation: 'compact', maximumFractionDigits: 1 }).format(count)}
-      </Text>
-      <Ionicons name="chevron-forward" size={20} color={g.secondary} />
-    </Pressable>
-  );
-}
-
 /** Потолок ожидания квоты после раннего тапа (§90). */
 const EARLY_TAP_CEILING_MS = 15_000;
 
@@ -239,8 +121,6 @@ export default function FlashcardsHubScreen() {
   const { studyTarget } = useStudyTarget();
   const { accessResolved } = usePremium();
   const quotaPreview = useFlashcardTrainingQuotaPreview();
-  const { contentMaxW } = useScreen();
-  const { width } = useWindowDimensions();
   const insets = useStableSafeAreaInsets();
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
   const [catalog, setCatalog] = useState<FlashcardMarketPack[]>(
@@ -304,6 +184,14 @@ export default function FlashcardsHubScreen() {
   const trainButtonRef = useRef<View>(null);
 
   const copy = useMemo(() => ({
+    subtitleShort: triLang(lang, {
+      ru: 'Слова и фразы', uk: 'Слова й фрази', en: 'Words and phrases', es: 'Palabras y frases',
+      'pt-BR': 'Palavras e frases', vi: 'Từ và cụm từ', id: 'Kata dan frasa', tr: 'Kelimeler ve ifadeler', pl: 'Słowa i zwroty',
+    }),
+    videoShort: triLang(lang, {
+      ru: 'Из видео', uk: 'З відео', en: 'From videos', es: 'De vídeos',
+      'pt-BR': 'De vídeos', vi: 'Từ video', id: 'Dari video', tr: 'Videolardan', pl: 'Z filmów',
+    }),
     title: triLang(lang, {
       ru: 'Карточки', uk: 'Картки', en: 'Cards', es: 'Tarjetas', 'pt-BR': 'Cartões',
       vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Karty',
@@ -637,7 +525,56 @@ export default function FlashcardsHubScreen() {
     router.push({ pathname: '/flashcards_training_setup', params: { mode } } as never);
   }, [router]);
 
-  const contentWidth = Math.max(0, Math.min(contentMaxW, width) - 40);
+  const onTrainPress = () => {
+        void hapticTap();
+        console.log('[FC-TRAIN-ENTRY] tap:train', JSON.stringify({
+          quotaStatus: quotaPreview.status, used: quotaPreview.used, limit: quotaPreview.limit,
+          bypass: quotaPreview.bypass, trainingLocked, trainingEntryReady, accessResolved,
+        }));
+        if (trainingLocked) {
+          openTrainingPaywall('flashcard_training', 'flashcards_hub_train');
+          return;
+        }
+        // зачем: этот выход был НЕМЫМ — на статусе waiting/unavailable/stale_account
+        // тап не делал ничего и не оставлял следа. Причина обязана попасть в лог.
+        if (!trainingEntryReady) {
+          // зачем (§90): кнопка больше не бывает «мёртвой» — окно открывается сразу и ждёт квоту.
+          if (modeSheetVisible) {
+            console.log('[FC-TRAIN-ENTRY] early_tap:double_tap_ignored');
+            return;
+          }
+          console.log(`[FC-TRAIN-ENTRY] early_tap:waiting статус квоты="${quotaPreview.status}"`);
+          pendingModeRef.current = null;
+          earlyTapStartedAtRef.current = Date.now();
+          setEarlyTap('waiting');
+          setModeSheetVisible(true);
+          return;
+        }
+        pendingModeRef.current = null;
+        setModeSheetVisible(true);
+  };
+
+  // зачем (владелец 04.10, хаб А утверждён): экран рисует CardsHubV2 1:1 с макетом cards-section.html; вся логика квоты, раннего тапа и окна режимов — выше, без изменений.
+  const topCard = peekSelectedSavedContour()?.[0] ?? null;
+  const limitLabel = quotaPreview.status === 'waiting' ? null : `${Math.max(0, quotaPreview.limit - quotaPreview.used)}/${quotaPreview.limit}`;
+  // зачем (макет: «Осталось 0 из 30 · до 1 ноября»): дата сброса — первое число следующего месяца на языке интерфейса.
+  const resetDate = (() => {
+    const now = new Date();
+    try { return new Date(now.getFullYear(), now.getMonth() + 1, 1).toLocaleDateString(lang, { day: 'numeric', month: 'long' }); } catch (error) { console.warn('[FC-HUB] reset date format failed —', error instanceof Error ? error.message : String(error)); return ''; } // guard-ok: лог причины, значение по умолчанию — без даты
+  })();
+  const trainLabel = trainingLocked
+    ? triLang(lang, { ru: `Осталось 0 из ${quotaPreview.limit} · до ${resetDate}`, uk: `Залишилось 0 з ${quotaPreview.limit} · до ${resetDate}`, en: `0 of ${quotaPreview.limit} left · until ${resetDate}`, es: `Quedan 0 de ${quotaPreview.limit} · hasta el ${resetDate}`, 'pt-BR': `Restam 0 de ${quotaPreview.limit} · até ${resetDate}`, vi: `Còn 0 trong ${quotaPreview.limit} · đến ${resetDate}`, id: `Sisa 0 dari ${quotaPreview.limit} · sampai ${resetDate}`, tr: `${quotaPreview.limit} çalışmadan 0 kaldı · ${resetDate} tarihine kadar`, pl: `Zostało 0 z ${quotaPreview.limit} · do ${resetDate}` })
+    : quotaPreview.status === 'allowed'
+      ? triLang(lang, { ru: `Тренироваться · осталось ${trainingRemaining} из ${quotaPreview.limit}`, uk: `Тренуватися · залишилось ${trainingRemaining} з ${quotaPreview.limit}`, en: `Practise · ${trainingRemaining} of ${quotaPreview.limit} left`, es: `Entrenar · quedan ${trainingRemaining} de ${quotaPreview.limit}`, 'pt-BR': `Treinar · restam ${trainingRemaining} de ${quotaPreview.limit}`, vi: `Luyện tập · còn ${trainingRemaining} trong ${quotaPreview.limit}`, id: `Latihan · sisa ${trainingRemaining} dari ${quotaPreview.limit}`, tr: `Çalış · ${quotaPreview.limit} içinden ${trainingRemaining} kaldı`, pl: `Ćwicz · zostało ${trainingRemaining} z ${quotaPreview.limit}` })
+      : copy.train;
+  const fmt = (n: number | null) => (n === null ? '' : new Intl.NumberFormat(lang, { notation: 'compact', maximumFractionDigits: 1 }).format(n));
+  const tiles = [
+    { id: 'saved' as const, icon: 'bookmark-outline' as const, title: copy.saved, count: fmt(savedCount), onPress: () => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub' } } as never) },
+    { id: 'mine' as const, icon: 'albums-outline' as const, title: copy.mine, count: fmt(myPackCount), onPress: () => router.push('/flashcards_my_packs' as never) },
+    { id: 'video' as const, icon: 'play-circle-outline' as const, title: copy.videoShort, count: fmt(videoPackCount), onPress: () => router.push('/flashcards_video_packs' as never) },
+    { id: 'community' as const, icon: 'earth-outline' as const, title: copy.communitySegment, count: fmt(communityPackCount), onPress: () => router.push('/flashcards_packs' as never) },
+  ];
+  const reduceMotion = useFcReduceMotion();
 
   return (
     <View style={[styles.screen, { backgroundColor: g.bg }]}>
@@ -646,151 +583,23 @@ export default function FlashcardsHubScreen() {
       <View style={[styles.safe, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
         <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
         <ContentWrap>
-          <View style={styles.header}>
-            <Pressable
-                testID="fc-cards-hub-back"
-                accessibilityRole="button"
-                accessibilityLabel={copy.back}
-                onPress={() => safeRouterBack(router, '/(tabs)/home' as never)}
-                hitSlop={8}
-                style={({ pressed }) => [styles.backButton, { backgroundColor: g.sheet }, pressed && styles.pressed]}
-              >
-                <HeaderGlassSheen edge={g.glassEdge} tint={g.selected} wash={g.opaqueSheet} />
-                <Ionicons name="arrow-back" size={20} color={g.text} />
-              </Pressable>
-            <Text accessibilityRole="header" style={[styles.headerTitle, { color: g.text }]}>{copy.title}</Text>
-            <Pressable
-              testID="fc-cards-hub-create-pack"
-              accessibilityRole="button"
-              accessibilityLabel={copy.create}
-              onPress={openCreatePack}
-              hitSlop={8}
-              style={({ pressed }) => [styles.headerTrailing, { backgroundColor: g.sheet }, pressed && styles.pressed]}
-            >
-              <HeaderGlassSheen edge={g.glassEdge} tint={g.selected} wash={g.opaqueSheet} />
-              <Ionicons name="add" size={22} color={g.text} />
-            </Pressable>
-          </View>
-
-          <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-            <View style={styles.segments} accessibilityRole="tablist">
-              <View testID="fc-cards-hub-segment-best" accessibilityRole="tab" accessibilityState={{ selected: true }} style={[styles.segment, { backgroundColor: g.selected }]}>
-                <Text style={[styles.segmentText, { color: g.text }]}>{copy.bestSegment}</Text>
-              </View>
-              <Pressable testID="fc-cards-hub-segment-mine" accessibilityRole="tab" onPress={() => router.push('/flashcards_my_packs' as never)} style={({ pressed }) => [styles.segment, { backgroundColor: g.card }, pressed && styles.pressed]}>
-                <Text style={[styles.segmentText, { color: g.secondary }]}>{copy.mine}</Text>
-              </Pressable>
-              <Pressable testID="fc-cards-hub-segment-community" accessibilityRole="tab" onPress={() => router.push('/flashcards_packs' as never)} style={({ pressed }) => [styles.segment, { backgroundColor: g.card }, pressed && styles.pressed]}>
-                <Text style={[styles.segmentText, { color: g.secondary }]}>{copy.communitySegment}</Text>
-              </Pressable>
-            </View>
-            <View style={styles.libraryList}>
-              <LibraryRow
-                testID="fc-cards-hub-library-saved"
-                icon="bookmark-outline"
-                savedArt={true}
-                title={copy.saved}
-                subtitle={copy.savedSub}
-                count={savedCount}
-                countPendingLabel={copy.countPending}
-                lang={lang}
-                onPress={() => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub' } } as never)}
-              />
-              <LibraryRow
-                testID="fc-cards-hub-library-mine"
-                icon="albums-outline"
-                title={copy.mine}
-                subtitle={copy.mineSub}
-                count={myPackCount}
-                countPendingLabel={copy.countUnavailable}
-                lang={lang}
-                onPress={() => router.push('/flashcards_my_packs' as never)}
-              />
-              <LibraryRow
-                testID="fc-cards-hub-library-community"
-                icon="people-outline"
-                title={copy.community}
-                subtitle={copy.communitySub}
-                count={communityPackCount}
-                countPendingLabel={copy.countPending}
-                lang={lang}
-                onPress={() => router.push('/flashcards_packs' as never)}
-              />
-              <LibraryRow
-                testID="fc-cards-hub-library-video"
-                icon="play-circle-outline"
-                title={copy.video}
-                subtitle={copy.videoSub}
-                count={videoPackCount}
-                countPendingLabel={copy.countUnavailable}
-                lang={lang}
-                onPress={() => router.push('/flashcards_video_packs' as never)}
-              />
-            </View>
-
-            <SavedTopCommunityPacks
-              catalog={catalog}
-              ownedCommunityPackIds={ownedCommunityPackIds}
-              lang={lang}
-              contentWidth={contentWidth}
-              openingPackId={openingPackId}
-              onOpenPreview={openTopPack}
-              onSeeAll={() => router.push('/flashcards_packs' as never)}
-              loading={catalogLoadState === 'loading'}
-              onRetry={reloadCatalog}
-            />
-
-          </ScrollView>
-          <View style={[styles.trainDock, { backgroundColor: g.bgBottom }]}>
-            <Pressable
-              ref={trainButtonRef}
-              testID="fc-cards-hub-train"
-              accessibilityRole="button"
-              accessibilityLabel={trainAccessibilityLabel}
-              onPress={() => {
-                void hapticTap();
-                console.log('[FC-TRAIN-ENTRY] tap:train', JSON.stringify({
-                  quotaStatus: quotaPreview.status, used: quotaPreview.used, limit: quotaPreview.limit,
-                  bypass: quotaPreview.bypass, trainingLocked, trainingEntryReady, accessResolved,
-                }));
-                if (trainingLocked) {
-                  openTrainingPaywall('flashcard_training', 'flashcards_hub_train');
-                  return;
-                }
-                // зачем: этот выход был НЕМЫМ — на статусе waiting/unavailable/stale_account
-                // тап не делал ничего и не оставлял следа. Причина обязана попасть в лог.
-                if (!trainingEntryReady) {
-                  // зачем (§90): кнопка больше не бывает «мёртвой» — окно открывается сразу и ждёт квоту.
-                  if (modeSheetVisible) {
-                    console.log('[FC-TRAIN-ENTRY] early_tap:double_tap_ignored');
-                    return;
-                  }
-                  console.log(`[FC-TRAIN-ENTRY] early_tap:waiting статус квоты="${quotaPreview.status}"`);
-                  pendingModeRef.current = null;
-                  earlyTapStartedAtRef.current = Date.now();
-                  setEarlyTap('waiting');
-                  setModeSheetVisible(true);
-                  return;
-                }
-                pendingModeRef.current = null;
-                setModeSheetVisible(true);
-              }}
-              style={({ pressed }) => [styles.trainButton, { backgroundColor: g.accent }, pressed && styles.pressed]}
-            >
-              <View style={styles.trainButtonContent}>
-                <Text style={[styles.trainText, { color: g.accentInk }]}>{copy.train}</Text>
-                {/* зачем (D152): лимит исчерпан — видно по замку, но кнопка нажимается и ведёт в покупку. */}
-                <Ionicons name={trainingLocked ? 'lock-closed' : 'arrow-forward'} size={20} color={g.ctaInk} />
-              </View>
-            </Pressable>
-            <MonthlyTrainingSessionIndicator
-              testID="fc-cards-hub-train-monthly-limit"
-              quota={quotaPreview}
-              textColor={g.text}
-              mutedColor={g.mutedText}
-              style={styles.trainDots}
-            />
-          </View>
+          <CardsHubV2
+            g={g}
+            title={copy.title}
+            subtitle={copy.subtitleShort}
+            limitLabel={limitLabel}
+            topWord={topCard?.en ?? 'Boarding pass'}
+            topIpa={topCard?.transcription ?? ''}
+            trainLabel={trainLabel}
+            trainLocked={trainingLocked}
+            tiles={tiles}
+            reduceMotion={reduceMotion}
+            onBack={() => safeRouterBack(router, '/(tabs)/home' as never)}
+            onCreate={openCreatePack}
+            onTrain={onTrainPress}
+            trainButtonRef={trainButtonRef}
+            labels={{ back: copy.back, create: copy.create, trainA11y: trainAccessibilityLabel }}
+          />
         </ContentWrap>
 
         <FlashcardsTrainingModeSheet
@@ -810,29 +619,4 @@ export default function FlashcardsHubScreen() {
 const styles = StyleSheet.create({
   screen: { flex: 1 },
   safe: { flex: 1, minHeight: 0 },
-  header: { height: 48, marginHorizontal: 20, flexDirection: 'row', alignItems: 'center', gap: 10 },
-  backButton: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
-  headerTitle: { flex: 1, fontSize: 19, lineHeight: 25, fontWeight: '700' },
-  headerTrailing: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
-  pressed: { opacity: 0.82 },
-  scroll: { flex: 1, minHeight: 0 },
-  scrollContent: { paddingHorizontal: 20, paddingBottom: 22 },
-  segments: { flexDirection: 'row', gap: 5, marginTop: 7, marginBottom: 16 },
-  segment: { flex: 1, minHeight: 34, borderRadius: 17, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 5 },
-  segmentText: { fontSize: 13, lineHeight: 18, fontWeight: '700', textAlign: 'center' },
-  libraryList: { gap: 8 },
-  libraryRow: { minHeight: 58, borderRadius: 13, paddingLeft: 11, paddingRight: 12, paddingVertical: 7, flexDirection: 'row', alignItems: 'center', gap: 10, overflow: 'hidden' },
-  rowSheen: { position: 'absolute', top: 0, left: 1, right: 1, height: 1 },
-  libraryIcon: { width: 38, height: 38, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
-  savedArt: { width: 36, height: 36 },
-  libraryCopy: { flex: 1, minWidth: 0 },
-  libraryTitle: { fontSize: 13, lineHeight: 18, fontWeight: '700' },
-  librarySubtitle: { fontSize: 13, lineHeight: 18, marginTop: 1 },
-  libraryCount: { minWidth: 24, fontSize: 13, lineHeight: 18, fontWeight: '700', textAlign: 'right' },
-  trainDock: { paddingHorizontal: 20, paddingTop: 9 },
-  trainButton: { minHeight: 52, borderRadius: 13, paddingHorizontal: 16, paddingVertical: 9, alignItems: 'center', justifyContent: 'center' },
-  trainDisabled: { opacity: 0.55 },
-  trainButtonContent: { width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
-  trainDots: { marginTop: 10, alignSelf: 'center' },
-  trainText: { flexShrink: 1, fontSize: 13, lineHeight: 18, fontWeight: '700', textAlign: 'center' },
 });

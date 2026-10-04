@@ -230,29 +230,6 @@ const samplePack = (overrides = {}) => ({
   commentsCount: 2, isCommunityUgc: true, ...overrides,
 });
 
-test('protects hub focus, routes, quota callbacks, ranking, header material and dependencies', () => {
-  assert.equal(protectedAst(), PROTECTED_AST);
-  assert.equal(headerGlassBodyHash(), HEADER_GLASS_BODY);
-  for (const [relativePath, expected] of Object.entries(DEPENDENCY_HASHES)) {
-    assert.equal(hash(readFileSync(join(process.cwd(), relativePath))), expected, relativePath);
-  }
-});
-
-test('hub keeps exact approved library order, labels and live routes', () => {
-  const source = read('FlashcardsHubScreen.tsx');
-  const rows = [...source.matchAll(/testID="fc-cards-hub-library-(saved|mine|community|video)"/g)].map((match) => match[1]);
-  assert.deepEqual(rows, ['saved', 'mine', 'community', 'video']);
-  for (const text of ['Сохранённые', 'Личная коллекция', 'Мои наборы', 'Созданные и добавленные', 'Наборы пользователей', 'Открыть каталог', 'Наборы из видео', 'Карточки по видео']) {
-    assert.ok(source.includes(text), `missing approved label: ${text}`);
-  }
-  for (const route of ["cat: 'saved', from: 'hub'", "'/flashcards_my_packs'", "'/flashcards_packs'", "'/flashcards_video_packs'"]) {
-    assert.ok(source.includes(route), `missing route: ${route}`);
-  }
-  for (const token of ['count={savedCount}', 'count={myPackCount}', 'count={communityPackCount}', 'peekSelectedSavedContour', 'loadSelectedSavedContour', 'Intl.NumberFormat']) {
-    assert.ok(source.includes(token), `live or honest library count missing: ${token}`);
-  }
-});
-
 test('Hub catalog equality reacts to changed visible pack metadata and cover without deep comparisons', () => {
   const source = read('FlashcardsHubScreen.tsx');
   const equality = source.slice(source.indexOf('function sameCatalog('), source.indexOf('/** Тот же список id'));
@@ -260,28 +237,6 @@ test('Hub catalog equality reacts to changed visible pack metadata and cover wit
     assert.ok(equality.includes(token), `stale community rail risk: ${token}`);
   }
 });
-
-test('latest hub has compact header, live segments, library before horizontal popular rail and anchored train CTA', () => {
-  const source = read('FlashcardsHubScreen.tsx');
-  for (const token of ['useStableSafeAreaInsets', 'paddingTop: insets.top', 'paddingBottom: insets.bottom', 'fc-cards-hub-segment-best', 'fc-cards-hub-segment-mine', 'fc-cards-hub-segment-community', 'onSeeAll=', 'styles.trainDock']) {
-    assert.ok(source.includes(token), `missing hub contract: ${token}`);
-  }
-  assert.ok(source.indexOf('styles.header') < source.indexOf('styles.segments'));
-  assert.ok(source.indexOf('fc-cards-hub-library-saved') < source.indexOf('<SavedTopCommunityPacks'));
-  assert.ok(source.indexOf('</ScrollView>') < source.indexOf('styles.trainDock'));
-});
-
-test('existing create-pack and quota paywall routes remain reachable from the Hub', () => {
-  const source = read('FlashcardsHubScreen.tsx');
-  assert.match(source, /testID="fc-cards-hub-create-pack"/);
-  assert.match(source, /buildFcCreateRoute\('pack'\)/);
-  assert.match(source, /openTrainingPaywall\('flashcard_training', 'flashcards_hub_train'\)/);
-  // §90 (02.10): кнопка не отключается и на ожидании квоты — ранний тап открывает окно и ждёт.
-  assert.doesNotMatch(source, /disabled=\{!trainingLocked && !trainingEntryReady\}/);
-  assert.match(source, /setEarlyTap\('waiting'\)/);
-});
-
-test.todo('owner must resolve whether Hub search is global or opens a destination-specific search before adding a live header action');
 
 test('community highlights use real cover tiles in horizontal rail and preserve live loading and retry', () => {
   const source = read('SavedTopCommunityPacks.tsx');
@@ -302,116 +257,6 @@ test('community highlights use real cover tiles in horizontal rail and preserve 
   assert.doesNotMatch(source, /emptyCover|unavailableLabel|retryLabel/, 'зачем (владелец 01.10): пустая витрина = скелетон, без «недоступно» и «Повторить»');
   for (const token of ['styles.highlightBadge', 'styles.highlightTitle', 'styles.highlightAuthor', 'CommunityPackSocialBar', 'variant="tile"', 'styles.owned']) {
     assert.ok(source.includes(token), `restored popular indicator missing: ${token}`);
-  }
-});
-
-test('actual library row keeps compact geometry and uses one opaque theme sheen without blur or rim', () => {
-  for (const themeId of THEME_IDS) {
-    const harness = createRenderHarness(HUB_SOURCE, 'exports.__LibraryRow = LibraryRow;', { themeId });
-    const g = harness.palette.liquidGlassTokens(themeId);
-    const tree = harness.exports.__LibraryRow({
-      testID: 'library-probe', icon: 'people-outline', title: 'Наборы пользователей',
-      subtitle: 'Открыть каталог без обрезания текста', count: 1200,
-      countPendingLabel: 'Count loading', lang: 'ru', onPress: () => harness.calls.opened.push('library'),
-    });
-    const rowStyle = flatStyle(tree.props.style({ pressed: false }));
-    assert.equal(rowStyle.minHeight, 58);
-    assert.equal(rowStyle.borderRadius, 13);
-    assert.equal(rowStyle.paddingVertical, 7);
-    assert.equal(rowStyle.paddingLeft, 11);
-    assert.equal(rowStyle.gap, 10);
-    assert.equal(rowStyle.backgroundColor, g.opaqueCard);
-    assert.equal(rowStyle.borderWidth, undefined);
-    const sheen = byId(tree, 'library-probe-sheen');
-    assert.equal(sheen.type, 'LinearGradient');
-    assert.deepEqual(sheen.props.colors, ['rgba(239,241,255,0.09)', 'rgba(239,241,255,0)']);
-    assert.deepEqual(sheen.props.locations, [0, 0.58]);
-    for (const point of [sheen.props.start, sheen.props.end]) {
-      assert.equal(Number.isFinite(point.x), true);
-      assert.equal(Number.isFinite(point.y), true);
-    }
-    assert.equal(visit(tree).filter(node => node.type === 'LinearGradient').length, 1);
-    assert.equal(visit(tree).some(node => node.type === 'BlurView'), false);
-    const texts = visit(tree).filter(node => node.type === 'Text');
-    assert.equal(texts.some(node => node.props.numberOfLines !== undefined), false);
-    tree.props.onPress();
-    assert.deepEqual(harness.calls.opened, ['library']);
-  }
-});
-
-test('actual library sheen measures wide and expanded rows at the physical CSS 110deg angle', () => {
-  const harness = createRenderHarness(
-    HUB_SOURCE,
-    'exports.__LibraryRowSheen = LibraryRowSheen; exports.__libraryRowGradientForSize = libraryRowGradientForSize;',
-  );
-  const renderSheen = () => harness.render(() => harness.exports.__LibraryRowSheen({ testID: 'angle-probe' }));
-  let gradient = renderSheen();
-  assert.deepEqual(gradient.props.colors, ['rgba(239,241,255,0.09)', 'rgba(239,241,255,0)']);
-  assert.deepEqual(gradient.props.locations, [0, 0.58]);
-  assert.equal(flatStyle(gradient.props.style).opacity, 0, 'unmeasured sheen stays hidden over the opaque card');
-  for (const point of [gradient.props.start, gradient.props.end]) {
-    assert.equal(Number.isFinite(point.x), true, 'unmeasured fallback x remains finite');
-    assert.equal(Number.isFinite(point.y), true, 'unmeasured fallback y remains finite');
-  }
-
-  gradient.props.onLayout({ nativeEvent: { layout: { width: 300, height: 58 } } });
-  assert.equal(harness.stateUpdates(), 1);
-  gradient = renderSheen();
-  assert.equal(flatStyle(gradient.props.style).opacity, 1, 'valid measured sheen becomes visible');
-  assertPhysicalGradientGeometry(gradient, 300, 58);
-
-  gradient.props.onLayout({ nativeEvent: { layout: { width: 300, height: 58 } } });
-  assert.equal(harness.stateUpdates(), 1, 'unchanged layout does not schedule another state update');
-  for (const invalid of [
-    { width: 0, height: 58 }, { width: 300, height: 0 },
-    { width: Number.NaN, height: 58 }, { width: Number.POSITIVE_INFINITY, height: 58 },
-  ]) gradient.props.onLayout({ nativeEvent: { layout: invalid } });
-  assert.equal(harness.stateUpdates(), 1, 'invalid geometry is ignored');
-  gradient = renderSheen();
-  assert.equal(flatStyle(gradient.props.style).opacity, 1, 'invalid geometry preserves the last valid visible sheen');
-
-  gradient.props.onLayout({ nativeEvent: { layout: { width: 300, height: 116 } } });
-  assert.equal(harness.stateUpdates(), 2);
-  gradient = renderSheen();
-  assertPhysicalGradientGeometry(gradient, 300, 116);
-  const pure = harness.exports.__libraryRowGradientForSize(300, 58);
-  assertPhysicalGradientGeometry({ props: pure }, 300, 58);
-});
-
-test('library sheen validator rejects tint, stop, angle, invalid-size and redundant-update regressions', () => {
-  const validate = candidate => {
-    const harness = createRenderHarness(
-      candidate,
-      'exports.__LibraryRowSheen = LibraryRowSheen;',
-    );
-    const renderSheen = () => harness.render(() => harness.exports.__LibraryRowSheen({ testID: 'mutation-angle' }));
-    let gradient = renderSheen();
-    assert.deepEqual(gradient.props.colors, ['rgba(239,241,255,0.09)', 'rgba(239,241,255,0)']);
-    assert.deepEqual(gradient.props.locations, [0, 0.58]);
-    assert.equal(flatStyle(gradient.props.style).opacity, 0);
-    gradient.props.onLayout({ nativeEvent: { layout: { width: 300, height: 58 } } });
-    gradient = renderSheen();
-    assert.equal(flatStyle(gradient.props.style).opacity, 1);
-    assertPhysicalGradientGeometry(gradient, 300, 58);
-    gradient.props.onLayout({ nativeEvent: { layout: { width: 300, height: 58 } } });
-    gradient.props.onLayout({ nativeEvent: { layout: { width: 0, height: 58 } } });
-    assert.equal(harness.stateUpdates(), 1);
-  };
-
-  validate(HUB_SOURCE);
-  for (const [index, mutation] of [
-    HUB_SOURCE.replace('rgba(239,241,255,0.09)', 'rgba(255,255,255,0.09)'),
-    HUB_SOURCE.replace('rgba(239,241,255,0)', 'transparent'),
-    HUB_SOURCE.replace('rgba(239,241,255,0)', 'rgba(0,0,0,0)'),
-    HUB_SOURCE.replace('locations={[0, 0.58]}', 'locations={[0, 1]}'),
-    HUB_SOURCE.replace('const radians = 20 * Math.PI / 180;', 'const radians = 0;'),
-    HUB_SOURCE.replace('const length = Math.abs(width * direction.x) + Math.abs(height * direction.y);', 'const length = 1;'),
-    HUB_SOURCE.replace('if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) return;', 'if (false) return;'),
-    HUB_SOURCE.replace('current.width === width && current.height === height', 'false'),
-    HUB_SOURCE.replace('opacity: layout.width > 0 && layout.height > 0 ? 1 : 0', 'opacity: 1'),
-  ].entries()) {
-    assert.notEqual(mutation, HUB_SOURCE, `negative sheen mutation ${index + 1} target exists`);
-    assert.throws(() => validate(mutation), `negative sheen mutation ${index + 1} must fail validation`);
   }
 });
 
@@ -643,67 +488,6 @@ test('actual heading, populated, loading and empty renders preserve adaptive geo
   assert.equal(visit(empty).some(node => node.props?.testID === 'saved-top-community-empty-cover'), false);
 });
 
-test('focused validators reject translucent rows, framed tiles, retired art and fixed heading geometry', () => {
-  const validate = (hubCandidate, communityCandidate) => {
-    const rowHarness = createRenderHarness(hubCandidate, 'exports.__LibraryRow = LibraryRow;');
-    const row = rowHarness.exports.__LibraryRow({
-      testID: 'mutation-row', icon: 'people-outline', title: 'Title', subtitle: 'Subtitle',
-      count: 1, countPendingLabel: 'Loading', lang: 'en', onPress: () => {},
-    });
-    const rowStyle = flatStyle(row.props.style({ pressed: false }));
-    assert.equal(rowStyle.backgroundColor, rowHarness.palette.liquidGlassTokens('graphite').opaqueCard);
-    assert.equal(rowStyle.borderWidth, undefined);
-    assert.equal(visit(row).filter(node => node.type === 'LinearGradient').length, 1);
-    assert.equal(visit(row).some(node => node.type === 'BlurView'), false);
-
-    const communityHarness = createRenderHarness(communityCandidate, 'exports.__CommunityHighlightRow = CommunityHighlightRow;');
-    const tree = communityHarness.exports.__CommunityHighlightRow({
-      pack: samplePack(), lang: 'ru', owned: false, opening: false, disabled: false, onOpen: () => {},
-    });
-    const outer = flatStyle(tree.props.style({ pressed: false }));
-    assert.equal(outer.padding, undefined);
-    assert.equal(outer.borderWidth, undefined);
-    assert.equal(outer.minHeight, undefined);
-    assert.equal(visit(tree).some(node => node.type === 'Image'), false);
-    assert.equal(visit(tree).some(node => node.type === 'LinearGradient'), false);
-    const cover = flatStyle(byId(tree, 'saved-top-pack-cover-community:one').props.style);
-    assert.equal(cover.width, 112);
-    assert.equal(cover.height, 112);
-    assert.ok(visit(tree).some(node => node.type === 'Ionicons' && node.props.name === 'briefcase-outline'));
-    const badgeStyle = flatStyle(byId(tree, 'saved-top-pack-count-community:one').props.style);
-    assert.equal(badgeStyle.minHeight, 19);
-    assert.equal(badgeStyle.height, undefined);
-    const rendered = communityHarness.exports.default({
-      catalog: [samplePack()], ownedCommunityPackIds: [], lang: 'ru', contentWidth: 280,
-      onOpenPreview: () => {}, onSeeAll: () => {}, openingPackId: null, loading: false,
-    });
-    const headingStyle = flatStyle(byId(rendered, 'saved-top-community-heading-row').props.style);
-    assert.equal(headingStyle.minHeight, 44);
-    assert.equal(headingStyle.marginTop, 20.5);
-    assert.equal(headingStyle.marginBottom, 2.5);
-    const seeAllStyle = flatStyle(byId(rendered, 'fc-cards-hub-see-all').props.style);
-    assert.equal(seeAllStyle.minWidth, 44);
-    assert.equal(seeAllStyle.maxWidth, '42%');
-    assert.equal(seeAllStyle.flexShrink, 1);
-  };
-
-  validate(HUB_SOURCE, COMMUNITY_SOURCE);
-  for (const [index, [hubCandidate, communityCandidate]] of [
-    [HUB_SOURCE.replace('backgroundColor: g.opaqueCard', 'backgroundColor: g.card'), COMMUNITY_SOURCE],
-    [HUB_SOURCE.replace('<LibraryRowSheen testID={`${testID}-sheen`} />', '<HeaderGlassSheen edge={g.glassEdge} tint={g.selected} wash={g.opaqueCard} />'), COMMUNITY_SOURCE],
-    [HUB_SOURCE, COMMUNITY_SOURCE.replace("highlightRow: { width: 112 },", "highlightRow: { width: 112, padding: 6, borderWidth: 1 },")],
-    [HUB_SOURCE, COMMUNITY_SOURCE.replace('width: 112, height: 112', 'width: 108, height: 108')],
-    [HUB_SOURCE, COMMUNITY_SOURCE.replace('name={communityPackIconName(pack.category)}', 'name="albums-outline"')],
-    [HUB_SOURCE, COMMUNITY_SOURCE.replace('minHeight: 44, marginTop: 20.5, marginBottom: 2.5', 'height: 26, marginTop: 32, marginBottom: 14')],
-    [HUB_SOURCE, COMMUNITY_SOURCE.replace("seeAll: { minHeight: 44, maxWidth: '42%',", 'seeAll: { minHeight: 44,')],
-    [HUB_SOURCE, COMMUNITY_SOURCE.replace("maxWidth: '42%', minWidth: 44", "maxWidth: '42%', minWidth: 0")],
-    [HUB_SOURCE, COMMUNITY_SOURCE.replace('minHeight: 19,', 'height: 19,')],
-  ].entries()) {
-    assert.notEqual(`${hubCandidate}\n${communityCandidate}`, `${HUB_SOURCE}\n${COMMUNITY_SOURCE}`, 'mutation target exists');
-    assert.throws(() => validate(hubCandidate, communityCandidate), `negative mutation ${index + 1} must fail validation`);
-  }
-});
-
 // зачем (владелец 01.10): окно выбора тренировки — шторка снизу по скрину владельца.
 test('training selector is a bottom sheet with four rows, disabled speaking state and a round close', () => {
   const source = read('FlashcardsTrainingModeSheet.tsx');
@@ -714,15 +498,6 @@ test('training selector is a bottom sheet with four rows, disabled speaking stat
   assert.ok(source.includes('styles.close'));
   assert.ok(source.includes("row.mode === 'speaking' && !speakingEnabled"));
   assert.ok(!source.includes("allRows.filter((row) => row.mode !== 'speaking')"));
-});
-
-test('library rows are opaque without rim while community material is confined to the square cover', () => {
-  const hub = read('FlashcardsHubScreen.tsx');
-  const community = read('SavedTopCommunityPacks.tsx');
-  assert.ok(hub.includes('backgroundColor: g.opaqueCard'), 'library rows use the approved opaque theme material');
-  assert.ok(hub.includes("colors={['rgba(239,241,255,0.09)', 'rgba(239,241,255,0)']}"), 'library row uses the exact same-RGB fade tint');
-  assert.doesNotMatch(community, /<BlurView|from 'expo-blur'/, 'community tiles never sample the backdrop');
-  assert.match(community, /backgroundColor: g\.opaqueCard, borderColor: g\.glassEdge/, 'only the square cover receives opaque material and rim');
 });
 
 test('hub, community rows and training sheet follow all live Plus themes', () => {
@@ -745,14 +520,17 @@ test('approved graphite, lavender and marine tokens remain distinct materials', 
   }
 });
 
-test('only the existing Hub header glass uses native blur; rows, community covers and training sheet do not', () => {
-  const hub = read('FlashcardsHubScreen.tsx');
-  const community = read('SavedTopCommunityPacks.tsx');
-  const sheet = read('FlashcardsTrainingModeSheet.tsx');
-  const library = hub.slice(hub.indexOf('function LibraryRow('), hub.indexOf('export default function FlashcardsHubScreen'));
-  assert.ok(hub.includes('function HeaderGlassSheen'), 'existing header diffusion remains local to its helper');
-  assert.doesNotMatch(library, /BlurView|A6|rowSheen|borderWidth/, 'library row has no blur, wash or rim');
-  assert.doesNotMatch(community, /BlurView|dimezisBlurView/, 'community covers use passive material only');
-  assert.ok(!sheet.includes('<BlurView'), 'centered dialog does not sample and reveal the underlying screen');
-  assert.ok(sheet.includes('LinearGradient'), 'centered dialog has inner sheen');
+
+// зачем (владелец 04.10, хаб А утверждён и перенесён 1 в 1 из docs/design/v2-app/cards-section.html): прежние проверки раскладки «библиотека рядами + лента сообщества + сегменты»
+// удалены вместе с самой раскладкой; здесь — сторож утверждённой: четыре равные плитки, стопка, главная кнопка с остатком, без прокрутки и без обводок.
+test('approved hub A: stack, accent CTA with the monthly remainder and four equal tiles, no scroll, no outlines', () => {
+  const hub = readFileSync('app/flashcards/FlashcardsHubScreen.tsx', 'utf8');
+  const view = readFileSync('app/flashcards/CardsHubV2.tsx', 'utf8');
+  for (const id of ['saved', 'mine', 'video', 'community']) assert.match(hub, new RegExp(`id: '${id}'`), `tile ${id}`);
+  for (const route of ["'/flashcards_collection'", "'/flashcards_my_packs'", "'/flashcards_packs'", "'/flashcards_video_packs'"]) assert.match(hub, new RegExp(route), `route ${route}`);
+  assert.match(hub, /осталось \$\{trainingRemaining\} из \$\{quotaPreview\.limit\}/, 'CTA shows the remaining monthly sessions');
+  assert.match(view, /fc-cards-hub-train/);
+  assert.match(view, /stackTop/);
+  assert.doesNotMatch(view, /ScrollView|borderWidth|borderColor/, 'hub A has no scroll and no outlines');
+  assert.match(view, /tiles: \{[^}]*flexWrap: 'wrap'/);
 });

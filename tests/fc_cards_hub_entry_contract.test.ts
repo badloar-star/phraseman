@@ -19,18 +19,16 @@ describe('approved Cards hub entry', () => {
     if (!exists) return;
 
     const hub = fs.readFileSync(hubPath, 'utf8');
-    expect(hub).toContain('SavedTopCommunityPacks');
+    // зачем (владелец 04.10, хаб А утверждён): хаб — стопка, главная кнопка и четыре равные плитки (CardsHubV2); блока «Лучшее у сообщества» и сегментов больше нет.
+    expect(hub).toContain('CardsHubV2');
+    expect(hub).not.toContain('SavedTopCommunityPacks');
     expect(hub).toContain("pathname: '/flashcards_collection'");
     expect(hub).toContain("router.push('/flashcards_my_packs'");
     expect(hub).toContain("router.push('/flashcards_packs'");
-    expect(hub).toContain('fc-cards-hub-library-saved');
-    expect(hub).toContain('fc-cards-hub-library-mine');
-    expect(hub).toContain('fc-cards-hub-library-community');
-    expect(hub).toContain('fc-cards-hub-library-video');
-    expect(hub).toContain('fc-cards-hub-segment-best');
-    expect(hub).toContain('fc-cards-hub-segment-mine');
-    expect(hub).toContain('fc-cards-hub-segment-community');
-    expect(hub).toContain('fc-cards-hub-train');
+    const view = fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'CardsHubV2.tsx'), 'utf8');
+    for (const id of ['saved', 'mine', 'video', 'community']) expect(hub).toContain(`id: '${id}'`);
+    expect(view).toContain('fc-cards-hub-tile-');
+    expect(view).toContain('fc-cards-hub-train');
     expect(hub).not.toContain('<Ionicons name="barbell-outline"');
     expect(hub).not.toContain('FlashcardsTabBar');
   });
@@ -38,26 +36,21 @@ describe('approved Cards hub entry', () => {
   test('hub header has an accessible Back button to the main screen', () => {
     const hub = read('app', 'flashcards', 'FlashcardsHubScreen.tsx');
     expect(hub).toContain("safeRouterBack(router, '/(tabs)/home' as never)");
-    expect(hub).toContain('testID="fc-cards-hub-back"');
-    expect(hub).toContain('name="arrow-back"');
-    expect(hub).toContain('accessibilityLabel={copy.back}');
+    const view = read('app', 'flashcards', 'CardsHubV2.tsx');
+    expect(view).toContain('testID="fc-cards-hub-back"');
+    expect(view).toContain('name="arrow-back"');
+    expect(view).toContain('accessibilityLabel={labels.back}');
+    expect(hub).toContain('back: copy.back');
   });
 
   test('Cards hub uses the approved Liquid Glass theme and legible text hierarchy', () => {
     const hub = read('app', 'flashcards', 'FlashcardsHubScreen.tsx');
-    const topPacks = read('app', 'flashcards', 'SavedTopCommunityPacks.tsx');
+    const view = read('app', 'flashcards', 'CardsHubV2.tsx');
 
     expect(hub).toContain('liquidGlassTokens(liquidGlassThemeId)');
-    expect(hub).toContain('backgroundColor: g.card');
-    expect(hub).toContain('color: g.text');
-    expect(hub).toContain('color: g.secondary');
-    expect(hub).toContain('headerTitle: { flex: 1, fontSize: 19, lineHeight: 25');
-    expect(hub).toContain('styles.trainDock');
-    expect(topPacks).toContain("import { useTheme } from '../../components/ThemeContext';");
-    expect(topPacks).toContain('liquidGlassTokens(liquidGlassThemeId)');
-    expect(topPacks).toContain('color: g.secondary');
-    expect(topPacks).toContain("import { FlowText } from '../../components/text-integrity/FlowText';");
-    expect(topPacks).not.toContain('numberOfLines={');
+    expect(view).toContain('g.text');
+    expect(view).toContain('g.secondary');
+    expect(view).toContain('g.accent');
   });
 
   test('mode choice is a bottom sheet (owner 01.10) and setup is a normal full screen', () => {
@@ -89,7 +82,8 @@ describe('approved Cards hub entry', () => {
     expect(hub).toContain("quotaPreview.status === 'allowed'");
     expect(hub).not.toContain('consumeFlashcardTrainingQuota');
     expect(hub).not.toContain('useFeatureAccess(');
-    expect(hub).toContain('MonthlyTrainingSessionIndicator');
+    expect(hub).toContain('limitLabel');
+    expect(hub).toContain('quotaPreview.limit');
     // D152 (координатор 01.10, «ни одной неработающей кнопки»): при исчерпании кнопка
     // НЕ гаснет — тап ведёт в покупку; замок показывает лимит; двойной тап защёлкнут.
     // §90 (02.10): кнопка не отключается и на ожидании квоты — ранний тап открывает окно и ждёт.
@@ -98,7 +92,7 @@ describe('approved Cards hub entry', () => {
     expect(hub).not.toContain('disabled={trainingLocked || !trainingEntryReady}');
     expect(hub).toContain("openTrainingPaywall('flashcard_training', 'flashcards_hub_train')");
     expect(hub).toContain("pathname: '/premium_modal', params: { context, source }");
-    expect(hub).toContain("trainingLocked ? 'lock-closed' : 'arrow-forward'");
+    expect(read('app', 'flashcards', 'CardsHubV2.tsx')).toContain("trainLocked ? 'lock-closed' : 'arrow-forward'");
     expect(hub).toContain('if (paywallOpeningRef.current)');
     expect(setup).toContain('loadFcDeckOptions');
     expect(setup).toContain('useFlashcardTrainingQuotaPreview()');

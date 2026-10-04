@@ -1,24 +1,12 @@
+// зачем (владелец 04.10): прежний сторож плотной раскладки хаба заменён сторожем утверждённого хаба А — см. tests/flashcards_liquid_hub_source_contract.test.mjs (последний тест).
 import assert from 'node:assert/strict';
-import fs from 'node:fs';
-import path from 'node:path';
+import { readFileSync } from 'node:fs';
 
-const source = fs.readFileSync(
-  path.join(process.cwd(), 'app', 'flashcards', 'FlashcardsHubScreen.tsx'),
-  'utf8',
-);
-
-const styleBlock = (name, nextName) => source.slice(source.indexOf(`${name}:`), source.indexOf(`${nextName}:`));
-
-assert.doesNotMatch(styleBlock('backButton', 'headerTitle'), /borderWidth|borderColor/);
-assert.doesNotMatch(styleBlock('segment', 'segmentText'), /borderWidth|borderColor/);
-assert.doesNotMatch(styleBlock('libraryRow', 'rowSheen'), /borderWidth|borderColor/);
-assert.doesNotMatch(styleBlock('trainDock', 'trainButton'), /borderTopWidth|borderTopColor/);
-assert.doesNotMatch(source, /borderColor: g\.glassEdge/);
-assert.doesNotMatch(source, /borderTopColor: g\.glassEdge/);
-assert.match(styleBlock('rowSheen', 'libraryIcon'), /position: 'absolute',[\s\S]*top: 0,[\s\S]*height: 1/);
-assert.match(source, /pathname: '\/flashcards_collection'/);
-assert.match(source, /router\.push\('\/flashcards_my_packs' as never\)/);
-assert.match(source, /router\.push\('\/flashcards_packs' as never\)/);
-assert.match(source, /router\.push\('\/flashcards_video_packs' as never\)/);
-
-console.log('flashcards hub no-outline contract: PASS');
+const hub = readFileSync('app/flashcards/FlashcardsHubScreen.tsx', 'utf8');
+const view = readFileSync('app/flashcards/CardsHubV2.tsx', 'utf8');
+assert.doesNotMatch(hub + view, /borderWidth:|borderColor:/, 'full outlines must not return to the Cards hub');
+assert.match(hub, /pathname: '\/flashcards_collection'/);
+assert.match(hub, /router\.push\('\/flashcards_my_packs' as never\)/);
+assert.match(hub, /router\.push\('\/flashcards_packs' as never\)/);
+assert.match(hub, /router\.push\('\/flashcards_video_packs' as never\)/);
+console.log('flashcards hub contract: PASS');

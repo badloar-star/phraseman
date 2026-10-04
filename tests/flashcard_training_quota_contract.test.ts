@@ -52,7 +52,8 @@ describe('Revenue VNext flashcard training quota wiring', () => {
   test('monthly quota exhaustion disables Hub entry without reviving a purchase gate', () => {
     const hub = read('app/flashcards/FlashcardsHubScreen.tsx');
     const speaking = read('app/flashcards_speaking_session.tsx');
-    expect(hub).toContain('MonthlyTrainingSessionIndicator');
+    expect(hub).toContain('quotaPreview.limit');
+    expect(hub).toContain('limitLabel');
     // зачем (законный сдвиг, §90 + D152): кнопка «Тренировка» больше НЕ бывает disabled — при исчерпанном
     // лимите (замок) она ведёт в единый пейвол, пока квота грузится — открывает окно и ждёт (early_tap).
     // Прежняя проверка `disabled={trainingLocked || !trainingEntryReady}` охраняла отменённое поведение.

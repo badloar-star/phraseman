@@ -228,6 +228,7 @@ import { resumePendingGeneratedNickname } from './nickname_guard';
 import { stableInitialWindowMetrics, useStableSafeAreaInsets } from './stable_safe_area_metrics';
 
 import { DebugLogger } from './debug-logger';
+import { traceLessonExit } from './lesson_exit_trace';
 // AUTH_RECOVERY_BOOT_RETRY_POLICY_START
 export const AUTH_RECOVERY_BOOT_RETRY_DELAYS_MS = [1_500, 5_000, 15_000, 30_000] as const;
 
@@ -1405,6 +1406,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
     if (isDevUtilityRoutePath(target)) {
       if (!ENABLE_DEV_TOOLS) {
+        traceLessonExit('layout:deeplink_dev_route_blocked_home', { target: maskDeepLinkForLog(target) });
         router.replace('/(tabs)/home');
         return;
       }
@@ -1414,6 +1416,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     }
 
     if (isTabsGroupRoutePath(target)) {
+      traceLessonExit('layout:deeplink_tabs_replace', { target: maskDeepLinkForLog(target) });
       router.replace(target as Href);
       return;
     }
@@ -1451,10 +1454,33 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
   useEffect(() => {
     if (!ready || !rootNavigationReady || effectiveShowOnboarding || isBanned || !isRootIndexRoute) return;
+    // зачем (§126, [LESSON-EXIT]): пользователя из урока выкидывало на главную без перезапуска процесса. isRootIndexRoute = !pathname ||
+    // pathname === '/' — пустой pathname во время перехода тоже считается «корнем». Пишем значение, решившее ветку.
+    traceLessonExit('layout:rootIndex_replace_home', {
+      pathname: pathname === undefined ? 'undefined' : JSON.stringify(pathname),
+      ready,
+      rootNavigationReady,
+      effectiveShowOnboarding,
+      isBanned,
+    });
     router.replace('/(tabs)/home');
-    const retry = setTimeout(() => router.replace('/(tabs)/home'), 120);
+    const retry = setTimeout(() => {
+      traceLessonExit('layout:rootIndex_replace_home_retry', { pathname: pathname === undefined ? 'undefined' : JSON.stringify(pathname) });
+      router.replace('/(tabs)/home');
+    }, 120);
     return () => clearTimeout(retry);
   }, [effectiveShowOnboarding, isBanned, isRootIndexRoute, ready, rootNavigationReady, router]);
+
+  // зачем (§126): момент, когда pathname становится пустым или '/', — прямая улика к выходу из урока (рядом пишется сам урок: unmount)
+  useEffect(() => {
+    if (pathname && pathname !== '/') return;
+    traceLessonExit('layout:pathname_root_or_empty', {
+      pathname: pathname === undefined ? 'undefined' : JSON.stringify(pathname),
+      lastPath: lastPathRef.current ?? 'null',
+      ready,
+      rootNavigationReady,
+    });
+  }, [pathname]);
 
   useEffect(() => {
     if (!ready || !pathname || lastPathRef.current === pathname) return;
@@ -1911,7 +1937,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
       if (!IS_EXPO_GO) {
         import('@react-native-firebase/crashlytics')
-          .then(m => m.default().setCrashlyticsCollectionEnabled(true))
+          .then(m => m.default().setCrashlyticsCollectionEnabled(
+            // зачем (§126): dev-клиенты (горячая перезагрузка) не должны слать ошибки и падения в прод-проект Crashlytics
+            !(typeof __DEV__ !== 'undefined' && __DEV__),
+          ))
           .catch(noteSwallowedHandler('_layout:runHeavyInit.call_2'));
       }
 
@@ -2652,6 +2681,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         firstContentReadyTimerRef.current = null;
       }
       setFirstContentReady(true);
+      traceLessonExit('layout:onboardingDone_replace_home', {});
       router.replace('/(tabs)/home');
       setTimeout(() => router.replace('/(tabs)/home'), 120);
     } finally {
@@ -2754,6 +2784,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     if (ready && rootNavigationReady && !isBanned && !showOnboarding && pendingRoute) {
       const t = setTimeout(() => {
+        traceLessonExit('layout:pendingRoute_replace', { pendingRoute: String(pendingRoute).slice(0, 80) });
         router.replace(pendingRoute as Href);
         setPendingRoute(null);
       }, 50);

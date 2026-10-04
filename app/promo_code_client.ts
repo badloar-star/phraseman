@@ -23,6 +23,7 @@ export type PromoRedeemStatus =
   | 'already_redeemed'
   | 'bad_reward'
   | 'bad_code'        // локальная валидация формата не прошла
+  | 'rate_limited'    // PM-252 п.2: больше 5 попыток за 10 минут — сервер просит паузу
   | 'error';          // сеть/неизвестная ошибка
 
 export interface PromoRedeemResult {
@@ -79,8 +80,13 @@ export async function redeemPromoCode(rawCode: string): Promise<PromoRedeemResul
       const reason = String(data?.reason ?? '');
       const known: PromoRedeemStatus[] = ['promo_disabled', 'not_found', 'disabled', 'expired', 'limit_reached', 'already_redeemed', 'bad_reward'];
       return { status: (known as string[]).includes(reason) ? (reason as PromoRedeemStatus) : 'error' };
-    } catch {
-      return { status: 'error' };
+    } catch (error) {
+      // зачем (PM-252 п.4): немой catch прятал любую причину отказа. Пишем код ошибки, сам код промо — нет.
+      const errorCode = String((error as { code?: unknown })?.code ?? '');
+      const message = String((error as { message?: unknown })?.message ?? error).slice(0, 160);
+      const rateLimited = errorCode.includes('resource-exhausted') && message.includes('promo_rate_limited');
+      console.warn('[PROMO-REDEEM] call_failed', JSON.stringify({ errorCode, message, rateLimited }));
+      return { status: rateLimited ? 'rate_limited' : 'error' };
     }
   })().finally(() => {
     promoRedeemInFlight.delete(code);

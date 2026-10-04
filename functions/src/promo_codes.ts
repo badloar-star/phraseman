@@ -15,7 +15,7 @@
 // рефералах/карточках. Все проверки и инкремент usedCount — в одной транзакции.
 // ════════════════════════════════════════════════════════════════════════════
 import * as admin from 'firebase-admin';
-import { randomBytes } from 'crypto';
+import { createHash, randomBytes } from 'crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 
 import { ENFORCE_APP_CHECK } from './callable_options';
@@ -178,6 +178,72 @@ export function buildPromoVipPatch(
   };
 }
 
+/* ── Лимит попыток promoCodeRedeem (PM-252 п.2, координатор 04.10) ───────────────
+ * зачем: ревью сервера — перебор кодов шёл без ограничений, неверный код = тихий ok:false.
+ * 5 попыток за 10 минут на аккаунт и отдельно на IP; дальше пауза до конца окна. Документ-счётчик
+ * с id = sha256(вид:значение) — ни uid, ни IP в открытом виде; expireAt — TTL (сутки).
+ */
+const PROMO_RATE_COLLECTION = 'promo_redeem_rate_limits';
+export const PROMO_REDEEM_RATE_LIMIT = { max: 5, windowMs: 10 * 60 * 1000 } as const;
+const PROMO_RATE_TTL_MS = 24 * 60 * 60 * 1000;
+
+export type PromoRateKey = { kind: 'uid' | 'ip'; id: string };
+
+export function promoRateDocId(key: PromoRateKey): string {
+  return createHash('sha256').update(`promo:${key.kind}:${key.id}`).digest('hex');
+}
+
+/** Чистое решение по одному счётчику: сколько уже было в текущем окне и можно ли ещё. */
+export function decidePromoRate(
+  row: { count?: unknown; windowStartMs?: unknown } | undefined,
+  nowMs: number,
+): { allowed: boolean; count: number; windowStartMs: number; retryAfterMs: number } {
+  const windowStartMs = Number(row?.windowStartMs ?? 0);
+  const inWindow = Number.isFinite(windowStartMs) && windowStartMs > 0 && nowMs - windowStartMs < PROMO_REDEEM_RATE_LIMIT.windowMs;
+  if (!inWindow) return { allowed: true, count: 1, windowStartMs: nowMs, retryAfterMs: 0 };
+  const used = Math.max(0, Math.floor(Number(row?.count ?? 0)) || 0);
+  if (used >= PROMO_REDEEM_RATE_LIMIT.max) {
+    return { allowed: false, count: used, windowStartMs, retryAfterMs: windowStartMs + PROMO_REDEEM_RATE_LIMIT.windowMs - nowMs };
+  }
+  return { allowed: true, count: used + 1, windowStartMs, retryAfterMs: 0 };
+}
+
+export function promoRequestIp(rawRequest: unknown): string {
+  const req = (rawRequest ?? {}) as { ip?: unknown; headers?: Record<string, unknown> };
+  const forwarded = req.headers?.['x-forwarded-for'];
+  const first = String(Array.isArray(forwarded) ? forwarded[0] : forwarded ?? '').split(',')[0].trim();
+  return (first || String(req.ip ?? '').trim()).slice(0, 64);
+}
+
+/** Списывает попытку со всех счётчиков в одной транзакции; превышен любой — отказ без списания. */
+export async function consumePromoRedeemAttempt(
+  db: admin.firestore.Firestore,
+  keys: PromoRateKey[],
+  nowMs: number,
+): Promise<void> {
+  const refs = keys.map((key) => ({ key, ref: db.collection(PROMO_RATE_COLLECTION).doc(promoRateDocId(key)) }));
+  const blocked = await db.runTransaction(async (tx) => {
+    const snaps = await Promise.all(refs.map(({ ref }) => tx.get(ref)));
+    const decisions = snaps.map((snap) => decidePromoRate(snap.exists ? snap.data() : undefined, nowMs));
+    const deniedIndex = decisions.findIndex((d) => !d.allowed);
+    if (deniedIndex >= 0) {
+      return { kind: refs[deniedIndex].key.kind, count: decisions[deniedIndex].count, retryAfterMs: decisions[deniedIndex].retryAfterMs };
+    }
+    decisions.forEach((d, i) => tx.set(refs[i].ref, {
+      kind: refs[i].key.kind,
+      count: d.count,
+      windowStartMs: d.windowStartMs,
+      updatedAtMs: nowMs,
+      expireAt: admin.firestore.Timestamp.fromMillis(nowMs + PROMO_RATE_TTL_MS),
+    }));
+    return null;
+  });
+  if (blocked) {
+    console.warn('[PROMO-RATE] blocked', JSON.stringify(blocked));
+    throw new HttpsError('resource-exhausted', 'promo_rate_limited', { retryAfterMs: blocked.retryAfterMs });
+  }
+}
+
 /* ── onCall: promoCodeRedeem (юзер вводит код) ──────────────────────────────── */
 export const promoCodeRedeem = onCall(CALLABLE_BASE, async (request) => {
   const authUid = request.auth?.uid;
@@ -192,6 +258,12 @@ export const promoCodeRedeem = onCall(CALLABLE_BASE, async (request) => {
   const stableUid = await resolveStableUidForAuth(db, authUid);
 
   const nowMs = Date.now();
+  // зачем (PM-252 п.2): лимит ДО чтения кода — перебор не узнаёт, существует ли код, после 5-й попытки.
+  const ip = promoRequestIp(request.rawRequest);
+  const rateKeys: PromoRateKey[] = [{ kind: 'uid', id: stableUid }];
+  if (ip) rateKeys.push({ kind: 'ip', id: ip });
+  else console.warn('[PROMO-RATE] no_ip — limit by account only');
+  await consumePromoRedeemAttempt(db, rateKeys, nowMs);
   const codeRef = db.collection(PROMO_CODES).doc(code);
   const userRef = db.collection('users').doc(stableUid);
   const redemptionRef = userRef.collection(PROMO_REDEMPTIONS).doc(code);
@@ -278,6 +350,10 @@ export const promoCodeRedeem = onCall(CALLABLE_BASE, async (request) => {
     }
   }
 
+  if ((outcome as { ok?: boolean }).ok !== true) {
+    // зачем (PM-252 п.4): неверный код больше не тихий — видно причину, без самого кода и uid.
+    console.info('[PROMO-REDEEM] rejected', JSON.stringify({ reason: (outcome as { reason?: string }).reason ?? 'unknown' }));
+  }
   return outcome;
 });
 

@@ -1,6 +1,7 @@
 # Task packet: PM-252 — проверка хеша бана при входе + лимит попыток promoCodeRedeem
 
 Governance-ID: TG-CD5DDF2E3ED5
+Governance-ID: TG-A7BA9CA259CA
 Status: In progress
 Owner: Ядро; решение координатора 04.10 (ответ на 3a3486319, п.2) и PM-252 п.2
 
@@ -14,7 +15,7 @@ Owner: Ядро; решение координатора 04.10 (ответ на 
    ответ `resource-exhausted promo_rate_limited`, лог `[PROMO-RATE]`.
 
 ## Scope
-functions/src/banned_identity_hash.ts (новый), functions/src/account_delete.ts (replaceBanWithHash),
+functions/src/banned_identity_hash.ts (новый), functions/src/account_delete.ts (replaceBanWithHash), app/promo_code_client.ts + app/promo_code_entry.tsx (статус rate_limited, лог [PROMO-REDEEM] вместо немого catch), firestore.indexes.json (TTL),
 functions/src/auth_identity.ts (вызов после привязки), functions/src/promo_codes.ts, тесты к ним.
 
 ## Architecture

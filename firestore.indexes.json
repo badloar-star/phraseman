@@ -1225,6 +1225,12 @@
       ]
     },
     {
+      "collectionGroup": "promo_redeem_rate_limits",
+      "fieldPath": "expireAt",
+      "ttl": true,
+      "indexes": []
+    },
+    {
       "collectionGroup": "app_errors",
       "fieldPath": "expireAt",
       "ttl": true,

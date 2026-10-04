@@ -128,6 +128,19 @@ function feedbackForStatus(
         'Hãy kiểm tra mã: có vẻ chưa đúng.', 'Periksa kodenya: sepertinya salah.',
         'Kodu kontrol et: yanlış görünüyor.', 'Sprawdź kod: wygląda na błędny.',
       ) };
+    case 'rate_limited':
+      // зачем (PM-252 п.2): после 5 попыток за 10 минут сервер ставит паузу — тон D158, без тревоги.
+      return { kind: 'error', text: L(
+        'Слишком много попыток подряд. Попробуй снова через 10 минут.',
+        'Забагато спроб поспіль. Спробуй знову за 10 хвилин.',
+        'Too many tries in a row. Try again in 10 minutes.',
+        'Demasiados intentos seguidos. Vuelve a intentarlo en 10 minutos.',
+        'Muitas tentativas seguidas. Tente de novo em 10 minutos.',
+        'Bạn đã thử quá nhiều lần liên tiếp. Hãy thử lại sau 10 phút.',
+        'Terlalu banyak percobaan berturut-turut. Coba lagi 10 menit lagi.',
+        'Arka arkaya çok fazla deneme yaptın. 10 dakika sonra tekrar dene.',
+        'Za dużo prób pod rząd. Spróbuj ponownie za 10 minut.',
+      ) };
     case 'error':
     default:
       return { kind: 'error', text: L(

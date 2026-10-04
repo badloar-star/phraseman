@@ -493,9 +493,10 @@
       {
         "id": "PM-010-A2",
         "text": "dev bundling не смешан со стартом установленного приложения",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "NOT_MET (нужно устройство/release-сборка): правило «бандлер выключен, release=true» записано в методике docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md, замеров нет"
+          "NOT_MET (нужно устройство/release-сборка): правило «бандлер выключен, release=true» записано в методике docs/phraseman-2.0/evidence/E01_E02_baseline_batch_2026-10-01.md, замеров нет",
+          "2026-10-04: evidence/PM-010_weak_device_baseline_2026-10-04.md — store-release fin7 на слабом профиле (2 ядра / 2 ГБ, Android 15 эмулятор), бандлер выключен, dev-клиент не использовался; цифры там же"
         ]
       }
     ],
@@ -505,8 +506,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "2026-10-04: evidence/PM-010_weak_device_baseline_2026-10-04.md — store-release fin7 на слабом профиле (2 ядра / 2 ГБ, Android 15 эмулятор), бандлер выключен, dev-клиент не использовался; цифры там же"
+    ],
+    "notes": [
+      "2026-10-04: A2 принят (замеры только store-release, бандлер выключен). A1 выполнен кроме прямой задержки тапа (нужна инструментация приложения) и деградированной сети — задача остаётся в ready_audit до решения координатора по этим двум пунктам. Evidence: PM-010_weak_device_baseline_2026-10-04.md, INBOX §141."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

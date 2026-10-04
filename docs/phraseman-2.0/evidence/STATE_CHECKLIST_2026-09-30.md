@@ -180,7 +180,7 @@
 
 | # | Раздел | Состояние | Статус | Файл / коммит |
 |---|---|---|---|---|
-| 1 | A. Хаб «Диалоги» | Хаб — Free | ✅ | `components/dialogs/DialogueV2CatalogueContainer.tsx` (7edbc5096); `components/dialogs/DialogueV2CatalogueSection.tsx` (7edbc5096); `components/dialogs/DialogueV2PlusTools.tsx` (7edbc5096) — V2-каталог на DialogueGlass (7edbc5096) |
+| 1 | A. Хаб «Диалоги» | Хаб — Free | ✅ | `components/dialogs/DialogueV2CatalogueContainer.tsx` (7edbc5096); `components/dialogs/DialogueV2CatalogueSection.tsx` (7edbc5096); `components/dialogs/DialogueV2PlusTools.tsx` (7edbc5096) — V2-каталог на DialogueGlass (7edbc5096); карта категории с «N/M» и полоской + строка описания (e420cb4dd); карточка «Некоторые диалоги пока закрыты» не переносится — замки только по рангу (D124, решение координатора 04.10) |
 | 2 | A. Хаб «Диалоги» | Хаб — Plus | ✅ | `components/dialogs/DialogueV2CatalogueContainer.tsx` (7edbc5096); `components/dialogs/DialogueV2CatalogueSection.tsx` (7edbc5096); `components/dialogs/DialogueV2PlusTools.tsx` (7edbc5096) — V2-каталог на DialogueGlass (7edbc5096) |
 | 3 | A. Хаб «Диалоги» | Категория раскрыта — все виды строк | ✅ | `components/dialogs/DialogueV2CatalogueContainer.tsx` (7edbc5096); `components/dialogs/DialogueV2CatalogueSection.tsx` (7edbc5096); `components/dialogs/DialogueV2PlusTools.tsx` (7edbc5096) — V2-каталог на DialogueGlass (7edbc5096) |
 | 4 | A. Хаб «Диалоги» | Хаб — лимит исчерпан (0/10) | ✅ | `components/dialogs/DialogueV2CatalogueContainer.tsx` (7edbc5096) — счётчика лимита 0/10 в V2-каталоге нет | — [30.09 закрыто] диалоги V2 (ffbc48813, 2e7c25009, be1a507e3, 60fe964ea)
@@ -244,7 +244,7 @@
 | 11 | A. Список уроков | A10 | ✅ | `app/(tabs)/lessons.tsx` (4fa4ab32b); `components/ThemedChoiceModal.tsx` (3587edede, +правки в дереве) — окна «Ещё рано»/«Уровень закрыт»/«Недоступно» через ThemedChoiceModal (gateModal) |
 | 12 | A. Список уроков | A11 | ✅ | `app/(tabs)/lessons.tsx` (4fa4ab32b); `components/ThemedChoiceModal.tsx` (3587edede, +правки в дереве) — окна «Ещё рано»/«Уровень закрыт»/«Недоступно» через ThemedChoiceModal (gateModal) |
 | 13 | A. Список уроков | A12 | ✅ | `app/(tabs)/lessons.tsx` (4fa4ab32b); `components/ThemedChoiceModal.tsx` (3587edede, +правки в дереве) — окна «Ещё рано»/«Уровень закрыт»/«Недоступно» через ThemedChoiceModal (gateModal) |
-| 14 | A. Список уроков | A13 | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6) — пейволл-вход: вариант A/D на LG (b2d266fa6) |
+| 14 | A. Список уроков | A13 | ✅ | `components/paywall/PaywallPlusScreen.tsx` (60155883a) — вход в Plus из списка уроков ведёт в единый пейвол «Честный пробный период» (D115) — [04.10 «Дизайн», PM-034 перепривязка] |
 | 15 | A. Список уроков | A14 | ✅ | `components/lessons/LessonsListGlassCard.tsx` (7e162b5c5) — отдельной анимации открытия следующего урока не нашёл | — [30.09 закрыто] 03a921973
 | 16 | A. Список уроков | A15 | ✅ | `app/combined_lesson_pick.tsx` — «Смешать темы» на токенах LG |
 | 17 | A. Список уроков | A16 | ✅ | `app/combined_lesson_pick.tsx` — «Смешать темы» на токенах LG |
@@ -522,10 +522,10 @@
 | 5 | Кошелёк и ранги | повышение · недостаточно монет | ✅ | `app/coin_rank.tsx` (не закоммичен) — кошелёк/повышение на liquidGlassTokens+V2Glass; файл не закоммичен |
 | 6 | Кошелёк и ранги | каталог 00–19 | ✅ | искал каталог рангов 00–19 в coin_rank.tsx — только текущий/следующий — [30.09 перенос] `components/coins/CoinRankCatalog.tsx` под карточкой повышения в `app/coin_rank.tsx` (30.09) |
 | 7 | Кошелёк и ранги | Монетный двор · подтверждённый успех | ✅ | `components/level_up/LevelUpMintCeremony.tsx` (c9497a68e) — Монетный двор на LG (c9497a68e) |
-| 8 | Plus и покупки | нейтральное предложение | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6) — предложение Plus: обычное/загрузка/ошибка/покупка (A/D) |
-| 9 | Plus и покупки | предложение · загрузка | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6) — предложение Plus: обычное/загрузка/ошибка/покупка (A/D) |
-| 10 | Plus и покупки | предложение · ошибка до checkout | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6) — предложение Plus: обычное/загрузка/ошибка/покупка (A/D) |
-| 11 | Plus и покупки | покупка · ожидание магазина | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6) — предложение Plus: обычное/загрузка/ошибка/покупка (A/D) |
+| 8 | Plus и покупки | нейтральное предложение | ✅ | `components/paywall/PaywallPlusScreen.tsx` (60155883a) — нейтральное предложение Plus: шапка + планы (PaywallPlusPlans) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 9 | Plus и покупки | предложение · загрузка | ✅ | `components/paywall/PaywallPlusScreen.tsx` (60155883a) — загрузка условий: PaywallPlusPlansSkeleton на месте блока планов (state='loading') — [04.10 «Дизайн», PM-034 перепривязка] |
+| 10 | Plus и покупки | предложение · ошибка до checkout | ✅ | `components/paywall/PaywallPlusScreen.tsx` (60155883a) — ошибка до checkout: PaywallPlusPlansUnavailable (state='error'), повтор цен фоном — [04.10 «Дизайн», PM-034 перепривязка] |
+| 11 | Plus и покупки | покупка · ожидание магазина | ✅ | `components/paywall/PaywallPlusScreen.tsx` (60155883a) — ожидание магазина: кнопка в состоянии purchasing (busy), закрытие и «Восстановить» заблокированы — [04.10 «Дизайн», PM-034 перепривязка] |
 | 12 | Plus и покупки | покупка · подтверждение неизвестно | ✅ | `app/paywall_purchase.ts` (0217c4a21, +правки в дереве) — «подтверждение неизвестно» — нативный Alert.alert — [30.09 перенос] `app/paywall_purchase.ts` — по заданию не трогали (нативный Alert остаётся) | — [30.09 закрыто] в коде уже стеклянные окна enqueueThemedBlockingInfoAlert, сверка устарела
 | 13 | Plus и покупки | доступ закончился · шторка | ✅ | `components/EntitlementExpiredHost.tsx` (82579e1b0) — «Plus закончился» на LG (82579e1b0) |
 | 14 | Plus и покупки | доступ к разбору · решение открыто | ✅ | `components/AiLimitUpsellCard.tsx` (0217c4a21, +правки в дереве) — предложение при лимите разбора на токенах LG |
@@ -537,30 +537,30 @@
 
 | # | Раздел | Состояние | Статус | Файл / коммит |
 |---|---|---|---|---|
-| 0 | (нет .col) | ← Все макеты 2.0 Пейволы 2.0 Два пейвола. Дизайн 2.0. Пейвол приложения A · Кл | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6); `app/paywall_a.tsx` (00d854736); `app/paywall_d.tsx` (00d854736) — два актуальных пейволла A/D на LG (b2d266fa6) |
+| 0 | (нет .col) | ← Все макеты 2.0 Пейволы 2.0 Два пейвола. Дизайн 2.0. Пейвол приложения A · Кл | ✅ | `components/paywall/PaywallPlusScreen.tsx` (60155883a) — страница обзора пейволов: в приложении один пейвол Plus (D115), онбординговый не трогается — [04.10 «Дизайн», PM-034 перепривязка] |
 
 ## paywalls.html
 
 | # | Раздел | Состояние | Статус | Файл / коммит |
 |---|---|---|---|---|
-| 1 | Семь действующих композиций A–G | Вариант A · Компакт | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6); `app/paywall_a.tsx` (00d854736); `app/paywall_d.tsx` (00d854736) — A «Компакт» и D «Плитки» вне онбординга на LG |
-| 2 | Семь действующих композиций A–G | Вариант B · История | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6) — B/C/E/F/G рисуются как A/D (ACTIVE_LAYOUT), своей композиции нет — [30.09 перенос] B/C/E/F/G по решению владельца 29.09 сворачиваются в A/D и рисуются той же PaywallLiquidGlass на токенах стекла — отдельной поверхности нет по замыслу |
-| 3 | Семь действующих композиций A–G | Вариант C · Атриум | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6) — B/C/E/F/G рисуются как A/D (ACTIVE_LAYOUT), своей композиции нет — [30.09 перенос] B/C/E/F/G по решению владельца 29.09 сворачиваются в A/D и рисуются той же PaywallLiquidGlass на токенах стекла — отдельной поверхности нет по замыслу |
-| 4 | Семь действующих композиций A–G | Вариант D · Плитки | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6); `app/paywall_a.tsx` (00d854736); `app/paywall_d.tsx` (00d854736) — A «Компакт» и D «Плитки» вне онбординга на LG |
-| 5 | Семь действующих композиций A–G | Вариант E · Один план | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6) — B/C/E/F/G рисуются как A/D (ACTIVE_LAYOUT), своей композиции нет — [30.09 перенос] B/C/E/F/G по решению владельца 29.09 сворачиваются в A/D и рисуются той же PaywallLiquidGlass на токенах стекла — отдельной поверхности нет по замыслу |
-| 6 | Семь действующих композиций A–G | Вариант F · Пробный период | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6) — B/C/E/F/G рисуются как A/D (ACTIVE_LAYOUT), своей композиции нет — [30.09 перенос] B/C/E/F/G по решению владельца 29.09 сворачиваются в A/D и рисуются той же PaywallLiquidGlass на токенах стекла — отдельной поверхности нет по замыслу |
-| 7 | Семь действующих композиций A–G | Вариант G · Сравнение | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6) — B/C/E/F/G рисуются как A/D (ACTIVE_LAYOUT), своей композиции нет — [30.09 перенос] B/C/E/F/G по решению владельца 29.09 сворачиваются в A/D и рисуются той же PaywallLiquidGlass на токенах стекла — отдельной поверхности нет по замыслу |
+| 1 | Семь действующих композиций A–G | Вариант A · Компакт | ➖ | варианты A–G удалены решением владельца D115 (60155883a); единственный пейвол — `components/paywall/PaywallPlusScreen.tsx` (60155883a) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 2 | Семь действующих композиций A–G | Вариант B · История | ➖ | варианты A–G удалены решением владельца D115 (60155883a); единственный пейвол — `components/paywall/PaywallPlusScreen.tsx` (60155883a) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 3 | Семь действующих композиций A–G | Вариант C · Атриум | ➖ | варианты A–G удалены решением владельца D115 (60155883a); единственный пейвол — `components/paywall/PaywallPlusScreen.tsx` (60155883a) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 4 | Семь действующих композиций A–G | Вариант D · Плитки | ➖ | варианты A–G удалены решением владельца D115 (60155883a); единственный пейвол — `components/paywall/PaywallPlusScreen.tsx` (60155883a) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 5 | Семь действующих композиций A–G | Вариант E · Один план | ➖ | варианты A–G удалены решением владельца D115 (60155883a); единственный пейвол — `components/paywall/PaywallPlusScreen.tsx` (60155883a) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 6 | Семь действующих композиций A–G | Вариант F · Пробный период | ➖ | варианты A–G удалены решением владельца D115 (60155883a); единственный пейвол — `components/paywall/PaywallPlusScreen.tsx` (60155883a) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 7 | Семь действующих композиций A–G | Вариант G · Сравнение | ➖ | варианты A–G удалены решением владельца D115 (60155883a); единственный пейвол — `components/paywall/PaywallPlusScreen.tsx` (60155883a) — [04.10 «Дизайн», PM-034 перепривязка] |
 | 8 | Встроенные предложения Plus | Разбор ошибки · лимит ИИ | ✅ | `components/AiLimitUpsellCard.tsx` (0217c4a21, +правки в дереве) — встроенное предложение при лимите ИИ на токенах LG |
 | 9 | Встроенные предложения Plus | Результат · первый урок | ✅ | `components/SoftContextualUpsellCard.tsx` (2fba54828, +правки в дереве) — предложения в итоге урока на токенах LG |
 | 10 | Встроенные предложения Plus | Результат · три урока | ✅ | `components/SoftContextualUpsellCard.tsx` (2fba54828, +правки в дереве) — предложения в итоге урока на токенах LG |
-| 11 | Цена и покупка | Загрузка условий | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6) — загрузка/ошибка/проверяем покупку |
-| 12 | Цена и покупка | Ошибка до checkout | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6) — загрузка/ошибка/проверяем покупку |
-| 13 | Цена и покупка | Проверяем покупку | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6) — загрузка/ошибка/проверяем покупку |
+| 11 | Цена и покупка | Загрузка условий | ✅ | `components/paywall/PaywallPlusScreen.tsx` (60155883a) — загрузка условий: PaywallPlusPlansSkeleton (state='loading') — [04.10 «Дизайн», PM-034 перепривязка] |
+| 12 | Цена и покупка | Ошибка до checkout | ✅ | `components/paywall/PaywallPlusScreen.tsx` (60155883a) — ошибка до checkout: PaywallPlusPlansUnavailable (state='error') — [04.10 «Дизайн», PM-034 перепривязка] |
+| 13 | Цена и покупка | Проверяем покупку | ✅ | `components/paywall/PaywallPlusScreen.tsx` (60155883a) — проверяем покупку: purchasing → кнопка busy, повторный тап закрыт (ctaBusy) — [04.10 «Дизайн», PM-034 перепривязка] |
 | 14 | Цена и покупка | Ожидание банка или родителя · отдельный диалог | ✅ | `app/paywall_purchase.ts` (0217c4a21, +правки в дереве) — ожидание/неизвестный результат — нативный Alert.alert | — [30.09 закрыто] в коде уже стеклянные окна enqueueThemedBlockingInfoAlert, сверка устарела
 | 15 | Цена и покупка | Результат покупки неизвестен · отдельный диалог | ✅ | `app/paywall_purchase.ts` (0217c4a21, +правки в дереве) — ожидание/неизвестный результат — нативный Alert.alert | — [30.09 закрыто] в коде уже стеклянные окна enqueueThemedBlockingInfoAlert, сверка устарела
 | 16 | Цена и покупка | Статус неизвестен | ✅ | `app/paywall_purchase.ts` (0217c4a21, +правки в дереве) — ожидание/неизвестный результат — нативный Alert.alert | — [30.09 закрыто] в коде уже стеклянные окна enqueueThemedBlockingInfoAlert, сверка устарела
 | 17 | Цена и покупка | Уход с пейволла | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6); `components/ThemedConfirmModal.tsx` (96c32bb97, +правки в дереве) — уход с пейволла — ThemedConfirmModal |
-| 18 | Цена и покупка | Промо от магазина | ✅ | `components/paywall/PaywallPromoBanner.tsx` (3587edede, +правки в дереве) — промо магазина: баннер без LG-токенов — [30.09 перенос] PaywallPromoBanner: проп glass — стеклянная плашка (g.card, кромка 1 px, блик) на A/D; онбординг-вид не тронут |
+| 18 | Цена и покупка | Промо от магазина | ✅ | `components/paywall/PaywallPlusScreen.tsx` (60155883a) — промо от магазина: storePromo.yearly/monthly → цена промо в планах и ленте пробного периода — [04.10 «Дизайн», PM-034 перепривязка] |
 | 19 | Управление действующим Plus | Управление подпиской | ✅ | `app/manage_subscription.tsx` (41648d48d, +правки в дереве) — управление Plus и вложенные окна |
 | 20 | Управление действующим Plus | Загрузка плана | ✅ | `app/manage_subscription.tsx` (41648d48d, +правки в дереве) — управление Plus и вложенные окна |
 | 21 | Управление действующим Plus | Разовая покупка | ✅ | `app/manage_subscription.tsx` (41648d48d, +правки в дереве) — управление Plus и вложенные окна |
@@ -662,9 +662,9 @@
 
 | # | Раздел | Состояние | Статус | Файл / коммит |
 |---|---|---|---|---|
-| 1 | Коллекционные находки | обычная находка · demo card | ✅ | `components/CollectibleDropModal.tsx` (82579e1b0) — коллекционные находки на LG (82579e1b0) |
-| 2 | Коллекционные находки | сет собран · без удалённой награды и названия сета | ✅ | `components/CollectibleDropModal.tsx` (82579e1b0) — коллекционные находки на LG (82579e1b0) |
-| 3 | Коллекционные находки | секретная ветка · demo card | ✅ | `components/CollectibleDropModal.tsx` (82579e1b0) — коллекционные находки на LG (82579e1b0) |
+| 1 | Коллекционные находки | обычная находка · demo card | ➖ | коллекционные находки удалены решением D136–D140 (33636dd55) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 2 | Коллекционные находки | сет собран · без удалённой награды и названия сета | ➖ | коллекционные находки удалены решением D136–D140 (33636dd55) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 3 | Коллекционные находки | секретная ветка · demo card | ➖ | коллекционные находки удалены решением D136–D140 (33636dd55) — [04.10 «Дизайн», PM-034 перепривязка] |
 | 4 | Стартовый полный доступ | welcome · no auto-subscribe | ✅ | `components/IntroFullAccessModal.tsx` (e2ba35f65) — стартовый полный доступ на LG |
 | 5 | Стартовый полный доступ | ended · base path retained | ✅ | `components/IntroFullAccessModal.tsx` (e2ba35f65) — стартовый полный доступ на LG |
 | 6 | Энергия | recovering · 5 / 1 / 10 contract | ✅ | `components/energy/EnergyInfoPopover.tsx` (0217c4a21, +правки в дереве) — подсказка энергии на LG |
@@ -672,8 +672,8 @@
 | 8 | Энергия | Plus · unlimited presentation | ✅ | `components/energy/EnergyInfoPopover.tsx` (0217c4a21, +правки в дереве) — подсказка энергии на LG |
 | 9 | Энергия | Home-positioned variant | ✅ | `components/energy/EnergyInfoPopover.tsx` (0217c4a21, +правки в дереве) — подсказка энергии на LG |
 | 10 | Сохранить путь | Home banner only | ➖ | баннер удалён целиком (7e1d725e0, решение координатора §46 Q92): привязка аккаунта живёт в Настройках → «Аккаунт · Не привязан» → /account_details; переносить нечего — [04.10 «Дизайн»] |
-| 11 | Промо магазина | store promo present · placeholders only | ✅ | `components/paywall/PaywallPromoBanner.tsx` (3587edede, +правки в дереве) — промо магазина без LG-токенов — [30.09 перенос] PaywallPromoBanner: стеклянная плашка на токенах темы (см. paywalls #18) |
-| 12 | Промо магазина | promo null · banner absent | ✅ | `components/paywall/PaywallLiquidGlass.tsx` (b2d266fa6) — при promo=null баннер не рисуется |
+| 11 | Промо магазина | store promo present · placeholders only | ✅ | `components/paywall/PaywallPlusScreen.tsx` (60155883a) — промо магазина есть: цена промо в PaywallPlusPlans (баннер PaywallPromoBanner удалён с вариантами A–G) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 12 | Промо магазина | promo null · banner absent | ✅ | `components/paywall/PaywallPlusScreen.tsx` (60155883a) — промо нет: storePromo=null, отдельного баннера нет (он удалён в 60155883a) — [04.10 «Дизайн», PM-034 перепривязка] |
 | 13 | Реферальный доступ закончился | historical access ended · compatibility notice | ✅ | `app/referral_access_ended_modal.tsx` (e8a8c8220) — уведомление об окончании доступа на LG (e8a8c8220) |
 | 14 | Выбор времени | notification time picker | ✅ | `app/settings_notifications.tsx` (ddf8e551e, +правки в дереве) — TimeModal на нейтральной панели LG |
 | 15 | Месячный календарь | month bounds + day details | ✅ | `components/ActivityHeatmap365.tsx` (4792f3e59, +правки в дереве) — MonthExplorerModal на LG |
@@ -723,7 +723,7 @@
 | 21 | Inline и sheets | comment report · throttled | ✅ | `app/community_packs/ReportCommentModal.tsx` (816e59af2) — жалоба на комментарий — троттлинг |
 | 22 | Тосты и баннер | InGameToast · info · demo payload | ✅ | `components/InGameToast.tsx` (96c32bb97, +правки в дереве) — InGameToast на LG-материале |
 | 23 | Тосты и баннер | InGameToast · error · demo payload | ✅ | `components/InGameToast.tsx` (96c32bb97, +правки в дереве) — InGameToast на LG-материале |
-| 24 | Тосты и баннер | persistent unread reply · whole banner opens · separate close | ✅ | `components/ReportReplyHomeBanner.tsx` (2aad7267a, +правки в дереве) — баннер ответа поддержки на LG (Packet 2) |
+| 24 | Тосты и баннер | persistent unread reply · whole banner opens · separate close | ➖ | баннер ответа на жалобу удалён как компонент-сирота без импортов (7e1d725e0, Q92) — [04.10 «Дизайн», PM-034 перепривязка] |
 | 25 | Тосты и баннер | streak risk · warning · no action | ✅ | `components/StreakRiskToastHost.tsx` (519de9ff0); `components/BillingIssueToastHost.tsx` (519de9ff0); `components/ActionToast.tsx` (9eddf74d4, +правки в дереве) — хосты тостов через ActionToast |
 | 26 | Тосты и баннер | billing issue · warning · no action | ✅ | `components/StreakRiskToastHost.tsx` (519de9ff0); `components/BillingIssueToastHost.tsx` (519de9ff0); `components/ActionToast.tsx` (9eddf74d4, +правки в дереве) — хосты тостов через ActionToast |
 | 27 | Тосты и баннер | receipt-limited handoff · 3s · pass-through | ✅ | `components/InGameToast.tsx` (96c32bb97, +правки в дереве) — InGameToast на LG-материале |
@@ -833,12 +833,12 @@
 | 27 | Опрос о занятиях | Опрос · подтверждён | ✅ | `components/survey/SurveySheetModal.tsx` (e2ba35f65); `components/survey/SurveyRewardPanel.tsx` (e2ba35f65) — опрос о занятиях на LG (e2ba35f65, 135ef4938) |
 | 28 | Опрос о занятиях | Опрос · уже пройден | ✅ | `components/survey/SurveySheetModal.tsx` (e2ba35f65); `components/survey/SurveyRewardPanel.tsx` (e2ba35f65) — опрос о занятиях на LG (e2ba35f65, 135ef4938) |
 | 29 | Опрос о занятиях | Опрос · повторить | ✅ | `components/survey/SurveySheetModal.tsx` (e2ba35f65); `components/survey/SurveyRewardPanel.tsx` (e2ba35f65) — опрос о занятиях на LG (e2ba35f65, 135ef4938) |
-| 30 | Задание «Сегодня» | Сегодня · в процессе | ✅ | `components/QuestSheetModal.tsx` (ac0f43ae2, +правки в дереве); `components/QuestTaskCard.tsx` (ac0f43ae2) — задание «Сегодня»: окно открывается с Главной, без LG-токенов — [30.09 перенос] QuestSheetModal на токенах стекла (шторка, награды, прогресс, плашки, CTA); QuestTaskCard живёт на Главной — не трогали |
-| 31 | Задание «Сегодня» | Сегодня · готово к получению | ✅ | `components/QuestSheetModal.tsx` (ac0f43ae2, +правки в дереве); `components/QuestTaskCard.tsx` (ac0f43ae2) — задание «Сегодня»: окно открывается с Главной, без LG-токенов — [30.09 перенос] QuestSheetModal на токенах стекла (шторка, награды, прогресс, плашки, CTA); QuestTaskCard живёт на Главной — не трогали |
-| 32 | Задание «Сегодня» | Сегодня · получение | ✅ | `components/QuestSheetModal.tsx` (ac0f43ae2, +правки в дереве); `components/QuestTaskCard.tsx` (ac0f43ae2) — задание «Сегодня»: окно открывается с Главной, без LG-токенов — [30.09 перенос] QuestSheetModal на токенах стекла (шторка, награды, прогресс, плашки, CTA); QuestTaskCard живёт на Главной — не трогали |
-| 33 | Задание «Сегодня» | Сегодня · получено | ✅ | `components/QuestSheetModal.tsx` (ac0f43ae2, +правки в дереве); `components/QuestTaskCard.tsx` (ac0f43ae2) — задание «Сегодня»: окно открывается с Главной, без LG-токенов — [30.09 перенос] QuestSheetModal на токенах стекла (шторка, награды, прогресс, плашки, CTA); QuestTaskCard живёт на Главной — не трогали |
-| 34 | Задание «Сегодня» | Сегодня · срок вышел | ✅ | `components/QuestSheetModal.tsx` (ac0f43ae2, +правки в дереве); `components/QuestTaskCard.tsx` (ac0f43ae2) — задание «Сегодня»: окно открывается с Главной, без LG-токенов — [30.09 перенос] QuestSheetModal на токенах стекла (шторка, награды, прогресс, плашки, CTA); QuestTaskCard живёт на Главной — не трогали |
-| 35 | Задание «Сегодня» | Сегодня · ошибка | ✅ | `components/QuestSheetModal.tsx` (ac0f43ae2, +правки в дереве); `components/QuestTaskCard.tsx` (ac0f43ae2) — задание «Сегодня»: окно открывается с Главной, без LG-токенов — [30.09 перенос] QuestSheetModal на токенах стекла (шторка, награды, прогресс, плашки, CTA); QuestTaskCard живёт на Главной — не трогали |
+| 30 | Задание «Сегодня» | Сегодня · в процессе | ➖ | задания «Сегодня» (QuestSheetModal/QuestTaskCard) удалены решением D136–D140 (33636dd55) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 31 | Задание «Сегодня» | Сегодня · готово к получению | ➖ | задания «Сегодня» (QuestSheetModal/QuestTaskCard) удалены решением D136–D140 (33636dd55) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 32 | Задание «Сегодня» | Сегодня · получение | ➖ | задания «Сегодня» (QuestSheetModal/QuestTaskCard) удалены решением D136–D140 (33636dd55) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 33 | Задание «Сегодня» | Сегодня · получено | ➖ | задания «Сегодня» (QuestSheetModal/QuestTaskCard) удалены решением D136–D140 (33636dd55) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 34 | Задание «Сегодня» | Сегодня · срок вышел | ➖ | задания «Сегодня» (QuestSheetModal/QuestTaskCard) удалены решением D136–D140 (33636dd55) — [04.10 «Дизайн», PM-034 перепривязка] |
+| 35 | Задание «Сегодня» | Сегодня · ошибка | ➖ | задания «Сегодня» (QuestSheetModal/QuestTaskCard) удалены решением D136–D140 (33636dd55) — [04.10 «Дизайн», PM-034 перепривязка] |
 | 36 | Уведомления открытия | Открыт следующий урок | ✅ | искал «Открыт следующий урок/экзамен» — уведомлений открытия нет — [30.09 перенос] не делали: нужна новая логика уведомлений открытия | — [30.09 закрыто] AchievementNotifModal в app/lesson_complete.tsx уже на LG, тексты приведены 1:1
 | 37 | Уведомления открытия | Открыт экзамен уровня | ✅ | искал «Открыт следующий урок/экзамен» — уведомлений открытия нет — [30.09 перенос] не делали: нужна новая логика уведомлений открытия | — [30.09 закрыто] AchievementNotifModal в app/lesson_complete.tsx уже на LG, тексты приведены 1:1
 | 38 | Уведомления открытия | Открыт экзамен Lingman | ✅ | искал «Открыт следующий урок/экзамен» — уведомлений открытия нет — [30.09 перенос] не делали: нужна новая логика уведомлений открытия | — [30.09 закрыто] AchievementNotifModal в app/lesson_complete.tsx уже на LG, тексты приведены 1:1
@@ -885,16 +885,16 @@
 | results.html | 14 | 14 | 0 | 0 | 0 | 0 |
 | coins.html | 17 | 16 | 0 | 0 | 0 | 1 |
 | paywall-review.html | 1 | 1 | 0 | 0 | 0 | 0 |
-| paywalls.html | 25 | 25 | 0 | 0 | 0 | 0 |
+| paywalls.html | 25 | 18 | 0 | 0 | 0 | 7 |
 | system.html | 22 | 22 | 0 | 0 | 0 | 0 |
 | overlays.html | 57 | 56 | 0 | 0 | 0 | 1 |
-| overlays-more.html | 33 | 32 | 0 | 0 | 0 | 1 |
-| overlays-runtime.html | 44 | 43 | 0 | 0 | 0 | 1 |
+| overlays-more.html | 33 | 29 | 0 | 0 | 0 | 4 |
+| overlays-runtime.html | 44 | 42 | 0 | 0 | 0 | 2 |
 | overlays-players.html | 7 | 7 | 0 | 0 | 0 | 0 |
 | overlays-campaigns.html | 38 | 38 | 0 | 0 | 0 | 0 |
-| overlays-specialist.html | 38 | 38 | 0 | 0 | 0 | 0 |
+| overlays-specialist.html | 38 | 32 | 0 | 0 | 0 | 6 |
 | themes.html | 19 | 19 | 0 | 0 | 0 | 0 |
-| **Итого** | **758** | **746** | **0** | **0** | **6** | **6** |
+| **Итого** | **758** | **729** | **0** | **0** | **6** | **23** |
 
 <details><summary>Итог на 30.09 (устарел, сохранён для истории)</summary>
 

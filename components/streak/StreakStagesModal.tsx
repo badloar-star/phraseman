@@ -61,16 +61,17 @@ export default function StreakStagesModal({
     ru: 'Стадии серии', uk: 'Стадії серії', en: 'Streak stages', es: 'Etapas de la racha',
     'pt-BR': 'Etapas da sequência', vi: 'Các giai đoạn chuỗi', id: 'Tahap rangkaian', tr: 'Seri aşamaları', pl: 'Etapy serii',
   });
+  // зачем (PM-044, 04.10): огонь не растёт в размере — он заполняется по дням (StreakFlameFill); «крупнее» было неправдой.
   const sub = triLang(lang, {
-    ru: 'Огонь постепенно становится ярче и крупнее от 0 до 10 дней',
-    uk: 'Вогонь поступово стає яскравішим і більшим від 0 до 10 днів',
-    en: 'The flame grows brighter and bigger from 0 to 10 days',
-    es: 'La llama se vuelve más brillante y grande de 0 a 10 días',
-    'pt-BR': 'A chama fica mais forte e maior de 0 a 10 dias',
-    vi: 'Ngọn lửa sáng và lớn dần từ 0 đến 10 ngày',
-    id: 'Api makin terang dan besar dari 0 sampai 10 hari',
-    tr: 'Alev 0’dan 10 güne kadar giderek parlar ve büyür',
-    pl: 'Płomień od 0 do 10 dni staje się jaśniejszy i większy',
+    ru: 'С каждым днём серии огонь заполняется — к 10 дням он полный',
+    uk: 'З кожним днем серії вогонь заповнюється — до 10 днів він повний',
+    en: 'The flame fills up with each day of your streak — it’s full by day 10',
+    es: 'La llama se llena con cada día de racha: a los 10 días está completa',
+    'pt-BR': 'A chama se enche a cada dia da sequência — com 10 dias ela fica completa',
+    vi: 'Mỗi ngày trong chuỗi, ngọn lửa đầy thêm — đến ngày thứ 10 là đầy',
+    id: 'Api terisi setiap hari streak — penuh di hari ke-10',
+    tr: 'Serinin her gününde alev dolar — 10. günde tamamen dolu olur',
+    pl: 'Z każdym dniem serii płomień się wypełnia — po 10 dniach jest pełny',
   });
   const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
 

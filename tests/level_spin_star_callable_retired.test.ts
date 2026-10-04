@@ -46,7 +46,8 @@ test('client keeps sending the exact composite to the same callable', () => {
   expect(functionsClient).toContain("'levelSpinStarGrant'");
   expect(functionsClient).toContain('{ operation }');
   expect(functionsClient).toContain('operation: LevelSpinStarCreditExactResult');
-  expect(appLayout).toContain('recoverAndHydrateLevelSpinStarGrants(token)');
+  // Стартовый проход делит промис с одновременными чтениями монет (дедупликация, 04.10).
+  expect(appLayout).toContain('recoverAndHydrateLevelSpinStarGrants(token, { shareInFlight: true })');
 });
 
 test('wallet limit counters are server-only in Firestore Rules', () => {

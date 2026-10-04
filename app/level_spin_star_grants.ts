@@ -1246,6 +1246,33 @@ async function recoverProjection(
   }, accountTransitionLockLease);
 }
 
+// зачем (координатор 04.10, замер №9, «ок» на пункт 1): на холодном старте восстановление проекции зовут
+// почти одновременно стартовая подготовка баланса и чтение монет экранами — второй вызов 2,5–3,9 с стоял в
+// очереди замка аккаунта и потом пересчитывал то же самое. Одновременные вызовы БЕЗ аренды замка получают
+// один общий промис «в полёте» на (владелец, поколение). После завершения (успех или ошибка) запись
+// снимается — кэша нет, следующий вызов считает заново. Ключ с поколением: смена аккаунта во время полёта
+// не отдаст новому вызову проекцию старого поколения. Путь с арендой замка сюда НЕ ходит (иначе вызов
+// изнутри замка ждал бы промис, который сам ждёт этот замок) — он зовёт recoverProjection напрямую.
+// Только для чтения баланса: потоки, которые по результату решают запись (сверка, повтор после «слепого»
+// восстановления), зовут recoverProjection напрямую и всегда считают сами.
+const recoverProjectionInFlight = new Map<string, Promise<LevelSpinStarProjection>>();
+
+function recoverProjectionShared(token: AccountGenerationToken): Promise<LevelSpinStarProjection> {
+  const ownerStableId = token.stableId?.trim();
+  if (!ownerStableId) return recoverProjection(token);
+  const flightKey = `${ownerStableId}\u0000${token.generation}`;
+  const inFlight = recoverProjectionInFlight.get(flightKey);
+  if (inFlight) {
+    console.log(`[COIN-RECOVER] dedupe:joined — восстановление уже идёт (generation=${token.generation})`);
+    return inFlight;
+  }
+  const flight = recoverProjection(token).finally(() => {
+    if (recoverProjectionInFlight.get(flightKey) === flight) recoverProjectionInFlight.delete(flightKey);
+  });
+  recoverProjectionInFlight.set(flightKey, flight);
+  return flight;
+}
+
 function hasRecoverySpendOperation(projection: LevelSpinStarProjection): boolean {
   return projection.operations.some((operation) => (
     operation.schemaVersion !== 'client-level-spin-star-operation.v1'
@@ -1272,9 +1299,14 @@ function unconfirmedBlindDrop(projection: LevelSpinStarProjection): number | nul
 
 export async function recoverAndHydrateLevelSpinStarGrants(
   token: AccountGenerationToken,
-  options: Readonly<{ syncNow?: boolean }> = {},
+  // зачем shareInFlight (ревью дедупликации 04.10): общий промис только по явной просьбе — стартовый вызов.
+  // После подтяжки PhoneState и восстановления попыток данные пишутся мимо замка аккаунта; присоединись они
+  // к уже идущему проходу, показали бы баланс без только что скачанных монет. Поэтому по умолчанию — свой проход.
+  options: Readonly<{ syncNow?: boolean; shareInFlight?: boolean }> = {},
 ): Promise<Readonly<{ balance: number; earnedTotal: number }>> {
-  let projection = await recoverProjection(token);
+  let projection = options.shareInFlight === true
+    ? await recoverProjectionShared(token)
+    : await recoverProjection(token);
   const blindDropFrom = unconfirmedBlindDrop(projection);
   if (blindDropFrom !== null) {
     DebugLogger.info('[COIN-DIVERGENCE] hydrate:blind_drop_reobserve', JSON.stringify({
@@ -1616,8 +1648,11 @@ export async function readUnifiedLevelSpinStars(
   // и без этой второй аренды чтение баланса вставало в очередь за ним же.
   storageLockLease?: StorageLockLease,
 ): Promise<Readonly<{ balance: number; earnedTotal: number }>> {
+  // зачем: без аренд — общий промис одновременных восстановлений; с арендой — строго свой проход.
   return visibleProjection(
-    await recoverProjection(token, accountTransitionLockLease, storageLockLease),
+    accountTransitionLockLease || storageLockLease
+      ? await recoverProjection(token, accountTransitionLockLease, storageLockLease)
+      : await recoverProjectionShared(token),
   );
 }
 
@@ -2195,7 +2230,7 @@ export async function syncPendingLevelSpinStarGrants(
 ): Promise<{ synced: number; pending: number }> {
   const ownerStableId = token.stableId?.trim();
   if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) return { synced: 0, pending: 0 };
-  const recovered = await recoverProjection(token);
+  const recovered = await recoverProjectionShared(token);
   publishProjection(token, recovered);
   const snapshot = await readOutbox(ownerStableId);
   let synced = 0;
@@ -2362,6 +2397,7 @@ export function coinReconcileV1NeedFor(
 export async function readCoinReconcileV1Need(
   token: AccountGenerationToken,
 ): Promise<ReturnType<typeof coinReconcileV1NeedFor>> {
+  // зачем (ревью дедупликации 04.10): по ответу решается разовая сверка — считаем сами, без общего промиса.
   return coinReconcileV1NeedFor(await recoverProjection(token));
 }
 

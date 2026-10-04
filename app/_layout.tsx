@@ -1228,7 +1228,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
         await import('./level_spin_star_grants')
           .then(({ recoverAndHydrateLevelSpinStarGrants }) => (
-            recoverAndHydrateLevelSpinStarGrants(token)
+            // зачем: стартовый проход делит один промис с одновременным чтением монет экранами (замер №9).
+            recoverAndHydrateLevelSpinStarGrants(token, { shareInFlight: true })
           ))
           .catch(noteSwallowedAs('_layout:useEffect.call_7', undefined));
         if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;

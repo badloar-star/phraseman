@@ -1,6 +1,8 @@
 # Task packet: Account Authority 2.0 — этап S2d: три 🔴 старого пути (решение координатора §127)
 
 Governance-ID: TG-6419EC376E68
+Governance-ID: TG-9D83081CA57E
+Governance-ID: TG-4AC6243A1836
 Governance-ID: TG-484FC0875198
 Governance-ID: TG-58204A2B6E28
 Governance-ID: TG-EE637CD5E202
@@ -257,3 +259,36 @@ git revert по коммиту каждого 🔴.
 - L-R3-4: `pruneShelvedAccountSwitchBackups` — ошибка разбора на каждом ключе отдельно (лог), цикл не прерывается; плюс запуск не чаще раза в сутки (метка времени последней очистки); тест.
 - L-R3-5: повторный тап после потолка 45 с — отдельная метка «смена ещё идёт» (in-memory), повторный тап показывает тот же статус «ещё идёт», а не отказ; метка снимается по приходу результата; тест.
 - L-R3-6: `purchase_flow_activity` — потолок жизни метки (напр. 10 мин), по истечении снимается с логом, чтобы зависший вызов стора не блокировал перенос Plus до перезапуска; тест.
+
+## Итог исполнителя S2d — раунд 4 (2026-10-04)
+
+Не закоммичено, в индекс не добавлено. Копии до правок лежат в `.tmp_aa_s2d_backup/r4/`. Мутации восстанавливались байт-в-байт (cmp).
+
+### Что сделано
+- **L-R3-1** (`account_switch_backup_restore.ts`): при доливании по псевдониму конфликт графа Learning V2 больше не даёт `invalid`.
+  - Пропускается весь граф копии, а не только конфликтующий ключ: половину чужого графа ставить нельзя.
+  - Остальное доливается, копия, страницы и метка удаляются.
+  - Лог `[ACC-BACKUP-MERGE] restored` получил поля `graphConflict` и `skippedGraphKeys`.
+  - Своя копия без псевдонима ведёт себя как раньше.
+- **L-R3-2** (`auth_provider.settleGuestBackupAfterSwap`): если метка-псевдоним не записалась, пишется лог `swap backup_alias_write_failed`, а копия откладывается.
+- **L-R3-3** (`cloud_sync.saveAccountSwitchEmergencyBackup`): копия гостя с меткой `{from, to: текущий}` больше не считается чужой.
+  - Сначала копия доливается через `foldMergedGuestBackupBeforeNewBackup` → `restoreAccountSwitchEmergencyBackupIfSafe(…, { lockTimeoutMs: 1500 })`, затем пишется новая копия.
+  - Если замок занят (save вызывают и под ним) или долив не удался, копия откладывается и метка снимается. Взаимной блокировки нет.
+  - У restore появились опция `lockTimeoutMs`, статус `lock_busy` и экспорт `clearAccountSwitchBackupMergeAlias`.
+- **L-R3-4** (`pruneShelvedAccountSwitchBackups`):
+  - каждый ключ обрабатывается в своём try с логом `shelved_prune_key_failed` (номер ключа, без id);
+  - запуск не чаще раза в сутки, время последней очистки хранится в `account_switch_shelved_prune_last_run_v1`.
+- **L-R3-5** (`account_switch_deadline.isAccountSwitchStillRunning`): метка ставится на потолке и снимается, когда приходит результат смены.
+  - В Настройках оба входа в смену (основной и «без сохранения») при метке показывают тот же статус.
+  - Текст статуса — `accountSwitchStillRunningCopy` «Дизайна» (90aecd479), черновик удалён.
+- **L-R3-6** (`purchase_flow_activity`): у каждого потока своя запись и потолок `PURCHASE_FLOW_MAX_AGE_MS` = 10 мин. По истечении пишется лог `[PLUS-TRANSFER] purchase_flow expired`.
+
+### Тесты и проверки
+- Наборы: backup_merge_alias 9, presync_cloud_sync 14, account_switch_deadline 7, plus_transfer 17, auth_provider_behavior 105, account_switch_backup_restore 22, legacy_callsite_guard 31, pm229_auth_zero 3, stable_link 35, quarantine 33, plus_switch_notice 5, paywall_purchase_behavior 10, manage_subscription_race 5.
+- Тайпчек: 0 ошибок.
+- PM-229: 9 немых catch, база не поднималась.
+
+### Мутации
+- 10, все убиты: R1, R1b, R2, R3, R3b, R4, R4b, R5, R5b, R6.
+- R1 сначала выжила: ветку v3 не покрывал ни один тест. Добавлен тест v3, после чего мутация убита.
+

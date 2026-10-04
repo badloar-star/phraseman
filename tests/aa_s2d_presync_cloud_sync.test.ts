@@ -225,4 +225,97 @@ describe('AA S2d 🔴2 — presync never adopts and never reports a false succes
       warn.mockRestore();
     }
   });
+
+  // ── Раунд 4 (L-R3-3): копия гостя с меткой подтверждённого merge — не «чужая» ──
+  it('L-R3-3: a merged guest copy (alias from→current) is folded in first, then the new backup is written (no other_owner_pending)', async () => {
+    await AsyncStorage.setItem('account_switch_emergency_backup_latest_v1', JSON.stringify({
+      version: 2, createdAt: Date.now(), reason: 'sign_in_presync_not_uploaded_before_swap',
+      stableId: 'stable-guest', pairs: [['guest_only_key', 'guest-value']],
+    }));
+    await AsyncStorage.setItem('account_switch_backup_merge_alias_v1', JSON.stringify({ from: 'stable-guest', to: 'stable-a', at: Date.now() }));
+
+    await expect(saveAccountSwitchEmergencyBackup('after_merge', 'stable-a')).resolves.toBe(true);
+
+    expect(await AsyncStorage.getItem('guest_only_key')).toBe('guest-value');
+    expect(await AsyncStorage.getItem('account_switch_backup_merge_alias_v1')).toBeNull();
+    await expect(readAccountSwitchEmergencyBackupSummary()).resolves.toMatchObject({ stableId: 'stable-a' });
+  });
+
+  it('L-R3-3: under a held transition lock the merged guest copy is shelved instead (no deadlock), the new backup is written', async () => {
+    const generation = require('../app/account_generation');
+    await AsyncStorage.setItem('account_switch_emergency_backup_latest_v1', JSON.stringify({
+      version: 2, createdAt: Date.now(), reason: 'x', stableId: 'stable-guest', pairs: [['guest_only_key', 'guest-value']],
+    }));
+    await AsyncStorage.setItem('account_switch_backup_merge_alias_v1', JSON.stringify({ from: 'stable-guest', to: 'stable-a', at: Date.now() }));
+
+    const saved = await generation.withAccountTransitionLock(() => saveAccountSwitchEmergencyBackup('under_lock', 'stable-a'));
+
+    expect(saved).toBe(true);
+    const keys = await AsyncStorage.getAllKeys();
+    expect(keys.some((key) => key.startsWith('account_switch_emergency_backup_shelved_v1:'))).toBe(true);
+    expect(await AsyncStorage.getItem('account_switch_backup_merge_alias_v1')).toBeNull();
+    await expect(readAccountSwitchEmergencyBackupSummary()).resolves.toMatchObject({ stableId: 'stable-a' });
+  });
+
+  it('L-R3-3: a foreign copy WITHOUT a matching alias is still other_owner_pending', async () => {
+    await AsyncStorage.setItem('account_switch_emergency_backup_latest_v1', JSON.stringify({
+      version: 2, createdAt: Date.now(), reason: 'x', stableId: 'stable-guest', pairs: [['k', 'v']],
+    }));
+    await AsyncStorage.setItem('account_switch_backup_merge_alias_v1', JSON.stringify({ from: 'stable-guest', to: 'stable-zzz', at: Date.now() }));
+    await expect(saveAccountSwitchEmergencyBackup('t', 'stable-a')).rejects.toThrow('account_switch_backup_other_owner_pending');
+  });
+
+  // ── Раунд 4 (L-R3-4): очистка отложенных копий — по ключу и не чаще раза в сутки ──
+  it('L-R3-4: a broken shelved key does not stop the loop; every key is handled separately', async () => {
+    const now = Date.UTC(2026, 9, 4);
+    const day = 24 * 60 * 60 * 1000;
+    const brokenKey = `account_switch_emergency_backup_shelved_v1:stable-x:${(now - 40 * day).toString(36)}`;
+    const oldKey = `account_switch_emergency_backup_shelved_v1:stable-y:${(now - 41 * day).toString(36)}`;
+    await AsyncStorage.setItem(brokenKey, 'x');
+    await AsyncStorage.setItem(oldKey, JSON.stringify({ version: 2, stableId: 'stable-y', pairs: [] }));
+    // getItem уже jest.fn из мока хранилища: spyOn вернул бы ту же функцию, поэтому
+    // подменяем реализацию и возвращаем исходную в finally.
+    const getItemMock = AsyncStorage.getItem as unknown as jest.Mock;
+    const originalImpl = getItemMock.getMockImplementation()!;
+    const spy = {
+      mockRestore: () => { getItemMock.mockImplementation(originalImpl); },
+    };
+    getItemMock.mockImplementation(async (key: string) => {
+      if (key === brokenKey) throw new Error('storage_read_failed');
+      return originalImpl(key);
+    });
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    try {
+      await expect(pruneShelvedAccountSwitchBackups(now)).resolves.toBe(1);
+      expect(warn.mock.calls.map((c) => String(c[0])).some((l) => l.includes('backup shelved_prune_key_failed'))).toBe(true);
+      expect(warn.mock.calls.map((c) => String(c[0])).join('\n')).not.toContain('stable-x');
+    } finally {
+      spy.mockRestore();
+      warn.mockRestore();
+    }
+    expect(await AsyncStorage.getItem(oldKey)).toBeNull();
+  });
+
+  it('L-R3-4: runs at most once a day', async () => {
+    const now = Date.UTC(2026, 9, 5);
+    const day = 24 * 60 * 60 * 1000;
+    await expect(pruneShelvedAccountSwitchBackups(now)).resolves.toBe(0);
+    const oldKey = `account_switch_emergency_backup_shelved_v1:stable-y:${(now - 41 * day).toString(36)}`;
+    await AsyncStorage.setItem(oldKey, JSON.stringify({ version: 2, stableId: 'stable-y', pairs: [] }));
+    await expect(pruneShelvedAccountSwitchBackups(now + 60 * 60 * 1000)).resolves.toBe(0);
+    expect(await AsyncStorage.getItem(oldKey)).not.toBeNull();
+    await expect(pruneShelvedAccountSwitchBackups(now + day + 1)).resolves.toBe(1);
+    expect(await AsyncStorage.getItem(oldKey)).toBeNull();
+  });
+
+  it('LOW-1: clock moved back — the daily threshold counts as passed', async () => {
+    const now = Date.UTC(2026, 9, 5);
+    const day = 24 * 60 * 60 * 1000;
+    await expect(pruneShelvedAccountSwitchBackups(now)).resolves.toBe(0);
+    const oldKey = `account_switch_emergency_backup_shelved_v1:stable-z:${(now - 45 * day).toString(36)}`;
+    await AsyncStorage.setItem(oldKey, JSON.stringify({ version: 2, stableId: 'stable-z', pairs: [] }));
+    // Часы ушли на 2 часа назад относительно последнего запуска: очистка не должна стоять.
+    await expect(pruneShelvedAccountSwitchBackups(now - 2 * 60 * 60 * 1000)).resolves.toBe(1);
+    expect(await AsyncStorage.getItem(oldKey)).toBeNull();
+  });
 });

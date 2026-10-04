@@ -53,7 +53,8 @@ import GlassInlineAlert from '../../components/account/GlassInlineAlert';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { plusTransferSwitchNotice, SETTINGS_OPEN_ACCOUNT_SWITCH_PARAM, shouldShowPlusTransferSwitchNotice } from '../account_switch_copy';
 import { peekStableId } from '../stable_id';
-import { ACCOUNT_SWITCH_UI_DEADLINE_MS, accountSwitchStillRunningDraft, awaitWithStillRunningNotice } from '../account_switch_deadline';
+import { ACCOUNT_SWITCH_UI_DEADLINE_MS, awaitWithStillRunningNotice, isAccountSwitchStillRunning } from '../account_switch_deadline';
+import { accountSwitchStillRunningCopy } from '../account_switch_still_running_copy';
 import { useReferralRoulettePolicy } from '../referral_roulette_flag';
 import { getClaimableReferralState } from '../referral_vip';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
@@ -468,6 +469,12 @@ export default function SettingsMain() {
   // зачем (AA S2d раунд 2): строка «Plus перейдёт на новый аккаунт» — только при
   // реальном переносе store-Plus (не VIP/промо). Считаем один раз на открытие окна
   // подтверждения, а не на каждый рендер: внутри — точка предупреждения с логом.
+  // AA S2d раунд 4 (L-R3-5): один и тот же статус «смена ещё идёт» — по потолку и на повторный тап.
+  const showAccountSwitchStillRunning = useCallback(() => {
+    // Текст «Дизайна» (90aecd479), 9 языков.
+    const stillRunning = accountSwitchStillRunningCopy(lang);
+    showInfoAlert(stillRunning.title, stillRunning.body);
+  }, [lang, showInfoAlert]);
   const switchConfirmOpen = switchAccountStage === 'confirm';
   const showPlusTransferNotice = useMemo(
     () => switchConfirmOpen && shouldShowPlusTransferSwitchNotice(isPremium, peekStableId()),
@@ -1625,6 +1632,13 @@ export default function SettingsMain() {
                     console.log('[ACC-MUT] settings:switch_attempt ignored reason=already_wiping');
                     return;
                   }
+                  // зачем (AA S2d раунд 4, L-R3-5): смена пережила потолок 45 с и ещё идёт —
+                  // повторный тап показывает тот же статус, а не отказ замка смены.
+                  if (isAccountSwitchStillRunning()) {
+                    console.log('[ACC-MUT] settings:switch_attempt ignored reason=still_running_after_deadline');
+                    showAccountSwitchStillRunning();
+                    return;
+                  }
                   doHaptic();
                   const attemptStartedAtMs = Date.now();
                   // зачем (AA S2d, §139): оверлей «стираю» не висит бесконечно — через
@@ -1632,8 +1646,7 @@ export default function SettingsMain() {
                   // (маркер/карантин, возобновляется), её результат обработается ниже.
                   const onSwitchStillRunning = () => {
                     setSwitchAccountStage('idle');
-                    const stillRunning = accountSwitchStillRunningDraft(lang);
-                    showInfoAlert(stillRunning.title, stillRunning.body);
+                    showAccountSwitchStillRunning();
                   };
                   setSwitchAccountStage('wiping');
                   const res = await awaitWithStillRunningNotice(signOutAndWipeForAccountSwitch(), ACCOUNT_SWITCH_UI_DEADLINE_MS, onSwitchStillRunning);
@@ -1645,6 +1658,11 @@ export default function SettingsMain() {
                   const runForcedAccountSwitchWithoutSavingNow = async () => {
                     if (switchStageRef.current === 'wiping') {
                       console.log('[ACC-MUT] settings:forced_switch ignored reason=already_wiping');
+                      return;
+                    }
+                    if (isAccountSwitchStillRunning()) {
+                      console.log('[ACC-MUT] settings:forced_switch ignored reason=still_running_after_deadline');
+                      showAccountSwitchStillRunning();
                       return;
                     }
                     setSwitchAccountStage('wiping');

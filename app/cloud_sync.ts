@@ -50,6 +50,11 @@ import {
 } from '../modules/account-authority-v2/account_authority_anon_merge_nonce';
 import { identityErrorCode, identityTag, identityTrace, redactStorageKey } from './identity_trace';
 import {
+  clearAccountSwitchBackupMergeAlias,
+  readAccountSwitchBackupMergeAlias,
+  restoreAccountSwitchEmergencyBackupIfSafe,
+} from './account_switch_backup_restore';
+import {
   ACCOUNT_DELETE_CALLABLE_TIMEOUT_MS,
   ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS,
 } from './account_delete_timeout';
@@ -4716,30 +4721,53 @@ const SHELVED_BACKUP_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000;
  * `account_switch_emergency_backup_shelved_v1:<owner>:<base36 ms>` жили вечно.
  * Возраст — по метке времени в ключе; ключ без метки не трогаем.
  */
+const SHELVED_PRUNE_LAST_RUN_KEY = 'account_switch_shelved_prune_last_run_v1';
+const SHELVED_PRUNE_MIN_INTERVAL_MS = 24 * 60 * 60 * 1000;
+
 export async function pruneShelvedAccountSwitchBackups(nowMs: number = Date.now()): Promise<number> {
-  let removed = 0;
+  // зачем (AA S2d раунд 4, L-R3-4): getAllKeys по всему хранилищу — не на каждом входе;
+  // раз в сутки достаточно для 30-дневного срока.
   try {
-    const keys = await AsyncStorage.getAllKeys();
-    for (const key of keys) {
-      if (!key.startsWith(ACCOUNT_SWITCH_BACKUP_SHELVED_PREFIX)) continue;
-      const stampedAt = parseInt(key.slice(key.lastIndexOf(':') + 1), 36);
-      if (!Number.isFinite(stampedAt) || stampedAt <= 0 || nowMs - stampedAt <= SHELVED_BACKUP_MAX_AGE_MS) continue;
+    const lastRunAt = parseInt(String(await AsyncStorage.getItem(SHELVED_PRUNE_LAST_RUN_KEY) ?? ''), 10);
+    // зачем (ревью раунда 4, LOW-1): часы перевели назад (nowMs < lastRunAt) — порог считаем
+    // пройденным, иначе очистка стояла бы, пока время не догонит записанное.
+    if (Number.isFinite(lastRunAt) && lastRunAt > 0 && nowMs >= lastRunAt && nowMs - lastRunAt < SHELVED_PRUNE_MIN_INTERVAL_MS) return 0;
+    await AsyncStorage.setItem(SHELVED_PRUNE_LAST_RUN_KEY, String(nowMs));
+  } catch (error) {
+    identityTrace('[AUTH-LINK-GOOGLE]', 'backup shelved_prune_throttle_failed', { code: identityErrorCode(error) });
+  }
+  let removed = 0;
+  let failed = 0;
+  let keys: readonly string[];
+  try {
+    keys = await AsyncStorage.getAllKeys();
+  } catch (error) {
+    identityTrace('[AUTH-LINK-GOOGLE]', 'backup shelved_prune_failed', { code: identityErrorCode(error), removed });
+    return removed;
+  }
+  for (const [index, key] of keys.entries()) {
+    if (!key.startsWith(ACCOUNT_SWITCH_BACKUP_SHELVED_PREFIX)) continue;
+    const stampedAt = parseInt(key.slice(key.lastIndexOf(':') + 1), 36);
+    if (!Number.isFinite(stampedAt) || stampedAt <= 0 || nowMs - stampedAt <= SHELVED_BACKUP_MAX_AGE_MS) continue;
+    // зачем (L-R3-4): битый/нечитаемый ключ не останавливает очистку остальных;
+    // ключ несёт id владельца — в лог идёт только его порядковый номер.
+    try {
       const raw = await AsyncStorage.getItem(key);
       const identity = raw === null ? null : parsePreviousAccountSwitchBackupIdentity(raw);
       if (raw !== null && identity?.backupId) {
         const parsed = JSON.parse(raw) as { pageCount?: unknown };
         const pageCount = Number.isSafeInteger(parsed.pageCount) ? Number(parsed.pageCount) : 0;
-        const pageKeys = Array.from({ length: pageCount }, (_, index) => `${ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX}${identity.backupId}:${index}`);
+        const pageKeys = Array.from({ length: pageCount }, (_, pageIndex) => `${ACCOUNT_SWITCH_BACKUP_PAGE_PREFIX}${identity.backupId}:${pageIndex}`);
         if (pageKeys.length > 0) await AsyncStorage.multiRemove(pageKeys);
       }
       await AsyncStorage.removeItem(key);
       removed += 1;
+    } catch (error) {
+      failed += 1;
+      identityTrace('[AUTH-LINK-GOOGLE]', 'backup shelved_prune_key_failed', { index, code: identityErrorCode(error) });
     }
-  } catch (error) {
-    identityTrace('[AUTH-LINK-GOOGLE]', 'backup shelved_prune_failed', { code: identityErrorCode(error), removed });
-    return removed;
   }
-  if (removed > 0) identityTrace('[AUTH-LINK-GOOGLE]', 'backup shelved_pruned', { removed });
+  if (removed > 0 || failed > 0) identityTrace('[AUTH-LINK-GOOGLE]', 'backup shelved_pruned', { removed, failed });
   return removed;
 }
 
@@ -4779,6 +4807,42 @@ export async function readAccountSwitchEmergencyBackupSummary(): Promise<Account
   }
 }
 
+/** Сколько ждать замок смены аккаунта при доливании копии гостя из save (иначе — отложить). */
+const MERGED_GUEST_BACKUP_LOCK_TIMEOUT_MS = 1_500;
+
+/**
+ * Копия гостя `owner` с меткой подтверждённого merge {from: owner, to: current}:
+ * долить её в текущий аккаунт, а если замок занят (save зовут и под ним) или доливание
+ * не удалось — отложить. true — корень копии освобождён (метка снята).
+ */
+async function foldMergedGuestBackupBeforeNewBackup(
+  owner: string,
+  current: string,
+  previousBackupRaw: string,
+): Promise<boolean> {
+  const alias = await readAccountSwitchBackupMergeAlias();
+  if (!alias || alias.from !== owner || alias.to !== current) return false;
+  const restored = await restoreAccountSwitchEmergencyBackupIfSafe(undefined, {
+    lockTimeoutMs: MERGED_GUEST_BACKUP_LOCK_TIMEOUT_MS,
+  }).catch((error: unknown) => {
+    identityTrace('[ACC-BACKUP-MERGE]', 'save fold_failed', { code: identityErrorCode(error) }, { persist: true });
+    return null;
+  });
+  if (restored?.status === 'restored') {
+    identityTrace('[ACC-BACKUP-MERGE]', 'save folded', { restoredKeys: restored.restoredKeys });
+    return true;
+  }
+  if (await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY) === previousBackupRaw) {
+    await shelveOtherOwnerAccountSwitchBackup(previousBackupRaw, owner);
+  }
+  await clearAccountSwitchBackupMergeAlias('shelved_before_new_backup');
+  identityTrace('[ACC-BACKUP-MERGE]', 'save shelved_instead', {
+    status: restored?.status ?? 'failed',
+    owner: identityTag(owner),
+  }, { persist: true });
+  return true;
+}
+
 export async function saveAccountSwitchEmergencyBackup(
   reason: string,
   expectedStableId?: string,
@@ -4796,7 +4860,15 @@ export async function saveAccountSwitchEmergencyBackup(
   if (!stableId || (expectedStableId && stableId !== expectedStableId)) {
     throw new Error('account_switch_backup_identity_unavailable');
   }
-  const previousBackupRaw = await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
+  let previousBackupRaw = await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
+  // зачем (AA S2d раунд 4, L-R3-3): копия гостя A с меткой подтверждённого merge
+  // {from: A, to: текущий} не чужая — сначала доливаем её (или откладываем), потом пишем новую.
+  if (previousBackupRaw !== null && previousBackupRaw.length <= ACCOUNT_SWITCH_BACKUP_PAGE_MAX_BYTES) {
+    const owner = parsePreviousAccountSwitchBackupIdentity(previousBackupRaw)?.stableId ?? null;
+    if (owner && owner !== stableId && await foldMergedGuestBackupBeforeNewBackup(owner, stableId, previousBackupRaw)) {
+      previousBackupRaw = await AsyncStorage.getItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
+    }
+  }
   // A historical monolithic backup above the V3 parser budget cannot be
   // silently replaced: it may contain the only copy of offline work. Account
   // switch remains blocked until an explicit upgrader can preserve it.

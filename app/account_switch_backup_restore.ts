@@ -21,6 +21,7 @@ import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
   withAccountTransitionLock,
+  withAccountTransitionLockWithDeadline,
 } from './account_generation';
 import { getCanonicalUserId } from './user_id_policy';
 import {
@@ -73,6 +74,11 @@ export async function readAccountSwitchBackupMergeAlias(): Promise<AccountSwitch
     identityTrace('[ACC-BACKUP-MERGE]', 'alias read_failed', { code: identityErrorCode(error) });
     return null;
   }
+}
+
+/** Снять метку-псевдоним (AA S2d раунд 4: копия отложена вместо доливания). */
+export async function clearAccountSwitchBackupMergeAlias(reason: string): Promise<void> {
+  await removeMergeAlias(reason);
 }
 
 async function removeMergeAlias(reason: string): Promise<void> {
@@ -163,6 +169,7 @@ export type BackupRestoreResult =
   | { status: 'upgrade_required' }
   | { status: 'invalid' }
   | { status: 'stale_generation' }
+  | { status: 'lock_busy' }
   | { status: 'restored'; restoredKeys: number; skippedExisting: number };
 
 function parseBackup(raw: string): BackupPayload | BackupManifestV3 | null {
@@ -254,8 +261,19 @@ function parseBackupPage(
   };
 }
 
+export type BackupRestoreOptions = Readonly<{
+  /**
+   * Ждать замок смены аккаунта не дольше этого (мс); не дождались → `lock_busy`.
+   * зачем (AA S2d раунд 4, L-R3-3): saveAccountSwitchEmergencyBackup зовёт доливание,
+   * а его иногда вызывают уже ПОД этим замком — без потолка это была бы взаимная
+   * блокировка; с потолком вызывающий откладывает копию вместо доливания.
+   */
+  lockTimeoutMs?: number;
+}>;
+
 export async function restoreAccountSwitchEmergencyBackupIfSafe(
   isCurrent: () => boolean = () => true,
+  options: BackupRestoreOptions = {},
 ): Promise<BackupRestoreResult> {
   const generation = captureAccountGeneration();
   const generationIsCurrent = () => (
@@ -263,7 +281,18 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(
     && isCurrentAccountGeneration(generation)
   );
 
-  return withAccountTransitionLock(async () => {
+  if (options.lockTimeoutMs !== undefined) {
+    const locked = await withAccountTransitionLockWithDeadline(
+      () => restoreUnderLock(generationIsCurrent),
+      options.lockTimeoutMs,
+    );
+    return locked.completed ? locked.value : { status: 'lock_busy' };
+  }
+  return withAccountTransitionLock(() => restoreUnderLock(generationIsCurrent));
+}
+
+async function restoreUnderLock(generationIsCurrent: () => boolean): Promise<BackupRestoreResult> {
+  return (async () => {
     if (!generationIsCurrent()) return { status: 'stale_generation' };
     const raw = await AsyncStorage.getItem(BACKUP_KEY);
     if (!raw) {
@@ -305,12 +334,27 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(
     }
     // Ключи, названные по id гостя A (очереди, квитанции), в B не переносим: B их не
     // прочтёт, а чужая очередь не должна оказаться в чужом профиле.
-    const restorable = (key: string): boolean => mergedFrom === null || !key.includes(mergedFrom);
+    // зачем (AA S2d раунд 4, L-R3-1): при доливании по псевдониму граф Learning V2
+    // копии A может конфликтовать с графом B. Прежде это давало `invalid` и вечную
+    // копию, блокирующую «Сменить аккаунт». Теперь весь граф копии пропускается как
+    // «уже есть» (половину чужого графа в B не ставим — он связан зависимостями),
+    // остальное доливается, копия и метка удаляются. Без псевдонима (своя копия)
+    // поведение прежнее: конфликт → invalid.
+    let skipAllGraphKeys = false;
+    let graphKeysInCopy = 0;
+    const restorable = (key: string): boolean => mergedFrom === null
+      || (!key.includes(mergedFrom) && !(skipAllGraphKeys && isLearningV2SpoolGraphKey(key)));
     let skippedForeignKeys = 0;
     const finishMergedRestore = async (restoredKeys: number, skippedExisting: number): Promise<void> => {
       if (mergedFrom === null) return;
       await removeMergeAlias('restored');
-      identityTrace('[ACC-BACKUP-MERGE]', 'restored', { restoredKeys, skippedExisting, skippedForeignKeys });
+      identityTrace('[ACC-BACKUP-MERGE]', 'restored', {
+        restoredKeys,
+        skippedExisting,
+        skippedForeignKeys,
+        graphConflict: skipAllGraphKeys,
+        skippedGraphKeys: skipAllGraphKeys ? graphKeysInCopy : 0,
+      });
     };
 
     if (backup.version === 3) {
@@ -344,12 +388,16 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(
           }
         }
         observedPairs += page.pairs.length;
-        skippedForeignKeys += page.pairs.filter(([key]) => !restorable(key)).length;
+        graphKeysInCopy += page.pairs.filter(([key]) => isLearningV2SpoolGraphKey(key)).length;
+        skippedForeignKeys += page.pairs.filter(([key]) => mergedFrom !== null && key.includes(mergedFrom)).length;
         const current = await multiGetExactly(page.pairs.map(([key]) => key));
         if (!generationIsCurrent()) return { status: 'stale_generation' };
         const backedValues = new Map(page.pairs);
         if (current.some(([key, value]) => value != null && isLearningV2SpoolGraphKey(key) &&
-          restorable(key) && value !== backedValues.get(key))) return { status: 'invalid' };
+          restorable(key) && value !== backedValues.get(key))) {
+          if (mergedFrom === null) return { status: 'invalid' };
+          skipAllGraphKeys = true; // L-R3-1: см. выше
+        }
         previousPageFingerprint = page.pageFingerprint;
         auditedPageFingerprints.push(page.pageFingerprint);
       }
@@ -442,8 +490,9 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(
       (pair): pair is [string, string] =>
         Array.isArray(pair) && typeof pair[0] === 'string' && typeof pair[1] === 'string',
     );
-    const candidates = typedPairs.filter(([key]) => restorable(key));
+    let candidates = typedPairs.filter(([key]) => restorable(key));
     skippedForeignKeys = typedPairs.length - candidates.length;
+    graphKeysInCopy = typedPairs.filter(([key]) => isLearningV2SpoolGraphKey(key)).length;
     if (candidates.length === 0) {
       await removeBackupRootExactly();
       return { status: 'invalid' };
@@ -462,8 +511,12 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(
       if (!generationIsCurrent()) return { status: 'stale_generation' };
       const backedValues = new Map(chunk);
       if (current.some(([key, value]) => value != null && isLearningV2SpoolGraphKey(key) &&
-        value !== backedValues.get(key))) return { status: 'invalid' };
+        value !== backedValues.get(key))) {
+        if (mergedFrom === null) return { status: 'invalid' };
+        skipAllGraphKeys = true; // L-R3-1
+      }
     }
+    if (skipAllGraphKeys) candidates = candidates.filter(([key]) => restorable(key));
     let restoredKeys = 0;
     let skippedExisting = 0;
     for (const rank of [0, 1, 2] as const) {
@@ -502,7 +555,7 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(
     await removeBackupRootExactly();
     await finishMergedRestore(restoredKeys, skippedExisting);
     return { status: 'restored', restoredKeys, skippedExisting };
-  });
+  })();
 }
 
 // Required by Expo Router — not a screen

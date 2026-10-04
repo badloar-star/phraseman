@@ -9,9 +9,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import {
   ACCOUNT_SWITCH_UI_DEADLINE_MS,
-  accountSwitchStillRunningDraft,
   awaitWithStillRunningNotice,
 } from '../app/account_switch_deadline';
+import { accountSwitchStillRunningCopy } from '../app/account_switch_still_running_copy';
 
 let warn: jest.SpyInstance;
 beforeEach(() => {
@@ -58,15 +58,44 @@ test('a failing switch still rejects to the caller and never fires the notice af
   expect(onStillRunning).not.toHaveBeenCalled();
 });
 
-test('draft copy has ru/en with a key for Design', () => {
-  expect(accountSwitchStillRunningDraft('ru').key).toBe('account_switch_still_running');
-  expect(accountSwitchStillRunningDraft('ru').title.length).toBeGreaterThan(0);
-  expect(accountSwitchStillRunningDraft('en').body.length).toBeGreaterThan(0);
-  expect(accountSwitchStillRunningDraft('uk')).toEqual(accountSwitchStillRunningDraft('ru'));
+test('status copy comes from Design (9 languages) and settings uses it', () => {
+  // Раунд 4: текст «Дизайна» (9 языков) вместо черновика; Настройки берут его для статуса.
+  expect(accountSwitchStillRunningCopy('ru').key).toBe('account_switch_still_running');
+  expect(accountSwitchStillRunningCopy('ru').title.length).toBeGreaterThan(0);
+  expect(accountSwitchStillRunningCopy('en').body.length).toBeGreaterThan(0);
+  expect(accountSwitchStillRunningCopy('uk').title).not.toBe(accountSwitchStillRunningCopy('en').title);
+  const settings = fs.readFileSync(path.join(__dirname, '..', 'app/(tabs)/settings.tsx'), 'utf8');
+  expect(settings).toContain('const stillRunning = accountSwitchStillRunningCopy(lang);');
+  expect(settings).not.toContain('accountSwitchStillRunningDraft');
 });
 
 test('settings wraps both switch calls (save and «без сохранения») with the deadline', () => {
   const source = fs.readFileSync(path.join(__dirname, '..', 'app/(tabs)/settings.tsx'), 'utf8');
   expect(source).toContain('const res = await awaitWithStillRunningNotice(signOutAndWipeForAccountSwitch(), ACCOUNT_SWITCH_UI_DEADLINE_MS, onSwitchStillRunning);');
   expect(source).toMatch(/const forced = await awaitWithStillRunningNotice\(signOutAndWipeForAccountSwitch\(\{[\s\S]{0,200}\}\), ACCOUNT_SWITCH_UI_DEADLINE_MS, onSwitchStillRunning\);/);
+});
+
+// ── Раунд 4 (L-R3-5): повторный тап после потолка — статус «ещё идёт», а не отказ ──
+test('L-R3-5: the still-running mark is set at the deadline and cleared when the switch settles', async () => {
+  const deadline = require('../app/account_switch_deadline') as typeof import('../app/account_switch_deadline');
+  let finish!: () => void;
+  const operation = new Promise<void>((resolve) => { finish = resolve; });
+  expect(deadline.isAccountSwitchStillRunning()).toBe(false);
+  const pending = deadline.awaitWithStillRunningNotice(operation, 1000, () => undefined);
+  await jest.advanceTimersByTimeAsync(999);
+  expect(deadline.isAccountSwitchStillRunning()).toBe(false);
+  await jest.advanceTimersByTimeAsync(1);
+  expect(deadline.isAccountSwitchStillRunning()).toBe(true);
+  finish();
+  await pending;
+  expect(deadline.isAccountSwitchStillRunning()).toBe(false);
+});
+
+test('L-R3-5: settings answers a repeated tap during a still-running switch with the same status', () => {
+  const source = fs.readFileSync(path.join(__dirname, '..', 'app/(tabs)/settings.tsx'), 'utf8');
+  const marker = 'if (isAccountSwitchStillRunning()) {';
+  const first = source.indexOf(marker);
+  expect(first).toBeGreaterThan(0);
+  expect(source.indexOf(marker, first + 1)).toBeGreaterThan(first);
+  expect(source.slice(first, first + 400)).toContain('showAccountSwitchStillRunning();');
 });

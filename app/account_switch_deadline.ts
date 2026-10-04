@@ -17,14 +17,29 @@ import { identityTrace } from './identity_trace';
 
 export const ACCOUNT_SWITCH_UI_DEADLINE_MS = 45_000;
 
+/**
+ * Смена аккаунта пережила потолок и ещё идёт (память процесса).
+ * зачем (AA S2d раунд 4, L-R3-5): после потолка оверлей снят, и повторный тап
+ * запускал новую попытку, которая упиралась в замок смены и показывала ОТКАЗ. С меткой
+ * Настройки отвечают тем же статусом «ещё идёт»; метка снимается, когда смена закончилась.
+ */
+let stillRunningCount = 0;
+
+export function isAccountSwitchStillRunning(): boolean {
+  return stillRunningCount > 0;
+}
+
 export function awaitWithStillRunningNotice<T>(
   operation: Promise<T>,
   deadlineMs: number,
   onStillRunning: () => void,
 ): Promise<T> {
   let settled = false;
+  let markedStillRunning = false;
   const timer = setTimeout(() => {
     if (settled) return;
+    markedStillRunning = true;
+    stillRunningCount += 1;
     identityTrace('[ACC-SWITCH-WIPE]', 'ui_deadline still_running', { deadlineMs });
     try {
       onStillRunning();
@@ -38,29 +53,14 @@ export function awaitWithStillRunningNotice<T>(
   return operation.finally(() => {
     settled = true;
     clearTimeout(timer);
+    if (markedStillRunning) {
+      stillRunningCount = Math.max(0, stillRunningCount - 1);
+      identityTrace('[ACC-SWITCH-WIPE]', 'ui_deadline finished_after_deadline', { deadlineMs });
+    }
   });
 }
 
-export type AccountSwitchStillRunningCopy = Readonly<{ key: 'account_switch_still_running'; title: string; body: string }>;
-
-/**
- * ЧЕРНОВИК текста для «Дизайна» (ключ account_switch_still_running) — только ru/en;
- * остальные языки берут ближайший (uk → ru, прочие → en) до финального текста.
- */
-export function accountSwitchStillRunningDraft(lang: string): AccountSwitchStillRunningCopy {
-  const ru = lang === 'ru' || lang === 'uk';
-  return ru
-    ? {
-      key: 'account_switch_still_running',
-      title: 'Смена аккаунта ещё идёт',
-      body: 'Связь медленная. Прогресс в безопасности — закончим сами, даже если закрыть приложение.',
-    }
-    : {
-      key: 'account_switch_still_running',
-      title: 'Account switch is still in progress',
-      body: 'The connection is slow. Your progress is safe — we will finish on our own, even if you close the app.',
-    };
-}
+// Текст статуса — app/account_switch_still_running_copy.ts («Дизайн», 9 языков); черновик удалён.
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

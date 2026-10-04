@@ -569,11 +569,19 @@ async function settleGuestBackupAfterSwap(
 ): Promise<void> {
   try {
     if (mergeConfirmed) {
-      await writeAccountSwitchBackupMergeAlias(guestStableId, targetStableId);
-      identityTrace('[AUTH-LINK-GOOGLE]', 'swap backup_alias_written', {
-        provider, from: identityTag(guestStableId), to: identityTag(targetStableId),
-      }, { persist: true });
-      return;
+      try {
+        await writeAccountSwitchBackupMergeAlias(guestStableId, targetStableId);
+        identityTrace('[AUTH-LINK-GOOGLE]', 'swap backup_alias_written', {
+          provider, from: identityTag(guestStableId), to: identityTag(targetStableId),
+        }, { persist: true });
+        return;
+      } catch (aliasError) {
+        // зачем (AA S2d раунд 4, L-R3-2): без метки копия A навсегда «чужая» для B и
+        // блокировала бы «Сменить аккаунт» — откладываем её, как при неподтверждённом merge.
+        identityTrace('[AUTH-LINK-GOOGLE]', 'swap backup_alias_write_failed', {
+          provider, code: identityErrorCode(aliasError),
+        }, { persist: true });
+      }
     }
     const shelved = await shelveAccountSwitchEmergencyBackupOf(guestStableId);
     identityTrace('[AUTH-LINK-GOOGLE]', 'swap backup_shelved', {

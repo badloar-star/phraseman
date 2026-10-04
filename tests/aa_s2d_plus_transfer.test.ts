@@ -316,3 +316,24 @@ test('paywall and «Управление подпиской» mark their store o
   expect(read('app/manage_subscription_purchase.ts')).toContain("withPurchaseFlow('manage_subscription_upgrade', () => Purchases.purchasePackage(yearlyPackage, opts as any))");
   expect(read('app/manage_subscription.tsx')).toContain("withPurchaseFlow('manage_subscription_restore', () => Purchases.restorePurchases())");
 });
+
+// ── Раунд 4 (L-R3-6): потолок жизни метки покупки ───────────────────────────────
+test('L-R3-6: a purchase flow mark older than 10 minutes expires with a log, so a hung store call cannot block Plus transfer', () => {
+  const m = load();
+  void m;
+  const flow = require('../app/purchase_flow_activity') as typeof import('../app/purchase_flow_activity');
+  const realNow = Date.now();
+  const now = jest.spyOn(Date, 'now').mockReturnValue(realNow);
+  try {
+    flow.beginPurchaseFlow('paywall_purchase');
+    expect(flow.isPurchaseFlowActive()).toBe(true);
+    now.mockReturnValue(realNow + flow.PURCHASE_FLOW_MAX_AGE_MS - 1);
+    expect(flow.isPurchaseFlowActive()).toBe(true);
+    now.mockReturnValue(realNow + flow.PURCHASE_FLOW_MAX_AGE_MS + 1);
+    expect(flow.isPurchaseFlowActive()).toBe(false);
+    const lines = warn.mock.calls.map((c) => String(c[0]));
+    expect(lines.some((l) => l.includes('[PLUS-TRANSFER] purchase_flow expired'))).toBe(true);
+  } finally {
+    now.mockRestore();
+  }
+});

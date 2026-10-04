@@ -2606,3 +2606,26 @@ test('S2d 🔴2 r3: a confirmed upload does not touch the copy lifecycle (no ali
   expect(await (lastLoadedAuthProviderStorage as any).getItem(MERGE_ALIAS_KEY)).toBeNull();
   expect(shelveAccountSwitchEmergencyBackupOf).not.toHaveBeenCalled();
 });
+
+// ── Раунд 4 (L-R3-2): метка-псевдоним не записалась → копию сразу отложить ──────
+test('S2d r4 L-R3-2: alias write failure after a confirmed merge shelves the guest copy (does not block «Сменить аккаунт»)', async () => {
+  presyncSwapToRemote();
+  presyncRefusesWith('identity_mismatch');
+  readAccountSwitchEmergencyBackupSummary.mockResolvedValueOnce({ stableId: 'local-stable-id', pairCount: 3, bytes: 99 });
+  mergeStableAccountsViaServer.mockResolvedValueOnce({ ok: true, canonicalStableId: 'remote-stable-id' } as any);
+  const { signInWithProvider } = loadAuthProvider({ unlocked_lessons: '[1,2]' }, 'ios');
+  const storage = lastLoadedAuthProviderStorage as any;
+  const realSetItem = storage.setItem.getMockImplementation?.() ?? storage.setItem;
+  const setItemSpy = jest.spyOn(storage, 'setItem').mockImplementation(async (...args: unknown[]) => {
+    if (args[0] === MERGE_ALIAS_KEY) throw new Error('storage_full');
+    return realSetItem(...args);
+  });
+  try {
+    const result = await signInWithProvider('apple');
+    expect(result).toMatchObject({ result: 'merged_devices' });
+  } finally {
+    setItemSpy.mockRestore();
+  }
+  expect(await storage.getItem(MERGE_ALIAS_KEY)).toBeNull();
+  expect(shelveAccountSwitchEmergencyBackupOf).toHaveBeenCalledWith('local-stable-id');
+});

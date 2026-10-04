@@ -129,7 +129,9 @@ describe('кнопки шага удержания защищены от дво�
 
   it('уход в стор — единственная точка выхода, и он закрывает шит', () => {
     expect(screen).toContain('const openStoreCancel');
-    expect(screen).toMatch(/openStoreCancel[\s\S]{0,200}closeCancelSheet\(\)/);
+    // 04.10: с 50eea79a4 (26.08) шторка закрывается ПОСЛЕ открытия магазина — проверяем суть, а не расстояние.
+    const storeCancel = screen.slice(screen.indexOf('const openStoreCancel'), screen.indexOf('}, [closeCancelSheet]);'));
+    expect(storeCancel).toMatch(/Linking\.openURL\([\s\S]*?\.then\(\(\) => \{ closeCancelSheet\(\); \}\)/);
   });
 
   it('смена аккаунта сбрасывает шаг, предложение и прогресс', () => {

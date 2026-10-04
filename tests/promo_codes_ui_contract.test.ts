@@ -43,7 +43,8 @@ describe('promo codes UI/admin contract', () => {
     expect(entry).toContain('liquidGlassTokens(liquidGlassThemeId)');
     expect(entry).toContain('ActivityIndicator size="small"');
     expect(entry).toContain('Активируем…');
-    expect(entry).toContain("['vip_plan', params.rewardKind === 'lifetime' ? 'promo_lifetime' : 'promo']");
+    // 04.10: форма записи стала объектом (db402696b, 26.07) — план Plus по-прежнему пишется в снимок VIP.
+    expect(entry).toContain("vip_plan: params.rewardKind === 'lifetime' ? 'promo_lifetime' : 'promo'");
     expect(entry).toContain('Plus-подписка активирована навсегда');
     expect(entry).toContain('Введи промокод, чтобы получить Plus-подписку.');
     expect(entry).toContain('Plus-подписка активирована на ${d} дн.');
@@ -57,7 +58,8 @@ describe('promo codes UI/admin contract', () => {
     expect(settings).toContain('settings-vip-card');
     expect(settings).toContain('Промокод');
     expect(settings).toContain('Полный доступ на 3 дня');
-    expect(settings).toContain('Подарок: полный доступ на 3 дня');
+    // 04.10: подпись «Подарок: …» убрана в 285ac732c (21.07) — запрет владельца на подписи под названием.
+    expect(settings).not.toContain('Подарок: полный доступ на 3 дня');
     // 2026-07-26: подпись plusRowSub (включая «Plus доступ активен») удалена
     // редизайном настроек (запрет владельца на подписи-расшифровки под
     // названием) — статус теперь в plusRowLabel «… активирован ✓».

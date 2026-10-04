@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 
 const lessons = readFileSync("app/(tabs)/lessons.tsx", "utf8");
@@ -19,35 +18,13 @@ assert.match(copy, /family: 'orbit'/);
 assert.match(copy, /art: 'legacy_lessons'/);
 assert.match(copy, /ru: 'Открыть старые уроки'/);
 assert.match(featureAssets, /FeatureIntroAssetKey[\s\S]*?'legacy_lessons'/);
-const legacyLessonsArtHashes: string[] = [];
-for (const theme of [
-  "dark",
-  "gold",
-  "olive",
-  "midnight",
-  "ember",
-  "aurora",
-  "volt",
-  "indigo",
-  "sagePorcelain",
-]) {
-  const assetPath = `assets/images/feature_intros/${theme}/feature-intro-${theme}-legacy-lessons.webp`;
-  assert.match(
-    featureAssets,
-    new RegExp(
-      `legacy_lessons: require\\('../assets/images/feature_intros/${theme}/feature-intro-${theme}-legacy-lessons\\.webp'\\)`,
-    ),
-  );
-  assert.equal(existsSync(assetPath), true, `missing ${assetPath}`);
-  legacyLessonsArtHashes.push(
-    createHash("sha256").update(readFileSync(assetPath)).digest("hex"),
-  );
+// зачем (04.10, поручение координатора): общий снимок efe19ae9d (30.09) удалил все картинки вступительных
+// экранов и перевёл реестр на иконки Ionicons. Прежние проверки 9 webp-файлов по темам устарели и роняли сторож
+// в самом начале. Сторожим текущий контракт: у раздела есть иконка, и реестр не ссылается на файлы, которых нет.
+assert.match(featureAssets, /legacy_lessons: 'book-outline'/);
+for (const match of featureAssets.matchAll(/require\('\.\.\/(assets\/[^']+)'\)/g)) {
+  assert.equal(existsSync(match[1]), true, `feature intro registry points to a missing file: ${match[1]}`);
 }
-assert.equal(
-  new Set(legacyLessonsArtHashes).size,
-  legacyLessonsArtHashes.length,
-  "legacy lessons intro art must be generated separately for every theme",
-);
 
 assert.match(lessons, /useRequestedFeatureIntro\(/);
 assert.match(lessons, /["']legacy_lessons_first_visit["']/);

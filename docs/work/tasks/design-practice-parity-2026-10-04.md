@@ -3,6 +3,7 @@
 Governance-ID: TG-7C2B5F6494CC
 Governance-ID: TG-0481C5FDEF7A
 Governance-ID: TG-E00D06F6E17D
+Governance-ID: TG-B24D20763F00
 Status: In progress
 Owner: сессия «2 · Дизайн» (контур 2), поручение координатора 04.10
 Related epic/enabler: гейт «приложение = макет»

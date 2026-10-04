@@ -217,8 +217,9 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
               <Text style={[s.errCount, { color: g.mutedText }]}>{props.errors.length}</Text>
             </View>
             {props.errors.map((e, i) => (
-              <View key={`${e.label}-${i}`} style={s.errRow}>
-                <Text style={[s.errLabel, { color: g.secondary }]}>{e.label}</Text>
+              // зачем (practice.html `.er`): слово слева колонкой 92, справа «было → стало»; между строками тонкая линия.
+              <View key={`${e.label}-${i}`} style={[s.errRow, i === 0 ? null : { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: g.line }]}>
+                <Text style={[s.errLabel, { color: g.text }]}>{e.label}</Text>
                 <View style={s.errLine}>
                   <Text style={[s.errWas, { color: g.bad }]}>{e.was}</Text>
                   <Ionicons name="arrow-forward" size={16} color={g.mutedText} />
@@ -289,10 +290,11 @@ const s = StyleSheet.create({
   statDivider: { borderLeftWidth: StyleSheet.hairlineWidth },
   statNum: { fontSize: 30, lineHeight: 34, fontWeight: '700', letterSpacing: -0.4, fontVariant: ['tabular-nums'] },
   statLabel: { fontSize: 13, fontWeight: '600', marginTop: 4 },
-  award: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12, marginTop: 12, height: 54 },
+  // зачем (practice.html `.award`): монета → число 14, число 34/700; подпись «монет» в 10 от числа.
+  award: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 14, marginTop: 12, height: 54 },
   awardCoin: { width: 44, height: 44 },
-  awardNum: { fontSize: 30, fontWeight: '700', fontVariant: ['tabular-nums'] },
-  awardUnit: { fontSize: 16, fontWeight: '600' },
+  awardNum: { fontSize: 34, fontWeight: '700', letterSpacing: -0.5, fontVariant: ['tabular-nums'] },
+  awardUnit: { fontSize: 16, fontWeight: '600', marginLeft: -4 },
   // guard-ok: 1px полупрозрачная обводка — по макету 2.0
   panel: { borderRadius: 16, borderWidth: StyleSheet.hairlineWidth, marginTop: 14, padding: 16 },
   plusNote: { flexDirection: 'row', alignItems: 'center', gap: 14 },
@@ -302,13 +304,13 @@ const s = StyleSheet.create({
   errHead: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   errTitle: { fontSize: 16, fontWeight: '700' },
   errCount: { fontSize: 16, fontWeight: '700' },
-  errRow: { marginTop: 12 },
-  errLabel: { fontSize: 13, fontWeight: '600' },
-  errLine: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 8, marginTop: 4 },
+  errRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12 },
+  errLabel: { width: 92, fontSize: 16, fontWeight: '700' },
+  errLine: { flex: 1, minWidth: 0, flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', rowGap: 6, columnGap: 10 },
   errWas: { fontSize: 16, fontWeight: '600', textDecorationLine: 'line-through' },
-  errOk: { fontSize: 16, fontWeight: '700' },
+  errOk: { fontSize: 16, fontWeight: '600' },
   // guard-ok: контурная кнопка «Повторить ошибки» — по макету 2.0
-  ghost: { height: 44, borderRadius: 22, borderWidth: StyleSheet.hairlineWidth, marginTop: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
+  ghost: { height: 44, borderRadius: 22, borderWidth: StyleSheet.hairlineWidth, marginTop: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   ghostText: { fontSize: 16, fontWeight: '600' },
   dock: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 20, paddingTop: 12 },
   cta: { height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center' },

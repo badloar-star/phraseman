@@ -237,11 +237,12 @@ export default function PrivacySettings() {
               withHaptic={true}
               withSound={false}
               variant="icon"
-              style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
-              contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
+              style={{ width: 48, height: 44, alignSelf: 'flex-start', marginTop: 4 }}
+              // зачем (profile.html `.rb.bare`): «назад» — голый шеврон слева, без круга и кромки; область нажатия 48×44.
+              contentStyle={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
             >
               {/* зачем: паритет с макетом profile.html PRF-07 — в шапке «назад» (шеврон), не крестик */}
-              <Ionicons name="chevron-back" size={22} color={glass.lightTint} />
+              <Ionicons name="chevron-back" size={21} color={glass.text} />
             </PressableHybrid>
             <Text style={{ color: t.textPrimary, fontSize: scaled(34), lineHeight: scaled(40), fontWeight: '700', marginTop: 10, flexShrink: 1 }}>
               {L({ ru: 'Приватность и данные', uk: 'Приватність і дані', es: 'Privacidad y datos', 'pt-BR': 'Privacidade e dados', vi: 'Quyền riêng tư và dữ liệu', id: 'Privasi dan data', tr: 'Gizlilik ve veriler', pl: 'Prywatność i dane' })}

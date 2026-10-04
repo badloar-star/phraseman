@@ -87,11 +87,12 @@ export default function SupportReportScreen() {
             withHaptic={true}
             withSound={false}
             variant="icon"
-            style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
-            contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
+            style={{ width: 48, height: 44, alignSelf: 'flex-start', marginTop: 4 }}
+            // зачем (profile.html `.rb.bare`): «назад» — голый шеврон слева, без круга и кромки; область нажатия 48×44.
+            contentStyle={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
           >
             {/* зачем: паритет с макетом profile.html PRF-09 — «назад» шевроном */}
-            <Ionicons name="chevron-back" size={22} color={glass.lightTint} />
+            <Ionicons name="chevron-back" size={21} color={glass.text} />
           </PressableHybrid>
           <Text style={{ color: t.textPrimary, fontSize: scaled(34), lineHeight: scaled(40), fontWeight: '700', marginTop: 10 }}>
             {L('Поддержка', 'Підтримка', 'Support', 'Soporte', 'Suporte', 'Hỗ trợ', 'Dukungan', 'Destek', 'Pomoc')}

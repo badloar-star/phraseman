@@ -267,11 +267,12 @@ export default function SettingsEdu() {
               variant="icon"
               withHaptic={false}
               withSound={false}
-              style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
-              contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
+              style={{ width: 48, height: 44, alignSelf: 'flex-start', marginTop: 4 }}
+              // зачем (profile.html `.rb.bare`): «назад» — голый шеврон слева, без круга и кромки; область нажатия 48×44.
+              contentStyle={{ width: 48, height: 44, alignItems: 'flex-start', justifyContent: 'center' }}
             >
               {/* зачем: паритет с макетом profile.html — иконка «назад» это шеврон (kit.js back) */}
-              <Ionicons name="chevron-back" size={22} color={glass.lightTint} />
+              <Ionicons name="chevron-back" size={21} color={glass.text} />
             </PressableHybrid>
             <Text style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', marginTop: 10 }}>
               {loc.edu.title}

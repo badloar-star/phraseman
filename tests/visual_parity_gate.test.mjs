@@ -115,6 +115,7 @@ test('реестр: уникальные id, допустимые статусы
   assert.ok(registry.rows.filter((row) => row.source === 'STATE_CHECKLIST').length >= 758);
   assert.equal(registry.rows.filter((row) => row.id.startsWith('mistakes-v2-')).length, 17);
   assert.equal(registry.rows.filter((row) => row.id.startsWith('themes-gradient-')).length, 3);
+  assert.ok(registry.rows.filter((row) => row.id.startsWith('cards-v2-')).length >= 40, 'макет cards-v2 (04.10) должен быть в реестре');
 });
 
 test('реестр: строки без макета в папке — no_mockup, остальные стартуют pending, ни одной «ранней» match без ревью', () => {

@@ -4654,10 +4654,12 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     textAlign: 'right',
   },
+  // зачем (practice.html `.tf` margin-top 38): карточка стоит сверху под строкой прогресса, а не по центру экрана.
   trueFalseBody: {
     flex: 1,
-    justifyContent: 'center',
-    paddingVertical: 18,
+    justifyContent: 'flex-start',
+    paddingTop: 38,
+    paddingBottom: 18,
   },
   // `.tf` макета: радиус 16, кромка 1 px (guard-ok), поля 26/28/28.
   trueFalseCard: {

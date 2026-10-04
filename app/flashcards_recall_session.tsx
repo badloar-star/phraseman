@@ -1160,10 +1160,12 @@ export default function FlashcardsRecallSession() {
 const styles = StyleSheet.create({
   safe: { flex: 1, minHeight: 0 },
   runeRow: { minHeight: 42, paddingHorizontal: 16, alignItems: 'flex-end', justifyContent: 'center' },
-  headerRow: { minHeight: 52, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center' },
+  // зачем (practice.html `.hd`): поле страницы 20, шапка 16 от верха.
+  headerRow: { minHeight: 52, paddingHorizontal: 20, paddingTop: 16, flexDirection: 'row', alignItems: 'center', gap: 6 },
   headerTools: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   scroll: { flex: 1, minHeight: 0 },
-  content: { flexGrow: 1, paddingHorizontal: 16, paddingTop: 22, paddingBottom: 28 },
+  // зачем (practice.html): карточка «Вспомни» на 30 ниже строки прогресса, поле 20.
+  content: { flexGrow: 1, paddingHorizontal: 20, paddingTop: 30, paddingBottom: 28 },
   loadingBody: { flex: 1, paddingHorizontal: 16, paddingTop: 22, gap: 18, alignItems: 'flex-start' },
   loadingCta: { width: '100%', marginTop: 'auto', paddingBottom: 28 },
   // зачем (practice.html `.qc` «Вспомни»): радиус 16, минимум 140, кромка 1 px (guard-ok).
@@ -1174,7 +1176,7 @@ const styles = StyleSheet.create({
   glassSurface: { overflow: 'hidden' },
   focusPrompt: { alignItems: 'center', justifyContent: 'center' },
   instruction: { fontSize: 16, lineHeight: 21, textAlign: 'center' },
-  translation: { marginTop: 18, fontSize: 28, lineHeight: 34, fontWeight: '700', textAlign: 'center', letterSpacing: -0.3 },
+  translation: { marginTop: 22, fontSize: 28, lineHeight: 34, fontWeight: '700', textAlign: 'center', letterSpacing: -0.3 },
   eyebrow: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   hintRow: { minHeight: 44, marginTop: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
   hintButton: { minHeight: 44, borderRadius: 22, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },

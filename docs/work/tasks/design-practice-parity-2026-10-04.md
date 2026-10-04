@@ -1,6 +1,7 @@
 # Task packet: «Тренировки» по practice.html — сверка кода с CSS макета до съёмки сессией 6
 
 Governance-ID: TG-7C2B5F6494CC
+Governance-ID: TG-0481C5FDEF7A
 Status: In progress
 Owner: сессия «2 · Дизайн» (контур 2), поручение координатора 04.10
 Related epic/enabler: гейт «приложение = макет»

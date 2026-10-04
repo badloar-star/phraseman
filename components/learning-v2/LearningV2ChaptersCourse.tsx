@@ -241,7 +241,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
             const hasMaterial = props.isSessionMaterialAvailable?.(row.lessonOrdinal, row.sessionOrdinal) ?? true;
             const isCheckpoint = row.role === "chapter_checkpoint";
             const isExam = row.role === "final_exam";
-            // зачем (владелец 04.10, вариант A раунда 2): узлы подписаны «Сессия N», как в утверждённом макете.
+            // зачем (решение координатора 04.10): узлы — по learning-v2.html, «Занятие N» и «Проверка главы»; раунд 2 менял только шапку.
             const available = hasMaterial && (row.state === "current" || row.state === "completed");
             const paint = lv2NodePaint(g, row.state, available);
             const icon = !hasMaterial ? "construct-outline" : row.state === "completed" ? "checkmark" : isCheckpoint || isExam ? "trophy" : row.state === "locked" ? "lock-closed" : available ? "play" : "lock-closed";
@@ -271,7 +271,7 @@ export default function LearningV2ChaptersCourse(props: Props) {
                 </LearningV2MapNode>
                 {stars > 0 ? <View pointerEvents="none" style={[styles.nodeStars, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}>{[0, 1, 2].map((starIndex) => <Ionicons key={starIndex} name="star" size={11} color={starIndex < stars ? g.text : lv2Alpha(g.text, 0.2)} />)}</View> : null}
               </Lv2Reveal>
-              <Text style={[styles.sessionLabel, { color: row.state === "current" ? g.text : g.secondary, fontWeight: row.state === "current" ? "800" : "700" }]}>{triLang(props.lang, { ru: `Сессия ${row.sessionOrdinal}`, en: `Session ${row.sessionOrdinal}`, uk: `Сесія ${row.sessionOrdinal}`, es: `Sesión ${row.sessionOrdinal}`, "pt-BR": `Sessão ${row.sessionOrdinal}`, vi: `Phiên ${row.sessionOrdinal}`, id: `Sesi ${row.sessionOrdinal}`, tr: `Oturum ${row.sessionOrdinal}`, pl: `Sesja ${row.sessionOrdinal}` })}</Text>
+              <Text style={[styles.sessionLabel, { color: row.state === "current" ? g.text : g.secondary, fontWeight: row.state === "current" ? "800" : "700" }]}>{isCheckpoint ? triLang(props.lang, { ru: "Проверка главы", en: "Chapter check", uk: "Перевірка розділу", es: "Repaso del capítulo", "pt-BR": "Revisão do capítulo", vi: "Kiểm tra chương", id: "Uji bab", tr: "Bölüm testi", pl: "Sprawdzian rozdziału" }) : triLang(props.lang, { ru: `Занятие ${row.sessionOrdinal}`, en: `Session ${row.sessionOrdinal}`, uk: `Заняття ${row.sessionOrdinal}`, es: `Sesión ${row.sessionOrdinal}`, "pt-BR": `Sessão ${row.sessionOrdinal}`, vi: `Buổi ${row.sessionOrdinal}`, id: `Sesi ${row.sessionOrdinal}`, tr: `Ders ${row.sessionOrdinal}`, pl: `Zajęcia ${row.sessionOrdinal}` })}</Text>
             </View>;
           })}</View> : <View style={[styles.chapterTrack, { backgroundColor: g.opaqueControl }]}><View style={[styles.chapterTrackFill, { backgroundColor: g.accent, width: `${Math.round(completedCount / 8 * 100)}%` }]} /></View>}
         </Lv2Reveal>;

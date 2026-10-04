@@ -47,6 +47,9 @@ import {
 } from '../app/app_messages';
 import VipSurveyModal from './VipSurveyModal';
 import VipCelebrationModal from './VipCelebrationModal';
+import VipSurveyReviewPromptModal from './VipSurveyReviewPromptModal';
+import { claimVipSurveyReviewPrompt } from '../app/vip_survey_review_prompt';
+import { VIP_SURVEY_ID } from '../app/vip_survey_content';
 import type { SubmitVipSurveyResponse } from '../app/vip_survey';
 import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
 
@@ -151,6 +154,7 @@ function AppMessagesInbox({
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [surveyTarget, setSurveyTarget] = useState<AppMessageWithState | null>(null);
   const [vipCelebrationVisible, setVipCelebrationVisible] = useState(false);
+  const [vipSurveyReviewPromptVisible, setVipSurveyReviewPromptVisible] = useState(false);
   const [undoMessage, setUndoMessage] = useState<AppMessageWithState | null>(null);
   const [embeddedPage, setEmbeddedPage] = useState(0);
   const optimisticReportClaimIdsRef = useRef<Set<string>>(new Set());
@@ -300,6 +304,7 @@ function AppMessagesInbox({
     setSelectedId(null);
     setSurveyTarget(null);
     setVipCelebrationVisible(false);
+    setVipSurveyReviewPromptVisible(false);
 
     return () => {
       if (blurRenderTimer.current) {
@@ -617,6 +622,14 @@ function AppMessagesInbox({
     }, 180);
   };
 
+  // зачем (решение владельца 04.10): вернуть просьбу об отзыве после опроса Plus, снятую снимком 95eec1717.
+  // Показывать ли — решает claimVipSurveyReviewPrompt (уже оценил / уже показано), каждое решение в [VIP-REVIEW-PROMPT].
+  const requestVipSurveyReviewPrompt = (trigger: 'after_celebration' | 'already_granted') => {
+    void claimVipSurveyReviewPrompt(VIP_SURVEY_ID, trigger).then((decision) => {
+      if (decision.show) setVipSurveyReviewPromptVisible(true);
+    });
+  };
+
   const handleSurveyCompleted = (result: SubmitVipSurveyResponse) => {
     const messageId = surveyTarget?.id;
     if (messageId) {
@@ -629,6 +642,8 @@ function AppMessagesInbox({
     if (!result.alreadyGranted) {
       void consumeVipCelebration(result.grantAt);
       setVipCelebrationVisible(true);
+    } else {
+      requestVipSurveyReviewPrompt('already_granted');
     }
   };
 
@@ -1256,7 +1271,12 @@ function AppMessagesInbox({
         visible={vipCelebrationVisible}
         onClose={() => {
           setVipCelebrationVisible(false);
+          requestVipSurveyReviewPrompt('after_celebration');
         }}
+      />
+      <VipSurveyReviewPromptModal
+        visible={vipSurveyReviewPromptVisible}
+        onClose={() => setVipSurveyReviewPromptVisible(false)}
       />
     </>
   );

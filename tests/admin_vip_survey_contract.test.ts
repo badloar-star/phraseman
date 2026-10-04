@@ -77,7 +77,12 @@ describe('admin VIP survey contract', () => {
     expect(rules).toContain('match /vip_survey_responses/{userId}');
   });
 
-  // ВОПРОС ВЛАДЕЛЬЦУ (04.10): просьба об отзыве после опроса (VipSurveyReviewPromptModal) снята из центра
-  // уведомлений снимком 95eec1717 (01.08), осознанного решения нет; модалка и recordVipSurveyReviewClick живы.
-  it.todo('после опроса показывается просьба об отзыве — или решение владельца её убрать (ждёт решения)');
+  // Решение владельца 04.10: просьбу об отзыве после опроса вернуть (снята снимком 95eec1717).
+  it('after the survey the review prompt is requested — after the celebration or right away if already granted', () => {
+    expect(inboxSource).toContain("import VipSurveyReviewPromptModal from './VipSurveyReviewPromptModal'");
+    expect(inboxSource).toContain("requestVipSurveyReviewPrompt('after_celebration')");
+    expect(inboxSource).toContain("requestVipSurveyReviewPrompt('already_granted')");
+    expect(inboxSource).toContain('claimVipSurveyReviewPrompt(VIP_SURVEY_ID, trigger)');
+    expect(inboxSource).toContain('visible={vipSurveyReviewPromptVisible}');
+  });
 });

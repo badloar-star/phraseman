@@ -94,6 +94,15 @@ const CONTEXTUAL_PORTAL_PATHS: ReadonlySet<string> = new Set([
   '/ai_dialog_consent_gate',
   '/ai_dialog_session',
   '/ai_companion_session',
+  // зачем (04.10, сторож navigation_back_underlay): экраны 2.0 без роли. Все открываются из нескольких
+  // разделов (поддержка — из Настроек, Подписки, опроса; ранги монет — с Главной, из Уроков, кошелька;
+  // «Мои ошибки» — с Главной и из занятия), поэтому наследуют владельца точки входа. Список и разбор
+  // ошибки открываются только изнутри хаба и наследуют его владельца так же.
+  '/support_report',
+  '/coin_rank',
+  '/mistakes_hub',
+  '/mistakes_list',
+  '/mistake_detail',
 ]);
 
 // Единственный настоящий redirect в этой семье. premium_modal сам рисует
@@ -232,6 +241,8 @@ function fixedChildSection(pathname: string): NavigationSection | null {
     || pathname === '/diagnostic_test'
     || pathname === '/exam'
     || pathname === '/level_exam'
+    // зачем (04.10): выбор комбинированного урока открывается только из «Уроков».
+    || pathname === '/combined_lesson_pick'
   ) return 'lessons';
 
   if (

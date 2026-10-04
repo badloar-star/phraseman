@@ -37,7 +37,10 @@ describe('ни один экран восстановления не запир�
     const branchBody = gateBranch.slice(0, gateBranch.indexOf('\n      } else {'));
     // Разрешён ровно один ранний выход — плановый повтор при blocked_transient.
     // Любой другой `return` снова оставил бы человека с пустым каркасом.
-    const returns = branchBody.match(/\breturn\b/g) ?? [];
+    // зачем (04.10): считаем только код — комментарии ветки сами рассказывают про `return`
+    // («раньше ОБРЫВАЛ старт (`return`)», «без return»), и счётчик видел 3 вместо 1.
+    const code = branchBody.split('\n').map((line) => line.replace(/\/\/.*$/, '')).join('\n');
+    const returns = code.match(/\breturn\b/g) ?? [];
     expect(returns).toHaveLength(1);
     expect(branchBody).toContain('scheduleAuthRecoveryBootRetry()');
   });

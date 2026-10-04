@@ -1669,7 +1669,8 @@ function RegistrationPromptModal({
                         backgroundColor: cleanRecoveryError ? t.wrongBg : glass.bg,
                         // зачем: ошибка — тоном поля (wrongBg), а не цветной рамкой (запрет обводок)
                         borderWidth: 0,
-                        fontSize: Math.max(22, f.h1),
+                        // зачем (overlays.html `.field`): код вводится обычным полем 16, не крупным разрядным шрифтом.
+                        fontSize: 16,
                       },
                     ]}
                   />
@@ -1920,7 +1921,8 @@ function RegistrationPromptModal({
                         backgroundColor: recoveryError ? t.wrongBg : glass.bg,
                         // зачем: ошибка — тоном поля (wrongBg), а не цветной рамкой (запрет обводок)
                         borderWidth: 0,
-                        fontSize: Math.max(22, f.h1),
+                        // зачем (overlays.html `.field`): код вводится обычным полем 16, не крупным разрядным шрифтом.
+                        fontSize: 16,
                       },
                     ]}
                   />
@@ -2273,11 +2275,12 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     textAlign: 'center',
   },
+  // зачем (overlay.css `.ov-panel`): радиус 18, поля 16.
   recoveryPanel: {
     width: '100%',
     minHeight: 224,
-    borderRadius: 16,
-    padding: 14,
+    borderRadius: 18,
+    padding: 16,
     marginTop: 6,
     marginBottom: 10,
     justifyContent: 'center',
@@ -2296,22 +2299,23 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     marginBottom: 12,
   },
+  // `.field`: 48 высотой, радиус 14, поля 14, 16/500 по левому краю.
   recoveryCodeInput: {
     width: '100%',
-    minHeight: 52,
-    borderRadius: 12,
+    minHeight: 48,
+    borderRadius: 14,
     paddingHorizontal: 14,
-    textAlign: 'center',
-    letterSpacing: 8,
-    fontWeight: '800',
+    textAlign: 'left',
+    letterSpacing: 0,
+    fontWeight: '500',
     marginBottom: 10,
   },
   recoveryEmailInput: {
     width: '100%',
-    minHeight: 52,
-    borderRadius: 12,
+    minHeight: 48,
+    borderRadius: 14,
     paddingHorizontal: 14,
-    fontWeight: '600',
+    fontWeight: '500',
     marginBottom: 10,
   },
   recoveryExpiry: {
@@ -2319,10 +2323,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 8,
   },
+  // `.cta` / `.cta.gh`: пилюли 48 с радиусом 24.
   recoveryPrimaryButton: {
     width: '100%',
     minHeight: 48,
-    borderRadius: 12,
+    borderRadius: 24,
     paddingHorizontal: 14,
     paddingVertical: 10,
     alignItems: 'center',
@@ -2331,14 +2336,14 @@ const styles = StyleSheet.create({
   recoverySecondaryOutlinedButton: {
     width: '100%',
     minHeight: 48,
-    borderRadius: 12,
+    borderRadius: 24,
     paddingHorizontal: 14,
     paddingVertical: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
   recoveryPrimaryText: {
-    fontWeight: '800',
+    fontWeight: '700',
     textAlign: 'center',
   },
   recoverySecondaryButton: {

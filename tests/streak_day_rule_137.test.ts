@@ -43,9 +43,9 @@ beforeEach(async () => {
 });
 afterEach(() => jest.restoreAllMocks());
 
-test('only lesson / cards / mistakes count the day; opening and other actions are passive', () => {
-  for (const kind of ['lesson', 'cards', 'mistakes']) expect(classifyStreakTouch(`activity:${kind}`).mode).toBe('count');
-  for (const reason of ['activity:dialog', 'activity:video', 'activity:spire_steps', 'cold_start', 'foreground']) {
+test('only lesson / cards / mistakes / finished dialog count the day; opening and other actions are passive', () => {
+  for (const kind of ['lesson', 'cards', 'mistakes', 'dialog']) expect(classifyStreakTouch(`activity:${kind}`).mode).toBe('count');
+  for (const reason of ['activity:video', 'activity:spire_steps', 'cold_start', 'foreground']) {
     expect(classifyStreakTouch(reason).mode).toBe('passive');
   }
 });
@@ -69,7 +69,7 @@ test('after the migration day, opening the app does not count the day; the first
   expect(m.peek()).toMatchObject({ counted: false, days: 4 });
   expect(m.events).toHaveLength(0);
 
-  await m.touch('activity:dialog');
+  await m.touch('activity:video');
   expect(await AsyncStorage.getItem('last_active_date')).toBe(daysAgo(1));
 
   expect(await m.touch('activity:lesson')).toBe(5);

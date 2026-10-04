@@ -6,8 +6,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from './events';
 import { getLocalDayKey } from './local_date';
 
-/** Действия, которые засчитывают день серии. Диалог, видео и Шпиль — нет (§137). */
-export const STREAK_DAY_ACTIVITY_KINDS: ReadonlySet<string> = new Set(['lesson', 'cards', 'mistakes']);
+/**
+ * Вид задания «Сегодня» для ступеней Шпиля. Шпиль по смыслу тоже засчитывает день, но это зона Codex:
+ * подключение — одной строкой, добавить STREAK_DAY_SPIRE_KIND в набор ниже (решение координатора 04.10).
+ */
+export const STREAK_DAY_SPIRE_KIND = 'spire_steps';
+
+/**
+ * Действия, которые засчитывают день серии (§137): урок, тренировка карточек, «Мои ошибки» и
+ * завершённый разговор (диалог — настоящая речевая практика, координатор 04.10). Видео — нет (пассивно).
+ */
+export const STREAK_DAY_ACTIVITY_KINDS: ReadonlySet<string> = new Set(['lesson', 'cards', 'mistakes', 'dialog']);
 
 /** День первого запуска с правилом §137: в этот день открытие ещё засчитывается по старому правилу. */
 export const STREAK_RULE_V137_SINCE_KEY = 'streak_rule_v137_since';

@@ -3,28 +3,31 @@ import path from 'path';
 
 const ROOT = path.resolve(__dirname, '..');
 
+function exists(relativePath: string): boolean {
+  return fs.existsSync(path.join(ROOT, relativePath));
+}
+
 function read(relativePath: string): string {
   return fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
 }
 
-describe('personal plan completion target-aware stats contract', () => {
-  it('bumps the completed-plan-task daily metric in the same study target bucket', () => {
-    const source = read('app/personal_plan_progress.ts');
-    expect(source).toContain("import type { RuntimeStudyTarget } from './target_storage_keys';");
-    expect(source).toContain('studyTarget?: RuntimeStudyTarget');
-    expect(source).toContain("bumpStatsDaily('plan_tasks_completed', 1, input.studyTarget)");
+/**
+ * зачем (§126, 04.10): «Персональный план» выведен из продукта (970f8e7b8, 13.08 — retirement pass;
+ * экран и прогресс удалены в снимке 2.0 efe19ae9d, 30.09). Прежний сторож проверял, что завершение задачи
+ * плана считается в своём языке, — теперь он сторожит, что план не вернулся тихо: ни экрана, ни модуля
+ * прогресса, ни импортов из боевого кода. Ключи старых данных живут только в retired_account_local_keys.
+ */
+describe('personal plan stays retired in 2.0', () => {
+  it('has no plan exercise screen or plan progress module', () => {
+    expect(exists('app/personal_plan_exercise.tsx')).toBe(false);
+    expect(exists('app/personal_plan_progress.ts')).toBe(false);
   });
 
-  it('passes studyTarget through every production personal-plan completion entry point', () => {
-    const expectations: [string, string][] = [
-      ['app/personal_plan_exercise.tsx', 'studyTarget,'],
-      ['app/lesson1.tsx', 'studyTarget: studyTargetRef.current'],
-      ['app/flashcards_swipe.tsx', 'studyTarget,'],
-      ['app/mistake_practice_session.tsx', 'studyTarget,'],
-    ];
-
-    for (const [relativePath, expectedSnippet] of expectations) {
-      expect(read(relativePath)).toContain(expectedSnippet);
+  it('production completion entry points no longer bump the retired plan metric', () => {
+    for (const relativePath of ['app/lesson1.tsx', 'app/flashcards_swipe.tsx', 'app/mistake_practice_session.tsx']) {
+      const source = read(relativePath);
+      expect(source).not.toContain("from './personal_plan_progress'");
+      expect(source).not.toContain("bumpStatsDaily('plan_tasks_completed'");
     }
   });
 });

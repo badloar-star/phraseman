@@ -7,7 +7,11 @@ describe('legacy lesson purchase continuation wiring', () => {
   it('passes the exact lesson intent from every lesson lock surface', () => {
     expect(read('app', 'lesson_premium_gate.ts')).toContain('lessonPurchaseContinuationParams(lessonId)');
     expect(read('app', '(tabs)', 'lessons.tsx')).toContain('lessonPurchaseContinuationParams(lessonNum)');
-    expect((read('app', 'lesson_menu.tsx').match(/lessonPurchaseContinuationParams\(lessonId\)/g) ?? [])).toHaveLength(2);
+    // зачем: c5db088ae (21.09) удалил внутренний модал блокировки — премиум-замок урока сходится в ОДНУ точку
+    // меню (сразу пейвол), и она по-прежнему передаёт урок для продолжения после покупки.
+    const lessonMenu = read('app', 'lesson_menu.tsx');
+    expect((lessonMenu.match(/lessonPurchaseContinuationParams\(lessonId\)/g) ?? [])).toHaveLength(1);
+    expect(lessonMenu).toContain("source: 'lesson_menu',");
     expect(read('app', 'lesson_complete.tsx')).toContain('lessonPurchaseContinuationParams(premiumBannerNextLesson.current)');
     expect(read('app', 'level_exam.tsx')).toContain('lessonPurchaseContinuationParams(firstLessonForLevel)');
   });

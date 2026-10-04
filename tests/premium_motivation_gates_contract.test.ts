@@ -30,11 +30,16 @@ describe('premium motivation gates contract', () => {
     const swipe = read('app', 'flashcards_swipe.tsx');
     const audio = read('app', 'flashcards_audio.tsx');
 
-    // Тренировка: замок и на кнопке старта, и на прямом заходе на экран.
-    expect(swipe).toContain("useFeatureAccess('flashcards')");
-    expect(swipe).toContain("openFlashcardsPlusPaywall('flashcards_training_start')");
-    expect(swipe).toContain("openFlashcardsPlusPaywall('flashcards_training_direct')");
-    expect(swipe).toContain("context: 'flashcard_training'");
+    // зачем (D152, владелец 01.10): тренировки больше не «только Plus» — бесплатно 30 в месяц. Замок теперь —
+    // месячный лимит: свайп списывает его на старте (и на прямом заходе), исчерпан → настройка тренировки,
+    // а хаб открывает окно Plus с контекстом flashcard_training (кнопка не гаснет без объяснения).
+    const hub = read('app', 'flashcards', 'FlashcardsHubScreen.tsx');
+    expect(swipe).toContain('consumeMonthlyTrainingSession({');
+    expect(swipe).toContain("mode: 'swipe',");
+    expect(swipe).toContain("if (quotaResult.status === 'exhausted') {");
+    expect(swipe).toContain('openMonthlyTrainingLimit();');
+    expect(hub).toContain("pathname: '/premium_modal', params: { context, source }");
+    expect(hub).toContain("openTrainingPaywall('flashcard_training'");
 
     expect(audio).toContain('<Redirect href="/flashcards" />');
     expect(audio).not.toContain('flashcards_audio_start');

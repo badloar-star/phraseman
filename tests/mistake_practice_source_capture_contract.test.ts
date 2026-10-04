@@ -14,7 +14,6 @@ describe('new mistake capture source coverage', () => {
     'app/flashcards_swipe.tsx',
     'app/flashcards_blitz_session.tsx',
     'app/flashcards_speaking_session.tsx',
-    'app/personal_plan_exercise.tsx',
     'app/learning-v2/session/[id].tsx',
     'app/learning_v2_direct_session_player_v1.tsx',
   ])('%s captures through the single new adapter', (relative) => {

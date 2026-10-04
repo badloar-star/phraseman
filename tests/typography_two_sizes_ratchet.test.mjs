@@ -17,6 +17,16 @@ const SKIP = [/(^|\/)dev\//, /onboarding/i, /CleanOnboarding/, /\.test\./, /_dev
   // их размеры не входят в шкалу D145 (dev-account, showcase, kit/authoring preview, smoke, lab, гибрид-таббар).
   /(^|\/)dev-/, /modes_showcase/, /_preview\.tsx$/, /_smoke\.tsx$/, /learning-v2-lab\//, /DevBotsSheet/, /TabBarHybridPreview/];
 const ALLOWED = new Set([13, 16]);
+// зачем (координатор §129, 04.10): исключение D145 «оси графиков и бейджи» — микроцифры, которым 13 физически
+// не влезает (колонка 26 pt, бейдж на углу кнопки). Строка с пометкой «d145-micro: <причина>» не считается,
+// но ТОЛЬКО в этих файлах: в любом другом файле пометка игнорируется, чтобы не стать лазейкой.
+const MICRO_MARKER = /d145-micro:\s*\S/;
+const MICRO_FILES = new Set(['app/streak_stats.tsx', 'app/ai_dialog_session.tsx']);
+function lineAt(src, index) {
+  const start = src.lastIndexOf('\n', index) + 1;
+  const end = src.indexOf('\n', index);
+  return src.slice(start, end === -1 ? undefined : end);
+}
 
 function walk(dir, out) {
   for (const name of readdirSync(dir)) {
@@ -38,7 +48,9 @@ function offenders() {
       let n = 0;
       for (const m of src.matchAll(/fontSize:\s*([0-9]+(?:\.[0-9]+)?)\b/g)) {
         const size = Number(m[1]);
-        if (size < 19 && !ALLOWED.has(size)) n++;
+        if (size >= 19 || ALLOWED.has(size)) continue;
+        if (MICRO_FILES.has(rel) && MICRO_MARKER.test(lineAt(src, m.index))) continue;
+        n++;
       }
       if (n > 0) counts[rel] = n;
     }

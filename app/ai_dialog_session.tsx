@@ -3267,7 +3267,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                       borderColor: t.bgPrimary,
                     }}
                   >
-                    <Text style={{ color: t.correctText, fontSize: 8, fontWeight: '900' }}>PLUS</Text>
+                    <Text style={{ color: t.correctText, fontSize: 8 /* d145-micro: бейдж PLUS на углу кнопки микрофона 44 pt, на 13 закроет кнопку */, fontWeight: '900' }}>PLUS</Text>
                   </View>
                 )}
               </TouchableOpacity>

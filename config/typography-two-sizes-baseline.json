@@ -1,7 +1,4 @@
 {
-  "total": 6,
-  "files": {
-    "app/ai_dialog_session.tsx": 1,
-    "app/streak_stats.tsx": 5
-  }
+  "total": 0,
+  "files": {}
 }

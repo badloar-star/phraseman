@@ -779,7 +779,7 @@ function LifetimePathLineChart({ days, loading, scrollRef, chartTheme, plotFutur
             const isFuture = d.date > chartToday;
             return (<View key={`ltx-${i}`} style={{ width: LIFETIME_LINE_COL_W, alignItems: 'center' }}>
                   <Text style={{
-                    fontSize: 8,
+                    fontSize: 8, // d145-micro: подпись оси графика в колонке 26 pt, 13 не влезает
                     fontWeight: isToday ? '800' : '500',
                     color: isToday ? ct.accent : ct.textMuted,
                     opacity: isFuture ? 0.45 : 1,
@@ -787,7 +787,7 @@ function LifetimePathLineChart({ days, loading, scrollRef, chartTheme, plotFutur
                     {d.shortLabel}
                   </Text>
                   <Text style={{
-                    fontSize: 8,
+                    fontSize: 8, // d145-micro: подпись оси графика в колонке 26 pt, 13 не влезает
                     marginTop: 2,
                     fontWeight: isToday ? '800' : '400',
                     color: isToday ? ct.textSecond : ct.textMuted,
@@ -2437,7 +2437,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                                   <View style={{ height: CHART_VALUE_LABEL_H, justifyContent: 'flex-end', alignItems: 'center', width: '100%' }}>
                                     <AdaptiveLabel testID={`stats-lifetime-chart-value-time-${d.date}`} provenance="authored" availableWidth={26} compactLineLimit={1} style={{
                                             color: d.ms > 0 ? (isToday ? t.textPrimary : t.textSecond) : t.textGhost,
-                                            fontSize: 7,
+                                            fontSize: 7, // d145-micro: подпись оси графика в колонке 26 pt, 13 не влезает
                                             fontWeight: '700',
                                             textAlign: 'center',
                                         }}>
@@ -2453,10 +2453,10 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                                   </View>
                                   <AdaptiveLabel testID={`stats-lifetime-chart-day-time-${d.date}`} provenance="authored" availableWidth={26} compactLineLimit={1} style={{
                                             color: isToday ? t.textPrimary : t.textMuted,
-                                            fontSize: 8, fontWeight: isToday ? '800' : '400',
+                                            fontSize: 8, fontWeight: isToday ? '800' : '400', // d145-micro: подпись оси графика в колонке 26 pt, 13 не влезает
                                             lineHeight: 11,
                                         }}>{d.shortLabel}</AdaptiveLabel>
-                                  <Text style={{ color: isToday ? t.textSecond : t.textGhost, fontSize: 8 }}>{d.dayNum}</Text>
+                                  <Text style={{ color: isToday ? t.textSecond : t.textGhost, fontSize: 8 /* d145-micro: подпись оси графика в колонке 26 pt, 13 не влезает */ }}>{d.dayNum}</Text>
                                 </View>);
                                 })}
                       </ScrollView>

@@ -45,3 +45,6 @@ Governance-ID: TG-054D34C312FC
 Governance-ID: TG-2F0A2C2CE0D1
 Governance-ID: TG-D731AF26BED5
 (сторож tests/flashcards_blitz_liquid_glass_source_contract.test.mjs обновлён под KitGlassLayer — следствие 9b848f4b8)
+
+Governance-ID: TG-B42BE230DCA8
+(стекло карточек «Обучения» — components/lessons/LessonsListGlassCard.tsx, сторож lessons_list_liquid_glass_source_contract PASS)

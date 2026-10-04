@@ -11,7 +11,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import PressableHybrid from '../PressableHybrid';
-import { LinearGradient } from '../SafeLinearGradient';
+import { KitGlassLayer, KIT_GLASS_DROP } from '../v2/KitLiquidGlass';
 import type { Lang } from '../../constants/i18n';
 import {
   lessonsGlassAlpha,
@@ -236,25 +236,23 @@ export const LessonsListGlassCard = React.memo(function LessonsListGlassCard({
       withHaptic={false}
       variant="card"
       pressScaleTo={0.975}
-      style={{ marginHorizontal: 20, marginTop: 9 }}
+      // зачем (kit.css --lg-drop): у карточек макета мягкая тень снизу.
+      style={{ marginHorizontal: 20, marginTop: 9, borderRadius: 14, boxShadow: KIT_GLASS_DROP }}
       contentStyle={[
         lessonsGlassCardStyle(glass, 14),
         { minHeight: 86, flexDirection: 'row', alignItems: 'center', gap: 14, padding: 14 },
       ]}
     >
-      <LinearGradient
-        pointerEvents="none"
-        colors={[glass.selected, 'transparent']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 0.9, y: 1 }}
-        style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0 }}
-      />
+      {/* зачем (сверка 04.10, learn-001): карточка урока — стекло kit.css (.card::after: блик 150°, светлая
+          кромка сверху-слева, тёмная снизу), а не плоская заливка с подкраской темы. */}
+      <KitGlassLayer radius={14} />
       {fx?.kind === 'unlock' ? <UnlockGlow key={`glow-${fx.key}`} glass={glass} onDone={clearFx} /> : null}
       <View style={{ opacity: locked ? 0.8 : 1 }}>
         {fx ? <CirclePop key={`pop-${fx.key}`}>{circle}</CirclePop> : circle}
       </View>
       <View style={{ flex: 1, minWidth: 0, opacity: locked ? 0.8 : 1 }}>
-        <Text style={{ color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{name}</Text>
+        {/* зачем (learn.html `.lc.locked .tt`): у закрытого урока название приглушённое (#D0D0D2 ≈ текст темы с прозрачностью .82, + .8 у блока). */}
+        <Text style={{ color: locked ? lessonsGlassAlpha(glass.text, 0.82) : glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{name}</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 8, minHeight: 18 }}>
           {fx ? <StatusFade key={`st-${fx.key}`}>{status}</StatusFade> : status}
         </View>

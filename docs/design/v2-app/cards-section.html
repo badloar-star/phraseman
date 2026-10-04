@@ -160,7 +160,7 @@ const arr = `<span class="ar">${icon('arrowR', 's20')}</span>`;
 const bot = (html) => `<div class="bot">${html}</div>`;
 const two = (a, b) => `<div class="two">${a}${b}</div>`;
 // Лимит Free — только аккуратная пилюля в шапке, без текстов над кнопкой.
-const lim = (n) => `<span class="pill s">${li('cards', 's16')}${n}/3</span>`;
+const lim = (n) => `<span class="pill s">${li('cards', 's16')}${({ 0: 0, 2: 24, 3: 30 })[n] ?? n}/30</span>`;
 const volBtn = `<span class="rb fill t">${icon('vol', 's18')}</span>`;
 const topRow = (right = '') => `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><div class="flex">${right}</div></div>`;
 const title = (ti, su) => `<div class="lt"><div class="ti">${ti}</div>${su ? `<div class="su">${su}</div>` : ''}</div>`;
@@ -188,7 +188,7 @@ const modeInner = `<div class="flex" style="padding:0 4px"><div class="grow" sty
 // =====================================================================
 const hubHero = (o = {}) => `<div class="card c2" style="margin-top:26px;padding:18px 18px 20px">
   <div class="flex" style="gap:14px"><div class="tile t55">${li('cards', 's26')}</div><div class="grow"><div style="font-size:19px;font-weight:700">Тренировка</div><div style="font-size:15px;color:var(--sec);margin-top:4px">${o.sub || '133 карточки · 3 набора'}</div></div></div>
-  <div class="cta t" data-open="mode" style="margin-top:18px">${o.btn || 'Тренироваться · осталось 2 из 3'}${arr}</div></div>`;
+  <div class="cta t" data-open="mode" style="margin-top:18px">${o.btn || 'Тренироваться · осталось 24 из 30'}${arr}</div></div>`;
 const hub = () => phone(`
   ${topRow(`${lim(2)}<span class="rb t">${icon('plus', 's20')}</span>`)}
   ${title('Карточки', 'Слова и фразы')}
@@ -497,7 +497,7 @@ const resPerfect = () => phone(`
 // 13–14. ЛИМИТ И СЕТЬ
 // =====================================================================
 const limitOut = () => phone(`${topRow(lim(0))}${title('Блиц', 'Минута на скорость')}
-  ${empty(li('clock', 's28'), 'На сегодня всё', 'Новые тренировки — завтра', '')}`);
+  ${empty(li('clock', 's28'), 'Лимит на этот месяц исчерпан', 'Обновится 1 ноября', '')}`);
 const offline = () => phone(`${topRow()}${title('Карточки')}
   ${empty(icon('wifiOff', 's28'), 'Сейчас недоступно', 'Проверьте интернет', `${li('refresh', 's18')}Попробовать снова`, { c: 'var(--sec)' })}`);
 

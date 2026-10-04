@@ -9,7 +9,7 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useEffect } from 'react';
-import { Pressable, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
+import { Pressable, StyleSheet, Text, useWindowDimensions, View, type StyleProp, type ViewStyle } from 'react-native';
 import Reanimated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
@@ -33,12 +33,22 @@ type Props = Readonly<{
   trainLocked: boolean;
   tiles: readonly CardsHubTile[];
   reduceMotion: boolean;
+  /** Высота, доступная под содержимое (экран минус вырезы): стопка и плитки сжимаются на невысоких экранах, чтобы не было прокрутки. */
+  availableHeight: number;
   onBack: () => void;
   onCreate: () => void;
   onTrain: () => void;
   trainButtonRef?: React.Ref<View>;
   labels: Readonly<{ back: string; create: string; trainA11y: string }>;
 }>;
+
+/** Смешивает цвет темы с тёмным основанием (как color-mix макета: 46% темы + тёмный) — карточки НЕПРОЗРАЧНЫЕ, без просвечивания слоёв. */
+function mixDark(hex: string, base: string, t: number): string {
+  const c = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+  const a = c(hex.length >= 7 ? hex : '#888888');
+  const b = c(base);
+  return `#${a.map((v, i) => Math.round(v * t + b[i]! * (1 - t)).toString(16).padStart(2, '0')).join('')}`;
+}
 
 /** Два цвета темы для градиента внутри карточек: из роли градиента акцента, иначе — акцент и кромка. */
 function themePair(g: GlassTokens): readonly [string, string] {
@@ -52,7 +62,7 @@ const StackCard = ({ g, style, opacity }: { g: GlassTokens; style: StyleProp<Vie
   return (
     <LinearGradient
       pointerEvents="none"
-      colors={[`${a}66`, '#08080B', `${b}55`]}
+      colors={[mixDark(a, '#0A0A0E', 0.46), '#08080C', mixDark(b, '#08080C', 0.4)]}
       locations={[0, 0.58, 1]}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
@@ -63,7 +73,7 @@ const StackCard = ({ g, style, opacity }: { g: GlassTokens; style: StyleProp<Vie
 
 function CardsHubV2Inner({
   g, title, subtitle, limitLabel, topWord, topIpa, trainLabel, trainLocked, tiles, reduceMotion,
-  onBack, onCreate, onTrain, trainButtonRef, labels,
+  onBack, onCreate, onTrain, trainButtonRef, labels, availableHeight,
 }: Props) {
   const float = useSharedValue(0);
   useEffect(() => {
@@ -73,6 +83,12 @@ function CardsHubV2Inner({
   }, [float, reduceMotion]);
   const floatStyle = useAnimatedStyle(() => ({ transform: [{ translateY: float.value }] }));
   const [a, b] = themePair(g);
+  // зачем (макет 932dp: стопка 250, плитки 150): на невысоких экранах сжимаем стопку и плитки пропорционально, чтобы хаб оставался без прокрутки.
+  const fixed = 44 + 4 + 8 + 40 + 2 + 22 + 26 + 14 + 52 + 20 + 12 + 28; // +28: воздух снизу, как в макете
+  const rem = Math.max(0, availableHeight - fixed);
+  const stackH = Math.round(Math.min(250, Math.max(150, rem * 0.42)));
+  const tileH = Math.round(Math.min(150, Math.max(96, (rem - stackH) / 2)));
+  const k = stackH / 250;
 
   return (
     <View style={styles.root} testID="fc-cards-hub-v2">
@@ -98,12 +114,12 @@ function CardsHubV2Inner({
       <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
       <Text style={[styles.subtitle, { color: g.secondary }]}>{subtitle}</Text>
 
-      <View style={styles.stack} pointerEvents="box-none">
-        <StackCard g={g} opacity={0.7} style={styles.stackBack2} />
-        <StackCard g={g} opacity={0.9} style={styles.stackBack1} />
-        <Reanimated.View style={[styles.stackTop, floatStyle]} pointerEvents="none">
+      <View style={[styles.stack, { height: stackH }]} pointerEvents="box-none">
+        <StackCard g={g} opacity={0.7} style={[styles.stackBack2, { height: Math.round(110 * k) }]} />
+        <StackCard g={g} opacity={0.9} style={[styles.stackBack1, { top: Math.round(18 * k), height: Math.round(130 * k) }]} />
+        <Reanimated.View style={[styles.stackTop, { top: Math.round(40 * k), height: Math.round(200 * k) }, floatStyle]} pointerEvents="none">
           <LinearGradient
-            colors={[`${a}80`, '#08080B', `${b}66`]}
+            colors={[mixDark(a, '#0A0A0E', 0.5), '#08080C', mixDark(b, '#08080C', 0.42)]}
             locations={[0, 0.58, 1]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
@@ -125,7 +141,7 @@ function CardsHubV2Inner({
       <View style={styles.tiles}>
         {tiles.map((t) => (
           <Pressable key={t.id} testID={`fc-cards-hub-tile-${t.id}`} accessibilityRole="button" accessibilityLabel={`${t.title}. ${t.count}`} onPress={t.onPress}
-            style={({ pressed }) => [styles.tile, { backgroundColor: g.opaqueCard }, pressed && styles.pressed]}>
+            style={({ pressed }) => [styles.tile, { backgroundColor: g.opaqueCard, minHeight: tileH }, pressed && styles.pressed]}>
             <LinearGradient pointerEvents="none" colors={[`${a}2E`, 'transparent', `${b}24`]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
             <LinearGradient pointerEvents="none" colors={['#FFFFFF24', '#FFFFFF00']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 0.6 }} style={StyleSheet.absoluteFill} />
             <View style={[styles.tileIcon, { backgroundColor: g.accentTile }]}>
@@ -133,7 +149,7 @@ function CardsHubV2Inner({
             </View>
             <View>
               <Text style={[styles.tileTitle, { color: g.text }]} numberOfLines={1}>{t.title}</Text>
-              <Text style={[styles.tileCount, { color: g.secondary }]} numberOfLines={1}>{t.count}</Text>
+              <Text style={[styles.tileCount, { color: g.secondary }]} numberOfLines={1}>{t.count === '' ? ' ' : t.count}</Text>
             </View>
           </Pressable>
         ))}
@@ -156,17 +172,18 @@ const styles = StyleSheet.create({
   title: { marginTop: 8, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.4 },
   subtitle: { marginTop: 2, fontSize: 16, lineHeight: 22 },
   stack: { height: 250, marginTop: 26 },
-  stackCard: { position: 'absolute', borderRadius: 28, overflow: 'hidden' },
+  // зачем (макет): тонкая 1px полупрозрачная кромка карточек — разрешена исключением PhraseMan 2.0 (толстых и цветных рамок нет)
+  stackCard: { position: 'absolute', borderRadius: 28, overflow: 'hidden', borderWidth: StyleSheet.hairlineWidth, borderColor: 'rgba(255,255,255,0.14)' },
   stackBack2: { left: 38, right: 38, top: 0, height: 110 },
   stackBack1: { left: 19, right: 19, top: 18, height: 130 },
-  stackTop: { position: 'absolute', left: 0, right: 0, top: 40, height: 200, borderRadius: 30, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
+  stackTop: { position: 'absolute', left: 0, right: 0, top: 40, height: 200, borderRadius: 30, overflow: 'hidden', alignItems: 'center', justifyContent: 'center', borderWidth: StyleSheet.hairlineWidth, borderColor: 'rgba(255,255,255,0.18)' },
   topWord: { color: '#FFFFFF', fontSize: 36, lineHeight: 42, fontWeight: '700', paddingHorizontal: 16 },
   topIpa: { marginTop: 8, color: 'rgba(255,255,255,0.65)', fontSize: 16, lineHeight: 22, fontStyle: 'italic' },
-  cta: { marginTop: 14, height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 52 },
+  cta: { marginTop: 14, height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 44 },
   ctaText: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
   ctaIcon: { position: 'absolute', right: 20, top: 0, bottom: 0, justifyContent: 'center' },
   tiles: { marginTop: 20, flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
-  tile: { width: '48%', flexGrow: 1, minHeight: 150, borderRadius: 26, padding: 16, justifyContent: 'space-between', overflow: 'hidden' },
+  tile: { width: '48%', flexGrow: 1, minHeight: 150, borderRadius: 26, padding: 16, justifyContent: 'space-between', overflow: 'hidden', borderWidth: StyleSheet.hairlineWidth, borderColor: 'rgba(255,255,255,0.12)' },
   tileIcon: { width: 52, height: 52, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
   tileTitle: { fontSize: 19, lineHeight: 24, fontWeight: '700' },
   tileCount: { marginTop: 2, fontSize: 15, lineHeight: 20 },

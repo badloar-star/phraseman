@@ -4,6 +4,7 @@ import {
   AccessibilityInfo,
   findNodeHandle,
   StatusBar,
+  useWindowDimensions,
   StyleSheet,
   View,
 } from 'react-native';
@@ -567,14 +568,27 @@ export default function FlashcardsHubScreen() {
     : quotaPreview.status === 'allowed'
       ? triLang(lang, { ru: `Тренироваться · осталось ${trainingRemaining} из ${quotaPreview.limit}`, uk: `Тренуватися · залишилось ${trainingRemaining} з ${quotaPreview.limit}`, en: `Practise · ${trainingRemaining} of ${quotaPreview.limit} left`, es: `Entrenar · quedan ${trainingRemaining} de ${quotaPreview.limit}`, 'pt-BR': `Treinar · restam ${trainingRemaining} de ${quotaPreview.limit}`, vi: `Luyện tập · còn ${trainingRemaining} trong ${quotaPreview.limit}`, id: `Latihan · sisa ${trainingRemaining} dari ${quotaPreview.limit}`, tr: `Çalış · ${quotaPreview.limit} içinden ${trainingRemaining} kaldı`, pl: `Ćwicz · zostało ${trainingRemaining} z ${quotaPreview.limit}` })
       : copy.train;
-  const fmt = (n: number | null) => (n === null ? '' : new Intl.NumberFormat(lang, { notation: 'compact', maximumFractionDigits: 1 }).format(n));
+  // зачем (макет: «64», «4», «3 набора», «1 240»): число целиком с разделителем тысяч, без «1,2K»; у «Из видео» — число со словом «наборов» в нужной форме.
+  const fmt = (n: number | null) => (n === null ? '' : new Intl.NumberFormat(lang).format(n));
+  const packsWord = (n: number): string => {
+    const cat = (() => { try { return new Intl.PluralRules(lang).select(n); } catch (error) { console.warn('[FC-HUB] plural rules failed —', error instanceof Error ? error.message : String(error)); return 'other'; } })(); // guard-ok: лог причины, форма по умолчанию — other
+    const forms: Record<string, [string, string, string]> = {
+      ru: ['набор', 'набора', 'наборов'], uk: ['набір', 'набори', 'наборів'], pl: ['zestaw', 'zestawy', 'zestawów'],
+      en: ['pack', 'packs', 'packs'], es: ['pack', 'packs', 'packs'], 'pt-BR': ['pacote', 'pacotes', 'pacotes'],
+      vi: ['bộ thẻ', 'bộ thẻ', 'bộ thẻ'], id: ['paket', 'paket', 'paket'], tr: ['paket', 'paket', 'paket'],
+    };
+    const f = forms[lang] ?? forms.en!;
+    return cat === 'one' ? f[0] : cat === 'few' ? f[1] : f[2];
+  };
+  const fmtPacks = (n: number | null) => (n === null ? '' : `${fmt(n)} ${packsWord(n)}`);
   const tiles = [
     { id: 'saved' as const, icon: 'bookmark-outline' as const, title: copy.saved, count: fmt(savedCount), onPress: () => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub' } } as never) },
     { id: 'mine' as const, icon: 'albums-outline' as const, title: copy.mine, count: fmt(myPackCount), onPress: () => router.push('/flashcards_my_packs' as never) },
-    { id: 'video' as const, icon: 'play-circle-outline' as const, title: copy.videoShort, count: fmt(videoPackCount), onPress: () => router.push('/flashcards_video_packs' as never) },
+    { id: 'video' as const, icon: 'play-circle-outline' as const, title: copy.videoShort, count: fmtPacks(videoPackCount), onPress: () => router.push('/flashcards_video_packs' as never) },
     { id: 'community' as const, icon: 'earth-outline' as const, title: copy.communitySegment, count: fmt(communityPackCount), onPress: () => router.push('/flashcards_packs' as never) },
   ];
   const reduceMotion = useFcReduceMotion();
+  const windowHeight = useWindowDimensions().height;
 
   return (
     <View style={[styles.screen, { backgroundColor: g.bg }]}>
@@ -589,11 +603,12 @@ export default function FlashcardsHubScreen() {
             subtitle={copy.subtitleShort}
             limitLabel={limitLabel}
             topWord={topCard?.en ?? 'Boarding pass'}
-            topIpa={topCard?.transcription ?? ''}
+            topIpa={topCard ? (topCard.transcription ?? '') : '/ˈbɔːdɪŋ pɑːs/'}
             trainLabel={trainLabel}
             trainLocked={trainingLocked}
             tiles={tiles}
             reduceMotion={reduceMotion}
+            availableHeight={windowHeight - insets.top - insets.bottom}
             onBack={() => safeRouterBack(router, '/(tabs)/home' as never)}
             onCreate={openCreatePack}
             onTrain={onTrainPress}

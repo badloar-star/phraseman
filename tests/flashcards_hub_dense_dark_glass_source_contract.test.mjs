@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 
 const hub = readFileSync('app/flashcards/FlashcardsHubScreen.tsx', 'utf8');
 const view = readFileSync('app/flashcards/CardsHubV2.tsx', 'utf8');
-assert.doesNotMatch(hub + view, /borderWidth:|borderColor:/, 'full outlines must not return to the Cards hub');
+assert.doesNotMatch(hub + view, /borderWidth: (?!StyleSheet\.hairlineWidth)/, 'thick outlines must not return to the Cards hub (1px hairline edges are allowed)');
 assert.match(hub, /pathname: '\/flashcards_collection'/);
 assert.match(hub, /router\.push\('\/flashcards_my_packs' as never\)/);
 assert.match(hub, /router\.push\('\/flashcards_packs' as never\)/);

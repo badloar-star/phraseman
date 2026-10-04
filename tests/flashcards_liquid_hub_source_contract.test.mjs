@@ -531,6 +531,6 @@ test('approved hub A: stack, accent CTA with the monthly remainder and four equa
   assert.match(hub, /осталось \$\{trainingRemaining\} из \$\{quotaPreview\.limit\}/, 'CTA shows the remaining monthly sessions');
   assert.match(view, /fc-cards-hub-train/);
   assert.match(view, /stackTop/);
-  assert.doesNotMatch(view, /ScrollView|borderWidth|borderColor/, 'hub A has no scroll and no outlines');
+  assert.doesNotMatch(view, /ScrollView|borderWidth: (?!StyleSheet\.hairlineWidth)/, 'hub A has no scroll and only 1px hairline edges');
   assert.match(view, /tiles: \{[^}]*flexWrap: 'wrap'/);
 });

@@ -28,8 +28,12 @@ const fan = `<div style="position:absolute;right:14px;top:20px;width:128px;heigh
 
 // 1. «Аврора»: большая панель тренировки и четыре равные плитки 2×2
 const hubA = () => phone(`${head2()}<div class="rise">
-  <div class="gl pad" style="margin-top:26px;min-height:250px">${fan}<div class="ov2">Тренировка</div><div style="font-size:72px;line-height:76px;font-weight:800;letter-spacing:-1.6px;margin-top:12px">133</div><div style="font-size:16px;color:var(--sec);margin-top:2px">карточки · 3 набора</div><div class="ac-cta t" style="margin-top:28px">Тренироваться${arrow}</div></div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px">${SECTIONS.map(([ic, t, n]) => `<div class="gl pad t" style="padding:18px 16px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between"><div class="gtile" style="--t:var(--g1)">${secIcon(ic, 's24')}</div><div><div style="font-size:19px;font-weight:700">${t}</div><div style="font-size:15px;color:var(--sec);margin-top:2px">${n}</div></div></div>`).join('')}</div></div>`);
+  <div style="position:relative;height:250px;margin-top:26px">
+    <div class="mc solid" style="--t:var(--g1);position:absolute;left:38px;right:38px;top:0;height:110px;opacity:.7;border-radius:28px"></div>
+    <div class="mc solid" style="--t:var(--g1);position:absolute;left:19px;right:19px;top:18px;height:130px;opacity:.9;border-radius:28px"></div>
+    <div class="mc solid t float" style="--t:var(--g1);position:absolute;left:0;right:0;top:40px;height:200px;border-radius:30px;flex-direction:column"><span style="font-size:36px;font-weight:700">Boarding pass</span><span style="font-size:16px;font-style:italic;color:rgba(255,255,255,.65);margin-top:8px;font-weight:400">/ˈbɔːdɪŋ pɑːs/</span></div></div>
+  <div class="ac-cta t" style="margin-top:14px">Тренироваться · 133${arrow}</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px">${SECTIONS.map(([ic, t, n]) => `<div class="gl pad t" style="padding:18px 16px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between"><div class="gtile" style="--t:var(--g1)">${secIcon(ic, 's24')}</div><div><div style="font-size:19px;font-weight:700">${t}</div><div style="font-size:15px;color:var(--sec);margin-top:2px">${n}</div></div></div>`).join('')}</div></div>`);
 
 // 2. «Лента»: панель-число сверху, четыре широкие равные строки
 const wide = (ic, t, n) => `<div class="gl t" style="display:flex;align-items:center;gap:16px;padding:14px 18px 14px 14px;margin-top:12px;min-height:92px;border-radius:24px"><div class="gtile" style="width:60px;height:60px;border-radius:18px;--t:var(--g1)">${secIcon(ic, 's26')}</div><div class="grow"><div style="font-size:20px;font-weight:700">${t}</div><div style="font-size:15px;color:var(--sec);margin-top:2px">${n}</div></div>${ch2}</div>`;
@@ -66,9 +70,8 @@ const galleryPhone = () => phone(`${topRow(`${lim2}<span class="rb t">${icon('pl
 
 document.getElementById('root').innerHTML =
   block('gal', 'Карточки — масштаб как в галерее', 'Ползунок вверху страницы. Щипок двумя пальцами или Ctrl + колесо над экраном делают то же самое. Нажатие — переворот на перевод.', [col('Сохранённые: карточки меняют размер и форму', galleryPhone())]) +
-  block('hub', 'Хаб «Карточки» — выберите 1 из 5', 'Без прокрутки. Тренировка и четыре РАВНЫХ раздела: Сохранённые, Мои наборы, Из видео, Сообщество (лимит 2/3 в шапке). Всё анимировано; цвета меняются темой вверху.',
-    [col('Вариант 1 · «Аврора»: панель тренировки и 4 равные плитки', hubA()), col('Вариант 2 · «Лента»: число и 4 равные строки', hubB()), col('Вариант 3 · «Мини-колоды»: у каждого раздела своя стопка', hubC()),
-     col('Вариант 4 · «Стопка»: верхняя карточка и 4 круга', hubD()), col('Вариант 5 · «Диск»: круглая тренировка и 4 плитки', hubE())]);
+  block('hub', 'Хаб «Карточки» — вариант А (выбран)', 'Без прокрутки. Тренировка и четыре РАВНЫХ раздела: Сохранённые, Мои наборы, Из видео, Сообщество (лимит 2/3 в шапке). Всё анимировано; цвета меняются темой вверху.',
+    [col('Хаб «Карточки» — вариант А (выбран владельцем): стопка карточек, кнопка и четыре равных раздела', hubA())]);
 
 // ---------- подключение ----------
 const g = document.getElementById('g');

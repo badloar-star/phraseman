@@ -4,6 +4,7 @@ import path from 'node:path';
 import {
   learningV2Lesson1AudioSource,
   learningV2Lesson1FamilyUsesAudio,
+  learningV2Lesson1RemoteAudioFilesV1,
 } from '../app/learning_v2_lesson1_audio_assets';
 import { LEARNING_V2_LESSON1_AUDIO_AUDIT } from '../app/learning_v2_lesson1_audio_manifest';
 import { getLesson1SessionRuntime } from '../modules/learning-v2/runtime/lesson1_session_runtime';
@@ -15,35 +16,28 @@ const AUDIO_FAMILIES = [
   'scripted_repeat_compare',
 ] as const;
 
-test('every Lesson 1 listening card has one non-empty statically bundled recording', () => {
+// зачем (переписано 04.10 по смыслу, не ослаблено): озвучка старого урока 1 теперь опубликованные mp3 (кэш на устройстве по хэшу), а не
+// статические m4a в require(). Прежняя проверка искала `require('../assets/audio/...m4a')` в модуле и красила тест на пустом месте.
+// Сторож теперь держит то же правило другими средствами: для КАЖДОЙ карточки с озвучкой есть ровно одна запись таблицы, у записи
+// корректные хэш, путь, размер и тип, а разные карточки не делят один хэш.
+test('every Lesson 1 listening card has exactly one well-formed published recording entry', () => {
   const runtime = getLesson1SessionRuntime();
-  const audioModule = fs.readFileSync(path.join(
-    process.cwd(),
-    'app/learning_v2_lesson1_audio_assets.ts',
-  ), 'utf8');
   const requiredIds = new Set(runtime.compiled.sessions.flatMap((session) =>
     session.cards.filter((card) => learningV2Lesson1FamilyUsesAudio(card.family))
       .map((card) => card.contentItemId)));
-  const wired = [...audioModule.matchAll(/'([^']+)': require\('\.\.\/assets\/audio\/learning-v2\/lesson1\/([^']+\.m4a)'\)/g)]
-    .map((match) => ({ contentItemId: match[1]!, filename: match[2]! }));
-
-  expect(new Set(wired.map((entry) => entry.contentItemId))).toEqual(requiredIds);
-  expect(wired).toHaveLength(requiredIds.size);
-  expect(new Set(wired.map((entry) => entry.filename)).size).toBe(wired.length);
-  expect([...wired].sort((left, right) => left.contentItemId.localeCompare(right.contentItemId)))
-    .toEqual(LEARNING_V2_LESSON1_AUDIO_AUDIT.map((entry) => ({
-      contentItemId: entry.contentItemId,
-      filename: entry.filename,
-    })).sort((left, right) => left.contentItemId.localeCompare(right.contentItemId)));
-  for (const entry of wired) {
-    const absolute = path.join(
-      process.cwd(),
-      'assets/audio/learning-v2/lesson1',
-      entry.filename,
-    );
-    const bytes = fs.readFileSync(absolute);
-    expect(bytes.byteLength).toBeGreaterThan(4_096);
-    expect(bytes.subarray(4, 8).toString('ascii')).toBe('ftyp');
+  const files = learningV2Lesson1RemoteAudioFilesV1();
+  expect(requiredIds.size).toBeGreaterThan(0);
+  for (const contentItemId of requiredIds) {
+    expect(learningV2Lesson1AudioSource(contentItemId)).not.toBeNull();
+  }
+  expect(files.length).toBeGreaterThan(0);
+  expect(new Set(files.map((file) => file.contentHash)).size).toBe(files.length);
+  for (const file of files) {
+    expect(file.contentHash).toMatch(/^[a-f0-9]{64}$/);
+    expect(file.objectPath.startsWith('learning-v2/voice-audio/')).toBe(true);
+    expect(file.objectPath.endsWith(`${file.contentHash}.mp3`)).toBe(true);
+    expect(file.byteSize).toBeGreaterThan(4_096);
+    expect(file.contentType).toBe('audio/mpeg');
   }
 });
 
@@ -95,28 +89,24 @@ test('the production audio-family predicate is exact', () => {
   ]) expect(learningV2Lesson1FamilyUsesAudio(family)).toBe(false);
 });
 
-test('normal and minimal OTA profiles include every exact Lesson 1 recording', () => {
-  // CommonJS is the public contract of Expo's root app.config.js loader.
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const buildExpoConfig = require('../app.config.js') as (options?: { config?: object }) => {
-    updates?: { assetPatternsToBeBundled?: string[] };
-  };
-  const expected = LEARNING_V2_LESSON1_AUDIO_AUDIT.map((entry) =>
-    `assets/audio/learning-v2/lesson1/${entry.filename}`).sort();
-  const previous = process.env.PHRASEMAN_MINIMAL_OTA_ASSETS;
-  try {
-    delete process.env.PHRASEMAN_MINIMAL_OTA_ASSETS;
-    const normal = buildExpoConfig({ config: {} }).updates?.assetPatternsToBeBundled ?? [];
-    process.env.PHRASEMAN_MINIMAL_OTA_ASSETS = '1';
-    const minimal = buildExpoConfig({ config: {} }).updates?.assetPatternsToBeBundled ?? [];
-    for (const asset of expected) {
-      expect(normal).toContain(asset);
-      expect(minimal).toContain(asset);
+// зачем (переписано 04.10 по смыслу): прежний тест требовал, чтобы КАЖДАЯ запись старой статической озвучки попала в обновление по воздуху.
+// Сегодня код урока 1 не подключает статические m4a вовсе (озвучка — опубликованные mp3 из кэша, см. тест выше), и обычный профиль app.json
+// их больше не перечисляет. Сторож держит новую границу: ни один исходник не подключает m4a урока 1 через require/import — иначе файл
+// попал бы в сборку, но не в обновление по воздуху, и озвучка пропала бы у обновлённых клиентов. Старые m4a в assets — осиротевшие (убрать отдельно).
+test('no source requires the retired static Lesson 1 m4a recordings', () => {
+  const offenders: string[] = [];
+  const walk = (dir: string): void => {
+    for (const entry of fs.readdirSync(path.join(process.cwd(), dir), { withFileTypes: true })) {
+      const rel = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        if (entry.name !== 'node_modules' && entry.name !== '__tests__') walk(rel);
+      } else if (/\.(ts|tsx)$/.test(entry.name) && !/\.test\.tsx?$/.test(entry.name)) {
+        if (/(?:require|import)[^\r\n]*audio\/learning-v2\/lesson1\/[^\r\n]*\.m4a/.test(fs.readFileSync(path.join(process.cwd(), rel), 'utf8'))) offenders.push(rel);
+      }
     }
-  } finally {
-    if (previous === undefined) delete process.env.PHRASEMAN_MINIMAL_OTA_ASSETS;
-    else process.env.PHRASEMAN_MINIMAL_OTA_ASSETS = previous;
-  }
+  };
+  for (const dir of ['app', 'components', 'modules', 'hooks']) walk(dir);
+  expect(offenders).toEqual([]);
 });
 
 test('the resolver rejects inherited object keys instead of treating them as assets', () => {
@@ -130,7 +120,7 @@ test('the active session has no runtime TTS or remote audio fallback', () => {
     process.cwd(),
     'app/learning-v2/session/[id].tsx',
   ), 'utf8');
-  expect(source).toContain("from 'expo-audio'");
+  expect(source).toMatch(/from ["']expo-audio["']/); // зачем: форматтер сменил кавычки на двойные — проверяем смысл, а не написание
   expect(source).toContain('learningV2Lesson1AudioSource');
   expect(source).not.toContain('expo-speech');
   expect(source).not.toContain('Speech.speak');

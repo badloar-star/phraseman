@@ -21,6 +21,9 @@ export const learningV2Lesson1RemoteAudioFilesV1 = (): readonly LearningV2Course
   Object.freeze(Object.values(LEARNING_V2_LEGACY_LESSON1_REMOTE_AUDIO));
 
 export const learningV2Lesson1AudioSource = (contentItemId: string): string | null => {
+  // зачем (04.10, найдено при переписывании теста): `'__proto__'`/`'constructor'` проходили проверку `!entry` (это унаследованные свойства
+  // объекта) и давали адрес файла `undefined.mp3`. Берём только собственные ключи таблицы.
+  if (!Object.prototype.hasOwnProperty.call(LEARNING_V2_LEGACY_LESSON1_REMOTE_AUDIO, contentItemId)) return null;
   const entry = LEARNING_V2_LEGACY_LESSON1_REMOTE_AUDIO[
     contentItemId as keyof typeof LEARNING_V2_LEGACY_LESSON1_REMOTE_AUDIO
   ];

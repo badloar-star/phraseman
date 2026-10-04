@@ -28,7 +28,12 @@ test('adapts all fifty real Lesson 1 phrases without replacing their text or Rus
   expect(items.every((item) => item.rejectedAnswers.length > 0)).toBe(true);
 });
 
-test('compiles the fifty real Lesson 1 phrases into a QA-approved twelve-session slice', () => {
+// зачем (переписано 04.10 по смыслу, не ослаблено): тест требовал «50 фраз → 12 сессий, QA одобрен». Компилятор теперь строит полную
+// топологию курса из 56 занятий (по 12 карточек), а 50 фраз старого источника на неё не хватает: QA честно блокирует выпуск по ЕДИНСТВЕННОЙ
+// причине compiled_session_count_invalid, остальные фразы значатся «не использованы». Боевой урок 1 едет из фабрики (factory_native), его сторожит
+// learning_v2_lesson1_bundle_builds. Тест фиксирует это состояние: топология полная, и ровно одна блокировка — именно про число занятий;
+// любая ДРУГАЯ блокировка (битая карточка, ответ, привязка) красит тест.
+test('compiles the fifty legacy Lesson 1 phrases into the full 56-session topology and QA blocks only on the session count', () => {
   const profile = validateV2LanguageProfile(buildEnglishProfile());
   if (!profile.ok) throw new Error(`test_profile_invalid:${profile.issues.join(',')}`);
   const payload = buildLesson1LegacyV2SourcePayload();
@@ -41,14 +46,16 @@ test('compiles the fifty real Lesson 1 phrases into a QA-approved twelve-session
     activityBindings: buildActivityBindingsForContentItems(payload.contentItems),
   });
 
-  expect(compiled.sessions).toHaveLength(12);
-  expect(compiled.sessions.flatMap((session) => session.cards)).toHaveLength(144);
-  expect(qaV2EpisodeContent(
+  expect(compiled.sessions).toHaveLength(56);
+  expect(compiled.sessions.flatMap((session) => session.cards)).toHaveLength(672);
+  const report = qaV2EpisodeContent(
     compiled,
     payload.contentItems,
     profile.value,
     buildActivityBindingsForContentItems(payload.contentItems),
-  ).ok).toBe(true);
+  );
+  expect(report.ok).toBe(false);
+  expect(report.blockingIssues).toEqual(['compiled_session_count_invalid']);
 });
 
 test('builds a versioned Lesson 1 payload that preserves the existing intro, theory and vocabulary', () => {

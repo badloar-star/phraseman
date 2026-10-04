@@ -465,9 +465,22 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               },
             ]}
           >
-            <View style={[styles.headerSearchField, { borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }]}>
-              <CatalogGlass tint={g.selected} edge={g.glassEdge} />
-              <Ionicons name="search-outline" size={16} color={t.accent} />
+            {embedded ? (
+              // зачем (packs-simple.html кадр 2): в режиме поиска слева круглая «назад» — она же закрывает поиск.
+              <TouchableOpacity
+                testID="flashcards-packs-search-back"
+                accessibilityRole="button"
+                accessibilityLabel={closeSearchLabel}
+                onPress={toggleSearch}
+                style={[styles.headerRoundBtn, styles.headerRoundBtnLarge, { borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }]}
+              >
+                <CatalogGlass tint={g.selected} edge={g.glassEdge} />
+                <Ionicons name="chevron-back" size={20} color={g.text} />
+              </TouchableOpacity>
+            ) : null}
+            <View style={[styles.headerSearchField, embedded ? styles.headerSearchFieldEmbedded : { borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }]}>
+              {embedded ? null : <CatalogGlass tint={g.selected} edge={g.glassEdge} />}
+              <Ionicons name="search-outline" size={embedded ? 20 : 16} color={embedded ? g.text : t.accent} />
               <TextInput
                 ref={searchInputRef}
                 testID="flashcards-packs-search"
@@ -480,7 +493,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
                 autoCapitalize="none"
                 returnKeyType="search"
                 maxFontSizeMultiplier={1.2}
-                style={[styles.headerSearchInput, { color: g.text }]}
+                style={[styles.headerSearchInput, embedded ? styles.headerSearchInputEmbedded : null, { color: g.text }]}
               />
               <TouchableOpacity
                 testID="flashcards-packs-search-close"
@@ -490,7 +503,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
                 onPress={toggleSearch}
                 hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               >
-                <Ionicons name="close-circle" size={18} color={t.textMuted} />
+                <Ionicons name={embedded ? 'close' : 'close-circle'} size={18} color={embedded ? g.secondary : t.textMuted} />
               </TouchableOpacity>
             </View>
           </Animated.View>
@@ -500,7 +513,8 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
   // смене того, что в нём видно, — иначе шапка ловила бы новый объект на каждый рендер раздела.
   const setHeaderSlot = useCommunityHeaderSlotSetter();
   const headerSlot = useMemo(
-    () => (embedded ? { right: headerActions, overlay: searchLayer } : null),
+    // зачем: слой отдаётся только при открытом поиске — шапка тогда ставит его ВМЕСТО вкладок (кадр 2).
+    () => (embedded ? { right: headerActions, overlay: searchOpen ? searchLayer : null } : null),
     // eslint-disable-next-line react-hooks/exhaustive-deps -- JSX выше выводится ровно из этих значений
     [embedded, searchOpen, communityQuery, packLanguage, lang, liquidGlassThemeId, t, toggleSearch, handlePackLanguageChange, searchLabel, closeSearchLabel],
   );
@@ -736,8 +750,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     zIndex: 6,
   },
-  // зачем: во вкладке «Сообщество» кнопки «назад» нет — поле поиска от левого края строки вкладок.
-  headerSearchLayerEmbedded: { left: 0 },
+  // зачем: во вкладке «Сообщество» слой стоит на месте строки вкладок: «назад» 42 + поле 46 (кадр 2).
+  headerSearchLayerEmbedded: { left: 0, flexDirection: 'row', alignItems: 'center', gap: 12 },
+  headerSearchFieldEmbedded: { flex: 1, height: 46, borderRadius: 23, paddingHorizontal: 16, gap: 10, borderWidth: 0, backgroundColor: 'rgba(255,255,255,0.08)' },
+  // зачем: макет 17; шкала D145 (решение владельца 04.10) — 16.
+  headerSearchInputEmbedded: { height: 44, fontSize: 16 },
   headerSearchField: {
     flexDirection: 'row',
     alignItems: 'center',

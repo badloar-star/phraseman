@@ -102,6 +102,10 @@ export default function CommunityTabRoute() {
   return (
     <View testID="community-tab" style={s.root}>
       <View style={s.header}>
+        {section === 'packs' && packsSlot?.overlay ? (
+          // зачем (packs-simple.html кадр 2): открытый поиск «Наборов» встаёт на место строки вкладок.
+          <View style={s.headerOverlay}>{packsSlot.overlay}</View>
+        ) : (<>
         <View testID="community-sections" accessibilityRole="tablist" style={s.tabs}>
           {segments.map((seg) => {
             const on = seg.key === section;
@@ -124,7 +128,7 @@ export default function CommunityTabRoute() {
           })}
         </View>
         <View style={s.headerRight}>{section === 'packs' ? packsSlot?.right : null}</View>
-        {section === 'packs' && packsSlot?.overlay ? <View pointerEvents="box-none" style={s.headerOverlay}>{packsSlot.overlay}</View> : null}
+        </>)}
       </View>
       <View style={s.body}>
         {renderSection('friends')}
@@ -144,7 +148,7 @@ const s = StyleSheet.create({
   // зачем: макет 17/600; шкала D145 (решение владельца 04.10: при сверке главнее 16/13) — 16.
   tabText: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
   headerRight: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  headerOverlay: { ...StyleSheet.absoluteFillObject, paddingHorizontal: V2.screenPad, paddingTop: 12, paddingBottom: 4, justifyContent: 'center' },
+  headerOverlay: { flex: 1, minHeight: 46, justifyContent: 'center' },
   body: { flex: 1, minHeight: 0 },
   // Скрытый раздел не рисуется, но сохраняет своё состояние и скролл.
   hidden: { display: 'none' },

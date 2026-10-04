@@ -1731,7 +1731,7 @@
     ],
     "basis": "OWNER",
     "stage": "B",
-    "status": "done",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -1742,13 +1742,14 @@
         "text": "Есть матрица экран × состояния × приёмка",
         "accepted": true,
         "evidence": [
-          "docs/phraseman-2.0/evidence/STATE_CHECKLIST_2026-09-30.md: матрица 758 состояний × макет × статус (747 ✅, остальное — решения владельца/не применимо/одобренная Главная)"
+          "docs/phraseman-2.0/evidence/STATE_CHECKLIST_2026-09-30.md: матрица 758 состояний × макет × статус (747 ✅, остальное — решения владельца/не применимо/одобренная Главная)",
+          "evidence/STATE_CHECKLIST_2026-09-30.md «Итог сверки»: пересчёт 04.10 по строкам матрицы (DQA)"
         ]
       },
       {
         "id": "PM-034-A2",
         "text": "ни один старый экран не спрятан за новым фасадом",
-        "accepted": true,
+        "accepted": false,
         "evidence": [
           "Каждая строка сверки указывает реальный файл экрана и коммит переноса; старые экраны не прячутся за фасадом (удалённые — удалены, D78/D108)"
         ]
@@ -1761,25 +1762,27 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
-    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "reviewer": "независимый рецензент координатора (opus), REVIEW_UI_11 (04.10)",
     "evidence": [
       "docs/phraseman-2.0/evidence/STATE_CHECKLIST_2026-09-30.md: матрица 758 состояний × макет × статус (747 ✅, остальное — решения владельца/не применимо/одобренная Главная)",
       "Каждая строка сверки указывает реальный файл экрана и коммит переноса; старые экраны не прячутся за фасадом (удалённые — удалены, D78/D108)",
-      "evidence/STATE_CHECKLIST_2026-09-30.md: 768 строк матрицы (746 ✅, 8 🏠, 2 ❌, прочее ➖), прогон ревью"
+      "evidence/STATE_CHECKLIST_2026-09-30.md: 768 строк матрицы (746 ✅, 8 🏠, 2 ❌, прочее ➖), прогон ревью",
+      "evidence/STATE_CHECKLIST_2026-09-30.md: итог пересчитан 04.10 (DQA), устаревший итог 30.09 свёрнут"
     ],
     "notes": [
       "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "Дизайн: визуальный проход в эмуляторе — в очереди",
-      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): НЕ принято. A1: матрица существует, но это самопроверка дизайнера по файлам (многие строки «не закоммичен»/«+правки в дереве»), в конце документа остаётся список невыполненного (Learning V2 82 = 78 🟠+4 ❌, старый урок 41 🟠, диагностика 27 🟠, диалоги V2 25 = 18 🟠+7 ❌, нативные Alert 17 и т.д.) — он противоречит шапке «747 ✅» и не помечен как устаревший. A2: «ни один старый экран не спрятан за фасадом» без эмуляторного прохода не подтвердить (в notes задачи: «визуальный проход в эмуляторе — в очереди»). Нужно: актуализировать итоговую часть матрицы, провести проход в эмуляторе/на устройстве, независимо подтвердить."
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): НЕ принято. A1: матрица существует, но это самопроверка дизайнера по файлам (многие строки «не закоммичен»/«+правки в дереве»), в конце документа остаётся список невыполненного (Learning V2 82 = 78 🟠+4 ❌, старый урок 41 🟠, диагностика 27 🟠, диалоги V2 25 = 18 🟠+7 ❌, нативные Alert 17 и т.д.) — он противоречит шапке «747 ✅» и не помечен как устаревший. A2: «ни один старый экран не спрятан за фасадом» без эмуляторного прохода не подтвердить (в notes задачи: «визуальный проход в эмуляторе — в очереди»). Нужно: актуализировать итоговую часть матрицы, провести проход в эмуляторе/на устройстве, независимо подтвердить.",
+      "2026-10-04 DQA: REVIEW_UI_11 — FAIL: итог матрицы устарел, эмуляторного прохода нет → возвращена в review. Итог матрицы пересчитан по строкам (758 = 746 ✅ / 8 🏠 / 4 ➖), прежний итог 30.09 и «Топ блоков» помечены устаревшими. A2 снят до прохода в эмуляторе."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
+    "kind": "design",
     "review_verdict": "CHANGES_REQUIRED",
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
     },
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "claude-opus-5.5 (сессия «Дизайн», по полю owner)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
     "id": "PM-035",
@@ -2314,9 +2317,9 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "fd1b35334",
     "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
-    "reviewer": "agent-reviewer (Sonnet) по поручению координатора, §32",
+    "reviewer": "независимый рецензент координатора (opus), REVIEW_UI_11 (04.10)",
     "evidence": [
       "components/streak/StreakFlameFill.tsx: контур огня заполняется по стадиям 0–10, после 10 — насыщение к 30 дням (токены темы, без новых ассетов); app/streak_stats.tsx",
       "tests/streak_flame_fill_contract.test.mjs",
@@ -2324,22 +2327,25 @@
       "РЕШЕНО КООРДИНАТОРОМ (Fable), 01.10 — владелец поручил координатору принимать решения; docs/phraseman-2.0/PROGRESS.md",
       "StreakFlameFill статичен: нет withRepeat/Animated.loop, нет чтений сети (сторож A2)",
       "tests/streak_flame_fill_contract.test.mjs 4/4 (прогон ревью 2026-10-01)",
-      "commit 747deb70d"
+      "commit 747deb70d",
+      "commit fd1b35334: ядро огня от центра 10→30 дней, в «Спокойно» внешний огонь не доходит до белого; tests/streak_flame_fill_contract.test.mjs 5/5 (по сообщению коммита)"
     ],
     "notes": [
       "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "Дизайн 01.10: шкала из существующего векторного огня по решению координатора; заменим, если появится макет",
-      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): содержание PASS (A1 заливка контура 0–10 и насыщение к 30; A2 нет withRepeat/Animated.loop и сетевых чтений, сторож 4/4). В done НЕ переведена: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES — шкала принята координатором, не владельцем (\"заменим, если появится макет\")."
+      "2026-10-01 независимое ревью пачки 2 (agent-reviewer, Q75/§32): содержание PASS (A1 заливка контура 0–10 и насыщение к 30; A2 нет withRepeat/Animated.loop и сетевых чтений, сторож 4/4). В done НЕ переведена: owner-gate DESIGN_APPROVED_FOR_VISIBLE_CHANGES — шкала принята координатором, не владельцем (\"заменим, если появится макет\").",
+      "2026-10-04 DQA: REVIEW_UI_11 — PASS_WITH_NOTES по содержанию; DESIGN закрыт решением владельца 04.10 (мягкий разгор в «Спокойно», fd1b35334). Кадра огня после fd1b35334 нет — замечание, не блокер."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
+    "kind": "code",
     "review_verdict": "PASS",
     "gate_evidence": {
       "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
-      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "evidence/DESIGN_GATE_OWNER_REVIEW.md «Решения владельца по вето-списку (04.10)» + INBOX §141: подписано решением владельца (огонь: мягкий разгор после 10 дней и в «Спокойно», fd1b35334)"
     },
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "claude-opus-5.5 (Co-Authored-By 747deb70d, fd1b35334)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
     "id": "PM-045",
@@ -4081,8 +4087,10 @@
       {
         "id": "PM-073-A1",
         "text": "Дизайны различимы в малом размере, не становятся радугой/мультяшностью",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "fd1b35334: монеты 15–19 перекрашены в холодную светлую сталь (решение владельца 04.10, INBOX §141); кадр docs/phraseman-2.0/evidence/design_gate/PM-073_platinum_before_after_40px.png — на 40 px платина читается отдельно от серебра (проверено глазами DQA 04.10)"
+        ]
       },
       {
         "id": "PM-073-A2",
@@ -4104,16 +4112,21 @@
     "owner": "Claude Opus 5.5 (субагент)",
     "reviewer": null,
     "evidence": [
-      "commit a6853bb20"
+      "commit a6853bb20",
+      "commit fd1b35334 + design_gate/PM-073_platinum_before_after_40px.png"
     ],
     "notes": [
       "2026-09-24: временная процедурная монета (SVG, 21 металл) — components/level_up/coin_metal_palette.ts + CoinFaceArt.tsx; PNG подставляется одним пропсом source/coinSource. Сами ассеты по-прежнему за художником.",
-      "20 монет webp (~0.5МБ), таблица app/coin_rank_table_v1.ts единый источник, coin_metal_palette обновлён на 4 металла. Ранг 19 = Титан, «Оракул» не используется — открытый вопрос владельцу"
+      "20 монет webp (~0.5МБ), таблица app/coin_rank_table_v1.ts единый источник, coin_metal_palette обновлён на 4 металла. Ранг 19 = Титан, «Оракул» не используется — открытый вопрос владельцу",
+      "2026-10-04 DQA: A1 принят (платина разведена fd1b35334, кадр 40 px). Остаётся в review: нужен независимый PASS и evidence gate MIGRATION_AND_ROLLBACK (замена webp-ассетов, откат = revert)."
     ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
-    "gate_evidence": {},
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
     "actual_model": "opus-5.5",
     "actual_reasoning": "high"
   },
@@ -4156,20 +4169,26 @@
       "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "ad7b02946",
     "owner": "Claude Opus 5.5",
-    "reviewer": "сессия «Дизайн» по поручению координатора 04.10 (FINAL_PHASE)",
+    "reviewer": "независимый рецензент координатора (opus), REVIEW_UI_11 (04.10)",
     "evidence": [
-      "docs/phraseman-2.0/docs/COIN_RANKS.md"
+      "docs/phraseman-2.0/docs/COIN_RANKS.md",
+      "app/coin_rank_table_v1.ts (a6853bb20 названия, ad7b02946 9 локалей)"
     ],
     "notes": [
       "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
-      "21 название (Классика + 20 рангов, металлы/монеты) предложено, ждёт утверждения владельца"
+      "21 название (Классика + 20 рангов, металлы/монеты) предложено, ждёт утверждения владельца",
+      "2026-10-04 DQA: REVIEW_UI_11 — PASS_WITH_NOTES. Заметка «ждёт утверждения владельца» снята: названия выбрал владелец (PROGRESS.md:106). Длинные локали (tr/vi) на кадре не сняты — проверено по коду."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE": "N/A — задача меняет только строки названий рангов (app/coin_rank_table_v1.ts, 9 локалей ad7b02946); данные пользователей, ключи и номера рангов не удаляются и не переименовываются; откат — revert строк (REVIEW_UI_11)"
+    },
     "actual_model": "opus-5.5",
     "actual_reasoning": "medium"
   },
@@ -5236,7 +5255,8 @@
         "text": "длинные названия и счётчики не ломают строку",
         "accepted": true,
         "evidence": [
-          "Дизайн 2026-10-04: app/flashcards/DeckSelectionTile.tsx — название и счётчик в колонке flex:1/minWidth:0 переносятся, чекбокс flexShrink:0; строка не ломается"
+          "Дизайн 2026-10-04: app/flashcards/DeckSelectionTile.tsx — название и счётчик в колонке flex:1/minWidth:0 переносятся, чекбокс flexShrink:0; строка не ломается",
+          "кадр docs/phraseman-2.0/evidence/design_gate/PM-092_A2_long_titles_80_202.png (dc2c79ff2): названия 80 и 202 знака переносятся, флажок на месте"
         ]
       }
     ],
@@ -5247,23 +5267,30 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "eac1f08e2",
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": "сессия «Дизайн» по поручению координатора 04.10 (FINAL_PHASE)",
+    "reviewer": "независимый рецензент координатора (opus), REVIEW_UI_11 (04.10)",
     "evidence": [
-      "commit 378ac4081"
+      "commit 378ac4081",
+      "commits e76118033 (каталог по cards.html), dc2c79ff2 (кадр A2), eac1f08e2 (удалена ветка classic)",
+      "design_gate/PM-092_A2_long_titles_80_202.png, PM-092_community_catalog_after_grid.png, PM-092_community_catalog_after_top.png, PM-092_blitz_deck_list_compact.png"
     ],
     "notes": [
       "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "DeckPickerSheet: квадратные плитки → компактный список. Каталог сообщества (сетка 3-в-ряд) НЕ переделан — делит файл с активной сессией наборов из видео, риск конфликта",
-      "пачка 14: остаток — A2 не принят (длинные названия/счётчики), каталог сообщества не переделан; кадр «настройка тренировки без ценника» не снят. Gate DESIGN подписан."
+      "пачка 14: остаток — A2 не принят (длинные названия/счётчики), каталог сообщества не переделан; кадр «настройка тренировки без ценника» не снят. Gate DESIGN подписан.",
+      "2026-10-04 DQA: REVIEW_UI_11 — PASS_WITH_NOTES. Заметки «каталог сообщества НЕ переделан» и «A2 не принят» устарели: каталог переделан e76118033 (кадры PM-092_community_catalog_after_*), A2 — кадр PM-092_A2_long_titles_80_202.png (dc2c79ff2); недостижимая ветка 'classic' удалена eac1f08e2."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": "sonnet-5",
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "evidence/DESIGN_GATE_OWNER_REVIEW.md — пачка 1 (02.10 05:40Z, вариант B §80): подписано за владельца (cards.html 26.09 + D97)"
+    },
+    "actual_model": "claude-sonnet-5 (378ac4081) + claude-opus-5.5 (e76118033, dc2c79ff2, eac1f08e2)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
     "id": "PM-093",
@@ -5304,23 +5331,28 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "8d38d6733",
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": "сессия «Дизайн» по поручению координатора 04.10 (FINAL_PHASE)",
+    "reviewer": "независимый рецензент координатора (opus), REVIEW_UI_11 (04.10)",
     "evidence": [
       "commits 13c9f3012 8d38d6733"
     ],
     "notes": [
       "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "D20: короткие описания у «Мои наборы» и «Наборы сообщества»",
-      "пачка 14: остаток — A2 («нет маркетингового абзаца») не принят, проверка текстов/кадров не сделана. Gate DESIGN подписан."
+      "пачка 14: остаток — A2 («нет маркетингового абзаца») не принят, проверка текстов/кадров не сделана. Gate DESIGN подписан.",
+      "2026-10-04 DQA: REVIEW_UI_11 — PASS_WITH_NOTES. Заметка «A2 не принят» (пачка 14) снята. Замечание: вторая половина строки описания пересказывает очевидное действие — на усмотрение «Дизайна»."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": "sonnet-5",
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "evidence/DESIGN_GATE_OWNER_REVIEW.md — пачка 1 (02.10 05:40Z, вариант B §80): подписано за владельца (D20 + cards.html 26.09)"
+    },
+    "actual_model": "claude-sonnet-5 (Co-Authored-By 13c9f3012, 8d38d6733)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
     "id": "PM-094",
@@ -5361,22 +5393,28 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "eac1f08e2",
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": "сессия «Дизайн» по поручению координатора 04.10 (FINAL_PHASE)",
+    "reviewer": "независимый рецензент координатора (opus), REVIEW_UI_11 (04.10)",
     "evidence": [
-      "commits 13c9f3012 8d38d6733"
+      "commits 13c9f3012 8d38d6733",
+      "commit eac1f08e2: подпись «N карточек» на 9 языках (app/flashcards_my_packs.tsx copy.cards)"
     ],
     "notes": [
       "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
-      "пачка 14: остаток — A2 (языковые варианты) не принят/не проверен. Gate DESIGN подписан."
+      "пачка 14: остаток — A2 (языковые варианты) не принят/не проверен. Gate DESIGN подписан.",
+      "2026-10-04 DQA: REVIEW_UI_11 — PASS_WITH_NOTES. Дефект рецензента (copy.cards для pt-BR/vi/id/tr/pl отдавал русское «карточек») исправлен eac1f08e2. Заметка «A2 не принят» (пачка 14) снята."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": "sonnet-5",
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "evidence/DESIGN_GATE_OWNER_REVIEW.md — пачка 1 (02.10 05:40Z, вариант B §80): подписано за владельца (D20 + cards.html 26.09)"
+    },
+    "actual_model": "claude-sonnet-5 (13c9f3012, 8d38d6733) + claude-opus-5.5 (eac1f08e2)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
     "id": "PM-095",
@@ -5485,23 +5523,29 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "37e29f8e5",
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": "сессия «Дизайн» по поручению координатора 04.10 (FINAL_PHASE)",
+    "reviewer": "независимый рецензент координатора (opus), REVIEW_UI_11 (04.10)",
     "evidence": [
-      "commit 13c9f3012"
+      "commit 13c9f3012",
+      "commit 37e29f8e5: сортировка читается вместе с наборами, без прыжка на первом заходе"
     ],
     "notes": [
       "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "единая сортировка «Мои наборы», сохраняется в AsyncStorage",
-      "пачка 14: остаток — A2 (сортировка сохраняется локально) и A3 (без перетасовки) не приняты. Gate DESIGN подписан."
+      "пачка 14: остаток — A2 (сортировка сохраняется локально) и A3 (без перетасовки) не приняты. Gate DESIGN подписан.",
+      "2026-10-04 DQA: REVIEW_UI_11 — PASS. Заметка «A2/A3 не приняты» (пачка 14) снята: A3 закреплён 37e29f8e5, сторож my_packs_sort_memo_contract зелёный."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": "sonnet-5",
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "evidence/DESIGN_GATE_OWNER_REVIEW.md — пачка 1 (02.10 05:40Z, вариант B §80): подписано за владельца (cards.html 26.09 + D97)"
+    },
+    "actual_model": "claude-sonnet-5 (13c9f3012) + claude-opus-5.5 (37e29f8e5)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
     "id": "PM-097",
@@ -5523,7 +5567,8 @@
         "text": "«Лицевая сторона» / «Обратная сторона» подходят неязыковым карточкам",
         "accepted": true,
         "evidence": [
-          "проверка"
+          "app/community_pack_create.tsx:1241/1256 — «Передняя сторона» / «Задняя сторона» на 9 языках (+ accessibilityLabel :1245/:1260)",
+          "кадр docs/phraseman-2.0/evidence/design_gate/PM-097_card_editor_neutral_sides.png"
         ]
       },
       {
@@ -5542,22 +5587,28 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "31d1ad28b",
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": "сессия «Дизайн» по поручению координатора 04.10 (FINAL_PHASE)",
+    "reviewer": "независимый рецензент координатора (opus), REVIEW_UI_11 (04.10)",
     "evidence": [
-      "проверка"
+      "app/community_pack_create.tsx:1241/1256 + design_gate/PM-097_card_editor_neutral_sides.png",
+      "commit 31d1ad28b: с экрана «Голос озвучки» убраны подсказки про голоса телефона"
     ],
     "notes": [
       "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
-      "поля стороны уже нейтральны (Передняя/Задняя), PM-065 не выполнялась и ничего не задела"
+      "поля стороны уже нейтральны (Передняя/Задняя), PM-065 не выполнялась и ничего не задела",
+      "2026-10-04 DQA: REVIEW_UI_11 — PASS_WITH_NOTES. DESIGN закрыт решением владельца 04.10: голос выбирается на весь язык изучения. Доказательство A1 «проверка» заменено ссылками на код и кадр."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": "sonnet-5",
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "evidence/DESIGN_GATE_OWNER_REVIEW.md «Решения владельца по вето-списку (04.10)» + INBOX §141: подписано решением владельца (голос озвучки — на весь язык изучения)"
+    },
+    "actual_model": "claude-sonnet-5 (поля сторон) + claude-opus-5.5 (Co-Authored-By 31d1ad28b)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
   "id": "PM-098",
@@ -5671,7 +5722,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "done",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -5701,9 +5752,9 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
-    "owner": null,
-    "reviewer": "сессия «Дизайн» по поручению координатора 04.10 (FINAL_PHASE)",
+    "result_sha": "2acba6874",
+    "owner": "Claude Opus 5.5 (по Co-Authored-By 2acba6874)",
+    "reviewer": "независимый рецензент координатора (opus), REVIEW_UI_11 (04.10)",
     "evidence": [
       "2026-10-03 2acba6874 feat(cards): наборы «Без языка» (D127): packLanguage 'none' только при явном выборе автора, легаси без поля = en; выбор в создании набора (community_pack_create, PackLanguagePicker), такие наборы видны при любом фильтре языка, помечены значком, не озвучиваются (zxx-маркер), в «Устно» не предлагаются; сервер принимает 'none' (functions/src/community_pack_language.ts); tests/pack_language_none_d127 + pack_language_none_voice_d127 16/16, functions community_pack_language 3/3 (прогон 03.10)",
       "2026-10-03 2acba6874: вся «неязыковость» — одно значение 'none' поля packLanguage (pack_languages.ts, deck_sources/deck_options, communityCatalogFilter) без новой предметной академии, каталога тем или классификатора; сервер: один хелпер community_pack_language.ts (48 строк)"
@@ -5711,14 +5762,18 @@
     "notes": [
       "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "Owner decision 2026-09-27: отдельный выбор языка разрешён только в разделе карточек; остальные учебные контуры используют язык, выбранный в настройках.",
-      "2026-10-03 ревизия реестра: PM-100 → review; гейт DESIGN_APPROVED_FOR_VISIBLE_CHANGES (значок и подпись «Без языка» в списках) — на проверку ревьюера/«Дизайна»; Owner decision 2026-09-27 про выбор языка только в разделе карточек соблюдено"
+      "2026-10-03 ревизия реестра: PM-100 → review; гейт DESIGN_APPROVED_FOR_VISIBLE_CHANGES (значок и подпись «Без языка» в списках) — на проверку ревьюера/«Дизайна»; Owner decision 2026-09-27 про выбор языка только в разделе карточек соблюдено",
+      "2026-10-04 DQA: REVIEW_UI_11 — PASS_WITH_NOTES по коду; DESIGN не подписан и кадров «Без языка» нет → возвращена в review до кадров и подписи. Деплой community_pack_language не подтверждён (деплой — владелец)."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
+    "kind": "code",
     "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)"
+    },
+    "actual_model": "claude-opus-5.5 (Co-Authored-By 2acba6874)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
   "id": "PM-101",
@@ -7273,23 +7328,30 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "9a9519fe3",
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": "сессия «Дизайн» по поручению координатора 04.10 (FINAL_PHASE)",
+    "reviewer": "независимый рецензент координатора (opus), REVIEW_UI_11 (04.10)",
     "evidence": [
-      "commit a17fef2cb (общий индекс)"
+      "commit a17fef2cb (общий индекс)",
+      "commit 9a9519fe3 (шапка и ответы по practice.html)",
+      "design_gate/PM-129_blitz_question_after.png, PM-129_blitz_answers_after.png, PM-129_blitz_monthly_quota_spent.png"
     ],
     "notes": [
       "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "убран устаревший комментарий про старую цену энергии 10⚡. Сам редизайн макета — зона сессии интерфейса, ждёт DESIGN_APPROVED_FOR_VISIBLE_CHANGES",
-      "пачка 14: остаток — A1 не принят: редизайн «Блиц» (общий selector, итог без фанфар) не сделан, в коммите только правка комментария. Gate DESIGN подписан."
+      "пачка 14: остаток — A1 не принят: редизайн «Блиц» (общий selector, итог без фанфар) не сделан, в коммите только правка комментария. Gate DESIGN подписан.",
+      "2026-10-04 DQA: REVIEW_UI_11 — PASS_WITH_NOTES. Заметки «редизайн не сделан» (пачка 14 и исходная) устарели: шапка и ответы по practice.html — 9a9519fe3, кадры 80ec52e93/498841db6."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": "sonnet-5",
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "PASS",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "evidence/DESIGN_GATE_OWNER_REVIEW.md — пачка 1 (02.10 05:40Z, вариант B §80): подписано за владельца (practice.html 26.09 + D97)"
+    },
+    "actual_model": "claude-sonnet-5 (a17fef2cb) + claude-opus-5.5 (Co-Authored-By 80ec52e93, 9a9519fe3)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
     "id": "PM-130",
@@ -7493,7 +7555,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "done",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -7504,7 +7566,7 @@
         "text": "По каждому control указано назначение",
         "accepted": true,
         "evidence": [
-          "commit f61e9f468"
+          "docs/phraseman-2.0/evidence/PM-134_buttons_purpose.md: назначение каждой кнопки в Блиц/Вспомни/Устно/Правда-ложь/Свайп/Отработка ошибок (по коду, HEAD e47c1c04c)"
         ]
       },
       {
@@ -7523,23 +7585,29 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "f61e9f468",
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": "agent-reviewer (Sonnet), пачка 15",
+    "reviewer": "независимый рецензент координатора (opus), REVIEW_UI_11 (04.10)",
     "evidence": [
-      "commit f61e9f468"
+      "commit f61e9f468",
+      "docs/phraseman-2.0/evidence/PM-134_buttons_purpose.md (DQA 04.10)"
     ],
     "notes": [
       "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "4 экрана практики проверены, мусора почти нет (PM-086 уже вычистил). Убраны 2 мёртвых импорта в mistake_practice_session.tsx",
-      "пачка 15: остаток — A2 не принят: коммит f61e9f468 убрал лишь 2 мёртвых импорта, ни одного control; список «control → назначение» отсутствует; mistake_practice_screen_contract красный 7/8 (ожидает params.returnTo==='max_voice_review', MAX запломбирован, тест устарел)"
+      "пачка 15: остаток — A2 не принят: коммит f61e9f468 убрал лишь 2 мёртвых импорта, ни одного control; список «control → назначение» отсутствует; mistake_practice_screen_contract красный 7/8 (ожидает params.returnTo==='max_voice_review', MAX запломбирован, тест устарел)",
+      "2026-10-04 DQA: REVIEW_UI_11 — FAIL (A1): списка «кнопка → назначение» не было → возвращена в review. Список составлен: evidence/PM-134_buttons_purpose.md (6 экранов режимов). Найден 1 дубль: «Настройки» в шапке свайп-режима ведёт туда же, что «Выйти» — снять (зона «Дизайна»). Ждёт повторной проверки."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": "sonnet-5",
-    "actual_reasoning": null
+    "kind": "code",
+    "review_verdict": "CHANGES_REQUIRED",
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "evidence/GATES_COMMON_2026-10-01.md (общий пакет, Q76/§32)",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "evidence/DESIGN_GATE_OWNER_REVIEW.md — пачка 2 (02.10 06:20Z): подписано за владельца (N/A вида, только удаление)"
+    },
+    "actual_model": "claude-sonnet-5 (Co-Authored-By f61e9f468)",
+    "actual_reasoning": "unrecorded (уровень рассуждения в git не фиксируется; не установлен)"
   },
   {
   "id": "PM-135",

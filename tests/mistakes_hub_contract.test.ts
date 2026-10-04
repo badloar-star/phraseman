@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { buildMistakePracticeHubSnapshot, mistakeSourceGroupFor } from '../app/mistake_practice_insights';
 import type { MistakeEvent } from '../modules/mistake-practice/contracts';
+import { isFeaturePremiumGated, shouldGateFeature } from '../app/feature_gates';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
 
@@ -70,7 +71,11 @@ describe('mistakes hub snapshot', () => {
   test('daily limit and free short sessions are wired', () => {
     expect(read('app/revenue_daily_limits.ts')).toContain('mistake_practice_starts: 1');
     expect(read('app/revenue_daily_quota.ts')).toContain("gate: 'mistake_practice'");
-    expect(read('app/feature_gates.ts')).toContain("mistake_practice: 'gate_mistake_practice_premium'");
+    // зачем (§141, 04.10): с 30.09 премиум-доступ — локальный контракт (PREMIUM_GATED), не флаг удалённого
+    // конфига; проверяем поведение, а не строку: «Мои ошибки» сверх дневного лимита — за Plus, Plus снимает замок.
+    expect(isFeaturePremiumGated('mistake_practice')).toBe(true);
+    expect(shouldGateFeature('mistake_practice', false)).toBe(true);
+    expect(shouldGateFeature('mistake_practice', true)).toBe(false);
     expect(read('app/remote_flags.ts')).toContain('gate_mistake_practice_premium: true');
     const session = read('app/mistake_practice_session.tsx');
     expect(session).toContain('mistakePracticeSessionCostsEnergy(prepared.session.initialCount)');

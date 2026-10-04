@@ -191,14 +191,13 @@ if ($serials.Count -lt 1) {
       # полностью глушил звук эмулятора — аудио-режимы турнира («Послушай и
       # собери фразу») стали непроходимыми: владелец не слышал ничего.
       # зачем (владелец 2026-10-04 «ИСКАЖЕНИЕ ЦВЕТОВ»): на этом ноутбуке (NVIDIA+Intel)
-      #   -gpu host искажает цвета и роняет устройство в offline. Рисуем через
-      #   swiftshader_indirect; Vulkan выключен — с ним qemu падал (c0000005) на стекле/блюре.
-      #   Память 4096 / 4 ядра — при 8192 ПК уходил в нехватку RAM (CapCut + сессии).
+      #   -gpu host искажает цвета; swiftshader_indirect падал (c0000005 в JIT) каждые 5–15 мин. Рисуем
+      #   внутри гостя (-gpu guest): цвета верные, падений swiftshader нет (переход 04.10 21:50, ночь под наблюдением).
+      #   Память 3072 / 4 ядра — при 8192 ПК уходил в нехватку RAM (CapCut + сессии).
       Start-Process -FilePath $emulatorExe -ArgumentList @(
         "-avd", $pick,
-        "-gpu", "swiftshader_indirect",
-        "-feature", "-Vulkan",
-        "-memory", "4096",
+        "-gpu", "guest",
+        "-memory", "3072",
         "-cores", "4",
         "-no-snapshot-save",
         "-no-boot-anim",

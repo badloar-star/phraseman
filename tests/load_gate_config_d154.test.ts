@@ -80,3 +80,25 @@ test('video packs: hung load has a ceiling, retries 1/3/8 s, then calm «Сей�
   expect(src).not.toMatch(/silentRetryRef\.current >= 5/);
   expect(src).not.toContain('}, 20_000);');
 });
+
+test('«Видео» tab: ceiling + 1/3/8 s retries, then calm «Сейчас недоступно» instead of eternal skeletons', () => {
+  const src = read('app/lingman_videos.tsx');
+  expect(src).toContain("from './load_gate_config'");
+  expect(src).toContain('loadGateBackoffMs(catalogRetryRef.current + 1)');
+  expect(src).toContain('testID="youtube-catalog-unavailable"');
+  expect(src).toContain('testID="youtube-catalog-try-again"');
+  expect(src).toContain("AppState.addEventListener('change'");
+  expect(src).not.toMatch(/catalogRetryRef\.current >= 5/);
+  expect(src).not.toContain('}, 20000);');
+});
+
+test('French diagnostic: per-attempt ceiling, 1/3/8 s retries, calm «Сейчас недоступно» instead of eternal question skeleton', () => {
+  const src = read('app/diagnostic_test.tsx');
+  expect(src).toContain("from './load_gate_config'");
+  expect(src).toContain('const backoffMs = loadGateBackoffMs(attempt);');
+  expect(src).toContain('ceiling_${LOAD_GATE_TOTAL_MS}ms');
+  expect(src).toContain('testID="diagnostic-questions-unavailable"');
+  expect(src).toContain('testID="diagnostic-questions-try-again"');
+  expect(src).not.toContain('DIAG_RETRY_DELAY_MS = 20000');
+  expect(src).not.toContain('остаётся скелетон');
+});

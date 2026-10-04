@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
+import { AppState, Linking, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
+import { LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
 import { useGlassAlert } from '../hooks/use-glass-alert'; // зачем: стеклянное окно вместо нативного Alert (overlays-runtime «video reminder»)
 import { FlashList, type FlashListRef } from '@shopify/flash-list';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -157,6 +158,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     recent: triLang(lang, { ru: 'Новые видео', uk: 'Нові відео', en: 'New videos', es: 'Videos nuevos', 'pt-BR': 'Vídeos novos', vi: 'Video mới', id: 'Video baru', tr: 'Yeni videolar', pl: 'Nowe filmy' }),
     error: triLang(lang, { ru: 'Не удалось поставить напоминание.', uk: 'Не вдалося встановити нагадування.', en: 'Could not set the reminder.', es: 'No se pudo activar el recordatorio.', 'pt-BR': 'Não foi possível definir o lembrete.', vi: 'Không thể đặt lời nhắc.', id: 'Pengingat tidak dapat dibuat.', tr: 'Hatırlatıcı ayarlanamadı.', pl: 'Nie udało się ustawić przypomnienia.' }),
     savedVideos: triLang(lang, { ru: 'Сохранённые видео', uk: 'Збережені відео', en: 'Saved videos', es: 'Vídeos guardados', 'pt-BR': 'Vídeos salvos', vi: 'Video đã lưu', id: 'Video tersimpan', tr: 'Kaydedilen videolar', pl: 'Zapisane filmy' }),
+    unavailable: triLang(lang, { ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now', es: 'No disponible ahora', 'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne' }),
+    tryAgain: triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' }),
     train: triLang(lang, { ru: 'Тренировать фразы ролика', uk: 'Тренувати фрази ролика', en: 'Practise this video’s phrases', es: 'Practicar las frases del vídeo', 'pt-BR': 'Treinar as frases do vídeo', vi: 'Luyện cụm từ của video', id: 'Latih frasa video ini', tr: 'Videonun ifadelerini çalış', pl: 'Ćwicz zwroty z filmu' }),
     reminderSet: triLang(lang, { ru: 'Напоминание установлено', uk: 'Нагадування встановлено', en: 'Reminder set', es: 'Recordatorio activado', 'pt-BR': 'Lembrete definido', vi: 'Đã đặt lời nhắc', id: 'Pengingat dibuat', tr: 'Hatırlatıcı ayarlandı', pl: 'Ustawiono przypomnienie' }),
   }), [lang]);
@@ -244,22 +247,57 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     void loadCatalog();
   }, [loadCatalog, screenRuntimeActive]);
 
-  // зачем (владелец 01.10): вместо экрана ошибки — тихий повтор (до 5 раз по 20 с),
-  // пока каталога нет совсем; пользователь видит скелетоны.
+  // зачем (владелец 01.10): вместо экрана ошибки — тихий повтор, пока каталога нет совсем.
+  // D158 / PM-214 (04.10): «тихо» ≠ «бесконечно». Было 5 повторов по 20 с и затем вечные скелетоны,
+  // а зависшая загрузка не имела потолка. Теперь потолок 12 с, 3 повтора ~1/3/8 с
+  // (app/load_gate_config.ts), затем «Сейчас недоступно» + тихая «Попробовать снова»;
+  // при возврате в приложение повтор идёт сам. Кэш/снимок, если есть, показываются как раньше.
   const catalogRetryRef = useRef(0);
+  const [catalogExhausted, setCatalogExhausted] = useState(false);
+  const nothingToShow = !catalog && !snapshot;
   useEffect(() => {
-    if (issue !== 'error' || catalog || snapshot || !screenRuntimeActive) return;
-    if (catalogRetryRef.current >= 5) {
-      console.warn('[VIDEO-TAB] тихие повторы каталога исчерпаны (5), остаются скелетоны');
+    if (!nothingToShow) { catalogRetryRef.current = 0; setCatalogExhausted(false); }
+  }, [nothingToShow]);
+  useEffect(() => {
+    if (issue !== 'error' || !nothingToShow || !screenRuntimeActive || catalogExhausted) return;
+    const backoffMs = loadGateBackoffMs(catalogRetryRef.current + 1);
+    if (backoffMs === null) {
+      console.warn('[VIDEO-TAB] тихие повторы каталога исчерпаны → «Сейчас недоступно»', { attempts: catalogRetryRef.current });
+      setCatalogExhausted(true);
       return;
     }
     const timer = setTimeout(() => {
       catalogRetryRef.current += 1;
-      console.warn('[VIDEO-TAB] тихий повтор каталога, попытка', catalogRetryRef.current);
+      console.warn('[VIDEO-TAB] тихий повтор каталога', { attempt: catalogRetryRef.current, backoffMs });
       void loadCatalog();
-    }, 20000);
+    }, backoffMs);
     return () => clearTimeout(timer);
-  }, [issue, catalog, snapshot, screenRuntimeActive, loadCatalog]);
+  }, [issue, nothingToShow, screenRuntimeActive, loadCatalog, catalogExhausted]);
+  // D158: загрузка, не ответившая ни каталогом, ни ошибкой, не держит скелетоны вечно.
+  useEffect(() => {
+    if (!visibleLoading || !nothingToShow || !screenRuntimeActive || catalogExhausted) return;
+    const timer = setTimeout(() => {
+      console.warn('[VIDEO-TAB] watchdog: каталог не ответил за потолок → цикл тихих повторов', { ceilingMs: LOAD_GATE_TOTAL_MS });
+      setIssue('error');
+      setLoading(false);
+    }, LOAD_GATE_TOTAL_MS);
+    return () => clearTimeout(timer);
+  }, [visibleLoading, nothingToShow, screenRuntimeActive, catalogExhausted]);
+  const retryCatalogAfterUnavailable = useCallback((source: 'tap' | 'foreground') => {
+    console.warn('[VIDEO-TAB] повтор после «Сейчас недоступно»', { source });
+    if (source === 'tap') hapticTap();
+    catalogRetryRef.current = 0;
+    setCatalogExhausted(false);
+    setIssue('none');
+    void loadCatalog();
+  }, [loadCatalog]);
+  useEffect(() => {
+    if (!catalogExhausted) return undefined;
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') retryCatalogAfterUnavailable('foreground');
+    });
+    return () => sub.remove();
+  }, [catalogExhausted, retryCatalogAfterUnavailable]);
 
   // зачем: экран мог открыться раньше, чем приложение опознало пользователя.
   // Каталог грузится и без этого, но после активации личности перезапрашиваем —
@@ -517,7 +555,19 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
         {/* зачем (владелец 01.10): плашек «устарел/офлайн» и экрана ошибки нет — показываем то, что есть, обновляем тихо. */}
         {issue !== 'none' && snapshot && <View testID="lingman-videos-fallback-notice" />}
 
-        {(visibleLoading || issue === 'error') && !catalog && !snapshot ? (
+        {catalogExhausted && !catalog && !snapshot ? (
+          <View testID="youtube-catalog-unavailable" style={styles.unavailable}>
+            <Text accessibilityRole="header" style={[styles.unavailableTitle, { color: g.text }]}>{copy.unavailable}</Text>
+            <Pressable
+              testID="youtube-catalog-try-again"
+              accessibilityRole="button"
+              onPress={() => retryCatalogAfterUnavailable('tap')}
+              style={({ pressed }) => [styles.unavailableAction, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.8 : 1 }]}
+            >
+              <Text style={[styles.unavailableActionLabel, { color: g.text }]}>{copy.tryAgain}</Text>
+            </Pressable>
+          </View>
+        ) : (visibleLoading || issue === 'error') && !catalog && !snapshot ? (
           <View testID="youtube-catalog-loading" style={styles.skeletons}>
             <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={22} />
             <SkeletonBlock width="100%" height={64} borderRadius={12} />
@@ -584,6 +634,10 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
 }
 
 const styles = StyleSheet.create({
+  unavailable: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32, paddingBottom: 60, gap: 18 },
+  unavailableTitle: { fontSize: 20, fontWeight: '700', textAlign: 'center' },
+  unavailableAction: { minHeight: 44, paddingHorizontal: 22, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
+  unavailableActionLabel: { fontSize: 16, fontWeight: '600' },
   container: { flex: 1, paddingHorizontal: V2.screenPad, paddingTop: 12, backgroundColor: 'transparent' },
   list: { paddingBottom: 32 },
   // зачем: `.sec .ti` макета — 20/26, вес 700, отступ сверху 26.

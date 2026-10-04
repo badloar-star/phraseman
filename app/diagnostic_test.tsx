@@ -5,8 +5,10 @@ import BouncyScrollView from '../components/BouncyScrollView';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
 import {
   Animated,
+  AppState,
   KeyboardAvoidingView,
   Pressable,
   ScrollView,
@@ -970,6 +972,10 @@ export default function DiagnosticTest() {
   const [phase,       setPhase]    = useState<Phase>('intro');
   const [questions, setQuestions]  = useState<Question[]>(() => (frenchDiagnosticBlocked || isFrenchDiagnostic ? [] : pickQuestions()));
   const [questionsLoading, setQuestionsLoading] = useState(isFrenchDiagnostic && !frenchDiagnosticBlocked);
+  // зачем (D158 / PM-214, 04.10): после исчерпанных повторов — «Сейчас недоступно» + «Попробовать снова»,
+  // а не вечный скелетон вопроса (раньше после 5 попыток экран так и стоял на скелете).
+  const [questionsUnavailable, setQuestionsUnavailable] = useState(false);
+  const [questionsRevision, setQuestionsRevision] = useState(0);
   const [idx,         setIdx]      = useState(0);
   const [score,       setScore]    = useState(0);
   const [chosen,      setChosen]   = useState<number | null>(null);
@@ -1160,7 +1166,9 @@ export default function DiagnosticTest() {
       } else {
         setPrev(null);
       }
-    } catch {
+    } catch (error) {
+      // Немой catch запрещён: битая запись прошлого результата — причина в журнале, экран без «прошлого».
+      console.warn('[DIAG-LAST] load failed', error instanceof Error ? error.message : String(error));
       setPrev(null);
     }
   }, [studyTarget]);
@@ -1175,31 +1183,41 @@ export default function DiagnosticTest() {
     if (isFrenchDiagnostic) {
       let cancelled = false;
       setQuestions([]);
+      setQuestionsUnavailable(false);
       setQuestionsLoading(true);
-      // зачем (владелец 01.10): тихий повтор вместо экрана ошибки — до 5 попыток
-      // с паузой 20 с; пользователь всё это время видит скелетон вопроса.
-      const DIAG_RETRY_MAX = 5;
-      const DIAG_RETRY_DELAY_MS = 20000;
+      // зачем (владелец 01.10 + D158 / PM-214): тихий повтор вместо экрана ошибки, но не бесконечный.
+      // Было 5 попыток по 20 с и затем вечный скелетон; зависший запрос не имел потолка.
+      // Теперь потолок одной попытки 12 с, повторы ~1/3/8 с (app/load_gate_config.ts), затем
+      // «Сейчас недоступно» + тихая «Попробовать снова».
       const run = async () => {
-        for (let attempt = 1; attempt <= DIAG_RETRY_MAX && !cancelled; attempt += 1) {
+        for (let attempt = 1; !cancelled; attempt += 1) {
+          let ceilingTimer: ReturnType<typeof setTimeout> | null = null;
           try {
-            const items = await loadFrenchRemoteDiagnosticQuestions(diagnosticSourceLocale, 20);
+            const items = await Promise.race([
+              loadFrenchRemoteDiagnosticQuestions(diagnosticSourceLocale, 20),
+              new Promise<never>((_, reject) => {
+                ceilingTimer = setTimeout(() => reject(new Error(`ceiling_${LOAD_GATE_TOTAL_MS}ms`)), LOAD_GATE_TOTAL_MS);
+              }),
+            ]);
             if (cancelled) return;
             if (items.length > 0) {
               setQuestions(items as Question[]);
               setQuestionsLoading(false);
               return;
             }
-            console.warn('[DIAG-QUESTIONS] пустой ответ, попытка', attempt, 'из', DIAG_RETRY_MAX);
+            console.warn('[DIAG-QUESTIONS] пустой ответ, попытка', attempt);
           } catch (e) {
             console.warn('[DIAG-QUESTIONS] ошибка загрузки, попытка', attempt, e instanceof Error ? e.message : String(e));
+          } finally {
+            if (ceilingTimer) clearTimeout(ceilingTimer);
           }
-          if (attempt < DIAG_RETRY_MAX) {
-            await new Promise<void>((resolve) => setTimeout(resolve, DIAG_RETRY_DELAY_MS));
-          }
+          const backoffMs = loadGateBackoffMs(attempt);
+          if (backoffMs === null) break;
+          await new Promise<void>((resolve) => setTimeout(resolve, backoffMs));
         }
         if (!cancelled) {
-          console.warn('[DIAG-QUESTIONS] все попытки исчерпаны, остаётся скелетон');
+          console.warn('[DIAG-QUESTIONS] все попытки исчерпаны → «Сейчас недоступно»');
+          setQuestionsUnavailable(true);
           setQuestionsLoading(false);
         }
       };
@@ -1208,7 +1226,22 @@ export default function DiagnosticTest() {
     }
     setQuestionsLoading(false);
     setQuestions((current) => (current.length > 0 ? current : pickQuestions()));
-  }, [diagnosticSourceLocale, frenchDiagnosticBlocked, isFrenchDiagnostic]);
+  }, [diagnosticSourceLocale, frenchDiagnosticBlocked, isFrenchDiagnostic, questionsRevision]);
+
+  const retryQuestions = useCallback((source: 'tap' | 'foreground') => {
+    console.warn('[DIAG-QUESTIONS] повтор после «Сейчас недоступно»', { source });
+    if (source === 'tap') hapticTap();
+    setQuestionsRevision((value) => value + 1);
+  }, []);
+
+  // D158: автоповтор при возврате в приложение.
+  useEffect(() => {
+    if (!questionsUnavailable) return undefined;
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') retryQuestions('foreground');
+    });
+    return () => sub.remove();
+  }, [questionsUnavailable, retryQuestions]);
 
   useEffect(() => {
     AsyncStorage.getItem('user_name').then(n => { if (n) userNameRef.current = n; });
@@ -1498,6 +1531,23 @@ export default function DiagnosticTest() {
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
             <ExamHeader glass={glass} title={s.diagnostic.start} onBack={() => safeRouterBack(router)} backLabel={diagnosticUi.back} />
+            {questionsUnavailable && !questionsLoading ? (
+              <View testID="diagnostic-questions-unavailable" style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32, paddingBottom: 60, gap: 18 }}>
+                <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 20, fontWeight: '700', textAlign: 'center' }}>
+                  {triLang(lang, { ru: 'Сейчас недоступно', uk: 'Зараз недоступно', en: 'Not available right now', es: 'No disponible ahora', 'pt-BR': 'Indisponível agora', vi: 'Hiện chưa khả dụng', id: 'Belum tersedia sekarang', tr: 'Şu anda kullanılamıyor', pl: 'Teraz niedostępne' })}
+                </Text>
+                <Pressable
+                  testID="diagnostic-questions-try-again"
+                  accessibilityRole="button"
+                  onPress={() => retryQuestions('tap')}
+                  style={({ pressed }) => ({ minHeight: 44, paddingHorizontal: 22, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, opacity: pressed ? 0.8 : 1 })}
+                >
+                  <Text style={{ color: glass.text, fontSize: 16, fontWeight: '600' }}>
+                    {triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
+                  </Text>
+                </Pressable>
+              </View>
+            ) : (
             <View style={{ padding: 16, paddingTop: 22 }}>
               <SkeletonBlock width="100%" height={6} borderRadius={3} />
               <SkeletonBlock width="100%" height={120} borderRadius={16} style={{ marginTop: 22 }} />
@@ -1506,6 +1556,7 @@ export default function DiagnosticTest() {
               <SkeletonBlock width="100%" height={56} borderRadius={16} style={{ marginTop: 10 }} />
               <SkeletonBlock width="100%" height={56} borderRadius={16} style={{ marginTop: 10 }} />
             </View>
+            )}
           </ContentWrap>
         </SafeAreaView>
       </ScreenGradient>

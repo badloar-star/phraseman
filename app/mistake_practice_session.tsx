@@ -1,6 +1,13 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { facetsFromParam } from '../components/mistakes-panel/mistakeGroups';
+import { Panel, PanelCta, SheetRow } from '../components/mistakes-panel/PanelKit';
+import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
+import { buildMistakeAnswerDiff } from './mistake_answer_diff';
+import { AnswerField, AnswerSlot, OptionGrid, QuestionBlock, DiffValue, ResultRow, RoundButton, StepDots, Token, Tray, fieldInputStyle, type OptionMark } from '../components/mistakes-panel/PracticeKit';
+import { MP_COLORS } from '../components/mistakes-panel/panelPaint';
+import { practiceCopyFor } from '../components/mistakes-panel/practiceCopy';
+import { hapticTap } from '../hooks/use-haptics';
 import { LOAD_GATE_TOTAL_MS } from './load_gate_config';
 import { actionToastTri, emitAppEvent } from './events';
 import { useAudioPlayer } from 'expo-audio';
@@ -50,7 +57,6 @@ import {
 } from '../modules/mistake-practice/session';
 import { appendMistakeEvent, loadMistakeEventJournal } from './mistake_practice_store';
 import { createMistakeAnswerJournal, type MistakeAnswerJournal } from './mistake_practice_answer_journal';
-import MistakeVerdictPanel from '../components/mistake-practice/MistakeVerdictPanel';
 import MistakeSessionFinale, { type MistakeFinaleFixed } from '../components/mistake-practice/MistakeSessionFinale';
 import { buildMistakeRewardsSnapshot, titleFor, type MistakeRewardsSnapshot, type MistakeTitleId } from '../modules/mistake-practice/rewards_model';
 import MistakeEli5Modal from '../components/MistakeEli5Modal';
@@ -71,8 +77,6 @@ import {
 import { getStableId } from './stable_id';
 import { checkAchievements } from './achievements';
 import { getMistakePracticeAchievementSnapshot } from './mistake_practice_insights';
-import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
-import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import CoinRewardFlight from '../components/rewards/CoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
@@ -329,18 +333,22 @@ function ListeningPlayback({ audioRef, color, foreground, accessibilityLabel }: 
 function MistakePracticeLoadingSkeleton() {
   return (
     <View accessibilityRole="progressbar" testID="mistake-practice-loading" style={{ flex: 1 }}>
-      <View style={styles.header}>
-        <SkeletonBlock width={44} height={44} borderRadius={22} />
-        <View style={{ flex: 1 }}><SkeletonBlock width="100%" height={8} borderRadius={4} /></View>
-        <SkeletonBlock width={44} height={44} borderRadius={22} />
+      <View style={styles.topbar}>
+        <SkeletonBlock width={42} height={42} borderRadius={21} />
+        <View style={styles.topRight}>
+          <SkeletonBlock width={48} height={16} borderRadius={8} />
+          <SkeletonBlock width={42} height={42} borderRadius={21} />
+        </View>
       </View>
-      <View style={[styles.content, { gap: 14 }]}>
-        <SkeletonBlock width="86%" height={26} borderRadius={8} />
-        <SkeletonBlock width="58%" height={18} borderRadius={6} />
-        <View style={{ height: 12 }} />
-        <SkeletonBlock width="100%" height={56} borderRadius={16} />
-        <SkeletonBlock width="100%" height={56} borderRadius={16} />
-        <SkeletonBlock width="100%" height={56} borderRadius={16} />
+      <View style={[styles.content, { alignItems: 'center', gap: 14, paddingTop: 30 }]}>
+        <SkeletonBlock width="44%" height={18} borderRadius={9} />
+        <SkeletonBlock width="68%" height={44} borderRadius={14} />
+      </View>
+      {/* зачем: геометрия «стакана» из макета (две колонки по 62) — первый кадр равен финальному, без прыжка. */}
+      <View style={styles.skelTray}>
+        <View style={styles.skelGrid}>
+          {[0, 1, 2, 3].map((index) => <SkeletonBlock key={`cell-${index}`} width="48.6%" height={62} borderRadius={18} />)}
+        </View>
       </View>
     </View>
   );
@@ -388,6 +396,7 @@ function MistakePracticeSessionScreen() {
   const g = useLv2Glass();
   const { lang } = useLang();
   const copy = useMemo(() => sessionCopy(lang), [lang]);
+  const pcopy = useMemo(() => practiceCopyFor(lang), [lang]);
   const { studyTarget } = useStudyTarget();
   const [attemptSessionId] = useState(makeFeedbackAttemptId);
   const accountToken = useMemo(() => captureAccountGeneration(), []);
@@ -446,6 +455,13 @@ function MistakePracticeSessionScreen() {
   useEffect(() => { fixedNowRef.current = fixedNow; }, [fixedNow]);
   const [wrongAnswers, setWrongAnswers] = useState(0);
   const [hideConfirmVisible, setHideConfirmVisible] = useState(false);
+  // зачем (макет «Панель»): меню «⋯» на экране задания (скрыть ошибку, сообщить об ошибке в задании), «Почему» в «стакане»,
+  // «Не могу сейчас говорить» — переход голосового задания на печать той же фразы.
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [whyOpen, setWhyOpen] = useState(false);
+  const [speechSkipped, setSpeechSkipped] = useState(false);
+  const reportOpenRef = useRef<(() => void) | null>(null);
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
   const [hiddenUndo, setHiddenUndo] = useState<Readonly<{
     entry: MistakePracticeSessionEntry;
     nextSession: MistakePracticeSession;
@@ -670,7 +686,7 @@ function MistakePracticeSessionScreen() {
   // задание «Моих ошибок» превращается в печать той же фразы — ошибка всё равно
   // отрабатывается и засчитывается, а микрофон не обещает того, что не умеет.
   const speechNa = useSpeechUnavailableOnDevice();
-  const renderer = entry?.exercise.renderer === 'speech' && speechNa ? 'typing' : entry?.exercise.renderer;
+  const renderer = entry?.exercise.renderer === 'speech' && (speechNa || speechSkipped) ? 'typing' : entry?.exercise.renderer;
   const speechReplacedByTyping = entry?.exercise.renderer === 'speech' && speechNa;
   const speechSwapLoggedRef = useRef<string | null>(null);
   useEffect(() => {
@@ -883,6 +899,8 @@ function MistakePracticeSessionScreen() {
     setSession(pendingSession);
     setPendingSession(null);
     setFeedback(null);
+    setWhyOpen(false);
+    setSpeechSkipped(false);
     setInput('');
     setBuilderTokenIndexes([]);
     setSpeechRecovery(null);
@@ -1105,21 +1123,20 @@ function MistakePracticeSessionScreen() {
       <MistakePracticeScreenFrame centered>
         {/* зачем (D158): спокойно — без красного значка ошибки; повтор только там, где он имеет смысл. */}
         <Text accessibilityRole="header" style={[styles.errorTitle, { color: g.text, fontSize: f.h3 }]}>{loadError ?? copy.sessionEnded}</Text>
-        {/* зачем (координатор 03.10, D158 «тихо везде»): сбой — не повод для акцента. «Попробовать снова»
-            — тихая кнопка как в статистике (bgSurface2 = opaqueSheet, 48), «Вернуться» — текстовая
-            ссылка. Акцент остаётся только когда занятие закончилось (действие с результатом). */}
-        {loadError && loadRetriable ? (
-          <Pressable accessibilityRole="button" testID="mistake-practice-try-again" style={({ pressed }) => [styles.quietButton, { backgroundColor: g.opaqueSheet }, pressed && { opacity: 0.85 }]} onPress={retryPrepare}>
-            <Text style={{ color: g.text, fontSize: f.body, fontWeight: '700' }}>{copy.tryAgain}</Text>
-          </Pressable>
-        ) : null}
-        <Pressable
-          accessibilityRole="button"
-          style={loadError && loadRetriable ? ({ pressed }) => [styles.textLink, pressed && { opacity: 0.6 }] : [styles.primaryButton, { backgroundColor: g.accent }]}
-          onPress={leavePractice}
-        >
-          <Text style={{ color: loadError && loadRetriable ? g.secondary : g.accentInk, fontSize: f.body, fontWeight: '700' }}>{copy.back}</Text>
-        </Pressable>
+        {/* зачем (координатор 03.10, D158 «тихо везде»): сбой — не повод для акцента. «Попробовать снова» — тихая кнопка,
+            «Вернуться» — текстовая ссылка. Акцент остаётся только когда занятие закончилось (действие с результатом). */}
+        <View style={styles.errorActions}>
+          {loadError && loadRetriable ? (
+            <PanelCta g={g} ghost testID="mistake-practice-try-again" label={copy.tryAgain} onPress={retryPrepare} />
+          ) : null}
+          {loadError && loadRetriable ? (
+            <Pressable accessibilityRole="button" style={({ pressed }) => [styles.textLink, pressed && { opacity: 0.6 }]} onPress={leavePractice}>
+              <Text style={{ color: g.secondary, fontSize: f.body, fontWeight: '700' }}>{copy.back}</Text>
+            </Pressable>
+          ) : (
+            <PanelCta g={g} label={copy.back} onPress={leavePractice} />
+          )}
+        </View>
       </MistakePracticeScreenFrame>
     );
   }
@@ -1144,222 +1161,253 @@ function MistakePracticeSessionScreen() {
 
   if (!entry) return null;
 
+  const isChoice = renderer === 'choices' || renderer === 'fill_gap' || renderer === 'matching';
+  const options = entry.exercise.options ?? [entry.exercise.correctAnswer];
+  const kindLabel = renderer === 'builder' ? pcopy.kindBuild
+    : renderer === 'fill_gap' ? pcopy.kindGap
+      : renderer === 'listening' ? pcopy.kindListen
+        : renderer === 'speech' ? pcopy.kindSay
+          : renderer === 'typing' ? pcopy.kindType
+            : pcopy.kindChoose;
+  const marks: Record<string, OptionMark> | undefined = feedback && isChoice
+    ? { [entry.exercise.correctAnswer]: 'ok', ...(feedback.correct ? {} : { [feedback.userAnswer]: 'no' as const }) }
+    : undefined;
+  const whyText = liveExplanation ?? feedback?.explanation ?? '';
+  // зачем (владелец 2026-09-14): «твой ответ» и «верный» стоят рядом с подсветкой расхождения; разметку даёт чистая функция buildMistakeAnswerDiff.
+  const diff = feedback && !feedback.correct ? buildMistakeAnswerDiff({ userAnswer: feedback.userAnswer, correctAnswer: feedback.answer }) : null;
+  const total = session.initialCount;
+  const canCheck = answerValue.trim().length > 0 && !submitting;
+
+  // ---- «стакан» внизу экрана: зависит от состояния задания ----
+  const tray = (() => {
+    if (hiddenUndo) {
+      return (
+        <Tray g={g} testID="mistake-practice-tray-hidden">
+          <Text style={[styles.trayNote, { color: g.text }]}>{copy.hidden}</Text>
+          <View style={styles.trayRow}>
+            <PanelCta g={g} ghost flex label={copy.undo} onPress={() => void undoHiddenMistake()} />
+            <PanelCta g={g} flex label={copy.continue} onPress={continueAfterHidden} />
+          </View>
+        </Tray>
+      );
+    }
+    if (feedback && whyOpen && !feedback.correct && diff) {
+      return (
+        <Tray g={g} testID="mistake-practice-tray-why">
+          <View style={styles.whyHead}>
+            <Text style={[styles.whyTitle, { color: g.text }]}>{`${pcopy.whyTitle} «${feedback.answer}»`}</Text>
+            <RoundButton g={g} icon="close" label={pcopy.understood} onPress={() => setWhyOpen(false)} />
+          </View>
+          <Panel g={g}>
+            {feedback.userAnswer.trim() ? (
+              <View style={styles.whyRow}>
+                <Text style={[styles.whyLabel, { color: g.secondary }]}>{pcopy.yourChoice}</Text>
+                <DiffValue g={g} segments={diff.mine} baseColor={g.text} style={styles.whyValue} />
+              </View>
+            ) : null}
+            <View style={styles.whyRowText}>
+              <Text testID="mistake-verdict-explanation" style={styles.whyBody}>
+                {whyText || (mistakeExplain.aiMistakeState === 'loading' ? pcopy.thinking : '')}
+              </Text>
+            </View>
+            <View style={styles.whyRow}>
+              <Text style={[styles.whyLabel, { color: g.secondary }]}>{pcopy.correct}</Text>
+              <DiffValue g={g} segments={diff.correct} baseColor={MP_COLORS.okText} style={styles.whyValue} />
+            </View>
+          </Panel>
+          <View style={[styles.trayRow, styles.trayRowGap]}>
+            {liveExplanation ? <PanelCta g={g} ghost flex testID="mistake-verdict-simpler" label={pcopy.simpler} onPress={mistakeExplain.eli5.onOpen} /> : null}
+            <PanelCta g={g} flex label={pcopy.understood} onPress={() => setWhyOpen(false)} />
+          </View>
+        </Tray>
+      );
+    }
+    if (feedback) {
+      return (
+        <Tray g={g} testID="mistake-practice-tray-feedback">
+          <ResultRow
+            g={g}
+            ok={feedback.correct}
+            label={feedback.correct ? pcopy.rightOk : pcopy.almost}
+            right={feedback.chain ? <StepDots g={g} n={feedback.chain.corrected ? 3 : feedback.chain.days} /> : null}
+          />
+          {isChoice ? <OptionGrid g={g} options={options} marks={marks} disabled /> : null}
+          {!feedback.correct ? (
+            <>
+              {!isChoice ? (
+                <View style={styles.answerLine}>
+                  <Text style={[styles.whyLabel, { color: g.secondary }]}>{pcopy.correct}</Text>
+                  <Text style={[styles.whyValue, { color: MP_COLORS.okText }]}>{feedback.answer}</Text>
+                </View>
+              ) : null}
+              <Text testID="mistake-verdict-text" style={styles.trayWhy}>{whyText}</Text>
+              <View style={styles.trayRow}>
+                <PanelCta g={g} ghost flex testID="mistake-practice-why" label={pcopy.why} onPress={() => setWhyOpen(true)} />
+                <PanelCta g={g} flex testID="mistake-practice-next" label={pcopy.next} onPress={continueAfterFeedback} />
+              </View>
+            </>
+          ) : (
+            <View style={isChoice ? styles.trayCtaGap : undefined}>
+              <PanelCta g={g} testID="mistake-practice-next" label={pcopy.next} onPress={continueAfterFeedback} />
+            </View>
+          )}
+          {feedback.stopForToday ? <Text style={[styles.trayStop, { color: g.secondary }]}>{triLang(lang, { ru: 'Повторим эту фразу завтра: три попытки подряд утомляют, а не учат.', uk: 'Повторимо цю фразу завтра: три спроби поспіль втомлюють, а не вчать.', en: "We'll come back to this phrase tomorrow: three tries in a row tire you out rather than teach.", es: 'Volveremos a esta frase mañana: tres intentos seguidos cansan, no enseñan.', 'pt-BR': 'Voltamos a esta frase amanhã: três tentativas seguidas cansam, não ensinam.', vi: 'Ta sẽ quay lại câu này vào ngày mai: ba lần liên tiếp làm mệt chứ không giúp học.', id: 'Kita ulang frasa ini besok: tiga kali berturut-turut melelahkan, bukan mengajarkan.', tr: 'Bu ifadeye yarın döneriz: üst üste üç deneme öğretmez, yorar.', pl: 'Wrócimy do tej frazy jutro: trzy próby pod rząd męczą, a nie uczą.' })}</Text> : null}
+        </Tray>
+      );
+    }
+    if (isChoice) {
+      return (
+        <Tray g={g} testID="mistake-practice-tray-choices">
+          <OptionGrid g={g} options={options} disabled={submitting} onPick={(option) => { answerValueRef.current = option; void submitVerdict(matchesMistakePracticeAnswer(option, entry.exercise.correctAnswer, studyTarget)); }} />
+        </Tray>
+      );
+    }
+    if (renderer === 'builder') {
+      return (
+        <Tray g={g} testID="mistake-practice-tray-builder">
+          <View style={styles.tokenPool}>
+            {builderDisplayOrder.map((index) => (
+              <Token key={index} g={g} label={entry.exercise.tokens?.[index] ?? ''} used={builderTokenIndexes.includes(index)} onPress={() => setBuilderTokenIndexes((current) => [...current, index])} />
+            ))}
+          </View>
+          <PanelCta g={g} testID="mistake-practice-check" label={pcopy.check} disabled={!canCheck} onPress={() => void submitVerdict(matchesMistakePracticeAnswer(answerValue, entry.exercise.correctAnswer, studyTarget))} />
+        </Tray>
+      );
+    }
+    if (renderer === 'speech') {
+      return (
+        <Tray g={g} testID="mistake-practice-tray-speech">
+          <PanelCta g={g} ghost testID="mistake-practice-skip-speak" label={pcopy.skipSpeak} onPress={() => { setSpeechHeld(false); setSpeechSkipped(true); }} />
+        </Tray>
+      );
+    }
+    return (
+      <Tray g={g} testID="mistake-practice-tray-typing">
+        <PanelCta g={g} testID="mistake-practice-check" label={pcopy.check} disabled={!canCheck} onPress={() => void submitVerdict(matchesMistakePracticeAnswer(answerValue, entry.exercise.correctAnswer, studyTarget))} />
+      </Tray>
+    );
+  })();
+
   return (
     <MistakePracticeScreenFrame>
-      {/* Руны за отработку (владелец, 2026-08-27): шапка ниже фиксированной
-          высоты и уже плотная (крестик/попытки/прогресс/скрыть/репорт) —
-          добавление сюда же сжало бы остальные элементы. */}
-      <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingHorizontal: 14, paddingTop: 4 }}>
-        <View ref={runeFlight.counterRef} collapsable={false}>
-          <PracticeRuneCounter
-            runes={practiceRunes.runes}
-            lang={lang}
-            backgroundColor={g.opaqueCard}
-            color={g.text}
-            testID="mistake-practice-runes"
-          />
-        </View>
-      </View>
-      <View style={styles.header}>
+      <View style={styles.topbar}>
         {/* зачем (DQA / PM-134 A2, 04.10): у крестика роль кнопки — диктор объявляет «Закрыть, кнопка». */}
-        <Pressable accessibilityRole="button" accessibilityLabel={copy.close} hitSlop={8} onPress={leavePractice} style={[styles.headerButton, { backgroundColor: g.opaqueCard }]}>
-          <Ionicons name="close" size={24} color={g.secondary} />
-        </Pressable>
-        <SessionAttemptsHud
-          remaining={attempts.state.remainingAttempts}
-          locale={lang}
-          testID="mistake-practice-session-attempts"
-        />
-        <View style={[styles.progressTrack, { backgroundColor: g.opaqueControl }]}>
-          <View style={[styles.progressFill, { backgroundColor: g.accent, width: `${session.initialCount > 0 ? Math.min(100, (progress / session.initialCount) * 100) : 0}%` }]} />
+        <RoundButton g={g} icon="close" label={copy.close} onPress={leavePractice} testID="mistake-practice-close" />
+        <View style={styles.topRight}>
+          <Text style={[styles.counter, { color: g.secondary }]}>{`${progress} / ${total}`}</Text>
+          <RoundButton g={g} icon="ellipsis-horizontal" label={pcopy.menu} onPress={() => { hapticTap(); setMenuOpen(true); }} testID="mistake-practice-menu" />
         </View>
-        <Text style={[styles.counter, { color: g.secondary, fontSize: f.caption }]}>{progress}/{session.initialCount}</Text>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={copy.hideError}
-          onPress={() => setHideConfirmVisible(true)}
-          style={[styles.headerButton, { backgroundColor: g.opaqueCard }]}
-        >
-          <Ionicons name="eye-off-outline" size={22} color={g.secondary} />
-        </Pressable>
-        {/* зачем: разбор собственных ошибок — самое обидное место для
-            бага: если задание составлено неверно, человек ошибётся снова и
-            снова, а сообщить об этом было негде. */}
-        <ReportErrorButton
-          screen="mistake_practice"
-          dataId={`mistake_${entry.exercise.exerciseId ?? 'unknown'}`}
-          dataText={`${entry.exercise.prompt}${entry.exercise.hint ? `\n${entry.exercise.hint}` : ''}
-OK: ${entry.exercise.correctAnswer}`}
-          variant="icon-flag"
-          accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в задании', uk: 'Повідомити про помилку у завданні', en: 'Report an error in the exercise', es: 'Informar de un error en el ejercicio', 'pt-BR': 'Relatar erro no exercício', vi: 'Báo lỗi trong bài tập', id: 'Laporkan kesalahan pada latihan', tr: 'Alıştırmadaki hatayı bildir', pl: 'Zgłoś błąd w zadaniu' })}
-          testID="mistake-practice-report"
-        />
       </View>
+      {/* зачем (решение владельца 04.10): счётчика монет в шапке нет, но полёт монет остаётся — летит в эту точку у правого края шапки. */}
+      <View ref={runeFlight.counterRef} collapsable={false} pointerEvents="none" style={styles.runeAnchor} />
 
       {/* Источник полёта рун (владелец, 2026-08-27) */}
       <View ref={runeFlight.originRef} collapsable={false} style={{ flex: 1 }}>
-      <ScrollView decelerationRate="fast" contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-        <Text style={[styles.prompt, { color: g.text, fontSize: f.h3 }]}>{entry.exercise.prompt}</Text>
-        {/* зачем: перевод-подсказка под заданием. Не «подпись-расшифровка» из
-            запрета владельца (та — мелкий пояснительный текст под названием):
-            это рабочий слой задания, читаемым кеглем f.body. От заголовка
-            отделён тоном и весом, а не уменьшением шрифта и не обводкой. */}
-        {entry.exercise.hint ? (
-          <Text style={[styles.promptHint, { color: g.secondary, fontSize: f.body }]}>
-            {entry.exercise.hint}
-          </Text>
-        ) : null}
+        <ScrollView decelerationRate="fast" contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+          <QuestionBlock g={g} kind={kindLabel} value={entry.exercise.prompt} hint={entry.exercise.hint} />
 
-        {!feedback && !hiddenUndo && (renderer === 'choices' || renderer === 'fill_gap' || renderer === 'matching') ? (
-          <View style={styles.optionList}>
-            {(entry.exercise.options ?? [entry.exercise.correctAnswer]).map((option) => (
-              <Pressable
-                key={option}
-                style={[styles.option, { backgroundColor: g.opaqueCard }]}
-                onPress={() => void submitVerdict(matchesMistakePracticeAnswer(option, entry.exercise.correctAnswer, studyTarget))}
-              >
-                <Text style={{ color: g.text, fontSize: f.body, fontWeight: '700' }}>{option}</Text>
-              </Pressable>
-            ))}
-          </View>
-        ) : null}
-
-        {!feedback && !hiddenUndo && renderer === 'builder' ? (
-          <>
-            <View style={[styles.builderAnswer, { backgroundColor: g.opaqueCard }]}>
-              <Text style={{ color: builderTokenIndexes.length ? g.text : g.mutedText, fontSize: f.body }}>
-                {builderTokenIndexes.map((index) => entry.exercise.tokens?.[index] ?? '').join(' ') || copy.buildPhrase}
-              </Text>
+          {!feedback && !hiddenUndo && renderer === 'builder' ? (
+            <AnswerSlot style={styles.slotGap}>
+              {builderTokenIndexes.map((index, position) => (
+                <Token key={`${index}-${position}`} g={g} label={entry.exercise.tokens?.[index] ?? ''} />
+              ))}
               {builderTokenIndexes.length ? (
                 <Pressable
                   // зачем (DQA / PM-134 A2, 04.10): кнопка сброса была немой для диктора — роль и подпись.
                   accessibilityRole="button"
-                  accessibilityLabel={triLang(lang, { ru: 'Собрать заново', uk: 'Зібрати заново', en: 'Start over', es: 'Empezar de nuevo', 'pt-BR': 'Recomeçar', vi: 'Ghép lại từ đầu', id: 'Susun ulang', tr: 'Baştan diz', pl: 'Ułóż od nowa' })}
+                  accessibilityLabel={pcopy.resetAria}
                   hitSlop={8}
                   onPress={() => setBuilderTokenIndexes([])}
+                  style={styles.slotReset}
                 ><Ionicons name="refresh" size={20} color={g.secondary} /></Pressable>
               ) : null}
+            </AnswerSlot>
+          ) : null}
+
+          {!feedback && !hiddenUndo && (renderer === 'typing' || renderer === 'listening') ? (
+            <View style={styles.fieldWrap}>
+              {speechReplacedByTyping ? (
+                <SpeechUnavailableNote lang={lang} color={g.secondary} testID="mistakes-speech-unavailable" />
+              ) : null}
+              {entry.exercise.renderer === 'listening' && entry.exercise.audioRef ? (
+                <ListeningPlayback audioRef={entry.exercise.audioRef} color={g.accent} foreground={g.accentInk} accessibilityLabel={copy.listen} />
+              ) : null}
+              <AnswerField>
+                <TextInput
+                  value={input}
+                  onChangeText={setInput}
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  accessibilityLabel={copy.answerPlaceholder}
+                  placeholder={copy.answerPlaceholder}
+                  placeholderTextColor={g.mutedText}
+                  style={[fieldInputStyle, { color: g.text }]}
+                />
+              </AnswerField>
             </View>
-            <View style={styles.tokens}>
-              {builderDisplayOrder.map((index) => (
-                <Pressable
-                  key={index}
-                  disabled={builderTokenIndexes.includes(index)}
-                  style={[styles.token, { backgroundColor: g.opaqueControl, opacity: builderTokenIndexes.includes(index) ? 0.28 : 1 }]}
-                  onPress={() => setBuilderTokenIndexes((current) => [...current, index])}
-                >
-                  <Text style={{ color: g.text, fontSize: f.body }}>{entry.exercise.tokens?.[index]}</Text>
-                </Pressable>
-              ))}
+          ) : null}
+
+          {!feedback && !hiddenUndo && renderer === 'speech' ? (
+            <View style={styles.speechArea}>
+              <SpeakingPanel
+                targetText={entry.exercise.correctAnswer}
+                lang={lang}
+                theme={speakingTheme}
+                recognitionLocale={studyTarget === 'fr' ? 'fr-FR' : 'en-US'}
+                presentation="inline"
+                holdActive={speechHeld}
+                onScore={({ score }) => {
+                  const verdict = classifyMistakeVoiceVerdict({
+                    status: 'scored',
+                    score,
+                    threshold: SPEECH_PRONUNCIATION_PASS_THRESHOLD,
+                  });
+                  trackMistakePracticeEvent('mistake_practice_voice_outcome', {
+                    study_target: studyTarget,
+                    entry_source: entrySource,
+                    voice_outcome: verdict,
+                  });
+                  const attemptsVerdict = mistakeVoiceOutcomeToSessionAttemptVerdict(verdict);
+                  if (attemptsVerdict === 'correct') void submitVerdict(true);
+                  else if (attemptsVerdict === 'pedagogical_wrong') void submitVerdict(false);
+                  else setSpeechRecovery(copy.speechRetry);
+                }}
+                onClose={onSpeechClose}
+                onStatusChange={onSpeechStatus}
+              />
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel={copy.holdToSpeak}
+                onPressIn={() => setSpeechHeld(true)}
+                onPressOut={() => setSpeechHeld(false)}
+                style={({ pressed }) => [styles.mic, { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 18, blurRadius: 34, spreadDistance: -12, color: `${g.accent}B3` }] }, pressed && { opacity: 0.9 }]}
+              >
+                <Ionicons name="mic" size={32} color={g.accentInk} />
+              </Pressable>
+              <Text style={[styles.micLabel, { color: g.secondary }]}>{pcopy.holdToSpeak}</Text>
+              {speechRecovery ? <Text style={[styles.recovery, { color: g.secondary, fontSize: f.sub }]}>{speechRecovery}</Text> : null}
             </View>
-          </>
-        ) : null}
-
-        {!feedback && !hiddenUndo && (renderer === 'typing' || renderer === 'listening') ? (
-          <>
-            {speechReplacedByTyping ? (
-              <SpeechUnavailableNote lang={lang} color={g.secondary} testID="mistakes-speech-unavailable" />
-            ) : null}
-            {entry.exercise.renderer === 'listening' && entry.exercise.audioRef ? (
-              <ListeningPlayback audioRef={entry.exercise.audioRef} color={g.cta} foreground={g.ctaInk} accessibilityLabel={copy.listen} />
-            ) : null}
-            <TextInput
-              value={input}
-              onChangeText={setInput}
-              autoCapitalize="none"
-              autoCorrect={false}
-              placeholder={copy.answerPlaceholder}
-              placeholderTextColor={g.mutedText}
-              style={[styles.input, { backgroundColor: g.opaqueCard, color: g.text, fontSize: f.body }]}
-            />
-          </>
-        ) : null}
-
-        {!feedback && !hiddenUndo && renderer === 'speech' ? (
-          <View style={styles.speechArea}>
-            <SpeakingPanel
-              targetText={entry.exercise.correctAnswer}
-              lang={lang}
-              theme={speakingTheme}
-              recognitionLocale={studyTarget === 'fr' ? 'fr-FR' : 'en-US'}
-              presentation="inline"
-              holdActive={speechHeld}
-              onScore={({ score }) => {
-                const verdict = classifyMistakeVoiceVerdict({
-                  status: 'scored',
-                  score,
-                  threshold: SPEECH_PRONUNCIATION_PASS_THRESHOLD,
-                });
-                trackMistakePracticeEvent('mistake_practice_voice_outcome', {
-                  study_target: studyTarget,
-                  entry_source: entrySource,
-                  voice_outcome: verdict,
-                });
-                const attemptsVerdict = mistakeVoiceOutcomeToSessionAttemptVerdict(verdict);
-                if (attemptsVerdict === 'correct') void submitVerdict(true);
-                else if (attemptsVerdict === 'pedagogical_wrong') void submitVerdict(false);
-                else setSpeechRecovery(copy.speechRetry);
-              }}
-              onClose={onSpeechClose}
-              onStatusChange={onSpeechStatus}
-            />
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel={copy.holdToSpeak}
-              onPressIn={() => setSpeechHeld(true)}
-              onPressOut={() => setSpeechHeld(false)}
-              style={[styles.micButton, { backgroundColor: g.accent }]}
-            >
-              <Ionicons name="mic" size={26} color={g.ctaInk} />
-              <Text style={{ color: g.accentInk, fontSize: f.body, fontWeight: '700' }}>{copy.holdAndSpeak}</Text>
-            </Pressable>
-            {speechRecovery ? <Text style={[styles.recovery, { color: g.secondary, fontSize: f.sub }]}>{speechRecovery}</Text> : null}
-          </View>
-        ) : null}
-
-        {feedback ? (
-          <MistakeVerdictPanel
-            lang={lang}
-            correct={feedback.correct}
-            userAnswer={feedback.userAnswer}
-            correctAnswer={feedback.answer}
-            explanation={liveExplanation ?? feedback.explanation}
-            explanationLoading={mistakeExplain.aiMistakeState === 'loading'}
-            chain={feedback.chain}
-            stopForToday={feedback.stopForToday}
-            onExplainSimpler={liveExplanation ? mistakeExplain.eli5.onOpen : undefined}
-          />
-        ) : null}
-        {hiddenUndo ? (
-          <View style={[styles.feedback, { backgroundColor: g.opaqueCard }]}>
-            <Text style={{ color: g.text, fontSize: f.body, fontWeight: '700' }}>{copy.hidden}</Text>
-          </View>
-        ) : null}
-      </ScrollView>
+          ) : null}
+        </ScrollView>
       </View>
 
-      {hiddenUndo ? (
-        <View style={styles.undoRow}>
-          <Pressable style={[styles.undoButton, { backgroundColor: g.opaqueCard }]} onPress={() => void undoHiddenMistake()}>
-            <Text style={{ color: g.text, fontSize: f.body, fontWeight: '700' }}>{copy.undo}</Text>
-          </Pressable>
-          <Pressable style={[styles.undoButton, { backgroundColor: g.accent }]} onPress={continueAfterHidden}>
-            <Text style={{ color: g.accentInk, fontSize: f.body, fontWeight: '700' }}>{copy.continue}</Text>
-          </Pressable>
-        </View>
-      ) : feedback ? (
-        <Pressable style={[styles.bottomButton, { backgroundColor: g.accent }]} onPress={continueAfterFeedback}>
-          <Text style={{ color: g.accentInk, fontSize: f.body, fontWeight: '700' }}>{copy.continue}</Text>
-        </Pressable>
-      ) : renderer !== 'choices' && renderer !== 'fill_gap' && renderer !== 'matching' && renderer !== 'speech' ? (
-        <Pressable
-          disabled={!answerValue.trim() || submitting}
-          style={[styles.bottomButton, { backgroundColor: answerValue.trim() ? g.cta : g.opaqueControl }]}
-          onPress={() => void submitVerdict(matchesMistakePracticeAnswer(answerValue, entry.exercise.correctAnswer, studyTarget))}
-        >
-          <Text style={{ color: answerValue.trim() ? g.ctaInk : g.mutedText, fontSize: f.body, fontWeight: '700' }}>{copy.check}</Text>
-        </Pressable>
-      ) : null}
+      {tray}
+
+      <PanelSheet visible={menuOpen} onClose={closeMenu} testID="mistake-practice-sheet">
+        <SheetRow g={g} testID="mistake-practice-menu-hide" icon="eye-off-outline" title={pcopy.hideItem} onPress={() => { setMenuOpen(false); setHideConfirmVisible(true); }} />
+        <SheetRow g={g} testID="mistake-practice-menu-report" icon="flag-outline" title={pcopy.reportItem} onPress={() => { setMenuOpen(false); reportOpenRef.current?.(); }} />
+      </PanelSheet>
+      {/* зачем: ту же форму жалобы, что была кнопкой-флажком в шапке, теперь открывает пункт меню «⋯»; сама кнопка не рисуется. */}
+      <ReportErrorButton
+        hideTrigger
+        openRef={reportOpenRef}
+        screen="mistake_practice"
+        dataId={`mistake_${entry.exercise.exerciseId ?? 'unknown'}`}
+        dataText={`${entry.exercise.prompt}${entry.exercise.hint ? `\n${entry.exercise.hint}` : ''}
+OK: ${entry.exercise.correctAnswer}`}
+        userAnswer={feedback?.userAnswer || undefined}
+        testID="mistake-practice-report-form"
+      />
       <MistakeEli5Modal
         visible={mistakeExplain.eli5.open}
         onClose={mistakeExplain.eli5.onClose}
@@ -1403,11 +1451,38 @@ const styles = StyleSheet.create({
   screen: { flex: 1 },
   center: { alignItems: 'center', justifyContent: 'center', padding: 28, gap: 18 },
   header: { height: 62, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', gap: 12 },
+  topbar: { height: 44, marginTop: 6, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  topRight: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  skelTray: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingTop: 18, paddingHorizontal: 16, paddingBottom: 34 },
+  skelGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
+  runeAnchor: { position: 'absolute', top: 24, right: 70, width: 1, height: 1 },
+  errorActions: { alignSelf: 'stretch', gap: 12, paddingHorizontal: 20 },
+  trayNote: { fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center', marginBottom: 14 },
+  trayRow: { flexDirection: 'row', gap: 10 },
+  trayRowGap: { marginTop: 16 },
+  trayCtaGap: { marginTop: 16 },
+  trayWhy: { marginTop: 14, marginBottom: 16, paddingHorizontal: 2, fontSize: 16, lineHeight: 23, color: '#E2E2E6' },
+  trayStop: { marginTop: 12, fontSize: 14, lineHeight: 20, textAlign: 'center' },
+  whyHead: { flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 12 },
+  whyTitle: { flex: 1, fontSize: 22, lineHeight: 28, fontWeight: '700' },
+  whyRow: { minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: 14 },
+  whyRowText: { paddingVertical: 12 },
+  whyLabel: { width: 90, fontSize: 16, lineHeight: 20 },
+  whyValue: { flex: 1, fontSize: 19, lineHeight: 24, fontWeight: '700' },
+  whyBody: { fontSize: 16, lineHeight: 23, color: '#E2E2E6' },
+  strike: { textDecorationLine: 'line-through' },
+  answerLine: { marginTop: 14, flexDirection: 'row', alignItems: 'center', gap: 14 },
+  tokenPool: { flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginBottom: 16 },
+  slotGap: { marginTop: 26 },
+  slotReset: { marginLeft: 'auto', padding: 4 },
+  fieldWrap: { marginTop: 26, gap: 14 },
+  mic: { width: 92, height: 92, borderRadius: 46, alignItems: 'center', justifyContent: 'center', alignSelf: 'center' },
+  micLabel: { marginTop: 16, fontSize: 15, lineHeight: 20, textAlign: 'center' },
   headerButton: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   progressTrack: { flex: 1, height: 8, borderRadius: 4, overflow: 'hidden' },
   progressFill: { height: 8, borderRadius: 4 },
-  counter: { minWidth: 36, fontWeight: '700' },
-  content: { paddingHorizontal: 22, paddingTop: 28, paddingBottom: 120, gap: 20 },
+  counter: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
+  content: { paddingHorizontal: 20, paddingBottom: 340 },
   prompt: { fontWeight: '700', lineHeight: 34 },
   // зачем: контейнер content держит gap 20 — без подтягивания перевод повис бы
   // ровно между заданием и вариантами, не примыкая ни к чему. Пара
@@ -1420,7 +1495,7 @@ const styles = StyleSheet.create({
   builderAnswer: { minHeight: 76, borderRadius: 18, paddingHorizontal: 18, paddingVertical: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 10 },
   tokens: { flexDirection: 'row', flexWrap: 'wrap', gap: 9 },
   token: { minHeight: 44, paddingHorizontal: 14, borderRadius: 14, justifyContent: 'center' },
-  speechArea: { minHeight: 260, gap: 14 },
+  speechArea: { marginTop: 44, gap: 0 },
   micButton: { minHeight: 56, borderRadius: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
   recovery: { textAlign: 'center' },
   feedback: { borderRadius: 20, padding: 18, gap: 10 },

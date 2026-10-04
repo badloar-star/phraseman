@@ -7,12 +7,12 @@
 import React, { memo, useEffect } from 'react';
 import { BackHandler, Pressable, StyleSheet, View } from 'react-native';
 import Animated, { Easing, FadeIn, FadeOut, SlideInDown, SlideOutDown } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 
 const EASE_OUT = Easing.bezier(0.23, 1, 0.32, 1);
 
 export const PanelSheet = memo(function PanelSheet({ visible, onClose, children, testID }: Readonly<{ visible: boolean; onClose: () => void; children: React.ReactNode; testID?: string }>) {
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   useEffect(() => {
     if (!visible) return undefined;
     // зачем: системная кнопка «назад» закрывает шторку, а не уводит с экрана.

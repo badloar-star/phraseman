@@ -9,7 +9,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 
 import type { Lv2Glass } from '../learning-v2/LearningV2Glass';
 import { LinearGradient } from '../SafeLinearGradient';
@@ -160,7 +160,7 @@ export const PanelCta = memo(function PanelCta({ g, label, onPress, testID, disa
 
 /** Нижняя панель экрана: кнопки поверх плавного затемнения (макет «.bot2»). */
 export const PanelDock = memo(function PanelDock({ children }: Readonly<{ children: React.ReactNode }>) {
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   return (
     <View style={styles.dock} pointerEvents="box-none">
       <LinearGradient
@@ -173,6 +173,21 @@ export const PanelDock = memo(function PanelDock({ children }: Readonly<{ childr
     </View>
   );
 });
+
+/** Строка шторки-меню: плитка с иконкой и название (макет «.gl.opt»). */
+export function SheetRow({ g, icon, title, danger, onPress, testID }: Readonly<{ g: Lv2Glass; icon: keyof typeof Ionicons.glyphMap; title: string; danger?: boolean; onPress: () => void; testID: string }>) {
+  const [a] = themePair(g);
+  return (
+    <Pressable testID={testID} accessibilityRole="button" onPress={onPress} style={({ pressed }) => [styles.menuRow, pressed && styles.pressed]}>
+      <LinearGradient pointerEvents="none" colors={[`${mixDark(a, '#18181E', 0.14)}B3`, 'rgba(14,14,18,0.7)']} start={{ x: 0.25, y: 0.07 }} end={{ x: 0.75, y: 0.93 }} style={StyleSheet.absoluteFill} />
+      <View style={styles.menuTile}>
+        <Ionicons name={icon} size={20} color={danger ? MP_COLORS.bad : g.text} />
+      </View>
+      <Text style={[styles.menuText, { color: danger ? MP_COLORS.bad : g.text }]}>{title}</Text>
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.menuEdge, { boxShadow: ringShadow(MP_COLORS.hairline) }]} />
+    </Pressable>
+  );
+}
 
 const styles = StyleSheet.create({
   pressed: { opacity: 0.82 },
@@ -199,5 +214,9 @@ const styles = StyleSheet.create({
   ctaDisabled: { opacity: 0.5 },
   ctaEdge: { borderRadius: 26 },
   ctaText: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
+  menuRow: { minHeight: 62, marginTop: 10, borderRadius: 20, overflow: 'hidden', flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 10, paddingLeft: 10, paddingRight: 16 },
+  menuEdge: { borderRadius: 20 },
+  menuTile: { width: 42, height: 42, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.08)' },
+  menuText: { flex: 1, fontSize: 17, lineHeight: 22, fontWeight: '700' },
   dock: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 20, paddingTop: 20 },
 });

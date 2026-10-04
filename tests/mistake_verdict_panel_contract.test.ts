@@ -22,7 +22,7 @@ describe('mistake verdict panel contract', () => {
     expect(panel).not.toMatch(/ActivityIndicator/);
     expect(screen).toContain('useMistakeExplain');
     expect(screen).toContain('prewarmMistakeSessionExplanations');
-    expect(screen).toContain('liveExplanation ?? feedback.explanation');
+    expect(screen).toContain('liveExplanation ?? feedback?.explanation');
   });
 
   test('makes the three-day chain visible and keeps the rule as its source', () => {
@@ -43,7 +43,8 @@ describe('mistake verdict panel contract', () => {
   });
 
   test('the old six canned templates no longer own the panel', () => {
-    expect(screen).toContain('<MistakeVerdictPanel');
+    // 04.10 (макет «Панель»): вердикт рисует «стакан» экрана с подсветкой расхождения (DiffValue); файл старой панели ждёт удаления после чистки сторожей.
+    expect(screen).toContain('<DiffValue');
     expect(screen).not.toContain('{copy.correctAnswer}</Text>');
   });
 });

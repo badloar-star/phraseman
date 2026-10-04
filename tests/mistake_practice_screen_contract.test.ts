@@ -46,7 +46,7 @@ describe('mistake practice session screen', () => {
     expect(screen).toContain("type: 'restored'");
     expect(screen).toContain('Скрыть ошибку?');
     expect(screen).toContain("undo: 'Вернуть'");
-    expect(screen).toContain('{copy.undo}</Text>');
+    expect(screen).toContain('label={copy.undo}');
   });
 
   test('is registered as an Expo route', () => {

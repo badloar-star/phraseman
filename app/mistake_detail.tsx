@@ -4,15 +4,16 @@ import { useManagedSpokenAudioPlayer } from '../hooks/use_managed_spoken_audio_p
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLv2Glass, type Lv2Glass } from '../components/learning-v2/LearningV2Glass';
-import { BackButton, Panel, PanelCta, PanelDock } from '../components/mistakes-panel/PanelKit';
+import { BackButton, Panel, PanelCta, PanelDock, SheetRow } from '../components/mistakes-panel/PanelKit';
 import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
-import { MP_COLORS, mixDark, ringShadow, themePair } from '../components/mistakes-panel/panelPaint';
+import { MP_COLORS, mixDark, themePair } from '../components/mistakes-panel/panelPaint';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
@@ -78,25 +79,11 @@ function AnswerRow({ g, label, value, color, strike, right, first }: Readonly<{ 
   );
 }
 
-function SheetRow({ g, icon, title, danger, onPress, testID }: Readonly<{ g: Lv2Glass; icon: keyof typeof Ionicons.glyphMap; title: string; danger?: boolean; onPress: () => void; testID: string }>) {
-  const [a] = themePair(g);
-  return (
-    <Pressable testID={testID} accessibilityRole="button" onPress={onPress} style={({ pressed }) => [styles.menuRow, pressed && styles.pressed]}>
-      <LinearGradient pointerEvents="none" colors={[`${mixDark(a, '#18181E', 0.14)}B3`, 'rgba(14,14,18,0.7)']} start={{ x: 0.25, y: 0.07 }} end={{ x: 0.75, y: 0.93 }} style={StyleSheet.absoluteFill} />
-      <View style={styles.menuTile}>
-        <Ionicons name={icon} size={20} color={danger ? MP_COLORS.bad : g.text} />
-      </View>
-      <Text style={[styles.menuText, { color: danger ? MP_COLORS.bad : g.text }]}>{title}</Text>
-      <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.menuEdge, { boxShadow: ringShadow(MP_COLORS.hairline) }]} />
-    </Pressable>
-  );
-}
-
 export default function MistakeDetailScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{ mistakeId?: string }>();
   const g = useLv2Glass();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const copy = useMemo(() => copyFor(lang), [lang]);
@@ -340,8 +327,4 @@ const styles = StyleSheet.create({
   whyTitle: { flex: 1, fontSize: 17, lineHeight: 22, fontWeight: '700' },
   whyText: { paddingBottom: 16, fontSize: 16, lineHeight: 23, color: '#E2E2E6' },
   listen: { width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.1)' },
-  menuRow: { minHeight: 62, marginTop: 10, borderRadius: 20, overflow: 'hidden', flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 10, paddingLeft: 10, paddingRight: 16 },
-  menuEdge: { borderRadius: 20 },
-  menuTile: { width: 42, height: 42, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.08)' },
-  menuText: { flex: 1, fontSize: 17, lineHeight: 22, fontWeight: '700' },
 });

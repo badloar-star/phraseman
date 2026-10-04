@@ -29,8 +29,8 @@ describe('mistakes section never claims more than the data says', () => {
 
   test('the hub counts mistakes with an agreeing word', () => {
     const hub = read('app/mistakes_hub.tsx');
-    expect(hub).toContain('pluralWord(lang, facetTotal, copy.mistakes)');
-    expect(hub).not.toMatch(/\$\{facetTotal\} \$\{copy\.mistakes\}/);
+    expect(hub).toContain('pluralWord(lang, sheetReady, copy.mistakes)');
+    expect(hub).not.toMatch(/\$\{sheetReady\} \$\{copy\.mistakes\}/);
   });
 
   test('the streak and the title gap carry agreeing words too', () => {
@@ -49,21 +49,18 @@ describe('mistakes section never claims more than the data says', () => {
     // зачем (координатор 04.10, §126/§130): прогресс — три деления без пояснений «верно в 3 разных дня».
     expect(detail).not.toContain('ruleCopyFor');
     expect(detail).not.toContain('3 разных дня');
-    expect(detail).toContain('[0, 1, 2].map((index) => (');
+    expect(detail).toMatch(/\[0, 1, 2\]\.map\(\(index\) =>/);
   });
 
   test('the verdict shows bars and the fixed fact, without day-count promises', () => {
-    const panel = read('components/mistake-practice/MistakeVerdictPanel.tsx');
-    expect(panel).not.toMatch(/oneMoreTwoDays|oneMoreOtherMode|oneMoreAnyMode/);
-    expect(panel).toContain('{chain.corrected ? (');
-    // Логику не трогали: панель по-прежнему получает число режимов и требуемый минимум.
-    expect(panel).toContain('requiredModes: 1 | 2;');
-    expect(panel).toContain('modes: number;');
+    // 04.10 (макет «Панель»): вердикт рисует «стакан» экрана (StepDots + факт исправления), старой панели нет.
     const screen = read('app/mistake_practice_session.tsx');
+    expect(screen).not.toMatch(/oneMoreTwoDays|oneMoreOtherMode|oneMoreAnyMode/);
+    expect(screen).toContain('feedback.chain.corrected ? 3 : feedback.chain.days');
     expect(screen).toContain('modes: new Set(afterItem.qualifyingModes).size');
     expect(screen).toContain('requiredModes: requiredModesForMistake(afterItem)');
-    // И не делит на ноль в шапке прогресса.
-    expect(screen).toContain('session.initialCount > 0 ? Math.min(100');
+    // Счётчик шапки «n / total» — просто числа сессии, делить не на что.
+    expect(screen).toContain('`${progress} / ${total}`');
   });
 
   test('the locked sheet jokes without telling anyone to fail on purpose', () => {

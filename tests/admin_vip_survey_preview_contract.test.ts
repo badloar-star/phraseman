@@ -13,7 +13,11 @@ describe('admin VIP survey preview', () => {
 
   it('submits the test survey through the real callable and keeps admin results live', () => {
     expect(inbox).toContain('VipSurveyModal');
-    expect(inbox).not.toContain('VipSurveyReviewPromptModal');
+    // 04.10: владелец вернул окно отзыва (c56cbd6a2) — только после опроса и один раз на опрос.
+    expect(inbox).toContain("import VipSurveyReviewPromptModal from './VipSurveyReviewPromptModal'");
+    expect(inbox).toContain("requestVipSurveyReviewPrompt('after_celebration')");
+    expect(inbox).toContain("requestVipSurveyReviewPrompt('already_granted')");
+    expect(inbox).toContain('claimVipSurveyReviewPrompt(VIP_SURVEY_ID, trigger)');
     expect(inbox).toContain('useIsFocused');
     expect(inbox).toContain('if (!renderButton) return null');
     expect(inbox).toContain('vip-survey-inbox-cta');

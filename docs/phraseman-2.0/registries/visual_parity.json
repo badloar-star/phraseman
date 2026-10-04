@@ -1,7 +1,7 @@
 {
   "schemaVersion": "visual-parity.v1",
   "rule": "CLAUDE.md «ГЕЙТ: ПРИЛОЖЕНИЕ = МАКЕТ»: релиз запрещён, пока каждая строка не match (склейка + ревью координатора, анимации записаны).",
-  "generatedAt": "2026-10-04T11:41:28.032Z",
+  "generatedAt": "2026-10-04T12:10:19.404Z",
   "matrix": "docs/phraseman-2.0/evidence/STATE_CHECKLIST_2026-09-30.md",
   "mockupServer": "http://127.0.0.1:8765",
   "statuses": [
@@ -22155,10 +22155,10 @@
       "reviewed_at": null
     },
     {
-      "id": "mistakes-v2-001",
+      "id": "mistakes-panel-001",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-v2.html",
+        "file": "docs/design/v2-app/mistakes-panel.html",
         "phone": 1,
         "label": "Главная — вход",
         "mapping": "by_construction"
@@ -22167,8 +22167,10 @@
       "state": "Главная — вход",
       "code": [],
       "matrix_status": null,
-      "has_animation": false,
-      "anim_notes": [],
+      "has_animation": true,
+      "anim_notes": [
+        "grise 0.64s cubic-bezier(0.2, 1, 0.3, 1)"
+      ],
       "evidence": null,
       "evidence_at": null,
       "evidence_sha256": null,
@@ -22181,10 +22183,10 @@
       "reviewed_at": null
     },
     {
-      "id": "mistakes-v2-002",
+      "id": "mistakes-panel-002",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-v2.html",
+        "file": "docs/design/v2-app/mistakes-panel.html",
         "phone": 2,
         "label": "Хаб",
         "mapping": "by_construction"
@@ -22207,20 +22209,22 @@
       "reviewed_at": null
     },
     {
-      "id": "mistakes-v2-003",
+      "id": "mistakes-panel-003",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-v2.html",
+        "file": "docs/design/v2-app/mistakes-panel.html",
         "phone": 3,
-        "label": "Все ошибки",
+        "label": "Хаб — загрузка",
         "mapping": "by_construction"
       },
-      "screen": "Все ошибки",
-      "state": "Все ошибки",
+      "screen": "Хаб — загрузка",
+      "state": "Хаб — загрузка",
       "code": [],
       "matrix_status": null,
-      "has_animation": false,
-      "anim_notes": [],
+      "has_animation": true,
+      "anim_notes": [
+        "sh 1.4s linear infinite"
+      ],
       "evidence": null,
       "evidence_at": null,
       "evidence_sha256": null,
@@ -22233,63 +22237,11 @@
       "reviewed_at": null
     },
     {
-      "id": "mistakes-v2-004",
+      "id": "mistakes-panel-004",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-v2.html",
+        "file": "docs/design/v2-app/mistakes-panel.html",
         "phone": 4,
-        "label": "Карточка",
-        "mapping": "by_construction"
-      },
-      "screen": "Карточка",
-      "state": "Карточка",
-      "code": [],
-      "matrix_status": null,
-      "has_animation": false,
-      "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
-      "anim_evidence": null,
-      "anim_evidence_at": null,
-      "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
-    },
-    {
-      "id": "mistakes-v2-005",
-      "source": "MOCKUP_2026-10-04",
-      "mockup": {
-        "file": "docs/design/v2-app/mistakes-v2.html",
-        "phone": 5,
-        "label": "Меню карточки",
-        "mapping": "by_construction"
-      },
-      "screen": "Меню карточки",
-      "state": "Меню карточки",
-      "code": [],
-      "matrix_status": null,
-      "has_animation": false,
-      "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
-      "anim_evidence": null,
-      "anim_evidence_at": null,
-      "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null
-    },
-    {
-      "id": "mistakes-v2-006",
-      "source": "MOCKUP_2026-10-04",
-      "mockup": {
-        "file": "docs/design/v2-app/mistakes-v2.html",
-        "phone": 6,
         "label": "Перед отработкой",
         "mapping": "by_construction"
       },
@@ -22311,11 +22263,141 @@
       "reviewed_at": null
     },
     {
-      "id": "mistakes-v2-007",
+      "id": "mistakes-panel-005",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-v2.html",
+        "file": "docs/design/v2-app/mistakes-panel.html",
+        "phone": 5,
+        "label": "Все ошибки — ждут",
+        "mapping": "by_construction"
+      },
+      "screen": "Все ошибки — ждут",
+      "state": "Все ошибки — ждут",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "mistakes-panel-006",
+      "source": "MOCKUP_2026-10-04",
+      "mockup": {
+        "file": "docs/design/v2-app/mistakes-panel.html",
+        "phone": 6,
+        "label": "Все ошибки — исправлены",
+        "mapping": "by_construction"
+      },
+      "screen": "Все ошибки — исправлены",
+      "state": "Все ошибки — исправлены",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "mistakes-panel-007",
+      "source": "MOCKUP_2026-10-04",
+      "mockup": {
+        "file": "docs/design/v2-app/mistakes-panel.html",
         "phone": 7,
+        "label": "Ошибка",
+        "mapping": "by_construction"
+      },
+      "screen": "Ошибка",
+      "state": "Ошибка",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "mistakes-panel-008",
+      "source": "MOCKUP_2026-10-04",
+      "mockup": {
+        "file": "docs/design/v2-app/mistakes-panel.html",
+        "phone": 8,
+        "label": "Ошибка — шаги и история",
+        "mapping": "by_construction"
+      },
+      "screen": "Ошибка — шаги и история",
+      "state": "Ошибка — шаги и история",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "mistakes-panel-009",
+      "source": "MOCKUP_2026-10-04",
+      "mockup": {
+        "file": "docs/design/v2-app/mistakes-panel.html",
+        "phone": 9,
+        "label": "Меню ошибки",
+        "mapping": "by_construction"
+      },
+      "screen": "Меню ошибки",
+      "state": "Меню ошибки",
+      "code": [],
+      "matrix_status": null,
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "reviewed_by": null,
+      "reviewed_at": null
+    },
+    {
+      "id": "mistakes-panel-010",
+      "source": "MOCKUP_2026-10-04",
+      "mockup": {
+        "file": "docs/design/v2-app/mistakes-panel.html",
+        "phone": 10,
         "label": "Выбери перевод",
         "mapping": "by_construction"
       },
@@ -22337,11 +22419,11 @@
       "reviewed_at": null
     },
     {
-      "id": "mistakes-v2-008",
+      "id": "mistakes-panel-011",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-v2.html",
-        "phone": 8,
+        "file": "docs/design/v2-app/mistakes-panel.html",
+        "phone": 11,
         "label": "Собери фразу",
         "mapping": "by_construction"
       },
@@ -22363,11 +22445,11 @@
       "reviewed_at": null
     },
     {
-      "id": "mistakes-v2-009",
+      "id": "mistakes-panel-012",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-v2.html",
-        "phone": 9,
+        "file": "docs/design/v2-app/mistakes-panel.html",
+        "phone": 12,
         "label": "Напиши",
         "mapping": "by_construction"
       },
@@ -22389,11 +22471,11 @@
       "reviewed_at": null
     },
     {
-      "id": "mistakes-v2-010",
+      "id": "mistakes-panel-013",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-v2.html",
-        "phone": 10,
+        "file": "docs/design/v2-app/mistakes-panel.html",
+        "phone": 13,
         "label": "Скажи вслух",
         "mapping": "by_construction"
       },
@@ -22415,11 +22497,11 @@
       "reviewed_at": null
     },
     {
-      "id": "mistakes-v2-011",
+      "id": "mistakes-panel-014",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-v2.html",
-        "phone": 11,
+        "file": "docs/design/v2-app/mistakes-panel.html",
+        "phone": 14,
         "label": "Верно",
         "mapping": "by_construction"
       },
@@ -22441,11 +22523,11 @@
       "reviewed_at": null
     },
     {
-      "id": "mistakes-v2-012",
+      "id": "mistakes-panel-015",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-v2.html",
-        "phone": 12,
+        "file": "docs/design/v2-app/mistakes-panel.html",
+        "phone": 15,
         "label": "Неверно",
         "mapping": "by_construction"
       },
@@ -22467,11 +22549,11 @@
       "reviewed_at": null
     },
     {
-      "id": "mistakes-v2-013",
+      "id": "mistakes-panel-016",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-v2.html",
-        "phone": 13,
+        "file": "docs/design/v2-app/mistakes-panel.html",
+        "phone": 16,
         "label": "Почему",
         "mapping": "by_construction"
       },
@@ -22493,11 +22575,11 @@
       "reviewed_at": null
     },
     {
-      "id": "mistakes-v2-014",
+      "id": "mistakes-panel-017",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-v2.html",
-        "phone": 14,
+        "file": "docs/design/v2-app/mistakes-panel.html",
+        "phone": 17,
         "label": "Итог отработки",
         "mapping": "by_construction"
       },
@@ -22519,11 +22601,11 @@
       "reviewed_at": null
     },
     {
-      "id": "mistakes-v2-015",
+      "id": "mistakes-panel-018",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-v2.html",
-        "phone": 15,
+        "file": "docs/design/v2-app/mistakes-panel.html",
+        "phone": 18,
         "label": "Ошибок нет",
         "mapping": "by_construction"
       },
@@ -22545,11 +22627,11 @@
       "reviewed_at": null
     },
     {
-      "id": "mistakes-v2-016",
+      "id": "mistakes-panel-019",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-v2.html",
-        "phone": 16,
+        "file": "docs/design/v2-app/mistakes-panel.html",
+        "phone": 19,
         "label": "На сегодня всё",
         "mapping": "by_construction"
       },
@@ -22571,11 +22653,11 @@
       "reviewed_at": null
     },
     {
-      "id": "mistakes-v2-017",
+      "id": "mistakes-panel-020",
       "source": "MOCKUP_2026-10-04",
       "mockup": {
-        "file": "docs/design/v2-app/mistakes-v2.html",
-        "phone": 17,
+        "file": "docs/design/v2-app/mistakes-panel.html",
+        "phone": 20,
         "label": "Нет сети и кэша",
         "mapping": "by_construction"
       },

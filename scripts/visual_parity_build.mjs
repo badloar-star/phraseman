@@ -24,7 +24,7 @@ const LOG = '[PARITY-BUILD]';
 const SERVER = process.env.PARITY_MOCKUP_SERVER || 'http://127.0.0.1:8765';
 const MATRIX = 'docs/phraseman-2.0/evidence/STATE_CHECKLIST_2026-09-30.md';
 const REGISTRY = path.join(ROOT, 'docs/phraseman-2.0/registries/visual_parity.json');
-const EXTRA_MOCKUPS = ['mistakes-v2', 'themes-gradient', 'cards-section']; // зачем: новые макеты 04.10; владелец одобрил cards-section (замена cards-v2) — старые строки cards-v2 уходят, новые стартуют pending без склеек
+const EXTRA_MOCKUPS = ['mistakes-panel', 'themes-gradient', 'cards-section']; // зачем: новые макеты 04.10; владелец одобрил cards-section (замена cards-v2) — старые строки cards-v2 уходят, новые стартуют pending без склеек
 const SYMBOLS = ['✅', '🟠', '❌', '🏠', '➖'];
 
 const useHead = process.argv.includes('--head');

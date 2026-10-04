@@ -1,16 +1,17 @@
-# German Learning V2 — linguistic review receipt 2026-10-04
+# German Learning V2 — cumulative linguistic review receipt 2026-10-04
 
 **Verdict:** `PASS`
 **Findings:** `P0=0`; `P1=0`; `P2=0`
-**Scope:** the bounded Task 4 authority repair for `de_l24`, including its
-exact lesson object and lesson-boundary gate. This receipt does not review or
-authorize the currently stale Task 5 L24 chapter blueprint or chapter gate.
-**Mode:** two fresh independent read-only reviews after GREEN: exact-spec review
-and adversarial red-team review. Neither reviewer authored or mutated the
-reviewed files.
-**Observed HEAD:** `c0333fe6d48f1e6beffab3400c72581b575ac7a9`
+**Scope:** the bounded `de_l24` closure across Stage A (Task 4 authority
+repair) and Stage B (Task 5 chapter blueprint plus fail-closed chapter gate).
+**Mode:** fresh independent read-only reviews after each GREEN. Stage B used
+exact-spec and native-German semantic judges. No reviewer authored or mutated
+the reviewed files.
+**Reviewed commits:** Stage A
+`40a9087f0d00a679e66439f932f5fa0044e145fc`; Stage B
+`eadfba9fe2225a9205eb9242a62f74496685e3fc`.
 
-## Exact reviewed identities
+## Stable authority identities
 
 | Artifact                                                                     | SHA-256                                                            |
 | ---------------------------------------------------------------------------- | ------------------------------------------------------------------ |
@@ -18,96 +19,103 @@ reviewed files.
 | `docs/v2/curriculum/de/RESEARCH_DOSSIER.ru.md`                               | `55C8CC16BDEDCB1E8E3B61BFBD9FB82D61C74A21119F4ADC3CAA7EFD99C76318` |
 | `docs/v2/curriculum/de/SOURCE_EVIDENCE_LEDGER.md`                            | `38A878346F1BB410CBA6F11311563669B29E91AD63E5EDA6F548F21C4C6CE10A` |
 | `modules/learning-v2/curriculum/de/graphs/prerequisite_dag_de_v1.json`       | `82278EEE7428E6950118105E046EB0BE395E7D245F5766B7555285D44C68542E` |
-| `modules/learning-v2/curriculum/de/lesson_blueprints_de_v1.json`             | `30C3DD0795CD1E28433D94623632A09F680DB4D159EC94E6F63360EF3D1B0BEB` |
 | `modules/learning-v2/curriculum/de/registries/grammar_constructs_de_v1.json` | `A8131C418606EB700266F43A8D30C218EE58A006BDF475AD2ED955D8D56F88FB` |
 | `modules/learning-v2/curriculum/de/research_authority_de_v1.ts`              | `0CF28BE0B30FE66735CBDD609DE10BCDA88193290C129006E7A6E393749873FB` |
-| `tests/learning_v2_de_lesson_boundaries_gate.ts`                             | `A2C7818ADD23C8A3EFFB43775DE166A95E6B38C8F2EB21E162855C9B3B68851B` |
 
-The canonical `de_l24` object SHA-256 is
+## Stage A — repaired Task 4 authority boundary
+
+| Reviewed artifact                                                 | SHA-256                                                            |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `modules/learning-v2/curriculum/de/lesson_blueprints_de_v1.json`  | `30C3DD0795CD1E28433D94623632A09F680DB4D159EC94E6F63360EF3D1B0BEB` |
+| `tests/learning_v2_de_lesson_boundaries_gate.ts`                  | `A2C7818ADD23C8A3EFFB43775DE166A95E6B38C8F2EB21E162855C9B3B68851B` |
+| `content/learning-v2-course/pipeline/recenter_contract.test.mjs`  | `D8FE0780941468D1237537C3CB276C7EC3A1A69FFE249A739249E10BE1E46BA3` |
+| predecessor Stage-A linguistic receipt, before cumulative rewrite | `4F0F7359624A3C7681F0DFA875CFC067804D31CA591BCC5981064710CD1A162F` |
+
+The canonical Task 4 `de_l24` object SHA-256 is
+`C04A3B85A017855EBA5BFDAAC514DCA66B27255D275FFFB6E4C67C176244D8B3`.
+The exact lesson and its gate preserve the following reviewed boundary:
+
+- the productive target is only present singular event passive `wird` plus a
+  verified controlled Partizip II;
+- the one known finite split clause from L08 is reception-only contrast;
+- `abgegeben` and `abgeholt` do not by themselves prove the finite separable
+  bracket;
+- state passive, recipient passive, agent phrases, `werden` plus infinitive,
+  new passive person-number forms and unverified participles remain excluded.
+
+Stage A received independent exact-spec and adversarial reviews on these exact
+identities: both `PASS`, with `P0=0`, `P1=0`, `P2=0`.
+
+## Stage B — closed Task 5 L24 blueprint
+
+| Reviewed artifact                                                 | SHA-256                                                            |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `modules/learning-v2/curriculum/de/chapter_blueprints_de_v1.json` | `AAF34C9C8FB5B250B294F2870A823780B31DA8AF2B1F3F5EDA2A7D1C61C7B1A2` |
+| `tests/learning_v2_de_chapter_blueprints_gate.ts`                 | `1E92F44A25210CDF00F654E6B199011E3DEF0711AC1B29C285B89F6BDAF33D74` |
+
+The canonical Task 5 `de_l24` chapter object SHA-256 is
+`5E3CD3D724938C91DA01D639BCC9B0AFDF68C0C7B80A72DE701FC60FB8F03EEF`.
+The chapter gate also pins the repaired Task 4 plan SHA-256
 `C04A3B85A017855EBA5BFDAAC514DCA66B27255D275FFFB6E4C67C176244D8B3`.
 
-## Authorization and independent verdicts
+The materialized lesson contains exactly seven chapters and 56 packet IDs. It
+preserves the declared lifecycle anchors, inverse L23→L24 recall provenance,
+per-chapter changed-context evidence, controlled lexical packages, exact
+support fading and independent final transfer at `de_l24_c07_s56`.
 
-- Terminal Task 4 repair contract:
-  `E3A2BAE7432BE859D5C13C7E517EEA137E72C6E4429CF74CF162F39B47B2EAF5`;
-  guardian receipt:
-  `291699E226172FAEAD2A640822137203CBAE1B37A8A0C590C7E4FF783C32BD48`.
-- Narrow gate amendment contract:
-  `82EB00ED26DB11D2C0BF8B664F4030ED8398FCC44B0A20CE3CFBAF8ACC533ECD`;
-  guardian receipt:
-  `1D1E73EE0E9DD8D4D1C30EEE9C06AB35DC3342EEBD221612B67E21AEA3F4CD1D`.
-- Fresh exact-spec review on the exact lesson, canonical L24 object and gate
-  identities above: `PASS`, `P0=0`, `P1=0`, `P2=0`.
-- Fresh independent red-team review on the same identities: `PASS`, `P0=0`,
-  `P1=0`, `P2=0`.
+Stage B received two fresh independent reviews on the exact identities above:
 
-## Verified finite-split and participle boundary
+- exact-spec review: `PASS`, `P0=0`, `P1=0`, `P2=0`;
+- native-German semantic review: `PASS`, `P0=0`, `P1=0`, `P2=0`.
 
-- `de_gc_separable_verb_bracket_v1` requires a finite lexical stem in the left
-  bracket and its detached particle in the right bracket.
-- L24 therefore retrieves exactly one already known finite split clause from
-  L08 as reception-only contrast: `Der Abholdienst holt das Fahrrad ab.`
-- The controlled Partizip II wholes `abgegeben` and `abgeholt` do not constitute
-  evidence of a finite separable-verb bracket.
-- Productive L24 grammar remains the bounded event passive: finite singular
-  `wird` plus a verified controlled Partizip II. The Task 4 repair does not make
-  the finite separable clause productive in L24.
-- The existing L15 recall remains a separate contrast between controlled
-  Partizip II and `haben`-Perfekt brackets. Surface similarity does not merge
-  those functions with the finite separable bracket.
-- The L24 final still requires the event-passive, controlled-Partizip-II and
-  separable-bracket construct identities, while `reception` records the limited
-  evidence mode for the separable bracket.
+The native review confirmed that the active-versus-passive contrast, process
+descriptions, clarification repair and final workplace transfer are natural
+German within the bounded grammar. It found no productive state passive,
+recipient passive, agent phrase, future/`werden`-infinitive reading, universal
+participle rule, auxiliary guessing, new connector, new case/preposition
+relation or English-contour reuse.
 
-## Verified fail-closed gate behavior
+## Hostile and deterministic evidence
 
-- Generic structural guards run before the L24 semantic block, so malformed
-  recall and final records return stable structural diagnostics rather than a
-  `TypeError` or premature digest error.
-- Exact L24 checks bind the receptive boundary, one L08 recall, its singleton
-  construct, the Partizip-II-does-not-count responsibility, the full `[L08,
-L15]` recall array and the separable final evidence.
-- A final canonical object digest is evaluated only after those specific
-  diagnostics. It rejects removal of controlled Partizip II, insertion of a
-  known alien construct and productive expansion to recipient or agent passive.
-- Hostile fixtures also preserve the dedicated failures for the old receptive
-  boundary, weakened `exactly one`, missing or duplicated L08 recall, wrong
-  L08-native construct, weakened responsibility, mutated L15 recall and missing
-  separable final evidence. Missing `reception` remains covered by the generic
-  anchored core-dimension diagnostic.
+- All 52 ordered L24 hostile mutations fail closed with their dedicated
+  diagnostics, including passive-type leakage, finite-split substitution,
+  lexical/situation drift, future learner-layer flags, topology/provenance
+  mutations and terminal transfer weakening.
+- L24 focused chapter gate: `PASS (de_l24; 7 chapters; 56 packet IDs; Task6
+lexical reconciliation pending)`.
+- Prefix-24 chapter gate: `PASS (prefix 24; 168 chapters; 1344 packet IDs;
+Task6 lexical reconciliation pending)`.
+- L23 focused and prefix-23 regression gates: `PASS`.
+- The unscoped Task 5 gate remains the required incompleteness signal:
+  `INCREMENTAL_TASK5;24/32 lessons;168/224 chapters`.
+- Lesson-boundary, research-authority, grammar-graph, schema, owner-decision,
+  one-phrase interaction, formatting, lint and scoped diff gates: `PASS`.
+- Recenter manifest/pack/receipt suite: `PASS (31/31)` after the manifest binds
+  this cumulative receipt's final SHA-256.
 
-## Deterministic evidence
+## Identity-cycle boundary
 
-- Lesson boundary gate: `PASS (32 lessons; 224 chapter outcomes; 32 session-56
-finals; 48 Task3 constructs)`.
-- Research authority gate: `PASS (53 claims)`.
-- Grammar graph gate: `PASS (48 constructs; 89 edges; 18 branches)`.
-- Blueprint schema gate: `PASS (closed schema; completeness intentionally
-separate)`.
-- Owner decisions gate: `PASS`.
-- Scoped Prettier, ESLint and diff checks: `PASS`.
-- Recenter closure is intentionally deferred until the requirement manifest
-  binds this receipt's final SHA-256; closure requires a fresh `PASS` afterward.
+This receipt deliberately excludes
+`content/learning-v2-course/curriculum/de/REQUIREMENT_MANIFEST_V1.json` from its
+reviewed identity: that manifest must bind this receipt's final SHA-256, and
+including the manifest hash here would create a content-address cycle.
+`docs/v2/HANDOVER.md` is also excluded from the reviewed identity because it is
+mutable execution history maintained after bounded closure. Neither exclusion
+weakens the separate recenter hash gate or handover obligation.
 
-## Explicitly excluded stale and mutable context
+## Closed boundary and next authorized step
 
-| Artifact                                                                | Observed pre-receipt SHA-256                                       | Reason excluded                                                                                                                                         |
-| ----------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `modules/learning-v2/curriculum/de/chapter_blueprints_de_v1.json`       | `5480B62CE187B3264FA850A8B1179A8A342A5BA996E736878CC179A8A749981B` | The current Task 5 L24 object is stale against the repaired Task 4 plan and remains `HOLD`; this receipt neither reviews nor authorizes it.             |
-| `tests/learning_v2_de_chapter_blueprints_gate.ts`                       | `C94CCD1DC015994E87A1FE2FCBC85709135807196C3F51D2D69942EBA96B3933` | The current chapter gate intentionally fails closed with `l24_semantic_contract_invalid:identity`; Stage B requires a new guardian and separate review. |
-| `content/learning-v2-course/curriculum/de/REQUIREMENT_MANIFEST_V1.json` | `52A481302ED89190EFFA1A5EDF62612F540AC834EF8FD46F5744F398EFD6DDA8` | The manifest must bind this receipt's final SHA-256, so including it in the receipt identity would create a content-address cycle.                      |
-| `docs/v2/HANDOVER.md`                                                   | `B796DB6E930BFB5ECC2347B718BBB8DF0BBE83A8B1840CC748B582FAB39DCAE2` | HANDOVER is mutable execution history and is updated only after the bounded task closes.                                                                |
-
-## Remaining boundaries
-
-- Task 5 L24 Stage B remains `HOLD` until a new guardian binds the repaired
-  Task 4 lesson, gate, this receipt and the updated manifest.
-- Task 6 lexical reconciliation remains mandatory before learner-facing
-  authoring.
+- `de_l24` is closed for Task 4 and Task 5 at the two reviewed commits above.
+- The next exact grammar-first blueprint task is a fresh instruction reread and
+  content-addressed guardian for `de_l25`, followed by one bounded lesson and
+  both independent final reviews.
+- Task 6 lexical reconciliation remains mandatory before exact learner-facing
+  packet authoring.
 - RU+UK learner sessions, release, audio and the German owner mockup remain
-  `HOLD` until the complete grammar-first blueprint and downstream gates close.
-- This receipt does not authorize English-contour changes, L25 authoring or any
-  deploy, push or release action.
+  `HOLD` until the complete 32/32 grammar-first blueprint and downstream gates
+  close.
+- This receipt authorizes no English-contour change, deploy, push, production
+  write or release action.
 
-Any byte change in the eight exact reviewed identities invalidates this receipt
-and requires fresh independent exact-spec and red-team reviews.
+Any byte change in a reviewed Stage A or Stage B identity invalidates the
+corresponding verdict and requires fresh independent review.
